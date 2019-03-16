@@ -21,22 +21,20 @@
 ** ************************************************************************** *|
 */
 
-/*
-**	#define FT_MemoryAlloc(size)				ft_memalloc(size)
-**	#define FT_MemorySet(ptr, byte, n)			ft_memset(ptr, byte, n)
-**	#define FT_MemoryClear(ptr, n)				ft_memclr(ptr, n)
-**	#define FT_MemoryDelete(ptr)				ft_memdel(ptr)
-**	#define FT_MemoryCopy(dest, src, n)			ft_memcpy(dest, src, n)
-**	#define FT_MemoryCopy_C(dest, src, byte, n)	ft_memccpy(dest, src, byte, n)
-**	#define FT_MemoryMove(dest, src, n)			ft_memmove(dest, src, n)
-**	#define FT_MemoryDuplicate(ptr, n)			ft_memdup(ptr, n)
-**
-**	#define FT_MemoryFind(ptr, byte, n)			ft_memchr(ptr, byte, n)
-**	#define FT_MemoryCompare(ptr1, ptr2, n)		ft_memcmp(ptr1, ptr2, n)
-**	#define FT_MemorySwap(ptr1, ptr2, size)		ft_swap(ptr1, ptr2, size)
-**
-**	#define FT_GetBits(value, bit, length)		ft_getbits(value, bit, length)
-*/
+#define FT_MemoryAlloc(size)				ft_memalloc(size)
+#define FT_MemorySet(ptr, byte, n)			ft_memset(ptr, byte, n)
+#define FT_MemoryClear(ptr, n)				ft_memclr(ptr, n)
+#define FT_MemoryDelete(ptr)				ft_memdel(ptr)
+#define FT_MemoryCopy(dest, src, n)			ft_memcpy(dest, src, n)
+#define FT_MemoryCopy_C(dest, src, byte, n)	ft_memccpy(dest, src, byte, n)
+#define FT_MemoryMove(dest, src, n)			ft_memmove(dest, src, n)
+#define FT_MemoryDuplicate(ptr, n)			ft_memdup(ptr, n)
+
+#define FT_MemoryFind(ptr, byte, n)			ft_memchr(ptr, byte, n)
+#define FT_MemoryCompare(ptr1, ptr2, n)		ft_memcmp(ptr1, ptr2, n)
+#define FT_MemorySwap(ptr1, ptr2, size)		ft_swap(ptr1, ptr2, size)
+
+#define FT_GetBits(value, bit, length)		ft_getbits(value, bit, length)
 
 /*
 ** ************************************************************************** *|
@@ -113,8 +111,8 @@ void	*ft_memchr(void const *ptr, t_u8 byte, size_t n);
 int		ft_memcmp(void const *ptr1, void const *ptr2, size_t n);
 
 /*
-**	Swaps the two numbers pointed to by 'ptr1' and 'ptr2'
-**	(they must both be of the same 'size').
+**	Swaps the memory content pointed to by 'ptr1' and 'ptr2',
+**	copying exactly 'size' bytes of data between the two.
 **	Returns 0 if the swap was successful, and 1 otherwise.
 */
 int		ft_swap(void *ptr1, void *ptr2, size_t size);

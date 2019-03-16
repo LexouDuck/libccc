@@ -21,28 +21,26 @@
 ** ************************************************************************** *|
 */
 
-/*
-**	#define FT_ListNew(item, size)				ft_lstnew(item, size)
-**	#define FT_ListAdd(alst, elem)				ft_lstadd(alst, elem)
-**	#define FT_ListAppend(alst, elem)			ft_lstappend(alst, elem)
-**	#define FT_ListInsert(alst, elem, index)	ft_lstinsert(alst, elem, index)
-**	#define FT_ListCopy(lst)					ft_lstcpy(lst)
-**	#define FT_ListRemove(alst, del)			ft_lstdelone(alst, del)
-**	#define FT_ListDelete(alst, del)			ft_lstdel(alst, del)
-**	#define FT_ListPop(alst, del)				ft_lstpop(alst, del)
-**
-**	#define FT_ListSize(lst)					ft_lstsize(lst)
-**	#define FT_ListGet(alst, index)				ft_lstget(alst, index)
-**	#define FT_ListFind(lst, query)				ft_lstfind(lst, query)
-**
-**	#define FT_ListSub(alst, index, n)			ft_lstsub(alst, index, n)
-**	#define FT_ListIterate(lst, f)				ft_lstiter(lst, f)
-**	#define FT_ListIterate_I(lst, f)			ft_lstiteri(lst, f)
-**	#define FT_ListMap(lst, f)					ft_lstmap(lst, f)
-**	#define FT_ListMap_I(lst, f)				ft_lstmapi(lst, f)
-**	#define FT_ListToArray(alst)				ft_lst_to_array(alst)
-**	#define FT_ListToTuple(alst, tuple)			ft_lst_to_tuple(alst, tuple)
-*/
+#define FT_ListNew(item, size)				ft_lstnew(item, size)
+#define FT_ListAdd(alst, elem)				ft_lstadd(alst, elem)
+#define FT_ListAppend(alst, elem)			ft_lstappend(alst, elem)
+#define FT_ListInsert(alst, elem, index)	ft_lstinsert(alst, elem, index)
+#define FT_ListCopy(lst)					ft_lstcpy(lst)
+#define FT_ListRemove(alst, del)			ft_lstdelone(alst, del)
+#define FT_ListDelete(alst, del)			ft_lstdel(alst, del)
+#define FT_ListPop(alst, del)				ft_lstpop(alst, del)
+
+#define FT_ListSize(lst)					ft_lstsize(lst)
+#define FT_ListGet(alst, index)				ft_lstget(alst, index)
+#define FT_ListFind(lst, query)				ft_lstfind(lst, query)
+
+#define FT_ListSub(alst, index, n)			ft_lstsub(alst, index, n)
+#define FT_ListIterate(lst, f)				ft_lstiter(lst, f)
+#define FT_ListIterate_I(lst, f)			ft_lstiteri(lst, f)
+#define FT_ListMap(lst, f)					ft_lstmap(lst, f)
+#define FT_ListMap_I(lst, f)				ft_lstmapi(lst, f)
+#define FT_ListToArray(alst)				ft_lst_to_array(alst)
+#define FT_ListToTuple(alst, tuple)			ft_lst_to_tuple(alst, tuple)
 
 /*
 ** ************************************************************************** *|

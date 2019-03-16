@@ -24,23 +24,21 @@
 ** ************************************************************************** *|
 */
 
-/*
-**	#define FT_Read_File(fd, file)			ft_readfile(fd, file)
-**	#define FT_Read_NextLine(fd, line)		ft_getnextline(fd, line)
-**	#define FT_Read_Lines(fd, strls)		ft_readlines(fd, strls)
-**
-**	#define FT_Write_Char(fd, c)			ft_write_char(fd, c)
-**	#define FT_Write_String(fd, str)		ft_write_str(fd, str)
-**	#define FT_Write_Line(fd, str)			ft_write_line(fd, str)
-**	#define FT_Write_Lines(fd, strls)		ft_write_strls(fd, strls)
-**	#define FT_Write_Memory(fd, ptr, cols)	ft_write_memory(fd, ptr, cols)
-**
-**	#define FT_Output_Char(c)				ft_output_char(c)
-**	#define FT_Output_String(str)			ft_output_str(str)
-**	#define FT_Output_Line(str)				ft_output_line(str)
-**	#define FT_Output_Lines(strls)			ft_output_strls(strls)
-**	#define FT_Output_Memory(ptr, cols)		ft_output_memory(ptr, cols)
-*/
+#define FT_Read_File(fd, file)			ft_readfile(fd, file)
+#define FT_Read_NextLine(fd, line)		ft_getnextline(fd, line)
+#define FT_Read_Lines(fd, strls)		ft_readlines(fd, strls)
+
+#define FT_Write_Char(fd, c)			ft_write_char(fd, c)
+#define FT_Write_String(fd, str)		ft_write_str(fd, str)
+#define FT_Write_Line(fd, str)			ft_write_line(fd, str)
+#define FT_Write_Lines(fd, strls)		ft_write_strls(fd, strls)
+#define FT_Write_Memory(fd, ptr, cols)	ft_write_memory(fd, ptr, cols)
+
+#define FT_Output_Char(c)				ft_output_char(c)
+#define FT_Output_String(str)			ft_output_str(str)
+#define FT_Output_Line(str)				ft_output_line(str)
+#define FT_Output_Lines(strls)			ft_output_strls(strls)
+#define FT_Output_Memory(ptr, cols)		ft_output_memory(ptr, cols)
 
 /*
 ** ************************************************************************** *|

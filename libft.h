@@ -114,15 +114,13 @@ typedef double			t_f64;
 ** on the use case.
 */
 typedef t_f32			t_float;
-/*
-**	TODO -> put this functioning code back after 42 validation
-**	# ifdef _FLOAT_32_
-**	typedef t_f32			t_float;
-**	# endif
-**	# ifdef _FLOAT_64_
-**	typedef t_f64			t_float;
-**	# endif
-*/
+
+# ifdef _FLOAT_32_
+typedef t_f32			t_float;
+# endif
+# ifdef _FLOAT_64_
+typedef t_f64			t_float;
+# endif
 
 /*
 **	Define a boolean pseudo-type that is potentially faster than just 'int'.

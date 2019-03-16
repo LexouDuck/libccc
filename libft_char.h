@@ -21,21 +21,19 @@
 ** ************************************************************************** *|
 */
 
-/*
-**	#define FT_IsLetter(c)			ft_isalpha(c)
-**	#define FT_IsUppercase(c)		ft_isupper(c)
-**	#define FT_IsLowercase(c)		ft_islower(c)
-**	#define FT_IsAlphanumeric(c)	ft_isalnum(c)
-**	#define FT_IsDigit(c)			ft_isdigit(c)
-**	#define FT_IsHexDigit(c)		ft_ishexdigit(c)
-**	#define FT_IsSpace(c)			ft_isspace(c)
-**	#define FT_IsPunctuation(c)		ft_ispunct(c)
-**	#define FT_IsPrintable(c)		ft_isprint(c)
-**	#define FT_IsASCII(c)			ft_isascii(c)
-**
-**	#define FT_ToUppercase(c)		ft_toupper(c)
-**	#define FT_ToLowercase(c)		ft_tolower(c)
-*/
+#define FT_IsLetter(c)			ft_isalpha(c)
+#define FT_IsUppercase(c)		ft_isupper(c)
+#define FT_IsLowercase(c)		ft_islower(c)
+#define FT_IsAlphanumeric(c)	ft_isalnum(c)
+#define FT_IsDigit(c)			ft_isdigit(c)
+#define FT_IsHexDigit(c)		ft_ishexdigit(c)
+#define FT_IsSpace(c)			ft_isspace(c)
+#define FT_IsPunctuation(c)		ft_ispunct(c)
+#define FT_IsPrintable(c)		ft_isprint(c)
+#define FT_IsASCII(c)			ft_isascii(c)
+
+#define FT_ToUppercase(c)		ft_toupper(c)
+#define FT_ToLowercase(c)		ft_tolower(c)
 
 /*
 ** ************************************************************************** *|
