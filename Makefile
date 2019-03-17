@@ -5,7 +5,7 @@ CC_WIN	= i686-w64-mingw32-gcc
 CC_LIN	= gcc
 CC_MAC	= gcc
 
-CFLAGS	=	-Wall -Wextra -Werror $(CFLAGS_PLATFORM) -O2 -MMD -g
+CFLAGS	=	-Wall -Wextra -Werror $(CFLAGS_PLATFORM) -O2 -MMD
 CFLAGS_PLATFORM = _
 CFLAGS_WIN	= -mwindows
 CFLAGS_LIN	= -Wno-unused-result 
