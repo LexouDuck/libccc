@@ -1,16 +1,19 @@
 NAME	=	libft.a
 
+# Compiler
 CC		= _
 CC_WIN	= i686-w64-mingw32-gcc
 CC_LIN	= gcc
 CC_MAC	= gcc
 
+# Compiler flags
 CFLAGS	=	-Wall -Wextra -Werror $(CFLAGS_PLATFORM) -O2 -MMD
 CFLAGS_PLATFORM = _
 CFLAGS_WIN	= -mwindows
 CFLAGS_LIN	= -Wno-unused-result 
 CFLAGS_MAC	= 
 
+# Set platform-specific variables
 ifeq ($(OS),Windows_NT)
 	CC := $(CC_WIN)
 	CFLAGS_PLATFORM := $(CFLAGS_WIN)
@@ -35,7 +38,7 @@ SRC_MEMORY	:=	ft_memalloc.c	\
 				ft_memmove.c	\
 				ft_memcmp.c		\
 				ft_memchr.c		\
-				ft_swap.c		\
+				ft_memswap.c	\
 				ft_getbits.c	
 
 DIR_CHAR	:=	char/

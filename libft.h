@@ -14,6 +14,13 @@
 # define LIBFT_H
 
 /*
+**	TODO	libft_math			+ tests
+**	TODO	libft_random		+ tests
+**	TODO	libft_stringarray	+ tests
+**	TODO	libft_vlq			+ tests
+*/
+
+/*
 ** ************************************************************************** *|
 **                                 Includes                                   *|
 ** ************************************************************************** *|

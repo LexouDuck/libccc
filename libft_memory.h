@@ -32,7 +32,7 @@
 
 #define FT_MemoryFind(ptr, byte, n)			ft_memchr(ptr, byte, n)
 #define FT_MemoryCompare(ptr1, ptr2, n)		ft_memcmp(ptr1, ptr2, n)
-#define FT_MemorySwap(ptr1, ptr2, size)		ft_swap(ptr1, ptr2, size)
+#define FT_MemorySwap(ptr1, ptr2, size)		ft_memswap(ptr1, ptr2, size)
 
 #define FT_GetBits(value, bit, length)		ft_getbits(value, bit, length)
 
@@ -112,10 +112,10 @@ int		ft_memcmp(void const *ptr1, void const *ptr2, size_t n);
 
 /*
 **	Swaps the memory content pointed to by 'ptr1' and 'ptr2',
-**	copying exactly 'size' bytes of data between the two.
+**	copying exactly 'size' bytes of data between the two. (XOR swap method)
 **	Returns 0 if the swap was successful, and 1 otherwise.
 */
-int		ft_swap(void *ptr1, void *ptr2, size_t size);
+int		ft_memswap(void *ptr1, void *ptr2, size_t size);
 
 /*
 **	Returns a subsection of the 'value' argument, taking 'length' bits

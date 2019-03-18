@@ -325,15 +325,15 @@ printf("\n");
 
 
 /*
-**	int		ft_swap(void *ptr1, void *ptr2, size_t size);
+**	int		ft_memswap(void *ptr1, void *ptr2, size_t size);
 */
-void	print_test_swap(void)
+void	print_test_memswap(void)
 {
 	t_timer t = {0};
 //	TODO
 	print_timer_result(&t, FALSE);
 }
-void	test_swap(void)
+void	test_memswap(void)
 {
 printf("\n");
 /*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
@@ -391,8 +391,8 @@ int		test_memory(void)
 	test_memalloc();
 	test_memdel();
 	test_memdup();
-	test_swap();
-	test_getbits();
+//	test_memswap();
+//	test_getbits();
 
 	printf("\n");
 	return (OK);

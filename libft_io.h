@@ -24,7 +24,7 @@
 ** ************************************************************************** *|
 */
 
-#define FT_Read_File(fd, file)			ft_readfile(fd, file)
+#define FT_Read_File(fd, file, max)		ft_readfile(fd, file, max)
 #define FT_Read_NextLine(fd, line)		ft_getnextline(fd, line)
 #define FT_Read_Lines(fd, strls)		ft_readlines(fd, strls)
 
