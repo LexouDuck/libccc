@@ -203,7 +203,7 @@ void		print_timer_result(t_timer* t, int compare)
 char	*s_to_str(t_s64 number)
 {
 	char	*result;
-	t_u8	digits[MAXDIGIT_64b];
+	t_u8	digits[MAXDIGIT_64BIT];
 	t_u8	i;
 	t_u64	n;
 
@@ -229,7 +229,7 @@ char	*s_to_str(t_s64 number)
 char	*u_to_str(t_u64 number)
 {
 	char	*result;
-	t_u8	digits[MAXDIGIT_64b];
+	t_u8	digits[MAXDIGIT_64BIT];
 	t_u8	i;
 	t_u64	n;
 
