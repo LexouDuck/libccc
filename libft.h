@@ -89,6 +89,8 @@
 **	_FLOAT_64_ means a 64-bit "double" precision float
 */
 # define _FLOAT_32_
+# define _UINT_32_
+# define _INT_32_
 
 /*
 ** ************************************************************************** *|
@@ -120,13 +122,42 @@ typedef double			t_f64;
 ** vice-versa, which is useful for portability and/or optimization depending
 ** on the use case.
 */
-typedef t_f32			t_float;
 
 # ifdef _FLOAT_32_
 typedef t_f32			t_float;
 # endif
 # ifdef _FLOAT_64_
 typedef t_f64			t_float;
+# endif
+
+/*
+** More care should be used with the default int/uint types: know your
+** compiler
+*/
+# ifdef _UINT_8_
+typedef t_u8			t_uint;
+# endif
+# ifdef _UINT_16_
+typedef t_u16			t_uint;
+# endif
+# ifdef _UINT_32_
+typedef t_u32			t_uint;
+# endif
+# ifdef _UINT_64_
+typedef t_u64			t_uint;
+# endif
+
+# ifdef _INT_8_
+typedef t_s8			t_int;
+# endif
+# ifdef _INT_16_
+typedef t_s16			t_int;
+# endif
+# ifdef _INT_32_
+typedef t_s32			t_int;
+# endif
+# ifdef _INT_64_
+typedef t_s64			t_int;
 # endif
 
 /*

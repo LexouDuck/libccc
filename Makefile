@@ -117,7 +117,10 @@ SRC_LIST	:=	ft_lstnew.c		\
 				ft_lst_to.c
 
 DIR_MATH	:=	math/
-SRC_MATH	:=	
+SRC_MATH	:=	ft_realfunctions.c	\
+				ft_random.c			\
+				ft_calc.c			\
+				ft_stat.c
 
 DIR_VLQ		:=	vlq/
 SRC_VLQ		:=	
