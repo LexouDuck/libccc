@@ -15,17 +15,17 @@ void	print_test_memalloc(char const* test_name, int can_segfault,
 	if (result == NULL)
 	{
 		error = TRUE;
-		printf(C_RED"\nERROR - The call to ft_memalloc returned NULL."RESET);
+		printf(C_RED"\nERROR - The call to ft_memalloc returned NULL."C_RESET);
 	}
 	for (size_t i = 0; i < n; ++i)
 	{
 		if (result[i])
 		{
 			error = TRUE;
-			printf(C_RED"\nERROR - Every char should be '\\0', but '%c' was read at index %d."RESET, result[i], i);
+			printf(C_RED"\nERROR - Every char should be '\\0', but '%c' was read at index %d."C_RESET, result[i], i);
 		}
 	}
-	if (!error) printf(C_GREEN"OK!"RESET);
+	if (!error) printf(C_GREEN"OK!"C_RESET);
 	if (result) free(result);
 	print_timer_result(&t, FALSE);
 }

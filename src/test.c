@@ -19,8 +19,8 @@ void segfault_handler(int sig, siginfo_t *info, void *ptr)
 void	print_nonstd(void)
 {
 printf("\n");
-	printf("\n==> "C_BLUE"The following tests are for the functions which are not present in the standard C library."RESET);
-	printf("\n==> "C_BLUE"You may decide to protect these functions against segfaults or not, just remain coherent."RESET);
+	printf("\n==> "C_BLUE"The following tests are for the functions which are not present in the standard C library."C_RESET);
+	printf("\n==> "C_BLUE"You may decide to protect these functions against segfaults or not, just remain coherent."C_RESET);
 }
 
 int		main(int argc, char **argv)
@@ -41,9 +41,9 @@ int		main(int argc, char **argv)
 	{
 		int num = 1;
 		if (*(char *)&num == 1)
-			 printf("\n"C_GREEN"/!\\ Processor is Little-Endian (all tests should work reliably and can be trusted)"RESET"\n");
-		else printf("\n"C_RED"/!\\ Processor is Big-Endian (errors may arise in certain tests, like 'uint' tests for mem functions)"RESET"\n");
-		printf("\n"C_YELLOW"All the tests with written in yellow 'can segfault' are NULL pointer tests."RESET"\n");
+			 printf("\n"C_GREEN"/!\\ Processor is Little-Endian (all tests should work reliably and can be trusted)"C_RESET"\n");
+		else printf("\n"C_RED"/!\\ Processor is Big-Endian (errors may arise in certain tests, like 'uint' tests for mem functions)"C_RESET"\n");
+		printf("\n"C_YELLOW"All the tests with written in yellow 'can segfault' are NULL pointer tests."C_RESET"\n");
 
 		test_memory();
 		test_char();

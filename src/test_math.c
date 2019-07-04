@@ -101,7 +101,7 @@ printf("\n");
 #endif
 
 
-	t_u32				sample_nb = 21;
+	t_u32				sample_nb = 20000;
 	printf("Stat test of rng, sample size: %d\n", sample_nb);
 
 	t_int_list			i_lst;
@@ -109,21 +109,32 @@ printf("\n");
 	t_float				tmp;
 	t_float				decile_inc = sample_nb / 10.;
 
+
 	i_lst = ft_stat_new_ilst(sample_nb);
+
 	for (int i = 0; i < i_lst.len; ++i)
 		i_lst.data[i] = ft_random_int_a_to_b(-500, 501);
+
+/*	static t_int arr[5] = {-339, 214, 394, -162, -50};//{-339, -162, -50, 214, 394};
+	for (int i = 0; i < i_lst.len; ++i)
+		i_lst.data[i] = arr[i];
+
 	for (int i = 0; i < i_lst.len; ++i)
 		printf("%d, ", i_lst.data[i]);
 	printf("\n");
-
+*/
 	printf("Quicksorting...\n");
 	i_lst = ft_stat_quicksort_i(i_lst);
 	printf("Done !\n");
+	for (int i = 0; i < i_lst.len - 1; ++i)
+		if (i_lst.data[i] > i_lst.data[i + 1])
+			printf(C_RED"Sorting error at index %d\n"C_RESET, i);
 
-	for (int i = 0; i < i_lst.len; ++i)
+
+/*	for (int i = 0; i < i_lst.len; ++i)
 		printf("%d, ", i_lst.data[i]);
 	printf("\n");
-
+*/
 	printf("\tMedian:   %12f | intmax   :%lu\n", ft_stat_median_i(i_lst), intmax);
 	printf("\tAverage:  %12f | intmax/2 :%lu\n", ft_stat_average_i(i_lst), intmax / 2);
 	tmp = ft_stat_variance_i(i_lst);

@@ -192,10 +192,10 @@ void		print_timer_result(t_timer* t, int compare)
 		if (compare == 0)
 			printf("%lld.%.09ld, libc:", (long long)t->time1.tv_sec, t->time1.tv_nsec);
 		else if (compare < 0)
-			printf(C_GREEN"%lld.%.09ld"RESET", libc:"C_RED, (long long)t->time1.tv_sec, t->time1.tv_nsec);
+			printf(C_GREEN"%lld.%.09ld"C_RESET", libc:"C_RED, (long long)t->time1.tv_sec, t->time1.tv_nsec);
 		else
-			printf(C_RED"%lld.%.09ld"RESET", libc:"C_GREEN, (long long)t->time1.tv_sec, t->time1.tv_nsec);
-		printf("%lld.%.09ld"RESET"]", (long long)t->time2.tv_sec, t->time2.tv_nsec);
+			printf(C_RED"%lld.%.09ld"C_RESET", libc:"C_GREEN, (long long)t->time1.tv_sec, t->time1.tv_nsec);
+		printf("%lld.%.09ld"C_RESET"]", (long long)t->time2.tv_sec, t->time2.tv_nsec);
 	}
 	else printf(" [libft:%lld.%.09ld]", (long long)t->time1.tv_sec, t->time1.tv_nsec);
 }
@@ -268,7 +268,7 @@ void	print_test(
 	if (test_name)
 	{
 		if (can_segfault & 1)
-			 printf("\n%s - "C_YELLOW"can segfault"RESET, test_name);
+			 printf("\n%s - "C_YELLOW"can segfault"C_RESET, test_name);
 		else printf("\n%s", test_name);
 		printf(" -> ");
 	}
@@ -276,21 +276,21 @@ void	print_test(
 	if (error)
 	{
 		if (str_equals(expect, "(n/a)"))
-			 printf(C_RED"TEST COULD NOT BE PERFORMED\n"RESET);
+			 printf(C_RED"TEST COULD NOT BE PERFORMED\n"C_RESET);
 		else printf(C_RED"ERROR\n");
 		if (function[0] == '_')
 		{
 			char *expected = str_padleft("Expected", ' ', strlen(function) + 2);
-			printf(">ft%s: {%s}\n>%s: {%s}"RESET,
+			printf(">ft%s: {%s}\n>%s: {%s}"C_RESET,
 				function, result,
 				expected, expect);
 			free(expected);
 		}
-		else printf(">ft_%s: {%s}\n>   %s: {%s}"RESET,
+		else printf(">ft_%s: {%s}\n>   %s: {%s}"C_RESET,
 				function, result,
 				function, expect);
 	}
-	else printf(C_GREEN"OK!"RESET);
+	else printf(C_GREEN"OK!"C_RESET);
 }
 
 
@@ -719,7 +719,7 @@ void	print_test_lst(
 	if (test_name)
 	{
 		if (can_segfault)
-			 printf("\n%s - "C_YELLOW"can segfault"RESET, test_name);
+			 printf("\n%s - "C_YELLOW"can segfault"C_RESET, test_name);
 		else printf("\n%s", test_name);
 		printf(" -> ");
 	}
@@ -752,7 +752,7 @@ void	print_test_lst(
 			printf("%s{%s}", (i == 0 ? "" : ", "), expect[i]);
 			++i;
 		}
-		printf("]\n"RESET);
+		printf("]\n"C_RESET);
 	}
-	else printf(C_GREEN"OK!"RESET);
+	else printf(C_GREEN"OK!"C_RESET);
 }
