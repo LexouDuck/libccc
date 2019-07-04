@@ -67,6 +67,8 @@ printf("\n");
 
 printf("\n");
 
+	ft_random_renew_seed();
+
 #ifdef _FLOAT_32_
 
 //	test_compare_real_functions("cosf", &cosf, &ft_cos, 0.0001, (t_interval){-TAU, 2 * TAU});
@@ -102,8 +104,6 @@ printf("\n");
 	t_u64				intmax = (t_u32)-1;
 	t_float				tmp;
 	t_float				decile_inc = sample_nb / 10.;
-
-	ft_random_renew_seed();
 
 	i_lst = ft_stat_new_ilst(sample_nb);
 	for (int i = 0; i < i_lst.len; ++i)

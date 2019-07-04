@@ -49,19 +49,19 @@ inline t_f64	ft_distance_f64(t_f64 x, t_f64 y)
 
 inline t_u8		ft_distance_u8(t_u8 x, t_u8 y)
 {
-	return (ABS(x - y));
+	return (x - y);
 }
 inline t_u16	ft_distance_u16(t_u16 x, t_u16 y)
 {
-	return (ABS(x - y));
+	return (x - y);
 }
 inline t_u32	ft_distance_u32(t_u32 x, t_u32 y)
 {
-	return (ABS(x - y));
+	return (x - y);
 }
 inline t_u64	ft_distance_u64(t_u64 x, t_u64 y)
 {
-	return (ABS(x - y));
+	return (x - y);
 }
 
 inline t_s8		ft_distance_s8(t_s8 x, t_s8 y)
@@ -87,7 +87,7 @@ inline t_float	ft_distance_float(t_float x, t_float y)
 }
 inline t_uint	ft_distance_uint(t_uint x, t_uint y)
 {
-	return (ABS(x - y));
+	return (x - y);
 }
 inline t_int	ft_distance_int(t_int x, t_int y)
 {
