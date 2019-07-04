@@ -281,10 +281,8 @@ typedef struct	s_float_list
 /*
 ** Use only to signify a list with no repeating values.
 */
-/*
 typedef t_int_list		t_int_set;
 typedef t_float_list	t_float_set;
-*/
 /*
 ** Use only to signify a list that has been ordered.
 */

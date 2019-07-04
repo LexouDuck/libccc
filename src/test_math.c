@@ -48,8 +48,11 @@ int		test_compare_real_functions
 	printf("Success rate for function \"%s\" at %g precision: %g%%\n",
 									func_name, precision, (test_nb - failed_tests) * 100. / test_nb);
 	printf("Tests run: %d | Step: %g | Interval: [%g,%g]\n", test_nb, step, start, end);
-
+#if 0
+	printf("\tQuicksorting...\n");
 	error_list = ft_stat_quicksort_f(error_list);
+	printf("\tDone !\n");
+#endif
 	printf("Average error : %g | Median error : %g | Std dev : %g\n\n\n",
 			ft_stat_average_f(error_list), ft_stat_median_f(error_list), sqrt(ft_stat_variance_f(error_list)));
 
@@ -69,6 +72,7 @@ printf("\n");
 
 	ft_random_renew_seed();
 
+#if 0
 #ifdef _FLOAT_32_
 
 //	test_compare_real_functions("cosf", &cosf, &ft_cos, 0.0001, (t_interval){-TAU, 2 * TAU});
@@ -94,10 +98,10 @@ printf("\n");
 	test_compare_real_functions("ln", &log, &ft_ln, 0.000001, (t_interval){1., 10000000.});
 
 #endif
+#endif
 
 
-
-	t_u32				sample_nb = 20000;
+	t_u32				sample_nb = 21;
 	printf("Stat test of rng, sample size: %d\n", sample_nb);
 
 	t_int_list			i_lst;
@@ -108,10 +112,17 @@ printf("\n");
 	i_lst = ft_stat_new_ilst(sample_nb);
 	for (int i = 0; i < i_lst.len; ++i)
 		i_lst.data[i] = ft_random_int_a_to_b(-500, 501);
+	for (int i = 0; i < i_lst.len; ++i)
+		printf("%d, ", i_lst.data[i]);
+	printf("\n");
 
 	printf("Quicksorting...\n");
 	i_lst = ft_stat_quicksort_i(i_lst);
 	printf("Done !\n");
+
+	for (int i = 0; i < i_lst.len; ++i)
+		printf("%d, ", i_lst.data[i]);
+	printf("\n");
 
 	printf("\tMedian:   %12f | intmax   :%lu\n", ft_stat_median_i(i_lst), intmax);
 	printf("\tAverage:  %12f | intmax/2 :%lu\n", ft_stat_average_i(i_lst), intmax / 2);

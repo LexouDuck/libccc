@@ -57,9 +57,30 @@ void			ft_stat_free_flst(t_float_list *flst)
 	flst->len = 0;
 }
 
-/*
-** An extra t_int is always allocated to leave room for the pivot in QckSrt
-*/
+t_int_list		ft_stat_ilst_dup(t_int_list const ilst)
+{
+	t_int_list	res;
+
+	res = ft_stat_new_ilst(ilst.len);
+	if (!res.data)
+		return (res);
+	for (t_u32 i = 0; i < res.len; ++i)
+		res.data[i] = ilst.data[i];
+	return (res);
+}
+
+t_float_list	ft_stat_flst_dup(t_float_list const flst)
+{
+	t_float_list	res;
+
+	res = ft_stat_new_flst(flst.len);
+	if (!res.data)
+		return (res);
+	for (t_u32 i = 0; i < res.len; ++i)
+		res.data[i] = flst.data[i];
+	return (res);
+}
+
 t_int_list		ft_stat_merge_ilst(t_int_list *start,
 								t_int_list *append)
 {
@@ -73,27 +94,20 @@ t_int_list		ft_stat_merge_ilst(t_int_list *start,
 		return (*append);
 	else if (!append->data || append->len == 0)
 		return (*start);
-	res = ft_stat_new_ilst(start->len + append->len + 1);
-	--res.len;
+	res = ft_stat_new_ilst(start->len + append->len);
 	if (!(res.data))
 		return (res);
-	i = 0;
-	while (i < start->len)
-	{
+
+	for (i = 0; i < start->len; ++i)
 		res.data[i] = start->data[i];
-		++i;
-	}
-	j = 0;
-	while (i < res.len)
-		res.data[i++] = append->data[j++];
+	for (j = 0; i < res.len; ++i, ++j)
+		res.data[i] = append->data[j];
 	ft_stat_free_ilst(start);
 	ft_stat_free_ilst(append);
+
 	return (res);
 }
 
-/*
-** An extra t_float is always allocated to leave room for the pivot in QckSrt
-*/
 t_float_list 	ft_stat_merge_flst(t_float_list *start,
 									t_float_list *append)
 {
@@ -107,28 +121,98 @@ t_float_list 	ft_stat_merge_flst(t_float_list *start,
 		return (*append);
 	else if (!append->data || append->len == 0)
 		return (*start);
-	res = ft_stat_new_flst(start->len + append->len + 1);
-	--res.len;
+	res = ft_stat_new_flst(start->len + append->len);
 	if (!(res.data))
 		return (res);
-	i = 0;
-	while (i < start->len)
-	{
+
+	for (i = 0; i < start->len; ++i)
 		res.data[i] = start->data[i];
-		++i;
-	}
-	j = 0;
-	while (i < res.len)
-		res.data[i++] = append->data[j++];
+	for (j = 0; i < res.len; ++i, ++j)
+		res.data[i] = append->data[j];
 	ft_stat_free_flst(start);
 	ft_stat_free_flst(append);
+
 	return (res);
 }
 
-t_int_list 	ft_stat_quicksort_i(t_int_list const i_lst)
+
+
+#include <stdio.h>
+
+/*
+** Both indices provided are to be included in those written to.
+** Pivot should have have been chosen as = tmp_lst.data[end]
+*/
+static void		ft_stat_quicksort_i_rec
+(
+	t_int_list	tmp_lst,
+	t_int		pivot,
+	t_u32		start,
+	t_u32		end
+)
 {
-	t_int				pivot;
-	t_u32				i;
+	t_u32	pivot_id;
+	t_u32	rise_id;
+	t_u32	fall_id;
+
+for (t_u32 i = 0; i < tmp_lst.len; ++i)
+	printf("%d, ", tmp_lst.data[i]);
+printf("\n");
+printf("INIT: pivot %d | start %u | end %u\n", pivot, start, end);
+
+	if (start >= end)
+		return ;
+	rise_id = start + 1;
+	fall_id = end;
+	while (rise_id < fall_id)
+	{
+printf("read1\n");
+		while (rise_id < end && tmp_lst.data[rise_id] <= pivot)
+			++rise_id;
+printf("read2\n");
+		while (fall_id > start && tmp_lst.data[fall_id] > pivot)
+		{
+			--fall_id;
+printf("fall_id %u\n", fall_id);
+		}
+printf("read3\n");
+		if (rise_id < fall_id)
+		{
+/*printf("1 pivot %d | cur_val %d | start %u | end %u | rise_id %u | fall_id %u\n",
+pivot, 	tmp_lst.data[rise_id], start, 	end, 	rise_id, 	fall_id);		
+*/			ft_memswap(&(tmp_lst.data[rise_id]), &(tmp_lst.data[fall_id]), sizeof(t_int));
+		}
+printf("2 pivot %d | cur_val %d | start %u | end %u | rise_id %u | fall_id %u\n",
+pivot, 	tmp_lst.data[rise_id], start, 	end, 	rise_id, 	fall_id);
+	}
+	pivot_id = fall_id;
+//	if (start != end - 1 && pivot > tmp_lst.data[pivot_id])
+	ft_memswap(tmp_lst.data + start, tmp_lst.data + pivot_id, sizeof(t_int));
+
+	ft_stat_quicksort_i_rec(tmp_lst, tmp_lst.data[start], start, pivot_id - 1);
+	ft_stat_quicksort_i_rec(tmp_lst, tmp_lst.data[pivot_id + 1], pivot_id + 1, end);
+//printf("==========return===========\n");
+}
+
+t_int_list 			ft_stat_quicksort_i(t_int_list const i_lst)
+{
+	t_int_list	res;
+
+	if (i_lst.len <= 1)
+		return (i_lst);
+	res = ft_stat_ilst_dup(i_lst);
+
+for (t_u32 i = 0; i < res.len; ++i)
+	printf("%d, ", res.data[i]);
+printf("\n");
+
+	ft_stat_quicksort_i_rec(res, res.data[0], 0, i_lst.len - 1);
+	return (res);
+}
+
+
+
+/*	t_int				pivot;
 	t_int_list			sub_lst;
 	t_int_list			sup_lst;
 
@@ -141,27 +225,25 @@ t_int_list 	ft_stat_quicksort_i(t_int_list const i_lst)
 	sub_lst.len = 0;
 	sup_lst.len = 0;
 	pivot = i_lst.data[0];
-	i = 0;
-	while (++i < i_lst.len)
+	for (t_u32 i = 1; i < i_lst.len; ++i)
+	{
 		if (i_lst.data[i] < pivot)
 			sub_lst.data[(sub_lst.len)++] = i_lst.data[i];
 		else
 			sup_lst.data[(sup_lst.len)++] = i_lst.data[i];
+	}
 	sub_lst = ft_stat_quicksort_i(sub_lst);
 	sup_lst = ft_stat_quicksort_i(sup_lst);
 	sub_lst.data[(sub_lst.len)++] = pivot;
 	return (ft_stat_merge_ilst(&sub_lst, &sup_lst));
-}
-
+*/
+#if 0
 t_float_list 	ft_stat_quicksort_f(t_float_list const f_lst)
 {
-	t_float				pivot;
-	t_u32				i;
+/*	t_float				pivot;
 	t_float_list		sub_lst;
 	t_float_list		sup_lst;
 
-
-//printf("lstlen: %d\n", f_lst.len);
 	if (f_lst.len <= 1)
 		return (f_lst);
 	sub_lst = ft_stat_new_flst(f_lst.len);
@@ -171,18 +253,20 @@ t_float_list 	ft_stat_quicksort_f(t_float_list const f_lst)
 	sub_lst.len = 0;
 	sup_lst.len = 0;
 	pivot = f_lst.data[0];
-	i = 0;
-	while (++i < f_lst.len)
+	for (t_u32 i = 1; i < f_lst.len; ++i)
+	{
 		if (f_lst.data[i] < pivot)
 			sub_lst.data[(sub_lst.len)++] = f_lst.data[i];
 		else
 			sup_lst.data[(sup_lst.len)++] = f_lst.data[i];
+	}
 	sub_lst = ft_stat_quicksort_f(sub_lst);
 	sup_lst = ft_stat_quicksort_f(sup_lst);
 	sub_lst.data[(sub_lst.len)++] = pivot;
 	return (ft_stat_merge_flst(&sub_lst, &sup_lst));
+*/
 }
-
+#endif
 
 
 inline t_float		ft_stat_median_i(t_int_list_sorted const i_lst)
@@ -349,7 +433,7 @@ void					ft_stat_free_pmf(t_prob_mass *drv)
 	drv->len = 0;
 }
 
-t_int_list				ft_stat_ilst_to_iset(t_int_list const ilst)
+t_int_set				ft_stat_ilst_to_iset(t_int_list const ilst)
 {
 	t_int_list				res;
 	t_int_list				set;
