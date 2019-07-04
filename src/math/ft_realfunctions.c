@@ -75,7 +75,53 @@ t_float			ft_cos(t_float t)
 	return sign ? -res : res;
 }
 
+t_float			ft_sin(t_float t)
+{
+	t_float		res;
+	t_bool		sign; //True for negative
+	t_float		t_p2;
+	t_float		t_p3;
+	t_float		t_p5;
+	t_float		t_p7;
+	t_float		t_p9;
+	t_float		t_p11;
+	t_float		t_p13;
 
+	sign = 0;
+	if (t < 0.)
+	{
+		t = -t;
+		sign = !sign;
+	}
+	if (t > TAU)
+		t = ft_fmod_tau(t);
+	if (t > PI)
+	{
+		t = PI - (t - PI);
+		sign = !sign;
+	}
+	if (t > HALF_PI)
+		t = HALF_PI - (t - HALF_PI);
+
+	t_p2 = t * t;
+	t_p3 = t * t_p2;
+	t_p5 = t_p2 * t_p3;
+	t_p7 = t_p2 * t_p5;
+	t_p9 = t_p2 * t_p7;
+	t_p11 = t_p2 * t_p9;
+	t_p13 = t_p2 * t_p11;
+
+	res = t;
+	res -= t_p3 * inv_factorial(3);
+	res += t_p5 * inv_factorial(5);
+	res -= t_p7 * inv_factorial(7);
+	res += t_p9 * inv_factorial(9);
+	res -= t_p11 * inv_factorial(11);
+	res += t_p13 * inv_factorial(13);
+	res -= t_p13 * t_p2 * inv_factorial(15);
+
+	return sign ? -res : res;
+}
 
 /*
 ** ===============================

@@ -90,7 +90,7 @@
 t_float					ft_cos(t_float t);
 //t_f32						ft_sin32(t_f32 x);
 //t_f64						ft_sin64(t_f64 x);
-//t_float					ft_sin(t_float t);
+t_float					ft_sin(t_float t);
 //t_f32						ft_tan32(t_f32 x);
 //t_f64						ft_tan64(t_f64 x);
 //t_float					ft_tan(t_float t);
@@ -288,8 +288,8 @@ typedef t_float_list	t_float_set;
 /*
 ** Use only to signify a list that has been ordered.
 */
-typedef t_int_list		t_int_sortedlst;
-typedef t_float_list	t_float_sortedlst;
+typedef t_int_list		t_int_list_sorted;
+typedef t_float_list	t_float_list_sorted;
 
 /*
 ** Remember:
@@ -363,8 +363,8 @@ t_float_list 		ft_stat_quicksort_f(t_float_list const f_lst);
 /*
 ** List is supposed to be already in order for this to return the right result.
 */
-t_float				ft_stat_median_i(t_int_list const i_lst);
-t_float				ft_stat_median_f(t_float_list const f_lst);
+t_float				ft_stat_median_i(t_int_list_sorted const i_lst);
+t_float				ft_stat_median_f(t_float_list_sorted const f_lst);
 
 t_float				ft_stat_average_i(t_int_list const i_lst);
 t_float				ft_stat_average_f(t_float_list const f_lst);
@@ -422,8 +422,6 @@ t_prob_mass			ft_stat_ilst_to_pmf(t_int_list const ilst);
 # define MODULUS		0x7FFFFFFF		
 # define CEIL_SQRT_MOD	46341
 # define OFFSET			2835
-
-static t_u32	U32Random = DEFAULT_SEED;
 
 
 

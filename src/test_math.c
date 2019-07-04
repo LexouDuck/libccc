@@ -12,13 +12,14 @@ int		test_compare_real_functions
 	t_float			precision,
 	t_interval		interval
 )
-{
-	t_u32		test_nb = 1000;
-	t_u32		test_fail = 0;
-	t_float		start = interval.start;
-	t_float		end = interval.end;
-	t_float		step;
-	t_float		tmp;
+{	
+	t_u32			test_nb = 1000;
+	t_u32			test_fail = 0;
+	t_float			start = interval.start;
+	t_float			end = interval.end;
+	t_float			step;
+	t_float			tmp;
+	t_float_list	error_list;
 
 	t_float		expected_res;
 	t_float		test_res;
@@ -27,6 +28,7 @@ int		test_compare_real_functions
 	step = (end - start) / test_nb;
 	tmp = start;
 	failed_tests = 0;
+	error_list = ft_stat_new_flst(test_nb);
 
 	for (int i = 0; i < test_nb; ++i)
 	{
@@ -39,12 +41,19 @@ int		test_compare_real_functions
 		printf("ft_%s(%g) -> %g\n", func_name, tmp, test_res);
 #		endif
 
-		if (ft_distance_float(expected_res, test_res) > precision)
+		error_list.data[i] = ft_distance_float(expected_res, test_res);
+		if (error_list.data[i] > precision)
 			++failed_tests;
 	}
 	printf("Success rate for function \"%s\" at %g precision: %g%%\n",
 									func_name, precision, (test_nb - failed_tests) * 100. / test_nb);
-	printf("Tests run: %d | Step: %g | Interval: [%g,%g]\n\n\n", test_nb, step, start, end);
+	printf("Tests run: %d | Step: %g | Interval: [%g,%g]\n", test_nb, step, start, end);
+
+	error_list = ft_stat_quicksort_f(error_list);
+	printf("Average error : %g | Median error : %g | Std dev : %g\n\n\n",
+			ft_stat_average_f(error_list), ft_stat_median_f(error_list), sqrt(ft_stat_variance_f(error_list)));
+
+	ft_stat_free_flst(&error_list);
 }
 
 int		test_math(void)
@@ -60,10 +69,13 @@ printf("\n");
 
 #ifdef _FLOAT_32_
 
-	test_compare_real_functions("cosf", &cosf, &ft_cos, 0.0001, (t_interval){-TAU, 2 * TAU});
+//	test_compare_real_functions("cosf", &cosf, &ft_cos, 0.0001, (t_interval){-TAU, 2 * TAU});
+	test_compare_real_functions("cosf", &cosf, &ft_cos, 0.0001, (t_interval){-1000000, 1000000});
+//	test_compare_real_functions("sinf", &sinf, &ft_sin, 0.0001, (t_interval){-TAU, 2 * TAU});
+	test_compare_real_functions("sinf", &sinf, &ft_sin, 0.0001, (t_interval){-1000000, 1000000});
 
-	test_compare_real_functions("lnf", &logf, &ft_ln, 0.0001, (t_interval){0., 1.});
-	test_compare_real_functions("lnf", &logf, &ft_ln, 0.0001, (t_interval){1., 10000000.});
+//	test_compare_real_functions("lnf", &logf, &ft_ln, 0.0001, (t_interval){0., 1.});
+//	test_compare_real_functions("lnf", &logf, &ft_ln, 0.0001, (t_interval){1., 10000000.});
 
 #endif
 
@@ -71,7 +83,10 @@ printf("\n");
 
 #ifdef _FLOAT_64_
 
-	test_compare_real_functions("cos", &cos, &ft_cos, 0.000001, (t_interval){-TAU, 2 * TAU});
+	test_compare_real_functions("cos", &cos, &ft_cos, 0.0001, (t_interval){-TAU, 2 * TAU});
+	test_compare_real_functions("cos", &cos, &ft_cos, 0.0001, (t_interval){-1000000, 1000000});
+	test_compare_real_functions("sin", &sin, &ft_sin, 0.0001, (t_interval){-TAU, 2 * TAU});
+	test_compare_real_functions("sin", &sin, &ft_sin, 0.0001, (t_interval){-1000000, 1000000});
 
 	test_compare_real_functions("ln", &log, &ft_ln, 0.000001, (t_interval){0., 1.});
 	test_compare_real_functions("ln", &log, &ft_ln, 0.000001, (t_interval){1., 10000000.});
@@ -88,9 +103,11 @@ printf("\n");
 	t_float				tmp;
 	t_float				decile_inc = sample_nb / 10.;
 
+	ft_random_renew_seed();
+
 	i_lst = ft_stat_new_ilst(sample_nb);
 	for (int i = 0; i < i_lst.len; ++i)
-		i_lst.data[i] = ft_random_int_a_to_b(-500, 501);//ft_rand();
+		i_lst.data[i] = ft_random_int_a_to_b(-500, 501);
 
 	printf("Quicksorting...\n");
 	i_lst = ft_stat_quicksort_i(i_lst);
@@ -114,6 +131,8 @@ printf("\n");
 		i_lst.data[(t_u32)(decile_inc * 9)],
 		i_lst.data[sample_nb - 1]);
 
+
+#if _MATH_TEST_VERBOSE_
 	printf("\tDeciles uint:\n\t\t0 : %12lu\n\t\t1 : %12lu\n\t\t2 : %12lu\n\t\t3 : %12lu\n\t\t4 : %12lu\n\t\t5 : %12lu\n\t\t6 : %12lu\n\t\t7 : %12lu\n\t\t8 : %12lu\n\t\t9 : %12lu\n\t\t10: %12lu\n\n",
 		i_lst.data[0],
 		i_lst.data[(t_u32)decile_inc],
@@ -139,7 +158,7 @@ printf("\n");
 		i_lst.data[(t_u32)(decile_inc * 8)],
 		i_lst.data[(t_u32)(decile_inc * 9)],
 		i_lst.data[sample_nb - 1]);
-
+#endif
 
 	t_prob_mass		pmf;
 

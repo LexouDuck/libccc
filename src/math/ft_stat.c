@@ -92,37 +92,38 @@ t_int_list		ft_stat_merge_ilst(t_int_list *start,
 }
 
 /*
-//TODO FIX
-t_float_list 	ft_stat_merge_flst(t_float_list const start,
-										t_float_list const append)
+** An extra t_float is always allocated to leave room for the pivot in QckSrt
+*/
+t_float_list 	ft_stat_merge_flst(t_float_list *start,
+									t_float_list *append)
 {
 	t_float_list		res;
 	t_u32				i;
 	t_u32				j;
 
-	if (start.len > MAX_STAT_SAMPLE_SIZE - append.len)
-	{
-		write(2, "MAX_SAMPLE_SIZE exceeded: some values thrown\n", 45);
-		res.len = MAX_STAT_SAMPLE_SIZE; 
-	}
-	else
-		res.len = start.len + append.len;
+	if (start->len == 0 && append->len == 0)
+		return (ft_stat_new_flst(0));
+	else if (!start->data || start->len == 0)
+		return (*append);
+	else if (!append->data || append->len == 0)
+		return (*start);
+	res = ft_stat_new_flst(start->len + append->len + 1);
+	--res.len;
+	if (!(res.data))
+		return (res);
 	i = 0;
-	while (i < start.len)
+	while (i < start->len)
 	{
-		res->data[i] = start->data[i];
+		res.data[i] = start->data[i];
 		++i;
 	}
 	j = 0;
 	while (i < res.len)
-	{
-		res->data[i] = append->data[j];
-		++i;
-		++j;
-	}
+		res.data[i++] = append->data[j++];
+	ft_stat_free_flst(start);
+	ft_stat_free_flst(append);
 	return (res);
 }
-*/
 
 t_int_list 	ft_stat_quicksort_i(t_int_list const i_lst)
 {
@@ -151,8 +152,7 @@ t_int_list 	ft_stat_quicksort_i(t_int_list const i_lst)
 	sub_lst.data[(sub_lst.len)++] = pivot;
 	return (ft_stat_merge_ilst(&sub_lst, &sup_lst));
 }
-/*
-//TODO fix
+
 t_float_list 	ft_stat_quicksort_f(t_float_list const f_lst)
 {
 	t_float				pivot;
@@ -164,40 +164,42 @@ t_float_list 	ft_stat_quicksort_f(t_float_list const f_lst)
 //printf("lstlen: %d\n", f_lst.len);
 	if (f_lst.len <= 1)
 		return (f_lst);
+	sub_lst = ft_stat_new_flst(f_lst.len);
+	sup_lst = ft_stat_new_flst(f_lst.len);
+	if (!sub_lst.data || !sup_lst.data)
+		return (ft_stat_new_flst(0));
 	sub_lst.len = 0;
 	sup_lst.len = 0;
-	pivot = f_lst->data[0];
-	i = 1;
-	while (i < f_lst.len)
-	{
-		if (f_lst->data[i] < pivot)
-			sub_lst->data[(sub_lst.len)++] = f_lst->data[i];
+	pivot = f_lst.data[0];
+	i = 0;
+	while (++i < f_lst.len)
+		if (f_lst.data[i] < pivot)
+			sub_lst.data[(sub_lst.len)++] = f_lst.data[i];
 		else
-			sup_lst->data[(sup_lst.len)++] = f_lst->data[i];
-		++i;
-	}
+			sup_lst.data[(sup_lst.len)++] = f_lst.data[i];
 	sub_lst = ft_stat_quicksort_f(sub_lst);
 	sup_lst = ft_stat_quicksort_f(sup_lst);
-	sub_lst->data[(sub_lst.len)++] = pivot;
-	return (ft_stat_merge_samples_f(sub_lst, sup_lst));
+	sub_lst.data[(sub_lst.len)++] = pivot;
+	return (ft_stat_merge_flst(&sub_lst, &sup_lst));
 }
-*/
 
-inline t_float		ft_stat_median_i(t_int_list const i_lst)
+
+
+inline t_float		ft_stat_median_i(t_int_list_sorted const i_lst)
 {
 	return (i_lst.len % 2 ?
 			i_lst.data[i_lst.len / 2] :
 			(i_lst.data[i_lst.len / 2] + i_lst.data[i_lst.len / 2 + 1]) / 2);
 }
 
-inline t_float		ft_stat_median_f(t_float_list const f_lst)
+inline t_float		ft_stat_median_f(t_float_list_sorted const f_lst)
 {
 	return (f_lst.len % 2 ?
 			f_lst.data[f_lst.len / 2] :
 			(f_lst.data[f_lst.len / 2] + f_lst.data[f_lst.len / 2 + 1]) / 2);
 }
 
-t_float		ft_stat_average_i(t_int_list const i_lst)
+t_float				ft_stat_average_i(t_int_list const i_lst)
 {
 	t_float		sum;
 	t_u32		i;
@@ -213,7 +215,7 @@ t_float		ft_stat_average_i(t_int_list const i_lst)
 
 }
 
-t_float		ft_stat_average_f(t_float_list const f_lst)
+t_float				ft_stat_average_f(t_float_list const f_lst)
 {
 	t_float		sum;
 	t_u32		i;
@@ -233,7 +235,7 @@ t_float		ft_stat_average_f(t_float_list const f_lst)
 **	operations (n subtractions).
 */
 
-t_float		ft_stat_variance_i(t_int_list const i_lst)
+t_float				ft_stat_variance_i(t_int_list const i_lst)
 {
 	t_float		sum;
 	t_u32		i;
@@ -253,7 +255,7 @@ t_float		ft_stat_variance_i(t_int_list const i_lst)
 
 }
 
-t_float		ft_stat_variance_f(t_float_list const f_lst)
+t_float				ft_stat_variance_f(t_float_list const f_lst)
 {
 	t_float		sum;
 	t_u32		i;
@@ -272,7 +274,16 @@ t_float		ft_stat_variance_f(t_float_list const f_lst)
 	return ((sum / i) - (average * average));
 
 }
+/*
+inline t_float				ft_stat_stddev_i(t_int_list const i_lst)
+{
+	return (ft_sqrt)
+}
+inline t_float				ft_stat_stddev_f(t_float_list const f_lst)
+{
 
+}
+*/
 /*
 t_bool				ft_prob_is_valid_i(t_prob_sample_i const i_problst)
 {
@@ -387,7 +398,7 @@ t_u32				ft_stat_ilst_count(t_int_list ilst, t_int elem)
 /*
 ** Returns the probability distribution of a list of integers.
 */
-t_prob_mass		ft_stat_ilst_to_pmf(t_int_list const ilst)
+t_prob_mass			ft_stat_ilst_to_pmf(t_int_list const ilst)
 {
 	t_prob_mass			res;
 	t_int_list			set;

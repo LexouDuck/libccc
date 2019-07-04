@@ -13,6 +13,12 @@
 #include "../../libft_math.h"
 #include <time.h>
 
+
+
+static t_u32		U32Random = DEFAULT_SEED;
+
+
+
 inline static t_u32	ft_random_32bit_shuffle(t_u32 n)
 {
 	n = (n << 12) ^ (n >> 20);
