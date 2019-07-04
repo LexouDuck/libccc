@@ -139,7 +139,8 @@ t_float_list 	ft_stat_merge_flst(t_float_list *start,
 
 /*
 ** Both indices provided are to be included in those written to.
-** Pivot should have have been chosen as = tmp_lst.data[end]
+** The recursive function can be called with start at 0 and end at
+** tmp_lst.len - 1 to sort in place.
 */
 static void		ft_stat_quicksort_i_rec
 (
@@ -175,7 +176,8 @@ static void		ft_stat_quicksort_i_rec
 			ft_memswap(tmp_lst.data + rise_id, tmp_lst.data + fall_id, sizeof(t_int));
 	}
 	pivot_id = fall_id;
-	ft_memswap(tmp_lst.data + start, tmp_lst.data + fall_id, sizeof(t_int));
+	if (start != fall_id)
+		ft_memswap(tmp_lst.data + start, tmp_lst.data + fall_id, sizeof(t_int));
 
 	if (pivot_id > start)
 		ft_stat_quicksort_i_rec(tmp_lst, start, pivot_id - 1);
@@ -194,63 +196,65 @@ t_int_list 			ft_stat_quicksort_i(t_int_list const i_lst)
 	return (res);
 }
 
-
-
-/*	t_int				pivot;
-	t_int_list			sub_lst;
-	t_int_list			sup_lst;
-
-	if (i_lst.len <= 1)
-		return (i_lst);
-	sub_lst = ft_stat_new_ilst(i_lst.len);
-	sup_lst = ft_stat_new_ilst(i_lst.len);
-	if (!sub_lst.data || !sup_lst.data)
-		return (ft_stat_new_ilst(0));
-	sub_lst.len = 0;
-	sup_lst.len = 0;
-	pivot = i_lst.data[0];
-	for (t_u32 i = 1; i < i_lst.len; ++i)
-	{
-		if (i_lst.data[i] < pivot)
-			sub_lst.data[(sub_lst.len)++] = i_lst.data[i];
-		else
-			sup_lst.data[(sup_lst.len)++] = i_lst.data[i];
-	}
-	sub_lst = ft_stat_quicksort_i(sub_lst);
-	sup_lst = ft_stat_quicksort_i(sup_lst);
-	sub_lst.data[(sub_lst.len)++] = pivot;
-	return (ft_stat_merge_ilst(&sub_lst, &sup_lst));
+/*
+** Both indices provided are to be included in those written to.
+** The recursive function can be called with start at 0 and end at
+** tmp_lst.len - 1 to sort in place.
 */
-#if 0
-t_float_list 	ft_stat_quicksort_f(t_float_list const f_lst)
+void				ft_stat_quicksort_f_rec
+(
+	t_float_list	tmp_lst,
+	t_u32			start,
+	t_u32			end
+)
 {
-/*	t_float				pivot;
-	t_float_list		sub_lst;
-	t_float_list		sup_lst;
+	t_float	pivot;
+	t_u32	pivot_id;
+	t_u32	rise_id;
+	t_u32	fall_id;
+
+	pivot = tmp_lst.data[start];
+	if (start >= end)
+		return ;
+	if (start == end - 1)
+	{
+		if (pivot > tmp_lst.data[end])
+			ft_memswap(tmp_lst.data + start, tmp_lst.data + end, sizeof(t_float));
+		return ;
+	}
+
+	rise_id = start + 1;
+	fall_id = end;
+	while (rise_id < fall_id)
+	{
+		while (rise_id <= end && tmp_lst.data[rise_id] <= pivot)
+			++rise_id;
+		while (fall_id > start && tmp_lst.data[fall_id] > pivot)
+			--fall_id;
+		if (rise_id < fall_id)
+			ft_memswap(tmp_lst.data + rise_id, tmp_lst.data + fall_id, sizeof(t_float));
+	}
+	pivot_id = fall_id;
+	if (start != fall_id)
+		ft_memswap(tmp_lst.data + start, tmp_lst.data + fall_id, sizeof(t_float));
+
+	if (pivot_id > start)
+		ft_stat_quicksort_f_rec(tmp_lst, start, pivot_id - 1);
+	if (pivot_id < end)
+		ft_stat_quicksort_f_rec(tmp_lst, pivot_id + 1, end);
+}
+
+t_float_list 		ft_stat_quicksort_f(t_float_list const f_lst)
+{
+	t_float_list	res;
 
 	if (f_lst.len <= 1)
 		return (f_lst);
-	sub_lst = ft_stat_new_flst(f_lst.len);
-	sup_lst = ft_stat_new_flst(f_lst.len);
-	if (!sub_lst.data || !sup_lst.data)
-		return (ft_stat_new_flst(0));
-	sub_lst.len = 0;
-	sup_lst.len = 0;
-	pivot = f_lst.data[0];
-	for (t_u32 i = 1; i < f_lst.len; ++i)
-	{
-		if (f_lst.data[i] < pivot)
-			sub_lst.data[(sub_lst.len)++] = f_lst.data[i];
-		else
-			sup_lst.data[(sup_lst.len)++] = f_lst.data[i];
-	}
-	sub_lst = ft_stat_quicksort_f(sub_lst);
-	sup_lst = ft_stat_quicksort_f(sup_lst);
-	sub_lst.data[(sub_lst.len)++] = pivot;
-	return (ft_stat_merge_flst(&sub_lst, &sup_lst));
-*/
+	res = ft_stat_flst_dup(f_lst);
+	ft_stat_quicksort_f_rec(res, 0, f_lst.len - 1);
+	return (res);
 }
-#endif
+
 
 
 inline t_float		ft_stat_median_i(t_int_list_sorted const i_lst)

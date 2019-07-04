@@ -88,7 +88,7 @@
 **	_FLOAT_32_ means a 32-bit IEE 754 standard precision float
 **	_FLOAT_64_ means a 64-bit "double" precision float
 */
-# define _FLOAT_64_
+# define _FLOAT_32_
 # define _UINT_32_
 # define _INT_32_
 
