@@ -185,7 +185,7 @@ static void		ft_stat_quicksort_i_rec
 		ft_stat_quicksort_i_rec(tmp_lst, pivot_id + 1, end);
 }
 
-t_int_list 			ft_stat_quicksort_i(t_int_list const i_lst)
+t_int_list 			ft_stat_quicksort_i_new(t_int_list const i_lst)
 {
 	t_int_list	res;
 
@@ -194,6 +194,11 @@ t_int_list 			ft_stat_quicksort_i(t_int_list const i_lst)
 	res = ft_stat_ilst_dup(i_lst);
 	ft_stat_quicksort_i_rec(res, 0, i_lst.len - 1);
 	return (res);
+}
+
+inline void			ft_stat_quicksort_i(t_int_list i_lst)
+{
+	ft_stat_quicksort_i_rec(i_lst, 0, i_lst.len - 1);
 }
 
 /*
@@ -214,7 +219,7 @@ void				ft_stat_quicksort_f_rec
 	t_u32	fall_id;
 
 	pivot = tmp_lst.data[start];
-	if (start >= end)
+	if (start >= end || pivot != pivot)
 		return ;
 	if (start == end - 1)
 	{
@@ -244,7 +249,7 @@ void				ft_stat_quicksort_f_rec
 		ft_stat_quicksort_f_rec(tmp_lst, pivot_id + 1, end);
 }
 
-t_float_list 		ft_stat_quicksort_f(t_float_list const f_lst)
+t_float_list 		ft_stat_quicksort_f_new(t_float_list const f_lst)
 {
 	t_float_list	res;
 
@@ -253,6 +258,11 @@ t_float_list 		ft_stat_quicksort_f(t_float_list const f_lst)
 	res = ft_stat_flst_dup(f_lst);
 	ft_stat_quicksort_f_rec(res, 0, f_lst.len - 1);
 	return (res);
+}
+
+inline void			ft_stat_quicksort_f(t_float_list f_lst)
+{
+	ft_stat_quicksort_f_rec(f_lst, 0, f_lst.len - 1);
 }
 
 

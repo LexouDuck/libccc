@@ -327,13 +327,69 @@ inline t_float		ft_sqr(t_float x)
 ** x^(1/2) == (m * 2^n)^(1/2) == m^(1/2) * 2^(n * 1/2)
 ** with m between 1 and 2, and thus a taylor series can be used.
 ** NB: Watch the parity of n.
+**
+** Based on Heron's algorithm
 */
-/*
-t_float		ft_sqrt(t_float x)
-{
 
-}
+t_f32		ft_sqrt32(t_f32 x)
+{
+	t_f32		res = 1.f;
+	t_f32		limit;
+	t_s8		exp_b2;
+	t_u32		norm = 0;	
+	t_u32		a;
+//	t_u32		b;
+
+	if (x < 0)
+		return (NAN);
+
+	if (x < 1.f || 2.f <= x)
+	{
+		ft_memcpy(&norm, &x, sizeof(t_u32));
+		exp_b2 = (t_s16)((norm << 1) >> (F32_MANT_BIT_NB + 1)) - F32_EXP_BIAS;
+		norm = (norm & F32_MANTISSA) | F32_EXP_ZERO;
+		ft_memcpy(&x, &norm, sizeof(t_u32));
+		if (exp_b2 > 0)
+		{
+			if (exp_b2 % 2)
+				res *= SQRT2;
+			exp_b2 = exp_b2 / 2;
+		}
+		else
+		{
+			if (exp_b2 % 2)
+				res *= INV_SQRT2;
+			exp_b2 = exp_b2 / 2;
+		}
+		a = exp_b2 + F32_EXP_BIAS;
+		a = a << F32_MANT_BIT_NB;
+		res *= *(t_f32*)(&a);
+	}
+/*
+	norm = (norm & F32_MANTISSA) | 0x00800000;//corresponds to the hidden bit
+	b = norm;
+	norm = 3.f;
+	a = 3.f;
+	norm = b / norm;
+	norm = (norm + a) >> 1;
+	a = norm;
+	norm = b / norm;
+	norm = (norm + a) >> 1;
+	a = norm;
+	norm = b / norm;
+	norm = (norm + a) >> 1;
+
+//	a = (F32_MANT_BIT_NB + F32_EXP_BIAS) << F32_MANT_BIT_NB;
+	res *= norm * *(t_f32*)(&a);
 */
+	limit = 1.5f;
+	limit = 0.5 * (limit + x / limit);
+	limit = 0.5 * (limit + x / limit);
+	limit = 0.5 * (limit + x / limit);
+
+	return (res * limit);
+}
+
 
 t_float				ft_fmod(t_float x, t_float y)
 {

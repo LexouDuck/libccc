@@ -41,6 +41,7 @@
 # define LN2				0x1.62E42FEFA39EFp-1
 # define LN10				0x1.26BB1BBB55516p+1
 # define SQRT2				0x1.6A09E667F3BCDp+0
+# define INV_SQRT2			0x1.6A09E667F3BCDp-1
 
 # define HALF_PI			0x1.921fb54442d18p+0
 # define PI					0x1.921fb54442d18p+1
@@ -106,6 +107,7 @@ t_float					ft_log(t_float x);
 t_float					ft_logn(t_float x, t_float n);
 
 t_float					ft_sqr(t_float x);
+t_f32					ft_sqrt32(t_f32 x);
 //t_float					ft_sqrt(t_float x);
 t_float					ft_fmod(t_float x, t_float y);
 
@@ -355,8 +357,10 @@ t_float_list		ft_stat_merge_flst(t_float_list *start,
 							t_float_list *append);
 
 
-t_int_list 			ft_stat_quicksort_i(t_int_list const i_lst);
-t_float_list 		ft_stat_quicksort_f(t_float_list const f_lst);
+t_int_list 			ft_stat_quicksort_i_new(t_int_list const i_lst);
+void				ft_stat_quicksort_i(t_int_list i_lst);
+t_float_list 		ft_stat_quicksort_f_new(t_float_list const f_lst);
+void				ft_stat_quicksort_f(t_float_list f_lst);
 
 /*
 ** List is supposed to be already in order for this to return the right result.
