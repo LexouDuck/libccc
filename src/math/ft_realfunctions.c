@@ -5,7 +5,7 @@
 
 static t_float	inv_factorial(t_u32 n)
 {
-	static t_float	res[16] =
+	static t_float	result[16] =
 	{
 		1, 1, 0.5, 1. / 6,
 		1. / 24, 1. / 120, 1. / 720, 1. / 5040,
@@ -13,8 +13,8 @@ static t_float	inv_factorial(t_u32 n)
 		1. / 479001600, 1. / 6227020800, 1. / 87178291200, 1. / 1307674368000
 	};
 
-	return (res[n]); //static so it shouldn't be called with any weird values
-//	return (n >= 16) ? 0. : res[n];
+	return (result[n]); //static so it shouldn't be called with any weird values
+//	return (n >= 16) ? 0. : result[n];
 }
 
 
@@ -38,7 +38,7 @@ t_float			ft_fmod_tau(t_float x)
 
 t_float			ft_cos(t_float t)
 {
-	t_float		res;
+	t_float		result;
 	t_bool		sign; //True for negative
 	t_float		t_p2;
 	t_float		t_p4;
@@ -63,21 +63,21 @@ t_float			ft_cos(t_float t)
 	t_p6 = t_p2 * t_p4;
 	t_p8 = t_p4 * t_p4;
 
-	res = 1.;
-	res -= t_p2 * 0.5;
-	res += t_p4 * inv_factorial(4);
-	res -= t_p6 * inv_factorial(6);
-	res += t_p8 * inv_factorial(8);
-	res -= t_p8 * t_p2 * inv_factorial(10);
-	res += t_p8 * t_p4 * inv_factorial(12);
-	res -= t_p8 * t_p6 * inv_factorial(14);
+	result = 1.;
+	result -= t_p2 * 0.5;
+	result += t_p4 * inv_factorial(4);
+	result -= t_p6 * inv_factorial(6);
+	result += t_p8 * inv_factorial(8);
+	result -= t_p8 * t_p2 * inv_factorial(10);
+	result += t_p8 * t_p4 * inv_factorial(12);
+	result -= t_p8 * t_p6 * inv_factorial(14);
 
-	return sign ? -res : res;
+	return sign ? -result : result;
 }
 
 t_float			ft_sin(t_float t)
 {
-	t_float		res;
+	t_float		result;
 	t_bool		sign; //True for negative
 	t_float		t_p2;
 	t_float		t_p3;
@@ -111,16 +111,16 @@ t_float			ft_sin(t_float t)
 	t_p11 = t_p2 * t_p9;
 	t_p13 = t_p2 * t_p11;
 
-	res = t;
-	res -= t_p3 * inv_factorial(3);
-	res += t_p5 * inv_factorial(5);
-	res -= t_p7 * inv_factorial(7);
-	res += t_p9 * inv_factorial(9);
-	res -= t_p11 * inv_factorial(11);
-	res += t_p13 * inv_factorial(13);
-	res -= t_p13 * t_p2 * inv_factorial(15);
+	result = t;
+	result -= t_p3 * inv_factorial(3);
+	result += t_p5 * inv_factorial(5);
+	result -= t_p7 * inv_factorial(7);
+	result += t_p9 * inv_factorial(9);
+	result -= t_p11 * inv_factorial(11);
+	result += t_p13 * inv_factorial(13);
+	result -= t_p13 * t_p2 * inv_factorial(15);
 
-	return sign ? -res : res;
+	return sign ? -result : result;
 }
 
 /*
@@ -333,7 +333,7 @@ inline t_float		ft_sqr(t_float x)
 
 t_f32		ft_sqrt32(t_f32 x)
 {
-	t_f32		res = 1.f;
+	t_f32		result = 1.f;
 	t_f32		limit;
 	t_s8		exp_b2;
 	t_u32		norm = 0;	
@@ -352,18 +352,22 @@ t_f32		ft_sqrt32(t_f32 x)
 		if (exp_b2 > 0)
 		{
 			if (exp_b2 % 2)
-				res *= SQRT2;
+				result *= SQRT2;
 			exp_b2 = exp_b2 / 2;
 		}
 		else
 		{
 			if (exp_b2 % 2)
-				res *= INV_SQRT2;
+				result *= INV_SQRT2;
 			exp_b2 = exp_b2 / 2;
 		}
 		a = exp_b2 + F32_EXP_BIAS;
 		a = a << F32_MANT_BIT_NB;
-		res *= *(t_f32*)(&a);
+// the following pragma disables warnings for type punning derefs
+#pragma GCC diagnostic ignored "-Wstrict-aliasing"
+		result *= *(t_f32*)(&a);
+// Resets the warning settings back to normal
+#pragma GCC diagnostic pop
 	}
 /*
 	norm = (norm & F32_MANTISSA) | 0x00800000;//corresponds to the hidden bit
@@ -380,14 +384,14 @@ t_f32		ft_sqrt32(t_f32 x)
 	norm = (norm + a) >> 1;
 
 //	a = (F32_MANT_BIT_NB + F32_EXP_BIAS) << F32_MANT_BIT_NB;
-	res *= norm * *(t_f32*)(&a);
+	result *= norm * *(t_f32*)(&a);
 */
 	limit = 1.5f;
 	limit = 0.5 * (limit + x / limit);
 	limit = 0.5 * (limit + x / limit);
 	limit = 0.5 * (limit + x / limit);
 
-	return (res * limit);
+	return (result * limit);
 }
 
 

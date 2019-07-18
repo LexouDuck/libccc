@@ -21,16 +21,16 @@
 ** ************************************************************************** *|
 */
 
-#define FT_Color_ARGB16_Get_A(color)					ft_color_argb32_get_a(color)
-#define FT_Color_ARGB16_Get_R(color)					ft_color_argb32_get_r(color)
-#define FT_Color_ARGB16_Get_G(color)					ft_color_argb32_get_g(color)
-#define FT_Color_ARGB16_Get_B(color)					ft_color_argb32_get_b(color)
-#define FT_Color_ARGB16_GetNearest(target, colors, n)	ft_color_argb32_get_nearest(target, colors, n)
-#define FT_Color_ARGB16_Set_A(color, a)					ft_color_argb32_set_a(color, a)
-#define FT_Color_ARGB16_Set_R(color, r)					ft_color_argb32_set_r(color, r)
-#define FT_Color_ARGB16_Set_G(color, g)					ft_color_argb32_set_g(color, g)
-#define FT_Color_ARGB16_Set_B(color, b)					ft_color_argb32_set_b(color, b)
-#define FT_Color_ARGB16_Set(a, r, g, b)					ft_color_argb32_set(a, r, g, b)
+#define FT_Color_ARGB16_Get_A(color)					ft_color_argb16_get_a(color)
+#define FT_Color_ARGB16_Get_R(color)					ft_color_argb16_get_r(color)
+#define FT_Color_ARGB16_Get_G(color)					ft_color_argb16_get_g(color)
+#define FT_Color_ARGB16_Get_B(color)					ft_color_argb16_get_b(color)
+#define FT_Color_ARGB16_GetNearest(target, colors, n)	ft_color_argb16_get_nearest(target, colors, n)
+#define FT_Color_ARGB16_Set_A(color, a)					ft_color_argb16_set_a(color, a)
+#define FT_Color_ARGB16_Set_R(color, r)					ft_color_argb16_set_r(color, r)
+#define FT_Color_ARGB16_Set_G(color, g)					ft_color_argb16_set_g(color, g)
+#define FT_Color_ARGB16_Set_B(color, b)					ft_color_argb16_set_b(color, b)
+#define FT_Color_ARGB16_Set(a, r, g, b)					ft_color_argb16_set(a, r, g, b)
 
 #define FT_Color_ARGB32_Get_A(color)					ft_color_argb32_get_a(color)
 #define FT_Color_ARGB32_Get_R(color)					ft_color_argb32_get_r(color)
