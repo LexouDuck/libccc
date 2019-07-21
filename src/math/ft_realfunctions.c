@@ -364,6 +364,7 @@ t_f32		ft_sqrt32(t_f32 x)
 		a = exp_b2 + F32_EXP_BIAS;
 		a = a << F32_MANT_BIT_NB;
 // the following pragma disables warnings for type punning derefs
+#pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 		result *= *(t_f32*)(&a);
 // Resets the warning settings back to normal
