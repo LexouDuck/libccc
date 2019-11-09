@@ -46,7 +46,7 @@ char	*ft_strncat(char *dest, char const *src, size_t n)
 	while (dest[length])
 		++length;
 	i = 0;
-	while (src[i] && i < n)
+	while (i < n && src[i])
 	{
 		dest[length + i] = src[i];
 		++i;

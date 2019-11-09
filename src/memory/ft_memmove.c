@@ -22,7 +22,7 @@ void	*ft_memmove(void *dest, void const *src, size_t n)
 		return (dest);
 	result = (t_u8 *)dest;
 	source = (t_u8 *)src;
-	if (src < dest && src + n >= dest)
+	if (source < result && source + n >= result)
 	{
 		i = n;
 		while (i--)

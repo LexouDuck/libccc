@@ -81,7 +81,7 @@ char	*ft_strpad_r(char const *str, char c, size_t size)
 	if (!(result = (char *)malloc(size + 1)))
 		return (NULL);
 	i = 0;
-	while (str[i] && i < size)
+	while (i < size && str[i])
 	{
 		result[i] = str[i];
 		++i;

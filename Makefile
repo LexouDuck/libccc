@@ -187,6 +187,25 @@ objdir:
 	@mkdir -p $(OBJDIR)$(DIR_VLQ)
 	@mkdir -p $(OBJDIR)$(DIR_IO)
 
+lint:
+	@cppcheck $(SRCDIR) $(INCLUDE_DIRS) --quiet --std=c99 --enable=all \
+		-i$(SRCDIR)test_memory.c		\
+		-i$(SRCDIR)test_char.c			\
+		-i$(SRCDIR)test_string.c		\
+		-i$(SRCDIR)test_stringarray.c	\
+		-i$(SRCDIR)test_convert.c		\
+		-i$(SRCDIR)test_color.c			\
+		-i$(SRCDIR)test_list.c			\
+		-i$(SRCDIR)test_math.c			\
+		-i$(SRCDIR)test_vlq.c			\
+		-i$(SRCDIR)test_io.c			\
+		-i$(SRCDIR)test.c				\
+		--suppress=memleak \
+		--suppress=variableScope \
+		--suppress=unusedFunction \
+		--template="-[{severity}]\t{file}:{line}\t->\t{id}: {message}" \
+		--template-location="  -> from:\t{file}:{line}\t->\t{info}"
+
 clean:
 	@printf "Deleting object files...\n"
 	@rm -f $(OBJS)

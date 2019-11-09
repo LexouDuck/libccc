@@ -269,16 +269,16 @@ inline void			ft_stat_quicksort_f(t_float_list f_lst)
 
 inline t_float		ft_stat_median_i(t_int_list_sorted const i_lst)
 {
-	return (i_lst.len % 2 ?
-			i_lst.data[i_lst.len / 2] :
-			(i_lst.data[i_lst.len / 2] + i_lst.data[i_lst.len / 2 + 1]) / 2);
+	return ((i_lst.len % 2) ?
+		i_lst.data[i_lst.len / 2] :
+		(i_lst.data[i_lst.len / 2] + i_lst.data[i_lst.len / 2 + 1]) / 2);
 }
 
 inline t_float		ft_stat_median_f(t_float_list_sorted const f_lst)
 {
-	return (f_lst.len % 2 ?
-			f_lst.data[f_lst.len / 2] :
-			(f_lst.data[f_lst.len / 2] + f_lst.data[f_lst.len / 2 + 1]) / 2);
+	return ((f_lst.len % 2) ?
+		f_lst.data[f_lst.len / 2] :
+		(f_lst.data[f_lst.len / 2] + f_lst.data[f_lst.len / 2 + 1]) / 2);
 }
 
 t_float				ft_stat_average_i(t_int_list const i_lst)
