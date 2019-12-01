@@ -33,7 +33,7 @@
 #define FT_ArcCos(x)			ft_arccos(x)
 #define FT_ArcSin(x)			ft_arcsin(x)
 #define FT_ArcTan(x)			ft_arctan(x)
-#define FT_ArcTan2(x)			ft_arctan2(x)
+#define FT_ArcTan2(x, y)		ft_arctan2(x, y)
 
 #define FT_Exp(x)				ft_exp(x)
 #define FT_Ln32(x)				ft_ln32(x)
