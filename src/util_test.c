@@ -669,9 +669,13 @@ void	print_test_strls(
 			break;
 		}
 	}
-
-	for (i = 0; result[i]; ++i) length += strlen(result[i]);
-	if (!(str_result = (char*)malloc(length + (i - 1) * 2))) return ;
+	length = 0;
+	for (i = 0; result[i]; ++i)
+	{
+		length += strlen(result[i]);
+	}
+	if (!(str_result = (char*)malloc(length + (i - 1) * 2)))
+		return;
 	length = 0;
 	for (i = 0; result[i]; ++i)
 	{
@@ -685,7 +689,8 @@ void	print_test_strls(
 	}
 
 	for (i = 0; expect[i]; ++i) length += strlen(expect[i]);
-	if (!(str_expect = (char*)malloc(length + (i - 1) * 2))) return ;
+	if (!(str_expect = (char*)malloc(length + (i - 1) * 2)))
+		return;
 	length = 0;
 	for (i = 0; expect[i]; ++i)
 	{
@@ -725,16 +730,21 @@ void	print_test_lst(
 	}
 	else printf(", ");
 	t_list *lst = (t_list *)result;
-	t_u32 i = 0;
-	while (lst && expect[i])
+	if (lst)
 	{
-		if ((lst && expect) ?
-			(memcmp(lst->item, expect[i], lst->item_size) != 0) :
-			(lst->item != expect[i]))
-			error = TRUE;
-		lst = lst->next;
-		++i;
+		t_u32 i = 0;
+		while (expect[i])
+		{
+			if ((lst->item && expect[i]) ?
+				(memcmp(lst->item, expect[i], lst->item_size) != 0) :
+				(lst->item != expect[i]))
+				error = TRUE;
+			lst = lst->next;
+			++i;
+		}
 	}
+	else if (expect)
+		error = TRUE;
 	if (error)
 	{
 		printf(C_RED"ERROR\n");
