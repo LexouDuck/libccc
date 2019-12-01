@@ -11,16 +11,22 @@
 /* ************************************************************************** */
 
 #ifndef LIBFT_IO_H
-# define LIBFT_IO_H
-
-# include "libft.h"
-# include "libft_string.h"
-
-# include <unistd.h>
+#define LIBFT_IO_H
 
 /*
 ** ************************************************************************** *|
-**                                  Macros                                    *|
+**                                   Includes                                 *|
+** ************************************************************************** *|
+*/
+
+#include "libft.h"
+#include "libft_string.h"
+
+#include <unistd.h>
+
+/*
+** ************************************************************************** *|
+**                                    Macros                                  *|
 ** ************************************************************************** *|
 */
 
@@ -39,6 +45,8 @@
 #define FT_Output_Line(str)				ft_output_line(str)
 #define FT_Output_Lines(strls)			ft_output_strls(strls)
 #define FT_Output_Memory(ptr, cols)		ft_output_memory(ptr, cols)
+
+
 
 /*
 ** ************************************************************************** *|
@@ -71,6 +79,8 @@
 */
 # define BUFF_SIZE 2048
 
+
+
 /*
 ** ************************************************************************** *|
 **                              Reading Functions                             *|
@@ -101,6 +111,8 @@ int		ft_getnextline(int const fd, char **line);
 **	Returns 0 if the stream was read successfully, 1 if there was an error.
 */
 int		ft_readlines(int const fd, char ***strls);
+
+
 
 /*
 ** ************************************************************************** *|
@@ -134,6 +146,8 @@ void	ft_write_strls(int fd, char const **strls);
 **	writing lines of 'cols' columns of 4-byte chunks to 'fd'.
 */
 void	ft_write_memory(int fd, t_u8 const *ptr, size_t n, t_u8 cols);
+
+
 
 /*
 ** ************************************************************************** *|

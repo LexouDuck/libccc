@@ -29,7 +29,7 @@ static t_f64	ft_str_to_f64_expon(char const *s_mant, char const *s_exp)
 	char		*tmp;
 
 	if (!(tmp = ft_strremove(s_mant, ".")))
-		return (NOT_A_NUMBER);
+		return (NAN);
 	if (ft_strlen(tmp) > 18)
 		tmp[18] = '\0';
 	result = (t_f64)ft_str_to_s64(tmp);
@@ -37,9 +37,9 @@ static t_f64	ft_str_to_f64_expon(char const *s_mant, char const *s_exp)
 	if (!(exponent = 0) && s_exp)
 	{
 		exponent = ft_str_to_s16(s_exp);
-		if (exponent > F64_EXP_BIAS)
+		if (exponent > F64_EXPONENT_BIAS)
 			return (s_mant[0] == '-' ? -INFINITY : INFINITY);
-		else if (exponent < 1 - F64_EXP_BIAS)
+		else if (exponent < 1 - F64_EXPONENT_BIAS)
 			return (0.);
 	}
 	tmp = ft_strchr(s_mant, '.');
@@ -68,15 +68,15 @@ static t_f64	ft_str_to_f64_hexfp(
 		return (0. * result);
 	}
 	mant = ft_hex_to_u64(tmp);
-	result *= mant * F64_INIT_VAL * powf(2., (ft_strlen(tmp) - 1) * 4);
-	if ((exponent = ft_str_to_s16(s_exp)) > F64_EXP_BIAS)
+	result *= mant * F64_INIT_VALUE * powf(2., (ft_strlen(tmp) - 1) * 4);
+	if ((exponent = ft_str_to_s16(s_exp)) > F64_EXPONENT_BIAS)
 		return ((sign ? -1. : 1.) / 0.);
-	else if (exponent < 1 - F64_EXP_BIAS)
+	else if (exponent < 1 - F64_EXPONENT_BIAS)
 		return (0.);
 	ft_memcpy(&mant, &result, sizeof(result));
-	mant &= F64_SIGNED_MANTISSA_MASK;
-	mant |= F64_EXP_MASK &
-		((t_u64)(exponent + F64_EXP_BIAS) << F64_MANTISSA_BITS);
+	mant &= F64_MANTISSA_SIGNED;
+	mant |= F64_EXPONENT &
+		((t_u64)(exponent + F64_EXPONENT_BIAS) << F64_MANTISSA_BITS);
 	ft_memcpy(&result, &mant, sizeof(result));
 	free(tmp);
 	return (result);
@@ -90,9 +90,9 @@ t_f64			ft_str_to_f64(char const *str)
 	char	*exponent;
 	int		mode;
 
-	result = NOT_A_NUMBER;
+	result = NAN;
 	if (ft_str_to_float_checkinvalid(str, &tmp))
-		return (NOT_A_NUMBER);
+		return (result);
 	if (tmp[0] == 'I' || (tmp[1] == 'I' && (tmp[0] == '-' || tmp[0] == '+')))
 	{
 		free(tmp);

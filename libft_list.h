@@ -11,13 +11,19 @@
 /* ************************************************************************** */
 
 #ifndef LIBFT_LIST_H
-# define LIBFT_LIST_H
-
-# include "libft.h"
+#define LIBFT_LIST_H
 
 /*
 ** ************************************************************************** *|
-**                                  Macros                                    *|
+**                                   Includes                                 *|
+** ************************************************************************** *|
+*/
+
+#include "libft.h"
+
+/*
+** ************************************************************************** *|
+**                                    Macros                                  *|
 ** ************************************************************************** *|
 */
 
@@ -41,6 +47,8 @@
 #define FT_ListMap_I(lst, f)				ft_lstmapi(lst, f)
 #define FT_ListToArray(alst)				ft_lst_to_array(alst)
 #define FT_ListToTuple(alst, tuple)			ft_lst_to_tuple(alst, tuple)
+
+
 
 /*
 ** ************************************************************************** *|
@@ -67,6 +75,8 @@ typedef struct		s_list
 **	typedef void	(*f_list_iterate)(t_list *);
 **	typedef t_list*	(*f_list_map)(t_list *);
 */
+
+
 
 /*
 ** ************************************************************************** *|
@@ -123,6 +133,8 @@ void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 */
 void				ft_lstpop(t_list **alst, void (*del)(void *, size_t));
 
+
+
 /*
 ** ************************************************************************** *|
 **                                 List Checks                                *|
@@ -145,6 +157,8 @@ t_list				*ft_lstget(t_list *lst, t_u32 index);
 **	for which (lst.item == query), matching only the pointers, not the data.
 */
 t_list				*ft_lstfind(t_list *lst, void const *query);
+
+
 
 /*
 ** ************************************************************************** *|

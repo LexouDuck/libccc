@@ -26,7 +26,7 @@ int		test_compare_real_functions
 	t_float			end = interval.end;
 	t_float			step;
 	t_float			tmp;
-	t_float_list	error_list;
+	t_list_float	error_list;
 
 	//execution time variables
 	t_u32			failed_speed_tests = 0;
@@ -34,7 +34,7 @@ int		test_compare_real_functions
 	time_t			end_time;
 	t_f64			stdC_time;
 	t_f64			ft_time;
-	t_float_list	time_diff_list;
+	t_list_float	time_diff_list;
 
 
 	step = (end - start) / test_nb;
@@ -171,8 +171,8 @@ int		test_math(void)
 	t_u32				sample_nb = 20000;
 	printf("Stat test of rng, sample size: %d\n", sample_nb);
 
-	t_int_list			i_lst;
-	t_int_list_sorted	si_lst;
+	t_list_int			i_lst;
+	t_sortedlist_int	si_lst;
 	t_u64				intmax = (t_u32)-1;
 	t_float				tmp;
 	t_float				decile_inc = sample_nb / 10.;

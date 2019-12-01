@@ -11,13 +11,19 @@
 /* ************************************************************************** */
 
 #ifndef LIBFT_STRING_H
-# define LIBFT_STRING_H
-
-# include "libft.h"
+#define LIBFT_STRING_H
 
 /*
 ** ************************************************************************** *|
-**                                  Macros                                    *|
+**                                   Includes                                 *|
+** ************************************************************************** *|
+*/
+
+#include "libft.h"
+
+/*
+** ************************************************************************** *|
+**                                    Macros                                  *|
 ** ************************************************************************** *|
 */
 
@@ -72,6 +78,8 @@
 #define FT_StringMap(str, f)					ft_strmap(str, f)
 #define FT_StringMap_I(str, f)					ft_strmapi(str, f)
 
+
+
 /*
 ** ************************************************************************** *|
 **                                 Definitions                                *|
@@ -84,6 +92,8 @@
 **	typedef char	(*f_string_map)(char);
 **	typedef char	(*f_string_map_i)(unsigned int, char);
 */
+
+
 
 /*
 ** ************************************************************************** *|
@@ -157,6 +167,8 @@ char	*ft_strncat(char *dest, char const *src, size_t n);
 */
 size_t	ft_strlcat(char *dest, char const *src, size_t size);
 
+
+
 /*
 ** ************************************************************************** *|
 **                                String Checks                               *|
@@ -213,6 +225,8 @@ size_t	ft_strcount_char(char const *str, char c);
 **	Returns the amount of occurences of 'query' in the given string 'str'.
 */
 size_t	ft_strcount_str(char const *str, char const *query);
+
+
 
 /*
 ** ************************************************************************** *|
@@ -296,6 +310,8 @@ char	*ft_strrep_string(char const *str,
 	char const *old,
 	char const *new);
 
+
+
 /*
 ** ************************************************************************** *|
 **                        Common Whitespace Operations                        *|
@@ -340,6 +356,8 @@ char	*ft_strpad_l(char const *str, char c, size_t length);
 **	right side if the desired 'length' is larger than 'str'.
 */
 char	*ft_strpad_r(char const *str, char c, size_t length);
+
+
 
 /*
 ** ************************************************************************** *|

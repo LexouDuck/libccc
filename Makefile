@@ -105,34 +105,44 @@ SRC_COLOR	:=	ft_color_argb16_get.c	\
 				ft_color_argb32_to.c	\
 
 DIR_LIST	:=	list/
-SRC_LIST	:=	ft_lstnew.c		\
-				ft_lstadd.c		\
-				ft_lstcpy.c		\
-				ft_lstdel.c		\
-				ft_lstsize.c	\
-				ft_lstget.c		\
-				ft_lstsub.c		\
-				ft_lstiter.c	\
-				ft_lstmap.c		\
-				ft_lst_to.c
+SRC_LIST	:=	ft_lstnew.c			\
+				ft_lstadd.c			\
+				ft_lstcpy.c			\
+				ft_lstdel.c			\
+				ft_lstsize.c		\
+				ft_lstget.c			\
+				ft_lstsub.c			\
+				ft_lstiter.c		\
+				ft_lstmap.c			\
+				ft_lst_to.c			\
 
 DIR_MATH	:=	math/
-SRC_MATH	:=	ft_realfunctions.c	\
-				ft_random.c			\
+SRC_MATH	:=	ft_math.c			\
+				ft_exp.c			\
+				ft_log.c			\
 				ft_calc.c			\
-				ft_stat.c
+
+DIR_STAT	:=	stat/
+SRC_STAT	:=	ft_stat.c			\
+
+DIR_RANDOM	:=	random/
+SRC_RANDOM	:=	ft_random.c			\
 
 DIR_VLQ		:=	vlq/
 SRC_VLQ		:=	
 
 DIR_IO		:=	io/
-SRC_IO		:=	ft_output.c		\
-				ft_write.c		\
-				ft_read.c		\
-				ft_getnextline.c
+SRC_IO		:=	ft_output.c			\
+				ft_write.c			\
+				ft_read.c			\
+				ft_getnextline.c	\
+
+
 
 SRCDIR	=	./src/
 OBJDIR	=	./obj/
+
+
 
 HDRS	=	libft_memory.h	\
 			libft_string.h	\
@@ -150,14 +160,20 @@ SRCS	=	$(addprefix $(DIR_MEMORY),		$(SRC_MEMORY)		)	\
 			$(addprefix $(DIR_COLOR),		$(SRC_COLOR)		)	\
 			$(addprefix $(DIR_LIST),		$(SRC_LIST)			)	\
 			$(addprefix $(DIR_MATH),		$(SRC_MATH)			)	\
+			$(addprefix $(DIR_STAT),		$(SRC_STAT)			)	\
+			$(addprefix $(DIR_RANDOM),		$(SRC_RANDOM)		)	\
 			$(addprefix $(DIR_VLQ),			$(SRC_VLQ)			)	\
 			$(addprefix $(DIR_IO),			$(SRC_IO)			)
 
 OBJS	=	${SRCS:%.c=$(OBJDIR)%.o}
 
+
+
 RESET	=	"\033[0m"
 RED		=	"\033[0;31m"
 GREEN	=	"\033[0;32m"
+
+
 
 all: $(NAME)
 
@@ -184,6 +200,8 @@ objdir:
 	@mkdir -p $(OBJDIR)$(DIR_COLOR)
 	@mkdir -p $(OBJDIR)$(DIR_LIST)
 	@mkdir -p $(OBJDIR)$(DIR_MATH)
+	@mkdir -p $(OBJDIR)$(DIR_STAT)
+	@mkdir -p $(OBJDIR)$(DIR_RANDOM)
 	@mkdir -p $(OBJDIR)$(DIR_VLQ)
 	@mkdir -p $(OBJDIR)$(DIR_IO)
 
@@ -197,6 +215,8 @@ lint:
 		-i$(SRCDIR)test_color.c			\
 		-i$(SRCDIR)test_list.c			\
 		-i$(SRCDIR)test_math.c			\
+		-i$(SRCDIR)test_stat.c			\
+		-i$(SRCDIR)test_random.c		\
 		-i$(SRCDIR)test_vlq.c			\
 		-i$(SRCDIR)test_io.c			\
 		-i$(SRCDIR)test.c				\
@@ -257,6 +277,8 @@ TESTS :=	test_memory.c		\
 			test_color.c		\
 			test_list.c			\
 			test_math.c			\
+			test_stat.c			\
+			test_random.c		\
 			test_vlq.c			\
 			test_io.c			\
 			test.c				\
@@ -291,6 +313,12 @@ test_list: testprogram
 
 test_math: testprogram
 	@./test -math
+
+test_stat: testprogram
+	@./test -stat
+
+test_random: testprogram
+	@./test -random
 
 test_vlq: testprogram
 	@./test -vlq

@@ -11,13 +11,19 @@
 /* ************************************************************************** */
 
 #ifndef LIBFT_CONVERT_H
-# define LIBFT_CONVERT_H
-
-# include "libft.h"
+#define LIBFT_CONVERT_H
 
 /*
 ** ************************************************************************** *|
-**                                  Macros                                    *|
+**                                   Includes                                 *|
+** ************************************************************************** *|
+*/
+
+#include "libft.h"
+
+/*
+** ************************************************************************** *|
+**                                    Macros                                  *|
 ** ************************************************************************** *|
 */
 
@@ -71,16 +77,23 @@
 #define FT_BaseString_To_U32(str, base)		ft_strbase_to_u32(str, base)
 #define FT_BaseString_To_U64(str, base)		ft_strbase_to_u64(str, base)
 
+
+
 /*
 ** ************************************************************************** *|
 **                                 Definitions                                *|
 ** ************************************************************************** *|
 */
 
-# define MAXDIGIT_8BIT	3
-# define MAXDIGIT_16BIT	5
-# define MAXDIGIT_32BIT	10
-# define MAXDIGIT_64BIT	20
+/*
+**	Maximum amount of digits for decimal number respresentations
+*/
+#define MAXDIGIT_8BIT	3	// 255
+#define MAXDIGIT_16BIT	5	// 65535
+#define MAXDIGIT_32BIT	10	// 4294967295
+#define MAXDIGIT_64BIT	20	// 18446744073709551615
+
+
 
 /*
 ** ************************************************************************** *|
@@ -108,33 +121,30 @@ t_u16	ft_str_to_u16(char const *str);
 t_u32	ft_str_to_u32(char const *str);
 t_u64	ft_str_to_u64(char const *str);
 
-# define NOT_A_NUMBER					(0. / 0.)
 
-# define F32_MANTISSA_BITS				23
-# define F32_EXP_BIAS					127
-# define F32_SIGNED_MANTISSA_MASK		0x807FFFFF
-# define F32_EXP_MASK					0x7F800000
-# define F32_INIT_VAL					0x1.p-23
 
-t_f32	ft_str_to_f32(char const *str);
-
-# define F64_MANTISSA_BITS				52
-# define F64_EXP_BIAS					1023
-# define F64_SIGNED_MANTISSA_MASK		0x800FFFFFFFFFFFFF
-# define F64_EXP_MASK					0x7FF0000000000000
-# define F64_INIT_VAL					0x1.p-52
-
-t_f64	ft_str_to_f64(char const *str);
-
-int		ft_str_to_float_checkinvalid(char const *str, char **result_tmp);
+/*
+** ************************************************************************** *|
+**                         Floating Point Conversions                         *|
+** ************************************************************************** *|
+*/
 
 # define FLOAT_THRESHOLD_HUGE	1e+10
 # define FLOAT_THRESHOLD_TINY	1e-10
+
+
+
+t_f32	ft_str_to_f32(char const *str);
+t_f64	ft_str_to_f64(char const *str);
+
+int		ft_str_to_float_checkinvalid(char const *str, char **result_tmp);
 
 t_bool	ft_float_to_str_checkspecial(t_f32 number, char **result);
 
 char	*ft_f32_to_str(t_f32 n, t_u8 precision);
 char	*ft_f64_to_str(t_f64 n, t_u8 precision);
+
+
 
 /*
 ** ************************************************************************** *|
@@ -147,6 +157,8 @@ char	*ft_size_to_str(size_t value);
 
 t_bool	ft_str_to_bool(char const *str);
 size_t	ft_str_to_size(char const *str);
+
+
 
 /*
 ** ************************************************************************** *|
@@ -163,6 +175,8 @@ t_u8	ft_hex_to_u8(char const *str);
 t_u16	ft_hex_to_u16(char const *str);
 t_u32	ft_hex_to_u32(char const *str);
 t_u64	ft_hex_to_u64(char const *str);
+
+
 
 /*
 ** ************************************************************************** *|

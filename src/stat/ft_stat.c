@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stat.c                                          :+:      :+:    :+:   */
+/*   stat/ft_stat.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fulguritude <marvin@42.fr>                 +#+  +:+       +#+        */
+/*   By: duquesne <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/30 00:43:31 by fulguritu         #+#    #+#             */
-/*   Updated: 2019/01/01 23:47:05 by fulguritu        ###   ########.fr       */
+/*   Created: 2006/06/06 06:06:06 by duquesne          #+#    #+#             */
+/*   Updated: 2006/06/06 06:06:06 by duquesne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft_math.h"
+#include "../../libft_stat.h"
 #include "../../libft_memory.h"
 
-t_int_list		ft_stat_new_ilst(t_u32 len)
+t_list_int		ft_stat_new_ilst(t_u32 len)
 {
-	t_int_list		res;
+	t_list_int		res;
 
 	res.data = NULL;
 	res.len = 0;
@@ -25,9 +25,9 @@ t_int_list		ft_stat_new_ilst(t_u32 len)
 	return (res);
 }
 
-t_float_list	ft_stat_new_flst(t_u32 len)
+t_list_float	ft_stat_new_flst(t_u32 len)
 {
-	t_float_list	res;
+	t_list_float	res;
 
 	res.data = NULL;
 	res.len = 0;
@@ -37,7 +37,7 @@ t_float_list	ft_stat_new_flst(t_u32 len)
 	return (res);
 }
 
-void			ft_stat_free_ilst(t_int_list *ilst)
+void			ft_stat_free_ilst(t_list_int *ilst)
 {
 	if (ilst->data)
 	{
@@ -47,7 +47,7 @@ void			ft_stat_free_ilst(t_int_list *ilst)
 	ilst->len = 0;
 }
 
-void			ft_stat_free_flst(t_float_list *flst)
+void			ft_stat_free_flst(t_list_float *flst)
 {
 	if (flst->data)
 	{
@@ -57,9 +57,9 @@ void			ft_stat_free_flst(t_float_list *flst)
 	flst->len = 0;
 }
 
-t_int_list		ft_stat_ilst_dup(t_int_list const ilst)
+t_list_int		ft_stat_ilst_dup(t_list_int const ilst)
 {
-	t_int_list	res;
+	t_list_int	res;
 
 	res = ft_stat_new_ilst(ilst.len);
 	if (!res.data)
@@ -69,9 +69,9 @@ t_int_list		ft_stat_ilst_dup(t_int_list const ilst)
 	return (res);
 }
 
-t_float_list	ft_stat_flst_dup(t_float_list const flst)
+t_list_float	ft_stat_flst_dup(t_list_float const flst)
 {
-	t_float_list	res;
+	t_list_float	res;
 
 	res = ft_stat_new_flst(flst.len);
 	if (!res.data)
@@ -81,10 +81,10 @@ t_float_list	ft_stat_flst_dup(t_float_list const flst)
 	return (res);
 }
 
-t_int_list		ft_stat_merge_ilst(t_int_list *start,
-								t_int_list *append)
+t_list_int		ft_stat_merge_ilst(t_list_int *start,
+								t_list_int *append)
 {
-	t_int_list			res;
+	t_list_int			res;
 	t_u32				i;
 	t_u32				j;
 
@@ -108,10 +108,10 @@ t_int_list		ft_stat_merge_ilst(t_int_list *start,
 	return (res);
 }
 
-t_float_list 	ft_stat_merge_flst(t_float_list *start,
-									t_float_list *append)
+t_list_float 	ft_stat_merge_flst(t_list_float *start,
+									t_list_float *append)
 {
-	t_float_list		res;
+	t_list_float		res;
 	t_u32				i;
 	t_u32				j;
 
@@ -144,7 +144,7 @@ t_float_list 	ft_stat_merge_flst(t_float_list *start,
 */
 static void		ft_stat_quicksort_i_rec
 (
-	t_int_list	tmp_lst,
+	t_list_int	tmp_lst,
 	t_u32		start,
 	t_u32		end
 )
@@ -185,9 +185,9 @@ static void		ft_stat_quicksort_i_rec
 		ft_stat_quicksort_i_rec(tmp_lst, pivot_id + 1, end);
 }
 
-t_int_list 			ft_stat_quicksort_i_new(t_int_list const i_lst)
+t_list_int 			ft_stat_quicksort_i_new(t_list_int const i_lst)
 {
-	t_int_list	res;
+	t_list_int	res;
 
 	if (i_lst.len <= 1)
 		return (i_lst);
@@ -196,7 +196,7 @@ t_int_list 			ft_stat_quicksort_i_new(t_int_list const i_lst)
 	return (res);
 }
 
-inline void			ft_stat_quicksort_i(t_int_list i_lst)
+inline void			ft_stat_quicksort_i(t_list_int i_lst)
 {
 	ft_stat_quicksort_i_rec(i_lst, 0, i_lst.len - 1);
 }
@@ -208,7 +208,7 @@ inline void			ft_stat_quicksort_i(t_int_list i_lst)
 */
 void				ft_stat_quicksort_f_rec
 (
-	t_float_list	tmp_lst,
+	t_list_float	tmp_lst,
 	t_u32			start,
 	t_u32			end
 )
@@ -249,9 +249,9 @@ void				ft_stat_quicksort_f_rec
 		ft_stat_quicksort_f_rec(tmp_lst, pivot_id + 1, end);
 }
 
-t_float_list 		ft_stat_quicksort_f_new(t_float_list const f_lst)
+t_list_float 		ft_stat_quicksort_f_new(t_list_float const f_lst)
 {
-	t_float_list	res;
+	t_list_float	res;
 
 	if (f_lst.len <= 1)
 		return (f_lst);
@@ -260,28 +260,28 @@ t_float_list 		ft_stat_quicksort_f_new(t_float_list const f_lst)
 	return (res);
 }
 
-inline void			ft_stat_quicksort_f(t_float_list f_lst)
+inline void			ft_stat_quicksort_f(t_list_float f_lst)
 {
 	ft_stat_quicksort_f_rec(f_lst, 0, f_lst.len - 1);
 }
 
 
 
-inline t_float		ft_stat_median_i(t_int_list_sorted const i_lst)
+inline t_float		ft_stat_median_i(t_sortedlist_int const i_lst)
 {
 	return ((i_lst.len % 2) ?
 		i_lst.data[i_lst.len / 2] :
 		(i_lst.data[i_lst.len / 2] + i_lst.data[i_lst.len / 2 + 1]) / 2);
 }
 
-inline t_float		ft_stat_median_f(t_float_list_sorted const f_lst)
+inline t_float		ft_stat_median_f(t_sortedlist_float const f_lst)
 {
 	return ((f_lst.len % 2) ?
 		f_lst.data[f_lst.len / 2] :
 		(f_lst.data[f_lst.len / 2] + f_lst.data[f_lst.len / 2 + 1]) / 2);
 }
 
-t_float				ft_stat_average_i(t_int_list const i_lst)
+t_float				ft_stat_average_i(t_list_int const i_lst)
 {
 	t_float		sum;
 	t_u32		i;
@@ -297,7 +297,7 @@ t_float				ft_stat_average_i(t_int_list const i_lst)
 
 }
 
-t_float				ft_stat_average_f(t_float_list const f_lst)
+t_float				ft_stat_average_f(t_list_float const f_lst)
 {
 	t_float		sum;
 	t_u32		i;
@@ -317,7 +317,7 @@ t_float				ft_stat_average_f(t_float_list const f_lst)
 **	operations (n subtractions).
 */
 
-t_float				ft_stat_variance_i(t_int_list const i_lst)
+t_float				ft_stat_variance_i(t_list_int const i_lst)
 {
 	t_float		sum;
 	t_u32		i;
@@ -337,7 +337,7 @@ t_float				ft_stat_variance_i(t_int_list const i_lst)
 
 }
 
-t_float				ft_stat_variance_f(t_float_list const f_lst)
+t_float				ft_stat_variance_f(t_list_float const f_lst)
 {
 	t_float		sum;
 	t_u32		i;
@@ -357,11 +357,11 @@ t_float				ft_stat_variance_f(t_float_list const f_lst)
 
 }
 /*
-inline t_float				ft_stat_stddev_i(t_int_list const i_lst)
+inline t_float				ft_stat_stddev_i(t_list_int const i_lst)
 {
 	return (ft_sqrt)
 }
-inline t_float				ft_stat_stddev_f(t_float_list const f_lst)
+inline t_float				ft_stat_stddev_f(t_list_float const f_lst)
 {
 
 }
@@ -431,10 +431,10 @@ void					ft_stat_free_pmf(t_prob_mass *drv)
 	drv->len = 0;
 }
 
-t_int_set				ft_stat_ilst_to_iset(t_int_list const ilst)
+t_set_int				ft_stat_ilst_to_iset(t_list_int const ilst)
 {
-	t_int_list				res;
-	t_int_list				set;
+	t_list_int				res;
+	t_list_int				set;
 	t_u32					i;
 	t_u32					j;
 
@@ -461,7 +461,7 @@ t_int_set				ft_stat_ilst_to_iset(t_int_list const ilst)
 	return (res);
 }
 
-t_u32				ft_stat_ilst_count(t_int_list ilst, t_int elem)
+t_u32				ft_stat_ilst_count(t_list_int ilst, t_int elem)
 {
 	t_u32		i;
 	t_u32		res;
@@ -480,10 +480,10 @@ t_u32				ft_stat_ilst_count(t_int_list ilst, t_int elem)
 /*
 ** Returns the probability distribution of a list of integers.
 */
-t_prob_mass			ft_stat_ilst_to_pmf(t_int_list const ilst)
+t_prob_mass			ft_stat_ilst_to_pmf(t_list_int const ilst)
 {
 	t_prob_mass			res;
-	t_int_list			set;
+	t_list_int			set;
 	t_u32				i;
 	t_float				inv_sample_size;
 

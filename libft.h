@@ -11,10 +11,11 @@
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
-# define LIBFT_H
+#define LIBFT_H
 
 /*
 **	TODO	libft_math			+ tests
+**	TODO	libft_stat			+ tests
 **	TODO	libft_random		+ tests
 **	TODO	libft_stringarray	+ tests
 **	TODO	libft_vlq			+ tests
@@ -31,12 +32,12 @@
 **	-	void*	malloc(size_t n);
 **	-	void	free(void* ptr);
 */
-# include <stdlib.h>
+#include <stdlib.h>
 
 /*
 **	Included for the standard defined stable primitive int & uint types
 */
-# include <inttypes.h>
+#include <inttypes.h>
 
 /*
 ** ************************************************************************** *|
@@ -47,50 +48,50 @@
 /*
 **	Define the common useful macros for writing some pseudo-boolean syntax.
 */
-# define FALSE	0
-# define TRUE	1
+#define FALSE	0
+#define TRUE	1
 
 /*
 **	Define the common macros for return values used by several C functions.
 */
-# define OK		0
-# define ERROR	1
+#define OK		0
+#define ERROR	1
 
 /*
 **	Define some useful string literals for some of the common number bases.
 */
-# ifndef __BASES__
-#  define __BASES__
-#  define BINARY	"01"
-#  define OCTAL		"01234567"
-#  define DECIMAL	"0123456789"
-#  define HEX_LOWER	"0123456789abcdef"
-#  define HEX_UPPER	"0123456789ABCDEF"
-# endif
+#ifndef __BASES__
+#define __BASES__
+#define BINARY		"01"
+#define OCTAL		"01234567"
+#define DECIMAL		"0123456789"
+#define HEX_LOWER	"0123456789abcdef"
+#define HEX_UPPER	"0123456789ABCDEF"
+#endif
 
 /*
 **	Define some useful string literals for commandline output colors.
 **	May be used with any of the 'ft_output' and 'ft_write' functions.
 */
-# ifndef __COLORS__
-#  define __COLORS__
-#  define C_RED		"\x1b[31m"
-#  define C_GREEN	"\x1b[32m"
-#  define C_YELLOW	"\x1b[33m"
-#  define C_BLUE	"\x1b[34m"
-#  define C_MAGENTA	"\x1b[35m"
-#  define C_CYAN	"\x1b[36m"
-#  define C_RESET		"\x1b[0m"
-# endif
+#ifndef __COLORS__
+#define __COLORS__
+#define C_RED		"\x1b[31m"
+#define C_GREEN		"\x1b[32m"
+#define C_YELLOW	"\x1b[33m"
+#define C_BLUE		"\x1b[34m"
+#define C_MAGENTA	"\x1b[35m"
+#define C_CYAN		"\x1b[36m"
+#define C_RESET		"\x1b[0m"
+#endif
 
 /*
 **	The following macro sets what the t_float type should be.
 **	_FLOAT_32_ means a 32-bit IEE 754 standard precision float
 **	_FLOAT_64_ means a 64-bit "double" precision float
 */
-# define _FLOAT_32_
-# define _UINT_32_
-# define _INT_32_
+#define _FLOAT_32_
+#define _UINT_32_
+#define _INT_32_
 
 /*
 ** ************************************************************************** *|
@@ -116,49 +117,37 @@ typedef	int64_t			t_s64;
 typedef float			t_f32;
 typedef double			t_f64;
 
-/*
-** So long as only the t_float type is used throughout the code, changing the
-** following typedef allows to switch immediately from float32 to float64 and
-** vice-versa, which is useful for portability and/or optimization depending
-** on the use case.
-*/
 
-# ifdef _FLOAT_32_
-typedef t_f32			t_float;
-# endif
-# ifdef _FLOAT_64_
-typedef t_f64			t_float;
-# endif
 
 /*
 ** More care should be used with the default int/uint types: know your
 ** compiler
 */
-# ifdef _UINT_8_
+#ifdef _UINT_8_
 typedef t_u8			t_uint;
-# endif
-# ifdef _UINT_16_
+#endif
+#ifdef _UINT_16_
 typedef t_u16			t_uint;
-# endif
-# ifdef _UINT_32_
+#endif
+#ifdef _UINT_32_
 typedef t_u32			t_uint;
-# endif
-# ifdef _UINT_64_
+#endif
+#ifdef _UINT_64_
 typedef t_u64			t_uint;
-# endif
+#endif
 
-# ifdef _INT_8_
+#ifdef _INT_8_
 typedef t_s8			t_int;
-# endif
-# ifdef _INT_16_
+#endif
+#ifdef _INT_16_
 typedef t_s16			t_int;
-# endif
-# ifdef _INT_32_
+#endif
+#ifdef _INT_32_
 typedef t_s32			t_int;
-# endif
-# ifdef _INT_64_
+#endif
+#ifdef _INT_64_
 typedef t_s64			t_int;
-# endif
+#endif
 
 /*
 **	Define a boolean pseudo-type that is potentially faster than just 'int'.
@@ -169,6 +158,62 @@ typedef t_s64			t_int;
 **	so no program should rely on any kind of overflow behavior from this type.
 */
 typedef uint_fast8_t	t_bool;
+
+
+
+/*
+** ************************************************************************** *|
+**                       Floating-point primitive types                       *|
+** ************************************************************************** *|
+*/
+
+#define F32_SIGNED			0x80000000
+#define F32_EXPONENT_BIAS	127
+#define F32_EXPONENT		0x7F800000
+#define F32_EXPONENT_ZERO	0x3F800000
+#define F32_EXPONENT_BITS	8
+#define F32_MANTISSA		0x007FFFFF
+#define F32_MANTISSA_SIGNED	0x807FFFFF
+#define F32_MANTISSA_BITS	23
+#define F32_INIT_VALUE		0x1.p-23
+
+#define F64_SIGNED			0x8000000000000000
+#define F64_EXPONENT_BIAS	1023
+#define F64_EXPONENT		0x7FF0000000000000
+#define F64_EXPONENT_ZERO	0x3FF0000000000000
+#define F64_EXPONENT_BITS	11
+#define F64_MANTISSA		0x000FFFFFFFFFFFFF
+#define F64_MANTISSA_SIGNED	0x800FFFFFFFFFFFFF
+#define F64_MANTISSA_BITS	52
+#define F64_INIT_VALUE		0x1.p-52
+
+
+
+#ifndef INFINITY
+#define INFINITY		(1. / 0.)
+#endif
+
+#ifndef NAN
+#define NAN				(0. / 0.)
+#endif
+#define IS_NAN(x)		((x) != (x))
+
+
+/*
+** So long as only the t_float type is used throughout the code, changing the
+** following typedef allows to switch immediately from float32 to float64 and
+** vice-versa, which is useful for portability and/or optimization depending
+** on the use case.
+*/
+
+#ifdef _FLOAT_32_
+typedef t_f32			t_float;
+#endif
+#ifdef _FLOAT_64_
+typedef t_f64			t_float;
+#endif
+
+
 
 /*
 ** ************************************************************************** *|
@@ -181,7 +226,7 @@ typedef uint_fast8_t	t_bool;
 ** They are used in particular when casting an <stdarg.h> var_arg to the
 ** appropriate type in ft_printf.
 */
-typedef union			u_varint
+typedef union		u_varint
 {
 	t_s8			sc;
 	t_s16			ss;
@@ -191,12 +236,12 @@ typedef union			u_varint
 	t_u16			us;
 	t_u32			ui;
 	t_u64			ul;
-}						t_varint;
+}					t_varint;
 
-typedef union			u_varfloat
+typedef union		u_varfloat
 {
 	t_f32			f;
 	t_f64			lf;
-}						t_varfloat;
+}					t_varfloat;
 
 #endif
