@@ -7,7 +7,8 @@ CC_LIN	= gcc
 CC_MAC	= gcc
 
 # Compiler flags
-CFLAGS	=	-Wall -Wextra -Werror $(CFLAGS_PLATFORM) -O2 -MMD
+CFLAGS	=	-Wall -Wextra -Winline -Werror $(CFLAGS_PLATFORM) -O2 -MMD
+
 CFLAGS_PLATFORM = _
 CFLAGS_WIN	= -mwindows
 CFLAGS_LIN	= -Wno-unused-result 
@@ -144,14 +145,20 @@ OBJDIR	=	./obj/
 
 
 
-HDRS	=	libft_memory.h	\
-			libft_string.h	\
-			libft_char.h	\
-			libft_convert.h	\
-			libft_math.h	\
-			libft_list.h	\
-			libft_io.h		\
-			libft.h			
+HDRS	=	libft_memory.h		\
+			libft_char.h		\
+			libft_string.h		\
+			libft_stringarray.h	\
+			libft_convert.h		\
+			libft_color.h		\
+			libft_list.h		\
+			libft_math.h		\
+			libft_stat.h		\
+			libft_random.h		\
+			libft_vlq.h			\
+			libft_io.h			\
+			libft.h
+
 SRCS	=	$(addprefix $(DIR_MEMORY),		$(SRC_MEMORY)		)	\
 			$(addprefix $(DIR_CHAR),		$(SRC_CHAR)			)	\
 			$(addprefix $(DIR_STRING),		$(SRC_STRING)		)	\
@@ -282,10 +289,11 @@ TESTS :=	test_memory.c		\
 			test_vlq.c			\
 			test_io.c			\
 			test.c				\
+			test.h				\
 			util_test.c
 
 testprogram: all
-	@gcc -g -o test $(addprefix $(SRCDIR), $(TESTS)) $(NAME)
+	@$(CC) -g -o test -L./ -lft $(addprefix $(SRCDIR), $(TESTS))
 
 test: testprogram
 	@./test

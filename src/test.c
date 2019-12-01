@@ -1,6 +1,33 @@
 
 #include "test.h"
 
+
+
+typedef struct	s_test_suite
+{
+	char const*	name;
+	int		(*test)(void);
+}				t_test_suite;
+
+#define TEST_SUITE_AMOUNT	12
+t_test_suite	test_suites[TEST_SUITE_AMOUNT] =
+{
+	(t_test_suite){ "memory",		test_memory },
+	(t_test_suite){ "char",			test_char },
+	(t_test_suite){ "string",		test_string },
+	(t_test_suite){ "stringarray",	test_stringarray },
+	(t_test_suite){ "convert",		test_convert },
+	(t_test_suite){ "color",		test_color },
+	(t_test_suite){ "list",			test_list },
+	(t_test_suite){ "math",			test_math },
+	(t_test_suite){ "stat",			test_stat },
+	(t_test_suite){ "random",		test_random },
+	(t_test_suite){ "vlq",			test_vlq },
+	(t_test_suite){ "io",			test_io },
+};
+
+
+
 char const* test1 = "Omae wa mou shindeiru.\0";		size_t const test1_len = 23;
 char const* test2 = "Nani???\0";					size_t const test2_len = 8;
 char const* test3 = "Un ange mange de la fange.\0";	size_t const test3_len = 27;
@@ -45,50 +72,39 @@ int		main(int argc, char **argv)
 		else printf("\n"C_RED"/!\\ Processor is Big-Endian (errors may arise in certain tests, like 'uint' tests for mem functions)"C_RESET"\n");
 		printf("\n"C_YELLOW"All the tests with written in yellow 'can segfault' are NULL pointer tests."C_RESET"\n");
 
-		test_memory();
-		test_char();
-		test_string();
-		test_stringarray();
-		test_convert();
-		test_color();
-		test_list();
-		test_math();
-		test_vlq();
-		test_io();
+		for (int i = 0; i < TEST_SUITE_AMOUNT; ++i)
+		{
+			test_suites[i].test();
+		}
 	}
 	else
 	{
-
+		t_bool match;
 		for (t_u32 i = 1; i < argc; ++i)
 		{
+			match = FALSE;
 			if (argv[i][0] == '-')
 			{
-				if (argv[i][1] == '\0') printf("libft_test: Invalid (empty) argument encountered.\n");
-				else if (str_equals(argv[i] + 1, "memory"))			test_memory();
-				else if (str_equals(argv[i] + 1, "char"))			test_char();
-				else if (str_equals(argv[i] + 1, "string"))			test_string();
-				else if (str_equals(argv[i] + 1, "stringarray"))	test_stringarray();
-				else if (str_equals(argv[i] + 1, "convert"))		test_convert();
-				else if (str_equals(argv[i] + 1, "color"))			test_color();
-				else if (str_equals(argv[i] + 1, "list"))			test_list();
-				else if (str_equals(argv[i] + 1, "math"))			test_math();
-				else if (str_equals(argv[i] + 1, "vlq"))			test_vlq();
-				else if (str_equals(argv[i] + 1, "io"))				test_io();
-				if (argv[i][1] == '\0') printf("libft_test: Argument not recognized: %s.\n", argv[i]);
+				if (argv[i][1] == '\0') printf("libft_test: expected argument after '-'.\n");
+				else for (int j = 0; j < TEST_SUITE_AMOUNT; ++j)
+				{
+					if (str_equals(argv[i] + 1, test_suites[j].name))
+					{
+						test_suites[j].test();
+						match = TRUE;
+						break;
+					}
+				}
+				if (!match)
+					printf("libft_test: Argument not recognized: %s.\n", argv[i]);
 			}
 			else
 			{
 				printf("libft test: Invalid argument(s), use one of the following:\n");
-				printf("\t-memory\n");
-				printf("\t-char\n");
-				printf("\t-string\n");
-				printf("\t-stringarray\n");
-				printf("\t-convert\n");
-				printf("\t-color\n");
-				printf("\t-list\n");
-				printf("\t-math\n");
-				printf("\t-vlq\n");
-				printf("\t-io\n");
+				for (int j = 0; j < TEST_SUITE_AMOUNT; ++j)
+				{
+					printf("\t-%s\n", test_suites[j].name);
+				}
 			}
 		}
 	}

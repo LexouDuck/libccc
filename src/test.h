@@ -1,6 +1,6 @@
 
 #ifndef LIBFT_TEST_H
-# define LIBFT_TEST_H
+#define LIBFT_TEST_H
 
 /*
 ** ************************************************************************** *|
@@ -8,25 +8,27 @@
 ** ************************************************************************** *|
 */
 
-# include <stdlib.h>
-# include <string.h>
-# include <ctype.h>
-# include <stdio.h>
-# include <setjmp.h>
-# include <signal.h>
-# include <time.h>
-# include <math.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#include <stdio.h>
+#include <setjmp.h>
+#include <signal.h>
+#include <time.h>
+#include <math.h>
 
-# include "../libft.h"
-# include "../libft_memory.h"
-# include "../libft_char.h"
-# include "../libft_string.h"
-# include "../libft_stringarray.h"
-# include "../libft_convert.h"
-# include "../libft_list.h"
-# include "../libft_math.h"
-# include "../libft_vlq.h"
-# include "../libft_io.h"
+#include "../libft.h"
+#include "../libft_memory.h"
+#include "../libft_char.h"
+#include "../libft_string.h"
+#include "../libft_stringarray.h"
+#include "../libft_convert.h"
+#include "../libft_list.h"
+#include "../libft_math.h"
+#include "../libft_stat.h"
+#include "../libft_random.h"
+#include "../libft_vlq.h"
+#include "../libft_io.h"
 
 /*
 ** ************************************************************************** *|
@@ -101,6 +103,8 @@ int		test_convert(void);
 int		test_color(void);
 int		test_list(void);
 int		test_math(void);
+int		test_stat(void);
+int		test_random(void);
 int		test_vlq(void);
 int		test_io(void);
 

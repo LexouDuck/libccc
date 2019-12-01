@@ -730,9 +730,9 @@ void	print_test_lst(
 	}
 	else printf(", ");
 	t_list *lst = (t_list *)result;
+	t_u32 i = 0;
 	if (lst)
 	{
-		t_u32 i = 0;
 		while (expect[i])
 		{
 			if ((lst->item && expect[i]) ?
