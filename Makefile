@@ -122,6 +122,7 @@ SRC_MATH	:=	ft_math.c			\
 				ft_exp.c			\
 				ft_log.c			\
 				ft_calc.c			\
+				ft_trigonometry.c	\
 
 DIR_STAT	:=	stat/
 SRC_STAT	:=	ft_stat.c			\

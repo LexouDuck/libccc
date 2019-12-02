@@ -98,24 +98,24 @@
 
 //t_f32		ft_cos32(t_f32 x);
 //t_f64		ft_cos64(t_f64 x);
-t_float		ft_cos(t_float t);
+t_float		ft_cos(t_float x);
 //t_f32		ft_sin32(t_f32 x);
 //t_f64		ft_sin64(t_f64 x);
-t_float		ft_sin(t_float t);
+t_float		ft_sin(t_float x);
 //t_f32		ft_tan32(t_f32 x);
 //t_f64		ft_tan64(t_f64 x);
-//t_float	ft_tan(t_float t);
+//t_float	ft_tan(t_float x);
 
 //t_f32		ft_acos32(t_f32 x);
 //t_f64		ft_acos64(t_f64 x);
-//t_float	ft_acos(t_float t);
+//t_float	ft_acos(t_float x);
 //t_f32		ft_asin32(t_f32 x);
 //t_f64		ft_asin64(t_f64 x);
-//t_float	ft_asin(t_float t);
+//t_float	ft_asin(t_float x);
 //t_f32		ft_atan32(t_f32 x);
 //t_f64		ft_atan64(t_f64 x);
-//t_float	ft_atan(t_float t);
-t_float		ft_atan2(t_float t);
+//t_float	ft_atan(t_float x);
+t_float		ft_atan2(t_float x, t_float y);
 
 
 

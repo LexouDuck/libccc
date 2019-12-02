@@ -99,7 +99,7 @@ t_f32		ft_sqrt32(t_f32 x)
 t_float				ft_fmod(t_float x, t_float y)
 {
 	t_float		a;
-	t_s32		floor_a;
+	t_s64		floor_a;
 
 	a = x / y;
 	floor_a = a;

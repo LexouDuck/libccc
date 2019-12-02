@@ -56,7 +56,7 @@ t_float			ft_cos(t_float t)
 	if (t < 0.)
 		t = -t;
 	if (t > TAU)
-		t = ft_fmod_tau(t);
+		t = ft_fmod(t, TAU);
 	if (t > PI)
 		t = PI - (t - PI);
 	if (t > HALF_PI)
@@ -79,7 +79,7 @@ t_float			ft_cos(t_float t)
 	result += t_p8 * t_p4 * inv_factorial(12);
 	result -= t_p8 * t_p6 * inv_factorial(14);
 
-	return sign ? -result : result;
+	return (sign ? -result : result);
 }
 
 t_float			ft_sin(t_float t)
@@ -101,7 +101,7 @@ t_float			ft_sin(t_float t)
 		sign = !sign;
 	}
 	if (t > TAU)
-		t = ft_fmod_tau(t);
+		t = ft_fmod(t, TAU);
 	if (t > PI)
 	{
 		t = PI - (t - PI);
@@ -127,11 +127,12 @@ t_float			ft_sin(t_float t)
 	result += t_p13 * inv_factorial(13);
 	result -= t_p13 * t_p2 * inv_factorial(15);
 
-	return sign ? -result : result;
+	return (sign ? -result : result);
 }
 
 // TODO implement homemade
-t_float		ft_atan2()
+#include <math.h>
+t_float		ft_atan2(t_float x, t_float y)
 {
 /*
 	t_float t = (t_float)y / (t_float)x;
@@ -141,5 +142,5 @@ t_float		ft_atan2()
 	angle = angle * t + 1.003839;
 	angle = angle * t - 0.000158;
 */
-	return (atan2(y, x));
+	return (atan2(x, y));
 }
