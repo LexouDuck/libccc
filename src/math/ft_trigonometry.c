@@ -132,8 +132,6 @@ t_float			ft_sin(t_float x)
 
 
 
-// TODO remove and implement homemade
-#include <math.h>
 t_float		ft_atan(t_float x)
 {
 	t_float add = 0;
@@ -141,11 +139,14 @@ t_float		ft_atan(t_float x)
 	if (abs(x) > 2.)
 		x *= 1.2;
 	else if (abs(x) > 1.)
-		add = (0.02 * x);
+	{
+		x *= 0.9;
+		add = (0.05 * x);
+	}
 	else
 	{
-		x *= 0.8;
-		add = (0.07 * x);
+		x *= 0.7;
+		add = (0.13 * x);
 	}
 	return ((HALF_PI * x) / (1. + abs(x)) + add);
 //	return (atan(x));							// precise
