@@ -136,7 +136,20 @@ t_float			ft_sin(t_float x)
 #include <math.h>
 t_float		ft_atan(t_float x)
 {
-	return (atan(x));
+	t_float add = 0;
+
+	if (abs(x) > 2.)
+		x *= 1.2;
+	else if (abs(x) > 1.)
+		add = (0.02 * x);
+	else
+	{
+		x *= 0.8;
+		add = (0.07 * x);
+	}
+	return ((HALF_PI * x) / (1. + abs(x)) + add);
+//	return (atan(x));							// precise
+//	return (3. / (1 + ft_exp(-1.1 * x)) - 1.5);	// bad
 }
 
 #define FLOAT_SIZE	sizeof(t_float)
@@ -180,15 +193,13 @@ t_float		ft_atan2(t_float y, t_float x)
 
 	t_s32 exp_x = (ft_float_to_uint(x) & FLOAT_EXPONENT) >> FLOAT_MANTISSA_BITS;
 	t_s32 exp_y = (ft_float_to_uint(y) & FLOAT_EXPONENT) >> FLOAT_MANTISSA_BITS;
-	t_float result = fabs(y / x);
+	t_float result = ABS(y / x);
 	if ((exp_y - exp_x) > 60)			/* |y / x| >  2^60 */
 		result = HALF_PI + 0.5 * pi_lo;
 	else if ((exp_y - exp_x) < -60)		/* |y| / x < -2^60 */
 		result = 0.0;
 	else
-		result = atan(result);								// precise
-//		result = (HALF_PI * result) / (1. + abs(result));	// fast
-//		result = 3. / (1 + ft_exp(-1.1 * result)) - 1.5;	// bad
+		result = ft_atan(0.98 * result);
 
 	if (x < 0)
 		return ((PI - (result - pi_lo)) * SIGN(y));
