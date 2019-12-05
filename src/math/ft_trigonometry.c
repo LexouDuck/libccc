@@ -37,110 +37,161 @@ static t_float	inv_factorial(t_u32 n)
 		1.0 / 1307674368000
 	};
 
-	return (result[n]); //static so it shouldn't be called with any weird values
+	return (result[n]); //static so it shouldn'x be called with any weird values
 //	return (n >= 16) ? 0. : result[n];
 }
 
 
 
-t_float			ft_cos(t_float t)
+t_float			ft_cos(t_float x)
 {
 	t_float		result;
 	t_bool		sign; //True for negative
-	t_float		t_p2;
-	t_float		t_p4;
-	t_float		t_p6;
-	t_float		t_p8;
+	t_float		x_pow2;
+	t_float		x_pow4;
+	t_float		x_pow6;
+	t_float		x_pow8;
 
 	sign = 0;
-	if (t < 0.)
-		t = -t;
-	if (t > TAU)
-		t = ft_fmod(t, TAU);
-	if (t > PI)
-		t = PI - (t - PI);
-	if (t > HALF_PI)
+	if (x < 0.)
+		x = -x;
+	if (x > TAU)
+		x = ft_fmod(x, TAU);
+	if (x > PI)
+		x = PI - (x - PI);
+	if (x > HALF_PI)
 	{
-		t = HALF_PI - (t - HALF_PI);
+		x = HALF_PI - (x - HALF_PI);
 		sign = -1;
 	}
 
-	t_p2 = t * t;
-	t_p4 = t_p2 * t_p2;
-	t_p6 = t_p2 * t_p4;
-	t_p8 = t_p4 * t_p4;
+	x_pow2 = x * x;
+	x_pow4 = x_pow2 * x_pow2;
+	x_pow6 = x_pow2 * x_pow4;
+	x_pow8 = x_pow4 * x_pow4;
 
 	result = 1.;
-	result -= t_p2 * 0.5;
-	result += t_p4 * inv_factorial(4);
-	result -= t_p6 * inv_factorial(6);
-	result += t_p8 * inv_factorial(8);
-	result -= t_p8 * t_p2 * inv_factorial(10);
-	result += t_p8 * t_p4 * inv_factorial(12);
-	result -= t_p8 * t_p6 * inv_factorial(14);
+	result -= x_pow2 * 0.5;
+	result += x_pow4 * inv_factorial(4);
+	result -= x_pow6 * inv_factorial(6);
+	result += x_pow8 * inv_factorial(8);
+	result -= x_pow8 * x_pow2 * inv_factorial(10);
+	result += x_pow8 * x_pow4 * inv_factorial(12);
+	result -= x_pow8 * x_pow6 * inv_factorial(14);
 
 	return (sign ? -result : result);
 }
 
-t_float			ft_sin(t_float t)
+t_float			ft_sin(t_float x)
 {
 	t_float		result;
 	t_bool		sign; //True for negative
-	t_float		t_p2;
-	t_float		t_p3;
-	t_float		t_p5;
-	t_float		t_p7;
-	t_float		t_p9;
-	t_float		t_p11;
-	t_float		t_p13;
+	t_float		x_pow2;
+	t_float		x_pow3;
+	t_float		x_pow5;
+	t_float		x_pow7;
+	t_float		x_pow9;
+	t_float		x_pow11;
+	t_float		x_pow13;
 
 	sign = 0;
-	if (t < 0.)
+	if (x < 0.)
 	{
-		t = -t;
+		x = -x;
 		sign = !sign;
 	}
-	if (t > TAU)
-		t = ft_fmod(t, TAU);
-	if (t > PI)
+	if (x > TAU)
+		x = ft_fmod(x, TAU);
+	if (x > PI)
 	{
-		t = PI - (t - PI);
+		x = PI - (x - PI);
 		sign = !sign;
 	}
-	if (t > HALF_PI)
-		t = HALF_PI - (t - HALF_PI);
+	if (x > HALF_PI)
+		x = HALF_PI - (x - HALF_PI);
 
-	t_p2 = t * t;
-	t_p3 = t * t_p2;
-	t_p5 = t_p2 * t_p3;
-	t_p7 = t_p2 * t_p5;
-	t_p9 = t_p2 * t_p7;
-	t_p11 = t_p2 * t_p9;
-	t_p13 = t_p2 * t_p11;
+	x_pow2 = x * x;
+	x_pow3 = x * x_pow2;
+	x_pow5 = x_pow2 * x_pow3;
+	x_pow7 = x_pow2 * x_pow5;
+	x_pow9 = x_pow2 * x_pow7;
+	x_pow11 = x_pow2 * x_pow9;
+	x_pow13 = x_pow2 * x_pow11;
 
-	result = t;
-	result -= t_p3 * inv_factorial(3);
-	result += t_p5 * inv_factorial(5);
-	result -= t_p7 * inv_factorial(7);
-	result += t_p9 * inv_factorial(9);
-	result -= t_p11 * inv_factorial(11);
-	result += t_p13 * inv_factorial(13);
-	result -= t_p13 * t_p2 * inv_factorial(15);
+	result = x;
+	result -= x_pow3 * inv_factorial(3);
+	result += x_pow5 * inv_factorial(5);
+	result -= x_pow7 * inv_factorial(7);
+	result += x_pow9 * inv_factorial(9);
+	result -= x_pow11 * inv_factorial(11);
+	result += x_pow13 * inv_factorial(13);
+	result -= x_pow13 * x_pow2 * inv_factorial(15);
 
 	return (sign ? -result : result);
 }
 
-// TODO implement homemade
+
+
+// TODO remove and implement homemade
 #include <math.h>
-t_float		ft_atan2(t_float x, t_float y)
+t_float		ft_atan(t_float x)
 {
-/*
-	t_float t = (t_float)y / (t_float)x;
-	// approximate arctan2 voodoo magic
-	t_float angle = 0.141499 * t - 0.343315;
-	angle = angle * t - 0.016224;
-	angle = angle * t + 1.003839;
-	angle = angle * t - 0.000158;
-*/
-	return (atan2(x, y));
+	return (atan(x));
+}
+
+#define FLOAT_SIZE	sizeof(t_float)
+static t_u64	ft_float_to_uint(t_float x)
+{
+	t_u8	bytes[FLOAT_SIZE];
+	t_u64	result = 0;
+
+	FT_MemoryCopy(bytes, &x, FLOAT_SIZE);
+	for (t_u8 i = 0; i < FLOAT_SIZE; ++i)
+	{
+		result <<= 8;
+		result |= bytes[i];
+	}
+	return (result);
+}
+
+t_float		ft_atan2(t_float y, t_float x)
+{
+	static const t_float pi_lo = 1.2246467991473531772E-16;
+
+	if (IS_NAN(x) || IS_NAN(y))
+		return (x + y);
+	else if (y == 0.0)
+		return ((x < 0 ? PI : 0) * SIGN(x));
+	else if (x == 0.0)
+		return (HALF_PI * SIGN(y));
+	else if (IS_INFINITY(x))
+	{
+		if (IS_INFINITY(y))
+			return ((x < 0 ? 3 * QUARTER_PI : QUARTER_PI) * SIGN(y));
+		else
+			return ((x < 0 ? PI : 0) * SIGN(y));
+	}
+	else if (IS_INFINITY(y))
+	{
+		return (HALF_PI * SIGN(y));
+	}
+	else if (x == 1.0)
+		return (atan(y));
+
+	t_s32 exp_x = (ft_float_to_uint(x) & FLOAT_EXPONENT) >> FLOAT_MANTISSA_BITS;
+	t_s32 exp_y = (ft_float_to_uint(y) & FLOAT_EXPONENT) >> FLOAT_MANTISSA_BITS;
+	t_float result = fabs(y / x);
+	if ((exp_y - exp_x) > 60)			/* |y / x| >  2^60 */
+		result = HALF_PI + 0.5 * pi_lo;
+	else if ((exp_y - exp_x) < -60)		/* |y| / x < -2^60 */
+		result = 0.0;
+	else
+		result = atan(result);								// precise
+//		result = (HALF_PI * result) / (1. + abs(result));	// fast
+//		result = 3. / (1 + ft_exp(-1.1 * result)) - 1.5;	// bad
+
+	if (x < 0)
+		return ((PI - (result - pi_lo)) * SIGN(y));
+	else
+		return (y < 0 ? -result : result);
 }

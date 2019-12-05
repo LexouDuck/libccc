@@ -19,16 +19,16 @@ t_float		ft_exp(t_float x)
 	t_float		acc_i;
 	t_float		acc_x;
 	t_float		result;
-	t_float		prev_res;
+	t_float		result_prev;
 
 	i = 1.;
 	result = 1.;
 	acc_x = 1.;
 	acc_i = 1.;
-	prev_res = 0.;
-	while (result != prev_res)
+	result_prev = 0.;
+	while (abs(result - result_prev) > FLOAT_BIAS)
 	{
-		prev_res = result;
+		result_prev = result;
 		acc_x *= x;
 		acc_i *= i;
 		result += acc_x / acc_i;

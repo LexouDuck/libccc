@@ -10,26 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
-
 #include "../../libft_convert.h"
 #include "../../libft_string.h"
 
 t_bool		ft_float_to_str_checkspecial(t_f32 number, char **result)
 {
-	if (isnan(number))
+	if (IS_NAN(number))
 	{
 		*result = ft_strdup("NaN");
 		return (TRUE);
 	}
-	else if (number == INFINITY)
+	else if (IS_INFINITY(number))
 	{
-		*result = ft_strdup("+INFINITY");
-		return (TRUE);
-	}
-	else if (number == -INFINITY)
-	{
-		*result = ft_strdup("-INFINITY");
+		*result = (number < 0 ?
+			ft_strdup("-INFINITY") :
+			ft_strdup("+INFINITY"));
 		return (TRUE);
 	}
 	return (FALSE);

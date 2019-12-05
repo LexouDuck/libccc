@@ -189,16 +189,6 @@ typedef uint_fast8_t	t_bool;
 
 
 
-#ifndef INFINITY
-#define INFINITY		(1. / 0.)
-#endif
-
-#ifndef NAN
-#define NAN				(0. / 0.)
-#endif
-#define IS_NAN(x)		((x) != (x))
-
-
 /*
 ** So long as only the t_float type is used throughout the code, changing the
 ** following typedef allows to switch immediately from float32 to float64 and
@@ -207,11 +197,48 @@ typedef uint_fast8_t	t_bool;
 */
 
 #ifdef _FLOAT_32_
-typedef t_f32			t_float;
+typedef t_f32	t_float;
+#define FLOAT_SIGNED			F32_SIGNED
+#define FLOAT_EXPONENT_BIAS		F32_EXPONENT_BIAS
+#define FLOAT_EXPONENT			F32_EXPONENT
+#define FLOAT_EXPONENT_ZERO		F32_EXPONENT_ZERO
+#define FLOAT_EXPONENT_BITS		F32_EXPONENT_BITS
+#define FLOAT_MANTISSA			F32_MANTISSA
+#define FLOAT_MANTISSA_SIGNED	F32_MANTISSA_SIGNED
+#define FLOAT_MANTISSA_BITS		F32_MANTISSA_BITS
+#define FLOAT_INIT_VALUE		F32_INIT_VALUE
 #endif
+
 #ifdef _FLOAT_64_
-typedef t_f64			t_float;
+typedef t_f64	t_float;
+#define FLOAT_SIGNED			F32_SIGNED
+#define FLOAT_EXPONENT_BIAS		F32_EXPONENT_BIAS
+#define FLOAT_EXPONENT			F32_EXPONENT
+#define FLOAT_EXPONENT_ZERO		F32_EXPONENT_ZERO
+#define FLOAT_EXPONENT_BITS		F32_EXPONENT_BITS
+#define FLOAT_MANTISSA			F32_MANTISSA
+#define FLOAT_MANTISSA_SIGNED	F32_MANTISSA_SIGNED
+#define FLOAT_MANTISSA_BITS		F32_MANTISSA_BITS
+#define FLOAT_INIT_VALUE		F32_INIT_VALUE
 #endif
+
+
+
+#ifndef INFINITY
+#define INFINITY		(1. / 0.)
+#endif
+#define IS_INFINITY(x)	(x == INFINITY || x == -INFINITY)
+
+#ifndef NAN
+#define NAN				(0. / 0.)
+#endif
+#define IS_NAN(x)		((x) != (x))
+
+/*
+**	This very small value is typically used to compare two float values.
+**	Floating point equality checks aren't the most dependable operation.
+*/
+#define FLOAT_BIAS		(1.0e-20)
 
 
 

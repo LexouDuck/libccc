@@ -74,6 +74,7 @@
 #define LN2				0x1.62E42FEFA39EFp-1
 #define LN10			0x1.26BB1BBB55516p+1
 
+#define QUARTER_PI		0x1.921fb54442d18p-1
 #define HALF_PI			0x1.921fb54442d18p+0
 #define PI				0x1.921fb54442d18p+1
 #define TAU 			0x1.921fb54442d18p+2
@@ -86,6 +87,10 @@
 
 #ifndef ABS
 #define ABS(x)		((x) < 0 ? -(x) : (x))
+#endif
+
+#ifndef SIGN
+#define SIGN(x)		((x) < 0 ? -1 : +1)
 #endif
 
 
