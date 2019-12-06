@@ -17,7 +17,7 @@
 
 static t_float	inv_factorial(t_u32 n)
 {
-	static t_float	result[16] =
+	static const t_float	result[16] =
 	{
 		1.0,
 		1.0,
@@ -132,23 +132,87 @@ t_float			ft_sin(t_float x)
 
 
 
+t_float		ft_acos(t_float x)
+{
+// fast - margin of error <= 6.7e-5
+
+	t_float result = -0.0187293;
+
+	x = abs(x);
+	result = result * x;
+	result = result + 0.0742610;
+	result = result * x;
+	result = result - 0.2121144;
+	result = result * x;
+	result = result + HALF_PI;
+	result = result * sqrt(1.0 - x);
+	result = result - 2 * SIGN(x) * result;
+	return (SIGN(x) * PI + result);
+
+
+//	very fast - margin of error < 0.95
+/*
+	if (IS_NAN(x))
+		return (NAN);
+	while (x < -1.)	x += 1.;
+	while (1. < x)	x -= 1.;
+	return ((-0.8047926 * x * x - 0.766) * x + HALF_PI);
+*/
+}
+
+
+
+t_float		ft_asin(t_float x) // margin of error: 0.95
+{
+	if (IS_NAN(x))
+		return (NAN);
+	while (x < -1.)	x += 1.;
+	while (1. < x)	x -= 1.;
+	return ((0.8047926 * x * x + 0.766) * x);
+}
+
+
+
 t_float		ft_atan(t_float x)
 {
-	t_float add = 0;
+	t_float abs_x;
+	t_float add;
 
-	if (abs(x) > 2.)
-		x *= 1.2;
-	else if (abs(x) > 1.)
+//	very fast: margin of error < 0.01
+
+	if (IS_NAN(x))
+		return (NAN);
+	abs_x = ABS(x);
+	if (abs_x < 1.48581)
+	{
+		x *= 0.824;
+		add = 0.05;
+	}
+	else add = 0;
+	return ((HALF_PI * x) / (1. + abs_x) + add);
+
+//	Uncomment this code for better precision (0.015 margin of error) at the cost of discontinuity
+/*
+	static const t_float result_1_0	= 0x1.921fb54442d18p-1;
+	static const t_float result_2_5	= 0x1.30b6d796a4da7p0;
+
+	if (abs_x == 0)			return (0);
+	else if (abs_x == 1.0)	return (result_1_0);
+	else if (abs_x == 2.5)	return (result_2_5);
+	else if (abs_x > 2.5)
+		x *= 1.3;
+	else if (abs_x > 1.0)
 	{
 		x *= 0.9;
 		add = (0.05 * x);
 	}
 	else
 	{
-		x *= 0.7;
-		add = (0.13 * x);
+		x *= 0.57;
+		add = (0.22 * x);
 	}
-	return ((HALF_PI * x) / (1. + abs(x)) + add);
+	return ((HALF_PI * x) / (1. + abs_x) + add);
+*/
 //	return (atan(x));							// precise
 //	return (3. / (1 + ft_exp(-1.1 * x)) - 1.5);	// bad
 }
@@ -190,7 +254,7 @@ t_float		ft_atan2(t_float y, t_float x)
 		return (HALF_PI * SIGN(y));
 	}
 	else if (x == 1.0)
-		return (atan(y));
+		return (ft_atan(y));
 
 	t_s32 exp_x = (ft_float_to_uint(x) & FLOAT_EXPONENT) >> FLOAT_MANTISSA_BITS;
 	t_s32 exp_y = (ft_float_to_uint(y) & FLOAT_EXPONENT) >> FLOAT_MANTISSA_BITS;
@@ -200,7 +264,7 @@ t_float		ft_atan2(t_float y, t_float x)
 	else if ((exp_y - exp_x) < -60)		/* |y| / x < -2^60 */
 		result = 0.0;
 	else
-		result = ft_atan(0.98 * result);
+		result = ft_atan(result);
 
 	if (x < 0)
 		return ((PI - (result - pi_lo)) * SIGN(y));
