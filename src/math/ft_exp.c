@@ -26,7 +26,7 @@ t_float		ft_exp(t_float x)
 	acc_x = 1.;
 	acc_i = 1.;
 	result_prev = 0.;
-	while (abs(result - result_prev) > FLOAT_BIAS)
+	while (ABS(result - result_prev) > FLOAT_BIAS)
 	{
 		result_prev = result;
 		acc_x *= x;

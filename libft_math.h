@@ -35,6 +35,13 @@
 #define FT_ArcTan(x)			ft_atan(x)
 #define FT_ArcTan2(x, y)		ft_atan2(x, y)
 
+#define FT_CosH(x)				ft_cosh(x)
+#define FT_SinH(x)				ft_sinh(x)
+#define FT_TanH(x)				ft_tanh(x)
+#define FT_ArcCosH(x)			ft_acosh(x)
+#define FT_ArcSinH(x)			ft_asinh(x)
+#define FT_ArcTanH(x)			ft_atanh(x)
+
 #define FT_Exp(x)				ft_exp(x)
 #define FT_Ln32(x)				ft_ln32(x)
 #define FT_Ln64(x)				ft_ln64(x)
@@ -64,22 +71,22 @@
 ** fundamental algorithms and functions.
 */
 
-#define SQRT2			0x1.6A09E667F3BCDp+0
-#define INV_SQRT2		0x1.6A09E667F3BCDp-1
+#define SQRT2			(t_float)0x1.6A09E667F3BCDp+0
+#define INV_SQRT2		(t_float)0x1.6A09E667F3BCDp-1
 
-#define DIV1_BY10		0x1.999999999999Ap-4
-#define LN2_DIV_LN10	0x1.34413509F79FFp-2
-#define LN_3DIV2		0x1.9F323ECBF984Cp-2
-#define DIV_2_BY_3		0x1.5555555555556p-1
-#define LN2				0x1.62E42FEFA39EFp-1
-#define LN10			0x1.26BB1BBB55516p+1
+#define DIV1_BY10		(t_float)0x1.999999999999Ap-4
+#define LN2_DIV_LN10	(t_float)0x1.34413509F79FFp-2
+#define LN_3DIV2		(t_float)0x1.9F323ECBF984Cp-2
+#define DIV_2_BY_3		(t_float)0x1.5555555555556p-1
+#define LN_2			(t_float)0x1.62E42FEFA39EFp-1
+#define LN_10			(t_float)0x1.26BB1BBB55516p+1
 
-#define QUARTER_PI		0x1.921fb54442d18p-1
-#define HALF_PI			0x1.921fb54442d18p+0
-#define PI				0x1.921fb54442d18p+1
-#define TAU 			0x1.921fb54442d18p+2
-#define INV_PI			0x1.45f306dc9c883p-2
-#define INV_TAU			0x1.45f306dc9c883p-3
+#define QUARTER_PI		(t_float)0x1.921fb54442d18p-1
+#define HALF_PI			(t_float)0x1.921fb54442d18p+0
+#define PI				(t_float)0x1.921fb54442d18p+1
+#define TAU 			(t_float)0x1.921fb54442d18p+2
+#define INV_PI			(t_float)0x1.45f306dc9c883p-2
+#define INV_TAU			(t_float)0x1.45f306dc9c883p-3
 
 #define SAMPLE_NB		1024
 
@@ -101,27 +108,23 @@
 ** ************************************************************************** *|
 */
 
-//t_f32		ft_cos32(t_f32 x);
-//t_f64		ft_cos64(t_f64 x);
 t_float		ft_cos(t_float x);
-//t_f32		ft_sin32(t_f32 x);
-//t_f64		ft_sin64(t_f64 x);
 t_float		ft_sin(t_float x);
-//t_f32		ft_tan32(t_f32 x);
-//t_f64		ft_tan64(t_f64 x);
-//t_float	ft_tan(t_float x);
+t_float		ft_tan(t_float x);
 
-//t_f32		ft_acos32(t_f32 x);
-//t_f64		ft_acos64(t_f64 x);
 t_float		ft_acos(t_float x);
-//t_f32		ft_asin32(t_f32 x);
-//t_f64		ft_asin64(t_f64 x);
 t_float		ft_asin(t_float x);
-//t_f32		ft_atan32(t_f32 x);
-//t_f64		ft_atan64(t_f64 x);
 t_float		ft_atan(t_float x);
 
 t_float		ft_atan2(t_float x, t_float y);
+
+t_float		ft_cosh(t_float x);
+t_float		ft_sinh(t_float x);
+t_float		ft_tanh(t_float x);
+
+t_float		ft_acosh(t_float x);
+t_float		ft_asinh(t_float x);
+t_float		ft_atanh(t_float x);
 
 
 
@@ -139,7 +142,7 @@ t_float		ft_logn(t_float x, t_float n);
 
 t_float		ft_sqr(t_float x);
 t_f32		ft_sqrt32(t_f32 x);
-//t_float	ft_sqrt(t_float x);
+t_float		ft_sqrt(t_float x);
 
 t_float		ft_fmod(t_float x, t_float y);
 

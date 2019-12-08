@@ -134,29 +134,25 @@ t_float			ft_sin(t_float x)
 
 t_float		ft_acos(t_float x)
 {
-// fast - margin of error <= 6.7e-5
+// fast polynomial approximation
+// score: 2.55	for [-1,+1]=> 200 tests
 
-	t_float result = -0.0187293;
+	t_float result = HALF_PI;
+	t_float power = x;
 
-	x = abs(x);
-	result = result * x;
-	result = result + 0.0742610;
-	result = result * x;
-	result = result - 0.2121144;
-	result = result * x;
-	result = result + HALF_PI;
-	result = result * sqrt(1.0 - x);
-	result = result - 2 * SIGN(x) * result;
-	return (SIGN(x) * PI + result);
+	result += power * -1.;				power *= (x * x);
+	result += power * -0.0584;			power *= (x * x);
+	result += power * -0.6852;			power *= (x * x);
+	result += power * 1.16616;			power *= (x * x);
+	result += power * -0.9933563268;
+	return (result);
 
-
-//	very fast - margin of error < 0.95
+//	very fast cubic approximation
+//	score: 11.53	for [-1,+1]-> 200 tests
 /*
-	if (IS_NAN(x))
+	if (IS_NAN(x) || x < -1 || x > 1)
 		return (NAN);
-	while (x < -1.)	x += 1.;
-	while (1. < x)	x -= 1.;
-	return ((-0.8047926 * x * x - 0.766) * x + HALF_PI);
+	return ((-0.8047926 * x * x - 0.766) * x + HALF_PI); // (-0.69813170079773212 * x * x - 0.87266462599716477)
 */
 }
 
@@ -164,41 +160,54 @@ t_float		ft_acos(t_float x)
 
 t_float		ft_asin(t_float x) // margin of error: 0.95
 {
-	if (IS_NAN(x))
+// fast polynomial approximation
+// score: 2.55	for [-1,+1]=> 200 tests
+
+	t_float result = 0;
+	t_float power = x;
+
+	result += power * -1.;				power *= (x * x);
+	result += power * -0.0584;			power *= (x * x);
+	result += power * -0.6852;			power *= (x * x);
+	result += power * 1.16616;			power *= (x * x);
+	result += power * -0.9933563268;
+	return (-result);
+
+//	very fast cubic approximation
+//	score: 11.53	for [-1,+1]-> 200 tests
+/*
+	if (IS_NAN(x) || x < -1 || x > 1)
 		return (NAN);
-	while (x < -1.)	x += 1.;
-	while (1. < x)	x -= 1.;
-	return ((0.8047926 * x * x + 0.766) * x);
+	return ((0.8047926 * x * x + 0.766) * x); // (-0.69813170079773212 * x * x - 0.87266462599716477)
+*/
 }
 
 
 
 t_float		ft_atan(t_float x)
 {
-	t_float abs_x;
-	t_float add;
-
-//	very fast: margin of error < 0.01
+//	very fast sigmoid approximation
+//	score: 11.45	for [-5,+5]-> 200 tests
 
 	if (IS_NAN(x))
 		return (NAN);
-	abs_x = ABS(x);
-	if (abs_x < 1.48581)
-	{
-		x *= 0.824;
-		add = 0.05;
-	}
-	else add = 0;
-	return ((HALF_PI * x) / (1. + abs_x) + add);
+	else if (x == 0)
+		return (0);
 
-//	Uncomment this code for better precision (0.015 margin of error) at the cost of discontinuity
+	return ((HALF_PI * x) / (1. + ABS(x)));
+
+
+//	3 different curves, some discontinuity
+//	score: 38.20	for [-5,+5]-> 200 tests
 /*
 	static const t_float result_1_0	= 0x1.921fb54442d18p-1;
 	static const t_float result_2_5	= 0x1.30b6d796a4da7p0;
+	t_float abs_x;
+	t_float add = 0;
 
-	if (abs_x == 0)			return (0);
-	else if (abs_x == 1.0)	return (result_1_0);
-	else if (abs_x == 2.5)	return (result_2_5);
+	abs_x = ABS(x);
+	if (abs_x == 1.0)	return (result_1_0);
+	if (abs_x == 2.5)	return (result_2_5);
 	else if (abs_x > 2.5)
 		x *= 1.3;
 	else if (abs_x > 1.0)
@@ -213,18 +222,20 @@ t_float		ft_atan(t_float x)
 	}
 	return ((HALF_PI * x) / (1. + abs_x) + add);
 */
-//	return (atan(x));							// precise
-//	return (3. / (1 + ft_exp(-1.1 * x)) - 1.5);	// bad
+
+// score: 60.59	for [-5, 5]-> 200 tests
+/*
+	return (3. / (1 + ft_exp(-1.1 * x)) - 1.5);
+*/
 }
 
-#define FLOAT_SIZE	sizeof(t_float)
 static t_u64	ft_float_to_uint(t_float x)
 {
-	t_u8	bytes[FLOAT_SIZE];
+	t_u8	bytes[sizeof(t_float)];
 	t_u64	result = 0;
 
-	FT_MemoryCopy(bytes, &x, FLOAT_SIZE);
-	for (t_u8 i = 0; i < FLOAT_SIZE; ++i)
+	FT_MemoryCopy(bytes, &x, sizeof(t_float));
+	for (t_u8 i = 0; i < sizeof(t_float); ++i)
 	{
 		result <<= 8;
 		result |= bytes[i];
@@ -270,4 +281,128 @@ t_float		ft_atan2(t_float y, t_float x)
 		return ((PI - (result - pi_lo)) * SIGN(y));
 	else
 		return (y < 0 ? -result : result);
+}
+
+
+
+t_float		ft_cosh(t_float x)
+{
+// fast polynomial approximation
+// score: 1.84	for [-6,+6]-> 250 tests
+
+	if (IS_NAN(x))
+		return (NAN);
+	else if (x == 0)
+		return (1);
+	else if (x < -4.)
+		return (ft_exp(-x - LN_2));
+	else if (x > 4.)
+		return (ft_exp(x - LN_2));
+
+	t_float result = 1.0;
+	t_float power = x * x;
+
+	result += 0.5 * power;
+	power *= power;
+	result += 0.0383 * power;
+	result += 0.0020 * power * x * x;
+	power *= power;
+	power *= power;
+	result += 0.00000000007 * power;
+	return (result);
+}
+
+
+
+t_float		ft_sinh(t_float x)
+{
+// fast polynomial approximation
+// score: 3,27	for [-6,+6]-> 250 tests
+
+	if (IS_NAN(x))
+		return (NAN);
+	else if (x == 0)
+		return (0);
+	else if (x < -4.)
+		return (-ft_exp(-x - LN_2));
+	else if (x > 4.)
+		return (ft_exp(x - LN_2));
+
+	t_float result = x;
+	t_float power = x * x * x;
+
+	result += 0.1726 * power;		power *= (x * x);
+	result += 0.008 * power;		power *= (x * x);
+	result += 0.00012 * power;		power *= (x * x);
+	result += 0.00000795 * power;
+	return (result);
+}
+
+
+
+t_float		ft_tanh(t_float x)
+{
+//	fast sigmoid approximation for [-1,+1], and exponential approximation for the rest
+//	score: 1.95	for [-6,+6]-> 250 tests
+
+	if (IS_NAN(x))
+		return (NAN);
+	else if (x == 0)
+		return (0);
+	else if (x < -1.)
+		return (ft_exp(1.43378091 * x) - 1);
+	else if (x > 1.)
+		return (-ft_exp(-1.43378091 * x) + 1);
+	else
+		return ((2 * x) / (1.6260705 + ABS(x)));
+
+}
+
+
+
+t_float		ft_acosh(t_float x)
+{
+// fast sqrt approximation for [+1,+20] and natural log for the rest
+// score: 5.00	for [+1,+50]-> 250 tests
+
+	if (IS_NAN(x) || x < 1)
+		return (NAN);
+	if (x < 20)
+		return (1.37 * ft_sqrt(x - 1) - 0.122 * (x - 1));
+	else
+		return (ft_ln(x - 1) + INV_SQRT2);
+
+}
+
+
+
+t_float		ft_asinh(t_float x)
+{
+// fast sigmoid approximation for [-20,+20] and natural log for the rest
+// score: 9.09	for [-40,+40]-> 200 tests
+
+	if (IS_NAN(x))
+		return (NAN);
+	else if (x == 0)
+		return (0);
+	else if (x < -20)
+		return (-ft_ln(-x - 1) - INV_SQRT2);
+	else if (x > 20)
+		return (ft_ln(x - 1) + INV_SQRT2);
+	else
+		return (x / (1 + ABS(-0.22103915 * x)));
+}
+
+
+
+t_float		ft_atanh(t_float x)
+{
+//	approximation
+//	score: ???	for [-1,+1]-> 200 tests
+
+	if (IS_NAN(x))
+		return (NAN);
+	else
+		return (0);
+
 }

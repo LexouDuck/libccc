@@ -94,6 +94,12 @@ t_f32		ft_sqrt32(t_f32 x)
 	return (result * limit);
 }
 
+#include <math.h>
+inline t_float		ft_sqrt(t_float x)
+{
+	return (sqrt(x));
+}
+
 
 
 t_float				ft_fmod(t_float x, t_float y)
