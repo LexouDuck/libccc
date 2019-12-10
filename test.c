@@ -8,8 +8,8 @@
 
 
 
-#define F_LIBFT(x)		ft_asinh(x)
-#define F_LIBC(x)		   asinh(x)
+#define F_LIBFT(x)		ft_atan(x)
+#define F_LIBC(x)		   atan(x)
 
 int main(int argc, char** argv)
 {
@@ -24,7 +24,7 @@ int main(int argc, char** argv)
 	if (argc == 1)
 	{
 		i = 0;
-		x = -40.0;
+		x = -5.0;
 		while (i <= 200)
 		{
 			result_libft = F_LIBFT(x);
@@ -35,7 +35,7 @@ int main(int argc, char** argv)
 			printf("%f -> ft: %f | c: %f \t-> difference: %f\n", x, result_libft, result_libc, difference);
 			if (!IS_NAN(difference) && result_libft != result_libc)
 				sum += difference;
-			x += 0.4;
+			x += 0.05;
 			++i;
 		}
 		printf("largest difference was:%f\n\ntotal difference: %f\n", largest, sum);

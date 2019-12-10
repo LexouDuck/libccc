@@ -132,6 +132,47 @@ t_float			ft_sin(t_float x)
 
 
 
+t_float		ft_tan(t_float x)
+{
+// fast polynomial approximation for [-1,+1] and 1/x approximation for the rest
+// score: 0.23	for [-40,+40]=> 200 tests
+	t_float		a;
+	t_s64		floor_a;
+
+	if (x < -HALF_PI)
+	{
+		x = -x + HALF_PI;
+		a = x / PI;
+		floor_a = a;
+		x = (a - floor_a) * PI;
+		x = PI - x;
+		x -= HALF_PI;
+	}
+	else if (x > HALF_PI)
+	{
+		x += HALF_PI;
+		a = x / PI;
+		floor_a = a;
+		x = (a - floor_a) * PI;
+		x -= HALF_PI;
+	}
+
+	if (x < -0.997592567)
+		return (-1 / (x + HALF_PI) + 0.343 * x + 0.538);
+	if (x > 0.997592567)
+		return (-(1 / (x - HALF_PI) - 0.343 * x + 0.538));
+
+	t_float result = x;
+	t_float power = x * x * x;
+
+	result += power * 0.33333333333;	power *= (x * x);
+	result += power * 0.13333333333;	power *= (x * x);
+	result += power * 0.09;
+	return (result);
+}
+
+
+
 t_float		ft_acos(t_float x)
 {
 // fast polynomial approximation
@@ -187,14 +228,17 @@ t_float		ft_asin(t_float x) // margin of error: 0.95
 t_float		ft_atan(t_float x)
 {
 //	very fast sigmoid approximation
-//	score: 11.45	for [-5,+5]-> 200 tests
+//	score: 0.77	for [-5,+5]-> 200 tests
 
 	if (IS_NAN(x))
 		return (NAN);
 	else if (x == 0)
 		return (0);
 
-	return ((HALF_PI * x) / (1. + ABS(x)));
+	t_float n = 1.5 - ABS(x) / (1 + ABS(x));
+	if (n < 0.75)
+		n = 0.75;
+	return ((HALF_PI * x) / (n + ABS(x)));
 
 
 //	3 different curves, some discontinuity

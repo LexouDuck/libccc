@@ -109,5 +109,5 @@ t_float				ft_fmod(t_float x, t_float y)
 
 	a = x / y;
 	floor_a = a;
-	return (a - floor_a) * y;
+	return ((a - floor_a) * y);
 }
