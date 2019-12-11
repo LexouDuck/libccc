@@ -331,28 +331,23 @@ t_float		ft_atan2(t_float y, t_float x)
 
 t_float		ft_cosh(t_float x)
 {
-// fast polynomial approximation
-// score: 1.84	for [-6,+6]-> 250 tests
+// fast polynomial approximation for [-PI,+PI], exponential for the rest
+// score: 1.63	for [-6,+6]-> 200 tests
 
 	if (IS_NAN(x))
 		return (NAN);
 	else if (x == 0)
 		return (1);
-	else if (x < -4.)
+	else if (x < -3.2457)
 		return (ft_exp(-x - LN_2));
-	else if (x > 4.)
+	else if (x > 3.2457)
 		return (ft_exp(x - LN_2));
 
 	t_float result = 1.0;
 	t_float power = x * x;
-
-	result += 0.5 * power;
-	power *= power;
-	result += 0.0383 * power;
-	result += 0.0020 * power * x * x;
-	power *= power;
-	power *= power;
-	result += 0.00000000007 * power;
+	result += 0.5000000000 * power;	power *= power;
+	result += 0.0416666666 * power;	power *= x * x;
+	result += 0.0016666666 * power;
 	return (result);
 }
 
@@ -360,25 +355,24 @@ t_float		ft_cosh(t_float x)
 
 t_float		ft_sinh(t_float x)
 {
-// fast polynomial approximation
-// score: 3,27	for [-6,+6]-> 250 tests
+// fast polynomial approximation for [-PI,+PI], exponential for the rest
+// score: 0.96	for [-6,+6]-> 200 tests
 
 	if (IS_NAN(x))
 		return (NAN);
 	else if (x == 0)
 		return (0);
-	else if (x < -4.)
+	else if (x < -PI)
 		return (-ft_exp(-x - LN_2));
-	else if (x > 4.)
+	else if (x > PI)
 		return (ft_exp(x - LN_2));
 
 	t_float result = x;
 	t_float power = x * x * x;
-
-	result += 0.1726 * power;		power *= (x * x);
-	result += 0.008 * power;		power *= (x * x);
-	result += 0.00012 * power;		power *= (x * x);
-	result += 0.00000795 * power;
+	result += 0.1666666666 * power;		power *= (x * x);
+	result += 0.0083333333 * power;		power *= (x * x);
+	result += 0.0001500000 * power;		power *= (x * x);
+	result += 0.0000083000 * power;
 	return (result);
 }
 
@@ -386,20 +380,32 @@ t_float		ft_sinh(t_float x)
 
 t_float		ft_tanh(t_float x)
 {
-//	fast sigmoid approximation for [-1,+1], and exponential approximation for the rest
-//	score: 1.95	for [-6,+6]-> 250 tests
+//	fast sigmoid approximation
+//	score: 0.84 for [-6,+6]-> 200 tests
 
 	if (IS_NAN(x))
 		return (NAN);
 	else if (x == 0)
 		return (0);
+
+	t_float n = 1 - 0.37 * (ABS(x) / (1 + ABS(x)));
+	if (n < 0.7)
+		n = 0.7;
+	n -= ABS(x) / (1 + ABS(x));
+	if (n < 0.)
+		n = 0.;
+	return (x / (n + ABS(x)));
+
+//	fast sigmoid approximation for [-1,+1], and exponential approximation for the rest
+//	score: 1.95	for [-6,+6]-> 250 tests
+/*
 	else if (x < -1.)
 		return (ft_exp(1.43378091 * x) - 1);
 	else if (x > 1.)
 		return (-ft_exp(-1.43378091 * x) + 1);
 	else
 		return ((2 * x) / (1.6260705 + ABS(x)));
-
+*/
 }
 
 
@@ -442,11 +448,25 @@ t_float		ft_asinh(t_float x)
 t_float		ft_atanh(t_float x)
 {
 //	approximation
-//	score: ???	for [-1,+1]-> 200 tests
+//	score: 4.81	for [-1,+1]-> 200 tests
 
-	if (IS_NAN(x))
+	if (IS_NAN(x) || ABS(x) > 1.)
 		return (NAN);
-	else
+	else if (x == 0)
 		return (0);
+
+	static const t_float p = 0.6232;
+	if (x < -0.6)
+		return (ft_ln(p * x + p) * 0.5);
+	if (x > 0.6)
+		return (-ft_ln(p * -x + p) * 0.5);
+
+	t_float result = x / (1 - 0.418 * ABS(x));
+	t_float power = x * x * x;
+	result += -1.5 * power;		power *= (x * x);
+	result +=  4.4 * power;		power *= (x * x);
+	result += -2.4 * power;		power *= (x * x);
+	result += -5.8 * power;
+	return (result);
 
 }
