@@ -120,7 +120,6 @@ SRC_LIST	:=	ft_lstnew.c			\
 DIR_MATH	:=	math/
 SRC_MATH	:=	ft_math.c			\
 				ft_exp.c			\
-				ft_log.c			\
 				ft_calc.c			\
 				ft_trigonometry.c	\
 

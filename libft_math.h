@@ -27,36 +27,47 @@
 ** ************************************************************************** *|
 */
 
+#define FT_Modulo(x, y)			ft_fmod(x, y)
+
+#define FT_Power(x, y)			ft_pow(x, y)
+
+#define FT_SquareRoot(x)		ft_sqrt(x)
+#define FT_CubicRoot(x)			ft_cbrt(x)
+#define FT_NRoot(x, n)			ft_nrt(x, n)
+
+
+
+#define FT_Exp(x)				ft_exp(x)
+
+#define FT_Ln(x)				ft_ln(x)
+
+#define FT_Log_2(x)				ft_lg(x)
+#define FT_Log_10(x)			ft_log(x)
+#define FT_Log_N(x, n)			ft_logn(x, n)
+
+
+
 #define FT_Cos(x)				ft_cos(x)
 #define FT_Sin(x)				ft_sin(x)
 #define FT_Tan(x)				ft_tan(x)
+
 #define FT_ArcCos(x)			ft_acos(x)
 #define FT_ArcSin(x)			ft_asin(x)
 #define FT_ArcTan(x)			ft_atan(x)
+
 #define FT_ArcTan2(x, y)		ft_atan2(x, y)
 
 #define FT_CosH(x)				ft_cosh(x)
 #define FT_SinH(x)				ft_sinh(x)
 #define FT_TanH(x)				ft_tanh(x)
+
 #define FT_ArcCosH(x)			ft_acosh(x)
 #define FT_ArcSinH(x)			ft_asinh(x)
 #define FT_ArcTanH(x)			ft_atanh(x)
 
-#define FT_Exp(x)				ft_exp(x)
-#define FT_Ln32(x)				ft_ln32(x)
-#define FT_Ln64(x)				ft_ln64(x)
-#define FT_Ln(x)				ft_ln(x)
-#define FT_Log_2(x)				ft_lg(x)
-#define FT_Log_10(x)			ft_log(x)
-#define FT_Log_N(x, n)			ft_logn(x, n)
 
-#define FT_Square(x)			ft_sqr(x)
-#define FT_SquareRoot32(x)		ft_sqrt32(x)
-#define FT_SquareRoot(x)		ft_sqrt(x)
 
-#define FT_FloatModulo(x, y)	ft_fmod(x, y)
-
-// TODO add other function macros
+// TODO add other function macros for integral, distance, etc
 
 
 
@@ -71,22 +82,27 @@
 ** fundamental algorithms and functions.
 */
 
-#define SQRT2			(t_float)0x1.6A09E667F3BCDp+0
-#define INV_SQRT2		(t_float)0x1.6A09E667F3BCDp-1
+#define QUARTER_PI		DIV_PI_4
+#define HALF_PI			DIV_PI_2
+#define DIV_PI_4		(t_float)0x1.921FB54442D18p-1
+#define DIV_PI_2		(t_float)0x1.921FB54442D18p+0
+#define PI				(t_float)0x1.921FB54442D18p+1
+#define TAU 			(t_float)0x1.921FB54442D18p+2
+#define INV_PI			(t_float)0x1.45F306DC9C883p-2
+#define INV_TAU			(t_float)0x1.45F306DC9C883p-3
 
-#define DIV1_BY10		(t_float)0x1.999999999999Ap-4
-#define LN2_DIV_LN10	(t_float)0x1.34413509F79FFp-2
-#define LN_3DIV2		(t_float)0x1.9F323ECBF984Cp-2
-#define DIV_2_BY_3		(t_float)0x1.5555555555556p-1
+#define E				(t_float)0x1.5BF0A8B145769p+1
 #define LN_2			(t_float)0x1.62E42FEFA39EFp-1
 #define LN_10			(t_float)0x1.26BB1BBB55516p+1
 
-#define QUARTER_PI		(t_float)0x1.921fb54442d18p-1
-#define HALF_PI			(t_float)0x1.921fb54442d18p+0
-#define PI				(t_float)0x1.921fb54442d18p+1
-#define TAU 			(t_float)0x1.921fb54442d18p+2
-#define INV_PI			(t_float)0x1.45f306dc9c883p-2
-#define INV_TAU			(t_float)0x1.45f306dc9c883p-3
+#define SQRT_2			(t_float)0x1.6A09E667F3BCDp+0
+#define INV_SQRT_2		(t_float)0x1.6A09E667F3BCDp-1
+#define SQRT_3			(t_float)0x1.BB67AE8584CAAp+0
+#define INV_SQRT_3		(t_float)0x1.279A74590331Cp-1
+#define SQRT_5			(t_float)0x1.1E3779B97F4A7p+1
+#define INV_SQRT_5		(t_float)0x1.C9F25C5BFEDD9p-2
+
+
 
 #define SAMPLE_NB		1024
 
@@ -108,6 +124,26 @@
 ** ************************************************************************** *|
 */
 
+t_float		ft_fmod(t_float x, t_float y);
+
+t_float		ft_pow(t_float x, t_float y);
+
+t_float		ft_sqrt(t_float x);
+t_float		ft_cbrt(t_float x);
+t_float		ft_nrt(t_float x, t_u8 n);
+
+
+
+t_float		ft_exp(t_float x);
+
+t_float		ft_ln(t_float x);
+
+t_float		ft_lg(t_float x);
+t_float		ft_log(t_float x);
+t_float		ft_logn(t_float x, t_float n);
+
+
+
 t_float		ft_cos(t_float x);
 t_float		ft_sin(t_float x);
 t_float		ft_tan(t_float x);
@@ -125,26 +161,6 @@ t_float		ft_tanh(t_float x);
 t_float		ft_acosh(t_float x);
 t_float		ft_asinh(t_float x);
 t_float		ft_atanh(t_float x);
-
-
-
-t_float		ft_exp(t_float x);
-
-t_f32		ft_ln32(t_f32 x);
-t_f64		ft_ln64(t_f64 lf);
-t_float		ft_ln(t_float x);
-
-t_float		ft_lg(t_float x);
-t_float		ft_log(t_float x);
-t_float		ft_logn(t_float x, t_float n);
-
-
-
-t_float		ft_sqr(t_float x);
-t_f32		ft_sqrt32(t_f32 x);
-t_float		ft_sqrt(t_float x);
-
-t_float		ft_fmod(t_float x, t_float y);
 
 
 

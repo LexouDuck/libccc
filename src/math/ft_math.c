@@ -13,96 +13,9 @@
 #include "../../libft_math.h"
 #include "../../libft_memory.h"
 
-/*
-**	Useful when you want to square an expression optimally
-*/
-inline t_float		ft_sqr(t_float x)
-{
-	return (x * x);
-}
 
 
-
-/*
-**	Core idea is that sqrt(x) == x^(1/2) and that x is a float so
-**	x^(1/2) == (m * 2^n)^(1/2) == m^(1/2) * 2^(n * 1/2)
-**	with m between 1 and 2, and thus a taylor series can be used.
-**	NB: Watch the parity of n.
-**	Based on Heron's algorithm.
-*/
-t_f32		ft_sqrt32(t_f32 x)
-{
-	t_f32		result = 1.f;
-	t_f32		limit;
-	t_s8		exp_b2;
-	t_u32		norm = 0;	
-	t_u32		a;
-//	t_u32		b;
-
-	if (x < 0)
-		return (NAN);
-
-	if (x < 1.f || 2.f <= x)
-	{
-		ft_memcpy(&norm, &x, sizeof(t_u32));
-		exp_b2 = (t_s16)((norm << 1) >> (F32_MANTISSA_BITS + 1)) - F32_EXPONENT_BIAS;
-		norm = (norm & F32_MANTISSA) | F32_EXPONENT_ZERO;
-		ft_memcpy(&x, &norm, sizeof(t_u32));
-		if (exp_b2 > 0)
-		{
-			if (exp_b2 % 2)
-				result *= SQRT2;
-			exp_b2 = exp_b2 / 2;
-		}
-		else
-		{
-			if (exp_b2 % 2)
-				result *= INV_SQRT2;
-			exp_b2 = exp_b2 / 2;
-		}
-		a = exp_b2 + F32_EXPONENT_BIAS;
-		a = a << F32_MANTISSA_BITS;
-// the following pragma disables warnings for type punning derefs
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wstrict-aliasing"
-		result *= *(t_f32*)(&a);
-// Resets the warning settings back to normal
-#pragma GCC diagnostic pop
-	}
-/*
-	norm = (norm & F32_MANTISSA) | 0x00800000;//corresponds to the hidden bit
-	b = norm;
-	norm = 3.f;
-	a = 3.f;
-	norm = b / norm;
-	norm = (norm + a) >> 1;
-	a = norm;
-	norm = b / norm;
-	norm = (norm + a) >> 1;
-	a = norm;
-	norm = b / norm;
-	norm = (norm + a) >> 1;
-
-//	a = (F32_MANTISSA_BITS + F32_EXPONENT_BIAS) << F32_MANT_BIT_NB;
-	result *= norm * *(t_f32*)(&a);
-*/
-	limit = 1.5f;
-	limit = 0.5 * (limit + x / limit);
-	limit = 0.5 * (limit + x / limit);
-	limit = 0.5 * (limit + x / limit);
-
-	return (result * limit);
-}
-
-#include <math.h>
-inline t_float		ft_sqrt(t_float x)
-{
-	return (sqrt(x));
-}
-
-
-
-t_float				ft_fmod(t_float x, t_float y)
+inline t_float	ft_fmod(t_float x, t_float y)
 {
 	t_float		a;
 	t_s64		floor_a;
@@ -110,4 +23,190 @@ t_float				ft_fmod(t_float x, t_float y)
 	a = x / y;
 	floor_a = a;
 	return ((a - floor_a) * y);
+}
+
+
+
+inline t_float		ft_pow(t_float x, t_float y)
+{
+	if (y == 0.)
+		return (1.);
+	if (x <= 0.)
+		return (0.);
+	return (ft_exp(y * ft_ln(x)));
+}
+
+
+
+static t_s32	ft_float_get_exponent(t_float x)
+{
+	t_s64	result = 0;
+
+	FT_MemoryCopy((t_u8*)&result, &x, sizeof(t_float));
+	return (((result & FLOAT_EXPONENT) >> FLOAT_MANTISSA_BITS) - FLOAT_EXPONENT_BIAS);
+}
+
+/*
+**	Some SQRT(2)^n lookup tables for quick newton method initial guess
+*/
+static t_float	ft_sqrt_2_pow_n(t_s32 n)
+{
+	static const t_float powers_pos[12] =
+	{
+		SQRT_2,
+		(t_float)0x1.0p+1,
+		(t_float)0x1.0p+2,
+		(t_float)0x1.0p+4,
+		(t_float)0x1.0p+8,
+		(t_float)0x1.0p+16,
+		(t_float)0x1.0p+32,
+		(t_float)0x1.0p+64,
+		(t_float)0x1.0p+128,
+		(t_float)0x1.0p+256,
+		(t_float)0x1.0p+512,
+		INFINITY,
+	};
+	static const t_float powers_neg[12] =
+	{
+		INV_SQRT_2,
+		(t_float)0x1.0p-1,
+		(t_float)0x1.0p-2,
+		(t_float)0x1.0p-4,
+		(t_float)0x1.0p-8,
+		(t_float)0x1.0p-16,
+		(t_float)0x1.0p-32,
+		(t_float)0x1.0p-64,
+		(t_float)0x1.0p-128,
+		(t_float)0x1.0p-256,
+		(t_float)0x1.0p-512,
+		0.,
+	};
+	if (n > 0 && (n >> 11))
+		return (INFINITY);
+	const t_float* powers = powers_pos;
+	if (n == 0)
+		return (1.);
+	else if (n < 0)
+	{
+		n = -n;
+		powers = powers_neg;
+	}
+	t_float result = 1.;
+	if (n & 0x001) { result *= powers[0x0]; }
+	if (n & 0x002) { result *= powers[0x1]; }
+	if (n & 0x004) { result *= powers[0x2]; }
+	if (n & 0x008) { result *= powers[0x3]; }
+	if (n & 0x010) { result *= powers[0x4]; }
+	if (n & 0x020) { result *= powers[0x5]; }
+	if (n & 0x040) { result *= powers[0x6]; }
+	if (n & 0x080) { result *= powers[0x7]; }
+#ifdef _FLOAT_64_
+	if (n & 0x100) { result *= powers[0x8]; }
+	if (n & 0x200) { result *= powers[0x9]; }
+	if (n & 0x400) { result *= powers[0xA]; }
+#endif
+	return (result);
+}
+
+
+
+inline t_float	ft_sqrt(t_float x)
+{
+//	Newton derivative approximation by iteration
+	static const t_s32	i_max = 64;
+	t_s32	i;
+	t_float	result;
+	t_float	previous;
+
+	if (IS_NAN(x) || x < 0.)
+		return (NAN);
+	if (x == 0.)
+		return (0.);
+	if (x == 1.)
+		return (1.);
+	i = ft_float_get_exponent(x);
+	result = (i < 0 ? 0.75 : 1.25) * ft_sqrt_2_pow_n(i);
+	previous = INFINITY;
+	i = 0;
+	while (ABS(result - previous) > FLOAT_BIAS)
+	{
+		previous = result;
+		result -= (result * result - x) / (2 * result);
+		if (++i == i_max)
+			break;
+	}
+	return (result);
+}
+
+
+
+inline t_float	ft_cbrt(t_float x)
+{
+//	Newton derivative approximation by iteration
+	static const t_s32	i_max = 64;
+	t_s32	i;
+	t_float square;
+	t_float	result;
+	t_float	previous;
+
+	if (IS_NAN(x))
+		return (NAN);
+	if (x == 0)
+		return (0);
+	if (ABS(x) == 1.)
+		return (SIGN(x));
+	i = ft_float_get_exponent(x);
+	result = SIGN(x) * (i < 0 ? 0.75 : 1.25) * ft_sqrt_2_pow_n(i * 2 / 3);
+	previous = INFINITY;
+	i = 0;
+	while (ABS(result - previous) > FLOAT_BIAS)
+	{
+		previous = result;
+		square = result * result;
+		result -= (result * square - x) / (3 * square);
+		if (++i == i_max)
+			break;
+	}
+	return (result);
+}
+
+
+
+inline t_float	ft_nrt(t_float x, t_u8 n)
+{
+//	Newton derivative approximation by iteration
+	static const t_s32	i_max = 64;
+	t_s32	i;
+	t_float	result;
+	t_float	previous;
+	t_float	power;
+
+	if (IS_NAN(x) || n == 0)
+		return (NAN);
+	if (n == 1)
+		return (x);
+	if (x == 0)
+		return (0);
+	if (ABS(x) == 1.)
+		return (SIGN(x));
+	if (n % 2 == 0 && x < 0)
+		return (NAN);
+	i = ft_float_get_exponent(x);
+	result = SIGN(x) * (i < 0 ? 1 : 1.25) * ft_sqrt_2_pow_n(i * 2 / n);
+	previous = 0.;
+	i = 0;
+	n -= 1;
+	while (ABS(result - previous) > FLOAT_BIAS)
+	{
+		previous = result;
+		power = result;
+		for (t_u32 j = 1; j < n; ++j)
+		{
+			power *= result;
+		}
+		result -= (power * result - x) / ((n + 1) * power);
+		if (++i == i_max)
+			break;
+	}
+	return (result);
 }

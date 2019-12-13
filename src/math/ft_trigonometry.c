@@ -273,18 +273,12 @@ t_float		ft_atan(t_float x)
 */
 }
 
-static t_u64	ft_float_to_uint(t_float x)
+static t_s32	ft_float_get_exponent(t_float x)
 {
-	t_u8	bytes[sizeof(t_float)];
-	t_u64	result = 0;
+	t_s64	result = 0;
 
-	FT_MemoryCopy(bytes, &x, sizeof(t_float));
-	for (t_u8 i = 0; i < sizeof(t_float); ++i)
-	{
-		result <<= 8;
-		result |= bytes[i];
-	}
-	return (result);
+	FT_MemoryCopy((t_u8*)&result, &x, sizeof(t_float));
+	return (((result & FLOAT_EXPONENT) >> FLOAT_MANTISSA_BITS) - FLOAT_EXPONENT_BIAS);
 }
 
 t_float		ft_atan2(t_float y, t_float x)
@@ -311,8 +305,8 @@ t_float		ft_atan2(t_float y, t_float x)
 	else if (x == 1.0)
 		return (ft_atan(y));
 
-	t_s32 exp_x = (ft_float_to_uint(x) & FLOAT_EXPONENT) >> FLOAT_MANTISSA_BITS;
-	t_s32 exp_y = (ft_float_to_uint(y) & FLOAT_EXPONENT) >> FLOAT_MANTISSA_BITS;
+	t_s32 exp_x = ft_float_get_exponent(x);
+	t_s32 exp_y = ft_float_get_exponent(y);
 	t_float result = ABS(y / x);
 	if ((exp_y - exp_x) > 60)			/* |y / x| >  2^60 */
 		result = HALF_PI + 0.5 * pi_lo;
@@ -420,7 +414,7 @@ t_float		ft_acosh(t_float x)
 	if (x < 20)
 		return (1.37 * ft_sqrt(x - 1) - 0.122 * (x - 1));
 	else
-		return (ft_ln(x - 1) + INV_SQRT2);
+		return (ft_ln(x - 1) + INV_SQRT_2);
 
 }
 
@@ -436,9 +430,9 @@ t_float		ft_asinh(t_float x)
 	else if (x == 0)
 		return (0);
 	else if (x < -20)
-		return (-ft_ln(-x - 1) - INV_SQRT2);
+		return (-ft_ln(-x - 1) - INV_SQRT_2);
 	else if (x > 20)
-		return (ft_ln(x - 1) + INV_SQRT2);
+		return (ft_ln(x - 1) + INV_SQRT_2);
 	else
 		return (x / (1 + ABS(-0.22103915 * x)));
 }
