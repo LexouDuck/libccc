@@ -177,10 +177,13 @@ t_float		ft_acos(t_float x)
 {
 // fast polynomial approximation
 // score: 2.55	for [-1,+1]=> 200 tests
+	if (IS_NAN(x) || ABS(x) > 1.)
+		return (NAN);
+	if (ABS(x) == 1.)
+		return (INFINITY * SIGN(x));
 
 	t_float result = HALF_PI;
 	t_float power = x;
-
 	result += power * -1.;				power *= (x * x);
 	result += power * -0.0584;			power *= (x * x);
 	result += power * -0.6852;			power *= (x * x);
@@ -191,22 +194,23 @@ t_float		ft_acos(t_float x)
 //	very fast cubic approximation
 //	score: 11.53	for [-1,+1]-> 200 tests
 /*
-	if (IS_NAN(x) || x < -1 || x > 1)
-		return (NAN);
 	return ((-0.8047926 * x * x - 0.766) * x + HALF_PI); // (-0.69813170079773212 * x * x - 0.87266462599716477)
 */
 }
 
 
 
-t_float		ft_asin(t_float x) // margin of error: 0.95
+t_float		ft_asin(t_float x)
 {
 // fast polynomial approximation
 // score: 2.55	for [-1,+1]=> 200 tests
+	if (IS_NAN(x) || ABS(x) > 1.)
+		return (NAN);
+	if (ABS(x) == 1.)
+		return (INFINITY * SIGN(x));
 
 	t_float result = 0;
 	t_float power = x;
-
 	result += power * -1.;				power *= (x * x);
 	result += power * -0.0584;			power *= (x * x);
 	result += power * -0.6852;			power *= (x * x);
@@ -217,8 +221,6 @@ t_float		ft_asin(t_float x) // margin of error: 0.95
 //	very fast cubic approximation
 //	score: 11.53	for [-1,+1]-> 200 tests
 /*
-	if (IS_NAN(x) || x < -1 || x > 1)
-		return (NAN);
 	return ((0.8047926 * x * x + 0.766) * x); // (-0.69813170079773212 * x * x - 0.87266462599716477)
 */
 }
@@ -235,10 +237,11 @@ t_float		ft_atan(t_float x)
 	else if (x == 0)
 		return (0);
 
-	t_float n = 1.5 - ABS(x) / (1 + ABS(x));
-	if (n < 0.75)
-		n = 0.75;
-	return ((HALF_PI * x) / (n + ABS(x)));
+	t_float abs_x = ABS(x);
+	t_float n = 1.54 - abs_x / (0.9 + abs_x);
+	if (n < 0.65)
+		n = 0.65;
+	return ((HALF_PI * x) / (n + abs_x));
 
 
 //	3 different curves, some discontinuity
@@ -382,13 +385,14 @@ t_float		ft_tanh(t_float x)
 	else if (x == 0)
 		return (0);
 
-	t_float n = 1 - 0.37 * (ABS(x) / (1 + ABS(x)));
+	t_float abs_x = ABS(x);
+	t_float n = 1 - 0.37 * (abs_x / (1 + abs_x));
 	if (n < 0.7)
 		n = 0.7;
-	n -= ABS(x) / (1 + ABS(x));
+	n -= abs_x / (1 + abs_x);
 	if (n < 0.)
 		n = 0.;
-	return (x / (n + ABS(x)));
+	return (x / (n + abs_x));
 
 //	fast sigmoid approximation for [-1,+1], and exponential approximation for the rest
 //	score: 1.95	for [-6,+6]-> 250 tests

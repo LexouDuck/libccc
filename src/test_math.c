@@ -9,23 +9,59 @@
 
 
 
+#define PRINTF_FORMAT	":\t%s%g"
+static inline void printf_colored(const char* label, t_float precision, t_float value)
+{
+	printf(label);
+	if (precision == 0.)
+	{
+		if (value == 0. || IS_NAN(value))
+			printf(PRINTF_FORMAT"\n", "", value);
+		else if (value < 0)
+			printf(PRINTF_FORMAT"\n"C_RESET, C_RED, value);
+		else if (value > 0)
+			printf(PRINTF_FORMAT"\n"C_RESET, C_GREEN, value);
+	}
+	else
+	{
+		if (value < precision)
+			printf(PRINTF_FORMAT"\n"C_RESET, C_GREEN, value);
+		else
+			printf(PRINTF_FORMAT"\n"C_RESET, C_RED, value);
+	}
+}
+
+
+
+static t_float	ft_get_largest_f(t_list_float list)
+{
+	t_float result = 0.;
+	for (t_int i = 0; i < list.len; ++i)
+	{
+		if (result < list.data[i])
+			result = list.data[i];
+	}
+	return (result);
+}
+
+
+
 #define _MATH_TEST_VERBOSE_FUNCTIONS_ 0
 #define _MATH_TEST_VERBOSE_RNG_LIST_ 0
 
-int		test_compare_real_functions
-(
+int		test_compare_real_functions(
 	char const *	func_name,
 	t_real_func		witness_func,
 	t_real_func		ft_func,
 	t_float			precision,
-	t_interval		interval
-)
+	t_interval		interval)
 {
 	//Test variables
 	t_u32			test_nb = 1000;
 	t_u32			failed_tests = 0;
 	t_float			expected_res;
 	t_float			test_res;
+	t_float			percent;
 
 	//sampling variables
 	t_float			start = interval.start;
@@ -35,72 +71,72 @@ int		test_compare_real_functions
 	t_list_float	error_list;
 
 	//execution time variables
-	t_u32			failed_speed_tests = 0;
-	time_t			start_time;
-	time_t			end_time;
-	t_f64			stdC_time;
-	t_f64			ft_time;
-	t_list_float	time_diff_list;
+	t_timer		timer = {0};
 
 
 	step = (end - start) / test_nb;
-	tmp = start;
 	failed_tests = 0;
 	error_list = ft_stat_new_flst(test_nb);
-	time_diff_list = ft_stat_new_flst(test_nb);
 
+	tmp = start;
+	timer_clock(&timer.start1);
 	for (int i = 0; i < test_nb; ++i)
 	{
 		tmp += step;
-
-		time(&start_time);
-		printf("%lf\n", start_time);
 		expected_res = witness_func(tmp);
-		time(&end_time);
-		stdC_time = (t_f64)(end_time - start_time);
+	}
+	timer_clock(&timer.end1);
 
-		time(&start_time);
+	tmp = start;
+	timer_clock(&timer.start2);
+	for (int i = 0; i < test_nb; ++i)
+	{
+		tmp += step;
 		test_res = ft_func(tmp);
-		time(&end_time);
-		ft_time = (t_f64)(end_time - start_time);
+	}
+	timer_clock(&timer.end2);
 
-		time_diff_list.data[i] = stdC_time - ft_time; //(stdC - ft < 0 <=> stdC < ft <=> stdC wins in speed)
-		if (time_diff_list.data[i] < 0)
-			++failed_speed_tests;
+	tmp = start;
+	for (int i = 0; i < test_nb; ++i)
+	{
+		tmp += step;
+		if (expected_res == test_res || (IS_NAN(expected_res) && IS_NAN(test_res)))
+			error_list.data[i] = 0;
+		else if (IS_NAN(expected_res) || IS_NAN(test_res))
+			error_list.data[i] = NAN;
+		else
+			error_list.data[i] = ft_distance_float(expected_res, test_res);
 
-#		if _MATH_TEST_VERBOSE_FUNCTIONS_
-		printf("   %s(%g) -> %g\n", func_name, tmp, expected_res);
-		printf("ft_%s(%g) -> %g\n", func_name, tmp, test_res);
-#		endif
-
-		error_list.data[i] = ft_distance_float(expected_res, test_res);
-		if (error_list.data[i] > precision)
+		if (IS_NAN(error_list.data[i]) || error_list.data[i] > precision)
+		{
 			++failed_tests;
+#if _MATH_TEST_VERBOSE_FUNCTIONS_
+			if (expected_res != test_res)
+			{
+				printf(C_RED"   %s(%g) -> %g"C_RESET"\n", func_name, tmp, expected_res);
+				printf(C_RED"ft_%s(%g) -> %g"C_RESET"\n", func_name, tmp, test_res);
+			}
+#endif
+		}
 	}
 
+	printf("%s\n", func_name);
+	printf("Tests run: %d, on interval: [%g,%g] -> with increment: %g\n", test_nb, start, end, step);
 
+	ft_stat_quicksort_f(error_list);
+	percent = (test_nb - failed_tests) * 100. / test_nb;
+	printf("Success rate for %g precision: %s%g%%"C_RESET"\n", precision,
+		percent == 100 ? C_BLUE : (percent >= 90 ? C_GREEN : C_RED), percent);
+	printf_colored("Largest error",			precision, ft_get_largest_f(error_list));
+	printf_colored("Average error",			precision, ft_stat_average_f(error_list));
+	printf_colored("Median error",			precision, ft_stat_median_f(error_list));
+	printf_colored("Standard deviation",	precision, sqrt(ft_stat_variance_f(error_list)));
+	printf("-> Execution time:");
+	print_timer_result(&timer, TRUE);
 
-	printf("Success rate for function \"%s\" at %g precision: %g%%\n",
-									func_name, precision, (test_nb - failed_tests) * 100. / test_nb);
-	printf("Tests run: %d | Step: %g | Interval: [%g,%g]\n", test_nb, step, start, end);
-
-
-
-	printf("\tQuicksorting error list...\n");			ft_stat_quicksort_f(error_list);		printf("\tDone !\n");
-	printf("Average error : %g | Median error : %g | Std dev : %g\n\n\n",
-			ft_stat_average_f(error_list), ft_stat_median_f(error_list), sqrt(ft_stat_variance_f(error_list)));
-
-
-
-	printf("\tQuicksorting speed test list...\n");		ft_stat_quicksort_f(time_diff_list);	printf("\tDone !\n");
-	printf("Success rate for speed tests function \"%s\": %g%%\n",
-									func_name, (test_nb - failed_speed_tests) * 100. / test_nb);
-	printf("Average time diff : %g | Median time diff : %g | Std dev : %g | (NB: negative scores means we lose against std C)\n\n\n",
-			ft_stat_average_f(time_diff_list), ft_stat_median_f(time_diff_list), sqrt(ft_stat_variance_f(time_diff_list)));
-
+	printf("\n\n\n");
 
 	ft_stat_free_flst(&error_list);
-	ft_stat_free_flst(&time_diff_list);
 }
 
 
@@ -122,46 +158,95 @@ int		test_math(void)
 ** =============================================
 */
 
-#	ifdef _FLOAT_32_
+#ifdef _FLOAT_32_
 
-	printf(C_BLUE"\n\nTrigonometry:\n\n"C_RESET);
-	test_compare_real_functions("cosf", &cosf, &ft_cos, 0.0001, (t_interval){-TAU, 2 * TAU});
-	test_compare_real_functions("cosf", &cosf, &ft_cos, 0.0001, (t_interval){-1000000, 1000000});
+//	printf(C_BLUE"\n\n\nModulo:\n\n"C_RESET);
+//	test_compare_real_functions("fmod", &fmod, &ft_fmod, 0.0001, (t_interval){-100, 1000000});
+//	test_compare_real_functions("fmod", &fmod, &ft_fmod, 0.0001, (t_interval){0, 4});
 
-	test_compare_real_functions("sinf", &sinf, &ft_sin, 0.0001, (t_interval){-TAU, 2 * TAU});
-	test_compare_real_functions("sinf", &sinf, &ft_sin, 0.0001, (t_interval){-1000000, 1000000});
+
+
+//	printf(C_BLUE"\n\n\nPower:\n\n"C_RESET);
+//	test_compare_real_functions("pow", &powf, &ft_pow, 0.0001, (t_interval){-100, 1000000});
+//	test_compare_real_functions("pow", &powf, &ft_pow, 0.0001, (t_interval){0, 4});
+
 
 
 	printf(C_BLUE"\n\n\nSquare root:\n\n"C_RESET);
-//	test_compare_real_functions("sqrtf", &sqrtf, &ft_sqrt32, 0.0001, (t_interval){-TAU, 2 * TAU});
-	test_compare_real_functions("sqrtf", &sqrtf, &ft_sqrt32, 0.0001, (t_interval){-1000000, 0});
-	test_compare_real_functions("sqrtf", &sqrtf, &ft_sqrt32, 0.0001, (t_interval){0, 1000000});
-	test_compare_real_functions("sqrtf", &sqrtf, &ft_sqrt32, 0.0001, (t_interval){0, 4});
+	test_compare_real_functions("sqrt", &sqrtf, &ft_sqrt, 0.0001, (t_interval){-100., 1000000.});
+	test_compare_real_functions("sqrt", &sqrtf, &ft_sqrt, 0.0001, (t_interval){0., 4.});
 
+	printf(C_BLUE"\n\n\nCubic root:\n\n"C_RESET);
+	test_compare_real_functions("cbrt", &cbrtf, &ft_cbrt, 0.0001, (t_interval){-1000000., 1000000.});
+	test_compare_real_functions("cbrt", &cbrtf, &ft_cbrt, 0.0001, (t_interval){0., 4.});
 
-	printf(C_BLUE"\n\n\nExp & log:\n\n"C_RESET);
-	test_compare_real_functions("lnf", &logf, &ft_ln, 0.0001, (t_interval){0., 1.});
-	test_compare_real_functions("lnf", &logf, &ft_ln, 0.0001, (t_interval){1., 10000000.});
-
-	printf("\n\n\n");
-
-#	endif
+//	printf(C_BLUE"\n\n\nN-power root:\n\n"C_RESET);
+//	test_compare_real_functions("sqrt", &nrtf, &ft_nrt, 0.0001, (t_interval){-1000000, 1000000});
+//	test_compare_real_functions("sqrt", &nrtf, &ft_nrt, 0.0001, (t_interval){0, 4});
 
 
 
-#	ifdef _FLOAT_64_
+	printf(C_BLUE"\n\n\nExponential:\n\n"C_RESET);
+	test_compare_real_functions("exp", &expf, &ft_exp, 0.0001, (t_interval){-1000., 1.});
+	test_compare_real_functions("exp", &expf, &ft_exp, 0.0001, (t_interval){1., 10000000.});
 
-	test_compare_real_functions("cos", &cos, &ft_cos, 0.0001, (t_interval){-TAU, 2 * TAU});
-	test_compare_real_functions("cos", &cos, &ft_cos, 0.0001, (t_interval){-1000000, 1000000});
-	test_compare_real_functions("sin", &sin, &ft_sin, 0.0001, (t_interval){-TAU, 2 * TAU});
-	test_compare_real_functions("sin", &sin, &ft_sin, 0.0001, (t_interval){-1000000, 1000000});
+	printf(C_BLUE"\n\n\nLogarithm:\n\n"C_RESET);
+	test_compare_real_functions("ln", &logf, &ft_ln, 0.0001, (t_interval){0., 1.});
+	test_compare_real_functions("ln", &logf, &ft_ln, 0.0001, (t_interval){1., 10000000.});
 
 
 
-	test_compare_real_functions("ln", &log, &ft_ln, 0.000001, (t_interval){0., 1.});
-	test_compare_real_functions("ln", &log, &ft_ln, 0.000001, (t_interval){1., 10000000.});
+	printf(C_BLUE"\n\nTrigonometry:\n\n"C_RESET);
 
-#	endif
+	test_compare_real_functions("cos", &cosf, &ft_cos, 0.0001, (t_interval){-TAU, 2 * TAU});
+	test_compare_real_functions("cos", &cosf, &ft_cos, 0.0001, (t_interval){-1000000., 1000000.});
+
+	test_compare_real_functions("sin", &sinf, &ft_sin, 0.0001, (t_interval){-TAU, 2 * TAU});
+	test_compare_real_functions("sin", &sinf, &ft_sin, 0.0001, (t_interval){-1000000., 1000000.});
+
+	test_compare_real_functions("tan", &tanf, &ft_tan, 0.0001, (t_interval){-HALF_PI, HALF_PI});
+	test_compare_real_functions("tan", &tanf, &ft_tan, 0.0001, (t_interval){-1000000., 1000000.});
+
+
+	test_compare_real_functions("acos", &acosf, &ft_acos, 0.0001, (t_interval){-1, 1});
+	test_compare_real_functions("acos", &acosf, &ft_acos, 0.0001, (t_interval){-1000000., 1000000.});
+
+	test_compare_real_functions("asin", &asinf, &ft_asin, 0.0001, (t_interval){-1, 1});
+	test_compare_real_functions("asin", &asinf, &ft_asin, 0.0001, (t_interval){-1000000., 1000000.});
+
+	test_compare_real_functions("atan", &atanf, &ft_atan, 0.0001, (t_interval){-TAU, TAU});
+	test_compare_real_functions("atan", &atanf, &ft_atan, 0.0001, (t_interval){-1000000., 1000000.});
+
+
+
+	test_compare_real_functions("cosh", &coshf, &ft_cosh, 0.0001, (t_interval){-TAU, TAU});
+	test_compare_real_functions("cosh", &coshf, &ft_cosh, 0.0001, (t_interval){-1000000., 1000000.});
+
+	test_compare_real_functions("sinh", &sinhf, &ft_sinh, 0.0001, (t_interval){-TAU, TAU});
+	test_compare_real_functions("sinh", &sinhf, &ft_sinh, 0.0001, (t_interval){-1000000., 1000000.});
+
+	test_compare_real_functions("tanh", &tanhf, &ft_tanh, 0.0001, (t_interval){-TAU, TAU});
+	test_compare_real_functions("tanh", &tanhf, &ft_tanh, 0.0001, (t_interval){-1000000., 1000000.});
+
+
+	test_compare_real_functions("acosh", &acoshf, &ft_acosh, 0.0001, (t_interval){1., 50.});
+	test_compare_real_functions("acosh", &acoshf, &ft_acosh, 0.0001, (t_interval){-1000000., 1000000.});
+
+	test_compare_real_functions("asinh", &asinhf, &ft_asinh, 0.0001, (t_interval){-50., 50.});
+	test_compare_real_functions("asinh", &asinhf, &ft_asinh, 0.0001, (t_interval){-1000000., 1000000.});
+
+	test_compare_real_functions("atanh", &atanhf, &ft_atanh, 0.0001, (t_interval){-1., 1.});
+	test_compare_real_functions("atanh", &atanhf, &ft_atanh, 0.0001, (t_interval){-1000000., 1000000.});
+
+#endif
+
+
+
+#ifdef _FLOAT_64_
+
+#endif
+
+printf("\n\n\n");
 
 	return (OK);
 }

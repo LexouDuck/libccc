@@ -2,7 +2,7 @@ NAME	=	libft.a
 
 # Compiler
 CC		= _
-CC_WIN	= i686-w64-mingw32-gcc
+CC_WIN	= gcc
 CC_LIN	= gcc
 CC_MAC	= gcc
 
@@ -293,7 +293,7 @@ TESTS :=	test_memory.c		\
 			util_test.c
 
 testprogram: all
-	@$(CC) -g -o test -L./ -lft $(addprefix $(SRCDIR), $(TESTS))
+	@$(CC) -g -o test $(addprefix $(SRCDIR), $(TESTS)) -L./ -lft
 
 test: testprogram
 	@./test

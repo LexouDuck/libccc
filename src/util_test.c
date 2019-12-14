@@ -157,47 +157,59 @@ inline t_time timer_getdiff(t_time start, t_time end)
 {
 	t_time result;
 	
-    result.tv_sec = end.tv_sec - start.tv_sec;
-    result.tv_nsec = end.tv_nsec - start.tv_nsec;
-    if (result.tv_nsec >= BILLION)
-    {
-        result.tv_nsec -= BILLION;
-        result.tv_sec++;
-    }
-    if (result.tv_sec < 0)
-    	result.tv_sec = 0;
-    if (result.tv_nsec < 0)
-    	result.tv_nsec = 0;
-    return (result);
+	result.tv_sec = end.tv_sec - start.tv_sec;
+	result.tv_nsec = end.tv_nsec - start.tv_nsec;
+	if (result.tv_nsec >= BILLION)
+	{
+		result.tv_nsec -= BILLION;
+		result.tv_sec++;
+	}
+	return (result);
 }
 
 /* Returns negative if 'a' is lower than 'b', positive if 'b' > 'a' and 0 if equal. */
-inline int timer_compare(t_time a, t_time b)
+inline t_s64 timer_compare(t_time a, t_time b)
 {
-    if (a.tv_sec == b.tv_sec)
-    	return (a.tv_nsec - b.tv_nsec);
-    else
-        return (a.tv_sec - b.tv_sec);
+	if (a.tv_sec == b.tv_sec)
+		return (a.tv_nsec - b.tv_nsec);
+	else
+		return (a.tv_sec - b.tv_sec);
 }
 
 /* prints the result of a timer (and potentially a comparison with the secondary timer) */
-void		print_timer_result(t_timer* t, int compare)
+void		print_timer_result(t_timer* t, t_s64 compare)
 {
-	t->time1 = timer_getdiff(t->end1, t->start1);
+	char result1[64] = { 0 };
+	char result2[64] = { 0 };
+
+	t->time1 = timer_getdiff(t->start1, t->end1);
+	if (t->time1.tv_nsec < 0 || t->time1.tv_nsec < 0)
+		sprintf((char*)&result1, "SEGV");
+	else sprintf((char*)&result1, "%lld.%.09ld", (long long)t->time1.tv_sec, t->time1.tv_nsec);
+
+	printf(" [libft:");
 	if (compare)
 	{
-		t->time2 = timer_getdiff(t->end2, t->start2);
-		compare = timer_compare(t->time1, t->time2);
-		printf(" [libft:");
+		t->time2 = timer_getdiff(t->start2, t->end2);
+		if (t->time2.tv_nsec < 0 || t->time2.tv_nsec < 0)
+			sprintf((char*)&result2, "SEGV");
+		else sprintf((char*)&result2, "%lld.%.09ld", (long long)t->time2.tv_sec, t->time2.tv_nsec);
+
+		if ((t->time1.tv_sec >= 0 && t->time1.tv_nsec >= 0) ||
+			(t->time2.tv_sec >= 0 && t->time2.tv_nsec >= 0))
+			compare = timer_compare(t->time1, t->time2);
+		else compare = 0;
+
 		if (compare == 0)
-			printf("%lld.%.09ld, libc:", (long long)t->time1.tv_sec, t->time1.tv_nsec);
+			printf("%s, libc:", result1);
 		else if (compare < 0)
-			printf(C_GREEN"%lld.%.09ld"C_RESET", libc:"C_RED, (long long)t->time1.tv_sec, t->time1.tv_nsec);
+			printf(C_GREEN"%s"C_RESET", libc:", result1);
 		else
-			printf(C_RED"%lld.%.09ld"C_RESET", libc:"C_GREEN, (long long)t->time1.tv_sec, t->time1.tv_nsec);
-		printf("%lld.%.09ld"C_RESET"]", (long long)t->time2.tv_sec, t->time2.tv_nsec);
+			printf(C_RED"%s"C_RESET", libc:", result1);
+
+		printf("%s]", result2);
 	}
-	else printf(" [libft:%lld.%.09ld]", (long long)t->time1.tv_sec, t->time1.tv_nsec);
+	else printf("%s]", result1);
 }
 
 char	*s_to_str(t_s64 number)

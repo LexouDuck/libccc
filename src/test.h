@@ -80,8 +80,8 @@ typedef struct	s_timer
 
 void	timer_clock(t_time* t);
 t_time	timer_getdiff(t_time start, t_time end);
-int		timer_compare(t_time a, t_time b);
-void	print_timer_result(t_timer* timer, int compare);
+t_s64	timer_compare(t_time a, t_time b);
+void	print_timer_result(t_timer* timer, t_s64 compare);
 
 /*
 ** ************************************************************************** *|
