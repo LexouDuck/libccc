@@ -27,6 +27,9 @@
 ** ************************************************************************** *|
 */
 
+#define FT_Floor(x)				ft_floor(x)
+#define FT_Ceiling(x)			ft_ceil(x)
+
 #define FT_Modulo(x, y)			ft_fmod(x, y)
 
 #define FT_Power(x, y)			ft_pow(x, y)
@@ -123,6 +126,9 @@
 **                         Classical Real Functions                           *|
 ** ************************************************************************** *|
 */
+
+t_float		ft_floor(t_float x);
+t_float		ft_ceil(t_float x);
 
 t_float		ft_fmod(t_float x, t_float y);
 

@@ -15,6 +15,26 @@
 
 
 
+inline t_float	ft_floor(t_float x)
+{
+	if (x == 0.)
+		return (0.);
+	if (x < 0.)
+		return (x - ft_fmod(x, 1.) - 1.);
+	return (x - ft_fmod(x, 1.));
+}
+
+inline t_float	ft_ceil(t_float x)
+{
+	if (x == 0.)
+		return (0.);
+	if (x < 0.)
+		return (x - ft_fmod(x, 1.));
+	return (1 + x - ft_fmod(x, 1.));
+}
+
+
+
 inline t_float	ft_fmod(t_float x, t_float y)
 {
 	t_float		a;
@@ -113,7 +133,7 @@ static t_float	ft_sqrt_2_pow_n(t_s32 n)
 inline t_float	ft_sqrt(t_float x)
 {
 //	Newton derivative approximation by iteration
-	static const t_s32	i_max = 64;
+	static const t_s32	i_max = 6;
 	t_s32	i;
 	t_float	result;
 	t_float	previous;
@@ -143,7 +163,7 @@ inline t_float	ft_sqrt(t_float x)
 inline t_float	ft_cbrt(t_float x)
 {
 //	Newton derivative approximation by iteration
-	static const t_s32	i_max = 64;
+	static const t_s32	i_max = 6;
 	t_s32	i;
 	t_float square;
 	t_float	result;
@@ -175,7 +195,7 @@ inline t_float	ft_cbrt(t_float x)
 inline t_float	ft_nrt(t_float x, t_u8 n)
 {
 //	Newton derivative approximation by iteration
-	static const t_s32	i_max = 64;
+	static const t_s32	i_max = 6;
 	t_s32	i;
 	t_float	result;
 	t_float	previous;

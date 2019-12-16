@@ -17,12 +17,14 @@
 
 t_float		ft_exp(t_float x)
 {
-	t_float		i;
-	t_float		acc_i;
-	t_float		acc_x;
 	t_float		result;
 	t_float		result_prev;
+	t_float		acc_x;
+	t_float		acc_i;
+	t_u32		i;
 
+	if (x < 100.)
+		return (0.);
 	i = 1.;
 	result = 1.;
 	acc_x = 1.;

@@ -132,10 +132,14 @@ t_float			ft_sin(t_float x)
 
 
 
-t_float		ft_tan(t_float x)
+inline t_float	ft_tan(t_float x)
 {
+// trigonometric formula
+	return (ft_sin(x) / ft_cos(x));
+
 // fast polynomial approximation for [-1,+1] and 1/x approximation for the rest
 // score: 0.23	for [-40,+40]=> 200 tests
+/*
 	t_float		a;
 	t_s64		floor_a;
 
@@ -169,6 +173,7 @@ t_float		ft_tan(t_float x)
 	result += power * 0.13333333333;	power *= (x * x);
 	result += power * 0.09;
 	return (result);
+*/
 }
 
 

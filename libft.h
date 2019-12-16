@@ -86,11 +86,25 @@
 
 /*
 **	The following macro sets what the t_float type should be.
-**	_FLOAT_32_ means a 32-bit IEE 754 standard precision float
+**	_FLOAT_32_ means a 32-bit IEEE 754 standard precision float
 **	_FLOAT_64_ means a 64-bit "double" precision float
 */
 #define _FLOAT_32_
+/*
+**	This macro sets the default 't_uint' unsigned integer type to use:
+**	_UINT_8_	for 8-bit uint	[0, 255]
+**	_UINT_16_	for 16-bit uint	[0, 65535]
+**	_UINT_32_	for 32-bit uint	[0, 2147483647]
+**	_UINT_64_	for 64-bit uint	[0, 18M]
+*/
 #define _UINT_32_
+/*
+**	This macro sets the default 't_int' signed integer type to use:
+**	_INT_8_		for 8-bit int	[-128, 127]
+**	_INT_16_	for 16-bit int	[-32648, 32647]
+**	_INT_32_	for 32-bit int	[-2147483648, 2147483647]
+**	_INT_64_	for 64-bit int	[-9M, +9M]
+*/
 #define _INT_32_
 
 /*
@@ -167,6 +181,15 @@ typedef uint_fast8_t	t_bool;
 ** ************************************************************************** *|
 */
 
+/*
+**	This very small value is typically used to compare two float values.
+**	Floating point equality checks aren't the most dependable operation.
+*/
+#define FLOAT_BIAS		(1.0e-10)
+
+/*
+**	IEEE 754 32-bit floating point "single" precision bitwise macros
+*/
 #define F32_SIGNED			0x80000000
 #define F32_EXPONENT_BIAS	127
 #define F32_EXPONENT		0x7F800000
@@ -177,6 +200,9 @@ typedef uint_fast8_t	t_bool;
 #define F32_MANTISSA_BITS	23
 #define F32_INIT_VALUE		0x1.p-23
 
+/*
+**	IEEE 754 64-bit floating point "double" precision bitwise macros
+*/
 #define F64_SIGNED			0x8000000000000000
 #define F64_EXPONENT_BIAS	1023
 #define F64_EXPONENT		0x7FF0000000000000
@@ -190,10 +216,11 @@ typedef uint_fast8_t	t_bool;
 
 
 /*
-** So long as only the t_float type is used throughout the code, changing the
-** following typedef allows to switch immediately from float32 to float64 and
-** vice-versa, which is useful for portability and/or optimization depending
-** on the use case.
+**	Depending on the 't_float' type (_FLOAT_32_ or _FLOAT_64_) chosen,
+**	the appropriate bitwise macros will be used by the math functions.
+**	It is often better to only use one type of floating-point precision
+**	for a given program, so the best way to do that is by using the 'FLOAT_'
+**	macros defined below, rather than the 'F32_' or 'F64_' macros above.
 */
 
 #ifdef _FLOAT_32_
@@ -233,12 +260,6 @@ typedef t_f64	t_float;
 #define NAN				(0. / 0.)
 #endif
 #define IS_NAN(x)		((x) != (x))
-
-/*
-**	This very small value is typically used to compare two float values.
-**	Floating point equality checks aren't the most dependable operation.
-*/
-#define FLOAT_BIAS		(1.0e-20)
 
 
 
