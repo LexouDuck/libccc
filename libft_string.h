@@ -222,6 +222,12 @@ t_bool	ft_strhasonly(char const *str, char const *charset);
 size_t	ft_strcount_char(char const *str, char c);
 
 /*
+**	Returns the amount of occurences of chars in 'cset' in the given string
+**	'str'.
+*/
+size_t	ft_strcount_charset(char const *str, char const *cset);
+
+/*
 **	Returns the amount of occurences of 'query' in the given string 'str'.
 */
 size_t	ft_strcount_str(char const *str, char const *query);

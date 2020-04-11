@@ -40,7 +40,9 @@ SRC_MEMORY	:=	ft_memalloc.c	\
 				ft_memcmp.c		\
 				ft_memchr.c		\
 				ft_memswap.c	\
-				ft_getbits.c	
+				ft_getbits.c	\
+				ft_ptrarrnew.c	\
+				ft_ptrarrlen.c	\
 
 DIR_CHAR	:=	char/
 SRC_CHAR	:=	ft_isalpha.c	\
@@ -75,7 +77,20 @@ SRC_STRING	:=	ft_strnew.c		\
 
 
 DIR_STRINGARRAY	:=	stringarray/
-SRC_STRINGARRAY	:=	ft_strsplit.c	\
+SRC_STRINGARRAY	:=	ft_strsplit_char.c		\
+					ft_strsplit_charset.c	\
+					ft_strsplit_str.c		\
+					ft_strdivide.c			\
+					ft_strarrnew.c			\
+					ft_strarrcnew.c			\
+					ft_strarrdel.c			\
+					ft_strarrmap.c			\
+					ft_strarrsub.c			\
+					ft_strarrpad_l.c		\
+					ft_strarrjoin.c			\
+					ft_strarrlen.c			\
+					ft_strarrcount.c		\
+
 
 DIR_CONVERT	:=	convert/
 SRC_CONVERT	:=	ft_int_s_to_str.c		\

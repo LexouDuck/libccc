@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   string/ft_strcount.c                               :+:      :+:    :+:   */
+/*   stringarray/ft_strarrmap.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: duquesne <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,77 +10,49 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../libft_memory.h"
 #include "../../libft_string.h"
+#include "../../libft_stringarray.h"
 
-size_t	ft_strcount_char(char const *str, char c)
+char		**ft_strarrmap(char const **strarr, char *(*f)(char const *))
 {
-	size_t	result;
-	size_t	i;
+	t_u32	i;
+	char	**result;
 
-	result = 0;
+	if (!(result = ft_strarrnew(ft_strarrlen(strarr))))
+		return (NULL);
 	i = 0;
-	while (str[i])
+	while (strarr[i])
 	{
-		if (str[i] == c)
-			++result;
+		result[i] = (*f)(strarr[i]);
 		++i;
 	}
 	return (result);
 }
 
 /*
-**	if (str == NULL)
-**		return (0);
+**	if (!strarr || !*strarr || !f ||
+**		!(result = ft_ptrarrnew(ft_ptrarrlen(strarr))))
+**		return (NULL);
 */
 
-size_t	ft_strcount_charset(char const *str, char const *cset)
+void		ft_strarrmap_inplace(char ***a_strarr, char *(*f)(char *))
 {
-	size_t	result;
-	size_t	i;
+	t_u32	i;
+	char	*tmp;
 
-	result = 0;
 	i = 0;
-	while (str[i])
+	while (a_strarr[i])
 	{
-		if (ft_strchr(cset, str[i]))
-			++result;
+		tmp = (*f)((*a_strarr)[i]);
+		if (tmp != (*a_strarr)[i])
+			ft_strdel(*a_strarr + i);
+		(*a_strarr)[i] = tmp;
 		++i;
 	}
-	return (result);
 }
 
 /*
-**	if (str == NULL || cset == NULL)
-**		return (0);
-*/
-
-size_t	ft_strcount_str(char const *str, char const *query)
-{
-	size_t	result;
-	size_t	length;
-	size_t	i;
-	size_t	j;
-
-	result = 0;
-	length = 0;
-	while (query[length])
-		++length;
-	if (length == 0)
-		return (0);
-	i = 0;
-	while (str[i])
-	{
-		j = 0;
-		while (str[i + j] == query[j])
-			++j;
-		if (j == length)
-			++result;
-		++i;
-	}
-	return (result);
-}
-
-/*
-**	if (str == NULL || query == NULL)
-**		return (0);
+**	if (!a_strarr || !*a_strarr || !f)
+**		return ;
 */

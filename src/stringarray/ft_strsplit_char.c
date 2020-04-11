@@ -13,7 +13,7 @@
 #include "../../libft_string.h"
 #include "../../libft_stringarray.h"
 
-static int	ft_strsplit_get_count(char const *str, char c)
+static int	ft_strcsplit_get_count(char const *str, char c)
 {
 	int		result;
 	t_bool	separator;
@@ -42,7 +42,7 @@ static int	ft_strsplit_get_count(char const *str, char c)
 	return (result);
 }
 
-char		**ft_strsplit(char const *str, char c)
+char		**ft_strsplit_char(char const *str, char c)
 {
 	char	**result;
 	size_t	offset;
@@ -50,8 +50,8 @@ char		**ft_strsplit(char const *str, char c)
 	int		count;
 	int		i;
 
-	count = ft_strsplit_get_count(str, c);
-	if (!(result = (char **)malloc((count + 1) * sizeof(char *))))
+	count = ft_strcsplit_get_count(str, c);
+	if (!(result = ft_strarrnew(count)))
 		return (NULL);
 	offset = 0;
 	length = 0;
@@ -70,7 +70,8 @@ char		**ft_strsplit(char const *str, char c)
 	result[count] = NULL;
 	return (result);
 }
+
 /*
-**	if (str == NULL)
+** if (!str)
 **		return (NULL);
 */

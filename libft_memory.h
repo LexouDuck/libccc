@@ -35,6 +35,8 @@
 #define FT_MemoryCopy_C(dest, src, byte, n)	ft_memccpy(dest, src, byte, n)
 #define FT_MemoryMove(dest, src, n)			ft_memmove(dest, src, n)
 #define FT_MemoryDuplicate(ptr, n)			ft_memdup(ptr, n)
+#define FT_PointerArrayNew(len)				ft_ptrarrnew(len)
+#define FT_PointerArrayLength(ptrarr)		ft_ptrarrlen(ptrarr)
 
 #define FT_MemoryFind(ptr, byte, n)			ft_memchr(ptr, byte, n)
 #define FT_MemoryCompare(ptr1, ptr2, n)		ft_memcmp(ptr1, ptr2, n)
@@ -98,6 +100,17 @@ void	*ft_memmove(void *dest, void const *src, size_t n);
 */
 void	*ft_memdup(void const *ptr, size_t n);
 
+
+/*
+** Returns a newly allocated memory array to serve as a length n,
+** null-terminated, pointer array. Returns NULL if malloc fails.
+*/
+void	*ft_ptrarrnew(t_u32 n);
+
+/*
+** Returns the length of a null-terminated pointer array.
+*/
+t_u32	ft_ptrarrlen(const void **a_ptrarr);
 
 
 /*
