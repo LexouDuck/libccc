@@ -58,7 +58,8 @@
 #define ERROR	1
 
 /*
-**	Define some useful string literals for some of the common number bases.
+**	Define some useful string literals for some of the common number bases
+** and other useful charsets.
 */
 #ifndef __BASES__
 #define __BASES__
@@ -68,6 +69,8 @@
 #define HEX_LOWER	"0123456789abcdef"
 #define HEX_UPPER	"0123456789ABCDEF"
 #endif
+
+#define CHARSET_WHITESPACE	"\t\f\v\n "
 
 /*
 **	Define some useful string literals for commandline output colors.
@@ -83,6 +86,7 @@
 #define C_CYAN		"\x1b[36m"
 #define C_RESET		"\x1b[0m"
 #endif
+
 
 /*
 **	The following macro sets what the t_float type should be.
@@ -254,7 +258,7 @@ typedef t_f64	t_float;
 #ifndef INFINITY
 #define INFINITY		(1. / 0.)
 #endif
-#define IS_INFINITY(x)	(x == INFINITY || x == -INFINITY)
+#define IS_INFINITY(x)	((x) == INFINITY || (x) == -INFINITY)
 
 #ifndef NAN
 #define NAN				(0. / 0.)
