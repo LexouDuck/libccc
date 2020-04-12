@@ -2,7 +2,8 @@ NAME	=	libft.a
 
 # Compiler
 CC		= _
-CC_WIN	= i686-w64-mingw32-gcc
+# i686-w64-mingw32-gcc
+CC_WIN	= gcc
 CC_LIN	= gcc
 CC_MAC	= gcc
 
