@@ -71,6 +71,7 @@
 #define	FT_StringReplace_Char_InPlace(str, old, new)	ft_strrep_char_inplace(str, old, new)
 #define	FT_StringReplace_Charset_InPlace(str, old, new)	ft_strrep_charset_inplace(str, old, new)
 #define	FT_StringReplace_String_InPlace(str, old, new)	ft_strrep_str_inplace(str, old, new)
+#define FT_StringMap_InPlace(a_str, f)			ft_strmap_inplace(a_str, f)
 
 #define	FT_StringTrim(str, charset)				ft_strtrim(str, charset)
 #define	FT_StringTrim_L(str, charset)			ft_strtrim_l(str, charset)
@@ -399,6 +400,13 @@ void		ft_strrep_charset_inplace(char *str,
 void		ft_strrep_str_inplace(char **a_str,
 	char const *old,
 	char const *new);
+
+/*
+**	Changes the content of '*a_str' by applying f to each of its chars.
+**	Deletes 'a_str', and sets the result in it instead. Also returns the 
+**	result.
+*/
+char		*ft_strmap_inplace(char **a_str, char (*f)(char));
 
 
 /*

@@ -63,3 +63,18 @@ char	*ft_strmapi(char const *str, char (*f)(size_t, char))
 **	if (str == NULL || f == NULL)
 **		return (NULL);
 */
+
+char	*ft_strmap_inplace(char **a_str, char (*f)(char))
+{
+	char	*tmp;
+
+	tmp = ft_strmap(*a_str, f);
+	ft_strdel(a_str);
+	*a_str = tmp;
+	return tmp;
+}
+
+/*
+**	if (a_str == NULL || *a_str == NULL || f == NULL)
+**		return (NULL);
+*/
