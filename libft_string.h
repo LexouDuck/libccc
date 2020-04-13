@@ -78,6 +78,7 @@
 #define	FT_StringPad(str, c, size)				ft_strpad(str, c, size)
 #define	FT_StringPad_L(str, c, size)			ft_strpad_l(str, c, size)
 #define	FT_StringPad_R(str, c, size)			ft_strpad_r(str, c, size)
+#define FT_String_To_PrintableString(str)		ft_strprint(str)
 
 #define	FT_StringReverse(str)					ft_strrev(str)
 #define	FT_StringJoin(str1, str2)				ft_strjoin(str1, str2)
@@ -445,7 +446,12 @@ char	*ft_strpad_l(char const *str, char c, size_t length);
 */
 char	*ft_strpad_r(char const *str, char c, size_t length);
 
-
+/*
+**	Returns a new null-terminated string where every non-printable character
+**	of 'str' is replaced by either its 'normal' escape sequence (if available)
+**	or a '\x'-type byte escape sequence otherwise.
+*/
+char	*ft_strprint(char const *str);
 
 /*
 ** ************************************************************************** *|
