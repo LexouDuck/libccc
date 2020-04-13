@@ -55,7 +55,7 @@ void		ft_strrep_charset_inplace(char *str, char const *old, char const *new)
 	t_u32	j;
 	int		c_i;
 
-	if (!*old || !*new || ft_strlen(old) != ft_strlen(new))
+	if (ft_strlen(old) != ft_strlen(new))
 		return ;
 	i = 0;
 	while (old[i])
@@ -76,7 +76,7 @@ void		ft_strrep_charset_inplace(char *str, char const *old, char const *new)
 }
 
 /*
-**	if (!old || !new || !*old || !*new || ft_strlen(old) != ft_strlen(new))
+**	if (!old || !new  || ft_strlen(old) != ft_strlen(new))
 **		return ;
 */
 

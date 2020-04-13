@@ -15,9 +15,15 @@
 char	**ft_strarrnew(t_u32 len)
 {
 	char	**result;
+	t_u32	i;
 
 	if (!(result = (char**)malloc(sizeof(char*) * (len + 1))))
 		return (NULL);
-	result[len] = NULL;
+	i = 0;
+	while (i <= len)
+	{
+		result[i] = NULL;
+		++i;
+	}
 	return (result);
 }

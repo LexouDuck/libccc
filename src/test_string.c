@@ -919,9 +919,9 @@ printf("\n");
 
 
 /*
-**	char	*ft_strrep_string(char const *str, char const *old, char const *new);
+**	char	*ft_strrep_str(char const *str, char const *old, char const *new);
 */
-void	print_test_strrep_string(char const* test_name, int can_segfault,
+void	print_test_strrep_str(char const* test_name, int can_segfault,
 		char const* expecting)
 {
 	t_timer t = {0};

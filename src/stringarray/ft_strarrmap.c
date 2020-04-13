@@ -42,7 +42,7 @@ void		ft_strarrmap_inplace(char ***a_strarr, char *(*f)(char *))
 	char	*tmp;
 
 	i = 0;
-	while (a_strarr[i])
+	while ((*a_strarr)[i])
 	{
 		tmp = (*f)((*a_strarr)[i]);
 		if (tmp != (*a_strarr)[i])
