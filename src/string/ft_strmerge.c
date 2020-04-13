@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   string/ft_strjoin.c                                :+:      :+:    :+:   */
+/*   string/ft_strmerge.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: duquesne <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,34 +12,46 @@
 
 #include "../../libft_string.h"
 
-char	*ft_strjoin(char const *str1, char const *str2)
+char	*ft_strmerge(char **a_s1, char **a_s2)
 {
 	char	*result;
-	size_t	length1;
-	size_t	length2;
-	size_t	i;
 
-	length1 = ft_strlen(str1);
-	length2 = ft_strlen(str2);
-	if (!(result = (char *)malloc(length1 + length2 + 1)))
-		return (NULL);
-	i = 0;
-	while (i < length1)
-	{
-		result[i] = str1[i];
-		++i;
-	}
-	i = 0;
-	while (i < length2)
-	{
-		result[length1 + i] = str2[i];
-		++i;
-	}
-	result[length1 + length2] = '\0';
+	result = ft_strjoin(*a_s1, *a_s2);
+	ft_strdel(a_s1);
+	ft_strdel(a_s2);
+	*a_s1 = result;
+	*a_s2 = result;
 	return (result);
 }
 
-/*
-**	if (!str1 || !str2)
-**		return (NULL);
-*/
+char	*ft_strappend(char **dest, char const *src)
+{
+	char	*tmp;
+
+	tmp = ft_strjoin(*dest, src);
+	ft_strdel(dest);
+	*dest = tmp;
+	return (*dest);
+}
+
+char	*ft_strprepend(char const *src, char **dest)
+{
+	char	*tmp;
+
+	tmp = ft_strjoin(src, *dest);
+	ft_strdel(dest);
+	*dest = tmp;
+	return (*dest);
+}
+
+char	*ft_strinsert_inplace(char **dest, char const *src, t_u32 index)
+{
+	char	*tmp;
+
+	tmp = ft_strsub(*dest, 0, index);
+	ft_strappend(&tmp, src);
+	ft_strappend(&tmp, (*dest) + index);
+	ft_strdel(dest);
+	*dest = tmp;
+	return (*dest);
+}

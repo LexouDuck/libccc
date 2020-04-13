@@ -63,7 +63,7 @@ static char		*get_next_chunk(char const *str, char const *sub, t_u32 *i)
 	return (result);
 }
 
-char			**ft_strsplitstr(char const *str, char const *sub)
+char			**ft_strsplit_str(char const *str, char const *sub)
 {
 	char	**result;
 	t_u32	reslen;

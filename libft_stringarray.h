@@ -70,6 +70,12 @@ char	**ft_strsplit_charset(char const *str, char const *sep_chars);
 **	Returns a string array made up of substrings of 'str', where each element
 **	is a section delimited by the full string 'query', or the edges of the
 **	string.
+**	NB: if a dual query overlaps in str, the query is only counted for distinct
+**		parts, ie "||" for "|||aa" will return ["", "|aa"] and not
+**		["", "", "aa"]. Note that this is the same behavior as many Ctrl+F:
+**		to get the second result, simply keep the second part of the pattern
+**		and call replace twice, without the pattern the second time.
+**		Ex: "enenen" --s/enen/HIen/-> "HIenen" --s/enen/HI/--> "HIHI"
 */
 char	**ft_strsplit_str(char const *str, char const *query);
 

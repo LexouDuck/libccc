@@ -74,6 +74,8 @@ SRC_STRING	:=	ft_strnew.c		\
 				ft_strsub.c		\
 				ft_striter.c	\
 				ft_strmap.c		\
+				ft_strrep.c		\
+				ft_strmerge.c	\
 
 
 DIR_STRINGARRAY	:=	stringarray/

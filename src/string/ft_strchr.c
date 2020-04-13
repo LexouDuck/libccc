@@ -77,3 +77,19 @@ char	*ft_strnchr(char const *str, char c, size_t n)
 **	if (str == NULL)
 **		return (NULL);
 */
+
+t_s32	ft_strichr(char const *str, char c)
+{
+	t_s32	i;
+
+	i = -1;
+	while (str[++i])
+		if (str[i] == c)
+			return (i);
+	return (-1);
+}
+
+/*
+**	if (str == NULL)
+**		return (NULL);
+*/

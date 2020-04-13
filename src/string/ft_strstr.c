@@ -108,3 +108,32 @@ char	*ft_strnstr(char const *str, char const *query, size_t n)
 **	if (str == NULL || query == NULL)
 **		return (NULL);
 */
+
+t_s32		ft_stristr(char const *str, char const *query)
+{
+	size_t	i;
+	size_t	j;
+
+	if (query[0] == '\0')
+		return (0);
+	i = 0;
+	while (str[i])
+	{
+		j = 0;
+		while (query[j] == str[i + j])
+		{
+			if (query[j + 1] == '\0')
+				return (i);
+			if (str[i + j + 1] == '\0')
+				return (-1);
+			++j;
+		}
+		++i;
+	}
+	return (-1);
+}
+
+/*
+**	if (str == NULL || query == NULL)
+**		return (NULL);
+*/

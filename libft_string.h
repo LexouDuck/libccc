@@ -51,16 +51,26 @@
 #define	FT_StringCount_String(str, query)		ft_strcount_str(str, query)
 
 #define	FT_StringFind_Char(str, c)				ft_strchr(str, c)
+#define FT_StringFind_CharIndex(str, c)			ft_strichr(str, c)
 #define	FT_StringFind_String(str, query)		ft_strstr(str, query)
+#define FT_StringFind_StringIndex(str, query)	ft_stristr(str, query)
 #define	FT_StringFind_R_Char(str, c)			ft_strrchr(str, c)
 #define	FT_StringFind_R_String(str, query)		ft_strrstr(str, query)
 #define	FT_StringFind_N_Char(str, c, n)			ft_strnchr(str, c, n)
 #define	FT_StringFind_N_String(str, query, n)	ft_strnstr(str, query, n)
 #define FT_StringRemove(str, query)				ft_strremove(str, query)
 #define	FT_StringToEscape(str)					ft_strtoescape(str)
-#define	FT_StringReplace_Char(str, old, new)	ft_strrep_char(str, old, new)
-#define	FT_StringReplace_Charset(str, old, new)	ft_strrep_charset(str, old, new)
-#define	FT_StringReplace_String(str, old, new)	ft_strrep_string(str, old, new)
+//#define	FT_StringReplace_Char(str, old, new)	ft_strrep_char(str, old, new)
+//#define	FT_StringReplace_Charset(str, old, new)	ft_strrep_charset(str, old, new)
+#define	FT_StringReplace_String(str, old, new)	ft_strrep_str(str, old, new)
+
+#define FT_StringMerge(a_s1, a_s2)				ft_strmerge(a_s1, a_s2)
+#define FT_StringAppend(dest, src)				ft_strappend(dest, src)
+#define FT_StringPrepend(src, dest)				ft_strprepend(src, dest)
+#define FT_StringInsert_InPlace(dest, src, index)		ft_strinsert_inplace(dest, src, index)
+#define	FT_StringReplace_Char_InPlace(str, old, new)	ft_strrep_char_inplace(str, old, new)
+#define	FT_StringReplace_Charset_InPlace(str, old, new)	ft_strrep_charset_inplace(str, old, new)
+#define	FT_StringReplace_String_InPlace(str, old, new)	ft_strrep_str_inplace(str, old, new)
 
 #define	FT_StringTrim(str, charset)				ft_strtrim(str, charset)
 #define	FT_StringTrim_L(str, charset)			ft_strtrim_l(str, charset)
@@ -253,6 +263,18 @@ char	*ft_strchr(char const *str, char c);
 char	*ft_strstr(char const *str, char const *query);
 
 /*
+**	Returns the first index at which 'c' is found in 'str', or -1 if 'c' does
+**	not exist in 'str'.
+*/
+t_s32	ft_strichr(char const *str, char c);
+
+/*
+**	Returns the first index at which 'query' is found in 'str', or -1 if
+**	'query' does not exist in str.
+*/
+t_s32	ft_stristr(char const *str, char const *query);
+
+/*
 **	Returns a pointer to the last occurence of the given character 'c'
 **	in the given string 'str' (or NULL if nothing matched).
 */
@@ -295,15 +317,17 @@ char	*ft_strtoescape(char const *str);
 **	Returns a new null-terminated string which is a copy of 'str',
 **	in which every occurence of an 'old' char is replaced with a 'new' char.
 */
+//TODO implement
 char	*ft_strrep_char(char const *str,
-	char old,
-	char new);
+	char const old,
+	char const new);
 
 /*
 **	Returns a new null-terminated string which is a copy of 'str',
 **	in which every char in the 'old' charset is replaced by the
 **	corresponding character in the 'new' charset (at the same index).
 */
+//TODO implement
 char	*ft_strrep_charset(char const *str,
 	char const *old,
 	char const *new);
@@ -311,11 +335,69 @@ char	*ft_strrep_charset(char const *str,
 /*
 **	Returns a new null-terminated string which is a copy of 'str',
 **	in which every occurence of the string 'old' is replaced with 'new'.
+**	NB: see stringarray.h -> ft_strsplit_str for extra notes on bevahior.
 */
-char	*ft_strrep_string(char const *str,
+char	*ft_strrep_str(char const *str,
 	char const *old,
 	char const *new);
 
+
+/*
+** ************************************************************************** *|
+**                           String In Place Editors                          *|
+** ************************************************************************** *|
+*/
+
+/*
+**	Returns the concatenation of 's1' and 's2', and deletes both inputs from
+**	memory. Also returns the result.
+*/
+char		*ft_strmerge(char **a_s1, char **a_s2);
+
+/*
+**	Returns the concatenation of 'dest' and 'src', and deletes 'dest', replacing
+**	it by the result. Also returns the result.
+*/
+char		*ft_strappend(char **dest, char const *src);
+
+
+/*
+**	Returns the concatenation of 'src' and 'dest', and deletes 'dest', replacing
+**	it by the result. Also returns the result.
+*/
+char		*ft_strprepend(char const *src, char **dest);
+
+/*
+**	Inserts the string 'src' at index 'index' in 'dest'; deletes 'dest' and
+**	replaces it by the result. Also returns the result.
+*/
+char		*ft_strinsert_inplace(char **dest, char const *src, t_u32 index);
+
+/*
+**	Replaces every occurence of 'old' by 'new' in 'str'.
+*/
+void		ft_strrep_char_inplace(char *str,
+	char const old,
+	char const new);
+
+/*
+**	Replaces 'old' charset by 'new' charset in 'str'.
+**	Works like the bash function tr. Substitutes old[i] by new[i] in 'str'.
+**	Fails silently if strlen is different for 'old' and 'new', or if a
+**	character is repeated in 'old' (only one image for every antecedent), or if
+**	'old' or 'new' are the empty string.
+*/
+void		ft_strrep_charset_inplace(char *str,
+	char const *old,
+	char const *new);
+
+/*
+**	Replaces every occurence of the query old by the string new in str.
+**	NB: see stringarray.h -> ft_strsplit_str for extra notes on bevahior.
+*/
+void		ft_strrep_str_inplace(char **a_str,
+	char const *old,
+	char const *new);
 
 
 /*
