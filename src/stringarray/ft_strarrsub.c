@@ -14,17 +14,21 @@
 #include "../../libft_string.h"
 #include "../../libft_stringarray.h"
 
-char	**ft_strarrsub(const char **strarr, t_u32 start, t_u32 len)
+char	**ft_strarrsub(const char **strarr, t_u32 start, t_u32 n)
 {
-	t_u32		i;
 	char		**result;
+	t_u32		length;
+	t_u32		i;
 
-	if (!(result = ft_strarrnew(len)))
+	length = ft_strarrlen(strarr);
+	if (start > length || start + n > length)
+		return (NULL);
+	if (!(result = ft_strarrnew(n)))
 		return (NULL);
 	i = 0;
-	while (i < len)
+	while (i < n)
 	{
-		if (!(result[i] = ft_strdup(strarr[i + start])))
+		if (!(result[i] = ft_strdup(strarr[start + i])))
 		{
 			ft_strarrdel(&result);
 			return (NULL);
