@@ -49,7 +49,7 @@ static char		*get_next_chunk(char const *str, char const *sub, t_u32 *i)
 
 	sub_len = ft_strlen(sub);
 	str_len = ft_strlen(str);
-	new_len = ft_strstr(str + *i, sub) - (str + *i);
+	new_len = ft_stristr(str + *i, sub);
 	if (new_len > -1)
 	{
 		result = ft_strsub(str, *i, (t_u32)new_len);
