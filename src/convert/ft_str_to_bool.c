@@ -26,9 +26,11 @@ t_bool	ft_str_to_bool(char const *str)
 	}
 	if (!str[i])
 		return (FALSE);
-	if ((str[i + 0] == 'T' || str[i + 0] == 't') ||
-		(str[i + 1] == 'R' || str[i + 1] == 'r') ||
-		(str[i + 2] == 'U' || str[i + 2] == 'u') ||
+	if (ft_isdigit(str[i]) && str[i] != '0')
+		return (TRUE);
+	if ((str[i + 0] == 'T' || str[i + 0] == 't') &&
+		(str[i + 1] == 'R' || str[i + 1] == 'r') &&
+		(str[i + 2] == 'U' || str[i + 2] == 'u') &&
 		(str[i + 3] == 'E' || str[i + 3] == 'e'))
 		return (TRUE);
 	else

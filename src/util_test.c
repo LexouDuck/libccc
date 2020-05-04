@@ -687,7 +687,7 @@ void	print_test_strls(
 		length += strlen(result[i]);
 	}
 	if (!(str_result = (char*)malloc(length + (i - 1) * 2)))
-		return;
+		return ;
 	length = 0;
 	for (i = 0; result[i]; ++i)
 	{
@@ -702,7 +702,7 @@ void	print_test_strls(
 
 	for (i = 0; expect[i]; ++i) length += strlen(expect[i]);
 	if (!(str_expect = (char*)malloc(length + (i - 1) * 2)))
-		return;
+		return ;
 	length = 0;
 	for (i = 0; expect[i]; ++i)
 	{

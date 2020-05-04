@@ -150,7 +150,7 @@ char	*ft_strarrjoin(char const **strarr, char const *sep);
 /*
 **	Returns the number of strings in a null-terminated string array.
 */
-t_u32	ft_strarrlen(const char **strarr);
+t_u32	ft_strarrlen(char const **strarr);
 
 /*
 **	Counts the number of occurences of char c in string array strarr/

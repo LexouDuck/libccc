@@ -119,8 +119,8 @@ void	print_test_strdel(char const* test_name, int can_segfault,
 }
 void	test_strdel(void)
 {
-	char* str1; if (!(str1 = malloc(32))) return;
-	char* str2; if (!(str2 = malloc(32))) return;
+	char* str1; if (!(str1 = malloc(32))) return ;
+	char* str2; if (!(str2 = malloc(32))) return ;
 printf("\n");
 /*	| TEST FUNCTION  | TEST NAME        | CAN SEGV | TEST ARGS */
 	print_test_strdel("strdel",           	FALSE,	NULL, &str1, &str2);

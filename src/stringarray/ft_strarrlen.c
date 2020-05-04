@@ -12,13 +12,15 @@
 
 #include "../../libft_stringarray.h"
 
-t_u32		ft_strarrlen(const char **strarr)
+t_u32		ft_strarrlen(char const **strarr)
 {
 	t_u32		i;
 
 	i = 0;
 	while (strarr[i])
+	{
 		++i;
+	}
 	return (i);
 }
 

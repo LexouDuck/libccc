@@ -48,14 +48,22 @@
 /*
 **	Define the common useful macros for writing some pseudo-boolean syntax.
 */
+#ifndef FALSE
 #define FALSE	0
+#endif
+#ifndef TRUE
 #define TRUE	1
+#endif
 
 /*
 **	Define the common macros for return values used by several C functions.
 */
+#ifndef OK
 #define OK		0
+#endif
+#ifndef ERROR
 #define ERROR	1
+#endif
 
 /*
 **	Define some useful string literals for some of the common number bases
