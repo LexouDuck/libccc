@@ -48,34 +48,40 @@
 /*
 **	Define the common useful macros for writing some pseudo-boolean syntax.
 */
-#ifndef FALSE
+#ifdef FALSE
+#undef FALSE
+#endif
 #define FALSE	0
+
+#ifdef TRUE
+#undef TRUE
 #endif
-#ifndef TRUE
 #define TRUE	1
-#endif
 
 /*
 **	Define the common macros for return values used by several C functions.
 */
-#ifndef OK
+#ifdef OK
+#undef OK
+#endif
 #define OK		0
+
+#ifdef ERROR
+#undef ERROR
 #endif
-#ifndef ERROR
 #define ERROR	1
-#endif
 
 /*
 **	Define some useful string literals for some of the common number bases
 ** and other useful charsets.
 */
-#ifndef __BASES__
-#define __BASES__
-#define BINARY		"01"
-#define OCTAL		"01234567"
-#define DECIMAL		"0123456789"
-#define HEX_LOWER	"0123456789abcdef"
-#define HEX_UPPER	"0123456789ABCDEF"
+#ifndef __CHARSETS_BASES__
+#define __CHARSETS_BASES__
+#define CHARSET_BINARY		"01"
+#define CHARSET_OCTAL		"01234567"
+#define CHARSET_DECIMAL		"0123456789"
+#define CHARSET_HEX_LOWER	"0123456789abcdef"
+#define CHARSET_HEX_UPPER	"0123456789ABCDEF"
 #endif
 
 #define CHARSET_WHITESPACE	"\t\f\v\n "
