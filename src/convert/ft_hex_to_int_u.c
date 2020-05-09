@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft_char.h"
-#include "../../libft_convert.h"
+#include "libft_char.h"
+#include "libft_convert.h"
 
 static inline int	ft_hex_to_int_u_getdigit(char c)
 {

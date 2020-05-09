@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft_io.h"
-#include "../../libft_string.h"
+#include "libft_io.h"
+#include "libft_string.h"
 
 static int	ft_readfile_error(int result, char **file)
 {

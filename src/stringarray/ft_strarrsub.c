@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft_memory.h"
-#include "../../libft_string.h"
-#include "../../libft_stringarray.h"
+#include "libft_memory.h"
+#include "libft_string.h"
+#include "libft_stringarray.h"
 
 char	**ft_strarrsub(const char **strarr, t_u32 start, t_u32 n)
 {

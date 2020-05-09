@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft_string.h"
+#include "libft_string.h"
 
 char	*ft_strsub(char const *str, size_t index, size_t n)
 {

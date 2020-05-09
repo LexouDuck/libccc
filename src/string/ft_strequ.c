@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft_string.h"
+#include "libft_string.h"
 
 t_bool	ft_strequ(char const *str1, char const *str2)
 {

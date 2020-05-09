@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft_color.h"
+#include "libft_color.h"
 
 inline t_u8		ft_color_argb16_get_a(t_u16 color)
 {

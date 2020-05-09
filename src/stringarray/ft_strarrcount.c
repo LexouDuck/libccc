@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft_string.h"
-#include "../../libft_stringarray.h"
+#include "libft_string.h"
+#include "libft_stringarray.h"
 
 t_u32		ft_strarrcount_char(char const **strarr, char const c)
 {

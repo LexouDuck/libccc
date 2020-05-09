@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft_color.h"
+#include "libft_color.h"
 
 t_u16	ft_color_argb32_to_argb16(t_u32 color)
 {

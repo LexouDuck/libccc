@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft_memory.h"
+#include "libft_memory.h"
 
 inline void	ft_memdel(void **ptr)
 {

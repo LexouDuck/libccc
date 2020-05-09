@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft_string.h"
+#include "libft_string.h"
 
 char	*ft_strinsert(char const *dest, char const *src, size_t offset)
 {

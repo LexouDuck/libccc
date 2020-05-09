@@ -35,6 +35,9 @@
 ** ************************************************************************** *|
 */
 
+/*
+**	This defines the amount of probabilistic approximation
+*/
 #define PROB_APPROX			0.000001
 
 

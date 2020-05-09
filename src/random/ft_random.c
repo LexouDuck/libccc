@@ -12,7 +12,7 @@
 
 #include <time.h>
 
-#include "../../libft_random.h"
+#include "libft_random.h"
 
 
 

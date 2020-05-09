@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft_io.h"
+#include "libft_io.h"
 
 inline void	ft_output_char(char c)
 {

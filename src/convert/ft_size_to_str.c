@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft_convert.h"
+#include "libft_convert.h"
 
 char	*ft_size_to_str(size_t number)
 {

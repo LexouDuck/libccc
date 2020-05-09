@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft_stat.h"
-#include "../../libft_memory.h"
+#include "libft_stat.h"
+#include "libft_memory.h"
 
 t_list_int		ft_stat_new_ilst(t_u32 len)
 {

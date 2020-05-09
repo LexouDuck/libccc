@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft_math.h"
-#include "../../libft_memory.h"
+#include "libft_math.h"
+#include "libft_memory.h"
 
 
 

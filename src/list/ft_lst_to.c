@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft_memory.h"
-#include "../../libft_list.h"
+#include "libft_memory.h"
+#include "libft_list.h"
 
 void	**ft_lst_to_array(t_list **alst)
 {

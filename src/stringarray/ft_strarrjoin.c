@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft_string.h"
+#include "libft_string.h"
 
 static void	ft_strnb_charnb_in_strarr(const char **strarr, int *w_nb, int *c_nb)
 {

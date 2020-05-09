@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft_list.h"
+#include "libft_list.h"
 
 t_list	*ft_lstcpy(t_list *lst)
 {

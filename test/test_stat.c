@@ -1,6 +1,6 @@
 
-#include "../libft_stat.h"
-#include "../libft_random.h"
+#include "libft_stat.h"
+#include "libft_random.h"
 
 #include "test.h"
 

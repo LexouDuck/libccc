@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft_io.h"
-#include "../../libft_list.h"
-#include "../../libft_string.h"
+#include "libft_io.h"
+#include "libft_list.h"
+#include "libft_string.h"
 
 static	void	gnl_deletelistitem(t_list **store, int fd, char **line)
 {

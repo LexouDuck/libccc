@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft_memory.h"
-#include "../../libft_string.h"
-#include "../../libft_stringarray.h"
+#include "libft_memory.h"
+#include "libft_string.h"
+#include "libft_stringarray.h"
 
 static t_u32	count_distinct_sub_in_str(char const *str, char const *sub)
 {

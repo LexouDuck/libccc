@@ -2,8 +2,8 @@
 #include <math.h>
 #include <time.h>
 
-#include "../libft_math.h"
-#include "../libft_stat.h"
+#include "libft_math.h"
+#include "libft_stat.h"
 
 #include "test.h"
 

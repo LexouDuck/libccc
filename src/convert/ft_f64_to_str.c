@@ -12,8 +12,8 @@
 
 #include <math.h>
 
-#include "../../libft_convert.h"
-#include "../../libft_string.h"
+#include "libft_convert.h"
+#include "libft_string.h"
 
 static char		*ft_f64_to_str_decim(t_f64 number, t_u8 precision)
 {

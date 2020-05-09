@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft_char.h"
-#include "../../libft_convert.h"
+#include "libft_char.h"
+#include "libft_convert.h"
 
 t_u8	ft_str_to_u8(char const *str)
 {

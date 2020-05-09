@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft_list.h"
+#include "libft_list.h"
 
 t_list	*ft_lstsub(t_list *lst, t_u32 index, t_u32 n)
 {

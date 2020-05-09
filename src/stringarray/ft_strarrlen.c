@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft_stringarray.h"
+#include "libft_stringarray.h"
 
 t_u32		ft_strarrlen(char const **strarr)
 {

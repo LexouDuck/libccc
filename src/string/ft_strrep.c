@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft_string.h"
-#include "../../libft_stringarray.h"
+#include "libft_string.h"
+#include "libft_stringarray.h"
 
 //TODO char		*ft_strrep_char(char const *str, char const old, char const new)
 //TODO char		*ft_strrep_charset(char const *str, char const *old, char const *new)

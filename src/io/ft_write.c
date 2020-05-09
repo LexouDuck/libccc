@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft_convert.h"
-#include "../../libft_io.h"
+#include "libft_convert.h"
+#include "libft_io.h"
 
 inline void	ft_write_char(int fd, char c)
 {

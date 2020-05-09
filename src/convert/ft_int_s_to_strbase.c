@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft_convert.h"
+#include "libft_convert.h"
 
 static size_t	ft_s_to_strbase_getlength(char const *base)
 {

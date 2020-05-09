@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft_memory.h"
-#include "../../libft_string.h"
-#include "../../libft_stringarray.h"
+#include "libft_memory.h"
+#include "libft_string.h"
+#include "libft_stringarray.h"
 
 void	ft_strarrdel(char ***a_strarr)
 {

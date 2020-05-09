@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft_memory.h"
+#include "libft_memory.h"
 
 int	ft_memcmp(void const *ptr1, void const *ptr2, size_t n)
 {

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft_memory.h"
+#include "libft_memory.h"
 
 int			ft_memswap(void *ptr1, void *ptr2, size_t size)
 {

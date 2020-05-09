@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft_convert.h"
-#include "../../libft_string.h"
+#include "libft_convert.h"
+#include "libft_string.h"
 
 t_bool		ft_float_to_str_checkspecial(t_f32 number, char **result)
 {

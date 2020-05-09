@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft_list.h"
+#include "libft_list.h"
 
 static void	ft_lstmap_delete(void *content, size_t content_size)
 {

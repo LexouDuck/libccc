@@ -17,18 +17,18 @@
 #include <time.h>
 #include <math.h>
 
-#include "../libft.h"
-#include "../libft_memory.h"
-#include "../libft_char.h"
-#include "../libft_string.h"
-#include "../libft_stringarray.h"
-#include "../libft_convert.h"
-#include "../libft_list.h"
-#include "../libft_math.h"
-#include "../libft_stat.h"
-#include "../libft_random.h"
-#include "../libft_vlq.h"
-#include "../libft_io.h"
+#include "libft.h"
+#include "libft_memory.h"
+#include "libft_char.h"
+#include "libft_string.h"
+#include "libft_stringarray.h"
+#include "libft_convert.h"
+#include "libft_list.h"
+#include "libft_math.h"
+#include "libft_stat.h"
+#include "libft_random.h"
+#include "libft_vlq.h"
+#include "libft_io.h"
 
 /*
 ** ************************************************************************** *|

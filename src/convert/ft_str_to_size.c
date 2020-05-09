@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft_char.h"
-#include "../../libft_convert.h"
+#include "libft_char.h"
+#include "libft_convert.h"
 
 size_t	ft_str_to_size(char const *str)
 {

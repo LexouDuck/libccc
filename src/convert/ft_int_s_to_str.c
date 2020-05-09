@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft_convert.h"
+#include "libft_convert.h"
 
 char	*ft_s8_to_str(t_s8 number)
 {

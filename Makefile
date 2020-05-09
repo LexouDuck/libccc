@@ -158,24 +158,25 @@ SRC_IO		:=	ft_output.c			\
 
 
 
+HDRDIR	=	./hdr/
 SRCDIR	=	./src/
 OBJDIR	=	./obj/
 
 
 
-HDRS	=	libft_memory.h		\
-			libft_char.h		\
-			libft_string.h		\
-			libft_stringarray.h	\
-			libft_convert.h		\
-			libft_color.h		\
-			libft_list.h		\
-			libft_math.h		\
-			libft_stat.h		\
-			libft_random.h		\
-			libft_vlq.h			\
-			libft_io.h			\
-			libft.h
+HDRS	=	$(HDRDIR)libft_memory.h			\
+			$(HDRDIR)libft_char.h			\
+			$(HDRDIR)libft_string.h			\
+			$(HDRDIR)libft_stringarray.h	\
+			$(HDRDIR)libft_convert.h		\
+			$(HDRDIR)libft_color.h			\
+			$(HDRDIR)libft_list.h			\
+			$(HDRDIR)libft_math.h			\
+			$(HDRDIR)libft_stat.h			\
+			$(HDRDIR)libft_random.h			\
+			$(HDRDIR)libft_vlq.h			\
+			$(HDRDIR)libft_io.h				\
+			$(HDRDIR)libft.h
 
 SRCS	=	$(addprefix $(DIR_MEMORY),		$(SRC_MEMORY)		)	\
 			$(addprefix $(DIR_CHAR),		$(SRC_CHAR)			)	\
@@ -204,17 +205,6 @@ all: $(NAME)
 
 $(OBJS): | objdir
 
-$(NAME): $(OBJS) $(HDRS)
-	@printf "Compiling library: "$@" -> "
-	@ar -rc $@ $(OBJS)
-	@ranlib $@
-	@printf $(GREEN)"OK!"$(RESET)"\n"
-
-$(OBJDIR)%.o : $(SRCDIR)%.c $(HDRS)
-	@printf "Compiling file: "$@" -> "
-	@$(CC) $(CFLAGS) -c $< $(LIBS) -o $@ -MF $(OBJDIR)$*.d
-	@printf $(GREEN)"OK!"$(RESET)"\n"
-
 objdir:
 	@mkdir -p $(OBJDIR)
 	@mkdir -p $(OBJDIR)$(DIR_MEMORY)
@@ -230,21 +220,19 @@ objdir:
 	@mkdir -p $(OBJDIR)$(DIR_VLQ)
 	@mkdir -p $(OBJDIR)$(DIR_IO)
 
+$(OBJDIR)%.o : $(SRCDIR)%.c $(HDRS)
+	@printf "Compiling file: "$@" -> "
+	@$(CC) $(CFLAGS) -c $< -I$(HDRDIR) -o $@ -MF $(OBJDIR)$*.d
+	@printf $(GREEN)"OK!"$(RESET)"\n"
+
+$(NAME): $(OBJS) $(HDRS)
+	@printf "Compiling library: "$@" -> "
+	@ar -rc $@ $(OBJS)
+	@ranlib $@
+	@printf $(GREEN)"OK!"$(RESET)"\n"
+
 lint:
-	@cppcheck $(SRCDIR) $(INCLUDE_DIRS) --quiet --std=c99 --enable=all \
-		-i$(SRCDIR)test_memory.c		\
-		-i$(SRCDIR)test_char.c			\
-		-i$(SRCDIR)test_string.c		\
-		-i$(SRCDIR)test_stringarray.c	\
-		-i$(SRCDIR)test_convert.c		\
-		-i$(SRCDIR)test_color.c			\
-		-i$(SRCDIR)test_list.c			\
-		-i$(SRCDIR)test_math.c			\
-		-i$(SRCDIR)test_stat.c			\
-		-i$(SRCDIR)test_random.c		\
-		-i$(SRCDIR)test_vlq.c			\
-		-i$(SRCDIR)test_io.c			\
-		-i$(SRCDIR)test.c				\
+	@cppcheck $(SRCDIR) $(HDRDIR) --quiet --std=c99 --enable=all \
 		--suppress=memleak \
 		--suppress=variableScope \
 		--suppress=unusedFunction \
@@ -294,62 +282,39 @@ rename:
 
 
 
-TESTS :=	test_memory.c		\
-			test_char.c			\
-			test_string.c		\
-			test_stringarray.c	\
-			test_convert.c		\
-			test_color.c		\
-			test_list.c			\
-			test_math.c			\
-			test_stat.c			\
-			test_random.c		\
-			test_vlq.c			\
-			test_io.c			\
-			test.c				\
-			test.h				\
-			util_test.c
+TEST_DIR	=	./test/
 
-testprogram: all
-	@$(CC) -g -o test $(addprefix $(SRCDIR), $(TESTS)) -L./ -lft
+TEST_HDR := $(TEST_DIR)test.h
+TEST_SRC :=	$(TEST_DIR)test.c				\
+			$(TEST_DIR)test_memory.c		\
+			$(TEST_DIR)test_char.c			\
+			$(TEST_DIR)test_string.c		\
+			$(TEST_DIR)test_stringarray.c	\
+			$(TEST_DIR)test_convert.c		\
+			$(TEST_DIR)test_color.c			\
+			$(TEST_DIR)test_list.c			\
+			$(TEST_DIR)test_math.c			\
+			$(TEST_DIR)test_stat.c			\
+			$(TEST_DIR)test_random.c		\
+			$(TEST_DIR)test_vlq.c			\
+			$(TEST_DIR)test_io.c			\
+			$(TEST_DIR)util_test.c
 
-test: testprogram
-	@./test
+TEST_OBJ	=	${TEST_SRC:$(TEST_DIR)%.c=$(OBJDIR)%.o}
 
-test_memory: testprogram
-	@./test -memory
+TEST_INCLUDEDIRS	=	-I$(HDRDIR) -I$(TEST_DIR)
 
-test_char: testprogram
-	@./test -char
+TEST_PROGRAM	=	libft_test
 
-test_string: testprogram
-	@./test -string
+$(OBJDIR)%.o : $(TEST_DIR)%.c $(TEST_HDR)
+	@printf "Compiling file: "$@" -> "
+	@$(CC) -g -c $< $(TEST_INCLUDEDIRS) -o $@ -L./ -lft
+	@printf $(GREEN)"OK!"$(RESET)"\n"
 
-test_stringarray: testprogram
-	@./test -stringarray
+$(TEST_PROGRAM): $(NAME) $(TEST_OBJ) $(TEST_HDR)
+	@$(CC) -g $(TEST_INCLUDEDIRS) -o $(TEST_PROGRAM) $(TEST_OBJ) -L./ -lft
 
-test_convert: testprogram
-	@./test -convert
-
-test_color: testprogram
-	@./test -color
-
-test_list: testprogram
-	@./test -list
-
-test_math: testprogram
-	@./test -math
-
-test_stat: testprogram
-	@./test -stat
-
-test_random: testprogram
-	@./test -random
-
-test_vlq: testprogram
-	@./test -vlq
-
-test_io: testprogram
-	@./test -io
+test: $(TEST_PROGRAM)
+	@./$(TEST_PROGRAM)
 
 -include ${DEPENDS}

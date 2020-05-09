@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft_convert.h"
+#include "libft_convert.h"
 
 char	*ft_u8_to_hex(t_u8 number)
 {

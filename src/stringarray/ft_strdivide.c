@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft_string.h"
-#include "../../libft_stringarray.h"
+#include "libft_string.h"
+#include "libft_stringarray.h"
 
 char	**ft_strdivide(const char *str, size_t n)
 {

@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft_convert.h"
-#include "../../libft_char.h"
-#include "../../libft_string.h"
+#include "libft_convert.h"
+#include "libft_char.h"
+#include "libft_string.h"
 
 static char	*ft_str_to_float_toupper(char const *str)
 {

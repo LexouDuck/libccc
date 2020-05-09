@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft_char.h"
-#include "../../libft_string.h"
+#include "libft_char.h"
+#include "libft_string.h"
 
 char	*ft_strprint(char const *str)
 {

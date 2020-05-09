@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft_string.h"
-#include "../../libft_stringarray.h"
+#include "libft_string.h"
+#include "libft_stringarray.h"
 
 char	**ft_strarrpad_l(const char **strarr, const char c, t_u32 n)
 {
