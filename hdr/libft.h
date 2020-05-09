@@ -46,34 +46,45 @@
 */
 
 /*
+**	This macro determines how NULL pointers are to be handled
+**	If 1, then all NULL pointer dereferences in libft functions will be avoided.
+**	Otherwise if 0, then libft functions will always segfault when given NULLs.
+*/
+#define HANDLE_NULLPOINTER_SEGFAULTS	1
+
+
+
+/*
 **	Define the common useful macros for writing some pseudo-boolean syntax.
 */
-#ifdef FALSE
-#undef FALSE
+#ifdef	FALSE
+#undef	FALSE
 #endif
 #define FALSE	0
 
-#ifdef TRUE
-#undef TRUE
+#ifdef	TRUE
+#undef	TRUE
 #endif
 #define TRUE	1
 
 /*
 **	Define the common macros for return values used by several C functions.
 */
-#ifdef OK
-#undef OK
+#ifdef	OK
+#undef	OK
 #endif
 #define OK		0
 
-#ifdef ERROR
-#undef ERROR
+#ifdef	ERROR
+#undef	ERROR
 #endif
 #define ERROR	1
 
+
+
 /*
 **	Define some useful string literals for some of the common number bases
-** and other useful charsets.
+**	and other useful charsets.
 */
 #ifndef __CHARSETS_BASES__
 #define __CHARSETS_BASES__
@@ -86,24 +97,9 @@
 
 #define CHARSET_WHITESPACE	"\t\f\v\n "
 
-/*
-**	Define some useful string literals for commandline output colors.
-**	May be used with any of the 'ft_output' and 'ft_write' functions.
-*/
-#ifndef __COLORS__
-#define __COLORS__
-#define C_RED		"\x1b[31m"
-#define C_GREEN		"\x1b[32m"
-#define C_YELLOW	"\x1b[33m"
-#define C_BLUE		"\x1b[34m"
-#define C_MAGENTA	"\x1b[35m"
-#define C_CYAN		"\x1b[36m"
-#define C_RESET		"\x1b[0m"
-#endif
-
 
 /*
-**	The following macro sets what the t_float type should be.
+**	The following macro sets what the 't_float' type should be.
 **	_FLOAT_32_ means a 32-bit IEEE 754 standard precision float
 **	_FLOAT_64_ means a 64-bit "double" precision float
 */
@@ -113,7 +109,7 @@
 **	_UINT_8_	for 8-bit uint	[0, 255]
 **	_UINT_16_	for 16-bit uint	[0, 65535]
 **	_UINT_32_	for 32-bit uint	[0, 2147483647]
-**	_UINT_64_	for 64-bit uint	[0, 18M]
+**	_UINT_64_	for 64-bit uint	[0, 18446744073709551615]
 */
 #define _UINT_32_
 /*
@@ -121,7 +117,7 @@
 **	_INT_8_		for 8-bit int	[-128, 127]
 **	_INT_16_	for 16-bit int	[-32648, 32647]
 **	_INT_32_	for 32-bit int	[-2147483648, 2147483647]
-**	_INT_64_	for 64-bit int	[-9M, +9M]
+**	_INT_64_	for 64-bit int	[-9223372036854775808, +9223372036854775807]
 */
 #define _INT_32_
 
