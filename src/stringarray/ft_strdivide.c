@@ -13,6 +13,8 @@
 #include "libft_string.h"
 #include "libft_stringarray.h"
 
+
+
 char	**ft_strdivide(const char *str, size_t n)
 {
 	char	**result;
@@ -20,6 +22,10 @@ char	**ft_strdivide(const char *str, size_t n)
 	size_t	len;
 	size_t	i;
 
+#if HANDLE_NULLPOINTERS
+	if (str == NULL)
+		return (NULL);
+#endif
 	len = ft_strlen(str);
 	lines = len % n == 0 ? len / n : len / n + 1;
 	if (lines == 0 || !(result = ft_strarrnew(lines)))
@@ -36,8 +42,3 @@ char	**ft_strdivide(const char *str, size_t n)
 	result[lines] = NULL;
 	return (result);
 }
-
-/*
-**	if (!str || n == 0)
-**		return (NULL);
-*/

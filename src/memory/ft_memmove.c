@@ -12,12 +12,20 @@
 
 #include "libft_memory.h"
 
+
+
 void	*ft_memmove(void *dest, void const *src, size_t n)
 {
 	t_u8	*result;
 	t_u8	*source;
 	size_t	i;
 
+#if HANDLE_NULLPOINTERS
+	if (dest == NULL)
+		return (NULL);
+	if (src == NULL)
+		return (dest);
+#endif
 	if (dest && dest == src)
 		return (dest);
 	result = (t_u8 *)dest;
@@ -39,9 +47,3 @@ void	*ft_memmove(void *dest, void const *src, size_t n)
 	}
 	return (dest);
 }
-/*
-** if (dest == NULL)
-**		return (NULL);
-**	if (src == NULL)
-**		return (dest);
-*/

@@ -12,6 +12,8 @@
 
 #include "libft_string.h"
 
+
+
 char	*ft_strinsert(char const *dest, char const *src, size_t offset)
 {
 	char	*result;
@@ -19,6 +21,10 @@ char	*ft_strinsert(char const *dest, char const *src, size_t offset)
 	size_t	len_src;
 	size_t	i;
 
+#if HANDLE_NULLPOINTERS
+	if (dest == NULL || src == NULL)
+		return (NULL);
+#endif
 	len_dst = ft_strlen(dest);
 	len_src = ft_strlen(src);
 	if (!(result = (char *)malloc(len_dst + len_src + 1)))
@@ -35,7 +41,3 @@ char	*ft_strinsert(char const *dest, char const *src, size_t offset)
 	result[i] = '\0';
 	return (result);
 }
-/*
-**	if (dest == NULL || src == NULL)
-**		return (NULL);
-*/

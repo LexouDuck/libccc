@@ -12,11 +12,17 @@
 
 #include "libft_convert.h"
 
+
+
 static size_t	ft_u_to_strbase_getlength(char const *base)
 {
 	size_t	i;
 	size_t	j;
 
+#if HANDLE_NULLPOINTERS
+	if (base == NULL)
+		return (0);
+#endif
 	i = 0;
 	while (base[i])
 	{
@@ -31,6 +37,8 @@ static size_t	ft_u_to_strbase_getlength(char const *base)
 	}
 	return (i < 2 ? 0 : i);
 }
+
+
 
 char			*ft_u8_to_strbase(t_u8 number, char const *base)
 {
@@ -61,6 +69,8 @@ char			*ft_u8_to_strbase(t_u8 number, char const *base)
 	return (result);
 }
 
+
+
 char			*ft_u16_to_strbase(t_u16 number, char const *base)
 {
 	char	*result;
@@ -90,6 +100,8 @@ char			*ft_u16_to_strbase(t_u16 number, char const *base)
 	return (result);
 }
 
+
+
 char			*ft_u32_to_strbase(t_u32 number, char const *base)
 {
 	char	*result;
@@ -118,6 +130,8 @@ char			*ft_u32_to_strbase(t_u32 number, char const *base)
 	result[n] = '\0';
 	return (result);
 }
+
+
 
 char			*ft_u64_to_strbase(t_u64 number, char const *base)
 {

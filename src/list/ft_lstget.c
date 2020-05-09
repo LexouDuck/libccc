@@ -12,12 +12,16 @@
 
 #include "libft_list.h"
 
+
+
 t_list	*ft_lstget(t_list *lst, t_u32 index)
 {
 	t_u32	i;
 
+#if HANDLE_NULLPOINTERS
 	if (lst == NULL)
 		return (NULL);
+#endif
 	i = 0;
 	while (i < index)
 	{
@@ -30,8 +34,16 @@ t_list	*ft_lstget(t_list *lst, t_u32 index)
 	return (lst);
 }
 
+
+
 t_list	*ft_lstfind(t_list *lst, void const *query)
 {
+#if HANDLE_NULLPOINTERS
+	if (lst == NULL)
+		return (NULL);
+#endif
+	if (query == NULL)
+		return (NULL);
 	while (lst)
 	{
 		if (lst->item == query)

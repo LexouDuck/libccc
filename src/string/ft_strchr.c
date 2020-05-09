@@ -12,12 +12,18 @@
 
 #include "libft_string.h"
 
+
+
 char	*ft_strchr(char const *str, char c)
 {
 	size_t	i;
 
+#if HANDLE_NULLPOINTERS
+	if (str == NULL)
+		return (NULL);
+#endif
 	i = 0;
-	while (1)
+	while (TRUE)
 	{
 		if (str[i] == c)
 			return ((char *)str + i);
@@ -28,15 +34,16 @@ char	*ft_strchr(char const *str, char c)
 	return (NULL);
 }
 
-/*
-**	if (str == NULL)
-**		return (NULL);
-*/
+
 
 char	*ft_strrchr(char const *str, char c)
 {
 	size_t	i;
 
+#if HANDLE_NULLPOINTERS
+	if (str == NULL)
+		return (NULL);
+#endif
 	i = 0;
 	while (str[i])
 		++i;
@@ -52,15 +59,16 @@ char	*ft_strrchr(char const *str, char c)
 	return (NULL);
 }
 
-/*
-**	if (str == NULL)
-**		return (NULL);
-*/
+
 
 char	*ft_strnchr(char const *str, char c, size_t n)
 {
 	size_t	i;
 
+#if HANDLE_NULLPOINTERS
+	if (str == NULL)
+		return (NULL);
+#endif
 	i = 0;
 	while (i < n)
 	{
@@ -73,23 +81,21 @@ char	*ft_strnchr(char const *str, char c, size_t n)
 	return (NULL);
 }
 
-/*
-**	if (str == NULL)
-**		return (NULL);
-*/
+
 
 t_s32	ft_strichr(char const *str, char c)
 {
 	t_s32	i;
 
+#if HANDLE_NULLPOINTERS
+	if (str == NULL)
+		return (-1);
+#endif
 	i = -1;
 	while (str[++i])
+	{
 		if (str[i] == c)
 			return (i);
+	}
 	return (-1);
 }
-
-/*
-**	if (str == NULL)
-**		return (NULL);
-*/

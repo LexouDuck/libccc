@@ -13,12 +13,18 @@
 #include "libft_string.h"
 #include "libft_stringarray.h"
 
+
+
 char	**ft_strarrpad_l(const char **strarr, const char c, t_u32 n)
 {
 	char		**result;
 	t_u32		strarr_length;
 	t_u32		i;
 
+#if HANDLE_NULLPOINTERS
+	if (strarr == NULL)
+		return (NULL);
+#endif
 	strarr_length = ft_strarrlen(strarr);
 	if (!(result = ft_strarrnew(strarr_length)))
 		return (NULL);
@@ -36,8 +42,3 @@ char	**ft_strarrpad_l(const char **strarr, const char c, t_u32 n)
 	result[i] = NULL;
 	return (result);
 }
-
-/*
-**	if (!strarr)
-**		return (NULL);
-*/

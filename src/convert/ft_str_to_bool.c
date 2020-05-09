@@ -13,10 +13,16 @@
 #include "libft_char.h"
 #include "libft_convert.h"
 
+
+
 t_bool	ft_str_to_bool(char const *str)
 {
 	size_t	i;
 
+#if HANDLE_NULLPOINTERS
+	if (str == NULL)
+		return (FALSE);
+#endif
 	i = 0;
 	while (!(ft_isalpha(str[i])))
 	{

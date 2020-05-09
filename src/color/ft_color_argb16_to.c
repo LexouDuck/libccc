@@ -12,6 +12,8 @@
 
 #include "libft_color.h"
 
+
+
 t_u32	ft_color_argb16_to_argb32(t_u16 color)
 {
 	static const t_float	factor = (float)255 / (float)31;

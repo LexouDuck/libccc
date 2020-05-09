@@ -50,7 +50,7 @@
 **	If 1, then all NULL pointer dereferences in libft functions will be avoided.
 **	Otherwise if 0, then libft functions will always segfault when given NULLs.
 */
-#define HANDLE_NULLPOINTER_SEGFAULTS	1
+#define HANDLE_NULLPOINTERS		1
 
 
 

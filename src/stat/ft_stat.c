@@ -13,6 +13,8 @@
 #include "libft_stat.h"
 #include "libft_memory.h"
 
+// TODO subdivide this file into several .c files
+
 t_list_int		ft_stat_new_ilst(t_u32 len)
 {
 	t_list_int		res;
@@ -39,6 +41,10 @@ t_list_float	ft_stat_new_flst(t_u32 len)
 
 void			ft_stat_free_ilst(t_list_int *ilst)
 {
+#if HANDLE_NULLPOINTERS
+	if (ilst == NULL)
+		return ;
+#endif
 	if (ilst->data)
 	{
 		free(ilst->data);
@@ -49,6 +55,10 @@ void			ft_stat_free_ilst(t_list_int *ilst)
 
 void			ft_stat_free_flst(t_list_float *flst)
 {
+#if HANDLE_NULLPOINTERS
+	if (flst == NULL)
+		return ;
+#endif
 	if (flst->data)
 	{
 		free(flst->data);
@@ -81,13 +91,18 @@ t_list_float	ft_stat_flst_dup(t_list_float const flst)
 	return (res);
 }
 
-t_list_int		ft_stat_merge_ilst(t_list_int *start,
-								t_list_int *append)
+t_list_int		ft_stat_merge_ilst(
+	t_list_int *start,
+	t_list_int *append)
 {
 	t_list_int			res;
 	t_u32				i;
 	t_u32				j;
 
+#if HANDLE_NULLPOINTERS
+	if (start == NULL || append == NULL)
+		return (NULL_LIST_INT);
+#endif
 	if (start->len == 0 && append->len == 0)
 		return (ft_stat_new_ilst(0));
 	else if (!start->data || start->len == 0)
@@ -108,13 +123,18 @@ t_list_int		ft_stat_merge_ilst(t_list_int *start,
 	return (res);
 }
 
-t_list_float 	ft_stat_merge_flst(t_list_float *start,
-									t_list_float *append)
+t_list_float 	ft_stat_merge_flst(
+	t_list_float *start,
+	t_list_float *append)
 {
 	t_list_float		res;
 	t_u32				i;
 	t_u32				j;
 
+#if HANDLE_NULLPOINTERS
+	if (start == NULL || append == NULL)
+		return (NULL_LIST_FLOAT);
+#endif
 	if (start->len == 0 && append->len == 0)
 		return (ft_stat_new_flst(0));
 	else if (!start->data || start->len == 0)
@@ -418,6 +438,10 @@ t_prob_mass				ft_stat_new_pmf(t_u32 len)
 
 void					ft_stat_free_pmf(t_prob_mass *drv)
 {
+#if HANDLE_NULLPOINTERS
+	if (drv == NULL)
+		return ;
+#endif
 	if (drv->value)
 	{
 		free(drv->value);

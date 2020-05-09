@@ -12,6 +12,8 @@
 
 #include "libft_color.h"
 
+
+
 inline t_u32	ft_color_argb32_set_a(t_u32 color, t_u8 a)
 {
 	return ((color & ~COLOR_ARGB32_A) | (a << 24));

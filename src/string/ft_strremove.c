@@ -12,6 +12,8 @@
 
 #include "libft_string.h"
 
+
+
 char	*ft_strremove(char const *str, char const *query)
 {
 	char	*result;
@@ -20,6 +22,10 @@ char	*ft_strremove(char const *str, char const *query)
 	size_t	length_query;
 	size_t	i;
 
+#if HANDLE_NULLPOINTERS
+	if (str == NULL || query == NULL)
+		return (NULL);
+#endif
 	matches = ft_strcount_str(str, query);
 	length = ft_strlen(str);
 	length_query = ft_strlen(query);

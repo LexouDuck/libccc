@@ -12,8 +12,14 @@
 
 #include "libft_list.h"
 
+
+
 void	ft_lstadd(t_list **alst, t_list *elem)
 {
+#if HANDLE_NULLPOINTERS
+	if (alst == NULL || elem == NULL)
+		return ;
+#endif
 	if (*alst == NULL)
 	{
 		*alst = elem;
@@ -23,15 +29,16 @@ void	ft_lstadd(t_list **alst, t_list *elem)
 	*alst = elem;
 }
 
-/*
-**	if (alst == NULL || new == NULL)
-**		return ;
-*/
+
 
 void	ft_lstappend(t_list **alst, t_list *elem)
 {
 	t_list *lst;
 
+#if HANDLE_NULLPOINTERS
+	if (alst == NULL || elem == NULL)
+		return ;
+#endif
 	lst = *alst;
 	if (lst == NULL)
 	{
@@ -45,10 +52,7 @@ void	ft_lstappend(t_list **alst, t_list *elem)
 	lst->next = elem;
 }
 
-/*
-**	if (alst == NULL || elem == NULL)
-**		return ;
-*/
+
 
 void	ft_lstinsert(t_list **alst, t_list *elem, t_u32 index)
 {
@@ -56,8 +60,10 @@ void	ft_lstinsert(t_list **alst, t_list *elem, t_u32 index)
 	t_list	*tmp;
 	t_u32	i;
 
-	if (elem == NULL)
+#if HANDLE_NULLPOINTERS
+	if (alst == NULL || elem == NULL)
 		return ;
+#endif
 	lst = *alst;
 	if (lst == NULL || index == 0)
 	{
@@ -76,8 +82,3 @@ void	ft_lstinsert(t_list **alst, t_list *elem, t_u32 index)
 	lst->next = elem;
 	elem->next = tmp;
 }
-
-/*
-**	if (alst == NULL || elem == NULL)
-**		return ;
-*/

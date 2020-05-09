@@ -13,10 +13,14 @@
 #include "libft_convert.h"
 #include "libft_io.h"
 
+
+
 inline void	ft_write_char(int fd, char c)
 {
 	write(fd, &c, 1);
 }
+
+
 
 inline void	ft_write_str(int fd, const char *str)
 {
@@ -26,6 +30,8 @@ inline void	ft_write_str(int fd, const char *str)
 	}
 }
 
+
+
 inline void	ft_write_line(int fd, const char *str)
 {
 	if (str)
@@ -34,6 +40,8 @@ inline void	ft_write_line(int fd, const char *str)
 		write(fd, "\n", 1);
 	}
 }
+
+
 
 void		ft_write_strls(int fd, const char **strls)
 {
@@ -49,6 +57,8 @@ void		ft_write_strls(int fd, const char **strls)
 		++i;
 	}
 }
+
+
 
 void		ft_write_memory(int fd, t_u8 const *ptr, size_t n, t_u8 cols)
 {

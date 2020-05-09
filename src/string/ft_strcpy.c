@@ -12,10 +12,18 @@
 
 #include "libft_string.h"
 
+
+
 char	*ft_strcpy(char *dest, char const *src)
 {
 	size_t	i;
 
+#if HANDLE_NULLPOINTERS
+	if (dest == NULL)
+		return (NULL);
+	if (src == NULL)
+		return (dest);
+#endif
 	i = 0;
 	while (src[i])
 	{
@@ -26,18 +34,19 @@ char	*ft_strcpy(char *dest, char const *src)
 	return (dest);
 }
 
-/*
-**	if (dest == NULL)
-**		return (NULL);
-**	if (src == NULL)
-**		return (dest);
-*/
+
 
 char	*ft_strncpy(char *dest, char const *src, size_t n)
 {
 	char	*str;
 	size_t	i;
 
+#if HANDLE_NULLPOINTERS
+	if (dest == NULL)
+		return (NULL);
+	if (src == NULL)
+		return (dest);
+#endif
 	str = dest;
 	i = 0;
 	while (n > 0 && src[i])
@@ -55,17 +64,16 @@ char	*ft_strncpy(char *dest, char const *src, size_t n)
 	return (dest);
 }
 
-/*
-**	if (dest == NULL)
-**		return (NULL);
-**	if (src == NULL)
-**		return (dest);
-*/
+
 
 size_t	ft_strlcpy(char *dest, char const *src, size_t size)
 {
 	size_t	i;
 
+#if HANDLE_NULLPOINTERS
+	if (dest == NULL || src == NULL)
+		return (0);
+#endif
 	i = 0;
 	while (i < size - 1 && src[i])
 	{
@@ -78,8 +86,3 @@ size_t	ft_strlcpy(char *dest, char const *src, size_t size)
 		++i;
 	return (i);
 }
-
-/*
-**	if (dest == NULL || src == NULL)
-**		return (0);
-*/

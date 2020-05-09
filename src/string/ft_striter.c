@@ -12,10 +12,16 @@
 
 #include "libft_string.h"
 
+
+
 void	ft_striter(char *str, void (*f)(char *))
 {
 	size_t	i;
 
+#if HANDLE_NULLPOINTERS
+	if (str == NULL || f == NULL)
+		return ;
+#endif
 	i = 0;
 	while (str[i])
 	{
@@ -24,15 +30,16 @@ void	ft_striter(char *str, void (*f)(char *))
 	}
 }
 
-/*
-**	if (str == NULL || f == NULL)
-**		return ;
-*/
+
 
 void	ft_striteri(char *str, void (*f)(size_t, char *))
 {
 	size_t	i;
 
+#if HANDLE_NULLPOINTERS
+	if (str == NULL || f == NULL)
+		return ;
+#endif
 	i = 0;
 	while (str[i])
 	{
@@ -40,8 +47,3 @@ void	ft_striteri(char *str, void (*f)(size_t, char *))
 		++i;
 	}
 }
-
-/*
-**	if (str == NULL || f == NULL)
-**		return ;
-*/

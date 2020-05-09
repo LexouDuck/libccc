@@ -14,11 +14,17 @@
 #include "libft_string.h"
 #include "libft_stringarray.h"
 
+
+
 void	ft_strarrdel(char ***a_strarr)
 {
 	int		i;
 
-	if (a_strarr && *a_strarr)
+#if HANDLE_NULLPOINTERS
+	if (a_strarr == NULL)
+		return ;
+#endif
+	if (*a_strarr)
 	{
 		i = 0;
 		while ((*a_strarr)[i])

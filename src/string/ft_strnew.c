@@ -12,6 +12,8 @@
 
 #include "libft_string.h"
 
+
+
 char	*ft_strnew(size_t n)
 {
 	char	*result;

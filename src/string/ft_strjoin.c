@@ -12,6 +12,8 @@
 
 #include "libft_string.h"
 
+
+
 char	*ft_strjoin(char const *str1, char const *str2)
 {
 	char	*result;
@@ -19,6 +21,10 @@ char	*ft_strjoin(char const *str1, char const *str2)
 	size_t	length2;
 	size_t	i;
 
+#if HANDLE_NULLPOINTERS
+	if (str1 == NULL || str2 == NULL)
+		return (NULL);
+#endif
 	length1 = ft_strlen(str1);
 	length2 = ft_strlen(str2);
 	if (!(result = (char *)malloc(length1 + length2 + 1)))
@@ -38,8 +44,3 @@ char	*ft_strjoin(char const *str1, char const *str2)
 	result[length1 + length2] = '\0';
 	return (result);
 }
-
-/*
-**	if (!str1 || !str2)
-**		return (NULL);
-*/

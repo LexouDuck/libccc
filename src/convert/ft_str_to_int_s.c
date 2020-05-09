@@ -13,12 +13,18 @@
 #include "libft_char.h"
 #include "libft_convert.h"
 
+
+
 t_s8	ft_str_to_s8(char const *str)
 {
 	t_u8	result;
 	t_bool	negative;
 	size_t	i;
 
+#if HANDLE_NULLPOINTERS
+	if (str == NULL)
+		return (0);
+#endif
 	i = 0;
 	while (!(ft_isdigit(str[i]) || str[i] == '+' || str[i] == '-'))
 	{
@@ -40,12 +46,18 @@ t_s8	ft_str_to_s8(char const *str)
 	return ((t_s8)(negative ? -result : result));
 }
 
+
+
 t_s16	ft_str_to_s16(char const *str)
 {
 	t_u16	result;
 	t_bool	negative;
 	size_t	i;
 
+#if HANDLE_NULLPOINTERS
+	if (str == NULL)
+		return (0);
+#endif
 	i = 0;
 	while (!(ft_isdigit(str[i]) || str[i] == '+' || str[i] == '-'))
 	{
@@ -67,12 +79,18 @@ t_s16	ft_str_to_s16(char const *str)
 	return ((t_s16)(negative ? -result : result));
 }
 
+
+
 t_s32	ft_str_to_s32(char const *str)
 {
 	t_u32	result;
 	t_bool	negative;
 	size_t	i;
 
+#if HANDLE_NULLPOINTERS
+	if (str == NULL)
+		return (0);
+#endif
 	i = 0;
 	while (!(ft_isdigit(str[i]) || str[i] == '+' || str[i] == '-'))
 	{
@@ -94,12 +112,18 @@ t_s32	ft_str_to_s32(char const *str)
 	return ((t_s32)(negative ? -result : result));
 }
 
+
+
 t_s64	ft_str_to_s64(char const *str)
 {
 	t_u64	result;
 	t_bool	negative;
 	size_t	i;
 
+#if HANDLE_NULLPOINTERS
+	if (str == NULL)
+		return (0);
+#endif
 	i = 0;
 	while (!(ft_isdigit(str[i]) || str[i] == '+' || str[i] == '-'))
 	{

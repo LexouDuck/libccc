@@ -12,14 +12,18 @@
 
 #include "libft_list.h"
 
+
+
 t_list	*ft_lstcpy(t_list *lst)
 {
 	t_list	*result;
 	t_list	*result_lst;
 	t_list	*tmp;
 
+#if HANDLE_NULLPOINTERS
 	if (lst == NULL)
 		return (NULL);
+#endif
 	result = ft_lstnew(lst->item, lst->item_size);
 	result_lst = result;
 	lst = lst->next;

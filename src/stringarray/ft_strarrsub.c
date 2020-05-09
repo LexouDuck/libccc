@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stringarray/ft_strarrsub.c                          :+:      :+:    :+:   */
+/*   stringarray/ft_strarrsub.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: duquesne <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -14,12 +14,18 @@
 #include "libft_string.h"
 #include "libft_stringarray.h"
 
+
+
 char	**ft_strarrsub(const char **strarr, t_u32 start, t_u32 n)
 {
 	char		**result;
 	t_u32		length;
 	t_u32		i;
 
+#if HANDLE_NULLPOINTERS
+	if (strarr == NULL)
+		return (NULL);
+#endif
 	length = ft_strarrlen(strarr);
 	if (start > length || start + n > length)
 		return (NULL);
@@ -38,8 +44,3 @@ char	**ft_strarrsub(const char **strarr, t_u32 start, t_u32 n)
 	result[i] = NULL;
 	return (result);
 }
-
-/*
-**	if (!strarr || start + len >= ft_ptrarrlen(strarr))
-**		return (NULL);
-*/

@@ -12,11 +12,17 @@
 
 #include "libft_string.h"
 
+
+
 t_bool		ft_strhas(char const *str, char const *charset)
 {
 	size_t	i;
 	size_t	c;
 
+#if HANDLE_NULLPOINTERS
+	if (str == NULL || charset == NULL)
+		return (FALSE);
+#endif
 	i = 0;
 	while (str[i])
 	{
@@ -32,10 +38,7 @@ t_bool		ft_strhas(char const *str, char const *charset)
 	return (FALSE);
 }
 
-/*
-**	if (str == NULL || charset == NULL)
-**		return (FALSE);
-*/
+
 
 t_bool		ft_strhasonly(char const *str, char const *charset)
 {
@@ -43,6 +46,10 @@ t_bool		ft_strhasonly(char const *str, char const *charset)
 	size_t	c;
 	t_bool	match;
 
+#if HANDLE_NULLPOINTERS
+	if (str == NULL || charset == NULL)
+		return (FALSE);
+#endif
 	i = 0;
 	while (str[i])
 	{
@@ -63,8 +70,3 @@ t_bool		ft_strhasonly(char const *str, char const *charset)
 	}
 	return (TRUE);
 }
-
-/*
-**	if (str == NULL || charset == NULL)
-**		return (FALSE);
-*/

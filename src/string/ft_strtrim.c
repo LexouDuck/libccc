@@ -12,6 +12,8 @@
 
 #include "libft_string.h"
 
+
+
 static t_bool	charset_contains(char const *charset, char c)
 {
 	size_t	i;
@@ -26,11 +28,17 @@ static t_bool	charset_contains(char const *charset, char c)
 	return (FALSE);
 }
 
+
+
 char			*ft_strtrim(char const *str, char const *charset)
 {
 	size_t	offset;
 	size_t	length;
 
+#if HANDLE_NULLPOINTERS
+	if (str == NULL || charset == NULL)
+		return (NULL);
+#endif
 	offset = 0;
 	length = 0;
 	while (str[length])
@@ -46,16 +54,15 @@ char			*ft_strtrim(char const *str, char const *charset)
 	return (ft_strsub(str, offset, length));
 }
 
-/*
-**	if (str == NULL)
-**		return (NULL);
-*/
-
 char			*ft_strtrim_l(char const *str, char const *charset)
 {
 	size_t	i;
 	size_t	length;
 
+#if HANDLE_NULLPOINTERS
+	if (str == NULL || charset == NULL)
+		return (NULL);
+#endif
 	length = ft_strlen(str);
 	i = 0;
 	while (i < length)
@@ -69,16 +76,17 @@ char			*ft_strtrim_l(char const *str, char const *charset)
 	return (ft_strsub(str, i, length));
 }
 
-/*
-**	if (str == NULL || charset == NULL)
-**		return (NULL);
-*/
+
 
 char			*ft_strtrim_r(char const *str, char const *charset)
 {
 	size_t	i;
 	size_t	length;
 
+#if HANDLE_NULLPOINTERS
+	if (str == NULL || charset == NULL)
+		return (NULL);
+#endif
 	length = ft_strlen(str);
 	i = length;
 	while (--i)
@@ -88,8 +96,3 @@ char			*ft_strtrim_r(char const *str, char const *charset)
 	}
 	return (ft_strsub(str, 0, i));
 }
-
-/*
-**	if (str == NULL || charset == NULL)
-**		return (NULL);
-*/

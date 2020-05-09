@@ -18,6 +18,10 @@ int			ft_memswap(void *ptr1, void *ptr2, size_t size)
 	t_u8	*p2;
 	size_t	i;
 
+#if HANDLE_NULLPOINTERS
+	if (ptr1 == NULL || ptr2 == NULL)
+		return (ERROR);
+#endif
 	if (ptr1 == ptr2)
 		return (OK);
 	else if (size == 1 && *(uint8_t*)(ptr1) == *(uint8_t*)(ptr2))

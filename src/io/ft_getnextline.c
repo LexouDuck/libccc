@@ -14,6 +14,8 @@
 #include "libft_list.h"
 #include "libft_string.h"
 
+
+
 static	void	gnl_deletelistitem(t_list **store, int fd, char **line)
 {
 	t_list	*lst;

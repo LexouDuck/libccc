@@ -12,8 +12,14 @@
 
 #include "libft_list.h"
 
+
+
 void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
 {
+#if HANDLE_NULLPOINTERS
+	if (alst == NULL || del == NULL)
+		return ;
+#endif
 	if (*alst)
 	{
 		del((*alst)->item, (*alst)->item_size);
@@ -22,16 +28,17 @@ void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
 	}
 }
 
-/*
-**	if (alst == NULL || del == NULL)
-**		return ;
-*/
+
 
 void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 {
 	t_list *lst;
 	t_list *tmp;
 
+#if HANDLE_NULLPOINTERS
+	if (alst == NULL || del == NULL)
+		return ;
+#endif
 	lst = *alst;
 	while (lst)
 	{
@@ -43,16 +50,17 @@ void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 	*alst = NULL;
 }
 
-/*
-**	if (alst == NULL || del == NULL)
-**		return ;
-*/
+
 
 void	ft_lstpop(t_list **alst, void (*del)(void *, size_t))
 {
 	t_list	*lst;
 	t_list	*lst_prev;
 
+#if HANDLE_NULLPOINTERS
+	if (alst == NULL || del == NULL)
+		return ;
+#endif
 	lst = *alst;
 	lst_prev = NULL;
 	while (lst)
@@ -70,7 +78,4 @@ void	ft_lstpop(t_list **alst, void (*del)(void *, size_t))
 	}
 }
 
-/*
-**	if (alst == NULL || del == NULL)
-**		return ;
-*/
+

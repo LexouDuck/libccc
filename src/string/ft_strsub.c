@@ -12,12 +12,18 @@
 
 #include "libft_string.h"
 
+
+
 char	*ft_strsub(char const *str, size_t index, size_t n)
 {
 	char	*result;
 	size_t	length;
 	size_t	i;
 
+#if HANDLE_NULLPOINTERS
+	if (str == NULL)
+		return (NULL);
+#endif
 	length = 0;
 	while (str[length])
 		++length;
@@ -34,7 +40,3 @@ char	*ft_strsub(char const *str, size_t index, size_t n)
 	result[i] = '\0';
 	return (result);
 }
-/*
-**	if (str == NULL)
-**		return (NULL);
-*/

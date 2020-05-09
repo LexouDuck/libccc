@@ -12,6 +12,8 @@
 
 #include "libft_convert.h"
 
+
+
 char	*ft_u8_to_hex(t_u8 number)
 {
 	char	*result;
@@ -36,6 +38,8 @@ char	*ft_u8_to_hex(t_u8 number)
 	result[n] = '\0';
 	return (result);
 }
+
+
 
 char	*ft_u16_to_hex(t_u16 number)
 {
@@ -62,6 +66,8 @@ char	*ft_u16_to_hex(t_u16 number)
 	return (result);
 }
 
+
+
 char	*ft_u32_to_hex(t_u32 number)
 {
 	char	*result;
@@ -86,6 +92,8 @@ char	*ft_u32_to_hex(t_u32 number)
 	result[n] = '\0';
 	return (result);
 }
+
+
 
 char	*ft_u64_to_hex(t_u64 number)
 {

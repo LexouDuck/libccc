@@ -58,14 +58,6 @@ inline t_float		ft_pow(t_float x, t_float y)
 
 
 
-static t_s32	ft_float_get_exponent(t_float x)
-{
-	t_s64	result = 0;
-
-	FT_MemoryCopy((t_u8*)&result, &x, sizeof(t_float));
-	return (((result & FLOAT_EXPONENT) >> FLOAT_MANTISSA_BITS) - FLOAT_EXPONENT_BIAS);
-}
-
 /*
 **	Some SQRT(2)^n lookup tables for quick newton method initial guess
 */
@@ -128,9 +120,15 @@ static t_float	ft_sqrt_2_pow_n(t_s32 n)
 	return (result);
 }
 
+static t_s32	ft_float_get_exponent(t_float x)
+{
+	t_s64	result = 0;
 
+	FT_MemoryCopy((t_u8*)&result, &x, sizeof(t_float));
+	return (((result & FLOAT_EXPONENT) >> FLOAT_MANTISSA_BITS) - FLOAT_EXPONENT_BIAS);
+}
 
-inline t_float	ft_sqrt(t_float x)
+t_float	ft_sqrt(t_float x)
 {
 //	Newton derivative approximation by iteration
 	static const t_s32	i_max = 6;
@@ -160,7 +158,7 @@ inline t_float	ft_sqrt(t_float x)
 
 
 
-inline t_float	ft_cbrt(t_float x)
+t_float	ft_cbrt(t_float x)
 {
 //	Newton derivative approximation by iteration
 	static const t_s32	i_max = 6;
@@ -192,7 +190,7 @@ inline t_float	ft_cbrt(t_float x)
 
 
 
-inline t_float	ft_nrt(t_float x, t_u8 n)
+t_float	ft_nrt(t_float x, t_u8 n)
 {
 //	Newton derivative approximation by iteration
 	static const t_s32	i_max = 6;

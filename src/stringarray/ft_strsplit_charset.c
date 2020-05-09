@@ -14,6 +14,8 @@
 #include "libft_string.h"
 #include "libft_stringarray.h"
 
+
+
 static int	ft_in_charset(char c, const char *charset)
 {
 	int i;
@@ -63,6 +65,10 @@ char		**ft_strsplit_charset(const char *str, const char *sep_chars)
 	int		len;
 	char	**strarr;
 
+#if HANDLE_NULLPOINTERS
+	if (str == NULL || sep_chars == NULL)
+		return (NULL);
+#endif
 	if (!(strarr = ft_strarrnew(ft_str_word_nb(str, sep_chars))))
 		return (NULL);
 	i = 0;
@@ -82,9 +88,3 @@ char		**ft_strsplit_charset(const char *str, const char *sep_chars)
 	strarr[i] = 0;
 	return (strarr);
 }
-
-/*
-**	if (!str || !sep_chars || !(strarr = (char**)malloc(
-**					sizeof(char*) * (ft_str_word_nb(str, sep_chars) + 1))))
-**		return (NULL);
-*/

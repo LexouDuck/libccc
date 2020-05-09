@@ -12,11 +12,19 @@
 
 #include "libft_string.h"
 
+
+
 char	*ft_strcat(char *dest, char const *src)
 {
 	size_t	length;
 	size_t	i;
 
+#if HANDLE_NULLPOINTERS
+	if (dest == NULL)
+		return (NULL);
+	if (src == NULL)
+		return (dest);
+#endif
 	length = 0;
 	while (dest[length])
 		++length;
@@ -30,18 +38,19 @@ char	*ft_strcat(char *dest, char const *src)
 	return (dest);
 }
 
-/*
-**	if (dest == NULL)
-**		return (NULL);
-**	if (src == NULL)
-**		return (dest);
-*/
+
 
 char	*ft_strncat(char *dest, char const *src, size_t n)
 {
 	size_t	length;
 	size_t	i;
 
+#if HANDLE_NULLPOINTERS
+	if (dest == NULL)
+		return (NULL);
+	if (src == NULL)
+		return (dest);
+#endif
 	length = 0;
 	while (dest[length])
 		++length;
@@ -60,12 +69,7 @@ char	*ft_strncat(char *dest, char const *src, size_t n)
 	return (dest);
 }
 
-/*
-**	if (dest == NULL)
-**		return (NULL);
-**	if (src == NULL)
-**		return (dest);
-*/
+
 
 size_t	ft_strlcat(char *dest, char const *src, size_t size)
 {
@@ -73,6 +77,10 @@ size_t	ft_strlcat(char *dest, char const *src, size_t size)
 	size_t	src_len;
 	size_t	i;
 
+#if HANDLE_NULLPOINTERS
+	if (dest == NULL || src == NULL)
+		return (0);
+#endif
 	src_len = 0;
 	while (src[src_len])
 		++src_len;
@@ -93,10 +101,3 @@ size_t	ft_strlcat(char *dest, char const *src, size_t size)
 	}
 	return (dst_len + src_len);
 }
-
-/*
-**	if (dest == NULL)
-**		return (0);
-**	if (src == NULL)
-**		return (length);
-*/

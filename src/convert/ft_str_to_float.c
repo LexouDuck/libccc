@@ -14,6 +14,8 @@
 #include "libft_char.h"
 #include "libft_string.h"
 
+
+
 static char	*ft_str_to_float_toupper(char const *str)
 {
 	char	*result;
@@ -44,6 +46,10 @@ int			ft_str_to_float_checkinvalid(char const *str, char **result_tmp)
 	size_t	count_p;
 	size_t	count_e;
 
+#if HANDLE_NULLPOINTERS
+	if (str == NULL)
+		return (ERROR);
+#endif
 	*result_tmp = NULL;
 	if (str[0] == '\0' || !(tmp = ft_str_to_float_toupper(str)))
 		return (ERROR);

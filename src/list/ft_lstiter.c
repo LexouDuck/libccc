@@ -12,8 +12,14 @@
 
 #include "libft_list.h"
 
+
+
 void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
 {
+#if HANDLE_NULLPOINTERS
+	if (lst == NULL || f == NULL)
+		return ;
+#endif
 	while (lst)
 	{
 		f(lst);
@@ -21,15 +27,16 @@ void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
 	}
 }
 
-/*
-**	if (lst == NULL || f == NULL)
-**		return ;
-*/
+
 
 void	ft_lstiteri(t_list *lst, void (*f)(t_list *elem, t_u32 index))
 {
 	t_u32 i;
 
+#if HANDLE_NULLPOINTERS
+	if (lst == NULL || f == NULL)
+		return ;
+#endif
 	i = 0;
 	while (lst)
 	{
@@ -38,8 +45,3 @@ void	ft_lstiteri(t_list *lst, void (*f)(t_list *elem, t_u32 index))
 		++i;
 	}
 }
-
-/*
-**	if (lst == NULL || f == NULL)
-**		return ;
-*/

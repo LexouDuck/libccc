@@ -12,16 +12,22 @@
 
 #include "libft_io.h"
 
+
+
 inline void	ft_output_char(char c)
 {
 	write(STDOUT, &c, 1);
 }
+
+
 
 inline void	ft_output_str(char const *str)
 {
 	if (str)
 		write(STDOUT, str, ft_strlen(str));
 }
+
+
 
 inline void	ft_output_line(char const *str)
 {
@@ -32,11 +38,15 @@ inline void	ft_output_line(char const *str)
 	}
 }
 
+
+
 inline void	ft_output_strls(char const **strls)
 {
 	if (strls)
 		ft_write_strls(STDOUT, strls);
 }
+
+
 
 inline void	ft_output_memory(t_u8 const *ptr, size_t n, t_u8 cols)
 {

@@ -12,7 +12,9 @@
 
 #include "libft_memory.h"
 
-int	ft_memcmp(void const *ptr1, void const *ptr2, size_t n)
+
+
+int		ft_memcmp(void const *ptr1, void const *ptr2, size_t n)
 {
 	t_u8	*p1;
 	t_u8	*p2;
@@ -20,6 +22,15 @@ int	ft_memcmp(void const *ptr1, void const *ptr2, size_t n)
 
 	p1 = (t_u8 *)ptr1;
 	p2 = (t_u8 *)ptr2;
+#if HANDLE_NULLPOINTERS
+	if (ptr1 == NULL || ptr2 == NULL)
+	{
+		if (ptr1 == ptr2)
+			return (0);
+		return ((ptr1 == NULL ? 0 : p1[0]) -
+				(ptr2 == NULL ? 0 : p2[0]));
+	}
+#endif
 	i = 0;
 	while (i < n)
 	{
@@ -29,9 +40,3 @@ int	ft_memcmp(void const *ptr1, void const *ptr2, size_t n)
 	}
 	return (0);
 }
-/*
-**	if (ptr1 == ptr2)
-**		return (0);
-**	return (ptr1 == NULL ? 0 : ptr1[0]) -
-**		   (ptr2 == NULL ? 0 : ptr2[0]);
-*/

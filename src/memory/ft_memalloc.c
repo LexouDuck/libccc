@@ -12,6 +12,8 @@
 
 #include "libft_memory.h"
 
+
+
 void	*ft_memalloc(size_t size)
 {
 	t_u8	*result;

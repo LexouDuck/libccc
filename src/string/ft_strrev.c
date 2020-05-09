@@ -12,6 +12,8 @@
 
 #include "libft_string.h"
 
+
+
 char	*ft_strrev(char const *str)
 {
 	char	*result;
@@ -19,6 +21,10 @@ char	*ft_strrev(char const *str)
 	size_t	i;
 	size_t	j;
 
+#if HANDLE_NULLPOINTERS
+	if (str == NULL)
+		return (NULL);
+#endif
 	length = 0;
 	while (str[length])
 		++length;

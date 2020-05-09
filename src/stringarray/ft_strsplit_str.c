@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsplit_str.c                                   :+:      :+:    :+:   */
+/*   stringarray/ft_strsplit_str.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: duquesne <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,6 +13,8 @@
 #include "libft_memory.h"
 #include "libft_string.h"
 #include "libft_stringarray.h"
+
+
 
 static t_u32	count_distinct_sub_in_str(char const *str, char const *sub)
 {
@@ -70,6 +72,10 @@ char			**ft_strsplit_str(char const *str, char const *sub)
 	t_u32	i;
 	t_u32	j;
 
+#if HANDLE_NULLPOINTERS
+	if (str == NULL || sub == NULL)
+		return (NULL);
+#endif
 	if (sub[0] == '\0')
 		return (ft_strdivide(str, 1));
 	reslen = count_distinct_sub_in_str(str, sub) + 1;
@@ -87,8 +93,3 @@ char			**ft_strsplit_str(char const *str, char const *sub)
 		}
 	return (result);
 }
-
-/*
-**	if (!str || !sub)
-**		return (NULL);
-*/

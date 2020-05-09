@@ -12,12 +12,18 @@
 
 #include "libft_string.h"
 
+
+
 char	*ft_strmap(char const *str, char (*f)(char))
 {
 	char	*result;
 	size_t	length;
 	size_t	i;
 
+#if HANDLE_NULLPOINTERS
+	if (str == NULL || f == NULL)
+		return (NULL);
+#endif
 	length = 0;
 	while (str[length])
 		++length;
@@ -33,10 +39,7 @@ char	*ft_strmap(char const *str, char (*f)(char))
 	return (result);
 }
 
-/*
-**	if (str == NULL || f == NULL)
-**		return (NULL);
-*/
+
 
 char	*ft_strmapi(char const *str, char (*f)(size_t, char))
 {
@@ -44,6 +47,10 @@ char	*ft_strmapi(char const *str, char (*f)(size_t, char))
 	size_t	length;
 	size_t	i;
 
+#if HANDLE_NULLPOINTERS
+	if (str == NULL || f == NULL)
+		return (NULL);
+#endif
 	length = 0;
 	while (str[length])
 		++length;
@@ -59,22 +66,18 @@ char	*ft_strmapi(char const *str, char (*f)(size_t, char))
 	return (result);
 }
 
-/*
-**	if (str == NULL || f == NULL)
-**		return (NULL);
-*/
+
 
 char	*ft_strmap_inplace(char **a_str, char (*f)(char))
 {
 	char	*tmp;
 
+#if HANDLE_NULLPOINTERS
+	if (a_str == NULL || *a_str == NULL || f == NULL)
+		return (NULL);
+#endif
 	tmp = ft_strmap(*a_str, f);
 	ft_strdel(a_str);
 	*a_str = tmp;
-	return tmp;
+	return (tmp);
 }
-
-/*
-**	if (a_str == NULL || *a_str == NULL || f == NULL)
-**		return (NULL);
-*/

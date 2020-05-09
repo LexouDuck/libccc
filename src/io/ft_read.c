@@ -13,6 +13,8 @@
 #include "libft_io.h"
 #include "libft_string.h"
 
+
+
 static int	ft_readfile_error(int result, char **file)
 {
 	if (result < 0)
@@ -35,6 +37,10 @@ int			ft_readfile(int const fd, char **file, size_t max)
 	char	*temp;
 	size_t	length;
 
+#if HANDLE_NULLPOINTERS
+	if (file == NULL)
+		return (ERROR);
+#endif
 	if (!(*file = ft_strnew(1)))
 		return (ERROR);
 	buffer[BUFF_SIZE] = '\0';
@@ -52,11 +58,9 @@ int			ft_readfile(int const fd, char **file, size_t max)
 	return (ft_readfile_error(result, file));
 }
 
-/*
-** TODO actually code this
-*/
+
 
 int			ft_readlines(int const fd, char ***strls)
 {
-	return (fd || strls);
+	return (fd || strls); // TODO implement
 }

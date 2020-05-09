@@ -12,6 +12,8 @@
 
 #include "libft_memory.h"
 
+
+
 t_u64	ft_getbits(t_u64 value, t_u8 bit, t_u8 length)
 {
 	t_u64	mask;

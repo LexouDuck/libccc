@@ -12,6 +12,8 @@
 
 #include "libft_convert.h"
 
+
+
 char	*ft_bool_to_str(t_bool number, t_bool uppercase)
 {
 	char	*result;

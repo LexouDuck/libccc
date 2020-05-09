@@ -14,6 +14,8 @@
 #include "libft_string.h"
 #include "libft_stringarray.h"
 
+
+
 char	**ft_strarrcnew(t_u32 y, size_t x, const char c)
 {
 	char	**strarr;

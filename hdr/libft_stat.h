@@ -47,12 +47,14 @@ typedef struct	s_list_int
 	t_int		*data;
 	t_u32		len;
 }				t_list_int;
+#define NULL_LIST_INT		((t_list_int){ 0, 0 })
 
 typedef struct	s_list_float
 {
 	t_float		*data;
 	t_u32		len;
 }				t_list_float;
+#define NULL_LIST_FLOAT		((t_list_float){ 0, 0 })
 
 /*
 **	These types are used to signify a list with no duplicate values.

@@ -12,6 +12,8 @@
 
 #include "libft_color.h"
 
+
+
 inline t_u16	ft_color_argb16_set_a(t_u16 color, t_u8 a)
 {
 	return ((color & ~COLOR_ARGB16_A) | (a << 15));

@@ -12,12 +12,18 @@
 
 #include "libft_string.h"
 
+
+
 char	*ft_strstr(char const *str, char const *query)
 {
 	size_t	length;
 	size_t	match;
 	size_t	i;
 
+#if HANDLE_NULLPOINTERS
+	if (str == NULL || query == NULL)
+		return (NULL);
+#endif
 	length = 0;
 	while (query[length])
 		++length;
@@ -41,10 +47,7 @@ char	*ft_strstr(char const *str, char const *query)
 	return (NULL);
 }
 
-/*
-**	if (str == NULL || query == NULL)
-**		return (NULL);
-*/
+
 
 char	*ft_strrstr(char const *str, char const *query)
 {
@@ -52,6 +55,10 @@ char	*ft_strrstr(char const *str, char const *query)
 	size_t	match;
 	size_t	i;
 
+#if HANDLE_NULLPOINTERS
+	if (str == NULL || query == NULL)
+		return (NULL);
+#endif
 	length = 0;
 	while (query[length])
 		++length;
@@ -74,10 +81,7 @@ char	*ft_strrstr(char const *str, char const *query)
 	return (NULL);
 }
 
-/*
-**	if (str == NULL || query == NULL)
-**		return (NULL);
-*/
+
 
 char	*ft_strnstr(char const *str, char const *query, size_t n)
 {
@@ -85,6 +89,10 @@ char	*ft_strnstr(char const *str, char const *query, size_t n)
 	size_t	match;
 	size_t	i;
 
+#if HANDLE_NULLPOINTERS
+	if (str == NULL || query == NULL)
+		return (NULL);
+#endif
 	length = ft_strlen(query);
 	i = 0;
 	while (str[i] && i + length <= n)
@@ -104,16 +112,17 @@ char	*ft_strnstr(char const *str, char const *query, size_t n)
 	return (NULL);
 }
 
-/*
-**	if (str == NULL || query == NULL)
-**		return (NULL);
-*/
+
 
 t_s32		ft_stristr(char const *str, char const *query)
 {
 	size_t	i;
 	size_t	j;
 
+#if HANDLE_NULLPOINTERS
+	if (str == NULL || query == NULL)
+		return (-1);
+#endif
 	if (query[0] == '\0')
 		return (0);
 	i = 0;
@@ -132,8 +141,3 @@ t_s32		ft_stristr(char const *str, char const *query)
 	}
 	return (-1);
 }
-
-/*
-**	if (str == NULL || query == NULL)
-**		return (NULL);
-*/

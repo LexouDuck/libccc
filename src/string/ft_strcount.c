@@ -12,11 +12,17 @@
 
 #include "libft_string.h"
 
+
+
 size_t	ft_strcount_char(char const *str, char c)
 {
 	size_t	result;
 	size_t	i;
 
+#if HANDLE_NULLPOINTERS
+	if (str == NULL)
+		return (0);
+#endif
 	result = 0;
 	i = 0;
 	while (str[i])
@@ -28,16 +34,17 @@ size_t	ft_strcount_char(char const *str, char c)
 	return (result);
 }
 
-/*
-**	if (str == NULL)
-**		return (0);
-*/
+
 
 size_t	ft_strcount_charset(char const *str, char const *cset)
 {
 	size_t	result;
 	size_t	i;
 
+#if HANDLE_NULLPOINTERS
+	if (str == NULL || cset == NULL)
+		return (0);
+#endif
 	result = 0;
 	i = 0;
 	while (str[i])
@@ -49,10 +56,7 @@ size_t	ft_strcount_charset(char const *str, char const *cset)
 	return (result);
 }
 
-/*
-**	if (str == NULL || cset == NULL)
-**		return (0);
-*/
+
 
 size_t	ft_strcount_str(char const *str, char const *query)
 {
@@ -61,6 +65,10 @@ size_t	ft_strcount_str(char const *str, char const *query)
 	size_t	i;
 	size_t	j;
 
+#if HANDLE_NULLPOINTERS
+	if (str == NULL || query == NULL)
+		return (0);
+#endif
 	result = 0;
 	length = 0;
 	while (query[length])
@@ -79,8 +87,3 @@ size_t	ft_strcount_str(char const *str, char const *query)
 	}
 	return (result);
 }
-
-/*
-**	if (str == NULL || query == NULL)
-**		return (0);
-*/

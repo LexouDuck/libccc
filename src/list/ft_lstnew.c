@@ -12,6 +12,8 @@
 
 #include "libft_list.h"
 
+
+
 t_list	*ft_lstnew(void *item, size_t item_size)
 {
 	t_list *result;

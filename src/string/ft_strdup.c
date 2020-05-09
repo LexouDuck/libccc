@@ -12,11 +12,17 @@
 
 #include "libft_string.h"
 
+
+
 char	*ft_strdup(char const *str)
 {
 	char	*result;
 	size_t	i;
 
+#if HANDLE_NULLPOINTERS
+	if (str == NULL)
+		return (NULL);
+#endif
 	i = 0;
 	while (str[i])
 		++i;
@@ -31,7 +37,3 @@ char	*ft_strdup(char const *str)
 	result[i] = '\0';
 	return (result);
 }
-/*
-**	if (str == NULL)
-**		return (NULL);
-*/

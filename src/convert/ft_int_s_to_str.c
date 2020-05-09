@@ -12,6 +12,8 @@
 
 #include "libft_convert.h"
 
+
+
 char	*ft_s8_to_str(t_s8 number)
 {
 	char	*result;
@@ -36,6 +38,8 @@ char	*ft_s8_to_str(t_s8 number)
 	result[n] = '\0';
 	return (result);
 }
+
+
 
 char	*ft_s16_to_str(t_s16 number)
 {
@@ -62,6 +66,8 @@ char	*ft_s16_to_str(t_s16 number)
 	return (result);
 }
 
+
+
 char	*ft_s32_to_str(t_s32 number)
 {
 	char	*result;
@@ -86,6 +92,8 @@ char	*ft_s32_to_str(t_s32 number)
 	result[n] = '\0';
 	return (result);
 }
+
+
 
 char	*ft_s64_to_str(t_s64 number)
 {

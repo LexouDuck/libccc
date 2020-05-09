@@ -14,11 +14,17 @@
 #include "libft_string.h"
 #include "libft_stringarray.h"
 
+
+
 char		**ft_strarrmap(char const **strarr, char *(*f)(char const *))
 {
 	t_u32	i;
 	char	**result;
 
+#if HANDLE_NULLPOINTERS
+	if (strarr == NULL || *strarr == NULL || f == NULL)
+		return (NULL);
+#endif
 	if (!(result = ft_strarrnew(ft_strarrlen(strarr))))
 		return (NULL);
 	i = 0;
@@ -30,17 +36,17 @@ char		**ft_strarrmap(char const **strarr, char *(*f)(char const *))
 	return (result);
 }
 
-/*
-**	if (!strarr || !*strarr || !f ||
-**		!(result = ft_ptrarrnew(ft_ptrarrlen(strarr))))
-**		return (NULL);
-*/
+
 
 void		ft_strarrmap_inplace(char ***a_strarr, char *(*f)(char *))
 {
 	t_u32	i;
 	char	*tmp;
 
+#if HANDLE_NULLPOINTERS
+	if (a_strarr == NULL || *a_strarr == NULL || f == NULL)
+		return ;
+#endif
 	i = 0;
 	while ((*a_strarr)[i])
 	{
@@ -51,8 +57,3 @@ void		ft_strarrmap_inplace(char ***a_strarr, char *(*f)(char *))
 		++i;
 	}
 }
-
-/*
-**	if (!a_strarr || !*a_strarr || !f)
-**		return ;
-*/

@@ -12,6 +12,8 @@
 
 #include "libft_memory.h"
 
+
+
 void	*ft_ptrarrnew(t_u32 len)
 {
 	void	**result;

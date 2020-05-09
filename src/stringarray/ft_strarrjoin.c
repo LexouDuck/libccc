@@ -12,6 +12,8 @@
 
 #include "libft_string.h"
 
+
+
 static void	ft_strnb_charnb_in_strarr(const char **strarr, int *w_nb, int *c_nb)
 {
 	int str_at;
@@ -55,6 +57,10 @@ char		*ft_strarrjoin(char const **strarr, char const *sep)
 	int		total_sep_char_nb;
 	int		total_char_nb;
 
+#if HANDLE_NULLPOINTERS
+	if (strarr == NULL || sep == NULL)
+		return (NULL);
+#endif
 	strarr_str_nb = 0;
 	strarr_char_nb = 0;
 	ft_strnb_charnb_in_strarr(strarr, &strarr_str_nb, &strarr_char_nb);

@@ -13,6 +13,8 @@
 #include "libft_memory.h"
 #include "libft_list.h"
 
+
+
 void	**ft_lst_to_array(t_list **alst)
 {
 	void	**result;
@@ -21,6 +23,10 @@ void	**ft_lst_to_array(t_list **alst)
 	t_u32	count;
 	t_u32	i;
 
+#if HANDLE_NULLPOINTERS
+	if (alst == NULL)
+		return (NULL);
+#endif
 	lst = *alst;
 	count = ft_lstsize(lst);
 	length = (count + 1) * sizeof(void *);
@@ -37,10 +43,7 @@ void	**ft_lst_to_array(t_list **alst)
 	return (result);
 }
 
-/*
-**	if (alst == NULL)
-**		return (NULL);
-*/
+
 
 t_tuple	*ft_lst_to_tuple(t_list **alst, t_tuple *result)
 {
@@ -48,6 +51,10 @@ t_tuple	*ft_lst_to_tuple(t_list **alst, t_tuple *result)
 	t_u32	count;
 	t_u32	i;
 
+#if HANDLE_NULLPOINTERS
+	if (alst == NULL || *alst == NULL)
+		return (NULL);
+#endif
 	lst = *alst;
 	result->item_size = lst->item_size;
 	count = 0;
@@ -70,8 +77,3 @@ t_tuple	*ft_lst_to_tuple(t_list **alst, t_tuple *result)
 	ft_memclr(result + (i * result->item_size), result->item_size);
 	return (result);
 }
-
-/*
-**	if (alst == NULL || *alst == NULL)
-**		return (NULL);
-*/

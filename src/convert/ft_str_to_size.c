@@ -13,11 +13,17 @@
 #include "libft_char.h"
 #include "libft_convert.h"
 
+
+
 size_t	ft_str_to_size(char const *str)
 {
 	size_t	result;
 	size_t	i;
 
+#if HANDLE_NULLPOINTERS
+	if (str == NULL)
+		return (0);
+#endif
 	i = 0;
 	while (!(ft_isdigit(str[i]) || str[i] == '+'))
 	{

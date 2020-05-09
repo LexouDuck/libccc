@@ -13,6 +13,8 @@
 #include "libft_math.h"
 #include "libft_random.h"
 
+
+
 t_float			ft_mc_integrate3(t_scalar_func3 const sf, t_3d_box const domain)
 {
 	t_vec3		rand_input;

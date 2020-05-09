@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stringarray/ft_strsplit.c                          :+:      :+:    :+:   */
+/*   stringarray/ft_strsplit_char.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: duquesne <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,6 +12,8 @@
 
 #include "libft_string.h"
 #include "libft_stringarray.h"
+
+
 
 static int	ft_strcsplit_get_count(char const *str, char c)
 {
@@ -50,6 +52,10 @@ char		**ft_strsplit_char(char const *str, char c)
 	int		count;
 	int		i;
 
+#if HANDLE_NULLPOINTERS
+	if (str == NULL)
+		return (NULL);
+#endif
 	count = ft_strcsplit_get_count(str, c);
 	if (!(result = ft_strarrnew(count)))
 		return (NULL);
@@ -70,8 +76,3 @@ char		**ft_strsplit_char(char const *str, char c)
 	result[count] = NULL;
 	return (result);
 }
-
-/*
-** if (!str)
-**		return (NULL);
-*/

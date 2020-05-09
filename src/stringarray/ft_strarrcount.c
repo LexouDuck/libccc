@@ -13,11 +13,17 @@
 #include "libft_string.h"
 #include "libft_stringarray.h"
 
+
+
 t_u32		ft_strarrcount_char(char const **strarr, char const c)
 {
 	t_u32		i;
 	t_u32		count;
 
+#if HANDLE_NULLPOINTERS
+	if (strarr == NULL)
+		return (0);
+#endif
 	count = 0;
 	i = 0;
 	while (strarr[i])
@@ -28,16 +34,17 @@ t_u32		ft_strarrcount_char(char const **strarr, char const c)
 	return (count);
 }
 
-/*
-**	if (!strarr)
-**		return (0);
-*/
+
 
 t_u32		ft_strarrcount_charset(char const **strarr, char const *cset)
 {
 	t_u32		i;
 	t_u32		count;
 
+#if HANDLE_NULLPOINTERS
+	if (strarr == NULL || cset == NULL)
+		return (0);
+#endif
 	count = 0;
 	i = 0;
 	while (strarr[i])
@@ -48,16 +55,17 @@ t_u32		ft_strarrcount_charset(char const **strarr, char const *cset)
 	return (count);
 }
 
-/*
-**	if (!strarr || !cset)
-**		return (0);
-*/
+
 
 t_u32		ft_strarrcount_str(char const **strarr, char const *query)
 {
 	t_u32		i;
 	t_u32		count;
 
+#if HANDLE_NULLPOINTERS
+	if (strarr == NULL || query == NULL)
+		return (0);
+#endif
 	count = 0;
 	i = 0;
 	while (strarr[i])
@@ -67,8 +75,3 @@ t_u32		ft_strarrcount_str(char const **strarr, char const *query)
 	}
 	return (count);
 }
-
-/*
-**	if (!strarr || !query)
-**		return (0);
-*/

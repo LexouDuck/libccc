@@ -12,6 +12,8 @@
 
 #include "libft_char.h"
 
+
+
 inline int		ft_isprint(int c)
 {
 	return (0x20 <= c && c <= 0x7E);

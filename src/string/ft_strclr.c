@@ -12,10 +12,16 @@
 
 #include "libft_string.h"
 
+
+
 void	ft_strclr(char *str)
 {
 	size_t	i;
 
+#if HANDLE_NULLPOINTERS
+	if (str == NULL)
+		return ;
+#endif
 	i = 0;
 	while (str[i])
 	{
@@ -23,7 +29,3 @@ void	ft_strclr(char *str)
 		++i;
 	}
 }
-/*
-**	if (str == NULL)
-**		return ;
-*/

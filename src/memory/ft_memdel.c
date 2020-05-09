@@ -12,15 +12,17 @@
 
 #include "libft_memory.h"
 
+
+
 inline void	ft_memdel(void **ptr)
 {
+#if HANDLE_NULLPOINTERS
+	if (ptr == NULL)
+		return ;
+#endif
 	if (*ptr)
 	{
 		free(*ptr);
 		*ptr = NULL;
 	}
 }
-/*
-**	if (ptr == NULL)
-**		return (NULL);
-*/

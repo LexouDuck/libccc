@@ -12,16 +12,18 @@
 
 #include "libft_string.h"
 
+
+
 inline size_t	ft_strlen(char const *str)
 {
 	size_t	i;
 
+#if HANDLE_NULLPOINTERS
+	if (str == NULL)
+		return (0);
+#endif
 	i = 0;
 	while (str[i])
 		++i;
 	return (i);
 }
-/*
-**	if (str == NULL)
-**		return (0);
-*/

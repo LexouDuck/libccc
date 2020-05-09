@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memory/ft_strarrlen.c                              :+:      :+:    :+:   */
+/*   stringarray/ft_strarrlen.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: duquesne <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,10 +12,16 @@
 
 #include "libft_stringarray.h"
 
+
+
 t_u32		ft_strarrlen(char const **strarr)
 {
 	t_u32		i;
 
+#if HANDLE_NULLPOINTERS
+	if (strarr == NULL)
+		return (0);
+#endif
 	i = 0;
 	while (strarr[i])
 	{
@@ -23,8 +29,3 @@ t_u32		ft_strarrlen(char const **strarr)
 	}
 	return (i);
 }
-
-/*
-**	if (!a_ptrarr)
-**		return (0);
-*/

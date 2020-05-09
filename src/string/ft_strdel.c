@@ -12,15 +12,17 @@
 
 #include "libft_string.h"
 
-void	ft_strdel(char **ptr)
+
+
+inline void	ft_strdel(char **a_str)
 {
-	if (*ptr)
+#if HANDLE_NULLPOINTERS
+	if (a_str == NULL)
+		return ;
+#endif
+	if (*a_str)
 	{
-		free(*ptr);
-		*ptr = NULL;
+		free(*a_str);
+		*a_str = NULL;
 	}
 }
-/*
-**	if (ptr == NULL)
-**		return ;
-*/

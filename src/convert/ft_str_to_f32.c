@@ -10,11 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
+#include <math.h> // TODO make powf implementation and remove this
 
 #include "libft_convert.h"
 #include "libft_memory.h"
 #include "libft_string.h"
+
+
 
 /*
 ** Has some negligible error (beyond the seventh decimal digit; imprecision

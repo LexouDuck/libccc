@@ -12,10 +12,16 @@
 
 #include "libft_list.h"
 
+
+
 t_u32	ft_lstsize(t_list *lst)
 {
 	t_u32 result;
 
+#if HANDLE_NULLPOINTERS
+	if (lst == NULL)
+		return (0);
+#endif
 	result = 0;
 	while (lst)
 	{

@@ -12,6 +12,8 @@
 
 #include "libft_char.h"
 
+
+
 inline int		ft_isalpha(int c)
 {
 	return (('A' <= c && c <= 'Z') ||

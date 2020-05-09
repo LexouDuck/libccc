@@ -13,6 +13,8 @@
 #include "libft_char.h"
 #include "libft_string.h"
 
+
+
 char	*ft_strprint(char const *str)
 {
 	unsigned char HI_nibble;
@@ -21,6 +23,10 @@ char	*ft_strprint(char const *str)
 	size_t	index = 0;
 	size_t	i = 0;
 
+#if HANDLE_NULLPOINTERS
+	if (str == NULL)
+		return (NULL);
+#endif
 	if (!(result = (char *)malloc(ft_strlen(str) * 4)))
 		return (NULL);
 	while (str[index])
@@ -55,8 +61,3 @@ char	*ft_strprint(char const *str)
 	result[i] = '\0';
 	return (result);
 }
-
-/*
-**	if (!str || !(result = (char *)malloc(strlen(str) * 4)))
-**		return (NULL);
-*/	

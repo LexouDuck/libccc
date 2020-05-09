@@ -12,6 +12,8 @@
 
 #include "libft_list.h"
 
+
+
 static void	ft_lstmap_delete(void *content, size_t content_size)
 {
 	if (content && content_size > 0)
@@ -20,11 +22,17 @@ static void	ft_lstmap_delete(void *content, size_t content_size)
 	}
 }
 
+
+
 t_list		*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
 	t_list	*result;
 	t_list	*current;
 
+#if HANDLE_NULLPOINTERS
+	if (lst == NULL || f == NULL)
+		return (NULL);
+#endif
 	result = NULL;
 	while (lst)
 	{
@@ -40,10 +48,7 @@ t_list		*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 	return (result);
 }
 
-/*
-**	if (lst == NULL || f == NULL)
-**		return ;
-*/
+
 
 t_list		*ft_lstmapi(t_list *lst, t_list *(*f)(t_list *elem, t_u32 index))
 {
@@ -51,7 +56,10 @@ t_list		*ft_lstmapi(t_list *lst, t_list *(*f)(t_list *elem, t_u32 index))
 	t_list	*current;
 	t_u32	i;
 
-	result = NULL;
+#if HANDLE_NULLPOINTERS
+	if (lst == NULL || f == NULL)
+		return (NULL);
+#endif
 	i = 0;
 	while (lst)
 	{
@@ -67,8 +75,3 @@ t_list		*ft_lstmapi(t_list *lst, t_list *(*f)(t_list *elem, t_u32 index))
 	}
 	return (result);
 }
-
-/*
-**	if (lst == NULL || f == NULL)
-**		return ;
-*/

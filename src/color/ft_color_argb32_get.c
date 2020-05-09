@@ -12,6 +12,8 @@
 
 #include "libft_color.h"
 
+
+
 inline t_u8		ft_color_argb32_get_a(t_u32 color)
 {
 	return ((t_u8)(0xFF & (color >> 24)));
@@ -43,6 +45,10 @@ t_u32			*ft_color_argb32_get_nearest(
 	t_u32	min;
 	t_u32	*result;
 
+#if HANDLE_NULLPOINTERS
+	if (colors == NULL)
+		return (NULL);
+#endif
 	min = 0xFFFFFFFF;
 	result = NULL;
 	while (n--)
