@@ -2,7 +2,8 @@ NAME	=	libft.a
 
 # Compiler
 CC		= _
-CC_WIN	= i686-w64-mingw32-gcc
+CC_WIN	= gcc
+#i686-w64-mingw32-gcc
 CC_LIN	= gcc
 CC_MAC	= gcc
 
@@ -142,7 +143,8 @@ SRC_MATH	:=	ft_math.c			\
 				ft_trigonometry.c	\
 
 DIR_STAT	:=	stat/
-SRC_STAT	:=	ft_stat.c			\
+SRC_STAT	:=	ft_stat_int.c		\
+				ft_stat_float.c		\
 
 DIR_RANDOM	:=	random/
 SRC_RANDOM	:=	ft_random.c			\

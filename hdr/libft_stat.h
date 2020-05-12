@@ -138,25 +138,25 @@ typedef struct	s_prob_dens
 t_list_int			ft_stat_merge_ilst(t_list_int *start, t_list_int *append);
 t_list_float		ft_stat_merge_flst(t_list_float *start, t_list_float *append);
 
-t_list_int 			ft_stat_quicksort_i_new(t_list_int const i_lst);
-void				ft_stat_quicksort_i(t_list_int i_lst);
-t_list_float 		ft_stat_quicksort_f_new(t_list_float const f_lst);
-void				ft_stat_quicksort_f(t_list_float f_lst);
+t_list_int 			ft_stat_quicksort_i_new(t_list_int const ilst);
+void				ft_stat_quicksort_i(t_list_int ilst);
+t_list_float 		ft_stat_quicksort_f_new(t_list_float const flst);
+void				ft_stat_quicksort_f(t_list_float flst);
 
 /*
 ** List is supposed to be already in order for this to return the right result.
 */
-t_float				ft_stat_median_i(t_sortedlist_int const i_lst);
-t_float				ft_stat_median_f(t_sortedlist_float const f_lst);
+t_float				ft_stat_median_i(t_sortedlist_int const ilst);
+t_float				ft_stat_median_f(t_sortedlist_float const flst);
 
-t_float				ft_stat_average_i(t_list_int const i_lst);
-t_float				ft_stat_average_f(t_list_float const f_lst);
+t_float				ft_stat_average_i(t_list_int const ilst);
+t_float				ft_stat_average_f(t_list_float const flst);
 
-t_float				ft_stat_variance_i(t_list_int const i_lst);
-t_float				ft_stat_variance_f(t_list_float const f_lst);
+t_float				ft_stat_variance_i(t_list_int const ilst);
+t_float				ft_stat_variance_f(t_list_float const flst);
 
-t_float				ft_stat_stddev_i(t_list_int const i_lst);
-t_float				ft_stat_stddev_f(t_list_float const f_lst);
+t_float				ft_stat_stddev_i(t_list_int const ilst);
+t_float				ft_stat_stddev_f(t_list_float const flst);
 
 t_list_int			ft_stat_new_ilst(t_u32 len);
 t_list_float		ft_stat_new_flst(t_u32 len);
@@ -164,8 +164,8 @@ void				ft_stat_free_ilst(t_list_int *ilst);
 void				ft_stat_free_flst(t_list_float *flst);
 
 /*
-void				ft_stat_decile_i(t_list_int const i_lst);
-void				ft_stat_decile_f(t_list_float const f_lst);
+void				ft_stat_decile_i(t_list_int const ilst);
+void				ft_stat_decile_f(t_list_float const flst);
 
 t_bool				ft_prob_is_valid_i(t_prob_sample_i const i_problst);
 t_bool				ft_prob_is_valid_f(t_prob_sample_f const f_problst);
