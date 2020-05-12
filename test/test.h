@@ -149,4 +149,146 @@ void	print_test_strls(char const *test_name, char const *function, char const **
 
 void	print_test_lst(char const *test_name, char const *function, t_list const *result, char const *expect[], int can_segfault);
 
+
+
+/*
+** ************************************************************************** *|
+**                               Testing Macros                               *|
+** ************************************************************************** *|
+*/
+
+/*
+**	The following macros are used for tests, to avoid boilerplate and code repetition.
+*/
+
+#define _TEST_PERFORM(RESULT, FUNCTION, ...) \
+	segfault = setjmp(restore); \
+	if (!segfault) \
+	{ \
+		timer_clock(&t.start1); \
+		FUNCTION(__VA_ARGS__); \
+		timer_clock(&t.end1); \
+	} \
+	else RESULT = segstr; \
+
+#define _TEST_PERFORM_RESULT_STR(LIB, FUNCTION, ...) \
+	char* result_##LIB = NULL; \
+	segfault = setjmp(restore); \
+	if (!segfault) \
+	{ \
+		timer_clock(&t.start1); \
+		result_##LIB = FUNCTION(__VA_ARGS__); \
+		timer_clock(&t.end1); \
+	} \
+	else result_##LIB = segstr; \
+
+#define _TEST_PERFORM_RESULT(TYPE, CALL, LIB, FUNCTION, ...) \
+	TYPE result_##LIB; \
+	segfault = setjmp(restore); \
+	if (!segfault) \
+	{ \
+		timer_clock(&t.start1); \
+		result_##LIB = FUNCTION(__VA_ARGS__); \
+		timer_clock(&t.end1); \
+	} \
+	else can_segfault |= (1 << CALL); \
+
+#define _TEST_FREE(LIB) \
+	if (result_##LIB && result_##LIB != segstr) free(result_##LIB); \
+
+
+
+#define TEST_PERFORM(RESULT, FUNCTION, ...) \
+	t_timer t = {0}; \
+	_TEST_PERFORM(RESULT, ft_##FUNCTION, ##__VA_ARGS__) \
+
+#define TEST_PERFORM_LIBC(PREFIX, FUNCTION, ...) \
+	t_timer t = {0}; \
+	_TEST_PERFORM(PREFIX##_libft, ft_##FUNCTION, ##__VA_ARGS__) \
+	_TEST_PERFORM(PREFIX##_libc,       FUNCTION, ##__VA_ARGS__) \
+
+#define TEST_PERFORM_LIBC_DEST(FUNCTION, ...) \
+	t_timer t = {0}; \
+	_TEST_PERFORM(dest_libft, ft_##FUNCTION, dest_libft, ##__VA_ARGS__) \
+	_TEST_PERFORM(dest_libc,       FUNCTION, dest_libc,  ##__VA_ARGS__) \
+
+#define TEST_PERFORM_RESULT(FUNCTION, ...) \
+	t_timer t = {0}; \
+	_TEST_PERFORM_RESULT_STR(libft, ft_##FUNCTION, ##__VA_ARGS__) \
+
+#define TEST_PERFORM_RESULT_LIBC(FUNCTION, ...) \
+	t_timer t = {0}; \
+	_TEST_PERFORM_RESULT_STR(libft, ft_##FUNCTION, ##__VA_ARGS__) \
+	_TEST_PERFORM_RESULT_STR(libc,       FUNCTION, ##__VA_ARGS__) \
+
+#define TEST_PERFORM_RESULT_LIBC_DEST(FUNCTION, ...) \
+	t_timer t = {0}; \
+	_TEST_PERFORM_RESULT_STR(libft, ft_##FUNCTION, dest_libft, ##__VA_ARGS__) \
+	_TEST_PERFORM_RESULT_STR(libc,       FUNCTION, dest_libc,  ##__VA_ARGS__) \
+
+#define TEST_PERFORM_RESULT_TYPE(TYPE, FUNCTION, ...) \
+	t_timer t = {0}; \
+	_TEST_PERFORM_RESULT(TYPE, 1, libft, ft_##FUNCTION, ##__VA_ARGS__) \
+
+#define TEST_PERFORM_RESULT_TYPE_LIBC(TYPE, FUNCTION, ...) \
+	t_timer t = {0}; \
+	_TEST_PERFORM_RESULT(TYPE, 1, libft, ft_##FUNCTION, ##__VA_ARGS__) \
+	_TEST_PERFORM_RESULT(TYPE, 2, libc,       FUNCTION, ##__VA_ARGS__) \
+
+#define TEST_PERFORM_RESULT_TYPE_LIBC_DEST(TYPE, FUNCTION, ...) \
+	t_timer t = {0}; \
+	_TEST_PERFORM_RESULT(TYPE, 1, libft, ft_##FUNCTION, dest_libft, ##__VA_ARGS__) \
+	_TEST_PERFORM_RESULT(TYPE, 2, libc,       FUNCTION, dest_libc,  ##__VA_ARGS__) \
+
+
+
+#define TEST_PRINT_ESCAPED(STR) \
+	char* expect = str_to_escape(STR); \
+	printf(" -> {%s}", expect); \
+	if (expect) free(expect); \
+
+
+
+#define TEST_FREE() \
+	_TEST_FREE(libft) \
+
+#define TEST_FREE_LIBC() \
+	_TEST_FREE(libft) \
+	_TEST_FREE(libc) \
+
+/*
+
+#define _TEST_PRINT(RESULT_STR, RESULT, EXPECT) \
+	print_test_str(test_name, RESULT_STR, RESULT, EXPECT, can_segfault); \
+
+
+
+#define TEST_PRINT(RESULT_STR, RESULT) \
+	_TEST_PRINT(RESULT_STR, RESULT, expecting) \
+
+#define TEST_PRINT_LIBC(RESULT_STR, PREFIX) \
+	_TEST_PRINT(RESULT_STR, PREFIX##_libft, PREFIX##_libc) \
+
+#define TEST_PRINT_RESULT(RESULT_STR) \
+	_TEST_PRINT(RESULT_STR, result_libft, expecting) \
+
+#define TEST_PRINT_RESULT_LIBC(RESULT_STR) \
+	_TEST_PRINT(RESULT_STR, result_libft, result_libc) \
+
+
+
+#define DEFINE_TESTFUNC_LIBC_FREE(FUNCTION, ...) \
+{ \
+	t_timer t = {0}; \
+	char* result_libft = NULL; \
+	char* result_libc  = NULL; \
+	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result_libft = ft_##FUNCTION(##__VA_ARGS__); timer_clock(&t.end1); } else result_libft = segstr; \
+	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start2); result_libc  =      FUNCTION(##__VA_ARGS__); timer_clock(&t.end2); } else result_libc  = segstr; \
+	print_test_str(test_name, #FUNCTION" return", result_libft, result_libc, can_segfault); \
+	if (result_libft && result_libft != segstr) free(result_libft); \
+	if (result_libc  && result_libc  != segstr) free(result_libc); \
+	print_timer_result(&t, TRUE); \
+} \
+*/
+
 #endif

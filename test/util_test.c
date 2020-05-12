@@ -212,7 +212,7 @@ void		print_timer_result(t_timer* t, t_s64 compare)
 	else printf("%s]", result1);
 }
 
-char	*s_to_str(t_s64 number)
+char	*int_s_to_str(t_s64 number)
 {
 	char	*result;
 	t_u8	digits[MAXDIGIT_64BIT];
@@ -238,7 +238,7 @@ char	*s_to_str(t_s64 number)
 	return (number <= 0 ? result : result + 1);
 }
 
-char	*u_to_str(t_u64 number)
+char	*int_u_to_str(t_u64 number)
 {
 	char	*result;
 	t_u8	digits[MAXDIGIT_64BIT];
@@ -325,8 +325,8 @@ void	print_test_s8(
 	else error = (result != expect);
 
 	print_test(test_name, function,
-		(result_segfault ? segstr : s_to_str(result)),
-		(expect_segfault ? segstr : s_to_str(expect)),
+		(result_segfault ? segstr : int_s_to_str(result)),
+		(expect_segfault ? segstr : int_s_to_str(expect)),
 		can_segfault,
 		error);
 }
@@ -349,8 +349,8 @@ void	print_test_s16(
 	else error = (result != expect);
 
 	print_test(test_name, function,
-		(result_segfault ? segstr : s_to_str(result)),
-		(expect_segfault ? segstr : s_to_str(expect)),
+		(result_segfault ? segstr : int_s_to_str(result)),
+		(expect_segfault ? segstr : int_s_to_str(expect)),
 		can_segfault,
 		error);
 }
@@ -373,8 +373,8 @@ void	print_test_s32(
 	else error = (result != expect);
 
 	print_test(test_name, function,
-		(result_segfault ? segstr : s_to_str(result)),
-		(expect_segfault ? segstr : s_to_str(expect)),
+		(result_segfault ? segstr : int_s_to_str(result)),
+		(expect_segfault ? segstr : int_s_to_str(expect)),
 		can_segfault,
 		error);
 }
@@ -397,8 +397,8 @@ void	print_test_s64(
 	else error = (result != expect);
 
 	print_test(test_name, function,
-		(result_segfault ? segstr : s_to_str(result)),
-		(expect_segfault ? segstr : s_to_str(expect)),
+		(result_segfault ? segstr : int_s_to_str(result)),
+		(expect_segfault ? segstr : int_s_to_str(expect)),
 		can_segfault,
 		error);
 }
@@ -423,8 +423,8 @@ void	print_test_u8(
 	else error = (result != expect);
 
 	print_test(test_name, function,
-		(result_segfault ? segstr : u_to_str(result)),
-		(expect_segfault ? segstr : u_to_str(expect)),
+		(result_segfault ? segstr : int_u_to_str(result)),
+		(expect_segfault ? segstr : int_u_to_str(expect)),
 		can_segfault,
 		error);
 }
@@ -447,8 +447,8 @@ void	print_test_u16(
 	else error = (result != expect);
 
 	print_test(test_name, function,
-		(result_segfault ? segstr : u_to_str(result)),
-		(expect_segfault ? segstr : u_to_str(expect)),
+		(result_segfault ? segstr : int_u_to_str(result)),
+		(expect_segfault ? segstr : int_u_to_str(expect)),
 		can_segfault,
 		error);
 }
@@ -471,8 +471,8 @@ void	print_test_u32(
 	else error = (result != expect);
 
 	print_test(test_name, function,
-		(result_segfault ? segstr : u_to_str(result)),
-		(expect_segfault ? segstr : u_to_str(expect)),
+		(result_segfault ? segstr : int_u_to_str(result)),
+		(expect_segfault ? segstr : int_u_to_str(expect)),
 		can_segfault,
 		error);
 }
@@ -495,8 +495,8 @@ void	print_test_u64(
 	else error = (result != expect);
 
 	print_test(test_name, function,
-		(result_segfault ? segstr : u_to_str(result)),
-		(expect_segfault ? segstr : u_to_str(expect)),
+		(result_segfault ? segstr : int_u_to_str(result)),
+		(expect_segfault ? segstr : int_u_to_str(expect)),
 		can_segfault,
 		error);
 }
@@ -521,8 +521,8 @@ void	print_test_size(
 	else error = (result != expect);
 
 	print_test(test_name, function,
-		(result_segfault ? segstr : u_to_str(result)),
-		(expect_segfault ? segstr : u_to_str(expect)),
+		(result_segfault ? segstr : int_u_to_str(result)),
+		(expect_segfault ? segstr : int_u_to_str(expect)),
 		can_segfault,
 		error);
 }
@@ -547,8 +547,8 @@ void	print_test_bool(
 	else error = (result != expect);
 
 	print_test(test_name, function,
-		(result_segfault ? segstr : u_to_str(result)),
-		(expect_segfault ? segstr : u_to_str(expect)),
+		(result_segfault ? segstr : int_u_to_str(result)),
+		(expect_segfault ? segstr : int_u_to_str(expect)),
 		can_segfault,
 		error);
 }

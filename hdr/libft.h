@@ -50,7 +50,7 @@
 **	If 1, then all NULL pointer dereferences in libft functions will be avoided.
 **	Otherwise if 0, then libft functions will always segfault when given NULLs.
 */
-#define HANDLE_NULLPOINTERS		1
+#define HANDLE_NULLPOINTERS		0
 
 
 
@@ -80,6 +80,15 @@
 #endif
 #define ERROR	1
 
+/*
+**	NB: The following macros listed in this comment exist on any platform
+**	Here is the list of all the predefined ANSI C macros
+**	1	__DATE__	The current date as a string literal in "MMM DD YYYY" format.
+**	2	__TIME__	The current time as a string literal in "HH:MM:SS" format.
+**	3	__FILE__	This contains the current filename as a string literal.
+**	4	__LINE__	This contains the current line number as a decimal constant.
+**	5	__STDC__	Defined as 1 when the compiler complies with the ANSI standard.
+*/
 
 
 /*

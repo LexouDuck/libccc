@@ -4,16 +4,25 @@
 
 
 /*
+** ************************************************************************** *|
+**                        Convert to String Operations                        *|
+** ************************************************************************** *|
+*/
+
+/*
 **	char*	ft_s8_to_str(t_s8 n);
 */
 void	print_test_s8_to_str(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_s8 number)
 {
+	TEST_PERFORM_RESULT(s8_to_str, number)
+/*
 	t_timer t = {0};
 	char* result;
 	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = ft_s8_to_str(number); timer_clock(&t.end1); } else result = segstr;
-	print_test_str(test_name, "_s8_to_str", result, expecting, can_segfault);
+*/
+	print_test_str(test_name, "_s8_to_str", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	printf(" -> {%s}", expecting);
 }
@@ -45,10 +54,8 @@ void	print_test_s16_to_str(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_s16 number)
 {
-	t_timer t = {0};
-	char* result;
-	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = ft_s16_to_str(number); timer_clock(&t.end1); } else result = segstr;
-	print_test_str(test_name, "_s16_to_str", result, expecting, can_segfault);
+	TEST_PERFORM_RESULT(s16_to_str, number)
+	print_test_str(test_name, "_s16_to_str", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	printf(" -> {%s}", expecting);
 }
@@ -82,10 +89,8 @@ void	print_test_s32_to_str(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_s32 number)
 {
-	t_timer t = {0};
-	char* result;
-	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = ft_s32_to_str(number); timer_clock(&t.end1); } else result = segstr;
-	print_test_str(test_name, "_s32_to_str", result, expecting, can_segfault);
+	TEST_PERFORM_RESULT(s32_to_str, number)
+	print_test_str(test_name, "_s32_to_str", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	printf(" -> {%s}", expecting);
 }
@@ -119,10 +124,8 @@ void	print_test_s64_to_str(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_s64 number)
 {
-	t_timer t = {0};
-	char* result;
-	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = ft_s64_to_str(number); timer_clock(&t.end1); } else result = segstr;
-	print_test_str(test_name, "_s64_to_str", result, expecting, can_segfault);
+	TEST_PERFORM_RESULT(s64_to_str, number)
+	print_test_str(test_name, "_s64_to_str", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	printf(" -> {%s}", expecting);
 }
@@ -160,10 +163,8 @@ void	print_test_u8_to_str(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_u8 number)
 {
-	t_timer t = {0};
-	char* result;
-	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = ft_u8_to_str(number); timer_clock(&t.end1); } else result = segstr;
-	print_test_str(test_name, "_u8_to_str", result, expecting, can_segfault);
+	TEST_PERFORM_RESULT(u8_to_str, number)
+	print_test_str(test_name, "_u8_to_str", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	printf(" -> {%s}", expecting);
 }
@@ -193,10 +194,8 @@ void	print_test_u16_to_str(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_u16 number)
 {
-	t_timer t = {0};
-	char* result;
-	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = ft_u16_to_str(number); timer_clock(&t.end1); } else result = segstr;
-	print_test_str(test_name, "_u16_to_str", result, expecting, can_segfault);
+	TEST_PERFORM_RESULT(u16_to_str, number)
+	print_test_str(test_name, "_u16_to_str", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	printf(" -> {%s}", expecting);
 }
@@ -227,10 +226,8 @@ void	print_test_u32_to_str(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_u32 number)
 {
-	t_timer t = {0};
-	char* result;
-	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = ft_u32_to_str(number); timer_clock(&t.end1); } else result = segstr;
-	print_test_str(test_name, "_u32_to_str", result, expecting, can_segfault);
+	TEST_PERFORM_RESULT(u32_to_str, number)
+	print_test_str(test_name, "_u32_to_str", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	printf(" -> {%s}", expecting);
 }
@@ -263,10 +260,8 @@ void	print_test_u64_to_str(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_u64 number)
 {
-	t_timer t = {0};
-	char* result;
-	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = ft_u64_to_str(number); timer_clock(&t.end1); } else result = segstr;
-	print_test_str(test_name, "_u64_to_str", result, expecting, can_segfault);
+	TEST_PERFORM_RESULT(u64_to_str, number)
+	print_test_str(test_name, "_u64_to_str", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	printf(" -> {%s}", expecting);
 }
@@ -300,10 +295,8 @@ void	print_test_f32_to_str(char const* test_name, int can_segfault,
 		t_f32 number,
 		t_u8 precision)
 {
-	t_timer t = {0};
-	char* result;
-	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = ft_f32_to_str(number, precision); timer_clock(&t.end1); } else result = segstr;
-	print_test_str(test_name, "_f32_to_str", result, expecting, can_segfault);
+	TEST_PERFORM_RESULT(f32_to_str, number, precision)
+	print_test_str(test_name, "_f32_to_str", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	printf(" -> {%s}", expecting);
 }
@@ -362,10 +355,8 @@ void	print_test_f64_to_str(char const* test_name, int can_segfault,
 		t_f32 number,
 		t_u8 precision)
 {
-	t_timer t = {0};
-	char* result;
-	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = ft_f64_to_str(number, precision); timer_clock(&t.end1); } else result = segstr;
-	print_test_str(test_name, "_f64_to_str", result, expecting, can_segfault);
+	TEST_PERFORM_RESULT(f64_to_str, number, precision)
+	print_test_str(test_name, "_f64_to_str", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	printf(" -> {%s}", expecting);
 }
@@ -417,20 +408,90 @@ printf("\n");
 
 
 /*
+**	char*	ft_bool_to_str(t_bool value, t_bool uppercase);
+*/
+void	print_test_bool_to_str(char const* test_name, int can_segfault,
+		char const* expecting,
+		t_bool value,
+		t_bool uppercase)
+{
+	TEST_PERFORM_RESULT(bool_to_str, value, uppercase)
+	print_test_str(test_name, "_bool_to_str", result_libft, expecting, can_segfault);
+	print_timer_result(&t, FALSE);
+	printf(" -> {%s}", expecting);
+}
+void	test_bool_to_str(void)
+{
+printf("\n");
+/*	| TEST FUNCTION       | TEST NAME                   |CAN SEGV|EXPECTING| TEST ARGS */
+	print_test_bool_to_str("bool_to_str               ",	FALSE,   "TRUE",      1, TRUE);
+	print_test_bool_to_str("bool_to_str (n = min)     ",	FALSE,  "FALSE",      0, TRUE);
+	print_test_bool_to_str("bool_to_str               ",	FALSE,   "TRUE",     42, TRUE);
+	print_test_bool_to_str("bool_to_str (n = max)     ",	FALSE,   "true",    255, FALSE);
+	print_test_bool_to_str("bool_to_str (n = min)     ",	FALSE,  "false",      0, FALSE);
+#ifdef __TEST_OVERFLOW
+	print_test_bool_to_str("bool_to_str (n > max)     ",	FALSE,   "TRUE",    256, TRUE);
+	print_test_bool_to_str("bool_to_str (n < min)     ",	FALSE,  "FALSE",     -1, TRUE);
+	print_test_bool_to_str("bool_to_str (n > maxdigit)",	FALSE,   "TRUE", 999999, TRUE);
+	print_test_bool_to_str("bool_to_str (n < maxdigit)",	FALSE,  "-TRUE",-999999, TRUE);
+#endif
+}
+
+
+
+/*
+**	char*	ft_size_to_str(size_t n);
+*/
+void	print_test_size_to_str(char const* test_name, int can_segfault,
+		char const* expecting,
+		size_t number)
+{
+	TEST_PERFORM_RESULT(size_to_str, number)
+	print_test_str(test_name, "_size_to_str", result_libft, expecting, can_segfault);
+	print_timer_result(&t, FALSE);
+	printf(" -> {%s}", expecting);
+}
+void	test_size_to_str(void)
+{
+printf("\n");
+/*	| TEST FUNCTION       | TEST NAME                    |CAN SEGV| EXPECTING              | TEST ARGS */
+	print_test_size_to_str("size_to_str               ",	FALSE,                      "1", 1                     );
+	print_test_size_to_str("size_to_str               ",	FALSE,                     "42", 42                    );
+	print_test_size_to_str("size_to_str               ",	FALSE,                    "777", 777                   );
+	print_test_size_to_str("size_to_str               ",	FALSE,                  "10000", 10000                 );
+	print_test_size_to_str("size_to_str               ",	FALSE,              "123456789", 123456789             );
+	print_test_size_to_str("size_to_str               ",	FALSE,           "999999999999", 999999999999          );
+	print_test_size_to_str("size_to_str (n = max)     ",	FALSE,   "18446744073709551615", 18446744073709551615UL);
+	print_test_size_to_str("size_to_str (n = min)     ",	FALSE,                      "0", 0                     );
+#ifdef __TEST_OVERFLOW
+	print_test_size_to_str("size_to_str (n > max)     ",	FALSE,   "18446744073709551616", 18446744073709551616UL);
+	print_test_size_to_str("size_to_str (n < min)     ",	FALSE,                     "-1", -1                    );
+	print_test_size_to_str("size_to_str (n > maxdigit)",	FALSE,  "999999999999999999999", 999999999999999999999UL);
+	print_test_size_to_str("size_to_str (n < maxdigit)",	FALSE, "-999999999999999999999",-999999999999999999999UL);
+#endif
+}
+
+
+
+/*
+** ************************************************************************** *|
+**                        Convert to Number Operations                        *|
+** ************************************************************************** *|
+*/
+
+
+
+/*
 **	t_s8	ft_str_to_s8(char const *str);
 */
 void	print_test_str_to_s8(char const* test_name, int can_segfault,
 		t_s8 expecting,
-		char const* number)
+		char const* str)
 {
-	t_timer t = {0};
-	t_s8 result;
-	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = ft_str_to_s8(number); timer_clock(&t.end1); } else can_segfault |= (1 << 1);
-	print_test_s8(test_name, "_str_to_s8", result, expecting, can_segfault);
+	TEST_PERFORM_RESULT_TYPE(t_s8, str_to_s8, str)
+	print_test_s8(test_name, "_str_to_s8", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	char* expect = str_to_escape(number);
-	printf(" -> {%s}", expect);
-	if (expect) free(expect);
+	TEST_PRINT_ESCAPED(str)
 }
 void test_str_to_s8()
 {
@@ -474,16 +535,12 @@ printf("\n");
 */
 void	print_test_str_to_s16(char const* test_name, int can_segfault,
 		t_s16 expecting,
-		char const* number)
+		char const* str)
 {
-	t_timer t = {0};
-	t_s16 result;
-	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = ft_str_to_s16(number); timer_clock(&t.end1); } else can_segfault |= (1 << 1);
-	print_test_s16(test_name, "_str_to_s16", result, expecting, can_segfault);
+	TEST_PERFORM_RESULT_TYPE(t_s16, str_to_s16, str)
+	print_test_s16(test_name, "_str_to_s16", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	char* expect = str_to_escape(number);
-	printf(" -> {%s}", expect);
-	if (expect) free(expect);
+	TEST_PRINT_ESCAPED(str)
 }
 void test_str_to_s16()
 {
@@ -550,16 +607,12 @@ printf("\n");
 */
 void	print_test_str_to_s32(char const* test_name, int can_segfault,
 		t_s32 expecting,
-		char const* number)
+		char const* str)
 {
-	t_timer t = {0};
-	t_s32 result;
-	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = ft_str_to_s32(number); timer_clock(&t.end1); } else can_segfault |= (1 << 1);
-	print_test_s32(test_name, "_str_to_s32", result, expecting, can_segfault);
+	TEST_PERFORM_RESULT_TYPE(t_s32, str_to_s32, str)
+	print_test_s32(test_name, "_str_to_s32", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	char* expect = str_to_escape(number);
-	printf(" -> {%s}", expect);
-	if (expect) free(expect);
+	TEST_PRINT_ESCAPED(str)
 }
 void test_str_to_s32()
 {
@@ -646,16 +699,12 @@ printf("\n");
 */
 void	print_test_str_to_s64(char const* test_name, int can_segfault,
 		t_s64 expecting,
-		char const* number)
+		char const* str)
 {
-	t_timer t = {0};
-	t_s64 result;
-	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = ft_str_to_s64(number); timer_clock(&t.end1); } else can_segfault |= (1 << 1);
-	print_test_s64(test_name, "_str_to_s64", result, expecting, can_segfault);
+	TEST_PERFORM_RESULT_TYPE(t_s64, str_to_s64, str)
+	print_test_s64(test_name, "_str_to_s64", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	char* expect = str_to_escape(number);
-	printf(" -> {%s}", expect);
-	if (expect) free(expect);
+	TEST_PRINT_ESCAPED(str)
 }
 void test_str_to_s64()
 {
@@ -752,16 +801,12 @@ printf("\n");
 */
 void	print_test_str_to_u8(char const* test_name, int can_segfault,
 		t_u8 expecting,
-		char const* number)
+		char const* str)
 {
-	t_timer t = {0};
-	t_u8 result;
-	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = ft_str_to_u8(number); timer_clock(&t.end1); } else can_segfault |= (1 << 1);
-	print_test_u8(test_name, "_str_to_u8", result, expecting, can_segfault);
+	TEST_PERFORM_RESULT_TYPE(t_u8, str_to_u8, str)
+	print_test_u8(test_name, "_str_to_u8", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	char* expect = str_to_escape(number);
-	printf(" -> {%s}", expect);
-	if (expect) free(expect);
+	TEST_PRINT_ESCAPED(str)
 }
 void test_str_to_u8()
 {
@@ -804,16 +849,12 @@ printf("\n");
 */
 void	print_test_str_to_u16(char const* test_name, int can_segfault,
 		t_u16 expecting,
-		char const* number)
+		char const* str)
 {
-	t_timer t = {0};
-	t_u16 result;
-	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = ft_str_to_u16(number); timer_clock(&t.end1); } else can_segfault |= (1 << 1);
-	print_test_u16(test_name, "_str_to_u16", result, expecting, can_segfault);
+	TEST_PERFORM_RESULT_TYPE(t_u16, str_to_u16, str)
+	print_test_u16(test_name, "_str_to_u16", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	char* expect = str_to_escape(number);
-	printf(" -> {%s}", expect);
-	if (expect) free(expect);
+	TEST_PRINT_ESCAPED(str)
 }
 void test_str_to_u16()
 {
@@ -879,16 +920,12 @@ printf("\n");
 */
 void	print_test_str_to_u32(char const* test_name, int can_segfault,
 		t_u32 expecting,
-		char const* number)
+		char const* str)
 {
-	t_timer t = {0};
-	t_u32 result;
-	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = ft_str_to_u32(number); timer_clock(&t.end1); } else can_segfault |= (1 << 1);
-	print_test_u32(test_name, "_str_to_u32", result, expecting, can_segfault);
+	TEST_PERFORM_RESULT_TYPE(t_u32, str_to_u32, str)
+	print_test_u32(test_name, "_str_to_u32", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	char* expect = str_to_escape(number);
-	printf(" -> {%s}", expect);
-	if (expect) free(expect);
+	TEST_PRINT_ESCAPED(str)
 }
 void test_str_to_u32()
 {
@@ -974,16 +1011,12 @@ printf("\n");
 */
 void	print_test_str_to_u64(char const* test_name, int can_segfault,
 		t_u64 expecting,
-		char const* number)
+		char const* str)
 {
-	t_timer t = {0};
-	t_u64 result;
-	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = ft_str_to_u64(number); timer_clock(&t.end1); } else can_segfault |= (1 << 1);
-	print_test_u64(test_name, "_str_to_u64", result, expecting, can_segfault);
+	TEST_PERFORM_RESULT_TYPE(t_u64, str_to_u64, str)
+	print_test_u64(test_name, "_str_to_u64", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	char* expect = str_to_escape(number);
-	printf(" -> {%s}", expect);
-	if (expect) free(expect);
+	TEST_PRINT_ESCAPED(str)
 }
 void test_str_to_u64()
 {
@@ -1080,11 +1113,12 @@ printf("\n");
 */
 void	print_test_str_to_f32(char const* test_name, int can_segfault,
 		t_f32 expecting,
-		char const* number)
+		char const* str)
 {
-	t_timer t = {0};
-//	TODO
+	TEST_PERFORM_RESULT_TYPE(t_f32, str_to_f32, str)
+	print_test_f32(test_name, "_str_to_f32", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
+	TEST_PRINT_ESCAPED(str)
 }
 void	test_str_to_f32(void)
 {
@@ -1100,16 +1134,12 @@ printf("\n");
 */
 void	print_test_str_to_f64(char const* test_name, int can_segfault,
 		t_f64 expecting,
-		char const* number)
+		char const* str)
 {
-	t_timer t = {0};
-	t_f64 result;
-	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = ft_str_to_f64(number); timer_clock(&t.end1); } else can_segfault |= (1 << 1);
-	print_test_f64(test_name, "_str_to_f64", result, expecting, can_segfault);
+	TEST_PERFORM_RESULT_TYPE(t_f64, str_to_f64, str)
+	print_test_f64(test_name, "_str_to_f64", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	char* expect = str_to_escape(number);
-	printf(" -> {%s}", expect);
-	if (expect) free(expect);
+	TEST_PRINT_ESCAPED(str)
 }
 void test_str_to_f64()
 {
@@ -1250,83 +1280,14 @@ printf("\n");
 
 
 /*
-**	char*	ft_bool_to_str(t_bool value);
-*/
-void	print_test_bool_to_str(char const* test_name, int can_segfault,
-		char const* expecting,
-		t_bool number,
-		t_bool uppercase)
-{
-	t_timer t = {0};
-	char* result;
-	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = ft_bool_to_str(number, uppercase); timer_clock(&t.end1); } else result = segstr;
-	print_test_str(test_name, "_bool_to_str", result, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
-	printf(" -> {%s}", expecting);
-}
-void	test_bool_to_str(void)
-{
-printf("\n");
-/*	| TEST FUNCTION       | TEST NAME                   |CAN SEGV|EXPECTING| TEST ARGS */
-	print_test_bool_to_str("bool_to_str               ",	FALSE,   "TRUE",      1, TRUE);
-	print_test_bool_to_str("bool_to_str (n = min)     ",	FALSE,  "FALSE",      0, TRUE);
-	print_test_bool_to_str("bool_to_str               ",	FALSE,   "TRUE",     42, TRUE);
-	print_test_bool_to_str("bool_to_str (n = max)     ",	FALSE,   "true",    255, FALSE);
-	print_test_bool_to_str("bool_to_str (n = min)     ",	FALSE,  "false",      0, FALSE);
-#ifdef __TEST_OVERFLOW
-	print_test_bool_to_str("bool_to_str (n > max)     ",	FALSE,   "TRUE",    256, TRUE);
-	print_test_bool_to_str("bool_to_str (n < min)     ",	FALSE,  "FALSE",     -1, TRUE);
-	print_test_bool_to_str("bool_to_str (n > maxdigit)",	FALSE,   "TRUE", 999999, TRUE);
-	print_test_bool_to_str("bool_to_str (n < maxdigit)",	FALSE,  "-TRUE",-999999, TRUE);
-#endif
-}
-
-
-
-/*
-**	char*	ft_size_to_str(size_t n);
-*/
-void	print_test_size_to_str(char const* test_name, int can_segfault,
-		char const* expecting,
-		size_t number)
-{
-	t_timer t = {0};
-	char* result;
-	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = ft_size_to_str(number); timer_clock(&t.end1); } else result = segstr;
-	print_test_str(test_name, "_size_to_str", result, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
-	printf(" -> {%s}", expecting);
-}
-void	test_size_to_str(void)
-{
-printf("\n");
-/*	| TEST FUNCTION       | TEST NAME                    |CAN SEGV| EXPECTING              | TEST ARGS */
-	print_test_size_to_str("size_to_str               ",	FALSE,                      "1", 1                     );
-	print_test_size_to_str("size_to_str               ",	FALSE,                     "42", 42                    );
-	print_test_size_to_str("size_to_str               ",	FALSE,                    "777", 777                   );
-	print_test_size_to_str("size_to_str               ",	FALSE,                  "10000", 10000                 );
-	print_test_size_to_str("size_to_str               ",	FALSE,              "123456789", 123456789             );
-	print_test_size_to_str("size_to_str               ",	FALSE,           "999999999999", 999999999999          );
-	print_test_size_to_str("size_to_str (n = max)     ",	FALSE,   "18446744073709551615", 18446744073709551615UL);
-	print_test_size_to_str("size_to_str (n = min)     ",	FALSE,                      "0", 0                     );
-#ifdef __TEST_OVERFLOW
-	print_test_size_to_str("size_to_str (n > max)     ",	FALSE,   "18446744073709551616", 18446744073709551616UL);
-	print_test_size_to_str("size_to_str (n < min)     ",	FALSE,                     "-1", -1                    );
-	print_test_size_to_str("size_to_str (n > maxdigit)",	FALSE,  "999999999999999999999", 999999999999999999999UL);
-	print_test_size_to_str("size_to_str (n < maxdigit)",	FALSE, "-999999999999999999999",-999999999999999999999UL);
-#endif
-}
-
-
-
-/*
 **	t_bool	ft_str_to_bool(char const *str);
 */
 void	print_test_str_to_bool(char const* test_name, int can_segfault,
-		char const* expecting)
+		char const* expecting,
+		char const* str)
 {
-	t_timer t = {0};
-//	TODO
+	TEST_PERFORM_RESULT_TYPE(t_bool, str_to_bool, str)
+	// TODO implement
 	print_timer_result(&t, FALSE);
 }
 void	test_str_to_bool(void)
@@ -1343,14 +1304,12 @@ printf("\n");
 */
 void	print_test_str_to_size(char const* test_name, int can_segfault,
 		size_t expecting,
-		char const* number)
+		char const* str)
 {
-	t_timer t = {0};
-	t_u64 result;
-	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = ft_str_to_size(number); timer_clock(&t.end1); } else can_segfault |= (1 << 1);
-	print_test_size(test_name, "_str_to_size", result, expecting, can_segfault);
+	TEST_PERFORM_RESULT_TYPE(size_t, str_to_size, str)
+	print_test_size(test_name, "_str_to_size", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	char* expect = str_to_escape(number);
+	char* expect = str_to_escape(str);
 	printf(" -> {%s}", expect);
 	if (expect) free(expect);
 }
@@ -1445,16 +1404,22 @@ printf("\n");
 
 
 /*
+** ************************************************************************** *|
+**                      Convert to Base String Operations                     *|
+** ************************************************************************** *|
+*/
+
+
+
+/*
 **	char*	ft_u8_to_hex(t_s8 n);
 */
 void	print_test_u8_to_hex(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_s32 number)
 {
-	t_timer t = {0};
-	char* result;
-	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = ft_u8_to_hex(number); timer_clock(&t.end1); } else result = segstr;
-	print_test_str(test_name, "_u8_to_hex", result, expecting, can_segfault);
+	TEST_PERFORM_RESULT(u8_to_hex, number)
+	print_test_str(test_name, "_u8_to_hex", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	printf(" -> {%s}", expecting);
 }
@@ -1484,10 +1449,8 @@ void	print_test_u16_to_hex(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_s32 number)
 {
-	t_timer t = {0};
-	char* result;
-	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = ft_u16_to_hex(number); timer_clock(&t.end1); } else result = segstr;
-	print_test_str(test_name, "_u16_to_hex", result, expecting, can_segfault);
+	TEST_PERFORM_RESULT(u16_to_hex, number)
+	print_test_str(test_name, "_u16_to_hex", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	printf(" -> {%s}", expecting);
 }
@@ -1518,10 +1481,8 @@ void	print_test_u32_to_hex(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_s32 number)
 {
-	t_timer t = {0};
-	char* result;
-	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = ft_u32_to_hex(number); timer_clock(&t.end1); } else result = segstr;
-	print_test_str(test_name, "_u32_to_hex", result, expecting, can_segfault);
+	TEST_PERFORM_RESULT(u32_to_hex, number)
+	print_test_str(test_name, "_u32_to_hex", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	printf(" -> {%s}", expecting);
 }
@@ -1554,10 +1515,8 @@ void	print_test_u64_to_hex(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_s32 number)
 {
-	t_timer t = {0};
-	char* result;
-	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = ft_u64_to_hex(number); timer_clock(&t.end1); } else result = segstr;
-	print_test_str(test_name, "_u64_to_hex", result, expecting, can_segfault);
+	TEST_PERFORM_RESULT(u64_to_hex, number)
+	print_test_str(test_name, "_u64_to_hex", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	printf(" -> {%s}", expecting);
 }
@@ -1588,12 +1547,10 @@ printf("\n");
 */
 void	print_test_hex_to_u8(char const* test_name, int can_segfault,
 		t_u8 expecting,
-		char const* number)
+		char const* str)
 {
-	t_timer t = {0};
-	t_u8 result;
-	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = ft_hex_to_u8(number); timer_clock(&t.end1); } else can_segfault |= (1 << 1);
-	print_test_u8(test_name, "_hex_to_u8", result, expecting, can_segfault);
+	TEST_PERFORM_RESULT_TYPE(t_u8, hex_to_u8, str)
+	print_test_u8(test_name, "_hex_to_u8", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 }
 void	test_hex_to_u8(void)
@@ -1610,12 +1567,10 @@ printf("\n");
 */
 void	print_test_hex_to_u16(char const* test_name, int can_segfault,
 		t_u16 expecting,
-		char const* number)
+		char const* str)
 {
-	t_timer t = {0};
-	t_u16 result;
-	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = ft_hex_to_u16(number); timer_clock(&t.end1); } else can_segfault |= (1 << 1);
-	print_test_u16(test_name, "_hex_to_u16", result, expecting, can_segfault);
+	TEST_PERFORM_RESULT_TYPE(t_u16, hex_to_u16, str)
+	print_test_u16(test_name, "_hex_to_u16", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 }
 void	test_hex_to_u16(void)
@@ -1632,12 +1587,10 @@ printf("\n");
 */
 void	print_test_hex_to_u32(char const* test_name, int can_segfault,
 		t_u32 expecting,
-		char const* number)
+		char const* str)
 {
-	t_timer t = {0};
-	t_u32 result;
-	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = ft_hex_to_u32(number); timer_clock(&t.end1); } else can_segfault |= (1 << 1);
-	print_test_u32(test_name, "_hex_to_u32", result, expecting, can_segfault);
+	TEST_PERFORM_RESULT_TYPE(t_u32, hex_to_u32, str)
+	print_test_u32(test_name, "_hex_to_u32", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 }
 void	test_hex_to_u32(void)
@@ -1654,12 +1607,10 @@ printf("\n");
 */
 void	print_test_hex_to_u64(char const* test_name, int can_segfault,
 		t_u64 expecting,
-		char const* number)
+		char const* str)
 {
-	t_timer t = {0};
-	t_u64 result;
-	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = ft_hex_to_u64(number); timer_clock(&t.end1); } else can_segfault |= (1 << 1);
-	print_test_u64(test_name, "_hex_to_u64", result, expecting, can_segfault);
+	TEST_PERFORM_RESULT_TYPE(t_u64, hex_to_u64, str)
+	print_test_u64(test_name, "_hex_to_u64", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 }
 void	test_hex_to_u64(void)
@@ -1679,10 +1630,8 @@ void	print_test_s8_to_strbase(char const* test_name, int can_segfault,
 		t_s8 number,
 		char const* base)
 {
-	t_timer t = {0};
-	char* result;
-	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = ft_s8_to_strbase(number, base); timer_clock(&t.end1); } else result = segstr;
-	print_test_str(test_name, "_s8_to_strbase", result, expecting, can_segfault);
+	TEST_PERFORM_RESULT(s8_to_strbase, number, base)
+	print_test_str(test_name, "_s8_to_strbase", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	printf(" -> {base:%s, %s}", base, expecting);
 }
@@ -1733,10 +1682,8 @@ void	print_test_s16_to_strbase(char const* test_name, int can_segfault,
 		t_s16 number,
 		char const* base)
 {
-	t_timer t = {0};
-	char* result;
-	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = ft_s16_to_strbase(number, base); timer_clock(&t.end1); } else result = segstr;
-	print_test_str(test_name, "_s16_to_strbase", result, expecting, can_segfault);
+	TEST_PERFORM_RESULT(s16_to_strbase, number, base)
+	print_test_str(test_name, "_s16_to_strbase", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	printf(" -> {base:%s, %s}", base, expecting);
 }
@@ -1791,10 +1738,8 @@ void	print_test_s32_to_strbase(char const* test_name, int can_segfault,
 		t_s32 number,
 		char const* base)
 {
-	t_timer t = {0};
-	char* result;
-	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = ft_s32_to_strbase(number, base); timer_clock(&t.end1); } else result = segstr;
-	print_test_str(test_name, "_s32_to_strbase", result, expecting, can_segfault);
+	TEST_PERFORM_RESULT(s32_to_strbase, number, base)
+	print_test_str(test_name, "_s32_to_strbase", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	printf(" -> {base:%s, %s}", base, expecting);
 }
@@ -1850,10 +1795,8 @@ void	print_test_s64_to_strbase(char const* test_name, int can_segfault,
 		t_s64 number,
 		char const* base)
 {
-	t_timer t = {0};
-	char* result;
-	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = ft_s64_to_strbase(number, base); timer_clock(&t.end1); } else result = segstr;
-	print_test_str(test_name, "_s64_to_strbase", result, expecting, can_segfault);
+	TEST_PERFORM_RESULT(s64_to_strbase, number, base)
+	print_test_str(test_name, "_s64_to_strbase", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	printf(" -> {base:%s, %s}", base, expecting);
 }
@@ -1911,10 +1854,8 @@ void	print_test_u8_to_strbase(char const* test_name, int can_segfault,
 		t_u8 number,
 		char const* base)
 {
-	t_timer t = {0};
-	char* result;
-	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = ft_u8_to_strbase(number, base); timer_clock(&t.end1); } else result = segstr;
-	print_test_str(test_name, "_u8_to_strbase", result, expecting, can_segfault);
+	TEST_PERFORM_RESULT(u8_to_strbase, number, base)
+	print_test_str(test_name, "_u8_to_strbase", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	printf(" -> {base:%s, %s}", base, expecting);
 }
@@ -1964,10 +1905,8 @@ void	print_test_u16_to_strbase(char const* test_name, int can_segfault,
 		t_u16 number,
 		char const* base)
 {
-	t_timer t = {0};
-	char* result;
-	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = ft_u16_to_strbase(number, base); timer_clock(&t.end1); } else result = segstr;
-	print_test_str(test_name, "_u16_to_strbase", result, expecting, can_segfault);
+	TEST_PERFORM_RESULT(u16_to_strbase, number, base)
+	print_test_str(test_name, "_u16_to_strbase", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	printf(" -> {base:%s, %s}", base, expecting);
 }
@@ -2021,10 +1960,8 @@ void	print_test_u32_to_strbase(char const* test_name, int can_segfault,
 		t_u32 number,
 		char const* base)
 {
-	t_timer t = {0};
-	char* result;
-	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = ft_u32_to_strbase(number, base); timer_clock(&t.end1); } else result = segstr;
-	print_test_str(test_name, "_u32_to_strbase", result, expecting, can_segfault);
+	TEST_PERFORM_RESULT(u32_to_strbase, number, base)
+	print_test_str(test_name, "_u32_to_strbase", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	printf(" -> {base:%s, %s}", base, expecting);
 }
@@ -2079,10 +2016,8 @@ void	print_test_u64_to_strbase(char const* test_name, int can_segfault,
 		t_u64 number,
 		char const* base)
 {
-	t_timer t = {0};
-	char* result;
-	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = ft_u64_to_strbase(number, base); timer_clock(&t.end1); } else result = segstr;
-	print_test_str(test_name, "_u64_to_strbase", result, expecting, can_segfault);
+	TEST_PERFORM_RESULT(u64_to_strbase, number, base)
+	print_test_str(test_name, "_u64_to_strbase", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	printf(" -> {base:%s, %s}", base, expecting);
 }

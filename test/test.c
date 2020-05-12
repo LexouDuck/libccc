@@ -43,12 +43,16 @@ void segfault_handler(int sig, siginfo_t *info, void *ptr)
     }
 }
 
+
+
 void	print_nonstd(void)
 {
 printf("\n");
-	printf("\n==> "C_BLUE"The following tests are for the functions which are not present in the standard C library."C_RESET);
-	printf("\n==> "C_BLUE"You may decide to protect these functions against segfaults or not, just remain coherent."C_RESET);
+	printf("\n==>\t"C_BLUE"The following tests are for the functions of this category\n"
+		"\twhich are not present in the standard C library."C_RESET);
 }
+
+
 
 int		main(int argc, char **argv)
 {
