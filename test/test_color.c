@@ -1,4 +1,6 @@
 
+#include "libft_color.h"
+
 #include "test.h"
 
 
@@ -33,7 +35,7 @@ printf("\n");
 
 
 
-
+// TODO
 
 
 

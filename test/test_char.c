@@ -1,5 +1,11 @@
 
+#include <ctype.h>
+
+#include "libft_char.h"
+
 #include "test.h"
+
+
 
 int		test_char(void)
 {

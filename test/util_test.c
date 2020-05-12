@@ -4,6 +4,10 @@
 ** ************************************************************************** *|
 */
 
+#include <ctype.h>
+#include <time.h>
+#include <math.h>
+
 #include "test.h"
 
 /*
@@ -70,7 +74,7 @@ char	*str_padleft(char const *str, char c, size_t length)
 
 	if (!(result = (char *)malloc(length + 1)))
 		return (NULL);
-	offset = length - ft_strlen(str);
+	offset = length - strlen(str);
 	i = 0;
 	while (i < (size_t)offset)
 	{
@@ -215,7 +219,7 @@ void		print_timer_result(t_timer* t, t_s64 compare)
 char	*int_s_to_str(t_s64 number)
 {
 	char	*result;
-	t_u8	digits[MAXDIGIT_64BIT];
+	t_u8	digits[20];
 	t_u8	i;
 	t_u64	n;
 
@@ -241,7 +245,7 @@ char	*int_s_to_str(t_s64 number)
 char	*int_u_to_str(t_u64 number)
 {
 	char	*result;
-	t_u8	digits[MAXDIGIT_64BIT];
+	t_u8	digits[20];
 	t_u8	i;
 	t_u64	n;
 

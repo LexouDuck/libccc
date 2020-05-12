@@ -1,4 +1,6 @@
 
+#include "libft_vlq.h"
+
 #include "test.h"
 
 int		test_vlq(void)

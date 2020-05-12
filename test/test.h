@@ -8,27 +8,16 @@
 ** ************************************************************************** *|
 */
 
-#include <stdlib.h>
+
 #include <string.h>
-#include <ctype.h>
 #include <stdio.h>
 #include <setjmp.h>
 #include <signal.h>
-#include <time.h>
-#include <math.h>
 
 #include "libft.h"
-#include "libft_memory.h"
-#include "libft_char.h"
-#include "libft_string.h"
-#include "libft_stringarray.h"
-#include "libft_convert.h"
 #include "libft_list.h"
-#include "libft_math.h"
-#include "libft_stat.h"
-#include "libft_random.h"
-#include "libft_vlq.h"
-#include "libft_io.h"
+
+
 
 /*
 ** ************************************************************************** *|
@@ -38,14 +27,30 @@
 
 /*
 ** This define makes the program perform overflowing number tests on the libft_convert functions
-#define __TEST_OVERFLOW
 */
+#define __TEST_OVERFLOW	0
+
+/*
+**	Output color string codes for tty terminal/shell.
+*/
+#ifndef __COLORS__
+#define __COLORS__
+#define C_RED		"\x1b[31m"
+#define C_GREEN		"\x1b[32m"
+#define C_YELLOW	"\x1b[33m"
+#define C_BLUE		"\x1b[34m"
+#define C_MAGENTA	"\x1b[35m"
+#define C_CYAN		"\x1b[36m"
+#define C_RESET		"\x1b[0m"
+#endif
 
 /*
 **	This define is used as the 'can_segfault' arg for certain 'int' tests,
 **	so as to have those tests expect a "(segfault)" result.
 */
 #define SEGV	(TRUE | (1 << 2))
+
+
 
 /*
 ** ************************************************************************** *|
@@ -61,11 +66,14 @@ jmp_buf 	restore;
 
 void		segfault_handler(int sig, siginfo_t *info, void *ptr);
 
+
+
 /*
 ** ************************************************************************** *|
 **                           Timer utility functions                          *|
 ** ************************************************************************** *|
 */
+
 typedef struct timespec t_time;
 
 typedef struct	s_timer
@@ -83,15 +91,13 @@ t_time	timer_getdiff(t_time start, t_time end);
 t_s64	timer_compare(t_time a, t_time b);
 void	print_timer_result(t_timer* timer, t_s64 compare);
 
+
+
 /*
 ** ************************************************************************** *|
 **                              Testing Functions                             *|
 ** ************************************************************************** *|
 */
-
-extern char const* test1; extern size_t const test1_len; 
-extern char const* test2; extern size_t const test2_len; 
-extern char const* test3; extern size_t const test3_len; 
 
 void	print_nonstd(void);
 
@@ -107,6 +113,14 @@ int		test_stat(void);
 int		test_random(void);
 int		test_vlq(void);
 int		test_io(void);
+
+
+
+extern char const* test1; extern size_t const test1_len;
+extern char const* test2; extern size_t const test2_len;
+extern char const* test3; extern size_t const test3_len;
+
+
 
 /*
 ** ************************************************************************** *|
