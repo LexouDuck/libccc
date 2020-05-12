@@ -175,35 +175,35 @@ void	print_test_lst(char const *test_name, char const *function, t_list const *r
 **	The following macros are used for tests, to avoid boilerplate and code repetition.
 */
 
-#define _TEST_PERFORM(RESULT, FUNCTION, ...) \
+#define _TEST_PERFORM(CALL, RESULT, FUNCTION, ...) \
 	segfault = setjmp(restore); \
 	if (!segfault) \
 	{ \
-		timer_clock(&t.start1); \
+		timer_clock(&t.start##CALL); \
 		FUNCTION(__VA_ARGS__); \
-		timer_clock(&t.end1); \
+		timer_clock(&t.end##CALL); \
 	} \
 	else RESULT = segstr; \
 
-#define _TEST_PERFORM_RESULT_STR(LIB, FUNCTION, ...) \
+#define _TEST_PERFORM_RESULT_STR(CALL, LIB, FUNCTION, ...) \
 	char* result_##LIB = NULL; \
 	segfault = setjmp(restore); \
 	if (!segfault) \
 	{ \
-		timer_clock(&t.start1); \
+		timer_clock(&t.start##CALL); \
 		result_##LIB = FUNCTION(__VA_ARGS__); \
-		timer_clock(&t.end1); \
+		timer_clock(&t.end##CALL); \
 	} \
 	else result_##LIB = segstr; \
 
-#define _TEST_PERFORM_RESULT(TYPE, CALL, LIB, FUNCTION, ...) \
+#define _TEST_PERFORM_RESULT(CALL, TYPE, LIB, FUNCTION, ...) \
 	TYPE result_##LIB; \
 	segfault = setjmp(restore); \
 	if (!segfault) \
 	{ \
-		timer_clock(&t.start1); \
+		timer_clock(&t.start##CALL); \
 		result_##LIB = FUNCTION(__VA_ARGS__); \
-		timer_clock(&t.end1); \
+		timer_clock(&t.end##CALL); \
 	} \
 	else can_segfault |= (1 << CALL); \
 
@@ -214,45 +214,45 @@ void	print_test_lst(char const *test_name, char const *function, t_list const *r
 
 #define TEST_PERFORM(RESULT, FUNCTION, ...) \
 	t_timer t = {0}; \
-	_TEST_PERFORM(RESULT, ft_##FUNCTION, ##__VA_ARGS__) \
+	_TEST_PERFORM(1, RESULT, ft_##FUNCTION, ##__VA_ARGS__) \
 
 #define TEST_PERFORM_LIBC(PREFIX, FUNCTION, ...) \
 	t_timer t = {0}; \
-	_TEST_PERFORM(PREFIX##_libft, ft_##FUNCTION, ##__VA_ARGS__) \
-	_TEST_PERFORM(PREFIX##_libc,       FUNCTION, ##__VA_ARGS__) \
+	_TEST_PERFORM(1, PREFIX##_libft, ft_##FUNCTION, ##__VA_ARGS__) \
+	_TEST_PERFORM(2, PREFIX##_libc,       FUNCTION, ##__VA_ARGS__) \
 
 #define TEST_PERFORM_LIBC_DEST(FUNCTION, ...) \
 	t_timer t = {0}; \
-	_TEST_PERFORM(dest_libft, ft_##FUNCTION, dest_libft, ##__VA_ARGS__) \
-	_TEST_PERFORM(dest_libc,       FUNCTION, dest_libc,  ##__VA_ARGS__) \
+	_TEST_PERFORM(1, dest_libft, ft_##FUNCTION, dest_libft, ##__VA_ARGS__) \
+	_TEST_PERFORM(2, dest_libc,       FUNCTION, dest_libc,  ##__VA_ARGS__) \
 
 #define TEST_PERFORM_RESULT(FUNCTION, ...) \
 	t_timer t = {0}; \
-	_TEST_PERFORM_RESULT_STR(libft, ft_##FUNCTION, ##__VA_ARGS__) \
+	_TEST_PERFORM_RESULT_STR(1, libft, ft_##FUNCTION, ##__VA_ARGS__) \
 
 #define TEST_PERFORM_RESULT_LIBC(FUNCTION, ...) \
 	t_timer t = {0}; \
-	_TEST_PERFORM_RESULT_STR(libft, ft_##FUNCTION, ##__VA_ARGS__) \
-	_TEST_PERFORM_RESULT_STR(libc,       FUNCTION, ##__VA_ARGS__) \
+	_TEST_PERFORM_RESULT_STR(1, libft, ft_##FUNCTION, ##__VA_ARGS__) \
+	_TEST_PERFORM_RESULT_STR(2, libc,       FUNCTION, ##__VA_ARGS__) \
 
 #define TEST_PERFORM_RESULT_LIBC_DEST(FUNCTION, ...) \
 	t_timer t = {0}; \
-	_TEST_PERFORM_RESULT_STR(libft, ft_##FUNCTION, dest_libft, ##__VA_ARGS__) \
-	_TEST_PERFORM_RESULT_STR(libc,       FUNCTION, dest_libc,  ##__VA_ARGS__) \
+	_TEST_PERFORM_RESULT_STR(1, libft, ft_##FUNCTION, dest_libft, ##__VA_ARGS__) \
+	_TEST_PERFORM_RESULT_STR(2, libc,       FUNCTION, dest_libc,  ##__VA_ARGS__) \
 
 #define TEST_PERFORM_RESULT_TYPE(TYPE, FUNCTION, ...) \
 	t_timer t = {0}; \
-	_TEST_PERFORM_RESULT(TYPE, 1, libft, ft_##FUNCTION, ##__VA_ARGS__) \
+	_TEST_PERFORM_RESULT(1, TYPE, libft, ft_##FUNCTION, ##__VA_ARGS__) \
 
 #define TEST_PERFORM_RESULT_TYPE_LIBC(TYPE, FUNCTION, ...) \
 	t_timer t = {0}; \
-	_TEST_PERFORM_RESULT(TYPE, 1, libft, ft_##FUNCTION, ##__VA_ARGS__) \
-	_TEST_PERFORM_RESULT(TYPE, 2, libc,       FUNCTION, ##__VA_ARGS__) \
+	_TEST_PERFORM_RESULT(1, TYPE, libft, ft_##FUNCTION, ##__VA_ARGS__) \
+	_TEST_PERFORM_RESULT(2, TYPE, libc,       FUNCTION, ##__VA_ARGS__) \
 
 #define TEST_PERFORM_RESULT_TYPE_LIBC_DEST(TYPE, FUNCTION, ...) \
 	t_timer t = {0}; \
-	_TEST_PERFORM_RESULT(TYPE, 1, libft, ft_##FUNCTION, dest_libft, ##__VA_ARGS__) \
-	_TEST_PERFORM_RESULT(TYPE, 2, libc,       FUNCTION, dest_libc,  ##__VA_ARGS__) \
+	_TEST_PERFORM_RESULT(1, TYPE, libft, ft_##FUNCTION, dest_libft, ##__VA_ARGS__) \
+	_TEST_PERFORM_RESULT(2, TYPE, libc,       FUNCTION, dest_libc,  ##__VA_ARGS__) \
 
 
 

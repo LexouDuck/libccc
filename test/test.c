@@ -1,7 +1,50 @@
 
+#include <ctype.h>
+#include <string.h>
+#include <stdio.h>
+#include <setjmp.h>
+#include <signal.h>
+
 #include "test.h"
 
 
+
+/*
+** ************************************************************************** *|
+**                           Global Testing Variables                         *|
+** ************************************************************************** *|
+*/
+
+char const* test1 = "Omae wa mou shindeiru.\0";		size_t const test1_len = 23;
+char const* test2 = "Nani???\0";					size_t const test2_len = 8;
+char const* test3 = "Un ange mange de la fange.\0";	size_t const test3_len = 27;
+
+
+
+/*
+** ************************************************************************** *|
+**                              Segfault Handling                             *|
+** ************************************************************************** *|
+*/
+
+char*	nullstr	= "(NULL)";
+char*	segstr	= "(segfault)";
+
+void segfault_handler(int sig, siginfo_t *info, void *ptr)
+{
+    if (sig == SIGSEGV)
+    {
+        longjmp(restore, SIGSEGV);
+    }
+}
+
+
+
+/*
+** ************************************************************************** *|
+**                           Main Program Definitions                         *|
+** ************************************************************************** *|
+*/
 
 typedef struct	s_test_suite
 {
@@ -28,20 +71,11 @@ t_test_suite	test_suites[TEST_SUITE_AMOUNT] =
 
 
 
-char const* test1 = "Omae wa mou shindeiru.\0";		size_t const test1_len = 23;
-char const* test2 = "Nani???\0";					size_t const test2_len = 8;
-char const* test3 = "Un ange mange de la fange.\0";	size_t const test3_len = 27;
-
-char*	nullstr	= "(NULL)";
-char*	segstr	= "(segfault)";
-
-void segfault_handler(int sig, siginfo_t *info, void *ptr)
-{
-    if (sig == SIGSEGV)
-    {
-        longjmp(restore, SIGSEGV);
-    }
-}
+/*
+** ************************************************************************** *|
+**                             Main Program Logic                             *|
+** ************************************************************************** *|
+*/
 
 
 
@@ -87,7 +121,7 @@ int		main(int argc, char **argv)
 		for (t_u32 i = 1; i < argc; ++i)
 		{
 			match = FALSE;
-			if (argv[i][0] == '-')
+			if (isalpha(argv[i][0]))
 			{
 				if (argv[i][1] == '\0') printf("libft_test: expected argument after '-'.\n");
 				else for (int j = 0; j < TEST_SUITE_AMOUNT; ++j)
@@ -107,7 +141,7 @@ int		main(int argc, char **argv)
 				printf("libft test: Invalid argument(s), use one of the following:\n");
 				for (int j = 0; j < TEST_SUITE_AMOUNT; ++j)
 				{
-					printf("\t-%s\n", test_suites[j].name);
+					printf("\t%s\n", test_suites[j].name);
 				}
 			}
 		}

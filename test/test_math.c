@@ -51,6 +51,18 @@ static t_float	ft_get_largest_f(t_list_float list)
 #define _MATH_TEST_VERBOSE_FUNCTIONS_ 0
 #define _MATH_TEST_VERBOSE_RNG_LIST_ 0
 
+#define TEST_MATH_PERFORM(CALL, RESULTS, FUNCTION) \
+	tmp = start; \
+	timer_clock(&timer.start##CALL); \
+	for (int i = 0; i < tests; ++i) \
+	{ \
+		tmp += step; \
+		RESULTS[i] = FUNCTION(tmp); \
+	} \
+	timer_clock(&timer.end##CALL); \
+
+
+
 int		test_compare_real_functions(
 	char const *	func_name,
 	t_real_func		witness_func,
@@ -80,23 +92,8 @@ int		test_compare_real_functions(
 	failed_tests = 0;
 	error_list = ft_stat_new_flst(tests);
 
-	tmp = start;
-	timer_clock(&timer.start1);
-	for (int i = 0; i < tests; ++i)
-	{
-		tmp += step;
-		results[i] = ft_func(tmp);
-	}
-	timer_clock(&timer.end1);
-
-	tmp = start;
-	timer_clock(&timer.start2);
-	for (int i = 0; i < tests; ++i)
-	{
-		tmp += step;
-		expects[i] = witness_func(tmp);
-	}
-	timer_clock(&timer.end2);
+	TEST_MATH_PERFORM(1, results, ft_func)
+	TEST_MATH_PERFORM(2, expects, witness_func)
 
 	tmp = start;
 	for (int i = 0; i < tests; ++i)
@@ -137,7 +134,7 @@ int		test_compare_real_functions(
 	printf("-> Execution time:");
 	print_timer_result(&timer, TRUE);
 
-	printf("\n\n\n");
+	printf("\n\n");
 
 	ft_stat_free_flst(&error_list);
 }
@@ -163,49 +160,49 @@ int		test_math(void)
 
 #ifdef _FLOAT_32_
 
-	printf("\n\n\n"C_BLUE"Floating-point (32-bit single precision) math functions"C_RESET"\n\n");
+	printf("\n\n"C_BLUE"Floating-point (32-bit single precision) math functions"C_RESET"\n\n");
 
-	printf("\n\n\n"C_BLUE"Floor:"C_RESET"\n\n");
+	printf("\n\n"C_BLUE"Floor:"C_RESET"\n\n");
 	test_compare_real_functions("floor", &floorf, &ft_floor, 0.0001, (t_interval){-10, 10});
 	test_compare_real_functions("floor", &floorf, &ft_floor, 0.0001, (t_interval){-1e9, 1e9});
 
-	printf("\n\n\n"C_BLUE"Ceiling:"C_RESET"\n\n");
+	printf("\n\n"C_BLUE"Ceiling:"C_RESET"\n\n");
 	test_compare_real_functions("ceil", &ceilf, &ft_ceil, 0.0001, (t_interval){-10, 10});
 	test_compare_real_functions("ceil", &ceilf, &ft_ceil, 0.0001, (t_interval){-1e9, 1e9});
 
 
 
-//	printf("\n\n\n"C_BLUE"Power:"C_RESET"\n\n");
-//	test_compare_real_functions("pow", &powf, &ft_pow, 0.0001, (t_interval){0, 4});
-//	test_compare_real_functions("pow", &powf, &ft_pow, 0.0001, (t_interval){-100, 1000000});
+	printf("\n\n"C_BLUE"Power:"C_RESET"\n\n");
+	test_compare_real_functions("pow", &powf, &ft_pow, 0.0001, (t_interval){0, 4});
+	test_compare_real_functions("pow", &powf, &ft_pow, 0.0001, (t_interval){-100, 1000000});
 
 
 
-	printf("\n\n\n"C_BLUE"Square root:"C_RESET"\n\n");
+	printf("\n\n"C_BLUE"Square root:"C_RESET"\n\n");
 	test_compare_real_functions("sqrt", &sqrtf, &ft_sqrt, 0.0001, (t_interval){0., 5.});
 	test_compare_real_functions("sqrt", &sqrtf, &ft_sqrt, 0.0001, (t_interval){-100., 1e9});
 
-	printf("\n\n\n"C_BLUE"Cubic root:"C_RESET"\n\n");
+	printf("\n\n"C_BLUE"Cubic root:"C_RESET"\n\n");
 	test_compare_real_functions("cbrt", &cbrtf, &ft_cbrt, 0.0001, (t_interval){0., 5.});
 	test_compare_real_functions("cbrt", &cbrtf, &ft_cbrt, 0.0001, (t_interval){-1e9, 1e9});
 
-//	printf("\n\n\n"C_BLUE"N-power root:"C_RESET"\n\n");
+//	printf("\n\n"C_BLUE"N-power root:"C_RESET"\n\n");
 //	test_compare_real_functions("sqrt", &nrtf, &ft_nrt, 0.0001, (t_interval){0, 5});
 //	test_compare_real_functions("sqrt", &nrtf, &ft_nrt, 0.0001, (t_interval){-1e9, 1e9});
 
 
 
-	printf("\n\n\n"C_BLUE"Exponential:"C_RESET"\n\n");
+	printf("\n\n"C_BLUE"Exponential:"C_RESET"\n\n");
 	test_compare_real_functions("exp", &expf, &ft_exp, 0.0001, (t_interval){-1000., 1.});
 	test_compare_real_functions("exp", &expf, &ft_exp, 0.0001, (t_interval){1., 1e9});
 
-	printf("\n\n\n"C_BLUE"Logarithm:"C_RESET"\n\n");
+	printf("\n\n"C_BLUE"Logarithm:"C_RESET"\n\n");
 	test_compare_real_functions("ln", &logf, &ft_ln, 0.0001, (t_interval){0., 1.});
 	test_compare_real_functions("ln", &logf, &ft_ln, 0.0001, (t_interval){1., 1e9});
 
 
 
-	printf("\n\n\n"C_BLUE"Trigonometry:"C_RESET"\n\n");
+	printf("\n\n"C_BLUE"Trigonometry:"C_RESET"\n\n");
 
 	test_compare_real_functions("cos", &cosf, &ft_cos, 0.0001, (t_interval){-TAU, 2 * TAU});
 	test_compare_real_functions("cos", &cosf, &ft_cos, 0.0001, (t_interval){-1e9, 1e9});
@@ -253,49 +250,49 @@ int		test_math(void)
 
 #ifdef _FLOAT_64_
 
-	printf("\n\n\n"C_BLUE"Floating-point (64-bit single precision) math functions"C_RESET"\n\n");
+	printf("\n\n"C_BLUE"Floating-point (64-bit single precision) math functions"C_RESET"\n\n");
 
-	printf("\n\n\n"C_BLUE"Floor:"C_RESET"\n\n");
+	printf("\n\n"C_BLUE"Floor:"C_RESET"\n\n");
 	test_compare_real_functions("floor", &floor, &ft_floor, 0.0001, (t_interval){-10, 10});
 	test_compare_real_functions("floor", &floor, &ft_floor, 0.0001, (t_interval){-1e9, 1e9});
 
-	printf("\n\n\n"C_BLUE"Ceiling:"C_RESET"\n\n");
+	printf("\n\n"C_BLUE"Ceiling:"C_RESET"\n\n");
 	test_compare_real_functions("ceil", &ceil, &ft_ceil, 0.0001, (t_interval){-10, 10});
 	test_compare_real_functions("ceil", &ceil, &ft_ceil, 0.0001, (t_interval){-1e9, 1e9});
 
 
 
-//	printf("\n\n\n"C_BLUE"Power:"C_RESET"\n\n");
-//	test_compare_real_functions("pow", &pow, &ft_pow, 0.0001, (t_interval){0, 4});
-//	test_compare_real_functions("pow", &pow, &ft_pow, 0.0001, (t_interval){-100, 1000000});
+	printf("\n\n"C_BLUE"Power:"C_RESET"\n\n");
+	test_compare_real_functions("pow", &pow, &ft_pow, 0.0001, (t_interval){0, 4});
+	test_compare_real_functions("pow", &pow, &ft_pow, 0.0001, (t_interval){-100, 1000000});
 
 
 
-	printf("\n\n\n"C_BLUE"Square root:"C_RESET"\n\n");
+	printf("\n\n"C_BLUE"Square root:"C_RESET"\n\n");
 	test_compare_real_functions("sqrt", &sqrt, &ft_sqrt, 0.0001, (t_interval){0., 5.});
 	test_compare_real_functions("sqrt", &sqrt, &ft_sqrt, 0.0001, (t_interval){-100., 1e9});
 
-	printf("\n\n\n"C_BLUE"Cubic root:"C_RESET"\n\n");
+	printf("\n\n"C_BLUE"Cubic root:"C_RESET"\n\n");
 	test_compare_real_functions("cbrt", &cbrt, &ft_cbrt, 0.0001, (t_interval){0., 5.});
 	test_compare_real_functions("cbrt", &cbrt, &ft_cbrt, 0.0001, (t_interval){-1e9, 1e9});
 
-//	printf("\n\n\n"C_BLUE"N-power root:"C_RESET"\n\n");
+//	printf("\n\n"C_BLUE"N-power root:"C_RESET"\n\n");
 //	test_compare_real_functions("sqrt", &nrt, &ft_nrt, 0.0001, (t_interval){0, 5});
 //	test_compare_real_functions("sqrt", &nrt, &ft_nrt, 0.0001, (t_interval){-1e9, 1e9});
 
 
 
-	printf("\n\n\n"C_BLUE"Exponential:"C_RESET"\n\n");
+	printf("\n\n"C_BLUE"Exponential:"C_RESET"\n\n");
 	test_compare_real_functions("exp", &exp, &ft_exp, 0.0001, (t_interval){-1000., 1.});
 	test_compare_real_functions("exp", &exp, &ft_exp, 0.0001, (t_interval){1., 1e9});
 
-	printf("\n\n\n"C_BLUE"Logarithm:"C_RESET"\n\n");
+	printf("\n\n"C_BLUE"Logarithm:"C_RESET"\n\n");
 	test_compare_real_functions("ln", &log, &ft_ln, 0.0001, (t_interval){0., 1.});
 	test_compare_real_functions("ln", &log, &ft_ln, 0.0001, (t_interval){1., 1e9});
 
 
 
-	printf("\n\n\n"C_BLUE"Trigonometry:"C_RESET"\n\n");
+	printf("\n\n"C_BLUE"Trigonometry:"C_RESET"\n\n");
 
 	test_compare_real_functions("cos", &cos, &ft_cos, 0.0001, (t_interval){-TAU, 2 * TAU});
 	test_compare_real_functions("cos", &cos, &ft_cos, 0.0001, (t_interval){-1e9, 1e9});
@@ -339,7 +336,7 @@ int		test_math(void)
 
 #endif
 
-printf("\n\n\n");
+printf("\n\n");
 
 	return (OK);
 }

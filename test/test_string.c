@@ -1,4 +1,6 @@
 
+#include <ctype.h>
+
 #include "libft_string.h"
 
 #include "test.h"

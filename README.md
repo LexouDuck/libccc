@@ -40,9 +40,14 @@ The make commands are:
 Build the `AvesTerra_C_AVU` executable and both library files.
 
 
+`make libft_test`
+---
+Builds a test software `libft_test`, which runs test suites on every libft function.
+
+
 `make test`
 ---
-Build library files and run a test software `test_C_binding`, based on the macro selected in `main_test.c`. You can use this file to test building your own software in C using the AvesTerra C binding.
+Builds `libft_test` and runs it without any arguments (running all tests).
 
 
 `make clean`
