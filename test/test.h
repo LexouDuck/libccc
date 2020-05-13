@@ -8,7 +8,6 @@
 ** ************************************************************************** *|
 */
 
-
 #include <string.h>
 #include <stdio.h>
 #include <setjmp.h>
@@ -25,10 +24,15 @@
 ** ************************************************************************** *|
 */
 
-/*
-** This define makes the program perform overflowing number tests on the libft_convert functions
-*/
-#define __TEST_OVERFLOW	0
+typedef struct	s_test_flags__
+{
+	int			verbose;		// if 0, only display total amount of tests passed/failed
+	int			show_args;		// if 0, do not display arguments for each test
+	int			test_overflow;	// if 0, do not perform libft_convert overflowing number tests
+}				s_test_flags;
+
+// This global variable stores the main program arguments, for all testing functions to use as needed.
+s_test_flags	g_flags;
 
 /*
 **	Output color string codes for tty terminal/shell.
