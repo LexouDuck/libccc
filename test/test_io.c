@@ -7,13 +7,9 @@
 
 int		test_io(void)
 {
-printf("\n");
+	print_suite_title("io");
 
-	printf("       .--------------------------.       \n");
-	printf("---==={    LIBFT TEST: libft_io    }===---\n");
-	printf("       '--------------------------'       \n");
-
-printf("\n");
+	// TODO
 
 	return (OK);
 }

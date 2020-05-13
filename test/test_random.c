@@ -6,45 +6,55 @@
 
 
 
-int		test_random(void)
+t_sortedlist_int	print_test_random(int samples)
 {
-
-printf("\n");
-
-	printf("       .----------------------------.       \n");
-	printf("---==={   LIBFT TEST: libft_random   }===---\n");
-	printf("       '----------------------------'       \n");
-
-printf("\n");
+	t_sortedlist_int	result;
+	t_list_int			ilst;
 
 	ft_random_renew_seed();
 
-	t_u32				sample_nb = 20000;
-	printf("Stat test of rng, sample size: %d\n", sample_nb);
+	if (g_test.flags.verbose)
+	{
+		printf("Statistic repartition test of RNG (sample size: %d)\n", samples);
+	}
+	ilst = ft_stat_new_ilst(samples);
 
-	t_list_int			i_lst;
-	t_sortedlist_int	si_lst;
-	t_u64				intmax = (t_u32)-1;
-	t_float				tmp;
-	t_float				decile_inc = sample_nb / 10.;
-
-
-	i_lst = ft_stat_new_ilst(sample_nb);
-
-	for (int i = 0; i < i_lst.len; ++i)
-		i_lst.data[i] = ft_random_int_a_to_b(-500, 501);
+	for (int i = 0; i < ilst.len; ++i)
+	{
+		ilst.data[i] = ft_random_int_a_to_b(-500, 501);
+	}
 
 /*	static t_int arr[5] = {-339, 214, 394, -162, -50};//{-339, -162, -50, 214, 394};
-	for (int i = 0; i < i_lst.len; ++i)
-		i_lst.data[i] = arr[i];
+	for (int i = 0; i < ilst.len; ++i)
+		ilst.data[i] = arr[i];
 
-	for (int i = 0; i < i_lst.len; ++i)
-		printf("%d, ", i_lst.data[i]);
+	for (int i = 0; i < ilst.len; ++i)
+		printf("%d, ", ilst.data[i]);
 	printf("\n");
 */
-	printf("Quicksorting...\n");
-	si_lst = ft_stat_quicksort_i_new(i_lst);
-	printf("Done !\n");
+	if (g_test.flags.verbose)
+		printf("Quicksorting... ");
+	result = ft_stat_quicksort_i_new(ilst);
+	if (g_test.flags.verbose)
+		printf("Done !\n");
+	for (int i = 0; i < result.len - 1; ++i)
+	{
+		if (result.data[i] > result.data[i + 1])
+			printf(C_RED"Sorting error at index %d\n"C_RESET, i);
+	}
+	ft_stat_free_ilst(&ilst);
+	return (result);
+}
 
+
+
+int		test_random(void)
+{
+	print_suite_title("random");
+
+	static const int	samples = 20000;
+	t_sortedlist_int	ilst_sorted = print_test_random(samples);
+
+	ft_stat_free_ilst(&ilst_sorted);
 	return (OK);
 }

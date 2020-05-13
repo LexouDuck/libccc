@@ -133,89 +133,6 @@ char*	str_to_escape(char const* str)
 	return (result);
 }
 
-/*
-** ************************************************************************** *|
-**                           Timer utility functions                          *|
-** ************************************************************************** *|
-*/
-
-/*	There are a couple of different cross-platform clock possibilities:
-**	- CLOCK_REALTIME	System-wide real-time clock. This clock returns the number of seconds and nanoseconds since the Epoch.
-**						This clock can be set via clock_settime but doing so requires appropriate privileges, because it's linked to the system time.
-**	- CLOCK_MONOTONIC 			Represents monotonic time since some unspecified starting point. This clock cannot be set.
-**	- CLOCK_PROCESS_CPUTIME_ID 	High-resolution per-process timer from the CPU.
-**	- CLOCK_THREAD_CPUTIME_ID 	Thread-specific CPU-time clock. 
-*/
-inline void	timer_clock(t_time* result)
-{
-	if (clock_gettime(CLOCK_MONOTONIC, result) == -1)
-	{
-		perror("clock_gettime() returned -1");
-		exit(EXIT_FAILURE);
-	}
-}
-
-/*	Define a 10e9 macro we use for nanosecond modulo */
-#define BILLION 1000000000L
-inline t_time timer_getdiff(t_time start, t_time end)
-{
-	t_time result;
-	
-	result.tv_sec = end.tv_sec - start.tv_sec;
-	result.tv_nsec = end.tv_nsec - start.tv_nsec;
-	if (result.tv_nsec >= BILLION)
-	{
-		result.tv_nsec -= BILLION;
-		result.tv_sec++;
-	}
-	return (result);
-}
-
-/* Returns negative if 'a' is lower than 'b', positive if 'b' > 'a' and 0 if equal. */
-inline t_s64 timer_compare(t_time a, t_time b)
-{
-	if (a.tv_sec == b.tv_sec)
-		return (a.tv_nsec - b.tv_nsec);
-	else
-		return (a.tv_sec - b.tv_sec);
-}
-
-/* prints the result of a timer (and potentially a comparison with the secondary timer) */
-void		print_timer_result(t_timer* t, t_s64 compare)
-{
-	char result1[64] = { 0 };
-	char result2[64] = { 0 };
-
-	t->time1 = timer_getdiff(t->start1, t->end1);
-	if (t->time1.tv_nsec < 0 || t->time1.tv_nsec < 0)
-		sprintf((char*)&result1, "SEGV");
-	else sprintf((char*)&result1, "%lld.%.09ld", (long long)t->time1.tv_sec, t->time1.tv_nsec);
-
-	printf(" [libft:");
-	if (compare)
-	{
-		t->time2 = timer_getdiff(t->start2, t->end2);
-		if (t->time2.tv_nsec < 0 || t->time2.tv_nsec < 0)
-			sprintf((char*)&result2, "SEGV");
-		else sprintf((char*)&result2, "%lld.%.09ld", (long long)t->time2.tv_sec, t->time2.tv_nsec);
-
-		if ((t->time1.tv_sec >= 0 && t->time1.tv_nsec >= 0) ||
-			(t->time2.tv_sec >= 0 && t->time2.tv_nsec >= 0))
-			compare = timer_compare(t->time1, t->time2);
-		else compare = 0;
-
-		if (compare == 0)
-			printf("%s, libc:", result1);
-		else if (compare < 0)
-			printf(C_GREEN"%s"C_RESET", libc:", result1);
-		else
-			printf(C_RED"%s"C_RESET", libc:", result1);
-
-		printf("%s]", result2);
-	}
-	else printf("%s]", result1);
-}
-
 char	*int_s_to_str(t_s64 number)
 {
 	char	*result;
@@ -269,6 +186,92 @@ char	*int_u_to_str(t_u64 number)
 
 /*
 ** ************************************************************************** *|
+**                           Timer utility functions                          *|
+** ************************************************************************** *|
+*/
+
+/*	There are a couple of different cross-platform clock possibilities:
+**	- CLOCK_REALTIME	System-wide real-time clock. This clock returns the number of seconds and nanoseconds since the Epoch.
+**						This clock can be set via clock_settime but doing so requires appropriate privileges, because it's linked to the system time.
+**	- CLOCK_MONOTONIC 			Represents monotonic time since some unspecified starting point. This clock cannot be set.
+**	- CLOCK_PROCESS_CPUTIME_ID 	High-resolution per-process timer from the CPU.
+**	- CLOCK_THREAD_CPUTIME_ID 	Thread-specific CPU-time clock. 
+*/
+inline void	timer_clock(t_time* result)
+{
+	if (clock_gettime(CLOCK_MONOTONIC, result) == -1)
+	{
+		perror("clock_gettime() returned -1");
+		exit(EXIT_FAILURE);
+	}
+}
+
+/*	Define a 10e9 macro we use for nanosecond modulo */
+#define BILLION 1000000000L
+inline t_time timer_getdiff(t_time start, t_time end)
+{
+	t_time result;
+	
+	result.tv_sec = end.tv_sec - start.tv_sec;
+	result.tv_nsec = end.tv_nsec - start.tv_nsec;
+	if (result.tv_nsec >= BILLION)
+	{
+		result.tv_nsec -= BILLION;
+		result.tv_sec++;
+	}
+	return (result);
+}
+
+/* Returns negative if 'a' is lower than 'b', positive if 'b' > 'a' and 0 if equal. */
+inline t_s64 timer_compare(t_time a, t_time b)
+{
+	if (a.tv_sec == b.tv_sec)
+		return (a.tv_nsec - b.tv_nsec);
+	else
+		return (a.tv_sec - b.tv_sec);
+}
+
+/* prints the result of a timer (and potentially a comparison with the secondary timer) */
+void		print_timer_result(t_timer* t, t_s64 compare)
+{
+	char result1[64] = { 0 };
+	char result2[64] = { 0 };
+
+	if (!g_test.flags.show_speed)
+		return;
+
+	t->time1 = timer_getdiff(t->start1, t->end1);
+	if (t->time1.tv_nsec < 0 || t->time1.tv_nsec < 0)
+		sprintf((char*)&result1, "SEGV");
+	else sprintf((char*)&result1, "%lld.%.09ld", (long long)t->time1.tv_sec, t->time1.tv_nsec);
+
+	printf(" [libft:");
+	if (compare)
+	{
+		t->time2 = timer_getdiff(t->start2, t->end2);
+		if (t->time2.tv_nsec < 0 || t->time2.tv_nsec < 0)
+			sprintf((char*)&result2, "SEGV");
+		else sprintf((char*)&result2, "%lld.%.09ld", (long long)t->time2.tv_sec, t->time2.tv_nsec);
+
+		if ((t->time1.tv_sec >= 0 && t->time1.tv_nsec >= 0) ||
+			(t->time2.tv_sec >= 0 && t->time2.tv_nsec >= 0))
+			compare = timer_compare(t->time1, t->time2);
+		else compare = 0;
+
+		if (compare == 0)
+			printf("%s, libc:", result1);
+		else if (compare < 0)
+			printf(C_GREEN"%s"C_RESET", libc:", result1);
+		else
+			printf(C_RED"%s"C_RESET", libc:", result1);
+
+		printf("%s]", result2);
+	}
+	else printf("%s]", result1);
+}
+
+/*
+** ************************************************************************** *|
 **                              Testing Functions                             *|
 ** ************************************************************************** *|
 */
@@ -281,18 +284,27 @@ void	print_test(
 		int can_segfault,
 		int error)
 {
-	if (test_name)
+	g_test.totals.tests += 1;
+	if (error)
+		g_test.totals.failed += 1;
+	if (g_test.flags.verbose || error)
 	{
-		if (can_segfault & 1)
-			 printf("\n%s - "C_YELLOW"can segfault"C_RESET, test_name);
-		else printf("\n%s", test_name);
-		printf(" -> ");
+		if (test_name)
+		{
+			if (can_segfault & 1)
+				printf("\n%s - "C_YELLOW"can segfault"C_RESET, test_name);
+			else printf("\n%s", test_name);
+			printf(" -> ");
+		}
+		else if (!g_test.flags.verbose && error)
+			printf("%s (unnamed test) -> ", function);
+		else printf(", ");
 	}
-	else printf(", ");
+
 	if (error)
 	{
 		if (str_equals(expect, "(n/a)"))
-			 printf(C_RED"TEST COULD NOT BE PERFORMED\n"C_RESET);
+			printf(C_RED"TEST COULD NOT BE PERFORMED\n"C_RESET);
 		else printf(C_RED"ERROR\n");
 		if (function[0] == '_')
 		{
@@ -303,325 +315,84 @@ void	print_test(
 			free(expected);
 		}
 		else printf(">ft_%s: {%s}\n>   %s: {%s}"C_RESET,
-				function, result,
-				function, expect);
+			function, result,
+			function, expect);
 	}
-	else printf(C_GREEN"OK!"C_RESET);
+	else if (g_test.flags.verbose)
+		printf(C_GREEN"OK!"C_RESET);
 }
 
 
 
-void	print_test_s8(
-		char const *test_name,
-		char const *function,
-		t_s8 result,
-		t_s8 expect,
-		int can_segfault)
-{
-	int error;
-	int result_segfault = can_segfault & (1 << 1);
-	int expect_segfault = can_segfault & (1 << 2);
-	
-	if (result_segfault)
-		error = (expect_segfault ? FALSE : TRUE);
-	else if (expect_segfault)
-		 error = TRUE;
-	else error = (result != expect);
+#define DEFINE_TESTFUNCTION_INT(TYPE, FUNCNAME, SIGNED) \
+void	print_test_##FUNCNAME( \
+		char const *test_name, \
+		char const *function, \
+		TYPE result, \
+		TYPE expect, \
+		int can_segfault) \
+{ \
+	int error; \
+	int result_segfault = can_segfault & (1 << 1); \
+	int expect_segfault = can_segfault & (1 << 2); \
+	if (result_segfault) \
+		error = (expect_segfault ? FALSE : TRUE); \
+	else if (expect_segfault) \
+		 error = TRUE; \
+	else error = (result != expect); \
+	print_test(test_name, function, \
+		(result_segfault ? segstr : int_##SIGNED##_to_str(result)), \
+		(expect_segfault ? segstr : int_##SIGNED##_to_str(expect)), \
+		can_segfault, \
+		error); \
+} \
 
-	print_test(test_name, function,
-		(result_segfault ? segstr : int_s_to_str(result)),
-		(expect_segfault ? segstr : int_s_to_str(expect)),
-		can_segfault,
-		error);
-}
+DEFINE_TESTFUNCTION_INT(t_s8,  s8,  s)
+DEFINE_TESTFUNCTION_INT(t_s16, s16, s)
+DEFINE_TESTFUNCTION_INT(t_s32, s32, s)
+DEFINE_TESTFUNCTION_INT(t_s64, s64, s)
 
-void	print_test_s16(
-		char const *test_name,
-		char const *function,
-		t_s16 result,
-		t_s16 expect,
-		int can_segfault)
-{
-	int error;
-	int result_segfault = can_segfault & (1 << 1);
-	int expect_segfault = can_segfault & (1 << 2);
-	
-	if (result_segfault)
-		error = (expect_segfault ? FALSE : TRUE);
-	else if (expect_segfault)
-		 error = TRUE;
-	else error = (result != expect);
+DEFINE_TESTFUNCTION_INT(t_u8,  u8,  u)
+DEFINE_TESTFUNCTION_INT(t_u16, u16, u)
+DEFINE_TESTFUNCTION_INT(t_u32, u32, u)
+DEFINE_TESTFUNCTION_INT(t_u64, u64, u)
 
-	print_test(test_name, function,
-		(result_segfault ? segstr : int_s_to_str(result)),
-		(expect_segfault ? segstr : int_s_to_str(expect)),
-		can_segfault,
-		error);
-}
-
-void	print_test_s32(
-		char const *test_name,
-		char const *function,
-		t_s32 result,
-		t_s32 expect,
-		int can_segfault)
-{
-	int error;
-	int result_segfault = can_segfault & (1 << 1);
-	int expect_segfault = can_segfault & (1 << 2);
-	
-	if (result_segfault)
-		error = (expect_segfault ? FALSE : TRUE);
-	else if (expect_segfault)
-		 error = TRUE;
-	else error = (result != expect);
-
-	print_test(test_name, function,
-		(result_segfault ? segstr : int_s_to_str(result)),
-		(expect_segfault ? segstr : int_s_to_str(expect)),
-		can_segfault,
-		error);
-}
-
-void	print_test_s64(
-		char const *test_name,
-		char const *function,
-		t_s64 result,
-		t_s64 expect,
-		int can_segfault)
-{
-	int error;
-	int result_segfault = can_segfault & (1 << 1);
-	int expect_segfault = can_segfault & (1 << 2);
-	
-	if (result_segfault)
-		error = (expect_segfault ? FALSE : TRUE);
-	else if (expect_segfault)
-		 error = TRUE;
-	else error = (result != expect);
-
-	print_test(test_name, function,
-		(result_segfault ? segstr : int_s_to_str(result)),
-		(expect_segfault ? segstr : int_s_to_str(expect)),
-		can_segfault,
-		error);
-}
+DEFINE_TESTFUNCTION_INT(t_bool, bool, u)
+DEFINE_TESTFUNCTION_INT(size_t, size, u)
 
 
 
-void	print_test_u8(
-		char const *test_name,
-		char const *function,
-		t_u8 result,
-		t_u8 expect,
-		int can_segfault)
-{
-	int error;
-	int result_segfault = can_segfault & (1 << 1);
-	int expect_segfault = can_segfault & (1 << 2);
-	
-	if (result_segfault)
-		error = (expect_segfault ? FALSE : TRUE);
-	else if (expect_segfault)
-		 error = TRUE;
-	else error = (result != expect);
+#define DEFINE_TESTFUNCTION_FLOAT(TYPE, FUNCNAME, SIZE) \
+void	print_test_##FUNCNAME( \
+		char const *test_name, \
+		char const *function, \
+		TYPE result, \
+		TYPE expect, \
+		int can_segfault) \
+{ \
+	int error; \
+	int result_segfault = can_segfault & (1 << 1); \
+	int expect_segfault = can_segfault & (1 << 2); \
+	char str_result[SIZE]; \
+	char str_expect[SIZE]; \
+	if (result_segfault) \
+		error = (expect_segfault ? FALSE : TRUE); \
+	else if (expect_segfault) \
+		 error = TRUE; \
+	else error = (result != expect); \
+	if (isnan(result) && isnan(expect)) \
+		error = FALSE; \
+	snprintf(str_result, SIZE, "%f", result); \
+	snprintf(str_expect, SIZE, "%f", expect); \
+	print_test(test_name, function, \
+		(result_segfault ? segstr : str_result), \
+		(expect_segfault ? segstr : str_expect), \
+		can_segfault, \
+		error); \
+} \
 
-	print_test(test_name, function,
-		(result_segfault ? segstr : int_u_to_str(result)),
-		(expect_segfault ? segstr : int_u_to_str(expect)),
-		can_segfault,
-		error);
-}
-
-void	print_test_u16(
-		char const *test_name,
-		char const *function,
-		t_u16 result,
-		t_u16 expect,
-		int can_segfault)
-{
-	int error;
-	int result_segfault = can_segfault & (1 << 1);
-	int expect_segfault = can_segfault & (1 << 2);
-	
-	if (result_segfault)
-		error = (expect_segfault ? FALSE : TRUE);
-	else if (expect_segfault)
-		 error = TRUE;
-	else error = (result != expect);
-
-	print_test(test_name, function,
-		(result_segfault ? segstr : int_u_to_str(result)),
-		(expect_segfault ? segstr : int_u_to_str(expect)),
-		can_segfault,
-		error);
-}
-
-void	print_test_u32(
-		char const *test_name,
-		char const *function,
-		t_u32 result,
-		t_u32 expect,
-		int can_segfault)
-{
-	int error;
-	int result_segfault = can_segfault & (1 << 1);
-	int expect_segfault = can_segfault & (1 << 2);
-	
-	if (result_segfault)
-		error = (expect_segfault ? FALSE : TRUE);
-	else if (expect_segfault)
-		 error = TRUE;
-	else error = (result != expect);
-
-	print_test(test_name, function,
-		(result_segfault ? segstr : int_u_to_str(result)),
-		(expect_segfault ? segstr : int_u_to_str(expect)),
-		can_segfault,
-		error);
-}
-
-void	print_test_u64(
-		char const *test_name,
-		char const *function,
-		t_u64 result,
-		t_u64 expect,
-		int can_segfault)
-{
-	int error;
-	int result_segfault = can_segfault & (1 << 1);
-	int expect_segfault = can_segfault & (1 << 2);
-	
-	if (result_segfault)
-		error = (expect_segfault ? FALSE : TRUE);
-	else if (expect_segfault)
-		 error = TRUE;
-	else error = (result != expect);
-
-	print_test(test_name, function,
-		(result_segfault ? segstr : int_u_to_str(result)),
-		(expect_segfault ? segstr : int_u_to_str(expect)),
-		can_segfault,
-		error);
-}
-
-
-
-void	print_test_size(
-		char const *test_name,
-		char const *function,
-		size_t result,
-		size_t expect,
-		int can_segfault)
-{
-	int error;
-	int result_segfault = can_segfault & (1 << 1);
-	int expect_segfault = can_segfault & (1 << 2);
-	
-	if (result_segfault)
-		error = (expect_segfault ? FALSE : TRUE);
-	else if (expect_segfault)
-		 error = TRUE;
-	else error = (result != expect);
-
-	print_test(test_name, function,
-		(result_segfault ? segstr : int_u_to_str(result)),
-		(expect_segfault ? segstr : int_u_to_str(expect)),
-		can_segfault,
-		error);
-}
-
-
-
-void	print_test_bool(
-		char const *test_name,
-		char const *function,
-		t_bool result,
-		t_bool expect,
-		int can_segfault)
-{
-	int error;
-	int result_segfault = can_segfault & (1 << 1);
-	int expect_segfault = can_segfault & (1 << 2);
-	
-	if (result_segfault)
-		error = (expect_segfault ? FALSE : TRUE);
-	else if (expect_segfault)
-		 error = TRUE;
-	else error = (result != expect);
-
-	print_test(test_name, function,
-		(result_segfault ? segstr : int_u_to_str(result)),
-		(expect_segfault ? segstr : int_u_to_str(expect)),
-		can_segfault,
-		error);
-}
-
-
-
-void	print_test_f32(
-		char const *test_name,
-		char const *function,
-		t_f32 result,
-		t_f32 expect,
-		int can_segfault)
-{
-	int error;
-	int result_segfault = can_segfault & (1 << 1);
-	int expect_segfault = can_segfault & (1 << 2);
-	static const size_t size = 32;
-	char str_result[size];
-	char str_expect[size];
-	
-	if (result_segfault)
-		error = (expect_segfault ? FALSE : TRUE);
-	else if (expect_segfault)
-		 error = TRUE;
-	else error = (result != expect);
-
-	if (isnan(result) && isnan(expect))
-		error = FALSE;
-
-	snprintf(str_result, size, "%f", result);
-	snprintf(str_expect, size, "%f", expect);
-	print_test(test_name, function,
-		(result_segfault ? segstr : str_result),
-		(expect_segfault ? segstr : str_expect),
-		can_segfault,
-		error);
-}
-
-void	print_test_f64(
-		char const *test_name,
-		char const *function,
-		t_f64 result,
-		t_f64 expect,
-		int can_segfault)
-{
-	int error;
-	int result_segfault = can_segfault & (1 << 1);
-	int expect_segfault = can_segfault & (1 << 2);
-	static const size_t size = 64;
-	char str_result[size];
-	char str_expect[size];
-	
-	if (result_segfault)
-		error = (expect_segfault ? FALSE : TRUE);
-	else if (expect_segfault)
-		 error = TRUE;
-	else error = (result != expect);
-
-	if (isnan(result) && isnan(expect))
-		error = FALSE;
-
-	snprintf(str_result, size, "%f", result);
-	snprintf(str_expect, size, "%f", expect);
-	print_test(test_name, function,
-		(result_segfault ? segstr : str_result),
-		(expect_segfault ? segstr : str_expect),
-		can_segfault,
-		error);
-}
+DEFINE_TESTFUNCTION_FLOAT(t_f32, f32, 32)
+DEFINE_TESTFUNCTION_FLOAT(t_f64, f64, 64)
 
 
 
@@ -664,7 +435,45 @@ void	print_test_str(
 
 
 
-void	print_test_strls(
+void	print_test_alloc(
+		char const *test_name,
+		char const *function,
+		char const *result,
+		size_t length)
+{
+	int		error = FALSE;
+	size_t	i;
+
+	if (result == NULL)
+	{
+		error = TRUE;
+	}
+	else for (i = 0; i < length; ++i)
+	{
+		if (result[i])
+		{
+			error = TRUE;
+			break;
+		}
+	}
+	if (error || g_test.flags.verbose)
+	{
+		printf("\n%s -> ", test_name);
+	}
+	if (error)
+	{
+		printf(C_RED"\nError"C_RESET": ");
+		if (result == NULL)
+			printf("The call to ft_%s(...) returned NULL.", function);
+		else printf("Every char should be '\\0', but '%c' was read at index %d.", result[i], i);
+	}
+	else if (!g_test.flags.verbose)
+		printf(C_GREEN"OK!"C_RESET);
+}
+
+
+
+void	print_test_strarr(
 		char const *test_name,
 		char const *function,
 		char const **result,
@@ -728,6 +537,8 @@ void	print_test_strls(
 	if (str_result) free(str_result);
 	if (str_expect) free(str_expect);
 }
+
+
 
 void	print_test_lst(
 		char const *test_name,

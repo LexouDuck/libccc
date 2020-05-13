@@ -27,7 +27,6 @@ void	print_test_lstnew(char const* test_name, int can_segfault,
 }
 void	test_lstnew(void)
 {
-printf("\n");
 /*	| TEST FUNCTION  | TEST NAME         |CAN SEGV| EXPECTING   | TEST ARGS */
 	print_test_lstnew("lstnew            ",	FALSE,  "Omae",       "Omae",        5);
 	print_test_lstnew("lstnew            ",	FALSE,  " wa ",       " wa ",        5);
@@ -56,7 +55,6 @@ void	print_test_lstadd(char const* test_name, int can_segfault,
 }
 void	test_lstadd(void)
 {
-printf("\n");
 /*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
 /*	TODO
 	a_lst = &lst_3;
@@ -85,7 +83,6 @@ void	print_test_lstappend(char const* test_name, int can_segfault,
 }
 void	test_lstappend(void)
 {
-printf("\n");
 /*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
 /*	TODO
 	//	void	ft_lstappend(t_list **alst, t_list *new_elem);
@@ -118,7 +115,6 @@ void	print_test_lstinsert(char const* test_name, int can_segfault,
 }
 void	test_lstinsert(void)
 {
-printf("\n");
 /*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
 //	TODO
 }
@@ -142,7 +138,6 @@ void	print_test_lstcpy(char const* test_name, int can_segfault,
 }
 void	test_lstcpy(void)
 {
-printf("\n");
 /*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
 //	TODO
 }
@@ -166,7 +161,6 @@ void	print_test_lstpop(char const* test_name, int can_segfault,
 }
 void	test_lstpop(void)
 {
-printf("\n");
 /*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
 //	TODO
 }
@@ -190,7 +184,6 @@ void	print_test_lstdelone(char const* test_name, int can_segfault,
 }
 void	test_lstdelone(void)
 {
-printf("\n");
 /*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
 /*	TODO
 	//	void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
@@ -247,7 +240,6 @@ void	print_test_lstdel(char const* test_name, int can_segfault,
 }
 void	test_lstdel(void)
 {
-printf("\n");
 /*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
 /*	TODO
 	//	void	ft_lstdel(t_list **alst, void (*del)(void *, size_t));
@@ -296,7 +288,6 @@ void	print_test_lstsize(char const* test_name, int can_segfault,
 }
 void	test_lstsize(void)
 {
-printf("\n");
 /*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
 /*	TODO
 	//	int		ft_lstsize(t_list *lst);
@@ -326,7 +317,6 @@ void	print_test_lstget(char const* test_name, int can_segfault,
 }
 void	test_lstget(void)
 {
-printf("\n");
 /*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
 //	TODO
 }
@@ -351,7 +341,6 @@ void	print_test_lstfind(char const* test_name, int can_segfault,
 }
 void	test_lstfind(void)
 {
-printf("\n");
 /*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
 //	TODO
 }
@@ -377,7 +366,6 @@ void	print_test_lstsub(char const* test_name, int can_segfault,
 }
 void	test_lstsub(void)
 {
-printf("\n");
 /*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
 //	TODO
 }
@@ -401,7 +389,6 @@ void	print_test_lstiter(char const* test_name, int can_segfault,
 }
 void	test_lstiter(void)
 {
-printf("\n");
 /*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
 /*	TODO
 //	ft_lstiter(t_list *lst, void (*f)(t_list *elem));
@@ -427,7 +414,6 @@ void	print_test_lstiteri(char const* test_name, int can_segfault,
 }
 void	test_lstiteri(void)
 {
-printf("\n");
 /*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
 /*	TODO
 //	ft_lstiteri(t_list *lst, void (*f)(t_list *elem));
@@ -455,7 +441,6 @@ void	print_test_lstmap(char const* test_name, int can_segfault,
 }
 void	test_lstmap(void)
 {
-printf("\n");
 /*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
 /*	TODO
 //	t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
@@ -481,7 +466,6 @@ void	print_test_lstmapi(char const* test_name, int can_segfault,
 }
 void	test_lstmapi(void)
 {
-printf("\n");
 /*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
 /*	TODO
 //	t_list	*ft_lstmapi(t_list *lst, t_list *(*f)(t_list *elem));
@@ -509,7 +493,6 @@ void	print_test_lst_to_array(char const* test_name, int can_segfault,
 }
 void	test_lst_to_array(void)
 {
-printf("\n");
 /*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
 //	TODO
 }
@@ -534,7 +517,6 @@ void	print_test_lst_to_tuple(char const* test_name, int can_segfault,
 }
 void	test_lst_to_tuple(void)
 {
-printf("\n");
 /*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
 //	TODO
 }
@@ -565,7 +547,6 @@ void	print_test_lst_(char const* test_name, int can_segfault,
 }
 void	test_lst_(void)
 {
-printf("\n");
 /*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
 //	TODO
 }
@@ -584,17 +565,12 @@ int		test_list(void)
 	char const *expect_upper[] = { "OMAE", " WA ", "MOU ", "SHINDEIRU.", NULL };
 	char const *expect_lower[] = { "omae", " wa ", "mou ", "shindeiru.", NULL };
 
-printf("\n");
-
-	printf("       .--------------------------.       \n");
-	printf("---==={   LIBFT TEST: libft_list   }===---\n");
-	printf("       '--------------------------'       \n");
+	print_suite_title("list");
 
 	print_nonstd();
 
 	test_lstnew();
 
-printf("\n");
 /*
 	//	void	*ft_lstfold(t_list *lst, void *acc, void *(*f)(void *, void *));
 		ft_putstr("\nft_lstfold : ");

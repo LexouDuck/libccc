@@ -7,14 +7,44 @@
 
 
 
+static void	print_char_foreword(void)
+{
+	if (g_test.flags.verbose)
+	{
+		printf("\n==> "C_BLUE"The following tests are done by comparing your 'ft_' functions to the ctype.h standard functions."C_RESET);
+		printf("\n==> "C_BLUE"Ideally, all of these char function tests should succeed, and no output will be shown."C_RESET);
+		printf("\n==> "C_BLUE"(You may see warnings for characters beyond 255, those chars are undefined behavior)."C_RESET);
+		printf("\n==> "C_BLUE"In any case, errors/warnings will be displayed if there are any, important or not."C_RESET"\n");
+		printf("\n");
+	}
+}
+
+
+
+#define TEST_PERFORM_CHAR(FUNCTION) \
+	g_test.totals.tests += 1; \
+	if (!bool_equals(ft_##FUNCTION(i), FUNCTION(i))) \
+	{ \
+		g_test.totals.failed += 1; \
+		++errors; \
+		printf(C_RED">Error"C_RESET": ft_%s(%d) returned %d\n", #FUNCTION, i, ft_##FUNCTION(i)); \
+	} \
+
+#define TEST_PERFORM_CHAR_WARNING(FUNCTION) \
+	g_test.totals.tests += 1; \
+	if (!bool_equals(ft_##FUNCTION(i), FUNCTION(i))) \
+	{ \
+		++warnings; \
+		printf(C_YELLOW">Warning"C_RESET": ft_%s(%d) returned %d\n", #FUNCTION, i, ft_##FUNCTION(i)); \
+	} \
+
+
+
 int		test_char(void)
 {
+	print_suite_title("char");
 
-printf("\n");
-
-	printf("       .--------------------------.       \n");
-	printf("---==={   LIBFT TEST: libft_char   }===---\n");
-	printf("       '--------------------------'       \n");
+	print_char_foreword();
 
 //	int		ft_isalpha(int c);
 //	int		ft_isdigit(int c);
@@ -23,52 +53,51 @@ printf("\n");
 //	int		ft_isprint(int c);
 //	int		ft_toupper(int c);
 //	int		ft_tolower(int c);
-	printf("\n==> "C_BLUE"The following tests are done by comparing your 'ft_' functions to the ctype.h standard functions."C_RESET);
-	printf("\n==> "C_BLUE"Ideally, all of these char function tests should succeed, and no output will be shown."C_RESET);
-	printf("\n==> "C_BLUE"(You may see warnings for characters beyond 255, those chars are undefined behavior)."C_RESET);
-	printf("\n==> "C_BLUE"In any case, errors/warnings will be displayed if there are any, important or not."C_RESET"\n");
 
-printf("\n");
-	int charmax = 256;
-	int warning = 0;
-	int error = 0;
-	int i = 0;
-	while (i < charmax)
+	int char_max = 256;
+	int warnings = 0;
+	int errors = 0;
+	int i = -1;
+	while (++i < char_max)
 	{
-		if (!bool_equals(ft_isalpha(i), isalpha(i))) { ++error; printf(C_RED">ERROR - ft_isalpha(%d) = %d\n"C_RESET, i, ft_isalpha(i)); }
-		if (!bool_equals(ft_isupper(i), isupper(i))) { ++error; printf(C_RED">ERROR - ft_isupper(%d) = %d\n"C_RESET, i, ft_isupper(i)); }
-		if (!bool_equals(ft_islower(i), islower(i))) { ++error; printf(C_RED">ERROR - ft_islower(%d) = %d\n"C_RESET, i, ft_islower(i)); }
-		if (!bool_equals(ft_isalnum(i), isalnum(i))) { ++error; printf(C_RED">ERROR - ft_isalnum(%d) = %d\n"C_RESET, i, ft_isalnum(i)); }
-		if (!bool_equals(ft_isdigit(i), isdigit(i))) { ++error; printf(C_RED">ERROR - ft_isdigit(%d) = %d\n"C_RESET, i, ft_isdigit(i)); }
-		if (!bool_equals(ft_isspace(i), isspace(i))) { ++error; printf(C_RED">ERROR - ft_isspace(%d) = %d\n"C_RESET, i, ft_isspace(i)); }
-		if (!bool_equals(ft_ispunct(i), ispunct(i))) { ++error; printf(C_RED">ERROR - ft_ispunct(%d) = %d\n"C_RESET, i, ft_ispunct(i)); }
-		if (!bool_equals(ft_isprint(i), isprint(i))) { ++error; printf(C_RED">ERROR - ft_isprint(%d) = %d\n"C_RESET, i, ft_isprint(i)); }
-		if (!bool_equals(ft_isascii(i), isascii(i))) { ++error; printf(C_RED">ERROR - ft_isascii(%d) = %d\n"C_RESET, i, ft_isascii(i)); }
+		TEST_PERFORM_CHAR(isalpha)
+		TEST_PERFORM_CHAR(isupper)
+		TEST_PERFORM_CHAR(islower)
+		TEST_PERFORM_CHAR(isalnum)
+		TEST_PERFORM_CHAR(isdigit)
+		TEST_PERFORM_CHAR(isspace)
+		TEST_PERFORM_CHAR(ispunct)
+		TEST_PERFORM_CHAR(isprint)
+		TEST_PERFORM_CHAR(isascii)
 
-		if (!bool_equals(ft_toupper(i), toupper(i))) { ++error; printf(C_RED">ERROR - ft_toupper(%d) = %d\n"C_RESET, i, ft_toupper(i)); }
-		if (!bool_equals(ft_tolower(i), tolower(i))) { ++error; printf(C_RED">ERROR - ft_tolower(%d) = %d\n"C_RESET, i, ft_tolower(i)); }
-		++i;
+		TEST_PERFORM_CHAR(toupper)
+		TEST_PERFORM_CHAR(tolower)
 	}
-	charmax = 260;
-	while (i < charmax)
+	char_max = 260;
+	while (++i < char_max)
 	{
-		if (!bool_equals(ft_isalpha(i), isalpha(i))) { ++warning; printf(C_YELLOW">WARNING - ft_isalpha(%d) = %d\n"C_RESET, i, ft_isalpha(i)); }
-		if (!bool_equals(ft_isupper(i), isupper(i))) { ++warning; printf(C_YELLOW">WARNING - ft_isupper(%d) = %d\n"C_RESET, i, ft_isupper(i)); }
-		if (!bool_equals(ft_islower(i), islower(i))) { ++warning; printf(C_YELLOW">WARNING - ft_islower(%d) = %d\n"C_RESET, i, ft_islower(i)); }
-		if (!bool_equals(ft_isalnum(i), isalnum(i))) { ++warning; printf(C_YELLOW">WARNING - ft_isalnum(%d) = %d\n"C_RESET, i, ft_isalnum(i)); }
-		if (!bool_equals(ft_isdigit(i), isdigit(i))) { ++warning; printf(C_YELLOW">WARNING - ft_isdigit(%d) = %d\n"C_RESET, i, ft_isdigit(i)); }
-		if (!bool_equals(ft_isspace(i), isspace(i))) { ++warning; printf(C_YELLOW">WARNING - ft_isspace(%d) = %d\n"C_RESET, i, ft_isspace(i)); }
-		if (!bool_equals(ft_ispunct(i), ispunct(i))) { ++warning; printf(C_YELLOW">WARNING - ft_ispunct(%d) = %d\n"C_RESET, i, ft_ispunct(i)); }
-		if (!bool_equals(ft_isprint(i), isprint(i))) { ++warning; printf(C_YELLOW">WARNING - ft_isprint(%d) = %d\n"C_RESET, i, ft_isprint(i)); }
-		if (!bool_equals(ft_isascii(i), isascii(i))) { ++warning; printf(C_YELLOW">WARNING - ft_isascii(%d) = %d\n"C_RESET, i, ft_isascii(i)); }
-		
-		if (!bool_equals(ft_toupper(i), toupper(i))) { ++warning; printf(C_YELLOW">WARNING - ft_toupper(%d) = %d\n"C_RESET, i, ft_toupper(i)); }
-		if (!bool_equals(ft_tolower(i), tolower(i))) { ++warning; printf(C_YELLOW">WARNING - ft_tolower(%d) = %d\n"C_RESET, i, ft_tolower(i)); }
-		++i;
-	}
-	if (error || warning)
-		printf("\nA total of "C_RED"%d"C_RESET" errors and "C_YELLOW"%d"C_RESET" warnings found, testing every char up to %d\n", error, warning, charmax);
+		TEST_PERFORM_CHAR_WARNING(isalpha)
+		TEST_PERFORM_CHAR_WARNING(isupper)
+		TEST_PERFORM_CHAR_WARNING(islower)
+		TEST_PERFORM_CHAR_WARNING(isalnum)
+		TEST_PERFORM_CHAR_WARNING(isdigit)
+		TEST_PERFORM_CHAR_WARNING(isspace)
+		TEST_PERFORM_CHAR_WARNING(ispunct)
+		TEST_PERFORM_CHAR_WARNING(isprint)
+		TEST_PERFORM_CHAR_WARNING(isascii)
 
-printf("\n");
+		TEST_PERFORM_CHAR_WARNING(toupper)
+		TEST_PERFORM_CHAR_WARNING(tolower)
+	}
+
+	if (g_test.flags.verbose)
+	{
+		if (errors || warnings)
+		{
+			printf("\nWhile testing every char up to %d, found:", char_max);
+			printf("\n- %s%d"C_RESET" errors",	 (errors	== 0 ? C_GREEN : C_RED),	errors);
+			printf("\n- %s%d"C_RESET" warnings", (warnings	== 0 ? C_GREEN : C_YELLOW),	warnings);
+		}
+	}
 	return (OK);
 }

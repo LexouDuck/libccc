@@ -83,11 +83,21 @@
 /*
 **	NB: The following macros listed in this comment exist on any platform
 **	Here is the list of all the predefined ANSI C macros
-**	1	__DATE__	The current date as a string literal in "MMM DD YYYY" format.
-**	2	__TIME__	The current time as a string literal in "HH:MM:SS" format.
-**	3	__FILE__	This contains the current filename as a string literal.
-**	4	__LINE__	This contains the current line number as a decimal constant.
-**	5	__STDC__	Defined as 1 when the compiler complies with the ANSI standard.
+**	__cplusplus	Defined only when a C++ compiler is being used.
+**	__OBJC__	Defined as 1 when the compiler is Objective-C.
+**	__STDC__	Defined as 1 when the compiler complies with the ANSI standard.
+**	__DATE__	String literal: The current date, in "MMM DD YYYY" format.
+**	__TIME__	String literal: The current time, in "HH:MM:SS" format.
+**	__FILE__	String literal: This contains the current source code filename.
+**	__LINE__	Integer constant: the current source code line number.
+**
+**	There's also this very useful (non-macro) identifier, only defined in C99/C++:
+**	__func__	String constant: The current function name.
+**
+**	Here are some of the many common GNU C macros:
+**	__GNUC__			Integer constant (with value = GCC version), if the compiler is GNU-compliant.
+**	__BASE_FILE__		String literal: the source entry point filename (the file which holds the 'int main()')
+**	__INCLUDE_LEVEL__	Integer constant: The current depth of nesting within '#include' directives.
 */
 
 

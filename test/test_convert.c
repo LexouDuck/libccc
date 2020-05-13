@@ -5,6 +5,9 @@
 
 
 
+#pragma GCC diagnostic push // Disable GCC overflow warnings temporarily
+#pragma GCC diagnostic ignored "-Woverflow"
+
 /*
 ** ************************************************************************** *|
 **                        Convert to String Operations                        *|
@@ -26,12 +29,11 @@ void	print_test_s8_to_str(char const* test_name, int can_segfault,
 */
 	print_test_str(test_name, "_s8_to_str", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	printf(" -> {%s}", expecting);
+	TEST_PRINT_ARGS("%d", number)
 }
 void	test_s8_to_str(void)
 {
-printf("\n");
-/*	| TEST FUNCTION     | TEST NAME                 |CAN SEGV|EXPECTING| TEST ARGS */
+//	| TEST FUNCTION     | TEST NAME                 |CAN SEGV|EXPECTING| TEST ARGS
 	print_test_s8_to_str("s8_to_str               ",	FALSE,      "1", 1    );
 	print_test_s8_to_str("s8_to_str               ",	FALSE,     "42", 42   );
 	print_test_s8_to_str("s8_to_str               ",	FALSE,      "0", 0    );
@@ -39,7 +41,7 @@ printf("\n");
 	print_test_s8_to_str("s8_to_str               ",	FALSE,   "-111",-111  );
 	print_test_s8_to_str("s8_to_str (n = max)     ",	FALSE,    "127", 127  );
 	print_test_s8_to_str("s8_to_str (n = min)     ",	FALSE,   "-128",-128  );
-	if (g_flags.test_overflow)
+	if (g_test.flags.test_overflow)
 	{
 		print_test_s8_to_str("s8_to_str (n > max)     ",	FALSE,    "128", 128  );
 		print_test_s8_to_str("s8_to_str (n < min)     ",	FALSE,   "-129",-129  );
@@ -60,12 +62,11 @@ void	print_test_s16_to_str(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(s16_to_str, number)
 	print_test_str(test_name, "_s16_to_str", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	printf(" -> {%s}", expecting);
+	TEST_PRINT_ARGS("%d", number)
 }
 void	test_s16_to_str(void)
 {
-printf("\n");
-/*	| TEST FUNCTION      | TEST NAME                  |CAN SEGV|EXPECTING| TEST ARGS */
+//	| TEST FUNCTION      | TEST NAME                  |CAN SEGV|EXPECTING| TEST ARGS
 	print_test_s16_to_str("s16_to_str               ",	FALSE,        "1", 1      );
 	print_test_s16_to_str("s16_to_str               ",	FALSE,       "42", 42     );
 	print_test_s16_to_str("s16_to_str               ",	FALSE,        "0", 0      );
@@ -75,7 +76,7 @@ printf("\n");
 	print_test_s16_to_str("s16_to_str               ",	FALSE,   "-10000",-10000  );
 	print_test_s16_to_str("s16_to_str (n = max)     ",	FALSE,    "32767", 32767  );
 	print_test_s16_to_str("s16_to_str (n = min)     ",	FALSE,   "-32768",-32768  );
-	if (g_flags.test_overflow)
+	if (g_test.flags.test_overflow)
 	{
 		print_test_s16_to_str("s16_to_str (n > max)     ",	FALSE,    "32768", 32768  );
 		print_test_s16_to_str("s16_to_str (n < min)     ",	FALSE,   "-32769",-32769  );
@@ -96,12 +97,11 @@ void	print_test_s32_to_str(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(s32_to_str, number)
 	print_test_str(test_name, "_s32_to_str", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	printf(" -> {%s}", expecting);
+	TEST_PRINT_ARGS("%d", number)
 }
 void	test_s32_to_str(void)
 {
-printf("\n");
-/*	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING     | TEST ARGS */
+//	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING     | TEST ARGS
 	print_test_s32_to_str("s32_to_str               ",	FALSE,             "1", 1           );
 	print_test_s32_to_str("s32_to_str               ",	FALSE,            "42", 42          );
 	print_test_s32_to_str("s32_to_str               ",	FALSE,             "0", 0           );
@@ -111,7 +111,7 @@ printf("\n");
 	print_test_s32_to_str("s32_to_str               ",	FALSE,     "123456789", 123456789   );
 	print_test_s32_to_str("s32_to_str (n = max)     ",	FALSE,    "2147483647", 2147483647  );
 	print_test_s32_to_str("s32_to_str (n = min)     ",	FALSE,   "-2147483648",-2147483648  );
-	if (g_flags.test_overflow)
+	if (g_test.flags.test_overflow)
 	{
 		print_test_s32_to_str("s32_to_str (n > max)     ",	FALSE,    "2147483648", 2147483648  );
 		print_test_s32_to_str("s32_to_str (n < min)     ",	FALSE,   "-2147483649",-2147483649  );
@@ -132,12 +132,11 @@ void	print_test_s64_to_str(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(s64_to_str, number)
 	print_test_str(test_name, "_s64_to_str", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	printf(" -> {%s}", expecting);
+	TEST_PRINT_ARGS("%d", number)
 }
 void	test_s64_to_str(void)
 {
-printf("\n");
-/*	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING              | TEST ARGS */
+//	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING              | TEST ARGS
 	print_test_s64_to_str("s64_to_str               ",	FALSE,                      "1", 1                     );
 	print_test_s64_to_str("s64_to_str               ",	FALSE,                     "42", 42                    );
 	print_test_s64_to_str("s64_to_str               ",	FALSE,                      "0", 0                     );
@@ -151,7 +150,7 @@ printf("\n");
 	print_test_s64_to_str("s64_to_str               ",	FALSE,          "-999999999999",-999999999999          );
 	print_test_s64_to_str("s64_to_str (n = max)     ",	FALSE,    "9223372036854775807", 9223372036854775807LL );
 	print_test_s64_to_str("s64_to_str (n = min)     ",	FALSE,   "-9223372036854775807",-9223372036854775807LL );
-	if (g_flags.test_overflow)
+	if (g_test.flags.test_overflow)
 	{
 		print_test_s64_to_str("s64_to_str (n > max)     ",	FALSE,    "9223372036854775808", 9223372036854775808LL  );
 		print_test_s64_to_str("s64_to_str (n < min)     ",	FALSE,   "-9223372036854775809",-9223372036854775809LL  );
@@ -172,18 +171,17 @@ void	print_test_u8_to_str(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(u8_to_str, number)
 	print_test_str(test_name, "_u8_to_str", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	printf(" -> {%s}", expecting);
+	TEST_PRINT_ARGS("%d", number)
 }
 void	test_u8_to_str(void)
 {
-printf("\n");
-/*	| TEST FUNCTION     | TEST NAME                 |CAN SEGV|EXPECTING| TEST ARGS */
+//	| TEST FUNCTION     | TEST NAME                 |CAN SEGV|EXPECTING| TEST ARGS
 	print_test_u8_to_str("u8_to_str               ",	FALSE,      "1", 1    );
 	print_test_u8_to_str("u8_to_str               ",	FALSE,     "42", 42   );
 	print_test_u8_to_str("u8_to_str               ",	FALSE,    "111", 111  );
 	print_test_u8_to_str("u8_to_str (n = max)     ",	FALSE,    "255", 255  );
 	print_test_u8_to_str("u8_to_str (n = min)     ",	FALSE,      "0", 0    );
-	if (g_flags.test_overflow)
+	if (g_test.flags.test_overflow)
 	{
 		print_test_u8_to_str("u8_to_str (n > max)     ",	FALSE,    "256", 256  );
 		print_test_u8_to_str("u8_to_str (n < min)     ",	FALSE,     "-1", -1   );
@@ -204,19 +202,18 @@ void	print_test_u16_to_str(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(u16_to_str, number)
 	print_test_str(test_name, "_u16_to_str", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	printf(" -> {%s}", expecting);
+	TEST_PRINT_ARGS("%d", number)
 }
 void	test_u16_to_str(void)
 {
-printf("\n");
-/*	| TEST FUNCTION      | TEST NAME                  |CAN SEGV|EXPECTING| TEST ARGS */
+//	| TEST FUNCTION      | TEST NAME                  |CAN SEGV|EXPECTING| TEST ARGS
 	print_test_u16_to_str("u16_to_str               ",	FALSE,        "1", 1      );
 	print_test_u16_to_str("u16_to_str               ",	FALSE,       "42", 42     );
 	print_test_u16_to_str("u16_to_str               ",	FALSE,      "777", 777    );
 	print_test_u16_to_str("u16_to_str               ",	FALSE,    "10000", 10000  );
 	print_test_u16_to_str("u16_to_str (n = max)     ",	FALSE,    "65535", 65535  );
 	print_test_u16_to_str("u16_to_str (n = min)     ",	FALSE,        "0", 0      );
-	if (g_flags.test_overflow)
+	if (g_test.flags.test_overflow)
 	{
 		print_test_u16_to_str("u16_to_str (n > max)     ",	FALSE,    "65536", 65536  );
 		print_test_u16_to_str("u16_to_str (n < min)     ",	FALSE,       "-1", -1     );
@@ -237,12 +234,11 @@ void	print_test_u32_to_str(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(u32_to_str, number)
 	print_test_str(test_name, "_u32_to_str", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	printf(" -> {%s}", expecting);
+	TEST_PRINT_ARGS("%d", number)
 }
 void	test_u32_to_str(void)
 {
-printf("\n");
-/*	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING     | TEST ARGS */
+//	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING     | TEST ARGS
 	print_test_u32_to_str("u32_to_str               ",	FALSE,             "1", 1           );
 	print_test_u32_to_str("u32_to_str               ",	FALSE,            "42", 42          );
 	print_test_u32_to_str("u32_to_str               ",	FALSE,             "0", 0           );
@@ -251,7 +247,7 @@ printf("\n");
 	print_test_u32_to_str("u32_to_str               ",	FALSE,     "123456789", 123456789   );
 	print_test_u32_to_str("u32_to_str (n = max)     ",	FALSE,    "4294967295", 4294967295  );
 	print_test_u32_to_str("u32_to_str (n = min)     ",	FALSE,             "0", 0           );
-	if (g_flags.test_overflow)
+	if (g_test.flags.test_overflow)
 	{
 		print_test_u32_to_str("u32_to_str (n > max)     ",	FALSE,    "4294967296", 4294967296  );
 		print_test_u32_to_str("u32_to_str (n < min)     ",	FALSE,            "-1", -1          );
@@ -272,12 +268,11 @@ void	print_test_u64_to_str(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(u64_to_str, number)
 	print_test_str(test_name, "_u64_to_str", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	printf(" -> {%s}", expecting);
+	TEST_PRINT_ARGS("%d", number)
 }
 void	test_u64_to_str(void)
 {
-printf("\n");
-/*	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING              | TEST ARGS */
+//	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING              | TEST ARGS
 	print_test_u64_to_str("u64_to_str               ",	FALSE,                      "1", 1                     );
 	print_test_u64_to_str("u64_to_str               ",	FALSE,                     "42", 42                    );
 	print_test_u64_to_str("u64_to_str               ",	FALSE,                    "777", 777                   );
@@ -286,7 +281,7 @@ printf("\n");
 	print_test_u64_to_str("u64_to_str               ",	FALSE,           "999999999999", 999999999999          );
 	print_test_u64_to_str("u64_to_str (n = max)     ",	FALSE,   "18446744073709551615", 18446744073709551615UL);
 	print_test_u64_to_str("u64_to_str (n = min)     ",	FALSE,                      "0", 0                     );
-	if (g_flags.test_overflow)
+	if (g_test.flags.test_overflow)
 	{
 		print_test_u64_to_str("u64_to_str (n > max)     ",	FALSE,   "18446744073709551616", 18446744073709551616UL);
 		print_test_u64_to_str("u64_to_str (n < min)     ",	FALSE,                     "-1", -1                    );
@@ -308,12 +303,11 @@ void	print_test_f32_to_str(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(f32_to_str, number, precision)
 	print_test_str(test_name, "_f32_to_str", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	printf(" -> {%s}", expecting);
+	TEST_PRINT_ARGS("%d", number)
 }
 void	test_f32_to_str(void)
 {
-printf("\n");
-/*	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING              | TEST ARGS */
+//	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING              | TEST ARGS
 	print_test_f32_to_str("f32_to_str               ",	FALSE,                      "1", 1                    , 1);
 	print_test_f32_to_str("f32_to_str               ",	FALSE,                     "42", 42                   , 0);
 	print_test_f32_to_str("f32_to_str               ",	FALSE,                   "42.0", 42                   , 1);
@@ -368,12 +362,11 @@ void	print_test_f64_to_str(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(f64_to_str, number, precision)
 	print_test_str(test_name, "_f64_to_str", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	printf(" -> {%s}", expecting);
+	TEST_PRINT_ARGS("%d", number)
 }
 void	test_f64_to_str(void)
 {
-printf("\n");
-/*	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING              | TEST ARGS */
+//	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING              | TEST ARGS
 	print_test_f64_to_str("f64_to_str               ",	FALSE,                      "1", 1                    , 1);
 	print_test_f64_to_str("f64_to_str               ",	FALSE,                     "42", 42                   , 0);
 	print_test_f64_to_str("f64_to_str               ",	FALSE,                   "42.0", 42                   , 1);
@@ -418,6 +411,40 @@ printf("\n");
 
 
 /*
+**	char*	ft_size_to_str(size_t n);
+*/
+void	print_test_size_to_str(char const* test_name, int can_segfault,
+		char const* expecting,
+		size_t number)
+{
+	TEST_PERFORM_RESULT(size_to_str, number)
+	print_test_str(test_name, "_size_to_str", result_libft, expecting, can_segfault);
+	print_timer_result(&t, FALSE);
+	TEST_PRINT_ARGS("%d", number)
+}
+void	test_size_to_str(void)
+{
+//	| TEST FUNCTION       | TEST NAME                    |CAN SEGV| EXPECTING              | TEST ARGS
+	print_test_size_to_str("size_to_str               ",	FALSE,                      "1", 1                     );
+	print_test_size_to_str("size_to_str               ",	FALSE,                     "42", 42                    );
+	print_test_size_to_str("size_to_str               ",	FALSE,                    "777", 777                   );
+	print_test_size_to_str("size_to_str               ",	FALSE,                  "10000", 10000                 );
+	print_test_size_to_str("size_to_str               ",	FALSE,              "123456789", 123456789             );
+	print_test_size_to_str("size_to_str               ",	FALSE,           "999999999999", 999999999999          );
+	print_test_size_to_str("size_to_str (n = max)     ",	FALSE,   "18446744073709551615", 18446744073709551615UL);
+	print_test_size_to_str("size_to_str (n = min)     ",	FALSE,                      "0", 0                     );
+	if (g_test.flags.test_overflow)
+	{
+		print_test_size_to_str("size_to_str (n > max)     ",	FALSE,   "18446744073709551616", 18446744073709551616UL);
+		print_test_size_to_str("size_to_str (n < min)     ",	FALSE,                     "-1", -1                    );
+		print_test_size_to_str("size_to_str (n > maxdigit)",	FALSE,  "999999999999999999999", 999999999999999999999UL);
+		print_test_size_to_str("size_to_str (n < maxdigit)",	FALSE, "-999999999999999999999",-999999999999999999999UL);
+	}
+}
+
+
+
+/*
 **	char*	ft_bool_to_str(t_bool value, t_bool uppercase);
 */
 void	print_test_bool_to_str(char const* test_name, int can_segfault,
@@ -428,58 +455,22 @@ void	print_test_bool_to_str(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(bool_to_str, value, uppercase)
 	print_test_str(test_name, "_bool_to_str", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	printf(" -> {%s}", expecting);
+	TEST_PRINT_ARGS("value=%d, uppercase=%d", value, uppercase)
 }
 void	test_bool_to_str(void)
 {
-printf("\n");
-/*	| TEST FUNCTION       | TEST NAME                   |CAN SEGV|EXPECTING| TEST ARGS */
+//	| TEST FUNCTION       | TEST NAME                   |CAN SEGV|EXPECTING| TEST ARGS
 	print_test_bool_to_str("bool_to_str               ",	FALSE,   "TRUE",      1, TRUE);
 	print_test_bool_to_str("bool_to_str (n = min)     ",	FALSE,  "FALSE",      0, TRUE);
 	print_test_bool_to_str("bool_to_str               ",	FALSE,   "TRUE",     42, TRUE);
 	print_test_bool_to_str("bool_to_str (n = max)     ",	FALSE,   "true",    255, FALSE);
 	print_test_bool_to_str("bool_to_str (n = min)     ",	FALSE,  "false",      0, FALSE);
-	if (g_flags.test_overflow)
+	if (g_test.flags.test_overflow)
 	{
 		print_test_bool_to_str("bool_to_str (n > max)     ",	FALSE,   "TRUE",    256, TRUE);
 		print_test_bool_to_str("bool_to_str (n < min)     ",	FALSE,  "FALSE",     -1, TRUE);
 		print_test_bool_to_str("bool_to_str (n > maxdigit)",	FALSE,   "TRUE", 999999, TRUE);
 		print_test_bool_to_str("bool_to_str (n < maxdigit)",	FALSE,  "-TRUE",-999999, TRUE);
-	}
-}
-
-
-
-/*
-**	char*	ft_size_to_str(size_t n);
-*/
-void	print_test_size_to_str(char const* test_name, int can_segfault,
-		char const* expecting,
-		size_t number)
-{
-	TEST_PERFORM_RESULT(size_to_str, number)
-	print_test_str(test_name, "_size_to_str", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
-	printf(" -> {%s}", expecting);
-}
-void	test_size_to_str(void)
-{
-printf("\n");
-/*	| TEST FUNCTION       | TEST NAME                    |CAN SEGV| EXPECTING              | TEST ARGS */
-	print_test_size_to_str("size_to_str               ",	FALSE,                      "1", 1                     );
-	print_test_size_to_str("size_to_str               ",	FALSE,                     "42", 42                    );
-	print_test_size_to_str("size_to_str               ",	FALSE,                    "777", 777                   );
-	print_test_size_to_str("size_to_str               ",	FALSE,                  "10000", 10000                 );
-	print_test_size_to_str("size_to_str               ",	FALSE,              "123456789", 123456789             );
-	print_test_size_to_str("size_to_str               ",	FALSE,           "999999999999", 999999999999          );
-	print_test_size_to_str("size_to_str (n = max)     ",	FALSE,   "18446744073709551615", 18446744073709551615UL);
-	print_test_size_to_str("size_to_str (n = min)     ",	FALSE,                      "0", 0                     );
-	if (g_flags.test_overflow)
-	{
-		print_test_size_to_str("size_to_str (n > max)     ",	FALSE,   "18446744073709551616", 18446744073709551616UL);
-		print_test_size_to_str("size_to_str (n < min)     ",	FALSE,                     "-1", -1                    );
-		print_test_size_to_str("size_to_str (n > maxdigit)",	FALSE,  "999999999999999999999", 999999999999999999999UL);
-		print_test_size_to_str("size_to_str (n < maxdigit)",	FALSE, "-999999999999999999999",-999999999999999999999UL);
 	}
 }
 
@@ -503,12 +494,11 @@ void	print_test_str_to_s8(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT_TYPE(t_s8, str_to_s8, str)
 	print_test_s8(test_name, "_str_to_s8", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ESCAPED(str)
+	TEST_PRINT_ARGS_ESCAPED(str)
 }
 void test_str_to_s8()
 {
-printf("\n");
-/*	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING                   | TEST ARGS */
+//	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING                   | TEST ARGS
 	print_test_str_to_s8("str_to_s8               ",	FALSE,                           0, "0"                          );
 	print_test_str_to_s8("str_to_s8               ",	FALSE,                           1, "1"                          );
 	print_test_str_to_s8("str_to_s8               ",	FALSE,                          42, "42"                         );
@@ -532,7 +522,7 @@ printf("\n");
 	print_test_str_to_s8("str_to_s8 (n = min)     ",	FALSE,                        -128, "-128"                       );
 	print_test_str_to_s8("str_to_s8 (empty str)   ",	FALSE,                           0, ""                           );
 	print_test_str_to_s8("str_to_s8 (null str)    ",	SEGV,                            0, NULL                         );
-	if (g_flags.test_overflow)
+	if (g_test.flags.test_overflow)
 	{
 		print_test_str_to_s8("str_to_s8 (n > max)     ",	FALSE,                         128, " 128"                       );
 		print_test_str_to_s8("str_to_s8 (n < min)     ",	FALSE,                        -129, "-129"                       );
@@ -553,12 +543,11 @@ void	print_test_str_to_s16(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT_TYPE(t_s16, str_to_s16, str)
 	print_test_s16(test_name, "_str_to_s16", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ESCAPED(str)
+	TEST_PRINT_ARGS_ESCAPED(str)
 }
 void test_str_to_s16()
 {
-printf("\n");
-/*	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING                   | TEST ARGS */
+//	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING                   | TEST ARGS
 	print_test_str_to_s16("str_to_s16",               	FALSE,                           0, "0"                          );
 	print_test_str_to_s16("str_to_s16",               	FALSE,                           1, "1"                          );
 	print_test_str_to_s16("str_to_s16",               	FALSE,                          42, "42"                         );
@@ -605,7 +594,7 @@ printf("\n");
 	print_test_str_to_s16("str_to_s16 (n = min)     ",	FALSE,                      -32768, "-32768"                     );
 	print_test_str_to_s16("str_to_s16 (empty str)   ",	FALSE,                           0, ""                           );
 	print_test_str_to_s16("str_to_s16 (null str)    ",	SEGV,                            0, NULL                         );
-	if (g_flags.test_overflow)
+	if (g_test.flags.test_overflow)
 	{
 		print_test_str_to_s16("str_to_s16 (n > max)     ",	FALSE,                       32768,  "32768"                     );
 		print_test_str_to_s16("str_to_s16 (n < min)     ",	FALSE,                      -32769, "-32769"                     );
@@ -626,12 +615,11 @@ void	print_test_str_to_s32(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT_TYPE(t_s32, str_to_s32, str)
 	print_test_s32(test_name, "_str_to_s32", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ESCAPED(str)
+	TEST_PRINT_ARGS_ESCAPED(str)
 }
 void test_str_to_s32()
 {
-printf("\n");
-/*	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING                   | TEST ARGS */
+//	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING                   | TEST ARGS
 	print_test_str_to_s32("str_to_s32",               	FALSE,                           0, "0"                          );
 	print_test_str_to_s32("str_to_s32",               	FALSE,                           1, "1"                          );
 	print_test_str_to_s32("str_to_s32",               	FALSE,                          42, "42"                         );
@@ -698,7 +686,7 @@ printf("\n");
 	print_test_str_to_s32("str_to_s32 (n = min)     ",	FALSE,                 -2147483648, "-2147483648"                );
 	print_test_str_to_s32("str_to_s32 (empty str)   ",	FALSE,                           0, ""                           );
 	print_test_str_to_s32("str_to_s32 (null str)    ",	SEGV,                            0, NULL                         );
-	if (g_flags.test_overflow)
+	if (g_test.flags.test_overflow)
 	{
 		print_test_str_to_s32("str_to_s32 (n > max)     ",	FALSE,                  2147483648,  "2147483648"                );
 		print_test_str_to_s32("str_to_s32 (n < min)     ",	FALSE,                 -2147483649, "-2147483649"                );
@@ -719,12 +707,11 @@ void	print_test_str_to_s64(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT_TYPE(t_s64, str_to_s64, str)
 	print_test_s64(test_name, "_str_to_s64", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ESCAPED(str)
+	TEST_PRINT_ARGS_ESCAPED(str)
 }
 void test_str_to_s64()
 {
-printf("\n");
-/*	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING                   | TEST ARGS */
+//	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING                   | TEST ARGS
 	print_test_str_to_s64("str_to_s64",               	FALSE,                           0, "0"                          );
 	print_test_str_to_s64("str_to_s64",               	FALSE,                           1, "1"                          );
 	print_test_str_to_s64("str_to_s64",               	FALSE,                          42, "42"                         );
@@ -801,7 +788,7 @@ printf("\n");
 	print_test_str_to_s64("str_to_s64 (n = min)     ",	FALSE,      -9223372036854775807LL, "-9223372036854775807"       );
 	print_test_str_to_s64("str_to_s64 (empty str)   ",	FALSE,                           0, ""                           );
 	print_test_str_to_s64("str_to_s64 (null str)    ",	SEGV,                            0, NULL                         );
-	if (g_flags.test_overflow)
+	if (g_test.flags.test_overflow)
 	{
 		print_test_str_to_s64("str_to_s64 (n > max)     ",	FALSE,       9223372036854775808LL,  "9223372036854775808"       );
 		print_test_str_to_s64("str_to_s64 (n < min)     ",	FALSE,      -9223372036854775809LL, "-9223372036854775809"       );
@@ -822,12 +809,11 @@ void	print_test_str_to_u8(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT_TYPE(t_u8, str_to_u8, str)
 	print_test_u8(test_name, "_str_to_u8", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ESCAPED(str)
+	TEST_PRINT_ARGS_ESCAPED(str)
 }
 void test_str_to_u8()
 {
-printf("\n");
-/*	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING                   | TEST ARGS */
+//	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING                   | TEST ARGS
 	print_test_str_to_u8("str_to_u8               ",	FALSE,                           1, "1"                          );
 	print_test_str_to_u8("str_to_u8               ",	FALSE,                          42, "42"                         );
 	print_test_str_to_u8("str_to_u8               ",	FALSE,                           0, "-42"                        );
@@ -850,7 +836,7 @@ printf("\n");
 	print_test_str_to_u8("str_to_u8 (n = min)     ",	FALSE,                           0, "0"                          );
 	print_test_str_to_u8("str_to_u8 (empty str)   ",	FALSE,                           0, ""                           );
 	print_test_str_to_u8("str_to_u8 (null str)    ",	SEGV,                            0, NULL                         );
-	if (g_flags.test_overflow)
+	if (g_test.flags.test_overflow)
 	{
 		print_test_str_to_u8("str_to_u8 (n > max)     ",	FALSE,                         256,  "256"                       );
 		print_test_str_to_u8("str_to_u8 (n < min)     ",	FALSE,                           0, "-1"                         );
@@ -871,12 +857,11 @@ void	print_test_str_to_u16(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT_TYPE(t_u16, str_to_u16, str)
 	print_test_u16(test_name, "_str_to_u16", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ESCAPED(str)
+	TEST_PRINT_ARGS_ESCAPED(str)
 }
 void test_str_to_u16()
 {
-printf("\n");
-/*	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING                   | TEST ARGS */
+//	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING                   | TEST ARGS
 	print_test_str_to_u16("str_to_u16",               	FALSE,                           1, "1"                          );
 	print_test_str_to_u16("str_to_u16",               	FALSE,                          42, "42"                         );
 	print_test_str_to_u16("str_to_u16",               	FALSE,                           0, "-42"                        );
@@ -922,7 +907,7 @@ printf("\n");
 	print_test_str_to_u16("str_to_u16 (n = min)     ",	FALSE,                           0, "0"                          );
 	print_test_str_to_u16("str_to_u16 (empty str)   ",	FALSE,                           0, ""                           );
 	print_test_str_to_u16("str_to_u16 (null str)    ",	SEGV,                            0, NULL                         );
-	if (g_flags.test_overflow)
+	if (g_test.flags.test_overflow)
 	{
 		print_test_str_to_u16("str_to_u16 (n > max)     ",	FALSE,                       65536, "65536"                      );
 		print_test_str_to_u16("str_to_u16 (n < min)     ",	FALSE,                           0, "-32769"                     );
@@ -943,12 +928,11 @@ void	print_test_str_to_u32(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT_TYPE(t_u32, str_to_u32, str)
 	print_test_u32(test_name, "_str_to_u32", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ESCAPED(str)
+	TEST_PRINT_ARGS_ESCAPED(str)
 }
 void test_str_to_u32()
 {
-printf("\n");
-/*	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING                   | TEST ARGS */
+//	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING                   | TEST ARGS
 	print_test_str_to_u32("str_to_u32",               	FALSE,                           1, "1"                          );
 	print_test_str_to_u32("str_to_u32",               	FALSE,                          42, "42"                         );
 	print_test_str_to_u32("str_to_u32",               	FALSE,                           0, "-42"                        );
@@ -1014,7 +998,7 @@ printf("\n");
 	print_test_str_to_u32("str_to_u32 (n = min)     ",	FALSE,                           0, "0"                          );
 	print_test_str_to_u32("str_to_u32 (empty str)   ",	FALSE,                           0, ""                           );
 	print_test_str_to_u32("str_to_u32 (null str)    ",	SEGV,                            0, NULL                         );
-	if (g_flags.test_overflow)
+	if (g_test.flags.test_overflow)
 	{
 		print_test_str_to_u32("str_to_u32 (n > max)     ",	FALSE,                  4294967296, "4294967296"                 );
 		print_test_str_to_u32("str_to_u32 (n < min)     ",	FALSE,                           0, "-1"                         );
@@ -1035,12 +1019,11 @@ void	print_test_str_to_u64(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT_TYPE(t_u64, str_to_u64, str)
 	print_test_u64(test_name, "_str_to_u64", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ESCAPED(str)
+	TEST_PRINT_ARGS_ESCAPED(str)
 }
 void test_str_to_u64()
 {
-printf("\n");
-/*	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING                   | TEST ARGS */
+//	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING                   | TEST ARGS
 	print_test_str_to_u64("str_to_u64",               	FALSE,                           0, "0"                          );
 	print_test_str_to_u64("str_to_u64",               	FALSE,                           1, "1"                          );
 	print_test_str_to_u64("str_to_u64",               	FALSE,                          42, "42"                         );
@@ -1117,7 +1100,7 @@ printf("\n");
 	print_test_str_to_u64("str_to_u64 (n = min)     ",	FALSE,                           0, "0"                          );
 	print_test_str_to_u64("str_to_u64 (empty str)   ",	FALSE,                           0, ""                           );
 	print_test_str_to_u64("str_to_u64 (null str)    ",	SEGV,                            0, NULL                         );
-	if (g_flags.test_overflow)
+	if (g_test.flags.test_overflow)
 	{
 		print_test_str_to_u64("str_to_u64 (n > max)     ",	FALSE,      18446744073709551616UL, "18446744073709551616"       );
 		print_test_str_to_u64("str_to_u64 (n < min)     ",	FALSE,                           0, "-1"                         );
@@ -1138,12 +1121,11 @@ void	print_test_str_to_f32(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT_TYPE(t_f32, str_to_f32, str)
 	print_test_f32(test_name, "_str_to_f32", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ESCAPED(str)
+	TEST_PRINT_ARGS_ESCAPED(str)
 }
 void	test_str_to_f32(void)
 {
-printf("\n");
-/*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
+//	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
 //	TODO
 }
 
@@ -1159,12 +1141,11 @@ void	print_test_str_to_f64(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT_TYPE(t_f64, str_to_f64, str)
 	print_test_f64(test_name, "_str_to_f64", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ESCAPED(str)
+	TEST_PRINT_ARGS_ESCAPED(str)
 }
 void test_str_to_f64()
 {
-printf("\n");
-/*	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING                   | TEST ARGS */
+//	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING                   | TEST ARGS
 	print_test_str_to_f64("str_to_f64",               	FALSE,                           0, "0"                          );
 	print_test_str_to_f64("str_to_f64",               	FALSE,                           1, "1"                          );
 	print_test_str_to_f64("str_to_f64",               	FALSE,                          42, "42"                         );
@@ -1293,7 +1274,7 @@ printf("\n");
 	print_test_str_to_f64("str_to_f64 (NaN)         ",	FALSE,                         NAN, "drop yer nan"               );
 	print_test_str_to_f64("str_to_f64 (empty str)   ",	FALSE,                         NAN, ""                           );
 	print_test_str_to_f64("str_to_f64 (null str)    ",	SEGV,                            0, NULL                         );
-	if (g_flags.test_overflow)
+	if (g_test.flags.test_overflow)
 	{
 	}
 }
@@ -1310,11 +1291,11 @@ void	print_test_str_to_bool(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT_TYPE(t_bool, str_to_bool, str)
 	// TODO implement
 	print_timer_result(&t, FALSE);
+	TEST_PRINT_ARGS_ESCAPED(str)
 }
 void	test_str_to_bool(void)
 {
-printf("\n");
-/*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
+//	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
 //	TODO
 }
 
@@ -1330,14 +1311,11 @@ void	print_test_str_to_size(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT_TYPE(size_t, str_to_size, str)
 	print_test_size(test_name, "_str_to_size", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	char* expect = str_to_escape(str);
-	printf(" -> {%s}", expect);
-	if (expect) free(expect);
+	TEST_PRINT_ARGS_ESCAPED(str)
 }
 void	test_str_to_size(void)
 {
-printf("\n");
-/*	| TEST FUNCTION      | TEST NAME                     |CAN SEGV| EXPECTING                 | TEST ARGS */
+//	| TEST FUNCTION      | TEST NAME                     |CAN SEGV| EXPECTING                 | TEST ARGS
 	print_test_str_to_size("str_to_size",               	FALSE,                           0, "0"                          );
 	print_test_str_to_size("str_to_size",               	FALSE,                           1, "1"                          );
 	print_test_str_to_size("str_to_size",               	FALSE,                          42, "42"                         );
@@ -1414,7 +1392,7 @@ printf("\n");
 	print_test_str_to_size("str_to_size (n = min)     ",	FALSE,                           0, "0"                          );
 	print_test_str_to_size("str_to_size (empty str)   ",	FALSE,                           0, ""                           );
 	print_test_str_to_size("str_to_size (null str)    ",	TRUE | (1 << 2),                 0, NULL                         );
-	if (g_flags.test_overflow)
+	if (g_test.flags.test_overflow)
 	{
 		print_test_str_to_size("str_to_size (n > max)     ",	FALSE,      18446744073709551616UL, "18446744073709551616"       );
 		print_test_str_to_size("str_to_size (n < min)     ",	FALSE,                           0, "-1"                         );
@@ -1443,18 +1421,17 @@ void	print_test_u8_to_hex(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(u8_to_hex, number)
 	print_test_str(test_name, "_u8_to_hex", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	printf(" -> {%s}", expecting);
+	TEST_PRINT_ARGS("%d", number)
 }
 void	test_u8_to_hex(void)
 {
-printf("\n");
-/*	| TEST FUNCTION     | TEST NAME                 |CAN SEGV|EXPECTING| TEST ARGS */
+//	| TEST FUNCTION     | TEST NAME                 |CAN SEGV|EXPECTING| TEST ARGS
 	print_test_u8_to_hex("u8_to_hex               ",	FALSE,      "1", 1    );
 	print_test_u8_to_hex("u8_to_hex               ",	FALSE,     "2A", 42   );
 	print_test_u8_to_hex("u8_to_hex               ",	FALSE,     "6F", 111  );
 	print_test_u8_to_hex("u8_to_hex (n = max)     ",	FALSE,     "FF", 255  );
 	print_test_u8_to_hex("u8_to_hex (n = min)     ",	FALSE,      "0", 0    );
-	if (g_flags.test_overflow)
+	if (g_test.flags.test_overflow)
 	{
 		print_test_u8_to_hex("u8_to_hex (n > max)     ",	FALSE,    "100", 256  );
 		print_test_u8_to_hex("u8_to_hex (n < min)     ",	FALSE,     "-1", -1   );
@@ -1475,19 +1452,18 @@ void	print_test_u16_to_hex(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(u16_to_hex, number)
 	print_test_str(test_name, "_u16_to_hex", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	printf(" -> {%s}", expecting);
+	TEST_PRINT_ARGS("%d", number)
 }
 void	test_u16_to_hex(void)
 {
-printf("\n");
-/*	| TEST FUNCTION      | TEST NAME                  |CAN SEGV|EXPECTING| TEST ARGS */
+//	| TEST FUNCTION      | TEST NAME                  |CAN SEGV|EXPECTING| TEST ARGS
 	print_test_u16_to_hex("u16_to_hex               ",	FALSE,        "1", 1      );
 	print_test_u16_to_hex("u16_to_hex               ",	FALSE,       "2A", 42     );
 	print_test_u16_to_hex("u16_to_hex               ",	FALSE,      "309", 777    );
 	print_test_u16_to_hex("u16_to_hex               ",	FALSE,     "2710", 10000  );
 	print_test_u16_to_hex("u16_to_hex (n = max)     ",	FALSE,     "FFFF", 65535  );
 	print_test_u16_to_hex("u16_to_hex (n = min)     ",	FALSE,        "0", 0      );
-	if (g_flags.test_overflow)
+	if (g_test.flags.test_overflow)
 	{
 		print_test_u16_to_hex("u16_to_hex (n > max)     ",	FALSE,    "10000", 65536  );
 		print_test_u16_to_hex("u16_to_hex (n < min)     ",	FALSE,       "-1", -1     );
@@ -1508,12 +1484,11 @@ void	print_test_u32_to_hex(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(u32_to_hex, number)
 	print_test_str(test_name, "_u32_to_hex", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	printf(" -> {%s}", expecting);
+	TEST_PRINT_ARGS("%d", number)
 }
 void	test_u32_to_hex(void)
 {
-printf("\n");
-/*	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING     | TEST ARGS */
+//	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING     | TEST ARGS
 	print_test_u32_to_hex("u32_to_hex               ",	FALSE,             "1", 1           );
 	print_test_u32_to_hex("u32_to_hex               ",	FALSE,            "2A", 42          );
 	print_test_u32_to_hex("u32_to_hex               ",	FALSE,             "0", 0           );
@@ -1522,7 +1497,7 @@ printf("\n");
 	print_test_u32_to_hex("u32_to_hex               ",	FALSE,       "75BCD15", 123456789   );
 	print_test_u32_to_hex("u32_to_hex (n = max)     ",	FALSE,      "FFFFFFFF", 4294967295  );
 	print_test_u32_to_hex("u32_to_hex (n = min)     ",	FALSE,             "0", 0           );
-	if (g_flags.test_overflow)
+	if (g_test.flags.test_overflow)
 	{
 		print_test_u32_to_hex("u32_to_hex (n > max)     ",	FALSE,     "100000000", 4294967296  );
 		print_test_u32_to_hex("u32_to_hex (n < min)     ",	FALSE,            "-1", -1          );
@@ -1534,21 +1509,20 @@ printf("\n");
 
 
 /*
-**	char*	ft_u64_to_hex(t_s64 n);
+**	char*	ft_u64_to_hex(t_u64 n);
 */
 void	print_test_u64_to_hex(char const* test_name, int can_segfault,
 		char const* expecting,
-		t_s32 number)
+		t_u64 number)
 {
 	TEST_PERFORM_RESULT(u64_to_hex, number)
 	print_test_str(test_name, "_u64_to_hex", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	printf(" -> {%s}", expecting);
+	TEST_PRINT_ARGS("%d", number)
 }
 void	test_u64_to_hex(void)
 {
-printf("\n");
-/*	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING              | TEST ARGS */
+//	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING              | TEST ARGS
 	print_test_u64_to_hex("u64_to_hex               ",	FALSE,                      "1", 1                     );
 	print_test_u64_to_hex("u64_to_hex               ",	FALSE,                     "2A", 42                    );
 	print_test_u64_to_hex("u64_to_hex               ",	FALSE,                    "30A", 778                   );
@@ -1557,7 +1531,7 @@ printf("\n");
 	print_test_u64_to_hex("u64_to_hex               ",	FALSE,             "E8D4A50FFF", 999999999999L         );
 	print_test_u64_to_hex("u64_to_hex (n = max)     ",	FALSE,       "FFFFFFFFFFFFFFFF", 18446744073709551615UL);
 	print_test_u64_to_hex("u64_to_hex (n = min)     ",	FALSE,                      "0", 0                     );
-	if (g_flags.test_overflow)
+	if (g_test.flags.test_overflow)
 	{
 		print_test_u64_to_hex("u64_to_hex (n > max)     ",	FALSE,      "10000000000000000", 18446744073709551616UL);
 		print_test_u64_to_hex("u64_to_hex (n < min)     ",	FALSE,                     "-1", -1                    );
@@ -1581,8 +1555,7 @@ void	print_test_hex_to_u8(char const* test_name, int can_segfault,
 }
 void	test_hex_to_u8(void)
 {
-printf("\n");
-/*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
+//	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
 //	TODO
 }
 
@@ -1601,8 +1574,7 @@ void	print_test_hex_to_u16(char const* test_name, int can_segfault,
 }
 void	test_hex_to_u16(void)
 {
-printf("\n");
-/*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
+//	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
 //	TODO
 }
 
@@ -1621,8 +1593,7 @@ void	print_test_hex_to_u32(char const* test_name, int can_segfault,
 }
 void	test_hex_to_u32(void)
 {
-printf("\n");
-/*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
+//	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
 //	TODO
 }
 
@@ -1641,8 +1612,7 @@ void	print_test_hex_to_u64(char const* test_name, int can_segfault,
 }
 void	test_hex_to_u64(void)
 {
-printf("\n");
-/*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
+//	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
 //	TODO
 }
 
@@ -1659,12 +1629,11 @@ void	print_test_s8_to_strbase(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(s8_to_strbase, number, base)
 	print_test_str(test_name, "_s8_to_strbase", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	printf(" -> {base:%s, %s}", base, expecting);
+	TEST_PRINT_ARGS("base='%s', n=%d", base, number);
 }
 void	test_s8_to_strbase(void)
 {
-printf("\n");
-/*	| TEST FUNCTION         | TEST NAME                      |CAN SEGV|  EXPECTING  | TEST ARGS */
+//	| TEST FUNCTION         | TEST NAME                      |CAN SEGV|  EXPECTING  | TEST ARGS
 	print_test_s8_to_strbase("s8_to_strbase               ",	FALSE,           "1",           1,               "01");
 	print_test_s8_to_strbase("s8_to_strbase               ",	FALSE,          NULL,           1,               "+1");
 	print_test_s8_to_strbase("s8_to_strbase               ",	FALSE,          NULL,           0,                "m");
@@ -1690,7 +1659,7 @@ printf("\n");
 	print_test_s8_to_strbase("s8_to_strbase (n = min, bin)",	FALSE,   "-10000000",        -128,               "01");
 	print_test_s8_to_strbase("s8_to_strbase (empty base)  ",	FALSE,          NULL,          42,                 "");
 	print_test_s8_to_strbase("s8_to_strbase (null base)   ",	TRUE,         segstr,          42,               NULL);
-	if (g_flags.test_overflow)
+	if (g_test.flags.test_overflow)
 	{
 		print_test_s8_to_strbase("s8_to_strbase (n > max)     ",	FALSE,         "128",         128,       "0123456789");
 		print_test_s8_to_strbase("s8_to_strbase (n < min)     ",	FALSE,        "-129",        -129,       "0123456789");
@@ -1712,12 +1681,11 @@ void	print_test_s16_to_strbase(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(s16_to_strbase, number, base)
 	print_test_str(test_name, "_s16_to_strbase", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	printf(" -> {base:%s, %s}", base, expecting);
+	TEST_PRINT_ARGS("base='%s', n=%d", base, number);
 }
 void	test_s16_to_strbase(void)
 {
-printf("\n");
-/*	| TEST FUNCTION         | TEST NAME                      |CAN SEGV|  EXPECTING  | TEST ARGS */
+//	| TEST FUNCTION         | TEST NAME                      |CAN SEGV|  EXPECTING  | TEST ARGS
 	print_test_s16_to_strbase("s16_to_strbase               ",	FALSE,           "1",           1,               "01");
 	print_test_s16_to_strbase("s16_to_strbase               ",	FALSE,          NULL,           1,               "+1");
 	print_test_s16_to_strbase("s16_to_strbase               ",	FALSE,          NULL,           0,                "m");
@@ -1747,7 +1715,7 @@ printf("\n");
 	print_test_s16_to_strbase("s16_to_strbase (n = min, bin)",	FALSE,"-1000000000000000", -32768,               "01");
 	print_test_s16_to_strbase("s16_to_strbase (empty base)  ",	FALSE,          NULL,          42,                 "");
 	print_test_s16_to_strbase("s16_to_strbase (null base)   ",	TRUE,         segstr,          42,               NULL);
-	if (g_flags.test_overflow)
+	if (g_test.flags.test_overflow)
 	{
 		print_test_s16_to_strbase("s16_to_strbase (n > max)     ",	FALSE,       "32768",       32768,       "0123456789");
 		print_test_s16_to_strbase("s16_to_strbase (n < min)     ",	FALSE,      "-32769",      -32769,       "0123456789");
@@ -1769,12 +1737,11 @@ void	print_test_s32_to_strbase(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(s32_to_strbase, number, base)
 	print_test_str(test_name, "_s32_to_strbase", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	printf(" -> {base:%s, %s}", base, expecting);
+	TEST_PRINT_ARGS("base='%s', n=%d", base, number);
 }
 void	test_s32_to_strbase(void)
 {
-printf("\n");
-/*	| TEST FUNCTION         | TEST NAME                      |CAN SEGV|  EXPECTING                   | TEST ARGS */
+//	| TEST FUNCTION         | TEST NAME                      |CAN SEGV|  EXPECTING                   | TEST ARGS
 	print_test_s32_to_strbase("s32_to_strbase               ",	FALSE,                       "1",                   1,               "01");
 	print_test_s32_to_strbase("s32_to_strbase               ",	FALSE,                      NULL,                   1,               "+1");
 	print_test_s32_to_strbase("s32_to_strbase               ",	FALSE,                      NULL,                   0,                "m");
@@ -1805,7 +1772,7 @@ printf("\n");
 	print_test_s32_to_strbase("s32_to_strbase (n = min, bin)",	FALSE,"-10000000000000000000000000000000",-2147483648,               "01");
 	print_test_s32_to_strbase("s32_to_strbase (empty base)  ",	FALSE,                      NULL,                  42,                 "");
 	print_test_s32_to_strbase("s32_to_strbase (null base)   ",	TRUE,                     segstr,                  42,               NULL);
-	if (g_flags.test_overflow)
+	if (g_test.flags.test_overflow)
 	{
 		print_test_s32_to_strbase("s32_to_strbase (n > max)     ",	FALSE,              "2147483648",          2147483648,       "0123456789");
 		print_test_s32_to_strbase("s32_to_strbase (n < min)     ",	FALSE,             "-2147483649",         -2147483649,       "0123456789");
@@ -1827,12 +1794,11 @@ void	print_test_s64_to_strbase(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(s64_to_strbase, number, base)
 	print_test_str(test_name, "_s64_to_strbase", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	printf(" -> {base:%s, %s}", base, expecting);
+	TEST_PRINT_ARGS("base='%s', n=%d", base, number);
 }
 void	test_s64_to_strbase(void)
 {
-printf("\n");
-/*	| TEST FUNCTION         | TEST NAME                      |CAN SEGV|  EXPECTING  | TEST ARGS */
+//	| TEST FUNCTION         | TEST NAME                      |CAN SEGV|  EXPECTING  | TEST ARGS
 	print_test_s64_to_strbase("s64_to_strbase               ",	FALSE,                     "1",                    1,               "01");
 	print_test_s64_to_strbase("s64_to_strbase               ",	FALSE,                    NULL,                    1,               "+1");
 	print_test_s64_to_strbase("s64_to_strbase               ",	FALSE,                    NULL,                    0,                "m");
@@ -1865,7 +1831,7 @@ printf("\n");
 	print_test_s64_to_strbase("s64_to_strbase (n = min, bin)",	FALSE,"-111111111111111111111111111111111111111111111111111111111111111",-9223372036854775807,"01");
 	print_test_s64_to_strbase("s64_to_strbase (empty base)  ",	FALSE,                    NULL,                   42,                 "");
 	print_test_s64_to_strbase("s64_to_strbase (null base)   ",	TRUE,                   segstr,                   42,               NULL);
-	if (g_flags.test_overflow)
+	if (g_test.flags.test_overflow)
 	{
 		print_test_s64_to_strbase("s64_to_strbase (n > max)     ",	FALSE, "9223372036854775808",    9223372036854775808,       "0123456789");
 		print_test_s64_to_strbase("s64_to_strbase (n < min)     ",	FALSE,"-9223372036854775808",   -9223372036854775808,       "0123456789");
@@ -1887,12 +1853,11 @@ void	print_test_u8_to_strbase(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(u8_to_strbase, number, base)
 	print_test_str(test_name, "_u8_to_strbase", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	printf(" -> {base:%s, %s}", base, expecting);
+	TEST_PRINT_ARGS("base='%s', n=%d", base, number);
 }
 void	test_u8_to_strbase(void)
 {
-printf("\n");
-/*	| TEST FUNCTION         | TEST NAME                      |CAN SEGV|  EXPECTING  | TEST ARGS */
+//	| TEST FUNCTION         | TEST NAME                      |CAN SEGV|  EXPECTING  | TEST ARGS
 	print_test_u8_to_strbase("u8_to_strbase               ",	FALSE,           "1",           1,               "01");
 	print_test_u8_to_strbase("u8_to_strbase               ",	FALSE,           "1",           1,               "+1");
 	print_test_u8_to_strbase("u8_to_strbase               ",	FALSE,          NULL,           0,                "m");
@@ -1917,7 +1882,7 @@ printf("\n");
 	print_test_u8_to_strbase("u8_to_strbase (n = min, bin)",	FALSE,           "0",           0,               "01");
 	print_test_u8_to_strbase("u8_to_strbase (empty base)  ",	FALSE,          NULL,          42,                 "");
 	print_test_u8_to_strbase("u8_to_strbase (null base)   ",	TRUE,         segstr,          42,               NULL);
-	if (g_flags.test_overflow)
+	if (g_test.flags.test_overflow)
 	{
 		print_test_u8_to_strbase("u8_to_strbase (n > max)     ",	FALSE,         "256",         256,       "0123456789");
 		print_test_u8_to_strbase("u8_to_strbase (n < min)     ",	FALSE,          "-1",          -1,       "0123456789");
@@ -1939,12 +1904,11 @@ void	print_test_u16_to_strbase(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(u16_to_strbase, number, base)
 	print_test_str(test_name, "_u16_to_strbase", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	printf(" -> {base:%s, %s}", base, expecting);
+	TEST_PRINT_ARGS("base='%s', n=%d", base, number);
 }
 void	test_u16_to_strbase(void)
 {
-printf("\n");
-/*	| TEST FUNCTION         | TEST NAME                      |CAN SEGV|  EXPECTING  | TEST ARGS */
+//	| TEST FUNCTION         | TEST NAME                      |CAN SEGV|  EXPECTING  | TEST ARGS
 	print_test_u16_to_strbase("u16_to_strbase               ",	FALSE,           "1",           1,               "01");
 	print_test_u16_to_strbase("u16_to_strbase               ",	FALSE,           "1",           1,               "+1");
 	print_test_u16_to_strbase("u16_to_strbase               ",	FALSE,          NULL,           0,                "m");
@@ -1973,7 +1937,7 @@ printf("\n");
 	print_test_u16_to_strbase("u16_to_strbase (n = min, bin)",	FALSE,           "0",           0,               "01");
 	print_test_u16_to_strbase("u16_to_strbase (empty base)  ",	FALSE,          NULL,          42,                 "");
 	print_test_u16_to_strbase("u16_to_strbase (null base)   ",	TRUE,         segstr,          42,               NULL);
-	if (g_flags.test_overflow)
+	if (g_test.flags.test_overflow)
 	{
 		print_test_u16_to_strbase("u16_to_strbase (n > max)     ",	FALSE,       "65536",       65536,       "0123456789");
 		print_test_u16_to_strbase("u16_to_strbase (n < min)     ",	FALSE,          "-1",          -1,       "0123456789");
@@ -1995,12 +1959,11 @@ void	print_test_u32_to_strbase(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(u32_to_strbase, number, base)
 	print_test_str(test_name, "_u32_to_strbase", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	printf(" -> {base:%s, %s}", base, expecting);
+	TEST_PRINT_ARGS("base='%s', n=%d", base, number);
 }
 void	test_u32_to_strbase(void)
 {
-printf("\n");
-/*	| TEST FUNCTION         | TEST NAME                      |CAN SEGV|  EXPECTING                   | TEST ARGS */
+//	| TEST FUNCTION         | TEST NAME                      |CAN SEGV|  EXPECTING                   | TEST ARGS
 	print_test_u32_to_strbase("u32_to_strbase               ",	FALSE,                       "1",                   1,               "01");
 	print_test_u32_to_strbase("u32_to_strbase               ",	FALSE,                       "1",                   1,               "+1");
 	print_test_u32_to_strbase("u32_to_strbase               ",	FALSE,                      NULL,                   0,                "m");
@@ -2030,7 +1993,7 @@ printf("\n");
 	print_test_u32_to_strbase("u32_to_strbase (n = min, bin)",	FALSE,                       "0",                   0,               "01");
 	print_test_u32_to_strbase("u32_to_strbase (empty base)  ",	FALSE,                      NULL,                  42,                 "");
 	print_test_u32_to_strbase("u32_to_strbase (null base)   ",	TRUE,                     segstr,                  42,               NULL);
-	if (g_flags.test_overflow)
+	if (g_test.flags.test_overflow)
 	{
 		print_test_u32_to_strbase("u32_to_strbase (n > max)     ",	FALSE,              "4294967296",          4294967296,       "0123456789");
 		print_test_u32_to_strbase("u32_to_strbase (n < min)     ",	FALSE,                      "-1",                  -1,       "0123456789");
@@ -2052,12 +2015,11 @@ void	print_test_u64_to_strbase(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(u64_to_strbase, number, base)
 	print_test_str(test_name, "_u64_to_strbase", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	printf(" -> {base:%s, %s}", base, expecting);
+	TEST_PRINT_ARGS("base='%s', n=%d", base, number);
 }
 void	test_u64_to_strbase(void)
 {
-printf("\n");
-/*	| TEST FUNCTION         | TEST NAME                      |CAN SEGV|  EXPECTING  | TEST ARGS */
+//	| TEST FUNCTION         | TEST NAME                      |CAN SEGV|  EXPECTING  | TEST ARGS
 	print_test_u64_to_strbase("u64_to_strbase               ",	FALSE,                    "1",                      1,               "01");
 	print_test_u64_to_strbase("u64_to_strbase               ",	FALSE,                    "1",                      1,               "+1");
 	print_test_u64_to_strbase("u64_to_strbase               ",	FALSE,                   NULL,                      0,                "m");
@@ -2089,7 +2051,7 @@ printf("\n");
 	print_test_u64_to_strbase("u64_to_strbase (n = min, bin)",	FALSE,                     "0",                     0,               "01");
 	print_test_u64_to_strbase("u64_to_strbase (empty base)  ",	FALSE,                    NULL,                    42,                 "");
 	print_test_u64_to_strbase("u64_to_strbase (null base)   ",	TRUE,                   segstr,                    42,               NULL);
-	if (g_flags.test_overflow)
+	if (g_test.flags.test_overflow)
 	{
 		print_test_u64_to_strbase("u64_to_strbase (n > max)     ",	FALSE, "18446744073709551616",   18446744073709551616UL,     "0123456789");
 		print_test_u64_to_strbase("u64_to_strbase (n < min)     ",	FALSE,                   "-1",                       -1,     "0123456789");
@@ -2098,16 +2060,13 @@ printf("\n");
 	}
 }
 
+#pragma GCC diagnostic pop // Resets the GCC warning settings back to normal
+
 
 
 int		test_convert(void)
 {
-
-printf("\n");
-
-	printf("       .---------------------------.       \n");
-	printf("---==={  LIBFT TEST: libft_convert  }===---\n");
-	printf("       '---------------------------'       \n");
+	print_suite_title("convert");
 
 	print_nonstd();
 
@@ -2175,7 +2134,6 @@ printf("\n");
 //	test_strbase_to_u32();
 //	test_strbase_to_u64();
 
-printf("\n");
 
 	return (OK);
 }

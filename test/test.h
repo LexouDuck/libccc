@@ -10,11 +10,13 @@
 
 #include <string.h>
 #include <stdio.h>
+#include <stdbool.h>
 #include <setjmp.h>
 #include <signal.h>
 
 #include "libft.h"
 #include "libft_list.h"
+#include "libft_stat.h"
 
 
 
@@ -26,13 +28,50 @@
 
 typedef struct	s_test_flags__
 {
-	int			verbose;		// if 0, only display total amount of tests passed/failed
-	int			show_args;		// if 0, do not display arguments for each test
-	int			test_overflow;	// if 0, do not perform libft_convert overflowing number tests
+	bool	verbose;		// if 0, only display total amount of tests passed/failed
+	bool	show_args;		// if 0, do not display arguments for each test
+	bool	show_speed;		// if 0, do not display performance/speed for each test
+	bool	test_overflow;	// if 0, do not perform libft_convert overflowing number tests
 }				s_test_flags;
 
-// This global variable stores the main program arguments, for all testing functions to use as needed.
-s_test_flags	g_flags;
+typedef struct	s_test_totals__
+{
+	int		tests;	// The total amount of tests ran.
+	int		failed; // The amount of tests which had an ERROR result.
+}				s_test_totals;
+
+typedef struct	s_test_suite_
+{
+	bool		run;
+	char const*	name;
+	int		(*test)(void);
+}				s_test_suite;
+#define TEST_SUITE_AMOUNT	12
+
+typedef struct	s_test_arg_
+{
+	void	(*handle_arg)();
+	char		arg;
+	char const*	name;
+	char const* description;
+}				s_test_arg;
+#define TEST_ARGS_AMOUNT	5
+
+
+
+/*
+**	This struct holds all program state data
+*/
+typedef struct	s_test_
+{
+	s_test_flags	flags;		// Stores the main program argument options
+	s_test_totals	totals;		// Stores the amounts of tests ran/failed
+	s_test_suite	suites[TEST_SUITE_AMOUNT];
+	s_test_arg		args[TEST_ARGS_AMOUNT];
+}				s_test;
+// Global variable to access the program state data from anywhere
+s_test		g_test;
+
 
 /*
 **	Output color string codes for tty terminal/shell.
@@ -103,8 +142,6 @@ void	print_timer_result(t_timer* timer, t_s64 compare);
 ** ************************************************************************** *|
 */
 
-void	print_nonstd(void);
-
 int		test_memory(void);
 int		test_char(void);
 int		test_string(void);
@@ -131,6 +168,17 @@ extern char const* test3; extern size_t const test3_len;
 **                              Utility Functions                             *|
 ** ************************************************************************** *|
 */
+
+void	print_error(char const * format_error, ...);
+void	print_usage(char const * program_name);
+void	print_nonstd(void);
+void	print_suite_title(char const * suite_name);
+void	print_percent(double percent);
+void	print_totals(s_test_totals totals, char const * category);
+
+t_sortedlist_int	print_test_random(int samples);
+
+
 
 int		bool_equals(int a, int b);
 
@@ -163,7 +211,9 @@ void	print_test_bool(char const *test_name, char const *function, t_bool result,
 void	print_test_str(char const *test_name, char const *function, char const *result, char const *expect, int can_segfault);
 void	print_test_mem(char const *test_name, char const *function, void const *result, void const *expect, size_t length, int can_segfault);
 
-void	print_test_strls(char const *test_name, char const *function, char const **result, char const **expect, int can_segfault);
+void	print_test_alloc(char const *test_name, char const *function, char const *result, size_t length);
+
+void	print_test_strarr(char const *test_name, char const *function, char const **result, char const **expect, int can_segfault);
 
 void	print_test_lst(char const *test_name, char const *function, t_list const *result, char const *expect[], int can_segfault);
 
@@ -212,7 +262,11 @@ void	print_test_lst(char const *test_name, char const *function, t_list const *r
 	else can_segfault |= (1 << CALL); \
 
 #define _TEST_FREE(LIB) \
-	if (result_##LIB && result_##LIB != segstr) free(result_##LIB); \
+	if (result_##LIB && result_##LIB != segstr) \
+	{ \
+		free(result_##LIB); \
+		result_##LIB = NULL; \
+	} \
 
 
 
@@ -260,10 +314,22 @@ void	print_test_lst(char const *test_name, char const *function, t_list const *r
 
 
 
-#define TEST_PRINT_ESCAPED(STR) \
-	char* expect = str_to_escape(STR); \
-	printf(" -> {%s}", expect); \
-	if (expect) free(expect); \
+#define TEST_PRINT_ARGS(FORMAT, ...) \
+	if (g_test.flags.verbose, g_test.flags.show_args) \
+	{ \
+		printf(" -> ("); \
+		printf(FORMAT, ##__VA_ARGS__); \
+		printf(")"); \
+	} \
+
+#define TEST_PRINT_ARGS_ESCAPED(ARG) \
+	char* tmp = str_to_escape(ARG); \
+	TEST_PRINT_ARGS("%s", tmp); \
+	if (tmp) \
+	{ \
+		free(tmp); \
+		tmp = NULL; \
+	} \
 
 
 

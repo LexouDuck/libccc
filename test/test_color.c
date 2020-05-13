@@ -23,7 +23,6 @@ void	print_test_color_(char const* test_name, int can_segfault,
 }
 void	test_color_(void)
 {
-printf("\n");
 //	| TEST FUNCTION  | TEST NAME             |CAN SEGV| TEST ARGS
 	print_test_color_("color_             ",	FALSE, test1, 'm');
 	print_test_color_("color_             ",	FALSE, test1, '_');
@@ -42,15 +41,11 @@ printf("\n");
 
 int		test_color(void)
 {
-
-printf("\n");
-
-	printf("       .---------------------------.       \n");
-	printf("---==={   LIBFT TEST: libft_color   }===---\n");
-	printf("       '---------------------------'       \n");
+	print_suite_title("color");
 
 	print_nonstd();
 
-printf("\n");
+	// TODO
+
 	return (OK);
 }

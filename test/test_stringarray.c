@@ -32,7 +32,6 @@ void	test_strsplit(char const** segstrls)
 {
 	char const* split_1[] = { "Omae", "wa", "mou", "shindeiru." };
 	char const* split_2[] = { "Un ", "nge m", "nge de l", " f", "nge." };
-printf("\n");
 //	| TEST FUNCTION   | TEST NAME             |CAN SEGV| EXPECTING | TEST ARGS
 	print_test_strsplit("strsplit",           	FALSE,  split_1,    test1, ' ');
 	print_test_strsplit("strsplit",           	FALSE,  split_2,    test3, 'a');
@@ -59,7 +58,6 @@ void	print_test_strls_(char const* test_name, int can_segfault,
 }
 void	test_strls_(char** segstrls)
 {
-printf("\n");
 /*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
 //	TODO
 }
@@ -78,17 +76,12 @@ int		test_stringarray(void)
 	segstrls[0] = segstr;
 	segstrls[1] = NULL;
 
-printf("\n");
-
-	printf("       .---------------------------------.       \n");
-	printf("---==={   LIBFT TEST: libft_stringarray   }===---\n");
-	printf("       '---------------------------------'       \n");
+	print_suite_title("stringarray");
 
 	print_nonstd();
 
 //	test_strsplit(segstrls);
 
-printf("\n");
 
 	return (0);
 }

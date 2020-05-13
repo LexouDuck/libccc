@@ -287,7 +287,9 @@ rename:
 TEST_DIR	=	./test/
 
 TEST_HDR := $(TEST_DIR)test.h
-TEST_SRC :=	$(TEST_DIR)test.c				\
+TEST_SRC :=	$(TEST_DIR)main.c		\
+			$(TEST_DIR)util.c		\
+			$(TEST_DIR)util_print.c	\
 			$(TEST_DIR)test_memory.c		\
 			$(TEST_DIR)test_char.c			\
 			$(TEST_DIR)test_string.c		\
@@ -300,23 +302,23 @@ TEST_SRC :=	$(TEST_DIR)test.c				\
 			$(TEST_DIR)test_random.c		\
 			$(TEST_DIR)test_vlq.c			\
 			$(TEST_DIR)test_io.c			\
-			$(TEST_DIR)util_test.c
 
 TEST_OBJ	=	${TEST_SRC:$(TEST_DIR)%.c=$(OBJDIR)%.o}
 
+TEST_CFLAGS			=	-g
 TEST_INCLUDEDIRS	=	-I$(HDRDIR) -I$(TEST_DIR)
 
 TEST_PROGRAM	=	libft_test
 
 $(OBJDIR)%.o : $(TEST_DIR)%.c $(TEST_HDR)
 	@printf "Compiling file: "$@" -> "
-	@$(CC) -g -c $< $(TEST_INCLUDEDIRS) -o $@ -L./ -lft
+	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -c $< -o $@ -L./ -lft
 	@printf $(GREEN)"OK!"$(RESET)"\n"
 
 $(TEST_PROGRAM): $(NAME) $(TEST_OBJ) $(TEST_HDR)
-	@$(CC) -g $(TEST_INCLUDEDIRS) -o $(TEST_PROGRAM) $(TEST_OBJ) -L./ -lft
+	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -o $(TEST_PROGRAM) $(TEST_OBJ) -L./ -lft
 
 test: $(TEST_PROGRAM)
-	@./$(TEST_PROGRAM)
+	@./$(TEST_PROGRAM) --verbose
 
 -include ${DEPENDS}

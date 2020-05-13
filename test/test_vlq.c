@@ -3,16 +3,13 @@
 
 #include "test.h"
 
+
+
 int		test_vlq(void)
 {
+	print_suite_title("vlq");
 
-printf("\n");
-
-	printf("       .-------------------------.       \n");
-	printf("---==={   LIBFT TEST: libft_vlq   }===---\n");
-	printf("       '-------------------------'       \n");
-
-printf("\n");
+	// TODO
 
 	return (OK);
 }

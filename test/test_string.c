@@ -20,28 +20,12 @@ void	print_test_strnew(char const* test_name, int can_segfault,
 		size_t n)
 {
 	TEST_PERFORM_RESULT(strnew, n);
-	int error = FALSE;
-	printf("\n%s -> ", test_name);
-	if (result_libft == NULL)
-	{
-		error = TRUE;
-		printf(C_RED"\nERROR - The call to ft_strnew returned NULL."C_RESET);
-	}
-	for (size_t i = 0; i < n; ++i)
-	{
-		if (result_libft[i])
-		{
-			error = TRUE;
-			printf(C_RED"\nERROR - Every char should be '\\0', but '%c' was read at index %d."C_RESET, result_libft[i], i);
-		}
-	}
-	if (!error) printf(C_GREEN"OK!"C_RESET);
+	print_test_alloc(test_name, "strnew", result_libft, n);
 	print_timer_result(&t, FALSE);
 	TEST_FREE()
 }
 void	test_strnew(void)
 {
-printf("\n");
 //	| TEST FUNCTION  | TEST NAME      |CAN SEGV|TEST ARGS
 	print_test_strnew("strnew",        	FALSE,	12);
 	print_test_strnew("strnew (n = 0)",	FALSE,	0);
@@ -66,7 +50,6 @@ void	test_strset(void)
 {
 	char str1[] = "swag";
 	char str2[] = "swag";
-printf("\n");
 //	| TEST FUNCTION  | TEST NAME        | CAN SEGV | TEST ARGS
 	print_test_strset("strset",           	FALSE,	"aaaa", str1, str2, 'a');
 	print_test_strset("strset (null ptr)",	TRUE, 	segstr, NULL, NULL, 'a');
@@ -90,7 +73,6 @@ void	test_strclr(void)
 {
 	char str1[32];
 	char str2[32];
-printf("\n");
 //	| TEST FUNCTION  | TEST NAME        | CAN SEGV | TEST ARGS
 	print_test_strclr("strclr",           	FALSE,	"\0",   str1, str2);
 	print_test_strclr("strclr (null ptr)",	TRUE, 	segstr, NULL, NULL);
@@ -114,7 +96,6 @@ void	test_strdel(void)
 {
 	char* str1; if (!(str1 = malloc(32))) return ;
 	char* str2; if (!(str2 = malloc(32))) return ;
-printf("\n");
 //	| TEST FUNCTION  | TEST NAME        | CAN SEGV | TEST ARGS
 	print_test_strdel("strdel",           	FALSE,	NULL, &str1, &str2);
 	print_test_strdel("strdel (null ptr)",	TRUE, 	NULL, NULL,  NULL);
@@ -136,7 +117,6 @@ void	print_test_strdup(char const* test_name, int can_segfault,
 }
 void	test_strdup(void)
 {
-printf("\n");
 //	| TEST FUNCTION  | TEST NAME        | CAN SEGV | TEST ARGS
 	print_test_strdup("strdup",            	FALSE,	test1);
 	print_test_strdup("strdup (empty str)",	FALSE,	"\0");
@@ -162,7 +142,6 @@ void	test_strcpy(void)
 {
 	char str1[test2_len];
 	char str2[test2_len];
-printf("\n");
 //	| TEST FUNCTION  | TEST NAME        | CAN SEGV | TEST ARGS
 	print_test_strcpy("strcpy            ",	FALSE,	str1, str2, test2);
 	print_test_strcpy("strcpy (empty str)",	FALSE,	str1, str2, "\0");
@@ -191,7 +170,6 @@ void	test_strncpy(void)
 {
 	char str1[32];
 	char str2[32];
-printf("\n");
 //	| TEST FUNCTION   | TEST NAME               | CAN SEGV | TEST ARGS
 	print_test_strncpy("strncpy                ",	FALSE,	str1, str2, test1,     test1_len);
 	print_test_strncpy("strncpy (n = 0)        ",	FALSE,	str1, str2, test1,             0);
@@ -223,7 +201,6 @@ void	test_strlcpy(void)
 {
 	char str1[32];
 	char str2[32];
-printf("\n");
 //	| TEST FUNCTION   | TEST NAME           | CAN SEGV | TEST ARGS
 	print_test_strlcpy("strlcpy          ",  	FALSE,	str1, str2, " shindeiru", 5);
 	print_test_strlcpy("strlcpy (n = 0)  ",  	FALSE,	str1, str2, " shindeiru", 0);
@@ -255,7 +232,6 @@ void	test_strcat(void)
 	char str2[32];
 	strcpy(str1, "Sponge\0");
 	strcpy(str2, "Sponge\0");
-printf("\n");
 //	| TEST FUNCTION  | TEST NAME        | CAN SEGV | TEST ARGS
 	print_test_strcat("strcat",            	FALSE,	str1, str2, "Bob\0");
 	print_test_strcat("strcat (null dest)",	TRUE,	NULL, NULL, "Bob\0");
@@ -285,7 +261,6 @@ void	test_strncat(void)
 	char str2[32];
 	strcpy(str1, "Sponge\0");
 	strcpy(str2, "Sponge\0");
-printf("\n");
 //	| TEST FUNCTION   | TEST NAME           | CAN SEGV | TEST ARGS
 	print_test_strncat("strncat          ",  	FALSE,	str1, str2, "Bob\0",    3);
 	print_test_strncat("strncat (n = 0)  ",  	FALSE,	str1, str2, "Bobensen", 0);
@@ -318,7 +293,6 @@ void	test_strlcat(void)
 	char str2[32];
 	strcpy(str1, "Sponge\0");
 	strcpy(str2, "Sponge\0");
-printf("\n");
 //	| TEST FUNCTION   | TEST NAME           | CAN SEGV | TEST ARGS
 	print_test_strlcat("strlcat          ",  	FALSE,	str1, str2, " shindeiru", 5);
 	print_test_strlcat("strlcat (n = 0)  ",  	FALSE,	str1, str2, " shindeiru", 0);
@@ -351,7 +325,6 @@ void	print_test_strlen(char const* test_name, int can_segfault,
 }
 void	test_strlen(void)
 {
-printf("\n");
 //	| TEST FUNCTION  | TEST NAME          |CAN SEGV| TEST ARGS
 	print_test_strlen("strlen",           	FALSE,	test1);
 	print_test_strlen("strlen",           	FALSE,	test2);
@@ -373,7 +346,6 @@ void	print_test_strcmp(char const* test_name, int can_segfault,
 }
 void	test_strcmp(void)
 {
-printf("\n");
 //	| TEST FUNCTION  | TEST NAME          |CAN SEGV| TEST ARGS
 	print_test_strcmp("strcmp        ",    	FALSE,	test2, test3);
 	print_test_strcmp("strcmp (equal)",    	FALSE,	test2, test2);
@@ -398,7 +370,6 @@ void	print_test_strncmp(char const* test_name, int can_segfault,
 }
 void	test_strncmp(void)
 {
-printf("\n");
 //	| TEST FUNCTION  | TEST NAME              |CAN SEGV| TEST ARGS
 	print_test_strncmp("strncmp        ",    	FALSE,	test1,     test3,     7);
 	print_test_strncmp("strncmp        ",    	FALSE,	"abc",     "abcdef",  3);
@@ -426,7 +397,6 @@ void	print_test_strequ(char const* test_name, int can_segfault,
 }
 void	test_strequ(void)
 {
-printf("\n");
 //	| TEST FUNCTION  | TEST NAME            | CAN SEGV | EXPECTING                  | TEST ARGS
 	print_test_strequ("strequ            ", 	FALSE,	(strcmp(test1, test2) == 0), test1, test2);
 	print_test_strequ("strequ            ", 	FALSE,	(strcmp(test1, test1) == 0), test1, test1);
@@ -454,7 +424,6 @@ void	print_test_strnequ(char const* test_name, int can_segfault,
 }
 void	test_strnequ(void)
 {
-printf("\n");
 //	| TEST FUNCTION  | TEST NAME            | CAN SEGV | EXPECTING                       | TEST ARGS
 	print_test_strnequ("strnequ            ",	FALSE,	(strncmp(test1, test2,  5) == 0), test1, test2, 5);
 	print_test_strnequ("strnequ            ",	FALSE,	(strncmp(test1, test1,  7) == 0), test1, test1, 7);
@@ -482,7 +451,6 @@ void	print_test_strhas(char const* test_name, int can_segfault,
 }
 void	test_strhas(void)
 {
-printf("\n");
 //	| TEST FUNCTION  | TEST NAME             |CAN SEGV|EXPECTING| TEST ARGS
 	print_test_strhas("strhas               ",	FALSE,  TRUE,     "sweg my nigga", "mz");
 	print_test_strhas("strhas               ",	FALSE,  TRUE,     "sweg my nigga", "aze");
@@ -508,7 +476,6 @@ void	print_test_strhasonly(char const* test_name, int can_segfault,
 }
 void	test_strhasonly(void)
 {
-printf("\n");
 //	| TEST FUNCTION      | TEST NAME                  |CAN SEGV|EXPECTING| TEST ARGS
 	print_test_strhasonly("strhasonly                ",	FALSE,  TRUE,    "sweg my nigga", "aiey gmnsw");
 	print_test_strhasonly("strhasonly                ",	FALSE,  FALSE,   "sweg my nigga", "aiey gsw");
@@ -535,7 +502,6 @@ void	print_test_strcount_char(char const* test_name, int can_segfault,
 }
 void	test_strcount_char(void)
 {
-printf("\n");
 //	| TEST FUNCTION         | TEST NAME                  |CAN SEGV|EXPECTING| TEST ARGS
 	print_test_strcount_char("strcount_char            ",	FALSE,  3,       "sweg my nigga", 'g');
 	print_test_strcount_char("strcount_char            ",	FALSE,  0,       "sweg my nigga", 'z');
@@ -560,7 +526,6 @@ void	print_test_strcount_str(char const* test_name, int can_segfault,
 }
 void	test_strcount_str(void)
 {
-printf("\n");
 //	| TEST FUNCTION        | TEST NAME                    |CAN SEGV|EXPECTING| TEST ARGS
 	print_test_strcount_str("strcount_str              ",	FALSE,  3,         "sweg my nigga", "g");
 	print_test_strcount_str("strcount_str              ",	FALSE,  1,         "sweg my nigga", "sweg");
@@ -596,7 +561,6 @@ void	print_test_strchr(char const* test_name, int can_segfault,
 }
 void	test_strchr(void)
 {
-printf("\n");
 //	| TEST FUNCTION  | TEST NAME             |CAN SEGV| TEST ARGS
 	print_test_strchr("strchr             ",	FALSE, test1, 'm');
 	print_test_strchr("strchr             ",	FALSE, test1, '_');
@@ -619,7 +583,6 @@ void	print_test_strstr(char const* test_name, int can_segfault,
 }
 void	test_strstr(void)
 {
-printf("\n");
 //	| TEST FUNCTION  | TEST NAME             |CAN SEGV| TEST ARGS
 	print_test_strstr("strstr              ",	FALSE, test1, "mou ");
 	print_test_strstr("strstr              ",	FALSE, test1, "??");
@@ -645,7 +608,6 @@ void	print_test_strrchr(char const* test_name, int can_segfault,
 }
 void	test_strrchr(void)
 {
-printf("\n");
 //	| TEST FUNCTION  | TEST NAME               |CAN SEGV| TEST ARGS
 	print_test_strrchr("strrchr             ",	FALSE,   test1, 'm');
 	print_test_strrchr("strrchr             ",	FALSE,   test1, '_');
@@ -669,7 +631,6 @@ void	print_test_strrstr(char const* test_name, int can_segfault,
 }
 void	test_strrstr(void)
 {
-printf("\n");
 //	| TEST FUNCTION  | TEST NAME              |CAN SEGV|    EXPECTING    | TEST ARGS
 	print_test_strrstr("strrstr              ",	FALSE, "mou shindeiru.\0", test1, "mou ");
 	print_test_strrstr("strrstr              ",	FALSE, NULL,               test1, "??");
@@ -697,7 +658,6 @@ void	print_test_strnchr(char const* test_name, int can_segfault,
 }
 void	test_strnchr(void)
 {
-printf("\n");
 //	| TEST FUNCTION  | TEST NAME              |CAN SEGV|      EXPECTING      | TEST ARGS
 	print_test_strnchr("strnchr             ",	FALSE, "wa mou shindeiru.\0", test1, 'w', 16);
 	print_test_strnchr("strnchr             ",	FALSE,  NULL,                 test1, '_', 16);
@@ -726,7 +686,6 @@ void	print_test_strnstr(char const* test_name, int can_segfault,
 }
 void	test_strnstr(void)
 {
-printf("\n");
 //	| TEST FUNCTION  | TEST NAME             |CAN SEGV| EXPECTING | TEST ARGS
 	print_test_strnstr("strnstr              ",	FALSE, test1, "mou ", 16);
 	print_test_strnstr("strnstr              ",	FALSE, test1, "??",   test1_len);
@@ -757,7 +716,6 @@ void	print_test_strremove(char const* test_name, int can_segfault,
 }
 void	test_strremove(void)
 {
-printf("\n");
 //	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
 //	TODO
 }
@@ -776,7 +734,6 @@ void	print_test_strtoescape(char const* test_name, int can_segfault,
 }
 void	test_strtoescape(void)
 {
-printf("\n");
 //	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
 //	TODO
 }
@@ -795,7 +752,6 @@ void	print_test_strrep_char(char const* test_name, int can_segfault,
 }
 void	test_strrep_char(void)
 {
-printf("\n");
 //	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
 //	TODO
 }
@@ -814,7 +770,6 @@ void	print_test_strrep_charset(char const* test_name, int can_segfault,
 }
 void	test_strrep_charset(void)
 {
-printf("\n");
 //	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
 //	TODO
 }
@@ -833,7 +788,6 @@ void	print_test_strrep_str(char const* test_name, int can_segfault,
 }
 void	test_strrep_string(void)
 {
-printf("\n");
 //	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
 //	TODO
 }
@@ -863,7 +817,6 @@ void	print_test_strtrim(char const* test_name, int can_segfault,
 }
 void	test_strtrim(void)
 {
-printf("\n");
 //	| TEST FUNCTION   | TEST NAME                |CAN SEGV| EXPECTING                     | TEST ARGS
 	print_test_strtrim("strtrim                  ", FALSE, "swag",                          " \t\n\r\v\f", "   swag\n");
 	print_test_strtrim("strtrim                  ", FALSE, "FOR THE\tHORDE !",              " \t\n\r\v\f", "\t\n   \f FOR THE\tHORDE ! 	 \t \n ");
@@ -893,7 +846,6 @@ void	print_test_strtrim_l(char const* test_name, int can_segfault,
 }
 void	test_strtrim_l(void)
 {
-printf("\n");
 //	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
 //	TODO
 }
@@ -915,7 +867,6 @@ void	print_test_strtrim_r(char const* test_name, int can_segfault,
 }
 void	test_strtrim_r(void)
 {
-printf("\n");
 //	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
 //	TODO
 }
@@ -938,7 +889,6 @@ void	print_test_strpad(char const* test_name, int can_segfault,
 }
 void	test_strpad(void)
 {
-printf("\n");
 //	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
 //	TODO
 }
@@ -961,7 +911,6 @@ void	print_test_strpad_l(char const* test_name, int can_segfault,
 }
 void	test_strpad_l(void)
 {
-printf("\n");
 //	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
 //	TODO
 }
@@ -984,7 +933,6 @@ void	print_test_strpad_r(char const* test_name, int can_segfault,
 }
 void	test_strpad_r(void)
 {
-printf("\n");
 //	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
 //	TODO
 }
@@ -1014,7 +962,6 @@ void	print_test_strrev(char const* test_name, int can_segfault,
 }
 void	test_strrev(void)
 {
-printf("\n");
 //	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING              | TEST ARGS
 	print_test_strrev("strrev (even len)",	FALSE, ".uriednihs uom aw eamO", test1);
 	print_test_strrev("strrev (odd len) ",	FALSE, "???inaN",                test2);
@@ -1038,7 +985,6 @@ void	print_test_strjoin(char const* test_name, int can_segfault,
 }
 void	test_strjoin(void)
 {
-printf("\n");
 //	| TEST FUNCTION   | TEST NAME             |CAN SEGV| EXPECTING                     | TEST ARGS
 	print_test_strjoin("strjoin",            	FALSE, "Omae wa mou shindeiru.Nani???", test1, test2);
 	print_test_strjoin("strjoin (null str1)",	TRUE,   segstr,                         NULL,  test2);
@@ -1064,7 +1010,6 @@ void	print_test_strinsert(char const* test_name, int can_segfault,
 }
 void	test_strinsert(void)
 {
-printf("\n");
 //	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
 //	TODO
 }
@@ -1087,7 +1032,6 @@ void	print_test_strsub(char const* test_name, int can_segfault,
 }
 void	test_strsub(void)
 {
-printf("\n");
 //	| TEST FUNCTION  | TEST NAME             |CAN SEGV|EXPECTING| TEST ARGS
 	print_test_strsub("strsub            ",   	FALSE, "wa mo",  test1, 5, 5);
 	print_test_strsub("strsub (len = 0)  ",   	FALSE, "",       test1, 5, 0);
@@ -1142,7 +1086,6 @@ void	print_test_striter(char const* test_name, int can_segfault,
 }
 void	test_striter(void)
 {
-printf("\n");
 //	| TEST FUNCTION   | TEST NAME            |CAN SEGV| EXPECTING                | TEST ARGS
 	print_test_striter("striter            ",	FALSE, "omae wa mou shindeiru.",  "omAe wA mOu ShINDeIRu.", &strtolower);
 	print_test_striter("striter (null str) ",	TRUE,   segstr,                    NULL,                    &strtolower);
@@ -1168,7 +1111,6 @@ void	print_test_striteri(char const* test_name, int can_segfault,
 }
 void	test_striteri(void)
 {
-printf("\n");
 //	| TEST FUNCTION    | TEST NAME            |CAN SEGV| EXPECTING                | TEST ARGS
 	print_test_striteri("striteri            ",	FALSE, "oMaE Wa mOu sHiNdEiRu.",  "OMAE WA MOU SHINDEIRU.", &strtolower_1on2);
 	print_test_striteri("striteri (null str) ",	TRUE,   segstr,                    NULL,                    &strtolower_1on2);
@@ -1193,7 +1135,6 @@ void	print_test_strmap(char const* test_name, int can_segfault,
 }
 void	test_strmap(void)
 {
-printf("\n");
 //	| TEST FUNCTION   | TEST NAME         |CAN SEGV| EXPECTING                | TEST ARGS
 	print_test_strmap("strmap            ",	FALSE, "OMAE WA MOU SHINDEIRU.",  "omae wa mou shindeiru.", &strtoupper);
 	print_test_strmap("strmap (null str) ",	TRUE,   segstr,                    NULL,                    &strtoupper);
@@ -1218,7 +1159,6 @@ void	print_test_strmapi(char const* test_name, int can_segfault,
 }
 void	test_strmapi(void)
 {
-printf("\n");
 //	| TEST FUNCTION   | TEST NAME             |CAN SEGV| EXPECTING                | TEST ARGS
 	print_test_strmapi("strmapi            ",	FALSE, "oMaE Wa mOu sHiNdEiRu.",  "omae wa mou shindeiru.", &strtoupper_1on2);
 	print_test_strmapi("strmapi (null str) ",	TRUE,   segstr,                    NULL,                    &strtoupper_1on2);
@@ -1243,13 +1183,7 @@ int		test_string(void)
 	char const test3[] = "Un ange mange de la fange.";	size_t test3_len = strlen(test3) + 1;
 	char**	strls;
 
-printf("\n");
-
-	printf("       .----------------------------.       \n");
-	printf("---==={   LIBFT TEST: libft_string   }===---\n");
-	printf("       '----------------------------'       \n");
-
-
+	print_suite_title("string");
 
 	test_strnew();
 	test_strdup();
@@ -1312,7 +1246,6 @@ printf("\n");
 	test_strmap();
 	test_strmapi();
 
-printf("\n");
 
 	return (0);
 }
