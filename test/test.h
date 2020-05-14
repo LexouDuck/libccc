@@ -142,6 +142,9 @@ void	print_timer_result(t_timer* timer, t_s64 compare);
 ** ************************************************************************** *|
 */
 
+/*
+**	Test suite functions
+*/
 int		test_memory(void);
 int		test_char(void);
 int		test_string(void);
@@ -155,8 +158,9 @@ int		test_random(void);
 int		test_vlq(void);
 int		test_io(void);
 
-
-
+/*
+**	Global variables used in tests
+*/
 extern char const* test1; extern size_t const test1_len;
 extern char const* test2; extern size_t const test2_len;
 extern char const* test3; extern size_t const test3_len;
@@ -231,84 +235,52 @@ void	print_test_lst(char const *test_name, char const *function, t_list const *r
 **	The following macros are used for tests, to avoid boilerplate and code repetition.
 */
 
-#define _TEST_PERFORM(CALL, RESULT, FUNCTION, ...) \
-	segfault = setjmp(restore); \
-	if (!segfault) \
-	{ \
-		timer_clock(&t.start##CALL); \
-		FUNCTION(__VA_ARGS__); \
-		timer_clock(&t.end##CALL); \
-	} \
-	else RESULT = segstr; \
-
-#define _TEST_PERFORM_RESULT_STR(CALL, LIB, FUNCTION, ...) \
-	char* result_##LIB = NULL; \
-	segfault = setjmp(restore); \
-	if (!segfault) \
-	{ \
-		timer_clock(&t.start##CALL); \
-		result_##LIB = FUNCTION(__VA_ARGS__); \
-		timer_clock(&t.end##CALL); \
-	} \
-	else result_##LIB = segstr; \
-
-#define _TEST_PERFORM_RESULT(CALL, TYPE, LIB, FUNCTION, ...) \
-	TYPE result_##LIB; \
-	segfault = setjmp(restore); \
-	if (!segfault) \
-	{ \
-		timer_clock(&t.start##CALL); \
-		result_##LIB = FUNCTION(__VA_ARGS__); \
-		timer_clock(&t.end##CALL); \
-	} \
-	else can_segfault |= (1 << CALL); \
-
-#define _TEST_FREE(LIB) \
-	if (result_##LIB && result_##LIB != segstr) \
-	{ \
-		free(result_##LIB); \
-		result_##LIB = NULL; \
-	} \
-
-
-
+// Use this for void-return functions
 #define TEST_PERFORM(RESULT, FUNCTION, ...) \
 	t_timer t = {0}; \
 	_TEST_PERFORM(1, RESULT, ft_##FUNCTION, ##__VA_ARGS__) \
 
+// Use this for void-return functions that exist in libc
 #define TEST_PERFORM_LIBC(PREFIX, FUNCTION, ...) \
 	t_timer t = {0}; \
 	_TEST_PERFORM(1, PREFIX##_libft, ft_##FUNCTION, ##__VA_ARGS__) \
 	_TEST_PERFORM(2, PREFIX##_libc,       FUNCTION, ##__VA_ARGS__) \
 
+// Use this for void-return functions that exist in libc, which use a 'dest' argument
 #define TEST_PERFORM_LIBC_DEST(FUNCTION, ...) \
 	t_timer t = {0}; \
 	_TEST_PERFORM(1, dest_libft, ft_##FUNCTION, dest_libft, ##__VA_ARGS__) \
 	_TEST_PERFORM(2, dest_libc,       FUNCTION, dest_libc,  ##__VA_ARGS__) \
 
+// Use this for string-return functions
 #define TEST_PERFORM_RESULT(FUNCTION, ...) \
 	t_timer t = {0}; \
 	_TEST_PERFORM_RESULT_STR(1, libft, ft_##FUNCTION, ##__VA_ARGS__) \
 
+// Use this for string-return functions that exist in libc
 #define TEST_PERFORM_RESULT_LIBC(FUNCTION, ...) \
 	t_timer t = {0}; \
 	_TEST_PERFORM_RESULT_STR(1, libft, ft_##FUNCTION, ##__VA_ARGS__) \
 	_TEST_PERFORM_RESULT_STR(2, libc,       FUNCTION, ##__VA_ARGS__) \
 
+// Use this for string-return functions that exist in libc, which use a 'dest' argument
 #define TEST_PERFORM_RESULT_LIBC_DEST(FUNCTION, ...) \
 	t_timer t = {0}; \
 	_TEST_PERFORM_RESULT_STR(1, libft, ft_##FUNCTION, dest_libft, ##__VA_ARGS__) \
 	_TEST_PERFORM_RESULT_STR(2, libc,       FUNCTION, dest_libc,  ##__VA_ARGS__) \
 
+// Use this for (any_type)-return functions
 #define TEST_PERFORM_RESULT_TYPE(TYPE, FUNCTION, ...) \
 	t_timer t = {0}; \
 	_TEST_PERFORM_RESULT(1, TYPE, libft, ft_##FUNCTION, ##__VA_ARGS__) \
 
+// Use this for (any_type)-return functions that exist in libc
 #define TEST_PERFORM_RESULT_TYPE_LIBC(TYPE, FUNCTION, ...) \
 	t_timer t = {0}; \
 	_TEST_PERFORM_RESULT(1, TYPE, libft, ft_##FUNCTION, ##__VA_ARGS__) \
 	_TEST_PERFORM_RESULT(2, TYPE, libc,       FUNCTION, ##__VA_ARGS__) \
 
+// Use this for (any_type)-return functions that exist in libc, which use a 'dest' argument
 #define TEST_PERFORM_RESULT_TYPE_LIBC_DEST(TYPE, FUNCTION, ...) \
 	t_timer t = {0}; \
 	_TEST_PERFORM_RESULT(1, TYPE, libft, ft_##FUNCTION, dest_libft, ##__VA_ARGS__) \
@@ -316,6 +288,7 @@ void	print_test_lst(char const *test_name, char const *function, t_list const *r
 
 
 
+// Prints the given format string + values (if global flags demand so)
 #define TEST_PRINT_ARGS(FORMAT, ...) \
 	if (g_test.flags.verbose && g_test.flags.show_args) \
 	{ \
@@ -324,6 +297,7 @@ void	print_test_lst(char const *test_name, char const *function, t_list const *r
 		printf(")"); \
 	} \
 
+// Prints the given argument variable as a string with non-printable chars as escape sequences
 #define TEST_PRINT_ARGS_ESCAPED(ARG) \
 	char* tmp = str_to_escape(ARG); \
 	TEST_PRINT_ARGS("%s", tmp); \
@@ -335,14 +309,91 @@ void	print_test_lst(char const *test_name, char const *function, t_list const *r
 
 
 
+// Frees the 'result_libft' variable, if appropriate
 #define TEST_FREE() \
 	_TEST_FREE(libft) \
 
+// Frees the 'result_libft' and 'result_libc' variables, if appropriate
 #define TEST_FREE_LIBC() \
 	_TEST_FREE(libft) \
 	_TEST_FREE(libc) \
 
+
+
 /*
+**	_PRIVATE MACROS
+**	These are the core macro functions which are uses byll the macros above
+*/
+
+/*
+**	This macro performs a test (with segfault handling and execution timer) for the given void-returning function.
+**	Expects a 't_timer t' variable to be accessible and initialized.
+**	@param	CALL		The number of this call (1 or 2), token-pasted to the timer 'start_' and 'end_' fields.
+**	@param	RESULT		The name of the result variable to assign to (if segfault occurs)
+**	@param	FUNCTION	The name of the function to test
+**	@params				Variadic arguments are passed to FUNCTION
+*/
+#define _TEST_PERFORM(CALL, RESULT, FUNCTION, ...) \
+	segfault = setjmp(restore); \
+	if (!segfault) \
+	{ \
+		timer_clock(&t.start##CALL); \
+		FUNCTION(__VA_ARGS__); \
+		timer_clock(&t.end##CALL); \
+	} \
+	else RESULT = segstr; \
+
+/*
+**	This macro performs a test (with segfault handling and execution timer) for the given string-returning function.
+**	Expects a 't_timer t' variable to be accessible and initialized.
+**	@param	CALL		The number of this call (1 or 2), token-pasted to the timer 'start_' and 'end_' fields.
+**	@param	LIB			The name of the result variable to assign to (token-pasted as 'result_##LIB')
+**	@param	FUNCTION	The name of the function to test
+**	@params				Variadic arguments are passed to FUNCTION
+*/
+#define _TEST_PERFORM_RESULT_STR(CALL, LIB, FUNCTION, ...) \
+	char* result_##LIB = NULL; \
+	segfault = setjmp(restore); \
+	if (!segfault) \
+	{ \
+		timer_clock(&t.start##CALL); \
+		result_##LIB = FUNCTION(__VA_ARGS__); \
+		timer_clock(&t.end##CALL); \
+	} \
+	else result_##LIB = segstr; \
+
+/*
+**	This macro performs a test (with segfault handling and execution timer) for the given function.
+**	Expects a 't_timer t' variable to be accessible and initialized.
+**	@param	CALL		The number of this call (1 or 2), token-pasted to the timer 'start_' and 'end_' fields.
+**	@param	TYPE		The type of the result variable
+**	@param	LIB			The name of the result variable to assign to (token-pasted as 'result_##LIB')
+**	@param	FUNCTION	The name of the function to test
+**	@params				Variadic arguments are passed to FUNCTION
+*/
+#define _TEST_PERFORM_RESULT(CALL, TYPE, LIB, FUNCTION, ...) \
+	TYPE result_##LIB; \
+	segfault = setjmp(restore); \
+	if (!segfault) \
+	{ \
+		timer_clock(&t.start##CALL); \
+		result_##LIB = FUNCTION(__VA_ARGS__); \
+		timer_clock(&t.end##CALL); \
+	} \
+	else can_segfault |= (1 << CALL); \
+
+/*
+**	This macro frees the result variable for a test, if it is appropriate to do so
+**	@param	LIB			The name of the result variable to free (token-pasted as 'result_##LIB')
+*/
+#define _TEST_FREE(LIB) \
+	if (result_##LIB && result_##LIB != segstr) \
+	{ \
+		free(result_##LIB); \
+		result_##LIB = NULL; \
+	} \
+
+/* TODO perhaps find a way to macro-ify result printing ? its probably not really necessary...
 
 #define _TEST_PRINT(RESULT_STR, RESULT, EXPECT) \
 	print_test_str(test_name, RESULT_STR, RESULT, EXPECT, can_segfault); \
@@ -362,7 +413,7 @@ void	print_test_lst(char const *test_name, char const *function, t_list const *r
 	_TEST_PRINT(RESULT_STR, result_libft, result_libc) \
 
 
-
+// lo and behold, what a typical testing function used to look like: very boilerplate!
 #define DEFINE_TESTFUNC_LIBC_FREE(FUNCTION, ...) \
 { \
 	t_timer t = {0}; \

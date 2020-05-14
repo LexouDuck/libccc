@@ -98,6 +98,7 @@ static void	init(void)
 ** ************************************************************************** *|
 */
 
+// Returns 1 if all the global g_test.suites structs have 'run' set to 0
 static int	check_no_test_suites(void)
 {
 	for (int i = 0; i < TEST_SUITE_AMOUNT; ++i)
@@ -110,6 +111,7 @@ static int	check_no_test_suites(void)
 
 
 
+// A special return value to signal when a help argument has been provided by the user
 #define MATCHED_HELP	((int)-1)
 
 static int	handle_args_test_suites(char const * arg)
