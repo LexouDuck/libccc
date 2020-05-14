@@ -77,7 +77,8 @@ size_t	ft_strlcpy(char *dest, char const *src, size_t size)
 	i = 0;
 	while (i < size - 1 && src[i])
 	{
-		dest[i] = src[i];
+		if (size)
+			dest[i] = src[i];
 		++i;
 	}
 	dest[i] = '\0';

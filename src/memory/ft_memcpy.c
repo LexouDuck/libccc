@@ -49,16 +49,16 @@ void	*ft_memccpy(void *dest, void const *src, t_u8 byte, size_t n)
 	if (dest == NULL || src == NULL)
 		return (NULL);
 #endif
-	byte &= 0xFF;
 	result = (t_u8 *)dest;
 	source = (t_u8 *)src;
 	i = 0;
-	while (i < n)
+	while (source[i] != byte)
 	{
+		if (i == n)
+			return (NULL);
 		result[i] = source[i];
-		if (result[i] == byte)
-			return (result + i + 1);
 		++i;
 	}
-	return (NULL);
+	result[i] = byte;
+	return (result + i + 1);
 }

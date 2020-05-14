@@ -134,6 +134,7 @@ void	test_memcpy(void)
 	print_test_memcpy("memcpy (null dest)",	TRUE, 	NULL, NULL, test2, test2_len);
 	print_test_memcpy("memcpy (null src) ",	TRUE, 	str1, str2, NULL,  test2_len);
 	print_test_memcpy("memcpy (both null)",	TRUE, 	NULL, NULL, NULL,  test2_len);
+	// TODO add overlapping memory test
 }
 
 
@@ -145,25 +146,35 @@ void	print_test_memccpy(char const* test_name, int can_segfault,
 		char* dest_libft,
 		char* dest_libc,
 		char const* src,
-		char c,
+		t_u8 byte,
 		size_t n)
 {
-	TEST_PERFORM_RESULT_LIBC_DEST(memccpy, src, c, n)
-	print_test_mem(test_name, "memccpy 'dest' arg", dest_libft,   dest_libc,   n, can_segfault); if (c !='\0')
-	print_test_mem(NULL,      "memccpy return",     result_libft, result_libc, n, can_segfault);
+	TEST_PERFORM_RESULT_LIBC_DEST(memccpy, src, byte, n)
+	print_test_mem(test_name, "memccpy 'dest' arg", dest_libft,   dest_libc, n, can_segfault);// if (byte !='\0')
+	print_test_str(NULL,      "memccpy return",     result_libft, result_libc,  can_segfault);
 	print_timer_result(&t, TRUE);
+	TEST_PRINT_ARGS("dest=\"%s\", src=\"%s\", c=0x%x/'%c', n=%u", dest_libft, src, byte, byte, n)
 }
 void	test_memccpy(void)
 {
-	char str1[] = "Omae wa mou shindeiru. Nani ???\0";
-	char str2[] = "Omae wa mou shindeiru. Nani ???\0";
+	char str1[] = "________________________________";
+	char str2[] = "________________________________";
+	size_t n1 = 0x00ABCDEF6969CACA;
+	size_t n2 = 0x00ABCDEF6969CACA;
+	size_t n = 0x22446688AABBCCDD;
 //	| TEST FUNCTION   | TEST NAME           | CAN SEGV | TEST ARGS
-	print_test_memccpy("memccpy (str)     ", 	FALSE,	str1, str2, test3, 'e',  test3_len); // TODO debug and add more tests like this
-//	print_test_memccpy("memccpy (uint)    ", 	FALSE,	&na,  &nb,  &n,    0xAA, 10);
+	print_test_memccpy("memccpy (str)       ", 	FALSE,	str1, str2, test1, 'w',  test1_len);
+	print_test_memccpy("memccpy (str)       ", 	FALSE,	str1, str2, test2, '?',  test2_len);
+	print_test_memccpy("memccpy (str)       ", 	FALSE,	str1, str2, test3, 'f',  test3_len);
+	print_test_memccpy("memccpy (chars>0x80)", 	FALSE,	str1, str2, "\x78\x7F\x80\x81\x90\xA0\xB0", '\x7F', 8);
+	print_test_memccpy("memccpy (chars>0x80)", 	FALSE,	str1, str2, "\x78\x7F\x80\x81\x90\xA0\xB0", '\x90', 8);
+	print_test_memccpy("memccpy (chars>0x80)", 	FALSE,	str1, str2, "\x78\x7F\x80\x81\x90\xA0\xB0", '\xB0', 8);
+	print_test_memccpy("memccpy (uint)      ", 	FALSE,	(char*)&n1, (char*)&n2, (char const *)&n, 0xAA, 6);
 	print_test_memccpy("memccpy (c = '\\0')",	FALSE,	str1, str2, test3, '\0', test3_len);
 	print_test_memccpy("memccpy (null dest)",	TRUE, 	NULL, NULL, test3, 'e',  test3_len);
 	print_test_memccpy("memccpy (null src) ",	TRUE, 	str1, str2, NULL,  'e',  5);
 	print_test_memccpy("memccpy (both null)",	TRUE, 	NULL, NULL, NULL,  'e',  5);
+	// TODO add overlapping memory test
 }
 
 
@@ -194,6 +205,7 @@ void	test_memmove(void)
 	print_test_memmove("memmove (null dest)",	TRUE, 	FALSE,		NULL, NULL, test1, 5);
 	print_test_memmove("memmove (both null)",	TRUE, 	FALSE,		NULL, NULL, NULL,  5);
 	print_test_memmove("memmove (both null)",	TRUE, 	FALSE,		NULL, NULL, NULL,  5);
+	// TODO add overlapping memory test
 //	TODO change the testing function so that the following test can be done with a simple one-line function call
 /*
 	segfault = setjmp(restore); if (!segfault) sra = ft_memmove(str1 + 3, str1, test1_len - 5); else sra = segstr;

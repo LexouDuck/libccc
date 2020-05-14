@@ -317,7 +317,7 @@ void	print_test_lst(char const *test_name, char const *function, t_list const *r
 
 
 #define TEST_PRINT_ARGS(FORMAT, ...) \
-	if (g_test.flags.verbose, g_test.flags.show_args) \
+	if (g_test.flags.verbose && g_test.flags.show_args) \
 	{ \
 		printf(" -> ("); \
 		printf(FORMAT, ##__VA_ARGS__); \
