@@ -13,17 +13,12 @@ void	print_test_lstnew(char const* test_name, int can_segfault,
 		void* item,
 		size_t item_size)
 {
-	t_timer t = {0};
 	size_t expect_size = expecting ? strlen(expecting) + 1 : 0;
-	t_list* result;
-	segfault = setjmp(restore);
-	if (!segfault) { timer_clock(&t.start1);
-		result = ft_lstnew(item, item_size);
-	timer_clock(&t.end1); } else can_segfault |= (1 << 1);
-	print_test_size(test_name, "_lstnew->item_size", result->item_size, expect_size, can_segfault);
-	print_test_str(NULL,       "_lstnew->item",      result->item,      expecting,   can_segfault);
+	TEST_PERFORM_RESULT_TYPE(t_list*, lstnew, item, item_size);
+	print_test_size(test_name, "_lstnew->item_size", result_libft->item_size, expect_size, can_segfault);
+	print_test_str(NULL,       "_lstnew->item",      result_libft->item,      expecting,   can_segfault);
 	print_timer_result(&t, FALSE);
-	if (result) free(result);
+	if (result_libft) free(result_libft);
 }
 void	test_lstnew(void)
 {

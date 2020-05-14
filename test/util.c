@@ -26,19 +26,41 @@ int	str_equals(char const *str1, char const *str2)
 	size_t i;
 
 	if (str1 == str2)
-		return (1);
+		return (TRUE);
 	if (str1 && str2)
 	{
 		i = 0;
 		while (str1[i] && str2[i])
 		{
 			if (str1[i] != str2[i])
-				return (0);
+				return (FALSE);
 			++i;
 		}
-		return (str1[0] == str2[0]);
+		return (str1[i] == str2[i]);
 	}
-	return (0);
+	return (FALSE);
+}
+
+int str_equals_until(char const * str1, char const * str2, char c)
+{
+	size_t i;
+
+	if (str1 == str2)
+		return (TRUE);
+	if (str1 && str2)
+	{
+		i = 0;
+		while (
+			str1[i] && str1[i] != c &&
+			str2[i] && str2[i] != c)
+		{
+			if (str1[i] != str2[i])
+				return (FALSE);
+			++i;
+		}
+		return (str1[i] == str2[i]);
+	}
+	return (FALSE);
 }
 
 char *print_memory(void const *ptr, size_t length)
@@ -237,7 +259,7 @@ void		print_timer_result(t_timer* t, t_s64 compare)
 	char result1[64] = { 0 };
 	char result2[64] = { 0 };
 
-	if (!g_test.flags.show_speed)
+	if (!g_test.flags.verbose || !g_test.flags.show_speed)
 		return;
 
 	t->time1 = timer_getdiff(t->start1, t->end1);
@@ -284,6 +306,8 @@ void	print_test(
 		int can_segfault,
 		int error)
 {
+	static char const * previous_function = NULL;
+
 	g_test.totals.tests += 1;
 	if (error)
 		g_test.totals.failed += 1;
@@ -291,6 +315,8 @@ void	print_test(
 	{
 		if (test_name)
 		{
+			if (!str_equals_until(previous_function, function, ' '))
+				printf("\n");
 			if (can_segfault & 1)
 				printf("\n%s - "C_YELLOW"can segfault"C_RESET, test_name);
 			else printf("\n%s", test_name);
@@ -305,7 +331,7 @@ void	print_test(
 	{
 		if (str_equals(expect, "(n/a)"))
 			printf(C_RED"TEST COULD NOT BE PERFORMED\n"C_RESET);
-		else printf(C_RED"ERROR\n");
+		else printf(C_RED"Error:\n");
 		if (function[0] == '_')
 		{
 			char *expected = str_padleft("Expected", ' ', strlen(function) + 2);
@@ -320,6 +346,7 @@ void	print_test(
 	}
 	else if (g_test.flags.verbose)
 		printf(C_GREEN"OK!"C_RESET);
+	previous_function = function;
 }
 
 
@@ -467,7 +494,7 @@ void	print_test_alloc(
 			printf("The call to ft_%s(...) returned NULL.", function);
 		else printf("Every char should be '\\0', but '%c' was read at index %d.", result[i], i);
 	}
-	else if (!g_test.flags.verbose)
+	else if (g_test.flags.verbose)
 		printf(C_GREEN"OK!"C_RESET);
 }
 
@@ -574,7 +601,7 @@ void	print_test_lst(
 		error = TRUE;
 	if (error)
 	{
-		printf(C_RED"ERROR\n");
+		printf(C_RED"Error:\n");
 		lst = (t_list *)result;
 		printf(">ft_%s: [", function);
 		while (lst)

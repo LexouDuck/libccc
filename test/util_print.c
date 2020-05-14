@@ -14,8 +14,6 @@
 ** ************************************************************************** *|
 */
 
-
-
 void	print_error(char const * format_error, ...)
 {
 	va_list		args;
@@ -24,7 +22,47 @@ void	print_error(char const * format_error, ...)
 	va_start(args, format_error);
 	vprintf(format_error, args);
 	va_end(args);
-	printf("\n-> in file %s at line %d: in function %s\n", __FILE__, __LINE__, __func__);
+//	printf("-> in file %s at line %d (in function '%s()')\n", __FILE__, __LINE__, __func__);
+}
+
+
+
+void	print_percent(double percent)
+{
+	printf("%s%g%%"C_RESET"\n", (percent == 100 ? C_GREEN : (percent >= 90 ? C_YELLOW : C_RED)), percent);
+}
+
+
+
+void	print_totals(s_test_totals totals, char const * category)
+{
+	double percent = (totals.tests - totals.failed) * 100. / totals.tests;
+
+	printf("\n");
+	printf("=============================\n");
+	if (category)
+		printf("Test suite: libft_%s\n", category);
+	else printf("In total:\n");
+	printf("=============================\n");
+	printf("- Amount of tests: %d\n", totals.tests);
+	if (category)
+	{
+		int passed = totals.tests - totals.failed;
+		printf("- Tests: %s%d failed"C_RESET" / %s%d passed"C_RESET"\n",
+			(totals.failed == 0 ? C_GREEN : C_RED), totals.failed,
+			(totals.tests ? (passed == totals.tests ? C_GREEN : C_YELLOW) : C_RED), passed);
+		printf("- Success rate: ");
+		print_percent(percent);
+	}
+	else
+	{
+		if (totals.failed)
+		{
+			printf(C_RED"Failed %d out of %d tests in total."C_RESET"\n", totals.failed, totals.tests);
+		}
+		else printf(C_GREEN"All tests passed."C_RESET"\n");
+	}
+	printf("\n");
 }
 
 
@@ -54,18 +92,6 @@ void	print_usage(char const * program_name)
 
 
 
-void	print_nonstd(void)
-{
-	if (g_test.flags.verbose)
-	{
-		printf("\n");
-		printf("\n==>\t"C_BLUE"The following tests are for the functions of this category\n"
-			"\twhich are not present in the standard C library."C_RESET);
-	}
-}
-
-
-
 void	print_suite_title(char const * suite_name)
 {
 	if (g_test.flags.verbose)
@@ -74,46 +100,48 @@ void	print_suite_title(char const * suite_name)
 		printf("       .----------------------------------.       \n");
 		printf("---==={   LIBFT TEST: libft_%-12s   }===---\n", suite_name);
 		printf("       '----------------------------------'       \n");
-		printf("\n");
 	}
 }
 
 
 
-void	print_percent(double percent)
+void	print_title(void)
 {
-	printf("%s%g%%"C_RESET"\n", (percent == 100 ? C_GREEN : (percent >= 90 ? C_YELLOW : C_RED)), percent);
+	printf("   __   __ ___   _____ ______    ______ _____ ___  ______\n");
+	printf("  / /  / // . | / ___//_  __/   /_  __//  __// __|/_  __/\n");
+	printf(" / /_ / // , < / __/   / /       / /  /  _/ _\\_ \\  / /   \n");
+	printf("/___//_//___-'/_/     /_/       /_/  /____/ \\__-' /_/    \n");
+	printf("                                  ==> by duquesne @ 42.fr\n");
+	printf("=========================================================\n");
+	printf("\n");
+	if (g_test.flags.verbose)
+	{
+		printf(C_YELLOW"NB: All the tests with written in yellow 'can segfault' are NULL pointer tests of some kind."C_RESET"\n\n");
+	}
 }
 
 
 
-void	print_totals(s_test_totals totals, char const * category)
+void	print_endian_warning(void)
 {
-	double percent = (totals.tests - totals.failed) * 100. / totals.tests;
+	if (g_test.flags.verbose)
+	{
+		int n = 1;
+		if (*(char *)&n == 1)
+			printf(C_GREEN"/!\\ Your machine is little-endian (all tests should work reliably and can be trusted)"C_RESET"\n\n");
+		else printf(C_RED"/!\\ Your machine is not little-endian (errors may arise in certain tests which handle memory directly)"C_RESET"\n\n");
+	}
+}
 
-	printf("\n");
-	printf("=============================\n");
-	if (category)
-		printf("Test suite: libft_%s\n", category);
-	else printf("In total:\n");
-	printf("=============================\n");
-	printf("- Amount of tests: %d\n", totals.tests);
-	if (category)
+
+
+void	print_nonstd(void)
+{
+	if (g_test.flags.verbose)
 	{
-		int passed = totals.tests - totals.failed;
-		printf("- Tests: %s%d failed"C_RESET" / %s%d passed"C_RESET"\n",
-			(totals.failed == 0 ? C_GREEN : C_RED), totals.failed,
-			(passed == totals.tests ? C_GREEN : C_RED), passed);
-		printf("- Success rate: ");
-		print_percent(percent);
+		printf("\n\n");
+		printf(C_BLUE"================ NON-STD FUNCTIONS ================"C_RESET
+			"\nThe following tests are for the functions of this category"
+			"\nwhich are not present in the ISO standard C library.\n");
 	}
-	else
-	{
-		if (totals.failed)
-		{
-			printf(C_RED"Failed %d out of %d tests in total."C_RESET"\n", totals.failed, totals.tests);
-		}
-		else printf(C_GREEN"All tests passed."C_RESET"\n");
-	}
-	printf("\n");
 }

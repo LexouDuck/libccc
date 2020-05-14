@@ -135,9 +135,12 @@ int		test_compare_real_functions(
 			++failed_tests;
 			if (g_test.flags.show_args && expects[i] != results[i])
 			{
-				printf(C_RED"TEST N°%d -> difference: %g\n"C_RESET, i, error_list.data[i]);
-				printf("->    %s(%g)\t-> %g\n", func_name, tmp, expects[i]);
-				printf("-> ft_%s(%g)\t-> %g\n", func_name, tmp, results[i]);
+				printf("TEST N°%d: (arg=%g) -> return difference is "C_RED"%g\n"C_RESET, i, tmp, error_list.data[i]);
+				if (precision < abs(results[i] - expects[i]))
+				{
+					printf(C_RED"-> ft_%s(%g)\t-> %g"C_RESET"\n", func_name, tmp, results[i]);
+					printf(C_RED"->    %s(%g)\t-> %g"C_RESET"\n", func_name, tmp, expects[i]);
+				}
 			}
 		}
 	}

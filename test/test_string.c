@@ -111,9 +111,8 @@ void	print_test_strdup(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT_LIBC(strdup, src)
 	print_test_str(test_name, "strdup return", result_libft, result_libc, can_segfault);
-	if (result_libft && result_libft != segstr) free(result_libft);
-	if (result_libc  && result_libc  != segstr) free(result_libc);
 	print_timer_result(&t, TRUE);
+	TEST_FREE_LIBC()
 }
 void	test_strdup(void)
 {

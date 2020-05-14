@@ -496,7 +496,7 @@ void	print_test_str_to_s8(char const* test_name, int can_segfault,
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS_ESCAPED(str)
 }
-void test_str_to_s8()
+void test_str_to_s8(void)
 {
 //	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING                   | TEST ARGS
 	print_test_str_to_s8("str_to_s8               ",	FALSE,                           0, "0"                          );
@@ -545,7 +545,7 @@ void	print_test_str_to_s16(char const* test_name, int can_segfault,
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS_ESCAPED(str)
 }
-void test_str_to_s16()
+void test_str_to_s16(void)
 {
 //	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING                   | TEST ARGS
 	print_test_str_to_s16("str_to_s16",               	FALSE,                           0, "0"                          );
@@ -617,7 +617,7 @@ void	print_test_str_to_s32(char const* test_name, int can_segfault,
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS_ESCAPED(str)
 }
-void test_str_to_s32()
+void test_str_to_s32(void)
 {
 //	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING                   | TEST ARGS
 	print_test_str_to_s32("str_to_s32",               	FALSE,                           0, "0"                          );
@@ -709,7 +709,7 @@ void	print_test_str_to_s64(char const* test_name, int can_segfault,
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS_ESCAPED(str)
 }
-void test_str_to_s64()
+void test_str_to_s64(void)
 {
 //	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING                   | TEST ARGS
 	print_test_str_to_s64("str_to_s64",               	FALSE,                           0, "0"                          );
@@ -811,7 +811,7 @@ void	print_test_str_to_u8(char const* test_name, int can_segfault,
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS_ESCAPED(str)
 }
-void test_str_to_u8()
+void test_str_to_u8(void)
 {
 //	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING                   | TEST ARGS
 	print_test_str_to_u8("str_to_u8               ",	FALSE,                           1, "1"                          );
@@ -859,7 +859,7 @@ void	print_test_str_to_u16(char const* test_name, int can_segfault,
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS_ESCAPED(str)
 }
-void test_str_to_u16()
+void test_str_to_u16(void)
 {
 //	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING                   | TEST ARGS
 	print_test_str_to_u16("str_to_u16",               	FALSE,                           1, "1"                          );
@@ -930,7 +930,7 @@ void	print_test_str_to_u32(char const* test_name, int can_segfault,
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS_ESCAPED(str)
 }
-void test_str_to_u32()
+void test_str_to_u32(void)
 {
 //	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING                   | TEST ARGS
 	print_test_str_to_u32("str_to_u32",               	FALSE,                           1, "1"                          );
@@ -1021,7 +1021,7 @@ void	print_test_str_to_u64(char const* test_name, int can_segfault,
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS_ESCAPED(str)
 }
-void test_str_to_u64()
+void test_str_to_u64(void)
 {
 //	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING                   | TEST ARGS
 	print_test_str_to_u64("str_to_u64",               	FALSE,                           0, "0"                          );
@@ -1143,7 +1143,7 @@ void	print_test_str_to_f64(char const* test_name, int can_segfault,
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS_ESCAPED(str)
 }
-void test_str_to_f64()
+void test_str_to_f64(void)
 {
 //	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING                   | TEST ARGS
 	print_test_str_to_f64("str_to_f64",               	FALSE,                           0, "0"                          );

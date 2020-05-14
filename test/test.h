@@ -170,11 +170,13 @@ extern char const* test3; extern size_t const test3_len;
 */
 
 void	print_error(char const * format_error, ...);
-void	print_usage(char const * program_name);
-void	print_nonstd(void);
-void	print_suite_title(char const * suite_name);
 void	print_percent(double percent);
 void	print_totals(s_test_totals totals, char const * category);
+void	print_usage(char const * program_name);
+void	print_suite_title(char const * suite_name);
+void	print_title(void);
+void	print_endian_warning(void);
+void	print_nonstd(void);
 
 t_sortedlist_int	print_test_random(int samples);
 
