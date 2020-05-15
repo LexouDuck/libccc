@@ -10,7 +10,7 @@ CC_MAC	= gcc
 CFLAGS	=	-Wall -Wextra -Winline -Werror $(CFLAGS_PLATFORM) -O2 -MMD
 
 CFLAGS_PLATFORM = _
-CFLAGS_WIN	= -mwindows -static-libgcc -lpthread -L libwinpthread-1.dll
+CFLAGS_WIN	= -mwindows
 CFLAGS_LIN	= -Wno-unused-result 
 CFLAGS_MAC	= 
 
@@ -304,7 +304,7 @@ TEST_SRC :=	$(TEST_DIR)main.c		\
 
 TEST_OBJ	=	${TEST_SRC:$(TEST_DIR)%.c=$(OBJDIR)%.o}
 
-TEST_CFLAGS			=	-g
+TEST_CFLAGS			=	-O2 -g -fexceptions
 TEST_INCLUDEDIRS	=	-I$(HDRDIR) -I$(TEST_DIR)
 
 TEST_PROGRAM	=	libft_test

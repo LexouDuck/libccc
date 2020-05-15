@@ -127,12 +127,12 @@ typedef struct timespec t_time;
 
 typedef struct	s_timer
 {
-    t_time	start1;
-    t_time	start2;
-    t_time	end1;
-    t_time	end2;
-    t_time	time1;
-    t_time	time2;
+	t_time	start1;
+	t_time	start2;
+	t_time	end1;
+	t_time	end2;
+	t_time	time1;
+	t_time	time2;
 }				t_timer;
 
 void	timer_clock(t_time* t);
@@ -243,52 +243,52 @@ void	print_test_lst(char const *test_name, char const *function, t_list const *r
 
 // Use this for void-return functions
 #define TEST_PERFORM(RESULT, FUNCTION, ...) \
-	t_timer t = {0}; \
+	_TEST_INIT() \
 	_TEST_PERFORM(1, RESULT, ft_##FUNCTION, ##__VA_ARGS__) \
 
 // Use this for void-return functions that exist in libc
 #define TEST_PERFORM_LIBC(PREFIX, FUNCTION, ...) \
-	t_timer t = {0}; \
+	_TEST_INIT() \
 	_TEST_PERFORM(1, PREFIX##_libft, ft_##FUNCTION, ##__VA_ARGS__) \
 	_TEST_PERFORM(2, PREFIX##_libc,       FUNCTION, ##__VA_ARGS__) \
 
 // Use this for void-return functions that exist in libc, which use a 'dest' argument
 #define TEST_PERFORM_LIBC_DEST(FUNCTION, ...) \
-	t_timer t = {0}; \
+	_TEST_INIT() \
 	_TEST_PERFORM(1, dest_libft, ft_##FUNCTION, dest_libft, ##__VA_ARGS__) \
 	_TEST_PERFORM(2, dest_libc,       FUNCTION, dest_libc,  ##__VA_ARGS__) \
 
 // Use this for string-return functions
 #define TEST_PERFORM_RESULT(FUNCTION, ...) \
-	t_timer t = {0}; \
+	_TEST_INIT() \
 	_TEST_PERFORM_RESULT_STR(1, libft, ft_##FUNCTION, ##__VA_ARGS__) \
 
 // Use this for string-return functions that exist in libc
 #define TEST_PERFORM_RESULT_LIBC(FUNCTION, ...) \
-	t_timer t = {0}; \
+	_TEST_INIT() \
 	_TEST_PERFORM_RESULT_STR(1, libft, ft_##FUNCTION, ##__VA_ARGS__) \
 	_TEST_PERFORM_RESULT_STR(2, libc,       FUNCTION, ##__VA_ARGS__) \
 
 // Use this for string-return functions that exist in libc, which use a 'dest' argument
 #define TEST_PERFORM_RESULT_LIBC_DEST(FUNCTION, ...) \
-	t_timer t = {0}; \
+	_TEST_INIT() \
 	_TEST_PERFORM_RESULT_STR(1, libft, ft_##FUNCTION, dest_libft, ##__VA_ARGS__) \
 	_TEST_PERFORM_RESULT_STR(2, libc,       FUNCTION, dest_libc,  ##__VA_ARGS__) \
 
 // Use this for (any_type)-return functions
 #define TEST_PERFORM_RESULT_TYPE(TYPE, FUNCTION, ...) \
-	t_timer t = {0}; \
+	_TEST_INIT() \
 	_TEST_PERFORM_RESULT(1, TYPE, libft, ft_##FUNCTION, ##__VA_ARGS__) \
 
 // Use this for (any_type)-return functions that exist in libc
 #define TEST_PERFORM_RESULT_TYPE_LIBC(TYPE, FUNCTION, ...) \
-	t_timer t = {0}; \
+	_TEST_INIT() \
 	_TEST_PERFORM_RESULT(1, TYPE, libft, ft_##FUNCTION, ##__VA_ARGS__) \
 	_TEST_PERFORM_RESULT(2, TYPE, libc,       FUNCTION, ##__VA_ARGS__) \
 
 // Use this for (any_type)-return functions that exist in libc, which use a 'dest' argument
 #define TEST_PERFORM_RESULT_TYPE_LIBC_DEST(TYPE, FUNCTION, ...) \
-	t_timer t = {0}; \
+	_TEST_INIT() \
 	_TEST_PERFORM_RESULT(1, TYPE, libft, ft_##FUNCTION, dest_libft, ##__VA_ARGS__) \
 	_TEST_PERFORM_RESULT(2, TYPE, libc,       FUNCTION, dest_libc,  ##__VA_ARGS__) \
 
@@ -340,15 +340,17 @@ void	print_test_lst(char const *test_name, char const *function, t_list const *r
 **	@params				Variadic arguments are passed to FUNCTION
 */
 #define _TEST_PERFORM(CALL, RESULT, FUNCTION, ...) \
-	if (can_segfault && !g_test.flags.test_nullptrs) return; \
-	segfault = setjmp(restore); \
-	if (!segfault) \
+	_TRY \
 	{ \
 		timer_clock(&t.start##CALL); \
 		FUNCTION(__VA_ARGS__); \
 		timer_clock(&t.end##CALL); \
 	} \
-	else RESULT = segstr; \
+	_CATCH \
+	{ \
+		RESULT = segstr; \
+	} \
+	_END
 
 /*
 **	This macro performs a test (with segfault handling and execution timer) for the given string-returning function.
@@ -359,16 +361,18 @@ void	print_test_lst(char const *test_name, char const *function, t_list const *r
 **	@params				Variadic arguments are passed to FUNCTION
 */
 #define _TEST_PERFORM_RESULT_STR(CALL, LIB, FUNCTION, ...) \
-	if (can_segfault && !g_test.flags.test_nullptrs) return; \
 	char* result_##LIB = NULL; \
-	segfault = setjmp(restore); \
-	if (!segfault) \
+	_TRY \
 	{ \
 		timer_clock(&t.start##CALL); \
 		result_##LIB = FUNCTION(__VA_ARGS__); \
 		timer_clock(&t.end##CALL); \
 	} \
-	else result_##LIB = segstr; \
+	_CATCH \
+	{ \
+		result_##LIB = segstr; \
+	} \
+	_END
 
 /*
 **	This macro performs a test (with segfault handling and execution timer) for the given function.
@@ -380,16 +384,25 @@ void	print_test_lst(char const *test_name, char const *function, t_list const *r
 **	@params				Variadic arguments are passed to FUNCTION
 */
 #define _TEST_PERFORM_RESULT(CALL, TYPE, LIB, FUNCTION, ...) \
-	if (can_segfault && !g_test.flags.test_nullptrs) return; \
 	TYPE result_##LIB; \
-	segfault = setjmp(restore); \
-	if (!segfault) \
+	_TRY \
 	{ \
 		timer_clock(&t.start##CALL); \
 		result_##LIB = FUNCTION(__VA_ARGS__); \
 		timer_clock(&t.end##CALL); \
 	} \
-	else can_segfault |= (1 << CALL); \
+	_CATCH \
+	{ \
+		can_segfault |= (1 << CALL); \
+	} \
+	_END
+
+/*
+**	Initialization logic for any test
+*/
+#define _TEST_INIT() \
+	if (can_segfault && !g_test.flags.test_nullptrs) return; \
+	t_timer t = {0}; \
 
 /*
 **	This macro frees the result variable for a test, if it is appropriate to do so
@@ -401,6 +414,39 @@ void	print_test_lst(char const *test_name, char const *function, t_list const *r
 		free(result_##LIB); \
 		result_##LIB = NULL; \
 	} \
+
+
+
+/*
+**	These macros are used to have signal handling/checking during tests which can crash the program
+*/
+
+#ifdef __MINGW32__
+
+	#define _TRY \
+		segfault = setjmp(restore); \
+		if (!segfault) \
+
+	#define _CATCH \
+		else \
+
+	#define _END \
+		if (segfault) \
+			signal(SIGSEGV,	signal_handler); \
+
+#else
+
+	#define _TRY \
+		segfault = setjmp(restore); \
+		if (!segfault) \
+
+	#define _CATCH \
+		else \
+
+	#define _END	;
+
+#endif
+
 
 /* TODO perhaps find a way to macro-ify result printing ? its probably not really necessary...
 

@@ -38,22 +38,16 @@ void	signal_handler(int signaltype)
 void	signal_handler(int signaltype, siginfo_t *info, void *ptr)
 #endif
 {
-	switch (signaltype)
-	{
-		case SIGSEGV:	longjmp(restore, SIGSEGV);
-		case SIGINT:	longjmp(restore, SIGINT);
-		case SIGTERM:	longjmp(restore, SIGTERM);
-		case SIGABRT:	longjmp(restore, SIGABRT);
-	}
+	printf("SIG:%d\n", signaltype); fflush(stdout);
+	longjmp(restore, 1);
+	printf("WHAT THE FUCK THO\n");
 }
 
+// TODO add SIGFPE floating-point exception handling ?
 void	init_segfault_handler(void)
 {
 #ifdef __MINGW32__
 	signal(SIGSEGV,	signal_handler);
-    signal(SIGINT,	signal_handler);
-    signal(SIGTERM,	signal_handler);
-    signal(SIGABRT,	signal_handler);
 #else
 	memset(&sig, 0, sizeof(sigaction));
 	sigemptyset(&sig.sa_mask);

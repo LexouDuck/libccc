@@ -322,7 +322,7 @@ void	print_test(
 			else printf("\n%s", test_name);
 			printf(" -> ");
 		}
-		else if (!g_test.flags.verbose && error)
+		else if (g_test.flags.verbose && error)
 			printf("%s (unnamed test) -> ", function);
 		else printf(", ");
 	}
@@ -346,6 +346,8 @@ void	print_test(
 	}
 	else if (g_test.flags.verbose)
 		printf(C_GREEN"OK!"C_RESET);
+	fflush(stdout);
+
 	previous_function = function;
 }
 
@@ -526,7 +528,7 @@ void	print_test_strarr(
 	{
 		length += strlen(result[i]);
 	}
-	if (!(str_result = (char*)malloc(length + (i - 1) * 2)))
+	if (!(str_result = (char*)malloc(length + (i ? (i - 1) * 2 : 0))))
 		return ;
 	length = 0;
 	for (i = 0; result[i]; ++i)
@@ -540,8 +542,9 @@ void	print_test_strarr(
 		length += strlen(result[i]);
 	}
 
-	for (i = 0; expect[i]; ++i) length += strlen(expect[i]);
-	if (!(str_expect = (char*)malloc(length + (i - 1) * 2)))
+	for (i = 0; expect[i]; ++i)
+		length += strlen(expect[i]);
+	if (!(str_expect = (char*)malloc(length + (i ? (i - 1) * 2 : 0))))
 		return ;
 	length = 0;
 	for (i = 0; expect[i]; ++i)
