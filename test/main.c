@@ -32,21 +32,41 @@ char const* test3 = "Un ange mange de la fange.\0";	size_t const test3_len = 27;
 char*	nullstr	= "(NULL)";
 char*	segstr	= "(segfault)";
 
-void	segfault_handler(int sig, siginfo_t *info, void *ptr)
+#ifdef __MINGW32__
+void	signal_handler(int signaltype)
 {
-    if (sig == SIGSEGV)
-    {
-        longjmp(restore, SIGSEGV);
-    }
+	switch (signaltype)
+	{
+		case SIGSEGV:	longjmp(restore, SIGSEGV);
+		case SIGINT:	longjmp(restore, SIGINT);
+		case SIGTERM:	longjmp(restore, SIGTERM);
+		case SIGABRT:	longjmp(restore, SIGABRT);
+	}
 }
+#else
+void	signal_handler(int signaltype, siginfo_t *info, void *ptr)
+{
+	if (signaltype == SIGSEGV)
+	{
+		longjmp(restore, SIGSEGV);
+	}
+}
+#endif
 
 void	init_segfault_handler(void)
 {
+#ifdef __MINGW32__
+	signal(SIGSEGV,	signal_handler);
+    signal(SIGINT,	signal_handler);
+    signal(SIGTERM,	signal_handler);
+    signal(SIGABRT,	signal_handler);
+#else
 	memset(&sig, 0, sizeof(sigaction));
 	sigemptyset(&sig.sa_mask);
 	sig.sa_flags     = SA_NODEFER;
-	sig.sa_sigaction = segfault_handler;
+	sig.sa_sigaction = signal_handler;
 	sigaction(SIGSEGV, &sig, NULL);
+#endif
 }
 
 

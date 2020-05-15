@@ -193,10 +193,14 @@ void	print_test_strlcpy(char const* test_name, int can_segfault,
 		char const* src,
 		size_t size)
 {
+#ifdef __MINGW32__
+	// TODO add 'expecting' argument and perform non-libc-comparison test
+#else
 	TEST_PERFORM_RESULT_TYPE_LIBC_DEST(size_t, strlcpy, src, size)
 	print_test_str(test_name, "strlcpy 'dest' arg", dest_libft, dest_libc, can_segfault);
 	print_test_size(NULL,     "strlcpy return", result_libft, result_libc, can_segfault);
 	print_timer_result(&t, TRUE);
+#endif
 }
 void	test_strlcpy(void)
 {
@@ -286,10 +290,14 @@ void	print_test_strlcat(char const* test_name, int can_segfault,
 		char const* src,
 		size_t size)
 {
+#ifdef __MINGW32__
+	// TODO add 'expecting' argument and perform non-libc-comparison test
+#else
 	TEST_PERFORM_RESULT_TYPE_LIBC_DEST(size_t, strlcat, src, size)
 	print_test_str(test_name, "strlcat 'dest' arg", dest_libft,   dest_libc,   can_segfault);
 	print_test_size(NULL,     "strlcat return",     result_libft, result_libc, can_segfault);
 	print_timer_result(&t, TRUE);
+#endif
 }
 void	test_strlcat(void)
 {
@@ -685,9 +693,13 @@ void	print_test_strnstr(char const* test_name, int can_segfault,
 		char const* query,
 		size_t n)
 {
+#ifdef __MINGW32__
+	// TODO add 'expecting' argument and perform non-libc-comparison test
+#else
 	TEST_PERFORM_RESULT_LIBC(strnstr, str, query, n)
 	print_test_str(test_name, "strnstr return", result_libft, result_libc, can_segfault);
 	print_timer_result(&t, TRUE);
+#endif
 }
 void	test_strnstr(void)
 {

@@ -2,8 +2,7 @@ NAME	=	libft.a
 
 # Compiler
 CC		= _
-CC_WIN	= gcc
-#i686-w64-mingw32-gcc
+CC_WIN	= i686-w64-mingw32-gcc
 CC_LIN	= gcc
 CC_MAC	= gcc
 
@@ -11,7 +10,7 @@ CC_MAC	= gcc
 CFLAGS	=	-Wall -Wextra -Winline -Werror $(CFLAGS_PLATFORM) -O2 -MMD
 
 CFLAGS_PLATFORM = _
-CFLAGS_WIN	= -mwindows
+CFLAGS_WIN	= -mwindows -static-libgcc -lpthread -L libwinpthread-1.dll
 CFLAGS_LIN	= -Wno-unused-result 
 CFLAGS_MAC	= 
 
@@ -316,7 +315,9 @@ $(OBJDIR)%.o : $(TEST_DIR)%.c $(TEST_HDR)
 	@printf $(GREEN)"OK!"$(RESET)"\n"
 
 $(TEST_PROGRAM): $(NAME) $(TEST_OBJ) $(TEST_HDR)
+	@printf "Compiling testing program: "$@" -> "
 	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -o $(TEST_PROGRAM) $(TEST_OBJ) -L./ -lft
+	@printf $(GREEN)"OK!"$(RESET)"\n"
 
 test: $(TEST_PROGRAM)
 	@./$(TEST_PROGRAM) --verbose

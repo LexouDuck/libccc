@@ -58,8 +58,12 @@ void	test_memset(void)
 **	void	ft_memclr(void *ptr, size_t n);
 */
 // NB: this alias is defined because this function has a different name in libft
+#ifdef __MINGW32__
+static inline void	memclr(void *ptr, size_t n) { memset(ptr, 0, n); }
+#else
 #define memclr(dest, n) \
 		bzero(dest, n)
+#endif
 void	print_test_memclr(char const* test_name, int can_segfault,
 		char* dest_libft,
 		char* dest_libc,
@@ -100,7 +104,7 @@ void	test_memdel(void)
 {
 	size_t const length = 16;
 	void* test = (void*)malloc(length);
-	bzero(test, length);
+	memset(test, 0, length);
 //	| TEST FUNCTION  | TEST NAME        | CAN SEGV | TEST ARGS
 	print_test_memdel("memdel",	          	FALSE,	&test);
 //	print_test_memdel("memdel (null arg)",	FALSE,	&test); // TODO debug inf loop ???
@@ -159,9 +163,9 @@ void	test_memccpy(void)
 {
 	char str1[] = "________________________________";
 	char str2[] = "________________________________";
-	size_t n1 = 0x00ABCDEF6969CACA;
-	size_t n2 = 0x00ABCDEF6969CACA;
-	size_t n = 0x22446688AABBCCDD;
+	uint64_t n1 = 0x00ABCDEF6969CACA;
+	uint64_t n2 = 0x00ABCDEF6969CACA;
+	uint64_t n = 0x22446688AABBCCDD;
 //	| TEST FUNCTION   | TEST NAME           | CAN SEGV | TEST ARGS
 	print_test_memccpy("memccpy (str)       ", 	FALSE,	str1, str2, test1, 'w',  test1_len);
 	print_test_memccpy("memccpy (str)       ", 	FALSE,	str1, str2, test2, '?',  test2_len);

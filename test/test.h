@@ -11,6 +11,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include <time.h>
 #include <setjmp.h>
 #include <signal.h>
 
@@ -103,11 +104,15 @@ s_test		g_test;
 
 extern char* nullstr;
 extern char* segstr;
-struct sigaction sig;
 int			segfault;
 jmp_buf 	restore;
 
-void		segfault_handler(int sig, siginfo_t *info, void *ptr);
+#ifdef __MINGW32__
+void	signal_handler(int signaltype);
+#else
+struct sigaction sig;
+void	signal_handler(int signaltype, siginfo_t *info, void *ptr);
+#endif
 
 
 

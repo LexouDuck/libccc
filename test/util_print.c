@@ -118,6 +118,7 @@ void	print_title(void)
 	{
 		printf(C_YELLOW"NB: All the tests with written in yellow 'can segfault' are NULL pointer tests of some kind."C_RESET"\n\n");
 	}
+	fflush(stdout);
 }
 
 
@@ -131,6 +132,7 @@ void	print_endian_warning(void)
 			printf(C_GREEN"/!\\ Your machine is little-endian (all tests should work reliably and can be trusted)"C_RESET"\n\n");
 		else printf(C_RED"/!\\ Your machine is not little-endian (errors may arise in certain tests which handle memory directly)"C_RESET"\n\n");
 	}
+	fflush(stdout);
 }
 
 
