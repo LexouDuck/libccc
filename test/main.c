@@ -34,6 +34,9 @@ char*	segstr	= "(segfault)";
 
 #ifdef __MINGW32__
 void	signal_handler(int signaltype)
+#else
+void	signal_handler(int signaltype, siginfo_t *info, void *ptr)
+#endif
 {
 	switch (signaltype)
 	{
@@ -43,15 +46,6 @@ void	signal_handler(int signaltype)
 		case SIGABRT:	longjmp(restore, SIGABRT);
 	}
 }
-#else
-void	signal_handler(int signaltype, siginfo_t *info, void *ptr)
-{
-	if (signaltype == SIGSEGV)
-	{
-		longjmp(restore, SIGSEGV);
-	}
-}
-#endif
 
 void	init_segfault_handler(void)
 {
@@ -77,10 +71,16 @@ void	init_segfault_handler(void)
 ** ************************************************************************** *|
 */
 
-static void	handle_arg_verbose()	{ g_test.flags.verbose = TRUE; }
-static void	handle_arg_arguments()	{ g_test.flags.show_args = TRUE; }
-static void handle_arg_performance(){ g_test.flags.show_speed = TRUE; }
-static void	handle_arg_overflow()	{ g_test.flags.test_overflow = TRUE; }
+static void	handle_arg_verbose()		{ g_test.flags.verbose = TRUE; }
+static void	handle_arg_arguments()		{ g_test.flags.show_args = TRUE; }
+static void handle_arg_performance()	{ g_test.flags.show_speed = TRUE; }
+static void	handle_arg_test_nullptrs()	{ g_test.flags.test_nullptrs = TRUE; }
+static void	handle_arg_test_overflow()	{ g_test.flags.test_overflow = TRUE; }
+static void	handle_arg_test_all()
+{
+	g_test.flags.test_nullptrs = TRUE;
+	g_test.flags.test_overflow = TRUE;
+}
 
 /*
 **	This function initializes the global variable 'g_test', which is used everywhere.
@@ -103,11 +103,13 @@ static void	init(void)
 	g_test.suites[0xA] = (s_test_suite){ FALSE, "vlq",			test_vlq };
 	g_test.suites[0xB] = (s_test_suite){ FALSE, "io",			test_io };
 
-	g_test.args[0] = (s_test_arg){ NULL,					'h', "help",		"If provided, display only the program usage help and exit." };
-	g_test.args[1] = (s_test_arg){ handle_arg_verbose,		'v', "verbose",		"If provided, output each test result (as either 'OK!' or 'ERROR: return was _')." };
-	g_test.args[2] = (s_test_arg){ handle_arg_arguments,	'a', "arguments",	"If provided, output the arguments used for each test performed." };
-	g_test.args[3] = (s_test_arg){ handle_arg_performance,	'p', "performance",	"If provided, output the execution speed for each test performed." };
-	g_test.args[4] = (s_test_arg){ handle_arg_overflow,		'o', "overflow",	"If provided, perform the overflowing number tests for 'libft_convert' functions." };
+	g_test.args[0] = (s_test_arg){ NULL,					'h', "help",			"If provided, display only the program usage help and exit." };
+	g_test.args[1] = (s_test_arg){ handle_arg_verbose,		'v', "verbose",			"If provided, output each test result (as either 'OK!' or 'ERROR: return was _')." };
+	g_test.args[2] = (s_test_arg){ handle_arg_arguments,	'a', "arguments",		"If provided, output the arguments used for each test performed." };
+	g_test.args[3] = (s_test_arg){ handle_arg_performance,	'p', "performance",		"If provided, output the execution speed for each test performed." };
+	g_test.args[4] = (s_test_arg){ handle_arg_test_all,		't', "test-all",		"Sets all the 'test-something' arguments below (is equivalent to doing '-no')" };
+	g_test.args[5] = (s_test_arg){ handle_arg_test_nullptrs,'n', "test-nullptrs",	"If provided, perform the NULL pointer tests for all functions." };
+	g_test.args[6] = (s_test_arg){ handle_arg_test_overflow,'o', "test-overflow",	"If provided, perform the overflowing number tests for 'libft_convert' functions." };
 }
 
 

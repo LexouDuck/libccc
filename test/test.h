@@ -32,6 +32,7 @@ typedef struct	s_test_flags__
 	bool	verbose;		// if 0, only display total amount of tests passed/failed
 	bool	show_args;		// if 0, do not display arguments for each test
 	bool	show_speed;		// if 0, do not display performance/speed for each test
+	bool	test_nullptrs;	// if 0, do not perform any NULL pointer tests
 	bool	test_overflow;	// if 0, do not perform libft_convert overflowing number tests
 }				s_test_flags;
 
@@ -56,7 +57,7 @@ typedef struct	s_test_arg_
 	char const*	name;
 	char const* description;
 }				s_test_arg;
-#define TEST_ARGS_AMOUNT	5
+#define TEST_ARGS_AMOUNT	7
 
 
 
@@ -339,6 +340,7 @@ void	print_test_lst(char const *test_name, char const *function, t_list const *r
 **	@params				Variadic arguments are passed to FUNCTION
 */
 #define _TEST_PERFORM(CALL, RESULT, FUNCTION, ...) \
+	if (can_segfault && !g_test.flags.test_nullptrs) return; \
 	segfault = setjmp(restore); \
 	if (!segfault) \
 	{ \
@@ -357,6 +359,7 @@ void	print_test_lst(char const *test_name, char const *function, t_list const *r
 **	@params				Variadic arguments are passed to FUNCTION
 */
 #define _TEST_PERFORM_RESULT_STR(CALL, LIB, FUNCTION, ...) \
+	if (can_segfault && !g_test.flags.test_nullptrs) return; \
 	char* result_##LIB = NULL; \
 	segfault = setjmp(restore); \
 	if (!segfault) \
@@ -377,6 +380,7 @@ void	print_test_lst(char const *test_name, char const *function, t_list const *r
 **	@params				Variadic arguments are passed to FUNCTION
 */
 #define _TEST_PERFORM_RESULT(CALL, TYPE, LIB, FUNCTION, ...) \
+	if (can_segfault && !g_test.flags.test_nullptrs) return; \
 	TYPE result_##LIB; \
 	segfault = setjmp(restore); \
 	if (!segfault) \

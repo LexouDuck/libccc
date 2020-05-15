@@ -320,6 +320,6 @@ $(TEST_PROGRAM): $(NAME) $(TEST_OBJ) $(TEST_HDR)
 	@printf $(GREEN)"OK!"$(RESET)"\n"
 
 test: $(TEST_PROGRAM)
-	@./$(TEST_PROGRAM) --verbose
+	@./$(TEST_PROGRAM) --verbose --test-all
 
 -include ${DEPENDS}
