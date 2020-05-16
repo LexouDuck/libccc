@@ -14,11 +14,11 @@
 
 
 
-t_list	*ft_lstsub(t_list *lst, t_u32 index, t_u32 n)
+s_list	*ft_lstsub(s_list *lst, t_u32 index, t_u32 n)
 {
-	t_list	*result;
-	t_list	*result_lst;
-	t_list	*tmp;
+	s_list	*result;
+	s_list	*result_lst;
+	s_list	*tmp;
 
 #if HANDLE_NULLPOINTERS
 	if (lst == NULL)

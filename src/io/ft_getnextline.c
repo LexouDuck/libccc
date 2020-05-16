@@ -16,10 +16,10 @@
 
 
 
-static	void	gnl_deletelistitem(t_list **store, int fd, char **line)
+static	void	gnl_deletelistitem(s_list **store, int fd, char **line)
 {
-	t_list	*lst;
-	t_list	*result;
+	s_list	*lst;
+	s_list	*result;
 
 	*line = NULL;
 	result = NULL;
@@ -42,7 +42,7 @@ static	void	gnl_deletelistitem(t_list **store, int fd, char **line)
 	}
 }
 
-static	int		gnl_read(t_list *lst)
+static	int		gnl_read(s_list *lst)
 {
 	int		result;
 	char	buffer[BUFF_SIZE + 1];
@@ -63,7 +63,7 @@ static	int		gnl_read(t_list *lst)
 	return (result);
 }
 
-static	int		gnl_makeline(t_list *lst, char **line)
+static	int		gnl_makeline(s_list *lst, char **line)
 {
 	size_t	length;
 	size_t	space;
@@ -91,8 +91,8 @@ static	int		gnl_makeline(t_list *lst, char **line)
 
 int				ft_getnextline(int const fd, char **line)
 {
-	static t_list	*store = NULL;
-	t_list			*lst;
+	static s_list	*store = NULL;
+	s_list			*lst;
 
 	if (line == NULL || BUFF_SIZE < 0 || fd < 0)
 		return (GNL_ERROR);

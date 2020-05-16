@@ -23,12 +23,12 @@ void	print_test_s8_to_str(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT(s8_to_str, number)
 /*
-	t_timer t = {0};
+	s_timer t = {0};
 	char* result;
 	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = ft_s8_to_str(number); timer_clock(&t.end1); } else result = segstr;
 */
 	print_test_str(test_name, "_s8_to_str", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("%d", number)
 }
 void	test_s8_to_str(void)
@@ -61,7 +61,7 @@ void	print_test_s16_to_str(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT(s16_to_str, number)
 	print_test_str(test_name, "_s16_to_str", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("%d", number)
 }
 void	test_s16_to_str(void)
@@ -96,7 +96,7 @@ void	print_test_s32_to_str(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT(s32_to_str, number)
 	print_test_str(test_name, "_s32_to_str", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("%d", number)
 }
 void	test_s32_to_str(void)
@@ -131,7 +131,7 @@ void	print_test_s64_to_str(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT(s64_to_str, number)
 	print_test_str(test_name, "_s64_to_str", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("%d", number)
 }
 void	test_s64_to_str(void)
@@ -170,7 +170,7 @@ void	print_test_u8_to_str(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT(u8_to_str, number)
 	print_test_str(test_name, "_u8_to_str", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("%d", number)
 }
 void	test_u8_to_str(void)
@@ -201,7 +201,7 @@ void	print_test_u16_to_str(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT(u16_to_str, number)
 	print_test_str(test_name, "_u16_to_str", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("%d", number)
 }
 void	test_u16_to_str(void)
@@ -233,7 +233,7 @@ void	print_test_u32_to_str(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT(u32_to_str, number)
 	print_test_str(test_name, "_u32_to_str", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("%d", number)
 }
 void	test_u32_to_str(void)
@@ -267,7 +267,7 @@ void	print_test_u64_to_str(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT(u64_to_str, number)
 	print_test_str(test_name, "_u64_to_str", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("%d", number)
 }
 void	test_u64_to_str(void)
@@ -302,7 +302,7 @@ void	print_test_f32_to_str(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT(f32_to_str, number, precision)
 	print_test_str(test_name, "_f32_to_str", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("%d", number)
 }
 void	test_f32_to_str(void)
@@ -361,7 +361,7 @@ void	print_test_f64_to_str(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT(f64_to_str, number, precision)
 	print_test_str(test_name, "_f64_to_str", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("%d", number)
 }
 void	test_f64_to_str(void)
@@ -419,7 +419,7 @@ void	print_test_size_to_str(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT(size_to_str, number)
 	print_test_str(test_name, "_size_to_str", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("%d", number)
 }
 void	test_size_to_str(void)
@@ -454,7 +454,7 @@ void	print_test_bool_to_str(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT(bool_to_str, value, uppercase)
 	print_test_str(test_name, "_bool_to_str", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("value=%d, uppercase=%d", value, uppercase)
 }
 void	test_bool_to_str(void)
@@ -493,7 +493,7 @@ void	print_test_str_to_s8(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT_TYPE(t_s8, str_to_s8, str)
 	print_test_s8(test_name, "_str_to_s8", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS_ESCAPED(str)
 }
 void test_str_to_s8(void)
@@ -542,7 +542,7 @@ void	print_test_str_to_s16(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT_TYPE(t_s16, str_to_s16, str)
 	print_test_s16(test_name, "_str_to_s16", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS_ESCAPED(str)
 }
 void test_str_to_s16(void)
@@ -614,7 +614,7 @@ void	print_test_str_to_s32(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT_TYPE(t_s32, str_to_s32, str)
 	print_test_s32(test_name, "_str_to_s32", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS_ESCAPED(str)
 }
 void test_str_to_s32(void)
@@ -706,7 +706,7 @@ void	print_test_str_to_s64(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT_TYPE(t_s64, str_to_s64, str)
 	print_test_s64(test_name, "_str_to_s64", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS_ESCAPED(str)
 }
 void test_str_to_s64(void)
@@ -808,7 +808,7 @@ void	print_test_str_to_u8(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT_TYPE(t_u8, str_to_u8, str)
 	print_test_u8(test_name, "_str_to_u8", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS_ESCAPED(str)
 }
 void test_str_to_u8(void)
@@ -856,7 +856,7 @@ void	print_test_str_to_u16(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT_TYPE(t_u16, str_to_u16, str)
 	print_test_u16(test_name, "_str_to_u16", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS_ESCAPED(str)
 }
 void test_str_to_u16(void)
@@ -927,7 +927,7 @@ void	print_test_str_to_u32(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT_TYPE(t_u32, str_to_u32, str)
 	print_test_u32(test_name, "_str_to_u32", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS_ESCAPED(str)
 }
 void test_str_to_u32(void)
@@ -1018,7 +1018,7 @@ void	print_test_str_to_u64(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT_TYPE(t_u64, str_to_u64, str)
 	print_test_u64(test_name, "_str_to_u64", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS_ESCAPED(str)
 }
 void test_str_to_u64(void)
@@ -1120,7 +1120,7 @@ void	print_test_str_to_f32(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT_TYPE(t_f32, str_to_f32, str)
 	print_test_f32(test_name, "_str_to_f32", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS_ESCAPED(str)
 }
 void	test_str_to_f32(void)
@@ -1140,7 +1140,7 @@ void	print_test_str_to_f64(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT_TYPE(t_f64, str_to_f64, str)
 	print_test_f64(test_name, "_str_to_f64", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS_ESCAPED(str)
 }
 void test_str_to_f64(void)
@@ -1290,7 +1290,7 @@ void	print_test_str_to_bool(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT_TYPE(t_bool, str_to_bool, str)
 	// TODO implement
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS_ESCAPED(str)
 }
 void	test_str_to_bool(void)
@@ -1310,7 +1310,7 @@ void	print_test_str_to_size(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT_TYPE(size_t, str_to_size, str)
 	print_test_size(test_name, "_str_to_size", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS_ESCAPED(str)
 }
 void	test_str_to_size(void)
@@ -1420,7 +1420,7 @@ void	print_test_u8_to_hex(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT(u8_to_hex, number)
 	print_test_str(test_name, "_u8_to_hex", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("%d", number)
 }
 void	test_u8_to_hex(void)
@@ -1451,7 +1451,7 @@ void	print_test_u16_to_hex(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT(u16_to_hex, number)
 	print_test_str(test_name, "_u16_to_hex", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("%d", number)
 }
 void	test_u16_to_hex(void)
@@ -1483,7 +1483,7 @@ void	print_test_u32_to_hex(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT(u32_to_hex, number)
 	print_test_str(test_name, "_u32_to_hex", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("%d", number)
 }
 void	test_u32_to_hex(void)
@@ -1517,7 +1517,7 @@ void	print_test_u64_to_hex(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT(u64_to_hex, number)
 	print_test_str(test_name, "_u64_to_hex", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("%d", number)
 }
 void	test_u64_to_hex(void)
@@ -1551,7 +1551,7 @@ void	print_test_hex_to_u8(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT_TYPE(t_u8, hex_to_u8, str)
 	print_test_u8(test_name, "_hex_to_u8", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 }
 void	test_hex_to_u8(void)
 {
@@ -1570,7 +1570,7 @@ void	print_test_hex_to_u16(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT_TYPE(t_u16, hex_to_u16, str)
 	print_test_u16(test_name, "_hex_to_u16", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 }
 void	test_hex_to_u16(void)
 {
@@ -1589,7 +1589,7 @@ void	print_test_hex_to_u32(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT_TYPE(t_u32, hex_to_u32, str)
 	print_test_u32(test_name, "_hex_to_u32", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 }
 void	test_hex_to_u32(void)
 {
@@ -1608,7 +1608,7 @@ void	print_test_hex_to_u64(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT_TYPE(t_u64, hex_to_u64, str)
 	print_test_u64(test_name, "_hex_to_u64", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 }
 void	test_hex_to_u64(void)
 {
@@ -1628,7 +1628,7 @@ void	print_test_s8_to_strbase(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT(s8_to_strbase, number, base)
 	print_test_str(test_name, "_s8_to_strbase", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("base='%s', n=%d", base, number);
 }
 void	test_s8_to_strbase(void)
@@ -1680,7 +1680,7 @@ void	print_test_s16_to_strbase(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT(s16_to_strbase, number, base)
 	print_test_str(test_name, "_s16_to_strbase", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("base='%s', n=%d", base, number);
 }
 void	test_s16_to_strbase(void)
@@ -1736,7 +1736,7 @@ void	print_test_s32_to_strbase(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT(s32_to_strbase, number, base)
 	print_test_str(test_name, "_s32_to_strbase", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("base='%s', n=%d", base, number);
 }
 void	test_s32_to_strbase(void)
@@ -1793,7 +1793,7 @@ void	print_test_s64_to_strbase(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT(s64_to_strbase, number, base)
 	print_test_str(test_name, "_s64_to_strbase", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("base='%s', n=%d", base, number);
 }
 void	test_s64_to_strbase(void)
@@ -1852,7 +1852,7 @@ void	print_test_u8_to_strbase(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT(u8_to_strbase, number, base)
 	print_test_str(test_name, "_u8_to_strbase", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("base='%s', n=%d", base, number);
 }
 void	test_u8_to_strbase(void)
@@ -1903,7 +1903,7 @@ void	print_test_u16_to_strbase(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT(u16_to_strbase, number, base)
 	print_test_str(test_name, "_u16_to_strbase", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("base='%s', n=%d", base, number);
 }
 void	test_u16_to_strbase(void)
@@ -1958,7 +1958,7 @@ void	print_test_u32_to_strbase(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT(u32_to_strbase, number, base)
 	print_test_str(test_name, "_u32_to_strbase", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("base='%s', n=%d", base, number);
 }
 void	test_u32_to_strbase(void)
@@ -2014,7 +2014,7 @@ void	print_test_u64_to_strbase(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT(u64_to_strbase, number, base)
 	print_test_str(test_name, "_u64_to_strbase", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("base='%s', n=%d", base, number);
 }
 void	test_u64_to_strbase(void)

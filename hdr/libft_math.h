@@ -38,8 +38,6 @@
 #define Math_CubicRoot(x)		ft_cbrt(x)
 #define Math_NRoot(x, n)		ft_nrt(x, n)
 
-
-
 #define Math_Exp(x)				ft_exp(x)
 
 #define Math_Ln(x)				ft_ln(x)
@@ -176,7 +174,7 @@ t_float		ft_atanh(t_float x);
 ** ************************************************************************** *|
 */
 
-typedef	union	u_vec2
+typedef	union	u_vec2_
 {
 	t_float		values[2];
 	struct
@@ -189,9 +187,9 @@ typedef	union	u_vec2
 		t_float		re;
 		t_float		im;
 	};
-}				t_vec2;
+}				u_vec2;
 
-typedef	union	u_vec3
+typedef	union	u_vec3_
 {
 	t_float		values[3];
 	struct
@@ -212,13 +210,13 @@ typedef	union	u_vec3
 		t_float		s;
 		t_float		l;
 	};
-}				t_vec3;
+}				u_vec3;
 
 /*
 ** Be coherent when using 4D vectors: memory is in the order xyz-t
 ** but the others are s-ijk and a-rgb
 */
-typedef	union	u_vec4
+typedef	union	u_vec4_
 {
 	t_float		values[4];
 	struct
@@ -242,15 +240,15 @@ typedef	union	u_vec4
 		t_float		g;
 		t_float		b;
 	};
-}				t_vec4;
+}				u_vec4;
 
 
 
-typedef		t_float	(*t_scalar_func1)(t_float const v);
-typedef		t_float	(*t_scalar_func2)(t_vec2 const v);
-typedef		t_float	(*t_scalar_func3)(t_vec3 const v);
-typedef		t_float	(*t_scalar_func4)(t_vec4 const v);
-typedef		t_scalar_func1	t_real_func;
+typedef		t_float	(*f_scalar_func1)(t_float const v);
+typedef		t_float	(*f_scalar_func2)(u_vec2 const v);
+typedef		t_float	(*f_scalar_func3)(u_vec3 const v);
+typedef		t_float	(*f_scalar_func4)(u_vec4 const v);
+typedef		f_scalar_func1	f_real_func;
 
 
 
@@ -262,37 +260,38 @@ typedef		t_scalar_func1	t_real_func;
 ** which is why only two vectors are necessary to define it.
 */
 
-typedef struct		s_1d_box
+typedef struct		s_box1d_
 {
 	t_float		start;
 	t_float		end;
-}					t_1d_box;
-typedef t_1d_box	t_interval;
+}					s_box1d;
 
-typedef struct		s_2d_box
+typedef struct		s_box2d_
 {
-	t_vec2	start;
-	t_vec2	end;
-}					t_2d_box;
+	u_vec2	start;
+	u_vec2	end;
+}					s_box2d;
 
-typedef struct		s_3d_box
+typedef struct		s_box3d_
 {
-	t_vec3	start;
-	t_vec3	end;
-}					t_3d_box;
+	u_vec3	start;
+	u_vec3	end;
+}					s_box3d;
 
-typedef struct		s_4d_box
+typedef struct		s_box4d_
 {
-	t_vec4	start;
-	t_vec4	end;
-}					t_4d_box;
+	u_vec4	start;
+	u_vec4	end;
+}					s_box4d;
+
+typedef s_box1d	s_interval;
 
 //t_float	lin_integrate(sf, domain);
-t_float		ft_integrate(t_real_func const f, t_interval const domain, t_float step);
-t_float		ft_mc_integrate_1d(t_scalar_func1 const sf, t_1d_box const domain);
-t_float		ft_mc_integrate_2d(t_scalar_func2 const sf, t_2d_box const domain);
-t_float		ft_mc_integrate_3d(t_scalar_func3 const sf, t_3d_box const domain);
-t_float		ft_mc_integrate_4d(t_scalar_func4 const sf, t_4d_box const domain);
+t_float		ft_integrate(f_real_func const f, s_interval const domain, t_float step);
+t_float		ft_mc_integrate_1d(f_scalar_func1 const sf, s_box1d const domain);
+t_float		ft_mc_integrate_2d(f_scalar_func2 const sf, s_box2d const domain);
+t_float		ft_mc_integrate_3d(f_scalar_func3 const sf, s_box3d const domain);
+t_float		ft_mc_integrate_4d(f_scalar_func4 const sf, s_box4d const domain);
 
 t_f32		ft_distance_f32(t_f32 x, t_f32 y);
 t_f64		ft_distance_f64(t_f64 x, t_f64 y);

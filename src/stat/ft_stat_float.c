@@ -15,9 +15,9 @@
 
 
 
-t_list_float	ft_stat_new_flst(t_u32 len)
+s_list_float	ft_stat_new_flst(t_u32 len)
 {
-	t_list_float	res;
+	s_list_float	res;
 
 	res.data = NULL;
 	res.len = 0;
@@ -27,7 +27,7 @@ t_list_float	ft_stat_new_flst(t_u32 len)
 	return (res);
 }
 
-void			ft_stat_free_flst(t_list_float *flst)
+void			ft_stat_free_flst(s_list_float *flst)
 {
 #if HANDLE_NULLPOINTERS
 	if (flst == NULL)
@@ -41,9 +41,9 @@ void			ft_stat_free_flst(t_list_float *flst)
 	flst->len = 0;
 }
 
-t_list_float	ft_stat_flst_dup(t_list_float const flst)
+s_list_float	ft_stat_flst_dup(s_list_float const flst)
 {
-	t_list_float	res;
+	s_list_float	res;
 
 	res = ft_stat_new_flst(flst.len);
 	if (!res.data)
@@ -53,11 +53,11 @@ t_list_float	ft_stat_flst_dup(t_list_float const flst)
 	return (res);
 }
 
-t_list_float 	ft_stat_merge_flst(
-	t_list_float *start,
-	t_list_float *append)
+s_list_float 	ft_stat_merge_flst(
+	s_list_float *start,
+	s_list_float *append)
 {
-	t_list_float		res;
+	s_list_float		res;
 	t_u32				i;
 	t_u32				j;
 
@@ -94,7 +94,7 @@ t_list_float 	ft_stat_merge_flst(
 */
 void				ft_stat_quicksort_f_rec
 (
-	t_list_float	tmp_lst,
+	s_list_float	tmp_lst,
 	t_u32			start,
 	t_u32			end
 )
@@ -135,9 +135,9 @@ void				ft_stat_quicksort_f_rec
 		ft_stat_quicksort_f_rec(tmp_lst, pivot_id + 1, end);
 }
 
-t_list_float 		ft_stat_quicksort_f_new(t_list_float const flst)
+s_list_float 		ft_stat_quicksort_f_new(s_list_float const flst)
 {
-	t_list_float	res;
+	s_list_float	res;
 
 	if (flst.len <= 1)
 		return (flst);
@@ -146,21 +146,21 @@ t_list_float 		ft_stat_quicksort_f_new(t_list_float const flst)
 	return (res);
 }
 
-inline void			ft_stat_quicksort_f(t_list_float flst)
+inline void			ft_stat_quicksort_f(s_list_float flst)
 {
 	ft_stat_quicksort_f_rec(flst, 0, flst.len - 1);
 }
 
 
 
-inline t_float		ft_stat_median_f(t_sortedlist_float const flst)
+inline t_float		ft_stat_median_f(s_sortedlist_float const flst)
 {
 	return ((flst.len % 2) ?
 		flst.data[flst.len / 2] :
 		(flst.data[flst.len / 2] + flst.data[flst.len / 2 + 1]) / 2);
 }
 
-t_float				ft_stat_average_f(t_list_float const flst)
+t_float				ft_stat_average_f(s_list_float const flst)
 {
 	t_float		sum;
 	t_u32		i;
@@ -179,7 +179,7 @@ t_float				ft_stat_average_f(t_list_float const flst)
 ** Using V(X) = E(X^2) - E(X)^2 rather than E( [X - E(X)]^2 ) which has more
 **	operations (n subtractions).
 */
-t_float				ft_stat_variance_f(t_list_float const flst)
+t_float				ft_stat_variance_f(s_list_float const flst)
 {
 	t_float		sum;
 	t_u32		i;
@@ -201,7 +201,7 @@ t_float				ft_stat_variance_f(t_list_float const flst)
 
 // TODO
 /*
-inline t_float		ft_stat_stddev_f(t_list_float const flst)
+inline t_float		ft_stat_stddev_f(s_list_float const flst)
 {
 	
 }

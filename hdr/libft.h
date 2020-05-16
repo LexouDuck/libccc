@@ -307,7 +307,7 @@ typedef t_f64	t_float;
 ** They are used in particular when casting an <stdarg.h> var_arg to the
 ** appropriate type in ft_printf.
 */
-typedef union		u_varint
+typedef union		u_varint_
 {
 	t_s8			sc;
 	t_s16			ss;
@@ -317,12 +317,12 @@ typedef union		u_varint
 	t_u16			us;
 	t_u32			ui;
 	t_u64			ul;
-}					t_varint;
+}					u_varint;
 
-typedef union		u_varfloat
+typedef union		u_varfloat_
 {
 	t_f32			f;
 	t_f64			lf;
-}					t_varfloat;
+}					u_varfloat;
 
 #endif

@@ -13,7 +13,7 @@ void	print_test_memalloc(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT(memalloc, n);
 	print_test_alloc(test_name, "memalloc", result_libft, n);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_FREE()
 }
 void	test_memalloc(void)
@@ -37,7 +37,7 @@ void	print_test_memset(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_LIBC_DEST(memset, byte, n)
 	print_test_mem(test_name, "memset 'dest' arg", dest_libft, dest_libc, n, can_segfault);
-	print_timer_result(&t, TRUE);
+	prins_timer_result(&t, TRUE);
 }
 void	test_memset(void)
 {
@@ -72,7 +72,7 @@ void	print_test_memclr(char const* test_name, int can_segfault,
 	TEST_PERFORM_LIBC_DEST(memclr, n)
 	print_test_mem(test_name, "memclr/bzero arg",                       dest_libft,     dest_libc,     n, can_segfault);
 	print_test_mem(NULL,      "memclr/bzero (region after the '\\0's)", dest_libft + n, dest_libc + n, 1, can_segfault);
-	print_timer_result(&t, TRUE);
+	prins_timer_result(&t, TRUE);
 }
 void	test_memclr(void)
 {
@@ -98,7 +98,7 @@ void	print_test_memdel(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM(*ptr, memdel, ptr)
 	print_test_mem(test_name, "memdel arg", *ptr, NULL, 0, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 }
 void	test_memdel(void)
 {
@@ -125,7 +125,7 @@ void	print_test_memcpy(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT_LIBC_DEST(memcpy, src, n)
 	print_test_mem(test_name, "memcpy 'dest' arg", dest_libft,   dest_libc,   n, can_segfault);
 	print_test_mem(NULL,      "memcpy return",     result_libft, result_libc, n, can_segfault);
-	print_timer_result(&t, TRUE);
+	prins_timer_result(&t, TRUE);
 }
 void	test_memcpy(void)
 {
@@ -156,7 +156,7 @@ void	print_test_memccpy(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT_LIBC_DEST(memccpy, src, byte, n)
 	print_test_mem(test_name, "memccpy 'dest' arg", dest_libft,   dest_libc, n, can_segfault);// if (byte !='\0')
 	print_test_str(NULL,      "memccpy return",     result_libft, result_libc,  can_segfault);
-	print_timer_result(&t, TRUE);
+	prins_timer_result(&t, TRUE);
 	TEST_PRINT_ARGS("dest=\"%s\", src=\"%s\", c=0x%x/'%c', n=%u", dest_libft, src, byte, byte, n)
 }
 void	test_memccpy(void)
@@ -196,7 +196,7 @@ void	print_test_memmove(char const* test_name, int can_segfault, int show_dest_a
 	if (show_dest_arg)
 	print_test_mem(test_name,                    "memmove 'dest' arg", dest_libft,   dest_libc, n, can_segfault);
 	print_test_mem(show_dest_arg ? NULL : test_name, "memmove return", result_libft, result_libc, n, can_segfault);
-	print_timer_result(&t, TRUE);
+	prins_timer_result(&t, TRUE);
 }
 void	test_memmove(void)
 {
@@ -231,7 +231,7 @@ void	print_test_memchr(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT_LIBC(memchr, str, c, n)
 	print_test_mem(test_name, "memchr return", result_libft, result_libc, n, can_segfault);
-	print_timer_result(&t, TRUE);
+	prins_timer_result(&t, TRUE);
 }
 void	test_memchr(void)
 {
@@ -255,7 +255,7 @@ void	print_test_memcmp(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT_TYPE_LIBC(int, memcmp, test1, test2, n)
 	print_test_s32(test_name, "memcmp return", result_libft, result_libc, can_segfault);
-	print_timer_result(&t, TRUE);
+	prins_timer_result(&t, TRUE);
 }
 void	test_memcmp(void)
 {
@@ -286,7 +286,7 @@ void	print_test_memdup(char const* test_name, int can_segfault,
 	print_test_mem(test_name, "_memdup return", result_libft, expecting, n, can_segfault);
 	if (result_libft) free(result_libft);
 //	if (result_libc)  free(result_libc);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 }
 void	test_memdup(void)
 {
@@ -304,9 +304,9 @@ void	test_memdup(void)
 */
 void	print_test_memswap(void)
 {
-	t_timer t = {0};
+	s_timer t = {0};
 //	TODO
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 }
 void	test_memswap(void)
 {
@@ -321,9 +321,9 @@ void	test_memswap(void)
 */
 void	print_test_getbits(void)
 {
-	t_timer t = {0};
+	s_timer t = {0};
 //	TODO
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 }
 void	test_getbits(void)
 {

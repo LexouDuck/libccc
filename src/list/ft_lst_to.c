@@ -15,11 +15,11 @@
 
 
 
-void	**ft_lst_to_array(t_list **alst)
+void	**ft_lst_to_array(s_list **alst)
 {
 	void	**result;
 	size_t	length;
-	t_list	*lst;
+	s_list	*lst;
 	t_u32	count;
 	t_u32	i;
 
@@ -45,9 +45,9 @@ void	**ft_lst_to_array(t_list **alst)
 
 
 
-t_tuple	*ft_lst_to_tuple(t_list **alst, t_tuple *result)
+s_tuple	*ft_lst_to_tuple(s_list **alst, s_tuple *result)
 {
-	t_list	*lst;
+	s_list	*lst;
 	t_u32	count;
 	t_u32	i;
 

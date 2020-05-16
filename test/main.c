@@ -88,7 +88,7 @@ static void	init(void)
 	g_test.suites[0x3] = (s_test_suite){ FALSE, "stringarray",	test_stringarray };
 	g_test.suites[0x4] = (s_test_suite){ FALSE, "convert",		test_convert };
 	g_test.suites[0x5] = (s_test_suite){ FALSE, "color",		test_color };
-	g_test.suites[0x6] = (s_test_suite){ FALSE, "list",			test_list };
+	g_test.suites[0x6] = (s_test_suite){ FALSE, "list",			tess_list };
 	g_test.suites[0x7] = (s_test_suite){ FALSE, "math",			test_math };
 	g_test.suites[0x8] = (s_test_suite){ FALSE, "stat",			test_stat };
 	g_test.suites[0x9] = (s_test_suite){ FALSE, "random",		test_random };

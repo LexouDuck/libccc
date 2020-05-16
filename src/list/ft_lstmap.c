@@ -24,10 +24,10 @@ static void	ft_lstmap_delete(void *content, size_t content_size)
 
 
 
-t_list		*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
+s_list		*ft_lstmap(s_list *lst, s_list *(*f)(s_list *elem))
 {
-	t_list	*result;
-	t_list	*current;
+	s_list	*result;
+	s_list	*current;
 
 #if HANDLE_NULLPOINTERS
 	if (lst == NULL || f == NULL)
@@ -50,10 +50,10 @@ t_list		*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 
 
 
-t_list		*ft_lstmapi(t_list *lst, t_list *(*f)(t_list *elem, t_u32 index))
+s_list		*ft_lstmapi(s_list *lst, s_list *(*f)(s_list *elem, t_u32 index))
 {
-	t_list	*result;
-	t_list	*current;
+	s_list	*result;
+	s_list	*current;
 	t_u32	i;
 
 #if HANDLE_NULLPOINTERS

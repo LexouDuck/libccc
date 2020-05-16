@@ -57,7 +57,7 @@ static inline void printf_colored(const char* label, t_float precision, t_float 
 
 
 
-static t_float	ft_get_largest_f(t_list_float list)
+static t_float	ft_get_largest_f(s_list_float list)
 {
 	t_float result = 0.;
 	for (t_int i = 0; i < list.len; ++i)
@@ -89,10 +89,10 @@ static t_float	ft_get_largest_f(t_list_float list)
 
 int		test_compare_real_functions(
 	char const *	func_name,
-	t_real_func		witness_func,
-	t_real_func		ft_func,
+	f_real_func		witness_func,
+	f_real_func		ft_func,
 	t_float			precision,
-	t_interval		interval)
+	s_interval		interval)
 {
 	//Test variables
 	static const t_u32	tests = 1000;
@@ -106,10 +106,10 @@ int		test_compare_real_functions(
 	t_float			end = interval.end;
 	t_float			step;
 	t_float			tmp;
-	t_list_float	error_list;
+	s_list_float	error_list;
 
 	//execution time variables
-	t_timer		timer = {0};
+	s_timer		timer = {0};
 
 
 	step = (end - start) / tests;
@@ -163,7 +163,7 @@ int		test_compare_real_functions(
 	if (g_test.flags.show_speed)
 	{
 		printf("-> Execution time:");
-		print_timer_result(&timer, TRUE);
+		prins_timer_result(&timer, TRUE);
 	}
 	if (g_test.flags.verbose)
 	{
@@ -181,95 +181,95 @@ int		test_math(void)
 	print_math_foreword();
 
 	print_math_title("Floor");
-	test_compare_real_functions("floor", &floorf, &ft_floor, 0.0001, (t_interval){-10, 10});
-	test_compare_real_functions("floor", &floorf, &ft_floor, 0.0001, (t_interval){-1e9, 1e9});
+	test_compare_real_functions("floor", &floorf, &ft_floor, 0.0001, (s_interval){-10, 10});
+	test_compare_real_functions("floor", &floorf, &ft_floor, 0.0001, (s_interval){-1e9, 1e9});
 
 	print_math_title("Ceiling");
-	test_compare_real_functions("ceil", &ceilf, &ft_ceil, 0.0001, (t_interval){-10, 10});
-	test_compare_real_functions("ceil", &ceilf, &ft_ceil, 0.0001, (t_interval){-1e9, 1e9});
+	test_compare_real_functions("ceil", &ceilf, &ft_ceil, 0.0001, (s_interval){-10, 10});
+	test_compare_real_functions("ceil", &ceilf, &ft_ceil, 0.0001, (s_interval){-1e9, 1e9});
 
 
 
 //	print_math_title("Power");
-//	test_compare_real_functions("pow", &powf, &ft_pow, 0.0001, (t_interval){0, 4});
-//	test_compare_real_functions("pow", &powf, &ft_pow, 0.0001, (t_interval){-100, 1000000});
+//	test_compare_real_functions("pow", &powf, &ft_pow, 0.0001, (s_interval){0, 4});
+//	test_compare_real_functions("pow", &powf, &ft_pow, 0.0001, (s_interval){-100, 1000000});
 
 
 
 	print_math_title("Square root");
-	test_compare_real_functions("sqrt", &sqrtf, &ft_sqrt, 0.0001, (t_interval){0., 5.});
-	test_compare_real_functions("sqrt", &sqrtf, &ft_sqrt, 0.0001, (t_interval){-100., 1e9});
+	test_compare_real_functions("sqrt", &sqrtf, &ft_sqrt, 0.0001, (s_interval){0., 5.});
+	test_compare_real_functions("sqrt", &sqrtf, &ft_sqrt, 0.0001, (s_interval){-100., 1e9});
 
 	print_math_title("Cubic root");
-	test_compare_real_functions("cbrt", &cbrtf, &ft_cbrt, 0.0001, (t_interval){0., 5.});
-	test_compare_real_functions("cbrt", &cbrtf, &ft_cbrt, 0.0001, (t_interval){-1e9, 1e9});
+	test_compare_real_functions("cbrt", &cbrtf, &ft_cbrt, 0.0001, (s_interval){0., 5.});
+	test_compare_real_functions("cbrt", &cbrtf, &ft_cbrt, 0.0001, (s_interval){-1e9, 1e9});
 
 //	print_math_title("N-power root");
-//	test_compare_real_functions("nrt", &nrtf, &ft_nrt, 0.0001, (t_interval){0, 5});
-//	test_compare_real_functions("nrt", &nrtf, &ft_nrt, 0.0001, (t_interval){-1e9, 1e9});
+//	test_compare_real_functions("nrt", &nrtf, &ft_nrt, 0.0001, (s_interval){0, 5});
+//	test_compare_real_functions("nrt", &nrtf, &ft_nrt, 0.0001, (s_interval){-1e9, 1e9});
 
 
 
 	print_math_title("Exponential");
-	test_compare_real_functions("exp", &expf, &ft_exp, 0.0001, (t_interval){-1000., 1.});
-	test_compare_real_functions("exp", &expf, &ft_exp, 0.0001, (t_interval){1., 1e9});
+	test_compare_real_functions("exp", &expf, &ft_exp, 0.0001, (s_interval){-1000., 1.});
+	test_compare_real_functions("exp", &expf, &ft_exp, 0.0001, (s_interval){1., 1e9});
 
 	print_math_title("Logarithm");
-	test_compare_real_functions("ln", &logf, &ft_ln, 0.0001, (t_interval){0., 1.});
-	test_compare_real_functions("ln", &logf, &ft_ln, 0.0001, (t_interval){1., 1e9});
+	test_compare_real_functions("ln", &logf, &ft_ln, 0.0001, (s_interval){0., 1.});
+	test_compare_real_functions("ln", &logf, &ft_ln, 0.0001, (s_interval){1., 1e9});
 
 
 
 	print_math_title("Cosine");
-	test_compare_real_functions("cos", &cosf, &ft_cos, 0.0001, (t_interval){-TAU, 2 * TAU});
-	test_compare_real_functions("cos", &cosf, &ft_cos, 0.0001, (t_interval){-1e9, 1e9});
+	test_compare_real_functions("cos", &cosf, &ft_cos, 0.0001, (s_interval){-TAU, 2 * TAU});
+	test_compare_real_functions("cos", &cosf, &ft_cos, 0.0001, (s_interval){-1e9, 1e9});
 
 	print_math_title("Sine");
-	test_compare_real_functions("sin", &sinf, &ft_sin, 0.0001, (t_interval){-TAU, 2 * TAU});
-	test_compare_real_functions("sin", &sinf, &ft_sin, 0.0001, (t_interval){-1e9, 1e9});
+	test_compare_real_functions("sin", &sinf, &ft_sin, 0.0001, (s_interval){-TAU, 2 * TAU});
+	test_compare_real_functions("sin", &sinf, &ft_sin, 0.0001, (s_interval){-1e9, 1e9});
 
 	print_math_title("Tangent");
-	test_compare_real_functions("tan", &tanf, &ft_tan, 0.0001, (t_interval){-HALF_PI, HALF_PI});
-	test_compare_real_functions("tan", &tanf, &ft_tan, 0.0001, (t_interval){-1e9, 1e9});
+	test_compare_real_functions("tan", &tanf, &ft_tan, 0.0001, (s_interval){-HALF_PI, HALF_PI});
+	test_compare_real_functions("tan", &tanf, &ft_tan, 0.0001, (s_interval){-1e9, 1e9});
 
 
 	print_math_title("Arc-Cosine");
-	test_compare_real_functions("acos", &acosf, &ft_acos, 0.0001, (t_interval){-1, 1});
-	test_compare_real_functions("acos", &acosf, &ft_acos, 0.0001, (t_interval){-1e9, 1e9});
+	test_compare_real_functions("acos", &acosf, &ft_acos, 0.0001, (s_interval){-1, 1});
+	test_compare_real_functions("acos", &acosf, &ft_acos, 0.0001, (s_interval){-1e9, 1e9});
 
 	print_math_title("Arc-Sine");
-	test_compare_real_functions("asin", &asinf, &ft_asin, 0.0001, (t_interval){-1, 1});
-	test_compare_real_functions("asin", &asinf, &ft_asin, 0.0001, (t_interval){-1e9, 1e9});
+	test_compare_real_functions("asin", &asinf, &ft_asin, 0.0001, (s_interval){-1, 1});
+	test_compare_real_functions("asin", &asinf, &ft_asin, 0.0001, (s_interval){-1e9, 1e9});
 
 	print_math_title("Arc-Tangent");
-	test_compare_real_functions("atan", &atanf, &ft_atan, 0.0001, (t_interval){-TAU, TAU});
-	test_compare_real_functions("atan", &atanf, &ft_atan, 0.0001, (t_interval){-1e9, 1e9});
+	test_compare_real_functions("atan", &atanf, &ft_atan, 0.0001, (s_interval){-TAU, TAU});
+	test_compare_real_functions("atan", &atanf, &ft_atan, 0.0001, (s_interval){-1e9, 1e9});
 
 
 	print_math_title("Hyperbolic Cosine");
-	test_compare_real_functions("cosh", &coshf, &ft_cosh, 0.0001, (t_interval){-TAU, TAU});
-	test_compare_real_functions("cosh", &coshf, &ft_cosh, 0.0001, (t_interval){-1e9, 1e9});
+	test_compare_real_functions("cosh", &coshf, &ft_cosh, 0.0001, (s_interval){-TAU, TAU});
+	test_compare_real_functions("cosh", &coshf, &ft_cosh, 0.0001, (s_interval){-1e9, 1e9});
 
 	print_math_title("Hyperbolic Sine");
-	test_compare_real_functions("sinh", &sinhf, &ft_sinh, 0.0001, (t_interval){-TAU, TAU});
-	test_compare_real_functions("sinh", &sinhf, &ft_sinh, 0.0001, (t_interval){-1e9, 1e9});
+	test_compare_real_functions("sinh", &sinhf, &ft_sinh, 0.0001, (s_interval){-TAU, TAU});
+	test_compare_real_functions("sinh", &sinhf, &ft_sinh, 0.0001, (s_interval){-1e9, 1e9});
 
 	print_math_title("Hyperbolic Tangent");
-	test_compare_real_functions("tanh", &tanhf, &ft_tanh, 0.0001, (t_interval){-TAU, TAU});
-	test_compare_real_functions("tanh", &tanhf, &ft_tanh, 0.0001, (t_interval){-1e9, 1e9});
+	test_compare_real_functions("tanh", &tanhf, &ft_tanh, 0.0001, (s_interval){-TAU, TAU});
+	test_compare_real_functions("tanh", &tanhf, &ft_tanh, 0.0001, (s_interval){-1e9, 1e9});
 
 
 	print_math_title("Hyperbolic Arc-Cosine");
-	test_compare_real_functions("acosh", &acoshf, &ft_acosh, 0.0001, (t_interval){1., 50.});
-	test_compare_real_functions("acosh", &acoshf, &ft_acosh, 0.0001, (t_interval){-1e9, 1e9});
+	test_compare_real_functions("acosh", &acoshf, &ft_acosh, 0.0001, (s_interval){1., 50.});
+	test_compare_real_functions("acosh", &acoshf, &ft_acosh, 0.0001, (s_interval){-1e9, 1e9});
 
 	print_math_title("Hyperbolic Arc-Sine");
-	test_compare_real_functions("asinh", &asinhf, &ft_asinh, 0.0001, (t_interval){-50., 50.});
-	test_compare_real_functions("asinh", &asinhf, &ft_asinh, 0.0001, (t_interval){-1e9, 1e9});
+	test_compare_real_functions("asinh", &asinhf, &ft_asinh, 0.0001, (s_interval){-50., 50.});
+	test_compare_real_functions("asinh", &asinhf, &ft_asinh, 0.0001, (s_interval){-1e9, 1e9});
 
 	print_math_title("Hyperbolic Arc-Tangent");
-	test_compare_real_functions("atanh", &atanhf, &ft_atanh, 0.0001, (t_interval){-1., 1.});
-	test_compare_real_functions("atanh", &atanhf, &ft_atanh, 0.0001, (t_interval){-1e9, 1e9});
+	test_compare_real_functions("atanh", &atanhf, &ft_atanh, 0.0001, (s_interval){-1., 1.});
+	test_compare_real_functions("atanh", &atanhf, &ft_atanh, 0.0001, (s_interval){-1e9, 1e9});
 
 	return (OK);
 }

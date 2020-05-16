@@ -21,7 +21,7 @@ void	print_test_strnew(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT(strnew, n);
 	print_test_alloc(test_name, "strnew", result_libft, n);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_FREE()
 }
 void	test_strnew(void)
@@ -44,7 +44,7 @@ void	print_test_strset(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM(dest_libft, strset, dest_libft, c)
 	print_test_str(test_name, "strset arg", dest_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 }
 void	test_strset(void)
 {
@@ -67,7 +67,7 @@ void	print_test_strclr(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM(dest_libft, strclr, dest_libft)
 	print_test_str(test_name, "strclr arg", dest_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 }
 void	test_strclr(void)
 {
@@ -90,7 +90,7 @@ void	print_test_strdel(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM(*dest_libft, strdel, dest_libft)
 	print_test_str(test_name, "strdel arg", *dest_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 }
 void	test_strdel(void)
 {
@@ -111,7 +111,7 @@ void	print_test_strdup(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT_LIBC(strdup, src)
 	print_test_str(test_name, "strdup return", result_libft, result_libc, can_segfault);
-	print_timer_result(&t, TRUE);
+	prins_timer_result(&t, TRUE);
 	TEST_FREE_LIBC()
 }
 void	test_strdup(void)
@@ -135,7 +135,7 @@ void	print_test_strcpy(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT_LIBC_DEST(strcpy, src)
 	print_test_str(test_name, "strcpy 'dest' arg", dest_libft,   dest_libc,   can_segfault);
 	print_test_str(NULL,      "strcpy return",     result_libft, result_libc, can_segfault);
-	print_timer_result(&t, TRUE);
+	prins_timer_result(&t, TRUE);
 }
 void	test_strcpy(void)
 {
@@ -164,7 +164,7 @@ void	print_test_strncpy(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT_LIBC_DEST(strncpy, src, n)
 	print_test_str(test_name, "strncpy 'dest' arg", dest_libft,   dest_libc,   can_segfault);
 	print_test_str(NULL,      "strncpy return",     result_libft, result_libc, can_segfault);
-	print_timer_result(&t, TRUE);
+	prins_timer_result(&t, TRUE);
 }
 void	test_strncpy(void)
 {
@@ -204,7 +204,7 @@ void	print_test_strlcpy(char const* test_name, int can_segfault,
 	print_test_str(test_name, "strlcpy 'dest' arg", dest_libft, dest_libc, can_segfault);
 	print_test_size(NULL,     "strlcpy return", result_libft, result_libc, can_segfault);
 #endif
-	print_timer_result(&t, TRUE);
+	prins_timer_result(&t, TRUE);
 }
 void	test_strlcpy(void)
 {
@@ -236,7 +236,7 @@ void	print_test_strcat(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT_LIBC_DEST(strcat, src)
 	print_test_str(test_name, "strcat 'dest' arg", dest_libft,   dest_libc,   can_segfault);
 	print_test_str(NULL,      "strcat return",     result_libft, result_libc, can_segfault);
-	print_timer_result(&t, TRUE);
+	prins_timer_result(&t, TRUE);
 }
 void	test_strcat(void)
 {
@@ -266,7 +266,7 @@ void	print_test_strncat(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT_LIBC_DEST(strncat, src, n)
 	print_test_str(test_name, "strncat 'dest' arg", dest_libft,   dest_libc,   can_segfault);
 	print_test_str(NULL,      "strncat return",     result_libft, result_libc, can_segfault);
-	print_timer_result(&t, TRUE);
+	prins_timer_result(&t, TRUE);
 }
 void	test_strncat(void)
 {
@@ -307,7 +307,7 @@ void	print_test_strlcat(char const* test_name, int can_segfault,
 	print_test_str(test_name, "strlcat 'dest' arg", dest_libft,   dest_libc,   can_segfault);
 	print_test_size(NULL,     "strlcat return",     result_libft, result_libc, can_segfault);
 #endif
-	print_timer_result(&t, TRUE);
+	prins_timer_result(&t, TRUE);
 }
 void	test_strlcat(void)
 {
@@ -344,7 +344,7 @@ void	print_test_strlen(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT_TYPE_LIBC(size_t, strlen, str)
 	print_test_size(test_name, "strlen return", result_libft, result_libc, can_segfault);
-	print_timer_result(&t, TRUE);
+	prins_timer_result(&t, TRUE);
 }
 void	test_strlen(void)
 {
@@ -365,7 +365,7 @@ void	print_test_strcmp(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT_TYPE_LIBC(int, strcmp, str1, str2)
 	print_test_s32(test_name, "strcmp return", result_libft, result_libc, can_segfault);
-	print_timer_result(&t, TRUE);
+	prins_timer_result(&t, TRUE);
 }
 void	test_strcmp(void)
 {
@@ -389,7 +389,7 @@ void	print_test_strncmp(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT_TYPE_LIBC(int, strncmp, str1, str2, n)
 	print_test_s32(test_name, "strncmp return", result_libft, result_libc, can_segfault);
-	print_timer_result(&t, TRUE);
+	prins_timer_result(&t, TRUE);
 }
 void	test_strncmp(void)
 {
@@ -416,7 +416,7 @@ void	print_test_strequ(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT_TYPE(t_bool, strequ, str1, str2)
 	print_test_bool(test_name, "_strequ return", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 }
 void	test_strequ(void)
 {
@@ -443,7 +443,7 @@ void	print_test_strnequ(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT_TYPE(t_bool, strnequ, str1, str2, n)
 	print_test_bool(test_name, "_strnequ return", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 }
 void	test_strnequ(void)
 {
@@ -470,7 +470,7 @@ void	print_test_strhas(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT_TYPE(t_bool, strhas, str, charset)
 	print_test_bool(test_name, "_strhas", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 }
 void	test_strhas(void)
 {
@@ -495,7 +495,7 @@ void	print_test_strhasonly(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT_TYPE(t_bool, strhasonly, str, charset)
 	print_test_bool(test_name, "_strhasonly", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 }
 void	test_strhasonly(void)
 {
@@ -521,7 +521,7 @@ void	print_test_strcount_char(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT_TYPE(size_t, strcount_char, str, c)
 	print_test_size(test_name, "_strcount_char", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 }
 void	test_strcount_char(void)
 {
@@ -545,7 +545,7 @@ void	print_test_strcount_str(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT_TYPE(size_t, strcount_str, str, query)
 	print_test_size(test_name, "_strcount_str", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 }
 void	test_strcount_str(void)
 {
@@ -580,7 +580,7 @@ void	print_test_strchr(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT_LIBC(strchr, str, c)
 	print_test_str(test_name, "strchr return", result_libft, result_libc, can_segfault);
-	print_timer_result(&t, TRUE);
+	prins_timer_result(&t, TRUE);
 }
 void	test_strchr(void)
 {
@@ -602,7 +602,7 @@ void	print_test_strstr(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT_LIBC(strstr, str, query)
 	print_test_str(test_name, "strstr return", result_libft, result_libc, can_segfault);
-	print_timer_result(&t, TRUE);
+	prins_timer_result(&t, TRUE);
 }
 void	test_strstr(void)
 {
@@ -627,7 +627,7 @@ void	print_test_strrchr(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT_LIBC(strrchr, str, c)
 	print_test_str(test_name, "strrchr return", result_libft, result_libc, can_segfault);
-	print_timer_result(&t, TRUE);
+	prins_timer_result(&t, TRUE);
 }
 void	test_strrchr(void)
 {
@@ -650,7 +650,7 @@ void	print_test_strrstr(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT(strrstr, str, query)
 	print_test_str(test_name, "_strrstr return", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 }
 void	test_strrstr(void)
 {
@@ -677,7 +677,7 @@ void	print_test_strnchr(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT(strnchr, str, c, n)
 	print_test_str(test_name, "_strnchr return", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 }
 void	test_strnchr(void)
 {
@@ -711,7 +711,7 @@ void	print_test_strnstr(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT_LIBC(strnstr, str, query, n)
 	print_test_str(test_name, "strnstr return", result_libft, result_libc, can_segfault);
 #endif
-	print_timer_result(&t, TRUE);
+	prins_timer_result(&t, TRUE);
 }
 void	test_strnstr(void)
 {
@@ -740,9 +740,9 @@ void	print_test_strremove(char const* test_name, int can_segfault,
 		char const* query)
 {
 //	TEST_PERFORM_RESULT_()
-	t_timer t = {0};
+	s_timer t = {0};
 //	TODO
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 }
 void	test_strremove(void)
 {
@@ -758,9 +758,9 @@ void	test_strremove(void)
 void	print_test_strtoescape(char const* test_name, int can_segfault,
 		char const* expecting)
 {
-	t_timer t = {0};
+	s_timer t = {0};
 //	TODO
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 }
 void	test_strtoescape(void)
 {
@@ -776,9 +776,9 @@ void	test_strtoescape(void)
 void	print_test_strrep_char(char const* test_name, int can_segfault,
 		char const* expecting)
 {
-	t_timer t = {0};
+	s_timer t = {0};
 //	TODO
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 }
 void	test_strrep_char(void)
 {
@@ -794,9 +794,9 @@ void	test_strrep_char(void)
 void	print_test_strrep_charset(char const* test_name, int can_segfault,
 		char const* expecting)
 {
-	t_timer t = {0};
+	s_timer t = {0};
 //	TODO
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 }
 void	test_strrep_charset(void)
 {
@@ -812,9 +812,9 @@ void	test_strrep_charset(void)
 void	print_test_strrep_str(char const* test_name, int can_segfault,
 		char const* expecting)
 {
-	t_timer t = {0};
+	s_timer t = {0};
 //	TODO
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 }
 void	test_strrep_string(void)
 {
@@ -842,7 +842,7 @@ void	print_test_strtrim(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT(strtrim, str, charset)
 	print_test_str(test_name, "_strtrim", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_FREE()
 }
 void	test_strtrim(void)
@@ -871,7 +871,7 @@ void	print_test_strtrim_l(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT(strtrim_l, str, charset)
 	print_test_str(test_name, "_strtrim_l", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_FREE()
 }
 void	test_strtrim_l(void)
@@ -892,7 +892,7 @@ void	print_test_strtrim_r(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT(strtrim_r, str, charset)
 	print_test_str(test_name, "_strtrim_r", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_FREE()
 }
 void	test_strtrim_r(void)
@@ -914,7 +914,7 @@ void	print_test_strpad(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT(strpad, str, c, length)
 	print_test_str(test_name, "_strpad", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_FREE()
 }
 void	test_strpad(void)
@@ -936,7 +936,7 @@ void	print_test_strpad_l(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT(strpad_l, str, c, length)
 	print_test_str(test_name, "_strpad_l", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_FREE()
 }
 void	test_strpad_l(void)
@@ -958,7 +958,7 @@ void	print_test_strpad_r(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT(strpad_r, str, c, length)
 	print_test_str(test_name, "_strpad_r", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_FREE()
 }
 void	test_strpad_r(void)
@@ -987,7 +987,7 @@ void	print_test_strrev(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT(strrev, str)
 	print_test_str(test_name, "_strrev", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_FREE()
 }
 void	test_strrev(void)
@@ -1010,7 +1010,7 @@ void	print_test_strjoin(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT(strjoin, str1, str2)
 	print_test_str(test_name, "_strjoin", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_FREE()
 }
 void	test_strjoin(void)
@@ -1035,7 +1035,7 @@ void	print_test_strinsert(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT(strinsert, dest, src, offset)
 	print_test_str(test_name, "_strinsert", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_FREE()
 }
 void	test_strinsert(void)
@@ -1057,7 +1057,7 @@ void	print_test_strsub(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT(strsub, str, offset, n)
 	print_test_str(test_name, "_strsub", result_libft, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 	TEST_FREE()
 }
 void	test_strsub(void)
@@ -1112,7 +1112,7 @@ void	print_test_striter(char const* test_name, int can_segfault,
 	TEST_PERFORM(result_libft, striter, result_libft, f)
 	print_test_str(test_name, "_striter", result_libft, expecting, can_segfault);
 	TEST_FREE()
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 }
 void	test_striter(void)
 {
@@ -1137,7 +1137,7 @@ void	print_test_striteri(char const* test_name, int can_segfault,
 	TEST_PERFORM(result_libft, striteri, result_libft, f)
 	print_test_str(test_name, "_striteri", result_libft, expecting, can_segfault);
 	TEST_FREE()
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 }
 void	test_striteri(void)
 {
@@ -1161,7 +1161,7 @@ void	print_test_strmap(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(strmap, str, f)
 	print_test_str(test_name, "_strmap", result_libft, expecting, can_segfault);
 	TEST_FREE()
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 }
 void	test_strmap(void)
 {
@@ -1185,7 +1185,7 @@ void	print_test_strmapi(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(strmapi, str, f)
 	print_test_str(test_name, "_strmapi", result_libft, expecting, can_segfault);
 	TEST_FREE()
-	print_timer_result(&t, FALSE);
+	prins_timer_result(&t, FALSE);
 }
 void	test_strmapi(void)
 {

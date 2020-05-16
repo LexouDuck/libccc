@@ -219,7 +219,7 @@ char	*int_u_to_str(t_u64 number)
 **	- CLOCK_PROCESS_CPUTIME_ID 	High-resolution per-process timer from the CPU.
 **	- CLOCK_THREAD_CPUTIME_ID 	Thread-specific CPU-time clock. 
 */
-inline void	timer_clock(t_time* result)
+inline void	timer_clock(s_time* result)
 {
 	if (clock_gettime(CLOCK_MONOTONIC, result) == -1)
 	{
@@ -230,9 +230,9 @@ inline void	timer_clock(t_time* result)
 
 /*	Define a 10e9 macro we use for nanosecond modulo */
 #define BILLION 1000000000L
-inline t_time timer_getdiff(t_time start, t_time end)
+inline s_time timer_getdiff(s_time start, s_time end)
 {
-	t_time result;
+	s_time result;
 	
 	result.tv_sec = end.tv_sec - start.tv_sec;
 	result.tv_nsec = end.tv_nsec - start.tv_nsec;
@@ -245,7 +245,7 @@ inline t_time timer_getdiff(t_time start, t_time end)
 }
 
 /* Returns negative if 'a' is lower than 'b', positive if 'b' > 'a' and 0 if equal. */
-inline t_s64 timer_compare(t_time a, t_time b)
+inline t_s64 timer_compare(s_time a, s_time b)
 {
 	if (a.tv_sec == b.tv_sec)
 		return (a.tv_nsec - b.tv_nsec);
@@ -254,7 +254,7 @@ inline t_s64 timer_compare(t_time a, t_time b)
 }
 
 /* prints the result of a timer (and potentially a comparison with the secondary timer) */
-void		print_timer_result(t_timer* t, t_s64 compare)
+void		prins_timer_result(s_timer* t, t_s64 compare)
 {
 	char result1[64] = { 0 };
 	char result2[64] = { 0 };
@@ -573,7 +573,7 @@ void	print_test_strarr(
 void	print_test_lst(
 		char const *test_name,
 		char const *function,
-		t_list const *result,
+		s_list const *result,
 		char const *expect[],
 		int can_segfault)
 {
@@ -586,7 +586,7 @@ void	print_test_lst(
 		printf(" -> ");
 	}
 	else printf(", ");
-	t_list *lst = (t_list *)result;
+	s_list *lst = (s_list *)result;
 	t_u32 i = 0;
 	if (lst)
 	{
@@ -605,7 +605,7 @@ void	print_test_lst(
 	if (error)
 	{
 		printf(C_RED"Error:\n");
-		lst = (t_list *)result;
+		lst = (s_list *)result;
 		printf(">ft_%s: [", function);
 		while (lst)
 		{

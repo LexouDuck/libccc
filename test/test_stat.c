@@ -13,7 +13,7 @@ int		test_stat(void) // TODO increment total tests counter for these tests
 	print_suite_title("stat");
 
 	static const int	samples = 20000;
-	t_sortedlist_int	ilst_sorted = print_test_random(samples);
+	s_sortedlist_int	ilst_sorted = print_test_random(samples);
 /*
 	for (int i = 0; i < i_lst.len; ++i)
 		printf("%d, ", i_lst.data[i]);
@@ -105,7 +105,7 @@ int		test_stat(void) // TODO increment total tests counter for these tests
 			ilst_sorted.data[samples - 1]);
 	}
 
-	t_prob_mass		pmf;
+	s_prob_mass		pmf;
 
 	pmf = ft_stat_ilst_to_pmf(ilst_sorted);
 

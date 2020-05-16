@@ -15,9 +15,9 @@
 
 
 
-t_list_int		ft_stat_new_ilst(t_u32 len)
+s_list_int		ft_stat_new_ilst(t_u32 len)
 {
-	t_list_int		res;
+	s_list_int		res;
 
 	res.data = NULL;
 	res.len = 0;
@@ -27,7 +27,7 @@ t_list_int		ft_stat_new_ilst(t_u32 len)
 	return (res);
 }
 
-void			ft_stat_free_ilst(t_list_int *ilst)
+void			ft_stat_free_ilst(s_list_int *ilst)
 {
 #if HANDLE_NULLPOINTERS
 	if (ilst == NULL)
@@ -41,9 +41,9 @@ void			ft_stat_free_ilst(t_list_int *ilst)
 	ilst->len = 0;
 }
 
-t_list_int		ft_stat_ilst_dup(t_list_int const ilst)
+s_list_int		ft_stat_ilst_dup(s_list_int const ilst)
 {
-	t_list_int	res;
+	s_list_int	res;
 
 	res = ft_stat_new_ilst(ilst.len);
 	if (!res.data)
@@ -53,11 +53,11 @@ t_list_int		ft_stat_ilst_dup(t_list_int const ilst)
 	return (res);
 }
 
-t_list_int		ft_stat_merge_ilst(
-	t_list_int *start,
-	t_list_int *append)
+s_list_int		ft_stat_merge_ilst(
+	s_list_int *start,
+	s_list_int *append)
 {
-	t_list_int			res;
+	s_list_int			res;
 	t_u32				i;
 	t_u32				j;
 
@@ -94,7 +94,7 @@ t_list_int		ft_stat_merge_ilst(
 */
 static void		ft_stat_quicksort_i_rec
 (
-	t_list_int	tmp_lst,
+	s_list_int	tmp_lst,
 	t_u32		start,
 	t_u32		end
 )
@@ -135,9 +135,9 @@ static void		ft_stat_quicksort_i_rec
 		ft_stat_quicksort_i_rec(tmp_lst, pivot_id + 1, end);
 }
 
-t_list_int 			ft_stat_quicksort_i_new(t_list_int const ilst)
+s_list_int 			ft_stat_quicksort_i_new(s_list_int const ilst)
 {
-	t_list_int	res;
+	s_list_int	res;
 
 	if (ilst.len <= 1)
 		return (ilst);
@@ -146,21 +146,21 @@ t_list_int 			ft_stat_quicksort_i_new(t_list_int const ilst)
 	return (res);
 }
 
-inline void			ft_stat_quicksort_i(t_list_int ilst)
+inline void			ft_stat_quicksort_i(s_list_int ilst)
 {
 	ft_stat_quicksort_i_rec(ilst, 0, ilst.len - 1);
 }
 
 
 
-inline t_float		ft_stat_median_i(t_sortedlist_int const ilst)
+inline t_float		ft_stat_median_i(s_sortedlist_int const ilst)
 {
 	return ((ilst.len % 2) ?
 		ilst.data[ilst.len / 2] :
 		(ilst.data[ilst.len / 2] + ilst.data[ilst.len / 2 + 1]) / 2);
 }
 
-t_float				ft_stat_average_i(t_list_int const ilst)
+t_float				ft_stat_average_i(s_list_int const ilst)
 {
 	t_float		sum;
 	t_u32		i;
@@ -179,7 +179,7 @@ t_float				ft_stat_average_i(t_list_int const ilst)
 ** Using V(X) = E(X^2) - E(X)^2 rather than E( [X - E(X)]^2 ) which has more
 **	operations (n subtractions).
 */
-t_float				ft_stat_variance_i(t_list_int const ilst)
+t_float				ft_stat_variance_i(s_list_int const ilst)
 {
 	t_float		sum;
 	t_u32		i;
@@ -200,7 +200,7 @@ t_float				ft_stat_variance_i(t_list_int const ilst)
 
 // TODO
 /*
-inline t_float		ft_stat_stddev_i(t_list_int const ilst)
+inline t_float		ft_stat_stddev_i(s_list_int const ilst)
 {
 
 }
@@ -237,9 +237,9 @@ t_bool				ft_prob_is_valid_i(t_prob_sample_i const i_problst)
 
 
 
-t_prob_mass				ft_stat_new_pmf(t_u32 len)
+s_prob_mass				ft_stat_new_pmf(t_u32 len)
 {
-	t_prob_mass	res;
+	s_prob_mass	res;
 
 	res.value = NULL;
 	res.prob = NULL;
@@ -252,7 +252,7 @@ t_prob_mass				ft_stat_new_pmf(t_u32 len)
 	return (res);
 }
 
-void					ft_stat_free_pmf(t_prob_mass *drv)
+void					ft_stat_free_pmf(s_prob_mass *drv)
 {
 #if HANDLE_NULLPOINTERS
 	if (drv == NULL)
@@ -271,10 +271,10 @@ void					ft_stat_free_pmf(t_prob_mass *drv)
 	drv->len = 0;
 }
 
-t_set_int				ft_stat_ilst_to_iset(t_list_int const ilst)
+s_set_int				ft_stat_ilst_to_iset(s_list_int const ilst)
 {
-	t_list_int				res;
-	t_list_int				set;
+	s_list_int				res;
+	s_list_int				set;
 	t_u32					i;
 	t_u32					j;
 
@@ -301,7 +301,7 @@ t_set_int				ft_stat_ilst_to_iset(t_list_int const ilst)
 	return (res);
 }
 
-t_u32				ft_stat_ilst_count(t_list_int ilst, t_int elem)
+t_u32				ft_stat_ilst_count(s_list_int ilst, t_int elem)
 {
 	t_u32		i;
 	t_u32		res;
@@ -320,10 +320,10 @@ t_u32				ft_stat_ilst_count(t_list_int ilst, t_int elem)
 /*
 ** Returns the probability distribution of a list of integers.
 */
-t_prob_mass			ft_stat_ilst_to_pmf(t_list_int const ilst)
+s_prob_mass			ft_stat_ilst_to_pmf(s_list_int const ilst)
 {
-	t_prob_mass			res;
-	t_list_int			set;
+	s_prob_mass			res;
+	s_list_int			set;
 	t_u32				i;
 	t_float				inv_sample_size;
 

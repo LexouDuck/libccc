@@ -6,10 +6,10 @@
 
 
 
-t_sortedlist_int	print_test_random(int samples)
+s_sortedlist_int	print_test_random(int samples)
 {
-	t_sortedlist_int	result;
-	t_list_int			ilst;
+	s_sortedlist_int	result;
+	s_list_int			ilst;
 
 	ft_random_renew_seed();
 
@@ -53,7 +53,7 @@ int		test_random(void)
 	print_suite_title("random");
 
 	static const int	samples = 20000;
-	t_sortedlist_int	ilst_sorted = print_test_random(samples);
+	s_sortedlist_int	ilst_sorted = print_test_random(samples);
 
 	ft_stat_free_ilst(&ilst_sorted);
 	return (OK);

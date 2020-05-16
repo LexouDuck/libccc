@@ -14,11 +14,11 @@
 
 
 
-t_list	*ft_lstnew(void *item, size_t item_size)
+s_list	*ft_lstnew(void *item, size_t item_size)
 {
-	t_list *result;
+	s_list *result;
 
-	if (!(result = (t_list *)malloc(sizeof(t_list))))
+	if (!(result = (s_list *)malloc(sizeof(s_list))))
 		return (NULL);
 	result->item = item;
 	result->item_size = (item ? item_size : 0);

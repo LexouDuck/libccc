@@ -15,9 +15,9 @@
 
 
 
-t_float			ft_mc_integrate3(t_scalar_func3 const sf, t_3d_box const domain)
+t_float			ft_mc_integrate3(f_scalar_func3 const sf, s_box3d const domain)
 {
-	t_vec3		rand_input;
+	u_vec3		rand_input;
 	t_float		result;
 	t_u32		i;
 

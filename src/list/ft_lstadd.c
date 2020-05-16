@@ -14,7 +14,7 @@
 
 
 
-void	ft_lstadd(t_list **alst, t_list *elem)
+void	ft_lstadd(s_list **alst, s_list *elem)
 {
 #if HANDLE_NULLPOINTERS
 	if (alst == NULL || elem == NULL)
@@ -31,9 +31,9 @@ void	ft_lstadd(t_list **alst, t_list *elem)
 
 
 
-void	ft_lstappend(t_list **alst, t_list *elem)
+void	ft_lstappend(s_list **alst, s_list *elem)
 {
-	t_list *lst;
+	s_list *lst;
 
 #if HANDLE_NULLPOINTERS
 	if (alst == NULL || elem == NULL)
@@ -54,10 +54,10 @@ void	ft_lstappend(t_list **alst, t_list *elem)
 
 
 
-void	ft_lstinsert(t_list **alst, t_list *elem, t_u32 index)
+void	ft_lstinsert(s_list **alst, s_list *elem, t_u32 index)
 {
-	t_list	*lst;
-	t_list	*tmp;
+	s_list	*lst;
+	s_list	*tmp;
 	t_u32	i;
 
 #if HANDLE_NULLPOINTERS

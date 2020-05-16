@@ -77,30 +77,30 @@
 
 
 
-typedef struct	s_list_int
+typedef struct	s_list_int_
 {
 	t_int		*data;
 	t_u32		len;
-}				t_list_int;
-#define NULL_LIST_INT		((t_list_int){ 0, 0 })
+}				s_list_int;
+#define NULL_LIST_INT		((s_list_int){ 0, 0 })
 
-typedef struct	s_list_float
+typedef struct	s_list_float_
 {
 	t_float		*data;
 	t_u32		len;
-}				t_list_float;
-#define NULL_LIST_FLOAT		((t_list_float){ 0, 0 })
+}				s_list_float;
+#define NULL_LIST_FLOAT		((s_list_float){ 0, 0 })
 
 /*
 **	These types are used to signify a list with no duplicate values.
 */
-typedef t_list_int		t_set_int;
-typedef t_list_float	t_set_float;
+typedef s_list_int		s_set_int;
+typedef s_list_float	s_set_float;
 /*
 **	These types are used to signify a list whose values have been ordered.
 */
-typedef t_list_int		t_sortedlist_int;
-typedef t_list_float	t_sortedlist_float;
+typedef s_list_int		s_sortedlist_int;
+typedef s_list_float	s_sortedlist_float;
 
 /*
 ** Remember:
@@ -148,19 +148,12 @@ typedef t_list_float	t_sortedlist_float;
 /*
 ** A struct for the probability mass function describing a discrete random var.
 */
-typedef struct	s_prob_mass
+typedef struct	s_prob_mass_
 {
 	t_float		*value;
 	t_float		*prob;
 	t_u32		len;
-}				t_prob_mass;
-
-/*
-typedef struct	s_prob_dens
-{
-	t_float		(*distrib)(); //? cumul distib ?
-}				t_prob_dens;
-*/
+}				s_prob_mass;
 
 
 
@@ -170,49 +163,49 @@ typedef struct	s_prob_dens
 ** ************************************************************************** *|
 */
 
-t_list_int			ft_stat_new_ilst(t_u32 len);
-t_list_float		ft_stat_new_flst(t_u32 len);
+s_list_int			ft_stat_new_ilst(t_u32 len);
+s_list_float		ft_stat_new_flst(t_u32 len);
 
-void				ft_stat_free_ilst(t_list_int *ilst);
-void				ft_stat_free_flst(t_list_float *flst);
+void				ft_stat_free_ilst(s_list_int *ilst);
+void				ft_stat_free_flst(s_list_float *flst);
 
 
 
-t_list_int			ft_stat_merge_ilst(t_list_int *start, t_list_int *append);
-t_list_float		ft_stat_merge_flst(t_list_float *start, t_list_float *append);
+s_list_int			ft_stat_merge_ilst(s_list_int *start, s_list_int *append);
+s_list_float		ft_stat_merge_flst(s_list_float *start, s_list_float *append);
 
-t_list_int 			ft_stat_quicksort_i_new(t_list_int const ilst);
-void				ft_stat_quicksort_i(t_list_int ilst);
-t_list_float 		ft_stat_quicksort_f_new(t_list_float const flst);
-void				ft_stat_quicksort_f(t_list_float flst);
+s_list_int 			ft_stat_quicksort_i_new(s_list_int const ilst);
+void				ft_stat_quicksort_i(s_list_int ilst);
+s_list_float 		ft_stat_quicksort_f_new(s_list_float const flst);
+void				ft_stat_quicksort_f(s_list_float flst);
 
 /*
 ** List is supposed to be already in order for this to return the right result.
 */
-t_float				ft_stat_median_i(t_sortedlist_int const ilst);
-t_float				ft_stat_median_f(t_sortedlist_float const flst);
+t_float				ft_stat_median_i(s_sortedlist_int const ilst);
+t_float				ft_stat_median_f(s_sortedlist_float const flst);
 
-t_float				ft_stat_average_i(t_list_int const ilst);
-t_float				ft_stat_average_f(t_list_float const flst);
+t_float				ft_stat_average_i(s_list_int const ilst);
+t_float				ft_stat_average_f(s_list_float const flst);
 
-t_float				ft_stat_variance_i(t_list_int const ilst);
-t_float				ft_stat_variance_f(t_list_float const flst);
+t_float				ft_stat_variance_i(s_list_int const ilst);
+t_float				ft_stat_variance_f(s_list_float const flst);
 
-t_float				ft_stat_stddev_i(t_list_int const ilst);
-t_float				ft_stat_stddev_f(t_list_float const flst);
+t_float				ft_stat_stddev_i(s_list_int const ilst);
+t_float				ft_stat_stddev_f(s_list_float const flst);
 
 /*
-void				ft_stat_decile_i(t_list_int const ilst);
-void				ft_stat_decile_f(t_list_float const flst);
+void				ft_stat_decile_i(s_list_int const ilst);
+void				ft_stat_decile_f(s_list_float const flst);
 
 t_bool				ft_prob_is_valid_i(t_prob_sample_i const i_problst);
 t_bool				ft_prob_is_valid_f(t_prob_sample_f const f_problst);
 */
 
-t_prob_mass			ft_stat_new_pmf(t_u32 len);
-void				ft_stat_free_pmf(t_prob_mass *drv);
-t_list_int			ft_stat_ilst_to_iset(t_list_int const ilst);
-t_u32				ft_stat_ilst_count(t_list_int ilst, t_int elem);
-t_prob_mass			ft_stat_ilst_to_pmf(t_list_int const ilst);
+s_prob_mass			ft_stat_new_pmf(t_u32 len);
+void				ft_stat_free_pmf(s_prob_mass *drv);
+s_list_int			ft_stat_ilst_to_iset(s_list_int const ilst);
+t_u32				ft_stat_ilst_count(s_list_int ilst, t_int elem);
+s_prob_mass			ft_stat_ilst_to_pmf(s_list_int const ilst);
 
 #endif

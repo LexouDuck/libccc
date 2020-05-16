@@ -14,7 +14,7 @@
 
 
 
-t_list	*ft_lstget(t_list *lst, t_u32 index)
+s_list	*ft_lstget(s_list *lst, t_u32 index)
 {
 	t_u32	i;
 
@@ -36,7 +36,7 @@ t_list	*ft_lstget(t_list *lst, t_u32 index)
 
 
 
-t_list	*ft_lstfind(t_list *lst, void const *query)
+s_list	*ft_lstfind(s_list *lst, void const *query)
 {
 #if HANDLE_NULLPOINTERS
 	if (lst == NULL)
