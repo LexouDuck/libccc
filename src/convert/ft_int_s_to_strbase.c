@@ -14,10 +14,10 @@
 
 
 
-static size_t	ft_s_to_strbase_getlength(char const *base)
+static t_size	ft_s_to_strbase_getlength(char const *base)
 {
-	size_t	i;
-	size_t	j;
+	t_size	i;
+	t_size	j;
 
 #if HANDLE_NULLPOINTERS
 	if (base == NULL)
@@ -29,7 +29,7 @@ static size_t	ft_s_to_strbase_getlength(char const *base)
 		if (base[i] == '+' || base[i] == '-')
 			return (0);
 		j = i - 1;
-		while (j != (size_t)-1)
+		while (j != (t_size)-1)
 		{
 			if (base[i] == base[j])
 				return (0);
@@ -46,8 +46,8 @@ char			*ft_s8_to_strbase(t_s8 number, char const *base)
 {
 	char	*result;
 	char	digits[8];
-	size_t	length;
-	size_t	i;
+	t_size	length;
+	t_size	i;
 	t_u8	n;
 
 	length = ft_s_to_strbase_getlength(base);
@@ -77,8 +77,8 @@ char			*ft_s16_to_strbase(t_s16 number, char const *base)
 {
 	char	*result;
 	char	digits[16];
-	size_t	length;
-	size_t	i;
+	t_size	length;
+	t_size	i;
 	t_u16	n;
 
 	length = ft_s_to_strbase_getlength(base);
@@ -108,8 +108,8 @@ char			*ft_s32_to_strbase(t_s32 number, char const *base)
 {
 	char	*result;
 	char	digits[32];
-	size_t	length;
-	size_t	i;
+	t_size	length;
+	t_size	i;
 	t_u32	n;
 
 	length = ft_s_to_strbase_getlength(base);
@@ -139,8 +139,8 @@ char			*ft_s64_to_strbase(t_s64 number, char const *base)
 {
 	char	*result;
 	char	digits[64];
-	size_t	length;
-	size_t	i;
+	t_size	length;
+	t_size	i;
 	t_u64	n;
 
 	length = ft_s_to_strbase_getlength(base);

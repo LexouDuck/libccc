@@ -14,7 +14,7 @@
 
 
 
-static void	ft_lstmap_delete(void *content, size_t content_size)
+static void	ft_lstmap_delete(void *content, t_size content_size)
 {
 	if (content && content_size > 0)
 	{

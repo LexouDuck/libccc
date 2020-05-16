@@ -14,10 +14,10 @@
 #define LIBFT_H
 
 /*
-**	TODO	libft_math			+ tests
-**	TODO	libft_stat			+ tests
+**	TODO	libft_color			+ tests
 **	TODO	libft_random		+ tests
 **	TODO	libft_stringarray	+ tests
+**	TODO	libft_io			+ tests
 **	TODO	libft_vlq			+ tests
 */
 
@@ -29,7 +29,7 @@
 
 /*
 **	Functions used:
-**	-	void*	malloc(size_t n);
+**	-	void*	malloc(t_size n);
 **	-	void	free(void* ptr);
 */
 #include <stdlib.h>
@@ -205,6 +205,11 @@ typedef t_s64			t_int;
 **	so no program should rely on any kind of overflow behavior from this type.
 */
 typedef uint_fast8_t	t_bool;
+
+/*
+**	This typedef is here purely for nomenclature consistency
+*/
+typedef size_t			t_size;
 
 
 

@@ -83,7 +83,7 @@ char	**ft_strsplit_str(char const *str, char const *query);
 **	Returns a string array which is the result of dividing str into chunks of
 **	equal size n, safe for the last chunk of length <= n.
 */
-char	**ft_strdivide(const char *str, size_t n);
+char	**ft_strdivide(const char *str, t_size n);
 
 
 /*
@@ -101,7 +101,7 @@ char	**ft_strarrnew(t_u32 len);
 **	Returns a newly allocated string array, which has y line and x characters
 **	per lines (+1 for null-termination), every character set to the value c.
 */
-char	**ft_strarrcnew(t_u32 y, size_t x, const char c);
+char	**ft_strarrcnew(t_u32 y, t_size x, const char c);
 
 /*
 **	Frees all allocations in a string array, then the string array itself.

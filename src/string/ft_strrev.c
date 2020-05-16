@@ -17,9 +17,9 @@
 char	*ft_strrev(char const *str)
 {
 	char	*result;
-	size_t	length;
-	size_t	i;
-	size_t	j;
+	t_size	length;
+	t_size	i;
+	t_size	j;
 
 #if HANDLE_NULLPOINTERS
 	if (str == NULL)

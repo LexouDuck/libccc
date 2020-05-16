@@ -17,9 +17,9 @@ static char const * program_name = NULL;
 ** ************************************************************************** *|
 */
 
-char const* test1 = "Omae wa mou shindeiru.\0";		size_t const test1_len = 23;
-char const* test2 = "Nani???\0";					size_t const test2_len = 8;
-char const* test3 = "Un ange mange de la fange.\0";	size_t const test3_len = 27;
+char const* test1 = "Omae wa mou shindeiru.\0";		t_size const test1_len = 23;
+char const* test2 = "Nani???\0";					t_size const test2_len = 8;
+char const* test3 = "Un ange mange de la fange.\0";	t_size const test3_len = 27;
 
 
 

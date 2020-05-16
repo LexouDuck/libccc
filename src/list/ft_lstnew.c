@@ -14,7 +14,7 @@
 
 
 
-s_list	*ft_lstnew(void *item, size_t item_size)
+s_list	*ft_lstnew(void *item, t_size item_size)
 {
 	s_list *result;
 

@@ -14,12 +14,12 @@
 
 
 
-char	*ft_strpad(char const *str, char c, size_t size)
+char	*ft_strpad(char const *str, char c, t_size size)
 {
 	char	*result;
-	size_t	offset;
-	size_t	length;
-	size_t	i;
+	t_size	offset;
+	t_size	length;
+	t_size	i;
 
 #if HANDLE_NULLPOINTERS
 	if (str == NULL)
@@ -48,12 +48,12 @@ char	*ft_strpad(char const *str, char c, size_t size)
 
 
 
-char	*ft_strpad_l(char const *str, char c, size_t size)
+char	*ft_strpad_l(char const *str, char c, t_size size)
 {
 	char	*result;
-	size_t	offset;
-	size_t	length;
-	size_t	i;
+	t_size	offset;
+	t_size	length;
+	t_size	i;
 
 #if HANDLE_NULLPOINTERS
 	if (str == NULL)
@@ -66,7 +66,7 @@ char	*ft_strpad_l(char const *str, char c, size_t size)
 		++length;
 	offset = size - length;
 	i = 0;
-	while (i < (size_t)offset)
+	while (i < (t_size)offset)
 	{
 		result[i] = c;
 		++i;
@@ -82,10 +82,10 @@ char	*ft_strpad_l(char const *str, char c, size_t size)
 
 
 
-char	*ft_strpad_r(char const *str, char c, size_t size)
+char	*ft_strpad_r(char const *str, char c, t_size size)
 {
 	char	*result;
-	size_t	i;
+	t_size	i;
 
 #if HANDLE_NULLPOINTERS
 	if (str == NULL)

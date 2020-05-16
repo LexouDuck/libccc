@@ -106,7 +106,7 @@
 **	Reads the contents of the file descriptor 'fd', and puts it into 'file'.
 **	Returns 0 if the stream was read successfully, 1 if there was an error.
 */
-int		ft_readfile(int const fd, char **file, size_t max);
+int		ft_readfile(int const fd, char **file, t_size max);
 
 /*
 **	Reads the contents of the file descriptor 'fd' line per line.
@@ -160,7 +160,7 @@ void	ft_write_strls(int fd, char const **strls);
 **	Writes hexadecimal memory in the null-terminated string 'str',
 **	writing lines of 'cols' columns of 4-byte chunks to 'fd'.
 */
-void	ft_write_memory(int fd, t_u8 const *ptr, size_t n, t_u8 cols);
+void	ft_write_memory(int fd, t_u8 const *ptr, t_size n, t_u8 cols);
 
 
 
@@ -195,6 +195,6 @@ void	ft_output_strls(char const **strls);
 **	Outputs hexadecimal memory in the null-terminated string 'str',
 **	writing lines of 'cols' columns of 4-byte chunks.
 */
-void	ft_output_memory(t_u8 const *ptr, size_t n, t_u8 cols);
+void	ft_output_memory(t_u8 const *ptr, t_size n, t_u8 cols);
 
 #endif

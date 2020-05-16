@@ -17,9 +17,9 @@
 char	*ft_strjoin(char const *str1, char const *str2)
 {
 	char	*result;
-	size_t	length1;
-	size_t	length2;
-	size_t	i;
+	t_size	length1;
+	t_size	length2;
+	t_size	i;
 
 #if HANDLE_NULLPOINTERS
 	if (str1 == NULL || str2 == NULL)

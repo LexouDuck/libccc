@@ -117,7 +117,7 @@
 **	Creates a new string instance of the given 'size',
 **	allocating 'n' bytes of memory, and setting every char to '\0'.
 */
-char	*ft_strnew(size_t n);
+char	*ft_strnew(t_size n);
 
 /*
 **	Sets every byte of the given string 'str' to 'c', only stopping upon
@@ -151,14 +151,14 @@ char	*ft_strcpy(char *dest, char const *src);
 **	Copies the first 'n' characters of the given string 'src' into 'dest',
 **	and returns 'dest' (no allocation is performed).
 */
-char	*ft_strncpy(char *dest, char const *src, size_t n);
+char	*ft_strncpy(char *dest, char const *src, t_size n);
 
 /*
 **	Copies the given string 'src' into 'dest', null-terminating the result
 **	(the '\0' is placed at: ('dest' + 'size' - 1)),
 **	and returns the resulting size of 'dest'.
 */
-size_t	ft_strlcpy(char *dest, char const *src, size_t size);
+t_size	ft_strlcpy(char *dest, char const *src, t_size size);
 
 /*
 **	Concatenates the given string 'src' to the end of 'dest',
@@ -170,14 +170,14 @@ char	*ft_strcat(char *dest, char const *src);
 **	Concatenates the first 'n' characters of the given string 'src'
 **	to the end of 'dest', and returns 'dest'.
 */
-char	*ft_strncat(char *dest, char const *src, size_t n);
+char	*ft_strncat(char *dest, char const *src, t_size n);
 
 /*
 **	Concatenates characters of the given string 'src' to the end of 'dest',
 **	null-terminating the result (places the '\0' at ('dest' + 'size' - 1)),
 **	and returns the resulting size of 'dest'.
 */
-size_t	ft_strlcat(char *dest, char const *src, size_t size);
+t_size	ft_strlcat(char *dest, char const *src, t_size size);
 
 
 
@@ -190,7 +190,7 @@ size_t	ft_strlcat(char *dest, char const *src, size_t size);
 /*
 **	Returns the length of the given null-terminated string 'str'.
 */
-size_t	ft_strlen(char const *str);
+t_size	ft_strlen(char const *str);
 
 /*
 **	Compares the two given strings, and returns the first difference
@@ -203,7 +203,7 @@ int		ft_strcmp(char const *str1, char const *str2);
 **	Compares at most 'n' chars of the two given strings, and returns
 **	the first difference of characters encountered: (str1[i] - str2[i]).
 */
-int		ft_strncmp(char const *str1, char const *str2, size_t n);
+int		ft_strncmp(char const *str1, char const *str2, t_size n);
 
 /*
 **	Returns 1 if the two given strings match, and 0 otherwise.
@@ -214,7 +214,7 @@ t_bool	ft_strequ(char const *str1, char const *str2);
 **	Returns 1 if the first 'n' chars of the two given strings match,
 **	and returns 0 if this is not the case.
 */
-t_bool	ft_strnequ(char const *str1, char const *str2, size_t n);
+t_bool	ft_strnequ(char const *str1, char const *str2, t_size n);
 
 /*
 **	Returns 1 if the given string 'str' contains at least one occurence
@@ -231,18 +231,18 @@ t_bool	ft_strhasonly(char const *str, char const *charset);
 /*
 **	Returns the amount of occurences of char 'c' in the given string 'str'.
 */
-size_t	ft_strcount_char(char const *str, char c);
+t_size	ft_strcount_char(char const *str, char c);
 
 /*
 **	Returns the amount of occurences of chars in 'cset' in the given string
 **	'str'.
 */
-size_t	ft_strcount_charset(char const *str, char const *cset);
+t_size	ft_strcount_charset(char const *str, char const *cset);
 
 /*
 **	Returns the amount of occurences of 'query' in the given string 'str'.
 */
-size_t	ft_strcount_str(char const *str, char const *query);
+t_size	ft_strcount_str(char const *str, char const *query);
 
 
 
@@ -293,14 +293,14 @@ char	*ft_strrstr(char const *str, char const *query);
 **	in the given string 'str' (or NULL if nothing matched),
 **	searching only the first 'n' characters of 'str'.
 */
-char	*ft_strnchr(char const *str, char c, size_t n);
+char	*ft_strnchr(char const *str, char c, t_size n);
 
 /*
 **	Returns the first occurence of the string 'query' inside
 **	the given string 'str' (or NULL if nothing matched),
 **	searching only the first 'n' characters of 'str'.
 */
-char	*ft_strnstr(char const *str, char const *query, size_t n);
+char	*ft_strnstr(char const *str, char const *query, t_size n);
 
 /*
 **	Returns a new null-terminated string which is a copy of 'str',
@@ -438,21 +438,21 @@ char	*ft_strtrim_r(char const *str, char const *charset);
 **	'length' characters long, by padding it with 'c' chars on both sides
 **	if the desired 'length' is larger than 'str'.
 */
-char	*ft_strpad(char const *str, char c, size_t length);
+char	*ft_strpad(char const *str, char c, t_size length);
 
 /*
 **	Returns a new null-terminated string duplicate of 'str' which is
 **	'length' characters long, by padding it with 'c' chars on its
 **	left side if the desired 'length' is larger than 'str'.
 */
-char	*ft_strpad_l(char const *str, char c, size_t length);
+char	*ft_strpad_l(char const *str, char c, t_size length);
 
 /*
 **	Returns a new null-terminated string duplicate of 'str' which is
 **	'length' characters long, by padding it with 'c' chars on its
 **	right side if the desired 'length' is larger than 'str'.
 */
-char	*ft_strpad_r(char const *str, char c, size_t length);
+char	*ft_strpad_r(char const *str, char c, t_size length);
 
 /*
 **	Returns a new null-terminated string where every non-printable character
@@ -483,13 +483,13 @@ char	*ft_strjoin(char const *str1, char const *str2);
 **	Returns a reallocated version of the given string 'dest', in which
 **	the string 'str' has been inserted at the index 'offset'.
 */
-char	*ft_strinsert(char const *dest, char const *src, size_t offset);
+char	*ft_strinsert(char const *dest, char const *src, t_size offset);
 
 /*
 **	Returns a new null-terminated string which is a subsection of 'str',
 **	starting at char index 'index' and copying 'n' characters.
 */
-char	*ft_strsub(char const *str, size_t index, size_t n);
+char	*ft_strsub(char const *str, t_size index, t_size n);
 
 /*
 **	Iterates upon each character of the given string 'str',
@@ -501,7 +501,7 @@ void	ft_striter(char *str, void (*f)(char *));
 **	Iterates upon each character of the given string 'str',
 **	applying the function 'f' to each of its chars (with index information).
 */
-void	ft_striteri(char *str, void (*f)(size_t, char *));
+void	ft_striteri(char *str, void (*f)(t_size, char *));
 
 /*
 **	Creates a new null-terminated string by iterating upon the string 'str',
@@ -513,6 +513,6 @@ char	*ft_strmap(char const *str, char (*f)(char));
 **	Creates a new null-terminated string by iterating upon the string 'str',
 **	applying the function 'f' to each of its chars (with index information).
 */
-char	*ft_strmapi(char const *str, char (*f)(size_t, char));
+char	*ft_strmapi(char const *str, char (*f)(t_size, char));
 
 #endif

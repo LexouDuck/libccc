@@ -153,10 +153,10 @@ char	*ft_f64_to_str(t_f64 n, t_u8 precision);
 */
 
 char	*ft_bool_to_str(t_bool value, t_bool uppercase);
-char	*ft_size_to_str(size_t value);
+char	*ft_size_to_str(t_size value);
 
 t_bool	ft_str_to_bool(char const *str);
-size_t	ft_str_to_size(char const *str);
+t_size	ft_str_to_size(char const *str);
 
 
 

@@ -27,7 +27,7 @@ static t_f64	ft_str_to_f64_expon(char const *s_mant, char const *s_exp)
 {
 	t_f64		result;
 	t_s16		exponent;
-	size_t		frac_digits;
+	t_size		frac_digits;
 	char		*tmp;
 
 	if (!(tmp = ft_strremove(s_mant, ".")))

@@ -12,11 +12,11 @@
 
 #include "libft_memory.h"
 
-int			ft_memswap(void *ptr1, void *ptr2, size_t size)
+int			ft_memswap(void *ptr1, void *ptr2, t_size size)
 {
 	t_u8	*p1;
 	t_u8	*p2;
-	size_t	i;
+	t_size	i;
 
 #if HANDLE_NULLPOINTERS
 	if (ptr1 == NULL || ptr2 == NULL)

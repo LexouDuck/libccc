@@ -59,19 +59,19 @@
 typedef struct		s_tuple_
 {
 	void			*items;
-	size_t			item_size;
-	size_t			length;
+	t_size			item_size;
+	t_size			length;
 }					s_tuple;
 
 typedef struct		s_list_
 {
 	void			*item;
-	size_t			item_size;
+	t_size			item_size;
 	struct s_list_	*next;
 }					s_list;
 
 /*
-**	typedef void	(*f_list_delete)(void *, size_t);
+**	typedef void	(*f_list_delete)(void *, t_size);
 **	typedef void	(*f_list_iterate)(s_list *);
 **	typedef s_list*	(*f_list_map)(s_list *);
 */
@@ -88,7 +88,7 @@ typedef struct		s_list_
 **	Allocates a new linked list element, and feeds it the given 'item' pointer
 **	and the given 'item_size' (if 'item' is NULL, item_size is set to 0).
 */
-s_list				*ft_lstnew(void *item, size_t item_size);
+s_list				*ft_lstnew(void *item, t_size item_size);
 
 /*
 **	Inserts a new element of a list 'elem' at the pointer '*alst',
@@ -119,19 +119,19 @@ s_list				*ft_lstcpy(s_list *lst);
 **	Deletes the given element pointed to by 'alst' with the function 'del',
 **	and then frees memory and sets '*alst' as a NULL pointer.
 */
-void				ft_lstdelone(s_list **alst, void (*del)(void *, size_t));
+void				ft_lstdelone(s_list **alst, void (*del)(void *, t_size));
 
 /*
 **	Deletes all the elements in the list starting at '*alst',
 **	calls 'del' and frees memory for each, and lastly sets '*alst' as NULL.
 */
-void				ft_lstdel(s_list **alst, void (*del)(void *, size_t));
+void				ft_lstdel(s_list **alst, void (*del)(void *, t_size));
 
 /*
 **	Deletes the last element in the list starting at '*alst', calling 'del'
 **	and freeing that element, and setting the preceding 'lst->next' as NULL.
 */
-void				ft_lstpop(s_list **alst, void (*del)(void *, size_t));
+void				ft_lstpop(s_list **alst, void (*del)(void *, t_size));
 
 
 

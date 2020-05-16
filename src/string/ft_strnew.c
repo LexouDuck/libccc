@@ -14,10 +14,10 @@
 
 
 
-char	*ft_strnew(size_t n)
+char	*ft_strnew(t_size n)
 {
 	char	*result;
-	size_t	i;
+	t_size	i;
 
 	if (!(result = (char *)malloc(n + 1)))
 		return (NULL);

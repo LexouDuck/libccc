@@ -14,10 +14,10 @@
 
 
 
-void	*ft_memchr(void const *ptr, t_u8 byte, size_t n)
+void	*ft_memchr(void const *ptr, t_u8 byte, t_size n)
 {
 	t_u8	*result;
-	size_t	i;
+	t_size	i;
 
 #if HANDLE_NULLPOINTERS
 	if (ptr == NULL)

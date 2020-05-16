@@ -30,12 +30,12 @@ static int	ft_readfile_error(int result, char **file)
 		return (OK);
 }
 
-int			ft_readfile(int const fd, char **file, size_t max)
+int			ft_readfile(int const fd, char **file, t_size max)
 {
 	int		result;
 	char	buffer[BUFF_SIZE + 1];
 	char	*temp;
-	size_t	length;
+	t_size	length;
 
 #if HANDLE_NULLPOINTERS
 	if (file == NULL)

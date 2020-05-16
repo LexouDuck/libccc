@@ -77,7 +77,7 @@ static char		*ft_f32_to_str_expon(t_f32 number, t_u8 precision,
 	char **result_exp, char **result_mant)
 {
 	char	*result;
-	size_t	i;
+	t_size	i;
 	t_bool	sign;
 
 	sign = (number < 0);

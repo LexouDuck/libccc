@@ -57,18 +57,18 @@
 **	Allocates 'size' bytes in memory, returning the pointer at which
 **	said bytes were allocated, or NULL if the memory could not be allocated.
 */
-void	*ft_memalloc(size_t size);
+void	*ft_memalloc(t_size size);
 
 /*
 **	Sets 'n' bytes of memory with the given 8-bit value 'byte' (taking only the
 **	first 8 bits of this value and writing it byte-per-byte), starting at 'ptr'.
 */
-void	ft_memset(void *ptr, t_u8 byte, size_t n);
+void	ft_memset(void *ptr, t_u8 byte, t_size n);
 
 /*
 **	Sets 'n' bytes of memory to 0, starting at 'ptr'. (same as bzero)
 */
-void	ft_memclr(void *ptr, size_t n);
+void	ft_memclr(void *ptr, t_size n);
 
 /*
 **	Frees the allocated memory at '**ptr', and sets '*ptr' as NULL.
@@ -78,28 +78,28 @@ void	ft_memdel(void **ptr);
 /*
 **	Copies 'n' bytes of memory from 'src' to 'dest', and returns 'dest'.
 */
-void	*ft_memcpy(void *dest, void const *src, size_t n);
+void	*ft_memcpy(void *dest, void const *src, t_size n);
 
 /*
 **	Copies at most 'n' bytes of memory from 'src' to 'dest',
 **	stopping after the first occurence of a byte equal to 'byte',
 **	and returns a pointer to ('byte' + 1) in 'dest', or NULL.
 */
-void	*ft_memccpy(void *dest, void const *src, t_u8 byte, size_t n);
+void	*ft_memccpy(void *dest, void const *src, t_u8 byte, t_size n);
 
 /*
 **	Reads 'n' bytes of memory from 'src', and then writes
 **	all of those bytes to 'dest' after having read everything.
 **	This function is useful if the 'src' and 'dest' buffers overlap.
 */
-void	*ft_memmove(void *dest, void const *src, size_t n);
+void	*ft_memmove(void *dest, void const *src, t_size n);
 
 /*
 **	Returns a newly allocated memory area which is a copy of
 **	the given memory area 'ptr' (or NULL if the required memory
 **	could not be allocated, or if 'ptr' is NULL or 'n' == 0).
 */
-void	*ft_memdup(void const *ptr, size_t n);
+void	*ft_memdup(void const *ptr, t_size n);
 
 
 /*
@@ -125,21 +125,21 @@ t_u32	ft_ptrarrlen(const void **a_ptrarr);
 **	(or NULL if no byte was a match), starting the search at 'ptr'
 **	and searching 'n' bytes of memory.
 */
-void	*ft_memchr(void const *ptr, t_u8 byte, size_t n);
+void	*ft_memchr(void const *ptr, t_u8 byte, t_size n);
 
 /*
 **	Compares 'n' bytes of memory at 'ptr1' and 'ptr2',
 **	returning (byte1 - byte2) at the first difference encountered.
 **	As such, will return 0 if the contents of 'ptr1' and 'ptr2' match.
 */
-int		ft_memcmp(void const *ptr1, void const *ptr2, size_t n);
+int		ft_memcmp(void const *ptr1, void const *ptr2, t_size n);
 
 /*
 **	Swaps the memory content pointed to by 'ptr1' and 'ptr2',
 **	copying exactly 'size' bytes of data between the two. (XOR swap method)
 **	Returns 0 if the swap was successful, and 1 otherwise.
 */
-int		ft_memswap(void *ptr1, void *ptr2, size_t size);
+int		ft_memswap(void *ptr1, void *ptr2, t_size size);
 
 /*
 **	Returns a subsection of the 'value' argument, taking 'length' bits

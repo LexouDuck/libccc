@@ -14,10 +14,10 @@
 
 
 
-void	*ft_memalloc(size_t size)
+void	*ft_memalloc(t_size size)
 {
 	t_u8	*result;
-	size_t	i;
+	t_size	i;
 
 	if (!(result = (t_u8 *)malloc(size)))
 		return (NULL);

@@ -16,9 +16,9 @@
 
 char	*ft_strstr(char const *str, char const *query)
 {
-	size_t	length;
-	size_t	match;
-	size_t	i;
+	t_size	length;
+	t_size	match;
+	t_size	i;
 
 #if HANDLE_NULLPOINTERS
 	if (str == NULL || query == NULL)
@@ -51,9 +51,9 @@ char	*ft_strstr(char const *str, char const *query)
 
 char	*ft_strrstr(char const *str, char const *query)
 {
-	size_t	length;
-	size_t	match;
-	size_t	i;
+	t_size	length;
+	t_size	match;
+	t_size	i;
 
 #if HANDLE_NULLPOINTERS
 	if (str == NULL || query == NULL)
@@ -83,11 +83,11 @@ char	*ft_strrstr(char const *str, char const *query)
 
 
 
-char	*ft_strnstr(char const *str, char const *query, size_t n)
+char	*ft_strnstr(char const *str, char const *query, t_size n)
 {
-	size_t	length;
-	size_t	match;
-	size_t	i;
+	t_size	length;
+	t_size	match;
+	t_size	i;
 
 #if HANDLE_NULLPOINTERS
 	if (str == NULL || query == NULL)
@@ -116,8 +116,8 @@ char	*ft_strnstr(char const *str, char const *query, size_t n)
 
 t_s32		ft_stristr(char const *str, char const *query)
 {
-	size_t	i;
-	size_t	j;
+	t_size	i;
+	t_size	j;
 
 #if HANDLE_NULLPOINTERS
 	if (str == NULL || query == NULL)

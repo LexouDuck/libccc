@@ -14,12 +14,12 @@
 
 
 
-char	*ft_strinsert(char const *dest, char const *src, size_t offset)
+char	*ft_strinsert(char const *dest, char const *src, t_size offset)
 {
 	char	*result;
-	size_t	len_dst;
-	size_t	len_src;
-	size_t	i;
+	t_size	len_dst;
+	t_size	len_src;
+	t_size	i;
 
 #if HANDLE_NULLPOINTERS
 	if (dest == NULL || src == NULL)

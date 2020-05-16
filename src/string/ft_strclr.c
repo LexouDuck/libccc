@@ -16,7 +16,7 @@
 
 void	ft_strclr(char *str)
 {
-	size_t	i;
+	t_size	i;
 
 #if HANDLE_NULLPOINTERS
 	if (str == NULL)

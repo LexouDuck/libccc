@@ -48,7 +48,7 @@ inline void	ft_output_strls(char const **strls)
 
 
 
-inline void	ft_output_memory(t_u8 const *ptr, size_t n, t_u8 cols)
+inline void	ft_output_memory(t_u8 const *ptr, t_size n, t_u8 cols)
 {
 	if (ptr)
 		ft_write_memory(STDOUT, ptr, n, cols);

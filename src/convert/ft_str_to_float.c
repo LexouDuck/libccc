@@ -43,8 +43,8 @@ static char	*ft_str_to_float_toupper(char const *str)
 int			ft_str_to_float_checkinvalid(char const *str, char **result_tmp)
 {
 	char	*tmp;
-	size_t	count_p;
-	size_t	count_e;
+	t_size	count_p;
+	t_size	count_e;
 
 #if HANDLE_NULLPOINTERS
 	if (str == NULL)

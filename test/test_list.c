@@ -6,14 +6,14 @@
 
 
 /*
-**	s_list	*ft_lstnew(void const *item, size_t item_size);
+**	s_list	*ft_lstnew(void const *item, t_size item_size);
 */
 void	print_test_lstnew(char const* test_name, int can_segfault,
 		char const* expecting,
 		void* item,
-		size_t item_size)
+		t_size item_size)
 {
-	size_t expect_size = expecting ? strlen(expecting) + 1 : 0;
+	t_size expect_size = expecting ? strlen(expecting) + 1 : 0;
 	TEST_PERFORM_RESULT_TYPE(s_list*, lstnew, item, item_size);
 	print_test_size(test_name, "_lstnew->item_size", result_libft->item_size, expect_size, can_segfault);
 	print_test_str(NULL,       "_lstnew->item",      result_libft->item,      expecting,   can_segfault);
@@ -140,12 +140,12 @@ void	test_lstcpy(void)
 
 
 /*
-**	void	ft_lstpop(s_list **alst, void (*del)(void *, size_t));
+**	void	ft_lstpop(s_list **alst, void (*del)(void *, t_size));
 */
 void	print_test_lstpop(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list **alst,
-		void (*del)(void *, size_t))
+		void (*del)(void *, t_size))
 {
 	s_timer t = {0};
 	segfault = setjmp(restore);
@@ -163,12 +163,12 @@ void	test_lstpop(void)
 
 
 /*
-**	void	ft_lstdelone(s_list **alst, void (*del)(void *, size_t));
+**	void	ft_lstdelone(s_list **alst, void (*del)(void *, t_size));
 */
 void	print_test_lstdelone(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list **alst,
-		void (*del)(void *, size_t))
+		void (*del)(void *, t_size))
 {
 	s_timer t = {0};
 	segfault = setjmp(restore);
@@ -181,7 +181,7 @@ void	test_lstdelone(void)
 {
 /*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
 /*	TODO
-	//	void	ft_lstdelone(s_list **alst, void (*del)(void *, size_t));
+	//	void	ft_lstdelone(s_list **alst, void (*del)(void *, t_size));
 		ft_putstr("\nft_lstdelone :\n");
 		s_list *tmp = (*a_ilst)->next;
 		ft_lstdelone(a_ilst, ft_delete);
@@ -199,7 +199,7 @@ void	test_lstdelone(void)
 		{
 			ft_putstr("Function seems to work; should still check for leaks.\n");
 		}
-	//	void	ft_lstdelone(s_list **alst, void (*del)(void *, size_t));
+	//	void	ft_lstdelone(s_list **alst, void (*del)(void *, t_size));
 		ft_putstr("\nft_lstdelone :\n");
 		s_list *tmp = (*a_ilst)->next;
 		ft_lstdelone(a_ilst, ft_delete);
@@ -219,12 +219,12 @@ void	test_lstdelone(void)
 
 
 /*
-**	void	ft_lstdel(s_list **alst, void (*del)(void *, size_t));
+**	void	ft_lstdel(s_list **alst, void (*del)(void *, t_size));
 */
 void	print_test_lstdel(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list **alst,
-		void (*del)(void *, size_t))
+		void (*del)(void *, t_size))
 {
 	s_timer t = {0};
 	segfault = setjmp(restore);
@@ -237,7 +237,7 @@ void	test_lstdel(void)
 {
 /*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
 /*	TODO
-	//	void	ft_lstdel(s_list **alst, void (*del)(void *, size_t));
+	//	void	ft_lstdel(s_list **alst, void (*del)(void *, t_size));
 		ft_putstr("\nft_lstdel :\n");	
 		ft_lstdel(mixed_list, ft_delete);
 
@@ -249,7 +249,7 @@ void	test_lstdel(void)
 		{
 			ft_putstr("Function seems to work; should still check for leaks.\n");
 		}
-	//	void	ft_lstdel(s_list **alst, void (*del)(void *, size_t));
+	//	void	ft_lstdel(s_list **alst, void (*del)(void *, t_size));
 		ft_putstr("\nft_lstdel :\n");	
 		ft_lstdel(&tmp, ft_delete);
 		ft_lstdel(a_slst, ft_delete);

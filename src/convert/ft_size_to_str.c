@@ -14,12 +14,12 @@
 
 
 
-char	*ft_size_to_str(size_t number)
+char	*ft_size_to_str(t_size number)
 {
 	char	*result;
 	t_u8	digits[MAXDIGIT_64BIT];
 	t_u8	i;
-	size_t	n;
+	t_size	n;
 
 	n = number;
 	i = 0;

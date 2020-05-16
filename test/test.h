@@ -167,9 +167,9 @@ int		test_io(void);
 /*
 **	Global variables used in tests
 */
-extern char const* test1; extern size_t const test1_len;
-extern char const* test2; extern size_t const test2_len;
-extern char const* test3; extern size_t const test3_len;
+extern char const* test1; extern t_size const test1_len;
+extern char const* test2; extern t_size const test2_len;
+extern char const* test3; extern t_size const test3_len;
 
 
 
@@ -196,9 +196,9 @@ int		bool_equals(int a, int b);
 
 int		str_equals(char const* str1, char const* str2);
 
-char	*print_memory(void const* ptr, size_t length);
+char	*print_memory(void const* ptr, t_size length);
 
-char	*str_padleft(char const* str, char c, size_t length);
+char	*str_padleft(char const* str, char c, t_size length);
 
 char*	str_to_escape(char const* str);
 
@@ -217,13 +217,13 @@ void	print_test_u64(char const *test_name, char const *function, t_u64 result, t
 void	print_test_f32(char const *test_name, char const *function, t_f32 result, t_f32 expect, int can_segfault);
 void	print_test_f64(char const *test_name, char const *function, t_f64 result, t_f64 expect, int can_segfault);
 
-void	print_test_size(char const *test_name, char const *function, size_t result, size_t expect, int can_segfault);
+void	print_test_size(char const *test_name, char const *function, t_size result, t_size expect, int can_segfault);
 void	print_test_bool(char const *test_name, char const *function, t_bool result, t_bool expect, int can_segfault);
 
 void	print_test_str(char const *test_name, char const *function, char const *result, char const *expect, int can_segfault);
-void	print_test_mem(char const *test_name, char const *function, void const *result, void const *expect, size_t length, int can_segfault);
+void	print_test_mem(char const *test_name, char const *function, void const *result, void const *expect, t_size length, int can_segfault);
 
-void	print_test_alloc(char const *test_name, char const *function, char const *result, size_t length);
+void	print_test_alloc(char const *test_name, char const *function, char const *result, t_size length);
 
 void	print_test_strarr(char const *test_name, char const *function, char const **result, char const **expect, int can_segfault);
 

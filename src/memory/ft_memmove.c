@@ -14,11 +14,11 @@
 
 
 
-void	*ft_memmove(void *dest, void const *src, size_t n)
+void	*ft_memmove(void *dest, void const *src, t_size n)
 {
 	t_u8	*result;
 	t_u8	*source;
-	size_t	i;
+	t_size	i;
 
 #if HANDLE_NULLPOINTERS
 	if (dest == NULL)

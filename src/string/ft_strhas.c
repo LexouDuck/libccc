@@ -16,8 +16,8 @@
 
 t_bool		ft_strhas(char const *str, char const *charset)
 {
-	size_t	i;
-	size_t	c;
+	t_size	i;
+	t_size	c;
 
 #if HANDLE_NULLPOINTERS
 	if (str == NULL || charset == NULL)
@@ -42,8 +42,8 @@ t_bool		ft_strhas(char const *str, char const *charset)
 
 t_bool		ft_strhasonly(char const *str, char const *charset)
 {
-	size_t	i;
-	size_t	c;
+	t_size	i;
+	t_size	c;
 	t_bool	match;
 
 #if HANDLE_NULLPOINTERS

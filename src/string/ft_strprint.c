@@ -20,8 +20,8 @@ char	*ft_strprint(char const *str)
 	unsigned char HI_nibble;
 	unsigned char LO_nibble;
 	char*	result;
-	size_t	index = 0;
-	size_t	i = 0;
+	t_size	index = 0;
+	t_size	i = 0;
 
 #if HANDLE_NULLPOINTERS
 	if (str == NULL)

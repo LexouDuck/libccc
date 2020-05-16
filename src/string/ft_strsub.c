@@ -14,11 +14,11 @@
 
 
 
-char	*ft_strsub(char const *str, size_t index, size_t n)
+char	*ft_strsub(char const *str, t_size index, t_size n)
 {
 	char	*result;
-	size_t	length;
-	size_t	i;
+	t_size	length;
+	t_size	i;
 
 #if HANDLE_NULLPOINTERS
 	if (str == NULL)

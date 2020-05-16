@@ -14,9 +14,9 @@
 
 
 
-inline size_t	ft_strlen(char const *str)
+inline t_size	ft_strlen(char const *str)
 {
-	size_t	i;
+	t_size	i;
 
 #if HANDLE_NULLPOINTERS
 	if (str == NULL)

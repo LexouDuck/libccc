@@ -16,8 +16,8 @@
 
 char	*ft_strcat(char *dest, char const *src)
 {
-	size_t	length;
-	size_t	i;
+	t_size	length;
+	t_size	i;
 
 #if HANDLE_NULLPOINTERS
 	if (dest == NULL)
@@ -40,10 +40,10 @@ char	*ft_strcat(char *dest, char const *src)
 
 
 
-char	*ft_strncat(char *dest, char const *src, size_t n)
+char	*ft_strncat(char *dest, char const *src, t_size n)
 {
-	size_t	length;
-	size_t	i;
+	t_size	length;
+	t_size	i;
 
 #if HANDLE_NULLPOINTERS
 	if (dest == NULL)
@@ -71,11 +71,11 @@ char	*ft_strncat(char *dest, char const *src, size_t n)
 
 
 
-size_t	ft_strlcat(char *dest, char const *src, size_t size)
+t_size	ft_strlcat(char *dest, char const *src, t_size size)
 {
-	size_t	dst_len;
-	size_t	src_len;
-	size_t	i;
+	t_size	dst_len;
+	t_size	src_len;
+	t_size	i;
 
 #if HANDLE_NULLPOINTERS
 	if (dest == NULL || src == NULL)

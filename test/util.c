@@ -23,7 +23,7 @@ int	bool_equals(int a, int b)
 
 int	str_equals(char const *str1, char const *str2)
 {
-	size_t i;
+	t_size i;
 
 	if (str1 == str2)
 		return (TRUE);
@@ -43,7 +43,7 @@ int	str_equals(char const *str1, char const *str2)
 
 int str_equals_until(char const * str1, char const * str2, char c)
 {
-	size_t i;
+	t_size i;
 
 	if (str1 == str2)
 		return (TRUE);
@@ -63,7 +63,7 @@ int str_equals_until(char const * str1, char const * str2, char c)
 	return (FALSE);
 }
 
-char *print_memory(void const *ptr, size_t length)
+char *print_memory(void const *ptr, t_size length)
 {
 	char *result;
 	t_u8 byte;
@@ -76,7 +76,7 @@ char *print_memory(void const *ptr, size_t length)
 		return (segstr);
 	if (!(result = (char *)malloc(length * 3)))
 		return (NULL);
-	for (size_t i = 0; i < length; ++i)
+	for (t_size i = 0; i < length; ++i)
 	{
 		byte = ((t_u8 const *)ptr)[i];
 		hi = ((byte >> 4) & 0xF);
@@ -88,17 +88,17 @@ char *print_memory(void const *ptr, size_t length)
 	return (result);
 }
 
-char	*str_padleft(char const *str, char c, size_t length)
+char	*str_padleft(char const *str, char c, t_size length)
 {
 	char	*result;
 	long	offset;
-	size_t	i;
+	t_size	i;
 
 	if (!(result = (char *)malloc(length + 1)))
 		return (NULL);
 	offset = length - strlen(str);
 	i = 0;
-	while (i < (size_t)offset)
+	while (i < (t_size)offset)
 	{
 		result[i] = c;
 		++i;
@@ -117,8 +117,8 @@ char*	str_to_escape(char const* str)
 	unsigned char HI_nibble;
 	unsigned char LO_nibble;
 	char*	result;
-	size_t	index = 0;
-	size_t	i = 0;
+	t_size	index = 0;
+	t_size	i = 0;
 
 	if (!str || !(result = (char *)malloc(strlen(str) * 4)))
 		return (NULL);
@@ -387,7 +387,7 @@ DEFINE_TESTFUNCTION_INT(t_u32, u32, u)
 DEFINE_TESTFUNCTION_INT(t_u64, u64, u)
 
 DEFINE_TESTFUNCTION_INT(t_bool, bool, u)
-DEFINE_TESTFUNCTION_INT(size_t, size, u)
+DEFINE_TESTFUNCTION_INT(t_size, size, u)
 
 
 
@@ -430,7 +430,7 @@ void	print_test_mem(
 		char const *function,
 		void const *result,
 		void const *expect,
-		size_t length,
+		t_size length,
 		int can_segfault)
 {
 	int error;
@@ -468,10 +468,10 @@ void	print_test_alloc(
 		char const *test_name,
 		char const *function,
 		char const *result,
-		size_t length)
+		t_size length)
 {
 	int		error = FALSE;
-	size_t	i;
+	t_size	i;
 
 	if (result == NULL)
 	{
@@ -511,7 +511,7 @@ void	print_test_strarr(
 {
 	int error = FALSE;
 	int length;
-	size_t i;
+	t_size i;
 	char *str_result;
 	char *str_expect;
 

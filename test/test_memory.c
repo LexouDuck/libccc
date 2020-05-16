@@ -6,10 +6,10 @@
 
 
 /*
-**	void*	ft_memalloc(size_t size);
+**	void*	ft_memalloc(t_size size);
 */
 void	print_test_memalloc(char const* test_name, int can_segfault,
-		size_t n)
+		t_size n)
 {
 	TEST_PERFORM_RESULT(memalloc, n);
 	print_test_alloc(test_name, "memalloc", result_libft, n);
@@ -27,13 +27,13 @@ void	test_memalloc(void)
 
 
 /*
-**	void*	ft_memset(void *ptr, int byte, size_t n);
+**	void*	ft_memset(void *ptr, int byte, t_size n);
 */
 void	print_test_memset(char const* test_name, int can_segfault,
 		char* dest_libft,
 		char* dest_libc,
 		int byte,
-		size_t n)
+		t_size n)
 {
 	TEST_PERFORM_LIBC_DEST(memset, byte, n)
 	print_test_mem(test_name, "memset 'dest' arg", dest_libft, dest_libc, n, can_segfault);
@@ -55,11 +55,11 @@ void	test_memset(void)
 
 
 /*
-**	void	ft_memclr(void *ptr, size_t n);
+**	void	ft_memclr(void *ptr, t_size n);
 */
 // NB: this alias is defined because this function has a different name in libft
 #ifdef __MINGW32__
-static inline void	memclr(void *ptr, size_t n) { memset(ptr, 0, n); }
+static inline void	memclr(void *ptr, t_size n) { memset(ptr, 0, n); }
 #else
 #define memclr(dest, n) \
 		bzero(dest, n)
@@ -67,7 +67,7 @@ static inline void	memclr(void *ptr, size_t n) { memset(ptr, 0, n); }
 void	print_test_memclr(char const* test_name, int can_segfault,
 		char* dest_libft,
 		char* dest_libc,
-		size_t n)
+		t_size n)
 {
 	TEST_PERFORM_LIBC_DEST(memclr, n)
 	print_test_mem(test_name, "memclr/bzero arg",                       dest_libft,     dest_libc,     n, can_segfault);
@@ -102,7 +102,7 @@ void	print_test_memdel(char const* test_name, int can_segfault,
 }
 void	test_memdel(void)
 {
-	size_t const length = 16;
+	t_size const length = 16;
 	void* test = (void*)malloc(length);
 	memset(test, 0, length);
 //	| TEST FUNCTION  | TEST NAME        | CAN SEGV | TEST ARGS
@@ -114,13 +114,13 @@ void	test_memdel(void)
 
 
 /*
-**	void*	ft_memcpy(void *dest, const void *src, size_t n);
+**	void*	ft_memcpy(void *dest, const void *src, t_size n);
 */
 void	print_test_memcpy(char const* test_name, int can_segfault,
 		char* dest_libft,
 		char* dest_libc,
 		char const* src,
-		size_t n)
+		t_size n)
 {
 	TEST_PERFORM_RESULT_LIBC_DEST(memcpy, src, n)
 	print_test_mem(test_name, "memcpy 'dest' arg", dest_libft,   dest_libc,   n, can_segfault);
@@ -144,14 +144,14 @@ void	test_memcpy(void)
 
 
 /*
-**	void*	ft_memccpy(void *dest, const void *src, int byte, size_t n);
+**	void*	ft_memccpy(void *dest, const void *src, int byte, t_size n);
 */
 void	print_test_memccpy(char const* test_name, int can_segfault,
 		char* dest_libft,
 		char* dest_libc,
 		char const* src,
 		t_u8 byte,
-		size_t n)
+		t_size n)
 {
 	TEST_PERFORM_RESULT_LIBC_DEST(memccpy, src, byte, n)
 	print_test_mem(test_name, "memccpy 'dest' arg", dest_libft,   dest_libc, n, can_segfault);// if (byte !='\0')
@@ -184,13 +184,13 @@ void	test_memccpy(void)
 
 
 /*
-**	void*	ft_memmove(void *dest, const void *src, size_t n);
+**	void*	ft_memmove(void *dest, const void *src, t_size n);
 */
 void	print_test_memmove(char const* test_name, int can_segfault, int show_dest_arg,
 		char* dest_libft,
 		char* dest_libc,
 		char const* src,
-		size_t n)
+		t_size n)
 {
 	TEST_PERFORM_RESULT_LIBC_DEST(memmove, src, n)
 	if (show_dest_arg)
@@ -222,12 +222,12 @@ void	test_memmove(void)
 
 
 /*
-**	void*	ft_memchr(const void *ptr, int byte, size_t n);
+**	void*	ft_memchr(const void *ptr, int byte, t_size n);
 */
 void	print_test_memchr(char const* test_name, int can_segfault,
 		char const* str,
 		char c,
-		size_t n)
+		t_size n)
 {
 	TEST_PERFORM_RESULT_LIBC(memchr, str, c, n)
 	print_test_mem(test_name, "memchr return", result_libft, result_libc, n, can_segfault);
@@ -246,12 +246,12 @@ void	test_memchr(void)
 
 
 /*
-**	int		ft_memcmp(const void *ptr1, const void *ptr2, size_t n);
+**	int		ft_memcmp(const void *ptr1, const void *ptr2, t_size n);
 */
 void	print_test_memcmp(char const* test_name, int can_segfault,
 		char const* test1,
 		char const* test2,
-		size_t n)
+		t_size n)
 {
 	TEST_PERFORM_RESULT_TYPE_LIBC(int, memcmp, test1, test2, n)
 	print_test_s32(test_name, "memcmp return", result_libft, result_libc, can_segfault);
@@ -274,13 +274,13 @@ void	test_memcmp(void)
 
 
 /*
-**	void*	ft_memdup(void const* ptr, size_t n);
+**	void*	ft_memdup(void const* ptr, t_size n);
 */
 // TODO check on which platforms this function exists, if any
 void	print_test_memdup(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* src,
-		size_t n)
+		t_size n)
 {
 	TEST_PERFORM_RESULT(memdup, src, n)
 	print_test_mem(test_name, "_memdup return", result_libft, expecting, n, can_segfault);
@@ -300,7 +300,7 @@ void	test_memdup(void)
 
 
 /*
-**	int		ft_memswap(void *ptr1, void *ptr2, size_t size);
+**	int		ft_memswap(void *ptr1, void *ptr2, t_size size);
 */
 void	print_test_memswap(void)
 {

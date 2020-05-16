@@ -37,7 +37,7 @@ inline t_u8		ft_color_argb32_get_b(t_u32 color)
 t_u32			*ft_color_argb32_get_nearest(
 	t_u32 target,
 	t_u32 *colors,
-	size_t n)
+	t_size n)
 {
 	t_s16	r;
 	t_s16	g;

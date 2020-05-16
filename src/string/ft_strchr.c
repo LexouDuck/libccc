@@ -16,7 +16,7 @@
 
 char	*ft_strchr(char const *str, char c)
 {
-	size_t	i;
+	t_size	i;
 
 #if HANDLE_NULLPOINTERS
 	if (str == NULL)
@@ -38,7 +38,7 @@ char	*ft_strchr(char const *str, char c)
 
 char	*ft_strrchr(char const *str, char c)
 {
-	size_t	i;
+	t_size	i;
 
 #if HANDLE_NULLPOINTERS
 	if (str == NULL)
@@ -61,9 +61,9 @@ char	*ft_strrchr(char const *str, char c)
 
 
 
-char	*ft_strnchr(char const *str, char c, size_t n)
+char	*ft_strnchr(char const *str, char c, t_size n)
 {
-	size_t	i;
+	t_size	i;
 
 #if HANDLE_NULLPOINTERS
 	if (str == NULL)

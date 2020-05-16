@@ -17,7 +17,7 @@
 char	*ft_strdup(char const *str)
 {
 	char	*result;
-	size_t	i;
+	t_size	i;
 
 #if HANDLE_NULLPOINTERS
 	if (str == NULL)

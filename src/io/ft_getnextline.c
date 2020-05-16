@@ -65,14 +65,14 @@ static	int		gnl_read(s_list *lst)
 
 static	int		gnl_makeline(s_list *lst, char **line)
 {
-	size_t	length;
-	size_t	space;
+	t_size	length;
+	t_size	space;
 	char	*str;
 
 	length = ft_strlen(lst->item);
 	str = lst->item;
-	space = (size_t)ft_strchr(str, '\n');
-	space = space ? (size_t)((char *)space - str) : length;
+	space = (t_size)ft_strchr(str, '\n');
+	space = space ? (t_size)((char *)space - str) : length;
 	*line = ft_strsub(lst->item, 0, space);
 	if (space == length)
 	{

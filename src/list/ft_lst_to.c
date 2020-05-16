@@ -18,7 +18,7 @@
 void	**ft_lst_to_array(s_list **alst)
 {
 	void	**result;
-	size_t	length;
+	t_size	length;
 	s_list	*lst;
 	t_u32	count;
 	t_u32	i;

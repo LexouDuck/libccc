@@ -14,7 +14,7 @@
 
 
 
-void	ft_lstdelone(s_list **alst, void (*del)(void *, size_t))
+void	ft_lstdelone(s_list **alst, void (*del)(void *, t_size))
 {
 #if HANDLE_NULLPOINTERS
 	if (alst == NULL || del == NULL)
@@ -30,7 +30,7 @@ void	ft_lstdelone(s_list **alst, void (*del)(void *, size_t))
 
 
 
-void	ft_lstdel(s_list **alst, void (*del)(void *, size_t))
+void	ft_lstdel(s_list **alst, void (*del)(void *, t_size))
 {
 	s_list *lst;
 	s_list *tmp;
@@ -52,7 +52,7 @@ void	ft_lstdel(s_list **alst, void (*del)(void *, size_t))
 
 
 
-void	ft_lstpop(s_list **alst, void (*del)(void *, size_t))
+void	ft_lstpop(s_list **alst, void (*del)(void *, t_size))
 {
 	s_list	*lst;
 	s_list	*lst_prev;
