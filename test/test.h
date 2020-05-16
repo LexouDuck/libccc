@@ -246,6 +246,11 @@ void	print_test_lst(char const *test_name, char const *function, t_list const *r
 	_TEST_INIT() \
 	_TEST_PERFORM(1, RESULT, ft_##FUNCTION, ##__VA_ARGS__) \
 
+// Use this for void-return functions, which use a 'dest' argument
+#define TEST_PERFORM_DEST(FUNCTION, ...) \
+	_TEST_INIT() \
+	_TEST_PERFORM(1, dest_libft, ft_##FUNCTION, dest_libft, ##__VA_ARGS__) \
+
 // Use this for void-return functions that exist in libc
 #define TEST_PERFORM_LIBC(PREFIX, FUNCTION, ...) \
 	_TEST_INIT() \
@@ -258,10 +263,16 @@ void	print_test_lst(char const *test_name, char const *function, t_list const *r
 	_TEST_PERFORM(1, dest_libft, ft_##FUNCTION, dest_libft, ##__VA_ARGS__) \
 	_TEST_PERFORM(2, dest_libc,       FUNCTION, dest_libc,  ##__VA_ARGS__) \
 
+
 // Use this for string-return functions
 #define TEST_PERFORM_RESULT(FUNCTION, ...) \
 	_TEST_INIT() \
 	_TEST_PERFORM_RESULT_STR(1, libft, ft_##FUNCTION, ##__VA_ARGS__) \
+
+// Use this for string-return functions, which use a 'dest' argument
+#define TEST_PERFORM_RESULT_DEST(FUNCTION, ...) \
+	_TEST_INIT() \
+	_TEST_PERFORM_RESULT_STR(1, libft, ft_##FUNCTION, dest_libft, ##__VA_ARGS__) \
 
 // Use this for string-return functions that exist in libc
 #define TEST_PERFORM_RESULT_LIBC(FUNCTION, ...) \
@@ -275,10 +286,16 @@ void	print_test_lst(char const *test_name, char const *function, t_list const *r
 	_TEST_PERFORM_RESULT_STR(1, libft, ft_##FUNCTION, dest_libft, ##__VA_ARGS__) \
 	_TEST_PERFORM_RESULT_STR(2, libc,       FUNCTION, dest_libc,  ##__VA_ARGS__) \
 
+
 // Use this for (any_type)-return functions
 #define TEST_PERFORM_RESULT_TYPE(TYPE, FUNCTION, ...) \
 	_TEST_INIT() \
 	_TEST_PERFORM_RESULT(1, TYPE, libft, ft_##FUNCTION, ##__VA_ARGS__) \
+
+// Use this for (any_type)-return functions, which use a 'dest' argument
+#define TEST_PERFORM_RESULT_TYPE_DEST(TYPE, FUNCTION, ...) \
+	_TEST_INIT() \
+	_TEST_PERFORM_RESULT(1, TYPE, libft, ft_##FUNCTION, dest_libft, ##__VA_ARGS__) \
 
 // Use this for (any_type)-return functions that exist in libc
 #define TEST_PERFORM_RESULT_TYPE_LIBC(TYPE, FUNCTION, ...) \
@@ -421,29 +438,20 @@ void	print_test_lst(char const *test_name, char const *function, t_list const *r
 **	These macros are used to have signal handling/checking during tests which can crash the program
 */
 
+#define _TRY \
+	segfault = setjmp(restore); \
+	if (!segfault) \
+
+#define _CATCH \
+	else \
+
 #ifdef __MINGW32__
-
-	#define _TRY \
-		segfault = setjmp(restore); \
-		if (!segfault) \
-
-	#define _CATCH \
-		else \
-
-	#define _END \
-		if (segfault) \
-			signal(SIGSEGV,	signal_handler); \
+#define _END \
+	if (segfault) \
+		signal(SIGSEGV,	signal_handler); \
 
 #else
-
-	#define _TRY \
-		segfault = setjmp(restore); \
-		if (!segfault) \
-
-	#define _CATCH \
-		else \
-
-	#define _END	;
+#define _END	;
 
 #endif
 

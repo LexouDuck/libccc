@@ -304,7 +304,7 @@ TEST_SRC :=	$(TEST_DIR)main.c		\
 
 TEST_OBJ	=	${TEST_SRC:$(TEST_DIR)%.c=$(OBJDIR)%.o}
 
-TEST_CFLAGS			=	-O2 -g -fexceptions
+TEST_CFLAGS			=	-g -O2
 TEST_INCLUDEDIRS	=	-I$(HDRDIR) -I$(TEST_DIR)
 
 TEST_PROGRAM	=	libft_test

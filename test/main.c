@@ -38,9 +38,7 @@ void	signal_handler(int signaltype)
 void	signal_handler(int signaltype, siginfo_t *info, void *ptr)
 #endif
 {
-	printf("SIG:%d\n", signaltype); fflush(stdout);
 	longjmp(restore, 1);
-	printf("WHAT THE FUCK THO\n");
 }
 
 // TODO add SIGFPE floating-point exception handling ?

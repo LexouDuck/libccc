@@ -45,22 +45,20 @@ void	print_totals(s_test_totals totals, char const * category)
 	else printf("In total:\n");
 	printf("=============================\n");
 	printf("- Amount of tests: %d\n", totals.tests);
-	if (category)
-	{
-		int passed = totals.tests - totals.failed;
-		printf("- Tests: %s%d failed"C_RESET" / %s%d passed"C_RESET"\n",
-			(totals.failed == 0 ? C_GREEN : C_RED), totals.failed,
-			(totals.tests ? (passed == totals.tests ? C_GREEN : C_YELLOW) : C_RED), passed);
-		printf("- Success rate: ");
-		print_percent(percent);
-	}
-	else
+
+	int passed = totals.tests - totals.failed;
+	printf("- Tests: %s%d failed"C_RESET" / %s%d passed"C_RESET"\n",
+		(totals.failed == 0 ? C_GREEN : C_RED), totals.failed,
+		(totals.tests ? (passed == totals.tests ? C_GREEN : C_YELLOW) : C_RED), passed);
+	printf("- Success rate: ");
+	print_percent(percent);
+	if (category == NULL)
 	{
 		if (totals.failed)
 		{
-			printf(C_RED"Failed %d out of %d tests in total."C_RESET"\n", totals.failed, totals.tests);
+			printf("\n"C_RED"FAIL: Failed %d out of %d tests in total."C_RESET"\n", totals.failed, totals.tests);
 		}
-		else printf(C_GREEN"All tests passed."C_RESET"\n");
+		else printf("\n"C_GREEN"SUCCESS: All tests passed."C_RESET"\n");
 	}
 	printf("\n");
 }
