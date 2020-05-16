@@ -254,7 +254,7 @@ inline t_s64 timer_compare(s_time a, s_time b)
 }
 
 /* prints the result of a timer (and potentially a comparison with the secondary timer) */
-void		prins_timer_result(s_timer* t, t_s64 compare)
+void		print_timer_result(s_timer* t, t_s64 compare)
 {
 	char result1[64] = { 0 };
 	char result2[64] = { 0 };

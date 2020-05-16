@@ -47,13 +47,27 @@ inline t_float	ft_fmod(t_float x, t_float y)
 
 
 
-inline t_float		ft_pow(t_float x, t_float y)
+inline t_float	ft_pow(t_float x, t_float y)
 {
 	if (y == 0.)
 		return (1.);
 	if (x <= 0.)
 		return (0.);
 	return (ft_exp(y * ft_ln(x)));
+/*
+	t_float result = 1;
+	while (abs(n) > FLOAT_BIAS)
+	{
+		if (abs(n & 1) > FLOAT_BIAS)
+		{
+			result *= x;
+			n -= 1;
+		}
+		x *= x;
+		n /= 2;
+	}
+	return (result);
+*/
 }
 
 

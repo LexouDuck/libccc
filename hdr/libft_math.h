@@ -248,7 +248,9 @@ typedef		t_float	(*f_scalar_func1)(t_float const v);
 typedef		t_float	(*f_scalar_func2)(u_vec2 const v);
 typedef		t_float	(*f_scalar_func3)(u_vec3 const v);
 typedef		t_float	(*f_scalar_func4)(u_vec4 const v);
-typedef		f_scalar_func1	f_real_func;
+
+typedef		t_float	(*f_real_function)(t_float x);
+typedef		t_float	(*f_real_operator)(t_float x, t_float y);
 
 
 
@@ -287,7 +289,7 @@ typedef struct		s_box4d_
 typedef s_box1d	s_interval;
 
 //t_float	lin_integrate(sf, domain);
-t_float		ft_integrate(f_real_func const f, s_interval const domain, t_float step);
+t_float		ft_integrate(f_real_function const f, s_interval const domain, t_float step);
 t_float		ft_mc_integrate_1d(f_scalar_func1 const sf, s_box1d const domain);
 t_float		ft_mc_integrate_2d(f_scalar_func2 const sf, s_box2d const domain);
 t_float		ft_mc_integrate_3d(f_scalar_func3 const sf, s_box3d const domain);

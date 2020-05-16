@@ -138,7 +138,7 @@ typedef struct	s_timer_
 void	timer_clock(s_time* t);
 s_time	timer_getdiff(s_time start, s_time end);
 t_s64	timer_compare(s_time a, s_time b);
-void	prins_timer_result(s_timer* timer, t_s64 compare);
+void	print_timer_result(s_timer* timer, t_s64 compare);
 
 
 
@@ -487,7 +487,7 @@ void	print_test_lst(char const *test_name, char const *function, s_list const *r
 	print_test_str(test_name, #FUNCTION" return", result_libft, result_libc, can_segfault); \
 	if (result_libft && result_libft != segstr) free(result_libft); \
 	if (result_libc  && result_libc  != segstr) free(result_libc); \
-	prins_timer_result(&t, TRUE); \
+	print_timer_result(&t, TRUE); \
 } \
 */
 

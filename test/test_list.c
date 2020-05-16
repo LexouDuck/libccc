@@ -17,7 +17,7 @@ void	print_test_lstnew(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT_TYPE(s_list*, lstnew, item, item_size);
 	print_test_size(test_name, "_lstnew->item_size", result_libft->item_size, expect_size, can_segfault);
 	print_test_str(NULL,       "_lstnew->item",      result_libft->item,      expecting,   can_segfault);
-	prins_timer_result(&t, FALSE);
+	print_timer_result(&t, FALSE);
 	if (result_libft) free(result_libft);
 }
 void	test_lstnew(void)
@@ -46,7 +46,7 @@ void	print_test_lstadd(char const* test_name, int can_segfault,
 	if (!segfault) { timer_clock(&t.start1);
 		ft_lstadd(alst, elem);
 	timer_clock(&t.end1); } else can_segfault |= (1 << 1);
-	prins_timer_result(&t, FALSE);
+	print_timer_result(&t, FALSE);
 }
 void	test_lstadd(void)
 {
@@ -74,7 +74,7 @@ void	print_test_lstappend(char const* test_name, int can_segfault,
 	if (!segfault) { timer_clock(&t.start1);
 		ft_lstappend(alst, elem);
 	timer_clock(&t.end1); } else can_segfault |= (1 << 1);
-	prins_timer_result(&t, FALSE);
+	print_timer_result(&t, FALSE);
 }
 void	test_lstappend(void)
 {
@@ -106,7 +106,7 @@ void	print_test_lstinsert(char const* test_name, int can_segfault,
 	if (!segfault) { timer_clock(&t.start1);
 		ft_lstinsert(alst, elem, index);
 	timer_clock(&t.end1); } else can_segfault |= (1 << 1);
-	prins_timer_result(&t, FALSE);
+	print_timer_result(&t, FALSE);
 }
 void	test_lstinsert(void)
 {
@@ -129,7 +129,7 @@ void	print_test_lstcpy(char const* test_name, int can_segfault,
 	if (!segfault) { timer_clock(&t.start1);
 		result = ft_lstcpy(lst);
 	timer_clock(&t.end1); } else can_segfault |= (1 << 1);
-	prins_timer_result(&t, FALSE);
+	print_timer_result(&t, FALSE);
 }
 void	test_lstcpy(void)
 {
@@ -152,7 +152,7 @@ void	print_test_lstpop(char const* test_name, int can_segfault,
 	if (!segfault) { timer_clock(&t.start1);
 		ft_lstpop(alst, del);
 	timer_clock(&t.end1); } else can_segfault |= (1 << 1);
-	prins_timer_result(&t, FALSE);
+	print_timer_result(&t, FALSE);
 }
 void	test_lstpop(void)
 {
@@ -175,7 +175,7 @@ void	print_test_lstdelone(char const* test_name, int can_segfault,
 	if (!segfault) { timer_clock(&t.start1);
 		ft_lstdelone(alst, del);
 	timer_clock(&t.end1); } else can_segfault |= (1 << 1);
-	prins_timer_result(&t, FALSE);
+	print_timer_result(&t, FALSE);
 }
 void	test_lstdelone(void)
 {
@@ -231,7 +231,7 @@ void	print_test_lstdel(char const* test_name, int can_segfault,
 	if (!segfault) { timer_clock(&t.start1);
 		ft_lstdel(alst, del);
 	timer_clock(&t.end1); } else can_segfault |= (1 << 1);
-	prins_timer_result(&t, FALSE);
+	print_timer_result(&t, FALSE);
 }
 void	test_lstdel(void)
 {
@@ -279,7 +279,7 @@ void	print_test_lstsize(char const* test_name, int can_segfault,
 	if (!segfault) { timer_clock(&t.start1);
 		result = ft_lstsize(lst);
 	timer_clock(&t.end1); } else can_segfault |= (1 << 1);
-	prins_timer_result(&t, FALSE);
+	print_timer_result(&t, FALSE);
 }
 void	test_lstsize(void)
 {
@@ -308,7 +308,7 @@ void	print_test_lstget(char const* test_name, int can_segfault,
 	if (!segfault) { timer_clock(&t.start1);
 		result = ft_lstget(lst, index);
 	timer_clock(&t.end1); } else can_segfault |= (1 << 1);
-	prins_timer_result(&t, FALSE);
+	print_timer_result(&t, FALSE);
 }
 void	test_lstget(void)
 {
@@ -332,7 +332,7 @@ void	print_test_lstfind(char const* test_name, int can_segfault,
 	if (!segfault) { timer_clock(&t.start1);
 		result = ft_lstfind(lst, query);
 	timer_clock(&t.end1); } else can_segfault |= (1 << 1);
-	prins_timer_result(&t, FALSE);
+	print_timer_result(&t, FALSE);
 }
 void	test_lstfind(void)
 {
@@ -357,7 +357,7 @@ void	print_test_lstsub(char const* test_name, int can_segfault,
 	if (!segfault) { timer_clock(&t.start1);
 		result = ft_lstsub(lst, index, n);
 	timer_clock(&t.end1); } else can_segfault |= (1 << 1);
-	prins_timer_result(&t, FALSE);
+	print_timer_result(&t, FALSE);
 }
 void	test_lstsub(void)
 {
@@ -380,7 +380,7 @@ void	print_test_lstiter(char const* test_name, int can_segfault,
 	if (!segfault) { timer_clock(&t.start1);
 		ft_lstiter(lst, f);
 	timer_clock(&t.end1); } else can_segfault |= (1 << 1);
-	prins_timer_result(&t, FALSE);
+	print_timer_result(&t, FALSE);
 }
 void	test_lstiter(void)
 {
@@ -405,7 +405,7 @@ void	print_test_lstiteri(char const* test_name, int can_segfault,
 	if (!segfault) { timer_clock(&t.start1);
 		ft_lstiteri(lst, f);
 	timer_clock(&t.end1); } else can_segfault |= (1 << 1);
-	prins_timer_result(&t, FALSE);
+	print_timer_result(&t, FALSE);
 }
 void	test_lstiteri(void)
 {
@@ -432,7 +432,7 @@ void	print_test_lstmap(char const* test_name, int can_segfault,
 	if (!segfault) { timer_clock(&t.start1);
 		ft_lstmap(lst, f);
 	timer_clock(&t.end1); } else can_segfault |= (1 << 1);
-	prins_timer_result(&t, FALSE);
+	print_timer_result(&t, FALSE);
 }
 void	test_lstmap(void)
 {
@@ -457,7 +457,7 @@ void	print_test_lstmapi(char const* test_name, int can_segfault,
 	if (!segfault) { timer_clock(&t.start1);
 		ft_lstmapi(lst, f);
 	timer_clock(&t.end1); } else can_segfault |= (1 << 1);
-	prins_timer_result(&t, FALSE);
+	print_timer_result(&t, FALSE);
 }
 void	test_lstmapi(void)
 {
@@ -484,7 +484,7 @@ void	print_test_lst_to_array(char const* test_name, int can_segfault,
 	if (!segfault) { timer_clock(&t.start1);
 		result = ft_lst_to_array(alst);
 	timer_clock(&t.end1); } else can_segfault |= (1 << 1);
-	prins_timer_result(&t, FALSE);
+	print_timer_result(&t, FALSE);
 }
 void	test_lst_to_array(void)
 {
@@ -508,7 +508,7 @@ void	print_test_lst_to_tuple(char const* test_name, int can_segfault,
 	if (!segfault) { timer_clock(&t.start1);
 		result = ft_lst_to_tuple(alst, tuple);
 	timer_clock(&t.end1); } else can_segfault |= (1 << 1);
-	prins_timer_result(&t, FALSE);
+	print_timer_result(&t, FALSE);
 }
 void	test_lst_to_tuple(void)
 {
@@ -538,7 +538,7 @@ void	print_test_lst_(char const* test_name, int can_segfault,
 	if (!segfault) { timer_clock(&t.start1);
 //		ft_lst_();
 	timer_clock(&t.end1); } else can_segfault |= (1 << 1);
-	prins_timer_result(&t, FALSE);
+	print_timer_result(&t, FALSE);
 }
 void	test_lst_(void)
 {
