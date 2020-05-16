@@ -27,7 +27,42 @@
 ** ************************************************************************** *|
 */
 
-// TODO function macros
+#define Stat_Int_NewList(len)				ft_stat_new_ilst(len)
+#define Stat_Int_FreeList(ilst)				ft_stat_free_ilst(ilst)
+
+#define Stat_Int_MergeList(start, append)	ft_stat_merge_ilst(start, append)
+#define Stat_Int_Quicksort(ilst)			ft_stat_quicksort_i_new(ilst)
+#define Stat_Int_Quicksort_InPlace(ilst)	ft_stat_quicksort_i(ilst)
+
+#define Stat_Int_Median(ilst)				ft_stat_median_i(ilst)
+#define Stat_Int_Average(ilst)				ft_stat_average_i(ilst)
+#define Stat_Int_Variance(ilst)				ft_stat_variance_i(ilst)
+#define Stat_Int_StandardDeviation(ilst)	ft_stat_stddev_i(ilst)
+
+#define Stat_Int_Decile(ilst)				ft_stat_decile_i(ilst)
+#define Stat_Int_ProbabilityIsValid(ilst)	ft_prob_is_valid_i(ilst)
+
+#define Stat_NewPMF(len)					ft_stat_new_pmf(len)
+#define Stat_FreePMF(drv)					ft_stat_free_pmf(drv)
+#define Stat_IntList_To_Set(ilst)			ft_stat_ilst_to_iset(ilst)
+#define Stat_IntList_Count(ilst, elem)		ft_stat_ilst_count(ilst, elem)
+#define Stat_IntList_To_PMF(ilst)			ft_stat_ilst_to_pmf(ilst)
+
+
+#define Stat_Float_NewList(len)				ft_stat_new_flst(len)
+#define Stat_Float_FreeList(flst)			ft_stat_free_flst(flst)
+
+#define Stat_Float_MergeList(start, append)	ft_stat_merge_flst(start, append)
+#define Stat_Float_Quicksort_f_n(flst)		ft_stat_quicksort_f_new(flst)
+#define Stat_Float_Quicksort(flst)			ft_stat_quicksort_f(flst)
+
+#define Stat_Float_Median(flst)				ft_stat_median_f(flst)
+#define Stat_Float_Average(flst)			ft_stat_average_f(flst)
+#define Stat_Float_Variance(flst)			ft_stat_variance_f(flst)
+#define Stat_Float_StandardDeviation(flst)	ft_stat_stddev_f(flst)
+
+#define Stat_Float_Decile(flst)				ft_stat_decile_f(flst)
+#define Stat_Float_ProbabilityIsValid(flst)	ft_prob_is_valid_f(flst)
 
 /*
 ** ************************************************************************** *|
@@ -135,6 +170,14 @@ typedef struct	s_prob_dens
 ** ************************************************************************** *|
 */
 
+t_list_int			ft_stat_new_ilst(t_u32 len);
+t_list_float		ft_stat_new_flst(t_u32 len);
+
+void				ft_stat_free_ilst(t_list_int *ilst);
+void				ft_stat_free_flst(t_list_float *flst);
+
+
+
 t_list_int			ft_stat_merge_ilst(t_list_int *start, t_list_int *append);
 t_list_float		ft_stat_merge_flst(t_list_float *start, t_list_float *append);
 
@@ -157,11 +200,6 @@ t_float				ft_stat_variance_f(t_list_float const flst);
 
 t_float				ft_stat_stddev_i(t_list_int const ilst);
 t_float				ft_stat_stddev_f(t_list_float const flst);
-
-t_list_int			ft_stat_new_ilst(t_u32 len);
-t_list_float		ft_stat_new_flst(t_u32 len);
-void				ft_stat_free_ilst(t_list_int *ilst);
-void				ft_stat_free_flst(t_list_float *flst);
 
 /*
 void				ft_stat_decile_i(t_list_int const ilst);

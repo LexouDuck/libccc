@@ -27,22 +27,23 @@
 ** ************************************************************************** *|
 */
 
-#define FT_MemoryAlloc(size)				ft_memalloc(size)
-#define FT_MemorySet(ptr, byte, n)			ft_memset(ptr, byte, n)
-#define FT_MemoryClear(ptr, n)				ft_memclr(ptr, n)
-#define FT_MemoryDelete(ptr)				ft_memdel(ptr)
-#define FT_MemoryCopy(dest, src, n)			ft_memcpy(dest, src, n)
-#define FT_MemoryCopy_C(dest, src, byte, n)	ft_memccpy(dest, src, byte, n)
-#define FT_MemoryMove(dest, src, n)			ft_memmove(dest, src, n)
-#define FT_MemoryDuplicate(ptr, n)			ft_memdup(ptr, n)
-#define FT_PointerArrayNew(len)				ft_ptrarrnew(len)
-#define FT_PointerArrayLength(ptrarr)		ft_ptrarrlen(ptrarr)
+#define Memory_Alloc(size)					ft_memalloc(size)
+#define Memory_Set(ptr, byte, n)			ft_memset(ptr, byte, n)
+#define Memory_Clear(ptr, n)				ft_memclr(ptr, n)
+#define Memory_Delete(ptr)					ft_memdel(ptr)
+#define Memory_Copy(dest, src, n)			ft_memcpy(dest, src, n)
+#define Memory_Copy_C(dest, src, byte, n)	ft_memccpy(dest, src, byte, n)
+#define Memory_Move(dest, src, n)			ft_memmove(dest, src, n)
+#define Memory_Duplicate(ptr, n)			ft_memdup(ptr, n)
 
-#define FT_MemoryFind(ptr, byte, n)			ft_memchr(ptr, byte, n)
-#define FT_MemoryCompare(ptr1, ptr2, n)		ft_memcmp(ptr1, ptr2, n)
-#define FT_MemorySwap(ptr1, ptr2, size)		ft_memswap(ptr1, ptr2, size)
+#define Memory_Find(ptr, byte, n)			ft_memchr(ptr, byte, n)
+#define Memory_Compare(ptr1, ptr2, n)		ft_memcmp(ptr1, ptr2, n)
+#define Memory_Swap(ptr1, ptr2, size)		ft_memswap(ptr1, ptr2, size)
 
-#define FT_GetBits(value, bit, length)		ft_getbits(value, bit, length)
+#define Memory_GetBits(value, bit, length)		ft_getbits(value, bit, length)
+
+#define PointerArray_New(len)				ft_ptrarrnew(len)
+#define PointerArray_Length(ptrarr)			ft_ptrarrlen(ptrarr)
 
 
 

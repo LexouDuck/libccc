@@ -27,46 +27,46 @@
 ** ************************************************************************** *|
 */
 
-#define FT_Floor(x)				ft_floor(x)
-#define FT_Ceiling(x)			ft_ceil(x)
+#define Math_Floor(x)			ft_floor(x)
+#define Math_Ceiling(x)			ft_ceil(x)
 
-#define FT_Modulo(x, y)			ft_fmod(x, y)
+#define Math_Modulo(x, y)		ft_fmod(x, y)
 
-#define FT_Power(x, y)			ft_pow(x, y)
+#define Math_Power(x, y)		ft_pow(x, y)
 
-#define FT_SquareRoot(x)		ft_sqrt(x)
-#define FT_CubicRoot(x)			ft_cbrt(x)
-#define FT_NRoot(x, n)			ft_nrt(x, n)
-
-
-
-#define FT_Exp(x)				ft_exp(x)
-
-#define FT_Ln(x)				ft_ln(x)
-
-#define FT_Log_2(x)				ft_lg(x)
-#define FT_Log_10(x)			ft_log(x)
-#define FT_Log_N(x, n)			ft_logn(x, n)
+#define Math_SquareRoot(x)		ft_sqrt(x)
+#define Math_CubicRoot(x)		ft_cbrt(x)
+#define Math_NRoot(x, n)		ft_nrt(x, n)
 
 
 
-#define FT_Cos(x)				ft_cos(x)
-#define FT_Sin(x)				ft_sin(x)
-#define FT_Tan(x)				ft_tan(x)
+#define Math_Exp(x)				ft_exp(x)
 
-#define FT_ArcCos(x)			ft_acos(x)
-#define FT_ArcSin(x)			ft_asin(x)
-#define FT_ArcTan(x)			ft_atan(x)
+#define Math_Ln(x)				ft_ln(x)
 
-#define FT_ArcTan2(x, y)		ft_atan2(x, y)
+#define Math_Log_2(x)			ft_lg(x)
+#define Math_Log_10(x)			ft_log(x)
+#define Math_Log_N(x, n)		ft_logn(x, n)
 
-#define FT_CosH(x)				ft_cosh(x)
-#define FT_SinH(x)				ft_sinh(x)
-#define FT_TanH(x)				ft_tanh(x)
 
-#define FT_ArcCosH(x)			ft_acosh(x)
-#define FT_ArcSinH(x)			ft_asinh(x)
-#define FT_ArcTanH(x)			ft_atanh(x)
+
+#define Math_Cos(x)				ft_cos(x)
+#define Math_Sin(x)				ft_sin(x)
+#define Math_Tan(x)				ft_tan(x)
+
+#define Math_ArcCos(x)			ft_acos(x)
+#define Math_ArcSin(x)			ft_asin(x)
+#define Math_ArcTan(x)			ft_atan(x)
+
+#define Math_ArcTan2(x, y)		ft_atan2(x, y)
+
+#define Math_CosH(x)			ft_cosh(x)
+#define Math_SinH(x)			ft_sinh(x)
+#define Math_TanH(x)			ft_tanh(x)
+
+#define Math_ArcCosH(x)			ft_acosh(x)
+#define Math_ArcSinH(x)			ft_asinh(x)
+#define Math_ArcTanH(x)			ft_atanh(x)
 
 
 

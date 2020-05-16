@@ -27,15 +27,15 @@
 ** ************************************************************************** *|
 */
 
-#define FT_Random_SetSeed(seed)		ft_random_set_seed(seed)
-#define FT_Random_RefreshSeed()		ft_random_renew_seed()
+#define Random_SetSeed(seed)		ft_random_set_seed(seed)
+#define Random_RefreshSeed()		ft_random_renew_seed()
 
-#define FT_Random()					ft_random()
-#define FT_Random_Pow2n(n)			ft_random_0_to_pow2n(n)
-#define FT_Random_n(n)				ft_random_0_to_n(n)
-#define FT_RandomInt_a_b(a, b)		ft_random_int_a_to_b(a, b)
-#define FT_RandomFloat_0_1()		ft_random_float_0_to_1()
-#define FT_RandomFloat_a_b(a, b)	ft_random_float_a_to_b(a, b)
+#define Random()					ft_random()
+#define Random_Pow2n(n)				ft_random_0_to_pow2n(n)
+#define Random_n(n)					ft_random_0_to_n(n)
+#define RandomInt_a_b(a, b)			ft_random_int_a_to_b(a, b)
+#define RandomFloat_0_1()			ft_random_float_0_to_1()
+#define RandomFloat_a_b(a, b)		ft_random_float_a_to_b(a, b)
 
 
 

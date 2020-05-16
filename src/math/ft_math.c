@@ -124,7 +124,7 @@ static t_s32	ft_float_get_exponent(t_float x)
 {
 	t_s64	result = 0;
 
-	FT_MemoryCopy((t_u8*)&result, &x, sizeof(t_float));
+	ft_memcpy((t_u8*)&result, &x, sizeof(t_float));
 	return (((result & FLOAT_EXPONENT) >> FLOAT_MANTISSA_BITS) - FLOAT_EXPONENT_BIAS);
 }
 

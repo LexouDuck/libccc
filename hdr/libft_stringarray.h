@@ -27,24 +27,24 @@
 ** ************************************************************************** *|
 */
 
-#define	FT_StringSplit_Char(str, c)				ft_strsplit_char(str, c)
-#define	FT_StringSplit_Charset(str, cset)		ft_strsplit_charset(str, cset)
-#define FT_StringSplit_String(str, query)		ft_strsplit_str(str, query)
-#define FT_StringDivide(str, n)					ft_strdivide(str, n)
+#define String_Split_Char(str, c)			ft_strsplit_char(str, c)
+#define String_Split_Charset(str, charset)	ft_strsplit_charset(str, charset)
+#define String_Split_String(str, query)		ft_strsplit_str(str, query)
+#define String_Divide(str, n)				ft_strdivide(str, n)
 
-#define FT_StringArrayNew(len)					ft_strarrnew(len)
-#define FT_StringArrayNew_C(y, x, c)			ft_strarrcnew(y, x, c)
-#define FT_StringArrayDelete(a_strarr)			ft_strarrdel(a_strarr)
-#define FT_StringArrayMap(strarr, f)			ft_strarrmap(strarr, f)
-#define FT_StringArrayMap_InPlace(a_sa, f)		ft_strarrmap_inplace(a_sa, f)
-#define FT_StringArrayPad_L(strarr, c, n)		ft_strarrpad_l(strarr, c, n)
-#define	FT_StringArraySub(strarr, start, n)		ft_strarrsub(strarr, start, n)
-#define FT_StringArrayJoin(strarr, sep)			ft_strarrjoin(strarr, sep)
+#define StringArray_New(len)				ft_strarrnew(len)
+#define StringArray_New_C(y, x, c)			ft_strarrcnew(y, x, c)
+#define StringArray_Delete(a_strarr)		ft_strarrdel(a_strarr)
+#define StringArray_Map(strarr, f)			ft_strarrmap(strarr, f)
+#define StringArray_Map_InPlace(a_sa, f)	ft_strarrmap_inplace(a_sa, f)
+#define StringArray_Pad_L(strarr, c, n)		ft_strarrpad_l(strarr, c, n)
+#define StringArray_Sub(strarr, start, n)	ft_strarrsub(strarr, start, n)
+#define StringArray_Join(strarr, sep)		ft_strarrjoin(strarr, sep)
 
-#define FT_StringArrayLength(strarr)			ft_strarrlen(strarr)
-#define	FT_StringArrayCount_Char(str, c)		ft_strarrcount_char(str, c)
-#define	FT_StringArrayCount_Charset(str, set)	ft_strarrcount_charset(str, set)
-#define	FT_StringArrayCount_String(str, query)	ft_strarrcount_str(str, query)
+#define StringArray_Length(strarr)				ft_strarrlen(strarr)
+#define StringArray_Count_Char(str, c)			ft_strarrcount_char(str, c)
+#define StringArray_Count_Charset(str, set)		ft_strarrcount_charset(str, set)
+#define StringArray_Count_String(str, query)	ft_strarrcount_str(str, query)
 
 
 /*
