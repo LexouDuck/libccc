@@ -10,6 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+**	Functions used from <stdlib.h>:
+**	-	void	read(int fd, char* buffer, size_t n);
+*/
+#include <unistd.h>
+
 #include "libft_memory.h"
 #include "libft_string.h"
 #include "libft_list.h"

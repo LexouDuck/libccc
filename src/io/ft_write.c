@@ -10,6 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+**	Functions used from <stdlib.h>:
+**	-	void	write(int fd, char* buffer, size_t n);
+*/
+#include <unistd.h>
+
 #include "libft_convert.h"
 #include "libft_io.h"
 

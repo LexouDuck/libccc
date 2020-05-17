@@ -18,6 +18,12 @@
 **	TODO	libft_random		+ tests
 **	TODO	libft_stringarray	+ tests
 **	TODO	libft_io			+ tests
+**
+**	TODO	libft_algebra		+ tests
+**	TODO	libft_complex		+ tests
+**	TODO	libft_fixedpoint	+ tests
+**	TODO	libft_compress		+ tests
+**	TODO	libft_socket		+ tests
 **	TODO	libft_vlq			+ tests
 */
 
