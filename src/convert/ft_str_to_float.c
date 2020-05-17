@@ -53,7 +53,7 @@ int			ft_str_to_float_checkinvalid(char const *str, char **result_tmp)
 	*result_tmp = NULL;
 	if (str[0] == '\0' || !(tmp = ft_str_to_float_toupper(str)))
 		return (ERROR);
-	if (ft_strequ(tmp, "INF") || ft_strequ(tmp, "INFINITY") ||
+	if (ft_strequ(tmp,  "INF") || ft_strequ(tmp,  "INFINITY") ||
 		ft_strequ(tmp, "+INF") || ft_strequ(tmp, "+INFINITY") ||
 		ft_strequ(tmp, "-INF") || ft_strequ(tmp, "-INFINITY"))
 	{

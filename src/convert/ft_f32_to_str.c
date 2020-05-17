@@ -10,10 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h> // TODO make powf implementation and remove this
-
-#include "libft_convert.h"
 #include "libft_string.h"
+#include "libft_math.h"
+#include "libft_convert.h"
 
 
 
@@ -57,7 +56,7 @@ static t_s16	ft_f32_to_str_getexponent(t_f32 *number)
 	if (*number >= FLOAT_THRESHOLD_HUGE ||
 		*number <= -FLOAT_THRESHOLD_HUGE)
 		while ((power /= 2) > 0)
-			if (*number >= (nearest = powf(10, power)))
+			if (*number >= (nearest = ft_pow(10, power)))
 			{
 				*number /= nearest;
 				exponent += power;
@@ -65,9 +64,9 @@ static t_s16	ft_f32_to_str_getexponent(t_f32 *number)
 	if ((*number > 0 && *number <= FLOAT_THRESHOLD_TINY) ||
 		(*number < 0 && *number >= -FLOAT_THRESHOLD_TINY))
 		while ((power /= 2) > 0)
-			if (*number < powf(10, 1 - power))
+			if (*number < ft_pow(10, 1 - power))
 			{
-				*number *= powf(10, power);
+				*number *= ft_pow(10, power);
 				exponent -= power;
 			}
 	return (exponent);

@@ -102,19 +102,6 @@ MATH_DECL_REALFUNCTION(ceil, ceil)
 
 t_float			ft_pow_n(t_float x, t_int n)
 {
-	t_float result = 1;
-	while (ft_fabs(n) > FLOAT_BIAS)
-	{
-		if (ft_fabs(n & 1) > FLOAT_BIAS)
-		{
-			result *= x;
-			n -= 1;
-		}
-		x *= x;
-		n /= 2;
-	}
-	return (result);
-/*
 	t_float	tmp;
 
 	if (n == 0)
@@ -131,24 +118,37 @@ t_float			ft_pow_n(t_float x, t_int n)
 		else
 			return (tmp * tmp / x);
 	}
+/*
+	t_float result = 1;
+	while (ft_fabs(n) > FLOAT_BIAS)
+	{
+		if (ft_fabs(n & 1) > FLOAT_BIAS)
+		{
+			result *= x;
+			n -= 1;
+		}
+		x *= x;
+		n /= 2;
+	}
+	return (result);
 */
 }
 
 #if LIBFTCONFIG_FAST_APPROX_MATH
 inline t_float	ft_pow(t_float x, t_float y)
 {
+#if (defined _FLOAT_32_)
+	return (ft_exp(y * ft_ln(x)));
+#else
 	if (y == 0.)
 		return (1.);
 	if (x <= 0.)
 		return (0.);
-//	return (ft_exp(y * ft_ln(x)));
-	union {
-		t_float d;
-		t_s32 a[2];
-	} u = { x };
-	u.a[1] = (t_s32)(y * (u.a[1] - 1072632447) + 1072632447);
-	u.a[0] = 0;
-	return (u.d);
+	union { t_float v_float; t_s32 v_int[2]; } result = { x };
+	result.v_int[1] = (t_s32)(y * (result.v_int[1] - 1072632447) + 1072632447);
+	result.v_int[0] = 0;
+	return (result.v_float);
+#endif
 }
 #else
 MATH_DECL_REALOPERATOR(pow, pow)

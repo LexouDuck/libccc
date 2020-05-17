@@ -60,7 +60,7 @@
 **	If 1, the libft fast approximate functions will be used (precision error margin: 0.0001)
 **	If 0, the builtin libc functions will be used
 */
-#define LIBFTCONFIG_FAST_APPROX_MATH	1
+#define LIBFTCONFIG_FAST_APPROX_MATH	0
 
 
 
@@ -71,7 +71,7 @@
 **	_UINT_32_	for 32-bit uint	[0, 2147483647]
 **	_UINT_64_	for 64-bit uint	[0, 18446744073709551615]
 */
-#define _UINT_32_
+#define _UINT_64_
 /*
 **	This macro sets the default 't_int' default signed integer type to use:
 **	_INT_8_		for 8-bit int	[-128, 127]
@@ -79,7 +79,7 @@
 **	_INT_32_	for 32-bit int	[-2147483648, 2147483647]
 **	_INT_64_	for 64-bit int	[-9223372036854775808, +9223372036854775807]
 */
-#define _INT_32_
+#define _INT_64_
 /*
 **	The following macro sets what the 't_float' default floating-point type should be.
 **	_FLOAT_32_	for 32-bit IEEE 754 standard precision floating-point number
@@ -87,7 +87,7 @@
 **	_FLOAT_80_	for 80-bit x86 extended-precision floating-point number
 **	_FLOAT_128_	for 128-bit IEEE 754 quadruple-precision floating-point number (GNU GCC 4.3 and up)
 */
-#define _FLOAT_32_
+#define _FLOAT_64_
 
 
 

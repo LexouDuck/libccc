@@ -10,12 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h> // TODO make powf implementation and remove this
-
-#include "libft_convert.h"
 #include "libft_memory.h"
 #include "libft_string.h"
 #include "libft_math.h"
+#include "libft_convert.h"
 
 
 
@@ -50,7 +48,7 @@ static t_f32	ft_str_to_f32_expon(char const *s_mant, char const *s_exp)
 		exponent -= frac_digits;
 	if (ft_strlen(s_mant) > 18)
 		exponent += ft_strlen(s_mant) - 18;
-	return (result * powf(10., exponent));
+	return (result * ft_pow(10., exponent));
 }
 
 static t_f32	ft_str_to_f32_hexfp(
@@ -71,7 +69,7 @@ static t_f32	ft_str_to_f32_hexfp(
 		return (0. * result);
 	}
 	mant = ft_hex_to_u32(tmp);
-	result *= mant * F32_INIT_VALUE * powf(2., (ft_strlen(tmp) - 1) * 4);
+	result *= mant * F32_INIT_VALUE * ft_pow(2., (ft_strlen(tmp) - 1) * 4);
 	if ((exponent = ft_str_to_s16(s_exp)) > F32_EXPONENT_BIAS)
 		return ((sign ? -1. : 1.) / 0.);
 	else if (exponent < 1 - F32_EXPONENT_BIAS)
@@ -98,8 +96,9 @@ t_f32			ft_str_to_f32(char const *str)
 		return (result);
 	if (tmp[0] == 'I' || (tmp[1] == 'I' && (tmp[0] == '-' || tmp[0] == '+')))
 	{
+		mode = (tmp[0] == '-');
 		free(tmp);
-		return (tmp[0] == '-' ? -INFINITY : INFINITY);
+		return (mode ? -INFINITY : INFINITY);
 	}
 	hexfp = ft_strchr(tmp, 'X');
 	if ((exponent = ft_strchr(tmp, (hexfp ? 'P' : 'E'))))
