@@ -79,7 +79,7 @@
 #define String_Pad(str, c, size)			ft_strpad(str, c, size)
 #define String_Pad_L(str, c, size)			ft_strpad_l(str, c, size)
 #define String_Pad_R(str, c, size)			ft_strpad_r(str, c, size)
-#define String__To_PrintableString(str)		ft_strprint(str)
+#define String_ToPrintableString(str)		ft_strprint(str)
 
 #define String_Reverse(str)					ft_strrev(str)
 #define String_Join(str1, str2)				ft_strjoin(str1, str2)
