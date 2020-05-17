@@ -45,6 +45,42 @@
 
 /*
 ** ************************************************************************** *|
+**                                 Definitions                                *|
+** ************************************************************************** *|
+*/
+
+/*
+**	Define string literals for alphabet characters
+*/
+
+#define CHARSET_LOWERCASE	"abcdefghijklmnopqrstuvwxyz"
+#define CHARSET_UPPERCASE	"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+#define CHARSET_ALPHABET	"aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ"
+
+/*
+**	Define string literals for some of the commonly used number bases.
+*/
+#define CHARSET_BINARY		"01"
+#define CHARSET_OCTAL		"01234567"
+#define CHARSET_DECIMAL		"0123456789"
+#define CHARSET_HEX_LOWER	"0123456789abcdef"
+#define CHARSET_HEX_UPPER	"0123456789ABCDEF"
+#define CHARSET_HEXADECIMAL	"0123456789aAbBcCdDeEfF"
+
+/*
+**	A charset containing all of the different whitespace characters
+*/
+#define CHARSET_WHITESPACE	" \t\n\r\f\v"
+
+/*
+**	A charset containing all of the ASCII punctuation characters
+*/
+#define CHARSET_PUNCTUATION	"!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
+
+
+
+/*
+** ************************************************************************** *|
 **                              Character Checks                              *|
 ** ************************************************************************** *|
 */

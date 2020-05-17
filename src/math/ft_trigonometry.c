@@ -15,6 +15,7 @@
 
 
 
+#if LIBFTCONFIG_FAST_APPROX_MATH
 static t_float	inv_factorial(t_u32 n)
 {
 	static const t_float	result[16] =
@@ -40,9 +41,9 @@ static t_float	inv_factorial(t_u32 n)
 	return (result[n]); //static so it shouldn'x be called with any weird values
 //	return (n >= 16) ? 0. : result[n];
 }
+#endif
 
-
-
+#if LIBFTCONFIG_FAST_APPROX_MATH
 t_float			ft_cos(t_float x)
 {
 	t_float		result;
@@ -81,7 +82,11 @@ t_float			ft_cos(t_float x)
 
 	return (sign ? -result : result);
 }
+#else
+MATH_DECL_REALFUNCTION(cos, cos)
+#endif
 
+#if LIBFTCONFIG_FAST_APPROX_MATH
 t_float			ft_sin(t_float x)
 {
 	t_float		result;
@@ -129,9 +134,11 @@ t_float			ft_sin(t_float x)
 
 	return (sign ? -result : result);
 }
+#else
+MATH_DECL_REALFUNCTION(sin, sin)
+#endif
 
-
-
+#if LIBFTCONFIG_FAST_APPROX_MATH
 inline t_float	ft_tan(t_float x)
 {
 // trigonometric formula
@@ -175,9 +182,13 @@ inline t_float	ft_tan(t_float x)
 	return (result);
 */
 }
+#else
+MATH_DECL_REALFUNCTION(tan, tan)
+#endif
 
 
 
+#if LIBFTCONFIG_FAST_APPROX_MATH
 t_float		ft_acos(t_float x)
 {
 // fast polynomial approximation
@@ -202,9 +213,11 @@ t_float		ft_acos(t_float x)
 	return ((-0.8047926 * x * x - 0.766) * x + HALF_PI); // (-0.69813170079773212 * x * x - 0.87266462599716477)
 */
 }
+#else
+MATH_DECL_REALFUNCTION(acos, acos)
+#endif
 
-
-
+#if LIBFTCONFIG_FAST_APPROX_MATH
 t_float		ft_asin(t_float x)
 {
 // fast polynomial approximation
@@ -229,9 +242,11 @@ t_float		ft_asin(t_float x)
 	return ((0.8047926 * x * x + 0.766) * x); // (-0.69813170079773212 * x * x - 0.87266462599716477)
 */
 }
+#else
+MATH_DECL_REALFUNCTION(asin, asin)
+#endif
 
-
-
+#if LIBFTCONFIG_FAST_APPROX_MATH
 t_float		ft_atan(t_float x)
 {
 //	very fast sigmoid approximation
@@ -280,15 +295,13 @@ t_float		ft_atan(t_float x)
 	return (3. / (1 + ft_exp(-1.1 * x)) - 1.5);
 */
 }
+#else
+MATH_DECL_REALFUNCTION(atan, atan)
+#endif
 
-static t_s32	ft_float_get_exponent(t_float x)
-{
-	t_s64	result = 0;
 
-	ft_memcpy((t_u8*)&result, &x, sizeof(t_float));
-	return (((result & FLOAT_EXPONENT) >> FLOAT_MANTISSA_BITS) - FLOAT_EXPONENT_BIAS);
-}
 
+#if LIBFTCONFIG_FAST_APPROX_MATH
 t_float		ft_atan2(t_float y, t_float x)
 {
 	static const t_float pi_lo = 1.2246467991473531772E-16;
@@ -313,8 +326,8 @@ t_float		ft_atan2(t_float y, t_float x)
 	else if (x == 1.0)
 		return (ft_atan(y));
 
-	t_s32 exp_x = ft_float_get_exponent(x);
-	t_s32 exp_y = ft_float_get_exponent(y);
+	t_s32 exp_x = ft_getexp(x);
+	t_s32 exp_y = ft_getexp(y);
 	t_float result = ABS(y / x);
 	if ((exp_y - exp_x) > 60)			/* |y / x| >  2^60 */
 		result = HALF_PI + 0.5 * pi_lo;
@@ -328,9 +341,13 @@ t_float		ft_atan2(t_float y, t_float x)
 	else
 		return (y < 0 ? -result : result);
 }
+#else
+MATH_DECL_REALOPERATOR(atan2, atan2)
+#endif
 
 
 
+#if LIBFTCONFIG_FAST_APPROX_MATH
 t_float		ft_cosh(t_float x)
 {
 // fast polynomial approximation for [-PI,+PI], exponential for the rest
@@ -352,9 +369,11 @@ t_float		ft_cosh(t_float x)
 	result += 0.0016666666 * power;
 	return (result);
 }
+#else
+MATH_DECL_REALFUNCTION(cosh, cosh)
+#endif
 
-
-
+#if LIBFTCONFIG_FAST_APPROX_MATH
 t_float		ft_sinh(t_float x)
 {
 // fast polynomial approximation for [-PI,+PI], exponential for the rest
@@ -377,9 +396,11 @@ t_float		ft_sinh(t_float x)
 	result += 0.0000083000 * power;
 	return (result);
 }
+#else
+MATH_DECL_REALFUNCTION(sinh, sinh)
+#endif
 
-
-
+#if LIBFTCONFIG_FAST_APPROX_MATH
 t_float		ft_tanh(t_float x)
 {
 //	fast sigmoid approximation
@@ -410,9 +431,13 @@ t_float		ft_tanh(t_float x)
 		return ((2 * x) / (1.6260705 + ABS(x)));
 */
 }
+#else
+MATH_DECL_REALFUNCTION(tanh, tanh)
+#endif
 
 
 
+#if LIBFTCONFIG_FAST_APPROX_MATH
 t_float		ft_acosh(t_float x)
 {
 // fast sqrt approximation for [+1,+20] and natural log for the rest
@@ -424,11 +449,12 @@ t_float		ft_acosh(t_float x)
 		return (1.37 * ft_sqrt(x - 1) - 0.122 * (x - 1));
 	else
 		return (ft_ln(x - 1) + INV_SQRT_2);
-
 }
+#else
+MATH_DECL_REALFUNCTION(acosh, acosh)
+#endif
 
-
-
+#if LIBFTCONFIG_FAST_APPROX_MATH
 t_float		ft_asinh(t_float x)
 {
 // fast sigmoid approximation for [-20,+20] and natural log for the rest
@@ -445,9 +471,11 @@ t_float		ft_asinh(t_float x)
 	else
 		return (x / (1 + ABS(-0.22103915 * x)));
 }
+#else
+MATH_DECL_REALFUNCTION(asinh, asinh)
+#endif
 
-
-
+#if LIBFTCONFIG_FAST_APPROX_MATH
 t_float		ft_atanh(t_float x)
 {
 //	approximation
@@ -471,5 +499,7 @@ t_float		ft_atanh(t_float x)
 	result += -2.4 * power;		power *= (x * x);
 	result += -5.8 * power;
 	return (result);
-
 }
+#else
+MATH_DECL_REALFUNCTION(atanh, atanh)
+#endif

@@ -15,6 +15,7 @@
 #include "libft_convert.h"
 #include "libft_memory.h"
 #include "libft_string.h"
+#include "libft_math.h"
 
 
 
