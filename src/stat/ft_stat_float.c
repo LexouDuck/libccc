@@ -10,8 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_stat.h"
 #include "libft_memory.h"
+#include "libft_math.h"
+#include "libft_stat.h"
 
 
 
@@ -167,12 +168,25 @@ t_float				ft_stat_average_f(s_list_float const flst)
 
 	sum = 0.;
 	i = 0;
-	while (i < flst.len)
+	if (IS_INFINITY(flst.data[i] * flst.len * 1e6))
 	{
-		sum += flst.data[i];
-		++i;
+		t_float inv_len = (1. / flst.len);
+		while (i < flst.len)
+		{
+			sum += inv_len * flst.data[i];
+			++i;
+		}
+		return (sum);
 	}
-	return (sum / i);
+	else
+	{
+		while (i < flst.len)
+		{
+			sum += flst.data[i];
+			++i;
+		}
+		return (sum / i);
+	}
 }
 
 /*

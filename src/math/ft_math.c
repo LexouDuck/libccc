@@ -18,7 +18,7 @@
 #if LIBFTCONFIG_FAST_APPROX_MATH
 inline t_s32	ft_getexp(t_float x)
 {
-	t_s64	result = 0;
+	t_s64	result = 0; // TODO handle extended precision types
 
 	ft_memcpy((t_u8*)&result, &x, sizeof(t_float));
 	return (((result & FLOAT_EXPONENT) >> FLOAT_MANTISSA_BITS) - FLOAT_EXPONENT_BIAS);
@@ -32,7 +32,7 @@ MATH_DECL_FUNCTION(t_s32, getexp, logb)
 #if LIBFTCONFIG_FAST_APPROX_MATH
 inline t_float	ft_fabs(t_float x)
 {
-	t_u64	tmp;
+	t_u64	tmp; // TODO handle extended precision types
 
 	ft_memcpy(&tmp, &x, sizeof(t_float));
 	if (tmp & FLOAT_SIGNED)
@@ -103,9 +103,9 @@ MATH_DECL_REALFUNCTION(ceil, ceil)
 t_float			ft_pow_n(t_float x, t_int n)
 {
 	t_float result = 1;
-	while (abs(n) > FLOAT_BIAS)
+	while (ft_fabs(n) > FLOAT_BIAS)
 	{
-		if (abs(n & 1) > FLOAT_BIAS)
+		if (ft_fabs(n & 1) > FLOAT_BIAS)
 		{
 			result *= x;
 			n -= 1;

@@ -137,7 +137,7 @@ MATH_DECL_REALFUNCTION(log, log10)
 
 
 
-inline t_float	ft_logn(t_float x, t_float n)
+inline t_float	ft_log_n(t_float x, t_float n)
 {
 	if (n == 2)
 		return (ft_lg(x));

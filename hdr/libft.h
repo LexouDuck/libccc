@@ -63,16 +63,9 @@
 #define LIBFTCONFIG_FAST_APPROX_MATH	1
 
 
+
 /*
-**	The following macro sets what the 't_float' type should be.
-**	_FLOAT_32_ means a 32-bit IEEE 754 standard precision float
-**	_FLOAT_64_ means a 64-bit double-precision float
-**	_FLOAT_80_ means a 80-bit extended-precision float
-**	_FLOAT_128_ means a 128-bit extended-precision float (GNU GCC 4.3 and up)
-*/
-#define _FLOAT_32_
-/*
-**	This macro sets the default 't_uint' unsigned integer type to use:
+**	This macro sets the default 't_uint' default unsigned integer type to use:
 **	_UINT_8_	for 8-bit uint	[0, 255]
 **	_UINT_16_	for 16-bit uint	[0, 65535]
 **	_UINT_32_	for 32-bit uint	[0, 2147483647]
@@ -80,13 +73,21 @@
 */
 #define _UINT_32_
 /*
-**	This macro sets the default 't_int' signed integer type to use:
+**	This macro sets the default 't_int' default signed integer type to use:
 **	_INT_8_		for 8-bit int	[-128, 127]
 **	_INT_16_	for 16-bit int	[-32648, 32647]
 **	_INT_32_	for 32-bit int	[-2147483648, 2147483647]
 **	_INT_64_	for 64-bit int	[-9223372036854775808, +9223372036854775807]
 */
 #define _INT_32_
+/*
+**	The following macro sets what the 't_float' default floating-point type should be.
+**	_FLOAT_32_	for 32-bit IEEE 754 standard precision floating-point number
+**	_FLOAT_64_	for 64-bit IEEE 754 double-precision floating-point number
+**	_FLOAT_80_	for 80-bit x86 extended-precision floating-point number
+**	_FLOAT_128_	for 128-bit IEEE 754 quadruple-precision floating-point number (GNU GCC 4.3 and up)
+*/
+#define _FLOAT_32_
 
 
 
@@ -173,7 +174,7 @@ typedef __float128		t_f128;
 
 
 /*
-**	More care should be used with the default int/uint types:
+**	Much care should be used with the default int/uint types:
 **	This obviously depends on you knowing your compiler
 */
 #ifdef _UINT_8_

@@ -195,12 +195,13 @@ t_float		ft_fabs(t_float x);
 
 t_float		ft_fmod(t_float x, t_float y);
 
-t_float		ft_round(t_float x);
+t_float		ft_round(t_float x); // TODO
 t_float		ft_trunc(t_float x);
 t_float		ft_floor(t_float x);
 t_float		ft_ceil(t_float x);
 
 t_float		ft_pow(t_float x, t_float y);
+t_float		ft_pow_n(t_float x, t_int n);
 
 t_float		ft_sqrt(t_float x);
 t_float		ft_cbrt(t_float x);
@@ -213,7 +214,7 @@ t_float		ft_exp(t_float x);
 t_float		ft_ln(t_float x);
 t_float		ft_lg(t_float x);
 t_float		ft_log(t_float x);
-t_float		ft_logn(t_float x, t_float n);
+t_float		ft_log_n(t_float x, t_float n);
 
 
 
@@ -225,7 +226,7 @@ t_float		ft_acos(t_float x);
 t_float		ft_asin(t_float x);
 t_float		ft_atan(t_float x);
 
-t_float		ft_atan2(t_float x, t_float y);
+t_float		ft_atan2(t_float y, t_float x);
 
 t_float		ft_cosh(t_float x);
 t_float		ft_sinh(t_float x);
@@ -235,7 +236,6 @@ t_float		ft_acosh(t_float x);
 t_float		ft_asinh(t_float x);
 t_float		ft_atanh(t_float x);
 
-// TODO round ?
 // TODO hypot ?
 // TODO lgamma ?
 // TODO tgamma ?
