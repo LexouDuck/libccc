@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft_memory.h"
 #include "libft_string.h"
 
 
@@ -27,7 +28,7 @@ char	*ft_strmap(char const *str, char (*f)(char))
 	length = 0;
 	while (str[length])
 		++length;
-	if (!(result = (char *)malloc(length + 1)))
+	if (!(result = (char *)ft_memalloc(length + 1)))
 		return (NULL);
 	i = 0;
 	while (i < length)
@@ -54,7 +55,7 @@ char	*ft_strmapi(char const *str, char (*f)(t_size, char))
 	length = 0;
 	while (str[length])
 		++length;
-	if (!(result = (char *)malloc(length + 1)))
+	if (!(result = (char *)ft_memalloc(length + 1)))
 		return (NULL);
 	i = 0;
 	while (i < length)

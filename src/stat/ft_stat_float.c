@@ -22,7 +22,9 @@ s_list_float	ft_stat_new_flst(t_u32 len)
 
 	res.data = NULL;
 	res.len = 0;
-	if (len == 0 || !(res.data = malloc(sizeof(t_int) * len)))
+	if (len == 0)
+		return (res);
+	if (!(res.data = (t_float*)ft_memalloc(sizeof(t_float) * len)))
 		return (res);
 	res.len = len;
 	return (res);
@@ -36,7 +38,7 @@ void			ft_stat_free_flst(s_list_float *flst)
 #endif
 	if (flst->data)
 	{
-		free(flst->data);
+		ft_memfree(flst->data);
 		flst->data = NULL;
 	}
 	flst->len = 0;

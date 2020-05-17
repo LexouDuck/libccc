@@ -28,17 +28,9 @@
 */
 
 /*
-**	Functions used:
-**	-	void*	malloc(t_size n);
-**	-	void	free(void* ptr);
-*/
-#include <stdlib.h>
-
-/*
 **	Included for the standard defined stable primitive int & uint types
 */
 #include <inttypes.h>
-
 
 
 

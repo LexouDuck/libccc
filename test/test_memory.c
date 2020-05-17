@@ -19,9 +19,73 @@ void	print_test_memalloc(char const* test_name, int can_segfault,
 void	test_memalloc(void)
 {
 //	| TEST FUNCTION    | TEST NAME              |CAN SEGV|TEST ARGS
-	print_test_memalloc("memalloc              ",	FALSE,	8);
-	print_test_memalloc("memalloc (n = 0x10000)",	FALSE,	0x10000);
-	print_test_memalloc("memalloc (n = 0)      ",	FALSE,	0);
+	// TODO
+}
+
+
+
+/*
+**	void*	ft_memnew(t_size size);
+*/
+void	print_test_memnew(char const* test_name, int can_segfault,
+		t_size n)
+{
+	TEST_PERFORM_RESULT(memnew, n);
+	print_test_alloc(test_name, "memnew", result_libft, n);
+	print_timer_result(&t, FALSE);
+	TEST_FREE()
+}
+void	test_memnew(void)
+{
+//	| TEST FUNCTION    | TEST NAME              |CAN SEGV|TEST ARGS
+	print_test_memnew("memnew              ",	FALSE,	8);
+	print_test_memnew("memnew (n = 0x10000)",	FALSE,	0x10000);
+	print_test_memnew("memnew (n = 0)      ",	FALSE,	0);
+}
+
+
+
+/*
+**	void	ft_memfree(void **ptr);
+*/
+void	print_test_memfree(char const* test_name, int can_segfault,
+		void *ptr)
+{
+	TEST_PERFORM(ptr, memfree, ptr)
+	print_test_mem(test_name, "memfree arg", ptr, NULL, 0, can_segfault);
+	print_timer_result(&t, FALSE);
+}
+void	test_memfree(void)
+{
+	t_size const length = 16;
+	void* test = (void*)malloc(length);
+	memset(test, 0, length);
+//	| TEST FUNCTION  | TEST NAME        | CAN SEGV | TEST ARGS
+	print_test_memfree("memfree",	          	FALSE,	test);
+//	print_test_memfree("memfree (null ptr)",	FALSE,	NULL); // TODO figure out how to recover from this
+}
+
+
+
+/*
+**	void	ft_memdel(void **ptr);
+*/
+void	print_test_memdel(char const* test_name, int can_segfault,
+		void **ptr)
+{
+	TEST_PERFORM(*ptr, memdel, ptr)
+	print_test_mem(test_name, "memdel arg", *ptr, NULL, 0, can_segfault);
+	print_timer_result(&t, FALSE);
+}
+void	test_memdel(void)
+{
+	t_size const length = 16;
+	void* test = (void*)malloc(length);
+	memset(test, 0, length);
+//	| TEST FUNCTION  | TEST NAME        | CAN SEGV | TEST ARGS
+	print_test_memdel("memdel",	          	FALSE,	&test);
+//	print_test_memdel("memdel (null arg)",	FALSE,	&test); // TODO figure out how to recover from this
+//	print_test_memdel("memdel (null ptr)",	FALSE,	NULL); // TODO figure out how to recover from this
 }
 
 
@@ -85,30 +149,6 @@ void	test_memclr(void)
 	print_test_memclr("memclr/bzero (int*) ",   	FALSE,	(char*)&n1, (char*)&n2, sizeof(int));
 	print_test_memclr("memclr/bzero (n = 0)",   	FALSE,	str1,       str2,       0);
 	print_test_memclr("memclr/bzero (null ptr)",	TRUE, 	NULL,       NULL,       2);
-}
-
-
-
-/*
-**	void	ft_memdel(void **ptr);
-*/
-// TODO check on which platforms this function exists, if any
-void	print_test_memdel(char const* test_name, int can_segfault,
-		void **ptr)
-{
-	TEST_PERFORM(*ptr, memdel, ptr)
-	print_test_mem(test_name, "memdel arg", *ptr, NULL, 0, can_segfault);
-	print_timer_result(&t, FALSE);
-}
-void	test_memdel(void)
-{
-	t_size const length = 16;
-	void* test = (void*)malloc(length);
-	memset(test, 0, length);
-//	| TEST FUNCTION  | TEST NAME        | CAN SEGV | TEST ARGS
-	print_test_memdel("memdel",	          	FALSE,	&test);
-//	print_test_memdel("memdel (null arg)",	FALSE,	&test); // TODO debug inf loop ???
-//	print_test_memdel("memdel (null ptr)",	FALSE,	NULL); // TODO debug inf loop ???
 }
 
 
@@ -348,6 +388,8 @@ int		test_memory(void)
 	print_nonstd();
 
 	test_memalloc();
+	test_memnew();
+	test_memfree();
 	test_memdel();
 	test_memdup();
 //	test_memswap();

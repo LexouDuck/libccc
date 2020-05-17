@@ -10,9 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_io.h"
-#include "libft_list.h"
+#include "libft_memory.h"
 #include "libft_string.h"
+#include "libft_list.h"
+#include "libft_io.h"
 
 
 
@@ -36,8 +37,8 @@ static	void	gnl_deletelistitem(s_list **store, int fd, char **line)
 	}
 	if (result)
 	{
-		free(result->item);
-		free(result);
+		ft_memfree(result->item);
+		ft_memfree(result);
 		result = NULL;
 	}
 }
@@ -58,7 +59,7 @@ static	int		gnl_read(s_list *lst)
 			buffer[result] = '\0';
 		if (!(lst->item = ft_strjoin(temp, buffer)))
 			return (0);
-		free(temp);
+		ft_memfree(temp);
 	}
 	return (result);
 }
@@ -80,12 +81,12 @@ static	int		gnl_makeline(s_list *lst, char **line)
 		return (GNL_LINE);
 	}
 	str = NULL;
-	if (!(str = (char *)malloc(length + 1)))
+	if (!(str = (char *)ft_memalloc(length + 1)))
 		return (GNL_ERROR);
 	ft_strcpy(str, (char *)lst->item + space + 1);
 	ft_strclr(lst->item);
 	ft_strcpy(lst->item, str);
-	free(str);
+	ft_memfree(str);
 	return (GNL_LINE);
 }
 

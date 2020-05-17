@@ -10,9 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_convert.h"
+#include "libft_memory.h"
 #include "libft_char.h"
 #include "libft_string.h"
+#include "libft_convert.h"
 
 
 
@@ -66,7 +67,7 @@ int			ft_str_to_float_checkinvalid(char const *str, char **result_tmp)
 		count_p > 1 || (count_p == 0 && count_e > 1))
 	{
 		if (tmp)
-			free(tmp);
+			ft_memfree(tmp);
 		return (ERROR);
 	}
 	*result_tmp = tmp;

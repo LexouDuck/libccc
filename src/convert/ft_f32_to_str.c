@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft_memory.h"
 #include "libft_string.h"
 #include "libft_math.h"
 #include "libft_convert.h"
@@ -35,7 +36,7 @@ static char		*ft_f32_to_str_decim(t_f32 number, t_u8 precision)
 			if (n == 0 && number != 0)
 				digits[i++] = '0';
 	}
-	if (!(result = (char *)malloc(i + 2)))
+	if (!(result = (char *)ft_memalloc(i + 2)))
 		return (NULL);
 	result[0] = (number == 0) ? '0' : '-';
 	n = (number <= 0) ? 1 : 0;
@@ -83,7 +84,7 @@ static char		*ft_f32_to_str_expon(t_f32 number, t_u8 precision,
 	number = (sign ? -number : number);
 	if (!(*result_exp = ft_s16_to_str(ft_f32_to_str_getexponent(&number))) ||
 		!(*result_mant = ft_f32_to_str_decim(number, precision)) ||
-		!(result = (char *)malloc(
+		!(result = (char *)ft_memalloc(
 			ft_strlen(*result_mant) + ft_strlen(*result_exp) + 2 + sign)))
 	{
 		return (NULL);
@@ -119,8 +120,8 @@ char			*ft_f32_to_str(t_f32 number, t_u8 precision)
 	else
 		result = ft_f32_to_str_decim(number, precision);
 	if (result_exp)
-		free(result_exp);
+		ft_memfree(result_exp);
 	if (result_mant)
-		free(result_mant);
+		ft_memfree(result_mant);
 	return (result);
 }

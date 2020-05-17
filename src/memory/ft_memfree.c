@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memory/ft_memdup.c                                 :+:      :+:    :+:   */
+/*   memory/ft_memfree.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: duquesne <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,28 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+**	Functions used from <stdlib.h>:
+**	-	void	free(void* ptr);
+*/
+#include <stdlib.h>
+
 #include "libft_memory.h"
 
 
 
-void	*ft_memdup(const void *ptr, t_size n)
+inline void	ft_memfree(void *ptr)
 {
-	t_u8	*result;
-	t_u8	*source;
-	t_size	i;
-
 #if HANDLE_NULLPOINTERS
 	if (ptr == NULL)
-		return (NULL);
+		return ;
 #endif
-	if (!(result = (t_u8 *)ft_memalloc(n)))
-		return (NULL);
-	source = (t_u8 *)ptr;
-	i = 0;
-	while (i < n)
-	{
-		result[i] = source[i];
-		++i;
-	}
-	return ((void *)result);
+	free(ptr);
 }

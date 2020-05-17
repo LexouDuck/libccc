@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_stat.h"
 #include "libft_memory.h"
+#include "libft_stat.h"
 
 
 
@@ -21,7 +21,9 @@ s_list_int		ft_stat_new_ilst(t_u32 len)
 
 	res.data = NULL;
 	res.len = 0;
-	if (len == 0 || !(res.data = malloc(sizeof(t_int) * len)))
+	if (len == 0)
+		return (res);
+	if (!(res.data = (t_int*)ft_memalloc(sizeof(t_int) * len)))
 		return (res);
 	res.len = len;
 	return (res);
@@ -35,7 +37,7 @@ void			ft_stat_free_ilst(s_list_int *ilst)
 #endif
 	if (ilst->data)
 	{
-		free(ilst->data);
+		ft_memfree(ilst->data);
 		ilst->data = NULL;
 	}
 	ilst->len = 0;
@@ -245,8 +247,8 @@ s_prob_mass				ft_stat_new_pmf(t_u32 len)
 	res.prob = NULL;
 	res.len = 0;
 	if (len == 0 ||
-		!(res.value = malloc(len * sizeof(t_float))) ||
-		!(res.prob = malloc(len * sizeof(t_float))))
+		!(res.value	= (t_float*)ft_memalloc(len * sizeof(t_float))) ||
+		!(res.prob	= (t_float*)ft_memalloc(len * sizeof(t_float))))
 		return (res);
 	res.len = len;
 	return (res);
@@ -260,12 +262,12 @@ void					ft_stat_free_pmf(s_prob_mass *drv)
 #endif
 	if (drv->value)
 	{
-		free(drv->value);
+		ft_memfree(drv->value);
 		drv->value = NULL;
 	}
 	if (drv->prob)
 	{
-		free(drv->prob);
+		ft_memfree(drv->prob);
 		drv->prob = NULL;
 	}
 	drv->len = 0;
@@ -297,7 +299,7 @@ s_set_int				ft_stat_ilst_to_iset(s_list_int const ilst)
 	res = ft_stat_new_ilst(set.len);
 	ft_memcpy(res.data, set.data, set.len * sizeof(t_int));
 //	memcpy(res.data, set.data, set.len * sizeof(t_int));
-	free(set.data);
+	ft_memfree(set.data);
 	return (res);
 }
 

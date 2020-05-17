@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft_memory.h"
 #include "libft_list.h"
 
 
@@ -23,7 +24,7 @@ void	ft_lstdelone(s_list **alst, void (*del)(void *, t_size))
 	if (*alst)
 	{
 		del((*alst)->item, (*alst)->item_size);
-		free(*alst);
+		ft_memfree(*alst);
 		*alst = NULL;
 	}
 }
@@ -45,7 +46,7 @@ void	ft_lstdel(s_list **alst, void (*del)(void *, t_size))
 		del(lst->item, lst->item_size);
 		tmp = lst;
 		lst = lst->next;
-		free(tmp);
+		ft_memfree(tmp);
 	}
 	*alst = NULL;
 }
@@ -68,7 +69,7 @@ void	ft_lstpop(s_list **alst, void (*del)(void *, t_size))
 		if (lst->next == NULL)
 		{
 			del((lst)->item, (lst)->item_size);
-			free(lst);
+			ft_memfree(lst);
 			if (lst_prev)
 				lst_prev->next = NULL;
 			return ;

@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft_memory.h"
 #include "libft_char.h"
 #include "libft_string.h"
 
@@ -27,7 +28,7 @@ char	*ft_strprint(char const *str)
 	if (str == NULL)
 		return (NULL);
 #endif
-	if (!(result = (char *)malloc(ft_strlen(str) * 4)))
+	if (!(result = (char *)ft_memalloc(ft_strlen(str) * 4)))
 		return (NULL);
 	while (str[index])
 	{

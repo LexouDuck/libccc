@@ -10,22 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+**	Functions used from <stdlib.h>:
+**	-	void*	malloc(size_t n);
+*/
+#include <stdlib.h>
+
 #include "libft_memory.h"
 
 
 
-void	*ft_memalloc(t_size size)
+inline void	*ft_memalloc(t_size size)
 {
-	t_u8	*result;
-	t_size	i;
-
-	if (!(result = (t_u8 *)malloc(size)))
-		return (NULL);
-	i = 0;
-	while (i < size)
-	{
-		result[i] = 0;
-		++i;
-	}
-	return ((void *)result);
+	return (malloc(size));
 }

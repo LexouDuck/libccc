@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft_memory.h"
 #include "libft_string.h"
 
 
@@ -25,7 +26,7 @@ char	*ft_strpad(char const *str, char c, t_size size)
 	if (str == NULL)
 		return (NULL);
 #endif
-	if (!(result = (char *)malloc(size + 1)))
+	if (!(result = (char *)ft_memalloc(size + 1)))
 		return (NULL);
 	i = 0;
 	while (i < size)
@@ -59,7 +60,7 @@ char	*ft_strpad_l(char const *str, char c, t_size size)
 	if (str == NULL)
 		return (NULL);
 #endif
-	if (!(result = (char *)malloc(size + 1)))
+	if (!(result = (char *)ft_memalloc(size + 1)))
 		return (NULL);
 	length = 0;
 	while (str[length])
@@ -91,7 +92,7 @@ char	*ft_strpad_r(char const *str, char c, t_size size)
 	if (str == NULL)
 		return (NULL);
 #endif
-	if (!(result = (char *)malloc(size + 1)))
+	if (!(result = (char *)ft_memalloc(size + 1)))
 		return (NULL);
 	i = 0;
 	while (i < size && str[i])

@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft_memory.h"
 #include "libft_string.h"
 
 
@@ -29,7 +30,7 @@ char	*ft_strsub(char const *str, t_size index, t_size n)
 		++length;
 	if (index > length || index + n > length)
 		return (NULL);
-	if (!(result = (char *)malloc(n + 1)))
+	if (!(result = (char *)ft_memalloc(n + 1)))
 		return (NULL);
 	i = 0;
 	while (i < n)

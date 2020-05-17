@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft_memory.h"
 #include "libft_string.h"
 
 
@@ -28,7 +29,7 @@ char	*ft_strrev(char const *str)
 	length = 0;
 	while (str[length])
 		++length;
-	result = (char *)malloc(length + 1);
+	result = (char *)ft_memalloc(length + 1);
 	i = 0;
 	j = length - 1;
 	while (i < length)

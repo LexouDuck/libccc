@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft_memory.h"
 #include "libft_convert.h"
 
 
@@ -61,7 +62,7 @@ char			*ft_s8_to_strbase(t_s8 number, char const *base)
 		digits[i++] = base[n % length];
 		n /= length;
 	}
-	if (!(result = (char *)malloc(i + 2)))
+	if (!(result = (char *)ft_memalloc(i + 2)))
 		return (NULL);
 	result[0] = (number == 0) ? base[0] : '-';
 	n = (number <= 0) ? 1 : 0;
@@ -92,7 +93,7 @@ char			*ft_s16_to_strbase(t_s16 number, char const *base)
 		digits[i++] = base[n % length];
 		n /= length;
 	}
-	if (!(result = (char *)malloc(i + 2)))
+	if (!(result = (char *)ft_memalloc(i + 2)))
 		return (NULL);
 	result[0] = (number == 0) ? base[0] : '-';
 	n = (number <= 0) ? 1 : 0;
@@ -123,7 +124,7 @@ char			*ft_s32_to_strbase(t_s32 number, char const *base)
 		digits[i++] = base[n % length];
 		n /= length;
 	}
-	if (!(result = (char *)malloc(i + 2)))
+	if (!(result = (char *)ft_memalloc(i + 2)))
 		return (NULL);
 	result[0] = (number == 0) ? base[0] : '-';
 	n = (number <= 0) ? 1 : 0;
@@ -154,7 +155,7 @@ char			*ft_s64_to_strbase(t_s64 number, char const *base)
 		digits[i++] = base[n % length];
 		n /= length;
 	}
-	if (!(result = (char *)malloc(i + 2)))
+	if (!(result = (char *)ft_memalloc(i + 2)))
 		return (NULL);
 	result[0] = (number == 0) ? base[0] : '-';
 	n = (number <= 0) ? 1 : 0;

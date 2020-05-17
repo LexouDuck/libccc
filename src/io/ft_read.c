@@ -10,8 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_io.h"
+#include "libft_memory.h"
 #include "libft_string.h"
+#include "libft_io.h"
 
 
 
@@ -21,7 +22,7 @@ static int	ft_readfile_error(int result, char **file)
 	{
 		if (*file)
 		{
-			free(*file);
+			ft_memfree(*file);
 			*file = NULL;
 		}
 		return (ERROR);
@@ -53,7 +54,7 @@ int			ft_readfile(int const fd, char **file, t_size max)
 			buffer[result] = '\0';
 		if (!(*file = ft_strjoin(temp, buffer)))
 			return (ERROR);
-		free(temp);
+		ft_memfree(temp);
 	}
 	return (ft_readfile_error(result, file));
 }

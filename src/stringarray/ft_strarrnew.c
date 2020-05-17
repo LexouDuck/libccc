@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft_memory.h"
 #include "libft_stringarray.h"
 
 
@@ -19,7 +20,7 @@ char	**ft_strarrnew(t_u32 len)
 	char	**result;
 	t_u32	i;
 
-	if (!(result = (char**)malloc(sizeof(char*) * (len + 1))))
+	if (!(result = (char**)ft_memalloc(sizeof(char*) * (len + 1))))
 		return (NULL);
 	i = 0;
 	while (i <= len)

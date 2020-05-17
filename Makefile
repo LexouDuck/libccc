@@ -32,8 +32,10 @@ endif
 
 DIR_MEMORY	:=	memory/
 SRC_MEMORY	:=	ft_memalloc.c	\
-				ft_memset.c		\
+				ft_memnew.c		\
+				ft_memfree.c	\
 				ft_memdel.c		\
+				ft_memset.c		\
 				ft_memcpy.c		\
 				ft_memdup.c		\
 				ft_memmove.c	\
@@ -320,6 +322,6 @@ $(TEST_PROGRAM): $(NAME) $(TEST_OBJ) $(TEST_HDR)
 	@printf $(GREEN)"OK!"$(RESET)"\n"
 
 test: $(TEST_PROGRAM)
-	@./$(TEST_PROGRAM) --verbose --test-all
+	@./$(TEST_PROGRAM) | sed -r "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2})?)?[mGK]//g" > libft_test_results.txt
 
 -include ${DEPENDS}

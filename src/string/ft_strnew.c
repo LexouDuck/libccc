@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft_memory.h"
 #include "libft_string.h"
 
 
@@ -19,7 +20,7 @@ char	*ft_strnew(t_size n)
 	char	*result;
 	t_size	i;
 
-	if (!(result = (char *)malloc(n + 1)))
+	if (!(result = (char *)ft_memalloc(n + 1)))
 		return (NULL);
 	i = 0;
 	while (i < n)

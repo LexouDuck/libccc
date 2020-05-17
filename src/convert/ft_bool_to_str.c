@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft_memory.h"
 #include "libft_convert.h"
 
 
@@ -20,7 +21,7 @@ char	*ft_bool_to_str(t_bool number, t_bool uppercase)
 
 	if (number)
 	{
-		if (!(result = (char *)malloc(5)))
+		if (!(result = (char *)ft_memalloc(5)))
 			return (NULL);
 		result[0] = uppercase ? 'T' : 't';
 		result[1] = uppercase ? 'R' : 'r';
@@ -30,7 +31,7 @@ char	*ft_bool_to_str(t_bool number, t_bool uppercase)
 	}
 	else
 	{
-		if (!(result = (char *)malloc(6)))
+		if (!(result = (char *)ft_memalloc(6)))
 			return (NULL);
 		result[0] = uppercase ? 'F' : 'f';
 		result[1] = uppercase ? 'A' : 'a';

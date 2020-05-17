@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft_memory.h"
 #include "libft_string.h"
 
 
@@ -26,7 +27,7 @@ char	*ft_strdup(char const *str)
 	i = 0;
 	while (str[i])
 		++i;
-	if (!(result = (char *)malloc(i + 1)))
+	if (!(result = (char *)ft_memalloc(i + 1)))
 		return (NULL);
 	i = 0;
 	while (str[i])

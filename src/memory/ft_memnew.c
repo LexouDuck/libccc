@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memory/ft_memdup.c                                 :+:      :+:    :+:   */
+/*   memory/ft_memnew.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: duquesne <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -14,23 +14,17 @@
 
 
 
-void	*ft_memdup(const void *ptr, t_size n)
+void	*ft_memnew(t_size size)
 {
 	t_u8	*result;
-	t_u8	*source;
 	t_size	i;
 
-#if HANDLE_NULLPOINTERS
-	if (ptr == NULL)
+	if (!(result = (t_u8 *)ft_memalloc(size)))
 		return (NULL);
-#endif
-	if (!(result = (t_u8 *)ft_memalloc(n)))
-		return (NULL);
-	source = (t_u8 *)ptr;
 	i = 0;
-	while (i < n)
+	while (i < size)
 	{
-		result[i] = source[i];
+		result[i] = 0;
 		++i;
 	}
 	return ((void *)result);

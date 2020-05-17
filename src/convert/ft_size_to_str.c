@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft_memory.h"
 #include "libft_convert.h"
 
 
@@ -30,7 +31,7 @@ char	*ft_size_to_str(t_size number)
 	}
 	if (i == 0)
 		digits[i++] = 0;
-	if (!(result = (char *)malloc(i + 1)))
+	if (!(result = (char *)ft_memalloc(i + 1)))
 		return (NULL);
 	n = 0;
 	while (i--)

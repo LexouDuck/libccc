@@ -30,7 +30,7 @@ void	**ft_lst_to_array(s_list **alst)
 	lst = *alst;
 	count = ft_lstsize(lst);
 	length = (count + 1) * sizeof(void *);
-	if (!(result = (void **)malloc(length)))
+	if (!(result = (void **)ft_memalloc(length)))
 		return (NULL);
 	i = 0;
 	while (lst && i < count)
@@ -65,7 +65,7 @@ s_tuple	*ft_lst_to_tuple(s_list **alst, s_tuple *result)
 			return (NULL);
 	}
 	result->length = (count + 1) * result->item_size;
-	if (!(result->items = (void *)malloc(result->length)))
+	if (!(result->items = (void *)ft_memalloc(result->length)))
 		return (NULL);
 	i = -1;
 	while (lst && ++i < count)

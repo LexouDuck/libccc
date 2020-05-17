@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft_memory.h"
 #include "libft_string.h"
 
 
@@ -31,7 +32,7 @@ char	*ft_strremove(char const *str, char const *query)
 	length_query = ft_strlen(query);
 	i = matches * length_query;
 	length = (length < i) ? 0 : length - i;
-	if (!(result = (char *)malloc(length + 1)))
+	if (!(result = (char *)ft_memalloc(length + 1)))
 		return (NULL);
 	matches = (t_size)(ft_strstr(str, query) - str);
 	i = 0;

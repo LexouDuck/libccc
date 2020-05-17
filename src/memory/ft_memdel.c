@@ -22,7 +22,7 @@ inline void	ft_memdel(void **ptr)
 #endif
 	if (*ptr)
 	{
-		free(*ptr);
+		ft_memfree(*ptr);
 		*ptr = NULL;
 	}
 }

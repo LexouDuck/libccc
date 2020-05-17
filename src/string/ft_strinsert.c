@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft_memory.h"
 #include "libft_string.h"
 
 
@@ -27,7 +28,7 @@ char	*ft_strinsert(char const *dest, char const *src, t_size offset)
 #endif
 	len_dst = ft_strlen(dest);
 	len_src = ft_strlen(src);
-	if (!(result = (char *)malloc(len_dst + len_src + 1)))
+	if (!(result = (char *)ft_memalloc(len_dst + len_src + 1)))
 		return (NULL);
 	i = -1;
 	while (++i < offset)

@@ -37,12 +37,14 @@ s_sortedlist_int	print_test_random(int samples)
 	result = ft_stat_quicksort_i_new(ilst);
 	if (g_test.flags.verbose)
 		printf("Done !\n");
+/*
 	for (int i = 0; i < result.len - 1; ++i)
 	{
 		if (result.data[i] > result.data[i + 1])
 			printf(C_RED"Sorting error at index %d\n"C_RESET, i);
 	}
 	ft_stat_free_ilst(&ilst);
+*/
 	return (result);
 }
 

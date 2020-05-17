@@ -28,19 +28,24 @@
 */
 
 #define Memory_Alloc(size)					ft_memalloc(size)
+#define Memory_New(size)					ft_memnew(size)
+
+#define Memory_Free(ptr)					ft_memfree(ptr)
+#define Memory_Delete(ptr)					ft_memdel(ptr)
+
 #define Memory_Set(ptr, byte, n)			ft_memset(ptr, byte, n)
 #define Memory_Clear(ptr, n)				ft_memclr(ptr, n)
-#define Memory_Delete(ptr)					ft_memdel(ptr)
 #define Memory_Copy(dest, src, n)			ft_memcpy(dest, src, n)
 #define Memory_Copy_C(dest, src, byte, n)	ft_memccpy(dest, src, byte, n)
 #define Memory_Move(dest, src, n)			ft_memmove(dest, src, n)
+
 #define Memory_Duplicate(ptr, n)			ft_memdup(ptr, n)
 
 #define Memory_Find(ptr, byte, n)			ft_memchr(ptr, byte, n)
 #define Memory_Compare(ptr1, ptr2, n)		ft_memcmp(ptr1, ptr2, n)
 #define Memory_Swap(ptr1, ptr2, size)		ft_memswap(ptr1, ptr2, size)
 
-#define Memory_GetBits(value, bit, length)		ft_getbits(value, bit, length)
+#define Memory_GetBits(value, bit, length)	ft_getbits(value, bit, length)
 
 #define PointerArray_New(len)				ft_ptrarrnew(len)
 #define PointerArray_Length(ptrarr)			ft_ptrarrlen(ptrarr)
@@ -60,6 +65,27 @@
 void	*ft_memalloc(t_size size);
 
 /*
+**	Allocates 'size' bytes in memory, setting each byte of this newly allocated
+**	memory space to '0'. Returns the pointer at which said bytes were allocated,
+**	or NULL if the memory could not be allocated.
+*/
+void	*ft_memnew(t_size size);
+
+
+
+/*
+**	Frees the allocated memory at '*ptr'.
+*/
+void	ft_memfree(void *ptr);
+
+/*
+**	Frees the allocated memory at '**ptr', and sets '*ptr' to NULL.
+*/
+void	ft_memdel(void **ptr);
+
+
+
+/*
 **	Sets 'n' bytes of memory with the given 8-bit value 'byte' (taking only the
 **	first 8 bits of this value and writing it byte-per-byte), starting at 'ptr'.
 */
@@ -69,11 +95,6 @@ void	ft_memset(void *ptr, t_u8 byte, t_size n);
 **	Sets 'n' bytes of memory to 0, starting at 'ptr'. (same as bzero)
 */
 void	ft_memclr(void *ptr, t_size n);
-
-/*
-**	Frees the allocated memory at '**ptr', and sets '*ptr' as NULL.
-*/
-void	ft_memdel(void **ptr);
 
 /*
 **	Copies 'n' bytes of memory from 'src' to 'dest', and returns 'dest'.
@@ -94,12 +115,15 @@ void	*ft_memccpy(void *dest, void const *src, t_u8 byte, t_size n);
 */
 void	*ft_memmove(void *dest, void const *src, t_size n);
 
+
+
 /*
 **	Returns a newly allocated memory area which is a copy of
 **	the given memory area 'ptr' (or NULL if the required memory
 **	could not be allocated, or if 'ptr' is NULL or 'n' == 0).
 */
 void	*ft_memdup(void const *ptr, t_size n);
+
 
 
 /*

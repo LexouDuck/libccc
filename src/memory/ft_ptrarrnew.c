@@ -14,12 +14,11 @@
 
 
 
-void	*ft_ptrarrnew(t_u32 len)
+inline void	*ft_ptrarrnew(t_u32 n)
 {
 	void	**result;
 
-	if (!(result = ft_memalloc(sizeof(void**) * (len + 1))))
+	if (!(result = (void**)ft_memnew(sizeof(void**) * (n + 1))))
 		return (NULL);
-	result[len] = NULL;
 	return (result);
 }

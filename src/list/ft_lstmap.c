@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft_memory.h"
 #include "libft_list.h"
 
 
@@ -18,7 +19,7 @@ static void	ft_lstmap_delete(void *content, t_size content_size)
 {
 	if (content && content_size > 0)
 	{
-		free(content);
+		ft_memfree(content);
 	}
 }
 

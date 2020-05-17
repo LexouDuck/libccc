@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft_memory.h"
 #include "libft_convert.h"
 
 
@@ -29,7 +30,7 @@ char	*ft_s8_to_str(t_s8 number)
 		digits[i++] = n % 10;
 		n /= 10;
 	}
-	if (!(result = (char *)malloc(i + 2)))
+	if (!(result = (char *)ft_memalloc(i + 2)))
 		return (NULL);
 	result[0] = (number == 0) ? '0' : '-';
 	n = (number <= 0) ? 1 : 0;
@@ -56,7 +57,7 @@ char	*ft_s16_to_str(t_s16 number)
 		digits[i++] = n % 10;
 		n /= 10;
 	}
-	if (!(result = (char *)malloc(i + 2)))
+	if (!(result = (char *)ft_memalloc(i + 2)))
 		return (NULL);
 	result[0] = (number == 0) ? '0' : '-';
 	n = (number <= 0) ? 1 : 0;
@@ -83,7 +84,7 @@ char	*ft_s32_to_str(t_s32 number)
 		digits[i++] = n % 10;
 		n /= 10;
 	}
-	if (!(result = (char *)malloc(i + 2)))
+	if (!(result = (char *)ft_memalloc(i + 2)))
 		return (NULL);
 	result[0] = (number == 0) ? '0' : '-';
 	n = (number <= 0) ? 1 : 0;
@@ -110,7 +111,7 @@ char	*ft_s64_to_str(t_s64 number)
 		digits[i++] = n % 10;
 		n /= 10;
 	}
-	if (!(result = (char *)malloc(i + 2)))
+	if (!(result = (char *)ft_memalloc(i + 2)))
 		return (NULL);
 	result[0] = (number == 0) ? '0' : '-';
 	n = (number <= 0) ? 1 : 0;
