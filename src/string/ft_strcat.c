@@ -19,7 +19,7 @@ char	*ft_strcat(char *dest, char const *src)
 	t_size	length;
 	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (dest == NULL)
 		return (NULL);
 	if (src == NULL)
@@ -45,7 +45,7 @@ char	*ft_strncat(char *dest, char const *src, t_size n)
 	t_size	length;
 	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (dest == NULL)
 		return (NULL);
 	if (src == NULL)
@@ -77,7 +77,7 @@ t_size	ft_strlcat(char *dest, char const *src, t_size size)
 	t_size	src_len;
 	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (dest == NULL || src == NULL)
 		return (0);
 #endif

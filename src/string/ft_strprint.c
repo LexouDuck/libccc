@@ -24,7 +24,7 @@ char	*ft_strprint(char const *str)
 	t_size	index = 0;
 	t_size	i = 0;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (NULL);
 #endif

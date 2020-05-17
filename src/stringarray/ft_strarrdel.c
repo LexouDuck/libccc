@@ -20,7 +20,7 @@ void	ft_strarrdel(char ***a_strarr)
 {
 	int		i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (a_strarr == NULL)
 		return ;
 #endif

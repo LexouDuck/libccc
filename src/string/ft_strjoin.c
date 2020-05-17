@@ -22,7 +22,7 @@ char	*ft_strjoin(char const *str1, char const *str2)
 	t_size	length2;
 	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str1 == NULL || str2 == NULL)
 		return (NULL);
 #endif

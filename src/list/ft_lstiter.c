@@ -16,7 +16,7 @@
 
 void	ft_lstiter(s_list *lst, void (*f)(s_list *elem))
 {
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (lst == NULL || f == NULL)
 		return ;
 #endif
@@ -33,7 +33,7 @@ void	ft_lstiteri(s_list *lst, void (*f)(s_list *elem, t_u32 index))
 {
 	t_u32 i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (lst == NULL || f == NULL)
 		return ;
 #endif

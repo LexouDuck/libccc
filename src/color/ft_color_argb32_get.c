@@ -45,7 +45,7 @@ t_u32			*ft_color_argb32_get_nearest(
 	t_u32	min;
 	t_u32	*result;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (colors == NULL)
 		return (NULL);
 #endif

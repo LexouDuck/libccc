@@ -47,7 +47,7 @@ int			ft_str_to_float_checkinvalid(char const *str, char **result_tmp)
 	t_size	count_p;
 	t_size	count_e;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (ERROR);
 #endif

@@ -18,7 +18,7 @@
 
 t_bool		ft_float_to_str_checkspecial(t_f32 number, char **result)
 {
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (result == NULL)
 		return (FALSE);
 #endif

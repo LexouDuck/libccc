@@ -22,7 +22,7 @@ char	*ft_strrev(char const *str)
 	t_size	i;
 	t_size	j;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (NULL);
 #endif

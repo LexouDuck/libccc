@@ -30,7 +30,7 @@ s_list		*ft_lstmap(s_list *lst, s_list *(*f)(s_list *elem))
 	s_list	*result;
 	s_list	*current;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (lst == NULL || f == NULL)
 		return (NULL);
 #endif
@@ -57,7 +57,7 @@ s_list		*ft_lstmapi(s_list *lst, s_list *(*f)(s_list *elem, t_u32 index))
 	s_list	*current;
 	t_u32	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (lst == NULL || f == NULL)
 		return (NULL);
 #endif

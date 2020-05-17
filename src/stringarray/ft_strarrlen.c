@@ -18,7 +18,7 @@ t_u32		ft_strarrlen(char const **strarr)
 {
 	t_u32		i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (strarr == NULL)
 		return (0);
 #endif

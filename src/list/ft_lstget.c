@@ -18,7 +18,7 @@ s_list	*ft_lstget(s_list *lst, t_u32 index)
 {
 	t_u32	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (lst == NULL)
 		return (NULL);
 #endif
@@ -38,7 +38,7 @@ s_list	*ft_lstget(s_list *lst, t_u32 index)
 
 s_list	*ft_lstfind(s_list *lst, void const *query)
 {
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (lst == NULL)
 		return (NULL);
 #endif

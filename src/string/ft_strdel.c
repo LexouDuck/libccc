@@ -17,7 +17,7 @@
 
 inline void	ft_strdel(char **a_str)
 {
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (a_str == NULL)
 		return ;
 #endif

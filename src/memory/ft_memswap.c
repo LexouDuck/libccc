@@ -18,7 +18,7 @@ int			ft_memswap(void *ptr1, void *ptr2, t_size size)
 	t_u8	*p2;
 	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (ptr1 == NULL || ptr2 == NULL)
 		return (ERROR);
 #endif

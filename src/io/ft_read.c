@@ -44,7 +44,7 @@ int			ft_readfile(int const fd, char **file, t_size max)
 	char	*temp;
 	t_size	length;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (file == NULL)
 		return (ERROR);
 #endif

@@ -52,14 +52,14 @@
 **	If 0, then libft functions will always segfault when given NULL pointers.
 **	If 1, then all NULL pointer dereferences in libft functions will be avoided.
 */
-#define HANDLE_NULLPOINTERS		0
+#define LIBFTCONFIG_HANDLE_NULLPOINTERS		0
 
 /*
 **	This macro determines which math function implementations should be used.
 **	If 1, the libft fast approximate functions will be used (precision error margin: 0.0001)
 **	If 0, the builtin libc functions will be used
 */
-#define LIBFTCONFIG_FAST_APPROX_MATH	0
+#define LIBFTCONFIG_FAST_APPROX_MATH		0
 
 
 

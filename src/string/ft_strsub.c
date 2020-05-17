@@ -21,7 +21,7 @@ char	*ft_strsub(char const *str, t_size index, t_size n)
 	t_size	length;
 	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (NULL);
 #endif

@@ -20,7 +20,7 @@ s_list	*ft_lstsub(s_list *lst, t_u32 index, t_u32 n)
 	s_list	*result_lst;
 	s_list	*tmp;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (lst == NULL)
 		return (NULL);
 #endif

@@ -19,7 +19,7 @@ t_bool	ft_str_to_bool(char const *str)
 {
 	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (FALSE);
 #endif

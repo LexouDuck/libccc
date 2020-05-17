@@ -126,7 +126,7 @@ t_u64				ft_hex_to_u64(char const *str)
 	t_u64	result;
 	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (0);
 #endif

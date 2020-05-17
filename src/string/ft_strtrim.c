@@ -35,7 +35,7 @@ char			*ft_strtrim(char const *str, char const *charset)
 	t_size	offset;
 	t_size	length;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || charset == NULL)
 		return (NULL);
 #endif
@@ -59,7 +59,7 @@ char			*ft_strtrim_l(char const *str, char const *charset)
 	t_size	i;
 	t_size	length;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || charset == NULL)
 		return (NULL);
 #endif
@@ -83,7 +83,7 @@ char			*ft_strtrim_r(char const *str, char const *charset)
 	t_size	i;
 	t_size	length;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || charset == NULL)
 		return (NULL);
 #endif

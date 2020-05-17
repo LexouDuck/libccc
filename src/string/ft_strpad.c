@@ -22,7 +22,7 @@ char	*ft_strpad(char const *str, char c, t_size size)
 	t_size	length;
 	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (NULL);
 #endif
@@ -56,7 +56,7 @@ char	*ft_strpad_l(char const *str, char c, t_size size)
 	t_size	length;
 	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (NULL);
 #endif
@@ -88,7 +88,7 @@ char	*ft_strpad_r(char const *str, char c, t_size size)
 	char	*result;
 	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (NULL);
 #endif

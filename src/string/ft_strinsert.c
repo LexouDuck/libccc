@@ -22,7 +22,7 @@ char	*ft_strinsert(char const *dest, char const *src, t_size offset)
 	t_size	len_src;
 	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (dest == NULL || src == NULL)
 		return (NULL);
 #endif

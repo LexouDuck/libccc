@@ -18,7 +18,7 @@ char	*ft_strchr(char const *str, char c)
 {
 	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (NULL);
 #endif
@@ -40,7 +40,7 @@ char	*ft_strrchr(char const *str, char c)
 {
 	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (NULL);
 #endif
@@ -65,7 +65,7 @@ char	*ft_strnchr(char const *str, char c, t_size n)
 {
 	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (NULL);
 #endif
@@ -87,7 +87,7 @@ t_s32	ft_strichr(char const *str, char c)
 {
 	t_s32	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (-1);
 #endif

@@ -20,7 +20,7 @@ char	*ft_strdup(char const *str)
 	char	*result;
 	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (NULL);
 #endif

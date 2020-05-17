@@ -20,7 +20,7 @@ static t_size	ft_s_to_strbase_getlength(char const *base)
 	t_size	i;
 	t_size	j;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (base == NULL)
 		return (0);
 #endif

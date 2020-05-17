@@ -23,7 +23,7 @@ void	**ft_lst_to_array(s_list **alst)
 	t_u32	count;
 	t_u32	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (alst == NULL)
 		return (NULL);
 #endif
@@ -51,7 +51,7 @@ s_tuple	*ft_lst_to_tuple(s_list **alst, s_tuple *result)
 	t_u32	count;
 	t_u32	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (alst == NULL || *alst == NULL)
 		return (NULL);
 #endif

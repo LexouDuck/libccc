@@ -18,7 +18,7 @@ inline t_size	ft_strlen(char const *str)
 {
 	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (0);
 #endif

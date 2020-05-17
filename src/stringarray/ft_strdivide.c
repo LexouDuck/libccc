@@ -22,7 +22,7 @@ char	**ft_strdivide(const char *str, t_size n)
 	t_size	len;
 	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (NULL);
 #endif

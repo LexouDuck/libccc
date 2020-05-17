@@ -20,7 +20,7 @@ char	*ft_strstr(char const *str, char const *query)
 	t_size	match;
 	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || query == NULL)
 		return (NULL);
 #endif
@@ -55,7 +55,7 @@ char	*ft_strrstr(char const *str, char const *query)
 	t_size	match;
 	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || query == NULL)
 		return (NULL);
 #endif
@@ -89,7 +89,7 @@ char	*ft_strnstr(char const *str, char const *query, t_size n)
 	t_size	match;
 	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || query == NULL)
 		return (NULL);
 #endif
@@ -119,7 +119,7 @@ t_s32		ft_stristr(char const *str, char const *query)
 	t_size	i;
 	t_size	j;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || query == NULL)
 		return (-1);
 #endif

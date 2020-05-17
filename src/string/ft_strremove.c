@@ -23,7 +23,7 @@ char	*ft_strremove(char const *str, char const *query)
 	t_size	length_query;
 	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || query == NULL)
 		return (NULL);
 #endif

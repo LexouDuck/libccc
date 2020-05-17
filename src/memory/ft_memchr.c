@@ -19,7 +19,7 @@ void	*ft_memchr(void const *ptr, t_u8 byte, t_size n)
 	t_u8	*result;
 	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (ptr == NULL)
 		return (NULL);
 #endif

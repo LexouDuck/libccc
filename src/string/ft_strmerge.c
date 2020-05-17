@@ -18,7 +18,7 @@ char	*ft_strmerge(char **a_str1, char **a_str2)
 {
 	char	*result;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (a_str1 == NULL || a_str2 == NULL)
 		return (NULL);
 #endif
@@ -36,7 +36,7 @@ char	*ft_strappend(char **dest, char const *src)
 {
 	char	*tmp;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (dest == NULL || src == NULL)
 		return (NULL);
 #endif
@@ -52,7 +52,7 @@ char	*ft_strprepend(char const *src, char **dest)
 {
 	char	*tmp;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (dest == NULL || src == NULL)
 		return (NULL);
 #endif
@@ -68,7 +68,7 @@ char	*ft_strinsert_inplace(char **dest, char const *src, t_u32 index)
 {
 	char	*tmp;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (dest == NULL || src == NULL)
 		return (NULL);
 #endif

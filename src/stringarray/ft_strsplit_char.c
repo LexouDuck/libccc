@@ -52,7 +52,7 @@ char		**ft_strsplit_char(char const *str, char c)
 	int		count;
 	int		i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (NULL);
 #endif

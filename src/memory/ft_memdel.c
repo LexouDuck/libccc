@@ -16,7 +16,7 @@
 
 inline void	ft_memdel(void **ptr)
 {
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (ptr == NULL)
 		return ;
 #endif

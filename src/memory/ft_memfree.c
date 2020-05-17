@@ -22,7 +22,7 @@
 
 inline void	ft_memfree(void *ptr)
 {
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (ptr == NULL)
 		return ;
 #endif

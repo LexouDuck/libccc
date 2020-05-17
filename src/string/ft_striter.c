@@ -18,7 +18,7 @@ void	ft_striter(char *str, void (*f)(char *))
 {
 	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || f == NULL)
 		return ;
 #endif
@@ -36,7 +36,7 @@ void	ft_striteri(char *str, void (*f)(t_size, char *))
 {
 	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || f == NULL)
 		return ;
 #endif

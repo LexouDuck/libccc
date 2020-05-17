@@ -20,7 +20,7 @@ void	*ft_memdup(const void *ptr, t_size n)
 	t_u8	*source;
 	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (ptr == NULL)
 		return (NULL);
 #endif

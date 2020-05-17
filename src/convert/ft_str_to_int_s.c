@@ -21,7 +21,7 @@ t_s8	ft_str_to_s8(char const *str)
 	t_bool	negative;
 	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (0);
 #endif
@@ -54,7 +54,7 @@ t_s16	ft_str_to_s16(char const *str)
 	t_bool	negative;
 	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (0);
 #endif
@@ -87,7 +87,7 @@ t_s32	ft_str_to_s32(char const *str)
 	t_bool	negative;
 	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (0);
 #endif
@@ -120,7 +120,7 @@ t_s64	ft_str_to_s64(char const *str)
 	t_bool	negative;
 	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (0);
 #endif
