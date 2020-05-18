@@ -10,9 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_convert.h"
+#include "libft_memory.h"
 #include "libft_char.h"
 #include "libft_string.h"
+#include "libft_convert.h"
 
 
 
@@ -43,17 +44,17 @@ static char	*ft_str_to_float_toupper(char const *str)
 int			ft_str_to_float_checkinvalid(char const *str, char **result_tmp)
 {
 	char	*tmp;
-	size_t	count_p;
-	size_t	count_e;
+	t_size	count_p;
+	t_size	count_e;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (ERROR);
 #endif
 	*result_tmp = NULL;
 	if (str[0] == '\0' || !(tmp = ft_str_to_float_toupper(str)))
 		return (ERROR);
-	if (ft_strequ(tmp, "INF") || ft_strequ(tmp, "INFINITY") ||
+	if (ft_strequ(tmp,  "INF") || ft_strequ(tmp,  "INFINITY") ||
 		ft_strequ(tmp, "+INF") || ft_strequ(tmp, "+INFINITY") ||
 		ft_strequ(tmp, "-INF") || ft_strequ(tmp, "-INFINITY"))
 	{
@@ -66,7 +67,7 @@ int			ft_str_to_float_checkinvalid(char const *str, char **result_tmp)
 		count_p > 1 || (count_p == 0 && count_e > 1))
 	{
 		if (tmp)
-			free(tmp);
+			ft_memfree(tmp);
 		return (ERROR);
 	}
 	*result_tmp = tmp;

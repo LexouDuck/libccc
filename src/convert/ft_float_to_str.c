@@ -10,14 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_convert.h"
 #include "libft_string.h"
+#include "libft_math.h"
+#include "libft_convert.h"
 
 
 
 t_bool		ft_float_to_str_checkspecial(t_f32 number, char **result)
 {
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (result == NULL)
 		return (FALSE);
 #endif

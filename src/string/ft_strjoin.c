@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft_memory.h"
 #include "libft_string.h"
 
 
@@ -17,17 +18,17 @@
 char	*ft_strjoin(char const *str1, char const *str2)
 {
 	char	*result;
-	size_t	length1;
-	size_t	length2;
-	size_t	i;
+	t_size	length1;
+	t_size	length2;
+	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str1 == NULL || str2 == NULL)
 		return (NULL);
 #endif
 	length1 = ft_strlen(str1);
 	length2 = ft_strlen(str2);
-	if (!(result = (char *)malloc(length1 + length2 + 1)))
+	if (!(result = (char *)ft_memalloc(length1 + length2 + 1)))
 		return (NULL);
 	i = 0;
 	while (i < length1)

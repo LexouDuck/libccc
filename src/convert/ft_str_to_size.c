@@ -15,12 +15,12 @@
 
 
 
-size_t	ft_str_to_size(char const *str)
+t_size	ft_str_to_size(char const *str)
 {
-	size_t	result;
-	size_t	i;
+	t_size	result;
+	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (0);
 #endif

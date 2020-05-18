@@ -14,13 +14,13 @@
 
 
 
-void	*ft_memcpy(void *dest, void const *src, size_t n)
+void	*ft_memcpy(void *dest, void const *src, t_size n)
 {
 	t_u8	*result;
 	t_u8	*source;
-	size_t	i;
+	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (dest == NULL)
 		return (NULL);
 	if (src == NULL)
@@ -39,13 +39,13 @@ void	*ft_memcpy(void *dest, void const *src, size_t n)
 
 
 
-void	*ft_memccpy(void *dest, void const *src, t_u8 byte, size_t n)
+void	*ft_memccpy(void *dest, void const *src, t_u8 byte, t_size n)
 {
 	t_u8	*result;
 	t_u8	*source;
-	size_t	i;
+	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (dest == NULL || src == NULL)
 		return (NULL);
 #endif

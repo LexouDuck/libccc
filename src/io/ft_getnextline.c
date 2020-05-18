@@ -10,16 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_io.h"
-#include "libft_list.h"
+/*
+**	Functions used from <stdlib.h>:
+**	-	void	read(int fd, char* buffer, size_t n);
+*/
+#include <unistd.h>
+
+#include "libft_memory.h"
 #include "libft_string.h"
+#include "libft_list.h"
+#include "libft_io.h"
 
 
 
-static	void	gnl_deletelistitem(t_list **store, int fd, char **line)
+static	void	gnl_deletelistitem(s_list **store, int fd, char **line)
 {
-	t_list	*lst;
-	t_list	*result;
+	s_list	*lst;
+	s_list	*result;
 
 	*line = NULL;
 	result = NULL;
@@ -36,13 +43,13 @@ static	void	gnl_deletelistitem(t_list **store, int fd, char **line)
 	}
 	if (result)
 	{
-		free(result->item);
-		free(result);
+		ft_memfree(result->item);
+		ft_memfree(result);
 		result = NULL;
 	}
 }
 
-static	int		gnl_read(t_list *lst)
+static	int		gnl_read(s_list *lst)
 {
 	int		result;
 	char	buffer[BUFF_SIZE + 1];
@@ -58,21 +65,21 @@ static	int		gnl_read(t_list *lst)
 			buffer[result] = '\0';
 		if (!(lst->item = ft_strjoin(temp, buffer)))
 			return (0);
-		free(temp);
+		ft_memfree(temp);
 	}
 	return (result);
 }
 
-static	int		gnl_makeline(t_list *lst, char **line)
+static	int		gnl_makeline(s_list *lst, char **line)
 {
-	size_t	length;
-	size_t	space;
+	t_size	length;
+	t_size	space;
 	char	*str;
 
 	length = ft_strlen(lst->item);
 	str = lst->item;
-	space = (size_t)ft_strchr(str, '\n');
-	space = space ? (size_t)((char *)space - str) : length;
+	space = (t_size)ft_strchr(str, '\n');
+	space = space ? (t_size)((char *)space - str) : length;
 	*line = ft_strsub(lst->item, 0, space);
 	if (space == length)
 	{
@@ -80,19 +87,19 @@ static	int		gnl_makeline(t_list *lst, char **line)
 		return (GNL_LINE);
 	}
 	str = NULL;
-	if (!(str = (char *)malloc(length + 1)))
+	if (!(str = (char *)ft_memalloc(length + 1)))
 		return (GNL_ERROR);
 	ft_strcpy(str, (char *)lst->item + space + 1);
 	ft_strclr(lst->item);
 	ft_strcpy(lst->item, str);
-	free(str);
+	ft_memfree(str);
 	return (GNL_LINE);
 }
 
 int				ft_getnextline(int const fd, char **line)
 {
-	static t_list	*store = NULL;
-	t_list			*lst;
+	static s_list	*store = NULL;
+	s_list			*lst;
 
 	if (line == NULL || BUFF_SIZE < 0 || fd < 0)
 		return (GNL_ERROR);

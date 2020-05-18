@@ -10,40 +10,43 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_stat.h"
 #include "libft_memory.h"
+#include "libft_math.h"
+#include "libft_stat.h"
 
 
 
-t_list_float	ft_stat_new_flst(t_u32 len)
+s_list_float	ft_stat_new_flst(t_u32 len)
 {
-	t_list_float	res;
+	s_list_float	res;
 
 	res.data = NULL;
 	res.len = 0;
-	if (len == 0 || !(res.data = malloc(sizeof(t_int) * len)))
+	if (len == 0)
+		return (res);
+	if (!(res.data = (t_float*)ft_memalloc(sizeof(t_float) * len)))
 		return (res);
 	res.len = len;
 	return (res);
 }
 
-void			ft_stat_free_flst(t_list_float *flst)
+void			ft_stat_free_flst(s_list_float *flst)
 {
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (flst == NULL)
 		return ;
 #endif
 	if (flst->data)
 	{
-		free(flst->data);
+		ft_memfree(flst->data);
 		flst->data = NULL;
 	}
 	flst->len = 0;
 }
 
-t_list_float	ft_stat_flst_dup(t_list_float const flst)
+s_list_float	ft_stat_flst_dup(s_list_float const flst)
 {
-	t_list_float	res;
+	s_list_float	res;
 
 	res = ft_stat_new_flst(flst.len);
 	if (!res.data)
@@ -53,15 +56,15 @@ t_list_float	ft_stat_flst_dup(t_list_float const flst)
 	return (res);
 }
 
-t_list_float 	ft_stat_merge_flst(
-	t_list_float *start,
-	t_list_float *append)
+s_list_float 	ft_stat_merge_flst(
+	s_list_float *start,
+	s_list_float *append)
 {
-	t_list_float		res;
+	s_list_float		res;
 	t_u32				i;
 	t_u32				j;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (start == NULL || append == NULL)
 		return (NULL_LIST_FLOAT);
 #endif
@@ -94,7 +97,7 @@ t_list_float 	ft_stat_merge_flst(
 */
 void				ft_stat_quicksort_f_rec
 (
-	t_list_float	tmp_lst,
+	s_list_float	tmp_lst,
 	t_u32			start,
 	t_u32			end
 )
@@ -135,9 +138,9 @@ void				ft_stat_quicksort_f_rec
 		ft_stat_quicksort_f_rec(tmp_lst, pivot_id + 1, end);
 }
 
-t_list_float 		ft_stat_quicksort_f_new(t_list_float const flst)
+s_list_float 		ft_stat_quicksort_f_new(s_list_float const flst)
 {
-	t_list_float	res;
+	s_list_float	res;
 
 	if (flst.len <= 1)
 		return (flst);
@@ -146,40 +149,53 @@ t_list_float 		ft_stat_quicksort_f_new(t_list_float const flst)
 	return (res);
 }
 
-inline void			ft_stat_quicksort_f(t_list_float flst)
+inline void			ft_stat_quicksort_f(s_list_float flst)
 {
 	ft_stat_quicksort_f_rec(flst, 0, flst.len - 1);
 }
 
 
 
-inline t_float		ft_stat_median_f(t_sortedlist_float const flst)
+inline t_float		ft_stat_median_f(s_sortedlist_float const flst)
 {
 	return ((flst.len % 2) ?
 		flst.data[flst.len / 2] :
 		(flst.data[flst.len / 2] + flst.data[flst.len / 2 + 1]) / 2);
 }
 
-t_float				ft_stat_average_f(t_list_float const flst)
+t_float				ft_stat_average_f(s_list_float const flst)
 {
 	t_float		sum;
 	t_u32		i;
 
 	sum = 0.;
 	i = 0;
-	while (i < flst.len)
+	if (IS_INFINITY(flst.data[i] * flst.len * 1e6))
 	{
-		sum += flst.data[i];
-		++i;
+		t_float inv_len = (1. / flst.len);
+		while (i < flst.len)
+		{
+			sum += inv_len * flst.data[i];
+			++i;
+		}
+		return (sum);
 	}
-	return (sum / i);
+	else
+	{
+		while (i < flst.len)
+		{
+			sum += flst.data[i];
+			++i;
+		}
+		return (sum / i);
+	}
 }
 
 /*
 ** Using V(X) = E(X^2) - E(X)^2 rather than E( [X - E(X)]^2 ) which has more
 **	operations (n subtractions).
 */
-t_float				ft_stat_variance_f(t_list_float const flst)
+t_float				ft_stat_variance_f(s_list_float const flst)
 {
 	t_float		sum;
 	t_u32		i;
@@ -201,7 +217,7 @@ t_float				ft_stat_variance_f(t_list_float const flst)
 
 // TODO
 /*
-inline t_float		ft_stat_stddev_f(t_list_float const flst)
+inline t_float		ft_stat_stddev_f(s_list_float const flst)
 {
 	
 }

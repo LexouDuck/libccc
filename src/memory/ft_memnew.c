@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stringarray/ft_strarrdel.c                         :+:      :+:    :+:   */
+/*   memory/ft_memnew.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: duquesne <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,27 +11,21 @@
 /* ************************************************************************** */
 
 #include "libft_memory.h"
-#include "libft_string.h"
-#include "libft_stringarray.h"
 
 
 
-void	ft_strarrdel(char ***a_strarr)
+void	*ft_memnew(t_size size)
 {
-	int		i;
+	t_u8	*result;
+	t_size	i;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
-	if (a_strarr == NULL)
-		return ;
-#endif
-	if (*a_strarr)
+	if (!(result = (t_u8 *)ft_memalloc(size)))
+		return (NULL);
+	i = 0;
+	while (i < size)
 	{
-		i = 0;
-		while ((*a_strarr)[i])
-		{
-			ft_strdel((*a_strarr) + i);
-			++i;
-		}
-		ft_memdel((void**)a_strarr);
+		result[i] = 0;
+		++i;
 	}
+	return ((void *)result);
 }

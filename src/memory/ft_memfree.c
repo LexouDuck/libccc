@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stringarray/ft_strarrdel.c                         :+:      :+:    :+:   */
+/*   memory/ft_memfree.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: duquesne <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,28 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+**	Functions used from <stdlib.h>:
+**	-	void	free(void* ptr);
+*/
+#include <stdlib.h>
+
 #include "libft_memory.h"
-#include "libft_string.h"
-#include "libft_stringarray.h"
 
 
 
-void	ft_strarrdel(char ***a_strarr)
+inline void	ft_memfree(void *ptr)
 {
-	int		i;
-
 #if LIBFTCONFIG_HANDLE_NULLPOINTERS
-	if (a_strarr == NULL)
+	if (ptr == NULL)
 		return ;
 #endif
-	if (*a_strarr)
-	{
-		i = 0;
-		while ((*a_strarr)[i])
-		{
-			ft_strdel((*a_strarr) + i);
-			++i;
-		}
-		ft_memdel((void**)a_strarr);
-	}
+	free(ptr);
 }

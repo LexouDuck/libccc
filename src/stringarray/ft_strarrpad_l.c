@@ -21,7 +21,7 @@ char	**ft_strarrpad_l(const char **strarr, const char c, t_u32 n)
 	t_u32		strarr_length;
 	t_u32		i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (strarr == NULL)
 		return (NULL);
 #endif

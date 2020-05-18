@@ -10,32 +10,33 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft_memory.h"
 #include "libft_list.h"
 
 
 
-void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
+void	ft_lstdelone(s_list **alst, void (*del)(void *, t_size))
 {
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (alst == NULL || del == NULL)
 		return ;
 #endif
 	if (*alst)
 	{
 		del((*alst)->item, (*alst)->item_size);
-		free(*alst);
+		ft_memfree(*alst);
 		*alst = NULL;
 	}
 }
 
 
 
-void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
+void	ft_lstdel(s_list **alst, void (*del)(void *, t_size))
 {
-	t_list *lst;
-	t_list *tmp;
+	s_list *lst;
+	s_list *tmp;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (alst == NULL || del == NULL)
 		return ;
 #endif
@@ -45,19 +46,19 @@ void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 		del(lst->item, lst->item_size);
 		tmp = lst;
 		lst = lst->next;
-		free(tmp);
+		ft_memfree(tmp);
 	}
 	*alst = NULL;
 }
 
 
 
-void	ft_lstpop(t_list **alst, void (*del)(void *, size_t))
+void	ft_lstpop(s_list **alst, void (*del)(void *, t_size))
 {
-	t_list	*lst;
-	t_list	*lst_prev;
+	s_list	*lst;
+	s_list	*lst_prev;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (alst == NULL || del == NULL)
 		return ;
 #endif
@@ -68,7 +69,7 @@ void	ft_lstpop(t_list **alst, void (*del)(void *, size_t))
 		if (lst->next == NULL)
 		{
 			del((lst)->item, (lst)->item_size);
-			free(lst);
+			ft_memfree(lst);
 			if (lst_prev)
 				lst_prev->next = NULL;
 			return ;

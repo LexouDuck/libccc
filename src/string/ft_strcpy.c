@@ -16,9 +16,9 @@
 
 char	*ft_strcpy(char *dest, char const *src)
 {
-	size_t	i;
+	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (dest == NULL)
 		return (NULL);
 	if (src == NULL)
@@ -36,12 +36,12 @@ char	*ft_strcpy(char *dest, char const *src)
 
 
 
-char	*ft_strncpy(char *dest, char const *src, size_t n)
+char	*ft_strncpy(char *dest, char const *src, t_size n)
 {
 	char	*str;
-	size_t	i;
+	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (dest == NULL)
 		return (NULL);
 	if (src == NULL)
@@ -66,11 +66,11 @@ char	*ft_strncpy(char *dest, char const *src, size_t n)
 
 
 
-size_t	ft_strlcpy(char *dest, char const *src, size_t size)
+t_size	ft_strlcpy(char *dest, char const *src, t_size size)
 {
-	size_t	i;
+	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (dest == NULL || src == NULL)
 		return (0);
 #endif

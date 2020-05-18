@@ -57,7 +57,7 @@ char		*ft_strarrjoin(char const **strarr, char const *sep)
 	int		total_sep_char_nb;
 	int		total_char_nb;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (strarr == NULL || sep == NULL)
 		return (NULL);
 #endif

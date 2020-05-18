@@ -23,7 +23,7 @@ char		*ft_strrep_str(char const *str, char const *old, char const *new)
 	char	**strarr;
 	char	*result;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || old == NULL || new == NULL)
 		return (NULL);
 #endif
@@ -40,7 +40,7 @@ void		ft_strrep_char_inplace(char *str, char const old, char const new)
 	static char		old_as_str[2] = {0};
 	static char		new_as_str[2] = {0};
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return ;
 #endif
@@ -59,7 +59,7 @@ void		ft_strrep_charset_inplace(char *str, char const *old, char const *new)
 	t_u32	j;
 	int		c_i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || old == NULL || new == NULL)
 		return ;
 #endif
@@ -89,7 +89,7 @@ void	ft_strrep_str_inplace(char **a_str, char const *old, char const *new)
 {
 	char	*tmp;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (a_str == NULL || old == NULL || new == NULL)
 		return ;
 #endif

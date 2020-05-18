@@ -18,9 +18,9 @@
 t_u8	ft_str_to_u8(char const *str)
 {
 	t_u8	result;
-	size_t	i;
+	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (0);
 #endif
@@ -47,9 +47,9 @@ t_u8	ft_str_to_u8(char const *str)
 t_u16	ft_str_to_u16(char const *str)
 {
 	t_u16	result;
-	size_t	i;
+	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (0);
 #endif
@@ -76,9 +76,9 @@ t_u16	ft_str_to_u16(char const *str)
 t_u32	ft_str_to_u32(char const *str)
 {
 	t_u32	result;
-	size_t	i;
+	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (0);
 #endif
@@ -105,9 +105,9 @@ t_u32	ft_str_to_u32(char const *str)
 t_u64	ft_str_to_u64(char const *str)
 {
 	t_u64	result;
-	size_t	i;
+	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (0);
 #endif

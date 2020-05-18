@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft_memory.h"
 #include "libft_convert.h"
 
 
@@ -30,7 +31,7 @@ char	*ft_u8_to_str(t_u8 number)
 	}
 	if (i == 0)
 		digits[i++] = 0;
-	if (!(result = (char *)malloc(i + 1)))
+	if (!(result = (char *)ft_memalloc(i + 1)))
 		return (NULL);
 	n = 0;
 	while (i--)
@@ -57,7 +58,7 @@ char	*ft_u16_to_str(t_u16 number)
 	}
 	if (i == 0)
 		digits[i++] = 0;
-	if (!(result = (char *)malloc(i + 1)))
+	if (!(result = (char *)ft_memalloc(i + 1)))
 		return (NULL);
 	n = 0;
 	while (i--)
@@ -84,7 +85,7 @@ char	*ft_u32_to_str(t_u32 number)
 	}
 	if (i == 0)
 		digits[i++] = 0;
-	if (!(result = (char *)malloc(i + 1)))
+	if (!(result = (char *)ft_memalloc(i + 1)))
 		return (NULL);
 	n = 0;
 	while (i--)
@@ -111,7 +112,7 @@ char	*ft_u64_to_str(t_u64 number)
 	}
 	if (i == 0)
 		digits[i++] = 0;
-	if (!(result = (char *)malloc(i + 1)))
+	if (!(result = (char *)ft_memalloc(i + 1)))
 		return (NULL);
 	n = 0;
 	while (i--)

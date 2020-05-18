@@ -23,7 +23,7 @@ int	bool_equals(int a, int b)
 
 int	str_equals(char const* str1, char const* str2)
 {
-	size_t i;
+	t_size i;
 
 	if (str1 == str2)
 		return (TRUE);
@@ -43,7 +43,7 @@ int	str_equals(char const* str1, char const* str2)
 
 int str_equals_until(char const* str1, char const* str2, char c)
 {
-	size_t i;
+	t_size i;
 
 	if (str1 == str2)
 		return (TRUE);
@@ -103,7 +103,7 @@ int	strarr_equals(char const** strarr1, char const** strarr2)
 	return (FALSE);
 }
 
-char *print_memory(void const * ptr, size_t length)
+char *print_memory(void const *ptr, t_size length)
 {
 	char *	result;
 	t_u8	byte;
@@ -116,7 +116,7 @@ char *print_memory(void const * ptr, size_t length)
 		return (segstr);
 	if (!(result = (char *)malloc(length * 3)))
 		return (NULL);
-	for (size_t i = 0; i < length; ++i)
+	for (t_size i = 0; i < length; ++i)
 	{
 		byte = ((t_u8 const *)ptr)[i];
 		hi = ((byte >> 4) & 0xF);
@@ -128,17 +128,17 @@ char *print_memory(void const * ptr, size_t length)
 	return (result);
 }
 
-char	*str_padleft(char const *str, char c, size_t length)
+char	*str_padleft(char const *str, char c, t_size length)
 {
 	char	*result;
 	long	offset;
-	size_t	i;
+	t_size	i;
 
 	if (!(result = (char *)malloc(length + 1)))
 		return (NULL);
 	offset = length - strlen(str);
 	i = 0;
-	while (i < (size_t)offset)
+	while (i < (t_size)offset)
 	{
 		result[i] = c;
 		++i;
@@ -157,8 +157,8 @@ char*	str_to_escape(char const* str)
 	unsigned char HI_nibble;
 	unsigned char LO_nibble;
 	char*	result;
-	size_t	index = 0;
-	size_t	i = 0;
+	t_size	index = 0;
+	t_size	i = 0;
 
 	if (!str || !(result = (char *)malloc(strlen(str) * 4)))
 		return (NULL);
@@ -259,7 +259,7 @@ char	*int_u_to_str(t_u64 number)
 **	- CLOCK_PROCESS_CPUTIME_ID 	High-resolution per-process timer from the CPU.
 **	- CLOCK_THREAD_CPUTIME_ID 	Thread-specific CPU-time clock. 
 */
-inline void	timer_clock(t_time* result)
+inline void	timer_clock(s_time* result)
 {
 	if (clock_gettime(CLOCK_MONOTONIC, result) == -1)
 	{
@@ -270,9 +270,9 @@ inline void	timer_clock(t_time* result)
 
 /*	Define a 10e9 macro we use for nanosecond modulo */
 #define BILLION 1000000000L
-inline t_time timer_getdiff(t_time start, t_time end)
+inline s_time timer_getdiff(s_time start, s_time end)
 {
-	t_time result;
+	s_time result;
 	
 	result.tv_sec = end.tv_sec - start.tv_sec;
 	result.tv_nsec = end.tv_nsec - start.tv_nsec;
@@ -285,7 +285,7 @@ inline t_time timer_getdiff(t_time start, t_time end)
 }
 
 /* Returns negative if 'a' is lower than 'b', positive if 'b' > 'a' and 0 if equal. */
-inline t_s64 timer_compare(t_time a, t_time b)
+inline t_s64 timer_compare(s_time a, s_time b)
 {
 	if (a.tv_sec == b.tv_sec)
 		return (a.tv_nsec - b.tv_nsec);
@@ -294,7 +294,7 @@ inline t_s64 timer_compare(t_time a, t_time b)
 }
 
 /* prints the result of a timer (and potentially a comparison with the secondary timer) */
-void		print_timer_result(t_timer* t, t_s64 compare)
+void		print_timer_result(s_timer* t, t_s64 compare)
 {
 	char result1[64] = { 0 };
 	char result2[64] = { 0 };
@@ -362,7 +362,7 @@ void	print_test(
 			else printf("\n%s", test_name);
 			printf(" -> ");
 		}
-		else if (!g_test.flags.verbose && error)
+		else if (g_test.flags.verbose && error)
 			printf("%s (unnamed test) -> ", function);
 		else printf(", ");
 	}
@@ -386,6 +386,8 @@ void	print_test(
 	}
 	else if (g_test.flags.verbose)
 		printf(C_GREEN"OK!"C_RESET);
+	fflush(stdout);
+
 	previous_function = function;
 }
 
@@ -425,7 +427,7 @@ DEFINE_TESTFUNCTION_INT(t_u32, u32, u)
 DEFINE_TESTFUNCTION_INT(t_u64, u64, u)
 
 DEFINE_TESTFUNCTION_INT(t_bool, bool, u)
-DEFINE_TESTFUNCTION_INT(size_t, size, u)
+DEFINE_TESTFUNCTION_INT(t_size, size, u)
 
 
 
@@ -468,7 +470,7 @@ void	print_test_mem(
 		char const *function,
 		void const *result,
 		void const *expect,
-		size_t length,
+		t_size length,
 		int can_segfault)
 {
 	int error;
@@ -506,10 +508,10 @@ void	print_test_alloc(
 		char const *test_name,
 		char const *function,
 		char const *result,
-		size_t length)
+		t_size length)
 {
 	int		error = FALSE;
-	size_t	i;
+	t_size	i;
 
 	if (result == NULL)
 	{
@@ -549,7 +551,7 @@ void	print_test_strarr(
 {
 	int error = FALSE;
 	int length;
-	size_t i;
+	t_size i;
 	char *str_result;
 	char *str_expect;
 
@@ -566,7 +568,7 @@ void	print_test_strarr(
 	{
 		length += strlen(result[i]);
 	}
-	if (!(str_result = (char*)malloc(length + (i - 1) * 2)))
+	if (!(str_result = (char*)malloc(length + (i ? (i - 1) * 2 : 0))))
 		return ;
 	length = 0;
 	for (i = 0; result[i]; ++i)
@@ -580,8 +582,9 @@ void	print_test_strarr(
 		length += strlen(result[i]);
 	}
 
-	for (i = 0; expect[i]; ++i) length += strlen(expect[i]);
-	if (!(str_expect = (char*)malloc(length + (i - 1) * 2)))
+	for (i = 0; expect[i]; ++i)
+		length += strlen(expect[i]);
+	if (!(str_expect = (char*)malloc(length + (i ? (i - 1) * 2 : 0))))
 		return ;
 	length = 0;
 	for (i = 0; expect[i]; ++i)
@@ -610,7 +613,7 @@ void	print_test_strarr(
 void	print_test_lst(
 		char const *test_name,
 		char const *function,
-		t_list const *result,
+		s_list const *result,
 		char const *expect[],
 		int can_segfault)
 {
@@ -623,7 +626,7 @@ void	print_test_lst(
 		printf(" -> ");
 	}
 	else printf(", ");
-	t_list *lst = (t_list *)result;
+	s_list *lst = (s_list *)result;
 	t_u32 i = 0;
 	if (lst)
 	{
@@ -642,7 +645,7 @@ void	print_test_lst(
 	if (error)
 	{
 		printf(C_RED"Error:\n");
-		lst = (t_list *)result;
+		lst = (s_list *)result;
 		printf(">ft_%s: [", function);
 		while (lst)
 		{

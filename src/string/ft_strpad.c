@@ -10,22 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft_memory.h"
 #include "libft_string.h"
 
 
 
-char	*ft_strpad(char const *str, char c, size_t size)
+char	*ft_strpad(char const *str, char c, t_size size)
 {
 	char	*result;
-	size_t	offset;
-	size_t	length;
-	size_t	i;
+	t_size	offset;
+	t_size	length;
+	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (NULL);
 #endif
-	if (!(result = (char *)malloc(size + 1)))
+	if (!(result = (char *)ft_memalloc(size + 1)))
 		return (NULL);
 	i = 0;
 	while (i < size)
@@ -48,25 +49,25 @@ char	*ft_strpad(char const *str, char c, size_t size)
 
 
 
-char	*ft_strpad_l(char const *str, char c, size_t size)
+char	*ft_strpad_l(char const *str, char c, t_size size)
 {
 	char	*result;
-	size_t	offset;
-	size_t	length;
-	size_t	i;
+	t_size	offset;
+	t_size	length;
+	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (NULL);
 #endif
-	if (!(result = (char *)malloc(size + 1)))
+	if (!(result = (char *)ft_memalloc(size + 1)))
 		return (NULL);
 	length = 0;
 	while (str[length])
 		++length;
 	offset = size - length;
 	i = 0;
-	while (i < (size_t)offset)
+	while (i < (t_size)offset)
 	{
 		result[i] = c;
 		++i;
@@ -82,16 +83,16 @@ char	*ft_strpad_l(char const *str, char c, size_t size)
 
 
 
-char	*ft_strpad_r(char const *str, char c, size_t size)
+char	*ft_strpad_r(char const *str, char c, t_size size)
 {
 	char	*result;
-	size_t	i;
+	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (NULL);
 #endif
-	if (!(result = (char *)malloc(size + 1)))
+	if (!(result = (char *)ft_memalloc(size + 1)))
 		return (NULL);
 	i = 0;
 	while (i < size && str[i])

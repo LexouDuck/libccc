@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft_memory.h"
 #include "libft_string.h"
 
 
@@ -17,16 +18,16 @@
 char	*ft_strdup(char const *str)
 {
 	char	*result;
-	size_t	i;
+	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (NULL);
 #endif
 	i = 0;
 	while (str[i])
 		++i;
-	if (!(result = (char *)malloc(i + 1)))
+	if (!(result = (char *)ft_memalloc(i + 1)))
 		return (NULL);
 	i = 0;
 	while (str[i])

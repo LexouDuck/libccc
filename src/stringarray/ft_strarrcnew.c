@@ -16,7 +16,7 @@
 
 
 
-char	**ft_strarrcnew(t_u32 y, size_t x, const char c)
+char	**ft_strarrcnew(t_u32 y, t_size x, const char c)
 {
 	char	**strarr;
 	t_u32	i;

@@ -27,68 +27,68 @@
 ** ************************************************************************** *|
 */
 
-#define	FT_StringNew(n)							ft_strnew(n)
-#define	FT_StringSet(str, c)					ft_strset(str, c)
-#define	FT_StringClear(str)						ft_strclr(str)
-#define	FT_StringDelete(str)					ft_strdel(str)
-#define FT_StringDuplicate(str) 				ft_strdup(str)
-#define FT_StringCopy(dest, src)				ft_strcpy(dest, src)
-#define FT_StringCopy_N(dest, src, n)			ft_strncpy(dest, src, n)
-#define FT_StringCopy_L(dest, src, size)		ft_strlcpy(dest, src, size)
-#define FT_StringConcat(dest, src)				ft_strcat(dest, src)
-#define FT_StringConcat_N(dest, src, n)			ft_strncat(dest, src, n)
-#define FT_StringConcat_L(dest, src, size)		ft_strlcat(dest, src, size)
+#define String_New(n)							ft_strnew(n)
+#define String_Set(str, c)						ft_strset(str, c)
+#define String_Clear(str)						ft_strclr(str)
+#define String_Delete(str)						ft_strdel(str)
+#define String_Duplicate(str) 					ft_strdup(str)
+#define String_Copy(dest, src)					ft_strcpy(dest, src)
+#define String_Copy_N(dest, src, n)				ft_strncpy(dest, src, n)
+#define String_Copy_L(dest, src, size)			ft_strlcpy(dest, src, size)
+#define String_Concat(dest, src)				ft_strcat(dest, src)
+#define String_Concat_N(dest, src, n)			ft_strncat(dest, src, n)
+#define String_Concat_L(dest, src, size)		ft_strlcat(dest, src, size)
 
-#define	FT_StringLength(str)					ft_strlen(str)
-#define	FT_StringCompare(str1, str2)			ft_strcmp(str1, str2)
-#define	FT_StringCompare_N(str1, str2, n)		ft_strncmp(str1, str2, n)
-#define	FT_StringEquals(str1, str2)				ft_strequ(str1, str2)
-#define	FT_StringEquals_N(str1, str2, n)		ft_strnequ(str1, str2, n)
-#define	FT_StringHas(str, charset)				ft_strhas(str, charset)
-#define	FT_StringHasOnly(str, charset)			ft_strhasonly(str, charset)
-#define	FT_StringCount_Char(str, c)				ft_strcount_char(str, c)
-#define	FT_StringCount_Charset(str, charset)	ft_strcount_charset(str, charset)
-#define	FT_StringCount_String(str, query)		ft_strcount_str(str, query)
+#define String_Length(str)						ft_strlen(str)
+#define String_Compare(str1, str2)				ft_strcmp(str1, str2)
+#define String_Compare_N(str1, str2, n)			ft_strncmp(str1, str2, n)
+#define String_Equals(str1, str2)				ft_strequ(str1, str2)
+#define String_Equals_N(str1, str2, n)			ft_strnequ(str1, str2, n)
+#define String_Has(str, charset)				ft_strhas(str, charset)
+#define String_HasOnly(str, charset)			ft_strhasonly(str, charset)
+#define String_Count_Char(str, c)				ft_strcount_char(str, c)
+#define String_Count_Charset(str, charset)		ft_strcount_charset(str, charset)
+#define String_Count_String(str, query)			ft_strcount_str(str, query)
 
-#define	FT_StringFind_Char(str, c)				ft_strchr(str, c)
-#define FT_StringFind_CharIndex(str, c)			ft_strichr(str, c)
-#define	FT_StringFind_String(str, query)		ft_strstr(str, query)
-#define FT_StringFind_StringIndex(str, query)	ft_stristr(str, query)
-#define	FT_StringFind_R_Char(str, c)			ft_strrchr(str, c)
-#define	FT_StringFind_R_String(str, query)		ft_strrstr(str, query)
-#define	FT_StringFind_N_Char(str, c, n)			ft_strnchr(str, c, n)
-#define	FT_StringFind_N_String(str, query, n)	ft_strnstr(str, query, n)
-#define FT_StringRemove(str, query)				ft_strremove(str, query)
-#define	FT_StringToEscape(str)					ft_strtoescape(str)
-//#define	FT_StringReplace_Char(str, old, new)	ft_strrep_char(str, old, new)
-//#define	FT_StringReplace_Charset(str, old, new)	ft_strrep_charset(str, old, new)
-#define	FT_StringReplace_String(str, old, new)	ft_strrep_str(str, old, new)
+#define String_Find_Char(str, c)				ft_strchr(str, c)
+#define String_Find_CharIndex(str, c)			ft_strichr(str, c)
+#define String_Find_String(str, query)			ft_strstr(str, query)
+#define String_Find_StringIndex(str, query)		ft_stristr(str, query)
+#define String_Find_R_Char(str, c)				ft_strrchr(str, c)
+#define String_Find_R_String(str, query)		ft_strrstr(str, query)
+#define String_Find_N_Char(str, c, n)			ft_strnchr(str, c, n)
+#define String_Find_N_String(str, query, n)		ft_strnstr(str, query, n)
+#define String_Remove(str, query)				ft_strremove(str, query)
+#define String_ToEscape(str)					ft_strtoescape(str)
+#define String_Replace_Char(str, old, new)		ft_strrep_char(str, old, new)
+#define String_Replace_Charset(str, old, new)	ft_strrep_charset(str, old, new)
+#define String_Replace_String(str, old, new)	ft_strrep_str(str, old, new)
 
-#define FT_StringMerge(a_s1, a_s2)				ft_strmerge(a_s1, a_s2)
-#define FT_StringAppend(dest, src)				ft_strappend(dest, src)
-#define FT_StringPrepend(src, dest)				ft_strprepend(src, dest)
-#define FT_StringInsert_InPlace(dest, src, index)		ft_strinsert_inplace(dest, src, index)
-#define	FT_StringReplace_Char_InPlace(str, old, new)	ft_strrep_char_inplace(str, old, new)
-#define	FT_StringReplace_Charset_InPlace(str, old, new)	ft_strrep_charset_inplace(str, old, new)
-#define	FT_StringReplace_String_InPlace(str, old, new)	ft_strrep_str_inplace(str, old, new)
-#define FT_StringMap_InPlace(a_str, f)			ft_strmap_inplace(a_str, f)
+#define String_Merge(a_s1, a_s2)						ft_strmerge(a_s1, a_s2)
+#define String_Append(dest, src)						ft_strappend(dest, src)
+#define String_Prepend(src, dest)						ft_strprepend(src, dest)
+#define String_Insert_InPlace(dest, src, index)			ft_strinsert_inplace(dest, src, index)
+#define String_Replace_Char_InPlace(str, old, new)		ft_strrep_char_inplace(str, old, new)
+#define String_Replace_Charset_InPlace(str, old, new)	ft_strrep_charset_inplace(str, old, new)
+#define String_Replace_String_InPlace(str, old, new)	ft_strrep_str_inplace(str, old, new)
+#define String_Map_InPlace(a_str, f)					ft_strmap_inplace(a_str, f)
 
-#define	FT_StringTrim(str, charset)				ft_strtrim(str, charset)
-#define	FT_StringTrim_L(str, charset)			ft_strtrim_l(str, charset)
-#define	FT_StringTrim_R(str, charset)			ft_strtrim_r(str, charset)
-#define	FT_StringPad(str, c, size)				ft_strpad(str, c, size)
-#define	FT_StringPad_L(str, c, size)			ft_strpad_l(str, c, size)
-#define	FT_StringPad_R(str, c, size)			ft_strpad_r(str, c, size)
-#define FT_String_To_PrintableString(str)		ft_strprint(str)
+#define String_Trim(str, charset)			ft_strtrim(str, charset)
+#define String_Trim_L(str, charset)			ft_strtrim_l(str, charset)
+#define String_Trim_R(str, charset)			ft_strtrim_r(str, charset)
+#define String_Pad(str, c, size)			ft_strpad(str, c, size)
+#define String_Pad_L(str, c, size)			ft_strpad_l(str, c, size)
+#define String_Pad_R(str, c, size)			ft_strpad_r(str, c, size)
+#define String_ToPrintableString(str)		ft_strprint(str)
 
-#define	FT_StringReverse(str)					ft_strrev(str)
-#define	FT_StringJoin(str1, str2)				ft_strjoin(str1, str2)
-#define	FT_StringInsert(dest, src, index)		ft_strinsert(dest, src, index)
-#define	FT_StringSub(str, index, n)				ft_strsub(str, index, n)
-#define FT_StringIterate(str, f)				ft_striter(str, f)
-#define FT_StringIterate_I(str, f)				ft_striteri(str, f)
-#define FT_StringMap(str, f)					ft_strmap(str, f)
-#define FT_StringMap_I(str, f)					ft_strmapi(str, f)
+#define String_Reverse(str)					ft_strrev(str)
+#define String_Join(str1, str2)				ft_strjoin(str1, str2)
+#define String_Insert(dest, src, index)		ft_strinsert(dest, src, index)
+#define String_Sub(str, index, n)			ft_strsub(str, index, n)
+#define String_Iterate(str, f)				ft_striter(str, f)
+#define String_Iterate_I(str, f)			ft_striteri(str, f)
+#define String_Map(str, f)					ft_strmap(str, f)
+#define String_Map_I(str, f)				ft_strmapi(str, f)
 
 
 
@@ -117,7 +117,7 @@
 **	Creates a new string instance of the given 'size',
 **	allocating 'n' bytes of memory, and setting every char to '\0'.
 */
-char	*ft_strnew(size_t n);
+char	*ft_strnew(t_size n);
 
 /*
 **	Sets every byte of the given string 'str' to 'c', only stopping upon
@@ -151,14 +151,14 @@ char	*ft_strcpy(char *dest, char const *src);
 **	Copies the first 'n' characters of the given string 'src' into 'dest',
 **	and returns 'dest' (no allocation is performed).
 */
-char	*ft_strncpy(char *dest, char const *src, size_t n);
+char	*ft_strncpy(char *dest, char const *src, t_size n);
 
 /*
 **	Copies the given string 'src' into 'dest', null-terminating the result
 **	(the '\0' is placed at: ('dest' + 'size' - 1)),
 **	and returns the resulting size of 'dest'.
 */
-size_t	ft_strlcpy(char *dest, char const *src, size_t size);
+t_size	ft_strlcpy(char *dest, char const *src, t_size size);
 
 /*
 **	Concatenates the given string 'src' to the end of 'dest',
@@ -170,14 +170,14 @@ char	*ft_strcat(char *dest, char const *src);
 **	Concatenates the first 'n' characters of the given string 'src'
 **	to the end of 'dest', and returns 'dest'.
 */
-char	*ft_strncat(char *dest, char const *src, size_t n);
+char	*ft_strncat(char *dest, char const *src, t_size n);
 
 /*
 **	Concatenates characters of the given string 'src' to the end of 'dest',
 **	null-terminating the result (places the '\0' at ('dest' + 'size' - 1)),
 **	and returns the resulting size of 'dest'.
 */
-size_t	ft_strlcat(char *dest, char const *src, size_t size);
+t_size	ft_strlcat(char *dest, char const *src, t_size size);
 
 
 
@@ -190,7 +190,7 @@ size_t	ft_strlcat(char *dest, char const *src, size_t size);
 /*
 **	Returns the length of the given null-terminated string 'str'.
 */
-size_t	ft_strlen(char const *str);
+t_size	ft_strlen(char const *str);
 
 /*
 **	Compares the two given strings, and returns the first difference
@@ -203,7 +203,7 @@ int		ft_strcmp(char const *str1, char const *str2);
 **	Compares at most 'n' chars of the two given strings, and returns
 **	the first difference of characters encountered: (str1[i] - str2[i]).
 */
-int		ft_strncmp(char const *str1, char const *str2, size_t n);
+int		ft_strncmp(char const *str1, char const *str2, t_size n);
 
 /*
 **	Returns 1 if the two given strings match, and 0 otherwise.
@@ -214,7 +214,7 @@ t_bool	ft_strequ(char const *str1, char const *str2);
 **	Returns 1 if the first 'n' chars of the two given strings match,
 **	and returns 0 if this is not the case.
 */
-t_bool	ft_strnequ(char const *str1, char const *str2, size_t n);
+t_bool	ft_strnequ(char const *str1, char const *str2, t_size n);
 
 /*
 **	Returns 1 if the given string 'str' contains at least one occurence
@@ -231,18 +231,18 @@ t_bool	ft_strhasonly(char const *str, char const *charset);
 /*
 **	Returns the amount of occurences of char 'c' in the given string 'str'.
 */
-size_t	ft_strcount_char(char const *str, char c);
+t_size	ft_strcount_char(char const *str, char c);
 
 /*
 **	Returns the amount of occurences of chars in 'cset' in the given string
 **	'str'.
 */
-size_t	ft_strcount_charset(char const *str, char const *cset);
+t_size	ft_strcount_charset(char const *str, char const *cset);
 
 /*
 **	Returns the amount of occurences of 'query' in the given string 'str'.
 */
-size_t	ft_strcount_str(char const *str, char const *query);
+t_size	ft_strcount_str(char const *str, char const *query);
 
 
 
@@ -293,14 +293,14 @@ char	*ft_strrstr(char const *str, char const *query);
 **	in the given string 'str' (or NULL if nothing matched),
 **	searching only the first 'n' characters of 'str'.
 */
-char	*ft_strnchr(char const *str, char c, size_t n);
+char	*ft_strnchr(char const *str, char c, t_size n);
 
 /*
 **	Returns the first occurence of the string 'query' inside
 **	the given string 'str' (or NULL if nothing matched),
 **	searching only the first 'n' characters of 'str'.
 */
-char	*ft_strnstr(char const *str, char const *query, size_t n);
+char	*ft_strnstr(char const *str, char const *query, t_size n);
 
 /*
 **	Returns a new null-terminated string which is a copy of 'str',
@@ -438,21 +438,21 @@ char	*ft_strtrim_r(char const *str, char const *charset);
 **	'length' characters long, by padding it with 'c' chars on both sides
 **	if the desired 'length' is larger than 'str'.
 */
-char	*ft_strpad(char const *str, char c, size_t length);
+char	*ft_strpad(char const *str, char c, t_size length);
 
 /*
 **	Returns a new null-terminated string duplicate of 'str' which is
 **	'length' characters long, by padding it with 'c' chars on its
 **	left side if the desired 'length' is larger than 'str'.
 */
-char	*ft_strpad_l(char const *str, char c, size_t length);
+char	*ft_strpad_l(char const *str, char c, t_size length);
 
 /*
 **	Returns a new null-terminated string duplicate of 'str' which is
 **	'length' characters long, by padding it with 'c' chars on its
 **	right side if the desired 'length' is larger than 'str'.
 */
-char	*ft_strpad_r(char const *str, char c, size_t length);
+char	*ft_strpad_r(char const *str, char c, t_size length);
 
 /*
 **	Returns a new null-terminated string where every non-printable character
@@ -483,13 +483,13 @@ char	*ft_strjoin(char const *str1, char const *str2);
 **	Returns a reallocated version of the given string 'dest', in which
 **	the string 'str' has been inserted at the index 'offset'.
 */
-char	*ft_strinsert(char const *dest, char const *src, size_t offset);
+char	*ft_strinsert(char const *dest, char const *src, t_size offset);
 
 /*
 **	Returns a new null-terminated string which is a subsection of 'str',
 **	starting at char index 'index' and copying 'n' characters.
 */
-char	*ft_strsub(char const *str, size_t index, size_t n);
+char	*ft_strsub(char const *str, t_size index, t_size n);
 
 /*
 **	Iterates upon each character of the given string 'str',
@@ -501,7 +501,7 @@ void	ft_striter(char *str, void (*f)(char *));
 **	Iterates upon each character of the given string 'str',
 **	applying the function 'f' to each of its chars (with index information).
 */
-void	ft_striteri(char *str, void (*f)(size_t, char *));
+void	ft_striteri(char *str, void (*f)(t_size, char *));
 
 /*
 **	Creates a new null-terminated string by iterating upon the string 'str',
@@ -513,6 +513,6 @@ char	*ft_strmap(char const *str, char (*f)(char));
 **	Creates a new null-terminated string by iterating upon the string 'str',
 **	applying the function 'f' to each of its chars (with index information).
 */
-char	*ft_strmapi(char const *str, char (*f)(size_t, char));
+char	*ft_strmapi(char const *str, char (*f)(t_size, char));
 
 #endif

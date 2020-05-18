@@ -22,7 +22,7 @@ char	**ft_strarrsub(const char **strarr, t_u32 start, t_u32 n)
 	t_u32		length;
 	t_u32		i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (strarr == NULL)
 		return (NULL);
 #endif

@@ -1,4 +1,5 @@
 
+#include "libft_math.h"
 #include "libft_convert.h"
 
 #include "test.h"
@@ -23,7 +24,7 @@ void	print_test_s8_to_str(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT(s8_to_str, number)
 /*
-	t_timer t = {0};
+	s_timer t = {0};
 	char* result;
 	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = ft_s8_to_str(number); timer_clock(&t.end1); } else result = segstr;
 */
@@ -411,11 +412,11 @@ void	test_f64_to_str(void)
 
 
 /*
-**	char*	ft_size_to_str(size_t n);
+**	char*	ft_size_to_str(t_size n);
 */
 void	print_test_size_to_str(char const* test_name, int can_segfault,
 		char const* expecting,
-		size_t number)
+		t_size number)
 {
 	TEST_PERFORM_RESULT(size_to_str, number)
 	print_test_str(test_name, "_size_to_str", result_libft, expecting, can_segfault);
@@ -1302,13 +1303,13 @@ void	test_str_to_bool(void)
 
 
 /*
-**	size_t	ft_str_to_size(char const *str);
+**	t_size	ft_str_to_size(char const *str);
 */
 void	print_test_str_to_size(char const* test_name, int can_segfault,
-		size_t expecting,
+		t_size expecting,
 		char const* str)
 {
-	TEST_PERFORM_RESULT_TYPE(size_t, str_to_size, str)
+	TEST_PERFORM_RESULT_TYPE(t_size, str_to_size, str)
 	print_test_size(test_name, "_str_to_size", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS_ESCAPED(str)

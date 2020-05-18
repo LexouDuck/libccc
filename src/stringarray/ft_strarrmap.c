@@ -21,7 +21,7 @@ char		**ft_strarrmap(char const **strarr, char *(*f)(char const *))
 	t_u32	i;
 	char	**result;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (strarr == NULL || *strarr == NULL || f == NULL)
 		return (NULL);
 #endif
@@ -43,7 +43,7 @@ void		ft_strarrmap_inplace(char ***a_strarr, char *(*f)(char *))
 	t_u32	i;
 	char	*tmp;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (a_strarr == NULL || *a_strarr == NULL || f == NULL)
 		return ;
 #endif

@@ -10,15 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft_memory.h"
 #include "libft_list.h"
 
 
 
-t_list	*ft_lstnew(void *item, size_t item_size)
+s_list	*ft_lstnew(void *item, t_size item_size)
 {
-	t_list *result;
+	s_list *result;
 
-	if (!(result = (t_list *)malloc(sizeof(t_list))))
+	if (!(result = (s_list *)ft_memalloc(sizeof(s_list))))
 		return (NULL);
 	result->item = item;
 	result->item_size = (item ? item_size : 0);

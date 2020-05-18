@@ -14,10 +14,17 @@
 #define LIBFT_H
 
 /*
-**	TODO	libft_math			+ tests
-**	TODO	libft_stat			+ tests
+**	TODO	libft_color			+ tests
 **	TODO	libft_random		+ tests
 **	TODO	libft_stringarray	+ tests
+**	TODO	libft_io			+ tests
+**
+**	TODO	libft_time			+ tests
+**	TODO	libft_algebra		+ tests
+**	TODO	libft_complex		+ tests
+**	TODO	libft_fixedpoint	+ tests
+**	TODO	libft_compress		+ tests
+**	TODO	libft_socket		+ tests
 **	TODO	libft_vlq			+ tests
 */
 
@@ -28,31 +35,67 @@
 */
 
 /*
-**	Functions used:
-**	-	void*	malloc(size_t n);
-**	-	void	free(void* ptr);
-*/
-#include <stdlib.h>
-
-/*
 **	Included for the standard defined stable primitive int & uint types
 */
+#include <stddef.h>
 #include <inttypes.h>
 
+
+
 /*
 ** ************************************************************************** *|
-**                                  Macros                                    *|
+**                            Library Configuration                           *|
 ** ************************************************************************** *|
 */
 
 /*
-**	This macro determines how NULL pointers are to be handled
+**	This macro determines how NULL pointer arguments are to be handled
+**	If 0, then libft functions will always segfault when given NULL pointers.
 **	If 1, then all NULL pointer dereferences in libft functions will be avoided.
-**	Otherwise if 0, then libft functions will always segfault when given NULLs.
 */
-#define HANDLE_NULLPOINTERS		0
+#define LIBFTCONFIG_HANDLE_NULLPOINTERS		0
+
+/*
+**	This macro determines which math function implementations should be used.
+**	If 1, the libft fast approximate functions will be used (precision error margin: 0.0001)
+**	If 0, the builtin libc functions will be used
+*/
+#define LIBFTCONFIG_FAST_APPROX_MATH		0
 
 
+
+/*
+**	This macro sets the default 't_uint' default unsigned integer type to use:
+**	_UINT_8_	for 8-bit uint	[0, 255]
+**	_UINT_16_	for 16-bit uint	[0, 65535]
+**	_UINT_32_	for 32-bit uint	[0, 2147483647]
+**	_UINT_64_	for 64-bit uint	[0, 18446744073709551615]
+*/
+#define _UINT_64_
+/*
+**	This macro sets the default 't_int' default signed integer type to use:
+**	_INT_8_		for 8-bit int	[-128, 127]
+**	_INT_16_	for 16-bit int	[-32648, 32647]
+**	_INT_32_	for 32-bit int	[-2147483648, 2147483647]
+**	_INT_64_	for 64-bit int	[-9223372036854775808, +9223372036854775807]
+*/
+#define _INT_64_
+/*
+**	The following macro sets what the 't_float' default floating-point type should be.
+**	_FLOAT_32_	for 32-bit IEEE 754 standard precision floating-point number
+**	_FLOAT_64_	for 64-bit IEEE 754 double-precision floating-point number
+**	_FLOAT_80_	for 80-bit x86 extended-precision floating-point number (not available on Mac/Clang; will default to 128)
+**	_FLOAT_128_	for 128-bit IEEE 754 quadruple-precision floating-point number (GNU GCC 4.3 and up)
+*/
+#define _FLOAT_64_
+
+
+
+/*
+** ************************************************************************** *|
+**                             Common Definitions                             *|
+** ************************************************************************** *|
+*/
 
 /*
 **	Define the common useful macros for writing some pseudo-boolean syntax.
@@ -101,44 +144,6 @@
 */
 
 
-/*
-**	Define some useful string literals for some of the common number bases
-**	and other useful charsets.
-*/
-#ifndef __CHARSETS_BASES__
-#define __CHARSETS_BASES__
-#define CHARSET_BINARY		"01"
-#define CHARSET_OCTAL		"01234567"
-#define CHARSET_DECIMAL		"0123456789"
-#define CHARSET_HEX_LOWER	"0123456789abcdef"
-#define CHARSET_HEX_UPPER	"0123456789ABCDEF"
-#endif
-
-#define CHARSET_WHITESPACE	"\t\f\v\n "
-
-
-/*
-**	The following macro sets what the 't_float' type should be.
-**	_FLOAT_32_ means a 32-bit IEEE 754 standard precision float
-**	_FLOAT_64_ means a 64-bit "double" precision float
-*/
-#define _FLOAT_32_
-/*
-**	This macro sets the default 't_uint' unsigned integer type to use:
-**	_UINT_8_	for 8-bit uint	[0, 255]
-**	_UINT_16_	for 16-bit uint	[0, 65535]
-**	_UINT_32_	for 32-bit uint	[0, 2147483647]
-**	_UINT_64_	for 64-bit uint	[0, 18446744073709551615]
-*/
-#define _UINT_32_
-/*
-**	This macro sets the default 't_int' signed integer type to use:
-**	_INT_8_		for 8-bit int	[-128, 127]
-**	_INT_16_	for 16-bit int	[-32648, 32647]
-**	_INT_32_	for 32-bit int	[-2147483648, 2147483647]
-**	_INT_64_	for 64-bit int	[-9223372036854775808, +9223372036854775807]
-*/
-#define _INT_32_
 
 /*
 ** ************************************************************************** *|
@@ -164,36 +169,61 @@ typedef	int64_t			t_s64;
 typedef float			t_f32;
 typedef double			t_f64;
 
+#if defined(__clang__)
+
+//TODO handle t_f80
+typedef long double		t_f128;
+
+#else
+
+typedef long double		t_f80;
+typedef __float128		t_f128;
+
+#endif
+
 
 
 /*
-** More care should be used with the default int/uint types: know your
-** compiler
+**	Much care should be used with the default int/uint types:
+**	This obviously depends on you knowing your compiler
 */
 #ifdef _UINT_8_
-typedef t_u8			t_uint;
+typedef t_u8		t_uint;
 #endif
 #ifdef _UINT_16_
-typedef t_u16			t_uint;
+typedef t_u16		t_uint;
 #endif
 #ifdef _UINT_32_
-typedef t_u32			t_uint;
+typedef t_u32		t_uint;
 #endif
 #ifdef _UINT_64_
-typedef t_u64			t_uint;
+typedef t_u64		t_uint;
 #endif
 
 #ifdef _INT_8_
-typedef t_s8			t_int;
+typedef t_s8		t_int;
 #endif
 #ifdef _INT_16_
-typedef t_s16			t_int;
+typedef t_s16		t_int;
 #endif
 #ifdef _INT_32_
-typedef t_s32			t_int;
+typedef t_s32		t_int;
 #endif
 #ifdef _INT_64_
-typedef t_s64			t_int;
+typedef t_s64		t_int;
+#endif
+
+#ifdef _FLOAT_32_
+typedef t_f32		t_float;
+#endif
+#ifdef _FLOAT_64_
+typedef t_f64		t_float;
+#endif
+#ifdef _FLOAT_80_
+typedef t_f80		t_float;
+#endif
+#ifdef _FLOAT_128_
+typedef t_f128		t_float;
 #endif
 
 /*
@@ -206,93 +236,10 @@ typedef t_s64			t_int;
 */
 typedef uint_fast8_t	t_bool;
 
-
-
 /*
-** ************************************************************************** *|
-**                       Floating-point primitive types                       *|
-** ************************************************************************** *|
+**	This typedef is here purely for nomenclature consistency
 */
-
-/*
-**	This very small value is typically used to compare two float values.
-**	Floating point equality checks aren't the most dependable operation.
-*/
-#define FLOAT_BIAS		(1.0e-10)
-
-/*
-**	IEEE 754 32-bit floating point "single" precision bitwise macros
-*/
-#define F32_SIGNED			0x80000000
-#define F32_EXPONENT_BIAS	127
-#define F32_EXPONENT		0x7F800000
-#define F32_EXPONENT_ZERO	0x3F800000
-#define F32_EXPONENT_BITS	8
-#define F32_MANTISSA		0x007FFFFF
-#define F32_MANTISSA_SIGNED	0x807FFFFF
-#define F32_MANTISSA_BITS	23
-#define F32_INIT_VALUE		0x1.p-23
-
-/*
-**	IEEE 754 64-bit floating point "double" precision bitwise macros
-*/
-#define F64_SIGNED			0x8000000000000000
-#define F64_EXPONENT_BIAS	1023
-#define F64_EXPONENT		0x7FF0000000000000
-#define F64_EXPONENT_ZERO	0x3FF0000000000000
-#define F64_EXPONENT_BITS	11
-#define F64_MANTISSA		0x000FFFFFFFFFFFFF
-#define F64_MANTISSA_SIGNED	0x800FFFFFFFFFFFFF
-#define F64_MANTISSA_BITS	52
-#define F64_INIT_VALUE		0x1.p-52
-
-
-
-/*
-**	Depending on the 't_float' type (_FLOAT_32_ or _FLOAT_64_) chosen,
-**	the appropriate bitwise macros will be used by the math functions.
-**	It is often better to only use one type of floating-point precision
-**	for a given program, so the best way to do that is by using the 'FLOAT_'
-**	macros defined below, rather than the 'F32_' or 'F64_' macros above.
-*/
-
-#ifdef _FLOAT_32_
-typedef t_f32	t_float;
-#define FLOAT_SIGNED			F32_SIGNED
-#define FLOAT_EXPONENT_BIAS		F32_EXPONENT_BIAS
-#define FLOAT_EXPONENT			F32_EXPONENT
-#define FLOAT_EXPONENT_ZERO		F32_EXPONENT_ZERO
-#define FLOAT_EXPONENT_BITS		F32_EXPONENT_BITS
-#define FLOAT_MANTISSA			F32_MANTISSA
-#define FLOAT_MANTISSA_SIGNED	F32_MANTISSA_SIGNED
-#define FLOAT_MANTISSA_BITS		F32_MANTISSA_BITS
-#define FLOAT_INIT_VALUE		F32_INIT_VALUE
-#endif
-
-#ifdef _FLOAT_64_
-typedef t_f64	t_float;
-#define FLOAT_SIGNED			F64_SIGNED
-#define FLOAT_EXPONENT_BIAS		F64_EXPONENT_BIAS
-#define FLOAT_EXPONENT			F64_EXPONENT
-#define FLOAT_EXPONENT_ZERO		F64_EXPONENT_ZERO
-#define FLOAT_EXPONENT_BITS		F64_EXPONENT_BITS
-#define FLOAT_MANTISSA			F64_MANTISSA
-#define FLOAT_MANTISSA_SIGNED	F64_MANTISSA_SIGNED
-#define FLOAT_MANTISSA_BITS		F64_MANTISSA_BITS
-#define FLOAT_INIT_VALUE		F64_INIT_VALUE
-#endif
-
-
-
-#ifndef INFINITY
-#define INFINITY		(1. / 0.)
-#endif
-#define IS_INFINITY(x)	((x) == INFINITY || (x) == -INFINITY)
-
-#ifndef NAN
-#define NAN				(0. / 0.)
-#endif
-#define IS_NAN(x)		((x) != (x))
+typedef size_t			t_size;
 
 
 
@@ -307,7 +254,7 @@ typedef t_f64	t_float;
 ** They are used in particular when casting an <stdarg.h> var_arg to the
 ** appropriate type in ft_printf.
 */
-typedef union		u_varint
+typedef union		u_varint_
 {
 	t_s8			sc;
 	t_s16			ss;
@@ -317,12 +264,12 @@ typedef union		u_varint
 	t_u16			us;
 	t_u32			ui;
 	t_u64			ul;
-}					t_varint;
+}					u_varint;
 
-typedef union		u_varfloat
+typedef union		u_varfloat_
 {
 	t_f32			f;
 	t_f64			lf;
-}					t_varfloat;
+}					u_varfloat;
 
 #endif

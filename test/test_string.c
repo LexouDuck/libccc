@@ -14,10 +14,10 @@
 */
 
 /*
-**	char*	ft_strnew(size_t size);
+**	char*	ft_strnew(t_size size);
 */
 void	print_test_strnew(char const* test_name, int can_segfault,
-		size_t n)
+		t_size n)
 {
 	TEST_PERFORM_RESULT(strnew, n);
 	print_test_alloc(test_name, "strnew", result_libft, n);
@@ -153,13 +153,13 @@ void	test_strcpy(void)
 
 
 /*
-**	char*	ft_strncpy(char* dest, char const* src, size_t n);
+**	char*	ft_strncpy(char* dest, char const* src, t_size n);
 */
 void	print_test_strncpy(char const* test_name, int can_segfault,
 		char* dest_libft,
 		char* dest_libc,
 		char const* src,
-		size_t n)
+		t_size n)
 {
 	TEST_PERFORM_RESULT_LIBC_DEST(strncpy, src, n)
 	print_test_str(test_name, "strncpy 'dest' arg", dest_libft,   dest_libc,   can_segfault);
@@ -185,31 +185,41 @@ void	test_strncpy(void)
 
 
 /*
-**	size_t	ft_strlcpy(char* dest, char const* src, size_t size);
+**	t_size	ft_strlcpy(char* dest, char const* src, t_size size);
 */
 void	print_test_strlcpy(char const* test_name, int can_segfault,
+		t_size expecting,
+		char const * expecting_dest,
 		char* dest_libft,
 		char* dest_libc,
 		char const* src,
-		size_t size)
+		t_size size)
 {
-	TEST_PERFORM_RESULT_TYPE_LIBC_DEST(size_t, strlcpy, src, size)
+#ifdef __MINGW32__
+	TEST_PERFORM_RESULT_TYPE_DEST(t_size, strlcpy, src, size)
+	print_test_str(test_name, "strlcpy 'dest' arg", dest_libft,   expecting_dest, can_segfault);
+	print_test_size(NULL,     "strlcpy return",     result_libft, expecting,      can_segfault);
+#else
+	TEST_PERFORM_RESULT_TYPE_LIBC_DEST(t_size, strlcpy, src, size)
 	print_test_str(test_name, "strlcpy 'dest' arg", dest_libft, dest_libc, can_segfault);
 	print_test_size(NULL,     "strlcpy return", result_libft, result_libc, can_segfault);
+#endif
 	print_timer_result(&t, TRUE);
 }
 void	test_strlcpy(void)
 {
-	char str1[32] = { 0 };
-	char str2[32] = { 0 };
-//	| TEST FUNCTION   | TEST NAME           | CAN SEGV | TEST ARGS
-	print_test_strlcpy("strlcpy          ",  	FALSE,	str1, str2, " shindeiru", 5);
-	print_test_strlcpy("strlcpy (n = 0)  ",  	FALSE,	str1, str2, " shindeiru", 0);
-	print_test_strlcpy("strlcpy (n < len)",  	FALSE,	str1, str2, " shindeiru", 15);
-	print_test_strlcpy("strlcpy (n > len)",  	FALSE,	str1, str2, " shindeiru", 50);
-	print_test_strlcpy("strlcpy (null dest)",	TRUE,	NULL, NULL, " shindeiru", 5);
-	print_test_strlcpy("strlcpy (null src) ",	TRUE,	str1, str2, NULL,         5);
-	print_test_strlcpy("strlcpy (both null)",	TRUE,	NULL, NULL, NULL,         5);
+	char str1[32] = "______________________________";
+	char str2[32] = "______________________________";
+//	| TEST FUNCTION   | TEST NAME             |CAN SEGV| EXPECTING       | TEST ARGS
+	print_test_strlcpy("strlcpy               ", FALSE,	10, " shi",       str1, str2, " shindeiru", 5);
+	print_test_strlcpy("strlcpy               ", FALSE,	10, "testite",    str1, str2, "testitesty", 8);
+	print_test_strlcpy("strlcpy (chars > 0x7F)", FALSE,	2,  "\x12",       str1, str2, "\x12\xAB\0", 2);
+	print_test_strlcpy("strlcpy (n = 0)       ", FALSE,	10, "\x12",       str1, str2, " shindeiru", 0);
+	print_test_strlcpy("strlcpy (n > src_len) ", FALSE,	10, " shindeiru", str1, str2, " shindeiru", 15);
+	print_test_strlcpy("strlcpy (n > dest_len)", FALSE,	10, "shindeiru ", str1, str2, "shindeiru ", 50);
+	print_test_strlcpy("strlcpy (null dest)",	 SEGV,	0,  NULL,         NULL, NULL, " shindeiru", 5);
+	print_test_strlcpy("strlcpy (null src) ",	 SEGV,	0,  "shindeiru ", str1, str2, NULL,         5);
+	print_test_strlcpy("strlcpy (both null)",	 SEGV,	0,  NULL,         NULL, NULL, NULL,         5);
 	// TODO add overlapping memory test
 }
 
@@ -245,13 +255,13 @@ void	test_strcat(void)
 
 
 /*
-**	char*	ft_strncat(char* dest, char const* src, size_t n);
+**	char*	ft_strncat(char* dest, char const* src, t_size n);
 */
 void	print_test_strncat(char const* test_name, int can_segfault,
 		char* dest_libft,
 		char* dest_libc,
 		char const* src,
-		size_t n)
+		t_size n)
 {
 	TEST_PERFORM_RESULT_LIBC_DEST(strncat, src, n)
 	print_test_str(test_name, "strncat 'dest' arg", dest_libft,   dest_libc,   can_segfault);
@@ -278,33 +288,41 @@ void	test_strncat(void)
 
 
 /*
-**	size_t	ft_strlcat(char* dest, char const* src, size_t size);
+**	t_size	ft_strlcat(char* dest, char const* src, t_size size);
 */
 void	print_test_strlcat(char const* test_name, int can_segfault,
+		t_size expecting,
+		char const * expecting_dest,
 		char* dest_libft,
 		char* dest_libc,
 		char const* src,
-		size_t size)
+		t_size size)
 {
-	TEST_PERFORM_RESULT_TYPE_LIBC_DEST(size_t, strlcat, src, size)
+#ifdef __MINGW32__
+	TEST_PERFORM_RESULT_TYPE_DEST(t_size, strlcat, src, size)
+	print_test_str(test_name, "strlcat 'dest' arg", dest_libft,   expecting_dest, can_segfault);
+	print_test_size(NULL,     "strlcat return",     result_libft, expecting,      can_segfault);
+#else
+	TEST_PERFORM_RESULT_TYPE_LIBC_DEST(t_size, strlcat, src, size)
 	print_test_str(test_name, "strlcat 'dest' arg", dest_libft,   dest_libc,   can_segfault);
 	print_test_size(NULL,     "strlcat return",     result_libft, result_libc, can_segfault);
+#endif
 	print_timer_result(&t, TRUE);
 }
 void	test_strlcat(void)
 {
-	char str1[32];
-	char str2[32];
+	char str1[32] = "______________________________";
+	char str2[32] = "______________________________";
 	strcpy(str1, "Sponge\0");
 	strcpy(str2, "Sponge\0");
-//	| TEST FUNCTION   | TEST NAME           | CAN SEGV | TEST ARGS
-	print_test_strlcat("strlcat          ",  	FALSE,	str1, str2, " shindeiru", 5);
-	print_test_strlcat("strlcat (n = 0)  ",  	FALSE,	str1, str2, " shindeiru", 0);
-	print_test_strlcat("strlcat (n < len)",  	FALSE,	str1, str2, " shindeiru", 15);
-	print_test_strlcat("strlcat (n > len)",  	FALSE,	str1, str2, " shindeiru", 50);
-	print_test_strlcat("strlcat (null dest)",	TRUE,	NULL, NULL, " shindeiru", 5);
-	print_test_strlcat("strlcat (null src) ",	TRUE,	str1, str2, NULL,         5);
-	print_test_strlcat("strlcat (both null)",	TRUE,	NULL, NULL, NULL,         5);
+//	| TEST FUNCTION   | TEST NAME           |CAN SEGV| EXPECTING                    | TEST ARGS
+	print_test_strlcat("strlcat          ",   FALSE,  15, "Sponge",                   str1, str2, " shindeiru", 5);
+	print_test_strlcat("strlcat (n = 0)  ",   FALSE,  10, "Sponge",                   str1, str2, " shindeiru", 0);
+	print_test_strlcat("strlcat (n < len)",   FALSE,  16, "Sponge shindei",           str1, str2, " shindeiru", 15);
+	print_test_strlcat("strlcat (n > len)",   FALSE,  24, "Sponge shindei shindeiru", str1, str2, " shindeiru", 50);
+	print_test_strlcat("strlcat (null dest)", SEGV,   0,  NULL,                       NULL, NULL, " shindeiru", 5);
+	print_test_strlcat("strlcat (null src) ", SEGV,   0,  "Sponge shindei shindeiru", str1, str2, NULL,         5);
+	print_test_strlcat("strlcat (both null)", SEGV,   0,  NULL,                       NULL, NULL, NULL,         5);
 	// TODO add overlapping memory test
 }
 
@@ -319,12 +337,12 @@ void	test_strlcat(void)
 
 
 /*
-**	size_t	ft_strlen(char const *str);
+**	t_size	ft_strlen(char const *str);
 */
 void	print_test_strlen(char const* test_name, int can_segfault,
 		char const* str)
 {
-	TEST_PERFORM_RESULT_TYPE_LIBC(size_t, strlen, str)
+	TEST_PERFORM_RESULT_TYPE_LIBC(t_size, strlen, str)
 	print_test_size(test_name, "strlen return", result_libft, result_libc, can_segfault);
 	print_timer_result(&t, TRUE);
 }
@@ -362,12 +380,12 @@ void	test_strcmp(void)
 
 
 /*
-**	int		ft_strncmp(char const* str1, char const* str2, size_t n);
+**	int		ft_strncmp(char const* str1, char const* str2, t_size n);
 */
 void	print_test_strncmp(char const* test_name, int can_segfault,
 		char const* str1,
 		char const* str2,
-		size_t n)
+		t_size n)
 {
 	TEST_PERFORM_RESULT_TYPE_LIBC(int, strncmp, str1, str2, n)
 	print_test_s32(test_name, "strncmp return", result_libft, result_libc, can_segfault);
@@ -414,14 +432,14 @@ void	test_strequ(void)
 
 
 /*
-**	t_bool	ft_strnequ(char const* str1, char const* str2, size_t n)
+**	t_bool	ft_strnequ(char const* str1, char const* str2, t_size n)
 */
 // TODO check on which platforms this exists, if any
 void	print_test_strnequ(char const* test_name, int can_segfault,
 		int expecting,
 		char const* str1,
 		char const* str2,
-		size_t n)
+		t_size n)
 {
 	TEST_PERFORM_RESULT_TYPE(t_bool, strnequ, str1, str2, n)
 	print_test_bool(test_name, "_strnequ return", result_libft, expecting, can_segfault);
@@ -494,14 +512,14 @@ void	test_strhasonly(void)
 
 
 /*
-**	size_t	ft_strcount_char(char const* str, char c);
+**	t_size	ft_strcount_char(char const* str, char c);
 */
 void	print_test_strcount_char(char const* test_name, int can_segfault,
-		size_t expecting,
+		t_size expecting,
 		char const* str,
 		char c)
 {
-	TEST_PERFORM_RESULT_TYPE(size_t, strcount_char, str, c)
+	TEST_PERFORM_RESULT_TYPE(t_size, strcount_char, str, c)
 	print_test_size(test_name, "_strcount_char", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 }
@@ -518,14 +536,14 @@ void	test_strcount_char(void)
 
 
 /*
-**	size_t	ft_strcount_str(char const* str, char const* query);
+**	t_size	ft_strcount_str(char const* str, char const* query);
 */
 void	print_test_strcount_str(char const* test_name, int can_segfault,
-		size_t expecting,
+		t_size expecting,
 		char const* str,
 		char const* query)
 {
-	TEST_PERFORM_RESULT_TYPE(size_t, strcount_str, str, query)
+	TEST_PERFORM_RESULT_TYPE(t_size, strcount_str, str, query)
 	print_test_size(test_name, "_strcount_str", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 }
@@ -649,13 +667,13 @@ void	test_strrstr(void)
 
 
 /*
-**	char*	ft_strnchr(char const* str, int c, size_t n);
+**	char*	ft_strnchr(char const* str, int c, t_size n);
 */
 void	print_test_strnchr(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str,
 		int c,
-		size_t n)
+		t_size n)
 {
 	TEST_PERFORM_RESULT(strnchr, str, c, n)
 	print_test_str(test_name, "_strnchr return", result_libft, expecting, can_segfault);
@@ -678,30 +696,37 @@ void	test_strnchr(void)
 
 
 /*
-**	char*	ft_strnstr(char const* str, char const* query, size_t n);
+**	char*	ft_strnstr(char const* str, char const* query, t_size n);
 */
 void	print_test_strnstr(char const* test_name, int can_segfault,
+		char const* expecting,
 		char const* str,
 		char const* query,
-		size_t n)
+		t_size n)
 {
+#ifdef __MINGW32__
+	TEST_PERFORM_RESULT(strnstr, str, query, n)
+	print_test_str(test_name, "strnstr return", result_libft, expecting, can_segfault);
+#else
 	TEST_PERFORM_RESULT_LIBC(strnstr, str, query, n)
 	print_test_str(test_name, "strnstr return", result_libft, result_libc, can_segfault);
+#endif
 	print_timer_result(&t, TRUE);
 }
 void	test_strnstr(void)
 {
 //	| TEST FUNCTION  | TEST NAME             |CAN SEGV| EXPECTING | TEST ARGS
-	print_test_strnstr("strnstr              ",	FALSE, test1, "mou ", 16);
-	print_test_strnstr("strnstr              ",	FALSE, test1, "??",   test1_len);
-	print_test_strnstr("strnstr              ",	FALSE, test3, "???",  test3_len);
-	print_test_strnstr("strnstr (empty query)",	FALSE, test1, "\0",   16);
-	print_test_strnstr("strnstr (n = 0)      ",	FALSE, test1, "mou ", 0);
-	print_test_strnstr("strnstr (n = len)    ",	FALSE, test1, "_",    test1_len);
-	print_test_strnstr("strnstr (n > len)    ",	FALSE, test1, "_",    test1_len + 32);
-	print_test_strnstr("strnstr (null str)   ",	TRUE,  NULL,  "mou ", 16);
-	print_test_strnstr("strnstr (null query) ",	TRUE,  test1, NULL,   16);
-	print_test_strnstr("strnstr (both null)  ",	TRUE,  NULL,  NULL,   16);
+	print_test_strnstr("strnstr              ",	FALSE, test1 + 8,  test1, "mou ", 16);
+	print_test_strnstr("strnstr              ",	FALSE, NULL,       test1, "??",   test1_len);
+	print_test_strnstr("strnstr              ",	FALSE, test2 + 4,  test2, "??",   test2_len);
+	print_test_strnstr("strnstr              ",	FALSE, NULL,       test3, "???",  test3_len);
+	print_test_strnstr("strnstr (empty query)",	FALSE, test1,      test1, "\0",   16);
+	print_test_strnstr("strnstr (n = 0)      ",	FALSE, NULL,       test1, "mou ", 0);
+	print_test_strnstr("strnstr (n = len)    ",	FALSE, NULL,       test1, "_",    test1_len);
+	print_test_strnstr("strnstr (n > len)    ",	FALSE, NULL,       test1, "_",    test1_len + 32);
+	print_test_strnstr("strnstr (null str)   ",	TRUE,  segstr,     NULL,  "mou ", 16);
+	print_test_strnstr("strnstr (null query) ",	TRUE,  segstr,     test1, NULL,   16);
+	print_test_strnstr("strnstr (both null)  ",	TRUE,  segstr,     NULL,  NULL,   16);
 }
 
 
@@ -715,7 +740,7 @@ void	print_test_strremove(char const* test_name, int can_segfault,
 		char const* query)
 {
 //	TEST_PERFORM_RESULT_()
-	t_timer t = {0};
+	s_timer t = {0};
 //	TODO
 	print_timer_result(&t, FALSE);
 }
@@ -733,7 +758,7 @@ void	test_strremove(void)
 void	print_test_strtoescape(char const* test_name, int can_segfault,
 		char const* expecting)
 {
-	t_timer t = {0};
+	s_timer t = {0};
 //	TODO
 	print_timer_result(&t, FALSE);
 }
@@ -751,7 +776,7 @@ void	test_strtoescape(void)
 void	print_test_strrep_char(char const* test_name, int can_segfault,
 		char const* expecting)
 {
-	t_timer t = {0};
+	s_timer t = {0};
 //	TODO
 	print_timer_result(&t, FALSE);
 }
@@ -769,7 +794,7 @@ void	test_strrep_char(void)
 void	print_test_strrep_charset(char const* test_name, int can_segfault,
 		char const* expecting)
 {
-	t_timer t = {0};
+	s_timer t = {0};
 //	TODO
 	print_timer_result(&t, FALSE);
 }
@@ -787,7 +812,7 @@ void	test_strrep_charset(void)
 void	print_test_strrep_str(char const* test_name, int can_segfault,
 		char const* expecting)
 {
-	t_timer t = {0};
+	s_timer t = {0};
 //	TODO
 	print_timer_result(&t, FALSE);
 }
@@ -879,13 +904,13 @@ void	test_strtrim_r(void)
 
 
 /*
-**	char	*ft_strpad(char const *str, char c, size_t length);
+**	char	*ft_strpad(char const *str, char c, t_size length);
 */
 void	print_test_strpad(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const *str,
 		char c,
-		size_t length)
+		t_size length)
 {
 	TEST_PERFORM_RESULT(strpad, str, c, length)
 	print_test_str(test_name, "_strpad", result_libft, expecting, can_segfault);
@@ -901,13 +926,13 @@ void	test_strpad(void)
 
 
 /*
-**	char	*ft_strpad_l(char const *str, char c, size_t length);
+**	char	*ft_strpad_l(char const *str, char c, t_size length);
 */
 void	print_test_strpad_l(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const *str,
 		char c,
-		size_t length)
+		t_size length)
 {
 	TEST_PERFORM_RESULT(strpad_l, str, c, length)
 	print_test_str(test_name, "_strpad_l", result_libft, expecting, can_segfault);
@@ -923,13 +948,13 @@ void	test_strpad_l(void)
 
 
 /*
-**	char	*ft_strpad_r(char const *str, char c, size_t length);
+**	char	*ft_strpad_r(char const *str, char c, t_size length);
 */
 void	print_test_strpad_r(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const *str,
 		char c,
-		size_t length)
+		t_size length)
 {
 	TEST_PERFORM_RESULT(strpad_r, str, c, length)
 	print_test_str(test_name, "_strpad_r", result_libft, expecting, can_segfault);
@@ -1000,13 +1025,13 @@ void	test_strjoin(void)
 
 
 /*
-**	char	*ft_strinsert(char const *dest, char const *src, size_t offset);
+**	char	*ft_strinsert(char const *dest, char const *src, t_size offset);
 */
 void	print_test_strinsert(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const *dest,
 		char const *src,
-		size_t offset)
+		t_size offset)
 {
 	TEST_PERFORM_RESULT(strinsert, dest, src, offset)
 	print_test_str(test_name, "_strinsert", result_libft, expecting, can_segfault);
@@ -1022,13 +1047,13 @@ void	test_strinsert(void)
 
 
 /*
-**	char	*ft_strsub(char const *str, size_t offset, size_t n);
+**	char	*ft_strsub(char const *str, t_size offset, t_size n);
 */
 void	print_test_strsub(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const *str,
-		size_t offset,
-		size_t n)
+		t_size offset,
+		t_size n)
 {
 	TEST_PERFORM_RESULT(strsub, str, offset, n)
 	print_test_str(test_name, "_strsub", result_libft, expecting, can_segfault);
@@ -1053,7 +1078,7 @@ void	strtolower(char* c)
 		*c = tolower(*c);
 }
 
-void	strtolower_1on2(size_t i, char* c)
+void	strtolower_1on2(t_size i, char* c)
 {
 	if (i % 2 == 0 && isupper(*c))
 		*c = tolower(*c);
@@ -1066,7 +1091,7 @@ char	strtoupper(char c)
 	else return (c);
 }
 
-char	strtoupper_1on2(size_t i, char c)
+char	strtoupper_1on2(t_size i, char c)
 {
 	if (i % 2 == 1 && islower(c))
 		 return (toupper(c));
@@ -1101,12 +1126,12 @@ void	test_striter(void)
 
 
 /*
-**	void	ft_striteri(char *str, void (*f)(size_t, char *));
+**	void	ft_striteri(char *str, void (*f)(t_size, char *));
 */
 void	print_test_striteri(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str,
-		void (*f)(size_t, char*))
+		void (*f)(t_size, char*))
 {
 	char* result_libft = str == NULL ? NULL : strdup(str);
 	TEST_PERFORM(result_libft, striteri, result_libft, f)
@@ -1150,12 +1175,12 @@ void	test_strmap(void)
 
 
 /*
-**	char*	ft_strmapi(char const* str, char (*f)(size_t, char));
+**	char*	ft_strmapi(char const* str, char (*f)(t_size, char));
 */
 void	print_test_strmapi(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str,
-		char (*f)(size_t, char))
+		char (*f)(t_size, char))
 {
 	TEST_PERFORM_RESULT(strmapi, str, f)
 	print_test_str(test_name, "_strmapi", result_libft, expecting, can_segfault);
@@ -1183,9 +1208,9 @@ int		test_string(void)
 {
 	char*	str1;
 	char*	str2;
-	char const test1[] = "Omae wa mou shindeiru.";		size_t test1_len = strlen(test1) + 1;
-	char const test2[] = "Nani???";						size_t test2_len = strlen(test2) + 1;
-	char const test3[] = "Un ange mange de la fange.";	size_t test3_len = strlen(test3) + 1;
+	char const test1[] = "Omae wa mou shindeiru.";		t_size test1_len = strlen(test1) + 1;
+	char const test2[] = "Nani???";						t_size test2_len = strlen(test2) + 1;
+	char const test3[] = "Un ange mange de la fange.";	t_size test3_len = strlen(test3) + 1;
 	char**	strls;
 
 	print_suite_title("string");

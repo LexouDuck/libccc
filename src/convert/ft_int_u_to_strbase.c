@@ -10,16 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft_memory.h"
 #include "libft_convert.h"
 
 
 
-static size_t	ft_u_to_strbase_getlength(char const *base)
+static t_size	ft_u_to_strbase_getlength(char const *base)
 {
-	size_t	i;
-	size_t	j;
+	t_size	i;
+	t_size	j;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (base == NULL)
 		return (0);
 #endif
@@ -27,7 +28,7 @@ static size_t	ft_u_to_strbase_getlength(char const *base)
 	while (base[i])
 	{
 		j = i - 1;
-		while (j != (size_t)-1)
+		while (j != (t_size)-1)
 		{
 			if (base[i] == base[j])
 				return (0);
@@ -44,8 +45,8 @@ char			*ft_u8_to_strbase(t_u8 number, char const *base)
 {
 	char	*result;
 	char	digits[8];
-	size_t	length;
-	size_t	i;
+	t_size	length;
+	t_size	i;
 	t_u8	n;
 
 	length = ft_u_to_strbase_getlength(base);
@@ -60,7 +61,7 @@ char			*ft_u8_to_strbase(t_u8 number, char const *base)
 	}
 	if (i == 0)
 		digits[i++] = base[0];
-	if (!(result = (char *)malloc(i + 1)))
+	if (!(result = (char *)ft_memalloc(i + 1)))
 		return (NULL);
 	n = 0;
 	while (i--)
@@ -75,8 +76,8 @@ char			*ft_u16_to_strbase(t_u16 number, char const *base)
 {
 	char	*result;
 	char	digits[16];
-	size_t	length;
-	size_t	i;
+	t_size	length;
+	t_size	i;
 	t_u16	n;
 
 	length = ft_u_to_strbase_getlength(base);
@@ -91,7 +92,7 @@ char			*ft_u16_to_strbase(t_u16 number, char const *base)
 	}
 	if (i == 0)
 		digits[i++] = base[0];
-	if (!(result = (char *)malloc(i + 1)))
+	if (!(result = (char *)ft_memalloc(i + 1)))
 		return (NULL);
 	n = 0;
 	while (i--)
@@ -106,8 +107,8 @@ char			*ft_u32_to_strbase(t_u32 number, char const *base)
 {
 	char	*result;
 	char	digits[32];
-	size_t	length;
-	size_t	i;
+	t_size	length;
+	t_size	i;
 	t_u32	n;
 
 	length = ft_u_to_strbase_getlength(base);
@@ -122,7 +123,7 @@ char			*ft_u32_to_strbase(t_u32 number, char const *base)
 	}
 	if (i == 0)
 		digits[i++] = base[0];
-	if (!(result = (char *)malloc(i + 1)))
+	if (!(result = (char *)ft_memalloc(i + 1)))
 		return (NULL);
 	n = 0;
 	while (i--)
@@ -137,8 +138,8 @@ char			*ft_u64_to_strbase(t_u64 number, char const *base)
 {
 	char	*result;
 	char	digits[64];
-	size_t	length;
-	size_t	i;
+	t_size	length;
+	t_size	i;
 	t_u64	n;
 
 	length = ft_u_to_strbase_getlength(base);
@@ -153,7 +154,7 @@ char			*ft_u64_to_strbase(t_u64 number, char const *base)
 	}
 	if (i == 0)
 		digits[i++] = base[0];
-	if (!(result = (char *)malloc(i + 1)))
+	if (!(result = (char *)ft_memalloc(i + 1)))
 		return (NULL);
 	n = 0;
 	while (i--)

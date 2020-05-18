@@ -16,9 +16,9 @@
 
 int	ft_strcmp(char const *str1, char const *str2)
 {
-	size_t	i;
+	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str1 == str2)
 		return (0);
 	if (str1 == NULL || str2 == NULL)
@@ -37,11 +37,11 @@ int	ft_strcmp(char const *str1, char const *str2)
 
 
 
-int	ft_strncmp(char const *str1, char const *str2, size_t n)
+int	ft_strncmp(char const *str1, char const *str2, t_size n)
 {
-	size_t	i;
+	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str1 == str2)
 		return (0);
 	if (str1 == NULL || str2 == NULL)

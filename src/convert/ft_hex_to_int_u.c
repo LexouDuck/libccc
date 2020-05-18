@@ -31,7 +31,7 @@ static inline int	ft_hex_to_int_u_getdigit(char c)
 t_u8				ft_hex_to_u8(char const *str)
 {
 	t_u8	result;
-	size_t	i;
+	t_size	i;
 
 	i = 0;
 	while (!(('0' <= str[i] && str[i] <= '9') ||
@@ -62,7 +62,7 @@ t_u8				ft_hex_to_u8(char const *str)
 t_u16				ft_hex_to_u16(char const *str)
 {
 	t_u16	result;
-	size_t	i;
+	t_size	i;
 
 	i = 0;
 	while (!(('0' <= str[i] && str[i] <= '9') ||
@@ -93,7 +93,7 @@ t_u16				ft_hex_to_u16(char const *str)
 t_u32				ft_hex_to_u32(char const *str)
 {
 	t_u32	result;
-	size_t	i;
+	t_size	i;
 
 	i = 0;
 	while (!(('0' <= str[i] && str[i] <= '9') ||
@@ -124,9 +124,9 @@ t_u32				ft_hex_to_u32(char const *str)
 t_u64				ft_hex_to_u64(char const *str)
 {
 	t_u64	result;
-	size_t	i;
+	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (0);
 #endif

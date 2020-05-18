@@ -10,24 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft_memory.h"
 #include "libft_string.h"
 
 
 
-char	*ft_strinsert(char const *dest, char const *src, size_t offset)
+char	*ft_strinsert(char const *dest, char const *src, t_size offset)
 {
 	char	*result;
-	size_t	len_dst;
-	size_t	len_src;
-	size_t	i;
+	t_size	len_dst;
+	t_size	len_src;
+	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (dest == NULL || src == NULL)
 		return (NULL);
 #endif
 	len_dst = ft_strlen(dest);
 	len_src = ft_strlen(src);
-	if (!(result = (char *)malloc(len_dst + len_src + 1)))
+	if (!(result = (char *)ft_memalloc(len_dst + len_src + 1)))
 		return (NULL);
 	i = -1;
 	while (++i < offset)

@@ -10,26 +10,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft_memory.h"
 #include "libft_list.h"
 
 
 
-static void	ft_lstmap_delete(void *content, size_t content_size)
+static void	ft_lstmap_delete(void *content, t_size content_size)
 {
 	if (content && content_size > 0)
 	{
-		free(content);
+		ft_memfree(content);
 	}
 }
 
 
 
-t_list		*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
+s_list		*ft_lstmap(s_list *lst, s_list *(*f)(s_list *elem))
 {
-	t_list	*result;
-	t_list	*current;
+	s_list	*result;
+	s_list	*current;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (lst == NULL || f == NULL)
 		return (NULL);
 #endif
@@ -50,13 +51,13 @@ t_list		*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 
 
 
-t_list		*ft_lstmapi(t_list *lst, t_list *(*f)(t_list *elem, t_u32 index))
+s_list		*ft_lstmapi(s_list *lst, s_list *(*f)(s_list *elem, t_u32 index))
 {
-	t_list	*result;
-	t_list	*current;
+	s_list	*result;
+	s_list	*current;
 	t_u32	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (lst == NULL || f == NULL)
 		return (NULL);
 #endif

@@ -22,29 +22,27 @@
 #include "libft.h"
 #include "libft_string.h"
 
-#include <unistd.h>
-
 /*
 ** ************************************************************************** *|
 **                                    Macros                                  *|
 ** ************************************************************************** *|
 */
 
-#define FT_Read_File(fd, file, max)		ft_readfile(fd, file, max)
-#define FT_Read_NextLine(fd, line)		ft_getnextline(fd, line)
-#define FT_Read_Lines(fd, strls)		ft_readlines(fd, strls)
+#define IO_Read_File(fd, file, max)		ft_readfile(fd, file, max)
+#define IO_Read_NextLine(fd, line)		ft_getnextline(fd, line)
+#define IO_Read_Lines(fd, strls)		ft_readlines(fd, strls)
 
-#define FT_Write_Char(fd, c)			ft_write_char(fd, c)
-#define FT_Write_String(fd, str)		ft_write_str(fd, str)
-#define FT_Write_Line(fd, str)			ft_write_line(fd, str)
-#define FT_Write_Lines(fd, strls)		ft_write_strls(fd, strls)
-#define FT_Write_Memory(fd, ptr, cols)	ft_write_memory(fd, ptr, cols)
+#define IO_Write_Char(fd, c)			ft_write_char(fd, c)
+#define IO_Write_String(fd, str)		ft_write_str(fd, str)
+#define IO_Write_Line(fd, str)			ft_write_line(fd, str)
+#define IO_Write_Lines(fd, strls)		ft_write_strls(fd, strls)
+#define IO_Write_Memory(fd, ptr, cols)	ft_write_memory(fd, ptr, cols)
 
-#define FT_Output_Char(c)				ft_output_char(c)
-#define FT_Output_String(str)			ft_output_str(str)
-#define FT_Output_Line(str)				ft_output_line(str)
-#define FT_Output_Lines(strls)			ft_output_strls(strls)
-#define FT_Output_Memory(ptr, cols)		ft_output_memory(ptr, cols)
+#define IO_Output_Char(c)				ft_output_char(c)
+#define IO_Output_String(str)			ft_output_str(str)
+#define IO_Output_Line(str)				ft_output_line(str)
+#define IO_Output_Lines(strls)			ft_output_strls(strls)
+#define IO_Output_Memory(ptr, cols)		ft_output_memory(ptr, cols)
 
 
 
@@ -106,7 +104,7 @@
 **	Reads the contents of the file descriptor 'fd', and puts it into 'file'.
 **	Returns 0 if the stream was read successfully, 1 if there was an error.
 */
-int		ft_readfile(int const fd, char **file, size_t max);
+int		ft_readfile(int const fd, char **file, t_size max);
 
 /*
 **	Reads the contents of the file descriptor 'fd' line per line.
@@ -160,7 +158,7 @@ void	ft_write_strls(int fd, char const **strls);
 **	Writes hexadecimal memory in the null-terminated string 'str',
 **	writing lines of 'cols' columns of 4-byte chunks to 'fd'.
 */
-void	ft_write_memory(int fd, t_u8 const *ptr, size_t n, t_u8 cols);
+void	ft_write_memory(int fd, t_u8 const *ptr, t_size n, t_u8 cols);
 
 
 
@@ -195,6 +193,6 @@ void	ft_output_strls(char const **strls);
 **	Outputs hexadecimal memory in the null-terminated string 'str',
 **	writing lines of 'cols' columns of 4-byte chunks.
 */
-void	ft_output_memory(t_u8 const *ptr, size_t n, t_u8 cols);
+void	ft_output_memory(t_u8 const *ptr, t_size n, t_u8 cols);
 
 #endif

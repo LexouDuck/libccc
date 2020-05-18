@@ -14,17 +14,17 @@
 
 
 
-void	*ft_memdup(const void *ptr, size_t n)
+void	*ft_memdup(const void *ptr, t_size n)
 {
 	t_u8	*result;
 	t_u8	*source;
-	size_t	i;
+	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (ptr == NULL)
 		return (NULL);
 #endif
-	if (!(result = (t_u8 *)malloc(n)))
+	if (!(result = (t_u8 *)ft_memalloc(n)))
 		return (NULL);
 	source = (t_u8 *)ptr;
 	i = 0;

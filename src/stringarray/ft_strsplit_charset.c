@@ -65,7 +65,7 @@ char		**ft_strsplit_charset(const char *str, const char *sep_chars)
 	int		len;
 	char	**strarr;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || sep_chars == NULL)
 		return (NULL);
 #endif

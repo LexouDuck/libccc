@@ -24,7 +24,7 @@ void	print_test_strsplit(char const* test_name, int can_segfault,
 		char const* str,
 		char separator)
 {
-	t_timer t = {0};
+	s_timer t = {0};
 	char** result_libft;
 	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result_libft = ft_strsplit(str, separator); timer_clock(&t.end1); } else { result_libft = (char**)malloc(sizeof(char*)); *result_libft = segstr; }
 	print_test_strls(test_name, "_strsplit", (char const**)result_libft, expecting, can_segfault);
@@ -54,7 +54,7 @@ void	test_strsplit(char const** segstrls)
 void	print_test_strls_(char const* test_name, int can_segfault,
 		char const* expecting)
 {
-	t_timer t = {0};
+	s_timer t = {0};
 //	TODO
 	print_timer_result(&t, FALSE);
 }

@@ -10,8 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_io.h"
+/*
+**	Functions used from <stdlib.h>:
+**	-	void	read(int fd, char* buffer, size_t n);
+*/
+#include <unistd.h>
+
+#include "libft_memory.h"
 #include "libft_string.h"
+#include "libft_io.h"
 
 
 
@@ -21,7 +28,7 @@ static int	ft_readfile_error(int result, char **file)
 	{
 		if (*file)
 		{
-			free(*file);
+			ft_memfree(*file);
 			*file = NULL;
 		}
 		return (ERROR);
@@ -30,14 +37,14 @@ static int	ft_readfile_error(int result, char **file)
 		return (OK);
 }
 
-int			ft_readfile(int const fd, char **file, size_t max)
+int			ft_readfile(int const fd, char **file, t_size max)
 {
 	int		result;
 	char	buffer[BUFF_SIZE + 1];
 	char	*temp;
-	size_t	length;
+	t_size	length;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (file == NULL)
 		return (ERROR);
 #endif
@@ -53,7 +60,7 @@ int			ft_readfile(int const fd, char **file, size_t max)
 			buffer[result] = '\0';
 		if (!(*file = ft_strjoin(temp, buffer)))
 			return (ERROR);
-		free(temp);
+		ft_memfree(temp);
 	}
 	return (ft_readfile_error(result, file));
 }

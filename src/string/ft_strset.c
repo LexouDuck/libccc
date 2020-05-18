@@ -16,9 +16,9 @@
 
 inline void	ft_strset(char *str, char c)
 {
-	size_t	i;
+	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return ;
 #endif

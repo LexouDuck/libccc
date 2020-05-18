@@ -1,0 +1,295 @@
+   __   __ ___   _____ ______    ______ _____ ___  ______
+  / /  / // . | / ___//_  __/   /_  __//  __// __|/_  __/
+ / /_ / // , < / __/   / /       / /  /  _/ _\_ \  / /   
+/___//_//___-'/_/     /_/       /_/  /____/ \__-' /_/    
+                                  ==> by duquesne @ 42.fr
+=========================================================
+
+, Error:
+>ft_memclr/bzero (region after the '\0's): {00}
+>   memclr/bzero (region after the '\0's): {B1}
+
+memcmp (str)   -> Error:
+>ft_memcmp return: {-7}
+>   memcmp return: {-1}
+
+memfree -> Error:
+>ft_memfree arg: {}
+>   memfree arg: {(null)}
+
+=============================
+Test suite: libft_memory
+=============================
+- Amount of tests: 42
+- Tests: 3 failed / 39 passed
+- Success rate: 92.8571%
+
+
+=============================
+Test suite: libft_char
+=============================
+- Amount of tests: 2849
+- Tests: 0 failed / 2849 passed
+- Success rate: 100%
+
+
+
+strcmp         -> Error:
+>ft_strcmp return: {-7}
+>   strcmp return: {-1}
+=============================
+Test suite: libft_string
+=============================
+- Amount of tests: 126
+- Tests: 1 failed / 125 passed
+- Success rate: 99.2063%
+
+
+=============================
+Test suite: libft_stringarray
+=============================
+- Amount of tests: 0
+- Tests: 0 failed / 0 passed
+- Success rate: -1.#IND%
+
+
+
+f32_to_str                -> Error:
+>ft_f32_to_str: {1.0}
+>     Expected: {1}
+f32_to_str                -> Error:
+>ft_f32_to_str: {-1.0}
+>     Expected: {-1}
+f32_to_str                -> Error:
+>ft_f32_to_str: {-777.0}
+>     Expected: {-777.1}
+f32_to_str                -> Error:
+>ft_f32_to_str: {10000.0}
+>     Expected: {10000}
+f32_to_str                -> Error:
+>ft_f32_to_str: {123456792.0}
+>     Expected: {123456789}
+f32_to_str                -> Error:
+>ft_f32_to_str: {6.9696969985e17}
+>     Expected: {696969696969696969}
+f32_to_str                -> Error:
+>ft_f32_to_str: {-6.9696969985e17}
+>     Expected: {-696969696969696969}
+f32_to_str                -> Error:
+>ft_f32_to_str: {0.0000000030}
+>     Expected: {0.000000003}
+f32_to_str                -> Error:
+>ft_f32_to_str: {-0.0000000030}
+>     Expected: {-0.000000003}
+f32_to_str                -> Error:
+>ft_f32_to_str: {1.0000000000e-16}
+>     Expected: {0.0000000000000001}
+f32_to_str                -> Error:
+>ft_f32_to_str: {-1.0000000000e-16}
+>     Expected: {-0.0000000000000001}
+f32_to_str (n = max)      -> Error:
+>ft_f32_to_str: {9.2233715057e18}
+>     Expected: {9223372036854775807}
+f32_to_str (n = min)      -> Error:
+>ft_f32_to_str: {-9.2233715057e18}
+>     Expected: {-9223372036854775808}
+f32_to_str (n > max)      -> Error:
+>ft_f32_to_str: {9.2233715057e18}
+>     Expected: {9223372036854775808}
+f32_to_str (n < min)      -> Error:
+>ft_f32_to_str: {-9.2233715057e18}
+>     Expected: {-9223372036854775809}
+f32_to_str (n > maxdigit) -> Error:
+>ft_f32_to_str: {1.0000000000e21}
+>     Expected: {999999999999999999999}
+f32_to_str (n < maxdigit) -> Error:
+>ft_f32_to_str: {-1.0000000000e21}
+>     Expected: {-999999999999999999999}
+
+f64_to_str                -> Error:
+>ft_f64_to_str: {1.0}
+>     Expected: {1}
+f64_to_str                -> Error:
+>ft_f64_to_str: {-1.0}
+>     Expected: {-1}
+f64_to_str                -> Error:
+>ft_f64_to_str: {-777.0}
+>     Expected: {-777.1}
+f64_to_str                -> Error:
+>ft_f64_to_str: {10000.0}
+>     Expected: {10000}
+f64_to_str                -> Error:
+>ft_f64_to_str: {123456792.0}
+>     Expected: {123456789}
+f64_to_str                -> Error:
+>ft_f64_to_str: {6.9696970060e17}
+>     Expected: {696969696969696969}
+f64_to_str                -> Error:
+>ft_f64_to_str: {-6.9696970060e17}
+>     Expected: {-696969696969696969}
+f64_to_str                -> Error:
+>ft_f64_to_str: {0.0000000030}
+>     Expected: {0.000000003}
+f64_to_str                -> Error:
+>ft_f64_to_str: {-0.0000000030}
+>     Expected: {-0.000000003}
+f64_to_str                -> Error:
+>ft_f64_to_str: {1.0000000168e-16}
+>     Expected: {0.0000000000000001}
+f64_to_str                -> Error:
+>ft_f64_to_str: {-1.0000000168e-16}
+>     Expected: {-0.0000000000000001}
+f64_to_str (n = max)      -> Error:
+>ft_f64_to_str: {9.2233720368e18}
+>     Expected: {9223372036854775807}
+f64_to_str (n = min)      -> Error:
+>ft_f64_to_str: {-9.2233720368e18}
+>     Expected: {-9223372036854775808}
+f64_to_str (n > max)      -> Error:
+>ft_f64_to_str: {9.2233720368e18}
+>     Expected: {9223372036854775808}
+f64_to_str (n < min)      -> Error:
+>ft_f64_to_str: {-9.2233720368e18}
+>     Expected: {-9223372036854775809}
+f64_to_str (n > maxdigit) -> Error:
+>ft_f64_to_str: {1.0000000200e21}
+>     Expected: {999999999999999999999}
+f64_to_str (n < maxdigit) -> Error:
+>ft_f64_to_str: {-1.0000000200e21}
+>     Expected: {-999999999999999999999}
+f64_to_str (n > +huge)    -> Error:
+>ft_f64_to_str: {1.0000000200e20}
+>     Expected: {1.0000000000e20}
+f64_to_str (n < -huge)    -> Error:
+>ft_f64_to_str: {-1.0000000200e20}
+>     Expected: {-1.0000000000e20}
+f64_to_str (n < +tiny)    -> Error:
+>ft_f64_to_str: {9.999999682e-21}
+>     Expected: {1.000000000e-20}
+f64_to_str (n > -tiny)    -> Error:
+>ft_f64_to_str: {-9.999999682e-21}
+>     Expected: {-1.000000000e-20}
+size_to_str                -> Error:
+>ft_size_to_str: {3567587327}
+>      Expected: {999999999999}
+size_to_str (n = max)      -> Error:
+>ft_size_to_str: {4294967295}
+>      Expected: {18446744073709551615}
+u16_to_strbase (n = max, bin) -> Error:
+>ft_u16_to_strbase: {1111111111111111}
+>         Expected: {111111111111111}
+u32_to_strbase (n = max, bin) -> Error:
+>ft_u32_to_strbase: {11111111111111111111111111111111}
+>         Expected: {1111111111111111111111111111111}
+str_to_f64 -> Error:
+>ft_str_to_f64: {0.000000}
+>     Expected: {-1.#IND00}
+str_to_f64 -> Error:
+>ft_str_to_f64: {-1.500000}
+>     Expected: {-1.#IND00}
+str_to_f64 -> Error:
+>ft_str_to_f64: {-1.500000}
+>     Expected: {-1.#IND00}
+str_to_f64 -> Error:
+>ft_str_to_f64: {2.000000}
+>     Expected: {32.000000}
+str_to_f64 -> Error:
+>ft_str_to_f64: {-1.500000}
+>     Expected: {-1.#IND00}
+str_to_f64 -> Error:
+>ft_str_to_f64: {-1.500000}
+>     Expected: {-1.#IND00}
+str_to_f64 -> Error:
+>ft_str_to_f64: {56.000000}
+>     Expected: {224.000000}
+str_to_f64 -> Error:
+>ft_str_to_f64: {0.000000}
+>     Expected: {-1.#IND00}
+str_to_f64 -> Error:
+>ft_str_to_f64: {0.000000}
+>     Expected: {-1.#IND00}
+str_to_f64 -> Error:
+>ft_str_to_f64: {-1.#IND00}
+>     Expected: {0.700000}
+str_to_f64 -> Error:
+>ft_str_to_f64: {-1.#IND00}
+>     Expected: {456.780000}
+str_to_f64 -> Error:
+>ft_str_to_f64: {0.000000}
+>     Expected: {-1.#IND00}
+str_to_f64 -> Error:
+>ft_str_to_f64: {0.000000}
+>     Expected: {291.000000}
+=============================
+Test suite: libft_convert
+=============================
+- Amount of tests: 1014
+- Tests: 55 failed / 959 passed
+- Success rate: 94.5759%
+
+
+=============================
+Test suite: libft_color
+=============================
+- Amount of tests: 0
+- Tests: 0 failed / 0 passed
+- Success rate: -1.#IND%
+
+
+=============================
+Test suite: libft_list
+=============================
+- Amount of tests: 10
+- Tests: 0 failed / 10 passed
+- Success rate: 100%
+
+
+=============================
+Test suite: libft_math
+=============================
+- Amount of tests: 164000
+- Tests: 0 failed / 164000 passed
+- Success rate: 100%
+
+
+=============================
+Test suite: libft_stat
+=============================
+- Amount of tests: 0
+- Tests: 0 failed / 0 passed
+- Success rate: -1.#IND%
+
+
+=============================
+Test suite: libft_random
+=============================
+- Amount of tests: 0
+- Tests: 0 failed / 0 passed
+- Success rate: -1.#IND%
+
+
+=============================
+Test suite: libft_vlq
+=============================
+- Amount of tests: 0
+- Tests: 0 failed / 0 passed
+- Success rate: -1.#IND%
+
+
+=============================
+Test suite: libft_io
+=============================
+- Amount of tests: 0
+- Tests: 0 failed / 0 passed
+- Success rate: -1.#IND%
+
+
+=============================
+In total:
+=============================
+- Amount of tests: 168041
+- Tests: 59 failed / 167982 passed
+- Success rate: 99.9649%
+
+FAIL: Failed 59 out of 168041 tests in total.
+

@@ -15,6 +15,7 @@
 
 
 
+#if LIBFTCONFIG_FAST_APPROX_MATH
 t_float		ft_exp(t_float x)
 {
 	t_float		result;
@@ -40,9 +41,13 @@ t_float		ft_exp(t_float x)
 	}
 	return (result);
 }
+#else
+MATH_DECL_REALFUNCTION(exp, exp)
+#endif
 
 
 
+#if LIBFTCONFIG_FAST_APPROX_MATH
 /*
 ** The following pair of functions return the natural logarithm of x.
 ** ln(x) = ln(x*2^n) = n*ln(2) + ln(x) with 1 <= x < 2 and n = exp_b2
@@ -104,24 +109,35 @@ t_float			ft_ln(t_float x)
 	result = ft_ln_taylor_series(x - 1.);
 	return (result);
 }
+#else
+MATH_DECL_REALFUNCTION(ln, log)
+#endif
 
 
 
+#if LIBFTCONFIG_FAST_APPROX_MATH
 inline t_float	ft_lg(t_float x)
 {
 	return (ft_ln(x) / LN_2);
 }
+#else
+MATH_DECL_REALFUNCTION(lg, log2)
+#endif
 
 
 
+#if LIBFTCONFIG_FAST_APPROX_MATH
 inline t_float	ft_log(t_float x)
 {
 	return (ft_ln(x) / LN_10);
 }
+#else
+MATH_DECL_REALFUNCTION(log, log10)
+#endif
 
 
 
-inline t_float	ft_logn(t_float x, t_float n)
+inline t_float	ft_log_n(t_float x, t_float n)
 {
 	if (n == 2)
 		return (ft_lg(x));

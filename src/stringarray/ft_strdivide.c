@@ -15,14 +15,14 @@
 
 
 
-char	**ft_strdivide(const char *str, size_t n)
+char	**ft_strdivide(const char *str, t_size n)
 {
 	char	**result;
 	int		lines;
-	size_t	len;
-	size_t	i;
+	t_size	len;
+	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (NULL);
 #endif

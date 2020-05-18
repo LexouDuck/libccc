@@ -2,8 +2,7 @@ NAME	=	libft.a
 
 # Compiler
 CC		= _
-CC_WIN	= gcc
-#i686-w64-mingw32-gcc
+CC_WIN	= i686-w64-mingw32-gcc
 CC_LIN	= gcc
 CC_MAC	= gcc
 
@@ -33,8 +32,10 @@ endif
 
 DIR_MEMORY	:=	memory/
 SRC_MEMORY	:=	ft_memalloc.c	\
-				ft_memset.c		\
+				ft_memnew.c		\
+				ft_memfree.c	\
 				ft_memdel.c		\
+				ft_memset.c		\
 				ft_memcpy.c		\
 				ft_memdup.c		\
 				ft_memmove.c	\
@@ -305,7 +306,7 @@ TEST_SRC :=	$(TEST_DIR)main.c		\
 
 TEST_OBJ	=	${TEST_SRC:$(TEST_DIR)%.c=$(OBJDIR)%.o}
 
-TEST_CFLAGS			=	-g
+TEST_CFLAGS			=	-g -O2
 TEST_INCLUDEDIRS	=	-I$(HDRDIR) -I$(TEST_DIR)
 
 TEST_PROGRAM	=	libft_test
@@ -316,9 +317,11 @@ $(OBJDIR)%.o : $(TEST_DIR)%.c $(TEST_HDR)
 	@printf $(GREEN)"OK!"$(RESET)"\n"
 
 $(TEST_PROGRAM): $(NAME) $(TEST_OBJ) $(TEST_HDR)
+	@printf "Compiling testing program: "$@" -> "
 	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -o $(TEST_PROGRAM) $(TEST_OBJ) -L./ -lft
+	@printf $(GREEN)"OK!"$(RESET)"\n"
 
 test: $(TEST_PROGRAM)
-	@./$(TEST_PROGRAM) --verbose
+	@./$(TEST_PROGRAM) | sed -r "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2})?)?[mGK]//g" > libft_test_results.txt
 
 -include ${DEPENDS}

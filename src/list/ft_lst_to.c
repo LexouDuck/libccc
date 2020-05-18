@@ -15,22 +15,22 @@
 
 
 
-void	**ft_lst_to_array(t_list **alst)
+void	**ft_lst_to_array(s_list **alst)
 {
 	void	**result;
-	size_t	length;
-	t_list	*lst;
+	t_size	length;
+	s_list	*lst;
 	t_u32	count;
 	t_u32	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (alst == NULL)
 		return (NULL);
 #endif
 	lst = *alst;
 	count = ft_lstsize(lst);
 	length = (count + 1) * sizeof(void *);
-	if (!(result = (void **)malloc(length)))
+	if (!(result = (void **)ft_memalloc(length)))
 		return (NULL);
 	i = 0;
 	while (lst && i < count)
@@ -45,13 +45,13 @@ void	**ft_lst_to_array(t_list **alst)
 
 
 
-t_tuple	*ft_lst_to_tuple(t_list **alst, t_tuple *result)
+s_tuple	*ft_lst_to_tuple(s_list **alst, s_tuple *result)
 {
-	t_list	*lst;
+	s_list	*lst;
 	t_u32	count;
 	t_u32	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (alst == NULL || *alst == NULL)
 		return (NULL);
 #endif
@@ -65,7 +65,7 @@ t_tuple	*ft_lst_to_tuple(t_list **alst, t_tuple *result)
 			return (NULL);
 	}
 	result->length = (count + 1) * result->item_size;
-	if (!(result->items = (void *)malloc(result->length)))
+	if (!(result->items = (void *)ft_memalloc(result->length)))
 		return (NULL);
 	i = -1;
 	while (lst && ++i < count)

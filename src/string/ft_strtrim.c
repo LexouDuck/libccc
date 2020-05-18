@@ -16,7 +16,7 @@
 
 static t_bool	charset_contains(char const *charset, char c)
 {
-	size_t	i;
+	t_size	i;
 
 	i = 0;
 	while (charset[i])
@@ -32,10 +32,10 @@ static t_bool	charset_contains(char const *charset, char c)
 
 char			*ft_strtrim(char const *str, char const *charset)
 {
-	size_t	offset;
-	size_t	length;
+	t_size	offset;
+	t_size	length;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || charset == NULL)
 		return (NULL);
 #endif
@@ -56,10 +56,10 @@ char			*ft_strtrim(char const *str, char const *charset)
 
 char			*ft_strtrim_l(char const *str, char const *charset)
 {
-	size_t	i;
-	size_t	length;
+	t_size	i;
+	t_size	length;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || charset == NULL)
 		return (NULL);
 #endif
@@ -80,10 +80,10 @@ char			*ft_strtrim_l(char const *str, char const *charset)
 
 char			*ft_strtrim_r(char const *str, char const *charset)
 {
-	size_t	i;
-	size_t	length;
+	t_size	i;
+	t_size	length;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || charset == NULL)
 		return (NULL);
 #endif

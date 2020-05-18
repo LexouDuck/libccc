@@ -14,13 +14,13 @@
 
 
 
-t_list	*ft_lstcpy(t_list *lst)
+s_list	*ft_lstcpy(s_list *lst)
 {
-	t_list	*result;
-	t_list	*result_lst;
-	t_list	*tmp;
+	s_list	*result;
+	s_list	*result_lst;
+	s_list	*tmp;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (lst == NULL)
 		return (NULL);
 #endif

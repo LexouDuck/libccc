@@ -14,15 +14,15 @@
 
 
 
-int		ft_memcmp(void const *ptr1, void const *ptr2, size_t n)
+int		ft_memcmp(void const *ptr1, void const *ptr2, t_size n)
 {
 	t_u8	*p1;
 	t_u8	*p2;
-	size_t	i;
+	t_size	i;
 
 	p1 = (t_u8 *)ptr1;
 	p2 = (t_u8 *)ptr2;
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (ptr1 == NULL || ptr2 == NULL)
 	{
 		if (ptr1 == ptr2)

@@ -10,6 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+**	Functions used from <stdlib.h>:
+**	-	void	write(int fd, char* buffer, size_t n);
+*/
+#include <unistd.h>
+
 #include "libft_convert.h"
 #include "libft_io.h"
 
@@ -60,10 +66,10 @@ void		ft_write_strls(int fd, const char **strls)
 
 
 
-void		ft_write_memory(int fd, t_u8 const *ptr, size_t n, t_u8 cols)
+void		ft_write_memory(int fd, t_u8 const *ptr, t_size n, t_u8 cols)
 {
 	t_u8	nibble;
-	size_t	i;
+	t_size	i;
 
 	if (!ptr || n == 0 || cols == 0)
 		return ;

@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft_memory.h"
 #include "libft_string.h"
 
 
@@ -17,17 +18,17 @@
 char	*ft_strmap(char const *str, char (*f)(char))
 {
 	char	*result;
-	size_t	length;
-	size_t	i;
+	t_size	length;
+	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || f == NULL)
 		return (NULL);
 #endif
 	length = 0;
 	while (str[length])
 		++length;
-	if (!(result = (char *)malloc(length + 1)))
+	if (!(result = (char *)ft_memalloc(length + 1)))
 		return (NULL);
 	i = 0;
 	while (i < length)
@@ -41,20 +42,20 @@ char	*ft_strmap(char const *str, char (*f)(char))
 
 
 
-char	*ft_strmapi(char const *str, char (*f)(size_t, char))
+char	*ft_strmapi(char const *str, char (*f)(t_size, char))
 {
 	char	*result;
-	size_t	length;
-	size_t	i;
+	t_size	length;
+	t_size	i;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || f == NULL)
 		return (NULL);
 #endif
 	length = 0;
 	while (str[length])
 		++length;
-	if (!(result = (char *)malloc(length + 1)))
+	if (!(result = (char *)ft_memalloc(length + 1)))
 		return (NULL);
 	i = 0;
 	while (i < length)
@@ -72,7 +73,7 @@ char	*ft_strmap_inplace(char **a_str, char (*f)(char))
 {
 	char	*tmp;
 
-#if HANDLE_NULLPOINTERS
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (a_str == NULL || *a_str == NULL || f == NULL)
 		return (NULL);
 #endif
