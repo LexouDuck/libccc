@@ -21,7 +21,7 @@ int	bool_equals(int a, int b)
 	return (a == 0) ? (b == 0) : (b != 0);
 }
 
-int	str_equals(char const *str1, char const *str2)
+int	str_equals(char const* str1, char const* str2)
 {
 	size_t i;
 
@@ -41,7 +41,7 @@ int	str_equals(char const *str1, char const *str2)
 	return (FALSE);
 }
 
-int str_equals_until(char const * str1, char const * str2, char c)
+int str_equals_until(char const* str1, char const* str2, char c)
 {
 	size_t i;
 
@@ -63,12 +63,52 @@ int str_equals_until(char const * str1, char const * str2, char c)
 	return (FALSE);
 }
 
-char *print_memory(void const *ptr, size_t length)
+int	ptrarr_equals(void const** ptr1, void const** ptr2)
 {
-	char *result;
-	t_u8 byte;
-	char hi;
-	char lo;
+	size_t	i;
+
+	if (ptr1 == ptr2)
+		return (TRUE);
+	if (ptr1 && ptr2)
+	{
+		i = 0;
+		while (ptr1[i] && ptr2[i])
+		{
+			if (ptr1[i] != ptr2[i])
+				return (FALSE);
+			++i;
+		}
+		return (ptr1[i] == ptr2[i]);
+	}
+	return (FALSE);
+}
+
+int	strarr_equals(char const** strarr1, char const** strarr2)
+{
+	size_t	i;
+
+	if (strarr1 == strarr2)
+		return (TRUE);
+	if (strarr1 && strarr2)
+	{
+		i = 0;
+		while (strarr1[i] && strarr2[i])
+		{
+			if (!str_equals(strarr1[i], strarr2[i]))
+				return (FALSE);
+			++i;
+		}
+		return (strarr1[i] && strarr2[i]);
+	}
+	return (FALSE);
+}
+
+char *print_memory(void const * ptr, size_t length)
+{
+	char *	result;
+	t_u8	byte;
+	char	hi;
+	char	lo;
 
 	if (ptr == NULL)
 		return (NULL);

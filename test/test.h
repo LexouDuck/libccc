@@ -42,12 +42,13 @@ typedef struct	s_test_totals__
 
 typedef struct	s_test_suite_
 {
-	bool		run;
-	char const*	name;
-	int		(*test)(void);
+	bool		run;		// If 0, does not run
+	char const*	name;		// Name for test suite to identify
+	int		(*test)(void);	// Test suite launcher
 }				s_test_suite;
 #define TEST_SUITE_AMOUNT	12
 
+//Args for main are: help, verbose, arguments, performance, overflow
 typedef struct	s_test_arg_
 {
 	void	(*handle_arg)();
@@ -121,12 +122,12 @@ typedef struct timespec t_time;
 
 typedef struct	s_timer
 {
-    t_time	start1;
-    t_time	start2;
-    t_time	end1;
-    t_time	end2;
-    t_time	time1;
-    t_time	time2;
+	t_time	start1;
+	t_time	start2;
+	t_time	end1;
+	t_time	end2;
+	t_time	time1;
+	t_time	time2;
 }				t_timer;
 
 void	timer_clock(t_time* t);
@@ -189,6 +190,10 @@ t_sortedlist_int	print_test_random(int samples);
 int		bool_equals(int a, int b);
 
 int		str_equals(char const* str1, char const* str2);
+
+int		ptrarr_equals(void const** ptr1, void const** ptr2);
+
+int		strarr_equals(char const** strarr1, char const** strarr2);
 
 char	*print_memory(void const* ptr, size_t length);
 
@@ -322,7 +327,7 @@ void	print_test_lst(char const *test_name, char const *function, t_list const *r
 
 /*
 **	_PRIVATE MACROS
-**	These are the core macro functions which are uses byll the macros above
+**	These are the core macro functions which are uses by all the macros above
 */
 
 /*

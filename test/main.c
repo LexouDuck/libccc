@@ -163,7 +163,7 @@ int		main(int argc, char **argv)
 {
 	if (argc < 1 || argv == NULL)
 	{
-		print_error("Invalid platform, no 'argv' program argument list recieved.");
+		print_error("Invalid platform, no 'argv' program argument list received.");
 		return (ERROR);
 	}
 	program_name = argv[0];
