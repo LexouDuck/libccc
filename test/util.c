@@ -344,14 +344,15 @@ void	print_test(
 		char const *result,
 		char const *expect,
 		int can_segfault,
-		int error)
+		int error,
+		char const *warning)
 {
 	static char const * previous_function = NULL;
 
 	g_test.totals.tests += 1;
 	if (error)
 		g_test.totals.failed += 1;
-	if (g_test.flags.verbose || error)
+	if (g_test.flags.verbose || error || warning)
 	{
 		if (test_name)
 		{
@@ -362,8 +363,6 @@ void	print_test(
 			else printf("\n%s", test_name);
 			printf(" -> ");
 		}
-		else if (g_test.flags.verbose && error)
-			printf("%s (unnamed test) -> ", function);
 		else printf(", ");
 	}
 
@@ -384,6 +383,8 @@ void	print_test(
 			function, result,
 			function, expect);
 	}
+	else if (warning)
+		printf(C_YELLOW"Warning"C_RESET": %s", warning);
 	else if (g_test.flags.verbose)
 		printf(C_GREEN"OK!"C_RESET);
 	fflush(stdout);
@@ -413,7 +414,7 @@ void	print_test_##FUNCNAME( \
 		(result_segfault ? segstr : int_##SIGNED##_to_str(result)), \
 		(expect_segfault ? segstr : int_##SIGNED##_to_str(expect)), \
 		can_segfault, \
-		error); \
+		error, NULL); \
 } \
 
 DEFINE_TESTFUNCTION_INT(t_s8,  s8,  s)
@@ -457,11 +458,50 @@ void	print_test_##FUNCNAME( \
 		(result_segfault ? segstr : str_result), \
 		(expect_segfault ? segstr : str_expect), \
 		can_segfault, \
-		error); \
+		error, NULL); \
 } \
 
 DEFINE_TESTFUNCTION_FLOAT(t_f32, f32, 32)
 DEFINE_TESTFUNCTION_FLOAT(t_f64, f64, 64)
+
+
+
+void	print_test_sign(
+		char const *test_name,
+		char const *function,
+		t_s64 result,
+		t_s64 expect,
+		int can_segfault)
+{
+	int warning = FALSE;
+	int error = FALSE;
+	int result_segfault = can_segfault & (1 << 1);
+	int expect_segfault = can_segfault & (1 << 2);
+	if (result_segfault)
+		error = (expect_segfault ? FALSE : TRUE);
+	else if (expect_segfault)
+		error = TRUE;
+	else
+	{
+		result_segfault = 0; // reuse this variable to store sign (-1, 0, +1)
+		if (result < 0) result_segfault = -1;
+		if (result > 0) result_segfault = +1;
+		expect_segfault = 0; // reuse this variable to store sign (-1, 0, +1)
+		if (expect < 0) expect_segfault = -1;
+		if (expect > 0) expect_segfault = +1;
+		warning = (result != expect);
+		if (warning)
+			error = (result_segfault != expect_segfault);
+		// reset both to their previous state
+		result_segfault = 0;
+		expect_segfault = 0;
+	}
+	print_test(test_name, function,
+		(result_segfault ? segstr : int_s_to_str(result)),
+		(expect_segfault ? segstr : int_s_to_str(expect)),
+		can_segfault,
+		error, warning ? "return value differed, but sign was the same." : NULL);
+}
 
 
 
@@ -483,7 +523,7 @@ void	print_test_mem(
 		print_memory(result, length),
 		print_memory(expect, length),
 		can_segfault,
-		error);
+		error, NULL);
 }
 
 
@@ -499,7 +539,7 @@ void	print_test_str(
 		result,
 		expect,
 		can_segfault,
-		!str_equals(result, expect));
+		!str_equals(result, expect), NULL);
 }
 
 
@@ -602,7 +642,7 @@ void	print_test_strarr(
 		str_result,
 		str_expect,
 		can_segfault,
-		error);
+		error, NULL);
 
 	if (str_result) free(str_result);
 	if (str_expect) free(str_expect);

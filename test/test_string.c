@@ -364,7 +364,7 @@ void	print_test_strcmp(char const* test_name, int can_segfault,
 		char const* str2)
 {
 	TEST_PERFORM_RESULT_TYPE_LIBC(int, strcmp, str1, str2)
-	print_test_s32(test_name, "strcmp return", result_libft, result_libc, can_segfault);
+	print_test_sign(test_name, "strcmp return", result_libft, result_libc, can_segfault);
 	print_timer_result(&t, TRUE);
 }
 void	test_strcmp(void)
@@ -388,7 +388,7 @@ void	print_test_strncmp(char const* test_name, int can_segfault,
 		t_size n)
 {
 	TEST_PERFORM_RESULT_TYPE_LIBC(int, strncmp, str1, str2, n)
-	print_test_s32(test_name, "strncmp return", result_libft, result_libc, can_segfault);
+	print_test_sign(test_name, "strncmp return", result_libft, result_libc, can_segfault);
 	print_timer_result(&t, TRUE);
 }
 void	test_strncmp(void)
