@@ -27,7 +27,7 @@
 ** ************************************************************************** *|
 */
 
-#define Stat_Int_NewList(len)				ft_stat_new_ilst(len)
+#define Stat_Int_NewList(length)				ft_stat_new_ilst(length)
 #define Stat_Int_FreeList(ilst)				ft_stat_free_ilst(ilst)
 
 #define Stat_Int_MergeList(start, append)	ft_stat_merge_ilst(start, append)
@@ -42,14 +42,14 @@
 #define Stat_Int_Decile(ilst)				ft_stat_decile_i(ilst)
 #define Stat_Int_ProbabilityIsValid(ilst)	ft_prob_is_valid_i(ilst)
 
-#define Stat_NewPMF(len)					ft_stat_new_pmf(len)
+#define Stat_NewPMF(length)					ft_stat_new_pmf(length)
 #define Stat_FreePMF(drv)					ft_stat_free_pmf(drv)
 #define Stat_IntList_To_Set(ilst)			ft_stat_ilst_to_iset(ilst)
 #define Stat_IntList_Count(ilst, elem)		ft_stat_ilst_count(ilst, elem)
 #define Stat_IntList_To_PMF(ilst)			ft_stat_ilst_to_pmf(ilst)
 
 
-#define Stat_Float_NewList(len)				ft_stat_new_flst(len)
+#define Stat_Float_NewList(length)				ft_stat_new_flst(length)
 #define Stat_Float_FreeList(flst)			ft_stat_free_flst(flst)
 
 #define Stat_Float_MergeList(start, append)	ft_stat_merge_flst(start, append)
@@ -80,14 +80,14 @@
 typedef struct	s_list_int_
 {
 	t_int		*data;
-	t_u32		len;
+	t_u32		length;
 }				s_list_int;
 #define NULL_LIST_INT		((s_list_int){ 0, 0 })
 
 typedef struct	s_list_float_
 {
 	t_float		*data;
-	t_u32		len;
+	t_u32		length;
 }				s_list_float;
 #define NULL_LIST_FLOAT		((s_list_float){ 0, 0 })
 
@@ -152,7 +152,7 @@ typedef struct	s_prob_mass_
 {
 	t_float		*value;
 	t_float		*prob;
-	t_u32		len;
+	t_u32		length;
 }				s_prob_mass;
 
 
@@ -163,8 +163,8 @@ typedef struct	s_prob_mass_
 ** ************************************************************************** *|
 */
 
-s_list_int			ft_stat_new_ilst(t_u32 len);
-s_list_float		ft_stat_new_flst(t_u32 len);
+s_list_int			ft_stat_new_ilst(t_u32 length);
+s_list_float		ft_stat_new_flst(t_u32 length);
 
 void				ft_stat_free_ilst(s_list_int *ilst);
 void				ft_stat_free_flst(s_list_float *flst);
@@ -202,7 +202,7 @@ t_bool				ft_prob_is_valid_i(t_prob_sample_i const i_problst);
 t_bool				ft_prob_is_valid_f(t_prob_sample_f const f_problst);
 */
 
-s_prob_mass			ft_stat_new_pmf(t_u32 len);
+s_prob_mass			ft_stat_new_pmf(t_u32 length);
 void				ft_stat_free_pmf(s_prob_mass *drv);
 s_list_int			ft_stat_ilst_to_iset(s_list_int const ilst);
 t_u32				ft_stat_ilst_count(s_list_int ilst, t_int elem);

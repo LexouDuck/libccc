@@ -66,7 +66,7 @@ static inline void printf_colored(const char* label, t_float precision, t_float 
 static t_float	ft_get_largest_f(s_list_float list)
 {
 	t_float result = 0.;
-	for (t_int i = 0; i < list.len; ++i)
+	for (t_int i = 0; i < list.length; ++i)
 	{
 		if (result < list.data[i])
 			result = list.data[i];

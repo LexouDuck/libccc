@@ -19,21 +19,21 @@ char	**ft_strdivide(const char *str, t_size n)
 {
 	char	**result;
 	int		lines;
-	t_size	len;
+	t_size	length;
 	t_size	i;
 
 #if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (NULL);
 #endif
-	len = ft_strlen(str);
-	lines = len % n == 0 ? len / n : len / n + 1;
+	length = ft_strlen(str);
+	lines = length % n == 0 ? length / n : length / n + 1;
 	if (lines == 0 || !(result = ft_strarrnew(lines)))
 		return (NULL);
 	i = 0;
-	while (i < len)
+	while (i < length)
 	{
-		if (i + n < len)
+		if (i + n < length)
 			result[i / n] = ft_strsub(str, i, n);
 		else
 			result[i / n] = ft_strdup(str + i);

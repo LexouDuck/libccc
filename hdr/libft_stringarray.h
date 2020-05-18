@@ -32,7 +32,7 @@
 #define String_Split_String(str, query)		ft_strsplit_str(str, query)
 #define String_Divide(str, n)				ft_strdivide(str, n)
 
-#define StringArray_New(len)				ft_strarrnew(len)
+#define StringArray_New(length)				ft_strarrnew(length)
 #define StringArray_New_C(y, x, c)			ft_strarrcnew(y, x, c)
 #define StringArray_Delete(a_strarr)		ft_strarrdel(a_strarr)
 #define StringArray_Map(strarr, f)			ft_strarrmap(strarr, f)
@@ -93,9 +93,9 @@ char	**ft_strdivide(const char *str, t_size n);
 */
 
 /*
-**	Returns a null-terminated list of unset char*, of length len.
+**	Returns a null-terminated list of unset char*, of length length.
 */
-char	**ft_strarrnew(t_u32 len);
+char	**ft_strarrnew(t_u32 length);
 
 /*
 **	Returns a newly allocated string array, which has y line and x characters
@@ -130,9 +130,9 @@ char	**ft_strarrpad_l(const char **strarr, const char c, t_u32 n);
 
 /*
 **	Returns a newly allocated string array, which is the result of removing
-**	the lines from index 'start' to 'start + len' from strarr.
+**	the lines from index 'start' to 'start + length' from strarr.
 */
-char	**ft_strarrsub(const char **strarr, t_u32 start, t_u32 len);
+char	**ft_strarrsub(const char **strarr, t_u32 start, t_u32 length);
 
 /*
 **	Returns a newly allocated string which is the fold/reduce concatenation
