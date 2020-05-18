@@ -18,6 +18,37 @@
 #if LIBFTCONFIG_FAST_APPROX_MATH
 t_float		ft_exp(t_float x)
 {
+	if (x < -10.)
+		return (0.);
+	t_float result = x + 8.;
+	result *= x + 56;
+	result *= x + 336;
+	result *= x + 1680;
+	result *= x + 6720;
+	result *= x + 20160;
+	result *= x + 40320;
+	result *= x + 40320;
+	result *= 2.4801587301e-5;
+	return (result);
+/*	crash ??
+	u_float_cast result = { x };
+
+	result.value_int = (1512775 * result.value_int + 1072632447);
+#ifdef _FLOAT_32_
+	result.value_int <<= 16;
+#endif
+#ifdef _FLOAT_64_
+	result.value_int <<= 32;
+#endif
+#ifdef _FLOAT_80_
+	result.value_int <<= 40;
+#endif
+#ifdef _FLOAT_128_
+	result.value_int <<= 64;
+#endif
+	return (result.value_float);
+*/
+/*	precise but slow
 	t_float		result;
 	t_float		result_prev;
 	t_float		acc_x;
@@ -40,6 +71,7 @@ t_float		ft_exp(t_float x)
 		++i;
 	}
 	return (result);
+*/
 }
 #else
 MATH_DECL_REALFUNCTION(exp, exp)

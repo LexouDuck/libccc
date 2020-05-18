@@ -139,6 +139,7 @@ SRC_LIST	:=	ft_lstnew.c			\
 
 DIR_MATH	:=	math/
 SRC_MATH	:=	ft_math.c			\
+				ft_root.c			\
 				ft_exp.c			\
 				ft_calc.c			\
 				ft_trigonometry.c	\
@@ -311,12 +312,12 @@ TEST_INCLUDEDIRS	=	-I$(HDRDIR) -I$(TEST_DIR)
 
 TEST_PROGRAM	=	libft_test
 
-$(OBJDIR)%.o : $(TEST_DIR)%.c $(TEST_HDR)
+$(OBJDIR)%.o : $(TEST_DIR)%.c $(TEST_HDR) $(NAME)
 	@printf "Compiling file: "$@" -> "
 	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -c $< -o $@ -L./ -lft
 	@printf $(GREEN)"OK!"$(RESET)"\n"
 
-$(TEST_PROGRAM): $(NAME) $(TEST_OBJ) $(TEST_HDR)
+$(TEST_PROGRAM): $(TEST_OBJ) $(TEST_HDR) $(NAME)
 	@printf "Compiling testing program: "$@" -> "
 	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -o $(TEST_PROGRAM) $(TEST_OBJ) -L./ -lft
 	@printf $(GREEN)"OK!"$(RESET)"\n"

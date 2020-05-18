@@ -170,25 +170,13 @@ t_float				ft_stat_average_f(s_list_float const flst)
 
 	sum = 0.;
 	i = 0;
-	if (IS_INFINITY(flst.data[i] * flst.len * 1e6))
+	t_float inv_len = (1. / flst.len);
+	while (i < flst.len)
 	{
-		t_float inv_len = (1. / flst.len);
-		while (i < flst.len)
-		{
-			sum += inv_len * flst.data[i];
-			++i;
-		}
-		return (sum);
+		sum += inv_len * flst.data[i];
+		++i;
 	}
-	else
-	{
-		while (i < flst.len)
-		{
-			sum += flst.data[i];
-			++i;
-		}
-		return (sum / i);
-	}
+	return (sum);
 }
 
 /*

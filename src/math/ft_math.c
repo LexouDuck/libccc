@@ -18,10 +18,10 @@
 #if LIBFTCONFIG_FAST_APPROX_MATH
 inline t_s32	ft_getexp(t_float x)
 {
-	t_s64	result = 0; // TODO handle extended precision types
+	u_float_cast	result;
 
-	ft_memcpy((t_u8*)&result, &x, sizeof(t_float));
-	return (((result & FLOAT_EXPONENT) >> FLOAT_MANTISSA_BITS) - FLOAT_EXPONENT_BIAS);
+	result.value_float = x;
+	return (((result.value_int & FLOAT_EXPONENT) >> FLOAT_MANTISSA_BITS) - FLOAT_EXPONENT_BIAS);
 }
 #else
 MATH_DECL_FUNCTION(t_s32, getexp, logb)
@@ -32,12 +32,15 @@ MATH_DECL_FUNCTION(t_s32, getexp, logb)
 #if LIBFTCONFIG_FAST_APPROX_MATH
 inline t_float	ft_fabs(t_float x)
 {
-	t_u64	tmp; // TODO handle extended precision types
+	u_float_cast	result;
 
-	ft_memcpy(&tmp, &x, sizeof(t_float));
-	if (tmp & FLOAT_SIGNED)
-		return ((t_float)(tmp & ~FLOAT_SIGNED));
-	return (x);
+	result.value_float = x;
+	if (result.value_int & FLOAT_SIGNED)
+	{
+		result.value_int &= ~FLOAT_SIGNED;
+		return (result.value_float);
+	}
+	return (result.value_float);
 }
 #else
 MATH_DECL_REALFUNCTION(fabs, fabs)
@@ -60,6 +63,8 @@ MATH_DECL_REALOPERATOR(fmod, fmod)
 #endif
 
 
+
+// TODO round
 
 #if LIBFTCONFIG_FAST_APPROX_MATH
 inline t_float	ft_trunc(t_float x)
@@ -137,217 +142,22 @@ t_float			ft_pow_n(t_float x, t_int n)
 #if LIBFTCONFIG_FAST_APPROX_MATH
 inline t_float	ft_pow(t_float x, t_float y)
 {
-#if (defined _FLOAT_32_)
 	return (ft_exp(y * ft_ln(x)));
-#else
-	if (y == 0.)
-		return (1.);
+/*
+	u_float_cast result;
+
 	if (x <= 0.)
 		return (0.);
-	union { t_float v_float; t_s32 v_int[2]; } result = { x };
-	result.v_int[1] = (t_s32)(y * (result.v_int[1] - 1072632447) + 1072632447);
-	result.v_int[0] = 0;
-	return (result.v_float);
-#endif
+	if (y == 0.)
+		return (1.);
+	if (y == 1.)
+		return (x);
+	result.value_float = x;
+	result.value_int = (t_s32)(y * (result.v_int[1] - 1072632447) + 1072632447);
+	result.value_int = 0;
+	return (result.value_float);
+*/
 }
 #else
 MATH_DECL_REALOPERATOR(pow, pow)
 #endif
-
-
-
-/*
-**	Some SQRT(2)^n lookup tables for quick newton method initial guess
-*/
-#if (defined _FLOAT_80_ || defined _FLOAT_128_)
-	#define POWERS_LENGTH	16
-#else
-	#define POWERS_LENGTH	12
-#endif
-static t_float	ft_sqrt_2_pow_n(t_s32 n)
-{
-	static const t_float powers_pos[POWERS_LENGTH] =
-	{
-		SQRT_2,
-		(t_float)0x1.0p+1,
-		(t_float)0x1.0p+2,
-		(t_float)0x1.0p+4,
-		(t_float)0x1.0p+8,
-		(t_float)0x1.0p+16,
-		(t_float)0x1.0p+32,
-		(t_float)0x1.0p+64,
-		(t_float)0x1.0p+128,
-		(t_float)0x1.0p+256,
-		(t_float)0x1.0p+512,
-#if (defined _FLOAT_80_ || defined _FLOAT_128_)
-		(t_float)0x1.0p+1024,
-		(t_float)0x1.0p+2048,
-		(t_float)0x1.0p+4096,
-		(t_float)0x1.0p+8192,
-#endif
-		INFINITY,
-	};
-	static const t_float powers_neg[POWERS_LENGTH] =
-	{
-		INV_SQRT_2,
-		(t_float)0x1.0p-1,
-		(t_float)0x1.0p-2,
-		(t_float)0x1.0p-4,
-		(t_float)0x1.0p-8,
-		(t_float)0x1.0p-16,
-		(t_float)0x1.0p-32,
-		(t_float)0x1.0p-64,
-		(t_float)0x1.0p-128,
-		(t_float)0x1.0p-256,
-		(t_float)0x1.0p-512,
-#if (defined _FLOAT_80_ || defined _FLOAT_128_)
-		(t_float)0x1.0p-1024,
-		(t_float)0x1.0p-2048,
-		(t_float)0x1.0p-4096,
-		(t_float)0x1.0p+8192,
-#endif
-		0.,
-	};
-	if (n > 0 && (n >> 11))
-		return (INFINITY);
-	const t_float* powers = powers_pos;
-	if (n == 0)
-		return (1.);
-	else if (n < 0)
-	{
-		n = -n;
-		powers = powers_neg;
-	}
-	t_float result = 1.;
-	if (n & 0x0001) { result *= powers[0x0]; }
-	if (n & 0x0002) { result *= powers[0x1]; }
-	if (n & 0x0004) { result *= powers[0x2]; }
-	if (n & 0x0008) { result *= powers[0x3]; }
-	if (n & 0x0010) { result *= powers[0x4]; }
-	if (n & 0x0020) { result *= powers[0x5]; }
-	if (n & 0x0040) { result *= powers[0x6]; }
-	if (n & 0x0080) { result *= powers[0x7]; }
-#if (defined _FLOAT_64_ || defined _FLOAT_80_ || _FLOAT_128_)
-	if (n & 0x0100) { result *= powers[0x8]; }
-	if (n & 0x0200) { result *= powers[0x9]; }
-	if (n & 0x0400) { result *= powers[0xA]; }
-#endif
-#if (defined _FLOAT_80_ || defined _FLOAT_128_)
-	if (n & 0x0800) { result *= powers[0xB]; }
-	if (n & 0x1000) { result *= powers[0xC]; }
-	if (n & 0x2000) { result *= powers[0xD]; }
-	if (n & 0x4000) { result *= powers[0xE]; }
-#endif
-	return (result);
-}
-
-
-
-#if LIBFTCONFIG_FAST_APPROX_MATH
-t_float	ft_sqrt(t_float x)
-{
-//	Newton derivative approximation by iteration
-	static const t_s32	i_max = 6;
-	t_s32	i;
-	t_float	result;
-	t_float	previous;
-
-	if (IS_NAN(x) || x < 0.)
-		return (NAN);
-	if (x == 0.)
-		return (0.);
-	if (x == 1.)
-		return (1.);
-	i = ft_getexp(x);
-	result = (i < 0 ? 0.75 : 1.25) * ft_sqrt_2_pow_n(i);
-	previous = INFINITY;
-	i = 0;
-	while (ABS(result - previous) > FLOAT_BIAS)
-	{
-		previous = result;
-		result -= (result * result - x) / (2 * result);
-		if (++i == i_max)
-			break;
-	}
-	return (result);
-}
-#else
-MATH_DECL_REALFUNCTION(sqrt, sqrt)
-#endif
-
-
-
-#if LIBFTCONFIG_FAST_APPROX_MATH
-t_float	ft_cbrt(t_float x)
-{
-//	Newton derivative approximation by iteration
-	static const t_s32	i_max = 6;
-	t_s32	i;
-	t_float square;
-	t_float	result;
-	t_float	previous;
-
-	if (IS_NAN(x))
-		return (NAN);
-	if (x == 0)
-		return (0);
-	if (ABS(x) == 1.)
-		return (SIGN(x));
-	i = ft_getexp(x);
-	result = SIGN(x) * (i < 0 ? 0.75 : 1.25) * ft_sqrt_2_pow_n(i * 2 / 3);
-	previous = INFINITY;
-	i = 0;
-	while (ABS(result - previous) > FLOAT_BIAS)
-	{
-		previous = result;
-		square = result * result;
-		result -= (result * square - x) / (3 * square);
-		if (++i == i_max)
-			break;
-	}
-	return (result);
-}
-#else
-MATH_DECL_REALFUNCTION(cbrt, cbrt)
-#endif
-
-
-
-t_float	ft_nrt(t_float x, t_u8 n)
-{
-//	Newton derivative approximation by iteration
-	static const t_s32	i_max = 6;
-	t_s32	i;
-	t_float	result;
-	t_float	previous;
-	t_float	power;
-
-	if (IS_NAN(x) || n == 0)
-		return (NAN);
-	if (n == 1)
-		return (x);
-	if (x == 0)
-		return (0);
-	if (ABS(x) == 1.)
-		return (SIGN(x));
-	if (n % 2 == 0 && x < 0)
-		return (NAN);
-	i = ft_getexp(x);
-	result = SIGN(x) * (i < 0 ? 1 : 1.25) * ft_sqrt_2_pow_n(i * 2 / n);
-	previous = 0.;
-	i = 0;
-	n -= 1;
-	while (ABS(result - previous) > FLOAT_BIAS)
-	{
-		previous = result;
-		power = result;
-		for (t_u32 j = 1; j < n; ++j)
-		{
-			power *= result;
-		}
-		result -= (power * result - x) / ((n + 1) * power);
-		if (++i == i_max)
-			break;
-	}
-	return (result);
-}

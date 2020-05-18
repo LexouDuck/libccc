@@ -5,24 +5,22 @@
                                   ==> by duquesne @ 42.fr
 =========================================================
 
-, Error:
->ft_memclr/bzero (region after the '\0's): {00}
->   memclr/bzero (region after the '\0's): {B1}
+NB: All the tests with written in yellow 'can segfault' are NULL pointer tests of some kind.
 
-memcmp (str)   -> Error:
->ft_memcmp return: {-7}
->   memcmp return: {-1}
 
-memfree -> Error:
->ft_memfree arg: {}
->   memfree arg: {(null)}
+memcmp (str)   -> Warning: return value differed, but sign was the same.
+memcmp (str)   -> Warning: return value differed, but sign was the same.
+memcmp (str)   -> Warning: return value differed, but sign was the same.
+memcmp (str)   -> Warning: return value differed, but sign was the same.
+memcmp (int*)  -> Warning: return value differed, but sign was the same.
+memcmp (int*)  -> Warning: return value differed, but sign was the same.
 
 =============================
 Test suite: libft_memory
 =============================
-- Amount of tests: 42
-- Tests: 3 failed / 39 passed
-- Success rate: 92.8571%
+- Amount of tests: 92
+- Tests: 0 failed / 92 passed
+- Success rate: 100%
 
 
 =============================
@@ -34,15 +32,13 @@ Test suite: libft_char
 
 
 
-strcmp         -> Error:
->ft_strcmp return: {-7}
->   strcmp return: {-1}
+strcmp         -> Warning: return value differed, but sign was the same.
 =============================
 Test suite: libft_string
 =============================
 - Amount of tests: 126
-- Tests: 1 failed / 125 passed
-- Success rate: 99.2063%
+- Tests: 0 failed / 126 passed
+- Success rate: 100%
 
 
 =============================
@@ -122,10 +118,10 @@ f64_to_str                -> Error:
 >ft_f64_to_str: {123456792.0}
 >     Expected: {123456789}
 f64_to_str                -> Error:
->ft_f64_to_str: {6.9696970060e17}
+>ft_f64_to_str: {6.9696968161e17}
 >     Expected: {696969696969696969}
 f64_to_str                -> Error:
->ft_f64_to_str: {-6.9696970060e17}
+>ft_f64_to_str: {-6.9696968161e17}
 >     Expected: {-696969696969696969}
 f64_to_str                -> Error:
 >ft_f64_to_str: {0.0000000030}
@@ -134,40 +130,40 @@ f64_to_str                -> Error:
 >ft_f64_to_str: {-0.0000000030}
 >     Expected: {-0.000000003}
 f64_to_str                -> Error:
->ft_f64_to_str: {1.0000000168e-16}
+>ft_f64_to_str: {1.0000000441e-16}
 >     Expected: {0.0000000000000001}
 f64_to_str                -> Error:
->ft_f64_to_str: {-1.0000000168e-16}
+>ft_f64_to_str: {-1.0000000441e-16}
 >     Expected: {-0.0000000000000001}
 f64_to_str (n = max)      -> Error:
->ft_f64_to_str: {9.2233720368e18}
+>ft_f64_to_str: {9.2233717854e18}
 >     Expected: {9223372036854775807}
 f64_to_str (n = min)      -> Error:
->ft_f64_to_str: {-9.2233720368e18}
+>ft_f64_to_str: {-9.2233717854e18}
 >     Expected: {-9223372036854775808}
 f64_to_str (n > max)      -> Error:
->ft_f64_to_str: {9.2233720368e18}
+>ft_f64_to_str: {9.2233717854e18}
 >     Expected: {9223372036854775808}
 f64_to_str (n < min)      -> Error:
->ft_f64_to_str: {-9.2233720368e18}
+>ft_f64_to_str: {-9.2233717854e18}
 >     Expected: {-9223372036854775809}
 f64_to_str (n > maxdigit) -> Error:
->ft_f64_to_str: {1.0000000200e21}
+>ft_f64_to_str: {9.9999999278e20}
 >     Expected: {999999999999999999999}
 f64_to_str (n < maxdigit) -> Error:
->ft_f64_to_str: {-1.0000000200e21}
+>ft_f64_to_str: {-9.9999999278e20}
 >     Expected: {-999999999999999999999}
 f64_to_str (n > +huge)    -> Error:
->ft_f64_to_str: {1.0000000200e20}
+>ft_f64_to_str: {9.9999999278e19}
 >     Expected: {1.0000000000e20}
 f64_to_str (n < -huge)    -> Error:
->ft_f64_to_str: {-1.0000000200e20}
+>ft_f64_to_str: {-9.9999999278e19}
 >     Expected: {-1.0000000000e20}
 f64_to_str (n < +tiny)    -> Error:
->ft_f64_to_str: {9.999999682e-21}
+>ft_f64_to_str: {9.999999955e-21}
 >     Expected: {1.000000000e-20}
 f64_to_str (n > -tiny)    -> Error:
->ft_f64_to_str: {-9.999999682e-21}
+>ft_f64_to_str: {-9.999999955e-21}
 >     Expected: {-1.000000000e-20}
 size_to_str                -> Error:
 >ft_size_to_str: {3567587327}
@@ -181,6 +177,21 @@ u16_to_strbase (n = max, bin) -> Error:
 u32_to_strbase (n = max, bin) -> Error:
 >ft_u32_to_strbase: {11111111111111111111111111111111}
 >         Expected: {1111111111111111111111111111111}
+str_to_f64 -> Error:
+>ft_str_to_f64: {0.100000}
+>     Expected: {0.100000}
+str_to_f64 -> Error:
+>ft_str_to_f64: {0.010000}
+>     Expected: {0.010000}
+str_to_f64 -> Error:
+>ft_str_to_f64: {3.250000}
+>     Expected: {3.250000}
+str_to_f64 -> Error:
+>ft_str_to_f64: {3.690000}
+>     Expected: {3.690000}
+str_to_f64 -> Error:
+>ft_str_to_f64: {-4.070000}
+>     Expected: {-4.070000}
 str_to_f64 -> Error:
 >ft_str_to_f64: {0.000000}
 >     Expected: {-1.#IND00}
@@ -209,11 +220,17 @@ str_to_f64 -> Error:
 >ft_str_to_f64: {0.000000}
 >     Expected: {-1.#IND00}
 str_to_f64 -> Error:
+>ft_str_to_f64: {0.123400}
+>     Expected: {0.123400}
+str_to_f64 -> Error:
 >ft_str_to_f64: {-1.#IND00}
 >     Expected: {0.700000}
 str_to_f64 -> Error:
 >ft_str_to_f64: {-1.#IND00}
 >     Expected: {456.780000}
+str_to_f64 -> Error:
+>ft_str_to_f64: {0.456000}
+>     Expected: {0.456000}
 str_to_f64 -> Error:
 >ft_str_to_f64: {0.000000}
 >     Expected: {-1.#IND00}
@@ -224,8 +241,8 @@ str_to_f64 -> Error:
 Test suite: libft_convert
 =============================
 - Amount of tests: 1014
-- Tests: 55 failed / 959 passed
-- Success rate: 94.5759%
+- Tests: 62 failed / 952 passed
+- Success rate: 93.8856%
 
 
 =============================
@@ -287,9 +304,9 @@ Test suite: libft_io
 =============================
 In total:
 =============================
-- Amount of tests: 168041
-- Tests: 59 failed / 167982 passed
-- Success rate: 99.9649%
+- Amount of tests: 168091
+- Tests: 62 failed / 168029 passed
+- Success rate: 99.9631%
 
-FAIL: Failed 59 out of 168041 tests in total.
+FAIL: Failed 62 out of 168091 tests in total.
 

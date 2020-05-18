@@ -15,10 +15,16 @@ void	print_math_foreword(void)
 	{
 		printf("\n\n"C_BLUE"Floating-point (%d-bit %s precision) math functions"C_RESET"\n\n",
 #ifdef _FLOAT_32_
-			32, "single");
+			32, "IEEE single");
 #endif
 #ifdef _FLOAT_64_
-			64, "double");
+			64, "IEEE double");
+#endif
+#ifdef _FLOAT_80_
+			80, "x86 extended");
+#endif
+#ifdef _FLOAT_128_
+			128, "IEEE quadruple");
 #endif
 	}
 }
@@ -180,6 +186,7 @@ static void	print_test_math(s_timer timer, s_list_float error_list, t_float prec
 		printf("\n");
 	}
 	ft_stat_free_flst(&error_list);
+	fflush(stdout);
 }
 
 

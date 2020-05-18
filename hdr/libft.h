@@ -51,14 +51,15 @@
 /*
 **	This macro determines how NULL pointer arguments are to be handled
 **	If 0, then libft functions will always segfault when given NULL pointers.
-**	If 1, then all NULL pointer dereferences in libft functions will be avoided.
+**	If 1, then all NULL pointer accesses in libft functions will be avoided, and
+**		an appropriate return value (eg:NULL, 0, sometimes -1) will be returned.
 */
 #define LIBFTCONFIG_HANDLE_NULLPOINTERS		0
 
 /*
 **	This macro determines which math function implementations should be used.
 **	If 1, the libft fast approximate functions will be used (precision error margin: 0.0001)
-**	If 0, the builtin libc functions will be used
+**	If 0, the builtin FPU-call libc math functions will be used (eg: __builtin_powf(), etc)
 */
 #define LIBFTCONFIG_FAST_APPROX_MATH		0
 
@@ -87,7 +88,7 @@
 **	_FLOAT_80_	for 80-bit x86 extended-precision floating-point number (not available on Mac/Clang; will default to 128)
 **	_FLOAT_128_	for 128-bit IEEE 754 quadruple-precision floating-point number (GNU GCC 4.3 and up)
 */
-#define _FLOAT_64_
+#define _FLOAT_32_
 
 
 

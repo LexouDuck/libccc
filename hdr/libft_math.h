@@ -241,7 +241,7 @@ t_float		ft_atanh(t_float x);
 // TODO tgamma ?
 
 
-#if !LIBFTCONFIG_FAST_APPROX_MATH
+#if (LIBFTCONFIG_FAST_APPROX_MATH == 0)
 
 	#ifdef _FLOAT_32_
 		#define MATH_DECL_FUNCTION(RETURN, FT_NAME, NAME)	inline RETURN ft_##FT_NAME(t_float x)				{ return (__builtin_##NAME##f(x)); }
@@ -268,6 +268,26 @@ t_float		ft_atanh(t_float x);
 	#endif
 
 #endif
+
+/*
+**	This union type is used in several math functions to handle float bits directly
+*/
+typedef union	u_float_cast_
+{
+	t_float		value_float;
+#ifdef _FLOAT_32_
+	t_s32		value_int;
+#endif
+#ifdef _FLOAT_64_
+	t_s64		value_int;
+#endif
+#ifdef _FLOAT_80_
+	t_s64[2]	value_int;
+#endif
+#ifdef _FLOAT_128_
+	t_s64[2]	value_int;
+#endif
+}				u_float_cast;
 
 /*
 ** ************************************************************************** *|

@@ -193,9 +193,9 @@ t_float		ft_acos(t_float x)
 {
 // fast polynomial approximation
 // score: 2.55	for [-1,+1]=> 200 tests
-	if (IS_NAN(x) || ABS(x) > 1.)
+	if (IS_NAN(x) || ft_fabs(x) > 1.)
 		return (NAN);
-	if (ABS(x) == 1.)
+	if (ft_fabs(x) == 1.)
 		return (INFINITY * SIGN(x));
 
 	t_float result = HALF_PI;
@@ -222,9 +222,9 @@ t_float		ft_asin(t_float x)
 {
 // fast polynomial approximation
 // score: 2.55	for [-1,+1]=> 200 tests
-	if (IS_NAN(x) || ABS(x) > 1.)
+	if (IS_NAN(x) || ft_fabs(x) > 1.)
 		return (NAN);
-	if (ABS(x) == 1.)
+	if (ft_fabs(x) == 1.)
 		return (INFINITY * SIGN(x));
 
 	t_float result = 0;
@@ -257,7 +257,7 @@ t_float		ft_atan(t_float x)
 	else if (x == 0)
 		return (0);
 
-	t_float abs_x = ABS(x);
+	t_float abs_x = ft_fabs(x);
 	t_float n = 1.54 - abs_x / (0.9 + abs_x);
 	if (n < 0.65)
 		n = 0.65;
@@ -272,7 +272,7 @@ t_float		ft_atan(t_float x)
 	t_float abs_x;
 	t_float add = 0;
 
-	abs_x = ABS(x);
+	abs_x = ft_fabs(x);
 	if (abs_x == 1.0)	return (result_1_0);
 	if (abs_x == 2.5)	return (result_2_5);
 	else if (abs_x > 2.5)
@@ -328,7 +328,7 @@ t_float		ft_atan2(t_float y, t_float x)
 
 	t_s32 exp_x = ft_getexp(x);
 	t_s32 exp_y = ft_getexp(y);
-	t_float result = ABS(y / x);
+	t_float result = ft_fabs(y / x);
 	if ((exp_y - exp_x) > 60)			/* |y / x| >  2^60 */
 		result = HALF_PI + 0.5 * pi_lo;
 	else if ((exp_y - exp_x) < -60)		/* |y| / x < -2^60 */
@@ -411,7 +411,7 @@ t_float		ft_tanh(t_float x)
 	else if (x == 0)
 		return (0);
 
-	t_float abs_x = ABS(x);
+	t_float abs_x = ft_fabs(x);
 	t_float n = 1 - 0.37 * (abs_x / (1 + abs_x));
 	if (n < 0.7)
 		n = 0.7;
@@ -428,7 +428,7 @@ t_float		ft_tanh(t_float x)
 	else if (x > 1.)
 		return (-ft_exp(-1.43378091 * x) + 1);
 	else
-		return ((2 * x) / (1.6260705 + ABS(x)));
+		return ((2 * x) / (1.6260705 + ft_fabs(x)));
 */
 }
 #else
@@ -469,7 +469,7 @@ t_float		ft_asinh(t_float x)
 	else if (x > 20)
 		return (ft_ln(x - 1) + INV_SQRT_2);
 	else
-		return (x / (1 + ABS(-0.22103915 * x)));
+		return (x / (1 + ft_fabs(-0.22103915 * x)));
 }
 #else
 MATH_DECL_REALFUNCTION(asinh, asinh)
@@ -481,7 +481,7 @@ t_float		ft_atanh(t_float x)
 //	approximation
 //	score: 4.81	for [-1,+1]-> 200 tests
 
-	if (IS_NAN(x) || ABS(x) > 1.)
+	if (IS_NAN(x) || ft_fabs(x) > 1.)
 		return (NAN);
 	else if (x == 0)
 		return (0);
@@ -492,7 +492,7 @@ t_float		ft_atanh(t_float x)
 	if (x > 0.6)
 		return (-ft_ln(p * -x + p) * 0.5);
 
-	t_float result = x / (1 - 0.418 * ABS(x));
+	t_float result = x / (1 - 0.418 * ft_fabs(x));
 	t_float power = x * x * x;
 	result += -1.5 * power;		power *= (x * x);
 	result +=  4.4 * power;		power *= (x * x);
