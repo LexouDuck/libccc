@@ -215,7 +215,7 @@ void	print_test_memccpy(char const* test_name, int can_segfault,
 	print_test_mem(test_name, "memccpy 'dest' arg", dest_libft,   dest_libc, n, can_segfault);// if (byte !='\0')
 	print_test_str(NULL,      "memccpy return",     result_libft, result_libc,  can_segfault);
 	print_timer_result(&t, TRUE);
-	TEST_PRINT_ARGS("dest=\"%s\", src=\"%s\", c=0x%x/'%c', n=%u", dest_libft, src, byte, byte, n)
+	TEST_PRINT_ARGS("dest=\"%s\", src=\"%s\", c=0x%x/'%c', n=%zu", dest_libft, src, byte, byte, n)
 }
 void	test_memccpy(void)
 {

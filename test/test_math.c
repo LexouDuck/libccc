@@ -42,7 +42,7 @@ void	print_math_title(char const * title)
 #define PRINTF_FORMAT	":\t%s%g"
 static inline void printf_colored(const char* label, t_float precision, t_float value)
 {
-	printf(label);
+	printf("%s", label);
 	if (precision == 0.)
 	{
 		if (value == 0. || IS_NAN(value))
@@ -144,7 +144,7 @@ static t_float	ft_get_largest_f(s_list_float list)
 		if (IS_NAN(error_list.data[i]) || error_list.data[i] > fabs(precision * expects[i])) \
 		{ \
 			++failed_tests; \
-			if (g_test.flags.verbose && g_test.flags.show_args && precision < abs(results[i] - expects[i])) \
+			if (g_test.flags.verbose && g_test.flags.show_args && precision < fabs(results[i] - expects[i])) \
 			{ \
 				printf("TEST N°%d: -> returned %g but libc returned %g (difference is "C_RED"%g"C_RESET")\n", \
 					i, results[i], expects[i], error_list.data[i]); \
@@ -208,6 +208,7 @@ int		test_math_realfunction_libc(
 	TEST_GET_RESULTS()
 	TEST_PRINT_MATH("Ran %d tests on interval [%g,%g], with increment=%g\n", tests, interval.start, interval.end, step)
 	print_test_math(timer, error_list, precision);
+	return (OK);
 }
 
 int		test_math_realoperator_libc(
@@ -233,6 +234,7 @@ int		test_math_realoperator_libc(
 		interval_x.start, interval_x.end, step_x,
 		interval_y.start, interval_y.end, step_y)
 	print_test_math(timer, error_list, precision);
+	return (OK);
 }
 
 //	#define _f(x)	f(x)

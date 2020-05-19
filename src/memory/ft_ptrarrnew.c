@@ -14,7 +14,7 @@
 
 
 
-inline void	*ft_ptrarrnew(t_u32 n)
+inline void	*ft_ptrarrnew(t_size n)
 {
 	void	**result;
 

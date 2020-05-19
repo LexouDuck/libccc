@@ -72,7 +72,7 @@
 **	_UINT_32_	for 32-bit uint	[0, 2147483647]
 **	_UINT_64_	for 64-bit uint	[0, 18446744073709551615]
 */
-#define _UINT_64_
+#define _UINT_32_
 /*
 **	This macro sets the default 't_int' default signed integer type to use:
 **	_INT_8_		for 8-bit int	[-128, 127]
@@ -80,7 +80,7 @@
 **	_INT_32_	for 32-bit int	[-2147483648, 2147483647]
 **	_INT_64_	for 64-bit int	[-9223372036854775808, +9223372036854775807]
 */
-#define _INT_64_
+#define _INT_32_
 /*
 **	The following macro sets what the 't_float' default floating-point type should be.
 **	_FLOAT_32_	for 32-bit IEEE 754 standard precision floating-point number

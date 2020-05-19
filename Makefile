@@ -18,15 +18,18 @@ CFLAGS_MAC	=
 ifeq ($(OS),Windows_NT)
 	CC := $(CC_WIN)
 	CFLAGS_PLATFORM := $(CFLAGS_WIN)
+	SED_DEL_OPT	:=	-r
 else
 	UNAME_S := $(shell uname -s)
 	ifeq ($(UNAME_S),Linux)
 		CC := $(CC_LIN)
 		CFLAGS_PLATFORM := $(CFLAGS_LIN)
+		SED_DEL_OPT	:= 
 	endif
 	ifeq ($(UNAME_S),Darwin)
 		CC := $(CC_MAC)
 		CFLAGS_PLATFORM := $(CFLAGS_MAC)
+		SED_DEL_OPT	:=
 	endif
 endif
 
@@ -314,15 +317,15 @@ TEST_PROGRAM	=	libft_test
 
 $(OBJDIR)%.o : $(TEST_DIR)%.c $(TEST_HDR) $(NAME)
 	@printf "Compiling file: "$@" -> "
-	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -c $< -o $@ -lft
+	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -c $< -o $@
 	@printf $(GREEN)"OK!"$(RESET)"\n"
 
 $(TEST_PROGRAM): $(TEST_OBJ) $(TEST_HDR) $(NAME)
 	@printf "Compiling testing program: "$@" -> "
-	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -o $(TEST_PROGRAM) $(TEST_OBJ) -lft
+	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -o $(TEST_PROGRAM) $(TEST_OBJ) -L./ -lft
 	@printf $(GREEN)"OK!"$(RESET)"\n"
 
 test: $(TEST_PROGRAM)
-	@./$(TEST_PROGRAM) | sed -r "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2})?)?[mGK]//g" > libft_test_results.txt
+	@./$(TEST_PROGRAM) | sed $(SED_DEL_OPT) "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2})?)?[mGK]//g" > libft_test_results.txt
 
 -include ${DEPENDS}

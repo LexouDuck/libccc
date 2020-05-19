@@ -4,10 +4,20 @@
 
 #include "test.h"
 
+//Mac
+#define PERCENT_S64		"%lld"
+#define PERCENT_U64		"%llu"
+#define PERCENT_SIZET	"%zu"
+#define PERCENT_F32		"%f"
+
 
 
 #pragma GCC diagnostic push // Disable GCC overflow warnings temporarily
 #pragma GCC diagnostic ignored "-Woverflow"
+#pragma GCC diagnostic push // Disable GCC overflow warnings temporarily
+#pragma GCC diagnostic ignored "-Wimplicitly-unsigned-literal"
+#pragma GCC diagnostic push // Disable GCC overflow warnings temporarily
+#pragma GCC diagnostic ignored "-Wconstant-conversion"
 
 /*
 ** ************************************************************************** *|
@@ -40,12 +50,12 @@ void	test_s8_to_str(void)
 	print_test_s8_to_str("s8_to_str               ",	FALSE,      "0", 0    );
 	print_test_s8_to_str("s8_to_str               ",	FALSE,    "111", 111  );
 	print_test_s8_to_str("s8_to_str               ",	FALSE,   "-111",-111  );
-	print_test_s8_to_str("s8_to_str (n = max)     ",	FALSE,    "127", 127  );
 	print_test_s8_to_str("s8_to_str (n = min)     ",	FALSE,   "-128",-128  );
+	print_test_s8_to_str("s8_to_str (n = max)     ",	FALSE,    "127", 127  );
 	if (g_test.flags.test_overflow)
 	{
-		print_test_s8_to_str("s8_to_str (n > max)     ",	FALSE,    "128", 128  );
 		print_test_s8_to_str("s8_to_str (n < min)     ",	FALSE,   "-129",-129  );
+		print_test_s8_to_str("s8_to_str (n > max)     ",	FALSE,    "128", 128  );
 		print_test_s8_to_str("s8_to_str (n > maxdigit)",	FALSE,  "99999", 99999);
 		print_test_s8_to_str("s8_to_str (n < maxdigit)",	FALSE, "-99999",-99999);
 	}
@@ -75,12 +85,12 @@ void	test_s16_to_str(void)
 	print_test_s16_to_str("s16_to_str               ",	FALSE,     "-666",-666    );
 	print_test_s16_to_str("s16_to_str               ",	FALSE,    "10000", 10000  );
 	print_test_s16_to_str("s16_to_str               ",	FALSE,   "-10000",-10000  );
-	print_test_s16_to_str("s16_to_str (n = max)     ",	FALSE,    "32767", 32767  );
 	print_test_s16_to_str("s16_to_str (n = min)     ",	FALSE,   "-32768",-32768  );
+	print_test_s16_to_str("s16_to_str (n = max)     ",	FALSE,    "32767", 32767  );
 	if (g_test.flags.test_overflow)
 	{
-		print_test_s16_to_str("s16_to_str (n > max)     ",	FALSE,    "32768", 32768  );
 		print_test_s16_to_str("s16_to_str (n < min)     ",	FALSE,   "-32769",-32769  );
+		print_test_s16_to_str("s16_to_str (n > max)     ",	FALSE,    "32768", 32768  );
 		print_test_s16_to_str("s16_to_str (n > maxdigit)",	FALSE,  "9999999", 9999999);
 		print_test_s16_to_str("s16_to_str (n < maxdigit)",	FALSE, "-9999999",-9999999);
 	}
@@ -110,12 +120,12 @@ void	test_s32_to_str(void)
 	print_test_s32_to_str("s32_to_str               ",	FALSE,          "-666",-666         );
 	print_test_s32_to_str("s32_to_str               ",	FALSE,        "-10000",-10000       );
 	print_test_s32_to_str("s32_to_str               ",	FALSE,     "123456789", 123456789   );
-	print_test_s32_to_str("s32_to_str (n = max)     ",	FALSE,    "2147483647", 2147483647  );
 	print_test_s32_to_str("s32_to_str (n = min)     ",	FALSE,   "-2147483648",-2147483648  );
+	print_test_s32_to_str("s32_to_str (n = max)     ",	FALSE,    "2147483647", 2147483647  );
 	if (g_test.flags.test_overflow)
 	{
-		print_test_s32_to_str("s32_to_str (n > max)     ",	FALSE,    "2147483648", 2147483648  );
 		print_test_s32_to_str("s32_to_str (n < min)     ",	FALSE,   "-2147483649",-2147483649  );
+		print_test_s32_to_str("s32_to_str (n > max)     ",	FALSE,    "2147483648", 2147483648  );
 		print_test_s32_to_str("s32_to_str (n > maxdigit)",	FALSE,  "999999999999", 999999999999);
 		print_test_s32_to_str("s32_to_str (n < maxdigit)",	FALSE, "-999999999999",-999999999999);
 	}
@@ -133,7 +143,7 @@ void	print_test_s64_to_str(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(s64_to_str, number)
 	print_test_str(test_name, "_s64_to_str", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS("%d", number)
+	TEST_PRINT_ARGS(PERCENT_S64, number)
 }
 void	test_s64_to_str(void)
 {
@@ -149,14 +159,16 @@ void	test_s64_to_str(void)
 	print_test_s64_to_str("s64_to_str               ",	FALSE,            "-2147483649",-2147483649            );
 	print_test_s64_to_str("s64_to_str               ",	FALSE,           "999999999999", 999999999999          );
 	print_test_s64_to_str("s64_to_str               ",	FALSE,          "-999999999999",-999999999999          );
-	print_test_s64_to_str("s64_to_str (n = max)     ",	FALSE,    "9223372036854775807", 9223372036854775807LL );
 	print_test_s64_to_str("s64_to_str (n = min)     ",	FALSE,   "-9223372036854775807",-9223372036854775807LL );
+	print_test_s64_to_str("s64_to_str (n = max)     ",	FALSE,    "9223372036854775807", 9223372036854775807LL );
 	if (g_test.flags.test_overflow)
 	{
-		print_test_s64_to_str("s64_to_str (n > max)     ",	FALSE,    "9223372036854775808", 9223372036854775808LL  );
 		print_test_s64_to_str("s64_to_str (n < min)     ",	FALSE,   "-9223372036854775809",-9223372036854775809LL  );
+		print_test_s64_to_str("s64_to_str (n > max)     ",	FALSE,    "9223372036854775808", 9223372036854775808LL  );
+#ifndef __clang__
 		print_test_s64_to_str("s64_to_str (n > maxdigit)",	FALSE,  "999999999999999999999", 999999999999999999999LL);
 		print_test_s64_to_str("s64_to_str (n < maxdigit)",	FALSE, "-999999999999999999999",-999999999999999999999LL);
+#endif	
 	}
 }
 
@@ -180,12 +192,12 @@ void	test_u8_to_str(void)
 	print_test_u8_to_str("u8_to_str               ",	FALSE,      "1", 1    );
 	print_test_u8_to_str("u8_to_str               ",	FALSE,     "42", 42   );
 	print_test_u8_to_str("u8_to_str               ",	FALSE,    "111", 111  );
-	print_test_u8_to_str("u8_to_str (n = max)     ",	FALSE,    "255", 255  );
 	print_test_u8_to_str("u8_to_str (n = min)     ",	FALSE,      "0", 0    );
+	print_test_u8_to_str("u8_to_str (n = max)     ",	FALSE,    "255", 255  );
 	if (g_test.flags.test_overflow)
 	{
-		print_test_u8_to_str("u8_to_str (n > max)     ",	FALSE,    "256", 256  );
 		print_test_u8_to_str("u8_to_str (n < min)     ",	FALSE,     "-1", -1   );
+		print_test_u8_to_str("u8_to_str (n > max)     ",	FALSE,    "256", 256  );
 		print_test_u8_to_str("u8_to_str (n > maxdigit)",	FALSE,  "99999", 99999);
 		print_test_u8_to_str("u8_to_str (n < maxdigit)",	FALSE, "-99999",-99999);
 	}
@@ -212,12 +224,12 @@ void	test_u16_to_str(void)
 	print_test_u16_to_str("u16_to_str               ",	FALSE,       "42", 42     );
 	print_test_u16_to_str("u16_to_str               ",	FALSE,      "777", 777    );
 	print_test_u16_to_str("u16_to_str               ",	FALSE,    "10000", 10000  );
-	print_test_u16_to_str("u16_to_str (n = max)     ",	FALSE,    "65535", 65535  );
 	print_test_u16_to_str("u16_to_str (n = min)     ",	FALSE,        "0", 0      );
+	print_test_u16_to_str("u16_to_str (n = max)     ",	FALSE,    "65535", 65535  );
 	if (g_test.flags.test_overflow)
 	{
-		print_test_u16_to_str("u16_to_str (n > max)     ",	FALSE,    "65536", 65536  );
 		print_test_u16_to_str("u16_to_str (n < min)     ",	FALSE,       "-1", -1     );
+		print_test_u16_to_str("u16_to_str (n > max)     ",	FALSE,    "65536", 65536  );
 		print_test_u16_to_str("u16_to_str (n > maxdigit)",	FALSE,  "9999999", 9999999);
 		print_test_u16_to_str("u16_to_str (n < maxdigit)",	FALSE, "-9999999",-9999999);
 	}
@@ -250,8 +262,8 @@ void	test_u32_to_str(void)
 	print_test_u32_to_str("u32_to_str (n = min)     ",	FALSE,             "0", 0           );
 	if (g_test.flags.test_overflow)
 	{
-		print_test_u32_to_str("u32_to_str (n > max)     ",	FALSE,    "4294967296", 4294967296  );
 		print_test_u32_to_str("u32_to_str (n < min)     ",	FALSE,            "-1", -1          );
+		print_test_u32_to_str("u32_to_str (n > max)     ",	FALSE,    "4294967296", 4294967296  );
 		print_test_u32_to_str("u32_to_str (n > maxdigit)",	FALSE,  "999999999999", 999999999999);
 		print_test_u32_to_str("u32_to_str (n < maxdigit)",	FALSE, "-999999999999",-999999999999);
 	}
@@ -269,7 +281,7 @@ void	print_test_u64_to_str(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(u64_to_str, number)
 	print_test_str(test_name, "_u64_to_str", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS("%d", number)
+	TEST_PRINT_ARGS(PERCENT_U64, number)
 }
 void	test_u64_to_str(void)
 {
@@ -284,10 +296,12 @@ void	test_u64_to_str(void)
 	print_test_u64_to_str("u64_to_str (n = min)     ",	FALSE,                      "0", 0                     );
 	if (g_test.flags.test_overflow)
 	{
-		print_test_u64_to_str("u64_to_str (n > max)     ",	FALSE,   "18446744073709551616", 18446744073709551616UL);
 		print_test_u64_to_str("u64_to_str (n < min)     ",	FALSE,                     "-1", -1                    );
+#ifndef __clang__
+		print_test_u64_to_str("u64_to_str (n > max)     ",	FALSE,   "18446744073709551616", 18446744073709551616UL);
 		print_test_u64_to_str("u64_to_str (n > maxdigit)",	FALSE,  "999999999999999999999", 999999999999999999999UL);
 		print_test_u64_to_str("u64_to_str (n < maxdigit)",	FALSE, "-999999999999999999999",-999999999999999999999UL);
+#endif
 	}
 }
 
@@ -304,7 +318,7 @@ void	print_test_f32_to_str(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(f32_to_str, number, precision)
 	print_test_str(test_name, "_f32_to_str", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS("%d", number)
+	TEST_PRINT_ARGS(PERCENT_F32, number)
 }
 void	test_f32_to_str(void)
 {
@@ -363,7 +377,7 @@ void	print_test_f64_to_str(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(f64_to_str, number, precision)
 	print_test_str(test_name, "_f64_to_str", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS("%d", number)
+	TEST_PRINT_ARGS(PERCENT_F32, number)
 }
 void	test_f64_to_str(void)
 {
@@ -421,7 +435,7 @@ void	print_test_size_to_str(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(size_to_str, number)
 	print_test_str(test_name, "_size_to_str", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS("%d", number)
+	TEST_PRINT_ARGS(PERCENT_SIZET, number)
 }
 void	test_size_to_str(void)
 {
@@ -436,10 +450,12 @@ void	test_size_to_str(void)
 	print_test_size_to_str("size_to_str (n = min)     ",	FALSE,                      "0", 0                     );
 	if (g_test.flags.test_overflow)
 	{
-		print_test_size_to_str("size_to_str (n > max)     ",	FALSE,   "18446744073709551616", 18446744073709551616UL);
 		print_test_size_to_str("size_to_str (n < min)     ",	FALSE,                     "-1", -1                    );
+#ifndef __clang__
+		print_test_size_to_str("size_to_str (n > max)     ",	FALSE,   "18446744073709551616", 18446744073709551616UL);
 		print_test_size_to_str("size_to_str (n > maxdigit)",	FALSE,  "999999999999999999999", 999999999999999999999UL);
 		print_test_size_to_str("size_to_str (n < maxdigit)",	FALSE, "-999999999999999999999",-999999999999999999999UL);
+#endif
 	}
 }
 
@@ -468,8 +484,8 @@ void	test_bool_to_str(void)
 	print_test_bool_to_str("bool_to_str (n = min)     ",	FALSE,  "false",      0, FALSE);
 	if (g_test.flags.test_overflow)
 	{
-		print_test_bool_to_str("bool_to_str (n > max)     ",	FALSE,   "TRUE",    256, TRUE);
 		print_test_bool_to_str("bool_to_str (n < min)     ",	FALSE,  "FALSE",     -1, TRUE);
+		print_test_bool_to_str("bool_to_str (n > max)     ",	FALSE,   "TRUE",    256, TRUE);
 		print_test_bool_to_str("bool_to_str (n > maxdigit)",	FALSE,   "TRUE", 999999, TRUE);
 		print_test_bool_to_str("bool_to_str (n < maxdigit)",	FALSE,  "-TRUE",-999999, TRUE);
 	}
@@ -525,8 +541,8 @@ void test_str_to_s8(void)
 	print_test_str_to_s8("str_to_s8 (null str)    ",	SEGV,                            0, NULL                         );
 	if (g_test.flags.test_overflow)
 	{
-		print_test_str_to_s8("str_to_s8 (n > max)     ",	FALSE,                         128, " 128"                       );
 		print_test_str_to_s8("str_to_s8 (n < min)     ",	FALSE,                        -129, "-129"                       );
+		print_test_str_to_s8("str_to_s8 (n > max)     ",	FALSE,                         128, " 128"                       );
 		print_test_str_to_s8("str_to_s8 (n > maxdigit)",	FALSE,                       99999, " 99999"                     );
 		print_test_str_to_s8("str_to_s8 (n < maxdigit)",	FALSE,                      -99999, "-99999"                     );
 	}
@@ -597,8 +613,8 @@ void test_str_to_s16(void)
 	print_test_str_to_s16("str_to_s16 (null str)    ",	SEGV,                            0, NULL                         );
 	if (g_test.flags.test_overflow)
 	{
-		print_test_str_to_s16("str_to_s16 (n > max)     ",	FALSE,                       32768,  "32768"                     );
 		print_test_str_to_s16("str_to_s16 (n < min)     ",	FALSE,                      -32769, "-32769"                     );
+		print_test_str_to_s16("str_to_s16 (n > max)     ",	FALSE,                       32768,  "32768"                     );
 		print_test_str_to_s16("str_to_s16 (n > maxdigit)",	FALSE,                     9999999,  "9999999"                   );
 		print_test_str_to_s16("str_to_s16 (n < maxdigit)",	FALSE,                    -9999999, "-9999999"                   );
 	}
@@ -689,8 +705,8 @@ void test_str_to_s32(void)
 	print_test_str_to_s32("str_to_s32 (null str)    ",	SEGV,                            0, NULL                         );
 	if (g_test.flags.test_overflow)
 	{
-		print_test_str_to_s32("str_to_s32 (n > max)     ",	FALSE,                  2147483648,  "2147483648"                );
 		print_test_str_to_s32("str_to_s32 (n < min)     ",	FALSE,                 -2147483649, "-2147483649"                );
+		print_test_str_to_s32("str_to_s32 (n > max)     ",	FALSE,                  2147483648,  "2147483648"                );
 		print_test_str_to_s32("str_to_s32 (n > maxdigit)",	FALSE,                999999999999,  "999999999999"              );
 		print_test_str_to_s32("str_to_s32 (n < maxdigit)",	FALSE,               -999999999999, "-999999999999"              );
 	}
@@ -791,10 +807,12 @@ void test_str_to_s64(void)
 	print_test_str_to_s64("str_to_s64 (null str)    ",	SEGV,                            0, NULL                         );
 	if (g_test.flags.test_overflow)
 	{
-		print_test_str_to_s64("str_to_s64 (n > max)     ",	FALSE,       9223372036854775808LL,  "9223372036854775808"       );
 		print_test_str_to_s64("str_to_s64 (n < min)     ",	FALSE,      -9223372036854775809LL, "-9223372036854775809"       );
+		print_test_str_to_s64("str_to_s64 (n > max)     ",	FALSE,       9223372036854775808LL,  "9223372036854775808"       );
+#ifndef __clang__
 		print_test_str_to_s64("str_to_s64 (n > maxdigit)",	FALSE,     999999999999999999999LL,  "999999999999999999999"     );
 		print_test_str_to_s64("str_to_s64 (n < maxdigit)",	FALSE,    -999999999999999999999LL, "-999999999999999999999"     );
+#endif
 	}
 }
 
@@ -839,8 +857,8 @@ void test_str_to_u8(void)
 	print_test_str_to_u8("str_to_u8 (null str)    ",	SEGV,                            0, NULL                         );
 	if (g_test.flags.test_overflow)
 	{
-		print_test_str_to_u8("str_to_u8 (n > max)     ",	FALSE,                         256,  "256"                       );
 		print_test_str_to_u8("str_to_u8 (n < min)     ",	FALSE,                           0, "-1"                         );
+		print_test_str_to_u8("str_to_u8 (n > max)     ",	FALSE,                         256,  "256"                       );
 		print_test_str_to_u8("str_to_u8 (n > maxdigit)",	FALSE,                       99999,  "99999"                     );
 		print_test_str_to_u8("str_to_u8 (n < maxdigit)",	FALSE,                           0, "-99999"                     );
 	}
@@ -910,8 +928,8 @@ void test_str_to_u16(void)
 	print_test_str_to_u16("str_to_u16 (null str)    ",	SEGV,                            0, NULL                         );
 	if (g_test.flags.test_overflow)
 	{
-		print_test_str_to_u16("str_to_u16 (n > max)     ",	FALSE,                       65536, "65536"                      );
 		print_test_str_to_u16("str_to_u16 (n < min)     ",	FALSE,                           0, "-32769"                     );
+		print_test_str_to_u16("str_to_u16 (n > max)     ",	FALSE,                       65536, "65536"                      );
 		print_test_str_to_u16("str_to_u16 (n > maxdigit)",	FALSE,                     9999999, "9999999"                    );
 		print_test_str_to_u16("str_to_u16 (n < maxdigit)",	FALSE,                           0, "-9999999"                   );
 	}
@@ -1001,8 +1019,8 @@ void test_str_to_u32(void)
 	print_test_str_to_u32("str_to_u32 (null str)    ",	SEGV,                            0, NULL                         );
 	if (g_test.flags.test_overflow)
 	{
-		print_test_str_to_u32("str_to_u32 (n > max)     ",	FALSE,                  4294967296, "4294967296"                 );
 		print_test_str_to_u32("str_to_u32 (n < min)     ",	FALSE,                           0, "-1"                         );
+		print_test_str_to_u32("str_to_u32 (n > max)     ",	FALSE,                  4294967296, "4294967296"                 );
 		print_test_str_to_u32("str_to_u32 (n > maxdigit)",	FALSE,                999999999999, "999999999999"               );
 		print_test_str_to_u32("str_to_u32 (n < maxdigit)",	FALSE,                           0, "-999999999999"              );
 	}
@@ -1097,15 +1115,17 @@ void test_str_to_u64(void)
 	print_test_str_to_u64("str_to_u64",               	FALSE,                           0, "-2147483649"                );
 	print_test_str_to_u64("str_to_u64",               	FALSE,                  3000000000,  "3000000000"                );
 	print_test_str_to_u64("str_to_u64",               	FALSE,                           0, "-3000000000"                );
-	print_test_str_to_u64("str_to_u64 (n = max)     ",	FALSE,      18446744073709551615UL, "18446744073709551615"       );
 	print_test_str_to_u64("str_to_u64 (n = min)     ",	FALSE,                           0, "0"                          );
+	print_test_str_to_u64("str_to_u64 (n = max)     ",	FALSE,      18446744073709551615UL, "18446744073709551615"       );
 	print_test_str_to_u64("str_to_u64 (empty str)   ",	FALSE,                           0, ""                           );
 	print_test_str_to_u64("str_to_u64 (null str)    ",	SEGV,                            0, NULL                         );
 	if (g_test.flags.test_overflow)
 	{
-		print_test_str_to_u64("str_to_u64 (n > max)     ",	FALSE,      18446744073709551616UL, "18446744073709551616"       );
 		print_test_str_to_u64("str_to_u64 (n < min)     ",	FALSE,                           0, "-1"                         );
+#ifndef __clang__
+		print_test_str_to_u64("str_to_u64 (n > max)     ",	FALSE,      18446744073709551616UL, "18446744073709551616"       );
 		print_test_str_to_u64("str_to_u64 (n > maxdigit)",	FALSE,     999999999999999999999LL, "999999999999999999999"      );
+#endif
 		print_test_str_to_u64("str_to_u64 (n < maxdigit)",	FALSE,                           0, "-999999999999999999999"     );
 	}
 }
@@ -1395,9 +1415,11 @@ void	test_str_to_size(void)
 	print_test_str_to_size("str_to_size (null str)    ",	TRUE | (1 << 2),                 0, NULL                         );
 	if (g_test.flags.test_overflow)
 	{
-		print_test_str_to_size("str_to_size (n > max)     ",	FALSE,      18446744073709551616UL, "18446744073709551616"       );
 		print_test_str_to_size("str_to_size (n < min)     ",	FALSE,                           0, "-1"                         );
+#ifndef __clang__
+		print_test_str_to_size("str_to_size (n > max)     ",	FALSE,      18446744073709551616UL, "18446744073709551616"       );
 		print_test_str_to_size("str_to_size (n > maxdigit)",	FALSE,     999999999999999999999LL, "999999999999999999999"      );
+#endif
 		print_test_str_to_size("str_to_size (n < maxdigit)",	FALSE,                           0, "-999999999999999999999"     );
 	}
 }
@@ -1434,8 +1456,8 @@ void	test_u8_to_hex(void)
 	print_test_u8_to_hex("u8_to_hex (n = min)     ",	FALSE,      "0", 0    );
 	if (g_test.flags.test_overflow)
 	{
-		print_test_u8_to_hex("u8_to_hex (n > max)     ",	FALSE,    "100", 256  );
 		print_test_u8_to_hex("u8_to_hex (n < min)     ",	FALSE,     "-1", -1   );
+		print_test_u8_to_hex("u8_to_hex (n > max)     ",	FALSE,    "100", 256  );
 		print_test_u8_to_hex("u8_to_hex (n > maxdigit)",	FALSE,  "1869F", 99999);
 		print_test_u8_to_hex("u8_to_hex (n < maxdigit)",	FALSE, "-1869F",-99999);
 	}
@@ -1466,8 +1488,8 @@ void	test_u16_to_hex(void)
 	print_test_u16_to_hex("u16_to_hex (n = min)     ",	FALSE,        "0", 0      );
 	if (g_test.flags.test_overflow)
 	{
-		print_test_u16_to_hex("u16_to_hex (n > max)     ",	FALSE,    "10000", 65536  );
 		print_test_u16_to_hex("u16_to_hex (n < min)     ",	FALSE,       "-1", -1     );
+		print_test_u16_to_hex("u16_to_hex (n > max)     ",	FALSE,    "10000", 65536  );
 		print_test_u16_to_hex("u16_to_hex (n > maxdigit)",	FALSE,   "98967F", 9999999);
 		print_test_u16_to_hex("u16_to_hex (n < maxdigit)",	FALSE,  "-98967F",-9999999);
 	}
@@ -1500,8 +1522,8 @@ void	test_u32_to_hex(void)
 	print_test_u32_to_hex("u32_to_hex (n = min)     ",	FALSE,             "0", 0           );
 	if (g_test.flags.test_overflow)
 	{
-		print_test_u32_to_hex("u32_to_hex (n > max)     ",	FALSE,     "100000000", 4294967296  );
 		print_test_u32_to_hex("u32_to_hex (n < min)     ",	FALSE,            "-1", -1          );
+		print_test_u32_to_hex("u32_to_hex (n > max)     ",	FALSE,     "100000000", 4294967296  );
 		print_test_u32_to_hex("u32_to_hex (n > maxdigit)",	FALSE,    "E8D4A50FFF", 999999999999);
 		print_test_u32_to_hex("u32_to_hex (n < maxdigit)",	FALSE,   "-E8D4A50FFF",-999999999999);
 	}
@@ -1519,7 +1541,7 @@ void	print_test_u64_to_hex(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(u64_to_hex, number)
 	print_test_str(test_name, "_u64_to_hex", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS("%d", number)
+	TEST_PRINT_ARGS(PERCENT_U64, number)
 }
 void	test_u64_to_hex(void)
 {
@@ -1534,10 +1556,12 @@ void	test_u64_to_hex(void)
 	print_test_u64_to_hex("u64_to_hex (n = min)     ",	FALSE,                      "0", 0                     );
 	if (g_test.flags.test_overflow)
 	{
-		print_test_u64_to_hex("u64_to_hex (n > max)     ",	FALSE,      "10000000000000000", 18446744073709551616UL);
 		print_test_u64_to_hex("u64_to_hex (n < min)     ",	FALSE,                     "-1", -1                    );
+#ifndef __clang__
+		print_test_u64_to_hex("u64_to_hex (n > max)     ",	FALSE,      "10000000000000000", 18446744073709551616UL);
 		print_test_u64_to_hex("u64_to_hex (n > maxdigit)",	FALSE,                      "0", 999999999999999999999UL);
 		print_test_u64_to_hex("u64_to_hex (n < maxdigit)",	FALSE,                      "0",-999999999999999999999UL);
+#endif
 	}
 }
 
@@ -1662,8 +1686,8 @@ void	test_s8_to_strbase(void)
 	print_test_s8_to_strbase("s8_to_strbase (null base)   ",	TRUE,         segstr,          42,               NULL);
 	if (g_test.flags.test_overflow)
 	{
-		print_test_s8_to_strbase("s8_to_strbase (n > max)     ",	FALSE,         "128",         128,       "0123456789");
 		print_test_s8_to_strbase("s8_to_strbase (n < min)     ",	FALSE,        "-129",        -129,       "0123456789");
+		print_test_s8_to_strbase("s8_to_strbase (n > max)     ",	FALSE,         "128",         128,       "0123456789");
 		print_test_s8_to_strbase("s8_to_strbase (n > maxdigit)",	FALSE,          NULL,       99999,               "01");
 		print_test_s8_to_strbase("s8_to_strbase (n < maxdigit)",	FALSE,          NULL,      -99999,               "01");
 	}
@@ -1718,8 +1742,8 @@ void	test_s16_to_strbase(void)
 	print_test_s16_to_strbase("s16_to_strbase (null base)   ",	TRUE,         segstr,          42,               NULL);
 	if (g_test.flags.test_overflow)
 	{
-		print_test_s16_to_strbase("s16_to_strbase (n > max)     ",	FALSE,       "32768",       32768,       "0123456789");
 		print_test_s16_to_strbase("s16_to_strbase (n < min)     ",	FALSE,      "-32769",      -32769,       "0123456789");
+		print_test_s16_to_strbase("s16_to_strbase (n > max)     ",	FALSE,       "32768",       32768,       "0123456789");
 		print_test_s16_to_strbase("s16_to_strbase (n > maxdigit)",	FALSE,          NULL,     9999999,               "01");
 		print_test_s16_to_strbase("s16_to_strbase (n < maxdigit)",	FALSE,          NULL,    -9999999,               "01");
 	}
@@ -1775,8 +1799,8 @@ void	test_s32_to_strbase(void)
 	print_test_s32_to_strbase("s32_to_strbase (null base)   ",	TRUE,                     segstr,                  42,               NULL);
 	if (g_test.flags.test_overflow)
 	{
-		print_test_s32_to_strbase("s32_to_strbase (n > max)     ",	FALSE,              "2147483648",          2147483648,       "0123456789");
 		print_test_s32_to_strbase("s32_to_strbase (n < min)     ",	FALSE,             "-2147483649",         -2147483649,       "0123456789");
+		print_test_s32_to_strbase("s32_to_strbase (n > max)     ",	FALSE,              "2147483648",          2147483648,       "0123456789");
 		print_test_s32_to_strbase("s32_to_strbase (n > maxdigit)",	FALSE,                      NULL,        999999999999,               "01");
 		print_test_s32_to_strbase("s32_to_strbase (n < maxdigit)",	FALSE,                      NULL,       -999999999999,               "01");
 	}
@@ -1795,7 +1819,7 @@ void	print_test_s64_to_strbase(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(s64_to_strbase, number, base)
 	print_test_str(test_name, "_s64_to_strbase", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS("base='%s', n=%d", base, number);
+	TEST_PRINT_ARGS("base='%s', n="PERCENT_S64, base, number);
 }
 void	test_s64_to_strbase(void)
 {
@@ -1834,10 +1858,12 @@ void	test_s64_to_strbase(void)
 	print_test_s64_to_strbase("s64_to_strbase (null base)   ",	TRUE,                   segstr,                   42,               NULL);
 	if (g_test.flags.test_overflow)
 	{
-		print_test_s64_to_strbase("s64_to_strbase (n > max)     ",	FALSE, "9223372036854775808",    9223372036854775808,       "0123456789");
 		print_test_s64_to_strbase("s64_to_strbase (n < min)     ",	FALSE,"-9223372036854775808",   -9223372036854775808,       "0123456789");
+		print_test_s64_to_strbase("s64_to_strbase (n > max)     ",	FALSE, "9223372036854775808",    9223372036854775808,       "0123456789");
+#ifndef __clang__
 		print_test_s64_to_strbase("s64_to_strbase (n > maxdigit)",	FALSE,                  NULL,  999999999999999999999,               "01");
 		print_test_s64_to_strbase("s64_to_strbase (n < maxdigit)",	FALSE,                  NULL, -999999999999999999999,               "01");
+#endif
 	}
 }
 
@@ -1885,8 +1911,8 @@ void	test_u8_to_strbase(void)
 	print_test_u8_to_strbase("u8_to_strbase (null base)   ",	TRUE,         segstr,          42,               NULL);
 	if (g_test.flags.test_overflow)
 	{
-		print_test_u8_to_strbase("u8_to_strbase (n > max)     ",	FALSE,         "256",         256,       "0123456789");
 		print_test_u8_to_strbase("u8_to_strbase (n < min)     ",	FALSE,          "-1",          -1,       "0123456789");
+		print_test_u8_to_strbase("u8_to_strbase (n > max)     ",	FALSE,         "256",         256,       "0123456789");
 		print_test_u8_to_strbase("u8_to_strbase (n > maxdigit)",	FALSE,          NULL,       99999,               "01");
 		print_test_u8_to_strbase("u8_to_strbase (n < maxdigit)",	FALSE,          NULL,      -99999,               "01");
 	}
@@ -1940,8 +1966,8 @@ void	test_u16_to_strbase(void)
 	print_test_u16_to_strbase("u16_to_strbase (null base)   ",	TRUE,         segstr,          42,               NULL);
 	if (g_test.flags.test_overflow)
 	{
-		print_test_u16_to_strbase("u16_to_strbase (n > max)     ",	FALSE,       "65536",       65536,       "0123456789");
 		print_test_u16_to_strbase("u16_to_strbase (n < min)     ",	FALSE,          "-1",          -1,       "0123456789");
+		print_test_u16_to_strbase("u16_to_strbase (n > max)     ",	FALSE,       "65536",       65536,       "0123456789");
 		print_test_u16_to_strbase("u16_to_strbase (n > maxdigit)",	FALSE,          NULL,     9999999,               "01");
 		print_test_u16_to_strbase("u16_to_strbase (n < maxdigit)",	FALSE,          NULL,    -9999999,               "01");
 	}
@@ -1996,8 +2022,8 @@ void	test_u32_to_strbase(void)
 	print_test_u32_to_strbase("u32_to_strbase (null base)   ",	TRUE,                     segstr,                  42,               NULL);
 	if (g_test.flags.test_overflow)
 	{
-		print_test_u32_to_strbase("u32_to_strbase (n > max)     ",	FALSE,              "4294967296",          4294967296,       "0123456789");
 		print_test_u32_to_strbase("u32_to_strbase (n < min)     ",	FALSE,                      "-1",                  -1,       "0123456789");
+		print_test_u32_to_strbase("u32_to_strbase (n > max)     ",	FALSE,              "4294967296",          4294967296,       "0123456789");
 		print_test_u32_to_strbase("u32_to_strbase (n > maxdigit)",	FALSE,                      NULL,        999999999999,               "01");
 		print_test_u32_to_strbase("u32_to_strbase (n < maxdigit)",	FALSE,                      NULL,       -999999999999,               "01");
 	}
@@ -2016,7 +2042,7 @@ void	print_test_u64_to_strbase(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(u64_to_strbase, number, base)
 	print_test_str(test_name, "_u64_to_strbase", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS("base='%s', n=%d", base, number);
+	TEST_PRINT_ARGS("base='%s', n="PERCENT_U64, base, number);
 }
 void	test_u64_to_strbase(void)
 {
@@ -2054,13 +2080,17 @@ void	test_u64_to_strbase(void)
 	print_test_u64_to_strbase("u64_to_strbase (null base)   ",	TRUE,                   segstr,                    42,               NULL);
 	if (g_test.flags.test_overflow)
 	{
-		print_test_u64_to_strbase("u64_to_strbase (n > max)     ",	FALSE, "18446744073709551616",   18446744073709551616UL,     "0123456789");
 		print_test_u64_to_strbase("u64_to_strbase (n < min)     ",	FALSE,                   "-1",                       -1,     "0123456789");
+#ifndef __clang__
+		print_test_u64_to_strbase("u64_to_strbase (n > max)     ",	FALSE, "18446744073709551616",   18446744073709551616UL,     "0123456789");
 		print_test_u64_to_strbase("u64_to_strbase (n > maxdigit)",	FALSE,                   NULL,  999999999999999999999LL,             "01");
 		print_test_u64_to_strbase("u64_to_strbase (n < maxdigit)",	FALSE,                   NULL, -999999999999999999999LL,             "01");
+#endif
 	}
 }
 
+#pragma GCC diagnostic pop // Resets the GCC warning settings back to normal
+#pragma GCC diagnostic pop // Resets the GCC warning settings back to normal
 #pragma GCC diagnostic pop // Resets the GCC warning settings back to normal
 
 
