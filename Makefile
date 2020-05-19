@@ -313,12 +313,12 @@ TEST_PROGRAM	=	libft_test
 
 $(OBJDIR)%.o : $(TEST_DIR)%.c $(TEST_HDR)
 	@printf "Compiling file: "$@" -> "
-	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -c $< -o $@ -L./ -lft
+	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -c $< -o $@ -lft
 	@printf $(GREEN)"OK!"$(RESET)"\n"
 
 $(TEST_PROGRAM): $(NAME) $(TEST_OBJ) $(TEST_HDR)
 	@printf "Compiling testing program: "$@" -> "
-	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -o $(TEST_PROGRAM) $(TEST_OBJ) -L./ -lft
+	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -o $(TEST_PROGRAM) $(TEST_OBJ) -lft
 	@printf $(GREEN)"OK!"$(RESET)"\n"
 
 test: $(TEST_PROGRAM)

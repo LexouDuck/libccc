@@ -168,17 +168,12 @@ typedef	int64_t			t_s64;
 
 typedef float			t_f32;
 typedef double			t_f64;
-
-#if defined(__clang__)
-
-//TODO handle t_f80
-typedef long double		t_f128;
-
-#else
-
 typedef long double		t_f80;
-typedef __float128		t_f128;
 
+#if defined(__float128)
+typedef __float128		t_f128;
+#elif defined(_FLOAT_128_)
+#	error "Cannot set default float as 128-bit: FLOAT 128 is unavailable on this platform"
 #endif
 
 
