@@ -47,7 +47,7 @@
 
 #define Memory_GetBits(value, bit, length)	ft_getbits(value, bit, length)
 
-#define PointerArray_New(len)				ft_ptrarrnew(len)
+#define PointerArray_New(size)				ft_ptrarrnew(size)
 #define PointerArray_Length(ptrarr)			ft_ptrarrlen(ptrarr)
 
 
@@ -127,18 +127,6 @@ void	*ft_memdup(void const *ptr, t_size n);
 
 
 /*
-** Returns a newly allocated memory array to serve as a length n,
-** null-terminated, pointer array. Returns NULL if malloc fails.
-*/
-void	*ft_ptrarrnew(t_u32 n);
-
-/*
-** Returns the length of a null-terminated pointer array.
-*/
-t_u32	ft_ptrarrlen(const void **a_ptrarr);
-
-
-/*
 ** ************************************************************************** *|
 **                          Other Memory Operations                           *|
 ** ************************************************************************** *|
@@ -171,5 +159,24 @@ int		ft_memswap(void *ptr1, void *ptr2, t_size size);
 **	bits to the right by 'bit' bits (so as to center the value back to 0).
 */
 t_u64	ft_getbits(t_u64 value, t_u8 bit, t_u8 length);
+
+
+
+/*
+** ************************************************************************** *|
+**                          Pointer Array Operations                          *|
+** ************************************************************************** *|
+*/
+
+/*
+** Returns a newly allocated memory array to serve as a length n,
+** null-terminated, pointer array. Returns NULL if malloc fails.
+*/
+void	*ft_ptrarrnew(t_size size);
+
+/*
+** Returns the length of a null-terminated pointer array.
+*/
+t_u32	ft_ptrarrlen(const void **a_ptrarr);
 
 #endif

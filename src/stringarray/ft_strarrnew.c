@@ -15,15 +15,15 @@
 
 
 
-char	**ft_strarrnew(t_u32 len)
+char	**ft_strarrnew(t_u32 length)
 {
 	char	**result;
 	t_u32	i;
 
-	if (!(result = (char**)ft_memalloc(sizeof(char*) * (len + 1))))
+	if (!(result = (char**)ft_memalloc(sizeof(char*) * (length + 1))))
 		return (NULL);
 	i = 0;
-	while (i <= len)
+	while (i <= length)
 	{
 		result[i] = NULL;
 		++i;

@@ -62,7 +62,7 @@ char		**ft_strsplit_charset(const char *str, const char *sep_chars)
 	int		i;
 	int		j;
 	int		wstart;
-	int		len;
+	int		length;
 	char	**strarr;
 
 #if LIBFTCONFIG_HANDLE_NULLPOINTERS
@@ -78,10 +78,10 @@ char		**ft_strsplit_charset(const char *str, const char *sep_chars)
 		while (ft_in_charset(str[j], sep_chars))
 			++j;
 		wstart = j--;
-		len = ft_sing_word_lett_count(str, wstart, sep_chars);
-		if (!(strarr[i] = ft_strnew(len)))
+		length = ft_sing_word_lett_count(str, wstart, sep_chars);
+		if (!(strarr[i] = ft_strnew(length)))
 			return (NULL);
-		while (++j < wstart + len)
+		while (++j < wstart + length)
 			strarr[i][j - wstart] = str[j];
 		strarr[i++][j - wstart] = '\0';
 	}

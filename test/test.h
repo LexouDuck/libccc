@@ -226,6 +226,8 @@ void	print_test_f64(char const *test_name, char const *function, t_f64 result, t
 void	print_test_size(char const *test_name, char const *function, t_size result, t_size expect, int can_segfault);
 void	print_test_bool(char const *test_name, char const *function, t_bool result, t_bool expect, int can_segfault);
 
+void	print_test_sign(char const *test_name, char const *function, t_s64 result, t_s64 expect, int can_segfault);
+
 void	print_test_str(char const *test_name, char const *function, char const *result, char const *expect, int can_segfault);
 void	print_test_mem(char const *test_name, char const *function, void const *result, void const *expect, t_size length, int can_segfault);
 

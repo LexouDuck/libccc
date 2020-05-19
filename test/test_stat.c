@@ -15,7 +15,7 @@ int		test_stat(void) // TODO increment total tests counter for these tests
 	static const int	samples = 20000;
 	s_sortedlist_int	ilst_sorted = print_test_random(samples);
 /*
-	for (int i = 0; i < i_lst.len; ++i)
+	for (int i = 0; i < i_lst.length; ++i)
 		printf("%d, ", i_lst.data[i]);
 	printf("\n");
 */
@@ -112,13 +112,13 @@ int		test_stat(void) // TODO increment total tests counter for these tests
 	if (g_test.flags.show_args) // TODO special program option for this ?
 	{
 		printf("Probability mass function for the RNG\n");
-		for (int i = 0; i < pmf.len; ++i)
+		for (int i = 0; i < pmf.length; ++i)
 		{
 			printf("\t%5d: val %12f; prob %.4f\n", i, pmf.value[i], pmf.prob[i]);
 		}
 	}
 	tmp = 0.;
-	for (int i = 0; i < pmf.len; ++i)
+	for (int i = 0; i < pmf.length; ++i)
 	{
 		tmp += pmf.prob[i];
 	}

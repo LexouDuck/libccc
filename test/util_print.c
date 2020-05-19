@@ -112,10 +112,7 @@ void	print_title(void)
 	printf("                                  ==> by duquesne @ 42.fr\n");
 	printf("=========================================================\n");
 	printf("\n");
-	if (g_test.flags.verbose)
-	{
-		printf(C_YELLOW"NB: All the tests with written in yellow 'can segfault' are NULL pointer tests of some kind."C_RESET"\n\n");
-	}
+	printf(C_YELLOW"NB: All the tests with written in yellow 'can segfault' are NULL pointer tests of some kind."C_RESET"\n\n");
 	fflush(stdout);
 }
 

@@ -52,7 +52,7 @@ void	print_test_memfree(char const* test_name, int can_segfault,
 		void *ptr)
 {
 	TEST_PERFORM(ptr, memfree, ptr)
-	print_test_mem(test_name, "memfree arg", ptr, NULL, 0, can_segfault);
+	print_test_mem(test_name, "memfree arg", ptr, ptr, 0, can_segfault);
 	print_timer_result(&t, FALSE);
 }
 void	test_memfree(void)
@@ -61,8 +61,10 @@ void	test_memfree(void)
 	void* test = (void*)malloc(length);
 	memset(test, 0, length);
 //	| TEST FUNCTION  | TEST NAME        | CAN SEGV | TEST ARGS
+/* TODO figure out how to test this function
 	print_test_memfree("memfree",	          	FALSE,	test);
-//	print_test_memfree("memfree (null ptr)",	FALSE,	NULL); // TODO figure out how to recover from this
+	print_test_memfree("memfree (null ptr)",	FALSE,	NULL);
+*/
 }
 
 
@@ -110,9 +112,13 @@ void	test_memset(void)
 	int n1 = 0x6969;
 	int n2 = 0x6969;
 //	| TEST FUNCTION  | TEST NAME        | CAN SEGV | TEST ARGS
-	print_test_memset("memset (str)  ",    FALSE,	str1,       str2,       'a',    7);
-	print_test_memset("memset (uint) ",    FALSE,	(char*)&n1, (char*)&n2, 0xBABA, 4);
-	print_test_memset("memset (n = 0)",    FALSE,	str1,       str2,       '\0',   0);
+	print_test_memset("memset (str)    ",    FALSE,	str1,       str2,       'a',    7);
+	print_test_memset("memset (str)    ",    FALSE,	str1,       str2,       'b',    1);
+	print_test_memset("memset (str)    ",    FALSE,	str1,       str2,       '_',    16);
+	print_test_memset("memset (str)    ",    FALSE,	str1,       str2,       '@',    3);
+	print_test_memset("memset (c > 127)",    FALSE,	str1,       str2,       '\x88', 5);
+	print_test_memset("memset (int*)   ",    FALSE,	(char*)&n1, (char*)&n2, 0xBABA, 4);
+	print_test_memset("memset (n = 0)  ",    FALSE,	str1,       str2,       '\0',   0);
 	print_test_memset("memset (null ptr)", TRUE, 	str1,       str2,       '_',    5);
 }
 
@@ -134,8 +140,8 @@ void	print_test_memclr(char const* test_name, int can_segfault,
 		t_size n)
 {
 	TEST_PERFORM_LIBC_DEST(memclr, n)
-	print_test_mem(test_name, "memclr/bzero arg",                       dest_libft,     dest_libc,     n, can_segfault);
-	print_test_mem(NULL,      "memclr/bzero (region after the '\\0's)", dest_libft + n, dest_libc + n, 1, can_segfault);
+	print_test_mem(test_name, "memclr/bzero arg",                     dest_libft,     dest_libc,     n, can_segfault);
+//	print_test_mem(NULL,      "memclr/bzero (byte after the '\\0's)", dest_libft + n, dest_libc + n, 1, can_segfault);
 	print_timer_result(&t, TRUE);
 }
 void	test_memclr(void)
@@ -145,7 +151,10 @@ void	test_memclr(void)
 	int n1 = 0x6969;
 	int n2 = 0x6969;
 //	| TEST FUNCTION  | TEST NAME                | CAN SEGV | TEST ARGS
+	print_test_memclr("memclr/bzero (str)  ",   	FALSE,	str1,       str2,       3);
+	print_test_memclr("memclr/bzero (str)  ",   	FALSE,	str1,       str2,       8);
 	print_test_memclr("memclr/bzero (str)  ",   	FALSE,	str1,       str2,       12);
+	print_test_memclr("memclr/bzero (str)  ",   	FALSE,	str1,       str2,       16);
 	print_test_memclr("memclr/bzero (int*) ",   	FALSE,	(char*)&n1, (char*)&n2, sizeof(int));
 	print_test_memclr("memclr/bzero (n = 0)",   	FALSE,	str1,       str2,       0);
 	print_test_memclr("memclr/bzero (null ptr)",	TRUE, 	NULL,       NULL,       2);
@@ -171,13 +180,22 @@ void	test_memcpy(void)
 {
 	char str1[] = "Omae wa mou shindeiru.";
 	char str2[] = "Omae wa mou shindeiru.";
-//	| TEST FUNCTION  | TEST NAME        | CAN SEGV | TEST ARGS
-	print_test_memcpy("memcpy (str)  ",    	FALSE,	str1, str2, test2, test2_len);
-//	print_test_memcpy("memcpy (uint) ",    	FALSE,	&na,  &nb,  &n,    sizeof(n));
-	print_test_memcpy("memcpy (n = 0)",    	FALSE,	str1, str2, test2, 0);
-	print_test_memcpy("memcpy (null dest)",	TRUE, 	NULL, NULL, test2, test2_len);
-	print_test_memcpy("memcpy (null src) ",	TRUE, 	str1, str2, NULL,  test2_len);
-	print_test_memcpy("memcpy (both null)",	TRUE, 	NULL, NULL, NULL,  test2_len);
+	uint64_t n1 = 0x00ABCDEF6969CACA;
+	uint64_t n2 = 0x00ABCDEF6969CACA;
+	uint64_t n = 0x22446688AABBCCDD;
+//	| TEST FUNCTION  | TEST NAME          |CAN SEGV| TEST ARGS
+	print_test_memcpy("memcpy (str)  ",      FALSE,	str1, str2, test1, test1_len);
+	print_test_memcpy("memcpy (str)  ",      FALSE,	str1, str2, test2, test2_len);
+	print_test_memcpy("memcpy (str)  ",      FALSE,	str1, str2, test3, 20);
+	print_test_memcpy("memcpy (str)  ",      FALSE,	str1, str2, test1, 2);
+	print_test_memcpy("memcpy (str)  ",      FALSE,	str1, str2, test2, 1);
+	print_test_memcpy("memcpy (str)  ",      FALSE,	str1, str2, test3, strlen(str1));
+	print_test_memcpy("memcpy (int*) ",      FALSE,	(char*)&n1, (char*)&n2, (char const *)&n, sizeof(n));
+	print_test_memcpy("memcpy (n = 0)",      FALSE,	str1, str2, test2, 0);
+	print_test_memcpy("memcpy (n > srclen)", TRUE,	str1, str2, test2, test2_len + 5);
+	print_test_memcpy("memcpy (null dest) ", TRUE, 	NULL, NULL, test2, test2_len);
+	print_test_memcpy("memcpy (null src)  ", TRUE, 	str1, str2, NULL,  test2_len);
+	print_test_memcpy("memcpy (both null) ", TRUE, 	NULL, NULL, NULL,  test2_len);
 	// TODO add overlapping memory test
 }
 
@@ -208,12 +226,15 @@ void	test_memccpy(void)
 	uint64_t n = 0x22446688AABBCCDD;
 //	| TEST FUNCTION   | TEST NAME           | CAN SEGV | TEST ARGS
 	print_test_memccpy("memccpy (str)       ", 	FALSE,	str1, str2, test1, 'w',  test1_len);
+	print_test_memccpy("memccpy (str)       ", 	FALSE,	str1, str2, test1, '\r', test1_len);
 	print_test_memccpy("memccpy (str)       ", 	FALSE,	str1, str2, test2, '?',  test2_len);
+	print_test_memccpy("memccpy (str)       ", 	FALSE,	str1, str2, test2, '\t', test2_len);
 	print_test_memccpy("memccpy (str)       ", 	FALSE,	str1, str2, test3, 'f',  test3_len);
+	print_test_memccpy("memccpy (str)       ", 	FALSE,	str1, str2, test3, '\n', test3_len);
 	print_test_memccpy("memccpy (chars>0x80)", 	FALSE,	str1, str2, "\x78\x7F\x80\x81\x90\xA0\xB0", '\x7F', 8);
 	print_test_memccpy("memccpy (chars>0x80)", 	FALSE,	str1, str2, "\x78\x7F\x80\x81\x90\xA0\xB0", '\x90', 8);
 	print_test_memccpy("memccpy (chars>0x80)", 	FALSE,	str1, str2, "\x78\x7F\x80\x81\x90\xA0\xB0", '\xB0', 8);
-	print_test_memccpy("memccpy (uint)      ", 	FALSE,	(char*)&n1, (char*)&n2, (char const *)&n, 0xAA, 6);
+	print_test_memccpy("memccpy (int*)      ", 	FALSE,	(char*)&n1, (char*)&n2, (char const *)&n, 0xAA, sizeof(n));
 	print_test_memccpy("memccpy (c = '\\0')",	FALSE,	str1, str2, test3, '\0', test3_len);
 	print_test_memccpy("memccpy (null dest)",	TRUE, 	NULL, NULL, test3, 'e',  test3_len);
 	print_test_memccpy("memccpy (null src) ",	TRUE, 	str1, str2, NULL,  'e',  5);
@@ -243,7 +264,9 @@ void	test_memmove(void)
 	char str1[] = "Omae wa mou shindeiru.";
 	char str2[] = "Omae wa mou shindeiru.";
 //	| TEST FUNCTION   | TEST NAME           |CAN SEGV| TEST'dest'? | TEST ARGS
+	print_test_memmove("memmove (str)  ",    	FALSE,	TRUE, 		str1, str2, test1, test1_len);
 	print_test_memmove("memmove (str)  ",    	FALSE,	TRUE, 		str1, str2, test2, test2_len);
+	print_test_memmove("memmove (str)  ",    	FALSE,	TRUE, 		str1, str2, test3, 20);
 	print_test_memmove("memmove (n = 0)",    	FALSE,	TRUE, 		str1, str2, test1, 0);
 	print_test_memmove("memmove (null src) ",	TRUE, 	TRUE, 		str1, str2, NULL,  5);
 	print_test_memmove("memmove (null dest)",	TRUE, 	FALSE,		NULL, NULL, test1, 5);
@@ -275,12 +298,17 @@ void	print_test_memchr(char const* test_name, int can_segfault,
 }
 void	test_memchr(void)
 {
-//	na = 0xFFAABBCC;
+	uint64_t n = 0x22446688AABBCCDD;
 //	| TEST FUNCTION  | TEST NAME        | CAN SEGV | TEST ARGS
-	print_test_memchr("memchr (str)  ",   	FALSE,	test1, 'u',  test1_len);
-	print_test_memchr("memchr (n = 0)",   	FALSE,	test1, 'u',  0);
-//	print_test_memchr("memchr (uint) ",   	FALSE,	&na,   0xBB, 4);
-	print_test_memchr("memchr (null ptr)",	TRUE, 	NULL,  'c',  4);
+	print_test_memchr("memchr (str)   ",   FALSE,	test1,    'u',  test1_len);
+	print_test_memchr("memchr (str)   ",   FALSE,	test2,    '?',  test2_len);
+	print_test_memchr("memchr (str)   ",   FALSE,	test3,    'u',  test3_len);
+	print_test_memchr("memchr (str)   ",   FALSE,	test3,    '_',  test3_len);
+	print_test_memchr("memchr (int*)  ",   FALSE,	(char*)&n,0xBB, 8);
+	print_test_memchr("memchr (c='\\0')",  FALSE,	test1,    '\0', test1_len);
+	print_test_memchr("memchr (c='\\0')",  FALSE,	test3,    '\0', test3_len + 1);
+	print_test_memchr("memchr (n = 0) ",   FALSE,	test1,    'u',  0);
+	print_test_memchr("memchr (null ptr)", TRUE, 	NULL,     'c',  4);
 }
 
 
@@ -294,15 +322,30 @@ void	print_test_memcmp(char const* test_name, int can_segfault,
 		t_size n)
 {
 	TEST_PERFORM_RESULT_TYPE_LIBC(int, memcmp, test1, test2, n)
-	print_test_s32(test_name, "memcmp return", result_libft, result_libc, can_segfault);
+	print_test_sign(test_name, "memcmp return", result_libft, result_libc, can_segfault);
 	print_timer_result(&t, TRUE);
 }
 void	test_memcmp(void)
 {
+	uint64_t n1 = 0x00ABCDEF6969CACA;
+	uint64_t n2 = 0x00ABCDEF6969CACA;
+	uint64_t n = 0x22446688AABBCCDD;
 //	| TEST FUNCTION  | TEST NAME          | CAN SEGV | TEST ARGS
+	print_test_memcmp("memcmp (str)  ",    	FALSE,		test1, test1, test1_len);
+	print_test_memcmp("memcmp (str)  ",    	FALSE,		test1, test2, test2_len);
+	print_test_memcmp("memcmp (str)  ",    	FALSE,		test1, test3, test3_len);
+	print_test_memcmp("memcmp (str)  ",    	FALSE,		test2, test1, test1_len);
+	print_test_memcmp("memcmp (str)  ",    	FALSE,		test2, test2, test2_len);
 	print_test_memcmp("memcmp (str)  ",    	FALSE,		test2, test3, test3_len);
+	print_test_memcmp("memcmp (str)  ",    	FALSE,		test3, test1, test1_len);
+	print_test_memcmp("memcmp (str)  ",    	FALSE,		test3, test2, test2_len);
+	print_test_memcmp("memcmp (str)  ",    	FALSE,		test3, test3, test3_len);
+	print_test_memcmp("memcmp (int*) ",    	FALSE,		(char*)&n1, (char*)&n2, sizeof(n1));
+	print_test_memcmp("memcmp (int*) ",    	FALSE,		(char*)&n1, (char*)&n, sizeof(n));
+	print_test_memcmp("memcmp (int*) ",    	FALSE,		(char*)&n2, (char*)&n, sizeof(n) - 2);
+	print_test_memcmp("memcmp (int*) ",    	FALSE,		(char*)&n1, (char*)&n1, sizeof(n1));
 	print_test_memcmp("memcmp (n = 0)",    	FALSE,		test2, test3, 0);
-//	print_test_memcmp("memcmp (uint) ",    	FALSE,		&na,   &nb,   4);
+//	print_test_memcmp("memcmp (int*) ",    	FALSE,		&na,   &nb,   4);
 	print_test_memcmp("memcmp (null str1)",	SEGV,		NULL,  test3, test3_len);
 	print_test_memcmp("memcmp (null str2)",	SEGV, 		test2, NULL,  test3_len);
 	print_test_memcmp("memcmp (both null)",	SEGV, 		NULL,  NULL,  test3_len);
@@ -324,17 +367,26 @@ void	print_test_memdup(char const* test_name, int can_segfault,
 {
 	TEST_PERFORM_RESULT(memdup, src, n)
 	print_test_mem(test_name, "_memdup return", result_libft, expecting, n, can_segfault);
-	if (result_libft) free(result_libft);
-//	if (result_libc)  free(result_libc);
 	print_timer_result(&t, FALSE);
+	TEST_FREE()
 }
 void	test_memdup(void)
 {
+	uint64_t n1 = 0x00ABCDEF6969CACA;
+	uint64_t n = 0x22446688AABBCCDD;
 //	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
 	print_test_memdup("memdup (str)      ",	FALSE,	test1,		test1, test1_len);
-	print_test_memdup("memdup (empty str)",	FALSE,	"\0", 		"\0",  1);
+	print_test_memdup("memdup (str)      ",	FALSE,	test2,		test2, test2_len);
+	print_test_memdup("memdup (str)      ",	FALSE,	test3,		test3, test3_len);
+	print_test_memdup("memdup (int*)     ",	FALSE,	(char*)&n,	(char*)&n, sizeof(n));
+	print_test_memdup("memdup (int*)     ",	FALSE,	(char*)&n1,	(char*)&n1, sizeof(n1));
+	print_test_memdup("memdup (int*)     ",	FALSE,	(char*)&n,	(char*)&n, sizeof(n) - 2);
+	print_test_memdup("memdup (n = 2)    ",	FALSE,	test1,		test1, 2);
+	print_test_memdup("memdup (n = 1)    ",	FALSE,	test1,		test1, 1);
 	print_test_memdup("memdup (n = 0)    ",	FALSE,	test1,		test1, 0);
-//	print_test_memdup("memdup (null ptr)", 	TRUE, 	NULL, 		NULL,  test1_len);
+	print_test_memdup("memdup (empty str)",	FALSE,	"", 		"",    1);
+	print_test_memdup("memdup (n > srclen)", TRUE,	test1,		test1, 0);
+	print_test_memdup("memdup (null ptr)", 	 TRUE,	NULL, 		NULL,  test1_len);
 }
 
 
@@ -379,9 +431,11 @@ int		test_memory(void)
 
 	test_memset();
 	test_memclr(); // = bzero
+
 	test_memcpy();
 	test_memccpy();
 	test_memmove();
+
 	test_memchr();
 	test_memcmp();
 
@@ -389,9 +443,11 @@ int		test_memory(void)
 
 	test_memalloc();
 	test_memnew();
-	test_memfree();
+//	test_memfree();
 	test_memdel();
+
 	test_memdup();
+
 //	test_memswap();
 //	test_getbits();
 

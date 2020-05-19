@@ -12,8 +12,6 @@
 */
 
 
-int			strarr_equals
-
 
 /*
 char	**ft_strsplit(char const *str, char c);
