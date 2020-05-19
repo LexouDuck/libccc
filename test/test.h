@@ -105,10 +105,10 @@ s_test		g_test;
 ** ************************************************************************** *|
 */
 
-extern char* nullstr;
-extern char* segstr;
-int			segfault;
-jmp_buf 	restore;
+extern char*	nullstr;
+extern char*	segstr;
+int				segfault;
+jmp_buf 		restore;
 
 #ifdef __MINGW32__
 void	signal_handler(int signaltype);
@@ -349,6 +349,9 @@ void	print_test_lst(char const *test_name, char const *function, s_list const *r
 	_TEST_FREE(libft) \
 	_TEST_FREE(libc) \
 
+// Frees the 'result_libft', if appropriate, when that result is a nested allocation of rank 2 (ie, a char**/string array)
+#define TEST_FREE_ARRAY_NULLTERM() \
+	_TEST_FREE_ARRAY_NULLTERM(libft) \
 
 
 /*
@@ -431,7 +434,7 @@ void	print_test_lst(char const *test_name, char const *function, s_list const *r
 
 /*
 **	This macro frees the result variable for a test, if it is appropriate to do so
-**	@param	LIB			The name of the result variable to free (token-pasted as 'result_##LIB')
+**	@param	LIB			The name of the result variable to freed (token-pasted as 'result_##LIB')
 */
 #define _TEST_FREE(LIB) \
 	if (result_##LIB && result_##LIB != segstr) \
@@ -440,6 +443,23 @@ void	print_test_lst(char const *test_name, char const *function, s_list const *r
 		result_##LIB = NULL; \
 	} \
 
+/*
+**	This macro frees the result variable for a test, if it is appropriate to do so,
+**	knowing this is an array of sub-results which should also be freed, and that
+**	this array is a null-terminated pointer array.
+**	@param	LIB			The name of the array result variable to freed (token-pasted as 'result_##LIB')
+*/
+#define _TEST_FREE_ARRAY_NULLTERM(LIB) \
+	if (result_##LIB && *result_##LIB != segstr) \
+	{ \
+		for (int i = 0; result_##LIB[i]; ++i) \
+		{ \
+			free(result_##LIB[i]); \
+			result_##LIB[i] = NULL; \
+		} \
+		free(result_##LIB); \
+		result_##LIB = NULL; \
+	} \
 
 
 /*

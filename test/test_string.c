@@ -1206,13 +1206,6 @@ void	test_strmapi(void)
 
 int		test_string(void)
 {
-	char*	str1;
-	char*	str2;
-	char const test1[] = "Omae wa mou shindeiru.";		t_size test1_len = strlen(test1) + 1;
-	char const test2[] = "Nani???";						t_size test2_len = strlen(test2) + 1;
-	char const test3[] = "Un ange mange de la fange.";	t_size test3_len = strlen(test3) + 1;
-	char**	strls;
-
 	print_suite_title("string");
 
 	test_strnew();

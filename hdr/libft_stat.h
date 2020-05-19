@@ -27,7 +27,7 @@
 ** ************************************************************************** *|
 */
 
-#define Stat_Int_NewList(length)				ft_stat_new_ilst(length)
+#define Stat_Int_NewList(length)			ft_stat_new_ilst(length)
 #define Stat_Int_FreeList(ilst)				ft_stat_free_ilst(ilst)
 
 #define Stat_Int_MergeList(start, append)	ft_stat_merge_ilst(start, append)
