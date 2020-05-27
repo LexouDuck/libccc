@@ -11,15 +11,11 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, macOS-latest, windows-latest]
+        os: [ ubuntu-latest, macOS-latest, windows-latest ]
+        compiler: [ gcc, clang ]
 
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
     steps:
     - uses: actions/checkout@v2
-    - name: prep (windows-latest, MinGW)
-      if: ${{ matrix.os == 'windows-latest' }}
-      run: |
-        Get-ChildItem -Path "C:\Program Files\Git\" -Include *gcc.exe -File -Recurse -ErrorAction SilentlyContinue
-        Set-Alias -Name i686-w64-mingw32-gcc -Value gcc
-    - name: make (${{ matrix.os }})
-      run: make
+    - name: make (with ${{ matrix.compiler }}, for ${{ matrix.os }})
+      run: make CC=${{ matrix.compiler }}
