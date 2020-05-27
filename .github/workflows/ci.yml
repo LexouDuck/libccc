@@ -19,8 +19,7 @@ jobs:
     - name: prep (windows-latest, MinGW)
       if: ${{ matrix.os == 'windows-latest' }}
       run: |
-        ls "C:\Program Files\Git\bin"
-        ls "C:\Program Files\Git\usr\bin"
+        Get-ChildItem -Path C:\ -Include *gcc.exe -File -Recurse -ErrorAction SilentlyContinue
         Set-Alias -Name i686-w64-mingw32-gcc -Value gcc
     - name: make (${{ matrix.os }})
       run: make
