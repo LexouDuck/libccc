@@ -11,7 +11,7 @@ CFLAGS	=	-Wall -Wextra -Winline -Werror $(CFLAGS_PLATFORM) -O2 -MMD
 
 CFLAGS_PLATFORM = _
 CFLAGS_WIN	= -mwindows
-CFLAGS_LIN	= -Wno-unused-result -ft_lstmap
+CFLAGS_LIN	= -Wno-unused-result -lm
 CFLAGS_MAC	= 
 
 # Set platform-specific variables
