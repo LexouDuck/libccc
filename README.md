@@ -1,7 +1,7 @@
 # libft
 A customizable cross-platform standard library for C
 
-![](https://github.com/LexouDuck/libft/workflows/.github/workflows/ci.yml/badge.svg)
+![](https://github.com/LexouDuck/libft/workflows/libft%20CI/badge.svg)
 
 ### The Project
 The objective is to have one simple, well-documented, efficient open-source implementation of the C standard library, but with easier to use functions and types than what is offered by the ISO standards - mostly by consistently handling undefined behaviors, and handling edge cases in a consistent, coherent way, so as to have code that is as little machine-specific as possible.
