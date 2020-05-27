@@ -15,8 +15,9 @@ jobs:
         os: [ubuntu-latest, macOS-latest, windows-latest]
         compiler: [gcc, clang]
 
-    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') && !(matrix.compiler == 'clang' && matrix.os == 'windows-latest') }}
+    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
     steps:
     - uses: actions/checkout@v2
     - name: make (with ${{matrix.compiler}}, for ${{matrix.os}})
+      if: ${{ !(matrix.compiler == 'clang' && matrix.os == 'windows-latest') }}
       run: make CC=${{matrix.compiler}}
