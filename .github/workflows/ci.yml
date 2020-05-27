@@ -7,12 +7,13 @@ on:
     branches: [ master ]
 
 jobs:
-  test:
+  make:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, macOS-latest, windows-latest]
 
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
     steps:
     - uses: actions/checkout@v2
     - name: prep (windows-latest, MinGW)
@@ -20,3 +21,6 @@ jobs:
       run: Set-Alias -Name i686-w64-mingw32-gcc -Value gcc
     - name: make (${{ matrix.os }})
       run: make
+      if: ${{ matrix.os == 'windows-latest' }}
+      with:
+        mingw: _upgrade_
