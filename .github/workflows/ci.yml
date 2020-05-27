@@ -19,7 +19,7 @@ jobs:
     - name: prep (windows-latest, MinGW)
       if: ${{ matrix.os == 'windows-latest' }}
       run: |
-        $env:path -split ";"
+        ls "C:\Program Files\Git\mingw64\bin"
         Set-Alias -Name i686-w64-mingw32-gcc -Value gcc
     - name: make (${{ matrix.os }})
       run: make
