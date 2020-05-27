@@ -19,5 +19,5 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: make (with ${{matrix.compiler}}, for ${{matrix.os}})
-      if: ${{ !(matrix.compiler == "clang" && matrix.os == "windows-latest") }}
+      if: ${{ !(matrix.compiler == 'clang' && matrix.os == 'windows-latest') }}
       run: make CC=${{matrix.compiler}}
