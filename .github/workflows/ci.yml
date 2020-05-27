@@ -16,11 +16,10 @@ jobs:
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
     steps:
     - uses: actions/checkout@v2
-    - with:
-      if: ${{ matrix.os == 'windows-latest' }}
-        mingw: _upgrade_
     - name: prep (windows-latest, MinGW)
       if: ${{ matrix.os == 'windows-latest' }}
-      run: Set-Alias -Name i686-w64-mingw32-gcc -Value gcc
+      run: |
+        $env:path -split ";"
+        Set-Alias -Name i686-w64-mingw32-gcc -Value gcc
     - name: make (${{ matrix.os }})
       run: make
