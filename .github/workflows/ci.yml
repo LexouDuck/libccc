@@ -16,6 +16,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: build (${{ matrix.os }})
-      run:
+      run: |
         alias i686-w64-mingw32-gcc="gcc"
         make
