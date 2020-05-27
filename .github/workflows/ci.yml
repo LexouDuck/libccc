@@ -19,8 +19,7 @@ jobs:
     - name: prep (windows-latest, MinGW)
       if: ${{ matrix.os == 'windows-latest' }}
       run: Set-Alias -Name i686-w64-mingw32-gcc -Value gcc
-    - name: make (${{ matrix.os }})
-      run: make
-      if: ${{ matrix.os == 'windows-latest' }}
       with:
         mingw: _upgrade_
+    - name: make (${{ matrix.os }})
+      run: make
