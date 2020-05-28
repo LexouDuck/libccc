@@ -196,14 +196,14 @@ void	print_test_strlcpy(char const* test_name, int can_segfault,
 		char const* src,
 		t_size size)
 {
-#ifdef __MINGW32__
-	TEST_PERFORM_RESULT_TYPE_DEST(t_size, strlcpy, src, size)
-	print_test_str(test_name, "strlcpy 'dest' arg", dest_libft,   expecting_dest, can_segfault);
-	print_test_size(NULL,     "strlcpy return",     result_libft, expecting,      can_segfault);
-#else
+#ifdef __APPLE__
 	TEST_PERFORM_RESULT_TYPE_LIBC_DEST(t_size, strlcpy, src, size)
 	print_test_str(test_name, "strlcpy 'dest' arg", dest_libft, dest_libc, can_segfault);
 	print_test_size(NULL,     "strlcpy return", result_libft, result_libc, can_segfault);
+#else
+	TEST_PERFORM_RESULT_TYPE_DEST(t_size, strlcpy, src, size)
+	print_test_str(test_name, "strlcpy 'dest' arg", dest_libft,   expecting_dest, can_segfault);
+	print_test_size(NULL,     "strlcpy return",     result_libft, expecting,      can_segfault);
 #endif
 	print_timer_result(&t, TRUE);
 }
@@ -299,14 +299,14 @@ void	print_test_strlcat(char const* test_name, int can_segfault,
 		char const* src,
 		t_size size)
 {
-#ifdef __MINGW32__
-	TEST_PERFORM_RESULT_TYPE_DEST(t_size, strlcat, src, size)
-	print_test_str(test_name, "strlcat 'dest' arg", dest_libft,   expecting_dest, can_segfault);
-	print_test_size(NULL,     "strlcat return",     result_libft, expecting,      can_segfault);
-#else
+#ifdef __APPLE__
 	TEST_PERFORM_RESULT_TYPE_LIBC_DEST(t_size, strlcat, src, size)
 	print_test_str(test_name, "strlcat 'dest' arg", dest_libft,   dest_libc,   can_segfault);
 	print_test_size(NULL,     "strlcat return",     result_libft, result_libc, can_segfault);
+#else
+	TEST_PERFORM_RESULT_TYPE_DEST(t_size, strlcat, src, size)
+	print_test_str(test_name, "strlcat 'dest' arg", dest_libft,   expecting_dest, can_segfault);
+	print_test_size(NULL,     "strlcat return",     result_libft, expecting,      can_segfault);
 #endif
 	print_timer_result(&t, TRUE);
 }
@@ -705,12 +705,12 @@ void	print_test_strnstr(char const* test_name, int can_segfault,
 		char const* query,
 		t_size n)
 {
-#ifdef __MINGW32__
-	TEST_PERFORM_RESULT(strnstr, str, query, n)
-	print_test_str(test_name, "strnstr return", result_libft, expecting, can_segfault);
-#else
+#ifdef __APPLE__
 	TEST_PERFORM_RESULT_LIBC(strnstr, str, query, n)
 	print_test_str(test_name, "strnstr return", result_libft, result_libc, can_segfault);
+#else
+	TEST_PERFORM_RESULT(strnstr, str, query, n)
+	print_test_str(test_name, "strnstr return", result_libft, expecting, can_segfault);
 #endif
 	print_timer_result(&t, TRUE);
 }

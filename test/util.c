@@ -687,10 +687,14 @@ void	print_test_lst(
 		printf(C_RED"Error:\n");
 		lst = (s_list *)result;
 		printf(">ft_%s: [", function);
+		char* tmp;
 		while (lst)
 		{
-			printf("%s{%s}", (lst == result ? "" : ", "), lst->item);
+			tmp = print_memory(lst->item, lst->item_size);
+			printf("%s{%s}", (lst == result ? "" : ", "), tmp);
 			lst = lst->next;
+			free(tmp);
+			tmp = NULL;
 		}
 		i = 0;
 		printf("]\n> Expected: [");
