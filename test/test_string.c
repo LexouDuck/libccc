@@ -1,5 +1,6 @@
 
 #include <ctype.h>
+#include <string.h>
 
 #include "libft_string.h"
 

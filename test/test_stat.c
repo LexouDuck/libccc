@@ -7,20 +7,6 @@
 #include "test.h"
 
 
-#ifdef _INT_64_
-#define PERCENT_W12_TINT	"%12ld"
-#else
-#define PERCENT_W12_TINT	"%12d"
-#endif
-
-#ifdef _UINT_64_
-#define PERCENT_W12_TUINT	"%12lu"
-#else
-#define PERCENT_W12_TUINT	"%12u"
-#endif
-
-#define PERCENT_U64			"%llu"
-
 
 int		test_stat(void) // TODO increment total tests counter for these tests
 {

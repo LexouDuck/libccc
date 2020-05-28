@@ -4,12 +4,6 @@
 
 #include "test.h"
 
-//Mac
-#define PERCENT_S64		"%lld"
-#define PERCENT_U64		"%llu"
-#define PERCENT_SIZET	"%zu"
-#define PERCENT_F32		"%f"
-
 
 
 #pragma GCC diagnostic push // Disable GCC overflow warnings temporarily
