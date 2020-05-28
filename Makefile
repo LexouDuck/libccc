@@ -1,18 +1,24 @@
+# Output file names
 NAME	=	libft.a
 
 # Compiler
-CC		= _
+CC	= _
 CC_WIN	= i686-w64-mingw32-gcc
 CC_LIN	= gcc
 CC_MAC	= gcc
 
 # Compiler flags
-CFLAGS	=	-Wall -Wextra -Winline -Werror $(CFLAGS_PLATFORM) -O2 -MMD
+CFLAGS	=	-Wall -Wextra -Winline -Werror $(CFLAGS_PLATFORM) -MMD -O2
 
 CFLAGS_PLATFORM = _
 CFLAGS_WIN	= -mwindows
 CFLAGS_LIN	= -Wno-unused-result
 CFLAGS_MAC	= 
+
+# Directories that this Makefile will use
+HDRDIR	=	./hdr/
+SRCDIR	=	./src/
+OBJDIR	=	./obj/
 
 # Set platform-specific variables
 ifeq ($(OS),Windows_NT)
@@ -32,6 +38,15 @@ else
 		SED_DEL_OPT	:=
 	endif
 endif
+
+
+
+# Define colors for terminal output
+RESET	=	"\033[0m"
+RED		=	"\033[0;31m"
+GREEN	=	"\033[0;32m"
+
+
 
 DIR_MEMORY	:=	memory/
 SRC_MEMORY	:=	ft_memalloc.c	\
@@ -165,12 +180,7 @@ SRC_IO		:=	ft_output.c			\
 
 
 
-HDRDIR	=	./hdr/
-SRCDIR	=	./src/
-OBJDIR	=	./obj/
-
-
-
+# List of all header files
 HDRS	=	$(HDRDIR)libft_memory.h			\
 			$(HDRDIR)libft_char.h			\
 			$(HDRDIR)libft_string.h			\
@@ -185,6 +195,7 @@ HDRS	=	$(HDRDIR)libft_memory.h			\
 			$(HDRDIR)libft_io.h				\
 			$(HDRDIR)libft.h
 
+# List of all source code files
 SRCS	=	$(addprefix $(DIR_MEMORY),		$(SRC_MEMORY)		)	\
 			$(addprefix $(DIR_CHAR),		$(SRC_CHAR)			)	\
 			$(addprefix $(DIR_STRING),		$(SRC_STRING)		)	\
@@ -198,15 +209,15 @@ SRCS	=	$(addprefix $(DIR_MEMORY),		$(SRC_MEMORY)		)	\
 			$(addprefix $(DIR_VLQ),			$(SRC_VLQ)			)	\
 			$(addprefix $(DIR_IO),			$(SRC_IO)			)
 
+# Define object list and dependency files (.d)
 OBJS	=	${SRCS:%.c=$(OBJDIR)%.o}
+DEPENDS	=	${OBJS:.o=.d}
 
 
 
-RESET	=	"\033[0m"
-RED		=	"\033[0;31m"
-GREEN	=	"\033[0;32m"
-
-
+#######################################
+#          Main build rules           #
+#######################################
 
 all: $(NAME)
 
@@ -238,13 +249,11 @@ $(NAME): $(OBJS) $(HDRS)
 	@ranlib $@
 	@printf $(GREEN)"OK!"$(RESET)"\n"
 
-lint:
-	@cppcheck $(SRCDIR) $(HDRDIR) --quiet --std=c99 --enable=all \
-		--suppress=memleak \
-		--suppress=variableScope \
-		--suppress=unusedFunction \
-		--template="-[{severity}]\t{file}:{line}\t->\t{id}: {message}" \
-		--template-location="  -> from:\t{file}:{line}\t->\t{info}"
+
+
+#######################################
+#        File deletion rules          #
+#######################################
 
 clean:
 	@printf "Deleting object files...\n"
@@ -261,33 +270,15 @@ rclean:
 tclean:
 	@printf "Deleting libft test...\n"
 	@rm -f test
-	@rm -f test.exe*
+	@rm -f libft_test.exe*
 
 re: fclean all
 
 
 
-PREPROCESSED	=	${SRCS:%.c=$(OBJDIR)%.c}
-
-preprocessed: all $(PREPROCESSED)
-	@printf "Outputting preprocessed code...\n"
-
-$(OBJDIR)%.c : $(SRCDIR)%.c $(HDRS)
-	@printf "Preprocessing file: "$@" -> "
-	@$(CC) $(CFLAGS) -E $< -o $@
-	@printf $(GREEN)"OK!"$(RESET)"\n"
-
-
-
-replace:
-	@sed -i -e "s|$(old)|$(new)|g" $(addprefix $(SRCDIR), $(SRCS))
-	@printf "Replaced all instances of \'"$(old)"\' with \'"$(new)"\'.\n"
-
-rename:
-	@sed -i -e "s|\<$(old)\>|$(new)|g" $(addprefix $(SRCDIR), $(SRCS))
-	@printf "Renamed all words matching \'"$(old)"\' with \'"$(new)"\'.\n"
-
-
+#######################################
+#          CI Testing program         #
+#######################################
 
 TEST_DIR	=	./test/
 
@@ -328,4 +319,43 @@ $(TEST_PROGRAM): $(TEST_OBJ) $(TEST_HDR) $(NAME)
 test: $(TEST_PROGRAM)
 	@./$(TEST_PROGRAM) | sed $(SED_DEL_OPT) "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2})?)?[mGK]//g" > libft_test_results.txt
 
+
+
+#######################################
+#          Other operations           #
+#######################################
+
+lint:
+	@cppcheck $(SRCDIR) $(HDRDIR) --quiet --std=c99 --enable=all \
+		--suppress=memleak \
+		--suppress=variableScope \
+		--suppress=unusedFunction \
+		--template="-[{severity}]\t{file}:{line}\t->\t{id}: {message}" \
+		--template-location="  -> from:\t{file}:{line}\t->\t{info}"
+
+
+
+PREPROCESSED	=	${SRCS:%.c=$(OBJDIR)%.c}
+
+preprocessed: all $(PREPROCESSED)
+	@printf "Outputting preprocessed code...\n"
+
+$(OBJDIR)%.c : $(SRCDIR)%.c $(HDRS)
+	@printf "Preprocessing file: "$@" -> "
+	@$(CC) $(CFLAGS) -E $< -o $@
+	@printf $(GREEN)"OK!"$(RESET)"\n"
+
+
+
+replace:
+	@sed -i -e "s|$(old)|$(new)|g" $(addprefix $(SRCDIR), $(SRCS))
+	@printf "Replaced all instances of \'"$(old)"\' with \'"$(new)"\'.\n"
+
+rename:
+	@sed -i -e "s|\<$(old)\>|$(new)|g" $(addprefix $(SRCDIR), $(SRCS))
+	@printf "Renamed all words matching \'"$(old)"\' with \'"$(new)"\'.\n"
+
+
+
+# The following line is for Makefile GCC dependency file handling (.d files)
 -include ${DEPENDS}

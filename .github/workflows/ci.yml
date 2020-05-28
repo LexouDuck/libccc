@@ -23,3 +23,5 @@ jobs:
     - uses: actions/checkout@v2
     - name: make (with ${{matrix.compiler}}, for ${{matrix.os}})
       run: make CC=${{matrix.compiler}}
+    - name: test (with ${{matrix.compiler}}, for ${{matrix.os}})
+      run: make test CC=${{matrix.compiler}}
