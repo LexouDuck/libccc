@@ -313,11 +313,11 @@ $(OBJDIR)%.o : $(TEST_DIR)%.c $(TEST_HDR) $(NAME)
 
 $(TEST_PROGRAM): $(TEST_OBJ) $(TEST_HDR) $(NAME)
 	@printf "Compiling testing program: "$@" -> "
-	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -o $(TEST_PROGRAM) $(TEST_OBJ) -L./ -lft
+	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -o $(TEST_PROGRAM) $(TEST_OBJ) -L./ -lft -lm
 	@printf $(GREEN)"OK!"$(RESET)"\n"
 
 test: $(TEST_PROGRAM)
-	@./$(TEST_PROGRAM) | sed $(SED_DEL_OPT) "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2})?)?[mGK]//g" > libft_test_results.txt
+	@./$(TEST_PROGRAM)
 
 
 
