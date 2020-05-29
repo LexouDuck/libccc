@@ -14,18 +14,18 @@
 
 
 
-inline int		ft_isalpha(int c)
+inline t_bool	ft_isalpha(int c)
 {
 	return (('A' <= c && c <= 'Z') ||
 			('a' <= c && c <= 'z'));
 }
 
-inline int		ft_isupper(int c)
+inline t_bool	ft_isupper(int c)
 {
 	return ('A' <= c && c <= 'Z');
 }
 
-inline int		ft_islower(int c)
+inline t_bool	ft_islower(int c)
 {
 	return ('a' <= c && c <= 'z');
 }

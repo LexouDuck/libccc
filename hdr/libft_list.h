@@ -27,26 +27,26 @@
 ** ************************************************************************** *|
 */
 
-#define List_New(item, size)			ft_lstnew(item, size)
-#define List_Add(alst, elem)			ft_lstadd(alst, elem)
-#define List_Append(alst, elem)			ft_lstappend(alst, elem)
-#define List_Insert(alst, elem, index)	ft_lstinsert(alst, elem, index)
-#define List_Copy(lst)					ft_lstcpy(lst)
-#define List_Remove(alst, del)			ft_lstdelone(alst, del)
-#define List_Delete(alst, del)			ft_lstdel(alst, del)
-#define List_Pop(alst, del)				ft_lstpop(alst, del)
+#define List_New			ft_lstnew
+#define List_Add			ft_lstadd
+#define List_Append			ft_lstappend
+#define List_Insert			ft_lstinsert
+#define List_Copy			ft_lstcpy
+#define List_Remove			ft_lstdelone
+#define List_Delete			ft_lstdel
+#define List_Pop			ft_lstpop
 
-#define List_Size(lst)					ft_lstsize(lst)
-#define List_Get(alst, index)			ft_lstget(alst, index)
-#define List_Find(lst, query)			ft_lstfind(lst, query)
+#define List_Size			ft_lstsize
+#define List_Get			ft_lstget
+#define List_Find			ft_lstfind
 
-#define List_Sub(alst, index, n)		ft_lstsub(alst, index, n)
-#define List_Iterate(lst, f)			ft_lstiter(lst, f)
-#define List_Iterate_I(lst, f)			ft_lstiteri(lst, f)
-#define List_Map(lst, f)				ft_lstmap(lst, f)
-#define List_Map_I(lst, f)				ft_lstmapi(lst, f)
-#define List_ToArray(alst)				ft_lst_to_array(alst)
-#define List_ToTuple(alst, tuple)		ft_lst_to_tuple(alst, tuple)
+#define List_Sub			ft_lstsub
+#define List_Iterate		ft_lstiter
+#define List_Iterate_I		ft_lstiteri
+#define List_Map			ft_lstmap
+#define List_Map_I			ft_lstmapi
+#define List_ToArray		ft_lst_to_array
+#define List_ToTuple		ft_lst_to_tuple
 
 
 

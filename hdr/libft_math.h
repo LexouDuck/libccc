@@ -27,75 +27,69 @@
 ** ************************************************************************** *|
 */
 
-#define Math_GetExponent(x)		ft_getexp(x)
-#define Math_GetExp(x)			ft_getexp(x)
+#define Math_GetExponent	ft_getexp
+#define Math_GetExp			ft_getexp
+#define Math_AbsoluteValue	ft_fabs
+#define Math_Abs			ft_fabs
+#define Math_Modulo			ft_fmod
+#define Math_Mod			ft_fmod
 
-#define Math_AbsoluteValue(x)	ft_fabs(x)
-#define Math_Abs(x)				ft_fabs(x)
-#define Math_Modulo(x, y)		ft_fmod(x, y)
-#define Math_Mod(x, y)			ft_fmod(x, y)
+#define Math_Round			ft_round
+#define Math_Truncate		ft_trunc
+#define Math_Floor			ft_floor
+#define Math_Ceiling		ft_ceil
+#define Math_Ceil			ft_ceil
 
-#define Math_Round(x)			ft_round(x)
-#define Math_Truncate(x)		ft_trunc(x)
-#define Math_Floor(x)			ft_floor(x)
-#define Math_Ceiling(x)			ft_ceil(x)
-#define Math_Ceil(x)			ft_ceil(x)
+#define Math_Power			ft_pow
+#define Math_Pow			ft_pow
+#define Math_SquareRoot		ft_sqrt
+#define Math_SqRt			ft_sqrt
+#define Math_CubicRoot		ft_cbrt
+#define Math_CbRt			ft_cbrt
+#define Math_NRoot			ft_nrt
+#define Math_NRt			ft_nrt
 
-#define Math_Power(x, y)			ft_pow(x, y)
-#define Math_Pow(x, y)				ft_pow(x, y)
-
-#define Math_SquareRoot(x)			ft_sqrt(x)
-#define Math_SqRt(x)				ft_sqrt(x)
-#define Math_CubicRoot(x)			ft_cbrt(x)
-#define Math_CbRt(x)				ft_cbrt(x)
-#define Math_NRoot(x, n)			ft_nrt(x, n)
-#define Math_NRt(x, n)				ft_nrt(x, n)
-
-#define Math_Exponential(x)			ft_exp(x)
-#define Math_Exp(x)					ft_exp(x)
-
-#define Math_NaturalLogarithm(x)	ft_ln(x)
-#define Math_Ln(x)					ft_ln(x)
-
-#define Math_Logarithm_Base2(x)		ft_lg(x)
-#define Math_Log_2(x)				ft_lg(x)
-#define Math_Logarithm_Base10(x)	ft_log(x)
-#define Math_Log_10(x)				ft_log(x)
-#define Math_Logarithm_BaseN(x, n)	ft_logn(x, n)
-#define Math_Log_N(x, n)			ft_logn(x, n)
+#define Math_Exponential		ft_exp
+#define Math_Exp				ft_exp
+#define Math_NaturalLogarithm	ft_ln
+#define Math_Ln					ft_ln
+#define Math_Logarithm_Base2	ft_lg
+#define Math_Log_2				ft_lg
+#define Math_Logarithm_Base10	ft_log
+#define Math_Log_10				ft_log
+#define Math_Logarithm_BaseN	ft_logn
+#define Math_Log_N				ft_logn
 
 
 
-#define Math_Cosine(x)					ft_cos(x)
-#define Math_Cos(x)						ft_cos(x)
-#define Math_Sine(x)					ft_sin(x)
-#define Math_Sin(x)						ft_sin(x)
-#define Math_Tangent(x)					ft_tan(x)
-#define Math_Tan(x)						ft_tan(x)
+#define Math_Cosine				ft_cos
+#define Math_Cos				ft_cos
+#define Math_Sine				ft_sin
+#define Math_Sin				ft_sin
+#define Math_Tangent			ft_tan
+#define Math_Tan				ft_tan
+#define Math_InvCosine			ft_acos
+#define Math_ArcCos				ft_acos
+#define Math_InvSine			ft_asin
+#define Math_ArcSin				ft_asin
+#define Math_InvTangent			ft_atan
+#define Math_ArcTan				ft_atan
 
-#define Math_InvCosine(x)				ft_acos(x)
-#define Math_ArcCos(x)					ft_acos(x)
-#define Math_InvSine(x)					ft_asin(x)
-#define Math_ArcSin(x)					ft_asin(x)
-#define Math_InvTangent(x)				ft_atan(x)
-#define Math_ArcTan(x)					ft_atan(x)
+#define Math_ArcTangent_YoverX	ft_atan2
+#define Math_ArcTan2			ft_atan2
 
-#define Math_ArcTangent_YoverX(y, x)	ft_atan2(y, x)
-#define Math_ArcTan2(y, x)				ft_atan2(y, x)
-
-#define Math_Cosine_Hyperbolic(x)		ft_cosh(x)
-#define Math_CosH(x)					ft_cosh(x)
-#define Math_Sine_Hyperbolic(x)			ft_sinh(x)
-#define Math_SinH(x)					ft_sinh(x)
-#define Math_Tangent_Hyperbolic(x)		ft_tanh(x)
-#define Math_TanH(x)					ft_tanh(x)
-
-#define Math_InvCosine_Hyperbolic(x)	ft_acosh(x)
-#define Math_InvCosH(x)					ft_acosh(x)
-#define Math_InvSine_Hyperbolic(x)		ft_asinh(x)
-#define Math_InvSinH(x)					ft_asinh(x)
-#define Math_InvTangent_Hyperbolic(x)	ft_atanh(x)
-#define Math_InvTanH(x)					ft_atanh(x)
+#define Math_Cosine_Hyperbolic		ft_cosh
+#define Math_CosH					ft_cosh
+#define Math_Sine_Hyperbolic		ft_sinh
+#define Math_SinH					ft_sinh
+#define Math_Tangent_Hyperbolic		ft_tanh
+#define Math_TanH					ft_tanh
+#define Math_InvCosine_Hyperbolic	ft_acosh
+#define Math_InvCosH				ft_acosh
+#define Math_InvSine_Hyperbolic		ft_asinh
+#define Math_InvSinH				ft_asinh
+#define Math_InvTangent_Hyperbolic	ft_atanh
+#define Math_InvTanH				ft_atanh
 
 
 

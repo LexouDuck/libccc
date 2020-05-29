@@ -28,21 +28,21 @@
 ** ************************************************************************** *|
 */
 
-#define IO_Read_File(fd, file, max)		ft_readfile(fd, file, max)
-#define IO_Read_NextLine(fd, line)		ft_getnextline(fd, line)
-#define IO_Read_Lines(fd, strls)		ft_readlines(fd, strls)
+#define IO_Read_File		ft_readfile
+#define IO_Read_NextLine	ft_getnextline
+#define IO_Read_Lines		ft_readlines
 
-#define IO_Write_Char(fd, c)			ft_write_char(fd, c)
-#define IO_Write_String(fd, str)		ft_write_str(fd, str)
-#define IO_Write_Line(fd, str)			ft_write_line(fd, str)
-#define IO_Write_Lines(fd, strls)		ft_write_strls(fd, strls)
-#define IO_Write_Memory(fd, ptr, cols)	ft_write_memory(fd, ptr, cols)
+#define IO_Write_Char		ft_write_char
+#define IO_Write_String		ft_write_str
+#define IO_Write_Line		ft_write_line
+#define IO_Write_Lines		ft_write_strls
+#define IO_Write_Memory		ft_write_memory
 
-#define IO_Output_Char(c)				ft_output_char(c)
-#define IO_Output_String(str)			ft_output_str(str)
-#define IO_Output_Line(str)				ft_output_line(str)
-#define IO_Output_Lines(strls)			ft_output_strls(strls)
-#define IO_Output_Memory(ptr, cols)		ft_output_memory(ptr, cols)
+#define IO_Output_Char		ft_output_char
+#define IO_Output_String	ft_output_str
+#define IO_Output_Line		ft_output_line
+#define IO_Output_Lines		ft_output_strls
+#define IO_Output_Memory	ft_output_memory
 
 
 

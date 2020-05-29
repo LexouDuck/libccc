@@ -104,12 +104,12 @@
 #ifdef	FALSE
 #undef	FALSE
 #endif
-#define FALSE	0
+#define FALSE	(0)
 
 #ifdef	TRUE
 #undef	TRUE
 #endif
-#define TRUE	1
+#define TRUE	(1)
 
 /*
 **	Define the common macros for return values used by several C functions.
@@ -117,12 +117,12 @@
 #ifdef	OK
 #undef	OK
 #endif
-#define OK		0
+#define OK		(0)
 
 #ifdef	ERROR
 #undef	ERROR
 #endif
-#define ERROR	1
+#define ERROR	(1)
 
 /*
 **	NB: The following macros listed in this comment exist on any platform

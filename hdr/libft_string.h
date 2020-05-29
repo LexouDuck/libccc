@@ -27,68 +27,68 @@
 ** ************************************************************************** *|
 */
 
-#define String_New(n)							ft_strnew(n)
-#define String_Set(str, c)						ft_strset(str, c)
-#define String_Clear(str)						ft_strclr(str)
-#define String_Delete(str)						ft_strdel(str)
-#define String_Duplicate(str) 					ft_strdup(str)
-#define String_Copy(dest, src)					ft_strcpy(dest, src)
-#define String_Copy_N(dest, src, n)				ft_strncpy(dest, src, n)
-#define String_Copy_L(dest, src, size)			ft_strlcpy(dest, src, size)
-#define String_Concat(dest, src)				ft_strcat(dest, src)
-#define String_Concat_N(dest, src, n)			ft_strncat(dest, src, n)
-#define String_Concat_L(dest, src, size)		ft_strlcat(dest, src, size)
+#define String_New				ft_strnew
+#define String_Set				ft_strset
+#define String_Clear			ft_strclr
+#define String_Delete			ft_strdel
+#define String_Duplicate 		ft_strdup
+#define String_Copy				ft_strcpy
+#define String_Copy_N			ft_strncpy
+#define String_Copy_L			ft_strlcpy
+#define String_Concat			ft_strcat
+#define String_Concat_N			ft_strncat
+#define String_Concat_L			ft_strlcat
 
-#define String_Length(str)						ft_strlen(str)
-#define String_Compare(str1, str2)				ft_strcmp(str1, str2)
-#define String_Compare_N(str1, str2, n)			ft_strncmp(str1, str2, n)
-#define String_Equals(str1, str2)				ft_strequ(str1, str2)
-#define String_Equals_N(str1, str2, n)			ft_strnequ(str1, str2, n)
-#define String_Has(str, charset)				ft_strhas(str, charset)
-#define String_HasOnly(str, charset)			ft_strhasonly(str, charset)
-#define String_Count_Char(str, c)				ft_strcount_char(str, c)
-#define String_Count_Charset(str, charset)		ft_strcount_charset(str, charset)
-#define String_Count_String(str, query)			ft_strcount_str(str, query)
+#define String_Length			ft_strlen
+#define String_Compare			ft_strcmp
+#define String_Compare_N		ft_strncmp
+#define String_Equals			ft_strequ
+#define String_Equals_N			ft_strnequ
+#define String_Has				ft_strhas
+#define String_HasOnly			ft_strhasonly
+#define String_Count_Char		ft_strcount_char
+#define String_Count_Charset	ft_strcount_charset
+#define String_Count_String		ft_strcount_str
 
-#define String_Find_Char(str, c)				ft_strchr(str, c)
-#define String_Find_CharIndex(str, c)			ft_strichr(str, c)
-#define String_Find_String(str, query)			ft_strstr(str, query)
-#define String_Find_StringIndex(str, query)		ft_stristr(str, query)
-#define String_Find_R_Char(str, c)				ft_strrchr(str, c)
-#define String_Find_R_String(str, query)		ft_strrstr(str, query)
-#define String_Find_N_Char(str, c, n)			ft_strnchr(str, c, n)
-#define String_Find_N_String(str, query, n)		ft_strnstr(str, query, n)
-#define String_Remove(str, query)				ft_strremove(str, query)
-#define String_ToEscape(str)					ft_strtoescape(str)
-#define String_Replace_Char(str, old, new)		ft_strrep_char(str, old, new)
-#define String_Replace_Charset(str, old, new)	ft_strrep_charset(str, old, new)
-#define String_Replace_String(str, old, new)	ft_strrep_str(str, old, new)
+#define String_Find_Char				ft_strchr
+#define String_Find_CharIndex			ft_strichr
+#define String_Find_String				ft_strstr
+#define String_Find_StringIndex			ft_stristr
+#define String_Find_R_Char				ft_strrchr
+#define String_Find_R_String			ft_strrstr
+#define String_Find_N_Char				ft_strnchr
+#define String_Find_N_String			ft_strnstr
+#define String_Remove					ft_strremove
+#define String_ToEscape					ft_strtoescape
+#define String_Replace_Char				ft_strrep_char
+#define String_Replace_Charset			ft_strrep_charset
+#define String_Replace_String			ft_strrep_str
 
-#define String_Merge(a_s1, a_s2)						ft_strmerge(a_s1, a_s2)
-#define String_Append(dest, src)						ft_strappend(dest, src)
-#define String_Prepend(src, dest)						ft_strprepend(src, dest)
-#define String_Insert_InPlace(dest, src, index)			ft_strinsert_inplace(dest, src, index)
-#define String_Replace_Char_InPlace(str, old, new)		ft_strrep_char_inplace(str, old, new)
-#define String_Replace_Charset_InPlace(str, old, new)	ft_strrep_charset_inplace(str, old, new)
-#define String_Replace_String_InPlace(str, old, new)	ft_strrep_str_inplace(str, old, new)
-#define String_Map_InPlace(a_str, f)					ft_strmap_inplace(a_str, f)
+#define String_Merge					ft_strmerge
+#define String_Append					ft_strappend
+#define String_Prepend					ft_strprepend
+#define String_Insert_InPlace			ft_strinsert_inplace
+#define String_Replace_Char_InPlace		ft_strrep_char_inplace
+#define String_Replace_Charset_InPlace	ft_strrep_charset_inplace
+#define String_Replace_String_InPlace	ft_strrep_str_inplace
+#define String_Map_InPlace				ft_strmap_inplace
 
-#define String_Trim(str, charset)			ft_strtrim(str, charset)
-#define String_Trim_L(str, charset)			ft_strtrim_l(str, charset)
-#define String_Trim_R(str, charset)			ft_strtrim_r(str, charset)
-#define String_Pad(str, c, size)			ft_strpad(str, c, size)
-#define String_Pad_L(str, c, size)			ft_strpad_l(str, c, size)
-#define String_Pad_R(str, c, size)			ft_strpad_r(str, c, size)
-#define String_ToPrintableString(str)		ft_strprint(str)
+#define String_Trim					ft_strtrim
+#define String_Trim_L				ft_strtrim_l
+#define String_Trim_R				ft_strtrim_r
+#define String_Pad					ft_strpad
+#define String_Pad_L				ft_strpad_l
+#define String_Pad_R				ft_strpad_r
+#define String_ToPrintableString	ft_strprint
 
-#define String_Reverse(str)					ft_strrev(str)
-#define String_Join(str1, str2)				ft_strjoin(str1, str2)
-#define String_Insert(dest, src, index)		ft_strinsert(dest, src, index)
-#define String_Sub(str, index, n)			ft_strsub(str, index, n)
-#define String_Iterate(str, f)				ft_striter(str, f)
-#define String_Iterate_I(str, f)			ft_striteri(str, f)
-#define String_Map(str, f)					ft_strmap(str, f)
-#define String_Map_I(str, f)				ft_strmapi(str, f)
+#define String_Reverse				ft_strrev
+#define String_Join					ft_strjoin
+#define String_Insert				ft_strinsert
+#define String_Sub					ft_strsub
+#define String_Iterate				ft_striter
+#define String_Iterate_I			ft_striteri
+#define String_Map					ft_strmap
+#define String_Map_I				ft_strmapi
 
 
 

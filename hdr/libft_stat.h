@@ -27,42 +27,35 @@
 ** ************************************************************************** *|
 */
 
-#define Stat_Int_NewList(length)			ft_stat_new_ilst(length)
-#define Stat_Int_FreeList(ilst)				ft_stat_free_ilst(ilst)
+#define Stat_Int_NewList				ft_stat_new_ilst
+#define Stat_Int_FreeList				ft_stat_free_ilst
+#define Stat_Int_MergeList				ft_stat_merge_ilst
+#define Stat_Int_Quicksort				ft_stat_quicksort_i_new
+#define Stat_Int_Quicksort_InPlace		ft_stat_quicksort_i
+#define Stat_Int_Median					ft_stat_median_i
+#define Stat_Int_Average				ft_stat_average_i
+#define Stat_Int_Variance				ft_stat_variance_i
+#define Stat_Int_StandardDeviation		ft_stat_stddev_i
+#define Stat_Int_Decile					ft_stat_decile_i
+#define Stat_Int_ProbabilityIsValid		ft_prob_is_valid_i
 
-#define Stat_Int_MergeList(start, append)	ft_stat_merge_ilst(start, append)
-#define Stat_Int_Quicksort(ilst)			ft_stat_quicksort_i_new(ilst)
-#define Stat_Int_Quicksort_InPlace(ilst)	ft_stat_quicksort_i(ilst)
+#define Stat_NewPMF				ft_stat_new_pmf
+#define Stat_FreePMF			ft_stat_free_pmf
+#define Stat_IntList_To_Set		ft_stat_ilst_to_iset
+#define Stat_IntList_Count		ft_stat_ilst_count
+#define Stat_IntList_To_PMF		ft_stat_ilst_to_pmf
 
-#define Stat_Int_Median(ilst)				ft_stat_median_i(ilst)
-#define Stat_Int_Average(ilst)				ft_stat_average_i(ilst)
-#define Stat_Int_Variance(ilst)				ft_stat_variance_i(ilst)
-#define Stat_Int_StandardDeviation(ilst)	ft_stat_stddev_i(ilst)
-
-#define Stat_Int_Decile(ilst)				ft_stat_decile_i(ilst)
-#define Stat_Int_ProbabilityIsValid(ilst)	ft_prob_is_valid_i(ilst)
-
-#define Stat_NewPMF(length)					ft_stat_new_pmf(length)
-#define Stat_FreePMF(drv)					ft_stat_free_pmf(drv)
-#define Stat_IntList_To_Set(ilst)			ft_stat_ilst_to_iset(ilst)
-#define Stat_IntList_Count(ilst, elem)		ft_stat_ilst_count(ilst, elem)
-#define Stat_IntList_To_PMF(ilst)			ft_stat_ilst_to_pmf(ilst)
-
-
-#define Stat_Float_NewList(length)				ft_stat_new_flst(length)
-#define Stat_Float_FreeList(flst)			ft_stat_free_flst(flst)
-
-#define Stat_Float_MergeList(start, append)	ft_stat_merge_flst(start, append)
-#define Stat_Float_Quicksort_f_n(flst)		ft_stat_quicksort_f_new(flst)
-#define Stat_Float_Quicksort(flst)			ft_stat_quicksort_f(flst)
-
-#define Stat_Float_Median(flst)				ft_stat_median_f(flst)
-#define Stat_Float_Average(flst)			ft_stat_average_f(flst)
-#define Stat_Float_Variance(flst)			ft_stat_variance_f(flst)
-#define Stat_Float_StandardDeviation(flst)	ft_stat_stddev_f(flst)
-
-#define Stat_Float_Decile(flst)				ft_stat_decile_f(flst)
-#define Stat_Float_ProbabilityIsValid(flst)	ft_prob_is_valid_f(flst)
+#define Stat_Float_NewList				ft_stat_new_flst
+#define Stat_Float_FreeList				ft_stat_free_flst
+#define Stat_Float_MergeList			ft_stat_merge_flst
+#define Stat_Float_Quicksort_f_n		ft_stat_quicksort_f_new
+#define Stat_Float_Quicksort			ft_stat_quicksort_f
+#define Stat_Float_Median				ft_stat_median_f
+#define Stat_Float_Average				ft_stat_average_f
+#define Stat_Float_Variance				ft_stat_variance_f
+#define Stat_Float_StandardDeviation	ft_stat_stddev_f
+#define Stat_Float_Decile				ft_stat_decile_f
+#define Stat_Float_ProbabilityIsValid	ft_prob_is_valid_f
 
 /*
 ** ************************************************************************** *|

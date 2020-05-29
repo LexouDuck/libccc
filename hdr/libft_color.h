@@ -27,27 +27,27 @@
 ** ************************************************************************** *|
 */
 
-#define Color_ARGB16_Get_A(color)						ft_color_argb16_get_a(color)
-#define Color_ARGB16_Get_R(color)						ft_color_argb16_get_r(color)
-#define Color_ARGB16_Get_G(color)						ft_color_argb16_get_g(color)
-#define Color_ARGB16_Get_B(color)						ft_color_argb16_get_b(color)
-#define Color_ARGB16_GetNearest(target, colors, n)		ft_color_argb16_get_nearest(target, colors, n)
-#define Color_ARGB16_Set_A(color, a)					ft_color_argb16_set_a(color, a)
-#define Color_ARGB16_Set_R(color, r)					ft_color_argb16_set_r(color, r)
-#define Color_ARGB16_Set_G(color, g)					ft_color_argb16_set_g(color, g)
-#define Color_ARGB16_Set_B(color, b)					ft_color_argb16_set_b(color, b)
-#define Color_ARGB16_Set(a, r, g, b)					ft_color_argb16_set(a, r, g, b)
+#define Color_ARGB16_Get_A			ft_color_argb16_get_a
+#define Color_ARGB16_Get_R			ft_color_argb16_get_r
+#define Color_ARGB16_Get_G			ft_color_argb16_get_g
+#define Color_ARGB16_Get_B			ft_color_argb16_get_b
+#define Color_ARGB16_GetNearest		ft_color_argb16_get_nearest
+#define Color_ARGB16_Set_A			ft_color_argb16_set_a
+#define Color_ARGB16_Set_R			ft_color_argb16_set_r
+#define Color_ARGB16_Set_G			ft_color_argb16_set_g
+#define Color_ARGB16_Set_B			ft_color_argb16_set_b
+#define Color_ARGB16_Set			ft_color_argb16_set
 
-#define Color_ARGB32_Get_A(color)						ft_color_argb32_get_a(color)
-#define Color_ARGB32_Get_R(color)						ft_color_argb32_get_r(color)
-#define Color_ARGB32_Get_G(color)						ft_color_argb32_get_g(color)
-#define Color_ARGB32_Get_B(color)						ft_color_argb32_get_b(color)
-#define Color_ARGB32_GetNearest(target, colors, n)		ft_color_argb32_get_nearest(target, colors, n)
-#define Color_ARGB32_Set_A(color, a)					ft_color_argb32_set_a(color, a)
-#define Color_ARGB32_Set_R(color, r)					ft_color_argb32_set_r(color, r)
-#define Color_ARGB32_Set_G(color, g)					ft_color_argb32_set_g(color, g)
-#define Color_ARGB32_Set_B(color, b)					ft_color_argb32_set_b(color, b)
-#define Color_ARGB32_Set(a, r, g, b)					ft_color_argb32_set(a, r, g, b)
+#define Color_ARGB32_Get_A			ft_color_argb32_get_a
+#define Color_ARGB32_Get_R			ft_color_argb32_get_r
+#define Color_ARGB32_Get_G			ft_color_argb32_get_g
+#define Color_ARGB32_Get_B			ft_color_argb32_get_b
+#define Color_ARGB32_GetNearest		ft_color_argb32_get_nearest
+#define Color_ARGB32_Set_A			ft_color_argb32_set_a
+#define Color_ARGB32_Set_R			ft_color_argb32_set_r
+#define Color_ARGB32_Set_G			ft_color_argb32_set_g
+#define Color_ARGB32_Set_B			ft_color_argb32_set_b
+#define Color_ARGB32_Set			ft_color_argb32_set
 
 
 

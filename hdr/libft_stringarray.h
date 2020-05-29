@@ -27,24 +27,24 @@
 ** ************************************************************************** *|
 */
 
-#define String_Split_Char(str, c)			ft_strsplit_char(str, c)
-#define String_Split_Charset(str, charset)	ft_strsplit_charset(str, charset)
-#define String_Split_String(str, query)		ft_strsplit_str(str, query)
-#define String_Divide(str, n)				ft_strdivide(str, n)
+#define String_Split_Char		ft_strsplit_char
+#define String_Split_Charset	ft_strsplit_charset
+#define String_Split_String		ft_strsplit_str
+#define String_Divide			ft_strdivide
 
-#define StringArray_New(length)				ft_strarrnew(length)
-#define StringArray_New_C(y, x, c)			ft_strarrcnew(y, x, c)
-#define StringArray_Delete(a_strarr)		ft_strarrdel(a_strarr)
-#define StringArray_Map(strarr, f)			ft_strarrmap(strarr, f)
-#define StringArray_Map_InPlace(a_sa, f)	ft_strarrmap_inplace(a_sa, f)
-#define StringArray_Pad_L(strarr, c, n)		ft_strarrpad_l(strarr, c, n)
-#define StringArray_Sub(strarr, start, n)	ft_strarrsub(strarr, start, n)
-#define StringArray_Join(strarr, sep)		ft_strarrjoin(strarr, sep)
+#define StringArray_New				ft_strarrnew
+#define StringArray_New_C			ft_strarrcnew
+#define StringArray_Delete			ft_strarrdel
+#define StringArray_Map				ft_strarrmap
+#define StringArray_Map_InPlace		ft_strarrmap_inplace
+#define StringArray_Pad_L			ft_strarrpad_l
+#define StringArray_Sub				ft_strarrsub
+#define StringArray_Join			ft_strarrjoin
 
-#define StringArray_Length(strarr)				ft_strarrlen(strarr)
-#define StringArray_Count_Char(str, c)			ft_strarrcount_char(str, c)
-#define StringArray_Count_Charset(str, set)		ft_strarrcount_charset(str, set)
-#define StringArray_Count_String(str, query)	ft_strarrcount_str(str, query)
+#define StringArray_Length			ft_strarrlen
+#define StringArray_Count_Char		ft_strarrcount_char
+#define StringArray_Count_Charset	ft_strarrcount_charset
+#define StringArray_Count_String	ft_strarrcount_str
 
 
 /*
