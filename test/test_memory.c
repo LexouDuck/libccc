@@ -14,7 +14,7 @@ void	print_test_memalloc(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(memalloc, n);
 	print_test_alloc(test_name, "memalloc", result_libft, n);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS("n=%u", n)
+	TEST_PRINT_ARGS("n=%lu", n)
 	TEST_FREE()
 }
 void	test_memalloc(void)
@@ -34,7 +34,7 @@ void	print_test_memnew(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(memnew, n);
 	print_test_alloc(test_name, "memnew", result_libft, n);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS("n=%u", n)
+	TEST_PRINT_ARGS("n=%lu", n)
 	TEST_FREE()
 }
 void	test_memnew(void)
@@ -108,7 +108,7 @@ void	print_test_memset(char const* test_name, int can_segfault,
 	TEST_PERFORM_LIBC_DEST(memset, byte, n)
 	print_test_mem(test_name, "memset 'dest' arg", dest_libft, dest_libc, n, can_segfault);
 	print_timer_result(&t, TRUE);
-	TEST_PRINT_ARGS("dest=\"%s\", c=0x%x/'%c', n=%u", dest_libft, byte, byte, n)
+	TEST_PRINT_ARGS("dest=\"%s\", c=0x%x/'%c', n=%lu", dest_libft, byte, byte, n)
 }
 void	test_memset(void)
 {
@@ -148,7 +148,7 @@ void	print_test_memclr(char const* test_name, int can_segfault,
 	print_test_mem(test_name, "memclr/bzero arg",                     dest_libft,     dest_libc,     n, can_segfault);
 //	print_test_mem(NULL,      "memclr/bzero (byte after the '\\0's)", dest_libft + n, dest_libc + n, 1, can_segfault);
 	print_timer_result(&t, TRUE);
-	TEST_PRINT_ARGS("dest=\"%s\", n=%u", dest_libft, n)
+	TEST_PRINT_ARGS("dest=\"%s\", n=%lu", dest_libft, n)
 }
 void	test_memclr(void)
 {
@@ -181,7 +181,7 @@ void	print_test_memcpy(char const* test_name, int can_segfault,
 	print_test_mem(test_name, "memcpy 'dest' arg", dest_libft,   dest_libc,   n, can_segfault);
 	print_test_mem(NULL,      "memcpy return",     result_libft, result_libc, n, can_segfault);
 	print_timer_result(&t, TRUE);
-	TEST_PRINT_ARGS("dest=\"%s\", src=\"%s\", n=%u", dest_libft, src, n)
+	TEST_PRINT_ARGS("dest=\"%s\", src=\"%s\", n=%lu", dest_libft, src, n)
 }
 void	test_memcpy(void)
 {
@@ -222,7 +222,7 @@ void	print_test_memccpy(char const* test_name, int can_segfault,
 	print_test_mem(test_name, "memccpy 'dest' arg", dest_libft,   dest_libc, n, can_segfault);// if (byte !='\0')
 	print_test_str(NULL,      "memccpy return",     result_libft, result_libc,  can_segfault);
 	print_timer_result(&t, TRUE);
-	TEST_PRINT_ARGS("dest=\"%s\", src=\"%s\", c=0x%x/'%c', n=%u", dest_libft, src, byte, byte, n)
+	TEST_PRINT_ARGS("dest=\"%s\", src=\"%s\", c=0x%x/'%c', n=%lu", dest_libft, src, byte, byte, n)
 }
 void	test_memccpy(void)
 {
@@ -265,7 +265,7 @@ void	print_test_memmove(char const* test_name, int can_segfault, int show_dest_a
 	print_test_mem(test_name,                    "memmove 'dest' arg", dest_libft,   dest_libc, n, can_segfault);
 	print_test_mem(show_dest_arg ? NULL : test_name, "memmove return", result_libft, result_libc, n, can_segfault);
 	print_timer_result(&t, TRUE);
-	TEST_PRINT_ARGS("dest=\"%s\", src=\"%s\", n=%u", dest_libft, src, n)
+	TEST_PRINT_ARGS("dest=\"%s\", src=\"%s\", n=%lu", dest_libft, src, n)
 }
 void	test_memmove(void)
 {
@@ -303,7 +303,7 @@ void	print_test_memchr(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT_LIBC(memchr, ptr, byte, n)
 	print_test_mem(test_name, "memchr return", result_libft, result_libc, n, can_segfault);
 	print_timer_result(&t, TRUE);
-	TEST_PRINT_ARGS("ptr=%p, c=0x%x/'%c', n=%u", ptr, byte, byte, n)
+	TEST_PRINT_ARGS("ptr=%p, c=0x%x/'%c', n=%lu", ptr, byte, byte, n)
 }
 void	test_memchr(void)
 {
@@ -333,7 +333,7 @@ void	print_test_memcmp(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT_TYPE_LIBC(int, memcmp, ptr1, ptr2, n)
 	print_test_sign(test_name, "memcmp return", result_libft, result_libc, can_segfault);
 	print_timer_result(&t, TRUE);
-	TEST_PRINT_ARGS("ptr1=%p, ptr2=%p, n=%u", ptr1, ptr2, n)
+	TEST_PRINT_ARGS("ptr1=%p, ptr2=%p, n=%lu", ptr1, ptr2, n)
 }
 void	test_memcmp(void)
 {
@@ -378,7 +378,7 @@ void	print_test_memdup(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(memdup, src, n)
 	print_test_mem(test_name, "_memdup return", result_libft, expecting, n, can_segfault);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS("src=\"%s\", n=%u", src, n)
+	TEST_PRINT_ARGS("src=\"%s\", n=%lu", src, n)
 	TEST_FREE()
 }
 void	test_memdup(void)

@@ -24,11 +24,13 @@ s_list	*ft_lstsub(s_list *lst, t_u32 index, t_u32 n)
 	if (lst == NULL)
 		return (NULL);
 #endif
-	while (lst && index--)
-		lst = lst->next;
 	if (n == 0)
 		return (NULL);
+	while (index--)
+		lst = lst->next;
 	result = ft_lstnew(lst->item, lst->item_size);
+	if (result == NULL)
+		return (NULL);
 	result_lst = result;
 	lst = lst->next;
 	while (lst && n--)
