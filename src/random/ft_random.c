@@ -20,7 +20,7 @@ t_u32		random_U32 = DEFAULT_SEED;
 
 
 
-inline static t_u32	ft_random_32bit_shuffle(t_u32 n)
+inline t_u32	ft_random_32bit_shuffle(t_u32 n)
 {
 	n = (n << 12) ^ (n >> 20);
 	return (36969 * (n & 0xFFFF) + (n >> 16));
