@@ -16,7 +16,7 @@
 
 
 
-static t_u32		U32Random = DEFAULT_SEED;
+t_u32		random_U32 = DEFAULT_SEED;
 
 
 
@@ -28,20 +28,20 @@ inline static t_u32	ft_random_32bit_shuffle(t_u32 n)
 
 inline void			ft_random_set_seed(t_u32 seed)
 {
-	U32Random = seed;
+	random_U32 = seed;
 }
 
 inline void			ft_random_renew_seed(void)
 {
-	U32Random = ft_random_32bit_shuffle(time(NULL));
+	random_U32 = ft_random_32bit_shuffle(time(NULL));
 }
 
 
 
 inline t_u32		ft_random(void)
 {
-	U32Random = (CEIL_SQRT_MOD * ft_random_32bit_shuffle(U32Random) + OFFSET) & MODULUS;
-	return (U32Random);
+	random_U32 = (CEIL_SQRT_MOD * ft_random_32bit_shuffle(random_U32) + OFFSET) & MODULUS;
+	return (random_U32);
 }
 
 inline t_u32		ft_random_0_to_pow2n(t_u32 n)
