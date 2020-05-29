@@ -24,12 +24,8 @@ t_bool	ft_str_to_bool(char const *str)
 		return (FALSE);
 #endif
 	i = 0;
-	while (!(ft_isalpha(str[i])))
-	{
-		if (!str[i] || !ft_isspace(str[i]))
-			return (FALSE);
+	while (str[i] && ft_isspace(str[i]))
 		++i;
-	}
 	if (!str[i])
 		return (FALSE);
 	if (ft_isdigit(str[i]) && ft_str_to_s64(str + i))
@@ -39,6 +35,5 @@ t_bool	ft_str_to_bool(char const *str)
 		(str[i + 2] == 'U' || str[i + 2] == 'u') &&
 		(str[i + 3] == 'E' || str[i + 3] == 'e'))
 		return (TRUE);
-	else
-		return (FALSE);
+	return (FALSE);
 }
