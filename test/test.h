@@ -77,6 +77,7 @@ typedef struct	s_test_
 s_test		g_test;
 
 
+
 /*
 **	Output color string codes for tty terminal/shell.
 */
@@ -91,11 +92,15 @@ s_test		g_test;
 #define C_RESET		"\x1b[0m"
 #endif
 
+
+
 /*
 **	This define is used as the 'can_segfault' arg for certain 'int' tests,
 **	so as to have those tests expect a "(segfault)" result.
 */
 #define SEGV	(TRUE | (1 << 2))
+
+
 
 /*
 **	% Format specifiers for printf calls

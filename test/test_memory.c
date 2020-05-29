@@ -215,7 +215,7 @@ void	print_test_memccpy(char const* test_name, int can_segfault,
 	print_test_mem(test_name, "memccpy 'dest' arg", dest_libft,   dest_libc, n, can_segfault);// if (byte !='\0')
 	print_test_str(NULL,      "memccpy return",     result_libft, result_libc,  can_segfault);
 	print_timer_result(&t, TRUE);
-	TEST_PRINT_ARGS("dest=\"%s\", src=\"%s\", c=0x%x/'%c', n=%zu", dest_libft, src, byte, byte, n)
+	TEST_PRINT_ARGS("dest=\"%s\", src=\"%s\", c=0x%x/'%c', n=%u", dest_libft, src, byte, byte, n)
 }
 void	test_memccpy(void)
 {
@@ -285,14 +285,14 @@ void	test_memmove(void)
 
 
 /*
-**	void*	ft_memchr(const void *ptr, int byte, t_size n);
+**	void*	ft_memchr(const void *ptr, t_u8 byte, t_size n);
 */
 void	print_test_memchr(char const* test_name, int can_segfault,
-		char const* str,
-		char c,
+		void const* ptr,
+		t_u8 byte,
 		t_size n)
 {
-	TEST_PERFORM_RESULT_LIBC(memchr, str, c, n)
+	TEST_PERFORM_RESULT_LIBC(memchr, ptr, byte, n)
 	print_test_mem(test_name, "memchr return", result_libft, result_libc, n, can_segfault);
 	print_timer_result(&t, TRUE);
 }
@@ -317,11 +317,11 @@ void	test_memchr(void)
 **	int		ft_memcmp(const void *ptr1, const void *ptr2, t_size n);
 */
 void	print_test_memcmp(char const* test_name, int can_segfault,
-		char const* test1,
-		char const* test2,
+		char const* ptr1,
+		char const* ptr2,
 		t_size n)
 {
-	TEST_PERFORM_RESULT_TYPE_LIBC(int, memcmp, test1, test2, n)
+	TEST_PERFORM_RESULT_TYPE_LIBC(int, memcmp, ptr1, ptr2, n)
 	print_test_sign(test_name, "memcmp return", result_libft, result_libc, can_segfault);
 	print_timer_result(&t, TRUE);
 }

@@ -293,6 +293,11 @@ inline t_s64 timer_compare(s_time a, s_time b)
 		return (a.tv_sec - b.tv_sec);
 }
 
+#ifdef __MINGW32__
+	#define TIMER_FORMATSTRING	"%I64d.%.09ld"
+#else
+	#define TIMER_FORMATSTRING	"%lld.%.09ld"
+#endif
 /* prints the result of a timer (and potentially a comparison with the secondary timer) */
 void		print_timer_result(s_timer* t, t_s64 compare)
 {
@@ -305,7 +310,7 @@ void		print_timer_result(s_timer* t, t_s64 compare)
 	t->time1 = timer_getdiff(t->start1, t->end1);
 	if (t->time1.tv_nsec < 0 || t->time1.tv_nsec < 0)
 		sprintf((char*)&result1, "SEGV");
-	else sprintf((char*)&result1, "%lld.%.09ld", (long long)t->time1.tv_sec, t->time1.tv_nsec);
+	else sprintf((char*)&result1, TIMER_FORMATSTRING, (long long)t->time1.tv_sec, t->time1.tv_nsec);
 
 	printf(" [libft:");
 	if (compare)
@@ -313,7 +318,7 @@ void		print_timer_result(s_timer* t, t_s64 compare)
 		t->time2 = timer_getdiff(t->start2, t->end2);
 		if (t->time2.tv_nsec < 0 || t->time2.tv_nsec < 0)
 			sprintf((char*)&result2, "SEGV");
-		else sprintf((char*)&result2, "%lld.%.09ld", (long long)t->time2.tv_sec, t->time2.tv_nsec);
+		else sprintf((char*)&result2, TIMER_FORMATSTRING, (long long)t->time2.tv_sec, t->time2.tv_nsec);
 
 		if ((t->time1.tv_sec >= 0 && t->time1.tv_nsec >= 0) ||
 			(t->time2.tv_sec >= 0 && t->time2.tv_nsec >= 0))
@@ -574,7 +579,7 @@ void	print_test_alloc(
 		printf(C_RED"\nError"C_RESET": ");
 		if (result == NULL)
 			printf("The call to ft_%s(...) returned NULL.", function);
-		else printf("Every char should be '\\0', but '%c' was read at index %zu.", result[i], i);
+		else printf("Every char should be '\\0', but '%c' was read at index %u.", result[i], i);
 	}
 	else if (g_test.flags.verbose)
 		printf(C_GREEN"OK!"C_RESET);

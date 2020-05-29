@@ -1,5 +1,6 @@
 # Output file names
-NAME	=	libft.a
+NAME		=	libft.a
+NAME_TEST	=	libft_test
 
 # Compiler
 CC	= _
@@ -8,7 +9,7 @@ CC_LIN	= gcc
 CC_MAC	= gcc
 
 # Compiler flags
-CFLAGS	=	-Wall -Wextra -Winline -Werror $(CFLAGS_PLATFORM) -MMD -O2
+CFLAGS	=	-Wall -Wextra -Winline -Wpedantic -Werror $(CFLAGS_PLATFORM) -MMD -O2
 
 CFLAGS_PLATFORM = _
 CFLAGS_WIN	= -mwindows
@@ -258,14 +259,17 @@ $(NAME): $(OBJS) $(HDRS)
 clean:
 	@printf "Deleting object files...\n"
 	@rm -f $(OBJS)
+	@printf "Deleting dependency files...\n"
+	@rm -f $(DEPENDS)
+	@rm -f *.d
 
 fclean: clean
 	@printf "Deleting library file: "$(NAME)"\n"
 	@rm -f $(NAME)
 
-rclean:
+rclean: clean
 	@printf "Deleting obj folder...\n"
-	@rm -rf $(OBJDIR)
+	@rmdir $(OBJDIR)
 
 tclean:
 	@printf "Deleting libft test...\n"
@@ -301,23 +305,24 @@ TEST_SRC :=	$(TEST_DIR)main.c		\
 
 TEST_OBJ	=	${TEST_SRC:$(TEST_DIR)%.c=$(OBJDIR)%.o}
 
-TEST_CFLAGS			=	-g -O2
+TEST_CFLAGS			=	-O2 -g -ggdb
 TEST_INCLUDEDIRS	=	-I$(HDRDIR) -I$(TEST_DIR)
 
-TEST_PROGRAM	=	libft_test
-
+# This rule compiles object files from source files
 $(OBJDIR)%.o : $(TEST_DIR)%.c $(TEST_HDR) $(NAME)
 	@printf "Compiling file: "$@" -> "
 	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -c $< -o $@
 	@printf $(GREEN)"OK!"$(RESET)"\n"
 
-$(TEST_PROGRAM): $(TEST_OBJ) $(TEST_HDR) $(NAME)
+# This rule builds the testing/CI program
+$(NAME_TEST): $(TEST_OBJ) $(TEST_HDR) $(NAME)
 	@printf "Compiling testing program: "$@" -> "
-	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -o $(TEST_PROGRAM) $(TEST_OBJ) -L./ -lft -lm
+	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -o $@ $(TEST_OBJ) -L./ -lft -lm
 	@printf $(GREEN)"OK!"$(RESET)"\n"
 
-test: $(TEST_PROGRAM)
-	@./$(TEST_PROGRAM)
+# This rule builds and runs the test executable
+test: $(NAME_TEST)
+	@./$(NAME_TEST)
 
 
 

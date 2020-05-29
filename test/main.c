@@ -80,7 +80,7 @@ static void	handle_arg_test_all()
 static void	init(void)
 {
 	// default every option to FALSE
-	g_test.flags = (s_test_flags){ FALSE, FALSE, FALSE };
+	memset(&g_test.flags, 0, sizeof(s_test_flags));
 
 	g_test.suites[0x0] = (s_test_suite){ FALSE, "memory",		test_memory };
 	g_test.suites[0x1] = (s_test_suite){ FALSE, "char",			test_char };
@@ -202,7 +202,7 @@ int		main(int argc, char **argv)
 			{
 				match = handle_args_option_string(argv[i] + 2);
 			}
-			else for (int j = 1; j < strlen(argv[i]); ++j)
+			else for (size_t j = 1; j < strlen(argv[i]); ++j)
 			{
 				tmp = handle_args_option_char(argv[i][j]);
 				if (match)
