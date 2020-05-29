@@ -94,7 +94,7 @@ s_list_int		ft_stat_merge_ilst(
 ** The recursive function can be called with start at 0 and end at
 ** tmp_lst.length - 1 to sort in place.
 */
-static void		ft_stat_quicksort_i_rec
+void			ft_stat_quicksort_i_rec
 (
 	s_list_int	tmp_lst,
 	t_u32		start,
