@@ -71,8 +71,3 @@ char		*ft_strarrjoin(char const **strarr, char const *sep)
 	ft_build_str(str, strarr, sep);
 	return (str);
 }
-
-/*
-**	if (!strarr || !sep)
-**		return (NULL);
-*/
