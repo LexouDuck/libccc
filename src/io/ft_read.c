@@ -71,13 +71,11 @@ int			ft_readlines(int const fd, char** *a_strls)
 {
 	char	**result;
 	int		status;
-	int		i;
 	char	**line;
 
 	status = -2;
 	line = ft_strarrnew(1);
 	result = ft_strarrnew(0);
-	i = 0;
 	while ((status = ft_getnextline(fd, line)) == GNL_LINE)
 	{
 		result = ft_strarrappend(&result, (char const **)line);
