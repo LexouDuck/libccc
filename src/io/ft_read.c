@@ -18,18 +18,18 @@
 
 #include "libft_memory.h"
 #include "libft_string.h"
+#include "libft_stringarray.h"
 #include "libft_io.h"
 
 
-
-static int	ft_readfile_error(int result, char **file)
+static int	ft_readfile_error(int result, char* *a_file)
 {
 	if (result < 0)
 	{
-		if (*file)
+		if (*a_file)
 		{
-			ft_memfree(*file);
-			*file = NULL;
+			ft_memfree(*a_file);
+			*a_file = NULL;
 		}
 		return (ERROR);
 	}
@@ -37,7 +37,7 @@ static int	ft_readfile_error(int result, char **file)
 		return (OK);
 }
 
-int			ft_readfile(int const fd, char **file, t_size max)
+int			ft_readfile(int const fd, char* *a_file, t_size max)
 {
 	int		result;
 	char	buffer[BUFF_SIZE + 1];
@@ -45,29 +45,50 @@ int			ft_readfile(int const fd, char **file, t_size max)
 	t_size	length;
 
 #if LIBFTCONFIG_HANDLE_NULLPOINTERS
-	if (file == NULL)
+	if (a_file == NULL)
 		return (ERROR);
 #endif
-	if (!(*file = ft_strnew(1)))
+	if (!(*a_file = ft_strnew(1)))
 		return (ERROR);
 	buffer[BUFF_SIZE] = '\0';
 	length = 0;
 	while ((result = read(fd, buffer, BUFF_SIZE)) > 0 &&
 		(length += result) < max)
 	{
-		temp = *file;
+		temp = *a_file;
 		if (result < BUFF_SIZE)
 			buffer[result] = '\0';
-		if (!(*file = ft_strjoin(temp, buffer)))
+		if (!(*a_file = ft_strjoin(temp, buffer)))
 			return (ERROR);
 		ft_memfree(temp);
 	}
-	return (ft_readfile_error(result, file));
+	return (ft_readfile_error(result, a_file));
 }
 
 
 
-int			ft_readlines(int const fd, char ***strls)
+int			ft_readlines(int const fd, char** *a_strls)
 {
-	return (fd || strls); // TODO implement
+	char	**result;
+	int		status;
+	int		i;
+	char	**line;
+
+	status = -2;
+	line = ft_strarrnew(1);
+	result = ft_strarrnew(0);
+	i = 0;
+	while ((status = ft_getnextline(fd, line)) == GNL_LINE)
+	{
+		result = ft_strarrappend(&result, (char const **)line);
+		ft_strdel(line);
+	}
+	ft_strarrdel(&line);
+	if (status == GNL_ERROR)
+	{
+		ft_strarrdel(&result);
+		return (ERROR);
+	}
+	*a_strls = result;
+	return (OK);
 }
