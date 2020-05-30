@@ -140,6 +140,12 @@ void	*ft_memdup(void const *ptr, t_size n);
 void	*ft_memchr(void const *ptr, t_u8 byte, t_size n);
 
 /*
+**	Iterates through 'n' bytes of memory starting at 'ptr', replacing every
+**	byte equal to 'old' with the value 'new' instead.
+*/
+void	ft_memrep(void *ptr, t_u8 old, t_u8 new, t_size n);
+
+/*
 **	Compares 'n' bytes of memory at 'ptr1' and 'ptr2',
 **	returning (byte1 - byte2) at the first difference encountered.
 **	As such, will return 0 if the contents of 'ptr1' and 'ptr2' match.

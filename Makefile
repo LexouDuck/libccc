@@ -61,6 +61,7 @@ SRC_MEMORY	:=	ft_memalloc.c	\
 				ft_memcmp.c		\
 				ft_memchr.c		\
 				ft_memswap.c	\
+				ft_memrep.c 	\
 				ft_getbits.c	\
 				ft_ptrarrnew.c	\
 				ft_ptrarrlen.c	\
@@ -310,7 +311,7 @@ TEST_CFLAGS			=	-O2 -g -ggdb
 TEST_INCLUDEDIRS	=	-I$(HDRDIR) -I$(TEST_DIR)
 
 # This rule compiles object files from source files
-$(OBJDIR)%.o : $(TEST_DIR)%.c $(TEST_HDR) $(NAME)
+$(OBJDIR)%.o : $(TEST_DIR)%.c $(TEST_HDR)
 	@printf "Compiling file: "$@" -> "
 	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -c $< -o $@
 	@printf $(GREEN)"OK!"$(RESET)"\n"

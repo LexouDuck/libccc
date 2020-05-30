@@ -420,6 +420,43 @@ void	test_memswap(void)
 
 
 /*
+**	void	ft_memrep(void *ptr, t_u8 old, t_u8 new, t_size n);
+*/
+void	print_test_memrep(char const* test_name, int can_segfault,
+		char const* expecting,
+		void* ptr,
+		t_u8 old,
+		t_u8 new,
+		t_size n)
+{
+	TEST_PERFORM(ptr, memrep, ptr, old, new, n)
+	print_test_mem(test_name, "_memrep return", ptr, expecting, n, can_segfault);
+	print_timer_result(&t, FALSE);
+	TEST_PRINT_ARGS("ptr=\"%p\", old=0x%x/'%c', new=0x%x/'%c', n=%lu", ptr, old, old, new, new, n)
+}
+void	test_memrep(void)
+{
+	char* tst1 = "Omae wa mou shindeiru.\0";		t_size const tst1_len = 23;
+	char* tst2 = "Nani???\0";						t_size const tst2_len = 8;
+	char* tst3 = "Un ange mange de la fange.\0";	t_size const tst3_len = 27;
+//	| TEST FUNCTION  | TEST NAME            |CAN SEGV| EXPECTING                      | TEST ARGS
+	print_test_memrep("memrep              ",	FALSE, "O_ae wa _ou shindeiru.",       tst1, 'm', '_', 16);
+	print_test_memrep("memrep              ",	FALSE, "O_ae wa _ou shindeiru$",       tst1, '.', '$', tst1_len - 1);
+	print_test_memrep("memrep              ",	FALSE, "O_ae\twa\t_ou\tshindeiru$",    tst1, ' ', '\t',tst1_len - 1);
+	print_test_memrep("memrep              ",	FALSE, "Nani@@@",                      tst2, '?', '@', tst2_len - 1);
+	print_test_memrep("memrep              ",	FALSE, "Nani",                         tst2, '@', '\0',tst2_len - 1);
+	print_test_memrep("memrep              ",	FALSE, "Un ange mange de la fange.\0", tst3, '?', 'o', tst3_len - 1);
+	print_test_memrep("memrep              ",	FALSE, "Un ange mange de la fange.\0", tst3, '?', 'o', tst3_len - 1);
+	print_test_memrep("memrep              ",	FALSE, "Un an_e man_e de la fan_e.\0", tst3, 'g', '_', tst3_len - 1);
+	print_test_memrep("memrep (old = '\\0') ",	FALSE, tst1,                           tst1, '\0','a', 16);
+	print_test_memrep("memrep (n = 0)      ",	FALSE, tst1,                           tst1, ' ', 'a', 0);
+	print_test_memrep("memrep (n > len)    ",	FALSE, segstr,                         tst1, '_', 'a', tst1_len + 32);
+	print_test_memrep("memrep (null str)   ",	TRUE,  segstr,                         NULL, '_', 'a', 16);
+}
+
+
+
+/*
 **	t_u64	ft_getbits(t_u64 value, int bit, int length);
 */
 void	print_test_getbits(void)
@@ -460,6 +497,9 @@ int		test_memory(void)
 	test_memdup();
 
 //	test_memswap();
+
+	test_memrep();
+
 //	test_getbits();
 
 	printf("\n");
