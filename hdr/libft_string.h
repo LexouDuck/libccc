@@ -31,7 +31,9 @@
 #define String_Set				ft_strset
 #define String_Clear			ft_strclr
 #define String_Delete			ft_strdel
-#define String_Duplicate 		ft_strdup
+#define String_Duplicate		ft_strdup
+#define String_Duplicate_N		ft_strndup
+#define String_Duplicate_Char	ft_strcdup
 #define String_Copy				ft_strcpy
 #define String_Copy_N			ft_strncpy
 #define String_Copy_L			ft_strlcpy
@@ -140,6 +142,20 @@ void	ft_strdel(char **ptr);
 **	(or NULL if the required memory could not be allocated).
 */
 char	*ft_strdup(char const *str);
+
+/*
+**	Returns a newly allocated string which is a copy of the given string 'str',
+**	(or NULL if the required memory could not be allocated), copying at most
+**	'n' characters.
+*/
+char	*ft_strndup(char const *str, t_size n);
+
+/*
+**	Returns a newly allocated string which is a copy of the given string 'str',
+**	(or NULL if the required memory could not be allocated), stopping at the
+**	first occurence of 'c'.
+*/
+char	*ft_strcdup(char const *str, char const c);
 
 /*
 **	Copies the given string 'src' into 'dest' (null-terminator included),

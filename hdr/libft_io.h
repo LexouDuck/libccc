@@ -104,7 +104,7 @@
 **	Reads the contents of the file descriptor 'fd', and puts it into 'file'.
 **	Returns 0 if the stream was read successfully, 1 if there was an error.
 */
-int		ft_readfile(int const fd, char **file, t_size max);
+int		ft_readfile(int const fd, char* *a_file, t_size max);
 
 /*
 **	Reads the contents of the file descriptor 'fd' line per line.
@@ -115,7 +115,7 @@ int		ft_readfile(int const fd, char **file, t_size max);
 **		1 if a line of characters was successfully read
 **		0 if the end of the file was reached
 */
-int		ft_getnextline(int const fd, char **line);
+int		ft_getnextline(int const fd, char* *a_line);
 
 /*
 **	Reads the contents of the file descriptor 'fd', and puts that into
@@ -123,7 +123,7 @@ int		ft_getnextline(int const fd, char **line);
 **	The '\n' characters are replaced by '\0' string terminators.
 **	Returns 0 if the stream was read successfully, 1 if there was an error.
 */
-int		ft_readlines(int const fd, char ***strls);
+int		ft_readlines(int const fd, char** *a_strls);
 
 
 
@@ -141,24 +141,24 @@ void	ft_write_char(int fd, char c);
 /*
 **	Writes the given string 'str' to the given file descriptor 'fd'.
 */
-void	ft_write_str(int fd, char const *str);
+void	ft_write_str(int fd, char const* str);
 
 /*
 **	Writes the given string 'str' to the given file descriptor 'fd',
 **	with a newline '\n' character at the end.
 */
-void	ft_write_line(int fd, char const *str);
+void	ft_write_line(int fd, char const* str);
 
 /*
 **	Writes the given string array 'strls' to the given file descriptor 'fd'.
 */
-void	ft_write_strls(int fd, char const **strls);
+void	ft_write_strls(int fd, char const** strls);
 
 /*
 **	Writes hexadecimal memory in the null-terminated string 'str',
 **	writing lines of 'cols' columns of 4-byte chunks to 'fd'.
 */
-void	ft_write_memory(int fd, t_u8 const *ptr, t_size n, t_u8 cols);
+void	ft_write_memory(int fd, t_u8 const* ptr, t_size n, t_u8 cols);
 
 
 
@@ -176,23 +176,23 @@ void	ft_output_char(char c);
 /*
 **	Writes the given string 'str' to the standard output.
 */
-void	ft_output_str(char const *str);
+void	ft_output_str(char const* str);
 
 /*
 **	Writes the given string 'str' to the standard output,
 **	with a newline '\n' character at the end.
 */
-void	ft_output_line(char const *str);
+void	ft_output_line(char const* str);
 
 /*
 **	Writes the given string array 'strls' to the standard output.
 */
-void	ft_output_strls(char const **strls);
+void	ft_output_strls(char const** strls);
 
 /*
 **	Outputs hexadecimal memory in the null-terminated string 'str',
 **	writing lines of 'cols' columns of 4-byte chunks.
 */
-void	ft_output_memory(t_u8 const *ptr, t_size n, t_u8 cols);
+void	ft_output_memory(t_u8 const* ptr, t_size n, t_u8 cols);
 
 #endif
