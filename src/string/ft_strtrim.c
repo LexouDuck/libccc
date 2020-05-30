@@ -57,23 +57,20 @@ char			*ft_strtrim(char const *str, char const *charset)
 char			*ft_strtrim_l(char const *str, char const *charset)
 {
 	t_size	i;
-	t_size	length;
 
 #if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || charset == NULL)
 		return (NULL);
 #endif
-	length = ft_strlen(str);
 	i = 0;
-	while (i < length)
+	while (str[i])
 	{
 		if (charset_contains(charset, str[i]))
 			++i;
 		else
 			break ;
 	}
-	length -= i;
-	return (ft_strsub(str, i, length));
+	return (ft_strsub(str, i, ft_strlen(str + i)));
 }
 
 
@@ -81,18 +78,19 @@ char			*ft_strtrim_l(char const *str, char const *charset)
 char			*ft_strtrim_r(char const *str, char const *charset)
 {
 	t_size	i;
-	t_size	length;
 
 #if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || charset == NULL)
 		return (NULL);
 #endif
-	length = ft_strlen(str);
-	i = length;
+	i = ft_strlen(str);
 	while (--i)
+
 	{
 		if (!charset_contains(charset, str[i]))
 			break ;
 	}
+	if (i || !charset_contains(charset, str[i]))
+		++i;
 	return (ft_strsub(str, 0, i));
 }

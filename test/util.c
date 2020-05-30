@@ -540,11 +540,15 @@ void	print_test_str(
 		char const *expect,
 		int can_segfault)
 {
+	char* tmp_result = str_to_escape(result);
+	char* tmp_expect = str_to_escape(expect);
 	print_test(test_name, function,
-		result,
-		expect,
+		tmp_result,
+		tmp_expect,
 		can_segfault,
 		!str_equals(result, expect), NULL);
+	free(tmp_result);
+	free(tmp_expect);
 }
 
 
