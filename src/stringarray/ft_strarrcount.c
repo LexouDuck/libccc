@@ -15,7 +15,7 @@
 
 
 
-t_u32		ft_strarrcount_char(char const **strarr, char const c)
+t_u32		ft_strarrcount_char(char const** strarr, char const c)
 {
 	t_u32		i;
 	t_u32		count;
@@ -36,7 +36,7 @@ t_u32		ft_strarrcount_char(char const **strarr, char const c)
 
 
 
-t_u32		ft_strarrcount_charset(char const **strarr, char const *cset)
+t_u32		ft_strarrcount_charset(char const** strarr, char const* cset)
 {
 	t_u32		i;
 	t_u32		count;
@@ -57,7 +57,7 @@ t_u32		ft_strarrcount_charset(char const **strarr, char const *cset)
 
 
 
-t_u32		ft_strarrcount_str(char const **strarr, char const *query)
+t_u32		ft_strarrcount_str(char const** strarr, char const* query)
 {
 	t_u32		i;
 	t_u32		count;

@@ -16,7 +16,7 @@
 
 
 
-char	**ft_strarrsub(const char **strarr, t_u32 start, t_u32 n)
+char	**ft_strarrsub(char const **strarr, t_u32 start, t_u32 n)
 {
 	char		**result;
 	t_u32		length;

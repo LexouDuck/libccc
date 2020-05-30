@@ -14,7 +14,7 @@
 
 
 
-t_u32		ft_strarrlen(char const **strarr)
+t_u32		ft_strarrlen(char const** strarr)
 {
 	t_u32		i;
 

@@ -15,7 +15,7 @@
 
 
 
-static int	ft_strcsplit_get_count(char const *str, char c)
+static int	ft_strcsplit_get_count(char const* str, char c)
 {
 	int		result;
 	t_bool	separator;
@@ -44,7 +44,7 @@ static int	ft_strcsplit_get_count(char const *str, char c)
 	return (result);
 }
 
-char		**ft_strsplit_char(char const *str, char c)
+char		**ft_strsplit_char(char const* str, char c)
 {
 	char	**result;
 	t_size	offset;

@@ -114,6 +114,7 @@ SRC_STRINGARRAY	:=	ft_strsplit_char.c		\
 					ft_strarrjoin.c			\
 					ft_strarrlen.c			\
 					ft_strarrcount.c		\
+					ft_strarrmerge.c		\
 
 
 DIR_CONVERT	:=	convert/

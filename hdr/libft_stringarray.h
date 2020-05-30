@@ -27,14 +27,20 @@
 ** ************************************************************************** *|
 */
 
-#define String_Split_Char		ft_strsplit_char
-#define String_Split_Charset	ft_strsplit_charset
-#define String_Split_String		ft_strsplit_str
-#define String_Divide			ft_strdivide
+#define String_Split_Char			ft_strsplit_char
+#define String_Split_Charset		ft_strsplit_charset
+#define String_Split_String			ft_strsplit_str
+#define String_Divide				ft_strdivide
 
 #define StringArray_New				ft_strarrnew
 #define StringArray_New_C			ft_strarrcnew
 #define StringArray_Delete			ft_strarrdel
+
+#define StringArray_Merge			ft_strarrmerge
+#define StringArray_Append			ft_strarrappend
+#define StringArray_Prepend			ft_strarrprepend
+#define StringArray_Insert_InPlace	ft_strarrinsert_inplace
+
 #define StringArray_Map				ft_strarrmap
 #define StringArray_Map_InPlace		ft_strarrmap_inplace
 #define StringArray_Pad_L			ft_strarrpad_l
@@ -120,7 +126,7 @@ char	**ft_strarrmap(char const **strarr, char *(*f)(char const *));
 **	of strarr by f. f should be a function that does not allocate a new string;
 ** 	but instead edits the string's content in place.
 */
-void	ft_strarrmap_inplace(char ***a_strarr, char *(*f)(char *));
+void	ft_strarrmap_inplace(char** *a_strarr, char *(*f)(char *));
 
 /*
 **	Returns a newly allocated string array such that every string is now
@@ -139,6 +145,39 @@ char	**ft_strarrsub(const char **strarr, t_u32 start, t_u32 length);
 **	of all strings in strarr, with the string 'sep' added between each string.
 */
 char	*ft_strarrjoin(char const **strarr, char const *sep);
+
+
+/*
+** ************************************************************************** *|
+**                        StringArray In Place Editors                        *|
+** ************************************************************************** *|
+*/
+
+/*
+**	Returns the concatenation of 'strarr1' and 'strarr2', and deletes both
+**	inputs from memory. Also returns the result.
+*/
+char		**ft_strarrmerge(char** *a_strarr1, char* **a_strarr2);
+
+/*
+**	Returns the concatenation of 'dest' and 'src', and deletes 'dest', replacing
+**	it by the result. Also returns the result.
+*/
+char		**ft_strarrappend(char** *a_dest, char const** src);
+
+
+/*
+**	Returns the concatenation of 'src' and 'dest', and deletes 'dest', replacing
+**	it by the result. Also returns the result.
+*/
+char		**ft_strarrprepend(char const** src, char** *a_dest);
+
+/*
+**	Inserts the string array 'src' at index 'index' in 'dest'; deletes 'dest' and
+**	replaces it by the result. Also returns the result.
+*/
+char		**ft_strarrinsert_inplace(char** *a_dest, char const** src, t_u32 index);
+
 
 
 /*

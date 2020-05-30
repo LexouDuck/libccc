@@ -16,7 +16,7 @@
 
 
 
-char		**ft_strarrmap(char const **strarr, char *(*f)(char const *))
+char		**ft_strarrmap(char const** strarr, char* (*f)(char const*))
 {
 	t_u32	i;
 	char	**result;
@@ -38,7 +38,7 @@ char		**ft_strarrmap(char const **strarr, char *(*f)(char const *))
 
 
 
-void		ft_strarrmap_inplace(char ***a_strarr, char *(*f)(char *))
+void		ft_strarrmap_inplace(char** *a_strarr, char* (*f)(char*))
 {
 	t_u32	i;
 	char	*tmp;

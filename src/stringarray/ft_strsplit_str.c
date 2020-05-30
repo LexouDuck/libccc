@@ -16,7 +16,7 @@
 
 
 
-static t_u32	count_distinct_sub_in_str(char const *str, char const *sub)
+static t_u32	count_distinct_sub_in_str(char const* str, char const* sub)
 {
 	t_u32	occ;
 	t_u32	i;
@@ -42,7 +42,7 @@ static t_u32	count_distinct_sub_in_str(char const *str, char const *sub)
 	return (occ);
 }
 
-static char		*get_next_chunk(char const *str, char const *sub, t_u32 *i)
+static char		*get_next_chunk(char const* str, char const* sub, t_u32 *i)
 {
 	char	*result;
 	t_u32	sub_len;
@@ -65,7 +65,7 @@ static char		*get_next_chunk(char const *str, char const *sub, t_u32 *i)
 	return (result);
 }
 
-char			**ft_strsplit_str(char const *str, char const *sub)
+char			**ft_strsplit_str(char const* str, char const* sub)
 {
 	char	**result;
 	t_u32	reslen;

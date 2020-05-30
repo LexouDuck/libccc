@@ -15,7 +15,7 @@
 
 
 
-char	**ft_strdivide(const char *str, t_size n)
+char	**ft_strdivide(char const* str, t_size n)
 {
 	char	**result;
 	int		lines;

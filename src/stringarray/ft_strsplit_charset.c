@@ -16,7 +16,7 @@
 
 
 
-static int	ft_in_charset(char c, const char *charset)
+static int	ft_in_charset(char c, char const* charset)
 {
 	int i;
 
@@ -27,7 +27,7 @@ static int	ft_in_charset(char c, const char *charset)
 	return (0);
 }
 
-static int	ft_str_word_nb(const char *str, const char *sep_chars)
+static int	ft_str_word_nb(char const* str, char const* sep_chars)
 {
 	int i;
 	int count;
@@ -47,7 +47,7 @@ static int	ft_str_word_nb(const char *str, const char *sep_chars)
 	return (count);
 }
 
-static int	ft_sing_word_lett_count(const char *str, int ws, const char *seps)
+static int	ft_sing_word_lett_count(char const* str, int ws, char const* seps)
 {
 	int i;
 
@@ -57,7 +57,7 @@ static int	ft_sing_word_lett_count(const char *str, int ws, const char *seps)
 	return (i);
 }
 
-char		**ft_strsplit_charset(const char *str, const char *sep_chars)
+char		**ft_strsplit_charset(char const* str, char const* sep_chars)
 {
 	int		i;
 	int		j;

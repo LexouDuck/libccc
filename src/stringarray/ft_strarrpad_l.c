@@ -15,7 +15,7 @@
 
 
 
-char	**ft_strarrpad_l(const char **strarr, const char c, t_u32 n)
+char	**ft_strarrpad_l(char const** strarr, char const c, t_u32 n)
 {
 	char		**result;
 	t_u32		strarr_length;

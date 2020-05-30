@@ -14,7 +14,7 @@
 
 
 
-static void	ft_strnb_charnb_in_strarr(const char **strarr, int *w_nb, int *c_nb)
+static void	ft_strnb_charnb_in_strarr(char const** strarr, int* w_nb, int* c_nb)
 {
 	int str_at;
 
@@ -27,7 +27,7 @@ static void	ft_strnb_charnb_in_strarr(const char **strarr, int *w_nb, int *c_nb)
 	*w_nb = str_at;
 }
 
-static void	ft_build_str(char *dest, char const **strarr, char const *sep)
+static void	ft_build_str(char* dest, char const** strarr, char const* sep)
 {
 	int i;
 	int words;
@@ -49,7 +49,7 @@ static void	ft_build_str(char *dest, char const **strarr, char const *sep)
 	dest[i] = '\0';
 }
 
-char		*ft_strarrjoin(char const **strarr, char const *sep)
+char		*ft_strarrjoin(char const** strarr, char const* sep)
 {
 	char	*str;
 	int		strarr_str_nb;

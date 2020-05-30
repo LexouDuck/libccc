@@ -16,7 +16,7 @@
 
 
 
-void	ft_strarrdel(char ***a_strarr)
+void	ft_strarrdel(char** *a_strarr)
 {
 	int		i;
 
