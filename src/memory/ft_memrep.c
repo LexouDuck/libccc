@@ -23,9 +23,7 @@ void	ft_memrep(void *ptr, t_u8 old, t_u8 new, t_size n)
 	if (ptr == NULL)
 		return ;
 #endif
-	if (old == '\0')
-		return ;
-	result = (t_u8 *)ptr;
+	result = (t_u8*)ptr;
 	i = 0;
 	while (i < n)
 	{

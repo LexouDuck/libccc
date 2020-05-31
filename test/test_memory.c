@@ -436,9 +436,9 @@ void	print_test_memrep(char const* test_name, int can_segfault,
 }
 void	test_memrep(void)
 {
-	char* tst1 = "Omae wa mou shindeiru.\0";		t_size const tst1_len = 23;
-	char* tst2 = "Nani???\0";						t_size const tst2_len = 8;
-	char* tst3 = "Un ange mange de la fange.\0";	t_size const tst3_len = 27;
+	char* tst1 = strdup("Omae wa mou shindeiru.\0");		t_size const tst1_len = 23;
+	char* tst2 = strdup("Nani???\0");						t_size const tst2_len = 8;
+	char* tst3 = strdup("Un ange mange de la fange.\0");	t_size const tst3_len = 27;
 //	| TEST FUNCTION  | TEST NAME            |CAN SEGV| EXPECTING                      | TEST ARGS
 	print_test_memrep("memrep              ",	FALSE, "O_ae wa _ou shindeiru.",       tst1, 'm', '_', 16);
 	print_test_memrep("memrep              ",	FALSE, "O_ae wa _ou shindeiru$",       tst1, '.', '$', tst1_len - 1);
@@ -452,6 +452,9 @@ void	test_memrep(void)
 	print_test_memrep("memrep (n = 0)      ",	FALSE, tst1,                           tst1, ' ', 'a', 0);
 	print_test_memrep("memrep (n > len)    ",	FALSE, segstr,                         tst1, '_', 'a', tst1_len + 32);
 	print_test_memrep("memrep (null str)   ",	TRUE,  segstr,                         NULL, '_', 'a', 16);
+	free(tst1);
+	free(tst2);
+	free(tst3);
 }
 
 

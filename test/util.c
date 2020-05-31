@@ -583,7 +583,7 @@ void	print_test_alloc(
 		printf(C_RED"\nError"C_RESET": ");
 		if (result == NULL)
 			printf("The call to ft_%s(...) returned NULL.", function);
-		else printf("Every char should be '\\0', but '%c' was read at index %u.", result[i], i);
+		else printf("Every char should be '\\0', but '%c' was read at index %zu.", result[i], i);
 	}
 	else if (g_test.flags.verbose)
 		printf(C_GREEN"OK!"C_RESET);

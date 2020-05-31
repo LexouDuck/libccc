@@ -541,7 +541,7 @@ void	print_test_strcount_char(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT_TYPE(t_size, strcount_char, str, c)
 	print_test_size(test_name, "_strcount_char", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS("str=\"%s\", c=0x%x/'%c'", str, c)
+	TEST_PRINT_ARGS("str=\"%s\", c=0x%x/'%c'", str, c, c)
 }
 void	test_strcount_char(void)
 {
@@ -602,7 +602,7 @@ void	print_test_strchr(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT_LIBC(strchr, str, c)
 	print_test_str(test_name, "strchr return", result_libft, result_libc, can_segfault);
 	print_timer_result(&t, TRUE);
-	TEST_PRINT_ARGS("str=\"%s\", c=0x%x/'%c'", str, c)
+	TEST_PRINT_ARGS("str=\"%s\", c=0x%x/'%c'", str, c, c)
 }
 void	test_strchr(void)
 {
@@ -651,7 +651,7 @@ void	print_test_strrchr(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT_LIBC(strrchr, str, c)
 	print_test_str(test_name, "strrchr return", result_libft, result_libc, can_segfault);
 	print_timer_result(&t, TRUE);
-	TEST_PRINT_ARGS("str=\"%s\", c=0x%x/'%c'", str, c)
+	TEST_PRINT_ARGS("str=\"%s\", c=0x%x/'%c'", str, c, c)
 }
 void	test_strrchr(void)
 {
@@ -703,7 +703,7 @@ void	print_test_strnchr(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(strnchr, str, c, n)
 	print_test_str(test_name, "_strnchr return", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS("str=\"%s\", c=0x%x/'%c', n=%lu", str, c, n)
+	TEST_PRINT_ARGS("str=\"%s\", c=0x%x/'%c', n=%lu", str, c, c, n)
 }
 void	test_strnchr(void)
 {
@@ -992,7 +992,7 @@ void	print_test_strpad(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(strpad, str, c, length)
 	print_test_str(test_name, "_strpad", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS("str=\"%s\", c=0x%x/'%c', n=%lu", str, c, length)
+	TEST_PRINT_ARGS("str=\"%s\", c=0x%x/'%c', n=%lu", str, c, c, length)
 	TEST_FREE()
 }
 void	test_strpad(void)
@@ -1015,7 +1015,7 @@ void	print_test_strpad_l(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(strpad_l, str, c, length)
 	print_test_str(test_name, "_strpad_l", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS("str=\"%s\", c=0x%x/'%c', n=%lu", str, c, length)
+	TEST_PRINT_ARGS("str=\"%s\", c=0x%x/'%c', n=%lu", str, c, c, length)
 	TEST_FREE()
 }
 void	test_strpad_l(void)
@@ -1038,7 +1038,7 @@ void	print_test_strpad_r(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(strpad_r, str, c, length)
 	print_test_str(test_name, "_strpad_r", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS("str=\"%s\", c=0x%x/'%c', n=%lu", str, c, length)
+	TEST_PRINT_ARGS("str=\"%s\", c=0x%x/'%c', n=%lu", str, c, c, length)
 	TEST_FREE()
 }
 void	test_strpad_r(void)
