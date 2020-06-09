@@ -25,16 +25,16 @@ t_float			ft_mc_integrate3(f_scalar_func3 const sf, s_box3d const domain)
 	i = 0;
 	while (i < SAMPLE_NB)
 	{
-		rand_input.x = ft_random_float_a_to_b(domain.start.x, domain.end.x);
-		rand_input.y = ft_random_float_a_to_b(domain.start.y, domain.end.y);
-		rand_input.z = ft_random_float_a_to_b(domain.start.z, domain.end.z);
+		rand_input.vect.x = ft_random_float_a_to_b(domain.start.vect.x, domain.end.vect.x);
+		rand_input.vect.y = ft_random_float_a_to_b(domain.start.vect.y, domain.end.vect.y);
+		rand_input.vect.z = ft_random_float_a_to_b(domain.start.vect.z, domain.end.vect.z);
 		result += sf(rand_input);
 		++i;
 	}
 	result /= (t_float)SAMPLE_NB;
-	result *=	(domain.end.x - domain.start.x) *
-				(domain.end.y - domain.start.y) *
-				(domain.end.z - domain.start.z);
+	result *=	(domain.end.vect.x - domain.start.vect.x) *
+				(domain.end.vect.y - domain.start.vect.y) *
+				(domain.end.vect.z - domain.start.vect.z);
 	return (result);
 }
 

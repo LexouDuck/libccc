@@ -38,7 +38,7 @@ static t_float	inv_factorial(t_u32 n)
 		1.0 / 1307674368000
 	};
 
-	return (result[n]); //static so it shouldn'x be called with any weird values
+	return (result[n]); //static so it shouldn't be called with any weird values
 //	return (n >= 16) ? 0. : result[n];
 }
 #endif
