@@ -317,25 +317,38 @@ void	print_test_f32_to_str(char const* test_name, int can_segfault,
 void	test_f32_to_str(void)
 {
 //	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING              | TEST ARGS
-	print_test_f32_to_str("f32_to_str               ",	FALSE,                      "1", 1                    , 1);
-	print_test_f32_to_str("f32_to_str               ",	FALSE,                     "42", 42                   , 0);
-	print_test_f32_to_str("f32_to_str               ",	FALSE,                   "42.0", 42                   , 1);
-	print_test_f32_to_str("f32_to_str               ",	FALSE,                  "42.00", 42                   , 2);
+	print_test_f32_to_str("f32_to_str               ",	FALSE,                      "1", 1                    , 0);
+	print_test_f32_to_str("f32_to_str               ",	FALSE,                    "1.0", 1                    , 1);
+	print_test_f32_to_str("f32_to_str               ",	FALSE,                 "1.0000", 1                    , 4);
+	print_test_f32_to_str("f32_to_str               ",	FALSE,                      "2", 2                    , 0);
+	print_test_f32_to_str("f32_to_str               ",	FALSE,                    "2.0", 2                    , 1);
+	print_test_f32_to_str("f32_to_str               ",	FALSE,     "2.0000000000000000", 2                    , 16);
 	print_test_f32_to_str("f32_to_str               ",	FALSE,                      "0", 0                    , 0);
 	print_test_f32_to_str("f32_to_str               ",	FALSE,                    "0.0", 0                    , 1);
 	print_test_f32_to_str("f32_to_str               ",	FALSE,                  "0.000", 0                    , 3);
-	print_test_f32_to_str("f32_to_str               ",	FALSE,                     "-1", -1                   , 1);
+	print_test_f32_to_str("f32_to_str               ",	FALSE,                     "-1", -1                   , 0);
+	print_test_f32_to_str("f32_to_str               ",	FALSE,                   "-1.0", -1                   , 1);
+	print_test_f32_to_str("f32_to_str               ",	FALSE,                  "-1.00", -1                   , 2);
+	print_test_f32_to_str("f32_to_str               ",	FALSE,                     "42", 42                   , 0);
+	print_test_f32_to_str("f32_to_str               ",	FALSE,                   "42.0", 42                   , 1);
+	print_test_f32_to_str("f32_to_str               ",	FALSE,                  "42.00", 42                   , 2);
 	print_test_f32_to_str("f32_to_str               ",	FALSE,                    "0.5", 0.5                  , 1);
 	print_test_f32_to_str("f32_to_str               ",	FALSE,                  "0.001", 0.001                , 3);
 	print_test_f32_to_str("f32_to_str               ",	FALSE,                "0.33333", 0.33333333           , 5);
+	print_test_f32_to_str("f32_to_str               ",	FALSE,              "0.3333333", 0.33333333           , 7);
 	print_test_f32_to_str("f32_to_str               ",	FALSE,                 "-777.1", -777.1               , 1);
 	print_test_f32_to_str("f32_to_str               ",	FALSE,               "3.141592", 3.141592             , 6);
-	print_test_f32_to_str("f32_to_str               ",	FALSE,                  "10000", 10000                , 1);
+	print_test_f32_to_str("f32_to_str               ",	FALSE,               "3.141592", 0x1.921FB54442D18p+1 , 6);
+	print_test_f32_to_str("f32_to_str               ",	FALSE,               "6.283185", 0x1.921FB54442D18p+2 , 6);
+	print_test_f32_to_str("f32_to_str               ",	FALSE,             "2.71828182", 0x1.5BF0A8B145769p+1 , 8);
+	print_test_f32_to_str("f32_to_str               ",	FALSE,           "1.4142135623", 0x1.6A09E667F3BCDp+0 , 12);
+	print_test_f32_to_str("f32_to_str               ",	FALSE,                  "10000", 10000                , 0);
+	print_test_f32_to_str("f32_to_str               ",	FALSE,                "10000.0", 10000                , 1);
 	print_test_f32_to_str("f32_to_str               ",	FALSE,              "10000.000", 10000                , 3);
 	print_test_f32_to_str("f32_to_str               ",	FALSE,     "10000.000000000000", 10000                , 12);
 	print_test_f32_to_str("f32_to_str               ",	FALSE,              "123456789", 123456789            , 1);
-	print_test_f32_to_str("f32_to_str               ",	FALSE,     "696969696969696969", 696969696969696969.  , 10);
-	print_test_f32_to_str("f32_to_str               ",	FALSE,    "-696969696969696969",-696969696969696969.  , 10);
+	print_test_f32_to_str("f32_to_str               ",	FALSE,         "69696969696969", 69696969696969.      , 10);
+	print_test_f32_to_str("f32_to_str               ",	FALSE,        "-69696969696969",-69696969696969.      , 10);
 	print_test_f32_to_str("f32_to_str               ",	FALSE,            "0.000000003", 0.000000003          , 10);
 	print_test_f32_to_str("f32_to_str               ",	FALSE,           "-0.000000003",-0.000000003          , 10);
 	print_test_f32_to_str("f32_to_str               ",	FALSE,     "0.0000000000000001", 0.0000000000000001   , 10);
@@ -376,25 +389,38 @@ void	print_test_f64_to_str(char const* test_name, int can_segfault,
 void	test_f64_to_str(void)
 {
 //	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING              | TEST ARGS
-	print_test_f64_to_str("f64_to_str               ",	FALSE,                      "1", 1                    , 1);
-	print_test_f64_to_str("f64_to_str               ",	FALSE,                     "42", 42                   , 0);
-	print_test_f64_to_str("f64_to_str               ",	FALSE,                   "42.0", 42                   , 1);
-	print_test_f64_to_str("f64_to_str               ",	FALSE,                  "42.00", 42                   , 2);
+	print_test_f64_to_str("f64_to_str               ",	FALSE,                      "1", 1                    , 0);
+	print_test_f64_to_str("f64_to_str               ",	FALSE,                    "1.0", 1                    , 1);
+	print_test_f64_to_str("f64_to_str               ",	FALSE,                 "1.0000", 1                    , 4);
+	print_test_f64_to_str("f64_to_str               ",	FALSE,                      "2", 2                    , 0);
+	print_test_f64_to_str("f64_to_str               ",	FALSE,                    "2.0", 2                    , 1);
+	print_test_f64_to_str("f64_to_str               ",	FALSE,     "2.0000000000000000", 2                    , 16);
 	print_test_f64_to_str("f64_to_str               ",	FALSE,                      "0", 0                    , 0);
 	print_test_f64_to_str("f64_to_str               ",	FALSE,                    "0.0", 0                    , 1);
 	print_test_f64_to_str("f64_to_str               ",	FALSE,                  "0.000", 0                    , 3);
-	print_test_f64_to_str("f64_to_str               ",	FALSE,                     "-1", -1                   , 1);
+	print_test_f64_to_str("f64_to_str               ",	FALSE,                     "-1", -1                   , 0);
+	print_test_f64_to_str("f64_to_str               ",	FALSE,                   "-1.0", -1                   , 1);
+	print_test_f64_to_str("f64_to_str               ",	FALSE,                  "-1.00", -1                   , 2);
+	print_test_f64_to_str("f64_to_str               ",	FALSE,                     "42", 42                   , 0);
+	print_test_f64_to_str("f64_to_str               ",	FALSE,                   "42.0", 42                   , 1);
+	print_test_f64_to_str("f64_to_str               ",	FALSE,                  "42.00", 42                   , 2);
 	print_test_f64_to_str("f64_to_str               ",	FALSE,                    "0.5", 0.5                  , 1);
 	print_test_f64_to_str("f64_to_str               ",	FALSE,                  "0.001", 0.001                , 3);
 	print_test_f64_to_str("f64_to_str               ",	FALSE,                "0.33333", 0.33333333           , 5);
+	print_test_f64_to_str("f64_to_str               ",	FALSE,              "0.3333333", 0.33333333           , 7);
 	print_test_f64_to_str("f64_to_str               ",	FALSE,                 "-777.1", -777.1               , 1);
 	print_test_f64_to_str("f64_to_str               ",	FALSE,               "3.141592", 3.141592             , 6);
-	print_test_f64_to_str("f64_to_str               ",	FALSE,                  "10000", 10000                , 1);
+	print_test_f64_to_str("f64_to_str               ",	FALSE,               "3.141592", 0x1.921FB54442D18p+1 , 6);
+	print_test_f64_to_str("f64_to_str               ",	FALSE,               "6.283185", 0x1.921FB54442D18p+2 , 6);
+	print_test_f64_to_str("f64_to_str               ",	FALSE,             "2.71828182", 0x1.5BF0A8B145769p+1 , 8);
+	print_test_f64_to_str("f64_to_str               ",	FALSE,           "1.4142135623", 0x1.6A09E667F3BCDp+0 , 12);
+	print_test_f64_to_str("f64_to_str               ",	FALSE,                  "10000", 10000                , 0);
+	print_test_f64_to_str("f64_to_str               ",	FALSE,                "10000.0", 10000                , 1);
 	print_test_f64_to_str("f64_to_str               ",	FALSE,              "10000.000", 10000                , 3);
 	print_test_f64_to_str("f64_to_str               ",	FALSE,     "10000.000000000000", 10000                , 12);
 	print_test_f64_to_str("f64_to_str               ",	FALSE,              "123456789", 123456789            , 1);
-	print_test_f64_to_str("f64_to_str               ",	FALSE,     "696969696969696969", 696969696969696969.  , 10);
-	print_test_f64_to_str("f64_to_str               ",	FALSE,    "-696969696969696969",-696969696969696969.  , 10);
+	print_test_f64_to_str("f64_to_str               ",	FALSE,         "69696969696969", 69696969696969.      , 10);
+	print_test_f64_to_str("f64_to_str               ",	FALSE,        "-69696969696969",-69696969696969.      , 10);
 	print_test_f64_to_str("f64_to_str               ",	FALSE,            "0.000000003", 0.000000003          , 10);
 	print_test_f64_to_str("f64_to_str               ",	FALSE,           "-0.000000003",-0.000000003          , 10);
 	print_test_f64_to_str("f64_to_str               ",	FALSE,     "0.0000000000000001", 0.0000000000000001   , 10);
@@ -406,12 +432,12 @@ void	test_f64_to_str(void)
 	print_test_f64_to_str("f64_to_str (n < min)     ",	FALSE,   "-9223372036854775809",-9223372036854775809.  , 10);
 	print_test_f64_to_str("f64_to_str (n > maxdigit)",	FALSE,  "999999999999999999999", 999999999999999999999., 10);
 	print_test_f64_to_str("f64_to_str (n < maxdigit)",	FALSE, "-999999999999999999999",-999999999999999999999., 10);
-	print_test_f64_to_str("f64_to_str (n > +huge)   ",	FALSE,        "1.0000000000e20", 1.0000000000e20       , 10);
-	print_test_f64_to_str("f64_to_str (n < -huge)   ",	FALSE,       "-1.0000000000e20",-1.0000000000e20       , 10);
-	print_test_f64_to_str("f64_to_str (n < +tiny)   ",	FALSE,        "1.000000000e-20", 1.000000000e-20       , 9);
-	print_test_f64_to_str("f64_to_str (n > -tiny)   ",	FALSE,       "-1.000000000e-20",-1.000000000e-20       , 9);
-	print_test_f64_to_str("f64_to_str (n > +inf)    ",	FALSE,              "+INFINITY", 1.00000e100           , 5);
-	print_test_f64_to_str("f64_to_str (n < -inf)    ",	FALSE,              "-INFINITY",-1.00000e100           , 5);
+	print_test_f64_to_str("f64_to_str (n > +huge)   ",	FALSE,        "1.0000000000e20", 1.0e20                , 10);
+	print_test_f64_to_str("f64_to_str (n < -huge)   ",	FALSE,       "-1.0000000000e20",-1.0e20                , 10);
+	print_test_f64_to_str("f64_to_str (n < +tiny)   ",	FALSE,        "1.000000000e-20", 1.0e-20               , 9);
+	print_test_f64_to_str("f64_to_str (n > -tiny)   ",	FALSE,       "-1.000000000e-20",-1.0e-20               , 9);
+	print_test_f64_to_str("f64_to_str (n > +inf)    ",	FALSE,              "+INFINITY", 1.0e100               , 5);
+	print_test_f64_to_str("f64_to_str (n < -inf)    ",	FALSE,              "-INFINITY",-1.0e100               , 5);
 	print_test_f64_to_str("f64_to_str (+inf)        ",	FALSE,              "+INFINITY", INFINITY              , 1);
 	print_test_f64_to_str("f64_to_str (-inf)        ",	FALSE,              "-INFINITY",-INFINITY              , 1);
 	print_test_f64_to_str("f64_to_str (nan)         ",	FALSE,                    "NaN", NAN                   , 1);
@@ -439,16 +465,27 @@ void	test_size_to_str(void)
 	print_test_size_to_str("size_to_str               ",	FALSE,                    "777", 777                   );
 	print_test_size_to_str("size_to_str               ",	FALSE,                  "10000", 10000                 );
 	print_test_size_to_str("size_to_str               ",	FALSE,              "123456789", 123456789             );
-	print_test_size_to_str("size_to_str               ",	FALSE,           "999999999999", 999999999999          );
-	print_test_size_to_str("size_to_str (n = max)     ",	FALSE,   "18446744073709551615", 18446744073709551615UL);
 	print_test_size_to_str("size_to_str (n = min)     ",	FALSE,                      "0", 0                     );
+	switch (sizeof(t_size))
+	{
+		case 1:	print_test_size_to_str("size_to_str (n = max)     ",	FALSE,                    "255", 255                   ); break;
+		case 2:	print_test_size_to_str("size_to_str (n = max)     ",	FALSE,                  "65535", 65535                 ); break;
+		case 4:	print_test_size_to_str("size_to_str (n = max)     ",	FALSE,             "4294967295", 4294967295            ); break;
+		case 8:	print_test_size_to_str("size_to_str (n = max)     ",	FALSE,   "18446744073709551615", 18446744073709551615UL); break;
+	}
 	if (g_test.flags.test_overflow)
 	{
 		print_test_size_to_str("size_to_str (n < min)     ",	FALSE,                     "-1", -1                    );
-#ifndef __clang__
-		print_test_size_to_str("size_to_str (n > max)     ",	FALSE,   "18446744073709551616", 18446744073709551616UL);
+		switch (sizeof(t_size))
+		{
+			case 1:	print_test_size_to_str("size_to_str (n > max)     ",	FALSE,                    "256", 256                   ); break;
+			case 2:	print_test_size_to_str("size_to_str (n > max)     ",	FALSE,                  "65536", 65536                 ); break;
+			case 4:	print_test_size_to_str("size_to_str (n > max)     ",	FALSE,             "4294967296", 4294967296            ); break;
+			case 8:	print_test_size_to_str("size_to_str (n > max)     ",	FALSE,   "18446744073709551616", 18446744073709551616UL); break;
+		}
 		print_test_size_to_str("size_to_str (n > maxdigit)",	FALSE,  "999999999999999999999", 999999999999999999999UL);
 		print_test_size_to_str("size_to_str (n < maxdigit)",	FALSE, "-999999999999999999999",-999999999999999999999UL);
+#ifndef __clang__
 #endif
 	}
 }
@@ -1188,21 +1225,37 @@ void test_str_to_f64(void)
 	print_test_str_to_f64("str_to_f64",               	FALSE,                         NAN, "- 45678978748f"             );
 	print_test_str_to_f64("str_to_f64",               	FALSE,                         NAN, "swag123"                    );
 	print_test_str_to_f64("str_to_f64",               	FALSE,                         NAN, "exp"                        );
-	print_test_str_to_f64("str_to_f64",               	FALSE,                         NAN, "0xp"                        );
-	print_test_str_to_f64("str_to_f64",               	FALSE,                         0x0, "0x0p"                       );
-	print_test_str_to_f64("str_to_f64",               	FALSE,                       0x0p0, "0x0p0"                      );
-	print_test_str_to_f64("str_to_f64",               	FALSE,                       0x0p1, "0x0p1"                      );
-	print_test_str_to_f64("str_to_f64",               	FALSE,                       0x1p0, "0x1p0"                      );
-	print_test_str_to_f64("str_to_f64",               	FALSE,                       0x1p1, "0x1p1"                      );
-	print_test_str_to_f64("str_to_f64",               	FALSE,                     0x10p01, "0x10p01"                    );
+	print_test_str_to_f64("str_to_f64",               	FALSE,                         NAN, "eXp"                        );
+	print_test_str_to_f64("str_to_f64",               	FALSE,                         NAN, "eXP"                        );
 	print_test_str_to_f64("str_to_f64",               	FALSE,                         NAN, "EXP"                        );
+	print_test_str_to_f64("str_to_f64",               	FALSE,                         NAN, "0xp"                        );
 	print_test_str_to_f64("str_to_f64",               	FALSE,                         NAN, "0XP"                        );
+	print_test_str_to_f64("str_to_f64",               	FALSE,                         0x0, "0x0p"                       );
 	print_test_str_to_f64("str_to_f64",               	FALSE,                         0x0, "0X0P"                       );
+	print_test_str_to_f64("str_to_f64",               	FALSE,                       0x0p0, "0x0p0"                      );
 	print_test_str_to_f64("str_to_f64",               	FALSE,                       0x0p0, "0X0P0"                      );
+	print_test_str_to_f64("str_to_f64",               	FALSE,                       0x0p1, "0x0p1"                      );
 	print_test_str_to_f64("str_to_f64",               	FALSE,                       0x0p1, "0X0P1"                      );
+	print_test_str_to_f64("str_to_f64",               	FALSE,                         0x1, "0x1p"                       );
+	print_test_str_to_f64("str_to_f64",               	FALSE,                         0x1, "0X1P"                       );
+	print_test_str_to_f64("str_to_f64",               	FALSE,                       0x1p0, "0x1p0"                      );
 	print_test_str_to_f64("str_to_f64",               	FALSE,                       0x1p0, "0X1P0"                      );
+	print_test_str_to_f64("str_to_f64",               	FALSE,                       0x1p1, "0x1p1"                      );
 	print_test_str_to_f64("str_to_f64",               	FALSE,                       0x1p1, "0X1P1"                      );
+	print_test_str_to_f64("str_to_f64",               	FALSE,                       0x1p1, "0x1P1"                      );
+	print_test_str_to_f64("str_to_f64",               	FALSE,                       0x1p1, "0X1p1"                      );
+	print_test_str_to_f64("str_to_f64",               	FALSE,                         0x2, "0x2p"                       );
+	print_test_str_to_f64("str_to_f64",               	FALSE,                         0x2, "0X2P"                       );
+	print_test_str_to_f64("str_to_f64",               	FALSE,                       0x1p2, "0x1p2"                      );
+	print_test_str_to_f64("str_to_f64",               	FALSE,                       0x1p2, "0X1P2"                      );
+	print_test_str_to_f64("str_to_f64",               	FALSE,                       0x2p1, "0x2p1"                      );
+	print_test_str_to_f64("str_to_f64",               	FALSE,                       0x2p1, "0X2P1"                      );
+	print_test_str_to_f64("str_to_f64",               	FALSE,                       0x2p2, "0x2p2"                      );
+	print_test_str_to_f64("str_to_f64",               	FALSE,                       0x2p2, "0X2P2"                      );
+	print_test_str_to_f64("str_to_f64",               	FALSE,                      0x7p05, "0x7p05"                     );
 	print_test_str_to_f64("str_to_f64",               	FALSE,                      0x7p05, "0X7P05"                     );
+	print_test_str_to_f64("str_to_f64",               	FALSE,                     0x10p01, "0x10p01"                    );
+	print_test_str_to_f64("str_to_f64",               	FALSE,                     0x10p01, "0X10P01"                    );
 	print_test_str_to_f64("str_to_f64",               	FALSE,                         NAN, "(-(123"                     );
 	print_test_str_to_f64("str_to_f64",               	FALSE,                         NAN, "[12]123"                    );
 	print_test_str_to_f64("str_to_f64",               	FALSE,                          45, "45_"                        );
@@ -1954,7 +2007,7 @@ void	test_u16_to_strbase(void)
 	print_test_u16_to_strbase("u16_to_strbase (n = min, dec)",	FALSE,           "0",           0,       "0123456789");
 	print_test_u16_to_strbase("u16_to_strbase (n = max, hex)",	FALSE,        "FFFF",       65535, "0123456789ABCDEF");
 	print_test_u16_to_strbase("u16_to_strbase (n = min, hex)",	FALSE,           "0",           0, "0123456789ABCDEF");
-	print_test_u16_to_strbase("u16_to_strbase (n = max, bin)",	FALSE,  "111111111111111",  65535,               "01");
+	print_test_u16_to_strbase("u16_to_strbase (n = max, bin)",	FALSE, "1111111111111111",  65535,               "01");
 	print_test_u16_to_strbase("u16_to_strbase (n = min, bin)",	FALSE,           "0",           0,               "01");
 	print_test_u16_to_strbase("u16_to_strbase (empty base)  ",	FALSE,          NULL,          42,                 "");
 	print_test_u16_to_strbase("u16_to_strbase (null base)   ",	TRUE,         segstr,          42,               NULL);
@@ -2010,7 +2063,7 @@ void	test_u32_to_strbase(void)
 	print_test_u32_to_strbase("u32_to_strbase (n = min, dec)",	FALSE,                       "0",                   0,       "0123456789");
 	print_test_u32_to_strbase("u32_to_strbase (n = max, hex)",	FALSE,                "FFFFFFFF",          4294967295, "0123456789ABCDEF");
 	print_test_u32_to_strbase("u32_to_strbase (n = min, hex)",	FALSE,                       "0",                   0, "0123456789ABCDEF");
-	print_test_u32_to_strbase("u32_to_strbase (n = max, bin)",	FALSE,  "1111111111111111111111111111111", 4294967295,               "01");
+	print_test_u32_to_strbase("u32_to_strbase (n = max, bin)",	FALSE, "11111111111111111111111111111111", 4294967295,               "01");
 	print_test_u32_to_strbase("u32_to_strbase (n = min, bin)",	FALSE,                       "0",                   0,               "01");
 	print_test_u32_to_strbase("u32_to_strbase (empty base)  ",	FALSE,                      NULL,                  42,                 "");
 	print_test_u32_to_strbase("u32_to_strbase (null base)   ",	TRUE,                     segstr,                  42,               NULL);
