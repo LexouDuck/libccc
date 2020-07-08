@@ -103,33 +103,6 @@ s_test		g_test;
 
 
 /*
-**	% Format specifiers for printf calls
-*/
-#ifdef __APPLE__
-	#define PERCENT_S64		"%lld"
-	#define PERCENT_U64		"%llu"
-#else
-	#define PERCENT_S64		"%ld"
-	#define PERCENT_U64		"%lu"
-#endif
-#define PERCENT_SIZET	"%zu"
-#define PERCENT_F32		"%f"
-
-#ifdef _INT_64_
-#define PERCENT_W12_TINT	"%12ld"
-#else
-#define PERCENT_W12_TINT	"%12d"
-#endif
-
-#ifdef _UINT_64_
-#define PERCENT_W12_TUINT	"%12lu"
-#else
-#define PERCENT_W12_TUINT	"%12u"
-#endif
-
-
-
-/*
 ** ************************************************************************** *|
 **                              Segfault handling                             *|
 ** ************************************************************************** *|

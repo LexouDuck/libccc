@@ -137,7 +137,7 @@ void	print_test_s64_to_str(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(s64_to_str, number)
 	print_test_str(test_name, "_s64_to_str", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS(PERCENT_S64, number)
+	TEST_PRINT_ARGS(PRINTF_S64, number)
 }
 void	test_s64_to_str(void)
 {
@@ -275,7 +275,7 @@ void	print_test_u64_to_str(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(u64_to_str, number)
 	print_test_str(test_name, "_u64_to_str", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS(PERCENT_U64, number)
+	TEST_PRINT_ARGS(PRINTF_U64, number)
 }
 void	test_u64_to_str(void)
 {
@@ -312,7 +312,7 @@ void	print_test_f32_to_str(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(f32_to_str, number, precision)
 	print_test_str(test_name, "_f32_to_str", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS(PERCENT_F32, number)
+	TEST_PRINT_ARGS(PRINTF_F32, number)
 }
 void	test_f32_to_str(void)
 {
@@ -371,7 +371,7 @@ void	print_test_f64_to_str(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(f64_to_str, number, precision)
 	print_test_str(test_name, "_f64_to_str", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS(PERCENT_F32, number)
+	TEST_PRINT_ARGS(PRINTF_F32, number)
 }
 void	test_f64_to_str(void)
 {
@@ -429,7 +429,7 @@ void	print_test_size_to_str(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(size_to_str, number)
 	print_test_str(test_name, "_size_to_str", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS(PERCENT_SIZET, number)
+	TEST_PRINT_ARGS(PRINTF_SIZE, number)
 }
 void	test_size_to_str(void)
 {
@@ -1535,7 +1535,7 @@ void	print_test_u64_to_hex(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(u64_to_hex, number)
 	print_test_str(test_name, "_u64_to_hex", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS(PERCENT_U64, number)
+	TEST_PRINT_ARGS(PRINTF_U64, number)
 }
 void	test_u64_to_hex(void)
 {
@@ -1813,7 +1813,7 @@ void	print_test_s64_to_strbase(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(s64_to_strbase, number, base)
 	print_test_str(test_name, "_s64_to_strbase", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS("base='%s', n="PERCENT_S64, base, number);
+	TEST_PRINT_ARGS("base='%s', n="PRINTF_S64, base, number);
 }
 void	test_s64_to_strbase(void)
 {
@@ -2036,7 +2036,7 @@ void	print_test_u64_to_strbase(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(u64_to_strbase, number, base)
 	print_test_str(test_name, "_u64_to_strbase", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS("base='%s', n="PERCENT_U64, base, number);
+	TEST_PRINT_ARGS("base='%s', n="PRINTF_U64, base, number);
 }
 void	test_u64_to_strbase(void)
 {

@@ -175,8 +175,8 @@ t_u64	ft_getbits(t_u64 value, t_u8 bit, t_u8 length);
 */
 
 /*
-** Returns a newly allocated memory array to serve as a length n,
-** null-terminated, pointer array. Returns NULL if malloc fails.
+** Returns a newly allocated memory array to serve as a length null-terminated
+** pointer array of length 'n'. Returns NULL if malloc fails.
 */
 void	*ft_ptrarrnew(t_size size);
 
@@ -184,5 +184,13 @@ void	*ft_ptrarrnew(t_size size);
 ** Returns the length of a null-terminated pointer array.
 */
 t_u32	ft_ptrarrlen(const void **a_ptrarr);
+
+// TODO ptrarrdup
+
+// TODO ptrarrsub
+
+// TODO ptrarrmerge
+// TODO ptrarrappend
+// TODO ptrarrprepend
 
 #endif

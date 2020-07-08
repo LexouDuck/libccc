@@ -92,6 +92,36 @@
 #define C_RESET		"\x1b[0m"
 #endif
 
+/*
+**	'%' Format specifiers for printf calls
+*/
+#ifdef __APPLE__
+	#define PRINTF_S64		"%lld"
+	#define PRINTF_U64		"%llu"
+#else
+	#ifdef __MINGW32__
+		#define PRINTF_S64		"%ld"
+		#define PRINTF_U64		"%I64u"
+	#else
+		#define PRINTF_S64		"%ld"
+		#define PRINTF_U64		"%lu"
+	#endif
+#endif
+#define PRINTF_SIZE		"%zu"
+#define PRINTF_F32		"%f"
+
+#ifdef _INT_64_
+#define PRINTF_W12_INT	"%12ld"
+#else
+#define PRINTF_W12_INT	"%12d"
+#endif
+
+#ifdef _UINT_64_
+#define PRINTF_W12_UINT	"%12lu"
+#else
+#define PRINTF_W12_UINT	"%12u"
+#endif
+
 
 
 /*
