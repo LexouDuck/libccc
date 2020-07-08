@@ -1,6 +1,7 @@
 
 #include <math.h>
 
+#include "libft_io.h"
 #include "libft_stat.h"
 #include "libft_random.h"
 
