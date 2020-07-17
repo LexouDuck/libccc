@@ -153,17 +153,19 @@ void	print_test_strsplit_charset(char const* test_name, int can_segfault,
 }
 void	test_strsplit_charset()
 {
+	char const* numbers[4] = {"2130706433", "136661", "46", NULL};
 //	| TEST FUNCTION				| TEST NAME						| CAN SEGV	| EXPECTING				| TEST ARGS
-	print_test_strsplit_charset("strsplit_charset",				FALSE,		strarr1_A,				strarr1_as_str,		"\n");
-	print_test_strsplit_charset("strsplit_charset",				FALSE,		strarr1_B,				strarr1_as_str,		"\n\t");
-	print_test_strsplit_charset("strsplit_charset",				FALSE,		strarr2_B,				strarr2_as_str,		"a");
-	print_test_strsplit_charset("strsplit_charset",				FALSE,		strarr3,				strarr3_as_str_A,	" ");
-	print_test_strsplit_charset("strsplit_charset",				FALSE,		strarr3,				strarr3_as_str_B,	" \n\t");
-	print_test_strsplit_charset("strsplit_charset",				FALSE,		strarr4_A,				strarr4_as_str,		"a");
-	print_test_strsplit_charset("strsplit_charset",				FALSE,		strarr_empty,			strarr4_as_str,		"ab");
-	print_test_strsplit_charset("strsplit_charset (null str)",	TRUE,		(char const **)&segstr,	NULL,				"a");
-	print_test_strsplit_charset("strsplit_charset (null seps)",	TRUE,		(char const **)&segstr,	strarr1_as_str,		NULL);
-	print_test_strsplit_charset("strsplit_charset (both null)",	TRUE,		(char const **)&segstr,	NULL,				NULL);
+	print_test_strsplit_charset("strsplit_charset",				FALSE,		strarr1_A,				strarr1_as_str,				"\n");
+	print_test_strsplit_charset("strsplit_charset",				FALSE,		strarr1_B,				strarr1_as_str,				"\n\t");
+	print_test_strsplit_charset("strsplit_charset",				FALSE,		strarr2_B,				strarr2_as_str,				"a");
+	print_test_strsplit_charset("strsplit_charset",				FALSE,		strarr3,				strarr3_as_str_A,			" ");
+	print_test_strsplit_charset("strsplit_charset",				FALSE,		strarr3,				strarr3_as_str_B,			" \n\t");
+	print_test_strsplit_charset("strsplit_charset",				FALSE,		strarr4_A,				strarr4_as_str,				"a");
+	print_test_strsplit_charset("strsplit_charset",				FALSE,		strarr_empty,			strarr4_as_str,				"ab");
+	print_test_strsplit_charset("strsplit_charset",				FALSE,		numbers,				"2130706433 136661 46",		" ");
+	print_test_strsplit_charset("strsplit_charset (null str)",	TRUE,		(char const**)&segstr,	NULL,						"a");
+	print_test_strsplit_charset("strsplit_charset (null seps)",	TRUE,		(char const**)&segstr,	strarr1_as_str,				NULL);
+	print_test_strsplit_charset("strsplit_charset (both null)",	TRUE,		(char const**)&segstr,	NULL,						NULL);
 }
 
 
