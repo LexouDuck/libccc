@@ -51,7 +51,9 @@ void	print_totals(s_test_totals totals, char const * category)
 		(totals.failed == 0 ? C_GREEN : C_RED), totals.failed,
 		(totals.tests ? (passed == totals.tests ? C_GREEN : C_YELLOW) : C_RED), passed);
 	printf("- Success rate: ");
-	print_percent(percent);
+	if (totals.tests == 0)
+		print_percent(0);
+	else print_percent(percent);
 	if (category == NULL)
 	{
 		if (totals.failed)
