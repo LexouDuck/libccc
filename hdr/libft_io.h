@@ -53,21 +53,6 @@
 */
 
 /*
-**	Define the 3 standard (std) streams of data - these numbers are special
-**	file descriptors used to read from and write to the terminal commandline.
-*/
-# define STDIN	0
-# define STDOUT	1
-# define STDERR	2
-
-/*
-**	Define the return values for ft_GetNextLine().
-*/
-# define GNL_ERROR -1
-# define GNL_LINE	1
-# define GNL_END	0
-
-/*
 **	This is the arbitrary buffer size to be used by the reading functions.
 **	Raising this amount will lower the amount of function calls made to
 **	the 'read' function from unistd.h, resulting in possible speed improvments,
@@ -75,7 +60,20 @@
 **	It is also recommended to have this number be a power of 2, as it can be
 **	occasionally faster to manage arrays of such sizes on certain machines.
 */
-# define BUFF_SIZE 2048
+#define BUFF_SIZE 2048
+
+/*
+** Define a type for file descriptors (which is usually the default machine 'int')
+*/
+typedef int		t_fd;
+
+/*
+**	Define the 3 standard (std) streams of data - these numbers are special
+**	file descriptors used to read from and write to the terminal commandline.
+*/
+#define STDIN	(t_fd)0
+#define STDOUT	(t_fd)1
+#define STDERR	(t_fd)2
 
 /*
 **	Define some useful string literals for commandline output colors.
@@ -134,7 +132,15 @@
 **	Reads the contents of the file descriptor 'fd', and puts it into 'file'.
 **	Returns 0 if the stream was read successfully, 1 if there was an error.
 */
-int		ft_readfile(int const fd, char* *a_file, t_size max);
+t_bool	ft_readfile(t_fd const fd, char* *a_file, t_size max);
+
+/*
+**	Reads the contents of the file descriptor 'fd', and puts that into
+**	an array of strings, one char pointer for each line.
+**	The '\n' characters are replaced by '\0' string terminators.
+**	Returns 0 if the stream was read successfully, 1 if there was an error.
+*/
+t_bool	ft_readlines(t_fd const fd, char** *a_strarr);
 
 /*
 **	Reads the contents of the file descriptor 'fd' line per line.
@@ -145,15 +151,10 @@ int		ft_readfile(int const fd, char* *a_file, t_size max);
 **		1 if a line of characters was successfully read
 **		0 if the end of the file was reached
 */
-int		ft_getnextline(int const fd, char* *a_line);
-
-/*
-**	Reads the contents of the file descriptor 'fd', and puts that into
-**	an array of strings, one char pointer for each line.
-**	The '\n' characters are replaced by '\0' string terminators.
-**	Returns 0 if the stream was read successfully, 1 if there was an error.
-*/
-int		ft_readlines(int const fd, char** *a_strls);
+#define GNL_LINE	1
+#define GNL_END		0
+#define GNL_ERROR	-1
+int		ft_getnextline(t_fd const fd, char* *a_line);
 
 
 
@@ -166,29 +167,29 @@ int		ft_readlines(int const fd, char** *a_strls);
 /*
 **	Writes the given character 'c' to the given file descriptor 'fd'.
 */
-void	ft_write_char(int fd, char c);
+void	ft_write_char(t_fd fd, char c);
 
 /*
 **	Writes the given string 'str' to the given file descriptor 'fd'.
 */
-void	ft_write_str(int fd, char const* str);
+void	ft_write_str(t_fd fd, char const* str);
 
 /*
 **	Writes the given string 'str' to the given file descriptor 'fd',
 **	with a newline '\n' character at the end.
 */
-void	ft_write_line(int fd, char const* str);
+void	ft_write_line(t_fd fd, char const* str);
 
 /*
 **	Writes the given string array 'strls' to the given file descriptor 'fd'.
 */
-void	ft_write_strls(int fd, char const** strls);
+void	ft_write_strls(t_fd fd, char const** strls);
 
 /*
 **	Writes hexadecimal memory in the null-terminated string 'str',
 **	writing lines of 'cols' columns of 4-byte chunks to 'fd'.
 */
-void	ft_write_memory(int fd, t_u8 const* ptr, t_size n, t_u8 cols);
+void	ft_write_memory(t_fd fd, t_u8 const* ptr, t_size n, t_u8 cols);
 
 
 
