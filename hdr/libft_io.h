@@ -167,29 +167,29 @@ int		ft_getnextline(t_fd const fd, char* *a_line);
 /*
 **	Writes the given character 'c' to the given file descriptor 'fd'.
 */
-void	ft_write_char(t_fd fd, char c);
+int	ft_write_char(t_fd fd, char c);
 
 /*
 **	Writes the given string 'str' to the given file descriptor 'fd'.
 */
-void	ft_write_str(t_fd fd, char const* str);
+int	ft_write_str(t_fd fd, char const* str);
 
 /*
 **	Writes the given string 'str' to the given file descriptor 'fd',
 **	with a newline '\n' character at the end.
 */
-void	ft_write_line(t_fd fd, char const* str);
+int	ft_write_line(t_fd fd, char const* str);
 
 /*
 **	Writes the given string array 'strls' to the given file descriptor 'fd'.
 */
-void	ft_write_strls(t_fd fd, char const** strls);
+int	ft_write_strls(t_fd fd, char const** strls);
 
 /*
 **	Writes hexadecimal memory in the null-terminated string 'str',
 **	writing lines of 'cols' columns of 4-byte chunks to 'fd'.
 */
-void	ft_write_memory(t_fd fd, t_u8 const* ptr, t_size n, t_u8 cols);
+int	ft_write_memory(t_fd fd, t_u8 const* ptr, t_size n, t_u8 cols);
 
 
 
@@ -202,28 +202,28 @@ void	ft_write_memory(t_fd fd, t_u8 const* ptr, t_size n, t_u8 cols);
 /*
 **	Writes the given char 'c' to the standard output.
 */
-void	ft_output_char(char c);
+int	ft_output_char(char c);
 
 /*
 **	Writes the given string 'str' to the standard output.
 */
-void	ft_output_str(char const* str);
+int	ft_output_str(char const* str);
 
 /*
 **	Writes the given string 'str' to the standard output,
 **	with a newline '\n' character at the end.
 */
-void	ft_output_line(char const* str);
+int	ft_output_line(char const* str);
 
 /*
 **	Writes the given string array 'strls' to the standard output.
 */
-void	ft_output_strls(char const** strls);
+int	ft_output_strls(char const** strls);
 
 /*
 **	Outputs hexadecimal memory in the null-terminated string 'str',
 **	writing lines of 'cols' columns of 4-byte chunks.
 */
-void	ft_output_memory(t_u8 const* ptr, t_size n, t_u8 cols);
+int	ft_output_memory(t_u8 const* ptr, t_size n, t_u8 cols);
 
 #endif

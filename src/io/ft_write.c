@@ -12,7 +12,7 @@
 
 /*
 **	Functions used from <stdlib.h>:
-**	-	void	write(int fd, char* buffer, size_t n);
+**	-	int	write(int fd, char* buffer, size_t n);
 */
 #include <unistd.h>
 
@@ -21,68 +21,74 @@
 
 
 
-inline void	ft_write_char(int fd, char c)
+inline int	ft_write_char(int fd, char c)
 {
-	write(fd, &c, 1);
+	return (write(fd, &c, 1));
 }
 
 
 
-inline void	ft_write_str(int fd, const char *str)
+inline int	ft_write_str(int fd, const char *str)
 {
 	if (str)
 	{
-		write(fd, str, ft_strlen(str));
+		return (write(fd, str, ft_strlen(str)));
 	}
+	return (OK);
 }
 
 
 
-inline void	ft_write_line(int fd, const char *str)
+inline int	ft_write_line(int fd, const char *str)
 {
+	int result = OK;
 	if (str)
 	{
-		write(fd, str, ft_strlen(str));
-		write(fd, "\n", 1);
+		if ((result = write(fd, str, ft_strlen(str))))	return (result);
+		if ((result = write(fd, "\n", 1)))				return (result);
 	}
+	return (result);
 }
 
 
 
-void		ft_write_strls(int fd, const char **strls)
+int		ft_write_strls(int fd, const char **strls)
 {
-	int i;
-
 	if (!strls)
-		return ;
-	i = 0;
+		return (OK);
+	int result = OK;
+	int i = 0;
 	while (strls[i])
 	{
-		write(fd, strls[i], ft_strlen(strls[i]));
-		write(fd, "\n", 1);
+		if ((result = write(fd, strls[i], ft_strlen(strls[i]))))	return (result);
+		if ((result = write(fd, "\n", 1)))							return (result);
 		++i;
 	}
+	return (result);
 }
 
 
 
-void		ft_write_memory(int fd, t_u8 const *ptr, t_size n, t_u8 cols)
+int		ft_write_memory(int fd, t_u8 const *ptr, t_size n, t_u8 cols)
 {
-	t_u8	nibble;
-	t_size	i;
-
 	if (!ptr || n == 0 || cols == 0)
-		return ;
-	i = 0;
+		return (OK);
+	int result = OK;
+	t_u8	nibble;
+	t_size	i = 0;
 	while (i < n)
 	{
 		nibble = (ptr[i] & 0xF0) >> 4;
 		nibble += (nibble < 10 ? '0' : 'A' - 10);
-		write(fd, &nibble, 1);
+		result = write(fd, &nibble, 1);
+		if (result)	return (result);
 		nibble = (ptr[i] & 0x0F);
 		nibble += (nibble < 10 ? '0' : 'A' - 10);
-		write(fd, &nibble, 1);
+		result = write(fd, &nibble, 1);
+		if (result)	return (result);
 		++i;
-		write(fd, (i % cols == 0 ? "\n" : " "), 1);
+		result = write(fd, (i % cols == 0 ? "\n" : " "), 1);
+		if (result)	return (result);
 	}
+	return (result);
 }
