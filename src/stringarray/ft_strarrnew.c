@@ -28,5 +28,6 @@ char	**ft_strarrnew(t_u32 length)
 		result[i] = NULL;
 		++i;
 	}
+	result[i] = NULL;
 	return (result);
 }
