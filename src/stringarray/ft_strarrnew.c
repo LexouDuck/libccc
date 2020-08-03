@@ -15,19 +15,7 @@
 
 
 
-char	**ft_strarrnew(t_u32 length)
+inline char	**ft_strarrnew(t_u32 length)
 {
-	char	**result;
-	t_u32	i;
-
-	if (!(result = (char**)ft_memalloc(sizeof(char*) * (length + 1))))
-		return (NULL);
-	i = 0;
-	while (i <= length)
-	{
-		result[i] = NULL;
-		++i;
-	}
-	result[i] = NULL;
-	return (result);
+	return ((char**)ft_memnew(sizeof(char*) * (length + 1)));
 }
