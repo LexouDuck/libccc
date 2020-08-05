@@ -35,8 +35,12 @@
 #define Convert_U16_To_String			ft_u16_to_str
 #define Convert_U32_To_String			ft_u32_to_str
 #define Convert_U64_To_String			ft_u64_to_str
+
 #define Convert_F32_To_String			ft_f32_to_str
 #define Convert_F64_To_String			ft_f64_to_str
+#define Convert_F32_To_String_P			ft_f32_to_str_p
+#define Convert_F64_To_String_P			ft_f64_to_str_p
+
 #define Convert_Bool_To_String			ft_bool_to_str
 #define Convert_Size_To_String			ft_size_to_str
 
@@ -145,8 +149,11 @@ int		ft_str_to_float_checkinvalid(char const *str, char **result_tmp);
 
 t_bool	ft_float_to_str_checkspecial(t_f32 number, char **result);
 
-char	*ft_f32_to_str(t_f32 n, t_u8 precision);
-char	*ft_f64_to_str(t_f64 n, t_u8 precision);
+char	*ft_f32_to_str(t_f32 n);
+char	*ft_f64_to_str(t_f64 n);
+
+char	*ft_f32_to_str_p(t_f32 n, t_u8 precision);
+char	*ft_f64_to_str_p(t_f64 n, t_u8 precision);
 
 
 
