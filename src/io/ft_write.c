@@ -23,17 +23,19 @@
 
 inline int	ft_write_char(int fd, char c)
 {
-	return (write(fd, &c, 1));
+	if (write(fd, &c, 1) < 0)
+		return (ERROR);
+	return (OK);
 }
 
 
 
 inline int	ft_write_str(int fd, const char *str)
 {
-	if (str)
-	{
-		return (write(fd, str, ft_strlen(str)));
-	}
+	if (str == NULL)
+		return (OK);
+	if (write(fd, str, ft_strlen(str)) < 0)
+		return (ERROR);
 	return (OK);
 }
 
@@ -41,54 +43,47 @@ inline int	ft_write_str(int fd, const char *str)
 
 inline int	ft_write_line(int fd, const char *str)
 {
-	int result = OK;
-	if (str)
-	{
-		if ((result = write(fd, str, ft_strlen(str))))	return (result);
-		if ((result = write(fd, "\n", 1)))				return (result);
-	}
-	return (result);
+	if (str == NULL)
+		return (OK);
+	if (write(fd, str, ft_strlen(str)) < 0)	return (ERROR);
+	if (write(fd, "\n", 1) < 0)				return (ERROR);
+	return (OK);
 }
 
 
 
 int		ft_write_strls(int fd, const char **strls)
 {
-	if (!strls)
+	if (strls == NULL)
 		return (OK);
-	int result = OK;
 	int i = 0;
 	while (strls[i])
 	{
-		if ((result = write(fd, strls[i], ft_strlen(strls[i]))))	return (result);
-		if ((result = write(fd, "\n", 1)))							return (result);
+		if (write(fd, strls[i], ft_strlen(strls[i])) < 0)	return (ERROR);
+		if (write(fd, "\n", 1) < 0)							return (ERROR);
 		++i;
 	}
-	return (result);
+	return (OK);
 }
 
 
 
 int		ft_write_memory(int fd, t_u8 const *ptr, t_size n, t_u8 cols)
 {
-	if (!ptr || n == 0 || cols == 0)
+	if (ptr == NULL || n == 0 || cols == 0)
 		return (OK);
-	int result = OK;
 	t_u8	nibble;
 	t_size	i = 0;
 	while (i < n)
 	{
 		nibble = (ptr[i] & 0xF0) >> 4;
 		nibble += (nibble < 10 ? '0' : 'A' - 10);
-		result = write(fd, &nibble, 1);
-		if (result)	return (result);
+		if (write(fd, &nibble, 1) < 0)	return (ERROR);
 		nibble = (ptr[i] & 0x0F);
 		nibble += (nibble < 10 ? '0' : 'A' - 10);
-		result = write(fd, &nibble, 1);
-		if (result)	return (result);
+		if (write(fd, &nibble, 1) < 0)	return (ERROR);
 		++i;
-		result = write(fd, (i % cols == 0 ? "\n" : " "), 1);
-		if (result)	return (result);
+		if (write(fd, (i % cols == 0 ? "\n" : " "), 1) < 0)	return (ERROR);
 	}
-	return (result);
+	return (OK);
 }
