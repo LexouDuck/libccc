@@ -27,20 +27,17 @@ ifeq ($(OS),Windows_NT)
 	OSFLAG := "WIN"
 	CC := $(CC_WIN)
 	CFLAGS_PLATFORM := $(CFLAGS_WIN)
-	SED_DEL_OPT	:=	-r
 else
 	UNAME_S := $(shell uname -s)
 	ifeq ($(UNAME_S),Linux)
 		OSFLAG := "LIN"
 		CC := $(CC_LIN)
 		CFLAGS_PLATFORM := $(CFLAGS_LIN)
-		SED_DEL_OPT	:= 
 	endif
 	ifeq ($(UNAME_S),Darwin)
 		OSFLAG := "MAC"
 		CC := $(CC_MAC)
 		CFLAGS_PLATFORM := $(CFLAGS_MAC)
-		SED_DEL_OPT	:=
 	endif
 endif
 
