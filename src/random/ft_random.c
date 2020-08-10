@@ -64,7 +64,7 @@ inline t_int		ft_random_int_a_to_b(t_int a, t_int b)
 
 inline t_float		ft_random_float_0_to_1(void)
 {
-	return (((t_float)ft_random()) / MODULUS);
+	return (((t_float)ft_random()) / (t_float)MODULUS);
 }
 
 inline t_float		ft_random_float_a_to_b(t_float a, t_float b)

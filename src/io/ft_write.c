@@ -12,7 +12,7 @@
 
 /*
 **	Functions used from <stdlib.h>:
-**	-	void	write(int fd, char* buffer, size_t n);
+**	-	int	write(int fd, char* buffer, size_t n);
 */
 #include <unistd.h>
 
@@ -21,68 +21,69 @@
 
 
 
-inline void	ft_write_char(int fd, char c)
+inline int	ft_write_char(int fd, char c)
 {
-	write(fd, &c, 1);
+	if (write(fd, &c, 1) < 0)
+		return (ERROR);
+	return (OK);
 }
 
 
 
-inline void	ft_write_str(int fd, const char *str)
+inline int	ft_write_str(int fd, const char *str)
 {
-	if (str)
-	{
-		write(fd, str, ft_strlen(str));
-	}
+	if (str == NULL)
+		return (OK);
+	if (write(fd, str, ft_strlen(str)) < 0)
+		return (ERROR);
+	return (OK);
 }
 
 
 
-inline void	ft_write_line(int fd, const char *str)
+inline int	ft_write_line(int fd, const char *str)
 {
-	if (str)
-	{
-		write(fd, str, ft_strlen(str));
-		write(fd, "\n", 1);
-	}
+	if (str == NULL)
+		return (OK);
+	if (write(fd, str, ft_strlen(str)) < 0)	return (ERROR);
+	if (write(fd, "\n", 1) < 0)				return (ERROR);
+	return (OK);
 }
 
 
 
-void		ft_write_strls(int fd, const char **strls)
+int		ft_write_strls(int fd, const char **strls)
 {
-	int i;
-
-	if (!strls)
-		return ;
-	i = 0;
+	if (strls == NULL)
+		return (OK);
+	int i = 0;
 	while (strls[i])
 	{
-		write(fd, strls[i], ft_strlen(strls[i]));
-		write(fd, "\n", 1);
+		if (write(fd, strls[i], ft_strlen(strls[i])) < 0)	return (ERROR);
+		if (write(fd, "\n", 1) < 0)							return (ERROR);
 		++i;
 	}
+	return (OK);
 }
 
 
 
-void		ft_write_memory(int fd, t_u8 const *ptr, t_size n, t_u8 cols)
+int		ft_write_memory(int fd, t_u8 const *ptr, t_size n, t_u8 cols)
 {
+	if (ptr == NULL || n == 0 || cols == 0)
+		return (OK);
 	t_u8	nibble;
-	t_size	i;
-
-	if (!ptr || n == 0 || cols == 0)
-		return ;
-	i = 0;
+	t_size	i = 0;
 	while (i < n)
 	{
 		nibble = (ptr[i] & 0xF0) >> 4;
 		nibble += (nibble < 10 ? '0' : 'A' - 10);
-		write(fd, &nibble, 1);
+		if (write(fd, &nibble, 1) < 0)	return (ERROR);
 		nibble = (ptr[i] & 0x0F);
 		nibble += (nibble < 10 ? '0' : 'A' - 10);
-		write(fd, &nibble, 1);
+		if (write(fd, &nibble, 1) < 0)	return (ERROR);
 		++i;
-		write(fd, (i % cols == 0 ? "\n" : " "), 1);
+		if (write(fd, (i % cols == 0 ? "\n" : " "), 1) < 0)	return (ERROR);
 	}
+	return (OK);
 }

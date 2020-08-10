@@ -289,72 +289,102 @@ typedef union	u_float_cast_
 ** ************************************************************************** *|
 */
 
+typedef struct	s_vec2_
+{
+	t_float		x;
+	t_float		y;
+}				s_vec2;
+
+typedef struct	s_complex_
+{
+	t_float		re;
+	t_float		im;
+}				s_complex;
+
 typedef	union	u_vec2_
 {
 	t_float		values[2];
-	struct
-	{
-		t_float		x;
-		t_float		y;
-	};
-	struct
-	{
-		t_float		re;
-		t_float		im;
-	};
+	s_vec2		vect;
+	s_complex	cplx;
 }				u_vec2;
+
+
+
+typedef struct	s_vec3_
+{
+	t_float		x;
+	t_float		y;
+	t_float		z;
+}				s_vec3;
+
+typedef struct	s_rgb_
+{
+	t_float		r;
+	t_float		g;
+	t_float		b;
+}				s_rgb;
+
+typedef struct	s_hsl_
+{
+	t_float		h;
+	t_float		s;
+	t_float		l;
+}				s_hsl;
 
 typedef	union	u_vec3_
 {
 	t_float		values[3];
-	struct
-	{
-		t_float		x;
-		t_float		y;
-		t_float		z;
-	};
-	struct
-	{
-		t_float		r;
-		t_float		g;
-		t_float		b;
-	};
-	struct
-	{
-		t_float		h;
-		t_float		s;
-		t_float		l;
-	};
+	s_vec3		vect;
+	s_rgb		rgb;
+	s_hsl		hsl;
 }				u_vec3;
+
+
 
 /*
 ** Be coherent when using 4D vectors: memory is in the order xyz-t
 ** but the others are s-ijk and a-rgb
 */
+
+typedef struct		s_vec4_
+{
+	t_float		x;
+	t_float		y;
+	t_float		z;
+	t_float		t;
+}					s_vec4;
+
+typedef struct		s_quaternion_
+{
+	t_float		s;
+	t_float		i;
+	t_float		j;
+	t_float		k;
+}					s_quaternion;
+
+typedef struct		s_argb_
+{
+	t_float		a;
+	t_float		r;
+	t_float		g;
+	t_float		b;
+}					s_argb;
+
+typedef struct		s_ahsl_
+{
+	t_float		a;
+	t_float		h;
+	t_float		s;
+	t_float		l;
+}					s_ahsl;
+
 typedef	union	u_vec4_
 {
-	t_float		values[4];
-	struct
-	{
-		t_float		x;
-		t_float		y;
-		t_float		z;
-		t_float		t;
-	};
-	struct
-	{
-		t_float		s;
-		t_float		i;
-		t_float		j;
-		t_float		k;
-	};
-	struct
-	{
-		t_float		a;
-		t_float		r;
-		t_float		g;
-		t_float		b;
-	};
+	t_float			values[4];
+	s_vec4			vect;
+	s_quaternion	quat;
+	s_argb			argb;
+	s_ahsl			ahsl;
 }				u_vec4;
 
 

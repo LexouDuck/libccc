@@ -11,11 +11,10 @@
 /* ************************************************************************** */
 
 /*
-**	Functions used from <stdlib.h>:
+**	Functions used from <unistd.h>:
 **	-	void	read(int fd, char* buffer, size_t n);
 */
 #include <unistd.h>
-#include <stdbool.h>
 #include <stdio.h>
 
 #include "libft_memory.h"
@@ -25,15 +24,15 @@
 
 
 
-static	int		gnl_read(int const fd, char* *a_newline)
+static	int		gnl_read(t_fd const fd, char* *a_newline)
 {
 	static t_size	buf_pos = 0;
 	static char		buffer[BUFF_SIZE + 1] = {0};
 	int				status = 0;
 	int				offset = 0;
 	char			*temp = NULL;
-	bool			end_of_buffer = FALSE;
-	bool			done_new_line = FALSE;
+	t_bool			end_of_buffer = FALSE;
+	t_bool			done_new_line = FALSE;
 
 	if (!(*a_newline = ft_strnew(0)))
 		return (GNL_ERROR);
@@ -74,7 +73,7 @@ static	int		gnl_read(int const fd, char* *a_newline)
 	return (status);
 }
 
-int				ft_getnextline(int const fd, char* *a_line)
+int				ft_getnextline(t_fd const fd, char* *a_line)
 {
 	char			*new_line = NULL;
 	int				status = GNL_ERROR;

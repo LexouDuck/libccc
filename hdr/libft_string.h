@@ -337,8 +337,8 @@ char	*ft_strtoescape(char const *str);
 */
 //TODO implement
 char	*ft_strrep_char(char const *str,
-	char const old,
-	char const new);
+	char const char_old,
+	char const char_new);
 
 /*
 **	Returns a new null-terminated string which is a copy of 'str',
@@ -347,8 +347,8 @@ char	*ft_strrep_char(char const *str,
 */
 //TODO implement
 char	*ft_strrep_charset(char const *str,
-	char const *old,
-	char const *new);
+	char const *charset_old,
+	char const *charset_new);
 
 /*
 **	Returns a new null-terminated string which is a copy of 'str',
@@ -356,8 +356,8 @@ char	*ft_strrep_charset(char const *str,
 **	NB: see stringarray.h -> ft_strsplit_str for extra notes on bevahior.
 */
 char	*ft_strrep_str(char const *str,
-	char const *old,
-	char const *new);
+	char const *str_old,
+	char const *str_new);
 
 
 /*
@@ -395,8 +395,8 @@ char		*ft_strinsert_inplace(char **dest, char const *src, t_u32 index);
 **	Replaces every occurence of 'old' by 'new' in 'str'.
 */
 void		ft_strrep_char_inplace(char *str,
-	char const old,
-	char const new);
+	char const char_old,
+	char const char_new);
 
 /*
 **	Replaces 'old' charset by 'new' charset in 'str'.
@@ -406,16 +406,16 @@ void		ft_strrep_char_inplace(char *str,
 **	'old' or 'new' are the empty string.
 */
 void		ft_strrep_charset_inplace(char *str,
-	char const *old,
-	char const *new);
+	char const *charset_old,
+	char const *charset_new);
 
 /*
 **	Replaces every occurence of the query old by the string new in str.
 **	NB: see stringarray.h -> ft_strsplit_str for extra notes on bevahior.
 */
 void		ft_strrep_str_inplace(char **a_str,
-	char const *old,
-	char const *new);
+	char const *str_old,
+	char const *str_new);
 
 /*
 **	Changes the content of '*a_str' by applying f to each of its chars.

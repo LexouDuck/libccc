@@ -22,7 +22,7 @@
 #include "libft_io.h"
 
 
-static int	ft_readfile_error(int result, char* *a_file)
+static t_bool	ft_readfile_error(int result, char* *a_file)
 {
 	if (result < 0)
 	{
@@ -37,7 +37,7 @@ static int	ft_readfile_error(int result, char* *a_file)
 		return (OK);
 }
 
-int			ft_readfile(int const fd, char* *a_file, t_size max)
+t_bool		ft_readfile(t_fd const fd, char* *a_file, t_size max)
 {
 	int		result;
 	char	buffer[BUFF_SIZE + 1];
@@ -67,8 +67,8 @@ int			ft_readfile(int const fd, char* *a_file, t_size max)
 
 
 
-int			ft_readlines(int const fd, char** *a_strls)
-{
+t_bool		ft_readlines(t_fd const fd, char** *a_strarr)
+{	// TODO rewrite this to use the much more stable function 'ft_readfile' and 'ft_strsplit'
 	char	**result;
 	int		status;
 	char	**line;
@@ -87,6 +87,6 @@ int			ft_readlines(int const fd, char** *a_strls)
 		ft_strarrdel(&result);
 		return (ERROR);
 	}
-	*a_strls = result;
+	*a_strarr = result;
 	return (OK);
 }

@@ -10,6 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+**	Functions used from <stdlib.h>: (only when LIBFTCONFIG_FAST_APPROX_MATH is 0)
+**	-	double	atof(char* str);
+*/
+#include <stdlib.h>
+
 #include "libft_memory.h"
 #include "libft_string.h"
 #include "libft_math.h"
@@ -17,9 +23,10 @@
 
 
 
+#if LIBFTCONFIG_FAST_APPROX_MATH
 /*
-** Has some negligible error (beyond the seventh decimal digit; imprecision
-** linked to input)
+**	Has some approximation/error margin (beyond the seventh decimal digit;
+**	the exact amount of imprecision depends on the input)
 */
 
 static t_f32	ft_str_to_f32_expon(char const *s_mant, char const *s_exp)
@@ -112,3 +119,12 @@ t_f32			ft_str_to_f32(char const *str)
 	ft_memfree(tmp);
 	return (result);
 }
+
+#else
+
+inline t_f32	ft_str_to_f32(char const *str)
+{
+	return (atof(str));
+}
+
+#endif

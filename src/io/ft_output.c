@@ -14,35 +14,35 @@
 
 
 
-inline void	ft_output_char(char c)
+inline int	ft_output_char(char c)
 {
-	ft_write_str(STDOUT, &c);
+	return (ft_write_str(STDOUT, &c));
 }
 
 
 
-inline void	ft_output_str(char const *str)
+inline int	ft_output_str(char const *str)
 {
-	ft_write_str(STDOUT, str);
+	return (ft_write_str(STDOUT, str));
 }
 
 
 
-inline void	ft_output_line(char const *str)
+inline int	ft_output_line(char const *str)
 {
-	ft_write_line(STDOUT, str);
+	return (ft_write_line(STDOUT, str));
 }
 
 
 
-inline void	ft_output_strls(char const **strls)
+inline int	ft_output_strls(char const **strls)
 {
-	ft_write_strls(STDOUT, strls);
+	return (ft_write_strls(STDOUT, strls));
 }
 
 
 
-inline void	ft_output_memory(t_u8 const *ptr, t_size n, t_u8 cols)
+inline int	ft_output_memory(t_u8 const *ptr, t_size n, t_u8 cols)
 {
-	ft_write_memory(STDOUT, ptr, n, cols);
+	return (ft_write_memory(STDOUT, ptr, n, cols));
 }

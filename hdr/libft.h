@@ -34,11 +34,20 @@
 ** ************************************************************************** *|
 */
 
-/*
-**	Included for the standard defined stable primitive int & uint types
-*/
+// Included to use the following std types:
+//	- uint8_t
+//	- uint16_t
+//	- uint32_t
+//	- uint64_t
+//	- int8_t
+//	- int16_t
+//	- int32_t
+//	- int64_t
+#include <stdint.h>
+// Included to use the following std types:
+//	- size_t
+//	- ptrdiff_t
 #include <stddef.h>
-#include <inttypes.h>
 
 
 
@@ -99,6 +108,19 @@
 */
 
 /*
+**	Define the common NULL pointer macros.
+*/
+#ifdef	NULL
+#undef	NULL
+#endif
+#define NULL	(void*)(0)
+
+#ifdef	TYPED_NULL
+#undef	TYPED_NULL
+#endif
+#define TYPED_NULL(TYPE)	(TYPE*)(0)
+
+/*
 **	Define the common useful macros for writing some pseudo-boolean syntax.
 */
 #ifdef	FALSE
@@ -157,24 +179,29 @@
 **	convention, to better reflect the amount of bits used by each type.
 **	(and also to avoid having to type 'unsigned' all the time)
 */
-typedef uint8_t			t_u8;
-typedef uint16_t		t_u16;
-typedef uint32_t		t_u32;
-typedef	uint64_t		t_u64;
+typedef uint8_t		t_u8;
+typedef uint16_t	t_u16;
+typedef uint32_t	t_u32;
+typedef	uint64_t	t_u64;
 
-typedef int8_t			t_s8;
-typedef int16_t			t_s16;
-typedef int32_t			t_s32;
-typedef	int64_t			t_s64;
+typedef int8_t		t_s8;
+typedef int16_t		t_s16;
+typedef int32_t		t_s32;
+typedef	int64_t		t_s64;
 
-typedef float			t_f32;
-typedef double			t_f64;
-typedef long double		t_f80;
+typedef float		t_f32;
+typedef double		t_f64;
 
-#if defined(__float128)
-typedef __float128		t_f128;
+#ifdef	__float80
+typedef __float80	t_f80;
+#elif defined(_FLOAT_80_)
+	#error "Cannot set default float to 80-bit extended-precision, unavailable on this platform"
+#endif
+
+#ifdef	__float128
+typedef __float128	t_f128;
 #elif defined(_FLOAT_128_)
-#	error "Cannot set default float as 128-bit: FLOAT 128 is unavailable on this platform"
+	#error "Cannot set default float to 128-bit extended-precision, unavailable on this platform"
 #endif
 
 
@@ -223,19 +250,20 @@ typedef t_f128		t_float;
 #endif
 
 /*
-**	Define a boolean pseudo-type that is potentially faster than just 'int'.
-**	The uint_fast8_t type is the fastest primitive type on the current machine
-**	which contains at least 8 usable bits (ie: at least a range of 0-255).
-**	On ARM processors this type might be 'int', otherwise it might be 'char'.
-**	On embedded systems, this type could have all sorts of unusual bitsizes,
-**	so no program should rely on any kind of overflow behavior from this type.
+**	Define the primitive boolean type
+**	Here, we use the native (from C99 onwards) '_Bool' type
 */
-typedef uint_fast8_t	t_bool;
+typedef _Bool		t_bool;
 
 /*
 **	This typedef is here purely for nomenclature consistency
 */
-typedef size_t			t_size;
+typedef size_t		t_size;
+
+/*
+**	This typedef is here purely for nomenclature consistency
+*/
+typedef ptrdiff_t	t_ptrdiff;
 
 
 

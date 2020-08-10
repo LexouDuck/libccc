@@ -101,7 +101,7 @@ static char		*ft_f64_to_str_expon(t_f64 number, t_u8 precision,
 	return (result);
 }
 
-char			*ft_f64_to_str(t_f64 number, t_u8 precision)
+char			*ft_f64_to_str_p(t_f64 number, t_u8 precision)
 {
 	char	*result;
 	char	*result_exp;

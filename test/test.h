@@ -30,11 +30,11 @@
 
 typedef struct	s_test_flags_
 {
-	bool	verbose;		// if 0, only display total amount of tests passed/failed
-	bool	show_args;		// if 0, do not display arguments for each test
-	bool	show_speed;		// if 0, do not display performance/speed for each test
-	bool	test_nullptrs;	// if 0, do not perform any NULL pointer tests
-	bool	test_overflow;	// if 0, do not perform libft_convert overflowing number tests
+	bool	verbose;		// if TRUE, display all logger output for each test
+	bool	show_args;		// if TRUE, display arguments given to each test
+	bool	show_speed;		// if TRUE, display performance (execution speed) for each test
+	bool	test_nullptrs;	// if TRUE, perform all NULL pointer tests
+	bool	test_overflow;	// if TRUE, perform all the libft_convert overflowing number tests
 }				s_test_flags;
 
 typedef struct	s_test_totals_
@@ -68,10 +68,10 @@ typedef struct	s_test_arg_
 */
 typedef struct	s_test_
 {
-	s_test_flags	flags;		// Stores the main program argument options
-	s_test_totals	totals;		// Stores the amounts of tests ran/failed
-	s_test_suite	suites[TEST_SUITE_AMOUNT];
-	s_test_arg		args[TEST_ARGS_AMOUNT];
+	s_test_totals	totals;						// Stores the total amounts of tests ran/failed
+	s_test_flags	flags;						// Stores the main program argument options (as boolean flags)
+	s_test_arg		args[TEST_ARGS_AMOUNT];		// Stores the chars/names and descriptions for each valid program argument
+	s_test_suite	suites[TEST_SUITE_AMOUNT];	// Stores info of which test suites should be run or not
 }				s_test;
 // Global variable to access the program state data from anywhere
 s_test		g_test;
@@ -99,33 +99,6 @@ s_test		g_test;
 **	so as to have those tests expect a "(segfault)" result.
 */
 #define SEGV	(TRUE | (1 << 2))
-
-
-
-/*
-**	% Format specifiers for printf calls
-*/
-#ifdef __APPLE__
-	#define PERCENT_S64		"%lld"
-	#define PERCENT_U64		"%llu"
-#else
-	#define PERCENT_S64		"%ld"
-	#define PERCENT_U64		"%lu"
-#endif
-#define PERCENT_SIZET	"%zu"
-#define PERCENT_F32		"%f"
-
-#ifdef _INT_64_
-#define PERCENT_W12_TINT	"%12ld"
-#else
-#define PERCENT_W12_TINT	"%12d"
-#endif
-
-#ifdef _UINT_64_
-#define PERCENT_W12_TUINT	"%12lu"
-#else
-#define PERCENT_W12_TUINT	"%12u"
-#endif
 
 
 

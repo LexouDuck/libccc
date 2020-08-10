@@ -1,6 +1,7 @@
 
 #include <math.h>
 
+#include "libft_io.h"
 #include "libft_stat.h"
 #include "libft_random.h"
 
@@ -25,23 +26,23 @@ int		test_stat(void) // TODO increment total tests counter for these tests
 	if (g_test.flags.verbose)
 	{
 		t_u64	intmax = (t_u32)-1;
-		printf("\tMedian:   %12f | intmax   :"PERCENT_U64"\n", ft_stat_median_i(ilst_sorted), intmax);
-		printf("\tAverage:  %12f | intmax/2 :"PERCENT_U64"\n", ft_stat_average_i(ilst_sorted), intmax / 2);
+		printf("\tMedian:   %12f | intmax   :"PRINTF_U64"\n", ft_stat_median_i(ilst_sorted), intmax);
+		printf("\tAverage:  %12f | intmax/2 :"PRINTF_U64"\n", ft_stat_average_i(ilst_sorted), intmax / 2);
 		tmp = ft_stat_variance_i(ilst_sorted);
 		printf("\tVariance: %12f | StdDev: %12f\n", tmp, sqrt(tmp));
 
 		printf("\tDeciles int:\n"
-			"\t\t 0: "PERCENT_W12_TINT"\n"
-			"\t\t 1: "PERCENT_W12_TINT"\n"
-			"\t\t 2: "PERCENT_W12_TINT"\n"
-			"\t\t 3: "PERCENT_W12_TINT"\n"
-			"\t\t 4: "PERCENT_W12_TINT"\n"
-			"\t\t 5: "PERCENT_W12_TINT"\n"
-			"\t\t 6: "PERCENT_W12_TINT"\n"
-			"\t\t 7: "PERCENT_W12_TINT"\n"
-			"\t\t 8: "PERCENT_W12_TINT"\n"
-			"\t\t 9: "PERCENT_W12_TINT"\n"
-			"\t\t10: "PERCENT_W12_TINT"\n\n",
+			"\t\t 0: "PRINTF_W12_INT"\n"
+			"\t\t 1: "PRINTF_W12_INT"\n"
+			"\t\t 2: "PRINTF_W12_INT"\n"
+			"\t\t 3: "PRINTF_W12_INT"\n"
+			"\t\t 4: "PRINTF_W12_INT"\n"
+			"\t\t 5: "PRINTF_W12_INT"\n"
+			"\t\t 6: "PRINTF_W12_INT"\n"
+			"\t\t 7: "PRINTF_W12_INT"\n"
+			"\t\t 8: "PRINTF_W12_INT"\n"
+			"\t\t 9: "PRINTF_W12_INT"\n"
+			"\t\t10: "PRINTF_W12_INT"\n\n",
 			ilst_sorted.data[0],
 			ilst_sorted.data[(t_u32)decile_inc],
 			ilst_sorted.data[(t_u32)(decile_inc * 2)],
