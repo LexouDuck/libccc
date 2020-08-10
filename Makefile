@@ -224,7 +224,7 @@ DEPENDS	=	${OBJS:.o=.d}
 #######################################
 
 all: $(NAME).a
-	@cp *.dll $(BINDIR)
+	@cp *.dll $(BINDIR) 2>/dev/null || :
 	@cp $(NAME).* $(BINDIR)
 
 $(OBJS): | dir
