@@ -1,5 +1,5 @@
 # Output file names
-NAME		=	libft.a
+NAME		=	libft
 NAME_TEST	=	libft_test
 
 # Compiler
@@ -12,28 +12,32 @@ CC_MAC	= gcc
 CFLAGS	=	-Wall -Wextra -Winline -Wpedantic -Werror $(CFLAGS_PLATFORM) -MMD -O2
 
 CFLAGS_PLATFORM = _
-CFLAGS_WIN	= -mwindows
+CFLAGS_WIN	= -mwindows -shared
 CFLAGS_LIN	= -Wno-unused-result
 CFLAGS_MAC	= 
 
 # Directories that this Makefile will use
+BINDIR	=	./bin/
 HDRDIR	=	./hdr/
 SRCDIR	=	./src/
 OBJDIR	=	./obj/
 
 # Set platform-specific variables
 ifeq ($(OS),Windows_NT)
+	OSFLAG := "WIN"
 	CC := $(CC_WIN)
 	CFLAGS_PLATFORM := $(CFLAGS_WIN)
 	SED_DEL_OPT	:=	-r
 else
 	UNAME_S := $(shell uname -s)
 	ifeq ($(UNAME_S),Linux)
+		OSFLAG := "LIN"
 		CC := $(CC_LIN)
 		CFLAGS_PLATFORM := $(CFLAGS_LIN)
 		SED_DEL_OPT	:= 
 	endif
 	ifeq ($(UNAME_S),Darwin)
+		OSFLAG := "MAC"
 		CC := $(CC_MAC)
 		CFLAGS_PLATFORM := $(CFLAGS_MAC)
 		SED_DEL_OPT	:=
@@ -222,11 +226,14 @@ DEPENDS	=	${OBJS:.o=.d}
 #          Main build rules           #
 #######################################
 
-all: $(NAME)
+all: $(NAME).a
+	@cp *.dll $(BINDIR)
+	@cp $(NAME).* $(BINDIR)
 
-$(OBJS): | objdir
+$(OBJS): | dir
 
-objdir:
+dir:
+	@mkdir -p $(BINDIR)
 	@mkdir -p $(OBJDIR)
 	@mkdir -p $(OBJDIR)$(DIR_MEMORY)
 	@mkdir -p $(OBJDIR)$(DIR_CHAR)
@@ -246,10 +253,16 @@ $(OBJDIR)%.o : $(SRCDIR)%.c $(HDRS)
 	@$(CC) $(CFLAGS) -c $< -I$(HDRDIR) -o $@ -MF $(OBJDIR)$*.d
 	@printf $(GREEN)"OK!"$(RESET)"\n"
 
-$(NAME): $(OBJS) $(HDRS)
+$(NAME).a: $(OBJS) $(HDRS)
 	@printf "Compiling library: "$@" -> "
 	@ar -rc $@ $(OBJS)
 	@ranlib $@
+	@if [ $(OSFLAG) = "WIN" ]; then \
+		printf $(GREEN)"OK!"$(RESET)"\n" ; printf \
+		"Compiling DLL: "$(NAME).dll" -> " ; \
+		$(CC) -shared -o $(NAME).dll $(OBJS) \
+		-Wl,--output-def,$(NAME).def ; \
+	fi
 	@printf $(GREEN)"OK!"$(RESET)"\n"
 
 
@@ -266,8 +279,8 @@ clean:
 	@rm -f *.d
 
 fclean: clean
-	@printf "Deleting library file: "$(NAME)"\n"
-	@rm -f $(NAME)
+	@printf "Deleting library file(s): "$(NAME)"\n"
+	@rm -f $(NAME).*
 
 rclean: clean
 	@printf "Deleting obj folder...\n"
@@ -317,7 +330,7 @@ $(OBJDIR)%.o : $(TEST_DIR)%.c $(TEST_HDR)
 	@printf $(GREEN)"OK!"$(RESET)"\n"
 
 # This rule builds the testing/CI program
-$(NAME_TEST): $(TEST_OBJ) $(TEST_HDR) $(NAME)
+$(NAME_TEST): $(TEST_OBJ) $(TEST_HDR) $(NAME).a
 	@printf "Compiling testing program: "$@" -> "
 	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -o $@ $(TEST_OBJ) -L./ -lft -lm
 	@printf $(GREEN)"OK!"$(RESET)"\n"

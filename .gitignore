@@ -1,5 +1,7 @@
-./obj/*
-./libft_test*
+
+obj/
+bin/
+
 libft_test*
 
 # Prerequisites
@@ -27,6 +29,7 @@ libft_test*
 *.lo
 
 # Shared objects (inc. Windows DLLs)
+*.def
 *.dll
 *.so
 *.so.*
