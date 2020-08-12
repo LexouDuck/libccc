@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_CONVERT_H
-#define LIBFT_CONVERT_H
+#ifndef __LIBFT_CONVERT_H
+#define __LIBFT_CONVERT_H
 
 /*
 ** ************************************************************************** *|
@@ -20,6 +20,8 @@
 */
 
 #include "libft.h"
+
+HEADER_CPP
 
 /*
 ** ************************************************************************** *|
@@ -215,4 +217,5 @@ t_u16	ft_strbase_to_u16(char const *str, char const *base);
 t_u32	ft_strbase_to_u32(char const *str, char const *base);
 t_u64	ft_strbase_to_u64(char const *str, char const *base);
 
+HEADER_END
 #endif

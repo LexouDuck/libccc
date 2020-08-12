@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_IO_H
-#define LIBFT_IO_H
+#ifndef __LIBFT_IO_H
+#define __LIBFT_IO_H
 
 /*
 ** ************************************************************************** *|
@@ -20,7 +20,8 @@
 */
 
 #include "libft.h"
-#include "libft_string.h"
+
+HEADER_CPP
 
 /*
 ** ************************************************************************** *|
@@ -226,4 +227,5 @@ int	ft_output_strls(char const** strls);
 */
 int	ft_output_memory(t_u8 const* ptr, t_size n, t_u8 cols);
 
+HEADER_END
 #endif

@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_STRINGARRAY_H
-#define LIBFT_STRINGARRAY_H
+#ifndef __LIBFT_STRINGARRAY_H
+#define __LIBFT_STRINGARRAY_H
 
 /*
 ** ************************************************************************** *|
@@ -20,6 +20,8 @@
 */
 
 #include "libft.h"
+
+HEADER_CPP
 
 /*
 ** ************************************************************************** *|
@@ -206,4 +208,5 @@ t_u32	ft_strarrcount_charset(char const **strarr, char const *cset);
 */
 t_u32	ft_strarrcount_str(char const **strarr, char const *query);
 
+HEADER_END
 #endif

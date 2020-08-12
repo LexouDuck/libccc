@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_MEMORY_H
-#define LIBFT_MEMORY_H
+#ifndef __LIBFT_MEMORY_H
+#define __LIBFT_MEMORY_H
 
 /*
 ** ************************************************************************** *|
@@ -20,6 +20,8 @@
 */
 
 #include "libft.h"
+
+HEADER_CPP
 
 /*
 ** ************************************************************************** *|
@@ -193,4 +195,5 @@ t_u32	ft_ptrarrlen(const void **a_ptrarr);
 // TODO ptrarrappend
 // TODO ptrarrprepend
 
+HEADER_END
 #endif

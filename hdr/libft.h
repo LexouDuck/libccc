@@ -10,8 +10,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-#define LIBFT_H
+#ifndef __LIBFT_H
+#define __LIBFT_H
+
+// define header guards to prevent C++ compilers from doing symbol name mangling
+#ifdef __cplusplus
+	#ifndef HEADER_CPP
+	#define HEADER_CPP	extern "C" {
+	#endif
+	#ifndef HEADER_END
+	#define HEADER_END	}
+	#endif
+#else
+	#ifndef HEADER_CPP
+	#define HEADER_CPP	
+	#endif
+	#ifndef HEADER_END
+	#define HEADER_END	
+	#endif	
+#endif
+
+HEADER_CPP
 
 /*
 **	TODO	libft_color			+ tests
@@ -296,4 +315,5 @@ typedef union		u_varfloat_
 	t_f64			lf;
 }					u_varfloat;
 
+HEADER_END
 #endif

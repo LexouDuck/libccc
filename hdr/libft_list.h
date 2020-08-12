@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_LIST_H
-#define LIBFT_LIST_H
+#ifndef __LIBFT_LIST_H
+#define __LIBFT_LIST_H
 
 /*
 ** ************************************************************************** *|
@@ -20,6 +20,8 @@
 */
 
 #include "libft.h"
+
+HEADER_CPP
 
 /*
 ** ************************************************************************** *|
@@ -208,4 +210,5 @@ void				**ft_lst_to_array(s_list **alst);
 */
 s_tuple				*ft_lst_to_tuple(s_list **alst, s_tuple *tuple);
 
+HEADER_END
 #endif

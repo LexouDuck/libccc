@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_MATH_H
-#define LIBFT_MATH_H
+#ifndef __LIBFT_MATH_H
+#define __LIBFT_MATH_H
 
 /*
 ** ************************************************************************** *|
@@ -20,6 +20,8 @@
 */
 
 #include "libft.h"
+
+HEADER_CPP
 
 /*
 ** ************************************************************************** *|
@@ -573,4 +575,5 @@ t_int		ft_distance_int(t_int x, t_int y);
 	#define FLOAT_INIT_VALUE		F128_INIT_VALUE
 #endif
 
+HEADER_END
 #endif

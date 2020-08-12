@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_COLOR_H
-#define LIBFT_COLOR_H
+#ifndef __LIBFT_COLOR_H
+#define __LIBFT_COLOR_H
 
 /*
 ** ************************************************************************** *|
@@ -20,6 +20,8 @@
 */
 
 #include "libft.h"
+
+HEADER_CPP
 
 /*
 ** ************************************************************************** *|
@@ -157,4 +159,5 @@ t_u32	ft_color_argb32_set(t_u8 a, t_u8 r, t_u8 g, t_u8 b);
 */
 t_u16	ft_color_argb32_to_argb16(t_u32 color);
 
+HEADER_END
 #endif

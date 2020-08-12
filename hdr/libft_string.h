@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_STRING_H
-#define LIBFT_STRING_H
+#ifndef __LIBFT_STRING_H
+#define __LIBFT_STRING_H
 
 /*
 ** ************************************************************************** *|
@@ -20,6 +20,8 @@
 */
 
 #include "libft.h"
+
+HEADER_CPP
 
 /*
 ** ************************************************************************** *|
@@ -531,4 +533,5 @@ char	*ft_strmap(char const *str, char (*f)(char));
 */
 char	*ft_strmapi(char const *str, char (*f)(t_size, char));
 
+HEADER_END
 #endif
