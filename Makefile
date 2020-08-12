@@ -224,13 +224,21 @@ DEPENDS	=	${OBJS:.o=.d}
 #######################################
 
 all: $(NAME).a
-	@cp *.dll $(BINDIR) 2>/dev/null || :
-	@cp $(NAME).* $(BINDIR)
 
-$(OBJS): | dir
-
-dir:
+# This rule fills the 'bin' folder with necessary files for release distribution
+release: all
 	@mkdir -p $(BINDIR)
+	@cp $(NAME).a $(BINDIR) 2>/dev/null || :
+	@if [ $(OSFLAG) = "WIN" ]; then \
+		cp $(NAME).def	$(BINDIR) 2>/dev/null || : ; \
+		cp *.dll		$(BINDIR) 2>/dev/null || : ; \
+	fi
+
+# define dependency to have created obj folders before compiling source files
+$(OBJS): | objdir
+
+# This rule creates the object file folders necessary
+objdir:
 	@mkdir -p $(OBJDIR)
 	@mkdir -p $(OBJDIR)$(DIR_MEMORY)
 	@mkdir -p $(OBJDIR)$(DIR_CHAR)
@@ -245,11 +253,13 @@ dir:
 	@mkdir -p $(OBJDIR)$(DIR_VLQ)
 	@mkdir -p $(OBJDIR)$(DIR_IO)
 
+# This rule compiles object files from source files
 $(OBJDIR)%.o : $(SRCDIR)%.c $(HDRS)
 	@printf "Compiling file: "$@" -> "
 	@$(CC) $(CFLAGS) -c $< -I$(HDRDIR) -o $@ -MF $(OBJDIR)$*.d
 	@printf $(GREEN)"OK!"$(RESET)"\n"
 
+# This rule builds the libft library file to link against
 $(NAME).a: $(OBJS) $(HDRS)
 	@printf "Compiling library: "$@" -> "
 	@ar -rc $@ $(OBJS)
@@ -261,34 +271,6 @@ $(NAME).a: $(OBJS) $(HDRS)
 		-Wl,--output-def,$(NAME).def ; \
 	fi
 	@printf $(GREEN)"OK!"$(RESET)"\n"
-
-
-
-#######################################
-#        File deletion rules          #
-#######################################
-
-clean:
-	@printf "Deleting object files...\n"
-	@rm -f $(OBJS)
-	@printf "Deleting dependency files...\n"
-	@rm -f $(DEPENDS)
-	@rm -f *.d
-
-fclean: clean
-	@printf "Deleting library file(s): "$(NAME)"\n"
-	@rm -f $(NAME).*
-
-rclean: clean
-	@printf "Deleting obj folder...\n"
-	@rmdir $(OBJDIR)
-
-tclean:
-	@printf "Deleting libft test...\n"
-	@rm -f test
-	@rm -f libft_test.exe*
-
-re: fclean all
 
 
 
@@ -339,7 +321,36 @@ test: $(NAME_TEST)
 
 
 #######################################
-#          Other operations           #
+#        File deletion rules          #
+#######################################
+
+clean:
+	@printf "Deleting object files...\n"
+	@rm -f $(OBJS)
+	@rm -f $(TEST_OBJ)
+	@printf "Deleting dependency files...\n"
+	@rm -f $(DEPENDS)
+	@rm -f *.d
+
+fclean: clean
+	@printf "Deleting library: "$(NAME)"\n"
+	@rm -f $(NAME).*
+	@printf "Deleting program: "$(NAME_TEST)"\n"
+	@rm -f $(NAME_TEST)
+	@rm -f $(NAME_TEST).d
+
+rclean: fclean
+	@printf "Deleting obj folder...\n"
+	@rm -rf $(OBJDIR)
+	@printf "Deleting bin folder...\n"
+	@rm -rf $(BINDIR)
+
+re: fclean all
+
+
+
+#######################################
+#          Linting operations         #
 #######################################
 
 lint:
@@ -351,6 +362,10 @@ lint:
 		--template-location="  -> from:\t{file}:{line}\t->\t{info}"
 
 
+
+#######################################
+#       Preprocessing operations      #
+#######################################
 
 PREPROCESSED	=	${SRCS:%.c=$(OBJDIR)%.c}
 
@@ -364,15 +379,22 @@ $(OBJDIR)%.c : $(SRCDIR)%.c $(HDRS)
 
 
 
+#######################################
+#           RegEx operations          #
+#######################################
+
 replace:
-	@sed -i -e "s|$(old)|$(new)|g" $(addprefix $(SRCDIR), $(SRCS))
+	@sed -i -e "s|$(old)|$(new)|g" $(addprefix $(SRCDIR), $(SRCS)) $(addprefix $(HDRDIR), $(HDRS))
 	@printf "Replaced all instances of \'"$(old)"\' with \'"$(new)"\'.\n"
 
 rename:
-	@sed -i -e "s|\<$(old)\>|$(new)|g" $(addprefix $(SRCDIR), $(SRCS))
+	@sed -i -e "s|\<$(old)\>|$(new)|g" $(addprefix $(SRCDIR), $(SRCS)) $(addprefix $(HDRDIR), $(HDRS))
 	@printf "Renamed all words matching \'"$(old)"\' with \'"$(new)"\'.\n"
 
 
+
+# This line ensures the makefile won't conflict with files named 'clean', 'fclean', etc
+.PHONY : clean fclean rclean re lint
 
 # The following line is for Makefile GCC dependency file handling (.d files)
 -include ${DEPENDS}
