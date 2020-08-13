@@ -268,7 +268,9 @@ $(NAME).a: $(OBJS) $(HDRS)
 		printf $(GREEN)"OK!"$(RESET)"\n" ; printf \
 		"Compiling DLL: "$(NAME).dll" -> " ; \
 		$(CC) -shared -o $(NAME).dll $(OBJS) \
-		-Wl,--output-def,$(NAME).def ; \
+		-Wl,--output-def,$(NAME).def \
+		-Wl,--out-implib,$(NAME).lib \
+		-Wl,--export-all-symbols ; \
 	fi
 	@printf $(GREEN)"OK!"$(RESET)"\n"
 
