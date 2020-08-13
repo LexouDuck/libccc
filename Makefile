@@ -229,10 +229,20 @@ all: $(NAME).a
 release: all
 	@mkdir -p $(BINDIR)
 	@cp $(NAME).a $(BINDIR) 2>/dev/null || :
-	@if [ $(OSFLAG) = "WIN" ]; then \
-		cp $(NAME).def	$(BINDIR) 2>/dev/null || : ; \
-		cp *.dll		$(BINDIR) 2>/dev/null || : ; \
+	@if [ $(OSFLAG) = "WIN" ]; then printf \
+		"Compiling DLL: "$(BINDIR)$(NAME).dll" -> " ; \
+		$(CC) -shared -o $(BINDIR)$(NAME).dll $(OBJS) \
+		-Wl,--output-def,$(BINDIR)$(NAME).def \
+		-Wl,--out-implib,$(BINDIR)$(NAME).lib \
+		-Wl,--export-all-symbols ; \
+	elif [ $(OSFLAG) = "MAC" ]; then printf \
+		"Compiling dylib: "$(BINDIR)$(NAME).dylib" -> " ; \
+		$(CC) -shared	-o $(BINDIR)$(NAME).dylib $(OBJS) ; \
+	elif [ $(OSFLAG) = "LIN" ]; then printf \
+		"Compiling shared object: "$(BINDIR)$(NAME).so" -> " ; \
+		$(CC) -shared			-o $(BINDIR)$(NAME).so $(OBJS) ; \
 	fi
+	@printf $(GREEN)"OK!"$(RESET)"\n"
 
 # define dependency to have created obj folders before compiling source files
 $(OBJS): | objdir
@@ -264,14 +274,6 @@ $(NAME).a: $(OBJS) $(HDRS)
 	@printf "Compiling library: "$@" -> "
 	@ar -rc $@ $(OBJS)
 	@ranlib $@
-	@if [ $(OSFLAG) = "WIN" ]; then \
-		printf $(GREEN)"OK!"$(RESET)"\n" ; printf \
-		"Compiling DLL: "$(NAME).dll" -> " ; \
-		$(CC) -shared -o $(NAME).dll $(OBJS) \
-		-Wl,--output-def,$(NAME).def \
-		-Wl,--out-implib,$(NAME).lib \
-		-Wl,--export-all-symbols ; \
-	fi
 	@printf $(GREEN)"OK!"$(RESET)"\n"
 
 
