@@ -10,7 +10,6 @@ CC_MAC	= gcc
 
 # Compiler flags
 CFLAGS	=	-Wall -Wextra -Winline -Wpedantic -Werror $(CFLAGS_PLATFORM) -MMD -O2
-
 CFLAGS_PLATFORM = _
 CFLAGS_WIN	= -mwindows -shared
 CFLAGS_LIN	= -Wno-unused-result
@@ -337,8 +336,8 @@ clean:
 	@rm -f *.d
 
 fclean: clean
-	@printf "Deleting library: "$(NAME)"\n"
-	@rm -f $(NAME).*
+	@printf "Deleting library: "$(NAME).a"\n"
+	@rm -f $(NAME).a
 	@printf "Deleting program: "$(NAME_TEST)"\n"
 	@rm -f $(NAME_TEST)
 	@rm -f $(NAME_TEST).d
