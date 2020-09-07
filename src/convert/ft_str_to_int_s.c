@@ -43,7 +43,7 @@ t_s8	ft_str_to_s8(char const *str)
 	result = 0;
 	while (str[i] && ft_isdigit(str[i]))
 		result = result * 10 + str[i++] - '0';
-	return ((t_s8)(negative ? -result : result));
+	return ((t_s8)(negative ? -(t_s32)result : result));
 }
 
 
@@ -76,7 +76,7 @@ t_s16	ft_str_to_s16(char const *str)
 	result = 0;
 	while (str[i] && ft_isdigit(str[i]))
 		result = result * 10 + str[i++] - '0';
-	return ((t_s16)(negative ? -result : result));
+	return ((t_s16)(negative ? -(t_s32)result : result));
 }
 
 
@@ -109,7 +109,7 @@ t_s32	ft_str_to_s32(char const *str)
 	result = 0;
 	while (str[i] && ft_isdigit(str[i]))
 		result = result * 10 + str[i++] - '0';
-	return ((t_s32)(negative ? -result : result));
+	return ((t_s32)(negative ? -(t_s32)result : result));
 }
 
 
@@ -142,5 +142,5 @@ t_s64	ft_str_to_s64(char const *str)
 	result = 0;
 	while (str[i] && ft_isdigit(str[i]))
 		result = result * 10 + str[i++] - '0';
-	return ((t_s64)(negative ? -result : result));
+	return ((t_s64)(negative ? -(t_s64)result : result));
 }

@@ -54,8 +54,9 @@ char			*ft_s8_to_strbase(t_s8 number, char const *base)
 	length = ft_s_to_strbase_getlength(base);
 	if (length == 0)
 		return (NULL);
-	if ((n = number) && number < 0)
-		n = -n;
+	if (number < 0)
+		n = -number;
+	else n = number;
 	i = 0;
 	while (n > 0)
 	{
@@ -85,8 +86,9 @@ char			*ft_s16_to_strbase(t_s16 number, char const *base)
 	length = ft_s_to_strbase_getlength(base);
 	if (length == 0)
 		return (NULL);
-	if ((n = number) && number < 0)
-		n = -n;
+	if (number < 0)
+		n = -number;
+	else n = number;
 	i = 0;
 	while (n > 0)
 	{
@@ -116,8 +118,9 @@ char			*ft_s32_to_strbase(t_s32 number, char const *base)
 	length = ft_s_to_strbase_getlength(base);
 	if (length == 0)
 		return (NULL);
-	if ((n = number) && number < 0)
-		n = -n;
+	if (number < 0)
+		n = -number;
+	else n = number;
 	i = 0;
 	while (n > 0)
 	{
@@ -147,8 +150,9 @@ char			*ft_s64_to_strbase(t_s64 number, char const *base)
 	length = ft_s_to_strbase_getlength(base);
 	if (length == 0)
 		return (NULL);
-	if ((n = number) && number < 0)
-		n = -n;
+	if (number < 0)
+		n = -number;
+	else n = number;
 	i = 0;
 	while (n > 0)
 	{

@@ -3,6 +3,7 @@ obj/
 bin/
 
 libft_test*
+pclint_*.*
 
 # Prerequisites
 *.d

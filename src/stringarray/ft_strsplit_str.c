@@ -47,7 +47,7 @@ static char		*get_next_chunk(char const* str, char const* sub, t_u32 *i)
 	char	*result;
 	t_u32	sub_len;
 	t_u32	str_len;
-	int		new_len;
+	t_s32	new_len;
 
 	sub_len = ft_strlen(sub);
 	str_len = ft_strlen(str);
@@ -55,7 +55,7 @@ static char		*get_next_chunk(char const* str, char const* sub, t_u32 *i)
 	if (new_len > -1)
 	{
 		result = ft_strsub(str, *i, (t_u32)new_len);
-		*i += new_len + sub_len * (new_len != -1);
+		*i += new_len + sub_len * (t_s32)(new_len != -1);
 	}
 	else
 	{
