@@ -1,6 +1,7 @@
 
 obj/
 bin/
+doc/*/*
 
 libft_test*
 pclint_*.*

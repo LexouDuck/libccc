@@ -353,6 +353,20 @@ re: fclean all
 
 
 #######################################
+#        Generate documentation       #
+#######################################
+
+DOCDIR = ./doc/
+DOXYREST = $(DOCDIR)doxyrest/bin/doxyrest.exe
+
+doc: all
+	@doxygen $(DOCDIR)project.doxygen
+	@$(DOXYREST) -c $(DOCDIR)doxyrest-config.lua
+	@sphinx-build -b html $(DOCDIR)rst $(DOCDIR)html -c $(DOCDIR)
+
+
+
+#######################################
 #          Linting operations         #
 #######################################
 
