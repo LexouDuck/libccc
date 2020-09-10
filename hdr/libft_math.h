@@ -181,7 +181,7 @@ t_float		ft_fabs(t_float x);				//!< @return the absolute value of 'x' (makes 'x
 
 t_float		ft_fmod(t_float x, t_float y);	//!< @return the division remainder of 'x' divided by 'y'
 
-t_float		ft_round(t_float x); // TODO	//!< @return the value of 'x', rounded to the nearest integer
+t_float		ft_round(t_float x);			//!< @return the value of 'x', rounded to the nearest integer
 t_float		ft_trunc(t_float x);			//!< @return the value of 'x', rounded towards 0
 t_float		ft_floor(t_float x);			//!< @return the value of 'x', rounded to the superior integer
 t_float		ft_ceil(t_float x);				//!< @return the value of 'x', rounded to the inferior integer
@@ -302,8 +302,8 @@ typedef struct	s_complex_
 typedef	union	u_vec2_
 {
 	t_float		values[2];	//! An array, to access the 2 values from within brackets
-	s_vec2		vector;		//! A vector, to access the 2 coordinates as `.x` and `.y`
-	s_complex	complex;	//! A complex number, to access the 2 parts as `.re` and `.im`
+	s_vec2		vect;		//! A vector, to access the 2 coordinates as `.x` and `.y`
+	s_complex	cplx;		//! A complex number, to access the 2 parts as `.re` and `.im`
 }				u_vec2;
 
 
@@ -336,7 +336,7 @@ typedef struct	s_hsl_
 typedef	union	u_vec3_
 {
 	t_float		values[3];	//! An array, to access the 3 values from within brackets
-	s_vec3		vector;		//! A vector, to access the 3 coordinates as `.x`, `.y` and `.z`
+	s_vec3		vect;		//! A vector, to access the 3 coordinates as `.x`, `.y` and `.z`
 	s_rgb		rgb;		//! An RGB color, to access the 3 channels as `.r`, `.g` and `.b`
 	s_hsl		hsl;		//! An HSL color, to access the 3 channels as `.h`, `.s` and `.l`
 }				u_vec3;
