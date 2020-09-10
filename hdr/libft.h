@@ -12,6 +12,11 @@
 
 #ifndef __LIBFT_H
 #define __LIBFT_H
+/*! @file libft.h
+**	This header defines all the primitive types and common macros to use.
+**	@addtogroup libft
+**	@{
+*/
 
 // define header guards to prevent C++ compilers from doing symbol name mangling
 #ifdef __cplusplus
@@ -76,7 +81,8 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-/*
+//! If 1, libft functions handle NULL pointers args, otherwise they segfault.
+/*!
 **	This macro determines how NULL pointer arguments are to be handled
 **	If 0, then libft functions will always segfault when given NULL pointers.
 **	If 1, then all NULL pointer accesses in libft functions will be avoided, and
@@ -84,7 +90,8 @@ HEADER_CPP
 */
 #define LIBFTCONFIG_HANDLE_NULLPOINTERS		0
 
-/*
+//! If 1, libft uses homemade approximate math functions, otherwise it's the builtin FPU calls.
+/*!
 **	This macro determines which math function implementations should be used.
 **	If 1, the libft fast approximate functions will be used (precision error margin: 0.0001)
 **	If 0, the builtin FPU-call libc math functions will be used (eg: __builtin_powf(), etc)
@@ -93,7 +100,7 @@ HEADER_CPP
 
 
 
-/*
+/*!
 **	This macro sets the default 't_uint' default unsigned integer type to use:
 **	_UINT_8_	for 8-bit uint	[0, 255]
 **	_UINT_16_	for 16-bit uint	[0, 65535]
@@ -101,7 +108,7 @@ HEADER_CPP
 **	_UINT_64_	for 64-bit uint	[0, 18446744073709551615]
 */
 #define _UINT_32_
-/*
+/*!
 **	This macro sets the default 't_int' default signed integer type to use:
 **	_INT_8_		for 8-bit int	[-128, 127]
 **	_INT_16_	for 16-bit int	[-32648, 32647]
@@ -109,7 +116,7 @@ HEADER_CPP
 **	_INT_64_	for 64-bit int	[-9223372036854775808, +9223372036854775807]
 */
 #define _INT_32_
-/*
+/*!
 **	The following macro sets what the 't_float' default floating-point type should be.
 **	_FLOAT_32_	for 32-bit IEEE 754 standard precision floating-point number
 **	_FLOAT_64_	for 64-bit IEEE 754 double-precision floating-point number
@@ -131,12 +138,12 @@ HEADER_CPP
 */
 #ifdef	NULL
 #undef	NULL
-#endif
+#endif	//! Represents a NULL (0-value) pointer, of type 'void'
 #define NULL	(void*)(0)
 
 #ifdef	TYPED_NULL
 #undef	TYPED_NULL
-#endif
+#endif	//! Represents a NULL pointer, of the given 'TYPE'
 #define TYPED_NULL(TYPE)	(TYPE*)(0)
 
 /*
@@ -144,12 +151,12 @@ HEADER_CPP
 */
 #ifdef	FALSE
 #undef	FALSE
-#endif
+#endif	//! Represents a boolean false value (0)
 #define FALSE	(0)
 
 #ifdef	TRUE
 #undef	TRUE
-#endif
+#endif	//! Represents a boolean true value  (1)
 #define TRUE	(1)
 
 /*
@@ -157,15 +164,15 @@ HEADER_CPP
 */
 #ifdef	OK
 #undef	OK
-#endif
+#endif	//! Represents a successful function return
 #define OK		(0)
 
 #ifdef	ERROR
 #undef	ERROR
-#endif
+#endif	//! Represents a failure function return
 #define ERROR	(1)
 
-/*
+/*! @file libft.h
 **	NB: The following macros listed in this comment exist on any platform
 **	Here is the list of all the predefined ANSI C macros
 **	__cplusplus	Defined only when a C++ compiler is being used.
@@ -198,6 +205,7 @@ HEADER_CPP
 **	convention, to better reflect the amount of bits used by each type.
 **	(and also to avoid having to type 'unsigned' all the time)
 */
+
 typedef uint8_t		t_u8;
 typedef uint16_t	t_u16;
 typedef uint32_t	t_u32;
@@ -268,20 +276,16 @@ typedef t_f80		t_float;
 typedef t_f128		t_float;
 #endif
 
-/*
-**	Define the primitive boolean type
-**	Here, we use the native (from C99 onwards) '_Bool' type
-*/
+//! Define the primitive boolean type
+//! Here, we use the native (from C99 onwards) '_Bool' type
 typedef _Bool		t_bool;
 
-/*
-**	This typedef is here purely for nomenclature consistency
-*/
+//! Define the RAM memory size type
+//! This typedef is here purely for nomenclature consistency
 typedef size_t		t_size;
 
-/*
-**	This typedef is here purely for nomenclature consistency
-*/
+//! Define the pointer difference result type
+//! This typedef is here purely for nomenclature consistency
 typedef ptrdiff_t	t_ptrdiff;
 
 
@@ -292,7 +296,8 @@ typedef ptrdiff_t	t_ptrdiff;
 ** ************************************************************************** *|
 */
 
-/*
+//! A union storing an integer (signed or unsigned) of any common storage size
+/*!
 ** These unions are used for certain difficult casting conditions.
 ** They are used in particular when casting an <stdarg.h> var_arg to the
 ** appropriate type in ft_printf.
@@ -309,11 +314,20 @@ typedef union		u_varint_
 	t_u64			ul;
 }					u_varint;
 
+//! A union storing a floating-point number of any common size/precision
+/*!
+** These unions are used for certain difficult casting conditions.
+** They are used in particular when casting an <stdarg.h> var_arg to the
+** appropriate type in ft_printf.
+*/
 typedef union		u_varfloat_
 {
 	t_f32			f;
 	t_f64			lf;
 }					u_varfloat;
 
+
+
+/*! @} */
 HEADER_END
 #endif
