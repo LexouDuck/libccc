@@ -112,7 +112,7 @@ char	**ft_strarrcnew(t_u32 y, t_size x, const char c);
 /*
 **	Frees all allocations in a string array, then the string array itself.
 */
-void	ft_strarrdel(char ***a_strarr);
+void	ft_strarrdel(char** *a_strarr);
 
 /*
 **	Returns a newly allocated string array, the result of mapping each string
