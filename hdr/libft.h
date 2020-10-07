@@ -63,7 +63,7 @@
 **	If 1, then all NULL pointer accesses in libft functions will be avoided, and
 **		an appropriate return value (eg:NULL, 0, sometimes -1) will be returned.
 */
-#define LIBFTCONFIG_HANDLE_NULLPOINTERS		0
+#define LIBFTCONFIG_HANDLE_NULLPOINTERS		1
 
 /*
 **	This macro determines which math function implementations should be used.
