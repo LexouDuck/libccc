@@ -10,8 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_MATH_H
-#define LIBFT_MATH_H
+#ifndef __LIBFT_MATH_H
+#define __LIBFT_MATH_H
+/*! @file libft_math.h
+**	This header defines the common standard math functions and macro defines.
+**	@addtogroup libft_math
+**	@{
+*/
+// TODO add other function macros for integral, distance, etc
 
 /*
 ** ************************************************************************** *|
@@ -20,6 +26,84 @@
 */
 
 #include "libft.h"
+
+HEADER_CPP
+
+/*
+** ************************************************************************** *|
+**                                 Definitions                                *|
+** ************************************************************************** *|
+*/
+
+#ifndef ABS			//! Expands to the absolute value of 'x'
+#define ABS(x)		((x) < 0 ? -(x) : (x))
+#endif
+
+#ifndef SIGN		//! Expands to +1 or -1 according to the sign of 'x'
+#define SIGN(x)		((x) < 0 ? -1 : +1)
+#endif
+
+#ifndef MIN			//!	Expands to the minimum value of 'x' and 'y'
+#define MIN(x, y)		((x) < (y) ? (x) : (y))
+#endif
+
+#ifndef MAX			//! Expands to the maximum value of 'x' and 'y'
+#define MAX(x, y)		((x) < (y) ? (y) : (x))
+#endif
+
+
+
+#ifndef INFINITY		//! Define the floating-point infinity value: use -INFINITY for negative inf
+#define INFINITY		(1. / 0.)
+#endif
+#ifndef IS_INFINITY		//! Checks if the given 'x' is either +INFINITY or -INFINITY
+#define IS_INFINITY(x)	((x) == INFINITY || (x) == -INFINITY)
+#endif
+
+#ifndef NAN				//! Define the floating-point "not a number" value.
+#define NAN				(0. / 0.)
+#endif
+#ifndef IS_NAN			//! Checks if the given 'x' has a "not a number" value.
+#define IS_NAN(x)		((x) != (x))
+#endif
+
+/*!
+**	This very small float is typically used to compare two float values.
+**	Floating point equality checks aren't the most dependable kind of operation,
+**	so it's often better to do (ABS(x - y) <= FLOAT_BIAS) to check for equality.
+*/
+#define FLOAT_BIAS		(1.0e-10)
+
+//	TODO document this
+#define SAMPLE_NB		1024
+
+
+
+/*
+**	Various relevant mathematical constants - these are used to speed up
+**	our fast approximate versions of some fundamental algorithms and functions.
+*/
+#define QUARTER_PI		DIV_PI_4						//!< Alias for DIV_PI_4
+#define HALF_PI			DIV_PI_2						//!< Alias for DIV_PI_2
+#define DIV_PI_4		(t_float)0x1.921FB54442D18p-1	//!< Quarter of pi (PI / 4):		
+#define DIV_PI_2		(t_float)0x1.921FB54442D18p+0	//!< Half of pi (PI / 2):			
+#define PI				(t_float)0x1.921FB54442D18p+1	//!< A circle's periphery, pi:		3.141592653589793238462643383279502884197169399375105820974...
+#define TAU 			(t_float)0x1.921FB54442D18p+2	//!< Double pi (PI * 2):			6.283185307179586476925286766559005768394338798750211641949...
+#define INV_PI			(t_float)0x1.45F306DC9C883p-2	//!< Inverse of pi (1 / PI):		0.318309886183790671537767526745028724068919291480912897495...
+#define INV_TAU			(t_float)0x1.45F306DC9C883p-3	//!< Inverse of tau (1 / (PI * 2)):	0.159154943091895335768883763372514362034459645740456448747...
+
+#define E				(t_float)0x1.5BF0A8B145769p+1	//!< The exponential number, e:		2.718281828459045235360287471352662497757247093699959574966...
+#define LN_2			(t_float)0x1.62E42FEFA39EFp-1	//!< The natural logarithm of 2:	0.693147180559945309417232121458176568075500134360255254120...
+#define LN_10			(t_float)0x1.26BB1BBB55516p+1	//!< The natural logarithm of 10:	2.302585092994045684017991454684364207601101488628772976033...
+
+#define SQRT_2			(t_float)0x1.6A09E667F3BCDp+0	//!< The square root of 2:	1.414213562373095048801688724209698078569671875376948073176...
+#define INV_SQRT_2		(t_float)0x1.6A09E667F3BCDp-1	//!< The inverse square root of 2:	1 / SQRT_2
+#define SQRT_3			(t_float)0x1.BB67AE8584CAAp+0	//!< The square root of 3:	1.732050807568877293527446341505872366942805253810380628055...
+#define INV_SQRT_3		(t_float)0x1.279A74590331Cp-1	//!< The inverse square root of 3:	1 / SQRT_3
+#define SQRT_5			(t_float)0x1.1E3779B97F4A7p+1	//!< The square root of 5:	2.236067977499789696409173668731276235440618359611525724270...
+#define INV_SQRT_5		(t_float)0x1.C9F25C5BFEDD9p-2	//!< The inverse square root of 5:	1 / SQRT_5
+
+
 
 /*
 ** ************************************************************************** *|
@@ -93,156 +177,58 @@
 
 
 
-// TODO add other function macros for integral, distance, etc
-
-
-
-/*
-** ************************************************************************** *|
-**                                 Definitions                                *|
-** ************************************************************************** *|
-*/
-
-/*
-**	Expands to the absolute value of 'x'
-*/
-#ifndef ABS
-#define ABS(x)		((x) < 0 ? -(x) : (x))
-#endif
-
-/*
-**	Expands to the minimum value of 'x' and 'y'
-*/
-#ifndef MIN
-#define MIN(x, y)		((x) < (y) ? (x) : (y))
-#endif
-
-/*
-**	Expands to the maximum value of 'x' and 'y'
-*/
-#ifndef MAX
-#define MAX(x, y)		((x) < (y) ? (y) : (x))
-#endif
-
-
-/*
-**	Expands to +1 or -1 according to the sign of 'x'
-*/
-#ifndef SIGN
-#define SIGN(x)		((x) < 0 ? -1 : +1)
-#endif
-
-/*
-**	Floating-point "inf" value: can be positive or negative.
-*/
-#ifndef INFINITY
-#define INFINITY		(1. / 0.)
-#endif
-#ifndef IS_INFINITY
-#define IS_INFINITY(x)	((x) == INFINITY || (x) == -INFINITY)
-#endif
-
-/*
-**	Floating-point "not a number" value.
-*/
-#ifndef NAN
-#define NAN				(0. / 0.)
-#endif
-#ifndef IS_NAN
-#define IS_NAN(x)		((x) != (x))
-#endif
-
-/*
-**	This very small value is typically used to compare two float values.
-**	Floating point equality checks aren't the most dependable operation.
-*/
-#define FLOAT_BIAS		(1.0e-10)
-
-/*
-**	TODO document
-*/
-#define SAMPLE_NB		1024
-
-
-
-/*
-**	Various relevant constants to speed up our homemade versions of some
-**	fundamental algorithms and functions.
-*/
-#define QUARTER_PI		DIV_PI_4
-#define HALF_PI			DIV_PI_2
-#define DIV_PI_4		(t_float)0x1.921FB54442D18p-1
-#define DIV_PI_2		(t_float)0x1.921FB54442D18p+0
-#define PI				(t_float)0x1.921FB54442D18p+1
-#define TAU 			(t_float)0x1.921FB54442D18p+2
-#define INV_PI			(t_float)0x1.45F306DC9C883p-2
-#define INV_TAU			(t_float)0x1.45F306DC9C883p-3
-
-#define E				(t_float)0x1.5BF0A8B145769p+1
-#define LN_2			(t_float)0x1.62E42FEFA39EFp-1
-#define LN_10			(t_float)0x1.26BB1BBB55516p+1
-
-#define SQRT_2			(t_float)0x1.6A09E667F3BCDp+0
-#define INV_SQRT_2		(t_float)0x1.6A09E667F3BCDp-1
-#define SQRT_3			(t_float)0x1.BB67AE8584CAAp+0
-#define INV_SQRT_3		(t_float)0x1.279A74590331Cp-1
-#define SQRT_5			(t_float)0x1.1E3779B97F4A7p+1
-#define INV_SQRT_5		(t_float)0x1.C9F25C5BFEDD9p-2
-
-
-
 /*
 ** ************************************************************************** *|
 **                     Classical Real Number Operations                       *|
 ** ************************************************************************** *|
 */
 
-t_s32		ft_getexp(t_float x);
+t_s32		ft_getexp(t_float x);			//!< @return the base-2 exponent of 'x', as an integer
 
-t_float		ft_fabs(t_float x);
+t_float		ft_fabs(t_float x);				//!< @return the absolute value of 'x' (makes 'x' positive)
 
-t_float		ft_fmod(t_float x, t_float y);
+t_float		ft_fmod(t_float x, t_float y);	//!< @return the division remainder of 'x' divided by 'y'
 
-t_float		ft_round(t_float x); // TODO
-t_float		ft_trunc(t_float x);
-t_float		ft_floor(t_float x);
-t_float		ft_ceil(t_float x);
+t_float		ft_round(t_float x);			//!< @return the value of 'x', rounded to the nearest integer
+t_float		ft_trunc(t_float x);			//!< @return the value of 'x', rounded towards 0
+t_float		ft_floor(t_float x);			//!< @return the value of 'x', rounded to the superior integer
+t_float		ft_ceil(t_float x);				//!< @return the value of 'x', rounded to the inferior integer
 
-t_float		ft_pow(t_float x, t_float y);
-t_float		ft_pow_n(t_float x, t_int n);
+t_float		ft_pow(t_float x, t_float y);	//!< @return the value of 'x' to the power of 'y' (float)
+t_float		ft_pow_n(t_float x, t_int n);	//!< @return the value of 'x' to the power of 'n' (integer)
 
-t_float		ft_sqrt(t_float x);
-t_float		ft_cbrt(t_float x);
-t_float		ft_nrt(t_float x, t_u8 n);
-
-
-
-t_float		ft_exp(t_float x);
-
-t_float		ft_ln(t_float x);
-t_float		ft_lg(t_float x);
-t_float		ft_log(t_float x);
-t_float		ft_log_n(t_float x, t_float n);
+t_float		ft_sqrt(t_float x);				//!< @return the square root of 'x' (inverse of power of 2)
+t_float		ft_cbrt(t_float x);				//!< @return the cubic root of 'x' (inverse of power of 3)
+t_float		ft_nrt(t_float x, t_u8 n);		//!< @return the n-ic root of 'x' (inverse of power of 'n')
 
 
 
-t_float		ft_cos(t_float x);
-t_float		ft_sin(t_float x);
-t_float		ft_tan(t_float x);
+t_float		ft_exp(t_float x);				//!< @return the exponential function's value for 'x'
 
-t_float		ft_acos(t_float x);
-t_float		ft_asin(t_float x);
-t_float		ft_atan(t_float x);
+t_float		ft_ln(t_float x);				//!< @return the natural logarithm of 'x'
+t_float		ft_lg(t_float x);				//!< @return the binary (base-2) logarithm of 'x'
+t_float		ft_log(t_float x);				//!< @return the decimal (base-10) logarithm of 'x'
+t_float		ft_log_n(t_float x, t_float n);	//!< @return the base-'n' logarithm of 'x'
 
-t_float		ft_atan2(t_float y, t_float x);
 
-t_float		ft_cosh(t_float x);
-t_float		ft_sinh(t_float x);
-t_float		ft_tanh(t_float x);
 
-t_float		ft_acosh(t_float x);
-t_float		ft_asinh(t_float x);
-t_float		ft_atanh(t_float x);
+t_float		ft_cos(t_float x);				//!< @return the cosine of 'x' (horizontal trigonometry coordinate)
+t_float		ft_sin(t_float x);				//!< @return the sine of 'x' (vertical trigonometry coordinate)
+t_float		ft_tan(t_float x);				//!< @return the tangent of 'x' (trigonometry tangent line)
+
+t_float		ft_acos(t_float x);				//!< @return the arc-cosine of 'x' (inverse of the cos function)
+t_float		ft_asin(t_float x);				//!< @return the arc-sine of 'x' (inverse of the sin function)
+t_float		ft_atan(t_float x);				//!< @return the arc-tangent of 'x' (inverse of the tan function)
+
+t_float		ft_atan2(t_float y, t_float x);	//!< @return the arc-tangent of ('y' / 'x'), used to find an angle
+
+t_float		ft_cosh(t_float x);				//!< @return the hyperbolic cosine of 'x'
+t_float		ft_sinh(t_float x);				//!< @return the hyperbolic sine of 'x'
+t_float		ft_tanh(t_float x);				//!< @return the hyperbolic tangent of 'x'
+
+t_float		ft_acosh(t_float x);			//!< @return the hyperbolic arc-cosine of 'x' (inverse of the cosh function)
+t_float		ft_asinh(t_float x);			//!< @return the hyperbolic arc-sine of 'x' (inverse of the sinh function)
+t_float		ft_atanh(t_float x);			//!< @return the hyperbolic arc-tangent of 'x' (inverse of the tanh function)
 
 // TODO hypot ?
 // TODO lgamma ?
@@ -277,8 +263,9 @@ t_float		ft_atanh(t_float x);
 
 #endif
 
-/*
-**	This union type is used in several math functions to handle float bits directly
+/*!
+**	This union type is used in several math function implementations,
+**	to manipulate float bits directly with bitwise operators.
 */
 typedef union	u_float_cast_
 {
@@ -297,108 +284,122 @@ typedef union	u_float_cast_
 #endif
 }				u_float_cast;
 
+
+
 /*
 ** ************************************************************************** *|
 **                             Algebra & Calculus                             *|
 ** ************************************************************************** *|
 */
 
+//! A simple struct for storing 2-dimensional values
 typedef struct	s_vec2_
 {
-	t_float		x;
-	t_float		y;
+	t_float		x;			//! The X coordinate of this vector
+	t_float		y;			//! The Y coordinate of this vector
 }				s_vec2;
 
+//! A struct to store complex/imaginary number values
 typedef struct	s_complex_
 {
-	t_float		re;
-	t_float		im;
+	t_float		re;			//! The "real" part of this complex number
+	t_float		im;			//! The "imaginary" part of this complex number
 }				s_complex;
 
+//! This union stores a 2-dimensional value which can be accessed in several ways
 typedef	union	u_vec2_
 {
-	t_float		values[2];
-	s_vec2		vect;
-	s_complex	cplx;
+	t_float		values[2];	//! An array, to access the 2 values from within brackets
+	s_vec2		vect;		//! A vector, to access the 2 coordinates as `.x` and `.y`
+	s_complex	cplx;		//! A complex number, to access the 2 parts as `.re` and `.im`
 }				u_vec2;
 
 
 
+//! A simple struct for storing 3-dimensional values
 typedef struct	s_vec3_
 {
-	t_float		x;
-	t_float		y;
-	t_float		z;
+	t_float		x;			//! The X coordinate of this vector
+	t_float		y;			//! The Y coordinate of this vector
+	t_float		z;			//! The Z coordinate of this vector
 }				s_vec3;
 
+//! A struct to store color values with each channel (red,green,blue) as floats
 typedef struct	s_rgb_
 {
-	t_float		r;
-	t_float		g;
-	t_float		b;
+	t_float		r;			//! The red channel of this color
+	t_float		g;			//! The green channel of this color
+	t_float		b;			//! The blue channel of this color
 }				s_rgb;
 
+//! A struct to store color values with each channel (hue,sat,lum) as floats
 typedef struct	s_hsl_
 {
-	t_float		h;
-	t_float		s;
-	t_float		l;
+	t_float		h;			//! The hue value of this color
+	t_float		s;			//! The saturation value of this color
+	t_float		l;			//! The luminance/brightness value of this color
 }				s_hsl;
 
+//! This union stores a 3-dimensional value which can be accessed in several ways
 typedef	union	u_vec3_
 {
-	t_float		values[3];
-	s_vec3		vect;
-	s_rgb		rgb;
-	s_hsl		hsl;
+	t_float		values[3];	//! An array, to access the 3 values from within brackets
+	s_vec3		vect;		//! A vector, to access the 3 coordinates as `.x`, `.y` and `.z`
+	s_rgb		rgb;		//! An RGB color, to access the 3 channels as `.r`, `.g` and `.b`
+	s_hsl		hsl;		//! An HSL color, to access the 3 channels as `.h`, `.s` and `.l`
 }				u_vec3;
 
 
 
-/*
-** Be coherent when using 4D vectors: memory is in the order xyz-t
-** but the others are s-ijk and a-rgb
-*/
-
+//! A simple struct for storing 4-dimensional values
 typedef struct		s_vec4_
 {
-	t_float		x;
-	t_float		y;
-	t_float		z;
-	t_float		t;
+	t_float		x;			//! The X coordinate of this vector
+	t_float		y;			//! The Y coordinate of this vector
+	t_float		z;			//! The Z coordinate of this vector
+	t_float		t;			//! The T coordinate of this vector
 }					s_vec4;
 
+//! A struct for storing quaternions
 typedef struct		s_quaternion_
 {
-	t_float		s;
-	t_float		i;
-	t_float		j;
-	t_float		k;
+	t_float		s;			//! The S value of this quaternion
+	t_float		i;			//! The I value of this quaternion
+	t_float		j;			//! The J value of this quaternion
+	t_float		k;			//! The K value of this quaternion
 }					s_quaternion;
 
+//! A struct to store color values with each channel (alpha,red,green,blue) as floats
 typedef struct		s_argb_
 {
-	t_float		a;
-	t_float		r;
-	t_float		g;
-	t_float		b;
+	t_float		a;			//! The alpha channel of this color (transparency)
+	t_float		r;			//! The red channel of this color
+	t_float		g;			//! The green channel of this color
+	t_float		b;			//! The blue channel of this color
 }					s_argb;
 
+//! A struct to store color values with each channel (alpha,hue,sat,lum) as floats
 typedef struct		s_ahsl_
 {
-	t_float		a;
-	t_float		h;
-	t_float		s;
-	t_float		l;
+	t_float		a;			//! The alpha channel of this color (transparency)
+	t_float		h;			//! The hue value of this color
+	t_float		s;			//! The saturation value of this color
+	t_float		l;			//! The luminance/brightness value of this color
 }					s_ahsl;
 
+//! This union stores a 4-dimensional value which can be accessed in several ways
+/*!
+**	NB: Make sure to be coherent when using 4D vectors:
+**	memory layout is in the order `xyz-t` for the 's_vec4' struct,
+**	but the other union structs divid it like `s-ijk` and `a-rgb`
+*/
 typedef	union	u_vec4_
 {
-	t_float			values[4];
-	s_vec4			vect;
-	s_quaternion	quat;
-	s_argb			argb;
-	s_ahsl			ahsl;
+	t_float			values[4];	//! An array, to access the 4 values from within brackets
+	s_vec4			vect;		//! A vector, to access the 4 coordinates as `.x`, `.y`, `.z`, and `.t`
+	s_quaternion	quat;		//! A quaternion, to access the 4 values as `.i`, `.j`, `.k`, and `.s`
+	s_argb			argb;		//! An RGB color, to access the 3 channels as `.r`, `.g` `.b`, and `.a`
+	s_ahsl			ahsl;		//! An HSL color, to access the 3 channels as `.h`, `.s` `.l`, and `.a`
 }				u_vec4;
 
 
@@ -587,4 +588,8 @@ t_int		ft_distance_int(t_int x, t_int y);
 	#define FLOAT_INIT_VALUE		F128_INIT_VALUE
 #endif
 
+
+
+/*! @} */
+HEADER_END
 #endif

@@ -8,6 +8,8 @@
 #include <time.h>
 #include <math.h>
 
+#include "libft_math.h"
+
 #include "test.h"
 
 /*
@@ -436,6 +438,23 @@ DEFINE_TESTFUNCTION_INT(t_bool, bool, u)
 DEFINE_TESTFUNCTION_INT(t_size, size, u)
 
 
+#define F32_PRECISION_FORMAT	"%.10A"
+#define F64_PRECISION_FORMAT	"%.13A"
+#define F80_PRECISION_FORMAT	"%.16A"
+#define F128_PRECISION_FORMAT	"%.28A"
+
+#ifdef _FLOAT_32_
+	#define FLOAT_PRECISION_FORMAT		F32_PRECISION_FORMAT
+#endif
+#ifdef _FLOAT_64_
+	#define FLOAT_PRECISION_FORMAT		F64_PRECISION_FORMAT
+#endif
+#ifdef _FLOAT_80_
+	#define FLOAT_PRECISION_FORMAT		F80_PRECISION_FORMAT
+#endif
+#ifdef _FLOAT_128_
+	#define FLOAT_PRECISION_FORMAT		F128_PRECISION_FORMAT
+#endif
 
 #define DEFINE_TESTFUNCTION_FLOAT(TYPE, FUNCNAME, SIZE) \
 void	print_test_##FUNCNAME( \
@@ -453,12 +472,12 @@ void	print_test_##FUNCNAME( \
 	if (result_segfault) \
 		error = (expect_segfault ? FALSE : TRUE); \
 	else if (expect_segfault) \
-		 error = TRUE; \
+		error = TRUE; \
 	else error = (result != expect); \
 	if (isnan(result) && isnan(expect)) \
 		error = FALSE; \
-	snprintf(str_result, SIZE, "%f", result); \
-	snprintf(str_expect, SIZE, "%f", expect); \
+	snprintf(str_result, SIZE, "%f\t"FLOAT_PRECISION_FORMAT, result, result); \
+	snprintf(str_expect, SIZE, "%f\t"FLOAT_PRECISION_FORMAT, expect, expect); \
 	print_test(test_name, function, \
 		(result_segfault ? segstr : str_result), \
 		(expect_segfault ? segstr : str_expect), \

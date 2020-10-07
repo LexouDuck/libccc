@@ -22,8 +22,9 @@ char	*ft_s8_to_str(t_s8 number)
 	t_u8	i;
 	t_u8	n;
 
-	if ((n = number) && number < 0)
-		n = -n;
+	if (number < 0)
+		n = -number;
+	else n = number;
 	i = 0;
 	while (n > 0)
 	{
@@ -49,8 +50,9 @@ char	*ft_s16_to_str(t_s16 number)
 	t_u8	i;
 	t_u16	n;
 
-	if ((n = number) && number < 0)
-		n = -n;
+	if (number < 0)
+		n = -number;
+	else n = number;
 	i = 0;
 	while (n > 0)
 	{
@@ -76,8 +78,9 @@ char	*ft_s32_to_str(t_s32 number)
 	t_u8	i;
 	t_u32	n;
 
-	if ((n = number) && number < 0)
-		n = -n;
+	if (number < 0)
+		n = -number;
+	else n = number;
 	i = 0;
 	while (n > 0)
 	{
@@ -103,8 +106,9 @@ char	*ft_s64_to_str(t_s64 number)
 	t_u8	i;
 	t_u64	n;
 
-	if ((n = number) && number < 0)
-		n = -n;
+	if (number < 0)
+		n = -number;
+	else n = number;
 	i = 0;
 	while (n > 0)
 	{

@@ -67,7 +67,7 @@ s_tuple	*ft_lst_to_tuple(s_list **alst, s_tuple *result)
 	result->length = (count + 1) * result->item_size;
 	if (!(result->items = (void *)ft_memalloc(result->length)))
 		return (NULL);
-	i = -1;
+	i = (t_u32)-1;
 	while (lst && ++i < count)
 	{
 		ft_memcpy((t_u8 *)result->items + (i * result->item_size),
