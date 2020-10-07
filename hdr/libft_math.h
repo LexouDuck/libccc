@@ -111,12 +111,26 @@
 #endif
 
 /*
+**	Expands to the minimum value of 'x' and 'y'
+*/
+#ifndef MIN
+#define MIN(x, y)		((x) < (y) ? (x) : (y))
+#endif
+
+/*
+**	Expands to the maximum value of 'x' and 'y'
+*/
+#ifndef MAX
+#define MAX(x, y)		((x) < (y) ? (y) : (x))
+#endif
+
+
+/*
 **	Expands to +1 or -1 according to the sign of 'x'
 */
 #ifndef SIGN
 #define SIGN(x)		((x) < 0 ? -1 : +1)
 #endif
-
 
 /*
 **	Floating-point "inf" value: can be positive or negative.
