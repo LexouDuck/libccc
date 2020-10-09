@@ -16,8 +16,9 @@
 */
 #include <unistd.h>
 
-#include "libft_convert.h"
 #include "libft_io.h"
+#include "libft_string.h"
+#include "libft_convert.h"
 
 
 

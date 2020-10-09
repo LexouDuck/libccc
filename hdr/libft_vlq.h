@@ -10,8 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_VLQ_H
-#define LIBFT_VLQ_H
+#ifndef __LIBFT_VLQ_H
+#define __LIBFT_VLQ_H
+/*! @file libft_vlq.h
+**	This header defines a variable-length int type, and utility functions for it.
+**	@addtogroup libft_vlq
+**	@{
+*/
 
 /*
 ** ************************************************************************** *|
@@ -21,10 +26,16 @@
 
 #include "libft.h"
 
+HEADER_CPP
+
 /*
 ** ************************************************************************** *|
 **                                  Macros                                    *|
 ** ************************************************************************** *|
 */
 
+
+
+/*! @} */
+HEADER_END
 #endif

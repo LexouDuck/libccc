@@ -64,7 +64,7 @@ MATH_DECL_REALOPERATOR(fmod, fmod)
 
 
 
-// TODO round
+// TODO implement ft_round
 
 #if LIBFTCONFIG_FAST_APPROX_MATH
 inline t_float	ft_trunc(t_float x)

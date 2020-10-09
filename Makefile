@@ -1,5 +1,5 @@
 # Output file names
-NAME		=	libft.a
+NAME		=	libft
 NAME_TEST	=	libft_test
 
 # Compiler
@@ -10,33 +10,33 @@ CC_MAC	= gcc
 
 # Compiler flags
 CFLAGS	=	-Wall -Wextra -Winline -Wpedantic -Werror $(CFLAGS_PLATFORM) -MMD -O2
-
 CFLAGS_PLATFORM = _
-CFLAGS_WIN	= -mwindows
+CFLAGS_WIN	= -mwindows -shared
 CFLAGS_LIN	= -Wno-unused-result
 CFLAGS_MAC	= 
 
 # Directories that this Makefile will use
+BINDIR	=	./bin/
 HDRDIR	=	./hdr/
 SRCDIR	=	./src/
 OBJDIR	=	./obj/
 
 # Set platform-specific variables
 ifeq ($(OS),Windows_NT)
+	OSFLAG := "WIN"
 	CC := $(CC_WIN)
 	CFLAGS_PLATFORM := $(CFLAGS_WIN)
-	SED_DEL_OPT	:=	-r
 else
 	UNAME_S := $(shell uname -s)
 	ifeq ($(UNAME_S),Linux)
+		OSFLAG := "LIN"
 		CC := $(CC_LIN)
 		CFLAGS_PLATFORM := $(CFLAGS_LIN)
-		SED_DEL_OPT	:= 
 	endif
 	ifeq ($(UNAME_S),Darwin)
+		OSFLAG := "MAC"
 		CC := $(CC_MAC)
 		CFLAGS_PLATFORM := $(CFLAGS_MAC)
-		SED_DEL_OPT	:=
 	endif
 endif
 
@@ -222,10 +222,31 @@ DEPENDS	=	${OBJS:.o=.d}
 #          Main build rules           #
 #######################################
 
-all: $(NAME)
+all: $(NAME).a
 
+# This rule fills the 'bin' folder with necessary files for release distribution
+release: all
+	@mkdir -p $(BINDIR)
+	@cp $(NAME).a $(BINDIR) 2>/dev/null || :
+	@if [ $(OSFLAG) = "WIN" ]; then printf \
+		"Compiling DLL: "$(BINDIR)$(NAME).dll" -> " ; \
+		$(CC) -shared -o $(BINDIR)$(NAME).dll $(OBJS) \
+		-Wl,--output-def,$(BINDIR)$(NAME).def \
+		-Wl,--out-implib,$(BINDIR)$(NAME).lib \
+		-Wl,--export-all-symbols ; \
+	elif [ $(OSFLAG) = "MAC" ]; then printf \
+		"Compiling dylib: "$(BINDIR)$(NAME).dylib" -> " ; \
+		$(CC) -shared	-o $(BINDIR)$(NAME).dylib $(OBJS) ; \
+	elif [ $(OSFLAG) = "LIN" ]; then printf \
+		"Compiling shared object: "$(BINDIR)$(NAME).so" -> " ; \
+		$(CC) -shared			-o $(BINDIR)$(NAME).so $(OBJS) ; \
+	fi
+	@printf $(GREEN)"OK!"$(RESET)"\n"
+
+# define dependency to have created obj folders before compiling source files
 $(OBJS): | objdir
 
+# This rule creates the object file folders necessary
 objdir:
 	@mkdir -p $(OBJDIR)
 	@mkdir -p $(OBJDIR)$(DIR_MEMORY)
@@ -241,44 +262,18 @@ objdir:
 	@mkdir -p $(OBJDIR)$(DIR_VLQ)
 	@mkdir -p $(OBJDIR)$(DIR_IO)
 
+# This rule compiles object files from source files
 $(OBJDIR)%.o : $(SRCDIR)%.c $(HDRS)
 	@printf "Compiling file: "$@" -> "
 	@$(CC) $(CFLAGS) -c $< -I$(HDRDIR) -o $@ -MF $(OBJDIR)$*.d
 	@printf $(GREEN)"OK!"$(RESET)"\n"
 
-$(NAME): $(OBJS) $(HDRS)
+# This rule builds the libft library file to link against
+$(NAME).a: $(OBJS) $(HDRS)
 	@printf "Compiling library: "$@" -> "
 	@ar -rc $@ $(OBJS)
 	@ranlib $@
 	@printf $(GREEN)"OK!"$(RESET)"\n"
-
-
-
-#######################################
-#        File deletion rules          #
-#######################################
-
-clean:
-	@printf "Deleting object files...\n"
-	@rm -f $(OBJS)
-	@printf "Deleting dependency files...\n"
-	@rm -f $(DEPENDS)
-	@rm -f *.d
-
-fclean: clean
-	@printf "Deleting library file: "$(NAME)"\n"
-	@rm -f $(NAME)
-
-rclean: clean
-	@printf "Deleting obj folder...\n"
-	@rmdir $(OBJDIR)
-
-tclean:
-	@printf "Deleting libft test...\n"
-	@rm -f test
-	@rm -f libft_test.exe*
-
-re: fclean all
 
 
 
@@ -317,7 +312,7 @@ $(OBJDIR)%.o : $(TEST_DIR)%.c $(TEST_HDR)
 	@printf $(GREEN)"OK!"$(RESET)"\n"
 
 # This rule builds the testing/CI program
-$(NAME_TEST): $(TEST_OBJ) $(TEST_HDR) $(NAME)
+$(NAME_TEST): $(TEST_OBJ) $(TEST_HDR) $(NAME).a
 	@printf "Compiling testing program: "$@" -> "
 	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -o $@ $(TEST_OBJ) -L./ -lft -lm
 	@printf $(GREEN)"OK!"$(RESET)"\n"
@@ -329,18 +324,106 @@ test: $(NAME_TEST)
 
 
 #######################################
-#          Other operations           #
+#        File deletion rules          #
 #######################################
 
+clean:
+	@printf "Deleting object files...\n"
+	@rm -f $(OBJS)
+	@rm -f $(TEST_OBJ)
+	@printf "Deleting dependency files...\n"
+	@rm -f $(DEPENDS)
+	@rm -f *.d
+
+fclean: clean
+	@printf "Deleting library: "$(NAME).a"\n"
+	@rm -f $(NAME).a
+	@printf "Deleting program: "$(NAME_TEST)"\n"
+	@rm -f $(NAME_TEST)
+	@rm -f $(NAME_TEST).d
+
+rclean: fclean
+	@printf "Deleting obj folder...\n"
+	@rm -rf $(OBJDIR)
+	@printf "Deleting bin folder...\n"
+	@rm -rf $(BINDIR)
+
+re: fclean all
+
+
+
+#######################################
+#        Generate documentation       #
+#######################################
+
+DOCDIR = ./doc/
+DOXYREST = $(DOCDIR)doxyrest/bin/doxyrest.exe
+
+doc: all
+	@doxygen $(DOCDIR)project.doxygen
+	@$(DOXYREST) -c $(DOCDIR)doxyrest-config.lua
+	@sphinx-build -b html $(DOCDIR)rst $(DOCDIR)html -c $(DOCDIR)
+
+
+
+#######################################
+#          Linting operations         #
+#######################################
+
+# These rules run a linter on all source files,
+# giving useful additionnal warnings concerning the code
+
 lint:
+# CCPcheck: http://cppcheck.sourceforge.net/
 	@cppcheck $(SRCDIR) $(HDRDIR) --quiet --std=c99 --enable=all \
-		--suppress=memleak \
+		-DTRUE=1 -DFALSE=0 -DERROR=1 -DOK=0 -D__GNUC__ \
 		--suppress=variableScope \
 		--suppress=unusedFunction \
+		--suppress=memleak \
 		--template="-[{severity}]\t{file}:{line}\t->\t{id}: {message}" \
 		--template-location="  -> from:\t{file}:{line}\t->\t{info}"
+# splint: http://splint.org/
+#	@splint
+
+PCLP				= /cygdrive/d/Lexou/Projects/_C/pc-lint/windows/pclp32.exe
+PCLP_SETUP =python3.8 /cygdrive/d/Lexou/Projects/_C/pc-lint/windows/config/pclp_config.py
+PCLP_IMPOSTER		= /cygdrive/d/Lexou/Projects/_C/pc-lint/windows/config/imposter
+PCLP_IMPOSTER_LOG	= pclint_imposter_log.txt
+PCLP_LOG			= pclint_log.txt
+PCLP_CONFIG			= pclint_config
+PCLP_PROJECT		= pclint_project
+
+pclint_setup:
+	$(PCLP_SETUP) \
+		--compiler=gcc \
+		--compiler-bin=/usr/bin/gcc \
+		--compiler-options="$(CFLAGS)" \
+		--config-output-lnt-file=$(PCLP_CONFIG).lnt \
+		--config-output-header-file=$(PCLP_CONFIG).h \
+		--generate-compiler-config
+	@export IMPOSTER_LOG=$(PCLP_IMPOSTER_LOG)
+	@$(CC) $(CFLAGS) $(PCLP_IMPOSTER).c -o $(PCLP_IMPOSTER)
+	@$(PCLP_IMPOSTER) $(CFLAGS) $(SRCS) -o $@ $(HDRDIR) $(LIBS)
+	$(PCLP_SETUP) \
+		--compiler=gcc \
+		--imposter-file=$(PCLP_IMPOSTER_LOG) \
+		--config-output-lnt-file=$(PCLP_PROJECT).lnt \
+		--generate-project-config
+	@rm $(PCLP_IMPOSTER_LOG)
+
+pclint:
+# pc-lint: https://gimpel.com/
+	@printf "Running linter: "
+	@$(PCLP) -width"(120,4)" -format="%(%f:%l%):\n[%n]->%t: %m" -w2 \
+		-e438 -e534 -e641 -e655 -e695 -e835 -e2445 \
+		$(PCLP_CONFIG).lnt $(PCLP_PROJECT).lnt > $(PCLP_LOG)
+	@printf $(GREEN)"SUCCESS"$(RESET)": output file is "$(PCLP_LOG)"\n"
 
 
+
+#######################################
+#       Preprocessing operations      #
+#######################################
 
 PREPROCESSED	=	${SRCS:%.c=$(OBJDIR)%.c}
 
@@ -354,15 +437,22 @@ $(OBJDIR)%.c : $(SRCDIR)%.c $(HDRS)
 
 
 
+#######################################
+#           RegEx operations          #
+#######################################
+
 replace:
-	@sed -i -e "s|$(old)|$(new)|g" $(addprefix $(SRCDIR), $(SRCS))
+	@sed -i -e "s|$(old)|$(new)|g" $(addprefix $(SRCDIR), $(SRCS)) $(addprefix $(HDRDIR), $(HDRS))
 	@printf "Replaced all instances of \'"$(old)"\' with \'"$(new)"\'.\n"
 
 rename:
-	@sed -i -e "s|\<$(old)\>|$(new)|g" $(addprefix $(SRCDIR), $(SRCS))
+	@sed -i -e "s|\<$(old)\>|$(new)|g" $(addprefix $(SRCDIR), $(SRCS)) $(addprefix $(HDRDIR), $(HDRS))
 	@printf "Renamed all words matching \'"$(old)"\' with \'"$(new)"\'.\n"
 
 
+
+# This line ensures the makefile won't conflict with files named 'clean', 'fclean', etc
+.PHONY : clean fclean rclean re lint
 
 # The following line is for Makefile GCC dependency file handling (.d files)
 -include ${DEPENDS}

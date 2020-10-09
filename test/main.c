@@ -249,7 +249,8 @@ int		main(int argc, char **argv)
 			g_test.suites[i].test();
 			suite.tests = g_test.totals.tests - suite.tests;
 			suite.failed = g_test.totals.failed - suite.failed;
-			print_totals(suite, g_test.suites[i].name);
+			if (suite.tests)
+				print_totals(suite, g_test.suites[i].name);
 		}
 	}
 	print_totals(g_test.totals, NULL);

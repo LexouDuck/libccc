@@ -85,7 +85,7 @@ static t_float	ft_sqrt_2_pow_n(t_s32 n)
 	if (n & 0x0020) { result *= powers[0x5]; }
 	if (n & 0x0040) { result *= powers[0x6]; }
 	if (n & 0x0080) { result *= powers[0x7]; }
-#if (defined _FLOAT_64_ || defined _FLOAT_80_ || _FLOAT_128_)
+#if (defined _FLOAT_64_ || defined _FLOAT_80_ || defined _FLOAT_128_)
 	if (n & 0x0100) { result *= powers[0x8]; }
 	if (n & 0x0200) { result *= powers[0x9]; }
 	if (n & 0x0400) { result *= powers[0xA]; }
@@ -206,7 +206,7 @@ t_float	ft_nrt(t_float x, t_u8 n)
 	if (n % 2 == 0 && x < 0)
 		return (NAN);
 	i = ft_getexp(x);
-	result = SIGN(x) * (i < 0 ? 1 : 1.25) * ft_sqrt_2_pow_n(i * 2 / n);
+	result = SIGN(x) * (i < 0 ? 1 : 1.25) * ft_sqrt_2_pow_n(i * 2 / (t_s32)n);
 	previous = 0.;
 	i = 0;
 	n -= 1;

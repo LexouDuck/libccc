@@ -78,7 +78,7 @@ int				ft_getnextline(t_fd const fd, char* *a_line)
 	char			*new_line = NULL;
 	int				status = GNL_ERROR;
 
-	if (a_line == NULL || BUFF_SIZE < 0 || fd < 0)
+	if (a_line == NULL || fd < 0)
 		return (GNL_ERROR);
 	new_line = NULL;
 	status = gnl_read(fd, &new_line);

@@ -30,7 +30,7 @@ char	*ft_strinsert(char const *dest, char const *src, t_size offset)
 	len_src = ft_strlen(src);
 	if (!(result = (char *)ft_memalloc(len_dst + len_src + 1)))
 		return (NULL);
-	i = -1;
+	i = (t_size)-1;
 	while (++i < offset)
 		result[i] = dest[i];
 	--i;
