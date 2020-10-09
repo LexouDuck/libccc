@@ -99,7 +99,7 @@ typedef int		t_fd;
 #else
 	#ifdef __MINGW32__
 		#define PRINTF_S64		"%ld"
-		#define PRINTF_U64		"%I64u"
+		#define PRINTF_U64		"%I64llu"
 	#else
 		#define PRINTF_S64		"%ld"
 		#define PRINTF_U64		"%lu"
