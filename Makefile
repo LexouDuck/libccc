@@ -4,16 +4,17 @@ NAME_TEST	=	libft_test
 
 # Compiler
 CC	= _
-CC_WIN	= i686-w64-mingw32-gcc
-CC_LIN	= gcc
-CC_MAC	= gcc
+CC_WIN32 = i686-w64-mingw32-gcc
+CC_WIN64 = x86_64-w64-mingw32-gcc
+CC_LINUX = gcc
+CC_MACOS = gcc
 
 # Compiler flags
 CFLAGS	=	-Wall -Wextra -Winline -Wpedantic -Werror $(CFLAGS_PLATFORM) -MMD -O2
 CFLAGS_PLATFORM = _
-CFLAGS_WIN	= -mwindows -shared
-CFLAGS_LIN	= -Wno-unused-result
-CFLAGS_MAC	= 
+CFLAGS_WIN = -mwindows -shared
+CFLAGS_LIN = -Wno-unused-result
+CFLAGS_MAC = 
 
 # Directories that this Makefile will use
 BINDIR	=	./bin/
@@ -24,18 +25,23 @@ OBJDIR	=	./obj/
 # Set platform-specific variables
 ifeq ($(OS),Windows_NT)
 	OSFLAG := "WIN"
-	CC := $(CC_WIN)
+    ifeq ($(PROCESSOR_ARCHITECTURE),x86)
+		CC := $(CC_WIN32)
+    endif
+    ifeq ($(PROCESSOR_ARCHITECTURE),AMD64)
+		CC := $(CC_WIN64)
+    endif
 	CFLAGS_PLATFORM := $(CFLAGS_WIN)
 else
 	UNAME_S := $(shell uname -s)
 	ifeq ($(UNAME_S),Linux)
-		OSFLAG := "LIN"
-		CC := $(CC_LIN)
+		OSFLAG := "LINUX"
+		CC := $(CC_LINUX)
 		CFLAGS_PLATFORM := $(CFLAGS_LIN)
 	endif
 	ifeq ($(UNAME_S),Darwin)
-		OSFLAG := "MAC"
-		CC := $(CC_MAC)
+		OSFLAG := "MACOS"
+		CC := $(CC_MACOS)
 		CFLAGS_PLATFORM := $(CFLAGS_MAC)
 	endif
 endif
@@ -234,10 +240,10 @@ release: all
 		-Wl,--output-def,$(BINDIR)$(NAME).def \
 		-Wl,--out-implib,$(BINDIR)$(NAME).lib \
 		-Wl,--export-all-symbols ; \
-	elif [ $(OSFLAG) = "MAC" ]; then printf \
+	elif [ $(OSFLAG) = "MACOS" ]; then printf \
 		"Compiling dylib: "$(BINDIR)$(NAME).dylib" -> " ; \
 		$(CC) -shared	-o $(BINDIR)$(NAME).dylib $(OBJS) ; \
-	elif [ $(OSFLAG) = "LIN" ]; then printf \
+	elif [ $(OSFLAG) = "LINUX" ]; then printf \
 		"Compiling shared object: "$(BINDIR)$(NAME).so" -> " ; \
 		$(CC) -shared			-o $(BINDIR)$(NAME).so $(OBJS) ; \
 	fi
