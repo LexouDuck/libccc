@@ -10,7 +10,7 @@ CC_LINUX = gcc
 CC_MACOS = gcc
 
 # Compiler flags
-CFLAGS	=	-Wall -Wextra -Winline -Wpedantic -Werror $(CFLAGS_OS) -MMD
+CFLAGS = -Wall -Wextra -Winline -Wpedantic -Werror $(CFLAGS_OS) -MMD
 CFLAGS_DEBUG = -g -ggdb -D DEBUG=1
 CFLAGS_RELEASE = -O3
 # -Wno-unused-result -Wno-unused-parameter
@@ -450,20 +450,6 @@ $(OBJDIR)%.c : $(SRCDIR)%.c $(HDRS)
 	@printf "Preprocessing file: "$@" -> "
 	@$(CC) $(CFLAGS) -E $< -o $@
 	@printf $(GREEN)"OK!"$(RESET)"\n"
-
-
-
-#######################################
-#           RegEx operations          #
-#######################################
-
-replace:
-	@sed -i -e "s|$(old)|$(new)|g" $(addprefix $(SRCDIR), $(SRCS)) $(addprefix $(HDRDIR), $(HDRS))
-	@printf "Replaced all instances of \'"$(old)"\' with \'"$(new)"\'.\n"
-
-rename:
-	@sed -i -e "s|\<$(old)\>|$(new)|g" $(addprefix $(SRCDIR), $(SRCS)) $(addprefix $(HDRDIR), $(HDRS))
-	@printf "Renamed all words matching \'"$(old)"\' with \'"$(new)"\'.\n"
 
 
 
