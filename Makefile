@@ -1,6 +1,6 @@
 # Output file names
-NAME		=	libft
-NAME_TEST	=	libft_test
+NAME      = libft
+NAME_TEST = libft_test
 
 # Compiler
 CC	= _
@@ -10,39 +10,43 @@ CC_LINUX = gcc
 CC_MACOS = gcc
 
 # Compiler flags
-CFLAGS	=	-Wall -Wextra -Winline -Wpedantic -Werror $(CFLAGS_PLATFORM) -MMD -O2
-CFLAGS_PLATFORM = _
-CFLAGS_WIN = -mwindows -shared
-CFLAGS_LIN = -Wno-unused-result
-CFLAGS_MAC = 
+CFLAGS	=	-Wall -Wextra -Winline -Wpedantic -Werror $(CFLAGS_OS) -MMD
+CFLAGS_DEBUG = -g -ggdb -D DEBUG=1
+CFLAGS_RELEASE = -O3
+# -Wno-unused-result -Wno-unused-parameter
+CFLAGS_OS = _
+CFLAGS_OS_WIN   = -mwindows -shared
+CFLAGS_OS_LINUX = -Wno-unused-result
+CFLAGS_OS_MACOS = 
 
 # Directories that this Makefile will use
-BINDIR	=	./bin/
-HDRDIR	=	./hdr/
-SRCDIR	=	./src/
-OBJDIR	=	./obj/
+HDRDIR = ./hdr/
+SRCDIR = ./src/
+OBJDIR = ./obj/
+BINDIR = ./bin/
 
 # Set platform-specific variables
 ifeq ($(OS),Windows_NT)
-	OSFLAG := "WIN"
     ifeq ($(PROCESSOR_ARCHITECTURE),x86)
-		CC := $(CC_WIN32)
+		OSFLAG = "WIN32"
+		CC = $(CC_WIN32)
     endif
     ifeq ($(PROCESSOR_ARCHITECTURE),AMD64)
-		CC := $(CC_WIN64)
+		OSFLAG = "WIN64"
+		CC = $(CC_WIN64)
     endif
-	CFLAGS_PLATFORM := $(CFLAGS_WIN)
+	CFLAGS_OS = $(CFLAGS_OS_WIN)
 else
-	UNAME_S := $(shell uname -s)
+	UNAME_S = $(shell uname -s)
 	ifeq ($(UNAME_S),Linux)
-		OSFLAG := "LINUX"
-		CC := $(CC_LINUX)
-		CFLAGS_PLATFORM := $(CFLAGS_LIN)
+		OSFLAG = "LINUX"
+		CC = $(CC_LINUX)
+		CFLAGS_OS = $(CFLAGS_OS_LINUX)
 	endif
 	ifeq ($(UNAME_S),Darwin)
-		OSFLAG := "MACOS"
-		CC := $(CC_MACOS)
-		CFLAGS_PLATFORM := $(CFLAGS_MAC)
+		OSFLAG = "MACOS"
+		CC = $(CC_MACOS)
+		CFLAGS_OS = $(CFLAGS_OS_MACOS)
 	endif
 endif
 
@@ -219,8 +223,8 @@ SRCS	=	$(addprefix $(DIR_MEMORY),		$(SRC_MEMORY)		)	\
 			$(addprefix $(DIR_IO),			$(SRC_IO)			)
 
 # Define object list and dependency files (.d)
-OBJS	=	${SRCS:%.c=$(OBJDIR)%.o}
-DEPENDS	=	${OBJS:.o=.d}
+OBJS = ${SRCS:%.c=$(OBJDIR)%.o}
+DPDS = ${OBJS:.o=.d}
 
 
 
@@ -228,9 +232,14 @@ DEPENDS	=	${OBJS:.o=.d}
 #          Main build rules           #
 #######################################
 
-all: $(NAME).a
+# This is the default build rule, called when doing 'make' without args
+debug: MODE = debug
+debug: CFLAGS += $(CFLAGS_DEBUG)
+debug: all
 
 # This rule fills the 'bin' folder with necessary files for release distribution
+release: MODE = release
+release: CFLAGS += $(CFLAGS_RELEASE)
 release: all
 	@mkdir -p $(BINDIR)
 	@cp $(NAME).a $(BINDIR) 2>/dev/null || :
@@ -248,6 +257,8 @@ release: all
 		$(CC) -shared			-o $(BINDIR)$(NAME).so $(OBJS) ; \
 	fi
 	@printf $(GREEN)"OK!"$(RESET)"\n"
+
+all: $(NAME).a
 
 # define dependency to have created obj folders before compiling source files
 $(OBJS): | objdir
@@ -338,7 +349,7 @@ clean:
 	@rm -f $(OBJS)
 	@rm -f $(TEST_OBJ)
 	@printf "Deleting dependency files...\n"
-	@rm -f $(DEPENDS)
+	@rm -f $(DPDS)
 	@rm -f *.d
 
 fclean: clean
@@ -461,4 +472,4 @@ rename:
 .PHONY : clean fclean rclean re lint
 
 # The following line is for Makefile GCC dependency file handling (.d files)
--include ${DEPENDS}
+-include ${DPDS}
