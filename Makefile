@@ -53,9 +53,9 @@ endif
 
 
 # Define colors for terminal output
-RESET	=	"\033[0m"
-RED		=	"\033[0;31m"
-GREEN	=	"\033[0;32m"
+RED   = "\033[0;31m"
+GREEN = "\033[0;32m"
+RESET = "\033[0m"
 
 
 
@@ -251,42 +251,25 @@ release: all
 		-Wl,--export-all-symbols ; \
 	elif [ $(OSFLAG) = "MACOS" ]; then printf \
 		"Compiling dylib: "$(BINDIR)$(NAME).dylib" -> " ; \
-		$(CC) -shared	-o $(BINDIR)$(NAME).dylib $(OBJS) ; \
+		$(CC) -shared   -o $(BINDIR)$(NAME).dylib $(OBJS) ; \
 	elif [ $(OSFLAG) = "LINUX" ]; then printf \
-		"Compiling shared object: "$(BINDIR)$(NAME).so" -> " ; \
-		$(CC) -shared			-o $(BINDIR)$(NAME).so $(OBJS) ; \
+		"Compiling .so lib: "$(BINDIR)$(NAME).so" -> " ; \
+		$(CC) -shared     -o $(BINDIR)$(NAME).so $(OBJS) ; \
 	fi
 	@printf $(GREEN)"OK!"$(RESET)"\n"
 
 all: $(NAME).a
 
-# define dependency to have created obj folders before compiling source files
-$(OBJS): | objdir
-
-# This rule creates the object file folders necessary
-objdir:
-	@mkdir -p $(OBJDIR)
-	@mkdir -p $(OBJDIR)$(DIR_MEMORY)
-	@mkdir -p $(OBJDIR)$(DIR_CHAR)
-	@mkdir -p $(OBJDIR)$(DIR_STRING)
-	@mkdir -p $(OBJDIR)$(DIR_STRINGARRAY)
-	@mkdir -p $(OBJDIR)$(DIR_CONVERT)
-	@mkdir -p $(OBJDIR)$(DIR_COLOR)
-	@mkdir -p $(OBJDIR)$(DIR_LIST)
-	@mkdir -p $(OBJDIR)$(DIR_MATH)
-	@mkdir -p $(OBJDIR)$(DIR_STAT)
-	@mkdir -p $(OBJDIR)$(DIR_RANDOM)
-	@mkdir -p $(OBJDIR)$(DIR_VLQ)
-	@mkdir -p $(OBJDIR)$(DIR_IO)
-
 # This rule compiles object files from source files
 $(OBJDIR)%.o : $(SRCDIR)%.c $(HDRS)
+	@mkdir -p $(@D)
 	@printf "Compiling file: "$@" -> "
 	@$(CC) $(CFLAGS) -c $< -I$(HDRDIR) -o $@ -MF $(OBJDIR)$*.d
 	@printf $(GREEN)"OK!"$(RESET)"\n"
 
 # This rule builds the libft library file to link against
 $(NAME).a: $(OBJS) $(HDRS)
+	@mkdir -p $(OBJDIR)
 	@printf "Compiling library: "$@" -> "
 	@ar -rc $@ $(OBJS)
 	@ranlib $@
