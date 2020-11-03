@@ -16,7 +16,7 @@ CFLAGS_RELEASE = -O3
 # -Wno-unused-result -Wno-unused-parameter
 CFLAGS_OS = _
 CFLAGS_OS_WIN   = -mwindows -shared
-CFLAGS_OS_LINUX = -Wno-unused-result
+CFLAGS_OS_LINUX = -fPIC -Wno-unused-result
 CFLAGS_OS_MACOS = 
 
 # Directories that this Makefile will use
@@ -277,14 +277,14 @@ release: all
 all: $(NAME).a
 
 # This rule compiles object files from source files
-$(OBJDIR)%.o : $(SRCDIR)%.c $(HDRS)
+$(OBJDIR)%.o : $(SRCDIR)%.c
 	@mkdir -p $(@D)
 	@printf "Compiling file: "$@" -> "
 	@$(CC) $(CFLAGS) -c $< -I$(HDRDIR) -o $@
 	@printf $(GREEN)"OK!"$(RESET)"\n"
 
 # This rule builds the libft library file to link against
-$(NAME).a: $(OBJS) $(HDRS)
+$(NAME).a: $(OBJS)
 	@mkdir -p $(OBJDIR)
 	@printf "Compiling library: "$@" -> "
 	@ar -rc $@ $(OBJS)
@@ -323,13 +323,13 @@ TEST_CFLAGS = -O2 -g -ggdb
 TEST_INCLUDEDIRS = -I$(HDRDIR) -I$(TEST_DIR)
 
 # This rule compiles object files from source files
-$(OBJDIR)%.o : $(TEST_DIR)%.c $(TEST_HDRS)
+$(OBJDIR)%.o : $(TEST_DIR)%.c
 	@printf "Compiling file: "$@" -> "
 	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -c $< -o $@
 	@printf $(GREEN)"OK!"$(RESET)"\n"
 
 # This rule builds the testing/CI program
-$(NAME_TEST): $(TEST_OBJS) $(TEST_HDRS) $(NAME).a
+$(NAME_TEST): $(TEST_OBJS) $(NAME).a
 	@printf "Compiling testing program: "$@" -> "
 	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -o $@ $(TEST_OBJS) -L./ -lft -lm
 	@printf $(GREEN)"OK!"$(RESET)"\n"
@@ -375,7 +375,7 @@ re: fclean all
 
 DOXYREST = $(DOCDIR)doxyrest/bin/doxyrest.exe
 
-doc: all
+doc:
 	@doxygen $(DOCDIR)project.doxygen
 	@$(DOXYREST) -c $(DOCDIR)doxyrest-config.lua
 	@sphinx-build -b html $(DOCDIR)rst $(DOCDIR)html -c $(DOCDIR)
@@ -446,7 +446,7 @@ PREPROCESSED	=	${SRCS:%.c=$(OBJDIR)%.c}
 preprocessed: all $(PREPROCESSED)
 	@printf "Outputting preprocessed code...\n"
 
-$(OBJDIR)%.c : $(SRCDIR)%.c $(HDRS)
+$(OBJDIR)%.c : $(SRCDIR)%.c
 	@printf "Preprocessing file: "$@" -> "
 	@$(CC) $(CFLAGS) -E $< -o $@
 	@printf $(GREEN)"OK!"$(RESET)"\n"
@@ -454,7 +454,10 @@ $(OBJDIR)%.c : $(SRCDIR)%.c $(HDRS)
 
 
 # This line ensures the makefile won't conflict with files named 'clean', 'fclean', etc
-.PHONY : clean fclean rclean re lint
+.PHONY : test
+.PHONY : clean fclean rclean re
+.PHONY : lint pclint_setup pclint
+.PHONY : doc preprocessed
 
 # The following line is for Makefile GCC dependency file handling (.d files)
 -include ${DPDS}
