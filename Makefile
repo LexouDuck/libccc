@@ -259,7 +259,7 @@ release: CFLAGS += $(CFLAGS_RELEASE)
 release: all
 	@mkdir -p $(BINDIR)
 	@cp $(NAME).a $(BINDIR) 2>/dev/null || :
-	@if [ $(OSMODE) = "WIN" ]; then printf \
+	@if [ $(OSMODE) = "WIN32" ] || [ $(OSMODE) = "WIN64" ]; then printf \
 		"Compiling DLL: "$(BINDIR)$(NAME).dll" -> " ; \
 		$(CC) -shared -o $(BINDIR)$(NAME).dll $(OBJS) \
 		-Wl,--output-def,$(BINDIR)$(NAME).def \
@@ -280,7 +280,7 @@ all: $(NAME).a
 $(OBJDIR)%.o : $(SRCDIR)%.c $(HDRS)
 	@mkdir -p $(@D)
 	@printf "Compiling file: "$@" -> "
-	@$(CC) $(CFLAGS) -c $< -I$(HDRDIR) -o $@ -MF $(OBJDIR)$*.d
+	@$(CC) $(CFLAGS) -c $< -I$(HDRDIR) -o $@
 	@printf $(GREEN)"OK!"$(RESET)"\n"
 
 # This rule builds the libft library file to link against

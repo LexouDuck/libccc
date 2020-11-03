@@ -80,6 +80,8 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
+t_u32		ft_random_32bit_shuffle(t_u32 n);
+
 void		ft_random_set_seed(t_u32 seed);
 void		ft_random_renew_seed(void);
 
