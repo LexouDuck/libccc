@@ -29,23 +29,23 @@ DOCDIR = ./doc/
 # Set platform-specific variables
 ifeq ($(OS),Windows_NT)
     ifeq ($(PROCESSOR_ARCHITECTURE),x86)
-		OSMODE = "WIN32"
+		OSMODE = "win32"
 		CC = $(CC_WIN32)
     endif
     ifeq ($(PROCESSOR_ARCHITECTURE),AMD64)
-		OSMODE = "WIN64"
+		OSMODE = "win64"
 		CC = $(CC_WIN64)
     endif
 	CFLAGS_OS = $(CFLAGS_OS_WIN)
 else
 	UNAME_S = $(shell uname -s)
 	ifeq ($(UNAME_S),Linux)
-		OSMODE = "LINUX"
+		OSMODE = "linux"
 		CC = $(CC_LINUX)
 		CFLAGS_OS = $(CFLAGS_OS_LINUX)
 	endif
 	ifeq ($(UNAME_S),Darwin)
-		OSMODE = "MACOS"
+		OSMODE = "macos"
 		CC = $(CC_MACOS)
 		CFLAGS_OS = $(CFLAGS_OS_MACOS)
 	endif
@@ -259,16 +259,16 @@ release: CFLAGS += $(CFLAGS_RELEASE)
 release: all
 	@mkdir -p $(BINDIR)
 	@cp $(NAME).a $(BINDIR) 2>/dev/null || :
-	@if [ $(OSMODE) = "WIN32" ] || [ $(OSMODE) = "WIN64" ]; then printf \
+	@if [ $(OSMODE) = "win32" ] || [ $(OSMODE) = "win64" ]; then printf \
 		"Compiling DLL: "$(BINDIR)$(NAME).dll" -> " ; \
 		$(CC) -shared -o $(BINDIR)$(NAME).dll $(OBJS) \
 		-Wl,--output-def,$(BINDIR)$(NAME).def \
 		-Wl,--out-implib,$(BINDIR)$(NAME).lib \
 		-Wl,--export-all-symbols ; \
-	elif [ $(OSMODE) = "MACOS" ]; then printf \
+	elif [ $(OSMODE) = "macos" ]; then printf \
 		"Compiling dylib: "$(BINDIR)$(NAME).dylib" -> " ; \
 		$(CC) -shared   -o $(BINDIR)$(NAME).dylib $(OBJS) ; \
-	elif [ $(OSMODE) = "LINUX" ]; then printf \
+	elif [ $(OSMODE) = "linux" ]; then printf \
 		"Compiling .so lib: "$(BINDIR)$(NAME).so" -> " ; \
 		$(CC) -shared     -o $(BINDIR)$(NAME).so $(OBJS) ; \
 	fi
