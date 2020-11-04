@@ -129,6 +129,12 @@ HEADER_CPP
 char	*ft_strnew(t_size n);
 
 /*!
+**	Creates a new string instance of the given 'size',
+**	allocating 'n' bytes of memory, and setting every char to 'c'.
+*/
+char	*ft_strcnew(t_size n, char c);
+
+/*!
 **	Sets every byte of the given string 'str' to 'c', only stopping upon
 **	reading a '\0' string terminator character.
 */

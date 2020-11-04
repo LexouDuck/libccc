@@ -78,7 +78,12 @@ void	*ft_memalloc(t_size size);
 */
 void	*ft_memnew(t_size size);
 
-
+/*!
+**	Allocates 'size' bytes in memory, setting each byte of this newly allocated
+**	memory space to 'c'. Returns the pointer at which said bytes were allocated,
+**	or NULL if the memory could not be allocated.
+*/
+void	*ft_memcnew(t_size size, char c);
 
 /*!
 **	Frees the allocated memory at '*ptr'.
