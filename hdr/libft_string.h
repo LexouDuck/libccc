@@ -50,6 +50,7 @@ HEADER_CPP
 */
 
 #define String_New				ft_strnew
+#define String_New_C			ft_strcnew
 #define String_Set				ft_strset
 #define String_Clear			ft_strclr
 #define String_Delete			ft_strdel
