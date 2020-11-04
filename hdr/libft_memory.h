@@ -36,6 +36,7 @@ HEADER_CPP
 
 #define Memory_Alloc		ft_memalloc
 #define Memory_New			ft_memnew
+#define Memory_New_C		ft_memcnew
 
 #define Memory_Free			ft_memfree
 #define Memory_Delete		ft_memdel
