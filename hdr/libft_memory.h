@@ -36,6 +36,7 @@ HEADER_CPP
 
 #define Memory_Alloc		ft_memalloc
 #define Memory_New			ft_memnew
+#define Memory_New_C		ft_memcnew
 
 #define Memory_Free			ft_memfree
 #define Memory_Delete		ft_memdel
@@ -78,7 +79,12 @@ void	*ft_memalloc(t_size size);
 */
 void	*ft_memnew(t_size size);
 
-
+/*!
+**	Allocates 'size' bytes in memory, setting each byte of this newly allocated
+**	memory space to 'c'. Returns the pointer at which said bytes were allocated,
+**	or NULL if the memory could not be allocated.
+*/
+void	*ft_memcnew(t_size size, char c);
 
 /*!
 **	Frees the allocated memory at '*ptr'.

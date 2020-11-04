@@ -50,6 +50,7 @@ HEADER_CPP
 */
 
 #define String_New				ft_strnew
+#define String_New_C			ft_strcnew
 #define String_Set				ft_strset
 #define String_Clear			ft_strclr
 #define String_Delete			ft_strdel
@@ -127,6 +128,12 @@ HEADER_CPP
 **	allocating 'n' bytes of memory, and setting every char to '\0'.
 */
 char	*ft_strnew(t_size n);
+
+/*!
+**	Creates a new string instance of the given 'size',
+**	allocating 'n' bytes of memory, and setting every char to 'c'.
+*/
+char	*ft_strcnew(t_size n, char c);
 
 /*!
 **	Sets every byte of the given string 'str' to 'c', only stopping upon
