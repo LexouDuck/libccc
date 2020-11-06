@@ -29,35 +29,35 @@ DOCDIR = ./doc/
 # Set platform-specific variables
 ifeq ($(OS),Windows_NT)
 	ifeq ($(PROCESSOR_ARCHITECTURE),x86)
-		OSMODE = "win32"
+		OSMODE=win32
 	endif
 	ifeq ($(PROCESSOR_ARCHITECTURE),AMD64)
-		OSMODE = "win64"
+		OSMODE=win64
 	endif
 	CFLAGS_OS = $(CFLAGS_OS_WIN)
 else
 	UNAME_S = $(shell uname -s)
 	ifeq ($(UNAME_S),Linux)
-		OSMODE = "linux"
+		OSMODE=linux
 	endif
 	ifeq ($(UNAME_S),Darwin)
-		OSMODE = "macos"
+		OSMODE=macos
 	endif
 endif
 
-ifeq ($(OSMODE),"win32")
+ifeq ($(OSMODE),win32)
 	CC = $(CC_WIN32)
 	CFLAGS_OS = $(CFLAGS_OS_WIN)
 endif
-ifeq ($(OSMODE),"win64")
+ifeq ($(OSMODE),win64)
 	CC = $(CC_WIN64)
 	CFLAGS_OS = $(CFLAGS_OS_WIN)
 endif
-ifeq ($(OSMODE),"linux")
+ifeq ($(OSMODE),linux)
 	CC = $(CC_LINUX)
 	CFLAGS_OS = $(CFLAGS_OS_LINUX)
 endif
-ifeq ($(OSMODE),"macos")
+ifeq ($(OSMODE),macos)
 	CC = $(CC_MACOS)
 	CFLAGS_OS = $(CFLAGS_OS_MACOS)
 endif
