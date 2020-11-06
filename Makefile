@@ -45,19 +45,19 @@ else
 	endif
 endif
 
-ifeq ($(OSMODE), win32)
+ifeq ($(OSMODE),"win32")
 	CC = $(CC_WIN32)
 	CFLAGS_OS = $(CFLAGS_OS_WIN)
 endif
-ifeq ($(OSMODE), win64)
+ifeq ($(OSMODE),"win64")
 	CC = $(CC_WIN64)
 	CFLAGS_OS = $(CFLAGS_OS_WIN)
 endif
-ifeq ($(OSMODE), linux)
+ifeq ($(OSMODE),"linux")
 	CC = $(CC_LINUX)
 	CFLAGS_OS = $(CFLAGS_OS_LINUX)
 endif
-ifeq ($(OSMODE), macos)
+ifeq ($(OSMODE),"macos")
 	CC = $(CC_MACOS)
 	CFLAGS_OS = $(CFLAGS_OS_MACOS)
 endif
