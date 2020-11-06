@@ -295,7 +295,6 @@ $(OBJDIR)%.o : $(SRCDIR)%.c
 
 # This rule builds the libft library file to link against
 $(NAME).a: $(OBJS)
-	@mkdir -p $(OBJDIR)
 	@printf "Compiling library: "$@" -> "
 	@ar -rc $@ $(OBJS)
 	@ranlib $@
@@ -339,7 +338,7 @@ $(OBJDIR)%.o : $(TEST_DIR)%.c
 	@printf $(GREEN)"OK!"$(RESET)"\n"
 
 # This rule builds the testing/CI program
-$(NAME_TEST): $(TEST_OBJS) $(NAME).a
+$(NAME_TEST): debug $(TEST_OBJS)
 	@printf "Compiling testing program: "$@" -> "
 	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -o $@ $(TEST_OBJS) -L./ -lft -lm
 	@printf $(GREEN)"OK!"$(RESET)"\n"
