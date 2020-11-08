@@ -2163,7 +2163,6 @@ int		test_convert(void)
 
 	test_f32_to_str_p();
 	test_f64_to_str_p();
-
 	test_bool_to_str();
 	test_size_to_str();
 
@@ -2195,7 +2194,7 @@ int		test_convert(void)
 	test_str_to_u64();
 
 //	test_str_to_f32();
-	test_str_to_f64();
+//	test_str_to_f64();
 
 //	test_str_to_bool();
 	test_str_to_size();
