@@ -15,7 +15,7 @@ CFLAGS_DEBUG = -g -ggdb -D DEBUG=1
 CFLAGS_RELEASE = -O3
 # -Wno-unused-result -Wno-unused-parameter
 CFLAGS_OS = _
-CFLAGS_OS_WIN   = -mwindows -shared
+CFLAGS_OS_WIN   = -mwindows
 CFLAGS_OS_LINUX = -fPIC -Wno-unused-result
 CFLAGS_OS_MACOS = 
 
@@ -269,16 +269,16 @@ release: MODE = release
 release: CFLAGS += $(CFLAGS_RELEASE)
 release: all
 	@mkdir -p $(BINDIR)
-	@if [ $(OSMODE) = "win32" ] || [ $(OSMODE) = "win64" ]; then printf \
+	@if [ $(OSMODE) = win32 ] || [ $(OSMODE) = win64 ]; then printf \
 		"Compiling DLL: "$(BINDIR)$(NAME).dll" -> " ; \
 		$(CC) -shared -o $(BINDIR)$(NAME).dll $(OBJS) \
 		-Wl,--output-def,$(BINDIR)$(NAME).def \
 		-Wl,--out-implib,$(BINDIR)$(NAME).lib \
 		-Wl,--export-all-symbols ; \
-	elif [ $(OSMODE) = "macos" ]; then printf \
+	elif [ $(OSMODE) = macos ]; then printf \
 		"Compiling dylib: "$(BINDIR)$(NAME).dylib" -> " ; \
 		$(CC) -shared   -o $(BINDIR)$(NAME).dylib $(OBJS) ; \
-	elif [ $(OSMODE) = "linux" ]; then printf \
+	elif [ $(OSMODE) = linux ]; then printf \
 		"Compiling .so lib: "$(BINDIR)$(NAME).so" -> " ; \
 		$(CC) -shared     -o $(BINDIR)$(NAME).so $(OBJS) ; \
 	fi
