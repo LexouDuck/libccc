@@ -116,92 +116,121 @@ typedef struct	s_prob_mass_
 
 /*
 ** ************************************************************************** *|
-**                                    Macros                                  *|
-** ************************************************************************** *|
-*/
-
-#define Stat_Int_NewList				ft_stat_new_ilst
-#define Stat_Int_FreeList				ft_stat_free_ilst
-#define Stat_Int_MergeList				ft_stat_merge_ilst
-#define Stat_Int_Quicksort				ft_stat_quicksort_i_new
-#define Stat_Int_Quicksort_InPlace		ft_stat_quicksort_i
-#define Stat_Int_Median					ft_stat_median_i
-#define Stat_Int_Average				ft_stat_average_i
-#define Stat_Int_Variance				ft_stat_variance_i
-#define Stat_Int_StandardDeviation		ft_stat_stddev_i
-#define Stat_Int_Decile					ft_stat_decile_i
-#define Stat_Int_ProbabilityIsValid		ft_prob_is_valid_i
-
-#define Stat_NewPMF				ft_stat_new_pmf
-#define Stat_FreePMF			ft_stat_free_pmf
-#define Stat_IntList_To_Set		ft_stat_ilst_to_iset
-#define Stat_IntList_Count		ft_stat_ilst_count
-#define Stat_IntList_To_PMF		ft_stat_ilst_to_pmf
-
-#define Stat_Float_NewList				ft_stat_new_flst
-#define Stat_Float_FreeList				ft_stat_free_flst
-#define Stat_Float_MergeList			ft_stat_merge_flst
-#define Stat_Float_Quicksort_f_n		ft_stat_quicksort_f_new
-#define Stat_Float_Quicksort			ft_stat_quicksort_f
-#define Stat_Float_Median				ft_stat_median_f
-#define Stat_Float_Average				ft_stat_average_f
-#define Stat_Float_Variance				ft_stat_variance_f
-#define Stat_Float_StandardDeviation	ft_stat_stddev_f
-#define Stat_Float_Decile				ft_stat_decile_f
-#define Stat_Float_ProbabilityIsValid	ft_prob_is_valid_f
-
-
-
-/*
-** ************************************************************************** *|
 **                         Statistics & Probabilities                         *|
 ** ************************************************************************** *|
 */
 
-s_list_int			ft_stat_new_ilst(t_u32 length);
-s_list_float		ft_stat_new_flst(t_u32 length);
+//! TODO document this
+s_list_int						Stat_Int_NewList(t_u32 length);
+#define ft_stat_new_ilst		Stat_Int_NewList
 
-void				ft_stat_free_ilst(s_list_int *ilst);
-void				ft_stat_free_flst(s_list_float *flst);
+//! TODO document this
+void							Stat_Int_FreeList(s_list_int *ilst);
+#define ft_stat_free_ilst		Stat_Int_FreeList
+
+//! TODO document this
+s_list_int						Stat_Int_MergeList(s_list_int *start, s_list_int *append);
+#define ft_stat_merge_ilst		Stat_Int_MergeList
+
+//! TODO document this
+s_list_int 						Stat_Int_Quicksort(s_list_int const ilst);
+#define ft_stat_quicksort_i_new	Stat_Int_Quicksort
+
+//! TODO document this
+void							Stat_Int_Quicksort_InPlace(s_list_int ilst);
+#define ft_stat_quicksort_i		Stat_Int_Quicksort_InPlace
+
+//! TODO document this
+t_float							Stat_Int_Median(s_sortedlist_int const ilst);
+#define ft_stat_median_i		Stat_Int_Median
+
+//! TODO document this
+t_float							Stat_Int_Average(s_list_int const ilst);
+#define ft_stat_average_i		Stat_Int_Average
+
+//! TODO document this
+t_float							Stat_Int_Variance(s_list_int const ilst);
+#define ft_stat_variance_i		Stat_Int_Variance
+
+//! TODO document this
+t_float							Stat_Int_StandardDeviation(s_list_int const ilst);
+#define ft_stat_stddev_i		Stat_Int_StandardDeviation
+
+//! TODO document this
+void							Stat_Int_Decile(s_list_int const ilst);
+#define ft_stat_decile_i		Stat_Int_Decile
+
+//! TODO implement & document this
+//t_bool							Stat_Int_ProbabilityIsValid(t_prob_sample_i const i_problst);
+//#define ft_prob_is_valid_i		Stat_Int_ProbabilityIsValid
 
 
 
-s_list_int			ft_stat_merge_ilst(s_list_int *start, s_list_int *append);
-s_list_float		ft_stat_merge_flst(s_list_float *start, s_list_float *append);
+//! TODO document this
+s_list_float					Stat_Float_NewList(t_u32 length);
+#define ft_stat_new_flst		Stat_Float_NewList
 
-s_list_int 			ft_stat_quicksort_i_new(s_list_int const ilst);
-void				ft_stat_quicksort_i(s_list_int ilst);
-s_list_float 		ft_stat_quicksort_f_new(s_list_float const flst);
-void				ft_stat_quicksort_f(s_list_float flst);
+//! TODO document this
+void							Stat_Float_FreeList(s_list_float *flst);
+#define ft_stat_free_flst		Stat_Float_FreeList
 
-/*
-** List is supposed to be already in order for this to return the correct result.
-*/
-t_float				ft_stat_median_i(s_sortedlist_int const ilst);
-t_float				ft_stat_median_f(s_sortedlist_float const flst);
+//! TODO document this
+s_list_float					Stat_Float_MergeList(s_list_float *start, s_list_float *append);
+#define ft_stat_merge_flst		Stat_Float_MergeList
 
-t_float				ft_stat_average_i(s_list_int const ilst);
-t_float				ft_stat_average_f(s_list_float const flst);
+//! TODO document this
+s_list_float 					Stat_Float_Quicksort_f_n(s_list_float const flst);
+#define ft_stat_quicksort_f_new	Stat_Float_Quicksort_f_n
 
-t_float				ft_stat_variance_i(s_list_int const ilst);
-t_float				ft_stat_variance_f(s_list_float const flst);
+//! TODO document this
+void							Stat_Float_Quicksort(s_list_float flst);
+#define ft_stat_quicksort_f		Stat_Float_Quicksort
 
-t_float				ft_stat_stddev_i(s_list_int const ilst);
-t_float				ft_stat_stddev_f(s_list_float const flst);
+//! TODO document this
+t_float							Stat_Float_Median(s_sortedlist_float const flst);
+#define ft_stat_median_f		Stat_Float_Median
 
-/*
-void				ft_stat_decile_i(s_list_int const ilst);
-void				ft_stat_decile_f(s_list_float const flst);
+//! TODO document this
+t_float							Stat_Float_Average(s_list_float const flst);
+#define ft_stat_average_f		Stat_Float_Average
 
-t_bool				ft_prob_is_valid_i(t_prob_sample_i const i_problst);
-t_bool				ft_prob_is_valid_f(t_prob_sample_f const f_problst);
-*/
+//! TODO document this
+t_float							Stat_Float_Variance(s_list_float const flst);
+#define ft_stat_variance_f		Stat_Float_Variance
 
-s_prob_mass			ft_stat_new_pmf(t_u32 length);
-void				ft_stat_free_pmf(s_prob_mass *drv);
-s_list_int			ft_stat_ilst_to_iset(s_list_int const ilst);
-t_u32				ft_stat_ilst_count(s_list_int ilst, t_int elem);
-s_prob_mass			ft_stat_ilst_to_pmf(s_list_int const ilst);
+//! TODO document this
+t_float							Stat_Float_StandardDeviation(s_list_float const flst);
+#define ft_stat_stddev_f		Stat_Float_StandardDeviation
+
+//! TODO document this
+void							Stat_Float_Decile(s_list_float const flst);
+#define ft_stat_decile_f		Stat_Float_Decile
+
+//! TODO implement & document this
+//t_bool							Stat_Float_ProbabilityIsValid(t_prob_sample_f const f_problst);
+//#define ft_prob_is_valid_f		Stat_Float_ProbabilityIsValid
+
+
+
+//! TODO document this
+s_prob_mass						Stat_NewPMF(t_u32 length);
+#define ft_stat_new_pmf			Stat_NewPMF
+
+//! TODO document this
+void							Stat_FreePMF(s_prob_mass *drv);
+#define ft_stat_free_pmf		Stat_FreePMF
+
+//! TODO document this
+s_list_int						Stat_IntList_To_Set(s_list_int const ilst);
+#define ft_stat_ilst_to_iset	Stat_IntList_To_Set
+
+//! TODO document this
+t_u32							Stat_IntList_Count(s_list_int ilst, t_int elem);
+#define ft_stat_ilst_count		Stat_IntList_Count
+
+//! TODO document this
+s_prob_mass						Stat_IntList_To_PMF(s_list_int const ilst);
+#define ft_stat_ilst_to_pmf		Stat_IntList_To_PMF
 
 
 

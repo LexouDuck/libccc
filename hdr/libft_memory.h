@@ -30,38 +30,6 @@ HEADER_CPP
 
 /*
 ** ************************************************************************** *|
-**                                    Macros                                  *|
-** ************************************************************************** *|
-*/
-
-#define Memory_Alloc		ft_memalloc
-#define Memory_New			ft_memnew
-#define Memory_New_C		ft_memcnew
-
-#define Memory_Free			ft_memfree
-#define Memory_Delete		ft_memdel
-
-#define Memory_Set			ft_memset
-#define Memory_Clear		ft_memclr
-#define Memory_Copy			ft_memcpy
-#define Memory_Copy_C		ft_memccpy
-#define Memory_Move			ft_memmove
-
-#define Memory_Duplicate	ft_memdup
-
-#define Memory_Find			ft_memchr
-#define Memory_Compare		ft_memcmp
-#define Memory_Swap			ft_memswap
-
-#define Memory_GetBits		ft_getbits
-
-#define PointerArray_New	ft_ptrarrnew
-#define PointerArray_Length	ft_ptrarrlen
-
-
-
-/*
-** ************************************************************************** *|
 **                          Basic Memory Operations                           *|
 ** ************************************************************************** *|
 */
@@ -70,31 +38,36 @@ HEADER_CPP
 **	Allocates 'size' bytes in memory, returning the pointer at which
 **	said bytes were allocated, or NULL if the memory could not be allocated.
 */
-void	*ft_memalloc(t_size size);
+void*				Memory_Alloc(t_size size);
+#define ft_memalloc	Memory_Alloc
 
 /*!
 **	Allocates 'size' bytes in memory, setting each byte of this newly allocated
 **	memory space to '0'. Returns the pointer at which said bytes were allocated,
 **	or NULL if the memory could not be allocated.
 */
-void	*ft_memnew(t_size size);
+void*				Memory_New(t_size size);
+#define ft_memnew	Memory_New
 
 /*!
 **	Allocates 'size' bytes in memory, setting each byte of this newly allocated
 **	memory space to 'c'. Returns the pointer at which said bytes were allocated,
 **	or NULL if the memory could not be allocated.
 */
-void	*ft_memcnew(t_size size, char c);
+void*				Memory_New_C(t_size size, char c);
+#define ft_memcnew	Memory_New_C
 
 /*!
 **	Frees the allocated memory at '*ptr'.
 */
-void	ft_memfree(void *ptr);
+void				Memory_Free(void *ptr);
+#define ft_memfree	Memory_Free
 
 /*!
 **	Frees the allocated memory at '**ptr', and sets '*ptr' to NULL.
 */
-void	ft_memdel(void **ptr);
+void				Memory_Delete(void **ptr);
+#define ft_memdel	Memory_Delete
 
 
 
@@ -102,31 +75,36 @@ void	ft_memdel(void **ptr);
 **	Sets 'n' bytes of memory with the given 8-bit value 'byte' (taking only the
 **	first 8 bits of this value and writing it byte-per-byte), starting at 'ptr'.
 */
-void	ft_memset(void *ptr, t_u8 byte, t_size n);
+void				Memory_Set(void *ptr, t_u8 byte, t_size n);
+#define ft_memset	Memory_Set
 
 /*!
 **	Sets 'n' bytes of memory to 0, starting at 'ptr'. (same as bzero)
 */
-void	ft_memclr(void *ptr, t_size n);
+void				Memory_Clear(void *ptr, t_size n);
+#define ft_memclr	Memory_Clear
 
 /*!
 **	Copies 'n' bytes of memory from 'src' to 'dest', and returns 'dest'.
 */
-void	*ft_memcpy(void *dest, void const *src, t_size n);
+void*				Memory_Copy(void *dest, void const *src, t_size n);
+#define ft_memcpy	Memory_Copy
 
 /*!
 **	Copies at most 'n' bytes of memory from 'src' to 'dest',
 **	stopping after the first occurence of a byte equal to 'byte',
 **	and returns a pointer to ('byte' + 1) in 'dest', or NULL.
 */
-void	*ft_memccpy(void *dest, void const *src, t_u8 byte, t_size n);
+void*				Memory_Copy_C(void *dest, void const *src, t_u8 byte, t_size n);
+#define ft_memccpy	Memory_Copy_C
 
 /*!
 **	Reads 'n' bytes of memory from 'src', and then writes
 **	all of those bytes to 'dest' after having read everything.
 **	This function is useful if the 'src' and 'dest' buffers overlap.
 */
-void	*ft_memmove(void *dest, void const *src, t_size n);
+void*				Memory_Move(void *dest, void const *src, t_size n);
+#define ft_memmove	Memory_Move
 
 
 
@@ -135,7 +113,8 @@ void	*ft_memmove(void *dest, void const *src, t_size n);
 **	the given memory area 'ptr' (or NULL if the required memory
 **	could not be allocated, or if 'ptr' is NULL or 'n' == 0).
 */
-void	*ft_memdup(void const *ptr, t_size n);
+void*				Memory_Duplicate(void const *ptr, t_size n);
+#define ft_memdup	Memory_Duplicate
 
 
 
@@ -150,34 +129,39 @@ void	*ft_memdup(void const *ptr, t_size n);
 **	(or NULL if no byte was a match), starting the search at 'ptr'
 **	and searching 'n' bytes of memory.
 */
-void	*ft_memchr(void const *ptr, t_u8 byte, t_size n);
+void*				Memory_Find(void const *ptr, t_u8 byte, t_size n);
+#define ft_memchr	Memory_Find
 
 /*!
 **	Iterates through 'n' bytes of memory starting at 'ptr', replacing every
 **	byte equal to 'old' with the value 'new' instead.
 */
-void	ft_memrep(void *ptr, t_u8 old, t_u8 new, t_size n);
+void				Memory_Replace(void *ptr, t_u8 old, t_u8 new, t_size n);
+#define ft_memrep	Memory_Replace
 
 /*!
 **	Compares 'n' bytes of memory at 'ptr1' and 'ptr2',
 **	returning (byte1 - byte2) at the first difference encountered.
 **	As such, will return 0 if the contents of 'ptr1' and 'ptr2' match.
 */
-int		ft_memcmp(void const *ptr1, void const *ptr2, t_size n);
+int					Memory_Compare(void const *ptr1, void const *ptr2, t_size n);
+#define ft_memcmp	Memory_Compare
 
 /*!
 **	Swaps the memory content pointed to by 'ptr1' and 'ptr2',
 **	copying exactly 'size' bytes of data between the two. (XOR swap method)
 **	Returns 0 if the swap was successful, and 1 otherwise.
 */
-int		ft_memswap(void *ptr1, void *ptr2, t_size size);
+int					Memory_Swap(void *ptr1, void *ptr2, t_size size);
+#define ft_memswap	Memory_Swap
 
 /*!
 **	Returns a subsection of the 'value' argument, taking 'length' bits
 **	from 'value' at the given bit index 'bit', and bitshifting the resulting
 **	bits to the right by 'bit' bits (so as to center the value back to 0).
 */
-t_u64	ft_getbits(t_u64 value, t_u8 bit, t_u8 length);
+t_u64				Memory_GetBits(t_u64 value, t_u8 bit, t_u8 length);
+#define ft_getbits	Memory_GetBits
 
 
 
@@ -191,12 +175,14 @@ t_u64	ft_getbits(t_u64 value, t_u8 bit, t_u8 length);
 **	Returns a newly allocated memory array to serve as a length null-terminated
 **	pointer array of length 'n'. Returns NULL if malloc fails.
 */
-void	*ft_ptrarrnew(t_size size);
+void*					PointerArray_New(t_size size);
+#define ft_ptrarrnew	PointerArray_New
 
 /*!
 **	Returns the length of a null-terminated pointer array.
 */
-t_u32	ft_ptrarrlen(const void **a_ptrarr);
+t_u32					PointerArray_Length(const void **a_ptrarr);
+#define ft_ptrarrlen	PointerArray_Length
 
 // TODO ptrarrdup
 

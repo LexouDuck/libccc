@@ -17,6 +17,7 @@
 **	@addtogroup libft_math
 **	@{
 */
+// TODO subdivide this into 2 modules: libft_math for classical real functions, and libft_vector for geometric functions
 // TODO add other function macros for integral, distance, etc
 
 /*
@@ -44,11 +45,11 @@ HEADER_CPP
 #endif
 
 #ifndef MIN			//!	Expands to the minimum value of 'x' and 'y'
-#define MIN(x, y)		((x) < (y) ? (x) : (y))
+#define MIN(x, y)	((x) < (y) ? (x) : (y))
 #endif
 
 #ifndef MAX			//! Expands to the maximum value of 'x' and 'y'
-#define MAX(x, y)		((x) < (y) ? (y) : (x))
+#define MAX(x, y)	((x) < (y) ? (y) : (x))
 #endif
 
 
@@ -107,132 +108,177 @@ HEADER_CPP
 
 /*
 ** ************************************************************************** *|
-**                                    Macros                                  *|
-** ************************************************************************** *|
-*/
-
-#define Math_GetExponent	ft_getexp
-#define Math_GetExp			ft_getexp
-#define Math_AbsoluteValue	ft_fabs
-#define Math_Abs			ft_fabs
-#define Math_Modulo			ft_fmod
-#define Math_Mod			ft_fmod
-
-#define Math_Round			ft_round
-#define Math_Truncate		ft_trunc
-#define Math_Floor			ft_floor
-#define Math_Ceiling		ft_ceil
-#define Math_Ceil			ft_ceil
-
-#define Math_Power			ft_pow
-#define Math_Pow			ft_pow
-#define Math_SquareRoot		ft_sqrt
-#define Math_SqRt			ft_sqrt
-#define Math_CubicRoot		ft_cbrt
-#define Math_CbRt			ft_cbrt
-#define Math_NRoot			ft_nrt
-#define Math_NRt			ft_nrt
-
-#define Math_Exponential		ft_exp
-#define Math_Exp				ft_exp
-#define Math_NaturalLogarithm	ft_ln
-#define Math_Ln					ft_ln
-#define Math_Logarithm_Base2	ft_lg
-#define Math_Log_2				ft_lg
-#define Math_Logarithm_Base10	ft_log
-#define Math_Log_10				ft_log
-#define Math_Logarithm_BaseN	ft_logn
-#define Math_Log_N				ft_logn
-
-
-
-#define Math_Cosine				ft_cos
-#define Math_Cos				ft_cos
-#define Math_Sine				ft_sin
-#define Math_Sin				ft_sin
-#define Math_Tangent			ft_tan
-#define Math_Tan				ft_tan
-#define Math_InvCosine			ft_acos
-#define Math_ArcCos				ft_acos
-#define Math_InvSine			ft_asin
-#define Math_ArcSin				ft_asin
-#define Math_InvTangent			ft_atan
-#define Math_ArcTan				ft_atan
-
-#define Math_ArcTangent_YoverX	ft_atan2
-#define Math_ArcTan2			ft_atan2
-
-#define Math_Cosine_Hyperbolic		ft_cosh
-#define Math_CosH					ft_cosh
-#define Math_Sine_Hyperbolic		ft_sinh
-#define Math_SinH					ft_sinh
-#define Math_Tangent_Hyperbolic		ft_tanh
-#define Math_TanH					ft_tanh
-#define Math_InvCosine_Hyperbolic	ft_acosh
-#define Math_InvCosH				ft_acosh
-#define Math_InvSine_Hyperbolic		ft_asinh
-#define Math_InvSinH				ft_asinh
-#define Math_InvTangent_Hyperbolic	ft_atanh
-#define Math_InvTanH				ft_atanh
-
-
-
-/*
-** ************************************************************************** *|
 **                     Classical Real Number Operations                       *|
 ** ************************************************************************** *|
 */
 
-t_s32		ft_getexp(t_float x);			//!< @return the base-2 exponent of 'x', as an integer
+//! Returns the base-2 exponent of 'x', as an integer
+t_s32						Math_GetExp(t_float x);
+#define ft_getexp			Math_GetExp
+#define Math_GetExponent	Math_GetExp
 
-t_float		ft_fabs(t_float x);				//!< @return the absolute value of 'x' (makes 'x' positive)
+//! Returns the absolute value of 'x' (makes 'x' positive)
+t_float						Math_Abs(t_float x);
+#define ft_fabs				Math_Abs
+#define Math_AbsoluteValue	Math_Abs
 
-t_float		ft_fmod(t_float x, t_float y);	//!< @return the division remainder of 'x' divided by 'y'
+//! Returns the division remainder of 'x' divided by 'y'
+t_float						Math_Mod(t_float x, t_float y);
+#define ft_fmod				Math_Mod
+#define Math_Modulo			Math_Mod
 
-t_float		ft_round(t_float x);			//!< @return the value of 'x', rounded to the nearest integer
-t_float		ft_trunc(t_float x);			//!< @return the value of 'x', rounded towards 0
-t_float		ft_floor(t_float x);			//!< @return the value of 'x', rounded to the superior integer
-t_float		ft_ceil(t_float x);				//!< @return the value of 'x', rounded to the inferior integer
+//! Returns the value of 'x', rounded to the nearest integer
+t_float						Math_Round(t_float x);
+#define ft_round			Math_Round
+#define Math_FloatRound		Math_Round
 
-t_float		ft_pow(t_float x, t_float y);	//!< @return the value of 'x' to the power of 'y' (float)
-t_float		ft_pow_n(t_float x, t_int n);	//!< @return the value of 'x' to the power of 'n' (integer)
+//! Returns the value of 'x', rounded towards 0
+t_float						Math_Truncate(t_float x);
+#define ft_trunc			Math_Truncate
+#define Math_FloatTrunc		Math_Truncate
 
-t_float		ft_sqrt(t_float x);				//!< @return the square root of 'x' (inverse of power of 2)
-t_float		ft_cbrt(t_float x);				//!< @return the cubic root of 'x' (inverse of power of 3)
-t_float		ft_nrt(t_float x, t_u8 n);		//!< @return the n-ic root of 'x' (inverse of power of 'n')
+//! Returns the value of 'x', rounded to the superior integer
+t_float						Math_Floor(t_float x);
+#define ft_floor			Math_Floor
+#define Math_FloatFloor		Math_Floor
 
-
-
-t_float		ft_exp(t_float x);				//!< @return the exponential function's value for 'x'
-
-t_float		ft_ln(t_float x);				//!< @return the natural logarithm of 'x'
-t_float		ft_lg(t_float x);				//!< @return the binary (base-2) logarithm of 'x'
-t_float		ft_log(t_float x);				//!< @return the decimal (base-10) logarithm of 'x'
-t_float		ft_log_n(t_float x, t_float n);	//!< @return the base-'n' logarithm of 'x'
-
+//! Returns the value of 'x', rounded to the inferior integer
+t_float						Math_Ceiling(t_float x);
+#define ft_ceil				Math_Ceiling
+#define Math_FloatCeiling	Math_Ceiling
 
 
-t_float		ft_cos(t_float x);				//!< @return the cosine of 'x' (horizontal trigonometry coordinate)
-t_float		ft_sin(t_float x);				//!< @return the sine of 'x' (vertical trigonometry coordinate)
-t_float		ft_tan(t_float x);				//!< @return the tangent of 'x' (trigonometry tangent line)
 
-t_float		ft_acos(t_float x);				//!< @return the arc-cosine of 'x' (inverse of the cos function)
-t_float		ft_asin(t_float x);				//!< @return the arc-sine of 'x' (inverse of the sin function)
-t_float		ft_atan(t_float x);				//!< @return the arc-tangent of 'x' (inverse of the tan function)
+//! Returns the value of 'x' to the power of 'y' (float)
+t_float						Math_Pow(t_float x, t_float y);
+#define ft_pow				Math_Pow
+#define Math_Power			Math_Pow
 
-t_float		ft_atan2(t_float y, t_float x);	//!< @return the arc-tangent of ('y' / 'x'), used to find an angle
+//! Returns the value of 'x' to the power of 'n' (integer)
+t_float						Math_Pow_N(t_float x, t_int n);
+#define ft_pow_n			Math_Pow_N
+#define Math_Power_N		Math_Pow_N
 
-t_float		ft_cosh(t_float x);				//!< @return the hyperbolic cosine of 'x'
-t_float		ft_sinh(t_float x);				//!< @return the hyperbolic sine of 'x'
-t_float		ft_tanh(t_float x);				//!< @return the hyperbolic tangent of 'x'
+//! Returns the square root of 'x' (inverse of power of 2)
+t_float						Math_SqRt(t_float x);
+#define ft_sqrt				Math_SqRt
+#define Math_SquareRoot		Math_SqRt
 
-t_float		ft_acosh(t_float x);			//!< @return the hyperbolic arc-cosine of 'x' (inverse of the cosh function)
-t_float		ft_asinh(t_float x);			//!< @return the hyperbolic arc-sine of 'x' (inverse of the sinh function)
-t_float		ft_atanh(t_float x);			//!< @return the hyperbolic arc-tangent of 'x' (inverse of the tanh function)
+//! Returns the cubic root of 'x' (inverse of power of 3)
+t_float						Math_CbRt(t_float x);
+#define ft_cbrt				Math_CbRt
+#define Math_CubicRoot		Math_CbRt
+
+//! Returns the n-ic root of 'x' (inverse of power of 'n')
+t_float						Math_NRt(t_float x, t_u8 n);
+#define ft_nrt				Math_NRt
+#define Math_NRoot			Math_NRt
+
+
+
+//! Returns the exponential function's value for 'x'
+t_float							Math_Exp(t_float x);
+#define ft_exp					Math_Exp
+#define Math_Exponential		Math_Exp
+
+//! Returns the natural logarithm of 'x'
+t_float							Math_Ln(t_float x);
+#define ft_ln					Math_Ln
+#define Math_NaturalLogarithm	Math_Ln
+
+//! Returns the binary (base-2) logarithm of 'x'
+t_float							Math_Log_2(t_float x);
+#define ft_lg					Math_Log_2
+#define Math_Logarithm_Base2	Math_Log_2
+
+//! Returns the decimal (base-10) logarithm of 'x'
+t_float							Math_Log_10(t_float x);
+#define ft_log					Math_Log_10
+#define Math_Logarithm_Base10	Math_Log_10
+
+//! Returns the base-'n' logarithm of 'x'
+t_float							Math_Log_N(t_float x, t_float n);
+#define ft_logn					Math_Log_N
+#define Math_Logarithm_BaseN	Math_Log_N
+
+
+
+
+//! Returns the cosine of 'x' (horizontal trigonometry coordinate)
+t_float								Math_Cos(t_float x);
+#define ft_cos						Math_Cos
+#define Math_Cosine					Math_Cos
+
+//! Returns the sine of 'x' (vertical trigonometry coordinate)
+t_float								Math_Sin(t_float x);
+#define ft_sin						Math_Sin
+#define Math_Sine					Math_Sin
+
+//! Returns the tangent of 'x' (trigonometry tangent line)
+t_float								Math_Tan(t_float x);
+#define ft_tan						Math_Tan
+#define Math_Tangent				Math_Tan
+
+//! Returns the arc-cosine of 'x' (inverse of the cos function)
+t_float								Math_ArcCos(t_float x);
+#define ft_acos						Math_ArcCos
+#define Math_InvCosine				Math_ArcCos
+
+//! Returns the arc-sine of 'x' (inverse of the sin function)
+t_float								Math_ArcSin(t_float x);
+#define ft_asin						Math_ArcSin
+#define Math_InvSine				Math_ArcSin
+
+//! Returns the arc-tangent of 'x' (inverse of the tan function)
+t_float								Math_ArcTan(t_float x);
+#define ft_atan						Math_ArcTan
+#define Math_InvTangent				Math_ArcTan
+
+
+
+//! Returns the arc-tangent of ('y' / 'x'), used to find an angle
+t_float								Math_ArcTan2(t_float y, t_float x);
+#define ft_atan2					Math_ArcTan2
+#define Math_ArcTangent_YoverX		Math_ArcTan2
+
+
+
+//! Returns the hyperbolic cosine of 'x'
+t_float								Math_CosH(t_float x);
+#define ft_cosh						Math_CosH
+#define Math_Cosine_Hyperbolic		Math_CosH
+
+//! Returns the hyperbolic sine of 'x'
+t_float								Math_SinH(t_float x);
+#define ft_sinh						Math_SinH
+#define Math_Sine_Hyperbolic		Math_SinH
+
+//! Returns the hyperbolic tangent of 'x'
+t_float								Math_TanH(t_float x);
+#define ft_tanh						Math_TanH
+#define Math_Tangent_Hyperbolic		Math_TanH
+
+//! Returns the hyperbolic arc-cosine of 'x' (inverse of the cosh function)
+t_float								Math_InvCosH(t_float x);
+#define ft_acosh					Math_InvCosH
+#define Math_InvCosine_Hyperbolic	Math_InvCosH
+
+//! Returns the hyperbolic arc-sine of 'x' (inverse of the sinh function)
+t_float								Math_InvSinH(t_float x);
+#define ft_asinh					Math_InvSinH
+#define Math_InvSine_Hyperbolic		Math_InvSinH
+
+//! Returns the hyperbolic arc-tangent of 'x' (inverse of the tanh function)
+t_float								Math_InvTanH(t_float x);
+#define ft_atanh					Math_InvTanH
+#define Math_InvTangent_Hyperbolic	Math_InvTanH
+
+
 
 // TODO hypot ?
 // TODO lgamma ?
 // TODO tgamma ?
+
 
 
 #if (LIBFTCONFIG_FAST_APPROX_MATH == 0)

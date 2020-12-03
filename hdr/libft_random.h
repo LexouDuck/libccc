@@ -58,39 +58,48 @@ HEADER_CPP
 
 /*
 ** ************************************************************************** *|
-**                                    Macros                                  *|
-** ************************************************************************** *|
-*/
-
-#define Random_SetSeed		ft_random_set_seed
-#define Random_RefreshSeed	ft_random_renew_seed
-
-#define Random_U32			ft_random_u32
-#define Random_U32_Pow2N	ft_random_u32_0_to_pow2n
-#define Random_U32_0toN		ft_random_u32_0_to_n
-#define Random_Int_AtoB		ft_random_int_a_to_b
-#define Random_Float_0to1	ft_random_float_0_to_1
-#define Random_Float_AtoB	ft_random_float_a_to_b
-
-
-
-/*
-** ************************************************************************** *|
 **                               Random Functions                             *|
 ** ************************************************************************** *|
 */
 
-t_u32		ft_random_32bit_shuffle(t_u32 n);
+//! TODO document this
+t_u32								Random_Shuffle(t_u32 n);
+#define ft_random_32bit_shuffle		Random_Shuffle
 
-void		ft_random_set_seed(t_u32 seed);
-void		ft_random_renew_seed(void);
 
-t_u32		ft_random_u32(void);
-t_u32		ft_random_u32_0_to_pow2n(t_u32 n);
-t_u32		ft_random_u32_0_to_n(t_u32 n);
-t_int		ft_random_int_a_to_b(t_int a, t_int b);
-t_float		ft_random_float_0_to_1(void);
-t_float		ft_random_float_a_to_b(t_float a, t_float b);
+//! TODO document this
+void								Random_SetSeed(t_u32 seed);
+#define ft_random_set_seed			Random_SetSeed
+
+//! TODO document this
+void								Random_RefreshSeed(void);
+#define ft_random_renew_seed		Random_RefreshSeed
+
+
+//! TODO document this
+t_u32								Random_U32(void);
+#define ft_random_u32				Random_U32
+
+//! TODO document this
+t_u32								Random_U32_Pow2N(t_u32 n);
+#define ft_random_u32_0_to_pow2n	Random_U32_Pow2N
+
+//! TODO document this
+t_u32								Random_U32_0toN(t_u32 n);
+#define ft_random_u32_0_to_n		Random_U32_0toN
+
+//! TODO document this
+t_int								Random_Int_AtoB(t_int a, t_int b);
+#define ft_random_int_a_to_b		Random_Int_AtoB
+
+//! TODO document this
+t_float								Random_Float_0to1(void);
+#define ft_random_float_0_to_1		Random_Float_0to1
+
+//! TODO document this
+t_float								Random_Float_AtoB(t_float a, t_float b);
+#define ft_random_float_a_to_b		Random_Float_AtoB
+
 
 
 

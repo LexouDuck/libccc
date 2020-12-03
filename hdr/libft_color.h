@@ -48,44 +48,22 @@ HEADER_CPP
 
 /*
 ** ************************************************************************** *|
-**                                    Macros                                  *|
-** ************************************************************************** *|
-*/
-
-#define Color_ARGB16_Get_A			ft_color_argb16_get_a
-#define Color_ARGB16_Get_R			ft_color_argb16_get_r
-#define Color_ARGB16_Get_G			ft_color_argb16_get_g
-#define Color_ARGB16_Get_B			ft_color_argb16_get_b
-#define Color_ARGB16_GetNearest		ft_color_argb16_get_nearest
-#define Color_ARGB16_Set_A			ft_color_argb16_set_a
-#define Color_ARGB16_Set_R			ft_color_argb16_set_r
-#define Color_ARGB16_Set_G			ft_color_argb16_set_g
-#define Color_ARGB16_Set_B			ft_color_argb16_set_b
-#define Color_ARGB16_Set			ft_color_argb16_set
-
-#define Color_ARGB32_Get_A			ft_color_argb32_get_a
-#define Color_ARGB32_Get_R			ft_color_argb32_get_r
-#define Color_ARGB32_Get_G			ft_color_argb32_get_g
-#define Color_ARGB32_Get_B			ft_color_argb32_get_b
-#define Color_ARGB32_GetNearest		ft_color_argb32_get_nearest
-#define Color_ARGB32_Set_A			ft_color_argb32_set_a
-#define Color_ARGB32_Set_R			ft_color_argb32_set_r
-#define Color_ARGB32_Set_G			ft_color_argb32_set_g
-#define Color_ARGB32_Set_B			ft_color_argb32_set_b
-#define Color_ARGB32_Set			ft_color_argb32_set
-
-
-
-/*
-** ************************************************************************** *|
 **                              ARGB 16bit Color                              *|
 ** ************************************************************************** *|
 */
 
-t_u8	ft_color_argb16_get_a(t_u16 color);	//!< Gets the alpha channel value for the given 16-bit 'color'
-t_u8	ft_color_argb16_get_r(t_u16 color);	//!< Gets the red channel value for the given 16-bit 'color'
-t_u8	ft_color_argb16_get_g(t_u16 color);	//!< Gets the green channel value for the given 16-bit 'color'
-t_u8	ft_color_argb16_get_b(t_u16 color);	//!< Gets the blue channel value for the given 16-bit 'color'
+//! Gets the alpha channel value for the given 16-bit 'color'
+t_u8							Color_ARGB16_Get_A(t_u16 color);
+#define ft_color_argb16_get_a	Color_ARGB16_Get_A
+//! Gets the red channel value for the given 16-bit 'color'
+t_u8							Color_ARGB16_Get_R(t_u16 color);
+#define ft_color_argb16_get_r	Color_ARGB16_Get_R
+//! Gets the green channel value for the given 16-bit 'color'
+t_u8							Color_ARGB16_Get_G(t_u16 color);
+#define ft_color_argb16_get_g	Color_ARGB16_Get_G
+//! Gets the blue channel value for the given 16-bit 'color'
+t_u8							Color_ARGB16_Get_B(t_u16 color);
+#define ft_color_argb16_get_b	Color_ARGB16_Get_B
 
 //! Find the nearest color to the given 'target' color, from within the given arrays of 'colors'
 /*!
@@ -95,14 +73,23 @@ t_u8	ft_color_argb16_get_b(t_u16 color);	//!< Gets the blue channel value for th
 **	@return a pointer to the color within 'colors' which is the closest match
 **			to the given 'target' color, searching through 'n' colors in the array.
 */
-t_u16	*ft_color_argb16_get_nearest(t_u16 target, t_u16 *colors, t_size n);
+t_u16*								Color_ARGB16_GetNearest(t_u16 target, t_u16 *colors, t_size n);
+#define ft_color_argb16_get_nearest	Color_ARGB16_GetNearest
 
 
 
-t_u16	ft_color_argb16_set_a(t_u16 color, t_u8 a);	//!< Returns the given 16-bit 'color', with the 'a' channel value changed
-t_u16	ft_color_argb16_set_r(t_u16 color, t_u8 r);	//!< Returns the given 16-bit 'color', with the 'r' channel value changed
-t_u16	ft_color_argb16_set_g(t_u16 color, t_u8 g);	//!< Returns the given 16-bit 'color', with the 'g' channel value changed
-t_u16	ft_color_argb16_set_b(t_u16 color, t_u8 b);	//!< Returns the given 16-bit 'color', with the 'b' channel value changed
+//! Returns the given 16-bit 'color', with the 'a' channel value changed
+t_u16							Color_ARGB16_Set_A(t_u16 color, t_u8 a);
+#define ft_color_argb16_set_a	Color_ARGB16_Set_A
+//! Returns the given 16-bit 'color', with the 'r' channel value changed
+t_u16							Color_ARGB16_Set_R(t_u16 color, t_u8 r);
+#define ft_color_argb16_set_r	Color_ARGB16_Set_R
+//! Returns the given 16-bit 'color', with the 'g' channel value changed
+t_u16							Color_ARGB16_Set_G(t_u16 color, t_u8 g);
+#define ft_color_argb16_set_g	Color_ARGB16_Set_G
+//! Returns the given 16-bit 'color', with the 'b' channel value changed
+t_u16							Color_ARGB16_Set_B(t_u16 color, t_u8 b);
+#define ft_color_argb16_set_b	Color_ARGB16_Set_B
 
 //! Create a 16-bit color from the given channel values
 /*!
@@ -115,7 +102,8 @@ t_u16	ft_color_argb16_set_b(t_u16 color, t_u8 b);	//!< Returns the given 16-bit 
 **	@param	b	The blue channel value (0-31)
 **	@return the 16-bit color value from the given channel values
 */
-t_u16	ft_color_argb16_set(t_u8 a, t_u8 r, t_u8 g, t_u8 b);
+t_u16						Color_ARGB16_Set(t_u8 a, t_u8 r, t_u8 g, t_u8 b);
+#define ft_color_argb16_set	Color_ARGB16_Set
 
 //! Converts the given 16-bit color value to its 32-bit equivalent
 /*!
@@ -123,7 +111,8 @@ t_u16	ft_color_argb16_set(t_u8 a, t_u8 r, t_u8 g, t_u8 b);
 **	@return a 32-bit ARGB color by multiplying the color channel
 **			values of the given 16-bit 'color' value.
 */
-t_u32	ft_color_argb16_to_argb32(t_u16 color);
+t_u32								Color_ARGB16_To_ARGB32(t_u16 color);
+#define ft_color_argb16_to_argb32	Color_ARGB16_To_ARGB32
 
 
 
@@ -133,10 +122,18 @@ t_u32	ft_color_argb16_to_argb32(t_u16 color);
 ** ************************************************************************** *|
 */
 
-t_u8	ft_color_argb32_get_a(t_u32 color);	//!< Gets the alpha channel value for the given 32-bit 'color'
-t_u8	ft_color_argb32_get_r(t_u32 color);	//!< Gets the red channel value for the given 32-bit 'color'
-t_u8	ft_color_argb32_get_g(t_u32 color);	//!< Gets the green channel value for the given 32-bit 'color'
-t_u8	ft_color_argb32_get_b(t_u32 color);	//!< Gets the blue channel value for the given 32-bit 'color'
+//! Gets the alpha channel value for the given 32-bit 'color'
+t_u8							Color_ARGB32_Get_A(t_u32 color);
+#define ft_color_argb32_get_a	Color_ARGB32_Get_A
+//! Gets the red channel value for the given 32-bit 'color'
+t_u8							Color_ARGB32_Get_R(t_u32 color);
+#define ft_color_argb32_get_r	Color_ARGB32_Get_R
+//! Gets the green channel value for the given 32-bit 'color'
+t_u8							Color_ARGB32_Get_G(t_u32 color);
+#define ft_color_argb32_get_g	Color_ARGB32_Get_G
+//! Gets the blue channel value for the given 32-bit 'color'
+t_u8							Color_ARGB32_Get_B(t_u32 color);
+#define ft_color_argb32_get_b	Color_ARGB32_Get_B
 
 //! Find the nearest color to the given 'target' color, from within the given arrays of 'colors'
 /*!
@@ -146,14 +143,23 @@ t_u8	ft_color_argb32_get_b(t_u32 color);	//!< Gets the blue channel value for th
 **	@return a pointer to the color within 'colors' which is the closest match
 **			to the given 'target' color, searching through 'n' colors in the array.
 */
-t_u32	*ft_color_argb32_get_nearest(t_u32 target, t_u32 *colors, t_size n);
+t_u32*								Color_ARGB32_GetNearest(t_u32 target, t_u32 *colors, t_size n);
+#define ft_color_argb32_get_nearest	Color_ARGB32_GetNearest
 
 
 
-t_u32	ft_color_argb32_set_a(t_u32 color, t_u8 a);	//!< Returns the given 32-bit 'color', with the 'a' channel value changed
-t_u32	ft_color_argb32_set_r(t_u32 color, t_u8 r);	//!< Returns the given 32-bit 'color', with the 'r' channel value changed
-t_u32	ft_color_argb32_set_g(t_u32 color, t_u8 g);	//!< Returns the given 32-bit 'color', with the 'g' channel value changed
-t_u32	ft_color_argb32_set_b(t_u32 color, t_u8 b);	//!< Returns the given 32-bit 'color', with the 'b' channel value changed
+//! Returns the given 32-bit 'color', with the 'a' channel value changed
+t_u32							Color_ARGB32_Set_A(t_u32 color, t_u8 a);
+#define ft_color_argb32_set_a	Color_ARGB32_Set_A
+//! Returns the given 32-bit 'color', with the 'r' channel value changed
+t_u32							Color_ARGB32_Set_R(t_u32 color, t_u8 r);
+#define ft_color_argb32_set_r	Color_ARGB32_Set_R
+//! Returns the given 32-bit 'color', with the 'g' channel value changed
+t_u32							Color_ARGB32_Set_G(t_u32 color, t_u8 g);
+#define ft_color_argb32_set_g	Color_ARGB32_Set_G
+//! Returns the given 32-bit 'color', with the 'b' channel value changed
+t_u32							Color_ARGB32_Set_B(t_u32 color, t_u8 b);
+#define ft_color_argb32_set_b	Color_ARGB32_Set_B
 
 //! Creates a 32-bit color value from the given channel values (alpha, red, green, blue)
 /*!
@@ -166,7 +172,8 @@ t_u32	ft_color_argb32_set_b(t_u32 color, t_u8 b);	//!< Returns the given 32-bit 
 **	@param	b	The blue channel value (0-255)
 **	@return the 32-bit color value from the given channel values
 */
-t_u32	ft_color_argb32_set(t_u8 a, t_u8 r, t_u8 g, t_u8 b);
+t_u32						Color_ARGB32_Set(t_u8 a, t_u8 r, t_u8 g, t_u8 b);
+#define ft_color_argb32_set	Color_ARGB32_Set
 
 //! Converts the given 32-bit color value to its 16-bit equivalent (rounding down)
 /*!
@@ -174,7 +181,8 @@ t_u32	ft_color_argb32_set(t_u8 a, t_u8 r, t_u8 g, t_u8 b);
 **	@return a 16-bit ARGB color by dividing the color channel values of the
 **			given 32-bit 'color' value (values are rounded down in the process).
 */
-t_u16	ft_color_argb32_to_argb16(t_u32 color);
+t_u16								Color_ARGB32_To_ARGB16(t_u32 color);
+#define ft_color_argb32_to_argb16	Color_ARGB32_To_ARGB16
 
 
 
