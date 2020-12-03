@@ -119,12 +119,12 @@ t_bool									Convert_F_To_String_CheckSpecial(t_f32 number, char **result);
 //! Get the string decimal representation of a 32-bit floating-point number
 char*					Convert_F32_To_String(t_f32 n);
 #define ft_f32_to_str	Convert_F32_To_String
-//! Get the string decimal representation of a 64-bit floating-point number
-char*					Convert_F32_To_String_P(t_f64 n);
+//! Get the string decimal representation of a 32-bit floating-point number, with 'precision' fractional digits
+char*					Convert_F32_To_String_P(t_f32 n, t_u8 precision);
 #define ft_f32_to_str_p	Convert_F32_To_String_P
 
-//! Get the string decimal representation of a 32-bit floating-point number, with 'precision' fractional digits
-char*					Convert_F64_To_String(t_f32 n, t_u8 precision);
+//! Get the string decimal representation of a 64-bit floating-point number
+char*					Convert_F64_To_String(t_f64 n);
 #define ft_f64_to_str	Convert_F64_To_String
 //! Get the string decimal representation of a 64-bit floating-point number, with 'precision' fractional digits
 char*					Convert_F64_To_String_P(t_f64 n, t_u8 precision);
@@ -155,14 +155,14 @@ t_f64					Convert_String_To_F64(char const *str);
 char*					Convert_Bool_To_String(t_bool value, t_bool uppercase);
 #define ft_bool_to_str	Convert_Bool_To_String
 //! Parse a boolean value from the given string (can be 1/0/TRUE/FALSE/true/false)
-t_bool					Convert_Size_To_String(char const *str);
-#define ft_size_to_str	Convert_Size_To_String
+t_bool					Convert_String_To_Bool(char const *str);
+#define ft_str_to_bool	Convert_String_To_Bool
 
 
 
 //! Get the string decimal representation of a 64-bit unsigned integer
-char*					Convert_String_To_Bool(t_size value);
-#define ft_str_to_bool	Convert_String_To_Bool
+char*					Convert_Size_To_String(t_size value);
+#define ft_size_to_str	Convert_Size_To_String
 //! Parse a memory-size uint from the given string
 t_size					Convert_String_To_Size(char const *str);
 #define ft_str_to_size	Convert_String_To_Size

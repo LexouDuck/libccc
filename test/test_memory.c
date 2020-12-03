@@ -354,8 +354,8 @@ void	test_memcmp(void)
 
 
 
-#ifdef			fthich
 // TODO check on which platforms this function exists, if any
+#ifdef			ft_memdup
 void	print_test_memdup(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* src,

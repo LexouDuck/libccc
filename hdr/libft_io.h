@@ -142,7 +142,7 @@ t_bool					IO_Read_File(t_fd const fd, char* *a_file, t_size max);
 **						top-level pointer array is allocated and filled appropriately.
 **	@return OK(0) if the stream was read successfully, ERROR(1) if there was an error.
 */
-int						IO_Read_Lines(t_fd const fd, char* *a_line);
+t_bool					IO_Read_Lines(t_fd const fd, char** *a_strarr);
 #define ft_readlines	IO_Read_Lines
 
 //! Reads the contents of the file descriptor 'fd' line-per-line.
@@ -159,7 +159,7 @@ int						IO_Read_Lines(t_fd const fd, char* *a_line);
 **		- 1 if a line of characters was successfully read
 **		- 0 if the end of the file was reached
 */
-t_bool					IO_Read_NextLine(t_fd const fd, char** *a_strarr);
+int						IO_Read_NextLine(t_fd const fd, char* *a_line);
 #define ft_getnextline	IO_Read_NextLine
 #define GNL_LINE	1	//!< Return value for ft_getnextline: indicates succesful line read, more to follow
 #define GNL_END		0	//!< Return value for ft_getnextline: indicates successful line read, end of file reached

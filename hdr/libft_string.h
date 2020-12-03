@@ -240,17 +240,17 @@ char*				String_Find_Char(char const *str, char c);
 #define ft_strchr	String_Find_Char
 
 /*!
-**	Returns the first occurence of the string 'query' inside
-**	the given string 'str' (or NULL if nothing matched).
-*/
-char*				String_Find_CharIndex(char const *str, char const *query);
-#define ft_strichr	String_Find_CharIndex
-
-/*!
 **	Returns the first index at which 'c' is found in 'str', or -1 if 'c' does
 **	not exist in 'str'.
 */
-t_s32				String_Find_String(char const *str, char c);
+t_s32				String_Find_CharIndex(char const *str, char c);
+#define ft_strichr	String_Find_CharIndex
+
+/*!
+**	Returns the first occurence of the string 'query' inside
+**	the given string 'str' (or NULL if nothing matched).
+*/
+char*				String_Find_String(char const *str, char const *query);
 #define ft_strstr	String_Find_String
 
 /*!

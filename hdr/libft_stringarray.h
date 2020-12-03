@@ -101,37 +101,37 @@ void							StringArray_Delete(char** *a_strarr);
 **	of strarr by f. f should be a function that allocates and returns a new
 **	string.
 */
-char**							StringArray_Merge(char const **strarr, char *(*f)(char const *));
-#define ft_strarrmerge			StringArray_Merge
+char**							StringArray_Map(char const **strarr, char *(*f)(char const *));
+#define ft_strarrmap			StringArray_Map
 
 /*!
 **	Transforms the content of the input string array, by mapping each string
 **	of strarr by f. f should be a function that does not allocate a new string;
 ** 	but instead edits the string's content in place.
 */
-void							StringArray_Append(char** *a_strarr, char *(*f)(char *));
-#define ft_strarrappend			StringArray_Append
+void							StringArray_Map_InPlace(char** *a_strarr, char *(*f)(char *));
+#define ft_strarrmap_inplace	StringArray_Map_InPlace
 
 /*!
 **	Returns a newly allocated string array such that every string is now
 **	preceded by n times the character c.
 */
-char**							StringArray_Prepend(const char **strarr, const char c, t_u32 n);
-#define ft_strarrprepend		StringArray_Prepend
+char**							StringArray_Pad_L(const char **strarr, const char c, t_u32 n);
+#define ft_strarrpad_l			StringArray_Pad_L
 
 /*!
 **	Returns a newly allocated string array, which is the result of removing
 **	the lines from index 'start' to 'start + length' from strarr.
 */
-char**							StringArray_Insert_InPlace(const char **strarr, t_u32 start, t_u32 length);
-#define ft_strarrinsert_inplace	StringArray_Insert_InPlace
+char**							StringArray_Sub(const char **strarr, t_u32 start, t_u32 length);
+#define ft_strarrsub			StringArray_Sub
 
 /*!
 **	Returns a newly allocated string which is the fold/reduce concatenation
 **	of all strings in strarr, with the string 'sep' added between each string.
 */
-char	*						StringArray_Map(char const **strarr, char const *sep);
-#define ft_strarrmap			StringArray_Map
+char*							StringArray_Join(char const **strarr, char const *sep);
+#define ft_strarrjoin			StringArray_Join
 
 
 /*
@@ -144,30 +144,30 @@ char	*						StringArray_Map(char const **strarr, char const *sep);
 **	Returns the concatenation of 'strarr1' and 'strarr2', and deletes both
 **	inputs from memory. Also returns the result.
 */
-char**							StringArray_Map_InPlace(char** *a_strarr1, char* **a_strarr2);
-#define ft_strarrmap_inplace	StringArray_Map_InPlace
+char**							StringArray_Merge(char** *a_strarr1, char* **a_strarr2);
+#define ft_strarrmerge			StringArray_Merge
 
 /*!
 **	Returns the concatenation of 'dest' and 'src', and deletes 'dest', replacing
 **	it by the result. Also returns the result.
 */
-char**							StringArray_Pad_L(char** *a_dest, char const** src);
-#define ft_strarrpad_l			StringArray_Pad_L
+char**							StringArray_Append(char** *a_dest, char const** src);
+#define ft_strarrappend			StringArray_Append
 
 
 /*!
 **	Returns the concatenation of 'src' and 'dest', and deletes 'dest', replacing
 **	it by the result. Also returns the result.
 */
-char**							StringArray_Sub(char const** src, char** *a_dest);
-#define ft_strarrsub			StringArray_Sub
+char**							StringArray_Prepend(char const** src, char** *a_dest);
+#define ft_strarrprepend		StringArray_Prepend
 
 /*!
 **	Inserts the string array 'src' at index 'index' in 'dest'; deletes 'dest' and
 **	replaces it by the result. Also returns the result.
 */
-char**							StringArray_Join(char** *a_dest, char const** src, t_u32 index);
-#define ft_strarrjoin			StringArray_Join
+char**							StringArray_Insert_InPlace(char** *a_dest, char const** src, t_u32 index);
+#define ft_strarrinsert_inplace	StringArray_Insert_InPlace
 
 
 
