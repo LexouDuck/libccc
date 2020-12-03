@@ -43,7 +43,7 @@ HEADER_CPP
 **	It is also recommended to have this number be a power of 2, as it can be
 **	occasionally faster to manage arrays of such sizes on certain machines.
 */
-#define BUFF_SIZE 2048
+#define BUFF_SIZE	(2048)
 
 //! File descriptor integer type for libft_io functions
 /*!
@@ -58,9 +58,9 @@ typedef int		t_fd;
 **	Define the 3 standard (std) streams of data - these numbers are special
 **	file descriptors used to read from and write to the terminal commandline.
 */
-#define STDIN	(t_fd)0	//!< Special file descriptor (0), refers to terminal input stream
-#define STDOUT	(t_fd)1	//!< Special file descriptor (1), refers to terminal output stream
-#define STDERR	(t_fd)2	//!< Special file descriptor (2), refers to terminal error stream
+#define STDIN	((t_fd)0)	//!< Special file descriptor (0), refers to terminal input stream
+#define STDOUT	((t_fd)1)	//!< Special file descriptor (1), refers to terminal output stream
+#define STDERR	((t_fd)2)	//!< Special file descriptor (2), refers to terminal error stream
 
 /*!
 **	Define some useful string literals for commandline output colors.
@@ -89,11 +89,11 @@ typedef int		t_fd;
 	#define PRINTF_U64		"%llu"
 #else
 	#ifdef __MINGW32__
-		#define PRINTF_S64		"%ld"
-		#define PRINTF_U64		"%I64llu"
+		#define PRINTF_S64	"%ld"
+		#define PRINTF_U64	"%I64llu"
 	#else
-		#define PRINTF_S64		"%ld"
-		#define PRINTF_U64		"%lu"
+		#define PRINTF_S64	"%ld"
+		#define PRINTF_U64	"%lu"
 	#endif
 #endif
 #define PRINTF_SIZE		"%zu"

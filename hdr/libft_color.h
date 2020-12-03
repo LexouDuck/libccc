@@ -34,15 +34,15 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-# define COLOR_ARGB16_A	0x8000 //!< 0b 10000000 00000000	bitmask for the 16-bit color's alpha channel (0 or 1)
-# define COLOR_ARGB16_B	0x7C00 //!< 0b 01111100 00000000	bitmask for the 16-bit color's blue channel  (0-31)
-# define COLOR_ARGB16_G	0x03E0 //!< 0b 00000011 11100000	bitmask for the 16-bit color's green channel (0-31)
-# define COLOR_ARGB16_R	0x001F //!< 0b 00000000 00011111	bitmask for the 16-bit color's red channel	 (0-31)
+# define COLOR_ARGB16_A	(0x8000)	//!< 0b 10000000 00000000	bitmask for the 16-bit color's alpha channel (0 or 1)
+# define COLOR_ARGB16_B	(0x7C00)	//!< 0b 01111100 00000000	bitmask for the 16-bit color's blue channel  (0-31)
+# define COLOR_ARGB16_G	(0x03E0)	//!< 0b 00000011 11100000	bitmask for the 16-bit color's green channel (0-31)
+# define COLOR_ARGB16_R	(0x001F)	//!< 0b 00000000 00011111	bitmask for the 16-bit color's red channel	 (0-31)
 
-# define COLOR_ARGB32_A	0xFF000000	// bitmask for the 32-bit color's alpha channel	(0-255)
-# define COLOR_ARGB32_R	0x00FF0000	// bitmask for the 32-bit color's red channel	(0-255)
-# define COLOR_ARGB32_G	0x0000FF00	// bitmask for the 32-bit color's green channel	(0-255)
-# define COLOR_ARGB32_B	0x000000FF	// bitmask for the 32-bit color's blue channel	(0-255)
+# define COLOR_ARGB32_A	(0xFF000000)	// bitmask for the 32-bit color's alpha channel	(0-255)
+# define COLOR_ARGB32_R	(0x00FF0000)	// bitmask for the 32-bit color's red channel	(0-255)
+# define COLOR_ARGB32_G	(0x0000FF00)	// bitmask for the 32-bit color's green channel	(0-255)
+# define COLOR_ARGB32_B	(0x000000FF)	// bitmask for the 32-bit color's blue channel	(0-255)
 
 
 

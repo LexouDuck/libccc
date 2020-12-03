@@ -76,7 +76,7 @@ HEADER_CPP
 #define FLOAT_BIAS		(1.0e-10)
 
 //	TODO document this
-#define SAMPLE_NB		1024
+#define SAMPLE_NB		(1024)
 
 
 

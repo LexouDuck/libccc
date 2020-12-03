@@ -40,8 +40,11 @@ typedef struct	s_list_int_
 	t_int		*data;		//!< The list of integer values
 	t_u32		length;		//!< The amount of items in the list
 }				s_list_int;
+
 //! Define the value for an empty list of integers
 #define NULL_LIST_INT		((s_list_int){ 0, 0 })
+
+
 
 //! This struct stores a list of float values (contiguously, like an array)
 typedef struct	s_list_float_
@@ -51,6 +54,8 @@ typedef struct	s_list_float_
 }				s_list_float;
 //! Define the value for an empty list of floats
 #define NULL_LIST_FLOAT		((s_list_float){ 0, 0 })
+
+
 
 typedef s_list_int		s_set_int;			//!< This type represents a list of integers with no duplicate values
 typedef s_list_float	s_set_float;		//!< This type represents a list of floats with no duplicate values
@@ -102,7 +107,7 @@ typedef s_list_float	s_sortedlist_float;	//!< This type represents a list of flo
 */
 
 //! The amount of probabilistic approximation for libft_stat functions
-#define PROB_APPROX			0.000001
+#define PROB_APPROX			(0.000001)
 
 //! A struct for the probability mass function describing a discrete random var.
 typedef struct	s_prob_mass_

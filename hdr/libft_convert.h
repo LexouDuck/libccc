@@ -34,13 +34,13 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-#define MAXDIGIT_8BIT	3	//!< The amount of digits needed to represent an 8-bit number in decimal (255)
-#define MAXDIGIT_16BIT	5	//!< The amount of digits needed to represent a 16-bit number in decimal (65535)
-#define MAXDIGIT_32BIT	10	//!< The amount of digits needed to represent a 32-bit number in decimal (4294967295)
-#define MAXDIGIT_64BIT	20	//!< The amount of digits needed to represent a 64-bit number in decimal (18446744073709551615)
+#define MAXDIGIT_8BIT	( 3)	//!< The amount of digits needed to represent an 8-bit number in decimal (255)
+#define MAXDIGIT_16BIT	( 5)	//!< The amount of digits needed to represent a 16-bit number in decimal (65535)
+#define MAXDIGIT_32BIT	(10)	//!< The amount of digits needed to represent a 32-bit number in decimal (4294967295)
+#define MAXDIGIT_64BIT	(20)	//!< The amount of digits needed to represent a 64-bit number in decimal (18446744073709551615)
 
-#define FLOAT_THRESHOLD_HUGE	1e+10
-#define FLOAT_THRESHOLD_TINY	1e-10
+#define FLOAT_THRESHOLD_HUGE	(1e+10)
+#define FLOAT_THRESHOLD_TINY	(1e-10)
 
 
 
