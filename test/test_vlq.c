@@ -5,7 +5,7 @@
 
 
 
-int		test_vlq(void)
+int		testsuite_vlq(void)
 {
 	print_suite_title("vlq");
 

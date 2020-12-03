@@ -6,7 +6,25 @@
 
 char const*		strarr_empty[1] = {NULL};
 
-char const*		strarr1_as_str = "Les sanglots longs\nDes violons\n\tDe l'automne\nBlessent mon cœur\nD'une langueur\n\tMonotone.\nTout suffocant\nEt blême, quand\n\tSonne l'heure,\nJe me souviens\nDes jours anciens\n\tEt je pleure;\nEt je m'en vais\nAu vent mauvais\n\tQui m'emporte\nDeçà, delà,\nPareil à la\n\tFeuille morte.";
+char const*		strarr1_as_str =
+"Les sanglots longs\
+\nDes violons\
+\n\tDe l'automne\
+\nBlessent mon cœur\
+\nD'une langueur\
+\n\tMonotone.\
+\nTout suffocant\
+\nEt blême, quand\
+\n\tSonne l'heure,\
+\nJe me souviens\
+\nDes jours anciens\
+\n\tEt je pleure;\
+\nEt je m'en vais\
+\nAu vent mauvais\
+\n\tQui m'emporte\
+\nDeçà, delà,\
+\nPareil à la\
+\n\tFeuille morte.";
 char const*		strarr1_A[19] =
 {
 	"Les sanglots longs",
@@ -84,10 +102,8 @@ char const*		strarr4_C[9] = {"", "", "bb", "", "", "bb", "", "", NULL};
 */
 
 
-/*
-char	**ft_strarrlen(char const *str, char c);
-*/
 
+#ifdef			ft_strarrlen
 void	print_test_strarrlen(char const* test_name, int can_segfault,
 		t_size			expecting,
 		char const**	strarr)
@@ -110,13 +126,11 @@ void	test_strarrlen()
 	print_test_strarrlen("strarrlen",				FALSE,		8,							strarr4_C);
 	print_test_strarrlen("strarrlen (null strarr)",	TRUE,		-1,							NULL);
 }
+#endif
 
 
 
-/*
-char	**ft_strsplit_char(char const *str, char c);
-*/
-
+#ifdef			ft_strsplit_char
 void	print_test_strsplit_char(char const* test_name, int can_segfault,
 		char const**	expecting,
 		char const*		str,
@@ -136,11 +150,11 @@ void	test_strsplit_char()
 	print_test_strsplit_char("strsplit_char",				FALSE,		strarr4_A,					strarr4_as_str,		'a');
 	print_test_strsplit_char("strsplit_char (null str)",	TRUE,		(char const **)&segstr,		NULL,				'a');
 }
+#endif
 
-/*
-char	**ft_strsplit_charset(char const * str, char const * seps);
-*/
 
+
+#ifdef			ft_strsplit_charset
 void	print_test_strsplit_charset(char const* test_name, int can_segfault,
 		char const**	expecting,
 		char const*		str,
@@ -167,12 +181,11 @@ void	test_strsplit_charset()
 	print_test_strsplit_charset("strsplit_charset (null seps)",	TRUE,		(char const**)&segstr,	strarr1_as_str,				NULL);
 	print_test_strsplit_charset("strsplit_charset (both null)",	TRUE,		(char const**)&segstr,	NULL,						NULL);
 }
+#endif
 
 
-/*
-char	**ft_strsplit_str(char const * str, char const * seps);
-*/
 
+#ifdef			ft_strsplit_str
 void	print_test_strsplit_str(char const* test_name, int can_segfault,
 		char const**	expecting,
 		char const*		str,
@@ -197,13 +210,11 @@ void	test_strsplit_str()
 	print_test_strsplit_str("strsplit_str (null seps)",	TRUE,		(char const **)&segstr,	strarr1_as_str,		NULL);
 	print_test_strsplit_str("strsplit_str (both null)",	TRUE,		(char const **)&segstr,	NULL,				NULL);
 }
+#endif
 
 
 
-/*
-char	**ft_strarrjoin(char const *str, char c);
-*/
-
+#ifdef			ft_strarrjoin
 void	print_test_strarrjoin(char const* test_name, int can_segfault,
 		char const*		expecting,
 		char const**	strarr,
@@ -227,40 +238,68 @@ void	test_strarrjoin()
 	print_test_strarrjoin("strarrjoin (null sep)",		TRUE,		segstr,				strarr3,	NULL);
 	print_test_strarrjoin("strarrjoin (both null)",		TRUE,		segstr,				NULL,		NULL);
 }
+#endif
 
 
 
-
-
-
-int		test_stringarray(void)
+int		testsuite_stringarray(void)
 {
 	print_suite_title("stringarray");
 
 	print_nonstd();
 
+#ifdef ft_strarrlen
 	test_strarrlen();
+#endif
 
+#ifdef ft_strarrnew
 //	test_strarrnew();
+#endif
+#ifdef ft_strarrcnew
 //	test_strarrcnew();
+#endif
+#ifdef ft_strarrdel
 //	test_strarrdel();
+#endif
 
+#ifdef ft_strsplit_char
 	test_strsplit_char();
+#endif
+#ifdef ft_strsplit_charset
 	test_strsplit_charset();
+#endif
+#ifdef ft_strsplit_str
 	test_strsplit_str();
+#endif
+#ifdef ft_strdivide
 //	test_strdivide();
+#endif
 
+#ifdef ft_strarrcount_char
 //	test_strarrcount_char();
+#endif
+#ifdef ft_strarrcount_charset
 //	test_strarrcount_charset();
+#endif
+#ifdef ft_strarrcount_string
 //	test_strarrcount_string();
+#endif
 
+#ifdef ft_strarrpad_l
 //	test_strarrpad_l();
+#endif
 
+#ifdef ft_strarrsub
 //	test_strarrsub();
+#endif
 
+#ifdef ft_strarrmap
 //	test_strarrmap();
+#endif
 
+#ifdef ft_strarrjoin
 	test_strarrjoin();
+#endif
 
 	return (0);
 }

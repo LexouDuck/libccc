@@ -82,18 +82,18 @@ static void	init(void)
 	// default every option to FALSE
 	memset(&g_test.flags, 0, sizeof(s_test_flags));
 
-	g_test.suites[0x0] = (s_test_suite){ FALSE, "memory",		test_memory };
-	g_test.suites[0x1] = (s_test_suite){ FALSE, "char",			test_char };
-	g_test.suites[0x2] = (s_test_suite){ FALSE, "string",		test_string };
-	g_test.suites[0x3] = (s_test_suite){ FALSE, "stringarray",	test_stringarray };
-	g_test.suites[0x4] = (s_test_suite){ FALSE, "convert",		test_convert };
-	g_test.suites[0x5] = (s_test_suite){ FALSE, "color",		test_color };
-	g_test.suites[0x6] = (s_test_suite){ FALSE, "list",			tess_list };
-	g_test.suites[0x7] = (s_test_suite){ FALSE, "math",			test_math };
-	g_test.suites[0x8] = (s_test_suite){ FALSE, "stat",			test_stat };
-	g_test.suites[0x9] = (s_test_suite){ FALSE, "random",		test_random };
-	g_test.suites[0xA] = (s_test_suite){ FALSE, "vlq",			test_vlq };
-	g_test.suites[0xB] = (s_test_suite){ FALSE, "io",			test_io };
+	g_test.suites[0x0] = (s_test_suite){ FALSE, "memory",		testsuite_memory };
+	g_test.suites[0x1] = (s_test_suite){ FALSE, "char",			testsuite_char };
+	g_test.suites[0x2] = (s_test_suite){ FALSE, "string",		testsuite_string };
+	g_test.suites[0x3] = (s_test_suite){ FALSE, "stringarray",	testsuite_stringarray };
+	g_test.suites[0x4] = (s_test_suite){ FALSE, "convert",		testsuite_convert };
+	g_test.suites[0x5] = (s_test_suite){ FALSE, "color",		testsuite_color };
+	g_test.suites[0x6] = (s_test_suite){ FALSE, "list",			testsuite_list };
+	g_test.suites[0x7] = (s_test_suite){ FALSE, "math",			testsuite_math };
+	g_test.suites[0x8] = (s_test_suite){ FALSE, "stat",			testsuite_stat };
+	g_test.suites[0x9] = (s_test_suite){ FALSE, "random",		testsuite_random };
+	g_test.suites[0xA] = (s_test_suite){ FALSE, "vlq",			testsuite_vlq };
+	g_test.suites[0xB] = (s_test_suite){ FALSE, "io",			testsuite_io };
 
 	g_test.args[0] = (s_test_arg){ NULL,					'h', "help",			"If provided, display only the program usage help and exit." };
 	g_test.args[1] = (s_test_arg){ handle_arg_verbose,		'v', "verbose",			"If provided, output each test result (as either 'OK!' or 'ERROR: return was _')." };

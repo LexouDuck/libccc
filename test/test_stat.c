@@ -9,7 +9,7 @@
 
 
 
-int		test_stat(void) // TODO increment total tests counter for these tests
+int		testsuite_stat(void) // TODO increment total tests counter for these tests
 {
 	print_suite_title("stat");
 

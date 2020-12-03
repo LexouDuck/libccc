@@ -156,18 +156,18 @@ void	print_timer_result(s_timer* timer, t_s64 compare);
 /*
 **	Test suite functions
 */
-int		test_memory(void);
-int		test_char(void);
-int		test_string(void);
-int		test_stringarray(void);
-int		test_convert(void);
-int		test_color(void);
-int		tess_list(void);
-int		test_math(void);
-int		test_stat(void);
-int		test_random(void);
-int		test_vlq(void);
-int		test_io(void);
+int		testsuite_memory(void);
+int		testsuite_char(void);
+int		testsuite_string(void);
+int		testsuite_stringarray(void);
+int		testsuite_convert(void);
+int		testsuite_color(void);
+int		testsuite_list(void);
+int		testsuite_math(void);
+int		testsuite_stat(void);
+int		testsuite_random(void);
+int		testsuite_vlq(void);
+int		testsuite_io(void);
 
 /*
 **	Global variables used in tests

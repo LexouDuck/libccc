@@ -5,9 +5,7 @@
 
 
 
-/*
-**	void*	ft_memalloc(t_size size);
-*/
+#ifdef			ft_memalloc
 void	print_test_memalloc(char const* test_name, int can_segfault,
 		t_size n)
 {
@@ -22,12 +20,11 @@ void	test_memalloc(void)
 //	| TEST FUNCTION    | TEST NAME              |CAN SEGV|TEST ARGS
 	// TODO
 }
+#endif
 
 
 
-/*
-**	void*	ft_memnew(t_size size);
-*/
+#ifdef			ft_memnew
 void	print_test_memnew(char const* test_name, int can_segfault,
 		t_size n)
 {
@@ -44,12 +41,11 @@ void	test_memnew(void)
 	print_test_memnew("memnew (n = 0x10000)",	FALSE,	0x10000);
 	print_test_memnew("memnew (n = 0)      ",	FALSE,	0);
 }
+#endif
 
 
 
-/*
-**	void	ft_memfree(void **ptr);
-*/
+#ifdef			ft_memfree
 void	print_test_memfree(char const* test_name, int can_segfault,
 		void *ptr)
 {
@@ -69,12 +65,11 @@ void	test_memfree(void)
 	print_test_memfree("memfree (null ptr)",	FALSE,	NULL);
 */
 }
+#endif
 
 
 
-/*
-**	void	ft_memdel(void **ptr);
-*/
+#ifdef			ft_memdel
 void	print_test_memdel(char const* test_name, int can_segfault,
 		void **ptr)
 {
@@ -93,12 +88,11 @@ void	test_memdel(void)
 //	print_test_memdel("memdel (null arg)",	FALSE,	&test); // TODO figure out how to recover from this
 //	print_test_memdel("memdel (null ptr)",	FALSE,	NULL); // TODO figure out how to recover from this
 }
+#endif
 
 
 
-/*
-**	void*	ft_memset(void *ptr, int byte, t_size n);
-*/
+#ifdef			ft_memset
 void	print_test_memset(char const* test_name, int can_segfault,
 		char* dest_libft,
 		char* dest_libc,
@@ -126,18 +120,16 @@ void	test_memset(void)
 	print_test_memset("memset (n = 0)  ",    FALSE,	str1,       str2,       '\0',   0);
 	print_test_memset("memset (null ptr)", TRUE, 	str1,       str2,       '_',    5);
 }
+#endif
 
 
 
-/*
-**	void	ft_memclr(void *ptr, t_size n);
-*/
+#ifdef			ft_memclr
 // NB: this alias is defined because this function has a different name in libft
 #ifdef __MINGW32__
 static inline void	memclr(void *ptr, t_size n) { memset(ptr, 0, n); }
 #else
-#define memclr(dest, n) \
-		bzero(dest, n)
+#define memclr(dest, n)	bzero(dest, n)
 #endif
 void	print_test_memclr(char const* test_name, int can_segfault,
 		char* dest_libft,
@@ -165,12 +157,11 @@ void	test_memclr(void)
 	print_test_memclr("memclr/bzero (n = 0)",   	FALSE,	str1,       str2,       0);
 	print_test_memclr("memclr/bzero (null ptr)",	TRUE, 	NULL,       NULL,       2);
 }
+#endif
 
 
 
-/*
-**	void*	ft_memcpy(void *dest, const void *src, t_size n);
-*/
+#ifdef			ft_memcpy
 void	print_test_memcpy(char const* test_name, int can_segfault,
 		char* dest_libft,
 		char* dest_libc,
@@ -205,12 +196,11 @@ void	test_memcpy(void)
 	print_test_memcpy("memcpy (both null) ", TRUE, 	NULL, NULL, NULL,  test2_len);
 	// TODO add overlapping memory test
 }
+#endif
 
 
 
-/*
-**	void*	ft_memccpy(void *dest, const void *src, int byte, t_size n);
-*/
+#ifdef			ft_memccpy
 void	print_test_memccpy(char const* test_name, int can_segfault,
 		char* dest_libft,
 		char* dest_libc,
@@ -248,12 +238,11 @@ void	test_memccpy(void)
 	print_test_memccpy("memccpy (both null)",	TRUE, 	NULL, NULL, NULL,  'e',  5);
 	// TODO add overlapping memory test
 }
+#endif
 
 
 
-/*
-**	void*	ft_memmove(void *dest, const void *src, t_size n);
-*/
+#ifdef			ft_memmove
 void	print_test_memmove(char const* test_name, int can_segfault, int show_dest_arg,
 		char* dest_libft,
 		char* dest_libc,
@@ -289,12 +278,11 @@ void	test_memmove(void)
 	print_test_str(NULL,                    "memmove return", sra,   srb,   FALSE);
 */
 }
+#endif
 
 
 
-/*
-**	void*	ft_memchr(const void *ptr, t_u8 byte, t_size n);
-*/
+#ifdef			ft_memchr
 void	print_test_memchr(char const* test_name, int can_segfault,
 		void const* ptr,
 		t_u8 byte,
@@ -319,12 +307,11 @@ void	test_memchr(void)
 	print_test_memchr("memchr (n = 0) ",   FALSE,	test1,    'u',  0);
 	print_test_memchr("memchr (null ptr)", TRUE, 	NULL,     'c',  4);
 }
+#endif
 
 
 
-/*
-**	int		ft_memcmp(const void *ptr1, const void *ptr2, t_size n);
-*/
+#ifdef			ft_memcmp
 void	print_test_memcmp(char const* test_name, int can_segfault,
 		char const* ptr1,
 		char const* ptr2,
@@ -363,12 +350,11 @@ void	test_memcmp(void)
 	// so they actually return *(int*)nra - *(int*)nrb -> not just considering memory as
 	// one continous sequence of bytes, like is implied in the man pages for memcmp().
 }
+#endif
 
 
 
-/*
-**	void*	ft_memdup(void const* ptr, t_size n);
-*/
+#ifdef			fthich
 // TODO check on which platforms this function exists, if any
 void	print_test_memdup(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -399,12 +385,11 @@ void	test_memdup(void)
 	print_test_memdup("memdup (n > srclen)", TRUE,	test1,		test1, 0);
 	print_test_memdup("memdup (null ptr)", 	 TRUE,	NULL, 		NULL,  test1_len);
 }
+#endif
 
 
 
-/*
-**	int		ft_memswap(void *ptr1, void *ptr2, t_size size);
-*/
+#ifdef			ft_memswap
 void	print_test_memswap(void)
 {
 	s_timer t = {0};
@@ -416,12 +401,11 @@ void	test_memswap(void)
 //	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
 //	TODO
 }
+#endif
 
 
 
-/*
-**	void	ft_memrep(void *ptr, t_u8 old, t_u8 new, t_size n);
-*/
+#ifdef			ft_memrep
 void	print_test_memrep(char const* test_name, int can_segfault,
 		char const* expecting,
 		void* ptr,
@@ -456,12 +440,11 @@ void	test_memrep(void)
 	free(tst2);
 	free(tst3);
 }
+#endif
 
 
 
-/*
-**	t_u64	ft_getbits(t_u64 value, int bit, int length);
-*/
+#ifdef			ft_getbits
 void	print_test_getbits(void)
 {
 	s_timer t = {0};
@@ -473,37 +456,68 @@ void	test_getbits(void)
 //	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
 //	TODO
 }
+#endif
 
 
 
-int		test_memory(void)
+int		testsuite_memory(void)
 {
 	print_suite_title("memory");
 
+#ifdef ft_memset
 	test_memset();
+#endif
+#ifdef ft_memclr
 	test_memclr(); // = bzero
+#endif
 
+#ifdef ft_memcpy
 	test_memcpy();
+#endif
+#ifdef ft_memccpy
 	test_memccpy();
+#endif
+#ifdef ft_memmove
 	test_memmove();
+#endif
 
+#ifdef ft_memchr
 	test_memchr();
+#endif
+#ifdef ft_memcmp
 	test_memcmp();
+#endif
 
 	print_nonstd();
 
+#ifdef ft_memalloc
 	test_memalloc();
+#endif
+#ifdef ft_memnew
 	test_memnew();
+#endif
+#ifdef ft_memfree
 //	test_memfree();
+#endif
+#ifdef ft_memdel
 	test_memdel();
+#endif
 
+#ifdef ft_memdup
 	test_memdup();
+#endif
 
+#ifdef ft_memswap
 //	test_memswap();
+#endif
 
+#ifdef ft_memrep
 	test_memrep();
+#endif
 
+#ifdef ft_getbits
 //	test_getbits();
+#endif
 
 	printf("\n");
 	return (OK);

@@ -5,9 +5,7 @@
 
 
 
-/*
-**	s_list	*ft_lstnew(void const *item, t_size item_size);
-*/
+#ifdef			ft_lstnew
 void	print_test_lstnew(char const* test_name, int can_segfault,
 		char const* expecting,
 		void* item,
@@ -30,12 +28,11 @@ void	test_lstnew(void)
 	print_test_lstnew("lstnew (empty str)",	FALSE,  "",           "",            1);
 	print_test_lstnew("lstnew (null  ptr)",	TRUE,   NULL,         NULL,          5);
 }
+#endif
 
 
 
-/*
-**	void	ft_lstadd(s_list **alst, s_list *elem);
-*/
+#ifdef			ft_lstadd
 void	print_test_lstadd(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list** alst,
@@ -59,12 +56,11 @@ void	test_lstadd(void)
 	print_test_lst("lstadd", "lstadd", lst_0, expect, FALSE);
 */
 }
+#endif
 
 
 
-/*
-**	void	ft_lstappend(s_list **alst, s_list *elem);
-*/
+#ifdef			ft_lstappend
 void	print_test_lstappend(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list **alst, s_list *elem)
@@ -89,12 +85,11 @@ void	test_lstappend(void)
 		ft_putstr("\nExpected:\n4F 6D 61 65 00\n20 77 61 20 00\n6D 6F 75 20 00\n73 68 69 6E 64 65 69 72 75 2E 00\n00 00 00 00\n00 00 00 00\n9A 02 00 00\n09 03 00 00\n2D 00 00 00\n");
 */
 }
+#endif
 
 
 
-/*
-**	void	ft_lstinsert(s_list **alst, s_list *elem, t_u32 index);
-*/
+#ifdef			ft_lstinsert
 void	print_test_lstinsert(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list **alst,
@@ -113,12 +108,11 @@ void	test_lstinsert(void)
 /*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
 //	TODO
 }
+#endif
 
 
 
-/*
-**	s_list	*ft_lstcpy(s_list *lst);
-*/
+#ifdef			ft_lstcpy
 void	print_test_lstcpy(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list *lst)
@@ -136,12 +130,11 @@ void	test_lstcpy(void)
 /*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
 //	TODO
 }
+#endif
 
 
 
-/*
-**	void	ft_lstpop(s_list **alst, void (*del)(void *, t_size));
-*/
+#ifdef			ft_lstpop
 void	print_test_lstpop(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list **alst,
@@ -159,12 +152,11 @@ void	test_lstpop(void)
 /*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
 //	TODO
 }
+#endif
 
 
 
-/*
-**	void	ft_lstdelone(s_list **alst, void (*del)(void *, t_size));
-*/
+#ifdef			ft_lstdelone
 void	print_test_lstdelone(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list **alst,
@@ -215,12 +207,11 @@ void	test_lstdelone(void)
 		}
 */
 }
+#endif
 
 
 
-/*
-**	void	ft_lstdel(s_list **alst, void (*del)(void *, t_size));
-*/
+#ifdef			ft_lstdel
 void	print_test_lstdel(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list **alst,
@@ -263,12 +254,11 @@ void	test_lstdel(void)
 		}
 */
 }
+#endif
 
 
 
-/*
-**	t_u32	ft_lstsize(s_list *lst);
-*/
+#ifdef			ft_lstsize
 void	print_test_lstsize(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list *lst)
@@ -291,12 +281,11 @@ void	test_lstsize(void)
 		ft_putstr("\nExpected : 9\n");
 */
 }
+#endif
 
 
 
-/*
-**	s_list	*ft_lstget(s_list *lst, t_u32 index);
-*/
+#ifdef			ft_lstget
 void	print_test_lstget(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list *lst,
@@ -315,12 +304,11 @@ void	test_lstget(void)
 /*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
 //	TODO
 }
+#endif
 
 
 
-/*
-**	s_list	*ft_lstfind(s_list *lst, void const* query);
-*/
+#ifdef			ft_lstfind
 void	print_test_lstfind(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list *lst,
@@ -339,12 +327,11 @@ void	test_lstfind(void)
 /*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
 //	TODO
 }
+#endif
 
 
 
-/*
-**	s_list	*ft_lstsub(s_list *lst, t_u32 index, t_u32 n);
-*/
+#ifdef			ft_lstsub
 void	print_test_lstsub(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list *lst,
@@ -364,12 +351,11 @@ void	test_lstsub(void)
 /*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
 //	TODO
 }
+#endif
 
 
 
-/*
-**	void	ft_lstiter(s_list *lst, void (*f)(s_list *elem));
-*/
+#ifdef			ft_lstiter
 void	print_test_lstiter(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list *lst,
@@ -391,10 +377,11 @@ void	test_lstiter(void)
 	print_test_lst("lstiter", "lstiter", a_lst, expect_lower, FALSE);
 */
 }
+#endif
 
-/*
-**	void	ft_lstiteri(s_list *lst, void (*f)(s_list *elem, t_u32 index));
-*/
+
+
+#ifdef			ft_lstiteri
 void	print_test_lstiteri(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list *lst,
@@ -416,12 +403,11 @@ void	test_lstiteri(void)
 	print_test_lst("lstiteri", "lstiteri", a_lst, expect_lower, FALSE);
 */
 }
+#endif
 
 
 
-/*
-**	s_list	*ft_lstmap(s_list *lst, s_list *(*f)(s_list *elem));
-*/
+#ifdef			ft_lstmap
 void	print_test_lstmap(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list *lst,
@@ -443,10 +429,11 @@ void	test_lstmap(void)
 	print_test_lst("lstmap", "lstmap", *a_lst, expect_upper, FALSE);
 */
 }
+#endif
 
-/*
-**	s_list	*ft_lstmapi(s_list *lst, s_list *(*f)(s_list *elem, t_u32 index));
-*/
+
+
+#ifdef			ft_lstmapi
 void	print_test_lstmapi(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list *lst,
@@ -468,12 +455,36 @@ void	test_lstmapi(void)
 	print_test_lst("lstmapi", "lstmapi", *a_lst, expect_upper, FALSE);
 */
 }
+#endif
 
 
 
-/*
-**	void	**ft_lst_to_array(s_list **alst);
-*/
+#ifdef			ft_lstfold
+void	print_test_lstfold(char const* test_name, int can_segfault,
+		char const* expecting)
+{
+	s_timer t = {0};
+	segfault = setjmp(restore);
+	if (!segfault) { timer_clock(&t.start1);
+		ft_lstfold();
+	timer_clock(&t.end1); } else can_segfault |= (1 << 1);
+	print_timer_result(&t, FALSE);
+}
+void	test_lstfold(void)
+{
+/*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
+//	TODO
+	ft_putstr("\nft_lstfold : ");
+	n = 0;
+	ft_lstfold(*a_ilst, &n, ft_add);
+	ft_putnbr(n);
+	ft_putstr("\nExpected : 1488\n");
+}
+#endif
+
+
+
+#ifdef			ft_lst_to_array
 void	print_test_lst_to_array(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list **alst)
@@ -491,12 +502,11 @@ void	test_lst_to_array(void)
 /*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
 //	TODO
 }
+#endif
 
 
 
-/*
-**	s_tuple	*ft_lst_to_tuple(s_list **alst, s_tuple *tuple);
-*/
+#ifdef			ft_lst_to_tuple
 void	print_test_lst_to_tuple(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list **alst,
@@ -515,41 +525,13 @@ void	test_lst_to_tuple(void)
 /*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
 //	TODO
 }
+#endif
 
 
 
-
-
-
-
-
-
-
-
-
+int		testsuite_list(void)
+{
 /*
-**	
-*/
-void	print_test_lst_(char const* test_name, int can_segfault,
-		char const* expecting)
-{
-	s_timer t = {0};
-	segfault = setjmp(restore);
-	if (!segfault) { timer_clock(&t.start1);
-//		ft_lst_();
-	timer_clock(&t.end1); } else can_segfault |= (1 << 1);
-	print_timer_result(&t, FALSE);
-}
-void	test_lst_(void)
-{
-/*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
-//	TODO
-}
-
-
-
-int		tess_list(void)
-{
 	s_list **a_lst;
 	s_list *lst_0;
 	s_list *lst_1;
@@ -559,20 +541,59 @@ int		tess_list(void)
 	char const *expect[]       = { "Omae", " wa ", "mou ", "shindeiru.", NULL };
 	char const *expect_upper[] = { "OMAE", " WA ", "MOU ", "SHINDEIRU.", NULL };
 	char const *expect_lower[] = { "omae", " wa ", "mou ", "shindeiru.", NULL };
-
+*/
 	print_suite_title("list");
 
 	print_nonstd();
 
+#ifdef ft_lstnew
 	test_lstnew();
+#endif
+#ifdef ft_lstadd
+//	test_lstadd();
+#endif
+#ifdef ft_lstappend
+//	test_lstappend();
+#endif
+#ifdef ft_lstinsert
+//	test_lstinsert();
+#endif
+#ifdef ft_lstcpy
+//	test_lstcpy();
+#endif
+#ifdef ft_lstpop
+//	test_lstpop();
+#endif
+#ifdef ft_lstdelone
+//	test_lstdelone();
+#endif
+#ifdef ft_lstdel
+//	test_lstdel();
+#endif
+#ifdef ft_lstsize
+//	test_lstsize();
+#endif
+#ifdef ft_lstget
+//	test_lstget();
+#endif
+#ifdef ft_lstfind
+//	test_lstfind();
+#endif
+#ifdef ft_lstsub
+//	test_lstsub();
+#endif
+#ifdef ft_lstiter
+//	test_lstiter();
+#endif
+#ifdef ft_lstmap
+//	test_lstmap();
+#endif
+#ifdef ft_lst_to_array
+//	test_lst_to_array();
+#endif
+#ifdef ft_lst_to_tuple
+//	test_lst_to_tuple();
+#endif
 
-/*
-	//	void	*ft_lstfold(s_list *lst, void *acc, void *(*f)(void *, void *));
-		ft_putstr("\nft_lstfold : ");
-		n = 0;
-		ft_lstfold(*a_ilst, &n, ft_add);
-		ft_putnbr(n);
-		ft_putstr("\nExpected : 1488\n");
-*/
 	return (OK);
 }

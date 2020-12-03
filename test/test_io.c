@@ -5,7 +5,7 @@
 
 
 
-int		test_io(void)
+int		testsuite_io(void)
 {
 	print_suite_title("io");
 

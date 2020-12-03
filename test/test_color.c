@@ -5,10 +5,7 @@
 
 
 
-/*
-**	char*	ft_color_(char const* str, int c);
-*/
-/*
+#ifdef			ft_color_
 void	print_test_color_(char const* test_name, int can_segfault,
 		char const* str,
 		char c)
@@ -29,8 +26,7 @@ void	test_color_(void)
 	print_test_color_("color_ (null query)",	FALSE, test3, '\0');
 	print_test_color_("color_ (null ptr)  ",	TRUE,  NULL,  'm');
 }
-*/
-
+#endif
 
 
 
@@ -38,8 +34,7 @@ void	test_color_(void)
 
 
 
-
-int		test_color(void)
+int		testsuite_color(void)
 {
 	print_suite_title("color");
 

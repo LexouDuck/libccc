@@ -14,9 +14,7 @@
 ** ************************************************************************** *|
 */
 
-/*
-**	char*	ft_strnew(t_size size);
-*/
+#ifdef			ft_strnew
 void	print_test_strnew(char const* test_name, int can_segfault,
 		t_size n)
 {
@@ -33,12 +31,11 @@ void	test_strnew(void)
 	print_test_strnew("strnew (n = 0xFFFF)", FALSE,	0xFFFF);
 	print_test_strnew("strnew (n = 0)     ", FALSE,	0);
 }
+#endif
 
 
 
-/*
-**	void	ft_strset(char *str, char c);
-*/
+#ifdef			ft_strset
 void	print_test_strset(char const* test_name, int can_segfault,
 		char const* expecting,
 		char* dest_libft,
@@ -60,12 +57,10 @@ void	test_strset(void)
 	print_test_strset("strset (c = '\\0')", FALSE, "\0\0\0", str1, str2, '\0');
 	print_test_strset("strset (null ptr)",  TRUE,  segstr,   NULL, NULL, 'a');
 }
+#endif
 
 
-
-/*
-**	void	ft_strclr(char *str);
-*/
+#ifdef			ft_strclr
 void	print_test_strclr(char const* test_name, int can_segfault,
 		char const* expecting,
 		char* dest_libft,
@@ -86,12 +81,10 @@ void	test_strclr(void)
 	print_test_strclr("strclr",           	FALSE,	"",     str1, str2);
 	print_test_strclr("strclr (null ptr)",	TRUE, 	segstr, NULL, NULL);
 }
+#endif
 
 
-
-/*
-**	void	ft_strdel(char* *a_str);
-*/
+#ifdef			ft_strdel
 void	print_test_strdel(char const* test_name, int can_segfault,
 		char const* expecting,
 		char** dest_libft,
@@ -110,12 +103,10 @@ void	test_strdel(void)
 	print_test_strdel("strdel",           	FALSE,	NULL, &str1, &str2);
 	print_test_strdel("strdel (null ptr)",	TRUE, 	NULL, NULL,  NULL);
 }
+#endif
 
 
-
-/*
-**	char*	ft_strdup(char const* str);
-*/
+#ifdef			ft_strdup
 void	print_test_strdup(char const* test_name, int can_segfault,
 		char const* src)
 {
@@ -135,12 +126,11 @@ void	test_strdup(void)
 	print_test_strdup("strdup (empty str)",	FALSE,	"");
 //	print_test_strdup("strdup (null str) ",	TRUE, 	NULL); // TODO The test here fails because there is an intentional design difference
 }
+#endif
 
 
 
-/*
-**	char*	ft_strcpy(char* dest, char const* src);
-*/
+#ifdef			ft_strcpy
 void	print_test_strcpy(char const* test_name, int can_segfault,
 		char* dest_libft,
 		char* dest_libc,
@@ -166,12 +156,11 @@ void	test_strcpy(void)
 	print_test_strcpy("strcpy (both null)",	TRUE, 	NULL, NULL, NULL);
 	// TODO add overlapping memory test
 }
+#endif
 
 
 
-/*
-**	char*	ft_strncpy(char* dest, char const* src, t_size n);
-*/
+#ifdef			ft_strncpy
 void	print_test_strncpy(char const* test_name, int can_segfault,
 		char* dest_libft,
 		char* dest_libc,
@@ -201,12 +190,11 @@ void	test_strncpy(void)
 	print_test_strncpy("strncpy (both null)",     	TRUE, 	NULL, NULL, NULL,              5);
 	// TODO add overlapping memory test
 }
+#endif
 
 
 
-/*
-**	t_size	ft_strlcpy(char* dest, char const* src, t_size size);
-*/
+#ifdef			ft_strlcpy
 void	print_test_strlcpy(char const* test_name, int can_segfault,
 		t_size expecting,
 		char const * expecting_dest,
@@ -246,12 +234,11 @@ void	test_strlcpy(void)
 	print_test_strlcpy("strlcpy (both null)",	 SEGV,	0,  NULL,           NULL, NULL, NULL,         5);
 	// TODO add overlapping memory test
 }
+#endif
 
 
 
-/*
-**	char*	ft_strcat(char* dest, char const* src);
-*/
+#ifdef			ft_strcat
 void	print_test_strcat(char const* test_name, int can_segfault,
 		char* dest_libft,
 		char* dest_libc,
@@ -279,12 +266,11 @@ void	test_strcat(void)
 	print_test_strcat("strcat (both null)",	TRUE,	NULL, NULL, NULL);
 	// TODO add overlapping memory test
 }
+#endif
 
 
 
-/*
-**	char*	ft_strncat(char* dest, char const* src, t_size n);
-*/
+#ifdef			ft_strncat
 void	print_test_strncat(char const* test_name, int can_segfault,
 		char* dest_libft,
 		char* dest_libc,
@@ -316,12 +302,11 @@ void	test_strncat(void)
 	print_test_strncat("strncat (both null)",	TRUE,	NULL, NULL, NULL,       5);
 	// TODO add overlapping memory test
 }
+#endif
 
 
 
-/*
-**	t_size	ft_strlcat(char* dest, char const* src, t_size size);
-*/
+#ifdef			ft_strlcat
 void	print_test_strlcat(char const* test_name, int can_segfault,
 		t_size expecting,
 		char const * expecting_dest,
@@ -361,6 +346,7 @@ void	test_strlcat(void)
 	print_test_strlcat("strlcat (both null)", SEGV,   0,  NULL,                          NULL, NULL, NULL,         5);
 	// TODO add overlapping memory test
 }
+#endif
 
 
 
@@ -370,11 +356,7 @@ void	test_strlcat(void)
 ** ************************************************************************** *|
 */
 
-
-
-/*
-**	t_size	ft_strlen(char const *str);
-*/
+#ifdef			ft_strlen
 void	print_test_strlen(char const* test_name, int can_segfault,
 		char const* str)
 {
@@ -393,12 +375,10 @@ void	test_strlen(void)
 	print_test_strlen("strlen (empty str)", FALSE,	"");
 	print_test_strlen("strlen (null str) ", TRUE,	NULL);
 }
+#endif
 
 
-
-/*
-**	int		ft_strcmp(char const* str1, char const* str2);
-*/
+#ifdef			ft_strcmp
 void	print_test_strcmp(char const* test_name, int can_segfault,
 		char const* str1,
 		char const* str2)
@@ -424,12 +404,10 @@ void	test_strcmp(void)
 	print_test_strcmp("strcmp (null str2)", TRUE,	test2, NULL);
 	print_test_strcmp("strcmp (both null)", TRUE,	NULL,  NULL);
 }
+#endif
 
 
-
-/*
-**	int		ft_strncmp(char const* str1, char const* str2, t_size n);
-*/
+#ifdef			ft_strncmp
 void	print_test_strncmp(char const* test_name, int can_segfault,
 		char const* str1,
 		char const* str2,
@@ -459,12 +437,10 @@ void	test_strncmp(void)
 	print_test_strncmp("strncmp (null str2)",	TRUE,	test2,     NULL,      5);
 	print_test_strncmp("strncmp (both null)",	TRUE,	NULL,      NULL,      5);
 }
+#endif
 
 
-
-/*
-**	t_bool	ft_strequ(char const* str1, char const* str2);
-*/
+#ifdef			ft_strequ
 void	print_test_strequ(char const* test_name, int can_segfault,
 		int expecting,
 		char const* str1,
@@ -492,12 +468,10 @@ void	test_strequ(void)
 	print_test_strequ("strequ (null str2)", 	SEGV,	FALSE,                       test1, NULL);
 	print_test_strequ("strequ (both null)", 	SEGV,	TRUE,                        NULL,  NULL);
 }
+#endif
 
 
-
-/*
-**	t_bool	ft_strnequ(char const* str1, char const* str2, t_size n)
-*/
+#ifdef			ft_strnequ
 void	print_test_strnequ(char const* test_name, int can_segfault,
 		int expecting,
 		char const* str1,
@@ -528,12 +502,10 @@ void	test_strnequ(void)
 	print_test_strnequ("strnequ (null str2)",	SEGV,	FALSE,                            test1, NULL,  7);
 	print_test_strnequ("strnequ (both null)",	SEGV,	TRUE,                             NULL,  NULL,  7);
 }
+#endif
 
 
-
-/*
-**	t_bool	ft_strhas(char const* str, char const* charset);
-*/
+#ifdef			ft_strhas
 void	print_test_strhas(char const* test_name, int can_segfault,
 		t_bool expecting,
 		char const* str,
@@ -557,12 +529,10 @@ void	test_strhas(void)
 	print_test_strhas("strhas (null charset)",	SEGV,   FALSE,     "sw", NULL);
 	print_test_strhas("strhas (both null)   ",	SEGV,   FALSE,     NULL, NULL);
 }
+#endif
 
 
-
-/*
-**	t_bool	ft_strhasonly(char const* str, char const* charset);
-*/
+#ifdef			ft_strhasonly
 void	print_test_strhasonly(char const* test_name, int can_segfault,
 		t_bool expecting,
 		char const* str,
@@ -587,12 +557,10 @@ void	test_strhasonly(void)
 	print_test_strhasonly("strhasonly (null charset) ",	SEGV,   FALSE,  "sw", NULL);
 	print_test_strhasonly("strhasonly (both null)    ",	SEGV,   FALSE,  NULL, NULL);
 }
+#endif
 
 
-
-/*
-**	t_size	ft_strcount_char(char const* str, char c);
-*/
+#ifdef			ft_strcount_char
 void	print_test_strcount_char(char const* test_name, int can_segfault,
 		t_size expecting,
 		char const* str,
@@ -616,12 +584,10 @@ void	test_strcount_char(void)
 	print_test_strcount_char("strcount_char ('\\0 char')",	FALSE,  0,    "sweg",          '\0');
 	print_test_strcount_char("strcount_char (null str) ",	SEGV,   0,    NULL,            'a');
 }
+#endif
 
 
-
-/*
-**	t_size	ft_strcount_str(char const* str, char const* query);
-*/
+#ifdef			ft_strcount_str
 void	print_test_strcount_str(char const* test_name, int can_segfault,
 		t_size expecting,
 		char const* str,
@@ -649,7 +615,7 @@ void	test_strcount_str(void)
 	print_test_strcount_str("strcount_str (null query) ",	SEGV,   0,         "sw", NULL);
 	print_test_strcount_str("strcount_str (both null)  ",	SEGV,   0,         NULL, NULL);
 }
-
+#endif
 
 
 /*
@@ -658,11 +624,7 @@ void	test_strcount_str(void)
 ** ************************************************************************** *|
 */
 
-
-
-/*
-**	char*	ft_strchr(char const* str, int c);
-*/
+#ifdef			ft_strchr
 void	print_test_strchr(char const* test_name, int can_segfault,
 		char const* str,
 		char c)
@@ -684,12 +646,10 @@ void	test_strchr(void)
 	print_test_strchr("strchr (c = '\\0')  ",	FALSE, test3, '\0');
 	print_test_strchr("strchr (null ptr)  ",	TRUE,  NULL,  'm');
 }
+#endif
 
 
-
-/*
-**	char*	ft_strstr(char const* str, char const* query);
-*/
+#ifdef			ft_strstr
 void	print_test_strstr(char const* test_name, int can_segfault,
 		char const* str,
 		char const* query)
@@ -713,12 +673,10 @@ void	test_strstr(void)
 	print_test_strstr("strstr (null query) ",	TRUE,  test1, NULL);
 	print_test_strstr("strstr (both null)  ",	TRUE,  NULL,  NULL);
 }
+#endif
 
 
-
-/*
-**	char*	ft_strrchr(char const* str, int c);
-*/
+#ifdef			ft_strrchr
 void	print_test_strrchr(char const* test_name, int can_segfault,
 		char const* str,
 		char c)
@@ -740,12 +698,10 @@ void	test_strrchr(void)
 	print_test_strrchr("strrchr (c = '\\0')  ",	FALSE,   test3, '\0');
 	print_test_strrchr("strrchr (null ptr)  ",	TRUE,    NULL,  'm');
 }
+#endif
 
 
-
-/*
-**	char*	ft_strrstr(char const* str, char const* query);
-*/
+#ifdef			ft_strrstr
 void	print_test_strrstr(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str,
@@ -767,12 +723,10 @@ void	test_strrstr(void)
 	print_test_strrstr("strrstr (null query) ",	TRUE,  segstr,             test1, NULL);
 	print_test_strrstr("strrstr (both null)  ",	TRUE,  segstr,             NULL,  NULL);
 }
+#endif
 
 
-
-/*
-**	char*	ft_strnchr(char const* str, char c, t_size n);
-*/
+#ifdef			ft_strnchr
 void	print_test_strnchr(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str,
@@ -797,12 +751,10 @@ void	test_strnchr(void)
 	print_test_strnchr("strnchr (n > len)   ",	FALSE,  NULL,                 test1, '_', test1_len + 32);
 	print_test_strnchr("strnchr (null ptr)  ",	TRUE,   segstr,               NULL,  'm', 16);
 }
+#endif
 
 
-
-/*
-**	char*	ft_strnstr(char const* str, char const* query, t_size n);
-*/
+#ifdef			ft_strnstr
 void	print_test_strnstr(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str,
@@ -834,12 +786,10 @@ void	test_strnstr(void)
 	print_test_strnstr("strnstr (null query) ",	TRUE,  segstr,     test1, NULL,   16);
 	print_test_strnstr("strnstr (both null)  ",	TRUE,  segstr,     NULL,  NULL,   16);
 }
+#endif
 
 
-
-/*
-**	char	*ft_strremove(char const *str, char const *query);
-*/
+#ifdef			ft_strremove
 void	print_test_strremove(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str,
@@ -856,12 +806,11 @@ void	test_strremove(void)
 //	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
 //	TODO
 }
+#endif
 
 
 
-/*
-**	char	*ft_strprint(char const *str);
-*/
+#ifdef			ft_strprint
 void	print_test_strprint(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str)
@@ -877,12 +826,11 @@ void	test_strprint(void)
 //	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
 //	TODO
 }
+#endif
 
 
 
-/*
-**	char	*ft_strrep_char(char const *str, char old, char new);
-*/
+#ifdef			ft_strrep_char
 void	print_test_strrep_char(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str,
@@ -900,12 +848,11 @@ void	test_strrep_char(void)
 //	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
 //	TODO
 }
+#endif
 
 
 
-/*
-**	char	*ft_strrep_charset(char const *str, char const *old, char const *new);
-*/
+#ifdef			ft_strrep_charset
 void	print_test_strrep_charset(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str,
@@ -923,12 +870,11 @@ void	test_strrep_charset(void)
 //	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
 //	TODO
 }
+#endif
 
 
 
-/*
-**	char	*ft_strrep_str(char const *str, char const *old, char const *new);
-*/
+#ifdef			ft_strrep_str
 void	print_test_strrep_str(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str,
@@ -946,6 +892,7 @@ void	test_strrep_string(void)
 //	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
 //	TODO
 }
+#endif
 
 
 
@@ -955,11 +902,7 @@ void	test_strrep_string(void)
 ** ************************************************************************** *|
 */
 
-
-
-/*
-**	char	*ft_strtrim(char const *str, char const *charset);
-*/
+#ifdef			ft_strtrim
 void	print_test_strtrim(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* charset,
@@ -988,12 +931,10 @@ void	test_strtrim(void)
 	print_test_strtrim("strtrim (null charset)   ", TRUE,  segstr,                          NULL, " swag \n");
 	print_test_strtrim("strtrim (both null)      ", TRUE,  segstr,                          NULL, NULL);
 }
+#endif
 
 
-
-/*
-**	char	*ft_strtrim_l(char const *str, char const *charset);
-*/
+#ifdef			ft_strtrim_l
 void	print_test_strtrim_l(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* charset,
@@ -1022,12 +963,10 @@ void	test_strtrim_l(void)
 	print_test_strtrim_l("strtrim_l (null charset)   ", TRUE,  segstr,                          NULL, " swag \n");
 	print_test_strtrim_l("strtrim_l (both null)      ", TRUE,  segstr,                          NULL, NULL);
 }
+#endif
 
 
-
-/*
-**	char	*ft_strtrim_r(char const *str, char const *charset);
-*/
+#ifdef			ft_strtrim_r
 void	print_test_strtrim_r(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* charset,
@@ -1056,12 +995,10 @@ void	test_strtrim_r(void)
 	print_test_strtrim_r("strtrim_r (null charset)   ", TRUE,  segstr,                          NULL, " swag \n");
 	print_test_strtrim_r("strtrim_r (both null)      ", TRUE,  segstr,                          NULL, NULL);
 }
+#endif
 
 
-
-/*
-**	char	*ft_strpad(char const *str, char c, t_size length);
-*/
+#ifdef			ft_strpad
 void	print_test_strpad(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const *str,
@@ -1079,12 +1016,11 @@ void	test_strpad(void)
 //	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
 //	TODO
 }
+#endif
 
 
 
-/*
-**	char	*ft_strpad_l(char const *str, char c, t_size length);
-*/
+#ifdef			ft_strpad_l
 void	print_test_strpad_l(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const *str,
@@ -1102,12 +1038,11 @@ void	test_strpad_l(void)
 //	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
 //	TODO
 }
+#endif
 
 
 
-/*
-**	char	*ft_strpad_r(char const *str, char c, t_size length);
-*/
+#ifdef			ft_strpad_r
 void	print_test_strpad_r(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const *str,
@@ -1125,6 +1060,7 @@ void	test_strpad_r(void)
 //	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
 //	TODO
 }
+#endif
 
 
 
@@ -1134,12 +1070,8 @@ void	test_strpad_r(void)
 ** ************************************************************************** *|
 */
 
-
-
-/*
-**	char	*ft_strrev(char const *str);
-*/
 // TODO check on which platforms this function exists, if any
+#ifdef			ft_strrev
 void	print_test_strrev(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const *str)
@@ -1157,12 +1089,10 @@ void	test_strrev(void)
 	print_test_strrev("strrev (odd len) ",	FALSE, "???inaN",                test2);
 	print_test_strrev("strrev (null ptr)",	TRUE,  segstr,                   NULL);
 }
+#endif
 
 
-
-/*
-**	char	*ft_strjoin(char const *str1, char const *str2);
-*/
+#ifdef			ft_strjoin
 void	print_test_strjoin(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const *str1,
@@ -1182,12 +1112,10 @@ void	test_strjoin(void)
 	print_test_strjoin("strjoin (null str2)",	TRUE,   segstr,                         test1, NULL);
 	print_test_strjoin("strjoin (both null)",	TRUE,   segstr,                         NULL,  NULL);
 }
+#endif
 
 
-
-/*
-**	char	*ft_strinsert(char const *dest, char const *src, t_size offset);
-*/
+#ifdef			ft_strinsert
 void	print_test_strinsert(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const *dest,
@@ -1205,12 +1133,11 @@ void	test_strinsert(void)
 //	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
 //	TODO
 }
+#endif
 
 
 
-/*
-**	char	*ft_strsub(char const *str, t_size offset, t_size n);
-*/
+#ifdef			ft_strsub
 void	print_test_strsub(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const *str,
@@ -1232,6 +1159,7 @@ void	test_strsub(void)
 	print_test_strsub("strsub (offset > str)",	TRUE,  NULL,     test1, 100, 5);
 	print_test_strsub("strsub (null ptr)    ",	TRUE,  segstr,   NULL,  5, 5);
 }
+#endif
 
 
 
@@ -1263,9 +1191,7 @@ char	strtoupper_1on2(t_size i, char c)
 
 
 
-/*
-**	void	ft_striter(char *str, void (*f)(char *));
-*/
+#ifdef			ft_striter
 void	print_test_striter(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str,
@@ -1286,12 +1212,10 @@ void	test_striter(void)
 	print_test_striter("striter (null func)",	TRUE,   segstr,                   "omAe wA mOu ShINDeIRu.", NULL);
 	print_test_striter("striter (both null)",	TRUE,   segstr,                    NULL,                    NULL);
 }
+#endif
 
 
-
-/*
-**	void	ft_striteri(char *str, void (*f)(t_size, char *));
-*/
+#ifdef			ft_striteri
 void	print_test_striteri(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str,
@@ -1312,12 +1236,10 @@ void	test_striteri(void)
 	print_test_striteri("striteri (null func)",	TRUE,   segstr,                   "OMAE WA MOU SHINDEIRU.", NULL);
 	print_test_striteri("striteri (both null)",	TRUE,   segstr,                    NULL,                    NULL);
 }
+#endif
 
 
-
-/*
-**	char*	ft_strmap(char const* str, char (*f)(char));
-*/
+#ifdef			ft_strmap
 void	print_test_strmap(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str,
@@ -1337,12 +1259,10 @@ void	test_strmap(void)
 	print_test_strmap("strmap (null func)",	TRUE,   segstr,                   "omae wa mou shindeiru.", NULL);
 	print_test_strmap("strmap (both null)",	TRUE,   segstr,                    NULL,                    NULL);
 }
+#endif
 
 
-
-/*
-**	char*	ft_strmapi(char const* str, char (*f)(t_size, char));
-*/
+#ifdef			ft_strmapi
 void	print_test_strmapi(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str,
@@ -1362,6 +1282,7 @@ void	test_strmapi(void)
 	print_test_strmapi("strmapi (null func)",	TRUE,   segstr,                   "omae wa mou shindeiru.", NULL);
 	print_test_strmapi("strmapi (both null)",	TRUE,   segstr,                    NULL,                    NULL);
 }
+#endif
 
 
 
@@ -1370,28 +1291,57 @@ void	test_strmapi(void)
 
 
 
-
-int		test_string(void)
+int		testsuite_string(void)
 {
 	print_suite_title("string");
 
+#ifdef ft_strnew
 	test_strnew();
+#endif
+#ifdef ft_strdup
 	test_strdup();
+#endif
+#ifdef ft_strcpy
 	test_strcpy();
+#endif
+#ifdef ft_strncpy
 	test_strncpy();
+#endif
+#ifdef ft_strlcpy
 	test_strlcpy();
+#endif
+#ifdef ft_strcat
 	test_strcat();
+#endif
+#ifdef ft_strncat
 	test_strncat();
+#endif
+#ifdef ft_strlcat
 	test_strlcat();
+#endif
 
+#ifdef ft_strlen
 	test_strlen();
+#endif
+#ifdef ft_strcmp
 	test_strcmp();
+#endif
+#ifdef ft_strncmp
 	test_strncmp();
+#endif
 
+#ifdef ft_strchr
 	test_strchr();
+#endif
+#ifdef ft_strrchr
 	test_strrchr();
+#endif
+#ifdef ft_strstr
 	test_strstr();
+#endif
+#ifdef ft_strnstr
 	test_strnstr();
+#endif
 
 
 
@@ -1399,42 +1349,106 @@ int		test_string(void)
 
 
 
+#ifdef ft_strset
 	test_strset();
+#endif
+#ifdef ft_strclr
 	test_strclr();
+#endif
+#ifdef ft_strdel
 //	test_strdel();
+#endif
+#ifdef ft_strmerge
 //	test_strmerge();
+#endif
+#ifdef ft_strappend
 //	test_strappend();
+#endif
+#ifdef ft_strprepend
 //	test_strprepend();
+#endif
 
+#ifdef ft_strequ
 	test_strequ();
+#endif
+#ifdef ft_strnequ
 	test_strnequ();
+#endif
+#ifdef ft_strhas
 	test_strhas();
+#endif
+#ifdef ft_strhasonly
 	test_strhasonly();
+#endif
+#ifdef ft_strcount_char
 	test_strcount_char();
+#endif
+#ifdef ft_strcount_str
 	test_strcount_str();
+#endif
 
+#ifdef ft_strnchr
 	test_strnchr();
+#endif
+#ifdef ft_strrstr
 	test_strrstr();
+#endif
+#ifdef ft_strprint
 	test_strprint();
+#endif
+#ifdef ft_strrep_char
 //	test_strrep_char();
+#endif
+#ifdef ft_strrep_charset
 //	test_strrep_charset();
+#endif
+#ifdef ft_strrep_str
 //	test_strrep_str();
+#endif
 
+#ifdef ft_strtrim
 	test_strtrim();
+#endif
+#ifdef ft_strtrim_l
 	test_strtrim_l();
+#endif
+#ifdef ft_strtrim_r
 	test_strtrim_r();
+#endif
+#ifdef ft_strpad
 	test_strpad();
+#endif
+#ifdef ft_strpad_l
 	test_strpad_l();
+#endif
+#ifdef ft_strpad_r
 	test_strpad_r();
+#endif
 
+#ifdef ft_strrev
 	test_strrev();
+#endif
+#ifdef ft_strjoin
 	test_strjoin();
+#endif
+#ifdef ft_strinsert
 //	test_strinsert();
+#endif
+#ifdef ft_strsub
 	test_strsub();
+#endif
+#ifdef ft_striter
 	test_striter();
+#endif
+#ifdef ft_striteri
 	test_striteri();
+#endif
+#ifdef ft_strmap
 	test_strmap();
+#endif
+#ifdef ft_strmapi
 	test_strmapi();
+#endif
 
 
 	return (0);

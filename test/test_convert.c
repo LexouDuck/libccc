@@ -20,9 +20,7 @@
 ** ************************************************************************** *|
 */
 
-/*
-**	char*	ft_s8_to_str(t_s8 n);
-*/
+#ifdef			ft_s8_to_str
 void	print_test_s8_to_str(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_s8 number)
@@ -55,12 +53,11 @@ void	test_s8_to_str(void)
 		print_test_s8_to_str("s8_to_str (n < maxdigit)",	FALSE, "-99999",-99999);
 	}
 }
+#endif
 
 
 
-/*
-**	char*	ft_s16_to_str(t_s16 n);
-*/
+#ifdef			ft_s16_to_str
 void	print_test_s16_to_str(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_s16 number)
@@ -90,12 +87,11 @@ void	test_s16_to_str(void)
 		print_test_s16_to_str("s16_to_str (n < maxdigit)",	FALSE, "-9999999",-9999999);
 	}
 }
+#endif
 
 
 
-/*
-**	char*	ft_s32_to_str(t_s32 n);
-*/
+#ifdef			ft_s32_to_str
 void	print_test_s32_to_str(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_s32 number)
@@ -125,12 +121,11 @@ void	test_s32_to_str(void)
 		print_test_s32_to_str("s32_to_str (n < maxdigit)",	FALSE, "-999999999999",-999999999999);
 	}
 }
+#endif
 
 
 
-/*
-**	char*	ft_s64_to_str(t_s64 n);
-*/
+#ifdef			ft_s64_to_str
 void	print_test_s64_to_str(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_s64 number)
@@ -166,12 +161,11 @@ void	test_s64_to_str(void)
 #endif	
 	}
 }
+#endif
 
 
 
-/*
-**	char*	ft_u8_to_str(t_u8 n);
-*/
+#ifdef			ft_u8_to_str
 void	print_test_u8_to_str(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_u8 number)
@@ -197,12 +191,11 @@ void	test_u8_to_str(void)
 		print_test_u8_to_str("u8_to_str (n < maxdigit)",	FALSE, "-99999",-99999);
 	}
 }
+#endif
 
 
 
-/*
-**	char*	ft_u16_to_str(t_u16 n);
-*/
+#ifdef			ft_u16_to_str
 void	print_test_u16_to_str(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_u16 number)
@@ -229,12 +222,11 @@ void	test_u16_to_str(void)
 		print_test_u16_to_str("u16_to_str (n < maxdigit)",	FALSE, "-9999999",-9999999);
 	}
 }
+#endif
 
 
 
-/*
-**	char*	ft_u32_to_str(t_u32 n);
-*/
+#ifdef			ft_u32_to_str
 void	print_test_u32_to_str(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_u32 number)
@@ -263,12 +255,11 @@ void	test_u32_to_str(void)
 		print_test_u32_to_str("u32_to_str (n < maxdigit)",	FALSE, "-999999999999",-999999999999);
 	}
 }
+#endif
 
 
 
-/*
-**	char*	ft_u64_to_str(t_u64 n);
-*/
+#ifdef			ft_u64_to_str
 void	print_test_u64_to_str(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_u64 number)
@@ -299,12 +290,11 @@ void	test_u64_to_str(void)
 #endif
 	}
 }
+#endif
 
 
 
-/*
-**	char*	ft_f32_to_str_p(t_f32 n, t_u8 precision);
-*/
+#ifdef			ft_f32_to_str_p
 void	print_test_f32_to_str_p(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_f32 number,
@@ -371,12 +361,11 @@ void	test_f32_to_str_p(void)
 	print_test_f32_to_str_p("f32_to_str_p (-inf)        ",	FALSE,              "-INFINITY",-INFINITY              , 1);
 	print_test_f32_to_str_p("f32_to_str_p (nan)         ",	FALSE,                    "NaN", NAN                   , 1);
 }
+#endif
 
 
 
-/*
-**	char*	ft_f64_to_str_p(t_f64 n, t_u8 precision);
-*/
+#ifdef			ft_f64_to_str_p
 void	print_test_f64_to_str_p(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_f64 number,
@@ -443,12 +432,11 @@ void	test_f64_to_str_p(void)
 	print_test_f64_to_str_p("f64_to_str_p (-inf)        ",	FALSE,              "-INFINITY",-INFINITY              , 1);
 	print_test_f64_to_str_p("f64_to_str_p (nan)         ",	FALSE,                    "NaN", NAN                   , 1);
 }
+#endif
 
 
 
-/*
-**	char*	ft_size_to_str(t_size n);
-*/
+#ifdef			ft_size_to_str
 void	print_test_size_to_str(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_size number)
@@ -492,12 +480,11 @@ void	test_size_to_str(void)
 #endif
 	}
 }
+#endif
 
 
 
-/*
-**	char*	ft_bool_to_str(t_bool value, t_bool uppercase);
-*/
+#ifdef			ft_bool_to_str
 void	print_test_bool_to_str(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_bool value,
@@ -524,6 +511,7 @@ void	test_bool_to_str(void)
 		print_test_bool_to_str("bool_to_str (n < maxdigit)",	FALSE,  "-TRUE",-999999, TRUE);
 	}
 }
+#endif
 
 
 
@@ -535,9 +523,7 @@ void	test_bool_to_str(void)
 
 
 
-/*
-**	t_s8	ft_str_to_s8(char const *str);
-*/
+#ifdef			ft_str_to_s8
 void	print_test_str_to_s8(char const* test_name, int can_segfault,
 		t_s8 expecting,
 		char const* str)
@@ -581,12 +567,11 @@ void test_str_to_s8(void)
 		print_test_str_to_s8("str_to_s8 (n < maxdigit)",	FALSE,                      -99999, "-99999"                     );
 	}
 }
+#endif
 
 
 
-/*
-**	t_s16	ft_str_to_s16(char const *str);
-*/
+#ifdef			ft_str_to_s16
 void	print_test_str_to_s16(char const* test_name, int can_segfault,
 		t_s16 expecting,
 		char const* str)
@@ -653,12 +638,11 @@ void test_str_to_s16(void)
 		print_test_str_to_s16("str_to_s16 (n < maxdigit)",	FALSE,                    -9999999, "-9999999"                   );
 	}
 }
+#endif
 
 
 
-/*
-**	t_s32	ft_str_to_s32(char const *str);
-*/
+#ifdef			ft_str_to_s32
 void	print_test_str_to_s32(char const* test_name, int can_segfault,
 		t_s32 expecting,
 		char const* str)
@@ -745,12 +729,11 @@ void test_str_to_s32(void)
 		print_test_str_to_s32("str_to_s32 (n < maxdigit)",	FALSE,               -999999999999, "-999999999999"              );
 	}
 }
+#endif
 
 
 
-/*
-**	t_s64	ft_str_to_s64(char const *str);
-*/
+#ifdef			ft_str_to_s64
 void	print_test_str_to_s64(char const* test_name, int can_segfault,
 		t_s64 expecting,
 		char const* str)
@@ -849,12 +832,11 @@ void test_str_to_s64(void)
 #endif
 	}
 }
+#endif
 
 
 
-/*
-**	t_u8	ft_str_to_u8(char const *str);
-*/
+#ifdef			ft_str_to_u8
 void	print_test_str_to_u8(char const* test_name, int can_segfault,
 		t_u8 expecting,
 		char const* str)
@@ -897,12 +879,11 @@ void test_str_to_u8(void)
 		print_test_str_to_u8("str_to_u8 (n < maxdigit)",	FALSE,                           0, "-99999"                     );
 	}
 }
+#endif
 
 
 
-/*
-**	t_u16	ft_str_to_u16(char const *str);
-*/
+#ifdef			ft_str_to_u16
 void	print_test_str_to_u16(char const* test_name, int can_segfault,
 		t_u16 expecting,
 		char const* str)
@@ -968,12 +949,11 @@ void test_str_to_u16(void)
 		print_test_str_to_u16("str_to_u16 (n < maxdigit)",	FALSE,                           0, "-9999999"                   );
 	}
 }
+#endif
 
 
 
-/*
-**	t_u32	ft_str_to_u32(char const *str);
-*/
+#ifdef			ft_str_to_u32
 void	print_test_str_to_u32(char const* test_name, int can_segfault,
 		t_u32 expecting,
 		char const* str)
@@ -1059,12 +1039,11 @@ void test_str_to_u32(void)
 		print_test_str_to_u32("str_to_u32 (n < maxdigit)",	FALSE,                           0, "-999999999999"              );
 	}
 }
+#endif
 
 
 
-/*
-**	t_u64	ft_str_to_u64(char const *str);
-*/
+#ifdef			ft_str_to_u64
 void	print_test_str_to_u64(char const* test_name, int can_segfault,
 		t_u64 expecting,
 		char const* str)
@@ -1163,12 +1142,11 @@ void test_str_to_u64(void)
 		print_test_str_to_u64("str_to_u64 (n < maxdigit)",	FALSE,                           0, "-999999999999999999999"     );
 	}
 }
+#endif
 
 
 
-/*
-**	t_f32	ft_str_to_f32(char const *str);
-*/
+#ifdef			ft_str_to_f32
 void	print_test_str_to_f32(char const* test_name, int can_segfault,
 		t_f32 expecting,
 		char const* str)
@@ -1183,12 +1161,11 @@ void	test_str_to_f32(void)
 //	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
 //	TODO
 }
+#endif
 
 
 
-/*
-**	t_f64	ft_str_to_f64(char const *str);
-*/
+#ifdef			ft_str_to_f64
 void	print_test_str_to_f64(char const* test_name, int can_segfault,
 		t_f64 expecting,
 		char const* str)
@@ -1349,12 +1326,11 @@ void test_str_to_f64(void)
 	{
 	}
 }
+#endif
 
 
 
-/*
-**	t_bool	ft_str_to_bool(char const *str);
-*/
+#ifdef			ft_str_to_bool
 void	print_test_str_to_bool(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str)
@@ -1369,12 +1345,11 @@ void	test_str_to_bool(void)
 //	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
 //	TODO
 }
+#endif
 
 
 
-/*
-**	t_size	ft_str_to_size(char const *str);
-*/
+#ifdef			ft_str_to_size
 void	print_test_str_to_size(char const* test_name, int can_segfault,
 		t_size expecting,
 		char const* str)
@@ -1473,6 +1448,7 @@ void	test_str_to_size(void)
 		print_test_str_to_size("str_to_size (n < maxdigit)",	FALSE,                           0, "-999999999999999999999"     );
 	}
 }
+#endif
 
 
 
@@ -1484,9 +1460,7 @@ void	test_str_to_size(void)
 
 
 
-/*
-**	char*	ft_u8_to_hex(t_s8 n);
-*/
+#ifdef			ft_u8_to_hex
 void	print_test_u8_to_hex(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_s32 number)
@@ -1512,12 +1486,11 @@ void	test_u8_to_hex(void)
 		print_test_u8_to_hex("u8_to_hex (n < maxdigit)",	FALSE, "-1869F",-99999);
 	}
 }
+#endif
 
 
 
-/*
-**	char*	ft_u16_to_hex(t_s16 n);
-*/
+#ifdef			ft_u16_to_hex
 void	print_test_u16_to_hex(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_s32 number)
@@ -1544,12 +1517,11 @@ void	test_u16_to_hex(void)
 		print_test_u16_to_hex("u16_to_hex (n < maxdigit)",	FALSE,  "-98967F",-9999999);
 	}
 }
+#endif
 
 
 
-/*
-**	char*	ft_u32_to_hex(t_s32 n);
-*/
+#ifdef			ft_u32_to_hex
 void	print_test_u32_to_hex(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_s32 number)
@@ -1578,12 +1550,11 @@ void	test_u32_to_hex(void)
 		print_test_u32_to_hex("u32_to_hex (n < maxdigit)",	FALSE,   "-E8D4A50FFF",-999999999999);
 	}
 }
+#endif
 
 
 
-/*
-**	char*	ft_u64_to_hex(t_u64 n);
-*/
+#ifdef			ft_u64_to_hex
 void	print_test_u64_to_hex(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_u64 number)
@@ -1614,12 +1585,11 @@ void	test_u64_to_hex(void)
 #endif
 	}
 }
+#endif
 
 
 
-/*
-**	t_u8	ft_hex_to_u8(char const *str);
-*/
+#ifdef			ft_hex_to_u8
 void	print_test_hex_to_u8(char const* test_name, int can_segfault,
 		t_u8 expecting,
 		char const* str)
@@ -1633,12 +1603,11 @@ void	test_hex_to_u8(void)
 //	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
 //	TODO
 }
+#endif
 
 
 
-/*
-**	t_u16	ft_hex_to_u16(char const *str);
-*/
+#ifdef			ft_hex_to_u16
 void	print_test_hex_to_u16(char const* test_name, int can_segfault,
 		t_u16 expecting,
 		char const* str)
@@ -1652,12 +1621,11 @@ void	test_hex_to_u16(void)
 //	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
 //	TODO
 }
+#endif
 
 
 
-/*
-**	t_u32	ft_hex_to_u32(char const *str);
-*/
+#ifdef			ft_hex_to_u32
 void	print_test_hex_to_u32(char const* test_name, int can_segfault,
 		t_u32 expecting,
 		char const* str)
@@ -1671,12 +1639,11 @@ void	test_hex_to_u32(void)
 //	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
 //	TODO
 }
+#endif
 
 
 
-/*
-**	t_u64	ft_hex_to_u64(char const *str);
-*/
+#ifdef			ft_hex_to_u64
 void	print_test_hex_to_u64(char const* test_name, int can_segfault,
 		t_u64 expecting,
 		char const* str)
@@ -1690,12 +1657,11 @@ void	test_hex_to_u64(void)
 //	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
 //	TODO
 }
+#endif
 
 
 
-/*
-**	char*	ft_s8_to_strbase(t_s8 n);
-*/
+#ifdef			ft_s8_to_strbase
 void	print_test_s8_to_strbase(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_s8 number,
@@ -1742,12 +1708,11 @@ void	test_s8_to_strbase(void)
 		print_test_s8_to_strbase("s8_to_strbase (n < maxdigit)",	FALSE,          NULL,      -99999,               "01");
 	}
 }
+#endif
 
 
 
-/*
-**	char*	ft_s16_to_strbase(t_s16 n);
-*/
+#ifdef			ft_s16_to_strbase
 void	print_test_s16_to_strbase(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_s16 number,
@@ -1798,12 +1763,11 @@ void	test_s16_to_strbase(void)
 		print_test_s16_to_strbase("s16_to_strbase (n < maxdigit)",	FALSE,          NULL,    -9999999,               "01");
 	}
 }
+#endif
 
 
 
-/*
-**	char*	ft_s32_to_strbase(t_s32 n);
-*/
+#ifdef			ft_s32_to_strbase
 void	print_test_s32_to_strbase(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_s32 number,
@@ -1855,12 +1819,11 @@ void	test_s32_to_strbase(void)
 		print_test_s32_to_strbase("s32_to_strbase (n < maxdigit)",	FALSE,                      NULL,       -999999999999,               "01");
 	}
 }
+#endif
 
 
 
-/*
-**	char*	ft_s64_to_strbase(t_s64 n);
-*/
+#ifdef			ft_s64_to_strbase
 void	print_test_s64_to_strbase(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_s64 number,
@@ -1916,12 +1879,11 @@ void	test_s64_to_strbase(void)
 #endif
 	}
 }
+#endif
 
 
 
-/*
-**	char*	ft_u8_to_strbase(t_u8 n);
-*/
+#ifdef			ft_u8_to_strbase
 void	print_test_u8_to_strbase(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_u8 number,
@@ -1967,12 +1929,11 @@ void	test_u8_to_strbase(void)
 		print_test_u8_to_strbase("u8_to_strbase (n < maxdigit)",	FALSE,          NULL,      -99999,               "01");
 	}
 }
+#endif
 
 
 
-/*
-**	char*	ft_u16_to_strbase(t_u16 n);
-*/
+#ifdef			ft_u16_to_strbase
 void	print_test_u16_to_strbase(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_u16 number,
@@ -2022,12 +1983,11 @@ void	test_u16_to_strbase(void)
 		print_test_u16_to_strbase("u16_to_strbase (n < maxdigit)",	FALSE,          NULL,    -9999999,               "01");
 	}
 }
+#endif
 
 
 
-/*
-**	char*	ft_u32_to_strbase(t_u32 n);
-*/
+#ifdef			ft_u32_to_strbase
 void	print_test_u32_to_strbase(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_u32 number,
@@ -2078,12 +2038,11 @@ void	test_u32_to_strbase(void)
 		print_test_u32_to_strbase("u32_to_strbase (n < maxdigit)",	FALSE,                      NULL,       -999999999999,               "01");
 	}
 }
+#endif
 
 
 
-/*
-**	char*	ft_u64_to_strbase(t_u64 n);
-*/
+#ifdef			ft_u64_to_strbase
 void	print_test_u64_to_strbase(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_u64 number,
@@ -2138,6 +2097,9 @@ void	test_u64_to_strbase(void)
 #endif
 	}
 }
+#endif
+
+
 
 #pragma GCC diagnostic pop // Resets the GCC warning settings back to normal
 #pragma GCC diagnostic pop // Resets the GCC warning settings back to normal
@@ -2145,74 +2107,170 @@ void	test_u64_to_strbase(void)
 
 
 
-int		test_convert(void)
+int		testsuite_convert(void)
 {
 	print_suite_title("convert");
 
 	print_nonstd();
 
+#ifdef ft_s8_to_str
 	test_s8_to_str();
+#endif
+#ifdef ft_s16_to_str
 	test_s16_to_str();
+#endif
+#ifdef ft_s32_to_str
 	test_s32_to_str();
+#endif
+#ifdef ft_s64_to_str
 	test_s64_to_str();
+#endif
 
+#ifdef ft_u8_to_str
 	test_u8_to_str();
+#endif
+#ifdef ft_u16_to_str
 	test_u16_to_str();
+#endif
+#ifdef ft_u32_to_str
 	test_u32_to_str();
+#endif
+#ifdef ft_u64_to_str
 	test_u64_to_str();
+#endif
 
+#ifdef ft_f32_to_str_p
 	test_f32_to_str_p();
+#endif
+#ifdef ft_f64_to_str_p
 	test_f64_to_str_p();
+#endif
+#ifdef ft_bool_to_str
 	test_bool_to_str();
+#endif
+#ifdef ft_size_to_str
 	test_size_to_str();
+#endif
 
+#ifdef ft_u8_to_hex
 	test_u8_to_hex();
+#endif
+#ifdef ft_u16_to_hex
 	test_u16_to_hex();
+#endif
+#ifdef ft_u32_to_hex
 	test_u32_to_hex();
+#endif
+#ifdef ft_u64_to_hex
 	test_u64_to_hex();
+#endif
 
+#ifdef ft_s8_to_strbase
 	test_s8_to_strbase();
+#endif
+#ifdef ft_s16_to_strbase
 	test_s16_to_strbase();
+#endif
+#ifdef ft_s32_to_strbase
 	test_s32_to_strbase();
+#endif
+#ifdef ft_s64_to_strbase
 	test_s64_to_strbase();
+#endif
 
+#ifdef ft_u8_to_strbase
 	test_u8_to_strbase();
+#endif
+#ifdef ft_u16_to_strbase
 	test_u16_to_strbase();
+#endif
+#ifdef ft_u32_to_strbase
 	test_u32_to_strbase();
+#endif
+#ifdef ft_u64_to_strbase
 	test_u64_to_strbase();
+#endif
 
 
 
+#ifdef ft_str_to_s8
 	test_str_to_s8();
+#endif
+#ifdef ft_str_to_s16
 	test_str_to_s16();
+#endif
+#ifdef ft_str_to_s32
 	test_str_to_s32();
+#endif
+#ifdef ft_str_to_s64
 	test_str_to_s64();
+#endif
 
+#ifdef ft_str_to_u8
 	test_str_to_u8();
+#endif
+#ifdef ft_str_to_u16
 	test_str_to_u16();
+#endif
+#ifdef ft_str_to_u32
 	test_str_to_u32();
+#endif
+#ifdef ft_str_to_u64
 	test_str_to_u64();
+#endif
 
+#ifdef ft_str_to_f32
 //	test_str_to_f32();
+#endif
+#ifdef ft_str_to_f64
 //	test_str_to_f64();
+#endif
 
+#ifdef ft_str_to_bool
 //	test_str_to_bool();
+#endif
+#ifdef ft_str_to_size
 	test_str_to_size();
+#endif
 
+#ifdef ft_hex_to_u8
 //	test_hex_to_u8();
+#endif
+#ifdef ft_hex_to_u16
 //	test_hex_to_u16();
+#endif
+#ifdef ft_hex_to_u32
 //	test_hex_to_u32();
+#endif
+#ifdef ft_hex_to_u64
 //	test_hex_to_u64();
+#endif
 
+#ifdef ft_strbase_to_s8
 //	test_strbase_to_s8();
+#endif
+#ifdef ft_strbase_to_s16
 //	test_strbase_to_s16();
+#endif
+#ifdef ft_strbase_to_s32
 //	test_strbase_to_s32();
+#endif
+#ifdef ft_strbase_to_s64
 //	test_strbase_to_s64();
+#endif
 
+#ifdef ft_strbase_to_u8
 //	test_strbase_to_u8();
+#endif
+#ifdef ft_strbase_to_u16
 //	test_strbase_to_u16();
+#endif
+#ifdef ft_strbase_to_u32
 //	test_strbase_to_u32();
+#endif
+#ifdef ft_strbase_to_u64
 //	test_strbase_to_u64();
+#endif
 
 
 	return (OK);

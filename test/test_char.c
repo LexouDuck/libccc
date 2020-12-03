@@ -40,7 +40,7 @@ static void	print_char_foreword(void)
 
 
 
-int		test_char(void)
+int		testsuite_char(void)
 {
 	print_suite_title("char");
 

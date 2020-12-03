@@ -50,7 +50,7 @@ s_sortedlist_int	print_test_random(int samples)
 
 
 
-int		test_random(void)
+int		testsuite_random(void)
 {
 	print_suite_title("random");
 
