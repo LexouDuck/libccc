@@ -219,6 +219,11 @@ typedef uint32_t	t_u32;
 //! The type for 64-bit unsigned integers
 typedef	uint64_t	t_u64;
 
+#define U8_MAX	(255)                  //!< The maximum value for 8-bit unsigned integers (0xFF)
+#define U16_MAX	(65535)                //!< The maximum value for 16-bit unsigned integers (0xFFFF)
+#define U32_MAX	(4294967295)           //!< The maximum value for 32-bit unsigned integers (0xFFFFFFFF)
+#define U64_MAX	(18446744073709551615) //!< The maximum value for 64-bit unsigned integers (0xFFFFFFFFFFFFFFFF)
+
 //! The type for 8-bit signed integers
 typedef int8_t		t_s8;
 //! The type for 16-bit signed integers
@@ -227,6 +232,16 @@ typedef int16_t		t_s16;
 typedef int32_t		t_s32;
 //! The type for 64-bit signed integers
 typedef	int64_t		t_s64;
+
+#define S8_MAX	(127)                  //!< The maximum value for 8-bit signed integers (0x7F)
+#define S16_MAX	(32767)                //!< The maximum value for 16-bit signed integers (0x7FFF)
+#define S32_MAX	(2147483647)           //!< The maximum value for 32-bit signed integers (0x7FFFFFFF)
+#define S64_MAX	(9223372036854775807)  //!< The maximum value for 64-bit signed integers (0x7FFFFFFFFFFFFFFF)
+
+#define S8_MIN	(-128)                 //!< The maximum value for 8-bit signed integers (0x80)
+#define S16_MIN	(-32768)               //!< The maximum value for 16-bit signed integers (0x8000)
+#define S32_MIN	(-2147483648)          //!< The maximum value for 32-bit signed integers (0x80000000)
+#define S64_MIN	(-9223372036854775808) //!< The maximum value for 64-bit signed integers (0x8000000000000000)
 
 //! The type for 32-bit 'single precision' IEEE-754 floating-point numbers
 typedef float		t_f32;
@@ -312,23 +327,6 @@ typedef t_f80		t_float;
 #ifdef _FLOAT_128_
 typedef t_f128		t_float;
 #endif
-
-
-
-#define U8_MAX	(255)                  //!< The maximum value for 8-bit unsigned integers (0xFF)
-#define U16_MAX	(65535)                //!< The maximum value for 16-bit unsigned integers (0xFFFF)
-#define U32_MAX	(4294967295)           //!< The maximum value for 32-bit unsigned integers (0xFFFFFFFF)
-#define U64_MAX	(18446744073709551615) //!< The maximum value for 64-bit unsigned integers (0xFFFFFFFFFFFFFFFF)
-
-#define S8_MAX	(127)                  //!< The maximum value for 8-bit signed integers (0x7F)
-#define S16_MAX	(32767)                //!< The maximum value for 16-bit signed integers (0x7FFF)
-#define S32_MAX	(2147483647)           //!< The maximum value for 32-bit signed integers (0x7FFFFFFF)
-#define S64_MAX	(9223372036854775807)  //!< The maximum value for 64-bit signed integers (0x7FFFFFFFFFFFFFFF)
-
-#define S8_MIN	(-128)                 //!< The maximum value for 8-bit signed integers (0x80)
-#define S16_MIN	(-32768)               //!< The maximum value for 16-bit signed integers (0x8000)
-#define S32_MIN	(-2147483648)          //!< The maximum value for 32-bit signed integers (0x80000000)
-#define S64_MIN	(-9223372036854775808) //!< The maximum value for 64-bit signed integers (0x8000000000000000)
 
 
 

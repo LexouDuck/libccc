@@ -14,42 +14,42 @@
 
 
 
-inline t_u8		ft_color_argb16_get_a(t_u16 color)
+inline t_u8		ft_color_argb16_get_a(t_argb16 color)
 {
-	return ((t_u8)(color >> 15));
+	return ((t_u8)((color >> 15) ? 1 : 0));
 }
 
-inline t_u8		ft_color_argb16_get_r(t_u16 color)
+inline t_u8		ft_color_argb16_get_r(t_argb16 color)
 {
-	return ((t_u8)(0x1F & (color >> 10)));
+	return ((t_u8)(COLOR_ARGB16_CHANNEL & (color >> 10)));
 }
 
-inline t_u8		ft_color_argb16_get_g(t_u16 color)
+inline t_u8		ft_color_argb16_get_g(t_argb16 color)
 {
-	return ((t_u8)(0x1F & (color >> 5)));
+	return ((t_u8)(COLOR_ARGB16_CHANNEL & (color >> 5)));
 }
 
-inline t_u8		ft_color_argb16_get_b(t_u16 color)
+inline t_u8		ft_color_argb16_get_b(t_argb16 color)
 {
-	return ((t_u8)(0x1F & color));
+	return ((t_u8)(COLOR_ARGB16_CHANNEL & color));
 }
 
-t_u16			*ft_color_argb16_get_nearest(
-	t_u16 target,
-	t_u16 *colors,
+t_argb16*		ft_color_argb16_get_nearest(
+	t_argb16 target,
+	t_argb16* colors,
 	t_size n)
 {
-	t_s8	r;
-	t_s8	g;
-	t_s8	b;
-	t_u16	min;
-	t_u16	*result;
+	t_s16 r;
+	t_s16 g;
+	t_s16 b;
+	t_s16 min_diff;
+	t_argb16* result;
 
 #if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (colors == NULL)
 		return (NULL);
 #endif
-	min = 0xFFFF;
+	min_diff = S16_MAX;
 	result = NULL;
 	while (n--)
 	{
@@ -59,9 +59,9 @@ t_u16			*ft_color_argb16_get_nearest(
 		r = (r < 0) ? -r : r;
 		g = (g < 0) ? -g : g;
 		b = (b < 0) ? -b : b;
-		if ((t_u16)(r + g + b) < min)
+		if ((r + g + b) < min_diff)
 		{
-			min = (r + g + b);
+			min_diff = (r + g + b);
 			result = (colors + n);
 		}
 	}

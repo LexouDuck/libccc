@@ -16,7 +16,7 @@
 
 t_u32	ft_color_argb16_to_argb32(t_u16 color)
 {
-	static const t_float	factor = (float)255 / (float)31;
+	static const t_float	factor = (float)COLOR_ARGB32_CHANNEL / (float)COLOR_ARGB16_CHANNEL;
 	t_u32					result;
 
 	result = (color & COLOR_ARGB16_A) ? COLOR_ARGB32_A : 0;

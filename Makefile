@@ -34,7 +34,6 @@ ifeq ($(OS),Windows_NT)
 	ifeq ($(PROCESSOR_ARCHITECTURE),AMD64)
 		OSMODE=win64
 	endif
-	CFLAGS_OS = $(CFLAGS_OS_WIN)
 else
 	UNAME_S = $(shell uname -s)
 	ifeq ($(UNAME_S),Linux)

@@ -14,42 +14,42 @@
 
 
 
-inline t_u8		ft_color_argb32_get_a(t_u32 color)
+inline t_u8		ft_color_argb32_get_a(t_argb32 color)
 {
-	return ((t_u8)(0xFF & (color >> 24)));
+	return ((t_u8)(COLOR_ARGB32_CHANNEL & (color >> 24)));
 }
 
-inline t_u8		ft_color_argb32_get_r(t_u32 color)
+inline t_u8		ft_color_argb32_get_r(t_argb32 color)
 {
-	return ((t_u8)(0xFF & (color >> 16)));
+	return ((t_u8)(COLOR_ARGB32_CHANNEL & (color >> 16)));
 }
 
-inline t_u8		ft_color_argb32_get_g(t_u32 color)
+inline t_u8		ft_color_argb32_get_g(t_argb32 color)
 {
-	return ((t_u8)(0xFF & (color >> 8)));
+	return ((t_u8)(COLOR_ARGB32_CHANNEL & (color >> 8)));
 }
 
-inline t_u8		ft_color_argb32_get_b(t_u32 color)
+inline t_u8		ft_color_argb32_get_b(t_argb32 color)
 {
-	return ((t_u8)(0xFF & color));
+	return ((t_u8)(COLOR_ARGB32_CHANNEL & color));
 }
 
-t_u32			*ft_color_argb32_get_nearest(
-	t_u32 target,
-	t_u32 *colors,
+t_argb32*		ft_color_argb32_get_nearest(
+	t_argb32 target,
+	t_argb32* colors,
 	t_size n)
 {
-	t_s16	r;
-	t_s16	g;
-	t_s16	b;
-	t_u32	min;
-	t_u32	*result;
+	t_s16 r;
+	t_s16 g;
+	t_s16 b;
+	t_s16 min_diff;
+	t_argb32* result;
 
 #if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (colors == NULL)
 		return (NULL);
 #endif
-	min = 0xFFFFFFFF;
+	min_diff = S16_MAX;
 	result = NULL;
 	while (n--)
 	{
@@ -59,9 +59,9 @@ t_u32			*ft_color_argb32_get_nearest(
 		r = (r < 0) ? -r : r;
 		g = (g < 0) ? -g : g;
 		b = (b < 0) ? -b : b;
-		if ((t_u32)(r + g + b) < min)
+		if ((r + g + b) < min_diff)
 		{
-			min = (r + g + b);
+			min_diff = (r + g + b);
 			result = (colors + n);
 		}
 	}
