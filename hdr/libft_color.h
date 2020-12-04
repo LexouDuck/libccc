@@ -73,7 +73,7 @@ t_u8							Color_ARGB16_Get_B(t_u16 color);
 **	@return a pointer to the color within 'colors' which is the closest match
 **			to the given 'target' color, searching through 'n' colors in the array.
 */
-t_u16*								Color_ARGB16_GetNearest(t_u16 target, t_u16 *colors, t_size n);
+t_u16*								Color_ARGB16_GetNearest(t_u16 target, t_u16* colors, t_size n);
 #define ft_color_argb16_get_nearest	Color_ARGB16_GetNearest
 
 
@@ -143,7 +143,7 @@ t_u8							Color_ARGB32_Get_B(t_u32 color);
 **	@return a pointer to the color within 'colors' which is the closest match
 **			to the given 'target' color, searching through 'n' colors in the array.
 */
-t_u32*								Color_ARGB32_GetNearest(t_u32 target, t_u32 *colors, t_size n);
+t_u32*								Color_ARGB32_GetNearest(t_u32 target, t_u32* colors, t_size n);
 #define ft_color_argb32_get_nearest	Color_ARGB32_GetNearest
 
 

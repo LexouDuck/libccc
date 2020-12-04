@@ -130,11 +130,11 @@ s_list_int						Stat_Int_NewList(t_u32 length);
 #define ft_stat_new_ilst		Stat_Int_NewList
 
 //! TODO document this
-void							Stat_Int_FreeList(s_list_int *ilst);
+void							Stat_Int_FreeList(s_list_int* ilst);
 #define ft_stat_free_ilst		Stat_Int_FreeList
 
 //! TODO document this
-s_list_int						Stat_Int_MergeList(s_list_int *start, s_list_int *append);
+s_list_int						Stat_Int_MergeList(s_list_int* start, s_list_int* append);
 #define ft_stat_merge_ilst		Stat_Int_MergeList
 
 //! TODO document this
@@ -176,11 +176,11 @@ s_list_float					Stat_Float_NewList(t_u32 length);
 #define ft_stat_new_flst		Stat_Float_NewList
 
 //! TODO document this
-void							Stat_Float_FreeList(s_list_float *flst);
+void							Stat_Float_FreeList(s_list_float* flst);
 #define ft_stat_free_flst		Stat_Float_FreeList
 
 //! TODO document this
-s_list_float					Stat_Float_MergeList(s_list_float *start, s_list_float *append);
+s_list_float					Stat_Float_MergeList(s_list_float* start, s_list_float* append);
 #define ft_stat_merge_flst		Stat_Float_MergeList
 
 //! TODO document this

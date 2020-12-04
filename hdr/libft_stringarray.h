@@ -38,7 +38,7 @@ HEADER_CPP
 **	Returns a string array made up of substrings of 'str', where each element
 **	is a section delimited by 'c' separators, or the edges of the string.
 */
-char**							String_Split_Char(char const *str, char c);
+char**							String_Split_Char(char const* str, char c);
 #define ft_strsplit_char		String_Split_Char
 
 /*!
@@ -46,7 +46,7 @@ char**							String_Split_Char(char const *str, char c);
 **	is a section delimited by any of the 'char_sep' separators, or the edges
 **	of the string.
 */
-char**							String_Split_Charset(char const *str, char const *sep_chars);
+char**							String_Split_Charset(char const* str, char const* sep_chars);
 #define ft_strsplit_charset		String_Split_Charset
 
 /*!
@@ -60,14 +60,14 @@ char**							String_Split_Charset(char const *str, char const *sep_chars);
 **		and call replace twice, without the pattern the second time.
 **		Ex: "enenen" --s/enen/HIen/-> "HIenen" --s/enen/HI/--> "HIHI"
 */
-char**							String_Split_String(char const *str, char const *query);
+char**							String_Split_String(char const* str, char const* query);
 #define ft_strsplit_str			String_Split_String
 
 /*!
 **	Returns a string array which is the result of dividing str into chunks of
 **	equal size n, safe for the last chunk of length <= n.
 */
-char**							String_Divide(const char *str, t_size n);
+char**							String_Divide(char const* str, t_size n);
 #define ft_strdivide			String_Divide
 
 
@@ -101,7 +101,7 @@ void							StringArray_Delete(char** *a_strarr);
 **	of strarr by f. f should be a function that allocates and returns a new
 **	string.
 */
-char**							StringArray_Map(char const **strarr, char *(*f)(char const *));
+char**							StringArray_Map(char const** strarr, char *(*f)(char const*));
 #define ft_strarrmap			StringArray_Map
 
 /*!
@@ -109,28 +109,28 @@ char**							StringArray_Map(char const **strarr, char *(*f)(char const *));
 **	of strarr by f. f should be a function that does not allocate a new string;
 ** 	but instead edits the string's content in place.
 */
-void							StringArray_Map_InPlace(char** *a_strarr, char *(*f)(char *));
+void							StringArray_Map_InPlace(char** *a_strarr, char *(*f)(char*));
 #define ft_strarrmap_inplace	StringArray_Map_InPlace
 
 /*!
 **	Returns a newly allocated string array such that every string is now
 **	preceded by n times the character c.
 */
-char**							StringArray_Pad_L(const char **strarr, const char c, t_u32 n);
+char**							StringArray_Pad_L(char const** strarr, const char c, t_u32 n);
 #define ft_strarrpad_l			StringArray_Pad_L
 
 /*!
 **	Returns a newly allocated string array, which is the result of removing
 **	the lines from index 'start' to 'start + length' from strarr.
 */
-char**							StringArray_Sub(const char **strarr, t_u32 start, t_u32 length);
+char**							StringArray_Sub(char const** strarr, t_u32 start, t_u32 length);
 #define ft_strarrsub			StringArray_Sub
 
 /*!
 **	Returns a newly allocated string which is the fold/reduce concatenation
 **	of all strings in strarr, with the string 'sep' added between each string.
 */
-char*							StringArray_Join(char const **strarr, char const *sep);
+char*							StringArray_Join(char const** strarr, char const* sep);
 #define ft_strarrjoin			StringArray_Join
 
 
@@ -144,7 +144,7 @@ char*							StringArray_Join(char const **strarr, char const *sep);
 **	Returns the concatenation of 'strarr1' and 'strarr2', and deletes both
 **	inputs from memory. Also returns the result.
 */
-char**							StringArray_Merge(char** *a_strarr1, char* **a_strarr2);
+char**							StringArray_Merge(char** *a_strarr1, char** *a_strarr2);
 #define ft_strarrmerge			StringArray_Merge
 
 /*!
@@ -180,25 +180,25 @@ char**							StringArray_Insert_InPlace(char** *a_dest, char const** src, t_u32 
 /*!
 **	Returns the number of strings in a null-terminated string array.
 */
-t_u32							StringArray_Length(char const **strarr);
+t_u32							StringArray_Length(char const** strarr);
 #define ft_strarrlen			StringArray_Length
 
 /*!
 **	Counts the number of occurences of char c in string array strarr/
 */
-t_u32							StringArray_Count_Char(char const **strarr, char const c);
+t_u32							StringArray_Count_Char(char const** strarr, char const c);
 #define ft_strarrcount_char		StringArray_Count_Char
 
 /*!
 **	Counts the total number of occurences of any of the chars in cset in strarr.
 */
-t_u32							StringArray_Count_Charset(char const **strarr, char const *cset);
+t_u32							StringArray_Count_Charset(char const** strarr, char const* cset);
 #define ft_strarrcount_charset	StringArray_Count_Charset
 
 /*!
 **	Counts the number of occurences of the string 'query' in strarr.
 */
-t_u32							StringArray_Count_String(char const **strarr, char const *query);
+t_u32							StringArray_Count_String(char const** strarr, char const* query);
 #define ft_strarrcount_str		StringArray_Count_String
 
 

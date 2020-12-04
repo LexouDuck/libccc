@@ -182,8 +182,8 @@ int						IO_Write_String(t_fd fd, char const* str);
 //! Writes the given string 'str' to the given file descriptor 'fd', and a newline '\n' char at the end
 int						IO_Write_Line(t_fd fd, char const* str);
 #define ft_write_line	IO_Write_Line
-//! Writes the given string array 'strls' to the given file descriptor 'fd'
-int						IO_Write_Lines(t_fd fd, char const** strls);
+//! Writes the given string array 'strarr' to the given file descriptor 'fd'
+int						IO_Write_Lines(t_fd fd, char const** strarr);
 #define ft_write_strls	IO_Write_Lines
 //!< Writes 'n' bytes of memory from 'ptr' as hexadecimal 2-char blocks in 'cols' columns, to the given file descriptor 'fd'
 int						IO_Write_Memory(t_fd fd, t_u8 const* ptr, t_size n, t_u8 cols);
