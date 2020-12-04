@@ -173,7 +173,7 @@ HEADER_CPP
 #define ERROR	(1)
 
 /*! @file libft.h
-**	NB: The following macros listed in this comment exist on any platform
+**	NB: The following macros listed in this documentation comment exist on almost any platform
 **	Here is the list of all the predefined ANSI C macros
 **	__cplusplus	Defined only when a C++ compiler is being used.
 **	__OBJC__	Defined as 1 when the compiler is Objective-C.
@@ -201,41 +201,78 @@ HEADER_CPP
 */
 
 /*
-**	Define pseudo-types for all the primitive number types in a clear naming
+**	Define wrapper types for all the primitive number types in a clear naming
 **	convention, to better reflect the amount of bits used by each type.
-**	(and also to avoid having to type 'unsigned' all the time)
+**	It is recommended to always use these types rather than the machine-specific
+**	default C types char,short,int,long - the following typedefs will always
+**	have the size that one would expect, no matter the machine.
+**	You can learn more about how the ISO standard defines integer types here:
+**	https://en.wikipedia.org/wiki/C_data_types
 */
 
+//! The type for 8-bit unsigned integers
 typedef uint8_t		t_u8;
+//! The type for 16-bit unsigned integers
 typedef uint16_t	t_u16;
+//! The type for 32-bit unsigned integers
 typedef uint32_t	t_u32;
+//! The type for 64-bit unsigned integers
 typedef	uint64_t	t_u64;
 
+//! The type for 8-bit signed integers
 typedef int8_t		t_s8;
+//! The type for 16-bit signed integers
 typedef int16_t		t_s16;
+//! The type for 32-bit signed integers
 typedef int32_t		t_s32;
+//! The type for 64-bit signed integers
 typedef	int64_t		t_s64;
 
+//! The type for 32-bit 'single precision' IEEE-754 floating-point numbers
 typedef float		t_f32;
+//! The type for 64-bit 'double precision' IEEE-754 floating-point numbers
 typedef double		t_f64;
 
 #ifdef	__float80
+//! The type for 32-bit 'extended precision' IEEE-754 floating-point numbers
 typedef __float80	t_f80;
 #elif defined(_FLOAT_80_)
 	#error "Cannot set default float to 80-bit extended-precision, unavailable on this platform"
 #endif
 
 #ifdef	__float128
+//! The type for 32-bit 'quadruple precision' IEEE-754 floating-point numbers
 typedef __float128	t_f128;
 #elif defined(_FLOAT_128_)
-	#error "Cannot set default float to 128-bit extended-precision, unavailable on this platform"
+	#error "Cannot set default float to 128-bit quadruple-precision, unavailable on this platform"
 #endif
+
+//! The primitive boolean type
+/*!
+**	Here, we use the native (from C99 onwards) '_Bool' type.
+**	This type is useful because its value will always be 0 or 1, never more.
+*/
+typedef _Bool		t_bool;
+
+//! The RAM memory size type
+/*!
+**	This typedef is here purely for nomenclature consistency
+**	(all primitive typedefs are prefixed with 't_')
+*/
+typedef size_t		t_size;
+
+//! The pointer difference substraction result type
+/*!
+**	This typedef is here purely for nomenclature consistency
+**	(all primitive typedefs are prefixed with 't_')
+*/
+typedef ptrdiff_t	t_ptrdiff;
 
 
 
 /*
 **	Much care should be used with the default int/uint types:
-**	This obviously depends on you knowing your compiler
+**	This obviously depends on you knowing your compiler and platform/machine.
 */
 #ifdef _UINT_8_
 typedef t_u8		t_uint;
@@ -276,17 +313,22 @@ typedef t_f80		t_float;
 typedef t_f128		t_float;
 #endif
 
-//! Define the primitive boolean type
-//! Here, we use the native (from C99 onwards) '_Bool' type
-typedef _Bool		t_bool;
 
-//! Define the RAM memory size type
-//! This typedef is here purely for nomenclature consistency
-typedef size_t		t_size;
 
-//! Define the pointer difference result type
-//! This typedef is here purely for nomenclature consistency
-typedef ptrdiff_t	t_ptrdiff;
+#define U8_MAX	(255)                  //!< The maximum value for 8-bit unsigned integers (0xFF)
+#define U16_MAX	(65535)                //!< The maximum value for 16-bit unsigned integers (0xFFFF)
+#define U32_MAX	(4294967295)           //!< The maximum value for 32-bit unsigned integers (0xFFFFFFFF)
+#define U64_MAX	(18446744073709551615) //!< The maximum value for 64-bit unsigned integers (0xFFFFFFFFFFFFFFFF)
+
+#define S8_MAX	(127)                  //!< The maximum value for 8-bit signed integers (0x7F)
+#define S16_MAX	(32767)                //!< The maximum value for 16-bit signed integers (0x7FFF)
+#define S32_MAX	(2147483647)           //!< The maximum value for 32-bit signed integers (0x7FFFFFFF)
+#define S64_MAX	(9223372036854775807)  //!< The maximum value for 64-bit signed integers (0x7FFFFFFFFFFFFFFF)
+
+#define S8_MIN	(-128)                 //!< The maximum value for 8-bit signed integers (0x80)
+#define S16_MIN	(-32768)               //!< The maximum value for 16-bit signed integers (0x8000)
+#define S32_MIN	(-2147483648)          //!< The maximum value for 32-bit signed integers (0x80000000)
+#define S64_MIN	(-9223372036854775808) //!< The maximum value for 64-bit signed integers (0x8000000000000000)
 
 
 
