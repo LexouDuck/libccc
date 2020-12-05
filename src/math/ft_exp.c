@@ -30,7 +30,7 @@ t_float		ft_exp(t_float x)
 	result *= x + 40320;
 	result *= 2.4801587301e-5;
 	return (result);
-/*	crash ??
+/*	inf loop ??
 	u_float_cast result = { x };
 
 	result.value_int = (1512775 * result.value_int + 1072632447);
