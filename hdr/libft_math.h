@@ -17,8 +17,6 @@
 **	@addtogroup libft_math
 **	@{
 */
-// TODO subdivide this into 2 modules: libft_math for classical real functions, and libft_vector for geometric functions
-// TODO add other function macros for integral, distance, etc
 
 /*
 ** ************************************************************************** *|
@@ -309,6 +307,12 @@ t_float								Math_InvTanH(t_float x);
 
 #endif
 
+/*
+** ************************************************************************** *|
+**                            Float Type Definitions                          *|
+** ************************************************************************** *|
+*/
+
 /*!
 **	This union type is used in several math function implementations,
 **	to manipulate float bits directly with bitwise operators.
@@ -330,251 +334,57 @@ typedef union	u_float_cast_
 #endif
 }				u_float_cast;
 
-
-
-/*
-** ************************************************************************** *|
-**                             Algebra & Calculus                             *|
-** ************************************************************************** *|
-*/
-
-//! A simple struct for storing 2-dimensional values
-typedef struct	s_vec2_
-{
-	t_float		x;			//! The X coordinate of this vector
-	t_float		y;			//! The Y coordinate of this vector
-}				s_vec2;
-
-//! A struct to store complex/imaginary number values
-typedef struct	s_complex_
-{
-	t_float		re;			//! The "real" part of this complex number
-	t_float		im;			//! The "imaginary" part of this complex number
-}				s_complex;
-
-//! This union stores a 2-dimensional value which can be accessed in several ways
-typedef	union	u_vec2_
-{
-	t_float		values[2];	//! An array, to access the 2 values from within brackets
-	s_vec2		vect;		//! A vector, to access the 2 coordinates as `.x` and `.y`
-	s_complex	cplx;		//! A complex number, to access the 2 parts as `.re` and `.im`
-}				u_vec2;
-
-
-
-//! A simple struct for storing 3-dimensional values
-typedef struct	s_vec3_
-{
-	t_float		x;			//! The X coordinate of this vector
-	t_float		y;			//! The Y coordinate of this vector
-	t_float		z;			//! The Z coordinate of this vector
-}				s_vec3;
-
-//! A struct to store color values with each channel (red,green,blue) as floats
-typedef struct	s_rgb_
-{
-	t_float		r;			//! The red channel of this color
-	t_float		g;			//! The green channel of this color
-	t_float		b;			//! The blue channel of this color
-}				s_rgb;
-
-//! A struct to store color values with each channel (hue,sat,lum) as floats
-typedef struct	s_hsl_
-{
-	t_float		h;			//! The hue value of this color
-	t_float		s;			//! The saturation value of this color
-	t_float		l;			//! The luminance/brightness value of this color
-}				s_hsl;
-
-//! This union stores a 3-dimensional value which can be accessed in several ways
-typedef	union	u_vec3_
-{
-	t_float		values[3];	//! An array, to access the 3 values from within brackets
-	s_vec3		vect;		//! A vector, to access the 3 coordinates as `.x`, `.y` and `.z`
-	s_rgb		rgb;		//! An RGB color, to access the 3 channels as `.r`, `.g` and `.b`
-	s_hsl		hsl;		//! An HSL color, to access the 3 channels as `.h`, `.s` and `.l`
-}				u_vec3;
-
-
-
-//! A simple struct for storing 4-dimensional values
-typedef struct		s_vec4_
-{
-	t_float		x;			//! The X coordinate of this vector
-	t_float		y;			//! The Y coordinate of this vector
-	t_float		z;			//! The Z coordinate of this vector
-	t_float		t;			//! The T coordinate of this vector
-}					s_vec4;
-
-//! A struct for storing quaternions
-typedef struct		s_quaternion_
-{
-	t_float		s;			//! The S value of this quaternion
-	t_float		i;			//! The I value of this quaternion
-	t_float		j;			//! The J value of this quaternion
-	t_float		k;			//! The K value of this quaternion
-}					s_quaternion;
-
-//! A struct to store color values with each channel (alpha,red,green,blue) as floats
-typedef struct		s_argb_
-{
-	t_float		a;			//! The alpha channel of this color (transparency)
-	t_float		r;			//! The red channel of this color
-	t_float		g;			//! The green channel of this color
-	t_float		b;			//! The blue channel of this color
-}					s_argb;
-
-//! A struct to store color values with each channel (alpha,hue,sat,lum) as floats
-typedef struct		s_ahsl_
-{
-	t_float		a;			//! The alpha channel of this color (transparency)
-	t_float		h;			//! The hue value of this color
-	t_float		s;			//! The saturation value of this color
-	t_float		l;			//! The luminance/brightness value of this color
-}					s_ahsl;
-
-//! This union stores a 4-dimensional value which can be accessed in several ways
-/*!
-**	NB: Make sure to be coherent when using 4D vectors:
-**	memory layout is in the order `xyz-t` for the 's_vec4' struct,
-**	but the other union structs divid it like `s-ijk` and `a-rgb`
-*/
-typedef	union	u_vec4_
-{
-	t_float			values[4];	//! An array, to access the 4 values from within brackets
-	s_vec4			vect;		//! A vector, to access the 4 coordinates as `.x`, `.y`, `.z`, and `.t`
-	s_quaternion	quat;		//! A quaternion, to access the 4 values as `.i`, `.j`, `.k`, and `.s`
-	s_argb			argb;		//! An RGB color, to access the 3 channels as `.r`, `.g` `.b`, and `.a`
-	s_ahsl			ahsl;		//! An HSL color, to access the 3 channels as `.h`, `.s` `.l`, and `.a`
-}				u_vec4;
-
-
-
-typedef		t_float	(*f_scalar_func1)(t_float const v);
-typedef		t_float	(*f_scalar_func2)(u_vec2 const v);
-typedef		t_float	(*f_scalar_func3)(u_vec3 const v);
-typedef		t_float	(*f_scalar_func4)(u_vec4 const v);
-
-typedef		t_float	(*f_real_function)(t_float x);
-typedef		t_float	(*f_real_operator)(t_float x, t_float y);
-
-
-
-/*
-** Note that for a coordinate box in the input space R^3, the volume
-** computed by the integral is thus technically a 4-hypervolume (since you
-** add a dimension because of the output space of dimension 1).
-** The box is assumed to be composed of orthogonal edges (brick shaped),
-** which is why only two vectors are necessary to define it.
-*/
-
-typedef struct		s_box1d_
-{
-	t_float		start;
-	t_float		end;
-}					s_box1d;
-
-typedef struct		s_box2d_
-{
-	u_vec2	start;
-	u_vec2	end;
-}					s_box2d;
-
-typedef struct		s_box3d_
-{
-	u_vec3	start;
-	u_vec3	end;
-}					s_box3d;
-
-typedef struct		s_box4d_
-{
-	u_vec4	start;
-	u_vec4	end;
-}					s_box4d;
-
-typedef s_box1d	s_interval;
-
-//t_float	lin_integrate(sf, domain);
-t_float		ft_integrate(f_real_function const f, s_interval const domain, t_float step);
-t_float		ft_mc_integrate_1d(f_scalar_func1 const sf, s_box1d const domain);
-t_float		ft_mc_integrate_2d(f_scalar_func2 const sf, s_box2d const domain);
-t_float		ft_mc_integrate_3d(f_scalar_func3 const sf, s_box3d const domain);
-t_float		ft_mc_integrate_4d(f_scalar_func4 const sf, s_box4d const domain);
-
-t_f32		ft_distance_f32(t_f32 x, t_f32 y);
-t_f64		ft_distance_f64(t_f64 x, t_f64 y);
-t_u8		ft_distance_u8(t_u8 x, t_u8 y);
-t_u16		ft_distance_u16(t_u16 x, t_u16 y);
-t_u32		ft_distance_u32(t_u32 x, t_u32 y);
-t_u64		ft_distance_u64(t_u64 x, t_u64 y);
-t_s8		ft_distance_s8(t_s8 x, t_s8 y);
-t_s16		ft_distance_s16(t_s16 x, t_s16 y);
-t_s32		ft_distance_s32(t_s32 x, t_s32 y);
-t_s64		ft_distance_s64(t_s64 x, t_s64 y);
-t_float		ft_distance_float(t_float x, t_float y);
-t_uint		ft_distance_uint(t_uint x, t_uint y);
-t_int		ft_distance_int(t_int x, t_int y);
-// TODO distance manh, eucl, inf for 2d, 3d and 4d
-
-
-
-/*
-** ************************************************************************** *|
-**                            Float Type Definitions                          *|
-** ************************************************************************** *|
-*/
-
 /*
 **	IEEE 754 32-bit floating point "single" precision bitwise macros
 */
-#define F32_SIGNED			0x80000000
-#define F32_EXPONENT_BIAS	127
-#define F32_EXPONENT		0x7F800000
-#define F32_EXPONENT_ZERO	0x3F800000
-#define F32_EXPONENT_BITS	8
-#define F32_MANTISSA		0x007FFFFF
-#define F32_MANTISSA_SIGNED	0x807FFFFF
-#define F32_MANTISSA_BITS	23
-#define F32_INIT_VALUE		0x1.p-23
+#define F32_SIGNED			(0x80000000)	//!< A 32-bit floating-point number's sign bit (bitmask)
+#define F32_EXPONENT_BIAS	(127)			//!< A 32-bit floating-point number's exponent bias offset
+#define F32_EXPONENT		(0x7F800000)	//!< A 32-bit floating-point number's exponent bit region (bitmask)
+#define F32_EXPONENT_ZERO	(0x3F800000)	//!< A 32-bit floating-point number's 0-exponent value, accounting for bias (bitmask)
+#define F32_EXPONENT_BITS	(8)				//!< A 32-bit floating-point number's amount of bits dedicated to the exponent
+#define F32_MANTISSA		(0x007FFFFF)	//!< A 32-bit floating-point number's mantissa bit region (bitmask)
+#define F32_MANTISSA_SIGNED	(0x807FFFFF)	//!< A 32-bit floating-point number's mantissa and sign bit regions (bitmask)
+#define F32_MANTISSA_BITS	(23)			//!< A 32-bit floating-point number's amount of bits dedicated to the mantissa
+#define F32_INIT_VALUE		(0x1.p-23)		//!< A 32-bit floating-point number's value if all bits are zero
 
 /*
 **	IEEE 754 64-bit floating point double-precision bitwise macros
 */
-#define F64_SIGNED			0x8000000000000000
-#define F64_EXPONENT_BIAS	1023
-#define F64_EXPONENT		0x7FF0000000000000
-#define F64_EXPONENT_ZERO	0x3FF0000000000000
-#define F64_EXPONENT_BITS	11
-#define F64_MANTISSA		0x000FFFFFFFFFFFFF
-#define F64_MANTISSA_SIGNED	0x800FFFFFFFFFFFFF
-#define F64_MANTISSA_BITS	52
-#define F64_INIT_VALUE		0x1.p-52
+#define F64_SIGNED			(0x8000000000000000)	//!< A 64-bit floating-point number's sign bit (bitmask)
+#define F64_EXPONENT_BIAS	(1023)					//!< A 64-bit floating-point number's exponent bias offset
+#define F64_EXPONENT		(0x7FF0000000000000)	//!< A 64-bit floating-point number's exponent bit region (bitmask)
+#define F64_EXPONENT_ZERO	(0x3FF0000000000000)	//!< A 64-bit floating-point number's 0-exponent value, accounting for bias (bitmask)
+#define F64_EXPONENT_BITS	(11)					//!< A 64-bit floating-point number's amount of bits dedicated to the exponent
+#define F64_MANTISSA		(0x000FFFFFFFFFFFFF)	//!< A 64-bit floating-point number's mantissa bit region (bitmask)
+#define F64_MANTISSA_SIGNED	(0x800FFFFFFFFFFFFF)	//!< A 64-bit floating-point number's mantissa and sign bit regions (bitmask)
+#define F64_MANTISSA_BITS	(52)					//!< A 64-bit floating-point number's amount of bits dedicated to the mantissa
+#define F64_INIT_VALUE		(0x1.p-52)				//!< A 64-bit floating-point number's value if all bits are zero
 
 /*
 **	x86 80-bit floating point extended precision bitwise macros
 */
-#define F80_SIGNED			0x80000000000000000000L
-#define F80_EXPONENT_BIAS	16383
-#define F80_EXPONENT		0x7FFF0000000000000000L
-#define F80_EXPONENT_ZERO	0x3FFF0000000000000000L
-#define F80_EXPONENT_BITS	15
-#define F80_MANTISSA		0x0000FFFFFFFFFFFFFFFFL
-#define F80_MANTISSA_SIGNED	0x8000FFFFFFFFFFFFFFFFL
-#define F80_MANTISSA_BITS	64
-#define F80_INIT_VALUE		0x1.p-64
+#define F80_SIGNED			(0x80000000000000000000L)	//!< A 80-bit floating-point number's sign bit (bitmask)
+#define F80_EXPONENT_BIAS	(16383)						//!< A 80-bit floating-point number's exponent bias offset
+#define F80_EXPONENT		(0x7FFF0000000000000000L)	//!< A 80-bit floating-point number's exponent bit region (bitmask)
+#define F80_EXPONENT_ZERO	(0x3FFF0000000000000000L)	//!< A 80-bit floating-point number's 0-exponent value, accounting for bias (bitmask)
+#define F80_EXPONENT_BITS	(15)						//!< A 80-bit floating-point number's amount of bits dedicated to the exponent
+#define F80_MANTISSA		(0x0000FFFFFFFFFFFFFFFFL)	//!< A 80-bit floating-point number's mantissa bit region (bitmask)
+#define F80_MANTISSA_SIGNED	(0x8000FFFFFFFFFFFFFFFFL)	//!< A 80-bit floating-point number's mantissa and sign bit regions (bitmask)
+#define F80_MANTISSA_BITS	(64)						//!< A 80-bit floating-point number's amount of bits dedicated to the mantissa
+#define F80_INIT_VALUE		(0x1.p-64)					//!< A 80-bit floating-point number's value if all bits are zero
 
 /*
 **	IEEE 754 128-bit floating point quadruple-precision bitwise macros
 */
-#define F128_SIGNED				0x80000000000000000000000000000000L
-#define F128_EXPONENT_BIAS		16383
-#define F128_EXPONENT			0x7FFF0000000000000000000000000000L
-#define F128_EXPONENT_ZERO		0x3FFF0000000000000000000000000000L
-#define F128_EXPONENT_BITS		15
-#define F128_MANTISSA			0x0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFL
-#define F128_MANTISSA_SIGNED	0x8000FFFFFFFFFFFFFFFFFFFFFFFFFFFFL
-#define F128_MANTISSA_BITS		112
-#define F128_INIT_VALUE			0x1.p-112
+#define F128_SIGNED				(0x80000000000000000000000000000000L)	//!< A 128-bit floating-point number's sign bit (bitmask)
+#define F128_EXPONENT_BIAS		(16383)									//!< A 128-bit floating-point number's exponent bias offset
+#define F128_EXPONENT			(0x7FFF0000000000000000000000000000L)	//!< A 128-bit floating-point number's exponent bit region (bitmask)
+#define F128_EXPONENT_ZERO		(0x3FFF0000000000000000000000000000L)	//!< A 128-bit floating-point number's 0-exponent value, accounting for bias (bitmask)
+#define F128_EXPONENT_BITS		(15)									//!< A 128-bit floating-point number's amount of bits dedicated to the exponent
+#define F128_MANTISSA			(0x0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFL)	//!< A 128-bit floating-point number's mantissa bit region (bitmask)
+#define F128_MANTISSA_SIGNED	(0x8000FFFFFFFFFFFFFFFFFFFFFFFFFFFFL)	//!< A 128-bit floating-point number's mantissa and sign bit regions (bitmask)
+#define F128_MANTISSA_BITS		(112)									//!< A 128-bit floating-point number's amount of bits dedicated to the mantissa
+#define F128_INIT_VALUE			(0x1.p-112)								//!< A 128-bit floating-point number's value if all bits are zero
 
 
 

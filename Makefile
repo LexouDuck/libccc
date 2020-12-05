@@ -227,6 +227,7 @@ HDRS = \
 	$(HDRDIR)libft_color.h			\
 	$(HDRDIR)libft_list.h			\
 	$(HDRDIR)libft_math.h			\
+	$(HDRDIR)libft_algebra.h		\
 	$(HDRDIR)libft_stat.h			\
 	$(HDRDIR)libft_random.h			\
 	$(HDRDIR)libft_vlq.h			\

@@ -18,6 +18,7 @@
 **	@{
 */
 // TODO add AHSL32 color typedef + conversion functions
+// TODO add conversion functions for float-color structs
 
 /*
 ** ************************************************************************** *|
@@ -38,7 +39,7 @@ HEADER_CPP
 //! This typedef represents an unsigned 16-bit number which stores an ARGB 1555 color
 typedef t_u16	t_argb16;
 //! The maximum possible value for one color channel of an ARGB16 color (0-31)
-#define COLOR_ARGB16_CHANNEL	(0x1F)
+#define COLOR_ARGB16_CHANNEL	(31)
 
 #define COLOR_ARGB16_A	(0x8000)	//!< 0b 10000000 00000000	bitmask for the 16-bit color's alpha channel (0 or 1)
 #define COLOR_ARGB16_B	(0x7C00)	//!< 0b 01111100 00000000	bitmask for the 16-bit color's blue channel  (0-31)
@@ -50,12 +51,50 @@ typedef t_u16	t_argb16;
 //! This typedef represents an unsigned 32-bit number which stores an ARGB 8888 color
 typedef t_u32	t_argb32;
 //! The maximum possible value for one color channel of an ARGB16 color (0-255)
-#define COLOR_ARGB32_CHANNEL	(0xFF)
+#define COLOR_ARGB32_CHANNEL	(255)
 
 #define COLOR_ARGB32_A	(0xFF000000)	// bitmask for the 32-bit color's alpha channel	(0-255)
 #define COLOR_ARGB32_R	(0x00FF0000)	// bitmask for the 32-bit color's red channel	(0-255)
 #define COLOR_ARGB32_G	(0x0000FF00)	// bitmask for the 32-bit color's green channel	(0-255)
 #define COLOR_ARGB32_B	(0x000000FF)	// bitmask for the 32-bit color's blue channel	(0-255)
+
+
+
+//! A struct to store color values with each channel (red,green,blue) as floats
+typedef struct	s_rgb_
+{
+	t_float		r;			//! The red channel of this color
+	t_float		g;			//! The green channel of this color
+	t_float		b;			//! The blue channel of this color
+}				s_rgb;
+
+//! A struct to store color values with each channel (hue,sat,lum) as floats
+typedef struct	s_hsl_
+{
+	t_float		h;			//! The hue value of this color
+	t_float		s;			//! The saturation value of this color
+	t_float		l;			//! The luminance/brightness value of this color
+}				s_hsl;
+
+
+
+//! A struct to store color values with each channel (alpha,red,green,blue) as floats
+typedef struct		s_argb_
+{
+	t_float		a;			//! The alpha channel of this color (transparency)
+	t_float		r;			//! The red channel of this color
+	t_float		g;			//! The green channel of this color
+	t_float		b;			//! The blue channel of this color
+}					s_argb;
+
+//! A struct to store color values with each channel (alpha,hue,sat,lum) as floats
+typedef struct		s_ahsl_
+{
+	t_float		a;			//! The alpha channel of this color (transparency)
+	t_float		h;			//! The hue value of this color
+	t_float		s;			//! The saturation value of this color
+	t_float		l;			//! The luminance/brightness value of this color
+}					s_ahsl;
 
 
 

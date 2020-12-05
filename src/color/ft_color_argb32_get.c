@@ -34,7 +34,7 @@ inline t_u8		ft_color_argb32_get_b(t_argb32 color)
 	return ((t_u8)(COLOR_ARGB32_CHANNEL & color));
 }
 
-t_argb32*		ft_color_argb32_get_nearest(
+t_argb32*		ft_color_argb32_nearest(
 	t_argb32 target,
 	t_argb32* colors,
 	t_size n)

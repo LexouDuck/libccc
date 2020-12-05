@@ -12,6 +12,7 @@
 
 #include "libft_math.h"
 #include "libft_random.h"
+#include "libft_algebra.h"
 
 
 
