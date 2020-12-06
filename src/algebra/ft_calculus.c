@@ -18,7 +18,7 @@
 
 t_float			ft_mc_integrate3(f_scalar_func3 const sf, s_box3d const domain)
 {
-	u_vec3		rand_input;
+	u_vector3d	rand_input;
 	t_float		result;
 	t_u32		i;
 
@@ -26,16 +26,16 @@ t_float			ft_mc_integrate3(f_scalar_func3 const sf, s_box3d const domain)
 	i = 0;
 	while (i < SAMPLE_NB)
 	{
-		rand_input.vect.x = ft_random_float_a_to_b(domain.start.vect.x, domain.end.vect.x);
-		rand_input.vect.y = ft_random_float_a_to_b(domain.start.vect.y, domain.end.vect.y);
-		rand_input.vect.z = ft_random_float_a_to_b(domain.start.vect.z, domain.end.vect.z);
+		rand_input.vector.x = ft_random_float_a_to_b(domain.start.vector.x, domain.end.vector.x);
+		rand_input.vector.y = ft_random_float_a_to_b(domain.start.vector.y, domain.end.vector.y);
+		rand_input.vector.z = ft_random_float_a_to_b(domain.start.vector.z, domain.end.vector.z);
 		result += sf(rand_input);
 		++i;
 	}
 	result /= (t_float)SAMPLE_NB;
-	result *=	(domain.end.vect.x - domain.start.vect.x) *
-				(domain.end.vect.y - domain.start.vect.y) *
-				(domain.end.vect.z - domain.start.vect.z);
+	result *=	(domain.end.vector.x - domain.start.vector.x) *
+				(domain.end.vector.y - domain.start.vector.y) *
+				(domain.end.vector.z - domain.start.vector.z);
 	return (result);
 }
 
