@@ -3,31 +3,46 @@
 
 
 
-void		vector_transform(t_vector *vector, t_matrix *matrix)
+s_vector2d	Matrix2D_Apply(s_matrix2d const* matrix, s_vector2d const* vector)
 {
-	float		x;
-	float		y;
-	float		z;
-	t_vector	*tmp;
+	s_vector2d result = {0};
+	s_vector2d const* tmp;
+	t_float x;
+	t_float y;
+
+	x = vector->x;
+	y = vector->y;
+	tmp = &matrix->u;
+	result.x += (x * tmp->x);
+	result.y += (x * tmp->y);
+	tmp = &matrix->v;
+	result.x += (y * tmp->x);
+	result.y += (y * tmp->y);
+	return (result);
+}
+
+s_vector3d	Matrix3D_Apply(s_matrix3d const* matrix, s_vector3d const* vector)
+{
+	s_vector3d result = {0};
+	s_vector3d const* tmp;
+	t_float x;
+	t_float y;
+	t_float z;
 
 	x = vector->x;
 	y = vector->y;
 	z = vector->z;
-	tmp = &matrix->t;
-	if (tmp->x || tmp->y || tmp->z)
-		vector_set(vector, tmp->x, tmp->y, tmp->z);
-	else
-		vector_set(vector, 0, 0, 0);
 	tmp = &matrix->u;
-	vector->x += (x * tmp->x);
-	vector->y += (x * tmp->y);
-	vector->z += (x * tmp->z);
+	result.x += (x * tmp->x);
+	result.y += (x * tmp->y);
+	result.z += (x * tmp->z);
 	tmp = &matrix->v;
-	vector->x += (y * tmp->x);
-	vector->y += (y * tmp->y);
-	vector->z += (y * tmp->z);
+	result.x += (y * tmp->x);
+	result.y += (y * tmp->y);
+	result.z += (y * tmp->z);
 	tmp = &matrix->w;
-	vector->x += (z * tmp->x);
-	vector->y += (z * tmp->y);
-	vector->z += (z * tmp->z);
+	result.x += (z * tmp->x);
+	result.y += (z * tmp->y);
+	result.z += (z * tmp->z);
+	return (result);
 }

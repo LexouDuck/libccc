@@ -3,23 +3,53 @@
 
 
 
-void		matrix_multiply(t_matrix *m1, t_matrix *m2)
+s_matrix2d	Matrix2D_Multiply(s_matrix2d const* m1, s_matrix2d const* m2)
 {
-	t_vector	*vector;
+	s_matrix2d result;
+	s_vector2d tmp;
 
-	vector = &m1->u;
-	vector_set(&m1->u,
-		vector->x * m2->u.x + vector->y * m2->v.x + vector->z * m2->w.x,
-		vector->x * m2->u.y + vector->y * m2->v.y + vector->z * m2->w.y,
-		vector->x * m2->u.z + vector->y * m2->v.z + vector->z * m2->w.z);
-	vector = &m1->v;
-	vector_set(&m1->v,
-		vector->x * m2->u.x + vector->y * m2->v.x + vector->z * m2->w.x,
-		vector->x * m2->u.y + vector->y * m2->v.y + vector->z * m2->w.y,
-		vector->x * m2->u.z + vector->y * m2->v.z + vector->z * m2->w.z);
-	vector = &m1->w;
-	vector_set(&m1->w,
-		vector->x * m2->u.x + vector->y * m2->v.x + vector->z * m2->w.x,
-		vector->x * m2->u.y + vector->y * m2->v.y + vector->z * m2->w.y,
-		vector->x * m2->u.z + vector->y * m2->v.z + vector->z * m2->w.z);
+	tmp = m1->u;
+	result.u = (s_vector2d)
+	{
+		(tmp.x * m2->u.x) + (tmp.y * m2->v.x),
+		(tmp.x * m2->u.y) + (tmp.y * m2->v.y),
+	};
+	tmp = m1->v;
+	result.v = (s_vector2d)
+	{
+		(tmp.x * m2->u.x) + (tmp.y * m2->v.x),
+		(tmp.x * m2->u.y) + (tmp.y * m2->v.y),
+	};
+	return (result);
+}
+
+
+
+s_matrix3d	Matrix3D_Multiply(s_matrix3d const* m1, s_matrix3d const* m2)
+{
+	s_matrix3d result;
+	s_vector3d tmp;
+
+	tmp = m1->u;
+	result.u = (s_vector3d)
+	{
+		(tmp.x * m2->u.x) + (tmp.y * m2->v.x) + (tmp.z * m2->w.x),
+		(tmp.x * m2->u.y) + (tmp.y * m2->v.y) + (tmp.z * m2->w.y),
+		(tmp.x * m2->u.z) + (tmp.y * m2->v.z) + (tmp.z * m2->w.z),
+	};
+	tmp = m1->v;
+	result.v = (s_vector3d)
+	{
+		(tmp.x * m2->u.x) + (tmp.y * m2->v.x) + (tmp.z * m2->w.x),
+		(tmp.x * m2->u.y) + (tmp.y * m2->v.y) + (tmp.z * m2->w.y),
+		(tmp.x * m2->u.z) + (tmp.y * m2->v.z) + (tmp.z * m2->w.z),
+	};
+	tmp = m1->w;
+	result.w = (s_vector3d)
+	{
+		(tmp.x * m2->u.x) + (tmp.y * m2->v.x) + (tmp.z * m2->w.x),
+		(tmp.x * m2->u.y) + (tmp.y * m2->v.y) + (tmp.z * m2->w.y),
+		(tmp.x * m2->u.z) + (tmp.y * m2->v.z) + (tmp.z * m2->w.z),
+	};
+	return (result);
 }

@@ -3,27 +3,46 @@
 
 
 
-void		matrix_inverse(t_matrix *matrix)
+s_matrix2d		Matrix2D_Inverse(s_matrix2d const* matrix)
 {
-	t_vector	u;
-	t_vector	v;
-	t_vector	w;
-	double		determinant;
+	s_matrix2d result = MATRIX2D_NULL;
+	s_vector2d u = matrix->u;
+	s_vector2d v = matrix->v;
+	t_float tmp;
 
-	vector_set(&u, matrix->u.x, matrix->u.y, matrix->u.z);
-	vector_set(&v, matrix->v.x, matrix->v.y, matrix->v.z);
-	vector_set(&w, matrix->w.x, matrix->w.y, matrix->w.z);
-	determinant = u.x * (v.y * w.z - v.z * w.y) -
-		u.y * (v.x * w.z - v.z * w.x) +
-		u.z * (v.x * w.y - v.y * w.x);
-	determinant = 1 / determinant;
-	matrix->u.x = (v.y * w.z - w.y * v.z) * determinant;
-	matrix->u.y = (w.y * u.z - u.y * w.z) * determinant;
-	matrix->u.z = (u.y * v.z - v.y * u.z) * determinant;
-	matrix->v.x = (v.z * w.x - w.z * v.x) * determinant;
-	matrix->v.y = (w.z * u.x - u.z * w.x) * determinant;
-	matrix->v.z = (u.z * v.x - v.z * u.x) * determinant;
-	matrix->w.x = (v.x * w.y - w.x * v.y) * determinant;
-	matrix->w.y = (w.x * u.y - u.x * w.y) * determinant;
-	matrix->w.z = (u.x * v.y - v.x * u.y) * determinant;
+	tmp = Matrix2D_Determinant(matrix);
+	if (tmp == 0)
+		return (result);
+	tmp = 1 / tmp;
+	result.u.x =  v.y * tmp;
+	result.u.y = -u.y * tmp;
+	result.v.x = -v.x * tmp;
+	result.v.y =  u.x * tmp;
+	return (result);
+}
+
+
+
+s_matrix3d		Matrix3D_Inverse(s_matrix3d const* matrix)
+{
+	s_matrix3d result = MATRIX3D_NULL;
+	s_vector3d u = matrix->u;
+	s_vector3d v = matrix->v;
+	s_vector3d w = matrix->w;
+	t_float tmp;
+
+	tmp = Matrix3D_Determinant(matrix);
+	if (tmp == 0)
+		return (result);
+	tmp = 1 / tmp;
+	result.u.x = (v.y * w.z - w.y * v.z) * tmp;
+	result.u.y = (w.y * u.z - u.y * w.z) * tmp;
+	result.u.z = (u.y * v.z - v.y * u.z) * tmp;
+	result.v.x = (v.z * w.x - w.z * v.x) * tmp;
+	result.v.y = (w.z * u.x - u.z * w.x) * tmp;
+	result.v.z = (u.z * v.x - v.z * u.x) * tmp;
+	result.w.x = (v.x * w.y - w.x * v.y) * tmp;
+	result.w.y = (w.x * u.y - u.x * w.y) * tmp;
+	result.w.z = (u.x * v.y - v.x * u.y) * tmp;
+	return (result);
 }

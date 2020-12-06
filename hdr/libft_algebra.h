@@ -179,46 +179,46 @@ typedef	union	u_matrix2d_
 }				u_matrix2d;
 //! A 2-dimensional matrix in which every number is zero
 #define MATRIX2D_NULL \
-{				\
-	.u={ 0, 0 }	\
-	.v={ 0, 0 }	\
-}				\
+{					\
+	.u={ 0, 0 },	\
+	.v={ 0, 0 },	\
+}
 //! A 2-dimensional matrix which is neutral (does nothing) when applied/multiplied
 #define MATRIX2D_IDENTITY \
-{				\
-	.u={ 1, 0 }	\
-	.v={ 0, 1 }	\
-}				\
+{					\
+	.u={ 1, 0 },	\
+	.v={ 0, 1 },	\
+}
 //! A 2-dimensional matrix which, when applied, rotates a vector by the given 'ANGLE'
 #define MATRIX2D_ROTATE(ANGLE) \
 {											\
-	.u={ ft_cos(ANGLE), -ft_sin(ANGLE) }	\
-	.v={ ft_sin(ANGLE),  ft_cos(ANGLE) }	\
-}											\
+	.u={ ft_cos(ANGLE), -ft_sin(ANGLE) },	\
+	.v={ ft_sin(ANGLE),  ft_cos(ANGLE) },	\
+}
 
 //! Allocates a new matrix struct on heap, setting its values from the given vectors
-s_matrix2d*				Matrix2D_New(s_vector2d u, s_vector2d v);
+s_matrix2d*				Matrix2D_New(s_vector2d const* u, s_vector2d const* v);
 #define ft_mat2new		Matrix2D_New
 
 //! Applies the transformation stored by the given 'matrix' onto the given 'vector' and returns it
-s_vector2d				Matrix2D_Apply(s_vector2d const* vector, s_matrix2d const* matrix);
+s_vector2d				Matrix2D_Apply(s_matrix2d const* matrix, s_vector2d const* vector);
 #define ft_mat2apply	Matrix2D_Apply
 
-//! Changes the values of the given 'matrix' to those of its inverse matrix
-s_matrix2d				Matrix2D_Invert(s_matrix2d const* matrix);
-#define ft_mat2invert	Matrix2D_Invert
+//! Returns the determinant value for the given 'matrix'
+t_float					Matrix2D_Determinant(s_matrix2d const* matrix);
+#define ft_mat2determ	Matrix2D_Determinant
 
-//! Performs a matrix multiplication on the two given matrices 'm1' and 'm2'
-s_matrix2d				Matrix2D_Multiply(s_matrix2d const* m1, s_matrix2d const* m2);
-#define ft_mat2mult		Matrix2D_Multiply
+//! Changes the values of the given 'matrix' to those of its inverse matrix
+s_matrix2d				Matrix2D_Inverse(s_matrix2d const* matrix);
+#define ft_mat2inverse	Matrix2D_Inverse
 
 //! Returns the transpose the given 'matrix', flipping its values across its diagonal
 s_matrix2d				Matrix2D_Transpose(s_matrix2d const* matrix);
 #define ft_mat2transp	Matrix2D_Transpose
 
-//! Returns the determinant value for the given 'matrix'
-t_float					Matrix2D_Determinant(s_matrix2d const* matrix);
-#define ft_mat2determ	Matrix2D_Determinant
+//! Performs a matrix multiplication on the two given matrices 'm1' and 'm2'
+s_matrix2d				Matrix2D_Multiply(s_matrix2d const* m1, s_matrix2d const* m2);
+#define ft_mat2mult		Matrix2D_Multiply
 
 
 
@@ -238,62 +238,62 @@ typedef	union	u_matrix3d_
 //! A 3-dimensional matrix in which every number is zero
 #define MATRIX3D_NULL \
 {					\
-	.u={ 0, 0, 0 }	\
-	.v={ 0, 0, 0 }	\
-	.w={ 0, 0, 0 }	\
-}					\
+	.u={ 0, 0, 0 },	\
+	.v={ 0, 0, 0 },	\
+	.w={ 0, 0, 0 },	\
+}
 //! A 3-dimensional matrix which is neutral (does nothing) when applied/multiplied
 #define MATRIX3D_IDENTITY \
 {					\
-	.u={ 1, 0, 0 }	\
-	.v={ 0, 1, 0 }	\
-	.w={ 0, 0, 1 }	\
-}					\
+	.u={ 1, 0, 0 },	\
+	.v={ 0, 1, 0 },	\
+	.w={ 0, 0, 1 },	\
+}
 //! A 3-dimensional matrix which, when applied, rotates a vector about the X axis by the given 'ANGLE'
 #define MATRIX3D_ROTATE_X(ANGLE) \
-{											\
-	.u={ 1, 0,              0             }	\
-	.v={ 0, ft_cos(ANGLE), -ft_sin(ANGLE) }	\
-	.w={ 0, ft_sin(ANGLE),  ft_cos(ANGLE) }	\
-}											\
+{												\
+	.u={ 1, 0,              0             },	\
+	.v={ 0, ft_cos(ANGLE), -ft_sin(ANGLE) },	\
+	.w={ 0, ft_sin(ANGLE),  ft_cos(ANGLE) },	\
+}
 //! A 3-dimensional matrix which, when applied, rotates a vector about the Y axis by the given 'ANGLE'
 #define MATRIX3D_ROTATE_Y(ANGLE) \
-{											\
-	.u={  ft_cos(ANGLE), 0, ft_sin(ANGLE) }	\
-	.v={  0,             1, 0             }	\
-	.w={ -ft_sin(ANGLE), 0, ft_cos(ANGLE) }	\
-}											\
+{												\
+	.u={  ft_cos(ANGLE), 0, ft_sin(ANGLE) },	\
+	.v={  0,             1, 0             },	\
+	.w={ -ft_sin(ANGLE), 0, ft_cos(ANGLE) },	\
+}
 //! A 3-dimensional matrix which, when applied, rotates a vector about the Z axis by the given 'ANGLE'
 #define MATRIX3D_ROTATE_Z(ANGLE) \
-{											\
-	.u={ ft_cos(ANGLE), -ft_sin(ANGLE), 0 }	\
-	.v={ ft_sin(ANGLE),  ft_cos(ANGLE), 0 }	\
-	.w={ 0,              0,             1 }	\
-}											\
+{												\
+	.u={ ft_cos(ANGLE), -ft_sin(ANGLE), 0 },	\
+	.v={ ft_sin(ANGLE),  ft_cos(ANGLE), 0 },	\
+	.w={ 0,              0,             1 },	\
+}
 
 //! Allocates a new matrix struct on heap, setting its values from the given vectors
-s_matrix3d*				Matrix3D_New(s_vector3d u, s_vector3d v, s_vector3d w);
+s_matrix3d*				Matrix3D_New(s_vector3d const* u, s_vector3d const* v, s_vector3d const* w);
 #define ft_mat3new		Matrix3D_New
 
 //! Applies the transformation stored by the given 'matrix' onto the given 'vector' and returns it
-s_vector3d				Matrix3D_Apply(s_vector3d const* vector, s_matrix3d const* matrix);
+s_vector3d				Matrix3D_Apply(s_matrix3d const* matrix, s_vector3d const* vector);
 #define ft_mat3apply	Matrix3D_Apply
 
-//! Changes the values of the given 'matrix' to those of its inverse matrix
-s_matrix3d				Matrix3D_Invert(s_matrix3d const* matrix);
-#define ft_mat3invert	Matrix3D_Invert
+//! Returns the determinant value for the given 'matrix'
+t_float					Matrix3D_Determinant(s_matrix3d const* matrix);
+#define ft_mat3determ	Matrix3D_Determinant
 
-//! Performs a matrix multiplication on the two given matrices 'm1' and 'm2'
-s_matrix3d				Matrix3D_Multiply(s_matrix3d const* m1, s_matrix3d const* m2);
-#define ft_mat3mult		Matrix3D_Multiply
+//! Changes the values of the given 'matrix' to those of its inverse matrix
+s_matrix3d				Matrix3D_Inverse(s_matrix3d const* matrix);
+#define ft_mat3inverse	Matrix3D_Inverse
 
 //! Returns the transpose the given 'matrix', flipping its values across its diagonal
 s_matrix3d				Matrix3D_Transpose(s_matrix3d const* matrix);
 #define ft_mat3transp	Matrix3D_Transpose
 
-//! Returns the determinant value for the given 'matrix'
-t_float					Matrix3D_Determinant(s_matrix3d const* matrix);
-#define ft_mat3determ	Matrix3D_Determinant
+//! Performs a matrix multiplication on the two given matrices 'm1' and 'm2'
+s_matrix3d				Matrix3D_Multiply(s_matrix3d const* m1, s_matrix3d const* m2);
+#define ft_mat3mult		Matrix3D_Multiply
 
 
 

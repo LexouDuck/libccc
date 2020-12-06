@@ -1,17 +1,30 @@
 
 #include "libft_algebra.h"
+#include "libft_memory.h"
 
 
 
-t_matrix	*matrix_new(t_vector *u, t_vector *v, t_vector *w, t_vector *t)
+s_matrix2d*		Matrix2D_New(s_vector2d const* u, s_vector2d const* v)
 {
-	t_matrix	*result;
+	s_matrix2d* result;
 
-	if (!(result = (t_matrix *)malloc(sizeof(t_matrix))))
+	if (!(result = (s_matrix2d*)Memory_New(sizeof(s_matrix2d))))
 		return (NULL);
-	result->u = (u ? *u : (t_vector){0, 0, 0});
-	result->v = (v ? *v : (t_vector){0, 0, 0});
-	result->w = (w ? *w : (t_vector){0, 0, 0});
-	result->t = (t ? *t : (t_vector){0, 0, 0});
+	result->u = (u ? *u : (s_vector2d){ 0, 0 });
+	result->v = (v ? *v : (s_vector2d){ 0, 0 });
+	return (result);
+}
+
+
+
+s_matrix3d*		Matrix3D_New(s_vector3d const* u, s_vector3d const* v, s_vector3d const* w)
+{
+	s_matrix3d* result;
+
+	if (!(result = (s_matrix3d*)Memory_New(sizeof(s_matrix3d))))
+		return (NULL);
+	result->u = (u ? *u : (s_vector3d){ 0, 0, 0 });
+	result->v = (v ? *v : (s_vector3d){ 0, 0, 0 });
+	result->w = (w ? *w : (s_vector3d){ 0, 0, 0 });
 	return (result);
 }
