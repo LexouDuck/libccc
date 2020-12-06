@@ -104,6 +104,13 @@ HEADER_CPP
 
 
 
+//! The type of function which takes one real number and outputs one real number
+typedef		t_float	(*f_real_function)(t_float x);
+//! The type of function which takes two real numbers and outputs one real number
+typedef		t_float	(*f_real_operator)(t_float x, t_float y);
+
+
+
 /*
 ** ************************************************************************** *|
 **                     Classical Real Number Operations                       *|
@@ -221,11 +228,13 @@ t_float								Math_Tan(t_float x);
 t_float								Math_ArcCos(t_float x);
 #define ft_acos						Math_ArcCos
 #define Math_InvCosine				Math_ArcCos
+#define Math_Cos_1					Math_ArcCos
 
 //! Returns the arc-sine of 'x' (inverse of the sin function)
 t_float								Math_ArcSin(t_float x);
 #define ft_asin						Math_ArcSin
 #define Math_InvSine				Math_ArcSin
+#define Math_Sin_1					Math_ArcSin
 
 //! Returns the arc-tangent of 'x' (inverse of the tan function)
 t_float								Math_ArcTan(t_float x);

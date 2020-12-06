@@ -194,6 +194,24 @@ SRC_MATH = \
 	ft_calc.c			\
 	ft_trigonometry.c	\
 
+DIR_ALGEBRA = algebra/
+SRC_ALGEBRA = \
+	ft_calculus.c			\
+	ft_vector_new.c			\
+	ft_vector_set.c			\
+	ft_vector_invert.c		\
+	ft_vector_norm.c		\
+	ft_vector_scale.c		\
+	ft_vector_normalize.c	\
+	ft_vector_dot.c			\
+	ft_vector_cross.c		\
+	ft_matrix_new.c			\
+	ft_matrix_set.c			\
+	ft_matrix_invert.c		\
+	ft_matrix_transpose.c	\
+	ft_matrix_multiply.c	\
+	ft_matrix_apply.c		\
+
 DIR_STAT = stat/
 SRC_STAT = \
 	ft_stat_int.c		\
