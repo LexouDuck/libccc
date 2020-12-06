@@ -48,10 +48,14 @@ HEADER_CPP
 **		new_nb = (CEIL_SQRT_MOD  * old_nb + OFFSET) % MODULUS
 */
 
+//! The default random seed for pseudo-random number generation
 #define DEFAULT_SEED	(0x93E21FD5)
 
+//! TODO document this
 #define MODULUS			(0x7FFFFFFF)
+//! TODO document this
 #define CEIL_SQRT_MOD	(46341)
+//! TODO document this
 #define OFFSET			(2835)
 
 

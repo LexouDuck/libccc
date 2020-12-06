@@ -38,13 +38,14 @@
 HEADER_CPP
 
 /*
+**	incomplete:
 **	TODO	libft_color			+ tests
 **	TODO	libft_random		+ tests
 **	TODO	libft_stringarray	+ tests
 **	TODO	libft_io			+ tests
-**
-**	TODO	libft_time			+ tests
 **	TODO	libft_algebra		+ tests
+**	non-existent:
+**	TODO	libft_time			+ tests
 **	TODO	libft_complex		+ tests
 **	TODO	libft_fixedpoint	+ tests
 **	TODO	libft_compress		+ tests
