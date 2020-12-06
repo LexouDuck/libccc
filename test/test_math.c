@@ -4,6 +4,7 @@
 
 #include "libft_io.h"
 #include "libft_math.h"
+#include "libft_algebra.h"
 #include "libft_stat.h"
 
 #include "test.h"
@@ -67,7 +68,7 @@ static inline void printf_colored(const char* label, t_float precision, t_float 
 static t_float	ft_get_largest_f(s_list_float list)
 {
 	t_float result = 0.;
-	for (t_int i = 0; i < list.length; ++i)
+	for (t_u32 i = 0; i < list.length; ++i)
 	{
 		if (result < list.data[i])
 			result = list.data[i];
@@ -80,92 +81,92 @@ static t_float	ft_get_largest_f(s_list_float list)
 
 
 #define TEST_INIT_MATH() \
-	s_timer			timer = {0}; \
-	int				failed_tests = 0; \
+	s_timer			timer = {0};		\
+	int				failed_tests = 0;	\
 
 #define TEST_INIT_MATH_REALFUNCTION() \
-	TEST_INIT_MATH() \
-	t_float			expects[tests]; \
-	t_float			results[tests]; \
-	s_list_float	error_list = ft_stat_new_flst(tests); \
-	t_float	x; \
-	t_float	step = (interval.end - interval.start) / tests; \
+	TEST_INIT_MATH()										\
+	t_float			expects[tests];							\
+	t_float			results[tests];							\
+	s_list_float	error_list = ft_stat_new_flst(tests);	\
+	t_float	x;												\
+	t_float	step = (interval.end - interval.start) / tests;	\
 
 #define TEST_INIT_MATH_REALOPERATOR() \
-	TEST_INIT_MATH() \
-	int tests_interval = tests; \
-	tests *= tests; \
-	t_float			expects[tests]; \
-	t_float			results[tests]; \
-	s_list_float	error_list = ft_stat_new_flst(tests); \
-	t_float	x; \
-	t_float	y; \
-	t_float	step_x = (interval_x.end - interval_x.start) / tests_interval; \
-	t_float	step_y = (interval_y.end - interval_y.start) / tests_interval; \
+	TEST_INIT_MATH()														\
+	int tests_interval = tests;												\
+	tests *= tests;															\
+	t_float			expects[tests];											\
+	t_float			results[tests];											\
+	s_list_float	error_list = ft_stat_new_flst(tests);					\
+	t_float	x;																\
+	t_float	y;																\
+	t_float	step_x = (interval_x.end - interval_x.start) / tests_interval;	\
+	t_float	step_y = (interval_y.end - interval_y.start) / tests_interval;	\
 	
 
 
 
 #define TEST_PERFORM_MATH_REALFUNCTION(CALL, RESULTS, FUNCTION) \
-	x = interval.start; \
-	timer_clock(&timer.start##CALL); \
-	for (int i = 0; i < tests; ++i) \
-	{ \
-		x += step; \
-		RESULTS[i] = FUNCTION(x); \
-	} \
-	timer_clock(&timer.end##CALL); \
+	x = interval.start;					\
+	timer_clock(&timer.start##CALL);	\
+	for (int i = 0; i < tests; ++i)		\
+	{									\
+		x += step;						\
+		RESULTS[i] = FUNCTION(x);		\
+	}									\
+	timer_clock(&timer.end##CALL);		\
 
 #define TEST_PERFORM_MATH_REALOPERATOR(CALL, RESULTS, FUNCTION) \
-	x = interval_x.start; \
-	y = interval_y.start; \
-	timer_clock(&timer.start##CALL); \
-	for (int i = 0; i < tests_interval; ++i) \
-	{ \
-		for (int j = 0; j < tests_interval; ++j) \
-		{ \
-			x += step_x; \
-			RESULTS[i * tests_interval + j] = FUNCTION(x, y); \
-		} \
-		y += step_y; \
-	} \
-	timer_clock(&timer.end##CALL); \
+	x = interval_x.start;										\
+	y = interval_y.start;										\
+	timer_clock(&timer.start##CALL);							\
+	for (int i = 0; i < tests_interval; ++i)					\
+	{															\
+		for (int j = 0; j < tests_interval; ++j)				\
+		{														\
+			x += step_x;										\
+			RESULTS[i * tests_interval + j] = FUNCTION(x, y);	\
+		}														\
+		y += step_y;											\
+	}															\
+	timer_clock(&timer.end##CALL);								\
 
 
 
 #define TEST_GET_RESULTS() \
-	for (int i = 0; i < tests; ++i) \
-	{ \
-		if (expects[i] == results[i] || (IS_NAN(expects[i]) && IS_NAN(results[i]))) \
-			error_list.data[i] = 0; \
-		else if (IS_NAN(expects[i]) || IS_NAN(results[i])) \
-			error_list.data[i] = NAN; \
-		else \
-			error_list.data[i] = ft_distance_float(expects[i], results[i]); \
-		if (IS_NAN(error_list.data[i]) || error_list.data[i] > fabs(precision * expects[i])) \
-		{ \
-			++failed_tests; \
-			if (g_test.flags.verbose && g_test.flags.show_args && precision < fabs(results[i] - expects[i])) \
-			{ \
-				printf("TEST N°%d: -> returned %g but libc returned %g (difference is "C_RED"%g"C_RESET")\n", \
-					i, results[i], expects[i], error_list.data[i]); \
-			} \
-		} \
-	} \
+	for (int i = 0; i < tests; ++i)																				\
+	{																											\
+		if (expects[i] == results[i] || (IS_NAN(expects[i]) && IS_NAN(results[i])))								\
+			error_list.data[i] = 0;																				\
+		else if (IS_NAN(expects[i]) || IS_NAN(results[i]))														\
+			error_list.data[i] = NAN;																			\
+		else																									\
+			error_list.data[i] = ft_distance_float(expects[i], results[i]);										\
+		if (IS_NAN(error_list.data[i]) || error_list.data[i] > fabs(precision * expects[i]))					\
+		{																										\
+			++failed_tests;																						\
+			if (g_test.flags.verbose && g_test.flags.show_args && precision < fabs(results[i] - expects[i]))	\
+			{																									\
+				printf("TEST N°%d: -> returned %g but libc returned %g (difference is "C_RED"%g"C_RESET")\n",	\
+					i, results[i], expects[i], error_list.data[i]);												\
+			}																									\
+		}																										\
+	}																											\
 
 
 
 #define TEST_PRINT_MATH(FORMAT, ...) \
-	g_test.totals.tests += tests; \
-	g_test.totals.failed += failed_tests; \
-	t_float percent = (tests - failed_tests) * 100. / tests; \
-	if (g_test.flags.verbose || percent < 90.) \
-	{ \
-		printf("\n%s\n", func_name); \
-		printf(FORMAT, ##__VA_ARGS__); \
-		printf("Success rate for %g precision: ", precision); \
-		print_percent(percent); \
-	} \
+	g_test.totals.tests += tests;								\
+	g_test.totals.failed += failed_tests;						\
+	t_float percent = (tests - failed_tests) * 100. / tests;	\
+	if (g_test.flags.verbose || percent < 90.)					\
+	{															\
+		printf("\n%s\n", func_name);							\
+		printf(FORMAT, __VA_ARGS__);							\
+		printf("Success rate for %g precision: ", precision);	\
+		print_percent(percent);									\
+	}															\
 
 static void	print_test_math(s_timer timer, s_list_float error_list, t_float precision)
 {
