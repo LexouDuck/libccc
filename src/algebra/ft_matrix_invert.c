@@ -1,4 +1,8 @@
 
+#include "libft_algebra.h"
+
+
+
 void		matrix_inverse(t_matrix *matrix)
 {
 	t_vector	u;

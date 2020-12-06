@@ -1,4 +1,8 @@
 
+#include "libft_algebra.h"
+
+
+
 t_matrix	*matrix_new(t_vector *u, t_vector *v, t_vector *w, t_vector *t)
 {
 	t_matrix	*result;

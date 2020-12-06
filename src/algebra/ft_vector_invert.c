@@ -1,7 +1,25 @@
 
-inline void	vector_invert(t_vector *vector)
+#include "libft_algebra.h"
+
+
+
+s_vector2d		Vector2D_Invert(s_vector2d const* vector)
 {
-	vector->x = -(vector->x);
-	vector->y = -(vector->y);
-	vector->z = -(vector->z);
+	s_vector2d result;
+
+	result.x = -(vector->x);
+	result.y = -(vector->y);
+	return (result);
+}
+
+
+
+s_vector3d		Vector3D_Invert(s_vector3d const* vector)
+{
+	s_vector3d result;
+
+	result.x = -(vector->x);
+	result.y = -(vector->y);
+	result.z = -(vector->z);
+	return (result);
 }

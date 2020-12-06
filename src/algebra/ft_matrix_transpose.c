@@ -1,4 +1,8 @@
 
+#include "libft_algebra.h"
+
+
+
 inline void	matrix_transpose(t_matrix *matrix)
 {
 	float tmp;

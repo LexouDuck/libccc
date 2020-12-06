@@ -1,7 +1,25 @@
 
-inline void	vector_scale(t_vector *vector, float scale)
+#include "libft_algebra.h"
+
+
+
+s_vector2d	Vector2D_Scale(s_vector2d const* vector, t_float scale)
 {
-	vector->x *= scale;
-	vector->y *= scale;
-	vector->z *= scale;
+	s_vector2d result;
+
+	result.x = vector->x * scale;
+	result.y = vector->y * scale;
+	return (result);
+}
+
+
+
+s_vector3d	Vector3D_Scale(s_vector3d const* vector, t_float scale)
+{
+	s_vector3d result;
+
+	result.x = vector->x * scale;
+	result.y = vector->y * scale;
+	result.z = vector->z * scale;
+	return (result);
 }

@@ -61,9 +61,11 @@ s_vector2d				Vector2D_Scale(s_vector2d const* vector, t_float scale);
 s_vector2d				Vector2D_Invert(s_vector2d const* vector);
 #define ft_vec2invert	Vector2D_Invert
 
-//! Returns the norm/magnitude of the given 'vector'
-t_float					Vector2D_Norm(s_vector2d const* vector);
-#define ft_vec2norm		Vector2D_Norm
+//! Returns the norm/magnitude of the given 'vector', squared (call sqrt to get the real norm)
+t_float						Vector2D_Norm(s_vector2d const* vector);
+#define ft_vec2norm			Vector2D_Norm
+#define Vector2D_Length		Vector2D_Norm
+#define Vector2D_Magnitude	Vector2D_Norm
 
 //! Makes the norm/magnitude of the given 'vector' become 1 (without changing its direction)
 s_vector2d					Vector2D_Normalize(s_vector2d const* vector);
@@ -108,9 +110,11 @@ s_vector3d				Vector3D_Scale(s_vector3d const* vector, t_float scale);
 s_vector3d				Vector3D_Invert(s_vector3d const* vector);
 #define ft_vec3invert	Vector3D_Invert
 
-//! Returns the norm/magnitude of the given 'vector'
-t_float					Vector3D_Norm(s_vector3d const* vector);
-#define ft_vec3norm		Vector3D_Norm
+//! Returns the norm/magnitude of the given 'vector', squared (call sqrt to get the real norm)
+t_float						Vector3D_Norm(s_vector3d const* vector);
+#define ft_vec3norm			Vector3D_Norm
+#define Vector3D_Length		Vector3D_Norm
+#define Vector3D_Magnitude	Vector3D_Norm
 
 //! Makes the norm/magnitude of the given 'vector' become 1 (without changing its direction)
 s_vector3d					Vector3D_Normalize(s_vector3d const* vector);
