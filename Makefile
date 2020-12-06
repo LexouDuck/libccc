@@ -189,28 +189,30 @@ SRC_LIST = \
 DIR_MATH = math/
 SRC_MATH = \
 	ft_math.c			\
+	ft_pow.c			\
 	ft_root.c			\
 	ft_exp.c			\
-	ft_calc.c			\
-	ft_trigonometry.c	\
+	ft_log.c			\
+	ft_trig.c			\
+	ft_trig_h.c			\
 
 DIR_ALGEBRA = algebra/
 SRC_ALGEBRA = \
 	ft_calculus.c			\
 	ft_vector_new.c			\
-	ft_vector_set.c			\
+	ft_vector_scale.c		\
 	ft_vector_invert.c		\
 	ft_vector_norm.c		\
-	ft_vector_scale.c		\
 	ft_vector_normalize.c	\
+	ft_vector_add.c			\
 	ft_vector_dot.c			\
 	ft_vector_cross.c		\
 	ft_matrix_new.c			\
-	ft_matrix_set.c			\
-	ft_matrix_invert.c		\
+	ft_matrix_apply.c		\
+	ft_matrix_determinant.c	\
+	ft_matrix_inverse.c		\
 	ft_matrix_transpose.c	\
 	ft_matrix_multiply.c	\
-	ft_matrix_apply.c		\
 
 DIR_STAT = stat/
 SRC_STAT = \
@@ -261,6 +263,7 @@ SRCS = \
 	$(addprefix $(DIR_COLOR),		$(SRC_COLOR)		) \
 	$(addprefix $(DIR_LIST),		$(SRC_LIST)			) \
 	$(addprefix $(DIR_MATH),		$(SRC_MATH)			) \
+	$(addprefix $(DIR_ALGEBRA),		$(SRC_ALGEBRA)		) \
 	$(addprefix $(DIR_STAT),		$(SRC_STAT)			) \
 	$(addprefix $(DIR_RANDOM),		$(SRC_RANDOM)		) \
 	$(addprefix $(DIR_VLQ),			$(SRC_VLQ)			) \
