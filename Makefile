@@ -214,6 +214,17 @@ SRC_ALGEBRA = \
 	ft_matrix_transpose.c	\
 	ft_matrix_multiply.c	\
 
+DIR_COMPLEX = complex/
+SRC_COMPLEX = \
+	ft_complex_new.c		\
+	ft_complex_equ.c		\
+	ft_complex_abs.c		\
+	ft_complex_conj.c		\
+	ft_complex_add.c		\
+	ft_complex_sub.c		\
+	ft_complex_mul.c		\
+	ft_complex_div.c		\
+
 DIR_STAT = stat/
 SRC_STAT = \
 	ft_stat_int.c		\
@@ -264,6 +275,7 @@ SRCS = \
 	$(addprefix $(DIR_LIST),		$(SRC_LIST)			) \
 	$(addprefix $(DIR_MATH),		$(SRC_MATH)			) \
 	$(addprefix $(DIR_ALGEBRA),		$(SRC_ALGEBRA)		) \
+	$(addprefix $(DIR_COMPLEX),		$(SRC_COMPLEX)		) \
 	$(addprefix $(DIR_STAT),		$(SRC_STAT)			) \
 	$(addprefix $(DIR_RANDOM),		$(SRC_RANDOM)		) \
 	$(addprefix $(DIR_VLQ),			$(SRC_VLQ)			) \

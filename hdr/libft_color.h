@@ -44,7 +44,7 @@ typedef t_u16	t_argb16;
 #define COLOR_ARGB16_A	(0x01 << 15)	//!< 0b1000000000000000 or 0x8000 - bitmask for the 16-bit color's alpha channel (0 or 1)
 #define COLOR_ARGB16_B	(0x1F << 10)	//!< 0b0111110000000000 or 0x7C00 - bitmask for the 16-bit color's blue channel  (0-31)
 #define COLOR_ARGB16_G	(0x1F <<  5)	//!< 0b0000001111100000 or 0x03E0 - bitmask for the 16-bit color's green channel (0-31)
-#define COLOR_ARGB16_R	(0x1F <<  0)	//!< 0b0000000000011111 or 0x001F - bitmask for the 16-bit color's red channel	 (0-31)
+#define COLOR_ARGB16_R	(0x1F <<  0)	//!< 0b0000000000011111 or 0x001F - bitmask for the 16-bit color's red channel   (0-31)
 
 
 
@@ -54,9 +54,9 @@ typedef t_u32	t_argb32;
 #define COLOR_ARGB32_CHANNEL	(0xFF)
 
 #define COLOR_ARGB32_A	(0xFF << 24)	//!< 0xFF000000 - bitmask for the 32-bit color's alpha channel (0-255)
-#define COLOR_ARGB32_R	(0xFF << 16)	//!< 0x00FF0000 - bitmask for the 32-bit color's red channel (0-255)
+#define COLOR_ARGB32_R	(0xFF << 16)	//!< 0x00FF0000 - bitmask for the 32-bit color's red channel   (0-255)
 #define COLOR_ARGB32_G	(0xFF <<  8)	//!< 0x0000FF00 - bitmask for the 32-bit color's green channel (0-255)
-#define COLOR_ARGB32_B	(0xFF <<  0)	//!< 0x000000FF - bitmask for the 32-bit color's blue channel (0-255)
+#define COLOR_ARGB32_B	(0xFF <<  0)	//!< 0x000000FF - bitmask for the 32-bit color's blue channel  (0-255)
 
 
 
