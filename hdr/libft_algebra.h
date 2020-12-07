@@ -53,6 +53,10 @@ typedef	union	u_vector2d_
 s_vector2d*				Vector2D_New(t_float x, t_float y);
 #define ft_vec2new		Vector2D_New
 
+//! Returns TRUE if the two given vectors are equal (all their values are identical)
+t_bool					Vector2D_Equals(s_vector2d const* v1, s_vector2d const* v2);
+#define ft_vec2equ		Vector2D_Equals
+
 //! Scales the given 'vector' by a factor of 'scale'
 s_vector2d				Vector2D_Scale(s_vector2d const* vector, t_float scale);
 #define ft_vec2scale	Vector2D_Scale
@@ -101,6 +105,10 @@ typedef	union	u_vector3d_
 //! Allocates a new vector struct on heap, setting the given coordinates
 s_vector3d*				Vector3D_New(t_float x, t_float y, t_float z);
 #define ft_vec3new		Vector3D_New
+
+//! Returns TRUE if the two given vectors are equal (all their values are identical)
+t_bool					Vector3D_Equals(s_vector3d const* v1, s_vector3d const* v2);
+#define ft_vec3equ		Vector3D_Equals
 
 //! Scales the given 'vector' by a factor of 'scale'
 s_vector3d				Vector3D_Scale(s_vector3d const* vector, t_float scale);
@@ -200,6 +208,10 @@ typedef	union	u_matrix2d_
 s_matrix2d*				Matrix2D_New(s_vector2d const* u, s_vector2d const* v);
 #define ft_mat2new		Matrix2D_New
 
+//! Returns TRUE if the two given matrices are equal (all their values are identical)
+t_bool					Matrix2D_Equals(s_matrix2d const* m1, s_matrix2d const* m2);
+#define ft_mat2equ		Matrix2D_Equals
+
 //! Applies the transformation stored by the given 'matrix' onto the given 'vector' and returns it
 s_vector2d				Matrix2D_Apply(s_matrix2d const* matrix, s_vector2d const* vector);
 #define ft_mat2apply	Matrix2D_Apply
@@ -274,6 +286,10 @@ typedef	union	u_matrix3d_
 //! Allocates a new matrix struct on heap, setting its values from the given vectors
 s_matrix3d*				Matrix3D_New(s_vector3d const* u, s_vector3d const* v, s_vector3d const* w);
 #define ft_mat3new		Matrix3D_New
+
+//! Returns TRUE if the two given matrices are equal (all their values are identical)
+t_bool					Matrix3D_Equals(s_matrix3d const* m1, s_matrix3d const* m2);
+#define ft_mat3equ		Matrix3D_Equals
 
 //! Applies the transformation stored by the given 'matrix' onto the given 'vector' and returns it
 s_vector3d				Matrix3D_Apply(s_matrix3d const* matrix, s_vector3d const* vector);

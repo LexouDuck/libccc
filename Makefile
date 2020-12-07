@@ -200,6 +200,7 @@ DIR_ALGEBRA = algebra/
 SRC_ALGEBRA = \
 	ft_calculus.c			\
 	ft_vector_new.c			\
+	ft_vector_equ.c			\
 	ft_vector_scale.c		\
 	ft_vector_invert.c		\
 	ft_vector_norm.c		\
@@ -208,6 +209,7 @@ SRC_ALGEBRA = \
 	ft_vector_dot.c			\
 	ft_vector_cross.c		\
 	ft_matrix_new.c			\
+	ft_matrix_equ.c			\
 	ft_matrix_apply.c		\
 	ft_matrix_determinant.c	\
 	ft_matrix_inverse.c		\
