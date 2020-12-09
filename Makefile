@@ -173,6 +173,7 @@ SRC_CONVERT = \
 
 DIR_COLOR = color/
 SRC_COLOR = \
+	color_nearest.c		\
 	color_argb16_get.c	\
 	color_argb16_set.c	\
 	color_argb16_to.c	\

@@ -41,10 +41,15 @@ typedef t_u16	t_argb16;
 //! The maximum possible value for one color channel of an ARGB16 color (0-31)
 #define COLOR_ARGB16_CHANNEL	(0x1F)
 
-#define COLOR_ARGB16_A	(0x01 << 15)	//!< 0b1000000000000000 or 0x8000 - bitmask for the 16-bit color's alpha channel (0 or 1)
-#define COLOR_ARGB16_B	(0x1F << 10)	//!< 0b0111110000000000 or 0x7C00 - bitmask for the 16-bit color's blue channel  (0-31)
-#define COLOR_ARGB16_G	(0x1F <<  5)	//!< 0b0000001111100000 or 0x03E0 - bitmask for the 16-bit color's green channel (0-31)
-#define COLOR_ARGB16_R	(0x1F <<  0)	//!< 0b0000000000011111 or 0x001F - bitmask for the 16-bit color's red channel   (0-31)
+#define COLOR_ARGB16_R_BITINDEX	( 0)	//!< The bit index for the 16-bit color's red channel   (0-31)
+#define COLOR_ARGB16_G_BITINDEX	( 5)	//!< The bit index for the 16-bit color's green channel (0-31)
+#define COLOR_ARGB16_B_BITINDEX	(10)	//!< The bit index for the 16-bit color's blue channel  (0-31)
+#define COLOR_ARGB16_A_BITINDEX	(15)	//!< The bit index for the 16-bit color's alpha channel (0 or 1)
+
+#define COLOR_ARGB16_R	(COLOR_ARGB16_CHANNEL << COLOR_ARGB16_R_BITINDEX)	//!< 0b0000000000011111 or 0x001F - bitmask for the 16-bit color's red channel   (0-31)
+#define COLOR_ARGB16_G	(COLOR_ARGB16_CHANNEL << COLOR_ARGB16_G_BITINDEX)	//!< 0b0000001111100000 or 0x03E0 - bitmask for the 16-bit color's green channel (0-31)
+#define COLOR_ARGB16_B	(COLOR_ARGB16_CHANNEL << COLOR_ARGB16_B_BITINDEX)	//!< 0b0111110000000000 or 0x7C00 - bitmask for the 16-bit color's blue channel  (0-31)
+#define COLOR_ARGB16_A					(0x01 << COLOR_ARGB16_A_BITINDEX)	//!< 0b1000000000000000 or 0x8000 - bitmask for the 16-bit color's alpha channel (0 or 1)
 
 
 
@@ -53,28 +58,15 @@ typedef t_u32	t_argb32;
 //! The maximum possible value for one color channel of an ARGB16 color (0-255)
 #define COLOR_ARGB32_CHANNEL	(0xFF)
 
-#define COLOR_ARGB32_A	(0xFF << 24)	//!< 0xFF000000 - bitmask for the 32-bit color's alpha channel (0-255)
-#define COLOR_ARGB32_R	(0xFF << 16)	//!< 0x00FF0000 - bitmask for the 32-bit color's red channel   (0-255)
-#define COLOR_ARGB32_G	(0xFF <<  8)	//!< 0x0000FF00 - bitmask for the 32-bit color's green channel (0-255)
-#define COLOR_ARGB32_B	(0xFF <<  0)	//!< 0x000000FF - bitmask for the 32-bit color's blue channel  (0-255)
+#define COLOR_ARGB32_A_BITINDEX	(24)	//!< The bit index for the 32-bit color's alpha channel (0-255)
+#define COLOR_ARGB32_R_BITINDEX	(16)	//!< The bit index for the 32-bit color's red channel   (0-255)
+#define COLOR_ARGB32_G_BITINDEX	( 8)	//!< The bit index for the 32-bit color's green channel (0-255)
+#define COLOR_ARGB32_B_BITINDEX	( 0)	//!< The bit index for the 32-bit color's blue channel  (0-255)
 
-
-
-//! A struct to store color values with each channel (red,green,blue) as floats
-typedef struct	s_rgb_
-{
-	t_float		r;		//!< The red channel of this color
-	t_float		g;		//!< The green channel of this color
-	t_float		b;		//!< The blue channel of this color
-}				s_rgb;
-
-//! A struct to store color values with each channel (hue,sat,lum) as floats
-typedef struct	s_hsl_
-{
-	t_float		hue;	//!< The hue value of this color
-	t_float		sat;	//!< The saturation value of this color
-	t_float		lum;	//!< The luminance/brightness value of this color
-}				s_hsl;
+#define COLOR_ARGB32_A	(COLOR_ARGB32_CHANNEL << COLOR_ARGB32_A_BITINDEX)	//!< 0xFF000000 - bitmask for the 32-bit color's alpha channel (0-255)
+#define COLOR_ARGB32_R	(COLOR_ARGB32_CHANNEL << COLOR_ARGB32_R_BITINDEX)	//!< 0x00FF0000 - bitmask for the 32-bit color's red channel   (0-255)
+#define COLOR_ARGB32_G	(COLOR_ARGB32_CHANNEL << COLOR_ARGB32_G_BITINDEX)	//!< 0x0000FF00 - bitmask for the 32-bit color's green channel (0-255)
+#define COLOR_ARGB32_B	(COLOR_ARGB32_CHANNEL << COLOR_ARGB32_B_BITINDEX)	//!< 0x000000FF - bitmask for the 32-bit color's blue channel  (0-255)
 
 
 
@@ -235,6 +227,43 @@ t_argb32						Color_ARGB32_Set(t_u8 a, t_u8 r, t_u8 g, t_u8 b);
 */
 t_argb16							Color_ARGB32_To_ARGB16(t_argb32 color);
 #define ft_color_argb32_to_argb16	Color_ARGB32_To_ARGB16
+
+
+
+/*
+** ************************************************************************** *|
+**                              ARGB Float Color                              *|
+** ************************************************************************** *|
+*/
+
+//! Find the nearest color to the given 'target' color, from within the given arrays of 'colors'
+/*!
+**	@param	target	The desired color, for which the nearest will be returned
+**	@param	colors	The array of different colors to check against
+**	@param	n		The amount of colors to check in the 'colors' array
+**	@return a pointer to the color within 'colors' which is the closest match
+**			to the given 'target' color, searching through 'n' colors in the array.
+*/
+s_argb*							Color_ARGB_GetNearest(s_argb target, s_argb* colors, t_size n);
+#define ft_color_argb_nearest	Color_ARGB_GetNearest
+
+//! Converts the given floating-point color struct value to its 16-bit equivalent
+/*!
+**	@param	color	The floating-point color struct to convert
+**	@return a 16-bit ARGB color by dividing the color channel values of the
+**			given 32-bit 'color' value (values are rounded down in the process).
+*/
+t_argb16						Color_ARGB_To_ARGB16(s_argb color);
+#define ft_color_argb_to_argb16	Color_ARGB_To_ARGB16
+
+//! Converts the given floating-point color struct value to its 32-bit equivalent
+/*!
+**	@param	color	The floating-point color struct to convert
+**	@return a 16-bit ARGB color by dividing the color channel values of the
+**			given 32-bit 'color' value (values are rounded down in the process).
+*/
+t_argb32						Color_ARGB_To_ARGB32(s_argb color);
+#define ft_color_argb_to_argb32	Color_ARGB_To_ARGB32
 
 
 
