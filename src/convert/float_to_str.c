@@ -1,8 +1,9 @@
 
 /*
 **	Functions used from <stdio.h>:
-**	-	char*	snprintf(char* dest, size_t n, char const* format, ...);
+**	-	char*	asprintf(char* dest, char const* format, ...);
 */
+#define _GNU_SOURCE
 #include <stdio.h>
 
 #include "libft_string.h"
@@ -11,29 +12,35 @@
 
 
 
-// TODO change the following 25 lines
-
-static const int max_size = 64;
-
-char	*ft_f32_to_str(t_f32 number)
+char		*ft_f32_to_str(t_f32 number)
 {
-	char* tmp = ft_strnew(max_size);
-	if (tmp == NULL)
-		return (NULL);
-	snprintf(tmp, max_size, "%g", number);
-	char* result = ft_strdup(tmp);
-	ft_strdel(&tmp);
+	char*	result = NULL;
+
+	asprintf(&result, "%g", number);
 	return (result);
 }
 
-char	*ft_f64_to_str(t_f64 number)
+char		*ft_f32_to_hexstr(t_f32 number)
 {
-	char* tmp = ft_strnew(max_size);
-	if (tmp == NULL)
-		return (NULL);
-	snprintf(tmp, max_size, "%g", number);
-	char* result = ft_strdup(tmp);
-	ft_strdel(&tmp);
+	char*	result = NULL;
+
+	asprintf(&result, "%#a", number);
+	return (result);
+}
+
+char		*ft_f64_to_str(t_f64 number)
+{
+	char*	result = NULL;
+
+	asprintf(&result, "%lg", number);
+	return (result);
+}
+
+char		*ft_f64_to_hexstr(t_f64 number)
+{
+	char*	result = NULL;
+
+	asprintf(&result, "%#la", number);
 	return (result);
 }
 
