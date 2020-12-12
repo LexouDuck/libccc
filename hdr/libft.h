@@ -59,19 +59,23 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-// Included to use the following std types:
-//	- uint8_t
-//	- uint16_t
-//	- uint32_t
-//	- uint64_t
-//	- int8_t
-//	- int16_t
-//	- int32_t
-//	- int64_t
+/*
+**	Included to use the following std types:
+**	- uint8_t
+**	- uint16_t
+**	- uint32_t
+**	- uint64_t
+**	- int8_t
+**	- int16_t
+**	- int32_t
+**	- int64_t
+*/
 #include <stdint.h>
-// Included to use the following std types:
-//	- size_t
-//	- ptrdiff_t
+/*
+**	Included to use the following std types:
+**	- size_t
+**	- ptrdiff_t
+*/
 #include <stddef.h>
 
 
@@ -121,7 +125,7 @@ HEADER_CPP
 **	The following macro sets what the 't_float' default floating-point type should be.
 **	_FLOAT_32_	for 32-bit IEEE 754 standard precision floating-point number
 **	_FLOAT_64_	for 64-bit IEEE 754 double-precision floating-point number
-**	_FLOAT_80_	for 80-bit x86 extended-precision floating-point number (not available on Mac/Clang; will default to 128)
+**	_FLOAT_80_	for 80-bit x86 extended-precision floating-point number (not available on clang; will default to 128)
 **	_FLOAT_128_	for 128-bit IEEE 754 quadruple-precision floating-point number (GNU GCC 4.3 and up)
 */
 #define _FLOAT_32_
@@ -174,7 +178,8 @@ HEADER_CPP
 #define ERROR	(1)
 
 /*! @file libft.h
-**	NB: The following macros listed in this documentation comment exist on almost any platform
+**	NB: The following macros listed here exist on almost any platform/compiler:
+**
 **	Here is the list of all the predefined ANSI C macros
 **	__cplusplus	Defined only when a C++ compiler is being used.
 **	__OBJC__	Defined as 1 when the compiler is Objective-C.
@@ -187,10 +192,17 @@ HEADER_CPP
 **	There's also this very useful (non-macro) identifier, only defined in C99/C++:
 **	__func__	String constant: The current function name.
 **
-**	Here are some of the many common GNU C macros:
+**	Here are some of the many common GNU C macros (only present with GNU-compliant compilers):
 **	__GNUC__			Integer constant (with value = GCC version), if the compiler is GNU-compliant.
-**	__BASE_FILE__		String literal: the source entry point filename (the file which holds the 'int main()')
+**	__COUNTER__			Starts as 0, increments every time it is expanded - can be useful to generate names with token-paste '##' operator
+**	__BASE_FILE__		String literal: the source entry point filename (the file which holds the 'main()' function)
 **	__INCLUDE_LEVEL__	Integer constant: The current depth of nesting within '#include' directives.
+**
+**	      __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__	If TRUE, this machine stores integers in reverse byte ordering (least-to-most signficant)
+**	      __BYTE_ORDER__ == __ORDER_BIG_ENDIAN__	If TRUE, this machine stores integers in regular byte ordering (most-to-least signficant)
+**	      __BYTE_ORDER__ == __ORDER_PDP_ENDIAN__	If TRUE, this machine stores integers in strange byte ordering (word-reverse & byte-reverse)
+**	__FLOAT_WORD_ORDER__ == __ORDER_LITTLE_ENDIAN__	If TRUE, this machine stores multi-word floats in reverse ordering (least-to-most signficant)
+**	__FLOAT_WORD_ORDER__ == __ORDER_BIG_ENDIAN__	If TRUE, this machine stores multi-word floats in regular ordering (most-to-least signficant)
 */
 
 
@@ -220,7 +232,7 @@ typedef uint32_t	t_u32;
 //! The type for 64-bit unsigned integers
 typedef	uint64_t	t_u64;
 
-#define U8_MAX	(255)                  //!< The maximum value for 8-bit unsigned integers (0xFF)
+#define U8_MAX	(255)                  //!< The maximum value for  8-bit unsigned integers (0xFF)
 #define U16_MAX	(65535)                //!< The maximum value for 16-bit unsigned integers (0xFFFF)
 #define U32_MAX	(4294967295)           //!< The maximum value for 32-bit unsigned integers (0xFFFFFFFF)
 #define U64_MAX	(18446744073709551615) //!< The maximum value for 64-bit unsigned integers (0xFFFFFFFFFFFFFFFF)
@@ -234,12 +246,12 @@ typedef int32_t		t_s32;
 //! The type for 64-bit signed integers
 typedef	int64_t		t_s64;
 
-#define S8_MAX	(127)                  //!< The maximum value for 8-bit signed integers (0x7F)
+#define S8_MAX	(127)                  //!< The maximum value for  8-bit signed integers (0x7F)
 #define S16_MAX	(32767)                //!< The maximum value for 16-bit signed integers (0x7FFF)
 #define S32_MAX	(2147483647)           //!< The maximum value for 32-bit signed integers (0x7FFFFFFF)
 #define S64_MAX	(9223372036854775807)  //!< The maximum value for 64-bit signed integers (0x7FFFFFFFFFFFFFFF)
 
-#define S8_MIN	(-128)                 //!< The maximum value for 8-bit signed integers (0x80)
+#define S8_MIN	(-128)                 //!< The maximum value for  8-bit signed integers (0x80)
 #define S16_MIN	(-32768)               //!< The maximum value for 16-bit signed integers (0x8000)
 #define S32_MIN	(-2147483648)          //!< The maximum value for 32-bit signed integers (0x80000000)
 #define S64_MIN	(-9223372036854775808) //!< The maximum value for 64-bit signed integers (0x8000000000000000)

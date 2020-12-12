@@ -158,6 +158,10 @@ t_argb16						Color_ARGB16_Set(t_u8 a, t_u8 r, t_u8 g, t_u8 b);
 t_argb32							Color_ARGB16_To_ARGB32(t_argb16 color);
 #define ft_color_argb16_to_argb32	Color_ARGB16_To_ARGB32
 
+//! Converts the given 16-bit color value to its float color equivalent
+s_argb								Color_ARGB16_To_ARGB(t_argb16 color);
+#define ft_color_argb16_to_argb		Color_ARGB16_To_ARGB
+
 
 
 /*
@@ -222,11 +226,15 @@ t_argb32						Color_ARGB32_Set(t_u8 a, t_u8 r, t_u8 g, t_u8 b);
 //! Converts the given 32-bit color value to its 16-bit equivalent (rounding down)
 /*!
 **	@param	color	The 32-bit color to convert
-**	@return a 16-bit ARGB color by dividing the color channel values of the
+**	@return a 16-bit ARGB color, by dividing the color channel values of the
 **			given 32-bit 'color' value (values are rounded down in the process).
 */
 t_argb16							Color_ARGB32_To_ARGB16(t_argb32 color);
 #define ft_color_argb32_to_argb16	Color_ARGB32_To_ARGB16
+
+//! Converts the given 16-bit color value to its float color equivalent
+s_argb								Color_ARGB32_To_ARGB(t_argb32 color);
+#define ft_color_argb32_to_argb		Color_ARGB32_To_ARGB
 
 
 
@@ -253,7 +261,7 @@ s_argb*							Color_ARGB_GetNearest(s_argb target, s_argb* colors, t_size n);
 **	@return a 16-bit ARGB color by dividing the color channel values of the
 **			given 32-bit 'color' value (values are rounded down in the process).
 */
-t_argb16						Color_ARGB_To_ARGB16(s_argb color);
+t_argb16						Color_ARGB_To_ARGB16(s_argb const* color);
 #define ft_color_argb_to_argb16	Color_ARGB_To_ARGB16
 
 //! Converts the given floating-point color struct value to its 32-bit equivalent
@@ -262,7 +270,7 @@ t_argb16						Color_ARGB_To_ARGB16(s_argb color);
 **	@return a 16-bit ARGB color by dividing the color channel values of the
 **			given 32-bit 'color' value (values are rounded down in the process).
 */
-t_argb32						Color_ARGB_To_ARGB32(s_argb color);
+t_argb32						Color_ARGB_To_ARGB32(s_argb const* color);
 #define ft_color_argb_to_argb32	Color_ARGB_To_ARGB32
 
 
