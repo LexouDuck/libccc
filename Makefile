@@ -173,10 +173,11 @@ SRC_CONVERT = \
 
 DIR_COLOR = color/
 SRC_COLOR = \
-	color_nearest.c		\
 	color_argb_get.c	\
 	color_argb_set.c	\
 	color_argb_to.c		\
+	color_nearest.c		\
+	color_convert.c		\
 
 DIR_LIST = list/
 SRC_LIST = \
