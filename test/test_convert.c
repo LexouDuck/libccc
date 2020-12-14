@@ -303,7 +303,7 @@ void	print_test_f32_to_str_p(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(f32_to_str_p, number, precision)
 	print_test_str(test_name, "_f32_to_str_p", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS(PRINTF_F32, number)
+	TEST_PRINT_ARGS("%g", number)
 }
 void	test_f32_to_str_p(void)
 {
@@ -374,7 +374,7 @@ void	print_test_f64_to_str_p(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(f64_to_str_p, number, precision)
 	print_test_str(test_name, "_f64_to_str_p", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS(PRINTF_F32, number)
+	TEST_PRINT_ARGS("%g", number)
 }
 void	test_f64_to_str_p(void)
 {

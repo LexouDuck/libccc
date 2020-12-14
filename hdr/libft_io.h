@@ -77,38 +77,29 @@ typedef int		t_fd;
 #define C_RESET		"\x1b[0m"	//!< The string sequence to reset the terminal text output to its default color
 #endif
 
-/*!
-**	@def PRINTF_S64
-**	@def PRINTF_U64
-**	@def PRINTF_F32
-**	@def PRINTF_SIZE
+/*
 **	Cross-platform '%' Format specifiers for printf calls
 */
 #ifdef __APPLE__
-	#define PRINTF_S64		"%lld"
-	#define PRINTF_U64		"%llu"
+	#define PRINTF_S64	"%lld"
+	#define PRINTF_U64	"%llu"
 #else
-	#ifdef __MINGW32__
-		#define PRINTF_S64	"%ld"
-		#define PRINTF_U64	"%I64llu"
-	#else
-		#define PRINTF_S64	"%ld"
-		#define PRINTF_U64	"%lu"
-	#endif
+	#define PRINTF_S64	"%ld"
+	#define PRINTF_U64	"%lu"
 #endif
 #define PRINTF_SIZE		"%zu"
-#define PRINTF_F32		"%f"
+#define PRINTF_PTRDIFF	"%ti"
 
 #ifdef _INT_64_
-#define PRINTF_W12_INT	"%12ld"
+	#define PRINTF_W12_INT	"%12ld"
 #else
-#define PRINTF_W12_INT	"%12d"
+	#define PRINTF_W12_INT	"%12d"
 #endif
 
 #ifdef _UINT_64_
-#define PRINTF_W12_UINT	"%12lu"
+	#define PRINTF_W12_UINT	"%12lu"
 #else
-#define PRINTF_W12_UINT	"%12u"
+	#define PRINTF_W12_UINT	"%12u"
 #endif
 
 
