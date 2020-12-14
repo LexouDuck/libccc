@@ -1,4 +1,4 @@
-name: libft CI
+name: CI/CD
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [master]
 
 jobs:
-  build:
+  ci:
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -19,15 +19,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: set clang env path
+    - name: Add clang path to $PATH env
       if: runner.os == 'Windows'
-      run: |
-        echo "C:\msys64\mingw64\bin" >> $GITHUB_PATH
+      run: echo "C:\msys64\mingw64\bin" >> $GITHUB_PATH
 
     - name: make (with ${{matrix.compiler}}, for ${{matrix.os}})
-      run: |
-        clang --version
-        make CC=${{matrix.compiler}}
+      run: make CC=${{matrix.compiler}}
 
     - name: test (with ${{matrix.compiler}}, for ${{matrix.os}})
       run: make test CC=${{matrix.compiler}}
