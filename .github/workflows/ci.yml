@@ -23,11 +23,11 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: add clang path env variable
-      run: echo "::add-path::C:\msys64\mingw64\bin"
+      run: echo "C:\msys64\mingw64\bin" >> $GITHUB_PATH
       if: runner.os == 'Windows'
 
     - name: make (with ${{matrix.compiler}}, for ${{matrix.os}})
       run: make CC=${{matrix.compiler}}
-      
+
     - name: test (with ${{matrix.compiler}}, for ${{matrix.os}})
       run: make test CC=${{matrix.compiler}}
