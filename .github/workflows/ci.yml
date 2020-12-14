@@ -22,11 +22,12 @@ jobs:
     - name: set clang env path
       if: runner.os == 'Windows'
       run: |
-        alias clang="C:\msys64\mingw64\bin\clang.exe"
-        clang --version
+        echo "C:\msys64\mingw64\bin" >> $GITHUB_PATH
 
     - name: make (with ${{matrix.compiler}}, for ${{matrix.os}})
-      run: make CC=${{matrix.compiler}}
+      run: |
+        clang --version
+        make CC=${{matrix.compiler}}
 
     - name: test (with ${{matrix.compiler}}, for ${{matrix.os}})
       run: make test CC=${{matrix.compiler}}
