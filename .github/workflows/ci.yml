@@ -14,17 +14,13 @@ jobs:
       matrix:
         os: [ubuntu-latest, macOS-latest, windows-latest]
         compiler: [gcc, clang]
-#       exclude:
-#         - os: windows-latest
-#           compiler: clang
+        exclude:
+          - os: windows-latest
+            compiler: clang
 
     if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
     steps:
     - uses: actions/checkout@v2
-
-    - name: add clang path env variable
-      run: echo "C:\msys64" >> $GITHUB_PATH
-      if: runner.os == 'Windows'
 
     - name: make (with ${{matrix.compiler}}, for ${{matrix.os}})
       run: make CC=${{matrix.compiler}}
