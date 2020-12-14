@@ -70,7 +70,7 @@ typedef t_u32	t_argb32;
 
 
 
-//! A struct to store color values with each channel (alpha,red,green,blue) as floats
+//! A struct to store color values with each channel (alpha,red,green,blue) as floating-point values in the interval [0,1]
 typedef struct	s_argb_
 {
 	t_float		a;		//!< The alpha channel of this color [0,1] (transparency)
@@ -79,7 +79,9 @@ typedef struct	s_argb_
 	t_float		b;		//!< The blue channel of this color  [0,1]
 }				s_argb;
 
-//! A struct to store color values with each channel (alpha,hue,sat,lum) as floats
+
+
+//! A struct to store color values with each channel (alpha,hue,sat,lum) as floating-point values in the interval [0,1]
 typedef struct	s_ahsl_
 {
 	t_float		a;		//!< The alpha channel of this color [0,1] (transparency)
@@ -99,26 +101,19 @@ typedef struct	s_ahsl_
 //! Gets the alpha channel value for the given 16-bit 'color'
 t_u8							Color_ARGB16_Get_A(t_argb16 color);
 #define ft_color_argb16_get_a	Color_ARGB16_Get_A
+#define Color_ARGB16_Get_Alpha	Color_ARGB16_Get_A
 //! Gets the red channel value for the given 16-bit 'color'
 t_u8							Color_ARGB16_Get_R(t_argb16 color);
 #define ft_color_argb16_get_r	Color_ARGB16_Get_R
+#define Color_ARGB16_Get_Red	Color_ARGB16_Get_R
 //! Gets the green channel value for the given 16-bit 'color'
 t_u8							Color_ARGB16_Get_G(t_argb16 color);
 #define ft_color_argb16_get_g	Color_ARGB16_Get_G
+#define Color_ARGB16_Get_Green	Color_ARGB16_Get_G
 //! Gets the blue channel value for the given 16-bit 'color'
 t_u8							Color_ARGB16_Get_B(t_argb16 color);
 #define ft_color_argb16_get_b	Color_ARGB16_Get_B
-
-//! Find the nearest color to the given 'target' color, from within the given arrays of 'colors'
-/*!
-**	@param	target	The desired color, for which the nearest will be returned
-**	@param	colors	The array of different colors to check against
-**	@param	n		The amount of colors to check in the 'colors' array
-**	@return a pointer to the color within 'colors' which is the closest match
-**			to the given 'target' color, searching through 'n' colors in the array.
-*/
-t_argb16*						Color_ARGB16_GetNearest(t_argb16 target, t_argb16* colors, t_size n);
-#define ft_color_argb16_nearest	Color_ARGB16_GetNearest
+#define Color_ARGB16_Get_Blue	Color_ARGB16_Get_B
 
 
 
@@ -136,18 +131,22 @@ t_argb16*						Color_ARGB16_GetNearest(t_argb16 target, t_argb16* colors, t_size
 t_argb16						Color_ARGB16_Set(t_u8 a, t_u8 r, t_u8 g, t_u8 b);
 #define ft_color_argb16_set		Color_ARGB16_Set
 
-//! Returns the given 16-bit 'color', with the 'a' channel value changed
+//! Returns the given 16-bit 'color', with the 'a' alpha channel value changed
 t_argb16						Color_ARGB16_Set_A(t_argb16 color, t_bool a);
 #define ft_color_argb16_set_a	Color_ARGB16_Set_A
-//! Returns the given 16-bit 'color', with the 'r' channel value changed
+#define Color_ARGB16_Set_Alpha	Color_ARGB16_Set_A
+//! Returns the given 16-bit 'color', with the 'r' red channel value changed
 t_argb16						Color_ARGB16_Set_R(t_argb16 color, t_u8 r);
 #define ft_color_argb16_set_r	Color_ARGB16_Set_R
-//! Returns the given 16-bit 'color', with the 'g' channel value changed
+#define Color_ARGB16_Set_Red	Color_ARGB16_Set_R
+//! Returns the given 16-bit 'color', with the 'g' green channel value changed
 t_argb16						Color_ARGB16_Set_G(t_argb16 color, t_u8 g);
 #define ft_color_argb16_set_g	Color_ARGB16_Set_G
-//! Returns the given 16-bit 'color', with the 'b' channel value changed
+#define Color_ARGB16_Set_Green	Color_ARGB16_Set_G
+//! Returns the given 16-bit 'color', with the 'b' blue channel value changed
 t_argb16						Color_ARGB16_Set_B(t_argb16 color, t_u8 b);
 #define ft_color_argb16_set_b	Color_ARGB16_Set_B
+#define Color_ARGB16_Set_Blue	Color_ARGB16_Set_B
 
 
 
@@ -166,6 +165,19 @@ s_argb								Color_ARGB16_To_ARGB(t_argb16 color);
 
 
 
+//! Find the nearest color to the given 'target' color, from within the given arrays of 'colors'
+/*!
+**	@param	target	The desired color, for which the nearest will be returned
+**	@param	colors	The array of different colors to check against
+**	@param	n		The amount of colors to check in the 'colors' array
+**	@return a pointer to the color within 'colors' which is the closest match
+**			to the given 'target' color, searching through 'n' colors in the array.
+*/
+t_argb16*						Color_ARGB16_GetNearest(t_argb16 target, t_argb16* colors, t_size n);
+#define ft_color_argb16_nearest	Color_ARGB16_GetNearest
+
+
+
 /*
 ** ************************************************************************** *|
 **                              ARGB 32bit Color                              *|
@@ -175,26 +187,19 @@ s_argb								Color_ARGB16_To_ARGB(t_argb16 color);
 //! Gets the alpha channel value for the given 32-bit 'color'
 t_u8							Color_ARGB32_Get_A(t_argb32 color);
 #define ft_color_argb32_get_a	Color_ARGB32_Get_A
+#define Color_ARGB32_Get_Alpha	Color_ARGB32_Get_A
 //! Gets the red channel value for the given 32-bit 'color'
 t_u8							Color_ARGB32_Get_R(t_argb32 color);
 #define ft_color_argb32_get_r	Color_ARGB32_Get_R
+#define Color_ARGB32_Get_Red	Color_ARGB32_Get_R
 //! Gets the green channel value for the given 32-bit 'color'
 t_u8							Color_ARGB32_Get_G(t_argb32 color);
 #define ft_color_argb32_get_g	Color_ARGB32_Get_G
+#define Color_ARGB32_Get_Green	Color_ARGB32_Get_G
 //! Gets the blue channel value for the given 32-bit 'color'
 t_u8							Color_ARGB32_Get_B(t_argb32 color);
 #define ft_color_argb32_get_b	Color_ARGB32_Get_B
-
-//! Find the nearest color to the given 'target' color, from within the given arrays of 'colors'
-/*!
-**	@param	target	The desired color, for which the nearest will be returned
-**	@param	colors	The array of different colors to check against
-**	@param	n		The amount of colors to check in the 'colors' array
-**	@return a pointer to the color within 'colors' which is the closest match
-**			to the given 'target' color, searching through 'n' colors in the array.
-*/
-t_argb32*						Color_ARGB32_GetNearest(t_argb32 target, t_argb32* colors, t_size n);
-#define ft_color_argb32_nearest	Color_ARGB32_GetNearest
+#define Color_ARGB32_Get_Blue	Color_ARGB32_Get_B
 
 
 
@@ -212,18 +217,22 @@ t_argb32*						Color_ARGB32_GetNearest(t_argb32 target, t_argb32* colors, t_size
 t_argb32						Color_ARGB32_Set(t_u8 a, t_u8 r, t_u8 g, t_u8 b);
 #define ft_color_argb32_set		Color_ARGB32_Set
 
-//! Returns the given 32-bit 'color', with the 'a' channel value changed
+//! Returns the given 32-bit 'color', with the 'a' alpha channel value changed
 t_argb32						Color_ARGB32_Set_A(t_argb32 color, t_u8 a);
 #define ft_color_argb32_set_a	Color_ARGB32_Set_A
-//! Returns the given 32-bit 'color', with the 'r' channel value changed
+#define Color_ARGB32_Set_Alpha	Color_ARGB32_Set_A
+//! Returns the given 32-bit 'color', with the 'r' red channel value changed
 t_argb32						Color_ARGB32_Set_R(t_argb32 color, t_u8 r);
 #define ft_color_argb32_set_r	Color_ARGB32_Set_R
-//! Returns the given 32-bit 'color', with the 'g' channel value changed
+#define Color_ARGB32_Set_Red	Color_ARGB32_Set_R
+//! Returns the given 32-bit 'color', with the 'g' green channel value changed
 t_argb32						Color_ARGB32_Set_G(t_argb32 color, t_u8 g);
 #define ft_color_argb32_set_g	Color_ARGB32_Set_G
-//! Returns the given 32-bit 'color', with the 'b' channel value changed
+#define Color_ARGB32_Set_Green	Color_ARGB32_Set_G
+//! Returns the given 32-bit 'color', with the 'b' blue channel value changed
 t_argb32						Color_ARGB32_Set_B(t_argb32 color, t_u8 b);
 #define ft_color_argb32_set_b	Color_ARGB32_Set_B
+#define Color_ARGB32_Set_Blue	Color_ARGB32_Set_B
 
 
 
@@ -242,13 +251,7 @@ s_argb								Color_ARGB32_To_ARGB(t_argb32 color);
 
 
 
-/*
-** ************************************************************************** *|
-**                              ARGB Float Color                              *|
-** ************************************************************************** *|
-*/
-
-//! Find the nearest color to the given 'target' color from within the given arrays of 'colors'
+//! Find the nearest color to the given 'target' color, from within the given arrays of 'colors'
 /*!
 **	@param	target	The desired color, for which the nearest will be returned
 **	@param	colors	The array of different colors to check against
@@ -256,10 +259,16 @@ s_argb								Color_ARGB32_To_ARGB(t_argb32 color);
 **	@return a pointer to the color within 'colors' which is the closest match
 **			to the given 'target' color, searching through 'n' colors in the array.
 */
-s_argb*							Color_ARGB_GetNearest(s_argb target, s_argb* colors, t_size n);
-#define ft_color_argb_nearest	Color_ARGB_GetNearest
+t_argb32*						Color_ARGB32_GetNearest(t_argb32 target, t_argb32* colors, t_size n);
+#define ft_color_argb32_nearest	Color_ARGB32_GetNearest
 
 
+
+/*
+** ************************************************************************** *|
+**                              ARGB Float Color                              *|
+** ************************************************************************** *|
+*/
 
 //! Creates a float color struct from the given channel values (alpha, red, green, blue)
 /*!
@@ -275,18 +284,22 @@ s_argb*							Color_ARGB_GetNearest(s_argb target, s_argb* colors, t_size n);
 s_argb							Color_ARGB_Set(t_float a, t_float r, t_float g, t_float b);
 #define ft_color_argb_set		Color_ARGB_Set
 
-//! Sets the given 'a' channel value in the given struct 'color' (constraining it between 0 and 1)
+//! Sets the given 'a' alpha channel value in the given struct 'color' (constraining it between 0 and 1)
 void							Color_ARGB_Set_A(s_argb* color, t_float a);
 #define ft_color_argb_set_a		Color_ARGB_Set_A
-//! Sets the given 'r' channel value in the given struct 'color' (constraining it between 0 and 1)
+#define Color_ARGB_Set_Alpha	Color_ARGB_Set_A
+//! Sets the given 'r' red channel value in the given struct 'color' (constraining it between 0 and 1)
 void							Color_ARGB_Set_R(s_argb* color, t_float r);
 #define ft_color_argb_set_r		Color_ARGB_Set_R
-//! Sets the given 'g' channel value in the given struct 'color' (constraining it between 0 and 1)
+#define Color_ARGB_Set_Red		Color_ARGB_Set_R
+//! Sets the given 'g' green channel value in the given struct 'color' (constraining it between 0 and 1)
 void							Color_ARGB_Set_G(s_argb* color, t_float g);
 #define ft_color_argb_set_g		Color_ARGB_Set_G
-//! Sets the given 'b' channel value in the given struct 'color' (constraining it between 0 and 1)
+#define Color_ARGB_Set_Green	Color_ARGB_Set_G
+//! Sets the given 'b' blue channel value in the given struct 'color' (constraining it between 0 and 1)
 void							Color_ARGB_Set_B(s_argb* color, t_float b);
 #define ft_color_argb_set_b		Color_ARGB_Set_B
+#define Color_ARGB_Set_Blue		Color_ARGB_Set_B
 
 
 
@@ -307,6 +320,89 @@ t_argb16						Color_ARGB_To_ARGB16(s_argb const* color);
 */
 t_argb32						Color_ARGB_To_ARGB32(s_argb const* color);
 #define ft_color_argb_to_argb32	Color_ARGB_To_ARGB32
+
+//! Converts the given floating-point color struct value to hue/sat/lum color format
+/*!
+**	@param	color	The floating-point color struct to convert
+**	@return the equivalent to the given 'color', in hue/sat/lum format
+*/
+s_ahsl							Color_ARGB_To_AHSL(s_argb const* color);
+#define ft_color_argb_to_ahsl	Color_ARGB_To_AHSL
+
+
+
+//! Find the nearest color to the given 'target' color from within the given arrays of 'colors'
+/*!
+**	@param	target	The desired color, for which the nearest will be returned
+**	@param	colors	The array of different colors to check against
+**	@param	n		The amount of colors to check in the 'colors' array
+**	@return a pointer to the color within 'colors' which is the closest match
+**			to the given 'target' color, searching through 'n' colors in the array.
+*/
+s_argb*							Color_ARGB_GetNearest(s_argb target, s_argb* colors, t_size n);
+#define ft_color_argb_nearest	Color_ARGB_GetNearest
+
+
+
+/*
+** ************************************************************************** *|
+**                              ARGB Float Color                              *|
+** ************************************************************************** *|
+*/
+
+//! Creates a float color struct from the given channel values (alpha, hue, sat, lum)
+/*!
+**	This function creates a new floating-point color struct from
+**	the given four individual color channel values (constains them)
+**
+**	@param	a	The alpha channel value        (constrained to interval [0,1])
+**	@param	hue	The color hue/value            (constrained to interval [0,PI*2])
+**	@param	sat	The color saturation           (constrained to interval [0,1])
+**	@param	lum	The color luminance/brightness (constrained to interval [0,1])
+**	@return the floating-point color struct from the given channel values
+*/
+s_ahsl							Color_AHSL_Set(t_float a, t_float hue, t_float sat, t_float lum);
+#define ft_color_ahsl_set		Color_AHSL_Set
+
+//! Sets the given 'a' channel value in the given struct 'color' (constraining it between 0 and 1)
+void							Color_AHSL_Set_A(s_ahsl* color, t_float a);
+#define ft_color_ahsl_set_a		Color_AHSL_Set_A
+#define Color_AHSL_Set_Alpha	Color_AHSL_Set_A
+//! Sets the given 'r' channel value in the given struct 'color' (constraining it between 0 and PI*2)
+void							Color_AHSL_Set_H(s_ahsl* color, t_float hue);
+#define ft_color_ahsl_set_h		Color_AHSL_Set_H
+#define Color_AHSL_Set_Hue		Color_AHSL_Set_H
+//! Sets the given 'g' channel value in the given struct 'color' (constraining it between 0 and 1)
+void							Color_AHSL_Set_S(s_ahsl* color, t_float sat);
+#define ft_color_ahsl_set_s		Color_AHSL_Set_S
+#define Color_AHSL_Set_Sat		Color_AHSL_Set_S
+//! Sets the given 'b' channel value in the given struct 'color' (constraining it between 0 and 1)
+void							Color_AHSL_Set_L(s_ahsl* color, t_float lum);
+#define ft_color_ahsl_set_l		Color_AHSL_Set_L
+#define Color_AHSL_Set_Lum		Color_AHSL_Set_L
+
+
+
+//! Converts the given floating-point color struct value to hue/sat/lum color format
+/*!
+**	@param	color	The floating-point color struct to convert
+**	@return the equivalent to the given 'color', in hue/sat/lum format
+*/
+s_argb							Color_AHSL_To_ARGB(s_ahsl const* color);
+#define ft_color_ahsl_to_argb	Color_AHSL_To_ARGB
+
+
+
+//! Find the nearest color to the given 'target' color from within the given arrays of 'colors'
+/*!
+**	@param	target	The desired color, for which the nearest will be returned
+**	@param	colors	The array of different colors to check against
+**	@param	n		The amount of colors to check in the 'colors' array
+**	@return a pointer to the color within 'colors' which is the closest match
+**			to the given 'target' color, searching through 'n' colors in the array.
+*/
+s_ahsl*							Color_AHSL_GetNearest(s_ahsl target, s_ahsl* colors, t_size n);
+#define ft_color_ahsl_nearest	Color_AHSL_GetNearest
 
 
 
