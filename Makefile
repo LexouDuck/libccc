@@ -15,7 +15,7 @@ CFLAGS_DEBUG = -g -ggdb -D DEBUG=1
 CFLAGS_RELEASE = -O3
 # -Wno-unused-result -Wno-unused-parameter
 CFLAGS_OS = _
-CFLAGS_OS_WIN   = -mwindows -D__USE_MINGW_ANSI_STDIO=1
+CFLAGS_OS_WIN   = -D__USE_MINGW_ANSI_STDIO=1
 CFLAGS_OS_LINUX = -fPIC -Wno-unused-result
 CFLAGS_OS_MACOS = 
 
