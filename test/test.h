@@ -74,7 +74,7 @@ typedef struct	s_test_
 	s_test_suite	suites[TEST_SUITE_AMOUNT];	// Stores info of which test suites should be run or not
 }				s_test;
 // Global variable to access the program state data from anywhere
-s_test		g_test;
+extern s_test	g_test;
 
 
 
@@ -110,8 +110,8 @@ s_test		g_test;
 
 extern char*	nullstr;
 extern char*	segstr;
-int				segfault;
-jmp_buf 		restore;
+extern int		segfault;
+extern jmp_buf	restore;
 
 #ifdef __MINGW32__
 void	signal_handler(int signaltype);
