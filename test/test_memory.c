@@ -428,13 +428,13 @@ void	test_memrep(void)
 	print_test_memrep("memrep              ",	FALSE, "O_ae wa _ou shindeiru$",       tst1, '.', '$', tst1_len - 1);
 	print_test_memrep("memrep              ",	FALSE, "O_ae\twa\t_ou\tshindeiru$",    tst1, ' ', '\t',tst1_len - 1);
 	print_test_memrep("memrep              ",	FALSE, "Nani@@@",                      tst2, '?', '@', tst2_len - 1);
-	print_test_memrep("memrep              ",	FALSE, "Nani",                         tst2, '@', '\0',tst2_len - 1);
+	print_test_memrep("memrep              ",	FALSE, "Nani\0\0\0",                   tst2, '@', '\0',tst2_len - 1);
 	print_test_memrep("memrep              ",	FALSE, "Un ange mange de la fange.\0", tst3, '?', 'o', tst3_len - 1);
 	print_test_memrep("memrep              ",	FALSE, "Un ange mange de la fange.\0", tst3, '?', 'o', tst3_len - 1);
 	print_test_memrep("memrep              ",	FALSE, "Un an_e man_e de la fan_e.\0", tst3, 'g', '_', tst3_len - 1);
 	print_test_memrep("memrep (old = '\\0') ",	FALSE, tst1,                           tst1, '\0','a', 16);
 	print_test_memrep("memrep (n = 0)      ",	FALSE, tst1,                           tst1, ' ', 'a', 0);
-	print_test_memrep("memrep (n > len)    ",	FALSE, segstr,                         tst1, '_', 'a', tst1_len + 32);
+//	print_test_memrep("memrep (n > len)    ",	TRUE,  segstr,                         tst3, '_', 'a', tst3_len + 64);
 	print_test_memrep("memrep (null str)   ",	TRUE,  segstr,                         NULL, '_', 'a', 16);
 	free(tst1);
 	free(tst2);
