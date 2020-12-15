@@ -28,6 +28,30 @@
 ** ************************************************************************** *|
 */
 
+/*
+**	Output color string codes for tty terminal/shell.
+*/
+#ifndef __COLORS__
+#define __COLORS__
+#define C_RED		"\x1b[31m"
+#define C_GREEN		"\x1b[32m"
+#define C_YELLOW	"\x1b[33m"
+#define C_BLUE		"\x1b[34m"
+#define C_MAGENTA	"\x1b[35m"
+#define C_CYAN		"\x1b[36m"
+#define C_RESET		"\x1b[0m"
+#endif
+
+
+
+/*
+**	This define is used as the 'can_segfault' arg for certain 'int' tests,
+**	so as to have those tests expect a "(segfault)" result.
+*/
+#define SEGV	(TRUE | (1 << 2))
+
+
+
 typedef struct	s_test_flags_
 {
 	bool	verbose;		// if TRUE, display all logger output for each test
@@ -63,42 +87,17 @@ typedef struct	s_test_arg_
 
 
 
-/*
-**	This struct holds all program state data
-*/
+//! This struct holds all program state data
 typedef struct	s_test_
 {
-	s_test_totals	totals;						// Stores the total amounts of tests ran/failed
-	s_test_flags	flags;						// Stores the main program argument options (as boolean flags)
-	s_test_arg		args[TEST_ARGS_AMOUNT];		// Stores the chars/names and descriptions for each valid program argument
-	s_test_suite	suites[TEST_SUITE_AMOUNT];	// Stores info of which test suites should be run or not
+	s_test_totals	totals;						//!< Stores the total amounts of tests ran/failed
+	s_test_flags	flags;						//!< Stores the main program argument options (as boolean flags)
+	s_test_arg		args[TEST_ARGS_AMOUNT];		//!< Stores the chars/names and descriptions for each valid program argument
+	s_test_suite	suites[TEST_SUITE_AMOUNT];	//!< Stores info of which test suites should be run or not
 }				s_test;
-// Global variable to access the program state data from anywhere
+
+//! Global variable to access the program state data from anywhere
 extern s_test	g_test;
-
-
-
-/*
-**	Output color string codes for tty terminal/shell.
-*/
-#ifndef __COLORS__
-#define __COLORS__
-#define C_RED		"\x1b[31m"
-#define C_GREEN		"\x1b[32m"
-#define C_YELLOW	"\x1b[33m"
-#define C_BLUE		"\x1b[34m"
-#define C_MAGENTA	"\x1b[35m"
-#define C_CYAN		"\x1b[36m"
-#define C_RESET		"\x1b[0m"
-#endif
-
-
-
-/*
-**	This define is used as the 'can_segfault' arg for certain 'int' tests,
-**	so as to have those tests expect a "(segfault)" result.
-*/
-#define SEGV	(TRUE | (1 << 2))
 
 
 

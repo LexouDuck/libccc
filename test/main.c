@@ -23,6 +23,10 @@ char const* test3 = "Un ange mange de la fange.\0";	t_size const test3_len = 27;
 
 
 
+s_test	g_test;
+
+
+
 /*
 ** ************************************************************************** *|
 **                              Segfault Handling                             *|
@@ -31,6 +35,8 @@ char const* test3 = "Un ange mange de la fange.\0";	t_size const test3_len = 27;
 
 char*	nullstr	= "(NULL)";
 char*	segstr	= "(segfault)";
+int		segfault;
+jmp_buf	restore;
 
 #ifdef __MINGW32__
 void	signal_handler(int signaltype)
