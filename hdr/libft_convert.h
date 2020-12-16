@@ -172,6 +172,10 @@ char*					Convert_Size_To_String(t_size value);
 t_size					Convert_String_To_Size(char const* str);
 #define ft_str_to_size	Convert_String_To_Size
 
+//! Get the string decimal human-readable representation of a 64-bit unsigned integer, with bytes units (KB,MB,GB,etc)
+char*							Convert_Size_To_String_Readable(t_size value);
+#define ft_size_to_str_readable	Convert_Size_To_String_Readable
+
 
 
 /*
