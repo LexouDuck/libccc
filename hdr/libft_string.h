@@ -495,6 +495,15 @@ char*					String_Sub(char const* str, t_size index, t_size n);
 #define ft_strsub		String_Sub
 
 /*!
+**	Returns a new null-terminated string, which is generated from the given
+**	'format' string and variadic args - it is equivalent to 'asprintf()'.
+*/
+char*					String_Build(char const* format, ...);
+#define ft_strbuild		String_Build
+#define ft_asprintf		String_Build
+
+
+/*!
 **	Iterates upon each character of the given string 'str',
 **	applying the given function 'f' to each of its characters.
 */

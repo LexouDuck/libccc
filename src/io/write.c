@@ -95,8 +95,8 @@ int		Write_Format(t_fd fd, char const* format, ...)
 {
 	va_list args;
 	int result;
+	char* str = NULL;
 
-	char * str = NULL;
 	va_start(args, format);
 	result = vasprintf(&str, format, args);
 	va_end(args);
