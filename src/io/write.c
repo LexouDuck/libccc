@@ -5,11 +5,6 @@
 */
 #include <unistd.h>
 /*
-**	Functions used from <stdio.h>:
-**	-	int vasprintf(char* const* result, const char* format, va_list args);
-*/
-#include <stdio.h>
-/*
 **	Functions used from <stdarg.h>:
 **	-	void va_start(va_list args, last);
 **	-	void va_end(va_list args);
@@ -95,18 +90,14 @@ int		Write_Format(t_fd fd, char const* format, ...)
 {
 	va_list args;
 	int result;
-	char* str = NULL;
+	char* str;
 
 	va_start(args, format);
-	result = vasprintf(&str, format, args);
+	str = String_Build(format, args);
 	va_end(args);
-	if (str == NULL || result == -1) // string already freed if need be
+	if (str == NULL) // string already freed if need be
 		return (-1);
-	if (write(fd, str, result) < 0)
-	{
-		String_Delete(&str);
-		return (-1);
-	}
+	result = write(fd, str, String_Length(str));
 	String_Delete(&str);
 	return (result);
 }

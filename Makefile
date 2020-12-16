@@ -125,6 +125,7 @@ SRC_STRING = \
 	strjoin.c		\
 	strinsert.c		\
 	strsub.c		\
+	strbuild.c		\
 	striter.c		\
 	strmap.c		\
 	strrep.c		\
