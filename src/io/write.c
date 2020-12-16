@@ -4,6 +4,17 @@
 **	-	int	write(int fd, char* buffer, size_t n);
 */
 #include <unistd.h>
+/*
+**	Functions used from <stdio.h>:
+**	-	int vasprintf(char* const* result, const char* format, va_list args);
+*/
+#include <stdio.h>
+/*
+**	Functions used from <stdarg.h>:
+**	-	void va_start(va_list args, last);
+**	-	void va_end(va_list args);
+*/
+#include <stdarg.h>
 
 #include "libft_io.h"
 #include "libft_string.h"
@@ -11,7 +22,7 @@
 
 
 
-inline int	ft_write_char(int fd, char c)
+inline int	Write_Char(int fd, char c)
 {
 	if (write(fd, &c, 1) < 0)
 		return (ERROR);
@@ -20,7 +31,7 @@ inline int	ft_write_char(int fd, char c)
 
 
 
-inline int	ft_write_str(int fd, const char *str)
+inline int	Write_String(int fd, const char* str)
 {
 	if (str == NULL)
 		return (OK);
@@ -31,7 +42,7 @@ inline int	ft_write_str(int fd, const char *str)
 
 
 
-inline int	ft_write_line(int fd, const char *str)
+inline int	Write_Line(int fd, const char* str)
 {
 	if (str == NULL)
 		return (OK);
@@ -42,14 +53,14 @@ inline int	ft_write_line(int fd, const char *str)
 
 
 
-int		ft_write_strls(int fd, const char **strls)
+int		Write_Lines(int fd, const char** strarr)
 {
-	if (strls == NULL)
+	if (strarr == NULL)
 		return (OK);
 	int i = 0;
-	while (strls[i])
+	while (strarr[i])
 	{
-		if (write(fd, strls[i], ft_strlen(strls[i])) < 0)	return (ERROR);
+		if (write(fd, strarr[i], ft_strlen(strarr[i])) < 0)	return (ERROR);
 		if (write(fd, "\n", 1) < 0)							return (ERROR);
 		++i;
 	}
@@ -58,7 +69,7 @@ int		ft_write_strls(int fd, const char **strls)
 
 
 
-int		ft_write_memory(int fd, t_u8 const *ptr, t_size n, t_u8 cols)
+int		Write_Memory(int fd, t_u8 const* ptr, t_size n, t_u8 cols)
 {
 	if (ptr == NULL || n == 0 || cols == 0)
 		return (OK);
@@ -76,4 +87,26 @@ int		ft_write_memory(int fd, t_u8 const *ptr, t_size n, t_u8 cols)
 		if (write(fd, (i % cols == 0 ? "\n" : " "), 1) < 0)	return (ERROR);
 	}
 	return (OK);
+}
+
+
+
+int		Write_Format(t_fd fd, char const* format, ...)
+{
+	va_list args;
+	int result;
+
+	char * str = NULL;
+	va_start(args, format);
+	result = vasprintf(&str, format, args);
+	va_end(args);
+	if (str == NULL || result == -1) // string already freed if need be
+		return (-1);
+	if (write(fd, str, result) < 0)
+	{
+		String_Delete(&str);
+		return (-1);
+	}
+	String_Delete(&str);
+	return (result);
 }

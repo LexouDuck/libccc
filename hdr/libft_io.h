@@ -145,15 +145,15 @@ t_bool					IO_Read_Lines(t_fd const fd, char** *a_strarr);
 **	@param	fd		The file descriptor to read data from
 **	@param	a_line	The address of the string to allocate and fill with the current line.
 **	@return
-**		- -1 if there's an error
 **		- 1 if a line of characters was successfully read
 **		- 0 if the end of the file was reached
+**		- -1 if there's an error
 */
 int						IO_Read_NextLine(t_fd const fd, char* *a_line);
 #define ft_getnextline	IO_Read_NextLine
-#define GNL_LINE	1	//!< Return value for ft_getnextline: indicates succesful line read, more to follow
-#define GNL_END		0	//!< Return value for ft_getnextline: indicates successful line read, end of file reached
-#define GNL_ERROR	-1	//!< Return value for ft_getnextline: indicates a read error occurred
+#define GNL_LINE   1	//!< Return value for ft_getnextline: indicates succesful line read, more to follow
+#define GNL_END    0	//!< Return value for ft_getnextline: indicates successful line read, end of file reached
+#define GNL_ERROR -1	//!< Return value for ft_getnextline: indicates a read error occurred
 
 
 
@@ -166,18 +166,27 @@ int						IO_Read_NextLine(t_fd const fd, char* *a_line);
 //! Writes the given character 'c' to the given file descriptor 'fd'
 int						IO_Write_Char(t_fd fd, char c);
 #define ft_write_char	IO_Write_Char
+
 //! Writes the given string 'str' to the given file descriptor 'fd'
 int						IO_Write_String(t_fd fd, char const* str);
-#define ft_write_str	IO_Write_String
+#define ft_write_string	IO_Write_String
+
 //! Writes the given string 'str' to the given file descriptor 'fd', and a newline '\n' char at the end
 int						IO_Write_Line(t_fd fd, char const* str);
 #define ft_write_line	IO_Write_Line
+
 //! Writes the given string array 'strarr' to the given file descriptor 'fd'
 int						IO_Write_Lines(t_fd fd, char const** strarr);
-#define ft_write_strls	IO_Write_Lines
+#define ft_write_lines	IO_Write_Lines
+
 //!< Writes 'n' bytes of memory from 'ptr' as hexadecimal 2-char blocks in 'cols' columns, to the given file descriptor 'fd'
 int						IO_Write_Memory(t_fd fd, t_u8 const* ptr, t_size n, t_u8 cols);
 #define ft_write_memory	IO_Write_Memory
+
+//! Writes the given formatted string to the standard output - equivalent to 'fprintf()', or rather 'dprintf()'
+int						IO_Write_Format(t_fd fd, char const* format, ...);
+#define ft_write_format	IO_Write_Format
+#define ft_dprintf		IO_Write_Format
 
 
 
@@ -190,18 +199,32 @@ int						IO_Write_Memory(t_fd fd, t_u8 const* ptr, t_size n, t_u8 cols);
 //! Writes the given char 'c' to the standard output.
 int							IO_Output_Char(char c);
 #define ft_output_char		IO_Output_Char
+#define ft_putchar			IO_Output_Char
+
 //! Writes the given string 'str' to the standard output.
 int							IO_Output_String(char const* str);
-#define ft_output_str		IO_Output_String
+#define ft_output_string	IO_Output_String
+#define ft_putstr			IO_Output_String
+
 //! Writes the given string 'str' to the standard output, with a newline '\n' character at the end.
 int							IO_Output_Line(char const* str);
 #define ft_output_line		IO_Output_Line
+#define ft_putline			IO_Output_Line
+
 //! Writes the given string array 'strls' to the standard output.
-int							IO_Output_Lines(char const** strls);
-#define ft_output_strls		IO_Output_Lines
+int							IO_Output_Lines(char const** strarr);
+#define ft_output_lines		IO_Output_Lines
+#define ft_putlines			IO_Output_Lines
+
 //!< Writes 'n' bytes of memory from 'ptr' as hexadecimal 2-char blocks in 'cols' columns, to the standard output
 int							IO_Output_Memory(t_u8 const* ptr, t_size n, t_u8 cols);
 #define ft_output_memory	IO_Output_Memory
+#define ft_putmem			IO_Output_Memory
+
+//! Writes the given formatted string to the standard output - equivalent to 'printf()'
+int							IO_Output_Format(char const* format, ...);
+#define ft_output_format	IO_Output_Format
+#define ft_printf			IO_Output_Format
 
 
 
