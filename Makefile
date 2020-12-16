@@ -358,10 +358,8 @@ $(OBJDIR)%.o : $(TEST_DIR)%.c
 $(NAME_TEST): debug $(TEST_OBJS)
 	@printf "Compiling testing program: "$@" -> "
 	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -o $@ $(TEST_OBJS) -L./ -lft -lm
-	@if [ $(OSMODE) = win32 ]; then \
-		cp $(TEST_DIR)libwinpthread-32.dll ./libwinpthread-1.dll ; \
-	elif [ $(OSMODE) = win64 ]; then \
-		cp $(TEST_DIR)libwinpthread-64.dll ./libwinpthread-1.dll ; \
+	@ if [ $(OSMODE) = win32 ]; then cp $(TEST_DIR)libwinpthread-32.dll ./libwinpthread-1.dll ; \
+	elif [ $(OSMODE) = win64 ]; then cp $(TEST_DIR)libwinpthread-64.dll ./libwinpthread-1.dll ; \
 	fi
 	@printf $(GREEN)"OK!"$(RESET)"\n"
 
