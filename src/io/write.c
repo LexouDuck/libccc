@@ -17,7 +17,7 @@
 
 
 
-inline int	Write_Char(int fd, char c)
+inline int	IO_Write_Char(int fd, char c)
 {
 	if (write(fd, &c, 1) < 0)
 		return (ERROR);
@@ -26,7 +26,7 @@ inline int	Write_Char(int fd, char c)
 
 
 
-inline int	Write_String(int fd, const char* str)
+inline int	IO_Write_String(int fd, const char* str)
 {
 	if (str == NULL)
 		return (OK);
@@ -37,7 +37,7 @@ inline int	Write_String(int fd, const char* str)
 
 
 
-inline int	Write_Line(int fd, const char* str)
+inline int	IO_Write_Line(int fd, const char* str)
 {
 	if (str == NULL)
 		return (OK);
@@ -48,7 +48,7 @@ inline int	Write_Line(int fd, const char* str)
 
 
 
-int		Write_Lines(int fd, const char** strarr)
+int		IO_Write_Lines(int fd, const char** strarr)
 {
 	if (strarr == NULL)
 		return (OK);
@@ -64,7 +64,7 @@ int		Write_Lines(int fd, const char** strarr)
 
 
 
-int		Write_Memory(int fd, t_u8 const* ptr, t_size n, t_u8 cols)
+int		IO_Write_Memory(int fd, t_u8 const* ptr, t_size n, t_u8 cols)
 {
 	if (ptr == NULL || n == 0 || cols == 0)
 		return (OK);
@@ -86,7 +86,7 @@ int		Write_Memory(int fd, t_u8 const* ptr, t_size n, t_u8 cols)
 
 
 
-int		Write_Format(t_fd fd, char const* format, ...)
+int		IO_Write_Format(t_fd fd, char const* format, ...)
 {
 	va_list args;
 	int result;
