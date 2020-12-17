@@ -4,9 +4,9 @@
 
 
 
-char	*ft_strpad(char const *str, char c, t_size size)
+char*		String_Pad(char const* str, char c, t_size size)
 {
-	char	*result;
+	char*	result;
 	t_size	offset;
 	t_size	length;
 	t_size	i;
@@ -15,32 +15,45 @@ char	*ft_strpad(char const *str, char c, t_size size)
 	if (str == NULL)
 		return (NULL);
 #endif
-	if (!(result = (char *)ft_memalloc(size + 1)))
+	length = String_Length(str);
+	if (size == length)
+		return (String_Duplicate(str));
+	if (!(result = (char*)Memory_Alloc(size + 1)))
 		return (NULL);
+	result[size] = '\0';
 	i = 0;
 	while (i < size)
 	{
 		result[i] = c;
 		++i;
 	}
-	length = 0;
-	while (str[length])
-		++length;
-	offset = (size - length) / 2;
 	i = 0;
-	while (str[i])
+	if (size < length)
 	{
-		result[offset + i] = str[i];
-		++i;
+		offset = (length - size) / 2;
+		while (offset + i < length && i < size)
+		{
+			result[i] = str[offset + i];
+			++i;
+		}
+	}
+	else
+	{
+		offset = (size - length) / 2;
+		while (i < length && offset + i < size)
+		{
+			result[offset + i] = str[i];
+			++i;
+		}
 	}
 	return (result);
 }
 
 
 
-char	*ft_strpad_l(char const *str, char c, t_size size)
+char*		String_Pad_L(char const* str, char c, t_size size)
 {
-	char	*result;
+	char*	result;
 	t_size	offset;
 	t_size	length;
 	t_size	i;
@@ -49,40 +62,58 @@ char	*ft_strpad_l(char const *str, char c, t_size size)
 	if (str == NULL)
 		return (NULL);
 #endif
-	if (!(result = (char *)ft_memalloc(size + 1)))
+	length = String_Length(str);
+	if (size == length)
+		return (String_Duplicate(str));
+	if (!(result = (char*)Memory_Alloc(size + 1)))
 		return (NULL);
-	length = 0;
-	while (str[length])
-		++length;
+	result[size] = '\0';
+	if (size < length)
+	{
+		i = size;
+		while (i--)
+		{
+			--length;
+			result[i] = str[length];
+		}
+		return (result);
+	}
 	offset = size - length;
 	i = 0;
-	while (i < (t_size)offset)
+	while (i < offset)
 	{
 		result[i] = c;
 		++i;
 	}
 	while (i < size)
 	{
-		result[i] = str[i - offset];
+		length = (i - offset);
+		if (str[length] == '\0')
+			break;
+		result[i] = str[length];
 		++i;
 	}
-	result[size] = '\0';
 	return (result);
 }
 
 
 
-char	*ft_strpad_r(char const *str, char c, t_size size)
+char*		String_Pad_R(char const* str, char c, t_size size)
 {
-	char	*result;
+	char*	result;
+	t_size	length;
 	t_size	i;
 
 #if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (NULL);
 #endif
-	if (!(result = (char *)ft_memalloc(size + 1)))
+	length = String_Length(str);
+	if (size == length)
+		return (String_Duplicate(str));
+	if (!(result = (char*)Memory_Alloc(size + 1)))
 		return (NULL);
+	result[size] = '\0';
 	i = 0;
 	while (i < size && str[i])
 	{
@@ -94,6 +125,5 @@ char	*ft_strpad_r(char const *str, char c, t_size size)
 		result[i] = c;
 		++i;
 	}
-	result[size] = '\0';
 	return (result);
 }

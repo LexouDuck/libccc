@@ -1013,8 +1013,23 @@ void	print_test_strpad(char const* test_name, int can_segfault,
 }
 void	test_strpad(void)
 {
-//	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
-//	TODO
+//	| TEST FUNCTION     | TEST NAME            |CAN SEGV| EXPECTING                    | TEST ARGS
+	print_test_strpad("strpad (n == strlen)    ", FALSE, "test",                       "test", ' ', 4);
+	print_test_strpad("strpad                  ", FALSE, "test ",                      "test", ' ', 5);
+	print_test_strpad("strpad                  ", FALSE, " test ",                     "test", ' ', 6);
+	print_test_strpad("strpad                  ", FALSE, " test  ",                    "test", ' ', 7);
+	print_test_strpad("strpad                  ", FALSE, "  test  ",                   "test", ' ', 8);
+	print_test_strpad("strpad                  ", FALSE, "  test   ",                  "test", ' ', 9);
+	print_test_strpad("strpad                  ", FALSE, "   test   ",                 "test", ' ', 10);
+	print_test_strpad("strpad                  ", FALSE, "12340",                      "1234", '0', 5);
+	print_test_strpad("strpad                  ", FALSE, "012340",                     "1234", '0', 6);
+	print_test_strpad("strpad (n < strlen)     ", FALSE, "swa",                        "swag", ' ', 3);
+	print_test_strpad("strpad (n < strlen)     ", FALSE, "wa",                         "swag", ' ', 2);
+	print_test_strpad("strpad (n < strlen)     ", FALSE, "w",                          "swag", ' ', 1);
+	print_test_strpad("strpad (n == 0)         ", FALSE, "",                           "swag", ' ', 0);
+	print_test_strpad("strpad (c == '\\0')     ", FALSE, "test",                       "test",'\0', 5);
+	print_test_strpad("strpad (c == '\\0')     ", FALSE, "",                           "test",'\0', 6);
+	print_test_strpad("strpad (null string)    ", TRUE,  segstr,                       "test", ' ', 5);
 }
 #endif
 
@@ -1035,8 +1050,23 @@ void	print_test_strpad_l(char const* test_name, int can_segfault,
 }
 void	test_strpad_l(void)
 {
-//	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
-//	TODO
+//	| TEST FUNCTION     | TEST NAME             |CAN SEGV| EXPECTING                    | TEST ARGS
+	print_test_strpad_l("strpad_l (n == strlen) ", FALSE, "test",                       "test", ' ', 4);
+	print_test_strpad_l("strpad_l               ", FALSE, " test",                      "test", ' ', 5);
+	print_test_strpad_l("strpad_l               ", FALSE, "  test",                     "test", ' ', 6);
+	print_test_strpad_l("strpad_l               ", FALSE, "   test",                    "test", ' ', 7);
+	print_test_strpad_l("strpad_l               ", FALSE, "    test",                   "test", ' ', 8);
+	print_test_strpad_l("strpad_l               ", FALSE, "     test",                  "test", ' ', 9);
+	print_test_strpad_l("strpad_l               ", FALSE, "      test",                 "test", ' ', 10);
+	print_test_strpad_l("strpad_l               ", FALSE, "01234",                      "1234", '0', 5);
+	print_test_strpad_l("strpad_l               ", FALSE, "001234",                     "1234", '0', 6);
+	print_test_strpad_l("strpad_l (n < strlen)  ", FALSE, "wag",                        "swag", ' ', 3);
+	print_test_strpad_l("strpad_l (n < strlen)  ", FALSE, "ag",                         "swag", ' ', 2);
+	print_test_strpad_l("strpad_l (n < strlen)  ", FALSE, "g",                          "swag", ' ', 1);
+	print_test_strpad_l("strpad_l (n == 0)      ", FALSE, "",                           "swag", ' ', 0);
+	print_test_strpad_l("strpad_l (c == '\\0')  ", FALSE, "test",                       "test",'\0', 4);
+	print_test_strpad_l("strpad_l (c == '\\0')  ", FALSE, "",                           "test",'\0', 5);
+	print_test_strpad_l("strpad_l (null string) ", TRUE,  segstr,                       "test", ' ', 5);
 }
 #endif
 
@@ -1057,8 +1087,23 @@ void	print_test_strpad_r(char const* test_name, int can_segfault,
 }
 void	test_strpad_r(void)
 {
-//	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
-//	TODO
+//	| TEST FUNCTION     | TEST NAME             |CAN SEGV| EXPECTING                    | TEST ARGS
+	print_test_strpad_r("strpad_r (n == strlen) ", FALSE, "test",                       "test", ' ', 4);
+	print_test_strpad_r("strpad_r               ", FALSE, "test ",                      "test", ' ', 5);
+	print_test_strpad_r("strpad_r               ", FALSE, "test  ",                     "test", ' ', 6);
+	print_test_strpad_r("strpad_r               ", FALSE, "test   ",                    "test", ' ', 7);
+	print_test_strpad_r("strpad_r               ", FALSE, "test    ",                   "test", ' ', 8);
+	print_test_strpad_r("strpad_r               ", FALSE, "test     ",                  "test", ' ', 9);
+	print_test_strpad_r("strpad_r               ", FALSE, "test      ",                 "test", ' ', 10);
+	print_test_strpad_r("strpad_r               ", FALSE, "12340",                      "1234", '0', 5);
+	print_test_strpad_r("strpad_r               ", FALSE, "123400",                     "1234", '0', 6);
+	print_test_strpad_r("strpad_r (n < strlen)  ", FALSE, "swa",                        "swag", ' ', 3);
+	print_test_strpad_r("strpad_r (n < strlen)  ", FALSE, "sw",                         "swag", ' ', 2);
+	print_test_strpad_r("strpad_r (n < strlen)  ", FALSE, "s",                          "swag", ' ', 1);
+	print_test_strpad_r("strpad_r (n == 0)      ", FALSE, "",                           "swag", ' ', 0);
+	print_test_strpad_r("strpad_r (c == '\\0')  ", FALSE, "test",                       "test",'\0', 4);
+	print_test_strpad_r("strpad_r (c == '\\0')  ", FALSE, "test",                       "test",'\0', 5);
+	print_test_strpad_r("strpad_r (null string) ", TRUE,  segstr,                       "test", ' ', 5);
 }
 #endif
 

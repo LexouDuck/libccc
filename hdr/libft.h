@@ -38,18 +38,19 @@ HEADER_CPP
 
 /*
 **	incomplete:
-**	TODO	libft_color			+ tests
-**	TODO	libft_random		+ tests
-**	TODO	libft_stringarray	+ tests
-**	TODO	libft_io			+ tests
-**	TODO	libft_algebra		+ tests
-**	TODO	libft_complex		+ tests
+**	TODO	libft_color       + tests
+**	TODO	libft_random      + tests
+**	TODO	libft_stringarray + tests
+**	TODO	libft_io          + tests
+**	TODO	libft_algebra     + tests
+**	TODO	libft_complex     + tests
 **	non-existent:
-**	TODO	libft_time			+ tests
-**	TODO	libft_fixedpoint	+ tests
-**	TODO	libft_compress		+ tests
-**	TODO	libft_socket		+ tests
-**	TODO	libft_vlq			+ tests
+**	TODO	libft_time       + tests // system clock time functions
+**	TODO	libft_object     + tests // extensible objects (json library)
+**	TODO	libft_fixedpoint + tests // fixed-point number math library
+**	TODO	libft_compress   + tests // compression functions (RLE, LZ77, LZW, Huffman)
+**	TODO	libft_socket     + tests // network socket functions (send, recv - and perhaps tcp/ip, udp, delta-t?)
+**	TODO	libft_vlq        + tests // variable-length quantity (bigint)
 */
 
 /*
@@ -92,7 +93,7 @@ HEADER_CPP
 **	If 1, then all NULL pointer accesses in libft functions will be avoided, and
 **		an appropriate return value (eg:NULL, 0, sometimes -1) will be returned.
 */
-#define LIBFTCONFIG_HANDLE_NULLPOINTERS		1
+#define LIBFTCONFIG_HANDLE_NULLPOINTERS		!(DEBUG)
 
 //! If 1, libft uses homemade approximate math functions, otherwise it's the builtin FPU calls.
 /*!

@@ -251,69 +251,69 @@ void	print_test_lst(char const *test_name, char const *function, s_list const *r
 **	The following macros are used for tests, to avoid boilerplate and code repetition.
 */
 
-// Use this for void-return functions
+//! Use this for void-return functions
 #define TEST_PERFORM(RESULT, FUNCTION, ...) \
 	_TEST_INIT() \
 	_TEST_PERFORM(1, RESULT, ft_##FUNCTION, ##__VA_ARGS__) \
 
-// Use this for void-return functions, which use a 'dest' argument
+//! Use this for void-return functions, which use a 'dest' argument
 #define TEST_PERFORM_DEST(FUNCTION, ...) \
 	_TEST_INIT() \
 	_TEST_PERFORM(1, dest_libft, ft_##FUNCTION, dest_libft, ##__VA_ARGS__) \
 
-// Use this for void-return functions that exist in libc
+//! Use this for void-return functions that exist in libc
 #define TEST_PERFORM_LIBC(PREFIX, FUNCTION, ...) \
 	_TEST_INIT() \
 	_TEST_PERFORM(1, PREFIX##_libft, ft_##FUNCTION, ##__VA_ARGS__) \
 	_TEST_PERFORM(2, PREFIX##_libc,       FUNCTION, ##__VA_ARGS__) \
 
-// Use this for void-return functions that exist in libc, which use a 'dest' argument
+//! Use this for void-return functions that exist in libc, which use a 'dest' argument
 #define TEST_PERFORM_LIBC_DEST(FUNCTION, ...) \
 	_TEST_INIT() \
 	_TEST_PERFORM(1, dest_libft, ft_##FUNCTION, dest_libft, ##__VA_ARGS__) \
 	_TEST_PERFORM(2, dest_libc,       FUNCTION, dest_libc,  ##__VA_ARGS__) \
 
 
-// Use this for string-return functions
+//! Use this for string-return functions
 #define TEST_PERFORM_RESULT(FUNCTION, ...) \
 	_TEST_INIT() \
 	_TEST_PERFORM_RESULT_STR(1, libft, ft_##FUNCTION, ##__VA_ARGS__) \
 
-// Use this for string-return functions, which use a 'dest' argument
+//! Use this for string-return functions, which use a 'dest' argument
 #define TEST_PERFORM_RESULT_DEST(FUNCTION, ...) \
 	_TEST_INIT() \
 	_TEST_PERFORM_RESULT_STR(1, libft, ft_##FUNCTION, dest_libft, ##__VA_ARGS__) \
 
-// Use this for string-return functions that exist in libc
+//! Use this for string-return functions that exist in libc
 #define TEST_PERFORM_RESULT_LIBC(FUNCTION, ...) \
 	_TEST_INIT() \
 	_TEST_PERFORM_RESULT_STR(1, libft, ft_##FUNCTION, ##__VA_ARGS__) \
 	_TEST_PERFORM_RESULT_STR(2, libc,       FUNCTION, ##__VA_ARGS__) \
 
-// Use this for string-return functions that exist in libc, which use a 'dest' argument
+//! Use this for string-return functions that exist in libc, which use a 'dest' argument
 #define TEST_PERFORM_RESULT_LIBC_DEST(FUNCTION, ...) \
 	_TEST_INIT() \
 	_TEST_PERFORM_RESULT_STR(1, libft, ft_##FUNCTION, dest_libft, ##__VA_ARGS__) \
 	_TEST_PERFORM_RESULT_STR(2, libc,       FUNCTION, dest_libc,  ##__VA_ARGS__) \
 
 
-// Use this for (any_type)-return functions
+//! Use this for (any_type)-return functions
 #define TEST_PERFORM_RESULT_TYPE(TYPE, FUNCTION, ...) \
 	_TEST_INIT() \
 	_TEST_PERFORM_RESULT(1, TYPE, libft, ft_##FUNCTION, ##__VA_ARGS__) \
 
-// Use this for (any_type)-return functions, which use a 'dest' argument
+//! Use this for (any_type)-return functions, which use a 'dest' argument
 #define TEST_PERFORM_RESULT_TYPE_DEST(TYPE, FUNCTION, ...) \
 	_TEST_INIT() \
 	_TEST_PERFORM_RESULT(1, TYPE, libft, ft_##FUNCTION, dest_libft, ##__VA_ARGS__) \
 
-// Use this for (any_type)-return functions that exist in libc
+//! Use this for (any_type)-return functions that exist in libc
 #define TEST_PERFORM_RESULT_TYPE_LIBC(TYPE, FUNCTION, ...) \
 	_TEST_INIT() \
 	_TEST_PERFORM_RESULT(1, TYPE, libft, ft_##FUNCTION, ##__VA_ARGS__) \
 	_TEST_PERFORM_RESULT(2, TYPE, libc,       FUNCTION, ##__VA_ARGS__) \
 
-// Use this for (any_type)-return functions that exist in libc, which use a 'dest' argument
+//! Use this for (any_type)-return functions that exist in libc, which use a 'dest' argument
 #define TEST_PERFORM_RESULT_TYPE_LIBC_DEST(TYPE, FUNCTION, ...) \
 	_TEST_INIT() \
 	_TEST_PERFORM_RESULT(1, TYPE, libft, ft_##FUNCTION, dest_libft, ##__VA_ARGS__) \
@@ -321,7 +321,7 @@ void	print_test_lst(char const *test_name, char const *function, s_list const *r
 
 
 
-// Prints the given format string + values (if global flags demand so)
+//! Prints the given format string + values (if global flags demand so)
 #define TEST_PRINT_ARGS(FORMAT, ...) \
 	if (g_test.flags.verbose && g_test.flags.show_args) \
 	{ \
@@ -330,7 +330,7 @@ void	print_test_lst(char const *test_name, char const *function, s_list const *r
 		printf(")"); \
 	} \
 
-// Prints the given argument variable as a string with non-printable chars as escape sequences
+//! Prints the given argument variable as a string with non-printable chars as escape sequences
 #define TEST_PRINT_ARGS_ESCAPED(ARG) \
 	char* tmp = str_to_escape(ARG); \
 	TEST_PRINT_ARGS("%s", tmp); \
@@ -342,16 +342,16 @@ void	print_test_lst(char const *test_name, char const *function, s_list const *r
 
 
 
-// Frees the 'result_libft' variable, if appropriate
+//! Frees the 'result_libft' variable, if appropriate
 #define TEST_FREE() \
 	_TEST_FREE(libft) \
 
-// Frees the 'result_libft' and 'result_libc' variables, if appropriate
+//! Frees the 'result_libft' and 'result_libc' variables, if appropriate
 #define TEST_FREE_LIBC() \
 	_TEST_FREE(libft) \
 	_TEST_FREE(libc) \
 
-// Frees the 'result_libft', if appropriate, when that result is a nested allocation of rank 2 (ie, a char**/string array)
+//! Frees the 'result_libft', if appropriate, when that result is a nested allocation of rank 2 (ie, a char**/string array)
 #define TEST_FREE_ARRAY_NULLTERM() \
 	_TEST_FREE_ARRAY_NULLTERM(libft) \
 
@@ -361,7 +361,7 @@ void	print_test_lst(char const *test_name, char const *function, s_list const *r
 **	These are the core macro functions which are uses by all the macros above
 */
 
-/*
+/*!
 **	This macro performs a test (with segfault handling and execution timer) for the given void-returning function.
 **	Expects a 's_timer t' variable to be accessible and initialized.
 **	@param	CALL		The number of this call (1 or 2), token-pasted to the timer 'start_' and 'end_' fields.
@@ -382,7 +382,7 @@ void	print_test_lst(char const *test_name, char const *function, s_list const *r
 	} \
 	_END
 
-/*
+/*!
 **	This macro performs a test (with segfault handling and execution timer) for the given string-returning function.
 **	Expects a 's_timer t' variable to be accessible and initialized.
 **	@param	CALL		The number of this call (1 or 2), token-pasted to the timer 'start_' and 'end_' fields.
@@ -404,7 +404,7 @@ void	print_test_lst(char const *test_name, char const *function, s_list const *r
 	} \
 	_END
 
-/*
+/*!
 **	This macro performs a test (with segfault handling and execution timer) for the given function.
 **	Expects a 's_timer t' variable to be accessible and initialized.
 **	@param	CALL		The number of this call (1 or 2), token-pasted to the timer 'start_' and 'end_' fields.
@@ -427,14 +427,14 @@ void	print_test_lst(char const *test_name, char const *function, s_list const *r
 	} \
 	_END
 
-/*
+/*!
 **	Initialization logic for any test
 */
 #define _TEST_INIT() \
 	if (can_segfault && !g_test.flags.test_nullptrs) return; \
 	s_timer t = {0}; \
 
-/*
+/*!
 **	This macro frees the result variable for a test, if it is appropriate to do so
 **	@param	LIB			The name of the result variable to freed (token-pasted as 'result_##LIB')
 */
@@ -445,7 +445,7 @@ void	print_test_lst(char const *test_name, char const *function, s_list const *r
 		result_##LIB = NULL; \
 	} \
 
-/*
+/*!
 **	This macro frees the result variable for a test, if it is appropriate to do so,
 **	knowing this is an array of sub-results which should also be freed, and that
 **	this array is a null-terminated pointer array.

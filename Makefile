@@ -350,7 +350,7 @@ TEST_CFLAGS = -O2 -g -ggdb
 TEST_INCLUDEDIRS = -I$(HDRDIR) -I$(TEST_DIR)
 
 # This rule compiles object files from source files
-$(OBJDIR)%.o : $(TEST_DIR)%.c
+$(OBJDIR)%.o : $(TEST_DIR)%.c $(TEST_HDRS)
 	@printf "Compiling file: "$@" -> "
 	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -c $< -o $@
 	@printf $(GREEN)"OK!"$(RESET)"\n"
