@@ -287,6 +287,7 @@ release: MODE = release
 release: CFLAGS += $(CFLAGS_RELEASE)
 release: all
 	@mkdir -p $(BINDIR)
+	@cp $(NAME).a $(BINDIR)
 	@if [ $(OSMODE) = win32 ] || [ $(OSMODE) = win64 ]; then printf \
 		"Compiling DLL: "$(BINDIR)$(NAME).dll" -> " ; \
 		$(CC) -shared -o $(BINDIR)$(NAME).dll $(OBJS) \
