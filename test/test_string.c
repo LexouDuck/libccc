@@ -1029,7 +1029,7 @@ void	test_strpad(void)
 	print_test_strpad("strpad (n == 0)         ", FALSE, "",                           "swag", ' ', 0);
 	print_test_strpad("strpad (c == '\\0')     ", FALSE, "test",                       "test",'\0', 5);
 	print_test_strpad("strpad (c == '\\0')     ", FALSE, "",                           "test",'\0', 6);
-	print_test_strpad("strpad (null string)    ", TRUE,  segstr,                       "test", ' ', 5);
+	print_test_strpad("strpad (null string)    ", TRUE,  segstr,                        NULL,  ' ', 5);
 }
 #endif
 
@@ -1066,7 +1066,7 @@ void	test_strpad_l(void)
 	print_test_strpad_l("strpad_l (n == 0)      ", FALSE, "",                           "swag", ' ', 0);
 	print_test_strpad_l("strpad_l (c == '\\0')  ", FALSE, "test",                       "test",'\0', 4);
 	print_test_strpad_l("strpad_l (c == '\\0')  ", FALSE, "",                           "test",'\0', 5);
-	print_test_strpad_l("strpad_l (null string) ", TRUE,  segstr,                       "test", ' ', 5);
+	print_test_strpad_l("strpad_l (null string) ", TRUE,  segstr,                        NULL,  ' ', 5);
 }
 #endif
 
@@ -1103,7 +1103,7 @@ void	test_strpad_r(void)
 	print_test_strpad_r("strpad_r (n == 0)      ", FALSE, "",                           "swag", ' ', 0);
 	print_test_strpad_r("strpad_r (c == '\\0')  ", FALSE, "test",                       "test",'\0', 4);
 	print_test_strpad_r("strpad_r (c == '\\0')  ", FALSE, "test",                       "test",'\0', 5);
-	print_test_strpad_r("strpad_r (null string) ", TRUE,  segstr,                       "test", ' ', 5);
+	print_test_strpad_r("strpad_r (null string) ", TRUE,  segstr,                        NULL,  ' ', 5);
 }
 #endif
 
@@ -1197,12 +1197,27 @@ void	print_test_strsub(char const* test_name, int can_segfault,
 }
 void	test_strsub(void)
 {
-//	| TEST FUNCTION  | TEST NAME             |CAN SEGV|EXPECTING| TEST ARGS
-	print_test_strsub("strsub            ",   	FALSE, "wa mo",  test1, 5, 5);
-	print_test_strsub("strsub (len = 0)  ",   	FALSE, "",       test1, 5, 0);
-	print_test_strsub("strsub (len > str)",   	FALSE, NULL,     test1, 5, 100);
-	print_test_strsub("strsub (offset > str)",	TRUE,  NULL,     test1, 100, 5);
-	print_test_strsub("strsub (null ptr)    ",	TRUE,  segstr,   NULL,  5, 5);
+//	| TEST FUNCTION  | TEST NAME              |CAN SEGV|EXPECTING| TEST ARGS
+	print_test_strsub("strsub                 ", FALSE, "0",      "01234", 0, 1);
+	print_test_strsub("strsub                 ", FALSE, "1",      "01234", 1, 1);
+	print_test_strsub("strsub                 ", FALSE, "2",      "01234", 2, 1);
+	print_test_strsub("strsub                 ", FALSE, "3",      "01234", 3, 1);
+	print_test_strsub("strsub                 ", FALSE, "4",      "01234", 4, 1);
+	print_test_strsub("strsub                 ", FALSE, "01",     "01234", 0, 2);
+	print_test_strsub("strsub                 ", FALSE, "12",     "01234", 1, 2);
+	print_test_strsub("strsub                 ", FALSE, "23",     "01234", 2, 2);
+	print_test_strsub("strsub                 ", FALSE, "34",     "01234", 3, 2);
+	print_test_strsub("strsub                 ", FALSE, "012",    "01234", 0, 3);
+	print_test_strsub("strsub                 ", FALSE, "123",    "01234", 1, 3);
+	print_test_strsub("strsub                 ", FALSE, "234",    "01234", 2, 3);
+	print_test_strsub("strsub                 ", FALSE, "0123",   "01234", 0, 4);
+	print_test_strsub("strsub                 ", FALSE, "1234",   "01234", 1, 4);
+	print_test_strsub("strsub                 ", FALSE, "01234",  "01234", 0, 5);
+	print_test_strsub("strsub (len = 0)       ", FALSE, "",       test1, 5, 0);
+	print_test_strsub("strsub (len > str)     ", FALSE, NULL,     test1, 5, 100);
+	print_test_strsub("strsub (offset > str)  ", TRUE,  NULL,     test1, 100, 5);
+	print_test_strsub("strsub (offset+len>str)", TRUE,  NULL,     test1, 100, 5);
+	print_test_strsub("strsub (null ptr)      ", TRUE,  segstr,   NULL,  5, 5);
 }
 #endif
 
@@ -1252,10 +1267,12 @@ void	print_test_striter(char const* test_name, int can_segfault,
 void	test_striter(void)
 {
 //	| TEST FUNCTION   | TEST NAME            |CAN SEGV| EXPECTING                | TEST ARGS
-	print_test_striter("striter            ",	FALSE, "omae wa mou shindeiru.",  "omAe wA mOu ShINDeIRu.", &strtolower);
-	print_test_striter("striter (null str) ",	TRUE,   segstr,                    NULL,                    &strtolower);
-	print_test_striter("striter (null func)",	TRUE,   segstr,                   "omAe wA mOu ShINDeIRu.", NULL);
-	print_test_striter("striter (both null)",	TRUE,   segstr,                    NULL,                    NULL);
+	print_test_striter("striter            ",	FALSE, "sweg",                   "SWEG",                   &strtolower);
+	print_test_striter("striter            ",	FALSE, " test dude ",            " TesT DuDe ",            &strtolower);
+	print_test_striter("striter            ",	FALSE, "omae wa mou shindeiru.", "omAe wA mOu ShINDeIRu.", &strtolower);
+	print_test_striter("striter (null str) ",	TRUE,   segstr,                   NULL,                    &strtolower);
+	print_test_striter("striter (null func)",	TRUE,   segstr,                  "omAe wA mOu ShINDeIRu.", NULL);
+	print_test_striter("striter (both null)",	TRUE,   segstr,                   NULL,                    NULL);
 }
 #endif
 
@@ -1276,6 +1293,8 @@ void	print_test_striteri(char const* test_name, int can_segfault,
 void	test_striteri(void)
 {
 //	| TEST FUNCTION    | TEST NAME            |CAN SEGV| EXPECTING                | TEST ARGS
+	print_test_striteri("striteri            ",	FALSE, "sWeG",                    "SWEG",                   &strtolower_1on2);
+	print_test_striteri("striteri            ",	FALSE, " Test dude ",             " TesT DuDe ",            &strtolower_1on2);
 	print_test_striteri("striteri            ",	FALSE, "oMaE Wa mOu sHiNdEiRu.",  "OMAE WA MOU SHINDEIRU.", &strtolower_1on2);
 	print_test_striteri("striteri (null str) ",	TRUE,   segstr,                    NULL,                    &strtolower_1on2);
 	print_test_striteri("striteri (null func)",	TRUE,   segstr,                   "OMAE WA MOU SHINDEIRU.", NULL);
