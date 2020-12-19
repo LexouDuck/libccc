@@ -3,7 +3,7 @@
 
 
 
-t_u32	ft_lstsize(s_list *lst)
+t_u32	List_Size(s_list const* lst)
 {
 	t_u32 result;
 

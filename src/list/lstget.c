@@ -3,7 +3,7 @@
 
 
 
-s_list	*ft_lstget(s_list *lst, t_u32 index)
+s_list*	List_Get(s_list const* lst, t_u32 index)
 {
 	t_u32	i;
 
@@ -20,12 +20,12 @@ s_list	*ft_lstget(s_list *lst, t_u32 index)
 			lst = lst->next;
 		++i;
 	}
-	return (lst);
+	return ((s_list*)lst);
 }
 
 
 
-s_list	*ft_lstfind(s_list *lst, void const *query)
+s_list*	List_Find(s_list const* lst, void const* query)
 {
 #if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (lst == NULL)
@@ -36,7 +36,7 @@ s_list	*ft_lstfind(s_list *lst, void const *query)
 	while (lst)
 	{
 		if (lst->item == query)
-			return (lst);
+			return ((s_list*)lst);
 		lst = lst->next;
 	}
 	return (NULL);

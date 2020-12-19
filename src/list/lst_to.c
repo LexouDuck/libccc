@@ -4,22 +4,22 @@
 
 
 
-void	**ft_lst_to_array(s_list **alst)
+void**	List_To_Array(s_list const** a_lst)
 {
-	void	**result;
+	s_list const* lst;
+	void**	result;
 	t_size	length;
-	s_list	*lst;
 	t_u32	count;
 	t_u32	i;
 
 #if LIBFTCONFIG_HANDLE_NULLPOINTERS
-	if (alst == NULL)
+	if (a_lst == NULL)
 		return (NULL);
 #endif
-	lst = *alst;
-	count = ft_lstsize(lst);
+	lst = *a_lst;
+	count = List_Size(lst);
 	length = (count + 1) * sizeof(void *);
-	if (!(result = (void **)ft_memalloc(length)))
+	if (!(result = (void**)Memory_Alloc(length)))
 		return (NULL);
 	i = 0;
 	while (lst && i < count)
@@ -34,35 +34,36 @@ void	**ft_lst_to_array(s_list **alst)
 
 
 
-s_tuple	*ft_lst_to_tuple(s_list **alst, s_tuple *result)
+s_tuple	List_To_Tuple(s_list const** a_lst)
 {
-	s_list	*lst;
-	t_u32	count;
-	t_u32	i;
+	s_list const* lst;
+	s_tuple result;
+	t_size	count;
+	t_size	i;
 
 #if LIBFTCONFIG_HANDLE_NULLPOINTERS
-	if (alst == NULL || *alst == NULL)
-		return (NULL);
+	if (a_lst == NULL || *a_lst == NULL)
+		return ((s_tuple){0});
 #endif
-	lst = *alst;
-	result->item_size = lst->item_size;
+	lst = *a_lst;
+	result.item_size = lst->item_size;
 	count = 0;
 	while (lst && ++count)
 	{
 		lst = lst->next;
-		if (lst->item_size != result->item_size)
-			return (NULL);
+		if (lst->item_size != result.item_size)
+			return ((s_tuple){0});
 	}
-	result->length = (count + 1) * result->item_size;
-	if (!(result->items = (void *)ft_memalloc(result->length)))
-		return (NULL);
-	i = (t_u32)-1;
+	result.item_count = (count + 1) * result.item_size;
+	if (!(result.items = (void*)Memory_Alloc(result.item_count)))
+		return ((s_tuple){0});
+	i = 0;
 	while (lst && ++i < count)
 	{
-		ft_memcpy((t_u8 *)result->items + (i * result->item_size),
-			lst->item, result->item_size);
+		Memory_Copy((t_u8*)result.items + (i * result.item_size),
+			lst->item, result.item_size);
 		lst = lst->next;
 	}
-	ft_memclr(result + (i * result->item_size), result->item_size);
+//	Memory_Clear(result + (i * result.item_size), result.item_size);
 	return (result);
 }

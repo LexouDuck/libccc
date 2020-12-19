@@ -37,13 +37,14 @@ HEADER_CPP
 /*!
 **	The 's_tuple' struct holds a `void*` pointer to the array of items, the size
 **	of a single item in the array, and the total amount of items in this array.
+**	As such, a s_tuple can hold any number of items, but they must all share the same type.
 */
-typedef struct		s_tuple_
+typedef struct	s_tuple_
 {
-	t_size			length;		//!< The amount of elements in the 'items' array
-	t_size			item_size;	//!< The size (in bytes) of one object in this array
-	void*			items;		//!< The pointer to the any-type array
-}					s_tuple;
+	t_size		item_count;	//!< The amount of elements in the 'items' array
+	t_size		item_size;	//!< The size (in bytes) of one object in this array
+	void*		items;		//!< The pointer to the any-type array
+}				s_tuple;
 
 //! A 'foreach' keyword macro, to iterate over tuples without an index-based 'for' loop
 #define foreach_tuple (TYPE, VAR, TUPLE) \
@@ -204,7 +205,7 @@ void					List_Pop(s_list* *a_lst, void (*del)(void*, t_size));
 **	@returns the amount of elements in the given list 'lst',
 **	by traversing it, looping through every 'next' pointer.
 */
-t_u32					List_Size(s_list* lst);
+t_u32					List_Size(s_list const* lst);
 #define ft_lstsize		List_Size
 
 //! Gets the element at position 'index' in the list, and returns it
@@ -214,7 +215,7 @@ t_u32					List_Size(s_list* lst);
 **	@returns the 'index'th element in the given list 'lst'.
 **	Will return NULL if 'index' is beyond the last element.
 */
-s_list*					List_Get(s_list* lst, t_u32 index);
+s_list*					List_Get(s_list const* lst, t_u32 index);
 #define ft_lstget		List_Get
 
 //! Returns the first encountered item in the given list 'lst' matching the given 'query'
@@ -224,7 +225,7 @@ s_list*					List_Get(s_list* lst, t_u32 index);
 **	@returns the first encountered element of the given linked list 'lst'
 **	for which (lst.item == query), matching only the pointers, not the data.
 */
-s_list*					List_Find(s_list* lst, void const* query);
+s_list*					List_Find(s_list const* lst, void const* query);
 #define ft_lstfind		List_Find
 
 
@@ -272,8 +273,8 @@ s_list*					List_Map_I(s_list* lst, s_list *(*f)(s_list* elem, t_u32 index));
 **	The top-level pointer array is terminated by a NULL pointer.
 **	The underlying 'lst->item' data is not copied, only the pointers are.
 */
-void**					List_ToArray(s_list* *a_lst);
-#define ft_lst_to_array	List_ToArray
+void**					List_To_Array(s_list const** a_lst);
+#define ft_lst_to_array	List_To_Array
 
 //! Converts the given list at address 'a_lst' to a tuple
 /*!
@@ -284,8 +285,8 @@ void**					List_ToArray(s_list* *a_lst);
 **	@returns the resulting 's_tuple' struct from the given list, or NULL
 **		if any elements of '*a_lst' are of unequal 'lst->item_size'.
 */
-s_tuple*				List_ToTuple(s_list* *a_lst, s_tuple* tuple);
-#define ft_lst_to_tuple	List_ToTuple
+s_tuple					List_To_Tuple(s_list const** a_lst);
+#define ft_lst_to_tuple	List_To_Tuple
 
 
 
