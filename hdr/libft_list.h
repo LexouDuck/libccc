@@ -198,21 +198,30 @@ void					List_Pop(s_list* *a_lst, void (*del)(void*, t_size));
 ** ************************************************************************** *|
 */
 
+//! Returns the amount of elements in the given list 'lst'
 /*!
-**	Returns the amount of elements in the given list 'lst'.
+**	@param	lst		the list to look through
+**	@returns the amount of elements in the given list 'lst',
+**	by traversing it, looping through every 'next' pointer.
 */
 t_u32					List_Size(s_list* lst);
 #define ft_lstsize		List_Size
 
+//! Gets the element at position 'index' in the list, and returns it
 /*!
-**	Returns the 'index'th element in the given list 'lst'.
+**	@param	lst		the list to look through
+**	@param	index	the index in the list of the element to get
+**	@returns the 'index'th element in the given list 'lst'.
 **	Will return NULL if 'index' is beyond the last element.
 */
 s_list*					List_Get(s_list* lst, t_u32 index);
 #define ft_lstget		List_Get
 
+//! Returns the first encountered item in the given list 'lst' matching the given 'query'
 /*!
-**	Returns the first encountered element of the given linked list 'lst'
+**	@param	lst		the list to look through
+**	@param	query	the 'item' pointer to match against
+**	@returns the first encountered element of the given linked list 'lst'
 **	for which (lst.item == query), matching only the pointers, not the data.
 */
 s_list*					List_Find(s_list* lst, void const* query);
@@ -226,6 +235,7 @@ s_list*					List_Find(s_list* lst, void const* query);
 ** ************************************************************************** *|
 */
 
+//! Returns a "shallow copy" of a subsection of the given list 'lst', starting at 'index' and taking 'n' elements
 /*!
 **	Returns a newly allocated subsection of the given list 'lst',
 **	starting at 'index', and copying 'n' list elements (not their 'item' data).
@@ -236,6 +246,7 @@ s_list*					List_Find(s_list* lst, void const* query);
 s_list*					List_Sub(s_list* lst, t_u32 index, t_u32 n);
 #define ft_lstsub		List_Sub
 
+//! Iterates upon each element of the given list 'lst', applying the given function 'f' to each of its elements.
 /*!
 **	Iterates upon each element of the given list 'lst',
 **	applying the given function 'f' to each of its elements.
@@ -245,6 +256,7 @@ void					List_Iterate(s_list* lst, void (*f)(s_list* elem));
 void					List_Iterate_I(s_list* lst, void (*f)(s_list* elem, t_u32 index));
 #define ft_lstiteri		List_Iterate_I
 
+//! Creates a new list which is the result of applying the given function 'f' to each element of 'lst'.
 /*!
 **	Creates a new list which is the result of applying
 **	the given function 'f' to each element of 'lst'.
@@ -254,22 +266,26 @@ s_list*					List_Map(s_list* lst, s_list *(*f)(s_list* elem));
 s_list*					List_Map_I(s_list* lst, s_list *(*f)(s_list* elem, t_u32 index));
 #define ft_lstmapi		List_Map_I
 
+//! Converts the given list at address 'a_lst' to a NULL-terminated pointer array
 /*!
 **	Creates a new jagged array (2D pointer array) from the given list '*a_lst'.
 **	The top-level pointer array is terminated by a NULL pointer.
 **	The underlying 'lst->item' data is not copied, only the pointers are.
 */
-void**						List_ToArray(s_list* *a_lst);
-#define ft_lst_to_array		List_ToArray
+void**					List_ToArray(s_list* *a_lst);
+#define ft_lst_to_array	List_ToArray
 
+//! Converts the given list at address 'a_lst' to a tuple
 /*!
 **	Creates a new contiguous memory array from the given linked list.
 **	It sets this array pointer to the 'items' pointer of the given 'tuple'.
 **	It also sets the 'item_size' and 'length' fields of this 'tuple'.
-**	Returns NULL if any elements of '*a_lst' are of unequal 'lst->item_size'.
+**
+**	@returns the resulting 's_tuple' struct from the given list, or NULL
+**		if any elements of '*a_lst' are of unequal 'lst->item_size'.
 */
-s_tuple*					List_ToTuple(s_list* *a_lst, s_tuple* tuple);
-#define ft_lst_to_tuple		List_ToTuple
+s_tuple*				List_ToTuple(s_list* *a_lst, s_tuple* tuple);
+#define ft_lst_to_tuple	List_ToTuple
 
 
 
