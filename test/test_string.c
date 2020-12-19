@@ -1132,6 +1132,12 @@ void	test_strrev(void)
 //	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING              | TEST ARGS
 	print_test_strrev("strrev (even len)",	FALSE, ".uriednihs uom aw eamO", test1);
 	print_test_strrev("strrev (odd len) ",	FALSE, "???inaN",                test2);
+	print_test_strrev("strrev (even len)",	FALSE, "tset",                   "test");
+	print_test_strrev("strrev (len == 3) ",	FALSE, " ()",                    ")( ");
+	print_test_strrev("strrev (len == 3) ",	FALSE, "abc",                    "cba");
+	print_test_strrev("strrev (len == 2) ",	FALSE, "ab",                     "ba");
+	print_test_strrev("strrev (len == 1) ",	FALSE, "?",                      "?");
+	print_test_strrev("strrev (len == 0)",	FALSE, "",                       "");
 	print_test_strrev("strrev (null ptr)",	TRUE,  segstr,                   NULL);
 }
 #endif
@@ -1152,7 +1158,12 @@ void	print_test_strjoin(char const* test_name, int can_segfault,
 void	test_strjoin(void)
 {
 //	| TEST FUNCTION   | TEST NAME             |CAN SEGV| EXPECTING                     | TEST ARGS
-	print_test_strjoin("strjoin",            	FALSE, "Omae wa mou shindeiru.Nani???", test1, test2);
+	print_test_strjoin("strjoin",            	FALSE, "Omae wa mou shindeiru.Nani???",  test1,  test2);
+	print_test_strjoin("strjoin",            	FALSE, "test1test2",                    "test1", "test2");
+	print_test_strjoin("strjoin",            	FALSE, "Whoa...",                       "Whoa.", "..");
+	print_test_strjoin("strjoin (empty str1)",	FALSE, "sweg",                          "sweg",  "");
+	print_test_strjoin("strjoin (empty str2)",	FALSE, "sweg",                          "",      "sweg");
+	print_test_strjoin("strjoin (both empty)",	FALSE, "",                              "",      "");
 	print_test_strjoin("strjoin (null str1)",	TRUE,   segstr,                         NULL,  test2);
 	print_test_strjoin("strjoin (null str2)",	TRUE,   segstr,                         test1, NULL);
 	print_test_strjoin("strjoin (both null)",	TRUE,   segstr,                         NULL,  NULL);

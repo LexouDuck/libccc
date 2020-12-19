@@ -205,13 +205,13 @@ t_u8							Color_ARGB32_Get_B(t_argb32 color);
 //! Creates a 32-bit color value from the given channel values (alpha, red, green, blue)
 /*!
 **	This function creates a new 32-bit ARGB color value from
-**	the given four individual color channel values.
+**	the four given color channel 1-byte values.
 **
 **	@param	a	The alpha channel value (0-255)
 **	@param	r	The red channel value   (0-255)
 **	@param	g	The green channel value (0-255)
 **	@param	b	The blue channel value  (0-255)
-**	@return the 32-bit color value from the given channel values
+**	@return the 32-bit color value assembled from the given channel values
 */
 t_argb32						Color_ARGB32_Set(t_u8 a, t_u8 r, t_u8 g, t_u8 b);
 #define ft_color_argb32_set		Color_ARGB32_Set
