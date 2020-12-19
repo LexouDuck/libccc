@@ -72,7 +72,7 @@ HEADER_CPP
 **	Check if the given char 'c' is a letter (lowercase or uppercase)
 **
 **	@param	c	The character to check (UTF-8)
-**	@return 1 if the given char 'c' is a letter (lowercase or uppercase),
+**	@returns 1 if the given char 'c' is a letter (lowercase or uppercase),
 **			and returns 0 otherwise.
 */
 t_bool				Char_IsLetter(int c);
@@ -83,7 +83,7 @@ t_bool				Char_IsLetter(int c);
 **	Check if the given char 'c' is a uppercase letter character
 **
 **	@param	c	The character to check (UTF-8)
-**	@return 1 if the given char 'c' is a uppercase letter character,
+**	@returns 1 if the given char 'c' is a uppercase letter character,
 **			and returns 0 otherwise.
 */
 t_bool				Char_IsUppercase(int c);
@@ -94,7 +94,7 @@ t_bool				Char_IsUppercase(int c);
 **	Check if the given char 'c' is an lowercase letter character
 **
 **	@param	c	The character to check (UTF-8)
-**	@return 1 if the given char 'c' is an lowercase letter character,
+**	@returns 1 if the given char 'c' is an lowercase letter character,
 **			and returns 0 otherwise.
 */
 t_bool				Char_IsLowercase(int c);
@@ -105,7 +105,7 @@ t_bool				Char_IsLowercase(int c);
 **	Check if the given char 'c' is alphanumeric (letter or digit) character
 **
 **	@param	c	The character to check (UTF-8)
-**	@return 1 if the given char 'c' is alphanumeric (letter or digit),
+**	@returns 1 if the given char 'c' is alphanumeric (letter or digit),
 **			and returns 0 otherwise.
 */
 t_bool				Char_IsAlphaNumeric(int c);
@@ -116,7 +116,7 @@ t_bool				Char_IsAlphaNumeric(int c);
 **	Check if the given char 'c' is a numerical digit character
 **
 **	@param	c	The character to check (UTF-8)
-**	@return 1 if the given char 'c' is a numerical digit character,
+**	@returns 1 if the given char 'c' is a numerical digit character,
 **			and returns 0 otherwise.
 */
 t_bool				Char_IsDigit(int c);
@@ -127,7 +127,7 @@ t_bool				Char_IsDigit(int c);
 **	Check if the given char 'c' is a hexadecimal character
 **
 **	@param	c	The character to check (UTF-8)
-**	@return 1 if the given char 'c' is a hexadecimal character
+**	@returns 1 if the given char 'c' is a hexadecimal character
 **			(either 0-9 or  A-F lowercase or uppercase), and returns 0 otherwise.
 */
 t_bool				Char_IsHexDigit(int c);
@@ -138,7 +138,7 @@ t_bool				Char_IsHexDigit(int c);
 **	Check if the given char 'c' is whitespace character (\r,\n,\f,\v,\t,' ')
 **
 **	@param	c	The character to check (UTF-8)
-**	@return 1 if the given char 'c' is whitespace character: \r,\n,\f,\v,\t,' '
+**	@returns 1 if the given char 'c' is whitespace character: \r,\n,\f,\v,\t,' '
 **			(carriage return, newline, form feed, vertical tab, tab, or space), and returns 0 otherwise.
 */
 t_bool				Char_IsSpace(int c);
@@ -149,7 +149,7 @@ t_bool				Char_IsSpace(int c);
 **	Check if the given char 'c' is a punctuation character
 **
 **	@param	c	The character to check (UTF-8)
-**	@return 1 if the given char 'c' is a punctuation character,
+**	@returns 1 if the given char 'c' is a punctuation character,
 **			and returns 0 otherwise.
 */
 t_bool				Char_IsPunctuation(int c);
@@ -160,7 +160,7 @@ t_bool				Char_IsPunctuation(int c);
 **	Check if the given char 'c' is a printable ASCII character
 **
 **	@param	c	The character to check (UTF-8)
-**	@return 1 if the given char 'c' is a printable ASCII character,
+**	@returns 1 if the given char 'c' is a printable ASCII character,
 **			(0x20 <= c && c <= 0x7E) and returns 0 otherwise.
 */
 t_bool				Char_IsPrintable(int c);
@@ -171,7 +171,7 @@ t_bool				Char_IsPrintable(int c);
 **	Check if the given char 'c' is an ASCII-compatible char (non UTF-8)
 **
 **	@param	c	The character to check (UTF-8)
-**	@return 1 if the given char 'c' has a value between 0 and 127,
+**	@returns 1 if the given char 'c' has a value between 0 and 127,
 **			(0x00 <= c && c <= 0x7F) and returns 0 otherwise.
 */
 t_bool				Char_IsASCII(int c);
@@ -190,7 +190,7 @@ t_bool				Char_IsASCII(int c);
 **	Get the uppercase version of the given char 'c'
 **
 **	@param	c	The character to uppercase-ify (UTF-8)
-**	@return the uppercase equivalent of the given character 'c'
+**	@returns the uppercase equivalent of the given character 'c'
 **			(nothing is done if 'c' is not a letter character).
 */
 char				Char_ToUppercase(char c);
@@ -201,7 +201,7 @@ char				Char_ToUppercase(char c);
 **	Get the lowercase version of the given char 'c'
 **
 **	@param	c	The character to lowercase-ify (UTF-8)
-**	@return the lowercase equivalent of the given character 'c'
+**	@returns the lowercase equivalent of the given character 'c'
 **			(nothing is done if 'c' is not a letter character).
 */
 char				Char_ToLowercase(char c);

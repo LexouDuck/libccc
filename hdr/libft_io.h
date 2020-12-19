@@ -116,7 +116,7 @@ typedef int		t_fd;
 **	@param	fd		The file descriptor to read data from
 **	@param	a_file	The address of the buffer to fill: is allocated and filled with the data
 **	@param	max		The maximum amount of bytes to read from 'fd'
-**	@return OK(0) if the stream was read successfully, ERROR(1) if there was an error.
+**	@returns 0(OK) if the stream was read successfully, 1(ERROR) if there was an error.
 */
 t_bool					IO_Read_File(t_fd const fd, char* *a_file, t_size max);
 #define ft_readfile		IO_Read_File
@@ -130,7 +130,7 @@ t_bool					IO_Read_File(t_fd const fd, char* *a_file, t_size max);
 **	@param	fd			The file descriptor to read data from
 **	@param	a_strarr	The address of the string array to fill: the top-level
 **						top-level pointer array is allocated and filled appropriately.
-**	@return OK(0) if the stream was read successfully, ERROR(1) if there was an error.
+**	@returns 0(OK) if the stream was read successfully, 1(ERROR) if there was an error.
 */
 t_bool					IO_Read_Lines(t_fd const fd, char** *a_strarr);
 #define ft_readlines	IO_Read_Lines

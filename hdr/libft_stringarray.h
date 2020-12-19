@@ -48,6 +48,7 @@ char**							String_Split_Char(char const* str, char c);
 char**							String_Split_Charset(char const* str, char const* sep_chars);
 #define ft_strsplit_charset		String_Split_Charset
 
+//! Splits up the given string 'str' into several parts in a string array, using 'query' as separator
 /*!
 **	Returns a string array made up of substrings of 'str', where each element
 **	is a section delimited by the full string 'query', or the edges of the

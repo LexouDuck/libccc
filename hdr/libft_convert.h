@@ -153,7 +153,7 @@ char*						Convert_F64_To_String_P(t_f64 n, t_u8 precision);
 
 
 
-//! Returns ERROR(1) if the given 'str' contains any invalid characters for float parsing
+//! Returns 1(ERROR) if the given 'str' contains any invalid characters for float parsing
 int										Convert_String_To_Float_CheckInvalid(char const* str, char* *a_result);
 #define ft_str_to_float_checkinvalid	Convert_String_To_Float_CheckInvalid
 

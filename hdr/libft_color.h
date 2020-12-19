@@ -125,7 +125,7 @@ t_u8							Color_ARGB16_Get_B(t_argb16 color);
 **	@param	r	The red channel value   (0-31)
 **	@param	g	The green channel value (0-31)
 **	@param	b	The blue channel value  (0-31)
-**	@return the 16-bit color value from the given channel values
+**	@returns the 16-bit color value from the given channel values
 */
 t_argb16						Color_ARGB16_Set(t_u8 a, t_u8 r, t_u8 g, t_u8 b);
 #define ft_color_argb16_set		Color_ARGB16_Set
@@ -152,7 +152,7 @@ t_argb16						Color_ARGB16_Set_B(t_argb16 color, t_u8 b);
 //! Converts the given 16-bit color value to its 32-bit equivalent
 /*!
 **	@param	color	The 16-bit color to convert
-**	@return a 32-bit ARGB color by multiplying the color channel
+**	@returns a 32-bit ARGB color by multiplying the color channel
 **			values of the given 16-bit 'color' value.
 */
 t_argb32							Color_ARGB16_To_ARGB32(t_argb16 color);
@@ -169,7 +169,7 @@ s_argb								Color_ARGB16_To_ARGB(t_argb16 color);
 **	@param	target	The desired color, for which the nearest will be returned
 **	@param	colors	The array of different colors to check against
 **	@param	n		The amount of colors to check in the 'colors' array
-**	@return a pointer to the color within 'colors' which is the closest match
+**	@returns a pointer to the color within 'colors' which is the closest match
 **			to the given 'target' color, searching through 'n' colors in the array.
 */
 t_argb16*						Color_ARGB16_GetNearest(t_argb16 target, t_argb16* colors, t_size n);
@@ -211,7 +211,7 @@ t_u8							Color_ARGB32_Get_B(t_argb32 color);
 **	@param	r	The red channel value   (0-255)
 **	@param	g	The green channel value (0-255)
 **	@param	b	The blue channel value  (0-255)
-**	@return the 32-bit color value assembled from the given channel values
+**	@returns the 32-bit color value assembled from the given channel values
 */
 t_argb32						Color_ARGB32_Set(t_u8 a, t_u8 r, t_u8 g, t_u8 b);
 #define ft_color_argb32_set		Color_ARGB32_Set
@@ -238,7 +238,7 @@ t_argb32						Color_ARGB32_Set_B(t_argb32 color, t_u8 b);
 //! Converts the given 32-bit color value to its 16-bit equivalent (rounding down)
 /*!
 **	@param	color	The 32-bit color to convert
-**	@return a 16-bit ARGB color, by dividing the color channel values of the
+**	@returns a 16-bit ARGB color, by dividing the color channel values of the
 **			given 32-bit 'color' value (values are rounded down in the process).
 */
 t_argb16							Color_ARGB32_To_ARGB16(t_argb32 color);
@@ -255,7 +255,7 @@ s_argb								Color_ARGB32_To_ARGB(t_argb32 color);
 **	@param	target	The desired color, for which the nearest will be returned
 **	@param	colors	The array of different colors to check against
 **	@param	n		The amount of colors to check in the 'colors' array
-**	@return a pointer to the color within 'colors' which is the closest match
+**	@returns a pointer to the color within 'colors' which is the closest match
 **			to the given 'target' color, searching through 'n' colors in the array.
 */
 t_argb32*						Color_ARGB32_GetNearest(t_argb32 target, t_argb32* colors, t_size n);
@@ -278,7 +278,7 @@ t_argb32*						Color_ARGB32_GetNearest(t_argb32 target, t_argb32* colors, t_size
 **	@param	r	The red channel value   (0.0 to 1.0)
 **	@param	g	The green channel value (0.0 to 1.0)
 **	@param	b	The blue channel value  (0.0 to 1.0)
-**	@return the floating-point color struct from the given channel values
+**	@returns the floating-point color struct from the given channel values
 */
 s_argb							Color_ARGB_Set(t_float a, t_float r, t_float g, t_float b);
 #define ft_color_argb_set		Color_ARGB_Set
@@ -305,7 +305,7 @@ void							Color_ARGB_Set_B(s_argb* color, t_float b);
 //! Converts the given floating-point color struct value to its 16-bit equivalent
 /*!
 **	@param	color	The floating-point color struct to convert
-**	@return a 16-bit ARGB color by dividing the color channel values of the
+**	@returns a 16-bit ARGB color by dividing the color channel values of the
 **			given 32-bit 'color' value (values are rounded down in the process).
 */
 t_argb16						Color_ARGB_To_ARGB16(s_argb const* color);
@@ -314,7 +314,7 @@ t_argb16						Color_ARGB_To_ARGB16(s_argb const* color);
 //! Converts the given floating-point color struct value to its 32-bit equivalent
 /*!
 **	@param	color	The floating-point color struct to convert
-**	@return a 16-bit ARGB color by dividing the color channel values of the
+**	@returns a 16-bit ARGB color by dividing the color channel values of the
 **			given 32-bit 'color' value (values are rounded down in the process).
 */
 t_argb32						Color_ARGB_To_ARGB32(s_argb const* color);
@@ -323,7 +323,7 @@ t_argb32						Color_ARGB_To_ARGB32(s_argb const* color);
 //! Converts the given floating-point color struct value to hue/sat/lum color format
 /*!
 **	@param	color	The floating-point color struct to convert
-**	@return the equivalent to the given 'color', in hue/sat/lum format
+**	@returns the equivalent to the given 'color', in hue/sat/lum format
 */
 s_ahsl							Color_ARGB_To_AHSL(s_argb const* color);
 #define ft_color_argb_to_ahsl	Color_ARGB_To_AHSL
@@ -335,7 +335,7 @@ s_ahsl							Color_ARGB_To_AHSL(s_argb const* color);
 **	@param	target	The desired color, for which the nearest will be returned
 **	@param	colors	The array of different colors to check against
 **	@param	n		The amount of colors to check in the 'colors' array
-**	@return a pointer to the color within 'colors' which is the closest match
+**	@returns a pointer to the color within 'colors' which is the closest match
 **			to the given 'target' color, searching through 'n' colors in the array.
 */
 s_argb*							Color_ARGB_GetNearest(s_argb target, s_argb* colors, t_size n);
@@ -358,7 +358,7 @@ s_argb*							Color_ARGB_GetNearest(s_argb target, s_argb* colors, t_size n);
 **	@param	hue	The color hue/value            (constrained to interval [0,PI*2])
 **	@param	sat	The color saturation           (constrained to interval [0,1])
 **	@param	lum	The color luminance/brightness (constrained to interval [0,1])
-**	@return the floating-point color struct from the given channel values
+**	@returns the floating-point color struct from the given channel values
 */
 s_ahsl							Color_AHSL_Set(t_float a, t_float hue, t_float sat, t_float lum);
 #define ft_color_ahsl_set		Color_AHSL_Set
@@ -385,7 +385,7 @@ void							Color_AHSL_Set_L(s_ahsl* color, t_float lum);
 //! Converts the given floating-point color struct value to hue/sat/lum color format
 /*!
 **	@param	color	The floating-point color struct to convert
-**	@return the equivalent to the given 'color', in hue/sat/lum format
+**	@returns the equivalent to the given 'color', in hue/sat/lum format
 */
 s_argb							Color_AHSL_To_ARGB(s_ahsl const* color);
 #define ft_color_ahsl_to_argb	Color_AHSL_To_ARGB
@@ -397,7 +397,7 @@ s_argb							Color_AHSL_To_ARGB(s_ahsl const* color);
 **	@param	target	The desired color, for which the nearest will be returned
 **	@param	colors	The array of different colors to check against
 **	@param	n		The amount of colors to check in the 'colors' array
-**	@return a pointer to the color within 'colors' which is the closest match
+**	@returns a pointer to the color within 'colors' which is the closest match
 **			to the given 'target' color, searching through 'n' colors in the array.
 */
 s_ahsl*							Color_AHSL_GetNearest(s_ahsl target, s_ahsl* colors, t_size n);

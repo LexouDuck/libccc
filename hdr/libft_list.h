@@ -79,7 +79,7 @@ typedef struct		s_list_
 **
 **	@param	item		A pointer to the data/value to store in this list
 **	@param	item_size	The size (in bytes) of the data in question
-**	@return the linked-list element containing the given data
+**	@returns the linked-list element containing the given data
 */
 s_list*					List_New(void* item, t_size item_size);
 #define ft_lstnew		List_New
