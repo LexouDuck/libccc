@@ -43,8 +43,11 @@ typedef struct	s_tuple_
 {
 	t_size		item_count;	//!< The amount of elements in the 'items' array
 	t_size		item_size;	//!< The size (in bytes) of one object in this array
-	void*		items;		//!< The pointer to the any-type array
+	void*		items;		//!< The pointer to the array (items can be of any one type)
 }				s_tuple;
+
+//! A literal of an 's_tuple' struct which has all fields set to zero
+#define TUPLE_NULL	(s_tuple){ .item_count = 0, .item_size = 0, .items = NULL }
 
 //! A 'foreach' keyword macro, to iterate over tuples without an index-based 'for' loop
 #define foreach_tuple (TYPE, VAR, TUPLE) \

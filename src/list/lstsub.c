@@ -3,11 +3,11 @@
 
 
 
-s_list	*ft_lstsub(s_list *lst, t_u32 index, t_u32 n)
+s_list*		List_Sub(s_list* lst, t_u32 index, t_u32 n)
 {
-	s_list	*result;
-	s_list	*result_lst;
-	s_list	*tmp;
+	s_list*	result;
+	s_list*	result_lst;
+	s_list*	tmp;
 
 #if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (lst == NULL)
@@ -15,16 +15,18 @@ s_list	*ft_lstsub(s_list *lst, t_u32 index, t_u32 n)
 #endif
 	if (n == 0)
 		return (NULL);
-	while (index--)
+	while (lst && index--)
 		lst = lst->next;
-	result = ft_lstnew(lst->item, lst->item_size);
+	if (lst == NULL)
+		return (NULL);
+	result = List_New(lst->item, lst->item_size);
 	if (result == NULL)
 		return (NULL);
 	result_lst = result;
 	lst = lst->next;
 	while (lst && n--)
 	{
-		tmp = ft_lstnew(lst->item, lst->item_size);
+		tmp = List_New(lst->item, lst->item_size);
 		result_lst->next = tmp;
 		result_lst = result_lst->next;
 		lst = lst->next;

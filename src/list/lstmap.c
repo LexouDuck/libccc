@@ -4,17 +4,17 @@
 
 
 
-static void	ft_lstmap_delete(void *content, t_size content_size)
+static void	List_Map_Delete(void* item, t_size item_size)
 {
-	if (content && content_size > 0)
+	if (item && item_size > 0)
 	{
-		ft_memfree(content);
+		Memory_Free(item);
 	}
 }
 
 
 
-s_list		*ft_lstmap(s_list *lst, s_list *(*f)(s_list *elem))
+s_list*		List_Map(s_list* lst, s_list *(*f)(s_list* elem))
 {
 	s_list	*result;
 	s_list	*current;
@@ -29,10 +29,10 @@ s_list		*ft_lstmap(s_list *lst, s_list *(*f)(s_list *elem))
 		current = f(lst);
 		if (current == NULL)
 		{
-			ft_lstdel(&result, ft_lstmap_delete);
+			List_Delete(&result, List_Map_Delete);
 			return (NULL);
 		}
-		ft_lstappend(&result, current);
+		List_Append(&result, current);
 		lst = lst->next;
 	}
 	return (result);
@@ -40,7 +40,7 @@ s_list		*ft_lstmap(s_list *lst, s_list *(*f)(s_list *elem))
 
 
 
-s_list		*ft_lstmapi(s_list *lst, s_list *(*f)(s_list *elem, t_u32 index))
+s_list*		List_Map_I(s_list* lst, s_list *(*f)(s_list* elem, t_u32 index))
 {
 	s_list	*result;
 	s_list	*current;
@@ -56,10 +56,10 @@ s_list		*ft_lstmapi(s_list *lst, s_list *(*f)(s_list *elem, t_u32 index))
 		current = f(lst, i);
 		if (current == NULL)
 		{
-			ft_lstdel(&result, ft_lstmap_delete);
+			List_Delete(&result, List_Map_Delete);
 			return (NULL);
 		}
-		ft_lstappend(&result, current);
+		List_Append(&result, current);
 		lst = lst->next;
 		++i;
 	}

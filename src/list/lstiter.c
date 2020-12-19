@@ -3,7 +3,7 @@
 
 
 
-void	ft_lstiter(s_list *lst, void (*f)(s_list *elem))
+void	List_Iterate(s_list* lst, void (*f)(s_list* elem))
 {
 #if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (lst == NULL || f == NULL)
@@ -18,7 +18,7 @@ void	ft_lstiter(s_list *lst, void (*f)(s_list *elem))
 
 
 
-void	ft_lstiteri(s_list *lst, void (*f)(s_list *elem, t_u32 index))
+void	List_Iterate_I(s_list* lst, void (*f)(s_list* elem, t_u32 index))
 {
 	t_u32 i;
 

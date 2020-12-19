@@ -8,28 +8,29 @@ void	List_Remove(s_list* *a_lst, void (*del)(void*, t_size))
 {
 //	s_list* prev;
 	s_list* next;
+	s_list* lst;
+
 #if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (a_lst == NULL || del == NULL)
 		return ;
 #endif
-	if (*a_lst)
-	{
-		del((*a_lst)->item, (*a_lst)->item_size);
-//		prev = (*a_lst)->prev;
-		next = (*a_lst)->next;
-		Memory_Free(*a_lst);
-		*a_lst = next;
-//		if (next)
-//			next->prev = prev;
-	}
+	lst = *a_lst;
+	del(lst->item, lst->item_size);
+//	prev = lst->prev;
+	next = lst->next;
+	Memory_Free(lst);
+	*a_lst = next;
+//	if (next)
+//		next->prev = prev;
 }
 
 
 
 void	List_Delete(s_list* *a_lst, void (*del)(void*, t_size))
 {
-	s_list* lst;
+//	s_list* prev;
 	s_list* next;
+	s_list* lst;
 
 #if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (a_lst == NULL || del == NULL)
@@ -39,9 +40,12 @@ void	List_Delete(s_list* *a_lst, void (*del)(void*, t_size))
 	while (lst)
 	{
 		del(lst->item, lst->item_size);
+//		prev = lst->prev;
 		next = lst->next;
 		Memory_Free(lst);
 		lst = next;
+//		if (next)
+//			next->prev = prev;
 	}
 	*a_lst = NULL;
 }
@@ -50,15 +54,15 @@ void	List_Delete(s_list* *a_lst, void (*del)(void*, t_size))
 
 void	List_Pop(s_list* *a_lst, void (*del)(void*, t_size))
 {
-	s_list	*lst;
-	s_list	*lst_prev;
+	s_list* lst;
+	s_list* lst_prev;
 
 #if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (a_lst == NULL || del == NULL)
 		return ;
 #endif
-	lst = *a_lst;
 	lst_prev = NULL;
+	lst = *a_lst;
 	while (lst)
 	{
 		if (lst->next == NULL)

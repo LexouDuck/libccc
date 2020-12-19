@@ -43,7 +43,7 @@ s_tuple	List_To_Tuple(s_list const** a_lst)
 
 #if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (a_lst == NULL || *a_lst == NULL)
-		return ((s_tuple){0});
+		return (TUPLE_NULL);
 #endif
 	lst = *a_lst;
 	result.item_size = lst->item_size;
@@ -52,11 +52,11 @@ s_tuple	List_To_Tuple(s_list const** a_lst)
 	{
 		lst = lst->next;
 		if (lst->item_size != result.item_size)
-			return ((s_tuple){0});
+			return (TUPLE_NULL);
 	}
-	result.item_count = (count + 1) * result.item_size;
-	if (!(result.items = (void*)Memory_Alloc(result.item_count)))
-		return ((s_tuple){0});
+	result.item_count = (count + 1);
+	if (!(result.items = (void*)Memory_Alloc(result.item_count * result.item_size)))
+		return (TUPLE_NULL);
 	i = 0;
 	while (lst && ++i < count)
 	{

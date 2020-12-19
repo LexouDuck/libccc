@@ -20,6 +20,7 @@ s_list*	List_Copy(s_list const* lst)
 	while (lst)
 	{
 		tmp = List_New(lst->item, lst->item_size);
+//		tmp->prev = result_lst;
 		result_lst->next = tmp;
 		result_lst = result_lst->next;
 		lst = lst->next;
@@ -46,6 +47,7 @@ s_list*	List_Duplicate(s_list const* lst)
 	{
 		tmp = List_New(lst->item, lst->item_size);
 		tmp->item = Memory_Duplicate(lst->item, lst->item_size);
+//		tmp->prev = result_lst;
 		result_lst->next = tmp;
 		result_lst = result_lst->next;
 		lst = lst->next;
