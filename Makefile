@@ -153,14 +153,10 @@ SRC_STRINGARRAY = \
 
 DIR_CONVERT = convert/
 SRC_CONVERT = \
-	int_s_to_str.c		\
-	int_s_to_strbase.c	\
-	int_u_to_str.c		\
-	int_u_to_strbase.c	\
-	int_u_to_hex.c		\
+	int_to_str.c		\
+	int_to_strbase.c	\
+	int_to_strhex.c		\
 	float_to_str.c		\
-	f32_to_str.c		\
-	f64_to_str.c		\
 	size_to_str.c		\
 	bool_to_str.c		\
 	str_to_int_s.c		\
@@ -170,7 +166,8 @@ SRC_CONVERT = \
 	str_to_f64.c		\
 	str_to_size.c		\
 	str_to_bool.c		\
-	hex_to_int_u.c		\
+	strhex_to_int.c		\
+	strbase_to_int.c	\
 
 DIR_COLOR = color/
 SRC_COLOR = \

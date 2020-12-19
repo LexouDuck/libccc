@@ -4,13 +4,13 @@
 
 
 
-char	*ft_bool_to_str(t_bool number, t_bool uppercase)
+char*	Convert_Bool_To_String(t_bool number, t_bool uppercase)
 {
-	char	*result;
+	char*	result;
 
 	if (number)
 	{
-		if (!(result = (char *)ft_memalloc(5)))
+		if (!(result = (char*)Memory_Alloc(5)))
 			return (NULL);
 		result[0] = uppercase ? 'T' : 't';
 		result[1] = uppercase ? 'R' : 'r';
@@ -20,7 +20,7 @@ char	*ft_bool_to_str(t_bool number, t_bool uppercase)
 	}
 	else
 	{
-		if (!(result = (char *)ft_memalloc(6)))
+		if (!(result = (char*)Memory_Alloc(6)))
 			return (NULL);
 		result[0] = uppercase ? 'F' : 'f';
 		result[1] = uppercase ? 'A' : 'a';

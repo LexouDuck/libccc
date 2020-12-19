@@ -4,9 +4,9 @@
 
 
 
-char	*ft_size_to_str(t_size number)
+char*	Convert_Size_To_String(t_size number)
 {
-	char	*result;
+	char*	result;
 	t_u8	digits[MAXDIGIT_64BIT];
 	t_u8	i;
 	t_size	n;
@@ -20,7 +20,7 @@ char	*ft_size_to_str(t_size number)
 	}
 	if (i == 0)
 		digits[i++] = 0;
-	if (!(result = (char *)ft_memalloc(i + 1)))
+	if (!(result = (char*)Memory_Alloc(i + 1)))
 		return (NULL);
 	n = 0;
 	while (i--)
@@ -31,7 +31,7 @@ char	*ft_size_to_str(t_size number)
 
 
 
-char	*ft_size_to_str_readable(t_size number)
+char*	Convert_Size_To_String_Readable(t_size number)
 {
 	static const char* units[6] = { "B\0", "KB", "MB", "GB", "TB", "PB" };
 	t_float len = (t_float)number;
@@ -56,7 +56,7 @@ char	*ft_size_to_str_readable(t_size number)
 	}
 	if (i == 0)
 		digits[i++] = 0;
-	if (!(result = (char *)ft_memalloc(i + 3)))
+	if (!(result = (char*)Memory_Alloc(i + 3)))
 		return (NULL);
 	n = 0;
 	while (i--)
