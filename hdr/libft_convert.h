@@ -181,6 +181,9 @@ t_bool					Convert_String_To_Bool(char const* str);
 
 
 
+//! Get the string hexadecimal representation of a pointer/address value
+char*					Convert_Pointer_To_String(void const* ptr);
+#define ft_ptr_to_str	Convert_Pointer_To_String
 //! Get the string decimal representation of a 64-bit unsigned integer
 char*					Convert_Size_To_String(t_size value);
 #define ft_size_to_str	Convert_Size_To_String
