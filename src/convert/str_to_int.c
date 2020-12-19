@@ -20,7 +20,7 @@ t_s##BITS	Convert_String_To_S##BITS(char const* str)					\
 	t_size	i;															\
 LIBFTCONFIG_HANDLE_NULLPOINTER_STR_TO_INT								\
 	i = 0;																\
-	while (!(Char_IsDigit(str[i]) || str[i] == '+' || str[i] == '-'))	\
+	while (!(str[i] == '+' || str[i] == '-' || Char_IsDigit(str[i])))	\
 	{																	\
 		if (!str[i] || !Char_IsSpace(str[i]))							\
 			return (0);													\
@@ -36,7 +36,9 @@ LIBFTCONFIG_HANDLE_NULLPOINTER_STR_TO_INT								\
 		++i;															\
 	result = 0;															\
 	while (str[i] && Char_IsDigit(str[i]))								\
-		result = result * 10 + str[i++] - '0';							\
+	{																	\
+		result = result * 10 + (str[i++] - '0');						\
+	}																	\
 	return (negative ? -(t_s##BITS)result : (t_s##BITS)result);			\
 }																		\
 
@@ -54,7 +56,7 @@ t_u##BITS	Convert_String_To_U##BITS(char const* str)					\
 	t_size	i;															\
 LIBFTCONFIG_HANDLE_NULLPOINTER_STR_TO_INT								\
 	i = 0;																\
-	while (!(Char_IsDigit(str[i]) || str[i] == '+'))					\
+	while (!(str[i] == '+' || Char_IsDigit(str[i])))					\
 	{																	\
 		if (!str[i] || !Char_IsSpace(str[i]))							\
 			return (0);													\
@@ -65,7 +67,7 @@ LIBFTCONFIG_HANDLE_NULLPOINTER_STR_TO_INT								\
 	result = 0;															\
 	while (str[i] && Char_IsDigit(str[i]))								\
 	{																	\
-		result = result * 10 + str[i] - '0';							\
+		result = result * 10 + (str[i] - '0');							\
 		++i;															\
 	}																	\
 	return (result);													\

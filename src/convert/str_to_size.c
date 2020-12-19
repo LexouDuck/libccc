@@ -14,18 +14,18 @@ t_size	Convert_String_To_Size(char const* str)
 		return (0);
 #endif
 	i = 0;
-	while (!(ft_isdigit(str[i]) || str[i] == '+'))
+	while (!(Char_IsDigit(str[i]) || str[i] == '+'))
 	{
-		if (!str[i] || !ft_isspace(str[i]))
+		if (!str[i] || !Char_IsSpace(str[i]))
 			return (0);
 		++i;
 	}
 	if (str[i] == '+')
 		++i;
 	result = 0;
-	while (str[i] && ft_isdigit(str[i]))
+	while (str[i] && Char_IsDigit(str[i]))
 	{
-		result = result * 10 + str[i] - '0';
+		result = result * 10 + (str[i] - '0');
 		++i;
 	}
 	return (result);

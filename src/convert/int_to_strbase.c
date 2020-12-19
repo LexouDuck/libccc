@@ -43,9 +43,7 @@ char*	Convert_U##BITS##_To_BaseString(t_u##BITS number, char const* base)	\
 																			\
 	length = Convert_Int_To_BaseString_GetLength(base, FALSE);				\
 	if (length == 0)														\
-	{																		\
 		return (NULL);														\
-	}																		\
 	n = number;																\
 	i = 0;																	\
 	while (n > 0)															\
@@ -54,13 +52,9 @@ char*	Convert_U##BITS##_To_BaseString(t_u##BITS number, char const* base)	\
 		n /= length;														\
 	}																		\
 	if (i == 0)																\
-	{																		\
 		digits[i++] = base[0];												\
-	}																		\
 	if (!(result = (char*)Memory_Alloc(i + 1)))								\
-	{																		\
 		return (NULL);														\
-	}																		\
 	n = 0;																	\
 	while (i--)																\
 	{																		\

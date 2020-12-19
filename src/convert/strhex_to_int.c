@@ -37,7 +37,7 @@ LIBFTCONFIG_HANDLE_NULLPOINTER_STR_TO_INT										\
 		('A' <= str[i] && str[i] <= 'F') ||										\
 		('a' <= str[i] && str[i] <= 'f')))										\
 	{																			\
-		if (!str[i] || !ft_isspace(str[i]))										\
+		if (!str[i] || !Char_IsSpace(str[i]))									\
 			return (0);															\
 		++i;																	\
 	}																			\
