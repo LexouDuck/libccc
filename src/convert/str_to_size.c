@@ -4,7 +4,7 @@
 
 
 
-t_size	ft_str_to_size(char const *str)
+t_size	Convert_String_To_Size(char const* str)
 {
 	t_size	result;
 	t_size	i;

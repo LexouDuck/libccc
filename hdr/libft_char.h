@@ -108,8 +108,8 @@ t_bool				Char_IsLowercase(int c);
 **	@return 1 if the given char 'c' is alphanumeric (letter or digit),
 **			and returns 0 otherwise.
 */
-t_bool				Char_IsAlphanumeric(int c);
-#define ft_isalnum	Char_IsAlphanumeric
+t_bool				Char_IsAlphaNumeric(int c);
+#define ft_isalnum	Char_IsAlphaNumeric
 
 //! Check if the given char 'c' is a numerical digit character
 /*!

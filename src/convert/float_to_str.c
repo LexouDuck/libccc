@@ -52,14 +52,14 @@ t_bool		Convert_Float_To_String_CheckSpecial(t_f32 number, char **result)
 #endif
 	if (IS_NAN(number))
 	{
-		*result = ft_strdup("NaN");
+		*result = String_Duplicate("NaN");
 		return (TRUE);
 	}
 	else if (IS_INFINITY(number))
 	{
 		*result = (number < 0 ?
-			ft_strdup("-INFINITY") :
-			ft_strdup("+INFINITY"));
+			String_Duplicate("-INFINITY") :
+			String_Duplicate("+INFINITY"));
 		return (TRUE);
 	}
 	return (FALSE);
@@ -109,7 +109,7 @@ static t_s16	Convert_F##BITS##_To_String_GetExponent(t_f##BITS* number)									
 	if (*number >= FLOAT_THRESHOLD_HUGE ||																		\
 		*number <= -FLOAT_THRESHOLD_HUGE)																		\
 		while ((power /= 2) > 0)																				\
-			if (*number >= (nearest = ft_pow(10, power)))														\
+			if (*number >= (nearest = Math_Pow(10, power)))														\
 			{																									\
 				*number /= nearest;																				\
 				exponent += power;																				\
@@ -117,9 +117,9 @@ static t_s16	Convert_F##BITS##_To_String_GetExponent(t_f##BITS* number)									
 	if ((*number > 0 && *number <= FLOAT_THRESHOLD_TINY) ||														\
 		(*number < 0 && *number >= -FLOAT_THRESHOLD_TINY))														\
 		while ((power /= 2) > 0)																				\
-			if (*number < ft_pow(10, 1 - power))																\
+			if (*number < Math_Pow(10, 1 - power))																\
 			{																									\
-				*number *= ft_pow(10, power);																	\
+				*number *= Math_Pow(10, power);																	\
 				exponent -= power;																				\
 			}																									\
 	return (exponent);																							\
@@ -135,20 +135,20 @@ static char*	Convert_F##BITS##_To_String_Expon(t_f##BITS number, t_u8 precision,
 																												\
 	sign = (number < 0);																						\
 	number = (sign ? -number : number);																			\
-	if (!(*result_exp = ft_s16_to_str(Convert_F##BITS##_To_String_GetExponent(&number))) ||						\
+	if (!(*result_exp = Convert_S16_To_String(Convert_F##BITS##_To_String_GetExponent(&number))) ||				\
 		!(*result_mant = Convert_F##BITS##_To_String_Decim(number, precision)) ||								\
-		!(result = (char*)Memory_Alloc(ft_strlen(*result_mant) + ft_strlen(*result_exp) + 2 + (t_u8)sign)))		\
+		!(result = (char*)Memory_Alloc(String_Length(*result_mant) + String_Length(*result_exp) + 2 + (t_u8)sign)))	\
 	{																											\
 		return (NULL);																							\
 	}																											\
 	i = 0;																										\
 	if (sign)																									\
 		result[i++] = '-';																						\
-	ft_strcpy(result + i, *result_mant);																		\
-	i += ft_strlen(*result_mant);																				\
+	String_Copy(result + i, *result_mant);																		\
+	i += String_Length(*result_mant);																			\
 	result[i++] = 'e';																							\
-	ft_strcpy(result + i, *result_exp);																			\
-	i += ft_strlen(*result_exp);																				\
+	String_Copy(result + i, *result_exp);																		\
+	i += String_Length(*result_exp);																			\
 	result[i] = '\0';																							\
 	return (result);																							\
 }																												\
@@ -162,7 +162,7 @@ char*		Convert_F##BITS##_To_String_P(t_f##BITS number, t_u8 precision)										
 	result = NULL;																								\
 	result_exp = NULL;																							\
 	result_mant = NULL;																							\
-	if (ft_float_to_str_checkspecial(number, &result))															\
+	if (Convert_Float_To_String_CheckSpecial(number, &result))													\
 		return (result);																						\
 	if (number >= FLOAT_THRESHOLD_HUGE || number <= -FLOAT_THRESHOLD_HUGE ||									\
 		(number > 0 && number <= FLOAT_THRESHOLD_TINY) ||														\
@@ -172,9 +172,9 @@ char*		Convert_F##BITS##_To_String_P(t_f##BITS number, t_u8 precision)										
 	else																										\
 		result = Convert_F##BITS##_To_String_Decim(number, precision);											\
 	if (result_exp)																								\
-		ft_memfree(result_exp);																					\
+		Memory_Free(result_exp);																				\
 	if (result_mant)																							\
-		ft_memfree(result_mant);																				\
+		Memory_Free(result_mant);																				\
 	return (result);																							\
 }																												\
 

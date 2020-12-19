@@ -4,7 +4,7 @@
 
 
 
-t_bool	ft_str_to_bool(char const *str)
+t_bool	Convert_String_To_Bool(char const* str)
 {
 	t_size	i;
 

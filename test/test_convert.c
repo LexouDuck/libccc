@@ -594,7 +594,7 @@ void test_str_to_s16(void)
 	print_test_str_to_s16("str_to_s16",               	FALSE,                        3541, "\f3541"                     );
 	print_test_str_to_s16("str_to_s16",               	FALSE,                        5643, "\n5643"                     );
 	print_test_str_to_s16("str_to_s16",               	FALSE,                         397, "\r397"                      );
-	print_test_str_to_s16("str_to_s16",               	FALSE,                         397, "\v32000"                    );
+	print_test_str_to_s16("str_to_s16",               	FALSE,                       32000, "\v32000"                    );
 	print_test_str_to_s16("str_to_s16",               	FALSE,                         397, "\r397+"                     );
 	print_test_str_to_s16("str_to_s16",               	FALSE,                        8513, "\t8513"                     );
 	print_test_str_to_s16("str_to_s16",               	FALSE,                           0, "- 45678978748"              );

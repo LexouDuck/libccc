@@ -156,18 +156,15 @@ SRC_CONVERT = \
 	int_to_str.c		\
 	int_to_strbase.c	\
 	int_to_strhex.c		\
-	float_to_str.c		\
 	size_to_str.c		\
 	bool_to_str.c		\
-	str_to_int_s.c		\
-	str_to_int_u.c		\
-	str_to_float.c		\
-	str_to_f32.c		\
-	str_to_f64.c		\
+	float_to_str.c		\
+	str_to_int.c		\
+	strbase_to_int.c	\
+	strhex_to_int.c		\
 	str_to_size.c		\
 	str_to_bool.c		\
-	strhex_to_int.c		\
-	strbase_to_int.c	\
+	str_to_float.c		\
 
 DIR_COLOR = color/
 SRC_COLOR = \
