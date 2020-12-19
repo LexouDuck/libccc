@@ -3,63 +3,65 @@
 
 
 
-void	ft_lstadd(s_list **alst, s_list *elem)
+void	List_Prepend(s_list* *a_lst, s_list* elem)
 {
 #if LIBFTCONFIG_HANDLE_NULLPOINTERS
-	if (alst == NULL || elem == NULL)
-		return ;
+	if (a_lst == NULL || elem == NULL)
+		return;
 #endif
-	if (*alst == NULL)
+	if (*a_lst == NULL)
 	{
-		*alst = elem;
-		return ;
+		*a_lst = elem;
+		return;
 	}
-	elem->next = *alst;
-	*alst = elem;
+//	elem->prev = NULL;
+	elem->next = *a_lst;
+	*a_lst = elem;
 }
 
 
 
-void	ft_lstappend(s_list **alst, s_list *elem)
+void	List_Append(s_list* *a_lst, s_list* elem)
 {
-	s_list *lst;
+	s_list*	lst;
 
 #if LIBFTCONFIG_HANDLE_NULLPOINTERS
-	if (alst == NULL || elem == NULL)
-		return ;
+	if (a_lst == NULL || elem == NULL)
+		return;
 #endif
-	lst = *alst;
-	if (lst == NULL)
+	if (*a_lst == NULL)
 	{
-		*alst = elem;
-		return ;
+		*a_lst = elem;
+		return;
 	}
+	lst = *a_lst;
 	while (lst->next)
 	{
 		lst = lst->next;
 	}
+//	elem->prev = lst;
 	lst->next = elem;
 }
 
 
 
-void	ft_lstinsert(s_list **alst, s_list *elem, t_u32 index)
+void	List_Insert(s_list* *a_lst, s_list* elem, t_u32 index)
 {
-	s_list	*lst;
-	s_list	*tmp;
+	s_list*	lst;
 	t_u32	i;
 
 #if LIBFTCONFIG_HANDLE_NULLPOINTERS
-	if (alst == NULL || elem == NULL)
+	if (a_lst == NULL || elem == NULL)
 		return ;
 #endif
-	lst = *alst;
+	lst = *a_lst;
 	if (lst == NULL || index == 0)
 	{
-		*alst = elem;
-		if (lst == NULL || lst->next == NULL)
+		*a_lst = elem;
+		if (elem == NULL || elem->next == NULL)
 			return ;
-		(*alst)->next = lst->next;
+//		elem->prev = NULL;
+		elem->next = lst->next;
 		return ;
 	}
 	i = 0;
@@ -67,7 +69,7 @@ void	ft_lstinsert(s_list **alst, s_list *elem, t_u32 index)
 	{
 		lst = lst->next;
 	}
-	tmp = lst->next;
+//	elem->prev = lst;
+	elem->next = lst->next;
 	lst->next = elem;
-	elem->next = tmp;
 }

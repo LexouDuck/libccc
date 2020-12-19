@@ -32,8 +32,8 @@ void	test_lstnew(void)
 
 
 
-#ifdef			ft_lstadd
-void	print_test_lstadd(char const* test_name, int can_segfault,
+#ifdef			ft_lstprepend
+void	print_test_lstprepend(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list** alst,
 		s_list* elem)

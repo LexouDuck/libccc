@@ -40,12 +40,18 @@ HEADER_CPP
 */
 typedef struct		s_tuple_
 {
-	void*			items;		//!< The pointer to the any-type array
-	t_size			item_size;	//!< The size (in bytes) of one object in this array
 	t_size			length;		//!< The amount of elements in the 'items' array
+	t_size			item_size;	//!< The size (in bytes) of one object in this array
+	void*			items;		//!< The pointer to the any-type array
 }					s_tuple;
 
-//! This is a very simple linked-list struct, storing only the 'next' pointer
+//! A 'foreach' keyword macro, to iterate over tuples without an index-based 'for' loop
+#define foreach_tuple (TYPE, VAR, TUPLE) \
+	for ((TYPE)* VAR = (TUPLE)->items; (VAR - (TUPLE)->items) < length; ++VAR)
+
+
+
+//! This is a simple doubly-linked list struct, with dynamic content type
 /*!
 **	The 's_list' struct represents one chainlink in the linked-list, so a
 **	linked-list with 3 elements would consist of 3 different 's_list' structs,
@@ -54,12 +60,20 @@ typedef struct		s_tuple_
 */
 typedef struct		s_list_
 {
-	void*			item;		//!< The contents of this linked-list element
-	t_size			item_size;	//!< The size of the data contained within 'item'
+//	struct s_list_*	prev;		//!< The pointer to the previous item in the list (or NULL if this is the first item)
 	struct s_list_*	next;		//!< The pointer to the next item in the list (or NULL if this is the last item)
+	t_size			item_size;	//!< The size of the data contained within 'item'
+	void*			item;		//!< The contents of this linked-list element
 }					s_list;
 
-/* TODO function pointers
+//! A 'foreach' keyword macro, to iterate over lists without an index-based 'for' loop
+#define foreach_list (TYPE, VAR, LIST)	\
+	(TYPE)* VAR; \
+	for (s_list* lst = (LIST); lst && ((VAR = ((TYPE)*)lst->item) || 1); lst = lst->next)
+
+
+
+/* TODO function pointer types
 **	typedef void	(*f_list_delete)	(void*, t_size)
 **	typedef void	(*f_list_iterate)	(s_list *)
 **	typedef s_list*	(*f_list_map)		(s_list *)
@@ -73,9 +87,11 @@ typedef struct		s_list_
 ** ************************************************************************** *|
 */
 
+//! Allocates and returns a list element from the given 'item' pointer and 'item_size'
 /*!
 **	Allocates a new linked list element, and feeds it the given 'item' pointer
 **	and the given 'item_size' (if 'item' is NULL, item_size is set to 0).
+**	The 'prev' and 'next' pointers are both set to NULL.
 **
 **	@param	item		A pointer to the data/value to store in this list
 **	@param	item_size	The size (in bytes) of the data in question
@@ -84,49 +100,89 @@ typedef struct		s_list_
 s_list*					List_New(void* item, t_size item_size);
 #define ft_lstnew		List_New
 
+//! Inserts the given element 'elem' to the beginning of the list starting at 'a_lst'
 /*!
-**	Inserts a new element of a list 'elem' at the pointer '*a_lst',
-**	chaining this new element with the next element of this list.
+**	Inserts a new element 'elem' into the list at the address 'a_lst',
+**	chaining this new element with the next element of this list
+**	(ie: this function will set the 'next' pointer to '*a_lst',
+**	and '(*a_lst)->prev' will be set to 'elem').
+**
+**	@param	a_lst	The address ('&') of the beginning of the list (the address of the first item)
+**	@param	elem	The list element to prepend to 'alst' - if NULL, this function does nothing
 */
-void					List_Add(s_list* *a_lst, s_list* elem);
-#define ft_lstadd		List_Add
+void					List_Prepend(s_list* *a_lst, s_list* elem);
+#define ft_lstprepend	List_Prepend
+#define ft_lstadd		List_Prepend
 
+//! Appends the given element 'elem' to the end of the list starting at 'a_lst'
 /*!
-**	Appends the element 'elem' to the end of the list starting at '*a_lst'.
+**	Appends the given element 'elem' to the end of the list starting at '*a_lst'.
 **	If '*a_lst' is NULL, it'll append 'elem' at index 0, creating a 1-elem list.
+**
+**	@param	a_lst	The address ('&') of the beginning of the list (the address of the first item)
+**	@param	elem	The list element to prepend to 'alst' - if NULL, this function does nothing
 */
 void					List_Append(s_list* *a_lst, s_list* elem);
 #define ft_lstappend	List_Append
 
+//! Inserts the given element 'elem' at the given 'index' of the list starting at 'a_lst'
 /*!
 **	Inserts the given element 'elem' at the given 'index' of the list '*a_lst'.
 **	If 'index' is too large, the 'elem' is appended to the end of the list.
 **	If 'elem' is NULL, then nothing is done by this function.
+**
+**	@param	a_lst	The address ('&') of the beginning of the list (the address of the first item)
+**	@param	elem	The list element to prepend to 'alst' - if NULL, this function does nothing
 */
 void					List_Insert(s_list* *a_lst, s_list* elem, t_u32 index);
 #define ft_lstinsert	List_Insert
 
+//! Returns a "shallow copy" of the given list 'lst' (copies only pointers, not the underlying data)
 /*!
-**	Returns a newly allocated copy of the given linked list 'lst'.
+**	@param	lst		The list to copy
+**	@returns a newly allocated copy of the given linked list 'lst'.
 **	The underlying data is not copied, only the s_list* structs are malloc'ed.
 */
-s_list*					List_Copy(s_list* lst);
+s_list*					List_Copy(s_list const* lst);
 #define ft_lstcpy		List_Copy
 
+//! Returns a "deep copy" of the given list 'lst' (copies s_list structs, and the data in 'item')
 /*!
-**	Deletes the given element pointed to by 'a_lst' with the function 'del',
-**	and then frees memory and sets '*a_lst' as a NULL pointer.
+**	@param	lst		The list to duplicate
+**	@returns a newly allocated copy of the given linked list 'lst'.
+**	The underlying data 'item' for each element will be allocated and copied, according to 'item_size'
+*/
+s_list*					List_Duplicate(s_list const* lst);
+#define ft_lstdup		List_Duplicate
+
+
+
+/*
+** ************************************************************************** *|
+**                             Deletion Operations                            *|
+** ************************************************************************** *|
+*/
+
+//! Deletes the given element pointed to by 'a_lst' using the given 'del()' function.
+/*!
+**	Deletes the given element pointed to by 'a_lst' with the given 'del()' function,
+**	and then frees memory and sets '*a_lst' to the old value of '*a_lst->next'.
+**	So, the linked list remains "chained together" after removing an element in the middle.
 */
 void					List_Remove(s_list* *a_lst, void (*del)(void*, t_size));
 #define ft_lstdelone	List_Remove
 
+//! Deletes all the elements in the list starting at 'a_lst', using the given 'del()' function.
 /*!
 **	Deletes all the elements in the list starting at '*a_lst',
 **	calls 'del' and frees memory for each, and lastly sets '*a_lst' as NULL.
+**
+**	@param	a_lst	The address ('&') of the beginning of the list (the address of the first item)
 */
 void					List_Delete(s_list* *a_lst, void (*del)(void*, t_size));
 #define ft_lstdel		List_Delete
 
+//! Deletes the given element pointed to by 'a_lst' using the given 'del()' function.
 /*!
 **	Deletes the last element in the list starting at '*a_lst', calling 'del'
 **	and freeing that element, and setting the preceding 'lst->next' as NULL.
@@ -159,7 +215,7 @@ s_list*					List_Get(s_list* lst, t_u32 index);
 **	Returns the first encountered element of the given linked list 'lst'
 **	for which (lst.item == query), matching only the pointers, not the data.
 */
-s_list*					List_Find(s_list* lst, void const *query);
+s_list*					List_Find(s_list* lst, void const* query);
 #define ft_lstfind		List_Find
 
 

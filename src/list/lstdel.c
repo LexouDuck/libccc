@@ -4,61 +4,67 @@
 
 
 
-void	ft_lstdelone(s_list **alst, void (*del)(void *, t_size))
+void	List_Remove(s_list* *a_lst, void (*del)(void*, t_size))
 {
+//	s_list* prev;
+	s_list* next;
 #if LIBFTCONFIG_HANDLE_NULLPOINTERS
-	if (alst == NULL || del == NULL)
+	if (a_lst == NULL || del == NULL)
 		return ;
 #endif
-	if (*alst)
+	if (*a_lst)
 	{
-		del((*alst)->item, (*alst)->item_size);
-		ft_memfree(*alst);
-		*alst = NULL;
+		del((*a_lst)->item, (*a_lst)->item_size);
+//		prev = (*a_lst)->prev;
+		next = (*a_lst)->next;
+		Memory_Free(*a_lst);
+		*a_lst = next;
+//		if (next)
+//			next->prev = prev;
 	}
 }
 
 
 
-void	ft_lstdel(s_list **alst, void (*del)(void *, t_size))
+void	List_Delete(s_list* *a_lst, void (*del)(void*, t_size))
 {
-	s_list *lst;
-	s_list *tmp;
+	s_list* lst;
+	s_list* next;
 
 #if LIBFTCONFIG_HANDLE_NULLPOINTERS
-	if (alst == NULL || del == NULL)
+	if (a_lst == NULL || del == NULL)
 		return ;
 #endif
-	lst = *alst;
+	lst = *a_lst;
 	while (lst)
 	{
 		del(lst->item, lst->item_size);
-		tmp = lst;
-		lst = lst->next;
-		ft_memfree(tmp);
+		next = lst->next;
+		Memory_Free(lst);
+		lst = next;
 	}
-	*alst = NULL;
+	*a_lst = NULL;
 }
 
 
 
-void	ft_lstpop(s_list **alst, void (*del)(void *, t_size))
+void	List_Pop(s_list* *a_lst, void (*del)(void*, t_size))
 {
 	s_list	*lst;
 	s_list	*lst_prev;
 
 #if LIBFTCONFIG_HANDLE_NULLPOINTERS
-	if (alst == NULL || del == NULL)
+	if (a_lst == NULL || del == NULL)
 		return ;
 #endif
-	lst = *alst;
+	lst = *a_lst;
 	lst_prev = NULL;
 	while (lst)
 	{
 		if (lst->next == NULL)
 		{
 			del((lst)->item, (lst)->item_size);
-			ft_memfree(lst);
+			Memory_Free(lst);
 			if (lst_prev)
 				lst_prev->next = NULL;
 			return ;

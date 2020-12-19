@@ -4,14 +4,15 @@
 
 
 
-s_list	*ft_lstnew(void *item, t_size item_size)
+s_list*		List_New(void* item, t_size item_size)
 {
-	s_list *result;
+	s_list* result;
 
-	if (!(result = (s_list *)ft_memalloc(sizeof(s_list))))
+	if (!(result = (s_list*)Memory_Alloc(sizeof(s_list))))
 		return (NULL);
-	result->item = item;
-	result->item_size = (item ? item_size : 0);
+//	result->prev = NULL;
 	result->next = NULL;
+	result->item_size = (item ? item_size : 0);
+	result->item = item;
 	return (result);
 }
