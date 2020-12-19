@@ -16,7 +16,7 @@
 
 /*
 ** ************************************************************************** *|
-**                        Convert to String Operations                        *|
+**                        Convert Integers to Strings                         *|
 ** ************************************************************************** *|
 */
 
@@ -294,6 +294,12 @@ void	test_u64_to_str(void)
 
 
 
+/*
+** ************************************************************************** *|
+**                     Convert Floating-point to Strings                      *|
+** ************************************************************************** *|
+*/
+
 #ifdef			ft_f32_to_str_p
 void	print_test_f32_to_str_p(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -436,6 +442,12 @@ void	test_f64_to_str_p(void)
 
 
 
+/*
+** ************************************************************************** *|
+**                          Other Convert to Strings                          *|
+** ************************************************************************** *|
+*/
+
 #ifdef			ft_size_to_str
 void	print_test_size_to_str(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -520,8 +532,6 @@ void	test_bool_to_str(void)
 **                        Convert to Number Operations                        *|
 ** ************************************************************************** *|
 */
-
-
 
 #ifdef			ft_str_to_s8
 void	print_test_str_to_s8(char const* test_name, int can_segfault,
@@ -1148,6 +1158,12 @@ void test_str_to_u64(void)
 
 
 
+/*
+** ************************************************************************** *|
+**                     Convert Strings to Floating-point                      *|
+** ************************************************************************** *|
+*/
+
 #ifdef			ft_str_to_f32
 void	print_test_str_to_f32(char const* test_name, int can_segfault,
 		t_f32 expecting,
@@ -1475,6 +1491,12 @@ void test_str_to_f64(void)
 
 
 
+/*
+** ************************************************************************** *|
+**                          Other Convert to Strings                          *|
+** ************************************************************************** *|
+*/
+
 #ifdef			ft_str_to_bool
 void	print_test_str_to_bool(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -1599,134 +1621,132 @@ void	test_str_to_size(void)
 
 /*
 ** ************************************************************************** *|
-**                      Convert to Base String Operations                     *|
+**                       Convert to Hexadecimal String                        *|
 ** ************************************************************************** *|
 */
 
-
-
-#ifdef			ft_u8_to_hex
-void	print_test_u8_to_hex(char const* test_name, int can_segfault,
+#ifdef			ft_u8_to_strhex
+void	print_test_u8_to_strhex(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_s32 number)
 {
-	TEST_PERFORM_RESULT(u8_to_hex, number)
-	print_test_str(test_name, "_u8_to_hex", result_libft, expecting, can_segfault);
+	TEST_PERFORM_RESULT(u8_to_strhex, number)
+	print_test_str(test_name, "_u8_to_strhex", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("%d", number)
 }
-void	test_u8_to_hex(void)
+void	test_u8_to_strhex(void)
 {
 //	| TEST FUNCTION     | TEST NAME                 |CAN SEGV|EXPECTING| TEST ARGS
-	print_test_u8_to_hex("u8_to_hex               ",	FALSE,      "1", 1    );
-	print_test_u8_to_hex("u8_to_hex               ",	FALSE,     "2A", 42   );
-	print_test_u8_to_hex("u8_to_hex               ",	FALSE,     "6F", 111  );
-	print_test_u8_to_hex("u8_to_hex (n = max)     ",	FALSE,     "FF", 255  );
-	print_test_u8_to_hex("u8_to_hex (n = min)     ",	FALSE,      "0", 0    );
+	print_test_u8_to_strhex("u8_to_strhex               ",	FALSE,      "1", 1    );
+	print_test_u8_to_strhex("u8_to_strhex               ",	FALSE,     "2A", 42   );
+	print_test_u8_to_strhex("u8_to_strhex               ",	FALSE,     "6F", 111  );
+	print_test_u8_to_strhex("u8_to_strhex (n = max)     ",	FALSE,     "FF", 255  );
+	print_test_u8_to_strhex("u8_to_strhex (n = min)     ",	FALSE,      "0", 0    );
 	if (g_test.flags.test_overflow)
 	{
-		print_test_u8_to_hex("u8_to_hex (n < min)     ",	FALSE,     "-1", -1   );
-		print_test_u8_to_hex("u8_to_hex (n > max)     ",	FALSE,    "100", 256  );
-		print_test_u8_to_hex("u8_to_hex (n > maxdigit)",	FALSE,  "1869F", 99999);
-		print_test_u8_to_hex("u8_to_hex (n < maxdigit)",	FALSE, "-1869F",-99999);
+		print_test_u8_to_strhex("u8_to_strhex (n < min)     ",	FALSE,     "-1", -1   );
+		print_test_u8_to_strhex("u8_to_strhex (n > max)     ",	FALSE,    "100", 256  );
+		print_test_u8_to_strhex("u8_to_strhex (n > maxdigit)",	FALSE,  "1869F", 99999);
+		print_test_u8_to_strhex("u8_to_strhex (n < maxdigit)",	FALSE, "-1869F",-99999);
 	}
 }
 #endif
 
 
 
-#ifdef			ft_u16_to_hex
-void	print_test_u16_to_hex(char const* test_name, int can_segfault,
+#ifdef			ft_u16_to_strhex
+void	print_test_u16_to_strhex(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_s32 number)
 {
-	TEST_PERFORM_RESULT(u16_to_hex, number)
-	print_test_str(test_name, "_u16_to_hex", result_libft, expecting, can_segfault);
+	TEST_PERFORM_RESULT(u16_to_strhex, number)
+	print_test_str(test_name, "_u16_to_strhex", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("%d", number)
 }
-void	test_u16_to_hex(void)
+void	test_u16_to_strhex(void)
 {
 //	| TEST FUNCTION      | TEST NAME                  |CAN SEGV|EXPECTING| TEST ARGS
-	print_test_u16_to_hex("u16_to_hex               ",	FALSE,        "1", 1      );
-	print_test_u16_to_hex("u16_to_hex               ",	FALSE,       "2A", 42     );
-	print_test_u16_to_hex("u16_to_hex               ",	FALSE,      "309", 777    );
-	print_test_u16_to_hex("u16_to_hex               ",	FALSE,     "2710", 10000  );
-	print_test_u16_to_hex("u16_to_hex (n = max)     ",	FALSE,     "FFFF", 65535  );
-	print_test_u16_to_hex("u16_to_hex (n = min)     ",	FALSE,        "0", 0      );
+	print_test_u16_to_strhex("u16_to_strhex               ",	FALSE,        "1", 1      );
+	print_test_u16_to_strhex("u16_to_strhex               ",	FALSE,       "2A", 42     );
+	print_test_u16_to_strhex("u16_to_strhex               ",	FALSE,      "309", 777    );
+	print_test_u16_to_strhex("u16_to_strhex               ",	FALSE,     "2710", 10000  );
+	print_test_u16_to_strhex("u16_to_strhex (n = max)     ",	FALSE,     "FFFF", 65535  );
+	print_test_u16_to_strhex("u16_to_strhex (n = min)     ",	FALSE,        "0", 0      );
 	if (g_test.flags.test_overflow)
 	{
-		print_test_u16_to_hex("u16_to_hex (n < min)     ",	FALSE,       "-1", -1     );
-		print_test_u16_to_hex("u16_to_hex (n > max)     ",	FALSE,    "10000", 65536  );
-		print_test_u16_to_hex("u16_to_hex (n > maxdigit)",	FALSE,   "98967F", 9999999);
-		print_test_u16_to_hex("u16_to_hex (n < maxdigit)",	FALSE,  "-98967F",-9999999);
+		print_test_u16_to_strhex("u16_to_strhex (n < min)     ",	FALSE,       "-1", -1     );
+		print_test_u16_to_strhex("u16_to_strhex (n > max)     ",	FALSE,    "10000", 65536  );
+		print_test_u16_to_strhex("u16_to_strhex (n > maxdigit)",	FALSE,   "98967F", 9999999);
+		print_test_u16_to_strhex("u16_to_strhex (n < maxdigit)",	FALSE,  "-98967F",-9999999);
 	}
 }
 #endif
 
 
 
-#ifdef			ft_u32_to_hex
-void	print_test_u32_to_hex(char const* test_name, int can_segfault,
+#ifdef			ft_u32_to_strhex
+void	print_test_u32_to_strhex(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_s32 number)
 {
-	TEST_PERFORM_RESULT(u32_to_hex, number)
-	print_test_str(test_name, "_u32_to_hex", result_libft, expecting, can_segfault);
+	TEST_PERFORM_RESULT(u32_to_strhex, number)
+	print_test_str(test_name, "_u32_to_strhex", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("%d", number)
 }
-void	test_u32_to_hex(void)
+void	test_u32_to_strhex(void)
 {
 //	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING     | TEST ARGS
-	print_test_u32_to_hex("u32_to_hex               ",	FALSE,             "1", 1           );
-	print_test_u32_to_hex("u32_to_hex               ",	FALSE,            "2A", 42          );
-	print_test_u32_to_hex("u32_to_hex               ",	FALSE,             "0", 0           );
-	print_test_u32_to_hex("u32_to_hex               ",	FALSE,           "30A", 778         );
-	print_test_u32_to_hex("u32_to_hex               ",	FALSE,          "2710", 10000       );
-	print_test_u32_to_hex("u32_to_hex               ",	FALSE,       "75BCD15", 123456789   );
-	print_test_u32_to_hex("u32_to_hex (n = max)     ",	FALSE,      "FFFFFFFF", 4294967295  );
-	print_test_u32_to_hex("u32_to_hex (n = min)     ",	FALSE,             "0", 0           );
+	print_test_u32_to_strhex("u32_to_strhex               ",	FALSE,             "1", 1           );
+	print_test_u32_to_strhex("u32_to_strhex               ",	FALSE,            "2A", 42          );
+	print_test_u32_to_strhex("u32_to_strhex               ",	FALSE,             "0", 0           );
+	print_test_u32_to_strhex("u32_to_strhex               ",	FALSE,           "30A", 778         );
+	print_test_u32_to_strhex("u32_to_strhex               ",	FALSE,          "2710", 10000       );
+	print_test_u32_to_strhex("u32_to_strhex               ",	FALSE,       "75BCD15", 123456789   );
+	print_test_u32_to_strhex("u32_to_strhex (n = max)     ",	FALSE,      "FFFFFFFF", 4294967295  );
+	print_test_u32_to_strhex("u32_to_strhex (n = min)     ",	FALSE,             "0", 0           );
 	if (g_test.flags.test_overflow)
 	{
-		print_test_u32_to_hex("u32_to_hex (n < min)     ",	FALSE,            "-1", -1          );
-		print_test_u32_to_hex("u32_to_hex (n > max)     ",	FALSE,     "100000000", 4294967296  );
-		print_test_u32_to_hex("u32_to_hex (n > maxdigit)",	FALSE,    "E8D4A50FFF", 999999999999);
-		print_test_u32_to_hex("u32_to_hex (n < maxdigit)",	FALSE,   "-E8D4A50FFF",-999999999999);
+		print_test_u32_to_strhex("u32_to_strhex (n < min)     ",	FALSE,            "-1", -1          );
+		print_test_u32_to_strhex("u32_to_strhex (n > max)     ",	FALSE,     "100000000", 4294967296  );
+		print_test_u32_to_strhex("u32_to_strhex (n > maxdigit)",	FALSE,    "E8D4A50FFF", 999999999999);
+		print_test_u32_to_strhex("u32_to_strhex (n < maxdigit)",	FALSE,   "-E8D4A50FFF",-999999999999);
 	}
 }
 #endif
 
 
 
-#ifdef			ft_u64_to_hex
-void	print_test_u64_to_hex(char const* test_name, int can_segfault,
+#ifdef			ft_u64_to_strhex
+void	print_test_u64_to_strhex(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_u64 number)
 {
-	TEST_PERFORM_RESULT(u64_to_hex, number)
-	print_test_str(test_name, "_u64_to_hex", result_libft, expecting, can_segfault);
+	TEST_PERFORM_RESULT(u64_to_strhex, number)
+	print_test_str(test_name, "_u64_to_strhex", result_libft, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS(PRINTF_U64, number)
 }
-void	test_u64_to_hex(void)
+void	test_u64_to_strhex(void)
 {
 //	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING              | TEST ARGS
-	print_test_u64_to_hex("u64_to_hex               ",	FALSE,                      "1", 1                     );
-	print_test_u64_to_hex("u64_to_hex               ",	FALSE,                     "2A", 42                    );
-	print_test_u64_to_hex("u64_to_hex               ",	FALSE,                    "30A", 778                   );
-	print_test_u64_to_hex("u64_to_hex               ",	FALSE,                   "2710", 10000                 );
-	print_test_u64_to_hex("u64_to_hex               ",	FALSE,                "75BCD15", 123456789             );
-	print_test_u64_to_hex("u64_to_hex               ",	FALSE,             "E8D4A50FFF", 999999999999L         );
-	print_test_u64_to_hex("u64_to_hex (n = max)     ",	FALSE,       "FFFFFFFFFFFFFFFF", 18446744073709551615UL);
-	print_test_u64_to_hex("u64_to_hex (n = min)     ",	FALSE,                      "0", 0                     );
+	print_test_u64_to_strhex("u64_to_strhex               ",	FALSE,                      "1", 1                     );
+	print_test_u64_to_strhex("u64_to_strhex               ",	FALSE,                     "2A", 42                    );
+	print_test_u64_to_strhex("u64_to_strhex               ",	FALSE,                    "30A", 778                   );
+	print_test_u64_to_strhex("u64_to_strhex               ",	FALSE,                   "2710", 10000                 );
+	print_test_u64_to_strhex("u64_to_strhex               ",	FALSE,                "75BCD15", 123456789             );
+	print_test_u64_to_strhex("u64_to_strhex               ",	FALSE,             "E8D4A50FFF", 999999999999L         );
+	print_test_u64_to_strhex("u64_to_strhex (n = max)     ",	FALSE,       "FFFFFFFFFFFFFFFF", 18446744073709551615UL);
+	print_test_u64_to_strhex("u64_to_strhex (n = min)     ",	FALSE,                      "0", 0                     );
 	if (g_test.flags.test_overflow)
 	{
-		print_test_u64_to_hex("u64_to_hex (n < min)     ",	FALSE,                     "-1", -1                    );
+		print_test_u64_to_strhex("u64_to_strhex (n < min)     ",	FALSE,                     "-1", -1                    );
 #ifndef __clang__
-		print_test_u64_to_hex("u64_to_hex (n > max)     ",	FALSE,      "10000000000000000", 18446744073709551616UL);
-		print_test_u64_to_hex("u64_to_hex (n > maxdigit)",	FALSE,                      "0", 999999999999999999999UL);
-		print_test_u64_to_hex("u64_to_hex (n < maxdigit)",	FALSE,                      "0",-999999999999999999999UL);
+		print_test_u64_to_strhex("u64_to_strhex (n > max)     ",	FALSE,      "10000000000000000", 18446744073709551616UL);
+		print_test_u64_to_strhex("u64_to_strhex (n > maxdigit)",	FALSE,                      "0", 999999999999999999999UL);
+		print_test_u64_to_strhex("u64_to_strhex (n < maxdigit)",	FALSE,                      "0",-999999999999999999999UL);
 #endif
 	}
 }
@@ -1806,6 +1826,12 @@ void	test_hex_to_u64(void)
 
 
 
+/*
+** ************************************************************************** *|
+**                       Convert Integer to Base String                       *|
+** ************************************************************************** *|
+*/
+
 #ifdef			ft_s8_to_strbase
 void	print_test_s8_to_strbase(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -1837,12 +1863,12 @@ void	test_s8_to_strbase(void)
 	print_test_s8_to_strbase("s8_to_strbase               ",	FALSE,          "42",          42,       "0123456789");
 	print_test_s8_to_strbase("s8_to_strbase               ",	FALSE,          NULL,          42,       "012345678-");
 	print_test_s8_to_strbase("s8_to_strbase               ",	FALSE,          NULL,          42,       "012345678+");
-	print_test_s8_to_strbase("s8_to_strbase (n = max, dec)",	FALSE,         "127",         127,       "0123456789");
 	print_test_s8_to_strbase("s8_to_strbase (n = min, dec)",	FALSE,        "-128",        -128,       "0123456789");
-	print_test_s8_to_strbase("s8_to_strbase (n = max, hex)",	FALSE,          "7F",         127, "0123456789ABCDEF");
+	print_test_s8_to_strbase("s8_to_strbase (n = max, dec)",	FALSE,         "127",         127,       "0123456789");
 	print_test_s8_to_strbase("s8_to_strbase (n = min, hex)",	FALSE,         "-80",        -128, "0123456789ABCDEF");
-	print_test_s8_to_strbase("s8_to_strbase (n = max, bin)",	FALSE,     "1111111",         127,               "01");
+	print_test_s8_to_strbase("s8_to_strbase (n = max, hex)",	FALSE,          "7F",         127, "0123456789ABCDEF");
 	print_test_s8_to_strbase("s8_to_strbase (n = min, bin)",	FALSE,   "-10000000",        -128,               "01");
+	print_test_s8_to_strbase("s8_to_strbase (n = max, bin)",	FALSE,     "1111111",         127,               "01");
 	print_test_s8_to_strbase("s8_to_strbase (empty base)  ",	FALSE,          NULL,          42,                 "");
 	print_test_s8_to_strbase("s8_to_strbase (null base)   ",	TRUE,         segstr,          42,               NULL);
 	if (g_test.flags.test_overflow)
@@ -1892,12 +1918,12 @@ void	test_s16_to_strbase(void)
 	print_test_s16_to_strbase("s16_to_strbase               ",	FALSE,        "swag",        1234,       "0swag56789");
 	print_test_s16_to_strbase("s16_to_strbase               ",	FALSE,        "-3e8",       -1000, "0123456789abcdef");
 	print_test_s16_to_strbase("s16_to_strbase               ",	FALSE,          "2A",          42, "0123456789ABCDEF");
-	print_test_s16_to_strbase("s16_to_strbase (n = max, dec)",	FALSE,       "32767",       32767,       "0123456789");
 	print_test_s16_to_strbase("s16_to_strbase (n = min, dec)",	FALSE,      "-32768",      -32768,       "0123456789");
-	print_test_s16_to_strbase("s16_to_strbase (n = max, hex)",	FALSE,        "7FFF",       32767, "0123456789ABCDEF");
+	print_test_s16_to_strbase("s16_to_strbase (n = max, dec)",	FALSE,       "32767",       32767,       "0123456789");
 	print_test_s16_to_strbase("s16_to_strbase (n = min, hex)",	FALSE,       "-8000",      -32768, "0123456789ABCDEF");
-	print_test_s16_to_strbase("s16_to_strbase (n = max, bin)",	FALSE,  "111111111111111",  32767,               "01");
+	print_test_s16_to_strbase("s16_to_strbase (n = max, hex)",	FALSE,        "7FFF",       32767, "0123456789ABCDEF");
 	print_test_s16_to_strbase("s16_to_strbase (n = min, bin)",	FALSE,"-1000000000000000", -32768,               "01");
+	print_test_s16_to_strbase("s16_to_strbase (n = max, bin)",	FALSE,  "111111111111111",  32767,               "01");
 	print_test_s16_to_strbase("s16_to_strbase (empty base)  ",	FALSE,          NULL,          42,                 "");
 	print_test_s16_to_strbase("s16_to_strbase (null base)   ",	TRUE,         segstr,          42,               NULL);
 	if (g_test.flags.test_overflow)
@@ -1948,12 +1974,12 @@ void	test_s32_to_strbase(void)
 	print_test_s32_to_strbase("s32_to_strbase               ",	FALSE,                    "swag",                1234,       "0swag56789");
 	print_test_s32_to_strbase("s32_to_strbase               ",	FALSE,                    "-3e8",               -1000, "0123456789abcdef");
 	print_test_s32_to_strbase("s32_to_strbase               ",	FALSE,                  "*xurin",             +987123,       "grincheux*");
-	print_test_s32_to_strbase("s32_to_strbase (n = max, dec)",	FALSE,              "2147483647",          2147483647,       "0123456789");
 	print_test_s32_to_strbase("s32_to_strbase (n = min, dec)",	FALSE,             "-2147483648",         -2147483648,       "0123456789");
-	print_test_s32_to_strbase("s32_to_strbase (n = max, hex)",	FALSE,                "7FFFFFFF",          2147483647, "0123456789ABCDEF");
+	print_test_s32_to_strbase("s32_to_strbase (n = max, dec)",	FALSE,              "2147483647",          2147483647,       "0123456789");
 	print_test_s32_to_strbase("s32_to_strbase (n = min, hex)",	FALSE,               "-80000000",         -2147483648, "0123456789ABCDEF");
-	print_test_s32_to_strbase("s32_to_strbase (n = max, bin)",	FALSE,  "1111111111111111111111111111111", 2147483647,               "01");
+	print_test_s32_to_strbase("s32_to_strbase (n = max, hex)",	FALSE,                "7FFFFFFF",          2147483647, "0123456789ABCDEF");
 	print_test_s32_to_strbase("s32_to_strbase (n = min, bin)",	FALSE,"-10000000000000000000000000000000",-2147483648,               "01");
+	print_test_s32_to_strbase("s32_to_strbase (n = max, bin)",	FALSE,  "1111111111111111111111111111111", 2147483647,               "01");
 	print_test_s32_to_strbase("s32_to_strbase (empty base)  ",	FALSE,                      NULL,                  42,                 "");
 	print_test_s32_to_strbase("s32_to_strbase (null base)   ",	TRUE,                     segstr,                  42,               NULL);
 	if (g_test.flags.test_overflow)
@@ -2006,12 +2032,12 @@ void	test_s64_to_strbase(void)
 	print_test_s64_to_strbase("s64_to_strbase               ",	FALSE,                "*xurin",              +987123,       "grincheux*");
 	print_test_s64_to_strbase("s64_to_strbase               ",	FALSE,              "7FFFFFFF",           2147483647, "0123456789ABCDEF");
 	print_test_s64_to_strbase("s64_to_strbase               ",	FALSE,           "-2147483648",          -2147483648,       "0123456789");
-	print_test_s64_to_strbase("s64_to_strbase (n = max, dec)",	FALSE,   "9223372036854775807",  9223372036854775807,       "0123456789");
 	print_test_s64_to_strbase("s64_to_strbase (n = min, dec)",	FALSE,  "-9223372036854775807", -9223372036854775807,       "0123456789");
-	print_test_s64_to_strbase("s64_to_strbase (n = max, hex)",	FALSE,      "7FFFFFFFFFFFFFFF",  9223372036854775807, "0123456789ABCDEF");
+	print_test_s64_to_strbase("s64_to_strbase (n = max, dec)",	FALSE,   "9223372036854775807",  9223372036854775807,       "0123456789");
 	print_test_s64_to_strbase("s64_to_strbase (n = min, hex)",	FALSE,     "-7FFFFFFFFFFFFFFF", -9223372036854775807, "0123456789ABCDEF");
-	print_test_s64_to_strbase("s64_to_strbase (n = max, bin)",	FALSE, "111111111111111111111111111111111111111111111111111111111111111", 9223372036854775807,"01");
+	print_test_s64_to_strbase("s64_to_strbase (n = max, hex)",	FALSE,      "7FFFFFFFFFFFFFFF",  9223372036854775807, "0123456789ABCDEF");
 	print_test_s64_to_strbase("s64_to_strbase (n = min, bin)",	FALSE,"-111111111111111111111111111111111111111111111111111111111111111",-9223372036854775807,"01");
+	print_test_s64_to_strbase("s64_to_strbase (n = max, bin)",	FALSE, "111111111111111111111111111111111111111111111111111111111111111", 9223372036854775807,"01");
 	print_test_s64_to_strbase("s64_to_strbase (empty base)  ",	FALSE,                    NULL,                   42,                 "");
 	print_test_s64_to_strbase("s64_to_strbase (null base)   ",	TRUE,                   segstr,                   42,               NULL);
 	if (g_test.flags.test_overflow)
@@ -2058,12 +2084,12 @@ void	test_u8_to_strbase(void)
 	print_test_u8_to_strbase("u8_to_strbase               ",	FALSE,          "42",          42,       "0123456789");
 	print_test_u8_to_strbase("u8_to_strbase               ",	FALSE,          "42",          42,       "012345678-");
 	print_test_u8_to_strbase("u8_to_strbase               ",	FALSE,          "42",          42,       "012345678+");
-	print_test_u8_to_strbase("u8_to_strbase (n = max, dec)",	FALSE,         "255",         255,       "0123456789");
 	print_test_u8_to_strbase("u8_to_strbase (n = min, dec)",	FALSE,           "0",           0,       "0123456789");
-	print_test_u8_to_strbase("u8_to_strbase (n = max, hex)",	FALSE,          "FF",         255, "0123456789ABCDEF");
+	print_test_u8_to_strbase("u8_to_strbase (n = max, dec)",	FALSE,         "255",         255,       "0123456789");
 	print_test_u8_to_strbase("u8_to_strbase (n = min, hex)",	FALSE,           "0",           0, "0123456789ABCDEF");
-	print_test_u8_to_strbase("u8_to_strbase (n = max, bin)",	FALSE,    "11111111",         255,               "01");
+	print_test_u8_to_strbase("u8_to_strbase (n = max, hex)",	FALSE,          "FF",         255, "0123456789ABCDEF");
 	print_test_u8_to_strbase("u8_to_strbase (n = min, bin)",	FALSE,           "0",           0,               "01");
+	print_test_u8_to_strbase("u8_to_strbase (n = max, bin)",	FALSE,    "11111111",         255,               "01");
 	print_test_u8_to_strbase("u8_to_strbase (empty base)  ",	FALSE,          NULL,          42,                 "");
 	print_test_u8_to_strbase("u8_to_strbase (null base)   ",	TRUE,         segstr,          42,               NULL);
 	if (g_test.flags.test_overflow)
@@ -2112,12 +2138,12 @@ void	test_u16_to_strbase(void)
 	print_test_u16_to_strbase("u16_to_strbase               ",	FALSE,        "swag",        1234,       "0swag56789");
 	print_test_u16_to_strbase("u16_to_strbase               ",	FALSE,         "3e8",        1000, "0123456789abcdef");
 	print_test_u16_to_strbase("u16_to_strbase               ",	FALSE,          "2A",          42, "0123456789ABCDEF");
-	print_test_u16_to_strbase("u16_to_strbase (n = max, dec)",	FALSE,       "65535",       65535,       "0123456789");
 	print_test_u16_to_strbase("u16_to_strbase (n = min, dec)",	FALSE,           "0",           0,       "0123456789");
-	print_test_u16_to_strbase("u16_to_strbase (n = max, hex)",	FALSE,        "FFFF",       65535, "0123456789ABCDEF");
+	print_test_u16_to_strbase("u16_to_strbase (n = max, dec)",	FALSE,       "65535",       65535,       "0123456789");
 	print_test_u16_to_strbase("u16_to_strbase (n = min, hex)",	FALSE,           "0",           0, "0123456789ABCDEF");
-	print_test_u16_to_strbase("u16_to_strbase (n = max, bin)",	FALSE, "1111111111111111",  65535,               "01");
+	print_test_u16_to_strbase("u16_to_strbase (n = max, hex)",	FALSE,        "FFFF",       65535, "0123456789ABCDEF");
 	print_test_u16_to_strbase("u16_to_strbase (n = min, bin)",	FALSE,           "0",           0,               "01");
+	print_test_u16_to_strbase("u16_to_strbase (n = max, bin)",	FALSE, "1111111111111111",  65535,               "01");
 	print_test_u16_to_strbase("u16_to_strbase (empty base)  ",	FALSE,          NULL,          42,                 "");
 	print_test_u16_to_strbase("u16_to_strbase (null base)   ",	TRUE,         segstr,          42,               NULL);
 	if (g_test.flags.test_overflow)
@@ -2167,12 +2193,12 @@ void	test_u32_to_strbase(void)
 	print_test_u32_to_strbase("u32_to_strbase               ",	FALSE,                    "swag",                1234,       "0swag56789");
 	print_test_u32_to_strbase("u32_to_strbase               ",	FALSE,                     "3e8",                1000, "0123456789abcdef");
 	print_test_u32_to_strbase("u32_to_strbase               ",	FALSE,                  "*xurin",             +987123,       "grincheux*");
-	print_test_u32_to_strbase("u32_to_strbase (n = max, dec)",	FALSE,              "4294967295",          4294967295,       "0123456789");
 	print_test_u32_to_strbase("u32_to_strbase (n = min, dec)",	FALSE,                       "0",                   0,       "0123456789");
-	print_test_u32_to_strbase("u32_to_strbase (n = max, hex)",	FALSE,                "FFFFFFFF",          4294967295, "0123456789ABCDEF");
+	print_test_u32_to_strbase("u32_to_strbase (n = max, dec)",	FALSE,              "4294967295",          4294967295,       "0123456789");
 	print_test_u32_to_strbase("u32_to_strbase (n = min, hex)",	FALSE,                       "0",                   0, "0123456789ABCDEF");
-	print_test_u32_to_strbase("u32_to_strbase (n = max, bin)",	FALSE, "11111111111111111111111111111111", 4294967295,               "01");
+	print_test_u32_to_strbase("u32_to_strbase (n = max, hex)",	FALSE,                "FFFFFFFF",          4294967295, "0123456789ABCDEF");
 	print_test_u32_to_strbase("u32_to_strbase (n = min, bin)",	FALSE,                       "0",                   0,               "01");
+	print_test_u32_to_strbase("u32_to_strbase (n = max, bin)",	FALSE, "11111111111111111111111111111111", 4294967295,               "01");
 	print_test_u32_to_strbase("u32_to_strbase (empty base)  ",	FALSE,                      NULL,                  42,                 "");
 	print_test_u32_to_strbase("u32_to_strbase (null base)   ",	TRUE,                     segstr,                  42,               NULL);
 	if (g_test.flags.test_overflow)
@@ -2224,12 +2250,12 @@ void	test_u64_to_strbase(void)
 	print_test_u64_to_strbase("u64_to_strbase               ",	FALSE,               "*xurin",                +987123,       "grincheux*");
 	print_test_u64_to_strbase("u64_to_strbase               ",	FALSE,             "7FFFFFFF",             2147483647, "0123456789ABCDEF");
 	print_test_u64_to_strbase("u64_to_strbase               ",	FALSE,           "2147483648",             2147483648,       "0123456789");
-	print_test_u64_to_strbase("u64_to_strbase (n = max, dec)",	FALSE, "18446744073709551615", 18446744073709551615UL,       "0123456789");
 	print_test_u64_to_strbase("u64_to_strbase (n = min, dec)",	FALSE,                    "0",                      0,       "0123456789");
-	print_test_u64_to_strbase("u64_to_strbase (n = max, hex)",	FALSE,     "FFFFFFFFFFFFFFFF", 18446744073709551615UL, "0123456789ABCDEF");
+	print_test_u64_to_strbase("u64_to_strbase (n = max, dec)",	FALSE, "18446744073709551615", 18446744073709551615UL,       "0123456789");
 	print_test_u64_to_strbase("u64_to_strbase (n = min, hex)",	FALSE,                    "0",                      0, "0123456789ABCDEF");
-	print_test_u64_to_strbase("u64_to_strbase (n = max, bin)",	FALSE, "1111111111111111111111111111111111111111111111111111111111111111", 18446744073709551615UL,"01");
+	print_test_u64_to_strbase("u64_to_strbase (n = max, hex)",	FALSE,     "FFFFFFFFFFFFFFFF", 18446744073709551615UL, "0123456789ABCDEF");
 	print_test_u64_to_strbase("u64_to_strbase (n = min, bin)",	FALSE,                     "0",                     0,               "01");
+	print_test_u64_to_strbase("u64_to_strbase (n = max, bin)",	FALSE, "1111111111111111111111111111111111111111111111111111111111111111", 18446744073709551615UL,"01");
 	print_test_u64_to_strbase("u64_to_strbase (empty base)  ",	FALSE,                    NULL,                    42,                 "");
 	print_test_u64_to_strbase("u64_to_strbase (null base)   ",	TRUE,                   segstr,                    42,               NULL);
 	if (g_test.flags.test_overflow)
@@ -2243,6 +2269,522 @@ void	test_u64_to_strbase(void)
 	}
 }
 #endif
+
+
+
+
+
+
+
+
+
+
+
+/*
+** ************************************************************************** *|
+**                       Convert Base String to Integer                       *|
+** ************************************************************************** *|
+*/
+
+#ifdef			ft_strbase_to_s8
+void	print_test_strbase_to_s8(char const* test_name, int can_segfault,
+		t_s8 expecting,
+		char const* number,
+		char const* base)
+{
+	TEST_PERFORM_RESULT_TYPE(t_s8, strbase_to_s8, number, base)
+	print_test_s8(test_name, "_strbase_to_s8", result_libft, expecting, can_segfault);
+	print_timer_result(&t, FALSE);
+	TEST_PRINT_ARGS("base='%s', n='%s'", base, number);
+}
+void	test_strbase_to_s8(void)
+{
+//	| TEST FUNCTION         | TEST NAME                      |CAN SEGV|  EXPECTING  | TEST ARGS
+	print_test_strbase_to_s8("strbase_to_s8               ",	FALSE,           1,           "1",               "01");
+	print_test_strbase_to_s8("strbase_to_s8               ",	FALSE,           0,           "1",               "+1");
+	print_test_strbase_to_s8("strbase_to_s8               ",	FALSE,           0,           "m",                "m");
+	print_test_strbase_to_s8("strbase_to_s8               ",	FALSE,           0,          "mm",                "m");
+	print_test_strbase_to_s8("strbase_to_s8               ",	FALSE,           0,         "mmm",                "m");
+	print_test_strbase_to_s8("strbase_to_s8               ",	FALSE,          42,      "101010",               "01");
+	print_test_strbase_to_s8("strbase_to_s8               ",	FALSE,           0,      "101012",               "01");
+	print_test_strbase_to_s8("strbase_to_s8               ",	FALSE,           0,           "m",              "mom");
+	print_test_strbase_to_s8("strbase_to_s8               ",	FALSE,           0,           "o",              "mom");
+	print_test_strbase_to_s8("strbase_to_s8               ",	FALSE,           0,           "0",              "0az");
+	print_test_strbase_to_s8("strbase_to_s8               ",	FALSE,         111,         "aaa",       "_abcdefghi");
+	print_test_strbase_to_s8("strbase_to_s8               ",	FALSE,        -111,        "-aaa",       "_abcdefghi");
+	print_test_strbase_to_s8("strbase_to_s8               ",	FALSE,         -15,          "-F", "0123456789ABCDEF");
+	print_test_strbase_to_s8("strbase_to_s8               ",	FALSE,          63,        "rdmm",              "mdr");
+	print_test_strbase_to_s8("strbase_to_s8               ",	FALSE,         100,       "|*_*|",              "*|_");
+	print_test_strbase_to_s8("strbase_to_s8               ",	FALSE,          13,        ".._.",               "_.");
+	print_test_strbase_to_s8("strbase_to_s8               ",	FALSE,          42,          "2A", "0123456789ABCDEF");
+	print_test_strbase_to_s8("strbase_to_s8               ",	FALSE,          42,          "42",       "0123456789");
+	print_test_strbase_to_s8("strbase_to_s8               ",	FALSE,           0,           "2",       "012345678-");
+	print_test_strbase_to_s8("strbase_to_s8               ",	FALSE,           0,           "2",       "012345678+");
+	print_test_strbase_to_s8("strbase_to_s8 (n = min, dec)",	FALSE,        -128,        "-128",       "0123456789");
+	print_test_strbase_to_s8("strbase_to_s8 (n = max, dec)",	FALSE,         127,         "127",       "0123456789");
+	print_test_strbase_to_s8("strbase_to_s8 (n = min, hex)",	FALSE,        -128,         "-80", "0123456789ABCDEF");
+	print_test_strbase_to_s8("strbase_to_s8 (n = max, hex)",	FALSE,         127,          "7F", "0123456789ABCDEF");
+	print_test_strbase_to_s8("strbase_to_s8 (n = min, bin)",	FALSE,        -128,   "-10000000",               "01");
+	print_test_strbase_to_s8("strbase_to_s8 (n = max, bin)",	FALSE,         127,     "1111111",               "01");
+	print_test_strbase_to_s8("strbase_to_s8 (empty base)  ",	FALSE,           0,          "01",                 "");
+	print_test_strbase_to_s8("strbase_to_s8 (empty number)",	FALSE,           0,            "",               "01");
+	print_test_strbase_to_s8("strbase_to_s8 (both empty)  ",	FALSE,           0,            "",                 "");
+	print_test_strbase_to_s8("strbase_to_s8 (null base)   ",	SEGV,            0,          "01",               NULL);
+	print_test_strbase_to_s8("strbase_to_s8 (null number) ",	SEGV,            0,          NULL,               "01");
+	print_test_strbase_to_s8("strbase_to_s8 (both null)   ",	SEGV,            0,          NULL,               NULL);
+	if (g_test.flags.test_overflow)
+	{
+		print_test_strbase_to_s8("strbase_to_s8 (n < min)     ",	FALSE,       -129,     "-129",       "0123456789");
+		print_test_strbase_to_s8("strbase_to_s8 (n > max)     ",	FALSE,        128,      "128",       "0123456789");
+		print_test_strbase_to_s8("strbase_to_s8 (n < maxdigit)",	FALSE,     -99999,   "-99999",       "0123456789");
+		print_test_strbase_to_s8("strbase_to_s8 (n > maxdigit)",	FALSE,      99999,    "99999",       "0123456789");
+	}
+}
+#endif
+
+
+
+#ifdef			ft_strbase_to_s16
+void	print_test_strbase_to_s16(char const* test_name, int can_segfault,
+		t_s16 expecting,
+		char const* number,
+		char const* base)
+{
+	TEST_PERFORM_RESULT_TYPE(t_s16, strbase_to_s16, number, base)
+	print_test_s16(test_name, "_strbase_to_s16", result_libft, expecting, can_segfault);
+	print_timer_result(&t, FALSE);
+	TEST_PRINT_ARGS("base='%s', n='%s'", base, number);
+}
+void	test_strbase_to_s16(void)
+{
+//	| TEST FUNCTION         | TEST NAME                      |CAN SEGV|  EXPECTING  | TEST ARGS
+	print_test_strbase_to_s16("strbase_to_s16               ",	FALSE,          1,            "1",                   "01");
+	print_test_strbase_to_s16("strbase_to_s16               ",	FALSE,          0,            "1",                   "+1");
+	print_test_strbase_to_s16("strbase_to_s16               ",	FALSE,          0,            "m",                    "m");
+	print_test_strbase_to_s16("strbase_to_s16               ",	FALSE,          0,           "mm",                    "m");
+	print_test_strbase_to_s16("strbase_to_s16               ",	FALSE,          0,          "mmm",                    "m");
+	print_test_strbase_to_s16("strbase_to_s16               ",	FALSE,         42,       "101010",                   "01");
+	print_test_strbase_to_s16("strbase_to_s16               ",	FALSE,          0,       "101012",                   "01");
+	print_test_strbase_to_s16("strbase_to_s16               ",	FALSE,          0,            "m",                  "mom");
+	print_test_strbase_to_s16("strbase_to_s16               ",	FALSE,          0,            "o",                  "mom");
+	print_test_strbase_to_s16("strbase_to_s16               ",	FALSE,          0,            "0",                  "0az");
+	print_test_strbase_to_s16("strbase_to_s16               ",	FALSE,        111,          "aaa",           "_abcdefghi");
+	print_test_strbase_to_s16("strbase_to_s16               ",	FALSE,       -111,         "-aaa",           "_abcdefghi");
+	print_test_strbase_to_s16("strbase_to_s16               ",	FALSE,        -15,           "-F",     "0123456789ABCDEF");
+	print_test_strbase_to_s16("strbase_to_s16               ",	FALSE,         63,         "rdmm",                  "mdr");
+	print_test_strbase_to_s16("strbase_to_s16               ",	FALSE,        100,        "|*_*|",                  "*|_");
+	print_test_strbase_to_s16("strbase_to_s16               ",	FALSE,         13,         ".._.",                   "_.");
+	print_test_strbase_to_s16("strbase_to_s16               ",	FALSE,      12345,        "12345",           "0123456789");
+	print_test_strbase_to_s16("strbase_to_s16               ",	FALSE,          0,        "12345",           "012345678-");
+	print_test_strbase_to_s16("strbase_to_s16               ",	FALSE,          0,        "12345",           "012345678+");
+	print_test_strbase_to_s16("strbase_to_s16               ",	FALSE,          0,          "999",           "01+3456789");
+	print_test_strbase_to_s16("strbase_to_s16               ",	FALSE,      10007,        "c===3",           "=cbadef389");
+	print_test_strbase_to_s16("strbase_to_s16               ",	FALSE,       1234,         "swag",           "0swag56789");
+	print_test_strbase_to_s16("strbase_to_s16               ",	FALSE,      -1000,         "-3e8",     "0123456789abcdef");
+	print_test_strbase_to_s16("strbase_to_s16               ",	FALSE,         42,           "2A",     "0123456789ABCDEF");
+	print_test_strbase_to_s16("strbase_to_s16 (n = min, dec)",	FALSE,     -32768,       "-32768",           "0123456789");
+	print_test_strbase_to_s16("strbase_to_s16 (n = max, dec)",	FALSE,      32767,        "32767",           "0123456789");
+	print_test_strbase_to_s16("strbase_to_s16 (n = min, hex)",	FALSE,     -32768,        "-8000",     "0123456789ABCDEF");
+	print_test_strbase_to_s16("strbase_to_s16 (n = max, hex)",	FALSE,      32767,         "7FFF",     "0123456789ABCDEF");
+	print_test_strbase_to_s16("strbase_to_s16 (n = min, bin)",	FALSE,     -32768,     "-1000000000000000",          "01");
+	print_test_strbase_to_s16("strbase_to_s16 (n = max, bin)",	FALSE,      32767,       "111111111111111",          "01");
+	print_test_strbase_to_s16("strbase_to_s16 (empty base)  ",	FALSE,          0,          "01",                      "");
+	print_test_strbase_to_s16("strbase_to_s16 (empty number)",	FALSE,          0,            "",                    "01");
+	print_test_strbase_to_s16("strbase_to_s16 (both empty)  ",	FALSE,          0,            "",                      "");
+	print_test_strbase_to_s16("strbase_to_s16 (null base)   ",	SEGV,           0,          "01",                    NULL);
+	print_test_strbase_to_s16("strbase_to_s16 (null number) ",	SEGV,           0,          NULL,                    "01");
+	print_test_strbase_to_s16("strbase_to_s16 (both null)   ",	SEGV,           0,          NULL,                    NULL);
+	if (g_test.flags.test_overflow)
+	{
+		print_test_strbase_to_s16("strbase_to_s16 (n < min)     ",	FALSE,     -32769,    "-32769",          "0123456789");
+		print_test_strbase_to_s16("strbase_to_s16 (n > max)     ",	FALSE,      32768,     "32768",          "0123456789");
+		print_test_strbase_to_s16("strbase_to_s16 (n < maxdigit)",	FALSE,   -9999999,  "-9999999",          "0123456789");
+		print_test_strbase_to_s16("strbase_to_s16 (n > maxdigit)",	FALSE,    9999999,   "9999999",          "0123456789");
+	}
+}
+#endif
+
+
+
+#ifdef			ft_strbase_to_s32
+void	print_test_strbase_to_s32(char const* test_name, int can_segfault,
+		t_s32 expecting,
+		char const* number,
+		char const* base)
+{
+	TEST_PERFORM_RESULT_TYPE(t_s32, strbase_to_s32, number, base)
+	print_test_s32(test_name, "_strbase_to_s32", result_libft, expecting, can_segfault);
+	print_timer_result(&t, FALSE);
+	TEST_PRINT_ARGS("base='%s', n='%s'", base, number);
+}
+void	test_strbase_to_s32(void)
+{
+//	| TEST FUNCTION         | TEST NAME                      |CAN SEGV| EXPECTING  | TEST ARGS
+	print_test_strbase_to_s32("strbase_to_s32               ",	FALSE,           1,                       "1",                        "01");
+	print_test_strbase_to_s32("strbase_to_s32               ",	FALSE,           0,                       "1",                        "+1");
+	print_test_strbase_to_s32("strbase_to_s32               ",	FALSE,           0,                       "m",                         "m");
+	print_test_strbase_to_s32("strbase_to_s32               ",	FALSE,           0,                      "mm",                         "m");
+	print_test_strbase_to_s32("strbase_to_s32               ",	FALSE,           0,                     "mmm",                         "m");
+	print_test_strbase_to_s32("strbase_to_s32               ",	FALSE,          42,                  "101010",                        "01");
+	print_test_strbase_to_s32("strbase_to_s32               ",	FALSE,           0,                  "101012",                        "01");
+	print_test_strbase_to_s32("strbase_to_s32               ",	FALSE,           0,                       "m",                       "mom");
+	print_test_strbase_to_s32("strbase_to_s32               ",	FALSE,           0,                       "o",                       "mom");
+	print_test_strbase_to_s32("strbase_to_s32               ",	FALSE,         -15,                      "-F",          "0123456789ABCDEF");
+	print_test_strbase_to_s32("strbase_to_s32               ",	FALSE,          63,                    "rdmm",                       "mdr");
+	print_test_strbase_to_s32("strbase_to_s32               ",	FALSE,         100,                   "|*_*|",                       "*|_");
+	print_test_strbase_to_s32("strbase_to_s32               ",	FALSE,          13,                    ".._.",                        "_.");
+	print_test_strbase_to_s32("strbase_to_s32               ",	FALSE,          42,                      "2A",          "0123456789ABCDEF");
+	print_test_strbase_to_s32("strbase_to_s32               ",	FALSE,           0,                       "0",                       "0az");
+	print_test_strbase_to_s32("strbase_to_s32               ",	FALSE,         111,                     "aaa",                "_abcdefghi");
+	print_test_strbase_to_s32("strbase_to_s32               ",	FALSE,        -111,                    "-aaa",                "_abcdefghi");
+	print_test_strbase_to_s32("strbase_to_s32               ",	FALSE,       12345,                   "12345",                "0123456789");
+	print_test_strbase_to_s32("strbase_to_s32               ",	FALSE,           0,                   "12345",                "012345678-");
+	print_test_strbase_to_s32("strbase_to_s32               ",	FALSE,           0,                   "12345",                "012345678+");
+	print_test_strbase_to_s32("strbase_to_s32               ",	FALSE,           0,                     "999",                "01+3456789");
+	print_test_strbase_to_s32("strbase_to_s32               ",	FALSE,       10007,                   "c===3",                "=cbadef389");
+	print_test_strbase_to_s32("strbase_to_s32               ",	FALSE,        1234,                    "swag",                "0swag56789");
+	print_test_strbase_to_s32("strbase_to_s32               ",	FALSE,       -1000,                    "-3e8",          "0123456789abcdef");
+	print_test_strbase_to_s32("strbase_to_s32               ",	FALSE,     +987123,                  "*xurin",                "grincheux*");
+	print_test_strbase_to_s32("strbase_to_s32 (n = min, dec)",	FALSE, -2147483648,             "-2147483648",                "0123456789");
+	print_test_strbase_to_s32("strbase_to_s32 (n = max, dec)",	FALSE,  2147483647,              "2147483647",                "0123456789");
+	print_test_strbase_to_s32("strbase_to_s32 (n = min, hex)",	FALSE, -2147483648,               "-80000000",          "0123456789ABCDEF");
+	print_test_strbase_to_s32("strbase_to_s32 (n = max, hex)",	FALSE,  2147483647,                "7FFFFFFF",          "0123456789ABCDEF");
+	print_test_strbase_to_s32("strbase_to_s32 (n = min, bin)",	FALSE, -2147483648,    "-10000000000000000000000000000000",           "01");
+	print_test_strbase_to_s32("strbase_to_s32 (n = max, bin)",	FALSE,  2147483647,      "1111111111111111111111111111111",           "01");
+	print_test_strbase_to_s32("strbase_to_s32 (empty base)  ",	FALSE,           0,                      "01",                          "");
+	print_test_strbase_to_s32("strbase_to_s32 (empty number)",	FALSE,           0,                        "",                        "01");
+	print_test_strbase_to_s32("strbase_to_s32 (both empty)  ",	FALSE,           0,                        "",                          "");
+	print_test_strbase_to_s32("strbase_to_s32 (null base)   ",	SEGV,            0,                      "01",                        NULL);
+	print_test_strbase_to_s32("strbase_to_s32 (null number) ",	SEGV,            0,                      NULL,                        "01");
+	print_test_strbase_to_s32("strbase_to_s32 (both null)   ",	SEGV,            0,                      NULL,                        NULL);
+	if (g_test.flags.test_overflow)
+	{
+		print_test_strbase_to_s32("strbase_to_s32 (n < min)     ",	FALSE,    -2147483649,      "-2147483649",                "0123456789");
+		print_test_strbase_to_s32("strbase_to_s32 (n > max)     ",	FALSE,     2147483648,       "2147483648",                "0123456789");
+		print_test_strbase_to_s32("strbase_to_s32 (n < maxdigit)",	FALSE,  -999999999999,    "-999999999999",                "0123456789");
+		print_test_strbase_to_s32("strbase_to_s32 (n > maxdigit)",	FALSE,   999999999999,     "999999999999",                "0123456789");
+	}
+}
+#endif
+
+
+
+#ifdef			ft_strbase_to_s64
+void	print_test_strbase_to_s64(char const* test_name, int can_segfault,
+		t_s64 expecting,
+		char const* number,
+		char const* base)
+{
+	TEST_PERFORM_RESULT_TYPE(t_s64, strbase_to_s64, number, base)
+	print_test_s64(test_name, "_strbase_to_s64", result_libft, expecting, can_segfault);
+	print_timer_result(&t, FALSE);
+	TEST_PRINT_ARGS("base='%s', n='%s'", base, number);
+}
+void	test_strbase_to_s64(void)
+{
+//	| TEST FUNCTION         | TEST NAME                      |CAN SEGV|  EXPECTING         | TEST ARGS
+	print_test_strbase_to_s64("strbase_to_s64               ",	FALSE,                    1,                    "1",               "01");
+	print_test_strbase_to_s64("strbase_to_s64               ",	FALSE,                    0,                    "1",               "+1");
+	print_test_strbase_to_s64("strbase_to_s64               ",	FALSE,                    0,                    "m",                "m");
+	print_test_strbase_to_s64("strbase_to_s64               ",	FALSE,                    0,                   "mm",                "m");
+	print_test_strbase_to_s64("strbase_to_s64               ",	FALSE,                    0,                  "mmm",                "m");
+	print_test_strbase_to_s64("strbase_to_s64               ",	FALSE,                   42,               "101010",               "01");
+	print_test_strbase_to_s64("strbase_to_s64               ",	FALSE,                    0,               "101012",               "01");
+	print_test_strbase_to_s64("strbase_to_s64               ",	FALSE,                    0,                    "m",              "mom");
+	print_test_strbase_to_s64("strbase_to_s64               ",	FALSE,                    0,                    "o",              "mom");
+	print_test_strbase_to_s64("strbase_to_s64               ",	FALSE,                   42,                   "2A", "0123456789ABCDEF");
+	print_test_strbase_to_s64("strbase_to_s64               ",	FALSE,                    0,                    "0",              "0az");
+	print_test_strbase_to_s64("strbase_to_s64               ",	FALSE,                  111,                  "aaa",       "_abcdefghi");
+	print_test_strbase_to_s64("strbase_to_s64               ",	FALSE,                 -111,                 "-aaa",       "_abcdefghi");
+	print_test_strbase_to_s64("strbase_to_s64               ",	FALSE,                  -15,                   "-F", "0123456789ABCDEF");
+	print_test_strbase_to_s64("strbase_to_s64               ",	FALSE,                   63,                 "rdmm",              "mdr");
+	print_test_strbase_to_s64("strbase_to_s64               ",	FALSE,                  100,                "|*_*|",              "*|_");
+	print_test_strbase_to_s64("strbase_to_s64               ",	FALSE,                   13,                 ".._.",               "_.");
+	print_test_strbase_to_s64("strbase_to_s64               ",	FALSE,                12345,                "12345",       "0123456789");
+	print_test_strbase_to_s64("strbase_to_s64               ",	FALSE,                    0,                "12345",       "012345678-");
+	print_test_strbase_to_s64("strbase_to_s64               ",	FALSE,                    0,                "12345",       "012345678+");
+	print_test_strbase_to_s64("strbase_to_s64               ",	FALSE,                    0,                  "999",       "01+3456789");
+	print_test_strbase_to_s64("strbase_to_s64               ",	FALSE,                10007,                "c===3",       "=cbadef389");
+	print_test_strbase_to_s64("strbase_to_s64               ",	FALSE,                 1234,                 "swag",       "0swag56789");
+	print_test_strbase_to_s64("strbase_to_s64               ",	FALSE,                -1000,                 "-3e8", "0123456789abcdef");
+	print_test_strbase_to_s64("strbase_to_s64               ",	FALSE,              +987123,               "*xurin",       "grincheux*");
+	print_test_strbase_to_s64("strbase_to_s64               ",	FALSE,           2147483647,             "7FFFFFFF", "0123456789ABCDEF");
+	print_test_strbase_to_s64("strbase_to_s64               ",	FALSE,          -2147483648,          "-2147483648",       "0123456789");
+	print_test_strbase_to_s64("strbase_to_s64 (n = min, dec)",	FALSE, -9223372036854775807, "-9223372036854775807",       "0123456789");
+	print_test_strbase_to_s64("strbase_to_s64 (n = max, dec)",	FALSE,  9223372036854775807,  "9223372036854775807",       "0123456789");
+	print_test_strbase_to_s64("strbase_to_s64 (n = min, hex)",	FALSE, -9223372036854775807,    "-7FFFFFFFFFFFFFFF", "0123456789ABCDEF");
+	print_test_strbase_to_s64("strbase_to_s64 (n = max, hex)",	FALSE,  9223372036854775807,     "7FFFFFFFFFFFFFFF", "0123456789ABCDEF");
+	print_test_strbase_to_s64("strbase_to_s64 (n = min, bin)",	FALSE, -9223372036854775807,"-111111111111111111111111111111111111111111111111111111111111111","01");
+	print_test_strbase_to_s64("strbase_to_s64 (n = max, bin)",	FALSE,  9223372036854775807, "111111111111111111111111111111111111111111111111111111111111111","01");
+	print_test_strbase_to_s64("strbase_to_s64 (empty base)  ",	FALSE,                    0,                   "01",                 "");
+	print_test_strbase_to_s64("strbase_to_s64 (empty number)",	FALSE,                    0,                     "",               "01");
+	print_test_strbase_to_s64("strbase_to_s64 (both empty)  ",	FALSE,                    0,                     "",                 "");
+	print_test_strbase_to_s64("strbase_to_s64 (null base)   ",	SEGV,                     0,                   "01",               NULL);
+	print_test_strbase_to_s64("strbase_to_s64 (null number) ",	SEGV,                     0,                   NULL,               "01");
+	print_test_strbase_to_s64("strbase_to_s64 (both null)   ",	SEGV,                     0,                   NULL,               NULL);
+	if (g_test.flags.test_overflow)
+	{
+		print_test_strbase_to_s64("strbase_to_s64 (n < min)     ",	FALSE,   -9223372036854775808,  "-9223372036854775808",    "0123456789");
+		print_test_strbase_to_s64("strbase_to_s64 (n > max)     ",	FALSE,    9223372036854775808,   "9223372036854775808",    "0123456789");
+#ifndef __clang__
+		print_test_strbase_to_s64("strbase_to_s64 (n < maxdigit)",	FALSE, -999999999999999999999, "999999999999999999999",    "0123456789");
+		print_test_strbase_to_s64("strbase_to_s64 (n > maxdigit)",	FALSE,  999999999999999999999,"-999999999999999999999",    "0123456789");
+#endif
+	}
+}
+#endif
+
+
+
+#ifdef			ft_strbase_to_u8
+void	print_test_strbase_to_u8(char const* test_name, int can_segfault,
+		t_u8 expecting,
+		char const* number,
+		char const* base)
+{
+	TEST_PERFORM_RESULT_TYPE(t_u8, strbase_to_u8, number, base)
+	print_test_u8(test_name, "_strbase_to_u8", result_libft, expecting, can_segfault);
+	print_timer_result(&t, FALSE);
+	TEST_PRINT_ARGS("base='%s', n='%s'", base, number);
+}
+void	test_strbase_to_u8(void)
+{
+//	| TEST FUNCTION         | TEST NAME                      |CAN SEGV|  EXPECTING  | TEST ARGS
+	print_test_strbase_to_u8("strbase_to_u8               ",	FALSE,            1,          "1",               "01");
+	print_test_strbase_to_u8("strbase_to_u8               ",	FALSE,            0,          "1",               "+1");
+	print_test_strbase_to_u8("strbase_to_u8               ",	FALSE,            0,          "m",                "m");
+	print_test_strbase_to_u8("strbase_to_u8               ",	FALSE,            0,         "mm",                "m");
+	print_test_strbase_to_u8("strbase_to_u8               ",	FALSE,            0,        "mmm",                "m");
+	print_test_strbase_to_u8("strbase_to_u8               ",	FALSE,           42,     "101010",               "01");
+	print_test_strbase_to_u8("strbase_to_u8               ",	FALSE,            0,     "101012",               "01");
+	print_test_strbase_to_u8("strbase_to_u8               ",	FALSE,            0,          "m",              "mom");
+	print_test_strbase_to_u8("strbase_to_u8               ",	FALSE,            0,          "o",              "mom");
+	print_test_strbase_to_u8("strbase_to_u8               ",	FALSE,            0,          "0",              "0az");
+	print_test_strbase_to_u8("strbase_to_u8               ",	FALSE,          111,        "aaa",       "_abcdefghi");
+	print_test_strbase_to_u8("strbase_to_u8               ",	FALSE,           15,          "F", "0123456789ABCDEF");
+	print_test_strbase_to_u8("strbase_to_u8               ",	FALSE,           63,       "rdmm",              "mdr");
+	print_test_strbase_to_u8("strbase_to_u8               ",	FALSE,          100,      "|*_*|",              "*|_");
+	print_test_strbase_to_u8("strbase_to_u8               ",	FALSE,           13,       ".._.",               "_.");
+	print_test_strbase_to_u8("strbase_to_u8               ",	FALSE,           42,         "2A", "0123456789ABCDEF");
+	print_test_strbase_to_u8("strbase_to_u8               ",	FALSE,           42,         "42",       "0123456789");
+	print_test_strbase_to_u8("strbase_to_u8               ",	FALSE,            0,         "42",       "012345678-");
+	print_test_strbase_to_u8("strbase_to_u8               ",	FALSE,            0,         "42",       "012345678+");
+	print_test_strbase_to_u8("strbase_to_u8 (n = min, dec)",	FALSE,            0,          "0",       "0123456789");
+	print_test_strbase_to_u8("strbase_to_u8 (n = max, dec)",	FALSE,          255,        "255",       "0123456789");
+	print_test_strbase_to_u8("strbase_to_u8 (n = min, hex)",	FALSE,            0,          "0", "0123456789ABCDEF");
+	print_test_strbase_to_u8("strbase_to_u8 (n = max, hex)",	FALSE,          255,         "FF", "0123456789ABCDEF");
+	print_test_strbase_to_u8("strbase_to_u8 (n = min, bin)",	FALSE,            0,          "0",               "01");
+	print_test_strbase_to_u8("strbase_to_u8 (n = max, bin)",	FALSE,          255,   "11111111",               "01");
+	print_test_strbase_to_u8("strbase_to_u8 (empty base)  ",	FALSE,            0,         "01",                 "");
+	print_test_strbase_to_u8("strbase_to_u8 (empty number)",	FALSE,            0,           "",               "01");
+	print_test_strbase_to_u8("strbase_to_u8 (both empty)  ",	FALSE,            0,           "",                 "");
+	print_test_strbase_to_u8("strbase_to_u8 (null base)   ",	SEGV,             0,         "01",               NULL);
+	print_test_strbase_to_u8("strbase_to_u8 (null number) ",	SEGV,             0,         NULL,               "01");
+	print_test_strbase_to_u8("strbase_to_u8 (both null)   ",	SEGV,             0,         NULL,               NULL);
+	if (g_test.flags.test_overflow)
+	{
+		print_test_strbase_to_u8("strbase_to_u8 (n < min)     ",	FALSE,       -1,         "-1",       "0123456789");
+		print_test_strbase_to_u8("strbase_to_u8 (n > max)     ",	FALSE,      256,        "256",       "0123456789");
+		print_test_strbase_to_u8("strbase_to_u8 (n < maxdigit)",	FALSE,   -99999,     "-99999",       "0123456789");
+		print_test_strbase_to_u8("strbase_to_u8 (n > maxdigit)",	FALSE,    99999,      "99999",       "0123456789");
+	}
+}
+#endif
+
+
+
+#ifdef			ft_strbase_to_u16
+void	print_test_strbase_to_u16(char const* test_name, int can_segfault,
+		t_u16 expecting,
+		char const* number,
+		char const* base)
+{
+	TEST_PERFORM_RESULT_TYPE(t_u16, strbase_to_u16, number, base)
+	print_test_u16(test_name, "_strbase_to_u16", result_libft, expecting, can_segfault);
+	print_timer_result(&t, FALSE);
+	TEST_PRINT_ARGS("base='%s', n='%s'", base, number);
+}
+void	test_strbase_to_u16(void)
+{
+//	| TEST FUNCTION         | TEST NAME                      |CAN SEGV| EXPECTING | TEST ARGS
+	print_test_strbase_to_u16("strbase_to_u16               ",	FALSE,         1,          "1",                "01");
+	print_test_strbase_to_u16("strbase_to_u16               ",	FALSE,         0,          "1",                "+1");
+	print_test_strbase_to_u16("strbase_to_u16               ",	FALSE,         0,          "m",                 "m");
+	print_test_strbase_to_u16("strbase_to_u16               ",	FALSE,         0,         "mm",                 "m");
+	print_test_strbase_to_u16("strbase_to_u16               ",	FALSE,         0,        "mmm",                 "m");
+	print_test_strbase_to_u16("strbase_to_u16               ",	FALSE,        42,     "101010",                "01");
+	print_test_strbase_to_u16("strbase_to_u16               ",	FALSE,         0,     "101012",                "01");
+	print_test_strbase_to_u16("strbase_to_u16               ",	FALSE,         0,          "m",               "mom");
+	print_test_strbase_to_u16("strbase_to_u16               ",	FALSE,         0,          "o",               "mom");
+	print_test_strbase_to_u16("strbase_to_u16               ",	FALSE,         0,          "0",               "0az");
+	print_test_strbase_to_u16("strbase_to_u16               ",	FALSE,       111,        "aaa",        "_abcdefghi");
+	print_test_strbase_to_u16("strbase_to_u16               ",	FALSE,        15,          "F",  "0123456789ABCDEF");
+	print_test_strbase_to_u16("strbase_to_u16               ",	FALSE,        63,       "rdmm",               "mdr");
+	print_test_strbase_to_u16("strbase_to_u16               ",	FALSE,       100,      "|*_*|",               "*|_");
+	print_test_strbase_to_u16("strbase_to_u16               ",	FALSE,        13,       ".._.",                "_.");
+	print_test_strbase_to_u16("strbase_to_u16               ",	FALSE,     12345,      "12345",        "0123456789");
+	print_test_strbase_to_u16("strbase_to_u16               ",	FALSE,         0,      "12345",        "012345678-");
+	print_test_strbase_to_u16("strbase_to_u16               ",	FALSE,         0,      "12345",        "012345678+");
+	print_test_strbase_to_u16("strbase_to_u16               ",	FALSE,         0,        "999",        "0123456709");
+	print_test_strbase_to_u16("strbase_to_u16               ",	FALSE,       999,        "999",        "0123456789");
+	print_test_strbase_to_u16("strbase_to_u16               ",	FALSE,     10007,      "c===3",        "=cbadef389");
+	print_test_strbase_to_u16("strbase_to_u16               ",	FALSE,      1234,       "swag",        "0swag56789");
+	print_test_strbase_to_u16("strbase_to_u16               ",	FALSE,      1000,        "3e8",  "0123456789abcdef");
+	print_test_strbase_to_u16("strbase_to_u16               ",	FALSE,        42,         "2A",  "0123456789ABCDEF");
+	print_test_strbase_to_u16("strbase_to_u16 (n = min, dec)",	FALSE,         0,          "0",        "0123456789");
+	print_test_strbase_to_u16("strbase_to_u16 (n = max, dec)",	FALSE,     65535,      "65535",        "0123456789");
+	print_test_strbase_to_u16("strbase_to_u16 (n = min, hex)",	FALSE,         0,          "0",  "0123456789ABCDEF");
+	print_test_strbase_to_u16("strbase_to_u16 (n = max, hex)",	FALSE,     65535,       "FFFF",  "0123456789ABCDEF");
+	print_test_strbase_to_u16("strbase_to_u16 (n = min, bin)",	FALSE,         0,          "0",                "01");
+	print_test_strbase_to_u16("strbase_to_u16 (n = max, bin)",	FALSE,     65535,     "1111111111111111",      "01");
+	print_test_strbase_to_u16("strbase_to_u16 (empty base)  ",	FALSE,         0,         "01",                  "");
+	print_test_strbase_to_u16("strbase_to_u16 (empty number)",	FALSE,         0,           "",                "01");
+	print_test_strbase_to_u16("strbase_to_u16 (both empty)  ",	FALSE,         0,           "",                  "");
+	print_test_strbase_to_u16("strbase_to_u16 (null base)   ",	SEGV,          0,         "01",                NULL);
+	print_test_strbase_to_u16("strbase_to_u16 (null number) ",	SEGV,          0,         NULL,                "01");
+	print_test_strbase_to_u16("strbase_to_u16 (both null)   ",	SEGV,          0,         NULL,                NULL);
+	if (g_test.flags.test_overflow)
+	{
+		print_test_strbase_to_u16("strbase_to_u16 (n < min)     ",	FALSE,         -1,         "-1",   "0123456789");
+		print_test_strbase_to_u16("strbase_to_u16 (n > max)     ",	FALSE,      65536,      "65536",   "0123456789");
+		print_test_strbase_to_u16("strbase_to_u16 (n < maxdigit)",	FALSE,   -9999999,   "-9999999",   "0123456789");
+		print_test_strbase_to_u16("strbase_to_u16 (n > maxdigit)",	FALSE,    9999999,    "9999999",   "0123456789");
+	}
+}
+#endif
+
+
+
+#ifdef			ft_strbase_to_u32
+void	print_test_strbase_to_u32(char const* test_name, int can_segfault,
+		t_u32 expecting,
+		char const* number,
+		char const* base)
+{
+	TEST_PERFORM_RESULT_TYPE(t_u32, strbase_to_u32, number, base)
+	print_test_u32(test_name, "_strbase_to_u32", result_libft, expecting, can_segfault);
+	print_timer_result(&t, FALSE);
+	TEST_PRINT_ARGS("base='%s', n='%s'", base, number);
+}
+void	test_strbase_to_u32(void)
+{
+//	| TEST FUNCTION         | TEST NAME                      |CAN SEGV|  EXPECTING    | TEST ARGS
+	print_test_strbase_to_u32("strbase_to_u32               ",	FALSE,              1,                      "1",               "01");
+	print_test_strbase_to_u32("strbase_to_u32               ",	FALSE,              0,                      "1",               "+1");
+	print_test_strbase_to_u32("strbase_to_u32               ",	FALSE,              0,                      "m",                "m");
+	print_test_strbase_to_u32("strbase_to_u32               ",	FALSE,              0,                     "mm",                "m");
+	print_test_strbase_to_u32("strbase_to_u32               ",	FALSE,              0,                    "mmm",                "m");
+	print_test_strbase_to_u32("strbase_to_u32               ",	FALSE,             42,                 "101010",               "01");
+	print_test_strbase_to_u32("strbase_to_u32               ",	FALSE,              0,                 "101012",               "01");
+	print_test_strbase_to_u32("strbase_to_u32               ",	FALSE,              0,                      "m",              "mom");
+	print_test_strbase_to_u32("strbase_to_u32               ",	FALSE,              0,                      "o",              "mom");
+	print_test_strbase_to_u32("strbase_to_u32               ",	FALSE,             15,                      "F", "0123456789ABCDEF");
+	print_test_strbase_to_u32("strbase_to_u32               ",	FALSE,             63,                   "rdmm",              "mdr");
+	print_test_strbase_to_u32("strbase_to_u32               ",	FALSE,            100,                  "|*_*|",              "*|_");
+	print_test_strbase_to_u32("strbase_to_u32               ",	FALSE,             13,                   ".._.",               "_.");
+	print_test_strbase_to_u32("strbase_to_u32               ",	FALSE,             42,                     "2A", "0123456789ABCDEF");
+	print_test_strbase_to_u32("strbase_to_u32               ",	FALSE,              0,                      "0",              "0az");
+	print_test_strbase_to_u32("strbase_to_u32               ",	FALSE,            111,                    "aaa",       "_abcdefghi");
+	print_test_strbase_to_u32("strbase_to_u32               ",	FALSE,          12345,                  "12345",       "0123456789");
+	print_test_strbase_to_u32("strbase_to_u32               ",	FALSE,              0,                  "12345",       "012345678-");
+	print_test_strbase_to_u32("strbase_to_u32               ",	FALSE,              0,                  "12345",       "012345678+");
+	print_test_strbase_to_u32("strbase_to_u32               ",	FALSE,              0,                    "999",       "0123456739");
+	print_test_strbase_to_u32("strbase_to_u32               ",	FALSE,            999,                    "999",       "0123456789");
+	print_test_strbase_to_u32("strbase_to_u32               ",	FALSE,          10007,                  "c===3",       "=cbadef389");
+	print_test_strbase_to_u32("strbase_to_u32               ",	FALSE,           1234,                   "swag",       "0swag56789");
+	print_test_strbase_to_u32("strbase_to_u32               ",	FALSE,           1000,                    "3e8", "0123456789abcdef");
+	print_test_strbase_to_u32("strbase_to_u32               ",	FALSE,        +987123,                 "*xurin",       "grincheux*");
+	print_test_strbase_to_u32("strbase_to_u32 (n = min, dec)",	FALSE,              0,                      "0",       "0123456789");
+	print_test_strbase_to_u32("strbase_to_u32 (n = max, dec)",	FALSE,     4294967295,             "4294967295",       "0123456789");
+	print_test_strbase_to_u32("strbase_to_u32 (n = min, hex)",	FALSE,              0,                      "0", "0123456789ABCDEF");
+	print_test_strbase_to_u32("strbase_to_u32 (n = max, hex)",	FALSE,     4294967295,               "FFFFFFFF", "0123456789ABCDEF");
+	print_test_strbase_to_u32("strbase_to_u32 (n = min, bin)",	FALSE,              0,                      "0",               "01");
+	print_test_strbase_to_u32("strbase_to_u32 (n = max, bin)",	FALSE,     4294967295,      "11111111111111111111111111111111","01");
+	print_test_strbase_to_u32("strbase_to_u32 (empty base)  ",	FALSE,              0,                     "01",                 "");
+	print_test_strbase_to_u32("strbase_to_u32 (empty number)",	FALSE,              0,                       "",               "01");
+	print_test_strbase_to_u32("strbase_to_u32 (both empty)  ",	FALSE,              0,                       "",                 "");
+	print_test_strbase_to_u32("strbase_to_u32 (null base)   ",	SEGV,               0,                     "01",               NULL);
+	print_test_strbase_to_u32("strbase_to_u32 (null number) ",	SEGV,               0,                     NULL,               "01");
+	print_test_strbase_to_u32("strbase_to_u32 (both null)   ",	SEGV,               0,                     NULL,               NULL);
+	if (g_test.flags.test_overflow)
+	{
+		print_test_strbase_to_u32("strbase_to_u32 (n < min)     ",	FALSE,                -1,              "-1",       "0123456789");
+		print_test_strbase_to_u32("strbase_to_u32 (n > max)     ",	FALSE,        4294967296,      "4294967296",       "0123456789");
+		print_test_strbase_to_u32("strbase_to_u32 (n < maxdigit)",	FALSE,     -999999999999,   "-999999999999",       "0123456789");
+		print_test_strbase_to_u32("strbase_to_u32 (n > maxdigit)",	FALSE,      999999999999,    "999999999999",       "0123456789");
+	}
+}
+#endif
+
+
+
+#ifdef			ft_strbase_to_u64
+void	print_test_strbase_to_u64(char const* test_name, int can_segfault,
+		t_u64 expecting,
+		char const* number,
+		char const* base)
+{
+	TEST_PERFORM_RESULT_TYPE(t_u64, strbase_to_u64, number, base)
+	print_test_u64(test_name, "_strbase_to_u64", result_libft, expecting, can_segfault);
+	print_timer_result(&t, FALSE);
+	TEST_PRINT_ARGS("base='%s', n='%s'", base, number);
+}
+void	test_strbase_to_u64(void)
+{
+//	| TEST FUNCTION         | TEST NAME                      |CAN SEGV|      EXPECTING       | TEST ARGS
+	print_test_strbase_to_u64("strbase_to_u64               ",	FALSE,                      1,                   "1",                "01");
+	print_test_strbase_to_u64("strbase_to_u64               ",	FALSE,                      0,                   "1",                "+1");
+	print_test_strbase_to_u64("strbase_to_u64               ",	FALSE,                      0,                   "m",                 "m");
+	print_test_strbase_to_u64("strbase_to_u64               ",	FALSE,                      0,                   "m",                 "m");
+	print_test_strbase_to_u64("strbase_to_u64               ",	FALSE,                      0,                  "mm",                 "m");
+	print_test_strbase_to_u64("strbase_to_u64               ",	FALSE,                      0,                 "mmm",                 "m");
+	print_test_strbase_to_u64("strbase_to_u64               ",	FALSE,                     42,              "101010",                "01");
+	print_test_strbase_to_u64("strbase_to_u64               ",	FALSE,                      0,              "101012",                "01");
+	print_test_strbase_to_u64("strbase_to_u64               ",	FALSE,                      0,                   "m",               "mom");
+	print_test_strbase_to_u64("strbase_to_u64               ",	FALSE,                      0,                   "o",               "mom");
+	print_test_strbase_to_u64("strbase_to_u64               ",	FALSE,                     42,                  "2A",  "0123456789ABCDEF");
+	print_test_strbase_to_u64("strbase_to_u64               ",	FALSE,                      0,                   "0",               "0az");
+	print_test_strbase_to_u64("strbase_to_u64               ",	FALSE,                    111,                 "aaa",        "_abcdefghi");
+	print_test_strbase_to_u64("strbase_to_u64               ",	FALSE,                     15,                   "F",  "0123456789ABCDEF");
+	print_test_strbase_to_u64("strbase_to_u64               ",	FALSE,                     63,                "rdmm",               "mdr");
+	print_test_strbase_to_u64("strbase_to_u64               ",	FALSE,                    100,               "|*_*|",               "*|_");
+	print_test_strbase_to_u64("strbase_to_u64               ",	FALSE,                     13,                ".._.",                "_.");
+	print_test_strbase_to_u64("strbase_to_u64               ",	FALSE,                  12345,               "12345",        "0123456789");
+	print_test_strbase_to_u64("strbase_to_u64               ",	FALSE,                      0,               "12345",        "012345678-");
+	print_test_strbase_to_u64("strbase_to_u64               ",	FALSE,                      0,               "12345",        "012345678+");
+	print_test_strbase_to_u64("strbase_to_u64               ",	FALSE,                      0,                 "999",        "0123456389");
+	print_test_strbase_to_u64("strbase_to_u64               ",	FALSE,                    999,                 "999",        "0123456789");
+	print_test_strbase_to_u64("strbase_to_u64               ",	FALSE,                  10007,               "c===3",        "=cbadef389");
+	print_test_strbase_to_u64("strbase_to_u64               ",	FALSE,                   1234,                "swag",        "0swag56789");
+	print_test_strbase_to_u64("strbase_to_u64               ",	FALSE,                   1000,                 "3e8",  "0123456789abcdef");
+	print_test_strbase_to_u64("strbase_to_u64               ",	FALSE,                +987123,              "*xurin",        "grincheux*");
+	print_test_strbase_to_u64("strbase_to_u64               ",	FALSE,             2147483647,            "7FFFFFFF",  "0123456789ABCDEF");
+	print_test_strbase_to_u64("strbase_to_u64               ",	FALSE,             2147483648,          "2147483648",        "0123456789");
+	print_test_strbase_to_u64("strbase_to_u64 (n = min, dec)",	FALSE,                      0,                   "0",        "0123456789");
+	print_test_strbase_to_u64("strbase_to_u64 (n = max, dec)",	FALSE, 18446744073709551615UL,"18446744073709551615",        "0123456789");
+	print_test_strbase_to_u64("strbase_to_u64 (n = min, hex)",	FALSE,                      0,                   "0",  "0123456789ABCDEF");
+	print_test_strbase_to_u64("strbase_to_u64 (n = max, hex)",	FALSE, 18446744073709551615UL,    "FFFFFFFFFFFFFFFF",  "0123456789ABCDEF");
+	print_test_strbase_to_u64("strbase_to_u64 (n = min, bin)",	FALSE,                      0,                   "0",                "01");
+	print_test_strbase_to_u64("strbase_to_u64 (n = max, bin)",	FALSE, 18446744073709551615UL, "1111111111111111111111111111111111111111111111111111111111111111","01");
+	print_test_strbase_to_u64("strbase_to_u64 (empty base)  ",	FALSE,                      0,                  "01",                  "");
+	print_test_strbase_to_u64("strbase_to_u64 (empty number)",	FALSE,                      0,                    "",                "01");
+	print_test_strbase_to_u64("strbase_to_u64 (both empty)  ",	FALSE,                      0,                    "",                  "");
+	print_test_strbase_to_u64("strbase_to_u64 (null base)   ",	SEGV,                       0,                  "01",                NULL);
+	print_test_strbase_to_u64("strbase_to_u64 (null number) ",	SEGV,                       0,                  NULL,                "01");
+	print_test_strbase_to_u64("strbase_to_u64 (both null)   ",	SEGV,                       0,                  NULL,                NULL);
+	if (g_test.flags.test_overflow)
+	{
+		print_test_strbase_to_u64("strbase_to_u64 (n < min)     ",	FALSE,                       -1,                     "-1",  "0123456789");
+#ifndef __clang__
+		print_test_strbase_to_u64("strbase_to_u64 (n > max)     ",	FALSE,   18446744073709551616UL,   "18446744073709551616",  "0123456789");
+		print_test_strbase_to_u64("strbase_to_u64 (n < maxdigit)",	FALSE, -999999999999999999999LL, "-999999999999999999999",  "0123456789");
+		print_test_strbase_to_u64("strbase_to_u64 (n > maxdigit)",	FALSE,  999999999999999999999LL,  "999999999999999999999",  "0123456789");
+#endif
+	}
+}
+#endif
+
+
 
 
 
@@ -2297,17 +2839,17 @@ int		testsuite_convert(void)
 	test_size_to_str();
 #endif
 
-#ifdef ft_u8_to_hex
-	test_u8_to_hex();
+#ifdef ft_u8_to_strhex
+	test_u8_to_strhex();
 #endif
-#ifdef ft_u16_to_hex
-	test_u16_to_hex();
+#ifdef ft_u16_to_strhex
+	test_u16_to_strhex();
 #endif
-#ifdef ft_u32_to_hex
-	test_u32_to_hex();
+#ifdef ft_u32_to_strhex
+	test_u32_to_strhex();
 #endif
-#ifdef ft_u64_to_hex
-	test_u64_to_hex();
+#ifdef ft_u64_to_strhex
+	test_u64_to_strhex();
 #endif
 
 #ifdef ft_s8_to_strbase
@@ -2392,29 +2934,29 @@ int		testsuite_convert(void)
 #endif
 
 #ifdef ft_strbase_to_s8
-//	test_strbase_to_s8();
+	test_strbase_to_s8();
 #endif
 #ifdef ft_strbase_to_s16
-//	test_strbase_to_s16();
+	test_strbase_to_s16();
 #endif
 #ifdef ft_strbase_to_s32
-//	test_strbase_to_s32();
+	test_strbase_to_s32();
 #endif
 #ifdef ft_strbase_to_s64
-//	test_strbase_to_s64();
+	test_strbase_to_s64();
 #endif
 
 #ifdef ft_strbase_to_u8
-//	test_strbase_to_u8();
+	test_strbase_to_u8();
 #endif
 #ifdef ft_strbase_to_u16
-//	test_strbase_to_u16();
+	test_strbase_to_u16();
 #endif
 #ifdef ft_strbase_to_u32
-//	test_strbase_to_u32();
+	test_strbase_to_u32();
 #endif
 #ifdef ft_strbase_to_u64
-//	test_strbase_to_u64();
+	test_strbase_to_u64();
 #endif
 
 

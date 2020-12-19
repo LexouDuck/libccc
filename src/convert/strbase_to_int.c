@@ -15,7 +15,7 @@
 
 
 
-static t_size	Convert_BaseString_GetLength(char const* base, t_bool sign)
+static t_size	Convert_BaseString_GetLength(char const* base)
 {
 	t_size	i;
 	t_size	j;
@@ -23,14 +23,13 @@ static t_size	Convert_BaseString_GetLength(char const* base, t_bool sign)
 	i = 0;
 	while (base[i])
 	{
-		if (sign && (base[i] == '+' || base[i] == '-'))
+		if (base[i] == '+' || base[i] == '-')
 			return (0);
-		j = i - 1;
-		while (j != (t_size)-1)
+		j = i;
+		while (j--)
 		{
 			if (base[i] == base[j])
 				return (0);
-			--j;
 		}
 		++i;
 	}
@@ -62,7 +61,7 @@ t_s##BITS	Convert_BaseString_To_S##BITS(char const* str, char const* base)	\
 	t_size	length;																\
 	t_size	i;																	\
 LIBFTCONFIG_HANDLE_NULLPOINTER_STRBASE_TO_INT									\
-	length = Convert_BaseString_GetLength(base, FALSE);							\
+	length = Convert_BaseString_GetLength(base);								\
 	if (length == 0)															\
 		return (0);																\
 	i = 0;																		\
@@ -86,7 +85,7 @@ LIBFTCONFIG_HANDLE_NULLPOINTER_STRBASE_TO_INT									\
 	while (str[i])																\
 	{																			\
 		digit = Convert_BaseString_IsInBase(base, length, str[i]);				\
-		if (digit < 0) break;													\
+		if (digit < 0) return (0);												\
 		result = result * length + digit;										\
 		++i;																	\
 	}																			\
@@ -108,7 +107,7 @@ t_u##BITS	Convert_BaseString_To_U##BITS(char const* str, char const* base)	\
 	t_size	length;																\
 	t_size	i;																	\
 LIBFTCONFIG_HANDLE_NULLPOINTER_STRBASE_TO_INT									\
-	length = Convert_BaseString_GetLength(base, FALSE);							\
+	length = Convert_BaseString_GetLength(base);								\
 	if (length == 0)															\
 		return (0);																\
 	i = 0;																		\
@@ -126,7 +125,7 @@ LIBFTCONFIG_HANDLE_NULLPOINTER_STRBASE_TO_INT									\
 	while (str[i])																\
 	{																			\
 		digit = Convert_BaseString_IsInBase(base, length, str[i]);				\
-		if (digit < 0) break;													\
+		if (digit < 0) return (0);												\
 		result = result * length + digit;										\
 		++i;																	\
 	}																			\

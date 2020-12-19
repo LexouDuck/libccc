@@ -126,7 +126,7 @@ char*						Convert_F32_To_String(t_f32 n);
 char*						Convert_F32_To_HexString(t_f32 n);
 #define ft_f32_to_strhex	Convert_F32_To_HexString
 //! Get the string decimal representation of a 32-bit floating-point number, with 'precision' fractional digits
-/*
+/*!
 **	Has some approximation/error margin (beyond the seventh decimal digit;
 **	the exact amount of imprecision depends on the input)
 */
@@ -144,7 +144,7 @@ char*						Convert_F64_To_String(t_f64 n);
 char*						Convert_F64_To_HexString(t_f64 n);
 #define ft_f64_to_strhex	Convert_F64_To_HexString
 //! Get the string decimal representation of a 64-bit floating-point number, with 'precision' fractional digits
-/*
+/*!
 **	Has some approximation/error margin (beyond the seventh decimal digit;
 **	the exact amount of imprecision depends on the input)
 */
@@ -181,12 +181,10 @@ t_bool					Convert_String_To_Bool(char const* str);
 
 
 
-//! Get the string hexadecimal representation of a pointer/address value
-char*					Convert_Pointer_To_String(void const* ptr);
-#define ft_ptr_to_str	Convert_Pointer_To_String
 //! Get the string decimal representation of a 64-bit unsigned integer
 char*					Convert_Size_To_String(t_size value);
 #define ft_size_to_str	Convert_Size_To_String
+
 //! Parse a memory-size uint from the given string
 t_size					Convert_String_To_Size(char const* str);
 #define ft_str_to_size	Convert_String_To_Size
@@ -194,6 +192,12 @@ t_size					Convert_String_To_Size(char const* str);
 //! Get the string decimal human-readable representation of a 64-bit unsigned integer, with bytes units (KB,MB,GB,etc)
 char*							Convert_Size_To_String_Readable(t_size value);
 #define ft_size_to_str_readable	Convert_Size_To_String_Readable
+
+
+
+//! Get the string hexadecimal representation of a pointer/address value
+char*						Convert_Pointer_To_HexString(void const* ptr);
+#define ft_ptr_to_strhex	Convert_Pointer_To_HexString
 
 
 
