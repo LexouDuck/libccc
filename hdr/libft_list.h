@@ -33,6 +33,16 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
+//! A 'foreach' keyword macro, to iterate over tuples without an index-based 'for' loop
+#define foreach(TYPE, VAR, ITERABLE_TYPE, ITERABLE) \
+	foreach_##ITERABLE_TYPE##_init(TYPE, VAR, ITERABLE)					\
+	if (ITERABLE)														\
+		for(foreach_##ITERABLE_TYPE##_loop_init(TYPE, VAR, ITERABLE);	\
+			foreach_##ITERABLE_TYPE##_loop_exit(TYPE, VAR, ITERABLE);	\
+			foreach_##ITERABLE_TYPE##_loop_incr(TYPE, VAR, ITERABLE))	\
+
+
+
 //! This struct holds an array of items which can be of any type
 /*!
 **	The 's_tuple' struct holds a `void*` pointer to the array of items, the size
@@ -46,12 +56,13 @@ typedef struct	s_tuple_
 	void*		items;		//!< The pointer to the array (items can be of any one type)
 }				s_tuple;
 
+#define foreach_s_tuple_init(		TYPE, VAR, TUPLE)		t_size _i = 0;
+#define foreach_s_tuple_loop_init(	TYPE, VAR, TUPLE)		TYPE VAR = (TYPE)((TUPLE)->items)
+#define foreach_s_tuple_loop_exit(	TYPE, VAR, TUPLE)		_i < (TUPLE)->item_count
+#define foreach_s_tuple_loop_incr(	TYPE, VAR, TUPLE)		++_i, VAR = (TYPE)((TUPLE)->items + _i * (TUPLE)->item_size)
+
 //! A literal of an 's_tuple' struct which has all fields set to zero
 #define TUPLE_NULL	(s_tuple){ .item_count = 0, .item_size = 0, .items = NULL }
-
-//! A 'foreach' keyword macro, to iterate over tuples without an index-based 'for' loop
-#define foreach_tuple (TYPE, VAR, TUPLE) \
-	for ((TYPE)* VAR = (TUPLE)->items; (VAR - (TUPLE)->items) < length; ++VAR)
 
 
 
@@ -70,10 +81,10 @@ typedef struct		s_list_
 	void*			item;		//!< The contents of this linked-list element
 }					s_list;
 
-//! A 'foreach' keyword macro, to iterate over lists without an index-based 'for' loop
-#define foreach_list (TYPE, VAR, LIST)	\
-	(TYPE)* VAR; \
-	for (s_list* lst = (LIST); lst && ((VAR = ((TYPE)*)lst->item) || 1); lst = lst->next)
+#define foreach_s_list_init(		TYPE, VAR, LIST)		s_list* _lst = (LIST);
+#define foreach_s_list_loop_init(	TYPE, VAR, LIST)		TYPE VAR = (TYPE)((LIST)->item)
+#define foreach_s_list_loop_exit(	TYPE, VAR, LIST)		_lst
+#define foreach_s_list_loop_incr(	TYPE, VAR, LIST)		_lst = _lst->next, VAR = (_lst ? (TYPE)(_lst->item) : NULL)
 
 
 
