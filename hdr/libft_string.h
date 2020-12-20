@@ -494,13 +494,16 @@ char*					String_Insert(char const* dest, char const* src, t_size offset);
 char*					String_Sub(char const* str, t_size index, t_size n);
 #define ft_strsub		String_Sub
 
+//! Constructs a string from the given 'format' string and multiple args (like 'asprintf()')
 /*!
 **	Returns a new null-terminated string, which is generated from the given
 **	'format' string and variadic args - it is equivalent to 'asprintf()'.
 */
-char*					String_Build(char const* format, ...);
+char*					String_Build(char const* format, ...) __attribute__ ((format(gnu_printf, 1, 2)));
 #define ft_strbuild		String_Build
 #define ft_asprintf		String_Build
+//! Same as String_Build, but takes a variadic args list
+char*					String_Build_VA(char const* format, va_list ap);
 
 
 /*!

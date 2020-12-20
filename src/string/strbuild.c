@@ -45,6 +45,21 @@ int		vasprintf(char* *a_str, char const* format, va_list ap)
 }
 #endif
 
+
+
+char*	String_Build_VA(char const* format, va_list ap)
+{
+	int result;
+	char* str = NULL;
+
+	result = vasprintf(&str, format, ap);
+	if (result < 0)
+		return (NULL);
+	return (str);
+}
+
+
+
 char*	String_Build(char const* format, ...)
 {
 	va_list args;

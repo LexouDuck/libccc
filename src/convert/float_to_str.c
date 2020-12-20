@@ -11,16 +11,16 @@
 #define DEFINEFUNC_CONVERT_FLOAT_TO_STR(BITS,PRINTF) \
 inline char*	Convert_F##BITS##_to_str(t_f##BITS number)		\
 {																\
-	return (String_Build("%"PRINTF, number));					\
+	return (String_Build(PRINTF, number));						\
 }																\
 
-DEFINEFUNC_CONVERT_FLOAT_TO_STR( 32, "g")
-DEFINEFUNC_CONVERT_FLOAT_TO_STR( 64, "lg")
+DEFINEFUNC_CONVERT_FLOAT_TO_STR( 32, "%g")
+DEFINEFUNC_CONVERT_FLOAT_TO_STR( 64, "%lg")
 #ifdef	__float80
-DEFINEFUNC_CONVERT_FLOAT_TO_STR( 80, "llg")
+DEFINEFUNC_CONVERT_FLOAT_TO_STR( 80, "%llg")
 #endif
 #ifdef	__float128
-DEFINEFUNC_CONVERT_FLOAT_TO_STR(128, "llg")
+DEFINEFUNC_CONVERT_FLOAT_TO_STR(128, "%llg")
 #endif
 
 
@@ -30,16 +30,16 @@ DEFINEFUNC_CONVERT_FLOAT_TO_STR(128, "llg")
 #define DEFINEFUNC_CONVERT_FLOAT_TO_STRHEX(BITS,PRINTF) \
 inline char*	Convert_F##BITS##_to_strhex(t_f##BITS number)	\
 {																\
-	return (String_Build("%#"PRINTF, number));					\
+	return (String_Build(PRINTF, number));						\
 }																\
 
-DEFINEFUNC_CONVERT_FLOAT_TO_STRHEX( 32, "a")
-DEFINEFUNC_CONVERT_FLOAT_TO_STRHEX( 64, "la")
+DEFINEFUNC_CONVERT_FLOAT_TO_STRHEX( 32, "%#a")
+DEFINEFUNC_CONVERT_FLOAT_TO_STRHEX( 64, "%#la")
 #ifdef	__float80
-DEFINEFUNC_CONVERT_FLOAT_TO_STRHEX( 80, "lla")
+DEFINEFUNC_CONVERT_FLOAT_TO_STRHEX( 80, "%#lla")
 #endif
 #ifdef	__float128
-DEFINEFUNC_CONVERT_FLOAT_TO_STRHEX(128, "lla")
+DEFINEFUNC_CONVERT_FLOAT_TO_STRHEX(128, "%#lla")
 #endif
 
 
