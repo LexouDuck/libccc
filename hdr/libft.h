@@ -205,10 +205,14 @@ HEADER_CPP
 **	__FLOAT_WORD_ORDER__ == __ORDER_BIG_ENDIAN__	If TRUE, this machine stores multi-word floats in regular ordering (most-to-least signficant)
 */
 
-#ifdef __MINGW32__
-	#define __printf(POS_FORMAT, POS_VARARGS)	__attribute__ ((format(gnu_printf, POS_FORMAT, POS_VARARGS)))
-#else
+#ifdef __clang__
 	#define __printf(POS_FORMAT, POS_VARARGS)	__attribute__ ((format(printf, POS_FORMAT, POS_VARARGS)))
+#else
+	#ifdef __MINGW32__
+		#define __printf(POS_FORMAT, POS_VARARGS)	__attribute__ ((format(gnu_printf, POS_FORMAT, POS_VARARGS)))
+	#else
+		#define __printf(POS_FORMAT, POS_VARARGS)	__attribute__ ((format(printf, POS_FORMAT, POS_VARARGS)))
+	#endif
 #endif
 
 
