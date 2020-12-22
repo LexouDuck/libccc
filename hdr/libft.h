@@ -93,7 +93,7 @@ HEADER_CPP
 **	If 1, then all NULL pointer accesses in libft functions will be avoided, and
 **		an appropriate return value (eg:NULL, 0, sometimes -1) will be returned.
 */
-#define LIBFTCONFIG_HANDLE_NULLPOINTERS		!(DEBUG)
+#define LIBFTCONFIG_HANDLE_NULLPOINTERS		1
 
 //! If 1, libft uses homemade approximate math functions, otherwise it's the builtin FPU calls.
 /*!
