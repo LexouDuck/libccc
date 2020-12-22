@@ -130,8 +130,8 @@ char**							StringArray_Sub(char const** strarr, t_u32 start, t_u32 length);
 **	Returns a newly allocated string which is the fold/reduce concatenation
 **	of all strings in strarr, with the string 'sep' added between each string.
 */
-char*							StringArray_Join(char const** strarr, char const* sep);
-#define ft_strarrjoin			StringArray_Join
+char*							StringArray_Fold(char const** strarr, char const* sep);
+#define ft_strarrfold			StringArray_Fold
 
 
 /*
@@ -139,6 +139,13 @@ char*							StringArray_Join(char const** strarr, char const* sep);
 **                        StringArray In Place Editors                        *|
 ** ************************************************************************** *|
 */
+
+/*!
+**	Returns the concatenation of 'strarr1' and 'strarr2', and deletes both
+**	inputs from memory. Also returns the result.
+*/
+char**							StringArray_Join(char const** strarr1, char const** strarr2);
+#define ft_strarrjoin			StringArray_Join
 
 /*!
 **	Returns the concatenation of 'strarr1' and 'strarr2', and deletes both

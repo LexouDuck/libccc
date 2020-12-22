@@ -3,10 +3,9 @@
 #include "libft_string.h"
 
 
-
-char	*ft_strjoin(char const *str1, char const *str2)
+char*		String_Join(char const* str1, char const* str2)
 {
-	char	*result;
+	char*	result;
 	t_size	length1;
 	t_size	length2;
 	t_size	i;
@@ -15,9 +14,9 @@ char	*ft_strjoin(char const *str1, char const *str2)
 	if (str1 == NULL || str2 == NULL)
 		return (NULL);
 #endif
-	length1 = ft_strlen(str1);
-	length2 = ft_strlen(str2);
-	if (!(result = (char *)ft_memalloc(length1 + length2 + 1)))
+	length1 = String_Length(str1);
+	length2 = String_Length(str2);
+	if (!(result = (char*)Memory_Alloc(length1 + length2 + 1)))
 		return (NULL);
 	i = 0;
 	while (i < length1)

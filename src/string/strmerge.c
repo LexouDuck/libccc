@@ -3,17 +3,17 @@
 
 
 
-char	*ft_strmerge(char* *a_str1, char* *a_str2)
+char*	String_Merge(char* *a_str1, char* *a_str2)
 {
-	char	*result;
+	char*	result;
 
 #if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (a_str1 == NULL || a_str2 == NULL)
 		return (NULL);
 #endif
-	result = ft_strjoin(*a_str1, *a_str2);
-	ft_strdel(a_str1);
-	ft_strdel(a_str2);
+	result = String_Join(*a_str1, *a_str2);
+	String_Delete(a_str1);
+	String_Delete(a_str2);
 	*a_str1 = result;
 	*a_str2 = result;
 	return (result);
@@ -21,50 +21,50 @@ char	*ft_strmerge(char* *a_str1, char* *a_str2)
 
 
 
-char	*ft_strappend(char* *a_dest, char const* src)
+char*	String_Append(char* *a_dest, char const* src)
 {
-	char	*tmp;
+	char*	tmp;
 
 #if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (a_dest == NULL || src == NULL)
 		return (NULL);
 #endif
-	tmp = ft_strjoin(*a_dest, src);
-	ft_strdel(a_dest);
+	tmp = String_Join(*a_dest, src);
+	String_Delete(a_dest);
 	*a_dest = tmp;
 	return (*a_dest);
 }
 
 
 
-char	*ft_strprepend(char const* src, char* *a_dest)
+char*	String_Prepend(char const* src, char* *a_dest)
 {
-	char	*tmp;
+	char*	tmp;
 
 #if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (a_dest == NULL || src == NULL)
 		return (NULL);
 #endif
-	tmp = ft_strjoin(src, *a_dest);
-	ft_strdel(a_dest);
+	tmp = String_Join(src, *a_dest);
+	String_Delete(a_dest);
 	*a_dest = tmp;
 	return (*a_dest);
 }
 
 
 
-char	*ft_strinsert_inplace(char* *a_dest, char const* src, t_u32 index)
+char*	String_Insert_InPlace(char* *a_dest, char const* src, t_u32 index)
 {
-	char	*tmp;
+	char*	tmp;
 
 #if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (a_dest == NULL || src == NULL)
 		return (NULL);
 #endif
-	tmp = ft_strsub(*a_dest, 0, index);
-	ft_strappend(&tmp, src);
-	ft_strappend(&tmp, (*a_dest) + index);
-	ft_strdel(a_dest);
+	tmp = String_Sub(*a_dest, 0, index);
+	String_Append(&tmp, src);
+	String_Append(&tmp, (*a_dest) + index);
+	String_Delete(a_dest);
 	*a_dest = tmp;
 	return (*a_dest);
 }

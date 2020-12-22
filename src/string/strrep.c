@@ -5,14 +5,14 @@
 
 
 
-char		*ft_strrep_char(char const *str, char const old, char const new)
+char*		String_Replace_Char(char const* str, char const old, char const new)
 {
-	char	*result;
+	char*	result;
 	t_size	i;
 
 #if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (old == new)
-		return (ft_strdup(str));
+		return (String_Duplicate(str));
 	if (str == NULL)
 		return (NULL);
 #endif
@@ -21,7 +21,7 @@ char		*ft_strrep_char(char const *str, char const old, char const new)
 	i = 0;
 	while (str[i])
 		++i;
-	if (!(result = (char *)ft_memalloc(i + 1)))
+	if (!(result = (char*)Memory_Alloc(i + 1)))
 		return (NULL);
 	i = 0;
 	while (str[i])
@@ -35,20 +35,20 @@ char		*ft_strrep_char(char const *str, char const old, char const new)
 
 
 
-char		*ft_strrep_charset(char const *str, char const *old, char const *new)
+char*		String_Replace_Charset(char const* str, char const* old, char const* new)
 {
-	char	*result;
+	char*	result;
 	t_size	i;
 	t_size	j;
 	int		c_index;
 
 #if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (old == new)
-		return (ft_strdup(str));
+		return (String_Duplicate(str));
 	if (str == NULL || old == NULL || new == NULL)
 		return (NULL);
 #endif
-	if (ft_strlen(old) != ft_strlen(new))
+	if (String_Length(old) != String_Length(new))
 		return (NULL);
 	i = 0;
 	while (old[i])
@@ -59,13 +59,15 @@ char		*ft_strrep_charset(char const *str, char const *old, char const *new)
 				return (NULL);
 		++i;
 	}
-	if (!(result = (char *)ft_memalloc(i + 1)))
+	if (!(result = (char*)Memory_Alloc(i + 1)))
 		return (NULL);
 	i = 0;
 	while (str[i])
 	{
-		if ((c_index = ft_strichr(old, str[i])) >= 0)
+		if ((c_index = String_Find_CharIndex(old, str[i])) >= 0)
 			result[i] = new[c_index];
+		else
+			result[i] = str[i];
 		++i;
 	}
 	result[i] = '\0';
@@ -74,26 +76,26 @@ char		*ft_strrep_charset(char const *str, char const *old, char const *new)
 
 
 
-char		*ft_strrep_str(char const *str, char const *old, char const *new)
+char*		String_Replace_String(char const* str, char const* old, char const* new)
 {
-	char	*result;
-	char	**strarr;
+	char*	result;
+	char**	strarr;
 
 #if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (old == new)
-		return (ft_strdup(str));
+		return (String_Duplicate(str));
 	if (str == NULL || old == NULL || new == NULL)
 		return (NULL);
 #endif
-	strarr = ft_strsplit_str(str, old);
-	result = ft_strarrjoin((const char **)strarr, new);
-	ft_strarrdel(&strarr);
+	strarr = String_Split_String(str, old);
+	result = StringArray_Fold((char const**)strarr, new);
+	StringArray_Delete(&strarr);
 	return (result);
 }
 
 
 
-void		ft_strrep_char_inplace(char *str, char const old, char const new)
+void		String_Replace_Char_InPlace(char* str, char const old, char const new)
 {
 	t_size	i;
 
@@ -114,7 +116,7 @@ void		ft_strrep_char_inplace(char *str, char const old, char const new)
 
 
 
-void		ft_strrep_charset_inplace(char *str, char const *old, char const *new)
+void		String_Replace_Charset_InPlace(char* str, char const* old, char const* new)
 {
 	t_size	i;
 	t_size	j;
@@ -124,7 +126,7 @@ void		ft_strrep_charset_inplace(char *str, char const *old, char const *new)
 	if (str == NULL || old == NULL || new == NULL)
 		return ;
 #endif
-	if (ft_strlen(old) != ft_strlen(new))
+	if (String_Length(old) != String_Length(new))
 		return ;
 	i = 0;
 	while (old[i])
@@ -138,7 +140,7 @@ void		ft_strrep_charset_inplace(char *str, char const *old, char const *new)
 	i = 0;
 	while (str[i])
 	{
-		if ((c_index = ft_strichr(old, str[i])) >= 0)
+		if ((c_index = String_Find_CharIndex(old, str[i])) >= 0)
 			str[i] = new[c_index];
 		++i;
 	}
@@ -146,10 +148,10 @@ void		ft_strrep_charset_inplace(char *str, char const *old, char const *new)
 
 
 
-void	ft_strrep_str_inplace(char **a_str, char const *old, char const *new)
+void	String_Replace_String_InPlace(char* *a_str, char const* old, char const* new)
 {
 	char	*tmp;
-	tmp = ft_strrep_str(*a_str, old, new);
-	ft_strdel(a_str);
+	tmp = String_Replace_String(*a_str, old, new);
+	String_Delete(a_str);
 	*a_str = tmp;
 }

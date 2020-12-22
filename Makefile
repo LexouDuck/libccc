@@ -145,6 +145,7 @@ SRC_STRINGARRAY = \
 	strarrmap.c			\
 	strarrsub.c			\
 	strarrpad_l.c		\
+	strarrfold.c		\
 	strarrjoin.c		\
 	strarrlen.c			\
 	strarrcount.c		\
