@@ -173,28 +173,62 @@ t_size				String_Length(char const* str);
 **	between characters encountered (str1[i] - str2[i]).
 **	Otherwise, it will return 0 if 'str1' and 'str2' are identical.
 */
-int					String_Compare(char const* str1, char const* str2);
-#define ft_strcmp	String_Compare
+int						String_Compare(char const* str1, char const* str2);
+#define ft_strcmp		String_Compare
 
 /*!
 **	Compares at most 'n' chars of the two given strings, and returns
 **	the first difference of characters encountered: (str1[i] - str2[i]).
 */
-int					String_Compare_N(char const* str1, char const* str2, t_size n);
-#define ft_strncmp	String_Compare_N
+int						String_Compare_N(char const* str1, char const* str2, t_size n);
+#define ft_strncmp		String_Compare_N
 
 /*!
-**	Returns 1 if the two given strings match, and 0 otherwise.
+**	Compares the two given strings (case-insensitive), and returns the
+**	first difference between characters encountered (str1[i] - str2[i]).
+**	Otherwise, it will return 0 if 'str1' and 'str2' are identical.
 */
-t_bool				String_Equals(char const* str1, char const* str2);
-#define ft_strequ	String_Equals
+int						String_Compare_IgnoreCase(char const* str1, char const* str2);
+#define ft_stricmp		String_Compare_IgnoreCase
+#define ft_strcasecmp	String_Compare_IgnoreCase
 
 /*!
-**	Returns 1 if the first 'n' chars of the two given strings match,
-**	and returns 0 if this is not the case.
+**	Compares at most 'n' chars of the two given strings (case-insensitive),
+**	and returns the first difference of characters encountered: (str1[i] - str2[i]).
 */
-t_bool				String_Equals_N(char const* str1, char const* str2, t_size n);
-#define ft_strnequ	String_Equals_N
+int						String_Compare_N_IgnoreCase(char const* str1, char const* str2, t_size n);
+#define ft_strnicmp		String_Compare_N_IgnoreCase
+#define ft_strncasecmp	String_Compare_N_IgnoreCase
+
+//!	Returns TRUE if the two given strings have identical content, and FALSE otherwise
+/*!
+**	@returns 1(TRUE) if the two given strings have identical content, and 0(FALSE) otherwise
+*/
+t_bool					String_Equals(char const* str1, char const* str2);
+#define ft_strequ		String_Equals
+
+//!	Returns TRUE if the first 'n' chars of the two given strings match, and FALSE otherwise
+/*!
+**	@returns 1(TRUE) if the first 'n' chars of the two given strings match, and 0(FALSE) otherwise
+*/
+t_bool					String_Equals_N(char const* str1, char const* str2, t_size n);
+#define ft_strnequ		String_Equals_N
+
+//!	Returns TRUE if the two given strings have identical content (case-insensitive), and FALSE otherwise
+/*!
+**	@returns 1(TRUE) if the two given strings have identical content (case-insensitive), and 0(FALSE) otherwise
+*/
+t_bool					String_Equals_IgnoreCase(char const* str1, char const* str2);
+#define ft_striequ		String_Equals_IgnoreCase
+#define ft_strcaseequ	String_Equals_IgnoreCase
+
+//!	Returns TRUE if the first 'n' chars of the two given strings match (ignoring case), and FALSE otherwise
+/*!
+**	@returns 1(TRUE) if the first 'n' chars of the two given strings match (ignoring case), and 0(FALSE) otherwise
+*/
+t_bool					String_Equals_N_IgnoreCase(char const* str1, char const* str2, t_size n);
+#define ft_strniequ		String_Equals_N_IgnoreCase
+#define ft_strncaseequ	String_Equals_N_IgnoreCase
 
 /*!
 **	Returns 1 if the given string 'str' contains at least one occurence
