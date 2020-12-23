@@ -22,6 +22,12 @@ t_time		Time_Now(void)
 	return (result);
 }
 
+t_time		Time_SetTimezone(t_time value, e_timezone old, e_timezone new)
+{
+	// TODO implement
+	return (value);
+}
+
 
 
 s_date		Time_To_Date_UTC(t_time const value)
@@ -43,6 +49,15 @@ s_date		Time_To_Date_LocalTime(t_time const value)
  	tm = localtime(&value);
 	result = STDC_To_Date(tm);
  	Memory_Delete((void*)&tm);
+	return (result);
+}
+
+s_date		Time_To_Date_Timezone(t_time const value, e_timezone timezone)
+{
+	s_date result;
+	t_time tmp = Time_SetTimezone(value, TIMEZONE_UTC, timezone);
+
+	// TODO implement
 	return (result);
 }
 
@@ -70,6 +85,14 @@ t_time		Date_To_Time_LocalTime(s_date const* value)
 #else
 	return (mktime(&date));
 #endif
+}
+
+t_time		Date_To_Time_Timezone(s_date const* value, e_timezone timezone)
+{
+	t_time result = 0;
+
+	// TODO implement
+	return (Time_SetTimezone(result, TIMEZONE_UTC, timezone));
 }
 
 
@@ -104,4 +127,24 @@ inline s_date		STDC_To_Date(struct tm const* value)
 	result.year      = value->tm_yday;
 	result.is_dst    = value->tm_isdst;
 	return (result);
+}
+
+
+
+struct timespec	Timespec_To_STDC(s_timespec const* value)
+{
+	return ((struct timespec)
+	{
+		.tv_sec = value->sec,
+		.tv_nsec = value->nanosec,
+	});
+}
+
+s_timespec		STDC_To_Timespec(struct timespec const* value)
+{
+	return ((s_timespec)
+	{
+		.sec = value->tv_sec,
+		.nanosec = value->tv_nsec,
+	});
 }
