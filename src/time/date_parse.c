@@ -460,7 +460,7 @@ recurse:
 			continue;
 
 		case 'Z':
-#ifndef __linux__
+#ifdef _WIN32
 			_tzset();
 #else
 			tzset();
