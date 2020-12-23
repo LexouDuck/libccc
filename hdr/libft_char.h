@@ -72,8 +72,8 @@ HEADER_CPP
 **	Check if the given char 'c' is a letter (lowercase or uppercase)
 **
 **	@param	c	The character to check (UTF-8)
-**	@returns 1 if the given char 'c' is a letter (lowercase or uppercase),
-**			and returns 0 otherwise.
+**	@returns 1(TRUE) if the given char 'c' is a letter (lowercase or uppercase),
+**			and returns 0(FALSE) otherwise.
 */
 t_bool				Char_IsLetter(int c);
 #define ft_isalpha	Char_IsLetter
@@ -83,8 +83,8 @@ t_bool				Char_IsLetter(int c);
 **	Check if the given char 'c' is a uppercase letter character
 **
 **	@param	c	The character to check (UTF-8)
-**	@returns 1 if the given char 'c' is a uppercase letter character,
-**			and returns 0 otherwise.
+**	@returns 1(TRUE) if the given char 'c' is a uppercase letter character,
+**			and returns 0(FALSE) otherwise.
 */
 t_bool				Char_IsUppercase(int c);
 #define ft_isupper	Char_IsUppercase
@@ -94,8 +94,8 @@ t_bool				Char_IsUppercase(int c);
 **	Check if the given char 'c' is an lowercase letter character
 **
 **	@param	c	The character to check (UTF-8)
-**	@returns 1 if the given char 'c' is an lowercase letter character,
-**			and returns 0 otherwise.
+**	@returns 1(TRUE) if the given char 'c' is an lowercase letter character,
+**			and returns 0(FALSE) otherwise.
 */
 t_bool				Char_IsLowercase(int c);
 #define ft_islower	Char_IsLowercase
@@ -105,8 +105,8 @@ t_bool				Char_IsLowercase(int c);
 **	Check if the given char 'c' is alphanumeric (letter or digit) character
 **
 **	@param	c	The character to check (UTF-8)
-**	@returns 1 if the given char 'c' is alphanumeric (letter or digit),
-**			and returns 0 otherwise.
+**	@returns 1(TRUE) if the given char 'c' is alphanumeric (letter or digit),
+**			and returns 0(FALSE) otherwise.
 */
 t_bool				Char_IsAlphaNumeric(int c);
 #define ft_isalnum	Char_IsAlphaNumeric
@@ -116,8 +116,8 @@ t_bool				Char_IsAlphaNumeric(int c);
 **	Check if the given char 'c' is a numerical digit character
 **
 **	@param	c	The character to check (UTF-8)
-**	@returns 1 if the given char 'c' is a numerical digit character,
-**			and returns 0 otherwise.
+**	@returns 1(TRUE) if the given char 'c' is a numerical digit character,
+**			and returns 0(FALSE) otherwise.
 */
 t_bool				Char_IsDigit(int c);
 #define ft_isdigit	Char_IsDigit
@@ -127,8 +127,8 @@ t_bool				Char_IsDigit(int c);
 **	Check if the given char 'c' is a hexadecimal character
 **
 **	@param	c	The character to check (UTF-8)
-**	@returns 1 if the given char 'c' is a hexadecimal character
-**			(either 0-9 or  A-F lowercase or uppercase), and returns 0 otherwise.
+**	@returns 1(TRUE) if the given char 'c' is a hexadecimal character
+**			(either 0-9 or  A-F lowercase or uppercase), and returns 0(FALSE) otherwise.
 */
 t_bool				Char_IsHexDigit(int c);
 #define ft_ishexdigit	Char_IsHexDigit
@@ -138,8 +138,8 @@ t_bool				Char_IsHexDigit(int c);
 **	Check if the given char 'c' is whitespace character (\r,\n,\f,\v,\t,' ')
 **
 **	@param	c	The character to check (UTF-8)
-**	@returns 1 if the given char 'c' is whitespace character: \r,\n,\f,\v,\t,' '
-**			(carriage return, newline, form feed, vertical tab, tab, or space), and returns 0 otherwise.
+**	@returns 1(TRUE) if the given char 'c' is whitespace character: \r,\n,\f,\v,\t,' '
+**			(carriage return, newline, form feed, vertical tab, tab, or space), and returns 0(FALSE) otherwise.
 */
 t_bool				Char_IsSpace(int c);
 #define ft_isspace	Char_IsSpace
@@ -149,8 +149,8 @@ t_bool				Char_IsSpace(int c);
 **	Check if the given char 'c' is a punctuation character
 **
 **	@param	c	The character to check (UTF-8)
-**	@returns 1 if the given char 'c' is a punctuation character,
-**			and returns 0 otherwise.
+**	@returns 1(TRUE) if the given char 'c' is a punctuation character,
+**			and returns 0(FALSE) otherwise.
 */
 t_bool				Char_IsPunctuation(int c);
 #define ft_ispunct	Char_IsPunctuation
@@ -160,8 +160,8 @@ t_bool				Char_IsPunctuation(int c);
 **	Check if the given char 'c' is a printable ASCII character
 **
 **	@param	c	The character to check (UTF-8)
-**	@returns 1 if the given char 'c' is a printable ASCII character,
-**			(0x20 <= c && c <= 0x7E) and returns 0 otherwise.
+**	@returns 1(TRUE) if the given char 'c' is a printable ASCII character,
+**			(0x20 <= c && c <= 0x7E) and returns 0(FALSE) otherwise.
 */
 t_bool				Char_IsPrintable(int c);
 #define ft_isprint	Char_IsPrintable
@@ -171,8 +171,8 @@ t_bool				Char_IsPrintable(int c);
 **	Check if the given char 'c' is an ASCII-compatible char (non UTF-8)
 **
 **	@param	c	The character to check (UTF-8)
-**	@returns 1 if the given char 'c' has a value between 0 and 127,
-**			(0x00 <= c && c <= 0x7F) and returns 0 otherwise.
+**	@returns 1(TRUE) if the given char 'c' has a value between 0 and 127,
+**			(0x00 <= c && c <= 0x7F) and returns 0(FALSE) otherwise.
 */
 t_bool				Char_IsASCII(int c);
 #define ft_isascii	Char_IsASCII
@@ -193,8 +193,9 @@ t_bool				Char_IsASCII(int c);
 **	@returns the uppercase equivalent of the given character 'c'
 **			(nothing is done if 'c' is not a letter character).
 */
-char				Char_ToUppercase(char c);
-#define ft_toupper	Char_ToUppercase
+char					Char_ToUppercase(char c);
+#define ft_toupper		Char_ToUppercase
+#define Char_ToUpper	Char_ToUppercase
 
 //! Get the lowercase version of the given char 'c'
 /*!
@@ -204,8 +205,11 @@ char				Char_ToUppercase(char c);
 **	@returns the lowercase equivalent of the given character 'c'
 **			(nothing is done if 'c' is not a letter character).
 */
-char				Char_ToLowercase(char c);
-#define ft_tolower	Char_ToLowercase
+char					Char_ToLowercase(char c);
+#define ft_tolower		Char_ToLowercase
+#define Char_ToLower	Char_ToLowercase
+
+// TODO add Char_ToMixedCase
 
 
 
