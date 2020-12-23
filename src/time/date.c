@@ -29,10 +29,10 @@ t_time		Date_To_Time_UTC(s_date const* value)
 	struct tm	date;
 
 	date = Date_To_STDC(value);
-#ifdef timegm
-	return (timegm(&date));
-#else
+#ifdef _WIN32
 	return (_mkgmtime(&date));
+#else
+	return (timegm(&date));
 #endif
 }
 
@@ -41,10 +41,10 @@ t_time		Date_To_Time_LocalTime(s_date const* value)
 	struct tm	date;
 
 	date = Date_To_STDC(value);
-#ifdef timelocal
-	return (timelocal(&date));
-#else
+#ifdef _WIN32
 	return (mktime(&date));
+#else
+	return (timelocal(&date));
 #endif
 }
 
