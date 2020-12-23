@@ -44,13 +44,15 @@ HEADER_CPP
 **	TODO	libft_io          + tests
 **	TODO	libft_algebra     + tests
 **	TODO	libft_complex     + tests
+**	TODO	libft_time        + tests // system clock time functions
 **	non-existent:
-**	TODO	libft_time       + tests // system clock time functions
-**	TODO	libft_object     + tests // extensible objects (json library)
-**	TODO	libft_fixedpoint + tests // fixed-point number math library
-**	TODO	libft_compress   + tests // compression functions (RLE, LZ77, LZW, Huffman)
-**	TODO	libft_socket     + tests // network socket functions (send, recv - and perhaps tcp/ip, udp, delta-t?)
-**	TODO	libft_vlq        + tests // variable-length quantity (bigint)
+**	TODO	libft_thread      + tests // POSIX-style pthread cross-platform interface
+**	TODO	libft_socket      + tests // network socket functions - send(), recv(), etc
+**	TODO	libft_network     + tests // utility functions for common network protocols: TCP/IP, UDP (maybe DELTA-T?)
+**	TODO	libft_object      + tests // extensible objects (json library)
+**	TODO	libft_fixedpoint  + tests // fixed-point number math library
+**	TODO	libft_compress    + tests // compression functions (RLE, LZ77, LZW, Huffman)
+**	TODO	libft_vlq         + tests // variable-length quantity (bigint)
 */
 
 /*
