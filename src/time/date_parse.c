@@ -284,14 +284,14 @@ recurse:
 		 */
 		case 'A':	/* The day of week, using the locale's form. */
 		case 'a':
-			bp = find_string(bp, &tm->tm_wday, g_date_day, g_date_day_abbreviated, 7);
+			bp = find_string(bp, &tm->tm_wday, g_weekday, g_weekday_abbreviated, 7);
 			LEGAL_ALT(0);
 			continue;
 
 		case 'B':	/* The month, using the locale's form. */
 		case 'b':
 		case 'h':
-			bp = find_string(bp, &tm->tm_mon, g_date_month, g_date_month_abbreviated, 12);
+			bp = find_string(bp, &tm->tm_mon, g_month, g_month_abbreviated, 12);
 			LEGAL_ALT(0);
 			continue;
 
