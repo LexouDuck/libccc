@@ -88,13 +88,6 @@ SRC_MEMORY = \
 	ptrarrnew.c		\
 	ptrarrlen.c		\
 
-DIR_IO	 = io/
-SRC_IO	 = \
-	output.c		\
-	write.c			\
-	read.c			\
-	getnextline.c	\
-
 DIR_CHAR = char/
 SRC_CHAR = \
 	isalpha.c		\
@@ -125,7 +118,7 @@ SRC_STRING = \
 	strjoin.c		\
 	strinsert.c		\
 	strsub.c		\
-	strbuild.c		\
+	strformat.c		\
 	striter.c		\
 	strmap.c		\
 	strrep.c		\
@@ -167,6 +160,25 @@ SRC_CONVERT = \
 	str_to_bool.c		\
 	str_to_float.c		\
 
+DIR_IO	 = io/
+SRC_IO	 = \
+	output.c		\
+	write.c			\
+	read.c			\
+	getnextline.c	\
+
+DIR_TIME = time/
+SRC_TIME = \
+	time.c			\
+	date.c			\
+	date_format.c	\
+	date_parse.c	\
+	strings.c		\
+
+DIR_RANDOM = random/
+SRC_RANDOM = \
+	random.c			\
+
 DIR_COLOR = color/
 SRC_COLOR = \
 	color_argb_get.c	\
@@ -174,19 +186,6 @@ SRC_COLOR = \
 	color_argb_to.c		\
 	color_nearest.c		\
 	color_convert.c		\
-
-DIR_LIST = list/
-SRC_LIST = \
-	lstnew.c			\
-	lstadd.c			\
-	lstcpy.c			\
-	lstdel.c			\
-	lstsize.c			\
-	lstget.c			\
-	lstsub.c			\
-	lstiter.c			\
-	lstmap.c			\
-	lst_to.c			\
 
 DIR_MATH = math/
 SRC_MATH = \
@@ -234,31 +233,41 @@ SRC_STAT = \
 	stat_int.c			\
 	stat_float.c		\
 
-DIR_RANDOM = random/
-SRC_RANDOM = \
-	random.c			\
-
 DIR_VLQ	 = vlq/
 SRC_VLQ	 = \
+
+DIR_LIST = list/
+SRC_LIST = \
+	lstnew.c			\
+	lstadd.c			\
+	lstcpy.c			\
+	lstdel.c			\
+	lstsize.c			\
+	lstget.c			\
+	lstsub.c			\
+	lstiter.c			\
+	lstmap.c			\
+	lst_to.c			\
 
 
 
 # List of all source code files
 SRCS = \
-	$(addprefix $(DIR_IO),			$(SRC_IO)			) \
 	$(addprefix $(DIR_MEMORY),		$(SRC_MEMORY)		) \
 	$(addprefix $(DIR_CHAR),		$(SRC_CHAR)			) \
 	$(addprefix $(DIR_STRING),		$(SRC_STRING)		) \
 	$(addprefix $(DIR_STRINGARRAY),	$(SRC_STRINGARRAY)	) \
 	$(addprefix $(DIR_CONVERT),		$(SRC_CONVERT)		) \
+	$(addprefix $(DIR_IO),			$(SRC_IO)			) \
+	$(addprefix $(DIR_TIME),		$(SRC_TIME)			) \
+	$(addprefix $(DIR_RANDOM),		$(SRC_RANDOM)		) \
 	$(addprefix $(DIR_COLOR),		$(SRC_COLOR)		) \
-	$(addprefix $(DIR_LIST),		$(SRC_LIST)			) \
 	$(addprefix $(DIR_MATH),		$(SRC_MATH)			) \
 	$(addprefix $(DIR_ALGEBRA),		$(SRC_ALGEBRA)		) \
 	$(addprefix $(DIR_COMPLEX),		$(SRC_COMPLEX)		) \
 	$(addprefix $(DIR_STAT),		$(SRC_STAT)			) \
-	$(addprefix $(DIR_RANDOM),		$(SRC_RANDOM)		) \
 	$(addprefix $(DIR_VLQ),			$(SRC_VLQ)			) \
+	$(addprefix $(DIR_LIST),		$(SRC_LIST)			) \
 
 # define object files list (.o) from source list
 OBJS = ${SRCS:%.c=$(OBJDIR)%.o}

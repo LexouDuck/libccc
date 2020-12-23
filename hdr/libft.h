@@ -207,14 +207,22 @@ HEADER_CPP
 **	__FLOAT_WORD_ORDER__ == __ORDER_BIG_ENDIAN__	If TRUE, this machine stores multi-word floats in regular ordering (most-to-least signficant)
 */
 
-#ifdef __clang__
-	#define __printf(POS_FORMAT, POS_VARARGS)	__attribute__ ((format(printf, POS_FORMAT, POS_VARARGS)))
-#else
-	#ifdef __MINGW32__
-		#define __printf(POS_FORMAT, POS_VARARGS)	__attribute__ ((format(gnu_printf, POS_FORMAT, POS_VARARGS)))
+#ifdef __GNUC__
+	#ifdef __clang__
+		#define __format_printf(POS_FORMAT, POS_VARARGS)	__attribute__ ((format(printf, POS_FORMAT, POS_VARARGS)))
+		#define __format_strftime(POS_FORMAT)				__attribute__ ((format(strftime, POS_FORMAT, 0)))
 	#else
-		#define __printf(POS_FORMAT, POS_VARARGS)	__attribute__ ((format(printf, POS_FORMAT, POS_VARARGS)))
+		#ifdef __MINGW32__
+			#define __format_printf(POS_FORMAT, POS_VARARGS)	__attribute__ ((format(gnu_printf, POS_FORMAT, POS_VARARGS)))
+			#define __format_strftime(POS_FORMAT)				__attribute__ ((format(gnu_strftime, POS_FORMAT, 0)))
+		#else
+			#define __format_printf(POS_FORMAT, POS_VARARGS)	__attribute__ ((format(printf, POS_FORMAT, POS_VARARGS)))
+			#define __format_strftime(POS_FORMAT)				__attribute__ ((format(strftime, POS_FORMAT, 0)))
+		#endif
 	#endif
+#else
+	#define __format_printf(POS_FORMAT, POS_VARARGS)	
+	#define __format_strftime(POS_FORMAT)	
 #endif
 
 

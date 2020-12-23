@@ -47,20 +47,22 @@ int		vasprintf(char* *a_str, char const* format, va_list ap)
 
 
 
-char*	String_Build_VA(char const* format, va_list ap)
+char*	String_Format_VA(char const* format, va_list ap)
 {
 	int result;
 	char* str = NULL;
 
 	result = vasprintf(&str, format, ap);
 	if (result < 0)
+	{
+		if (str)
+			String_Delete(&str);
 		return (NULL);
+	}
 	return (str);
 }
 
-
-
-char*	String_Build(char const* format, ...)
+char*	String_Format(char const* format, ...)
 {
 	va_list args;
 	int result;
@@ -70,6 +72,28 @@ char*	String_Build(char const* format, ...)
 	result = vasprintf(&str, format, args);
 	va_end(args);
 	if (result < 0)
+	{
+		if (str)
+			String_Delete(&str);
 		return (NULL);
+	}
 	return (str);
+}
+
+
+
+t_size	String_Format_N_VA(char* dest, t_size max, char const* format, va_list ap)
+{
+	return (vsnprintf(dest, max, format, ap));
+}
+
+t_size	String_Format_N(char* dest, t_size max, char const* format, ...)
+{
+	t_size result;
+	va_list args;
+
+	va_start(args, format);
+	result = vsnprintf(dest, max, format, args);
+	va_end(args);
+	return (result);
 }

@@ -1,3 +1,9 @@
+
+#include "libft_time.h"
+
+
+
+#ifndef strptime
 /*
 **	Cross-platform implementation of strptime()
 **	Courtesy of @Maxxim at https://stackoverflow.com/questions/40159892/using-asprintf-on-windows
@@ -5,16 +11,9 @@
 **	To be included BEFORE <time.h>
 */
 
-#ifndef __STRPTIME_H
-#define __STRPTIME_H
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 /*	$NetBSD: strptime.c,v 1.36 2012/03/13 21:13:48 christos Exp $	*/
 
-/*!
+/*
 **	Copyright (c) 1997, 1998, 2005, 2008 The NetBSD Foundation, Inc.
 **	All rights reserved.
 **	
@@ -88,37 +87,85 @@ typedef unsigned int uint;
  */
 #define ALT_E			0x01
 #define ALT_O			0x02
-#define	LEGAL_ALT(x)		{ if (alt_format & ~(x)) return NULL; }
+#define	LEGAL_ALT(x)	{ if (alt_format & ~(x)) return NULL; }
 
 static int TM_YEAR_BASE = 1900;
 static char gmt[] = { "GMT" };
 static char utc[] = { "UTC" };
 /* RFC-822/RFC-2822 */
-static const char * const nast[5] = {
-       "EST",    "CST",    "MST",    "PST",    "\0\0\0"
+static const char * const nast[5] =
+{
+	"EST",
+	"CST",
+	"MST",
+	"PST",
+	"\0\0\0"
 };
-static const char * const nadt[5] = {
-       "EDT",    "CDT",    "MDT",    "PDT",    "\0\0\0"
+static const char * const nadt[5] =
+{
+	"EDT",
+	"CDT",
+	"MDT",
+	"PDT",
+	"\0\0\0"
 };
-static const char * const am_pm[2] = {
-       "am", "pm"
-};
-static const char * const day[7] = {
-	"sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"
-};
-static const char * const abday[7] = {
-	"sun", "mon", "tue", "wed", "thu", "fri", "sat"
-};
-static const char * const mon[12] = {
-	"january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"
-};
-static const char * const abmon[12] = {
-	"jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"
+static const char * const am_pm[2] =
+{
+	"am",
+	"pm"
 };
 
 static const u_char *conv_num(const unsigned char *, int *, uint, uint);
 static const u_char *find_string(const u_char *, int *, const char * const *,
 	const char * const *, int);
+
+
+static const u_char *	conv_num(const unsigned char *buf, int *dest, uint llim, uint ulim)
+{
+	uint result = 0;
+	unsigned char ch;
+
+	/* The limit also determines the number of valid digits. */
+	uint rulim = ulim;
+
+	ch = *buf;
+	if (ch < '0' || ch > '9')
+		return NULL;
+
+	do {
+		result *= 10;
+		result += ch - '0';
+		rulim /= 10;
+		ch = *++buf;
+	} while ((result * 10 <= ulim) && rulim && ch >= '0' && ch <= '9');
+
+	if (result < llim || result > ulim)
+		return NULL;
+
+	*dest = result;
+	return buf;
+}
+
+static const u_char *	find_string(const u_char *bp, int *tgt, const char * const *n1, const char * const *n2, int c)
+{
+	int i;
+	size_t len;
+
+	/* check full name - then abbreviated ones */
+	for (; n1 != NULL; n1 = n2, n2 = NULL) {
+		for (i = 0; i < c; i++, n1++) {
+			len = strlen(*n1);
+			if (strncasecmp(*n1, (const char *)bp, len) == 0) {
+				*tgt = i;
+				return bp + len;
+			}
+		}
+	}
+
+	/* Nothing matched */
+	return NULL;
+}
+
 /*
 #if !defined(MO_MINGW32) && !defined(__linux__)
 static int strncasecmp(const char *a, const char *b, size_t c);
@@ -128,7 +175,7 @@ static int strncasecmp(const char *a, const char *b, size_t c);
 static int
 strncasecmp(const char *a, const char *b, size_t c)
 {
-    return _strnicmp(a, b, c);
+	return _strnicmp(a, b, c);
 }
 #endif
 */
@@ -136,8 +183,7 @@ strncasecmp(const char *a, const char *b, size_t c)
 /*
 ** NB: Reminder that tm must be set to 0 before being passed here.
 */
-char *
-strptime(const char *buf, const char *fmt, struct tm *tm)
+char *	strptime(const char *buf, const char *fmt, struct tm *tm)
 {
 	unsigned char c;
 	const unsigned char *bp, *ep;
@@ -188,10 +234,10 @@ literal:
 		 * "Complex" conversion rules, implemented through recursion.
 		 */
 		/* we do not need 'c'
-      case 'c': Date and time, using the locale's format. 
+	  case 'c': Date and time, using the locale's format. 
 			new_fmt = _ctloc(d_t_fmt);
 			goto recurse;
-      */
+	  */
 
 		case 'D':	/* The date as "%m/%d/%y". */
 			new_fmt = "%m/%d/%y";
@@ -219,17 +265,17 @@ literal:
 			goto recurse;
 
 		/* we don't use 'X'
-      case 'X': The time, using the locale's format.
+	  case 'X': The time, using the locale's format.
 			new_fmt =_ctloc(t_fmt);
 			goto recurse;
-      */
+	  */
 
 		/* we do not need 'x'
-      case 'x': The date, using the locale's format.
+	  case 'x': The date, using the locale's format.
 			new_fmt =_ctloc(d_fmt);*/
 recurse:
 			bp = (const u_char *)strptime((const char *)bp,
-							    new_fmt, tm);
+								new_fmt, tm);
 			LEGAL_ALT(ALT_E);
 			continue;
 
@@ -238,14 +284,14 @@ recurse:
 		 */
 		case 'A':	/* The day of week, using the locale's form. */
 		case 'a':
-			bp = find_string(bp, &tm->tm_wday, day, abday, 7);
+			bp = find_string(bp, &tm->tm_wday, g_date_day, g_date_day_abbreviated, 7);
 			LEGAL_ALT(0);
 			continue;
 
 		case 'B':	/* The month, using the locale's form. */
 		case 'b':
 		case 'h':
-			bp = find_string(bp, &tm->tm_mon, mon, abmon, 12);
+			bp = find_string(bp, &tm->tm_mon, g_date_month, g_date_month_abbreviated, 12);
 			LEGAL_ALT(0);
 			continue;
 
@@ -343,7 +389,7 @@ recurse:
 				}
 
 				tm = localtime(&sse);
-            if (tm == NULL)
+			if (tm == NULL)
 					bp = NULL;
 			}
 			continue;
@@ -420,7 +466,7 @@ recurse:
 			tzset();
 #endif
 			if (strncasecmp((const char *)bp, gmt, 3) == 0
-          || strncasecmp((const char *)bp, utc, 3) == 0) {
+		  || strncasecmp((const char *)bp, utc, 3) == 0) {
 				tm->tm_isdst = 0;
 #ifdef TM_GMTOFF
 				tm->TM_GMTOFF = 0;
@@ -431,8 +477,8 @@ recurse:
 				bp += 3;
 			} else {
 				ep = find_string(bp, &i,
-					       	 (const char * const *)tzname,
-					       	  NULL, 2);
+							 (const char * const *)tzname,
+							  NULL, 2);
 				if (ep != NULL) {
 					tm->tm_isdst = i;
 #ifdef TM_GMTOFF
@@ -518,12 +564,12 @@ recurse:
 				}
 
 				if ((*bp >= 'A' && *bp <= 'I') ||
-				    (*bp >= 'L' && *bp <= 'Y')) {
+					(*bp >= 'L' && *bp <= 'Y')) {
 #ifdef TM_GMTOFF
 					/* Argh! No 'J'! */
 					if (*bp >= 'A' && *bp <= 'I')
 						tm->TM_GMTOFF =
-						    ('A' - 1) - (int)*bp;
+							('A' - 1) - (int)*bp;
 					else if (*bp >= 'L' && *bp <= 'M')
 						tm->TM_GMTOFF = 'A' - (int)*bp;
 					else if (*bp >= 'N' && *bp <= 'Y')
@@ -594,58 +640,19 @@ recurse:
 	return (char *)(bp);
 }
 
-
-static const u_char *
-conv_num(const unsigned char *buf, int *dest, uint llim, uint ulim)
-{
-	uint result = 0;
-	unsigned char ch;
-
-	/* The limit also determines the number of valid digits. */
-	uint rulim = ulim;
-
-	ch = *buf;
-	if (ch < '0' || ch > '9')
-		return NULL;
-
-	do {
-		result *= 10;
-		result += ch - '0';
-		rulim /= 10;
-		ch = *++buf;
-	} while ((result * 10 <= ulim) && rulim && ch >= '0' && ch <= '9');
-
-	if (result < llim || result > ulim)
-		return NULL;
-
-	*dest = result;
-	return buf;
-}
-
-static const u_char *
-find_string(const u_char *bp, int *tgt, const char * const *n1,
-		const char * const *n2, int c)
-{
-	int i;
-	size_t len;
-
-	/* check full name - then abbreviated ones */
-	for (; n1 != NULL; n1 = n2, n2 = NULL) {
-		for (i = 0; i < c; i++, n1++) {
-			len = strlen(*n1);
-			if (strncasecmp(*n1, (const char *)bp, len) == 0) {
-				*tgt = i;
-				return bp + len;
-			}
-		}
-	}
-
-	/* Nothing matched */
-	return NULL;
-}
-
 #ifdef __cplusplus
 } //extern c
 #endif
 
 #endif
+
+
+
+s_date		Date_String_Parse(char const* str, char const* format)
+{
+	struct tm result;
+
+	if (strptime(str, format, &result) == NULL)
+		return (DATE_NULL); // TODO handle error here ?
+	return (STDC_To_Date(&result));
+}

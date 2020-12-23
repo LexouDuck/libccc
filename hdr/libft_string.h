@@ -534,16 +534,32 @@ char*					String_Insert(char const* dest, char const* src, t_size offset);
 char*					String_Sub(char const* str, t_size index, t_size n);
 #define ft_strsub		String_Sub
 
-//! Constructs a string from the given 'format' string and multiple args (like 'asprintf()')
+//! Constructs a string from the given 'format' string and multiple args (equivalent to 'asprintf()')
 /*!
 **	Returns a new null-terminated string, which is generated from the given
 **	'format' string and variadic args - it is equivalent to 'asprintf()'.
 */
-char*					String_Build(char const* format, ...) __printf(1, 2);
-#define ft_strbuild		String_Build
-#define ft_asprintf		String_Build
-//! Same as String_Build, but takes a variadic args list
-char*					String_Build_VA(char const* format, va_list ap);
+char*					String_Format(char const* format, ...) __format_printf(1, 2);
+#define ft_asprintf		String_Format
+#define ft_strbuild		String_Format
+#define ft_strformat	String_Format
+#define String_Build	String_Format
+//! @copydef String_Build, but takes a variadic arguments list
+char*					String_Format_VA(char const* format, va_list args);
+#define String_Build_VA	String_Format_VA
+
+//! Constructs a string from the given 'format' string and multiple args, writing at most 'max' chars into 'dest' (equivalent to 'snprintf()')
+/*!
+**	@param	dest	The destination buffer, in which to write the resulting string (if NULL, does not write anything and simply returns the length)
+**	@param	max		The maximum amount of characters to write to 'dest', including the '\0' null terminator
+**	@param	format	The format string used to construct the resulting date string: learn more here https://www.cplusplus.com/reference/cstdio/printf/
+**	@returns the amount of characters in the constructed format string, regardless of 'max' size
+*/
+t_size					String_Format_N(char* dest, t_size max, char const* format, ...);
+#define ft_snprintf		String_Format_N
+//! @copydef String_Build, but takes a variadic arguments list
+t_size					String_Format_N_VA(char* dest, t_size max, char const* format, va_list args);
+#define ft_vsnprintf	String_Format_N
 
 
 /*!

@@ -184,7 +184,7 @@ int						IO_Write_Memory(t_fd fd, t_u8 const* ptr, t_size n, t_u8 cols);
 #define ft_write_memory	IO_Write_Memory
 
 //! Writes the given formatted string to the standard output - equivalent to 'fprintf()', or rather 'dprintf()'
-int						IO_Write_Format(t_fd fd, char const* format, ...) __printf(2, 3);
+int						IO_Write_Format(t_fd fd, char const* format, ...) __format_printf(2, 3);
 #define ft_write_format	IO_Write_Format
 #define ft_dprintf		IO_Write_Format
 
@@ -222,7 +222,7 @@ int							IO_Output_Memory(t_u8 const* ptr, t_size n, t_u8 cols);
 #define ft_putmem			IO_Output_Memory
 
 //! Writes the given formatted string to the standard output - equivalent to 'printf()'
-int							IO_Output_Format(char const* format, ...) __printf(1, 2);
+int							IO_Output_Format(char const* format, ...) __format_printf(1, 2);
 #define ft_output_format	IO_Output_Format
 #define ft_printf			IO_Output_Format
 

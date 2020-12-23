@@ -3,40 +3,7 @@
 
 
 
-extern char const* gmt = "GMT";
-extern char const* utc = "UTC";
-
-
-
-extern char const* const g_time_NAST[5] =
-{
-	"EST",
-	"CST",
-	"MST",
-	"PST",
-	"\0\0\0"
-};
-
-extern char const* const g_time_NADT[5] =
-{
-	"EDT",
-	"CDT",
-	"MDT",
-	"PDT",
-	"\0\0\0"
-};
-
-
-
-extern char const* const AM_PM[2] =
-{
-	"AM",
-	"PM",
-};
-
-
-
-char const* const	g_time_day[ENUMLENGTH_WEEKDAY] =
+char const* const	g_date_day[ENUMLENGTH_WEEKDAY] =
 {
 	"sunday",
 	"monday",
@@ -47,7 +14,7 @@ char const* const	g_time_day[ENUMLENGTH_WEEKDAY] =
 	"saturday",
 };
 
-char const* const	g_time_day_abbreviated[ENUMLENGTH_WEEKDAY] =
+char const* const	g_date_day_abbreviated[ENUMLENGTH_WEEKDAY] =
 {
 	"sun",
 	"mon",
@@ -59,7 +26,8 @@ char const* const	g_time_day_abbreviated[ENUMLENGTH_WEEKDAY] =
 };
 
 
-char const* const	g_time_month[ENUMLENGTH_MONTH] =
+
+char const* const	g_date_month[ENUMLENGTH_MONTH] =
 {
 	"january",
 	"february",
@@ -75,7 +43,7 @@ char const* const	g_time_month[ENUMLENGTH_MONTH] =
 	"december",
 };
 
-char const* const	g_time_month_abbreviated[ENUMLENGTH_MONTH] =
+char const* const	g_date_month_abbreviated[ENUMLENGTH_MONTH] =
 {
 	"jan",
 	"feb",
