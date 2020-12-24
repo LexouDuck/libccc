@@ -216,6 +216,33 @@ HEADER_CPP
 **	__FLOAT_WORD_ORDER__ == __ORDER_BIG_ENDIAN__	If TRUE, this machine stores multi-word floats in regular ordering (most-to-least signficant)
 */
 
+
+
+/*
+** ************************************************************************** *|
+**                   Useful cross-platform compiler macros                    *|
+** ************************************************************************** *|
+*/
+
+// Check windows
+#if (_WIN32 || _WIN64)
+	#if (_WIN64)
+		#define _IS_64BIT	(1)	//!< If this is a 64-bit platform, then this is defined with value (1)
+	#else
+		#define _IS_32BIT	(1)	//!< If this is a 32-bit platform, then this is defined with value (1)
+	#endif
+#endif
+// Check GCC
+#if (__GNUC__)
+	#if (__x86_64__ || __ppc64__)
+		#define _IS_64BIT	(1)	//!< If this is a 64-bit platform, then this is defined with value (1)
+	#else
+		#define _IS_32BIT	(1)	//!< If this is a 32-bit platform, then this is defined with value (1)
+	#endif
+#endif
+
+
+
 #ifdef __GNUC__
 	#ifdef __clang__
 		#define __format_printf(POS_FORMAT, POS_VARARGS)	__attribute__ ((format(printf, POS_FORMAT, POS_VARARGS)))
