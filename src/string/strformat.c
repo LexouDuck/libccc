@@ -16,8 +16,8 @@
 
 
 
-#ifndef vasprintf
-int		vscprintf(char const* format, va_list ap)
+#ifndef vscprintf
+static int	vscprintf(char const* format, va_list ap)
 {
 	va_list ap_copy;
 
@@ -26,8 +26,10 @@ int		vscprintf(char const* format, va_list ap)
 	va_end(ap_copy);
 	return (result);
 }
+#endif
 
-int		vasprintf(char* *a_str, char const* format, va_list ap)
+#ifndef vasprintf
+static int	vasprintf(char* *a_str, char const* format, va_list ap)
 {
 	int length = vscprintf(format, ap);
 	if (length == -1)
