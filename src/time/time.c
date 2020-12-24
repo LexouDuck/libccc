@@ -8,14 +8,13 @@
 #include <time.h>
 
 #include "libft_time.h"
-#include "libft_memory.h"
 
 
 
 t_time		Time_Now(void)
 {
 	t_time result;
-	if (time(&result) < 0)
+	if (time(&result) == (t_time)-1)
 		return (TIME_NULL);
 	return (result);
 }
@@ -29,7 +28,6 @@ s_date		Time_To_Date_UTC(t_time const value)
 
  	tm = gmtime(&value);
 	result = STDC_To_Date(tm);
- 	Memory_Delete((void*)&tm);
 	return (result);
 }
 
@@ -40,13 +38,12 @@ s_date		Time_To_Date_LocalTime(t_time const value)
 
  	tm = localtime(&value);
 	result = STDC_To_Date(tm);
- 	Memory_Delete((void*)&tm);
 	return (result);
 }
 
 
 
-struct timespec	Timespec_To_STDC(s_timespec const* value)
+inline struct timespec	Timespec_To_STDC(s_timespec const* value)
 {
 	return ((struct timespec)
 	{
@@ -55,7 +52,7 @@ struct timespec	Timespec_To_STDC(s_timespec const* value)
 	});
 }
 
-s_timespec		STDC_To_Timespec(struct timespec const* value)
+inline s_timespec		STDC_To_Timespec(struct timespec const* value)
 {
 	return ((s_timespec)
 	{

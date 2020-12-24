@@ -23,15 +23,16 @@
 ** ************************************************************************** *|
 */
 
-#include "libft.h"
-
-HEADER_CPP
-
+#include <time.h>
+/*
 #ifndef __APPLE__
 	#define _XOPEN_SOURCE 600
 #endif
 #include <sys/time.h>
-#include <time.h>
+*/
+#include "libft.h"
+
+HEADER_CPP
 
 /*
 ** ************************************************************************** *|
@@ -210,6 +211,16 @@ typedef struct	s_date_
 
 
 
+#define FORMAT_TIME_UNIX		"%H:%M:%S"
+#define FORMAT_TIME_REVERSE		"%S:%M:%H"
+
+#define FORMAT_DATE_UNIX	"%Y-%m-%d"
+#define FORMAT_DATE_YMD		"%Y/%m/%d"
+#define FORMAT_DATE_DMY		"%d/%m/%Y"
+#define FORMAT_DATE_MDY		"%m/%d/%Y"
+
+
+
 #define TIME_MAX_SECONDS	(60)	//!< The amount of seconds in a minute
 #define TIME_MAX_MINUTES	(60)	//!< The amount of minutes in an hour
 #define TIME_MAX_HOURS		(24)	//!< The amount of hours in a day
@@ -293,7 +304,7 @@ s_date					Date_SetTimezone(s_date const* value, e_timezone old, e_timezone new)
 */
 
 //! Returns the current UTC timestamp, according to the system clock
-t_time					Date_Now(void);
+s_date					Date_Now(void);
 #define ft_date			Date_Now
 #define ft_date_now		Date_Now
 
@@ -316,7 +327,7 @@ char*						Date_String_Format(s_date const* date, char const* format) __format_s
 #define ft_date_format		Date_String_Format
 #define Date_Format			Date_String_Format
 //! @copydef Date_String_Format, but this version is more closely equivalent to 'strftime()'
-t_size						Date_String_Format_N(char* dest, t_size n, s_date const* date, char const* format) __format_strftime(4);
+t_size						Date_String_Format_N(char* dest, t_size max, s_date const* date, char const* format) __format_strftime(4);
 #define ft_strftime			Date_String_Format_N
 #define ft_date_format_n	Date_String_Format_N
 #define Date_Format_N		Date_String_Format_N

@@ -37,7 +37,13 @@
 HEADER_CPP
 
 /*
+**	TODO reorganize the ./hdr/ header folder to have subfolders and better organized/more split-up files
+**	TODO add a 't_char' and 't_utf8' type for strings
+**	TODO add 's_tensor' type to algebra
+**
 **	incomplete:
+**	TODO	libft_list        + tests
+**	TODO	libft_stat        + tests
 **	TODO	libft_color       + tests
 **	TODO	libft_random      + tests
 **	TODO	libft_stringarray + tests
@@ -52,6 +58,9 @@ HEADER_CPP
 **	TODO	libft_object      + tests // extensible objects (json library)
 **	TODO	libft_fixedpoint  + tests // fixed-point number math library
 **	TODO	libft_compress    + tests // compression functions (RLE, LZ77, LZW, Huffman)
+**	TODO	libft_crypto      + tests // cryptography
+**	TODO	libft_regex       + tests // regular expressions
+**	TODO	libft_regex       + tests // regular expressions
 **	TODO	libft_vlq         + tests // variable-length quantity (bigint)
 */
 

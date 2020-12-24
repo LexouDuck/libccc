@@ -88,12 +88,12 @@ int		IO_Write_Memory(int fd, t_u8 const* ptr, t_size n, t_u8 cols)
 
 int		IO_Write_Format(t_fd fd, char const* format, ...)
 {
-	va_list args;
 	int result;
 	char* str;
+	va_list args;
 
 	va_start(args, format);
-	str = String_Build(format, args);
+	str = String_Format_VA(format, args);
 	va_end(args);
 	if (str == NULL) // string already freed if need be
 		return (-1);

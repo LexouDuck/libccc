@@ -14,12 +14,12 @@
 
 
 
-t_time		Date_Now(void)
+s_date		Date_Now(void)
 {
 	t_time result;
-	if (time(&result) < 0)
-		return (TIME_NULL);
-	return (result);
+	if (time(&result) == (t_time)-1)
+		return (DATE_NULL);
+	return (Time_To_Date_UTC(result));
 }
 
 
@@ -52,32 +52,32 @@ t_time		Date_To_Time_LocalTime(s_date const* value)
 
 inline struct tm	Date_To_STDC(s_date const* value)
 {
- 	struct tm	result;
-
-	result.tm_sec   = value->sec;
-	result.tm_min   = value->min;
-	result.tm_hour  = value->hour;
-	result.tm_mday  = value->day_week;
-	result.tm_mon   = value->day_month;
-	result.tm_year  = value->day_year;
-	result.tm_wday  = value->month;
-	result.tm_yday  = value->year;
-	result.tm_isdst = value->is_dst;
-	return (result);
+	return ((struct tm)
+	{
+		.tm_sec   = value->sec,
+		.tm_min   = value->min,
+		.tm_hour  = value->hour,
+		.tm_wday  = value->day_week,
+		.tm_mday  = value->day_month,
+		.tm_yday  = value->day_year,
+		.tm_mon   = value->month,
+		.tm_year  = value->year,
+		.tm_isdst = value->is_dst,
+	});
 }
 
 inline s_date		STDC_To_Date(struct tm const* value)
 {
-	s_date result;
-
-	result.sec       = value->tm_sec;
-	result.min       = value->tm_min;
-	result.hour      = value->tm_hour;
-	result.day_week  = value->tm_mday;
-	result.day_month = value->tm_mon;
-	result.day_year  = value->tm_year;
-	result.month     = value->tm_wday;
-	result.year      = value->tm_yday;
-	result.is_dst    = value->tm_isdst;
-	return (result);
+	return ((s_date)
+	{
+		.sec       = value->tm_sec,
+		.min       = value->tm_min,
+		.hour      = value->tm_hour,
+		.day_week  = value->tm_wday,
+		.day_month = value->tm_mday,
+		.day_year  = value->tm_yday,
+		.month     = value->tm_mon,
+		.year      = value->tm_year,
+		.is_dst    = value->tm_isdst,
+	});
 }

@@ -53,12 +53,12 @@ inline int	IO_Output_Memory(t_u8 const* ptr, t_size n, t_u8 cols)
 
 int			IO_Output_Format(char const* format, ...)
 {
-	va_list args;
 	int result;
 	char* str;
+	va_list args;
 
 	va_start(args, format);
-	str = String_Build_VA(format, args);
+	str = String_Format_VA(format, args);
 	va_end(args);
 	if (str == NULL) // string already freed if need be
 		return (-1);
