@@ -28,6 +28,7 @@ static int	vscprintf(char const* format, va_list ap)
 }
 #endif
 
+#ifndef __APPLE__
 #ifndef vasprintf
 static int	vasprintf(char* *a_str, char const* format, va_list ap)
 {
@@ -46,6 +47,7 @@ static int	vasprintf(char* *a_str, char const* format, va_list ap)
 	*a_str = str;
 	return (result);
 }
+#endif
 #endif
 
 
