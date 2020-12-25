@@ -309,6 +309,8 @@ release: all
 
 all: $(NAME).a
 
+
+
 # This rule compiles object files from source files
 $(OBJDIR)%.o : $(SRCDIR)%.c
 	@mkdir -p $(@D)
