@@ -18,7 +18,7 @@ char*	Date_String_Format(s_date const* date, char const* format)
 	t_size	r;
 
 	tm = Date_To_STDC(date);
-	size = 32;
+	size = String_Length(format) + 1;
 	result = String_New(size);
 	if (result == NULL)
 		return (NULL);
