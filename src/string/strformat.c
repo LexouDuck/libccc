@@ -16,7 +16,9 @@
 
 
 
-#ifndef vscprintf
+#ifndef __APPLE__
+
+	#ifndef vscprintf
 static int	vscprintf(char const* format, va_list ap)
 {
 	va_list ap_copy;
@@ -26,10 +28,9 @@ static int	vscprintf(char const* format, va_list ap)
 	va_end(ap_copy);
 	return (result);
 }
-#endif
+	#endif
 
-#ifndef __APPLE__
-#ifndef vasprintf
+	#ifndef vasprintf
 static int	vasprintf(char* *a_str, char const* format, va_list ap)
 {
 	int length = vscprintf(format, ap);
@@ -47,7 +48,8 @@ static int	vasprintf(char* *a_str, char const* format, va_list ap)
 	*a_str = str;
 	return (result);
 }
-#endif
+	#endif
+
 #endif
 
 
