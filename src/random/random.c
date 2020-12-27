@@ -40,7 +40,7 @@ inline t_u32	ft_random_u32_0_to_pow2n(t_u32 n)
 
 inline t_u32	ft_random_u32_0_to_n(t_u32 n)
 {
-	return (ft_random_u32() % n);
+	return (n == 0 ? n : (ft_random_u32() % n));
 }
 
 inline t_int	ft_random_int_a_to_b(t_int a, t_int b)
