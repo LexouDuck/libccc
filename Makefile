@@ -290,20 +290,21 @@ debug: all
 release: MODE = release
 release: CFLAGS += $(CFLAGS_RELEASE)
 release: all
-	@mkdir -p $(BINDIR)
-	@cp $(NAME).a $(BINDIR)
+	@mkdir -p $(BINDIR)dynamic/$(OSMODE)
+	@mkdir -p $(BINDIR)static/$(OSMODE)
+	@cp $(NAME).a $(BINDIR)static/$(OSMODE)/
 	@if [ $(OSMODE) = win32 ] || [ $(OSMODE) = win64 ]; then printf \
-		"Compiling DLL: "$(BINDIR)$(NAME).dll" -> " ; \
-		$(CC) -shared -o $(BINDIR)$(NAME).dll $(OBJS) \
-		-Wl,--output-def,$(BINDIR)$(NAME).def \
-		-Wl,--out-implib,$(BINDIR)$(NAME).lib \
+		"Compiling DLL: "$(BINDIR)dynamic/$(OSMODE)/$(NAME).dll" -> " ; \
+		$(CC) -shared -o $(BINDIR)dynamic/$(OSMODE)/$(NAME).dll $(OBJS) \
+		-Wl,--output-def,$(BINDIR)dynamic/$(OSMODE)/$(NAME).def \
+		-Wl,--out-implib,$(BINDIR)dynamic/$(OSMODE)/$(NAME).lib \
 		-Wl,--export-all-symbols ; \
 	elif [ $(OSMODE) = macos ]; then printf \
-		"Compiling dylib: "$(BINDIR)$(NAME).dylib" -> " ; \
-		$(CC) -shared   -o $(BINDIR)$(NAME).dylib $(OBJS) ; \
+		"Compiling dylib: "$(BINDIR)dynamic/$(OSMODE)/$(NAME).dylib" -> " ; \
+		$(CC) -shared   -o $(BINDIR)dynamic/$(OSMODE)/$(NAME).dylib $(OBJS) ; \
 	elif [ $(OSMODE) = linux ]; then printf \
-		"Compiling .so lib: "$(BINDIR)$(NAME).so" -> " ; \
-		$(CC) -shared     -o $(BINDIR)$(NAME).so $(OBJS) ; \
+		"Compiling .so lib: "$(BINDIR)dynamic/$(OSMODE)/$(NAME).so" -> " ; \
+		$(CC) -shared     -o $(BINDIR)dynamic/$(OSMODE)/$(NAME).so $(OBJS) ; \
 	fi
 	@printf $(GREEN)"OK!"$(RESET)"\n"
 

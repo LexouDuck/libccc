@@ -1,6 +1,6 @@
 
+#bin/
 obj/
-bin/
 doc/*/*
 
 libft_test*
