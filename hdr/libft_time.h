@@ -140,9 +140,9 @@ extern char const* const g_month_abbreviated[ENUMLENGTH_MONTH];
 
 
 
-//! This enum allows one
+//! This signed int represents a timezone difference (in seconds)
 /*!
-**	This enum is based on the UTC time system - as such, it is not so much an enum but a signed integer.
+**	This signed int is based on the UTC time system - it expresses a time difference, in seconds.
 **	The idea is to notate timezones in the commonly accepted UTC format (eg: UTC+01, UTC-06, etc)
 **	There are several defines below that are meant to be used within this type:
 **	@see TIMEZONE_GMT,
@@ -155,25 +155,23 @@ extern char const* const g_month_abbreviated[ENUMLENGTH_MONTH];
 **		 TIMEZONE_MDT,
 **		 TIMEZONE_PDT,
 */
-typedef enum	e_timezone
-{
-	TIMEZONE_UTC = 0,
-}				e_timezone;
+typedef t_s32	t_timezone;
 
 // Commonly used timezones
-#define TIMEZONE_GMT	(TIMEZONE_UTC)		//!< Timezone (UTC 00): Greenwich Mean Time
-#define TIMEZONE_UTCMIN	(TIMEZONE_UTC-12)	//!< Timezone (UTC-12): The minimum UTC timezone (most late)
-#define TIMEZONE_UTCMAX	(TIMEZONE_UTC+12)	//!< Timezone (UTC+12): The maximum UTC timezone (most early)
+#define TIMEZONE_UTC(X)	(3600 * X)			//!< Timezone (UTC 00): Universal Coordinated Time (same as GMT)
+#define TIMEZONE_GMT	TIMEZONE_UTC(0)		//!< Timezone (UTC 00): Greenwich Mean Time (same as UTC)
+#define TIMEZONE_UTCMIN	TIMEZONE_UTC(-12)	//!< Timezone (UTC-12): The minimum UTC timezone (most late)
+#define TIMEZONE_UTCMAX	TIMEZONE_UTC(+12)	//!< Timezone (UTC+12): The maximum UTC timezone (most early)
 // NAST
-#define TIMEZONE_EST	(TIMEZONE_UTC-5)	//!< Timezone (UTC-05): North American Eastern Standard Time
-#define TIMEZONE_CST	(TIMEZONE_UTC-6)	//!< Timezone (UTC-06): North American Central Standard Time
-#define TIMEZONE_MST	(TIMEZONE_UTC-7)	//!< Timezone (UTC-07): North American Mountain Standard Time
-#define TIMEZONE_PST	(TIMEZONE_UTC-8)	//!< Timezone (UTC-08): North American Pacific Standard Time
+#define TIMEZONE_EST	TIMEZONE_UTC(-5)	//!< Timezone (UTC-05): North American Eastern Standard Time
+#define TIMEZONE_CST	TIMEZONE_UTC(-6)	//!< Timezone (UTC-06): North American Central Standard Time
+#define TIMEZONE_MST	TIMEZONE_UTC(-7)	//!< Timezone (UTC-07): North American Mountain Standard Time
+#define TIMEZONE_PST	TIMEZONE_UTC(-8)	//!< Timezone (UTC-08): North American Pacific Standard Time
 // NADT
-#define TIMEZONE_EDT	(TIMEZONE_UTC-4)	//!< Timezone (UTC-04): North American Eastern Daylight Time
-#define TIMEZONE_CDT	(TIMEZONE_UTC-5)	//!< Timezone (UTC-05): North American Central Daylight Time
-#define TIMEZONE_MDT	(TIMEZONE_UTC-6)	//!< Timezone (UTC-06): North American Mountain Daylight Time
-#define TIMEZONE_PDT	(TIMEZONE_UTC-7)	//!< Timezone (UTC-07): North American Pacific Daylight Time
+#define TIMEZONE_EDT	TIMEZONE_UTC(-4)	//!< Timezone (UTC-04): North American Eastern Daylight Time
+#define TIMEZONE_CDT	TIMEZONE_UTC(-5)	//!< Timezone (UTC-05): North American Central Daylight Time
+#define TIMEZONE_MDT	TIMEZONE_UTC(-6)	//!< Timezone (UTC-06): North American Mountain Daylight Time
+#define TIMEZONE_PDT	TIMEZONE_UTC(-7)	//!< Timezone (UTC-07): North American Pacific Daylight Time
 
 
 
@@ -275,7 +273,7 @@ s_timespec					STDC_To_Timespec(struct timespec const* value);
 
 /*
 ** ************************************************************************** *|
-**                       e_timezone: Timezone functions                       *|
+**                       t_timezone: Timezone functions                       *|
 ** ************************************************************************** *|
 */
 
@@ -284,7 +282,7 @@ s_timespec					STDC_To_Timespec(struct timespec const* value);
 **	Assuming the given 'value' has a timezone offset of 'old', then the
 **	returned value will have a timezone offset of 'new'.
 */
-t_time					Time_SetTimezone(t_time value, e_timezone old, e_timezone new);
+t_time					Time_SetTimezone(t_time value, t_timezone old, t_timezone new);
 #define ft_time_tzset	Time_SetTimezone
 
 //! Returns the value of the given 't_time value', updating the timezone offset from 'old' to 'new'
@@ -292,7 +290,7 @@ t_time					Time_SetTimezone(t_time value, e_timezone old, e_timezone new);
 **	Assuming the given 'value' has a timezone offset of 'old', then the
 **	returned value will have a timezone offset of 'new'.
 */
-s_date					Date_SetTimezone(s_date const* value, e_timezone old, e_timezone new);
+s_date					Date_SetTimezone(s_date const* value, t_timezone old, t_timezone new);
 #define ft_date_tzset	Date_SetTimezone
 
 

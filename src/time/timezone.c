@@ -3,16 +3,18 @@
 
 
 
-t_time		Time_SetTimezone(t_time value, e_timezone old, e_timezone new)
+inline t_time	Time_SetTimezone(t_time value, t_timezone old, t_timezone new)
 {
-	// TODO implement
-	return (value);
+	return (value + (new - old));
 }
 
 
 
-s_date		Date_SetTimezone(s_date const* value, e_timezone old, e_timezone new)
+inline s_date	Date_SetTimezone(s_date const* value, t_timezone old, t_timezone new)
 {
-	// TODO implement
-	return (*value);
+	t_time t;
+
+	t = Date_To_Time(value);
+	t = t + (new - old);
+	return (Time_To_Date(t));
 }
