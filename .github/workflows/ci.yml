@@ -36,6 +36,19 @@ jobs:
       run: |
         echo "PATH=$PATH:C:\msys64\mingw64\bin" >> $GITHUB_ENV
         alias gcc='x86_64-w64-mingw32-gcc'
+
+
+    - name: Build (with ${{matrix.compiler}}, for ${{matrix.os}})
+      shell: bash
+      run: make CC=${{matrix.compiler}}
+
+    - name: Test (with ${{matrix.compiler}}, for ${{matrix.os}})
+      shell: bash
+      run: make test CC=${{matrix.compiler}}
+
+    - name: Release (with ${{matrix.compiler}}, for ${{matrix.os}})
+      shell: bash
+      run: |
         mkdir -p ./bin/dynamic/win64
         mkdir -p ./bin/static/win64
         cp libft.a ./bin/static/win64/
@@ -96,16 +109,4 @@ jobs:
         zip -j ./dist/libft_0.7_macos_static.zip        ./bin/static/macos/*
         printf "\033[0;32m""  OK!""\033[0m""\n"
 
-
-
-    - name: Build (with ${{matrix.compiler}}, for ${{matrix.os}})
-      shell: bash
-      run: make CC=${{matrix.compiler}}
-
-    - name: Test (with ${{matrix.compiler}}, for ${{matrix.os}})
-      shell: bash
-      run: make test CC=${{matrix.compiler}}
-
-    - name: Release (with ${{matrix.compiler}}, for ${{matrix.os}})
-      shell: bash
-      run: make dist CC=${{matrix.compiler}}
+#      make dist CC=${{matrix.compiler}}
