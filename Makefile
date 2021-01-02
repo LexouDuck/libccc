@@ -17,7 +17,7 @@ CFLAGS_DEBUG = -g -ggdb -D DEBUG=1
 CFLAGS_RELEASE = -O3
 # -Wno-unused-result -Wno-unused-parameter
 CFLAGS_OS = _
-CFLAGS_OS_WIN   = -D__USE_MINGW_ANSI_STDIO=1
+CFLAGS_OS_WIN   = -D__USE_MINGW_ANSI_STDIO=1 -static -static-libgcc
 CFLAGS_OS_LINUX = -fPIC -Wno-unused-result
 CFLAGS_OS_MACOS = 
 
@@ -376,7 +376,7 @@ TEST_SRCS = \
 
 TEST_OBJS = ${TEST_SRCS:$(TEST_DIR)%.c=$(OBJDIR)%.o}
 
-TEST_CFLAGS = -O2 -g -ggdb -static -static-libgcc
+TEST_CFLAGS = -O2 -g -ggdb
 TEST_INCLUDEDIRS = -I$(HDRDIR) -I$(TEST_DIR)
 
 # This rule compiles object files from source files
