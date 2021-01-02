@@ -298,23 +298,29 @@ debug: $(NAME).a
 release: MODE = release
 release: CFLAGS += $(CFLAGS_RELEASE)
 release: $(NAME).a
-	mkdir -p $(BINDIR)dynamic/$(OSMODE)/
-	mkdir -p $(BINDIR)static/$(OSMODE)/
-	cp $(NAME).a $(BINDIR)static/$(OSMODE)/
-	if [ $(OSMODE) = win32 ] || [ $(OSMODE) = win64 ]; then printf \
-		"Compiling DLL: "$(BINDIR)dynamic/$(OSMODE)/$(NAME).dll" -> " ; \
-		$(CC) -shared -o $(BINDIR)dynamic/$(OSMODE)/$(NAME).dll $(OBJS) \
-		-Wl,--output-def,$(BINDIR)dynamic/$(OSMODE)/$(NAME).def \
-		-Wl,--out-implib,$(BINDIR)dynamic/$(OSMODE)/$(NAME).lib \
-		-Wl,--export-all-symbols ; \
-	elif [ $(OSMODE) = macos ]; then printf \
-		"Compiling dylib: "$(BINDIR)dynamic/$(OSMODE)/$(NAME).dylib" -> " ; \
-		$(CC) -shared   -o $(BINDIR)dynamic/$(OSMODE)/$(NAME).dylib $(OBJS) ; \
-	elif [ $(OSMODE) = linux ]; then printf \
-		"Compiling .so lib: "$(BINDIR)dynamic/$(OSMODE)/$(NAME).so" -> " ; \
-		$(CC) -shared     -o $(BINDIR)dynamic/$(OSMODE)/$(NAME).so $(OBJS) ; \
-	fi
-	printf $(GREEN)"OK!"$(RESET)"\n"
+	@mkdir -p $(BINDIR)dynamic/$(OSMODE)/
+	@mkdir -p $(BINDIR)static/$(OSMODE)/
+	@cp $(NAME).a $(BINDIR)static/$(OSMODE)/
+ifeq ($(OSMODE),$(filter $(OSMODE), win32 win64))
+	@printf \
+	"Compiling DLL: "$(BINDIR)dynamic/$(OSMODE)/$(NAME).dll" -> " ; \
+	$(CC) -shared -o $(BINDIR)dynamic/$(OSMODE)/$(NAME).dll $(OBJS)	\
+	-Wl,--output-def,$(BINDIR)dynamic/$(OSMODE)/$(NAME).def	\
+	-Wl,--out-implib,$(BINDIR)dynamic/$(OSMODE)/$(NAME).lib	\
+	-Wl,--export-all-symbols
+else ifeq ($(OSMODE),macos)
+	@printf \
+	"Compiling dylib: "$(BINDIR)dynamic/$(OSMODE)/$(NAME).dylib" -> " ; \
+	$(CC) -shared   -o $(BINDIR)dynamic/$(OSMODE)/$(NAME).dylib $(OBJS)
+else ifeq ($(OSMODE),linux)
+	@printf \
+	"Compiling .so lib: "$(BINDIR)dynamic/$(OSMODE)/$(NAME).so" -> " ; \
+	$(CC) -shared     -o $(BINDIR)dynamic/$(OSMODE)/$(NAME).so $(OBJS)
+else
+	@printf $(RED)"ERROR"$(RESET)": OS not supported -> OSMODE="$(OSMODE)"\n"
+	exit 1
+endif
+	@printf $(GREEN)"OK!"$(RESET)"\n"
 
 # This rule prepares ZIP archives in ./dist for each platform from the contents of the ./bin folder
 dist: release
@@ -384,7 +390,7 @@ TEST_CFLAGS = -O2 -g -ggdb
 TEST_INCLUDEDIRS = -I$(HDRDIR) -I$(TEST_DIR)
 
 # This rule compiles object files from source files
-$(OBJDIR)%.o : $(TEST_DIR)%.c $(TEST_HDRS)
+$(OBJDIR)%.o: $(TEST_DIR)%.c $(TEST_HDRS)
 	@printf "Compiling file: "$@" -> "
 	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -c $< -o $@
 	@printf $(GREEN)"OK!"$(RESET)"\n"
@@ -507,7 +513,7 @@ PREPROCESSED	=	${SRCS:%.c=$(OBJDIR)%.c}
 preprocessed: all $(PREPROCESSED)
 	@printf "Outputting preprocessed code...\n"
 
-$(OBJDIR)%.c : $(SRCDIR)%.c
+$(OBJDIR)%.c: $(SRCDIR)%.c
 	@printf "Preprocessing file: "$@" -> "
 	@$(CC) $(CFLAGS) -E $< -o $@
 	@printf $(GREEN)"OK!"$(RESET)"\n"
@@ -515,11 +521,11 @@ $(OBJDIR)%.c : $(SRCDIR)%.c
 
 
 # This line ensures the makefile won't conflict with files named 'clean', 'fclean', etc
-.PHONY : all debug release dist dist_version
-.PHONY : test
-.PHONY : clean fclean rclean re
-.PHONY : lint pclint_setup pclint
-.PHONY : doc preprocessed
+.PHONY: all debug release dist dist_version
+.PHONY: test
+.PHONY: clean fclean rclean re
+.PHONY: lint pclint_setup pclint
+.PHONY: doc preprocessed
 
 # The following line is for Makefile GCC dependency file handling (.d files)
 -include ${DPDS}
