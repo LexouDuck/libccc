@@ -314,8 +314,8 @@ else ifeq ($(OSMODE),macos)
 	$(CC) -shared   -o $(BINDIR)dynamic/$(OSMODE)/$(NAME).dylib $(OBJS)
 else ifeq ($(OSMODE),linux)
 	@printf \
-	"Compiling .so lib: "$(BINDIR)dynamic/$(OSMODE)/$(NAME).so" -> " ; \
-	$(CC) -shared     -o $(BINDIR)dynamic/$(OSMODE)/$(NAME).so $(OBJS)
+	"Compiling .so: "$(BINDIR)dynamic/$(OSMODE)/$(NAME).so" -> " ; \
+	$(CC) -shared -o $(BINDIR)dynamic/$(OSMODE)/$(NAME).so $(OBJS)
 else
 	@printf $(RED)"ERROR"$(RESET)": OS not supported -> OSMODE="$(OSMODE)"\n"
 	exit 1
