@@ -35,7 +35,8 @@ jobs:
       if: matrix.os == 'windows-latest'
       run: |
         echo "PATH=$PATH:C:\msys64\mingw64\bin" >> $GITHUB_ENV
-        alias gcc='x86_64-w64-mingw32-gcc'mkdir -p ./bin/dynamic/win64
+        alias gcc='x86_64-w64-mingw32-gcc'
+        mkdir -p ./bin/dynamic/win64
         mkdir -p ./bin/static/win64
         cp libft.a ./bin/static/win64/
         if [ win64 = win32 ] || [ win64 = win64 ]; then printf \
