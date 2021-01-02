@@ -354,7 +354,7 @@ TEST_SRCS = \
 
 TEST_OBJS = ${TEST_SRCS:$(TEST_DIR)%.c=$(OBJDIR)%.o}
 
-TEST_CFLAGS = -O2 -g -ggdb
+TEST_CFLAGS = -O2 -g -ggdb -static -static-libgcc
 TEST_INCLUDEDIRS = -I$(HDRDIR) -I$(TEST_DIR)
 
 # This rule compiles object files from source files
@@ -366,10 +366,7 @@ $(OBJDIR)%.o : $(TEST_DIR)%.c $(TEST_HDRS)
 # This rule builds the testing/CI program
 $(NAME_TEST): debug $(TEST_OBJS)
 	@printf "Compiling testing program: "$@" -> "
-	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -o $@ $(TEST_OBJS) -L./ -lft -lm
-	@ if [ $(OSMODE) = win32 ]; then cp $(TEST_DIR)libwinpthread-32.dll ./libwinpthread-1.dll ; \
-	elif [ $(OSMODE) = win64 ]; then cp $(TEST_DIR)libwinpthread-64.dll ./libwinpthread-1.dll ; \
-	fi
+	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -o $@ $(TEST_OBJS) -L./ -lft -lm -lpthread
 	@printf $(GREEN)"OK!"$(RESET)"\n"
 
 # This rule builds and runs the test executable
