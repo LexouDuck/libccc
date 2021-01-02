@@ -15,21 +15,31 @@ The objective is to have one simple, well-documented, efficient open-source impl
 The first step to accomplishing this is to not use the native int/long/short types, which can have different storage size depending on the platform
 ('int' is defined as the fastest integer type for the given machine, typically this will be the CPU register size - so on a 64-bit machine, that'd be int64, on a 32-bit machine int32, and some old embedded systems you come across might have 16-bit ints as the machine's default storage size). So first of all, using the integer types defined in "stdint.h" ('int32_t', 'uint64_t', etc) is essential for any cross-platform C code, as it ensures consistent cross-platform overflow behaviors (Note that these aren't present on every platform though - sometimes we will have to settle for the 'uint_fastX_t' types).
 
+The following categories/headers include the ISO standard library functions:
+* _**memory**_: functions to manipulate memory directly (memcpy,memset,memchr,etc, but also extras like ptrarrlen,memdup,getbits)
+* _**string**_: functions to manipulate strings (strcpy,strchr,strsub,etc but also extras such as strformat,strsplit,strmap)
+* _**char**_: functions to handle ANSI/ASCII characters (islower,isalpha,toupper,etc)
+* _**math**_: common mathematical functions operating on floating-point numbers (the implementations in this lib are fast-approximate versions, though by default LIBFTCONFIG_FAST_APPROX_MATH is defined as 0, so the functions are actually simple wrappers over the builtin FPU math functions)
+* _**time**_: functions for handling times/dates/timezones/timespecs (handling of timezones is different from the stdlib 'global variable' tzset call)
+* _**random**_: functions for simple pesudo-random number generation (many more functions than just the ISO rand/srand/rand_r functions)
+* _**io**_: functions for reading and writing (from/to terminal, or from/to file(s) - wrapper functions over `unistd.h` and `stdio.h`)
+
 Furthermore, there are other functions here that are not found in the ISO standard, particularly in the following categories:
-* convert: functions to replace the wonky std libc atoi/itoa/atof/strtol functions with more understandable type-specific conversion functions
-* io: functions for reading and writing (from/to terminal, or from/to file(s))
-* color: functions for converting between different common color encodings, as well as other useful color-related functions (like blending colors, etc)
-* random: a set of simple functions for different methods of pseudo-random number generation
-* stringarray: a set of functions used to manipulate string arrays (`char **`), where the top-level pointer array is terminated by a NULL pointer
-* stat: statistics & probabilities functions: int array sort functions, median, standard deviation, etc
-* list: linked list functions (using a simple list type which only stores the 'next' pointer)
-* vlq: Variable-Length Quantity math functions, for variable-size "big ints".
+* _**convert**_: functions to replace the wonky std libc atoi/itoa/atof/strtol functions with more understandable type-specific conversion functions
+* _**color**_: functions manipulating several common color encodings, as well as other useful color-related functions (like RGB_to_HSL, etc)
+* _**random**_: a set of simple functions for different methods of pseudo-random number generation
+* _**stringarray**_: a set of functions used to manipulate string arrays (`char **`), where the top-level pointer array is terminated by a NULL pointer
+* _**algebra**_: math functions for 2D/3D/4D vectors and matrices, as well as integrals and more
+* _**complex**_: math functions for complex number operations, as well as quaternions
+* _**stat**_: statistics & probabilities functions: int/float number array sort functions, median, standard deviation, etc
+* _**list**_: linked list functions (using a simple list type which only stores the 'next' pointer)
+* _**vlq**_: Variable-Length Quantity math functions, for variable-size "big ints".
 
 
 
 ### Why does this exist ?
 ---
-What started as a necessary exercise for the 42 school quickly became a much more expansive project: whereas the 42 libft project only requires students to code a certain set of important memory/string/io functions, we decided to take it further. Whereas libft is originally meant as an educational exercise, in which a student learns a lot by "reinventing wheels", here the goal is to have a standard C library which is fully cross-platform, uniformized, and customizable.
+What started as a necessary exercise for the 42 school quickly became a much more expansive project: whereas the 42 libft project only requires students to code a certain set of important memory/string/io functions, we decided to take it further. Whereas libft is originally meant as an educational exercise, in which a student learns a lot by "reinventing wheels", here the goal is to have a standard C library which is fully cross-platform, uniformized, which is configurable and customizable, obviously being open source (MIT license) and which offers more than the "bare minimum" of the ISO standard library of functions.
 
 
 
@@ -41,11 +51,11 @@ You can also add this git repo as a "git submodule" to your own if you wish (thi
 
 In general though, we recommend having the source code and compiling it yourself (as there are important customization flags in `./hdr/libft.h` which change how the library is compiled). In particular:
 - `LIBFTCONFIG_HANDLE_NULLPOINTERS`
-	If 0, then libft functions will always segfault when given NULL pointers.
-	If 1, then all NULL pointer accesses will be avoided, and an appropriate return value (eg:`NULL`, `0`, sometimes `-1`) will be returned.
+	If 0, then libft functions will always try to dereference (and usually do a segmentation fault) when given NULL pointer arguments.
+	If 1 (this is the default), then all NULL pointer accesses will be avoided, and an appropriate return value (eg:`NULL`, `0`, sometimes `-1`) will be returned by any libft function when given a NULL pointer.
 - `LIBFTCONFIG_FAST_APPROX_MATH`
-	If 1, the libft fast approximate functions will be used (precision error margin: 0.0001)
-	If 0, the builtin FPU-call libc math functions will be used (eg: `__builtin_powf()`, etc)
+	If 0 (this is the default), the builtin FPU-call libc math functions will be used (eg: `__builtin_powf()`, etc)
+	If 1, the libft fast approximate math functions will be used (these can be quite unreliable, their purpose is to be faster in terms of execution time - the general precision error margin they are tested for is 0.0001)
 
 
 
@@ -68,7 +78,7 @@ Every time a new commit/push is done, the automated CI testing job is run, as de
 This CI job builds everything with a `make`, and runs the testing suite with a `make test`. It runs with all of the following configurations:
 - Ubuntu (gcc and clang)
 - MacOS (gcc and clang)
-- Windows (mingw-gcc)
+- Windows (mingw-gcc and clang)
 
 
 
@@ -80,8 +90,14 @@ The make commands are:
 
 ##### Building
 
-##### `make` or `make all`
-- Build the `libft.a` library file.
+##### `make debug` or `make` or `make all`
+- Build the `libft.a` library file, in debug mode (with added flags: `-g -ggdb -D DEBUG=1`)
+
+##### `make release`
+- Build the `libft.a` library file, in release mode (builds both static and dynamic library files for the given OSMODE, with added flags like `-O3`)
+
+##### `make doc`
+- Generate documentation from doxygen comments in the code to the ./doc/ folder (in several formats: html, latex, rtf, man)
 
 
 ##### Checking/CI
