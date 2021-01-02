@@ -298,10 +298,10 @@ debug: $(NAME).a
 release: MODE = release
 release: CFLAGS += $(CFLAGS_RELEASE)
 release: $(NAME).a
-	@mkdir -p $(BINDIR)dynamic/$(OSMODE)
-	@mkdir -p $(BINDIR)static/$(OSMODE)
-	@cp $(NAME).a $(BINDIR)static/$(OSMODE)/
-	@if [ $(OSMODE) = win32 ] || [ $(OSMODE) = win64 ]; then printf \
+	mkdir -p $(BINDIR)dynamic/$(OSMODE)/
+	mkdir -p $(BINDIR)static/$(OSMODE)/
+	cp $(NAME).a $(BINDIR)static/$(OSMODE)/
+	if [ $(OSMODE) = win32 ] || [ $(OSMODE) = win64 ]; then printf \
 		"Compiling DLL: "$(BINDIR)dynamic/$(OSMODE)/$(NAME).dll" -> " ; \
 		$(CC) -shared -o $(BINDIR)dynamic/$(OSMODE)/$(NAME).dll $(OBJS) \
 		-Wl,--output-def,$(BINDIR)dynamic/$(OSMODE)/$(NAME).def \
@@ -314,7 +314,7 @@ release: $(NAME).a
 		"Compiling .so lib: "$(BINDIR)dynamic/$(OSMODE)/$(NAME).so" -> " ; \
 		$(CC) -shared     -o $(BINDIR)dynamic/$(OSMODE)/$(NAME).so $(OBJS) ; \
 	fi
-	@printf $(GREEN)"OK!"$(RESET)"\n"
+	printf $(GREEN)"OK!"$(RESET)"\n"
 
 # This rule prepares ZIP archives in ./dist for each platform from the contents of the ./bin folder
 dist: release

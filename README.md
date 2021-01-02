@@ -3,7 +3,7 @@
 A customizable cross-platform standard library for C
 
 <a href="https://github.com/LexouDuck/libft/actions">
-	<img src="https://github.com/LexouDuck/libft/workflows/libft%20CI/badge.svg" />
+	<img src="https://github.com/LexouDuck/libft/workflows/CI+CD/badge.svg" />
 </a>
 
 

@@ -1,4 +1,4 @@
-name: libft CI
+name: CI+CD
 
 on:
   push:
@@ -24,6 +24,7 @@ jobs:
     - uses: actions/checkout@v2
 
 
+
     - name: Setup (Ubuntu)
       if: matrix.os == 'ubuntu-latest'
       run: echo "Nothing to do"
@@ -37,6 +38,7 @@ jobs:
       run: |
         echo "PATH=$PATH:C:\msys64\mingw64\bin" >> $GITHUB_ENV
         alias gcc='x86_64-w64-mingw32-gcc'
+
 
 
     - name: Build (with ${{matrix.compiler}}, for ${{matrix.os}})
