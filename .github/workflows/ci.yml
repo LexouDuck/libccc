@@ -35,7 +35,66 @@ jobs:
       if: matrix.os == 'windows-latest'
       run: |
         echo "PATH=$PATH:C:\msys64\mingw64\bin" >> $GITHUB_ENV
-        alias gcc='x86_64-w64-mingw32-gcc'
+        alias gcc='x86_64-w64-mingw32-gcc'mkdir -p ./bin/dynamic/win64
+        mkdir -p ./bin/static/win64
+        cp libft.a ./bin/static/win64/
+        if [ win64 = win32 ] || [ win64 = win64 ]; then printf \
+                "Compiling DLL: "./bin/dynamic/win64/libft.dll" -> " ; \
+                x86_64-w64-mingw32-gcc -shared -o ./bin/dynamic/win64/libft.dll ./obj/memory/memalloc.o ./obj/memory/memnew.o ./obj/memory/memfree.o ./obj/memory/memdel.o ./obj/memory/memset.o ./obj/memory/memcpy.o ./obj/memory/memdup.o ./obj/memory/memmove.o ./obj/memory/memcmp.o ./obj/memory/memchr.o ./obj/memory/memswap.o ./obj/memory/memrep.o ./obj/memory/getbits.o ./obj/memory/ptrarrnew.o ./obj/memory/ptrarrlen.o ./obj/char/isalpha.o ./obj/char/isdigit.o ./obj/char/isprint.o ./obj/char/to.o ./obj/string/strnew.o ./obj/string/strset.o ./obj/string/strclr.o ./obj/string/strdel.o ./obj/string/strdup.o ./obj/string/strcpy.o ./obj/string/strcat.o ./obj/string/strlen.o ./obj/string/strcmp.o ./obj/string/strequ.o ./obj/string/strhas.o ./obj/string/strcount.o ./obj/string/strchr.o ./obj/string/strstr.o ./obj/string/strremove.o ./obj/string/strtrim.o ./obj/string/strpad.o ./obj/string/strrev.o ./obj/string/strjoin.o ./obj/string/strinsert.o ./obj/string/strsub.o ./obj/string/strformat.o ./obj/string/striter.o ./obj/string/strmap.o ./obj/string/strrep.o ./obj/string/strmerge.o ./obj/string/strprint.o ./obj/stringarray/strsplit_char.o ./obj/stringarray/strsplit_charset.o ./obj/stringarray/strsplit_str.o ./obj/stringarray/strdivide.o ./obj/stringarray/strarrnew.o ./obj/stringarray/strarrcnew.o ./obj/stringarray/strarrdel.o ./obj/stringarray/strarrmap.o ./obj/stringarray/strarrsub.o ./obj/stringarray/strarrpad_l.o ./obj/stringarray/strarrfold.o ./obj/stringarray/strarrjoin.o ./obj/stringarray/strarrlen.o ./obj/stringarray/strarrcount.o ./obj/stringarray/strarrmerge.o ./obj/convert/int_to_str.o ./obj/convert/int_to_strbase.o ./obj/convert/int_to_strhex.o ./obj/convert/size_to_str.o ./obj/convert/bool_to_str.o ./obj/convert/float_to_str.o ./obj/convert/str_to_int.o ./obj/convert/strbase_to_int.o ./obj/convert/strhex_to_int.o ./obj/convert/str_to_size.o ./obj/convert/str_to_bool.o ./obj/convert/str_to_float.o ./obj/io/output.o ./obj/io/write.o ./obj/io/read.o ./obj/io/getnextline.o ./obj/time/time.o ./obj/time/date.o ./obj/time/date_format.o ./obj/time/date_parse.o ./obj/time/strings.o ./obj/random/random.o ./obj/color/color_argb_get.o ./obj/color/color_argb_set.o ./obj/color/color_argb_to.o ./obj/color/color_nearest.o ./obj/color/color_convert.o ./obj/math/math.o ./obj/math/pow.o ./obj/math/root.o ./obj/math/exp.o ./obj/math/log.o ./obj/math/trig.o ./obj/math/trig_h.o ./obj/algebra/calculus.o ./obj/algebra/vector_new.o ./obj/algebra/vector_equ.o ./obj/algebra/vector_scale.o ./obj/algebra/vector_invert.o ./obj/algebra/vector_norm.o ./obj/algebra/vector_normalize.o ./obj/algebra/vector_add.o ./obj/algebra/vector_dot.o ./obj/algebra/vector_cross.o ./obj/algebra/matrix_new.o ./obj/algebra/matrix_equ.o ./obj/algebra/matrix_apply.o ./obj/algebra/matrix_determinant.o ./obj/algebra/matrix_inverse.o ./obj/algebra/matrix_transpose.o ./obj/algebra/matrix_multiply.o ./obj/complex/complex_new.o ./obj/complex/complex_equ.o ./obj/complex/complex_abs.o ./obj/complex/complex_conj.o ./obj/complex/complex_add.o ./obj/complex/complex_sub.o ./obj/complex/complex_mul.o ./obj/complex/complex_div.o ./obj/stat/stat_int.o ./obj/stat/stat_float.o ./obj/list/lstnew.o ./obj/list/lstadd.o ./obj/list/lstcpy.o ./obj/list/lstdel.o ./obj/list/lstsize.o ./obj/list/lstget.o ./obj/list/lstsub.o ./obj/list/lstiter.o ./obj/list/lstmap.o ./obj/list/lst_to.o \
+                -Wl,--output-def,./bin/dynamic/win64/libft.def \
+                -Wl,--out-implib,./bin/dynamic/win64/libft.lib \
+                -Wl,--export-all-symbols ; \
+        elif [ win64 = macos ]; then printf \
+                "Compiling dylib: "./bin/dynamic/win64/libft.dylib" -> " ; \
+                x86_64-w64-mingw32-gcc -shared   -o ./bin/dynamic/win64/libft.dylib ./obj/memory/memalloc.o ./obj/memory/memnew.o ./obj/memory/memfree.o ./obj/memory/memdel.o ./obj/memory/memset.o ./obj/memory/memcpy.o ./obj/memory/memdup.o ./obj/memory/memmove.o ./obj/memory/memcmp.o ./obj/memory/memchr.o ./obj/memory/memswap.o ./obj/memory/memrep.o ./obj/memory/getbits.o ./obj/memory/ptrarrnew.o ./obj/memory/ptrarrlen.o ./obj/char/isalpha.o ./obj/char/isdigit.o ./obj/char/isprint.o ./obj/char/to.o ./obj/string/strnew.o ./obj/string/strset.o ./obj/string/strclr.o ./obj/string/strdel.o ./obj/string/strdup.o ./obj/string/strcpy.o ./obj/string/strcat.o ./obj/string/strlen.o ./obj/string/strcmp.o ./obj/string/strequ.o ./obj/string/strhas.o ./obj/string/strcount.o ./obj/string/strchr.o ./obj/string/strstr.o ./obj/string/strremove.o ./obj/string/strtrim.o ./obj/string/strpad.o ./obj/string/strrev.o ./obj/string/strjoin.o ./obj/string/strinsert.o ./obj/string/strsub.o ./obj/string/strformat.o ./obj/string/striter.o ./obj/string/strmap.o ./obj/string/strrep.o ./obj/string/strmerge.o ./obj/string/strprint.o ./obj/stringarray/strsplit_char.o ./obj/stringarray/strsplit_charset.o ./obj/stringarray/strsplit_str.o ./obj/stringarray/strdivide.o ./obj/stringarray/strarrnew.o ./obj/stringarray/strarrcnew.o ./obj/stringarray/strarrdel.o ./obj/stringarray/strarrmap.o ./obj/stringarray/strarrsub.o ./obj/stringarray/strarrpad_l.o ./obj/stringarray/strarrfold.o ./obj/stringarray/strarrjoin.o ./obj/stringarray/strarrlen.o ./obj/stringarray/strarrcount.o ./obj/stringarray/strarrmerge.o ./obj/convert/int_to_str.o ./obj/convert/int_to_strbase.o ./obj/convert/int_to_strhex.o ./obj/convert/size_to_str.o ./obj/convert/bool_to_str.o ./obj/convert/float_to_str.o ./obj/convert/str_to_int.o ./obj/convert/strbase_to_int.o ./obj/convert/strhex_to_int.o ./obj/convert/str_to_size.o ./obj/convert/str_to_bool.o ./obj/convert/str_to_float.o ./obj/io/output.o ./obj/io/write.o ./obj/io/read.o ./obj/io/getnextline.o ./obj/time/time.o ./obj/time/date.o ./obj/time/date_format.o ./obj/time/date_parse.o ./obj/time/strings.o ./obj/random/random.o ./obj/color/color_argb_get.o ./obj/color/color_argb_set.o ./obj/color/color_argb_to.o ./obj/color/color_nearest.o ./obj/color/color_convert.o ./obj/math/math.o ./obj/math/pow.o ./obj/math/root.o ./obj/math/exp.o ./obj/math/log.o ./obj/math/trig.o ./obj/math/trig_h.o ./obj/algebra/calculus.o ./obj/algebra/vector_new.o ./obj/algebra/vector_equ.o ./obj/algebra/vector_scale.o ./obj/algebra/vector_invert.o ./obj/algebra/vector_norm.o ./obj/algebra/vector_normalize.o ./obj/algebra/vector_add.o ./obj/algebra/vector_dot.o ./obj/algebra/vector_cross.o ./obj/algebra/matrix_new.o ./obj/algebra/matrix_equ.o ./obj/algebra/matrix_apply.o ./obj/algebra/matrix_determinant.o ./obj/algebra/matrix_inverse.o ./obj/algebra/matrix_transpose.o ./obj/algebra/matrix_multiply.o ./obj/complex/complex_new.o ./obj/complex/complex_equ.o ./obj/complex/complex_abs.o ./obj/complex/complex_conj.o ./obj/complex/complex_add.o ./obj/complex/complex_sub.o ./obj/complex/complex_mul.o ./obj/complex/complex_div.o ./obj/stat/stat_int.o ./obj/stat/stat_float.o ./obj/list/lstnew.o ./obj/list/lstadd.o ./obj/list/lstcpy.o ./obj/list/lstdel.o ./obj/list/lstsize.o ./obj/list/lstget.o ./obj/list/lstsub.o ./obj/list/lstiter.o ./obj/list/lstmap.o ./obj/list/lst_to.o ; \
+        elif [ win64 = linux ]; then printf \
+                "Compiling .so lib: "./bin/dynamic/win64/libft.so" -> " ; \
+                x86_64-w64-mingw32-gcc -shared     -o ./bin/dynamic/win64/libft.so ./obj/memory/memalloc.o ./obj/memory/memnew.o ./obj/memory/memfree.o ./obj/memory/memdel.o ./obj/memory/memset.o ./obj/memory/memcpy.o ./obj/memory/memdup.o ./obj/memory/memmove.o ./obj/memory/memcmp.o ./obj/memory/memchr.o ./obj/memory/memswap.o ./obj/memory/memrep.o ./obj/memory/getbits.o ./obj/memory/ptrarrnew.o ./obj/memory/ptrarrlen.o ./obj/char/isalpha.o ./obj/char/isdigit.o ./obj/char/isprint.o ./obj/char/to.o ./obj/string/strnew.o ./obj/string/strset.o ./obj/string/strclr.o ./obj/string/strdel.o ./obj/string/strdup.o ./obj/string/strcpy.o ./obj/string/strcat.o ./obj/string/strlen.o ./obj/string/strcmp.o ./obj/string/strequ.o ./obj/string/strhas.o ./obj/string/strcount.o ./obj/string/strchr.o ./obj/string/strstr.o ./obj/string/strremove.o ./obj/string/strtrim.o ./obj/string/strpad.o ./obj/string/strrev.o ./obj/string/strjoin.o ./obj/string/strinsert.o ./obj/string/strsub.o ./obj/string/strformat.o ./obj/string/striter.o ./obj/string/strmap.o ./obj/string/strrep.o ./obj/string/strmerge.o ./obj/string/strprint.o ./obj/stringarray/strsplit_char.o ./obj/stringarray/strsplit_charset.o ./obj/stringarray/strsplit_str.o ./obj/stringarray/strdivide.o ./obj/stringarray/strarrnew.o ./obj/stringarray/strarrcnew.o ./obj/stringarray/strarrdel.o ./obj/stringarray/strarrmap.o ./obj/stringarray/strarrsub.o ./obj/stringarray/strarrpad_l.o ./obj/stringarray/strarrfold.o ./obj/stringarray/strarrjoin.o ./obj/stringarray/strarrlen.o ./obj/stringarray/strarrcount.o ./obj/stringarray/strarrmerge.o ./obj/convert/int_to_str.o ./obj/convert/int_to_strbase.o ./obj/convert/int_to_strhex.o ./obj/convert/size_to_str.o ./obj/convert/bool_to_str.o ./obj/convert/float_to_str.o ./obj/convert/str_to_int.o ./obj/convert/strbase_to_int.o ./obj/convert/strhex_to_int.o ./obj/convert/str_to_size.o ./obj/convert/str_to_bool.o ./obj/convert/str_to_float.o ./obj/io/output.o ./obj/io/write.o ./obj/io/read.o ./obj/io/getnextline.o ./obj/time/time.o ./obj/time/date.o ./obj/time/date_format.o ./obj/time/date_parse.o ./obj/time/strings.o ./obj/random/random.o ./obj/color/color_argb_get.o ./obj/color/color_argb_set.o ./obj/color/color_argb_to.o ./obj/color/color_nearest.o ./obj/color/color_convert.o ./obj/math/math.o ./obj/math/pow.o ./obj/math/root.o ./obj/math/exp.o ./obj/math/log.o ./obj/math/trig.o ./obj/math/trig_h.o ./obj/algebra/calculus.o ./obj/algebra/vector_new.o ./obj/algebra/vector_equ.o ./obj/algebra/vector_scale.o ./obj/algebra/vector_invert.o ./obj/algebra/vector_norm.o ./obj/algebra/vector_normalize.o ./obj/algebra/vector_add.o ./obj/algebra/vector_dot.o ./obj/algebra/vector_cross.o ./obj/algebra/matrix_new.o ./obj/algebra/matrix_equ.o ./obj/algebra/matrix_apply.o ./obj/algebra/matrix_determinant.o ./obj/algebra/matrix_inverse.o ./obj/algebra/matrix_transpose.o ./obj/algebra/matrix_multiply.o ./obj/complex/complex_new.o ./obj/complex/complex_equ.o ./obj/complex/complex_abs.o ./obj/complex/complex_conj.o ./obj/complex/complex_add.o ./obj/complex/complex_sub.o ./obj/complex/complex_mul.o ./obj/complex/complex_div.o ./obj/stat/stat_int.o ./obj/stat/stat_float.o ./obj/list/lstnew.o ./obj/list/lstadd.o ./obj/list/lstcpy.o ./obj/list/lstdel.o ./obj/list/lstsize.o ./obj/list/lstget.o ./obj/list/lstsub.o ./obj/list/lstiter.o ./obj/list/lstmap.o ./obj/list/lst_to.o ; \
+        fi
+        printf "\033[0;32m""OK!""\033[0m""\n"
+        rm -f ./dist/*
+        mkdir -p ./dist/
+        make -s dist_version OSMODE=win32 LIBMODE=dynamic
+        printf "Preparing ZIP: "
+        printf ./dist/libft_0.7_win32_dynamic.zip"\n"
+        zip -j ./dist/libft_0.7_win32_dynamic.zip       ./bin/dynamic/win32/*
+        printf "\033[0;32m""  OK!""\033[0m""\n"
+        make -s dist_version OSMODE=win32 LIBMODE=static
+        printf "Preparing ZIP: "
+        printf ./dist/libft_0.7_win32_static.zip"\n"
+        zip -j ./dist/libft_0.7_win32_static.zip        ./bin/static/win32/*
+        printf "\033[0;32m""  OK!""\033[0m""\n"
+        make -s dist_version OSMODE=win64 LIBMODE=dynamic
+        printf "Preparing ZIP: "
+        printf ./dist/libft_0.7_win64_dynamic.zip"\n"
+        zip -j ./dist/libft_0.7_win64_dynamic.zip       ./bin/dynamic/win64/*
+        printf "\033[0;32m""  OK!""\033[0m""\n"
+        make -s dist_version OSMODE=win64 LIBMODE=static
+        printf "Preparing ZIP: "
+        printf ./dist/libft_0.7_win64_static.zip"\n"
+        zip -j ./dist/libft_0.7_win64_static.zip        ./bin/static/win64/*
+        printf "\033[0;32m""  OK!""\033[0m""\n"
+        make -s dist_version OSMODE=linux LIBMODE=dynamic
+        printf "Preparing ZIP: "
+        printf ./dist/libft_0.7_linux_dynamic.zip"\n"
+        zip -j ./dist/libft_0.7_linux_dynamic.zip       ./bin/dynamic/linux/*
+        printf "\033[0;32m""  OK!""\033[0m""\n"
+        make -s dist_version OSMODE=linux LIBMODE=static
+        printf "Preparing ZIP: "
+        printf ./dist/libft_0.7_linux_static.zip"\n"
+        zip -j ./dist/libft_0.7_linux_static.zip        ./bin/static/linux/*
+        printf "\033[0;32m""  OK!""\033[0m""\n"
+        make -s dist_version OSMODE=macos LIBMODE=dynamic
+        printf "Preparing ZIP: "
+        printf ./dist/libft_0.7_macos_dynamic.zip"\n"
+        zip -j ./dist/libft_0.7_macos_dynamic.zip       ./bin/dynamic/macos/*
+        printf "\033[0;32m""  OK!""\033[0m""\n"
+        make -s dist_version OSMODE=macos LIBMODE=static
+        printf "Preparing ZIP: "
+        printf ./dist/libft_0.7_macos_static.zip"\n"
+        zip -j ./dist/libft_0.7_macos_static.zip        ./bin/static/macos/*
+        printf "\033[0;32m""  OK!""\033[0m""\n"
+
 
 
     - name: Build (with ${{matrix.compiler}}, for ${{matrix.os}})

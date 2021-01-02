@@ -6,8 +6,8 @@ VERSION = 0.7
 
 # Compiler
 CC	= _
-CC_WIN32 = i686-w64-mingw32-gcc
-CC_WIN64 = x86_64-w64-mingw32-gcc
+CC_WIN32 = i686-w64-mingw32-gcc -static -static-libgcc
+CC_WIN64 = x86_64-w64-mingw32-gcc -static -static-libgcc
 CC_LINUX = gcc
 CC_MACOS = gcc
 
@@ -17,7 +17,7 @@ CFLAGS_DEBUG = -g -ggdb -D DEBUG=1
 CFLAGS_RELEASE = -O3
 # -Wno-unused-result -Wno-unused-parameter
 CFLAGS_OS = _
-CFLAGS_OS_WIN   = -D__USE_MINGW_ANSI_STDIO=1 -static -static-libgcc
+CFLAGS_OS_WIN   = -D__USE_MINGW_ANSI_STDIO=1
 CFLAGS_OS_LINUX = -fPIC -Wno-unused-result
 CFLAGS_OS_MACOS = 
 
