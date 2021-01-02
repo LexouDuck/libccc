@@ -19,10 +19,24 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Add clang path to $PATH env
+
+    - name: Setup (Ubuntu)
       shell: bash
-      if: runner.os == 'Windows'
-      run: echo "PATH=$PATH:C:\msys64\mingw64\bin" >> $GITHUB_ENV
+      if: matrix.os == 'ubuntu-latest'
+      run: echo "Nothing to do"
+
+    - name: Setup (MacOS)
+      shell: bash
+      if: matrix.os == 'macOS-latest'
+      run: echo "Nothing to do"
+
+    - name: Setup (Windows)
+      shell: bash
+      if: matrix.os == 'windows-latest'
+      run: |
+        echo "PATH=$PATH:C:\msys64\mingw64\bin" >> $GITHUB_ENV
+        alias gcc='x86_64-w64-mingw32-gcc'
+
 
     - name: Build (with ${{matrix.compiler}}, for ${{matrix.os}})
       shell: bash

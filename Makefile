@@ -29,6 +29,8 @@ BINDIR = ./bin/
 DOCDIR = ./doc/
 DISTDIR = ./dist/
 
+
+
 # Set platform-specific variables
 ifeq ($(OS),Windows_NT)
 	ifeq ($(PROCESSOR_ARCHITECTURE),x86)
@@ -281,7 +283,7 @@ DPDS = ${OBJS:.o=.d}
 
 
 #######################################
-#          Main build rules           #
+#           Main build rules          #
 #######################################
 
 # This is the default build rule, called when doing 'make' without args
@@ -318,19 +320,21 @@ release: $(NAME).a
 dist: release
 	@rm -f $(DISTDIR)*
 	@mkdir -p $(DISTDIR)
-	@$(MAKE) dist_version OSMODE=win32 LIBMODE=dynamic
-	@$(MAKE) dist_version OSMODE=win64 LIBMODE=dynamic
-	@$(MAKE) dist_version OSMODE=linux LIBMODE=dynamic
-	@$(MAKE) dist_version OSMODE=macos LIBMODE=dynamic
-	@$(MAKE) dist_version OSMODE=win32 LIBMODE=static
-	@$(MAKE) dist_version OSMODE=win64 LIBMODE=static
-	@$(MAKE) dist_version OSMODE=linux LIBMODE=static
-	@$(MAKE) dist_version OSMODE=macos LIBMODE=static
+	@$(MAKE) -s dist_version OSMODE=win32 LIBMODE=dynamic
+	@$(MAKE) -s dist_version OSMODE=win32 LIBMODE=static
+	@$(MAKE) -s dist_version OSMODE=win64 LIBMODE=dynamic
+	@$(MAKE) -s dist_version OSMODE=win64 LIBMODE=static
+	@$(MAKE) -s dist_version OSMODE=linux LIBMODE=dynamic
+	@$(MAKE) -s dist_version OSMODE=linux LIBMODE=static
+	@$(MAKE) -s dist_version OSMODE=macos LIBMODE=dynamic
+	@$(MAKE) -s dist_version OSMODE=macos LIBMODE=static
 
 # This rule creates one ZIP distributable according to the current OSMODE and LIBMODE
 dist_version:
-	@printf "Preparing ZIP: \n"
+	@printf "Preparing ZIP: "
+	@printf $(DISTDIR)$(NAME)_$(VERSION)_$(OSMODE)_$(LIBMODE).zip"\n"
 	@zip -j $(DISTDIR)$(NAME)_$(VERSION)_$(OSMODE)_$(LIBMODE).zip	$(BINDIR)$(LIBMODE)/$(OSMODE)/*
+	@printf $(GREEN)"  OK!"$(RESET)"\n"
 
 
 
