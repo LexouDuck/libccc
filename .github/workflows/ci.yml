@@ -31,3 +31,7 @@ jobs:
     - name: Test (with ${{matrix.compiler}}, for ${{matrix.os}})
       shell: bash
       run: make test CC=${{matrix.compiler}}
+
+    - name: Release (with ${{matrix.compiler}}, for ${{matrix.os}})
+      shell: bash
+      run: make dist CC=${{matrix.compiler}}

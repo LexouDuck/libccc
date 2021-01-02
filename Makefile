@@ -2,6 +2,8 @@
 NAME      = libft
 NAME_TEST = libft_test
 
+VERSION = 0.7
+
 # Compiler
 CC	= _
 CC_WIN32 = i686-w64-mingw32-gcc
@@ -25,6 +27,7 @@ SRCDIR = ./src/
 OBJDIR = ./obj/
 BINDIR = ./bin/
 DOCDIR = ./doc/
+DISTDIR = ./dist/
 
 # Set platform-specific variables
 ifeq ($(OS),Windows_NT)
@@ -282,14 +285,17 @@ DPDS = ${OBJS:.o=.d}
 #######################################
 
 # This is the default build rule, called when doing 'make' without args
+all: debug
+
+# This rule builds the library, in DEBUG mode (with '-g -ggdb -D DEBUG=1')
 debug: MODE = debug
 debug: CFLAGS += $(CFLAGS_DEBUG)
-debug: all
+debug: $(NAME).a
 
-# This rule fills the 'bin' folder with necessary files for release distribution
+# This rule fills the ./bin folder with necessary files for release distribution
 release: MODE = release
 release: CFLAGS += $(CFLAGS_RELEASE)
-release: all
+release: $(NAME).a
 	@mkdir -p $(BINDIR)dynamic/$(OSMODE)
 	@mkdir -p $(BINDIR)static/$(OSMODE)
 	@cp $(NAME).a $(BINDIR)static/$(OSMODE)/
@@ -308,7 +314,23 @@ release: all
 	fi
 	@printf $(GREEN)"OK!"$(RESET)"\n"
 
-all: $(NAME).a
+# This rule prepares ZIP archives in ./dist for each platform from the contents of the ./bin folder
+dist: release
+	@rm -f $(DISTDIR)*
+	@mkdir -p $(DISTDIR)
+	@$(MAKE) dist_version OSMODE=win32 LIBMODE=dynamic
+	@$(MAKE) dist_version OSMODE=win64 LIBMODE=dynamic
+	@$(MAKE) dist_version OSMODE=linux LIBMODE=dynamic
+	@$(MAKE) dist_version OSMODE=macos LIBMODE=dynamic
+	@$(MAKE) dist_version OSMODE=win32 LIBMODE=static
+	@$(MAKE) dist_version OSMODE=win64 LIBMODE=static
+	@$(MAKE) dist_version OSMODE=linux LIBMODE=static
+	@$(MAKE) dist_version OSMODE=macos LIBMODE=static
+
+# This rule creates one ZIP distributable according to the current OSMODE and LIBMODE
+dist_version:
+	@printf "Preparing ZIP: \n"
+	@zip -j $(DISTDIR)$(NAME)_$(VERSION)_$(OSMODE)_$(LIBMODE).zip	$(BINDIR)$(LIBMODE)/$(OSMODE)/*
 
 
 
@@ -319,7 +341,7 @@ $(OBJDIR)%.o : $(SRCDIR)%.c
 	@$(CC) $(CFLAGS) -c $< -I$(HDRDIR) -o $@
 	@printf $(GREEN)"OK!"$(RESET)"\n"
 
-# This rule builds the libft library file to link against
+# This rule builds the static library file to link against, in the root directory
 $(NAME).a: $(OBJS)
 	@printf "Compiling library: "$@" -> "
 	@ar -rc $@ $(OBJS)
@@ -489,6 +511,7 @@ $(OBJDIR)%.c : $(SRCDIR)%.c
 
 
 # This line ensures the makefile won't conflict with files named 'clean', 'fclean', etc
+.PHONY : all debug release dist dist_version
 .PHONY : test
 .PHONY : clean fclean rclean re
 .PHONY : lint pclint_setup pclint
