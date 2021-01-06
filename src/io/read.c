@@ -26,11 +26,6 @@ static t_bool	ft_readfile_error(int result, char* *a_file)
 		return (OK);
 }
 
-
-
-
-#include <stdio.h>
-
 t_bool		ft_readfile(t_fd const fd, char* *a_file, t_size max)
 {
 	int		result;
