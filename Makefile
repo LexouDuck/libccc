@@ -297,7 +297,7 @@ debug: $(NAME).a
 # This rule fills the ./bin folder with necessary files for release distribution
 release: MODE = release
 release: CFLAGS += $(CFLAGS_RELEASE)
-release: fclean $(NAME).a
+release: $(NAME).a
 	@mkdir -p $(BINDIR)dynamic/$(OSMODE)/
 	@mkdir -p $(BINDIR)static/$(OSMODE)/
 	@cp $(NAME).a $(BINDIR)static/$(OSMODE)/
