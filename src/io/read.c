@@ -51,7 +51,6 @@ t_bool		ft_readfile(t_fd const fd, char* *a_file, t_size max)
 	while ((result = read(fd, buffer, BUFF_SIZE)) > 0 &&
 		(length += result) < max)
 	{
-printf("result %d, buffer = [[%s]]\n\n", result, buffer);
 		if (result < BUFF_SIZE)
 		{
 			buffer[result] = '\0';
@@ -59,7 +58,6 @@ printf("result %d, buffer = [[%s]]\n\n", result, buffer);
 		ft_strappend(&file, buffer);
 	}
 	*a_file = file;
-printf("FULL FILE\n\n[[[%s]]]\nEND_FILE\n\n\n", file);
 	return (ft_readfile_error(result, a_file));
 }
 
