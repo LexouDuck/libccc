@@ -2,10 +2,12 @@
 NAME      = libft
 NAME_TEST = libft_test
 
+VERSION = 0.7
+
 # Compiler
 CC	= _
-CC_WIN32 = i686-w64-mingw32-gcc
-CC_WIN64 = x86_64-w64-mingw32-gcc
+CC_WIN32 = i686-w64-mingw32-gcc -static -static-libgcc
+CC_WIN64 = x86_64-w64-mingw32-gcc -static -static-libgcc
 CC_LINUX = gcc
 CC_MACOS = gcc
 
@@ -25,6 +27,9 @@ SRCDIR = ./src/
 OBJDIR = ./obj/
 BINDIR = ./bin/
 DOCDIR = ./doc/
+DISTDIR = ./dist/
+
+
 
 # Set platform-specific variables
 ifeq ($(OS),Windows_NT)
@@ -278,37 +283,64 @@ DPDS = ${OBJS:.o=.d}
 
 
 #######################################
-#          Main build rules           #
+#           Main build rules          #
 #######################################
 
 # This is the default build rule, called when doing 'make' without args
+all: debug
+
+# This rule builds the library, in DEBUG mode (with '-g -ggdb -D DEBUG=1')
 debug: MODE = debug
 debug: CFLAGS += $(CFLAGS_DEBUG)
-debug: all
+debug: $(NAME).a
 
-# This rule fills the 'bin' folder with necessary files for release distribution
+# This rule fills the ./bin folder with necessary files for release distribution
 release: MODE = release
 release: CFLAGS += $(CFLAGS_RELEASE)
-release: all
-	@mkdir -p $(BINDIR)dynamic/$(OSMODE)
-	@mkdir -p $(BINDIR)static/$(OSMODE)
+release: $(NAME).a
+	@mkdir -p $(BINDIR)dynamic/$(OSMODE)/
+	@mkdir -p $(BINDIR)static/$(OSMODE)/
 	@cp $(NAME).a $(BINDIR)static/$(OSMODE)/
-	@if [ $(OSMODE) = win32 ] || [ $(OSMODE) = win64 ]; then printf \
-		"Compiling DLL: "$(BINDIR)dynamic/$(OSMODE)/$(NAME).dll" -> " ; \
-		$(CC) -shared -o $(BINDIR)dynamic/$(OSMODE)/$(NAME).dll $(OBJS) \
-		-Wl,--output-def,$(BINDIR)dynamic/$(OSMODE)/$(NAME).def \
-		-Wl,--out-implib,$(BINDIR)dynamic/$(OSMODE)/$(NAME).lib \
-		-Wl,--export-all-symbols ; \
-	elif [ $(OSMODE) = macos ]; then printf \
-		"Compiling dylib: "$(BINDIR)dynamic/$(OSMODE)/$(NAME).dylib" -> " ; \
-		$(CC) -shared   -o $(BINDIR)dynamic/$(OSMODE)/$(NAME).dylib $(OBJS) ; \
-	elif [ $(OSMODE) = linux ]; then printf \
-		"Compiling .so lib: "$(BINDIR)dynamic/$(OSMODE)/$(NAME).so" -> " ; \
-		$(CC) -shared     -o $(BINDIR)dynamic/$(OSMODE)/$(NAME).so $(OBJS) ; \
-	fi
+ifeq ($(OSMODE),$(filter $(OSMODE), win32 win64))
+	@printf \
+	"Compiling DLL: "$(BINDIR)dynamic/$(OSMODE)/$(NAME).dll" -> " ; \
+	$(CC) -shared -o $(BINDIR)dynamic/$(OSMODE)/$(NAME).dll $(OBJS)	\
+	-Wl,--output-def,$(BINDIR)dynamic/$(OSMODE)/$(NAME).def	\
+	-Wl,--out-implib,$(BINDIR)dynamic/$(OSMODE)/$(NAME).lib	\
+	-Wl,--export-all-symbols
+else ifeq ($(OSMODE),macos)
+	@printf \
+	"Compiling dylib: "$(BINDIR)dynamic/$(OSMODE)/$(NAME).dylib" -> " ; \
+	$(CC) -shared   -o $(BINDIR)dynamic/$(OSMODE)/$(NAME).dylib $(OBJS)
+else ifeq ($(OSMODE),linux)
+	@printf \
+	"Compiling .so: "$(BINDIR)dynamic/$(OSMODE)/$(NAME).so" -> " ; \
+	$(CC) -shared -o $(BINDIR)dynamic/$(OSMODE)/$(NAME).so $(OBJS)
+else
+	@printf $(RED)"ERROR"$(RESET)": OS not supported -> OSMODE="$(OSMODE)"\n"
+	exit 1
+endif
 	@printf $(GREEN)"OK!"$(RESET)"\n"
 
-all: $(NAME).a
+# This rule prepares ZIP archives in ./dist for each platform from the contents of the ./bin folder
+dist: release
+	@rm -f $(DISTDIR)*
+	@mkdir -p $(DISTDIR)
+	@$(MAKE) -s dist_version OSMODE=win32 LIBMODE=dynamic
+	@$(MAKE) -s dist_version OSMODE=win32 LIBMODE=static
+	@$(MAKE) -s dist_version OSMODE=win64 LIBMODE=dynamic
+	@$(MAKE) -s dist_version OSMODE=win64 LIBMODE=static
+	@$(MAKE) -s dist_version OSMODE=linux LIBMODE=dynamic
+	@$(MAKE) -s dist_version OSMODE=linux LIBMODE=static
+	@$(MAKE) -s dist_version OSMODE=macos LIBMODE=dynamic
+	@$(MAKE) -s dist_version OSMODE=macos LIBMODE=static
+
+# This rule creates one ZIP distributable according to the current OSMODE and LIBMODE
+dist_version:
+	@printf "Preparing ZIP: "
+	@printf $(DISTDIR)$(NAME)_$(VERSION)_$(OSMODE)_$(LIBMODE).zip"\n"
+	@zip -j $(DISTDIR)$(NAME)_$(VERSION)_$(OSMODE)_$(LIBMODE).zip	$(BINDIR)$(LIBMODE)/$(OSMODE)/*
+	@printf $(GREEN)"  OK!"$(RESET)"\n"
 
 
 
@@ -319,7 +351,7 @@ $(OBJDIR)%.o : $(SRCDIR)%.c
 	@$(CC) $(CFLAGS) -c $< -I$(HDRDIR) -o $@
 	@printf $(GREEN)"OK!"$(RESET)"\n"
 
-# This rule builds the libft library file to link against
+# This rule builds the static library file to link against, in the root directory
 $(NAME).a: $(OBJS)
 	@printf "Compiling library: "$@" -> "
 	@ar -rc $@ $(OBJS)
@@ -358,7 +390,7 @@ TEST_CFLAGS = -O2 -g -ggdb
 TEST_INCLUDEDIRS = -I$(HDRDIR) -I$(TEST_DIR)
 
 # This rule compiles object files from source files
-$(OBJDIR)%.o : $(TEST_DIR)%.c $(TEST_HDRS)
+$(OBJDIR)%.o: $(TEST_DIR)%.c $(TEST_HDRS)
 	@printf "Compiling file: "$@" -> "
 	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -c $< -o $@
 	@printf $(GREEN)"OK!"$(RESET)"\n"
@@ -366,10 +398,7 @@ $(OBJDIR)%.o : $(TEST_DIR)%.c $(TEST_HDRS)
 # This rule builds the testing/CI program
 $(NAME_TEST): debug $(TEST_OBJS)
 	@printf "Compiling testing program: "$@" -> "
-	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -o $@ $(TEST_OBJS) -L./ -lft -lm
-	@ if [ $(OSMODE) = win32 ]; then cp $(TEST_DIR)libwinpthread-32.dll ./libwinpthread-1.dll ; \
-	elif [ $(OSMODE) = win64 ]; then cp $(TEST_DIR)libwinpthread-64.dll ./libwinpthread-1.dll ; \
-	fi
+	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -o $@ $(TEST_OBJS) -L./ -lft -lm -lpthread
 	@printf $(GREEN)"OK!"$(RESET)"\n"
 
 # This rule builds and runs the test executable
@@ -484,7 +513,7 @@ PREPROCESSED	=	${SRCS:%.c=$(OBJDIR)%.c}
 preprocessed: all $(PREPROCESSED)
 	@printf "Outputting preprocessed code...\n"
 
-$(OBJDIR)%.c : $(SRCDIR)%.c
+$(OBJDIR)%.c: $(SRCDIR)%.c
 	@printf "Preprocessing file: "$@" -> "
 	@$(CC) $(CFLAGS) -E $< -o $@
 	@printf $(GREEN)"OK!"$(RESET)"\n"
@@ -492,10 +521,11 @@ $(OBJDIR)%.c : $(SRCDIR)%.c
 
 
 # This line ensures the makefile won't conflict with files named 'clean', 'fclean', etc
-.PHONY : test
-.PHONY : clean fclean rclean re
-.PHONY : lint pclint_setup pclint
-.PHONY : doc preprocessed
+.PHONY: all debug release dist dist_version
+.PHONY: test
+.PHONY: clean fclean rclean re
+.PHONY: lint pclint_setup pclint
+.PHONY: doc preprocessed
 
 # The following line is for Makefile GCC dependency file handling (.d files)
 -include ${DPDS}

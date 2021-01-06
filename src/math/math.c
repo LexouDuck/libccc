@@ -97,3 +97,26 @@ inline t_float	ft_ceil(t_float x)
 #else
 MATH_DECL_REALFUNCTION(ceil, ceil)
 #endif
+
+
+
+#if LIBFTCONFIG_FAST_APPROX_MATH
+inline t_float	ft_round(t_float x)
+{
+	t_float fraction;
+
+	fraction = ft_fmod(x, 1.);
+	if (x == 0.)
+		return (0.);
+	if (x < 0.)
+		return (fraction < 0.5 ?
+			(x + fraction) :
+			(x - (1 - fraction));
+	else
+		return (fraction < 0.5 ?
+			(x - fraction) :
+			(x + (1 - fraction));
+}
+#else
+MATH_DECL_REALFUNCTION(round, round)
+#endif
