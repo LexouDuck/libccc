@@ -29,53 +29,53 @@ static t_bool	ft_readfile_error(int result, char* *a_file)
 t_bool		ft_readfile(t_fd const fd, char* *a_file, t_size max)
 {
 	int		result;
-	char	buffer[BUFF_SIZE + 1];
-	char	*temp;
+	char	buffer[BUFF_SIZE + 1] = {0};
+	char*	file = NULL;
 	t_size	length;
 
 #if LIBFTCONFIG_HANDLE_NULLPOINTERS
 	if (a_file == NULL)
 		return (ERROR);
 #endif
-	if (!(*a_file = ft_strnew(1)))
+	if (!(file = ft_strnew(0)))
 		return (ERROR);
+	if (max == 0)
+		max = (t_size)-1;
 	buffer[BUFF_SIZE] = '\0';
 	length = 0;
 	while ((result = read(fd, buffer, BUFF_SIZE)) > 0 &&
 		(length += result) < max)
 	{
-		temp = *a_file;
 		if (result < BUFF_SIZE)
+		{
 			buffer[result] = '\0';
-		if (!(*a_file = ft_strjoin(temp, buffer)))
-			return (ERROR);
-		ft_memfree(temp);
+		}
+		ft_strappend(&file, buffer);
 	}
+	*a_file = file;
 	return (ft_readfile_error(result, a_file));
 }
 
 
 
 t_bool		ft_readlines(t_fd const fd, char** *a_strarr)
-{	// TODO rewrite this to use the much more stable function 'ft_readfile' and 'ft_strsplit'
-	char	**result;
-	int		status;
-	char	**line;
+{
+	char*	file	= NULL; 
+	char**	result	= NULL;
+	t_bool	status	= OK;
 
-	status = -2;
-	line = ft_strarrnew(1);
-	result = ft_strarrnew(0);
-	while ((status = ft_getnextline(fd, line)) == GNL_LINE)
-	{
-		result = ft_strarrappend(&result, (char const **)line);
-		ft_strdel(line);
-	}
-	ft_strarrdel(&line);
-	if (status == GNL_ERROR)
-	{
-		ft_strarrdel(&result);
+#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+	if (a_strarr == NULL)
 		return (ERROR);
+#endif
+	status = ft_readfile(fd, &file, 0);
+	if (status)
+	{
+		ft_strdel(&file);
+		return (status);
 	}
+	result = ft_strsplit_str(file, "\n");
+	String_Delete(&file);
 	*a_strarr = result;
 	return (OK);
 }

@@ -115,7 +115,7 @@ typedef int		t_fd;
 **
 **	@param	fd		The file descriptor to read data from
 **	@param	a_file	The address of the buffer to fill: is allocated and filled with the data
-**	@param	max		The maximum amount of bytes to read from 'fd'
+**	@param	max		The maximum amount of bytes to read from 'fd'; if 0, replaced by (t_size)-1
 **	@returns 0(OK) if the stream was read successfully, 1(ERROR) if there was an error.
 */
 t_bool					IO_Read_File(t_fd const fd, char* *a_file, t_size max);
@@ -149,6 +149,7 @@ t_bool					IO_Read_Lines(t_fd const fd, char** *a_strarr);
 **		- 0 if the end of the file was reached
 **		- -1 if there's an error
 */
+//TODO DO NOT USE, TODO FIX, confirmed to have very, very rare, platform-specific problems...
 int						IO_Read_NextLine(t_fd const fd, char* *a_line);
 #define ft_getnextline	IO_Read_NextLine
 #define GNL_LINE   1	//!< Return value for ft_getnextline: indicates succesful line read, more to follow
