@@ -68,7 +68,7 @@ t_size	ft_strcount_str(char const *str, char const *query)
 	while (str[i])
 	{
 		j = 0;
-		while (str[i + j] == query[j])
+		while (query[j] && str[i + j] && str[i + j] == query[j])
 			++j;
 		if (j == length)
 			++result;
