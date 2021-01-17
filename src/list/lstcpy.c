@@ -1,6 +1,6 @@
 
-#include "libft_memory.h"
-#include "libft_list.h"
+#include "libccc_memory.h"
+#include "libccc_list.h"
 
 
 
@@ -10,7 +10,7 @@ s_list*	List_Copy(s_list const* lst)
 	s_list	*result_lst;
 	s_list	*tmp;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (lst == NULL)
 		return (NULL);
 #endif
@@ -36,7 +36,7 @@ s_list*	List_Duplicate(s_list const* lst)
 	s_list	*result_lst;
 	s_list	*tmp;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (lst == NULL)
 		return (NULL);
 #endif

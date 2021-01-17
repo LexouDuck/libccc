@@ -9,11 +9,11 @@
 /*                                                                            */
 /*============================================================================*/
 
-#ifndef __LIBFT_RANDOM_H
-#define __LIBFT_RANDOM_H
-/*! @file libft_random.h
+#ifndef __LIBCCC_RANDOM_H
+#define __LIBCCC_RANDOM_H
+/*! @file libccc_random.h
 **	This header defines some simple pseudo-random number generator functions.
-**	@addtogroup libft_random
+**	@addtogroup libccc_random
 **	@{
 */
 
@@ -23,7 +23,7 @@
 ** ************************************************************************** *|
 */
 
-#include "libft.h"
+#include "libccc.h"
 
 HEADER_CPP
 
@@ -33,7 +33,7 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-/*! @file libft_random.h
+/*! @file libccc_random.h
 ** Random number generator. Modulus is 2^31
 **
 ** - OFFSET and MODULUS are mutually prime.
@@ -67,41 +67,41 @@ HEADER_CPP
 
 //! TODO document this
 t_u32								Random_Shuffle(t_u32 n);
-#define ft_random_32bit_shuffle		Random_Shuffle
+#define c_random_32bit_shuffle		Random_Shuffle
 
 
 //! TODO document this
 void								Random_SetSeed(t_u32 seed);
-#define ft_random_set_seed			Random_SetSeed
+#define c_random_set_seed			Random_SetSeed
 
 //! TODO document this
 void								Random_RefreshSeed(void);
-#define ft_random_renew_seed		Random_RefreshSeed
+#define c_random_renew_seed		Random_RefreshSeed
 
 
 //! TODO document this
 t_u32								Random_U32(void);
-#define ft_random_u32				Random_U32
+#define c_random_u32				Random_U32
 
 //! TODO document this
 t_u32								Random_U32_Pow2N(t_u32 n);
-#define ft_random_u32_0_to_pow2n	Random_U32_Pow2N
+#define c_random_u32_0_to_pow2n	Random_U32_Pow2N
 
 //! TODO document this
 t_u32								Random_U32_0toN(t_u32 n);
-#define ft_random_u32_0_to_n		Random_U32_0toN
+#define c_random_u32_0_to_n		Random_U32_0toN
 
 //! TODO document this
 t_int								Random_Int_AtoB(t_int a, t_int b);
-#define ft_random_int_a_to_b		Random_Int_AtoB
+#define c_random_int_a_to_b		Random_Int_AtoB
 
 //! TODO document this
 t_float								Random_Float_0to1(void);
-#define ft_random_float_0_to_1		Random_Float_0to1
+#define c_random_float_0_to_1		Random_Float_0to1
 
 //! TODO document this
 t_float								Random_Float_AtoB(t_float a, t_float b);
-#define ft_random_float_a_to_b		Random_Float_AtoB
+#define c_random_float_a_to_b		Random_Float_AtoB
 
 
 

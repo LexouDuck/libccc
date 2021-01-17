@@ -1,6 +1,6 @@
 
-#include "libft_memory.h"
-#include "libft_list.h"
+#include "libccc_memory.h"
+#include "libccc_list.h"
 
 
 
@@ -12,7 +12,7 @@ void**	List_To_Array(s_list const** a_lst)
 	t_u32	count;
 	t_u32	i;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (a_lst == NULL)
 		return (NULL);
 #endif
@@ -41,7 +41,7 @@ s_tuple	List_To_Tuple(s_list const** a_lst)
 	t_size	count;
 	t_size	i;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (a_lst == NULL || *a_lst == NULL)
 		return (TUPLE_NULL);
 #endif

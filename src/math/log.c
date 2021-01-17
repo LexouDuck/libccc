@@ -1,10 +1,10 @@
 
-#include "libft_math.h"
-#include "libft_memory.h"
+#include "libccc_math.h"
+#include "libccc_memory.h"
 
 
 
-#if LIBFTCONFIG_FAST_APPROX_MATH
+#if LIBCCCCONFIG_FAST_APPROX_MATH
 /*
 ** The following pair of functions return the natural logarithm of x.
 ** ln(x) = ln(x*2^n) = n*ln(2) + ln(x) with 1 <= x < 2 and n = exp_b2
@@ -12,7 +12,7 @@
 ** FLOAT_EXPONENT_ZERO is exponent bits except the MSB for exponent:
 ** this corresponds precisely to an exponent of zero when unbiased.
 */
-static t_float	ft_ln_taylor_series(t_float x)
+static t_float	c_ln_taylor_series(t_float x)
 {
 	t_float	result;
 	t_float	result_previous;
@@ -35,7 +35,7 @@ static t_float	ft_ln_taylor_series(t_float x)
 	return (result);
 }
 
-t_float			ft_ln(t_float x)
+t_float			c_ln(t_float x)
 {
 	static const t_float LN_3_2			= (t_float)0x1.9F323ECBF984Cp-2;
 	static const t_float DIV_2_3		= (t_float)0x1.5555555555556p-1;
@@ -54,16 +54,16 @@ t_float			ft_ln(t_float x)
 		return (INFINITY);
 	if (x < 1. || 2. <= x)
 	{
-		ft_memcpy(&tmp, &x, sizeof(t_float));
+		c_memcpy(&tmp, &x, sizeof(t_float));
 		norm = (tmp & FLOAT_MANTISSA_SIGNED) | FLOAT_EXPONENT_ZERO;
-		ft_memcpy(&x, &norm, sizeof(t_float));
-		result = ft_ln(x);
+		c_memcpy(&x, &norm, sizeof(t_float));
+		result = c_ln(x);
 		exp_b2 = ((tmp << 1) >> (FLOAT_MANTISSA_BITS + 1)) - FLOAT_EXPONENT_BIAS;
 		return (LN_2 * exp_b2 + result);
 	}
 	if (1.9 <= x && x < 2.)
-		return (ft_ln(x * DIV_2_3) + LN_3_2);
-	result = ft_ln_taylor_series(x - 1.);
+		return (c_ln(x * DIV_2_3) + LN_3_2);
+	result = c_ln_taylor_series(x - 1.);
 	return (result);
 }
 #else
@@ -72,10 +72,10 @@ MATH_DECL_REALFUNCTION(ln, log)
 
 
 
-#if LIBFTCONFIG_FAST_APPROX_MATH
-inline t_float	ft_lg(t_float x)
+#if LIBCCCCONFIG_FAST_APPROX_MATH
+inline t_float	c_lg(t_float x)
 {
-	return (ft_ln(x) / LN_2);
+	return (c_ln(x) / LN_2);
 }
 #else
 MATH_DECL_REALFUNCTION(lg, log2)
@@ -83,10 +83,10 @@ MATH_DECL_REALFUNCTION(lg, log2)
 
 
 
-#if LIBFTCONFIG_FAST_APPROX_MATH
-inline t_float	ft_log(t_float x)
+#if LIBCCCCONFIG_FAST_APPROX_MATH
+inline t_float	c_log(t_float x)
 {
-	return (ft_ln(x) / LN_10);
+	return (c_ln(x) / LN_10);
 }
 #else
 MATH_DECL_REALFUNCTION(log, log10)
@@ -94,12 +94,12 @@ MATH_DECL_REALFUNCTION(log, log10)
 
 
 
-inline t_float	ft_log_n(t_float x, t_float n)
+inline t_float	c_log_n(t_float x, t_float n)
 {
 	if (n == 2)
-		return (ft_lg(x));
+		return (c_lg(x));
 	else if (n == 10)
-		return (ft_log(x));
+		return (c_log(x));
 	else
-		return (ft_ln(x) / ft_ln(n));
+		return (c_ln(x) / c_ln(n));
 }

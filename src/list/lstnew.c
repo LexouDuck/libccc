@@ -1,6 +1,6 @@
 
-#include "libft_memory.h"
-#include "libft_list.h"
+#include "libccc_memory.h"
+#include "libccc_list.h"
 
 
 

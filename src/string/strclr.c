@@ -1,13 +1,13 @@
 
-#include "libft_string.h"
+#include "libccc_string.h"
 
 
 
-void	ft_strclr(char *str)
+void	c_strclr(char *str)
 {
 	t_size	i;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return ;
 #endif

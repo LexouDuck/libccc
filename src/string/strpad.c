@@ -1,6 +1,6 @@
 
-#include "libft_memory.h"
-#include "libft_string.h"
+#include "libccc_memory.h"
+#include "libccc_string.h"
 
 
 
@@ -11,7 +11,7 @@ char*		String_Pad(char const* str, char c, t_size size)
 	t_size	length;
 	t_size	i;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (NULL);
 #endif
@@ -58,7 +58,7 @@ char*		String_Pad_L(char const* str, char c, t_size size)
 	t_size	length;
 	t_size	i;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (NULL);
 #endif
@@ -104,7 +104,7 @@ char*		String_Pad_R(char const* str, char c, t_size size)
 	t_size	length;
 	t_size	i;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (NULL);
 #endif

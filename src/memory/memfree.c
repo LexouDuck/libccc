@@ -5,13 +5,13 @@
 */
 #include <stdlib.h>
 
-#include "libft_memory.h"
+#include "libccc_memory.h"
 
 
 
-inline void	ft_memfree(void *ptr)
+inline void	c_memfree(void *ptr)
 {
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (ptr == NULL)
 		return ;
 #endif

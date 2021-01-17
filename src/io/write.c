@@ -11,9 +11,9 @@
 */
 #include <stdarg.h>
 
-#include "libft_io.h"
-#include "libft_string.h"
-#include "libft_convert.h"
+#include "libccc_io.h"
+#include "libccc_string.h"
+#include "libccc_convert.h"
 
 
 
@@ -30,7 +30,7 @@ inline int	IO_Write_String(int fd, const char* str)
 {
 	if (str == NULL)
 		return (OK);
-	if (write(fd, str, ft_strlen(str)) < 0)
+	if (write(fd, str, c_strlen(str)) < 0)
 		return (ERROR);
 	return (OK);
 }
@@ -41,7 +41,7 @@ inline int	IO_Write_Line(int fd, const char* str)
 {
 	if (str == NULL)
 		return (OK);
-	if (write(fd, str, ft_strlen(str)) < 0)	return (ERROR);
+	if (write(fd, str, c_strlen(str)) < 0)	return (ERROR);
 	if (write(fd, "\n", 1) < 0)				return (ERROR);
 	return (OK);
 }
@@ -55,7 +55,7 @@ int		IO_Write_Lines(int fd, const char** strarr)
 	int i = 0;
 	while (strarr[i])
 	{
-		if (write(fd, strarr[i], ft_strlen(strarr[i])) < 0)	return (ERROR);
+		if (write(fd, strarr[i], c_strlen(strarr[i])) < 0)	return (ERROR);
 		if (write(fd, "\n", 1) < 0)							return (ERROR);
 		++i;
 	}

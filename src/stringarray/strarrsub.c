@@ -1,31 +1,31 @@
 
-#include "libft_memory.h"
-#include "libft_string.h"
-#include "libft_stringarray.h"
+#include "libccc_memory.h"
+#include "libccc_string.h"
+#include "libccc_stringarray.h"
 
 
 
-char	**ft_strarrsub(char const **strarr, t_u32 start, t_u32 n)
+char	**c_strarrsub(char const **strarr, t_u32 start, t_u32 n)
 {
 	char		**result;
 	t_u32		length;
 	t_u32		i;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (strarr == NULL)
 		return (NULL);
 #endif
-	length = ft_strarrlen(strarr);
+	length = c_strarrlen(strarr);
 	if (start > length || start + n > length)
 		return (NULL);
-	if (!(result = ft_strarrnew(n)))
+	if (!(result = c_strarrnew(n)))
 		return (NULL);
 	i = 0;
 	while (i < n)
 	{
-		if (!(result[i] = ft_strdup(strarr[start + i])))
+		if (!(result[i] = c_strdup(strarr[start + i])))
 		{
-			ft_strarrdel(&result);
+			c_strarrdel(&result);
 			return (NULL);
 		}
 		++i;

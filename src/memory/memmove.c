@@ -1,15 +1,15 @@
 
-#include "libft_memory.h"
+#include "libccc_memory.h"
 
 
 
-void	*ft_memmove(void *dest, void const *src, t_size n)
+void	*c_memmove(void *dest, void const *src, t_size n)
 {
 	t_u8	*result;
 	t_u8	*source;
 	t_size	i;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (dest == NULL)
 		return (NULL);
 	if (src == NULL)

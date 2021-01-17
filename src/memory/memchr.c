@@ -1,14 +1,14 @@
 
-#include "libft_memory.h"
+#include "libccc_memory.h"
 
 
 
-void	*ft_memchr(void const *ptr, t_u8 byte, t_size n)
+void	*c_memchr(void const *ptr, t_u8 byte, t_size n)
 {
 	t_u8	*result;
 	t_size	i;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (ptr == NULL)
 		return (NULL);
 #endif

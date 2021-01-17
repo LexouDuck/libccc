@@ -1,10 +1,10 @@
 
-#include "libft_math.h"
-#include "libft_memory.h"
+#include "libccc_math.h"
+#include "libccc_memory.h"
 
 
 
-#if LIBFTCONFIG_FAST_APPROX_MATH
+#if LIBCCCCONFIG_FAST_APPROX_MATH
 static t_float	inv_factorial(t_u32 n)
 {
 	static const t_float	result[16] =
@@ -34,8 +34,8 @@ static t_float	inv_factorial(t_u32 n)
 
 
 
-#if LIBFTCONFIG_FAST_APPROX_MATH
-t_float			ft_cos(t_float x)
+#if LIBCCCCONFIG_FAST_APPROX_MATH
+t_float			c_cos(t_float x)
 {
 	t_float		result;
 	t_bool		sign; //True for negative
@@ -48,7 +48,7 @@ t_float			ft_cos(t_float x)
 	if (x < 0.)
 		x = -x;
 	if (x > TAU)
-		x = ft_fmod(x, TAU);
+		x = c_fmod(x, TAU);
 	if (x > PI)
 		x = PI - (x - PI);
 	if (x > HALF_PI)
@@ -79,8 +79,8 @@ MATH_DECL_REALFUNCTION(cos, cos)
 
 
 
-#if LIBFTCONFIG_FAST_APPROX_MATH
-t_float			ft_sin(t_float x)
+#if LIBCCCCONFIG_FAST_APPROX_MATH
+t_float			c_sin(t_float x)
 {
 	t_float		result;
 	t_bool		sign; //True for negative
@@ -99,7 +99,7 @@ t_float			ft_sin(t_float x)
 		sign = !sign;
 	}
 	if (x > TAU)
-		x = ft_fmod(x, TAU);
+		x = c_fmod(x, TAU);
 	if (x > PI)
 	{
 		x = PI - (x - PI);
@@ -133,11 +133,11 @@ MATH_DECL_REALFUNCTION(sin, sin)
 
 
 
-#if LIBFTCONFIG_FAST_APPROX_MATH
-inline t_float	ft_tan(t_float x)
+#if LIBCCCCONFIG_FAST_APPROX_MATH
+inline t_float	c_tan(t_float x)
 {
 // trigonometric formula
-	return (ft_sin(x) / ft_cos(x));
+	return (c_sin(x) / c_cos(x));
 
 // fast polynomial approximation for [-1,+1] and 1/x approximation for the rest
 // score: 0.23	for [-40,+40]=> 200 tests
@@ -183,14 +183,14 @@ MATH_DECL_REALFUNCTION(tan, tan)
 
 
 
-#if LIBFTCONFIG_FAST_APPROX_MATH
-t_float		ft_acos(t_float x)
+#if LIBCCCCONFIG_FAST_APPROX_MATH
+t_float		c_acos(t_float x)
 {
 // fast polynomial approximation
 // score: 2.55	for [-1,+1]=> 200 tests
-	if (IS_NAN(x) || ft_fabs(x) > 1.)
+	if (IS_NAN(x) || c_fabs(x) > 1.)
 		return (NAN);
-	if (ft_fabs(x) == 1.)
+	if (c_fabs(x) == 1.)
 		return (INFINITY * SIGN(x));
 
 	t_float result = HALF_PI;
@@ -214,14 +214,14 @@ MATH_DECL_REALFUNCTION(acos, acos)
 
 
 
-#if LIBFTCONFIG_FAST_APPROX_MATH
-t_float		ft_asin(t_float x)
+#if LIBCCCCONFIG_FAST_APPROX_MATH
+t_float		c_asin(t_float x)
 {
 // fast polynomial approximation
 // score: 2.55	for [-1,+1]=> 200 tests
-	if (IS_NAN(x) || ft_fabs(x) > 1.)
+	if (IS_NAN(x) || c_fabs(x) > 1.)
 		return (NAN);
-	if (ft_fabs(x) == 1.)
+	if (c_fabs(x) == 1.)
 		return (INFINITY * SIGN(x));
 
 	t_float result = 0;
@@ -245,8 +245,8 @@ MATH_DECL_REALFUNCTION(asin, asin)
 
 
 
-#if LIBFTCONFIG_FAST_APPROX_MATH
-t_float		ft_atan(t_float x)
+#if LIBCCCCONFIG_FAST_APPROX_MATH
+t_float		c_atan(t_float x)
 {
 //	very fast sigmoid approximation
 //	score: 0.77	for [-5,+5]-> 200 tests
@@ -256,7 +256,7 @@ t_float		ft_atan(t_float x)
 	else if (x == 0)
 		return (0);
 
-	t_float abs_x = ft_fabs(x);
+	t_float abs_x = c_fabs(x);
 	t_float n = 1.54 - abs_x / (0.9 + abs_x);
 	if (n < 0.65)
 		n = 0.65;
@@ -271,7 +271,7 @@ t_float		ft_atan(t_float x)
 	t_float abs_x;
 	t_float add = 0;
 
-	abs_x = ft_fabs(x);
+	abs_x = c_fabs(x);
 	if (abs_x == 1.0)	return (result_1_0);
 	if (abs_x == 2.5)	return (result_2_5);
 	else if (abs_x > 2.5)
@@ -291,7 +291,7 @@ t_float		ft_atan(t_float x)
 
 // score: 60.59	for [-5, 5]-> 200 tests
 /*
-	return (3. / (1 + ft_exp(-1.1 * x)) - 1.5);
+	return (3. / (1 + c_exp(-1.1 * x)) - 1.5);
 */
 }
 #else
@@ -300,8 +300,8 @@ MATH_DECL_REALFUNCTION(atan, atan)
 
 
 
-#if LIBFTCONFIG_FAST_APPROX_MATH
-t_float		ft_atan2(t_float y, t_float x)
+#if LIBCCCCONFIG_FAST_APPROX_MATH
+t_float		c_atan2(t_float y, t_float x)
 {
 	static const t_float pi_lo = 1.2246467991473531772E-16;
 
@@ -323,17 +323,17 @@ t_float		ft_atan2(t_float y, t_float x)
 		return (HALF_PI * SIGN(y));
 	}
 	else if (x == 1.0)
-		return (ft_atan(y));
+		return (c_atan(y));
 
-	t_s32 exp_x = ft_getexp(x);
-	t_s32 exp_y = ft_getexp(y);
-	t_float result = ft_fabs(y / x);
+	t_s32 exp_x = c_getexp(x);
+	t_s32 exp_y = c_getexp(y);
+	t_float result = c_fabs(y / x);
 	if ((exp_y - exp_x) > 60)			/* |y / x| >  2^60 */
 		result = HALF_PI + 0.5 * pi_lo;
 	else if ((exp_y - exp_x) < -60)		/* |y| / x < -2^60 */
 		result = 0.0;
 	else
-		result = ft_atan(result);
+		result = c_atan(result);
 
 	if (x < 0)
 		return ((PI - (result - pi_lo)) * SIGN(y));

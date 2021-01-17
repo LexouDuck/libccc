@@ -1,5 +1,5 @@
 
-#include "libft_list.h"
+#include "libccc_list.h"
 
 
 
@@ -7,7 +7,7 @@ t_u32	List_Size(s_list const* lst)
 {
 	t_u32 result;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (lst == NULL)
 		return (0);
 #endif

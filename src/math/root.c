@@ -1,5 +1,5 @@
 
-#include "libft_math.h"
+#include "libccc_math.h"
 
 
 
@@ -11,7 +11,7 @@
 #else
 	#define POWERS_LENGTH	12
 #endif
-static t_float	ft_sqrt_2_pow_n(t_s32 n)
+static t_float	c_sqrt_2_pow_n(t_s32 n)
 {
 	static const t_float powers_pos[POWERS_LENGTH] =
 	{
@@ -90,8 +90,8 @@ static t_float	ft_sqrt_2_pow_n(t_s32 n)
 
 
 
-#if LIBFTCONFIG_FAST_APPROX_MATH
-t_float	ft_sqrt(t_float x)
+#if LIBCCCCONFIG_FAST_APPROX_MATH
+t_float	c_sqrt(t_float x)
 {
 //	Fast Inverse square root (from the Quake III source code)
 	u_float_cast result = { x };
@@ -119,11 +119,11 @@ t_float	ft_sqrt(t_float x)
 		return (0.);
 	if (x == 1.)
 		return (1.);
-	i = ft_getexp(x);
-	result = (i < 0 ? 0.75 : 1.25) * ft_sqrt_2_pow_n(i);
+	i = c_getexp(x);
+	result = (i < 0 ? 0.75 : 1.25) * c_sqrt_2_pow_n(i);
 	previous = INFINITY;
 	i = 0;
-	while (ft_fabs(result - previous) > FLOAT_BIAS)
+	while (c_fabs(result - previous) > FLOAT_BIAS)
 	{
 		previous = result;
 		result -= (result * result - x) / (2 * result);
@@ -139,8 +139,8 @@ MATH_DECL_REALFUNCTION(sqrt, sqrt)
 
 
 
-#if LIBFTCONFIG_FAST_APPROX_MATH
-t_float	ft_cbrt(t_float x)
+#if LIBCCCCONFIG_FAST_APPROX_MATH
+t_float	c_cbrt(t_float x)
 {
 //	Newton derivative approximation by iteration
 	static const t_s32	i_max = 4;
@@ -153,13 +153,13 @@ t_float	ft_cbrt(t_float x)
 		return (NAN);
 	if (x == 0)
 		return (0);
-	if (ft_fabs(x) == 1.)
+	if (c_fabs(x) == 1.)
 		return (SIGN(x));
-	i = ft_getexp(x);
-	result = SIGN(x) * (i < 0 ? 0.75 : 1.25) * ft_sqrt_2_pow_n(i * 2 / 3);
+	i = c_getexp(x);
+	result = SIGN(x) * (i < 0 ? 0.75 : 1.25) * c_sqrt_2_pow_n(i * 2 / 3);
 	previous = INFINITY;
 	i = 0;
-	while (ft_fabs(result - previous) > FLOAT_BIAS)
+	while (c_fabs(result - previous) > FLOAT_BIAS)
 	{
 		previous = result;
 		square = result * result;
@@ -175,7 +175,7 @@ MATH_DECL_REALFUNCTION(cbrt, cbrt)
 
 
 
-t_float	ft_nrt(t_float x, t_u8 n)
+t_float	c_nrt(t_float x, t_u8 n)
 {
 //	Newton derivative approximation by iteration
 	static const t_s32	i_max = 4;
@@ -190,16 +190,16 @@ t_float	ft_nrt(t_float x, t_u8 n)
 		return (x);
 	if (x == 0)
 		return (0);
-	if (ft_fabs(x) == 1.)
+	if (c_fabs(x) == 1.)
 		return (SIGN(x));
 	if (n % 2 == 0 && x < 0)
 		return (NAN);
-	i = ft_getexp(x);
-	result = SIGN(x) * (i < 0 ? 1 : 1.25) * ft_sqrt_2_pow_n(i * 2 / (t_s32)n);
+	i = c_getexp(x);
+	result = SIGN(x) * (i < 0 ? 1 : 1.25) * c_sqrt_2_pow_n(i * 2 / (t_s32)n);
 	previous = 0.;
 	i = 0;
 	n -= 1;
-	while (ft_fabs(result - previous) > FLOAT_BIAS)
+	while (c_fabs(result - previous) > FLOAT_BIAS)
 	{
 		previous = result;
 		power = result;

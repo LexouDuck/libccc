@@ -1,6 +1,6 @@
 
-#ifndef LIBFT_TEST_H
-#define LIBFT_TEST_H
+#ifndef LIBCCC_TEST_H
+#define LIBCCC_TEST_H
 
 /*
 ** ************************************************************************** *|
@@ -16,9 +16,9 @@
 #include <setjmp.h>
 #include <signal.h>
 
-#include "libft.h"
-#include "libft_list.h"
-#include "libft_stat.h"
+#include "libccc.h"
+#include "libccc_list.h"
+#include "libccc_stat.h"
 
 
 
@@ -58,7 +58,7 @@ typedef struct	s_test_flags_
 	bool	show_args;		// if TRUE, display arguments given to each test
 	bool	show_speed;		// if TRUE, display performance (execution speed) for each test
 	bool	test_nullptrs;	// if TRUE, perform all NULL pointer tests
-	bool	test_overflow;	// if TRUE, perform all the libft_convert overflowing number tests
+	bool	test_overflow;	// if TRUE, perform all the libccc_convert overflowing number tests
 }				s_test_flags;
 
 typedef struct	s_test_totals_
@@ -254,69 +254,69 @@ void	print_test_lst(char const *test_name, char const *function, s_list const *r
 //! Use this for void-return functions
 #define TEST_PERFORM(RESULT, FUNCTION, ...) \
 	_TEST_INIT() \
-	_TEST_PERFORM(1, RESULT, ft_##FUNCTION, ##__VA_ARGS__) \
+	_TEST_PERFORM(1, RESULT, c_##FUNCTION, ##__VA_ARGS__) \
 
 //! Use this for void-return functions, which use a 'dest' argument
 #define TEST_PERFORM_DEST(FUNCTION, ...) \
 	_TEST_INIT() \
-	_TEST_PERFORM(1, dest_libft, ft_##FUNCTION, dest_libft, ##__VA_ARGS__) \
+	_TEST_PERFORM(1, dest_libccc, c_##FUNCTION, dest_libccc, ##__VA_ARGS__) \
 
 //! Use this for void-return functions that exist in libc
 #define TEST_PERFORM_LIBC(PREFIX, FUNCTION, ...) \
 	_TEST_INIT() \
-	_TEST_PERFORM(1, PREFIX##_libft, ft_##FUNCTION, ##__VA_ARGS__) \
+	_TEST_PERFORM(1, PREFIX##_libccc, c_##FUNCTION, ##__VA_ARGS__) \
 	_TEST_PERFORM(2, PREFIX##_libc,       FUNCTION, ##__VA_ARGS__) \
 
 //! Use this for void-return functions that exist in libc, which use a 'dest' argument
 #define TEST_PERFORM_LIBC_DEST(FUNCTION, ...) \
 	_TEST_INIT() \
-	_TEST_PERFORM(1, dest_libft, ft_##FUNCTION, dest_libft, ##__VA_ARGS__) \
+	_TEST_PERFORM(1, dest_libccc, c_##FUNCTION, dest_libccc, ##__VA_ARGS__) \
 	_TEST_PERFORM(2, dest_libc,       FUNCTION, dest_libc,  ##__VA_ARGS__) \
 
 
 //! Use this for string-return functions
 #define TEST_PERFORM_RESULT(FUNCTION, ...) \
 	_TEST_INIT() \
-	_TEST_PERFORM_RESULT_STR(1, libft, ft_##FUNCTION, ##__VA_ARGS__) \
+	_TEST_PERFORM_RESULT_STR(1, libccc, c_##FUNCTION, ##__VA_ARGS__) \
 
 //! Use this for string-return functions, which use a 'dest' argument
 #define TEST_PERFORM_RESULT_DEST(FUNCTION, ...) \
 	_TEST_INIT() \
-	_TEST_PERFORM_RESULT_STR(1, libft, ft_##FUNCTION, dest_libft, ##__VA_ARGS__) \
+	_TEST_PERFORM_RESULT_STR(1, libccc, c_##FUNCTION, dest_libccc, ##__VA_ARGS__) \
 
 //! Use this for string-return functions that exist in libc
 #define TEST_PERFORM_RESULT_LIBC(FUNCTION, ...) \
 	_TEST_INIT() \
-	_TEST_PERFORM_RESULT_STR(1, libft, ft_##FUNCTION, ##__VA_ARGS__) \
+	_TEST_PERFORM_RESULT_STR(1, libccc, c_##FUNCTION, ##__VA_ARGS__) \
 	_TEST_PERFORM_RESULT_STR(2, libc,       FUNCTION, ##__VA_ARGS__) \
 
 //! Use this for string-return functions that exist in libc, which use a 'dest' argument
 #define TEST_PERFORM_RESULT_LIBC_DEST(FUNCTION, ...) \
 	_TEST_INIT() \
-	_TEST_PERFORM_RESULT_STR(1, libft, ft_##FUNCTION, dest_libft, ##__VA_ARGS__) \
+	_TEST_PERFORM_RESULT_STR(1, libccc, c_##FUNCTION, dest_libccc, ##__VA_ARGS__) \
 	_TEST_PERFORM_RESULT_STR(2, libc,       FUNCTION, dest_libc,  ##__VA_ARGS__) \
 
 
 //! Use this for (any_type)-return functions
 #define TEST_PERFORM_RESULT_TYPE(TYPE, FUNCTION, ...) \
 	_TEST_INIT() \
-	_TEST_PERFORM_RESULT(1, TYPE, libft, ft_##FUNCTION, ##__VA_ARGS__) \
+	_TEST_PERFORM_RESULT(1, TYPE, libccc, c_##FUNCTION, ##__VA_ARGS__) \
 
 //! Use this for (any_type)-return functions, which use a 'dest' argument
 #define TEST_PERFORM_RESULT_TYPE_DEST(TYPE, FUNCTION, ...) \
 	_TEST_INIT() \
-	_TEST_PERFORM_RESULT(1, TYPE, libft, ft_##FUNCTION, dest_libft, ##__VA_ARGS__) \
+	_TEST_PERFORM_RESULT(1, TYPE, libccc, c_##FUNCTION, dest_libccc, ##__VA_ARGS__) \
 
 //! Use this for (any_type)-return functions that exist in libc
 #define TEST_PERFORM_RESULT_TYPE_LIBC(TYPE, FUNCTION, ...) \
 	_TEST_INIT() \
-	_TEST_PERFORM_RESULT(1, TYPE, libft, ft_##FUNCTION, ##__VA_ARGS__) \
+	_TEST_PERFORM_RESULT(1, TYPE, libccc, c_##FUNCTION, ##__VA_ARGS__) \
 	_TEST_PERFORM_RESULT(2, TYPE, libc,       FUNCTION, ##__VA_ARGS__) \
 
 //! Use this for (any_type)-return functions that exist in libc, which use a 'dest' argument
 #define TEST_PERFORM_RESULT_TYPE_LIBC_DEST(TYPE, FUNCTION, ...) \
 	_TEST_INIT() \
-	_TEST_PERFORM_RESULT(1, TYPE, libft, ft_##FUNCTION, dest_libft, ##__VA_ARGS__) \
+	_TEST_PERFORM_RESULT(1, TYPE, libccc, c_##FUNCTION, dest_libccc, ##__VA_ARGS__) \
 	_TEST_PERFORM_RESULT(2, TYPE, libc,       FUNCTION, dest_libc,  ##__VA_ARGS__) \
 
 
@@ -342,18 +342,18 @@ void	print_test_lst(char const *test_name, char const *function, s_list const *r
 
 
 
-//! Frees the 'result_libft' variable, if appropriate
+//! Frees the 'result_libccc' variable, if appropriate
 #define TEST_FREE() \
-	_TEST_FREE(libft) \
+	_TEST_FREE(libccc) \
 
-//! Frees the 'result_libft' and 'result_libc' variables, if appropriate
+//! Frees the 'result_libccc' and 'result_libc' variables, if appropriate
 #define TEST_FREE_LIBC() \
-	_TEST_FREE(libft) \
+	_TEST_FREE(libccc) \
 	_TEST_FREE(libc) \
 
-//! Frees the 'result_libft', if appropriate, when that result is a nested allocation of rank 2 (ie, a char**/string array)
+//! Frees the 'result_libccc', if appropriate, when that result is a nested allocation of rank 2 (ie, a char**/string array)
 #define TEST_FREE_ARRAY_NULLTERM() \
-	_TEST_FREE_ARRAY_NULLTERM(libft) \
+	_TEST_FREE_ARRAY_NULLTERM(libccc) \
 
 
 /*
@@ -497,25 +497,25 @@ void	print_test_lst(char const *test_name, char const *function, s_list const *r
 	_TEST_PRINT(RESULT_STR, RESULT, expecting) \
 
 #define TEST_PRINT_LIBC(RESULT_STR, PREFIX) \
-	_TEST_PRINT(RESULT_STR, PREFIX##_libft, PREFIX##_libc) \
+	_TEST_PRINT(RESULT_STR, PREFIX##_libccc, PREFIX##_libc) \
 
 #define TEST_PRINT_RESULT(RESULT_STR) \
-	_TEST_PRINT(RESULT_STR, result_libft, expecting) \
+	_TEST_PRINT(RESULT_STR, result_libccc, expecting) \
 
 #define TEST_PRINT_RESULT_LIBC(RESULT_STR) \
-	_TEST_PRINT(RESULT_STR, result_libft, result_libc) \
+	_TEST_PRINT(RESULT_STR, result_libccc, result_libc) \
 
 
 // lo and behold, what a typical testing function used to look like: very boilerplate!
 #define DEFINE_TESTFUNC_LIBC_FREE(FUNCTION, ...) \
 { \
 	s_timer t = {0}; \
-	char* result_libft = NULL; \
+	char* result_libccc = NULL; \
 	char* result_libc  = NULL; \
-	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result_libft = ft_##FUNCTION(##__VA_ARGS__); timer_clock(&t.end1); } else result_libft = segstr; \
+	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result_libccc = c_##FUNCTION(##__VA_ARGS__); timer_clock(&t.end1); } else result_libccc = segstr; \
 	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start2); result_libc  =      FUNCTION(##__VA_ARGS__); timer_clock(&t.end2); } else result_libc  = segstr; \
-	print_test_str(test_name, #FUNCTION" return", result_libft, result_libc, can_segfault); \
-	if (result_libft && result_libft != segstr) free(result_libft); \
+	print_test_str(test_name, #FUNCTION" return", result_libccc, result_libc, can_segfault); \
+	if (result_libccc && result_libccc != segstr) free(result_libccc); \
 	if (result_libc  && result_libc  != segstr) free(result_libc); \
 	print_timer_result(&t, TRUE); \
 } \

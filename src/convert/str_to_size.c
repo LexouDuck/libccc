@@ -1,6 +1,6 @@
 
-#include "libft_char.h"
-#include "libft_convert.h"
+#include "libccc_char.h"
+#include "libccc_convert.h"
 
 
 
@@ -9,7 +9,7 @@ t_size	Convert_String_To_Size(char const* str)
 	t_size	result;
 	t_size	i;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (0);
 #endif

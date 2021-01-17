@@ -1,10 +1,10 @@
 
-#include "libft_memory.h"
-#include "libft_stringarray.h"
+#include "libccc_memory.h"
+#include "libccc_stringarray.h"
 
 
 
-inline char	**ft_strarrnew(t_u32 length)
+inline char	**c_strarrnew(t_u32 length)
 {
-	return ((char**)ft_memnew(sizeof(char*) * (length + 1)));
+	return ((char**)c_memnew(sizeof(char*) * (length + 1)));
 }

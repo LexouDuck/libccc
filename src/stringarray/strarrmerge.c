@@ -1,7 +1,7 @@
 
-#include "libft_memory.h"
-#include "libft_string.h"
-#include "libft_stringarray.h"
+#include "libccc_memory.h"
+#include "libccc_string.h"
+#include "libccc_stringarray.h"
 
 
 
@@ -9,7 +9,7 @@ char**	StringArray_Merge(char** *a_strarr1, char** *a_strarr2)
 {
 	char**	result;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (a_strarr1 == NULL || a_strarr2 == NULL)
 		return (NULL);
 #endif
@@ -27,7 +27,7 @@ char**	StringArray_Append(char** *a_dest, char const** src)
 {
 	char**	tmp;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (a_dest == NULL || src == NULL)
 		return (NULL);
 #endif
@@ -43,7 +43,7 @@ char**	fStringArray_Prepend(char const** src, char** *a_dest)
 {
 	char**	tmp;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (a_dest == NULL || src == NULL)
 		return (NULL);
 #endif
@@ -59,7 +59,7 @@ char**	StringArray_Insert_InPlace(char** *a_dest, char const** src, t_u32 index)
 {
 	char**	tmp;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (a_dest == NULL || src == NULL)
 		return (NULL);
 #endif

@@ -8,7 +8,7 @@
 #include <time.h>
 #include <math.h>
 
-#include "libft_math.h"
+#include "libccc_math.h"
 
 #include "test.h"
 
@@ -314,7 +314,7 @@ void		print_timer_result(s_timer* t, t_s64 compare)
 		sprintf((char*)&result1, "SEGV");
 	else sprintf((char*)&result1, TIMER_FORMATSTRING, (long long)t->time1.tv_sec, t->time1.tv_nsec);
 
-	printf(" [libft:");
+	printf(" [libccc:");
 	if (compare)
 	{
 		t->time2 = timer_getdiff(t->start2, t->end2);
@@ -381,12 +381,12 @@ void	print_test(
 		if (function[0] == '_')
 		{
 			char *expected = str_padleft("Expected", ' ', strlen(function) + 2);
-			printf(">ft%s: {%s}\n>%s: {%s}"C_RESET,
+			printf(">c%s: {%s}\n>%s: {%s}"C_RESET,
 				function, result,
 				expected, expect);
 			free(expected);
 		}
-		else printf(">ft_%s: {%s}\n>   %s: {%s}"C_RESET,
+		else printf(">c_%s: {%s}\n>   %s: {%s}"C_RESET,
 			function, result,
 			function, expect);
 	}
@@ -601,7 +601,7 @@ void	print_test_alloc(
 	{
 		printf(C_RED"\nError"C_RESET": ");
 		if (result == NULL)
-			printf("The call to ft_%s(...) returned NULL.", function);
+			printf("The call to c_%s(...) returned NULL.", function);
 		else printf("Every char should be '\\0', but '%c' was read at index %zu.", result[i], i);
 	}
 	else if (g_test.flags.verbose)
@@ -714,7 +714,7 @@ void	print_test_lst(
 	{
 		printf(C_RED"Error:\n");
 		lst = (s_list *)result;
-		printf(">ft_%s: [", function);
+		printf(">c_%s: [", function);
 		char* tmp;
 		while (lst)
 		{

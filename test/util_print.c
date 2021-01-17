@@ -40,7 +40,7 @@ void	print_totals(s_test_totals totals, char const * category)
 	printf("\n");
 	printf("=============================\n");
 	if (category)
-		printf("Test suite: libft_%s\n", category);
+		printf("Test suite: libccc_%s\n", category);
 	else printf("In total:\n");
 	printf("=============================\n");
 	printf("- Amount of tests: %d\n", totals.tests);
@@ -97,7 +97,7 @@ void	print_suite_title(char const * suite_name)
 	{
 		printf("\n");
 		printf("       .----------------------------------.       \n");
-		printf("---==={   LIBFT TEST: libft_%-12s   }===---\n", suite_name);
+		printf("---==={   LIBCCC TEST: libccc_%-12s   }===---\n", suite_name);
 		printf("       '----------------------------------'       \n");
 	}
 }
@@ -106,12 +106,12 @@ void	print_suite_title(char const * suite_name)
 
 void	print_title(void)
 {
-	printf("   __   __ ___   _____ ______    ______ _____ ___  ______\n");
-	printf("  / /  / // . | / ___//_  __/   /_  __//  __// __|/_  __/\n");
-	printf(" / /_ / // , < / __/   / /       / /  /  _/ _\\_ \\  / /   \n");
-	printf("/___//_//___-'/_/     /_/       /_/  /____/ \\__-' /_/    \n");
-	printf("                                  ==> by duquesne @ 42.fr\n");
-	printf("=========================================================\n");
+	printf("   __   __ ___   ____     ______ _____ ___  ______\n");
+	printf("  / /  / // . | / ___|   /_  __//  __// __|/_  __/\n");
+	printf(" / /_ / // , < / /___     / /  /  _/ _\\_ \\  / /   \n");
+	printf("/___//_//___-' \\____/    /_/  /____/ \\__-' /_/    \n");
+	printf("                           ==> by duquesne @ 42.fr\n");
+	printf("==================================================\n");
 	printf("\n");
 	printf(C_YELLOW"NB: All the tests with written in yellow 'can segfault' are NULL pointer tests of some kind."C_RESET"\n\n");
 	fflush(stdout);

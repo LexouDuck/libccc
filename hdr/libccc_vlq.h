@@ -9,11 +9,11 @@
 /*                                                                            */
 /*============================================================================*/
 
-#ifndef __LIBFT_VLQ_H
-#define __LIBFT_VLQ_H
-/*! @file libft_vlq.h
+#ifndef __LIBCCC_VLQ_H
+#define __LIBCCC_VLQ_H
+/*! @file libccc_vlq.h
 **	This header defines a variable-length int type, and utility functions for it.
-**	@addtogroup libft_vlq
+**	@addtogroup libccc_vlq
 **	@{
 */
 
@@ -23,7 +23,7 @@
 ** ************************************************************************** *|
 */
 
-#include "libft.h"
+#include "libccc.h"
 
 HEADER_CPP
 

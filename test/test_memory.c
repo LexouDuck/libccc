@@ -1,16 +1,16 @@
 
-#include "libft_memory.h"
+#include "libccc_memory.h"
 
 #include "test.h"
 
 
 
-#ifdef			ft_memalloc
+#ifdef			c_memalloc
 void	print_test_memalloc(char const* test_name, int can_segfault,
 		t_size n)
 {
 	TEST_PERFORM_RESULT(memalloc, n);
-	print_test_alloc(test_name, "memalloc", result_libft, n);
+	print_test_alloc(test_name, "memalloc", result_libccc, n);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("n=%lu", n)
 	TEST_FREE()
@@ -24,12 +24,12 @@ void	test_memalloc(void)
 
 
 
-#ifdef			ft_memnew
+#ifdef			c_memnew
 void	print_test_memnew(char const* test_name, int can_segfault,
 		t_size n)
 {
 	TEST_PERFORM_RESULT(memnew, n);
-	print_test_alloc(test_name, "memnew", result_libft, n);
+	print_test_alloc(test_name, "memnew", result_libccc, n);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("n=%lu", n)
 	TEST_FREE()
@@ -45,7 +45,7 @@ void	test_memnew(void)
 
 
 
-#ifdef			ft_memfree
+#ifdef			c_memfree
 void	print_test_memfree(char const* test_name, int can_segfault,
 		void *ptr)
 {
@@ -69,7 +69,7 @@ void	test_memfree(void)
 
 
 
-#ifdef			ft_memdel
+#ifdef			c_memdel
 void	print_test_memdel(char const* test_name, int can_segfault,
 		void **ptr)
 {
@@ -92,17 +92,17 @@ void	test_memdel(void)
 
 
 
-#ifdef			ft_memset
+#ifdef			c_memset
 void	print_test_memset(char const* test_name, int can_segfault,
-		char* dest_libft,
+		char* dest_libccc,
 		char* dest_libc,
 		int byte,
 		t_size n)
 {
 	TEST_PERFORM_LIBC_DEST(memset, byte, n)
-	print_test_mem(test_name, "memset 'dest' arg", dest_libft, dest_libc, n, can_segfault);
+	print_test_mem(test_name, "memset 'dest' arg", dest_libccc, dest_libc, n, can_segfault);
 	print_timer_result(&t, TRUE);
-	TEST_PRINT_ARGS("dest=\"%s\", c=0x%x/'%c', n=%lu", dest_libft, byte, byte, n)
+	TEST_PRINT_ARGS("dest=\"%s\", c=0x%x/'%c', n=%lu", dest_libccc, byte, byte, n)
 }
 void	test_memset(void)
 {
@@ -124,23 +124,23 @@ void	test_memset(void)
 
 
 
-#ifdef			ft_memclr
-// NB: this alias is defined because this function has a different name in libft
+#ifdef			c_memclr
+// NB: this alias is defined because this function has a different name in libccc
 #ifdef __MINGW32__
 static inline void	memclr(void *ptr, t_size n) { memset(ptr, 0, n); }
 #else
 #define memclr(dest, n)	bzero(dest, n)
 #endif
 void	print_test_memclr(char const* test_name, int can_segfault,
-		char* dest_libft,
+		char* dest_libccc,
 		char* dest_libc,
 		t_size n)
 {
 	TEST_PERFORM_LIBC_DEST(memclr, n)
-	print_test_mem(test_name, "memclr/bzero arg",                     dest_libft,     dest_libc,     n, can_segfault);
-//	print_test_mem(NULL,      "memclr/bzero (byte after the '\\0's)", dest_libft + n, dest_libc + n, 1, can_segfault);
+	print_test_mem(test_name, "memclr/bzero arg",                     dest_libccc,     dest_libc,     n, can_segfault);
+//	print_test_mem(NULL,      "memclr/bzero (byte after the '\\0's)", dest_libccc + n, dest_libc + n, 1, can_segfault);
 	print_timer_result(&t, TRUE);
-	TEST_PRINT_ARGS("dest=\"%s\", n=%lu", dest_libft, n)
+	TEST_PRINT_ARGS("dest=\"%s\", n=%lu", dest_libccc, n)
 }
 void	test_memclr(void)
 {
@@ -161,18 +161,18 @@ void	test_memclr(void)
 
 
 
-#ifdef			ft_memcpy
+#ifdef			c_memcpy
 void	print_test_memcpy(char const* test_name, int can_segfault,
-		char* dest_libft,
+		char* dest_libccc,
 		char* dest_libc,
 		char const* src,
 		t_size n)
 {
 	TEST_PERFORM_RESULT_LIBC_DEST(memcpy, src, n)
-	print_test_mem(test_name, "memcpy 'dest' arg", dest_libft,   dest_libc,   n, can_segfault);
-	print_test_mem(NULL,      "memcpy return",     result_libft, result_libc, n, can_segfault);
+	print_test_mem(test_name, "memcpy 'dest' arg", dest_libccc,   dest_libc,   n, can_segfault);
+	print_test_mem(NULL,      "memcpy return",     result_libccc, result_libc, n, can_segfault);
 	print_timer_result(&t, TRUE);
-	TEST_PRINT_ARGS("dest=\"%s\", src=\"%s\", n=%lu", dest_libft, src, n)
+	TEST_PRINT_ARGS("dest=\"%s\", src=\"%s\", n=%lu", dest_libccc, src, n)
 }
 void	test_memcpy(void)
 {
@@ -200,19 +200,19 @@ void	test_memcpy(void)
 
 
 
-#ifdef			ft_memccpy
+#ifdef			c_memccpy
 void	print_test_memccpy(char const* test_name, int can_segfault,
-		char* dest_libft,
+		char* dest_libccc,
 		char* dest_libc,
 		char const* src,
 		t_u8 byte,
 		t_size n)
 {
 	TEST_PERFORM_RESULT_LIBC_DEST(memccpy, src, byte, n)
-	print_test_mem(test_name, "memccpy 'dest' arg", dest_libft,   dest_libc, n, can_segfault);// if (byte !='\0')
-	print_test_str(NULL,      "memccpy return",     result_libft, result_libc,  can_segfault);
+	print_test_mem(test_name, "memccpy 'dest' arg", dest_libccc,   dest_libc, n, can_segfault);// if (byte !='\0')
+	print_test_str(NULL,      "memccpy return",     result_libccc, result_libc,  can_segfault);
 	print_timer_result(&t, TRUE);
-	TEST_PRINT_ARGS("dest=\"%s\", src=\"%s\", c=0x%x/'%c', n=%lu", dest_libft, src, byte, byte, n)
+	TEST_PRINT_ARGS("dest=\"%s\", src=\"%s\", c=0x%x/'%c', n=%lu", dest_libccc, src, byte, byte, n)
 }
 void	test_memccpy(void)
 {
@@ -242,19 +242,19 @@ void	test_memccpy(void)
 
 
 
-#ifdef			ft_memmove
+#ifdef			c_memmove
 void	print_test_memmove(char const* test_name, int can_segfault, int show_dest_arg,
-		char* dest_libft,
+		char* dest_libccc,
 		char* dest_libc,
 		char const* src,
 		t_size n)
 {
 	TEST_PERFORM_RESULT_LIBC_DEST(memmove, src, n)
 	if (show_dest_arg)
-	print_test_mem(test_name,                    "memmove 'dest' arg", dest_libft,   dest_libc, n, can_segfault);
-	print_test_mem(show_dest_arg ? NULL : test_name, "memmove return", result_libft, result_libc, n, can_segfault);
+	print_test_mem(test_name,                    "memmove 'dest' arg", dest_libccc,   dest_libc, n, can_segfault);
+	print_test_mem(show_dest_arg ? NULL : test_name, "memmove return", result_libccc, result_libc, n, can_segfault);
 	print_timer_result(&t, TRUE);
-	TEST_PRINT_ARGS("dest=\"%s\", src=\"%s\", n=%lu", dest_libft, src, n)
+	TEST_PRINT_ARGS("dest=\"%s\", src=\"%s\", n=%lu", dest_libccc, src, n)
 }
 void	test_memmove(void)
 {
@@ -272,7 +272,7 @@ void	test_memmove(void)
 	// TODO add overlapping memory test
 //	TODO change the testing function so that the following test can be done with a simple one-line function call
 /*
-	segfault = setjmp(restore); if (!segfault) sra = ft_memmove(str1 + 3, str1, test1_len - 5); else sra = segstr;
+	segfault = setjmp(restore); if (!segfault) sra = c_memmove(str1 + 3, str1, test1_len - 5); else sra = segstr;
 	segfault = setjmp(restore); if (!segfault) srb =    memmove(str2 + 3, str2, test1_len - 5); else srb = segstr;
 	print_test_str("memmove (overlapping)", "memmove arg",    str1,  str2,  FALSE);
 	print_test_str(NULL,                    "memmove return", sra,   srb,   FALSE);
@@ -282,14 +282,14 @@ void	test_memmove(void)
 
 
 
-#ifdef			ft_memchr
+#ifdef			c_memchr
 void	print_test_memchr(char const* test_name, int can_segfault,
 		void const* ptr,
 		t_u8 byte,
 		t_size n)
 {
 	TEST_PERFORM_RESULT_LIBC(memchr, ptr, byte, n)
-	print_test_mem(test_name, "memchr return", result_libft, result_libc, n, can_segfault);
+	print_test_mem(test_name, "memchr return", result_libccc, result_libc, n, can_segfault);
 	print_timer_result(&t, TRUE);
 	TEST_PRINT_ARGS("ptr=%p, c=0x%x/'%c', n=%lu", ptr, byte, byte, n)
 }
@@ -311,14 +311,14 @@ void	test_memchr(void)
 
 
 
-#ifdef			ft_memcmp
+#ifdef			c_memcmp
 void	print_test_memcmp(char const* test_name, int can_segfault,
 		char const* ptr1,
 		char const* ptr2,
 		t_size n)
 {
 	TEST_PERFORM_RESULT_TYPE_LIBC(int, memcmp, ptr1, ptr2, n)
-	print_test_sign(test_name, "memcmp return", result_libft, result_libc, can_segfault);
+	print_test_sign(test_name, "memcmp return", result_libccc, result_libc, can_segfault);
 	print_timer_result(&t, TRUE);
 	TEST_PRINT_ARGS("ptr1=%p, ptr2=%p, n=%lu", ptr1, ptr2, n)
 }
@@ -355,14 +355,14 @@ void	test_memcmp(void)
 
 
 // TODO check on which platforms this function exists, if any
-#ifdef			ft_memdup
+#ifdef			c_memdup
 void	print_test_memdup(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* src,
 		t_size n)
 {
 	TEST_PERFORM_RESULT(memdup, src, n)
-	print_test_mem(test_name, "_memdup return", result_libft, expecting, n, can_segfault);
+	print_test_mem(test_name, "_memdup return", result_libccc, expecting, n, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("src=\"%s\", n=%lu", src, n)
 	TEST_FREE()
@@ -389,7 +389,7 @@ void	test_memdup(void)
 
 
 
-#ifdef			ft_memswap
+#ifdef			c_memswap
 void	print_test_memswap(void)
 {
 	s_timer t = {0};
@@ -405,7 +405,7 @@ void	test_memswap(void)
 
 
 
-#ifdef			ft_memrep
+#ifdef			c_memrep
 void	print_test_memrep(char const* test_name, int can_segfault,
 		char const* expecting,
 		void* ptr,
@@ -444,7 +444,7 @@ void	test_memrep(void)
 
 
 
-#ifdef			ft_getbits
+#ifdef			c_getbits
 void	print_test_getbits(void)
 {
 	s_timer t = {0};
@@ -464,58 +464,58 @@ int		testsuite_memory(void)
 {
 	print_suite_title("memory");
 
-#ifdef ft_memset
+#ifdef c_memset
 	test_memset();
 #endif
-#ifdef ft_memclr
+#ifdef c_memclr
 	test_memclr(); // = bzero
 #endif
 
-#ifdef ft_memcpy
+#ifdef c_memcpy
 	test_memcpy();
 #endif
-#ifdef ft_memccpy
+#ifdef c_memccpy
 	test_memccpy();
 #endif
-#ifdef ft_memmove
+#ifdef c_memmove
 	test_memmove();
 #endif
 
-#ifdef ft_memchr
+#ifdef c_memchr
 	test_memchr();
 #endif
-#ifdef ft_memcmp
+#ifdef c_memcmp
 	test_memcmp();
 #endif
 
 	print_nonstd();
 
-#ifdef ft_memalloc
+#ifdef c_memalloc
 	test_memalloc();
 #endif
-#ifdef ft_memnew
+#ifdef c_memnew
 	test_memnew();
 #endif
-#ifdef ft_memfree
+#ifdef c_memfree
 //	test_memfree();
 #endif
-#ifdef ft_memdel
+#ifdef c_memdel
 	test_memdel();
 #endif
 
-#ifdef ft_memdup
+#ifdef c_memdup
 	test_memdup();
 #endif
 
-#ifdef ft_memswap
+#ifdef c_memswap
 //	test_memswap();
 #endif
 
-#ifdef ft_memrep
+#ifdef c_memrep
 	test_memrep();
 #endif
 
-#ifdef ft_getbits
+#ifdef c_getbits
 //	test_getbits();
 #endif
 

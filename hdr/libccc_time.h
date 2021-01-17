@@ -9,11 +9,11 @@
 /*                                                                            */
 /*============================================================================*/
 
-#ifndef __LIBFT_TIME_H
-#define __LIBFT_TIME_H
-/*! @file libft_time.h
+#ifndef __LIBCCC_TIME_H
+#define __LIBCCC_TIME_H
+/*! @file libccc_time.h
 **	This header defines all the functions for date & time related functions.
-**	@addtogroup libft_time
+**	@addtogroup libccc_time
 **	@{
 */
 
@@ -30,7 +30,7 @@
 #endif
 #include <sys/time.h>
 */
-#include "libft.h"
+#include "libccc.h"
 
 HEADER_CPP
 
@@ -238,20 +238,20 @@ typedef struct	s_date_
 
 //! Returns the current UTC timestamp, according to the system clock
 t_time					Time_Now(void);
-#define ft_time			Time_Now
-#define ft_time_now		Time_Now
+#define c_time			Time_Now
+#define c_time_now		Time_Now
 
 
 
 //! Converts the given 't_time value' to its equivalent 's_date' representation (in UTC)
 s_date							Time_To_Date_UTC(t_time const value);
-#define ft_time_to_date			Time_To_Date_UTC
-#define ft_time_to_date_utc		Time_To_Date_UTC
+#define c_time_to_date			Time_To_Date_UTC
+#define c_time_to_date_utc		Time_To_Date_UTC
 #define Time_To_Date			Time_To_Date_UTC
 
 //! Converts the given 't_time value' to its equivalent 's_date' representation (according to the system timezone)
 s_date							Time_To_Date_LocalTime(t_time const value);
-#define ft_time_to_date_local	Time_To_Date_LocalTime
+#define c_time_to_date_local	Time_To_Date_LocalTime
 
 
 
@@ -263,11 +263,11 @@ s_date							Time_To_Date_LocalTime(t_time const value);
 
 //! Converts the given 's_date' struct to its ISO STD LIBC 'struct tm' equivalent
 struct timespec				Timespec_To_STDC(s_timespec const* value);
-#define ft_timespec_to_stdc	Timespec_To_STDC
+#define c_timespec_to_stdc	Timespec_To_STDC
 
 //! Converts the given ISO STD LIBC 'struct tm' to its 's_date' struct equivalent
 s_timespec					STDC_To_Timespec(struct timespec const* value);
-#define ft_stdc_to_timespec	STDC_To_Timespec
+#define c_stdc_to_timespec	STDC_To_Timespec
 
 
 
@@ -283,7 +283,7 @@ s_timespec					STDC_To_Timespec(struct timespec const* value);
 **	returned value will have a timezone offset of 'new'.
 */
 t_time					Time_SetTimezone(t_time value, t_timezone old, t_timezone new);
-#define ft_time_tzset	Time_SetTimezone
+#define c_time_tzset	Time_SetTimezone
 
 //! Returns the value of the given 't_time value', updating the timezone offset from 'old' to 'new'
 /*
@@ -291,7 +291,7 @@ t_time					Time_SetTimezone(t_time value, t_timezone old, t_timezone new);
 **	returned value will have a timezone offset of 'new'.
 */
 s_date					Date_SetTimezone(s_date const* value, t_timezone old, t_timezone new);
-#define ft_date_tzset	Date_SetTimezone
+#define c_date_tzset	Date_SetTimezone
 
 
 
@@ -303,15 +303,15 @@ s_date					Date_SetTimezone(s_date const* value, t_timezone old, t_timezone new)
 
 //! Returns the current UTC timestamp, according to the system clock
 s_date					Date_Now(void);
-#define ft_date			Date_Now
-#define ft_date_now		Date_Now
+#define c_date			Date_Now
+#define c_date_now		Date_Now
 
 
 
 //! Parses the given string representation of a date/time, and returns the resulting 's_date' struct
 s_date						Date_String_Parse(char const* str, char const* format);// __format_strptime(2, 0); TODO check if this exists even
-#define ft_strptime			Date_String_Parse
-#define ft_date_parse		Date_String_Parse
+#define c_strptime			Date_String_Parse
+#define c_date_parse		Date_String_Parse
 #define Date_Parse			Date_String_Parse
 #define String_To_Date		Date_String_Parse
 
@@ -322,35 +322,35 @@ s_date						Date_String_Parse(char const* str, char const* format);// __format_s
 **	That being said, it is probably better to use Date_String_Format_N for machines with little RAM.
 */
 char*						Date_String_Format(s_date const* date, char const* format) __format_strftime(2);
-#define ft_date_format		Date_String_Format
+#define c_date_format		Date_String_Format
 #define Date_Format			Date_String_Format
 //! @copydef Date_String_Format, but this version is more closely equivalent to 'strftime()'
 t_size						Date_String_Format_N(char* dest, t_size max, s_date const* date, char const* format) __format_strftime(4);
-#define ft_strftime			Date_String_Format_N
-#define ft_date_format_n	Date_String_Format_N
+#define c_strftime			Date_String_Format_N
+#define c_date_format_n	Date_String_Format_N
 #define Date_Format_N		Date_String_Format_N
 
 
 
 //! Converts the given 's_date value' to its equivalent 't_time' representation (in UTC)
 t_time							Date_To_Time_UTC(s_date const* value);
-#define ft_date_to_time			Date_To_Time_UTC
-#define ft_date_to_time_utc		Date_To_Time_UTC
+#define c_date_to_time			Date_To_Time_UTC
+#define c_date_to_time_utc		Date_To_Time_UTC
 #define Date_To_Time			Date_To_Time_UTC
 
 //! Converts the given 's_date value' to its equivalent 't_time' representation (according to the system timezone)
 t_time							Date_To_Time_LocalTime(s_date const* value);
-#define ft_date_to_time_local	Date_To_Time_LocalTime
+#define c_date_to_time_local	Date_To_Time_LocalTime
 
 
 
 //! Converts the given 's_date' struct to its ISO STD LIBC 'struct tm' equivalent
 struct tm					Date_To_STDC(s_date const* date);
-#define ft_date_to_stdc		Date_To_STDC
+#define c_date_to_stdc		Date_To_STDC
 
 //! Converts the given ISO STD LIBC 'struct tm' to its 's_date' struct equivalent
 s_date						STDC_To_Date(struct tm const* value);
-#define ft_stdc_to_date		STDC_To_Date
+#define c_stdc_to_date		STDC_To_Date
 
 
 

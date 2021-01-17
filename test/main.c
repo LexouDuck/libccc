@@ -107,7 +107,7 @@ static void	init(void)
 	g_test.args[3] = (s_test_arg){ handle_arg_performance,	'p', "performance",		"If provided, output the execution speed for each test performed." };
 	g_test.args[4] = (s_test_arg){ handle_arg_test_all,		't', "test-all",		"Sets all the 'test-something' arguments below (is equivalent to doing '-no')" };
 	g_test.args[5] = (s_test_arg){ handle_arg_test_nullptrs,'n', "test-nullptrs",	"If provided, perform the NULL pointer tests for all functions." };
-	g_test.args[6] = (s_test_arg){ handle_arg_test_overflow,'o', "test-overflow",	"If provided, perform the overflowing number tests for 'libft_convert' functions." };
+	g_test.args[6] = (s_test_arg){ handle_arg_test_overflow,'o', "test-overflow",	"If provided, perform the overflowing number tests for 'libccc_convert' functions." };
 }
 
 

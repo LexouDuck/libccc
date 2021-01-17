@@ -1,7 +1,7 @@
 
-#include "libft_io.h"
-#include "libft_math.h"
-#include "libft_convert.h"
+#include "libccc_io.h"
+#include "libccc_math.h"
+#include "libccc_convert.h"
 
 #include "test.h"
 
@@ -20,7 +20,7 @@
 ** ************************************************************************** *|
 */
 
-#ifdef			ft_s8_to_str
+#ifdef			c_s8_to_str
 void	print_test_s8_to_str(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_s8 number)
@@ -29,9 +29,9 @@ void	print_test_s8_to_str(char const* test_name, int can_segfault,
 /*
 	s_timer t = {0};
 	char* result;
-	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = ft_s8_to_str(number); timer_clock(&t.end1); } else result = segstr;
+	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = c_s8_to_str(number); timer_clock(&t.end1); } else result = segstr;
 */
-	print_test_str(test_name, "_s8_to_str", result_libft, expecting, can_segfault);
+	print_test_str(test_name, "_s8_to_str", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("%d", number)
 }
@@ -57,13 +57,13 @@ void	test_s8_to_str(void)
 
 
 
-#ifdef			ft_s16_to_str
+#ifdef			c_s16_to_str
 void	print_test_s16_to_str(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_s16 number)
 {
 	TEST_PERFORM_RESULT(s16_to_str, number)
-	print_test_str(test_name, "_s16_to_str", result_libft, expecting, can_segfault);
+	print_test_str(test_name, "_s16_to_str", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("%d", number)
 }
@@ -91,13 +91,13 @@ void	test_s16_to_str(void)
 
 
 
-#ifdef			ft_s32_to_str
+#ifdef			c_s32_to_str
 void	print_test_s32_to_str(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_s32 number)
 {
 	TEST_PERFORM_RESULT(s32_to_str, number)
-	print_test_str(test_name, "_s32_to_str", result_libft, expecting, can_segfault);
+	print_test_str(test_name, "_s32_to_str", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("%d", number)
 }
@@ -125,13 +125,13 @@ void	test_s32_to_str(void)
 
 
 
-#ifdef			ft_s64_to_str
+#ifdef			c_s64_to_str
 void	print_test_s64_to_str(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_s64 number)
 {
 	TEST_PERFORM_RESULT(s64_to_str, number)
-	print_test_str(test_name, "_s64_to_str", result_libft, expecting, can_segfault);
+	print_test_str(test_name, "_s64_to_str", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS(PRINTF_S64, number)
 }
@@ -165,13 +165,13 @@ void	test_s64_to_str(void)
 
 
 
-#ifdef			ft_u8_to_str
+#ifdef			c_u8_to_str
 void	print_test_u8_to_str(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_u8 number)
 {
 	TEST_PERFORM_RESULT(u8_to_str, number)
-	print_test_str(test_name, "_u8_to_str", result_libft, expecting, can_segfault);
+	print_test_str(test_name, "_u8_to_str", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("%d", number)
 }
@@ -195,13 +195,13 @@ void	test_u8_to_str(void)
 
 
 
-#ifdef			ft_u16_to_str
+#ifdef			c_u16_to_str
 void	print_test_u16_to_str(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_u16 number)
 {
 	TEST_PERFORM_RESULT(u16_to_str, number)
-	print_test_str(test_name, "_u16_to_str", result_libft, expecting, can_segfault);
+	print_test_str(test_name, "_u16_to_str", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("%d", number)
 }
@@ -226,13 +226,13 @@ void	test_u16_to_str(void)
 
 
 
-#ifdef			ft_u32_to_str
+#ifdef			c_u32_to_str
 void	print_test_u32_to_str(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_u32 number)
 {
 	TEST_PERFORM_RESULT(u32_to_str, number)
-	print_test_str(test_name, "_u32_to_str", result_libft, expecting, can_segfault);
+	print_test_str(test_name, "_u32_to_str", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("%d", number)
 }
@@ -259,13 +259,13 @@ void	test_u32_to_str(void)
 
 
 
-#ifdef			ft_u64_to_str
+#ifdef			c_u64_to_str
 void	print_test_u64_to_str(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_u64 number)
 {
 	TEST_PERFORM_RESULT(u64_to_str, number)
-	print_test_str(test_name, "_u64_to_str", result_libft, expecting, can_segfault);
+	print_test_str(test_name, "_u64_to_str", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS(PRINTF_U64, number)
 }
@@ -300,14 +300,14 @@ void	test_u64_to_str(void)
 ** ************************************************************************** *|
 */
 
-#ifdef			ft_f32_to_str_p
+#ifdef			c_f32_to_str_p
 void	print_test_f32_to_str_p(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_f32 number,
 		t_u8 precision)
 {
 	TEST_PERFORM_RESULT(f32_to_str_p, number, precision)
-	print_test_str(test_name, "_f32_to_str_p", result_libft, expecting, can_segfault);
+	print_test_str(test_name, "_f32_to_str_p", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("%g", number)
 }
@@ -371,14 +371,14 @@ void	test_f32_to_str_p(void)
 
 
 
-#ifdef			ft_f64_to_str_p
+#ifdef			c_f64_to_str_p
 void	print_test_f64_to_str_p(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_f64 number,
 		t_u8 precision)
 {
 	TEST_PERFORM_RESULT(f64_to_str_p, number, precision)
-	print_test_str(test_name, "_f64_to_str_p", result_libft, expecting, can_segfault);
+	print_test_str(test_name, "_f64_to_str_p", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("%g", number)
 }
@@ -448,13 +448,13 @@ void	test_f64_to_str_p(void)
 ** ************************************************************************** *|
 */
 
-#ifdef			ft_size_to_str
+#ifdef			c_size_to_str
 void	print_test_size_to_str(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_size number)
 {
 	TEST_PERFORM_RESULT(size_to_str, number)
-	print_test_str(test_name, "_size_to_str", result_libft, expecting, can_segfault);
+	print_test_str(test_name, "_size_to_str", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS(PRINTF_SIZE, number)
 }
@@ -496,14 +496,14 @@ void	test_size_to_str(void)
 
 
 
-#ifdef			ft_bool_to_str
+#ifdef			c_bool_to_str
 void	print_test_bool_to_str(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_bool value,
 		t_bool uppercase)
 {
 	TEST_PERFORM_RESULT(bool_to_str, value, uppercase)
-	print_test_str(test_name, "_bool_to_str", result_libft, expecting, can_segfault);
+	print_test_str(test_name, "_bool_to_str", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("value=%d, uppercase=%d", value, uppercase)
 }
@@ -533,13 +533,13 @@ void	test_bool_to_str(void)
 ** ************************************************************************** *|
 */
 
-#ifdef			ft_str_to_s8
+#ifdef			c_str_to_s8
 void	print_test_str_to_s8(char const* test_name, int can_segfault,
 		t_s8 expecting,
 		char const* str)
 {
 	TEST_PERFORM_RESULT_TYPE(t_s8, str_to_s8, str)
-	print_test_s8(test_name, "_str_to_s8", result_libft, expecting, can_segfault);
+	print_test_s8(test_name, "_str_to_s8", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS_ESCAPED(str)
 }
@@ -581,13 +581,13 @@ void test_str_to_s8(void)
 
 
 
-#ifdef			ft_str_to_s16
+#ifdef			c_str_to_s16
 void	print_test_str_to_s16(char const* test_name, int can_segfault,
 		t_s16 expecting,
 		char const* str)
 {
 	TEST_PERFORM_RESULT_TYPE(t_s16, str_to_s16, str)
-	print_test_s16(test_name, "_str_to_s16", result_libft, expecting, can_segfault);
+	print_test_s16(test_name, "_str_to_s16", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS_ESCAPED(str)
 }
@@ -654,13 +654,13 @@ void test_str_to_s16(void)
 
 
 
-#ifdef			ft_str_to_s32
+#ifdef			c_str_to_s32
 void	print_test_str_to_s32(char const* test_name, int can_segfault,
 		t_s32 expecting,
 		char const* str)
 {
 	TEST_PERFORM_RESULT_TYPE(t_s32, str_to_s32, str)
-	print_test_s32(test_name, "_str_to_s32", result_libft, expecting, can_segfault);
+	print_test_s32(test_name, "_str_to_s32", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS_ESCAPED(str)
 }
@@ -745,13 +745,13 @@ void test_str_to_s32(void)
 
 
 
-#ifdef			ft_str_to_s64
+#ifdef			c_str_to_s64
 void	print_test_str_to_s64(char const* test_name, int can_segfault,
 		t_s64 expecting,
 		char const* str)
 {
 	TEST_PERFORM_RESULT_TYPE(t_s64, str_to_s64, str)
-	print_test_s64(test_name, "_str_to_s64", result_libft, expecting, can_segfault);
+	print_test_s64(test_name, "_str_to_s64", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS_ESCAPED(str)
 }
@@ -848,13 +848,13 @@ void test_str_to_s64(void)
 
 
 
-#ifdef			ft_str_to_u8
+#ifdef			c_str_to_u8
 void	print_test_str_to_u8(char const* test_name, int can_segfault,
 		t_u8 expecting,
 		char const* str)
 {
 	TEST_PERFORM_RESULT_TYPE(t_u8, str_to_u8, str)
-	print_test_u8(test_name, "_str_to_u8", result_libft, expecting, can_segfault);
+	print_test_u8(test_name, "_str_to_u8", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS_ESCAPED(str)
 }
@@ -895,13 +895,13 @@ void test_str_to_u8(void)
 
 
 
-#ifdef			ft_str_to_u16
+#ifdef			c_str_to_u16
 void	print_test_str_to_u16(char const* test_name, int can_segfault,
 		t_u16 expecting,
 		char const* str)
 {
 	TEST_PERFORM_RESULT_TYPE(t_u16, str_to_u16, str)
-	print_test_u16(test_name, "_str_to_u16", result_libft, expecting, can_segfault);
+	print_test_u16(test_name, "_str_to_u16", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS_ESCAPED(str)
 }
@@ -965,13 +965,13 @@ void test_str_to_u16(void)
 
 
 
-#ifdef			ft_str_to_u32
+#ifdef			c_str_to_u32
 void	print_test_str_to_u32(char const* test_name, int can_segfault,
 		t_u32 expecting,
 		char const* str)
 {
 	TEST_PERFORM_RESULT_TYPE(t_u32, str_to_u32, str)
-	print_test_u32(test_name, "_str_to_u32", result_libft, expecting, can_segfault);
+	print_test_u32(test_name, "_str_to_u32", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS_ESCAPED(str)
 }
@@ -1055,13 +1055,13 @@ void test_str_to_u32(void)
 
 
 
-#ifdef			ft_str_to_u64
+#ifdef			c_str_to_u64
 void	print_test_str_to_u64(char const* test_name, int can_segfault,
 		t_u64 expecting,
 		char const* str)
 {
 	TEST_PERFORM_RESULT_TYPE(t_u64, str_to_u64, str)
-	print_test_u64(test_name, "_str_to_u64", result_libft, expecting, can_segfault);
+	print_test_u64(test_name, "_str_to_u64", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS_ESCAPED(str)
 }
@@ -1164,13 +1164,13 @@ void test_str_to_u64(void)
 ** ************************************************************************** *|
 */
 
-#ifdef			ft_str_to_f32
+#ifdef			c_str_to_f32
 void	print_test_str_to_f32(char const* test_name, int can_segfault,
 		t_f32 expecting,
 		char const* str)
 {
 	TEST_PERFORM_RESULT_TYPE(t_f32, str_to_f32, str)
-	print_test_f32(test_name, "_str_to_f32", result_libft, expecting, can_segfault);
+	print_test_f32(test_name, "_str_to_f32", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS_ESCAPED(str)
 }
@@ -1326,13 +1326,13 @@ void	test_str_to_f32(void)
 
 
 
-#ifdef			ft_str_to_f64
+#ifdef			c_str_to_f64
 void	print_test_str_to_f64(char const* test_name, int can_segfault,
 		t_f64 expecting,
 		char const* str)
 {
 	TEST_PERFORM_RESULT_TYPE(t_f64, str_to_f64, str)
-	print_test_f64(test_name, "_str_to_f64", result_libft, expecting, can_segfault);
+	print_test_f64(test_name, "_str_to_f64", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS_ESCAPED(str)
 }
@@ -1497,7 +1497,7 @@ void test_str_to_f64(void)
 ** ************************************************************************** *|
 */
 
-#ifdef			ft_str_to_bool
+#ifdef			c_str_to_bool
 void	print_test_str_to_bool(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str)
@@ -1516,13 +1516,13 @@ void	test_str_to_bool(void)
 
 
 
-#ifdef			ft_str_to_size
+#ifdef			c_str_to_size
 void	print_test_str_to_size(char const* test_name, int can_segfault,
 		t_size expecting,
 		char const* str)
 {
 	TEST_PERFORM_RESULT_TYPE(t_size, str_to_size, str)
-	print_test_size(test_name, "_str_to_size", result_libft, expecting, can_segfault);
+	print_test_size(test_name, "_str_to_size", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS_ESCAPED(str)
 }
@@ -1625,13 +1625,13 @@ void	test_str_to_size(void)
 ** ************************************************************************** *|
 */
 
-#ifdef			ft_u8_to_strhex
+#ifdef			c_u8_to_strhex
 void	print_test_u8_to_strhex(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_s32 number)
 {
 	TEST_PERFORM_RESULT(u8_to_strhex, number)
-	print_test_str(test_name, "_u8_to_strhex", result_libft, expecting, can_segfault);
+	print_test_str(test_name, "_u8_to_strhex", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("%d", number)
 }
@@ -1655,13 +1655,13 @@ void	test_u8_to_strhex(void)
 
 
 
-#ifdef			ft_u16_to_strhex
+#ifdef			c_u16_to_strhex
 void	print_test_u16_to_strhex(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_s32 number)
 {
 	TEST_PERFORM_RESULT(u16_to_strhex, number)
-	print_test_str(test_name, "_u16_to_strhex", result_libft, expecting, can_segfault);
+	print_test_str(test_name, "_u16_to_strhex", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("%d", number)
 }
@@ -1686,13 +1686,13 @@ void	test_u16_to_strhex(void)
 
 
 
-#ifdef			ft_u32_to_strhex
+#ifdef			c_u32_to_strhex
 void	print_test_u32_to_strhex(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_s32 number)
 {
 	TEST_PERFORM_RESULT(u32_to_strhex, number)
-	print_test_str(test_name, "_u32_to_strhex", result_libft, expecting, can_segfault);
+	print_test_str(test_name, "_u32_to_strhex", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("%d", number)
 }
@@ -1719,13 +1719,13 @@ void	test_u32_to_strhex(void)
 
 
 
-#ifdef			ft_u64_to_strhex
+#ifdef			c_u64_to_strhex
 void	print_test_u64_to_strhex(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_u64 number)
 {
 	TEST_PERFORM_RESULT(u64_to_strhex, number)
-	print_test_str(test_name, "_u64_to_strhex", result_libft, expecting, can_segfault);
+	print_test_str(test_name, "_u64_to_strhex", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS(PRINTF_U64, number)
 }
@@ -1754,13 +1754,13 @@ void	test_u64_to_strhex(void)
 
 
 
-#ifdef			ft_hex_to_u8
+#ifdef			c_hex_to_u8
 void	print_test_hex_to_u8(char const* test_name, int can_segfault,
 		t_u8 expecting,
 		char const* str)
 {
 	TEST_PERFORM_RESULT_TYPE(t_u8, hex_to_u8, str)
-	print_test_u8(test_name, "_hex_to_u8", result_libft, expecting, can_segfault);
+	print_test_u8(test_name, "_hex_to_u8", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 }
 void	test_hex_to_u8(void)
@@ -1772,13 +1772,13 @@ void	test_hex_to_u8(void)
 
 
 
-#ifdef			ft_hex_to_u16
+#ifdef			c_hex_to_u16
 void	print_test_hex_to_u16(char const* test_name, int can_segfault,
 		t_u16 expecting,
 		char const* str)
 {
 	TEST_PERFORM_RESULT_TYPE(t_u16, hex_to_u16, str)
-	print_test_u16(test_name, "_hex_to_u16", result_libft, expecting, can_segfault);
+	print_test_u16(test_name, "_hex_to_u16", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 }
 void	test_hex_to_u16(void)
@@ -1790,13 +1790,13 @@ void	test_hex_to_u16(void)
 
 
 
-#ifdef			ft_hex_to_u32
+#ifdef			c_hex_to_u32
 void	print_test_hex_to_u32(char const* test_name, int can_segfault,
 		t_u32 expecting,
 		char const* str)
 {
 	TEST_PERFORM_RESULT_TYPE(t_u32, hex_to_u32, str)
-	print_test_u32(test_name, "_hex_to_u32", result_libft, expecting, can_segfault);
+	print_test_u32(test_name, "_hex_to_u32", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 }
 void	test_hex_to_u32(void)
@@ -1808,13 +1808,13 @@ void	test_hex_to_u32(void)
 
 
 
-#ifdef			ft_hex_to_u64
+#ifdef			c_hex_to_u64
 void	print_test_hex_to_u64(char const* test_name, int can_segfault,
 		t_u64 expecting,
 		char const* str)
 {
 	TEST_PERFORM_RESULT_TYPE(t_u64, hex_to_u64, str)
-	print_test_u64(test_name, "_hex_to_u64", result_libft, expecting, can_segfault);
+	print_test_u64(test_name, "_hex_to_u64", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 }
 void	test_hex_to_u64(void)
@@ -1832,14 +1832,14 @@ void	test_hex_to_u64(void)
 ** ************************************************************************** *|
 */
 
-#ifdef			ft_s8_to_strbase
+#ifdef			c_s8_to_strbase
 void	print_test_s8_to_strbase(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_s8 number,
 		char const* base)
 {
 	TEST_PERFORM_RESULT(s8_to_strbase, number, base)
-	print_test_str(test_name, "_s8_to_strbase", result_libft, expecting, can_segfault);
+	print_test_str(test_name, "_s8_to_strbase", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("base='%s', n=%d", base, number);
 }
@@ -1883,14 +1883,14 @@ void	test_s8_to_strbase(void)
 
 
 
-#ifdef			ft_s16_to_strbase
+#ifdef			c_s16_to_strbase
 void	print_test_s16_to_strbase(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_s16 number,
 		char const* base)
 {
 	TEST_PERFORM_RESULT(s16_to_strbase, number, base)
-	print_test_str(test_name, "_s16_to_strbase", result_libft, expecting, can_segfault);
+	print_test_str(test_name, "_s16_to_strbase", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("base='%s', n=%d", base, number);
 }
@@ -1938,14 +1938,14 @@ void	test_s16_to_strbase(void)
 
 
 
-#ifdef			ft_s32_to_strbase
+#ifdef			c_s32_to_strbase
 void	print_test_s32_to_strbase(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_s32 number,
 		char const* base)
 {
 	TEST_PERFORM_RESULT(s32_to_strbase, number, base)
-	print_test_str(test_name, "_s32_to_strbase", result_libft, expecting, can_segfault);
+	print_test_str(test_name, "_s32_to_strbase", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("base='%s', n=%d", base, number);
 }
@@ -1994,14 +1994,14 @@ void	test_s32_to_strbase(void)
 
 
 
-#ifdef			ft_s64_to_strbase
+#ifdef			c_s64_to_strbase
 void	print_test_s64_to_strbase(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_s64 number,
 		char const* base)
 {
 	TEST_PERFORM_RESULT(s64_to_strbase, number, base)
-	print_test_str(test_name, "_s64_to_strbase", result_libft, expecting, can_segfault);
+	print_test_str(test_name, "_s64_to_strbase", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("base='%s', n="PRINTF_S64, base, number);
 }
@@ -2054,14 +2054,14 @@ void	test_s64_to_strbase(void)
 
 
 
-#ifdef			ft_u8_to_strbase
+#ifdef			c_u8_to_strbase
 void	print_test_u8_to_strbase(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_u8 number,
 		char const* base)
 {
 	TEST_PERFORM_RESULT(u8_to_strbase, number, base)
-	print_test_str(test_name, "_u8_to_strbase", result_libft, expecting, can_segfault);
+	print_test_str(test_name, "_u8_to_strbase", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("base='%s', n=%d", base, number);
 }
@@ -2104,14 +2104,14 @@ void	test_u8_to_strbase(void)
 
 
 
-#ifdef			ft_u16_to_strbase
+#ifdef			c_u16_to_strbase
 void	print_test_u16_to_strbase(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_u16 number,
 		char const* base)
 {
 	TEST_PERFORM_RESULT(u16_to_strbase, number, base)
-	print_test_str(test_name, "_u16_to_strbase", result_libft, expecting, can_segfault);
+	print_test_str(test_name, "_u16_to_strbase", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("base='%s', n=%d", base, number);
 }
@@ -2158,14 +2158,14 @@ void	test_u16_to_strbase(void)
 
 
 
-#ifdef			ft_u32_to_strbase
+#ifdef			c_u32_to_strbase
 void	print_test_u32_to_strbase(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_u32 number,
 		char const* base)
 {
 	TEST_PERFORM_RESULT(u32_to_strbase, number, base)
-	print_test_str(test_name, "_u32_to_strbase", result_libft, expecting, can_segfault);
+	print_test_str(test_name, "_u32_to_strbase", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("base='%s', n=%d", base, number);
 }
@@ -2213,14 +2213,14 @@ void	test_u32_to_strbase(void)
 
 
 
-#ifdef			ft_u64_to_strbase
+#ifdef			c_u64_to_strbase
 void	print_test_u64_to_strbase(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_u64 number,
 		char const* base)
 {
 	TEST_PERFORM_RESULT(u64_to_strbase, number, base)
-	print_test_str(test_name, "_u64_to_strbase", result_libft, expecting, can_segfault);
+	print_test_str(test_name, "_u64_to_strbase", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("base='%s', n="PRINTF_U64, base, number);
 }
@@ -2286,14 +2286,14 @@ void	test_u64_to_strbase(void)
 ** ************************************************************************** *|
 */
 
-#ifdef			ft_strbase_to_s8
+#ifdef			c_strbase_to_s8
 void	print_test_strbase_to_s8(char const* test_name, int can_segfault,
 		t_s8 expecting,
 		char const* number,
 		char const* base)
 {
 	TEST_PERFORM_RESULT_TYPE(t_s8, strbase_to_s8, number, base)
-	print_test_s8(test_name, "_strbase_to_s8", result_libft, expecting, can_segfault);
+	print_test_s8(test_name, "_strbase_to_s8", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("base='%s', n='%s'", base, number);
 }
@@ -2344,14 +2344,14 @@ void	test_strbase_to_s8(void)
 
 
 
-#ifdef			ft_strbase_to_s16
+#ifdef			c_strbase_to_s16
 void	print_test_strbase_to_s16(char const* test_name, int can_segfault,
 		t_s16 expecting,
 		char const* number,
 		char const* base)
 {
 	TEST_PERFORM_RESULT_TYPE(t_s16, strbase_to_s16, number, base)
-	print_test_s16(test_name, "_strbase_to_s16", result_libft, expecting, can_segfault);
+	print_test_s16(test_name, "_strbase_to_s16", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("base='%s', n='%s'", base, number);
 }
@@ -2406,14 +2406,14 @@ void	test_strbase_to_s16(void)
 
 
 
-#ifdef			ft_strbase_to_s32
+#ifdef			c_strbase_to_s32
 void	print_test_strbase_to_s32(char const* test_name, int can_segfault,
 		t_s32 expecting,
 		char const* number,
 		char const* base)
 {
 	TEST_PERFORM_RESULT_TYPE(t_s32, strbase_to_s32, number, base)
-	print_test_s32(test_name, "_strbase_to_s32", result_libft, expecting, can_segfault);
+	print_test_s32(test_name, "_strbase_to_s32", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("base='%s', n='%s'", base, number);
 }
@@ -2469,14 +2469,14 @@ void	test_strbase_to_s32(void)
 
 
 
-#ifdef			ft_strbase_to_s64
+#ifdef			c_strbase_to_s64
 void	print_test_strbase_to_s64(char const* test_name, int can_segfault,
 		t_s64 expecting,
 		char const* number,
 		char const* base)
 {
 	TEST_PERFORM_RESULT_TYPE(t_s64, strbase_to_s64, number, base)
-	print_test_s64(test_name, "_strbase_to_s64", result_libft, expecting, can_segfault);
+	print_test_s64(test_name, "_strbase_to_s64", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("base='%s', n='%s'", base, number);
 }
@@ -2536,14 +2536,14 @@ void	test_strbase_to_s64(void)
 
 
 
-#ifdef			ft_strbase_to_u8
+#ifdef			c_strbase_to_u8
 void	print_test_strbase_to_u8(char const* test_name, int can_segfault,
 		t_u8 expecting,
 		char const* number,
 		char const* base)
 {
 	TEST_PERFORM_RESULT_TYPE(t_u8, strbase_to_u8, number, base)
-	print_test_u8(test_name, "_strbase_to_u8", result_libft, expecting, can_segfault);
+	print_test_u8(test_name, "_strbase_to_u8", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("base='%s', n='%s'", base, number);
 }
@@ -2593,14 +2593,14 @@ void	test_strbase_to_u8(void)
 
 
 
-#ifdef			ft_strbase_to_u16
+#ifdef			c_strbase_to_u16
 void	print_test_strbase_to_u16(char const* test_name, int can_segfault,
 		t_u16 expecting,
 		char const* number,
 		char const* base)
 {
 	TEST_PERFORM_RESULT_TYPE(t_u16, strbase_to_u16, number, base)
-	print_test_u16(test_name, "_strbase_to_u16", result_libft, expecting, can_segfault);
+	print_test_u16(test_name, "_strbase_to_u16", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("base='%s', n='%s'", base, number);
 }
@@ -2655,14 +2655,14 @@ void	test_strbase_to_u16(void)
 
 
 
-#ifdef			ft_strbase_to_u32
+#ifdef			c_strbase_to_u32
 void	print_test_strbase_to_u32(char const* test_name, int can_segfault,
 		t_u32 expecting,
 		char const* number,
 		char const* base)
 {
 	TEST_PERFORM_RESULT_TYPE(t_u32, strbase_to_u32, number, base)
-	print_test_u32(test_name, "_strbase_to_u32", result_libft, expecting, can_segfault);
+	print_test_u32(test_name, "_strbase_to_u32", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("base='%s', n='%s'", base, number);
 }
@@ -2718,14 +2718,14 @@ void	test_strbase_to_u32(void)
 
 
 
-#ifdef			ft_strbase_to_u64
+#ifdef			c_strbase_to_u64
 void	print_test_strbase_to_u64(char const* test_name, int can_segfault,
 		t_u64 expecting,
 		char const* number,
 		char const* base)
 {
 	TEST_PERFORM_RESULT_TYPE(t_u64, strbase_to_u64, number, base)
-	print_test_u64(test_name, "_strbase_to_u64", result_libft, expecting, can_segfault);
+	print_test_u64(test_name, "_strbase_to_u64", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("base='%s', n='%s'", base, number);
 }
@@ -2800,162 +2800,162 @@ int		testsuite_convert(void)
 
 	print_nonstd();
 
-#ifdef ft_s8_to_str
+#ifdef c_s8_to_str
 	test_s8_to_str();
 #endif
-#ifdef ft_s16_to_str
+#ifdef c_s16_to_str
 	test_s16_to_str();
 #endif
-#ifdef ft_s32_to_str
+#ifdef c_s32_to_str
 	test_s32_to_str();
 #endif
-#ifdef ft_s64_to_str
+#ifdef c_s64_to_str
 	test_s64_to_str();
 #endif
 
-#ifdef ft_u8_to_str
+#ifdef c_u8_to_str
 	test_u8_to_str();
 #endif
-#ifdef ft_u16_to_str
+#ifdef c_u16_to_str
 	test_u16_to_str();
 #endif
-#ifdef ft_u32_to_str
+#ifdef c_u32_to_str
 	test_u32_to_str();
 #endif
-#ifdef ft_u64_to_str
+#ifdef c_u64_to_str
 	test_u64_to_str();
 #endif
 
-#ifdef ft_f32_to_str_p
+#ifdef c_f32_to_str_p
 	test_f32_to_str_p();
 #endif
-#ifdef ft_f64_to_str_p
+#ifdef c_f64_to_str_p
 	test_f64_to_str_p();
 #endif
-#ifdef ft_bool_to_str
+#ifdef c_bool_to_str
 	test_bool_to_str();
 #endif
-#ifdef ft_size_to_str
+#ifdef c_size_to_str
 	test_size_to_str();
 #endif
 
-#ifdef ft_u8_to_strhex
+#ifdef c_u8_to_strhex
 	test_u8_to_strhex();
 #endif
-#ifdef ft_u16_to_strhex
+#ifdef c_u16_to_strhex
 	test_u16_to_strhex();
 #endif
-#ifdef ft_u32_to_strhex
+#ifdef c_u32_to_strhex
 	test_u32_to_strhex();
 #endif
-#ifdef ft_u64_to_strhex
+#ifdef c_u64_to_strhex
 	test_u64_to_strhex();
 #endif
 
-#ifdef ft_s8_to_strbase
+#ifdef c_s8_to_strbase
 	test_s8_to_strbase();
 #endif
-#ifdef ft_s16_to_strbase
+#ifdef c_s16_to_strbase
 	test_s16_to_strbase();
 #endif
-#ifdef ft_s32_to_strbase
+#ifdef c_s32_to_strbase
 	test_s32_to_strbase();
 #endif
-#ifdef ft_s64_to_strbase
+#ifdef c_s64_to_strbase
 	test_s64_to_strbase();
 #endif
 
-#ifdef ft_u8_to_strbase
+#ifdef c_u8_to_strbase
 	test_u8_to_strbase();
 #endif
-#ifdef ft_u16_to_strbase
+#ifdef c_u16_to_strbase
 	test_u16_to_strbase();
 #endif
-#ifdef ft_u32_to_strbase
+#ifdef c_u32_to_strbase
 	test_u32_to_strbase();
 #endif
-#ifdef ft_u64_to_strbase
+#ifdef c_u64_to_strbase
 	test_u64_to_strbase();
 #endif
 
 
 
-#ifdef ft_str_to_s8
+#ifdef c_str_to_s8
 	test_str_to_s8();
 #endif
-#ifdef ft_str_to_s16
+#ifdef c_str_to_s16
 	test_str_to_s16();
 #endif
-#ifdef ft_str_to_s32
+#ifdef c_str_to_s32
 	test_str_to_s32();
 #endif
-#ifdef ft_str_to_s64
+#ifdef c_str_to_s64
 	test_str_to_s64();
 #endif
 
-#ifdef ft_str_to_u8
+#ifdef c_str_to_u8
 	test_str_to_u8();
 #endif
-#ifdef ft_str_to_u16
+#ifdef c_str_to_u16
 	test_str_to_u16();
 #endif
-#ifdef ft_str_to_u32
+#ifdef c_str_to_u32
 	test_str_to_u32();
 #endif
-#ifdef ft_str_to_u64
+#ifdef c_str_to_u64
 	test_str_to_u64();
 #endif
 
-#ifdef ft_str_to_f32
+#ifdef c_str_to_f32
 //	test_str_to_f32();
 #endif
-#ifdef ft_str_to_f64
+#ifdef c_str_to_f64
 //	test_str_to_f64();
 #endif
 
-#ifdef ft_str_to_bool
+#ifdef c_str_to_bool
 //	test_str_to_bool();
 #endif
-#ifdef ft_str_to_size
+#ifdef c_str_to_size
 	test_str_to_size();
 #endif
 
-#ifdef ft_hex_to_u8
+#ifdef c_hex_to_u8
 //	test_hex_to_u8();
 #endif
-#ifdef ft_hex_to_u16
+#ifdef c_hex_to_u16
 //	test_hex_to_u16();
 #endif
-#ifdef ft_hex_to_u32
+#ifdef c_hex_to_u32
 //	test_hex_to_u32();
 #endif
-#ifdef ft_hex_to_u64
+#ifdef c_hex_to_u64
 //	test_hex_to_u64();
 #endif
 
-#ifdef ft_strbase_to_s8
+#ifdef c_strbase_to_s8
 	test_strbase_to_s8();
 #endif
-#ifdef ft_strbase_to_s16
+#ifdef c_strbase_to_s16
 	test_strbase_to_s16();
 #endif
-#ifdef ft_strbase_to_s32
+#ifdef c_strbase_to_s32
 	test_strbase_to_s32();
 #endif
-#ifdef ft_strbase_to_s64
+#ifdef c_strbase_to_s64
 	test_strbase_to_s64();
 #endif
 
-#ifdef ft_strbase_to_u8
+#ifdef c_strbase_to_u8
 	test_strbase_to_u8();
 #endif
-#ifdef ft_strbase_to_u16
+#ifdef c_strbase_to_u16
 	test_strbase_to_u16();
 #endif
-#ifdef ft_strbase_to_u32
+#ifdef c_strbase_to_u32
 	test_strbase_to_u32();
 #endif
-#ifdef ft_strbase_to_u64
+#ifdef c_strbase_to_u64
 	test_strbase_to_u64();
 #endif
 

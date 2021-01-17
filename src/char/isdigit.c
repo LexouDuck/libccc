@@ -1,21 +1,21 @@
 
-#include "libft_char.h"
+#include "libccc_char.h"
 
 
 
-inline t_bool	ft_isdigit(int c)
+inline t_bool	c_isdigit(int c)
 {
 	return ('0' <= c && c <= '9');
 }
 
-inline t_bool	ft_ishexdigit(int c)
+inline t_bool	c_ishexdigit(int c)
 {
 	return (('0' <= c && c <= '9') ||
 			('A' <= c && c <= 'F') ||
 			('a' <= c && c <= 'f'));
 }
 
-inline t_bool	ft_isalnum(int c)
+inline t_bool	c_isalnum(int c)
 {
 	return (('A' <= c && c <= 'Z') ||
 			('a' <= c && c <= 'z') ||

@@ -1,11 +1,11 @@
 
-#include "libft_memory.h"
-#include "libft_char.h"
-#include "libft_string.h"
+#include "libccc_memory.h"
+#include "libccc_char.h"
+#include "libccc_string.h"
 
 
 
-char	*ft_strprint(char const *str)
+char	*c_strprint(char const *str)
 {
 	unsigned char HI_nibble;
 	unsigned char LO_nibble;
@@ -13,15 +13,15 @@ char	*ft_strprint(char const *str)
 	t_size	index = 0;
 	t_size	i = 0;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (NULL);
 #endif
-	if (!(result = (char *)ft_memalloc(ft_strlen(str) * 4)))
+	if (!(result = (char *)c_memalloc(c_strlen(str) * 4)))
 		return (NULL);
 	while (str[index])
 	{
-		if (!ft_isprint(str[index]))
+		if (!c_isprint(str[index]))
 		{
 			result[i++] = '\\';
 			switch (str[index])

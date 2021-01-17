@@ -1,9 +1,9 @@
 
-#include "libft_color.h"
+#include "libccc_color.h"
 
 
 
-t_argb16*		ft_color_argb16_nearest(
+t_argb16*		c_color_argb16_nearest(
 	t_argb16 target,
 	t_argb16* colors,
 	t_size n)
@@ -14,7 +14,7 @@ t_argb16*		ft_color_argb16_nearest(
 	t_s16 min_diff;
 	t_argb16* result;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (colors == NULL)
 		return (NULL);
 #endif
@@ -22,9 +22,9 @@ t_argb16*		ft_color_argb16_nearest(
 	result = NULL;
 	while (n--)
 	{
-		r = ft_color_argb16_get_r(target) - ft_color_argb16_get_r(colors[n]);
-		g = ft_color_argb16_get_g(target) - ft_color_argb16_get_g(colors[n]);
-		b = ft_color_argb16_get_b(target) - ft_color_argb16_get_b(colors[n]);
+		r = c_color_argb16_get_r(target) - c_color_argb16_get_r(colors[n]);
+		g = c_color_argb16_get_g(target) - c_color_argb16_get_g(colors[n]);
+		b = c_color_argb16_get_b(target) - c_color_argb16_get_b(colors[n]);
 		r = (r < 0) ? -r : r;
 		g = (g < 0) ? -g : g;
 		b = (b < 0) ? -b : b;
@@ -39,7 +39,7 @@ t_argb16*		ft_color_argb16_nearest(
 
 
 
-t_argb32*		ft_color_argb32_nearest(
+t_argb32*		c_color_argb32_nearest(
 	t_argb32 target,
 	t_argb32* colors,
 	t_size n)
@@ -50,7 +50,7 @@ t_argb32*		ft_color_argb32_nearest(
 	t_s16 min_diff;
 	t_argb32* result;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (colors == NULL)
 		return (NULL);
 #endif
@@ -58,9 +58,9 @@ t_argb32*		ft_color_argb32_nearest(
 	result = NULL;
 	while (n--)
 	{
-		r = ft_color_argb32_get_r(target) - ft_color_argb32_get_r(colors[n]);
-		g = ft_color_argb32_get_g(target) - ft_color_argb32_get_g(colors[n]);
-		b = ft_color_argb32_get_b(target) - ft_color_argb32_get_b(colors[n]);
+		r = c_color_argb32_get_r(target) - c_color_argb32_get_r(colors[n]);
+		g = c_color_argb32_get_g(target) - c_color_argb32_get_g(colors[n]);
+		b = c_color_argb32_get_b(target) - c_color_argb32_get_b(colors[n]);
 		r = (r < 0) ? -r : r;
 		g = (g < 0) ? -g : g;
 		b = (b < 0) ? -b : b;
@@ -75,7 +75,7 @@ t_argb32*		ft_color_argb32_nearest(
 
 
 
-s_argb*		ft_color_argb_nearest(
+s_argb*		c_color_argb_nearest(
 	s_argb target,
 	s_argb* colors,
 	t_size n)
@@ -86,7 +86,7 @@ s_argb*		ft_color_argb_nearest(
 	t_s16 min_diff;
 	s_argb* result;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (colors == NULL)
 		return (NULL);
 #endif

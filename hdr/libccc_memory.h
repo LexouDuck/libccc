@@ -9,11 +9,11 @@
 /*                                                                            */
 /*============================================================================*/
 
-#ifndef __LIBFT_MEMORY_H
-#define __LIBFT_MEMORY_H
-/*! @file libft_memory.h
+#ifndef __LIBCCC_MEMORY_H
+#define __LIBCCC_MEMORY_H
+/*! @file libccc_memory.h
 **	This header defines the common standard memory manipulation functions.
-**	@addtogroup libft_memory
+**	@addtogroup libccc_memory
 **	@{
 */
 
@@ -23,7 +23,7 @@
 ** ************************************************************************** *|
 */
 
-#include "libft.h"
+#include "libccc.h"
 
 HEADER_CPP
 
@@ -38,7 +38,7 @@ HEADER_CPP
 **	said bytes were allocated, or NULL if the memory could not be allocated.
 */
 void*				Memory_Alloc(t_size size);
-#define ft_memalloc	Memory_Alloc
+#define c_memalloc	Memory_Alloc
 
 /*!
 **	Allocates 'size' bytes in memory, setting each byte of this newly allocated
@@ -46,7 +46,7 @@ void*				Memory_Alloc(t_size size);
 **	or NULL if the memory could not be allocated.
 */
 void*				Memory_New(t_size size);
-#define ft_memnew	Memory_New
+#define c_memnew	Memory_New
 
 /*!
 **	Allocates 'size' bytes in memory, setting each byte of this newly allocated
@@ -54,19 +54,19 @@ void*				Memory_New(t_size size);
 **	or NULL if the memory could not be allocated.
 */
 void*				Memory_New_C(t_size size, char c);
-#define ft_memcnew	Memory_New_C
+#define c_memcnew	Memory_New_C
 
 /*!
 **	Frees the allocated memory at '*ptr'.
 */
 void				Memory_Free(void* ptr);
-#define ft_memfree	Memory_Free
+#define c_memfree	Memory_Free
 
 /*!
 **	Frees the allocated memory at '**a_ptr', and sets '*a_ptr' to NULL.
 */
 void				Memory_Delete(void* *a_ptr);
-#define ft_memdel	Memory_Delete
+#define c_memdel	Memory_Delete
 
 
 
@@ -75,19 +75,19 @@ void				Memory_Delete(void* *a_ptr);
 **	first 8 bits of this value and writing it byte-per-byte), starting at 'ptr'.
 */
 void				Memory_Set(void* ptr, t_u8 byte, t_size n);
-#define ft_memset	Memory_Set
+#define c_memset	Memory_Set
 
 /*!
 **	Sets 'n' bytes of memory to 0, starting at 'ptr'. (same as bzero)
 */
 void				Memory_Clear(void* ptr, t_size n);
-#define ft_memclr	Memory_Clear
+#define c_memclr	Memory_Clear
 
 /*!
 **	Copies 'n' bytes of memory from 'src' to 'dest', and returns 'dest'.
 */
 void*				Memory_Copy(void* dest, void const* src, t_size n);
-#define ft_memcpy	Memory_Copy
+#define c_memcpy	Memory_Copy
 
 /*!
 **	Copies at most 'n' bytes of memory from 'src' to 'dest',
@@ -95,7 +95,7 @@ void*				Memory_Copy(void* dest, void const* src, t_size n);
 **	and returns a pointer to ('byte' + 1) in 'dest', or NULL.
 */
 void*				Memory_Copy_C(void* dest, void const* src, t_u8 byte, t_size n);
-#define ft_memccpy	Memory_Copy_C
+#define c_memccpy	Memory_Copy_C
 
 /*!
 **	Reads 'n' bytes of memory from 'src', and then writes
@@ -103,7 +103,7 @@ void*				Memory_Copy_C(void* dest, void const* src, t_u8 byte, t_size n);
 **	This function is useful if the 'src' and 'dest' buffers overlap.
 */
 void*				Memory_Move(void* dest, void const* src, t_size n);
-#define ft_memmove	Memory_Move
+#define c_memmove	Memory_Move
 
 
 
@@ -113,7 +113,7 @@ void*				Memory_Move(void* dest, void const* src, t_size n);
 **	could not be allocated, or if 'ptr' is NULL or 'n' == 0).
 */
 void*				Memory_Duplicate(void const* ptr, t_size n);
-#define ft_memdup	Memory_Duplicate
+#define c_memdup	Memory_Duplicate
 
 
 
@@ -129,14 +129,14 @@ void*				Memory_Duplicate(void const* ptr, t_size n);
 **	and searching 'n' bytes of memory.
 */
 void*				Memory_Find(void const* ptr, t_u8 byte, t_size n);
-#define ft_memchr	Memory_Find
+#define c_memchr	Memory_Find
 
 /*!
 **	Iterates through 'n' bytes of memory starting at 'ptr', replacing every
 **	byte equal to 'old' with the value 'new' instead.
 */
 void				Memory_Replace(void* ptr, t_u8 old, t_u8 new, t_size n);
-#define ft_memrep	Memory_Replace
+#define c_memrep	Memory_Replace
 
 /*!
 **	Compares 'n' bytes of memory at 'ptr1' and 'ptr2',
@@ -144,7 +144,7 @@ void				Memory_Replace(void* ptr, t_u8 old, t_u8 new, t_size n);
 **	As such, will return 0 if the contents of 'ptr1' and 'ptr2' match.
 */
 int					Memory_Compare(void const* ptr1, void const* ptr2, t_size n);
-#define ft_memcmp	Memory_Compare
+#define c_memcmp	Memory_Compare
 
 /*!
 **	Swaps the memory content pointed to by 'ptr1' and 'ptr2',
@@ -152,7 +152,7 @@ int					Memory_Compare(void const* ptr1, void const* ptr2, t_size n);
 **	Returns 0 if the swap was successful, and 1 otherwise.
 */
 int					Memory_Swap(void* ptr1, void* ptr2, t_size size);
-#define ft_memswap	Memory_Swap
+#define c_memswap	Memory_Swap
 
 /*!
 **	Returns a subsection of the 'value' argument, taking 'length' bits
@@ -160,7 +160,7 @@ int					Memory_Swap(void* ptr1, void* ptr2, t_size size);
 **	bits to the right by 'bit' bits (so as to center the value back to 0).
 */
 t_u64				Memory_GetBits(t_u64 value, t_u8 bit, t_u8 length);
-#define ft_getbits	Memory_GetBits
+#define c_getbits	Memory_GetBits
 
 
 
@@ -175,13 +175,13 @@ t_u64				Memory_GetBits(t_u64 value, t_u8 bit, t_u8 length);
 **	pointer array of length 'n'. Returns NULL if memory allocation fails.
 */
 void*					PointerArray_New(t_size size);
-#define ft_ptrarrnew	PointerArray_New
+#define c_ptrarrnew	PointerArray_New
 
 /*!
 **	Returns the length of a null-terminated pointer array.
 */
 t_u32					PointerArray_Length(void const** a_ptrarr);
-#define ft_ptrarrlen	PointerArray_Length
+#define c_ptrarrlen	PointerArray_Length
 
 // TODO ptrarrdup
 

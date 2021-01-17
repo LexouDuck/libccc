@@ -1,24 +1,24 @@
 
-#include "libft_memory.h"
-#include "libft_string.h"
+#include "libccc_memory.h"
+#include "libccc_string.h"
 
 
 
-char	*ft_strrev(char const *str)
+char	*c_strrev(char const *str)
 {
 	char	*result;
 	t_size	length;
 	t_size	i;
 	t_size	j;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (NULL);
 #endif
 	length = 0;
 	while (str[length])
 		++length;
-	result = (char *)ft_memalloc(length + 1);
+	result = (char *)c_memalloc(length + 1);
 	i = 0;
 	j = length - 1;
 	while (i < length)

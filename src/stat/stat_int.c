@@ -1,10 +1,10 @@
 
-#include "libft_memory.h"
-#include "libft_stat.h"
+#include "libccc_memory.h"
+#include "libccc_stat.h"
 
 
 
-s_list_int		ft_stat_new_ilst(t_u32 length)
+s_list_int		c_stat_new_ilst(t_u32 length)
 {
 	s_list_int		result;
 
@@ -12,31 +12,31 @@ s_list_int		ft_stat_new_ilst(t_u32 length)
 	result.length = 0;
 	if (length == 0)
 		return (result);
-	if (!(result.data = (t_int*)ft_memalloc(sizeof(t_int) * length)))
+	if (!(result.data = (t_int*)c_memalloc(sizeof(t_int) * length)))
 		return (result);
 	result.length = length;
 	return (result);
 }
 
-void			ft_stat_free_ilst(s_list_int *ilst)
+void			c_stat_free_ilst(s_list_int *ilst)
 {
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (ilst == NULL)
 		return ;
 #endif
 	if (ilst->data)
 	{
-		ft_memfree(ilst->data);
+		c_memfree(ilst->data);
 		ilst->data = NULL;
 	}
 	ilst->length = 0;
 }
 
-s_list_int		ft_stat_ilst_dup(s_list_int const ilst)
+s_list_int		c_stat_ilst_dup(s_list_int const ilst)
 {
 	s_list_int	result;
 
-	result = ft_stat_new_ilst(ilst.length);
+	result = c_stat_new_ilst(ilst.length);
 	if (!result.data)
 		return (result);
 	for (t_u32 i = 0; i < result.length; ++i)
@@ -44,7 +44,7 @@ s_list_int		ft_stat_ilst_dup(s_list_int const ilst)
 	return (result);
 }
 
-s_list_int		ft_stat_merge_ilst(
+s_list_int		c_stat_merge_ilst(
 	s_list_int *start,
 	s_list_int *append)
 {
@@ -52,17 +52,17 @@ s_list_int		ft_stat_merge_ilst(
 	t_u32				i;
 	t_u32				j;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (start == NULL || append == NULL)
 		return (NULL_LIST_INT);
 #endif
 	if (start->length == 0 && append->length == 0)
-		return (ft_stat_new_ilst(0));
+		return (c_stat_new_ilst(0));
 	else if (!start->data || start->length == 0)
 		return (*append);
 	else if (!append->data || append->length == 0)
 		return (*start);
-	result = ft_stat_new_ilst(start->length + append->length);
+	result = c_stat_new_ilst(start->length + append->length);
 	if (!(result.data))
 		return (result);
 
@@ -70,8 +70,8 @@ s_list_int		ft_stat_merge_ilst(
 		result.data[i] = start->data[i];
 	for (j = 0; i < result.length; ++i, ++j)
 		result.data[i] = append->data[j];
-	ft_stat_free_ilst(start);
-	ft_stat_free_ilst(append);
+	c_stat_free_ilst(start);
+	c_stat_free_ilst(append);
 
 	return (result);
 }
@@ -83,7 +83,7 @@ s_list_int		ft_stat_merge_ilst(
 ** The recursive function can be called with start at 0 and end at
 ** tmp_lst.length - 1 to sort in place.
 */
-void			ft_stat_quicksort_i_rec
+void			c_stat_quicksort_i_rec
 (
 	s_list_int	tmp_lst,
 	t_u32		start,
@@ -101,7 +101,7 @@ void			ft_stat_quicksort_i_rec
 	if (start == end - 1)
 	{
 		if (pivot > tmp_lst.data[end])
-			ft_memswap(tmp_lst.data + start, tmp_lst.data + end, sizeof(t_int));
+			c_memswap(tmp_lst.data + start, tmp_lst.data + end, sizeof(t_int));
 		return ;
 	}
 
@@ -114,44 +114,44 @@ void			ft_stat_quicksort_i_rec
 		while (fall_id > start && tmp_lst.data[fall_id] > pivot)
 			--fall_id;
 		if (rise_id < fall_id)
-			ft_memswap(tmp_lst.data + rise_id, tmp_lst.data + fall_id, sizeof(t_int));
+			c_memswap(tmp_lst.data + rise_id, tmp_lst.data + fall_id, sizeof(t_int));
 	}
 	pivot_id = fall_id;
 	if (start != fall_id)
-		ft_memswap(tmp_lst.data + start, tmp_lst.data + fall_id, sizeof(t_int));
+		c_memswap(tmp_lst.data + start, tmp_lst.data + fall_id, sizeof(t_int));
 
 	if (pivot_id > start)
-		ft_stat_quicksort_i_rec(tmp_lst, start, pivot_id - 1);
+		c_stat_quicksort_i_rec(tmp_lst, start, pivot_id - 1);
 	if (pivot_id < end)
-		ft_stat_quicksort_i_rec(tmp_lst, pivot_id + 1, end);
+		c_stat_quicksort_i_rec(tmp_lst, pivot_id + 1, end);
 }
 
-s_list_int 			ft_stat_quicksort_i_new(s_list_int const ilst)
+s_list_int 			c_stat_quicksort_i_new(s_list_int const ilst)
 {
 	s_list_int	result;
 
 	if (ilst.length <= 1)
 		return (ilst);
-	result = ft_stat_ilst_dup(ilst);
-	ft_stat_quicksort_i_rec(result, 0, ilst.length - 1);
+	result = c_stat_ilst_dup(ilst);
+	c_stat_quicksort_i_rec(result, 0, ilst.length - 1);
 	return (result);
 }
 
-inline void			ft_stat_quicksort_i(s_list_int ilst)
+inline void			c_stat_quicksort_i(s_list_int ilst)
 {
-	ft_stat_quicksort_i_rec(ilst, 0, ilst.length - 1);
+	c_stat_quicksort_i_rec(ilst, 0, ilst.length - 1);
 }
 
 
 
-inline t_float		ft_stat_median_i(s_sortedlist_int const ilst)
+inline t_float		c_stat_median_i(s_sortedlist_int const ilst)
 {
 	return ((ilst.length % 2) ?
 		ilst.data[ilst.length / 2] :
 		(ilst.data[ilst.length / 2] + ilst.data[ilst.length / 2 + 1]) / 2);
 }
 
-t_float				ft_stat_average_i(s_list_int const ilst)
+t_float				c_stat_average_i(s_list_int const ilst)
 {
 	t_float		sum;
 	t_u32		i;
@@ -170,14 +170,14 @@ t_float				ft_stat_average_i(s_list_int const ilst)
 ** Using V(X) = E(X^2) - E(X)^2 rather than E( [X - E(X)]^2 ) which has more
 **	operations (n subtractions).
 */
-t_float				ft_stat_variance_i(s_list_int const ilst)
+t_float				c_stat_variance_i(s_list_int const ilst)
 {
 	t_float		sum;
 	t_u32		i;
 	t_float		average;
 	t_float		tmp;
 
-	average = ft_stat_average_i(ilst);
+	average = c_stat_average_i(ilst);
 	sum = 0;
 	i = 0;
 	while (i < ilst.length)
@@ -191,14 +191,14 @@ t_float				ft_stat_variance_i(s_list_int const ilst)
 
 // TODO
 /*
-inline t_float		ft_stat_stddev_i(s_list_int const ilst)
+inline t_float		c_stat_stddev_i(s_list_int const ilst)
 {
 
 }
 */
 
 /*
-t_bool				ft_prob_is_valid_i(t_prob_sample_i const i_problst)
+t_bool				c_prob_is_valid_i(t_prob_sample_i const i_problst)
 {
 	t_float		prob_sum;
 	t_float		tmp;
@@ -211,15 +211,15 @@ t_bool				ft_prob_is_valid_i(t_prob_sample_i const i_problst)
 		tmp = i_problst.prob[i];
 		if (tmp < 0. || 1. < tmp)
 		{
-			ft_printf_fd(2, "Proba %f at index %d is out of [0, 1]\n", tmp, i);
+			c_printf_fd(2, "Proba %f at index %d is out of [0, 1]\n", tmp, i);
 			return (FALSE);
 		}
 		prob_sum += tmp;
 		++i;
 	}
-	if (ft_fabs(prob_sum - 1.) > PROB_APPROX)
+	if (c_fabs(prob_sum - 1.) > PROB_APPROX)
 	{
-		ft_printf_fd(2, "Proba sum %s is too far from 1.\n", prob_sum);
+		c_printf_fd(2, "Proba sum %s is too far from 1.\n", prob_sum);
 		return (FALSE);
 	}
 	return (TRUE);
@@ -228,7 +228,7 @@ t_bool				ft_prob_is_valid_i(t_prob_sample_i const i_problst)
 
 
 
-s_prob_mass				ft_stat_new_pmf(t_u32 length)
+s_prob_mass				c_stat_new_pmf(t_u32 length)
 {
 	s_prob_mass	result;
 
@@ -236,40 +236,40 @@ s_prob_mass				ft_stat_new_pmf(t_u32 length)
 	result.prob = NULL;
 	result.length = 0;
 	if (length == 0 ||
-		!(result.value	= (t_float*)ft_memalloc(length * sizeof(t_float))) ||
-		!(result.prob	= (t_float*)ft_memalloc(length * sizeof(t_float))))
+		!(result.value	= (t_float*)c_memalloc(length * sizeof(t_float))) ||
+		!(result.prob	= (t_float*)c_memalloc(length * sizeof(t_float))))
 		return (result);
 	result.length = length;
 	return (result);
 }
 
-void					ft_stat_free_pmf(s_prob_mass *drv)
+void					c_stat_free_pmf(s_prob_mass *drv)
 {
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (drv == NULL)
 		return ;
 #endif
 	if (drv->value)
 	{
-		ft_memfree(drv->value);
+		c_memfree(drv->value);
 		drv->value = NULL;
 	}
 	if (drv->prob)
 	{
-		ft_memfree(drv->prob);
+		c_memfree(drv->prob);
 		drv->prob = NULL;
 	}
 	drv->length = 0;
 }
 
-s_set_int				ft_stat_ilst_to_iset(s_list_int const ilst)
+s_set_int				c_stat_ilst_to_iset(s_list_int const ilst)
 {
 	s_list_int				result;
 	s_list_int				set;
 	t_u32					i;
 	t_u32					j;
 
-	set = ft_stat_new_ilst(ilst.length);
+	set = c_stat_new_ilst(ilst.length);
 	set.length = 0;
 	i = 0;
 	while (i < ilst.length)
@@ -285,14 +285,14 @@ s_set_int				ft_stat_ilst_to_iset(s_list_int const ilst)
 			set.data[(set.length)++] = ilst.data[i];
 		++i;
 	}
-	result = ft_stat_new_ilst(set.length);
-	ft_memcpy(result.data, set.data, set.length * sizeof(t_int));
+	result = c_stat_new_ilst(set.length);
+	c_memcpy(result.data, set.data, set.length * sizeof(t_int));
 //	memcpy(result.data, set.data, set.length * sizeof(t_int));
-	ft_memfree(set.data);
+	c_memfree(set.data);
 	return (result);
 }
 
-t_u32				ft_stat_ilst_count(s_list_int ilst, t_int elem)
+t_u32				c_stat_ilst_count(s_list_int ilst, t_int elem)
 {
 	t_u32		i;
 	t_u32		result;
@@ -311,7 +311,7 @@ t_u32				ft_stat_ilst_count(s_list_int ilst, t_int elem)
 /*
 ** Returns the probability distribution of a list of integers.
 */
-s_prob_mass			ft_stat_ilst_to_pmf(s_list_int const ilst)
+s_prob_mass			c_stat_ilst_to_pmf(s_list_int const ilst)
 {
 	s_prob_mass			result;
 	s_list_int			set;
@@ -319,18 +319,18 @@ s_prob_mass			ft_stat_ilst_to_pmf(s_list_int const ilst)
 	t_float				inv_sample_size;
 
 	if (ilst.data == NULL || ilst.length == 0)
-		return (ft_stat_new_pmf(0));
-	set = ft_stat_ilst_to_iset(ilst);
-	result = ft_stat_new_pmf(set.length);
+		return (c_stat_new_pmf(0));
+	set = c_stat_ilst_to_iset(ilst);
+	result = c_stat_new_pmf(set.length);
 	i = 0;
 	inv_sample_size = 1.0 / ilst.length;
 	while (i < result.length)
 	{
 		result.value[i] = (t_float)set.data[i];
-		result.prob[i] = (t_float)ft_stat_ilst_count(ilst, set.data[i]);
+		result.prob[i] = (t_float)c_stat_ilst_count(ilst, set.data[i]);
 		result.prob[i] *= inv_sample_size;
 		++i;
 	}
-	ft_stat_free_ilst(&set);
+	c_stat_free_ilst(&set);
 	return (result);
 }

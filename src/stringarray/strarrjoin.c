@@ -1,7 +1,7 @@
 
-#include "libft_memory.h"
-#include "libft_string.h"
-#include "libft_stringarray.h"
+#include "libccc_memory.h"
+#include "libccc_string.h"
+#include "libccc_stringarray.h"
 
 
 char**	StringArray_Join(char const** strarr1, char const** strarr2)
@@ -11,7 +11,7 @@ char**	StringArray_Join(char const** strarr1, char const** strarr2)
 	t_size	length2;
 	t_size	i;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (strarr1 == NULL || strarr2 == NULL)
 		return (NULL);
 #endif

@@ -1,29 +1,29 @@
 
-#include "libft_string.h"
-#include "libft_stringarray.h"
+#include "libccc_string.h"
+#include "libccc_stringarray.h"
 
 
 
-char	**ft_strarrpad_l(char const** strarr, char const c, t_u32 n)
+char	**c_strarrpad_l(char const** strarr, char const c, t_u32 n)
 {
 	char		**result;
 	t_u32		strarr_length;
 	t_u32		i;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (strarr == NULL)
 		return (NULL);
 #endif
-	strarr_length = ft_strarrlen(strarr);
-	if (!(result = ft_strarrnew(strarr_length)))
+	strarr_length = c_strarrlen(strarr);
+	if (!(result = c_strarrnew(strarr_length)))
 		return (NULL);
 	i = 0;
 	while (strarr[i])
 	{
-		result[i] = ft_strpad_l(strarr[i], c, n);
+		result[i] = c_strpad_l(strarr[i], c, n);
 		if (!result[i])
 		{
-			ft_strarrdel(&result);
+			c_strarrdel(&result);
 			return (NULL);
 		}
 		++i;

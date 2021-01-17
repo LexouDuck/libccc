@@ -1,16 +1,16 @@
 
-#include "libft_math.h"
-#include "libft_memory.h"
+#include "libccc_math.h"
+#include "libccc_memory.h"
 
 
 
-t_float			ft_pow_n(t_float x, t_int n)
+t_float			c_pow_n(t_float x, t_int n)
 {
 	t_float	tmp;
 
 	if (n == 0)
 		return (1.);
-	tmp = ft_pow_n(x, n / 2);
+	tmp = c_pow_n(x, n / 2);
 	if ((n % 2) == 0)
 	{
 		return (tmp * tmp);
@@ -24,9 +24,9 @@ t_float			ft_pow_n(t_float x, t_int n)
 	}
 /*
 	t_float result = 1;
-	while (ft_fabs(n) > FLOAT_BIAS)
+	while (c_fabs(n) > FLOAT_BIAS)
 	{
-		if (ft_fabs(n & 1) > FLOAT_BIAS)
+		if (c_fabs(n & 1) > FLOAT_BIAS)
 		{
 			result *= x;
 			n -= 1;
@@ -40,10 +40,10 @@ t_float			ft_pow_n(t_float x, t_int n)
 
 
 
-#if LIBFTCONFIG_FAST_APPROX_MATH
-inline t_float	ft_pow(t_float x, t_float y)
+#if LIBCCCCONFIG_FAST_APPROX_MATH
+inline t_float	c_pow(t_float x, t_float y)
 {
-	return (ft_exp(y * ft_ln(x)));
+	return (c_exp(y * c_ln(x)));
 /*
 	u_float_cast result;
 

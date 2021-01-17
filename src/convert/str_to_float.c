@@ -1,15 +1,15 @@
 
 /*
-**	Functions used from <stdlib.h>: (only when LIBFTCONFIG_FAST_APPROX_MATH is 0)
+**	Functions used from <stdlib.h>: (only when LIBCCCCONFIG_FAST_APPROX_MATH is 0)
 **	-	double	atof(char* str);
 */
 #include <stdlib.h>
 
-#include "libft_memory.h"
-#include "libft_char.h"
-#include "libft_math.h"
-#include "libft_string.h"
-#include "libft_convert.h"
+#include "libccc_memory.h"
+#include "libccc_char.h"
+#include "libccc_math.h"
+#include "libccc_string.h"
+#include "libccc_convert.h"
 
 
 
@@ -43,7 +43,7 @@ int			Convert_String_To_Float_CheckInvalid(char const* str, char** result_tmp)
 	t_size	count_p;
 	t_size	count_e;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (ERROR);
 #endif
@@ -72,7 +72,7 @@ int			Convert_String_To_Float_CheckInvalid(char const* str, char** result_tmp)
 
 
 
-#if LIBFTCONFIG_FAST_APPROX_MATH
+#if LIBCCCCONFIG_FAST_APPROX_MATH
 
 #define DEFINEFUNC_CONVERT_STR_TO_FLOAT(BITS) \
 \

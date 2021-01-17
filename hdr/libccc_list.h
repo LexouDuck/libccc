@@ -9,11 +9,11 @@
 /*                                                                            */
 /*============================================================================*/
 
-#ifndef __LIBFT_LIST_H
-#define __LIBFT_LIST_H
-/*! @file libft_list.h
+#ifndef __LIBCCC_LIST_H
+#define __LIBCCC_LIST_H
+/*! @file libccc_list.h
 **	This header defines a simple linked list type and utility functions for it.
-**	@addtogroup libft_list
+**	@addtogroup libccc_list
 **	@{
 */
 
@@ -23,7 +23,7 @@
 ** ************************************************************************** *|
 */
 
-#include "libft.h"
+#include "libccc.h"
 
 HEADER_CPP
 
@@ -113,7 +113,7 @@ typedef struct		s_list_
 **	@returns the linked-list element containing the given data
 */
 s_list*					List_New(void* item, t_size item_size);
-#define ft_lstnew		List_New
+#define c_lstnew		List_New
 
 //! Inserts the given element 'elem' to the beginning of the list starting at 'a_lst'
 /*!
@@ -126,8 +126,8 @@ s_list*					List_New(void* item, t_size item_size);
 **	@param	elem	The list element to prepend to 'alst' - if NULL, this function does nothing
 */
 void					List_Prepend(s_list* *a_lst, s_list* elem);
-#define ft_lstprepend	List_Prepend
-#define ft_lstadd		List_Prepend
+#define c_lstprepend	List_Prepend
+#define c_lstadd		List_Prepend
 
 //! Appends the given element 'elem' to the end of the list starting at 'a_lst'
 /*!
@@ -138,7 +138,7 @@ void					List_Prepend(s_list* *a_lst, s_list* elem);
 **	@param	elem	The list element to prepend to 'alst' - if NULL, this function does nothing
 */
 void					List_Append(s_list* *a_lst, s_list* elem);
-#define ft_lstappend	List_Append
+#define c_lstappend	List_Append
 
 //! Inserts the given element 'elem' at the given 'index' of the list starting at 'a_lst'
 /*!
@@ -150,7 +150,7 @@ void					List_Append(s_list* *a_lst, s_list* elem);
 **	@param	elem	The list element to prepend to 'alst' - if NULL, this function does nothing
 */
 void					List_Insert(s_list* *a_lst, s_list* elem, t_u32 index);
-#define ft_lstinsert	List_Insert
+#define c_lstinsert	List_Insert
 
 //! Returns a "shallow copy" of the given list 'lst' (copies only pointers, not the underlying data)
 /*!
@@ -159,7 +159,7 @@ void					List_Insert(s_list* *a_lst, s_list* elem, t_u32 index);
 **	The underlying data is not copied, only the s_list* structs are malloc'ed.
 */
 s_list*					List_Copy(s_list const* lst);
-#define ft_lstcpy		List_Copy
+#define c_lstcpy		List_Copy
 
 //! Returns a "deep copy" of the given list 'lst' (copies s_list structs, and the data in 'item')
 /*!
@@ -168,7 +168,7 @@ s_list*					List_Copy(s_list const* lst);
 **	The underlying data 'item' for each element will be allocated and copied, according to 'item_size'
 */
 s_list*					List_Duplicate(s_list const* lst);
-#define ft_lstdup		List_Duplicate
+#define c_lstdup		List_Duplicate
 
 
 
@@ -185,7 +185,7 @@ s_list*					List_Duplicate(s_list const* lst);
 **	So, the linked list remains "chained together" after removing an element in the middle.
 */
 void					List_Remove(s_list* *a_lst, void (*del)(void*, t_size));
-#define ft_lstdelone	List_Remove
+#define c_lstdelone	List_Remove
 
 //! Deletes all the elements in the list starting at 'a_lst', using the given 'del()' function.
 /*!
@@ -195,7 +195,7 @@ void					List_Remove(s_list* *a_lst, void (*del)(void*, t_size));
 **	@param	a_lst	The address ('&') of the beginning of the list (the address of the first item)
 */
 void					List_Delete(s_list* *a_lst, void (*del)(void*, t_size));
-#define ft_lstdel		List_Delete
+#define c_lstdel		List_Delete
 
 //! Deletes the given element pointed to by 'a_lst' using the given 'del()' function.
 /*!
@@ -203,7 +203,7 @@ void					List_Delete(s_list* *a_lst, void (*del)(void*, t_size));
 **	and freeing that element, and setting the preceding 'lst->next' as NULL.
 */
 void					List_Pop(s_list* *a_lst, void (*del)(void*, t_size));
-#define ft_lstpop		List_Pop
+#define c_lstpop		List_Pop
 
 
 
@@ -220,7 +220,7 @@ void					List_Pop(s_list* *a_lst, void (*del)(void*, t_size));
 **	by traversing it, looping through every 'next' pointer.
 */
 t_u32					List_Size(s_list const* lst);
-#define ft_lstsize		List_Size
+#define c_lstsize		List_Size
 
 //! Gets the element at position 'index' in the list, and returns it
 /*!
@@ -230,7 +230,7 @@ t_u32					List_Size(s_list const* lst);
 **	Will return NULL if 'index' is beyond the last element.
 */
 s_list*					List_Get(s_list const* lst, t_u32 index);
-#define ft_lstget		List_Get
+#define c_lstget		List_Get
 
 //! Returns the first encountered item in the given list 'lst' matching the given 'query'
 /*!
@@ -240,7 +240,7 @@ s_list*					List_Get(s_list const* lst, t_u32 index);
 **	for which (lst.item == query), matching only the pointers, not the data.
 */
 s_list*					List_Find(s_list const* lst, void const* query);
-#define ft_lstfind		List_Find
+#define c_lstfind		List_Find
 
 
 
@@ -259,7 +259,7 @@ s_list*					List_Find(s_list const* lst, void const* query);
 **	then the resulting list will have fewer than 'n' elements.
 */
 s_list*					List_Sub(s_list* lst, t_u32 index, t_u32 n);
-#define ft_lstsub		List_Sub
+#define c_lstsub		List_Sub
 
 //! Iterates upon each element of the given list 'lst', applying the given function 'f' to each of its elements.
 /*!
@@ -267,9 +267,9 @@ s_list*					List_Sub(s_list* lst, t_u32 index, t_u32 n);
 **	applying the given function 'f' to each of its elements.
 */
 void					List_Iterate(s_list* lst, void (*f)(s_list* elem));
-#define ft_lstiter		List_Iterate
+#define c_lstiter		List_Iterate
 void					List_Iterate_I(s_list* lst, void (*f)(s_list* elem, t_u32 index));
-#define ft_lstiteri		List_Iterate_I
+#define c_lstiteri		List_Iterate_I
 
 //! Creates a new list which is the result of applying the given function 'f' to each element of 'lst'.
 /*!
@@ -277,9 +277,9 @@ void					List_Iterate_I(s_list* lst, void (*f)(s_list* elem, t_u32 index));
 **	the given function 'f' to each element of 'lst'.
 */
 s_list*					List_Map(s_list* lst, s_list *(*f)(s_list* elem));
-#define ft_lstmap		List_Map
+#define c_lstmap		List_Map
 s_list*					List_Map_I(s_list* lst, s_list *(*f)(s_list* elem, t_u32 index));
-#define ft_lstmapi		List_Map_I
+#define c_lstmapi		List_Map_I
 
 //! Converts the given list at address 'a_lst' to a NULL-terminated pointer array
 /*!
@@ -288,7 +288,7 @@ s_list*					List_Map_I(s_list* lst, s_list *(*f)(s_list* elem, t_u32 index));
 **	The underlying 'lst->item' data is not copied, only the pointers are.
 */
 void**					List_To_Array(s_list const** a_lst);
-#define ft_lst_to_array	List_To_Array
+#define c_lst_to_array	List_To_Array
 
 //! Converts the given list at address 'a_lst' to a tuple
 /*!
@@ -300,7 +300,7 @@ void**					List_To_Array(s_list const** a_lst);
 **		if any elements of '*a_lst' are of unequal 'lst->item_size'.
 */
 s_tuple					List_To_Tuple(s_list const** a_lst);
-#define ft_lst_to_tuple	List_To_Tuple
+#define c_lst_to_tuple	List_To_Tuple
 
 
 

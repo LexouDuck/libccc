@@ -9,11 +9,11 @@
 /*                                                                            */
 /*============================================================================*/
 
-#ifndef __LIBFT_H
-#define __LIBFT_H
-/*! @file libft.h
+#ifndef __LIBCCC_H
+#define __LIBCCC_H
+/*! @file libccc.h
 **	This header defines all the primitive types and common macros to use.
-**	@addtogroup libft
+**	@addtogroup libccc
 **	@{
 */
 
@@ -42,26 +42,26 @@ HEADER_CPP
 **	TODO add 's_tensor' type to algebra
 **
 **	incomplete:
-**	TODO	libft_list        + tests
-**	TODO	libft_stat        + tests
-**	TODO	libft_color       + tests
-**	TODO	libft_random      + tests
-**	TODO	libft_stringarray + tests
-**	TODO	libft_io          + tests
-**	TODO	libft_algebra     + tests
-**	TODO	libft_complex     + tests
-**	TODO	libft_time        + tests // system clock time functions
+**	TODO	libccc_list        + tests
+**	TODO	libccc_stat        + tests
+**	TODO	libccc_color       + tests
+**	TODO	libccc_random      + tests
+**	TODO	libccc_stringarray + tests
+**	TODO	libccc_io          + tests
+**	TODO	libccc_algebra     + tests
+**	TODO	libccc_complex     + tests
+**	TODO	libccc_time        + tests // system clock time functions
 **	non-existent:
-**	TODO	libft_thread      + tests // POSIX-style pthread cross-platform interface
-**	TODO	libft_socket      + tests // network socket functions - send(), recv(), etc
-**	TODO	libft_network     + tests // utility functions for common network protocols: TCP/IP, UDP (maybe DELTA-T?)
-**	TODO	libft_object      + tests // extensible objects (json library)
-**	TODO	libft_fixedpoint  + tests // fixed-point number math library
-**	TODO	libft_compress    + tests // compression functions (RLE, LZ77, LZW, Huffman)
-**	TODO	libft_crypto      + tests // cryptography
-**	TODO	libft_regex       + tests // regular expressions
-**	TODO	libft_regex       + tests // regular expressions
-**	TODO	libft_vlq         + tests // variable-length quantity (bigint)
+**	TODO	libccc_thread      + tests // POSIX-style pthread cross-platform interface
+**	TODO	libccc_socket      + tests // network socket functions - send(), recv(), etc
+**	TODO	libccc_network     + tests // utility functions for common network protocols: TCP/IP, UDP (maybe DELTA-T?)
+**	TODO	libccc_object      + tests // extensible objects (json library)
+**	TODO	libccc_fixedpoint  + tests // fixed-point number math library
+**	TODO	libccc_compress    + tests // compression functions (RLE, LZ77, LZW, Huffman)
+**	TODO	libccc_crypto      + tests // cryptography
+**	TODO	libccc_regex       + tests // regular expressions
+**	TODO	libccc_regex       + tests // regular expressions
+**	TODO	libccc_vlq         + tests // variable-length quantity (bigint)
 */
 
 /*
@@ -97,22 +97,22 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! If 1, libft functions handle NULL pointers args, otherwise they segfault.
+//! If 1, libccc functions handle NULL pointers args, otherwise they segfault.
 /*!
 **	This macro determines how NULL pointer arguments are to be handled
-**	If 0, then libft functions will always segfault when given NULL pointers.
-**	If 1, then all NULL pointer accesses in libft functions will be avoided, and
+**	If 0, then libccc functions will always segfault when given NULL pointers.
+**	If 1, then all NULL pointer accesses in libccc functions will be avoided, and
 **		an appropriate return value (eg:NULL, 0, sometimes -1) will be returned.
 */
-#define LIBFTCONFIG_HANDLE_NULLPOINTERS		1
+#define LIBCCCCONFIG_HANDLE_NULLPOINTERS		1
 
-//! If 1, libft uses homemade approximate math functions, otherwise it's the builtin FPU calls.
+//! If 1, libccc uses homemade approximate math functions, otherwise it's the builtin FPU calls.
 /*!
 **	This macro determines which math function implementations should be used.
-**	If 1, the libft fast approximate functions will be used (precision error margin: 0.0001)
+**	If 1, the libccc fast approximate functions will be used (precision error margin: 0.0001)
 **	If 0, the builtin FPU-call libc math functions will be used (eg: __builtin_powf(), etc)
 */
-#define LIBFTCONFIG_FAST_APPROX_MATH		0
+#define LIBCCCCONFIG_FAST_APPROX_MATH		0
 
 
 
@@ -188,7 +188,7 @@ HEADER_CPP
 #endif	//! Represents a failure function return
 #define ERROR	(1)
 
-/*! @file libft.h
+/*! @file libccc.h
 **	NB: The following macros listed here exist on almost any platform/compiler:
 **
 **	Here is the list of all the predefined ANSI C macros
@@ -409,7 +409,7 @@ typedef t_f128		t_float;
 /*!
 ** These unions are used for certain difficult casting conditions.
 ** They are used in particular when casting an <stdarg.h> var_arg to the
-** appropriate type in ft_printf.
+** appropriate type in c_printf.
 */
 typedef union		u_varint_
 {
@@ -427,7 +427,7 @@ typedef union		u_varint_
 /*!
 ** These unions are used for certain difficult casting conditions.
 ** They are used in particular when casting an <stdarg.h> var_arg to the
-** appropriate type in ft_printf.
+** appropriate type in c_printf.
 */
 typedef union		u_varfloat_
 {

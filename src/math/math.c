@@ -1,11 +1,11 @@
 
-#include "libft_math.h"
-#include "libft_memory.h"
+#include "libccc_math.h"
+#include "libccc_memory.h"
 
 
 
-#if LIBFTCONFIG_FAST_APPROX_MATH
-inline t_s32	ft_getexp(t_float x)
+#if LIBCCCCONFIG_FAST_APPROX_MATH
+inline t_s32	c_getexp(t_float x)
 {
 	u_float_cast	result;
 
@@ -18,8 +18,8 @@ MATH_DECL_FUNCTION(t_s32, getexp, logb)
 
 
 
-#if LIBFTCONFIG_FAST_APPROX_MATH
-inline t_float	ft_fabs(t_float x)
+#if LIBCCCCONFIG_FAST_APPROX_MATH
+inline t_float	c_fabs(t_float x)
 {
 	u_float_cast	result;
 
@@ -37,8 +37,8 @@ MATH_DECL_REALFUNCTION(fabs, fabs)
 
 
 
-#if LIBFTCONFIG_FAST_APPROX_MATH
-inline t_float	ft_fmod(t_float x, t_float y)
+#if LIBCCCCONFIG_FAST_APPROX_MATH
+inline t_float	c_fmod(t_float x, t_float y)
 {
 	t_float		a;
 	t_s64		floor_a;
@@ -53,16 +53,16 @@ MATH_DECL_REALOPERATOR(fmod, fmod)
 
 
 
-// TODO implement ft_round
+// TODO implement c_round
 
 
 
-#if LIBFTCONFIG_FAST_APPROX_MATH
-inline t_float	ft_trunc(t_float x)
+#if LIBCCCCONFIG_FAST_APPROX_MATH
+inline t_float	c_trunc(t_float x)
 {
 	if (x == 0.)
 		return (0.);
-	return (x - ft_fmod(x, 1.));
+	return (x - c_fmod(x, 1.));
 }
 #else
 MATH_DECL_REALFUNCTION(trunc, trunc)
@@ -70,14 +70,14 @@ MATH_DECL_REALFUNCTION(trunc, trunc)
 
 
 
-#if LIBFTCONFIG_FAST_APPROX_MATH
-inline t_float	ft_floor(t_float x)
+#if LIBCCCCONFIG_FAST_APPROX_MATH
+inline t_float	c_floor(t_float x)
 {
 	if (x == 0.)
 		return (0.);
 	if (x < 0.)
-		return (x - ft_fmod(x, 1.) - 1.);
-	return (x - ft_fmod(x, 1.));
+		return (x - c_fmod(x, 1.) - 1.);
+	return (x - c_fmod(x, 1.));
 }
 #else
 MATH_DECL_REALFUNCTION(floor, floor)
@@ -85,14 +85,14 @@ MATH_DECL_REALFUNCTION(floor, floor)
 
 
 
-#if LIBFTCONFIG_FAST_APPROX_MATH
-inline t_float	ft_ceil(t_float x)
+#if LIBCCCCONFIG_FAST_APPROX_MATH
+inline t_float	c_ceil(t_float x)
 {
 	if (x == 0.)
 		return (0.);
 	if (x < 0.)
-		return (x - ft_fmod(x, 1.));
-	return (1 + x - ft_fmod(x, 1.));
+		return (x - c_fmod(x, 1.));
+	return (1 + x - c_fmod(x, 1.));
 }
 #else
 MATH_DECL_REALFUNCTION(ceil, ceil)
@@ -100,12 +100,12 @@ MATH_DECL_REALFUNCTION(ceil, ceil)
 
 
 
-#if LIBFTCONFIG_FAST_APPROX_MATH
-inline t_float	ft_round(t_float x)
+#if LIBCCCCONFIG_FAST_APPROX_MATH
+inline t_float	c_round(t_float x)
 {
 	t_float fraction;
 
-	fraction = ft_fmod(x, 1.);
+	fraction = c_fmod(x, 1.);
 	if (x == 0.)
 		return (0.);
 	if (x < 0.)

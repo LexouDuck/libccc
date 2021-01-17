@@ -1,6 +1,6 @@
 # Output file names
-NAME      = libft
-NAME_TEST = libft_test
+NAME      = libccc
+NAME_TEST = libccc_test
 
 VERSION = 0.7
 
@@ -398,7 +398,7 @@ $(OBJDIR)%.o: $(TEST_DIR)%.c $(TEST_HDRS)
 # This rule builds the testing/CI program
 $(NAME_TEST): debug $(TEST_OBJS)
 	@printf "Compiling testing program: "$@" -> "
-	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -o $@ $(TEST_OBJS) -L./ -lft -lm -lpthread
+	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -o $@ $(TEST_OBJS) -L./ -lccc -lm -lpthread
 	@printf $(GREEN)"OK!"$(RESET)"\n"
 
 # This rule builds and runs the test executable

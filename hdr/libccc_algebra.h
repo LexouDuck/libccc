@@ -9,11 +9,11 @@
 /*                                                                            */
 /*============================================================================*/
 
-#ifndef __LIBFT_ALGEBRA_H
-#define __LIBFT_ALGEBRA_H
-/*! @file libft_algebra.h
+#ifndef __LIBCCC_ALGEBRA_H
+#define __LIBCCC_ALGEBRA_H
+/*! @file libccc_algebra.h
 **	This header defines useful algebra and calculus types, and functions.
-**	@addtogroup libft_math
+**	@addtogroup libccc_math
 **	@{
 */
 // TODO add other function macros for integral, distance, etc
@@ -24,8 +24,8 @@
 ** ************************************************************************** *|
 */
 
-#include "libft.h"
-#include "libft_math.h"
+#include "libccc.h"
+#include "libccc_math.h"
 
 HEADER_CPP
 
@@ -50,37 +50,37 @@ typedef	union	u_vector2d_
 
 //! Allocates a new vector struct on heap, setting the given coordinates
 s_vector2d*				Vector2D_New(t_float x, t_float y);
-#define ft_vec2new		Vector2D_New
+#define c_vec2new		Vector2D_New
 
 //! Returns TRUE if the two given vectors are equal (all their values are identical)
 t_bool					Vector2D_Equals(s_vector2d const* v1, s_vector2d const* v2);
-#define ft_vec2equ		Vector2D_Equals
+#define c_vec2equ		Vector2D_Equals
 
 //! Scales the given 'vector' by a factor of 'scale'
 s_vector2d				Vector2D_Scale(s_vector2d const* vector, t_float scale);
-#define ft_vec2scale	Vector2D_Scale
+#define c_vec2scale	Vector2D_Scale
 
 //! Inverts the sign of the coordinates of the given 'vector'
 s_vector2d				Vector2D_Invert(s_vector2d const* vector);
-#define ft_vec2invert	Vector2D_Invert
+#define c_vec2invert	Vector2D_Invert
 
 //! Returns the norm/magnitude of the given 'vector', squared (call sqrt to get the real norm)
 t_float						Vector2D_Norm(s_vector2d const* vector);
-#define ft_vec2norm			Vector2D_Norm
+#define c_vec2norm			Vector2D_Norm
 #define Vector2D_Length		Vector2D_Norm
 #define Vector2D_Magnitude	Vector2D_Norm
 
 //! Makes the norm/magnitude of the given 'vector' become 1 (without changing its direction)
 s_vector2d					Vector2D_Normalize(s_vector2d const* vector);
-#define ft_vec2normalize	Vector2D_Normalize
+#define c_vec2normalize	Vector2D_Normalize
 
 //! Returns the sum of the two given vectors (adding each of their coordinates together)
 s_vector2d					Vector2D_Add(s_vector2d const* v1, s_vector2d const* v2);
-#define ft_vec2add			Vector2D_Add
+#define c_vec2add			Vector2D_Add
 
 //! Returns the dot/scalar product of the two given vectors (the sum of their multiplied coordinates)
 t_float							Vector2D_Dot(s_vector2d const* v1, s_vector2d const* v2);
-#define ft_vec2dot				Vector2D_Dot
+#define c_vec2dot				Vector2D_Dot
 #define Vector2D_DotProduct		Vector2D_Dot
 #define Vector2D_InnerProduct	Vector2D_Dot
 #define Vector2D_ScalarProduct	Vector2D_Dot
@@ -103,44 +103,44 @@ typedef	union	u_vector3d_
 
 //! Allocates a new vector struct on heap, setting the given coordinates
 s_vector3d*				Vector3D_New(t_float x, t_float y, t_float z);
-#define ft_vec3new		Vector3D_New
+#define c_vec3new		Vector3D_New
 
 //! Returns TRUE if the two given vectors are equal (all their values are identical)
 t_bool					Vector3D_Equals(s_vector3d const* v1, s_vector3d const* v2);
-#define ft_vec3equ		Vector3D_Equals
+#define c_vec3equ		Vector3D_Equals
 
 //! Scales the given 'vector' by a factor of 'scale'
 s_vector3d				Vector3D_Scale(s_vector3d const* vector, t_float scale);
-#define ft_vec3scale	Vector3D_Scale
+#define c_vec3scale	Vector3D_Scale
 
 //! Inverts the sign of the coordinates of the given 'vector'
 s_vector3d				Vector3D_Invert(s_vector3d const* vector);
-#define ft_vec3invert	Vector3D_Invert
+#define c_vec3invert	Vector3D_Invert
 
 //! Returns the norm/magnitude of the given 'vector', squared (call sqrt to get the real norm)
 t_float						Vector3D_Norm(s_vector3d const* vector);
-#define ft_vec3norm			Vector3D_Norm
+#define c_vec3norm			Vector3D_Norm
 #define Vector3D_Length		Vector3D_Norm
 #define Vector3D_Magnitude	Vector3D_Norm
 
 //! Makes the norm/magnitude of the given 'vector' become 1 (without changing its direction)
 s_vector3d					Vector3D_Normalize(s_vector3d const* vector);
-#define ft_vec3normalize	Vector3D_Normalize
+#define c_vec3normalize	Vector3D_Normalize
 
 //! Returns the sum of the two given vectors (adding each of their coordinates together)
 s_vector3d					Vector3D_Add(s_vector3d const* v1, s_vector3d const* v2);
-#define ft_vec3add			Vector3D_Add
+#define c_vec3add			Vector3D_Add
 
 //! Returns the dot/scalar product of the two given vectors (the sum of their multiplied coordinates)
 t_float							Vector3D_Dot(s_vector3d const* v1, s_vector3d const* v2);
-#define ft_vec3dot				Vector3D_Dot
+#define c_vec3dot				Vector3D_Dot
 #define Vector3D_DotProduct		Vector3D_Dot
 #define Vector3D_InnerProduct	Vector3D_Dot
 #define Vector3D_ScalarProduct	Vector3D_Dot
 
 //! Returns the cross/vector product of the two given vectors (the vector which is perpendicular to both)
 s_vector3d						Vector3D_Cross(s_vector3d const* v1, s_vector3d const* v2);
-#define ft_vec3cross			Vector3D_Cross
+#define c_vec3cross			Vector3D_Cross
 #define Vector3D_CrossProduct	Vector3D_Cross
 #define Vector3D_OuterProduct	Vector3D_Cross
 #define Vector3D_VectorProduct	Vector3D_Cross
@@ -199,37 +199,37 @@ typedef	union	u_matrix2d_
 //! A 2-dimensional matrix which, when applied, rotates a vector by the given 'ANGLE'
 #define MATRIX2D_ROTATE(ANGLE) \
 {											\
-	.u={ ft_cos(ANGLE), -ft_sin(ANGLE) },	\
-	.v={ ft_sin(ANGLE),  ft_cos(ANGLE) },	\
+	.u={ c_cos(ANGLE), -c_sin(ANGLE) },	\
+	.v={ c_sin(ANGLE),  c_cos(ANGLE) },	\
 }
 
 //! Allocates a new matrix struct on heap, setting its values from the given vectors
 s_matrix2d*				Matrix2D_New(s_vector2d const* u, s_vector2d const* v);
-#define ft_mat2new		Matrix2D_New
+#define c_mat2new		Matrix2D_New
 
 //! Returns TRUE if the two given matrices are equal (all their values are identical)
 t_bool					Matrix2D_Equals(s_matrix2d const* m1, s_matrix2d const* m2);
-#define ft_mat2equ		Matrix2D_Equals
+#define c_mat2equ		Matrix2D_Equals
 
 //! Applies the transformation stored by the given 'matrix' onto the given 'vector' and returns it
 s_vector2d				Matrix2D_Apply(s_matrix2d const* matrix, s_vector2d const* vector);
-#define ft_mat2apply	Matrix2D_Apply
+#define c_mat2apply	Matrix2D_Apply
 
 //! Returns the determinant value for the given 'matrix'
 t_float					Matrix2D_Determinant(s_matrix2d const* matrix);
-#define ft_mat2determ	Matrix2D_Determinant
+#define c_mat2determ	Matrix2D_Determinant
 
 //! Changes the values of the given 'matrix' to those of its inverse matrix
 s_matrix2d				Matrix2D_Inverse(s_matrix2d const* matrix);
-#define ft_mat2inverse	Matrix2D_Inverse
+#define c_mat2inverse	Matrix2D_Inverse
 
 //! Returns the transpose the given 'matrix', flipping its values across its diagonal
 s_matrix2d				Matrix2D_Transpose(s_matrix2d const* matrix);
-#define ft_mat2transp	Matrix2D_Transpose
+#define c_mat2transp	Matrix2D_Transpose
 
 //! Performs a matrix multiplication on the two given matrices 'm1' and 'm2'
 s_matrix2d				Matrix2D_Multiply(s_matrix2d const* m1, s_matrix2d const* m2);
-#define ft_mat2mult		Matrix2D_Multiply
+#define c_mat2mult		Matrix2D_Multiply
 
 
 
@@ -264,51 +264,51 @@ typedef	union	u_matrix3d_
 #define MATRIX3D_ROTATE_X(ANGLE) \
 {												\
 	.u={ 1, 0,              0             },	\
-	.v={ 0, ft_cos(ANGLE), -ft_sin(ANGLE) },	\
-	.w={ 0, ft_sin(ANGLE),  ft_cos(ANGLE) },	\
+	.v={ 0, c_cos(ANGLE), -c_sin(ANGLE) },	\
+	.w={ 0, c_sin(ANGLE),  c_cos(ANGLE) },	\
 }
 //! A 3-dimensional matrix which, when applied, rotates a vector about the Y axis by the given 'ANGLE'
 #define MATRIX3D_ROTATE_Y(ANGLE) \
 {												\
-	.u={  ft_cos(ANGLE), 0, ft_sin(ANGLE) },	\
+	.u={  c_cos(ANGLE), 0, c_sin(ANGLE) },	\
 	.v={  0,             1, 0             },	\
-	.w={ -ft_sin(ANGLE), 0, ft_cos(ANGLE) },	\
+	.w={ -c_sin(ANGLE), 0, c_cos(ANGLE) },	\
 }
 //! A 3-dimensional matrix which, when applied, rotates a vector about the Z axis by the given 'ANGLE'
 #define MATRIX3D_ROTATE_Z(ANGLE) \
 {												\
-	.u={ ft_cos(ANGLE), -ft_sin(ANGLE), 0 },	\
-	.v={ ft_sin(ANGLE),  ft_cos(ANGLE), 0 },	\
+	.u={ c_cos(ANGLE), -c_sin(ANGLE), 0 },	\
+	.v={ c_sin(ANGLE),  c_cos(ANGLE), 0 },	\
 	.w={ 0,              0,             1 },	\
 }
 
 //! Allocates a new matrix struct on heap, setting its values from the given vectors
 s_matrix3d*				Matrix3D_New(s_vector3d const* u, s_vector3d const* v, s_vector3d const* w);
-#define ft_mat3new		Matrix3D_New
+#define c_mat3new		Matrix3D_New
 
 //! Returns TRUE if the two given matrices are equal (all their values are identical)
 t_bool					Matrix3D_Equals(s_matrix3d const* m1, s_matrix3d const* m2);
-#define ft_mat3equ		Matrix3D_Equals
+#define c_mat3equ		Matrix3D_Equals
 
 //! Applies the transformation stored by the given 'matrix' onto the given 'vector' and returns it
 s_vector3d				Matrix3D_Apply(s_matrix3d const* matrix, s_vector3d const* vector);
-#define ft_mat3apply	Matrix3D_Apply
+#define c_mat3apply	Matrix3D_Apply
 
 //! Returns the determinant value for the given 'matrix'
 t_float					Matrix3D_Determinant(s_matrix3d const* matrix);
-#define ft_mat3determ	Matrix3D_Determinant
+#define c_mat3determ	Matrix3D_Determinant
 
 //! Changes the values of the given 'matrix' to those of its inverse matrix
 s_matrix3d				Matrix3D_Inverse(s_matrix3d const* matrix);
-#define ft_mat3inverse	Matrix3D_Inverse
+#define c_mat3inverse	Matrix3D_Inverse
 
 //! Returns the transpose the given 'matrix', flipping its values across its diagonal
 s_matrix3d				Matrix3D_Transpose(s_matrix3d const* matrix);
-#define ft_mat3transp	Matrix3D_Transpose
+#define c_mat3transp	Matrix3D_Transpose
 
 //! Performs a matrix multiplication on the two given matrices 'm1' and 'm2'
 s_matrix3d				Matrix3D_Multiply(s_matrix3d const* m1, s_matrix3d const* m2);
-#define ft_mat3mult		Matrix3D_Multiply
+#define c_mat3mult		Matrix3D_Multiply
 
 
 
@@ -409,29 +409,29 @@ typedef t_float	(*f_scalar_func4)(u_vector4d const v);
 */
 // TODO document these functions
 //t_float	lin_integrate(sf, domain);
-t_float		ft_integrate(f_real_function const f, s_interval const domain, t_float step);
-t_float		ft_mc_integrate_1d(f_scalar_func1 const sf, s_box1d const domain);
-t_float		ft_mc_integrate_2d(f_scalar_func2 const sf, s_box2d const domain);
-t_float		ft_mc_integrate_3d(f_scalar_func3 const sf, s_box3d const domain);
-t_float		ft_mc_integrate_4d(f_scalar_func4 const sf, s_box4d const domain);
+t_float		c_integrate(f_real_function const f, s_interval const domain, t_float step);
+t_float		c_mc_integrate_1d(f_scalar_func1 const sf, s_box1d const domain);
+t_float		c_mc_integrate_2d(f_scalar_func2 const sf, s_box2d const domain);
+t_float		c_mc_integrate_3d(f_scalar_func3 const sf, s_box3d const domain);
+t_float		c_mc_integrate_4d(f_scalar_func4 const sf, s_box4d const domain);
 
 
 
-t_float		ft_distance_float(t_float x, t_float y);
-t_f32		ft_distance_f32  (t_f32   x, t_f32   y);
-t_f64		ft_distance_f64  (t_f64   x, t_f64   y);
+t_float		c_distance_float(t_float x, t_float y);
+t_f32		c_distance_f32  (t_f32   x, t_f32   y);
+t_f64		c_distance_f64  (t_f64   x, t_f64   y);
 
-t_uint		ft_distance_uint(t_uint x, t_uint y);
-t_u8		ft_distance_u8  (t_u8   x, t_u8   y);
-t_u16		ft_distance_u16 (t_u16  x, t_u16  y);
-t_u32		ft_distance_u32 (t_u32  x, t_u32  y);
-t_u64		ft_distance_u64 (t_u64  x, t_u64  y);
+t_uint		c_distance_uint(t_uint x, t_uint y);
+t_u8		c_distance_u8  (t_u8   x, t_u8   y);
+t_u16		c_distance_u16 (t_u16  x, t_u16  y);
+t_u32		c_distance_u32 (t_u32  x, t_u32  y);
+t_u64		c_distance_u64 (t_u64  x, t_u64  y);
 
-t_int		ft_distance_int (t_int x, t_int y);
-t_s8		ft_distance_s8  (t_s8  x, t_s8  y);
-t_s16		ft_distance_s16 (t_s16 x, t_s16 y);
-t_s32		ft_distance_s32 (t_s32 x, t_s32 y);
-t_s64		ft_distance_s64 (t_s64 x, t_s64 y);
+t_int		c_distance_int (t_int x, t_int y);
+t_s8		c_distance_s8  (t_s8  x, t_s8  y);
+t_s16		c_distance_s16 (t_s16 x, t_s16 y);
+t_s32		c_distance_s32 (t_s32 x, t_s32 y);
+t_s64		c_distance_s64 (t_s64 x, t_s64 y);
 // TODO distance manh, eucl, inf for 2d, 3d and 4d
 
 

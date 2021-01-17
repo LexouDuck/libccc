@@ -5,8 +5,8 @@
 */
 #include <time.h>
 
-#include "libft_time.h"
-#include "libft_string.h"
+#include "libccc_time.h"
+#include "libccc_string.h"
 
 
 

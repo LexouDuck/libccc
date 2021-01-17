@@ -1,13 +1,13 @@
 
-#include "libft_stringarray.h"
+#include "libccc_stringarray.h"
 
 
 
-t_u32		ft_strarrlen(char const** strarr)
+t_u32		c_strarrlen(char const** strarr)
 {
 	t_u32		i;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (strarr == NULL)
 		return (0);
 #endif

@@ -1,5 +1,5 @@
 
-#include "libft_color.h"
+#include "libccc_color.h"
 
 
 
@@ -59,7 +59,7 @@ t_argb16	Color_ARGB_To_ARGB16(s_argb const* color)
 	static const t_float factor = (float)COLOR_ARGB16_CHANNEL;
 	t_argb16 result;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (color == NULL)
 		return (0);
 #endif
@@ -75,7 +75,7 @@ t_argb32	Color_ARGB_To_ARGB32(s_argb const* color)
 	static const t_float factor = (float)COLOR_ARGB32_CHANNEL;
 	t_argb32 result = 0;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (color == NULL)
 		return (0);
 #endif

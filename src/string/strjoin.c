@@ -1,6 +1,6 @@
 
-#include "libft_memory.h"
-#include "libft_string.h"
+#include "libccc_memory.h"
+#include "libccc_string.h"
 
 
 char*		String_Join(char const* str1, char const* str2)
@@ -10,7 +10,7 @@ char*		String_Join(char const* str1, char const* str2)
 	t_size	length2;
 	t_size	i;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (str1 == NULL || str2 == NULL)
 		return (NULL);
 #endif

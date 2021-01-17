@@ -1,13 +1,13 @@
 
-#include "libft_string.h"
+#include "libccc_string.h"
 
 
 
-char	*ft_strcpy(char *dest, char const *src)
+char	*c_strcpy(char *dest, char const *src)
 {
 	t_size	i;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (dest == NULL)
 		return (NULL);
 	if (src == NULL)
@@ -25,12 +25,12 @@ char	*ft_strcpy(char *dest, char const *src)
 
 
 
-char	*ft_strncpy(char *dest, char const *src, t_size n)
+char	*c_strncpy(char *dest, char const *src, t_size n)
 {
 	char	*str;
 	t_size	i;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (dest == NULL)
 		return (NULL);
 	if (src == NULL)
@@ -55,11 +55,11 @@ char	*ft_strncpy(char *dest, char const *src, t_size n)
 
 
 
-t_size	ft_strlcpy(char *dest, char const *src, t_size size)
+t_size	c_strlcpy(char *dest, char const *src, t_size size)
 {
 	t_size	i;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (dest == NULL || src == NULL)
 		return (0);
 #endif

@@ -1,11 +1,11 @@
 
-#include "libft_memory.h"
-#include "libft_string.h"
-#include "libft_stringarray.h"
+#include "libccc_memory.h"
+#include "libccc_string.h"
+#include "libccc_stringarray.h"
 
 
 
-static int	ft_in_charset(char c, char const* charset)
+static int	c_in_charset(char c, char const* charset)
 {
 	int i;
 
@@ -16,7 +16,7 @@ static int	ft_in_charset(char c, char const* charset)
 	return (0);
 }
 
-static int	ft_str_word_nb(char const* str, char const* sep_chars)
+static int	c_str_word_nb(char const* str, char const* sep_chars)
 {
 	int i;
 	int count;
@@ -25,28 +25,28 @@ static int	ft_str_word_nb(char const* str, char const* sep_chars)
 	count = 0;
 	while (str[i])
 	{
-		while (ft_in_charset(str[i], sep_chars))
+		while (c_in_charset(str[i], sep_chars))
 			++i;
 		if (str[i] == '\0')
 			return (count);
 		count++;
-		while (!ft_in_charset(str[i], sep_chars) && str[i])
+		while (!c_in_charset(str[i], sep_chars) && str[i])
 			++i;
 	}
 	return (count);
 }
 
-static int	ft_sing_word_lett_count(char const* str, int ws, char const* seps)
+static int	c_sing_word_lett_count(char const* str, int ws, char const* seps)
 {
 	int i;
 
 	i = 0;
-	while (!ft_in_charset(str[ws + i], seps) && str[ws + i])
+	while (!c_in_charset(str[ws + i], seps) && str[ws + i])
 		++i;
 	return (i);
 }
 
-char		**ft_strsplit_charset(char const* str, char const* sep_chars)
+char		**c_strsplit_charset(char const* str, char const* sep_chars)
 {
 	int		i;
 	int		j;
@@ -54,21 +54,21 @@ char		**ft_strsplit_charset(char const* str, char const* sep_chars)
 	int		length;
 	char	**strarr;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || sep_chars == NULL)
 		return (NULL);
 #endif
-	if (!(strarr = ft_strarrnew(ft_str_word_nb(str, sep_chars))))
+	if (!(strarr = c_strarrnew(c_str_word_nb(str, sep_chars))))
 		return (NULL);
 	i = 0;
 	j = 0;
-	while (i < ft_str_word_nb(str, sep_chars))
+	while (i < c_str_word_nb(str, sep_chars))
 	{
-		while (ft_in_charset(str[j], sep_chars))
+		while (c_in_charset(str[j], sep_chars))
 			++j;
 		wstart = j--;
-		length = ft_sing_word_lett_count(str, wstart, sep_chars);
-		if (!(strarr[i] = ft_strnew(length)))
+		length = c_sing_word_lett_count(str, wstart, sep_chars);
+		if (!(strarr[i] = c_strnew(length)))
 			return (NULL);
 		while (++j < wstart + length)
 			strarr[i][j - wstart] = str[j];

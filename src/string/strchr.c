@@ -1,13 +1,13 @@
 
-#include "libft_string.h"
+#include "libccc_string.h"
 
 
 
-char	*ft_strchr(char const *str, char c)
+char	*c_strchr(char const *str, char c)
 {
 	t_size	i;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (NULL);
 #endif
@@ -25,11 +25,11 @@ char	*ft_strchr(char const *str, char c)
 
 
 
-char	*ft_strrchr(char const *str, char c)
+char	*c_strrchr(char const *str, char c)
 {
 	t_size	i;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (NULL);
 #endif
@@ -50,11 +50,11 @@ char	*ft_strrchr(char const *str, char c)
 
 
 
-char	*ft_strnchr(char const *str, char c, t_size n)
+char	*c_strnchr(char const *str, char c, t_size n)
 {
 	t_size	i;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (NULL);
 #endif
@@ -72,11 +72,11 @@ char	*ft_strnchr(char const *str, char c, t_size n)
 
 
 
-t_s32	ft_strichr(char const *str, char c)
+t_s32	c_strichr(char const *str, char c)
 {
 	t_s32	i;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (-1);
 #endif

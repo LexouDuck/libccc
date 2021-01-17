@@ -1,5 +1,5 @@
 
-#include "libft_list.h"
+#include "libccc_list.h"
 
 
 
@@ -9,7 +9,7 @@ s_list*		List_Sub(s_list* lst, t_u32 index, t_u32 n)
 	s_list*	result_lst;
 	s_list*	tmp;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (lst == NULL)
 		return (NULL);
 #endif

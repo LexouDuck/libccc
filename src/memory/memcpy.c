@@ -1,15 +1,15 @@
 
-#include "libft_memory.h"
+#include "libccc_memory.h"
 
 
 
-void	*ft_memcpy(void *dest, void const *src, t_size n)
+void	*c_memcpy(void *dest, void const *src, t_size n)
 {
 	t_u8	*result;
 	t_u8	*source;
 	t_size	i;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (dest == NULL)
 		return (NULL);
 	if (src == NULL)
@@ -28,13 +28,13 @@ void	*ft_memcpy(void *dest, void const *src, t_size n)
 
 
 
-void	*ft_memccpy(void *dest, void const *src, t_u8 byte, t_size n)
+void	*c_memccpy(void *dest, void const *src, t_u8 byte, t_size n)
 {
 	t_u8	*result;
 	t_u8	*source;
 	t_size	i;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (dest == NULL || src == NULL)
 		return (NULL);
 #endif

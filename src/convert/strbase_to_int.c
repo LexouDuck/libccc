@@ -1,16 +1,16 @@
 
-#include "libft_char.h"
-#include "libft_convert.h"
+#include "libccc_char.h"
+#include "libccc_convert.h"
 
 
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
-	#define LIBFTCONFIG_HANDLE_NULLPOINTER_STRBASE_TO_INT \
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+	#define LIBCCCCONFIG_HANDLE_NULLPOINTER_STRBASE_TO_INT \
 		if (str == NULL) return (0);	\
 		if (base == NULL) return (0);	\
 
 #else
-	#define LIBFTCONFIG_HANDLE_NULLPOINTER_STRBASE_TO_INT	
+	#define LIBCCCCONFIG_HANDLE_NULLPOINTER_STRBASE_TO_INT	
 #endif
 
 
@@ -60,7 +60,7 @@ t_s##BITS	Convert_BaseString_To_S##BITS(char const* str, char const* base)	\
 	t_s32	digit;																\
 	t_size	length;																\
 	t_size	i;																	\
-LIBFTCONFIG_HANDLE_NULLPOINTER_STRBASE_TO_INT									\
+LIBCCCCONFIG_HANDLE_NULLPOINTER_STRBASE_TO_INT									\
 	length = Convert_BaseString_GetLength(base);								\
 	if (length == 0)															\
 		return (0);																\
@@ -106,7 +106,7 @@ t_u##BITS	Convert_BaseString_To_U##BITS(char const* str, char const* base)	\
 	t_s32	digit;																\
 	t_size	length;																\
 	t_size	i;																	\
-LIBFTCONFIG_HANDLE_NULLPOINTER_STRBASE_TO_INT									\
+LIBCCCCONFIG_HANDLE_NULLPOINTER_STRBASE_TO_INT									\
 	length = Convert_BaseString_GetLength(base);								\
 	if (length == 0)															\
 		return (0);																\

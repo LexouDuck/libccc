@@ -1,6 +1,6 @@
 
-#include "libft_memory.h"
-#include "libft_list.h"
+#include "libccc_memory.h"
+#include "libccc_list.h"
 
 
 
@@ -10,7 +10,7 @@ void	List_Remove(s_list* *a_lst, void (*del)(void*, t_size))
 	s_list* next;
 	s_list* lst;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (a_lst == NULL || del == NULL)
 		return ;
 #endif
@@ -32,7 +32,7 @@ void	List_Delete(s_list* *a_lst, void (*del)(void*, t_size))
 	s_list* next;
 	s_list* lst;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (a_lst == NULL || del == NULL)
 		return ;
 #endif
@@ -57,7 +57,7 @@ void	List_Pop(s_list* *a_lst, void (*del)(void*, t_size))
 	s_list* lst;
 	s_list* lst_prev;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (a_lst == NULL || del == NULL)
 		return ;
 #endif

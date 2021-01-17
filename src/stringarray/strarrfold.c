@@ -1,6 +1,6 @@
 
-#include "libft_string.h"
-#include "libft_stringarray.h"
+#include "libccc_string.h"
+#include "libccc_stringarray.h"
 
 
 static void	StringArray_GetWordAndCharCount(char const** strarr, int* w_nb, int* c_nb)
@@ -54,7 +54,7 @@ char*		StringArray_Fold(char const** strarr, char const* sep)
 	int		total_sep_char_nb;
 	int		total_char_nb;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (strarr == NULL || sep == NULL)
 		return (NULL);
 #endif

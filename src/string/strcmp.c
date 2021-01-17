@@ -1,14 +1,14 @@
 
-#include "libft_char.h"
-#include "libft_string.h"
+#include "libccc_char.h"
+#include "libccc_string.h"
 
 
 
-int	ft_strcmp(char const *str1, char const *str2)
+int	c_strcmp(char const *str1, char const *str2)
 {
 	t_size	i;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (str1 == str2)
 		return (0);
 	if (str1 == NULL || str2 == NULL)
@@ -27,11 +27,11 @@ int	ft_strcmp(char const *str1, char const *str2)
 
 
 
-int	ft_strncmp(char const *str1, char const *str2, t_size n)
+int	c_strncmp(char const *str1, char const *str2, t_size n)
 {
 	t_size	i;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (str1 == str2)
 		return (0);
 	if (str1 == NULL || str2 == NULL)
@@ -54,11 +54,11 @@ int	ft_strncmp(char const *str1, char const *str2, t_size n)
 
 
 
-int	ft_stricmp(char const *str1, char const *str2)
+int	c_stricmp(char const *str1, char const *str2)
 {
 	t_size	i;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (str1 == str2)
 		return (0);
 	if (str1 == NULL || str2 == NULL)
@@ -79,11 +79,11 @@ int	ft_stricmp(char const *str1, char const *str2)
 
 
 
-int	ft_strnicmp(char const *str1, char const *str2, t_size n)
+int	c_strnicmp(char const *str1, char const *str2, t_size n)
 {
 	t_size	i;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (str1 == str2)
 		return (0);
 	if (str1 == NULL || str2 == NULL)

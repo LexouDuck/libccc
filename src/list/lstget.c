@@ -1,5 +1,5 @@
 
-#include "libft_list.h"
+#include "libccc_list.h"
 
 
 
@@ -7,7 +7,7 @@ s_list*	List_Get(s_list const* lst, t_u32 index)
 {
 	t_u32	i;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (lst == NULL)
 		return (NULL);
 #endif
@@ -27,7 +27,7 @@ s_list*	List_Get(s_list const* lst, t_u32 index)
 
 s_list*	List_Find(s_list const* lst, void const* query)
 {
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (lst == NULL)
 		return (NULL);
 #endif

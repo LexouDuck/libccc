@@ -5,19 +5,19 @@
 */
 #include <unistd.h>
 
-#include "libft_memory.h"
-#include "libft_string.h"
-#include "libft_stringarray.h"
-#include "libft_io.h"
+#include "libccc_memory.h"
+#include "libccc_string.h"
+#include "libccc_stringarray.h"
+#include "libccc_io.h"
 
 
-static t_bool	ft_readfile_error(int result, char* *a_file)
+static t_bool	c_readfile_error(int result, char* *a_file)
 {
 	if (result < 0)
 	{
 		if (*a_file)
 		{
-			ft_memfree(*a_file);
+			c_memfree(*a_file);
 			*a_file = NULL;
 		}
 		return (ERROR);
@@ -26,18 +26,18 @@ static t_bool	ft_readfile_error(int result, char* *a_file)
 		return (OK);
 }
 
-t_bool		ft_readfile(t_fd const fd, char* *a_file, t_size max)
+t_bool		c_readfile(t_fd const fd, char* *a_file, t_size max)
 {
 	int		result;
 	char	buffer[BUFF_SIZE + 1] = {0};
 	char*	file = NULL;
 	t_size	length;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (a_file == NULL)
 		return (ERROR);
 #endif
-	if (!(file = ft_strnew(0)))
+	if (!(file = c_strnew(0)))
 		return (ERROR);
 	if (max == 0)
 		max = (t_size)-1;
@@ -50,31 +50,31 @@ t_bool		ft_readfile(t_fd const fd, char* *a_file, t_size max)
 		{
 			buffer[result] = '\0';
 		}
-		ft_strappend(&file, buffer);
+		c_strappend(&file, buffer);
 	}
 	*a_file = file;
-	return (ft_readfile_error(result, a_file));
+	return (c_readfile_error(result, a_file));
 }
 
 
 
-t_bool		ft_readlines(t_fd const fd, char** *a_strarr)
+t_bool		c_readlines(t_fd const fd, char** *a_strarr)
 {
 	char*	file	= NULL; 
 	char**	result	= NULL;
 	t_bool	status	= OK;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (a_strarr == NULL)
 		return (ERROR);
 #endif
-	status = ft_readfile(fd, &file, 0);
+	status = c_readfile(fd, &file, 0);
 	if (status)
 	{
-		ft_strdel(&file);
+		c_strdel(&file);
 		return (status);
 	}
-	result = ft_strsplit_str(file, "\n");
+	result = c_strsplit_str(file, "\n");
 	String_Delete(&file);
 	*a_strarr = result;
 	return (OK);

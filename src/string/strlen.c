@@ -1,13 +1,13 @@
 
-#include "libft_string.h"
+#include "libccc_string.h"
 
 
 
-inline t_size	ft_strlen(char const *str)
+inline t_size	c_strlen(char const *str)
 {
 	t_size	i;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (0);
 #endif

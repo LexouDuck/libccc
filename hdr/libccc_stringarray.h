@@ -9,11 +9,11 @@
 /*                                                                            */
 /*============================================================================*/
 
-#ifndef __LIBFT_STRINGARRAY_H
-#define __LIBFT_STRINGARRAY_H
-/*! @file libft_stringarray.h
+#ifndef __LIBCCC_STRINGARRAY_H
+#define __LIBCCC_STRINGARRAY_H
+/*! @file libccc_stringarray.h
 **	This header defines some useful functions for string array (char**) handling.
-**	@addtogroup libft_stringarray
+**	@addtogroup libccc_stringarray
 **	@{
 */
 
@@ -23,7 +23,7 @@
 ** ************************************************************************** *|
 */
 
-#include "libft.h"
+#include "libccc.h"
 
 HEADER_CPP
 
@@ -38,7 +38,7 @@ HEADER_CPP
 **	is a section delimited by 'c' separators, or the edges of the string.
 */
 char**							String_Split_Char(char const* str, char c);
-#define ft_strsplit_char		String_Split_Char
+#define c_strsplit_char		String_Split_Char
 
 /*!
 **	Returns a string array made up of substrings of 'str', where each element
@@ -46,7 +46,7 @@ char**							String_Split_Char(char const* str, char c);
 **	of the string.
 */
 char**							String_Split_Charset(char const* str, char const* sep_chars);
-#define ft_strsplit_charset		String_Split_Charset
+#define c_strsplit_charset		String_Split_Charset
 
 //! Splits up the given string 'str' into several parts in a string array, using 'query' as separator
 /*!
@@ -61,14 +61,14 @@ char**							String_Split_Charset(char const* str, char const* sep_chars);
 **		Ex: "enenen" --s/enen/HIen/-> "HIenen" --s/enen/HI/--> "HIHI"
 */
 char**							String_Split_String(char const* str, char const* query);
-#define ft_strsplit_str			String_Split_String
+#define c_strsplit_str			String_Split_String
 
 /*!
 **	Returns a string array which is the result of dividing str into chunks of
 **	equal size n, safe for the last chunk of length <= n.
 */
 char**							String_Divide(char const* str, t_size n);
-#define ft_strdivide			String_Divide
+#define c_strdivide			String_Divide
 
 
 /*
@@ -81,20 +81,20 @@ char**							String_Divide(char const* str, t_size n);
 **	Returns a null-terminated list of unset char*, of length length.
 */
 char**							StringArray_New(t_u32 length);
-#define ft_strarrnew			StringArray_New
+#define c_strarrnew			StringArray_New
 
 /*!
 **	Returns a newly allocated string array, which has y line and x characters
 **	per lines (+1 for null-termination), every character set to the value c.
 */
 char**							StringArray_New_C(t_u32 y, t_size x, const char c);
-#define ft_strarrcnew			StringArray_New_C
+#define c_strarrcnew			StringArray_New_C
 
 /*!
 **	Frees all allocations in a string array, then the string array itself.
 */
 void							StringArray_Delete(char** *a_strarr);
-#define ft_strarrdel			StringArray_Delete
+#define c_strarrdel			StringArray_Delete
 
 /*!
 **	Returns a newly allocated string array, the result of mapping each string
@@ -102,7 +102,7 @@ void							StringArray_Delete(char** *a_strarr);
 **	string.
 */
 char**							StringArray_Map(char const** strarr, char *(*f)(char const*));
-#define ft_strarrmap			StringArray_Map
+#define c_strarrmap			StringArray_Map
 
 /*!
 **	Transforms the content of the input string array, by mapping each string
@@ -110,28 +110,28 @@ char**							StringArray_Map(char const** strarr, char *(*f)(char const*));
 ** 	but instead edits the string's content in place.
 */
 void							StringArray_Map_InPlace(char** *a_strarr, char *(*f)(char*));
-#define ft_strarrmap_inplace	StringArray_Map_InPlace
+#define c_strarrmap_inplace	StringArray_Map_InPlace
 
 /*!
 **	Returns a newly allocated string array such that every string is now
 **	preceded by n times the character c.
 */
 char**							StringArray_Pad_L(char const** strarr, const char c, t_u32 n);
-#define ft_strarrpad_l			StringArray_Pad_L
+#define c_strarrpad_l			StringArray_Pad_L
 
 /*!
 **	Returns a newly allocated string array, which is the result of removing
 **	the lines from index 'start' to 'start + length' from strarr.
 */
 char**							StringArray_Sub(char const** strarr, t_u32 start, t_u32 length);
-#define ft_strarrsub			StringArray_Sub
+#define c_strarrsub			StringArray_Sub
 
 /*!
 **	Returns a newly allocated string which is the fold/reduce concatenation
 **	of all strings in strarr, with the string 'sep' added between each string.
 */
 char*							StringArray_Fold(char const** strarr, char const* sep);
-#define ft_strarrfold			StringArray_Fold
+#define c_strarrfold			StringArray_Fold
 
 
 /*
@@ -145,21 +145,21 @@ char*							StringArray_Fold(char const** strarr, char const* sep);
 **	inputs from memory. Also returns the result.
 */
 char**							StringArray_Join(char const** strarr1, char const** strarr2);
-#define ft_strarrjoin			StringArray_Join
+#define c_strarrjoin			StringArray_Join
 
 /*!
 **	Returns the concatenation of 'strarr1' and 'strarr2', and deletes both
 **	inputs from memory. Also returns the result.
 */
 char**							StringArray_Merge(char** *a_strarr1, char** *a_strarr2);
-#define ft_strarrmerge			StringArray_Merge
+#define c_strarrmerge			StringArray_Merge
 
 /*!
 **	Returns the concatenation of 'dest' and 'src', and deletes 'dest', replacing
 **	it by the result. Also returns the result.
 */
 char**							StringArray_Append(char** *a_dest, char const** src);
-#define ft_strarrappend			StringArray_Append
+#define c_strarrappend			StringArray_Append
 
 
 /*!
@@ -167,14 +167,14 @@ char**							StringArray_Append(char** *a_dest, char const** src);
 **	it by the result. Also returns the result.
 */
 char**							StringArray_Prepend(char const** src, char** *a_dest);
-#define ft_strarrprepend		StringArray_Prepend
+#define c_strarrprepend		StringArray_Prepend
 
 /*!
 **	Inserts the string array 'src' at index 'index' in 'dest'; deletes 'dest' and
 **	replaces it by the result. Also returns the result.
 */
 char**							StringArray_Insert_InPlace(char** *a_dest, char const** src, t_u32 index);
-#define ft_strarrinsert_inplace	StringArray_Insert_InPlace
+#define c_strarrinsert_inplace	StringArray_Insert_InPlace
 
 
 
@@ -188,25 +188,25 @@ char**							StringArray_Insert_InPlace(char** *a_dest, char const** src, t_u32 
 **	Returns the number of strings in a null-terminated string array.
 */
 t_u32							StringArray_Length(char const** strarr);
-#define ft_strarrlen			StringArray_Length
+#define c_strarrlen			StringArray_Length
 
 /*!
 **	Counts the number of occurences of char c in string array strarr/
 */
 t_u32							StringArray_Count_Char(char const** strarr, char const c);
-#define ft_strarrcount_char		StringArray_Count_Char
+#define c_strarrcount_char		StringArray_Count_Char
 
 /*!
 **	Counts the total number of occurences of any of the chars in cset in strarr.
 */
 t_u32							StringArray_Count_Charset(char const** strarr, char const* cset);
-#define ft_strarrcount_charset	StringArray_Count_Charset
+#define c_strarrcount_charset	StringArray_Count_Charset
 
 /*!
 **	Counts the number of occurences of the string 'query' in strarr.
 */
 t_u32							StringArray_Count_String(char const** strarr, char const* query);
-#define ft_strarrcount_str		StringArray_Count_String
+#define c_strarrcount_str		StringArray_Count_String
 
 
 

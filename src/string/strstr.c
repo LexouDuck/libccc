@@ -1,15 +1,15 @@
 
-#include "libft_string.h"
+#include "libccc_string.h"
 
 
 
-char	*ft_strstr(char const *str, char const *query)
+char	*c_strstr(char const *str, char const *query)
 {
 	t_size	length;
 	t_size	match;
 	t_size	i;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || query == NULL)
 		return (NULL);
 #endif
@@ -38,13 +38,13 @@ char	*ft_strstr(char const *str, char const *query)
 
 
 
-char	*ft_strrstr(char const *str, char const *query)
+char	*c_strrstr(char const *str, char const *query)
 {
 	t_size	length;
 	t_size	match;
 	t_size	i;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || query == NULL)
 		return (NULL);
 #endif
@@ -53,7 +53,7 @@ char	*ft_strrstr(char const *str, char const *query)
 		++length;
 	if (length == 0)
 		return (NULL);
-	i = ft_strlen(str);
+	i = c_strlen(str);
 	while (i--)
 	{
 		match = 0;
@@ -72,17 +72,17 @@ char	*ft_strrstr(char const *str, char const *query)
 
 
 
-char	*ft_strnstr(char const *str, char const *query, t_size n)
+char	*c_strnstr(char const *str, char const *query, t_size n)
 {
 	t_size	length;
 	t_size	match;
 	t_size	i;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || query == NULL)
 		return (NULL);
 #endif
-	length = ft_strlen(query);
+	length = c_strlen(query);
 	i = 0;
 	while (str[i] && i + length <= n)
 	{
@@ -103,12 +103,12 @@ char	*ft_strnstr(char const *str, char const *query, t_size n)
 
 
 
-t_s32		ft_stristr(char const *str, char const *query)
+t_s32		c_stristr(char const *str, char const *query)
 {
 	t_size	i;
 	t_size	j;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || query == NULL)
 		return (-1);
 #endif

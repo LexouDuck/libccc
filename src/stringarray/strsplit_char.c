@@ -1,10 +1,10 @@
 
-#include "libft_string.h"
-#include "libft_stringarray.h"
+#include "libccc_string.h"
+#include "libccc_stringarray.h"
 
 
 
-static int	ft_strcsplit_get_count(char const* str, char c)
+static int	c_strcsplit_get_count(char const* str, char c)
 {
 	int		result;
 	t_bool	separator;
@@ -33,7 +33,7 @@ static int	ft_strcsplit_get_count(char const* str, char c)
 	return (result);
 }
 
-char		**ft_strsplit_char(char const* str, char c)
+char		**c_strsplit_char(char const* str, char c)
 {
 	char	**result;
 	t_size	offset;
@@ -41,12 +41,12 @@ char		**ft_strsplit_char(char const* str, char c)
 	int		count;
 	int		i;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (NULL);
 #endif
-	count = ft_strcsplit_get_count(str, c);
-	if (!(result = ft_strarrnew(count)))
+	count = c_strcsplit_get_count(str, c);
+	if (!(result = c_strarrnew(count)))
 		return (NULL);
 	offset = 0;
 	length = 0;
@@ -60,7 +60,7 @@ char		**ft_strsplit_char(char const* str, char c)
 		while (str[offset + length] && str[offset + length] != c)
 			++length;
 		if (length > 0)
-			result[i++] = ft_strsub(str, offset, length);
+			result[i++] = c_strsub(str, offset, length);
 	}
 	result[count] = NULL;
 	return (result);

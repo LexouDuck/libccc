@@ -1,13 +1,13 @@
 
-#include "libft_string.h"
+#include "libccc_string.h"
 
 
 
-void	ft_striter(char *str, void (*f)(char *))
+void	c_striter(char *str, void (*f)(char *))
 {
 	t_size	i;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || f == NULL)
 		return ;
 #endif
@@ -21,11 +21,11 @@ void	ft_striter(char *str, void (*f)(char *))
 
 
 
-void	ft_striteri(char *str, void (*f)(t_size, char *))
+void	c_striteri(char *str, void (*f)(t_size, char *))
 {
 	t_size	i;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || f == NULL)
 		return ;
 #endif

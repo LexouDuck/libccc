@@ -1,6 +1,6 @@
 
-#include "libft_algebra.h"
-#include "libft_memory.h"
+#include "libccc_algebra.h"
+#include "libccc_memory.h"
 
 
 

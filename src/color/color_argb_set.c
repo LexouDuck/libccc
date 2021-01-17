@@ -1,6 +1,6 @@
 
-#include "libft_color.h"
-#include "libft_math.h"
+#include "libccc_color.h"
+#include "libccc_math.h"
 
 
 

@@ -1,14 +1,14 @@
 
-#include "libft_memory.h"
+#include "libccc_memory.h"
 
 
 
-void	ft_memrep(void *ptr, t_u8 old, t_u8 new, t_size n)
+void	c_memrep(void *ptr, t_u8 old, t_u8 new, t_size n)
 {
 	t_u8	*result;
 	t_size	i;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (ptr == NULL)
 		return ;
 #endif

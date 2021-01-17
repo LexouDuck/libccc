@@ -5,11 +5,11 @@
 */
 #include <stdlib.h>
 
-#include "libft_memory.h"
+#include "libccc_memory.h"
 
 
 
-inline void	*ft_memalloc(t_size size)
+inline void	*c_memalloc(t_size size)
 {
 	return (malloc(size));
 }

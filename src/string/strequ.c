@@ -1,14 +1,14 @@
 
-#include "libft_char.h"
-#include "libft_string.h"
+#include "libccc_char.h"
+#include "libccc_string.h"
 
 
 
-t_bool	ft_strequ(char const *str1, char const *str2)
+t_bool	c_strequ(char const *str1, char const *str2)
 {
 	t_size i;
 
-//#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+//#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (str1 == str2)
 		return (TRUE);
 	if (str1 == NULL || str2 == NULL)
@@ -26,11 +26,11 @@ t_bool	ft_strequ(char const *str1, char const *str2)
 
 
 
-t_bool	ft_strnequ(char const *str1, char const *str2, t_size n)
+t_bool	c_strnequ(char const *str1, char const *str2, t_size n)
 {
 	t_size i;
 
-//#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+//#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (str1 == str2 || n == 0)
 		return (TRUE);
 	if (str1 == NULL || str2 == NULL)
@@ -50,11 +50,11 @@ t_bool	ft_strnequ(char const *str1, char const *str2, t_size n)
 
 
 
-t_bool	ft_striequ(char const *str1, char const *str2)
+t_bool	c_striequ(char const *str1, char const *str2)
 {
 	t_size i;
 
-//#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+//#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (str1 == str2)
 		return (TRUE);
 	if (str1 == NULL || str2 == NULL)
@@ -74,11 +74,11 @@ t_bool	ft_striequ(char const *str1, char const *str2)
 
 
 
-t_bool	ft_strniequ(char const *str1, char const *str2, t_size n)
+t_bool	c_strniequ(char const *str1, char const *str2, t_size n)
 {
 	t_size i;
 
-//#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+//#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (str1 == str2 || n == 0)
 		return (TRUE);
 	if (str1 == NULL || str2 == NULL)

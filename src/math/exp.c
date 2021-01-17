@@ -1,10 +1,10 @@
 
-#include "libft_math.h"
+#include "libccc_math.h"
 
 
 
-#if LIBFTCONFIG_FAST_APPROX_MATH
-t_float		ft_exp(t_float x)
+#if LIBCCCCONFIG_FAST_APPROX_MATH
+t_float		c_exp(t_float x)
 {
 	if (x < -10.)
 		return (0.);

@@ -1,19 +1,19 @@
 
-#include "libft_memory.h"
+#include "libccc_memory.h"
 
 
 
-void	*ft_memdup(const void *ptr, t_size n)
+void	*c_memdup(const void *ptr, t_size n)
 {
 	t_u8	*result;
 	t_u8	*source;
 	t_size	i;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (ptr == NULL)
 		return (NULL);
 #endif
-	if (!(result = (t_u8 *)ft_memalloc(n)))
+	if (!(result = (t_u8 *)c_memalloc(n)))
 		return (NULL);
 	source = (t_u8 *)ptr;
 	i = 0;

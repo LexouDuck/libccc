@@ -1,6 +1,6 @@
 
-#include "libft_memory.h"
-#include "libft_convert.h"
+#include "libccc_memory.h"
+#include "libccc_convert.h"
 
 
 
@@ -9,7 +9,7 @@ static t_size	Convert_Int_To_BaseString_GetLength(char const *base, t_bool sign)
 	t_size	i;
 	t_size	j;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (base == NULL)
 		return (0);
 #endif

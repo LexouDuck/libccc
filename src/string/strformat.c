@@ -11,8 +11,8 @@
 */
 #include <stdarg.h>
 
-#include "libft_memory.h"
-#include "libft_string.h"
+#include "libccc_memory.h"
+#include "libccc_string.h"
 
 
 

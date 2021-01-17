@@ -1,6 +1,6 @@
 
-#include "libft_complex.h"
-#include "libft_memory.h"
+#include "libccc_complex.h"
+#include "libccc_memory.h"
 
 
 

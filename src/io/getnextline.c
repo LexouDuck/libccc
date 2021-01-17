@@ -6,10 +6,10 @@
 #include <unistd.h>
 #include <stdio.h>
 
-#include "libft_memory.h"
-#include "libft_string.h"
-#include "libft_list.h"
-#include "libft_io.h"
+#include "libccc_memory.h"
+#include "libccc_string.h"
+#include "libccc_list.h"
+#include "libccc_io.h"
 
 
 
@@ -23,7 +23,7 @@ static	int		gnl_read(t_fd const fd, char* *a_newline)
 	t_bool			end_of_buffer = FALSE;
 	t_bool			done_new_line = FALSE;
 
-	if (!(*a_newline = ft_strnew(0)))
+	if (!(*a_newline = c_strnew(0)))
 		return (GNL_ERROR);
 	while (!done_new_line)
 	{
@@ -33,7 +33,7 @@ static	int		gnl_read(t_fd const fd, char* *a_newline)
 		{
 			buf_pos = 0;
 			end_of_buffer = FALSE;
-			ft_memclr(buffer, BUFF_SIZE);
+			c_memclr(buffer, BUFF_SIZE);
 			status = read(fd, buffer, BUFF_SIZE);
 			if (status < 0)
 			{
@@ -43,18 +43,18 @@ static	int		gnl_read(t_fd const fd, char* *a_newline)
 			if (status == 0)
 				return (GNL_END);
 		}
-		temp = ft_strchr(buffer + buf_pos, '\n');
+		temp = c_strchr(buffer + buf_pos, '\n');
 		if (temp == NULL)
 		{
-			ft_strappend(a_newline, buffer + buf_pos);
+			c_strappend(a_newline, buffer + buf_pos);
 			end_of_buffer = TRUE;
 		}
 		else
 		{
 			offset = temp - (buffer + buf_pos);
-			temp = ft_strndup(buffer + buf_pos, offset);
-			ft_strappend(a_newline, temp);
-			ft_strdel(&temp);
+			temp = c_strndup(buffer + buf_pos, offset);
+			c_strappend(a_newline, temp);
+			c_strdel(&temp);
 			buf_pos += offset + 1;
 			return (GNL_LINE);
 		}
@@ -62,7 +62,7 @@ static	int		gnl_read(t_fd const fd, char* *a_newline)
 	return (status);
 }
 
-int				ft_getnextline(t_fd const fd, char* *a_line)
+int				c_getnextline(t_fd const fd, char* *a_line)
 {
 	char			*new_line = NULL;
 	int				status = GNL_ERROR;
@@ -73,7 +73,7 @@ int				ft_getnextline(t_fd const fd, char* *a_line)
 	status = gnl_read(fd, &new_line);
 	if (status < 0)
 	{
-		ft_strdel(&new_line);
+		c_strdel(&new_line);
 		return (GNL_ERROR);
 	}
 	*a_line = new_line;

@@ -1,9 +1,9 @@
 
-#include "libft_memory.h"
+#include "libccc_memory.h"
 
 
 
-int		ft_memcmp(void const *ptr1, void const *ptr2, t_size n)
+int		c_memcmp(void const *ptr1, void const *ptr2, t_size n)
 {
 	t_u8	*p1;
 	t_u8	*p2;
@@ -11,7 +11,7 @@ int		ft_memcmp(void const *ptr1, void const *ptr2, t_size n)
 
 	p1 = (t_u8 *)ptr1;
 	p2 = (t_u8 *)ptr2;
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (ptr1 == NULL || ptr2 == NULL)
 	{
 		if (ptr1 == ptr2)

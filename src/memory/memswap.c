@@ -1,13 +1,13 @@
 
-#include "libft_memory.h"
+#include "libccc_memory.h"
 
-int			ft_memswap(void *ptr1, void *ptr2, t_size size)
+int			c_memswap(void *ptr1, void *ptr2, t_size size)
 {
 	t_u8	*p1;
 	t_u8	*p2;
 	t_size	i;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (ptr1 == NULL || ptr2 == NULL)
 		return (ERROR);
 #endif

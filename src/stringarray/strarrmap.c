@@ -1,20 +1,20 @@
 
-#include "libft_memory.h"
-#include "libft_string.h"
-#include "libft_stringarray.h"
+#include "libccc_memory.h"
+#include "libccc_string.h"
+#include "libccc_stringarray.h"
 
 
 
-char		**ft_strarrmap(char const** strarr, char* (*f)(char const*))
+char		**c_strarrmap(char const** strarr, char* (*f)(char const*))
 {
 	t_u32	i;
 	char	**result;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (strarr == NULL || *strarr == NULL || f == NULL)
 		return (NULL);
 #endif
-	if (!(result = ft_strarrnew(ft_strarrlen(strarr))))
+	if (!(result = c_strarrnew(c_strarrlen(strarr))))
 		return (NULL);
 	i = 0;
 	while (strarr[i])
@@ -27,12 +27,12 @@ char		**ft_strarrmap(char const** strarr, char* (*f)(char const*))
 
 
 
-void		ft_strarrmap_inplace(char** *a_strarr, char* (*f)(char*))
+void		c_strarrmap_inplace(char** *a_strarr, char* (*f)(char*))
 {
 	t_u32	i;
 	char	*tmp;
 
-#if LIBFTCONFIG_HANDLE_NULLPOINTERS
+#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
 	if (a_strarr == NULL || *a_strarr == NULL || f == NULL)
 		return ;
 #endif
@@ -41,7 +41,7 @@ void		ft_strarrmap_inplace(char** *a_strarr, char* (*f)(char*))
 	{
 		tmp = (*f)((*a_strarr)[i]);
 		if (tmp != (*a_strarr)[i])
-			ft_strdel(*a_strarr + i);
+			c_strdel(*a_strarr + i);
 		(*a_strarr)[i] = tmp;
 		++i;
 	}

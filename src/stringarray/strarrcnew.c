@@ -1,27 +1,27 @@
 
-#include "libft_memory.h"
-#include "libft_string.h"
-#include "libft_stringarray.h"
+#include "libccc_memory.h"
+#include "libccc_string.h"
+#include "libccc_stringarray.h"
 
 
 
-char	**ft_strarrcnew(t_u32 y, t_size x, const char c)
+char	**c_strarrcnew(t_u32 y, t_size x, const char c)
 {
 	char	**strarr;
 	t_u32	i;
 
-	if (!(strarr = ft_strarrnew(y)))
+	if (!(strarr = c_strarrnew(y)))
 		return (NULL);
 	i = 0;
 	while (i < y)
 	{
-		if (!(strarr[i] = ft_strnew(x)))
+		if (!(strarr[i] = c_strnew(x)))
 		{
 			strarr[i] = NULL;
-			ft_strarrdel(&strarr);
+			c_strarrdel(&strarr);
 			return (NULL);
 		}
-		ft_memset(strarr[i], c, x);
+		c_memset(strarr[i], c, x);
 		strarr[i][x] = '\0';
 		++i;
 	}

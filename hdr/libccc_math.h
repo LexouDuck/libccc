@@ -9,11 +9,11 @@
 /*                                                                            */
 /*============================================================================*/
 
-#ifndef __LIBFT_MATH_H
-#define __LIBFT_MATH_H
-/*! @file libft_math.h
+#ifndef __LIBCCC_MATH_H
+#define __LIBCCC_MATH_H
+/*! @file libccc_math.h
 **	This header defines the common standard math functions and macro defines.
-**	@addtogroup libft_math
+**	@addtogroup libccc_math
 **	@{
 */
 
@@ -23,7 +23,7 @@
 ** ************************************************************************** *|
 */
 
-#include "libft.h"
+#include "libccc.h"
 
 HEADER_CPP
 
@@ -118,91 +118,91 @@ typedef		t_float	(*f_real_operator)(t_float x, t_float y);
 
 //! Returns the base-2 exponent of 'x', as an integer
 t_s32						Math_GetExp(t_float x);
-#define ft_getexp			Math_GetExp
+#define c_getexp			Math_GetExp
 #define Math_GetExponent	Math_GetExp
 
 //! Returns the absolute value of 'x' (makes 'x' positive)
 t_float						Math_Abs(t_float x);
-#define ft_fabs				Math_Abs
+#define c_fabs				Math_Abs
 #define Math_AbsoluteValue	Math_Abs
 
 //! Returns the division remainder of 'x' divided by 'y'
 t_float						Math_Mod(t_float x, t_float y);
-#define ft_fmod				Math_Mod
+#define c_fmod				Math_Mod
 #define Math_Modulo			Math_Mod
 
 //! Returns the value of 'x', rounded to the nearest integer
 t_float						Math_Round(t_float x);
-#define ft_round			Math_Round
+#define c_round			Math_Round
 #define Math_FloatRound		Math_Round
 
 //! Returns the value of 'x', rounded towards 0
 t_float						Math_Truncate(t_float x);
-#define ft_trunc			Math_Truncate
+#define c_trunc			Math_Truncate
 #define Math_FloatTrunc		Math_Truncate
 
 //! Returns the value of 'x', rounded to the superior integer
 t_float						Math_Floor(t_float x);
-#define ft_floor			Math_Floor
+#define c_floor			Math_Floor
 #define Math_FloatFloor		Math_Floor
 
 //! Returns the value of 'x', rounded to the inferior integer
 t_float						Math_Ceiling(t_float x);
-#define ft_ceil				Math_Ceiling
+#define c_ceil				Math_Ceiling
 #define Math_FloatCeiling	Math_Ceiling
 
 
 
 //! Returns the value of 'x' to the power of 'y' (float)
 t_float						Math_Pow(t_float x, t_float y);
-#define ft_pow				Math_Pow
+#define c_pow				Math_Pow
 #define Math_Power			Math_Pow
 
 //! Returns the value of 'x' to the power of 'n' (integer)
 t_float						Math_Pow_N(t_float x, t_int n);
-#define ft_pow_n			Math_Pow_N
+#define c_pow_n			Math_Pow_N
 #define Math_Power_N		Math_Pow_N
 
 //! Returns the square root of 'x' (inverse of power of 2)
 t_float						Math_SqRt(t_float x);
-#define ft_sqrt				Math_SqRt
+#define c_sqrt				Math_SqRt
 #define Math_SquareRoot		Math_SqRt
 
 //! Returns the cubic root of 'x' (inverse of power of 3)
 t_float						Math_CbRt(t_float x);
-#define ft_cbrt				Math_CbRt
+#define c_cbrt				Math_CbRt
 #define Math_CubicRoot		Math_CbRt
 
 //! Returns the n-ic root of 'x' (inverse of power of 'n')
 t_float						Math_NRt(t_float x, t_u8 n);
-#define ft_nrt				Math_NRt
+#define c_nrt				Math_NRt
 #define Math_NRoot			Math_NRt
 
 
 
 //! Returns the exponential function's value for 'x'
 t_float							Math_Exp(t_float x);
-#define ft_exp					Math_Exp
+#define c_exp					Math_Exp
 #define Math_Exponential		Math_Exp
 
 //! Returns the natural logarithm of 'x'
 t_float							Math_Ln(t_float x);
-#define ft_ln					Math_Ln
+#define c_ln					Math_Ln
 #define Math_NaturalLogarithm	Math_Ln
 
 //! Returns the binary (base-2) logarithm of 'x'
 t_float							Math_Log_2(t_float x);
-#define ft_lg					Math_Log_2
+#define c_lg					Math_Log_2
 #define Math_Logarithm_Base2	Math_Log_2
 
 //! Returns the decimal (base-10) logarithm of 'x'
 t_float							Math_Log_10(t_float x);
-#define ft_log					Math_Log_10
+#define c_log					Math_Log_10
 #define Math_Logarithm_Base10	Math_Log_10
 
 //! Returns the base-'n' logarithm of 'x'
 t_float							Math_Log_N(t_float x, t_float n);
-#define ft_logn					Math_Log_N
+#define c_logn					Math_Log_N
 #define Math_Logarithm_BaseN	Math_Log_N
 
 
@@ -210,73 +210,73 @@ t_float							Math_Log_N(t_float x, t_float n);
 
 //! Returns the cosine of 'x' (horizontal trigonometry coordinate)
 t_float								Math_Cos(t_float x);
-#define ft_cos						Math_Cos
+#define c_cos						Math_Cos
 #define Math_Cosine					Math_Cos
 
 //! Returns the sine of 'x' (vertical trigonometry coordinate)
 t_float								Math_Sin(t_float x);
-#define ft_sin						Math_Sin
+#define c_sin						Math_Sin
 #define Math_Sine					Math_Sin
 
 //! Returns the tangent of 'x' (trigonometry tangent line)
 t_float								Math_Tan(t_float x);
-#define ft_tan						Math_Tan
+#define c_tan						Math_Tan
 #define Math_Tangent				Math_Tan
 
 //! Returns the arc-cosine of 'x' (inverse of the cos function)
 t_float								Math_ArcCos(t_float x);
-#define ft_acos						Math_ArcCos
+#define c_acos						Math_ArcCos
 #define Math_InvCosine				Math_ArcCos
 #define Math_Cos_1					Math_ArcCos
 
 //! Returns the arc-sine of 'x' (inverse of the sin function)
 t_float								Math_ArcSin(t_float x);
-#define ft_asin						Math_ArcSin
+#define c_asin						Math_ArcSin
 #define Math_InvSine				Math_ArcSin
 #define Math_Sin_1					Math_ArcSin
 
 //! Returns the arc-tangent of 'x' (inverse of the tan function)
 t_float								Math_ArcTan(t_float x);
-#define ft_atan						Math_ArcTan
+#define c_atan						Math_ArcTan
 #define Math_InvTangent				Math_ArcTan
 
 
 
 //! Returns the arc-tangent of ('y' / 'x'), used to find an angle
 t_float								Math_ArcTan2(t_float y, t_float x);
-#define ft_atan2					Math_ArcTan2
+#define c_atan2					Math_ArcTan2
 #define Math_ArcTangent_YoverX		Math_ArcTan2
 
 
 
 //! Returns the hyperbolic cosine of 'x'
 t_float								Math_CosH(t_float x);
-#define ft_cosh						Math_CosH
+#define c_cosh						Math_CosH
 #define Math_Cosine_Hyperbolic		Math_CosH
 
 //! Returns the hyperbolic sine of 'x'
 t_float								Math_SinH(t_float x);
-#define ft_sinh						Math_SinH
+#define c_sinh						Math_SinH
 #define Math_Sine_Hyperbolic		Math_SinH
 
 //! Returns the hyperbolic tangent of 'x'
 t_float								Math_TanH(t_float x);
-#define ft_tanh						Math_TanH
+#define c_tanh						Math_TanH
 #define Math_Tangent_Hyperbolic		Math_TanH
 
 //! Returns the hyperbolic arc-cosine of 'x' (inverse of the cosh function)
 t_float								Math_InvCosH(t_float x);
-#define ft_acosh					Math_InvCosH
+#define c_acosh					Math_InvCosH
 #define Math_InvCosine_Hyperbolic	Math_InvCosH
 
 //! Returns the hyperbolic arc-sine of 'x' (inverse of the sinh function)
 t_float								Math_InvSinH(t_float x);
-#define ft_asinh					Math_InvSinH
+#define c_asinh					Math_InvSinH
 #define Math_InvSine_Hyperbolic		Math_InvSinH
 
 //! Returns the hyperbolic arc-tangent of 'x' (inverse of the tanh function)
 t_float								Math_InvTanH(t_float x);
-#define ft_atanh					Math_InvTanH
+#define c_atanh					Math_InvTanH
 #define Math_InvTangent_Hyperbolic	Math_InvTanH
 
 
@@ -287,30 +287,30 @@ t_float								Math_InvTanH(t_float x);
 
 
 
-#if (LIBFTCONFIG_FAST_APPROX_MATH == 0)
+#if (LIBCCCCONFIG_FAST_APPROX_MATH == 0)
 
 	#ifdef _FLOAT_32_
-		#define MATH_DECL_FUNCTION(RETURN, FT_NAME, NAME)	inline RETURN ft_##FT_NAME(t_float x)				{ return (__builtin_##NAME##f(x)); }
-		#define MATH_DECL_REALFUNCTION(FT_NAME, NAME)		inline t_float ft_##FT_NAME(t_float x)				{ return (__builtin_##NAME##f(x)); }
-		#define MATH_DECL_REALOPERATOR(FT_NAME, NAME)		inline t_float ft_##FT_NAME(t_float x, t_float y)	{ return (__builtin_##NAME##f(x, y)); }
+		#define MATH_DECL_FUNCTION(RETURN, FT_NAME, NAME)	inline RETURN c_##FT_NAME(t_float x)				{ return (__builtin_##NAME##f(x)); }
+		#define MATH_DECL_REALFUNCTION(FT_NAME, NAME)		inline t_float c_##FT_NAME(t_float x)				{ return (__builtin_##NAME##f(x)); }
+		#define MATH_DECL_REALOPERATOR(FT_NAME, NAME)		inline t_float c_##FT_NAME(t_float x, t_float y)	{ return (__builtin_##NAME##f(x, y)); }
 	#endif
 
 	#ifdef _FLOAT_64_
-		#define MATH_DECL_FUNCTION(RETURN, FT_NAME, NAME)	inline RETURN ft_##FT_NAME(t_float x)				{ return (__builtin_##NAME(x)); }
-		#define MATH_DECL_REALFUNCTION(FT_NAME, NAME)		inline t_float ft_##FT_NAME(t_float x)				{ return (__builtin_##NAME(x)); }
-		#define MATH_DECL_REALOPERATOR(FT_NAME, NAME)		inline t_float ft_##FT_NAME(t_float x, t_float y)	{ return (__builtin_##NAME(x, y)); }
+		#define MATH_DECL_FUNCTION(RETURN, FT_NAME, NAME)	inline RETURN c_##FT_NAME(t_float x)				{ return (__builtin_##NAME(x)); }
+		#define MATH_DECL_REALFUNCTION(FT_NAME, NAME)		inline t_float c_##FT_NAME(t_float x)				{ return (__builtin_##NAME(x)); }
+		#define MATH_DECL_REALOPERATOR(FT_NAME, NAME)		inline t_float c_##FT_NAME(t_float x, t_float y)	{ return (__builtin_##NAME(x, y)); }
 	#endif
 
 	#ifdef _FLOAT_80_
-		#define MATH_DECL_FUNCTION(RETURN, FT_NAME, NAME)	inline RETURN ft_##FT_NAME(t_float x)				{ return (__builtin_##NAME##l(x)); }
-		#define MATH_DECL_REALFUNCTION(FT_NAME, NAME)		inline t_float ft_##FT_NAME(t_float x)				{ return (__builtin_##NAME##l(x)); }
-		#define MATH_DECL_REALOPERATOR(FT_NAME, NAME)		inline t_float ft_##FT_NAME(t_float x, t_float y)	{ return (__builtin_##NAME##l(x, y)); }
+		#define MATH_DECL_FUNCTION(RETURN, FT_NAME, NAME)	inline RETURN c_##FT_NAME(t_float x)				{ return (__builtin_##NAME##l(x)); }
+		#define MATH_DECL_REALFUNCTION(FT_NAME, NAME)		inline t_float c_##FT_NAME(t_float x)				{ return (__builtin_##NAME##l(x)); }
+		#define MATH_DECL_REALOPERATOR(FT_NAME, NAME)		inline t_float c_##FT_NAME(t_float x, t_float y)	{ return (__builtin_##NAME##l(x, y)); }
 	#endif
 
 	#ifdef _FLOAT_128_
-		#define MATH_DECL_FUNCTION(RETURN, FT_NAME, NAME)	inline RETURN ft_##FT_NAME(t_float x)				{ return (__builtin_##NAME##q(x)); }
-		#define MATH_DECL_REALFUNCTION(FT_NAME, NAME)		inline t_float ft_##FT_NAME(t_float x)				{ return (__builtin_##NAME##q(x)); }
-		#define MATH_DECL_REALOPERATOR(FT_NAME, NAME)		inline t_float ft_##FT_NAME(t_float x, t_float y)	{ return (__builtin_##NAME##q(x, y)); }
+		#define MATH_DECL_FUNCTION(RETURN, FT_NAME, NAME)	inline RETURN c_##FT_NAME(t_float x)				{ return (__builtin_##NAME##q(x)); }
+		#define MATH_DECL_REALFUNCTION(FT_NAME, NAME)		inline t_float c_##FT_NAME(t_float x)				{ return (__builtin_##NAME##q(x)); }
+		#define MATH_DECL_REALOPERATOR(FT_NAME, NAME)		inline t_float c_##FT_NAME(t_float x, t_float y)	{ return (__builtin_##NAME##q(x, y)); }
 	#endif
 
 #endif

@@ -1,5 +1,5 @@
 
-#include "libft_stringarray.h"
+#include "libccc_stringarray.h"
 
 #include "test.h"
 
@@ -103,13 +103,13 @@ char const*		strarr4_C[9] = {"", "", "bb", "", "", "bb", "", "", NULL};
 
 
 
-#ifdef			ft_strarrlen
+#ifdef			c_strarrlen
 void	print_test_strarrlen(char const* test_name, int can_segfault,
 		t_size			expecting,
 		char const**	strarr)
 {
 	TEST_PERFORM_RESULT_TYPE(t_size, strarrlen, strarr)
-	print_test_size(test_name, "_strarrlen", result_libft, expecting, can_segfault);
+	print_test_size(test_name, "_strarrlen", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 }
 void	test_strarrlen()
@@ -130,14 +130,14 @@ void	test_strarrlen()
 
 
 
-#ifdef			ft_strsplit_char
+#ifdef			c_strsplit_char
 void	print_test_strsplit_char(char const* test_name, int can_segfault,
 		char const**	expecting,
 		char const*		str,
 		char			separator)
 {
 	TEST_PERFORM_RESULT_TYPE(char**, strsplit_char, str, separator)
-	print_test_strarr(test_name, "_strsplit_char", (char const **)result_libft, expecting, can_segfault);
+	print_test_strarr(test_name, "_strsplit_char", (char const **)result_libccc, expecting, can_segfault);
 	TEST_FREE_ARRAY_NULLTERM()
 	print_timer_result(&t, FALSE);
 }
@@ -154,14 +154,14 @@ void	test_strsplit_char()
 
 
 
-#ifdef			ft_strsplit_charset
+#ifdef			c_strsplit_charset
 void	print_test_strsplit_charset(char const* test_name, int can_segfault,
 		char const**	expecting,
 		char const*		str,
 		char const*		separators)
 {
 	TEST_PERFORM_RESULT_TYPE(char**, strsplit_charset, str, separators)
-	print_test_strarr(test_name, "_strsplit_charset", (char const **)result_libft, expecting, can_segfault);
+	print_test_strarr(test_name, "_strsplit_charset", (char const **)result_libccc, expecting, can_segfault);
 	TEST_FREE_ARRAY_NULLTERM()
 	print_timer_result(&t, FALSE);
 }
@@ -185,14 +185,14 @@ void	test_strsplit_charset()
 
 
 
-#ifdef			ft_strsplit_str
+#ifdef			c_strsplit_str
 void	print_test_strsplit_str(char const* test_name, int can_segfault,
 		char const**	expecting,
 		char const*		str,
 		char const*		sub)
 {
 	TEST_PERFORM_RESULT_TYPE(char**, strsplit_str, str, sub)
-	print_test_strarr(test_name, "_strsplit_str", (char const **)result_libft, expecting, can_segfault);
+	print_test_strarr(test_name, "_strsplit_str", (char const **)result_libccc, expecting, can_segfault);
 	TEST_FREE_ARRAY_NULLTERM()
 	print_timer_result(&t, FALSE);
 }
@@ -214,14 +214,14 @@ void	test_strsplit_str()
 
 
 
-#ifdef			ft_strarrjoin
+#ifdef			c_strarrjoin
 void	print_test_strarrjoin(char const* test_name, int can_segfault,
 		char const**	expecting,
 		char const**	strarr1,
 		char const**	strarr2)
 {
 	TEST_PERFORM_RESULT_TYPE(char**, strarrjoin, strarr1, strarr2)
-	print_test_strarr(test_name, "_strarrjoin", (char const**)result_libft, expecting, can_segfault);
+	print_test_strarr(test_name, "_strarrjoin", (char const**)result_libccc, expecting, can_segfault);
 	TEST_FREE_ARRAY_NULLTERM()
 	print_timer_result(&t, FALSE);
 }
@@ -234,14 +234,14 @@ void	test_strarrjoin()
 
 
 
-#ifdef			ft_strarrfold
+#ifdef			c_strarrfold
 void	print_test_strarrfold(char const* test_name, int can_segfault,
 		char const*		expecting,
 		char const**	strarr,
 		char const*		sep)
 {
 	TEST_PERFORM_RESULT(strarrfold, strarr, sep)
-	print_test_str(test_name, "_strarrfold", result_libft, expecting, can_segfault);
+	print_test_str(test_name, "_strarrfold", result_libccc, expecting, can_segfault);
 	TEST_FREE()
 	print_timer_result(&t, FALSE);
 }
@@ -268,56 +268,56 @@ int		testsuite_stringarray(void)
 
 	print_nonstd();
 
-#ifdef ft_strarrlen
+#ifdef c_strarrlen
 	test_strarrlen();
 #endif
 
-#ifdef ft_strarrnew
+#ifdef c_strarrnew
 //	test_strarrnew();
 #endif
-#ifdef ft_strarrcnew
+#ifdef c_strarrcnew
 //	test_strarrcnew();
 #endif
-#ifdef ft_strarrdel
+#ifdef c_strarrdel
 //	test_strarrdel();
 #endif
 
-#ifdef ft_strsplit_char
+#ifdef c_strsplit_char
 	test_strsplit_char();
 #endif
-#ifdef ft_strsplit_charset
+#ifdef c_strsplit_charset
 	test_strsplit_charset();
 #endif
-#ifdef ft_strsplit_str
+#ifdef c_strsplit_str
 	test_strsplit_str();
 #endif
-#ifdef ft_strdivide
+#ifdef c_strdivide
 //	test_strdivide();
 #endif
 
-#ifdef ft_strarrcount_char
+#ifdef c_strarrcount_char
 //	test_strarrcount_char();
 #endif
-#ifdef ft_strarrcount_charset
+#ifdef c_strarrcount_charset
 //	test_strarrcount_charset();
 #endif
-#ifdef ft_strarrcount_string
+#ifdef c_strarrcount_string
 //	test_strarrcount_string();
 #endif
 
-#ifdef ft_strarrpad_l
+#ifdef c_strarrpad_l
 //	test_strarrpad_l();
 #endif
 
-#ifdef ft_strarrsub
+#ifdef c_strarrsub
 //	test_strarrsub();
 #endif
 
-#ifdef ft_strarrmap
+#ifdef c_strarrmap
 //	test_strarrmap();
 #endif
 
-#ifdef ft_strarrfold
+#ifdef c_strarrfold
 	test_strarrfold();
 #endif
 

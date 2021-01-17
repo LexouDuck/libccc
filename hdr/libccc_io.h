@@ -9,11 +9,11 @@
 /*                                                                            */
 /*============================================================================*/
 
-#ifndef __LIBFT_IO_H
-#define __LIBFT_IO_H
-/*! @file libft_io.h
+#ifndef __LIBCCC_IO_H
+#define __LIBCCC_IO_H
+/*! @file libccc_io.h
 **	This header defines all the functions for OS-level input/output, read/write.
-**	@addtogroup libft_io
+**	@addtogroup libccc_io
 **	@{
 */
 
@@ -23,7 +23,7 @@
 ** ************************************************************************** *|
 */
 
-#include "libft.h"
+#include "libccc.h"
 
 HEADER_CPP
 
@@ -33,7 +33,7 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! Arbitrary buffer size for libft_io functions
+//! Arbitrary buffer size for libccc_io functions
 /*!
 **	This is the arbitrary buffer size to be used by the reading functions.
 **	Raising this amount will lower the amount of function calls made to
@@ -44,7 +44,7 @@ HEADER_CPP
 */
 #define BUFF_SIZE	(2048)
 
-//! File descriptor integer type for libft_io functions
+//! File descriptor integer type for libccc_io functions
 /*!
 ** Define a type for file descriptors (which is usually the default machine 'int')
 */
@@ -63,7 +63,7 @@ typedef int		t_fd;
 
 /*!
 **	Define some useful string literals for commandline output colors.
-**	May be used with any of the 'ft_output' and 'ft_write' functions.
+**	May be used with any of the 'c_output' and 'c_write' functions.
 */
 #ifndef __COLORS__
 #define __COLORS__
@@ -119,7 +119,7 @@ typedef int		t_fd;
 **	@returns 0(OK) if the stream was read successfully, 1(ERROR) if there was an error.
 */
 t_bool					IO_Read_File(t_fd const fd, char* *a_file, t_size max);
-#define ft_readfile		IO_Read_File
+#define c_readfile		IO_Read_File
 
 //! Reads the contents of 'fd' and makes an array of strings, one for each line
 /*!
@@ -133,7 +133,7 @@ t_bool					IO_Read_File(t_fd const fd, char* *a_file, t_size max);
 **	@returns 0(OK) if the stream was read successfully, 1(ERROR) if there was an error.
 */
 t_bool					IO_Read_Lines(t_fd const fd, char** *a_strarr);
-#define ft_readlines	IO_Read_Lines
+#define c_readlines	IO_Read_Lines
 
 //! Reads the contents of the file descriptor 'fd' line-per-line.
 /*!
@@ -151,10 +151,10 @@ t_bool					IO_Read_Lines(t_fd const fd, char** *a_strarr);
 */
 //TODO DO NOT USE, TODO FIX, confirmed to have very, very rare, platform-specific problems...
 int						IO_Read_NextLine(t_fd const fd, char* *a_line);
-#define ft_getnextline	IO_Read_NextLine
-#define GNL_LINE   1	//!< Return value for ft_getnextline: indicates succesful line read, more to follow
-#define GNL_END    0	//!< Return value for ft_getnextline: indicates successful line read, end of file reached
-#define GNL_ERROR -1	//!< Return value for ft_getnextline: indicates a read error occurred
+#define c_getnextline	IO_Read_NextLine
+#define GNL_LINE   1	//!< Return value for c_getnextline: indicates succesful line read, more to follow
+#define GNL_END    0	//!< Return value for c_getnextline: indicates successful line read, end of file reached
+#define GNL_ERROR -1	//!< Return value for c_getnextline: indicates a read error occurred
 
 
 
@@ -166,28 +166,28 @@ int						IO_Read_NextLine(t_fd const fd, char* *a_line);
 
 //! Writes the given character 'c' to the given file descriptor 'fd'
 int						IO_Write_Char(t_fd fd, char c);
-#define ft_write_char	IO_Write_Char
+#define c_write_char	IO_Write_Char
 
 //! Writes the given string 'str' to the given file descriptor 'fd'
 int						IO_Write_String(t_fd fd, char const* str);
-#define ft_write_string	IO_Write_String
+#define c_write_string	IO_Write_String
 
 //! Writes the given string 'str' to the given file descriptor 'fd', and a newline '\n' char at the end
 int						IO_Write_Line(t_fd fd, char const* str);
-#define ft_write_line	IO_Write_Line
+#define c_write_line	IO_Write_Line
 
 //! Writes the given string array 'strarr' to the given file descriptor 'fd'
 int						IO_Write_Lines(t_fd fd, char const** strarr);
-#define ft_write_lines	IO_Write_Lines
+#define c_write_lines	IO_Write_Lines
 
 //!< Writes 'n' bytes of memory from 'ptr' as hexadecimal 2-char blocks in 'cols' columns, to the given file descriptor 'fd'
 int						IO_Write_Memory(t_fd fd, t_u8 const* ptr, t_size n, t_u8 cols);
-#define ft_write_memory	IO_Write_Memory
+#define c_write_memory	IO_Write_Memory
 
 //! Writes the given formatted string to the standard output - equivalent to 'fprintf()', or rather 'dprintf()'
 int						IO_Write_Format(t_fd fd, char const* format, ...) __format_printf(2, 3);
-#define ft_write_format	IO_Write_Format
-#define ft_dprintf		IO_Write_Format
+#define c_write_format	IO_Write_Format
+#define c_dprintf		IO_Write_Format
 
 
 
@@ -199,33 +199,33 @@ int						IO_Write_Format(t_fd fd, char const* format, ...) __format_printf(2, 3)
 
 //! Writes the given char 'c' to the standard output.
 int							IO_Output_Char(char c);
-#define ft_output_char		IO_Output_Char
-#define ft_putchar			IO_Output_Char
+#define c_output_char		IO_Output_Char
+#define c_putchar			IO_Output_Char
 
 //! Writes the given string 'str' to the standard output.
 int							IO_Output_String(char const* str);
-#define ft_output_string	IO_Output_String
-#define ft_putstr			IO_Output_String
+#define c_output_string	IO_Output_String
+#define c_putstr			IO_Output_String
 
 //! Writes the given string 'str' to the standard output, with a newline '\n' character at the end.
 int							IO_Output_Line(char const* str);
-#define ft_output_line		IO_Output_Line
-#define ft_putline			IO_Output_Line
+#define c_output_line		IO_Output_Line
+#define c_putline			IO_Output_Line
 
 //! Writes the given string array 'strls' to the standard output.
 int							IO_Output_Lines(char const** strarr);
-#define ft_output_lines		IO_Output_Lines
-#define ft_putlines			IO_Output_Lines
+#define c_output_lines		IO_Output_Lines
+#define c_putlines			IO_Output_Lines
 
 //!< Writes 'n' bytes of memory from 'ptr' as hexadecimal 2-char blocks in 'cols' columns, to the standard output
 int							IO_Output_Memory(t_u8 const* ptr, t_size n, t_u8 cols);
-#define ft_output_memory	IO_Output_Memory
-#define ft_putmem			IO_Output_Memory
+#define c_output_memory	IO_Output_Memory
+#define c_putmem			IO_Output_Memory
 
 //! Writes the given formatted string to the standard output - equivalent to 'printf()'
 int							IO_Output_Format(char const* format, ...) __format_printf(1, 2);
-#define ft_output_format	IO_Output_Format
-#define ft_printf			IO_Output_Format
+#define c_output_format	IO_Output_Format
+#define c_printf			IO_Output_Format
 
 
 

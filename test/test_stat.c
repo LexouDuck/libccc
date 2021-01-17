@@ -1,9 +1,9 @@
 
 #include <math.h>
 
-#include "libft_io.h"
-#include "libft_stat.h"
-#include "libft_random.h"
+#include "libccc_io.h"
+#include "libccc_stat.h"
+#include "libccc_random.h"
 
 #include "test.h"
 
@@ -26,9 +26,9 @@ int		testsuite_stat(void) // TODO increment total tests counter for these tests
 	if (g_test.flags.verbose)
 	{
 		t_u64	intmax = (t_u32)-1;
-		printf("\tMedian:   %12f | intmax   :"PRINTF_U64"\n", ft_stat_median_i(ilst_sorted), intmax);
-		printf("\tAverage:  %12f | intmax/2 :"PRINTF_U64"\n", ft_stat_average_i(ilst_sorted), intmax / 2);
-		tmp = ft_stat_variance_i(ilst_sorted);
+		printf("\tMedian:   %12f | intmax   :"PRINTF_U64"\n", c_stat_median_i(ilst_sorted), intmax);
+		printf("\tAverage:  %12f | intmax/2 :"PRINTF_U64"\n", c_stat_average_i(ilst_sorted), intmax / 2);
+		tmp = c_stat_variance_i(ilst_sorted);
 		printf("\tVariance: %12f | StdDev: %12f\n", tmp, sqrt(tmp));
 
 		printf("\tDeciles int:\n"
@@ -108,7 +108,7 @@ int		testsuite_stat(void) // TODO increment total tests counter for these tests
 
 	s_prob_mass		pmf;
 
-	pmf = ft_stat_ilst_to_pmf(ilst_sorted);
+	pmf = c_stat_ilst_to_pmf(ilst_sorted);
 
 	if (g_test.flags.show_args) // TODO special program option for this ?
 	{
@@ -127,6 +127,6 @@ int		testsuite_stat(void) // TODO increment total tests counter for these tests
 	{
 		printf("Sum of probs: %.12f\n", tmp);
 	}
-	ft_stat_free_ilst(&ilst_sorted);
+	c_stat_free_ilst(&ilst_sorted);
 	return (OK);
 }

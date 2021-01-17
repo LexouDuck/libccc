@@ -1,14 +1,14 @@
 
-#include "libft_memory.h"
+#include "libccc_memory.h"
 
 
 
-void	*ft_memnew(t_size size)
+void	*c_memnew(t_size size)
 {
 	t_u8	*result;
 	t_size	i;
 
-	if (!(result = (t_u8 *)ft_memalloc(size)))
+	if (!(result = (t_u8 *)c_memalloc(size)))
 		return (NULL);
 	i = 0;
 	while (i < size)
@@ -21,12 +21,12 @@ void	*ft_memnew(t_size size)
 
 
 
-void	*ft_memcnew(t_size size, char c)
+void	*c_memcnew(t_size size, char c)
 {
 	t_u8	*result;
 	t_size	i;
 
-	if (!(result = (t_u8 *)ft_memalloc(size)))
+	if (!(result = (t_u8 *)c_memalloc(size)))
 		return (NULL);
 	i = 0;
 	while (i < size)
