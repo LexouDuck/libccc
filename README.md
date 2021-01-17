@@ -1,9 +1,9 @@
-# libft
+# libccc
 ---
 A customizable cross-platform standard library for C
 
-<a href="https://github.com/LexouDuck/libft/actions">
-	<img src="https://github.com/LexouDuck/libft/workflows/CI+CD/badge.svg" />
+<a href="https://github.com/LexouDuck/libccc/actions">
+	<img src="https://github.com/LexouDuck/libccc/workflows/CI+CD/badge.svg" />
 </a>
 
 
@@ -19,7 +19,7 @@ The following categories/headers include the ISO standard library functions:
 * _**memory**_: functions to manipulate memory directly (memcpy,memset,memchr,etc, but also extras like ptrarrlen,memdup,getbits)
 * _**string**_: functions to manipulate strings (strcpy,strchr,strsub,etc but also extras such as strformat,strsplit,strmap)
 * _**char**_: functions to handle ANSI/ASCII characters (islower,isalpha,toupper,etc)
-* _**math**_: common mathematical functions operating on floating-point numbers (the implementations in this lib are fast-approximate versions, though by default LIBFTCONFIG_FAST_APPROX_MATH is defined as 0, so the functions are actually simple wrappers over the builtin FPU math functions)
+* _**math**_: common mathematical functions operating on floating-point numbers (the implementations in this lib are fast-approximate versions, though by default LIBCONFIG_FAST_APPROX_MATH is defined as 0, so the functions are actually simple wrappers over the builtin FPU math functions)
 * _**time**_: functions for handling times/dates/timezones/timespecs (handling of timezones is different from the stdlib 'global variable' tzset call)
 * _**random**_: functions for simple pesudo-random number generation (many more functions than just the ISO rand/srand/rand_r functions)
 * _**io**_: functions for reading and writing (from/to terminal, or from/to file(s) - wrapper functions over `unistd.h` and `stdio.h`)
@@ -45,24 +45,24 @@ What started as a necessary exercise for the 42 school quickly became a much mor
 
 ### Building
 ---
-The Makefile simply builds a libft.a library to link to your project. (eg: something like `gcc main.c -I./libft/hdr/ -L./libft/ -lft`)
+The Makefile simply builds a libccc.a library to link to your project. (eg: something like `gcc main.c -I./libccc/hdr/ -L./libccc/ -lft`)
 
 You can also add this git repo as a "git submodule" to your own if you wish (this allows you to be up to date to the latest version at all times).
 
-In general though, we recommend having the source code and compiling it yourself (as there are important customization flags in `./hdr/libft.h` which change how the library is compiled). In particular:
-- `LIBFTCONFIG_HANDLE_NULLPOINTERS`
-	If 0, then libft functions will always try to dereference (and usually do a segmentation fault) when given NULL pointer arguments.
-	If 1 (this is the default), then all NULL pointer accesses will be avoided, and an appropriate return value (eg:`NULL`, `0`, sometimes `-1`) will be returned by any libft function when given a NULL pointer.
-- `LIBFTCONFIG_FAST_APPROX_MATH`
+In general though, we recommend having the source code and compiling it yourself (as there are important customization flags in `./hdr/libccc.h` which change how the library is compiled). In particular:
+- `LIBCONFIG_HANDLE_NULLPOINTERS`
+	If 0, then libccc functions will always try to dereference (and usually do a segmentation fault) when given NULL pointer arguments.
+	If 1 (this is the default), then all NULL pointer accesses will be avoided, and an appropriate return value (eg:`NULL`, `0`, sometimes `-1`) will be returned by any libccc function when given a NULL pointer.
+- `LIBCONFIG_FAST_APPROX_MATH`
 	If 0 (this is the default), the builtin FPU-call libc math functions will be used (eg: `__builtin_powf()`, etc)
-	If 1, the libft fast approximate math functions will be used (these can be quite unreliable, their purpose is to be faster in terms of execution time - the general precision error margin they are tested for is 0.0001)
+	If 1, the libccc fast approximate math functions will be used (these can be quite unreliable, their purpose is to be faster in terms of execution time - the general precision error margin they are tested for is 0.0001)
 
 
 
 ### Testing
 ---
 To ensure proper functionality of all these important functions in every edge case, a big testing program was implemented, featuring segfault handling and execution time comparison among other things.
-You can test the libft by running `make test`: this will compile and run the test suite program from the files found in the 'test' folder.
+You can test the libccc by running `make test`: this will compile and run the test suite program from the files found in the 'test' folder.
 
 
 
@@ -84,17 +84,17 @@ This CI job builds everything with a `make`, and runs the testing suite with a `
 
 ### Build system
 ---
-Cross-platform Makefile: builds a `libft.a` library file to link against.
+Cross-platform Makefile: builds a `libccc.a` library file to link against.
 The make commands are:
 
 
 ##### Building
 
 ##### `make debug` or `make` or `make all`
-- Build the `libft.a` library file, in debug mode (with added flags: `-g -ggdb -D DEBUG=1`)
+- Build the `libccc.a` library file, in debug mode (with added flags: `-g -ggdb -D DEBUG=1`)
 
 ##### `make release`
-- Build the `libft.a` library file, in release mode (builds both static and dynamic library files for the given OSMODE, with added flags like `-O3`)
+- Build the `libccc.a` library file, in release mode (builds both static and dynamic library files for the given OSMODE, with added flags like `-O3`)
 
 ##### `make doc`
 - Generate documentation from doxygen comments in the code to the ./doc/ folder (in several formats: html, latex, rtf, man)
@@ -102,11 +102,11 @@ The make commands are:
 
 ##### Checking/CI
 
-##### `make libft_test`
-- Builds a test software `libft_test`, which runs test suites on every libft function.
+##### `make libccc_test`
+- Builds a test software `libccc_test`, which runs test suites on every libccc function.
 
 ##### `make test`
-- Builds `libft_test` and runs it without any arguments (running all tests).
+- Builds `libccc_test` and runs it without any arguments (running all tests).
 
 ##### `make lint`
 - Runs CPPcheck on all source files
