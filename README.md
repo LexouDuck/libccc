@@ -1,6 +1,6 @@
 # libccc
 ---
-A customizable cross-platform standard library for C
+A comprehensive, cross-platform, customizable standard library for C
 
 <a href="https://github.com/LexouDuck/libccc/actions">
 	<img src="https://github.com/LexouDuck/libccc/workflows/CI+CD/badge.svg" />
@@ -13,7 +13,7 @@ A customizable cross-platform standard library for C
 The objective is to have one simple, well-documented, efficient open-source implementation of the C standard library, but with easier to use functions and types than what is offered by the ISO standards - mostly by consistently handling undefined behaviors, and handling edge cases in a consistent, coherent way, so as to have code that is as little machine-specific as possible.
 
 The first step to accomplishing this is to not use the native int/long/short types, which can have different storage size depending on the platform
-('int' is defined as the fastest integer type for the given machine, typically this will be the CPU register size - so on a 64-bit machine, that'd be int64, on a 32-bit machine int32, and some old embedded systems you come across might have 16-bit ints as the machine's default storage size). So first of all, using the integer types defined in "stdint.h" ('int32_t', 'uint64_t', etc) is essential for any cross-platform C code, as it ensures consistent cross-platform overflow behaviors (Note that these aren't present on every platform though - sometimes we will have to settle for the 'uint_fastX_t' types).
+('int' is defined as the fastest integer type for the given machine, typically this will be the CPU register size - so on a 64-bit machine, that'd be int64, on a 32-bit machine int32, and some old embedded systems you come across might have 16-bit ints as the machine's default storage size). So first of all, using the integer types defined in "stdint.h" ('int32_t', 'uint64_t', etc) is essential for any cross-platform C code, as it ensures consistent cross-platform overflow behaviors (Note that these aren't present on every platform though - sometimes we will have to settle for the 'uint_fastX_t' types, but macros have been provided to make this switch simply).
 
 The following categories/headers include the ISO standard library functions:
 * _**memory**_: functions to manipulate memory directly (memcpy,memset,memchr,etc, but also extras like ptrarrlen,memdup,getbits)
@@ -27,7 +27,7 @@ The following categories/headers include the ISO standard library functions:
 Furthermore, there are other functions here that are not found in the ISO standard, particularly in the following categories:
 * _**convert**_: functions to replace the wonky std libc atoi/itoa/atof/strtol functions with more understandable type-specific conversion functions
 * _**color**_: functions manipulating several common color encodings, as well as other useful color-related functions (like RGB_to_HSL, etc)
-* _**random**_: a set of simple functions for different methods of pseudo-random number generation
+* _**random**_: a set of simple functions for different methods of pseudo-random number generation (not cryptographically safe for now)
 * _**stringarray**_: a set of functions used to manipulate string arrays (`char **`), where the top-level pointer array is terminated by a NULL pointer
 * _**algebra**_: math functions for 2D/3D/4D vectors and matrices, as well as integrals and more
 * _**complex**_: math functions for complex number operations, as well as quaternions
@@ -39,36 +39,41 @@ Furthermore, there are other functions here that are not found in the ISO standa
 
 ### Why does this exist ?
 ---
-What started as a necessary exercise for the 42 school quickly became a much more expansive project: whereas the 42 libft project only requires students to code a certain set of important memory/string/io functions, we decided to take it further. Whereas libft is originally meant as an educational exercise, in which a student learns a lot by "reinventing wheels", here the goal is to have a standard C library which is fully cross-platform, uniformized, which is configurable and customizable, obviously being open source (MIT license) and which offers more than the "bare minimum" of the ISO standard library of functions.
+What started as a necessary exercise for the 42 school (called `libft`, for lib-forty-two) quickly became a much more expansive project, now dubbed `libccc` (for comprehensive, customizable, cross-platform). Whereas the 42 libft project only requires students to code a certain set of important memory/string/io functions, we decided to take it further. The libft is originally meant as an educational exercise, in which a student learns a lot by "reinventing wheels"; here the goal is to have a standard C library which is: fully cross-platform, uniformized, configurable and customizable, obviously being open source (MIT license) and which offers more than the "bare minimum" of the ISO standard library of functions.
 
 
 
 ### Building
 ---
-The Makefile simply builds a libccc.a library to link to your project. (eg: something like `gcc main.c -I./libccc/hdr/ -L./libccc/ -lft`)
+The Makefile simply builds a `libccc.a` library to link to your project. (eg: something like `gcc main.c -I./libccc/hdr/ -L./libccc/ -lccc`)
 
 You can also add this git repo as a "git submodule" to your own if you wish (this allows you to be up to date to the latest version at all times).
 
 In general though, we recommend having the source code and compiling it yourself (as there are important customization flags in `./hdr/libccc.h` which change how the library is compiled). In particular:
 - `LIBCONFIG_HANDLE_NULLPOINTERS`
-	If 0, then libccc functions will always try to dereference (and usually do a segmentation fault) when given NULL pointer arguments.
+	If 0, then libccc functions will always try to dereference (and usually do a segmentation fault) when given NULL pointer arguments (this is useful for debug).
 	If 1 (this is the default), then all NULL pointer accesses will be avoided, and an appropriate return value (eg:`NULL`, `0`, sometimes `-1`) will be returned by any libccc function when given a NULL pointer.
 - `LIBCONFIG_FAST_APPROX_MATH`
 	If 0 (this is the default), the builtin FPU-call libc math functions will be used (eg: `__builtin_powf()`, etc)
 	If 1, the libccc fast approximate math functions will be used (these can be quite unreliable, their purpose is to be faster in terms of execution time - the general precision error margin they are tested for is 0.0001)
+- `LIBCONFIG_INTTYPES_...` `EXACT`/`FAST`/`LEAST`:
+	If `LIBCONFIG_INTTYPES_EXACT` is true, default `int` types are set to with the standard `(u)intSIZE_t` type specifiers.
+	If `LIBCONFIG_INTTYPES_FAST ` is true, default `int` types are set to with the standard `(u)int_fastSIZE_t` type specifiers.
+	If `LIBCONFIG_INTTYPES_LEAST` is true, default `int` types are set to with the standard `(u)int_leastSIZE_t` type specifiers.
+	If multiple of these macros are simultaneously true, EXACT takes precedence over FAST, which itself takes precedence over LEAST. If none are true, resolves to EXACT.
 
 
 
 ### Testing
 ---
 To ensure proper functionality of all these important functions in every edge case, a big testing program was implemented, featuring segfault handling and execution time comparison among other things.
-You can test the libccc by running `make test`: this will compile and run the test suite program from the files found in the 'test' folder.
+You can test the `libccc` by running `make test`: this will compile and run the test suite program from the files found in the `./test` folder.
 
 
 
 ### Contributing and Continuous Integration
 ---
-Check `CONTRIBUTING.md`, this file serves as a "contributions style guide". We were alone at first so we wrote this code quick and dirty, but it'll do some good for us to have a coherent commit style for the whole team, so we'll follow these guidelines from now on. You should do the same.
+Check `CONTRIBUTING.md`, this file serves as a "contributions style guide". This style was chosen because it allows for more efficient version control and code review.
 
 // TODO add description of coding style to `CONTRIBUTING.md`
 
