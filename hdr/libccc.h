@@ -112,8 +112,32 @@ HEADER_CPP
 **	If 1, the libccc fast approximate functions will be used (precision error margin: 0.0001)
 **	If 0, the builtin FPU-call libc math functions will be used (eg: __builtin_powf(), etc)
 */
-#define LIBCCCCONFIG_FAST_APPROX_MATH		0
+#define LIBCCCCONFIG_FAST_APPROX_MATH			0
 
+
+
+//! If 1, libccc uses exact bit length for t_s8, t_s16, t_s32, t_s64, t_u8, t_u16, t_u32, and t_u64
+/*!
+**	This macro determines which int types are used by default, as well as corresponding MAXINT
+**	and MININT values.
+**	INTTYPES_EXACT, if true, overrides both INTYPES_FAST and INTTYPES_LEAST being themselves true.
+*/
+#define LIBCCCCONFIG_DEFAULT_INTTYPES_EXACT		1
+//! If 1, libccc uses fast bit length for t_s8, t_s16, t_s32, t_s64, t_u8, t_u16, t_u32, and t_u64
+/*!
+**	This macro determines which int types are used by default, as well as corresponding MAXINT
+**	and MININT values.
+**	INTYPES_FAST is true, it overridden by INTTYPES_EXACT being true, and overrides INTTYPES_LEAST
+**	being true.
+*/
+#define LIBCCCCONFIG_DEFAULT_INTTYPES_FAST		0
+//! If 1, libccc uses least bit length for t_s8, t_s16, t_s32, t_s64, t_u8, t_u16, t_u32, and t_u64
+/*!
+**	This macro determines which int types are used by default, as well as corresponding MAXINT
+**	and MININT values.
+**	INTTYPES_LEAST, if true, is overridden by both either INTYPES_EXACT or INTTYPES_FAST being true.
+*/
+#define LIBCCCCONFIG_DEFAULT_INTTYPES_LEAST		0
 
 
 /*!
@@ -279,38 +303,118 @@ HEADER_CPP
 **	https://en.wikipedia.org/wiki/C_data_types
 */
 
-//! The type for 8-bit unsigned integers
-typedef uint8_t		t_u8;
-//! The type for 16-bit unsigned integers
-typedef uint16_t	t_u16;
-//! The type for 32-bit unsigned integers
-typedef uint32_t	t_u32;
-//! The type for 64-bit unsigned integers
-typedef	uint64_t	t_u64;
 
-#define U8_MAX	(255)                  //!< The maximum value for  8-bit unsigned integers (0xFF)
-#define U16_MAX	(65535)                //!< The maximum value for 16-bit unsigned integers (0xFFFF)
-#define U32_MAX	(4294967295)           //!< The maximum value for 32-bit unsigned integers (0xFFFFFFFF)
-#define U64_MAX	(18446744073709551615) //!< The maximum value for 64-bit unsigned integers (0xFFFFFFFFFFFFFFFF)
+#if LIBCCCCONFIG_DEFAULT_INTTYPES_EXACT
 
-//! The type for 8-bit signed integers
-typedef int8_t		t_s8;
-//! The type for 16-bit signed integers
-typedef int16_t		t_s16;
-//! The type for 32-bit signed integers
-typedef int32_t		t_s32;
-//! The type for 64-bit signed integers
-typedef	int64_t		t_s64;
+	//! The type for 8-bit unsigned integers
+	typedef uint8_t		t_u8;
+	//! The type for 16-bit unsigned integers
+	typedef uint16_t	t_u16;
+	//! The type for 32-bit unsigned integers
+	typedef uint32_t	t_u32;
+	//! The type for 64-bit unsigned integers
+	typedef	uint64_t	t_u64;
 
-#define S8_MAX	(127)                  //!< The maximum value for  8-bit signed integers (0x7F)
-#define S16_MAX	(32767)                //!< The maximum value for 16-bit signed integers (0x7FFF)
-#define S32_MAX	(2147483647)           //!< The maximum value for 32-bit signed integers (0x7FFFFFFF)
-#define S64_MAX	(9223372036854775807)  //!< The maximum value for 64-bit signed integers (0x7FFFFFFFFFFFFFFF)
+	#define U8_MAX	(255)                  //!< The maximum value for  8-bit unsigned integers (0xFF)
+	#define U16_MAX	(65535)                //!< The maximum value for 16-bit unsigned integers (0xFFFF)
+	#define U32_MAX	(4294967295)           //!< The maximum value for 32-bit unsigned integers (0xFFFFFFFF)
+	#define U64_MAX	(18446744073709551615) //!< The maximum value for 64-bit unsigned integers (0xFFFFFFFFFFFFFFFF)
 
-#define S8_MIN	(-128)                 //!< The maximum value for  8-bit signed integers (0x80)
-#define S16_MIN	(-32768)               //!< The maximum value for 16-bit signed integers (0x8000)
-#define S32_MIN	(-2147483648)          //!< The maximum value for 32-bit signed integers (0x80000000)
-#define S64_MIN	(-9223372036854775808) //!< The maximum value for 64-bit signed integers (0x8000000000000000)
+	//! The type for 8-bit signed integers
+	typedef int8_t		t_s8;
+	//! The type for 16-bit signed integers
+	typedef int16_t		t_s16;
+	//! The type for 32-bit signed integers
+	typedef int32_t		t_s32;
+	//! The type for 64-bit signed integers
+	typedef	int64_t		t_s64;
+
+	#define S8_MAX	(127)                  //!< The maximum value for  8-bit signed integers (0x7F)
+	#define S16_MAX	(32767)                //!< The maximum value for 16-bit signed integers (0x7FFF)
+	#define S32_MAX	(2147483647)           //!< The maximum value for 32-bit signed integers (0x7FFFFFFF)
+	#define S64_MAX	(9223372036854775807)  //!< The maximum value for 64-bit signed integers (0x7FFFFFFFFFFFFFFF)
+
+	#define S8_MIN	(-128)                 //!< The maximum value for  8-bit signed integers (0x80)
+	#define S16_MIN	(-32768)               //!< The maximum value for 16-bit signed integers (0x8000)
+	#define S32_MIN	(-2147483648)          //!< The maximum value for 32-bit signed integers (0x80000000)
+	#define S64_MIN	(-9223372036854775808) //!< The maximum value for 64-bit signed integers (0x8000000000000000)
+
+
+#elif LIBCCCCONFIG_DEFAULT_INTTYPES_FAST
+
+	//! The type for 8-bit unsigned integers
+	typedef uint_fast8_t	t_u8;
+	//! The type for 16-bit unsigned integers
+	typedef uint_fast16_t	t_u16;
+	//! The type for 32-bit unsigned integers
+	typedef uint_fast32_t	t_u32;
+	//! The type for 64-bit unsigned integers
+	typedef	uint_fast64_t	t_u64;
+
+	#define U8_MAX	((t_u8 )-1) //!< The maximum value for fastest, at least size  8-bit, unsigned integer type
+	#define U16_MAX	((t_u16)-1) //!< The maximum value for fastest, at least size 16-bit, unsigned integer type
+	#define U32_MAX	((t_u32)-1) //!< The maximum value for fastest, at least size 32-bit, unsigned integer type
+	#define U64_MAX	((t_u64)-1) //!< The maximum value for fastest, at least size 64-bit, unsigned integer type
+
+	//! The type for 8-bit signed integers
+	typedef int_fast8_t		t_s8;
+	//! The type for 16-bit signed integers
+	typedef int_fast16_t	t_s16;
+	//! The type for 32-bit signed integers
+	typedef int_fast32_t	t_s32;
+	//! The type for 64-bit signed integers
+	typedef	int_fast64_t	t_s64;
+
+	#define S8_MAX	((t_s8) (U8_MAX  >> 1)) ////!< The maximum value for fastest, at least size  8-bit, signed integer type
+	#define S16_MAX	((t_s16)(U16_MAX >> 1)) ////!< The maximum value for fastest, at least size 16-bit, signed integer type
+	#define S32_MAX	((t_s32)(U32_MAX >> 1)) ////!< The maximum value for fastest, at least size 32-bit, signed integer type
+	#define S64_MAX	((t_s64)(U64_MAX >> 1)) ////!< The maximum value for fastest, at least size 64-bit, signed integer type
+
+	#define S8_MIN	((t_s8) ((U8_MAX  >> 1) + 1)) //!< The minimum value for fastest, at least size  8-bit, signed integer type
+	#define S16_MIN	((t_s16)((U16_MAX >> 1) + 1)) //!< The minimum value for fastest, at least size 16-bit, signed integer type
+	#define S32_MIN	((t_s32)((U32_MAX >> 1) + 1)) //!< The minimum value for fastest, at least size 32-bit, signed integer type
+	#define S64_MIN	((t_s64)((U64_MAX >> 1) + 1)) //!< The minimum value for fastest, at least size 64-bit, signed integer type
+
+
+#elif LIBCCCCONFIG_DEFAULT_INTTYPES_LEAST
+
+	//! The type for 8-bit unsigned integers
+	typedef uint_least8_t	t_u8;
+	//! The type for 16-bit unsigned integers
+	typedef uint_least16_t	t_u16;
+	//! The type for 32-bit unsigned integers
+	typedef uint_least32_t	t_u32;
+	//! The type for 64-bit unsigned integers
+	typedef	uint_least64_t	t_u64;
+
+	#define U8_MAX	((t_u8 )-1) //!< The maximum value for smallest, at least size  8-bit, unsigned integer type
+	#define U16_MAX	((t_u16)-1) //!< The maximum value for smallest, at least size 16-bit, unsigned integer type
+	#define U32_MAX	((t_u32)-1) //!< The maximum value for smallest, at least size 32-bit, unsigned integer type
+	#define U64_MAX	((t_u64)-1) //!< The maximum value for smallest, at least size 64-bit, unsigned integer type
+
+	//! The type for 8-bit signed integers
+	typedef int_least8_t	t_s8;
+	//! The type for 16-bit signed integers
+	typedef int_least16_t	t_s16;
+	//! The type for 32-bit signed integers
+	typedef int_least32_t	t_s32;
+	//! The type for 64-bit signed integers
+	typedef	int_least64_t	t_s64;
+
+	#define S8_MAX	((t_s8) (U8_MAX  >> 1)) ////!< The maximum value for smallest, at least size  8-bit, signed integer type
+	#define S16_MAX	((t_s16)(U16_MAX >> 1)) ////!< The maximum value for smallest, at least size 16-bit, signed integer type
+	#define S32_MAX	((t_s32)(U32_MAX >> 1)) ////!< The maximum value for smallest, at least size 32-bit, signed integer type
+	#define S64_MAX	((t_s64)(U64_MAX >> 1)) ////!< The maximum value for smallest, at least size 64-bit, signed integer type
+
+	#define S8_MIN	((t_s8) ((U8_MAX  >> 1) + 1)) //!< The minimum value for smallest, at least size  8-bit, signed integer type
+	#define S16_MIN	((t_s16)((U16_MAX >> 1) + 1)) //!< The minimum value for smallest, at least size 16-bit, signed integer type
+	#define S32_MIN	((t_s32)((U32_MAX >> 1) + 1)) //!< The minimum value for smallest, at least size 32-bit, signed integer type
+	#define S64_MIN	((t_s64)((U64_MAX >> 1) + 1)) //!< The minimum value for smallest, at least size 64-bit, signed integer type
+
+
+#endif
+
+
 
 //! The type for 32-bit 'single precision' IEEE-754 floating-point numbers
 typedef float		t_f32;
@@ -330,6 +434,7 @@ typedef __float128	t_f128;
 #elif defined(_FLOAT_128_)
 	#error "Cannot set default float to 128-bit quadruple-precision, unavailable on this platform"
 #endif
+
 
 //! The primitive boolean type
 /*!
