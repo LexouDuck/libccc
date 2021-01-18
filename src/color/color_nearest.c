@@ -14,7 +14,7 @@ t_argb16*		c_color_argb16_nearest(
 	t_s16 min_diff;
 	t_argb16* result;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (colors == NULL)
 		return (NULL);
 #endif
@@ -50,7 +50,7 @@ t_argb32*		c_color_argb32_nearest(
 	t_s16 min_diff;
 	t_argb32* result;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (colors == NULL)
 		return (NULL);
 #endif
@@ -86,7 +86,7 @@ s_argb*		c_color_argb_nearest(
 	t_s16 min_diff;
 	s_argb* result;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (colors == NULL)
 		return (NULL);
 #endif

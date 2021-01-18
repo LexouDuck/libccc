@@ -21,7 +21,7 @@ s_list_float	c_stat_new_flst(t_u32 length)
 
 void			c_stat_free_flst(s_list_float *flst)
 {
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (flst == NULL)
 		return ;
 #endif
@@ -53,7 +53,7 @@ s_list_float 	c_stat_merge_flst(
 	t_u32				i;
 	t_u32				j;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (start == NULL || append == NULL)
 		return (NULL_LIST_FLOAT);
 #endif

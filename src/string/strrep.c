@@ -10,7 +10,7 @@ char*		String_Replace_Char(char const* str, char const old, char const new)
 	char*	result;
 	t_size	i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (old == new)
 		return (String_Duplicate(str));
 	if (str == NULL)
@@ -42,7 +42,7 @@ char*		String_Replace_Charset(char const* str, char const* old, char const* new)
 	t_size	j;
 	int		c_index;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (old == new)
 		return (String_Duplicate(str));
 	if (str == NULL || old == NULL || new == NULL)
@@ -81,7 +81,7 @@ char*		String_Replace_String(char const* str, char const* old, char const* new)
 	char*	result;
 	char**	strarr;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (old == new)
 		return (String_Duplicate(str));
 	if (str == NULL || old == NULL || new == NULL)
@@ -99,7 +99,7 @@ void		String_Replace_Char_InPlace(char* str, char const old, char const new)
 {
 	t_size	i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return ;
 #endif
@@ -122,7 +122,7 @@ void		String_Replace_Charset_InPlace(char* str, char const* old, char const* new
 	t_size	j;
 	int		c_index;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || old == NULL || new == NULL)
 		return ;
 #endif

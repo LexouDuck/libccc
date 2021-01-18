@@ -9,7 +9,7 @@ void	*c_memdup(const void *ptr, t_size n)
 	t_u8	*source;
 	t_size	i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (ptr == NULL)
 		return (NULL);
 #endif

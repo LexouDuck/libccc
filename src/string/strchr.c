@@ -7,7 +7,7 @@ char	*c_strchr(char const *str, char c)
 {
 	t_size	i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (NULL);
 #endif
@@ -29,7 +29,7 @@ char	*c_strrchr(char const *str, char c)
 {
 	t_size	i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (NULL);
 #endif
@@ -54,7 +54,7 @@ char	*c_strnchr(char const *str, char c, t_size n)
 {
 	t_size	i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (NULL);
 #endif
@@ -76,7 +76,7 @@ t_s32	c_strichr(char const *str, char c)
 {
 	t_s32	i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (-1);
 #endif

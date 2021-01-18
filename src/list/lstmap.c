@@ -19,7 +19,7 @@ s_list*		List_Map(s_list* lst, s_list *(*f)(s_list* elem))
 	s_list	*result;
 	s_list	*current;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (lst == NULL || f == NULL)
 		return (NULL);
 #endif
@@ -46,7 +46,7 @@ s_list*		List_Map_I(s_list* lst, s_list *(*f)(s_list* elem, t_u32 index))
 	s_list	*current;
 	t_u32	i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (lst == NULL || f == NULL)
 		return (NULL);
 #endif

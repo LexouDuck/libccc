@@ -7,7 +7,7 @@ void	c_striter(char *str, void (*f)(char *))
 {
 	t_size	i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || f == NULL)
 		return ;
 #endif
@@ -25,7 +25,7 @@ void	c_striteri(char *str, void (*f)(t_size, char *))
 {
 	t_size	i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || f == NULL)
 		return ;
 #endif

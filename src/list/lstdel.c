@@ -10,7 +10,7 @@ void	List_Remove(s_list* *a_lst, void (*del)(void*, t_size))
 	s_list* next;
 	s_list* lst;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (a_lst == NULL || del == NULL)
 		return ;
 #endif
@@ -32,7 +32,7 @@ void	List_Delete(s_list* *a_lst, void (*del)(void*, t_size))
 	s_list* next;
 	s_list* lst;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (a_lst == NULL || del == NULL)
 		return ;
 #endif
@@ -57,7 +57,7 @@ void	List_Pop(s_list* *a_lst, void (*del)(void*, t_size))
 	s_list* lst;
 	s_list* lst_prev;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (a_lst == NULL || del == NULL)
 		return ;
 #endif

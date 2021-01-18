@@ -11,7 +11,7 @@ int		c_memcmp(void const *ptr1, void const *ptr2, t_size n)
 
 	p1 = (t_u8 *)ptr1;
 	p2 = (t_u8 *)ptr2;
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (ptr1 == NULL || ptr2 == NULL)
 	{
 		if (ptr1 == ptr2)

@@ -3,7 +3,7 @@
 
 
 
-#if LIBCCCCONFIG_FAST_APPROX_MATH
+#if LIBCONFIG_FAST_APPROX_MATH
 t_float		c_exp(t_float x)
 {
 	if (x < -10.)

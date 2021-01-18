@@ -9,7 +9,7 @@ void	c_strarrdel(char** *a_strarr)
 {
 	int		i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (a_strarr == NULL)
 		return ;
 #endif

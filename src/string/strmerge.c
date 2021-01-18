@@ -7,7 +7,7 @@ char*	String_Merge(char* *a_str1, char* *a_str2)
 {
 	char*	result;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (a_str1 == NULL || a_str2 == NULL)
 		return (NULL);
 #endif
@@ -25,7 +25,7 @@ char*	String_Append(char* *a_dest, char const* src)
 {
 	char*	tmp;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (a_dest == NULL || src == NULL)
 		return (NULL);
 #endif
@@ -41,7 +41,7 @@ char*	String_Prepend(char const* src, char* *a_dest)
 {
 	char*	tmp;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (a_dest == NULL || src == NULL)
 		return (NULL);
 #endif
@@ -57,7 +57,7 @@ char*	String_Insert_InPlace(char* *a_dest, char const* src, t_u32 index)
 {
 	char*	tmp;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (a_dest == NULL || src == NULL)
 		return (NULL);
 #endif

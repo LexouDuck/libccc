@@ -7,7 +7,7 @@ char	*c_strcpy(char *dest, char const *src)
 {
 	t_size	i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (dest == NULL)
 		return (NULL);
 	if (src == NULL)
@@ -30,7 +30,7 @@ char	*c_strncpy(char *dest, char const *src, t_size n)
 	char	*str;
 	t_size	i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (dest == NULL)
 		return (NULL);
 	if (src == NULL)
@@ -59,7 +59,7 @@ t_size	c_strlcpy(char *dest, char const *src, t_size size)
 {
 	t_size	i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (dest == NULL || src == NULL)
 		return (0);
 #endif

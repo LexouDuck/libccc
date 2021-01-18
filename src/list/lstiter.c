@@ -5,7 +5,7 @@
 
 void	List_Iterate(s_list* lst, void (*f)(s_list* elem))
 {
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (lst == NULL || f == NULL)
 		return ;
 #endif
@@ -22,7 +22,7 @@ void	List_Iterate_I(s_list* lst, void (*f)(s_list* elem, t_u32 index))
 {
 	t_u32 i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (lst == NULL || f == NULL)
 		return ;
 #endif

@@ -5,7 +5,7 @@
 
 void	List_Prepend(s_list* *a_lst, s_list* elem)
 {
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (a_lst == NULL || elem == NULL)
 		return;
 #endif
@@ -25,7 +25,7 @@ void	List_Append(s_list* *a_lst, s_list* elem)
 {
 	s_list*	lst;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (a_lst == NULL || elem == NULL)
 		return;
 #endif
@@ -50,7 +50,7 @@ void	List_Insert(s_list* *a_lst, s_list* elem, t_u32 index)
 	s_list*	lst;
 	t_u32	i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (a_lst == NULL || elem == NULL)
 		return ;
 #endif

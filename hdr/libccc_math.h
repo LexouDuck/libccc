@@ -287,7 +287,7 @@ t_float								Math_InvTanH(t_float x);
 
 
 
-#if (LIBCCCCONFIG_FAST_APPROX_MATH == 0)
+#if (LIBCONFIG_FAST_APPROX_MATH == 0)
 
 	#ifdef _FLOAT_32_
 		#define MATH_DECL_FUNCTION(RETURN, FT_NAME, NAME)	inline RETURN c_##FT_NAME(t_float x)				{ return (__builtin_##NAME##f(x)); }

@@ -8,7 +8,7 @@ t_size	c_strcount_char(char const *str, char c)
 	t_size	result;
 	t_size	i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (0);
 #endif
@@ -30,7 +30,7 @@ t_size	c_strcount_charset(char const *str, char const *cset)
 	t_size	result;
 	t_size	i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || cset == NULL)
 		return (0);
 #endif
@@ -54,7 +54,7 @@ t_size	c_strcount_str(char const *str, char const *query)
 	t_size	i;
 	t_size	j;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || query == NULL)
 		return (0);
 #endif

@@ -8,7 +8,7 @@ char	*c_strcat(char *dest, char const *src)
 	t_size	length;
 	t_size	i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (dest == NULL)
 		return (NULL);
 	if (src == NULL)
@@ -34,7 +34,7 @@ char	*c_strncat(char *dest, char const *src, t_size n)
 	t_size	length;
 	t_size	i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (dest == NULL)
 		return (NULL);
 	if (src == NULL)
@@ -66,7 +66,7 @@ t_size	c_strlcat(char *dest, char const *src, t_size size)
 	t_size	src_len;
 	t_size	i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (dest == NULL || src == NULL)
 		return (0);
 #endif

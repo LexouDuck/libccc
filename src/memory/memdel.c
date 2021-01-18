@@ -5,7 +5,7 @@
 
 inline void	c_memdel(void **ptr)
 {
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (ptr == NULL)
 		return ;
 #endif

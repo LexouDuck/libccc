@@ -4,7 +4,7 @@
 
 
 
-#if LIBCCCCONFIG_FAST_APPROX_MATH
+#if LIBCONFIG_FAST_APPROX_MATH
 static t_float	inv_factorial(t_u32 n)
 {
 	static const t_float	result[16] =
@@ -34,7 +34,7 @@ static t_float	inv_factorial(t_u32 n)
 
 
 
-#if LIBCCCCONFIG_FAST_APPROX_MATH
+#if LIBCONFIG_FAST_APPROX_MATH
 t_float			c_cos(t_float x)
 {
 	t_float		result;
@@ -79,7 +79,7 @@ MATH_DECL_REALFUNCTION(cos, cos)
 
 
 
-#if LIBCCCCONFIG_FAST_APPROX_MATH
+#if LIBCONFIG_FAST_APPROX_MATH
 t_float			c_sin(t_float x)
 {
 	t_float		result;
@@ -133,7 +133,7 @@ MATH_DECL_REALFUNCTION(sin, sin)
 
 
 
-#if LIBCCCCONFIG_FAST_APPROX_MATH
+#if LIBCONFIG_FAST_APPROX_MATH
 inline t_float	c_tan(t_float x)
 {
 // trigonometric formula
@@ -183,7 +183,7 @@ MATH_DECL_REALFUNCTION(tan, tan)
 
 
 
-#if LIBCCCCONFIG_FAST_APPROX_MATH
+#if LIBCONFIG_FAST_APPROX_MATH
 t_float		c_acos(t_float x)
 {
 // fast polynomial approximation
@@ -214,7 +214,7 @@ MATH_DECL_REALFUNCTION(acos, acos)
 
 
 
-#if LIBCCCCONFIG_FAST_APPROX_MATH
+#if LIBCONFIG_FAST_APPROX_MATH
 t_float		c_asin(t_float x)
 {
 // fast polynomial approximation
@@ -245,7 +245,7 @@ MATH_DECL_REALFUNCTION(asin, asin)
 
 
 
-#if LIBCCCCONFIG_FAST_APPROX_MATH
+#if LIBCONFIG_FAST_APPROX_MATH
 t_float		c_atan(t_float x)
 {
 //	very fast sigmoid approximation
@@ -300,7 +300,7 @@ MATH_DECL_REALFUNCTION(atan, atan)
 
 
 
-#if LIBCCCCONFIG_FAST_APPROX_MATH
+#if LIBCONFIG_FAST_APPROX_MATH
 t_float		c_atan2(t_float y, t_float x)
 {
 	static const t_float pi_lo = 1.2246467991473531772E-16;

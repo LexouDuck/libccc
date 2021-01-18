@@ -10,7 +10,7 @@ char		**c_strarrmap(char const** strarr, char* (*f)(char const*))
 	t_u32	i;
 	char	**result;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (strarr == NULL || *strarr == NULL || f == NULL)
 		return (NULL);
 #endif
@@ -32,7 +32,7 @@ void		c_strarrmap_inplace(char** *a_strarr, char* (*f)(char*))
 	t_u32	i;
 	char	*tmp;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (a_strarr == NULL || *a_strarr == NULL || f == NULL)
 		return ;
 #endif

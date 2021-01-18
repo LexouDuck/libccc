@@ -10,7 +10,7 @@ char	*c_strsub(char const *str, t_size index, t_size n)
 	t_size	length;
 	t_size	i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (NULL);
 #endif

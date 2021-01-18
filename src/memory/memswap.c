@@ -7,7 +7,7 @@ int			c_memswap(void *ptr1, void *ptr2, t_size size)
 	t_u8	*p2;
 	t_size	i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (ptr1 == NULL || ptr2 == NULL)
 		return (ERROR);
 #endif

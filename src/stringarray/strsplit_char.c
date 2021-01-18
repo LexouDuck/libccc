@@ -41,7 +41,7 @@ char		**c_strsplit_char(char const* str, char c)
 	int		count;
 	int		i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (NULL);
 #endif

@@ -59,7 +59,7 @@ t_argb16	Color_ARGB_To_ARGB16(s_argb const* color)
 	static const t_float factor = (float)COLOR_ARGB16_CHANNEL;
 	t_argb16 result;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (color == NULL)
 		return (0);
 #endif
@@ -75,7 +75,7 @@ t_argb32	Color_ARGB_To_ARGB32(s_argb const* color)
 	static const t_float factor = (float)COLOR_ARGB32_CHANNEL;
 	t_argb32 result = 0;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (color == NULL)
 		return (0);
 #endif

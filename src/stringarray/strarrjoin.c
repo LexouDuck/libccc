@@ -11,7 +11,7 @@ char**	StringArray_Join(char const** strarr1, char const** strarr2)
 	t_size	length2;
 	t_size	i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (strarr1 == NULL || strarr2 == NULL)
 		return (NULL);
 #endif

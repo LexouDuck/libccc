@@ -7,7 +7,7 @@ inline t_size	c_strlen(char const *str)
 {
 	t_size	i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (0);
 #endif

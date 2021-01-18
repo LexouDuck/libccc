@@ -9,7 +9,7 @@ char	*c_strstr(char const *str, char const *query)
 	t_size	match;
 	t_size	i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || query == NULL)
 		return (NULL);
 #endif
@@ -44,7 +44,7 @@ char	*c_strrstr(char const *str, char const *query)
 	t_size	match;
 	t_size	i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || query == NULL)
 		return (NULL);
 #endif
@@ -78,7 +78,7 @@ char	*c_strnstr(char const *str, char const *query, t_size n)
 	t_size	match;
 	t_size	i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || query == NULL)
 		return (NULL);
 #endif
@@ -108,7 +108,7 @@ t_s32		c_stristr(char const *str, char const *query)
 	t_size	i;
 	t_size	j;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || query == NULL)
 		return (-1);
 #endif

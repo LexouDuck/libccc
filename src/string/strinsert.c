@@ -11,7 +11,7 @@ char	*c_strinsert(char const *dest, char const *src, t_size offset)
 	t_size	len_src;
 	t_size	i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (dest == NULL || src == NULL)
 		return (NULL);
 #endif

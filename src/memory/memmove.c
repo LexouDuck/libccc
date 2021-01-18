@@ -9,7 +9,7 @@ void	*c_memmove(void *dest, void const *src, t_size n)
 	t_u8	*source;
 	t_size	i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (dest == NULL)
 		return (NULL);
 	if (src == NULL)

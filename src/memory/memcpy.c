@@ -9,7 +9,7 @@ void	*c_memcpy(void *dest, void const *src, t_size n)
 	t_u8	*source;
 	t_size	i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (dest == NULL)
 		return (NULL);
 	if (src == NULL)
@@ -34,7 +34,7 @@ void	*c_memccpy(void *dest, void const *src, t_u8 byte, t_size n)
 	t_u8	*source;
 	t_size	i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (dest == NULL || src == NULL)
 		return (NULL);
 #endif

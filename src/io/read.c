@@ -33,7 +33,7 @@ t_bool		c_readfile(t_fd const fd, char* *a_file, t_size max)
 	char*	file = NULL;
 	t_size	length;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (a_file == NULL)
 		return (ERROR);
 #endif
@@ -64,7 +64,7 @@ t_bool		c_readlines(t_fd const fd, char** *a_strarr)
 	char**	result	= NULL;
 	t_bool	status	= OK;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (a_strarr == NULL)
 		return (ERROR);
 #endif

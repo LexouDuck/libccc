@@ -13,7 +13,7 @@ char	*c_strprint(char const *str)
 	t_size	index = 0;
 	t_size	i = 0;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (NULL);
 #endif

@@ -13,7 +13,7 @@ s_ahsl		Color_ARGB_To_AHSL(s_argb const* color)
 	t_float max = 0.;
 	t_float chroma;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (color == NULL)
 		return (result);
 #endif
@@ -56,7 +56,7 @@ s_argb		Color_AHSL_To_ARGB(s_ahsl const* color)
 	t_float tmp1;
 	t_float tmp2;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (color == NULL)
 		return (result);
 #endif

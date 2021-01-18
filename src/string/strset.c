@@ -7,7 +7,7 @@ inline void	c_strset(char *str, char c)
 {
 	t_size	i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return ;
 #endif

@@ -8,7 +8,7 @@ t_bool	Convert_String_To_Bool(char const* str)
 {
 	t_size	i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (FALSE);
 #endif

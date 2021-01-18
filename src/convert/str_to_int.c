@@ -4,10 +4,10 @@
 
 
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
-	#define LIBCCCCONFIG_HANDLE_NULLPOINTER_STR_TO_INT	if (str == NULL) return (0);
+#if LIBCONFIG_HANDLE_NULLPOINTERS
+	#define LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_INT	if (str == NULL) return (0);
 #else
-	#define LIBCCCCONFIG_HANDLE_NULLPOINTER_STR_TO_INT	
+	#define LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_INT	
 #endif
 
 
@@ -18,7 +18,7 @@ t_s##BITS	Convert_String_To_S##BITS(char const* str)					\
 	t_u##BITS	result;													\
 	t_bool	negative;													\
 	t_size	i;															\
-LIBCCCCONFIG_HANDLE_NULLPOINTER_STR_TO_INT								\
+LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_INT								\
 	i = 0;																\
 	while (!(str[i] == '+' || str[i] == '-' || Char_IsDigit(str[i])))	\
 	{																	\
@@ -54,7 +54,7 @@ t_u##BITS	Convert_String_To_U##BITS(char const* str)					\
 {																		\
 	t_u##BITS	result;													\
 	t_size	i;															\
-LIBCCCCONFIG_HANDLE_NULLPOINTER_STR_TO_INT								\
+LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_INT								\
 	i = 0;																\
 	while (!(str[i] == '+' || Char_IsDigit(str[i])))					\
 	{																	\

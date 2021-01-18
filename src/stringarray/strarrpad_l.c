@@ -10,7 +10,7 @@ char	**c_strarrpad_l(char const** strarr, char const c, t_u32 n)
 	t_u32		strarr_length;
 	t_u32		i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (strarr == NULL)
 		return (NULL);
 #endif

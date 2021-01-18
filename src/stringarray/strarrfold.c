@@ -54,7 +54,7 @@ char*		StringArray_Fold(char const** strarr, char const* sep)
 	int		total_sep_char_nb;
 	int		total_char_nb;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (strarr == NULL || sep == NULL)
 		return (NULL);
 #endif

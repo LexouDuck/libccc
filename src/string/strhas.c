@@ -8,7 +8,7 @@ t_bool		c_strhas(char const *str, char const *charset)
 	t_size	i;
 	t_size	c;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || charset == NULL)
 		return (FALSE);
 #endif
@@ -35,7 +35,7 @@ t_bool		c_strhasonly(char const *str, char const *charset)
 	t_size	c;
 	t_bool	match;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || charset == NULL)
 		return (FALSE);
 #endif

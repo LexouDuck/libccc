@@ -8,7 +8,7 @@ int	c_strcmp(char const *str1, char const *str2)
 {
 	t_size	i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str1 == str2)
 		return (0);
 	if (str1 == NULL || str2 == NULL)
@@ -31,7 +31,7 @@ int	c_strncmp(char const *str1, char const *str2, t_size n)
 {
 	t_size	i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str1 == str2)
 		return (0);
 	if (str1 == NULL || str2 == NULL)
@@ -58,7 +58,7 @@ int	c_stricmp(char const *str1, char const *str2)
 {
 	t_size	i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str1 == str2)
 		return (0);
 	if (str1 == NULL || str2 == NULL)
@@ -83,7 +83,7 @@ int	c_strnicmp(char const *str1, char const *str2, t_size n)
 {
 	t_size	i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str1 == str2)
 		return (0);
 	if (str1 == NULL || str2 == NULL)

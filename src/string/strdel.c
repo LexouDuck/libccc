@@ -6,7 +6,7 @@
 
 inline void	c_strdel(char **a_str)
 {
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (a_str == NULL)
 		return ;
 #endif

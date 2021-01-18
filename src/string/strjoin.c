@@ -10,7 +10,7 @@ char*		String_Join(char const* str1, char const* str2)
 	t_size	length2;
 	t_size	i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str1 == NULL || str2 == NULL)
 		return (NULL);
 #endif

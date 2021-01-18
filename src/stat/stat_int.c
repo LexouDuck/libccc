@@ -20,7 +20,7 @@ s_list_int		c_stat_new_ilst(t_u32 length)
 
 void			c_stat_free_ilst(s_list_int *ilst)
 {
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (ilst == NULL)
 		return ;
 #endif
@@ -52,7 +52,7 @@ s_list_int		c_stat_merge_ilst(
 	t_u32				i;
 	t_u32				j;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (start == NULL || append == NULL)
 		return (NULL_LIST_INT);
 #endif
@@ -245,7 +245,7 @@ s_prob_mass				c_stat_new_pmf(t_u32 length)
 
 void					c_stat_free_pmf(s_prob_mass *drv)
 {
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (drv == NULL)
 		return ;
 #endif

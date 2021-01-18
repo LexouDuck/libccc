@@ -54,7 +54,7 @@ char		**c_strsplit_charset(char const* str, char const* sep_chars)
 	int		length;
 	char	**strarr;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || sep_chars == NULL)
 		return (NULL);
 #endif

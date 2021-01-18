@@ -61,7 +61,7 @@ char			**c_strsplit_str(char const* str, char const* sub)
 	t_u32	i;
 	t_u32	j;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || sub == NULL)
 		return (NULL);
 #endif

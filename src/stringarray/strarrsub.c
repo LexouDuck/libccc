@@ -11,7 +11,7 @@ char	**c_strarrsub(char const **strarr, t_u32 start, t_u32 n)
 	t_u32		length;
 	t_u32		i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (strarr == NULL)
 		return (NULL);
 #endif

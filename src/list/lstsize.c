@@ -7,7 +7,7 @@ t_u32	List_Size(s_list const* lst)
 {
 	t_u32 result;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (lst == NULL)
 		return (0);
 #endif

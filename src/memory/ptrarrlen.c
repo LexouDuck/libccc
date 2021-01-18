@@ -7,7 +7,7 @@ t_u32		c_ptrarrlen(const void **a_ptrarr)
 {
 	t_u32		i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (a_ptrarr == NULL)
 		return (0);
 #endif

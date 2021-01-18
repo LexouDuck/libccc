@@ -11,7 +11,7 @@ char	*c_strrev(char const *str)
 	t_size	i;
 	t_size	j;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (NULL);
 #endif

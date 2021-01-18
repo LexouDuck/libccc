@@ -104,7 +104,7 @@ HEADER_CPP
 **	If 1, then all NULL pointer accesses in libccc functions will be avoided, and
 **		an appropriate return value (eg:NULL, 0, sometimes -1) will be returned.
 */
-#define LIBCCCCONFIG_HANDLE_NULLPOINTERS		1
+#define LIBCONFIG_HANDLE_NULLPOINTERS		1
 
 //! If 1, libccc uses homemade approximate math functions, otherwise it's the builtin FPU calls.
 /*!
@@ -112,7 +112,7 @@ HEADER_CPP
 **	If 1, the libccc fast approximate functions will be used (precision error margin: 0.0001)
 **	If 0, the builtin FPU-call libc math functions will be used (eg: __builtin_powf(), etc)
 */
-#define LIBCCCCONFIG_FAST_APPROX_MATH			0
+#define LIBCONFIG_FAST_APPROX_MATH			0
 
 
 
@@ -122,7 +122,7 @@ HEADER_CPP
 **	and MININT values.
 **	INTTYPES_EXACT, if true, overrides both INTYPES_FAST and INTTYPES_LEAST being themselves true.
 */
-#define LIBCCCCONFIG_DEFAULT_INTTYPES_EXACT		1
+#define LIBCONFIG_DEFAULT_INTTYPES_EXACT	1
 //! If 1, libccc uses fast bit length for t_s8, t_s16, t_s32, t_s64, t_u8, t_u16, t_u32, and t_u64
 /*!
 **	This macro determines which int types are used by default, as well as corresponding MAXINT
@@ -130,14 +130,14 @@ HEADER_CPP
 **	INTYPES_FAST is true, it overridden by INTTYPES_EXACT being true, and overrides INTTYPES_LEAST
 **	being true.
 */
-#define LIBCCCCONFIG_DEFAULT_INTTYPES_FAST		0
+#define LIBCONFIG_DEFAULT_INTTYPES_FAST		0
 //! If 1, libccc uses least bit length for t_s8, t_s16, t_s32, t_s64, t_u8, t_u16, t_u32, and t_u64
 /*!
 **	This macro determines which int types are used by default, as well as corresponding MAXINT
 **	and MININT values.
 **	INTTYPES_LEAST, if true, is overridden by both either INTYPES_EXACT or INTTYPES_FAST being true.
 */
-#define LIBCCCCONFIG_DEFAULT_INTTYPES_LEAST		0
+#define LIBCONFIG_DEFAULT_INTTYPES_LEAST	0
 
 
 /*!
@@ -304,7 +304,7 @@ HEADER_CPP
 */
 
 
-#if LIBCCCCONFIG_DEFAULT_INTTYPES_EXACT
+#if LIBCONFIG_DEFAULT_INTTYPES_EXACT
 
 	//! The type for 8-bit unsigned integers
 	typedef uint8_t		t_u8;
@@ -340,7 +340,7 @@ HEADER_CPP
 	#define S64_MIN	(-9223372036854775808) //!< The maximum value for 64-bit signed integers (0x8000000000000000)
 
 
-#elif LIBCCCCONFIG_DEFAULT_INTTYPES_FAST
+#elif LIBCONFIG_DEFAULT_INTTYPES_FAST
 
 	//! The type for 8-bit unsigned integers
 	typedef uint_fast8_t	t_u8;
@@ -376,7 +376,7 @@ HEADER_CPP
 	#define S64_MIN	((t_s64)((U64_MAX >> 1) + 1)) //!< The minimum value for fastest, at least size 64-bit, signed integer type
 
 
-#elif LIBCCCCONFIG_DEFAULT_INTTYPES_LEAST
+#elif LIBCONFIG_DEFAULT_INTTYPES_LEAST
 
 	//! The type for 8-bit unsigned integers
 	typedef uint_least8_t	t_u8;

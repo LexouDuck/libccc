@@ -10,7 +10,7 @@ char	*c_strmap(char const *str, char (*f)(char))
 	t_size	length;
 	t_size	i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || f == NULL)
 		return (NULL);
 #endif
@@ -37,7 +37,7 @@ char	*c_strmapi(char const *str, char (*f)(t_size, char))
 	t_size	length;
 	t_size	i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || f == NULL)
 		return (NULL);
 #endif
@@ -62,7 +62,7 @@ char	*c_strmap_inplace(char **a_str, char (*f)(char))
 {
 	char	*tmp;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (a_str == NULL || *a_str == NULL || f == NULL)
 		return (NULL);
 #endif

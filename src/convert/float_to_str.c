@@ -46,7 +46,7 @@ DEFINEFUNC_CONVERT_FLOAT_TO_STRHEX(128, "%#lla")
 
 t_bool		Convert_Float_To_String_CheckSpecial(t_f32 number, char **result)
 {
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (result == NULL)
 		return (FALSE);
 #endif

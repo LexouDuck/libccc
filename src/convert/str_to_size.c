@@ -9,7 +9,7 @@ t_size	Convert_String_To_Size(char const* str)
 	t_size	result;
 	t_size	i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (0);
 #endif

@@ -12,7 +12,7 @@ char	*c_strremove(char const *str, char const *query)
 	t_size	length_query;
 	t_size	i;
 
-#if LIBCCCCONFIG_HANDLE_NULLPOINTERS
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || query == NULL)
 		return (NULL);
 #endif
