@@ -21,7 +21,7 @@ sys.path.insert(1, os.path.abspath('doxyrest/sphinx'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'libft'
+project = 'libccc'
 copyright = '2020, Duquesne'
 author = 'Duquesne'
 

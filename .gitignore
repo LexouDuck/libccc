@@ -3,7 +3,7 @@ bin/*
 dist/*
 doc/*/*
 
-libft_test*
+libccc_test*
 pclint_*.*
 
 # Prerequisites
