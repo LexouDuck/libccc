@@ -79,7 +79,7 @@ typedef int		t_fd;
 /*
 **	Cross-platform '%' Format specifiers for printf calls
 */
-#ifdef __APPLE__
+#if defined(__APPLE__) || defined(_WIN32)
 	#define PRINTF_S64	"%lld"
 	#define PRINTF_U64	"%llu"
 #else
