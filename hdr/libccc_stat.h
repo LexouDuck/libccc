@@ -126,7 +126,7 @@ typedef struct	s_prob_mass_
 
 //! TODO document this
 s_list_int						Stat_Int_NewList(t_u32 length);
-#define c_stat_new_ilst		Stat_Int_NewList
+#define c_stat_new_ilst			Stat_Int_NewList
 
 //! TODO document this
 void							Stat_Int_FreeList(s_list_int* ilst);
@@ -146,7 +146,7 @@ void							Stat_Int_Quicksort_InPlace(s_list_int ilst);
 
 //! TODO document this
 t_float							Stat_Int_Median(s_sortedlist_int const ilst);
-#define c_stat_median_i		Stat_Int_Median
+#define c_stat_median_i			Stat_Int_Median
 
 //! TODO document this
 t_float							Stat_Int_Average(s_list_int const ilst);
@@ -158,21 +158,21 @@ t_float							Stat_Int_Variance(s_list_int const ilst);
 
 //! TODO document this
 t_float							Stat_Int_StandardDeviation(s_list_int const ilst);
-#define c_stat_stddev_i		Stat_Int_StandardDeviation
+#define c_stat_stddev_i			Stat_Int_StandardDeviation
 
 //! TODO document this
 void							Stat_Int_Decile(s_list_int const ilst);
-#define c_stat_decile_i		Stat_Int_Decile
+#define c_stat_decile_i			Stat_Int_Decile
 
 //! TODO implement & document this
-//t_bool							Stat_Int_ProbabilityIsValid(t_prob_sample_i const i_problst);
+//t_bool						Stat_Int_ProbabilityIsValid(t_prob_sample_i const i_problst);
 //#define c_prob_is_valid_i		Stat_Int_ProbabilityIsValid
 
 
 
 //! TODO document this
 s_list_float					Stat_Float_NewList(t_u32 length);
-#define c_stat_new_flst		Stat_Float_NewList
+#define c_stat_new_flst			Stat_Float_NewList
 
 //! TODO document this
 void							Stat_Float_FreeList(s_list_float* flst);
@@ -192,7 +192,7 @@ void							Stat_Float_Quicksort(s_list_float flst);
 
 //! TODO document this
 t_float							Stat_Float_Median(s_sortedlist_float const flst);
-#define c_stat_median_f		Stat_Float_Median
+#define c_stat_median_f			Stat_Float_Median
 
 //! TODO document this
 t_float							Stat_Float_Average(s_list_float const flst);
@@ -204,11 +204,11 @@ t_float							Stat_Float_Variance(s_list_float const flst);
 
 //! TODO document this
 t_float							Stat_Float_StandardDeviation(s_list_float const flst);
-#define c_stat_stddev_f		Stat_Float_StandardDeviation
+#define c_stat_stddev_f			Stat_Float_StandardDeviation
 
 //! TODO document this
 void							Stat_Float_Decile(s_list_float const flst);
-#define c_stat_decile_f		Stat_Float_Decile
+#define c_stat_decile_f			Stat_Float_Decile
 
 //! TODO implement & document this
 //t_bool							Stat_Float_ProbabilityIsValid(t_prob_sample_f const f_problst);
@@ -222,11 +222,11 @@ s_prob_mass						Stat_NewPMF(t_u32 length);
 
 //! TODO document this
 void							Stat_FreePMF(s_prob_mass *drv);
-#define c_stat_free_pmf		Stat_FreePMF
+#define c_stat_free_pmf			Stat_FreePMF
 
 //! TODO document this
 s_list_int						Stat_IntList_To_Set(s_list_int const ilst);
-#define c_stat_ilst_to_iset	Stat_IntList_To_Set
+#define c_stat_ilst_to_iset		Stat_IntList_To_Set
 
 //! TODO document this
 t_u32							Stat_IntList_Count(s_list_int ilst, t_int elem);

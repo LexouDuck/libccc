@@ -484,8 +484,8 @@ void	test_lstfold(void)
 
 
 
-#ifdef			c_lst_to_array
-void	print_test_lst_to_array(char const* test_name, int can_segfault,
+#ifdef			c_lst_to_ptrarr
+void	print_test_lst_to_ptrarr(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list const** a_lst)
 {
@@ -493,11 +493,11 @@ void	print_test_lst_to_array(char const* test_name, int can_segfault,
 	void** result;
 	segfault = setjmp(restore);
 	if (!segfault) { timer_clock(&t.start1);
-		result = c_lst_to_array(a_lst);
+		result = c_lst_to_ptrarr(a_lst);
 	timer_clock(&t.end1); } else can_segfault |= (1 << 1);
 	print_timer_result(&t, FALSE);
 }
-void	test_lst_to_array(void)
+void	test_lst_to_ptrarr(void)
 {
 /*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
 //	TODO
@@ -506,20 +506,20 @@ void	test_lst_to_array(void)
 
 
 
-#ifdef			c_lst_to_tuple
-void	print_test_lst_to_tuple(char const* test_name, int can_segfault,
+#ifdef			c_lst_to_array
+void	print_test_lst_to_array(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list const** a_lst)
 {
 	s_timer t = {0};
-	s_tuple result;
+	s_array result;
 	segfault = setjmp(restore);
 	if (!segfault) { timer_clock(&t.start1);
-		result = c_lst_to_tuple(a_lst);
+		result = c_lst_to_array(a_lst);
 	timer_clock(&t.end1); } else can_segfault |= (1 << 1);
 	print_timer_result(&t, FALSE);
 }
-void	test_lst_to_tuple(void)
+void	test_lst_to_array(void)
 {
 /*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
 //	TODO
@@ -587,11 +587,11 @@ int		testsuite_list(void)
 #ifdef c_lstmap
 //	test_lstmap();
 #endif
-#ifdef c_lst_to_array
+#ifdef c_lst_to_ptrarr
 //	test_lst_to_array();
 #endif
-#ifdef c_lst_to_tuple
-//	test_lst_to_tuple();
+#ifdef c_lst_to_array
+//	test_lst_to_array();
 #endif
 
 	return (OK);

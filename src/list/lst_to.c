@@ -4,7 +4,7 @@
 
 
 
-void**	List_To_Array(s_list const** a_lst)
+void**	List_To_PointerArray(s_list const** a_lst)
 {
 	s_list const* lst;
 	void**	result;
@@ -34,16 +34,16 @@ void**	List_To_Array(s_list const** a_lst)
 
 
 
-s_tuple	List_To_Tuple(s_list const** a_lst)
+s_array	List_To_Array(s_list const** a_lst)
 {
 	s_list const* lst;
-	s_tuple result;
+	s_array result;
 	t_size	count;
 	t_size	i;
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (a_lst == NULL || *a_lst == NULL)
-		return (TUPLE_NULL);
+		return (ARRAY_NULL);
 #endif
 	lst = *a_lst;
 	result.item_size = lst->item_size;
@@ -52,11 +52,11 @@ s_tuple	List_To_Tuple(s_list const** a_lst)
 	{
 		lst = lst->next;
 		if (lst->item_size != result.item_size)
-			return (TUPLE_NULL);
+			return (ARRAY_NULL);
 	}
 	result.item_count = (count + 1);
 	if (!(result.items = (void*)Memory_Alloc(result.item_count * result.item_size)))
-		return (TUPLE_NULL);
+		return (ARRAY_NULL);
 	i = 0;
 	while (lst && ++i < count)
 	{

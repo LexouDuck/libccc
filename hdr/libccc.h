@@ -17,7 +17,7 @@
 **	@{
 */
 
-// define header guards to prevent C++ compilers from doing symbol name mangling
+// define 'extern C' header guards to prevent C++ compilers from doing symbol name mangling
 #ifdef __cplusplus
 	#ifndef HEADER_CPP
 	#define HEADER_CPP	extern "C" {
@@ -59,7 +59,6 @@ HEADER_CPP
 **	TODO	libccc_fixedpoint  + tests // fixed-point number math library
 **	TODO	libccc_compress    + tests // compression functions (RLE, LZ77, LZW, Huffman)
 **	TODO	libccc_crypto      + tests // cryptography
-**	TODO	libccc_regex       + tests // regular expressions
 **	TODO	libccc_regex       + tests // regular expressions
 **	TODO	libccc_vlq         + tests // variable-length quantity (bigint)
 */

@@ -33,38 +33,64 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! A 'foreach' keyword macro, to iterate over tuples without an index-based 'for' loop
-#define foreach(TYPE, VAR, ITERABLE_TYPE, ITERABLE) \
-	foreach_##ITERABLE_TYPE##_init(TYPE, VAR, ITERABLE)					\
-	if (ITERABLE)														\
-		for(foreach_##ITERABLE_TYPE##_loop_init(TYPE, VAR, ITERABLE);	\
-			foreach_##ITERABLE_TYPE##_loop_exit(TYPE, VAR, ITERABLE);	\
-			foreach_##ITERABLE_TYPE##_loop_incr(TYPE, VAR, ITERABLE))	\
+//! A 'foreach' keyword macro, to use with any iterable types, rather than an index-based 'for' loop
+/*
+**	Currently, the types that work with this 'foreach' keyword are: s_array, s_list, s_dict
+**	Here are some more details on how to use this macro:
+**	- s_array:	
+*/
+#define foreach(VARIABLE_TYPE, VARIABLE, ITERABLE_TYPE, ITERABLE) \
+	foreach_##ITERABLE_TYPE##_init(VARIABLE_TYPE, VARIABLE, ITERABLE)			\
+	foreach_##ITERABLE_TYPE##_exit(VARIABLE_TYPE, VARIABLE, ITERABLE)			\
+	for(foreach_##ITERABLE_TYPE##_loop_init(VARIABLE_TYPE, VARIABLE, ITERABLE);	\
+		foreach_##ITERABLE_TYPE##_loop_exit(VARIABLE_TYPE, VARIABLE, ITERABLE);	\
+		foreach_##ITERABLE_TYPE##_loop_incr(VARIABLE_TYPE, VARIABLE, ITERABLE))	\
 
 
 
 //! This struct holds an array of items which can be of any type
 /*!
-**	The 's_tuple' struct holds a `void*` pointer to the array of items, the size
+**	The 's_array' struct holds a `void*` pointer to the array of items, the size
 **	of a single item in the array, and the total amount of items in this array.
-**	As such, a s_tuple can hold any number of items, but they must all share the same type.
+**	As such, a s_array can hold any number of items, but they must all share the same type.
 */
-typedef struct	s_tuple_
+typedef struct	s_array_
 {
 	t_size		item_count;	//!< The amount of elements in the 'items' array
 	t_size		item_size;	//!< The size (in bytes) of one object in this array
 	void*		items;		//!< The pointer to the array (items can be of any one type)
-}				s_tuple;
+}				s_array;
 
-#define foreach_s_tuple_init(		TYPE, VAR, TUPLE)	t_size VAR##_i = 0;
-#define foreach_s_tuple_loop_init(	TYPE, VAR, TUPLE)	TYPE VAR = (TYPE)((TUPLE)->items)
-#define foreach_s_tuple_loop_exit(	TYPE, VAR, TUPLE)	VAR##_i < (TUPLE)->item_count
-#define foreach_s_tuple_loop_incr(	TYPE, VAR, TUPLE)	foreach_s_tuple_loop_incr_1(TYPE, VAR, TUPLE), foreach_s_tuple_loop_incr_2(TYPE, VAR, TUPLE)
-#define foreach_s_tuple_loop_incr_1(TYPE, VAR, TUPLE)	++VAR##_i
-#define foreach_s_tuple_loop_incr_2(TYPE, VAR, TUPLE)	VAR = (TYPE)((TUPLE)->items + VAR##_i * (TUPLE)->item_size)
+#define foreach_s_array_init(		TYPE, VAR, ARRAY)	foreach_s_array_init_1(TYPE, VAR, ARRAY); foreach_s_array_init_2(TYPE, VAR, ARRAY);
+#define foreach_s_array_init_1(		TYPE, VAR, ARRAY)	t_size VAR##_i = 0
+#define foreach_s_array_init_2(		TYPE, VAR, ARRAY)	TYPE* VAR##_ptr = (TYPE*)((ARRAY)->items)
+#define foreach_s_array_exit(		TYPE, VAR, ARRAY)	if (ARRAY && (ARRAY)->items)
+#define foreach_s_array_loop_init(	TYPE, VAR, ARRAY)	TYPE VAR = *VAR##_ptr
+#define foreach_s_array_loop_exit(	TYPE, VAR, ARRAY)	VAR##_i < (ARRAY)->item_count
+#define foreach_s_array_loop_incr(	TYPE, VAR, ARRAY)	++VAR##_i, foreach_s_array_loop_incr_1(TYPE, VAR, ARRAY), foreach_s_array_loop_incr_2(TYPE, VAR, ARRAY)
+#define foreach_s_array_loop_incr_1(TYPE, VAR, ARRAY)	VAR##_ptr = (TYPE*)((t_u8*)(ARRAY)->items + VAR##_i * (ARRAY)->item_size)
+#define foreach_s_array_loop_incr_2(TYPE, VAR, ARRAY)	VAR = *VAR##_ptr
 
-//! A literal of an 's_tuple' struct which has all fields set to zero
-#define TUPLE_NULL	(s_tuple){ .item_count = 0, .item_size = 0, .items = NULL }
+//! A literal of an 's_array' struct which has all fields set to zero
+#define ARRAY_NULL	(s_array){ .item_count = 0, .item_size = 0, .items = NULL }
+
+
+
+//! A simple key+value pair struct, used in the 's_dict' dictionary struct
+/*
+typedef struct	s_pair_
+{
+	char*		key;		//!< The key string associated with the 'value'
+	void*		value;		//!< The pointer to the data for the 'value'
+	char*		value_type;	//!< The amount of elements in the 'items' array
+	t_size		value_size;	//!< The size (in bytes) of one object in this array
+}				s_pair;
+
+typedef struct	s_dict_
+{
+
+}				s_dict;
+*/
 
 
 
@@ -83,10 +109,13 @@ typedef struct		s_list_
 	void*			item;		//!< The contents of this linked-list element
 }					s_list;
 
-#define foreach_s_list_init(		TYPE, VAR, LIST)	s_list* VAR##_lst = (LIST);
+#define foreach_s_list_init(		TYPE, VAR, LIST)	foreach_s_list_init_1(TYPE, VAR, LIST); foreach_s_list_init_2(TYPE, VAR, LIST);
+#define foreach_s_list_init_1(		TYPE, VAR, LIST)	t_size VAR##_i = 0
+#define foreach_s_list_init_2(		TYPE, VAR, LIST)	s_list* VAR##_lst = (LIST)
+#define foreach_s_list_exit(		TYPE, VAR, LIST)	if (LIST)
 #define foreach_s_list_loop_init(	TYPE, VAR, LIST)	TYPE VAR = (TYPE)((LIST)->item)
-#define foreach_s_list_loop_exit(	TYPE, VAR, LIST)	VAR##_lst
-#define foreach_s_list_loop_incr(	TYPE, VAR, LIST)	foreach_s_list_loop_incr_1(TYPE, VAR, LIST), foreach_s_list_loop_incr_2(TYPE, VAR, LIST)
+#define foreach_s_list_loop_exit(	TYPE, VAR, LIST)	VAR##_lst != NULL
+#define foreach_s_list_loop_incr(	TYPE, VAR, LIST)	++VAR##_i, foreach_s_list_loop_incr_1(TYPE, VAR, LIST), foreach_s_list_loop_incr_2(TYPE, VAR, LIST)
 #define foreach_s_list_loop_incr_1(	TYPE, VAR, LIST)	VAR##_lst = VAR##_lst->next
 #define foreach_s_list_loop_incr_2(	TYPE, VAR, LIST)	VAR = (VAR##_lst ? (TYPE)(VAR##_lst->item) : NULL)
 
@@ -145,7 +174,7 @@ void					List_Prepend(s_list* *a_lst, s_list* elem);
 **	@param	elem	The list element to prepend to 'alst' - if NULL, this function does nothing
 */
 void					List_Append(s_list* *a_lst, s_list* elem);
-#define c_lstappend	List_Append
+#define c_lstappend		List_Append
 
 //! Inserts the given element 'elem' at the given 'index' of the list starting at 'a_lst'
 /*!
@@ -157,7 +186,7 @@ void					List_Append(s_list* *a_lst, s_list* elem);
 **	@param	elem	The list element to prepend to 'alst' - if NULL, this function does nothing
 */
 void					List_Insert(s_list* *a_lst, s_list* elem, t_u32 index);
-#define c_lstinsert	List_Insert
+#define c_lstinsert		List_Insert
 
 //! Returns a "shallow copy" of the given list 'lst' (copies only pointers, not the underlying data)
 /*!
@@ -192,7 +221,7 @@ s_list*					List_Duplicate(s_list const* lst);
 **	So, the linked list remains "chained together" after removing an element in the middle.
 */
 void					List_Remove(s_list* *a_lst, void (*del)(void*, t_size));
-#define c_lstdelone	List_Remove
+#define c_lstdelone		List_Remove
 
 //! Deletes all the elements in the list starting at 'a_lst', using the given 'del()' function.
 /*!
@@ -294,20 +323,20 @@ s_list*					List_Map_I(s_list* lst, s_list *(*f)(s_list* elem, t_u32 index));
 **	The top-level pointer array is terminated by a NULL pointer.
 **	The underlying 'lst->item' data is not copied, only the pointers are.
 */
-void**					List_To_Array(s_list const** a_lst);
-#define c_lst_to_array	List_To_Array
+void**					List_To_PointerArray(s_list const** a_lst);
+#define c_lst_to_ptrarr	List_To_PointerArray
 
-//! Converts the given list at address 'a_lst' to a tuple
+//! Converts the given list at address 'a_lst' to a array
 /*!
 **	Creates a new contiguous memory array from the given linked list.
-**	It sets this array pointer to the 'items' pointer of the given 'tuple'.
-**	It also sets the 'item_size' and 'length' fields of this 'tuple'.
+**	It sets this array pointer to the 'items' pointer of the given 'array'.
+**	It also sets the 'item_size' and 'length' fields of this 'array'.
 **
-**	@returns the resulting 's_tuple' struct from the given list, or NULL
+**	@returns the resulting 's_array' struct from the given list, or NULL
 **		if any elements of '*a_lst' are of unequal 'lst->item_size'.
 */
-s_tuple					List_To_Tuple(s_list const** a_lst);
-#define c_lst_to_tuple	List_To_Tuple
+s_array					List_To_Array(s_list const** a_lst);
+#define c_lst_to_array	List_To_Array
 
 
 
