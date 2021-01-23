@@ -56,17 +56,19 @@ typedef struct	s_tuple_
 	void*		items;		//!< The pointer to the array (items can be of any one type)
 }				s_tuple;
 
-#define foreach_s_tuple_init(		TYPE, VAR, TUPLE)		t_size _i = 0;
-#define foreach_s_tuple_loop_init(	TYPE, VAR, TUPLE)		TYPE VAR = (TYPE)((TUPLE)->items)
-#define foreach_s_tuple_loop_exit(	TYPE, VAR, TUPLE)		_i < (TUPLE)->item_count
-#define foreach_s_tuple_loop_incr(	TYPE, VAR, TUPLE)		++_i, VAR = (TYPE)((TUPLE)->items + _i * (TUPLE)->item_size)
+#define foreach_s_tuple_init(		TYPE, VAR, TUPLE)	t_size VAR##_i = 0;
+#define foreach_s_tuple_loop_init(	TYPE, VAR, TUPLE)	TYPE VAR = (TYPE)((TUPLE)->items)
+#define foreach_s_tuple_loop_exit(	TYPE, VAR, TUPLE)	VAR##_i < (TUPLE)->item_count
+#define foreach_s_tuple_loop_incr(	TYPE, VAR, TUPLE)	foreach_s_tuple_loop_incr_1(TYPE, VAR, TUPLE), foreach_s_tuple_loop_incr_2(TYPE, VAR, TUPLE)
+#define foreach_s_tuple_loop_incr_1(TYPE, VAR, TUPLE)	++VAR##_i
+#define foreach_s_tuple_loop_incr_2(TYPE, VAR, TUPLE)	VAR = (TYPE)((TUPLE)->items + VAR##_i * (TUPLE)->item_size)
 
 //! A literal of an 's_tuple' struct which has all fields set to zero
 #define TUPLE_NULL	(s_tuple){ .item_count = 0, .item_size = 0, .items = NULL }
 
 
 
-//! This is a simple doubly-linked list struct, with dynamic content type
+//! This is a simple linked list struct, with dynamic content type
 /*!
 **	The 's_list' struct represents one chainlink in the linked-list, so a
 **	linked-list with 3 elements would consist of 3 different 's_list' structs,
@@ -81,10 +83,15 @@ typedef struct		s_list_
 	void*			item;		//!< The contents of this linked-list element
 }					s_list;
 
-#define foreach_s_list_init(		TYPE, VAR, LIST)		s_list* _lst = (LIST);
-#define foreach_s_list_loop_init(	TYPE, VAR, LIST)		TYPE VAR = (TYPE)((LIST)->item)
-#define foreach_s_list_loop_exit(	TYPE, VAR, LIST)		_lst
-#define foreach_s_list_loop_incr(	TYPE, VAR, LIST)		_lst = _lst->next, VAR = (_lst ? (TYPE)(_lst->item) : NULL)
+#define foreach_s_list_init(		TYPE, VAR, LIST)	s_list* VAR##_lst = (LIST);
+#define foreach_s_list_loop_init(	TYPE, VAR, LIST)	TYPE VAR = (TYPE)((LIST)->item)
+#define foreach_s_list_loop_exit(	TYPE, VAR, LIST)	VAR##_lst
+#define foreach_s_list_loop_incr(	TYPE, VAR, LIST)	foreach_s_list_loop_incr_1(TYPE, VAR, LIST), foreach_s_list_loop_incr_2(TYPE, VAR, LIST)
+#define foreach_s_list_loop_incr_1(	TYPE, VAR, LIST)	VAR##_lst = VAR##_lst->next
+#define foreach_s_list_loop_incr_2(	TYPE, VAR, LIST)	VAR = (VAR##_lst ? (TYPE)(VAR##_lst->item) : NULL)
+
+//! A literal of an 's_list' struct which has all fields set to zero
+#define LIST_NULL	(s_list){ .next = NULL, .item_size = 0, .item = NULL }
 
 
 
