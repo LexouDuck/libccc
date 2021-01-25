@@ -1,8 +1,13 @@
+
+// this is a small independent file (not part of the libccc test suite)
+
 #include <libccc_string.h>
 #include <libccc_list.h>
 #include <libccc_io.h>
 
 #include <stdio.h>
+
+
 
 #define COUNT 8
 int main()

@@ -37,33 +37,6 @@
 HEADER_CPP
 
 /*
-**	TODO reorganize the ./hdr/ header folder to have subfolders and better organized/more split-up files
-**	TODO add a 't_char' and 't_utf8' type for strings
-**	TODO add 's_tensor' type to algebra
-**
-**	incomplete:
-**	TODO	libccc_list        + tests
-**	TODO	libccc_stat        + tests
-**	TODO	libccc_color       + tests
-**	TODO	libccc_random      + tests
-**	TODO	libccc_stringarray + tests
-**	TODO	libccc_io          + tests
-**	TODO	libccc_algebra     + tests
-**	TODO	libccc_complex     + tests
-**	TODO	libccc_time        + tests // system clock time functions
-**	non-existent:
-**	TODO	libccc_thread      + tests // POSIX-style pthread cross-platform interface
-**	TODO	libccc_socket      + tests // network socket functions - send(), recv(), etc
-**	TODO	libccc_network     + tests // utility functions for common network protocols: TCP/IP, UDP (maybe DELTA-T?)
-**	TODO	libccc_object      + tests // extensible objects (json library)
-**	TODO	libccc_fixedpoint  + tests // fixed-point number math library
-**	TODO	libccc_compress    + tests // compression functions (RLE, LZ77, LZW, Huffman)
-**	TODO	libccc_crypto      + tests // cryptography
-**	TODO	libccc_regex       + tests // regular expressions
-**	TODO	libccc_vlq         + tests // variable-length quantity (bigint)
-*/
-
-/*
 ** ************************************************************************** *|
 **                                 Includes                                   *|
 ** ************************************************************************** *|
