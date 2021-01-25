@@ -174,13 +174,13 @@ t_u64				Memory_GetBits(t_u64 value, t_u8 bit, t_u8 length);
 **	Returns a newly allocated memory array to serve as a null-terminated
 **	pointer array of length 'n'. Returns NULL if memory allocation fails.
 */
-void*					PointerArray_New(t_size size);
+void*				PointerArray_New(t_size size);
 #define c_ptrarrnew	PointerArray_New
 
 /*!
 **	Returns the length of a null-terminated pointer array.
 */
-t_u32					PointerArray_Length(void const** a_ptrarr);
+t_u32				PointerArray_Length(void const** a_ptrarr);
 #define c_ptrarrlen	PointerArray_Length
 
 // TODO ptrarrdup

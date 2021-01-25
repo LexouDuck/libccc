@@ -69,7 +69,7 @@ REMOVE #include <libccc/convert.h> split it up into the type headers: int.h, flo
 <libccc/mem/cryptography.h>	// TODO ???
 <libccc/array/array.h>	// TODO s_array = contiguous array: { t_size item_count, t_size item_size, (void*) items }
 <libccc/array/tuple.h>	// TODO s_tuple = ???
-<libccc/array/dict.h>	// TODO s_dict = key/value dictionary: { t_size count, t_size size, { char* key, char* type, (void*) value }* items }
+<libccc/array/dict.h>	// TODO s_dict = key/value dictionary: { t_size count, { char* key, char* type, t_size size, (void*) value }* items }
 <libccc/array/list.h>	// TODO s_list = singlely-linked list: { s_list* next, t_size item_size, (void*) item }
 <libccc/sys/io.h>
 <libccc/sys/asm.h>		// TODO collection of cross-platform inline assembly __asm__ macros, like 'INCBIN(varname, "filepath")'
