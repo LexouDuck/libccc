@@ -13,6 +13,7 @@
 #include <libccc/object.h>	// TODO anonymous, dynamic, extensible objects (json library - wjelement)
 #include <libccc/time.h>	// TODO system clock 'timespec' functions: clock_gettime(), etc
 #include <libccc/regex.h>	// TODO all: functions for regular expressions pattern matching/replacing
+#include <libccc/color.h>
 #include <libccc/mem/memory.h>
 #include <libccc/mem/pointerarray.h>// TODO split up memory.h
 #include <libccc/mem/stringarray.h>
@@ -25,6 +26,7 @@
 #include <libccc/sys/io.h>
 #include <libccc/sys/asm.h>		// TODO collection of cross-platform inline assembly __asm__ macros, like INCBIN(varname, filepath)
 #include <libccc/sys/logger.h>	// TODO all: 
+#include <libccc/sys/async.h>	// TODO all: libuv ?
 #include <libccc/sys/thread.h>	// TODO all: POSIX-thread (pthread) cross-platform interface/wrappers
 #include <libccc/sys/signal.h>	// TODO all: system signal handling: SIGSEGV, SIGFPE, SIGTRAP, SIGABORT, etc
 #include <libccc/sys/socket.h>	// TODO all: network socket functions - send(), recv(), etc
