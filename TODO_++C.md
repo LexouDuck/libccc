@@ -74,6 +74,36 @@ Otherwise, for simplicity, only allow pure functions and functions with only glo
 
 ### Operators:
 ```c
+// string concatenation operator
+char*		operator: + (char const* left, char const* right)
+{
+	return (String.Join(left, right));
+}
+// usage example:
+char* new_str = "Concatenated: " + str;
+```
+```c
+// NULL check and return operator
+void const*	operator: ?? (void const* left, void const* right)
+{
+	return (left == NULL ? right : left);
+}
+// usage example:
+char* new_str = str ?? "str is NULL";
+```
+```c
+// unary operator: complex number conjugate
+typedef struct s_complex_ { float re; float im; } s_complex;
+s_complex	operator: ! (s_complex right)
+{
+	return (Complex.Conjugate(right));
+}
+// usage example:
+s_complex z = { 1.5, 2.2 };
+s_complex conjug = !z;
+```
+```c
+// bool exclusive OR (XOR) operator
 bool		operator: ^^ (bool left, bool right)
 {
 	return ((left ? TRUE : FALSE) ^ (right ? TRUE : FALSE));
@@ -82,14 +112,7 @@ bool		operator: ^^ (bool left, bool right)
 if (i < 3 ^^ x >= 4) { /* do stuff */}
 ```
 ```c
-char*		operator: + (char* left, char* right)
-{
-	return (String.Join(left, right));
-}
-// usage example:
-char* new_str = "Concatenated: " + str;
-```
-```c
+// 3D vector subtraction operator
 s_vector3d	operator: - (s_vector3d left, s_vector3d right)
 {
 //	return (Vector3D.Add(left, right));
@@ -160,16 +183,27 @@ s_list<char*> const*	string_list;
 Here's a set of examples of generic type usage with lists:
 ##### Namespace:
 ```c
+// a generic type can be applied to a namespace
+namespace Math<TYPE=float>
+{
+	<TYPE>	Cos(<TYPE> x);
+}
+// usage example:
+float cosine_float = Math<float>.Cos(value);	// 32-bit floating-point type cos()
+double cosine_f64 = Math<double>.Cos(value);	// 64-bit floating-point type cos()
+fixed cosine_fixed = Math<fixed>.Cos(value);	// fixed-point type cos()
+```
+```c
 // in .h header file
 namespace List<TYPE=void*>
 {
-	s_list<TYPE>	New(<TYPE> item, size_t item_size);
+	s_list<TYPE>	New(<TYPE> ...);
 	void			Append(s_list<TYPE> list, s_list<TYPE> element);
 	s_list<TYPE>	Filter(s_list<TYPE> list, bool (*filter)(s_list<TYPE> element));
 }
 // usage example:
 // in .c source file
-s_list<char*> list = List<char*>.New("Cool", 4);
+s_list<char*> list = List<char*>.New("foo", "bar", "baz");
 ```
 ##### Local Scope function:
 ```c
@@ -217,4 +251,37 @@ namespace List<TYPE=void*>
 // usage example:
 s_list<char*> list = List<char*>.New("foo", "bar", "baz");
 char* str = list[2]; // type inferrence for the accessor
+```
+dynamic anonymous 'object' type (JSON-like)
+```c
+typedef struct	keyval_<TYPE>
+{
+	char*	key;
+	char*	type;
+	<TYPE>	value;
+}				keyval<TYPE>;
+typedef keyval<void*>*	object;
+
+KeyVal<int>.New("index", 1) => &(keyval<int>){ .key="index", .type="int", .value=1 }
+
+object* obj = &(object)
+{
+	KeyVal<int>.New("index", 1),
+	KeyVal<char*>.New("value", "foo"),
+	KeyVal<object>.New("sub", &(object)
+	{
+		KeyVal<float>.New("float", 1.5),
+		KeyVal<char*>.New("str", "hello"),
+		NULL
+	}),
+	NULL
+}
+namespace Object<TYPE=void*>
+{
+	<TYPE>		accessor: (object* obj)[char const* key]
+	{
+		return (Object<TYPE>.Get(obj, key));
+	}
+}
+printf("%s\n", obj<object*>["sub"]<char*>["str"]);
 ```
