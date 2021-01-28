@@ -11,12 +11,12 @@
 
 ### Accepted alternate notation:
 
-- dereference: * = $ (to avoid synonym with the multiply operator)
+- dereference: * = $ (to avoid synonymy with the multiply operator)
 ```c
 value = *pointer; // pure C
 value = $pointer; // ++C
 ```
-- get address: & = @ (to avoid synonym with the bitwise AND operator)
+- get address: & = @ (to avoid synonymy with the bitwise AND operator)
 ```c
 address = &value; // pure C
 address = @value; // ++C
@@ -36,14 +36,33 @@ namespace String
 {
 	char*	Duplicate(char* str);
 }
-```
-```c
+
 // in .c source file
 char*	String.Duplicate(char* str)
 {
 	return (Memory.Duplicate(String.Length(str) + 1));
 }
 char* str = String.Duplicate("foo");
+```
+```c
+// namespaces can be nested
+// in .h header file
+namespace Compression
+{
+	namespace RLE
+	{
+		t_u8*	Compress(t_u8* data, size_t length);
+		t_u8*	Decompress(t_u8* data);
+	}
+	namespace LZ77
+	{
+		t_u8*	Compress(t_u8* data, size_t length);
+		t_u8*	Decompress(t_u8* data);
+	}
+}
+
+// in .c source file
+t_u8* decompressed_data = Compression.LZ77.Decompress(file);
 ```
 
 
@@ -68,7 +87,7 @@ static void	WaitAndRunCallback_HelloWorld(void)
 }
 ```
 Perhaps we can implement a variable-capture mechanism which isn't too complex ?
-Otherwise, for simplicity, only allow pure functions and functions with only global-scope side-effects.
+Otherwise, for simplicity, only allow pure functions and functions with only global-scope side-effects, to be defined locally.
 
 
 
@@ -93,7 +112,11 @@ char* new_str = str ?? "str is NULL";
 ```
 ```c
 // unary operator: complex number conjugate
-typedef struct s_complex_ { float re; float im; } s_complex;
+typedef struct	s_complex_
+{
+	float re;
+	float im;
+}				s_complex;
 s_complex	operator: ! (s_complex right)
 {
 	return (Complex.Conjugate(right));
@@ -132,6 +155,26 @@ s_vector3d diff = (u - v);
 
 
 ### Accessors:
+
+Accessors allow one to dereference with brackets `[]` within a struct, with any specified arguments.
+The accessor function body must be a simple inline-able `return` statement.
+```c
+// example color type
+typedef	uint32_t	t_argb32;
+// example palette color array struct
+typedef struct	s_palette_
+{
+	size_t		color_count;
+	t_argb32*	colors;
+}				s_palette;
+// declare an accessor to get colors from the palette
+t_argb32	accessor: (s_palette palette)[int index]
+{
+	return (palette.colors[index]);
+}
+// usage example:
+t_argb32 color = palette[3];
+```
 ```c
 // example 32-bit color bitmap array
 typedef struct	s_bitmap_
@@ -141,9 +184,9 @@ typedef struct	s_bitmap_
 	int height;
 }				s_bitmap;
 // declare an accessor to get pixels from their coordinates
-t_argb32	accessor: (s_bitmap* bitmap)[int x, int y]
+t_argb32	accessor: (s_bitmap bitmap)[int x, int y]
 {
-	return (bitmap->pixels[y * bitmap->width + x]);
+	return (bitmap.pixels[y * bitmap.width + x]);
 }
 // usage example:
 for (int x = 0; x < bitmap->width; ++x)
@@ -153,8 +196,46 @@ for (int y = 0; y < bitmap->height; ++y)
 }
 ```
 ```c
+typedef struct	s_keyval_
+{
+	char*		key;
+	char*		type;
+	void*		value;
+}				s_keyval;
+typedef struct	s_dict_
+{
+	t_size		count;
+	keyval*		items;
+}				s_dict;
+namespace Dict
+{
+	s_dict	New(int items, s_keyval ...);
+	{
+		return ((s_dict)
+		{
+			.count = items,
+			Array<s_keyval>.New(items, va_list),
+		});
+	}
+	// declare an accessor to get dictionary values from their key names
+	void*	accessor: (s_dict dict)[char const* key]
+	{
+		return (Dict.Get(dict, key));
+	}
+}
+// usage example:
+s_dict dict = Dict.New(2,
+	(s_keyval){ .key="foo", .value="FOO" },
+	(s_keyval){ .key="bar", .value="BAR" },
+);
+char* bar = (char*)dict["bar"];
+```
+Perhaps allow replacing/overriding the standard pointer deref brackets, for things other than structs ?
+It can allow for some cool stuff, but this kind of syntactic sugar may be too "implicit" for C though...
+```c
 // parse utf8 char smartly in a string
-t_utf8		accessor: (t_utf8* utf8)[size_t index]
+typedef wchar_t	t_utf8;
+t_utf8	String_Get_UTF8(t_utf8* str, size_t index)
 {
 	char* str = (char*)utf8;
 	t_utf8 result = str[index];
@@ -163,8 +244,13 @@ t_utf8		accessor: (t_utf8* utf8)[size_t index]
 	if (str[++index] && (result & 0x800000))	result |= (str[index] << 24);
 	return (result);
 }
+t_utf8		accessor: (t_utf8* str)[size_t index]
+{
+	return (String_Get_UTF8(str, index));
+}
 // usage example:
-int utf8_char = ((t_utf8*)str)[3];
+char* str = "char ñ";
+t_utf8 utf8_char = (t_utf8*)str[5];
 ```
 
 
@@ -197,13 +283,13 @@ fixed cosine_fixed = Math<fixed>.Cos(value);	// fixed-point type cos()
 // in .h header file
 namespace List<TYPE=void*>
 {
-	s_list<TYPE>	New(<TYPE> ...);
+	s_list<TYPE>	New(size_t length, <TYPE> ...);
 	void			Append(s_list<TYPE> list, s_list<TYPE> element);
 	s_list<TYPE>	Filter(s_list<TYPE> list, bool (*filter)(s_list<TYPE> element));
 }
 // usage example:
 // in .c source file
-s_list<char*> list = List<char*>.New("foo", "bar", "baz");
+s_list<char*> list = List<char*>.New(3, "foo", "bar", "baz");
 ```
 ##### Local Scope function:
 ```c
@@ -234,8 +320,8 @@ namespace List<TYPE=void*>
 	}
 }
 // usage example:
-s_list<char*> list = List<char*>.New("foo", "bar");
-s_list<char*> list = List<char*>.New("bar", "baz");
+s_list<char*> list = List<char*>.New(2, "foo", "bar");
+s_list<char*> list = List<char*>.New(2, "bar", "baz");
 s_list<char*> concat = list1 + list2; // type inferrence for the operator
 ```
 ##### Accessor:
@@ -249,39 +335,40 @@ namespace List<TYPE=void*>
 	}
 }
 // usage example:
-s_list<char*> list = List<char*>.New("foo", "bar", "baz");
+s_list<char*> list = List<char*>.New(3, "foo", "bar", "baz");
 char* str = list[2]; // type inferrence for the accessor
 ```
 dynamic anonymous 'object' type (JSON-like)
 ```c
-typedef struct	keyval_<TYPE>
+typedef struct	keyval_<TYPE=void*>
 {
 	char*	key;
 	char*	type;
 	<TYPE>	value;
 }				keyval<TYPE>;
-typedef keyval<void*>*	object;
-
-KeyVal<int>.New("index", 1) => &(keyval<int>){ .key="index", .type="int", .value=1 }
-
-object* obj = &(object)
+namespace KeyVal<TYPE=void*>
 {
-	KeyVal<int>.New("index", 1),
-	KeyVal<char*>.New("value", "foo"),
-	KeyVal<object>.New("sub", &(object)
-	{
-		KeyVal<float>.New("float", 1.5),
-		KeyVal<char*>.New("str", "hello"),
-		NULL
-	}),
-	NULL
+	keyval<TYPE>	New(char* key, <TYPE> value);
 }
+typedef keyval<void*>*	object;
 namespace Object<TYPE=void*>
 {
+	object*	New(size_t items, keyval ...);
+
 	<TYPE>		accessor: (object* obj)[char const* key]
 	{
 		return (Object<TYPE>.Get(obj, key));
 	}
 }
-printf("%s\n", obj<object*>["sub"]<char*>["str"]);
+
+KeyVal<int>.New("index", 1) // = &(keyval<int>){ .key="index", .type="int", .value=1 }
+
+object* obj = Object.New(3,
+	KeyVal<int>.New("index", 1),
+	KeyVal<char*>.New("value", "foo"),
+	KeyVal<object>.New("sub", Object.New(2,
+		KeyVal<float>.New("float", 1.5),
+		KeyVal<char*>.New("str", "hello")),
+);
+printf("%s\n", obj<object*>["sub"]<char*>["str"]); // type inferrence cannot be done here
 ```
