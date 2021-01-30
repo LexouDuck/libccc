@@ -19,7 +19,3 @@ t_u32	List_Size(s_list const* lst)
 	}
 	return (result);
 }
-/*
-**	if (lst == NULL)
-**		return (0);
-*/

@@ -1,7 +1,8 @@
 
-// ================ TODO list ================ //
+# TODO list
 
-//	TODO reorganize the ./hdr/ header folder to have subfolders and better organized/more split-up files:
+- TODO: eorganize the ./hdr/ header folder to have subfolders and better organized/more split-up files:
+```c
 #include <libccc/convert.h> // REMOVE this file, split it up into several 'type' headers: int.h, float.h, etc
 #include <libccc.h>
 #include <libccc/int.h>
@@ -40,11 +41,7 @@
 #include <libccc/math/stat.h>
 #include <libccc/math/algebra.h>// TODO add 's_tensor' type
 #include <libccc/math/complex.h>
-
-// TODO reorganize test suite to reflect new header file folder tree + add empty files for tests
-
-// TODO add option #define LIBCONFIG_PRINT_ENCODING	(ANSI,ASCII,UTF8) which changes printf behavior ?
-
-// TODO for each compound type in 'array' folder: implement functions _New, _Delete, _Equals, _Duplicate, _Sub, _Insert, _Replace, _Filter, _Map
-
-
+```
+- TODO: reorganize test suite to reflect new header file folder tree + add empty files for tests
+- TODO: add option #define LIBCONFIG_PRINT_ENCODING	(ANSI,ASCII,UTF8) which changes printf behavior ?
+- TODO: for each compound type in 'array' folder: implement functions _New, _Delete, _Equals, _Duplicate, _Sub, _Insert, _Replace, _Filter, _Map

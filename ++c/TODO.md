@@ -3,7 +3,20 @@
 
 - A superset of C -> transpiles to C code (while keeping it as clean and readible as possible)
 - You can enforce a certain code style to the resulting transpiled C code
+- automatic header include-guard insertion (and C++ `#ifdef __cplusplus extern "C" { ... }`)
 - includes m4 multi-pass pre-processor
+
+
+
+# Warnings:
+
+++C also acts as a linter - performing additional code checks and giving many useful warnings.
+Here are the warnings which are added by default (any warning can be deactivated in the same way you would do with gcc: `-Wno-*`)
+- `-Wimplicit-cast` explicit type casting everywhere (float to int, int to float, enum to int, etc)
+- `-Wlingering-alloc` local variable 'a' was allocated, and function returned something which isn't 'a', 'a' should be freed
+- `-Wunchecked-null` pointer potentially NULL
+- `-Winvalid-enum` integer value was assigned to enum type, but this integer is not defined in the enum
+- `-Wmisaligned-pointer` warn of potential pointer alignment issues, which can be platform-specific
 
 
 
@@ -93,13 +106,13 @@ Otherwise, for simplicity, only allow pure functions and functions with only glo
 
 ### Operators:
 ```c
-// string concatenation operator
-char*		operator: + (char const* left, char const* right)
+// integer power operator
+int			operator: ** (int left, int right)
 {
-	return (String.Join(left, right));
+	return (Math<int>.Power(left, right));
 }
 // usage example:
-char* new_str = "Concatenated: " + str;
+printf("%d", 2 ** 15);
 ```
 ```c
 // NULL check and return operator
@@ -109,6 +122,15 @@ void const*	operator: ?? (void const* left, void const* right)
 }
 // usage example:
 char* new_str = str ?? "str is NULL";
+```
+```c
+// string concatenation operator
+char*		operator: + (char const* left, char const* right)
+{
+	return (String.Join(left, right));
+}
+// usage example:
+char* new_str = "Concatenated: " + str;
 ```
 ```c
 // unary operator: complex number conjugate
@@ -371,4 +393,45 @@ object* obj = Object.New(3,
 		KeyVal<char*>.New("str", "hello")),
 );
 printf("%s\n", obj<object*>["sub"]<char*>["str"]); // type inferrence cannot be done here
+```
+
+
+
+### Pre-processor instructions:
+
+##### INCBIN
+Allows you to include a binary file as a global/extern const byte array.
+```c
+#incbin myfile	"./path/to/file.dat"
+```
+In this example, a variable named `myfile` will be created, with type `unsigned char const[]`: it holds
+the contents of the file given by the string filepath argument.
+It will also create two other variables: `myfile_end` which points to the end of the binary data array,
+and `myfile_size`, which is the filesize (despite its actual type being `unsigned char const[]` as well)
+
+##### ALIAS
+Creates an alias for the last function or variable name declaration which precedes it.
+```c
+void	MyFunction(void);
+#alias f
+int main()
+{
+	f();
+}
+```
+The above example transpiles by replacing `f` directly inline, rather than using a C pre-processor `#define` statement.
+
+
+
+---
+
+# M4
+
+```sh
+m4 --synclines
+```
+
+```m4
+changequote(`<',`>')
+changecom(<//>,<\n>)
 ```
