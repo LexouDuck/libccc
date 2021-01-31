@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_BOOL_H
 #define __LIBCCC_BOOL_H
 /*! @file libccc/bool.h
-**	This header defines all the primitive types and common macros to use.
+**	This header defines the boolean TRUE/FALSE primitive type and functions.
 **	@addtogroup libccc/bool
 **	@{
 */

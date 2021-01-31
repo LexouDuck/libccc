@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_FLOAT_H
 #define __LIBCCC_FLOAT_H
 /*! @file libccc/float.h
-**	This header defines all the functions for converting with primitive types.
+**	This header defines the floating-point number primitive types and functions.
 **	@addtogroup libccc/float
 **	@{
 */
@@ -32,6 +32,15 @@ HEADER_CPP
 **                                 Definitions                                *|
 ** ************************************************************************** *|
 */
+
+#if LIBCONFIG_BITS_FLOAT != 32 && \
+	LIBCONFIG_BITS_FLOAT != 64 && \
+	LIBCONFIG_BITS_FLOAT != 80 && \
+	LIBCONFIG_BITS_FLOAT != 128
+	#error "LIBCONFIG_BITS_UINT must be equal to one of: 32, 64, 80, 128"
+#endif
+
+
 
 //! The type for 32-bit 'single precision' IEEE-754 floating-point numbers
 typedef float		t_f32;
@@ -54,18 +63,7 @@ typedef __float128	t_f128;
 
 
 
-#if LIBCONFIG_BITSIZE_FLOAT == 32
-typedef t_f32		t_float;
-#endif
-#if LIBCONFIG_BITSIZE_FLOAT == 64
-typedef t_f64		t_float;
-#endif
-#if LIBCONFIG_BITSIZE_FLOAT == 80
-typedef t_f80		t_float;
-#endif
-#if LIBCONFIG_BITSIZE_FLOAT == 128
-typedef t_f128		t_float;
-#endif
+typedef LIBCONFIG_TYPE_FLOAT	t_float;
 
 
 
@@ -164,15 +162,15 @@ typedef t_f128		t_float;
 **	macros defined below, rather than the 'F32_' or 'F64_' macros above.
 */
 
-#define FLOAT_SIGNED			F##LIBCONFIG_BITSIZE_FLOAT##_SIGNED
-#define FLOAT_EXPONENT_BIAS		F##LIBCONFIG_BITSIZE_FLOAT##_EXPONENT_BIAS
-#define FLOAT_EXPONENT			F##LIBCONFIG_BITSIZE_FLOAT##_EXPONENT
-#define FLOAT_EXPONENT_ZERO		F##LIBCONFIG_BITSIZE_FLOAT##_EXPONENT_ZERO
-#define FLOAT_EXPONENT_BITS		F##LIBCONFIG_BITSIZE_FLOAT##_EXPONENT_BITS
-#define FLOAT_MANTISSA			F##LIBCONFIG_BITSIZE_FLOAT##_MANTISSA
-#define FLOAT_MANTISSA_SIGNED	F##LIBCONFIG_BITSIZE_FLOAT##_MANTISSA_SIGNED
-#define FLOAT_MANTISSA_BITS		F##LIBCONFIG_BITSIZE_FLOAT##_MANTISSA_BITS
-#define FLOAT_INIT_VALUE		F##LIBCONFIG_BITSIZE_FLOAT##_INIT_VALUE
+#define FLOAT_SIGNED			F##LIBCONFIG_BITS_FLOAT##_SIGNED
+#define FLOAT_EXPONENT_BIAS		F##LIBCONFIG_BITS_FLOAT##_EXPONENT_BIAS
+#define FLOAT_EXPONENT			F##LIBCONFIG_BITS_FLOAT##_EXPONENT
+#define FLOAT_EXPONENT_ZERO		F##LIBCONFIG_BITS_FLOAT##_EXPONENT_ZERO
+#define FLOAT_EXPONENT_BITS		F##LIBCONFIG_BITS_FLOAT##_EXPONENT_BITS
+#define FLOAT_MANTISSA			F##LIBCONFIG_BITS_FLOAT##_MANTISSA
+#define FLOAT_MANTISSA_SIGNED	F##LIBCONFIG_BITS_FLOAT##_MANTISSA_SIGNED
+#define FLOAT_MANTISSA_BITS		F##LIBCONFIG_BITS_FLOAT##_MANTISSA_BITS
+#define FLOAT_INIT_VALUE		F##LIBCONFIG_BITS_FLOAT##_INIT_VALUE
 
 
 
@@ -184,9 +182,9 @@ typedef t_f128		t_float;
 typedef union	u_float_cast_
 {
 	t_float		value_float;
-#if LIBCONFIG_BITSIZE_FLOAT == 32
+#if LIBCONFIG_BITS_FLOAT == 32
 	t_s32
-#elif LIBCONFIG_BITSIZE_FLOAT == 64
+#elif LIBCONFIG_BITS_FLOAT == 64
 	t_s64
 #else
 	t_s64[2]

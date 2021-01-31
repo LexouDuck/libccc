@@ -77,7 +77,7 @@
 
 
 
-//! Defines which type/bit size the 't_uint' type will be
+//! Defines which type/bit size the 't_uint' unsigned integer type will be
 /*!
 **	This macro sets the default 't_uint' default unsigned integer type to use.
 **	There are 3 possible values for this #define:
@@ -86,9 +86,10 @@
 **	32	for 32-bit uint	[0, 2147483647]
 **	64	for 64-bit uint	[0, 18446744073709551615]
 */
-#define LIBCONFIG_BITSIZE_UINT	32
+#define LIBCONFIG_BITS_UINT		32
+#define LIBCONFIG_TYPE_UINT		t_u32
 
-//! Defines which type/bit size the 't_int' type will be
+//! Defines which type/bit size the 't_int' signed integer type will be
 /*!
 **	This macro sets the default 't_int' default signed integer type to use:
 **	8	for 8-bit int	[-128, 127]
@@ -96,9 +97,19 @@
 **	32	for 32-bit int	[-2147483648, 2147483647]
 **	64	for 64-bit int	[-9223372036854775808, +9223372036854775807]
 */
-#define LIBCONFIG_BITSIZE_INT	32
+#define LIBCONFIG_BITS_INT		32
+#define LIBCONFIG_TYPE_INT		t_s32
 
-//! Defines which type/bit size the 't_float' type will be
+//! Defines which type/bit size the 't_fixed' fixed-point number type will be
+/*!
+**	The following macro sets what the 't_fixed' default fixed-point type should be.
+*/
+#define LIBCONFIG_BITS_FIXED	32
+#define LIBCONFIG_TYPE_FIXED	t_q32
+#define LIBCONFIG_BITS_FIXED_DECIMALPART	(LIBCONFIG_BITS_FIXED / 4)
+#define LIBCONFIG_BITS_FIXED_INTEGERPART	(LIBCONFIG_BITS_FIXED - LIBCONFIG_BITS_FIXED_DECIMALPART)
+
+//! Defines which type/bit size the 't_float' floating-point number type will be
 /*!
 **	The following macro sets what the 't_float' default floating-point type should be.
 **	32	for 32-bit IEEE 754 standard precision floating-point number
@@ -106,7 +117,8 @@
 **	80	for 80-bit x86 extended-precision floating-point number (not available on clang; will default to 128)
 **	128	for 128-bit IEEE 754 quadruple-precision floating-point number (GNU GCC 4.3 and up)
 */
-#define LIBCONFIG_BITSIZE_FLOAT	32
+#define LIBCONFIG_BITS_FLOAT	32
+#define LIBCONFIG_TYPE_FLOAT	t_f32
 
 
 

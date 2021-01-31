@@ -6,7 +6,7 @@
 /*
 **	Some SQRT(2)^n lookup tables for quick newton method initial guess
 */
-#if (LIBCONFIG_BITSIZE_FLOAT == 80 || LIBCONFIG_BITSIZE_FLOAT == 128)
+#if (LIBCONFIG_BITS_FLOAT == 80 || LIBCONFIG_BITS_FLOAT == 128)
 	#define POWERS_LENGTH	16
 #else
 	#define POWERS_LENGTH	12
@@ -26,7 +26,7 @@ static t_float	c_sqrt_2_pow_n(t_s32 n)
 		(t_float)0x1.0p+128,
 		(t_float)0x1.0p+256,
 		(t_float)0x1.0p+512,
-#if (LIBCONFIG_BITSIZE_FLOAT == 80 || LIBCONFIG_BITSIZE_FLOAT == 128)
+#if (LIBCONFIG_BITS_FLOAT == 80 || LIBCONFIG_BITS_FLOAT == 128)
 		(t_float)0x1.0p+1024,
 		(t_float)0x1.0p+2048,
 		(t_float)0x1.0p+4096,
@@ -47,7 +47,7 @@ static t_float	c_sqrt_2_pow_n(t_s32 n)
 		(t_float)0x1.0p-128,
 		(t_float)0x1.0p-256,
 		(t_float)0x1.0p-512,
-#if (LIBCONFIG_BITSIZE_FLOAT == 80 || LIBCONFIG_BITSIZE_FLOAT == 128)
+#if (LIBCONFIG_BITS_FLOAT == 80 || LIBCONFIG_BITS_FLOAT == 128)
 		(t_float)0x1.0p-1024,
 		(t_float)0x1.0p-2048,
 		(t_float)0x1.0p-4096,
@@ -74,12 +74,12 @@ static t_float	c_sqrt_2_pow_n(t_s32 n)
 	if (n & 0x0020) { result *= powers[0x5]; }
 	if (n & 0x0040) { result *= powers[0x6]; }
 	if (n & 0x0080) { result *= powers[0x7]; }
-#if (LIBCONFIG_BITSIZE_FLOAT == 64 || LIBCONFIG_BITSIZE_FLOAT == 80 || LIBCONFIG_BITSIZE_FLOAT == 128)
+#if (LIBCONFIG_BITS_FLOAT == 64 || LIBCONFIG_BITS_FLOAT == 80 || LIBCONFIG_BITS_FLOAT == 128)
 	if (n & 0x0100) { result *= powers[0x8]; }
 	if (n & 0x0200) { result *= powers[0x9]; }
 	if (n & 0x0400) { result *= powers[0xA]; }
 #endif
-#if (LIBCONFIG_BITSIZE_FLOAT == 80 || LIBCONFIG_BITSIZE_FLOAT == 128)
+#if (LIBCONFIG_BITS_FLOAT == 80 || LIBCONFIG_BITS_FLOAT == 128)
 	if (n & 0x0800) { result *= powers[0xB]; }
 	if (n & 0x1000) { result *= powers[0xC]; }
 	if (n & 0x2000) { result *= powers[0xD]; }
@@ -96,10 +96,10 @@ t_float	c_sqrt(t_float x)
 //	Fast Inverse square root (from the Quake III source code)
 	u_float_cast result = { x };
 	t_float x_2 = result.value_float * 0.5;
-#if LIBCONFIG_BITSIZE_FLOAT == 32 // magic voodoo constant
+#if LIBCONFIG_BITS_FLOAT == 32 // magic voodoo constant
 	result.value_int = 0x5F375A86 - (result.value_int >> 1);
 #endif
-#if LIBCONFIG_BITSIZE_FLOAT == 64 // 64bit magic constant from https://cs.uwaterloo.ca/~m32rober/rsqrt.pdf
+#if LIBCONFIG_BITS_FLOAT == 64 // 64bit magic constant from https://cs.uwaterloo.ca/~m32rober/rsqrt.pdf
 	result.value_int = 0x5FE6EB50C7B537A9 - (result.value_int >> 1);
 #endif
 	// TODO handle extended precision types

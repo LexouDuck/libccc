@@ -42,91 +42,15 @@
 
 #include "libccc_config.h"
 
-#include "libccc/int.h"
-#include "libccc/float.h"
-//#include "libccc/fixed.h" TODO
 #include "libccc/bool.h"
+#include "libccc/int.h"
+#include "libccc/fixed.h"
+#include "libccc/float.h"
 #include "libccc/pointer.h"
 //#include "libccc/memory.h"
 //#include "libccc/string.h"
 
 HEADER_CPP
-
-/*
-** ************************************************************************** *|
-**                            Library Configuration                           *|
-** ************************************************************************** *|
-*/
-
-//! If 1, libccc functions handle NULL pointers args, otherwise they segfault.
-/*!
-**	This macro determines how NULL pointer arguments are to be handled
-**	If 0, then libccc functions will always segfault when given NULL pointers.
-**	If 1, then all NULL pointer accesses in libccc functions will be avoided, and
-**		an appropriate return value (eg:NULL, 0, sometimes -1) will be returned.
-*/
-#define LIBCONFIG_HANDLE_NULLPOINTERS		1
-
-
-
-//! If 1, libccc uses homemade approximate math functions, otherwise it's the builtin FPU calls.
-/*!
-**	This macro determines which math function implementations should be used.
-**	If 1, the libccc fast approximate functions will be used (precision error margin: 0.0001)
-**	If 0, the builtin FPU-call libc math functions will be used (eg: __builtin_powf(), etc)
-*/
-#define LIBCONFIG_FAST_APPROX_MATH			0
-
-
-
-//! If 1, libccc uses exact bit length for t_s8, t_s16, t_s32, t_s64, t_u8, t_u16, t_u32, and t_u64
-/*!
-**	This macro configures which stdint.h integer types are used by default,
-**	as well as setting the corresponding appropriate [INT]_MAX and [INT]_MIN values.
-**	There are 3 possible values for this #define:
-**	(undefined)	EXACT: This is the default - uses the 'exact size' integer types (int8_t, etc)
-**				This is the recommended option as it ensures consistent overflow behavior on ints.
-**				Unfortunately, certain platforms do not have these types, so the others can also be of use.
-**	_least		LEAST: Uses the smallest available integer type with at least 'n' bits (int_least8_t, etc)
-**	_fast		FAST: Uses the fastest available integer type with at least 'n' bits (int_fast8_t, etc)
-*/
-//#define LIBCONFIG_INTEGER_TYPES _least // uncomment this line to use LEAST int types
-//#define LIBCONFIG_INTEGER_TYPES _fast  // uncomment this line to use FAST int types
-
-
-
-//! Defines which type/bit size the 't_uint' type will be
-/*!
-**	This macro sets the default 't_uint' default unsigned integer type to use.
-**	There are 3 possible values for this #define:
-**	8	for 8-bit uint	[0, 255]
-**	16	for 16-bit uint	[0, 65535]
-**	32	for 32-bit uint	[0, 2147483647]
-**	64	for 64-bit uint	[0, 18446744073709551615]
-*/
-#define LIBCONFIG_BITSIZE_UINT	32
-
-//! Defines which type/bit size the 't_int' type will be
-/*!
-**	This macro sets the default 't_int' default signed integer type to use:
-**	8	for 8-bit int	[-128, 127]
-**	16	for 16-bit int	[-32648, 32647]
-**	32	for 32-bit int	[-2147483648, 2147483647]
-**	64	for 64-bit int	[-9223372036854775808, +9223372036854775807]
-*/
-#define LIBCONFIG_BITSIZE_INT	32
-
-//! Defines which type/bit size the 't_float' type will be
-/*!
-**	The following macro sets what the 't_float' default floating-point type should be.
-**	32	for 32-bit IEEE 754 standard precision floating-point number
-**	64	for 64-bit IEEE 754 double-precision floating-point number
-**	80	for 80-bit x86 extended-precision floating-point number (not available on clang; will default to 128)
-**	128	for 128-bit IEEE 754 quadruple-precision floating-point number (GNU GCC 4.3 and up)
-*/
-#define LIBCONFIG_BITSIZE_FLOAT	32
-
-
 
 /*
 ** ************************************************************************** *|

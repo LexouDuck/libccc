@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_INT_H
 #define __LIBCCC_INT_H
 /*! @file libccc/int.h
-**	This header defines all the common functions for manipulating integer types.
+**	This header defines the integer number primitive types and functions.
 **	@addtogroup libccc/int
 **	@{
 */
@@ -45,6 +45,22 @@ HEADER_CPP
 **                                 Definitions                                *|
 ** ************************************************************************** *|
 */
+
+#if LIBCONFIG_BITS_UINT != 8 && \
+	LIBCONFIG_BITS_UINT != 16 && \
+	LIBCONFIG_BITS_UINT != 32 && \
+	LIBCONFIG_BITS_UINT != 64
+	#error "LIBCONFIG_BITS_UINT must be equal to one of: 8, 16, 32, 64"
+#endif
+
+#if LIBCONFIG_BITS_INT != 8 && \
+	LIBCONFIG_BITS_INT != 16 && \
+	LIBCONFIG_BITS_INT != 32 && \
+	LIBCONFIG_BITS_INT != 64
+	#error "LIBCONFIG_BITS_INT must be equal to one of: 8, 16, 32, 64"
+#endif
+
+
 
 #ifndef LIBCONFIG_INTEGER_TYPES
 
@@ -86,8 +102,6 @@ HEADER_CPP
 
 #endif
 
-
-
 /*
 **	Define wrapper types for all the primitive number types in a clear naming
 **	convention, to better reflect the amount of bits used by each type.
@@ -108,33 +122,9 @@ typedef STDINT( int, 16)	t_s16;	//!< The type for 16-bit signed integers
 typedef STDINT( int, 32)	t_s32;	//!< The type for 32-bit signed integers
 typedef	STDINT( int, 64)	t_s64;	//!< The type for 64-bit signed integers
 
+typedef LIBCONFIG_TYPE_UINT		t_uint;
 
-
-#if LIBCONFIG_BITSIZE_UINT == 8
-typedef t_u8		t_uint;
-#endif
-#if LIBCONFIG_BITSIZE_UINT == 16
-typedef t_u16		t_uint;
-#endif
-#if LIBCONFIG_BITSIZE_UINT == 32
-typedef t_u32		t_uint;
-#endif
-#if LIBCONFIG_BITSIZE_UINT == 64
-typedef t_u64		t_uint;
-#endif
-
-#if LIBCONFIG_BITSIZE_INT == 8
-typedef t_s8		t_int;
-#endif
-#if LIBCONFIG_BITSIZE_INT == 16
-typedef t_s16		t_int;
-#endif
-#if LIBCONFIG_BITSIZE_INT == 32
-typedef t_s32		t_int;
-#endif
-#if LIBCONFIG_BITSIZE_INT == 64
-typedef t_s64		t_int;
-#endif
+typedef LIBCONFIG_TYPE_INT		t_int;
 
 
 
