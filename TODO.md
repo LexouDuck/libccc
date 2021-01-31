@@ -3,7 +3,6 @@
 
 - TODO: eorganize the ./hdr/ header folder to have subfolders and better organized/more split-up files:
 ```c
-#include <libccc/convert.h> // REMOVE this file, split it up into several 'type' headers: int.h, float.h, etc
 #include <libccc.h>
 #include <libccc/int.h>
 #include <libccc/fixed.h>	// TODO fixed-point arithmetic (with macros, such that you can choose where the decimal point is)
@@ -40,7 +39,7 @@
 #include <libccc/math/vlq.h>	// TODO all: variable-length-quantites (VLQ) arbitrary-precision math
 #include <libccc/math/stat.h>
 #include <libccc/math/algebra.h>// TODO add 's_tensor' type
-#include <libccc/math/complex.h>
+#include <libccc/math/complex.h>// TODO add 's_quaternion' type
 ```
 - TODO: reorganize test suite to reflect new header file folder tree + add empty files for tests
 - TODO: add option #define LIBCONFIG_PRINT_ENCODING	(ANSI,ASCII,UTF8) which changes printf behavior ?
