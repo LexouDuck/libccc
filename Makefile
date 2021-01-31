@@ -75,204 +75,140 @@ RESET = "\033[0m"
 
 
 
-DIR_MEMORY = memory/
-SRC_MEMORY = \
-	memalloc.c		\
-	memnew.c		\
-	memfree.c		\
-	memdel.c		\
-	memset.c		\
-	memcpy.c		\
-	memdup.c		\
-	memmove.c		\
-	memcmp.c		\
-	memchr.c		\
-	memswap.c		\
-	memrep.c		\
-	getbits.c		\
-	ptrarrnew.c		\
-	ptrarrlen.c		\
-
-DIR_CHAR = char/
-SRC_CHAR = \
-	isalpha.c		\
-	isdigit.c		\
-	isprint.c		\
-	to.c			\
-
-DIR_STRING = string/
-SRC_STRING = \
-	strnew.c		\
-	strset.c		\
-	strclr.c		\
-	strdel.c		\
-	strdup.c		\
-	strcpy.c		\
-	strcat.c		\
-	strlen.c		\
-	strcmp.c		\
-	strequ.c		\
-	strhas.c		\
-	strcount.c		\
-	strchr.c		\
-	strstr.c		\
-	strremove.c		\
-	strtrim.c		\
-	strpad.c		\
-	strrev.c		\
-	strjoin.c		\
-	strinsert.c		\
-	strsub.c		\
-	strformat.c		\
-	striter.c		\
-	strmap.c		\
-	strrep.c		\
-	strmerge.c		\
-	strprint.c		\
-
-
-DIR_STRINGARRAY = stringarray/
-SRC_STRINGARRAY = \
-	strsplit_char.c		\
-	strsplit_charset.c	\
-	strsplit_str.c		\
-	strdivide.c			\
-	strarrnew.c			\
-	strarrcnew.c		\
-	strarrdel.c			\
-	strarrmap.c			\
-	strarrsub.c			\
-	strarrpad_l.c		\
-	strarrfold.c		\
-	strarrjoin.c		\
-	strarrlen.c			\
-	strarrcount.c		\
-	strarrmerge.c		\
-
-
-DIR_CONVERT = convert/
-SRC_CONVERT = \
-	int_to_str.c		\
-	int_to_strbase.c	\
-	int_to_strhex.c		\
-	size_to_str.c		\
-	bool_to_str.c		\
-	float_to_str.c		\
-	str_to_int.c		\
-	strbase_to_int.c	\
-	strhex_to_int.c		\
-	str_to_size.c		\
-	str_to_bool.c		\
-	str_to_float.c		\
-
-DIR_IO	 = io/
-SRC_IO	 = \
-	output.c		\
-	write.c			\
-	read.c			\
-	getnextline.c	\
-
-DIR_TIME = time/
-SRC_TIME = \
-	time.c			\
-	date.c			\
-	date_format.c	\
-	date_parse.c	\
-	strings.c		\
-
-DIR_RANDOM = random/
-SRC_RANDOM = \
-	random.c			\
-
-DIR_COLOR = color/
-SRC_COLOR = \
-	color_argb_get.c	\
-	color_argb_set.c	\
-	color_argb_to.c		\
-	color_nearest.c		\
-	color_convert.c		\
-
-DIR_MATH = math/
-SRC_MATH = \
-	math.c				\
-	pow.c				\
-	root.c				\
-	exp.c				\
-	log.c				\
-	trig.c				\
-	trig_h.c			\
-
-DIR_ALGEBRA = algebra/
-SRC_ALGEBRA = \
-	calculus.c				\
-	vector_new.c			\
-	vector_equ.c			\
-	vector_scale.c			\
-	vector_invert.c			\
-	vector_norm.c			\
-	vector_normalize.c		\
-	vector_add.c			\
-	vector_dot.c			\
-	vector_cross.c			\
-	matrix_new.c			\
-	matrix_equ.c			\
-	matrix_apply.c			\
-	matrix_determinant.c	\
-	matrix_inverse.c		\
-	matrix_transpose.c		\
-	matrix_multiply.c		\
-
-DIR_COMPLEX = complex/
-SRC_COMPLEX = \
-	complex_new.c		\
-	complex_equ.c		\
-	complex_abs.c		\
-	complex_conj.c		\
-	complex_add.c		\
-	complex_sub.c		\
-	complex_mul.c		\
-	complex_div.c		\
-
-DIR_STAT = stat/
-SRC_STAT = \
-	stat_int.c			\
-	stat_float.c		\
-
-DIR_VLQ	 = vlq/
-SRC_VLQ	 = \
-
-DIR_LIST = list/
-SRC_LIST = \
-	lstnew.c			\
-	lstadd.c			\
-	lstcpy.c			\
-	lstdel.c			\
-	lstsize.c			\
-	lstget.c			\
-	lstsub.c			\
-	lstiter.c			\
-	lstmap.c			\
-	lst_to.c			\
-
-
-
 # List of all source code files
 SRCS = \
-	$(addprefix $(DIR_MEMORY),		$(SRC_MEMORY)		) \
-	$(addprefix $(DIR_CHAR),		$(SRC_CHAR)			) \
-	$(addprefix $(DIR_STRING),		$(SRC_STRING)		) \
-	$(addprefix $(DIR_STRINGARRAY),	$(SRC_STRINGARRAY)	) \
-	$(addprefix $(DIR_CONVERT),		$(SRC_CONVERT)		) \
-	$(addprefix $(DIR_IO),			$(SRC_IO)			) \
-	$(addprefix $(DIR_TIME),		$(SRC_TIME)			) \
-	$(addprefix $(DIR_RANDOM),		$(SRC_RANDOM)		) \
-	$(addprefix $(DIR_COLOR),		$(SRC_COLOR)		) \
-	$(addprefix $(DIR_MATH),		$(SRC_MATH)			) \
-	$(addprefix $(DIR_ALGEBRA),		$(SRC_ALGEBRA)		) \
-	$(addprefix $(DIR_COMPLEX),		$(SRC_COMPLEX)		) \
-	$(addprefix $(DIR_STAT),		$(SRC_STAT)			) \
-	$(addprefix $(DIR_VLQ),			$(SRC_VLQ)			) \
-	$(addprefix $(DIR_LIST),		$(SRC_LIST)			) \
+	char/isalpha.c	\
+	char/isdigit.c	\
+	char/isprint.c	\
+	char/to.c		\
+	bool/bool_to_str.c	\
+	bool/str_to_bool.c	\
+	int/int_to_str.c		\
+	int/int_to_strbase.c	\
+	int/int_to_strhex.c		\
+	int/str_to_int.c		\
+	int/strbase_to_int.c	\
+	int/strhex_to_int.c		\
+	pointer/size_to_str.c	\
+	pointer/str_to_size.c	\
+	float/float_to_str.c		\
+	float/str_to_float.c		\
+	memory/memalloc.c		\
+	memory/memnew.c			\
+	memory/memfree.c		\
+	memory/memdel.c			\
+	memory/memset.c			\
+	memory/memcpy.c			\
+	memory/memdup.c			\
+	memory/memmove.c		\
+	memory/memcmp.c			\
+	memory/memchr.c			\
+	memory/memswap.c		\
+	memory/memrep.c			\
+	memory/getbits.c		\
+	string/strnew.c		\
+	string/strset.c		\
+	string/strclr.c		\
+	string/strdel.c		\
+	string/strdup.c		\
+	string/strcpy.c		\
+	string/strcat.c		\
+	string/strlen.c		\
+	string/strcmp.c		\
+	string/strequ.c		\
+	string/strhas.c		\
+	string/strcount.c	\
+	string/strchr.c		\
+	string/strstr.c		\
+	string/strremove.c	\
+	string/strtrim.c	\
+	string/strpad.c		\
+	string/strrev.c		\
+	string/strjoin.c	\
+	string/strinsert.c	\
+	string/strsub.c		\
+	string/strformat.c	\
+	string/striter.c	\
+	string/strmap.c		\
+	string/strrep.c		\
+	string/strmerge.c	\
+	string/strprint.c	\
+	color/color_argb_get.c	\
+	color/color_argb_set.c	\
+	color/color_argb_to.c	\
+	color/color_nearest.c	\
+	color/color_convert.c	\
+	sys/io/output.c				\
+	sys/io/write.c				\
+	sys/io/read.c				\
+	sys/io/getnextline.c		\
+	sys/time/time.c			\
+	sys/time/date.c			\
+	sys/time/date_format.c	\
+	sys/time/date_parse.c	\
+	sys/time/strings.c		\
+	array/pointerarray/ptrarrnew.c		\
+	array/pointerarray/ptrarrlen.c		\
+	array/stringarray/strsplit_char.c		\
+	array/stringarray/strsplit_charset.c	\
+	array/stringarray/strsplit_str.c		\
+	array/stringarray/strdivide.c			\
+	array/stringarray/strarrnew.c			\
+	array/stringarray/strarrcnew.c			\
+	array/stringarray/strarrdel.c			\
+	array/stringarray/strarrmap.c			\
+	array/stringarray/strarrsub.c			\
+	array/stringarray/strarrpad_l.c			\
+	array/stringarray/strarrfold.c			\
+	array/stringarray/strarrjoin.c			\
+	array/stringarray/strarrlen.c			\
+	array/stringarray/strarrcount.c			\
+	array/stringarray/strarrmerge.c			\
+	array/list/lstnew.c		\
+	array/list/lstadd.c		\
+	array/list/lstcpy.c		\
+	array/list/lstdel.c		\
+	array/list/lstsize.c	\
+	array/list/lstget.c		\
+	array/list/lstsub.c		\
+	array/list/lstiter.c	\
+	array/list/lstmap.c		\
+	array/list/lst_to.c		\
+	math/math.c		\
+	math/pow.c		\
+	math/root.c		\
+	math/exp.c		\
+	math/log.c		\
+	math/trig.c		\
+	math/trig_h.c	\
+	math/random/random.c	\
+	math/algebra/calculus.c				\
+	math/algebra/vector_new.c			\
+	math/algebra/vector_equ.c			\
+	math/algebra/vector_scale.c			\
+	math/algebra/vector_invert.c		\
+	math/algebra/vector_norm.c			\
+	math/algebra/vector_normalize.c		\
+	math/algebra/vector_add.c			\
+	math/algebra/vector_dot.c			\
+	math/algebra/vector_cross.c			\
+	math/algebra/matrix_new.c			\
+	math/algebra/matrix_equ.c			\
+	math/algebra/matrix_apply.c			\
+	math/algebra/matrix_determinant.c	\
+	math/algebra/matrix_inverse.c		\
+	math/algebra/matrix_transpose.c		\
+	math/algebra/matrix_multiply.c		\
+	math/complex/complex_new.c		\
+	math/complex/complex_equ.c		\
+	math/complex/complex_abs.c		\
+	math/complex/complex_conj.c		\
+	math/complex/complex_add.c		\
+	math/complex/complex_sub.c		\
+	math/complex/complex_mul.c		\
+	math/complex/complex_div.c		\
+	math/stat/stat_int.c	\
+	math/stat/stat_float.c	\
 
 # define object files list (.o) from source list
 OBJS = ${SRCS:%.c=$(OBJDIR)%.o}

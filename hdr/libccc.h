@@ -40,6 +40,8 @@
 ** ************************************************************************** *|
 */
 
+#include "libccc_config.h"
+
 #include "libccc/int.h"
 #include "libccc/float.h"
 //#include "libccc/fixed.h" TODO
