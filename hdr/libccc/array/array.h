@@ -25,6 +25,8 @@
 
 #include "libccc.h"
 
+typedef struct s_list_	s_list;
+
 HEADER_CPP
 
 /*

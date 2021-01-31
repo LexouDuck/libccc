@@ -5,10 +5,10 @@
 */
 #include <unistd.h>
 
-#include "libccc_memory.h"
-#include "libccc_string.h"
-#include "libccc_stringarray.h"
-#include "libccc_io.h"
+#include "libccc/memory.h"
+#include "libccc/string.h"
+#include "libccc/array/stringarray.h"
+#include "libccc/sys/io.h"
 
 
 static t_bool	c_readfile_error(int result, char* *a_file)

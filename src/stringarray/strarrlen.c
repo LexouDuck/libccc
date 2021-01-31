@@ -1,5 +1,5 @@
 
-#include "libccc_stringarray.h"
+#include "libccc/array/stringarray.h"
 
 
 

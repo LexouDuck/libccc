@@ -1,5 +1,5 @@
 
-#include "libccc_math.h"
+#include "libccc/math/math.h"
 
 
 
@@ -22,16 +22,16 @@ t_float		c_exp(t_float x)
 	u_float_cast result = { x };
 
 	result.value_int = (1512775 * result.value_int + 1072632447);
-#ifdef _FLOAT_32_
+#if LIBCONFIG_BITSIZE_FLOAT == 32
 	result.value_int <<= 16;
 #endif
-#ifdef _FLOAT_64_
+#if LIBCONFIG_BITSIZE_FLOAT == 64
 	result.value_int <<= 32;
 #endif
-#ifdef _FLOAT_80_
+#if LIBCONFIG_BITSIZE_FLOAT == 80
 	result.value_int <<= 40;
 #endif
-#ifdef _FLOAT_128_
+#if LIBCONFIG_BITSIZE_FLOAT == 128
 	result.value_int <<= 64;
 #endif
 	return (result.value_float);

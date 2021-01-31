@@ -1,7 +1,7 @@
 
-#include "libccc_math.h"
-#include "libccc_random.h"
-#include "libccc_algebra.h"
+#include "libccc/math/math.h"
+#include "libccc/math/random.h"
+#include "libccc/math/algebra.h"
 
 
 

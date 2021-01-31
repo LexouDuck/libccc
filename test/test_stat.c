@@ -1,9 +1,9 @@
 
 #include <math.h>
 
-#include "libccc_io.h"
-#include "libccc_stat.h"
-#include "libccc_random.h"
+#include "libccc/sys/io.h"
+#include "libccc/math/stat.h"
+#include "libccc/math/random.h"
 
 #include "test.h"
 

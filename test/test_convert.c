@@ -1,7 +1,7 @@
 
-#include "libccc_io.h"
-#include "libccc_math.h"
-#include "libccc_convert.h"
+#include "libccc.h"
+#include "libccc/sys/io.h"
+#include "libccc/math/math.h"
 
 #include "test.h"
 

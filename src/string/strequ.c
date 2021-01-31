@@ -1,6 +1,6 @@
 
-#include "libccc_char.h"
-#include "libccc_string.h"
+#include "libccc/char.h"
+#include "libccc/string.h"
 
 
 

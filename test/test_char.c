@@ -1,7 +1,7 @@
 
 #include <ctype.h>
 
-#include "libccc_char.h"
+#include "libccc/char.h"
 
 #include "test.h"
 

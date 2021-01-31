@@ -88,8 +88,8 @@ HEADER_CPP
 **	_least		LEAST: Uses the smallest available integer type with at least 'n' bits (int_least8_t, etc)
 **	_fast		FAST: Uses the fastest available integer type with at least 'n' bits (int_fast8_t, etc)
 */
-//#define LIBCONFIG_INTEGER_TYPES	_least	// uncomment this line to use LEAST int types
-//#define LIBCONFIG_INTEGER_TYPES	_fast	// uncomment this line to use FAST int types
+//#define LIBCONFIG_INTEGER_TYPES _least // uncomment this line to use LEAST int types
+//#define LIBCONFIG_INTEGER_TYPES _fast  // uncomment this line to use FAST int types
 
 
 
@@ -180,7 +180,9 @@ HEADER_CPP
 /*
 **	Currently, the types that work with this 'foreach' keyword are: s_array, s_list, s_dict
 **	Here are some more details on how to use this macro:
-**	- s_array:	
+**	- s_array<char*>:	foreach (char*, str, s_array, array) { ... }
+**	- s_list<char*>:	foreach (char*, str, s_list,  list)  { ... }
+**	- s_dict<char*>:	foreach (char*, str, s_dict,  dict)  { ... }
 */
 #define foreach(VARIABLE_TYPE, VARIABLE, ITERABLE_TYPE, ITERABLE) \
 	foreach_##ITERABLE_TYPE##_init(VARIABLE_TYPE, VARIABLE, ITERABLE)			\

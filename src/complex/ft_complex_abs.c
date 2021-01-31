@@ -1,6 +1,6 @@
 
-#include "libccc_complex.h"
-#include "libccc_math.h"
+#include "libccc/math/complex.h"
+#include "libccc/math/math.h"
 
 
 

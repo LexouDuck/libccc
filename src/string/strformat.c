@@ -11,8 +11,8 @@
 */
 #include <stdarg.h>
 
-#include "libccc_memory.h"
-#include "libccc_string.h"
+#include "libccc/memory.h"
+#include "libccc/string.h"
 
 
 

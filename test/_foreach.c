@@ -1,9 +1,10 @@
 
 // this is a small independent file (not part of the libccc test suite)
 
-#include <libccc_string.h>
-#include <libccc_list.h>
-#include <libccc_io.h>
+#include <libccc.h>
+#include <libccc/string.h>
+#include <libccc/array/list.h>
+#include <libccc/sys/io.h>
 
 #include <stdio.h>
 

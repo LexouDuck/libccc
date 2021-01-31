@@ -1,6 +1,6 @@
 
-#include "libccc_memory.h"
-#include "libccc_string.h"
+#include "libccc/memory.h"
+#include "libccc/string.h"
 
 
 char*		String_Join(char const* str1, char const* str2)

@@ -1,6 +1,6 @@
 
-#include "libccc_algebra.h"
-#include "libccc_memory.h"
+#include "libccc/math/algebra.h"
+#include "libccc/memory.h"
 
 
 

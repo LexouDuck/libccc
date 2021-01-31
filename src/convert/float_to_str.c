@@ -1,8 +1,8 @@
 
-#include "libccc_memory.h"
-#include "libccc_string.h"
-#include "libccc_math.h"
-#include "libccc_convert.h"
+#include "libccc/float.h"
+#include "libccc/memory.h"
+#include "libccc/string.h"
+#include "libccc/math/math.h"
 
 
 
@@ -44,7 +44,7 @@ DEFINEFUNC_CONVERT_FLOAT_TO_STRHEX(128, "%#lla")
 
 
 
-t_bool		Convert_Float_To_String_CheckSpecial(t_f32 number, char **result)
+int		Convert_Float_To_String_CheckSpecial(t_f32 number, char **result)
 {
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (result == NULL)

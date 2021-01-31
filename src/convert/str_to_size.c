@@ -1,6 +1,6 @@
 
-#include "libccc_char.h"
-#include "libccc_convert.h"
+#include "libccc/pointer.h"
+#include "libccc/char.h"
 
 
 

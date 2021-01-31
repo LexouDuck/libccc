@@ -2,7 +2,7 @@
 #include <ctype.h>
 #include <string.h>
 
-#include "libccc_string.h"
+#include "libccc/string.h"
 
 #include "test.h"
 

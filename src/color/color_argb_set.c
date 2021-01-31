@@ -1,6 +1,6 @@
 
-#include "libccc_color.h"
-#include "libccc_math.h"
+#include "libccc/color.h"
+#include "libccc/math/math.h"
 
 
 

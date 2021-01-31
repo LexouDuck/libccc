@@ -25,7 +25,7 @@
 */
 
 #include "libccc.h"
-#include "libccc_math.h"
+#include "libccc/math/math.h"
 
 HEADER_CPP
 

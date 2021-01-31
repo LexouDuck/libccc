@@ -8,7 +8,7 @@
 #include <time.h>
 #include <math.h>
 
-#include "libccc_math.h"
+#include "libccc/math/math.h"
 
 #include "test.h"
 
@@ -443,16 +443,16 @@ DEFINE_TESTFUNCTION_INT(t_size, size, u)
 #define F80_PRECISION_FORMAT	"%.16A"
 #define F128_PRECISION_FORMAT	"%.28A"
 
-#ifdef _FLOAT_32_
+#if LIBCONFIG_BITSIZE_FLOAT == 32
 	#define FLOAT_PRECISION_FORMAT		F32_PRECISION_FORMAT
 #endif
-#ifdef _FLOAT_64_
+#if LIBCONFIG_BITSIZE_FLOAT == 64
 	#define FLOAT_PRECISION_FORMAT		F64_PRECISION_FORMAT
 #endif
-#ifdef _FLOAT_80_
+#if LIBCONFIG_BITSIZE_FLOAT == 80
 	#define FLOAT_PRECISION_FORMAT		F80_PRECISION_FORMAT
 #endif
-#ifdef _FLOAT_128_
+#if LIBCONFIG_BITSIZE_FLOAT == 128
 	#define FLOAT_PRECISION_FORMAT		F128_PRECISION_FORMAT
 #endif
 

@@ -1,7 +1,7 @@
 
-#include "libccc_memory.h"
-#include "libccc_char.h"
-#include "libccc_string.h"
+#include "libccc/memory.h"
+#include "libccc/char.h"
+#include "libccc/string.h"
 
 
 

@@ -1,6 +1,6 @@
 
-#include "libccc_complex.h"
-#include "libccc_memory.h"
+#include "libccc/math/complex.h"
+#include "libccc/memory.h"
 
 
 

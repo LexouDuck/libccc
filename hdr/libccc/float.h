@@ -33,8 +33,6 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-
-
 //! The type for 32-bit 'single precision' IEEE-754 floating-point numbers
 typedef float		t_f32;
 //! The type for 64-bit 'double precision' IEEE-754 floating-point numbers
@@ -56,18 +54,20 @@ typedef __float128	t_f128;
 
 
 
-#ifdef _FLOAT_32_
+#if LIBCONFIG_BITSIZE_FLOAT == 32
 typedef t_f32		t_float;
 #endif
-#ifdef _FLOAT_64_
+#if LIBCONFIG_BITSIZE_FLOAT == 64
 typedef t_f64		t_float;
 #endif
-#ifdef _FLOAT_80_
+#if LIBCONFIG_BITSIZE_FLOAT == 80
 typedef t_f80		t_float;
 #endif
-#ifdef _FLOAT_128_
+#if LIBCONFIG_BITSIZE_FLOAT == 128
 typedef t_f128		t_float;
 #endif
+
+
 
 /*!
 **	This very small float is typically used to compare two float values.
@@ -101,27 +101,6 @@ typedef t_f128		t_float;
 #endif
 
 
-
-/*!
-**	This union type is used in several math function implementations,
-**	to manipulate float bits directly with bitwise operators.
-*/
-typedef union	u_float_cast_
-{
-	t_float		value_float;
-#ifdef _FLOAT_32_
-	t_s32		value_int;
-#endif
-#ifdef _FLOAT_64_
-	t_s64		value_int;
-#endif
-#ifdef _FLOAT_80_
-	t_s64[2]	value_int;
-#endif
-#ifdef _FLOAT_128_
-	t_s64[2]	value_int;
-#endif
-}				u_float_cast;
 
 /*
 **	IEEE 754 32-bit floating point "single" precision bitwise macros
@@ -185,7 +164,7 @@ typedef union	u_float_cast_
 **	macros defined below, rather than the 'F32_' or 'F64_' macros above.
 */
 
-#ifdef _FLOAT_32_
+#if LIBCONFIG_BITSIZE_FLOAT == 32
 	#define FLOAT_SIGNED			F32_SIGNED
 	#define FLOAT_EXPONENT_BIAS		F32_EXPONENT_BIAS
 	#define FLOAT_EXPONENT			F32_EXPONENT
@@ -197,7 +176,7 @@ typedef union	u_float_cast_
 	#define FLOAT_INIT_VALUE		F32_INIT_VALUE
 #endif
 
-#ifdef _FLOAT_64_
+#if LIBCONFIG_BITSIZE_FLOAT == 64
 	#define FLOAT_SIGNED			F64_SIGNED
 	#define FLOAT_EXPONENT_BIAS		F64_EXPONENT_BIAS
 	#define FLOAT_EXPONENT			F64_EXPONENT
@@ -209,7 +188,7 @@ typedef union	u_float_cast_
 	#define FLOAT_INIT_VALUE		F64_INIT_VALUE
 #endif
 
-#ifdef _FLOAT_80_
+#if LIBCONFIG_BITSIZE_FLOAT == 80
 	#define FLOAT_SIGNED			F80_SIGNED
 	#define FLOAT_EXPONENT_BIAS		F80_EXPONENT_BIAS
 	#define FLOAT_EXPONENT			F80_EXPONENT
@@ -221,7 +200,7 @@ typedef union	u_float_cast_
 	#define FLOAT_INIT_VALUE		F80_INIT_VALUE
 #endif
 
-#ifdef _FLOAT_128_
+#if LIBCONFIG_BITSIZE_FLOAT == 128
 	#define FLOAT_SIGNED			F128_SIGNED
 	#define FLOAT_EXPONENT_BIAS		F128_EXPONENT_BIAS
 	#define FLOAT_EXPONENT			F128_EXPONENT
@@ -235,15 +214,38 @@ typedef union	u_float_cast_
 
 
 
+/*!
+**	This union type is used in several math function implementations,
+**	to manipulate float bits directly with bitwise operators.
+*/
+typedef union	u_float_cast_
+{
+	t_float		value_float;
+#if LIBCONFIG_BITSIZE_FLOAT == 32
+	t_s32		value_int;
+#endif
+#if LIBCONFIG_BITSIZE_FLOAT == 64
+	t_s64		value_int;
+#endif
+#if LIBCONFIG_BITSIZE_FLOAT == 80
+	t_s64[2]	value_int;
+#endif
+#if LIBCONFIG_BITSIZE_FLOAT == 128
+	t_s64[2]	value_int;
+#endif
+}				u_float_cast;
+
+
+
 /*
 ** ************************************************************************** *|
 **                         Floating Point Conversions                         *|
 ** ************************************************************************** *|
 */
 
-//! Returns TRUE if the given 'number' is NaN or +/- infinity
-t_bool									Convert_Float_To_String_CheckSpecial(t_f32 number, char* *a_result);
-#define c_float_to_str_checkspecial		Convert_Float_To_String_CheckSpecial
+//! Returns 1 if the given 'number' is either NaN, or +/- infinity
+int									Convert_Float_To_String_CheckSpecial(t_f32 number, char* *a_result);
+#define c_float_to_str_checkspecial	Convert_Float_To_String_CheckSpecial
 
 //! Get the string decimal representation of a 32-bit floating-point number
 /*

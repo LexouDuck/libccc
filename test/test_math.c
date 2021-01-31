@@ -2,10 +2,10 @@
 #include <math.h>
 #include <time.h>
 
-#include "libccc_io.h"
-#include "libccc_math.h"
-#include "libccc_algebra.h"
-#include "libccc_stat.h"
+#include "libccc/sys/io.h"
+#include "libccc/math/math.h"
+#include "libccc/math/algebra.h"
+#include "libccc/math/stat.h"
 
 #include "test.h"
 
@@ -16,16 +16,16 @@ void	print_math_foreword(void)
 	if (g_test.flags.verbose)
 	{
 		printf("\n\n"C_BLUE"Floating-point (%d-bit %s precision) math functions"C_RESET"\n\n",
-#ifdef _FLOAT_32_
+#if LIBCONFIG_BITSIZE_FLOAT == 32
 			32, "IEEE single");
 #endif
-#ifdef _FLOAT_64_
+#if LIBCONFIG_BITSIZE_FLOAT == 64
 			64, "IEEE double");
 #endif
-#ifdef _FLOAT_80_
+#if LIBCONFIG_BITSIZE_FLOAT == 80
 			80, "x86 extended");
 #endif
-#ifdef _FLOAT_128_
+#if LIBCONFIG_BITSIZE_FLOAT == 128
 			128, "IEEE quadruple");
 #endif
 	}
@@ -240,7 +240,7 @@ int		test_math_realoperator_libc(
 }
 
 //	#define _f(x)	f(x)
-#ifdef _FLOAT_32_
+#if LIBCONFIG_BITSIZE_FLOAT == 32
 	#define _getexp		ilogbf
 	#define _fabs		fabsf
 	#define _fmod		fmodf
@@ -270,7 +270,7 @@ int		test_math_realoperator_libc(
 	#define _atanh		atanhf
 #endif
 
-#ifdef _FLOAT_64_
+#if LIBCONFIG_BITSIZE_FLOAT == 64
 	#define _getexp		ilogb
 	#define _fabs		fabs
 	#define _fmod		fmod
@@ -300,7 +300,7 @@ int		test_math_realoperator_libc(
 	#define _atanh		atanh
 #endif
 
-#ifdef _FLOAT_80_
+#if LIBCONFIG_BITSIZE_FLOAT == 80
 	#define _getexp		ilogbl
 	#define _fabs		fabsl
 	#define _fmod		fmodl
@@ -330,7 +330,7 @@ int		test_math_realoperator_libc(
 	#define _atanh		atanhl
 #endif
 
-#ifdef _FLOAT_128_
+#if LIBCONFIG_BITSIZE_FLOAT == 128
 	#define _getexp		ilogbq
 	#define _fabs		fabsq
 	#define _fmod		fmodq

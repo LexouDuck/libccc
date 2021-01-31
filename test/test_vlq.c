@@ -1,5 +1,5 @@
 
-#include "libccc_vlq.h"
+#include "libccc/math/vlq.h"
 
 #include "test.h"
 

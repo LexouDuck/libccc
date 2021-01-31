@@ -1,7 +1,7 @@
 
-#include "libccc_memory.h"
-#include "libccc_math.h"
-#include "libccc_stat.h"
+#include "libccc/memory.h"
+#include "libccc/math/math.h"
+#include "libccc/math/stat.h"
 
 
 

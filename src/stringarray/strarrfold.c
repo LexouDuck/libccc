@@ -1,6 +1,6 @@
 
-#include "libccc_string.h"
-#include "libccc_stringarray.h"
+#include "libccc/string.h"
+#include "libccc/array/stringarray.h"
 
 
 static void	StringArray_GetWordAndCharCount(char const** strarr, int* w_nb, int* c_nb)

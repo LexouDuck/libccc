@@ -11,8 +11,8 @@
 */
 #include <stdarg.h>
 
-#include "libccc_io.h"
-#include "libccc_string.h"
+#include "libccc/sys/io.h"
+#include "libccc/string.h"
 
 
 

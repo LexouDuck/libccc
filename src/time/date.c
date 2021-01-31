@@ -8,9 +8,9 @@
 */
 #include <time.h>
 
-#include "libccc_time.h"
-#include "libccc_memory.h"
-#include "libccc_string.h"
+#include "libccc/sys/time.h"
+#include "libccc/memory.h"
+#include "libccc/string.h"
 
 
 

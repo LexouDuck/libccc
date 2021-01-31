@@ -36,7 +36,7 @@
 */
 #include <stdint.h>
 
-#include "libccc.h"
+#include "libccc_config.h"
 
 HEADER_CPP
 

@@ -1,5 +1,6 @@
 
-#include "libccc_list.h"
+#include "libccc/array/array.h"
+#include "libccc/array/list.h"
 
 #include "test.h"
 

@@ -1,7 +1,7 @@
 
 #include <time.h>
 
-#include "libccc_random.h"
+#include "libccc/math/random.h"
 
 
 

@@ -1,5 +1,5 @@
 
-#include "libccc_memory.h"
+#include "libccc/memory.h"
 
 int			c_memswap(void *ptr1, void *ptr2, t_size size)
 {

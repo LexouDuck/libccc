@@ -17,8 +17,8 @@
 #include <signal.h>
 
 #include "libccc.h"
-#include "libccc_list.h"
-#include "libccc_stat.h"
+#include "libccc/array/list.h"
+#include "libccc/math/stat.h"
 
 
 

@@ -1,5 +1,5 @@
 
-#include "libccc_algebra.h"
+#include "libccc/math/algebra.h"
 
 
 

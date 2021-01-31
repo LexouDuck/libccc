@@ -25,6 +25,8 @@
 
 #include "libccc.h"
 
+typedef struct s_array_	s_array;
+
 HEADER_CPP
 
 /*

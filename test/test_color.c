@@ -1,5 +1,5 @@
 
-#include "libccc_color.h"
+#include "libccc/color.h"
 
 #include "test.h"
 
