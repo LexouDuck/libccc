@@ -1,6 +1,6 @@
 /*============================================================================*/
 /*                                            ______________________________  */
-/*  libccc_math.h                            |    __    __  ___      _____  | */
+/*  libccc/math.h                            |    __    __  ___      _____  | */
 /*                                           |   / /\  / /\/ . |\   /  __|\ | */
 /*  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | */
 /*                                           | /___/\/_/ /___-'\   \____/\  | */
@@ -11,9 +11,9 @@
 
 #ifndef __LIBCCC_MATH_H
 #define __LIBCCC_MATH_H
-/*! @file libccc_math.h
+/*! @file libccc/math.h
 **	This header defines the common standard math functions and macro defines.
-**	@addtogroup libccc_math
+**	@addtogroup libccc/math
 **	@{
 */
 
@@ -48,32 +48,6 @@ HEADER_CPP
 #ifndef MAX			//! Expands to the maximum value of 'x' and 'y'
 #define MAX(x, y)	((x) < (y) ? (y) : (x))
 #endif
-
-
-
-#ifndef INFINITY		//! Define the floating-point infinity value: use -INFINITY for negative inf
-#define INFINITY		(1. / 0.)
-#endif
-#ifndef IS_INFINITY		//! Checks if the given 'x' is either +INFINITY or -INFINITY
-#define IS_INFINITY(x)	((x) == INFINITY || (x) == -INFINITY)
-#endif
-
-#ifndef NAN				//! Define the floating-point "not a number" value.
-#define NAN				(0. / 0.)
-#endif
-#ifndef IS_NAN			//! Checks if the given 'x' has a "not a number" value.
-#define IS_NAN(x)		((x) != (x))
-#endif
-
-/*!
-**	This very small float is typically used to compare two float values.
-**	Floating point equality checks aren't the most dependable kind of operation,
-**	so it's often better to do (ABS(x - y) <= FLOAT_BIAS) to check for equality.
-*/
-#define FLOAT_BIAS		(1.0e-10)
-
-//	TODO document this
-#define SAMPLE_NB		(1024)
 
 
 
@@ -133,17 +107,17 @@ t_float						Math_Mod(t_float x, t_float y);
 
 //! Returns the value of 'x', rounded to the nearest integer
 t_float						Math_Round(t_float x);
-#define c_round			Math_Round
+#define c_round				Math_Round
 #define Math_FloatRound		Math_Round
 
 //! Returns the value of 'x', rounded towards 0
 t_float						Math_Truncate(t_float x);
-#define c_trunc			Math_Truncate
+#define c_trunc				Math_Truncate
 #define Math_FloatTrunc		Math_Truncate
 
 //! Returns the value of 'x', rounded to the superior integer
 t_float						Math_Floor(t_float x);
-#define c_floor			Math_Floor
+#define c_floor				Math_Floor
 #define Math_FloatFloor		Math_Floor
 
 //! Returns the value of 'x', rounded to the inferior integer
@@ -160,7 +134,7 @@ t_float						Math_Pow(t_float x, t_float y);
 
 //! Returns the value of 'x' to the power of 'n' (integer)
 t_float						Math_Pow_N(t_float x, t_int n);
-#define c_pow_n			Math_Pow_N
+#define c_pow_n				Math_Pow_N
 #define Math_Power_N		Math_Pow_N
 
 //! Returns the square root of 'x' (inverse of power of 2)
@@ -244,7 +218,7 @@ t_float								Math_ArcTan(t_float x);
 
 //! Returns the arc-tangent of ('y' / 'x'), used to find an angle
 t_float								Math_ArcTan2(t_float y, t_float x);
-#define c_atan2					Math_ArcTan2
+#define c_atan2						Math_ArcTan2
 #define Math_ArcTangent_YoverX		Math_ArcTan2
 
 
@@ -266,17 +240,17 @@ t_float								Math_TanH(t_float x);
 
 //! Returns the hyperbolic arc-cosine of 'x' (inverse of the cosh function)
 t_float								Math_InvCosH(t_float x);
-#define c_acosh					Math_InvCosH
+#define c_acosh						Math_InvCosH
 #define Math_InvCosine_Hyperbolic	Math_InvCosH
 
 //! Returns the hyperbolic arc-sine of 'x' (inverse of the sinh function)
 t_float								Math_InvSinH(t_float x);
-#define c_asinh					Math_InvSinH
+#define c_asinh						Math_InvSinH
 #define Math_InvSine_Hyperbolic		Math_InvSinH
 
 //! Returns the hyperbolic arc-tangent of 'x' (inverse of the tanh function)
 t_float								Math_InvTanH(t_float x);
-#define c_atanh					Math_InvTanH
+#define c_atanh						Math_InvTanH
 #define Math_InvTangent_Hyperbolic	Math_InvTanH
 
 
@@ -313,143 +287,6 @@ t_float								Math_InvTanH(t_float x);
 		#define MATH_DECL_REALOPERATOR(FT_NAME, NAME)		inline t_float c_##FT_NAME(t_float x, t_float y)	{ return (__builtin_##NAME##q(x, y)); }
 	#endif
 
-#endif
-
-/*
-** ************************************************************************** *|
-**                            Float Type Definitions                          *|
-** ************************************************************************** *|
-*/
-
-/*!
-**	This union type is used in several math function implementations,
-**	to manipulate float bits directly with bitwise operators.
-*/
-typedef union	u_float_cast_
-{
-	t_float		value_float;
-#ifdef _FLOAT_32_
-	t_s32		value_int;
-#endif
-#ifdef _FLOAT_64_
-	t_s64		value_int;
-#endif
-#ifdef _FLOAT_80_
-	t_s64[2]	value_int;
-#endif
-#ifdef _FLOAT_128_
-	t_s64[2]	value_int;
-#endif
-}				u_float_cast;
-
-/*
-**	IEEE 754 32-bit floating point "single" precision bitwise macros
-*/
-#define F32_SIGNED			(0x80000000)	//!< A 32-bit floating-point number's sign bit (bitmask)
-#define F32_EXPONENT_BIAS	(127)			//!< A 32-bit floating-point number's exponent bias offset
-#define F32_EXPONENT		(0x7F800000)	//!< A 32-bit floating-point number's exponent bit region (bitmask)
-#define F32_EXPONENT_ZERO	(0x3F800000)	//!< A 32-bit floating-point number's 0-exponent value, accounting for bias (bitmask)
-#define F32_EXPONENT_BITS	(8)				//!< A 32-bit floating-point number's amount of bits dedicated to the exponent
-#define F32_MANTISSA		(0x007FFFFF)	//!< A 32-bit floating-point number's mantissa bit region (bitmask)
-#define F32_MANTISSA_SIGNED	(0x807FFFFF)	//!< A 32-bit floating-point number's mantissa and sign bit regions (bitmask)
-#define F32_MANTISSA_BITS	(23)			//!< A 32-bit floating-point number's amount of bits dedicated to the mantissa
-#define F32_INIT_VALUE		(0x1.p-23)		//!< A 32-bit floating-point number's value if all bits are zero
-
-/*
-**	IEEE 754 64-bit floating point double-precision bitwise macros
-*/
-#define F64_SIGNED			(0x8000000000000000)	//!< A 64-bit floating-point number's sign bit (bitmask)
-#define F64_EXPONENT_BIAS	(1023)					//!< A 64-bit floating-point number's exponent bias offset
-#define F64_EXPONENT		(0x7FF0000000000000)	//!< A 64-bit floating-point number's exponent bit region (bitmask)
-#define F64_EXPONENT_ZERO	(0x3FF0000000000000)	//!< A 64-bit floating-point number's 0-exponent value, accounting for bias (bitmask)
-#define F64_EXPONENT_BITS	(11)					//!< A 64-bit floating-point number's amount of bits dedicated to the exponent
-#define F64_MANTISSA		(0x000FFFFFFFFFFFFF)	//!< A 64-bit floating-point number's mantissa bit region (bitmask)
-#define F64_MANTISSA_SIGNED	(0x800FFFFFFFFFFFFF)	//!< A 64-bit floating-point number's mantissa and sign bit regions (bitmask)
-#define F64_MANTISSA_BITS	(52)					//!< A 64-bit floating-point number's amount of bits dedicated to the mantissa
-#define F64_INIT_VALUE		(0x1.p-52)				//!< A 64-bit floating-point number's value if all bits are zero
-
-/*
-**	x86 80-bit floating point extended precision bitwise macros
-*/
-#define F80_SIGNED			(0x80000000000000000000L)	//!< A 80-bit floating-point number's sign bit (bitmask)
-#define F80_EXPONENT_BIAS	(16383)						//!< A 80-bit floating-point number's exponent bias offset
-#define F80_EXPONENT		(0x7FFF0000000000000000L)	//!< A 80-bit floating-point number's exponent bit region (bitmask)
-#define F80_EXPONENT_ZERO	(0x3FFF0000000000000000L)	//!< A 80-bit floating-point number's 0-exponent value, accounting for bias (bitmask)
-#define F80_EXPONENT_BITS	(15)						//!< A 80-bit floating-point number's amount of bits dedicated to the exponent
-#define F80_MANTISSA		(0x0000FFFFFFFFFFFFFFFFL)	//!< A 80-bit floating-point number's mantissa bit region (bitmask)
-#define F80_MANTISSA_SIGNED	(0x8000FFFFFFFFFFFFFFFFL)	//!< A 80-bit floating-point number's mantissa and sign bit regions (bitmask)
-#define F80_MANTISSA_BITS	(64)						//!< A 80-bit floating-point number's amount of bits dedicated to the mantissa
-#define F80_INIT_VALUE		(0x1.p-64)					//!< A 80-bit floating-point number's value if all bits are zero
-
-/*
-**	IEEE 754 128-bit floating point quadruple-precision bitwise macros
-*/
-#define F128_SIGNED				(0x80000000000000000000000000000000L)	//!< A 128-bit floating-point number's sign bit (bitmask)
-#define F128_EXPONENT_BIAS		(16383)									//!< A 128-bit floating-point number's exponent bias offset
-#define F128_EXPONENT			(0x7FFF0000000000000000000000000000L)	//!< A 128-bit floating-point number's exponent bit region (bitmask)
-#define F128_EXPONENT_ZERO		(0x3FFF0000000000000000000000000000L)	//!< A 128-bit floating-point number's 0-exponent value, accounting for bias (bitmask)
-#define F128_EXPONENT_BITS		(15)									//!< A 128-bit floating-point number's amount of bits dedicated to the exponent
-#define F128_MANTISSA			(0x0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFL)	//!< A 128-bit floating-point number's mantissa bit region (bitmask)
-#define F128_MANTISSA_SIGNED	(0x8000FFFFFFFFFFFFFFFFFFFFFFFFFFFFL)	//!< A 128-bit floating-point number's mantissa and sign bit regions (bitmask)
-#define F128_MANTISSA_BITS		(112)									//!< A 128-bit floating-point number's amount of bits dedicated to the mantissa
-#define F128_INIT_VALUE			(0x1.p-112)								//!< A 128-bit floating-point number's value if all bits are zero
-
-
-
-/*
-**	Depending on the 't_float' type (_FLOAT_32_ or _FLOAT_64_, etc) chosen,
-**	the appropriate bitwise macros will be used by the math functions.
-**	It is often better to only use one type of floating-point precision
-**	for a given program, so the best way to do that is by using the 'FLOAT_'
-**	macros defined below, rather than the 'F32_' or 'F64_' macros above.
-*/
-
-#ifdef _FLOAT_32_
-	#define FLOAT_SIGNED			F32_SIGNED
-	#define FLOAT_EXPONENT_BIAS		F32_EXPONENT_BIAS
-	#define FLOAT_EXPONENT			F32_EXPONENT
-	#define FLOAT_EXPONENT_ZERO		F32_EXPONENT_ZERO
-	#define FLOAT_EXPONENT_BITS		F32_EXPONENT_BITS
-	#define FLOAT_MANTISSA			F32_MANTISSA
-	#define FLOAT_MANTISSA_SIGNED	F32_MANTISSA_SIGNED
-	#define FLOAT_MANTISSA_BITS		F32_MANTISSA_BITS
-	#define FLOAT_INIT_VALUE		F32_INIT_VALUE
-#endif
-
-#ifdef _FLOAT_64_
-	#define FLOAT_SIGNED			F64_SIGNED
-	#define FLOAT_EXPONENT_BIAS		F64_EXPONENT_BIAS
-	#define FLOAT_EXPONENT			F64_EXPONENT
-	#define FLOAT_EXPONENT_ZERO		F64_EXPONENT_ZERO
-	#define FLOAT_EXPONENT_BITS		F64_EXPONENT_BITS
-	#define FLOAT_MANTISSA			F64_MANTISSA
-	#define FLOAT_MANTISSA_SIGNED	F64_MANTISSA_SIGNED
-	#define FLOAT_MANTISSA_BITS		F64_MANTISSA_BITS
-	#define FLOAT_INIT_VALUE		F64_INIT_VALUE
-#endif
-
-#ifdef _FLOAT_80_
-	#define FLOAT_SIGNED			F80_SIGNED
-	#define FLOAT_EXPONENT_BIAS		F80_EXPONENT_BIAS
-	#define FLOAT_EXPONENT			F80_EXPONENT
-	#define FLOAT_EXPONENT_ZERO		F80_EXPONENT_ZERO
-	#define FLOAT_EXPONENT_BITS		F80_EXPONENT_BITS
-	#define FLOAT_MANTISSA			F80_MANTISSA
-	#define FLOAT_MANTISSA_SIGNED	F80_MANTISSA_SIGNED
-	#define FLOAT_MANTISSA_BITS		F80_MANTISSA_BITS
-	#define FLOAT_INIT_VALUE		F80_INIT_VALUE
-#endif
-
-#ifdef _FLOAT_128_
-	#define FLOAT_SIGNED			F128_SIGNED
-	#define FLOAT_EXPONENT_BIAS		F128_EXPONENT_BIAS
-	#define FLOAT_EXPONENT			F128_EXPONENT
-	#define FLOAT_EXPONENT_ZERO		F128_EXPONENT_ZERO
-	#define FLOAT_EXPONENT_BITS		F128_EXPONENT_BITS
-	#define FLOAT_MANTISSA			F128_MANTISSA
-	#define FLOAT_MANTISSA_SIGNED	F128_MANTISSA_SIGNED
-	#define FLOAT_MANTISSA_BITS		F128_MANTISSA_BITS
-	#define FLOAT_INIT_VALUE		F128_INIT_VALUE
 #endif
 
 

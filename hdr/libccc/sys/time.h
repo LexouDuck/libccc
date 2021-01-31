@@ -1,6 +1,6 @@
 /*============================================================================*/
 /*                                            ______________________________  */
-/*  libccc_time.h                            |    __    __  ___      _____  | */
+/*  libccc/sys/time.h                        |    __    __  ___      _____  | */
 /*                                           |   / /\  / /\/ . |\   /  __|\ | */
 /*  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | */
 /*                                           | /___/\/_/ /___-'\   \____/\  | */
@@ -9,11 +9,11 @@
 /*                                                                            */
 /*============================================================================*/
 
-#ifndef __LIBCCC_TIME_H
-#define __LIBCCC_TIME_H
-/*! @file libccc_time.h
+#ifndef __LIBCCC_SYS_TIME_H
+#define __LIBCCC_SYS_TIME_H
+/*! @file libccc/sys/time.h
 **	This header defines all the functions for date & time related functions.
-**	@addtogroup libccc_time
+**	@addtogroup libccc/sys/time
 **	@{
 */
 

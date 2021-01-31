@@ -1,6 +1,6 @@
 /*============================================================================*/
 /*                                            ______________________________  */
-/*  libccc_char.h                            |    __    __  ___      _____  | */
+/*  libccc/char.h                            |    __    __  ___      _____  | */
 /*                                           |   / /\  / /\/ . |\   /  __|\ | */
 /*  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | */
 /*                                           | /___/\/_/ /___-'\   \____/\  | */
@@ -11,9 +11,9 @@
 
 #ifndef __LIBCCC_CHAR_H
 #define __LIBCCC_CHAR_H
-/*! @file libccc_char.h
+/*! @file libccc/char.h
 **	This header defines all the functions/sets related to single ASCII chars.
-**	@addtogroup libccc_char
+**	@addtogroup libccc/char
 **	@{
 */
 
@@ -32,6 +32,15 @@ HEADER_CPP
 **                                 Definitions                                *|
 ** ************************************************************************** *|
 */
+
+//! The primitive `char` text character type
+typedef char	t_char;
+
+//! The primitive multi-byte type for a Unicode character
+typedef int		t_utf8;
+
+
+
 
 /*
 **	Define string literals for alphabet characters

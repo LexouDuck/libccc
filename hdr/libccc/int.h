@@ -1,6 +1,6 @@
 /*============================================================================*/
 /*                                            ______________________________  */
-/*  libccc_convert.h                         |    __    __  ___      _____  | */
+/*  libccc/int.h                             |    __    __  ___      _____  | */
 /*                                           |   / /\  / /\/ . |\   /  __|\ | */
 /*  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | */
 /*                                           | /___/\/_/ /___-'\   \____/\  | */
@@ -9,11 +9,11 @@
 /*                                                                            */
 /*============================================================================*/
 
-#ifndef __LIBCCC_CONVERT_H
-#define __LIBCCC_CONVERT_H
-/*! @file libccc_convert.h
-**	This header defines all the functions for converting with primitive types.
-**	@addtogroup libccc_convert
+#ifndef __LIBCCC_INT_H
+#define __LIBCCC_INT_H
+/*! @file libccc/int.h
+**	This header defines all the common functions for manipulating integer types.
+**	@addtogroup libccc/int
 **	@{
 */
 
@@ -22,6 +22,19 @@
 **                                   Includes                                 *|
 ** ************************************************************************** *|
 */
+
+/*
+**	Included to use the following std types:
+**	- uint8_t
+**	- uint16_t
+**	- uint32_t
+**	- uint64_t
+**	- int8_t
+**	- int16_t
+**	- int32_t
+**	- int64_t
+*/
+#include <stdint.h>
 
 #include "libccc.h"
 
@@ -33,13 +46,102 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-#define MAXDIGIT_8BIT	( 3)	//!< The amount of digits needed to represent an 8-bit number in decimal (max: 255)
-#define MAXDIGIT_16BIT	( 5)	//!< The amount of digits needed to represent a 16-bit number in decimal (max: 65535)
-#define MAXDIGIT_32BIT	(10)	//!< The amount of digits needed to represent a 32-bit number in decimal (max: 4294967295)
-#define MAXDIGIT_64BIT	(20)	//!< The amount of digits needed to represent a 64-bit number in decimal (max: 18446744073709551615)
+#ifndef LIBCONFIG_INTEGER_TYPES
 
-#define FLOAT_THRESHOLD_HUGE	(1e+10)
-#define FLOAT_THRESHOLD_TINY	(1e-10)
+	#define STDINT(TYPE, BITS)	TYPE##BITS##_t
+
+	#define U8_MAX	(255)                  //!< The maximum value for  8-bit unsigned integers (0xFF)
+	#define U16_MAX	(65535)                //!< The maximum value for 16-bit unsigned integers (0xFFFF)
+	#define U32_MAX	(4294967295)           //!< The maximum value for 32-bit unsigned integers (0xFFFFFFFF)
+	#define U64_MAX	(18446744073709551615) //!< The maximum value for 64-bit unsigned integers (0xFFFFFFFFFFFFFFFF)
+
+	#define S8_MAX	(127)                  //!< The maximum value for  8-bit signed integers (0x7F)
+	#define S16_MAX	(32767)                //!< The maximum value for 16-bit signed integers (0x7FFF)
+	#define S32_MAX	(2147483647)           //!< The maximum value for 32-bit signed integers (0x7FFFFFFF)
+	#define S64_MAX	(9223372036854775807)  //!< The maximum value for 64-bit signed integers (0x7FFFFFFFFFFFFFFF)
+
+	#define S8_MIN	(-128)                 //!< The minimum value for  8-bit signed integers (0x80)
+	#define S16_MIN	(-32768)               //!< The minimum value for 16-bit signed integers (0x8000)
+	#define S32_MIN	(-2147483648)          //!< The minimum value for 32-bit signed integers (0x80000000)
+	#define S64_MIN	(-9223372036854775808) //!< The minimum value for 64-bit signed integers (0x8000000000000000)
+
+#else
+
+	#define STDINT(TYPE, BITS)	TYPE##LIBCONFIG_INTEGER_TYPES##BITS##_t
+
+	#define U8_MAX	((t_u8 )-1) //!< The maximum value for at least size  8-bit, unsigned integer type
+	#define U16_MAX	((t_u16)-1) //!< The maximum value for at least size 16-bit, unsigned integer type
+	#define U32_MAX	((t_u32)-1) //!< The maximum value for at least size 32-bit, unsigned integer type
+	#define U64_MAX	((t_u64)-1) //!< The maximum value for at least size 64-bit, unsigned integer type
+
+	#define S8_MAX	((t_s8) (U8_MAX  >> 1)) ////!< The maximum value for at least size  8-bit, signed integer type
+	#define S16_MAX	((t_s16)(U16_MAX >> 1)) ////!< The maximum value for at least size 16-bit, signed integer type
+	#define S32_MAX	((t_s32)(U32_MAX >> 1)) ////!< The maximum value for at least size 32-bit, signed integer type
+	#define S64_MAX	((t_s64)(U64_MAX >> 1)) ////!< The maximum value for at least size 64-bit, signed integer type
+
+	#define S8_MIN	((t_s8) ((U8_MAX  >> 1) + 1)) //!< The minimum value for at least size  8-bit, signed integer type
+	#define S16_MIN	((t_s16)((U16_MAX >> 1) + 1)) //!< The minimum value for at least size 16-bit, signed integer type
+	#define S32_MIN	((t_s32)((U32_MAX >> 1) + 1)) //!< The minimum value for at least size 32-bit, signed integer type
+	#define S64_MIN	((t_s64)((U64_MAX >> 1) + 1)) //!< The minimum value for at least size 64-bit, signed integer type
+
+#endif
+
+
+
+/*
+**	Define wrapper types for all the primitive number types in a clear naming
+**	convention, to better reflect the amount of bits used by each type.
+**	It is recommended to always use these types rather than the machine-specific
+**	default C types char,short,int,long - the following typedefs will always
+**	have the size that one would expect, no matter the machine.
+**	You can learn more about how the ISO standard defines integer types here:
+**	https://en.wikipedia.org/wiki/C_data_types
+*/
+
+typedef STDINT(uint,  8)	t_u8;	//!< The type for 8-bit unsigned integers
+typedef STDINT(uint, 16)	t_u16;	//!< The type for 16-bit unsigned integers
+typedef STDINT(uint, 32)	t_u32;	//!< The type for 32-bit unsigned integers
+typedef	STDINT(uint, 64)	t_u64;	//!< The type for 64-bit unsigned integers
+
+typedef STDINT( int,  8)	t_s8;	//!< The type for 8-bit signed integers
+typedef STDINT( int, 16)	t_s16;	//!< The type for 16-bit signed integers
+typedef STDINT( int, 32)	t_s32;	//!< The type for 32-bit signed integers
+typedef	STDINT( int, 64)	t_s64;	//!< The type for 64-bit signed integers
+
+
+
+#if LIBCONFIG_BITSIZE_UINT == 8
+typedef t_u8		t_uint;
+#endif
+#if LIBCONFIG_BITSIZE_UINT == 16
+typedef t_u16		t_uint;
+#endif
+#if LIBCONFIG_BITSIZE_UINT == 32
+typedef t_u32		t_uint;
+#endif
+#if LIBCONFIG_BITSIZE_UINT == 64
+typedef t_u64		t_uint;
+#endif
+
+#if LIBCONFIG_BITSIZE_INT == 8
+typedef t_s8		t_int;
+#endif
+#if LIBCONFIG_BITSIZE_INT == 16
+typedef t_s16		t_int;
+#endif
+#if LIBCONFIG_BITSIZE_INT == 32
+typedef t_s32		t_int;
+#endif
+#if LIBCONFIG_BITSIZE_INT == 64
+typedef t_s64		t_int;
+#endif
+
+
+
+#define MAXDIGIT_8BIT	( 3)	//!< The amount of digits needed to represent an 8-bit integer in decimal (max: 255)
+#define MAXDIGIT_16BIT	( 5)	//!< The amount of digits needed to represent a 16-bit integer in decimal (max: 65535)
+#define MAXDIGIT_32BIT	(10)	//!< The amount of digits needed to represent a 32-bit integer in decimal (max: 4294967295)
+#define MAXDIGIT_64BIT	(20)	//!< The amount of digits needed to represent a 64-bit integer in decimal (max: 18446744073709551615)
 
 
 
@@ -102,102 +204,6 @@ t_u32					Convert_String_To_U32(char const* str);
 //! Parse a 64-bit unsigned integer from the given decimal number string
 t_u64					Convert_String_To_U64(char const* str);
 #define c_str_to_u64	Convert_String_To_U64
-
-
-
-/*
-** ************************************************************************** *|
-**                         Floating Point Conversions                         *|
-** ************************************************************************** *|
-*/
-
-//! Returns TRUE if the given 'number' is NaN or +/- infinity
-t_bool									Convert_Float_To_String_CheckSpecial(t_f32 number, char* *a_result);
-#define c_float_to_str_checkspecial		Convert_Float_To_String_CheckSpecial
-
-//! Get the string decimal representation of a 32-bit floating-point number
-/*
-*/
-char*						Convert_F32_To_String(t_f32 n);
-#define c_f32_to_str		Convert_F32_To_String
-//! Get the string hexadecimal representation of a 32-bit floating-point number
-/*
-*/
-char*						Convert_F32_To_HexString(t_f32 n);
-#define c_f32_to_strhex		Convert_F32_To_HexString
-//! Get the string decimal representation of a 32-bit floating-point number, with 'precision' fractional digits
-/*!
-**	Has some approximation/error margin (beyond the seventh decimal digit;
-**	the exact amount of imprecision depends on the input)
-*/
-char*						Convert_F32_To_String_P(t_f32 n, t_u8 precision);
-#define c_f32_to_str_p		Convert_F32_To_String_P
-
-//! Get the string decimal representation of a 64-bit floating-point number
-/*
-*/
-char*						Convert_F64_To_String(t_f64 n);
-#define c_f64_to_str		Convert_F64_To_String
-//! Get the string hexadecimal representation of a 64-bit floating-point number
-/*
-*/
-char*						Convert_F64_To_HexString(t_f64 n);
-#define c_f64_to_strhex		Convert_F64_To_HexString
-//! Get the string decimal representation of a 64-bit floating-point number, with 'precision' fractional digits
-/*!
-**	Has some approximation/error margin (beyond the seventh decimal digit;
-**	the exact amount of imprecision depends on the input)
-*/
-char*						Convert_F64_To_String_P(t_f64 n, t_u8 precision);
-#define c_f64_to_str_p		Convert_F64_To_String_P
-
-
-
-//! Returns 1(ERROR) if the given 'str' contains any invalid characters for float parsing
-int										Convert_String_To_Float_CheckInvalid(char const* str, char* *a_result);
-#define c_str_to_float_checkinvalid		Convert_String_To_Float_CheckInvalid
-
-//! Parse a 32-bit float from the given string (can be decimal/exponential/hexdecimal)
-t_f32					Convert_String_To_F32(char const* str);
-#define c_str_to_f32	Convert_String_To_F32
-//! Parse a 64-bit double from the given string (can be decimal/exponential/hexdecimal)
-t_f64					Convert_String_To_F64(char const* str);
-#define c_str_to_f64	Convert_String_To_F64
-
-
-
-/*
-** ************************************************************************** *|
-**                         Other Conversion Functions                         *|
-** ************************************************************************** *|
-*/
-
-//! Get the string representation of a boolean value (TRUE or FALSE)
-char*					Convert_Bool_To_String(t_bool value, t_bool uppercase);
-#define c_bool_to_str	Convert_Bool_To_String
-//! Parse a boolean value from the given string (can be 1/0/TRUE/FALSE/true/false)
-t_bool					Convert_String_To_Bool(char const* str);
-#define c_str_to_bool	Convert_String_To_Bool
-
-
-
-//! Get the string decimal representation of a 64-bit unsigned integer
-char*					Convert_Size_To_String(t_size value);
-#define c_size_to_str	Convert_Size_To_String
-
-//! Parse a memory-size uint from the given string
-t_size					Convert_String_To_Size(char const* str);
-#define c_str_to_size	Convert_String_To_Size
-
-//! Get the string decimal human-readable representation of a 64-bit unsigned integer, with bytes units (KB,MB,GB,etc)
-char*							Convert_Size_To_String_Readable(t_size value);
-#define c_size_to_str_readable	Convert_Size_To_String_Readable
-
-
-
-//! Get the string hexadecimal representation of a pointer/address value
-char*						Convert_Pointer_To_HexString(void const* ptr);
-#define c_ptr_to_strhex		Convert_Pointer_To_HexString
 
 
 
@@ -296,6 +302,32 @@ t_u32						Convert_BaseString_To_U32(char const* str, char const* base);
 //! Parse a 64-bit unsigned integer from a custom-base number string
 t_u64						Convert_BaseString_To_U64(char const* str, char const* base);
 #define c_strbase_to_u64	Convert_BaseString_To_U64
+
+
+
+/*
+** ************************************************************************** *|
+**                       Variable-size primitive types                        *|
+** ************************************************************************** *|
+*/
+
+//! A union storing an integer (signed or unsigned) of any common storage size
+/*!
+** These unions are used for certain difficult casting conditions.
+** They are used in particular when casting an <stdarg.h> var_arg to the
+** appropriate type in c_printf.
+*/
+typedef union		u_varint_
+{
+	t_s8			sc;
+	t_s16			ss;
+	t_s32			si;
+	t_s64			sl;
+	t_u8			uc;
+	t_u16			us;
+	t_u32			ui;
+	t_u64			ul;
+}					u_varint;
 
 
 

@@ -1,6 +1,6 @@
 /*============================================================================*/
 /*                                            ______________________________  */
-/*  libccc_io.h                              |    __    __  ___      _____  | */
+/*  libccc/sys/io.h                          |    __    __  ___      _____  | */
 /*                                           |   / /\  / /\/ . |\   /  __|\ | */
 /*  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | */
 /*                                           | /___/\/_/ /___-'\   \____/\  | */
@@ -9,11 +9,11 @@
 /*                                                                            */
 /*============================================================================*/
 
-#ifndef __LIBCCC_IO_H
-#define __LIBCCC_IO_H
-/*! @file libccc_io.h
+#ifndef __LIBCCC_SYS_IO_H
+#define __LIBCCC_SYS_IO_H
+/*! @file libccc/sys/io.h
 **	This header defines all the functions for OS-level input/output, read/write.
-**	@addtogroup libccc_io
+**	@addtogroup libccc/sys/io
 **	@{
 */
 
@@ -33,7 +33,7 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! Arbitrary buffer size for libccc_io functions
+//! Arbitrary buffer size for libccc/sys/io functions
 /*!
 **	This is the arbitrary buffer size to be used by the reading functions.
 **	Raising this amount will lower the amount of function calls made to
@@ -44,7 +44,7 @@ HEADER_CPP
 */
 #define BUFF_SIZE	(2048)
 
-//! File descriptor integer type for libccc_io functions
+//! File descriptor integer type for libccc/sys/io functions
 /*!
 ** Define a type for file descriptors (which is usually the default machine 'int')
 */

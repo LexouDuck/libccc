@@ -1,6 +1,6 @@
 /*============================================================================*/
 /*                                            ______________________________  */
-/*  libccc_stat.h                            |    __    __  ___      _____  | */
+/*  libccc/math/stat.h                       |    __    __  ___      _____  | */
 /*                                           |   / /\  / /\/ . |\   /  __|\ | */
 /*  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | */
 /*                                           | /___/\/_/ /___-'\   \____/\  | */
@@ -9,11 +9,11 @@
 /*                                                                            */
 /*============================================================================*/
 
-#ifndef __LIBCCC_STAT_H
-#define __LIBCCC_STAT_H
-/*! @file libccc_stat.h
+#ifndef __LIBCCC_MATH_STAT_H
+#define __LIBCCC_MATH_STAT_H
+/*! @file libccc/math/stat.h
 **	This header defines some common statistics functions, for lists of int/float
-**	@addtogroup libccc_stat
+**	@addtogroup libccc/math/stat
 **	@{
 */
 
@@ -62,7 +62,7 @@ typedef s_list_float	s_set_float;		//!< This type represents a list of floats wi
 typedef s_list_int		s_sortedlist_int;	//!< This type represents a list of integers whose values are ordered from smallest to largest
 typedef s_list_float	s_sortedlist_float;	//!< This type represents a list of floats whose values are ordered from smallest to largest
 
-/*! @file libccc_stat.h
+/*! @file libccc/math/stat.h
 **	Remember:
 **
 **	A random variable X is a function from an input set O to an output set V,
@@ -105,7 +105,7 @@ typedef s_list_float	s_sortedlist_float;	//!< This type represents a list of flo
 **	"value[i]" corresponds to X(i); "prob[i]" corresponds to f(X(i)).
 */
 
-//! The amount of probabilistic approximation for libccc_stat functions
+//! The amount of probabilistic approximation for libccc/math/stat functions
 #define PROB_APPROX			(0.000001)
 
 //! A struct for the probability mass function describing a discrete random var.

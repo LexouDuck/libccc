@@ -1,6 +1,6 @@
 /*============================================================================*/
 /*                                            ______________________________  */
-/*  libccc_memory.h                          |    __    __  ___      _____  | */
+/*  libccc/memory.h                          |    __    __  ___      _____  | */
 /*                                           |   / /\  / /\/ . |\   /  __|\ | */
 /*  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | */
 /*                                           | /___/\/_/ /___-'\   \____/\  | */
@@ -11,9 +11,9 @@
 
 #ifndef __LIBCCC_MEMORY_H
 #define __LIBCCC_MEMORY_H
-/*! @file libccc_memory.h
+/*! @file libccc/memory.h
 **	This header defines the common standard memory manipulation functions.
-**	@addtogroup libccc_memory
+**	@addtogroup libccc/memory
 **	@{
 */
 
@@ -24,8 +24,11 @@
 */
 
 #include "libccc.h"
+#include "libccc/pointer.h"
 
 HEADER_CPP
+
+
 
 /*
 ** ************************************************************************** *|
@@ -161,35 +164,6 @@ int					Memory_Swap(void* ptr1, void* ptr2, t_size size);
 */
 t_u64				Memory_GetBits(t_u64 value, t_u8 bit, t_u8 length);
 #define c_getbits	Memory_GetBits
-
-
-
-/*
-** ************************************************************************** *|
-**                          Pointer Array Operations                          *|
-** ************************************************************************** *|
-*/
-
-/*!
-**	Returns a newly allocated memory array to serve as a null-terminated
-**	pointer array of length 'n'. Returns NULL if memory allocation fails.
-*/
-void*				PointerArray_New(t_size size);
-#define c_ptrarrnew	PointerArray_New
-
-/*!
-**	Returns the length of a null-terminated pointer array.
-*/
-t_u32				PointerArray_Length(void const** a_ptrarr);
-#define c_ptrarrlen	PointerArray_Length
-
-// TODO ptrarrdup
-
-// TODO ptrarrsub
-
-// TODO ptrarrmerge
-// TODO ptrarrappend
-// TODO ptrarrprepend
 
 
 

@@ -1,6 +1,6 @@
 /*============================================================================*/
 /*                                            ______________________________  */
-/*  libccc_string.h                          |    __    __  ___      _____  | */
+/*  libccc/string.h                          |    __    __  ___      _____  | */
 /*                                           |   / /\  / /\/ . |\   /  __|\ | */
 /*  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | */
 /*                                           | /___/\/_/ /___-'\   \____/\  | */
@@ -11,9 +11,9 @@
 
 #ifndef __LIBCCC_STRING_H
 #define __LIBCCC_STRING_H
-/*! @file libccc_string.h
+/*! @file libccc/string.h
 **	This header defines the common standard string (char*) manipulation functions.
-**	@addtogroup libccc_string
+**	@addtogroup libccc/string
 **	@{
 */
 
@@ -30,6 +30,7 @@
 #include <stdarg.h>
 
 #include "libccc.h"
+#include "libccc/pointer.h"
 
 HEADER_CPP
 

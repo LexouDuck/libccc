@@ -1,6 +1,6 @@
 /*============================================================================*/
 /*                                            ______________________________  */
-/*  libccc_list.h                            |    __    __  ___      _____  | */
+/*  libccc/array/list.h                      |    __    __  ___      _____  | */
 /*                                           |   / /\  / /\/ . |\   /  __|\ | */
 /*  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | */
 /*                                           | /___/\/_/ /___-'\   \____/\  | */
@@ -9,11 +9,11 @@
 /*                                                                            */
 /*============================================================================*/
 
-#ifndef __LIBCCC_LIST_H
-#define __LIBCCC_LIST_H
-/*! @file libccc_list.h
+#ifndef __LIBCCC_ARRAY_LIST_H
+#define __LIBCCC_ARRAY_LIST_H
+/*! @file libccc/array/list.h
 **	This header defines a simple linked list type and utility functions for it.
-**	@addtogroup libccc_list
+**	@addtogroup libccc/array/list
 **	@{
 */
 
@@ -33,67 +33,6 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! A 'foreach' keyword macro, to use with any iterable types, rather than an index-based 'for' loop
-/*
-**	Currently, the types that work with this 'foreach' keyword are: s_array, s_list, s_dict
-**	Here are some more details on how to use this macro:
-**	- s_array:	
-*/
-#define foreach(VARIABLE_TYPE, VARIABLE, ITERABLE_TYPE, ITERABLE) \
-	foreach_##ITERABLE_TYPE##_init(VARIABLE_TYPE, VARIABLE, ITERABLE)			\
-	foreach_##ITERABLE_TYPE##_exit(VARIABLE_TYPE, VARIABLE, ITERABLE)			\
-	for(foreach_##ITERABLE_TYPE##_loop_init(VARIABLE_TYPE, VARIABLE, ITERABLE);	\
-		foreach_##ITERABLE_TYPE##_loop_exit(VARIABLE_TYPE, VARIABLE, ITERABLE);	\
-		foreach_##ITERABLE_TYPE##_loop_incr(VARIABLE_TYPE, VARIABLE, ITERABLE))	\
-
-
-
-//! This struct holds an array of items which can be of any type
-/*!
-**	The 's_array' struct holds a `void*` pointer to the array of items, the size
-**	of a single item in the array, and the total amount of items in this array.
-**	As such, a s_array can hold any number of items, but they must all share the same type.
-*/
-typedef struct	s_array_
-{
-	t_size		item_count;	//!< The amount of elements in the 'items' array
-	t_size		item_size;	//!< The size (in bytes) of one object in this array
-	void*		items;		//!< The pointer to the array (items can be of any one type)
-}				s_array;
-
-#define foreach_s_array_init(		TYPE, VAR, ARRAY)	foreach_s_array_init_1(TYPE, VAR, ARRAY); foreach_s_array_init_2(TYPE, VAR, ARRAY);
-#define foreach_s_array_init_1(		TYPE, VAR, ARRAY)	t_size VAR##_i = 0
-#define foreach_s_array_init_2(		TYPE, VAR, ARRAY)	TYPE* VAR##_ptr = (TYPE*)((ARRAY)->items)
-#define foreach_s_array_exit(		TYPE, VAR, ARRAY)	if (ARRAY && (ARRAY)->items)
-#define foreach_s_array_loop_init(	TYPE, VAR, ARRAY)	TYPE VAR = *VAR##_ptr
-#define foreach_s_array_loop_exit(	TYPE, VAR, ARRAY)	VAR##_i < (ARRAY)->item_count
-#define foreach_s_array_loop_incr(	TYPE, VAR, ARRAY)	++VAR##_i, foreach_s_array_loop_incr_1(TYPE, VAR, ARRAY), foreach_s_array_loop_incr_2(TYPE, VAR, ARRAY)
-#define foreach_s_array_loop_incr_1(TYPE, VAR, ARRAY)	VAR##_ptr = (TYPE*)((t_u8*)(ARRAY)->items + VAR##_i * (ARRAY)->item_size)
-#define foreach_s_array_loop_incr_2(TYPE, VAR, ARRAY)	VAR = *VAR##_ptr
-
-//! A literal of an 's_array' struct which has all fields set to zero
-#define ARRAY_NULL	(s_array){ .item_count = 0, .item_size = 0, .items = NULL }
-
-
-
-//! A simple key+value pair struct, used in the 's_dict' dictionary struct
-/*
-typedef struct	s_pair_
-{
-	char*		key;		//!< The key string associated with the 'value'
-	void*		value;		//!< The pointer to the data for the 'value'
-	char*		value_type;	//!< The amount of elements in the 'items' array
-	t_size		value_size;	//!< The size (in bytes) of one object in this array
-}				s_pair;
-
-typedef struct	s_dict_
-{
-
-}				s_dict;
-*/
-
-
-
 //! This is a simple linked list struct, with dynamic content type
 /*!
 **	The 's_list' struct represents one chainlink in the linked-list, so a
@@ -109,6 +48,13 @@ typedef struct		s_list_
 	void*			item;		//!< The contents of this linked-list element
 }					s_list;
 
+
+
+//! A literal of an 's_list' struct which has all fields set to zero
+#define LIST_NULL	(s_list){ .next = NULL, .item_size = 0, .item = NULL }
+
+
+
 #define foreach_s_list_init(		TYPE, VAR, LIST)	foreach_s_list_init_1(TYPE, VAR, LIST); foreach_s_list_init_2(TYPE, VAR, LIST);
 #define foreach_s_list_init_1(		TYPE, VAR, LIST)	t_size VAR##_i = 0
 #define foreach_s_list_init_2(		TYPE, VAR, LIST)	s_list* VAR##_lst = (LIST)
@@ -118,9 +64,6 @@ typedef struct		s_list_
 #define foreach_s_list_loop_incr(	TYPE, VAR, LIST)	++VAR##_i, foreach_s_list_loop_incr_1(TYPE, VAR, LIST), foreach_s_list_loop_incr_2(TYPE, VAR, LIST)
 #define foreach_s_list_loop_incr_1(	TYPE, VAR, LIST)	VAR##_lst = VAR##_lst->next
 #define foreach_s_list_loop_incr_2(	TYPE, VAR, LIST)	VAR = (VAR##_lst ? (TYPE)(VAR##_lst->item) : NULL)
-
-//! A literal of an 's_list' struct which has all fields set to zero
-#define LIST_NULL	(s_list){ .next = NULL, .item_size = 0, .item = NULL }
 
 
 

@@ -1,6 +1,6 @@
 /*============================================================================*/
 /*                                            ______________________________  */
-/*  libccc_complex.h                         |    __    __  ___      _____  | */
+/*  libccc/math/complex.h                    |    __    __  ___      _____  | */
 /*                                           |   / /\  / /\/ . |\   /  __|\ | */
 /*  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | */
 /*                                           | /___/\/_/ /___-'\   \____/\  | */
@@ -9,11 +9,11 @@
 /*                                                                            */
 /*============================================================================*/
 
-#ifndef __LIBCCC_COMPLEX_H
-#define __LIBCCC_COMPLEX_H
-/*! @file libccc_complex.h
+#ifndef __LIBCCC_MATH_COMPLEX_H
+#define __LIBCCC_MATH_COMPLEX_H
+/*! @file libccc/math/complex.h
 **	This header defines useful algebra and calculus types, and functions.
-**	@addtogroup libccc_math
+**	@addtogroup libccc/math/complex
 **	@{
 */
 // TODO add other function macros for integral, distance, etc
@@ -25,6 +25,7 @@
 */
 
 #include "libccc.h"
+#include "libccc/float.h"
 
 HEADER_CPP
 

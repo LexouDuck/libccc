@@ -1,6 +1,6 @@
 /*============================================================================*/
 /*                                            ______________________________  */
-/*  libccc_random.h                          |    __    __  ___      _____  | */
+/*  libccc/math/random.h                     |    __    __  ___      _____  | */
 /*                                           |   / /\  / /\/ . |\   /  __|\ | */
 /*  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | */
 /*                                           | /___/\/_/ /___-'\   \____/\  | */
@@ -9,11 +9,11 @@
 /*                                                                            */
 /*============================================================================*/
 
-#ifndef __LIBCCC_RANDOM_H
-#define __LIBCCC_RANDOM_H
-/*! @file libccc_random.h
+#ifndef __LIBCCC_MATH_RANDOM_H
+#define __LIBCCC_MATH_RANDOM_H
+/*! @file libccc/math/random.h
 **	This header defines some simple pseudo-random number generator functions.
-**	@addtogroup libccc_random
+**	@addtogroup libccc/math/random
 **	@{
 */
 
@@ -33,7 +33,7 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-/*! @file libccc_random.h
+/*! @file libccc/math/random.h
 ** Random number generator. Modulus is 2^31
 **
 ** - OFFSET and MODULUS are mutually prime.

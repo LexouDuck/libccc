@@ -1,6 +1,6 @@
 /*============================================================================*/
 /*                                            ______________________________  */
-/*  libccc_color.h                           |    __    __  ___      _____  | */
+/*  libccc/color.h                           |    __    __  ___      _____  | */
 /*                                           |   / /\  / /\/ . |\   /  __|\ | */
 /*  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | */
 /*                                           | /___/\/_/ /___-'\   \____/\  | */
@@ -11,9 +11,9 @@
 
 #ifndef __LIBCCC_COLOR_H
 #define __LIBCCC_COLOR_H
-/*! @file libccc_color.h
+/*! @file libccc/color.h
 **	This header defines all the functions/bitmasks for encoding colors in ints.
-**	@addtogroup libccc_color
+**	@addtogroup libccc/color
 **	@{
 */
 // TODO add AHSL32 color typedef + conversion functions
@@ -26,6 +26,7 @@
 */
 
 #include "libccc.h"
+#include "libccc/float.h"
 
 HEADER_CPP
 
