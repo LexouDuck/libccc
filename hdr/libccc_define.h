@@ -77,10 +77,8 @@ HEADER_CPP
 
 #ifdef __GNUC__
 	#ifdef __clang__
-		#define _MALLOC			__attribute__((allocator))				//!< before function def: indicates that it returns newly allocated ptr
 		#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)		__attribute__((format(FUNCTION, POS_FORMAT, POS_VARARGS)))
 	#else
-		#define _MALLOC			__attribute__((malloc))					//!< before function def: indicates that it returns newly allocated ptr
 		#ifdef __MINGW32__
 			#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	__attribute__((format(gnu_##FUNCTION, POS_FORMAT, POS_VARARGS)))
 		#else
@@ -91,6 +89,7 @@ HEADER_CPP
 //	#define _ALIGN(MINIMUM)		__attribute__((aligned(MINIMUM)))		//!< before function or variable def: sets minimum byte alignment size (power of 2)
 	#define _PURE				__attribute__((pure))					//!< before function def: indicates that the function has no side-effects
 	#define _INLINE				__attribute__((always_inline)) inline	//!< before function def: makes the function be always inlined regardless of compiler config
+	#define _MALLOC				__attribute__((malloc))					//!< before function def: indicates that it returns newly allocated ptr
 	#define _UNUSED				__attribute__((unused))					//!< before function def: suppresses warnings for empty/incomplete function
 	#define _PACKED				__attribute__((packed))					//!< before struct/union def: do not perform byte-padding on this struct/union type
 #endif
