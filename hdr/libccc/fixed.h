@@ -57,13 +57,33 @@ HEADER_CPP
 
 
 
-typedef t_s8	t_g8;	//!< The type for 8-bit signed fixed-point rational numbers
-typedef t_s16	t_g16;	//!< The type for 16-bit signed fixed-point rational numbers
-typedef t_s32	t_g32;	//!< The type for 32-bit signed fixed-point rational numbers
-typedef	t_s64	t_g64;	//!< The type for 64-bit signed fixed-point rational numbers
+#if LIBCONFIG_USE_STD_FIXEDPOINT
+
+#include <stdfix.h>
+
+typedef short _Fract		t_g16;	//!< The type for 16-bit signed fixed-point rational numbers
+typedef _Fract				t_g32;	//!< The type for 32-bit signed fixed-point rational numbers
+typedef	long _Fract			t_g64;	//!< The type for 64-bit signed fixed-point rational numbers
+#ifdef	__int128
+typedef long long _Fract	t_g128;	//!< The type for 128-bit fixed-point numbers (only certain platforms)
+#endif
+
+#else
+
+typedef t_s16		t_g16;	//!< The type for 16-bit signed fixed-point rational numbers
+typedef t_s32		t_g32;	//!< The type for 32-bit signed fixed-point rational numbers
+typedef	t_s64		t_g64;	//!< The type for 64-bit signed fixed-point rational numbers
+#ifdef	__int128
+typedef __int128	t_g128;	//!< The type for 128-bit fixed-point numbers (only certain platforms)
+#endif
+
+#endif
 
 
 
+#if LIBCONFIG_BITS_FIXED == 128 && !defined(__int128)
+	#error "Cannot set default 't_fixed' to 128-bit size, unavailable on this platform"
+#endif
 //! The configurable-size fixed-point number primitive type.
 typedef	LIBCONFIG_TYPE_FIXED	t_fixed;
 

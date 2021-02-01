@@ -462,7 +462,7 @@ This is the difference between `#define` and `#alias` instructions, `#alias` wil
 
 
 ##### ALIAS
-Creates an alias for a function, using `__attribute__` (or, you can configure it to rather transpile like a `#define`, or a `#replace`).
+Creates an alias for a function/variable, using `__attribute__` (or, you can configure it to rather transpile like a `#define`, or a `#replace`).
 ```c
 void		MyFunction(void);
 #alias	f	MyFunction
@@ -470,7 +470,29 @@ void		MyFunction(void);
 The above example transpiles by declaring `f` with the function aliasing attribute, like so:
 ```c
 // transpiles to:
-void*	f(void) __attribute__((weak, alias("MyFunction")));
+void	MyFunction(void);
+void	f(void) __attribute__((weak, alias("MyFunction")));
+```
+
+
+##### PACKED
+Sets the struct declared after it to be packed a tight as possible, removing any and all byte-padding, by using `__attribute__`:
+```c
+#packed
+typedef struct	s_example_
+{
+	char a;
+	int x;
+	bool b;
+	int y;
+}				s_example;
+```
+```c
+// transpiles to:
+__attribute__((packed))
+typedef struct	s_example_
+{
+	...
 ```
 
 
@@ -495,7 +517,7 @@ char	MyFunction(char c);
 ```
 ```c
 // transpiles to:
-__attribute__((const))
+__attribute__((pure))
 char	MyFunction(char c);
 ```
 This allows your compiler to perform additionnal optimizations (like memoization for instance).
@@ -504,26 +526,26 @@ This allows your compiler to perform additionnal optimizations (like memoization
 ##### MALLOC
 Sets the function declared after it to be always inlined, using `__attribute__`:
 ```c
-#inline
-void		MyFunction(void);
+#malloc
+char*	MyFunction(void);
 ```
 ```c
 // transpiles to:
-__attribute__((always_inline))
-void*	MyFunction(void);
+__attribute__((malloc))
+char*	MyFunction(void);
 ```
 
 
 ##### FORMAT
-Sets the function declared after it to be always inlined, using `__attribute__`:
+Sets the function declared after it to variadic argument type-cehcking according to a format string, like `printf` or `strptime`, using `__attribute__`:
 ```c
 #format(printf, 1, 2)
-void		MyFunction(void);
+void	MyFunction(char* format, ...);
 ```
 ```c
 // transpiles to:
 __attribute__((format(printf, 1, 2)))
-void*	MyFunction(void);
+void	MyFunction(char* format, ...);
 ```
 
 

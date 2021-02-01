@@ -59,7 +59,7 @@ t_bool					Vector2D_Equals(s_vector2d const* v1, s_vector2d const* v2);
 
 //! Scales the given 'vector' by a factor of 'scale'
 s_vector2d				Vector2D_Scale(s_vector2d const* vector, t_float scale);
-#define c_vec2scale	Vector2D_Scale
+#define c_vec2scale		Vector2D_Scale
 
 //! Inverts the sign of the coordinates of the given 'vector'
 s_vector2d				Vector2D_Invert(s_vector2d const* vector);
@@ -73,7 +73,7 @@ t_float						Vector2D_Norm(s_vector2d const* vector);
 
 //! Makes the norm/magnitude of the given 'vector' become 1 (without changing its direction)
 s_vector2d					Vector2D_Normalize(s_vector2d const* vector);
-#define c_vec2normalize	Vector2D_Normalize
+#define c_vec2normalize		Vector2D_Normalize
 
 //! Returns the sum of the two given vectors (adding each of their coordinates together)
 s_vector2d					Vector2D_Add(s_vector2d const* v1, s_vector2d const* v2);

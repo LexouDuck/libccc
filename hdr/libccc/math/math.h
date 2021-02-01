@@ -33,19 +33,19 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-#ifndef ABS			//! Expands to the absolute value of 'x'
+#ifndef ABS			//! Expands to the absolute value of 'x' (ie: gives the positive equivalent of 'x')
 #define ABS(x)		((x) < 0 ? -(x) : (x))
 #endif
 
-#ifndef SIGN		//! Expands to +1 or -1 according to the sign of 'x'
+#ifndef SIGN		//! Expands to +1 or -1 according to the sign of 'x' (NB: if 'x' is zero, gives +1)
 #define SIGN(x)		((x) < 0 ? -1 : +1)
 #endif
 
-#ifndef MIN			//!	Expands to the minimum value of 'x' and 'y'
+#ifndef MIN			//!	Expands to the minimum value between 'x' and 'y' (the smaller of the two)
 #define MIN(x, y)	((x) < (y) ? (x) : (y))
 #endif
 
-#ifndef MAX			//! Expands to the maximum value of 'x' and 'y'
+#ifndef MAX			//! Expands to the maximum value between 'x' and 'y' (the larger of the two)
 #define MAX(x, y)	((x) < (y) ? (y) : (x))
 #endif
 
@@ -53,7 +53,7 @@ HEADER_CPP
 
 /*
 **	Various relevant mathematical constants - these are used to speed up
-**	our fast approximate versions of some fundamental algorithms and functions.
+**	our fast-approximate versions of some fundamental algorithms and functions.
 */
 #define QUARTER_PI		DIV_PI_4						//!< Alias for DIV_PI_4
 #define HALF_PI			DIV_PI_2						//!< Alias for DIV_PI_2
@@ -79,6 +79,7 @@ HEADER_CPP
 
 //! The type of function which takes one real number and outputs one real number
 typedef		t_float	(*f_real_function)(t_float x);
+
 //! The type of function which takes two real numbers and outputs one real number
 typedef		t_float	(*f_real_operator)(t_float x, t_float y);
 

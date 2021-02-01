@@ -63,19 +63,16 @@ HEADER_CPP
 
 
 
-//! If 1, libccc uses exact bit length for t_s8, t_s16, t_s32, t_s64, t_u8, t_u16, t_u32, and t_u64
-/*!
-**	This macro configures which stdint.h integer types are used by default,
-**	as well as setting the corresponding appropriate [INT]_MAX and [INT]_MIN values.
-**	There are 3 possible values for this #define:
-**	(undefined)	EXACT: This is the default - uses the 'exact size' integer types (int8_t, etc)
-**				This is the recommended option as it ensures consistent overflow behavior on ints.
-**				Unfortunately, certain platforms do not have these types, so the others can also be of use.
-**	_least		LEAST: Uses the smallest available integer type with at least 'n' bits (int_least8_t, etc)
-**	_fast		FAST: Uses the fastest available integer type with at least 'n' bits (int_fast8_t, etc)
+//! If 1, libccc will define functions as a simple inline wrappers for std libc
+/*
+**	This macro determines if the compiler should prefer function implementations
+**	from the platform's standard library, or the implementation from libccc.
+**	If 0, use libccc function implementations everywhere
+**	If 1, call stdlib functions wherever possible
+**	NB: Setting this to 1 can make your code run faster, but it may introduce
+**		undefined behaviors depending on the platform (for edge-case arguments)
 */
-//#define LIBCONFIG_INTEGER_TYPES _least // uncomment this line to use LEAST int types
-//#define LIBCONFIG_INTEGER_TYPES _fast  // uncomment this line to use FAST int types
+#define LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS	0 // TODO implement this config flag
 
 
 
@@ -121,6 +118,33 @@ HEADER_CPP
 */
 #define LIBCONFIG_BITS_FLOAT	32
 #define LIBCONFIG_TYPE_FLOAT	t_f32
+
+
+
+//! If 1, libccc uses exact bit length for t_s8, t_s16, t_s32, t_s64, t_u8, t_u16, t_u32, and t_u64
+/*!
+**	This macro configures which stdint.h integer types are used by default,
+**	as well as setting the corresponding appropriate [INT]_MAX and [INT]_MIN values.
+**	There are 3 possible values for this #define:
+**	(undefined)	EXACT: This is the default - uses the 'exact size' integer types (int8_t, etc)
+**				This is the recommended option as it ensures consistent overflow behavior on ints.
+**				Unfortunately, certain platforms do not have these types, so the others can also be of use.
+**	_least		LEAST: Uses the smallest available integer type with at least 'n' bits (int_least8_t, etc)
+**	_fast		FAST: Uses the fastest available integer type with at least 'n' bits (int_fast8_t, etc)
+*/
+//#define LIBCONFIG_INTEGER_TYPES _least // uncomment this line to use LEAST int types
+//#define LIBCONFIG_INTEGER_TYPES _fast  // uncomment this line to use FAST int types
+
+
+
+//! If 1, libccc will make the fixed point types 't_g*' and 't_fixed' use the STDC _Fract type
+/*
+**	It is recommended to keep this set to 0, as the system default fixed-point _Fract type
+**	is not present on all platforms, and is rather very machine-specific.
+**	Furthermore, the libccc fixed-point type may not be as fast, but it is configurable
+**	in terms of what portion of the number is the fractional part.
+*/
+#define LIBCONFIG_USE_STD_FIXEDPOINT		0
 
 
 
