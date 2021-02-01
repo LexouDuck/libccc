@@ -185,7 +185,8 @@ int						IO_Write_Memory(t_fd fd, t_u8 const* ptr, t_size n, t_u8 cols);
 #define c_write_memory	IO_Write_Memory
 
 //! Writes the given formatted string to the standard output - equivalent to 'fprintf()', or rather 'dprintf()'
-int						IO_Write_Format(t_fd fd, char const* format, ...) __format_printf(2, 3);
+_FORMAT(printf, 2, 3)
+int						IO_Write_Format(t_fd fd, char const* format, ...);
 #define c_write_format	IO_Write_Format
 #define c_dprintf		IO_Write_Format
 
@@ -204,7 +205,7 @@ int							IO_Output_Char(char c);
 
 //! Writes the given string 'str' to the standard output.
 int							IO_Output_String(char const* str);
-#define c_output_string	IO_Output_String
+#define c_output_string		IO_Output_String
 #define c_putstr			IO_Output_String
 
 //! Writes the given string 'str' to the standard output, with a newline '\n' character at the end.
@@ -219,12 +220,13 @@ int							IO_Output_Lines(char const** strarr);
 
 //!< Writes 'n' bytes of memory from 'ptr' as hexadecimal 2-char blocks in 'cols' columns, to the standard output
 int							IO_Output_Memory(t_u8 const* ptr, t_size n, t_u8 cols);
-#define c_output_memory	IO_Output_Memory
+#define c_output_memory		IO_Output_Memory
 #define c_putmem			IO_Output_Memory
 
 //! Writes the given formatted string to the standard output - equivalent to 'printf()'
-int							IO_Output_Format(char const* format, ...) __format_printf(1, 2);
-#define c_output_format	IO_Output_Format
+_FORMAT(printf, 1, 2)
+int							IO_Output_Format(char const* format, ...);
+#define c_output_format		IO_Output_Format
 #define c_printf			IO_Output_Format
 
 

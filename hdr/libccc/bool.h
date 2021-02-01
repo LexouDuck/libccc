@@ -24,6 +24,7 @@
 */
 
 #include "libccc_config.h"
+#include "libccc_define.h"
 
 HEADER_CPP
 
@@ -62,6 +63,7 @@ typedef _Bool		t_bool;
 */
 
 //! Get the string representation of a boolean value (TRUE or FALSE)
+_MALLOC
 char*					Convert_Bool_To_String(t_bool value, t_bool uppercase);
 #define c_bool_to_str	Convert_Bool_To_String
 

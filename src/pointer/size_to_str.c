@@ -1,4 +1,7 @@
 
+#include "libccc/int.h"
+#include "libccc/float.h"
+#include "libccc/pointer.h"
 #include "libccc/memory.h"
 
 

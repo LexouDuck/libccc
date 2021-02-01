@@ -1,6 +1,7 @@
 
 #include "libccc/int.h"
 #include "libccc/char.h"
+#include "libccc/pointer.h"
 
 
 
@@ -60,7 +61,7 @@ t_s##BITS	Convert_BaseString_To_S##BITS(char const* str, char const* base)	\
 	t_s32	digit;																\
 	t_size	length;																\
 	t_size	i;																	\
-LIBCONFIG_HANDLE_NULLPOINTER_STRBASE_TO_INT									\
+LIBCONFIG_HANDLE_NULLPOINTER_STRBASE_TO_INT										\
 	length = Convert_BaseString_GetLength(base);								\
 	if (length == 0)															\
 		return (0);																\

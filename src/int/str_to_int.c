@@ -1,6 +1,8 @@
 
+#include "libccc/bool.h"
 #include "libccc/int.h"
 #include "libccc/char.h"
+#include "libccc/pointer.h"
 
 
 

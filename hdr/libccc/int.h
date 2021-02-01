@@ -37,6 +37,7 @@
 #include <stdint.h>
 
 #include "libccc_config.h"
+#include "libccc_define.h"
 
 HEADER_CPP
 
@@ -122,8 +123,17 @@ typedef STDINT( int, 16)	t_s16;	//!< The type for 16-bit signed integers
 typedef STDINT( int, 32)	t_s32;	//!< The type for 32-bit signed integers
 typedef	STDINT( int, 64)	t_s64;	//!< The type for 64-bit signed integers
 
+#ifdef	__int128
+typedef unsigned __int128	t_u128;	//!< The type for 128-bit unsigned integers (only certain platforms)
+typedef __int128			t_s128;	//!< The type for 128-bit signed integers (only certain platforms)
+#endif
+
+
+
+//! The configurable-size unsigned integer primitive type.
 typedef LIBCONFIG_TYPE_UINT		t_uint;
 
+//! The configurable-size signed integer primitive type.
 typedef LIBCONFIG_TYPE_INT		t_int;
 
 
@@ -142,28 +152,36 @@ typedef LIBCONFIG_TYPE_INT		t_int;
 */
 
 //! Get the string decimal representation of an 8-bit signed integer
+_MALLOC
 char*					Convert_S8_To_String(t_s8 n);
 #define c_s8_to_str		Convert_S8_To_String
 //! Get the string decimal representation of a 16-bit signed integer
+_MALLOC
 char*					Convert_S16_To_String(t_s16 n);
 #define c_s16_to_str	Convert_S16_To_String
 //! Get the string decimal representation of a 32-bit signed integer
+_MALLOC
 char*					Convert_S32_To_String(t_s32 n);
 #define c_s32_to_str	Convert_S32_To_String
 //! Get the string decimal representation of a 64-bit signed integer
+_MALLOC
 char*					Convert_S64_To_String(t_s64 n);
 #define c_s64_to_str	Convert_S64_To_String
 
 //! Get the string decimal representation of an 8-bit unsigned integer
+_MALLOC
 char*					Convert_U8_To_String(t_u8 n);
 #define c_u8_to_str		Convert_U8_To_String
 //! Get the string decimal representation of a 16-bit unsigned integer
+_MALLOC
 char*					Convert_U16_To_String(t_u16 n);
 #define c_u16_to_str	Convert_U16_To_String
 //! Get the string decimal representation of a 32-bit unsigned integer
+_MALLOC
 char*					Convert_U32_To_String(t_u32 n);
 #define c_u32_to_str	Convert_U32_To_String
 //! Get the string decimal representation of a 64-bit unsigned integer
+_MALLOC
 char*					Convert_U64_To_String(t_u64 n);
 #define c_u64_to_str	Convert_U64_To_String
 
@@ -204,15 +222,19 @@ t_u64					Convert_String_To_U64(char const* str);
 */
 
 //! Get the string decimal representation of an 8-bit unsigned integer
+_MALLOC
 char*						Convert_U8_To_HexString(t_u8 n);
 #define c_u8_to_strhex		Convert_U8_To_HexString
 //! Get the string decimal representation of a 16-bit unsigned integer
+_MALLOC
 char*						Convert_U16_To_HexString(t_u16 n);
 #define c_u16_to_strhex		Convert_U16_To_HexString
 //! Get the string decimal representation of a 32-bit unsigned integer
+_MALLOC
 char*						Convert_U32_To_HexString(t_u32 n);
 #define c_u32_to_strhex		Convert_U32_To_HexString
 //! Get the string decimal representation of a 64-bit unsigned integer
+_MALLOC
 char*						Convert_U64_To_HexString(t_u64 n);
 #define c_u64_to_strhex		Convert_U64_To_HexString
 
@@ -240,28 +262,36 @@ t_u64						Convert_HexString_To_U64(char const* str);
 */
 
 //! Get a string custom-base representation of an 8-bit signed integer
+_MALLOC
 char*						Convert_S8_To_BaseString(t_s8 n, char const* base);
 #define c_s8_to_strbase		Convert_S8_To_BaseString
 //! Get a string custom-base representation of a 16-bit signed integer
+_MALLOC
 char*						Convert_S16_To_BaseString(t_s16 n, char const* base);
 #define c_s16_to_strbase	Convert_S16_To_BaseString
 //! Get a string custom-base representation of a 32-bit signed integer
+_MALLOC
 char*						Convert_S32_To_BaseString(t_s32 n, char const* base);
 #define c_s32_to_strbase	Convert_S32_To_BaseString
 //! Get a string custom-base representation of a 64-bit signed integer
+_MALLOC
 char*						Convert_S64_To_BaseString(t_s64 n, char const* base);
 #define c_s64_to_strbase	Convert_S64_To_BaseString
 
 //! Get a string custom-base representation of an 8-bit unsigned integer
+_MALLOC
 char*						Convert_U8_To_BaseString(t_u8 n, char const* base);
 #define c_u8_to_strbase		Convert_U8_To_BaseString
 //! Get a string custom-base representation of a 16-bit unsigned integer
+_MALLOC
 char*						Convert_U16_To_BaseString(t_u16 n, char const* base);
 #define c_u16_to_strbase	Convert_U16_To_BaseString
 //! Get a string custom-base representation of a 32-bit unsigned integer
+_MALLOC
 char*						Convert_U32_To_BaseString(t_u32 n, char const* base);
 #define c_u32_to_strbase	Convert_U32_To_BaseString
 //! Get a string custom-base representation of a 64-bit unsigned integer
+_MALLOC
 char*						Convert_U64_To_BaseString(t_u64 n, char const* base);
 #define c_u64_to_strbase	Convert_U64_To_BaseString
 

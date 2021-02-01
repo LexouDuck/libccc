@@ -37,6 +37,7 @@ HEADER_CPP
 **	Returns a string array made up of substrings of 'str', where each element
 **	is a section delimited by 'c' separators, or the edges of the string.
 */
+_MALLOC
 char**							String_Split_Char(char const* str, char c);
 #define c_strsplit_char			String_Split_Char
 
@@ -45,6 +46,7 @@ char**							String_Split_Char(char const* str, char c);
 **	is a section delimited by any of the 'char_sep' separators, or the edges
 **	of the string.
 */
+_MALLOC
 char**							String_Split_Charset(char const* str, char const* sep_chars);
 #define c_strsplit_charset		String_Split_Charset
 
@@ -60,6 +62,7 @@ char**							String_Split_Charset(char const* str, char const* sep_chars);
 **		and call replace twice, without the pattern the second time.
 **		Ex: "enenen" --s/enen/HIen/-> "HIenen" --s/enen/HI/--> "HIHI"
 */
+_MALLOC
 char**							String_Split_String(char const* str, char const* query);
 #define c_strsplit_str			String_Split_String
 
@@ -67,6 +70,7 @@ char**							String_Split_String(char const* str, char const* query);
 **	Returns a string array which is the result of dividing str into chunks of
 **	equal size n, safe for the last chunk of length <= n.
 */
+_MALLOC
 char**							String_Divide(char const* str, t_size n);
 #define c_strdivide				String_Divide
 
@@ -80,6 +84,7 @@ char**							String_Divide(char const* str, t_size n);
 /*!
 **	Returns a null-terminated list of unset char*, of length length.
 */
+_MALLOC
 char**							StringArray_New(t_u32 length);
 #define c_strarrnew				StringArray_New
 
@@ -87,6 +92,7 @@ char**							StringArray_New(t_u32 length);
 **	Returns a newly allocated string array, which has y line and x characters
 **	per lines (+1 for null-termination), every character set to the value c.
 */
+_MALLOC
 char**							StringArray_New_C(t_u32 y, t_size x, const char c);
 #define c_strarrcnew			StringArray_New_C
 
@@ -101,6 +107,7 @@ void							StringArray_Delete(char** *a_strarr);
 **	of strarr by f. f should be a function that allocates and returns a new
 **	string.
 */
+_MALLOC
 char**							StringArray_Map(char const** strarr, char *(*f)(char const*));
 #define c_strarrmap				StringArray_Map
 
@@ -116,6 +123,7 @@ void							StringArray_Map_InPlace(char** *a_strarr, char *(*f)(char*));
 **	Returns a newly allocated string array such that every string is now
 **	preceded by n times the character c.
 */
+_MALLOC
 char**							StringArray_Pad_L(char const** strarr, const char c, t_u32 n);
 #define c_strarrpad_l			StringArray_Pad_L
 
@@ -123,6 +131,7 @@ char**							StringArray_Pad_L(char const** strarr, const char c, t_u32 n);
 **	Returns a newly allocated string array, which is the result of removing
 **	the lines from index 'start' to 'start + length' from strarr.
 */
+_MALLOC
 char**							StringArray_Sub(char const** strarr, t_u32 start, t_u32 length);
 #define c_strarrsub				StringArray_Sub
 
@@ -130,6 +139,7 @@ char**							StringArray_Sub(char const** strarr, t_u32 start, t_u32 length);
 **	Returns a newly allocated string which is the fold/reduce concatenation
 **	of all strings in strarr, with the string 'sep' added between each string.
 */
+_MALLOC
 char*							StringArray_Fold(char const** strarr, char const* sep);
 #define c_strarrfold			StringArray_Fold
 
@@ -144,6 +154,7 @@ char*							StringArray_Fold(char const** strarr, char const* sep);
 **	Returns the concatenation of 'strarr1' and 'strarr2', and deletes both
 **	inputs from memory. Also returns the result.
 */
+_MALLOC
 char**							StringArray_Join(char const** strarr1, char const** strarr2);
 #define c_strarrjoin			StringArray_Join
 
@@ -151,6 +162,7 @@ char**							StringArray_Join(char const** strarr1, char const** strarr2);
 **	Returns the concatenation of 'strarr1' and 'strarr2', and deletes both
 **	inputs from memory. Also returns the result.
 */
+_MALLOC
 char**							StringArray_Merge(char** *a_strarr1, char** *a_strarr2);
 #define c_strarrmerge			StringArray_Merge
 
@@ -158,6 +170,7 @@ char**							StringArray_Merge(char** *a_strarr1, char** *a_strarr2);
 **	Returns the concatenation of 'dest' and 'src', and deletes 'dest', replacing
 **	it by the result. Also returns the result.
 */
+_MALLOC
 char**							StringArray_Append(char** *a_dest, char const** src);
 #define c_strarrappend			StringArray_Append
 
@@ -166,6 +179,7 @@ char**							StringArray_Append(char** *a_dest, char const** src);
 **	Returns the concatenation of 'src' and 'dest', and deletes 'dest', replacing
 **	it by the result. Also returns the result.
 */
+_MALLOC
 char**							StringArray_Prepend(char const** src, char** *a_dest);
 #define c_strarrprepend			StringArray_Prepend
 

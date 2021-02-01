@@ -23,7 +23,10 @@
 ** ************************************************************************** *|
 */
 
-#include "libccc.h"
+#include "libccc_config.h"
+#include "libccc_define.h"
+
+#include "libccc/bool.h"
 
 HEADER_CPP
 

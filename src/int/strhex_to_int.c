@@ -1,6 +1,7 @@
 
 #include "libccc/int.h"
 #include "libccc/char.h"
+#include "libccc/pointer.h"
 
 
 
@@ -30,7 +31,7 @@ t_u##BITS				Convert_HexString_To_U##BITS(char const *str)			\
 {																				\
 	t_u##BITS	result;															\
 	t_size	i;																	\
-LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_INT										\
+LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_INT											\
 	i = 0;																		\
 	while (!(str[i] == '+' ||													\
 		('0' <= str[i] && str[i] <= '9') ||										\

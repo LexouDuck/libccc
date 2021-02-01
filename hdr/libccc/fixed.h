@@ -23,6 +23,9 @@
 ** ************************************************************************** *|
 */
 
+#include "libccc_config.h"
+#include "libccc_define.h"
+
 #include "libccc/int.h"
 
 HEADER_CPP
@@ -54,11 +57,14 @@ HEADER_CPP
 
 
 
-typedef t_s8	t_q8;	//!< The type for 8-bit signed fixed-point rational numbers
-typedef t_s16	t_q16;	//!< The type for 16-bit signed fixed-point rational numbers
-typedef t_s32	t_q32;	//!< The type for 32-bit signed fixed-point rational numbers
-typedef	t_s64	t_q64;	//!< The type for 64-bit signed fixed-point rational numbers
+typedef t_s8	t_g8;	//!< The type for 8-bit signed fixed-point rational numbers
+typedef t_s16	t_g16;	//!< The type for 16-bit signed fixed-point rational numbers
+typedef t_s32	t_g32;	//!< The type for 32-bit signed fixed-point rational numbers
+typedef	t_s64	t_g64;	//!< The type for 64-bit signed fixed-point rational numbers
 
+
+
+//! The configurable-size fixed-point number primitive type.
 typedef	LIBCONFIG_TYPE_FIXED	t_fixed;
 
 
@@ -69,10 +75,15 @@ typedef	LIBCONFIG_TYPE_FIXED	t_fixed;
 ** ************************************************************************** *|
 */
 
-// TODO add
-// TODO sub
-// TODO div
-// TODO mul
+#define Fixed_Rounded(R)	((t_fixed)((R) * (((t_fixed)1 << LIBCONFIG_BITS_FIXED_FRACTIONPART) + ((R) >= 0 ? 0.5 : -0.5))))
+#define Fixed_FromInt(I)	((t_fixed)(I) << LIBCONFIG_BITS_FIXED_FRACTIONPART)
+#define Fixed_ToInt(F)		((F) >> LIBCONFIG_BITS_FIXED_FRACTIONPART)
+#define Fixed_FractionPart(A)	((t_fixed)(A) & FIXEDPT_FMASK)
+
+#define Fixed_Add(A, B)	((A) + (B))
+#define Fixed_Sub(A, B)	((A) - (B))
+#define Fixed_Mul(A, B)	((t_fixed)(((t_fixed)(A) * (t_fixed)(B)) >> LIBCONFIG_BITS_FIXED_FRACTIONPART))
+#define Fixed_Div(A, B)	((t_fixed)(((t_fixed)(A) << LIBCONFIG_BITS_FIXED_FRACTIONPART) / (t_fixed)(B)))
 
 
 

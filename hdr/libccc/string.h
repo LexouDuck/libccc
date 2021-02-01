@@ -29,7 +29,11 @@
 */
 #include <stdarg.h>
 
-#include "libccc.h"
+#include "libccc_config.h"
+#include "libccc_define.h"
+
+#include "libccc/bool.h"
+#include "libccc/int.h"
 #include "libccc/pointer.h"
 
 HEADER_CPP
@@ -59,6 +63,7 @@ HEADER_CPP
 **	Creates a new string instance of the given 'size',
 **	allocating 'n' bytes of memory, and setting every char to '\0'.
 */
+_MALLOC
 char*				String_New(t_size n);
 #define c_strnew	String_New
 
@@ -66,6 +71,7 @@ char*				String_New(t_size n);
 **	Creates a new string instance of the given 'size',
 **	allocating 'n' bytes of memory, and setting every char to 'c'.
 */
+_MALLOC
 char*				String_New_C(t_size n, char c);
 #define c_strcnew	String_New_C
 
@@ -92,6 +98,7 @@ void				String_Delete(char* *a_str);
 **	Returns a newly allocated string which is a copy of the given string 'str',
 **	(or NULL if the required memory could not be allocated).
 */
+_MALLOC
 char*				String_Duplicate(char const* str);
 #define c_strdup	String_Duplicate
 
@@ -100,6 +107,7 @@ char*				String_Duplicate(char const* str);
 **	(or NULL if the required memory could not be allocated), copying at most
 **	'n' characters.
 */
+_MALLOC
 char*				String_Duplicate_N(char const* str, t_size n);
 #define c_strndup	String_Duplicate_N
 
@@ -108,6 +116,7 @@ char*				String_Duplicate_N(char const* str, t_size n);
 **	(or NULL if the required memory could not be allocated), stopping at the
 **	first occurence of 'c'.
 */
+_MALLOC
 char*				String_Duplicate_Char(char const* str, char const c);
 #define c_strcdup	String_Duplicate_Char
 
@@ -334,7 +343,8 @@ char*				String_Find_N_String(char const* str, char const* query, t_size n);
 **	Returns a new null-terminated string which is a copy of 'str',
 **	in which all occurences of the string 'query' have been removed.
 */
-char*						String_Remove(char const* str, char const* query);
+_MALLOC
+char*					String_Remove(char const* str, char const* query);
 #define c_strremove		String_Remove
 
 /*!
@@ -342,14 +352,16 @@ char*						String_Remove(char const* str, char const* query);
 **	all non-printable characters found in 'str' are made into printable
 **	ANSI-C '\xHH' escape sequences (where "H"s are uppercase hex digits).
 */
-char*						String_ToEscape(char const* str);
-#define c_strtoescape		String_ToEscape
+_MALLOC
+char*					String_ToEscape(char const* str);
+#define c_strtoescape	String_ToEscape
 
 /*!
 **	Returns a new null-terminated string which is a copy of 'str',
 **	in which every occurence of an 'old' char is replaced with a 'new' char.
 */
 //TODO implement
+_MALLOC
 char*						String_Replace_Char(char const* str, char const char_old, char const char_new);
 #define c_strrep_char		String_Replace_Char
 
@@ -359,6 +371,7 @@ char*						String_Replace_Char(char const* str, char const char_old, char const 
 **	corresponding character in the 'new' charset (at the same index).
 */
 //TODO implement
+_MALLOC
 char*						String_Replace_Charset(char const* str, char const* charset_old, char const* charset_new);
 #define c_strrep_charset	String_Replace_Charset
 
@@ -367,6 +380,7 @@ char*						String_Replace_Charset(char const* str, char const* charset_old, char
 **	in which every occurence of the string 'old' is replaced with 'new'.
 **	NB: see stringarray.h -> c_strsplit_str for extra notes on bevahior.
 */
+_MALLOC
 char*						String_Replace_String(char const* str, char const* str_old, char const* str_new);
 #define c_strrep_str		String_Replace_String
 
@@ -379,24 +393,27 @@ char*						String_Replace_String(char const* str, char const* str_old, char cons
 */
 
 /*!
-**	Returns the concatenation of 's1' and 's2', and deletes both inputs from
-**	memory. Also returns the result.
+**	Returns a newly allocated string which is the concatenation of 's1' and 's2'.
+**	Deletes both inputs from memory. Also, returns the result.
 */
+_MALLOC
 char*					String_Merge(char* *a_s1, char* *a_s2);
 #define c_strmerge		String_Merge
 
 /*!
-**	Returns the concatenation of 'dest' and 'src', and deletes 'dest', replacing
-**	it by the result. Also returns the result.
+**	Returns a newly allocated string which is the concatenation of 'dest' and 'src'.
+**	Deletes 'dest', replacing it by the result. Also, returns the result.
 */
+_MALLOC
 char*					String_Append(char* *dest, char const* src);
-#define c_strappend	String_Append
+#define c_strappend		String_Append
 
 
 /*!
-**	Returns the concatenation of 'src' and 'dest', and deletes 'dest', replacing
-**	it by the result. Also returns the result.
+**	Returns a newly allocated string which is the concatenation of 'src' and 'dest'.
+**	Deletes 'dest', replacing it by the result. Also, returns the result.
 */
+_MALLOC
 char*					String_Prepend(char const* src, char* *dest);
 #define c_strprepend	String_Prepend
 
@@ -404,7 +421,7 @@ char*					String_Prepend(char const* src, char* *dest);
 **	Inserts the string 'src' at index 'index' in 'dest'; deletes 'dest' and
 **	replaces it by the result. Also returns the result.
 */
-char*								String_Insert_InPlace(char* *dest, char const* src, t_u32 index);
+char*							String_Insert_InPlace(char* *dest, char const* src, t_u32 index);
 #define c_strinsert_inplace		String_Insert_InPlace
 
 /*!
@@ -450,6 +467,7 @@ char*								String_Map_InPlace(char* *a_str, char (*f)(char));
 **	Returns a new string from 'str' in which all leading and trailing
 **	whitespace characters (' ', \n, \t,  \r, \v and \f) have been removed.
 */
+_MALLOC
 char*					String_Trim(char const* str, char const* charset);
 #define c_strtrim		String_Trim
 
@@ -457,21 +475,24 @@ char*					String_Trim(char const* str, char const* charset);
 **	Returns a new string from 'str' in which all leading
 **	characters present in 'charset' have been removed.
 */
+_MALLOC
 char*					String_Trim_L(char const* str, char const* charset);
-#define c_strtrim_l	String_Trim_L
+#define c_strtrim_l		String_Trim_L
 
 /*!
 **	Returns a new string from 'str' in which all trailing
 **	characters present in 'charset' have been removed.
 */
+_MALLOC
 char*					String_Trim_R(char const* str, char const* charset);
-#define c_strtrim_r	String_Trim_R
+#define c_strtrim_r		String_Trim_R
 
 /*!
 **	Returns a new null-terminated string duplicate of 'str' which is
 **	'length' characters long, by padding it with 'c' chars on both sides
 **	if the desired 'length' is larger than 'str'.
 */
+_MALLOC
 char*					String_Pad(char const* str, char c, t_size length);
 #define c_strpad		String_Pad
 
@@ -480,6 +501,7 @@ char*					String_Pad(char const* str, char c, t_size length);
 **	'length' characters long, by padding it with 'c' chars on its
 **	left side if the desired 'length' is larger than 'str'.
 */
+_MALLOC
 char*					String_Pad_L(char const* str, char c, t_size length);
 #define c_strpad_l		String_Pad_L
 
@@ -488,6 +510,7 @@ char*					String_Pad_L(char const* str, char c, t_size length);
 **	'length' characters long, by padding it with 'c' chars on its
 **	right side if the desired 'length' is larger than 'str'.
 */
+_MALLOC
 char*					String_Pad_R(char const* str, char c, t_size length);
 #define c_strpad_r		String_Pad_R
 
@@ -496,6 +519,7 @@ char*					String_Pad_R(char const* str, char c, t_size length);
 **	of 'str' is replaced by either its 'normal' escape sequence (if available)
 **	or a '\x'-type byte escape sequence otherwise.
 */
+_MALLOC
 char*					String_ToPrintableString(char const* str);
 #define c_strprint		String_ToPrintableString
 
@@ -511,6 +535,7 @@ char*					String_ToPrintableString(char const* str);
 **	Returns a newly allocated string which is a copy of the given string 'str',
 **	but in reverse order (except for the \0 terminator, obviously).
 */
+_MALLOC
 char*					String_Reverse(char const* str);
 #define c_strrev		String_Reverse
 
@@ -518,6 +543,7 @@ char*					String_Reverse(char const* str);
 **	Returns a new null-terminated string which is the result of
 **	the concatenation of the two given strings 'str1' and 'str2'.
 */
+_MALLOC
 char*					String_Join(char const* str1, char const* str2);
 #define c_strjoin		String_Join
 
@@ -525,13 +551,15 @@ char*					String_Join(char const* str1, char const* str2);
 **	Returns a reallocated version of the given string 'dest', in which
 **	the string 'str' has been inserted at the index 'offset'.
 */
+_MALLOC
 char*					String_Insert(char const* dest, char const* src, t_size offset);
-#define c_strinsert	String_Insert
+#define c_strinsert		String_Insert
 
 /*!
 **	Returns a new null-terminated string which is a subsection of 'str',
 **	starting at char index 'index' and copying 'n' characters.
 */
+_MALLOC
 char*					String_Sub(char const* str, t_size index, t_size n);
 #define c_strsub		String_Sub
 
@@ -540,12 +568,15 @@ char*					String_Sub(char const* str, t_size index, t_size n);
 **	Returns a new null-terminated string, which is generated from the given
 **	'format' string and variadic args - it is equivalent to 'asprintf()'.
 */
-char*					String_Format(char const* format, ...) __format_printf(1, 2);
+_FORMAT(printf, 1, 2)
+_MALLOC
+char*					String_Format(char const* format, ...);
 #define c_asprintf		String_Format
 #define c_strbuild		String_Format
-#define c_strformat	String_Format
+#define c_strformat		String_Format
 #define String_Build	String_Format
 //! @copydef String_Build, but takes a variadic arguments list
+_MALLOC
 char*					String_Format_VA(char const* format, va_list args);
 #define String_Build_VA	String_Format_VA
 
@@ -556,10 +587,11 @@ char*					String_Format_VA(char const* format, va_list args);
 **	@param	format	The format string used to construct the resulting date string: learn more here https://www.cplusplus.com/reference/cstdio/printf/
 **	@returns the amount of characters in the constructed format string, regardless of 'max' size
 */
-t_size					String_Format_N(char* dest, t_size max, char const* format, ...);
-#define c_snprintf		String_Format_N
+_FORMAT(printf, 3, 4)
+t_size				String_Format_N(char* dest, t_size max, char const* format, ...);
+#define c_snprintf	String_Format_N
 //! @copydef String_Build, but takes a variadic arguments list
-t_size					String_Format_N_VA(char* dest, t_size max, char const* format, va_list args);
+t_size				String_Format_N_VA(char* dest, t_size max, char const* format, va_list args);
 #define c_vsnprintf	String_Format_N
 
 
@@ -581,6 +613,7 @@ void					String_Iterate_I(char* str, void (*f)(t_size index, char* c));
 **	Creates a new null-terminated string by iterating upon the string 'str',
 **	applying the function 'f' to each of its chars.
 */
+_MALLOC
 char*					String_Map(char const* str, char (*f)(char c));
 #define c_strmap		String_Map
 
@@ -588,6 +621,7 @@ char*					String_Map(char const* str, char (*f)(char c));
 **	Creates a new null-terminated string by iterating upon the string 'str',
 **	applying the function 'f' to each of its chars (with index information).
 */
+_MALLOC
 char*					String_Map_I(char const* str, char (*f)(t_size index, char c));
 #define c_strmapi		String_Map_I
 

@@ -309,7 +309,8 @@ s_date					Date_Now(void);
 
 
 //! Parses the given string representation of a date/time, and returns the resulting 's_date' struct
-s_date						Date_String_Parse(char const* str, char const* format);// __format_strptime(2, 0); TODO check if this exists even
+//_FORMAT(strptime, 2, 0) // TODO check if this exists even
+s_date						Date_String_Parse(char const* str, char const* format);
 #define c_strptime			Date_String_Parse
 #define c_date_parse		Date_String_Parse
 #define Date_Parse			Date_String_Parse
@@ -321,11 +322,14 @@ s_date						Date_String_Parse(char const* str, char const* format);// __format_s
 **	It is closer to 'asprintf()' as well, making for a rather easy-to-use equivalent to strftime().
 **	That being said, it is probably better to use Date_String_Format_N for machines with little RAM.
 */
-char*						Date_String_Format(s_date const* date, char const* format) __format_strftime(2);
+_FORMAT(strftime, 2, 0)
+_MALLOC
+char*						Date_String_Format(s_date const* date, char const* format);
 #define c_date_format		Date_String_Format
 #define Date_Format			Date_String_Format
 //! @copydef Date_String_Format, but this version is more closely equivalent to 'strftime()'
-t_size						Date_String_Format_N(char* dest, t_size max, s_date const* date, char const* format) __format_strftime(4);
+_FORMAT(strftime, 4, 0)
+t_size						Date_String_Format_N(char* dest, t_size max, s_date const* date, char const* format);
 #define c_strftime			Date_String_Format_N
 #define c_date_format_n	Date_String_Format_N
 #define Date_Format_N		Date_String_Format_N

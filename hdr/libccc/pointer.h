@@ -30,7 +30,8 @@
 */
 #include <stddef.h>
 
-#include "libccc.h"
+#include "libccc_config.h"
+#include "libccc_define.h"
 
 HEADER_CPP
 
@@ -78,6 +79,7 @@ typedef ptrdiff_t	t_ptrdiff;
 */
 
 //! Get the string decimal representation of a 64-bit unsigned integer
+_MALLOC
 char*					Convert_Size_To_String(t_size value);
 #define c_size_to_str	Convert_Size_To_String
 
@@ -86,12 +88,14 @@ t_size					Convert_String_To_Size(char const* str);
 #define c_str_to_size	Convert_String_To_Size
 
 //! Get the string decimal human-readable representation of a 64-bit unsigned integer, with bytes units (KB,MB,GB,etc)
+_MALLOC
 char*							Convert_Size_To_String_Readable(t_size value);
 #define c_size_to_str_readable	Convert_Size_To_String_Readable
 
 
 
 //! Get the string hexadecimal representation of a pointer/address value
+_MALLOC
 char*						Convert_Pointer_To_HexString(void const* ptr);
 #define c_ptr_to_strhex		Convert_Pointer_To_HexString
 

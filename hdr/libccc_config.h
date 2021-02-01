@@ -34,6 +34,8 @@
 	#endif	
 #endif
 
+HEADER_CPP
+
 /*
 ** ************************************************************************** *|
 **                            Library Configuration                           *|
@@ -105,7 +107,7 @@
 **	The following macro sets what the 't_fixed' default fixed-point type should be.
 */
 #define LIBCONFIG_BITS_FIXED	32
-#define LIBCONFIG_TYPE_FIXED	t_q32
+#define LIBCONFIG_TYPE_FIXED	t_g32
 #define LIBCONFIG_BITS_FIXED_DECIMALPART	(LIBCONFIG_BITS_FIXED / 4)
 #define LIBCONFIG_BITS_FIXED_INTEGERPART	(LIBCONFIG_BITS_FIXED - LIBCONFIG_BITS_FIXED_DECIMALPART)
 
@@ -123,4 +125,5 @@
 
 
 /*! @} */
+HEADER_END
 #endif

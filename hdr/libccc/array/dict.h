@@ -57,8 +57,8 @@ typedef struct	s_dict_
 
 
 
-//! A literal of an 's_array' struct which has all fields set to zero
-#define DICT_NULL	(s_array){ .item_count = 0, .item_size = 0, .items = NULL }
+//! A literal of an 's_dict' struct which has all fields set to zero
+#define DICT_NULL	(s_dict){ .item_count = 0, .item_size = 0, .items = NULL }
 
 
 
@@ -69,8 +69,8 @@ typedef struct	s_dict_
 #define foreach_s_dict_loop_init(	TYPE, VAR, DICT)	
 #define foreach_s_dict_loop_exit(	TYPE, VAR, DICT)	
 #define foreach_s_dict_loop_incr(	TYPE, VAR, DICT)	
-#define foreach_s_dict_loop_incr_1(TYPE, VAR, DICT)	
-#define foreach_s_dict_loop_incr_2(TYPE, VAR, DICT)	
+#define foreach_s_dict_loop_incr_1(	TYPE, VAR, DICT)	
+#define foreach_s_dict_loop_incr_2(	TYPE, VAR, DICT)	
 
 
 

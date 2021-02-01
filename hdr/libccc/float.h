@@ -23,6 +23,9 @@
 ** ************************************************************************** *|
 */
 
+#include "libccc_config.h"
+#include "libccc_define.h"
+
 #include "libccc/int.h"
 
 HEADER_CPP
@@ -48,21 +51,22 @@ typedef float		t_f32;
 typedef double		t_f64;
 
 #ifdef	__float80
-//! The type for 32-bit 'extended precision' IEEE-754 floating-point numbers
+//! The type for 32-bit 'extended precision' IEEE-754 floating-point numbers (only certain platforms)
 typedef __float80	t_f80;
-#elif defined(_FLOAT_80_)
+#elif LIBCONFIG_BITS_FLOAT == 80
 	#error "Cannot set default float to 80-bit extended-precision, unavailable on this platform"
 #endif
 
 #ifdef	__float128
-//! The type for 32-bit 'quadruple precision' IEEE-754 floating-point numbers
+//! The type for 32-bit 'quadruple precision' IEEE-754 floating-point numbers (only certain platforms)
 typedef __float128	t_f128;
-#elif defined(_FLOAT_128_)
+#elif LIBCONFIG_BITS_FLOAT == 128
 	#error "Cannot set default float to 128-bit quadruple-precision, unavailable on this platform"
 #endif
 
 
 
+//! The configurable-size floating-point number primitive type.
 typedef LIBCONFIG_TYPE_FLOAT	t_float;
 
 
@@ -207,29 +211,34 @@ int									Convert_Float_To_String_CheckSpecial(t_f32 number, char* *a_result);
 //! Get the string decimal representation of a 32-bit floating-point number
 /*
 */
+_MALLOC
 char*						Convert_F32_To_String(t_f32 n);
 #define c_f32_to_str		Convert_F32_To_String
 //! Get the string hexadecimal representation of a 32-bit floating-point number
 /*
 */
+_MALLOC
 char*						Convert_F32_To_HexString(t_f32 n);
 #define c_f32_to_strhex		Convert_F32_To_HexString
 //! Get the string decimal representation of a 32-bit floating-point number, with 'precision' fractional digits
 /*!
-**	Has some approximation/error margin (beyond the seventh decimal digit;
-**	the exact amount of imprecision depends on the input)
+**	NB: This function has some approximation/error margin (beyond the
+**	seventh decimal digit; the exact amount of imprecision depends on the input)
 */
+_MALLOC
 char*						Convert_F32_To_String_P(t_f32 n, t_u8 precision);
 #define c_f32_to_str_p		Convert_F32_To_String_P
 
 //! Get the string decimal representation of a 64-bit floating-point number
 /*
 */
+_MALLOC
 char*						Convert_F64_To_String(t_f64 n);
 #define c_f64_to_str		Convert_F64_To_String
 //! Get the string hexadecimal representation of a 64-bit floating-point number
 /*
 */
+_MALLOC
 char*						Convert_F64_To_HexString(t_f64 n);
 #define c_f64_to_strhex		Convert_F64_To_HexString
 //! Get the string decimal representation of a 64-bit floating-point number, with 'precision' fractional digits
@@ -237,6 +246,7 @@ char*						Convert_F64_To_HexString(t_f64 n);
 **	Has some approximation/error margin (beyond the seventh decimal digit;
 **	the exact amount of imprecision depends on the input)
 */
+_MALLOC
 char*						Convert_F64_To_String_P(t_f64 n, t_u8 precision);
 #define c_f64_to_str_p		Convert_F64_To_String_P
 
