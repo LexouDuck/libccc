@@ -1,54 +1,386 @@
 
-// this is a small independent file (not part of the libccc test suite)
-
-#include <libccc_string.h>
-#include <libccc_list.h>
-#include <libccc_io.h>
-
-#include <stdio.h>
+value = *pointer; // pure C
+value = $pointer; // ++C
 
 
+address = &value; // pure C
+address = @value; // ++C
 
-#define COUNT 8
+
+void*		->	void$
+void const*	->	void@
+
+
+// in .h header file
+#namespace String
+char*	Duplicate(char* str);
+#endnamespace
+
+// in .c source file
+char*	String.Duplicate(char* str)
+{
+	return (Memory.Duplicate(String.Length(str) + 1));
+}
+char* str = String.Duplicate("foo");
+
+
+// in .h header file
+#namespace Compression.RLE	// you can write out the nesting prefix manually
+t_u8*	Compress(t_u8* data, size_t length);
+t_u8*	Decompress(t_u8* data);
+#endnamespace
+
+#namespace Compression	// or you can have namespaces be written nested
+#namespace LZ77
+t_u8*	Compress(t_u8* data, size_t length);
+t_u8*	Decompress(t_u8* data);
+#endnamespace
+#endnamespace
+
+// in .c source file
+t_u8* decompressed_data_rle = Compression.RLE.Decompress(file);
+t_u8* decompressed_data_lz77 = Compression.LZ77.Decompress(file);
+
+
+void	WaitAndRunCallback(void (*callback)(void));
+
+int	main()
+{
+	WaitAndRunCallback(
+		#function void HelloWorld(void)
+		{
+			printf("Hello World!\n");
+		}
+	);
+}
+
+
+// NB: when transpiled to C, the 'HelloWorld' local function will be in global scope, named:
+void	WaitAndRunCallback(void (*callback)(void));
+
+static void	main_HelloWorld(void)
+{
+	printf("Hello World!\n");
+}
+int	main()
+{
+	WaitAndRunCallback(
+		&main_HelloWorld
+	);
+}
+
+
+// integer power operator
+#operator ** (int left, int right) = int
+{
+	return (Math<int>.Power(left, right));
+}
+// usage example:
+printf("%d", 2 ** 15);
+
+
+// NULL check and return operator
+#operator ?? (void const* left, void const* right) = void const*
+{
+	return (left == NULL ? right : left);
+}
+// usage example:
+char* new_str = str ?? "str is NULL";
+
+
+// string concatenation operator
+#operator + (char const* left, char const* right) = char*
+{
+	return (String.Join(left, right));
+}
+// usage example:
+char* new_str = "Concatenated: " + str;
+
+
+// unary complex number conjugate operator
+typedef struct	s_complex_
+{
+	float re;
+	float im;
+}				s_complex;
+#operator ! (s_complex right) = s_complex
+{
+	return (Complex.Conjugate(right));
+}
+// usage example:
+s_complex z = { 1.5, 2.2 };
+s_complex conjug = !z;
+
+
+// bool exclusive OR (XOR) operator
+#operator ^^ (bool left, bool right) = bool
+{
+	return ((left ? TRUE : FALSE) ^ (right ? TRUE : FALSE));
+}
+// usage example:
+if (i < 3 ^^ x >= 4) { /* do stuff */}
+
+
+// 3D vector subtraction operator
+#operator - (s_vector3d left, s_vector3d right) = s_vector3d
+{
+//	return (Vector3D.Add(left, right));
+	return ((s_vector3d)
+	{
+		.x = left.x - right.x,
+		.y = left.y - right.y,
+		.z = left.z - right.z,
+	});
+}
+// usage example:
+s_vector3d u = (s_vector3d){ 1, 2, 3 };
+s_vector3d v = (s_vector3d){ 4, 5, 6 };
+s_vector3d diff = (u - v);
+
+
+// example color type
+typedef	uint32_t	t_argb32;
+// example palette color array struct
+typedef struct	s_palette_
+{
+	size_t		color_count;
+	t_argb32*	colors;
+}				s_palette;
+// declare an accessor to get colors from the palette
+#accessor (s_palette palette)[int index] = t_argb32
+{
+	return (palette.colors[index]);
+}
+// usage example:
+t_argb32 color = palette[3];
+
+
+// example 32-bit color bitmap array
+typedef struct	s_bitmap_
+{
+	t_argb32*	pixels;
+	int width;
+	int height;
+}				s_bitmap;
+// declare an accessor to get pixels from their coordinates
+#accessor (s_bitmap bitmap)[int x, int y] = t_argb32
+{
+	return (bitmap.pixels[y * bitmap.width + x]);
+}
+// usage example:
+for (int x = 0; x < bitmap->width; ++x)
+for (int y = 0; y < bitmap->height; ++y)
+{
+	t_argb32 color = bitmap[x, y];
+}
+
+
+typedef struct	s_keyval_
+{
+	char*		key;
+	char*		type;
+	void*		value;
+}				s_keyval;
+typedef struct	s_dict_
+{
+	t_size		count;
+	keyval*		items;
+}				s_dict;
+
+#namespace Dict
+
+s_dict	New(int items, s_keyval ...);
+{
+	return ((s_dict)
+	{
+		.count = items,
+		Array<s_keyval>.New(items, va_list),
+	});
+}
+
+// declare an accessor to get dictionary values from their key names
+#accessor (s_dict dict)[char const* key] = void*
+{
+	return (Dict.Get(dict, key));
+}
+
+#endnamespace
+
+// usage example:
+s_dict dict = Dict.New(2,
+	(s_keyval){ .key="foo", .value="FOO" },
+	(s_keyval){ .key="bar", .value="BAR" },
+);
+char* bar = (char*)dict["bar"];
+
+
+// parse utf8 char smartly in a string
+typedef wchar_t	t_utf8;
+t_utf8	String_Get_UTF8(t_utf8* str, size_t index)
+{
+	char* str = (char*)utf8;
+	t_utf8 result = str[index];
+	if (str[++index] && (result & 0x000080))	result |= (str[index] << 8);
+	if (str[++index] && (result & 0x008000))	result |= (str[index] << 16);
+	if (str[++index] && (result & 0x800000))	result |= (str[index] << 24);
+	return (result);
+}
+#accessor 	(t_utf8* str)[size_t index] = t_utf8	
+{
+	return (String_Get_UTF8(str, index));
+}
+// usage example:
+char* str = "char ñ";
+t_utf8 utf8_char = (t_utf8*)str[5];
+
+
+typedef struct	s_list_<TYPE=void*>
+{
+	s_list*		next;
+	size_t		item_size;
+	<TYPE>		item;
+}				s_list<TYPE=void*>; // by default, 'void*' type will be used
+// usage example:
+s_list<char*> const*	string_list;
+
+
+// a generic type can be applied to a namespace as well
+#namespace Math<TYPE=float>
+
+<TYPE>	Cos(<TYPE> x);
+
+#endnamespace
+
+// usage example:
+float cosine_float = Math<float>.Cos(value);	// specific implementation for 32-bit floating-point type cos()
+double cosine_f64 = Math<double>.Cos(value);	// specific implementation for 64-bit floating-point type cos()
+fixed cosine_fixed = Math<fixed>.Cos(value);	// specific implementation for fixed-point type cos()
+
+
+// in .h header file
+#namespace List<TYPE=void*>
+
+s_list<TYPE>	New(size_t length, <TYPE> ...);
+void			Append(s_list<TYPE> list, s_list<TYPE> element);
+s_list<TYPE>	Filter(s_list<TYPE> list, bool (*filter)(s_list<TYPE> element));
+
+#endnamespace
+
+// usage example:
+// in .c source file
+s_list<char*> list = List<char*>.New(3, "foo", "bar", "baz");
+
+
+// usage example:
+void	KeepOnlyEvenNumbers(s_list<int> integers)
+{
+	s_list<int> only_even = List<int>.Filter(integers,
+		#function bool	filter(s_list<int> element)
+		{
+			return (element.item % 2 == 0);
+		}
+	);
+}
+// NB: when transpiled to C, the 'filter' local function will be in global scope, named:
+static bool	KeepOnlyEvenNumbers_filter(s_list<int> element)
+{
+	return (element.item % 2 == 0);
+}
+
+
+// list concatenation operator
+#namespace List<TYPE=void*>
+
+#operator + (s_list<TYPE>* left, s_list<TYPE>* right) = s_list<TYPE>
+{
+	return (List<TYPE>.Join(left, right));
+}
+
+#endnamespace
+
+// usage example:
+s_list<char*> list = List<char*>.New(2, "foo", "bar");
+s_list<char*> list = List<char*>.New(2, "bar", "baz");
+s_list<char*> concat = list1 + list2; // type inferrence for the operator
+
+
+// list index get
+#namespace List<TYPE=void*>
+
+#accessor (s_list<TYPE>* list)[size_t index] = <TYPE>
+{
+	return (List<TYPE>.Get(list, index));
+}
+
+#endnamespace
+// usage example:
+s_list<char*> list = List<char*>.New(3, "foo", "bar", "baz");
+char* str = list[2]; // type inferrence for the accessor
+
+
+#namespace KeyVal<TYPE>
+
+typedef struct	keyval_<TYPE>
+{
+	char*	key;
+	char*	type;
+	<TYPE>	value;
+}				keyval<TYPE>;
+
+keyval<TYPE>	New(char* key, <TYPE> value);
+
+#endnamespace
+
+#namespace Object<TYPE=void*>
+
+typedef keyval<void*>*	object;
+
+object*	New(size_t items, keyval ...);
+
+#accessor (object* obj)[char const* key] = <TYPE>
+{
+	return (Object<TYPE>.Get(obj, key));
+}
+
+#endnamespace
+
+object* obj = Object.New(3,
+	KeyVal<int>.New("index", 1), // = &(keyval<int>){ .key="index", .type="int", .value=1 }
+	KeyVal<char*>.New("value", "foo"),
+	KeyVal<object>.New("sub", Object.New(2,
+		KeyVal<float>.New("float", 1.5),
+		KeyVal<char*>.New("str", "hello")),
+);
+printf("%s\n", obj<object*>["sub"]<char*>["str"]); // type inferrence cannot be done here
+
+
+#incbin myfile	"./path/to/file.dat"
+
+
+void		MyFunction(void);
+#replace f	MyFunction
 int main()
 {
-	static char* lines[COUNT] =
-	{
-		"Yo my boi",
-		"What's up dog",
-		"Not much, you ?",
-		"...",
-		"Yo spit it out",
-		"What's the deal ?",
-		"You got the dope ?",
-		"I ask the questions.",
-	};
-
-	// s_array
-	{
-		s_array* str_array = &(s_array)
-		{
-			.item_count = COUNT,
-			.item_size = sizeof(char*),
-			.items = lines,
-		};
-		foreach (char*, str, s_array, str_array)
-		{
-			IO_Output_Format("i:%zu,ptr:%p,\tstr:%p -> \"%s\"\n", str_i, str_ptr, str, str);
-		}
-	}
-
-	// s_list
-	{
-		s_list* str_list = NULL;
-		for (int i = 0; i < COUNT; ++i)
-		{
-			List_Append(&str_list, List_New(lines[i], lines[i] ? String_Length(lines[i]) : 0));
-		}
-		foreach (char*, str, s_list, str_list)
-		{
-			IO_Output_Format("i:%zu,lst:%p, size: %llu,\tstr:%p -> \"%s\"\n", str_i, str_lst, str_lst->item_size, str, str);
-		}
-	}
-	return (OK);
+	f();
 }
+
+
+void		MyFunction(void);
+int main()
+{
+	MyFunction();
+}
+
+
+void		MyFunction(void);
+#alias	f	MyFunction
+int main()
+{
+	f();
+}
+
+
+void*	Memory_Alloc(t_size size);
+#alias	c_memalloc
+// transpiles to:
+void*	c_memalloc(t_size size) __attribute__((weak, alias("Memory_Alloc")));

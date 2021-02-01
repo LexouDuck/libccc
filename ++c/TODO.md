@@ -5,6 +5,9 @@
 - You can enforce a certain code style to the resulting transpiled C code
 - automatic header include-guard insertion (and C++ `#ifdef __cplusplus extern "C" { ... }`)
 - includes m4 multi-pass pre-processor
+- To differentiate ++C code from C or C++, by convention the following file formats are accepted:
+	- `++c`, `ppc`, `xxc` (case insensitive), these transpile to `.c` files
+	- `++h`, `pph`, `xxh` (case insensitive), these transpile to `.h` files
 
 
 
@@ -42,13 +45,14 @@ void const*	->	void@
 
 
 
-### Namespaces (only in header files):
+### Namespaces:
+
+Namespaces can only be used in header files:
 ```c
 // in .h header file
-namespace String
-{
-	char*	Duplicate(char* str);
-}
+#namespace String
+char*	Duplicate(char* str);
+#endnamespace
 
 // in .c source file
 char*	String.Duplicate(char* str)
@@ -57,57 +61,68 @@ char*	String.Duplicate(char* str)
 }
 char* str = String.Duplicate("foo");
 ```
+Namespaces can be also be nested:
 ```c
-// namespaces can be nested
 // in .h header file
-namespace Compression
-{
-	namespace RLE
-	{
-		t_u8*	Compress(t_u8* data, size_t length);
-		t_u8*	Decompress(t_u8* data);
-	}
-	namespace LZ77
-	{
-		t_u8*	Compress(t_u8* data, size_t length);
-		t_u8*	Decompress(t_u8* data);
-	}
-}
+#namespace Compression.RLE	// you can write out the nesting prefix manually
+t_u8*	Compress(t_u8* data, size_t length);
+t_u8*	Decompress(t_u8* data);
+#endnamespace
+
+#namespace Compression	// or you can have namespaces be written nested
+#namespace LZ77
+t_u8*	Compress(t_u8* data, size_t length);
+t_u8*	Decompress(t_u8* data);
+#endnamespace
+#endnamespace
 
 // in .c source file
-t_u8* decompressed_data = Compression.LZ77.Decompress(file);
+t_u8* decompressed_data_rle = Compression.RLE.Decompress(file);
+t_u8* decompressed_data_lz77 = Compression.LZ77.Decompress(file);
 ```
 
 
 
 ### Functions declared in local scopes (prime citizens-ish):
 
+Use the `#function` instruction to declare a function in a local scope
 ```c
 void	WaitAndRunCallback(void (*callback)(void));
+
 int	main()
 {
 	WaitAndRunCallback(
-		void HelloWorld(void)
+		#function void HelloWorld(void)
 		{
 			printf("Hello World!\n");
 		}
 	);
 }
-// NB: when transpiled to C, the 'HelloWorld' local function will be in global scope, named:
-static void	WaitAndRunCallback_HelloWorld(void)
-{
-	printf("Hello World!\n");
-}
 ```
 Perhaps we can implement a variable-capture mechanism which isn't too complex ?
 Otherwise, for simplicity, only allow pure functions and functions with only global-scope side-effects, to be defined locally.
+```c
+// NB: when transpiled to C, the 'HelloWorld' local function will be in global scope, named:
+void	WaitAndRunCallback(void (*callback)(void));
+
+static void	main_HelloWorld(void)
+{
+	printf("Hello World!\n");
+}
+int	main()
+{
+	WaitAndRunCallback(
+		&main_HelloWorld
+	);
+}
+```
 
 
 
 ### Operators:
 ```c
 // integer power operator
-int			operator: ** (int left, int right)
+#operator ** (int left, int right) = int
 {
 	return (Math<int>.Power(left, right));
 }
@@ -116,7 +131,7 @@ printf("%d", 2 ** 15);
 ```
 ```c
 // NULL check and return operator
-void const*	operator: ?? (void const* left, void const* right)
+#operator ?? (void const* left, void const* right) = void const*
 {
 	return (left == NULL ? right : left);
 }
@@ -125,7 +140,7 @@ char* new_str = str ?? "str is NULL";
 ```
 ```c
 // string concatenation operator
-char*		operator: + (char const* left, char const* right)
+#operator + (char const* left, char const* right) = char*
 {
 	return (String.Join(left, right));
 }
@@ -133,13 +148,13 @@ char*		operator: + (char const* left, char const* right)
 char* new_str = "Concatenated: " + str;
 ```
 ```c
-// unary operator: complex number conjugate
+// unary complex number conjugate operator
 typedef struct	s_complex_
 {
 	float re;
 	float im;
 }				s_complex;
-s_complex	operator: ! (s_complex right)
+#operator ! (s_complex right) = s_complex
 {
 	return (Complex.Conjugate(right));
 }
@@ -149,7 +164,7 @@ s_complex conjug = !z;
 ```
 ```c
 // bool exclusive OR (XOR) operator
-bool		operator: ^^ (bool left, bool right)
+#operator ^^ (bool left, bool right) = bool
 {
 	return ((left ? TRUE : FALSE) ^ (right ? TRUE : FALSE));
 }
@@ -158,7 +173,7 @@ if (i < 3 ^^ x >= 4) { /* do stuff */}
 ```
 ```c
 // 3D vector subtraction operator
-s_vector3d	operator: - (s_vector3d left, s_vector3d right)
+#operator - (s_vector3d left, s_vector3d right) = s_vector3d
 {
 //	return (Vector3D.Add(left, right));
 	return ((s_vector3d)
@@ -179,7 +194,7 @@ s_vector3d diff = (u - v);
 ### Accessors:
 
 Accessors allow one to dereference with brackets `[]` within a struct, with any specified arguments.
-The accessor function body must be a simple inline-able `return` statement.
+The accessor function body must be a simple inline-able `return` statement. Only works with non-pointer types.
 ```c
 // example color type
 typedef	uint32_t	t_argb32;
@@ -190,7 +205,7 @@ typedef struct	s_palette_
 	t_argb32*	colors;
 }				s_palette;
 // declare an accessor to get colors from the palette
-t_argb32	accessor: (s_palette palette)[int index]
+#accessor (s_palette palette)[int index] = t_argb32
 {
 	return (palette.colors[index]);
 }
@@ -206,7 +221,7 @@ typedef struct	s_bitmap_
 	int height;
 }				s_bitmap;
 // declare an accessor to get pixels from their coordinates
-t_argb32	accessor: (s_bitmap bitmap)[int x, int y]
+#accessor (s_bitmap bitmap)[int x, int y] = t_argb32
 {
 	return (bitmap.pixels[y * bitmap.width + x]);
 }
@@ -229,22 +244,26 @@ typedef struct	s_dict_
 	t_size		count;
 	keyval*		items;
 }				s_dict;
-namespace Dict
+
+#namespace Dict
+
+s_dict	New(int items, s_keyval ...);
 {
-	s_dict	New(int items, s_keyval ...);
+	return ((s_dict)
 	{
-		return ((s_dict)
-		{
-			.count = items,
-			Array<s_keyval>.New(items, va_list),
-		});
-	}
-	// declare an accessor to get dictionary values from their key names
-	void*	accessor: (s_dict dict)[char const* key]
-	{
-		return (Dict.Get(dict, key));
-	}
+		.count = items,
+		Array<s_keyval>.New(items, va_list),
+	});
 }
+
+// declare an accessor to get dictionary values from their key names
+#accessor (s_dict dict)[char const* key] = void*
+{
+	return (Dict.Get(dict, key));
+}
+
+#endnamespace
+
 // usage example:
 s_dict dict = Dict.New(2,
 	(s_keyval){ .key="foo", .value="FOO" },
@@ -252,7 +271,7 @@ s_dict dict = Dict.New(2,
 );
 char* bar = (char*)dict["bar"];
 ```
-Perhaps allow replacing/overriding the standard pointer deref brackets, for things other than structs ?
+Perhaps allow replacing/overriding the standard pointer deref brackets, for special behaviors on pointer types ?
 It can allow for some cool stuff, but this kind of syntactic sugar may be too "implicit" for C though...
 ```c
 // parse utf8 char smartly in a string
@@ -266,7 +285,7 @@ t_utf8	String_Get_UTF8(t_utf8* str, size_t index)
 	if (str[++index] && (result & 0x800000))	result |= (str[index] << 24);
 	return (result);
 }
-t_utf8		accessor: (t_utf8* str)[size_t index]
+#accessor 	(t_utf8* str)[size_t index] = t_utf8	
 {
 	return (String_Get_UTF8(str, index));
 }
@@ -288,27 +307,31 @@ typedef struct	s_list_<TYPE=void*>
 // usage example:
 s_list<char*> const*	string_list;
 ```
-Here's a set of examples of generic type usage with lists:
 ##### Namespace:
 ```c
-// a generic type can be applied to a namespace
-namespace Math<TYPE=float>
-{
-	<TYPE>	Cos(<TYPE> x);
-}
+// a generic type can be applied to a namespace as well
+#namespace Math<TYPE=float>
+
+<TYPE>	Cos(<TYPE> x);
+
+#endnamespace
+
 // usage example:
-float cosine_float = Math<float>.Cos(value);	// 32-bit floating-point type cos()
-double cosine_f64 = Math<double>.Cos(value);	// 64-bit floating-point type cos()
-fixed cosine_fixed = Math<fixed>.Cos(value);	// fixed-point type cos()
+float cosine_float = Math<float>.Cos(value);	// specific implementation for 32-bit floating-point type cos()
+double cosine_f64 = Math<double>.Cos(value);	// specific implementation for 64-bit floating-point type cos()
+fixed cosine_fixed = Math<fixed>.Cos(value);	// specific implementation for fixed-point type cos()
 ```
+Here's a set of examples of generic type usage with lists:
 ```c
 // in .h header file
-namespace List<TYPE=void*>
-{
-	s_list<TYPE>	New(size_t length, <TYPE> ...);
-	void			Append(s_list<TYPE> list, s_list<TYPE> element);
-	s_list<TYPE>	Filter(s_list<TYPE> list, bool (*filter)(s_list<TYPE> element));
-}
+#namespace List<TYPE=void*>
+
+s_list<TYPE>	New(size_t length, <TYPE> ...);
+void			Append(s_list<TYPE> list, s_list<TYPE> element);
+s_list<TYPE>	Filter(s_list<TYPE> list, bool (*filter)(s_list<TYPE> element));
+
+#endnamespace
+
 // usage example:
 // in .c source file
 s_list<char*> list = List<char*>.New(3, "foo", "bar", "baz");
@@ -319,7 +342,7 @@ s_list<char*> list = List<char*>.New(3, "foo", "bar", "baz");
 void	KeepOnlyEvenNumbers(s_list<int> integers)
 {
 	s_list<int> only_even = List<int>.Filter(integers,
-		bool	filter(s_list<int> element)
+		#function bool	filter(s_list<int> element)
 		{
 			return (element.item % 2 == 0);
 		}
@@ -334,13 +357,15 @@ static bool	KeepOnlyEvenNumbers_filter(s_list<int> element)
 ##### Operator:
 ```c
 // list concatenation operator
-namespace List<TYPE=void*>
+#namespace List<TYPE=void*>
+
+#operator + (s_list<TYPE>* left, s_list<TYPE>* right) = s_list<TYPE>
 {
-	s_list<TYPE>*	operator: + (s_list<TYPE>* left, s_list<TYPE>* right)
-	{
-		return (List<TYPE>.Join(left, right));
-	}
+	return (List<TYPE>.Join(left, right));
 }
+
+#endnamespace
+
 // usage example:
 s_list<char*> list = List<char*>.New(2, "foo", "bar");
 s_list<char*> list = List<char*>.New(2, "bar", "baz");
@@ -349,44 +374,48 @@ s_list<char*> concat = list1 + list2; // type inferrence for the operator
 ##### Accessor:
 ```c
 // list index get
-namespace List<TYPE=void*>
+#namespace List<TYPE=void*>
+
+#accessor (s_list<TYPE>* list)[size_t index] = <TYPE>
 {
-	<TYPE>		accessor: (s_list<TYPE>* list)[size_t index]
-	{
-		return (List<TYPE>.Get(list, index));
-	}
+	return (List<TYPE>.Get(list, index));
 }
+
+#endnamespace
 // usage example:
 s_list<char*> list = List<char*>.New(3, "foo", "bar", "baz");
 char* str = list[2]; // type inferrence for the accessor
 ```
 dynamic anonymous 'object' type (JSON-like)
 ```c
-typedef struct	keyval_<TYPE=void*>
+#namespace KeyVal<TYPE>
+
+typedef struct	keyval_<TYPE>
 {
 	char*	key;
 	char*	type;
 	<TYPE>	value;
 }				keyval<TYPE>;
-namespace KeyVal<TYPE=void*>
-{
-	keyval<TYPE>	New(char* key, <TYPE> value);
-}
+
+keyval<TYPE>	New(char* key, <TYPE> value);
+
+#endnamespace
+
+#namespace Object<TYPE=void*>
+
 typedef keyval<void*>*	object;
-namespace Object<TYPE=void*>
-{
-	object*	New(size_t items, keyval ...);
 
-	<TYPE>		accessor: (object* obj)[char const* key]
-	{
-		return (Object<TYPE>.Get(obj, key));
-	}
+object*	New(size_t items, keyval ...);
+
+#accessor (object* obj)[char const* key] = <TYPE>
+{
+	return (Object<TYPE>.Get(obj, key));
 }
 
-KeyVal<int>.New("index", 1) // = &(keyval<int>){ .key="index", .type="int", .value=1 }
+#endnamespace
 
 object* obj = Object.New(3,
-	KeyVal<int>.New("index", 1),
+	KeyVal<int>.New("index", 1), // = &(keyval<int>){ .key="index", .type="int", .value=1 }
 	KeyVal<char*>.New("value", "foo"),
 	KeyVal<object>.New("sub", Object.New(2,
 		KeyVal<float>.New("float", 1.5),
@@ -399,27 +428,104 @@ printf("%s\n", obj<object*>["sub"]<char*>["str"]); // type inferrence cannot be 
 
 ### Pre-processor instructions:
 
+
 ##### INCBIN
 Allows you to include a binary file as a global/extern const byte array.
 ```c
 #incbin myfile	"./path/to/file.dat"
 ```
-In this example, a variable named `myfile` will be created, with type `unsigned char const[]`: it holds
-the contents of the file given by the string filepath argument.
+In this example, an `extern` variable named `myfile` will be created, with type `unsigned char const[]`:
+it holds the contents of the file given by the second argument, the string filepath.
 It will also create two other variables: `myfile_end` which points to the end of the binary data array,
-and `myfile_size`, which is the filesize (despite its actual type being `unsigned char const[]` as well)
+and `myfile_size`, which is the filesize (despite its actual type being `unsigned char const[]` as well, you must cast this to (size_t))
 
-##### ALIAS
-Creates an alias for the last function or variable name declaration which precedes it.
+
+##### REPLACE
+Creates a replacement token - works just like to the C `#define` pre-processor instruction, but operates when transpiling.
 ```c
-void	MyFunction(void);
-#alias f
+void		MyFunction(void);
+#replace f	MyFunction
 int main()
 {
 	f();
 }
 ```
-The above example transpiles by replacing `f` directly inline, rather than using a C pre-processor `#define` statement.
+The above example transpiles by replacing `f` directly inline, rather than transpiling to a C pre-processor `#define` statement.
+```c
+void		MyFunction(void);
+int main()
+{
+	MyFunction();
+}
+```
+This is the difference between `#define` and `#alias` instructions, `#alias` will change the output C code directly.
+
+
+##### ALIAS
+Creates an alias for a function, using `__attribute__` (or, you can configure it to rather transpile like a `#define`, or a `#replace`).
+```c
+void		MyFunction(void);
+#alias	f	MyFunction
+```
+The above example transpiles by declaring `f` with the function aliasing attribute, like so:
+```c
+// transpiles to:
+void*	f(void) __attribute__((weak, alias("MyFunction")));
+```
+
+
+##### INLINE
+Sets the function declared after it to be always inlined, using `__attribute__`:
+```c
+#inline
+void		MyFunction(void);
+```
+```c
+// transpiles to:
+__attribute__((always_inline))
+void*	MyFunction(void);
+```
+
+
+##### PURE
+Sets the function declared after it to be a "pure function", (ie: a function with no side-effects), using `__attribute__`:
+```c
+#pure
+char	MyFunction(char c);
+```
+```c
+// transpiles to:
+__attribute__((const))
+char	MyFunction(char c);
+```
+This allows your compiler to perform additionnal optimizations (like memoization for instance).
+
+
+##### MALLOC
+Sets the function declared after it to be always inlined, using `__attribute__`:
+```c
+#inline
+void		MyFunction(void);
+```
+```c
+// transpiles to:
+__attribute__((always_inline))
+void*	MyFunction(void);
+```
+
+
+##### FORMAT
+Sets the function declared after it to be always inlined, using `__attribute__`:
+```c
+#format(printf, 1, 2)
+void		MyFunction(void);
+```
+```c
+// transpiles to:
+__attribute__((format(printf, 1, 2)))
+void*	MyFunction(void);
+```
+
 
 
 
@@ -434,4 +540,9 @@ m4 --synclines
 ```m4
 changequote(`<',`>')
 changecom(<//>,<\n>)
+```
+
+PS: RegExp to get all code block contents here:
+```regex
+(?<=```c)\n(.*\n)+?(?=```)
 ```
