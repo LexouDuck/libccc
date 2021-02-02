@@ -51,7 +51,7 @@ typedef	union	u_vector2d_
 TYPEDEF_ALIAS(	u_vector2d, VECTOR_2D, UNION)
 
 //! Allocates a new vector struct on heap, setting the given coordinates
-_MALLOC
+_MALLOC()
 s_vector2d*				Vector2D_New(t_float x, t_float y);
 #define c_vec2new		Vector2D_New
 
@@ -107,7 +107,7 @@ typedef	union	u_vector3d_
 TYPEDEF_ALIAS(	u_vector3d, VECTOR_3D, UNION)
 
 //! Allocates a new vector struct on heap, setting the given coordinates
-_MALLOC
+_MALLOC()
 s_vector3d*				Vector3D_New(t_float x, t_float y, t_float z);
 #define c_vec3new		Vector3D_New
 
@@ -214,7 +214,7 @@ TYPEDEF_ALIAS(	u_matrix2d, MATRIX_2D, UNION)
 }
 
 //! Allocates a new matrix struct on heap, setting its values from the given vectors
-_MALLOC
+_MALLOC()
 s_matrix2d*				Matrix2D_New(s_vector2d const* u, s_vector2d const* v);
 #define c_mat2new		Matrix2D_New
 
@@ -296,7 +296,7 @@ TYPEDEF_ALIAS(	u_matrix3d, MATRIX_3D, UNION)
 }
 
 //! Allocates a new matrix struct on heap, setting its values from the given vectors
-_MALLOC
+_MALLOC()
 s_matrix3d*				Matrix3D_New(s_vector3d const* u, s_vector3d const* v, s_vector3d const* w);
 #define c_mat3new		Matrix3D_New
 

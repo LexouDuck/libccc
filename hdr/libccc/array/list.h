@@ -94,7 +94,7 @@ TYPEDEF_ALIAS(		s_list, LIST, STRUCT)
 **	@param	item_size	The size (in bytes) of the data in question
 **	@returns the linked-list element containing the given data
 */
-_MALLOC
+_MALLOC()
 s_list*					List_New(void* item, t_size item_size);
 #define c_lstnew		List_New
 
@@ -141,7 +141,7 @@ void					List_Insert(s_list* *a_lst, s_list* elem, t_u32 index);
 **	@returns a newly allocated copy of the given linked list 'lst'.
 **	The underlying data is not copied, only the s_list* structs are malloc'ed.
 */
-_MALLOC
+_MALLOC()
 s_list*					List_Copy(s_list const* lst);
 #define c_lstcpy		List_Copy
 
@@ -151,7 +151,7 @@ s_list*					List_Copy(s_list const* lst);
 **	@returns a newly allocated copy of the given linked list 'lst'.
 **	The underlying data 'item' for each element will be allocated and copied, according to 'item_size'
 */
-_MALLOC
+_MALLOC()
 s_list*					List_Duplicate(s_list const* lst);
 #define c_lstdup		List_Duplicate
 
@@ -243,7 +243,7 @@ s_list*					List_Find(s_list const* lst, void const* query);
 **	If 'index' is valid but the list is not large enough for 'n',
 **	then the resulting list will have fewer than 'n' elements.
 */
-_MALLOC
+_MALLOC()
 s_list*					List_Sub(s_list* lst, t_u32 index, t_u32 n);
 #define c_lstsub		List_Sub
 
@@ -262,11 +262,11 @@ void					List_Iterate_I(s_list* lst, void (*f)(s_list* elem, t_u32 index));
 **	Creates a new list which is the result of applying
 **	the given function 'f' to each element of 'lst'.
 */
-_MALLOC
+_MALLOC()
 s_list*					List_Map(s_list* lst, s_list *(*f)(s_list* elem));
 #define c_lstmap		List_Map
 
-_MALLOC
+_MALLOC()
 s_list*					List_Map_I(s_list* lst, s_list *(*f)(s_list* elem, t_u32 index));
 #define c_lstmapi		List_Map_I
 
@@ -276,7 +276,7 @@ s_list*					List_Map_I(s_list* lst, s_list *(*f)(s_list* elem, t_u32 index));
 **	The top-level pointer array is terminated by a NULL pointer.
 **	The underlying 'lst->item' data is not copied, only the pointers are.
 */
-_MALLOC
+_MALLOC()
 void**					List_To_PointerArray(s_list const** a_lst);
 #define c_lst_to_ptrarr	List_To_PointerArray
 

@@ -215,13 +215,13 @@ int									Convert_Float_To_String_CheckSpecial(t_f32 number, char* *a_result);
 //! Get the string decimal representation of a 32-bit floating-point number
 /*
 */
-_MALLOC
+_MALLOC()
 char*						Convert_F32_To_String(t_f32 n);
 #define c_f32_to_str		Convert_F32_To_String
 //! Get the string hexadecimal representation of a 32-bit floating-point number
 /*
 */
-_MALLOC
+_MALLOC()
 char*						Convert_F32_To_HexString(t_f32 n);
 #define c_f32_to_strhex		Convert_F32_To_HexString
 //! Get the string decimal representation of a 32-bit floating-point number, with 'precision' fractional digits
@@ -229,20 +229,20 @@ char*						Convert_F32_To_HexString(t_f32 n);
 **	NB: This function has some approximation/error margin (beyond the
 **	seventh decimal digit; the exact amount of imprecision depends on the input)
 */
-_MALLOC
+_MALLOC()
 char*						Convert_F32_To_String_P(t_f32 n, t_u8 precision);
 #define c_f32_to_str_p		Convert_F32_To_String_P
 
 //! Get the string decimal representation of a 64-bit floating-point number
 /*
 */
-_MALLOC
+_MALLOC()
 char*						Convert_F64_To_String(t_f64 n);
 #define c_f64_to_str		Convert_F64_To_String
 //! Get the string hexadecimal representation of a 64-bit floating-point number
 /*
 */
-_MALLOC
+_MALLOC()
 char*						Convert_F64_To_HexString(t_f64 n);
 #define c_f64_to_strhex		Convert_F64_To_HexString
 //! Get the string decimal representation of a 64-bit floating-point number, with 'precision' fractional digits
@@ -250,7 +250,7 @@ char*						Convert_F64_To_HexString(t_f64 n);
 **	Has some approximation/error margin (beyond the seventh decimal digit;
 **	the exact amount of imprecision depends on the input)
 */
-_MALLOC
+_MALLOC()
 char*						Convert_F64_To_String_P(t_f64 n, t_u8 precision);
 #define c_f64_to_str_p		Convert_F64_To_String_P
 

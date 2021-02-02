@@ -81,7 +81,7 @@ TYPEDEF_ALIAS(		s_quaternion, QUATERNION, STRUCT)
 */
 
 //! Allocates a new complex number struct on heap, with the given 're' real part and 'im' imaginary part
-_MALLOC
+_MALLOC()
 s_complex*				Complex_New(t_float re, t_float im);
 #define c_cplxnew		Complex_New
 

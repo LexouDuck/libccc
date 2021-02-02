@@ -58,15 +58,23 @@ HEADER_CPP
 
 
 
-//! This macro simply expands to itself: it is useful to force-expand the given `TOKEN`
-#define EXPAND(TOKEN)			EXPAND_(TOKEN)
-#define EXPAND_(TOKEN)			TOKEN
-
 //! This macro function expands and merges the two given tokens `TOKEN1` and `TOKEN2` into a single token
+/*
+**	NB: This is useful because the token-paste concatenation operator `##`
+**		merges tokens after expanding the macro's arguments, but it happens
+**		before expanding their respective values. Here, an additional layer
+**		of macro indirection forces the expansion to occur before token-pasting.
+*/
 #define CONCAT(TOKEN1, TOKEN2)	CONCAT_(TOKEN1, TOKEN2)
 #define CONCAT_(TOKEN1, TOKEN2)	TOKEN1##TOKEN2
 
-//! This macro function stringizes the given `TOKEN` argument
+//! This macro function expands and stringizes the given `TOKEN` argument
+/*
+**	NB: This is useful because the stringize token operator `#` converts
+**		the tokens after expanding the macro's arguments, but it happens
+**		before expanding their respective values. Here, an additional layer
+**		of macro indirection forces the expansion to occur before stringizing.
+*/
 #define STRING(TOKEN)		STRING_(TOKEN)
 #define STRING_(TOKEN)		#TOKEN
 
@@ -89,6 +97,9 @@ HEADER_CPP
 
 
 
+/*
+**	Define macros for common function attributes (as documented by GNU)
+*/
 #ifdef __GNUC__
 	#ifdef __clang__
 		#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)		__attribute__((format(FUNCTION, POS_FORMAT, POS_VARARGS)))
@@ -99,14 +110,14 @@ HEADER_CPP
 			#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	__attribute__((format(FUNCTION, POS_FORMAT, POS_VARARGS)))
 		#endif
 	#endif
-//	#define _ALIAS(FUNCTION)	__attribute__((alias(#FUNCTION)))		//!< before function or variable def: sets the token to be an alias for the one given as arg
-//	#define _ALIGN(MINIMUM)		__attribute__((aligned(MINIMUM)))		//!< before function or variable def: sets minimum byte alignment size (power of 2)
-	#define _PURE				__attribute__((pure))					//!< before function def: indicates that the function has no side-effects
-	#define _INLINE				__attribute__((always_inline)) inline	//!< before function def: makes the function be always inlined regardless of compiler config
-	#define _MALLOC				__attribute__((malloc))					//!< before function def: indicates that it returns newly allocated ptr
-	#define _DELETE				__attribute__((delete))					//!< before function def: indicates that it deletes/frees memory
-	#define _UNUSED				__attribute__((unused))					//!< before function def: suppresses warnings for empty/incomplete function
-	#define _PACKED				__attribute__((packed))					//!< before struct/union def: do not perform byte-padding on this struct/union type
+	#define _ALIAS(FUNCTION)	__attribute__((alias(#FUNCTION)))		//!< before function or variable def: sets the token to be an alias for the one given as arg
+	#define _ALIGN(MINIMUM)		__attribute__((aligned(MINIMUM)))		//!< before function or variable def: sets minimum byte alignment size (power of 2)
+	#define _PURE()				__attribute__((pure))					//!< before function def: indicates that the function has no side-effects
+	#define _INLINE()			__attribute__((always_inline)) inline	//!< before function def: makes the function be always inlined regardless of compiler config
+	#define _MALLOC()			__attribute__((malloc))					//!< before function def: indicates that it returns newly allocated ptr
+	#define _DELETE()			__attribute__((delete))					//!< before function def: indicates that it deletes/frees memory
+	#define _UNUSED()			__attribute__((unused))					//!< before function def: suppresses warnings for empty/incomplete function
+	#define _PACKED()			__attribute__((packed))					//!< before struct/union def: do not perform byte-padding on this struct/union type
 #endif
 
 

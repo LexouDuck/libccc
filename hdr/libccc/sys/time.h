@@ -329,7 +329,7 @@ s_date						Date_String_Parse(char const* str, char const* format);
 **	That being said, it is probably better to use Date_String_Format_N for machines with little RAM.
 */
 _FORMAT(strftime, 2, 0)
-_MALLOC
+_MALLOC()
 char*						Date_String_Format(s_date const* date, char const* format);
 #define c_date_format		Date_String_Format
 #define Date_Format			Date_String_Format

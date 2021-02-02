@@ -38,7 +38,7 @@ HEADER_CPP
 **	Returns a newly allocated memory array to serve as a null-terminated
 **	pointer array of length 'n'. Returns NULL if memory allocation fails.
 */
-_MALLOC
+_MALLOC()
 void*				PointerArray_New(t_size size);
 #define c_ptrarrnew	PointerArray_New
 

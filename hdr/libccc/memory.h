@@ -41,7 +41,7 @@ HEADER_CPP
 **	Allocates 'size' bytes in memory, returning the pointer at which
 **	said bytes were allocated, or NULL if the memory could not be allocated.
 */
-_MALLOC
+_MALLOC()
 void*				Memory_Alloc(t_size size);
 #define c_memalloc	Memory_Alloc
 
@@ -50,7 +50,7 @@ void*				Memory_Alloc(t_size size);
 **	memory space to '0'. Returns the pointer at which said bytes were allocated,
 **	or NULL if the memory could not be allocated.
 */
-_MALLOC
+_MALLOC()
 void*				Memory_New(t_size size);
 #define c_memnew	Memory_New
 
@@ -59,7 +59,7 @@ void*				Memory_New(t_size size);
 **	memory space to 'c'. Returns the pointer at which said bytes were allocated,
 **	or NULL if the memory could not be allocated.
 */
-_MALLOC
+_MALLOC()
 void*				Memory_New_C(t_size size, char c);
 #define c_memcnew	Memory_New_C
 
@@ -119,7 +119,7 @@ void*				Memory_Move(void* dest, void const* src, t_size n);
 **	the given memory area 'ptr' (or NULL if the required memory
 **	could not be allocated, or if 'ptr' is NULL or 'n' == 0).
 */
-_MALLOC
+_MALLOC()
 void*				Memory_Duplicate(void const* ptr, t_size n);
 #define c_memdup	Memory_Duplicate
 

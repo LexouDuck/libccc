@@ -545,6 +545,18 @@ changequote(`<',`>')
 changecom(<//>,<\n>)
 ```
 
+```m4
+define(#format(FUNCTION, POS_FORMAT, POS_VARARGS)	__attribute__((format(FUNCTION, POS_FORMAT, POS_VARARGS)))
+define(#alias(FUNCTION)			__attribute__((alias(#FUNCTION)))
+define(#align(MINIMUM)			__attribute__((aligned(MINIMUM)))
+define(#pure()					__attribute__((pure))
+define(#inline()				__attribute__((always_inline)) inline
+define(#malloc()				__attribute__((malloc))
+define(#delete()				__attribute__((delete))
+define(#unused()				__attribute__((unused))
+define(#packed()				__attribute__((packed))
+```
+
 PS: RegExp to get all code block contents here:
 ```regex
 (?<=```c)\n(.*\n)+?(?=```)
