@@ -35,12 +35,16 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
+#if LIBCONFIG_USE_STD_COMPLEX
+typedef _Complex	t_complex;
+#else
 //! A struct to store complex/imaginary number values
 typedef struct	s_complex_
 {
 	t_float		re;		//!< The "real" part of this complex number
 	t_float		im;		//!< The "imaginary" part of this complex number
 }				s_complex;
+#endif
 
 
 

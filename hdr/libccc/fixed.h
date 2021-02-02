@@ -61,11 +61,11 @@ HEADER_CPP
 
 #include <stdfix.h>
 
-typedef short _Fract		t_g16;	//!< The type for 16-bit signed fixed-point rational numbers
-typedef _Fract				t_g32;	//!< The type for 32-bit signed fixed-point rational numbers
-typedef	long _Fract			t_g64;	//!< The type for 64-bit signed fixed-point rational numbers
+typedef _Sat short _Accum		t_g16;	//!< The type for 16-bit signed fixed-point rational numbers
+typedef _Sat _Accum				t_g32;	//!< The type for 32-bit signed fixed-point rational numbers
+typedef	_Sat long _Accum		t_g64;	//!< The type for 64-bit signed fixed-point rational numbers
 #ifdef	__int128
-typedef long long _Fract	t_g128;	//!< The type for 128-bit fixed-point numbers (only certain platforms)
+typedef _Sat long long _Accum	t_g128;	//!< The type for 128-bit fixed-point numbers (only certain platforms)
 #endif
 
 #else

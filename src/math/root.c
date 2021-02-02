@@ -90,7 +90,7 @@ static t_float	c_sqrt_2_pow_n(t_s32 n)
 
 
 
-#if LIBCONFIG_FAST_APPROX_MATH
+#if LIBCONFIG_USE_FAST_APPROX_MATH
 t_float	c_sqrt(t_float x)
 {
 //	Fast Inverse square root (from the Quake III source code)
@@ -139,7 +139,7 @@ MATH_DECL_REALFUNCTION(sqrt, sqrt)
 
 
 
-#if LIBCONFIG_FAST_APPROX_MATH
+#if LIBCONFIG_USE_FAST_APPROX_MATH
 t_float	c_cbrt(t_float x)
 {
 //	Newton derivative approximation by iteration

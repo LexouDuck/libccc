@@ -90,6 +90,7 @@ HEADER_CPP
 	#define _PURE				__attribute__((pure))					//!< before function def: indicates that the function has no side-effects
 	#define _INLINE				__attribute__((always_inline)) inline	//!< before function def: makes the function be always inlined regardless of compiler config
 	#define _MALLOC				__attribute__((malloc))					//!< before function def: indicates that it returns newly allocated ptr
+	#define _DELETE				__attribute__((delete))					//!< before function def: indicates that it returns newly allocated ptr
 	#define _UNUSED				__attribute__((unused))					//!< before function def: suppresses warnings for empty/incomplete function
 	#define _PACKED				__attribute__((packed))					//!< before struct/union def: do not perform byte-padding on this struct/union type
 #endif

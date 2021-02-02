@@ -4,7 +4,7 @@
 
 
 
-#if LIBCONFIG_FAST_APPROX_MATH
+#if LIBCONFIG_USE_FAST_APPROX_MATH
 inline t_s32	c_getexp(t_float x)
 {
 	u_float_cast	result;
@@ -18,7 +18,7 @@ MATH_DECL_FUNCTION(t_s32, getexp, logb)
 
 
 
-#if LIBCONFIG_FAST_APPROX_MATH
+#if LIBCONFIG_USE_FAST_APPROX_MATH
 inline t_float	c_fabs(t_float x)
 {
 	u_float_cast	result;
@@ -37,7 +37,7 @@ MATH_DECL_REALFUNCTION(fabs, fabs)
 
 
 
-#if LIBCONFIG_FAST_APPROX_MATH
+#if LIBCONFIG_USE_FAST_APPROX_MATH
 inline t_float	c_fmod(t_float x, t_float y)
 {
 	t_float		a;
@@ -57,7 +57,7 @@ MATH_DECL_REALOPERATOR(fmod, fmod)
 
 
 
-#if LIBCONFIG_FAST_APPROX_MATH
+#if LIBCONFIG_USE_FAST_APPROX_MATH
 inline t_float	c_trunc(t_float x)
 {
 	if (x == 0.)
@@ -70,7 +70,7 @@ MATH_DECL_REALFUNCTION(trunc, trunc)
 
 
 
-#if LIBCONFIG_FAST_APPROX_MATH
+#if LIBCONFIG_USE_FAST_APPROX_MATH
 inline t_float	c_floor(t_float x)
 {
 	if (x == 0.)
@@ -85,7 +85,7 @@ MATH_DECL_REALFUNCTION(floor, floor)
 
 
 
-#if LIBCONFIG_FAST_APPROX_MATH
+#if LIBCONFIG_USE_FAST_APPROX_MATH
 inline t_float	c_ceil(t_float x)
 {
 	if (x == 0.)
@@ -100,7 +100,7 @@ MATH_DECL_REALFUNCTION(ceil, ceil)
 
 
 
-#if LIBCONFIG_FAST_APPROX_MATH
+#if LIBCONFIG_USE_FAST_APPROX_MATH
 inline t_float	c_round(t_float x)
 {
 	t_float fraction;

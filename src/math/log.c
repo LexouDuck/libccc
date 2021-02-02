@@ -4,7 +4,7 @@
 
 
 
-#if LIBCONFIG_FAST_APPROX_MATH
+#if LIBCONFIG_USE_FAST_APPROX_MATH
 /*
 ** The following pair of functions return the natural logarithm of x.
 ** ln(x) = ln(x*2^n) = n*ln(2) + ln(x) with 1 <= x < 2 and n = exp_b2
@@ -72,7 +72,7 @@ MATH_DECL_REALFUNCTION(ln, log)
 
 
 
-#if LIBCONFIG_FAST_APPROX_MATH
+#if LIBCONFIG_USE_FAST_APPROX_MATH
 inline t_float	c_lg(t_float x)
 {
 	return (c_ln(x) / LN_2);
@@ -83,7 +83,7 @@ MATH_DECL_REALFUNCTION(lg, log2)
 
 
 
-#if LIBCONFIG_FAST_APPROX_MATH
+#if LIBCONFIG_USE_FAST_APPROX_MATH
 inline t_float	c_log(t_float x)
 {
 	return (c_ln(x) / LN_10);

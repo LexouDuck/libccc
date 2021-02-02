@@ -53,68 +53,79 @@ HEADER_CPP
 
 
 
-//! If 1, libccc uses homemade approximate math functions, otherwise it's the builtin FPU calls.
+//! If 1, libccc will define its functions as simple inline wrappers for STD C calls.
 /*!
-**	This macro determines which math function implementations should be used.
-**	If 1, the libccc fast approximate functions will be used (precision error margin: 0.0001)
-**	If 0, the builtin FPU-call libc math functions will be used (eg: __builtin_powf(), etc)
-*/
-#define LIBCONFIG_FAST_APPROX_MATH			0
-
-
-
-//! If 1, libccc will define functions as a simple inline wrappers for std libc
-/*
 **	This macro determines if the compiler should prefer function implementations
 **	from the platform's standard library, or the implementation from libccc.
 **	If 0, use libccc function implementations everywhere
-**	If 1, call stdlib functions wherever possible
+**	If 1, call stdlib implementations rather than libccc wherever possible
 **	NB: Setting this to 1 can make your code run faster, but it may introduce
-**		undefined behaviors depending on the platform (for edge-case arguments)
+**		undefined behaviors depending on the platform (for edge-case arguments).
+**		Also, it invalidates the LIBCONFIG_HANDLE_NULLPOINTERS setting:
+**		NULL pointer handling is implementation-dependent for STD C functions.
 */
 #define LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS	0 // TODO implement this config flag
 
 
 
-//! Defines which type/bit size the 't_uint' unsigned integer type will be
+//! If 1, libccc uses its own fast-approximate math functions, otherwise it's the builtin FPU calls.
+/*!
+**	This macro determines which math function implementations should be used.
+**	If 1, the libccc fast approximate functions will be used (precision error margin: 0.0001)
+**	If 0, the builtin FPU-call libc math functions will be used (eg: __builtin_powf(), etc)
+*/
+#define LIBCONFIG_USE_FAST_APPROX_MATH		0
+
+
+
+//! Defines which type/bit size the 't_uint' default unsigned integer type will be
 /*!
 **	This macro sets the default 't_uint' default unsigned integer type to use.
-**	There are 3 possible values for this #define:
-**	8	for 8-bit uint	[0, 255]
-**	16	for 16-bit uint	[0, 65535]
-**	32	for 32-bit uint	[0, 2147483647]
-**	64	for 64-bit uint	[0, 18446744073709551615]
+**	There are 5 possible accepted values for this #define:
+**		8	for 8-bit uint	[0, 255]
+**		16	for 16-bit uint	[0, 65535]
+**		32	for 32-bit uint	[0, 2147483647]
+**		64	for 64-bit uint	[0, 18446744073709551615]
+**		128	for 128-bit uint (not present on all platforms)
 */
 #define LIBCONFIG_BITS_UINT		32
 #define LIBCONFIG_TYPE_UINT		t_u32
 
-//! Defines which type/bit size the 't_int' signed integer type will be
+//! Defines which type/bit size the 't_int' default signed integer type will be
 /*!
 **	This macro sets the default 't_int' default signed integer type to use:
-**	8	for 8-bit int	[-128, 127]
-**	16	for 16-bit int	[-32648, 32647]
-**	32	for 32-bit int	[-2147483648, 2147483647]
-**	64	for 64-bit int	[-9223372036854775808, +9223372036854775807]
+**	There are 5 possible accepted values for this #define:
+**		8	for 8-bit int	[-128, 127]
+**		16	for 16-bit int	[-32648, 32647]
+**		32	for 32-bit int	[-2147483648, 2147483647]
+**		64	for 64-bit int	[-9223372036854775808, +9223372036854775807]
+**		128	for 128-bit int (not present on all platforms)
 */
 #define LIBCONFIG_BITS_INT		32
 #define LIBCONFIG_TYPE_INT		t_s32
 
-//! Defines which type/bit size the 't_fixed' fixed-point number type will be
+//! Defines which type/bit size the 't_fixed' default fixed-point number type will be
 /*!
 **	The following macro sets what the 't_fixed' default fixed-point type should be.
+**	There are 4 possible accepted values for this #define:
+**		16	for 16-bit fixed-point number
+**		32	for 32-bit fixed-point number
+**		64	for 64-bit fixed-point number
+**		128	for 128-bit fixed-point number (not present on all platforms)
 */
 #define LIBCONFIG_BITS_FIXED	32
 #define LIBCONFIG_TYPE_FIXED	t_g32
 #define LIBCONFIG_BITS_FIXED_DECIMALPART	(LIBCONFIG_BITS_FIXED / 4)
 #define LIBCONFIG_BITS_FIXED_INTEGERPART	(LIBCONFIG_BITS_FIXED - LIBCONFIG_BITS_FIXED_DECIMALPART)
 
-//! Defines which type/bit size the 't_float' floating-point number type will be
+//! Defines which type/bit size the 't_float' default floating-point number type will be
 /*!
 **	The following macro sets what the 't_float' default floating-point type should be.
-**	32	for 32-bit IEEE 754 standard precision floating-point number
-**	64	for 64-bit IEEE 754 double-precision floating-point number
-**	80	for 80-bit x86 extended-precision floating-point number (not available on clang; will default to 128)
-**	128	for 128-bit IEEE 754 quadruple-precision floating-point number (GNU GCC 4.3 and up)
+**	There are 4 possible accepted values for this #define:
+**		32	for 32-bit IEEE 754 single-precision floating-point number
+**		64	for 64-bit IEEE 754 double-precision floating-point number
+**		80	for 80-bit x86 extended-precision floating-point number (not present on all platforms)
+**		128	for 128-bit IEEE 754 quadruple-precision floating-point number (not present on all platforms)
 */
 #define LIBCONFIG_BITS_FLOAT	32
 #define LIBCONFIG_TYPE_FLOAT	t_f32
@@ -137,14 +148,50 @@ HEADER_CPP
 
 
 
-//! If 1, libccc will make the fixed point types 't_g*' and 't_fixed' use the STDC _Fract type
-/*
-**	It is recommended to keep this set to 0, as the system default fixed-point _Fract type
-**	is not present on all platforms, and is rather very machine-specific.
-**	Furthermore, the libccc fixed-point type may not be as fast, but it is configurable
-**	in terms of what portion of the number is the fractional part.
+//! If 1, libccc will make the 't_complex' types use the STDC _Complex type
+/*!
+**	TODO implement & document this
 */
-#define LIBCONFIG_USE_STD_FIXEDPOINT		0
+#define LIBCONFIG_USE_STD_COMPLEX		0
+
+
+
+//! If 1, libccc will make the fixed point types 't_g*' and 't_fixed' use the STDC `_Sat _Accum` types
+/*!
+**	It is recommended to keep this set to 0, as the STD C fixed-point types are not yet standard
+**	(ie: _Accum, _Fract, and _Sat are not present on all platforms, and only GCC implements them).
+**	Furthermore, the libccc fixed-point type may not be as fast as a STD C implementation which
+**	may leverage the platform's ASM, but it is configurable in terms of what portion of the
+**	fixed-point number type is dedicated to the integral/fractional part.
+*/
+#define LIBCONFIG_USE_STD_FIXEDPOINT	0
+
+
+
+//! If 1, doing `#include "libccc/array/list.h"` will define a doubly-linked list
+/*!
+**	This macro configures whether the `s_list` type is singly-linked or doubly-linked.
+**	NB: This must be set BEFORE including the libccc/array/list.h header file
+**	If 0, `s_list` is singly-linked (that is, the struct only holds a `.next` pointer)
+**	If 1, `s_list` is doubly-linked (that is, the struct has both a `.prev` and `.next` pointer)
+*/
+#define LIBCONFIG_LIST_DOUBLYLINKED		0 // TODO
+
+
+
+//! The item type used by the `s_list` struct (by default it is `void*`, ie: dynamic list).
+/*
+**	This macro sets the type for the item stored within each `s_list` element.
+**	NB: This must be set BEFORE including the libccc/array/list.h header file
+*/
+#define LIBCONFIG_LIST_TYPE				void*	// TODO
+
+//! The type name used by the linked-list type (by default it is `s_list`).
+/*
+**	This macro sets the type for the item stored within each `s_list` element.
+**	NB: This must be set BEFORE including the libccc/array/list.h header file
+*/
+#define LIBCONFIG_LIST_NAME				s_list	// TODO
 
 
 

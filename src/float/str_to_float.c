@@ -1,6 +1,6 @@
 
 /*
-**	Functions used from <stdlib.h>: (only when LIBCONFIG_FAST_APPROX_MATH is 0)
+**	Functions used from <stdlib.h>: (only when LIBCONFIG_USE_FAST_APPROX_MATH is 0)
 **	-	double	atof(char* str);
 */
 #include <stdlib.h>
@@ -72,7 +72,7 @@ int			Convert_String_To_Float_CheckInvalid(char const* str, char** result_tmp)
 
 
 
-#if LIBCONFIG_FAST_APPROX_MATH
+#if LIBCONFIG_USE_FAST_APPROX_MATH
 
 #define DEFINEFUNC_CONVERT_STR_TO_FLOAT(BITS) \
 \

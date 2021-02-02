@@ -40,7 +40,7 @@ t_float			c_pow_n(t_float x, t_int n)
 
 
 
-#if LIBCONFIG_FAST_APPROX_MATH
+#if LIBCONFIG_USE_FAST_APPROX_MATH
 inline t_float	c_pow(t_float x, t_float y)
 {
 	return (c_exp(y * c_ln(x)));

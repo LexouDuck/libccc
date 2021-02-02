@@ -4,7 +4,7 @@
 
 
 
-#if LIBCONFIG_FAST_APPROX_MATH
+#if LIBCONFIG_USE_FAST_APPROX_MATH
 t_float		c_cosh(t_float x)
 {
 // fast polynomial approximation for [-PI,+PI], exponential for the rest
@@ -32,7 +32,7 @@ MATH_DECL_REALFUNCTION(cosh, cosh)
 
 
 
-#if LIBCONFIG_FAST_APPROX_MATH
+#if LIBCONFIG_USE_FAST_APPROX_MATH
 t_float		c_sinh(t_float x)
 {
 // fast polynomial approximation for [-PI,+PI], exponential for the rest
@@ -61,7 +61,7 @@ MATH_DECL_REALFUNCTION(sinh, sinh)
 
 
 
-#if LIBCONFIG_FAST_APPROX_MATH
+#if LIBCONFIG_USE_FAST_APPROX_MATH
 t_float		c_tanh(t_float x)
 {
 //	fast sigmoid approximation
@@ -98,7 +98,7 @@ MATH_DECL_REALFUNCTION(tanh, tanh)
 
 
 
-#if LIBCONFIG_FAST_APPROX_MATH
+#if LIBCONFIG_USE_FAST_APPROX_MATH
 t_float		c_acosh(t_float x)
 {
 // fast sqrt approximation for [+1,+20] and natural log for the rest
@@ -117,7 +117,7 @@ MATH_DECL_REALFUNCTION(acosh, acosh)
 
 
 
-#if LIBCONFIG_FAST_APPROX_MATH
+#if LIBCONFIG_USE_FAST_APPROX_MATH
 t_float		c_asinh(t_float x)
 {
 // fast sigmoid approximation for [-20,+20] and natural log for the rest
@@ -140,7 +140,7 @@ MATH_DECL_REALFUNCTION(asinh, asinh)
 
 
 
-#if LIBCONFIG_FAST_APPROX_MATH
+#if LIBCONFIG_USE_FAST_APPROX_MATH
 t_float		c_atanh(t_float x)
 {
 //	approximation
