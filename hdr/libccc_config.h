@@ -115,8 +115,8 @@ HEADER_CPP
 */
 #define LIBCONFIG_BITS_FIXED	32
 #define LIBCONFIG_TYPE_FIXED	t_g32
-#define LIBCONFIG_BITS_FIXED_DECIMALPART	(LIBCONFIG_BITS_FIXED / 4)
-#define LIBCONFIG_BITS_FIXED_INTEGERPART	(LIBCONFIG_BITS_FIXED - LIBCONFIG_BITS_FIXED_DECIMALPART)
+#define LIBCONFIG_BITS_FIXED_FRACTIONPART	(LIBCONFIG_BITS_FIXED / 4)
+#define LIBCONFIG_BITS_FIXED_INTEGRALPART	(LIBCONFIG_BITS_FIXED - LIBCONFIG_BITS_FIXED_FRACTIONPART)
 
 //! Defines which type/bit size the 't_float' default floating-point number type will be
 /*!
@@ -188,7 +188,7 @@ HEADER_CPP
 
 //! The type name used by the linked-list type (by default it is `s_list`).
 /*
-**	This macro sets the type for the item stored within each `s_list` element.
+**	This macro sets the typedef name for the linked-list struct (by default `s_list`).
 **	NB: This must be set BEFORE including the libccc/array/list.h header file
 */
 #define LIBCONFIG_LIST_NAME				s_list	// TODO

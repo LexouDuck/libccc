@@ -52,7 +52,7 @@ Namespaces can only be used in header files:
 // in .h header file
 #namespace String
 char*	Duplicate(char* str);
-#endnamespace
+#namespace // using the namespace instruction with nothing after it ends the namespace section
 
 // in .c source file
 char*	String.Duplicate(char* str)
@@ -64,17 +64,13 @@ char* str = String.Duplicate("foo");
 Namespaces can be also be nested:
 ```c
 // in .h header file
-#namespace Compression.RLE	// you can write out the nesting prefix manually
+#namespace Compression.RLE
 t_u8*	Compress(t_u8* data, size_t length);
 t_u8*	Decompress(t_u8* data);
-#endnamespace
 
-#namespace Compression	// or you can have namespaces be written nested
-#namespace LZ77
+#namespace Compression.LZ77	// a new `#namespace` directive replaces the previous one, similar to `.section` in ASM
 t_u8*	Compress(t_u8* data, size_t length);
 t_u8*	Decompress(t_u8* data);
-#endnamespace
-#endnamespace
 
 // in .c source file
 t_u8* decompressed_data_rle = Compression.RLE.Decompress(file);
@@ -504,7 +500,7 @@ void		MyFunction(void);
 ```
 ```c
 // transpiles to:
-__attribute__((always_inline))
+__attribute__((always_inline)) inline
 void*	MyFunction(void);
 ```
 

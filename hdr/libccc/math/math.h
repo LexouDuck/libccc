@@ -201,25 +201,27 @@ t_float								Math_Tan(t_float x);
 //! Returns the arc-cosine of 'x' (inverse of the cos function)
 t_float								Math_ArcCos(t_float x);
 #define c_acos						Math_ArcCos
-#define Math_InvCosine				Math_ArcCos
 #define Math_Cos_1					Math_ArcCos
+#define Math_InvCosine				Math_ArcCos
 
 //! Returns the arc-sine of 'x' (inverse of the sin function)
 t_float								Math_ArcSin(t_float x);
 #define c_asin						Math_ArcSin
-#define Math_InvSine				Math_ArcSin
 #define Math_Sin_1					Math_ArcSin
+#define Math_InvSine				Math_ArcSin
 
 //! Returns the arc-tangent of 'x' (inverse of the tan function)
 t_float								Math_ArcTan(t_float x);
 #define c_atan						Math_ArcTan
+#define Math_Tan_1					Math_ArcTan
 #define Math_InvTangent				Math_ArcTan
 
 
 
-//! Returns the arc-tangent of ('y' / 'x'), used to find an angle
+//! Returns the arc-tangent of ('y' / 'x'), used to find an angle from coordinates
 t_float								Math_ArcTan2(t_float y, t_float x);
 #define c_atan2						Math_ArcTan2
+#define Math_ArcTangent2			Math_ArcTan2
 #define Math_ArcTangent_YoverX		Math_ArcTan2
 
 
@@ -227,31 +229,37 @@ t_float								Math_ArcTan2(t_float y, t_float x);
 //! Returns the hyperbolic cosine of 'x'
 t_float								Math_CosH(t_float x);
 #define c_cosh						Math_CosH
+#define Math_Cos_H					Math_CosH
 #define Math_Cosine_Hyperbolic		Math_CosH
 
 //! Returns the hyperbolic sine of 'x'
 t_float								Math_SinH(t_float x);
 #define c_sinh						Math_SinH
+#define Math_Sin_H					Math_SinH
 #define Math_Sine_Hyperbolic		Math_SinH
 
 //! Returns the hyperbolic tangent of 'x'
 t_float								Math_TanH(t_float x);
 #define c_tanh						Math_TanH
+#define Math_Tan_H					Math_TanH
 #define Math_Tangent_Hyperbolic		Math_TanH
 
 //! Returns the hyperbolic arc-cosine of 'x' (inverse of the cosh function)
 t_float								Math_InvCosH(t_float x);
 #define c_acosh						Math_InvCosH
+#define Math_Cos_1_H				Math_InvCosH
 #define Math_InvCosine_Hyperbolic	Math_InvCosH
 
 //! Returns the hyperbolic arc-sine of 'x' (inverse of the sinh function)
 t_float								Math_InvSinH(t_float x);
 #define c_asinh						Math_InvSinH
+#define Math_Sin_1_H				Math_InvSinH
 #define Math_InvSine_Hyperbolic		Math_InvSinH
 
 //! Returns the hyperbolic arc-tangent of 'x' (inverse of the tanh function)
 t_float								Math_InvTanH(t_float x);
 #define c_atanh						Math_InvTanH
+#define Math_Tan_1_H				Math_InvTanH
 #define Math_InvTangent_Hyperbolic	Math_InvTanH
 
 

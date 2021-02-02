@@ -36,14 +36,26 @@ HEADER_CPP
 */
 
 #if LIBCONFIG_USE_STD_COMPLEX
-typedef _Complex	t_complex;
+
+#include <complex.h>
+
+typedef _Complex	s_complex;
+
+//!	Zero, as a complex number type
+#define COMPLEX_NULL	(0.0 + 0.0I)
+
 #else
+
 //! A struct to store complex/imaginary number values
 typedef struct	s_complex_
 {
 	t_float		re;		//!< The "real" part of this complex number
 	t_float		im;		//!< The "imaginary" part of this complex number
 }				s_complex;
+
+//!	Zero, as a complex number type
+#define COMPLEX_NULL	(s_complex){ .re = 0, .im = 0 }
+
 #endif
 
 

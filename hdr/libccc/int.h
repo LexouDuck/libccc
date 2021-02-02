@@ -50,15 +50,17 @@ HEADER_CPP
 #if LIBCONFIG_BITS_UINT != 8 && \
 	LIBCONFIG_BITS_UINT != 16 && \
 	LIBCONFIG_BITS_UINT != 32 && \
-	LIBCONFIG_BITS_UINT != 64
-	#error "LIBCONFIG_BITS_UINT must be equal to one of: 8, 16, 32, 64"
+	LIBCONFIG_BITS_UINT != 64 && \
+	LIBCONFIG_BITS_UINT != 128
+	#error "LIBCONFIG_BITS_UINT must be equal to one of: 8, 16, 32, 64, 128"
 #endif
 
 #if LIBCONFIG_BITS_INT != 8 && \
 	LIBCONFIG_BITS_INT != 16 && \
 	LIBCONFIG_BITS_INT != 32 && \
-	LIBCONFIG_BITS_INT != 64
-	#error "LIBCONFIG_BITS_INT must be equal to one of: 8, 16, 32, 64"
+	LIBCONFIG_BITS_INT != 64 && \
+	LIBCONFIG_BITS_INT != 128
+	#error "LIBCONFIG_BITS_INT must be equal to one of: 8, 16, 32, 64, 128"
 #endif
 
 
