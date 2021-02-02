@@ -53,6 +53,7 @@ HEADER_CPP
 **	This type is useful because its value will always be 0 or 1, never more.
 */
 typedef _Bool		t_bool;
+TYPEDEF_ALIAS(		t_bool, BOOL, PRIMITIVE)
 
 
 

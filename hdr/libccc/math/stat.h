@@ -36,7 +36,7 @@ HEADER_CPP
 //! This struct stores a list of integer values (contiguously, like an array)
 typedef struct	s_list_int_
 {
-	t_int		*data;		//!< The list of integer values
+	t_sint		*data;		//!< The list of integer values
 	t_u32		length;		//!< The amount of items in the list
 }				s_list_int;
 
@@ -51,6 +51,7 @@ typedef struct	s_list_float_
 	t_float		*data;		//!< The list of float values
 	t_u32		length;		//!< The amount of items in the list
 }				s_list_float;
+
 //! Define the value for an empty list of floats
 #define NULL_LIST_FLOAT		((s_list_float){ 0, 0 })
 
@@ -61,6 +62,8 @@ typedef s_list_float	s_set_float;		//!< This type represents a list of floats wi
 
 typedef s_list_int		s_sortedlist_int;	//!< This type represents a list of integers whose values are ordered from smallest to largest
 typedef s_list_float	s_sortedlist_float;	//!< This type represents a list of floats whose values are ordered from smallest to largest
+
+
 
 /*! @file libccc/math/stat.h
 **	Remember:
@@ -229,7 +232,7 @@ s_list_int						Stat_IntList_To_Set(s_list_int const ilst);
 #define c_stat_ilst_to_iset		Stat_IntList_To_Set
 
 //! TODO document this
-t_u32							Stat_IntList_Count(s_list_int ilst, t_int elem);
+t_u32							Stat_IntList_Count(s_list_int ilst, t_sint elem);
 #define c_stat_ilst_count		Stat_IntList_Count
 
 //! TODO document this

@@ -4,7 +4,7 @@
 
 
 
-t_float			c_pow_n(t_float x, t_int n)
+t_float			c_pow_n(t_float x, t_sint n)
 {
 	t_float	tmp;
 

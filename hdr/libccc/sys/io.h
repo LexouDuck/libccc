@@ -49,6 +49,7 @@ HEADER_CPP
 ** Define a type for file descriptors (which is usually the default machine 'int')
 */
 typedef int		t_fd;
+TYPEDEF_ALIAS(	t_fd, FILEDESC, PRIMITIVE)
 
 /*!
 **	@def STDIN
@@ -76,6 +77,8 @@ typedef int		t_fd;
 #define C_RESET		"\x1b[0m"	//!< The string sequence to reset the terminal text output to its default color
 #endif
 
+// TODO make macros like this for every type of libccc, so that this header can act as doc on printf
+// TODO rename these macros to FORMAT_*
 /*
 **	Cross-platform '%' Format specifiers for printf calls
 */

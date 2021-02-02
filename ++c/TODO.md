@@ -242,7 +242,6 @@ typedef struct	s_dict_
 }				s_dict;
 
 #namespace Dict
-
 s_dict	New(int items, s_keyval ...);
 {
 	return ((s_dict)
@@ -251,14 +250,11 @@ s_dict	New(int items, s_keyval ...);
 		Array<s_keyval>.New(items, va_list),
 	});
 }
-
 // declare an accessor to get dictionary values from their key names
 #accessor (s_dict dict)[char const* key] = void*
 {
 	return (Dict.Get(dict, key));
 }
-
-#endnamespace
 
 // usage example:
 s_dict dict = Dict.New(2,
@@ -307,10 +303,7 @@ s_list<char*> const*	string_list;
 ```c
 // a generic type can be applied to a namespace as well
 #namespace Math<TYPE=float>
-
 <TYPE>	Cos(<TYPE> x);
-
-#endnamespace
 
 // usage example:
 float cosine_float = Math<float>.Cos(value);	// specific implementation for 32-bit floating-point type cos()
@@ -321,12 +314,9 @@ Here's a set of examples of generic type usage with lists:
 ```c
 // in .h header file
 #namespace List<TYPE=void*>
-
 s_list<TYPE>	New(size_t length, <TYPE> ...);
 void			Append(s_list<TYPE> list, s_list<TYPE> element);
 s_list<TYPE>	Filter(s_list<TYPE> list, bool (*filter)(s_list<TYPE> element));
-
-#endnamespace
 
 // usage example:
 // in .c source file
@@ -354,13 +344,10 @@ static bool	KeepOnlyEvenNumbers_filter(s_list<int> element)
 ```c
 // list concatenation operator
 #namespace List<TYPE=void*>
-
 #operator + (s_list<TYPE>* left, s_list<TYPE>* right) = s_list<TYPE>
 {
 	return (List<TYPE>.Join(left, right));
 }
-
-#endnamespace
 
 // usage example:
 s_list<char*> list = List<char*>.New(2, "foo", "bar");
@@ -371,13 +358,11 @@ s_list<char*> concat = list1 + list2; // type inferrence for the operator
 ```c
 // list index get
 #namespace List<TYPE=void*>
-
 #accessor (s_list<TYPE>* list)[size_t index] = <TYPE>
 {
 	return (List<TYPE>.Get(list, index));
 }
 
-#endnamespace
 // usage example:
 s_list<char*> list = List<char*>.New(3, "foo", "bar", "baz");
 char* str = list[2]; // type inferrence for the accessor
@@ -395,7 +380,7 @@ typedef struct	keyval_<TYPE>
 
 keyval<TYPE>	New(char* key, <TYPE> value);
 
-#endnamespace
+
 
 #namespace Object<TYPE=void*>
 
@@ -408,7 +393,7 @@ object*	New(size_t items, keyval ...);
 	return (Object<TYPE>.Get(obj, key));
 }
 
-#endnamespace
+
 
 object* obj = Object.New(3,
 	KeyVal<int>.New("index", 1), // = &(keyval<int>){ .key="index", .type="int", .value=1 }

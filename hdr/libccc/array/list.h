@@ -49,6 +49,7 @@ typedef struct		s_list_
 	t_size			item_size;	//!< The size of the data contained within 'item'
 	void*			item;		//!< The contents of this linked-list element
 }					s_list;
+TYPEDEF_ALIAS(		s_list, LIST, STRUCT)
 
 
 

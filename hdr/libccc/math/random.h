@@ -92,7 +92,7 @@ t_u32								Random_U32_0toN(t_u32 n);
 #define c_random_u32_0_to_n		Random_U32_0toN
 
 //! TODO document this
-t_int								Random_Int_AtoB(t_int a, t_int b);
+t_sint								Random_Int_AtoB(t_sint a, t_sint b);
 #define c_random_int_a_to_b		Random_Int_AtoB
 
 //! TODO document this

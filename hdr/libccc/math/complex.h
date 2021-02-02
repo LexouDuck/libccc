@@ -37,24 +37,26 @@ HEADER_CPP
 
 #if LIBCONFIG_USE_STD_COMPLEX
 
-#include <complex.h>
+	#include <complex.h>
 
-typedef _Complex	s_complex;
+	typedef _Complex	s_complex;
+	TYPEDEF_ALIAS(		s_complex, COMPLEX, STRUCT)
 
-//!	Zero, as a complex number type
-#define COMPLEX_NULL	(0.0 + 0.0I)
+	//!	Zero, as a complex number type
+	#define COMPLEX_NULL	(0.0 + 0.0*I)
 
 #else
 
-//! A struct to store complex/imaginary number values
-typedef struct	s_complex_
-{
-	t_float		re;		//!< The "real" part of this complex number
-	t_float		im;		//!< The "imaginary" part of this complex number
-}				s_complex;
+	//! A struct to store complex/imaginary number values
+	typedef struct	s_complex_
+	{
+		t_float		re;		//!< The "real" part of this complex number
+		t_float		im;		//!< The "imaginary" part of this complex number
+	}				s_complex;
+	TYPEDEF_ALIAS(	s_complex, COMPLEX, STRUCT)
 
-//!	Zero, as a complex number type
-#define COMPLEX_NULL	(s_complex){ .re = 0, .im = 0 }
+	//!	Zero, as a complex number type
+	#define COMPLEX_NULL	(s_complex){ .re = 0, .im = 0 }
 
 #endif
 
@@ -68,6 +70,7 @@ typedef struct		s_quaternion_
 	t_float		j;		//!< The J value of this quaternion
 	t_float		k;		//!< The K value of this quaternion
 }					s_quaternion;
+TYPEDEF_ALIAS(		s_quaternion, QUATERNION, STRUCT)
 
 
 

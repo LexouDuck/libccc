@@ -134,7 +134,7 @@ t_float						Math_Pow(t_float x, t_float y);
 #define Math_Power			Math_Pow
 
 //! Returns the value of 'x' to the power of 'n' (integer)
-t_float						Math_Pow_N(t_float x, t_int n);
+t_float						Math_Pow_N(t_float x, t_sint n);
 #define c_pow_n				Math_Pow_N
 #define Math_Power_N		Math_Pow_N
 

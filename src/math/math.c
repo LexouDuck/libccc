@@ -27,7 +27,6 @@ inline t_float	c_fabs(t_float x)
 	if (result.value_int & FLOAT_SIGNED)
 	{
 		result.value_int &= ~FLOAT_SIGNED;
-		return (result.value_float);
 	}
 	return (result.value_float);
 }

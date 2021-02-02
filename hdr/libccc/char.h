@@ -38,9 +38,11 @@ HEADER_CPP
 
 //! The primitive `char` text character type
 typedef char	t_char;
+TYPEDEF_ALIAS(	t_char, CHAR, PRIMITIVE)
 
 //! The primitive multi-byte type for a Unicode character
 typedef int		t_utf8;
+TYPEDEF_ALIAS(	t_utf8, UTF8, PRIMITIVE)
 
 
 

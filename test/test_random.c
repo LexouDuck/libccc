@@ -24,7 +24,7 @@ s_sortedlist_int	print_test_random(int samples)
 		ilst.data[i] = c_random_int_a_to_b(-500, 501);
 	}
 
-/*	static t_int arr[5] = {-339, 214, 394, -162, -50};//{-339, -162, -50, 214, 394};
+/*	static t_sint arr[5] = {-339, 214, 394, -162, -50};//{-339, -162, -50, 214, 394};
 	for (int i = 0; i < ilst.length; ++i)
 		ilst.data[i] = arr[i];
 

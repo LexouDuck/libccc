@@ -44,6 +44,11 @@ typedef struct	s_keyval_
 	char*		value_type;	//!< The amount of elements in the 'items' array
 	t_size		value_size;	//!< The size (in bytes) of one object in this array
 }				s_keyval;
+TYPEDEF_ALIAS(	s_keyval, KEYVAL, STRUCT)
+
+#define KEYVAL_NULL	(s_keyval){ 0 } // TODO
+
+
 
 //! A simple dictionary struct, stores an array of key/value pairs.
 /*
@@ -54,8 +59,7 @@ typedef struct	s_dict_
 	t_size		item_count;
 	s_keyval*	items;
 }				s_dict;
-
-
+TYPEDEF_ALIAS(	s_dict, DICT, STRUCT)
 
 //! A literal of an 's_dict' struct which has all fields set to zero
 #define DICT_NULL	(s_dict){ .item_count = 0, .item_size = 0, .items = NULL }

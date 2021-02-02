@@ -12,7 +12,7 @@ s_list_int		c_stat_new_ilst(t_u32 length)
 	result.length = 0;
 	if (length == 0)
 		return (result);
-	if (!(result.data = (t_int*)c_memalloc(sizeof(t_int) * length)))
+	if (!(result.data = (t_sint*)c_memalloc(sizeof(t_sint) * length)))
 		return (result);
 	result.length = length;
 	return (result);
@@ -90,7 +90,7 @@ void			c_stat_quicksort_i_rec
 	t_u32		end
 )
 {
-	t_int	pivot;
+	t_sint	pivot;
 	t_u32	pivot_id;
 	t_u32	rise_id;
 	t_u32	fall_id;
@@ -101,7 +101,7 @@ void			c_stat_quicksort_i_rec
 	if (start == end - 1)
 	{
 		if (pivot > tmp_lst.data[end])
-			c_memswap(tmp_lst.data + start, tmp_lst.data + end, sizeof(t_int));
+			c_memswap(tmp_lst.data + start, tmp_lst.data + end, sizeof(t_sint));
 		return ;
 	}
 
@@ -114,11 +114,11 @@ void			c_stat_quicksort_i_rec
 		while (fall_id > start && tmp_lst.data[fall_id] > pivot)
 			--fall_id;
 		if (rise_id < fall_id)
-			c_memswap(tmp_lst.data + rise_id, tmp_lst.data + fall_id, sizeof(t_int));
+			c_memswap(tmp_lst.data + rise_id, tmp_lst.data + fall_id, sizeof(t_sint));
 	}
 	pivot_id = fall_id;
 	if (start != fall_id)
-		c_memswap(tmp_lst.data + start, tmp_lst.data + fall_id, sizeof(t_int));
+		c_memswap(tmp_lst.data + start, tmp_lst.data + fall_id, sizeof(t_sint));
 
 	if (pivot_id > start)
 		c_stat_quicksort_i_rec(tmp_lst, start, pivot_id - 1);
@@ -286,13 +286,13 @@ s_set_int				c_stat_ilst_to_iset(s_list_int const ilst)
 		++i;
 	}
 	result = c_stat_new_ilst(set.length);
-	c_memcpy(result.data, set.data, set.length * sizeof(t_int));
-//	memcpy(result.data, set.data, set.length * sizeof(t_int));
+	c_memcpy(result.data, set.data, set.length * sizeof(t_sint));
+//	memcpy(result.data, set.data, set.length * sizeof(t_sint));
 	c_memfree(set.data);
 	return (result);
 }
 
-t_u32				c_stat_ilst_count(s_list_int ilst, t_int elem)
+t_u32				c_stat_ilst_count(s_list_int ilst, t_sint elem)
 {
 	t_u32		i;
 	t_u32		result;

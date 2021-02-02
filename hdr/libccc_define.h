@@ -58,6 +58,20 @@ HEADER_CPP
 
 
 
+//! This macro simply expands to itself: it is useful to force-expand the given `TOKEN`
+#define EXPAND(TOKEN)			EXPAND_(TOKEN)
+#define EXPAND_(TOKEN)			TOKEN
+
+//! This macro function expands and merges the two given tokens `TOKEN1` and `TOKEN2` into a single token
+#define CONCAT(TOKEN1, TOKEN2)	CONCAT_(TOKEN1, TOKEN2)
+#define CONCAT_(TOKEN1, TOKEN2)	TOKEN1##TOKEN2
+
+//! This macro function stringizes the given `TOKEN` argument
+#define STRING(TOKEN)		STRING_(TOKEN)
+#define STRING_(TOKEN)		#TOKEN
+
+
+
 //! A 'foreach' keyword macro, to use with any iterable types, rather than an index-based 'for' loop
 /*
 **	Currently, the types that work with this 'foreach' keyword are: s_array, s_list, s_dict
@@ -90,7 +104,7 @@ HEADER_CPP
 	#define _PURE				__attribute__((pure))					//!< before function def: indicates that the function has no side-effects
 	#define _INLINE				__attribute__((always_inline)) inline	//!< before function def: makes the function be always inlined regardless of compiler config
 	#define _MALLOC				__attribute__((malloc))					//!< before function def: indicates that it returns newly allocated ptr
-	#define _DELETE				__attribute__((delete))					//!< before function def: indicates that it returns newly allocated ptr
+	#define _DELETE				__attribute__((delete))					//!< before function def: indicates that it deletes/frees memory
 	#define _UNUSED				__attribute__((unused))					//!< before function def: suppresses warnings for empty/incomplete function
 	#define _PACKED				__attribute__((packed))					//!< before struct/union def: do not perform byte-padding on this struct/union type
 #endif

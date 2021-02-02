@@ -43,7 +43,7 @@ inline t_u32	c_random_u32_0_to_n(t_u32 n)
 	return (n == 0 ? n : (c_random_u32() % n));
 }
 
-inline t_int	c_random_int_a_to_b(t_int a, t_int b)
+inline t_sint	c_random_int_a_to_b(t_sint a, t_sint b)
 {
 	if (a < b)
 		return (c_random_u32_0_to_n(b - a) + a);

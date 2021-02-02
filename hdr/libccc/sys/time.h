@@ -46,6 +46,7 @@ HEADER_CPP
 **	corresponds to midnight (00:00:00), January 1, 1970, UTC (Coordinated Universal Time)
 */
 typedef time_t		t_time;
+TYPEDEF_ALIAS(		t_time, TIME, PRIMITIVE)
 
 #define TIME_NULL	((t_time)0)
 
@@ -68,6 +69,7 @@ typedef struct	s_timespec_
 	t_time		sec;
 	t_s64		nanosec;
 }				s_timespec;
+TYPEDEF_ALIAS(	s_timespec, TIMESPEC, STRUCT)
 // typedef struct timespec	s_timespec;
 
 #define TIMESPEC_NULL	((s_timespec){0})
@@ -86,6 +88,7 @@ typedef enum	e_weekday_
 	WEEKDAY_SATURDAY,
 	ENUMLENGTH_WEEKDAY
 }				e_weekday;
+TYPEDEF_ALIAS(	e_weekday, WEEKDAY, ENUM)
 
 #define WEEKDAY_SUN		WEEKDAY_SUNDAY
 #define WEEKDAY_MON		WEEKDAY_MONDAY
@@ -119,6 +122,7 @@ typedef enum	e_month_
 	MONTH_DECEMBER,
 	ENUMLENGTH_MONTH
 }				e_month;
+TYPEDEF_ALIAS(	e_month, MONTH, ENUM)
 
 #define MONTH_JAN	MONTH_JANUARY
 #define MONTH_FEB	MONTH_FEBRUARY
@@ -155,7 +159,8 @@ extern char const* const g_month_abbreviated[ENUMLENGTH_MONTH];
 **		 TIMEZONE_MDT,
 **		 TIMEZONE_PDT,
 */
-typedef t_s32	t_timezone;
+typedef t_sint	t_timezone;
+TYPEDEF_ALIAS(	t_timezone, TIMEZONE, PRIMITIVE)
 
 // Commonly used timezones
 #define TIMEZONE_UTC(X)	(3600 * X)			//!< Timezone (UTC 00): Universal Coordinated Time (same as GMT)
@@ -203,6 +208,7 @@ typedef struct	s_date_
 	t_s32		year;		//!< Amount of years since 1900	
 	t_bool		is_dst;		//!< If TRUE, then Daylight Savings Time is on
 }				s_date;
+TYPEDEF_ALIAS(	s_date, TIME_DATE, STRUCT)
 // typedef struct tm	s_time
 
 #define DATE_NULL	((s_date){0})

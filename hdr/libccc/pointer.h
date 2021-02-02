@@ -62,6 +62,7 @@ HEADER_CPP
 **	(all primitive typedefs are prefixed with 't_')
 */
 typedef size_t		t_size;
+TYPEDEF_ALIAS(		t_size, SIZE, PRIMITIVE)
 
 //! The pointer difference substraction result type
 /*!
@@ -69,6 +70,7 @@ typedef size_t		t_size;
 **	(all primitive typedefs are prefixed with 't_')
 */
 typedef ptrdiff_t	t_ptrdiff;
+TYPEDEF_ALIAS(		t_ptrdiff, PTRDIFF, PRIMITIVE)
 
 
 

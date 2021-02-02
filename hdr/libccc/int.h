@@ -47,24 +47,6 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-#if LIBCONFIG_BITS_UINT != 8 && \
-	LIBCONFIG_BITS_UINT != 16 && \
-	LIBCONFIG_BITS_UINT != 32 && \
-	LIBCONFIG_BITS_UINT != 64 && \
-	LIBCONFIG_BITS_UINT != 128
-	#error "LIBCONFIG_BITS_UINT must be equal to one of: 8, 16, 32, 64, 128"
-#endif
-
-#if LIBCONFIG_BITS_INT != 8 && \
-	LIBCONFIG_BITS_INT != 16 && \
-	LIBCONFIG_BITS_INT != 32 && \
-	LIBCONFIG_BITS_INT != 64 && \
-	LIBCONFIG_BITS_INT != 128
-	#error "LIBCONFIG_BITS_INT must be equal to one of: 8, 16, 32, 64, 128"
-#endif
-
-
-
 #ifndef LIBCONFIG_INTEGER_TYPES
 
 	#define STDINT(TYPE, BITS)	TYPE##BITS##_t
@@ -105,6 +87,24 @@ HEADER_CPP
 
 #endif
 
+
+
+#if LIBCONFIG_BITS_UINT != 8 && \
+	LIBCONFIG_BITS_UINT != 16 && \
+	LIBCONFIG_BITS_UINT != 32 && \
+	LIBCONFIG_BITS_UINT != 64 && \
+	LIBCONFIG_BITS_UINT != 128
+	#error "LIBCONFIG_BITS_UINT must be equal to one of: 8, 16, 32, 64, 128"
+#endif
+
+#if LIBCONFIG_BITS_SINT != 8 && \
+	LIBCONFIG_BITS_SINT != 16 && \
+	LIBCONFIG_BITS_SINT != 32 && \
+	LIBCONFIG_BITS_SINT != 64 && \
+	LIBCONFIG_BITS_SINT != 128
+	#error "LIBCONFIG_BITS_SINT must be equal to one of: 8, 16, 32, 64, 128"
+#endif
+
 /*
 **	Define wrapper types for all the primitive number types in a clear naming
 **	convention, to better reflect the amount of bits used by each type.
@@ -116,27 +116,44 @@ HEADER_CPP
 */
 
 typedef STDINT(uint,  8)	t_u8;	//!< The type for 8-bit unsigned integers
+TYPEDEF_ALIAS(				t_u8,	UINT_8,  PRIMITIVE)
 typedef STDINT(uint, 16)	t_u16;	//!< The type for 16-bit unsigned integers
+TYPEDEF_ALIAS(				t_u16,	UINT_16, PRIMITIVE)
 typedef STDINT(uint, 32)	t_u32;	//!< The type for 32-bit unsigned integers
+TYPEDEF_ALIAS(				t_u32,	UINT_32, PRIMITIVE)
 typedef	STDINT(uint, 64)	t_u64;	//!< The type for 64-bit unsigned integers
-
-typedef STDINT( int,  8)	t_s8;	//!< The type for 8-bit signed integers
-typedef STDINT( int, 16)	t_s16;	//!< The type for 16-bit signed integers
-typedef STDINT( int, 32)	t_s32;	//!< The type for 32-bit signed integers
-typedef	STDINT( int, 64)	t_s64;	//!< The type for 64-bit signed integers
-
+TYPEDEF_ALIAS(				t_u64,	UINT_64, PRIMITIVE)
 #ifdef	__int128
 typedef unsigned __int128	t_u128;	//!< The type for 128-bit unsigned integers (only certain platforms)
+TYPEDEF_ALIAS(				t_u128,	UINT_128,PRIMITIVE)
+#elif (LIBCONFIG_BITS_UINT == 128)
+	#error "Cannot set default unsigned int type to 128-bit, unavailable on this platform"
+#endif
+
+typedef STDINT(int,  8)		t_s8;	//!< The type for 8-bit signed integers
+TYPEDEF_ALIAS(				t_s8,	SINT_8,  PRIMITIVE)
+typedef STDINT(int, 16)		t_s16;	//!< The type for 16-bit signed integers
+TYPEDEF_ALIAS(				t_s16,	SINT_16, PRIMITIVE)
+typedef STDINT(int, 32)		t_s32;	//!< The type for 32-bit signed integers
+TYPEDEF_ALIAS(				t_s32,	SINT_32, PRIMITIVE)
+typedef	STDINT(int, 64)		t_s64;	//!< The type for 64-bit signed integers
+TYPEDEF_ALIAS(				t_s64,	SINT_64, PRIMITIVE)
+#ifdef	__int128
 typedef __int128			t_s128;	//!< The type for 128-bit signed integers (only certain platforms)
+TYPEDEF_ALIAS(				t_s128,	SINT_128,PRIMITIVE)
+#elif (LIBCONFIG_BITS_SINT == 128)
+	#error "Cannot set default signed int type to 128-bit, unavailable on this platform"
 #endif
 
 
 
 //! The configurable-size unsigned integer primitive type.
-typedef LIBCONFIG_TYPE_UINT		t_uint;
+typedef LIBCONFIG_TYPE_UINT	t_uint;
+TYPEDEF_ALIAS(				t_uint, UINT, PRIMITIVE)
 
 //! The configurable-size signed integer primitive type.
-typedef LIBCONFIG_TYPE_INT		t_int;
+typedef LIBCONFIG_TYPE_SINT	t_sint;
+TYPEDEF_ALIAS(				t_sint, SINT, PRIMITIVE)
 
 
 

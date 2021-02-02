@@ -45,17 +45,24 @@ HEADER_CPP
 
 
 
-typedef float	t_f32;	//!< The type for 32-bit 'single precision' IEEE-754 floating-point numbers
-typedef double	t_f64;	//!< The type for 64-bit 'double precision' IEEE-754 floating-point numbers
+//! The type for 32-bit 'single precision' IEEE-754 floating-point numbers
+typedef float		t_f32;
+TYPEDEF_ALIAS(		t_f32,	FLOAT_32,	PRIMITIVE)
+
+//! The type for 64-bit 'double precision' IEEE-754 floating-point numbers
+typedef double		t_f64;
+TYPEDEF_ALIAS(		t_f64,	FLOAT_64,	PRIMITIVE)
 
 #ifdef	__float80
 typedef __float80	t_f80;	//!< The type for 32-bit 'extended precision' IEEE-754 floating-point numbers (only certain platforms)
+TYPEDEF_ALIAS(		t_f80,	FLOAT_80,	PRIMITIVE)
 #elif LIBCONFIG_BITS_FLOAT == 80
 	#error "Cannot set default float to 80-bit extended-precision, unavailable on this platform"
 #endif
 
 #ifdef	__float128
 typedef __float128	t_f128;	//!< The type for 32-bit 'quadruple precision' IEEE-754 floating-point numbers (only certain platforms)
+TYPEDEF_ALIAS(		t_f128,	FLOAT_128,	PRIMITIVE)
 #elif LIBCONFIG_BITS_FLOAT == 128
 	#error "Cannot set default float to 128-bit quadruple-precision, unavailable on this platform"
 #endif
@@ -64,6 +71,7 @@ typedef __float128	t_f128;	//!< The type for 32-bit 'quadruple precision' IEEE-7
 
 //! The configurable-size floating-point number primitive type.
 typedef LIBCONFIG_TYPE_FLOAT	t_float;
+TYPEDEF_ALIAS(					t_float, FLOAT, PRIMITIVE)
 
 
 

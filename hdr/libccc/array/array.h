@@ -47,8 +47,7 @@ typedef struct	s_array_
 	t_size		item_size;	//!< The size (in bytes) of one object in this array
 	void*		items;		//!< The pointer to the array (items can be of any one type)
 }				s_array;
-
-
+TYPEDEF_ALIAS(	s_array, ARRAY, STRUCT)
 
 //! A literal of an 's_array' struct which has all fields set to zero
 #define ARRAY_NULL	(s_array){ .item_count = 0, .item_size = 0, .items = NULL }

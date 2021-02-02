@@ -41,12 +41,14 @@ typedef struct	s_vector2d_
 	t_float		x;			//!< The X axis coordinate of this vector
 	t_float		y;			//!< The Y axis coordinate of this vector
 }				s_vector2d;
+TYPEDEF_ALIAS(	s_vector2d, VECTOR_2D, STRUCT)
 //! This union stores a 2-dimensional value which can be accessed in several ways
 typedef	union	u_vector2d_
 {
 	t_float		values[2];	//!< An array, to access the 2 values from within brackets
 	s_vector2d	vector;		//!< A vector, to access the 2 coordinates as `.x` and `.y`
 }				u_vector2d;
+TYPEDEF_ALIAS(	u_vector2d, VECTOR_2D, UNION)
 
 //! Allocates a new vector struct on heap, setting the given coordinates
 _MALLOC
@@ -95,12 +97,14 @@ typedef struct	s_vector3d_
 	t_float		y;			//!< The Y axis coordinate of this vector
 	t_float		z;			//!< The Z axis coordinate of this vector
 }				s_vector3d;
+TYPEDEF_ALIAS(	s_vector3d, VECTOR_3D, STRUCT)
 //! This union stores a 3-dimensional value which can be accessed in several ways
 typedef	union	u_vector3d_
 {
 	t_float		values[3];	//!< An array, to access the 3 values from within brackets
 	s_vector3d	vector;		//!< A vector, to access the 3 coordinates as `.x`, `.y` and `.z`
 }				u_vector3d;
+TYPEDEF_ALIAS(	u_vector3d, VECTOR_3D, UNION)
 
 //! Allocates a new vector struct on heap, setting the given coordinates
 _MALLOC
@@ -157,12 +161,14 @@ typedef struct	s_vector4d_
 	t_float		z;			//!<< The Z axis coordinate of this vector
 	t_float		t;			//!<< The T axis coordinate of this vector
 }				s_vector4d;
+TYPEDEF_ALIAS(	s_vector4d, VECTOR_4D, STRUCT)
 //! This union stores a 4-dimensional value which can be accessed in several ways
 typedef	union	u_vector4d_
 {
 	t_float		values[4];	//!< An array, to access the 4 values from within brackets
 	s_vector4d	vector;		//!< A vector, to access the 4 coordinates as `.x`, `.y`, `.z`, and `.t`
 }				u_vector4d;
+TYPEDEF_ALIAS(	u_vector4d, VECTOR_4D, UNION)
 
 // TODO define and implement 4D vector operations
 
@@ -180,12 +186,14 @@ typedef struct	s_matrix2d_
 	s_vector2d	u;
 	s_vector2d	v;
 }				s_matrix2d;
+TYPEDEF_ALIAS(	s_matrix2d, MATRIX_2D, STRUCT)
 //! This union stores a 2x2 matrix which can be accessed in several ways
 typedef	union	u_matrix2d_
 {
 	t_float		values[2*2];	//!< An array, to access the matrix values from within brackets
 	s_matrix2d	matrix;			//!< A struct, to access the matrix values as several row vectors
 }				u_matrix2d;
+TYPEDEF_ALIAS(	u_matrix2d, MATRIX_2D, UNION)
 //! A 2-dimensional matrix in which every number is zero
 #define MATRIX2D_NULL \
 {					\
@@ -243,12 +251,14 @@ typedef struct	s_matrix3d_
 	s_vector3d	v;
 	s_vector3d	w;
 }				s_matrix3d;
+TYPEDEF_ALIAS(	s_matrix3d, MATRIX_3D, STRUCT)
 //! This union stores a 3x3 matrix which can be accessed in several ways
 typedef	union	u_matrix3d_
 {
 	t_float		values[3*3];	//!< An array, to access the matrix values from within brackets
 	s_matrix3d	matrix;			//!< A struct, to access the matrix values as several row vectors
 }				u_matrix3d;
+TYPEDEF_ALIAS(	u_matrix3d, MATRIX_3D, UNION)
 //! A 3-dimensional matrix in which every number is zero
 #define MATRIX3D_NULL \
 {					\
@@ -324,12 +334,14 @@ typedef struct	s_matrix4d_
 	s_vector4d	w;
 	s_vector4d	t;
 }				s_matrix4d;
+TYPEDEF_ALIAS(	s_matrix4d, MATRIX_4D, STRUCT)
 //! This union stores a 4x4 matrix which can be accessed in several ways
 typedef	union	u_matrix4d_
 {
 	t_float		values[4*4];	//!< An array, to access the matrix values from within brackets
 	s_matrix3d	matrix;			//!< A struct, to access the matrix values as several row vectors
 }				u_matrix4d;
+TYPEDEF_ALIAS(	u_matrix4d, MATRIX_4D, UNION)
 //! A 4-dimensional matrix in which every number is zero
 #define MATRIX4D_NULL \
 {						\
@@ -368,6 +380,7 @@ typedef struct		s_box1d_
 	t_float		start;
 	t_float		end;
 }					s_box1d;
+TYPEDEF_ALIAS(		s_box1d, BOX_1D, STRUCT)
 
 //! A 2-dimensional area of coordinates, defined by two corner-point vectors
 typedef struct		s_box2d_
@@ -375,6 +388,7 @@ typedef struct		s_box2d_
 	u_vector2d	start;
 	u_vector2d	end;
 }					s_box2d;
+TYPEDEF_ALIAS(		s_box2d, BOX_2D, STRUCT)
 
 //! A 3-dimensional volume of coordinates, defined by two corner-point vectors
 typedef struct		s_box3d_
@@ -382,6 +396,7 @@ typedef struct		s_box3d_
 	u_vector3d	start;
 	u_vector3d	end;
 }					s_box3d;
+TYPEDEF_ALIAS(		s_box3d, BOX_3D, STRUCT)
 
 //! A 4-dimensional hypervolume of coordinates, defined by two corner-point vectors
 typedef struct		s_box4d_
@@ -389,9 +404,13 @@ typedef struct		s_box4d_
 	u_vector4d	start;
 	u_vector4d	end;
 }					s_box4d;
+TYPEDEF_ALIAS(		s_box4d, BOX_4D, STRUCT)
+
+
 
 //! An interval/range, defined by a 'start' number and 'end' number
 typedef s_box1d	s_interval;
+TYPEDEF_ALIAS(	s_interval, INTERVAL, STRUCT)
 
 
 
@@ -431,7 +450,7 @@ t_u16		c_distance_u16 (t_u16  x, t_u16  y);
 t_u32		c_distance_u32 (t_u32  x, t_u32  y);
 t_u64		c_distance_u64 (t_u64  x, t_u64  y);
 
-t_int		c_distance_int (t_int x, t_int y);
+t_sint		c_distance_int (t_sint x, t_sint y);
 t_s8		c_distance_s8  (t_s8  x, t_s8  y);
 t_s16		c_distance_s16 (t_s16 x, t_s16 y);
 t_s32		c_distance_s32 (t_s32 x, t_s32 y);

@@ -43,6 +43,11 @@ typedef struct	s_leaf_
 	char*		value_type;	//!< The amount of elements in the 'items' array
 	t_size		value_size;	//!< The size (in bytes) of one object in this array
 }				s_leaf;
+TYPEDEF_ALIAS(	s_leaf, LEAF, STRUCT)
+
+#define LEAF_NULL	(s_leaf){ 0 } // TODO
+
+
 
 //! A simple tree/node/leaf struct, stores an array of "branches" (ie: nodes).
 /*
@@ -54,8 +59,7 @@ typedef struct	s_tree_
 	struct s_tree_*	nodes;
 	void*			value;
 }				s_tree;
-
-
+TYPEDEF_ALIAS(	s_tree, TREE, STRUCT)
 
 //! A literal of an 's_tree' struct which has all fields set to zero
 #define TREE_NULL	(s_tree){ .node_count = 0, .nodes = 0, .value = NULL }

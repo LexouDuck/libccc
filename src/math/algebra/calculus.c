@@ -94,7 +94,7 @@ inline t_uint	c_distance_uint(t_uint x, t_uint y)
 {
 	return (x - y);
 }
-inline t_int	c_distance_int(t_int x, t_int y)
+inline t_sint	c_distance_int(t_sint x, t_sint y)
 {
 	return (ABS(x - y));
 }

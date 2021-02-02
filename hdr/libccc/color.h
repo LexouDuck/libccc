@@ -41,8 +41,10 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! This typedef represents an unsigned 16-bit number which stores an ARGB 1555 color
+//! This type represents an unsigned 16-bit number which stores an ARGB 1555 color
 typedef t_u16	t_argb16;
+TYPEDEF_ALIAS(	t_argb16, COLOR_ARGB16, PRIMITIVE)
+
 //! The maximum possible value for one color channel of an ARGB16 color [0,31]
 #define COLOR_ARGB16_CHANNEL	(0x1F)
 
@@ -58,8 +60,10 @@ typedef t_u16	t_argb16;
 
 
 
-//! This typedef represents an unsigned 32-bit number which stores an ARGB 8888 color
+//! This type represents an unsigned 32-bit number which stores an ARGB 8888 color
 typedef t_u32	t_argb32;
+TYPEDEF_ALIAS(	t_argb32, COLOR_ARGB32, PRIMITIVE)
+
 //! The maximum possible value for one color channel of an ARGB16 color [0,255]
 #define COLOR_ARGB32_CHANNEL	(0xFF)
 
@@ -83,6 +87,7 @@ typedef struct	s_argb_
 	t_float		g;		//!< The green channel of this color [0,1]
 	t_float		b;		//!< The blue channel of this color  [0,1]
 }				s_argb;
+TYPEDEF_ALIAS(	s_argb, COLOR_ARGB, STRUCT)
 
 
 
@@ -94,6 +99,7 @@ typedef struct	s_ahsl_
 	t_float		sat;	//!< The saturation value of this color (distance from center)  [0,1]
 	t_float		lum;	//!< The luminance/brightness value of this color (whiteness)   [0,1]
 }				s_ahsl;
+TYPEDEF_ALIAS(	s_ahsl, COLOR_AHSL, STRUCT)
 
 
 
