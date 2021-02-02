@@ -15,25 +15,32 @@ The objective is to have one simple, well-documented, efficient open-source impl
 The first step to accomplishing this is to not use the native int/long/short types, which can have different storage size depending on the platform
 ('int' is defined as the fastest integer type for the given machine, typically this will be the CPU register size - so on a 64-bit machine, that'd be int64, on a 32-bit machine int32, and some old embedded systems you come across might have 16-bit ints as the machine's default storage size). So first of all, using the integer types defined in "stdint.h" ('int32_t', 'uint64_t', etc) is essential for any cross-platform C code, as it ensures consistent cross-platform overflow behaviors (Note that these aren't present on every platform though - sometimes we will have to settle for the 'uint_fastX_t' types, but macros have been provided to make this switch simply).
 
-The following categories/headers include the ISO standard library functions:
-* _**memory**_: functions to manipulate memory directly (memcpy,memset,memchr,etc, but also extras like ptrarrlen,memdup,getbits)
-* _**string**_: functions to manipulate strings (strcpy,strchr,strsub,etc but also extras such as strformat,strsplit,strmap)
-* _**char**_: functions to handle ANSI/ASCII characters (islower,isalpha,toupper,etc)
-* _**math**_: common mathematical functions operating on floating-point numbers (the implementations in this lib are fast-approximate versions, though by default LIBCONFIG_FAST_APPROX_MATH is defined as 0, so the functions are actually simple wrappers over the builtin FPU math functions)
-* _**time**_: functions for handling times/dates/timezones/timespecs (handling of timezones is different from the stdlib 'global variable' tzset call)
-* _**random**_: functions for simple pesudo-random number generation (many more functions than just the ISO rand/srand/rand_r functions)
-* _**io**_: functions for reading and writing (from/to terminal, or from/to file(s) - wrapper functions over `unistd.h` and `stdio.h`)
+The following categories/headers include the ISO standard library (types, functions, macros):
+* _**bool.h**_: primitive boolean type (usually `_Bool`), and strtobool, booltostr, etc
+* _**char.h**_: functions to handle ANSI/ASCII characters (islower, isalpha, toupper, etc - but also `wchar_t` and UTF8 char handling)
+* _**int.h**_: integer number types, functions to replace the wonky STD C atoi/itoa functions with better type-specific conversion functions
+* _**float.h**_: floating-point types, functions to replace the wonky STD C atof/strtol functions with better type-specific conversion functions
+* _**pointer.h**_: important system types for pointer arithmetic (`size_t`, `ptrdiff_t`) and the functions associated with them
+* _**memory.h**_: functions to manipulate memory directly (memcpy, memset, memchr, etc - but also extras like memdup, memrep, getbits)
+* _**string.h**_: functions to manipulate strings (strcpy,strchr,strsub,etc but also extras such as strformat,strsplit,strmap)
+* _**math.h**_: common mathematical functions operating on floating-point numbers (the implementations in this lib are fast-approximate versions, though by default LIBCONFIG_FAST_APPROX_MATH is defined as 0, so the functions are actually simple wrappers over the builtin FPU math functions)
+* _**sys/time.h**_: functions for handling times/dates/timezones/timespecs (handling of timezones is different from the stdlib 'global variable' tzset call)
+* _**sys/io.h**_: functions for reading and writing (from/to terminal, or from/to file(s) - wrapper functions over `unistd.h` and `stdio.h`)
 
 Furthermore, there are other functions here that are not found in the ISO standard, particularly in the following categories:
-* _**convert**_: functions to replace the wonky std libc atoi/itoa/atof/strtol functions with more understandable type-specific conversion functions
-* _**color**_: functions manipulating several common color encodings, as well as other useful color-related functions (like RGB_to_HSL, etc)
-* _**random**_: a set of simple functions for different methods of pseudo-random number generation (not cryptographically safe for now)
-* _**stringarray**_: a set of functions used to manipulate string arrays (`char **`), where the top-level pointer array is terminated by a NULL pointer
-* _**algebra**_: math functions for 2D/3D/4D vectors and matrices, as well as integrals and more
-* _**complex**_: math functions for complex number operations, as well as quaternions
-* _**stat**_: statistics & probabilities functions: int/float number array sort functions, median, standard deviation, etc
-* _**list**_: linked list functions (using a simple list type which only stores the 'next' pointer)
-* _**vlq**_: Variable-Length Quantity math functions, for variable-size "big ints".
+* _**fixed.h**_: fixed-point arithmetic, with a configurable fixed-point number type (regarding what portion is dedicated to the fractional part)
+* _**color.h**_: functions manipulating several common color encodings, as well as other useful color-related functions (like RGB_to_HSL, etc)
+* _**array/pointerarray.h**_: a set of functions used to manipulate pointer arrays (`void **`, the array is terminated by a NULL pointer)
+* _**array/stringarray.h**_: a set of functions used to manipulate string arrays (`char **`, the array is terminated by a NULL pointer)
+* _**array/array.h**_: linked list functions (using a simple list type which only stores the 'next' pointer)
+* _**array/list.h**_: linked list functions (using a simple list type which only stores the 'next' pointer)
+* _**array/dict.h**_: linked list functions (using a simple list type which only stores the 'next' pointer)
+* _**array/tree.h**_: linked list functions (using a simple list type which only stores the 'next' pointer)
+* _**math/algebra.h**_: math functions for 2D/3D/4D vectors and matrices, as well as integrals and more
+* _**math/random.h**_: functions for simple pseudo-random number generation (many more functions than just the ISO rand/srand/rand_r functions)
+* _**math/complex.h**_: math functions for complex number operations, as well as quaternions
+* _**math/stat.h**_: statistics & probabilities functions: int/float number array sort functions, median, standard deviation, etc
+* _**math/vlq.h**_: Variable-Length Quantity math functions, for variable-size "big ints".
 
 
 

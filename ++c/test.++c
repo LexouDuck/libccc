@@ -374,13 +374,61 @@ int main()
 
 void		MyFunction(void);
 #alias	f	MyFunction
-int main()
-{
-	f();
-}
 
 
-void*	Memory_Alloc(t_size size);
-#alias	c_memalloc
 // transpiles to:
-void*	c_memalloc(t_size size) __attribute__((weak, alias("Memory_Alloc")));
+void	MyFunction(void);
+void	f(void) __attribute__((weak, alias("MyFunction")));
+
+
+#packed
+typedef struct	s_example_
+{
+	char a;
+	int x;
+	bool b;
+	int y;
+}				s_example;
+
+
+// transpiles to:
+__attribute__((packed))
+typedef struct	s_example_
+{
+	...
+
+
+#inline
+void		MyFunction(void);
+
+
+// transpiles to:
+__attribute__((always_inline))
+void*	MyFunction(void);
+
+
+#pure
+char	MyFunction(char c);
+
+
+// transpiles to:
+__attribute__((pure))
+char	MyFunction(char c);
+
+
+#malloc
+char*	MyFunction(void);
+
+
+// transpiles to:
+__attribute__((malloc))
+char*	MyFunction(void);
+
+
+#format(printf, 1, 2)
+void	MyFunction(char* format, ...);
+
+
+// transpiles to:
+__attribute__((format(printf, 1, 2)))
+void	MyFunction(char* format, ...);
