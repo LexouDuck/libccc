@@ -133,7 +133,7 @@ void	print_test_s64_to_str(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(s64_to_str, number)
 	print_test_str(test_name, "_s64_to_str", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS(PRINTF_S64, number)
+	TEST_PRINT_ARGS(FORMAT_S64, number)
 }
 void	test_s64_to_str(void)
 {
@@ -267,7 +267,7 @@ void	print_test_u64_to_str(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(u64_to_str, number)
 	print_test_str(test_name, "_u64_to_str", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS(PRINTF_U64, number)
+	TEST_PRINT_ARGS(FORMAT_U64, number)
 }
 void	test_u64_to_str(void)
 {
@@ -456,7 +456,7 @@ void	print_test_size_to_str(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(size_to_str, number)
 	print_test_str(test_name, "_size_to_str", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS(PRINTF_SIZE, number)
+	TEST_PRINT_ARGS(FORMAT_SIZE, number)
 }
 void	test_size_to_str(void)
 {
@@ -1727,7 +1727,7 @@ void	print_test_u64_to_strhex(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(u64_to_strhex, number)
 	print_test_str(test_name, "_u64_to_strhex", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS(PRINTF_U64, number)
+	TEST_PRINT_ARGS(FORMAT_U64, number)
 }
 void	test_u64_to_strhex(void)
 {
@@ -2003,7 +2003,7 @@ void	print_test_s64_to_strbase(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(s64_to_strbase, number, base)
 	print_test_str(test_name, "_s64_to_strbase", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS("base='%s', n="PRINTF_S64, base, number);
+	TEST_PRINT_ARGS("base='%s', n="FORMAT_S64, base, number);
 }
 void	test_s64_to_strbase(void)
 {
@@ -2222,7 +2222,7 @@ void	print_test_u64_to_strbase(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(u64_to_strbase, number, base)
 	print_test_str(test_name, "_u64_to_strbase", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS("base='%s', n="PRINTF_U64, base, number);
+	TEST_PRINT_ARGS("base='%s', n="FORMAT_U64, base, number);
 }
 void	test_u64_to_strbase(void)
 {
