@@ -100,7 +100,7 @@ HEADER_CPP
 /*
 **	Define macros for common function attributes (as documented by GNU)
 */
-#ifdef __MINGW32__
+#if defined(__MINGW32__) && !defined(__clang__)
 	#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	__attribute__((format(gnu_##FUNCTION, POS_FORMAT, POS_VARARGS)))
 #else
 	#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	__attribute__((format(FUNCTION, POS_FORMAT, POS_VARARGS)))
