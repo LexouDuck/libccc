@@ -29,6 +29,14 @@
 **	- ptrdiff_t
 */
 #include <stddef.h>
+/*
+**	Included to use the following std types:
+**	- uintmax_t
+**	- uintptr_t
+**	- intmax_t
+**	- intptr_t
+*/
+#include <stdint.h>
 
 #include "libccc_config.h"
 #include "libccc_define.h"
@@ -71,6 +79,26 @@ TYPEDEF_ALIAS(		t_size, SIZE, PRIMITIVE)
 */
 typedef ptrdiff_t	t_ptrdiff;
 TYPEDEF_ALIAS(		t_ptrdiff, PTRDIFF, PRIMITIVE)
+
+
+
+//! Maximum-width signed integer type
+typedef intmax_t	t_sintmax;
+TYPEDEF_ALIAS(		t_sintmax, SINTMAX, PRIMITIVE)
+
+//! Maximum-width unsigned integer type
+typedef uintmax_t	t_uintmax;
+TYPEDEF_ALIAS(		t_uintmax, UINTMAX, PRIMITIVE)
+
+
+
+//! Pointer-size signed integer type
+typedef intptr_t	t_sintptr;
+TYPEDEF_ALIAS(		t_sintptr, SINTPTR, PRIMITIVE)
+
+//! Pointer-size unsigned integer type
+typedef uintptr_t	t_uintptr;
+TYPEDEF_ALIAS(		t_uintptr, UINTPTR, PRIMITIVE)
 
 
 
