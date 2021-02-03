@@ -228,12 +228,14 @@ all: debug
 # This rule builds the library, in DEBUG mode (with '-g -ggdb -D DEBUG=1')
 debug: MODE = debug
 debug: CFLAGS += $(CFLAGS_DEBUG)
-debug: $(NAME).a
+debug: $(NAME).a dynlib
 
 # This rule fills the ./bin folder with necessary files for release distribution
 release: MODE = release
 release: CFLAGS += $(CFLAGS_RELEASE)
-release: $(NAME).a
+release: $(NAME).a dynlib
+
+dynlib: $(NAME).a
 	@mkdir -p $(BINDIR)dynamic/$(OSMODE)/
 	@mkdir -p $(BINDIR)static/$(OSMODE)/
 	@cp $(NAME).a $(BINDIR)static/$(OSMODE)/
@@ -349,18 +351,18 @@ test: $(NAME_TEST)
 
 clean:
 	@printf "Deleting object files...\n"
-	@rm -f $(OBJS)
-	@rm -f $(TEST_OBJS)
+	@rm -rf $(OBJS)
+	@rm -rf $(TEST_OBJS)
 	@printf "Deleting dependency files...\n"
-	@rm -f $(DPDS)
-	@rm -f *.d
+	@rm -rf $(DPDS)
+	@rm -rf *.d
 
 fclean: clean
 	@printf "Deleting library: "$(NAME).a"\n"
-	@rm -f $(NAME).a
+	@rm -rf $(NAME).a
 	@printf "Deleting program: "$(NAME_TEST)"\n"
-	@rm -f $(NAME_TEST)
-	@rm -f $(NAME_TEST).d
+	@rm -rf $(NAME_TEST)
+	@rm -rf $(NAME_TEST).d
 
 rclean: fclean
 	@printf "Deleting obj folder...\n"
