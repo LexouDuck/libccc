@@ -135,11 +135,12 @@ printf("%d", 2 ** 15);
 char* new_str = str ?? "str is NULL";
 ```
 ```c
-// string concatenation operator
-#operator + (char const* left, char const* right) = char*
-{
-	return (String.Join(left, right));
-}
+// string concatenation operators
+#operator  +	(char const* left, char const* right) = char*	{ return (String.Join(left, right)); }
+#operator  :+	(char*       left, char const* right) = char*	{ return (String.Append(left, right)); }
+#operator  +:	(char const* left, char*       right) = char*	{ return (String.Prepend(left, right)); }
+#operator  :+:	(char*       left, char*       right) = char*	{ return (String.Merge(left, right)); }
+
 // usage example:
 char* new_str = "Concatenated: " + str;
 ```
@@ -541,20 +542,23 @@ m4 --synclines
 ```
 
 ```m4
-changequote(`<',`>')
-changecom(<//>,<\n>)
-```
-
-```m4
-define(#format(FUNCTION, POS_FORMAT, POS_VARARGS)	__attribute__((format(FUNCTION, POS_FORMAT, POS_VARARGS)))
-define(#alias(FUNCTION)			__attribute__((alias(#FUNCTION)))
-define(#align(MINIMUM)			__attribute__((aligned(MINIMUM)))
-define(#pure()					__attribute__((pure))
-define(#inline()				__attribute__((always_inline)) inline
-define(#malloc()				__attribute__((malloc))
-define(#delete()				__attribute__((delete))
-define(#unused()				__attribute__((unused))
-define(#packed()				__attribute__((packed))
+m4_changecom()m4_dnl
+m4_changequote(`|[', `]|')m4_dnl
+m4_define(#incbin	, |[INCBIN($1,$2)]|)m4_dnl
+m4_define(#packed	, |[__attribute__((packed))]|)m4_dnl
+m4_define(#format	, |[__attribute__((format($1,$2,$3)))]|)m4_dnl
+m4_define(#alias	, |[__attribute__((alias(#$1)))]|)m4_dnl
+m4_define(#align	, |[__attribute__((aligned($1)))]|)m4_dnl
+m4_define(#pure		, |[__attribute__((pure))]|)m4_dnl
+m4_define(#inline	, |[__attribute__((always_inline)) inline]|)m4_dnl
+m4_define(#malloc	, |[__attribute__((malloc))]|)m4_dnl
+m4_define(#delete	, |[__attribute__((delete))]|)m4_dnl
+m4_define(#unused	, |[__attribute__((unused))]|)m4_dnl
+m4_define(#replace	, |[define(|[$1]|,|[$2]|)]|)m4_dnl
+m4_define(#operator	, |[]|)m4_dnl
+m4_define(#accessor	, |[]|)m4_dnl
+m4_define(#function	, |[]|)m4_dnl
+m4_define(#namespace, |[]|)m4_dnl
 ```
 
 PS: RegExp to get all code block contents here:

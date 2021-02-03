@@ -1,7 +1,7 @@
-int a
 
 value = *pointer; // pure C
 value = $pointer; // ++C
+
 
 address = &value; // pure C
 address = @value; // ++C
@@ -85,10 +85,10 @@ char* new_str = str ?? "str is NULL";
 
 
 // string concatenation operator
-#operator + (char const* left, char const* right) = char*	{ return (String.Join(left, right)); }
-#operator :+ (char* left, char const* right) = char*		{ return (String.Append(left, right)); }
-#operator +: (char const* left, char* right) = char*		{ return (String.Prepend(left, right)); }
-#operator :+: (char* left, char* right) = char*				{ return (String.Merge(left, right)); }
+#operator + (char const* left, char const* right) = char*
+{
+	return (String.Join(left, right));
+}
 // usage example:
 char* new_str = "Concatenated: " + str;
 
@@ -106,7 +106,6 @@ typedef struct	s_complex_
 // usage example:
 s_complex z = { 1.5, 2.2 };
 s_complex conjug = !z;
-
 
 
 // bool exclusive OR (XOR) operator
@@ -185,7 +184,6 @@ typedef struct	s_dict_
 }				s_dict;
 
 #namespace Dict
-
 s_dict	New(int items, s_keyval ...);
 {
 	return ((s_dict)
@@ -194,13 +192,11 @@ s_dict	New(int items, s_keyval ...);
 		Array<s_keyval>.New(items, va_list),
 	});
 }
-
 // declare an accessor to get dictionary values from their key names
 #accessor (s_dict dict)[char const* key] = void*
 {
 	return (Dict.Get(dict, key));
 }
-
 
 // usage example:
 s_dict dict = Dict.New(2,
@@ -244,7 +240,6 @@ s_list<char*> const*	string_list;
 #namespace Math<TYPE=float>
 <TYPE>	Cos(<TYPE> x);
 
-
 // usage example:
 float cosine_float = Math<float>.Cos(value);	// specific implementation for 32-bit floating-point type cos()
 double cosine_f64 = Math<double>.Cos(value);	// specific implementation for 64-bit floating-point type cos()
@@ -256,7 +251,6 @@ fixed cosine_fixed = Math<fixed>.Cos(value);	// specific implementation for fixe
 s_list<TYPE>	New(size_t length, <TYPE> ...);
 void			Append(s_list<TYPE> list, s_list<TYPE> element);
 s_list<TYPE>	Filter(s_list<TYPE> list, bool (*filter)(s_list<TYPE> element));
-
 
 // usage example:
 // in .c source file
@@ -282,7 +276,6 @@ static bool	KeepOnlyEvenNumbers_filter(s_list<int> element)
 
 // list concatenation operator
 #namespace List<TYPE=void*>
-
 #operator + (s_list<TYPE>* left, s_list<TYPE>* right) = s_list<TYPE>
 {
 	return (List<TYPE>.Join(left, right));
@@ -296,7 +289,6 @@ s_list<char*> concat = list1 + list2; // type inferrence for the operator
 
 // list index get
 #namespace List<TYPE=void*>
-
 #accessor (s_list<TYPE>* list)[size_t index] = <TYPE>
 {
 	return (List<TYPE>.Get(list, index));
@@ -318,6 +310,8 @@ typedef struct	keyval_<TYPE>
 
 keyval<TYPE>	New(char* key, <TYPE> value);
 
+
+
 #namespace Object<TYPE=void*>
 
 typedef keyval<void*>*	object;
@@ -329,7 +323,7 @@ object*	New(size_t items, keyval ...);
 	return (Object<TYPE>.Get(obj, key));
 }
 
-#endnamespace
+
 
 object* obj = Object.New(3,
 	KeyVal<int>.New("index", 1), // = &(keyval<int>){ .key="index", .type="int", .value=1 }
@@ -390,7 +384,7 @@ void		MyFunction(void);
 
 
 // transpiles to:
-__attribute__((always_inline))
+__attribute__((always_inline)) inline
 void*	MyFunction(void);
 
 

@@ -175,6 +175,74 @@ HEADER_CPP
 
 
 
+/*
+** ************************************************************************** *|
+**                        Include Binary (INCBIN) ASM macro                   *|
+** ************************************************************************** *|
+*/
+
+#ifdef __APPLE__
+	#define INCBIN_MANGLE	"_"
+	#define INCBIN_GLOBAL	".globl"
+	#define INCBIN_INTEGER	".long"
+	#define INCBIN_SECTION	".section __DATA,__const"
+	#define INCBIN_PREVIOUS	".previous"
+#else
+	#define INCBIN_MANGLE	""
+	#define INCBIN_GLOBAL	".global"
+	#define INCBIN_INTEGER	".int"
+	#ifdef __ELF__
+		#define INCBIN_SECTION	".section \".rodata\", \"a\", @progbits"
+		#define INCBIN_PREVIOUS	".previous"
+	#else
+		#define INCBIN_SECTION	".section .rodata"
+		#define INCBIN_PREVIOUS	""
+	#endif
+#endif
+
+// TODO add .align pseudo-instruction ?
+// TODO use .equ or .set rather than .int/.long ?
+
+//! This macro includes the given binary file at "_PATH" (string) into a global const variable named <_NAME> (token)
+/*!
+**	@param	_NAME		The name to give to the global variable(s) which will be created
+**	@param	_FILEPATH	
+**	@returns - This macro doesn't return anything per se, but it declares 3 global/extern variables:
+**		t_u8 const*	<_NAME>			The statically allocated byte array containing the binary file data
+**		t_u8 const*	<_NAME>_end		The pointer to the end of the file data byte array: contains 1 byte set to zero (works like a string null-terminator)
+**		int const*	<_NAME>_size	The pointer 1 byte after '*_end', contains the file size. Use it like this: t_size len = (t_size)(*myfile_size);
+*/
+#define INCBIN(_NAME, _FILEPATH) \
+/*extern t_u8 const	_NAME[];		*/	\
+/*extern t_u8 const	_NAME##_end[];	*/	\
+/*extern int const	_NAME##_size[];	*/	\
+__asm__									\
+(										\
+	"\n"INCBIN_SECTION					\
+	"\n"								\
+	"\n"INCBIN_GLOBAL" "				\
+		INCBIN_MANGLE#_NAME				\
+	"\n"INCBIN_MANGLE#_NAME":"			\
+	"\n\t.incbin \""_FILEPATH"\""		\
+	"\n"								\
+	"\n"INCBIN_GLOBAL" "				\
+		INCBIN_MANGLE#_NAME"_end"		\
+	"\n"INCBIN_MANGLE#_NAME"_end"":"	\
+	"\n\t.byte 0"						\
+	"\n"								\
+	"\n"INCBIN_GLOBAL" "				\
+		INCBIN_MANGLE#_NAME"_size"		\
+	"\n"INCBIN_MANGLE#_NAME"_size"":"	\
+	"\n\t"INCBIN_INTEGER				\
+		" ( "INCBIN_MANGLE#_NAME"_end"	\
+		" - "INCBIN_MANGLE#_NAME" )"	\
+	"\n"								\
+	"\n"INCBIN_PREVIOUS					\
+	"\n"								\
+);										\
+
+
+
 /*! @} */
 HEADER_END
 #endif
