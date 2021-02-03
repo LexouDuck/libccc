@@ -136,7 +136,7 @@ t_bool					IO_Read_File(t_fd const fd, char* *a_file, t_size max);
 **	@returns 0(OK) if the stream was read successfully, 1(ERROR) if there was an error.
 */
 t_bool					IO_Read_Lines(t_fd const fd, char** *a_strarr);
-#define c_readlines	IO_Read_Lines
+#define c_readlines		IO_Read_Lines
 
 //! Reads the contents of the file descriptor 'fd' line-per-line.
 /*!
