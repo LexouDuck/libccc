@@ -13,7 +13,7 @@ CC_MACOS = gcc
 
 # Compiler flags
 CFLAGS = -Wall -Wextra -Winline -Wpedantic -Werror $(CFLAGS_OS) -MMD -fstrict-aliasing
-CFLAGS_DEBUG = -g -ggdb -D DEBUG=1 -fanalyzer
+CFLAGS_DEBUG = -g -ggdb -D DEBUG=1
 CFLAGS_RELEASE = -O3
 # -Wno-unused-result -Wno-unused-parameter
 CFLAGS_OS = _
