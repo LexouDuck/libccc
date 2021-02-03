@@ -78,31 +78,105 @@ TYPEDEF_ALIAS(	t_fd, FILEDESC, PRIMITIVE)
 #endif
 
 // TODO make macros like this for every type of libccc, so that this header can act as doc on printf
-// TODO rename these macros to FORMAT_*
 /*
-**	Cross-platform '%' Format specifiers for printf calls
+**	Cross-platform '%' format specifiers for printf()-family calls: String_Format(), IO_Write_Format(), etc
 */
+
+// libccc/bool.h
+#define FORMAT_BOOL	"%d"
+
+// libccc/char.h
+#define FORMAT_CHAR	"%c"
+#define FORMAT_UTF8	"%c"
+
+// libccc/int.h
+#define FORMAT_S8		"%+i"
+#define FORMAT_S16		"%+i"
+#define FORMAT_S32		"%+i"
+#define FORMAT_U8		"%0u"
+#define FORMAT_U16		"%0u"
+#define FORMAT_U32		"%0u"
+#define FORMAT_HEX_U8	"%#X"
+#define FORMAT_HEX_U16	"%#X"
+#define FORMAT_HEX_U32	"%#X"
 #if defined(__APPLE__) || defined(_WIN32)
-	#define PRINTF_S64	"%lld"
-	#define PRINTF_U64	"%llu"
+	#define FORMAT_S64		"%+lli"
+	#define FORMAT_U64		"%0llu"
+	#define FORMAT_HEX_U64	"%#llX"
 #else
-	#define PRINTF_S64	"%ld"
-	#define PRINTF_U64	"%lu"
+	#define FORMAT_S64		"%+li"
+	#define FORMAT_U64		"%0lu"
+	#define FORMAT_HEX_U64	"%#lX"
 #endif
-#define PRINTF_SIZE		"%zu"
-#define PRINTF_PTRDIFF	"%ti"
+#define FORMAT_S128		"%+lli"
+#define FORMAT_U128		"%0llu"
+#define FORMAT_HEX_U128	"%#llX"
 
-#ifdef _INT_64_
-	#define PRINTF_W12_INT	"%12ld"
-#else
-	#define PRINTF_W12_INT	"%12d"
-#endif
+#define FORMAT_SINT		CONCAT(FORMAT_S,	 LIBCONFIG_BITS_SINT)
+#define FORMAT_UINT		CONCAT(FORMAT_U,	 LIBCONFIG_BITS_UINT)
+#define FORMAT_HEX_UINT	CONCAT(FORMAT_HEX_U, LIBCONFIG_BITS_UINT)
 
-#ifdef _UINT_64_
-	#define PRINTF_W12_UINT	"%12lu"
-#else
-	#define PRINTF_W12_UINT	"%12u"
-#endif
+// libccc/fixed.h
+#define FORMAT_K16		"%0.8i"
+#define FORMAT_K32		"%0.8i"
+#define FORMAT_K64		"%0.8i"
+#define FORMAT_K128		"%0.8i"
+#define FORMAT_HEX_K16	"%#0.8X"
+#define FORMAT_HEX_K32	"%#0.8X"
+#define FORMAT_HEX_K64	"%#0.8X"
+#define FORMAT_HEX_K128	"%#0.8X"
+
+#define FORMAT_FIXED		"%0.8i"
+#define FORMAT_HEX_FIXED	"%#0.8X"
+
+// libccc/float.h
+#define FORMAT_F32		"%#g"
+#define FORMAT_F64		"%#g"
+#define FORMAT_F80		"%#g"
+#define FORMAT_F128		"%#g"
+#define FORMAT_HEX_F32	"%#a"
+#define FORMAT_HEX_F64	"%#a"
+#define FORMAT_HEX_F80	"%#a"
+#define FORMAT_HEX_F128	"%#a"
+
+#define FORMAT_FLOAT		"%#g"
+#define FORMAT_HEX_FLOAT	"%#g"
+
+// libccc/pointer.h
+#define FORMAT_PTR			FORMAT_POINTER
+#define FORMAT_POINTER		"%#p"
+#define FORMAT_SIZE			"%zu"
+#define FORMAT_HEX_SIZE		"%#zx"
+#define FORMAT_PTRDIFF		"%ti"
+#define FORMAT_HEX_PTRDIFF	"%#tx"
+
+// libccc/memory.h
+#define FORMAT_MEM(N)		FORMAT_MEMORY(N)
+#define FORMAT_MEMORY(N)	"%."#N"s"
+
+// libccc/string.h
+#define FORMAT_STR			FORMAT_STRING
+#define FORMAT_STRING		"%s"
+
+// libccc/color.h
+#define FORMAT_COLOR_ARGB16	"#%X"
+#define FORMAT_COLOR_ARGB32	"#%X"
+#define FORMAT_COLOR_ARGB	"(A:%g, R:%g, G:%g, B:%g)"
+#define FORMAT_COLOR_AHSL	"(A:%g, H:%g, S:%g, L:%g)"
+
+// libccc/math/complex.h
+#define FORMAT_COMPLEX	"(%g + %g*i)"
+
+// libccc/math/algebra.h
+#define FORMAT_VECTOR	"(%g)"
+#define FORMAT_VECTOR2D	"(%g, %g)"
+#define FORMAT_VECTOR3D	"(%g, %g, %g)"
+#define FORMAT_VECTOR4D	"(%g, %g, %g, %g)"
+#define FORMAT_MATRIX	FORMAT_VECTOR
+#define FORMAT_MATRIX2D	FORMAT_VECTOR2D"\n"FORMAT_VECTOR2D"\n"
+#define FORMAT_MATRIX3D	FORMAT_VECTOR3D"\n"FORMAT_VECTOR3D"\n"FORMAT_VECTOR3D"\n"
+#define FORMAT_MATRIX4D	FORMAT_VECTOR4D"\n"FORMAT_VECTOR4D"\n"FORMAT_VECTOR4D"\n"FORMAT_VECTOR4D"\n"
+
 
 
 

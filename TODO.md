@@ -1,7 +1,6 @@
 
 # TODO list
 
-- TODO: eorganize the ./hdr/ header folder to have subfolders and better organized/more split-up files:
 ```c
 #include <libccc.h>
 #include <libccc/int.h>
@@ -44,3 +43,6 @@
 - TODO: reorganize test suite to reflect new header file folder tree + add empty files for tests
 - TODO: add option #define LIBCONFIG_PRINT_ENCODING	(ANSI,ASCII,UTF8) which changes printf behavior ?
 - TODO: for each compound type in 'array' folder: implement functions _New, _Delete, _Equals, _Duplicate, _Sub, _Insert, _Replace, _Filter, _Map
+- TODO: add printf format specifier flags to String_Format wrapper for the following:
+	- fixed-point flag: `%q`, also doing `%.5q` will print at most 5 digits after the decimal point
+	- data/memory hex display: `%m`, doing `%.5m` will print at most 5 bytes of memory
