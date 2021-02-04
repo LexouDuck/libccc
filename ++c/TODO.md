@@ -3,11 +3,28 @@
 
 - A superset of C -> transpiles to C code (while keeping it as clean and readible as possible)
 - You can enforce a certain code style to the resulting transpiled C code
-- automatic header include-guard insertion (and C++ `#ifdef __cplusplus extern "C" { ... }`)
-- includes m4 multi-pass pre-processor
+- Automatic header include-guard insertion (and C++ `#ifdef __cplusplus extern "C" { ... }`)
+- Includes m4 multi-pass pre-processor
 - To differentiate ++C code from C or C++, by convention the following file formats are accepted:
 	- `++c`, `ppc`, `xxc` (case insensitive), these transpile to `.c` files
 	- `++h`, `pph`, `xxh` (case insensitive), these transpile to `.h` files
+- Several language features added, all in the form of new pre-processor directives:
+```c
+#namespace NameSpace.SubSpace
+#function type	FunctionName(int arg)	{ DoSomething(); return (var); }
+#operator	$ (type a, type b) = int	{ return (DoOperation(a, b)); }
+#accessor (type var)[int index] = int	{ return (GetFunction(var, index)); }
+#incbin(myvar, "filepath")
+#replace("old", "new")
+#alias(token)
+#align(4)
+#format(func, 1, 2)
+#malloc
+#delete
+#inline
+#pure
+#packed
+```
 
 
 

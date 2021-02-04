@@ -1,4 +1,22 @@
 
+#namespace NameSpace.SubSpace
+#function type	FunctionName(int arg)	{ DoSomething(); return (var); }
+#operator	$ (type a, type b) = int	{ return (DoOperation(a, b)); }
+#accessor (type var)[int index] = int	{ return (GetFunction(var, index)); }
+#incbin(myvar, "filepath")
+#replace("old", "new")
+#alias(token)
+#align(4)
+#format(func, 1, 2)
+#malloc
+#delete
+#inline
+#pure
+#packed
+#reflect
+
+
+
 value = *pointer; // pure C
 value = $pointer; // ++C
 
