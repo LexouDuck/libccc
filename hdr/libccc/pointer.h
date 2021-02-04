@@ -108,22 +108,32 @@ TYPEDEF_ALIAS(		t_uintptr, UINTPTR, PRIMITIVE)
 ** ************************************************************************** *|
 */
 
-//! Get the string decimal representation of a 64-bit unsigned integer
+//! Get the string decimal representation of a RAM memory size integer
 _MALLOC()
 char*					Size_ToString(t_size value);
 #define c_size_to_str	Size_ToString
+
+//! Get the string hexadecimal representation of a RAM memory size integer
+_MALLOC()
+char*						Size_ToString_Hex(t_size value);
+#define c_size_to_strhex	Size_ToString_Hex
+
+//! Get the string human-readable representation of a RAM memory size integer, in short readable form, with bytes units (KB,MB,GB,etc)
+_MALLOC()
+char*							Size_ToString_Readable(t_size value);
+#define c_size_to_str_readable	Size_ToString_Readable
 
 //! Parse a memory-size uint from the given string
 t_size					Size_FromString(char const* str);
 #define c_str_to_size	Size_FromString
 
-//! Get the string decimal human-readable representation of a 64-bit unsigned integer, with bytes units (KB,MB,GB,etc)
+
+
+
+//! Get the string decimal representation of a pointer/address value
 _MALLOC()
-char*							Size_ToString_Readable(t_size value);
-#define c_size_to_str_readable	Size_ToString_Readable
-
-
-
+char*					Pointer_ToString(void const* ptr);
+#define c_ptr_to_str	Pointer_ToString
 //! Get the string hexadecimal representation of a pointer/address value
 _MALLOC()
 char*						Pointer_ToString_Hex(void const* ptr);

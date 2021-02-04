@@ -14,7 +14,7 @@ t_size	Size_FromString(char const* str)
 		return (0);
 #endif
 	i = 0;
-	while (!(Char_IsDigit(str[i]) || str[i] == '+'))
+	while (!(str[i] == '+' || Char_IsDigit(str[i])))
 	{
 		if (!str[i] || !Char_IsSpace(str[i]))
 			return (0);

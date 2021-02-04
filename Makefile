@@ -91,6 +91,7 @@ SRCS = \
 	int/strhex_to_int.c		\
 	pointer/size_to_str.c	\
 	pointer/str_to_size.c	\
+	pointer/ptr_to_str.c	\
 	float/float_to_str.c		\
 	float/str_to_float.c		\
 	memory/memalloc.c		\
