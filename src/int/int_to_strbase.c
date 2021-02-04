@@ -5,7 +5,7 @@
 
 
 
-static t_size	Convert_Int_To_BaseString_GetLength(char const *base, t_bool sign)
+static t_size	Int_ToString_Base_GetLength(char const *base, t_bool sign)
 {
 	t_size	i;
 	t_size	j;
@@ -34,7 +34,7 @@ static t_size	Convert_Int_To_BaseString_GetLength(char const *base, t_bool sign)
 
 
 #define DEFINEFUNC_CONVERT_UINT_TO_STRBASE(BITS) \
-char*	Convert_U##BITS##_To_BaseString(t_u##BITS number, char const* base)	\
+char*	U##BITS##_ToString_Base(t_u##BITS number, char const* base)	\
 {																			\
 	char*	result;															\
 	char	digits[BITS];													\
@@ -42,7 +42,7 @@ char*	Convert_U##BITS##_To_BaseString(t_u##BITS number, char const* base)	\
 	t_size	i;																\
 	t_u##BITS	n;															\
 																			\
-	length = Convert_Int_To_BaseString_GetLength(base, FALSE);				\
+	length = Int_ToString_Base_GetLength(base, FALSE);						\
 	if (length == 0)														\
 		return (NULL);														\
 	n = number;																\
@@ -73,7 +73,7 @@ DEFINEFUNC_CONVERT_UINT_TO_STRBASE(64)
 
 
 #define DEFINEFUNC_CONVERT_SINT_TO_STRBASE(BITS) \
-char*	Convert_S##BITS##_To_BaseString(t_s##BITS number, char const* base)	\
+char*	S##BITS##_ToString_Base(t_s##BITS number, char const* base)	\
 {																			\
 	char*	result;															\
 	char	digits[BITS];													\
@@ -81,7 +81,7 @@ char*	Convert_S##BITS##_To_BaseString(t_s##BITS number, char const* base)	\
 	t_size	i;																\
 	t_u##BITS	n;															\
 																			\
-	length = Convert_Int_To_BaseString_GetLength(base, TRUE);				\
+	length = Int_ToString_Base_GetLength(base, TRUE);						\
 	if (length == 0)														\
 		return (NULL);														\
 	if (number < 0)															\

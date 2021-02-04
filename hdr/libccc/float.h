@@ -209,63 +209,63 @@ typedef union	u_float_cast_
 */
 
 //! Returns 1 if the given 'number' is either NaN, or +/- infinity
-int									Convert_Float_To_String_CheckSpecial(t_f32 number, char* *a_result);
-#define c_float_to_str_checkspecial	Convert_Float_To_String_CheckSpecial
+int									Float_ToString_CheckSpecial(t_f32 number, char* *a_result);
+#define c_float_to_str_checkspecial	Float_ToString_CheckSpecial
 
 //! Get the string decimal representation of a 32-bit floating-point number
 /*
 */
 _MALLOC()
-char*						Convert_F32_To_String(t_f32 n);
-#define c_f32_to_str		Convert_F32_To_String
+char*						F32_ToString(t_f32 n);
+#define c_f32_to_str		F32_ToString
 //! Get the string hexadecimal representation of a 32-bit floating-point number
 /*
 */
 _MALLOC()
-char*						Convert_F32_To_HexString(t_f32 n);
-#define c_f32_to_strhex		Convert_F32_To_HexString
+char*						F32_ToString_Hex(t_f32 n);
+#define c_f32_to_strhex		F32_ToString_Hex
 //! Get the string decimal representation of a 32-bit floating-point number, with 'precision' fractional digits
 /*!
 **	NB: This function has some approximation/error margin (beyond the
 **	seventh decimal digit; the exact amount of imprecision depends on the input)
 */
 _MALLOC()
-char*						Convert_F32_To_String_P(t_f32 n, t_u8 precision);
-#define c_f32_to_str_p		Convert_F32_To_String_P
+char*						F32_ToString_P(t_f32 n, t_u8 precision);
+#define c_f32_to_str_p		F32_ToString_P
 
 //! Get the string decimal representation of a 64-bit floating-point number
 /*
 */
 _MALLOC()
-char*						Convert_F64_To_String(t_f64 n);
-#define c_f64_to_str		Convert_F64_To_String
+char*						F64_ToString(t_f64 n);
+#define c_f64_to_str		F64_ToString
 //! Get the string hexadecimal representation of a 64-bit floating-point number
 /*
 */
 _MALLOC()
-char*						Convert_F64_To_HexString(t_f64 n);
-#define c_f64_to_strhex		Convert_F64_To_HexString
+char*						F64_ToString_Hex(t_f64 n);
+#define c_f64_to_strhex		F64_ToString_Hex
 //! Get the string decimal representation of a 64-bit floating-point number, with 'precision' fractional digits
 /*!
 **	Has some approximation/error margin (beyond the seventh decimal digit;
 **	the exact amount of imprecision depends on the input)
 */
 _MALLOC()
-char*						Convert_F64_To_String_P(t_f64 n, t_u8 precision);
-#define c_f64_to_str_p		Convert_F64_To_String_P
+char*						F64_ToString_P(t_f64 n, t_u8 precision);
+#define c_f64_to_str_p		F64_ToString_P
 
 
 
 //! Returns 1(ERROR) if the given 'str' contains any invalid characters for float parsing
-int										Convert_String_To_Float_CheckInvalid(char const* str, char* *a_result);
-#define c_str_to_float_checkinvalid		Convert_String_To_Float_CheckInvalid
+int										Float_CheckInvalid_FromString(char const* str, char* *a_result);
+#define c_str_to_float_checkinvalid		Float_CheckInvalid_FromString
 
 //! Parse a 32-bit float from the given string (can be decimal/exponential/hexdecimal)
-t_f32					Convert_String_To_F32(char const* str);
-#define c_str_to_f32	Convert_String_To_F32
+t_f32					F32_FromString(char const* str);
+#define c_str_to_f32	F32_FromString
 //! Parse a 64-bit double from the given string (can be decimal/exponential/hexdecimal)
-t_f64					Convert_String_To_F64(char const* str);
-#define c_str_to_f64	Convert_String_To_F64
+t_f64					F64_FromString(char const* str);
+#define c_str_to_f64	F64_FromString
 
 
 

@@ -4,7 +4,7 @@
 
 
 
-char*	Convert_Bool_To_String(t_bool number, t_bool uppercase)
+char*	Bool_ToString(t_bool number, t_bool uppercase)
 {
 	char*	result;
 

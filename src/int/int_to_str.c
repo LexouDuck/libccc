@@ -5,7 +5,7 @@
 
 
 #define DEFINEFUNC_CONVERT_UINT_TO_STR(BITS) \
-char*	Convert_U##BITS##_To_String(t_u##BITS number)	\
+char*	U##BITS##_ToString(t_u##BITS number)	\
 {														\
 	char*	result;										\
 	t_u8	digits[MAXDIGIT_##BITS##BIT];				\
@@ -38,7 +38,7 @@ DEFINEFUNC_CONVERT_UINT_TO_STR(64)
 
 
 #define DEFINEFUNC_CONVERT_SINT_TO_STR(BITS) \
-char*	Convert_S##BITS##_To_String(t_s##BITS number)	\
+char*	S##BITS##_ToString(t_s##BITS number)	\
 {														\
 	char*	result;										\
 	t_u8	digits[MAXDIGIT_##BITS##BIT];				\

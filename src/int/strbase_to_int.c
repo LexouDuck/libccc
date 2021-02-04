@@ -16,7 +16,7 @@
 
 
 
-static t_size	Convert_BaseString_GetLength(char const* base)
+static t_size	String_Base_GetLength(char const* base)
 {
 	t_size	i;
 	t_size	j;
@@ -37,7 +37,7 @@ static t_size	Convert_BaseString_GetLength(char const* base)
 	return (i < 2 ? 0 : i);
 }
 
-static t_s32	Convert_BaseString_IsInBase(char const* base, t_size base_length, char c)
+static t_s32	String_Base_IsInBase(char const* base, t_size base_length, char c)
 {
 	t_size	i;
 
@@ -54,7 +54,7 @@ static t_s32	Convert_BaseString_IsInBase(char const* base, t_size base_length, c
 
 
 #define DEFINEFUNC_CONVERT_STRBASE_TO_SINT(BITS) \
-t_s##BITS	Convert_BaseString_To_S##BITS(char const* str, char const* base)	\
+t_s##BITS	S##BITS##_FromString_Base(char const* str, char const* base)	\
 {																				\
 	t_u##BITS	result;															\
 	t_bool	negative;															\
@@ -62,13 +62,13 @@ t_s##BITS	Convert_BaseString_To_S##BITS(char const* str, char const* base)	\
 	t_size	length;																\
 	t_size	i;																	\
 LIBCONFIG_HANDLE_NULLPOINTER_STRBASE_TO_INT										\
-	length = Convert_BaseString_GetLength(base);								\
+	length = String_Base_GetLength(base);										\
 	if (length == 0)															\
 		return (0);																\
 	i = 0;																		\
 	while (!(str[i] == '+' || str[i] == '-'))									\
 	{																			\
-		digit = Convert_BaseString_IsInBase(base, length, str[i]);				\
+		digit = String_Base_IsInBase(base, length, str[i]);						\
 		if (digit >= 0) break;													\
 		if (!str[i] || !Char_IsSpace(str[i]))									\
 			return (0);															\
@@ -85,7 +85,7 @@ LIBCONFIG_HANDLE_NULLPOINTER_STRBASE_TO_INT										\
 	result = 0;																	\
 	while (str[i])																\
 	{																			\
-		digit = Convert_BaseString_IsInBase(base, length, str[i]);				\
+		digit = String_Base_IsInBase(base, length, str[i]);						\
 		if (digit < 0) return (0);												\
 		result = result * length + digit;										\
 		++i;																	\
@@ -101,20 +101,20 @@ DEFINEFUNC_CONVERT_STRBASE_TO_SINT(64)
 
 
 #define DEFINEFUNC_CONVERT_STRBASE_TO_UINT(BITS) \
-t_u##BITS	Convert_BaseString_To_U##BITS(char const* str, char const* base)	\
+t_u##BITS	U##BITS##_FromString_Base(char const* str, char const* base)	\
 {																				\
 	t_u##BITS	result;															\
 	t_s32	digit;																\
 	t_size	length;																\
 	t_size	i;																	\
-LIBCONFIG_HANDLE_NULLPOINTER_STRBASE_TO_INT									\
-	length = Convert_BaseString_GetLength(base);								\
+LIBCONFIG_HANDLE_NULLPOINTER_STRBASE_TO_INT										\
+	length = String_Base_GetLength(base);										\
 	if (length == 0)															\
 		return (0);																\
 	i = 0;																		\
 	while (!(str[i] == '+' || str[i] == '-'))									\
 	{																			\
-		digit = Convert_BaseString_IsInBase(base, length, str[i]);				\
+		digit = String_Base_IsInBase(base, length, str[i]);						\
 		if (digit >= 0) break;													\
 		if (!str[i] || !Char_IsSpace(str[i]))									\
 			return (0);															\
@@ -125,7 +125,7 @@ LIBCONFIG_HANDLE_NULLPOINTER_STRBASE_TO_INT									\
 	result = 0;																	\
 	while (str[i])																\
 	{																			\
-		digit = Convert_BaseString_IsInBase(base, length, str[i]);				\
+		digit = String_Base_IsInBase(base, length, str[i]);						\
 		if (digit < 0) return (0);												\
 		result = result * length + digit;										\
 		++i;																	\

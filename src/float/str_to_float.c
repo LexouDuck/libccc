@@ -13,7 +13,7 @@
 
 
 
-static char*	Convert_String_To_Float_ToUppercase(char const* str)
+static char*	Float_FromString_ToUppercase(char const* str)
 {
 	char*	result;
 	t_s32	end;
@@ -37,7 +37,7 @@ static char*	Convert_String_To_Float_ToUppercase(char const* str)
 	return (result);
 }
 
-int			Convert_String_To_Float_CheckInvalid(char const* str, char** result_tmp)
+int			Float_FromString_CheckInvalid(char const* str, char** result_tmp)
 {
 	char*	tmp;
 	t_size	count_p;
@@ -48,7 +48,7 @@ int			Convert_String_To_Float_CheckInvalid(char const* str, char** result_tmp)
 		return (ERROR);
 #endif
 	*result_tmp = NULL;
-	if (str[0] == '\0' || !(tmp = Convert_String_To_Float_ToUppercase(str)))
+	if (str[0] == '\0' || !(tmp = Float_FromString_ToUppercase(str)))
 		return (ERROR);
 	if (String_Equals(tmp,  "INF") || String_Equals(tmp,  "INFINITY") ||
 		String_Equals(tmp, "+INF") || String_Equals(tmp, "+INFINITY") ||
@@ -76,7 +76,7 @@ int			Convert_String_To_Float_CheckInvalid(char const* str, char** result_tmp)
 
 #define DEFINEFUNC_CONVERT_STR_TO_FLOAT(BITS) \
 \
-static t_f##BITS	Convert_String_To_F##BITS##_Expon(										\
+static t_f##BITS	F##BITS##_FromString_Expon(												\
 	char const* str_mant,																	\
 	char const* str_exp)																	\
 {																							\
@@ -89,11 +89,11 @@ static t_f##BITS	Convert_String_To_F##BITS##_Expon(										\
 		return (NAN);																		\
 	if (String_Length(tmp) > 18)															\
 		tmp[18] = '\0';																		\
-	result = (t_f##BITS)Convert_String_To_S64(tmp);											\
+	result = (t_f##BITS)S64_FromString(tmp);												\
 	Memory_Free(tmp);																		\
 	if (!(exponent = 0) && str_exp)															\
 	{																						\
-		exponent = Convert_String_To_S16(str_exp);											\
+		exponent = S16_FromString(str_exp);													\
 		if (exponent > F##BITS##_EXPONENT_BIAS)												\
 			return (str_mant[0] == '-' ? -INFINITY : INFINITY);								\
 		else if (exponent < 1 - F##BITS##_EXPONENT_BIAS)									\
@@ -107,7 +107,7 @@ static t_f##BITS	Convert_String_To_F##BITS##_Expon(										\
 	return (result * Math_Pow(10., exponent));												\
 }																							\
 																							\
-static t_f##BITS	Convert_String_To_F##BITS##_HexFP(										\
+static t_f##BITS	F##BITS##_FromString_HexFP(												\
 	char const* str_mant,																	\
 	char const* str_exp,																	\
 	int sign)																				\
@@ -124,9 +124,9 @@ static t_f##BITS	Convert_String_To_F##BITS##_HexFP(										\
 		Memory_Free(tmp);																	\
 		return (0. * result);																\
 	}																						\
-	mant = Convert_HexString_To_U64(tmp);													\
+	mant = U64_FromString_Hex(tmp);															\
 	result *= mant * F##BITS##_INIT_VALUE * Math_Pow(2., (String_Length(tmp) - 1) * 4);		\
-	if ((exponent = Convert_String_To_S16(str_exp)) > F##BITS##_EXPONENT_BIAS)				\
+	if ((exponent = S16_FromString(str_exp)) > F##BITS##_EXPONENT_BIAS)						\
 		return ((sign ? -1. : 1.) / 0.);													\
 	else if (exponent < 1 - F##BITS##_EXPONENT_BIAS)										\
 		return (0.);																		\
@@ -139,7 +139,7 @@ static t_f##BITS	Convert_String_To_F##BITS##_HexFP(										\
 	return (result);																		\
 }																							\
 																							\
-t_f##BITS			Convert_String_To_F##BITS(char const *str)								\
+t_f##BITS			F##BITS##_FromString(char const *str)									\
 {																							\
 	t_f##BITS	result;																		\
 	char*	tmp;																			\
@@ -148,7 +148,7 @@ t_f##BITS			Convert_String_To_F##BITS(char const *str)								\
 	int		mode;																			\
 																							\
 	result = NAN;																			\
-	if (Convert_String_To_Float_CheckInvalid(str, &tmp))									\
+	if (Float_CheckInvalid_FromString(str, &tmp))											\
 		return (result);																	\
 	if (tmp[0] == 'I' || (tmp[1] == 'I' && (tmp[0] == '-' || tmp[0] == '+')))				\
 	{																						\
@@ -160,11 +160,11 @@ t_f##BITS			Convert_String_To_F##BITS(char const *str)								\
 	if ((exponent = String_Find_Char(tmp, (hexfp ? 'P' : 'E'))))							\
 		*(exponent++) = '\0';																\
 	if (!(mode = (hexfp != NULL) + (exponent != NULL)))										\
-		result = Convert_String_To_F##BITS##_Expon(tmp, NULL);								\
+		result = F_FromString##BITS##_Expon(tmp, NULL);										\
 	else if (mode == 1)																		\
-		result = Convert_String_To_F##BITS##_Expon(tmp, exponent);							\
+		result = F_FromString##BITS##_Expon(tmp, exponent);									\
 	else if (mode == 2)																		\
-		result = Convert_String_To_F##BITS##_HexFP(hexfp + 1, exponent, tmp[0] == '-');		\
+		result = F_FromString##BITS##_HexFP(hexfp + 1, exponent, tmp[0] == '-');			\
 	Memory_Free(tmp);																		\
 	return (result);																		\
 }																							\
@@ -172,7 +172,7 @@ t_f##BITS			Convert_String_To_F##BITS(char const *str)								\
 #else
 
 #define DEFINEFUNC_CONVERT_STR_TO_FLOAT(BITS) \
-inline t_f##BITS	Convert_String_To_F##BITS(char const* str)	\
+inline t_f##BITS	F##BITS##_FromString(char const* str)	\
 {																\
 	return (atof(str));											\
 }																\

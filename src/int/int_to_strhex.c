@@ -5,7 +5,7 @@
 
 
 #define DEFINEFUNC_CONVERT_UINT_TO_STRHEX(BITS) \
-char*	Convert_U##BITS##_To_HexString(t_u##BITS number)				\
+char*	U##BITS##_ToString_Hex(t_u##BITS number)				\
 {																		\
 	char*	result;														\
 	t_u8	digits[BITS / 4];											\

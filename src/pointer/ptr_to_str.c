@@ -5,7 +5,7 @@
 
 
 
-char*	Convert_Pointer_To_String(void const* ptr)
+char*	Pointer_ToString(void const* ptr)
 {
 	char*	result;
 	t_u8	digits[16];
@@ -32,7 +32,7 @@ char*	Convert_Pointer_To_String(void const* ptr)
 
 
 
-char*	Convert_Size_To_String_Readable(t_size number)
+char*	Size_ToString_Readable(t_size number)
 {
 	static const char* units[6] = { "B\0", "KB", "MB", "GB", "TB", "PB" };
 	t_float len = (t_float)number;

@@ -172,65 +172,65 @@ TYPEDEF_ALIAS(				t_sint, SINT, PRIMITIVE)
 
 //! Get the string decimal representation of an 8-bit signed integer
 _MALLOC()
-char*					Convert_S8_To_String(t_s8 n);
-#define c_s8_to_str		Convert_S8_To_String
+char*					S8_ToString(t_s8 n);
+#define c_s8_to_str		S8_ToString
 //! Get the string decimal representation of a 16-bit signed integer
 _MALLOC()
-char*					Convert_S16_To_String(t_s16 n);
-#define c_s16_to_str	Convert_S16_To_String
+char*					S16_ToString(t_s16 n);
+#define c_s16_to_str	S16_ToString
 //! Get the string decimal representation of a 32-bit signed integer
 _MALLOC()
-char*					Convert_S32_To_String(t_s32 n);
-#define c_s32_to_str	Convert_S32_To_String
+char*					S32_ToString(t_s32 n);
+#define c_s32_to_str	S32_ToString
 //! Get the string decimal representation of a 64-bit signed integer
 _MALLOC()
-char*					Convert_S64_To_String(t_s64 n);
-#define c_s64_to_str	Convert_S64_To_String
+char*					S64_ToString(t_s64 n);
+#define c_s64_to_str	S64_ToString
 
 //! Get the string decimal representation of an 8-bit unsigned integer
 _MALLOC()
-char*					Convert_U8_To_String(t_u8 n);
-#define c_u8_to_str		Convert_U8_To_String
+char*					U8_ToString(t_u8 n);
+#define c_u8_to_str		U8_ToString
 //! Get the string decimal representation of a 16-bit unsigned integer
 _MALLOC()
-char*					Convert_U16_To_String(t_u16 n);
-#define c_u16_to_str	Convert_U16_To_String
+char*					U16_ToString(t_u16 n);
+#define c_u16_to_str	U16_ToString
 //! Get the string decimal representation of a 32-bit unsigned integer
 _MALLOC()
-char*					Convert_U32_To_String(t_u32 n);
-#define c_u32_to_str	Convert_U32_To_String
+char*					U32_ToString(t_u32 n);
+#define c_u32_to_str	U32_ToString
 //! Get the string decimal representation of a 64-bit unsigned integer
 _MALLOC()
-char*					Convert_U64_To_String(t_u64 n);
-#define c_u64_to_str	Convert_U64_To_String
+char*					U64_ToString(t_u64 n);
+#define c_u64_to_str	U64_ToString
 
 
 
 //! Parse an 8-bit signed integer from the given decimal number string
-t_s8					Convert_String_To_S8(char const* str);
-#define c_str_to_s8		Convert_String_To_S8
+t_s8					S8_FromString(char const* str);
+#define c_str_to_s8		S8_FromString
 //! Parse a 16-bit signed integer from the given decimal number string
-t_s16					Convert_String_To_S16(char const* str);
-#define c_str_to_s16	Convert_String_To_S16
+t_s16					S16_FromString(char const* str);
+#define c_str_to_s16	S16_FromString
 //! Parse a 32-bit signed integer from the given decimal number string
-t_s32					Convert_String_To_S32(char const* str);
-#define c_str_to_s32	Convert_String_To_S32
+t_s32					S32_FromString(char const* str);
+#define c_str_to_s32	S32_FromString
 //! Parse a 64-bit signed integer from the given decimal number string
-t_s64					Convert_String_To_S64(char const* str);
-#define c_str_to_s64	Convert_String_To_S64
+t_s64					S64_FromString(char const* str);
+#define c_str_to_s64	S64_FromString
 
 //! Parse an 8-bit unsigned integer from the given decimal number string
-t_u8					Convert_String_To_U8(char const* str);
-#define c_str_to_u8		Convert_String_To_U8
+t_u8					U8_FromString(char const* str);
+#define c_str_to_u8		U8_FromString
 //! Parse a 16-bit unsigned integer from the given decimal number string
-t_u16					Convert_String_To_U16(char const* str);
-#define c_str_to_u16	Convert_String_To_U16
+t_u16					U16_FromString(char const* str);
+#define c_str_to_u16	U16_FromString
 //! Parse a 32-bit unsigned integer from the given decimal number string
-t_u32					Convert_String_To_U32(char const* str);
-#define c_str_to_u32	Convert_String_To_U32
+t_u32					U32_FromString(char const* str);
+#define c_str_to_u32	U32_FromString
 //! Parse a 64-bit unsigned integer from the given decimal number string
-t_u64					Convert_String_To_U64(char const* str);
-#define c_str_to_u64	Convert_String_To_U64
+t_u64					U64_FromString(char const* str);
+#define c_str_to_u64	U64_FromString
 
 
 
@@ -242,35 +242,35 @@ t_u64					Convert_String_To_U64(char const* str);
 
 //! Get the string decimal representation of an 8-bit unsigned integer
 _MALLOC()
-char*						Convert_U8_To_HexString(t_u8 n);
-#define c_u8_to_strhex		Convert_U8_To_HexString
+char*						U8_ToString_Hex(t_u8 n);
+#define c_u8_to_strhex		U8_ToString_Hex
 //! Get the string decimal representation of a 16-bit unsigned integer
 _MALLOC()
-char*						Convert_U16_To_HexString(t_u16 n);
-#define c_u16_to_strhex		Convert_U16_To_HexString
+char*						U16_ToString_Hex(t_u16 n);
+#define c_u16_to_strhex		U16_ToString_Hex
 //! Get the string decimal representation of a 32-bit unsigned integer
 _MALLOC()
-char*						Convert_U32_To_HexString(t_u32 n);
-#define c_u32_to_strhex		Convert_U32_To_HexString
+char*						U32_ToString_Hex(t_u32 n);
+#define c_u32_to_strhex		U32_ToString_Hex
 //! Get the string decimal representation of a 64-bit unsigned integer
 _MALLOC()
-char*						Convert_U64_To_HexString(t_u64 n);
-#define c_u64_to_strhex		Convert_U64_To_HexString
+char*						U64_ToString_Hex(t_u64 n);
+#define c_u64_to_strhex		U64_ToString_Hex
 
 
 
 //! Parse an 8-bit unsigned integer from the given haxedecimal number string
-t_u8						Convert_HexString_To_U8(char const* str);
-#define c_strhex_to_u8		Convert_HexString_To_U8
+t_u8						U8_FromString_Hex(char const* str);
+#define c_strhex_to_u8		U8_FromString_Hex
 //! Parse a 16-bit unsigned integer from the given haxedecimal number string
-t_u16						Convert_HexString_To_U16(char const* str);
-#define c_strhex_to_u16		Convert_HexString_To_U16
+t_u16						U16_FromString_Hex(char const* str);
+#define c_strhex_to_u16		U16_FromString_Hex
 //! Parse a 32-bit unsigned integer from the given haxedecimal number string
-t_u32						Convert_HexString_To_U32(char const* str);
-#define c_strhex_to_u32		Convert_HexString_To_U32
+t_u32						U32_FromString_Hex(char const* str);
+#define c_strhex_to_u32		U32_FromString_Hex
 //! Parse a 64-bit unsigned integer from the given haxedecimal number string
-t_u64						Convert_HexString_To_U64(char const* str);
-#define c_strhex_to_u64		Convert_HexString_To_U64
+t_u64						U64_FromString_Hex(char const* str);
+#define c_strhex_to_u64		U64_FromString_Hex
 
 
 
@@ -282,65 +282,65 @@ t_u64						Convert_HexString_To_U64(char const* str);
 
 //! Get a string custom-base representation of an 8-bit signed integer
 _MALLOC()
-char*						Convert_S8_To_BaseString(t_s8 n, char const* base);
-#define c_s8_to_strbase		Convert_S8_To_BaseString
+char*						S8_ToString_Base(t_s8 n, char const* base);
+#define c_s8_to_strbase		S8_ToString_Base
 //! Get a string custom-base representation of a 16-bit signed integer
 _MALLOC()
-char*						Convert_S16_To_BaseString(t_s16 n, char const* base);
-#define c_s16_to_strbase	Convert_S16_To_BaseString
+char*						S16_ToString_Base(t_s16 n, char const* base);
+#define c_s16_to_strbase	S16_ToString_Base
 //! Get a string custom-base representation of a 32-bit signed integer
 _MALLOC()
-char*						Convert_S32_To_BaseString(t_s32 n, char const* base);
-#define c_s32_to_strbase	Convert_S32_To_BaseString
+char*						S32_ToString_Base(t_s32 n, char const* base);
+#define c_s32_to_strbase	S32_ToString_Base
 //! Get a string custom-base representation of a 64-bit signed integer
 _MALLOC()
-char*						Convert_S64_To_BaseString(t_s64 n, char const* base);
-#define c_s64_to_strbase	Convert_S64_To_BaseString
+char*						S64_ToString_Base(t_s64 n, char const* base);
+#define c_s64_to_strbase	S64_ToString_Base
 
 //! Get a string custom-base representation of an 8-bit unsigned integer
 _MALLOC()
-char*						Convert_U8_To_BaseString(t_u8 n, char const* base);
-#define c_u8_to_strbase		Convert_U8_To_BaseString
+char*						U8_ToString_Base(t_u8 n, char const* base);
+#define c_u8_to_strbase		U8_ToString_Base
 //! Get a string custom-base representation of a 16-bit unsigned integer
 _MALLOC()
-char*						Convert_U16_To_BaseString(t_u16 n, char const* base);
-#define c_u16_to_strbase	Convert_U16_To_BaseString
+char*						U16_ToString_Base(t_u16 n, char const* base);
+#define c_u16_to_strbase	U16_ToString_Base
 //! Get a string custom-base representation of a 32-bit unsigned integer
 _MALLOC()
-char*						Convert_U32_To_BaseString(t_u32 n, char const* base);
-#define c_u32_to_strbase	Convert_U32_To_BaseString
+char*						U32_ToString_Base(t_u32 n, char const* base);
+#define c_u32_to_strbase	U32_ToString_Base
 //! Get a string custom-base representation of a 64-bit unsigned integer
 _MALLOC()
-char*						Convert_U64_To_BaseString(t_u64 n, char const* base);
-#define c_u64_to_strbase	Convert_U64_To_BaseString
+char*						U64_ToString_Base(t_u64 n, char const* base);
+#define c_u64_to_strbase	U64_ToString_Base
 
 
 
 //! Parse an 8-bit signed integer from a custom-base number string
-t_s8						Convert_BaseString_To_S8(char const* str, char const* base);
-#define c_strbase_to_s8		Convert_BaseString_To_S8
+t_s8						S8_FromString_Base(char const* str, char const* base);
+#define c_strbase_to_s8		S8_FromString_Base
 //! Parse a 16-bit signed integer from a custom-base number string
-t_s16						Convert_BaseString_To_S16(char const* str, char const* base);
-#define c_strbase_to_s16	Convert_BaseString_To_S16
+t_s16						S16_FromString_Base(char const* str, char const* base);
+#define c_strbase_to_s16	S16_FromString_Base
 //! Parse a 32-bit signed integer from a custom-base number string
-t_s32						Convert_BaseString_To_S32(char const* str, char const* base);
-#define c_strbase_to_s32	Convert_BaseString_To_S32
+t_s32						S32_FromString_Base(char const* str, char const* base);
+#define c_strbase_to_s32	S32_FromString_Base
 //! Parse a 64-bit signed integer from a custom-base number string
-t_s64						Convert_BaseString_To_S64(char const* str, char const* base);
-#define c_strbase_to_s64	Convert_BaseString_To_S64
+t_s64						S64_FromString_Base(char const* str, char const* base);
+#define c_strbase_to_s64	S64_FromString_Base
 
 //! Parse an 8-bit unsigned integer from a custom-base number string
-t_u8						Convert_BaseString_To_U8(char const* str, char const* base);
-#define c_strbase_to_u8		Convert_BaseString_To_U8
+t_u8						U8_FromString_Base(char const* str, char const* base);
+#define c_strbase_to_u8		U8_FromString_Base
 //! Parse a 16-bit unsigned integer from a custom-base number string
-t_u16						Convert_BaseString_To_U16(char const* str, char const* base);
-#define c_strbase_to_u16	Convert_BaseString_To_U16
+t_u16						U16_FromString_Base(char const* str, char const* base);
+#define c_strbase_to_u16	U16_FromString_Base
 //! Parse a 32-bit unsigned integer from a custom-base number string
-t_u32						Convert_BaseString_To_U32(char const* str, char const* base);
-#define c_strbase_to_u32	Convert_BaseString_To_U32
+t_u32						U32_FromString_Base(char const* str, char const* base);
+#define c_strbase_to_u32	U32_FromString_Base
 //! Parse a 64-bit unsigned integer from a custom-base number string
-t_u64						Convert_BaseString_To_U64(char const* str, char const* base);
-#define c_strbase_to_u64	Convert_BaseString_To_U64
+t_u64						U64_FromString_Base(char const* str, char const* base);
+#define c_strbase_to_u64	U64_FromString_Base
 
 
 

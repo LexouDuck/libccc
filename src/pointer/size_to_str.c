@@ -6,7 +6,7 @@
 
 
 
-char*	Convert_Size_To_String(t_size number)
+char*	Size_ToString(t_size number)
 {
 	char*	result;
 	t_u8	digits[MAXDIGIT_64BIT];
@@ -33,7 +33,7 @@ char*	Convert_Size_To_String(t_size number)
 
 
 
-char*	Convert_Size_To_String_Readable(t_size number)
+char*	Size_ToString_Readable(t_size number)
 {
 	static const char* units[6] = { "B\0", "KB", "MB", "GB", "TB", "PB" };
 	t_float len = (t_float)number;

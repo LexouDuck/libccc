@@ -6,7 +6,7 @@
 
 
 
-t_bool	Convert_String_To_Bool(char const* str)
+t_bool	Bool_FromString(char const* str)
 {
 	t_size	i;
 

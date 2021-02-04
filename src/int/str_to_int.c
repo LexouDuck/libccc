@@ -15,12 +15,12 @@
 
 
 #define DEFINEFUNC_CONVERT_STR_TO_SINT(BITS) \
-t_s##BITS	Convert_String_To_S##BITS(char const* str)					\
+t_s##BITS	S##BITS##_FromString(char const* str)						\
 {																		\
 	t_u##BITS	result;													\
 	t_bool	negative;													\
 	t_size	i;															\
-LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_INT								\
+LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_INT									\
 	i = 0;																\
 	while (!(str[i] == '+' || str[i] == '-' || Char_IsDigit(str[i])))	\
 	{																	\
@@ -52,11 +52,11 @@ DEFINEFUNC_CONVERT_STR_TO_SINT(64)
 
 
 #define DEFINEFUNC_CONVERT_STR_TO_UINT(BITS) \
-t_u##BITS	Convert_String_To_U##BITS(char const* str)					\
+t_u##BITS	U##BITS##_FromString(char const* str)						\
 {																		\
 	t_u##BITS	result;													\
 	t_size	i;															\
-LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_INT								\
+LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_INT									\
 	i = 0;																\
 	while (!(str[i] == '+' || Char_IsDigit(str[i])))					\
 	{																	\

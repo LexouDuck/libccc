@@ -9,7 +9,7 @@
 // TODO actually implement this
 
 #define DEFINEFUNC_CONVERT_FLOAT_TO_STR(BITS,PRINTF) \
-inline char*	Convert_F##BITS##_To_String(t_f##BITS number)	\
+inline char*	F##BITS##_ToString(t_f##BITS number)	\
 {																\
 	return (String_Build(PRINTF, number));						\
 }																\
@@ -28,7 +28,7 @@ DEFINEFUNC_CONVERT_FLOAT_TO_STR(128, "%llg")
 // TODO actually implement this
 
 #define DEFINEFUNC_CONVERT_FLOAT_TO_STRHEX(BITS,PRINTF) \
-inline char*	Convert_F##BITS##_To_HexString(t_f##BITS number)\
+inline char*	F##BITS##_ToString_Hex(t_f##BITS number)\
 {																\
 	return (String_Build(PRINTF, number));						\
 }																\
@@ -44,7 +44,7 @@ DEFINEFUNC_CONVERT_FLOAT_TO_STRHEX(128, "%#lla")
 
 
 
-int		Convert_Float_To_String_CheckSpecial(t_f32 number, char **result)
+int		Float_ToString_CheckSpecial(t_f32 number, char **result)
 {
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (result == NULL)
@@ -69,7 +69,7 @@ int		Convert_Float_To_String_CheckSpecial(t_f32 number, char **result)
 
 #define DEFINEFUNC_CONVERT_FLOAT_TO_STR_P(BITS, POWER) \
 																												\
-static char*	Convert_F##BITS##_To_String_Decim(t_f##BITS number, t_u8 precision)								\
+static char*	F##BITS##_ToString_Decim(t_f##BITS number, t_u8 precision)										\
 {																												\
 	char*	result;																								\
 	char	digits[BITS];																						\
@@ -98,7 +98,7 @@ static char*	Convert_F##BITS##_To_String_Decim(t_f##BITS number, t_u8 precision)
 	return (result);																							\
 }																												\
 																												\
-static t_s16	Convert_F##BITS##_To_String_GetExponent(t_f##BITS* number)										\
+static t_s16	F##BITS##_ToString_GetExponent(t_f##BITS* number)												\
 {																												\
 	t_f##BITS	nearest;																						\
 	t_s16	power;																								\
@@ -125,7 +125,7 @@ static t_s16	Convert_F##BITS##_To_String_GetExponent(t_f##BITS* number)									
 	return (exponent);																							\
 }																												\
 																												\
-static char*	Convert_F##BITS##_To_String_Expon(t_f##BITS number, t_u8 precision,								\
+static char*	F##BITS##_ToString_Expon(t_f##BITS number, t_u8 precision,										\
 	char** result_exp,																							\
 	char** result_mant)																							\
 {																												\
@@ -135,8 +135,8 @@ static char*	Convert_F##BITS##_To_String_Expon(t_f##BITS number, t_u8 precision,
 																												\
 	sign = (number < 0);																						\
 	number = (sign ? -number : number);																			\
-	if (!(*result_exp = Convert_S16_To_String(Convert_F##BITS##_To_String_GetExponent(&number))) ||				\
-		!(*result_mant = Convert_F##BITS##_To_String_Decim(number, precision)) ||								\
+	if (!(*result_exp = S16_ToString(F##BITS##_ToString_GetExponent(&number))) ||								\
+		!(*result_mant = F##BITS##_ToString_Decim(number, precision)) ||										\
 		!(result = (char*)Memory_Alloc(String_Length(*result_mant) + String_Length(*result_exp) + 2 + (t_u8)sign)))	\
 	{																											\
 		return (NULL);																							\
@@ -153,7 +153,7 @@ static char*	Convert_F##BITS##_To_String_Expon(t_f##BITS number, t_u8 precision,
 	return (result);																							\
 }																												\
 																												\
-char*		Convert_F##BITS##_To_String_P(t_f##BITS number, t_u8 precision)										\
+char*		F##BITS##_ToString_P(t_f##BITS number, t_u8 precision)												\
 {																												\
 	char*	result;																								\
 	char*	result_exp;																							\
@@ -162,15 +162,15 @@ char*		Convert_F##BITS##_To_String_P(t_f##BITS number, t_u8 precision)										
 	result = NULL;																								\
 	result_exp = NULL;																							\
 	result_mant = NULL;																							\
-	if (Convert_Float_To_String_CheckSpecial(number, &result))													\
+	if (Float_ToString_CheckSpecial(number, &result))															\
 		return (result);																						\
 	if (number >= FLOAT_THRESHOLD_HUGE || number <= -FLOAT_THRESHOLD_HUGE ||									\
 		(number > 0 && number <= FLOAT_THRESHOLD_TINY) ||														\
 		(number < 0 && number >= -FLOAT_THRESHOLD_TINY))														\
-		result = Convert_F##BITS##_To_String_Expon(number, precision,											\
+		result = F##BITS##_ToString_Expon(number, precision,													\
 			&result_exp, &result_mant);																			\
 	else																										\
-		result = Convert_F##BITS##_To_String_Decim(number, precision);											\
+		result = F##BITS##_ToString_Decim(number, precision);													\
 	if (result_exp)																								\
 		Memory_Free(result_exp);																				\
 	if (result_mant)																							\

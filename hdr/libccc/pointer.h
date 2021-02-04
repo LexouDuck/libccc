@@ -110,24 +110,24 @@ TYPEDEF_ALIAS(		t_uintptr, UINTPTR, PRIMITIVE)
 
 //! Get the string decimal representation of a 64-bit unsigned integer
 _MALLOC()
-char*					Convert_Size_To_String(t_size value);
-#define c_size_to_str	Convert_Size_To_String
+char*					Size_ToString(t_size value);
+#define c_size_to_str	Size_ToString
 
 //! Parse a memory-size uint from the given string
-t_size					Convert_String_To_Size(char const* str);
-#define c_str_to_size	Convert_String_To_Size
+t_size					Size_FromString(char const* str);
+#define c_str_to_size	Size_FromString
 
 //! Get the string decimal human-readable representation of a 64-bit unsigned integer, with bytes units (KB,MB,GB,etc)
 _MALLOC()
-char*							Convert_Size_To_String_Readable(t_size value);
-#define c_size_to_str_readable	Convert_Size_To_String_Readable
+char*							Size_ToString_Readable(t_size value);
+#define c_size_to_str_readable	Size_ToString_Readable
 
 
 
 //! Get the string hexadecimal representation of a pointer/address value
 _MALLOC()
-char*						Convert_Pointer_To_HexString(void const* ptr);
-#define c_ptr_to_strhex		Convert_Pointer_To_HexString
+char*						Pointer_ToString_Hex(void const* ptr);
+#define c_ptr_to_strhex		Pointer_ToString_Hex
 
 
 

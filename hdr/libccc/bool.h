@@ -65,12 +65,12 @@ TYPEDEF_ALIAS(		t_bool, BOOL, PRIMITIVE)
 
 //! Get the string representation of a boolean value (TRUE or FALSE)
 _MALLOC()
-char*					Convert_Bool_To_String(t_bool value, t_bool uppercase);
-#define c_bool_to_str	Convert_Bool_To_String
+char*					Bool_ToString(t_bool value, t_bool uppercase);
+#define c_bool_to_str	Bool_ToString
 
 //! Parse a boolean value from the given string (can be 1/0/TRUE/FALSE/true/false)
-t_bool					Convert_String_To_Bool(char const* str);
-#define c_str_to_bool	Convert_String_To_Bool
+t_bool					Bool_FromString(char const* str);
+#define c_str_to_bool	Bool_FromString
 
 
 
