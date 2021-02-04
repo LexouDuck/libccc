@@ -126,8 +126,48 @@ TYPEDEF_ALIAS(					t_fixed, FIXED_128, PRIMITIVE)
 ** ************************************************************************** *|
 */
 
-// TODO fixed_to_str
-// TODO str_to_fixed
+//! Get the string decimal representation of a 16-bit signed fixed-point number
+_MALLOC()
+char*					Convert_Q16_To_String(t_q16 n);	// TODO
+#define c_q16_to_str	Convert_Q16_To_String
+//! Get the string decimal representation of a 32-bit signed fixed-point number
+_MALLOC()
+char*					Convert_Q32_To_String(t_q32 n);	// TODO
+#define c_q32_to_str	Convert_Q32_To_String
+//! Get the string decimal representation of a 64-bit signed fixed-point number
+_MALLOC()
+char*					Convert_Q64_To_String(t_q64 n);	// TODO
+#define c_q64_to_str	Convert_Q64_To_String
+
+
+//! Get the string decimal representation of a 16-bit signed fixed-point number
+_MALLOC()
+char*					Convert_String_To_Q16(t_q16 n);	// TODO
+#define c_str_to_q16	Convert_String_To_Q16
+//! Get the string decimal representation of a 32-bit signed fixed-point number
+_MALLOC()
+char*					Convert_String_To_Q32(t_q32 n);	// TODO
+#define c_str_to_q32	Convert_String_To_Q32
+//! Get the string decimal representation of a 64-bit signed fixed-point number
+_MALLOC()
+char*					Convert_String_To_Q64(t_q64 n);	// TODO
+#define c_str_to_q64	Convert_String_To_Q64
+
+
+
+#ifdef	__int128
+
+//! Get the string decimal representation of a 128-bit signed fixed-point number
+_MALLOC()
+char*					Convert_Q128_To_String(t_q128 n);	// TODO
+#define c_q128_to_str	Convert_Q128_To_String
+
+//! Get the string decimal representation of a 128-bit signed fixed-point number
+_MALLOC()
+char*					Convert_String_To_Q128(t_q128 n);	// TODO
+#define c_str_to_q128	Convert_String_To_Q128
+
+#endif
 
 
 
