@@ -89,24 +89,24 @@ SRCS = \
 	int/str_to_int.c		\
 	int/strbase_to_int.c	\
 	int/strhex_to_int.c		\
-	pointer/size_to_str.c	\
-	pointer/str_to_size.c	\
-	pointer/ptr_to_str.c	\
-	float/float_to_str.c		\
-	float/str_to_float.c		\
-	memory/memalloc.c		\
-	memory/memnew.c			\
-	memory/memfree.c		\
-	memory/memdel.c			\
-	memory/memset.c			\
-	memory/memcpy.c			\
-	memory/memdup.c			\
-	memory/memmove.c		\
-	memory/memcmp.c			\
-	memory/memchr.c			\
-	memory/memswap.c		\
-	memory/memrep.c			\
-	memory/getbits.c		\
+	pointer/size_to_str.c		\
+	pointer/str_to_size.c		\
+	pointer/ptr_to_str.c		\
+	float/float_to_str.c	\
+	float/str_to_float.c	\
+	memory/memalloc.c	\
+	memory/memnew.c		\
+	memory/memfree.c	\
+	memory/memdel.c		\
+	memory/memset.c		\
+	memory/memcpy.c		\
+	memory/memdup.c		\
+	memory/memmove.c	\
+	memory/memcmp.c		\
+	memory/memchr.c		\
+	memory/memswap.c	\
+	memory/memrep.c		\
+	memory/getbits.c	\
 	string/strnew.c		\
 	string/strset.c		\
 	string/strclr.c		\
