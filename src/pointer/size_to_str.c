@@ -32,7 +32,7 @@ char*	Size_ToString_Readable(t_size number)
 	}
 
 	char	*result;
-	t_u8	digits[MAXDIGIT_64BIT];
+	t_u8	digits[MAXDIGITS_64BIT];
 	t_u8	i;
 	t_size	n;
 

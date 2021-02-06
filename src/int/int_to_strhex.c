@@ -5,7 +5,7 @@
 
 
 #define DEFINEFUNC_CONVERT_UINT_TO_STRHEX(BITS) \
-char*	U##BITS##_ToString_Hex(t_u##BITS number)				\
+char*	U##BITS##_ToString_Hex(t_u##BITS number)						\
 {																		\
 	char*	result;														\
 	t_u8	digits[BITS / 4];											\
@@ -34,3 +34,6 @@ DEFINEFUNC_CONVERT_UINT_TO_STRHEX(8)
 DEFINEFUNC_CONVERT_UINT_TO_STRHEX(16)
 DEFINEFUNC_CONVERT_UINT_TO_STRHEX(32)
 DEFINEFUNC_CONVERT_UINT_TO_STRHEX(64)
+#ifdef __int128
+DEFINEFUNC_CONVERT_UINT_TO_STRHEX(128)
+#endif

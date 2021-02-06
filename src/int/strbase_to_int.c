@@ -54,7 +54,7 @@ static t_s32	String_Base_IsInBase(char const* base, t_size base_length, char c)
 
 
 #define DEFINEFUNC_CONVERT_STRBASE_TO_SINT(BITS) \
-t_s##BITS	S##BITS##_FromString_Base(char const* str, char const* base)	\
+t_s##BITS	S##BITS##_FromString_Base(char const* str, char const* base)		\
 {																				\
 	t_u##BITS	result;															\
 	t_bool	negative;															\
@@ -97,11 +97,14 @@ DEFINEFUNC_CONVERT_STRBASE_TO_SINT(8)
 DEFINEFUNC_CONVERT_STRBASE_TO_SINT(16)
 DEFINEFUNC_CONVERT_STRBASE_TO_SINT(32)
 DEFINEFUNC_CONVERT_STRBASE_TO_SINT(64)
+#ifdef __int128
+DEFINEFUNC_CONVERT_STRBASE_TO_SINT(128)
+#endif
 
 
 
 #define DEFINEFUNC_CONVERT_STRBASE_TO_UINT(BITS) \
-t_u##BITS	U##BITS##_FromString_Base(char const* str, char const* base)	\
+t_u##BITS	U##BITS##_FromString_Base(char const* str, char const* base)		\
 {																				\
 	t_u##BITS	result;															\
 	t_s32	digit;																\
@@ -137,3 +140,6 @@ DEFINEFUNC_CONVERT_STRBASE_TO_UINT(8)
 DEFINEFUNC_CONVERT_STRBASE_TO_UINT(16)
 DEFINEFUNC_CONVERT_STRBASE_TO_UINT(32)
 DEFINEFUNC_CONVERT_STRBASE_TO_UINT(64)
+#ifdef __int128
+DEFINEFUNC_CONVERT_STRBASE_TO_UINT(128)
+#endif

@@ -34,7 +34,7 @@ static t_size	Int_ToString_Base_GetLength(char const *base, t_bool sign)
 
 
 #define DEFINEFUNC_CONVERT_UINT_TO_STRBASE(BITS) \
-char*	U##BITS##_ToString_Base(t_u##BITS number, char const* base)	\
+char*	U##BITS##_ToString_Base(t_u##BITS number, char const* base)			\
 {																			\
 	char*	result;															\
 	char	digits[BITS];													\
@@ -69,11 +69,14 @@ DEFINEFUNC_CONVERT_UINT_TO_STRBASE(8)
 DEFINEFUNC_CONVERT_UINT_TO_STRBASE(16)
 DEFINEFUNC_CONVERT_UINT_TO_STRBASE(32)
 DEFINEFUNC_CONVERT_UINT_TO_STRBASE(64)
+#ifdef __int128
+DEFINEFUNC_CONVERT_UINT_TO_STRBASE(128)
+#endif
 
 
 
 #define DEFINEFUNC_CONVERT_SINT_TO_STRBASE(BITS) \
-char*	S##BITS##_ToString_Base(t_s##BITS number, char const* base)	\
+char*	S##BITS##_ToString_Base(t_s##BITS number, char const* base)			\
 {																			\
 	char*	result;															\
 	char	digits[BITS];													\
@@ -107,3 +110,6 @@ DEFINEFUNC_CONVERT_SINT_TO_STRBASE(8)
 DEFINEFUNC_CONVERT_SINT_TO_STRBASE(16)
 DEFINEFUNC_CONVERT_SINT_TO_STRBASE(32)
 DEFINEFUNC_CONVERT_SINT_TO_STRBASE(64)
+#ifdef __int128
+DEFINEFUNC_CONVERT_SINT_TO_STRBASE(128)
+#endif

@@ -5,10 +5,10 @@
 
 
 #define DEFINEFUNC_CONVERT_UINT_TO_STR(BITS) \
-char*	U##BITS##_ToString(t_u##BITS number)	\
+char*	U##BITS##_ToString(t_u##BITS number)			\
 {														\
 	char*	result;										\
-	t_u8	digits[MAXDIGIT_##BITS##BIT];				\
+	t_u8	digits[MAXDIGITS_##BITS##BIT];				\
 	t_u8	i;											\
 	t_u##BITS	n;										\
 														\
@@ -34,14 +34,17 @@ DEFINEFUNC_CONVERT_UINT_TO_STR(8)
 DEFINEFUNC_CONVERT_UINT_TO_STR(16)
 DEFINEFUNC_CONVERT_UINT_TO_STR(32)
 DEFINEFUNC_CONVERT_UINT_TO_STR(64)
+#ifdef __int128
+DEFINEFUNC_CONVERT_UINT_TO_STR(128)
+#endif
 
 
 
 #define DEFINEFUNC_CONVERT_SINT_TO_STR(BITS) \
-char*	S##BITS##_ToString(t_s##BITS number)	\
+char*	S##BITS##_ToString(t_s##BITS number)			\
 {														\
 	char*	result;										\
-	t_u8	digits[MAXDIGIT_##BITS##BIT];				\
+	t_u8	digits[MAXDIGITS_##BITS##BIT];				\
 	t_u8	i;											\
 	t_u##BITS	n;										\
 														\
@@ -68,3 +71,6 @@ DEFINEFUNC_CONVERT_SINT_TO_STR(8)
 DEFINEFUNC_CONVERT_SINT_TO_STR(16)
 DEFINEFUNC_CONVERT_SINT_TO_STR(32)
 DEFINEFUNC_CONVERT_SINT_TO_STR(64)
+#ifdef __int128
+DEFINEFUNC_CONVERT_SINT_TO_STR(128)
+#endif

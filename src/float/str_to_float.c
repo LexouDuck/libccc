@@ -172,7 +172,7 @@ t_f##BITS			F##BITS##_FromString(char const *str)									\
 #else
 
 #define DEFINEFUNC_CONVERT_STR_TO_FLOAT(BITS) \
-inline t_f##BITS	F##BITS##_FromString(char const* str)	\
+inline t_f##BITS	F##BITS##_FromString(char const* str)		\
 {																\
 	return (atof(str));											\
 }																\

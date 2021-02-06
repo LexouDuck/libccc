@@ -9,7 +9,7 @@
 // TODO actually implement this
 
 #define DEFINEFUNC_CONVERT_FLOAT_TO_STR(BITS,PRINTF) \
-inline char*	F##BITS##_ToString(t_f##BITS number)	\
+inline char*	F##BITS##_ToString(t_f##BITS number)			\
 {																\
 	return (String_Build(PRINTF, number));						\
 }																\
@@ -28,7 +28,7 @@ DEFINEFUNC_CONVERT_FLOAT_TO_STR(128, "%llg")
 // TODO actually implement this
 
 #define DEFINEFUNC_CONVERT_FLOAT_TO_STRHEX(BITS,PRINTF) \
-inline char*	F##BITS##_ToString_Hex(t_f##BITS number)\
+inline char*	F##BITS##_ToString_Hex(t_f##BITS number)		\
 {																\
 	return (String_Build(PRINTF, number));						\
 }																\
