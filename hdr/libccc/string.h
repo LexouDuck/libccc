@@ -563,10 +563,34 @@ _MALLOC()
 char*					String_Sub(char const* str, t_size index, t_size n);
 #define c_strsub		String_Sub
 
+
+
 //! Constructs a string from the given 'format' string and multiple args (equivalent to 'asprintf()')
 /*!
 **	Returns a new null-terminated string, which is generated from the given
 **	'format' string and variadic args - it is equivalent to 'asprintf()'.
+**	________________________________________________________________
+**	| Flag	| Output									| Example	|
+**	|_______|___________________________________________|___________|
+**	%d, %i	Signed decimal integer						392
+**	%u		Unsigned decimal integer					7235
+**	%o		Unsigned octal								610
+**	%x		Unsigned hexadecimal integer				7fa
+**	%X		Unsigned hexadecimal integer (uppercase)	7FA
+**	%f		Decimal floating point, lowercase			392.65
+**	%F		Decimal floating point, uppercase			392.65
+**	%e		Scientific notation float, lowercase		3.9265e+2
+**	%E		Scientific notation float, uppercase		3.9265E+2
+**	%g		Use the shortest representation: %e or %f	392.65
+**	%G		Use the shortest representation: %E or %F	392.65
+**	%a		Hexadecimal floating point, lowercase		-0xc.90fep-2
+**	%A		Hexadecimal floating point, uppercase		-0XC.90FEP-2
+**	%c		Character									a
+**	%s		String of characters						example
+**	%p		Pointer address								b8000000
+**	%n		Nothing printed.: the corresponding argument must be a pointer to a signed int. The number of characters written so far is stored in the pointed location.	
+**	%%		A % followed by another % character will write a single % to the stream.	%
+**	Learn more: https://www.cplusplus.com/reference/cstdio/printf/
 */
 _FORMAT(printf, 1, 2)
 _MALLOC()
@@ -579,6 +603,8 @@ char*					String_Format(char const* format, ...);
 _MALLOC()
 char*					String_Format_VA(char const* format, va_list args);
 #define String_Build_VA	String_Format_VA
+
+
 
 //! Constructs a string from the given 'format' string and multiple args, writing at most 'max' chars into 'dest' (equivalent to 'snprintf()')
 /*!
@@ -593,6 +619,7 @@ t_size				String_Format_N(char* dest, t_size max, char const* format, ...);
 //! @copydef String_Build, but takes a variadic arguments list
 t_size				String_Format_N_VA(char* dest, t_size max, char const* format, va_list args);
 #define c_vsnprintf	String_Format_N
+
 
 
 /*!

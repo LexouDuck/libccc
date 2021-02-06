@@ -153,6 +153,13 @@ printf("%d", 2 ** 15);
 char* new_str = str ?? "str is NULL";
 ```
 ```c
+// fixed-point math
+#operator	+ (t_fixed a, t_fixed b) = t_fixed	{ return (Fixed.Add(a, b)); }
+#operator	- (t_fixed a, t_fixed b) = t_fixed	{ return (Fixed.Sub(a, b)); }
+#operator	* (t_fixed a, t_fixed b) = t_fixed	{ return (Fixed.Mul(a, b)); }
+#operator	/ (t_fixed a, t_fixed b) = t_fixed	{ return (Fixed.Div(a, b)); }
+```
+```c
 // string concatenation operators
 #operator  +	(char const* left, char const* right) = char*	{ return (String.Join(left, right)); }
 #operator  :+	(char*       left, char const* right) = char*	{ return (String.Append(left, right)); }
