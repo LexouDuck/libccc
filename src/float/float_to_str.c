@@ -8,16 +8,16 @@
 
 // TODO actually implement this
 
-#define DEFINEFUNC_CONVERT_FLOAT_TO_STR(BITS,PRINTF) \
+#define DEFINEFUNC_CONVERT_FLOAT_TO_STR(BITS, FORMAT) \
 inline char*	F##BITS##_ToString(t_f##BITS number)			\
 {																\
-	return (String_Build(PRINTF, number));						\
+	return (String_Build(FORMAT, number));						\
 }																\
 
-DEFINEFUNC_CONVERT_FLOAT_TO_STR( 32, "%g")
-DEFINEFUNC_CONVERT_FLOAT_TO_STR( 64, "%lg")
+DEFINEFUNC_CONVERT_FLOAT_TO_STR(32, "%g")
+DEFINEFUNC_CONVERT_FLOAT_TO_STR(64, "%lg")
 #ifdef	__float80
-DEFINEFUNC_CONVERT_FLOAT_TO_STR( 80, "%llg")
+DEFINEFUNC_CONVERT_FLOAT_TO_STR(80, "%llg")
 #endif
 #ifdef	__float128
 DEFINEFUNC_CONVERT_FLOAT_TO_STR(128, "%llg")
@@ -27,16 +27,54 @@ DEFINEFUNC_CONVERT_FLOAT_TO_STR(128, "%llg")
 
 // TODO actually implement this
 
-#define DEFINEFUNC_CONVERT_FLOAT_TO_STRHEX(BITS,PRINTF) \
-inline char*	F##BITS##_ToString_Hex(t_f##BITS number)		\
+#define DEFINEFUNC_CONVERT_FLOAT_TO_STRDEC(BITS, FORMAT) \
+inline char*	F##BITS##_ToString_Decimal(t_f##BITS number)	\
 {																\
-	return (String_Build(PRINTF, number));						\
+	return (String_Build(FORMAT, number));						\
 }																\
 
-DEFINEFUNC_CONVERT_FLOAT_TO_STRHEX( 32, "%#a")
-DEFINEFUNC_CONVERT_FLOAT_TO_STRHEX( 64, "%#la")
+DEFINEFUNC_CONVERT_FLOAT_TO_STRDEC(32, "%#f")
+DEFINEFUNC_CONVERT_FLOAT_TO_STRDEC(64, "%#lf")
 #ifdef	__float80
-DEFINEFUNC_CONVERT_FLOAT_TO_STRHEX( 80, "%#lla")
+DEFINEFUNC_CONVERT_FLOAT_TO_STRDEC(80, "%#llf")
+#endif
+#ifdef	__float128
+DEFINEFUNC_CONVERT_FLOAT_TO_STRDEC(128, "%#llf")
+#endif
+
+
+
+// TODO actually implement this
+
+#define DEFINEFUNC_CONVERT_FLOAT_TO_STRSCI(BITS, FORMAT) \
+inline char*	F##BITS##_ToString_Scientific(t_f##BITS number)	\
+{																\
+	return (String_Build(FORMAT, number));						\
+}																\
+
+DEFINEFUNC_CONVERT_FLOAT_TO_STRSCI(32, "%#e")
+DEFINEFUNC_CONVERT_FLOAT_TO_STRSCI(64, "%#le")
+#ifdef	__float80
+DEFINEFUNC_CONVERT_FLOAT_TO_STRSCI(80, "%#lle")
+#endif
+#ifdef	__float128
+DEFINEFUNC_CONVERT_FLOAT_TO_STRSCI(128, "%#lle")
+#endif
+
+
+
+// TODO actually implement this
+
+#define DEFINEFUNC_CONVERT_FLOAT_TO_STRHEX(BITS, FORMAT) \
+inline char*	F##BITS##_ToString_Hex(t_f##BITS number)		\
+{																\
+	return (String_Build(FORMAT, number));						\
+}																\
+
+DEFINEFUNC_CONVERT_FLOAT_TO_STRHEX(32, "%#a")
+DEFINEFUNC_CONVERT_FLOAT_TO_STRHEX(64, "%#la")
+#ifdef	__float80
+DEFINEFUNC_CONVERT_FLOAT_TO_STRHEX(80, "%#lla")
 #endif
 #ifdef	__float128
 DEFINEFUNC_CONVERT_FLOAT_TO_STRHEX(128, "%#lla")

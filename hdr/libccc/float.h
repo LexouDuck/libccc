@@ -213,83 +213,147 @@ int									Float_ToString_CheckSpecial(t_f32 number, char* *a_result);
 #define c_float_to_str_checkspecial	Float_ToString_CheckSpecial
 
 //! Returns 1(ERROR) if the given 'str' contains any invalid characters for float parsing
-int									Float_CheckInvalid_FromString(char const* str, char* *a_result);
-#define c_str_to_float_checkinvalid	Float_CheckInvalid_FromString
+int									Float_FromString_CheckInvalid(char const* str, char* *a_result);
+#define c_str_to_float_checkinvalid	Float_FromString_CheckInvalid
+
+
+
+//! Get the shortest string representation of the given 32-bit floating-point number
+_MALLOC()
+char*						F32_ToString(t_f32 n);
+#define c_f32_to_str		F32_ToString
+
+//! Get the shortest string representation of the given 64-bit floating-point number
+_MALLOC()
+char*						F64_ToString(t_f64 n);
+#define c_f64_to_str		F64_ToString
+
+#ifdef	__float80
+//! Get the shortest string representation of the given 80-bit floating-point number
+_MALLOC()
+char*						F80_ToString(t_f80 n);
+#define c_f80_to_str		F80_ToString
+#endif
+
+#ifdef	__float128
+//! Get the shortest string representation of the given 128-bit floating-point number
+_MALLOC()
+char*						F128_ToString(t_f128 n);
+#define c_f128_to_str		F128_ToString
+#endif
 
 
 
 //! Get the string decimal representation of a 32-bit floating-point number
 _MALLOC()
-char*						F32_ToString(t_f32 n);
-#define c_f32_to_str		F32_ToString
+char*						F32_ToString_Decimal(t_f32 n);
+#define c_f32_to_strdec		F32_ToString_Decimal
+
+//! Get the string decimal representation of a 64-bit floating-point number
+_MALLOC()
+char*						F64_ToString_Decimal(t_f64 n);
+#define c_f64_to_strdec		F64_ToString_Decimal
+
+#ifdef	__float80
+//! Get the string decimal representation of a 80-bit floating-point number
+_MALLOC()
+char*						F80_ToString_Decimal(t_f80 n);
+#define c_f80_to_strdec		F80_ToString_Decimal
+#endif
+
+#ifdef	__float128
+//! Get the string decimal representation of a 128-bit floating-point number
+_MALLOC()
+char*						F128_ToString_Decimal(t_f128 n);
+#define c_f128_to_strdec	F128_ToString_Decimal
+#endif
+
+
+
+//! Get the string scientific notation of a 32-bit floating-point number
+_MALLOC()
+char*						F32_ToString_Scientific(t_f32 n);
+#define c_f32_to_strsci		F32_ToString_Scientific
+
+//! Get the string scientific notation of a 64-bit floating-point number
+_MALLOC()
+char*						F64_ToString_Scientific(t_f64 n);
+#define c_f64_to_strsci		F64_ToString_Scientific
+
+#ifdef	__float80
+//! Get the string scientific notation of a 80-bit floating-point number
+_MALLOC()
+char*						F80_ToString_Scientific(t_f80 n);
+#define c_f80_to_strsci		F80_ToString_Scientific
+#endif
+
+#ifdef	__float128
+//! Get the string scientific notation of a 128-bit floating-point number
+_MALLOC()
+char*						F128_ToString_Scientific(t_f128 n);
+#define c_f128_to_strsci	F128_ToString_Scientific
+#endif
+
+
+
 //! Get the string hexadecimal representation of a 32-bit floating-point number
 _MALLOC()
 char*						F32_ToString_Hex(t_f32 n);
 #define c_f32_to_strhex		F32_ToString_Hex
+
+//! Get the string hexadecimal representation of a 64-bit floating-point number
+_MALLOC()
+char*						F64_ToString_Hex(t_f64 n);
+#define c_f64_to_strhex		F64_ToString_Hex
+
+#ifdef	__float80
+//! Get the string hexadecimal representation of a 80-bit floating-point number
+_MALLOC()
+char*						F80_ToString_Hex(t_f80 n);
+#define c_f80_to_strhex		F80_ToString_Hex
+#endif
+
+#ifdef	__float128
+//! Get the string hexadecimal representation of a 128-bit floating-point number
+_MALLOC()
+char*						F128_ToString_Hex(t_f128 n);
+#define c_f128_to_strhex	F128_ToString_Hex
+#endif
+
+
+
 //! Get the string decimal representation of a 32-bit floating-point number, with 'precision' fractional digits
 _MALLOC()
-char*						F32_ToString_P(t_f32 n, t_u8 precision);
-#define c_f32_to_str_p		F32_ToString_P
+char*					F32_ToString_P(t_f32 n, t_u8 precision);
+#define c_f32_to_str_p	F32_ToString_P
 //NB: This function has some approximation/error margin (beyond the seventh decimal digit; the exact amount of imprecision depends on the input)
+
+//! Get the string decimal representation of a 64-bit floating-point number, with 'precision' fractional digits
+_MALLOC()
+char*					F64_ToString_P(t_f64 n, t_u8 precision);
+#define c_f64_to_str_p	F64_ToString_P
+//NB: This function has some approximation/error margin (beyond the seventh decimal digit; the exact amount of imprecision depends on the input)
+
+
 
 //! Parse a 32-bit floating-point number from the given string (can be decimal/exponential/hexdecimal)
 t_f32					F32_FromString(char const* str);
 #define c_str_to_f32	F32_FromString
 
-
-
-//! Get the string decimal representation of a 64-bit floating-point number
-_MALLOC()
-char*						F64_ToString(t_f64 n);
-#define c_f64_to_str		F64_ToString
-//! Get the string hexadecimal representation of a 64-bit floating-point number
-_MALLOC()
-char*						F64_ToString_Hex(t_f64 n);
-#define c_f64_to_strhex		F64_ToString_Hex
-//! Get the string decimal representation of a 64-bit floating-point number, with 'precision' fractional digits
-_MALLOC()
-char*						F64_ToString_P(t_f64 n, t_u8 precision);
-#define c_f64_to_str_p		F64_ToString_P
-//NB: This function has some approximation/error margin (beyond the seventh decimal digit; the exact amount of imprecision depends on the input)
-
 //! Parse a 64-bit floating-point number from the given string (can be decimal/exponential/hexdecimal)
 t_f64					F64_FromString(char const* str);
 #define c_str_to_f64	F64_FromString
 
-
-
 #ifdef	__float80
-//! Get the string decimal representation of a 80-bit floating-point number
-_MALLOC()
-char*						F80_ToString(t_f80 n);
-#define c_f80_to_str		F80_ToString
-//! Get the string hexadecimal representation of a 80-bit floating-point number
-_MALLOC()
-char*						F80_ToString_Hex(t_f80 n);
-#define c_f80_to_strhex		F80_ToString_Hex
-
 //! Parse a 80-bit floating-point number from the given string (can be decimal/exponential/hexdecimal)
-t_f80						F80_FromString(char const* str);
-#define c_str_to_f80		F80_FromString
-
+t_f80					F80_FromString(char const* str);
+#define c_str_to_f80	F80_FromString
 #endif
 
-
-
 #ifdef	__float128
-//! Get the string decimal representation of a 128-bit floating-point number
-_MALLOC()
-char*						F128_ToString(t_f128 n);
-#define c_f128_to_str		F128_ToString
-//! Get the string hexadecimal representation of a 128-bit floating-point number
-_MALLOC()
-char*						F128_ToString_Hex(t_f128 n);
-#define c_f128_to_strhex	F128_ToString_Hex
-
 //! Parse a 128-bit floating-point number from the given string (can be decimal/exponential/hexdecimal)
-t_f128						F128_FromString(char const* str);
-#define c_str_to_f128		F128_FromString
-
+t_f128					F128_FromString(char const* str);
+#define c_str_to_f128	F128_FromString
 #endif
 
 

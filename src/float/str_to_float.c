@@ -148,7 +148,7 @@ t_f##BITS			F##BITS##_FromString(char const *str)									\
 	int		mode;																			\
 																							\
 	result = NAN;																			\
-	if (Float_CheckInvalid_FromString(str, &tmp))											\
+	if (Float_FromString_CheckInvalid(str, &tmp))											\
 		return (result);																	\
 	if (tmp[0] == 'I' || (tmp[1] == 'I' && (tmp[0] == '-' || tmp[0] == '+')))				\
 	{																						\
