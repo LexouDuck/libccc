@@ -569,28 +569,67 @@ char*					String_Sub(char const* str, t_size index, t_size n);
 /*!
 **	Returns a new null-terminated string, which is generated from the given
 **	'format' string and variadic args - it is equivalent to 'asprintf()'.
-**	________________________________________________________________
-**	| Flag	| Output									| Example	|
+**
+**	The 'format' string may contain format specifiers (ie: a '%' followed by certain chars)
+**	A format specifier has the following syntax (items between brackets are optional):
+**
+**	%[flags][minsize][.precision][bitsize]char
+**	._______________________________________________________________
+**	| char	| Output									| Example	|
 **	|_______|___________________________________________|___________|
-**	%d, %i	Signed decimal integer						392
-**	%u		Unsigned decimal integer					7235
-**	%o		Unsigned octal								610
-**	%x		Unsigned hexadecimal integer				7fa
-**	%X		Unsigned hexadecimal integer (uppercase)	7FA
-**	%f		Decimal floating point, lowercase			392.65
-**	%F		Decimal floating point, uppercase			392.65
-**	%e		Scientific notation float, lowercase		3.9265e+2
-**	%E		Scientific notation float, uppercase		3.9265E+2
-**	%g		Use the shortest representation: %e or %f	392.65
-**	%G		Use the shortest representation: %E or %F	392.65
-**	%a		Hexadecimal floating point, lowercase		-0xc.90fep-2
-**	%A		Hexadecimal floating point, uppercase		-0XC.90FEP-2
-**	%c		Character									a
-**	%s		String of characters						example
-**	%p		Pointer address								b8000000
-**	%n		Nothing printed.: the corresponding argument must be a pointer to a signed int. The number of characters written so far is stored in the pointed location.	
-**	%%		A % followed by another % character will write a single % to the stream.	%
-**	Learn more: https://www.cplusplus.com/reference/cstdio/printf/
+**	| d, i	| Signed decimal integer					| 392
+**	| u		| Unsigned decimal integer					| 7235
+**	| o		| Unsigned octal							| 610
+**	| x		| Unsigned hexadecimal integer				| 7fa
+**	| X		| Unsigned hexadecimal integer (uppercase)	| 7FA
+**	| f		| Decimal floating point, lowercase			| 392.65
+**	| F		| Decimal floating point, uppercase			| 392.65
+**	| e		| Scientific notation float, lowercase		| 3.9265e+2
+**	| E		| Scientific notation float, uppercase		| 3.9265E+2
+**	| g		| Use the shortest representation: %e or %f	| 392.65
+**	| G		| Use the shortest representation: %E or %F	| 392.65
+**	| a		| Hexadecimal floating point, lowercase		| -0xc.90fep-2
+**	| A		| Hexadecimal floating point, uppercase		| -0XC.90FEP-2
+**	| c		| Character									| a
+**	| s		| String of characters						| example
+**	| p		| Pointer address							| b8000000
+**	| %		| A "%%" specifier will write a single '%'	| %
+**	| n		| Nothing printed: the corresponding argument must be a pointer to a signed int.
+**	|_______|	The number of characters written so far is stored in the pointed location.	
+**	.___________________________________________________________________________________________________________________
+**	| flags	| Description																								|
+**	|_______|___________________________________________________________________________________________________________|
+**	| +		| Precede the result with a plus '+' or minus '-' sign, even for positive/unsigned numbers.					|
+**	|_______|_By default, only negative numbers are preceded with a minus '-' sign._____________________________________|
+**	| #		| With o,x,X: the value is preceeded with 0, 0x or 0X respectively, for values different than zero.			|
+**	|_______|_With a,A,e,E,f,F,g,G: forces the written output to contain a decimal point, even if no more digits follow.|
+**	|(space)| If no sign is going to be written, a blank space is inserted before the value.							|
+**	|_______|___________________________________________________________________________________________________________|
+**	.___________________________________________________________________________________________
+**	| minsize	|	is a number (so, decimal numerical digit chars).							|
+**	|___________|_______________________________________________________________________________|
+**	| Minimum number of characters to be printed.
+**	| The value is not truncated, even if the result is larger.
+**	| If the value is shorter than this number, the result is padded with blank spaces.
+**	.___________________________________________________________________________________________
+**	| precision	|	is a number (so, decimal numerical digit chars), preceded by a '.' period.	|
+**	|___________|_______________________________________________________________________________|
+**	| With a,A,e,E,f,F: the number of digits to be printed after the decimal point (by default, this is 6).
+**	| With g,G: the maximum number of significant digits to be printed for the mantissa.
+**	| With s: this is the maximum number of characters to be printed (by default, all characters are printed until the '\0' null terminator).
+**	| If the period is specified without an explicit value for precision, 0 is assumed.
+**	.___________________________________________________________________________________________________________
+**	| bits  | d, i			| u, o, x, X			|f,F,e,E,g,G,a,A| c		| s			| p		| n				|
+**	|_______|_______________|_______________________|_______________|_______|___________|_______|_______________|
+**	|(none)	| int			| unsigned int			| double		| int	|	char*	| void*	| int*			|
+**	| hh	| signed char	| unsigned char			|				|		|			|		| signed char*	|
+**	|  h	| short int		| unsigned short int	|				|		|			|		| short int*	|
+**	|  l	| long int		| unsigned long int		|				|wint_t	| wchar_t*	|		| long int*		|
+**	| ll	| long long int	| unsigned long long int|				|		|			|		| long long int*|
+**	|  j	| intmax_t		| uintmax_t				|				|		|			|		| intmax_t*		|
+**	|  z	| size_t		| size_t				|				|		|			|		| size_t*		|
+**	|  t	| ptrdiff_t		| ptrdiff_t				|				|		|			|		| ptrdiff_t*	|
+**	|__L____|_______________|_______________________|_long_double___|_______|___________|_______|_______________|
 */
 _FORMAT(printf, 1, 2)
 _MALLOC()
