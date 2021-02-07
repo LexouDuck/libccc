@@ -4,7 +4,14 @@
 
 
 
-inline t_utf32		UTF8_Get(t_utf8 const* str)
+t_size		Char_ToUTF8(t_utf8* dest, t_utf32 c)
+{
+	return (0);
+}
+
+
+
+t_utf32		UTF8_Get(t_utf8 const* str)
 {
 	static const t_u8 MASK = ((1 << 6) - 1);
 	t_u8 c;

@@ -77,23 +77,26 @@ RESET = "\033[0m"
 
 # List of all source code files
 SRCS = \
-	char/isalpha.c	\
-	char/isdigit.c	\
-	char/isprint.c	\
-	char/to.c		\
-	bool/bool_to_str.c	\
-	bool/str_to_bool.c	\
-	int/int_to_str.c		\
-	int/int_to_strbase.c	\
-	int/int_to_strhex.c		\
-	int/str_to_int.c		\
-	int/strbase_to_int.c	\
-	int/strhex_to_int.c		\
-	pointer/size_to_str.c		\
-	pointer/str_to_size.c		\
-	pointer/ptr_to_str.c		\
-	fixed/fixed_to_str.c	\
-	fixed/str_to_fixed.c	\
+	char/isalpha.c		\
+	char/isdigit.c		\
+	char/isprint.c		\
+	char/incharset.c	\
+	char/to.c			\
+	char/utf8.c			\
+	char/utf16.c		\
+	bool/bool_to_str.c		\
+	bool/str_to_bool.c		\
+	int/int_to_str.c			\
+	int/int_to_strbase.c		\
+	int/int_to_strhex.c			\
+	int/str_to_int.c			\
+	int/strbase_to_int.c		\
+	int/strhex_to_int.c			\
+	pointer/size_to_str.c	\
+	pointer/str_to_size.c	\
+	pointer/ptr_to_str.c	\
+	fixed/fixed_to_str.c		\
+	fixed/str_to_fixed.c		\
 	float/float_to_str.c	\
 	float/str_to_float.c	\
 	memory/memalloc.c	\
