@@ -27,7 +27,7 @@ static inline int	UInt_GetDigit_FromString_Hex(char c)
 
 
 #define DEFINEFUNC_CONVERT_STRHEX_TO_UINT(BITS) \
-t_u##BITS				U_FromString_Hex##BITS(char const *str)			\
+t_u##BITS				U##BITS##_FromString_Hex(char const *str)		\
 {																		\
 	t_u##BITS	result;													\
 	t_size	i;															\

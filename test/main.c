@@ -88,30 +88,46 @@ static void	init(void)
 	// default every option to FALSE
 	memset(&g_test.flags, 0, sizeof(s_test_flags));
 
-	g_test.suites[0x1] = (s_test_suite){ FALSE, "bool",			testsuite_bool };
-	g_test.suites[0x1] = (s_test_suite){ FALSE, "char",			testsuite_char };
-	g_test.suites[0x4] = (s_test_suite){ FALSE, "int",			testsuite_int };
-	g_test.suites[0x4] = (s_test_suite){ FALSE, "fixed",		testsuite_fixed };
-	g_test.suites[0x4] = (s_test_suite){ FALSE, "float",		testsuite_float };
-	g_test.suites[0x0] = (s_test_suite){ FALSE, "pointer",		testsuite_pointer };
-	g_test.suites[0x0] = (s_test_suite){ FALSE, "memory",		testsuite_memory };
-	g_test.suites[0x2] = (s_test_suite){ FALSE, "string",		testsuite_string };
-	g_test.suites[0x3] = (s_test_suite){ FALSE, "stringarray",	testsuite_stringarray };
-	g_test.suites[0x5] = (s_test_suite){ FALSE, "color",		testsuite_color };
-	g_test.suites[0x6] = (s_test_suite){ FALSE, "list",			testsuite_list };
-	g_test.suites[0x7] = (s_test_suite){ FALSE, "math",			testsuite_math };
-	g_test.suites[0x8] = (s_test_suite){ FALSE, "stat",			testsuite_stat };
-	g_test.suites[0x9] = (s_test_suite){ FALSE, "random",		testsuite_random };
-	g_test.suites[0xA] = (s_test_suite){ FALSE, "vlq",			testsuite_vlq };
-	g_test.suites[0xB] = (s_test_suite){ FALSE, "io",			testsuite_io };
+	static const s_test_suite suites[TEST_SUITE_AMOUNT] =
+	{
+		(s_test_suite){ FALSE, "bool",				testsuite_bool },
+		(s_test_suite){ FALSE, "char",				testsuite_char },
+		(s_test_suite){ FALSE, "int",				testsuite_int },
+		(s_test_suite){ FALSE, "fixed",				testsuite_fixed },
+		(s_test_suite){ FALSE, "float",				testsuite_float },
+		(s_test_suite){ FALSE, "pointer",			testsuite_pointer },
+		(s_test_suite){ FALSE, "memory",			testsuite_memory },
+		(s_test_suite){ FALSE, "string",			testsuite_string },
+		(s_test_suite){ FALSE, "regex",				testsuite_regex },
+		(s_test_suite){ FALSE, "color",				testsuite_color },
+		(s_test_suite){ FALSE, "sys/io",			testsuite_sys_io },
+		(s_test_suite){ FALSE, "sys/time",			testsuite_sys_time },
+		(s_test_suite){ FALSE, "array/pointerarray",testsuite_array_pointerarray },
+		(s_test_suite){ FALSE, "array/stringarray",	testsuite_array_stringarray },
+		(s_test_suite){ FALSE, "array/array",		testsuite_array },
+		(s_test_suite){ FALSE, "array/list",		testsuite_array_list },
+		(s_test_suite){ FALSE, "array/dict",		testsuite_array_dict },
+		(s_test_suite){ FALSE, "array/tree",		testsuite_array_tree },
+		(s_test_suite){ FALSE, "math/math",			testsuite_math },
+		(s_test_suite){ FALSE, "math/stat",			testsuite_math_stat },
+		(s_test_suite){ FALSE, "math/algebra",		testsuite_math_algebra },
+		(s_test_suite){ FALSE, "math/complex",		testsuite_math_complex },
+		(s_test_suite){ FALSE, "math/random",		testsuite_math_random },
+		(s_test_suite){ FALSE, "math/vlq",			testsuite_math_vlq },
+	};
+	memcpy(g_test.suites, suites, sizeof(s_test_suite) * TEST_SUITE_AMOUNT);
 
-	g_test.args[0] = (s_test_arg){ NULL,					'h', "help",			"If provided, display only the program usage help and exit." };
-	g_test.args[1] = (s_test_arg){ handle_arg_verbose,		'v', "verbose",			"If provided, output each test result (as either 'OK!' or 'ERROR: return was _')." };
-	g_test.args[2] = (s_test_arg){ handle_arg_arguments,	'a', "arguments",		"If provided, output the arguments used for each test performed." };
-	g_test.args[3] = (s_test_arg){ handle_arg_performance,	'p', "performance",		"If provided, output the execution speed for each test performed." };
-	g_test.args[4] = (s_test_arg){ handle_arg_test_all,		't', "test-all",		"Sets all the 'test-something' arguments below (is equivalent to doing '-no')" };
-	g_test.args[5] = (s_test_arg){ handle_arg_test_nullptrs,'n', "test-nullptrs",	"If provided, perform the NULL pointer tests for all functions." };
-	g_test.args[6] = (s_test_arg){ handle_arg_test_overflow,'o', "test-overflow",	"If provided, perform the overflowing number tests for 'libccc_convert' functions." };
+	static const s_test_arg args[TEST_ARGS_AMOUNT] =
+	{
+		(s_test_arg){ NULL,						'h', "help",			"If provided, display only the program usage help and exit." },
+		(s_test_arg){ handle_arg_verbose,		'v', "verbose",			"If provided, output each test result (as either 'OK!' or 'ERROR: return was _')." },
+		(s_test_arg){ handle_arg_arguments,		'a', "arguments",		"If provided, output the arguments used for each test performed." },
+		(s_test_arg){ handle_arg_performance,	'p', "performance",		"If provided, output the execution speed for each test performed." },
+		(s_test_arg){ handle_arg_test_all,		't', "test-all",		"Sets all the 'test-something' arguments below (is equivalent to doing '-no')" },
+		(s_test_arg){ handle_arg_test_nullptrs,	'n', "test-nullptrs",	"If provided, perform the NULL pointer tests for all functions." },
+		(s_test_arg){ handle_arg_test_overflow,	'o', "test-overflow",	"If provided, perform the overflowing number tests for 'libccc_convert' functions." },
+	};
+	memcpy(g_test.args, args, sizeof(s_test_arg) * TEST_ARGS_AMOUNT);
 }
 
 

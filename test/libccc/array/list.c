@@ -529,8 +529,12 @@ void	test_lst_to_array(void)
 
 
 
-int		testsuite_list(void)
+int		testsuite_array_list(void)
 {
+	print_suite_title("array/list");
+
+	print_nonstd();
+
 /*
 	s_list **a_lst;
 	s_list *lst_0;
@@ -542,9 +546,6 @@ int		testsuite_list(void)
 	char const *expect_upper[] = { "OMAE", " WA ", "MOU ", "SHINDEIRU.", NULL };
 	char const *expect_lower[] = { "omae", " wa ", "mou ", "shindeiru.", NULL };
 */
-	print_suite_title("list");
-
-	print_nonstd();
 
 #ifdef c_lstnew
 	test_lstnew();

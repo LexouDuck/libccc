@@ -73,7 +73,7 @@ typedef struct	s_test_suite_
 	char const*	name;		// Name for test suite to identify
 	int		(*test)(void);	// Test suite launcher
 }				s_test_suite;
-#define TEST_SUITE_AMOUNT	12
+#define TEST_SUITE_AMOUNT	24
 
 //Args for main are: help, verbose, arguments, performance, overflow
 typedef struct	s_test_arg_
@@ -165,14 +165,14 @@ int		testsuite_memory(void);
 int		testsuite_string(void);
 int		testsuite_color(void);
 int		testsuite_regex(void);
+int		testsuite_sys_io(void);
+int		testsuite_sys_time(void);
 int		testsuite_array_pointerarray(void);
 int		testsuite_array_stringarray(void);
 int		testsuite_array(void);
 int		testsuite_array_list(void);
 int		testsuite_array_dict(void);
 int		testsuite_array_tree(void);
-int		testsuite_sys_io(void);
-int		testsuite_sys_time(void);
 int		testsuite_math(void);
 int		testsuite_math_stat(void);
 int		testsuite_math_algebra(void);

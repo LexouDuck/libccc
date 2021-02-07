@@ -9,9 +9,9 @@
 
 
 
-int		testsuite_stat(void) // TODO increment total tests counter for these tests
+int		testsuite_math_stat(void) // TODO increment total tests counter for these tests
 {
-	print_suite_title("stat");
+	print_suite_title("math/stat");
 
 	static const int	samples = 20000;
 	s_sortedlist_int	ilst_sorted = print_test_random(samples);

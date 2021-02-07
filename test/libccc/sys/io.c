@@ -5,9 +5,9 @@
 
 
 
-int		testsuite_io(void)
+int		testsuite_sys_io(void)
 {
-	print_suite_title("io");
+	print_suite_title("sys/io");
 
 	// TODO
 

@@ -2100,9 +2100,9 @@ void	test_strbase_to_u64(void)
 
 
 
-int		testsuite_convert(void)
+int		testsuite_int(void)
 {
-	print_suite_title("convert");
+	print_suite_title("int");
 
 	print_nonstd();
 

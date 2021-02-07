@@ -50,9 +50,9 @@ s_sortedlist_int	print_test_random(int samples)
 
 
 
-int		testsuite_random(void)
+int		testsuite_math_random(void)
 {
-	print_suite_title("random");
+	print_suite_title("math/random");
 
 	static const int	samples = 20000;
 	s_sortedlist_int	ilst_sorted = print_test_random(samples);
