@@ -169,6 +169,7 @@ char* new_str = str ?? "str is NULL";
 // usage example:
 char* new_str = "Concatenated: " + str;
 ```
+
 ```c
 // unary complex number conjugate operator
 typedef struct	s_complex_
@@ -316,12 +317,14 @@ t_utf8 utf8_char = (t_utf8*)str[5];
 
 ### Generic types:
 ```c
-typedef struct	s_list_<TYPE=void*>
+#namespace List<TYPE=void*> // by default, 'void*' type will be used
+
+typedef struct	s_list_<TYPE>
 {
 	s_list*		next;
 	size_t		item_size;
 	<TYPE>		item;
-}				s_list<TYPE=void*>; // by default, 'void*' type will be used
+}				s_list<TYPE>;
 // usage example:
 s_list<char*> const*	string_list;
 ```
@@ -339,7 +342,8 @@ fixed cosine_fixed = Math<fixed>.Cos(value);	// specific implementation for fixe
 Here's a set of examples of generic type usage with lists:
 ```c
 // in .h header file
-#namespace List<TYPE=void*>
+#namespace List<TYPE=void*> // by default, 'void*' type will be used
+
 s_list<TYPE>	New(size_t length, <TYPE> ...);
 void			Append(s_list<TYPE> list, s_list<TYPE> element);
 s_list<TYPE>	Filter(s_list<TYPE> list, bool (*filter)(s_list<TYPE> element));
