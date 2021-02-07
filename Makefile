@@ -312,21 +312,32 @@ TEST_DIR	=	./test/
 
 TEST_HDRS = $(TEST_DIR)test.h
 TEST_SRCS = \
-	$(TEST_DIR)main.c			\
-	$(TEST_DIR)util.c			\
-	$(TEST_DIR)util_print.c		\
-	$(TEST_DIR)test_memory.c		\
-	$(TEST_DIR)test_char.c			\
-	$(TEST_DIR)test_string.c		\
-	$(TEST_DIR)test_stringarray.c	\
-	$(TEST_DIR)test_convert.c		\
-	$(TEST_DIR)test_color.c			\
-	$(TEST_DIR)test_list.c			\
-	$(TEST_DIR)test_math.c			\
-	$(TEST_DIR)test_stat.c			\
-	$(TEST_DIR)test_random.c		\
-	$(TEST_DIR)test_vlq.c			\
-	$(TEST_DIR)test_io.c			\
+	$(TEST_DIR)main.c		\
+	$(TEST_DIR)util.c		\
+	$(TEST_DIR)util_print.c	\
+	$(TEST_DIR)libccc\bool.c	\
+	$(TEST_DIR)libccc\char.c	\
+	$(TEST_DIR)libccc\int.c		\
+	$(TEST_DIR)libccc\fixed.c	\
+	$(TEST_DIR)libccc\float.c	\
+	$(TEST_DIR)libccc\memory.c	\
+	$(TEST_DIR)libccc\string.c	\
+	$(TEST_DIR)libccc\regex.c	\
+	$(TEST_DIR)libccc\color.c	\
+	$(TEST_DIR)libccc\sys\io.c		\
+	$(TEST_DIR)libccc\sys\time.c	\
+	$(TEST_DIR)libccc\math\math.c		\
+	$(TEST_DIR)libccc\math\stat.c		\
+	$(TEST_DIR)libccc\math\algebra.c	\
+	$(TEST_DIR)libccc\math\complex.c	\
+	$(TEST_DIR)libccc\math\random.c		\
+	$(TEST_DIR)libccc\math\vlq.c		\
+	$(TEST_DIR)libccc\array\array.c			\
+	$(TEST_DIR)libccc\array\pointerarray.c	\
+	$(TEST_DIR)libccc\array\stringarray.c	\
+	$(TEST_DIR)libccc\array\list.c			\
+	$(TEST_DIR)libccc\array\tree.c			\
+	$(TEST_DIR)libccc\array\dict.c			\
 
 TEST_OBJS = ${TEST_SRCS:$(TEST_DIR)%.c=$(OBJDIR)%.o}
 

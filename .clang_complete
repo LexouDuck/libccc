@@ -1,0 +1,11 @@
+-D DEBUG=1
+-Ilocal_folder
+-I./
+-I./hdr/
+-I./test/
+-std=c99
+-Wall
+-Wextra
+-Winline
+-Wpedantic
+-Wno-gnu-binary-literal

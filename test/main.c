@@ -88,11 +88,15 @@ static void	init(void)
 	// default every option to FALSE
 	memset(&g_test.flags, 0, sizeof(s_test_flags));
 
-	g_test.suites[0x0] = (s_test_suite){ FALSE, "memory",		testsuite_memory };
+	g_test.suites[0x1] = (s_test_suite){ FALSE, "bool",			testsuite_bool };
 	g_test.suites[0x1] = (s_test_suite){ FALSE, "char",			testsuite_char };
+	g_test.suites[0x4] = (s_test_suite){ FALSE, "int",			testsuite_int };
+	g_test.suites[0x4] = (s_test_suite){ FALSE, "fixed",		testsuite_fixed };
+	g_test.suites[0x4] = (s_test_suite){ FALSE, "float",		testsuite_float };
+	g_test.suites[0x0] = (s_test_suite){ FALSE, "pointer",		testsuite_pointer };
+	g_test.suites[0x0] = (s_test_suite){ FALSE, "memory",		testsuite_memory };
 	g_test.suites[0x2] = (s_test_suite){ FALSE, "string",		testsuite_string };
 	g_test.suites[0x3] = (s_test_suite){ FALSE, "stringarray",	testsuite_stringarray };
-	g_test.suites[0x4] = (s_test_suite){ FALSE, "convert",		testsuite_convert };
 	g_test.suites[0x5] = (s_test_suite){ FALSE, "color",		testsuite_color };
 	g_test.suites[0x6] = (s_test_suite){ FALSE, "list",			testsuite_list };
 	g_test.suites[0x7] = (s_test_suite){ FALSE, "math",			testsuite_math };
