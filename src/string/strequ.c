@@ -64,8 +64,8 @@ t_bool	c_striequ(char const *str1, char const *str2)
 	while (str1[i] && str2[i])
 	{
 		if (str1[i] != str2[i] &&
-			str1[i] != Char_ToUpper(str2[i]) &&
-			str1[i] != Char_ToLower(str2[i]))
+			(Char_IsLower(str1[i]) && Char_ToUpper(str1[i]) != str2[i]) &&
+			(Char_IsUpper(str1[i]) && Char_ToLower(str1[i]) != str2[i]))
 			return (FALSE);
 		++i;
 	}
@@ -88,8 +88,8 @@ t_bool	c_strniequ(char const *str1, char const *str2, t_size n)
 	while (str1[i] && str2[i])
 	{
 		if (str1[i] != str2[i] &&
-			str1[i] != Char_ToUpper(str2[i]) &&
-			str1[i] != Char_ToLower(str2[i]))
+			(Char_IsLower(str1[i]) && Char_ToUpper(str1[i]) != str2[i]) &&
+			(Char_IsUpper(str1[i]) && Char_ToLower(str1[i]) != str2[i]))
 			return (FALSE);
 		++i;
 		if (i == n)

@@ -124,8 +124,9 @@ SRCS = \
 	string/strequ.c		\
 	string/strhas.c		\
 	string/strcount.c	\
-	string/strchr.c		\
-	string/strstr.c		\
+	string/strfind.c	\
+	string/strfind_r.c	\
+	string/strfind_n.c	\
 	string/strremove.c	\
 	string/strtrim.c	\
 	string/strpad.c		\

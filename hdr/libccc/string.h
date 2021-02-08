@@ -258,14 +258,14 @@ t_bool						String_HasOnly(char const* str, char const* charset);
 **	Returns the amount of occurences of char 'c' in the given string 'str'.
 */
 t_size						String_Count_Char(char const* str, char c);
-#define c_strcount_char	String_Count_Char
+#define c_strcount_chr		String_Count_Char
 
 /*!
 **	Returns the amount of occurences of chars in 'cset' in the given string
 **	'str'.
 */
 t_size						String_Count_Charset(char const* str, char const* cset);
-#define c_strcount_charset	String_Count_Charset
+#define c_strcount_chrset	String_Count_Charset
 
 /*!
 **	Returns the amount of occurences of 'query' in the given string 'str'.
@@ -281,63 +281,75 @@ t_size						String_Count_String(char const* str, char const* query);
 ** ************************************************************************** *|
 */
 
-/*!
-**	Returns a pointer to the first occurence of the given character 'c'
-**	in the given string 'str' (or NULL if nothing matched).
-*/
+//! Returns a pointer to the first occurence of the given char 'c' within 'str', or NULL if no char matched.
 char*				String_Find_Char(char const* str, char c);
 #define c_strchr	String_Find_Char
-
-/*!
-**	Returns the first index at which 'c' is found in 'str', or -1 if 'c' does
-**	not exist in 'str'.
-*/
-t_s32				String_Find_CharIndex(char const* str, char c);
-#define c_strichr	String_Find_CharIndex
-
-/*!
-**	Returns the first occurence of the string 'query' inside
-**	the given string 'str' (or NULL if nothing matched).
-*/
+//! Returns a pointer to the first occurence of any char in the given 'charset' within 'str', or NULL if no char matched.
+char*				String_Find_Charset(char const* str, char const* charset);
+#define c_strchrset	String_Find_Charset
+//! Returns a pointer to the first occurence of the string 'query' inside the given string 'str', or NULL if nothing matched.
 char*				String_Find_String(char const* str, char const* query);
 #define c_strstr	String_Find_String
 
-/*!
-**	Returns the first index at which 'query' is found in 'str', or -1 if
-**	'query' does not exist in str.
-*/
-t_s32				String_Find_StringIndex(char const* str, char const* query);
-#define c_stristr	String_Find_StringIndex
+//! Returns a pointer to the last occurence of the given char 'c' within 'str', or NULL if no char matched.
+char*							String_Find_R_Char(char const* str, char c);
+#define c_strrchr				String_Find_R_Char
+#define String_FindLast_Char	String_Find_R_Char
+//! Returns a pointer to the last occurence of any char in the given 'charset' within 'str', or NULL if no char matched.
+char*							String_Find_R_Charset(char const* str, char const* charset);
+#define c_strrchrset			String_Find_R_Charset
+#define String_FindLast_Charset	String_Find_R_Charset
+//! Returns a pointer to the last occurence of the string 'query' inside the given string 'str', or NULL if nothing matched.
+char*							String_Find_R_String(char const* str, char const* query);
+#define c_strrstr				String_Find_R_String
+#define String_FindLast_String	String_Find_R_String
 
-/*!
-**	Returns a pointer to the last occurence of the given character 'c'
-**	in the given string 'str' (or NULL if nothing matched).
-*/
-char*				String_Find_R_Char(char const* str, char c);
-#define c_strrchr	String_Find_R_Char
+//! Returns a pointer to the first occurence of the given char 'c' within 'str', or NULL if no char matched. (checks only 'n' chars in 'str').
+char*							String_Find_N_Char(char const* str, char c, t_size n);
+#define c_strnchr				String_Find_N_Char
+//! Returns a pointer to the first occurence of any char in the given 'charset' within 'str', or NULL if no char matched. (checks only 'n' chars in 'str').
+char*							String_Find_N_Charset(char const* str, char const* charset, t_size n);
+#define c_strnchrset			String_Find_N_Charset
+//! Returns a pointer to the first occurence of the string 'query' inside the given string 'str', or NULL if nothing matched. (checks only 'n' chars in 'str').
+char*							String_Find_N_String(char const* str, char const* query, t_size n);
+#define c_strnstr				String_Find_N_String
 
-/*!
-**	Returns the last occurence of the string 'query' inside
-**	the given string 'str' (or NULL if nothing matched).
-*/
-char*				String_Find_R_String(char const* str, char const* query);
-#define c_strrstr	String_Find_R_String
 
-/*!
-**	Returns a pointer to the first occurence of the given character 'c'
-**	in the given string 'str' (or NULL if nothing matched),
-**	searching only the first 'n' characters of 'str'.
-*/
-char*				String_Find_N_Char(char const* str, char c, t_size n);
-#define c_strnchr	String_Find_N_Char
 
-/*!
-**	Returns the first occurence of the string 'query' inside
-**	the given string 'str' (or NULL if nothing matched),
-**	searching only the first 'n' characters of 'str'.
-*/
-char*				String_Find_N_String(char const* str, char const* query, t_size n);
-#define c_strnstr	String_Find_N_String
+//! Returns the index of the first occurrence at which 'c' is found in 'str', or -1 if 'c' does not exist in 'str'.
+t_ptrdiff				String_IndexOf_Char(char const* str, char c);
+#define c_strichr		String_IndexOf_Char
+//! Returns the index of the first occurrence at which 'c' is found in 'str', or -1 if 'c' does not exist in 'str'.
+t_ptrdiff				String_IndexOf_Charset(char const* str, char const* charset);
+#define c_strichrset	String_IndexOf_Charset
+//! Returns the index of the first occurrence at which 'query' is found in 'str', or -1 if 'query' does not exist in str.
+t_ptrdiff				String_IndexOf_String(char const* str, char const* query);
+#define c_stristr		String_IndexOf_String
+
+//! Returns a pointer to the last occurence of the given char 'c' within 'str', or NULL if no char matched.
+t_ptrdiff							String_IndexOf_R_Char(char const* str, char c);
+#define c_strirchr					String_IndexOf_R_Char
+#define String_LastIndexOf_Char		String_IndexOf_R_Char
+//! Returns a pointer to the last occurence of any char in the given 'charset' within 'str', or NULL if no char matched.
+t_ptrdiff							String_IndexOf_R_Charset(char const* str, char const* charset);
+#define c_strirchrset				String_IndexOf_R_Charset
+#define String_LastIndexOf_Charset	String_IndexOf_R_Charset
+//! Returns a pointer to the last occurence of the string 'query' inside the given string 'str', or NULL if nothing matched.
+t_ptrdiff							String_IndexOf_R_String(char const* str, char const* query);
+#define c_strirstr					String_IndexOf_R_String
+#define String_LastIndexOf_String	String_IndexOf_R_String
+
+//! Returns a pointer to the first occurence of the given char 'c' within 'str', or NULL if no char matched. (checks only 'n' chars in 'str').
+t_ptrdiff							String_IndexOf_N_Char(char const* str, char c, t_size n);
+#define c_strinchr					String_IndexOf_N_Char
+//! Returns a pointer to the first occurence of any char in the given 'charset' within 'str', or NULL if no char matched. (checks only 'n' chars in 'str').
+t_ptrdiff							String_IndexOf_N_Charset(char const* str, char const* charset, t_size n);
+#define c_strinchrset				String_IndexOf_N_Charset
+//! Returns a pointer to the first occurence of the string 'query' inside the given string 'str', or NULL if nothing matched. (checks only 'n' chars in 'str').
+t_ptrdiff							String_IndexOf_N_String(char const* str, char const* query, t_size n);
+#define c_strinstr					String_IndexOf_N_String
+
+
 
 /*!
 **	Returns a new null-terminated string which is a copy of 'str',
@@ -619,7 +631,7 @@ char*					String_Sub(char const* str, t_size index, t_size n);
 **	| With s: this is the maximum number of characters to be printed (by default, all characters are printed until the '\0' null terminator).
 **	| If the period is specified without an explicit value for precision, 0 is assumed.
 **	.___________________________________________________________________________________________________________
-**	| bits  | d, i			| u, o, x, X			|f,F,e,E,g,G,a,A| c		| s			| p		| n				|
+**	|bitsize| d, i			| u, o, x, X			|f,F,e,E,g,G,a,A| c		| s			| p		| n				|
 **	|_______|_______________|_______________________|_______________|_______|___________|_______|_______________|
 **	|(none)	| int			| unsigned int			| double		| int	|	char*	| void*	| int*			|
 **	| hh	| signed char	| unsigned char			|				|		|			|		| signed char*	|
