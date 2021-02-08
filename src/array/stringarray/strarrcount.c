@@ -17,7 +17,7 @@ t_u32		c_strarrcount_char(char const** strarr, char const c)
 	i = 0;
 	while (strarr[i])
 	{
-		count += c_strcount_char(strarr[i], c);
+		count += String_Count_Char(strarr[i], c);
 		++i;
 	}
 	return (count);
@@ -38,7 +38,7 @@ t_u32		c_strarrcount_charset(char const** strarr, char const* cset)
 	i = 0;
 	while (strarr[i])
 	{
-		count += c_strcount_charset(strarr[i], cset);
+		count += String_Count_Charset(strarr[i], cset);
 		++i;
 	}
 	return (count);
@@ -59,7 +59,7 @@ t_u32		c_strarrcount_str(char const** strarr, char const* query)
 	i = 0;
 	while (strarr[i])
 	{
-		count += c_strcount_str(strarr[i], query);
+		count += String_Count_String(strarr[i], query);
 		++i;
 	}
 	return (count);

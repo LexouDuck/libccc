@@ -3,7 +3,7 @@
 
 
 
-t_size	c_strcount_char(char const *str, char c)
+t_size	String_Count_Char(char const *str, char c)
 {
 	t_size	result;
 	t_size	i;
@@ -25,20 +25,20 @@ t_size	c_strcount_char(char const *str, char c)
 
 
 
-t_size	c_strcount_charset(char const *str, char const *cset)
+t_size	String_Count_Charset(char const *str, char const *charset)
 {
 	t_size	result;
 	t_size	i;
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL || cset == NULL)
+	if (str == NULL || charset == NULL)
 		return (0);
 #endif
 	result = 0;
 	i = 0;
 	while (str[i])
 	{
-		if (c_strchr(cset, str[i]))
+		if (String_Find_Char(charset, str[i]))
 			++result;
 		++i;
 	}
@@ -47,7 +47,7 @@ t_size	c_strcount_charset(char const *str, char const *cset)
 
 
 
-t_size	c_strcount_str(char const *str, char const *query)
+t_size	String_Count_String(char const *str, char const *query)
 {
 	t_size	result;
 	t_size	length;
@@ -67,9 +67,14 @@ t_size	c_strcount_str(char const *str, char const *query)
 	i = 0;
 	while (str[i])
 	{
-		j = 0;
-		while (query[j] && str[i + j] && str[i + j] == query[j])
-			++j;
+		for (j = 0; (str[i + j] == query[j]); ++j)
+		{
+			if (query[j] == '\0' && str[i + j] == '\0')
+			{
+				++j;
+				break;
+			}
+		}
 		if (j == length)
 			++result;
 		++i;

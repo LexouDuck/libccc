@@ -21,13 +21,10 @@ t_s##BITS	S##BITS##_FromString(char const* str)						\
 	t_bool	negative;													\
 	t_size	i;															\
 LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_INT									\
-	i = 0;																\
-	while (!(str[i] == '+' || str[i] == '-' || Char_IsDigit(str[i])))	\
-	{																	\
-		if (!str[i] || !Char_IsSpace(str[i]))							\
-			return (0);													\
-		++i;															\
-	}																	\
+	for (i = 0; str[i] && Char_IsSpace(str[i]); ++i)					\
+		continue;														\
+	if (!(str[i] == '+' || str[i] == '-' || Char_IsDigit(str[i])))		\
+		return (0);														\
 	negative = FALSE;													\
 	if (str[i] == '-')													\
 	{																	\
@@ -60,13 +57,10 @@ t_u##BITS	U##BITS##_FromString(char const* str)						\
 	t_u##BITS	result;													\
 	t_size	i;															\
 LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_INT									\
-	i = 0;																\
-	while (!(str[i] == '+' || Char_IsDigit(str[i])))					\
-	{																	\
-		if (!str[i] || !Char_IsSpace(str[i]))							\
-			return (0);													\
-		++i;															\
-	}																	\
+	for (i = 0; str[i] && Char_IsSpace(str[i]); ++i)					\
+		continue;														\
+	if (!(str[i] == '+' || Char_IsDigit(str[i])))						\
+		return (0);														\
 	if (str[i] == '+')													\
 		++i;															\
 	result = 0;															\

@@ -64,7 +64,7 @@ char*		String_Replace_Charset(char const* str, char const* old, char const* new)
 	i = 0;
 	while (str[i])
 	{
-		if ((c_index = String_Find_CharIndex(old, str[i])) >= 0)
+		if ((c_index = String_IndexOf_Char(old, str[i])) >= 0)
 			result[i] = new[c_index];
 		else
 			result[i] = str[i];
@@ -140,7 +140,7 @@ void		String_Replace_Charset_InPlace(char* str, char const* old, char const* new
 	i = 0;
 	while (str[i])
 	{
-		if ((c_index = String_Find_CharIndex(old, str[i])) >= 0)
+		if ((c_index = String_IndexOf_Char(old, str[i])) >= 0)
 			str[i] = new[c_index];
 		++i;
 	}
