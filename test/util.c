@@ -380,7 +380,7 @@ void	print_test(
 		else printf(C_RED"Error:\n");
 		if (function[0] == '_')
 		{
-			char *expected = str_padleft("Expected", ' ', strlen(function) + 2);
+			char *expected = str_padleft("Expected", ' ', strlen(function) + 1);
 			printf(">c%s: {%s}\n>%s: {%s}"C_RESET,
 				function, result,
 				expected, expect);
@@ -424,18 +424,33 @@ void	print_test_##FUNCNAME( \
 		error, NULL); \
 } \
 
-DEFINE_TESTFUNCTION_INT(t_s8,  s8,  s)
-DEFINE_TESTFUNCTION_INT(t_s16, s16, s)
-DEFINE_TESTFUNCTION_INT(t_s32, s32, s)
-DEFINE_TESTFUNCTION_INT(t_s64, s64, s)
+DEFINE_TESTFUNCTION_INT(t_bool, bool, u)
 
 DEFINE_TESTFUNCTION_INT(t_u8,  u8,  u)
 DEFINE_TESTFUNCTION_INT(t_u16, u16, u)
 DEFINE_TESTFUNCTION_INT(t_u32, u32, u)
 DEFINE_TESTFUNCTION_INT(t_u64, u64, u)
 
-DEFINE_TESTFUNCTION_INT(t_bool, bool, u)
+DEFINE_TESTFUNCTION_INT(t_uint, uint, u)
+
+DEFINE_TESTFUNCTION_INT(t_s8,  s8,  s)
+DEFINE_TESTFUNCTION_INT(t_s16, s16, s)
+DEFINE_TESTFUNCTION_INT(t_s32, s32, s)
+DEFINE_TESTFUNCTION_INT(t_s64, s64, s)
+
+DEFINE_TESTFUNCTION_INT(t_sint, sint, s)
+
 DEFINE_TESTFUNCTION_INT(t_size, size, u)
+DEFINE_TESTFUNCTION_INT(t_ptrdiff, ptrdiff, s)
+DEFINE_TESTFUNCTION_INT(t_sintptr, sintptr, s)
+DEFINE_TESTFUNCTION_INT(t_uintptr, uintptr, u)
+DEFINE_TESTFUNCTION_INT(t_sintmax, sintmax, s)
+DEFINE_TESTFUNCTION_INT(t_uintmax, uintmax, u)
+
+
+
+// TODO implement print_test_fixed functions
+
 
 
 #define F32_PRECISION_FORMAT	"%.10A"
@@ -443,18 +458,7 @@ DEFINE_TESTFUNCTION_INT(t_size, size, u)
 #define F80_PRECISION_FORMAT	"%.16A"
 #define F128_PRECISION_FORMAT	"%.28A"
 
-#if LIBCONFIG_BITS_FLOAT == 32
-	#define FLOAT_PRECISION_FORMAT		F32_PRECISION_FORMAT
-#endif
-#if LIBCONFIG_BITS_FLOAT == 64
-	#define FLOAT_PRECISION_FORMAT		F64_PRECISION_FORMAT
-#endif
-#if LIBCONFIG_BITS_FLOAT == 80
-	#define FLOAT_PRECISION_FORMAT		F80_PRECISION_FORMAT
-#endif
-#if LIBCONFIG_BITS_FLOAT == 128
-	#define FLOAT_PRECISION_FORMAT		F128_PRECISION_FORMAT
-#endif
+#define FLOAT_PRECISION_FORMAT	CONCAT(CONCAT(F,LIBCONFIG_BITS_FLOAT),_PRECISION_FORMAT)
 
 #define DEFINE_TESTFUNCTION_FLOAT(TYPE, FUNCNAME, SIZE) \
 void	print_test_##FUNCNAME( \
@@ -487,6 +491,13 @@ void	print_test_##FUNCNAME( \
 
 DEFINE_TESTFUNCTION_FLOAT(t_f32, f32, 32)
 DEFINE_TESTFUNCTION_FLOAT(t_f64, f64, 64)
+#ifdef __float80
+DEFINE_TESTFUNCTION_FLOAT(t_f80, f80, 80)
+#endif
+#ifdef __float128
+DEFINE_TESTFUNCTION_FLOAT(t_f128, f128, 128)
+#endif
+DEFINE_TESTFUNCTION_FLOAT(t_float, float, sizeof(t_float) * 8)
 
 
 
