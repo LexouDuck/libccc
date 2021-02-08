@@ -243,11 +243,11 @@ t_bool					Char_IsInCharset(t_utf32 c, t_char const* charset);
 /*!
 **	Get the uppercase version of the given char 'c'
 **
-**	@param	c	The character to uppercase-ify (ASCII or Unicode)
+**	@param	c	The character to uppercase-ify (ASCII only)
 **	@returns the uppercase equivalent of the given character 'c'
 **			(nothing is done if 'c' is not a letter character).
 */
-t_char					Char_ToUppercase(t_utf32 c);
+t_char					Char_ToUppercase(t_char c);
 #define c_toupper		Char_ToUppercase
 #define Char_ToUpper	Char_ToUppercase
 
@@ -255,11 +255,11 @@ t_char					Char_ToUppercase(t_utf32 c);
 /*!
 **	Get the lowercase version of the given char 'c'
 **
-**	@param	c	The character to lowercase-ify (ASCII or Unicode)
+**	@param	c	The character to lowercase-ify (ASCII only)
 **	@returns the lowercase equivalent of the given character 'c'
 **			(nothing is done if 'c' is not a letter character).
 */
-t_char					Char_ToLowercase(t_utf32 c);
+t_char					Char_ToLowercase(t_char c);
 #define c_tolower		Char_ToLowercase
 #define Char_ToLower	Char_ToLowercase
 
