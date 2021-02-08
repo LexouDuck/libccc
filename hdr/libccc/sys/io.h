@@ -82,6 +82,8 @@ TYPEDEF_ALIAS(	t_fd, FILEDESC, PRIMITIVE)
 **	Cross-platform '%' format specifiers for printf()-family calls: String_Format(), IO_Write_Format(), etc
 */
 
+#define FORMAT_ENUM	"%d"
+
 // libccc/bool.h
 #define FORMAT_BOOL	"%d"
 
