@@ -5,7 +5,7 @@
 
 
 
-static t_u32	count_distinct_sub_in_str(char const* str, char const* sub)
+static t_u32	String_Split_String_CountDistinctSubs(char const* str, char const* sub)
 {
 	t_u32	occ;
 	t_u32	i;
@@ -31,32 +31,32 @@ static t_u32	count_distinct_sub_in_str(char const* str, char const* sub)
 	return (occ);
 }
 
-static char		*get_next_chunk(char const* str, char const* sub, t_u32 *i)
+static char*	String_Split_String_GetNextChunk(char const* str, char const* sub, t_u32 *i)
 {
-	char	*result;
-	t_u32	sub_len;
-	t_u32	str_len;
-	t_s32	new_len;
+	char*		result;
+	t_size		sub_len;
+	t_size		str_len;
+	t_ptrdiff	new_len;
 
-	sub_len = c_strlen(sub);
-	str_len = c_strlen(str);
-	new_len = c_stristr(str + *i, sub);
-	if (new_len > -1)
+	sub_len = String_Length(sub);
+	str_len = String_Length(str);
+	new_len = String_IndexOf_String(str + *i, sub);
+	if (new_len < 0)
 	{
-		result = c_strsub(str, *i, (t_u32)new_len);
-		*i += new_len + sub_len * (t_s32)(new_len != -1);
+		result = String_Duplicate(str + *i);
+		*i = str_len;
 	}
 	else
 	{
-		result = c_strdup(str + *i);
-		*i = str_len;
+		result = String_Sub(str, *i, (t_size)new_len);
+		*i += new_len + sub_len * (new_len != -1);
 	}
 	return (result);
 }
 
-char			**c_strsplit_str(char const* str, char const* sub)
+char**		String_Split_String(char const* str, char const* sub)
 {
-	char	**result;
+	char**	result;
 	t_u32	reslen;
 	t_u32	i;
 	t_u32	j;
@@ -66,18 +66,18 @@ char			**c_strsplit_str(char const* str, char const* sub)
 		return (NULL);
 #endif
 	if (sub[0] == '\0')
-		return (c_strdivide(str, 1));
-	reslen = count_distinct_sub_in_str(str, sub) + 1;
-	if (!(result = c_strarrnew(reslen)))
+		return (String_Divide(str, 1));
+	reslen = String_Split_String_CountDistinctSubs(str, sub) + 1;
+	if (!(result = StringArray_New(reslen)))
 		return (NULL);
 	i = 0;
 	j = 0;
 	if (reslen == 1)
-		result[0] = c_strdup(str);
+		result[0] = String_Duplicate(str);
 	else
 		while (j < reslen)
 		{
-			result[j] = get_next_chunk(str, sub, &i);
+			result[j] = String_Split_String_GetNextChunk(str, sub, &i);
 			++j;
 		}
 	return (result);

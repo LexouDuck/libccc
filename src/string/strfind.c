@@ -26,7 +26,7 @@ inline
 t_ptrdiff	String_IndexOf_Char(char const *str, char c)
 {
 	char* result = String_Find_Char(str, c);
-	return (result ? str - result : -1);
+	return (result ? result - str : -1);
 }
 
 
@@ -57,7 +57,7 @@ inline
 t_ptrdiff	String_IndexOf_Charset(char const *str, char const *charset)
 {
 	char* result = String_Find_Charset(str, charset);
-	return (result ? str - result : -1);
+	return (result ? result - str : -1);
 }
 
 
@@ -90,5 +90,5 @@ inline
 t_ptrdiff	String_IndexOf_String(char const *str, char const *query)
 {
 	char* result = String_Find_String(str, query);
-	return (result ? str - result : -1);
+	return (result ? result - str : -1);
 }
