@@ -20,276 +20,199 @@
 ** ************************************************************************** *|
 */
 
-#ifdef			c_s8_to_str
-void	print_test_s8_to_str(char const* test_name, int can_segfault,
-		char const* expecting,
-		t_s8 number)
-{
-	TEST_PERFORM_RESULT(s8_to_str, number)
-/*
-	s_timer t = {0};
-	char* result;
-	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result = c_s8_to_str(number); timer_clock(&t.end1); } else result = segstr;
-*/
-	print_test_str(test_name, "_s8_to_str", result_libccc, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS("%d", number)
+#define DEFINETEST_UINT_TO_STR(BITS) \
+void	print_test_u##BITS##_to_str(char const* test_name, int can_segfault,																\
+		char const* expecting,																												\
+		t_u64 number)																														\
+{																																			\
+	TEST_PERFORM_RESULT(u##BITS##_to_str, number)																							\
+	print_test_str(test_name, "_u"#BITS"_to_str", result_libccc, expecting, can_segfault);													\
+	print_timer_result(&t, FALSE);																											\
+	TEST_PRINT_ARGS(FORMAT_U##BITS, number)																									\
+}																																			\
+void	test_u##BITS##_to_str(void)																											\
+{																																			\
+/*	| TEST FUNCTION            | TEST NAME                       |CAN SEGV| EXPECTING              | TEST ARGS			*/					\
+	print_test_u##BITS##_to_str("u"#BITS"_to_str (n = min)       ",	FALSE,                      "0", 0                     );				\
+	print_test_u##BITS##_to_str("u"#BITS"_to_str                 ",	FALSE,                      "1", 1                     );				\
+	print_test_u##BITS##_to_str("u"#BITS"_to_str                 ",	FALSE,                      "9", 9                     );				\
+	print_test_u##BITS##_to_str("u"#BITS"_to_str                 ",	FALSE,                     "10", 10                    );				\
+	print_test_u##BITS##_to_str("u"#BITS"_to_str                 ",	FALSE,                     "11", 11                    );				\
+	print_test_u##BITS##_to_str("u"#BITS"_to_str                 ",	FALSE,                     "42", 42                    );				\
+	print_test_u##BITS##_to_str("u"#BITS"_to_str                 ",	FALSE,                     "99", 99                    );				\
+	print_test_u##BITS##_to_str("u"#BITS"_to_str                 ",	FALSE,                    "100", 100                   );				\
+	print_test_u##BITS##_to_str("u"#BITS"_to_str                 ",	FALSE,                    "111", 111                   );				\
+	print_test_u##BITS##_to_str("u"#BITS"_to_str                 ",	FALSE,                    "123", 123                   );				\
+	print_test_u##BITS##_to_str("u"#BITS"_to_str                 ",	FALSE,                    "127", 127                   );				\
+	print_test_u##BITS##_to_str("u"#BITS"_to_str                 ",	FALSE,                    "128", 128                   );				\
+	print_test_u##BITS##_to_str("u"#BITS"_to_str                 ",	FALSE,                    "129", 129                   );				\
+	print_test_u##BITS##_to_str("u"#BITS"_to_str (n = 8max)      ",	FALSE,                    "255", 255                   );				\
+	if (g_test.flags.test_overflow) {																										\
+	print_test_u##BITS##_to_str("u"#BITS"_to_str (n < 8min)      ",	FALSE,                     "-1", -1                    );				\
+	print_test_u##BITS##_to_str("u"#BITS"_to_str (n > 8max)      ",	FALSE,                    "256", 256                   );				\
+	print_test_u##BITS##_to_str("u"#BITS"_to_str (n > 8maxdigit) ",	FALSE,                  "99999", 99999                 );				\
+	print_test_u##BITS##_to_str("u"#BITS"_to_str (n < 8maxdigit) ",	FALSE,                 "-99999",-99999                 );				\
+	}																																		\
+	if (BITS >= 16)																															\
+	{																																		\
+		print_test_u##BITS##_to_str("u"#BITS"_to_str                 ",	FALSE,                    "777", 777                   );			\
+		print_test_u##BITS##_to_str("u"#BITS"_to_str                 ",	FALSE,                   "7777", 7777                  );			\
+		print_test_u##BITS##_to_str("u"#BITS"_to_str                 ",	FALSE,                  "10000", 10000                 );			\
+		print_test_u##BITS##_to_str("u"#BITS"_to_str (n = 16max)     ",	FALSE,                  "65535", 65535                 );			\
+		if (g_test.flags.test_overflow) {																									\
+		print_test_u##BITS##_to_str("u"#BITS"_to_str (n < 16min)     ",	FALSE,                     "-1", -1                    );			\
+		print_test_u##BITS##_to_str("u"#BITS"_to_str (n > 16max)     ",	FALSE,                  "65536", 65536                 );			\
+		print_test_u##BITS##_to_str("u"#BITS"_to_str (n > 16maxdigit)",	FALSE,                "9999999", 9999999               );			\
+		print_test_u##BITS##_to_str("u"#BITS"_to_str (n < 16maxdigit)",	FALSE,               "-9999999",-9999999               );			\
+		}																																	\
+		if (BITS >= 32)																														\
+		{																																	\
+			print_test_u##BITS##_to_str("u"#BITS"_to_str                 ",	FALSE,              "123456789", 123456789             );		\
+			print_test_u##BITS##_to_str("u"#BITS"_to_str                 ",	FALSE,              "555555555", 555555555             );		\
+			print_test_u##BITS##_to_str("u"#BITS"_to_str                 ",	FALSE,              "987654321", 987654321             );		\
+			print_test_u##BITS##_to_str("u"#BITS"_to_str (n = 32max)     ",	FALSE,             "4294967295", 4294967295            );		\
+			if (g_test.flags.test_overflow) {																								\
+			print_test_u##BITS##_to_str("u"#BITS"_to_str (n < 32min)     ",	FALSE,                     "-1", -1                    );		\
+			print_test_u##BITS##_to_str("u"#BITS"_to_str (n > 32max)     ",	FALSE,             "4294967296", 4294967296            );		\
+			print_test_u##BITS##_to_str("u"#BITS"_to_str (n > 32maxdigit)",	FALSE,           "999999999999", 999999999999          );		\
+			print_test_u##BITS##_to_str("u"#BITS"_to_str (n < 32maxdigit)",	FALSE,          "-999999999999",-999999999999          );		\
+			}																																\
+			if (BITS >= 64)																													\
+			{																																\
+				print_test_u##BITS##_to_str("u"#BITS"_to_str                 ",	FALSE,           "999999999999", 999999999999          );	\
+				print_test_u##BITS##_to_str("u"#BITS"_to_str                 ",	FALSE,        "999999999999000", 999999999999000       );	\
+				print_test_u##BITS##_to_str("u"#BITS"_to_str                 ",	FALSE,     "999999999999000999", 999999999999000999    );	\
+				print_test_u##BITS##_to_str("u"#BITS"_to_str (n = 64max)     ",	FALSE,   "18446744073709551615", 18446744073709551615UL);	\
+				if (g_test.flags.test_overflow) {																							\
+				print_test_u##BITS##_to_str("u"#BITS"_to_str (n < 64min)     ",	FALSE,                     "-1", -1                    );	\
+/*				print_test_u##BITS##_to_str("u"#BITS"_to_str (n > 64max)     ",	FALSE,   "18446744073709551616", 18446744073709551616UL); */\
+/*				print_test_u##BITS##_to_str("u"#BITS"_to_str (n > 64maxdigit)",	FALSE,  "999999999999999999999", 999999999999999999999UL);*/\
+/*				print_test_u##BITS##_to_str("u"#BITS"_to_str (n < 64maxdigit)",	FALSE, "-999999999999999999999",-999999999999999999999UL);*/\
+				}																															\
+			}																																\
+		}																																	\
+	}																																		\
 }
-void	test_s8_to_str(void)
-{
-//	| TEST FUNCTION     | TEST NAME                 |CAN SEGV|EXPECTING| TEST ARGS
-	print_test_s8_to_str("s8_to_str               ",	FALSE,      "1", 1    );
-	print_test_s8_to_str("s8_to_str               ",	FALSE,     "42", 42   );
-	print_test_s8_to_str("s8_to_str               ",	FALSE,      "0", 0    );
-	print_test_s8_to_str("s8_to_str               ",	FALSE,    "111", 111  );
-	print_test_s8_to_str("s8_to_str               ",	FALSE,   "-111",-111  );
-	print_test_s8_to_str("s8_to_str (n = min)     ",	FALSE,   "-128",-128  );
-	print_test_s8_to_str("s8_to_str (n = max)     ",	FALSE,    "127", 127  );
-	if (g_test.flags.test_overflow)
-	{
-		print_test_s8_to_str("s8_to_str (n < min)     ",	FALSE,   "-129",-129  );
-		print_test_s8_to_str("s8_to_str (n > max)     ",	FALSE,    "128", 128  );
-		print_test_s8_to_str("s8_to_str (n > maxdigit)",	FALSE,  "99999", 99999);
-		print_test_s8_to_str("s8_to_str (n < maxdigit)",	FALSE, "-99999",-99999);
-	}
-}
+
+
+
+#ifdef c_u8_to_str
+DEFINETEST_UINT_TO_STR(8)
+#endif
+#ifdef c_u16_to_str
+DEFINETEST_UINT_TO_STR(16)
+#endif
+#ifdef c_u32_to_str
+DEFINETEST_UINT_TO_STR(32)
+#endif
+#ifdef c_u64_to_str
+DEFINETEST_UINT_TO_STR(64)
+#endif
+#ifdef __int128
+#ifdef c_u128_to_str
+DEFINETEST_UINT_TO_STR(128)
+#endif
+#endif
+#ifdef c_uint_to_str
+DEFINETEST_UINT_TO_STR(int)
 #endif
 
 
 
-#ifdef			c_s16_to_str
-void	print_test_s16_to_str(char const* test_name, int can_segfault,
-		char const* expecting,
-		t_s16 number)
-{
-	TEST_PERFORM_RESULT(s16_to_str, number)
-	print_test_str(test_name, "_s16_to_str", result_libccc, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS("%d", number)
+#define DEFINETEST_SINT_TO_STR(BITS) \
+void	print_test_s##BITS##_to_str(char const* test_name, int can_segfault,																\
+		char const* expecting,																												\
+		t_s##BITS number)																													\
+{																																			\
+	TEST_PERFORM_RESULT(s##BITS##_to_str, number)																							\
+	print_test_str(test_name, "_s"#BITS"_to_str", result_libccc, expecting, can_segfault);													\
+	print_timer_result(&t, FALSE);																											\
+	TEST_PRINT_ARGS(FORMAT_S##BITS, number)																									\
+}																																			\
+void	test_s##BITS##_to_str(void)																											\
+{																																			\
+/*	| TEST FUNCTION      | TEST NAME                             |CAN SEGV| EXPECTING              | TEST ARGS				*/				\
+	print_test_s##BITS##_to_str("s"#BITS"_to_str                 ",	FALSE,                      "1", 1                      );				\
+	print_test_s##BITS##_to_str("s"#BITS"_to_str                 ",	FALSE,                     "-1",-1                      );				\
+	print_test_s##BITS##_to_str("s"#BITS"_to_str                 ",	FALSE,                     "10", 10                     );				\
+	print_test_s##BITS##_to_str("s"#BITS"_to_str                 ",	FALSE,                    "-10",-10                     );				\
+	print_test_s##BITS##_to_str("s"#BITS"_to_str                 ",	FALSE,                      "0", 0                      );				\
+	print_test_s##BITS##_to_str("s"#BITS"_to_str                 ",	FALSE,                     "42", 42                     );				\
+	print_test_s##BITS##_to_str("s"#BITS"_to_str                 ",	FALSE,                    "111", 111                    );				\
+	print_test_s##BITS##_to_str("s"#BITS"_to_str                 ",	FALSE,                   "-111",-111                    );				\
+	print_test_s##BITS##_to_str("s"#BITS"_to_str (n = 8min)      ",	FALSE,                   "-128",-128                    );				\
+	print_test_s##BITS##_to_str("s"#BITS"_to_str (n = 8max)      ",	FALSE,                    "127", 127                    );				\
+	if (g_test.flags.test_overflow) {																										\
+	print_test_s##BITS##_to_str("s"#BITS"_to_str (n < 8min)      ",	FALSE,                   "-129",-129                    );				\
+	print_test_s##BITS##_to_str("s"#BITS"_to_str (n > 8max)      ",	FALSE,                    "128", 128                    );				\
+	print_test_s##BITS##_to_str("s"#BITS"_to_str (n > 8maxdigit) ",	FALSE,                  "99999", 99999                  );				\
+	print_test_s##BITS##_to_str("s"#BITS"_to_str (n < 8maxdigit) ",	FALSE,                 "-99999",-99999                  );				\
+	}																																		\
+	if (BITS >= 16)																															\
+	{																																		\
+		print_test_s##BITS##_to_str("s"#BITS"_to_str                 ",	FALSE,                    "777", 777                    );			\
+		print_test_s##BITS##_to_str("s"#BITS"_to_str                 ",	FALSE,                   "-666",-666                    );			\
+		print_test_s##BITS##_to_str("s"#BITS"_to_str                 ",	FALSE,                 "-10000",-10000                  );			\
+		print_test_s##BITS##_to_str("s"#BITS"_to_str                 ",	FALSE,                  "10000",+10000                  );			\
+		print_test_s##BITS##_to_str("s"#BITS"_to_str (n = 16min)     ",	FALSE,                 "-32768",-32768                  );			\
+		print_test_s##BITS##_to_str("s"#BITS"_to_str (n = 16max)     ",	FALSE,                  "32767", 32767                  );			\
+		if (g_test.flags.test_overflow) {																									\
+		print_test_s##BITS##_to_str("s"#BITS"_to_str (n < 16min)     ",	FALSE,                 "-32769",-32769                  );			\
+		print_test_s##BITS##_to_str("s"#BITS"_to_str (n > 16max)     ",	FALSE,                  "32768", 32768                  );			\
+		print_test_s##BITS##_to_str("s"#BITS"_to_str (n > 16maxdigit)",	FALSE,                "9999999", 9999999                );			\
+		print_test_s##BITS##_to_str("s"#BITS"_to_str (n < 16maxdigit)",	FALSE,               "-9999999",-9999999                );			\
+		}																																	\
+		if (BITS >= 32)																														\
+		{																																	\
+			print_test_s##BITS##_to_str("s"#BITS"_to_str                 ",	FALSE,             "-123456789",-123456789              );		\
+			print_test_s##BITS##_to_str("s"#BITS"_to_str                 ",	FALSE,              "123456789", 123456789              );		\
+			print_test_s##BITS##_to_str("s"#BITS"_to_str                 ",	FALSE,             "-987654321",-987654321              );		\
+			print_test_s##BITS##_to_str("s"#BITS"_to_str                 ",	FALSE,              "987654321", 987654321              );		\
+			print_test_s##BITS##_to_str("s"#BITS"_to_str (n = 32min)     ",	FALSE,            "-2147483648",-2147483648             );		\
+			print_test_s##BITS##_to_str("s"#BITS"_to_str (n = 32max)     ",	FALSE,             "2147483647", 2147483647             );		\
+			if (g_test.flags.test_overflow) {																								\
+			print_test_s##BITS##_to_str("s"#BITS"_to_str (n < 32min)     ",	FALSE,            "-2147483649",-2147483649             );		\
+			print_test_s##BITS##_to_str("s"#BITS"_to_str (n > 32max)     ",	FALSE,             "2147483648", 2147483648             );		\
+			print_test_s##BITS##_to_str("s"#BITS"_to_str (n > 32maxdigit)",	FALSE,           "999999999999", 999999999999           );		\
+			print_test_s##BITS##_to_str("s"#BITS"_to_str (n < 32maxdigit)",	FALSE,          "-999999999999",-999999999999           );		\
+			}																																\
+			if (BITS >= 64)																													\
+			{																																\
+				print_test_s##BITS##_to_str("s"#BITS"_to_str                 ",	FALSE,             "2147483648", 2147483648             );	\
+				print_test_s##BITS##_to_str("s"#BITS"_to_str                 ",	FALSE,            "-2147483649",-2147483649             );	\
+				print_test_s##BITS##_to_str("s"#BITS"_to_str                 ",	FALSE,           "999999999999", 999999999999           );	\
+				print_test_s##BITS##_to_str("s"#BITS"_to_str                 ",	FALSE,          "-999999999999",-999999999999           );	\
+				print_test_s##BITS##_to_str("s"#BITS"_to_str (n = 64min)     ",	FALSE,   "-9223372036854775808",-9223372036854775808LL  );	\
+				print_test_s##BITS##_to_str("s"#BITS"_to_str (n = 64max)     ",	FALSE,    "9223372036854775807", 9223372036854775807LL  );	\
+				if (g_test.flags.test_overflow) {																							\
+				print_test_s##BITS##_to_str("s"#BITS"_to_str (n < 64min)     ",	FALSE,   "-9223372036854775809",-9223372036854775809LL  );	\
+				print_test_s##BITS##_to_str("s"#BITS"_to_str (n > 64max)     ",	FALSE,    "9223372036854775808", 9223372036854775808LL  );	\
+			/*	print_test_s##BITS##_to_str("s"#BITS"_to_str (n > 64maxdigit)",	FALSE,  "999999999999999999999", 999999999999999999999LL);*/\
+			/*	print_test_s##BITS##_to_str("s"#BITS"_to_str (n < 64maxdigit)",	FALSE, "-999999999999999999999",-999999999999999999999LL);*/\
+				}																															\
+			}																																\
+		}																																	\
+	}																																		\
 }
-void	test_s16_to_str(void)
-{
-//	| TEST FUNCTION      | TEST NAME                  |CAN SEGV|EXPECTING| TEST ARGS
-	print_test_s16_to_str("s16_to_str               ",	FALSE,        "1", 1      );
-	print_test_s16_to_str("s16_to_str               ",	FALSE,       "42", 42     );
-	print_test_s16_to_str("s16_to_str               ",	FALSE,        "0", 0      );
-	print_test_s16_to_str("s16_to_str               ",	FALSE,      "777", 777    );
-	print_test_s16_to_str("s16_to_str               ",	FALSE,     "-666",-666    );
-	print_test_s16_to_str("s16_to_str               ",	FALSE,    "10000", 10000  );
-	print_test_s16_to_str("s16_to_str               ",	FALSE,   "-10000",-10000  );
-	print_test_s16_to_str("s16_to_str (n = min)     ",	FALSE,   "-32768",-32768  );
-	print_test_s16_to_str("s16_to_str (n = max)     ",	FALSE,    "32767", 32767  );
-	if (g_test.flags.test_overflow)
-	{
-		print_test_s16_to_str("s16_to_str (n < min)     ",	FALSE,   "-32769",-32769  );
-		print_test_s16_to_str("s16_to_str (n > max)     ",	FALSE,    "32768", 32768  );
-		print_test_s16_to_str("s16_to_str (n > maxdigit)",	FALSE,  "9999999", 9999999);
-		print_test_s16_to_str("s16_to_str (n < maxdigit)",	FALSE, "-9999999",-9999999);
-	}
-}
+
+
+
+#ifdef c_s8_to_str
+DEFINETEST_SINT_TO_STR(8)
 #endif
-
-
-
-#ifdef			c_s32_to_str
-void	print_test_s32_to_str(char const* test_name, int can_segfault,
-		char const* expecting,
-		t_s32 number)
-{
-	TEST_PERFORM_RESULT(s32_to_str, number)
-	print_test_str(test_name, "_s32_to_str", result_libccc, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS("%d", number)
-}
-void	test_s32_to_str(void)
-{
-//	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING     | TEST ARGS
-	print_test_s32_to_str("s32_to_str               ",	FALSE,             "1", 1           );
-	print_test_s32_to_str("s32_to_str               ",	FALSE,            "42", 42          );
-	print_test_s32_to_str("s32_to_str               ",	FALSE,             "0", 0           );
-	print_test_s32_to_str("s32_to_str               ",	FALSE,           "777", 777         );
-	print_test_s32_to_str("s32_to_str               ",	FALSE,          "-666",-666         );
-	print_test_s32_to_str("s32_to_str               ",	FALSE,        "-10000",-10000       );
-	print_test_s32_to_str("s32_to_str               ",	FALSE,     "123456789", 123456789   );
-	print_test_s32_to_str("s32_to_str (n = min)     ",	FALSE,   "-2147483648",-2147483648  );
-	print_test_s32_to_str("s32_to_str (n = max)     ",	FALSE,    "2147483647", 2147483647  );
-	if (g_test.flags.test_overflow)
-	{
-		print_test_s32_to_str("s32_to_str (n < min)     ",	FALSE,   "-2147483649",-2147483649  );
-		print_test_s32_to_str("s32_to_str (n > max)     ",	FALSE,    "2147483648", 2147483648  );
-		print_test_s32_to_str("s32_to_str (n > maxdigit)",	FALSE,  "999999999999", 999999999999);
-		print_test_s32_to_str("s32_to_str (n < maxdigit)",	FALSE, "-999999999999",-999999999999);
-	}
-}
+#ifdef c_s16_to_str
+DEFINETEST_SINT_TO_STR(16)
 #endif
-
-
-
-#ifdef			c_s64_to_str
-void	print_test_s64_to_str(char const* test_name, int can_segfault,
-		char const* expecting,
-		t_s64 number)
-{
-	TEST_PERFORM_RESULT(s64_to_str, number)
-	print_test_str(test_name, "_s64_to_str", result_libccc, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS(FORMAT_S64, number)
-}
-void	test_s64_to_str(void)
-{
-//	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING              | TEST ARGS
-	print_test_s64_to_str("s64_to_str               ",	FALSE,                      "1", 1                     );
-	print_test_s64_to_str("s64_to_str               ",	FALSE,                     "42", 42                    );
-	print_test_s64_to_str("s64_to_str               ",	FALSE,                      "0", 0                     );
-	print_test_s64_to_str("s64_to_str               ",	FALSE,                    "777", 777                   );
-	print_test_s64_to_str("s64_to_str               ",	FALSE,                   "-666",-666                   );
-	print_test_s64_to_str("s64_to_str               ",	FALSE,                 "-10000",-10000                 );
-	print_test_s64_to_str("s64_to_str               ",	FALSE,              "123456789", 123456789             );
-	print_test_s64_to_str("s64_to_str               ",	FALSE,             "2147483648", 2147483648            );
-	print_test_s64_to_str("s64_to_str               ",	FALSE,            "-2147483649",-2147483649            );
-	print_test_s64_to_str("s64_to_str               ",	FALSE,           "999999999999", 999999999999          );
-	print_test_s64_to_str("s64_to_str               ",	FALSE,          "-999999999999",-999999999999          );
-	print_test_s64_to_str("s64_to_str (n = min)     ",	FALSE,   "-9223372036854775807",-9223372036854775807LL );
-	print_test_s64_to_str("s64_to_str (n = max)     ",	FALSE,    "9223372036854775807", 9223372036854775807LL );
-	if (g_test.flags.test_overflow)
-	{
-		print_test_s64_to_str("s64_to_str (n < min)     ",	FALSE,   "-9223372036854775809",-9223372036854775809LL  );
-		print_test_s64_to_str("s64_to_str (n > max)     ",	FALSE,    "9223372036854775808", 9223372036854775808LL  );
-#ifndef __clang__
-		print_test_s64_to_str("s64_to_str (n > maxdigit)",	FALSE,  "999999999999999999999", 999999999999999999999LL);
-		print_test_s64_to_str("s64_to_str (n < maxdigit)",	FALSE, "-999999999999999999999",-999999999999999999999LL);
-#endif	
-	}
-}
+#ifdef c_s32_to_str
+DEFINETEST_SINT_TO_STR(32)
 #endif
-
-
-
-#ifdef			c_u8_to_str
-void	print_test_u8_to_str(char const* test_name, int can_segfault,
-		char const* expecting,
-		t_u8 number)
-{
-	TEST_PERFORM_RESULT(u8_to_str, number)
-	print_test_str(test_name, "_u8_to_str", result_libccc, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS("%d", number)
-}
-void	test_u8_to_str(void)
-{
-//	| TEST FUNCTION     | TEST NAME                 |CAN SEGV|EXPECTING| TEST ARGS
-	print_test_u8_to_str("u8_to_str               ",	FALSE,      "1", 1    );
-	print_test_u8_to_str("u8_to_str               ",	FALSE,     "42", 42   );
-	print_test_u8_to_str("u8_to_str               ",	FALSE,    "111", 111  );
-	print_test_u8_to_str("u8_to_str (n = min)     ",	FALSE,      "0", 0    );
-	print_test_u8_to_str("u8_to_str (n = max)     ",	FALSE,    "255", 255  );
-	if (g_test.flags.test_overflow)
-	{
-		print_test_u8_to_str("u8_to_str (n < min)     ",	FALSE,     "-1", -1   );
-		print_test_u8_to_str("u8_to_str (n > max)     ",	FALSE,    "256", 256  );
-		print_test_u8_to_str("u8_to_str (n > maxdigit)",	FALSE,  "99999", 99999);
-		print_test_u8_to_str("u8_to_str (n < maxdigit)",	FALSE, "-99999",-99999);
-	}
-}
+#ifdef c_s64_to_str
+DEFINETEST_SINT_TO_STR(64)
 #endif
-
-
-
-#ifdef			c_u16_to_str
-void	print_test_u16_to_str(char const* test_name, int can_segfault,
-		char const* expecting,
-		t_u16 number)
-{
-	TEST_PERFORM_RESULT(u16_to_str, number)
-	print_test_str(test_name, "_u16_to_str", result_libccc, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS("%d", number)
-}
-void	test_u16_to_str(void)
-{
-//	| TEST FUNCTION      | TEST NAME                  |CAN SEGV|EXPECTING| TEST ARGS
-	print_test_u16_to_str("u16_to_str               ",	FALSE,        "1", 1      );
-	print_test_u16_to_str("u16_to_str               ",	FALSE,       "42", 42     );
-	print_test_u16_to_str("u16_to_str               ",	FALSE,      "777", 777    );
-	print_test_u16_to_str("u16_to_str               ",	FALSE,    "10000", 10000  );
-	print_test_u16_to_str("u16_to_str (n = min)     ",	FALSE,        "0", 0      );
-	print_test_u16_to_str("u16_to_str (n = max)     ",	FALSE,    "65535", 65535  );
-	if (g_test.flags.test_overflow)
-	{
-		print_test_u16_to_str("u16_to_str (n < min)     ",	FALSE,       "-1", -1     );
-		print_test_u16_to_str("u16_to_str (n > max)     ",	FALSE,    "65536", 65536  );
-		print_test_u16_to_str("u16_to_str (n > maxdigit)",	FALSE,  "9999999", 9999999);
-		print_test_u16_to_str("u16_to_str (n < maxdigit)",	FALSE, "-9999999",-9999999);
-	}
-}
+#ifdef __int128
+#ifdef c_s128_to_str
+DEFINETEST_SINT_TO_STR(128)
 #endif
-
-
-
-#ifdef			c_u32_to_str
-void	print_test_u32_to_str(char const* test_name, int can_segfault,
-		char const* expecting,
-		t_u32 number)
-{
-	TEST_PERFORM_RESULT(u32_to_str, number)
-	print_test_str(test_name, "_u32_to_str", result_libccc, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS("%d", number)
-}
-void	test_u32_to_str(void)
-{
-//	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING     | TEST ARGS
-	print_test_u32_to_str("u32_to_str               ",	FALSE,             "1", 1           );
-	print_test_u32_to_str("u32_to_str               ",	FALSE,            "42", 42          );
-	print_test_u32_to_str("u32_to_str               ",	FALSE,             "0", 0           );
-	print_test_u32_to_str("u32_to_str               ",	FALSE,           "777", 777         );
-	print_test_u32_to_str("u32_to_str               ",	FALSE,         "10000", 10000       );
-	print_test_u32_to_str("u32_to_str               ",	FALSE,     "123456789", 123456789   );
-	print_test_u32_to_str("u32_to_str (n = max)     ",	FALSE,    "4294967295", 4294967295  );
-	print_test_u32_to_str("u32_to_str (n = min)     ",	FALSE,             "0", 0           );
-	if (g_test.flags.test_overflow)
-	{
-		print_test_u32_to_str("u32_to_str (n < min)     ",	FALSE,            "-1", -1          );
-		print_test_u32_to_str("u32_to_str (n > max)     ",	FALSE,    "4294967296", 4294967296  );
-		print_test_u32_to_str("u32_to_str (n > maxdigit)",	FALSE,  "999999999999", 999999999999);
-		print_test_u32_to_str("u32_to_str (n < maxdigit)",	FALSE, "-999999999999",-999999999999);
-	}
-}
-#endif
-
-
-
-#ifdef			c_u64_to_str
-void	print_test_u64_to_str(char const* test_name, int can_segfault,
-		char const* expecting,
-		t_u64 number)
-{
-	TEST_PERFORM_RESULT(u64_to_str, number)
-	print_test_str(test_name, "_u64_to_str", result_libccc, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS(FORMAT_U64, number)
-}
-void	test_u64_to_str(void)
-{
-//	| TEST FUNCTION      | TEST NAME                 |CAN SEGV| EXPECTING              | TEST ARGS
-	print_test_u64_to_str("u64_to_str               ",	FALSE,                      "1", 1                     );
-	print_test_u64_to_str("u64_to_str               ",	FALSE,                     "42", 42                    );
-	print_test_u64_to_str("u64_to_str               ",	FALSE,                    "777", 777                   );
-	print_test_u64_to_str("u64_to_str               ",	FALSE,                  "10000", 10000                 );
-	print_test_u64_to_str("u64_to_str               ",	FALSE,              "123456789", 123456789             );
-	print_test_u64_to_str("u64_to_str               ",	FALSE,           "999999999999", 999999999999          );
-	print_test_u64_to_str("u64_to_str (n = max)     ",	FALSE,   "18446744073709551615", 18446744073709551615UL);
-	print_test_u64_to_str("u64_to_str (n = min)     ",	FALSE,                      "0", 0                     );
-	if (g_test.flags.test_overflow)
-	{
-		print_test_u64_to_str("u64_to_str (n < min)     ",	FALSE,                     "-1", -1                    );
-#ifndef __clang__
-		print_test_u64_to_str("u64_to_str (n > max)     ",	FALSE,   "18446744073709551616", 18446744073709551616UL);
-		print_test_u64_to_str("u64_to_str (n > maxdigit)",	FALSE,  "999999999999999999999", 999999999999999999999UL);
-		print_test_u64_to_str("u64_to_str (n < maxdigit)",	FALSE, "-999999999999999999999",-999999999999999999999UL);
-#endif
-	}
-}
 #endif
 
 
@@ -2106,6 +2029,27 @@ int		testsuite_int(void)
 
 	print_nonstd();
 
+#ifdef c_u8_to_str
+	test_u8_to_str();
+#endif
+#ifdef c_u16_to_str
+	test_u16_to_str();
+#endif
+#ifdef c_u32_to_str
+	test_u32_to_str();
+#endif
+#ifdef c_u64_to_str
+	test_u64_to_str();
+#endif
+#ifdef __int128
+#ifdef c_u128_to_str
+	test_u128_to_str();
+#endif
+#endif
+#ifdef c_uint_to_str
+	test_uint_to_str();
+#endif
+
 #ifdef c_s8_to_str
 	test_s8_to_str();
 #endif
@@ -2118,18 +2062,13 @@ int		testsuite_int(void)
 #ifdef c_s64_to_str
 	test_s64_to_str();
 #endif
-
-#ifdef c_u8_to_str
-	test_u8_to_str();
+#ifdef __int128
+#ifdef c_s128_to_str
+	test_s128_to_str();
 #endif
-#ifdef c_u16_to_str
-	test_u16_to_str();
 #endif
-#ifdef c_u32_to_str
-	test_u32_to_str();
-#endif
-#ifdef c_u64_to_str
-	test_u64_to_str();
+#ifdef c_sint_to_str
+	test_sint_to_str();
 #endif
 
 
