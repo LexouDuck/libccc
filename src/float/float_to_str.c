@@ -30,15 +30,14 @@ char*	Float_ToString_CheckSpecial(t_f32 number)
 #define DEFINEFUNC_FLOAT_TO_STR(BITS) \
 char*		F##BITS##_ToString(t_f##BITS number, t_u8 precision)	\
 {																	\
-	char*	result = NULL;											\
 	if ((number >=  FLOAT_THRESHOLD_HUGE) ||						\
 		(number <= -FLOAT_THRESHOLD_HUGE) ||						\
 		(number > 0 && number <=  FLOAT_THRESHOLD_TINY) ||			\
 		(number < 0 && number >= -FLOAT_THRESHOLD_TINY))			\
-		return (F##BITS##_ToString_Exp(number, precision);			\
+		return (F##BITS##_ToString_Exp(number, precision));			\
 	else															\
-		return (F##BITS##_ToString_Dec(number, precision);			\
-	return (result);												\
+		return (F##BITS##_ToString_Dec(number, precision));			\
+	return (NULL);													\
 }																	\
 
 
@@ -186,6 +185,22 @@ DEFINEFUNC_FLOAT_TO_STRBIN(128)
 
 #else
 
+	#define DEFINEFUNC_FLOAT_TO_STR_ANY_(BITS, FORMAT) \
+	inline char*	F##BITS##_ToString(t_f##BITS number, t_u8 precision)			\
+	{																				\
+		char*	result = Float_ToString_CheckSpecial(number);						\
+		if (result)																	\
+			return (result);														\
+		if ((number >=  FLOAT_THRESHOLD_HUGE) ||									\
+			(number <= -FLOAT_THRESHOLD_HUGE) ||									\
+			(number > 0 && number <=  FLOAT_THRESHOLD_TINY) ||						\
+			(number < 0 && number >= -FLOAT_THRESHOLD_TINY))						\
+			return (String_Format(FORMAT"e", precision, number));					\
+		else																		\
+			return (String_Format(FORMAT"f", precision, number));					\
+		return (NULL);																\
+	}																				\
+
 	#define DEFINEFUNC_FLOAT_TO_STR(SUFFIX, BITS, FORMAT) \
 	inline char*	F##BITS##_ToString##SUFFIX(t_f##BITS number, t_u8 precision)	\
 	{																				\
@@ -197,20 +212,20 @@ DEFINEFUNC_FLOAT_TO_STRBIN(128)
 
 
 
-	DEFINEFUNC_FLOAT_TO_STR(	,32,  "%.*g")
+	DEFINEFUNC_FLOAT_TO_STR_ANY_(32,  "%.*")
 	DEFINEFUNC_FLOAT_TO_STR(_Exp,32, "%#.*e")
 	DEFINEFUNC_FLOAT_TO_STR(_Dec,32, "%#.*f")
 	DEFINEFUNC_FLOAT_TO_STR(_Hex,32, "%#.*a")
 	DEFINEFUNC_FLOAT_TO_STR(_Bin,32, "%#.*a") // TODO
 
-	DEFINEFUNC_FLOAT_TO_STR(	,64,  "%.*lg")
+	DEFINEFUNC_FLOAT_TO_STR_ANY_(64,  "%.*l")
 	DEFINEFUNC_FLOAT_TO_STR(_Exp,64, "%#.*le")
 	DEFINEFUNC_FLOAT_TO_STR(_Dec,64, "%#.*lf")
 	DEFINEFUNC_FLOAT_TO_STR(_Hex,64, "%#.*la")
 	DEFINEFUNC_FLOAT_TO_STR(_Bin,64, "%#.*a") // TODO
 
 	#ifdef	__float80
-	DEFINEFUNC_FLOAT_TO_STR(	,80,  "%.*llg")
+	DEFINEFUNC_FLOAT_TO_STR_ANY_(80,  "%.*ll")
 	DEFINEFUNC_FLOAT_TO_STR(_Exp,80, "%#.*lle")
 	DEFINEFUNC_FLOAT_TO_STR(_Dec,80, "%#.*llf")
 	DEFINEFUNC_FLOAT_TO_STR(_Hex,80, "%#.*lla")
@@ -218,7 +233,7 @@ DEFINEFUNC_FLOAT_TO_STRBIN(128)
 	#endif
 
 	#ifdef	__float128
-	DEFINEFUNC_FLOAT_TO_STR(	,128,  "%.*llg")
+	DEFINEFUNC_FLOAT_TO_STR_ANY_(128,  "%.*ll")
 	DEFINEFUNC_FLOAT_TO_STR(_Exp,128, "%#.*lle")
 	DEFINEFUNC_FLOAT_TO_STR(_Dec,128, "%#.*llf")
 	DEFINEFUNC_FLOAT_TO_STR(_Hex,128, "%#.*lla")

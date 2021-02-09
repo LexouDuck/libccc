@@ -110,9 +110,9 @@ TYPEDEF_ALIAS(					t_float, FLOAT, PRIMITIVE)
 
 
 //! If (value >= FLOAT_THRESHOLD_HUGE), Float_ToString() functions print in scientific notation
-#define FLOAT_THRESHOLD_HUGE	(1e+8)
+#define FLOAT_THRESHOLD_HUGE	(1e+9)
 //! If (value <= FLOAT_THRESHOLD_TINY), Float_ToString() functions print in scientific notation
-#define FLOAT_THRESHOLD_TINY	(1e-8)
+#define FLOAT_THRESHOLD_TINY	(1e-9)
 
 
 

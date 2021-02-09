@@ -21,21 +21,23 @@
 */
 
 #define DEFINETEST_FLOAT_TO_STR(TYPE) \
-void	print_test_##TYPE##_to_str(char const* test_name, int can_segfault,													\
-		char const* expecting,																								\
-		t_##TYPE number,																									\
-		t_u8 precision)																										\
-{																															\
-	TEST_PERFORM_RESULT(TYPE##_to_str, number, precision)																	\
-	print_test_str(test_name, "_"#TYPE"_to_str", result_libccc, expecting, can_segfault);									\
-	print_timer_result(&t, FALSE);																							\
-	TEST_PRINT_ARGS("%g", number)																							\
-}																															\
-void	test_##TYPE##_to_str(void)																							\
-{																															\
+void	print_test_##TYPE##_to_str(char const* test_name, int can_segfault,														\
+		char const* expecting,																									\
+		t_##TYPE number,																										\
+		t_u8 precision)																											\
+{																																\
+	TEST_PERFORM_RESULT(TYPE##_to_str, number, precision)																		\
+	print_test_str(test_name, "_"#TYPE"_to_str", result_libccc, expecting, can_segfault);										\
+	print_timer_result(&t, FALSE);																								\
+	TEST_PRINT_ARGS("%+#.*g, p=%u", precision, number, precision)																\
+}																																\
+void	test_##TYPE##_to_str(void)																								\
+{																																\
 /*	| TEST FUNCTION           | TEST NAME                     |CAN SEGV| EXPECTING             | TEST ARGS				*/		\
 	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                      "1", 1                    , 0);		\
 	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                    "1.0", 1                    , 1);		\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                   "1.00", 1                    , 2);		\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                  "1.000", 1                    , 3);		\
 	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                 "1.0000", 1                    , 4);		\
 	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                      "2", 2                    , 0);		\
 	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                    "2.0", 2                    , 1);		\
@@ -55,7 +57,9 @@ void	test_##TYPE##_to_str(void)																							\
 	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,              "0.3333333", 0.33333333           , 7);		\
 	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                 "-777.1", -777.1               , 1);		\
 	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,               "3.141592", 3.141592             , 6);		\
-	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,               "3.141592", 0x1.921FB54442D18p+1 , 6);		\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,               "3.141593", 0x1.921FB54442D18p+1 , 6);		\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,              "3.1415927", 0x1.921FB54442D18p+1 , 7);		\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,             "3.14159274", 0x1.921FB54442D18p+1 , 8);		\
 	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,               "6.283185", 0x1.921FB54442D18p+2 , 6);		\
 	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,             "2.71828182", 0x1.5BF0A8B145769p+1 , 8);		\
 	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,           "1.4142135623", 0x1.6A09E667F3BCDp+0 , 12);	\
@@ -64,12 +68,18 @@ void	test_##TYPE##_to_str(void)																							\
 	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,              "10000.000", 10000                , 3);		\
 	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,     "10000.000000000000", 10000                , 12);	\
 	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,              "123456789", 123456789.           , 1);		\
-	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,         "69696969696969", 69696969696969.      , 10);	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,        "-69696969696969",-69696969696969.      , 10);	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,            "0.000000003", 0.000000003          , 10);	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,           "-0.000000003",-0.000000003          , 10);	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,     "0.0000000000000001", 0.0000000000000001   , 10);	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,    "-0.0000000000000001",-0.0000000000000001   , 10);	\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,               "69696969", 69696969.            , 0);		\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,              "-69696969",-69696969.            , 0);		\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,             "6969696969", 6969696969.          , 0);		\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,            "-6969696969",-6969696969.          , 0);		\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,           "696969696969", 696969696969.        , 0);		\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,          "-696969696969",-696969696969.        , 0);		\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,            "0.000000003", 0.000000003          , 9);		\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,           "-0.000000003",-0.000000003          , 9);		\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,           "0.0000000030", 0.000000003          , 10);	\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,          "-0.0000000030",-0.000000003          , 10);	\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,     "0.0000000000000001", 0.0000000000000001   , 17);	\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,    "-0.0000000000000001",-0.0000000000000001   , 17);	\
 /*// TODO make it so these tests are ok, they arent because the float conversion functions use a u64 tmp variable */		\
 	print_test_##TYPE##_to_str(#TYPE"_to_str (n = max)     ",	FALSE,    "9223372036854775807", 9223372036854775807.  , 10);	\
 	print_test_##TYPE##_to_str(#TYPE"_to_str (n = min)     ",	FALSE,   "-9223372036854775808",-9223372036854775808.  , 10);	\
