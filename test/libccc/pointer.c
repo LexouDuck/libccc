@@ -54,14 +54,10 @@ void	test_size_to_str(void)
 			case 1:	print_test_size_to_str("size_to_str (n > max)     ",	FALSE,                    "256", 256                   ); break;
 			case 2:	print_test_size_to_str("size_to_str (n > max)     ",	FALSE,                  "65536", 65536                 ); break;
 			case 4:	print_test_size_to_str("size_to_str (n > max)     ",	FALSE,             "4294967296", 4294967296            ); break;
-#ifdef __clang__
+			case 8:	/*print_test_size_to_str("size_to_str (n > max)     ",	FALSE,   "18446744073709551616", 18446744073709551616UL);*/ break;
 		}
-#else
-			case 8:	print_test_size_to_str("size_to_str (n > max)     ",	FALSE,   "18446744073709551616", 18446744073709551616UL); break;
-		}
-		print_test_size_to_str("size_to_str (n > maxdigit)",	FALSE,  "999999999999999999999", 999999999999999999999UL);
-		print_test_size_to_str("size_to_str (n < maxdigit)",	FALSE, "-999999999999999999999",-999999999999999999999UL);
-#endif
+		/*print_test_size_to_str("size_to_str (n > maxdigit)",	FALSE,  "999999999999999999999", 999999999999999999999UL);*/
+		/*print_test_size_to_str("size_to_str (n < maxdigit)",	FALSE, "-999999999999999999999",-999999999999999999999UL);*/
 	}
 }
 #endif
