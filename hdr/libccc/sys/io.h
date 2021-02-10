@@ -151,6 +151,10 @@ TYPEDEF_ALIAS(	t_fd, FILEDESC, PRIMITIVE)
 #define FORMAT_HEX_SIZE		"%#zx"
 #define FORMAT_PTRDIFF		"%ti"
 #define FORMAT_HEX_PTRDIFF	"%#tx"
+#define FORMAT_SINTPTR		"%zi"
+#define FORMAT_UINTPTR		"%zu"
+#define FORMAT_SINTMAX		"%ji"
+#define FORMAT_UINTMAX		"%ju"
 
 // libccc/memory.h
 #define FORMAT_MEM(N)		FORMAT_MEMORY(N)
