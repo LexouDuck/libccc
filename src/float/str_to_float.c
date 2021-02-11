@@ -45,8 +45,8 @@ t_float	Float_FromString_CheckSpecial(char const* str)
 //! Returns TRUE if the given 'str' contains any invalid characters for float parsing, or FALSE otherwise
 static t_bool	Float_FromString_CheckInvalid(char const* str)
 {
-	t_size	count_p;
-	t_size	count_e;
+	t_size	count_expon;
+	t_size	count_signs;
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
@@ -59,14 +59,19 @@ static t_bool	Float_FromString_CheckInvalid(char const* str)
 		str[0] != '.' &&
 		!Char_IsDigit(str[0]))
 		return (TRUE);
-	if (String_Count_Charset(str, "-+") > 1)
+	if (String_HasOnly(str, "0123456789.+-eE"))
+		count_expon = String_Count_Charset(str, "eE");
+	else if (String_HasOnly(str, "0123456789aAbBcCdDeEfF.+-pPxX"))
+		count_expon = String_Count_Charset(str, "pP");
+	else if (String_HasOnly(str, "01.+-pPbB"))
+		count_expon = String_Count_Charset(str, "pP");
+	else return (TRUE);
+
+	if (count_expon > 1)
 		return (TRUE);
-	count_p = String_Count_Charset(str, "pP");
-	count_e = String_Count_Charset(str, "eE");
-	if ((count_p > 1) ||
-		(count_p == 0 && count_e > 1) ||
-		!String_HasOnly(str, "0123456789ABCDEFabcdef.+-XPxp"))
-		return (TRUE);
+	count_signs = String_Count_Charset(str, "-+");
+	if (count_expon)	{ if (count_signs > 2)	return (TRUE); }
+	else				{ if (count_signs > 1)	return (TRUE); }
 	return (FALSE);
 }
 

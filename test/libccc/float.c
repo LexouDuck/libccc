@@ -34,33 +34,36 @@ void	print_test_##TYPE##_to_str(char const* test_name, int can_segfault,					\
 void	test_##TYPE##_to_str(void)																								\
 {																																\
 /*	| TEST FUNCTION           | TEST NAME                     |CAN SEGV| EXPECTING              | TEST ARGS				*/		\
-	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                       "1", 1                    , 0);	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                     "1.0", 1                    , 1);	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                    "1.00", 1                    , 2);	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                   "1.000", 1                    , 3);	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                  "1.0000", 1                    , 4);	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                       "2", 2                    , 0);	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                     "2.0", 2                    , 1);	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,      "2.0000000000000000", 2                    , 16);	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                       "0", 0                    , 0);	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                     "0.0", 0                    , 1);	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                   "0.000", 0                    , 3);	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                      "-1", -1                   , 0);	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                    "-1.0", -1                   , 1);	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                   "-1.00", -1                   , 2);	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                      "42", 42                   , 0);	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                    "42.0", 42                   , 1);	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                   "42.00", 42                   , 2);	\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                       "1", 1.                   , 0);	\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                     "1.0", 1.                   , 1);	\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                    "1.00", 1.                   , 2);	\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                   "1.000", 1.                   , 3);	\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                  "1.0000", 1.                   , 4);	\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                       "2", 2.                   , 0);	\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                     "2.0", 2.                   , 1);	\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,      "2.0000000000000000", 2.                   , 16);	\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                       "0", 0.                   , 0);	\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                     "0.0", 0.                   , 1);	\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                   "0.000", 0.                   , 3);	\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                      "-1", -1.                  , 0);	\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                    "-1.0", -1.                  , 1);	\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                   "-1.00", -1.                  , 2);	\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                      "42", 42.                  , 0);	\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                    "42.0", 42.                  , 1);	\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                   "42.00", 42.                  , 2);	\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                     "-42", -42.                 , 0);	\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                   "-42.0", -42.                 , 1);	\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                  "-42.00", -42.                 , 2);	\
 	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                     "0.5", 0.5                  , 1);	\
 	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                   "0.001", 0.001                , 3);	\
 	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                 "0.33333", 0.33333333           , 5);	\
 	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,               "0.3333333", 0.33333333           , 7);	\
 	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                  "-777.1", -777.1               , 1);	\
 	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                "3.141592", 3.141592             , 6);	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                   "10000", 10000                , 0);	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                 "10000.0", 10000                , 1);	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,               "10000.000", 10000                , 3);	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,      "10000.000000000000", 10000                , 12);	\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                   "10000", 10000.               , 0);	\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                 "10000.0", 10000.               , 1);	\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,               "10000.000", 10000.               , 3);	\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,      "10000.000000000000", 10000.               , 12);	\
 	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                   "7e+09", 6969696969.          , 0);	\
 	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                  "-7e+09",-6969696969.          , 0);	\
 	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                   "7e+11", 696969696969.        , 0);	\
@@ -69,6 +72,7 @@ void	test_##TYPE##_to_str(void)																								\
 	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,            "-0.000000003",-0.000000003          , 9);	\
 	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,            "0.0000000030", 0.000000003          , 10);	\
 	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,           "-0.0000000030",-0.000000003          , 10);	\
+	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                "1.414214", 0x1.6A09E667F3BCDp+0 , 6);	\
 	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                "3.141593", 0x1.921FB54442D18p+1 , 6);	\
 	print_test_##TYPE##_to_str(#TYPE"_to_str               ",	FALSE,                "6.283185", 0x1.921FB54442D18p+2 , 6);	\
 /*// TODO make it so these tests are ok, they arent because the float conversion functions use a u64 tmp variable */			\
@@ -98,8 +102,8 @@ void	test_##TYPE##_to_str(void)																								\
 	print_test_##TYPE##_to_str(#TYPE"_to_str (n < -inf)    ",	FALSE,               "-INFINITY",-1.0e1000              , 5);	\
 	print_test_##TYPE##_to_str(#TYPE"_to_str (+inf)        ",	FALSE,               "+INFINITY", INFINITY              , 1);	\
 	print_test_##TYPE##_to_str(#TYPE"_to_str (-inf)        ",	FALSE,               "-INFINITY",-INFINITY              , 1);	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (nan)         ",	FALSE,                     "NAN", NAN                   , 1);	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (nan)         ",	FALSE,                     "NAN",-NAN                   , 1);	\
+	print_test_##TYPE##_to_str(#TYPE"_to_str (+nan)        ",	FALSE,                     "NAN", NAN                   , 1);	\
+	print_test_##TYPE##_to_str(#TYPE"_to_str (-nan)        ",	FALSE,                     "NAN",-NAN                   , 1);	\
 }
 
 #ifdef c_f32_to_str
@@ -320,61 +324,268 @@ void	test_str_to_##TYPE(void)																									\
 	print_test_str_to_##TYPE("str_to_"#TYPE,                	FALSE,        0x1.921FB54442D18p+2, "6.283185307179586476925286766559005768394338798750211641949");	\
 	print_test_str_to_##TYPE("str_to_"#TYPE,                	FALSE,        0x1.45F306DC9C883p-2, "0.318309886183790671537767526745028724068919291480912897495");	\
 	print_test_str_to_##TYPE("str_to_"#TYPE,                	FALSE,        0x1.45F306DC9C883p-3, "0.159154943091895335768883763372514362034459645740456448747");	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                         1e0, "1e0"                        );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                         1e1, "1e1"                        );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                         1e2, "1e2"                        );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                        1e-1, "1e-1"                       );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                        1e-2, "1e-2"                       );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                        1e10, "1e10"                       );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                        1e11, "1e11"                       );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e0,   "1e0"                        );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e1,   "1e1"                        );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e2,   "1e2"                        );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e3,   "1e3"                        );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e01,  "1e01"                       );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e02,  "1e02"                       );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e03,  "1e03"                       );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e10,  "1e10"                       );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e11,  "1e11"                       );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e12,  "1e12"                       );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e+0,  "1e+0"                       );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e+1,  "1e+1"                       );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e+2,  "1e+2"                       );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e+3,  "1e+3"                       );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e+01, "1e+01"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e+02, "1e+02"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e+03, "1e+03"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e+10, "1e+10"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e+11, "1e+11"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e+12, "1e+12"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e-0,  "1e-0"                       );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e-1,  "1e-1"                       );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e-2,  "1e-2"                       );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e-3,  "1e-3"                       );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e-01, "1e-01"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e-02, "1e-02"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e-03, "1e-03"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e-10, "1e-10"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e-11, "1e-11"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e-12, "1e-12"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e0,  " 1e0"                        );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e1,  " 1e1"                        );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e2,  " 1e2"                        );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e3,  " 1e3"                        );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e01, " 1e01"                       );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e02, " 1e02"                       );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e03, " 1e03"                       );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e10, " 1e10"                       );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e11, " 1e11"                       );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e12, " 1e12"                       );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e+0, " 1e+0"                       );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e+1, " 1e+1"                       );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e+2, " 1e+2"                       );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e+3, " 1e+3"                       );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e+01," 1e+01"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e+02," 1e+02"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e+03," 1e+03"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e+10," 1e+10"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e+11," 1e+11"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e+12," 1e+12"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e-0, " 1e-0"                       );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e-1, " 1e-1"                       );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e-2, " 1e-2"                       );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e-3, " 1e-3"                       );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e-01," 1e-01"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e-02," 1e-02"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e-03," 1e-03"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e-10," 1e-10"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e-11," 1e-11"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                       1e-12," 1e-12"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      +1e0,   "+1e0"                       );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      +1e1,   "+1e1"                       );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      +1e2,   "+1e2"                       );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      +1e3,   "+1e3"                       );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      +1e01,  "+1e01"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      +1e02,  "+1e02"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      +1e03,  "+1e03"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      +1e10,  "+1e10"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      +1e11,  "+1e11"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      +1e12,  "+1e12"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      +1e+0,  "+1e+0"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      +1e+1,  "+1e+1"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      +1e+2,  "+1e+2"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      +1e+3,  "+1e+3"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      +1e+01, "+1e+01"                     );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      +1e+02, "+1e+02"                     );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      +1e+03, "+1e+03"                     );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      +1e+10, "+1e+10"                     );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      +1e+11, "+1e+11"                     );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      +1e+12, "+1e+12"                     );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      +1e-0,  "+1e-0"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      +1e-1,  "+1e-1"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      +1e-2,  "+1e-2"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      +1e-3,  "+1e-3"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      +1e-01, "+1e-01"                     );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      +1e-02, "+1e-02"                     );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      +1e-03, "+1e-03"                     );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      +1e-10, "+1e-10"                     );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      +1e-11, "+1e-11"                     );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      +1e-12, "+1e-12"                     );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      -1e0,   "-1e0"                       );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      -1e1,   "-1e1"                       );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      -1e2,   "-1e2"                       );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      -1e3,   "-1e3"                       );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      -1e01,  "-1e01"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      -1e02,  "-1e02"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      -1e03,  "-1e03"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      -1e10,  "-1e10"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      -1e11,  "-1e11"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      -1e12,  "-1e12"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      -1e+0,  "-1e+0"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      -1e+1,  "-1e+1"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      -1e+2,  "-1e+2"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      -1e+3,  "-1e+3"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      -1e+01, "-1e+01"                     );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      -1e+02, "-1e+02"                     );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      -1e+03, "-1e+03"                     );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      -1e+10, "-1e+10"                     );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      -1e+11, "-1e+11"                     );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      -1e+12, "-1e+12"                     );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      -1e-0,  "-1e-0"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      -1e-1,  "-1e-1"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      -1e-2,  "-1e-2"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      -1e-3,  "-1e-3"                      );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      -1e-01, "-1e-01"                     );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      -1e-02, "-1e-02"                     );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      -1e-03, "-1e-03"                     );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      -1e-10, "-1e-10"                     );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      -1e-11, "-1e-11"                     );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                      -1e-12, "-1e-12"                     );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                 777.777e0,    "777.777e0"                 );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                 777.777e1,    "777.777e1"                 );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                 777.777e2,    "777.777e2"                 );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                 777.777e3,    "777.777e3"                 );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                 777.777e01,   "777.777e01"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                 777.777e02,   "777.777e02"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                 777.777e03,   "777.777e03"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                 777.777e10,   "777.777e10"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                 777.777e11,   "777.777e11"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                 777.777e12,   "777.777e12"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                 777.777e+0,   "777.777e+0"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                 777.777e+1,   "777.777e+1"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                 777.777e+2,   "777.777e+2"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                 777.777e+3,   "777.777e+3"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                 777.777e+01,  "777.777e+01"               );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                 777.777e+02,  "777.777e+02"               );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                 777.777e+03,  "777.777e+03"               );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                 777.777e+10,  "777.777e+10"               );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                 777.777e+11,  "777.777e+11"               );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                 777.777e+12,  "777.777e+12"               );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                 777.777e-0,   "777.777e-0"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                 777.777e-1,   "777.777e-1"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                 777.777e-2,   "777.777e-2"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                 777.777e-3,   "777.777e-3"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                 777.777e-01,  "777.777e-01"               );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                 777.777e-02,  "777.777e-02"               );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                 777.777e-03,  "777.777e-03"               );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                 777.777e-10,  "777.777e-10"               );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                 777.777e-11,  "777.777e-11"               );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                 777.777e-12,  "777.777e-12"               );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                +777.777e0,   "+777.777e0"                 );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                +777.777e1,   "+777.777e1"                 );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                +777.777e2,   "+777.777e2"                 );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                +777.777e3,   "+777.777e3"                 );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                +777.777e01,  "+777.777e01"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                +777.777e02,  "+777.777e02"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                +777.777e03,  "+777.777e03"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                +777.777e10,  "+777.777e10"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                +777.777e11,  "+777.777e11"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                +777.777e12,  "+777.777e12"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                +777.777e+0,  "+777.777e+0"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                +777.777e+1,  "+777.777e+1"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                +777.777e+2,  "+777.777e+2"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                +777.777e+3,  "+777.777e+3"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                +777.777e+01, "+777.777e+01"               );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                +777.777e+02, "+777.777e+02"               );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                +777.777e+03, "+777.777e+03"               );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                +777.777e+10, "+777.777e+10"               );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                +777.777e+11, "+777.777e+11"               );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                +777.777e+12, "+777.777e+12"               );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                +777.777e-0,  "+777.777e-0"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                +777.777e-1,  "+777.777e-1"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                +777.777e-2,  "+777.777e-2"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                +777.777e-3,  "+777.777e-3"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                +777.777e-01, "+777.777e-01"               );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                +777.777e-02, "+777.777e-02"               );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                +777.777e-03, "+777.777e-03"               );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                +777.777e-10, "+777.777e-10"               );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                +777.777e-11, "+777.777e-11"               );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                +777.777e-12, "+777.777e-12"               );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                -777.777e0,   "-777.777e0"                 );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                -777.777e1,   "-777.777e1"                 );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                -777.777e2,   "-777.777e2"                 );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                -777.777e3,   "-777.777e3"                 );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                -777.777e01,  "-777.777e01"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                -777.777e02,  "-777.777e02"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                -777.777e03,  "-777.777e03"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                -777.777e10,  "-777.777e10"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                -777.777e11,  "-777.777e11"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                -777.777e12,  "-777.777e12"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                -777.777e+0,  "-777.777e+0"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                -777.777e+1,  "-777.777e+1"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                -777.777e+2,  "-777.777e+2"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                -777.777e+3,  "-777.777e+3"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                -777.777e+01, "-777.777e+01"               );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                -777.777e+02, "-777.777e+02"               );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                -777.777e+03, "-777.777e+03"               );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                -777.777e+10, "-777.777e+10"               );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                -777.777e+11, "-777.777e+11"               );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                -777.777e+12, "-777.777e+12"               );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                -777.777e-0,  "-777.777e-0"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                -777.777e-1,  "-777.777e-1"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                -777.777e-2,  "-777.777e-2"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                -777.777e-3,  "-777.777e-3"                );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                -777.777e-01, "-777.777e-01"               );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                -777.777e-02, "-777.777e-02"               );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                -777.777e-03, "-777.777e-03"               );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                -777.777e-10, "-777.777e-10"               );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                -777.777e-11, "-777.777e-11"               );	\
+	print_test_str_to_##TYPE("str_to_"#TYPE" (exp)",        	FALSE,                -777.777e-12, "-777.777e-12"               );	\
 	print_test_str_to_##TYPE("str_to_"#TYPE" (exp, invalid)",	FALSE,                         NAN, "exp"                        );	\
 	print_test_str_to_##TYPE("str_to_"#TYPE" (exp, invalid)",	FALSE,                         NAN, "eXp"                        );	\
 	print_test_str_to_##TYPE("str_to_"#TYPE" (exp, invalid)",	FALSE,                         NAN, "eXP"                        );	\
 	print_test_str_to_##TYPE("str_to_"#TYPE" (exp, invalid)",	FALSE,                         NAN, "EXP"                        );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p0, "0xp"                        );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p0, "0XP"                        );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p0, "0x0p"                       );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p0, "0X0P"                       );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p0, "0x0p0"                      );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p0, "0X0P0"                      );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p1, "0x0p1"                      );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p1, "0X0P1"                      );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p0, "0x1p"                       );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p0, "0X1P"                       );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p0, "0x1p0"                      );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p0, "0X1P0"                      );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p1, "0x1p1"                      );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p1, "0X1P1"                      );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p1, "0X1.p1"                     );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p1, "0x1.P1"                     );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p1, "0X1.0p1"                    );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p1, "0x1.0P1"                    );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p1, "0X1.1p1"                    );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p1, "0x1.1P1"                    );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p1, "0X0.1p1"                    );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p1, "0x0.1P1"                    );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p1, "0X0.0p1"                    );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p1, "0x0.0P1"                    );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p1, "0X0.p1"                     );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p1, "0x0.P1"                     );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                         0x2, "0x2p"                       );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                         0x2, "0X2P"                       );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p2, "0x1p2"                      );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p2, "0X1P2"                      );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x2p1, "0x2p1"                      );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x2p1, "0X2P1"                      );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x2p2, "0x2p2"                      );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x2p2, "0X2P2"                      );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                      0x7p05, "0x7p05"                     );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                      0x7p05, "0X7P05"                     );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                     0x10p01, "0x10p01"                    );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                     0x10p01, "0X10P01"                    );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x123, "0x123"                      );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,        0x1.921FB54442D18p+1, "0x1.921FB54442D18p+1"       );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,        0x1.921FB54442D18p+2, "0x1.921FB54442D18p+2"       );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,        0x1.45F306DC9C883p-2, "0x1.45F306DC9C883p-2"       );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,        0x1.45F306DC9C883p-3, "0x1.45F306DC9C883p-3"       );	\
-	print_test_str_to_##TYPE("str_to_"#TYPE" (bin)",        	FALSE,                           0, "0b1101"                     );	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p0, "0xp"                        );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p0, "0XP"                        );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p0, "0x0p"                       );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p0, "0X0P"                       );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p0, "0x0p0"                      );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p0, "0X0P0"                      );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p1, "0x0p1"                      );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p1, "0X0P1"                      );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p0, "0x1p"                       );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p0, "0X1P"                       );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p0, "0x1p0"                      );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p0, "0X1P0"                      );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p1, "0x1p1"                      );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p1, "0X1P1"                      );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p1, "0X1.p1"                     );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p1, "0x1.P1"                     );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p1, "0X1.0p1"                    );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p1, "0x1.0P1"                    );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p1, "0X1.1p1"                    );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p1, "0x1.1P1"                    );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p1, "0X0.1p1"                    );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p1, "0x0.1P1"                    );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p1, "0X0.0p1"                    );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p1, "0x0.0P1"                    );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p1, "0X0.p1"                     );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p1, "0x0.P1"                     );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                         0x2, "0x2p"                       );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                         0x2, "0X2P"                       );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p2, "0x1p2"                      );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x1p2, "0X1P2"                      );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x2p1, "0x2p1"                      );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x2p1, "0X2P1"                      );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x2p2, "0x2p2"                      );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x2p2, "0X2P2"                      );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                      0x7p05, "0x7p05"                     );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                      0x7p05, "0X7P05"                     );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                     0x10p01, "0x10p01"                    );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                     0x10p01, "0X10P01"                    );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,                       0x123, "0x123"                      );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,        0x1.921FB54442D18p+1, "0x1.921FB54442D18p+1"       );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,        0x1.921FB54442D18p+2, "0x1.921FB54442D18p+2"       );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,        0x1.45F306DC9C883p-2, "0x1.45F306DC9C883p-2"       );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (hex)",        	FALSE,        0x1.45F306DC9C883p-3, "0x1.45F306DC9C883p-3"       );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (bin)",        	FALSE,                          0., "0b0"                        );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (bin)",        	FALSE,                          1., "0b1"                        );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (bin)",        	FALSE,                          2., "0b10"                       );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (bin)",        	FALSE,                          3., "0b11"                       );*/	\
+/*	print_test_str_to_##TYPE("str_to_"#TYPE" (bin)",        	FALSE,                         13., "0b1101"                     );*/	\
 	print_test_str_to_##TYPE("str_to_"#TYPE,                	FALSE,                         NAN, "(-(123"                     );	\
 	print_test_str_to_##TYPE("str_to_"#TYPE,                	FALSE,                         NAN, "[12]123"                    );	\
 	print_test_str_to_##TYPE("str_to_"#TYPE,                	FALSE,                         NAN, "45_"                        );	\
