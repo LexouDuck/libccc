@@ -45,7 +45,7 @@
 
 
 
-/*
+/*!
 **	This define is used as the 'can_segfault' arg for certain 'int' tests,
 **	so as to have those tests expect a "(segfault)" result.
 */
@@ -55,17 +55,17 @@
 
 typedef struct	s_test_flags_
 {
-	bool	verbose;		// if TRUE, display all logger output for each test
-	bool	show_args;		// if TRUE, display arguments given to each test
-	bool	show_speed;		// if TRUE, display performance (execution speed) for each test
-	bool	test_nullptrs;	// if TRUE, perform all NULL pointer tests
-	bool	test_overflow;	// if TRUE, perform all the libccc_convert overflowing number tests
+	bool	verbose;		//!< if TRUE, display all logger output for each test
+	bool	show_args;		//!< if TRUE, display arguments given to each test
+	bool	show_speed;		//!< if TRUE, display performance (execution speed) for each test
+	bool	test_nullptrs;	//!< if TRUE, perform all NULL pointer tests
+	bool	test_overflow;	//!< if TRUE, perform all the libccc_convert overflowing number tests
 }				s_test_flags;
 
 typedef struct	s_test_totals_
 {
-	int		tests;	// The total amount of tests ran.
-	int		failed; // The amount of tests which had an ERROR result.
+	int		tests;	//!< The total amount of tests ran.
+	int		failed; //!< The amount of tests which had an ERROR result.
 }				s_test_totals;
 
 typedef struct	s_test_suite_
@@ -76,7 +76,7 @@ typedef struct	s_test_suite_
 }				s_test_suite;
 #define TEST_SUITE_AMOUNT	24
 
-//Args for main are: help, verbose, arguments, performance, overflow
+//! Args for main are: help, verbose, arguments, performance, overflow
 typedef struct	s_test_arg_
 {
 	void	(*handle_arg)();
@@ -91,6 +91,7 @@ typedef struct	s_test_arg_
 //! This struct holds all program state data
 typedef struct	s_test_
 {
+	bool			last_test_failed;			//!< is TRUE if the lastest test performed had an error.
 	s_test_totals	totals;						//!< Stores the total amounts of tests ran/failed
 	s_test_flags	flags;						//!< Stores the main program argument options (as boolean flags)
 	s_test_arg		args[TEST_ARGS_AMOUNT];		//!< Stores the chars/names and descriptions for each valid program argument
@@ -299,6 +300,27 @@ void	print_test_lst(char const *test_name, char const *function, s_list const *r
 **	The following macros are used for tests, to avoid boilerplate and code repetition.
 */
 
+//! Prints the given format string + values (if global flags demand so)
+#define TEST_PRINT_ARGS(FORMAT, ...) \
+	if (g_test.flags.show_args && (g_test.flags.verbose || g_test.last_test_failed)) \
+	{ \
+		printf(" -> ("); \
+		printf(FORMAT, ##__VA_ARGS__); \
+		printf(")"); \
+	} \
+
+//! Prints the given argument variable as a string with non-printable chars as escape sequences
+#define TEST_PRINT_ARGS_ESCAPED(ARG) \
+	char* tmp = str_to_escape(ARG); \
+	TEST_PRINT_ARGS("\"%s\"", tmp); \
+	if (tmp) \
+	{ \
+		free(tmp); \
+		tmp = NULL; \
+	} \
+
+
+
 //! Use this for void-return functions
 #define TEST_PERFORM(RESULT, FUNCTION, ...) \
 	_TEST_INIT() \
@@ -366,27 +388,6 @@ void	print_test_lst(char const *test_name, char const *function, s_list const *r
 	_TEST_INIT() \
 	_TEST_PERFORM_RESULT(1, TYPE, libccc, c_##FUNCTION, dest_libccc, ##__VA_ARGS__) \
 	_TEST_PERFORM_RESULT(2, TYPE, libc,       FUNCTION, dest_libc,  ##__VA_ARGS__) \
-
-
-
-//! Prints the given format string + values (if global flags demand so)
-#define TEST_PRINT_ARGS(FORMAT, ...) \
-	if (g_test.flags.verbose && g_test.flags.show_args) \
-	{ \
-		printf(" -> ("); \
-		printf(FORMAT, ##__VA_ARGS__); \
-		printf(")"); \
-	} \
-
-//! Prints the given argument variable as a string with non-printable chars as escape sequences
-#define TEST_PRINT_ARGS_ESCAPED(ARG) \
-	char* tmp = str_to_escape(ARG); \
-	TEST_PRINT_ARGS("\"%s\"", tmp); \
-	if (tmp) \
-	{ \
-		free(tmp); \
-		tmp = NULL; \
-	} \
 
 
 

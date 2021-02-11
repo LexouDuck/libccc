@@ -358,7 +358,10 @@ void	print_test(
 
 	g_test.totals.tests += 1;
 	if (error)
+	{
 		g_test.totals.failed += 1;
+	}
+	g_test.last_test_failed = error;
 	if (g_test.flags.verbose || error || warning)
 	{
 		if (test_name)

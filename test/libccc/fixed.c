@@ -20,7 +20,9 @@
 ** ************************************************************************** *|
 */
 
-#ifdef			c_fixed_
+#ifndef c_fixed_
+void test_fixed_(void)	{}
+#else
 void	print_test_fixed_(char const* test_name, int can_segfault,
 		char const* str,
 		char c)
@@ -37,20 +39,20 @@ void	test_fixed_(void)
 
 
 #define DEFINETEST_FIXED_TO_STR(TYPE) \
-void	print_test_##TYPE##_to_str(char const* test_name, int can_segfault,					\
-		char const* expecting,																\
-		t_##TYPE number)																	\
-{																							\
-	char* tmp = String_Format("%+li.(%lu/%lu)",												\
-		(t_s64)Fixed_IntegerPart(number),													\
-		(t_u64)Fixed_FractionPart(number),													\
-		(t_u64)1 << LIBCONFIG_BITS_FIXED_FRACTIONPART);										\
-	TEST_PERFORM_RESULT(TYPE##_to_str, number)												\
-	print_test_str(test_name, "_"#TYPE"_to_str", result_libccc, tmp, can_segfault);		\
-	print_timer_result(&t, FALSE);															\
-	TEST_PRINT_ARGS(tmp)																	\
-	String_Delete(&tmp);																	\
-}																							\
+void	print_test_##TYPE##_to_str(char const* test_name, int can_segfault,			\
+		char const* expecting,														\
+		t_##TYPE number)															\
+{																					\
+	char* tmp = String_Format("%+li.(%lu/%lu)",										\
+		(t_s64)Fixed_IntegerPart(number),											\
+		(t_u64)Fixed_FractionPart(number),											\
+		(t_u64)1 << LIBCONFIG_BITS_FIXED_FRACTIONPART);								\
+	TEST_PERFORM_RESULT(TYPE##_to_str, number)										\
+	print_test_str(test_name, "_"#TYPE"_to_str", result_libccc, tmp, can_segfault);	\
+	print_timer_result(&t, FALSE);													\
+	TEST_PRINT_ARGS(tmp)															\
+	String_Delete(&tmp);															\
+}																					\
 void	test_##TYPE##_to_str(void)																										\
 {																																		\
 /*	| TEST FUNCTION      | TEST NAME                         |CAN SEGV| EXPECTING              | TEST ARGS							*/	\
