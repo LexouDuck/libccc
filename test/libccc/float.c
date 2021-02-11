@@ -7,10 +7,16 @@
 
 
 
-#pragma GCC diagnostic push // Disable GCC overflow warnings temporarily
+// Disable certain GCC warnings temporarily
+#pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Woverflow"
-// "-Wimplicitly-unsigned-literal"
-// "-Wconstant-conversion"
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wshift-overflow"
+// Disable certain clang warnings temporarily
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wimplicitly-unsigned-literal"
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wconstant-conversion"
 
 
 
@@ -711,15 +717,20 @@ DEFINETEST_STR_TO_FLOAT(float)
 
 
 
-#pragma GCC diagnostic pop // Resets the GCC warning settings back to normal
-
-
-
 /*
 ** ************************************************************************** *|
 **                            Test Suite Function                             *|
 ** ************************************************************************** *|
 */
+
+// Resets the GCC warning settings back to normal
+#pragma GCC diagnostic pop
+#pragma GCC diagnostic pop
+// Resets the clang warning settings back to normal
+#pragma clang diagnostic pop
+#pragma clang diagnostic pop
+
+
 
 int		testsuite_float(void)
 {

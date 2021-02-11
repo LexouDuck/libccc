@@ -1,5 +1,6 @@
 
 #include "libccc/fixed.h"
+#include "libccc/string.h"
 #include "libccc/sys/io.h"
 #include "libccc/math/math.h"
 
@@ -7,10 +8,16 @@
 
 
 
-#pragma GCC diagnostic push // Disable GCC overflow warnings temporarily
+// Disable certain GCC warnings temporarily
+#pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Woverflow"
-// "-Wimplicitly-unsigned-literal"
-// "-Wconstant-conversion"
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wshift-overflow"
+// Disable certain clang warnings temporarily
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wimplicitly-unsigned-literal"
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wconstant-conversion"
 
 
 
@@ -51,7 +58,7 @@ void	print_test_##TYPE##_to_str(char const* test_name, int can_segfault,			\
 	print_test_str(test_name, "_"#TYPE"_to_str", result_libccc, tmp, can_segfault);	\
 	print_timer_result(&t, FALSE);													\
 	TEST_PRINT_ARGS(tmp)															\
-	String_Delete(&tmp);															\
+	free(tmp);																		\
 }																					\
 void	test_##TYPE##_to_str(void)																										\
 {																																		\
@@ -159,15 +166,20 @@ DEFINETEST_FIXED_TO_STR(fixed)
 
 
 
-#pragma GCC diagnostic pop // Resets the GCC warning settings back to normal
-
-
-
 /*
 ** ************************************************************************** *|
 **                            Test Suite Function                             *|
 ** ************************************************************************** *|
 */
+
+// Resets the GCC warning settings back to normal
+#pragma GCC diagnostic pop
+#pragma GCC diagnostic pop
+// Resets the clang warning settings back to normal
+#pragma clang diagnostic pop
+#pragma clang diagnostic pop
+
+
 
 int		testsuite_fixed(void)
 {

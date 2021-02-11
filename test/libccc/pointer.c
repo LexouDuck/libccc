@@ -7,10 +7,16 @@
 
 
 
-#pragma GCC diagnostic push // Disable GCC overflow warnings temporarily
+// Disable certain GCC warnings temporarily
+#pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Woverflow"
-// "-Wimplicitly-unsigned-literal"
-// "-Wconstant-conversion"
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wshift-overflow"
+// Disable certain clang warnings temporarily
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wimplicitly-unsigned-literal"
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wconstant-conversion"
 
 
 
@@ -166,18 +172,12 @@ void	test_str_to_size(void)
 	if (g_test.flags.test_overflow)
 	{
 		print_test_str_to_size("str_to_size (n < min)     ",	FALSE,                           0, "-1"                         );
-#ifndef __clang__
-		print_test_str_to_size("str_to_size (n > max)     ",	FALSE,      18446744073709551616UL, "18446744073709551616"       );
-		print_test_str_to_size("str_to_size (n > maxdigit)",	FALSE,     999999999999999999999LL, "999999999999999999999"      );
-#endif
+	/*	print_test_str_to_size("str_to_size (n > max)     ",	FALSE,      18446744073709551616UL, "18446744073709551616"       );*/
+	/*	print_test_str_to_size("str_to_size (n > maxdigit)",	FALSE,     999999999999999999999LL, "999999999999999999999"      );*/
 		print_test_str_to_size("str_to_size (n < maxdigit)",	FALSE,                           0, "-999999999999999999999"     );
 	}
 }
 #endif
-
-
-
-#pragma GCC diagnostic pop // Resets the GCC warning settings back to normal
 
 
 
@@ -186,6 +186,15 @@ void	test_str_to_size(void)
 **                            Test Suite Function                             *|
 ** ************************************************************************** *|
 */
+
+// Resets the GCC warning settings back to normal
+#pragma GCC diagnostic pop
+#pragma GCC diagnostic pop
+// Resets the clang warning settings back to normal
+#pragma clang diagnostic pop
+#pragma clang diagnostic pop
+
+
 
 int		testsuite_pointer(void)
 {

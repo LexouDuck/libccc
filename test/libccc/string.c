@@ -985,6 +985,11 @@ void	print_test_strtrim(char const* test_name, int can_segfault,
 void	test_strtrim(void)
 {
 //	| TEST FUNCTION   | TEST NAME                |CAN SEGV| EXPECTING                      | TEST ARGS
+	print_test_strtrim("strtrim                  ", FALSE, "Xx_Vegeta2000_xX",              "x",           "xXx_Vegeta2000_xXx");
+	print_test_strtrim("strtrim                  ", FALSE, "_Vegeta2000_",                  "xX",          "xXx_Vegeta2000_xXx");
+	print_test_strtrim("strtrim                  ", FALSE, "Vegeta2000",                    "xX_",         "xXx_Vegeta2000_xXx");
+	print_test_strtrim("strtrim                  ", FALSE, "Vegeta2",                       "xX_0",        "xXx_Vegeta2000_xXx");
+	print_test_strtrim("strtrim                  ", FALSE, "Vegeta",                        "xX_02",       "xXx_Vegeta2000_xXx");
 	print_test_strtrim("strtrim                  ", FALSE, "swag",                          " \t\n\r\v\f", "   swag\n");
 	print_test_strtrim("strtrim                  ", FALSE, "FOR THE\tHORDE !",              " \t\n\r\v\f", "\t\n   \f FOR THE\tHORDE ! 	 \t \n ");
 	print_test_strtrim("strtrim                  ", FALSE, "do u even\ntrim bruh",          " \t\n\r\v\f", "do u even\ntrim bruh\n\r\n\n\t");
@@ -1019,6 +1024,11 @@ void	print_test_strtrim_l(char const* test_name, int can_segfault,
 void	test_strtrim_l(void)
 {
 //	| TEST FUNCTION     | TEST NAME                  |CAN SEGV| EXPECTING                      | TEST ARGS
+	print_test_strtrim_l("strtrim_l                  ", FALSE, "Xx_Vegeta2000_xXx",             "x",           "xXx_Vegeta2000_xXx");
+	print_test_strtrim_l("strtrim_l                  ", FALSE, "_Vegeta2000_xXx",               "xX",          "xXx_Vegeta2000_xXx");
+	print_test_strtrim_l("strtrim_l                  ", FALSE, "Vegeta2000_xXx",                "xX_",         "xXx_Vegeta2000_xXx");
+	print_test_strtrim_l("strtrim_l                  ", FALSE, "Vegeta2000_xXx",                "xX_0",        "xXx_Vegeta2000_xXx");
+	print_test_strtrim_l("strtrim_l                  ", FALSE, "Vegeta2000_xXx",                "xX_02",       "xXx_Vegeta2000_xXx");
 	print_test_strtrim_l("strtrim_l                  ", FALSE, "swag\n",                        " \t\n\r\v\f", "   swag\n");
 	print_test_strtrim_l("strtrim_l                  ", FALSE, "FOR THE\tHORDE ! 	 \t \n ",   " \t\n\r\v\f", "\t\n   \f FOR THE\tHORDE ! 	 \t \n ");
 	print_test_strtrim_l("strtrim_l                  ", FALSE, "do u even\ntrim bruh\n\r\n\n\t"," \t\n\r\v\f", "do u even\ntrim bruh\n\r\n\n\t");
@@ -1053,14 +1063,20 @@ void	print_test_strtrim_r(char const* test_name, int can_segfault,
 void	test_strtrim_r(void)
 {
 //	| TEST FUNCTION     | TEST NAME                  |CAN SEGV| EXPECTING                      | TEST ARGS
+	print_test_strtrim_r("strtrim_r                  ", FALSE, "xXx_Vegeta2000_xX",             "x",           "xXx_Vegeta2000_xXx");
+	print_test_strtrim_r("strtrim_r                  ", FALSE, "xXx_Vegeta2000_",               "xX",          "xXx_Vegeta2000_xXx");
+	print_test_strtrim_r("strtrim_r                  ", FALSE, "xXx_Vegeta2000",                "xX_",         "xXx_Vegeta2000_xXx");
+	print_test_strtrim_r("strtrim_r                  ", FALSE, "xXx_Vegeta2",                   "xX_0",        "xXx_Vegeta2000_xXx");
+	print_test_strtrim_r("strtrim_r                  ", FALSE, "xXx_Vegeta",                    "xX_02",       "xXx_Vegeta2000_xXx");
 	print_test_strtrim_r("strtrim_r                  ", FALSE, "   swag",                       " \t\n\r\v\f", "   swag\n");
 	print_test_strtrim_r("strtrim_r                  ", FALSE, "\t\n   \f FOR THE\tHORDE !",    " \t\n\r\v\f", "\t\n   \f FOR THE\tHORDE ! 	 \t \n ");
 	print_test_strtrim_r("strtrim_r                  ", FALSE, "do u even\ntrim bruh",          " \t\n\r\v\f", "do u even\ntrim bruh\n\r\n\n\t");
-	print_test_strtrim_r("strtrim_r (only whitespace)", FALSE, "",                              " \t\n\r\v\f", "\n 	  \v \n\t ");
+	print_test_strtrim_r("strtrim_r (only in charset)", FALSE, "",                              " \t\n\r\v\f", "\n 	  \v \n\t ");
 	print_test_strtrim_r("strtrim_r (empty string)   ", FALSE, "",                              " \t\n\r\v\f", "");
 	print_test_strtrim_r("strtrim_r (empty charset)  ", FALSE, "   swag\n",                     "",            "   swag\n");
+	print_test_strtrim_r("strtrim_r (both empty)     ", FALSE, "",                              "",            "");
 	print_test_strtrim_r("strtrim_r (null string)    ", TRUE,  segstr,                          "ab", NULL);
-	print_test_strtrim_r("strtrim_r (null charset)   ", TRUE,  segstr,                          NULL, " swag \n");
+	print_test_strtrim_r("strtrim_r (null charset)   ", TRUE,  segstr,                          NULL, "ab");
 	print_test_strtrim_r("strtrim_r (both null)      ", TRUE,  segstr,                          NULL, NULL);
 }
 #endif
