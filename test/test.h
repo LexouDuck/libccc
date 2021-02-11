@@ -381,7 +381,7 @@ void	print_test_lst(char const *test_name, char const *function, s_list const *r
 //! Prints the given argument variable as a string with non-printable chars as escape sequences
 #define TEST_PRINT_ARGS_ESCAPED(ARG) \
 	char* tmp = str_to_escape(ARG); \
-	TEST_PRINT_ARGS("%s", tmp); \
+	TEST_PRINT_ARGS("\"%s\"", tmp); \
 	if (tmp) \
 	{ \
 		free(tmp); \

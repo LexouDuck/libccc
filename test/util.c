@@ -453,10 +453,10 @@ DEFINE_TESTFUNCTION_INT(t_uintmax, uintmax, u)
 
 
 
-#define F32_PRECISION_FORMAT	"%.10A"
-#define F64_PRECISION_FORMAT	"%.13A"
-#define F80_PRECISION_FORMAT	"%.16A"
-#define F128_PRECISION_FORMAT	"%.28A"
+#define F32_PRECISION_FORMAT	"%.8f"
+#define F64_PRECISION_FORMAT	"%.12f"
+#define F80_PRECISION_FORMAT	"%.16f"
+#define F128_PRECISION_FORMAT	"%.28f"
 
 #define FLOAT_PRECISION_FORMAT	CONCAT(CONCAT(F,LIBCONFIG_BITS_FLOAT),_PRECISION_FORMAT)
 
@@ -480,8 +480,8 @@ void	print_test_##FUNCNAME( \
 	else error = (result != expect); \
 	if (isnan(result) && isnan(expect)) \
 		error = FALSE; \
-	snprintf(str_result, SIZE, "%f\t"FLOAT_PRECISION_FORMAT, result, result); \
-	snprintf(str_expect, SIZE, "%f\t"FLOAT_PRECISION_FORMAT, expect, expect); \
+	snprintf(str_result, SIZE, FLOAT_PRECISION_FORMAT, result); \
+	snprintf(str_expect, SIZE, FLOAT_PRECISION_FORMAT, expect); \
 	print_test(test_name, function, \
 		(result_segfault ? segstr : str_result), \
 		(expect_segfault ? segstr : str_expect), \

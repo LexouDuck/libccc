@@ -19,7 +19,7 @@
 	#define LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_FLOAT	
 #endif
 
-
+#include "libccc/sys/io.h"
 
 //! Returns 1 if the given 'number' is either NaN, or +/- infinity
 t_float	Float_FromString_CheckSpecial(char const* str)
@@ -27,14 +27,12 @@ t_float	Float_FromString_CheckSpecial(char const* str)
 	char sign = str[0];
 	if (sign == '-' || sign == '+')
 		++str;
-	if (String_Equals_IgnoreCase(str, "NAN") ||
-		String_Equals_IgnoreCase(str, "NOTANUMBER") ||
-		String_Equals_IgnoreCase(str, "NOT A NUMBER"))
+	if (String_Equals_N_IgnoreCase(str, "NAN", 3))
 	{
 		return (NAN);
 	}
-	if (String_Equals_IgnoreCase(str, "INF") ||
-		String_Equals_IgnoreCase(str, "INFINITY") ||
+	if (String_Equals_N_IgnoreCase(str, "INFINITY", 8) ||
+		String_Equals_N_IgnoreCase(str, "INF", 3) ||
 		UTF8_Get((t_utf8*)str) == 0x221E) // infinity unicode char
 	{
 		return (sign == '-' ?
@@ -61,8 +59,10 @@ static t_bool	Float_FromString_CheckInvalid(char const* str)
 		str[0] != '.' &&
 		!Char_IsDigit(str[0]))
 		return (TRUE);
-	count_p = String_Count_Char(str, 'p') + String_Count_Char(str, 'P');
-	count_e = String_Count_Char(str, 'e') + String_Count_Char(str, 'E');
+	if (String_Count_Charset(str, "-+") > 1)
+		return (TRUE);
+	count_p = String_Count_Charset(str, "pP");
+	count_e = String_Count_Charset(str, "eE");
 	if ((count_p > 1) ||
 		(count_p == 0 && count_e > 1) ||
 		!String_HasOnly(str, "0123456789ABCDEFabcdef.+-XPxp"))
@@ -73,91 +73,122 @@ static t_bool	Float_FromString_CheckInvalid(char const* str)
 
 
 #define DEFINEFUNC_STR_TO_FLOAT(BITS) \
-t_f##BITS			F##BITS##_FromString(char const *str)					\
-{																			\
-	t_f##BITS	result;														\
-LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_FLOAT									\
-	while (*str && Char_IsSpace(*str))										\
-		++str;																\
-	result = Float_FromString_CheckSpecial(str);							\
-	if (result != 0.)														\
-		return (result);													\
-	if (Float_FromString_CheckInvalid(str))									\
-		return (NAN);														\
-	else if (String_Equals_N(str, "0b", 2))									\
-		return (F##BITS##_FromString_Bin(str));								\
-	else if (String_Equals_N(str, "0x", 2))									\
-		return (F##BITS##_FromString_Hex(str));								\
-	else if (String_Find_Charset(str, "eE") == NULL)						\
-		return (F##BITS##_FromString_Dec(str));								\
-	else																	\
-		return (F##BITS##_FromString_Exp(str));								\
-}																			\
+t_f##BITS			F##BITS##_FromString(char const *str)			\
+{																	\
+	t_f##BITS	result;												\
+LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_FLOAT							\
+	while (*str && Char_IsSpace(*str))								\
+		++str;														\
+	result = Float_FromString_CheckSpecial(str);					\
+	if (result != 0.)												\
+		return (result);											\
+	if (Float_FromString_CheckInvalid(str))							\
+		return (NAN);												\
+	else if (String_Equals_N(str, "0b", 2))							\
+		return (F##BITS##_FromString_Bin(str));						\
+	else if (String_Equals_N(str, "0x", 2))							\
+		return (F##BITS##_FromString_Hex(str));						\
+	else															\
+		return (atof(str));											\
+/*\
+	else if (String_Find_Charset(str, "eE") == NULL)				\
+		return (F##BITS##_FromString_Dec(str));						\
+	else															\
+		return (F##BITS##_FromString_Exp(str));						\
+*/\
+}																	\
 
 
 
 #define DEFINEFUNC_STREXP_TO_FLOAT(BITS) \
-t_f##BITS	F##BITS##_FromString_Exp(char const *str)						\
-{																			\
-	t_f##BITS	result;														\
-	t_bool		negative;													\
-	char const* str_mantissa;												\
-	char const* str_exponent;												\
-LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_FLOAT									\
-	while (*str && Char_IsSpace(*str))										\
-		++str;																\
-	result = Float_FromString_CheckSpecial(str);							\
-	if (result != 0.)														\
-		return (result);													\
-	if (Float_FromString_CheckInvalid(str))									\
-		return (NAN);														\
-	negative = (str[0] == '-');												\
-	str_mantissa = (negative || str[0] == '+') ? str + 1 : str;				\
-	str_exponent = String_Find_Charset(str, "eE");							\
-	if (str_exponent)	++str_exponent;										\
+t_f##BITS	F##BITS##_FromString_Exp(char const *str)				\
+{																	\
+	t_f##BITS	result;												\
+LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_FLOAT							\
+	while (*str && Char_IsSpace(*str))								\
+		++str;														\
+	result = Float_FromString_CheckSpecial(str);					\
+	if (result != 0.)												\
+		return (result);											\
+	if (Float_FromString_CheckInvalid(str))							\
+		return (NAN);												\
 \
-	t_s16		exponent;													\
-	t_size		frac_digits;												\
-	char*		tmp;														\
-	if (!(tmp = String_Remove(str_mantissa, ".")))							\
-		return (NAN);														\
-	if (String_Length(tmp) > MAXDIGITS_64BIT)								\
-		tmp[MAXDIGITS_64BIT] = '\0';										\
-	result = (t_f##BITS)S64_FromString(tmp);								\
-	Memory_Free(tmp);														\
-	if (!(exponent = 0) && str_exponent)									\
-	{																		\
-		exponent = S16_FromString(str_exponent);							\
-		if (exponent > F##BITS##_EXPONENT_BIAS)								\
-			return (negative ? -INFINITY : INFINITY);						\
-		else if (exponent < 1 - F##BITS##_EXPONENT_BIAS)					\
-			return (0.);													\
-	}																		\
-	tmp = String_Find_Char(str_mantissa, '.');								\
-	if (tmp && (frac_digits = String_Length(++tmp)) > 0)					\
-		exponent -= frac_digits;											\
-	if (String_Length(str_mantissa) > MAXDIGITS_64BIT)						\
-		exponent += String_Length(str_mantissa) - MAXDIGITS_64BIT;			\
-	return (result * Math_Pow(10., exponent));								\
-}																			\
+	t_bool		negative;											\
+	char const* str_mantissa;										\
+	char const* str_exponent;										\
+	char*		tmp;												\
+	t_s16		exponent;											\
+	t_size		frac_digits;										\
+	t_size	i = 0;													\
+	if (!(str[i] == '+' || str[i] == '-' || Char_IsDigit(str[i])))	\
+		return (NAN);												\
+	negative = FALSE;												\
+	if (str[i] == '-')												\
+	{																\
+		negative = TRUE;											\
+		++i;														\
+	}																\
+	else if (str[i] == '+')											\
+		++i;														\
+	str_mantissa = str + i;											\
+	str_exponent = String_Find_Charset(str, "eE");					\
+	if (str_exponent)	++str_exponent;								\
+	result = 0.;													\
+	while (str_mantissa[i] && Char_IsDigit(str_mantissa[i]))		\
+	{																\
+		result = result * 10 + (str_mantissa[i++] - '0');			\
+	}																\
+	exponent = 0;													\
+	if (str_exponent)												\
+	{																\
+		exponent = S16_FromString(str_exponent);					\
+		if (exponent > F##BITS##_EXPONENT_BIAS)						\
+			return (negative ? -INFINITY : INFINITY);				\
+		else if (exponent < 1 - F##BITS##_EXPONENT_BIAS)			\
+			return (0.);											\
+	}																\
+	tmp = String_Find_Char(str_mantissa, '.');						\
+	if (tmp && (frac_digits = String_Length(++tmp)) > 0)			\
+		exponent -= frac_digits;									\
+	if (String_Length(str_mantissa) > MAXDIGITS_64BIT)				\
+		exponent += String_Length(str_mantissa) - MAXDIGITS_64BIT;	\
+	return (result * Math_Pow(10., exponent) * (negative ? -1 : 1));\
+}																	\
 
 
 
 #define DEFINEFUNC_STRDEC_TO_FLOAT(BITS) \
-inline t_f##BITS	F##BITS##_FromString_Dec(char const* str)				\
-{																			\
-	t_f##BITS	result = Float_FromString_CheckSpecial(str);				\
-	if (result != 0.)														\
-		return (result);													\
-	char*	tmp;															\
-	if (!(tmp = String_Remove(str, ".")))									\
-		return (NAN);														\
-	if (String_Length(tmp) > MAXDIGITS_64BIT)								\
-		tmp[MAXDIGITS_64BIT] = '\0';										\
-	result = (t_f##BITS)S64_FromString(tmp);								\
-	Memory_Free(tmp);														\
-	return (result);														\
-}																			\
+inline t_f##BITS	F##BITS##_FromString_Dec(char const* str)		\
+{																	\
+	t_f##BITS	result;												\
+LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_FLOAT							\
+	while (*str && Char_IsSpace(*str))								\
+		++str;														\
+	result = Float_FromString_CheckSpecial(str);					\
+	if (result != 0.)												\
+		return (result);											\
+	if (Float_FromString_CheckInvalid(str))							\
+		return (NAN);												\
+\
+	t_bool	negative;												\
+	t_size	i = 0;													\
+	if (!(str[i] == '+' || str[i] == '-' || Char_IsDigit(str[i])))	\
+		return (NAN);												\
+	negative = FALSE;												\
+	if (str[i] == '-')												\
+	{																\
+		negative = TRUE;											\
+		++i;														\
+	}																\
+	else if (str[i] == '+')											\
+		++i;														\
+	result = 0.;													\
+	while (str[i] && Char_IsDigit(str[i]))							\
+	{																\
+		result = result * 10 + (str[i++] - '0');					\
+	}																\
+	return (negative ? -result : result);							\
+}																	\
 
 
 
@@ -165,9 +196,6 @@ inline t_f##BITS	F##BITS##_FromString_Dec(char const* str)				\
 t_f##BITS	F##BITS##_FromString_Hex(char const* str)						\
 {																			\
 	t_f##BITS	result;														\
-	t_bool		negative;													\
-	char const* str_mantissa;												\
-	char const* str_exponent;												\
 LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_FLOAT									\
 	while (*str && Char_IsSpace(*str))										\
 		++str;																\
@@ -176,14 +204,17 @@ LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_FLOAT									\
 		return (result);													\
 	if (Float_FromString_CheckInvalid(str))									\
 		return (NAN);														\
+\
+	t_bool		negative;													\
+	char const* str_mantissa;												\
+	char const* str_exponent;												\
+	t_u##BITS	mantissa;													\
+	t_s16		exponent;													\
+	char*		tmp;														\
 	negative = (str[0] == '-');												\
 	str_mantissa = (negative || str[0] == '+') ? str + 1 : str;				\
 	str_exponent = String_Find_Charset(str, "pP");							\
 	if (str_exponent)	++str_exponent;										\
-\
-	t_u##BITS	mantissa;													\
-	t_s16		exponent;													\
-	char*		tmp;														\
 	result = (negative ? -1. : 1.);											\
 	tmp = String_Remove(str_mantissa, ".");									\
 	if (String_Equals(tmp, "0") || String_Equals(tmp, "00"))				\
@@ -194,7 +225,7 @@ LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_FLOAT									\
 	mantissa = U64_FromString_Hex(tmp);										\
 	result *= (mantissa * F##BITS##_INIT_VALUE) *							\
 		Math_Pow(2., (String_Length(tmp) - 1) * 4);							\
-	exponent = S16_FromString(str_exponent);								\
+	exponent = (str_exponent ? S16_FromString(str_exponent) : 0);			\
 	if (exponent > F##BITS##_EXPONENT_BIAS)									\
 		return ((negative ? -1. : 1.) / 0.);								\
 	else if (exponent < 1 - F##BITS##_EXPONENT_BIAS)						\

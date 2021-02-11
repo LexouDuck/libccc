@@ -4,7 +4,7 @@
 
 
 
-t_bool	c_strequ(char const *str1, char const *str2)
+t_bool	String_Equals(char const *str1, char const *str2)
 {
 	t_size i;
 
@@ -26,7 +26,7 @@ t_bool	c_strequ(char const *str1, char const *str2)
 
 
 
-t_bool	c_strnequ(char const *str1, char const *str2, t_size n)
+t_bool	String_Equals_N(char const *str1, char const *str2, t_size n)
 {
 	t_size i;
 
@@ -50,7 +50,7 @@ t_bool	c_strnequ(char const *str1, char const *str2, t_size n)
 
 
 
-t_bool	c_striequ(char const *str1, char const *str2)
+t_bool	String_Equals_IgnoreCase(char const *str1, char const *str2)
 {
 	t_size i;
 
@@ -64,8 +64,8 @@ t_bool	c_striequ(char const *str1, char const *str2)
 	while (str1[i] && str2[i])
 	{
 		if (str1[i] != str2[i] &&
-			(Char_IsLower(str1[i]) && Char_ToUpper(str1[i]) != str2[i]) &&
-			(Char_IsUpper(str1[i]) && Char_ToLower(str1[i]) != str2[i]))
+			!(Char_IsLower(str1[i]) && Char_ToUpper(str1[i]) == str2[i]) &&
+			!(Char_IsUpper(str1[i]) && Char_ToLower(str1[i]) == str2[i]))
 			return (FALSE);
 		++i;
 	}
@@ -74,7 +74,7 @@ t_bool	c_striequ(char const *str1, char const *str2)
 
 
 
-t_bool	c_strniequ(char const *str1, char const *str2, t_size n)
+t_bool	String_Equals_N_IgnoreCase(char const *str1, char const *str2, t_size n)
 {
 	t_size i;
 
@@ -88,8 +88,8 @@ t_bool	c_strniequ(char const *str1, char const *str2, t_size n)
 	while (str1[i] && str2[i])
 	{
 		if (str1[i] != str2[i] &&
-			(Char_IsLower(str1[i]) && Char_ToUpper(str1[i]) != str2[i]) &&
-			(Char_IsUpper(str1[i]) && Char_ToLower(str1[i]) != str2[i]))
+			!(Char_IsLower(str1[i]) && Char_ToUpper(str1[i]) == str2[i]) &&
+			!(Char_IsUpper(str1[i]) && Char_ToLower(str1[i]) == str2[i]))
 			return (FALSE);
 		++i;
 		if (i == n)
