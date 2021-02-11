@@ -110,16 +110,16 @@ int		testsuite_math_stat(void) // TODO increment total tests counter for these t
 
 	pmf = c_stat_ilst_to_pmf(ilst_sorted);
 
-	if (g_test.flags.show_args) // TODO special program option for this ?
+	if (g_test.flags.verbose && g_test.flags.show_args) // TODO special program option for this ?
 	{
 		printf("Probability mass function for the RNG\n");
-		for (int i = 0; i < pmf.length; ++i)
+		for (t_uint i = 0; i < pmf.length; ++i)
 		{
 			printf("\t%5d: val %12f; prob %.4f\n", i, pmf.value[i], pmf.prob[i]);
 		}
 	}
 	tmp = 0.;
-	for (int i = 0; i < pmf.length; ++i)
+	for (t_uint i = 0; i < pmf.length; ++i)
 	{
 		tmp += pmf.prob[i];
 	}

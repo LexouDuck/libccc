@@ -40,7 +40,7 @@ void	print_totals(s_test_totals totals, char const * category)
 	printf("\n");
 	printf("=============================\n");
 	if (category)
-		printf("Test suite: libccc_%s\n", category);
+		printf("Test suite: libccc/%s\n", category);
 	else printf("In total:\n");
 	printf("=============================\n");
 	printf("- Amount of tests: %d\n", totals.tests);

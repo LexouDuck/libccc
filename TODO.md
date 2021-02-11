@@ -45,5 +45,9 @@
 - TODO: add option #define LIBCONFIG_PRINT_ENCODING	(ANSI,ASCII,UTF8) which changes printf behavior ?
 - TODO: for each compound type in 'array' folder: implement functions _New, _Delete, _Equals, _Duplicate, _Sub, _Insert, _Replace, _Filter, _Map
 - TODO: add printf format specifier flags to String_Format wrapper for the following:
-	- fixed-point flag: `%q`, also doing `%.5q` will print at most 5 digits after the decimal point
-	- data/memory hex display: `%m`, doing `%.5m` will print at most 5 bytes of memory
+	- specifier: unsigned binary integer: `%b`
+	- specifier: boolean (TRUE or FALSE): `%B`
+	- specifier: char	(escape-sequence): `%C`
+	- specifier: string (escape-sequence): `%S`
+	- specifier: fixed-point `%q` (and `%k` for hex), doing `%.5q` will print at most 5 digits after the decimal point
+	- specifier: data/memory bytes hex display: `%m`, doing `%.5m` will print at most 5 bytes of memory
