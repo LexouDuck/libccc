@@ -4,7 +4,7 @@
 
 
 
-int	c_strcmp(char const *str1, char const *str2)
+int	String_Compare(char const *str1, char const *str2)
 {
 	t_size	i;
 
@@ -27,7 +27,7 @@ int	c_strcmp(char const *str1, char const *str2)
 
 
 
-int	c_strncmp(char const *str1, char const *str2, t_size n)
+int	String_Compare_N(char const *str1, char const *str2, t_size n)
 {
 	t_size	i;
 
@@ -54,7 +54,7 @@ int	c_strncmp(char const *str1, char const *str2, t_size n)
 
 
 
-int	c_stricmp(char const *str1, char const *str2)
+int	String_Compare_IgnoreCase(char const *str1, char const *str2)
 {
 	t_size	i;
 
@@ -69,8 +69,8 @@ int	c_stricmp(char const *str1, char const *str2)
 	while (str1[i] && str2[i])
 	{
 		if (str1[i] != str2[i] &&
-			str1[i] != Char_ToUpper(str2[i]) &&
-			str1[i] != Char_ToLower(str2[i]))
+			!(Char_IsLower(str1[i]) && Char_ToUpper(str1[i]) == str2[i]) &&
+			!(Char_IsUpper(str1[i]) && Char_ToLower(str1[i]) == str2[i]))
 			return ((int)((t_u8)str1[i] - (t_u8)str2[i]));
 		++i;
 	}
@@ -79,7 +79,7 @@ int	c_stricmp(char const *str1, char const *str2)
 
 
 
-int	c_strnicmp(char const *str1, char const *str2, t_size n)
+int	String_Compare_N_IgnoreCase(char const *str1, char const *str2, t_size n)
 {
 	t_size	i;
 
@@ -96,8 +96,8 @@ int	c_strnicmp(char const *str1, char const *str2, t_size n)
 	while (str1[i] && str2[i])
 	{
 		if (str1[i] != str2[i] &&
-			str1[i] != Char_ToUpper(str2[i]) &&
-			str1[i] != Char_ToLower(str2[i]))
+			!(Char_IsLower(str1[i]) && Char_ToUpper(str1[i]) == str2[i]) &&
+			!(Char_IsUpper(str1[i]) && Char_ToLower(str1[i]) == str2[i]))
 			return ((int)((t_u8)str1[i] - (t_u8)str2[i]));
 		++i;
 		if (i == n)

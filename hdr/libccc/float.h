@@ -240,7 +240,7 @@ char*						F128_ToString(t_f128 n, t_u8 precision);
 
 //! Get the shortest string representation of the given floating-point number (dec or exp), with 'precision' fractional digits
 _MALLOC()
-char*							Float_ToString(t_f32 n, t_u8 precision);
+char*							Float_ToString(t_float n, t_u8 precision);
 #define c_float_to_str			Float_ToString
 
 
@@ -286,7 +286,7 @@ char*								F128_ToString_Exp(t_f128 n, t_u8 precision);
 
 //! Get the string scientific notation of a floating-point number, with 'precision' fractional digits
 _MALLOC()
-char*									Float_ToString_Exp(t_f32 n, t_u8 precision);
+char*									Float_ToString_Exp(t_float n, t_u8 precision);
 #define c_float_to_strexp				Float_ToString_Exp
 #define c_float_to_strsci				Float_ToString_Exp
 #define Float_ToString_Exponential		Float_ToString_Exp
@@ -324,7 +324,7 @@ char*								F128_ToString_Dec(t_f128 n, t_u8 precision);
 
 //! Get the string decimal representation of a floating-point number, with 'precision' fractional digits
 _MALLOC()
-char*									Float_ToString_Dec(t_f32 n, t_u8 precision);
+char*									Float_ToString_Dec(t_float n, t_u8 precision);
 #define c_float_to_strdec				Float_ToString_Dec
 #define Float_ToString_Decimal			Float_ToString_Dec
 
@@ -359,7 +359,7 @@ char*								F128_ToString_Hex(t_f128 n, t_u8 precision);
 
 //! Get the string hexadecimal representation of a floating-point number, with 'precision' fractional digits (if 0, max precision)
 _MALLOC()
-char*									Float_ToString_Hex(t_f32 n, t_u8 precision);
+char*									Float_ToString_Hex(t_float n, t_u8 precision);
 #define c_float_to_strhex				Float_ToString_Hex
 #define Float_ToString_Hexadecimal		Float_ToString_Hex
 
@@ -394,7 +394,7 @@ char*								F128_ToString_Bin(t_f128 n, t_u8 precision);
 
 //! Get the string binary representation of a floating-point number, with 'precision' fractional digits (if 0, max precision)
 _MALLOC()
-char*									Float_ToString_Bin(t_f32 n, t_u8 precision);
+char*									Float_ToString_Bin(t_float n, t_u8 precision);
 #define c_float_to_strbin				Float_ToString_Bin
 #define Float_ToString_Binary			Float_ToString_Bin
 
@@ -426,7 +426,7 @@ t_f128					F128_FromString(char const* str);
 #endif
 
 //! Parse a floating-point number from the given string (can be decimal/exponential/hexdecimal)
-t_f32						Float_FromString(char const* str);
+t_float						Float_FromString(char const* str);
 #define c_str_to_float		Float_FromString
 
 
@@ -467,7 +467,7 @@ t_f128								F128FromoString_Exp(char const* str);
 #endif
 
 //! Parse the scientific notation of a floating-point number
-t_f32									Float_FromString_Exp(char const* str);
+t_float									Float_FromString_Exp(char const* str);
 #define c_strexp_to_float				Float_FromString_Exp
 #define c_strsci_to_float				Float_FromString_Exp
 #define Float_FromString_Exponential	Float_FromString_Exp
@@ -500,7 +500,7 @@ t_f128								F128_FromString_Dec(char const* str);
 #endif
 
 //! Parse the decimal representation of a floating-point number
-t_f32									Float_FromString_Dec(char const* str);
+t_float									Float_FromString_Dec(char const* str);
 #define c_strdec_to_float				Float_FromString_Dec
 #define Float_FromString_Decimal		Float_FromString_Dec
 
@@ -530,7 +530,7 @@ t_f128								F128_FromString_Hex(char const* str);
 #endif
 
 //! Parse the hexadecimal representation of a floating-point number
-t_f32									Float_FromString_Hex(char const* str);
+t_float									Float_FromString_Hex(char const* str);
 #define c_strhex_to_float				Float_FromString_Hex
 #define Float_FromString_Hexadecimal	Float_FromString_Hex
 
@@ -560,7 +560,7 @@ t_f128								F128_FromString_Bin(char const* str);
 #endif
 
 //! Parse the binary representation of a floating-point number
-t_f32									Float_FromString_Bin(char const* str);
+t_float									Float_FromString_Bin(char const* str);
 #define c_strbin_to_float				Float_FromString_Bin
 #define Float_FromString_Binary			Float_FromString_Bin
 

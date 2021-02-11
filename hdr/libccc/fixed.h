@@ -124,10 +124,12 @@ TYPEDEF_ALIAS(					t_fixed, FIXED_128, PRIMITIVE)
 ** ************************************************************************** *|
 */
 
-#define Fixed_Rounded(Q)	((t_fixed)((Q) * (((t_fixed)1 << LIBCONFIG_BITS_FIXED_FRACTIONPART) + ((Q) >= 0 ? 0.5 : -0.5))))
 #define Fixed_FromInt(I)	((t_fixed)(I) << LIBCONFIG_BITS_FIXED_FRACTIONPART)
+#define Fixed_FromFloat(I)	(((t_fixed)(I) << LIBCONFIG_BITS_FIXED_FRACTIONPART) | Fixed_FractionPart(Math_Mod((I), 1)))
+
 #define Fixed_IntegerPart(Q)	((Q) >> LIBCONFIG_BITS_FIXED_FRACTIONPART)
 #define Fixed_FractionPart(Q)	((t_fixed)(Q) & (((t_fixed)1 << LIBCONFIG_BITS_FIXED_FRACTIONPART) - 1))
+#define Fixed_Rounded(Q)		((t_fixed)((Q) * (((t_fixed)1 << LIBCONFIG_BITS_FIXED_FRACTIONPART) + ((Q) >= 0 ? 0.5 : -0.5))))
 
 #define Fixed_Add(A, B)	((A) + (B))
 #define Fixed_Sub(A, B)	((A) - (B))

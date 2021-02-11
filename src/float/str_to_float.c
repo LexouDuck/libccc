@@ -158,7 +158,7 @@ LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_FLOAT							\
 
 
 #define DEFINEFUNC_STRDEC_TO_FLOAT(BITS) \
-inline t_f##BITS	F##BITS##_FromString_Dec(char const* str)		\
+t_f##BITS	F##BITS##_FromString_Dec(char const* str)				\
 {																	\
 	t_f##BITS	result;												\
 LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_FLOAT							\
