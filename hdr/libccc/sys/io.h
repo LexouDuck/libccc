@@ -95,23 +95,23 @@ TYPEDEF_ALIAS(	t_fd, FILEDESC, PRIMITIVE)
 #define FORMAT_S8		"%+i"
 #define FORMAT_S16		"%+i"
 #define FORMAT_S32		"%+i"
-#define FORMAT_U8		"%0u"
-#define FORMAT_U16		"%0u"
-#define FORMAT_U32		"%0u"
+#define FORMAT_U8		"%u"
+#define FORMAT_U16		"%u"
+#define FORMAT_U32		"%u"
 #define FORMAT_HEX_U8	"%#X"
 #define FORMAT_HEX_U16	"%#X"
 #define FORMAT_HEX_U32	"%#X"
 #if defined(__APPLE__) || defined(_WIN32)
 	#define FORMAT_S64		"%+lli"
-	#define FORMAT_U64		"%0llu"
+	#define FORMAT_U64		"%llu"
 	#define FORMAT_HEX_U64	"%#llX"
 #else
 	#define FORMAT_S64		"%+li"
-	#define FORMAT_U64		"%0lu"
+	#define FORMAT_U64		"%lu"
 	#define FORMAT_HEX_U64	"%#lX"
 #endif
 #define FORMAT_S128		"%+lli"
-#define FORMAT_U128		"%0llu"
+#define FORMAT_U128		"%llu"
 #define FORMAT_HEX_U128	"%#llX"
 
 #define FORMAT_SINT		CONCAT(FORMAT_S,	 LIBCONFIG_BITS_SINT)
@@ -119,14 +119,14 @@ TYPEDEF_ALIAS(	t_fd, FILEDESC, PRIMITIVE)
 #define FORMAT_HEX_UINT	CONCAT(FORMAT_HEX_U, LIBCONFIG_BITS_UINT)
 
 // libccc/fixed.h
-#define FORMAT_K16		"%0.8i"
-#define FORMAT_K32		"%0.8i"
-#define FORMAT_K64		"%0.8i"
-#define FORMAT_K128		"%0.8i"
-#define FORMAT_HEX_K16	"%#0.8X"
-#define FORMAT_HEX_K32	"%#0.8X"
-#define FORMAT_HEX_K64	"%#0.8X"
-#define FORMAT_HEX_K128	"%#0.8X"
+#define FORMAT_Q16		"%0.8i"
+#define FORMAT_Q32		"%0.8i"
+#define FORMAT_Q64		"%0.8i"
+#define FORMAT_Q128		"%0.8i"
+#define FORMAT_HEX_Q16	"%#0.8X"
+#define FORMAT_HEX_Q32	"%#0.8X"
+#define FORMAT_HEX_Q64	"%#0.8X"
+#define FORMAT_HEX_Q128	"%#0.8X"
 
 #define FORMAT_FIXED		"%0.8i"
 #define FORMAT_HEX_FIXED	"%#0.8X"

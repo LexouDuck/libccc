@@ -361,7 +361,7 @@ $(NAME_TEST): debug $(TEST_OBJS)
 
 # This rule builds and runs the test executable
 test: $(NAME_TEST)
-	@./$(NAME_TEST)
+	@./$(NAME_TEST) -a
 
 
 

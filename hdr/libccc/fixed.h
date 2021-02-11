@@ -124,6 +124,7 @@ TYPEDEF_ALIAS(					t_fixed, FIXED_128, PRIMITIVE)
 ** ************************************************************************** *|
 */
 
+#define Fixed(I, F)			(Fixed_FromInt(I) | Fixed_FractionPart(Math_Mod((F), 1)))
 #define Fixed_FromInt(I)	((t_fixed)(I) << LIBCONFIG_BITS_FIXED_FRACTIONPART)
 #define Fixed_FromFloat(I)	(((t_fixed)(I) << LIBCONFIG_BITS_FIXED_FRACTIONPART) | Fixed_FractionPart(Math_Mod((I), 1)))
 
@@ -147,23 +148,23 @@ TYPEDEF_ALIAS(					t_fixed, FIXED_128, PRIMITIVE)
 
 //! Get the string decimal representation of a 16-bit signed fixed-point number
 _MALLOC()
-char*					Q16_ToString(t_q16 n, t_u8 precision);	// TODO
+char*					Q16_ToString(t_q16 n);	// TODO
 #define c_q16_to_str	Q16_ToString
 
 //! Get the string decimal representation of a 32-bit signed fixed-point number
 _MALLOC()
-char*					Q32_ToString(t_q32 n, t_u8 precision);	// TODO
+char*					Q32_ToString(t_q32 n);	// TODO
 #define c_q32_to_str	Q32_ToString
 
 //! Get the string decimal representation of a 64-bit signed fixed-point number
 _MALLOC()
-char*					Q64_ToString(t_q64 n, t_u8 precision);	// TODO
+char*					Q64_ToString(t_q64 n);	// TODO
 #define c_q64_to_str	Q64_ToString
 
 #ifdef	__int128
 //! Get the string decimal representation of a 128-bit signed fixed-point number
 _MALLOC()
-char*					Q128_ToString(t_q128 n, t_u8 precision);	// TODO
+char*					Q128_ToString(t_q128 n);	// TODO
 #define c_q128_to_str	Q128_ToString
 #endif
 
@@ -217,25 +218,21 @@ char*						Q128_ToString_Base(t_q128 n);	// TODO
 
 
 
-//! Get the string decimal representation of a 16-bit signed fixed-point number
-_MALLOC()
-char*					Q16_FromString(t_q16 n);	// TODO
+//! Parses the string decimal representation of a 16-bit signed fixed-point number
+t_q16					Q16_FromString(char const* str);
 #define c_str_to_q16	Q16_FromString
 
-//! Get the string decimal representation of a 32-bit signed fixed-point number
-_MALLOC()
-char*					Q32_FromString(t_q32 n);	// TODO
+//! Parses the string decimal representation of a 32-bit signed fixed-point number
+t_q32					Q32_FromString(char const* str);
 #define c_str_to_q32	Q32_FromString
 
-//! Get the string decimal representation of a 64-bit signed fixed-point number
-_MALLOC()
-char*					Q64_FromString(t_q64 n);	// TODO
+//! Parses the string decimal representation of a 64-bit signed fixed-point number
+t_q64					Q64_FromString(char const* str);
 #define c_str_to_q64	Q64_FromString
 
 #ifdef	__int128
-//! Get the string decimal representation of a 128-bit signed fixed-point number
-_MALLOC()
-char*					Q128_FromString(t_q128 n);	// TODO
+//! Parses the string decimal representation of a 128-bit signed fixed-point number
+t_q128					Q128_FromString(char const* str);
 #define c_str_to_q128	Q128_FromString
 #endif
 
