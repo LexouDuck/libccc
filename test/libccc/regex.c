@@ -5,7 +5,9 @@
 
 
 
-#ifdef			c_regex_
+#ifndef c_regex_
+void test_regex_(void)	{}
+#else
 void	print_test_regex_(char const* test_name, int can_segfault,
 		char const* str,
 		char c)
@@ -24,6 +26,12 @@ void	test_regex_(void)
 // TODO
 
 
+
+/*
+** ************************************************************************** *|
+**                            Test Suite Function                             *|
+** ************************************************************************** *|
+*/
 
 int		testsuite_regex(void)
 {

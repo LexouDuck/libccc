@@ -9,10 +9,10 @@
 
 #pragma GCC diagnostic push // Disable GCC overflow warnings temporarily
 #pragma GCC diagnostic ignored "-Woverflow"
-#pragma GCC diagnostic push // Disable GCC overflow warnings temporarily
-#pragma GCC diagnostic ignored "-Wimplicitly-unsigned-literal"
-#pragma GCC diagnostic push // Disable GCC overflow warnings temporarily
-#pragma GCC diagnostic ignored "-Wconstant-conversion"
+// "-Wimplicitly-unsigned-literal"
+// "-Wconstant-conversion"
+
+
 
 /*
 ** ************************************************************************** *|
@@ -106,162 +106,162 @@ void	test_##TYPE##_to_str(void)																								\
 	print_test_##TYPE##_to_str(#TYPE"_to_str (-nan)        ",	FALSE,                     "NAN",-NAN                   , 1);	\
 }
 
-#ifdef c_f32_to_str
-DEFINETEST_FLOAT_TO_STR(f32)
-#else
+#ifndef c_f32_to_str
 void test_f32_to_str(void)	{}
+#else
+DEFINETEST_FLOAT_TO_STR(f32)
 #endif
 
-#ifdef c_f64_to_str
-DEFINETEST_FLOAT_TO_STR(f64)
-#else
+#ifndef c_f64_to_str
 void test_f64_to_str(void)	{}
+#else
+DEFINETEST_FLOAT_TO_STR(f64)
 #endif
 
-#if defined(c_f80_to_str) && defined(__float80)
-DEFINETEST_FLOAT_TO_STR(f80)
-#else
+#if !defined(c_f80_to_str) || !defined(__float80)
 void test_f80_to_str(void)	{}
+#else
+DEFINETEST_FLOAT_TO_STR(f80)
 #endif
 
-#if defined(c_f128_to_str) && defined(__float128)
-DEFINETEST_FLOAT_TO_STR(f128)
-#else
+#if !defined(c_f128_to_str) || !defined(__float128)
 void test_f128_to_str(void)	{}
+#else
+DEFINETEST_FLOAT_TO_STR(f128)
 #endif
 
-#ifdef c_float_to_str
-DEFINETEST_FLOAT_TO_STR(float)
-#else
+#ifndef c_float_to_str
 void test_float_to_str(void)	{}
+#else
+DEFINETEST_FLOAT_TO_STR(float)
 #endif
 
 /*
 
-#ifdef c_f32_to_strexp
-DEFINETEST_FLOAT_TO_STREXP(f32)
-#else
+#ifndef c_f32_to_strexp
 void test_f32_to_strexp(void)	{}
+#else
+DEFINETEST_FLOAT_TO_STREXP(f32)
 #endif
 
-#ifdef c_f64_to_strexp
-DEFINETEST_FLOAT_TO_STREXP(f64)
-#else
+#ifndef c_f64_to_strexp
 void test_f64_to_strexp(void)	{}
+#else
+DEFINETEST_FLOAT_TO_STREXP(f64)
 #endif
 
-#if defined(c_f80_to_strexp) && defined(__float80)
-DEFINETEST_FLOAT_TO_STREXP(f80)
-#else
+#ifn defined(c_f80_to_strexp) && defined(__float80)
 void test_f80_to_strexp(void)	{}
+#else
+DEFINETEST_FLOAT_TO_STREXP(f80)
 #endif
 
-#if defined(c_f128_to_strexp) && defined(__float128)
-DEFINETEST_FLOAT_TO_STREXP(f128)
-#else
+#ifn defined(c_f128_to_strexp) && defined(__float128)
 void test_f128_to_strexp(void)	{}
+#else
+DEFINETEST_FLOAT_TO_STREXP(f128)
 #endif
 
-#ifdef c_float_to_strexp
-DEFINETEST_FLOAT_TO_STREXP(float)
-#else
+#ifndef c_float_to_strexp
 void test_float_to_strexp(void)	{}
+#else
+DEFINETEST_FLOAT_TO_STREXP(float)
 #endif
 
 
 
-#ifdef c_f32_to_strdec
-DEFINETEST_FLOAT_TO_STRDEC(f32)
-#else
+#ifndef c_f32_to_strdec
 void test_f32_to_strdec(void)	{}
+#else
+DEFINETEST_FLOAT_TO_STRDEC(f32)
 #endif
 
-#ifdef c_f64_to_strdec
-DEFINETEST_FLOAT_TO_STRDEC(f64)
-#else
+#ifndef c_f64_to_strdec
 void test_f64_to_strdec(void)	{}
+#else
+DEFINETEST_FLOAT_TO_STRDEC(f64)
 #endif
 
-#if defined(c_f80_to_strdec) && defined(__float80)
-DEFINETEST_FLOAT_TO_STRDEC(f80)
-#else
+#ifn defined(c_f80_to_strdec) && defined(__float80)
 void test_f80_to_strdec(void)	{}
+#else
+DEFINETEST_FLOAT_TO_STRDEC(f80)
 #endif
 
-#if defined(c_f128_to_strdec) && defined(__float128)
-DEFINETEST_FLOAT_TO_STRDEC(f128)
-#else
+#ifn defined(c_f128_to_strdec) && defined(__float128)
 void test_f128_to_strdec(void)	{}
+#else
+DEFINETEST_FLOAT_TO_STRDEC(f128)
 #endif
 
-#ifdef c_float_to_strdec
-DEFINETEST_FLOAT_TO_STRDEC(float)
-#else
+#ifndef c_float_to_strdec
 void test_float_to_strdec(void)	{}
+#else
+DEFINETEST_FLOAT_TO_STRDEC(float)
 #endif
 
 
 
-#ifdef c_f32_to_strhex
-DEFINETEST_FLOAT_TO_STRHEX(f32)
-#else
+#ifndef c_f32_to_strhex
 void test_f32_to_strhex(void)	{}
+#else
+DEFINETEST_FLOAT_TO_STRHEX(f32)
 #endif
 
-#ifdef c_f64_to_strhex
-DEFINETEST_FLOAT_TO_STRHEX(f64)
-#else
+#ifndef c_f64_to_strhex
 void test_f64_to_strhex(void)	{}
+#else
+DEFINETEST_FLOAT_TO_STRHEX(f64)
 #endif
 
-#if defined(c_f80_to_strhex) && defined(__float80)
-DEFINETEST_FLOAT_TO_STRHEX(f80)
-#else
+#ifn defined(c_f80_to_strhex) && defined(__float80)
 void test_f80_to_strhex(void)	{}
+#else
+DEFINETEST_FLOAT_TO_STRHEX(f80)
 #endif
 
-#if defined(c_f128_to_strhex) && defined(__float128)
-DEFINETEST_FLOAT_TO_STRHEX(f128)
-#else
+#ifn defined(c_f128_to_strhex) && defined(__float128)
 void test_f128_to_strhex(void)	{}
+#else
+DEFINETEST_FLOAT_TO_STRHEX(f128)
 #endif
 
-#ifdef c_float_to_strhex
-DEFINETEST_FLOAT_TO_STRHEX(float)
-#else
+#ifndef c_float_to_strhex
 void test_float_to_strhex(void)	{}
+#else
+DEFINETEST_FLOAT_TO_STRHEX(float)
 #endif
 
 
 
-#ifdef c_f32_to_strbin
-DEFINETEST_FLOAT_TO_STRBIN(f32) // TODO
-#else
+#ifndef c_f32_to_strbin
 void test_f32_to_strbin(void)	{}
+#else
+DEFINETEST_FLOAT_TO_STRBIN(f32) // TODO
 #endif
 
-#ifdef c_f64_to_strbin
-DEFINETEST_FLOAT_TO_STRBIN(f64) // TODO
-#else
+#ifndef c_f64_to_strbin
 void test_f64_to_strbin(void)	{}
+#else
+DEFINETEST_FLOAT_TO_STRBIN(f64) // TODO
 #endif
 
-#if defined(c_f80_to_strbin) && defined(__float80)
-DEFINETEST_FLOAT_TO_STRBIN(f80) // TODO
-#else
+#ifn defined(c_f80_to_strbin) && defined(__float80)
 void test_f80_to_strbin(void)	{}
+#else
+DEFINETEST_FLOAT_TO_STRBIN(f80) // TODO
 #endif
 
-#if defined(c_f128_to_strbin) && defined(__float128)
-DEFINETEST_FLOAT_TO_STRBIN(f128) // TODO
-#else
+#ifn defined(c_f128_to_strbin) && defined(__float128)
 void test_f128_to_strbin(void)	{}
+#else
+DEFINETEST_FLOAT_TO_STRBIN(f128) // TODO
 #endif
 
-#ifdef c_float_to_strbin
-DEFINETEST_FLOAT_TO_STRBIN(float) // TODO
-#else
+#ifndef c_float_to_strbin
 void test_float_to_strbin(void)	{}
+#else
+DEFINETEST_FLOAT_TO_STRBIN(float) // TODO
 #endif
 
 */
@@ -679,43 +679,47 @@ void	test_str_to_##TYPE(void)																									\
 	print_test_str_to_##TYPE("str_to_"#TYPE" (null str)    ",	SEGV,                            0, NULL                         );	\
 }
 
-#ifdef c_str_to_f32
+#ifndef c_str_to_f32
+void test_str_to_f32(void)	{}
+#else
 DEFINETEST_STR_TO_FLOAT(f32)
-#else
-void	test_str_to_f32(void)	{}
 #endif
 
-#ifdef c_str_to_f64
+#ifndef c_str_to_f64
+void test_str_to_f64(void)	{}
+#else
 DEFINETEST_STR_TO_FLOAT(f64)
-#else
-void	test_str_to_f64(void)	{}
 #endif
 
-#if defined(c_str_to_f80) && defined(__float80)
+#if !defined(c_str_to_f80) || !defined(__float80)
+void test_str_to_f80(void)	{}
+#else
 DEFINETEST_STR_TO_FLOAT(f80)
-#else
-void	test_str_to_f80(void)	{}
 #endif
 
-#if defined(c_str_to_f128) && defined(__float128)
+#if !defined(c_str_to_f128) || !defined(__float128)
+void test_str_to_f128(void)	{}
+#else
 DEFINETEST_STR_TO_FLOAT(f128)
-#else
-void	test_str_to_f128(void)	{}
 #endif
 
-#ifdef c_str_to_float
+#ifndef c_str_to_float
+void test_str_to_float(void)	{}
+#else
 DEFINETEST_STR_TO_FLOAT(float)
-#else
-void	test_str_to_float(void)	{}
 #endif
 
 
 
 #pragma GCC diagnostic pop // Resets the GCC warning settings back to normal
-#pragma GCC diagnostic pop // Resets the GCC warning settings back to normal
-#pragma GCC diagnostic pop // Resets the GCC warning settings back to normal
 
 
+
+/*
+** ************************************************************************** *|
+**                            Test Suite Function                             *|
+** ************************************************************************** *|
+*/
 
 int		testsuite_float(void)
 {

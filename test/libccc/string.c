@@ -14,7 +14,9 @@
 ** ************************************************************************** *|
 */
 
-#ifdef			c_strnew
+#ifndef c_strnew
+void test_strnew(void)	{}
+#else
 void	print_test_strnew(char const* test_name, int can_segfault,
 		t_size n)
 {
@@ -35,7 +37,9 @@ void	test_strnew(void)
 
 
 
-#ifdef			c_strset
+#ifndef c_strset
+void test_strset(void)	{}
+#else
 void	print_test_strset(char const* test_name, int can_segfault,
 		char const* expecting,
 		char* dest_libccc,
@@ -60,7 +64,9 @@ void	test_strset(void)
 #endif
 
 
-#ifdef			c_strclr
+#ifndef c_strclr
+void test_strclr(void)	{}
+#else
 void	print_test_strclr(char const* test_name, int can_segfault,
 		char const* expecting,
 		char* dest_libccc,
@@ -84,7 +90,9 @@ void	test_strclr(void)
 #endif
 
 
-#ifdef			c_strdel
+#ifndef c_strdel
+void test_strdel(void)	{}
+#else
 void	print_test_strdel(char const* test_name, int can_segfault,
 		char const* expecting,
 		char** dest_libccc,
@@ -106,7 +114,9 @@ void	test_strdel(void)
 #endif
 
 
-#ifdef			c_strdup
+#ifndef c_strdup
+void test_strdup(void)	{}
+#else
 void	print_test_strdup(char const* test_name, int can_segfault,
 		char const* src)
 {
@@ -130,7 +140,9 @@ void	test_strdup(void)
 
 
 
-#ifdef			c_strcpy
+#ifndef c_strcpy
+void test_strcpy(void)	{}
+#else
 void	print_test_strcpy(char const* test_name, int can_segfault,
 		char* dest_libccc,
 		char* dest_libc,
@@ -160,7 +172,9 @@ void	test_strcpy(void)
 
 
 
-#ifdef			c_strncpy
+#ifndef c_strncpy
+void test_strncpy(void)	{}
+#else
 void	print_test_strncpy(char const* test_name, int can_segfault,
 		char* dest_libccc,
 		char* dest_libc,
@@ -194,7 +208,9 @@ void	test_strncpy(void)
 
 
 
-#ifdef			c_strlcpy
+#ifndef c_strlcpy
+void test_strlcpy(void)	{}
+#else
 void	print_test_strlcpy(char const* test_name, int can_segfault,
 		t_size expecting,
 		char const * expecting_dest,
@@ -238,7 +254,9 @@ void	test_strlcpy(void)
 
 
 
-#ifdef			c_strcat
+#ifndef c_strcat
+void test_strcat(void)	{}
+#else
 void	print_test_strcat(char const* test_name, int can_segfault,
 		char* dest_libccc,
 		char* dest_libc,
@@ -270,7 +288,9 @@ void	test_strcat(void)
 
 
 
-#ifdef			c_strncat
+#ifndef c_strncat
+void test_strncat(void)	{}
+#else
 void	print_test_strncat(char const* test_name, int can_segfault,
 		char* dest_libccc,
 		char* dest_libc,
@@ -306,7 +326,9 @@ void	test_strncat(void)
 
 
 
-#ifdef			c_strlcat
+#ifndef c_strlcat
+void test_strlcat(void)	{}
+#else
 void	print_test_strlcat(char const* test_name, int can_segfault,
 		t_size expecting,
 		char const * expecting_dest,
@@ -356,7 +378,9 @@ void	test_strlcat(void)
 ** ************************************************************************** *|
 */
 
-#ifdef			c_strlen
+#ifndef c_strlen
+void test_strlen(void)	{}
+#else
 void	print_test_strlen(char const* test_name, int can_segfault,
 		char const* str)
 {
@@ -378,7 +402,9 @@ void	test_strlen(void)
 #endif
 
 
-#ifdef			c_strcmp
+#ifndef c_strcmp
+void test_strcmp(void)	{}
+#else
 void	print_test_strcmp(char const* test_name, int can_segfault,
 		char const* str1,
 		char const* str2)
@@ -407,7 +433,9 @@ void	test_strcmp(void)
 #endif
 
 
-#ifdef			c_strncmp
+#ifndef c_strncmp
+void test_strncmp(void)	{}
+#else
 void	print_test_strncmp(char const* test_name, int can_segfault,
 		char const* str1,
 		char const* str2,
@@ -440,7 +468,9 @@ void	test_strncmp(void)
 #endif
 
 
-#ifdef			c_strequ
+#ifndef c_strequ
+void test_strequ(void)	{}
+#else
 void	print_test_strequ(char const* test_name, int can_segfault,
 		int expecting,
 		char const* str1,
@@ -471,7 +501,9 @@ void	test_strequ(void)
 #endif
 
 
-#ifdef			c_strnequ
+#ifndef c_strnequ
+void test_strnequ(void)	{}
+#else
 void	print_test_strnequ(char const* test_name, int can_segfault,
 		int expecting,
 		char const* str1,
@@ -505,7 +537,9 @@ void	test_strnequ(void)
 #endif
 
 
-#ifdef			c_strhas
+#ifndef c_strhas
+void test_strhas(void)	{}
+#else
 void	print_test_strhas(char const* test_name, int can_segfault,
 		t_bool expecting,
 		char const* str,
@@ -532,7 +566,9 @@ void	test_strhas(void)
 #endif
 
 
-#ifdef			c_strhasonly
+#ifndef c_strhasonly
+void test_strhasonly(void)	{}
+#else
 void	print_test_strhasonly(char const* test_name, int can_segfault,
 		t_bool expecting,
 		char const* str,
@@ -560,7 +596,9 @@ void	test_strhasonly(void)
 #endif
 
 
-#ifdef			c_strcount_char
+#ifndef c_strcount_char
+void test_strcount_char(void)	{}
+#else
 void	print_test_strcount_char(char const* test_name, int can_segfault,
 		t_size expecting,
 		char const* str,
@@ -587,7 +625,9 @@ void	test_strcount_char(void)
 #endif
 
 
-#ifdef			c_strcount_str
+#ifndef c_strcount_str
+void test_strcount_str(void)	{}
+#else
 void	print_test_strcount_str(char const* test_name, int can_segfault,
 		t_size expecting,
 		char const* str,
@@ -624,7 +664,9 @@ void	test_strcount_str(void)
 ** ************************************************************************** *|
 */
 
-#ifdef			c_strchr
+#ifndef c_strchr
+void test_strchr(void)	{}
+#else
 void	print_test_strchr(char const* test_name, int can_segfault,
 		char const* str,
 		char c)
@@ -649,7 +691,9 @@ void	test_strchr(void)
 #endif
 
 
-#ifdef			c_strstr
+#ifndef c_strstr
+void test_strstr(void)	{}
+#else
 void	print_test_strstr(char const* test_name, int can_segfault,
 		char const* str,
 		char const* query)
@@ -676,7 +720,9 @@ void	test_strstr(void)
 #endif
 
 
-#ifdef			c_strrchr
+#ifndef c_strrchr
+void test_strrchr(void)	{}
+#else
 void	print_test_strrchr(char const* test_name, int can_segfault,
 		char const* str,
 		char c)
@@ -701,7 +747,9 @@ void	test_strrchr(void)
 #endif
 
 
-#ifdef			c_strrstr
+#ifndef c_strrstr
+void test_strrstr(void)	{}
+#else
 void	print_test_strrstr(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str,
@@ -726,7 +774,9 @@ void	test_strrstr(void)
 #endif
 
 
-#ifdef			c_strnchr
+#ifndef c_strnchr
+void test_strnchr(void)	{}
+#else
 void	print_test_strnchr(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str,
@@ -754,7 +804,9 @@ void	test_strnchr(void)
 #endif
 
 
-#ifdef			c_strnstr
+#ifndef c_strnstr
+void test_strnstr(void)	{}
+#else
 void	print_test_strnstr(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str,
@@ -789,7 +841,9 @@ void	test_strnstr(void)
 #endif
 
 
-#ifdef			c_strremove
+#ifndef c_strremove
+void test_strremove(void)	{}
+#else
 void	print_test_strremove(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str,
@@ -810,7 +864,9 @@ void	test_strremove(void)
 
 
 
-#ifdef			c_strprint
+#ifndef c_strprint
+void test_strprint(void)	{}
+#else
 void	print_test_strprint(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str)
@@ -830,7 +886,9 @@ void	test_strprint(void)
 
 
 
-#ifdef			c_strrep_char
+#ifndef c_strrep_char
+void test_strrep_char(void)	{}
+#else
 void	print_test_strrep_char(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str,
@@ -852,7 +910,9 @@ void	test_strrep_char(void)
 
 
 
-#ifdef			c_strrep_charset
+#ifndef c_strrep_charset
+void test_strrep_charset(void)	{}
+#else
 void	print_test_strrep_charset(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str,
@@ -874,7 +934,9 @@ void	test_strrep_charset(void)
 
 
 
-#ifdef			c_strrep_str
+#ifndef c_strrep_str
+void test_strrep_str(void)	{}
+#else
 void	print_test_strrep_str(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str,
@@ -902,7 +964,9 @@ void	test_strrep_string(void)
 ** ************************************************************************** *|
 */
 
-#ifdef			c_strtrim
+#ifndef c_strtrim
+void test_strtrim(void)	{}
+#else
 void	print_test_strtrim(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* charset,
@@ -934,7 +998,9 @@ void	test_strtrim(void)
 #endif
 
 
-#ifdef			c_strtrim_l
+#ifndef c_strtrim_l
+void test_strtrim_l(void)	{}
+#else
 void	print_test_strtrim_l(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* charset,
@@ -966,7 +1032,9 @@ void	test_strtrim_l(void)
 #endif
 
 
-#ifdef			c_strtrim_r
+#ifndef c_strtrim_r
+void test_strtrim_r(void)	{}
+#else
 void	print_test_strtrim_r(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* charset,
@@ -998,7 +1066,9 @@ void	test_strtrim_r(void)
 #endif
 
 
-#ifdef			c_strpad
+#ifndef c_strpad
+void test_strpad(void)	{}
+#else
 void	print_test_strpad(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const *str,
@@ -1035,7 +1105,9 @@ void	test_strpad(void)
 
 
 
-#ifdef			c_strpad_l
+#ifndef c_strpad_l
+void test_strpad_l(void)	{}
+#else
 void	print_test_strpad_l(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const *str,
@@ -1072,7 +1144,9 @@ void	test_strpad_l(void)
 
 
 
-#ifdef			c_strpad_r
+#ifndef c_strpad_r
+void test_strpad_r(void)	{}
+#else
 void	print_test_strpad_r(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const *str,
@@ -1116,7 +1190,9 @@ void	test_strpad_r(void)
 */
 
 // TODO check on which platforms this function exists, if any
-#ifdef			c_strrev
+#ifndef c_strrev
+void test_strrev(void)	{}
+#else
 void	print_test_strrev(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const *str)
@@ -1143,7 +1219,9 @@ void	test_strrev(void)
 #endif
 
 
-#ifdef			c_strjoin
+#ifndef c_strjoin
+void test_strjoin(void)	{}
+#else
 void	print_test_strjoin(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const *str1,
@@ -1171,7 +1249,9 @@ void	test_strjoin(void)
 #endif
 
 
-#ifdef			c_strinsert
+#ifndef c_strinsert
+void test_strinsert(void)	{}
+#else
 void	print_test_strinsert(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const *dest,
@@ -1193,7 +1273,9 @@ void	test_strinsert(void)
 
 
 
-#ifdef			c_strsub
+#ifndef c_strsub
+void test_strsub(void)	{}
+#else
 void	print_test_strsub(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const *str,
@@ -1262,7 +1344,9 @@ char	strtoupper_1on2(t_size i, char c)
 
 
 
-#ifdef			c_striter
+#ifndef c_striter
+void test_striter(void)	{}
+#else
 void	print_test_striter(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str,
@@ -1288,7 +1372,9 @@ void	test_striter(void)
 #endif
 
 
-#ifdef			c_striteri
+#ifndef c_striteri
+void test_striteri(void)	{}
+#else
 void	print_test_striteri(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str,
@@ -1314,7 +1400,9 @@ void	test_striteri(void)
 #endif
 
 
-#ifdef			c_strmap
+#ifndef c_strmap
+void test_strmap(void)	{}
+#else
 void	print_test_strmap(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str,
@@ -1337,7 +1425,9 @@ void	test_strmap(void)
 #endif
 
 
-#ifdef			c_strmapi
+#ifndef c_strmapi
+void test_strmapi(void)	{}
+#else
 void	print_test_strmapi(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str,
@@ -1361,170 +1451,77 @@ void	test_strmapi(void)
 
 
 
-
-
-
-
+/*
+** ************************************************************************** *|
+**                            Test Suite Function                             *|
+** ************************************************************************** *|
+*/
 
 int		testsuite_string(void)
 {
 	print_suite_title("string");
 
-#ifdef c_strnew
+
 	test_strnew();
-#endif
-#ifdef c_strdup
 	test_strdup();
-#endif
-#ifdef c_strcpy
 	test_strcpy();
-#endif
-#ifdef c_strncpy
 	test_strncpy();
-#endif
-#ifdef c_strlcpy
 	test_strlcpy();
-#endif
-#ifdef c_strcat
 	test_strcat();
-#endif
-#ifdef c_strncat
 	test_strncat();
-#endif
-#ifdef c_strlcat
 	test_strlcat();
-#endif
 
-#ifdef c_strlen
 	test_strlen();
-#endif
-#ifdef c_strcmp
 	test_strcmp();
-#endif
-#ifdef c_strncmp
 	test_strncmp();
-#endif
 
-#ifdef c_strchr
 	test_strchr();
-#endif
-#ifdef c_strrchr
 	test_strrchr();
-#endif
-#ifdef c_strstr
 	test_strstr();
-#endif
-#ifdef c_strnstr
 	test_strnstr();
-#endif
-
 
 
 	print_nonstd();
 
 
 
-#ifdef c_strset
+
 	test_strset();
-#endif
-#ifdef c_strclr
 	test_strclr();
-#endif
-#ifdef c_strdel
 //	test_strdel();
-#endif
-#ifdef c_strmerge
 //	test_strmerge();
-#endif
-#ifdef c_strappend
 //	test_strappend();
-#endif
-#ifdef c_strprepend
 //	test_strprepend();
-#endif
 
-#ifdef c_strequ
 	test_strequ();
-#endif
-#ifdef c_strnequ
 	test_strnequ();
-#endif
-#ifdef c_strhas
 	test_strhas();
-#endif
-#ifdef c_strhasonly
 	test_strhasonly();
-#endif
-#ifdef c_strcount_char
 	test_strcount_char();
-#endif
-#ifdef c_strcount_str
 	test_strcount_str();
-#endif
 
-#ifdef c_strnchr
 	test_strnchr();
-#endif
-#ifdef c_strrstr
 	test_strrstr();
-#endif
-#ifdef c_strprint
 	test_strprint();
-#endif
-#ifdef c_strrep_char
 //	test_strrep_char();
-#endif
-#ifdef c_strrep_charset
 //	test_strrep_charset();
-#endif
-#ifdef c_strrep_str
 //	test_strrep_str();
-#endif
 
-#ifdef c_strtrim
 	test_strtrim();
-#endif
-#ifdef c_strtrim_l
 	test_strtrim_l();
-#endif
-#ifdef c_strtrim_r
 	test_strtrim_r();
-#endif
-#ifdef c_strpad
 	test_strpad();
-#endif
-#ifdef c_strpad_l
 	test_strpad_l();
-#endif
-#ifdef c_strpad_r
 	test_strpad_r();
-#endif
 
-#ifdef c_strrev
 	test_strrev();
-#endif
-#ifdef c_strjoin
 	test_strjoin();
-#endif
-#ifdef c_strinsert
 //	test_strinsert();
-#endif
-#ifdef c_strsub
 	test_strsub();
-#endif
-#ifdef c_striter
 	test_striter();
-#endif
-#ifdef c_striteri
 	test_striteri();
-#endif
-#ifdef c_strmap
 	test_strmap();
-#endif
-#ifdef c_strmapi
 	test_strmapi();
-#endif
-
 
 	return (0);
 }

@@ -4,6 +4,7 @@
 #include "test.h"
 
 
+
 char const*		strarr_empty[1] = {NULL};
 
 char const*		strarr1_as_str =
@@ -25,6 +26,7 @@ char const*		strarr1_as_str =
 \nDeçà, delà,\
 \nPareil à la\
 \n\tFeuille morte.";
+
 char const*		strarr1_A[19] =
 {
 	"Les sanglots longs",
@@ -47,6 +49,7 @@ char const*		strarr1_A[19] =
 	"\tFeuille morte.",
 	NULL
 };
+
 char const*		strarr1_B[19] =
 {
 	"Les sanglots longs",
@@ -69,6 +72,7 @@ char const*		strarr1_B[19] =
 	"Feuille morte.",
 	NULL
 };
+
 char const*		strarr1_C[8] =
 {
 	"Les sanglots longs\nDes violons",
@@ -103,7 +107,9 @@ char const*		strarr4_C[9] = {"", "", "bb", "", "", "bb", "", "", NULL};
 
 
 
-#ifdef			c_strarrlen
+#ifndef c_strarrlen
+void test_strarrlen(void)	{}
+#else
 void	print_test_strarrlen(char const* test_name, int can_segfault,
 		t_size			expecting,
 		char const**	strarr)
@@ -130,7 +136,9 @@ void	test_strarrlen()
 
 
 
-#ifdef			c_strsplit_char
+#ifndef c_strsplit_char
+void test_strsplit_char(void)	{}
+#else
 void	print_test_strsplit_char(char const* test_name, int can_segfault,
 		char const**	expecting,
 		char const*		str,
@@ -154,7 +162,9 @@ void	test_strsplit_char()
 
 
 
-#ifdef			c_strsplit_charset
+#ifndef c_strsplit_charset
+void test_strsplit_charset(void)	{}
+#else
 void	print_test_strsplit_charset(char const* test_name, int can_segfault,
 		char const**	expecting,
 		char const*		str,
@@ -185,7 +195,9 @@ void	test_strsplit_charset()
 
 
 
-#ifdef			c_strsplit_str
+#ifndef c_strsplit_str
+void test_strsplit_str(void)	{}
+#else
 void	print_test_strsplit_str(char const* test_name, int can_segfault,
 		char const**	expecting,
 		char const*		str,
@@ -214,7 +226,9 @@ void	test_strsplit_str()
 
 
 
-#ifdef			c_strarrjoin
+#ifndef c_strarrjoin
+void test_strarrjoin(void)	{}
+#else
 void	print_test_strarrjoin(char const* test_name, int can_segfault,
 		char const**	expecting,
 		char const**	strarr1,
@@ -234,7 +248,9 @@ void	test_strarrjoin()
 
 
 
-#ifdef			c_strarrfold
+#ifndef c_strarrfold
+void test_strarrfold(void)	{}
+#else
 void	print_test_strarrfold(char const* test_name, int can_segfault,
 		char const*		expecting,
 		char const**	strarr,
@@ -262,64 +278,40 @@ void	test_strarrfold()
 
 
 
+/*
+** ************************************************************************** *|
+**                            Test Suite Function                             *|
+** ************************************************************************** *|
+*/
+
 int		testsuite_array_stringarray(void)
 {
 	print_suite_title("array/stringarray");
 
 	print_nonstd();
 
-#ifdef c_strarrlen
+
 	test_strarrlen();
-#endif
 
-#ifdef c_strarrnew
 //	test_strarrnew();
-#endif
-#ifdef c_strarrcnew
 //	test_strarrcnew();
-#endif
-#ifdef c_strarrdel
 //	test_strarrdel();
-#endif
 
-#ifdef c_strsplit_char
 	test_strsplit_char();
-#endif
-#ifdef c_strsplit_charset
 	test_strsplit_charset();
-#endif
-#ifdef c_strsplit_str
 	test_strsplit_str();
-#endif
-#ifdef c_strdivide
 //	test_strdivide();
-#endif
 
-#ifdef c_strarrcount_char
 //	test_strarrcount_char();
-#endif
-#ifdef c_strarrcount_charset
 //	test_strarrcount_charset();
-#endif
-#ifdef c_strarrcount_string
 //	test_strarrcount_string();
-#endif
 
-#ifdef c_strarrpad_l
 //	test_strarrpad_l();
-#endif
 
-#ifdef c_strarrsub
 //	test_strarrsub();
-#endif
 
-#ifdef c_strarrmap
 //	test_strarrmap();
-#endif
 
-#ifdef c_strarrfold
 	test_strarrfold();
-#endif
-
 	return (0);
 }

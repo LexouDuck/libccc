@@ -9,10 +9,10 @@
 
 #pragma GCC diagnostic push // Disable GCC overflow warnings temporarily
 #pragma GCC diagnostic ignored "-Woverflow"
-#pragma GCC diagnostic push // Disable GCC overflow warnings temporarily
-#pragma GCC diagnostic ignored "-Wimplicitly-unsigned-literal"
-#pragma GCC diagnostic push // Disable GCC overflow warnings temporarily
-#pragma GCC diagnostic ignored "-Wconstant-conversion"
+// "-Wimplicitly-unsigned-literal"
+// "-Wconstant-conversion"
+
+
 
 /*
 ** ************************************************************************** *|
@@ -20,7 +20,9 @@
 ** ************************************************************************** *|
 */
 
-#ifdef			c_size_to_str
+#ifndef c_size_to_str
+void test_size_to_str(void)	{}
+#else
 void	print_test_size_to_str(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_size number)
@@ -70,7 +72,9 @@ void	test_size_to_str(void)
 ** ************************************************************************** *|
 */
 
-#ifdef			c_str_to_size
+#ifndef c_str_to_size
+void test_str_to_size(void)	{}
+#else
 void	print_test_str_to_size(char const* test_name, int can_segfault,
 		t_size expecting,
 		char const* str)
@@ -173,12 +177,15 @@ void	test_str_to_size(void)
 
 
 
-
-#pragma GCC diagnostic pop // Resets the GCC warning settings back to normal
-#pragma GCC diagnostic pop // Resets the GCC warning settings back to normal
 #pragma GCC diagnostic pop // Resets the GCC warning settings back to normal
 
 
+
+/*
+** ************************************************************************** *|
+**                            Test Suite Function                             *|
+** ************************************************************************** *|
+*/
 
 int		testsuite_pointer(void)
 {
@@ -186,13 +193,10 @@ int		testsuite_pointer(void)
 
 	print_nonstd();
 
-#ifdef c_size_to_str
-	test_size_to_str();
-#endif
 
-#ifdef c_str_to_size
+	test_size_to_str();
+
 	test_str_to_size();
-#endif
 
 	return (OK);
 }

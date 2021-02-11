@@ -5,7 +5,9 @@
 
 
 
-#ifdef			c_color_
+#ifndef c_color_
+void test_color_(void)	{}
+#else
 void	print_test_color_(char const* test_name, int can_segfault,
 		char const* str,
 		char c)
@@ -33,6 +35,12 @@ void	test_color_(void)
 // TODO
 
 
+
+/*
+** ************************************************************************** *|
+**                            Test Suite Function                             *|
+** ************************************************************************** *|
+*/
 
 int		testsuite_color(void)
 {

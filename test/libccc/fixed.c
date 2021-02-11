@@ -1,10 +1,24 @@
 
 #include "libccc/fixed.h"
 #include "libccc/sys/io.h"
+#include "libccc/math/math.h"
 
 #include "test.h"
 
 
+
+#pragma GCC diagnostic push // Disable GCC overflow warnings temporarily
+#pragma GCC diagnostic ignored "-Woverflow"
+// "-Wimplicitly-unsigned-literal"
+// "-Wconstant-conversion"
+
+
+
+/*
+** ************************************************************************** *|
+**                       Convert Fixed-point to Strings                       *|
+** ************************************************************************** *|
+*/
 
 #ifdef			c_fixed_
 void	print_test_fixed_(char const* test_name, int can_segfault,
@@ -101,43 +115,57 @@ void	test_##TYPE##_to_str(void)																										\
 	}}}																																	\
 }
 
-#ifdef c_q16_to_str
+#ifndef c_q16_to_str
+void test_q16_to_str(void)	{}
+#else
 DEFINETEST_FIXED_TO_STR(q16)
-#else
-void	test_q16_to_str(void)	{}
 #endif
 
-#ifdef c_q32_to_str
+#ifndef c_q32_to_str
+void test_q32_to_str(void)	{}
+#else
 DEFINETEST_FIXED_TO_STR(q32)
-#else
-void	test_q32_to_str(void)	{}
 #endif
 
-#ifdef c_q64_to_str
+#ifndef c_q64_to_str
+void test_q64_to_str(void)	{}
+#else
 DEFINETEST_FIXED_TO_STR(q64)
-#else
-void	test_q64_to_str(void)	{}
 #endif
 
-#ifdef __int128
-#ifdef c_q128_to_str
+#if !defined(c_q128_to_str) || !defined(__int128)
+void test_q128_to_str(void)	{}
+#else
 DEFINETEST_FIXED_TO_STR(q128)
-#else
-void	test_q128_to_str(void)	{}
-#endif
 #endif
 
-#ifdef c_fixed_to_str
+#ifndef c_fixed_to_str
+void test_fixed_to_str(void)	{}
+#else
 DEFINETEST_FIXED_TO_STR(fixed)
-#else
-void	test_fixed_to_str(void)	{}
 #endif
 
 
+
+/*
+** ************************************************************************** *|
+**                       Convert Fixed-point to Strings                       *|
+** ************************************************************************** *|
+*/
 
 // TODO
 
 
+
+#pragma GCC diagnostic pop // Resets the GCC warning settings back to normal
+
+
+
+/*
+** ************************************************************************** *|
+**                            Test Suite Function                             *|
+** ************************************************************************** *|
+*/
 
 int		testsuite_fixed(void)
 {
@@ -148,9 +176,7 @@ int		testsuite_fixed(void)
 	test_q16_to_str();
 	test_q32_to_str();
 	test_q64_to_str();
-#ifdef __int128
 	test_q128_to_str();
-#endif
 	test_fixed_to_str();
 
 	// TODO

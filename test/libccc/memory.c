@@ -5,7 +5,9 @@
 
 
 
-#ifdef			c_memalloc
+#ifndef c_memalloc
+void test_memalloc(void)	{}
+#else
 void	print_test_memalloc(char const* test_name, int can_segfault,
 		t_size n)
 {
@@ -24,7 +26,9 @@ void	test_memalloc(void)
 
 
 
-#ifdef			c_memnew
+#ifndef c_memnew
+void test_memnew(void)	{}
+#else
 void	print_test_memnew(char const* test_name, int can_segfault,
 		t_size n)
 {
@@ -45,7 +49,9 @@ void	test_memnew(void)
 
 
 
-#ifdef			c_memfree
+#ifndef c_memfree
+void test_memfree(void)	{}
+#else
 void	print_test_memfree(char const* test_name, int can_segfault,
 		void *ptr)
 {
@@ -69,7 +75,9 @@ void	test_memfree(void)
 
 
 
-#ifdef			c_memdel
+#ifndef c_memdel
+void test_memdel(void)	{}
+#else
 void	print_test_memdel(char const* test_name, int can_segfault,
 		void **ptr)
 {
@@ -92,7 +100,9 @@ void	test_memdel(void)
 
 
 
-#ifdef			c_memset
+#ifndef c_memset
+void test_memset(void)	{}
+#else
 void	print_test_memset(char const* test_name, int can_segfault,
 		char* dest_libccc,
 		char* dest_libc,
@@ -124,7 +134,9 @@ void	test_memset(void)
 
 
 
-#ifdef			c_memclr
+#ifndef c_memclr
+void test_memclr(void)	{}
+#else
 // NB: this alias is defined because this function has a different name in libccc
 #ifdef __MINGW32__
 static inline void	memclr(void *ptr, t_size n) { memset(ptr, 0, n); }
@@ -161,7 +173,9 @@ void	test_memclr(void)
 
 
 
-#ifdef			c_memcpy
+#ifndef c_memcpy
+void test_memcpy(void)	{}
+#else
 void	print_test_memcpy(char const* test_name, int can_segfault,
 		char* dest_libccc,
 		char* dest_libc,
@@ -200,7 +214,9 @@ void	test_memcpy(void)
 
 
 
-#ifdef			c_memccpy
+#ifndef c_memccpy
+void test_memccpy(void)	{}
+#else
 void	print_test_memccpy(char const* test_name, int can_segfault,
 		char* dest_libccc,
 		char* dest_libc,
@@ -242,7 +258,9 @@ void	test_memccpy(void)
 
 
 
-#ifdef			c_memmove
+#ifndef c_memmove
+void test_memmove(void)	{}
+#else
 void	print_test_memmove(char const* test_name, int can_segfault, int show_dest_arg,
 		char* dest_libccc,
 		char* dest_libc,
@@ -282,7 +300,9 @@ void	test_memmove(void)
 
 
 
-#ifdef			c_memchr
+#ifndef c_memchr
+void test_memchr(void)	{}
+#else
 void	print_test_memchr(char const* test_name, int can_segfault,
 		void const* ptr,
 		t_u8 byte,
@@ -311,7 +331,9 @@ void	test_memchr(void)
 
 
 
-#ifdef			c_memcmp
+#ifndef c_memcmp
+void test_memcmp(void)	{}
+#else
 void	print_test_memcmp(char const* test_name, int can_segfault,
 		char const* ptr1,
 		char const* ptr2,
@@ -355,7 +377,9 @@ void	test_memcmp(void)
 
 
 // TODO check on which platforms this function exists, if any
-#ifdef			c_memdup
+#ifndef c_memdup
+void test_memdup(void)	{}
+#else
 void	print_test_memdup(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* src,
@@ -389,7 +413,9 @@ void	test_memdup(void)
 
 
 
-#ifdef			c_memswap
+#ifndef c_memswap
+void test_memswap(void)	{}
+#else
 void	print_test_memswap(void)
 {
 	s_timer t = {0};
@@ -405,7 +431,9 @@ void	test_memswap(void)
 
 
 
-#ifdef			c_memrep
+#ifndef c_memrep
+void test_memrep(void)	{}
+#else
 void	print_test_memrep(char const* test_name, int can_segfault,
 		char const* expecting,
 		void* ptr,
@@ -444,7 +472,9 @@ void	test_memrep(void)
 
 
 
-#ifdef			c_getbits
+#ifndef c_getbits
+void test_getbits(void)	{}
+#else
 void	print_test_getbits(void)
 {
 	s_timer t = {0};
@@ -460,65 +490,42 @@ void	test_getbits(void)
 
 
 
+/*
+** ************************************************************************** *|
+**                            Test Suite Function                             *|
+** ************************************************************************** *|
+*/
+
 int		testsuite_memory(void)
 {
 	print_suite_title("memory");
 
-#ifdef c_memset
+
 	test_memset();
-#endif
-#ifdef c_memclr
 	test_memclr(); // = bzero
-#endif
 
-#ifdef c_memcpy
+
 	test_memcpy();
-#endif
-#ifdef c_memccpy
 	test_memccpy();
-#endif
-#ifdef c_memmove
 	test_memmove();
-#endif
 
-#ifdef c_memchr
 	test_memchr();
-#endif
-#ifdef c_memcmp
 	test_memcmp();
-#endif
-
 	print_nonstd();
 
-#ifdef c_memalloc
+
 	test_memalloc();
-#endif
-#ifdef c_memnew
 	test_memnew();
-#endif
-#ifdef c_memfree
 //	test_memfree();
-#endif
-#ifdef c_memdel
 	test_memdel();
-#endif
 
-#ifdef c_memdup
 	test_memdup();
-#endif
 
-#ifdef c_memswap
 //	test_memswap();
-#endif
 
-#ifdef c_memrep
 	test_memrep();
-#endif
 
-#ifdef c_getbits
 //	test_getbits();
-#endif
-
 	printf("\n");
 	return (OK);
 }

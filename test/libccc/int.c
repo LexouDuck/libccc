@@ -9,10 +9,8 @@
 
 #pragma GCC diagnostic push // Disable GCC overflow warnings temporarily
 #pragma GCC diagnostic ignored "-Woverflow"
-#pragma GCC diagnostic push // Disable GCC overflow warnings temporarily
-#pragma GCC diagnostic ignored "-Wimplicitly-unsigned-literal"
-#pragma GCC diagnostic push // Disable GCC overflow warnings temporarily
-#pragma GCC diagnostic ignored "-Wconstant-conversion"
+// "-Wimplicitly-unsigned-literal"
+// "-Wconstant-conversion"
 
 /*
 ** ************************************************************************** *|
@@ -92,42 +90,42 @@ void	test_##TYPE##_to_str(void)																							\
 	}}}																														\
 }
 
-#ifdef c_u8_to_str
+#ifndef _u8_to_str
+void test_u8_to_str(void)	{}
+#else
 DEFINETEST_UINT_TO_STR(u8)
-#else
-void	test_u8_to_str(void)	{}
 #endif
 
-#ifdef c_u16_to_str
+#ifndef _u16_to_str
+void test_u16_to_str(void)	{}
+#else
 DEFINETEST_UINT_TO_STR(u16)
-#else
-void	test_u16_to_str(void)	{}
 #endif
 
-#ifdef c_u32_to_str
+#ifndef _u32_to_str
+void test_u32_to_str(void)	{}
+#else
 DEFINETEST_UINT_TO_STR(u32)
-#else
-void	test_u32_to_str(void)	{}
 #endif
 
-#ifdef c_u64_to_str
-DEFINETEST_UINT_TO_STR(u64)
+#ifndef _u64_to_str
+void test_u64_to_str(void)	{}
 #else
-void	test_u64_to_str(void)	{}
+DEFINETEST_UINT_TO_STR(u64)
 #endif
 
 #ifdef __int128
-#ifdef c_u128_to_str
-DEFINETEST_UINT_TO_STR(u128)
+#ifndef _u128_to_str
+void test_u128_to_str(void)	{}
 #else
-void	test_u128_to_str(void)	{}
+DEFINETEST_UINT_TO_STR(u128)
 #endif
 #endif
 
-#ifdef c_uint_to_str
-DEFINETEST_UINT_TO_STR(uint)
+#ifndef _uint_to_str
+void test_uint_to_str(void)	{}
 #else
-void	test_uint_to_str(void)	{}
+DEFINETEST_UINT_TO_STR(uint)
 #endif
 
 
@@ -206,42 +204,42 @@ void	test_##TYPE##_to_str(void)																							\
 	}}}																														\
 }
 
-#ifdef c_s8_to_str
+#ifndef _s8_to_str
+void test_s8_to_str(void)	{}
+#else
 DEFINETEST_SINT_TO_STR(s8)
-#else
-void	test_s8_to_str(void)	{}
 #endif
 
-#ifdef c_s16_to_str
+#ifndef _s16_to_str
+void test_s16_to_str(void)	{}
+#else
 DEFINETEST_SINT_TO_STR(s16)
-#else
-void	test_s16_to_str(void)	{}
 #endif
 
-#ifdef c_s32_to_str
+#ifndef _s32_to_str
+void test_s32_to_str(void)	{}
+#else
 DEFINETEST_SINT_TO_STR(s32)
-#else
-void	test_s32_to_str(void)	{}
 #endif
 
-#ifdef c_s64_to_str
-DEFINETEST_SINT_TO_STR(s64)
+#ifndef _s64_to_str
+void test_s64_to_str(void)	{}
 #else
-void	test_s64_to_str(void)	{}
+DEFINETEST_SINT_TO_STR(s64)
 #endif
 
 #ifdef __int128
-#ifdef c_s128_to_str
-DEFINETEST_SINT_TO_STR(s128)
+#ifndef _s128_to_str
+void test_s128_to_str(void)	{}
 #else
-void	test_s128_to_str(void)	{}
+DEFINETEST_SINT_TO_STR(s128)
 #endif
 #endif
 
-#ifdef c_sint_to_str
-DEFINETEST_SINT_TO_STR(sint)
+#ifndef _sint_to_str
+void test_sint_to_str(void)	{}
 #else
-void	test_sint_to_str(void)	{}
+DEFINETEST_SINT_TO_STR(sint)
 #endif
 
 
@@ -316,42 +314,42 @@ void	test_##TYPE##_to_strhex(void)																								\
 	}}}																																\
 }
 
-#ifdef	   c_u8_to_strhex
+#ifndef c_u8_to_strhex
+void test_u8_to_strhex(void)	{}
+#else
 DEFINETEST_UINT_TO_STRHEX(u8)
-#else
-void	test_u8_to_strhex(void)	{}
 #endif
 
-#ifdef	  c_u16_to_strhex
+#ifndef c_u16_to_strhex
+void test_u16_to_strhex(void)	{}
+#else
 DEFINETEST_UINT_TO_STRHEX(u16)
-#else
-void	test_u16_to_strhex(void)	{}
 #endif
 
-#ifdef	  c_u32_to_strhex
+#ifndef c_u32_to_strhex
+void test_u32_to_strhex(void)	{}
+#else
 DEFINETEST_UINT_TO_STRHEX(u32)
-#else
-void	test_u32_to_strhex(void)	{}
 #endif
 
-#ifdef	  c_u64_to_strhex
-DEFINETEST_UINT_TO_STRHEX(u64)
+#ifndef c_u64_to_strhex
+void test_u64_to_strhex(void)	{}
 #else
-void	test_u64_to_strhex(void)	{}
+DEFINETEST_UINT_TO_STRHEX(u64)
 #endif
 
 #ifdef __int128
-#ifdef	 c_u128_to_strhex
-DEFINETEST_UINT_TO_STRHEX(u128)
+#ifndef c_u128_to_strhex
+void test_u128_to_strhex(void)	{}
 #else
-void	test_u128_to_strhex(void)	{}
+DEFINETEST_UINT_TO_STRHEX(u128)
 #endif
 #endif
 
-#ifdef	 c_uint_to_strhex
-DEFINETEST_UINT_TO_STRHEX(uint)
+#ifndef c_uint_to_strhex
+void test_uint_to_strhex(void)	{}
 #else
-void	test_uint_to_strhex(void)	{}
+DEFINETEST_UINT_TO_STRHEX(uint)
 #endif
 
 
@@ -472,42 +470,42 @@ void	test_##TYPE##_to_strbase(void)																													\
 	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (null base)     ",	TRUE,                       segstr,                  42,               NULL);	\
 }
 
-#ifdef	   c_s8_to_strbase
+#ifndef c_s8_to_strbase
+void test_s8_to_strbase(void)	{}
+#else
 DEFINETEST_SINT_TO_STRBASE(s8)
-#else
-void	test_s8_to_strbase(void)	{}
 #endif
 
-#ifdef	  c_s16_to_strbase
+#ifndef c_s16_to_strbase
+void test_s16_to_strbase(void)	{}
+#else
 DEFINETEST_SINT_TO_STRBASE(s16)
-#else
-void	test_s16_to_strbase(void)	{}
 #endif
 
-#ifdef	  c_s32_to_strbase
+#ifndef c_s32_to_strbase
+void test_s32_to_strbase(void)	{}
+#else
 DEFINETEST_SINT_TO_STRBASE(s32)
-#else
-void	test_s32_to_strbase(void)	{}
 #endif
 
-#ifdef	  c_s64_to_strbase
-DEFINETEST_SINT_TO_STRBASE(s64)
+#ifndef c_s64_to_strbase
+void test_s64_to_strbase(void)	{}
 #else
-void	test_s64_to_strbase(void)	{}
+DEFINETEST_SINT_TO_STRBASE(s64)
 #endif
 
 #ifdef __int128
-#ifdef	 c_s128_to_strbase
-DEFINETEST_S128_TO_STRBASE(s128)
+#ifndef c_s128_to_strbase
+void test_s128_to_strbase(void)	{}
 #else
-void	test_s128_to_strbase(void)	{}
+DEFINETEST_S128_TO_STRBASE(s128)
 #endif
 
 #endif
-#ifdef	 c_sint_to_strbase
-DEFINETEST_SINT_TO_STRBASE(sint)
+#ifndef c_sint_to_strbase
+void test_sint_to_strbase(void)	{}
 #else
-void	test_sint_to_strbase(void)	{}
+DEFINETEST_SINT_TO_STRBASE(sint)
 #endif
 
 
@@ -611,42 +609,42 @@ void	test_##TYPE##_to_strbase(void)																													\
 	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (null base)   ",	TRUE,                     segstr,                  42,               NULL);	\
 }
 
-#ifdef	   c_u8_to_strbase
+#ifndef c_u8_to_strbase
+void test_u8_to_strbase(void)	{}
+#else
 DEFINETEST_UINT_TO_STRBASE(u8)
-#else
-void	test_u8_to_strbase(void)	{}
 #endif
 
-#ifdef	  c_u16_to_strbase
+#ifndef c_u16_to_strbase
+void test_u16_to_strbase(void)	{}
+#else
 DEFINETEST_UINT_TO_STRBASE(u16)
-#else
-void	test_u16_to_strbase(void)	{}
 #endif
 
-#ifdef	  c_u32_to_strbase
+#ifndef c_u32_to_strbase
+void test_u32_to_strbase(void)	{}
+#else
 DEFINETEST_UINT_TO_STRBASE(u32)
-#else
-void	test_u32_to_strbase(void)	{}
 #endif
 
-#ifdef	  c_u64_to_strbase
-DEFINETEST_UINT_TO_STRBASE(u64)
+#ifndef c_u64_to_strbase
+void test_u64_to_strbase(void)	{}
 #else
-void	test_u64_to_strbase(void)	{}
+DEFINETEST_UINT_TO_STRBASE(u64)
 #endif
 
 #ifdef __int128
-#ifdef	 c_u128_to_strbase
-DEFINETEST_UINT_TO_STRBASE(u128)
+#ifndef c_u128_to_strbase
+void test_u128_to_strbase(void)	{}
 #else
-void	test_u128_to_strbase(void)	{}
+DEFINETEST_UINT_TO_STRBASE(u128)
 #endif
 
 #endif
-#ifdef	 c_uint_to_strbase
-DEFINETEST_UINT_TO_STRBASE(uint)
+#ifndef c_uint_to_strbase
+void test_uint_to_strbase(void)	{}
 #else
-void	test_uint_to_strbase(void)	{}
+DEFINETEST_UINT_TO_STRBASE(uint)
 #endif
 
 
@@ -823,42 +821,42 @@ void test_str_to_##TYPE(void)																										\
 	print_test_str_to_##TYPE("str_to_s"#TYPE" (null str)      ",	SEGV,                        0, NULL                         );	\
 }
 
-#ifdef	 c_str_to_u8
+#ifndef c_str_to_u8
+void test_str_to_u8(void)	{}
+#else
 DEFINETEST_STR_TO_UINT(u8)
-#else
-void	test_str_to_u8(void)	{}
 #endif
 
-#ifdef	 c_str_to_u16
+#ifndef c_str_to_u16
+void test_str_to_u16(void)	{}
+#else
 DEFINETEST_STR_TO_UINT(u16)
-#else
-void	test_str_to_u16(void)	{}
 #endif
 
-#ifdef	 c_str_to_u32
+#ifndef c_str_to_u32
+void test_str_to_u32(void)	{}
+#else
 DEFINETEST_STR_TO_UINT(u32)
-#else
-void	test_str_to_u32(void)	{}
 #endif
 
-#ifdef	 c_str_to_u64
-DEFINETEST_STR_TO_UINT(u64)
+#ifndef c_str_to_u64
+void test_str_to_u64(void)	{}
 #else
-void	test_str_to_u64(void)	{}
+DEFINETEST_STR_TO_UINT(u64)
 #endif
 
 #ifdef __int128
-#ifdef	 c_str_to_u128
-DEFINETEST_STR_TO_UINT(u128)
+#ifndef c_str_to_u128
+void test_str_to_u128(void)	{}
 #else
-void	test_str_to_u128(void)	{}
+DEFINETEST_STR_TO_UINT(u128)
 #endif
 #endif
 
-#ifdef	 c_str_to_uint
-DEFINETEST_STR_TO_UINT(uint)
+#ifndef c_str_to_uint
+void test_str_to_uint(void)	{}
 #else
-void	test_str_to_uint(void)	{}
+DEFINETEST_STR_TO_UINT(uint)
 #endif
 
 
@@ -1010,42 +1008,42 @@ void test_str_to_##TYPE(void)																											\
 	print_test_str_to_##TYPE("str_to_s"#TYPE" (null str)      ",	SEGV,                            0, NULL                         );	\
 }
 
-#ifdef	  c_str_to_s8
+#ifndef c_str_to_s8
+void test_str_to_s8(void)	{}
+#else
 DEFINETEST_STR_TO_SINT(s8)
-#else
-void	test_str_to_s8(void)	{}
 #endif
 
-#ifdef	 c_str_to_s16
+#ifndef c_str_to_s16
+void test_str_to_s16(void)	{}
+#else
 DEFINETEST_STR_TO_SINT(s16)
-#else
-void	test_str_to_s16(void)	{}
 #endif
 
-#ifdef	 c_str_to_s32
+#ifndef c_str_to_s32
+void test_str_to_s32(void)	{}
+#else
 DEFINETEST_STR_TO_SINT(s32)
-#else
-void	test_str_to_s32(void)	{}
 #endif
 
-#ifdef	 c_str_to_s64
-DEFINETEST_STR_TO_SINT(s64)
+#ifndef c_str_to_s64
+void test_str_to_s64(void)	{}
 #else
-void	test_str_to_s64(void)	{}
+DEFINETEST_STR_TO_SINT(s64)
 #endif
 
 #ifdef __int128
-#ifdef	c_str_to_s128
-DEFINETEST_STR_TO_SINT(s128)
+#ifndef _str_to_s128
+void test_str_to_s128(void)	{}
 #else
-void	test_str_to_s128(void)	{}
+DEFINETEST_STR_TO_SINT(s128)
 #endif
 
 #endif
-#ifdef	c_str_to_sint
-DEFINETEST_STR_TO_SINT(sint)
+#ifndef _str_to_sint
+void test_str_to_sint(void)	{}
 #else
-void	test_str_to_sint(void)	{}
+DEFINETEST_STR_TO_SINT(sint)
 #endif
 
 
@@ -1244,42 +1242,42 @@ void	test_strbase_to_##TYPE(void)																												\
 	print_test_strbase_to_##TYPE("strbase_to_"#TYPE" (both null)     ",	SEGV,                       0,                  NULL,               NULL);	\
 }
 
-#ifdef	 c_strbase_to_u8
+#ifndef c_strbase_to_u8
+void test_strbase_to_u8(void)	{}
+#else
 DEFINETEST_STRBASE_TO_UINT(u8)
-#else
-void	test_strbase_to_u8(void)	{}
 #endif
 
-#ifdef	 c_strbase_to_u16
+#ifndef c_strbase_to_u16
+void test_strbase_to_u16(void)	{}
+#else
 DEFINETEST_STRBASE_TO_UINT(u16)
-#else
-void	test_strbase_to_u16(void)	{}
 #endif
 
-#ifdef	 c_strbase_to_u32
+#ifndef c_strbase_to_u32
+void test_strbase_to_u32(void)	{}
+#else
 DEFINETEST_STRBASE_TO_UINT(u32)
-#else
-void	test_strbase_to_u32(void)	{}
 #endif
 
-#ifdef	 c_strbase_to_u64
-DEFINETEST_STRBASE_TO_UINT(u64)
+#ifndef c_strbase_to_u64
+void test_strbase_to_u64(void)	{}
 #else
-void	test_strbase_to_u64(void)	{}
+DEFINETEST_STRBASE_TO_UINT(u64)
 #endif
 
 #ifdef __int128
-#ifdef	 c_strbase_to_u128
-DEFINETEST_STRBASE_TO_UINT(u128)
+#ifndef c_strbase_to_u128
+void test_strbase_to_u128(void)	{}
 #else
-void	test_strbase_to_u128(void)	{}
+DEFINETEST_STRBASE_TO_UINT(u128)
 #endif
 #endif
 
-#ifdef	 c_strbase_to_uint
-DEFINETEST_STRBASE_TO_UINT(uint)
+#ifndef c_strbase_to_uint
+void test_strbase_to_uint(void)	{}
 #else
-void	test_strbase_to_uint(void)	{}
+DEFINETEST_STRBASE_TO_UINT(uint)
 #endif
 
 
@@ -1400,63 +1398,55 @@ void	test_strbase_to_##TYPE(void)																													\
 	print_test_strbase_to_##TYPE("strbase_to_s"#TYPE" (both null)     ",	SEGV,                      0,                   NULL,              NULL);	\
 }
 
-#ifdef	 c_strbase_to_s8
+#ifndef c_strbase_to_s8
+void test_strbase_to_s8(void)	{}
+#else
 DEFINETEST_STRBASE_TO_SINT(s8)
-#else
-void	test_strbase_to_s8(void)	{}
 #endif
 
-#ifdef	 c_strbase_to_s16
+#ifndef c_strbase_to_s16
+void test_strbase_to_s16(void)	{}
+#else
 DEFINETEST_STRBASE_TO_SINT(s16)
-#else
-void	test_strbase_to_s16(void)	{}
 #endif
 
-#ifdef	 c_strbase_to_s32
+#ifndef c_strbase_to_s32
+void test_strbase_to_s32(void)	{}
+#else
 DEFINETEST_STRBASE_TO_SINT(s32)
-#else
-void	test_strbase_to_s32(void)	{}
 #endif
 
-#ifdef	 c_strbase_to_s64
-DEFINETEST_STRBASE_TO_SINT(s64)
+#ifndef c_strbase_to_s64
+void test_strbase_to_s64(void)	{}
 #else
-void	test_strbase_to_s64(void)	{}
+DEFINETEST_STRBASE_TO_SINT(s64)
 #endif
 
 #ifdef __int128
-#ifdef	 c_strbase_to_s128
+#ifndef c_strbase_to_s128
+void test_strbase_to_s128(void)	{}
+#else
 DEFINETEST_STRBASE_TO_SINT(s128)
-#else
-void	test_strbase_to_s128(void)	{}
 #endif
 
 #endif
-#ifdef	 c_strbase_to_sint
+#ifndef c_strbase_to_sint
+void test_strbase_to_sint(void)	{}
+#else
 DEFINETEST_STRBASE_TO_SINT(sint)
-#else
-void	test_strbase_to_sint(void)	{}
 #endif
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-#pragma GCC diagnostic pop // Resets the GCC warning settings back to normal
-#pragma GCC diagnostic pop // Resets the GCC warning settings back to normal
 #pragma GCC diagnostic pop // Resets the GCC warning settings back to normal
 
 
+
+/*
+** ************************************************************************** *|
+**                            Test Suite Function                             *|
+** ************************************************************************** *|
+*/
 
 int		testsuite_int(void)
 {

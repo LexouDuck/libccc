@@ -37,12 +37,12 @@ void	print_totals(s_test_totals totals, char const * category)
 {
 	double percent = (totals.tests - totals.failed) * 100. / totals.tests;
 
-	printf("\n");
-	printf("=============================\n");
+	printf("\n\n");
+	printf("|========================================\n");
 	if (category)
-		printf("Test suite: libccc/%s\n", category);
-	else printf("In total:\n");
-	printf("=============================\n");
+		printf("|  Test suite: libccc/%s\n", category);
+	else printf("|  In total:\n");
+	printf("|========================================\n");
 	printf("- Amount of tests: %d\n", totals.tests);
 
 	int passed = totals.tests - totals.failed;

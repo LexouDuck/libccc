@@ -9,6 +9,12 @@
 
 
 
+/*
+** ************************************************************************** *|
+**                            Test Suite Function                             *|
+** ************************************************************************** *|
+*/
+
 int		testsuite_math_stat(void) // TODO increment total tests counter for these tests
 {
 	print_suite_title("math/stat");

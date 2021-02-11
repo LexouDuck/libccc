@@ -9,10 +9,10 @@
 
 #pragma GCC diagnostic push // Disable GCC overflow warnings temporarily
 #pragma GCC diagnostic ignored "-Woverflow"
-#pragma GCC diagnostic push // Disable GCC overflow warnings temporarily
-#pragma GCC diagnostic ignored "-Wimplicitly-unsigned-literal"
-#pragma GCC diagnostic push // Disable GCC overflow warnings temporarily
-#pragma GCC diagnostic ignored "-Wconstant-conversion"
+// "-Wimplicitly-unsigned-literal"
+// "-Wconstant-conversion"
+
+
 
 /*
 ** ************************************************************************** *|
@@ -20,7 +20,9 @@
 ** ************************************************************************** *|
 */
 
-#ifdef			c_bool_to_str
+#ifndef c_bool_to_str
+void test_bool_to_str(void)	{}
+#else
 void	print_test_bool_to_str(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_bool value,
@@ -53,8 +55,6 @@ void	test_bool_to_str(void)
 		print_test_bool_to_str("bool_to_str (n < maxdigit)",	FALSE,   "TRUE",-999999, TRUE);
 	}
 }
-#else
-void	test_bool_to_str(void)	{}
 #endif
 
 
@@ -65,7 +65,9 @@ void	test_bool_to_str(void)	{}
 ** ************************************************************************** *|
 */
 
-#ifdef			c_str_to_bool
+#ifndef c_str_to_bool
+void test_str_to_bool(void)	{}
+#else
 void	print_test_str_to_bool(char const* test_name, int can_segfault,
 		t_bool expecting,
 		char const* str)
@@ -202,18 +204,19 @@ void	test_str_to_bool(void)
 	print_test_str_to_bool("str_to_bool (empty str)     ",	FALSE,    FALSE,                      "");
 	print_test_str_to_bool("str_to_bool (NULL str)     ",	FALSE,    FALSE,                    NULL);
 }
-#else
-void	test_str_to_bool(void)	{}
 #endif
 
 
 
-
-#pragma GCC diagnostic pop // Resets the GCC warning settings back to normal
-#pragma GCC diagnostic pop // Resets the GCC warning settings back to normal
 #pragma GCC diagnostic pop // Resets the GCC warning settings back to normal
 
 
+
+/*
+** ************************************************************************** *|
+**                            Test Suite Function                             *|
+** ************************************************************************** *|
+*/
 
 int		testsuite_bool(void)
 {

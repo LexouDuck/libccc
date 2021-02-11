@@ -40,6 +40,12 @@ static void	print_char_foreword(void)
 
 
 
+/*
+** ************************************************************************** *|
+**                            Test Suite Function                             *|
+** ************************************************************************** *|
+*/
+
 int		testsuite_char(void)
 {
 	print_suite_title("char");

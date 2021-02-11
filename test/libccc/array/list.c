@@ -6,7 +6,9 @@
 
 
 
-#ifdef			c_lstnew
+#ifndef c_lstnew
+void test_lstnew(void)	{}
+#else
 void	print_test_lstnew(char const* test_name, int can_segfault,
 		char const* expecting,
 		void* item,
@@ -33,7 +35,9 @@ void	test_lstnew(void)
 
 
 
-#ifdef			c_lstprepend
+#ifndef c_lstprepend
+void test_lstprepend(void)	{}
+#else
 void	print_test_lstprepend(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list** a_lst,
@@ -61,7 +65,9 @@ void	test_lstadd(void)
 
 
 
-#ifdef			c_lstappend
+#ifndef c_lstappend
+void test_lstappend(void)	{}
+#else
 void	print_test_lstappend(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list **a_lst, s_list *elem)
@@ -90,7 +96,9 @@ void	test_lstappend(void)
 
 
 
-#ifdef			c_lstinsert
+#ifndef c_lstinsert
+void test_lstinsert(void)	{}
+#else
 void	print_test_lstinsert(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list **a_lst,
@@ -113,7 +121,9 @@ void	test_lstinsert(void)
 
 
 
-#ifdef			c_lstcpy
+#ifndef c_lstcpy
+void test_lstcpy(void)	{}
+#else
 void	print_test_lstcpy(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list *lst)
@@ -135,7 +145,9 @@ void	test_lstcpy(void)
 
 
 
-#ifdef			c_lstpop
+#ifndef c_lstpop
+void test_lstpop(void)	{}
+#else
 void	print_test_lstpop(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list **a_lst,
@@ -157,7 +169,9 @@ void	test_lstpop(void)
 
 
 
-#ifdef			c_lstdelone
+#ifndef c_lstdelone
+void test_lstdelone(void)	{}
+#else
 void	print_test_lstdelone(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list **a_lst,
@@ -212,7 +226,9 @@ void	test_lstdelone(void)
 
 
 
-#ifdef			c_lstdel
+#ifndef c_lstdel
+void test_lstdel(void)	{}
+#else
 void	print_test_lstdel(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list **a_lst,
@@ -259,7 +275,9 @@ void	test_lstdel(void)
 
 
 
-#ifdef			c_lstsize
+#ifndef c_lstsize
+void test_lstsize(void)	{}
+#else
 void	print_test_lstsize(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list *lst)
@@ -286,7 +304,9 @@ void	test_lstsize(void)
 
 
 
-#ifdef			c_lstget
+#ifndef c_lstget
+void test_lstget(void)	{}
+#else
 void	print_test_lstget(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list *lst,
@@ -309,7 +329,9 @@ void	test_lstget(void)
 
 
 
-#ifdef			c_lstfind
+#ifndef c_lstfind
+void test_lstfind(void)	{}
+#else
 void	print_test_lstfind(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list *lst,
@@ -332,7 +354,9 @@ void	test_lstfind(void)
 
 
 
-#ifdef			c_lstsub
+#ifndef c_lstsub
+void test_lstsub(void)	{}
+#else
 void	print_test_lstsub(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list *lst,
@@ -356,7 +380,9 @@ void	test_lstsub(void)
 
 
 
-#ifdef			c_lstiter
+#ifndef c_lstiter
+void test_lstiter(void)	{}
+#else
 void	print_test_lstiter(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list *lst,
@@ -382,7 +408,9 @@ void	test_lstiter(void)
 
 
 
-#ifdef			c_lstiteri
+#ifndef c_lstiteri
+void test_lstiteri(void)	{}
+#else
 void	print_test_lstiteri(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list *lst,
@@ -408,7 +436,9 @@ void	test_lstiteri(void)
 
 
 
-#ifdef			c_lstmap
+#ifndef c_lstmap
+void test_lstmap(void)	{}
+#else
 void	print_test_lstmap(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list *lst,
@@ -434,7 +464,9 @@ void	test_lstmap(void)
 
 
 
-#ifdef			c_lstmapi
+#ifndef c_lstmapi
+void test_lstmapi(void)	{}
+#else
 void	print_test_lstmapi(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list *lst,
@@ -460,7 +492,9 @@ void	test_lstmapi(void)
 
 
 
-#ifdef			c_lstfold
+#ifndef c_lstfold
+void test_lstfold(void)	{}
+#else
 void	print_test_lstfold(char const* test_name, int can_segfault,
 		char const* expecting)
 {
@@ -485,7 +519,9 @@ void	test_lstfold(void)
 
 
 
-#ifdef			c_lst_to_ptrarr
+#ifndef c_lst_to_ptrarr
+void test_lst_to_ptrarr(void)	{}
+#else
 void	print_test_lst_to_ptrarr(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list const** a_lst)
@@ -507,7 +543,9 @@ void	test_lst_to_ptrarr(void)
 
 
 
-#ifdef			c_lst_to_array
+#ifndef c_lst_to_array
+void test_lst_to_array(void)	{}
+#else
 void	print_test_lst_to_array(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list const** a_lst)
@@ -529,6 +567,12 @@ void	test_lst_to_array(void)
 
 
 
+/*
+** ************************************************************************** *|
+**                            Test Suite Function                             *|
+** ************************************************************************** *|
+*/
+
 int		testsuite_array_list(void)
 {
 	print_suite_title("array/list");
@@ -547,54 +591,22 @@ int		testsuite_array_list(void)
 	char const *expect_lower[] = { "omae", " wa ", "mou ", "shindeiru.", NULL };
 */
 
-#ifdef c_lstnew
-	test_lstnew();
-#endif
-#ifdef c_lstadd
-//	test_lstadd();
-#endif
-#ifdef c_lstappend
-//	test_lstappend();
-#endif
-#ifdef c_lstinsert
-//	test_lstinsert();
-#endif
-#ifdef c_lstcpy
-//	test_lstcpy();
-#endif
-#ifdef c_lstpop
-//	test_lstpop();
-#endif
-#ifdef c_lstdelone
-//	test_lstdelone();
-#endif
-#ifdef c_lstdel
-//	test_lstdel();
-#endif
-#ifdef c_lstsize
-//	test_lstsize();
-#endif
-#ifdef c_lstget
-//	test_lstget();
-#endif
-#ifdef c_lstfind
-//	test_lstfind();
-#endif
-#ifdef c_lstsub
-//	test_lstsub();
-#endif
-#ifdef c_lstiter
-//	test_lstiter();
-#endif
-#ifdef c_lstmap
-//	test_lstmap();
-#endif
-#ifdef c_lst_to_ptrarr
-//	test_lst_to_array();
-#endif
-#ifdef c_lst_to_array
-//	test_lst_to_array();
-#endif
 
+	test_lstnew();
+//	test_lstadd();
+//	test_lstappend();
+//	test_lstinsert();
+//	test_lstcpy();
+//	test_lstpop();
+//	test_lstdelone();
+//	test_lstdel();
+//	test_lstsize();
+//	test_lstget();
+//	test_lstfind();
+//	test_lstsub();
+//	test_lstiter();
+//	test_lstmap();
+//	test_lst_to_array();
+//	test_lst_to_array();
 	return (OK);
 }

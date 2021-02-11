@@ -50,6 +50,12 @@ s_sortedlist_int	print_test_random(int samples)
 
 
 
+/*
+** ************************************************************************** *|
+**                            Test Suite Function                             *|
+** ************************************************************************** *|
+*/
+
 int		testsuite_math_random(void)
 {
 	print_suite_title("math/random");
