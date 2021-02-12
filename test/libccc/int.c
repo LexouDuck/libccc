@@ -368,7 +368,7 @@ DEFINETEST_UINT_TO_STRHEX(uint)
 ** ************************************************************************** *|
 */
 
-#define DEFINETEST_SINT_TO_STRBASE(TYPE) \
+#define DEFINETEST_SINT_TO_STRBASE(TYPE, BITS) \
 void	print_test_##TYPE##_to_strbase(char const* test_name, int can_segfault,					\
 		char const* expecting,																	\
 		t_##TYPE number,																		\
@@ -377,7 +377,7 @@ void	print_test_##TYPE##_to_strbase(char const* test_name, int can_segfault,				
 	TEST_PERFORM_RESULT(TYPE##_to_strbase, number, base)										\
 	print_test_str(test_name, "_s"#TYPE"_to_strbase", result_libccc, expecting, can_segfault);	\
 	print_timer_result(&t, FALSE);																\
-	TEST_PRINT_ARGS("base='%s', n="FORMAT_S64, base, number);									\
+	TEST_PRINT_ARGS("base='%s', n="FORMAT_S##BITS, base, number);								\
 }																								\
 void	test_##TYPE##_to_strbase(void)																													\
 {																																						\
@@ -481,39 +481,39 @@ void	test_##TYPE##_to_strbase(void)																													\
 #ifndef c_s8_to_strbase
 void test_s8_to_strbase(void)	{}
 #else
-DEFINETEST_SINT_TO_STRBASE(s8)
+DEFINETEST_SINT_TO_STRBASE(s8, 8)
 #endif
 
 #ifndef c_s16_to_strbase
 void test_s16_to_strbase(void)	{}
 #else
-DEFINETEST_SINT_TO_STRBASE(s16)
+DEFINETEST_SINT_TO_STRBASE(s16, 16)
 #endif
 
 #ifndef c_s32_to_strbase
 void test_s32_to_strbase(void)	{}
 #else
-DEFINETEST_SINT_TO_STRBASE(s32)
+DEFINETEST_SINT_TO_STRBASE(s32, 32)
 #endif
 
 #ifndef c_s64_to_strbase
 void test_s64_to_strbase(void)	{}
 #else
-DEFINETEST_SINT_TO_STRBASE(s64)
+DEFINETEST_SINT_TO_STRBASE(s64, 64)
 #endif
 
 #ifdef __int128
 #ifndef c_s128_to_strbase
 void test_s128_to_strbase(void)	{}
 #else
-DEFINETEST_S128_TO_STRBASE(s128)
+DEFINETEST_S128_TO_STRBASE(s128, 128)
 #endif
 
 #endif
 #ifndef c_sint_to_strbase
 void test_sint_to_strbase(void)	{}
 #else
-DEFINETEST_SINT_TO_STRBASE(sint)
+DEFINETEST_SINT_TO_STRBASE(sint, INT)
 #endif
 
 

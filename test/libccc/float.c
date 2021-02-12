@@ -17,6 +17,8 @@
 #pragma clang diagnostic ignored "-Wimplicitly-unsigned-literal"
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wconstant-conversion"
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wliteral-range"
 
 
 
@@ -727,6 +729,7 @@ DEFINETEST_STR_TO_FLOAT(float)
 #pragma GCC diagnostic pop
 #pragma GCC diagnostic pop
 // Resets the clang warning settings back to normal
+#pragma clang diagnostic pop
 #pragma clang diagnostic pop
 #pragma clang diagnostic pop
 

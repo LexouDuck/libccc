@@ -33,8 +33,8 @@ inline t_q##BITS	Q##BITS##_FromInt(t_s##BITS number)						\
 #define DEFINEFUNC_FIXED_FROMFLOAT(BITS) \
 inline t_q##BITS	Q##BITS##_FromFloat(t_f64 number)						\
 {																			\
-	if (number > (Q##BITS##_MAX >> FIXED_BITS_FRACTIONPART))	return (Q##BITS##_MAX);	\
-	if (number < (Q##BITS##_MIN >> FIXED_BITS_FRACTIONPART))	return (Q##BITS##_MIN);	\
+	if (number > (t_f64)(Q##BITS##_MAX >> FIXED_BITS_FRACTIONPART))	return (Q##BITS##_MAX);	\
+	if (number < (t_f64)(Q##BITS##_MIN >> FIXED_BITS_FRACTIONPART))	return (Q##BITS##_MIN);	\
 	return (																\
 		((t_q##BITS)Math_Truncate(number) << FIXED_BITS_FRACTIONPART) |		\
 		((t_q##BITS)Math_Mod(number, 1) & (FIXED_MASK_FRACTIONPART))		\
@@ -58,7 +58,7 @@ inline t_q##BITS	Q##BITS##_FractionPart(t_q##BITS number)				\
 #define DEFINEFUNC_FIXED_ROUNDED(BITS) \
 inline t_q##BITS	Q##BITS##_Rounded(t_q##BITS number)						\
 {																			\
-	t_q##BITS fraction = Q##BITS##_FractionPart(number);					\
+	t_q##BITS fraction = (number & (FIXED_MASK_FRACTIONPART));				\
 	if (fraction < FIXED_MAX_FRACTIONPART / 2)								\
 		return (number - fraction);											\
 	else return (number + (FIXED_MAX_FRACTIONPART - fraction));				\
