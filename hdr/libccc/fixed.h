@@ -27,6 +27,7 @@
 #include "libccc_define.h"
 
 #include "libccc/int.h"
+#include "libccc/float.h"
 
 HEADER_CPP
 
@@ -36,19 +37,15 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-#define Q16_MAX	(t_q16)(~0)
-#define Q16_MIN	(t_q16)(~0)
+//! The amount of bits dedicated to the fixed-point number type's fractional number part
+#define FIXED_BITS_FRACTIONPART	(LIBCONFIG_BITS_FIXED / 4)
+#define FIXED_MASK_FRACTIONPART	(((t_s64)1 << FIXED_BITS_FRACTIONPART) - 1)
+#define FIXED_MAX_FRACTIONPART	 ((t_s64)1 << FIXED_BITS_FRACTIONPART)
 
-#define Q32_MAX	(t_q32)(~0)
-#define Q32_MIN	(t_q32)(~0)
-
-#define Q64_MAX	(t_q64)(~0)
-#define Q64_MIN	(t_q64)(~0)
-
-#ifdef __int128
-	#define Q128_MAX	(t_q128)(~0)
-	#define Q128_MIN	(t_q128)(~0)
-#endif
+//! The amount of bits dedicated to the fixed-point number type's integer number part
+#define FIXED_BITS_INTEGERPART	(LIBCONFIG_BITS_FIXED - FIXED_BITS_FRACTIONPART)
+#define FIXED_MASK_INTEGERPART	((((t_s64)1 << FIXED_BITS_INTEGERPART) - 1) << FIXED_BITS_FRACTIONPART)
+#define FIXED_MAX_INTEGERPART	  ((t_s64)1 << FIXED_BITS_INTEGERPART)
 
 
 
@@ -59,15 +56,15 @@ HEADER_CPP
 	#error "LIBCONFIG_BITS_FIXED must be equal to one of: 16, 32, 64, 128"
 #endif
 
-#if LIBCONFIG_BITS_FIXED_INTEGERPART > LIBCONFIG_BITS_FIXED
-	#error "LIBCONFIG_BITS_FIXED_INTEGERPART must be inferior or equal to LIBCONFIG_BITS_FIXED"
+#if (FIXED_BITS_INTEGERPART > LIBCONFIG_BITS_FIXED)
+	#error "FIXED_BITS_INTEGERPART must be inferior or equal to LIBCONFIG_BITS_FIXED"
 #endif
 
-#if LIBCONFIG_BITS_FIXED_FRACTIONPART > LIBCONFIG_BITS_FIXED
-	#error "LIBCONFIG_BITS_FIXED_FRACTIONPART must be inferior or equal to LIBCONFIG_BITS_FIXED"
+#if (FIXED_BITS_FRACTIONPART > LIBCONFIG_BITS_FIXED)
+	#error "FIXED_BITS_FRACTIONPART must be inferior or equal to LIBCONFIG_BITS_FIXED"
 #endif
 
-#if LIBCONFIG_BITS_FIXED_INTEGERPART + LIBCONFIG_BITS_FIXED_FRACTIONPART > LIBCONFIG_BITS_FIXED
+#if (FIXED_BITS_INTEGERPART + FIXED_BITS_FRACTIONPART > LIBCONFIG_BITS_FIXED)
 	#error "The sum of both _INTEGERPART and _DECIMALPART must be inferior or equal to LIBCONFIG_BITS_FIXED"
 #endif
 
@@ -118,31 +115,120 @@ TYPEDEF_ALIAS(					t_fixed, FIXED_128, PRIMITIVE)
 
 
 
+#define Q16_MAX	(t_q16)S16_MAX
+#define Q16_MIN	(t_q16)S16_MIN
+
+#define Q32_MAX	(t_q32)S32_MAX
+#define Q32_MIN	(t_q32)S32_MIN
+
+#define Q64_MAX	(t_q64)S64_MAX
+#define Q64_MIN	(t_q64)S64_MIN
+
+#ifdef __int128
+#define Q128_MAX	(t_q128)S128_MAX
+#define Q128_MIN	(t_q128)S128_MIN
+#endif
+
+//#define FIXED_MAX	(t_fixed)CONCAT(CONCAT(S,LIBCONFIG_BITS_FIXED),_MAX)
+//#define FIXED_MIN	(t_fixed)CONCAT(CONCAT(S,LIBCONFIG_BITS_FIXED),_MIN)
+
+
+
 /*
 ** ************************************************************************** *|
 **                         Basic fixed-point operations                       *|
 ** ************************************************************************** *|
 */
 
-#define Fixed(I, F)			(Fixed_FromInt(I) | Fixed_FractionPart(Math_Mod((F), 1)))
-#define Fixed_FromInt(I)	((t_fixed)(I) << LIBCONFIG_BITS_FIXED_FRACTIONPART)
-#define Fixed_FromFloat(I)	(((t_fixed)(I) << LIBCONFIG_BITS_FIXED_FRACTIONPART) | Fixed_FractionPart(Math_Mod((I), 1)))
+t_fixed	 Fixed	(t_fixed part_integer,	t_u64	part_fraction,	t_u64	denominator);
+t_q16	 Q16	(t_s64 part_integer,	t_u64	part_fraction,	t_u64	denominator);
+t_q32	 Q32	(t_s64 part_integer,	t_u64	part_fraction,	t_u64	denominator);
+t_q64	 Q64	(t_s64 part_integer,	t_u64	part_fraction,	t_u64	denominator);
+#ifdef __int128
+t_q128	 Q128	(t_s64 part_integer,	t_u64	part_fraction,	t_u64	denominator);
+#endif
 
-#define Fixed_IntegerPart(Q)	((Q) >> LIBCONFIG_BITS_FIXED_FRACTIONPART)
-#define Fixed_FractionPart(Q)	((t_fixed)(Q) & (((t_fixed)1 << LIBCONFIG_BITS_FIXED_FRACTIONPART) - 1))
-#define Fixed_Rounded(Q)		((t_fixed)((Q) * (((t_fixed)1 << LIBCONFIG_BITS_FIXED_FRACTIONPART) + ((Q) >= 0 ? 0.5 : -0.5))))
+t_fixed	 Fixed_FromInt	(t_fixed number);
+t_q16	 Q16_FromInt	(t_s16 number);
+t_q32	 Q32_FromInt	(t_s32 number);
+t_q64	 Q64_FromInt	(t_s64 number);
+#ifdef __int128
+t_q128	 Q128_FromInt	(t_s128 number);
+#endif
 
-#define Fixed_Add(A, B)	((A) + (B))
-#define Fixed_Sub(A, B)	((A) - (B))
-#define Fixed_Mul(A, B)	((t_fixed)(((t_fixed)(A) * (t_fixed)(B)) >> LIBCONFIG_BITS_FIXED_FRACTIONPART))
-#define Fixed_Div(A, B)	((t_fixed)(((t_fixed)(A) << LIBCONFIG_BITS_FIXED_FRACTIONPART) / (t_fixed)(B)))
+t_fixed	 Fixed_FromFloat(t_fixed number);
+t_q16	 Q16_FromFloat	(t_f64 number);
+t_q32	 Q32_FromFloat	(t_f64 number);
+t_q64	 Q64_FromFloat	(t_f64 number);
+#ifdef __int128
+t_q128	 Q128_FromFloat	(t_f64 number);
+#endif
 
+
+
+t_fixed	 Fixed_IntegerPart	(t_fixed number);
+t_q16	 Q16_IntegerPart	(t_q16 number);
+t_q32	 Q32_IntegerPart	(t_q32 number);
+t_q64	 Q64_IntegerPart	(t_q64 number);
+#ifdef __int128
+t_q128	 Q128_IntegerPart	(t_q128 number);
+#endif
+
+t_fixed	 Fixed_FractionPart	(t_fixed number);
+t_q16	 Q16_FractionPart	(t_q16 number);
+t_q32	 Q32_FractionPart	(t_q32 number);
+t_q64	 Q64_FractionPart	(t_q64 number);
+#ifdef __int128
+t_q128	 Q128_FractionPart	(t_q128 number);
+#endif
+
+t_fixed	 Fixed_Rounded	(t_fixed number);
+t_q16	 Q16_Rounded	(t_q16 number);
+t_q32	 Q32_Rounded	(t_q32 number);
+t_q64	 Q64_Rounded	(t_q64 number);
+#ifdef __int128
+t_q128	 Q128_Rounded	(t_q128 number);
+#endif
+
+
+
+t_fixed	 Fixed_Add	(t_fixed	q1, t_fixed	q2);
+t_q16	 Q16_Add	(t_q16	q1, t_q16	q2);
+t_q32	 Q32_Add	(t_q32	q1, t_q32	q2);
+t_q64	 Q64_Add	(t_q64	q1, t_q64	q2);
+#ifdef __int128
+t_q128	 Q128_Add	(t_q128	q1, t_q128	q2);
+#endif
+
+t_fixed	 Fixed_Sub	(t_fixed	q1, t_fixed	q2);
+t_q16	 Q16_Sub	(t_q16	q1, t_q16	q2);
+t_q32	 Q32_Sub	(t_q32	q1, t_q32	q2);
+t_q64	 Q64_Sub	(t_q64	q1, t_q64	q2);
+#ifdef __int128
+t_q128	 Q128_Sub	(t_q128	q1, t_q128	q2);
+#endif
+
+t_fixed	 Fixed_Mul	(t_fixed	q1, t_fixed	q2);
+t_q16	 Q16_Mul	(t_q16	q1, t_q16	q2);
+t_q32	 Q32_Mul	(t_q32	q1, t_q32	q2);
+t_q64	 Q64_Mul	(t_q64	q1, t_q64	q2);
+#ifdef __int128
+t_q128	 Q128_Mul	(t_q128	q1, t_q128	q2);
+#endif
+
+t_fixed	 Fixed_Div	(t_fixed	q1, t_fixed	q2);
+t_q16	 Q16_Div	(t_q16	q1, t_q16	q2);
+t_q32	 Q32_Div	(t_q32	q1, t_q32	q2);
+t_q64	 Q64_Div	(t_q64	q1, t_q64	q2);
+#ifdef __int128
+t_q128	 Q128_Div	(t_q128	q1, t_q128	q2);
+#endif
 
 
 
 /*
 ** ************************************************************************** *|
-**                         Primitive Type Conversions                         *|
+**                             String Conversions                             *|
 ** ************************************************************************** *|
 */
 

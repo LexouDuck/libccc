@@ -34,7 +34,7 @@ void	print_test_##TYPE##_to_str(char const* test_name, int can_segfault,					\
 	TEST_PERFORM_RESULT(TYPE##_to_str, number)												\
 	print_test_str(test_name, "_"#TYPE"_to_str", result_libccc, expecting, can_segfault);	\
 	print_timer_result(&t, FALSE);															\
-	TEST_PRINT_ARGS(FORMAT_UINT, number)													\
+	TEST_PRINT_ARGS(FORMAT_U64, number)														\
 }																							\
 void	test_##TYPE##_to_str(void)																							\
 {																															\
@@ -143,10 +143,10 @@ void	print_test_##TYPE##_to_str(char const* test_name, int can_segfault,					\
 		char const* expecting,																\
 		t_##TYPE number)																	\
 {																							\
-	TEST_PERFORM_RESULT(TYPE##_to_str, number)											\
+	TEST_PERFORM_RESULT(TYPE##_to_str, number)												\
 	print_test_str(test_name, "_s"#TYPE"_to_str", result_libccc, expecting, can_segfault);	\
 	print_timer_result(&t, FALSE);															\
-	TEST_PRINT_ARGS(FORMAT_SINT, number)													\
+	TEST_PRINT_ARGS(FORMAT_S64, number)														\
 }																							\
 void	test_##TYPE##_to_str(void)																							\
 {																															\
@@ -266,7 +266,7 @@ void	print_test_##TYPE##_to_strhex(char const* test_name, int can_segfault,					
 	TEST_PERFORM_RESULT(TYPE##_to_strhex, number)												\
 	print_test_str(test_name, "_"#TYPE"_to_strhex", result_libccc, expecting, can_segfault);	\
 	print_timer_result(&t, FALSE);																\
-	TEST_PRINT_ARGS(FORMAT_UINT, number)														\
+	TEST_PRINT_ARGS(FORMAT_U64, number)															\
 }																								\
 void	test_##TYPE##_to_strhex(void)																								\
 {																																	\
@@ -377,7 +377,7 @@ void	print_test_##TYPE##_to_strbase(char const* test_name, int can_segfault,				
 	TEST_PERFORM_RESULT(TYPE##_to_strbase, number, base)										\
 	print_test_str(test_name, "_s"#TYPE"_to_strbase", result_libccc, expecting, can_segfault);	\
 	print_timer_result(&t, FALSE);																\
-	TEST_PRINT_ARGS("base='%s', n="FORMAT_SINT, base, number);									\
+	TEST_PRINT_ARGS("base='%s', n="FORMAT_S64, base, number);									\
 }																								\
 void	test_##TYPE##_to_strbase(void)																													\
 {																																						\
@@ -519,7 +519,7 @@ DEFINETEST_SINT_TO_STRBASE(sint)
 
 
 #define DEFINETEST_UINT_TO_STRBASE(TYPE) \
-void	print_test_##TYPE##_to_strbase(char const* test_name, int can_segfault,				\
+void	print_test_##TYPE##_to_strbase(char const* test_name, int can_segfault,					\
 		char const* expecting,																	\
 		t_u32 number,																			\
 		char const* base)																		\
@@ -529,9 +529,9 @@ void	print_test_##TYPE##_to_strbase(char const* test_name, int can_segfault,				
 	print_timer_result(&t, FALSE);																\
 	TEST_PRINT_ARGS("base='%s', n=%d", base, number);											\
 }																								\
-void	test_##TYPE##_to_strbase(void)																													\
-{																																						\
-/*	| TEST FUNCTION          | TEST NAME                                 |CAN SEGV|  EXPECTING              | TEST ARGS								*/	\
+void	test_##TYPE##_to_strbase(void)																												\
+{																																					\
+/*	| TEST FUNCTION          | TEST NAME                             |CAN SEGV|  EXPECTING              | TEST ARGS								*/	\
 	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = min, dec)  ",	FALSE,                       "0",                   0,       "0123456789");	\
 	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = min, hex)  ",	FALSE,                       "0",                   0, "0123456789ABCDEF");	\
 	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = min, oct)  ",	FALSE,                       "0",                   0,         "01234567");	\
@@ -682,15 +682,15 @@ DEFINETEST_UINT_TO_STRBASE(uint)
 */
 
 #define DEFINETEST_STR_TO_UINT(TYPE) \
-void	print_test_str_to_##TYPE(char const* test_name, int can_segfault,						\
+void	print_test_str_to_##TYPE(char const* test_name, int can_segfault,					\
 		t_##TYPE expecting,																	\
-		char const* str)																		\
-{																								\
+		char const* str)																	\
+{																							\
 	TEST_PERFORM_RESULT_TYPE(t_##TYPE, str_to_##TYPE, str)									\
 	print_test_##TYPE(test_name, "_str_to_"#TYPE, result_libccc, expecting, can_segfault);	\
-	print_timer_result(&t, FALSE);																\
-	TEST_PRINT_ARGS_ESCAPED(str)																\
-}																								\
+	print_timer_result(&t, FALSE);															\
+	TEST_PRINT_ARGS_ESCAPED(str)															\
+}																							\
 void test_str_to_##TYPE(void)																										\
 {																																	\
 /*	| TEST FUNCTION          | TEST NAME                      |CAN SEGV| EXPECTING                 | TEST ARGS					*/	\
@@ -1150,12 +1150,12 @@ void	test_strhex_to_u64(void)
 
 #define DEFINETEST_STRBASE_TO_UINT(TYPE) \
 void	print_test_strbase_to_##TYPE(char const* test_name, int can_segfault,					\
-		t_##TYPE expecting,																	\
+		t_##TYPE expecting,																		\
 		char const* number,																		\
 		char const* base)																		\
 {																								\
-	TEST_PERFORM_RESULT_TYPE(t_##TYPE, strbase_to_##TYPE, number, base)						\
-	print_test_##TYPE(test_name, "_strbase_to_"#TYPE, result_libccc, expecting, can_segfault);\
+	TEST_PERFORM_RESULT_TYPE(t_##TYPE, strbase_to_##TYPE, number, base)							\
+	print_test_##TYPE(test_name, "_strbase_to_"#TYPE, result_libccc, expecting, can_segfault);	\
 	print_timer_result(&t, FALSE);																\
 	TEST_PRINT_ARGS("base='%s', n='%s'", base, number);											\
 }																								\

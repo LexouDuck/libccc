@@ -95,6 +95,7 @@ SRCS = \
 	pointer/size_to_str.c	\
 	pointer/str_to_size.c	\
 	pointer/ptr_to_str.c	\
+	fixed/fixed.c				\
 	fixed/fixed_to_str.c		\
 	fixed/str_to_fixed.c		\
 	float/float_to_str.c	\

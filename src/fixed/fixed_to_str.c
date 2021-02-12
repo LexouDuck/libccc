@@ -10,9 +10,9 @@ inline char*	Q##BITS##_ToString(t_q##BITS number)			\
 {																\
 	return (String_Format(										\
 		FORMAT_S##BITS".("FORMAT_U##BITS"/"FORMAT_U##BITS")",	\
-		(t_s##BITS)Fixed_IntegerPart(number),					\
-		(t_s##BITS)Fixed_FractionPart(number),					\
-		(t_s##BITS)1 << LIBCONFIG_BITS_FIXED_FRACTIONPART)		\
+		(t_s##BITS)Q##BITS##_IntegerPart(number),				\
+		(t_s##BITS)Q##BITS##_FractionPart(number),				\
+		(t_s##BITS)1 << FIXED_BITS_FRACTIONPART)				\
 	);															\
 }																\
 

@@ -47,56 +47,6 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-#ifndef LIBCONFIG_INTEGER_TYPES
-
-	#define STDINT(TYPE, BITS)	TYPE##BITS##_t
-
-	#define U8_MAX	(255)                  //!< The maximum value for  8-bit unsigned integers (0xFF)
-	#define U16_MAX	(65535)                //!< The maximum value for 16-bit unsigned integers (0xFFFF)
-	#define U32_MAX	(4294967295)           //!< The maximum value for 32-bit unsigned integers (0xFFFFFFFF)
-	#define U64_MAX	(18446744073709551615) //!< The maximum value for 64-bit unsigned integers (0xFFFFFFFFFFFFFFFF)
-
-	#define S8_MAX	(+127)                 //!< The maximum value for  8-bit signed integers (0x7F)
-	#define S16_MAX	(+32767)               //!< The maximum value for 16-bit signed integers (0x7FFF)
-	#define S32_MAX	(+2147483647)          //!< The maximum value for 32-bit signed integers (0x7FFFFFFF)
-	#define S64_MAX	(+9223372036854775807) //!< The maximum value for 64-bit signed integers (0x7FFFFFFFFFFFFFFF)
-
-	#define S8_MIN	(-128)                 //!< The minimum value for  8-bit signed integers (0x80)
-	#define S16_MIN	(-32768)               //!< The minimum value for 16-bit signed integers (0x8000)
-	#define S32_MIN	(-2147483648)          //!< The minimum value for 32-bit signed integers (0x80000000)
-	#define S64_MIN	(-9223372036854775808) //!< The minimum value for 64-bit signed integers (0x8000000000000000)
-
-#else
-
-	#define STDINT(TYPE, BITS)	TYPE##LIBCONFIG_INTEGER_TYPES##BITS##_t
-
-	#define U8_MAX	((t_u8 )-1) //!< The maximum value for at least size  8-bit, unsigned integer type
-	#define U16_MAX	((t_u16)-1) //!< The maximum value for at least size 16-bit, unsigned integer type
-	#define U32_MAX	((t_u32)-1) //!< The maximum value for at least size 32-bit, unsigned integer type
-	#define U64_MAX	((t_u64)-1) //!< The maximum value for at least size 64-bit, unsigned integer type
-
-	#define S8_MAX	((t_s8) (U8_MAX  >> 1)) ////!< The maximum value for at least size  8-bit, signed integer type
-	#define S16_MAX	((t_s16)(U16_MAX >> 1)) ////!< The maximum value for at least size 16-bit, signed integer type
-	#define S32_MAX	((t_s32)(U32_MAX >> 1)) ////!< The maximum value for at least size 32-bit, signed integer type
-	#define S64_MAX	((t_s64)(U64_MAX >> 1)) ////!< The maximum value for at least size 64-bit, signed integer type
-
-	#define S8_MIN	((t_s8) ((U8_MAX  >> 1) + 1)) //!< The minimum value for at least size  8-bit, signed integer type
-	#define S16_MIN	((t_s16)((U16_MAX >> 1) + 1)) //!< The minimum value for at least size 16-bit, signed integer type
-	#define S32_MIN	((t_s32)((U32_MAX >> 1) + 1)) //!< The minimum value for at least size 32-bit, signed integer type
-	#define S64_MIN	((t_s64)((U64_MAX >> 1) + 1)) //!< The minimum value for at least size 64-bit, signed integer type
-
-#endif
-
-#ifdef __int128
-
-	#define U128_MAX	(340282366920938463463374607431768211455LL)  //!< The maximum value for 128-bit unsigned integers (0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF)
-	#define S128_MAX	(+170141183460469231731687303715884105727LL) //!< The maximum value for 128-bit signed integers (0x7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF)
-	#define S128_MIN	(−170141183460469231731687303715884105728LL) //!< The minimum value for 128-bit signed integers (0x80000000000000000000000000000000)
-
-#endif
-
-
-
 #if LIBCONFIG_BITS_UINT != 8 && \
 	LIBCONFIG_BITS_UINT != 16 && \
 	LIBCONFIG_BITS_UINT != 32 && \
@@ -111,6 +61,14 @@ HEADER_CPP
 	LIBCONFIG_BITS_SINT != 64 && \
 	LIBCONFIG_BITS_SINT != 128
 	#error "LIBCONFIG_BITS_SINT must be equal to one of: 8, 16, 32, 64, 128"
+#endif
+
+
+
+#ifndef LIBCONFIG_INTEGER_TYPES
+	#define STDINT(TYPE, BITS)	TYPE##BITS##_t
+#else
+	#define STDINT(TYPE, BITS)	TYPE##LIBCONFIG_INTEGER_TYPES##BITS##_t
 #endif
 
 /*
@@ -165,6 +123,58 @@ TYPEDEF_ALIAS(				t_sint, SINT, PRIMITIVE)
 
 
 
+#ifndef LIBCONFIG_INTEGER_TYPES
+
+	#define U8_MAX	(255)                  //!< The maximum value for  8-bit unsigned integers (0xFF)
+	#define S8_MAX	(+127)                 //!< The maximum value for  8-bit signed integers (0x7F)
+	#define S8_MIN	(-128)                 //!< The minimum value for  8-bit signed integers (0x80)
+
+	#define U16_MAX	(65535)                //!< The maximum value for 16-bit unsigned integers (0xFFFF)
+	#define S16_MAX	(+32767)               //!< The maximum value for 16-bit signed integers (0x7FFF)
+	#define S16_MIN	(-32768)               //!< The minimum value for 16-bit signed integers (0x8000)
+
+	#define U32_MAX	(4294967295)           //!< The maximum value for 32-bit unsigned integers (0xFFFFFFFF)
+	#define S32_MAX	(+2147483647)          //!< The maximum value for 32-bit signed integers (0x7FFFFFFF)
+	#define S32_MIN	(-2147483648)          //!< The minimum value for 32-bit signed integers (0x80000000)
+
+	#define U64_MAX	(18446744073709551615llu) //!< The maximum value for 64-bit unsigned integers (0xFFFFFFFFFFFFFFFF)
+	#define S64_MAX	(+9223372036854775807ll) //!< The maximum value for 64-bit signed integers (0x7FFFFFFFFFFFFFFF)
+	#define S64_MIN	(-9223372036854775807ll) //!< The minimum value for 64-bit signed integers (0x8000000000000000)
+
+#else
+
+	#define U8_MAX	((t_u8 )-1)						//!< The maximum value for at least size  8-bit, unsigned integer type
+	#define S8_MAX	((t_s8)(U8_MAX  >> 1))			//!< The maximum value for at least size  8-bit, signed integer type
+	#define S8_MIN	((t_s8)((U8_MAX  >> 1) + 1))	//!< The minimum value for at least size  8-bit, signed integer type
+
+	#define U16_MAX	((t_u16)-1)						//!< The maximum value for at least size 16-bit, unsigned integer type
+	#define S16_MAX	((t_s16)(U16_MAX >> 1))			//!< The maximum value for at least size 16-bit, signed integer type
+	#define S16_MIN	((t_s16)((U16_MAX >> 1) + 1))	//!< The minimum value for at least size 16-bit, signed integer type
+
+	#define U32_MAX	((t_u32)-1)						//!< The maximum value for at least size 32-bit, unsigned integer type
+	#define S32_MAX	((t_s32)(U32_MAX >> 1))			//!< The maximum value for at least size 32-bit, signed integer type
+	#define S32_MIN	((t_s32)((U32_MAX >> 1) + 1))	//!< The minimum value for at least size 32-bit, signed integer type
+
+	#define U64_MAX	((t_u64)-1)						//!< The maximum value for at least size 64-bit, unsigned integer type
+	#define S64_MAX	((t_s64)(U64_MAX >> 1))			//!< The maximum value for at least size 64-bit, signed integer type
+	#define S64_MIN	((t_s64)((U64_MAX >> 1) + 1))	//!< The minimum value for at least size 64-bit, signed integer type
+
+#endif
+
+#ifdef __int128
+
+	#define U128_MAX	(340282366920938463463374607431768211455llu) //!< The maximum value for 128-bit unsigned integers (0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF)
+	#define S128_MAX	(+170141183460469231731687303715884105727ll) //!< The maximum value for 128-bit signed integers (0x7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF)
+	#define S128_MIN	(−170141183460469231731687303715884105728ll) //!< The minimum value for 128-bit signed integers (0x80000000000000000000000000000000)
+
+#endif
+
+//#define UINT_MAX	(t_uint)CONCAT(CONCAT(U,LIBCONFIG_BITS_UINT),_MAX)
+//#define SINT_MAX	(t_sint)CONCAT(CONCAT(S,LIBCONFIG_BITS_SINT),_MAX)
+//#define SINT_MIN	(t_sint)CONCAT(CONCAT(S,LIBCONFIG_BITS_SINT),_MIN)
+
+
+
 #define MAXDIGITS_8BIT	 ( 3)	//!< The amount of digits needed to represent an 8-bit integer in decimal (max: 255)
 #define MAXDIGITS_16BIT	 ( 5)	//!< The amount of digits needed to represent a 16-bit integer in decimal (max: 65535)
 #define MAXDIGITS_32BIT	 (10)	//!< The amount of digits needed to represent a 32-bit integer in decimal (max: 4294967295)
@@ -175,7 +185,7 @@ TYPEDEF_ALIAS(				t_sint, SINT, PRIMITIVE)
 
 /*
 ** ************************************************************************** *|
-**                         Primitive Type Conversions                         *|
+**                             String Conversions                             *|
 ** ************************************************************************** *|
 */
 
