@@ -146,10 +146,13 @@ SRCS = \
 	color/color_argb_to.c	\
 	color/color_nearest.c	\
 	color/color_convert.c	\
-	sys/io/output.c				\
-	sys/io/write.c				\
+	sys/io/open.c				\
+	sys/io/close.c				\
+	sys/io/chmod.c				\
 	sys/io/read.c				\
-	sys/io/getnextline.c		\
+	sys/io/read_nextline.c		\
+	sys/io/write.c				\
+	sys/io/output.c				\
 	sys/time/time.c			\
 	sys/time/date.c			\
 	sys/time/date_format.c	\

@@ -23,6 +23,8 @@
 ** ************************************************************************** *|
 */
 
+#include <fcntl.h>
+
 #include "libccc.h"
 
 HEADER_CPP
@@ -62,9 +64,62 @@ TYPEDEF_ALIAS(	t_fd, FILEDESC, PRIMITIVE)
 #define STDOUT	((t_fd)1)	//!< Special file descriptor (1), refers to terminal output stream
 #define STDERR	((t_fd)2)	//!< Special file descriptor (2), refers to terminal error stream
 
+
+
+//! This type represents a file access permissions bitflag value (like you would use with chmod)
+typedef unsigned int	t_io_mode;
+TYPEDEF_ALIAS(			t_io_mode, IO_MODE, PRIMITIVE)
+
+/*
+**	Access permissions bitflag (user/group/other and read/write/execute), used with the t_accessmode type
+*/
+#define MODE_USER_RWX	0700	//!< S_IRWXU - User (file owner) has read, write, and execute permission
+#define MODE_USER_R		0400	//!< S_IRUSR - User has read permission
+#define MODE_USER_W		0200	//!< S_IWUSR - User has write permission
+#define MODE_USER_X		0100	//!< S_IXUSR - User has execute permission
+
+#define MODE_GROUP_RWX	0070	//!< S_IRWXG - Group has read, write, and execute permission
+#define MODE_GROUP_R	0040	//!< S_IRGRP - Group has read permission
+#define MODE_GROUP_W	0020	//!< S_IWGRP - Group has write permission
+#define MODE_GROUP_X	0010	//!< S_IXGRP - Group has execute permission
+
+#define MODE_OTHER_RWX	0007	//!< S_IRWXO - Others have read, write, and execute permission
+#define MODE_OTHER_R	0004	//!< S_IROTH - Others have read permission
+#define MODE_OTHER_W	0002	//!< S_IWOTH - Others have write permission
+#define MODE_OTHER_X	0001	//!< S_IXOTH - Others have execute permission
+
+
+
+//! This type represents the bitflag value which handles options for the open() function
+typedef unsigned int	t_io_open;
+TYPEDEF_ALIAS(			t_io_open, IO_OPEN, PRIMITIVE)
+
+// 1) file access modes
+#define OPEN_READONLY	O_RDONLY	//!< Open the file for read access.
+#define OPEN_WRITEONLY	O_WRONLY	//!< Open the file for write access.
+#define OPEN_READWRITE	O_RDWR		//!< Open the file for both reading and writing.
+#define OPEN_ACCESSMODE	O_ACCMODE	//!< The full bitmask value for the file access mode 'io_mode' portion within the 'io_open' int
+
+// 2) open-time flags
+#define OPEN_CREATE		O_CREAT	//!< If set, the file will be created if it doesn’t already exist.
+#define OPEN_CLEARFILE	O_TRUNC	//!< If writing is allowed (ie: O_RDWR or O_WRONLY) then remove all contents of the file upon opening
+#define OPEN_EXCLUSIVE	O_EXCL	//!< If both O_CREAT and O_EXCL are set, then open fails if the specified file already exists. (otherwise, platform-specific)
+//#define OPEN_NOSYMLINK	O_NOFOLLOW	//! If set, the open operation fails if the final component of the file name refers to a symbolic link.
+//#define OPEN_SYMLINK	O_NOLINK	//!< If the named file is a symbolic link, open the link itself instead of the file it refers to.
+//#define OPEN_TEMPFILE	O_TMPFILE	//!< (GNU ext) If set, functions in the open family create an unnamed temporary file (must have write access, 'path' arg is the folder to put the temp file in)
+
+// 3) operating modes
+#define OPEN_APPEND		O_APPEND	//!< If set, then all write operations append the data at the end of the file, regardless of the current file position.
+//#define OPEN_NONBLOCK	O_NONBLOCK	//!< If set, read/write requests on the file can return immediately with a failure status, instead of blocking, if nothing can be done.
+//#define OPEN_ASYNC	O_ASYNC		//!< (BSD only) If set, then SIGIO signals will be generated when input is available.
+//#define OPEN_FSYNC	O_FSYNC		//!< (BSD only) If set, each write call will make sure the data is reliably stored on disk before returning.
+//#define OPEN_NOTIME	O_NOATIME	//!< (GNU ext) If set, read will not update the access time of the file. (only the file owner or sudo can use this)
+
+
+
 /*!
 **	Define some useful string literals for commandline output colors.
-**	May be used with any of the 'c_output' and 'c_write' functions.
+**	Can be used with any of the 'IO_Output_*' and 'IO_Write_*' functions.
 */
 #ifndef __COLORS__
 #define __COLORS__
@@ -77,112 +132,70 @@ TYPEDEF_ALIAS(	t_fd, FILEDESC, PRIMITIVE)
 #define C_RESET		"\x1b[0m"	//!< The string sequence to reset the terminal text output to its default color
 #endif
 
-// TODO make macros like this for every type of libccc, so that this header can act as doc on printf
+
+
 /*
-**	Cross-platform '%' format specifiers for printf()-family calls: String_Format(), IO_Write_Format(), etc
+** ************************************************************************** *|
+**                              File IO Functions                             *|
+** ************************************************************************** *|
 */
 
-#define FORMAT_ENUM	"%d"
+//! Opens the file at 'filepath', with the given file open 'flags', and the given file access 'mode' permissions
+/*!
+**	SYSCALL wrapper:
+**		int	open(const char *pathname, int flags, mode_t mode);
+**
+**	@param	filepath	The path of the file to open
+**	@param	flags		The flags with which to open the file (bitflag, can or bitwise OR'd, for example: `OPEN_READONLY|OPEN_CREATE`)
+**	@param	mode		The file access mode (permissions) with which to open the file
+**	@returns the new file descriptor value for the opened file, or -1 if an error occured (sets 'errno' appropriately)
+*/
+t_fd					IO_Open(char const* filepath, t_io_open flags, t_io_mode mode);
+#define c_open			IO_Open
+#define IO_File_Open	IO_Open
 
-// libccc/bool.h
-#define FORMAT_BOOL	"%d"
+//! Closes the given file descriptor 'fd', so that it no longer refers to any file, and may be reused.
+/*!
+**	SYSCALL wrapper:
+**		int close(int fd);
+**
+**	@param	fd	The file descriptor to close
+**	@returns 0 on success, or -1 if an error occured (sets 'errno' appropriately)
+*/
+int						IO_Close(t_fd fd);
+#define c_close			IO_Close
+#define IO_File_Close	IO_Close
 
-// libccc/char.h
-#define FORMAT_CHAR	"%c"
-#define FORMAT_UTF8	"%c"
 
-// libccc/int.h
-#define FORMAT_S8		"%+i"
-#define FORMAT_S16		"%+i"
-#define FORMAT_S32		"%+i"
-#define FORMAT_U8		"%u"
-#define FORMAT_U16		"%u"
-#define FORMAT_U32		"%u"
-#define FORMAT_HEX_U8	"%#X"
-#define FORMAT_HEX_U16	"%#X"
-#define FORMAT_HEX_U32	"%#X"
-#if defined(__APPLE__) || defined(_WIN32)
-	#define FORMAT_S64		"%+lli"
-	#define FORMAT_U64		"%llu"
-	#define FORMAT_HEX_U64	"%#llX"
-#else
-	#define FORMAT_S64		"%+li"
-	#define FORMAT_U64		"%lu"
-	#define FORMAT_HEX_U64	"%#lX"
-#endif
-#define FORMAT_S128		"%+lli"
-#define FORMAT_U128		"%llu"
-#define FORMAT_HEX_U128	"%#llX"
 
-#define FORMAT_SINT		CONCAT(FORMAT_S,	 LIBCONFIG_BITS_SINT)
-#define FORMAT_UINT		CONCAT(FORMAT_U,	 LIBCONFIG_BITS_UINT)
-#define FORMAT_HEX_UINT	CONCAT(FORMAT_HEX_U, LIBCONFIG_BITS_UINT)
+//! Changes the file access mode permissions for the file at 'filepath' to the new value 'mode'
+/*!
+**	SYSCALL wrapper:
+**		int chmod(const char *pathname, mode_t mode);
+**
+**	@param	filepath	The path of the file whose access permissions should change
+**	@param	mode		The new file access mode permissions bitflag value to set
+**	@returns 0 on success, or -1 if an error occured (sets 'errno' appropriately)
+*/
+int							IO_ChangeMode(char const* filepath, t_io_mode mode);
+#define c_chmod				IO_ChangeMode
+#define IO_File_ChangeMode	IO_ChangeMode
 
-// libccc/fixed.h
-#define FORMAT_Q16		"%0.8i"
-#define FORMAT_Q32		"%0.8i"
-#define FORMAT_Q64		"%0.8i"
-#define FORMAT_Q128		"%0.8i"
-#define FORMAT_HEX_Q16	"%#0.8X"
-#define FORMAT_HEX_Q32	"%#0.8X"
-#define FORMAT_HEX_Q64	"%#0.8X"
-#define FORMAT_HEX_Q128	"%#0.8X"
-
-#define FORMAT_FIXED		"%0.8i"
-#define FORMAT_HEX_FIXED	"%#0.8X"
-
-// libccc/float.h
-#define FORMAT_F32		"%#g"
-#define FORMAT_F64		"%#g"
-#define FORMAT_F80		"%#g"
-#define FORMAT_F128		"%#g"
-#define FORMAT_HEX_F32	"%#a"
-#define FORMAT_HEX_F64	"%#a"
-#define FORMAT_HEX_F80	"%#a"
-#define FORMAT_HEX_F128	"%#a"
-
-#define FORMAT_FLOAT		"%#g"
-#define FORMAT_HEX_FLOAT	"%#g"
-
-// libccc/pointer.h
-#define FORMAT_PTR			FORMAT_POINTER
-#define FORMAT_POINTER		"%#p"
-#define FORMAT_SIZE			"%zu"
-#define FORMAT_HEX_SIZE		"%#zx"
-#define FORMAT_PTRDIFF		"%ti"
-#define FORMAT_HEX_PTRDIFF	"%#tx"
-#define FORMAT_SINTPTR		"%zi"
-#define FORMAT_UINTPTR		"%zu"
-#define FORMAT_SINTMAX		"%ji"
-#define FORMAT_UINTMAX		"%ju"
-
-// libccc/memory.h
-#define FORMAT_MEM(N)		FORMAT_MEMORY(N)
-#define FORMAT_MEMORY(N)	"%."#N"s"
-
-// libccc/string.h
-#define FORMAT_STR			FORMAT_STRING
-#define FORMAT_STRING		"%s"
-
-// libccc/color.h
-#define FORMAT_COLOR_ARGB16	"#%X"
-#define FORMAT_COLOR_ARGB32	"#%X"
-#define FORMAT_COLOR_ARGB	"(A:%g, R:%g, G:%g, B:%g)"
-#define FORMAT_COLOR_AHSL	"(A:%g, H:%g, S:%g, L:%g)"
-
-// libccc/math/complex.h
-#define FORMAT_COMPLEX	"(%g + %g*i)"
-
-// libccc/math/algebra.h
-#define FORMAT_VECTOR	"(%g)"
-#define FORMAT_VECTOR2D	"(%g, %g)"
-#define FORMAT_VECTOR3D	"(%g, %g, %g)"
-#define FORMAT_VECTOR4D	"(%g, %g, %g, %g)"
-#define FORMAT_MATRIX	FORMAT_VECTOR
-#define FORMAT_MATRIX2D	FORMAT_VECTOR2D"\n"FORMAT_VECTOR2D"\n"
-#define FORMAT_MATRIX3D	FORMAT_VECTOR3D"\n"FORMAT_VECTOR3D"\n"FORMAT_VECTOR3D"\n"
-#define FORMAT_MATRIX4D	FORMAT_VECTOR4D"\n"FORMAT_VECTOR4D"\n"FORMAT_VECTOR4D"\n"FORMAT_VECTOR4D"\n"
-
+//! Changes the owner and group for the file at 'filepath'
+/*!
+**	SYSCALL wrapper:
+**		int chown(const char *pathname, uid_t owner, gid_t group);
+**
+**	@param	filepath	The path of the file whose owner/group should change
+**	@param	owner		The new owner to set for the file
+**	@param	group		The new group to set for the file
+**	@returns 0 on success, or -1 if an error occured (sets 'errno' appropriately)
+*/
+/* TODO find a way to make this as cross-platform as possible
+int							IO_ChangeOwner(char const* filepath, char const* owner, char const* group);
+#define c_chown				IO_ChangeOwner
+#define IO_File_ChangeOwner	IO_ChangeOwner
+*/
 
 
 

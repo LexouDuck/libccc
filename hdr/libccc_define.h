@@ -201,7 +201,7 @@ HEADER_CPP
 /*!
 **	@param	_NAME		The name to give to the global variable(s) which will be created
 **	@param	_FILEPATH	
-**	@returns - This macro doesn't return anything per se, but it declares 3 global/extern variables:
+**	@returns - This macro doesn't return anything per se, but it declares 3 variables within its ASM code:
 **		t_u8 const*	<_NAME>			The statically allocated byte array containing the binary file data
 **		t_u8 const*	<_NAME>_end		The pointer to the end of the file data byte array: contains 1 byte set to zero (works like a string null-terminator)
 **		int const*	<_NAME>_size	The pointer 1 byte after '*_end', contains the file size. Use it like this: t_size len = (t_size)(*myfile_size);
