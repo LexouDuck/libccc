@@ -11,33 +11,33 @@
 #include "libccc/sys/io.h"
 
 
-static t_bool	c_readfile_error(int result, char* *a_file)
+static t_io_error	IO_Read_File_Error(int result, char* *a_file)
 {
 	if (result < 0)
 	{
 		if (*a_file)
 		{
-			c_memfree(*a_file);
+			Memory_Free(*a_file);
 			*a_file = NULL;
 		}
-		return (ERROR);
+		return (errno);
 	}
-	else
-		return (OK);
+	else return (OK);
 }
 
-t_bool		c_readfile(t_fd const fd, char* *a_file, t_size max)
+t_io_error	IO_Read_File(t_fd const fd, char* *a_file, t_size max)
 {
+#if LIBCONFIG_HANDLE_NULLPOINTERS
+	if (a_file == NULL)
+		return (ERROR);
+#endif
 	int		result;
 	char	buffer[IO_BUFFER_SIZE + 1] = {0};
 	char*	file = NULL;
 	t_size	length;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (a_file == NULL)
-		return (ERROR);
-#endif
-	if (!(file = c_strnew(0)))
+	file = String_New(0);
+	if (file == NULL)
 		return (ERROR);
 	if (max == 0)
 		max = (t_size)-1;
@@ -50,31 +50,33 @@ t_bool		c_readfile(t_fd const fd, char* *a_file, t_size max)
 		{
 			buffer[result] = '\0';
 		}
-		c_strappend(&file, buffer);
+		String_Append(&file, buffer);
+		if (file == NULL)
+			return (ERROR);
 	}
 	*a_file = file;
-	return (c_readfile_error(result, a_file));
+	return (IO_Read_File_Error(result, a_file));
 }
 
 
 
-t_bool		c_readlines(t_fd const fd, char** *a_strarr)
+t_io_error	IO_Read_Lines(t_fd const fd, char** *a_strarr)
 {
-	char*	file	= NULL; 
-	char**	result	= NULL;
-	t_bool	status	= OK;
-
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (a_strarr == NULL)
 		return (ERROR);
 #endif
-	status = c_readfile(fd, &file, 0);
+	char*	file	= NULL; 
+	char**	result	= NULL;
+	t_bool	status	= OK;
+
+	status = IO_Read_File(fd, &file, 0);
 	if (status)
 	{
-		c_strdel(&file);
+		String_Delete(&file);
 		return (status);
 	}
-	result = c_strsplit_str(file, "\n");
+	result = String_Split_String(file, "\n");
 	String_Delete(&file);
 	*a_strarr = result;
 	return (OK);

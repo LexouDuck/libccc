@@ -177,7 +177,7 @@ t_io_error				IO_Close(t_fd fd);
 
 
 //! Returns the error message (a string literal) corresponding to the given 'errno' error number
-char const*					IO_GetError(int error_num);
+char*						IO_GetError(int error_num);
 #define c_strerror			IO_GetError
 #define c_strerror_r		IO_GetError
 #define IO_GetErrorMessage	IO_GetError

@@ -6,7 +6,7 @@
 
 
 
-void 		Log(s_logger const logger,
+void 		Log(s_logger const* logger,
 	t_bool verbose_only,
 	t_bool is_error,
 	t_bool use_errno,
@@ -28,7 +28,7 @@ void		Log_Error(s_logger const logger, t_bool errno, char const* format_str, ...
 	va_list		args;
 
 	va_start(args, format_str);
-	vLog(logger, FALSE, TRUE, errno,
+	vLog(&logger, FALSE, TRUE, errno,
 		"Error: ", C_RED,
 		format_str, args);
 	va_end(args);
@@ -40,7 +40,7 @@ void		Log_Warning(s_logger const logger, char const* format_str, ...)
 	va_list		args;
 
 	va_start(args, format_str);
-	vLog(logger, FALSE, FALSE, FALSE,
+	vLog(&logger, FALSE, FALSE, FALSE,
 		"Warning: ", C_YELLOW,
 		format_str, args);
 	va_end(args);
@@ -52,7 +52,7 @@ void		Log_Success(s_logger const logger, char const* format_str, ...)
 	va_list		args;
 
 	va_start(args, format_str);
-	vLog(logger, FALSE, FALSE, FALSE,
+	vLog(&logger, FALSE, FALSE, FALSE,
 		"Success: ", C_GREEN,
 		format_str, args);
 	va_end(args);
@@ -64,7 +64,7 @@ void		Log_Message(s_logger const logger, char const* format_str, ...)
 	va_list		args;
 
 	va_start(args, format_str);
-	vLog(logger, FALSE, FALSE, FALSE,
+	vLog(&logger, FALSE, FALSE, FALSE,
 		"", NULL,
 		format_str, args);
 	va_end(args);
@@ -76,7 +76,7 @@ void		Log_Verbose(s_logger const logger, char const* format_str, ...)
 	va_list		args;
 
 	va_start(args, format_str);
-	vLog(logger, TRUE, FALSE, FALSE,
+	vLog(&logger, TRUE, FALSE, FALSE,
 		"", NULL,
 		format_str, args);
 	va_end(args);

@@ -35,9 +35,6 @@ HEADER_CPP
 /*                                 Definitions                                */
 /* ************************************************************************** */
 
-//! The arbitrary data buffer size used to write the log output to file
-#define BUFFERSIZE	4096 // 4 Kb
-
 //! The name of the text file to write logger output to
 #define LOGFILE_NAME	DEFAULT_LOGFILE_NAME
 

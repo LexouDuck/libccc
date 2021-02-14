@@ -1,16 +1,10 @@
 
 #include <stdarg.h>
-#include <string.h>
-#include <errno.h>
-
-#include <sys/types.h>
 
 #include "libccc.h"
-#include "libccc/memory.h"
 #include "libccc/string.h"
-#include "libccc/array/stringarray.h"
-#include "libccc/sys/time.h"
 #include "libccc/sys/io.h"
+#include "libccc/sys/time.h"
 #include "libccc/sys/logger.h"
 
 
@@ -26,6 +20,8 @@ static inline void vLog_Write(s_logger const* logger, t_fd fd, char const* outpu
 	}
 }
 
+
+
 int	vLog(s_logger const* logger,
 	t_bool 			verbose_only,
 	t_bool			is_error,
@@ -37,33 +33,12 @@ int	vLog(s_logger const* logger,
 {
 	if (verbose_only && !logger->mode_verbose)
 		return (OK);
-	if (!logger->dest_stdout &&
-		!logger->dest_stderr)
-	{
-		for (t_uint i = 0; i < LOGFILES_MAX; ++i)
-		{
-			if (logger->dest_files[i].path)
-				break;
-		}
-	}
 
-	char	error_str[BUFFERSIZE] = {0};
-
+	char*	error_str;
 	if (use_errno)
 	{
-#ifdef __MINGW32__
-		int error = WSAGetLastError();
-		DWORD len = FormatMessageA(FORMAT_MESSAGE_ARGUMENT_ARRAY | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
-			NULL, error, 0, error_str, BUFFERSIZE, NULL);
-		if (len)
-			error_str[len] = '\0';
-		else
-			sprintf(error_str, "Error: %d", error);
-#else
-		strerror_r(errno, error_str, BUFFERSIZE);
-#endif
+		error_str = IO_GetError(errno);
 	}
-
 	char*	full_format_str = NULL;
 	char*	log_msg			= NULL;
 	char*	timestamp = logger->show_timestamp ? Log_GetUnixDateTime(Time_Now()) : NULL;
@@ -74,19 +49,20 @@ int	vLog(s_logger const* logger,
 */
 	if (use_errno)
 	{
-		full_format_str = String_Format("%s%s%s%s"LOG_TIMESTAMP_INDENT"-> %s%s",
+		full_format_str = String_Format("%s%s%s%s%s%s%s-> %s%s",
 			timestamp ? timestamp : "",
 			prefix_color ? prefix_color : "",
 			prefix,
 			prefix_color ? C_RESET : "",
 			format_str,
 			format_str[0] != '\0' && format_str[String_Length(format_str) - 1] == '\n' ? "" : "\n",
+			timestamp ? LOG_TIMESTAMP_INDENT : " ",
 			error_str,
 			error_str[0] != '\0' && error_str[String_Length(error_str) - 1] == '\n' ? "" : "\n");
 	}
 	else
 	{
-		full_format_str = String_Format("%s%s%s%s",
+		full_format_str = String_Format("%s%s%s%s%s%s",
 			timestamp ? timestamp : "",
 			prefix_color ? prefix_color : "",
 			prefix,
@@ -96,11 +72,12 @@ int	vLog(s_logger const* logger,
 	}
 
 	// NB: a va_list (in this case, 'args') can only be called ONCE, or else segfault
-	if ((log_msg = String_Format_VA(full_format_str, args)) == NULL)
+	log_msg = String_Format_VA(full_format_str, args);
+	if (log_msg == NULL)
 		Log_FatalError(logger, "Could not construct log message");
 	else
 	{
-		if (logger.dest_stdout && logger.dest_stderr)
+		if (logger->dest_stdout && logger->dest_stderr)
 		{
 			vLog_Write(logger,
 				(is_error ? STDERR : STDOUT),
@@ -109,16 +86,24 @@ int	vLog(s_logger const* logger,
 		}
 		else
 		{
-			if (logger.dest_stdout)
+			if (logger->dest_stdout)
 				vLog_Write(logger, STDOUT, "stdout", log_msg);
-			if (logger.dest_stderr)
+			if (logger->dest_stderr)
 				vLog_Write(logger, STDERR, "stderr", log_msg);
 		}
-		if (logger.dest_file)
-			vLog_Write(logger, logger.file_fd, "log file", log_msg);
+		for (t_uint i = 0; i < LOGFILES_MAX; ++i)
+		{
+			if (logger->dest_files[i].path)
+			{
+				vLog_Write(logger,
+					logger->dest_files[i].fd,
+					logger->dest_files[i].path,
+					log_msg);
+			}
+		}
 	}
 
-	String_Delete(&time_now_utc);
+	String_Delete(&timestamp);
 	String_Delete(&full_format_str);
 	String_Delete(&log_msg);
 
