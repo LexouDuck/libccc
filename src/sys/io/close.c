@@ -9,7 +9,7 @@
 #include "libccc/sys/io.h"
 
 
-inline int	IO_Close(t_fd fd)
+inline t_io_error	IO_Close(t_fd fd)
 {
-	return (close(fd));
+	return (close(fd) ? errno : OK);
 }

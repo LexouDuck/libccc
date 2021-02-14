@@ -29,7 +29,7 @@ static t_bool	c_readfile_error(int result, char* *a_file)
 t_bool		c_readfile(t_fd const fd, char* *a_file, t_size max)
 {
 	int		result;
-	char	buffer[BUFF_SIZE + 1] = {0};
+	char	buffer[IO_BUFFER_SIZE + 1] = {0};
 	char*	file = NULL;
 	t_size	length;
 
@@ -41,12 +41,12 @@ t_bool		c_readfile(t_fd const fd, char* *a_file, t_size max)
 		return (ERROR);
 	if (max == 0)
 		max = (t_size)-1;
-	buffer[BUFF_SIZE] = '\0';
+	buffer[IO_BUFFER_SIZE] = '\0';
 	length = 0;
-	while ((result = read(fd, buffer, BUFF_SIZE)) > 0 &&
+	while ((result = read(fd, buffer, IO_BUFFER_SIZE)) > 0 &&
 		(length += result) < max)
 	{
-		if (result < BUFF_SIZE)
+		if (result < IO_BUFFER_SIZE)
 		{
 			buffer[result] = '\0';
 		}

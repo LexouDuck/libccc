@@ -35,12 +35,17 @@ int	vLog(s_logger const* logger,
 	char const*		format_str,
 	va_list			args)
 {
-	if (verbose_only && !logger.mode_verbose)
+	if (verbose_only && !logger->mode_verbose)
 		return (OK);
-	if (!logger.dest[LOGGER_DEST_STDOUT] &&
-		!logger.dest[LOGGER_DEST_STDERR] &&
-		!logger.dest[LOGGER_DEST_FILE])
-		return (OK);
+	if (!logger->dest_stdout &&
+		!logger->dest_stderr)
+	{
+		for (t_uint i = 0; i < LOGFILES_MAX; ++i)
+		{
+			if (logger->dest_files[i].path)
+				break;
+		}
+	}
 
 	char	error_str[BUFFERSIZE] = {0};
 
@@ -59,30 +64,39 @@ int	vLog(s_logger const* logger,
 #endif
 	}
 
-	char*	time_now_utc 	= Log_GetUnixDateTime(Time_Now());
 	char*	full_format_str = NULL;
 	char*	log_msg			= NULL;
+	char*	timestamp = logger->show_timestamp ? Log_GetUnixDateTime(Time_Now()) : NULL;
+/*
 	size_t	length = String_Length(time_now_utc);
 	if (length > 0 && time_now_utc[length - 1] == '\n')
 		time_now_utc[length - 1] = '\0';
-
+*/
 	if (use_errno)
-		full_format_str = String_Build("%s | %s%s%s"LOG_TIMESTAMP_INDENT"-> %s%s",
-			time_now_utc,
+	{
+		full_format_str = String_Format("%s%s%s%s"LOG_TIMESTAMP_INDENT"-> %s%s",
+			timestamp ? timestamp : "",
+			prefix_color ? prefix_color : "",
 			prefix,
+			prefix_color ? C_RESET : "",
 			format_str,
 			format_str[0] != '\0' && format_str[String_Length(format_str) - 1] == '\n' ? "" : "\n",
 			error_str,
 			error_str[0] != '\0' && error_str[String_Length(error_str) - 1] == '\n' ? "" : "\n");
+	}
 	else
-		full_format_str = String_Build("%s | %s%s%s",
-			time_now_utc,
+	{
+		full_format_str = String_Format("%s%s%s%s",
+			timestamp ? timestamp : "",
+			prefix_color ? prefix_color : "",
 			prefix,
+			prefix_color ? C_RESET : "",
 			format_str,
 			format_str[String_Length(format_str) - 1] == '\n' ? "" : "\n");
+	}
 
 	// NB: a va_list (in this case, 'args') can only be called ONCE, or else segfault
-	if ((log_msg = String_Build_VA(full_format_str, args)) == NULL)
+	if ((log_msg = String_Format_VA(full_format_str, args)) == NULL)
 		Log_FatalError(logger, "Could not construct log message");
 	else
 	{

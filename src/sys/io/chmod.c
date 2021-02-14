@@ -21,18 +21,18 @@ inline t_bool	IO_IsTerminal(t_fd fd)
 
 
 
-inline int	IO_ChangeMode(char const* filepath, t_io_mode mode)
+inline t_io_error	IO_ChangeMode(char const* filepath, t_io_mode mode)
 {
-	return (chmod(filepath, mode));
+	return (chmod(filepath, mode) ? errno : OK);
 }
 
 
 
 #if 0
-inline int	IO_ChangeOwner(char const* filepath, char const* owner, char const* group)
+inline t_io_error	IO_ChangeOwner(char const* filepath, char const* owner, char const* group)
 {
 	return (chown(filepath,
 		getpwnam(owner),
-		getgrnam(group)));
+		getgrnam(group)) ? errno : OK);
 }
 #endif

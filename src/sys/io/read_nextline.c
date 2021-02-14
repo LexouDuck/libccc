@@ -16,7 +16,7 @@
 static	int		gnl_read(t_fd const fd, char* *a_newline)
 {
 	static t_size	buf_pos = 0;
-	static char		buffer[BUFF_SIZE + 1] = {0};
+	static char		buffer[IO_BUFFER_SIZE + 1] = {0};
 	int				status = 0;
 	int				offset = 0;
 	char			*temp = NULL;
@@ -27,14 +27,14 @@ static	int		gnl_read(t_fd const fd, char* *a_newline)
 		return (GNL_ERROR);
 	while (!done_new_line)
 	{
-		if (buf_pos == BUFF_SIZE)
+		if (buf_pos == IO_BUFFER_SIZE)
 			end_of_buffer = TRUE;
 		if (end_of_buffer)
 		{
 			buf_pos = 0;
 			end_of_buffer = FALSE;
-			c_memclr(buffer, BUFF_SIZE);
-			status = read(fd, buffer, BUFF_SIZE);
+			c_memclr(buffer, IO_BUFFER_SIZE);
+			status = read(fd, buffer, IO_BUFFER_SIZE);
 			if (status < 0)
 			{
 				perror("getnextline: couldn't read file");

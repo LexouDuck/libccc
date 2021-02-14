@@ -54,7 +54,7 @@ HEADER_CPP
 #ifdef	ERROR
 #undef	ERROR
 #endif	//! Represents a failure function return
-#define ERROR	(1)
+#define ERROR	(-1)
 
 
 

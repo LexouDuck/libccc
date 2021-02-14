@@ -1,7 +1,7 @@
 
 /*
 **	Functions used from <stdlib.h>:
-**	-	int	write(int fd, char* buffer, size_t n);
+**	-	t_io_error	write(int fd, char* buffer, size_t n);
 */
 #include <unistd.h>
 /*
@@ -16,46 +16,60 @@
 
 
 
-inline int	IO_Write_Char(int fd, char c)
+inline t_io_error	IO_Write_Char(int fd, char c)
 {
-	if (write(fd, &c, 1) < 0)
-		return (ERROR);
-	return (OK);
+	int result;
+	if ((result = write(fd, &c, 1)) < 0)
+		return (errno);
+	return (result ? errno : OK);
 }
 
 
 
-inline int	IO_Write_String(int fd, const char* str)
+inline t_io_error	IO_Write_String(int fd, const char* str)
 {
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (OK);
-	if (write(fd, str, c_strlen(str)) < 0)
-		return (ERROR);
+#endif
+	int result;
+	if ((result = write(fd, str, c_strlen(str))) < 0)
+		return (errno);
 	return (OK);
 }
 
 
 
-inline int	IO_Write_Line(int fd, const char* str)
+inline t_io_error	IO_Write_Line(int fd, const char* str)
 {
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
 		return (OK);
-	if (write(fd, str, c_strlen(str)) < 0)	return (ERROR);
-	if (write(fd, "\n", 1) < 0)				return (ERROR);
+#endif
+	int result;
+	if ((result = write(fd, str, c_strlen(str))) < 0)
+		return (errno);
+	if ((result = write(fd, "\n", 1)) < 0)
+		return (errno);
 	return (OK);
 }
 
 
 
-int		IO_Write_Lines(int fd, const char** strarr)
+t_io_error		IO_Write_Lines(int fd, const char** strarr)
 {
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (strarr == NULL)
 		return (OK);
+#endif
+	int result;
 	int i = 0;
 	while (strarr[i])
 	{
-		if (write(fd, strarr[i], c_strlen(strarr[i])) < 0)	return (ERROR);
-		if (write(fd, "\n", 1) < 0)							return (ERROR);
+		if ((result = write(fd, strarr[i], c_strlen(strarr[i]))) < 0)
+			return (errno);
+		if ((result = write(fd, "\n", 1)) < 0)
+			return (errno);
 		++i;
 	}
 	return (OK);
@@ -63,40 +77,49 @@ int		IO_Write_Lines(int fd, const char** strarr)
 
 
 
-int		IO_Write_Memory(int fd, t_u8 const* ptr, t_size n, t_u8 cols)
+t_io_error		IO_Write_Memory(int fd, t_u8 const* ptr, t_size n, t_u8 cols)
 {
+#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (ptr == NULL || n == 0 || cols == 0)
 		return (OK);
+#endif
+	int result;
 	t_u8	nibble;
 	t_size	i = 0;
 	while (i < n)
 	{
 		nibble = (ptr[i] & 0xF0) >> 4;
 		nibble += (nibble < 10 ? '0' : 'A' - 10);
-		if (write(fd, &nibble, 1) < 0)	return (ERROR);
+		if ((result = write(fd, &nibble, 1)) < 0)
+			return (errno);
 		nibble = (ptr[i] & 0x0F);
 		nibble += (nibble < 10 ? '0' : 'A' - 10);
-		if (write(fd, &nibble, 1) < 0)	return (ERROR);
+		if ((result = write(fd, &nibble, 1)) < 0)
+			return (errno);
 		++i;
-		if (write(fd, (i % cols == 0 ? "\n" : " "), 1) < 0)	return (ERROR);
+		if ((result = write(fd, (i % cols == 0 ? "\n" : " "), 1)) < 0)
+			return (errno);
 	}
 	return (OK);
 }
 
 
 
-int		IO_Write_Format(t_fd fd, char const* format, ...)
+t_io_error		IO_Write_Format(t_fd fd, char const* format, ...)
 {
+#if LIBCONFIG_HANDLE_NULLPOINTERS
+	if (format == NULL)
+		return (OK);
+#endif
 	int result;
 	char* str;
 	va_list args;
-
 	va_start(args, format);
 	str = String_Format_VA(format, args);
 	va_end(args);
 	if (str == NULL) // string already freed if need be
-		return (-1);
+		return (ERROR);
 	result = write(fd, str, String_Length(str));
 	String_Delete(&str);
-	return (result);
+	return (result ? errno : OK);
 }
