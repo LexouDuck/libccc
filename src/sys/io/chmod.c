@@ -10,10 +10,23 @@
 #include "libccc/sys/io.h"
 
 
+
+inline t_bool	IO_IsTerminal(t_fd fd)
+{
+	return (fd == STDIN ||
+		fd == STDOUT ||
+		fd == STDERR ||
+		isatty(fd));
+}
+
+
+
 inline int	IO_ChangeMode(char const* filepath, t_io_mode mode)
 {
 	return (chmod(filepath, mode));
 }
+
+
 
 #if 0
 inline int	IO_ChangeOwner(char const* filepath, char const* owner, char const* group)

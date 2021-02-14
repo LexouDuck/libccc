@@ -168,6 +168,17 @@ int						IO_Close(t_fd fd);
 
 
 
+//! Returns the error message (a string literal) corresponding to the given 'errno' error number
+char const*					IO_GetError(int error_num);
+#define c_strerror			IO_GetError
+#define c_strerror_r		IO_GetError
+#define IO_GetErrorMessage	IO_GetError
+
+//! Returns TRUE if the given file fd corresponds to a terminal/commandline rather than a file
+t_bool						IO_IsTerminal(t_fd fd);
+#define c_isatty			IO_IsTerminal
+#define IO_File_IsTerminal	IO_IsTerminal
+
 //! Changes the file access mode permissions for the file at 'filepath' to the new value 'mode'
 /*!
 **	SYSCALL wrapper:
@@ -247,7 +258,9 @@ t_bool					IO_Read_Lines(t_fd const fd, char** *a_strarr);
 */
 //TODO DO NOT USE, TODO FIX, confirmed to have very, very rare, platform-specific problems...
 int						IO_Read_NextLine(t_fd const fd, char* *a_line);
+#define c_readnextline	IO_Read_NextLine
 #define c_getnextline	IO_Read_NextLine
+
 #define GNL_LINE   1	//!< Return value for c_getnextline: indicates succesful line read, more to follow
 #define GNL_END    0	//!< Return value for c_getnextline: indicates successful line read, end of file reached
 #define GNL_ERROR -1	//!< Return value for c_getnextline: indicates a read error occurred

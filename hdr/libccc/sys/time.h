@@ -337,7 +337,7 @@ char*						Date_String_Format(s_date const* date, char const* format);
 _FORMAT(strftime, 4, 0)
 t_size						Date_String_Format_N(char* dest, t_size max, s_date const* date, char const* format);
 #define c_strftime			Date_String_Format_N
-#define c_date_format_n	Date_String_Format_N
+#define c_date_format_n		Date_String_Format_N
 #define Date_Format_N		Date_String_Format_N
 
 

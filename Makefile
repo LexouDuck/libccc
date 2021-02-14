@@ -158,6 +158,10 @@ SRCS = \
 	sys/time/date_format.c	\
 	sys/time/date_parse.c	\
 	sys/time/strings.c		\
+	sys/logger/core.c	\
+	sys/logger/util.c	\
+	sys/logger/init.c	\
+	sys/logger/log.c	\
 	array/pointerarray/ptrarrnew.c		\
 	array/pointerarray/ptrarrlen.c		\
 	array/stringarray/strsplit_char.c		\

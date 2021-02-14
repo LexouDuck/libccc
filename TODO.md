@@ -22,7 +22,6 @@
 #include <libccc/array/tree.h>	// TODO s_tree = iterable binary tree structure
 #include <libccc/array/object.h>// TODO s_object = anonymous, dynamic, extensible objects (json library: wjelement)
 #include <libccc/sys/io.h>
-#include <libccc/sys/asm.h>		// TODO collection of cross-platform inline assembly __asm__ macros, like INCBIN(varname, filepath)
 #include <libccc/sys/time.h>	// TODO system clock 'timespec' functions: clock_gettime(), etc
 #include <libccc/sys/logger.h>	// TODO all: 
 #include <libccc/sys/async.h>	// TODO all: libuv ?
