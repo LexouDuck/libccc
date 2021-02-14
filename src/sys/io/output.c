@@ -10,6 +10,7 @@
 **	-	void va_end(va_list args);
 */
 #include <stdarg.h>
+#include <errno.h>
 
 #include "libccc/sys/io.h"
 #include "libccc/string.h"

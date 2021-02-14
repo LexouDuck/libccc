@@ -5,6 +5,7 @@
 **	-	int chown(const char *pathname, uid_t owner, gid_t group);
 */
 #include <unistd.h>
+#include <errno.h>
 #include <sys/stat.h>
 
 #include "libccc/sys/io.h"

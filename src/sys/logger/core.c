@@ -1,5 +1,6 @@
 
 #include <stdarg.h>
+#include <errno.h>
 
 #include "libccc.h"
 #include "libccc/string.h"

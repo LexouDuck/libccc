@@ -4,6 +4,7 @@
 **	-	void	read(int fd, char* buffer, size_t n);
 */
 #include <unistd.h>
+#include <errno.h>
 
 #include "libccc/memory.h"
 #include "libccc/string.h"
