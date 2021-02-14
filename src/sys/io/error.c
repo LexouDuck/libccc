@@ -14,7 +14,7 @@
 
 inline char*	IO_GetError(t_io_error error)
 {
-	char*	result;
+	char	buffer[IO_BUFFER_SIZE] = {0};
 
 #ifdef __MINGW32__
 /*
@@ -30,11 +30,9 @@ inline char*	IO_GetError(t_io_error error)
 	else
 		sprintf(result, "Error: %d", error);
 */
-	result = String_Duplicate(strerror(error));
+	strerror_s(buffer, IO_BUFFER_SIZE, error);
 #else
-	char	buffer[IO_BUFFER_SIZE] = {0};
-	strerror_r(errno, buffer, IO_BUFFER_SIZE);
-	result = String_Duplicate(buffer);
+	strerror_r(error, buffer, IO_BUFFER_SIZE);
 #endif
-	return (result);
+	return (String_Duplicate(buffer));
 }

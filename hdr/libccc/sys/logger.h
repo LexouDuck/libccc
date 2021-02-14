@@ -35,24 +35,6 @@ HEADER_CPP
 /*                                 Definitions                                */
 /* ************************************************************************** */
 
-//! The name of the text file to write logger output to
-#define LOGFILE_NAME	DEFAULT_LOGFILE_NAME
-
-
-
-/*!
-**	The format with which to display timestamps at the beginning of log lines.
-*/
-#define LOG_TIMESTAMP_FORMAT	FORMAT_DATE_UNIX" "FORMAT_TIME_UNIX" | "
-
-/*!
-** The string to display at the beginning of each new line when outputting text that is multiline
-** As such, the amount of spaces here is equivalent to the size of a console log timestamp
-*/
-#define LOG_TIMESTAMP_INDENT	"                    | "
-
-
-
 typedef struct	s_logfile_
 {
 	t_fd		fd;		//!< The file descriptor for this logger output logfile
@@ -78,6 +60,19 @@ typedef struct	s_logger_
 
 
 
+/*!
+**	The format with which to display timestamps at the beginning of log lines.
+*/
+#define LOG_TIMESTAMP_FORMAT	FORMAT_DATE_UNIX" "FORMAT_TIME_UNIX" | "
+
+/*!
+** The string to display at the beginning of each new line when outputting text that is multiline
+** As such, the amount of spaces here is equivalent to the size of a console log timestamp
+*/
+#define LOG_TIMESTAMP_INDENT	"                    | "
+
+
+
 /* ************************************************************************** */
 /*                            Function Definitions                            */
 /* ************************************************************************** */
@@ -87,73 +82,87 @@ typedef struct	s_logger_
 */
 
 //! Create a new logger. If logfile_path is required, but NULL, a default macro is used
-void						Log_Init(s_logger* logger);
-#define c_log_init			Log_Init
-#define InitializeLogger	Log_Init
+void						Logger_Init(s_logger* logger);
+#define c_log_init			Logger_Init
+#define InitializeLogger	Logger_Init
 
 //! Cleanly release logger (close file descriptors, etc)
-void						Log_Exit(s_logger* logger);
-#define c_log_exit			Log_Exit
-#define FinalizeLogger		Log_Exit
+void						Logger_Exit(s_logger* logger);
+#define c_log_exit			Logger_Exit
+#define FinalizeLogger		Logger_Exit
 
 
 
-int		vLog(s_logger const* logger,
-	t_bool 			verbose_only,
-	t_bool			is_error,
-	t_bool 			use_errno,
-	char const*		prefix,
-	char const*		prefix_color,
-	char const*		format_str,
-	va_list			args);
-#define c_vlog	vLog
+//! Util function to help debug the logger
+char*						Logger_GetSettings(s_logger const* logger);
+#define c_log_getsettings	Logger_GetSettings
+
+//! Util function to help debug the logger
+t_io_error					Logger_LogSettings(s_logger const* logger);
+#define c_log_logsettings	Logger_LogSettings
+
+
+
+//! Returns a UNIX-format string representation of the given 'utc' date/time number
+char*		Logger_GetTimestamp(t_time utc);
+
+
+
+/* ************************************************************************** */
+/*                             Logging Definitions                            */
+/* ************************************************************************** */
+
+t_io_error	Log_VA(s_logger const* logger,
+	t_bool 		verbose_only,
+	t_bool		is_error,
+	t_bool 		use_errno,
+	char const*	prefix,
+	char const*	prefix_color,
+	char const*	format_str,
+	va_list		args);
+#define c_log_va	Log_VA
 
 //! Send a printf-like string to logfile
-void 		Log(s_logger const* logger,
+t_io_error 	Log(s_logger const* logger,
 	t_bool is_verbose_only,
 	t_bool is_error,
 	t_bool use_errno_perror,
 	char const* format_str, ...);
-#define c_log	Log
-
-
-
-//! Logging perror-style to both stderr and logfile (if applicable)
-void					Log_Error(s_logger const logger, t_bool errno, char const* format_str, ...);
-#define c_log_error		Log_Error
-
-//! To be called when there is an important warning to show to the user
-void					Log_Warning(s_logger const logger, char const* format_str, ...);
-#define c_log_warning	Log_Warning
-
-//! To be called when there is an successful operation (or result) to notify the user of
-void					Log_Success(s_logger const logger, char const* format_str, ...);
-#define c_log_success	Log_Success
-
-//! Logging printf-style of message to both stdout and logfile (if applicable)
-void					Log_Message(s_logger const logger, char const* format_str, ...);
-#define c_log_message	Log_Message
-
-//! Logging printf-style of verbose message to both stdout and logfile (if applicable)
-void					Log_Verbose(s_logger const logger, char const* format_str, ...);
-#define c_log_verbose	Log_Verbose
-
-
-
-//! Util function to help debug the logger
-char*						Log_GetLoggerSettings(s_logger const* logger);
-#define c_log_getsettings	Log_GetLoggerSettings
-
-//! Util function to help debug the logger
-void						Log_LoggerSettings(s_logger const* logger);
-#define c_log_settings		Log_LoggerSettings
+#define c_log_		Log
 
 
 
 //! Used to log a fundamental error where even the logger itself doesn't work: calls the STD C perror() function
-void		Log_FatalError(s_logger const* logger, char const* str);
-//! Returns a UNIX-format string representation  of the given 'utc' date/time number
-char*		Log_GetUnixDateTime(t_time utc);
+t_io_error				Log_Fatal(s_logger const* logger, char const* str);
+#define c_log_fatal		Log_Fatal
+#define Log_FatalError	Log_Fatal
+
+
+//! Logging (perror-style) to both stderr and logfile (if applicable)
+t_io_error				Log_Error_IO(s_logger const* logger, char const* format_str, ...);
+#define c_log_io_error	Log_Error_IO
+#define Log_SystemError	Log_Error_IO
+
+//! Logging perror-style to both stderr and logfile (if applicable)
+t_io_error				Log_Error(s_logger const* logger, char const* format_str, ...);
+#define c_log_error		Log_Error
+
+//! To be called when there is an important warning to show to the user
+t_io_error				Log_Warning(s_logger const* logger, char const* format_str, ...);
+#define c_log_warning	Log_Warning
+
+//! To be called when there is an successful operation (or result) to notify the user of
+t_io_error				Log_Success(s_logger const* logger, char const* format_str, ...);
+#define c_log_success	Log_Success
+
+//! Logging printf-style of message to both stdout and logfile (if applicable)
+t_io_error				Log_Message(s_logger const* logger, char const* format_str, ...);
+#define c_log_message	Log_Message
+
+//! Logging printf-style of verbose message to both stdout and logfile (if applicable)
+t_io_error				Log_Message_Verbose(s_logger const* logger, char const* format_str, ...);
+#define c_log_verbose	Log_Message_Verbose
+#define Log_Verbose		Log_Message_Verbose
 
 
 

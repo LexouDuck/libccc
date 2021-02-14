@@ -15,36 +15,46 @@
 
 
 
-void	Log_FatalError(s_logger const* logger, char const* str)
+t_io_error	Log_FatalError(s_logger const* logger, char const* str)
 {
+	t_io_error result = OK;
 	s_logfile const* file;
 	char const* message = IO_GetError(errno);
 
 	if (logger->dest_stderr)
 	{
-		IO_Write_Format(STDERR, C_RED"Fatal Error"C_RESET": %s\n%s", str, message);
+		result = IO_Write_Format(STDERR,
+			C_RED"Fatal Error"C_RESET": %s\n%s", str, message);
+		if (result)	return (result);
 	}
 	else if (logger->dest_stdout)
 	{
-		IO_Write_Format(STDOUT, C_RED"Fatal Error"C_RESET": %s\n%s", str, message);
+		result = IO_Write_Format(STDOUT,
+			C_RED"Fatal Error"C_RESET": %s\n%s", str, message);
+		if (result)	return (result);
 	}
 	for (t_uint i = 0; i < LOGFILES_MAX; ++i)
 	{
 		file = &logger->dest_files[i];
 		if (file->path && IO_IsTerminal(file->fd))
 		{
-			IO_Write_Format(file->fd, C_RED"Fatal Error"C_RESET": %s\n%s", str, message);
+			result = IO_Write_Format(file->fd,
+				C_RED"Fatal Error"C_RESET": %s\n%s", str, message);
+			if (result)	return (result);
 		}
 		else
 		{
-			IO_Write_Format(file->fd, "Fatal Error: %s\n%s", str, message);
+			result = IO_Write_Format(file->fd,
+				"Fatal Error: %s\n%s", str, message);
+			if (result)	return (result);
 		}
 	}
+	return (result);
 }
 
 
 
-char*	Log_GetUnixDateTime(t_time utc)
+char*	Logger_GetTimestamp(t_time utc)
 {
 	static const t_size max = 24;
 	char*		result;
@@ -62,7 +72,7 @@ char*	Log_GetUnixDateTime(t_time utc)
 **	Functions to help debug the logger
 */
 
-char*		Log_GetLoggerSettings(s_logger const* logger)
+char*	Logger_GetSettings(s_logger const* logger)
 {
 	char* result = NULL;
 	char* filepaths = NULL;
@@ -96,7 +106,10 @@ char*		Log_GetLoggerSettings(s_logger const* logger)
 	return (result);
 }
 
-inline void		Log_LoggerSettings(s_logger const* logger)
+inline t_io_error	Logger_LogSettings(s_logger const* logger)
 {
-	Log_Message(*logger, "%s", Log_GetLoggerSettings(logger));
+	char*	tmp = Logger_GetSettings(logger);
+	t_io_error result = Log_Message(logger, "%s", tmp);
+	String_Delete(&tmp);
+	return (result);
 }

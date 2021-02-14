@@ -4,7 +4,7 @@
 
 
 
-void	Log_Init(s_logger* logger)
+void	Logger_Init(s_logger* logger)
 {
 	t_io_open flags = (OPEN_CREATE | OPEN_WRITEONLY);
 	s_logfile* logfile;
@@ -22,7 +22,7 @@ void	Log_Init(s_logger* logger)
 			}
 			else
 			{
-				Log_Verbose(*logger, "Logging for software initialized\n");
+				Log_Verbose(logger, "Logging for software initialized\n");
 			}
 		}
 	}
@@ -30,7 +30,7 @@ void	Log_Init(s_logger* logger)
 
 
 
-void	Log_Exit(s_logger* logger)
+void	Logger_Exit(s_logger* logger)
 {
 	s_logfile* logfile;
 	for (t_uint i = 0; i < LOGFILES_MAX; ++i)

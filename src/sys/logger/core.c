@@ -9,7 +9,7 @@
 
 
 
-static inline void vLog_Write(s_logger const* logger, t_fd fd, char const* output, char const* log_msg)
+static inline void Log_VA_Write(s_logger const* logger, t_fd fd, char const* output, char const* log_msg)
 {
 	int status = IO_Write_String(fd, log_msg);
 	if (status < 0)
@@ -22,7 +22,7 @@ static inline void vLog_Write(s_logger const* logger, t_fd fd, char const* outpu
 
 
 
-int	vLog(s_logger const* logger,
+t_io_error	Log_VA(s_logger const* logger,
 	t_bool 			verbose_only,
 	t_bool			is_error,
 	t_bool 			use_errno,
@@ -41,7 +41,7 @@ int	vLog(s_logger const* logger,
 	}
 	char*	full_format_str = NULL;
 	char*	log_msg			= NULL;
-	char*	timestamp = logger->show_timestamp ? Log_GetUnixDateTime(Time_Now()) : NULL;
+	char*	timestamp = logger->show_timestamp ? Logger_GetTimestamp(Time_Now()) : NULL;
 /*
 	size_t	length = String_Length(time_now_utc);
 	if (length > 0 && time_now_utc[length - 1] == '\n')
@@ -53,7 +53,7 @@ int	vLog(s_logger const* logger,
 			timestamp ? timestamp : "",
 			prefix_color ? prefix_color : "",
 			prefix,
-			prefix_color ? C_RESET : "",
+			prefix_color ? C_RESET": " : "",
 			format_str,
 			format_str[0] != '\0' && format_str[String_Length(format_str) - 1] == '\n' ? "" : "\n",
 			timestamp ? LOG_TIMESTAMP_INDENT : " ",
@@ -66,20 +66,27 @@ int	vLog(s_logger const* logger,
 			timestamp ? timestamp : "",
 			prefix_color ? prefix_color : "",
 			prefix,
-			prefix_color ? C_RESET : "",
+			prefix_color ? C_RESET": " : "",
 			format_str,
 			format_str[String_Length(format_str) - 1] == '\n' ? "" : "\n");
 	}
-
+	if (full_format_str == NULL)
+	{
+		Log_FatalError(logger, "Could not construct log message format string");
+		return (ERROR);
+	}
 	// NB: a va_list (in this case, 'args') can only be called ONCE, or else segfault
 	log_msg = String_Format_VA(full_format_str, args);
 	if (log_msg == NULL)
+	{
 		Log_FatalError(logger, "Could not construct log message");
+		return (ERROR);
+	}
 	else
 	{
 		if (logger->dest_stdout && logger->dest_stderr)
 		{
-			vLog_Write(logger,
+			Log_VA_Write(logger,
 				(is_error ? STDERR : STDOUT),
 				(is_error ? "stderr" : "stdout"),
 				log_msg);
@@ -87,15 +94,15 @@ int	vLog(s_logger const* logger,
 		else
 		{
 			if (logger->dest_stdout)
-				vLog_Write(logger, STDOUT, "stdout", log_msg);
+				Log_VA_Write(logger, STDOUT, "stdout", log_msg);
 			if (logger->dest_stderr)
-				vLog_Write(logger, STDERR, "stderr", log_msg);
+				Log_VA_Write(logger, STDERR, "stderr", log_msg);
 		}
 		for (t_uint i = 0; i < LOGFILES_MAX; ++i)
 		{
 			if (logger->dest_files[i].path)
 			{
-				vLog_Write(logger,
+				Log_VA_Write(logger,
 					logger->dest_files[i].fd,
 					logger->dest_files[i].path,
 					log_msg);
