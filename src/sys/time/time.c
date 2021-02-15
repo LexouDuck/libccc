@@ -21,29 +21,29 @@ t_time		Time_Now(void)
 
 
 
-s_date		Time_To_Date_UTC(t_time const value)
+s_date		Time_ToDate_UTC(t_time const value)
 {
 	s_date result;
  	struct tm* tm;
 
  	tm = gmtime(&value);
-	result = STDC_To_Date(tm);
+	result = Date_FromSTDC(tm);
 	return (result);
 }
 
-s_date		Time_To_Date_LocalTime(t_time const value)
+s_date		Time_ToDate_LocalTime(t_time const value)
 {
 	s_date result;
  	struct tm* tm;
 
  	tm = localtime(&value);
-	result = STDC_To_Date(tm);
+	result = Date_FromSTDC(tm);
 	return (result);
 }
 
 
 
-inline struct timespec	Timespec_To_STDC(s_timespec const* value)
+inline struct timespec	Timespec_ToSTDC(s_timespec const* value)
 {
 	return ((struct timespec)
 	{
@@ -52,7 +52,7 @@ inline struct timespec	Timespec_To_STDC(s_timespec const* value)
 	});
 }
 
-inline s_timespec		STDC_To_Timespec(struct timespec const* value)
+inline s_timespec		Timespec_FromSTDC(struct timespec const* value)
 {
 	return ((s_timespec)
 	{

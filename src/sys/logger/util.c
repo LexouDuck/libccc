@@ -58,11 +58,11 @@ char*	Logger_GetTimestamp(t_time utc)
 {
 	static const t_size max = 24;
 	char*		result;
-	s_date	date = Time_To_Date_UTC(utc);
+	s_date	date = Time_ToDate_UTC(utc);
 	result = String_New(max);
 	if (result == NULL)
 		return (NULL);
-	Date_String_Format_N(result, max, &date, LOG_TIMESTAMP_FORMAT);
+	Date_ToString_N(result, max, &date, LOG_TIMESTAMP_FORMAT);
 	return (result);
 }
 

@@ -19,16 +19,16 @@ s_date		Date_Now(void)
 	t_time result;
 	if (time(&result) == (t_time)-1)
 		return (DATE_NULL);
-	return (Time_To_Date_UTC(result));
+	return (Time_ToDate_UTC(result));
 }
 
 
 
-t_time		Date_To_Time_UTC(s_date const* value)
+t_time		Date_ToTime_UTC(s_date const* value)
 {
 	struct tm	date;
 
-	date = Date_To_STDC(value);
+	date = Date_ToSTDC(value);
 #ifdef _WIN32
 	return (_mkgmtime(&date));
 #else
@@ -36,11 +36,11 @@ t_time		Date_To_Time_UTC(s_date const* value)
 #endif
 }
 
-t_time		Date_To_Time_LocalTime(s_date const* value)
+t_time		Date_ToTime_LocalTime(s_date const* value)
 {
 	struct tm	date;
 
-	date = Date_To_STDC(value);
+	date = Date_ToSTDC(value);
 #ifdef _WIN32
 	return (mktime(&date));
 #else
@@ -50,7 +50,7 @@ t_time		Date_To_Time_LocalTime(s_date const* value)
 
 
 
-inline struct tm	Date_To_STDC(s_date const* value)
+inline struct tm	Date_ToSTDC(s_date const* value)
 {
 	return ((struct tm)
 	{
@@ -66,7 +66,7 @@ inline struct tm	Date_To_STDC(s_date const* value)
 	});
 }
 
-inline s_date		STDC_To_Date(struct tm const* value)
+inline s_date		Date_FromSTDC(struct tm const* value)
 {
 	return ((s_date)
 	{

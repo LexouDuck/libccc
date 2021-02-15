@@ -648,11 +648,11 @@ recurse:
 
 
 
-s_date		Date_String_Parse(char const* str, char const* format)
+s_date		Date_FromString(char const* str, char const* format)
 {
 	struct tm result;
 
 	if (strptime(str, format, &result) == NULL)
 		return (DATE_NULL); // TODO handle error here ?
-	return (STDC_To_Date(&result));
+	return (Date_FromSTDC(&result));
 }

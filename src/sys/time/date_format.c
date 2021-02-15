@@ -10,14 +10,14 @@
 
 
 
-char*	Date_String_Format(s_date const* date, char const* format)
+char*	Date_ToString(s_date const* date, char const* format)
 {
 	struct tm tm;
 	char*	result;
 	t_size	size;
 	t_size	r;
 
-	tm = Date_To_STDC(date);
+	tm = Date_ToSTDC(date);
 	size = String_Length(format) + 1;
 	result = String_New(size);
 	if (result == NULL)
@@ -38,10 +38,10 @@ char*	Date_String_Format(s_date const* date, char const* format)
 
 
 
-t_size	Date_String_Format_N(char* dest, t_size max, s_date const* date, char const* format)
+t_size	Date_ToString_N(char* dest, t_size max, s_date const* date, char const* format)
 {
 	struct tm tm;
 
-	tm = Date_To_STDC(date);
+	tm = Date_ToSTDC(date);
 	return (strftime(dest, max, format, &tm));
 }
