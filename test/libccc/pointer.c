@@ -36,7 +36,7 @@ void	print_test_size_to_str(char const* test_name, int can_segfault,
 	TEST_PERFORM_RESULT(size_to_str, number)
 	print_test_str(test_name, "_size_to_str", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS(FORMAT_SIZE, number)
+	TEST_PRINT_ARGS("%zu", number)
 }
 void	test_size_to_str(void)
 {

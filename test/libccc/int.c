@@ -34,7 +34,7 @@ void	print_test_##TYPE##_to_str(char const* test_name, int can_segfault,					\
 	TEST_PERFORM_RESULT(TYPE##_to_str, number)												\
 	print_test_str(test_name, "_"#TYPE"_to_str", result_libccc, expecting, can_segfault);	\
 	print_timer_result(&t, FALSE);															\
-	TEST_PRINT_ARGS(FORMAT_U64, number)														\
+	TEST_PRINT_ARGS("%llu", number)															\
 }																							\
 void	test_##TYPE##_to_str(void)																							\
 {																															\
@@ -146,7 +146,7 @@ void	print_test_##TYPE##_to_str(char const* test_name, int can_segfault,					\
 	TEST_PERFORM_RESULT(TYPE##_to_str, number)												\
 	print_test_str(test_name, "_s"#TYPE"_to_str", result_libccc, expecting, can_segfault);	\
 	print_timer_result(&t, FALSE);															\
-	TEST_PRINT_ARGS(FORMAT_S64, number)														\
+	TEST_PRINT_ARGS("%lli", number)															\
 }																							\
 void	test_##TYPE##_to_str(void)																							\
 {																															\
@@ -266,7 +266,7 @@ void	print_test_##TYPE##_to_strhex(char const* test_name, int can_segfault,					
 	TEST_PERFORM_RESULT(TYPE##_to_strhex, number)												\
 	print_test_str(test_name, "_"#TYPE"_to_strhex", result_libccc, expecting, can_segfault);	\
 	print_timer_result(&t, FALSE);																\
-	TEST_PRINT_ARGS(FORMAT_U64, number)															\
+	TEST_PRINT_ARGS("%lld", number)																\
 }																								\
 void	test_##TYPE##_to_strhex(void)																								\
 {																																	\
@@ -377,7 +377,7 @@ void	print_test_##TYPE##_to_strbase(char const* test_name, int can_segfault,				
 	TEST_PERFORM_RESULT(TYPE##_to_strbase, number, base)										\
 	print_test_str(test_name, "_s"#TYPE"_to_strbase", result_libccc, expecting, can_segfault);	\
 	print_timer_result(&t, FALSE);																\
-	TEST_PRINT_ARGS("base='%s', n="FORMAT_S##BITS, base, number);								\
+	TEST_PRINT_ARGS("base='%s', n=%lli", base, number);											\
 }																								\
 void	test_##TYPE##_to_strbase(void)																													\
 {																																						\

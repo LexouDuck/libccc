@@ -32,23 +32,23 @@ int		testsuite_math_stat(void) // TODO increment total tests counter for these t
 	if (g_test.flags.verbose)
 	{
 		t_u64	intmax = (t_u32)-1;
-		printf("\tMedian:   %12f | intmax   :"FORMAT_U64"\n", c_stat_median_i(ilst_sorted), intmax);
-		printf("\tAverage:  %12f | intmax/2 :"FORMAT_U64"\n", c_stat_average_i(ilst_sorted), intmax / 2);
+		printf("\tMedian:   %12f | intmax   :%llu\n", c_stat_median_i(ilst_sorted), intmax);
+		printf("\tAverage:  %12f | intmax/2 :%llu\n", c_stat_average_i(ilst_sorted), intmax / 2);
 		tmp = c_stat_variance_i(ilst_sorted);
 		printf("\tVariance: %12f | StdDev: %12f\n", tmp, sqrt(tmp));
 
 		printf("\tDeciles int:\n"
-			"\t\t 0: "FORMAT_U32"\n"
-			"\t\t 1: "FORMAT_U32"\n"
-			"\t\t 2: "FORMAT_U32"\n"
-			"\t\t 3: "FORMAT_U32"\n"
-			"\t\t 4: "FORMAT_U32"\n"
-			"\t\t 5: "FORMAT_U32"\n"
-			"\t\t 6: "FORMAT_U32"\n"
-			"\t\t 7: "FORMAT_U32"\n"
-			"\t\t 8: "FORMAT_U32"\n"
-			"\t\t 9: "FORMAT_U32"\n"
-			"\t\t10: "FORMAT_U32"\n\n",
+			"\t\t 0: %u\n"
+			"\t\t 1: %u\n"
+			"\t\t 2: %u\n"
+			"\t\t 3: %u\n"
+			"\t\t 4: %u\n"
+			"\t\t 5: %u\n"
+			"\t\t 6: %u\n"
+			"\t\t 7: %u\n"
+			"\t\t 8: %u\n"
+			"\t\t 9: %u\n"
+			"\t\t10: %u\n\n",
 			ilst_sorted.data[0],
 			ilst_sorted.data[(t_u32)decile_inc],
 			ilst_sorted.data[(t_u32)(decile_inc * 2)],
