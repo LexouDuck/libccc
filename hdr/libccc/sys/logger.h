@@ -23,6 +23,8 @@
 ** ************************************************************************** *|
 */
 
+#include <stdarg.h>
+
 #include "libccc_config.h"
 #include "libccc_define.h"
 
