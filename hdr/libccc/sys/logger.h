@@ -114,6 +114,15 @@ char*		Logger_GetTimestamp(t_time utc);
 /*                             Logging Definitions                            */
 /* ************************************************************************** */
 
+//! Send a printf-like string to logfile
+_FORMAT(printf, 5, 6)
+t_io_error 	Log(s_logger const* logger,
+	t_bool is_verbose_only,
+	t_bool is_error,
+	t_bool use_errno_perror,
+	char const* format_str, ...);
+#define c_log_		Log
+
 t_io_error	Log_VA(s_logger const* logger,
 	t_bool 		verbose_only,
 	t_bool		is_error,
@@ -124,14 +133,6 @@ t_io_error	Log_VA(s_logger const* logger,
 	va_list		args);
 #define c_log_va	Log_VA
 
-//! Send a printf-like string to logfile
-t_io_error 	Log(s_logger const* logger,
-	t_bool is_verbose_only,
-	t_bool is_error,
-	t_bool use_errno_perror,
-	char const* format_str, ...);
-#define c_log_		Log
-
 
 
 //! Used to log a fundamental error where even the logger itself doesn't work: calls the STD C perror() function
@@ -141,27 +142,33 @@ t_io_error				Log_Fatal(s_logger const* logger, char const* str);
 
 
 //! Logging (perror-style) to both stderr and logfile (if applicable)
+_FORMAT(printf, 2, 3)
 t_io_error				Log_Error_IO(s_logger const* logger, char const* format_str, ...);
 #define c_log_io_error	Log_Error_IO
 #define Log_SystemError	Log_Error_IO
 
 //! Logging perror-style to both stderr and logfile (if applicable)
+_FORMAT(printf, 2, 3)
 t_io_error				Log_Error(s_logger const* logger, char const* format_str, ...);
 #define c_log_error		Log_Error
 
 //! To be called when there is an important warning to show to the user
+_FORMAT(printf, 2, 3)
 t_io_error				Log_Warning(s_logger const* logger, char const* format_str, ...);
 #define c_log_warning	Log_Warning
 
 //! To be called when there is an successful operation (or result) to notify the user of
+_FORMAT(printf, 2, 3)
 t_io_error				Log_Success(s_logger const* logger, char const* format_str, ...);
 #define c_log_success	Log_Success
 
 //! Logging printf-style of message to both stdout and logfile (if applicable)
+_FORMAT(printf, 2, 3)
 t_io_error				Log_Message(s_logger const* logger, char const* format_str, ...);
 #define c_log_message	Log_Message
 
 //! Logging printf-style of verbose message to both stdout and logfile (if applicable)
+_FORMAT(printf, 2, 3)
 t_io_error				Log_Message_Verbose(s_logger const* logger, char const* format_str, ...);
 #define c_log_verbose	Log_Message_Verbose
 #define Log_Verbose		Log_Message_Verbose
