@@ -40,15 +40,14 @@ HEADER_CPP
 typedef struct	s_logfile_
 {
 	t_fd		fd;		//!< The file descriptor for this logger output logfile
-	char const*	path;	//!< The file path (relative or absolute) for this logger output logfile
+	char*		path;	//!< The file path (relative or absolute) for this logger output logfile
 	t_bool		append;	//!< If TRUE, logger will append text to the file if it already exists, rather than overwrite/clear it
 }				s_logfile;
+#define NULL_LOGFILE	((s_logfile){ .fd = 0, .path = NULL, .append = FALSE })
+
 
 //! The maximum amount of files a logger can log to simultaneously
 #define LOGFILES_MAX	16
-
-
-
 //! This struct stores all the settings and internal state needed for a basic logging system
 typedef struct	s_logger_
 {
@@ -59,6 +58,7 @@ typedef struct	s_logger_
 	t_bool		dest_stderr;		//!< If TRUE, the logger outputs to the terminal standard error stream
 	s_logfile	dest_files[LOGFILES_MAX];	//!< Each of these, if TRUE, will make to logger output to the specified dest
 }				s_logger;
+#define	NULL_LOGGER ((s_logger){ .show_timestamp = FALSE, .mode_verbose = FALSE, .mode_obfuscated = FALSE, .dest_stdout = FALSE, .dest_stderr = FALSE, .dest_files = {0} })
 
 
 
@@ -84,16 +84,19 @@ typedef struct	s_logger_
 */
 
 //! Create a new logger. If logfile_path is required, but NULL, a default macro is used
-void						Logger_Init(s_logger* logger);
+void						Logger_Init(s_logger *a_logger);
 #define c_log_init			Logger_Init
 #define InitializeLogger	Logger_Init
 
 //! Cleanly release logger (close file descriptors, etc)
-void						Logger_Exit(s_logger* logger);
+void						Logger_Exit(s_logger *a_logger);
 #define c_log_exit			Logger_Exit
 #define FinalizeLogger		Logger_Exit
 
-
+//! Free all memory in logger, but do not release sockets; useful when a duplicated memory instance exists
+void						Logger_DeleteMemory(s_logger *a_logger);
+#define c_log_delmemory		Logger_DeleteMemory
+#define DeleteMemory_Logger	Logger_DeleteMemory
 
 //! Util function to help debug the logger
 char*						Logger_GetSettings(s_logger const* logger);
@@ -144,7 +147,7 @@ t_io_error				Log_Fatal(s_logger const* logger, char const* str);
 //! Logging (perror-style) to both stderr and logfile (if applicable)
 _FORMAT(printf, 2, 3)
 t_io_error				Log_Error_IO(s_logger const* logger, char const* format_str, ...);
-#define c_log_io_error	Log_Error_IO
+#define c_log_error_io	Log_Error_IO
 #define Log_SystemError	Log_Error_IO
 
 //! Logging perror-style to both stderr and logfile (if applicable)

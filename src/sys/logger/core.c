@@ -101,7 +101,7 @@ t_io_error	Log_VA(s_logger const* logger,
 		}
 		for (t_uint i = 0; i < LOGFILES_MAX; ++i)
 		{
-			if (logger->dest_files[i].path)
+			if (logger->dest_files[i].path && !String_Equals(logger->dest_files[i].path, ""))
 			{
 				Log_VA_Write(logger,
 					logger->dest_files[i].fd,
