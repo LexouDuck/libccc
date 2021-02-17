@@ -13,7 +13,8 @@
 #define __LIBCCC_MATH_RANDOM_H
 /*! @file libccc/math/random.h
 **	This header defines some simple pseudo-random number generator functions.
-**	@addtogroup libccc/math/random
+**	@defgroup libccc_math_random
+**	@grouporder{21}
 **	@{
 */
 

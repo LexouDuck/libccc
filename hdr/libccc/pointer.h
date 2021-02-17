@@ -13,7 +13,8 @@
 #define __LIBCCC_POINTER_H
 /*! @file libccc/pointer.h
 **	This header defines the common standard memory manipulation functions.
-**	@addtogroup libccc/pointer
+**	@defgroup libccc_pointer
+**	@grouporder{4}
 **	@{
 */
 

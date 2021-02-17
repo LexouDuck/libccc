@@ -13,7 +13,8 @@
 #define __LIBCCC_MATH_STAT_H
 /*! @file libccc/math/stat.h
 **	This header defines some common statistics functions, for lists of int/float
-**	@addtogroup libccc/math/stat
+**	@defgroup libccc_math_stat
+**	@grouporder{23}
 **	@{
 */
 

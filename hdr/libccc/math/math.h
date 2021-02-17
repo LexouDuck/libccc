@@ -1,6 +1,6 @@
 /*============================================================================*/
 /*                                            ______________________________  */
-/*  libccc/math.h                            |    __    __  ___      _____  | */
+/*  libccc/math/math.h                       |    __    __  ___      _____  | */
 /*                                           |   / /\  / /\/ . |\   /  __|\ | */
 /*  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | */
 /*                                           | /___/\/_/ /___-'\   \____/\  | */
@@ -11,9 +11,10 @@
 
 #ifndef __LIBCCC_MATH_H
 #define __LIBCCC_MATH_H
-/*! @file libccc/math.h
+/*! @file libccc/math/math.h
 **	This header defines the common standard math functions and macro defines.
-**	@addtogroup libccc/math
+**	@defgroup libccc_math_math
+**	@grouporder{20}
 **	@{
 */
 

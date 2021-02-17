@@ -13,7 +13,8 @@
 #define __LIBCCC_FORMAT_H
 /*! @file libccc/format.h
 **	This header defines printf-style functions, and their format specifiers
-**	@addtogroup libccc/format
+**	@defgroup libccc_format
+**	@grouporder{7}
 **	@{
 */
 
@@ -22,6 +23,12 @@
 **                                   Includes                                 *|
 ** ************************************************************************** *|
 */
+
+/*
+**	Types used from <stdarg.h>:
+**	-	va_list
+*/
+#include <stdarg.h>
 
 #include "libccc.h"
 
@@ -146,12 +153,12 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! Constructs a string from the given 'format' string and multiple args (equivalent to 'asprintf()')
+//! Constructs a string from the given `format` string and multiple args (equivalent to `asprintf()`)
 /*!
-**	Returns a new null-terminated string, which is generated from the given
-**	'format' string and variadic args - it is equivalent to 'asprintf()'.
+**	Constructs a new null-terminated string, which is generated from the given `format` string,
+**	as well as any relevant variadic arguments - it is equivalent to the `asprintf()` function.
 **
-**	The 'format' string may contain format specifiers (ie: a '%' followed by certain chars)
+**	The `format` string may contain format specifiers (ie: a '%' followed by certain chars)
 **	A format specifier has the following syntax (items between brackets are optional):
 **
 **	%[flags][minsize][.precision][bitsize]char
@@ -216,41 +223,52 @@ _FORMAT(printf, 1, 2)
 _MALLOC()
 char*					String_Format(char const* format, ...);
 #define c_asprintf		String_Format
-#define c_strbuild		String_Format
+#define c_strfmt		String_Format
 #define c_strformat		String_Format
 #define String_Build	String_Format
-//! @copydef String_Build, but takes a variadic arguments list
+
+//! @see				String_Format
 _MALLOC()
 char*					String_Format_VA(char const* format, va_list args);
+#define c_vasprintf		String_Format_VA
+#define s_strfmt_va		String_Format_VA
+#define s_strformat_va	String_Format_VA
 #define String_Build_VA	String_Format_VA
 
 
 
-//! Constructs a string from the given 'format' string and multiple args, writing at most 'max' chars into 'dest' (equivalent to 'snprintf()')
+//! Constructs a string from the given `format` string and multiple args, writing at most `max` chars into `dest` (equivalent to `snprintf()`)
 /*!
-**	@param	dest	The destination buffer, in which to write the resulting string (if NULL, does not write anything and simply returns the length)
-**	@param	max		The maximum amount of characters to write to 'dest', including the '\0' null terminator
+**	@param	dest	The destination buffer, in which to write the resulting string (if `NULL`, does not write anything and simply returns the length)
+**	@param	max		The maximum amount of characters to write to `dest`, including the '\0' null terminator
 **	@param	format	The format string used to construct the resulting date string: learn more here https://www.cplusplus.com/reference/cstdio/printf/
-**	@returns the amount of characters in the constructed format string, regardless of 'max' size
+**	@returns the amount of characters in the constructed format string, regardless of `max` size
 */
 _FORMAT(printf, 3, 4)
-t_size				String_Format_N(char* dest, t_size max, char const* format, ...);
-#define c_snprintf	String_Format_N
-//! @copydef String_Build, but takes a variadic arguments list
-t_size				String_Format_N_VA(char* dest, t_size max, char const* format, va_list args);
-#define c_vsnprintf	String_Format_N
+t_size						String_Format_N(char* dest, t_size max, char const* format, ...);
+#define c_snprintf			String_Format_N
+#define c_strnfmt			String_Format_N
+#define c_strnformat		String_Format_N
+#define String_Build_N		String_Format_N
+
+//! @see					String_Format_N
+t_size						String_Format_N_VA(char* dest, t_size max, char const* format, va_list args);
+#define c_vsnprintf			String_Format_N_VA
+#define c_strnfmt_va		String_Format_N_VA
+#define c_strnformat_va		String_Format_N_VA
+#define String_Build_N_VA	String_Format_N_VA
 
 
 
 /* NB: SEE ALSO (in libccc/sys/io.h)
 
-//! Writes the given formatted string to the standard output - equivalent to 'fprintf()', or rather 'dprintf()'
+//! Writes the given formatted string to the standard output - equivalent to `fprintf()`, or rather `dprintf()`
 _FORMAT(printf, 2, 3)
 int						IO_Write_Format(t_fd fd, char const* format, ...);
 #define c_write_format	IO_Write_Format
 #define c_dprintf		IO_Write_Format
 
-//! Writes the given formatted string to the standard output - equivalent to 'printf()'
+//! Writes the given formatted string to the standard output - equivalent to `printf()`
 _FORMAT(printf, 1, 2)
 int						IO_Output_Format(char const* format, ...);
 #define c_output_format	IO_Output_Format

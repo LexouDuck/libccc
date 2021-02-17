@@ -98,7 +98,7 @@ INTRO_FILE = "rst/page_index.rst"
 --! being sorted by ``title``.
 --!
 
-SORT_GROUPS_BY = "title"
+SORT_GROUPS_BY = "id"
 
 --[[!
 	By default, the page for the global namespace page will be called

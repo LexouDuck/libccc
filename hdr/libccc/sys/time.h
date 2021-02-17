@@ -13,7 +13,8 @@
 #define __LIBCCC_SYS_TIME_H
 /*! @file libccc/sys/time.h
 **	This header defines all the functions for date & time related functions.
-**	@addtogroup libccc/sys/time
+**	@defgroup libccc_sys_time
+**	@grouporder{11}
 **	@{
 */
 
@@ -23,13 +24,13 @@
 ** ************************************************************************** *|
 */
 
-#include <time.h>
 /*
 #ifndef __APPLE__
 	#define _XOPEN_SOURCE 600
 #endif
-#include <sys/time.h>
 */
+#include <sys/time.h>
+
 #include "libccc.h"
 
 HEADER_CPP
@@ -215,13 +216,13 @@ TYPEDEF_ALIAS(	s_date, TIME_DATE, STRUCT)
 
 
 
-#define FORMAT_TIME_UNIX		"%H:%M:%S"
-#define FORMAT_TIME_REVERSE		"%S:%M:%H"
+#define FORMAT_TIME_UNIX	"%H:%M:%S"	//!< @ref Date_ToString() date format: hh:mm:ss	 -> 11:59:59
+#define FORMAT_TIME_PRIME	"%Hh%m'%s\""//!< @ref Date_ToString() date format: hhhmm'ss" -> 11h59'59"
 
-#define FORMAT_DATE_UNIX	"%Y-%m-%d"
-#define FORMAT_DATE_YMD		"%Y/%m/%d"
-#define FORMAT_DATE_DMY		"%d/%m/%Y"
-#define FORMAT_DATE_MDY		"%m/%d/%Y"
+#define FORMAT_DATE_UNIX	"%Y-%m-%d"	//!< @ref Date_ToString() date format: YYYY-MM-DD -> 2020-12-31
+#define FORMAT_DATE_YMD		"%Y/%m/%d"	//!< @ref Date_ToString() date format: YYYY/MM/DD -> 2020/12/31
+#define FORMAT_DATE_DMY		"%d/%m/%Y"	//!< @ref Date_ToString() date format: DD/MM/YYYY -> 31/12/2020
+#define FORMAT_DATE_MDY		"%m/%d/%Y"	//!< @ref Date_ToString() date format: MM/DD/YYYY -> 12/31/2020
 
 
 
@@ -334,7 +335,7 @@ char*						Date_ToString(s_date const* date, char const* format);
 #define c_date_format		Date_ToString
 #define Date_Format			Date_ToString
 #define Date_FormatString	Date_ToString
-//! @copydef Date_String_Format, but this version is more closely equivalent to 'strftime()'
+//! @see					Date_ToString
 _FORMAT(strftime, 4, 0)
 t_size						Date_ToString_N(char* dest, t_size max, s_date const* date, char const* format);
 #define c_strftime			Date_ToString_N

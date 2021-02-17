@@ -1,6 +1,6 @@
 /*============================================================================*/
 /*                                            ______________________________  */
-/*  libccc_algebra.h                         |    __    __  ___      _____  | */
+/*  libccc/math/algebra.h                    |    __    __  ___      _____  | */
 /*                                           |   / /\  / /\/ . |\   /  __|\ | */
 /*  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | */
 /*                                           | /___/\/_/ /___-'\   \____/\  | */
@@ -11,9 +11,10 @@
 
 #ifndef __LIBCCC_ALGEBRA_H
 #define __LIBCCC_ALGEBRA_H
-/*! @file libccc_algebra.h
+/*! @file libccc/math/algebra.h
 **	This header defines useful algebra and calculus types, and functions.
-**	@addtogroup libccc_math
+**	@defgroup libccc_math_algebra
+**	@grouporder{24}
 **	@{
 */
 // TODO add other function macros for integral, distance, etc

@@ -13,7 +13,8 @@
 #define __LIBCCC_DEFINE_H
 /*! @file libccc_define.h
 **	This header defines all the common macros/defines used to "extend" C.
-**	@addtogroup libccc
+**	@defgroup libccc
+**	@grouporder{0}
 **	@{
 */
 
@@ -106,14 +107,14 @@ HEADER_CPP
 	#else
 		#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	__attribute__((format(FUNCTION, POS_FORMAT, POS_VARARGS)))
 	#endif
-	#define _ALIAS(FUNCTION)	__attribute__((alias(#FUNCTION)))	//!< before function or variable def: sets the token to be an alias for the one given as arg
-	#define _ALIGN(MINIMUM)		__attribute__((aligned(MINIMUM)))	//!< before function or variable def: sets minimum byte alignment size (power of 2)
-	#define _PURE()				__attribute__((pure))				//!< before function def: indicates that the function has no side-effects
-	#define _INLINE()			__attribute__((always_inline))		//!< before function def: makes the function be always inlined regardless of compiler config
-	#define _MALLOC()			__attribute__((malloc))				//!< before function def: indicates that it returns newly allocated ptr
-	#define _DELETE()			__attribute__((delete))				//!< before function def: indicates that it deletes/frees memory
-	#define _UNUSED()			__attribute__((unused))				//!< before function def: suppresses warnings for empty/incomplete function
-	#define _PACKED()			__attribute__((packed))				//!< before struct/union def: do not perform byte-padding on this struct/union type
+	#define _ALIAS(FUNCTION)	__attribute__((alias(#FUNCTION)))	//!< Before a function or variable def: sets the token to be an alias for the one given as arg
+	#define _ALIGN(MINIMUM)		__attribute__((aligned(MINIMUM)))	//!< Before a function or variable def: sets minimum byte alignment size (power of 2)
+	#define _PURE()				__attribute__((pure))				//!< Before a function def: indicates that the function has no side-effects
+	#define _INLINE()			__attribute__((always_inline))		//!< Before a function def: makes the function be always inlined regardless of compiler config
+	#define _MALLOC()			__attribute__((malloc))				//!< Before a function def: indicates that it returns newly allocated ptr
+	#define _DELETE()			__attribute__((delete))				//!< Before a function def: indicates that it deletes/frees memory
+	#define _UNUSED()			__attribute__((unused))				//!< Before a function def: suppresses warnings for empty/incomplete function
+	#define _PACKED()			__attribute__((packed))				//!< Before a struct/union def: do not perform byte-padding on this struct/union type
 #else
 	#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)
 	#define _ALIAS(FUNCTION)
@@ -134,7 +135,7 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-/*! @file libccc_define.h
+/*!
 **	NB: The following macros listed here exist on almost any platform/compiler:
 **
 **	Here is the list of all the predefined ANSI C macros
@@ -153,7 +154,7 @@ HEADER_CPP
 **	__GNUC__			Integer constant (with value = GCC version), if the compiler is GNU-compliant.
 **	__COUNTER__			Starts as 0, increments every time it is expanded - can be useful to generate names with token-paste '##' operator
 **	__BASE_FILE__		String literal: the source entry point filename (the file which holds the 'main()' function)
-**	__INCLUDE_LEVEL__	Integer constant: The current depth of nesting within '#include' directives.
+**	__INCLUDE_LEVEL__	Integer constant: The current depth of nesting within `#include` directives.
 **
 **	      __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__	If TRUE, this machine stores integers in reverse byte ordering (least-to-most signficant)
 **	      __BYTE_ORDER__ == __ORDER_BIG_ENDIAN__	If TRUE, this machine stores integers in regular byte ordering (most-to-least signficant)
@@ -209,14 +210,14 @@ HEADER_CPP
 // TODO add .align pseudo-instruction ?
 // TODO use .equ or .set rather than .int/.long ?
 
-//! This macro includes the given binary file at "_PATH" (string) into a global const variable named <_NAME> (token)
+//! This macro includes the given binary file at "_PATH" (string) into a global const variable named `_NAME` (token)
 /*!
 **	@param	_NAME		The name to give to the global variable(s) which will be created
 **	@param	_FILEPATH	
-**	@returns - This macro doesn't return anything per se, but it declares 3 variables within its ASM code:
-**		t_u8 const*	<_NAME>			The statically allocated byte array containing the binary file data
-**		t_u8 const*	<_NAME>_end		The pointer to the end of the file data byte array: contains 1 byte set to zero (works like a string null-terminator)
-**		int const*	<_NAME>_size	The pointer 1 byte after '*_end', contains the file size. Use it like this: t_size len = (t_size)(*myfile_size);
+**	@returns	This macro doesn't return anything per se, but it declares 3 global variables within its ASM code:
+**	- `t_u8 const*	_NAME`			The statically allocated byte array containing the binary file data
+**	- `t_u8 const*	_NAME##_end`	The pointer to the end of the file data byte array: contains 1 byte set to zero (works like a string null-terminator)
+**	- `int const*	_NAME##_size`	The pointer 1 byte after '*_end', contains the file size. Use it like this: t_size len = (t_size)(*myfile_size);
 */
 #define INCBIN(_NAME, _FILEPATH) \
 /*extern t_u8 const	_NAME[];		*/	\
@@ -245,7 +246,7 @@ __asm__									\
 	"\n"								\
 	"\n"INCBIN_PREVIOUS					\
 	"\n"								\
-);										\
+)
 
 
 

@@ -13,7 +13,8 @@
 #define __LIBCCC_CHAR_H
 /*! @file libccc/char.h
 **	This header defines all the functions/sets related to single ASCII chars.
-**	@addtogroup libccc/char
+**	@defgroup libccc_char
+**	@grouporder{6}
 **	@{
 */
 
@@ -92,60 +93,60 @@ TYPEDEF_ALIAS(			t_utf32, UTF32, PRIMITIVE)
 ** ************************************************************************** *|
 */
 
-//! Check if the given char 'c' is a letter (lowercase or uppercase)
+//! Check if the given char `c` is a letter (lowercase or uppercase)
 /*!
-**	Check if the given char 'c' is a letter (lowercase or uppercase)
+**	Check if the given char `c` is a letter (lowercase or uppercase)
 **
 **	@param	c	The character to check (ASCII or Unicode)
-**	@returns 1(TRUE) if the given char 'c' is a letter (lowercase or uppercase),
+**	@returns 1(TRUE) if the given char `c` is a letter (lowercase or uppercase),
 **			and returns 0(FALSE) otherwise.
 */
 t_bool					Char_IsLetter(t_utf32 c);
 #define c_isalpha		Char_IsLetter
 #define Char_IsAlpha	Char_IsLetter
 
-//! Check if the given char 'c' is a uppercase letter character
+//! Check if the given char `c` is a uppercase letter character
 /*!
-**	Check if the given char 'c' is a uppercase letter character
+**	Check if the given char `c` is a uppercase letter character
 **
 **	@param	c	The character to check (ASCII or Unicode)
-**	@returns 1(TRUE) if the given char 'c' is a uppercase letter character,
+**	@returns 1(TRUE) if the given char `c` is a uppercase letter character,
 **			and returns 0(FALSE) otherwise.
 */
 t_bool					Char_IsUppercase(t_utf32 c);
 #define c_isupper		Char_IsUppercase
 #define Char_IsUpper	Char_IsUppercase
 
-//! Check if the given char 'c' is an lowercase letter character
+//! Check if the given char `c` is an lowercase letter character
 /*!
-**	Check if the given char 'c' is an lowercase letter character
+**	Check if the given char `c` is an lowercase letter character
 **
 **	@param	c	The character to check (ASCII or Unicode)
-**	@returns 1(TRUE) if the given char 'c' is an lowercase letter character,
+**	@returns 1(TRUE) if the given char `c` is an lowercase letter character,
 **			and returns 0(FALSE) otherwise.
 */
 t_bool					Char_IsLowercase(t_utf32 c);
 #define c_islower		Char_IsLowercase
 #define Char_IsLower	Char_IsLowercase
 
-//! Check if the given char 'c' is alphanumeric (letter or digit) character
+//! Check if the given char `c` is alphanumeric (letter or digit) character
 /*!
-**	Check if the given char 'c' is alphanumeric (letter or digit) character
+**	Check if the given char `c` is alphanumeric (letter or digit) character
 **
 **	@param	c	The character to check (ASCII or Unicode)
-**	@returns 1(TRUE) if the given char 'c' is alphanumeric (letter or digit),
+**	@returns 1(TRUE) if the given char `c` is alphanumeric (letter or digit),
 **			and returns 0(FALSE) otherwise.
 */
 t_bool					Char_IsAlphaNumeric(t_utf32 c);
 #define c_isalnum		Char_IsAlphaNumeric
 #define Char_IsAlNum	Char_IsAlphaNumeric
 
-//! Check if the given char 'c' is a decimal digit character
+//! Check if the given char `c` is a decimal digit character
 /*!
-**	Check if the given char 'c' is a decimal digit character
+**	Check if the given char `c` is a decimal digit character
 **
 **	@param	c	The character to check (ASCII or Unicode)
-**	@returns 1(TRUE) if the given char 'c' is a numerical digit character,
+**	@returns 1(TRUE) if the given char `c` is a numerical digit character,
 **			and returns 0(FALSE) otherwise.
 */
 t_bool							Char_IsDigit(t_utf32 c);
@@ -154,63 +155,63 @@ t_bool							Char_IsDigit(t_utf32 c);
 #define Char_IsDigit_Dec		Char_IsDigit
 #define Char_IsDigit_Decimal	Char_IsDigit
 
-//! Check if the given char 'c' is a hexadecimal digit character (0-9 or A-F, lowercase or uppercase)
+//! Check if the given char `c` is a hexadecimal digit character (0-9 or A-F, lowercase or uppercase)
 t_bool								Char_IsDigit_Hex(t_utf32 c);
 #define c_isdigit_hex				Char_IsDigit_Hex
 #define Char_IsDigit_Hexadecimal	Char_IsDigit_Hex
 
-//! Check if the given char 'c' is a octal-base digit character (ie: '0' to '7')
+//! Check if the given char `c` is a octal-base digit character (ie: '0' to '7')
 t_bool								Char_IsDigit_Oct(t_utf32 c);
 #define c_isdigit_oct				Char_IsDigit_Oct
 #define Char_IsDigit_Octal			Char_IsDigit_Oct
 
-//! Check if the given char 'c' is a binary-base digit character (ie: '0' or '1')
+//! Check if the given char `c` is a binary-base digit character (ie: '0' or '1')
 t_bool								Char_IsDigit_Bin(t_utf32 c);
 #define c_isdigit_bin				Char_IsDigit_Bin
 #define Char_IsDigit_Binary			Char_IsDigit_Bin
 
-//! Check if the given char 'c' is whitespace character (\r,\n,\f,\v,\t,' ')
+//! Check if the given char `c` is whitespace character (' ','\\t','\\r','\\n','\\f','\\v')
 /*!
-**	Check if the given char 'c' is whitespace character (\r,\n,\f,\v,\t,' ')
+**	Check if the given char `c` is whitespace character (' ','\\t','\\r','\\n','\\f','\\v')
 **
 **	@param	c	The character to check (ASCII or Unicode)
-**	@returns 1(TRUE) if the given char 'c' is whitespace character: \r,\n,\f,\v,\t,' '
+**	@returns 1(TRUE) if the given char `c` is whitespace character: ' ','\\t','\\r','\\n','\\f','\\v'
 **			(carriage return, newline, form feed, vertical tab, tab, or space), and returns 0(FALSE) otherwise.
 */
 t_bool						Char_IsSpace(t_utf32 c);
 #define c_isspace			Char_IsSpace
 #define Char_IsWhiteSpace	Char_IsSpace
 
-//! Check if the given char 'c' is a punctuation character
+//! Check if the given char `c` is a punctuation character
 /*!
-**	Check if the given char 'c' is a punctuation character
+**	Check if the given char `c` is a punctuation character
 **
 **	@param	c	The character to check (ASCII or Unicode)
-**	@returns 1(TRUE) if the given char 'c' is a punctuation character,
+**	@returns 1(TRUE) if the given char `c` is a punctuation character,
 **			and returns 0(FALSE) otherwise.
 */
 t_bool					Char_IsPunctuation(t_utf32 c);
 #define c_ispunct		Char_IsPunctuation
 #define Char_IsPunct	Char_IsPunctuation
 
-//! Check if the given char 'c' is a printable ASCII character
+//! Check if the given char `c` is a printable ASCII character
 /*!
-**	Check if the given char 'c' is a printable ASCII character
+**	Check if the given char `c` is a printable ASCII character
 **
 **	@param	c	The character to check (ASCII or Unicode)
-**	@returns 1(TRUE) if the given char 'c' is a printable ASCII character,
+**	@returns 1(TRUE) if the given char `c` is a printable ASCII character,
 **			(0x20 <= c && c <= 0x7E) and returns 0(FALSE) otherwise.
 */
 t_bool					Char_IsPrintable(t_utf32 c);
 #define c_isprint		Char_IsPrintable
 #define Char_IsPrint	Char_IsPrintable
 
-//! Check if the given char 'c' is an ASCII-compatible char (non-Unicode)
+//! Check if the given char `c` is an ASCII-compatible char (non-Unicode)
 /*!
-**	Check if the given char 'c' is an ASCII-compatible char (non-Unicode)
+**	Check if the given char `c` is an ASCII-compatible char (non-Unicode)
 **
 **	@param	c	The character to check (ASCII or Unicode)
-**	@returns 1(TRUE) if the given char 'c' has a value between 0 and 127,
+**	@returns 1(TRUE) if the given char `c` has a value between 0 and 127,
 **			(0x00 <= c && c <= 0x7F) and returns 0(FALSE) otherwise.
 */
 t_bool				Char_IsASCII(t_utf32 c);
@@ -218,13 +219,13 @@ t_bool				Char_IsASCII(t_utf32 c);
 
 
 
-//! Check if the given char 'c' is contained in the given 'charset'
+//! Check if the given char `c` is contained in the given 'charset'
 /*!
-**	Check if the given char 'c' is contained in the given 'charset'
+**	Check if the given char `c` is contained in the given 'charset'
 **
 **	@param	c		The character to check (ASCII or Unicode)
 **	@param	charset	String, the set of characters to look through (the '\0' terminator ends the charset)
-**	@returns 1(TRUE) if the given char 'c' is a printable ASCII character,
+**	@returns 1(TRUE) if the given char `c` is a printable ASCII character,
 **			(0x20 <= c && c <= 0x7E) and returns 0(FALSE) otherwise.
 */
 t_bool					Char_IsInCharset(t_utf32 c, t_char const* charset);
@@ -239,25 +240,25 @@ t_bool					Char_IsInCharset(t_utf32 c, t_char const* charset);
 ** ************************************************************************** *|
 */
 
-//! Get the uppercase version of the given char 'c'
+//! Get the uppercase version of the given char `c`
 /*!
-**	Get the uppercase version of the given char 'c'
+**	Get the uppercase version of the given char `c`
 **
 **	@param	c	The character to uppercase-ify (ASCII only)
-**	@returns the uppercase equivalent of the given character 'c'
-**			(nothing is done if 'c' is not a letter character).
+**	@returns the uppercase equivalent of the given character `c`
+**			(nothing is done if `c` is not a letter character).
 */
 t_char					Char_ToUppercase(t_char c);
 #define c_toupper		Char_ToUppercase
 #define Char_ToUpper	Char_ToUppercase
 
-//! Get the lowercase version of the given char 'c'
+//! Get the lowercase version of the given char `c`
 /*!
-**	Get the lowercase version of the given char 'c'
+**	Get the lowercase version of the given char `c`
 **
 **	@param	c	The character to lowercase-ify (ASCII only)
-**	@returns the lowercase equivalent of the given character 'c'
-**			(nothing is done if 'c' is not a letter character).
+**	@returns the lowercase equivalent of the given character `c`
+**			(nothing is done if `c` is not a letter character).
 */
 t_char					Char_ToLowercase(t_char c);
 #define c_tolower		Char_ToLowercase
@@ -273,9 +274,9 @@ t_char					Char_ToLowercase(t_char c);
 ** ************************************************************************** *|
 */
 
-//! Converts the given Unicode code point value 'c' to its UTF-8 equivalent representation
+//! Converts the given Unicode code point value `c` to its UTF-8 equivalent representation
 /*!
-**	Converts the given char 'c' to UTF-8 representation, and writes it to 'dest'
+**	Converts the given char `c` to UTF-8 representation, and writes it to 'dest'
 **	@param	c		The character to convert (UTF-32 Unicode code point value)
 **	@param	dest	The pointer at which to write the resulting UTF-8 char
 **					(you must ensure that at least 4 bytes are writable to 'dest')
@@ -284,9 +285,9 @@ t_char					Char_ToLowercase(t_char c);
 t_size					Char_ToUTF8(t_utf8* dest, t_utf32 c);
 #define c_to_utf8		Char_ToUTF8
 
-//! Converts the given Unicode code point value 'c' to its UTF-16 equivalent representation
+//! Converts the given Unicode code point value `c` to its UTF-16 equivalent representation
 /*!
-**	Converts the given char 'c' to UTF-16 representation, and writes it to 'dest'
+**	Converts the given char `c` to UTF-16 representation, and writes it to 'dest'
 **	@param	c		The character to convert (UTF-32 Unicode code point value)
 **	@param	dest	The pointer at which to write the resulting UTF-16 char
 **					(you must ensure that at least 4 bytes are writable to 'dest')

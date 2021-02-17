@@ -13,7 +13,8 @@
 #define __LIBCCC_ARRAY_STRINGARRAY_H
 /*! @file libccc/array/stringarray.h
 **	This header defines some useful functions for string array (char**) handling.
-**	@addtogroup libccc/array/stringarray
+**	@defgroup libccc_array_stringarray
+**	@grouporder{35}
 **	@{
 */
 

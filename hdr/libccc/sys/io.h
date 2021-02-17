@@ -13,7 +13,8 @@
 #define __LIBCCC_SYS_IO_H
 /*! @file libccc/sys/io.h
 **	This header defines all the functions for OS-level input/output, read/write.
-**	@addtogroup libccc/sys/io
+**	@defgroup libccc_sys_io
+**	@grouporder{10}
 **	@{
 */
 
@@ -200,6 +201,8 @@ t_io_error					IO_ChangeMode(char const* filepath, t_io_mode mode);
 #define c_chmod				IO_ChangeMode
 #define IO_File_ChangeMode	IO_ChangeMode
 
+// TODO find a way to make this as cross-platform as possible
+#if 0
 //! Changes the owner and group for the file at 'filepath'
 /*!
 **	SYSCALL wrapper:
@@ -210,11 +213,10 @@ t_io_error					IO_ChangeMode(char const* filepath, t_io_mode mode);
 **	@param	group		The new group to set for the file
 **	@returns 0(OK) on success, or a non-zero error code (ie: an 'errno' value)
 */
-/* TODO find a way to make this as cross-platform as possible
 t_io_error					IO_ChangeOwner(char const* filepath, char const* owner, char const* group);
 #define c_chown				IO_ChangeOwner
 #define IO_File_ChangeOwner	IO_ChangeOwner
-*/
+#endif
 
 
 

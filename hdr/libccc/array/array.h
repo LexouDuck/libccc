@@ -13,7 +13,8 @@
 #define __LIBCCC_ARRAY_ARRAY_H
 /*! @file libccc/array/array.h
 **	This header defines a simple linked list type and utility functions for it.
-**	@addtogroup libccc/array/array
+**	@defgroup libccc_array_array
+**	@grouporder{30}
 **	@{
 */
 

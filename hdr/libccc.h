@@ -13,7 +13,8 @@
 #define __LIBCCC_H
 /*! @file libccc.h
 **	This file is simply meant to include all the primitive types together.
-**	@addtogroup libccc
+**	@defgroup libccc
+**	@grouporder{0}
 **	@{
 */
 
@@ -53,7 +54,7 @@
 
 HEADER_CPP
 
-/*! @file libccc.h
+/*!
 **	The naming convention for types is to always use a prefix to show its kind.
 **	These prefixes are always one letter followed by an underscore character.
 **	There are five such type prefix that libccc uses:
@@ -63,7 +64,7 @@ HEADER_CPP
 **		- `u_` for a typedef on a union type		ex: `typedef union color { t_u8 channels[4]; t_u32 argb; } u_color;`
 **		- `f_` for a typedef on a function pointer	ex: `typedef char (*f_strmapi)(char c, t_size index);`
 **	This also allows most any text editor's syntax coloring to be able to match types with a simple regex rule:
-**	\b([tseuf]_\w+)\b
+**		`\b([tseuf]_\w+)\b`
 */
 
 /*! @} */

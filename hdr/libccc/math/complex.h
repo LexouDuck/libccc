@@ -13,7 +13,8 @@
 #define __LIBCCC_MATH_COMPLEX_H
 /*! @file libccc/math/complex.h
 **	This header defines useful algebra and calculus types, and functions.
-**	@addtogroup libccc/math/complex
+**	@defgroup libccc_math_complex
+**	@grouporder{25}
 **	@{
 */
 // TODO add other function macros for integral, distance, etc

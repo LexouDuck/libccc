@@ -13,7 +13,8 @@
 #define __LIBCCC_BOOL_H
 /*! @file libccc/bool.h
 **	This header defines the boolean TRUE/FALSE primitive type and functions.
-**	@addtogroup libccc/bool
+**	@defgroup libccc_bool
+**	@grouporder{1}
 **	@{
 */
 

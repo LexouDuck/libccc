@@ -1,6 +1,6 @@
 /*============================================================================*/
 /*                                            ______________________________  */
-/*  libccc/logger.h                          |    __    __  ___      _____  | */
+/*  libccc/sys/logger.h                      |    __    __  ___      _____  | */
 /*                                           |   / /\  / /\/ . |\   /  __|\ | */
 /*  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | */
 /*                                           | /___/\/_/ /___-'\   \____/\  | */
@@ -9,11 +9,12 @@
 /*                                                                            */
 /*============================================================================*/
 
-#ifndef __LIBCCC_LOGGER_H
-#define __LIBCCC_LOGGER_H
-/*! @file libccc/logger.h
+#ifndef __LIBCCC_SYS_LOGGER_H
+#define __LIBCCC_SYS_LOGGER_H
+/*! @file libccc/sys/logger.h
 **	This header defines a simple yet useful set of functions to do program logging
-**	@addtogroup libccc/logger
+**	@defgroup libccc_sys_logger
+**	@grouporder{12}
 **	@{
 */
 

@@ -13,7 +13,8 @@
 #define __LIBCCC_MATH_VLQ_H
 /*! @file libccc/math/vlq.h
 **	This header defines a variable-length int type, and utility functions for it.
-**	@addtogroup libccc/math/vlq
+**	@defgroup libccc_math_vlq
+**	@grouporder{22}
 **	@{
 */
 

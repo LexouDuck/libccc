@@ -1,6 +1,6 @@
 /*============================================================================*/
 /*                                            ______________________________  */
-/*  libccc/math/regex.h                      |    __    __  ___      _____  | */
+/*  libccc/regex.h                           |    __    __  ___      _____  | */
 /*                                           |   / /\  / /\/ . |\   /  __|\ | */
 /*  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | */
 /*                                           | /___/\/_/ /___-'\   \____/\  | */
@@ -9,11 +9,12 @@
 /*                                                                            */
 /*============================================================================*/
 
-#ifndef __LIBCCC_MATH_REGEX_H
-#define __LIBCCC_MATH_REGEX_H
-/*! @file libccc/math/regex.h
+#ifndef __LIBCCC_REGEX_H
+#define __LIBCCC_REGEX_H
+/*! @file libccc/regex.h
 **	This header defines functions for regular expression matching/replacing.
-**	@addtogroup libccc/math/regex
+**	@defgroup libccc_regex
+**	@grouporder{8}
 **	@{
 */
 

@@ -13,7 +13,8 @@
 #define __LIBCCC_FIXED_H
 /*! @file libccc/fixed.h
 **	This header defines the fixed-point number primitive types and functions.
-**	@addtogroup libccc/fixed
+**	@defgroup libccc_fixed
+**	@grouporder{2}
 **	@{
 */
 

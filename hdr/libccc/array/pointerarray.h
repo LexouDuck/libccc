@@ -1,6 +1,6 @@
 /*============================================================================*/
 /*                                            ______________________________  */
-/*  libccc_array_pointerarray.h              |    __    __  ___      _____  | */
+/*  libccc/array/pointerarray.h              |    __    __  ___      _____  | */
 /*                                           |   / /\  / /\/ . |\   /  __|\ | */
 /*  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | */
 /*                                           | /___/\/_/ /___-'\   \____/\  | */
@@ -11,9 +11,10 @@
 
 #ifndef __LIBCCC_ARRAY_POINTERARRAY_H
 #define __LIBCCC_ARRAY_POINTERARRAY_H
-/*! @file libccc_array_pointerarray.h
+/*! @file libccc/array/pointerarray.h
 **	This header defines the common standard memory manipulation functions.
-**	@addtogroup libccc_array_pointerarray
+**	@defgroup libccc_array_pointerarray
+**	@grouporder{34}
 **	@{
 */
 
