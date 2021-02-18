@@ -269,7 +269,7 @@ TAB_SIZE               = 4
 # commands \{ and \} for these it is advised to use the version @{ and @} or use
 # a double escape (\\{ and \\})
 
-ALIASES                = grouporder{1}="@internal :grouporder(@1) @endinternal"
+ALIASES                = atgroup{1}="@internal :grouporder(@1) @endinternal"
 
 # Set the OPTIMIZE_OUTPUT_FOR_C tag to YES if your project consists of C sources
 # only. Doxygen will then generate output that is more tailored for C. For
@@ -623,7 +623,7 @@ INLINE_INFO            = YES
 # name. If set to NO, the members will appear in declaration order.
 # The default value is: YES.
 
-SORT_MEMBER_DOCS       = YES
+SORT_MEMBER_DOCS       = NO
 
 # If the SORT_BRIEF_DOCS tag is set to YES then doxygen will sort the brief
 # descriptions of file, namespace and class members alphabetically by member
@@ -845,7 +845,9 @@ WARN_LOGFILE           =
 # Note: If this tag is empty the current directory is searched.
 
 INPUT                  = ./README.md \
-./hdr/ \
+./hdr/libccc.h \
+./hdr/libccc_define.h \
+./hdr/libccc_config.h \
 ./hdr/libccc/ \
 ./hdr/libccc/sys/ \
 ./hdr/libccc/math/ \

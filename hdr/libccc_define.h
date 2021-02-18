@@ -12,10 +12,9 @@
 #ifndef __LIBCCC_DEFINE_H
 #define __LIBCCC_DEFINE_H
 /*! @file libccc_define.h
-**	This header defines all the common macros/defines used to "extend" C.
-**	@defgroup libccc
-**	@grouporder{0}
+**	@addtogroup libccc
 **	@{
+**	This header defines all the common macros/defines used to "extend" C.
 */
 
 // define 'extern C' header guards to prevent C++ compilers from doing symbol name mangling
@@ -135,7 +134,7 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-/*!
+/*! @file libccc.h
 **	NB: The following macros listed here exist on almost any platform/compiler:
 **
 **	Here is the list of all the predefined ANSI C macros

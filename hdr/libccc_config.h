@@ -12,10 +12,9 @@
 #ifndef __LIBCCC_CONFIG_H
 #define __LIBCCC_CONFIG_H
 /*! @file libccc_config.h
-**	This header defines all the primitive types and common macros to use.
-**	@defgroup libccc
-**	@grouporder{0}
+**	@addtogroup libccc
 **	@{
+**	This header defines all the primitive types and common macros to use.
 */
 
 // define 'extern C' header guards to prevent C++ compilers from doing symbol name mangling

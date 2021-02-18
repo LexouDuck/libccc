@@ -12,10 +12,9 @@
 #ifndef __LIBCCC_MEMORY_H
 #define __LIBCCC_MEMORY_H
 /*! @file libccc/memory.h
-**	This header defines the common standard memory manipulation functions.
-**	@defgroup libccc_memory
-**	@grouporder{5}
+**	@addtogroup libccc_memory
 **	@{
+**	This header defines the common standard memory manipulation functions.
 */
 
 /*

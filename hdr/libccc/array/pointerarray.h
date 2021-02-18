@@ -12,10 +12,9 @@
 #ifndef __LIBCCC_ARRAY_POINTERARRAY_H
 #define __LIBCCC_ARRAY_POINTERARRAY_H
 /*! @file libccc/array/pointerarray.h
-**	This header defines the common standard memory manipulation functions.
-**	@defgroup libccc_array_pointerarray
-**	@grouporder{34}
+**	@addtogroup libccc_array_pointerarray
 **	@{
+**	This header defines the common standard memory manipulation functions.
 */
 
 /*

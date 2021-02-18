@@ -12,10 +12,9 @@
 #ifndef __LIBCCC_REGEX_H
 #define __LIBCCC_REGEX_H
 /*! @file libccc/regex.h
-**	This header defines functions for regular expression matching/replacing.
-**	@defgroup libccc_regex
-**	@grouporder{8}
+**	@addtogroup libccc_regex
 **	@{
+**	This header defines functions for regular expression matching/replacing.
 */
 
 /*

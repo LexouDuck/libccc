@@ -102,44 +102,44 @@ The make commands are:
 
 ##### Building
 
-##### `make debug` or `make` or `make all`
-- Build the `libccc.a` library file, in debug mode (with added flags: `-g -ggdb -D DEBUG=1`)
+- `make debug` or `make` or `make all`
+	Build the `libccc.a` library file, in debug mode (with added flags: `-g -ggdb -D DEBUG=1`)
 
-##### `make release`
-- Build the `libccc.a` library file, in release mode (builds both static and dynamic library files for the given OSMODE, with added flags like `-O3`)
+- `make release`
+	Build the `libccc.a` library file, in release mode (builds both static and dynamic library files for the given OSMODE, with added flags like `-O3`)
 
-##### `make doc`
-- Generate documentation from doxygen comments in the code to the ./doc/ folder (in several formats: html, latex, rtf, man)
+- `make doc`
+	Generate documentation from doxygen comments in the code to the ./doc/ folder (in several formats: html, latex, rtf, man)
 
 
 ##### Checking/CI
 
-##### `make libccc_test`
-- Builds a test software `libccc_test`, which runs test suites on every libccc function.
+- `make libccc_test`
+	Builds a test software `libccc_test`, which runs test suites on every libccc function.
 
-##### `make test`
-- Builds `libccc_test` and runs it without any arguments (running all tests).
+- `make test`
+	Builds `libccc_test` and runs it without any arguments (running all tests).
 
-##### `make lint`
-- Runs CPPcheck on all source files
+- `make lint`
+	Runs CPPcheck on all source files
 
-##### `make preprocessed`
-- Fills the `./obj/` folder with `.c` files in their preprocessed state - this can help debug certain code macros, etc
+- `make preprocessed`
+	Fills the `./obj/` folder with `.c` files in their preprocessed state - this can help debug certain code macros, etc
 
 
 ##### Deleting
 
-##### `make clean`
-- Delete all object files in `./obj/` folder.
+- `make clean`
+	Delete all object files in `./obj/` folder.
 
-##### `make rclean`
-- Delete all object files in `./obj/` folder, and the folder itself.
+- `make rclean`
+	Delete all object files in `./obj/` folder, and the folder itself.
 
-##### `make fclean`
-- Delete all object files in `./obj/` folder, as well as the executable and library files.
+- `make fclean`
+	Delete all object files in `./obj/` folder, as well as the executable and library files.
 
-##### `make tclean`
-- Delete the test executable file, if present.
+- `make tclean`
+	Delete the test executable file, if present.
 
-##### `make re`
-- Does a `make fclean` followed by a `make`
+- `make re`
+	Does a `make fclean` followed by a `make`

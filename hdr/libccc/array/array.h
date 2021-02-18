@@ -12,10 +12,9 @@
 #ifndef __LIBCCC_ARRAY_ARRAY_H
 #define __LIBCCC_ARRAY_ARRAY_H
 /*! @file libccc/array/array.h
-**	This header defines a simple linked list type and utility functions for it.
-**	@defgroup libccc_array_array
-**	@grouporder{30}
+**	@addtogroup libccc_array_array
 **	@{
+**	This header defines a simple linked list type and utility functions for it.
 */
 
 /*

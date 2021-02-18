@@ -22,7 +22,7 @@ sys.path.insert(1, os.path.abspath('doxyrest/sphinx'))
 # -- Project information -----------------------------------------------------
 
 project = 'libccc'
-copyright = '2020, Duquesne'
+copyright = 'FREE'
 author = 'Duquesne'
 
 # The full version, including alpha/beta/rc tags

@@ -70,10 +70,17 @@
 
 
 
-.doxyrest-title-code-block {
+.section > h3
+{
+	margin-top: 80px !important;
+}
+
+.doxyrest-title-code-block
+{
     margin-top: 80px !important;
 }
 
-.wy-nav-content {
+.wy-nav-content
+{
     max-width: 1000px !important;
 }

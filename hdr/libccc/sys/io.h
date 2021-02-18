@@ -12,10 +12,9 @@
 #ifndef __LIBCCC_SYS_IO_H
 #define __LIBCCC_SYS_IO_H
 /*! @file libccc/sys/io.h
-**	This header defines all the functions for OS-level input/output, read/write.
-**	@defgroup libccc_sys_io
-**	@grouporder{10}
+**	@addtogroup libccc_sys_io
 **	@{
+**	This header defines all the functions for OS-level input/output, read/write.
 */
 
 /*

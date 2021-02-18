@@ -12,10 +12,9 @@
 #ifndef __LIBCCC_STRING_H
 #define __LIBCCC_STRING_H
 /*! @file libccc/string.h
-**	This header defines the common standard string (char*) manipulation functions.
-**	@defgroup libccc_string
-**	@grouporder{7}
+**	@addtogroup libccc_string
 **	@{
+**	This header defines the common standard string (char*) manipulation functions.
 */
 
 /*

@@ -12,10 +12,9 @@
 #ifndef __LIBCCC_ARRAY_DICT_H
 #define __LIBCCC_ARRAY_DICT_H
 /*! @file libccc/array/dict.h
-**	This header defines a simple dictionary type and utility functions for it.
-**	@defgroup libccc_array_dict
-**	@grouporder{32}
+**	@addtogroup libccc_array_dict
 **	@{
+**	This header defines a simple dictionary type and utility functions for it.
 */
 
 /*

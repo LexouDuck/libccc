@@ -12,10 +12,9 @@
 #ifndef __LIBCCC_SYS_TIME_H
 #define __LIBCCC_SYS_TIME_H
 /*! @file libccc/sys/time.h
-**	This header defines all the functions for date & time related functions.
-**	@defgroup libccc_sys_time
-**	@grouporder{11}
+**	@addtogroup libccc_sys_time
 **	@{
+**	This header defines all the functions for date & time related functions.
 */
 
 /*

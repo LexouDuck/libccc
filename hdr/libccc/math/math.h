@@ -12,10 +12,9 @@
 #ifndef __LIBCCC_MATH_H
 #define __LIBCCC_MATH_H
 /*! @file libccc/math/math.h
-**	This header defines the common standard math functions and macro defines.
-**	@defgroup libccc_math_math
-**	@grouporder{20}
+**	@addtogroup libccc_math_math
 **	@{
+**	This header defines the common standard math functions and macro defines.
 */
 
 /*

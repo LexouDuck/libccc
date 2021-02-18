@@ -12,10 +12,9 @@
 #ifndef __LIBCCC_ARRAY_STRINGARRAY_H
 #define __LIBCCC_ARRAY_STRINGARRAY_H
 /*! @file libccc/array/stringarray.h
-**	This header defines some useful functions for string array (char**) handling.
-**	@defgroup libccc_array_stringarray
-**	@grouporder{35}
+**	@addtogroup libccc_array_stringarray
 **	@{
+**	This header defines some useful functions for string array (char**) handling.
 */
 
 /*

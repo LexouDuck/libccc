@@ -12,10 +12,9 @@
 #ifndef __LIBCCC_INT_H
 #define __LIBCCC_INT_H
 /*! @file libccc/int.h
-**	This header defines the integer number primitive types and functions.
-**	@defgroup libccc_int
-**	@grouporder{2}
+**	@addtogroup libccc_int
 **	@{
+**	This header defines the integer number primitive types and functions.
 */
 
 /*

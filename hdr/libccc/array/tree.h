@@ -12,10 +12,9 @@
 #ifndef __LIBCCC_ARRAY_TREE_H
 #define __LIBCCC_ARRAY_TREE_H
 /*! @file libccc/array/tree.h
-**	This header defines a simple tree/node/leaf type and utility functions for it.
-**	@defgroup libccc_array_tree
-**	@grouporder{33}
+**	@addtogroup libccc_array_tree
 **	@{
+**	This header defines a simple tree/node/leaf type and utility functions for it.
 */
 
 /*

@@ -12,10 +12,9 @@
 #ifndef __LIBCCC_POINTER_H
 #define __LIBCCC_POINTER_H
 /*! @file libccc/pointer.h
-**	This header defines the common standard memory manipulation functions.
-**	@defgroup libccc_pointer
-**	@grouporder{4}
+**	@addtogroup libccc_pointer
 **	@{
+**	This header defines the standard memory size and pointer integer types.
 */
 
 /*

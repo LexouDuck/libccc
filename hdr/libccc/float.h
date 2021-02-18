@@ -12,10 +12,9 @@
 #ifndef __LIBCCC_FLOAT_H
 #define __LIBCCC_FLOAT_H
 /*! @file libccc/float.h
-**	This header defines the floating-point number primitive types and functions.
-**	@defgroup libccc_float
-**	@grouporder{3}
+**	@addtogroup libccc_float
 **	@{
+**	This header defines the floating-point number primitive types and functions.
 */
 
 /*
