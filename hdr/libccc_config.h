@@ -17,22 +17,13 @@
 **	This header defines all the primitive types and common macros to use.
 */
 
-// define 'extern C' header guards to prevent C++ compilers from doing symbol name mangling
-#ifdef __cplusplus
-	#ifndef HEADER_CPP
-	#define HEADER_CPP	extern "C" {
-	#endif
-	#ifndef HEADER_END
-	#define HEADER_END	}
-	#endif
-#else
-	#ifndef HEADER_CPP
-	#define HEADER_CPP	
-	#endif
-	#ifndef HEADER_END
-	#define HEADER_END	
-	#endif	
-#endif
+/*
+** ************************************************************************** *|
+**                                   Includes                                 *|
+** ************************************************************************** *|
+*/
+
+#include "libccc_define.h"
 
 HEADER_CPP
 

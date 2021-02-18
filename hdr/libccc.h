@@ -45,23 +45,6 @@
 **	This file is simply meant to include all the primitive types together.
 */
 
-// define 'extern C' header guards to prevent C++ compilers from doing symbol name mangling
-#ifdef __cplusplus
-	#ifndef HEADER_CPP
-	#define HEADER_CPP	extern "C" {
-	#endif
-	#ifndef HEADER_END
-	#define HEADER_END	}
-	#endif
-#else
-	#ifndef HEADER_CPP
-	#define HEADER_CPP	
-	#endif
-	#ifndef HEADER_END
-	#define HEADER_END	
-	#endif
-#endif
-
 /*
 ** ************************************************************************** *|
 **                                 Includes                                   *|

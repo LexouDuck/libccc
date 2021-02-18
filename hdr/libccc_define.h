@@ -17,6 +17,12 @@
 **	This header defines all the common macros/defines used to "extend" C.
 */
 
+/*
+** ************************************************************************** *|
+**                                   Includes                                 *|
+** ************************************************************************** *|
+*/
+
 // define 'extern C' header guards to prevent C++ compilers from doing symbol name mangling
 #ifdef __cplusplus
 	#ifndef HEADER_CPP
