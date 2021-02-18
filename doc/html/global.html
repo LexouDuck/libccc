@@ -945,8 +945,9 @@
     <span class="p">);</span>
 
 <a class="reference internal" href="group_libccc_sys_io.html#doxid-group-libccc-sys-io-1ga2468f6097a96e11ea9356256dd5a9cbb"><span class="std std-ref">t_io_error</span></a><span></span> <a class="reference internal" href="group_libccc_sys_io.html#doxid-group-libccc-sys-io-1ga87b5944b07ef6addafce7f04e40192b0"><span class="std std-ref">IO_Output_Format</span></a><span></span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">format</span><span class="p">,</span> <span class="p">...);</span>
-<span class="kt">void</span> <a class="reference internal" href="group_libccc_sys_logger.html#doxid-group-libccc-sys-logger-1ga735d9fd48c5de7eb432e79663ad6154b"><span class="std std-ref">Logger_Init</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_sys_logger.html#doxid-group-libccc-sys-logger-1ga155f4d407bb902c8b08e8ae6ec49aece"><span class="std std-ref">s_logger</span></a><span></span><span class="o">*</span> <span class="n">logger</span><span class="p">);</span>
-<span class="kt">void</span> <a class="reference internal" href="group_libccc_sys_logger.html#doxid-group-libccc-sys-logger-1ga85c8ddbd1980c017da4b9149a9a89d9e"><span class="std std-ref">Logger_Exit</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_sys_logger.html#doxid-group-libccc-sys-logger-1ga155f4d407bb902c8b08e8ae6ec49aece"><span class="std std-ref">s_logger</span></a><span></span><span class="o">*</span> <span class="n">logger</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="group_libccc_sys_logger.html#doxid-group-libccc-sys-logger-1ga47c4a4313e7a399114c24171076f8785"><span class="std std-ref">Logger_Init</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_sys_logger.html#doxid-group-libccc-sys-logger-1ga155f4d407bb902c8b08e8ae6ec49aece"><span class="std std-ref">s_logger</span></a><span></span><span class="o">*</span> <span class="n">a_logger</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="group_libccc_sys_logger.html#doxid-group-libccc-sys-logger-1ga10e1fbdd193b1d2754a5f930c7d6f176"><span class="std std-ref">Logger_Exit</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_sys_logger.html#doxid-group-libccc-sys-logger-1ga155f4d407bb902c8b08e8ae6ec49aece"><span class="std std-ref">s_logger</span></a><span></span><span class="o">*</span> <span class="n">a_logger</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="group_libccc_sys_logger.html#doxid-group-libccc-sys-logger-1gaf23b81013bb9a26e5d741032d99b65c5"><span class="std std-ref">Logger_DeleteMemory</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_sys_logger.html#doxid-group-libccc-sys-logger-1ga155f4d407bb902c8b08e8ae6ec49aece"><span class="std std-ref">s_logger</span></a><span></span><span class="o">*</span> <span class="n">a_logger</span><span class="p">);</span>
 <span class="kt">char</span><span class="o">*</span> <a class="reference internal" href="group_libccc_sys_logger.html#doxid-group-libccc-sys-logger-1gabd8bc35c3ab587ba3f835b6ece680169"><span class="std std-ref">Logger_GetSettings</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_sys_logger.html#doxid-group-libccc-sys-logger-1ga155f4d407bb902c8b08e8ae6ec49aece"><span class="std std-ref">s_logger</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">logger</span><span class="p">);</span>
 <a class="reference internal" href="group_libccc_sys_io.html#doxid-group-libccc-sys-io-1ga2468f6097a96e11ea9356256dd5a9cbb"><span class="std std-ref">t_io_error</span></a><span></span> <a class="reference internal" href="group_libccc_sys_logger.html#doxid-group-libccc-sys-logger-1ga21f6bdc9b5df52ae213ad7e85f0a056a"><span class="std std-ref">Logger_LogSettings</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_sys_logger.html#doxid-group-libccc-sys-logger-1ga155f4d407bb902c8b08e8ae6ec49aece"><span class="std std-ref">s_logger</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">logger</span><span class="p">);</span>
 <span class="kt">char</span><span class="o">*</span> <a class="reference internal" href="group_libccc_sys_logger.html#doxid-group-libccc-sys-logger-1gab2442acaacf840c543dceab176ced215"><span class="std std-ref">Logger_GetTimestamp</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_sys_time.html#doxid-group-libccc-sys-time-1gac18942bf2f3dc9acba993dd65cca3aca"><span class="std std-ref">t_time</span></a><span></span> <span class="n">utc</span><span class="p">);</span>
@@ -1096,6 +1097,7 @@
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-time-1ga5802069577b063f87a158a5646ed4aa7"><span></span><span class="n">Date_Parse</span></span><span></span>
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-time-1ga5ffa2f82887b0858ceb698d95be28aac"><span></span><span class="n">Date_ParseString</span></span><span></span>
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-time-1ga40566951a1ccfa7b6ce91731c9aa540a"><span></span><span class="n">Date_ToTime</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1ga63fcdd8a8b026daa74c484a7ebe70226"><span></span><span class="n">DeleteMemory_Logger</span></span><span></span>
 <span class="cp">#define </span><a class="reference internal" href="group_libccc_math_math.html#doxid-group-libccc-math-math-1ga07484107e6d9fdf38b53edf631d6511d"><span class="std std-ref">E</span></a><span></span>
 <span class="cp">#define </span><a class="reference internal" href="group_libccc.html#doxid-group-libccc-1ga8fe83ac76edc595f6b98cd4a4127aed5"><span class="std std-ref">ERROR</span></a><span></span>
 <span class="cp">#define </span><a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1gadc9b1c869833b31fea877ade10d6239c"><span class="std std-ref">F128_EXPONENT</span></a><span></span>
@@ -1275,11 +1277,6 @@
 <span class="cp">#define </span><a class="reference internal" href="group_libccc.html#doxid-group-libccc-1gaaeed2faba04f0354fd8f01296e46a342"><span class="std std-ref">HUNGARIAN_STRUCT</span></a><span></span>
 <span class="cp">#define </span><a class="reference internal" href="group_libccc.html#doxid-group-libccc-1ga49e29c9d235b230d591e6a89b180b103"><span class="std std-ref">HUNGARIAN_UNION</span></a><span></span>
 <span class="cp">#define </span><a class="reference internal" href="group_libccc.html#doxid-group-libccc-1ga73431ba9d27af74793901561ae448116"><span class="std std-ref">INCBIN</span></a><span></span><span class="p">(</span><span class="n">_NAME</span><span class="p">,</span> <span class="n">_FILEPATH</span><span class="p">)</span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-1gad9f6139df83b5335af9ab94ec9f98cd5"><span></span><span class="n">INCBIN_GLOBAL</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-1ga06df92f72f9a5a7b5c2d92c933adeb75"><span></span><span class="n">INCBIN_INTEGER</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-1gaa11b19aab6b4cd6425759dabe00e8d29"><span></span><span class="n">INCBIN_MANGLE</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-1gaea171999548a969bd2dcc91189f46c14"><span></span><span class="n">INCBIN_PREVIOUS</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-1gacfa42080b3020a2d08650f1f1f31afb8"><span></span><span class="n">INCBIN_SECTION</span></span><span></span>
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-float-1ga12c2040f25d8e3a7b9e1c2024c618cb6"><span></span><span class="n">INF</span></span><span></span>
 <span class="cp">#define </span><a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga956e2723d559858d08644ac99146e910"><span class="std std-ref">INFINITY</span></a><span></span>
 <span class="cp">#define </span><a class="reference internal" href="group_libccc_math_math.html#doxid-group-libccc-math-math-1gaebad45bfa06a5d66805c5813fbc59f4b"><span class="std std-ref">INV_PI</span></a><span></span>
@@ -1627,6 +1624,8 @@
 <span class="cp">#define </span><a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1ga070d2ce7b6bb7e5c05602aa8c308d0c4"><span class="std std-ref">NULL</span></a><span></span>
 <span class="cp">#define </span><a class="reference internal" href="group_libccc_math_stat.html#doxid-group-libccc-math-stat-1gaa498d2c29defa86442382ab3a53e956a"><span class="std std-ref">NULL_LIST_FLOAT</span></a><span></span>
 <span class="cp">#define </span><a class="reference internal" href="group_libccc_math_stat.html#doxid-group-libccc-math-stat-1gad63791d6b60496f2b98099da578a2c99"><span class="std std-ref">NULL_LIST_INT</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1gab3f1a96b0b7d7561644ba6994a1c0744"><span></span><span class="n">NULL_LOGFILE</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1gada3edae0070ddc1c761ab45e69e79168"><span></span><span class="n">NULL_LOGGER</span></span><span></span>
 <span class="cp">#define </span><a class="reference internal" href="group_libccc_math_random.html#doxid-group-libccc-math-random-1ga21005f9f4e2ce7597c5eb4351816d7e2"><span class="std std-ref">OFFSET</span></a><span></span>
 <span class="cp">#define </span><a class="reference internal" href="group_libccc.html#doxid-group-libccc-1gaba51915c87d64af47fb1cc59348961c9"><span class="std std-ref">OK</span></a><span></span>
 <span class="cp">#define </span><a class="reference internal" href="group_libccc_sys_io.html#doxid-group-libccc-sys-io-1ga671d35807f6214e373d6c7a0aadd5cb8"><span class="std std-ref">OPEN_ACCESSMODE</span></a><span></span>
@@ -1704,29 +1703,6 @@
     <span class="n">TYPE</span><span class="p">,</span> \
     <span class="n">NAME</span><span class="p">,</span> \
     <span class="n">KIND</span> \
-    <span class="p">)</span>
-
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-1gaa528714eeab4408f76c43bd56d536952"><span></span><span class="n">TYPEDEF_ALIAS_</span></span><span></span><span class="p">(</span> \
-    <span class="n">TYPE</span><span class="p">,</span> \
-    <span class="n">NAME</span><span class="p">,</span> \
-    <span class="n">KIND</span> \
-    <span class="p">)</span>
-
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-1ga8b681ddb039a51541f19551f4dd78b3d"><span></span><span class="n">TYPEDEF_ALIAS_WITH_NONE</span></span><span></span><span class="p">(</span> \
-    <span class="n">TYPE</span><span class="p">,</span> \
-    <span class="n">NAME</span> \
-    <span class="p">)</span>
-
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-1gace24febab476b98eef4e25f3bfc0bf55"><span></span><span class="n">TYPEDEF_ALIAS_WITH_PREFIX</span></span><span></span><span class="p">(</span> \
-    <span class="n">TYPE</span><span class="p">,</span> \
-    <span class="n">NAME</span><span class="p">,</span> \
-    <span class="n">PREFIX</span> \
-    <span class="p">)</span>
-
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-1ga7f30a15fb12576797e2ae7aa8584a361"><span></span><span class="n">TYPEDEF_ALIAS_WITH_SUFFIX</span></span><span></span><span class="p">(</span> \
-    <span class="n">TYPE</span><span class="p">,</span> \
-    <span class="n">NAME</span><span class="p">,</span> \
-    <span class="n">SUFFIX</span> \
     <span class="p">)</span>
 
 <span class="cp">#define </span><a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1ga6176da739036fc39ae7048edb82537ce"><span class="std std-ref">TYPED_NULL</span></a><span></span><span class="p">(</span><span class="n">TYPE</span><span class="p">)</span>
@@ -1888,12 +1864,13 @@
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-math-1gacc74a24ab6f03b00b858d0136c217e53"><span></span><span class="n">c_ln</span></span><span></span>
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-math-1ga411424ea4d96ee8ced7126b4a0da17fb"><span></span><span class="n">c_log</span></span><span></span>
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1ga9da6d45997feaa13958f4ac48856502f"><span></span><span class="n">c_log_</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1ga6fdc75cfd4ff25de303c6a42556afcbe"><span></span><span class="n">c_log_delmemory</span></span><span></span>
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1gae4ea9c37d07a15715d6428807b5c09fd"><span></span><span class="n">c_log_error</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1ga9e02f02c8e50d7a87d17d8719c407ad6"><span></span><span class="n">c_log_error_io</span></span><span></span>
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1ga5c52e007d79653c5dc4295d32df7526d"><span></span><span class="n">c_log_exit</span></span><span></span>
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1ga25f4b487319631d9e19e276e07b55de1"><span></span><span class="n">c_log_fatal</span></span><span></span>
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1ga560be122806a511d8ab0f6c8d7dd9555"><span></span><span class="n">c_log_getsettings</span></span><span></span>
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1gafa309f127526016dbb4acf72c944f81d"><span></span><span class="n">c_log_init</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1ga85c4887dc82d8258054ca888d51e8c29"><span></span><span class="n">c_log_io_error</span></span><span></span>
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1ga29a1a01457e6797b622445395ee2d9b7"><span></span><span class="n">c_log_logsettings</span></span><span></span>
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1gad7cdf766667ab7619ebf390f36472320"><span></span><span class="n">c_log_message</span></span><span></span>
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1ga0c5b66bf8be55a16e706548dc758e98d"><span></span><span class="n">c_log_success</span></span><span></span>
@@ -2245,114 +2222,6 @@
     <span class="n">VARIABLE</span><span class="p">,</span> \
     <span class="n">ITERABLE_TYPE</span><span class="p">,</span> \
     <span class="n">ITERABLE</span> \
-    <span class="p">)</span>
-
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-array-1ga27ff5d80a40b2a28e626056462404ed4"><span></span><span class="n">foreach_s_array_exit</span></span><span></span><span class="p">(</span> \
-    <span class="n">TYPE</span><span class="p">,</span> \
-    <span class="n">VAR</span><span class="p">,</span> \
-    <span class="n">ARRAY</span> \
-    <span class="p">)</span>
-
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-array-1ga2c8e815f55f67a533815af8821788fc8"><span></span><span class="n">foreach_s_array_init</span></span><span></span><span class="p">(</span> \
-    <span class="n">TYPE</span><span class="p">,</span> \
-    <span class="n">VAR</span><span class="p">,</span> \
-    <span class="n">ARRAY</span> \
-    <span class="p">)</span>
-
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-array-1gaf40cc8a6734cb0f0b03cfbd04eee3116"><span></span><span class="n">foreach_s_array_init_1</span></span><span></span><span class="p">(</span> \
-    <span class="n">TYPE</span><span class="p">,</span> \
-    <span class="n">VAR</span><span class="p">,</span> \
-    <span class="n">ARRAY</span> \
-    <span class="p">)</span>
-
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-array-1ga51a73c7df505411b2dc8952923f6bac8"><span></span><span class="n">foreach_s_array_init_2</span></span><span></span><span class="p">(</span> \
-    <span class="n">TYPE</span><span class="p">,</span> \
-    <span class="n">VAR</span><span class="p">,</span> \
-    <span class="n">ARRAY</span> \
-    <span class="p">)</span>
-
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-array-1gabcd800f8085c4cc73e0ba147b96560d0"><span></span><span class="n">foreach_s_array_loop_exit</span></span><span></span><span class="p">(</span> \
-    <span class="n">TYPE</span><span class="p">,</span> \
-    <span class="n">VAR</span><span class="p">,</span> \
-    <span class="n">ARRAY</span> \
-    <span class="p">)</span>
-
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-array-1ga64a0b53bd58840a275d62e726f67472a"><span></span><span class="n">foreach_s_array_loop_incr</span></span><span></span><span class="p">(</span> \
-    <span class="n">TYPE</span><span class="p">,</span> \
-    <span class="n">VAR</span><span class="p">,</span> \
-    <span class="n">ARRAY</span> \
-    <span class="p">)</span>
-
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-array-1ga60891be80e902db96e31f09f1750e087"><span></span><span class="n">foreach_s_array_loop_incr_1</span></span><span></span><span class="p">(</span> \
-    <span class="n">TYPE</span><span class="p">,</span> \
-    <span class="n">VAR</span><span class="p">,</span> \
-    <span class="n">ARRAY</span> \
-    <span class="p">)</span>
-
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-array-1gaf38de776fa51a991714ccbb16a1882cf"><span></span><span class="n">foreach_s_array_loop_incr_2</span></span><span></span><span class="p">(</span> \
-    <span class="n">TYPE</span><span class="p">,</span> \
-    <span class="n">VAR</span><span class="p">,</span> \
-    <span class="n">ARRAY</span> \
-    <span class="p">)</span>
-
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-array-1gad6dd37cc0b3998679e4e12cf51bb0939"><span></span><span class="n">foreach_s_array_loop_init</span></span><span></span><span class="p">(</span> \
-    <span class="n">TYPE</span><span class="p">,</span> \
-    <span class="n">VAR</span><span class="p">,</span> \
-    <span class="n">ARRAY</span> \
-    <span class="p">)</span>
-
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-list-1gac1f12a5dff16c35567e430d42e9c8128"><span></span><span class="n">foreach_s_list_exit</span></span><span></span><span class="p">(</span> \
-    <span class="n">TYPE</span><span class="p">,</span> \
-    <span class="n">VAR</span><span class="p">,</span> \
-    <span class="n">LIST</span> \
-    <span class="p">)</span>
-
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-list-1ga425082121ad6cfef8c7f12382e7d5124"><span></span><span class="n">foreach_s_list_init</span></span><span></span><span class="p">(</span> \
-    <span class="n">TYPE</span><span class="p">,</span> \
-    <span class="n">VAR</span><span class="p">,</span> \
-    <span class="n">LIST</span> \
-    <span class="p">)</span>
-
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-list-1ga2c295e01ed4b1240dd3cfd8d52478fc0"><span></span><span class="n">foreach_s_list_init_1</span></span><span></span><span class="p">(</span> \
-    <span class="n">TYPE</span><span class="p">,</span> \
-    <span class="n">VAR</span><span class="p">,</span> \
-    <span class="n">LIST</span> \
-    <span class="p">)</span>
-
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-list-1ga773edd39c3d8c04583ac5e09051f45b1"><span></span><span class="n">foreach_s_list_init_2</span></span><span></span><span class="p">(</span> \
-    <span class="n">TYPE</span><span class="p">,</span> \
-    <span class="n">VAR</span><span class="p">,</span> \
-    <span class="n">LIST</span> \
-    <span class="p">)</span>
-
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-list-1gacd2603dc0699f09b669c82721167ea44"><span></span><span class="n">foreach_s_list_loop_exit</span></span><span></span><span class="p">(</span> \
-    <span class="n">TYPE</span><span class="p">,</span> \
-    <span class="n">VAR</span><span class="p">,</span> \
-    <span class="n">LIST</span> \
-    <span class="p">)</span>
-
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-list-1ga0db0594169de2e5a6483f51ac16873f4"><span></span><span class="n">foreach_s_list_loop_incr</span></span><span></span><span class="p">(</span> \
-    <span class="n">TYPE</span><span class="p">,</span> \
-    <span class="n">VAR</span><span class="p">,</span> \
-    <span class="n">LIST</span> \
-    <span class="p">)</span>
-
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-list-1ga08f61c839457d1a30f385d9e4e330ce6"><span></span><span class="n">foreach_s_list_loop_incr_1</span></span><span></span><span class="p">(</span> \
-    <span class="n">TYPE</span><span class="p">,</span> \
-    <span class="n">VAR</span><span class="p">,</span> \
-    <span class="n">LIST</span> \
-    <span class="p">)</span>
-
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-list-1ga9a36dfcfb2f157b10b2503e827b6058b"><span></span><span class="n">foreach_s_list_loop_incr_2</span></span><span></span><span class="p">(</span> \
-    <span class="n">TYPE</span><span class="p">,</span> \
-    <span class="n">VAR</span><span class="p">,</span> \
-    <span class="n">LIST</span> \
-    <span class="p">)</span>
-
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-list-1gaf086585204b38d446c35f8abe907df80"><span></span><span class="n">foreach_s_list_loop_init</span></span><span></span><span class="p">(</span> \
-    <span class="n">TYPE</span><span class="p">,</span> \
-    <span class="n">VAR</span><span class="p">,</span> \
-    <span class="n">LIST</span> \
     <span class="p">)</span>
 
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-format-1ga22d228a9cf511661fffee27674557231"><span></span><span class="n">s_strfmt_va</span></span><span></span>

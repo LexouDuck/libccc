@@ -770,8 +770,9 @@ Global Namespace
 		);
 
 	:ref:`t_io_error<doxid-group__libccc__sys__io_1ga2468f6097a96e11ea9356256dd5a9cbb>` :ref:`IO_Output_Format<doxid-group__libccc__sys__io_1ga87b5944b07ef6addafce7f04e40192b0>`(char const* format, ...);
-	void :ref:`Logger_Init<doxid-group__libccc__sys__logger_1ga735d9fd48c5de7eb432e79663ad6154b>`(:ref:`s_logger<doxid-group__libccc__sys__logger_1ga155f4d407bb902c8b08e8ae6ec49aece>`* logger);
-	void :ref:`Logger_Exit<doxid-group__libccc__sys__logger_1ga85c8ddbd1980c017da4b9149a9a89d9e>`(:ref:`s_logger<doxid-group__libccc__sys__logger_1ga155f4d407bb902c8b08e8ae6ec49aece>`* logger);
+	void :ref:`Logger_Init<doxid-group__libccc__sys__logger_1ga47c4a4313e7a399114c24171076f8785>`(:ref:`s_logger<doxid-group__libccc__sys__logger_1ga155f4d407bb902c8b08e8ae6ec49aece>`* a_logger);
+	void :ref:`Logger_Exit<doxid-group__libccc__sys__logger_1ga10e1fbdd193b1d2754a5f930c7d6f176>`(:ref:`s_logger<doxid-group__libccc__sys__logger_1ga155f4d407bb902c8b08e8ae6ec49aece>`* a_logger);
+	void :ref:`Logger_DeleteMemory<doxid-group__libccc__sys__logger_1gaf23b81013bb9a26e5d741032d99b65c5>`(:ref:`s_logger<doxid-group__libccc__sys__logger_1ga155f4d407bb902c8b08e8ae6ec49aece>`* a_logger);
 	char* :ref:`Logger_GetSettings<doxid-group__libccc__sys__logger_1gabd8bc35c3ab587ba3f835b6ece680169>`(:ref:`s_logger<doxid-group__libccc__sys__logger_1ga155f4d407bb902c8b08e8ae6ec49aece>` const* logger);
 	:ref:`t_io_error<doxid-group__libccc__sys__io_1ga2468f6097a96e11ea9356256dd5a9cbb>` :ref:`Logger_LogSettings<doxid-group__libccc__sys__logger_1ga21f6bdc9b5df52ae213ad7e85f0a056a>`(:ref:`s_logger<doxid-group__libccc__sys__logger_1ga155f4d407bb902c8b08e8ae6ec49aece>` const* logger);
 	char* :ref:`Logger_GetTimestamp<doxid-group__libccc__sys__logger_1gab2442acaacf840c543dceab176ced215>`(:ref:`t_time<doxid-group__libccc__sys__time_1gac18942bf2f3dc9acba993dd65cca3aca>` utc);
@@ -921,6 +922,7 @@ Global Namespace
 	#define :target:`Date_Parse<doxid-group__libccc__sys__time_1ga5802069577b063f87a158a5646ed4aa7>`
 	#define :target:`Date_ParseString<doxid-group__libccc__sys__time_1ga5ffa2f82887b0858ceb698d95be28aac>`
 	#define :target:`Date_ToTime<doxid-group__libccc__sys__time_1ga40566951a1ccfa7b6ce91731c9aa540a>`
+	#define :target:`DeleteMemory_Logger<doxid-group__libccc__sys__logger_1ga63fcdd8a8b026daa74c484a7ebe70226>`
 	#define :ref:`E<doxid-group__libccc__math__math_1ga07484107e6d9fdf38b53edf631d6511d>`
 	#define :ref:`ERROR<doxid-group__libccc_1ga8fe83ac76edc595f6b98cd4a4127aed5>`
 	#define :ref:`F128_EXPONENT<doxid-group__libccc__float_1gadc9b1c869833b31fea877ade10d6239c>`
@@ -1100,11 +1102,6 @@ Global Namespace
 	#define :ref:`HUNGARIAN_STRUCT<doxid-group__libccc_1gaaeed2faba04f0354fd8f01296e46a342>`
 	#define :ref:`HUNGARIAN_UNION<doxid-group__libccc_1ga49e29c9d235b230d591e6a89b180b103>`
 	#define :ref:`INCBIN<doxid-group__libccc_1ga73431ba9d27af74793901561ae448116>`(_NAME, _FILEPATH)
-	#define :target:`INCBIN_GLOBAL<doxid-group__libccc_1gad9f6139df83b5335af9ab94ec9f98cd5>`
-	#define :target:`INCBIN_INTEGER<doxid-group__libccc_1ga06df92f72f9a5a7b5c2d92c933adeb75>`
-	#define :target:`INCBIN_MANGLE<doxid-group__libccc_1gaa11b19aab6b4cd6425759dabe00e8d29>`
-	#define :target:`INCBIN_PREVIOUS<doxid-group__libccc_1gaea171999548a969bd2dcc91189f46c14>`
-	#define :target:`INCBIN_SECTION<doxid-group__libccc_1gacfa42080b3020a2d08650f1f1f31afb8>`
 	#define :target:`INF<doxid-group__libccc__float_1ga12c2040f25d8e3a7b9e1c2024c618cb6>`
 	#define :ref:`INFINITY<doxid-group__libccc__float_1ga956e2723d559858d08644ac99146e910>`
 	#define :ref:`INV_PI<doxid-group__libccc__math__math_1gaebad45bfa06a5d66805c5813fbc59f4b>`
@@ -1452,6 +1449,8 @@ Global Namespace
 	#define :ref:`NULL<doxid-group__libccc__pointer_1ga070d2ce7b6bb7e5c05602aa8c308d0c4>`
 	#define :ref:`NULL_LIST_FLOAT<doxid-group__libccc__math__stat_1gaa498d2c29defa86442382ab3a53e956a>`
 	#define :ref:`NULL_LIST_INT<doxid-group__libccc__math__stat_1gad63791d6b60496f2b98099da578a2c99>`
+	#define :target:`NULL_LOGFILE<doxid-group__libccc__sys__logger_1gab3f1a96b0b7d7561644ba6994a1c0744>`
+	#define :target:`NULL_LOGGER<doxid-group__libccc__sys__logger_1gada3edae0070ddc1c761ab45e69e79168>`
 	#define :ref:`OFFSET<doxid-group__libccc__math__random_1ga21005f9f4e2ce7597c5eb4351816d7e2>`
 	#define :ref:`OK<doxid-group__libccc_1gaba51915c87d64af47fb1cc59348961c9>`
 	#define :ref:`OPEN_ACCESSMODE<doxid-group__libccc__sys__io_1ga671d35807f6214e373d6c7a0aadd5cb8>`
@@ -1529,29 +1528,6 @@ Global Namespace
 		TYPE, \
 		NAME, \
 		KIND \
-		)
-
-	#define :target:`TYPEDEF_ALIAS_<doxid-group__libccc_1gaa528714eeab4408f76c43bd56d536952>`( \
-		TYPE, \
-		NAME, \
-		KIND \
-		)
-
-	#define :target:`TYPEDEF_ALIAS_WITH_NONE<doxid-group__libccc_1ga8b681ddb039a51541f19551f4dd78b3d>`( \
-		TYPE, \
-		NAME \
-		)
-
-	#define :target:`TYPEDEF_ALIAS_WITH_PREFIX<doxid-group__libccc_1gace24febab476b98eef4e25f3bfc0bf55>`( \
-		TYPE, \
-		NAME, \
-		PREFIX \
-		)
-
-	#define :target:`TYPEDEF_ALIAS_WITH_SUFFIX<doxid-group__libccc_1ga7f30a15fb12576797e2ae7aa8584a361>`( \
-		TYPE, \
-		NAME, \
-		SUFFIX \
 		)
 
 	#define :ref:`TYPED_NULL<doxid-group__libccc__pointer_1ga6176da739036fc39ae7048edb82537ce>`(TYPE)
@@ -1713,12 +1689,13 @@ Global Namespace
 	#define :target:`c_ln<doxid-group__libccc__math__math_1gacc74a24ab6f03b00b858d0136c217e53>`
 	#define :target:`c_log<doxid-group__libccc__math__math_1ga411424ea4d96ee8ced7126b4a0da17fb>`
 	#define :target:`c_log_<doxid-group__libccc__sys__logger_1ga9da6d45997feaa13958f4ac48856502f>`
+	#define :target:`c_log_delmemory<doxid-group__libccc__sys__logger_1ga6fdc75cfd4ff25de303c6a42556afcbe>`
 	#define :target:`c_log_error<doxid-group__libccc__sys__logger_1gae4ea9c37d07a15715d6428807b5c09fd>`
+	#define :target:`c_log_error_io<doxid-group__libccc__sys__logger_1ga9e02f02c8e50d7a87d17d8719c407ad6>`
 	#define :target:`c_log_exit<doxid-group__libccc__sys__logger_1ga5c52e007d79653c5dc4295d32df7526d>`
 	#define :target:`c_log_fatal<doxid-group__libccc__sys__logger_1ga25f4b487319631d9e19e276e07b55de1>`
 	#define :target:`c_log_getsettings<doxid-group__libccc__sys__logger_1ga560be122806a511d8ab0f6c8d7dd9555>`
 	#define :target:`c_log_init<doxid-group__libccc__sys__logger_1gafa309f127526016dbb4acf72c944f81d>`
-	#define :target:`c_log_io_error<doxid-group__libccc__sys__logger_1ga85c4887dc82d8258054ca888d51e8c29>`
 	#define :target:`c_log_logsettings<doxid-group__libccc__sys__logger_1ga29a1a01457e6797b622445395ee2d9b7>`
 	#define :target:`c_log_message<doxid-group__libccc__sys__logger_1gad7cdf766667ab7619ebf390f36472320>`
 	#define :target:`c_log_success<doxid-group__libccc__sys__logger_1ga0c5b66bf8be55a16e706548dc758e98d>`
@@ -2070,114 +2047,6 @@ Global Namespace
 		VARIABLE, \
 		ITERABLE_TYPE, \
 		ITERABLE \
-		)
-
-	#define :target:`foreach_s_array_exit<doxid-group__libccc__array__array_1ga27ff5d80a40b2a28e626056462404ed4>`( \
-		TYPE, \
-		VAR, \
-		ARRAY \
-		)
-
-	#define :target:`foreach_s_array_init<doxid-group__libccc__array__array_1ga2c8e815f55f67a533815af8821788fc8>`( \
-		TYPE, \
-		VAR, \
-		ARRAY \
-		)
-
-	#define :target:`foreach_s_array_init_1<doxid-group__libccc__array__array_1gaf40cc8a6734cb0f0b03cfbd04eee3116>`( \
-		TYPE, \
-		VAR, \
-		ARRAY \
-		)
-
-	#define :target:`foreach_s_array_init_2<doxid-group__libccc__array__array_1ga51a73c7df505411b2dc8952923f6bac8>`( \
-		TYPE, \
-		VAR, \
-		ARRAY \
-		)
-
-	#define :target:`foreach_s_array_loop_exit<doxid-group__libccc__array__array_1gabcd800f8085c4cc73e0ba147b96560d0>`( \
-		TYPE, \
-		VAR, \
-		ARRAY \
-		)
-
-	#define :target:`foreach_s_array_loop_incr<doxid-group__libccc__array__array_1ga64a0b53bd58840a275d62e726f67472a>`( \
-		TYPE, \
-		VAR, \
-		ARRAY \
-		)
-
-	#define :target:`foreach_s_array_loop_incr_1<doxid-group__libccc__array__array_1ga60891be80e902db96e31f09f1750e087>`( \
-		TYPE, \
-		VAR, \
-		ARRAY \
-		)
-
-	#define :target:`foreach_s_array_loop_incr_2<doxid-group__libccc__array__array_1gaf38de776fa51a991714ccbb16a1882cf>`( \
-		TYPE, \
-		VAR, \
-		ARRAY \
-		)
-
-	#define :target:`foreach_s_array_loop_init<doxid-group__libccc__array__array_1gad6dd37cc0b3998679e4e12cf51bb0939>`( \
-		TYPE, \
-		VAR, \
-		ARRAY \
-		)
-
-	#define :target:`foreach_s_list_exit<doxid-group__libccc__array__list_1gac1f12a5dff16c35567e430d42e9c8128>`( \
-		TYPE, \
-		VAR, \
-		LIST \
-		)
-
-	#define :target:`foreach_s_list_init<doxid-group__libccc__array__list_1ga425082121ad6cfef8c7f12382e7d5124>`( \
-		TYPE, \
-		VAR, \
-		LIST \
-		)
-
-	#define :target:`foreach_s_list_init_1<doxid-group__libccc__array__list_1ga2c295e01ed4b1240dd3cfd8d52478fc0>`( \
-		TYPE, \
-		VAR, \
-		LIST \
-		)
-
-	#define :target:`foreach_s_list_init_2<doxid-group__libccc__array__list_1ga773edd39c3d8c04583ac5e09051f45b1>`( \
-		TYPE, \
-		VAR, \
-		LIST \
-		)
-
-	#define :target:`foreach_s_list_loop_exit<doxid-group__libccc__array__list_1gacd2603dc0699f09b669c82721167ea44>`( \
-		TYPE, \
-		VAR, \
-		LIST \
-		)
-
-	#define :target:`foreach_s_list_loop_incr<doxid-group__libccc__array__list_1ga0db0594169de2e5a6483f51ac16873f4>`( \
-		TYPE, \
-		VAR, \
-		LIST \
-		)
-
-	#define :target:`foreach_s_list_loop_incr_1<doxid-group__libccc__array__list_1ga08f61c839457d1a30f385d9e4e330ce6>`( \
-		TYPE, \
-		VAR, \
-		LIST \
-		)
-
-	#define :target:`foreach_s_list_loop_incr_2<doxid-group__libccc__array__list_1ga9a36dfcfb2f157b10b2503e827b6058b>`( \
-		TYPE, \
-		VAR, \
-		LIST \
-		)
-
-	#define :target:`foreach_s_list_loop_init<doxid-group__libccc__array__list_1gaf086585204b38d446c35f8abe907df80>`( \
-		TYPE, \
-		VAR, \
-		LIST \
 		)
 
 	#define :target:`s_strfmt_va<doxid-group__libccc__format_1ga22d228a9cf511661fffee27674557231>`

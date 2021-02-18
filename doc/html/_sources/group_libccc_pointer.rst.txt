@@ -10,7 +10,7 @@
 Overview
 ~~~~~~~~
 
-This header defines the common standard memory manipulation functions. :ref:`More...<details-group__libccc__pointer>`
+This header defines the standard memory size and pointer integer types. :ref:`More...<details-group__libccc__pointer>`
 
 
 .. ref-code-block:: cpp
@@ -51,7 +51,7 @@ This header defines the common standard memory manipulation functions. :ref:`Mor
 Detailed Documentation
 ~~~~~~~~~~~~~~~~~~~~~~
 
-This header defines the common standard memory manipulation functions.
+This header defines the standard memory size and pointer integer types.
 
 Typedefs
 --------

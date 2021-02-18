@@ -32,8 +32,9 @@ This header defines a simple yet useful set of functions to do program logging :
 
 	// global functions
 
-	void :ref:`Logger_Init<doxid-group__libccc__sys__logger_1ga735d9fd48c5de7eb432e79663ad6154b>`(:ref:`s_logger<doxid-group__libccc__sys__logger_1ga155f4d407bb902c8b08e8ae6ec49aece>`* logger);
-	void :ref:`Logger_Exit<doxid-group__libccc__sys__logger_1ga85c8ddbd1980c017da4b9149a9a89d9e>`(:ref:`s_logger<doxid-group__libccc__sys__logger_1ga155f4d407bb902c8b08e8ae6ec49aece>`* logger);
+	void :ref:`Logger_Init<doxid-group__libccc__sys__logger_1ga47c4a4313e7a399114c24171076f8785>`(:ref:`s_logger<doxid-group__libccc__sys__logger_1ga155f4d407bb902c8b08e8ae6ec49aece>`* a_logger);
+	void :ref:`Logger_Exit<doxid-group__libccc__sys__logger_1ga10e1fbdd193b1d2754a5f930c7d6f176>`(:ref:`s_logger<doxid-group__libccc__sys__logger_1ga155f4d407bb902c8b08e8ae6ec49aece>`* a_logger);
+	void :ref:`Logger_DeleteMemory<doxid-group__libccc__sys__logger_1gaf23b81013bb9a26e5d741032d99b65c5>`(:ref:`s_logger<doxid-group__libccc__sys__logger_1ga155f4d407bb902c8b08e8ae6ec49aece>`* a_logger);
 	char* :ref:`Logger_GetSettings<doxid-group__libccc__sys__logger_1gabd8bc35c3ab587ba3f835b6ece680169>`(:ref:`s_logger<doxid-group__libccc__sys__logger_1ga155f4d407bb902c8b08e8ae6ec49aece>` const* logger);
 	:ref:`t_io_error<doxid-group__libccc__sys__io_1ga2468f6097a96e11ea9356256dd5a9cbb>` :ref:`Logger_LogSettings<doxid-group__libccc__sys__logger_1ga21f6bdc9b5df52ae213ad7e85f0a056a>`(:ref:`s_logger<doxid-group__libccc__sys__logger_1ga155f4d407bb902c8b08e8ae6ec49aece>` const* logger);
 	char* :ref:`Logger_GetTimestamp<doxid-group__libccc__sys__logger_1gab2442acaacf840c543dceab176ced215>`(:ref:`t_time<doxid-group__libccc__sys__time_1gac18942bf2f3dc9acba993dd65cca3aca>` utc);
@@ -68,6 +69,7 @@ This header defines a simple yet useful set of functions to do program logging :
 
 	// macros
 
+	#define :target:`DeleteMemory_Logger<doxid-group__libccc__sys__logger_1ga63fcdd8a8b026daa74c484a7ebe70226>`
 	#define :target:`FinalizeLogger<doxid-group__libccc__sys__logger_1ga976c2b8d097d7fcfe9e3d84559d41ec5>`
 	#define :target:`InitializeLogger<doxid-group__libccc__sys__logger_1ga3dbb03135c17628f6c77d5f51e9a9895>`
 	#define :ref:`LOGFILES_MAX<doxid-group__libccc__sys__logger_1ga7578b7b1beddac3036f88cff0eecd3a2>`
@@ -76,13 +78,16 @@ This header defines a simple yet useful set of functions to do program logging :
 	#define :target:`Log_FatalError<doxid-group__libccc__sys__logger_1ga8af63972719d757fd37d0253ef7d5c0c>`
 	#define :target:`Log_SystemError<doxid-group__libccc__sys__logger_1ga09b65d258775cbbd577d3457d1b7bb8c>`
 	#define :target:`Log_Verbose<doxid-group__libccc__sys__logger_1gac4598727ed57c656e288f113ed345712>`
+	#define :target:`NULL_LOGFILE<doxid-group__libccc__sys__logger_1gab3f1a96b0b7d7561644ba6994a1c0744>`
+	#define :target:`NULL_LOGGER<doxid-group__libccc__sys__logger_1gada3edae0070ddc1c761ab45e69e79168>`
 	#define :target:`c_log_<doxid-group__libccc__sys__logger_1ga9da6d45997feaa13958f4ac48856502f>`
+	#define :target:`c_log_delmemory<doxid-group__libccc__sys__logger_1ga6fdc75cfd4ff25de303c6a42556afcbe>`
 	#define :target:`c_log_error<doxid-group__libccc__sys__logger_1gae4ea9c37d07a15715d6428807b5c09fd>`
+	#define :target:`c_log_error_io<doxid-group__libccc__sys__logger_1ga9e02f02c8e50d7a87d17d8719c407ad6>`
 	#define :target:`c_log_exit<doxid-group__libccc__sys__logger_1ga5c52e007d79653c5dc4295d32df7526d>`
 	#define :target:`c_log_fatal<doxid-group__libccc__sys__logger_1ga25f4b487319631d9e19e276e07b55de1>`
 	#define :target:`c_log_getsettings<doxid-group__libccc__sys__logger_1ga560be122806a511d8ab0f6c8d7dd9555>`
 	#define :target:`c_log_init<doxid-group__libccc__sys__logger_1gafa309f127526016dbb4acf72c944f81d>`
-	#define :target:`c_log_io_error<doxid-group__libccc__sys__logger_1ga85c4887dc82d8258054ca888d51e8c29>`
 	#define :target:`c_log_logsettings<doxid-group__libccc__sys__logger_1ga29a1a01457e6797b622445395ee2d9b7>`
 	#define :target:`c_log_message<doxid-group__libccc__sys__logger_1gad7cdf766667ab7619ebf390f36472320>`
 	#define :target:`c_log_success<doxid-group__libccc__sys__logger_1ga0c5b66bf8be55a16e706548dc758e98d>`
@@ -114,24 +119,34 @@ Global Functions
 ----------------
 
 .. index:: pair: function; Logger_Init
-.. _doxid-group__libccc__sys__logger_1ga735d9fd48c5de7eb432e79663ad6154b:
+.. _doxid-group__libccc__sys__logger_1ga47c4a4313e7a399114c24171076f8785:
 
 .. ref-code-block:: cpp
 	:class: doxyrest-title-code-block
 
-	void Logger_Init(:ref:`s_logger<doxid-group__libccc__sys__logger_1ga155f4d407bb902c8b08e8ae6ec49aece>`* logger)
+	void Logger_Init(:ref:`s_logger<doxid-group__libccc__sys__logger_1ga155f4d407bb902c8b08e8ae6ec49aece>`* a_logger)
 
 Create a new logger. If logfile_path is required, but NULL, a default macro is used.
 
 .. index:: pair: function; Logger_Exit
-.. _doxid-group__libccc__sys__logger_1ga85c8ddbd1980c017da4b9149a9a89d9e:
+.. _doxid-group__libccc__sys__logger_1ga10e1fbdd193b1d2754a5f930c7d6f176:
 
 .. ref-code-block:: cpp
 	:class: doxyrest-title-code-block
 
-	void Logger_Exit(:ref:`s_logger<doxid-group__libccc__sys__logger_1ga155f4d407bb902c8b08e8ae6ec49aece>`* logger)
+	void Logger_Exit(:ref:`s_logger<doxid-group__libccc__sys__logger_1ga155f4d407bb902c8b08e8ae6ec49aece>`* a_logger)
 
 Cleanly release logger (close file descriptors, etc)
+
+.. index:: pair: function; Logger_DeleteMemory
+.. _doxid-group__libccc__sys__logger_1gaf23b81013bb9a26e5d741032d99b65c5:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void Logger_DeleteMemory(:ref:`s_logger<doxid-group__libccc__sys__logger_1ga155f4d407bb902c8b08e8ae6ec49aece>`* a_logger)
+
+Free all memory in logger, but do not release sockets; useful when a duplicated memory instance exists.
 
 .. index:: pair: function; Logger_GetSettings
 .. _doxid-group__libccc__sys__logger_1gabd8bc35c3ab587ba3f835b6ece680169:

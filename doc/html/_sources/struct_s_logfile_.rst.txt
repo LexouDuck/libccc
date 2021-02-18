@@ -22,7 +22,7 @@ Overview
 		// fields
 	
 		:ref:`t_fd<doxid-group__libccc__sys__io_1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f>` :ref:`fd<doxid-structs__logfile___1af0a9962aed7bdc5da8937d600d14774b>`;
-		char const* :ref:`path<doxid-structs__logfile___1a974a90e80c6614dbe90a21b7941155eb>`;
+		char* :ref:`path<doxid-structs__logfile___1a44196e6a5696d10442c29e639437196e>`;
 		:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` :ref:`append<doxid-structs__logfile___1ac9acc76083cb277cfe30331fcf136b96>`;
 	};
 .. _details-structs__logfile__:
@@ -46,12 +46,12 @@ Fields
 The file descriptor for this logger output logfile.
 
 .. index:: pair: variable; path
-.. _doxid-structs__logfile___1a974a90e80c6614dbe90a21b7941155eb:
+.. _doxid-structs__logfile___1a44196e6a5696d10442c29e639437196e:
 
 .. ref-code-block:: cpp
 	:class: doxyrest-title-code-block
 
-	char const* path
+	char* path
 
 The file path (relative or absolute) for this logger output logfile.
 

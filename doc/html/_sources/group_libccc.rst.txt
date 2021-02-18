@@ -28,11 +28,6 @@ This file is simply meant to include all the primitive types together. :ref:`Mor
 	#define :ref:`HUNGARIAN_STRUCT<doxid-group__libccc_1gaaeed2faba04f0354fd8f01296e46a342>`
 	#define :ref:`HUNGARIAN_UNION<doxid-group__libccc_1ga49e29c9d235b230d591e6a89b180b103>`
 	#define :ref:`INCBIN<doxid-group__libccc_1ga73431ba9d27af74793901561ae448116>`(_NAME, _FILEPATH)
-	#define :target:`INCBIN_GLOBAL<doxid-group__libccc_1gad9f6139df83b5335af9ab94ec9f98cd5>`
-	#define :target:`INCBIN_INTEGER<doxid-group__libccc_1ga06df92f72f9a5a7b5c2d92c933adeb75>`
-	#define :target:`INCBIN_MANGLE<doxid-group__libccc_1gaa11b19aab6b4cd6425759dabe00e8d29>`
-	#define :target:`INCBIN_PREVIOUS<doxid-group__libccc_1gaea171999548a969bd2dcc91189f46c14>`
-	#define :target:`INCBIN_SECTION<doxid-group__libccc_1gacfa42080b3020a2d08650f1f1f31afb8>`
 	#define :ref:`LIBCONFIG_BITS_FIXED<doxid-group__libccc_1gaa5d56c2abf4a218f7a150dbab66ef199>`
 	#define :ref:`LIBCONFIG_BITS_FLOAT<doxid-group__libccc_1gae831a75f400b727ef8cb54fec109ca28>`
 	#define :ref:`LIBCONFIG_BITS_SINT<doxid-group__libccc_1gaac372d149c7d1452ad8f81414a6c75ab>`
@@ -130,29 +125,6 @@ This file is simply meant to include all the primitive types together. :ref:`Mor
 		TYPE, \
 		NAME, \
 		KIND \
-		)
-
-	#define :target:`TYPEDEF_ALIAS_<doxid-group__libccc_1gaa528714eeab4408f76c43bd56d536952>`( \
-		TYPE, \
-		NAME, \
-		KIND \
-		)
-
-	#define :target:`TYPEDEF_ALIAS_WITH_NONE<doxid-group__libccc_1ga8b681ddb039a51541f19551f4dd78b3d>`( \
-		TYPE, \
-		NAME \
-		)
-
-	#define :target:`TYPEDEF_ALIAS_WITH_PREFIX<doxid-group__libccc_1gace24febab476b98eef4e25f3bfc0bf55>`( \
-		TYPE, \
-		NAME, \
-		PREFIX \
-		)
-
-	#define :target:`TYPEDEF_ALIAS_WITH_SUFFIX<doxid-group__libccc_1ga7f30a15fb12576797e2ae7aa8584a361>`( \
-		TYPE, \
-		NAME, \
-		SUFFIX \
 		)
 
 	#define :ref:`_ALIAS<doxid-group__libccc_1gae53a1f108ffb1a83e37ccc2168904b72>`(FUNCTION)

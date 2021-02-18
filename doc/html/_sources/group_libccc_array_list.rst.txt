@@ -84,60 +84,6 @@ This header defines a simple linked list type and utility functions for it. :ref
 	#define :target:`c_lstsize<doxid-group__libccc__array__list_1gabdf92da8453e540994e83e2e19a58a6f>`
 	#define :target:`c_lstsub<doxid-group__libccc__array__list_1ga84d7e4fcbec301f8c60ca8150b1713b0>`
 
-	#define :target:`foreach_s_list_exit<doxid-group__libccc__array__list_1gac1f12a5dff16c35567e430d42e9c8128>`( \
-		TYPE, \
-		VAR, \
-		LIST \
-		)
-
-	#define :target:`foreach_s_list_init<doxid-group__libccc__array__list_1ga425082121ad6cfef8c7f12382e7d5124>`( \
-		TYPE, \
-		VAR, \
-		LIST \
-		)
-
-	#define :target:`foreach_s_list_init_1<doxid-group__libccc__array__list_1ga2c295e01ed4b1240dd3cfd8d52478fc0>`( \
-		TYPE, \
-		VAR, \
-		LIST \
-		)
-
-	#define :target:`foreach_s_list_init_2<doxid-group__libccc__array__list_1ga773edd39c3d8c04583ac5e09051f45b1>`( \
-		TYPE, \
-		VAR, \
-		LIST \
-		)
-
-	#define :target:`foreach_s_list_loop_exit<doxid-group__libccc__array__list_1gacd2603dc0699f09b669c82721167ea44>`( \
-		TYPE, \
-		VAR, \
-		LIST \
-		)
-
-	#define :target:`foreach_s_list_loop_incr<doxid-group__libccc__array__list_1ga0db0594169de2e5a6483f51ac16873f4>`( \
-		TYPE, \
-		VAR, \
-		LIST \
-		)
-
-	#define :target:`foreach_s_list_loop_incr_1<doxid-group__libccc__array__list_1ga08f61c839457d1a30f385d9e4e330ce6>`( \
-		TYPE, \
-		VAR, \
-		LIST \
-		)
-
-	#define :target:`foreach_s_list_loop_incr_2<doxid-group__libccc__array__list_1ga9a36dfcfb2f157b10b2503e827b6058b>`( \
-		TYPE, \
-		VAR, \
-		LIST \
-		)
-
-	#define :target:`foreach_s_list_loop_init<doxid-group__libccc__array__list_1gaf086585204b38d446c35f8abe907df80>`( \
-		TYPE, \
-		VAR, \
-		LIST \
-		)
-
 .. _details-group__libccc__array__list:
 
 Detailed Documentation

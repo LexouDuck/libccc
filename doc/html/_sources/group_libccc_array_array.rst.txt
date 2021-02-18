@@ -32,60 +32,6 @@ This header defines a simple linked list type and utility functions for it. :ref
 
 	#define :ref:`ARRAY_NULL<doxid-group__libccc__array__array_1ga20321e3ee905b6de95f9988a86680e5b>`
 
-	#define :target:`foreach_s_array_exit<doxid-group__libccc__array__array_1ga27ff5d80a40b2a28e626056462404ed4>`( \
-		TYPE, \
-		VAR, \
-		ARRAY \
-		)
-
-	#define :target:`foreach_s_array_init<doxid-group__libccc__array__array_1ga2c8e815f55f67a533815af8821788fc8>`( \
-		TYPE, \
-		VAR, \
-		ARRAY \
-		)
-
-	#define :target:`foreach_s_array_init_1<doxid-group__libccc__array__array_1gaf40cc8a6734cb0f0b03cfbd04eee3116>`( \
-		TYPE, \
-		VAR, \
-		ARRAY \
-		)
-
-	#define :target:`foreach_s_array_init_2<doxid-group__libccc__array__array_1ga51a73c7df505411b2dc8952923f6bac8>`( \
-		TYPE, \
-		VAR, \
-		ARRAY \
-		)
-
-	#define :target:`foreach_s_array_loop_exit<doxid-group__libccc__array__array_1gabcd800f8085c4cc73e0ba147b96560d0>`( \
-		TYPE, \
-		VAR, \
-		ARRAY \
-		)
-
-	#define :target:`foreach_s_array_loop_incr<doxid-group__libccc__array__array_1ga64a0b53bd58840a275d62e726f67472a>`( \
-		TYPE, \
-		VAR, \
-		ARRAY \
-		)
-
-	#define :target:`foreach_s_array_loop_incr_1<doxid-group__libccc__array__array_1ga60891be80e902db96e31f09f1750e087>`( \
-		TYPE, \
-		VAR, \
-		ARRAY \
-		)
-
-	#define :target:`foreach_s_array_loop_incr_2<doxid-group__libccc__array__array_1gaf38de776fa51a991714ccbb16a1882cf>`( \
-		TYPE, \
-		VAR, \
-		ARRAY \
-		)
-
-	#define :target:`foreach_s_array_loop_init<doxid-group__libccc__array__array_1gad6dd37cc0b3998679e4e12cf51bb0939>`( \
-		TYPE, \
-		VAR, \
-		ARRAY \
-		)
-
 .. _details-group__libccc__array__array:
 
 Detailed Documentation
