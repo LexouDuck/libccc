@@ -1,0 +1,142 @@
+.. index:: pair: struct; s_date_
+.. _doxid-structs__date__:
+
+struct s_date\_
+===============
+
+.. toctree::
+	:hidden:
+
+Overview
+~~~~~~~~
+
+This struct is used to store all aspects about a certain date/time (equivalent to 'struct tm') :ref:`More...<details-structs__date__>`
+
+
+.. ref-code-block:: cpp
+	:class: doxyrest-overview-code-block
+
+	#include <time.h>
+	
+	struct s_date_
+	{
+		// fields
+	
+		t_u8 :ref:`sec<doxid-structs__date___1acedfd6318b081dd98ab0f8b6d695de18>`;
+		t_u8 :ref:`min<doxid-structs__date___1ab75c5c3c4d4659f0408c57ac14323d5b>`;
+		t_u8 :ref:`hour<doxid-structs__date___1a8f9c8a1221549c874e7772416d9d3dee>`;
+		:ref:`e_weekday<doxid-group__libccc__sys__time_1gadf660d127ff6a2087b5b40212d894ec6>` :ref:`day_week<doxid-structs__date___1a14b6e541b095999d87022aa1c72fec54>`;
+		t_u8 :ref:`day_month<doxid-structs__date___1a1798b22918c574c19a7f158bb5ec285c>`;
+		t_s32 :ref:`day_year<doxid-structs__date___1accf011a2c3410fef5f216f38fd2b02a6>`;
+		:ref:`e_month<doxid-group__libccc__sys__time_1gabfbaef83dda6b8027691e3c77484cf60>` :ref:`month<doxid-structs__date___1a30a6ca816b827b5a07717b4a6e7d9104>`;
+		t_s32 :ref:`year<doxid-structs__date___1a104d238e4b14ab135d9d8a912d190673>`;
+		:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` :ref:`is_dst<doxid-structs__date___1afce358d0d549d7cd8e4c768c5650105f>`;
+	};
+.. _details-structs__date__:
+
+Detailed Documentation
+~~~~~~~~~~~~~~~~~~~~~~
+
+This struct is used to store all aspects about a certain date/time (equivalent to 'struct tm')
+
+This struct is equivalent to the ISO C library's 'struct tm', although it's sub-fields have different names: tm_sec -> sec tm_min -> min tm_hour -> hour tm_mday -> day_month tm_mon -> month tm_year -> year tm_wday -> day_week tm_yday -> day_year tm_isdst -> is_dst NB: This struct does not store timezone information, there are conversion functions for that:
+
+
+
+.. rubric:: See also:
+
+Time_To_Date_Timezone, Date_To_Time_Timezone
+
+Fields
+------
+
+.. index:: pair: variable; sec
+.. _doxid-structs__date___1acedfd6318b081dd98ab0f8b6d695de18:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	t_u8 sec
+
+[0,59(61)] seconds after the minute (usually 0-59 - there is extra range to accommodate for leap seconds)
+
+.. index:: pair: variable; min
+.. _doxid-structs__date___1ab75c5c3c4d4659f0408c57ac14323d5b:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	t_u8 min
+
+[0,59] minutes after the hour
+
+.. index:: pair: variable; hour
+.. _doxid-structs__date___1a8f9c8a1221549c874e7772416d9d3dee:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	t_u8 hour
+
+[0,23] hours since midnight
+
+.. index:: pair: variable; day_week
+.. _doxid-structs__date___1a14b6e541b095999d87022aa1c72fec54:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`e_weekday<doxid-group__libccc__sys__time_1gadf660d127ff6a2087b5b40212d894ec6>` day_week
+
+[0,6] days since Sunday
+
+.. index:: pair: variable; day_month
+.. _doxid-structs__date___1a1798b22918c574c19a7f158bb5ec285c:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	t_u8 day_month
+
+[1,31] day of the month
+
+.. index:: pair: variable; day_year
+.. _doxid-structs__date___1accf011a2c3410fef5f216f38fd2b02a6:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	t_s32 day_year
+
+[0,365] days since January 1 (max value is 365 every 4 years, otherwise 364)
+
+.. index:: pair: variable; month
+.. _doxid-structs__date___1a30a6ca816b827b5a07717b4a6e7d9104:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`e_month<doxid-group__libccc__sys__time_1gabfbaef83dda6b8027691e3c77484cf60>` month
+
+[0,11] months since January
+
+.. index:: pair: variable; year
+.. _doxid-structs__date___1a104d238e4b14ab135d9d8a912d190673:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	t_s32 year
+
+Amount of years since 1900
+
+.. index:: pair: variable; is_dst
+.. _doxid-structs__date___1afce358d0d549d7cd8e4c768c5650105f:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` is_dst
+
+If TRUE, then Daylight Savings Time is on.
+

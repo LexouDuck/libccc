@@ -1,0 +1,1025 @@
+.. index:: pair: group; 08) libccc/string
+.. _doxid-group__libccc__string:
+
+08) libccc/string
+=================
+
+.. toctree::
+	:hidden:
+
+Overview
+~~~~~~~~
+
+This header defines the common standard string (char\*) manipulation functions. :ref:`More...<details-group__libccc__string>`
+
+
+.. ref-code-block:: cpp
+	:class: doxyrest-overview-code-block
+
+	
+	// global functions
+
+	char* :ref:`String_New<doxid-group__libccc__string_1gad138420f4cc6884fbaa763e465fbc280>`(:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n);
+	char* :ref:`String_New_C<doxid-group__libccc__string_1gaade943d79ae8199f04d1ba5fa35a2e2d>`(:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n, char c);
+	void :ref:`String_Set<doxid-group__libccc__string_1ga5b136bc2262d3121471bffd53cd41f0b>`(char* str, char c);
+	void :ref:`String_Clear<doxid-group__libccc__string_1ga276832ec1077b5fa2891df3959bafbc3>`(char* str);
+	void :ref:`String_Delete<doxid-group__libccc__string_1ga1c26f15cecadcca1e7a84c654f23aa49>`(char** a_str);
+	char* :ref:`String_Duplicate<doxid-group__libccc__string_1ga8f8b376df7972ff92a9ac015a1b48bcd>`(char const* str);
+	char* :ref:`String_Duplicate_N<doxid-group__libccc__string_1ga5b823f98b523312ae7f90aceb330db90>`(char const* str, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n);
+	char* :ref:`String_Duplicate_Char<doxid-group__libccc__string_1ga432312ab8ca1e787ea46ec4de850e8d2>`(char const* str, char const c);
+	char* :ref:`String_Copy<doxid-group__libccc__string_1ga01aba0cc2fe207dff04e3be247eab347>`(char* dest, char const* src);
+	char* :ref:`String_Copy_N<doxid-group__libccc__string_1ga4781de436d86a4660cc5b6aa51ecde8b>`(char* dest, char const* src, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n);
+	:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` :ref:`String_Copy_L<doxid-group__libccc__string_1gafaad3fc2a667e62332b0576e84ef775a>`(char* dest, char const* src, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` size);
+	char* :ref:`String_Concat<doxid-group__libccc__string_1gace0d90b37715f96e5e85531a4046433e>`(char* dest, char const* src);
+	char* :ref:`String_Concat_N<doxid-group__libccc__string_1ga3bc1bb6e00496af0d330fd87733f8101>`(char* dest, char const* src, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n);
+	:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` :ref:`String_Concat_L<doxid-group__libccc__string_1ga1991d973b576ac46002d04a07dfbe871>`(char* dest, char const* src, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` size);
+	:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` :ref:`String_Length<doxid-group__libccc__string_1ga30153049fbd35ce204bded0b40c78434>`(char const* str);
+	int :ref:`String_Compare<doxid-group__libccc__string_1ga79a749f1d42abcef3c0c1184da79aab6>`(char const* str1, char const* str2);
+	int :ref:`String_Compare_N<doxid-group__libccc__string_1ga7c928934a14b5e651204e3bbdd45aac4>`(char const* str1, char const* str2, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n);
+	int :ref:`String_Compare_IgnoreCase<doxid-group__libccc__string_1gaa38320a082f58720c8142ad96ed6ec84>`(char const* str1, char const* str2);
+	int :ref:`String_Compare_N_IgnoreCase<doxid-group__libccc__string_1ga345cf0a1a5ec6167038966d4f14fd851>`(char const* str1, char const* str2, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n);
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` :ref:`String_Equals<doxid-group__libccc__string_1ga8003956e8a95f1a07ad1745a2bf1b5f5>`(char const* str1, char const* str2);
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` :ref:`String_Equals_N<doxid-group__libccc__string_1gab4e22e85ec13885bfee8a250980e4058>`(char const* str1, char const* str2, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n);
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` :ref:`String_Equals_IgnoreCase<doxid-group__libccc__string_1ga92c547f30a1266258521fe7e53e297fb>`(char const* str1, char const* str2);
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` :ref:`String_Equals_N_IgnoreCase<doxid-group__libccc__string_1ga1105693b5d671e2e818b945b4d11881e>`(char const* str1, char const* str2, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n);
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` :ref:`String_Has<doxid-group__libccc__string_1ga8370b841c1e8f13349c229bed4355014>`(char const* str, char const* charset);
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` :ref:`String_HasOnly<doxid-group__libccc__string_1gab2ca49c6c159141ce078c5f4e32826bc>`(char const* str, char const* charset);
+	:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` :ref:`String_Count_Char<doxid-group__libccc__string_1ga02f2e618eaf1b15096061a05bfc49d9d>`(char const* str, char c);
+	:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` :ref:`String_Count_Charset<doxid-group__libccc__string_1gaea000f0ef5e51641263d31042404dc33>`(char const* str, char const* charset);
+	:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` :ref:`String_Count_String<doxid-group__libccc__string_1gae7c88281e8dc8ff24a8d0cd4c40eb90a>`(char const* str, char const* query);
+	char* :ref:`String_Find_Char<doxid-group__libccc__string_1gaef478f64661e7683e72841a3e87c832d>`(char const* str, char c);
+	char* :ref:`String_Find_Charset<doxid-group__libccc__string_1ga4f80c364583f93f805c52a84b75199b8>`(char const* str, char const* charset);
+	char* :ref:`String_Find_String<doxid-group__libccc__string_1gac4abce7966af7201b305c42d037fe90a>`(char const* str, char const* query);
+	char* :ref:`String_Find_R_Char<doxid-group__libccc__string_1ga08b207e327c0e0ba71baf49f368e3eb4>`(char const* str, char c);
+	char* :ref:`String_Find_R_Charset<doxid-group__libccc__string_1ga4831b122ff2d0f56bb3627a869c717b9>`(char const* str, char const* charset);
+	char* :ref:`String_Find_R_String<doxid-group__libccc__string_1ga7e247194c33e68fa9f2aa911691d40b8>`(char const* str, char const* query);
+	char* :ref:`String_Find_N_Char<doxid-group__libccc__string_1ga5cb65a6e62af6efa72a81da041821f45>`(char const* str, char c, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n);
+	char* :ref:`String_Find_N_Charset<doxid-group__libccc__string_1ga6acd55abb335512a6b54468f83dc568a>`(char const* str, char const* charset, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n);
+	char* :ref:`String_Find_N_String<doxid-group__libccc__string_1gac87091fc42ad06c12efcc6d8c21a9e0b>`(char const* str, char const* query, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n);
+	:ref:`t_ptrdiff<doxid-group__libccc__pointer_1gaaf13bc256e9c704039e08ec061508a0c>` :ref:`String_IndexOf_Char<doxid-group__libccc__string_1gadceacfa6b74820e3aa02601536331391>`(char const* str, char c);
+	:ref:`t_ptrdiff<doxid-group__libccc__pointer_1gaaf13bc256e9c704039e08ec061508a0c>` :ref:`String_IndexOf_Charset<doxid-group__libccc__string_1ga724e0295c41a812a5f142784dd0381f9>`(char const* str, char const* charset);
+	:ref:`t_ptrdiff<doxid-group__libccc__pointer_1gaaf13bc256e9c704039e08ec061508a0c>` :ref:`String_IndexOf_String<doxid-group__libccc__string_1gad2368d8411df0c10b5bd455cb64b29df>`(char const* str, char const* query);
+	:ref:`t_ptrdiff<doxid-group__libccc__pointer_1gaaf13bc256e9c704039e08ec061508a0c>` :ref:`String_IndexOf_R_Char<doxid-group__libccc__string_1ga24f348b5c1602d4fc20174e0a03d298c>`(char const* str, char c);
+	:ref:`t_ptrdiff<doxid-group__libccc__pointer_1gaaf13bc256e9c704039e08ec061508a0c>` :ref:`String_IndexOf_R_Charset<doxid-group__libccc__string_1gacac41889c80fbaa1663bcd2bfc140272>`(char const* str, char const* charset);
+	:ref:`t_ptrdiff<doxid-group__libccc__pointer_1gaaf13bc256e9c704039e08ec061508a0c>` :ref:`String_IndexOf_R_String<doxid-group__libccc__string_1ga13e3a40b7a9f3709bfbe52d14aa08e18>`(char const* str, char const* query);
+	:ref:`t_ptrdiff<doxid-group__libccc__pointer_1gaaf13bc256e9c704039e08ec061508a0c>` :ref:`String_IndexOf_N_Char<doxid-group__libccc__string_1ga0f6d51bb0b89434f4f768adebabbc7fe>`(char const* str, char c, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n);
+	:ref:`t_ptrdiff<doxid-group__libccc__pointer_1gaaf13bc256e9c704039e08ec061508a0c>` :ref:`String_IndexOf_N_Charset<doxid-group__libccc__string_1ga15c587bc24148dc424c7688b66e735a5>`(char const* str, char const* charset, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n);
+	:ref:`t_ptrdiff<doxid-group__libccc__pointer_1gaaf13bc256e9c704039e08ec061508a0c>` :ref:`String_IndexOf_N_String<doxid-group__libccc__string_1ga5ac2a5be40c6bec78eb13063e03789dc>`(char const* str, char const* query, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n);
+	char* :ref:`String_Remove<doxid-group__libccc__string_1ga15b14ed1e51ed59ed43249555b6e90e9>`(char const* str, char const* query);
+	char* :ref:`String_ToEscape<doxid-group__libccc__string_1ga97d47b38bcedbeee939073e366b8b648>`(char const* str);
+	char* :ref:`String_Replace_Char<doxid-group__libccc__string_1ga7099b631e4add5dbb108766f3559d49f>`(char const* str, char const char_old, char const char_new);
+	char* :ref:`String_Replace_Charset<doxid-group__libccc__string_1gac7535d12246689789fdcf8fcd5c9bddc>`(char const* str, char const* charset_old, char const* charset_new);
+	char* :ref:`String_Replace_String<doxid-group__libccc__string_1gadf7e01d76fa28323ed3144f4783267bd>`(char const* str, char const* str_old, char const* str_new);
+	char* :ref:`String_Merge<doxid-group__libccc__string_1gaa53bc940cb64199019872c001ec1bed8>`(char** a_s1, char** a_s2);
+	char* :ref:`String_Append<doxid-group__libccc__string_1ga93be9f9ac7057b53d0e16d715f82aa56>`(char** dest, char const* src);
+	char* :ref:`String_Prepend<doxid-group__libccc__string_1ga125ce85395a6780d465557e76886aa17>`(char const* src, char** dest);
+	char* :ref:`String_Insert_InPlace<doxid-group__libccc__string_1ga8e3a9481b821b158b330e863fad06bba>`(char** dest, char const* src, t_u32 index);
+	void :ref:`String_Replace_Char_InPlace<doxid-group__libccc__string_1gacdedfabee642a0282770ba62823350ee>`(char* str, char const char_old, char const char_new);
+	void :ref:`String_Replace_Charset_InPlace<doxid-group__libccc__string_1ga5cbaccf7a8df9a825de53969f0a4e00e>`(char* str, char const* charset_old, char const* charset_new);
+	void :ref:`String_Replace_String_InPlace<doxid-group__libccc__string_1ga394da4d81121fe1e0177cfe716ee85ba>`(char** a_str, char const* str_old, char const* str_new);
+	char* :ref:`String_Map_InPlace<doxid-group__libccc__string_1ga41cf99ea83b16784bd4e6052d693cc5d>`(char** a_str, char(*)(char) f);
+	char* :ref:`String_Trim<doxid-group__libccc__string_1ga70373fab444c0596e9073e9e2f4f7c87>`(char const* str, char const* charset);
+	char* :ref:`String_Trim_L<doxid-group__libccc__string_1gabe3f262f97adee5953d1331dbec9da43>`(char const* str, char const* charset);
+	char* :ref:`String_Trim_R<doxid-group__libccc__string_1ga6583a3e8451171e7deecb927636792d8>`(char const* str, char const* charset);
+	char* :ref:`String_Pad<doxid-group__libccc__string_1gae5ce3113d8ff3445043c6ac81a99a99b>`(char const* str, char c, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` length);
+	char* :ref:`String_Pad_L<doxid-group__libccc__string_1gaf30cfd98782133afb31a2a90c3f1e245>`(char const* str, char c, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` length);
+	char* :ref:`String_Pad_R<doxid-group__libccc__string_1ga47cabecfa3d71d4f1a5412e380251676>`(char const* str, char c, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` length);
+	char* :ref:`String_ToPrintableString<doxid-group__libccc__string_1gab62019f58070915f0a72dfcea6b7c4bf>`(char const* str);
+	char* :ref:`String_Reverse<doxid-group__libccc__string_1ga9efe55befb6f4c8babfbbde36ec43679>`(char const* str);
+	char* :ref:`String_Join<doxid-group__libccc__string_1gad8dbc873143b630344e41fc198b1df5a>`(char const* str1, char const* str2);
+	char* :ref:`String_Insert<doxid-group__libccc__string_1ga6743eaef759ce8e6c6d1ee8a166e99b5>`(char const* dest, char const* src, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` offset);
+	char* :ref:`String_Sub<doxid-group__libccc__string_1gaabfad2f2cc501c9217272521d91e66ae>`(char const* str, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` index, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n);
+	void :ref:`String_Iterate<doxid-group__libccc__string_1ga78e4f11ecc5e43e7155eaf72eed2d299>`(char* str, void(*)(char*c) f);
+	void :ref:`String_Iterate_I<doxid-group__libccc__string_1ga6aaad0e2b45a8fe548614ce9871344d0>`(char* str, void(*)(:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` index, char*c) f);
+	char* :ref:`String_Map<doxid-group__libccc__string_1ga50cdf221f2ae0d7706f564a0b28cac84>`(char const* str, char(*)(char c) f);
+	char* :ref:`String_Map_I<doxid-group__libccc__string_1gad3f9201b07e9387d3c9e3c538c18a565>`(char const* str, char(*)(:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` index, char c) f);
+
+	// macros
+
+	#define :target:`String_FindLast_Char<doxid-group__libccc__string_1ga4b0591780e5f299eb6943332db87e94e>`
+	#define :target:`String_FindLast_Charset<doxid-group__libccc__string_1ga700d24b8c388e9d75c61fb2a97469676>`
+	#define :target:`String_FindLast_String<doxid-group__libccc__string_1ga855d5e5891fe4879460dce4c31e6270f>`
+	#define :target:`String_LastIndexOf_Char<doxid-group__libccc__string_1ga3cd93f581ede5d10071b4eb12ce10156>`
+	#define :target:`String_LastIndexOf_Charset<doxid-group__libccc__string_1gaea8dd78ea24683ee392467b7a3f9d3b2>`
+	#define :target:`String_LastIndexOf_String<doxid-group__libccc__string_1gaf0ccaa4a491f20574aead30a76974e55>`
+	#define :target:`c_strappend<doxid-group__libccc__string_1ga7bf542f34b960da5683323a5f12914be>`
+	#define :target:`c_strcasecmp<doxid-group__libccc__string_1ga39f57c44b39493495af16cb4e97f2843>`
+	#define :target:`c_strcaseequ<doxid-group__libccc__string_1ga6e94ddfdc69a3d066afab1555ecfdf84>`
+	#define :target:`c_strcat<doxid-group__libccc__string_1gaec80e5fe701accec46c60e112048bcf5>`
+	#define :target:`c_strcdup<doxid-group__libccc__string_1gac01bd9c710a599e8e9595c153764d220>`
+	#define :target:`c_strchr<doxid-group__libccc__string_1ga42fe972cc8822c3e5b4c932e1551ae87>`
+	#define :target:`c_strchrset<doxid-group__libccc__string_1ga49c8d3b158d961ec67567398b11b0f44>`
+	#define :target:`c_strclr<doxid-group__libccc__string_1gabe3879c68da3eacc92589a901eca5ecf>`
+	#define :target:`c_strcmp<doxid-group__libccc__string_1gaada44527a05a3d209f277132783fa940>`
+	#define :target:`c_strcnew<doxid-group__libccc__string_1ga6e68340014748aeeb5457f6d308d47c3>`
+	#define :target:`c_strcount_chr<doxid-group__libccc__string_1ga9388e40a87357ed2b07736d93294a846>`
+	#define :target:`c_strcount_chrset<doxid-group__libccc__string_1gaa63e9c81cda6fa8cf195245bfa522329>`
+	#define :target:`c_strcount_str<doxid-group__libccc__string_1ga0e3e94f893ee62a31762d8c658110c88>`
+	#define :target:`c_strcpy<doxid-group__libccc__string_1ga6a4195e22787f93662c4feea6f9901b5>`
+	#define :target:`c_strdel<doxid-group__libccc__string_1gafdc4695422a8ac44b7052f978339bcfa>`
+	#define :target:`c_strdup<doxid-group__libccc__string_1gad62c9e64e26ecfda1768815b106428dd>`
+	#define :target:`c_strequ<doxid-group__libccc__string_1ga5501c2e39682d26967a8311755698d46>`
+	#define :target:`c_strhas<doxid-group__libccc__string_1ga2845e3edd878e28adac419b7c1aa166c>`
+	#define :target:`c_strhasonly<doxid-group__libccc__string_1gab394e657ba121c2d1907f97c880937e2>`
+	#define :target:`c_strichr<doxid-group__libccc__string_1ga91db954b28d652115997c17f3801ad0e>`
+	#define :target:`c_strichrset<doxid-group__libccc__string_1gafa9411945aaed00618d351287d8607fe>`
+	#define :target:`c_stricmp<doxid-group__libccc__string_1ga76e0db078364cef20e230eddfd24637e>`
+	#define :target:`c_striequ<doxid-group__libccc__string_1gade443fc293ce537285f001b648b9fe1a>`
+	#define :target:`c_strinchr<doxid-group__libccc__string_1gac3d28102f059c6528742147b9eba4e2e>`
+	#define :target:`c_strinchrset<doxid-group__libccc__string_1gacc38699cf5e2d849e0ffc1a39806b143>`
+	#define :target:`c_strinsert<doxid-group__libccc__string_1ga73958841a9a91a9b30ab337c72ac148f>`
+	#define :target:`c_strinsert_inplace<doxid-group__libccc__string_1gab738b7d44f194a011a0a5c626bcd31c1>`
+	#define :target:`c_strinstr<doxid-group__libccc__string_1ga5dda008798628dcfcd12ae9310297862>`
+	#define :target:`c_strirchr<doxid-group__libccc__string_1ga32204ffd3073f4d4ca7343fa8e30c396>`
+	#define :target:`c_strirchrset<doxid-group__libccc__string_1ga623100a6240583120b6684dacdd25b6a>`
+	#define :target:`c_strirstr<doxid-group__libccc__string_1gabfa9166677fa6ac59ad7bb70c03ad7b3>`
+	#define :target:`c_stristr<doxid-group__libccc__string_1ga19d86e06232fc00caf960ef880409a36>`
+	#define :target:`c_striter<doxid-group__libccc__string_1ga594a7004d7e3dde9463056efb154c01f>`
+	#define :target:`c_striteri<doxid-group__libccc__string_1ga2c8b7fc38a57e2d99c857e7e512d4b25>`
+	#define :target:`c_strjoin<doxid-group__libccc__string_1ga8e76d92364ca834a7af9a7c3a1ae8026>`
+	#define :target:`c_strlcat<doxid-group__libccc__string_1gabeb9e07145be6d2dd7e9fc36173d622d>`
+	#define :target:`c_strlcpy<doxid-group__libccc__string_1ga062fb6614b0f1a41b87b1738f6313503>`
+	#define :target:`c_strlen<doxid-group__libccc__string_1ga681eed5e9b871c17364286d5e46265fb>`
+	#define :target:`c_strmap<doxid-group__libccc__string_1gad97e4227f648055377727eb6c83ad295>`
+	#define :target:`c_strmap_inplace<doxid-group__libccc__string_1ga7eef61882df23201d1eae6b00367bc9c>`
+	#define :target:`c_strmapi<doxid-group__libccc__string_1gab2016b122de5ebdda54b98690f850fd8>`
+	#define :target:`c_strmerge<doxid-group__libccc__string_1ga74095e8e8c9d4f1be46ae06e692e753c>`
+	#define :target:`c_strncasecmp<doxid-group__libccc__string_1ga371ddcf2be3bd139a3e2357ebf38a3e1>`
+	#define :target:`c_strncaseequ<doxid-group__libccc__string_1gafcde19a3b64490b9c1678fdd19cc104c>`
+	#define :target:`c_strncat<doxid-group__libccc__string_1ga00e52fb1fb57ee55b200a9aaeb325de8>`
+	#define :target:`c_strnchr<doxid-group__libccc__string_1gaccc462eee78da12638c39e78225a6619>`
+	#define :target:`c_strnchrset<doxid-group__libccc__string_1ga7421025726d7a8ac421c9b19c3bf9429>`
+	#define :target:`c_strncmp<doxid-group__libccc__string_1ga1f2d6d3dec99624c800f903a74f4c352>`
+	#define :target:`c_strncpy<doxid-group__libccc__string_1ga37a96785753aff0fca5e6cf2b158ee31>`
+	#define :target:`c_strndup<doxid-group__libccc__string_1ga8592dd3049692abca5416e36cae36e9e>`
+	#define :target:`c_strnequ<doxid-group__libccc__string_1ga2e8ae12dccd4da3a4ceebcccaba8034c>`
+	#define :target:`c_strnew<doxid-group__libccc__string_1ga8965890303e6704d997b69ade5255d46>`
+	#define :target:`c_strnicmp<doxid-group__libccc__string_1gae2143cb941b79aae885c3a202e0c64f3>`
+	#define :target:`c_strniequ<doxid-group__libccc__string_1ga25d8b8087616c7bb62b0d0722beaa98d>`
+	#define :target:`c_strnstr<doxid-group__libccc__string_1gacb4c550caddfa24fd25393fa16247f04>`
+	#define :target:`c_strpad<doxid-group__libccc__string_1ga17d9313ebeacae00bff01e03084a9e29>`
+	#define :target:`c_strpad_l<doxid-group__libccc__string_1ga9bdc1438cdf74ed6376296e9d677995a>`
+	#define :target:`c_strpad_r<doxid-group__libccc__string_1gafe4938390ea8ed07255371c0a1789c4c>`
+	#define :target:`c_strprepend<doxid-group__libccc__string_1gaadb9a35f742dbe2fa954c65df10da939>`
+	#define :target:`c_strprint<doxid-group__libccc__string_1ga6baf0d713ab1324ae98e453ba3801d9a>`
+	#define :target:`c_strrchr<doxid-group__libccc__string_1ga2a934944de6029dbb6f95cf3f3953933>`
+	#define :target:`c_strrchrset<doxid-group__libccc__string_1gae922355a901ec04653d3af3354e95d60>`
+	#define :target:`c_strremove<doxid-group__libccc__string_1ga74a2c740fa7e1ca9a11998fd77e9ad70>`
+	#define :target:`c_strrep_char<doxid-group__libccc__string_1gae3a12a6dca864530ec2000db7095d986>`
+	#define :target:`c_strrep_char_inplace<doxid-group__libccc__string_1gad6bd945736a68373e68015844fe560ab>`
+	#define :target:`c_strrep_charset<doxid-group__libccc__string_1ga281e4d089fa5e6c8ff98c518346c78b9>`
+	#define :target:`c_strrep_charset_inplace<doxid-group__libccc__string_1ga508508615cf50b56a2b8157e09bc82a0>`
+	#define :target:`c_strrep_str<doxid-group__libccc__string_1gac1a0b410d2d351405520e997a47e2ab1>`
+	#define :target:`c_strrep_str_inplace<doxid-group__libccc__string_1ga9dc03e427bdd65d3d238da2331fb45b2>`
+	#define :target:`c_strrev<doxid-group__libccc__string_1ga7dd69d70fbc7ca3a5951c003e52f3efc>`
+	#define :target:`c_strrstr<doxid-group__libccc__string_1ga40c8fe0a0ed4afaa9862518ba1d3efa2>`
+	#define :target:`c_strset<doxid-group__libccc__string_1ga473d5ed9f97d97ec8c98370fbb14ea21>`
+	#define :target:`c_strstr<doxid-group__libccc__string_1ga39265d1d144a81cf25eaa4f92c24d6c7>`
+	#define :target:`c_strsub<doxid-group__libccc__string_1gaf30bb87ad2ad7ce2bff5bea8e117963e>`
+	#define :target:`c_strtoescape<doxid-group__libccc__string_1ga5bf1e145ce7717bcd800acf9d4420ce1>`
+	#define :target:`c_strtrim<doxid-group__libccc__string_1gaf53436652bc7ae6e4aaf38360134273b>`
+	#define :target:`c_strtrim_l<doxid-group__libccc__string_1ga3a6f6e8d833e1e835c5d4943fee5f380>`
+	#define :target:`c_strtrim_r<doxid-group__libccc__string_1ga94bacf5a47fdf979d61b4a92f0c9a21f>`
+
+.. _details-group__libccc__string:
+
+Detailed Documentation
+~~~~~~~~~~~~~~~~~~~~~~
+
+This header defines the common standard string (char\*) manipulation functions.
+
+Global Functions
+----------------
+
+.. index:: pair: function; String_New
+.. _doxid-group__libccc__string_1gad138420f4cc6884fbaa763e465fbc280:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* String_New(:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n)
+
+Returns a newly allocated region of zero-filled memory, which is ``n + 1`` bytes long.
+
+Allocates a new region of memory of the specified size ``n + 1``, the last byte being used for the string null terminator character '\0'.
+
+
+
+.. rubric:: Parameters:
+
+.. list-table::
+	:widths: 20 80
+
+	*
+		- n
+
+		- The length of the string to allocate
+
+
+
+.. rubric:: Returns:
+
+A new string which is ``n + 1`` bytes in length, and has every char set to '\0'.
+
+.. index:: pair: function; String_New_C
+.. _doxid-group__libccc__string_1gaade943d79ae8199f04d1ba5fa35a2e2d:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* String_New_C(:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n, char c)
+
+Returns a newly allocated region of ``c`` -filled memory, which is ``n + 1`` bytes long.
+
+Allocates a new region of memory of the specified size ``n + 1``, the last byte being used for the string null terminator character '\0'.
+
+
+
+.. rubric:: Parameters:
+
+.. list-table::
+	:widths: 20 80
+
+	*
+		- n
+
+		- The length of the string to allocate
+
+	*
+		- c
+
+		- The character value to fill each byte with
+
+
+
+.. rubric:: Returns:
+
+A new string which is ``n + 1`` bytes in length, and has every char set to ``c``, plus the last char set to '\0'.
+
+.. index:: pair: function; String_Set
+.. _doxid-group__libccc__string_1ga5b136bc2262d3121471bffd53cd41f0b:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void String_Set(char* str, char c)
+
+Sets every char of the given string ``str`` to ``c``, only stopping upon reading a '\0' string terminator character.
+
+Fills the given string ``str`` with the character ``c``
+
+
+
+.. rubric:: Parameters:
+
+.. list-table::
+	:widths: 20 80
+
+	*
+		- str
+
+		- The string to fill
+
+	*
+		- c
+
+		- The character value to fill with
+
+.. index:: pair: function; String_Clear
+.. _doxid-group__libccc__string_1ga276832ec1077b5fa2891df3959bafbc3:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void String_Clear(char* str)
+
+Clears the given string ``str``, setting each character of ``str`` to '\0'.
+
+.. index:: pair: function; String_Delete
+.. _doxid-group__libccc__string_1ga1c26f15cecadcca1e7a84c654f23aa49:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void String_Delete(char** a_str)
+
+Deletes the string pointed to by ``ptr``, freeing the associated memory.
+
+.. index:: pair: function; String_Duplicate
+.. _doxid-group__libccc__string_1ga8f8b376df7972ff92a9ac015a1b48bcd:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* String_Duplicate(char const* str)
+
+Returns a newly allocated string which is a copy of the given string ``str``, (or NULL if the required memory could not be allocated).
+
+.. index:: pair: function; String_Duplicate_N
+.. _doxid-group__libccc__string_1ga5b823f98b523312ae7f90aceb330db90:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* String_Duplicate_N(char const* str, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n)
+
+Returns a newly allocated string which is a copy of the given string ``str``, (or NULL if the required memory could not be allocated), copying at most ``n`` characters.
+
+.. index:: pair: function; String_Duplicate_Char
+.. _doxid-group__libccc__string_1ga432312ab8ca1e787ea46ec4de850e8d2:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* String_Duplicate_Char(char const* str, char const c)
+
+Returns a newly allocated string which is a copy of the given string ``str``, (or NULL if the required memory could not be allocated), stopping at the first occurence of ``c``.
+
+.. index:: pair: function; String_Copy
+.. _doxid-group__libccc__string_1ga01aba0cc2fe207dff04e3be247eab347:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* String_Copy(char* dest, char const* src)
+
+Copies the given string ``src`` into ``dest`` (null-terminator included), and returns ``dest`` (no allocation is performed).
+
+.. index:: pair: function; String_Copy_N
+.. _doxid-group__libccc__string_1ga4781de436d86a4660cc5b6aa51ecde8b:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* String_Copy_N(char* dest, char const* src, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n)
+
+Copies the first ``n`` characters of the given string ``src`` into ``dest``, and returns ``dest``
+
+Copies the first ``n`` characters of the given string ``src`` into ``dest``, and returns ``dest`` (no allocation is performed).
+
+.. index:: pair: function; String_Copy_L
+.. _doxid-group__libccc__string_1gafaad3fc2a667e62332b0576e84ef775a:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` String_Copy_L(char* dest, char const* src, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` size)
+
+Copies the given string ``src`` into ``dest``, null-terminating the result and returning its length.
+
+Copies the given string ``src`` into ``dest``, null-terminating the result (the '\0' is placed at: ``(dest + size - 1)``), and returns the resulting size of ``dest``.
+
+.. index:: pair: function; String_Concat
+.. _doxid-group__libccc__string_1gace0d90b37715f96e5e85531a4046433e:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* String_Concat(char* dest, char const* src)
+
+Concatenates the given string ``src`` to the end of ``dest``, (removing dest's '\0' terminator) and returns ``dest``.
+
+.. index:: pair: function; String_Concat_N
+.. _doxid-group__libccc__string_1ga3bc1bb6e00496af0d330fd87733f8101:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* String_Concat_N(char* dest, char const* src, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n)
+
+Concatenates the first ``n`` characters of the given string ``src`` to the end of ``dest``, and returns ``dest``.
+
+.. index:: pair: function; String_Concat_L
+.. _doxid-group__libccc__string_1ga1991d973b576ac46002d04a07dfbe871:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` String_Concat_L(char* dest, char const* src, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` size)
+
+Concatenates characters of the given string ``src`` to the end of ``dest``, null-terminating the result (places the '\0' at ``dest + size - 1``), and returns the resulting size of ``dest``.
+
+.. index:: pair: function; String_Length
+.. _doxid-group__libccc__string_1ga30153049fbd35ce204bded0b40c78434:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` String_Length(char const* str)
+
+Returns the length of the given null-terminated string ``str``.
+
+.. index:: pair: function; String_Compare
+.. _doxid-group__libccc__string_1ga79a749f1d42abcef3c0c1184da79aab6:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	int String_Compare(char const* str1, char const* str2)
+
+Compares the two given strings, and returns the first difference between characters encountered ``str1[i] - str2[i]`` Otherwise, it will return 0 if ``str1`` and ``str2`` are identical.
+
+.. index:: pair: function; String_Compare_N
+.. _doxid-group__libccc__string_1ga7c928934a14b5e651204e3bbdd45aac4:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	int String_Compare_N(char const* str1, char const* str2, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n)
+
+Compares at most ``n`` chars of the two given strings, and returns the first difference of characters encountered: ``str1[i] - str2[i]``
+
+.. index:: pair: function; String_Compare_IgnoreCase
+.. _doxid-group__libccc__string_1gaa38320a082f58720c8142ad96ed6ec84:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	int String_Compare_IgnoreCase(char const* str1, char const* str2)
+
+Compares the two given strings (case-insensitive), and returns the first difference between characters encountered ``str1[i] - str2[i]`` Otherwise, it will return 0 if ``str1`` and ``str2`` are identical.
+
+.. index:: pair: function; String_Compare_N_IgnoreCase
+.. _doxid-group__libccc__string_1ga345cf0a1a5ec6167038966d4f14fd851:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	int String_Compare_N_IgnoreCase(char const* str1, char const* str2, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n)
+
+Compares at most ``n`` chars of the two given strings (case-insensitive), and returns the first difference of characters encountered: ``str1[i] - str2[i]``
+
+.. index:: pair: function; String_Equals
+.. _doxid-group__libccc__string_1ga8003956e8a95f1a07ad1745a2bf1b5f5:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` String_Equals(char const* str1, char const* str2)
+
+Returns TRUE if the two given strings have identical content, and FALSE otherwise.
+
+
+
+.. rubric:: Returns:
+
+1(TRUE) if the two given strings have identical content, and 0(FALSE) otherwise
+
+.. index:: pair: function; String_Equals_N
+.. _doxid-group__libccc__string_1gab4e22e85ec13885bfee8a250980e4058:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` String_Equals_N(char const* str1, char const* str2, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n)
+
+Returns TRUE if the first ``n`` chars of the two given strings match, and FALSE otherwise.
+
+
+
+.. rubric:: Returns:
+
+1(TRUE) if the first ``n`` chars of the two given strings match, and 0(FALSE) otherwise
+
+.. index:: pair: function; String_Equals_IgnoreCase
+.. _doxid-group__libccc__string_1ga92c547f30a1266258521fe7e53e297fb:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` String_Equals_IgnoreCase(char const* str1, char const* str2)
+
+Returns TRUE if the two given strings have identical content (case-insensitive), and FALSE otherwise.
+
+
+
+.. rubric:: Returns:
+
+1(TRUE) if the two given strings have identical content (case-insensitive), and 0(FALSE) otherwise
+
+.. index:: pair: function; String_Equals_N_IgnoreCase
+.. _doxid-group__libccc__string_1ga1105693b5d671e2e818b945b4d11881e:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` String_Equals_N_IgnoreCase(char const* str1, char const* str2, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n)
+
+Returns TRUE if the first ``n`` chars of the two given strings match (ignoring case), and FALSE otherwise.
+
+
+
+.. rubric:: Returns:
+
+1(TRUE) if the first ``n`` chars of the two given strings match (ignoring case), and 0(FALSE) otherwise
+
+.. index:: pair: function; String_Has
+.. _doxid-group__libccc__string_1ga8370b841c1e8f13349c229bed4355014:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` String_Has(char const* str, char const* charset)
+
+Returns 1 if the given string ``str`` contains at least one occurence of any character found inside ``charset``, returns 0 otherwise.
+
+.. index:: pair: function; String_HasOnly
+.. _doxid-group__libccc__string_1gab2ca49c6c159141ce078c5f4e32826bc:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` String_HasOnly(char const* str, char const* charset)
+
+Returns 1 if all the characters inside the given string ``str`` are contained within the string ``charset``, returns 0 otherwise.
+
+.. index:: pair: function; String_Count_Char
+.. _doxid-group__libccc__string_1ga02f2e618eaf1b15096061a05bfc49d9d:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` String_Count_Char(char const* str, char c)
+
+Returns the amount of occurences of char ``c`` in the given string ``str``.
+
+.. index:: pair: function; String_Count_Charset
+.. _doxid-group__libccc__string_1gaea000f0ef5e51641263d31042404dc33:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` String_Count_Charset(char const* str, char const* charset)
+
+Returns the amount of occurences of chars in ``charset`` in the given string ``str``.
+
+.. index:: pair: function; String_Count_String
+.. _doxid-group__libccc__string_1gae7c88281e8dc8ff24a8d0cd4c40eb90a:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` String_Count_String(char const* str, char const* query)
+
+Returns the amount of occurences of ``query`` in the given string ``str``.
+
+.. index:: pair: function; String_Find_Char
+.. _doxid-group__libccc__string_1gaef478f64661e7683e72841a3e87c832d:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* String_Find_Char(char const* str, char c)
+
+Returns a pointer to the first occurence of the given char ``c`` within ``str``, or NULL if no char matched.
+
+.. index:: pair: function; String_Find_Charset
+.. _doxid-group__libccc__string_1ga4f80c364583f93f805c52a84b75199b8:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* String_Find_Charset(char const* str, char const* charset)
+
+Returns a pointer to the first occurence of any char in the given ``charset`` within ``str``, or NULL if no char matched.
+
+.. index:: pair: function; String_Find_String
+.. _doxid-group__libccc__string_1gac4abce7966af7201b305c42d037fe90a:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* String_Find_String(char const* str, char const* query)
+
+Returns a pointer to the first occurence of the string ``query`` inside the given string ``str``, or NULL if nothing matched.
+
+.. index:: pair: function; String_Find_R_Char
+.. _doxid-group__libccc__string_1ga08b207e327c0e0ba71baf49f368e3eb4:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* String_Find_R_Char(char const* str, char c)
+
+Returns a pointer to the last occurence of the given char ``c`` within ``str``, or NULL if no char matched.
+
+.. index:: pair: function; String_Find_R_Charset
+.. _doxid-group__libccc__string_1ga4831b122ff2d0f56bb3627a869c717b9:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* String_Find_R_Charset(char const* str, char const* charset)
+
+Returns a pointer to the last occurence of any char in the given ``charset`` within ``str``, or NULL if no char matched.
+
+.. index:: pair: function; String_Find_R_String
+.. _doxid-group__libccc__string_1ga7e247194c33e68fa9f2aa911691d40b8:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* String_Find_R_String(char const* str, char const* query)
+
+Returns a pointer to the last occurence of the string ``query`` inside the given string ``str``, or NULL if nothing matched.
+
+.. index:: pair: function; String_Find_N_Char
+.. _doxid-group__libccc__string_1ga5cb65a6e62af6efa72a81da041821f45:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* String_Find_N_Char(char const* str, char c, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n)
+
+Returns a pointer to the first occurence of the given char ``c`` within ``str``, or NULL if no char matched. (checks only ``n`` chars in ``str``).
+
+.. index:: pair: function; String_Find_N_Charset
+.. _doxid-group__libccc__string_1ga6acd55abb335512a6b54468f83dc568a:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* String_Find_N_Charset(char const* str, char const* charset, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n)
+
+Returns a pointer to the first occurence of any char in the given ``charset`` within ``str``, or NULL if no char matched. (checks only ``n`` chars in ``str``).
+
+.. index:: pair: function; String_Find_N_String
+.. _doxid-group__libccc__string_1gac87091fc42ad06c12efcc6d8c21a9e0b:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* String_Find_N_String(char const* str, char const* query, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n)
+
+Returns a pointer to the first occurence of the string ``query`` inside the given string ``str``, or NULL if nothing matched. (checks only ``n`` chars in ``str``).
+
+.. index:: pair: function; String_IndexOf_Char
+.. _doxid-group__libccc__string_1gadceacfa6b74820e3aa02601536331391:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_ptrdiff<doxid-group__libccc__pointer_1gaaf13bc256e9c704039e08ec061508a0c>` String_IndexOf_Char(char const* str, char c)
+
+Returns the index of the first occurrence at which ``c`` is found in ``str``, or -1 if ``c`` does not exist in ``str``.
+
+.. index:: pair: function; String_IndexOf_Charset
+.. _doxid-group__libccc__string_1ga724e0295c41a812a5f142784dd0381f9:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_ptrdiff<doxid-group__libccc__pointer_1gaaf13bc256e9c704039e08ec061508a0c>` String_IndexOf_Charset(char const* str, char const* charset)
+
+Returns the index of the first occurrence at which ``c`` is found in ``str``, or -1 if ``c`` does not exist in ``str``.
+
+.. index:: pair: function; String_IndexOf_String
+.. _doxid-group__libccc__string_1gad2368d8411df0c10b5bd455cb64b29df:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_ptrdiff<doxid-group__libccc__pointer_1gaaf13bc256e9c704039e08ec061508a0c>` String_IndexOf_String(char const* str, char const* query)
+
+Returns the index of the first occurrence at which ``query`` is found in ``str``, or -1 if ``query`` does not exist in str.
+
+.. index:: pair: function; String_IndexOf_R_Char
+.. _doxid-group__libccc__string_1ga24f348b5c1602d4fc20174e0a03d298c:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_ptrdiff<doxid-group__libccc__pointer_1gaaf13bc256e9c704039e08ec061508a0c>` String_IndexOf_R_Char(char const* str, char c)
+
+Returns a pointer to the last occurence of the given char ``c`` within ``str``, or NULL if no char matched.
+
+.. index:: pair: function; String_IndexOf_R_Charset
+.. _doxid-group__libccc__string_1gacac41889c80fbaa1663bcd2bfc140272:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_ptrdiff<doxid-group__libccc__pointer_1gaaf13bc256e9c704039e08ec061508a0c>` String_IndexOf_R_Charset(char const* str, char const* charset)
+
+Returns a pointer to the last occurence of any char in the given ``charset`` within ``str``, or NULL if no char matched.
+
+.. index:: pair: function; String_IndexOf_R_String
+.. _doxid-group__libccc__string_1ga13e3a40b7a9f3709bfbe52d14aa08e18:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_ptrdiff<doxid-group__libccc__pointer_1gaaf13bc256e9c704039e08ec061508a0c>` String_IndexOf_R_String(char const* str, char const* query)
+
+Returns a pointer to the last occurence of the string ``query`` inside the given string ``str``, or NULL if nothing matched.
+
+.. index:: pair: function; String_IndexOf_N_Char
+.. _doxid-group__libccc__string_1ga0f6d51bb0b89434f4f768adebabbc7fe:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_ptrdiff<doxid-group__libccc__pointer_1gaaf13bc256e9c704039e08ec061508a0c>` String_IndexOf_N_Char(char const* str, char c, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n)
+
+Returns a pointer to the first occurence of the given char ``c`` within ``str``, or NULL if no char matched. (checks only ``n`` chars in ``str``).
+
+.. index:: pair: function; String_IndexOf_N_Charset
+.. _doxid-group__libccc__string_1ga15c587bc24148dc424c7688b66e735a5:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_ptrdiff<doxid-group__libccc__pointer_1gaaf13bc256e9c704039e08ec061508a0c>` String_IndexOf_N_Charset(char const* str, char const* charset, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n)
+
+Returns a pointer to the first occurence of any char in the given ``charset`` within ``str``, or NULL if no char matched. (checks only ``n`` chars in ``str``).
+
+.. index:: pair: function; String_IndexOf_N_String
+.. _doxid-group__libccc__string_1ga5ac2a5be40c6bec78eb13063e03789dc:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_ptrdiff<doxid-group__libccc__pointer_1gaaf13bc256e9c704039e08ec061508a0c>` String_IndexOf_N_String(char const* str, char const* query, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n)
+
+Returns a pointer to the first occurence of the string ``query`` inside the given string ``str``, or NULL if nothing matched. (checks only ``n`` chars in ``str``).
+
+.. index:: pair: function; String_Remove
+.. _doxid-group__libccc__string_1ga15b14ed1e51ed59ed43249555b6e90e9:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* String_Remove(char const* str, char const* query)
+
+Returns a new null-terminated string which is a copy of ``str``, in which all occurences of the string ``query`` have been removed.
+
+.. index:: pair: function; String_ToEscape
+.. _doxid-group__libccc__string_1ga97d47b38bcedbeee939073e366b8b648:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* String_ToEscape(char const* str)
+
+Returns a new null-terminated string which is a copy of ``str``, in which all non-printable characters found in ``str`` are made into printable ANSI-C '\xHH' escape sequences (where "H"s are uppercase hex digits).
+
+.. index:: pair: function; String_Replace_Char
+.. _doxid-group__libccc__string_1ga7099b631e4add5dbb108766f3559d49f:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* String_Replace_Char(char const* str, char const char_old, char const char_new)
+
+Returns a new null-terminated string which is a copy of ``str``, in which every occurence of an ``old`` char is replaced with a ``new`` char.
+
+.. index:: pair: function; String_Replace_Charset
+.. _doxid-group__libccc__string_1gac7535d12246689789fdcf8fcd5c9bddc:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* String_Replace_Charset(char const* str, char const* charset_old, char const* charset_new)
+
+Returns a new null-terminated string which is a copy of ``str``, in which every char in the ``old`` charset is replaced by the corresponding character in the ``new`` charset (at the same index).
+
+.. index:: pair: function; String_Replace_String
+.. _doxid-group__libccc__string_1gadf7e01d76fa28323ed3144f4783267bd:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* String_Replace_String(char const* str, char const* str_old, char const* str_new)
+
+Returns a new null-terminated string which is a copy of ``str``, in which every occurence of the string ``old`` is replaced with ``new``. NB: see ``stringarray.h`` -> ``String_Split_String`` for extra notes on bevahior.
+
+.. index:: pair: function; String_Merge
+.. _doxid-group__libccc__string_1gaa53bc940cb64199019872c001ec1bed8:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* String_Merge(char** a_s1, char** a_s2)
+
+Returns a newly allocated string which is the concatenation of ``s1`` and ``s2``. Deletes both inputs from memory. Also, returns the result.
+
+.. index:: pair: function; String_Append
+.. _doxid-group__libccc__string_1ga93be9f9ac7057b53d0e16d715f82aa56:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* String_Append(char** dest, char const* src)
+
+Returns a newly allocated string which is the concatenation of ``dest`` and ``src``. Deletes ``dest``, replacing it by the result. Also, returns the result.
+
+.. index:: pair: function; String_Prepend
+.. _doxid-group__libccc__string_1ga125ce85395a6780d465557e76886aa17:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* String_Prepend(char const* src, char** dest)
+
+Returns a newly allocated string which is the concatenation of ``src`` and ``dest``. Deletes ``dest``, replacing it by the result. Also, returns the result.
+
+.. index:: pair: function; String_Insert_InPlace
+.. _doxid-group__libccc__string_1ga8e3a9481b821b158b330e863fad06bba:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* String_Insert_InPlace(char** dest, char const* src, t_u32 index)
+
+Inserts the string ``src`` at index ``index`` in ``dest``; deletes ``dest`` and replaces it by the result. Also returns the result.
+
+.. index:: pair: function; String_Replace_Char_InPlace
+.. _doxid-group__libccc__string_1gacdedfabee642a0282770ba62823350ee:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void String_Replace_Char_InPlace(char* str, char const char_old, char const char_new)
+
+Replaces every occurence of ``old`` by ``new`` in ``str``.
+
+.. index:: pair: function; String_Replace_Charset_InPlace
+.. _doxid-group__libccc__string_1ga5cbaccf7a8df9a825de53969f0a4e00e:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void String_Replace_Charset_InPlace(char* str, char const* charset_old, char const* charset_new)
+
+Replaces ``old`` charset by ``new`` charset in ``str``. Works like the bash function tr. Substitutes old[i] by new[i] in ``str``. Fails silently if strlen is different for ``old`` and ``new``, or if a character is repeated in ``old`` (only one image for every antecedent), or if ``old`` or ``new`` are the empty string.
+
+.. index:: pair: function; String_Replace_String_InPlace
+.. _doxid-group__libccc__string_1ga394da4d81121fe1e0177cfe716ee85ba:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void String_Replace_String_InPlace(char** a_str, char const* str_old, char const* str_new)
+
+Replaces every occurence of the query old by the string new in str. NB: see ``stringarray.h`` -> c_strsplit_str for extra notes on bevahior.
+
+.. index:: pair: function; String_Map_InPlace
+.. _doxid-group__libccc__string_1ga41cf99ea83b16784bd4e6052d693cc5d:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* String_Map_InPlace(char** a_str, char(*)(char) f)
+
+Changes the content of '\*a_str' by applying f to each of its chars. Deletes ``a_str``, and sets the result in it instead. Also returns the result.
+
+.. index:: pair: function; String_Trim
+.. _doxid-group__libccc__string_1ga70373fab444c0596e9073e9e2f4f7c87:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* String_Trim(char const* str, char const* charset)
+
+Returns a new string from ``str`` in which all leading and trailing whitespace characters (' ', '\t', '\n', '\r', '\v', '\f') have been removed.
+
+.. index:: pair: function; String_Trim_L
+.. _doxid-group__libccc__string_1gabe3f262f97adee5953d1331dbec9da43:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* String_Trim_L(char const* str, char const* charset)
+
+Returns a new string from ``str`` in which all leading characters present in ``charset`` have been removed.
+
+.. index:: pair: function; String_Trim_R
+.. _doxid-group__libccc__string_1ga6583a3e8451171e7deecb927636792d8:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* String_Trim_R(char const* str, char const* charset)
+
+Returns a new string from ``str`` in which all trailing characters present in ``charset`` have been removed.
+
+.. index:: pair: function; String_Pad
+.. _doxid-group__libccc__string_1gae5ce3113d8ff3445043c6ac81a99a99b:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* String_Pad(char const* str, char c, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` length)
+
+Returns a new null-terminated string duplicate of ``str`` which is ``length`` characters long, by padding it with ``c`` chars on both sides if the desired ``length`` is larger than ``str``.
+
+.. index:: pair: function; String_Pad_L
+.. _doxid-group__libccc__string_1gaf30cfd98782133afb31a2a90c3f1e245:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* String_Pad_L(char const* str, char c, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` length)
+
+Returns a new null-terminated string duplicate of ``str`` which is ``length`` characters long, by padding it with ``c`` chars on its left side if the desired ``length`` is larger than ``str``.
+
+.. index:: pair: function; String_Pad_R
+.. _doxid-group__libccc__string_1ga47cabecfa3d71d4f1a5412e380251676:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* String_Pad_R(char const* str, char c, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` length)
+
+Returns a new null-terminated string duplicate of ``str`` which is ``length`` characters long, by padding it with ``c`` chars on its right side if the desired ``length`` is larger than ``str``.
+
+.. index:: pair: function; String_ToPrintableString
+.. _doxid-group__libccc__string_1gab62019f58070915f0a72dfcea6b7c4bf:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* String_ToPrintableString(char const* str)
+
+Returns a new null-terminated string where every non-printable character of ``str`` is replaced by either its ``normal`` escape sequence (if available) or a '\xFF'-type byte escape sequence if no simple short escape sequence exists.
+
+.. index:: pair: function; String_Reverse
+.. _doxid-group__libccc__string_1ga9efe55befb6f4c8babfbbde36ec43679:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* String_Reverse(char const* str)
+
+Returns a newly allocated string which is a copy of the given string ``str``, but in reverse order (except for the \0 terminator, obviously).
+
+.. index:: pair: function; String_Join
+.. _doxid-group__libccc__string_1gad8dbc873143b630344e41fc198b1df5a:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* String_Join(char const* str1, char const* str2)
+
+Returns a new null-terminated string which is the result of the concatenation of the two given strings ``str1`` and ``str2``.
+
+.. index:: pair: function; String_Insert
+.. _doxid-group__libccc__string_1ga6743eaef759ce8e6c6d1ee8a166e99b5:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* String_Insert(char const* dest, char const* src, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` offset)
+
+Returns a reallocated version of the given string ``dest``, in which the string ``str`` has been inserted at the index ``offset``.
+
+.. index:: pair: function; String_Sub
+.. _doxid-group__libccc__string_1gaabfad2f2cc501c9217272521d91e66ae:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* String_Sub(char const* str, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` index, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n)
+
+Returns a new null-terminated string which is a subsection of ``str``, starting at char index ``index`` and copying ``n`` characters.
+
+.. index:: pair: function; String_Iterate
+.. _doxid-group__libccc__string_1ga78e4f11ecc5e43e7155eaf72eed2d299:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void String_Iterate(char* str, void(*)(char*c) f)
+
+Iterates upon each character of the given string ``str``, applying the given function ``f`` to each of its characters.
+
+.. index:: pair: function; String_Iterate_I
+.. _doxid-group__libccc__string_1ga6aaad0e2b45a8fe548614ce9871344d0:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void String_Iterate_I(char* str, void(*)(:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` index, char*c) f)
+
+Iterates upon each character of the given string ``str``, applying the function ``f`` to each of its chars (with index information).
+
+.. index:: pair: function; String_Map
+.. _doxid-group__libccc__string_1ga50cdf221f2ae0d7706f564a0b28cac84:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* String_Map(char const* str, char(*)(char c) f)
+
+Creates a new null-terminated string by iterating upon the string ``str``, applying the function ``f`` to each of its chars.
+
+.. index:: pair: function; String_Map_I
+.. _doxid-group__libccc__string_1gad3f9201b07e9387d3c9e3c538c18a565:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* String_Map_I(char const* str, char(*)(:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` index, char c) f)
+
+Creates a new null-terminated string by iterating upon the string ``str``, applying the function ``f`` to each of its chars (with index information).
+

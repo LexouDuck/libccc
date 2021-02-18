@@ -1,0 +1,2291 @@
+.. index:: pair: group; 12) libccc/sys/io
+.. _doxid-group__libccc__sys__io:
+
+12) libccc/sys/io
+=================
+
+.. toctree::
+	:hidden:
+
+Overview
+~~~~~~~~
+
+This header defines all the functions for OS-level input/output, read/write. :ref:`More...<details-group__libccc__sys__io>`
+
+
+.. ref-code-block:: cpp
+	:class: doxyrest-overview-code-block
+
+	
+	// typedefs
+
+	typedef int :ref:`t_fd<doxid-group__libccc__sys__io_1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f>`;
+	typedef int :ref:`t_io_error<doxid-group__libccc__sys__io_1ga2468f6097a96e11ea9356256dd5a9cbb>`;
+	typedef unsigned int :ref:`t_io_mode<doxid-group__libccc__sys__io_1ga1de405b2724d2ab9e24318716e07511e>`;
+	typedef unsigned int :ref:`t_io_open<doxid-group__libccc__sys__io_1ga529de828c63062e6b522d48411c11219>`;
+
+	// global functions
+
+	:ref:`t_fd<doxid-group__libccc__sys__io_1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f>` :ref:`IO_Open<doxid-group__libccc__sys__io_1ga0e5658c988abe6f1a2cd1f2e8db2c45b>`(char const* filepath, :ref:`t_io_open<doxid-group__libccc__sys__io_1ga529de828c63062e6b522d48411c11219>` flags, :ref:`t_io_mode<doxid-group__libccc__sys__io_1ga1de405b2724d2ab9e24318716e07511e>` mode);
+	:ref:`t_io_error<doxid-group__libccc__sys__io_1ga2468f6097a96e11ea9356256dd5a9cbb>` :ref:`IO_Close<doxid-group__libccc__sys__io_1ga84def9cdd174530d1adfc572ed508dd7>`(:ref:`t_fd<doxid-group__libccc__sys__io_1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f>` fd);
+	char* :ref:`IO_GetError<doxid-group__libccc__sys__io_1gaa55ba0c27b2c2a3c32bdc30c734e1fb8>`(int error_num);
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` :ref:`IO_IsTerminal<doxid-group__libccc__sys__io_1gafbf2e86ab1f9a29cf5ac772d96aad1f4>`(:ref:`t_fd<doxid-group__libccc__sys__io_1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f>` fd);
+	:ref:`t_io_error<doxid-group__libccc__sys__io_1ga2468f6097a96e11ea9356256dd5a9cbb>` :ref:`IO_ChangeMode<doxid-group__libccc__sys__io_1gafe190a37e94f983828af8b519d7398fd>`(char const* filepath, :ref:`t_io_mode<doxid-group__libccc__sys__io_1ga1de405b2724d2ab9e24318716e07511e>` mode);
+	:ref:`t_io_error<doxid-group__libccc__sys__io_1ga2468f6097a96e11ea9356256dd5a9cbb>` :ref:`IO_Read_File<doxid-group__libccc__sys__io_1ga353a481847df1a8130d101e7fbaa8a5d>`(:ref:`t_fd<doxid-group__libccc__sys__io_1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f>` const fd, char** a_file, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` max);
+	:ref:`t_io_error<doxid-group__libccc__sys__io_1ga2468f6097a96e11ea9356256dd5a9cbb>` :ref:`IO_Read_Lines<doxid-group__libccc__sys__io_1ga16564032123850963167d124814d3e36>`(:ref:`t_fd<doxid-group__libccc__sys__io_1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f>` const fd, char*** a_strarr);
+	int :ref:`IO_Read_NextLine<doxid-group__libccc__sys__io_1gaa2cbff7a0b811b61ada60d474f10389b>`(:ref:`t_fd<doxid-group__libccc__sys__io_1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f>` const fd, char** a_line);
+	:ref:`t_io_error<doxid-group__libccc__sys__io_1ga2468f6097a96e11ea9356256dd5a9cbb>` :ref:`IO_Write_Char<doxid-group__libccc__sys__io_1gabb9c05063e5d261438b365507aca68b6>`(:ref:`t_fd<doxid-group__libccc__sys__io_1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f>` fd, char c);
+	:ref:`t_io_error<doxid-group__libccc__sys__io_1ga2468f6097a96e11ea9356256dd5a9cbb>` :ref:`IO_Write_String<doxid-group__libccc__sys__io_1ga9df9845170ac155e84710f15220c8d55>`(:ref:`t_fd<doxid-group__libccc__sys__io_1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f>` fd, char const* str);
+	:ref:`t_io_error<doxid-group__libccc__sys__io_1ga2468f6097a96e11ea9356256dd5a9cbb>` :ref:`IO_Write_Line<doxid-group__libccc__sys__io_1gac2e9bd89325c5b2e40af643d2a457e60>`(:ref:`t_fd<doxid-group__libccc__sys__io_1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f>` fd, char const* str);
+	:ref:`t_io_error<doxid-group__libccc__sys__io_1ga2468f6097a96e11ea9356256dd5a9cbb>` :ref:`IO_Write_Lines<doxid-group__libccc__sys__io_1ga2ac9a105d816c272151afc8d390c7791>`(:ref:`t_fd<doxid-group__libccc__sys__io_1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f>` fd, char const** strarr);
+
+	:ref:`t_io_error<doxid-group__libccc__sys__io_1ga2468f6097a96e11ea9356256dd5a9cbb>` :target:`IO_Write_Memory<doxid-group__libccc__sys__io_1ga0230b7f195c19f3e5a225aaef3a3cad4>`(
+		:ref:`t_fd<doxid-group__libccc__sys__io_1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f>` fd,
+		t_u8 const* ptr,
+		:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n,
+		t_u8 cols
+		);
+
+	:ref:`t_io_error<doxid-group__libccc__sys__io_1ga2468f6097a96e11ea9356256dd5a9cbb>` :ref:`IO_Write_Format<doxid-group__libccc__sys__io_1ga71029519197ad6999a09e053a3627b91>`(:ref:`t_fd<doxid-group__libccc__sys__io_1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f>` fd, char const* format, ...);
+	:ref:`t_io_error<doxid-group__libccc__sys__io_1ga2468f6097a96e11ea9356256dd5a9cbb>` :ref:`IO_Output_Char<doxid-group__libccc__sys__io_1gaca9178eee8b6ef4889c7dc8e14e03fdb>`(char c);
+	:ref:`t_io_error<doxid-group__libccc__sys__io_1ga2468f6097a96e11ea9356256dd5a9cbb>` :ref:`IO_Output_String<doxid-group__libccc__sys__io_1ga856b38e0e3361a06a03d10fd5ddad3c7>`(char const* str);
+	:ref:`t_io_error<doxid-group__libccc__sys__io_1ga2468f6097a96e11ea9356256dd5a9cbb>` :ref:`IO_Output_Line<doxid-group__libccc__sys__io_1ga8ae2e736e905519feb2531150b77ddc7>`(char const* str);
+	:ref:`t_io_error<doxid-group__libccc__sys__io_1ga2468f6097a96e11ea9356256dd5a9cbb>` :ref:`IO_Output_Lines<doxid-group__libccc__sys__io_1gaa2e30e079fa01808c7e4b33ebb897634>`(char const** strarr);
+
+	:ref:`t_io_error<doxid-group__libccc__sys__io_1ga2468f6097a96e11ea9356256dd5a9cbb>` :target:`IO_Output_Memory<doxid-group__libccc__sys__io_1gafd13a0157895b911c9b995e9829bc64d>`(
+		t_u8 const* ptr,
+		:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n,
+		t_u8 cols
+		);
+
+	:ref:`t_io_error<doxid-group__libccc__sys__io_1ga2468f6097a96e11ea9356256dd5a9cbb>` :ref:`IO_Output_Format<doxid-group__libccc__sys__io_1ga87b5944b07ef6addafce7f04e40192b0>`(char const* format, ...);
+
+	// macros
+
+	#define :ref:`C_BLUE<doxid-group__libccc__sys__io_1ga2e4dd0b4af70107f36c2aa60b1195f01>`
+	#define :ref:`C_CYAN<doxid-group__libccc__sys__io_1ga8318e037c99fbf82089b68ba5d603cd0>`
+	#define :ref:`C_GREEN<doxid-group__libccc__sys__io_1ga448d973f9ee30250ec93e600f5d89ed1>`
+	#define :ref:`C_MAGENTA<doxid-group__libccc__sys__io_1ga47da0a04e6c59fa061f60d36c10d9561>`
+	#define :ref:`C_RED<doxid-group__libccc__sys__io_1ga7adb9aaa1eed15caecd92e3837581b53>`
+	#define :ref:`C_RESET<doxid-group__libccc__sys__io_1gaf0c29bd95cece6791c62c52e8d2f6335>`
+	#define :ref:`C_YELLOW<doxid-group__libccc__sys__io_1ga7749aa942f59b07d1e951066e0aeca73>`
+	#define :ref:`GNL_END<doxid-group__libccc__sys__io_1gacd416df5a722d247f1ec0c9c298a4fa8>`
+	#define :ref:`GNL_ERROR<doxid-group__libccc__sys__io_1ga9cf0c0bf69e6be78d78202e8699763ad>`
+	#define :ref:`GNL_LINE<doxid-group__libccc__sys__io_1ga66c9f6f1f21b8c3daa908032cc700da6>`
+	#define :ref:`IO_BUFFER_SIZE<doxid-group__libccc__sys__io_1gabe5d3c90538920357e5f36e108e5dcaa>`
+	#define :ref:`IO_ERROR_2BIG<doxid-group__libccc__sys__io_1ga26d2d02b41fd2461803dbd160f774d2f>`
+	#define :ref:`IO_ERROR_ACCES<doxid-group__libccc__sys__io_1ga479b7b6c79d3c46f1a2dbdf0da5f3243>`
+	#define :ref:`IO_ERROR_ADDRINUSE<doxid-group__libccc__sys__io_1gafc59ed321a0d23dc472b47704985c23c>`
+	#define :ref:`IO_ERROR_ADDRNOTAVAIL<doxid-group__libccc__sys__io_1ga0dc302bf00660f8ecebc3f34a3638466>`
+	#define :ref:`IO_ERROR_AFNOSUPPORT<doxid-group__libccc__sys__io_1ga5597055f9e23711c876acdc53430160e>`
+	#define :ref:`IO_ERROR_AGAIN<doxid-group__libccc__sys__io_1gad0813a547a444d0995ba9e1b35f91807>`
+	#define :ref:`IO_ERROR_ALREADY<doxid-group__libccc__sys__io_1gabefaa74f5f5c93776728137b8d6b5d3c>`
+	#define :ref:`IO_ERROR_BADE<doxid-group__libccc__sys__io_1ga10bc6e9922aea050bdd7a67fb8360598>`
+	#define :ref:`IO_ERROR_BADF<doxid-group__libccc__sys__io_1gaa2b0b3839debf7c4c907c8c00d55c6d8>`
+	#define :ref:`IO_ERROR_BADFD<doxid-group__libccc__sys__io_1ga5a6e8ed90a2e36b24f3995904ddddf58>`
+	#define :ref:`IO_ERROR_BADMSG<doxid-group__libccc__sys__io_1ga5065121bc3f6b01aca8bf3fa5fd1b0d1>`
+	#define :ref:`IO_ERROR_BADR<doxid-group__libccc__sys__io_1ga5b3f76d0a1ab8089f1045b12b50afb7f>`
+	#define :ref:`IO_ERROR_BADRQC<doxid-group__libccc__sys__io_1ga5e5a46d973c7b9f326d1f95c40a6d951>`
+	#define :ref:`IO_ERROR_BADSLT<doxid-group__libccc__sys__io_1ga3d180a690281869183651c8a422ca673>`
+	#define :ref:`IO_ERROR_BUSY<doxid-group__libccc__sys__io_1gae047e977c88a87c42a72ffbdb3c7afe6>`
+	#define :ref:`IO_ERROR_CANCELED<doxid-group__libccc__sys__io_1ga979ad275f4d64321a742e364905db1c0>`
+	#define :ref:`IO_ERROR_CHILD<doxid-group__libccc__sys__io_1gaf10f6dc5b4525beacdb4079ad06ee208>`
+	#define :ref:`IO_ERROR_CHRNG<doxid-group__libccc__sys__io_1ga84ed0f5318f60f8b8b16b68ede15588d>`
+	#define :ref:`IO_ERROR_COMM<doxid-group__libccc__sys__io_1ga526246c6e1a204ed8a9a61a7e1342cb2>`
+	#define :ref:`IO_ERROR_CONNABORTED<doxid-group__libccc__sys__io_1ga1c0d9d8926fc176772400236e1fefcdd>`
+	#define :ref:`IO_ERROR_CONNREFUSED<doxid-group__libccc__sys__io_1gabd84660452acd15171c9421fd2fee3d6>`
+	#define :ref:`IO_ERROR_CONNRESET<doxid-group__libccc__sys__io_1gaf8a6c708f93bae925677093f9e356627>`
+	#define :ref:`IO_ERROR_DEADLK<doxid-group__libccc__sys__io_1gace5cc1f4e5edd4de66b93343ddc7770a>`
+	#define :ref:`IO_ERROR_DEADLOCK<doxid-group__libccc__sys__io_1ga410531ccb558affb58e0f918dd0b8d13>`
+	#define :ref:`IO_ERROR_DESTADDRREQ<doxid-group__libccc__sys__io_1ga208e99f2bd14092d92767406e32e2a44>`
+	#define :ref:`IO_ERROR_DOM<doxid-group__libccc__sys__io_1ga559e4946e4ac318f940fe761abd5c5e0>`
+	#define :ref:`IO_ERROR_DQUOT<doxid-group__libccc__sys__io_1ga55886561e3bfcee33060e42fd1605727>`
+	#define :ref:`IO_ERROR_EXIST<doxid-group__libccc__sys__io_1ga4cfd7e53201084ee281b092fcc96a0ad>`
+	#define :ref:`IO_ERROR_FAULT<doxid-group__libccc__sys__io_1ga0b0600faa0f58d97e970ed2ce5bc3a3f>`
+	#define :ref:`IO_ERROR_FBIG<doxid-group__libccc__sys__io_1ga80f2bf421b35ef7b92c4a9c76cca94d5>`
+	#define :ref:`IO_ERROR_HOSTDOWN<doxid-group__libccc__sys__io_1gaf51fd369125896fa9ec27e9398aab3a8>`
+	#define :ref:`IO_ERROR_HOSTUNREACH<doxid-group__libccc__sys__io_1ga02862618c778343400f03ff18270cbe8>`
+	#define :ref:`IO_ERROR_HWPOISON<doxid-group__libccc__sys__io_1ga4fbae87819863798b3a9bf884e4044c4>`
+	#define :ref:`IO_ERROR_IDRM<doxid-group__libccc__sys__io_1ga3185c2e12d5012d6a6184efce60b4aab>`
+	#define :ref:`IO_ERROR_ILSEQ<doxid-group__libccc__sys__io_1gad04b464588bfef6f50878850275bae58>`
+	#define :ref:`IO_ERROR_INPROGRESS<doxid-group__libccc__sys__io_1gae4bffe77c83632efd2d63f13ab5c91ec>`
+	#define :ref:`IO_ERROR_INTR<doxid-group__libccc__sys__io_1ga19ec8732b3ae765fc50a099d9d340b42>`
+	#define :ref:`IO_ERROR_INVAL<doxid-group__libccc__sys__io_1ga02a3a686124522f54a489b67491751ca>`
+	#define :ref:`IO_ERROR_IO<doxid-group__libccc__sys__io_1gaa8f5ac6bffe455de822aed466de8b820>`
+	#define :ref:`IO_ERROR_ISCONN<doxid-group__libccc__sys__io_1gab944755b6505591d17ff8bd046b6d3c2>`
+	#define :ref:`IO_ERROR_ISDIR<doxid-group__libccc__sys__io_1gabfdb7b5ea1fbc35b99f9bce895d4788b>`
+	#define :ref:`IO_ERROR_ISNAM<doxid-group__libccc__sys__io_1gadc1844688b58c48ab7e49bad05b3a117>`
+	#define :ref:`IO_ERROR_KEYEXPIRED<doxid-group__libccc__sys__io_1gadcb3ae341d8376ca27f2ec3dbd627410>`
+	#define :ref:`IO_ERROR_KEYREJECTED<doxid-group__libccc__sys__io_1ga9be46c73b24df98a80d93557a43656a1>`
+	#define :ref:`IO_ERROR_KEYREVOKED<doxid-group__libccc__sys__io_1ga63a63dc2acaa2be889e068d6bcf33987>`
+	#define :ref:`IO_ERROR_L2HLT<doxid-group__libccc__sys__io_1ga05e39495fb451e7a24ec8b737348e8cd>`
+	#define :ref:`IO_ERROR_L2NSYNC<doxid-group__libccc__sys__io_1gae5344b129165559934eb3782e8351397>`
+	#define :ref:`IO_ERROR_L3HLT<doxid-group__libccc__sys__io_1ga5e7d88833aca45ba4f27f297e26dff47>`
+	#define :ref:`IO_ERROR_L3RST<doxid-group__libccc__sys__io_1gaef6f5072161a90479ac9e89df7694396>`
+	#define :ref:`IO_ERROR_LIBACC<doxid-group__libccc__sys__io_1gaa2b9ff26dc6b90ff8c9db82a1e0efdc5>`
+	#define :ref:`IO_ERROR_LIBBAD<doxid-group__libccc__sys__io_1gabcbbe9b6353e5ed14ba8111b3d74d50e>`
+	#define :ref:`IO_ERROR_LIBEXEC<doxid-group__libccc__sys__io_1ga8b1d8af404c32bb88514f924ea5dc246>`
+	#define :ref:`IO_ERROR_LIBMAX<doxid-group__libccc__sys__io_1ga9e15278f0619addbf1fa9c46b83aeb5b>`
+	#define :ref:`IO_ERROR_LIBSCN<doxid-group__libccc__sys__io_1ga302ace6bbff07a9593ab21f70c94e27b>`
+	#define :ref:`IO_ERROR_LNRANGE<doxid-group__libccc__sys__io_1ga368301e4c856b7f86b858b3db95ffbdb>`
+	#define :ref:`IO_ERROR_LOOP<doxid-group__libccc__sys__io_1gac90f22ebc94d77655bfd16413743e6fd>`
+	#define :ref:`IO_ERROR_MEDIUMTYPE<doxid-group__libccc__sys__io_1gaa6e4faead54f1018c7ef8d663428c15a>`
+	#define :ref:`IO_ERROR_MFILE<doxid-group__libccc__sys__io_1gab4c76a2593f1df42e1f62efc16ad9776>`
+	#define :ref:`IO_ERROR_MLINK<doxid-group__libccc__sys__io_1ga9d3098d2ad7814bc3a7be125f8326f02>`
+	#define :ref:`IO_ERROR_MSGSIZE<doxid-group__libccc__sys__io_1gad9acf3024474e2f107a0742c28f1e754>`
+	#define :ref:`IO_ERROR_MULTIHOP<doxid-group__libccc__sys__io_1gadde59150940262e34536b6be1988bc50>`
+	#define :ref:`IO_ERROR_NAMETOOLONG<doxid-group__libccc__sys__io_1gaa01d204e1cb40d222473e4c0d552818e>`
+	#define :ref:`IO_ERROR_NETDOWN<doxid-group__libccc__sys__io_1ga7cbacbca7a4b49c9ec857d7aa7b1a6a5>`
+	#define :ref:`IO_ERROR_NETRESET<doxid-group__libccc__sys__io_1gabea30f0fe55e89f8b4115fab317d6d6a>`
+	#define :ref:`IO_ERROR_NETUNREACH<doxid-group__libccc__sys__io_1ga04388324387f0126b43217a1bf276fa3>`
+	#define :ref:`IO_ERROR_NFILE<doxid-group__libccc__sys__io_1gaa5ceb72282f9b2d5a31df0a339f5d3cd>`
+	#define :ref:`IO_ERROR_NOANO<doxid-group__libccc__sys__io_1gaa06f9622abe8955f37627ccabba0cd8f>`
+	#define :ref:`IO_ERROR_NOBUFS<doxid-group__libccc__sys__io_1ga6341162ed89395f4567702fb99974257>`
+	#define :ref:`IO_ERROR_NODATA<doxid-group__libccc__sys__io_1ga0fca936f6ef739c6dc2adeda09898055>`
+	#define :ref:`IO_ERROR_NODEV<doxid-group__libccc__sys__io_1ga51aac344eb49bf259c3a84b8ee87c836>`
+	#define :ref:`IO_ERROR_NOENT<doxid-group__libccc__sys__io_1gade4b28b8e219d93ecc75fedbb5d183fb>`
+	#define :ref:`IO_ERROR_NOEXEC<doxid-group__libccc__sys__io_1ga80b9d8c485dd056acc209754dd2e2f26>`
+	#define :ref:`IO_ERROR_NOKEY<doxid-group__libccc__sys__io_1ga7acb9396b9528bfed52940567a5d1283>`
+	#define :ref:`IO_ERROR_NOLCK<doxid-group__libccc__sys__io_1ga619be432256caa5e8dd39395834515a0>`
+	#define :ref:`IO_ERROR_NOLINK<doxid-group__libccc__sys__io_1gaf7c35b4a6af701a2d0c5ad84515fefb7>`
+	#define :ref:`IO_ERROR_NOMEDIUM<doxid-group__libccc__sys__io_1gaed1bd57e5c09890c45297dcd602f81a3>`
+	#define :ref:`IO_ERROR_NOMEM<doxid-group__libccc__sys__io_1ga0a4d2e6e9ba8abcdcbc6e89b20c12d94>`
+	#define :ref:`IO_ERROR_NOMSG<doxid-group__libccc__sys__io_1gaecf9f786d3ac7a2a3dac5c53fac56fef>`
+	#define :ref:`IO_ERROR_NONET<doxid-group__libccc__sys__io_1gae639f37c71c5e8c52998bac46bd11689>`
+	#define :ref:`IO_ERROR_NOPKG<doxid-group__libccc__sys__io_1ga1afa71e86f2d27a2c184e8e36712513d>`
+	#define :ref:`IO_ERROR_NOPROTOOPT<doxid-group__libccc__sys__io_1gad18cfdb737e0ebdd269df44477182ba6>`
+	#define :ref:`IO_ERROR_NOSPC<doxid-group__libccc__sys__io_1ga23f6ca0e91d1e2ac29246bc6683bfac4>`
+	#define :ref:`IO_ERROR_NOSR<doxid-group__libccc__sys__io_1ga67258b660cbf6e9ca27c56259a86c4f0>`
+	#define :ref:`IO_ERROR_NOSTR<doxid-group__libccc__sys__io_1ga04a50e25ec79dee2ccfeb54ef886168b>`
+	#define :ref:`IO_ERROR_NOSYS<doxid-group__libccc__sys__io_1gaa9015127011cffeba6f6e21074b85d7a>`
+	#define :ref:`IO_ERROR_NOTBLK<doxid-group__libccc__sys__io_1gae772d878203a1178822d3fd99d9f53c5>`
+	#define :ref:`IO_ERROR_NOTCONN<doxid-group__libccc__sys__io_1gaacd39a1c8305e87d87d55f07330c2b78>`
+	#define :ref:`IO_ERROR_NOTDIR<doxid-group__libccc__sys__io_1gadf75e30dd9b57ede0392041e1b569310>`
+	#define :ref:`IO_ERROR_NOTEMPTY<doxid-group__libccc__sys__io_1ga45108c2c579373bccbaf90f2fd1884b0>`
+	#define :ref:`IO_ERROR_NOTRECOVERABLE<doxid-group__libccc__sys__io_1ga65f584b38c4f6dc451c75dc707c0c132>`
+	#define :ref:`IO_ERROR_NOTSOCK<doxid-group__libccc__sys__io_1ga65ee5c1281627acdf9d27a16da22b9ad>`
+	#define :ref:`IO_ERROR_NOTSUP<doxid-group__libccc__sys__io_1ga91a260addeecaf845358254f8adf1fea>`
+	#define :ref:`IO_ERROR_NOTTY<doxid-group__libccc__sys__io_1ga030d1b9021f9d892cb3ddf8ae8878972>`
+	#define :ref:`IO_ERROR_NOTUNIQ<doxid-group__libccc__sys__io_1gab11e371a9fe27e9b7e523c84b837b34e>`
+	#define :ref:`IO_ERROR_NXIO<doxid-group__libccc__sys__io_1ga8db8a245f3a6fa6e564da7f0220cf7c1>`
+	#define :ref:`IO_ERROR_OPNOTSUPP<doxid-group__libccc__sys__io_1ga12cc123e9ee9e99bb339c2a523a31192>`
+	#define :ref:`IO_ERROR_OVERFLOW<doxid-group__libccc__sys__io_1gaa987c33fa6c47210322355789b4ca63d>`
+	#define :ref:`IO_ERROR_OWNERDEAD<doxid-group__libccc__sys__io_1ga5b8820473c251656a19148bd9a5a60dc>`
+	#define :ref:`IO_ERROR_PERM<doxid-group__libccc__sys__io_1ga8ed6f8bba6a4e609de4765021afe4dbe>`
+	#define :ref:`IO_ERROR_PFNOSUPPORT<doxid-group__libccc__sys__io_1ga24e029da8395b395cf8ed4b615d6ed0d>`
+	#define :ref:`IO_ERROR_PIPE<doxid-group__libccc__sys__io_1ga13c68965d04e3bc4a5c6c729ee0aec85>`
+	#define :ref:`IO_ERROR_PROTO<doxid-group__libccc__sys__io_1gaa6c19028d271dd9da5a2359ecf53ab2b>`
+	#define :ref:`IO_ERROR_PROTONOSUPPORT<doxid-group__libccc__sys__io_1ga2b30b5960197de13111090698a9c7604>`
+	#define :ref:`IO_ERROR_PROTOTYPE<doxid-group__libccc__sys__io_1ga46ea7dfca9d7227db1026291b1219b26>`
+	#define :ref:`IO_ERROR_RANGE<doxid-group__libccc__sys__io_1ga12f23a32f96d78b0e2860d183fd366b7>`
+	#define :ref:`IO_ERROR_REMCHG<doxid-group__libccc__sys__io_1ga688974c1a281f4a9f0c3040835941021>`
+	#define :ref:`IO_ERROR_REMOTE<doxid-group__libccc__sys__io_1ga52c6f765d250ec4f684eb64f51af0867>`
+	#define :ref:`IO_ERROR_REMOTEIO<doxid-group__libccc__sys__io_1gab50e64946d3380eea558ebe1867b45d6>`
+	#define :ref:`IO_ERROR_RESTART<doxid-group__libccc__sys__io_1ga3ed351383c72bf90f3220db0f0aeee3b>`
+	#define :ref:`IO_ERROR_RFKILL<doxid-group__libccc__sys__io_1ga936b6596bb2444f7fa18f4d7f9b7d4ec>`
+	#define :ref:`IO_ERROR_ROFS<doxid-group__libccc__sys__io_1gad2f7ab41b9aa0afa9251827d7f3b01e3>`
+	#define :ref:`IO_ERROR_SHUTDOWN<doxid-group__libccc__sys__io_1gacc6dba6df08e2eb6d064ac1eec06819c>`
+	#define :ref:`IO_ERROR_SOCKTNOSUPPORT<doxid-group__libccc__sys__io_1ga61654a10622011be27ae5aab30b9a202>`
+	#define :ref:`IO_ERROR_SPIPE<doxid-group__libccc__sys__io_1ga2d3759f68a81143979ecc035f62eec71>`
+	#define :ref:`IO_ERROR_SRCH<doxid-group__libccc__sys__io_1ga2f1c563c1a5c26e800c0aedac455b367>`
+	#define :ref:`IO_ERROR_STALE<doxid-group__libccc__sys__io_1ga4c4c580b000edc20289d8c13081f6ef4>`
+	#define :ref:`IO_ERROR_STRPIPE<doxid-group__libccc__sys__io_1gaa11b834cbc43b5763118bc307fe760b2>`
+	#define :ref:`IO_ERROR_TIME<doxid-group__libccc__sys__io_1ga5970a734c2aa8b60e0f611bebbc6536a>`
+	#define :ref:`IO_ERROR_TIMEDOUT<doxid-group__libccc__sys__io_1ga6d4d4c0ff3f33a72e0e0b982d56a9da6>`
+	#define :ref:`IO_ERROR_TOOMANYREFS<doxid-group__libccc__sys__io_1ga060d18893c629c28524f2f261b40538b>`
+	#define :ref:`IO_ERROR_TXTBSY<doxid-group__libccc__sys__io_1ga8738eb07678b54ab416daabd030ba207>`
+	#define :ref:`IO_ERROR_UCLEAN<doxid-group__libccc__sys__io_1ga6f1a2d8e77dce58c41bd65c41f51e997>`
+	#define :ref:`IO_ERROR_UNATCH<doxid-group__libccc__sys__io_1ga877546ec7bd12367ae78889459b18576>`
+	#define :ref:`IO_ERROR_USERS<doxid-group__libccc__sys__io_1ga3c24d995bd87f1ae80e84d817ac5f9ff>`
+	#define :ref:`IO_ERROR_WOULDBLOCK<doxid-group__libccc__sys__io_1ga5a9a62483b0efd031136fd9f0d3601cd>`
+	#define :ref:`IO_ERROR_XDEV<doxid-group__libccc__sys__io_1ga29c98f07755d12b291eb642f690567d1>`
+	#define :ref:`IO_ERROR_XFULL<doxid-group__libccc__sys__io_1ga3e3e64c495ba862ec916accc97f316a3>`
+	#define :target:`IO_File_ChangeMode<doxid-group__libccc__sys__io_1ga04dc7b6b903e16a6f50b6c701e34e1f1>`
+	#define :target:`IO_File_Close<doxid-group__libccc__sys__io_1gabb6848c1ebb82ae805d85b6e681d7e18>`
+	#define :target:`IO_File_IsTerminal<doxid-group__libccc__sys__io_1gab0b9e2457dee8e04131b969a75eebf7c>`
+	#define :target:`IO_File_Open<doxid-group__libccc__sys__io_1ga5c2a5542f6f4ae41f875014d6092b29b>`
+	#define :target:`IO_GetErrorMessage<doxid-group__libccc__sys__io_1ga625fa85530efeaa27d6e716379a1fba7>`
+	#define :ref:`MODE_GROUP_R<doxid-group__libccc__sys__io_1ga05e8d90ccf3e23dfb05970c5ae504182>`
+	#define :ref:`MODE_GROUP_RWX<doxid-group__libccc__sys__io_1gad4f944078ba076c7871e6df85791af92>`
+	#define :ref:`MODE_GROUP_W<doxid-group__libccc__sys__io_1ga1ca2e74cdabfa520df4e2694a7cc8ba1>`
+	#define :ref:`MODE_GROUP_X<doxid-group__libccc__sys__io_1ga5162289005e2862cc3e6368cd0184a68>`
+	#define :ref:`MODE_OTHER_R<doxid-group__libccc__sys__io_1ga67234af6cfabdcd6c141fdee1fef7f45>`
+	#define :ref:`MODE_OTHER_RWX<doxid-group__libccc__sys__io_1gab87cfb6e62cf97d40d0552640a9d5ec3>`
+	#define :ref:`MODE_OTHER_W<doxid-group__libccc__sys__io_1ga92e5594bda7e343b255aab4545254f1a>`
+	#define :ref:`MODE_OTHER_X<doxid-group__libccc__sys__io_1ga2598e6adcf92003675b657d619c193bb>`
+	#define :ref:`MODE_USER_R<doxid-group__libccc__sys__io_1ga4e3df7b2e3df34dcd3fef7065450b073>`
+	#define :ref:`MODE_USER_RWX<doxid-group__libccc__sys__io_1ga50d52a8d65ece23e8800537c0637919a>`
+	#define :ref:`MODE_USER_W<doxid-group__libccc__sys__io_1gabde9d48b1166e65098755ae6c75f9c3e>`
+	#define :ref:`MODE_USER_X<doxid-group__libccc__sys__io_1ga0ca54a02c6c6d3d75244bd8fdb533535>`
+	#define :ref:`OPEN_ACCESSMODE<doxid-group__libccc__sys__io_1ga671d35807f6214e373d6c7a0aadd5cb8>`
+	#define :ref:`OPEN_APPEND<doxid-group__libccc__sys__io_1ga441566601cc7ef51cd5db5a78f09392e>`
+	#define :ref:`OPEN_CLEARFILE<doxid-group__libccc__sys__io_1ga317423400adbdee5f2f9df1e6e810309>`
+	#define :ref:`OPEN_CREATE<doxid-group__libccc__sys__io_1ga8005523a50d964abe3f1bf768a4ea48c>`
+	#define :ref:`OPEN_EXCLUSIVE<doxid-group__libccc__sys__io_1gad0316228219cb40a7b419c731a391341>`
+	#define :ref:`OPEN_READONLY<doxid-group__libccc__sys__io_1ga539ab42161cd89c863e88d26c5321cd6>`
+	#define :ref:`OPEN_READWRITE<doxid-group__libccc__sys__io_1gac9a9feabf3a1ac151c0ffd29753a95fe>`
+	#define :ref:`OPEN_WRITEONLY<doxid-group__libccc__sys__io_1gaae689ff0d3c80212647035624b64072a>`
+	#define :ref:`STDERR<doxid-group__libccc__sys__io_1ga3a540e3eef339eec06aff31c4ba1eb25>`
+	#define :ref:`STDIN<doxid-group__libccc__sys__io_1gac00bfb46347d26fdc58568fe1ab5fa5b>`
+	#define :ref:`STDOUT<doxid-group__libccc__sys__io_1ga8875037d0772a4fc34516f1e03d7e238>`
+	#define :target:`c_chmod<doxid-group__libccc__sys__io_1gac9476d3a52b3bf24e0bcf6824cdeabb8>`
+	#define :target:`c_close<doxid-group__libccc__sys__io_1ga5f696cd36c17e157bb8c76130891f42a>`
+	#define :target:`c_dprintf<doxid-group__libccc__sys__io_1gaf2b46df5c00e02465b55a611602695cd>`
+	#define :target:`c_getnextline<doxid-group__libccc__sys__io_1ga7929c81e1c7c1f872d05aa20b66509fe>`
+	#define :target:`c_isatty<doxid-group__libccc__sys__io_1ga24e2fbb54d481653d4bbd166f2bb712f>`
+	#define :target:`c_open<doxid-group__libccc__sys__io_1gaf0856f3f68da7c237acd460f094aa342>`
+	#define :target:`c_output_char<doxid-group__libccc__sys__io_1ga97d718c49fa047c79c58f22cf08c1f79>`
+	#define :target:`c_output_format<doxid-group__libccc__sys__io_1ga8a57e46adcb940b3573a6933d0a25c48>`
+	#define :target:`c_output_line<doxid-group__libccc__sys__io_1ga17a20455c1ac75633cff3a530abaf0c1>`
+	#define :target:`c_output_lines<doxid-group__libccc__sys__io_1ga5af8655ba09698e8037909d152a434ca>`
+	#define :target:`c_output_memory<doxid-group__libccc__sys__io_1gabe82b146eba33f6e06e135d1f12f6506>`
+	#define :target:`c_output_string<doxid-group__libccc__sys__io_1gaf8087d1bb2b2aaba6926dc09390f593e>`
+	#define :target:`c_printf<doxid-group__libccc__sys__io_1ga7dbe1569a7cc4ff8e523e88d09d71d4d>`
+	#define :target:`c_putchar<doxid-group__libccc__sys__io_1ga664d32267324f772ac02caf9b0c272c9>`
+	#define :target:`c_putline<doxid-group__libccc__sys__io_1ga845c37596c975a6b490d5345c9922451>`
+	#define :ref:`c_putlines<doxid-group__libccc__sys__io_1ga77b06cd897c5e6c61cfe05ab0f208304>`
+	#define :target:`c_putmem<doxid-group__libccc__sys__io_1ga7339a6eb1050e204f8f74c9b3c5b8b5d>`
+	#define :target:`c_putstr<doxid-group__libccc__sys__io_1ga2189f604e296af8ae7a41553065fdca1>`
+	#define :target:`c_readfile<doxid-group__libccc__sys__io_1ga2191263bd828c01b3d7b109fd1133034>`
+	#define :target:`c_readlines<doxid-group__libccc__sys__io_1gab8b572236d07d3b3a275e68c9b38b80d>`
+	#define :target:`c_readnextline<doxid-group__libccc__sys__io_1ga8d352c1d7bafe99a1b3e6f40cea9773d>`
+	#define :target:`c_strerror<doxid-group__libccc__sys__io_1ga7eaf62f4ec1abea4d11f9f1d4aab6ae9>`
+	#define :target:`c_strerror_r<doxid-group__libccc__sys__io_1ga865b297a009d3b300e13925f3167974a>`
+	#define :target:`c_write_char<doxid-group__libccc__sys__io_1ga48cecf764c5e69c9062bc819025bb377>`
+	#define :target:`c_write_format<doxid-group__libccc__sys__io_1gabbe8fa430b87abfd173c733e9a55f139>`
+	#define :target:`c_write_line<doxid-group__libccc__sys__io_1ga50235af184dea495d80bdad9a25c9897>`
+	#define :ref:`c_write_lines<doxid-group__libccc__sys__io_1ga8dd1c7c5c1f72e98e52f225a6b475ab9>`
+	#define :target:`c_write_memory<doxid-group__libccc__sys__io_1ga4c3c347b645fe73e5a00f4e40831ec4a>`
+	#define :target:`c_write_string<doxid-group__libccc__sys__io_1ga006daa452a638f1f6c000380c4d44094>`
+
+.. _details-group__libccc__sys__io:
+
+Detailed Documentation
+~~~~~~~~~~~~~~~~~~~~~~
+
+This header defines all the functions for OS-level input/output, read/write.
+
+Typedefs
+--------
+
+.. index:: pair: typedef; t_fd
+.. _doxid-group__libccc__sys__io_1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef int t_fd
+
+File descriptor integer type for libccc/sys/io functions.
+
+Define a type for file descriptors (which is usually the default machine 'int')
+
+.. index:: pair: typedef; t_io_error
+.. _doxid-group__libccc__sys__io_1ga2468f6097a96e11ea9356256dd5a9cbb:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef int t_io_error
+
+This type represents an error code for a system call IO function (ie: a value for the 'errno' global variable)
+
+.. index:: pair: typedef; t_io_mode
+.. _doxid-group__libccc__sys__io_1ga1de405b2724d2ab9e24318716e07511e:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef unsigned int t_io_mode
+
+This type represents a file access permissions bitflag value (like you would use with chmod)
+
+.. index:: pair: typedef; t_io_open
+.. _doxid-group__libccc__sys__io_1ga529de828c63062e6b522d48411c11219:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef unsigned int t_io_open
+
+This type represents the bitflag value which handles options for the open() function.
+
+Global Functions
+----------------
+
+.. index:: pair: function; IO_Open
+.. _doxid-group__libccc__sys__io_1ga0e5658c988abe6f1a2cd1f2e8db2c45b:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_fd<doxid-group__libccc__sys__io_1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f>` IO_Open(char const* filepath, :ref:`t_io_open<doxid-group__libccc__sys__io_1ga529de828c63062e6b522d48411c11219>` flags, :ref:`t_io_mode<doxid-group__libccc__sys__io_1ga1de405b2724d2ab9e24318716e07511e>` mode)
+
+Opens the file at 'filepath', with the given file open 'flags', and the given file access 'mode' permissions.
+
+SYSCALL wrapper: int open(const char \*pathname, int flags, mode_t mode);
+
+
+
+.. rubric:: Parameters:
+
+.. list-table::
+	:widths: 20 80
+
+	*
+		- filepath
+
+		- The path of the file to open
+
+	*
+		- flags
+
+		- The flags with which to open the file (bitflag, can or bitwise OR'd, for example: ``OPEN_READONLY|OPEN_CREATE``)
+
+	*
+		- mode
+
+		- The file access mode (permissions) with which to open the file
+
+
+
+.. rubric:: Returns:
+
+the new file descriptor value for the opened file, or a non-zero error code (ie: an 'errno' value)
+
+.. index:: pair: function; IO_Close
+.. _doxid-group__libccc__sys__io_1ga84def9cdd174530d1adfc572ed508dd7:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_io_error<doxid-group__libccc__sys__io_1ga2468f6097a96e11ea9356256dd5a9cbb>` IO_Close(:ref:`t_fd<doxid-group__libccc__sys__io_1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f>` fd)
+
+Closes the given file descriptor 'fd', so that it no longer refers to any file, and may be reused.
+
+SYSCALL wrapper: int close(int fd);
+
+
+
+.. rubric:: Parameters:
+
+.. list-table::
+	:widths: 20 80
+
+	*
+		- fd
+
+		- The file descriptor to close
+
+
+
+.. rubric:: Returns:
+
+0(OK) on success, or a non-zero error code (ie: an 'errno' value)
+
+.. index:: pair: function; IO_GetError
+.. _doxid-group__libccc__sys__io_1gaa55ba0c27b2c2a3c32bdc30c734e1fb8:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* IO_GetError(int error_num)
+
+Returns the error message (a string literal) corresponding to the given 'errno' error number.
+
+.. index:: pair: function; IO_IsTerminal
+.. _doxid-group__libccc__sys__io_1gafbf2e86ab1f9a29cf5ac772d96aad1f4:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` IO_IsTerminal(:ref:`t_fd<doxid-group__libccc__sys__io_1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f>` fd)
+
+Returns 1(TRUE) if the given file fd corresponds to a terminal/commandline rather than a file.
+
+.. index:: pair: function; IO_ChangeMode
+.. _doxid-group__libccc__sys__io_1gafe190a37e94f983828af8b519d7398fd:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_io_error<doxid-group__libccc__sys__io_1ga2468f6097a96e11ea9356256dd5a9cbb>` IO_ChangeMode(char const* filepath, :ref:`t_io_mode<doxid-group__libccc__sys__io_1ga1de405b2724d2ab9e24318716e07511e>` mode)
+
+Changes the file access mode permissions for the file at 'filepath' to the new value 'mode'.
+
+SYSCALL wrapper: int chmod(const char \*pathname, mode_t mode);
+
+
+
+.. rubric:: Parameters:
+
+.. list-table::
+	:widths: 20 80
+
+	*
+		- filepath
+
+		- The path of the file whose access permissions should change
+
+	*
+		- mode
+
+		- The new file access mode permissions bitflag value to set
+
+
+
+.. rubric:: Returns:
+
+0(OK) on success, or a non-zero error code (ie: an 'errno' value)
+
+.. index:: pair: function; IO_Read_File
+.. _doxid-group__libccc__sys__io_1ga353a481847df1a8130d101e7fbaa8a5d:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_io_error<doxid-group__libccc__sys__io_1ga2468f6097a96e11ea9356256dd5a9cbb>` IO_Read_File(:ref:`t_fd<doxid-group__libccc__sys__io_1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f>` const fd, char** a_file, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` max)
+
+Reads the contents of 'fd' and fill a data buffer with those bytes.
+
+Reads the full contents of the file descriptor 'fd', and puts it into 'a_file'.
+
+
+
+.. rubric:: Parameters:
+
+.. list-table::
+	:widths: 20 80
+
+	*
+		- fd
+
+		- The file descriptor to read data from
+
+	*
+		- a_file
+
+		- The address of the buffer to fill: is allocated and filled with the data
+
+	*
+		- max
+
+		- The maximum amount of bytes to read from 'fd'; if 0, replaced by (t_size)-1
+
+
+
+.. rubric:: Returns:
+
+0(OK) if the stream was read successfully, or a non-zero error code (ie: an 'errno' value)
+
+.. index:: pair: function; IO_Read_Lines
+.. _doxid-group__libccc__sys__io_1ga16564032123850963167d124814d3e36:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_io_error<doxid-group__libccc__sys__io_1ga2468f6097a96e11ea9356256dd5a9cbb>` IO_Read_Lines(:ref:`t_fd<doxid-group__libccc__sys__io_1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f>` const fd, char*** a_strarr)
+
+Reads the contents of 'fd' and makes an array of strings, one for each line.
+
+Reads the contents of the file descriptor 'fd', and puts that into an array of strings, one char pointer for each line (each '\n' newline char). Each '\n' character in the string are replaced by '\0' string terminators.
+
+
+
+.. rubric:: Parameters:
+
+.. list-table::
+	:widths: 20 80
+
+	*
+		- fd
+
+		- The file descriptor to read data from
+
+	*
+		- a_strarr
+
+		- The address of the string array to fill: the top-level top-level pointer array is allocated and filled appropriately.
+
+
+
+.. rubric:: Returns:
+
+0(OK) if the stream was read successfully, or a non-zero error code (ie: an 'errno' value)
+
+.. index:: pair: function; IO_Read_NextLine
+.. _doxid-group__libccc__sys__io_1gaa2cbff7a0b811b61ada60d474f10389b:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	int IO_Read_NextLine(:ref:`t_fd<doxid-group__libccc__sys__io_1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f>` const fd, char** a_line)
+
+Reads the contents of the file descriptor 'fd' line-per-line.
+
+This function will read 'fd' line-per-line as you call it repeatedly. This means that it will allocate and fill a buffer until reading '\n', at which point this buffer is returned via the 'line' char pointer arg. As such, this function will typically be called within a while loop.
+
+
+
+.. rubric:: Parameters:
+
+.. list-table::
+	:widths: 20 80
+
+	*
+		- fd
+
+		- The file descriptor to read data from
+
+	*
+		- a_line
+
+		- The address of the string to allocate and fill with the current line.
+
+
+
+.. rubric:: Returns:
+
++1 (GNL_LINE) if a line of characters was successfully read 0 (GNL_END) if the end of the file was reached -1 (GNL_ERROR) if there's an error
+
+.. index:: pair: function; IO_Write_Char
+.. _doxid-group__libccc__sys__io_1gabb9c05063e5d261438b365507aca68b6:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_io_error<doxid-group__libccc__sys__io_1ga2468f6097a96e11ea9356256dd5a9cbb>` IO_Write_Char(:ref:`t_fd<doxid-group__libccc__sys__io_1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f>` fd, char c)
+
+Writes the given character 'c' to the given file descriptor 'fd'.
+
+.. index:: pair: function; IO_Write_String
+.. _doxid-group__libccc__sys__io_1ga9df9845170ac155e84710f15220c8d55:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_io_error<doxid-group__libccc__sys__io_1ga2468f6097a96e11ea9356256dd5a9cbb>` IO_Write_String(:ref:`t_fd<doxid-group__libccc__sys__io_1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f>` fd, char const* str)
+
+Writes the given string 'str' to the given file descriptor 'fd'.
+
+.. index:: pair: function; IO_Write_Line
+.. _doxid-group__libccc__sys__io_1gac2e9bd89325c5b2e40af643d2a457e60:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_io_error<doxid-group__libccc__sys__io_1ga2468f6097a96e11ea9356256dd5a9cbb>` IO_Write_Line(:ref:`t_fd<doxid-group__libccc__sys__io_1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f>` fd, char const* str)
+
+Writes the given string 'str' to the given file descriptor 'fd', and a newline '
+
+' char at the end.
+
+.. index:: pair: function; IO_Write_Lines
+.. _doxid-group__libccc__sys__io_1ga2ac9a105d816c272151afc8d390c7791:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_io_error<doxid-group__libccc__sys__io_1ga2468f6097a96e11ea9356256dd5a9cbb>` IO_Write_Lines(:ref:`t_fd<doxid-group__libccc__sys__io_1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f>` fd, char const** strarr)
+
+Writes the given string array 'strarr' to the given file descriptor 'fd'.
+
+.. index:: pair: function; IO_Write_Format
+.. _doxid-group__libccc__sys__io_1ga71029519197ad6999a09e053a3627b91:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_io_error<doxid-group__libccc__sys__io_1ga2468f6097a96e11ea9356256dd5a9cbb>` IO_Write_Format(:ref:`t_fd<doxid-group__libccc__sys__io_1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f>` fd, char const* format, ...)
+
+Writes the given formatted string to the standard output - equivalent to 'fprintf()', or rather 'dprintf()'.
+
+.. index:: pair: function; IO_Output_Char
+.. _doxid-group__libccc__sys__io_1gaca9178eee8b6ef4889c7dc8e14e03fdb:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_io_error<doxid-group__libccc__sys__io_1ga2468f6097a96e11ea9356256dd5a9cbb>` IO_Output_Char(char c)
+
+Writes the given char 'c' to the standard output.
+
+.. index:: pair: function; IO_Output_String
+.. _doxid-group__libccc__sys__io_1ga856b38e0e3361a06a03d10fd5ddad3c7:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_io_error<doxid-group__libccc__sys__io_1ga2468f6097a96e11ea9356256dd5a9cbb>` IO_Output_String(char const* str)
+
+Writes the given string 'str' to the standard output.
+
+.. index:: pair: function; IO_Output_Line
+.. _doxid-group__libccc__sys__io_1ga8ae2e736e905519feb2531150b77ddc7:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_io_error<doxid-group__libccc__sys__io_1ga2468f6097a96e11ea9356256dd5a9cbb>` IO_Output_Line(char const* str)
+
+Writes the given string 'str' to the standard output, with a newline '
+
+' character at the end.
+
+.. index:: pair: function; IO_Output_Lines
+.. _doxid-group__libccc__sys__io_1gaa2e30e079fa01808c7e4b33ebb897634:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_io_error<doxid-group__libccc__sys__io_1ga2468f6097a96e11ea9356256dd5a9cbb>` IO_Output_Lines(char const** strarr)
+
+Writes the given string array 'strls' to the standard output.
+
+.. index:: pair: function; IO_Output_Format
+.. _doxid-group__libccc__sys__io_1ga87b5944b07ef6addafce7f04e40192b0:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_io_error<doxid-group__libccc__sys__io_1ga2468f6097a96e11ea9356256dd5a9cbb>` IO_Output_Format(char const* format, ...)
+
+Writes the given formatted string to the standard output - equivalent to 'printf()'.
+
+Macros
+------
+
+.. index:: pair: define; C_BLUE
+.. _doxid-group__libccc__sys__io_1ga2e4dd0b4af70107f36c2aa60b1195f01:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define C_BLUE
+
+The string sequence to color the terminal text output blue.
+
+.. index:: pair: define; C_CYAN
+.. _doxid-group__libccc__sys__io_1ga8318e037c99fbf82089b68ba5d603cd0:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define C_CYAN
+
+The string sequence to color the terminal text output cyan.
+
+.. index:: pair: define; C_GREEN
+.. _doxid-group__libccc__sys__io_1ga448d973f9ee30250ec93e600f5d89ed1:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define C_GREEN
+
+The string sequence to color the terminal text output green.
+
+.. index:: pair: define; C_MAGENTA
+.. _doxid-group__libccc__sys__io_1ga47da0a04e6c59fa061f60d36c10d9561:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define C_MAGENTA
+
+The string sequence to color the terminal text output magenta.
+
+.. index:: pair: define; C_RED
+.. _doxid-group__libccc__sys__io_1ga7adb9aaa1eed15caecd92e3837581b53:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define C_RED
+
+The string sequence to color the terminal text output red.
+
+.. index:: pair: define; C_RESET
+.. _doxid-group__libccc__sys__io_1gaf0c29bd95cece6791c62c52e8d2f6335:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define C_RESET
+
+The string sequence to reset the terminal text output to its default color.
+
+.. index:: pair: define; C_YELLOW
+.. _doxid-group__libccc__sys__io_1ga7749aa942f59b07d1e951066e0aeca73:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define C_YELLOW
+
+The string sequence to color the terminal text output yellow.
+
+.. index:: pair: define; GNL_END
+.. _doxid-group__libccc__sys__io_1gacd416df5a722d247f1ec0c9c298a4fa8:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define GNL_END
+
+Return value for c_getnextline: indicates successful line read, end of file reached.
+
+.. index:: pair: define; GNL_ERROR
+.. _doxid-group__libccc__sys__io_1ga9cf0c0bf69e6be78d78202e8699763ad:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define GNL_ERROR
+
+Return value for c_getnextline: indicates a read error occurred.
+
+.. index:: pair: define; GNL_LINE
+.. _doxid-group__libccc__sys__io_1ga66c9f6f1f21b8c3daa908032cc700da6:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define GNL_LINE
+
+Return value for c_getnextline: indicates succesful line read, more to follow.
+
+.. index:: pair: define; IO_BUFFER_SIZE
+.. _doxid-group__libccc__sys__io_1gabe5d3c90538920357e5f36e108e5dcaa:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_BUFFER_SIZE
+
+Arbitrary buffer size for libccc/sys/io functions.
+
+This is the arbitrary buffer size to be used by the reading functions. Raising this amount will lower the amount of function calls made to the 'read' function from unistd.h, resulting in possible speed improvments, depending on the amount of files to read, and their filesizes. It is also recommended to have this number be a power of 2, as it can be occasionally faster to manage arrays of such sizes on certain machines.
+
+.. index:: pair: define; IO_ERROR_2BIG
+.. _doxid-group__libccc__sys__io_1ga26d2d02b41fd2461803dbd160f774d2f:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_2BIG
+
+Argument list too long (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_ACCES
+.. _doxid-group__libccc__sys__io_1ga479b7b6c79d3c46f1a2dbdf0da5f3243:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_ACCES
+
+Permission denied (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_ADDRINUSE
+.. _doxid-group__libccc__sys__io_1gafc59ed321a0d23dc472b47704985c23c:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_ADDRINUSE
+
+Address already in use (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_ADDRNOTAVAIL
+.. _doxid-group__libccc__sys__io_1ga0dc302bf00660f8ecebc3f34a3638466:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_ADDRNOTAVAIL
+
+Address not available (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_AFNOSUPPORT
+.. _doxid-group__libccc__sys__io_1ga5597055f9e23711c876acdc53430160e:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_AFNOSUPPORT
+
+Address family not supported (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_AGAIN
+.. _doxid-group__libccc__sys__io_1gad0813a547a444d0995ba9e1b35f91807:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_AGAIN
+
+Resource temporarily unavailable (may be the same value as EWOULDBLOCK) (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_ALREADY
+.. _doxid-group__libccc__sys__io_1gabefaa74f5f5c93776728137b8d6b5d3c:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_ALREADY
+
+Connection already in progress (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_BADE
+.. _doxid-group__libccc__sys__io_1ga10bc6e9922aea050bdd7a67fb8360598:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_BADE
+
+Invalid exchange.
+
+.. index:: pair: define; IO_ERROR_BADF
+.. _doxid-group__libccc__sys__io_1gaa2b0b3839debf7c4c907c8c00d55c6d8:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_BADF
+
+Bad file descriptor (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_BADFD
+.. _doxid-group__libccc__sys__io_1ga5a6e8ed90a2e36b24f3995904ddddf58:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_BADFD
+
+File descriptor in bad state.
+
+.. index:: pair: define; IO_ERROR_BADMSG
+.. _doxid-group__libccc__sys__io_1ga5065121bc3f6b01aca8bf3fa5fd1b0d1:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_BADMSG
+
+Bad message (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_BADR
+.. _doxid-group__libccc__sys__io_1ga5b3f76d0a1ab8089f1045b12b50afb7f:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_BADR
+
+Invalid request descriptor.
+
+.. index:: pair: define; IO_ERROR_BADRQC
+.. _doxid-group__libccc__sys__io_1ga5e5a46d973c7b9f326d1f95c40a6d951:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_BADRQC
+
+Invalid request code.
+
+.. index:: pair: define; IO_ERROR_BADSLT
+.. _doxid-group__libccc__sys__io_1ga3d180a690281869183651c8a422ca673:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_BADSLT
+
+Invalid slot.
+
+.. index:: pair: define; IO_ERROR_BUSY
+.. _doxid-group__libccc__sys__io_1gae047e977c88a87c42a72ffbdb3c7afe6:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_BUSY
+
+Device or resource busy (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_CANCELED
+.. _doxid-group__libccc__sys__io_1ga979ad275f4d64321a742e364905db1c0:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_CANCELED
+
+Operation canceled (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_CHILD
+.. _doxid-group__libccc__sys__io_1gaf10f6dc5b4525beacdb4079ad06ee208:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_CHILD
+
+No child processes (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_CHRNG
+.. _doxid-group__libccc__sys__io_1ga84ed0f5318f60f8b8b16b68ede15588d:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_CHRNG
+
+Channel number out of range.
+
+.. index:: pair: define; IO_ERROR_COMM
+.. _doxid-group__libccc__sys__io_1ga526246c6e1a204ed8a9a61a7e1342cb2:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_COMM
+
+Communication error on send.
+
+.. index:: pair: define; IO_ERROR_CONNABORTED
+.. _doxid-group__libccc__sys__io_1ga1c0d9d8926fc176772400236e1fefcdd:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_CONNABORTED
+
+Connection aborted (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_CONNREFUSED
+.. _doxid-group__libccc__sys__io_1gabd84660452acd15171c9421fd2fee3d6:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_CONNREFUSED
+
+Connection refused (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_CONNRESET
+.. _doxid-group__libccc__sys__io_1gaf8a6c708f93bae925677093f9e356627:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_CONNRESET
+
+Connection reset (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_DEADLK
+.. _doxid-group__libccc__sys__io_1gace5cc1f4e5edd4de66b93343ddc7770a:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_DEADLK
+
+Resource deadlock avoided (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_DEADLOCK
+.. _doxid-group__libccc__sys__io_1ga410531ccb558affb58e0f918dd0b8d13:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_DEADLOCK
+
+On most architectures, a synonym for EDEADLK. On some architectures (e.g., Linux MIPS, PowerPC, SPARC), it is a separate error code "File locking deadlock error".
+
+.. index:: pair: define; IO_ERROR_DESTADDRREQ
+.. _doxid-group__libccc__sys__io_1ga208e99f2bd14092d92767406e32e2a44:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_DESTADDRREQ
+
+Destination address required (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_DOM
+.. _doxid-group__libccc__sys__io_1ga559e4946e4ac318f940fe761abd5c5e0:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_DOM
+
+Mathematics argument out of domain of function (POSIX.1, C99).
+
+.. index:: pair: define; IO_ERROR_DQUOT
+.. _doxid-group__libccc__sys__io_1ga55886561e3bfcee33060e42fd1605727:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_DQUOT
+
+Disk quota exceeded (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_EXIST
+.. _doxid-group__libccc__sys__io_1ga4cfd7e53201084ee281b092fcc96a0ad:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_EXIST
+
+File exists (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_FAULT
+.. _doxid-group__libccc__sys__io_1ga0b0600faa0f58d97e970ed2ce5bc3a3f:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_FAULT
+
+Bad address (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_FBIG
+.. _doxid-group__libccc__sys__io_1ga80f2bf421b35ef7b92c4a9c76cca94d5:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_FBIG
+
+File too large (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_HOSTDOWN
+.. _doxid-group__libccc__sys__io_1gaf51fd369125896fa9ec27e9398aab3a8:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_HOSTDOWN
+
+Host is down.
+
+.. index:: pair: define; IO_ERROR_HOSTUNREACH
+.. _doxid-group__libccc__sys__io_1ga02862618c778343400f03ff18270cbe8:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_HOSTUNREACH
+
+Host is unreachable (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_HWPOISON
+.. _doxid-group__libccc__sys__io_1ga4fbae87819863798b3a9bf884e4044c4:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_HWPOISON
+
+Memory page has hardware error.
+
+.. index:: pair: define; IO_ERROR_IDRM
+.. _doxid-group__libccc__sys__io_1ga3185c2e12d5012d6a6184efce60b4aab:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_IDRM
+
+Identifier removed (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_ILSEQ
+.. _doxid-group__libccc__sys__io_1gad04b464588bfef6f50878850275bae58:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_ILSEQ
+
+Invalid or incomplete multibyte or wide character (POSIX.1, C99). The text shown here is the glibc error description; in POSIX.1, this error is described as "Illegal byte sequence".
+
+.. index:: pair: define; IO_ERROR_INPROGRESS
+.. _doxid-group__libccc__sys__io_1gae4bffe77c83632efd2d63f13ab5c91ec:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_INPROGRESS
+
+Operation in progress (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_INTR
+.. _doxid-group__libccc__sys__io_1ga19ec8732b3ae765fc50a099d9d340b42:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_INTR
+
+Interrupted function call (POSIX.1-2001); see signal(7).
+
+.. index:: pair: define; IO_ERROR_INVAL
+.. _doxid-group__libccc__sys__io_1ga02a3a686124522f54a489b67491751ca:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_INVAL
+
+Invalid argument (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_IO
+.. _doxid-group__libccc__sys__io_1gaa8f5ac6bffe455de822aed466de8b820:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_IO
+
+Input/output error (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_ISCONN
+.. _doxid-group__libccc__sys__io_1gab944755b6505591d17ff8bd046b6d3c2:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_ISCONN
+
+Socket is connected (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_ISDIR
+.. _doxid-group__libccc__sys__io_1gabfdb7b5ea1fbc35b99f9bce895d4788b:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_ISDIR
+
+Is a directory (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_ISNAM
+.. _doxid-group__libccc__sys__io_1gadc1844688b58c48ab7e49bad05b3a117:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_ISNAM
+
+Is a named type file.
+
+.. index:: pair: define; IO_ERROR_KEYEXPIRED
+.. _doxid-group__libccc__sys__io_1gadcb3ae341d8376ca27f2ec3dbd627410:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_KEYEXPIRED
+
+Key has expired.
+
+.. index:: pair: define; IO_ERROR_KEYREJECTED
+.. _doxid-group__libccc__sys__io_1ga9be46c73b24df98a80d93557a43656a1:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_KEYREJECTED
+
+Key was rejected by service.
+
+.. index:: pair: define; IO_ERROR_KEYREVOKED
+.. _doxid-group__libccc__sys__io_1ga63a63dc2acaa2be889e068d6bcf33987:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_KEYREVOKED
+
+Key has been revoked.
+
+.. index:: pair: define; IO_ERROR_L2HLT
+.. _doxid-group__libccc__sys__io_1ga05e39495fb451e7a24ec8b737348e8cd:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_L2HLT
+
+Level 2 halted.
+
+.. index:: pair: define; IO_ERROR_L2NSYNC
+.. _doxid-group__libccc__sys__io_1gae5344b129165559934eb3782e8351397:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_L2NSYNC
+
+Level 2 not synchronized.
+
+.. index:: pair: define; IO_ERROR_L3HLT
+.. _doxid-group__libccc__sys__io_1ga5e7d88833aca45ba4f27f297e26dff47:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_L3HLT
+
+Level 3 halted.
+
+.. index:: pair: define; IO_ERROR_L3RST
+.. _doxid-group__libccc__sys__io_1gaef6f5072161a90479ac9e89df7694396:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_L3RST
+
+Level 3 reset.
+
+.. index:: pair: define; IO_ERROR_LIBACC
+.. _doxid-group__libccc__sys__io_1gaa2b9ff26dc6b90ff8c9db82a1e0efdc5:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_LIBACC
+
+Cannot access a needed shared library.
+
+.. index:: pair: define; IO_ERROR_LIBBAD
+.. _doxid-group__libccc__sys__io_1gabcbbe9b6353e5ed14ba8111b3d74d50e:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_LIBBAD
+
+Accessing a corrupted shared library.
+
+.. index:: pair: define; IO_ERROR_LIBEXEC
+.. _doxid-group__libccc__sys__io_1ga8b1d8af404c32bb88514f924ea5dc246:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_LIBEXEC
+
+Cannot exec a shared library directly.
+
+.. index:: pair: define; IO_ERROR_LIBMAX
+.. _doxid-group__libccc__sys__io_1ga9e15278f0619addbf1fa9c46b83aeb5b:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_LIBMAX
+
+Attempting to link in too many shared libraries.
+
+.. index:: pair: define; IO_ERROR_LIBSCN
+.. _doxid-group__libccc__sys__io_1ga302ace6bbff07a9593ab21f70c94e27b:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_LIBSCN
+
+lib section in a.out corrupted
+
+.. index:: pair: define; IO_ERROR_LNRANGE
+.. _doxid-group__libccc__sys__io_1ga368301e4c856b7f86b858b3db95ffbdb:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_LNRANGE
+
+Link number out of range.
+
+.. index:: pair: define; IO_ERROR_LOOP
+.. _doxid-group__libccc__sys__io_1gac90f22ebc94d77655bfd16413743e6fd:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_LOOP
+
+Too many levels of symbolic links (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_MEDIUMTYPE
+.. _doxid-group__libccc__sys__io_1gaa6e4faead54f1018c7ef8d663428c15a:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_MEDIUMTYPE
+
+Wrong medium type.
+
+.. index:: pair: define; IO_ERROR_MFILE
+.. _doxid-group__libccc__sys__io_1gab4c76a2593f1df42e1f62efc16ad9776:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_MFILE
+
+Too many open files (POSIX.1-2001). Commonly caused by exceeding the RLIMIT_NOFILE resource limit described in getrlimit(2). Can also be caused by exceeding the limit specified in /proc/sys/fs/nr_open.
+
+.. index:: pair: define; IO_ERROR_MLINK
+.. _doxid-group__libccc__sys__io_1ga9d3098d2ad7814bc3a7be125f8326f02:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_MLINK
+
+Too many links (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_MSGSIZE
+.. _doxid-group__libccc__sys__io_1gad9acf3024474e2f107a0742c28f1e754:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_MSGSIZE
+
+Message too long (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_MULTIHOP
+.. _doxid-group__libccc__sys__io_1gadde59150940262e34536b6be1988bc50:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_MULTIHOP
+
+Multihop attempted (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_NAMETOOLONG
+.. _doxid-group__libccc__sys__io_1gaa01d204e1cb40d222473e4c0d552818e:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_NAMETOOLONG
+
+Filename too long (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_NETDOWN
+.. _doxid-group__libccc__sys__io_1ga7cbacbca7a4b49c9ec857d7aa7b1a6a5:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_NETDOWN
+
+Network is down (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_NETRESET
+.. _doxid-group__libccc__sys__io_1gabea30f0fe55e89f8b4115fab317d6d6a:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_NETRESET
+
+Connection aborted by network (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_NETUNREACH
+.. _doxid-group__libccc__sys__io_1ga04388324387f0126b43217a1bf276fa3:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_NETUNREACH
+
+Network unreachable (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_NFILE
+.. _doxid-group__libccc__sys__io_1gaa5ceb72282f9b2d5a31df0a339f5d3cd:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_NFILE
+
+Too many open files in system (POSIX.1-2001). On Linux, this is probably a result of encountering the /proc/sys/fs/file-max limit (see proc(5)).
+
+.. index:: pair: define; IO_ERROR_NOANO
+.. _doxid-group__libccc__sys__io_1gaa06f9622abe8955f37627ccabba0cd8f:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_NOANO
+
+No anode.
+
+.. index:: pair: define; IO_ERROR_NOBUFS
+.. _doxid-group__libccc__sys__io_1ga6341162ed89395f4567702fb99974257:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_NOBUFS
+
+No buffer space available (POSIX.1 (XSI STREAMS option)).
+
+.. index:: pair: define; IO_ERROR_NODATA
+.. _doxid-group__libccc__sys__io_1ga0fca936f6ef739c6dc2adeda09898055:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_NODATA
+
+No message is available on the STREAM head read queue (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_NODEV
+.. _doxid-group__libccc__sys__io_1ga51aac344eb49bf259c3a84b8ee87c836:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_NODEV
+
+No such device (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_NOENT
+.. _doxid-group__libccc__sys__io_1gade4b28b8e219d93ecc75fedbb5d183fb:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_NOENT
+
+No such file or directory (POSIX.1-2001). Typically, this error results when a specified pathname does not exist, or one of the components in the directory prefix of a pathname does not exist, or the specified pathname is a dangling symbolic link.
+
+.. index:: pair: define; IO_ERROR_NOEXEC
+.. _doxid-group__libccc__sys__io_1ga80b9d8c485dd056acc209754dd2e2f26:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_NOEXEC
+
+define Exec //!< format error (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_NOKEY
+.. _doxid-group__libccc__sys__io_1ga7acb9396b9528bfed52940567a5d1283:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_NOKEY
+
+Required key not available.
+
+.. index:: pair: define; IO_ERROR_NOLCK
+.. _doxid-group__libccc__sys__io_1ga619be432256caa5e8dd39395834515a0:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_NOLCK
+
+No locks available (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_NOLINK
+.. _doxid-group__libccc__sys__io_1gaf7c35b4a6af701a2d0c5ad84515fefb7:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_NOLINK
+
+Link has been severed (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_NOMEDIUM
+.. _doxid-group__libccc__sys__io_1gaed1bd57e5c09890c45297dcd602f81a3:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_NOMEDIUM
+
+No medium found.
+
+.. index:: pair: define; IO_ERROR_NOMEM
+.. _doxid-group__libccc__sys__io_1ga0a4d2e6e9ba8abcdcbc6e89b20c12d94:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_NOMEM
+
+Not enough space/cannot allocate memory (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_NOMSG
+.. _doxid-group__libccc__sys__io_1gaecf9f786d3ac7a2a3dac5c53fac56fef:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_NOMSG
+
+No message of the desired type (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_NONET
+.. _doxid-group__libccc__sys__io_1gae639f37c71c5e8c52998bac46bd11689:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_NONET
+
+Machine is not on the network.
+
+.. index:: pair: define; IO_ERROR_NOPKG
+.. _doxid-group__libccc__sys__io_1ga1afa71e86f2d27a2c184e8e36712513d:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_NOPKG
+
+Package not installed.
+
+.. index:: pair: define; IO_ERROR_NOPROTOOPT
+.. _doxid-group__libccc__sys__io_1gad18cfdb737e0ebdd269df44477182ba6:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_NOPROTOOPT
+
+Protocol not available (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_NOSPC
+.. _doxid-group__libccc__sys__io_1ga23f6ca0e91d1e2ac29246bc6683bfac4:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_NOSPC
+
+No space left on device (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_NOSR
+.. _doxid-group__libccc__sys__io_1ga67258b660cbf6e9ca27c56259a86c4f0:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_NOSR
+
+No STREAM resources (POSIX.1 (XSI STREAMS option)).
+
+.. index:: pair: define; IO_ERROR_NOSTR
+.. _doxid-group__libccc__sys__io_1ga04a50e25ec79dee2ccfeb54ef886168b:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_NOSTR
+
+Not a STREAM (POSIX.1 (XSI STREAMS option)).
+
+.. index:: pair: define; IO_ERROR_NOSYS
+.. _doxid-group__libccc__sys__io_1gaa9015127011cffeba6f6e21074b85d7a:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_NOSYS
+
+Function not implemented (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_NOTBLK
+.. _doxid-group__libccc__sys__io_1gae772d878203a1178822d3fd99d9f53c5:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_NOTBLK
+
+Block device required.
+
+.. index:: pair: define; IO_ERROR_NOTCONN
+.. _doxid-group__libccc__sys__io_1gaacd39a1c8305e87d87d55f07330c2b78:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_NOTCONN
+
+The socket is not connected (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_NOTDIR
+.. _doxid-group__libccc__sys__io_1gadf75e30dd9b57ede0392041e1b569310:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_NOTDIR
+
+Not a directory (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_NOTEMPTY
+.. _doxid-group__libccc__sys__io_1ga45108c2c579373bccbaf90f2fd1884b0:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_NOTEMPTY
+
+Directory not empty (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_NOTRECOVERABLE
+.. _doxid-group__libccc__sys__io_1ga65f584b38c4f6dc451c75dc707c0c132:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_NOTRECOVERABLE
+
+State not recoverable (POSIX.1-2008).
+
+.. index:: pair: define; IO_ERROR_NOTSOCK
+.. _doxid-group__libccc__sys__io_1ga65ee5c1281627acdf9d27a16da22b9ad:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_NOTSOCK
+
+Not a socket (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_NOTSUP
+.. _doxid-group__libccc__sys__io_1ga91a260addeecaf845358254f8adf1fea:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_NOTSUP
+
+Operation not supported (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_NOTTY
+.. _doxid-group__libccc__sys__io_1ga030d1b9021f9d892cb3ddf8ae8878972:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_NOTTY
+
+Inappropriate I/O control operation (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_NOTUNIQ
+.. _doxid-group__libccc__sys__io_1gab11e371a9fe27e9b7e523c84b837b34e:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_NOTUNIQ
+
+Name not unique on network.
+
+.. index:: pair: define; IO_ERROR_NXIO
+.. _doxid-group__libccc__sys__io_1ga8db8a245f3a6fa6e564da7f0220cf7c1:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_NXIO
+
+No such device or address (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_OPNOTSUPP
+.. _doxid-group__libccc__sys__io_1ga12cc123e9ee9e99bb339c2a523a31192:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_OPNOTSUPP
+
+Operation not supported on socket (POSIX.1-2001). (ENOTSUP and EOPNOTSUPP have the same value on Linux, but according to POSIX.1 these error values should be distinct.)
+
+.. index:: pair: define; IO_ERROR_OVERFLOW
+.. _doxid-group__libccc__sys__io_1gaa987c33fa6c47210322355789b4ca63d:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_OVERFLOW
+
+Value too large to be stored in data type (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_OWNERDEAD
+.. _doxid-group__libccc__sys__io_1ga5b8820473c251656a19148bd9a5a60dc:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_OWNERDEAD
+
+Owner died (POSIX.1-2008).
+
+.. index:: pair: define; IO_ERROR_PERM
+.. _doxid-group__libccc__sys__io_1ga8ed6f8bba6a4e609de4765021afe4dbe:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_PERM
+
+Operation not permitted (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_PFNOSUPPORT
+.. _doxid-group__libccc__sys__io_1ga24e029da8395b395cf8ed4b615d6ed0d:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_PFNOSUPPORT
+
+Protocol family not supported.
+
+.. index:: pair: define; IO_ERROR_PIPE
+.. _doxid-group__libccc__sys__io_1ga13c68965d04e3bc4a5c6c729ee0aec85:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_PIPE
+
+Broken pipe (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_PROTO
+.. _doxid-group__libccc__sys__io_1gaa6c19028d271dd9da5a2359ecf53ab2b:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_PROTO
+
+Protocol error (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_PROTONOSUPPORT
+.. _doxid-group__libccc__sys__io_1ga2b30b5960197de13111090698a9c7604:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_PROTONOSUPPORT
+
+Protocol not supported (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_PROTOTYPE
+.. _doxid-group__libccc__sys__io_1ga46ea7dfca9d7227db1026291b1219b26:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_PROTOTYPE
+
+Protocol wrong type for socket (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_RANGE
+.. _doxid-group__libccc__sys__io_1ga12f23a32f96d78b0e2860d183fd366b7:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_RANGE
+
+Result too large (POSIX.1, C99).
+
+.. index:: pair: define; IO_ERROR_REMCHG
+.. _doxid-group__libccc__sys__io_1ga688974c1a281f4a9f0c3040835941021:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_REMCHG
+
+Remote address changed.
+
+.. index:: pair: define; IO_ERROR_REMOTE
+.. _doxid-group__libccc__sys__io_1ga52c6f765d250ec4f684eb64f51af0867:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_REMOTE
+
+Object is remote.
+
+.. index:: pair: define; IO_ERROR_REMOTEIO
+.. _doxid-group__libccc__sys__io_1gab50e64946d3380eea558ebe1867b45d6:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_REMOTEIO
+
+Remote I/O error.
+
+.. index:: pair: define; IO_ERROR_RESTART
+.. _doxid-group__libccc__sys__io_1ga3ed351383c72bf90f3220db0f0aeee3b:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_RESTART
+
+Interrupted system call should be restarted.
+
+.. index:: pair: define; IO_ERROR_RFKILL
+.. _doxid-group__libccc__sys__io_1ga936b6596bb2444f7fa18f4d7f9b7d4ec:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_RFKILL
+
+Operation not possible due to RF-kill.
+
+.. index:: pair: define; IO_ERROR_ROFS
+.. _doxid-group__libccc__sys__io_1gad2f7ab41b9aa0afa9251827d7f3b01e3:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_ROFS
+
+Read-only filesystem (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_SHUTDOWN
+.. _doxid-group__libccc__sys__io_1gacc6dba6df08e2eb6d064ac1eec06819c:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_SHUTDOWN
+
+Cannot send after transport endpoint shutdown.
+
+.. index:: pair: define; IO_ERROR_SOCKTNOSUPPORT
+.. _doxid-group__libccc__sys__io_1ga61654a10622011be27ae5aab30b9a202:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_SOCKTNOSUPPORT
+
+Socket type not supported.
+
+.. index:: pair: define; IO_ERROR_SPIPE
+.. _doxid-group__libccc__sys__io_1ga2d3759f68a81143979ecc035f62eec71:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_SPIPE
+
+Invalid seek (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_SRCH
+.. _doxid-group__libccc__sys__io_1ga2f1c563c1a5c26e800c0aedac455b367:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_SRCH
+
+No such process (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_STALE
+.. _doxid-group__libccc__sys__io_1ga4c4c580b000edc20289d8c13081f6ef4:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_STALE
+
+Stale file handle (POSIX.1-2001). This error can occur for NFS and for other filesystems.
+
+.. index:: pair: define; IO_ERROR_STRPIPE
+.. _doxid-group__libccc__sys__io_1gaa11b834cbc43b5763118bc307fe760b2:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_STRPIPE
+
+Streams pipe error.
+
+.. index:: pair: define; IO_ERROR_TIME
+.. _doxid-group__libccc__sys__io_1ga5970a734c2aa8b60e0f611bebbc6536a:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_TIME
+
+Timer expired (POSIX.1 (XSI STREAMS option)). (POSIX.1 says "STREAM ioctl(2) timeout".)
+
+.. index:: pair: define; IO_ERROR_TIMEDOUT
+.. _doxid-group__libccc__sys__io_1ga6d4d4c0ff3f33a72e0e0b982d56a9da6:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_TIMEDOUT
+
+Connection timed out (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_TOOMANYREFS
+.. _doxid-group__libccc__sys__io_1ga060d18893c629c28524f2f261b40538b:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_TOOMANYREFS
+
+Too many references: cannot splice.
+
+.. index:: pair: define; IO_ERROR_TXTBSY
+.. _doxid-group__libccc__sys__io_1ga8738eb07678b54ab416daabd030ba207:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_TXTBSY
+
+Text file busy (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_UCLEAN
+.. _doxid-group__libccc__sys__io_1ga6f1a2d8e77dce58c41bd65c41f51e997:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_UCLEAN
+
+Structure needs cleaning.
+
+.. index:: pair: define; IO_ERROR_UNATCH
+.. _doxid-group__libccc__sys__io_1ga877546ec7bd12367ae78889459b18576:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_UNATCH
+
+Protocol driver not attached.
+
+.. index:: pair: define; IO_ERROR_USERS
+.. _doxid-group__libccc__sys__io_1ga3c24d995bd87f1ae80e84d817ac5f9ff:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_USERS
+
+Too many users.
+
+.. index:: pair: define; IO_ERROR_WOULDBLOCK
+.. _doxid-group__libccc__sys__io_1ga5a9a62483b0efd031136fd9f0d3601cd:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_WOULDBLOCK
+
+Operation would block (may be same value as EAGAIN) (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_XDEV
+.. _doxid-group__libccc__sys__io_1ga29c98f07755d12b291eb642f690567d1:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_XDEV
+
+Improper link (POSIX.1-2001).
+
+.. index:: pair: define; IO_ERROR_XFULL
+.. _doxid-group__libccc__sys__io_1ga3e3e64c495ba862ec916accc97f316a3:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define IO_ERROR_XFULL
+
+Exchange full.
+
+.. index:: pair: define; MODE_GROUP_R
+.. _doxid-group__libccc__sys__io_1ga05e8d90ccf3e23dfb05970c5ae504182:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define MODE_GROUP_R
+
+S_IRGRP - Group has read permission.
+
+.. index:: pair: define; MODE_GROUP_RWX
+.. _doxid-group__libccc__sys__io_1gad4f944078ba076c7871e6df85791af92:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define MODE_GROUP_RWX
+
+S_IRWXG - Group has read, write, and execute permission.
+
+.. index:: pair: define; MODE_GROUP_W
+.. _doxid-group__libccc__sys__io_1ga1ca2e74cdabfa520df4e2694a7cc8ba1:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define MODE_GROUP_W
+
+S_IWGRP - Group has write permission.
+
+.. index:: pair: define; MODE_GROUP_X
+.. _doxid-group__libccc__sys__io_1ga5162289005e2862cc3e6368cd0184a68:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define MODE_GROUP_X
+
+S_IXGRP - Group has execute permission.
+
+.. index:: pair: define; MODE_OTHER_R
+.. _doxid-group__libccc__sys__io_1ga67234af6cfabdcd6c141fdee1fef7f45:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define MODE_OTHER_R
+
+S_IROTH - Others have read permission.
+
+.. index:: pair: define; MODE_OTHER_RWX
+.. _doxid-group__libccc__sys__io_1gab87cfb6e62cf97d40d0552640a9d5ec3:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define MODE_OTHER_RWX
+
+S_IRWXO - Others have read, write, and execute permission.
+
+.. index:: pair: define; MODE_OTHER_W
+.. _doxid-group__libccc__sys__io_1ga92e5594bda7e343b255aab4545254f1a:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define MODE_OTHER_W
+
+S_IWOTH - Others have write permission.
+
+.. index:: pair: define; MODE_OTHER_X
+.. _doxid-group__libccc__sys__io_1ga2598e6adcf92003675b657d619c193bb:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define MODE_OTHER_X
+
+S_IXOTH - Others have execute permission.
+
+.. index:: pair: define; MODE_USER_R
+.. _doxid-group__libccc__sys__io_1ga4e3df7b2e3df34dcd3fef7065450b073:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define MODE_USER_R
+
+S_IRUSR - User has read permission.
+
+.. index:: pair: define; MODE_USER_RWX
+.. _doxid-group__libccc__sys__io_1ga50d52a8d65ece23e8800537c0637919a:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define MODE_USER_RWX
+
+S_IRWXU - User (file owner) has read, write, and execute permission.
+
+.. index:: pair: define; MODE_USER_W
+.. _doxid-group__libccc__sys__io_1gabde9d48b1166e65098755ae6c75f9c3e:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define MODE_USER_W
+
+S_IWUSR - User has write permission.
+
+.. index:: pair: define; MODE_USER_X
+.. _doxid-group__libccc__sys__io_1ga0ca54a02c6c6d3d75244bd8fdb533535:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define MODE_USER_X
+
+S_IXUSR - User has execute permission.
+
+.. index:: pair: define; OPEN_ACCESSMODE
+.. _doxid-group__libccc__sys__io_1ga671d35807f6214e373d6c7a0aadd5cb8:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define OPEN_ACCESSMODE
+
+The full bitmask value for the file access mode 'io_mode' portion within the 'io_open' int.
+
+.. index:: pair: define; OPEN_APPEND
+.. _doxid-group__libccc__sys__io_1ga441566601cc7ef51cd5db5a78f09392e:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define OPEN_APPEND
+
+If set, then all write operations append the data at the end of the file, regardless of the current file position.
+
+.. index:: pair: define; OPEN_CLEARFILE
+.. _doxid-group__libccc__sys__io_1ga317423400adbdee5f2f9df1e6e810309:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define OPEN_CLEARFILE
+
+If writing is allowed (ie: O_RDWR or O_WRONLY) then remove all contents of the file upon opening.
+
+.. index:: pair: define; OPEN_CREATE
+.. _doxid-group__libccc__sys__io_1ga8005523a50d964abe3f1bf768a4ea48c:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define OPEN_CREATE
+
+If set, the file will be created if it doesn’t already exist.
+
+.. index:: pair: define; OPEN_EXCLUSIVE
+.. _doxid-group__libccc__sys__io_1gad0316228219cb40a7b419c731a391341:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define OPEN_EXCLUSIVE
+
+If both O_CREAT and O_EXCL are set, then open fails if the specified file already exists. (otherwise, platform-specific)
+
+.. index:: pair: define; OPEN_READONLY
+.. _doxid-group__libccc__sys__io_1ga539ab42161cd89c863e88d26c5321cd6:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define OPEN_READONLY
+
+Open the file for read access.
+
+.. index:: pair: define; OPEN_READWRITE
+.. _doxid-group__libccc__sys__io_1gac9a9feabf3a1ac151c0ffd29753a95fe:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define OPEN_READWRITE
+
+Open the file for both reading and writing.
+
+.. index:: pair: define; OPEN_WRITEONLY
+.. _doxid-group__libccc__sys__io_1gaae689ff0d3c80212647035624b64072a:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define OPEN_WRITEONLY
+
+Open the file for write access.
+
+.. index:: pair: define; STDERR
+.. _doxid-group__libccc__sys__io_1ga3a540e3eef339eec06aff31c4ba1eb25:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define STDERR
+
+Special file descriptor (2), refers to terminal error stream.
+
+Define the 3 standard (std) streams of data - these numbers are special file descriptors used to read from and write to the terminal commandline.
+
+.. index:: pair: define; STDIN
+.. _doxid-group__libccc__sys__io_1gac00bfb46347d26fdc58568fe1ab5fa5b:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define STDIN
+
+Special file descriptor (0), refers to terminal input stream.
+
+.. index:: pair: define; STDOUT
+.. _doxid-group__libccc__sys__io_1ga8875037d0772a4fc34516f1e03d7e238:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define STDOUT
+
+Special file descriptor (1), refers to terminal output stream.
+
+.. index:: pair: define; c_putlines
+.. _doxid-group__libccc__sys__io_1ga77b06cd897c5e6c61cfe05ab0f208304:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define c_putlines
+
+Writes 'n' bytes of memory from 'ptr' as hexadecimal 2-char blocks in 'cols' columns, to the standard output.
+
+.. index:: pair: define; c_write_lines
+.. _doxid-group__libccc__sys__io_1ga8dd1c7c5c1f72e98e52f225a6b475ab9:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define c_write_lines
+
+Writes 'n' bytes of memory from 'ptr' as hexadecimal 2-char blocks in 'cols' columns, to the given file descriptor 'fd'.
+

@@ -1,0 +1,25 @@
+.. index:: pair: enum; e_weekday_
+.. _doxid-group__libccc__sys__time_1gac389255cf85a435a3d026e8a83309153:
+
+enum e_weekday\_
+================
+
+This enum lists each day of the week, Sunday counting as zero.
+
+.. ref-code-block:: cpp
+	:class: doxyrest-overview-code-block
+
+	#include <time.h>
+
+	enum e_weekday_
+	{
+	    :target:`WEEKDAY_SUNDAY<doxid-group__libccc__sys__time_1ggac389255cf85a435a3d026e8a83309153a581cc2adba8e31fbf3b73da250269cd6>`,
+	    :target:`WEEKDAY_MONDAY<doxid-group__libccc__sys__time_1ggac389255cf85a435a3d026e8a83309153ac55fd9a177ea238ec7be8a1ea6fd9a84>`,
+	    :target:`WEEKDAY_TUESDAY<doxid-group__libccc__sys__time_1ggac389255cf85a435a3d026e8a83309153a8ed6ced04d1353a5fc2820f619b39e05>`,
+	    :target:`WEEKDAY_WEDNESDAY<doxid-group__libccc__sys__time_1ggac389255cf85a435a3d026e8a83309153a16cac545cde222f3ac0fd8ad060e7f21>`,
+	    :target:`WEEKDAY_THURSDAY<doxid-group__libccc__sys__time_1ggac389255cf85a435a3d026e8a83309153a91bb8af5f9ff9880552c282c184ae3d9>`,
+	    :target:`WEEKDAY_FRIDAY<doxid-group__libccc__sys__time_1ggac389255cf85a435a3d026e8a83309153a8819ecdb388e487ecd14e0faafe6e00f>`,
+	    :target:`WEEKDAY_SATURDAY<doxid-group__libccc__sys__time_1ggac389255cf85a435a3d026e8a83309153a81d8e6547fefda0c5faa864451d0d694>`,
+	    :target:`ENUMLENGTH_WEEKDAY<doxid-group__libccc__sys__time_1ggac389255cf85a435a3d026e8a83309153a52741a2f7dbe950979e579ef20ef5a98>`,
+	};
+

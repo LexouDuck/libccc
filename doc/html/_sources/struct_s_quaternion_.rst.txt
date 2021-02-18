@@ -1,0 +1,79 @@
+.. index:: pair: struct; s_quaternion_
+.. _doxid-structs__quaternion__:
+
+struct s_quaternion\_
+=====================
+
+.. toctree::
+	:hidden:
+
+Overview
+~~~~~~~~
+
+A struct for storing quaternions. :ref:`More...<details-structs__quaternion__>`
+
+
+.. ref-code-block:: cpp
+	:class: doxyrest-overview-code-block
+
+	#include <complex.h>
+	
+	struct s_quaternion_
+	{
+		// fields
+	
+		:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` :ref:`s<doxid-structs__quaternion___1a0311e4489e46bec97407e77482b3a224>`;
+		:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` :ref:`i<doxid-structs__quaternion___1a45cb5e76b53700f812d234bf6ac80644>`;
+		:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` :ref:`j<doxid-structs__quaternion___1aa14858bf990a341bbf6e6f02c4b5bb72>`;
+		:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` :ref:`k<doxid-structs__quaternion___1a7d2d5289b503886f53d7b945d1b28370>`;
+	};
+.. _details-structs__quaternion__:
+
+Detailed Documentation
+~~~~~~~~~~~~~~~~~~~~~~
+
+A struct for storing quaternions.
+
+Fields
+------
+
+.. index:: pair: variable; s
+.. _doxid-structs__quaternion___1a0311e4489e46bec97407e77482b3a224:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` s
+
+The S value of this quaternion.
+
+.. index:: pair: variable; i
+.. _doxid-structs__quaternion___1a45cb5e76b53700f812d234bf6ac80644:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` i
+
+The I value of this quaternion.
+
+.. index:: pair: variable; j
+.. _doxid-structs__quaternion___1aa14858bf990a341bbf6e6f02c4b5bb72:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` j
+
+The J value of this quaternion.
+
+.. index:: pair: variable; k
+.. _doxid-structs__quaternion___1a7d2d5289b503886f53d7b945d1b28370:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` k
+
+The K value of this quaternion.
+

@@ -1,0 +1,68 @@
+.. index:: pair: struct; s_leaf_
+.. _doxid-structs__leaf__:
+
+struct s_leaf\_
+===============
+
+.. toctree::
+	:hidden:
+
+Overview
+~~~~~~~~
+
+A simple tree leaf node struct, used in the 's_tree' tree/node/leaf struct. :ref:`More...<details-structs__leaf__>`
+
+
+.. ref-code-block:: cpp
+	:class: doxyrest-overview-code-block
+
+	#include <tree.h>
+	
+	struct s_leaf_
+	{
+		// fields
+	
+		void* :ref:`value<doxid-structs__leaf___1a0f61d63b009d0880a89c843bd50d8d76>`;
+		char* :ref:`value_type<doxid-structs__leaf___1aea233b735668336e8c5e3aa49a5bf617>`;
+		:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` :ref:`value_size<doxid-structs__leaf___1aab538b94203bc9b35294c7916160c2fc>`;
+	};
+.. _details-structs__leaf__:
+
+Detailed Documentation
+~~~~~~~~~~~~~~~~~~~~~~
+
+A simple tree leaf node struct, used in the 's_tree' tree/node/leaf struct.
+
+Fields
+------
+
+.. index:: pair: variable; value
+.. _doxid-structs__leaf___1a0f61d63b009d0880a89c843bd50d8d76:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void* value
+
+The pointer to the data for the 'value'.
+
+.. index:: pair: variable; value_type
+.. _doxid-structs__leaf___1aea233b735668336e8c5e3aa49a5bf617:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* value_type
+
+The amount of elements in the 'items' array.
+
+.. index:: pair: variable; value_size
+.. _doxid-structs__leaf___1aab538b94203bc9b35294c7916160c2fc:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` value_size
+
+The size (in bytes) of one object in this array.
+

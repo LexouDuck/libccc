@@ -1,0 +1,26 @@
+.. index:: pair: struct; s_matrix4d_
+.. _doxid-structs__matrix4d__:
+
+struct s_matrix4d\_
+===================
+
+.. toctree::
+	:hidden:
+
+A simple struct which stores a 4x4 matrix of real numbers, arranged in 3 rows of 3D vectors.
+
+
+.. ref-code-block:: cpp
+	:class: doxyrest-overview-code-block
+
+	#include <algebra.h>
+	
+	struct s_matrix4d_
+	{
+		// fields
+	
+		:ref:`s_vector4d<doxid-group__libccc__math__algebra_1ga89be66648e8af6bb9538e9fd0e879939>` :target:`u<doxid-structs__matrix4d___1a621be8f423efb82509975e97f9378b8d>`;
+		:ref:`s_vector4d<doxid-group__libccc__math__algebra_1ga89be66648e8af6bb9538e9fd0e879939>` :target:`v<doxid-structs__matrix4d___1a8fe52e6ec9c7c7773d8886ce77c01985>`;
+		:ref:`s_vector4d<doxid-group__libccc__math__algebra_1ga89be66648e8af6bb9538e9fd0e879939>` :target:`w<doxid-structs__matrix4d___1a88d0218f8819a9f787fbad04e019c55b>`;
+		:ref:`s_vector4d<doxid-group__libccc__math__algebra_1ga89be66648e8af6bb9538e9fd0e879939>` :target:`t<doxid-structs__matrix4d___1a89007c4e1a3bfed4d87f2c1689cde824>`;
+	};

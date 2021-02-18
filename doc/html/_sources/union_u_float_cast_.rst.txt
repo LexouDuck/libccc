@@ -1,0 +1,24 @@
+.. index:: pair: union; u_float_cast_
+.. _doxid-unionu__float__cast__:
+
+union u_float_cast\_
+====================
+
+.. toctree::
+	:hidden:
+
+This union type is used in several math function implementations, to manipulate float bits directly with bitwise operators.
+
+
+.. ref-code-block:: cpp
+	:class: doxyrest-overview-code-block
+
+	#include <float.h>
+	
+	union u_float_cast_
+	{
+		// fields
+	
+		:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` :target:`value_float<doxid-unionu__float__cast___1a91cc026b4ca295b261f7fa1276d9bef2>`;
+		t_s32 :target:`value_int<doxid-unionu__float__cast___1a676f473bef4288d664ba163bb0d7a6f7>`;
+	};

@@ -1,0 +1,11 @@
+.. index:: pair: group; 16) libccc/math/vlq
+.. _doxid-group__libccc__math__vlq:
+
+16) libccc/math/vlq
+===================
+
+.. toctree::
+	:hidden:
+
+This header defines a variable-length int type, and utility functions for it.
+

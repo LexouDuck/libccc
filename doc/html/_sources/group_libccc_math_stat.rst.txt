@@ -1,0 +1,468 @@
+.. index:: pair: group; 17) libccc/math/stat
+.. _doxid-group__libccc__math__stat:
+
+17) libccc/math/stat
+====================
+
+.. toctree::
+	:hidden:
+
+	struct_s_list_float_.rst
+	struct_s_list_int_.rst
+	struct_s_prob_mass_.rst
+
+Overview
+~~~~~~~~
+
+This header defines some common statistics functions, for lists of int/float :ref:`More...<details-group__libccc__math__stat>`
+
+
+.. ref-code-block:: cpp
+	:class: doxyrest-overview-code-block
+
+	
+	// typedefs
+
+	typedef struct :ref:`s_list_int_<doxid-structs__list__int__>` :ref:`s_list_int<doxid-group__libccc__math__stat_1ga26d4aebb98b1ce792d4033b66d06aca2>`;
+	typedef struct :ref:`s_list_float_<doxid-structs__list__float__>` :ref:`s_list_float<doxid-group__libccc__math__stat_1ga6d1db408fd9b15c3e85770b62c5a4214>`;
+	typedef :ref:`s_list_int<doxid-group__libccc__math__stat_1ga26d4aebb98b1ce792d4033b66d06aca2>` :ref:`s_set_int<doxid-group__libccc__math__stat_1ga33f8d5fd298a5603c50eb66543a38c0e>`;
+	typedef :ref:`s_list_float<doxid-group__libccc__math__stat_1ga6d1db408fd9b15c3e85770b62c5a4214>` :ref:`s_set_float<doxid-group__libccc__math__stat_1gabfe93d0535a14c4e54c2b8746213ac2c>`;
+	typedef :ref:`s_list_int<doxid-group__libccc__math__stat_1ga26d4aebb98b1ce792d4033b66d06aca2>` :ref:`s_sortedlist_int<doxid-group__libccc__math__stat_1ga840a17f229f418e364b68d1d6716532b>`;
+	typedef :ref:`s_list_float<doxid-group__libccc__math__stat_1ga6d1db408fd9b15c3e85770b62c5a4214>` :ref:`s_sortedlist_float<doxid-group__libccc__math__stat_1ga7f5709969e508e2ef6eacbca54768006>`;
+	typedef struct :ref:`s_prob_mass_<doxid-structs__prob__mass__>` :ref:`s_prob_mass<doxid-group__libccc__math__stat_1ga551c6990f4a9536d0526991160beda80>`;
+
+	// structs
+
+	struct :ref:`s_list_float_<doxid-structs__list__float__>`;
+	struct :ref:`s_list_int_<doxid-structs__list__int__>`;
+	struct :ref:`s_prob_mass_<doxid-structs__prob__mass__>`;
+
+	// global functions
+
+	:ref:`s_list_int<doxid-group__libccc__math__stat_1ga26d4aebb98b1ce792d4033b66d06aca2>` :ref:`Stat_Int_NewList<doxid-group__libccc__math__stat_1ga49ce03e7fbdc64f9a3aa345bb4f17bdc>`(t_u32 length);
+	void :ref:`Stat_Int_FreeList<doxid-group__libccc__math__stat_1ga4d7178536749ecce3b42cd8a9e7a7a15>`(:ref:`s_list_int<doxid-group__libccc__math__stat_1ga26d4aebb98b1ce792d4033b66d06aca2>`* ilst);
+	:ref:`s_list_int<doxid-group__libccc__math__stat_1ga26d4aebb98b1ce792d4033b66d06aca2>` :ref:`Stat_Int_MergeList<doxid-group__libccc__math__stat_1ga257364ee8dae68031b2031967f782549>`(:ref:`s_list_int<doxid-group__libccc__math__stat_1ga26d4aebb98b1ce792d4033b66d06aca2>`* start, :ref:`s_list_int<doxid-group__libccc__math__stat_1ga26d4aebb98b1ce792d4033b66d06aca2>`* append);
+	:ref:`s_list_int<doxid-group__libccc__math__stat_1ga26d4aebb98b1ce792d4033b66d06aca2>` :ref:`Stat_Int_Quicksort<doxid-group__libccc__math__stat_1ga4a00166136cd2e03e630873228f7d07b>`(:ref:`s_list_int<doxid-group__libccc__math__stat_1ga26d4aebb98b1ce792d4033b66d06aca2>` const ilst);
+	void :ref:`Stat_Int_Quicksort_InPlace<doxid-group__libccc__math__stat_1ga58f832742f826781b430373165553020>`(:ref:`s_list_int<doxid-group__libccc__math__stat_1ga26d4aebb98b1ce792d4033b66d06aca2>` ilst);
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` :ref:`Stat_Int_Median<doxid-group__libccc__math__stat_1gae6d973376e630ef996537c3f27992e25>`(:ref:`s_sortedlist_int<doxid-group__libccc__math__stat_1ga840a17f229f418e364b68d1d6716532b>` const ilst);
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` :ref:`Stat_Int_Average<doxid-group__libccc__math__stat_1gaf9b98835cc2b6dade7e0c7e6dad8774a>`(:ref:`s_list_int<doxid-group__libccc__math__stat_1ga26d4aebb98b1ce792d4033b66d06aca2>` const ilst);
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` :ref:`Stat_Int_Variance<doxid-group__libccc__math__stat_1gaf5177365df6c93972a2475ef573a469d>`(:ref:`s_list_int<doxid-group__libccc__math__stat_1ga26d4aebb98b1ce792d4033b66d06aca2>` const ilst);
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` :ref:`Stat_Int_StandardDeviation<doxid-group__libccc__math__stat_1ga2b438086832cc97dded0090724013454>`(:ref:`s_list_int<doxid-group__libccc__math__stat_1ga26d4aebb98b1ce792d4033b66d06aca2>` const ilst);
+	void :ref:`Stat_Int_Decile<doxid-group__libccc__math__stat_1ga4279e559d266fd4feed7d141570fc37e>`(:ref:`s_list_int<doxid-group__libccc__math__stat_1ga26d4aebb98b1ce792d4033b66d06aca2>` const ilst);
+	:ref:`s_list_float<doxid-group__libccc__math__stat_1ga6d1db408fd9b15c3e85770b62c5a4214>` :ref:`Stat_Float_NewList<doxid-group__libccc__math__stat_1ga09a00c26c013958c4cc8bc63e189d8bf>`(t_u32 length);
+	void :ref:`Stat_Float_FreeList<doxid-group__libccc__math__stat_1ga51e6ee78651c1a31464e8b3ec61ceae8>`(:ref:`s_list_float<doxid-group__libccc__math__stat_1ga6d1db408fd9b15c3e85770b62c5a4214>`* flst);
+	:ref:`s_list_float<doxid-group__libccc__math__stat_1ga6d1db408fd9b15c3e85770b62c5a4214>` :ref:`Stat_Float_MergeList<doxid-group__libccc__math__stat_1ga8a1c3bf5b25777777a9d8a8590205128>`(:ref:`s_list_float<doxid-group__libccc__math__stat_1ga6d1db408fd9b15c3e85770b62c5a4214>`* start, :ref:`s_list_float<doxid-group__libccc__math__stat_1ga6d1db408fd9b15c3e85770b62c5a4214>`* append);
+	:ref:`s_list_float<doxid-group__libccc__math__stat_1ga6d1db408fd9b15c3e85770b62c5a4214>` :ref:`Stat_Float_Quicksort_f_n<doxid-group__libccc__math__stat_1gaa379aebcd8f561b4a44b9a3e1a97a123>`(:ref:`s_list_float<doxid-group__libccc__math__stat_1ga6d1db408fd9b15c3e85770b62c5a4214>` const flst);
+	void :ref:`Stat_Float_Quicksort<doxid-group__libccc__math__stat_1ga42f39bbfdf5240c9c5a768e8f4fd02c4>`(:ref:`s_list_float<doxid-group__libccc__math__stat_1ga6d1db408fd9b15c3e85770b62c5a4214>` flst);
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` :ref:`Stat_Float_Median<doxid-group__libccc__math__stat_1ga3200e70cdb1e7e7d8b1226dab25e6d5a>`(:ref:`s_sortedlist_float<doxid-group__libccc__math__stat_1ga7f5709969e508e2ef6eacbca54768006>` const flst);
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` :ref:`Stat_Float_Average<doxid-group__libccc__math__stat_1gac655fe7581a5fdb2b421066b02b99607>`(:ref:`s_list_float<doxid-group__libccc__math__stat_1ga6d1db408fd9b15c3e85770b62c5a4214>` const flst);
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` :ref:`Stat_Float_Variance<doxid-group__libccc__math__stat_1gaa27ec9d8f10354499eb398db05e2c9b6>`(:ref:`s_list_float<doxid-group__libccc__math__stat_1ga6d1db408fd9b15c3e85770b62c5a4214>` const flst);
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` :ref:`Stat_Float_StandardDeviation<doxid-group__libccc__math__stat_1gabe82ec764e5bd35dfcb226817eab9667>`(:ref:`s_list_float<doxid-group__libccc__math__stat_1ga6d1db408fd9b15c3e85770b62c5a4214>` const flst);
+	void :ref:`Stat_Float_Decile<doxid-group__libccc__math__stat_1gac4cbc7f91b31d2f9343861d2f98254c6>`(:ref:`s_list_float<doxid-group__libccc__math__stat_1ga6d1db408fd9b15c3e85770b62c5a4214>` const flst);
+	:ref:`s_prob_mass<doxid-group__libccc__math__stat_1ga551c6990f4a9536d0526991160beda80>` :ref:`Stat_NewPMF<doxid-group__libccc__math__stat_1ga3386e2cff0ad302df40ad620ff3257d0>`(t_u32 length);
+	void :ref:`Stat_FreePMF<doxid-group__libccc__math__stat_1ga88b8945e06c464616cfffc452bc7701b>`(:ref:`s_prob_mass<doxid-group__libccc__math__stat_1ga551c6990f4a9536d0526991160beda80>`* drv);
+	:ref:`s_list_int<doxid-group__libccc__math__stat_1ga26d4aebb98b1ce792d4033b66d06aca2>` :ref:`Stat_IntList_To_Set<doxid-group__libccc__math__stat_1gaa69420829c46fed5acc7f22b5e69e776>`(:ref:`s_list_int<doxid-group__libccc__math__stat_1ga26d4aebb98b1ce792d4033b66d06aca2>` const ilst);
+	t_u32 :ref:`Stat_IntList_Count<doxid-group__libccc__math__stat_1gadd841d67ed30c0bf752cc2342f12e842>`(:ref:`s_list_int<doxid-group__libccc__math__stat_1ga26d4aebb98b1ce792d4033b66d06aca2>` ilst, :ref:`t_sint<doxid-group__libccc__int_1gad9b833ec2906279e4f479df31778732a>` elem);
+	:ref:`s_prob_mass<doxid-group__libccc__math__stat_1ga551c6990f4a9536d0526991160beda80>` :ref:`Stat_IntList_To_PMF<doxid-group__libccc__math__stat_1gabecc720ab4ce3b6ff3474fc2d757e7db>`(:ref:`s_list_int<doxid-group__libccc__math__stat_1ga26d4aebb98b1ce792d4033b66d06aca2>` const ilst);
+
+	// macros
+
+	#define :ref:`NULL_LIST_FLOAT<doxid-group__libccc__math__stat_1gaa498d2c29defa86442382ab3a53e956a>`
+	#define :ref:`NULL_LIST_INT<doxid-group__libccc__math__stat_1gad63791d6b60496f2b98099da578a2c99>`
+	#define :ref:`PROB_APPROX<doxid-group__libccc__math__stat_1ga686da736a84d82d8cd914fde8b71e35a>`
+	#define :target:`c_stat_average_f<doxid-group__libccc__math__stat_1gab58d7be511b6d8f1c1858f3c4e42f41a>`
+	#define :target:`c_stat_average_i<doxid-group__libccc__math__stat_1gac9f12ce8bbe479d13fb619c755dd3684>`
+	#define :target:`c_stat_decile_f<doxid-group__libccc__math__stat_1gabc17ee36bf63a542f016b72072cab623>`
+	#define :target:`c_stat_decile_i<doxid-group__libccc__math__stat_1ga7b13787ba0468653687fdcd1bd2eec8a>`
+	#define :target:`c_stat_free_flst<doxid-group__libccc__math__stat_1gae821786adf01cc872c5f9b7a97731e83>`
+	#define :target:`c_stat_free_ilst<doxid-group__libccc__math__stat_1ga797e87c32c0408917a84d49fa047b733>`
+	#define :target:`c_stat_free_pmf<doxid-group__libccc__math__stat_1gab9da7247bc1cc2f2313f4011f717c8ac>`
+	#define :target:`c_stat_ilst_count<doxid-group__libccc__math__stat_1ga99ba4802136c892362e4245122144f65>`
+	#define :target:`c_stat_ilst_to_iset<doxid-group__libccc__math__stat_1ga72d9501776f5095455b49af3e92a833b>`
+	#define :target:`c_stat_ilst_to_pmf<doxid-group__libccc__math__stat_1gad57cb93dc93282034066d650f082d77f>`
+	#define :target:`c_stat_median_f<doxid-group__libccc__math__stat_1ga630328a1536ad7a5ea65b2fafe5760ad>`
+	#define :target:`c_stat_median_i<doxid-group__libccc__math__stat_1gaef1486df87f90edf651d74766b177a77>`
+	#define :target:`c_stat_merge_flst<doxid-group__libccc__math__stat_1ga63bf80410f60e69066ddc3777b5864f9>`
+	#define :target:`c_stat_merge_ilst<doxid-group__libccc__math__stat_1gaa462e9e586546d1dcbd40e77a3264840>`
+	#define :target:`c_stat_new_flst<doxid-group__libccc__math__stat_1gafd530a4440f67c3567f42f9b3dffd7dd>`
+	#define :target:`c_stat_new_ilst<doxid-group__libccc__math__stat_1gae9060cbb359c467a0d2993772cb3de1a>`
+	#define :target:`c_stat_new_pmf<doxid-group__libccc__math__stat_1gaa07de592dbf3304dcd212d8929231692>`
+	#define :target:`c_stat_quicksort_f<doxid-group__libccc__math__stat_1gad6580288b0af13074ca861a295f13981>`
+	#define :target:`c_stat_quicksort_f_new<doxid-group__libccc__math__stat_1ga3d79394b38f9aee569a57782f8efc593>`
+	#define :target:`c_stat_quicksort_i<doxid-group__libccc__math__stat_1gaf754dfa01a493fe39e63e101df011714>`
+	#define :target:`c_stat_quicksort_i_new<doxid-group__libccc__math__stat_1ga3f100c9c6d950173a55e1e6aab7ada3f>`
+	#define :target:`c_stat_stddev_f<doxid-group__libccc__math__stat_1ga7798d5ea9a766b76f846e92bbc30f01d>`
+	#define :target:`c_stat_stddev_i<doxid-group__libccc__math__stat_1gaf804d7889f5848af108fcac44ce4bc54>`
+	#define :target:`c_stat_variance_f<doxid-group__libccc__math__stat_1ga8a1b434920699a192e2ab18c284a1f70>`
+	#define :target:`c_stat_variance_i<doxid-group__libccc__math__stat_1ga2ad43eeb3f5502c1bc4b60799bf8427d>`
+
+.. _details-group__libccc__math__stat:
+
+Detailed Documentation
+~~~~~~~~~~~~~~~~~~~~~~
+
+This header defines some common statistics functions, for lists of int/float
+
+Typedefs
+--------
+
+.. index:: pair: typedef; s_list_int
+.. _doxid-group__libccc__math__stat_1ga26d4aebb98b1ce792d4033b66d06aca2:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef struct :ref:`s_list_int_<doxid-structs__list__int__>` s_list_int
+
+This struct stores a list of integer values (contiguously, like an array)
+
+.. index:: pair: typedef; s_list_float
+.. _doxid-group__libccc__math__stat_1ga6d1db408fd9b15c3e85770b62c5a4214:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef struct :ref:`s_list_float_<doxid-structs__list__float__>` s_list_float
+
+This struct stores a list of float values (contiguously, like an array)
+
+.. index:: pair: typedef; s_set_int
+.. _doxid-group__libccc__math__stat_1ga33f8d5fd298a5603c50eb66543a38c0e:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef :ref:`s_list_int<doxid-group__libccc__math__stat_1ga26d4aebb98b1ce792d4033b66d06aca2>` s_set_int
+
+This type represents a list of integers with no duplicate values.
+
+.. index:: pair: typedef; s_set_float
+.. _doxid-group__libccc__math__stat_1gabfe93d0535a14c4e54c2b8746213ac2c:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef :ref:`s_list_float<doxid-group__libccc__math__stat_1ga6d1db408fd9b15c3e85770b62c5a4214>` s_set_float
+
+This type represents a list of floats with no duplicate values.
+
+.. index:: pair: typedef; s_sortedlist_int
+.. _doxid-group__libccc__math__stat_1ga840a17f229f418e364b68d1d6716532b:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef :ref:`s_list_int<doxid-group__libccc__math__stat_1ga26d4aebb98b1ce792d4033b66d06aca2>` s_sortedlist_int
+
+This type represents a list of integers whose values are ordered from smallest to largest.
+
+.. index:: pair: typedef; s_sortedlist_float
+.. _doxid-group__libccc__math__stat_1ga7f5709969e508e2ef6eacbca54768006:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef :ref:`s_list_float<doxid-group__libccc__math__stat_1ga6d1db408fd9b15c3e85770b62c5a4214>` s_sortedlist_float
+
+This type represents a list of floats whose values are ordered from smallest to largest.
+
+.. index:: pair: typedef; s_prob_mass
+.. _doxid-group__libccc__math__stat_1ga551c6990f4a9536d0526991160beda80:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef struct :ref:`s_prob_mass_<doxid-structs__prob__mass__>` s_prob_mass
+
+A struct for the probability mass function describing a discrete random var.
+
+Global Functions
+----------------
+
+.. index:: pair: function; Stat_Int_NewList
+.. _doxid-group__libccc__math__stat_1ga49ce03e7fbdc64f9a3aa345bb4f17bdc:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_list_int<doxid-group__libccc__math__stat_1ga26d4aebb98b1ce792d4033b66d06aca2>` Stat_Int_NewList(t_u32 length)
+
+TODO document this.
+
+.. index:: pair: function; Stat_Int_FreeList
+.. _doxid-group__libccc__math__stat_1ga4d7178536749ecce3b42cd8a9e7a7a15:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void Stat_Int_FreeList(:ref:`s_list_int<doxid-group__libccc__math__stat_1ga26d4aebb98b1ce792d4033b66d06aca2>`* ilst)
+
+TODO document this.
+
+.. index:: pair: function; Stat_Int_MergeList
+.. _doxid-group__libccc__math__stat_1ga257364ee8dae68031b2031967f782549:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_list_int<doxid-group__libccc__math__stat_1ga26d4aebb98b1ce792d4033b66d06aca2>` Stat_Int_MergeList(:ref:`s_list_int<doxid-group__libccc__math__stat_1ga26d4aebb98b1ce792d4033b66d06aca2>`* start, :ref:`s_list_int<doxid-group__libccc__math__stat_1ga26d4aebb98b1ce792d4033b66d06aca2>`* append)
+
+TODO document this.
+
+.. index:: pair: function; Stat_Int_Quicksort
+.. _doxid-group__libccc__math__stat_1ga4a00166136cd2e03e630873228f7d07b:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_list_int<doxid-group__libccc__math__stat_1ga26d4aebb98b1ce792d4033b66d06aca2>` Stat_Int_Quicksort(:ref:`s_list_int<doxid-group__libccc__math__stat_1ga26d4aebb98b1ce792d4033b66d06aca2>` const ilst)
+
+TODO document this.
+
+.. index:: pair: function; Stat_Int_Quicksort_InPlace
+.. _doxid-group__libccc__math__stat_1ga58f832742f826781b430373165553020:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void Stat_Int_Quicksort_InPlace(:ref:`s_list_int<doxid-group__libccc__math__stat_1ga26d4aebb98b1ce792d4033b66d06aca2>` ilst)
+
+TODO document this.
+
+.. index:: pair: function; Stat_Int_Median
+.. _doxid-group__libccc__math__stat_1gae6d973376e630ef996537c3f27992e25:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` Stat_Int_Median(:ref:`s_sortedlist_int<doxid-group__libccc__math__stat_1ga840a17f229f418e364b68d1d6716532b>` const ilst)
+
+TODO document this.
+
+.. index:: pair: function; Stat_Int_Average
+.. _doxid-group__libccc__math__stat_1gaf9b98835cc2b6dade7e0c7e6dad8774a:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` Stat_Int_Average(:ref:`s_list_int<doxid-group__libccc__math__stat_1ga26d4aebb98b1ce792d4033b66d06aca2>` const ilst)
+
+TODO document this.
+
+.. index:: pair: function; Stat_Int_Variance
+.. _doxid-group__libccc__math__stat_1gaf5177365df6c93972a2475ef573a469d:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` Stat_Int_Variance(:ref:`s_list_int<doxid-group__libccc__math__stat_1ga26d4aebb98b1ce792d4033b66d06aca2>` const ilst)
+
+TODO document this.
+
+.. index:: pair: function; Stat_Int_StandardDeviation
+.. _doxid-group__libccc__math__stat_1ga2b438086832cc97dded0090724013454:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` Stat_Int_StandardDeviation(:ref:`s_list_int<doxid-group__libccc__math__stat_1ga26d4aebb98b1ce792d4033b66d06aca2>` const ilst)
+
+TODO document this.
+
+.. index:: pair: function; Stat_Int_Decile
+.. _doxid-group__libccc__math__stat_1ga4279e559d266fd4feed7d141570fc37e:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void Stat_Int_Decile(:ref:`s_list_int<doxid-group__libccc__math__stat_1ga26d4aebb98b1ce792d4033b66d06aca2>` const ilst)
+
+TODO document this.
+
+.. index:: pair: function; Stat_Float_NewList
+.. _doxid-group__libccc__math__stat_1ga09a00c26c013958c4cc8bc63e189d8bf:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_list_float<doxid-group__libccc__math__stat_1ga6d1db408fd9b15c3e85770b62c5a4214>` Stat_Float_NewList(t_u32 length)
+
+TODO implement & document this.
+
+TODO document this
+
+.. index:: pair: function; Stat_Float_FreeList
+.. _doxid-group__libccc__math__stat_1ga51e6ee78651c1a31464e8b3ec61ceae8:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void Stat_Float_FreeList(:ref:`s_list_float<doxid-group__libccc__math__stat_1ga6d1db408fd9b15c3e85770b62c5a4214>`* flst)
+
+TODO document this.
+
+.. index:: pair: function; Stat_Float_MergeList
+.. _doxid-group__libccc__math__stat_1ga8a1c3bf5b25777777a9d8a8590205128:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_list_float<doxid-group__libccc__math__stat_1ga6d1db408fd9b15c3e85770b62c5a4214>` Stat_Float_MergeList(:ref:`s_list_float<doxid-group__libccc__math__stat_1ga6d1db408fd9b15c3e85770b62c5a4214>`* start, :ref:`s_list_float<doxid-group__libccc__math__stat_1ga6d1db408fd9b15c3e85770b62c5a4214>`* append)
+
+TODO document this.
+
+.. index:: pair: function; Stat_Float_Quicksort_f_n
+.. _doxid-group__libccc__math__stat_1gaa379aebcd8f561b4a44b9a3e1a97a123:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_list_float<doxid-group__libccc__math__stat_1ga6d1db408fd9b15c3e85770b62c5a4214>` Stat_Float_Quicksort_f_n(:ref:`s_list_float<doxid-group__libccc__math__stat_1ga6d1db408fd9b15c3e85770b62c5a4214>` const flst)
+
+TODO document this.
+
+.. index:: pair: function; Stat_Float_Quicksort
+.. _doxid-group__libccc__math__stat_1ga42f39bbfdf5240c9c5a768e8f4fd02c4:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void Stat_Float_Quicksort(:ref:`s_list_float<doxid-group__libccc__math__stat_1ga6d1db408fd9b15c3e85770b62c5a4214>` flst)
+
+TODO document this.
+
+.. index:: pair: function; Stat_Float_Median
+.. _doxid-group__libccc__math__stat_1ga3200e70cdb1e7e7d8b1226dab25e6d5a:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` Stat_Float_Median(:ref:`s_sortedlist_float<doxid-group__libccc__math__stat_1ga7f5709969e508e2ef6eacbca54768006>` const flst)
+
+TODO document this.
+
+.. index:: pair: function; Stat_Float_Average
+.. _doxid-group__libccc__math__stat_1gac655fe7581a5fdb2b421066b02b99607:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` Stat_Float_Average(:ref:`s_list_float<doxid-group__libccc__math__stat_1ga6d1db408fd9b15c3e85770b62c5a4214>` const flst)
+
+TODO document this.
+
+.. index:: pair: function; Stat_Float_Variance
+.. _doxid-group__libccc__math__stat_1gaa27ec9d8f10354499eb398db05e2c9b6:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` Stat_Float_Variance(:ref:`s_list_float<doxid-group__libccc__math__stat_1ga6d1db408fd9b15c3e85770b62c5a4214>` const flst)
+
+TODO document this.
+
+.. index:: pair: function; Stat_Float_StandardDeviation
+.. _doxid-group__libccc__math__stat_1gabe82ec764e5bd35dfcb226817eab9667:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` Stat_Float_StandardDeviation(:ref:`s_list_float<doxid-group__libccc__math__stat_1ga6d1db408fd9b15c3e85770b62c5a4214>` const flst)
+
+TODO document this.
+
+.. index:: pair: function; Stat_Float_Decile
+.. _doxid-group__libccc__math__stat_1gac4cbc7f91b31d2f9343861d2f98254c6:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void Stat_Float_Decile(:ref:`s_list_float<doxid-group__libccc__math__stat_1ga6d1db408fd9b15c3e85770b62c5a4214>` const flst)
+
+TODO document this.
+
+.. index:: pair: function; Stat_NewPMF
+.. _doxid-group__libccc__math__stat_1ga3386e2cff0ad302df40ad620ff3257d0:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_prob_mass<doxid-group__libccc__math__stat_1ga551c6990f4a9536d0526991160beda80>` Stat_NewPMF(t_u32 length)
+
+TODO implement & document this.
+
+TODO document this
+
+.. index:: pair: function; Stat_FreePMF
+.. _doxid-group__libccc__math__stat_1ga88b8945e06c464616cfffc452bc7701b:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void Stat_FreePMF(:ref:`s_prob_mass<doxid-group__libccc__math__stat_1ga551c6990f4a9536d0526991160beda80>`* drv)
+
+TODO document this.
+
+.. index:: pair: function; Stat_IntList_To_Set
+.. _doxid-group__libccc__math__stat_1gaa69420829c46fed5acc7f22b5e69e776:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_list_int<doxid-group__libccc__math__stat_1ga26d4aebb98b1ce792d4033b66d06aca2>` Stat_IntList_To_Set(:ref:`s_list_int<doxid-group__libccc__math__stat_1ga26d4aebb98b1ce792d4033b66d06aca2>` const ilst)
+
+TODO document this.
+
+.. index:: pair: function; Stat_IntList_Count
+.. _doxid-group__libccc__math__stat_1gadd841d67ed30c0bf752cc2342f12e842:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	t_u32 Stat_IntList_Count(:ref:`s_list_int<doxid-group__libccc__math__stat_1ga26d4aebb98b1ce792d4033b66d06aca2>` ilst, :ref:`t_sint<doxid-group__libccc__int_1gad9b833ec2906279e4f479df31778732a>` elem)
+
+TODO document this.
+
+.. index:: pair: function; Stat_IntList_To_PMF
+.. _doxid-group__libccc__math__stat_1gabecc720ab4ce3b6ff3474fc2d757e7db:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_prob_mass<doxid-group__libccc__math__stat_1ga551c6990f4a9536d0526991160beda80>` Stat_IntList_To_PMF(:ref:`s_list_int<doxid-group__libccc__math__stat_1ga26d4aebb98b1ce792d4033b66d06aca2>` const ilst)
+
+TODO document this.
+
+Macros
+------
+
+.. index:: pair: define; NULL_LIST_FLOAT
+.. _doxid-group__libccc__math__stat_1gaa498d2c29defa86442382ab3a53e956a:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define NULL_LIST_FLOAT
+
+Define the value for an empty list of floats.
+
+.. index:: pair: define; NULL_LIST_INT
+.. _doxid-group__libccc__math__stat_1gad63791d6b60496f2b98099da578a2c99:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define NULL_LIST_INT
+
+Define the value for an empty list of integers.
+
+.. index:: pair: define; PROB_APPROX
+.. _doxid-group__libccc__math__stat_1ga686da736a84d82d8cd914fde8b71e35a:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define PROB_APPROX
+
+The amount of probabilistic approximation for libccc/math/stat functions.
+

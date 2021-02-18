@@ -1,0 +1,57 @@
+.. index:: pair: union; u_vector3d_
+.. _doxid-unionu__vector3d__:
+
+union u_vector3d\_
+==================
+
+.. toctree::
+	:hidden:
+
+Overview
+~~~~~~~~
+
+This union stores a 3-dimensional value which can be accessed in several ways. :ref:`More...<details-unionu__vector3d__>`
+
+
+.. ref-code-block:: cpp
+	:class: doxyrest-overview-code-block
+
+	#include <algebra.h>
+	
+	union u_vector3d_
+	{
+		// fields
+	
+		:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` :ref:`values<doxid-unionu__vector3d___1ab6b28159796b16331d16cf71c1f3ca43>`[3];
+		:ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` :ref:`vector<doxid-unionu__vector3d___1af346f99b0f9bb5936f5b1d0a747da182>`;
+	};
+.. _details-unionu__vector3d__:
+
+Detailed Documentation
+~~~~~~~~~~~~~~~~~~~~~~
+
+This union stores a 3-dimensional value which can be accessed in several ways.
+
+Fields
+------
+
+.. index:: pair: variable; values
+.. _doxid-unionu__vector3d___1ab6b28159796b16331d16cf71c1f3ca43:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` values[3]
+
+An array, to access the 3 values from within brackets.
+
+.. index:: pair: variable; vector
+.. _doxid-unionu__vector3d___1af346f99b0f9bb5936f5b1d0a747da182:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` vector
+
+A vector, to access the 3 coordinates as ``.x``, ``.y`` and ``.z``
+

@@ -1,0 +1,123 @@
+.. index:: pair: group; 21) libccc/array/array
+.. _doxid-group__libccc__array__array:
+
+21) libccc/array/array
+======================
+
+.. toctree::
+	:hidden:
+
+	struct_s_array_.rst
+
+Overview
+~~~~~~~~
+
+This header defines a simple linked list type and utility functions for it. :ref:`More...<details-group__libccc__array__array>`
+
+
+.. ref-code-block:: cpp
+	:class: doxyrest-overview-code-block
+
+	
+	// typedefs
+
+	typedef struct :ref:`s_list_<doxid-structs__list__>` :target:`s_list<doxid-group__libccc__array__array_1ga1db26a8fd53db75657fa6a5cb65b2bc9>`;
+	typedef struct :ref:`s_array_<doxid-structs__array__>` :ref:`s_array<doxid-group__libccc__array__array_1ga017b4a0772f4fe0102050f0aba10e66e>`;
+
+	// structs
+
+	struct :ref:`s_array_<doxid-structs__array__>`;
+
+	// macros
+
+	#define :ref:`ARRAY_NULL<doxid-group__libccc__array__array_1ga20321e3ee905b6de95f9988a86680e5b>`
+
+	#define :target:`foreach_s_array_exit<doxid-group__libccc__array__array_1ga27ff5d80a40b2a28e626056462404ed4>`( \
+		TYPE, \
+		VAR, \
+		ARRAY \
+		)
+
+	#define :target:`foreach_s_array_init<doxid-group__libccc__array__array_1ga2c8e815f55f67a533815af8821788fc8>`( \
+		TYPE, \
+		VAR, \
+		ARRAY \
+		)
+
+	#define :target:`foreach_s_array_init_1<doxid-group__libccc__array__array_1gaf40cc8a6734cb0f0b03cfbd04eee3116>`( \
+		TYPE, \
+		VAR, \
+		ARRAY \
+		)
+
+	#define :target:`foreach_s_array_init_2<doxid-group__libccc__array__array_1ga51a73c7df505411b2dc8952923f6bac8>`( \
+		TYPE, \
+		VAR, \
+		ARRAY \
+		)
+
+	#define :target:`foreach_s_array_loop_exit<doxid-group__libccc__array__array_1gabcd800f8085c4cc73e0ba147b96560d0>`( \
+		TYPE, \
+		VAR, \
+		ARRAY \
+		)
+
+	#define :target:`foreach_s_array_loop_incr<doxid-group__libccc__array__array_1ga64a0b53bd58840a275d62e726f67472a>`( \
+		TYPE, \
+		VAR, \
+		ARRAY \
+		)
+
+	#define :target:`foreach_s_array_loop_incr_1<doxid-group__libccc__array__array_1ga60891be80e902db96e31f09f1750e087>`( \
+		TYPE, \
+		VAR, \
+		ARRAY \
+		)
+
+	#define :target:`foreach_s_array_loop_incr_2<doxid-group__libccc__array__array_1gaf38de776fa51a991714ccbb16a1882cf>`( \
+		TYPE, \
+		VAR, \
+		ARRAY \
+		)
+
+	#define :target:`foreach_s_array_loop_init<doxid-group__libccc__array__array_1gad6dd37cc0b3998679e4e12cf51bb0939>`( \
+		TYPE, \
+		VAR, \
+		ARRAY \
+		)
+
+.. _details-group__libccc__array__array:
+
+Detailed Documentation
+~~~~~~~~~~~~~~~~~~~~~~
+
+This header defines a simple linked list type and utility functions for it.
+
+Typedefs
+--------
+
+.. index:: pair: typedef; s_array
+.. _doxid-group__libccc__array__array_1ga017b4a0772f4fe0102050f0aba10e66e:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef struct :ref:`s_array_<doxid-structs__array__>` s_array
+
+This struct holds an array of items which can be of any type.
+
+The 's_array' struct holds a ``void*`` pointer to the array of items, the size of a single item in the array, and the total amount of items in this array. As such, a s_array can hold any number of items, but they must all share the same type.
+
+Macros
+------
+
+.. index:: pair: define; ARRAY_NULL
+.. _doxid-group__libccc__array__array_1ga20321e3ee905b6de95f9988a86680e5b:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define ARRAY_NULL
+
+A literal of an 's_array' struct which has all fields set to zero.
+

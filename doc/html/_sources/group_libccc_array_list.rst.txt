@@ -1,0 +1,608 @@
+.. index:: pair: group; 22) libccc/array/list
+.. _doxid-group__libccc__array__list:
+
+22) libccc/array/list
+=====================
+
+.. toctree::
+	:hidden:
+
+	struct_s_list_.rst
+
+Overview
+~~~~~~~~
+
+This header defines a simple linked list type and utility functions for it. :ref:`More...<details-group__libccc__array__list>`
+
+
+.. ref-code-block:: cpp
+	:class: doxyrest-overview-code-block
+
+	
+	// typedefs
+
+	typedef struct :ref:`s_array_<doxid-structs__array__>` :target:`s_array<doxid-group__libccc__array__list_1ga017b4a0772f4fe0102050f0aba10e66e>`;
+	typedef struct :ref:`s_list_<doxid-structs__list__>` :ref:`s_list<doxid-group__libccc__array__list_1ga1db26a8fd53db75657fa6a5cb65b2bc9>`;
+
+	// structs
+
+	struct :ref:`s_list_<doxid-structs__list__>`;
+
+	// global functions
+
+	:ref:`s_list<doxid-structs__list__>`* :ref:`List_New<doxid-group__libccc__array__list_1ga083e21b6cb20a3c4597f221181d7fa19>`(void* item, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` item_size);
+	void :ref:`List_Prepend<doxid-group__libccc__array__list_1ga9089f093d256af63bee65aa6c4eb6c89>`(:ref:`s_list<doxid-structs__list__>`** a_lst, :ref:`s_list<doxid-structs__list__>`* elem);
+	void :ref:`List_Append<doxid-group__libccc__array__list_1gab0be6f01331208a525305ebc1bfaecb7>`(:ref:`s_list<doxid-structs__list__>`** a_lst, :ref:`s_list<doxid-structs__list__>`* elem);
+	void :ref:`List_Insert<doxid-group__libccc__array__list_1ga9d4f826099f3c19fc457df932441d34e>`(:ref:`s_list<doxid-structs__list__>`** a_lst, :ref:`s_list<doxid-structs__list__>`* elem, t_u32 index);
+	:ref:`s_list<doxid-structs__list__>`* :ref:`List_Copy<doxid-group__libccc__array__list_1gaf7fb8ce59cfd97c87461e6fcc950704a>`(:ref:`s_list<doxid-structs__list__>` const* lst);
+	:ref:`s_list<doxid-structs__list__>`* :ref:`List_Duplicate<doxid-group__libccc__array__list_1gaa626c18a4cc4a7ee1ae43d16280510ef>`(:ref:`s_list<doxid-structs__list__>` const* lst);
+	void :ref:`List_Remove<doxid-group__libccc__array__list_1ga42b9b3d267b1cd4fc90de82bc2bf44d8>`(:ref:`s_list<doxid-structs__list__>`** a_lst, void(*)(void*, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>`) del);
+	void :ref:`List_Delete<doxid-group__libccc__array__list_1ga15c9487e05b836e1ee9db8bb5e902a37>`(:ref:`s_list<doxid-structs__list__>`** a_lst, void(*)(void*, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>`) del);
+	void :ref:`List_Pop<doxid-group__libccc__array__list_1ga3b3ee1fe8a07f30f8f018fe501fe9fa5>`(:ref:`s_list<doxid-structs__list__>`** a_lst, void(*)(void*, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>`) del);
+	t_u32 :ref:`List_Size<doxid-group__libccc__array__list_1gad0e836023f702dab0cc5de1aa5ab6d92>`(:ref:`s_list<doxid-structs__list__>` const* lst);
+	:ref:`s_list<doxid-structs__list__>`* :ref:`List_Get<doxid-group__libccc__array__list_1gacbf95fa66c1654f090caad8f43dd2618>`(:ref:`s_list<doxid-structs__list__>` const* lst, t_u32 index);
+	:ref:`s_list<doxid-structs__list__>`* :ref:`List_Find<doxid-group__libccc__array__list_1ga390aa9356abd04bd2994722df91daf02>`(:ref:`s_list<doxid-structs__list__>` const* lst, void const* query);
+	:ref:`s_list<doxid-structs__list__>`* :ref:`List_Sub<doxid-group__libccc__array__list_1ga5c8f571b95a81ff7092564336950fd67>`(:ref:`s_list<doxid-structs__list__>`* lst, t_u32 index, t_u32 n);
+	void :ref:`List_Iterate<doxid-group__libccc__array__list_1gae6fa49f74cd90eccf33e78337b0e2b1b>`(:ref:`s_list<doxid-structs__list__>`* lst, void(*)(:ref:`s_list<doxid-structs__list__>`*elem) f);
+
+	void :target:`List_Iterate_I<doxid-group__libccc__array__list_1ga040890aca144b296e8f7232603291c00>`(
+		:ref:`s_list<doxid-structs__list__>`* lst,
+		void(*)(:ref:`s_list<doxid-structs__list__>`*elem, t_u32 index) f
+		);
+
+	:ref:`s_list<doxid-structs__list__>`* :ref:`List_Map<doxid-group__libccc__array__list_1ga863b77299a8347656bad0977d4a8d721>`(:ref:`s_list<doxid-structs__list__>`* lst, :ref:`s_list<doxid-structs__list__>`*(*)(:ref:`s_list<doxid-structs__list__>`*elem) f);
+
+	:ref:`s_list<doxid-structs__list__>`* :target:`List_Map_I<doxid-group__libccc__array__list_1gad33002429dae79bff236d273d357c851>`(
+		:ref:`s_list<doxid-structs__list__>`* lst,
+		:ref:`s_list<doxid-structs__list__>`*(*)(:ref:`s_list<doxid-structs__list__>`*elem, t_u32 index) f
+		);
+
+	void** :ref:`List_To_PointerArray<doxid-group__libccc__array__list_1ga1cff54299b6f5ea2b6dd3ae21d822dd8>`(:ref:`s_list<doxid-structs__list__>` const** a_lst);
+	:ref:`s_array<doxid-group__libccc__array__array_1ga017b4a0772f4fe0102050f0aba10e66e>` :ref:`List_To_Array<doxid-group__libccc__array__list_1gae12971650af168aeabf56442634085f4>`(:ref:`s_list<doxid-structs__list__>` const** a_lst);
+
+	// macros
+
+	#define :ref:`LIST_NULL<doxid-group__libccc__array__list_1ga8010c3d97f1984c6a531eaaf3a1b6394>`
+	#define :target:`c_lst_to_array<doxid-group__libccc__array__list_1ga18d05db4a8d68b46d2c9f4b8c4538cca>`
+	#define :target:`c_lst_to_ptrarr<doxid-group__libccc__array__list_1ga4a224d0ab89c926791ff25a7bccb9efb>`
+	#define :target:`c_lstadd<doxid-group__libccc__array__list_1ga1ada486ced8ccfa4bb5bf6d37cfc650b>`
+	#define :target:`c_lstappend<doxid-group__libccc__array__list_1gab603d28cc0b1c0d70032f7594e62d385>`
+	#define :target:`c_lstcpy<doxid-group__libccc__array__list_1gadced3439e23263522832df6897d72d6f>`
+	#define :target:`c_lstdel<doxid-group__libccc__array__list_1ga259753b29a955dc737b4009290d8349e>`
+	#define :target:`c_lstdelone<doxid-group__libccc__array__list_1ga1ea89a50527607df8a87a6f14690d8ff>`
+	#define :target:`c_lstdup<doxid-group__libccc__array__list_1ga433baf1dd75f5d167bf37576d3a68367>`
+	#define :target:`c_lstfind<doxid-group__libccc__array__list_1ga91c898febcaf2858183de7300b5c3857>`
+	#define :target:`c_lstget<doxid-group__libccc__array__list_1gad2204d5b53116494577d119d81202865>`
+	#define :target:`c_lstinsert<doxid-group__libccc__array__list_1ga1ef782abc54b335299665cc7ea547316>`
+	#define :target:`c_lstiter<doxid-group__libccc__array__list_1gac47e00164f8151d5e0167006b648726c>`
+	#define :target:`c_lstiteri<doxid-group__libccc__array__list_1ga872b980e56f3ee5c496286d317b80d8d>`
+	#define :target:`c_lstmap<doxid-group__libccc__array__list_1ga3eb81656326de4cdadb2d1333450de1e>`
+	#define :target:`c_lstmapi<doxid-group__libccc__array__list_1ga06444dff027555000e2af8bc673f37ab>`
+	#define :target:`c_lstnew<doxid-group__libccc__array__list_1gaa4d6bb03e8c0379e4129e27e00314104>`
+	#define :target:`c_lstpop<doxid-group__libccc__array__list_1ga1129c1e143c0f28bdf7df9fd175ebd5a>`
+	#define :target:`c_lstprepend<doxid-group__libccc__array__list_1gac2824f9e6bc4099ff10ce77114817260>`
+	#define :target:`c_lstsize<doxid-group__libccc__array__list_1gabdf92da8453e540994e83e2e19a58a6f>`
+	#define :target:`c_lstsub<doxid-group__libccc__array__list_1ga84d7e4fcbec301f8c60ca8150b1713b0>`
+
+	#define :target:`foreach_s_list_exit<doxid-group__libccc__array__list_1gac1f12a5dff16c35567e430d42e9c8128>`( \
+		TYPE, \
+		VAR, \
+		LIST \
+		)
+
+	#define :target:`foreach_s_list_init<doxid-group__libccc__array__list_1ga425082121ad6cfef8c7f12382e7d5124>`( \
+		TYPE, \
+		VAR, \
+		LIST \
+		)
+
+	#define :target:`foreach_s_list_init_1<doxid-group__libccc__array__list_1ga2c295e01ed4b1240dd3cfd8d52478fc0>`( \
+		TYPE, \
+		VAR, \
+		LIST \
+		)
+
+	#define :target:`foreach_s_list_init_2<doxid-group__libccc__array__list_1ga773edd39c3d8c04583ac5e09051f45b1>`( \
+		TYPE, \
+		VAR, \
+		LIST \
+		)
+
+	#define :target:`foreach_s_list_loop_exit<doxid-group__libccc__array__list_1gacd2603dc0699f09b669c82721167ea44>`( \
+		TYPE, \
+		VAR, \
+		LIST \
+		)
+
+	#define :target:`foreach_s_list_loop_incr<doxid-group__libccc__array__list_1ga0db0594169de2e5a6483f51ac16873f4>`( \
+		TYPE, \
+		VAR, \
+		LIST \
+		)
+
+	#define :target:`foreach_s_list_loop_incr_1<doxid-group__libccc__array__list_1ga08f61c839457d1a30f385d9e4e330ce6>`( \
+		TYPE, \
+		VAR, \
+		LIST \
+		)
+
+	#define :target:`foreach_s_list_loop_incr_2<doxid-group__libccc__array__list_1ga9a36dfcfb2f157b10b2503e827b6058b>`( \
+		TYPE, \
+		VAR, \
+		LIST \
+		)
+
+	#define :target:`foreach_s_list_loop_init<doxid-group__libccc__array__list_1gaf086585204b38d446c35f8abe907df80>`( \
+		TYPE, \
+		VAR, \
+		LIST \
+		)
+
+.. _details-group__libccc__array__list:
+
+Detailed Documentation
+~~~~~~~~~~~~~~~~~~~~~~
+
+This header defines a simple linked list type and utility functions for it.
+
+Typedefs
+--------
+
+.. index:: pair: typedef; s_list
+.. _doxid-group__libccc__array__list_1ga1db26a8fd53db75657fa6a5cb65b2bc9:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef struct :ref:`s_list_<doxid-structs__list__>` s_list
+
+This is a simple linked list struct, with dynamic content type.
+
+The ``s_list`` struct represents one chainlink in the linked-list, so a linked-list with 3 elements would consist of 3 different ``s_list`` structs, all chained together with their ``next`` pointer, and the last element would have this ``next`` pointer set to :ref:`NULL(0) <doxid-group__libccc__pointer_1ga070d2ce7b6bb7e5c05602aa8c308d0c4>`
+
+Global Functions
+----------------
+
+.. index:: pair: function; List_New
+.. _doxid-group__libccc__array__list_1ga083e21b6cb20a3c4597f221181d7fa19:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_list<doxid-structs__list__>`* List_New(void* item, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` item_size)
+
+Allocates and returns a list element from the given ``item`` pointer and ``item_size``
+
+Allocates a new linked list element, and feeds it the given ``item`` pointer and the given ``item_size`` (if ``item`` is NULL, item_size is set to 0). The ``prev`` and ``next`` pointers are both set to NULL.
+
+
+
+.. rubric:: Parameters:
+
+.. list-table::
+	:widths: 20 80
+
+	*
+		- item
+
+		- A pointer to the data/value to store in this list
+
+	*
+		- item_size
+
+		- The size (in bytes) of the data in question
+
+
+
+.. rubric:: Returns:
+
+the linked-list element containing the given data
+
+.. index:: pair: function; List_Prepend
+.. _doxid-group__libccc__array__list_1ga9089f093d256af63bee65aa6c4eb6c89:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void List_Prepend(:ref:`s_list<doxid-structs__list__>`** a_lst, :ref:`s_list<doxid-structs__list__>`* elem)
+
+Inserts the given element ``elem`` to the beginning of the list starting at ``a_lst``
+
+Inserts a new element ``elem`` into the list at the address ``a_lst``, chaining this new element with the next element of this list (ie: this function will set the ``next`` pointer to ``*a_lst``, and '(\*a_lst)->prev' will be set to ``elem``).
+
+
+
+.. rubric:: Parameters:
+
+.. list-table::
+	:widths: 20 80
+
+	*
+		- a_lst
+
+		- The address ('&') of the beginning of the list (the address of the first item)
+
+	*
+		- elem
+
+		- The list element to prepend to ``alst`` - if NULL, this function does nothing
+
+.. index:: pair: function; List_Append
+.. _doxid-group__libccc__array__list_1gab0be6f01331208a525305ebc1bfaecb7:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void List_Append(:ref:`s_list<doxid-structs__list__>`** a_lst, :ref:`s_list<doxid-structs__list__>`* elem)
+
+Appends the given element ``elem`` to the end of the list starting at ``a_lst``
+
+Appends the given element ``elem`` to the end of the list starting at ``*a_lst``. If ``*a_lst`` is NULL, it'll append ``elem`` at index 0, creating a 1-elem list.
+
+
+
+.. rubric:: Parameters:
+
+.. list-table::
+	:widths: 20 80
+
+	*
+		- a_lst
+
+		- The address ('&') of the beginning of the list (the address of the first item)
+
+	*
+		- elem
+
+		- The list element to prepend to ``alst`` - if NULL, this function does nothing
+
+.. index:: pair: function; List_Insert
+.. _doxid-group__libccc__array__list_1ga9d4f826099f3c19fc457df932441d34e:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void List_Insert(:ref:`s_list<doxid-structs__list__>`** a_lst, :ref:`s_list<doxid-structs__list__>`* elem, t_u32 index)
+
+Inserts the given element ``elem`` at the given ``index`` of the list starting at ``a_lst``
+
+Inserts the given element ``elem`` at the given ``index`` of the list ``*a_lst``. If ``index`` is too large, the ``elem`` is appended to the end of the list. If ``elem`` is NULL, then nothing is done by this function.
+
+
+
+.. rubric:: Parameters:
+
+.. list-table::
+	:widths: 20 80
+
+	*
+		- a_lst
+
+		- The address ('&') of the beginning of the list (the address of the first item)
+
+	*
+		- elem
+
+		- The list element to insert in ``alst`` - if NULL, this function does nothing
+
+	*
+		- index
+
+		-
+
+.. index:: pair: function; List_Copy
+.. _doxid-group__libccc__array__list_1gaf7fb8ce59cfd97c87461e6fcc950704a:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_list<doxid-structs__list__>`* List_Copy(:ref:`s_list<doxid-structs__list__>` const* lst)
+
+Returns a "shallow copy" of the given list ``lst`` (copies only pointers, not the underlying data)
+
+
+
+.. rubric:: Parameters:
+
+.. list-table::
+	:widths: 20 80
+
+	*
+		- lst
+
+		- The list to copy
+
+
+
+.. rubric:: Returns:
+
+a newly allocated copy of the given linked list ``lst``. The underlying data is not copied, only the s_list\* structs are malloc'ed.
+
+.. index:: pair: function; List_Duplicate
+.. _doxid-group__libccc__array__list_1gaa626c18a4cc4a7ee1ae43d16280510ef:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_list<doxid-structs__list__>`* List_Duplicate(:ref:`s_list<doxid-structs__list__>` const* lst)
+
+Returns a "deep copy" of the given list ``lst`` (copies s_list structs, and the data in ``item``)
+
+
+
+.. rubric:: Parameters:
+
+.. list-table::
+	:widths: 20 80
+
+	*
+		- lst
+
+		- The list to duplicate
+
+
+
+.. rubric:: Returns:
+
+a newly allocated copy of the given linked list ``lst``. The underlying data ``item`` for each element will be allocated and copied, according to ``item_size``
+
+.. index:: pair: function; List_Remove
+.. _doxid-group__libccc__array__list_1ga42b9b3d267b1cd4fc90de82bc2bf44d8:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void List_Remove(:ref:`s_list<doxid-structs__list__>`** a_lst, void(*)(void*, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>`) del)
+
+Deletes the given element pointed to by ``a_lst`` using the given ``del()`` function.
+
+Deletes the given element pointed to by ``a_lst`` with the given ``del()`` function, and then frees memory and sets ``*a_lst`` to the old value of '\*a_lst->next'. So, the linked list remains "chained together" after removing an element in the middle.
+
+
+
+.. rubric:: Parameters:
+
+.. list-table::
+	:widths: 20 80
+
+	*
+		- a_lst
+
+		- The address ('&') of the beginning of the list (the address of the first item)
+
+	*
+		- del
+
+		- The function used to delete one list item
+
+.. index:: pair: function; List_Delete
+.. _doxid-group__libccc__array__list_1ga15c9487e05b836e1ee9db8bb5e902a37:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void List_Delete(:ref:`s_list<doxid-structs__list__>`** a_lst, void(*)(void*, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>`) del)
+
+Deletes all the elements in the list starting at ``a_lst``, using the given ``del()`` function.
+
+Deletes all the elements in the list starting at ``*a_lst``, calls ``del`` and frees memory for each, and lastly sets ``*a_lst`` as NULL.
+
+
+
+.. rubric:: Parameters:
+
+.. list-table::
+	:widths: 20 80
+
+	*
+		- a_lst
+
+		- The address ('&') of the beginning of the list (the address of the first item)
+
+	*
+		- del
+
+		- The function used to delete one list item
+
+.. index:: pair: function; List_Pop
+.. _doxid-group__libccc__array__list_1ga3b3ee1fe8a07f30f8f018fe501fe9fa5:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void List_Pop(:ref:`s_list<doxid-structs__list__>`** a_lst, void(*)(void*, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>`) del)
+
+Deletes the given element pointed to by ``a_lst`` using the given ``del()`` function.
+
+Deletes the last element in the list starting at ``*a_lst``, calling ``del()`` and freeing that element, and setting the preceding ``lst.next`` as NULL.
+
+
+
+.. rubric:: Parameters:
+
+.. list-table::
+	:widths: 20 80
+
+	*
+		- a_lst
+
+		- The address ('&') of the beginning of the list (the address of the first item)
+
+	*
+		- del
+
+		- The function used to delete one list item
+
+.. index:: pair: function; List_Size
+.. _doxid-group__libccc__array__list_1gad0e836023f702dab0cc5de1aa5ab6d92:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	t_u32 List_Size(:ref:`s_list<doxid-structs__list__>` const* lst)
+
+Returns the amount of elements in the given list ``lst``
+
+
+
+.. rubric:: Parameters:
+
+.. list-table::
+	:widths: 20 80
+
+	*
+		- lst
+
+		- the list to look through
+
+
+
+.. rubric:: Returns:
+
+the amount of elements in the given list ``lst``, by traversing it, looping through every ``next`` pointer.
+
+.. index:: pair: function; List_Get
+.. _doxid-group__libccc__array__list_1gacbf95fa66c1654f090caad8f43dd2618:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_list<doxid-structs__list__>`* List_Get(:ref:`s_list<doxid-structs__list__>` const* lst, t_u32 index)
+
+Gets the element at position ``index`` in the list, and returns it.
+
+
+
+.. rubric:: Parameters:
+
+.. list-table::
+	:widths: 20 80
+
+	*
+		- lst
+
+		- the list to look through
+
+	*
+		- index
+
+		- the index in the list of the element to get
+
+
+
+.. rubric:: Returns:
+
+the ``index`` th element in the given list ``lst``. Will return NULL if ``index`` is beyond the last element.
+
+.. index:: pair: function; List_Find
+.. _doxid-group__libccc__array__list_1ga390aa9356abd04bd2994722df91daf02:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_list<doxid-structs__list__>`* List_Find(:ref:`s_list<doxid-structs__list__>` const* lst, void const* query)
+
+Returns the first encountered item in the given list ``lst`` matching the given ``query``
+
+
+
+.. rubric:: Parameters:
+
+.. list-table::
+	:widths: 20 80
+
+	*
+		- lst
+
+		- the list to look through
+
+	*
+		- query
+
+		- the ``item`` pointer to match against
+
+
+
+.. rubric:: Returns:
+
+the first encountered element of the given linked list ``lst`` for which (lst.item == query), matching only the pointers, not the data.
+
+.. index:: pair: function; List_Sub
+.. _doxid-group__libccc__array__list_1ga5c8f571b95a81ff7092564336950fd67:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_list<doxid-structs__list__>`* List_Sub(:ref:`s_list<doxid-structs__list__>`* lst, t_u32 index, t_u32 n)
+
+Returns a "shallow copy" of a subsection of the given list ``lst``, starting at ``index`` and taking ``n`` elements.
+
+Returns a newly allocated subsection of the given list ``lst``, starting at ``index``, and copying ``n`` list elements (not their ``item`` data). Will return NULL if ``index`` is too large or if ``n`` is 0. If ``index`` is valid but the list is not large enough for ``n``, then the resulting list will have fewer than ``n`` elements.
+
+.. index:: pair: function; List_Iterate
+.. _doxid-group__libccc__array__list_1gae6fa49f74cd90eccf33e78337b0e2b1b:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void List_Iterate(:ref:`s_list<doxid-structs__list__>`* lst, void(*)(:ref:`s_list<doxid-structs__list__>`*elem) f)
+
+Iterates upon each element of the given list ``lst``, applying the given function ``f`` to each of its elements.
+
+Iterates upon each element of the given list ``lst``, applying the given function ``f`` to each of its elements.
+
+.. index:: pair: function; List_Map
+.. _doxid-group__libccc__array__list_1ga863b77299a8347656bad0977d4a8d721:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_list<doxid-structs__list__>`* List_Map(:ref:`s_list<doxid-structs__list__>`* lst, :ref:`s_list<doxid-structs__list__>`*(*)(:ref:`s_list<doxid-structs__list__>`*elem) f)
+
+Creates a new list which is the result of applying the given function ``f`` to each element of ``lst``.
+
+Creates a new list which is the result of applying the given function ``f`` to each element of ``lst``.
+
+.. index:: pair: function; List_To_PointerArray
+.. _doxid-group__libccc__array__list_1ga1cff54299b6f5ea2b6dd3ae21d822dd8:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void** List_To_PointerArray(:ref:`s_list<doxid-structs__list__>` const** a_lst)
+
+Converts the given list at address ``a_lst`` to a NULL-terminated pointer array.
+
+Creates a new jagged array (2D pointer array) from the given list ``*a_lst``. The top-level pointer array is terminated by a NULL pointer. The underlying ``lst.item`` data is not copied, only the pointers are.
+
+.. index:: pair: function; List_To_Array
+.. _doxid-group__libccc__array__list_1gae12971650af168aeabf56442634085f4:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_array<doxid-group__libccc__array__array_1ga017b4a0772f4fe0102050f0aba10e66e>` List_To_Array(:ref:`s_list<doxid-structs__list__>` const** a_lst)
+
+Converts the given list at address ``a_lst`` to a array.
+
+Creates a new contiguous memory array from the given linked list. It sets this array pointer to the ``items`` pointer of the given ``array``. It also sets the ``item_size`` and ``length`` fields of this ``array``.
+
+
+
+.. rubric:: Returns:
+
+the resulting ``s_array`` struct from the given list, or NULL if any elements of ``*a_lst`` are of unequal ``lst.item_size``.
+
+Macros
+------
+
+.. index:: pair: define; LIST_NULL
+.. _doxid-group__libccc__array__list_1ga8010c3d97f1984c6a531eaaf3a1b6394:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define LIST_NULL
+
+A literal of an ``s_list`` struct which has all fields set to zero.
+

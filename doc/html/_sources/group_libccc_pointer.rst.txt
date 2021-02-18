@@ -1,0 +1,208 @@
+.. index:: pair: group; 05) libccc/pointer
+.. _doxid-group__libccc__pointer:
+
+05) libccc/pointer
+==================
+
+.. toctree::
+	:hidden:
+
+Overview
+~~~~~~~~
+
+This header defines the common standard memory manipulation functions. :ref:`More...<details-group__libccc__pointer>`
+
+
+.. ref-code-block:: cpp
+	:class: doxyrest-overview-code-block
+
+	
+	// typedefs
+
+	typedef size_t :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>`;
+	typedef ptrdiff_t :ref:`t_ptrdiff<doxid-group__libccc__pointer_1gaaf13bc256e9c704039e08ec061508a0c>`;
+	typedef intmax_t :ref:`t_sintmax<doxid-group__libccc__pointer_1ga3feee0b4ea86f11374f27fdf15a71b70>`;
+	typedef uintmax_t :ref:`t_uintmax<doxid-group__libccc__pointer_1gac0aecea9015652a32969ae48f1e6bd2c>`;
+	typedef intptr_t :ref:`t_sintptr<doxid-group__libccc__pointer_1gacbd1c0307c55e5f81a2e837cb6c5541e>`;
+	typedef uintptr_t :ref:`t_uintptr<doxid-group__libccc__pointer_1ga99f60fa8c0b01452e12df739f000a5c4>`;
+
+	// global functions
+
+	char* :ref:`Size_ToString<doxid-group__libccc__pointer_1gac94c4f345aa1616abc02608f8365aa5b>`(:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` value);
+	char* :ref:`Size_ToString_Hex<doxid-group__libccc__pointer_1ga8b4db13660bd943d9c1281dfd4a9aba0>`(:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` value);
+	char* :ref:`Size_ToString_Readable<doxid-group__libccc__pointer_1ga1c832afe71724520eb9ede992cbac0be>`(:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` value);
+	:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` :ref:`Size_FromString<doxid-group__libccc__pointer_1ga820e0f5cdce4c4088d44099cf490ba91>`(char const* str);
+	char* :ref:`Pointer_ToString<doxid-group__libccc__pointer_1gae505f5a39ce336b9283164467a123262>`(void const* ptr);
+	char* :ref:`Pointer_ToString_Hex<doxid-group__libccc__pointer_1ga93cf592597a50d4f13fd00518e2e0e4a>`(void const* ptr);
+
+	// macros
+
+	#define :ref:`NULL<doxid-group__libccc__pointer_1ga070d2ce7b6bb7e5c05602aa8c308d0c4>`
+	#define :ref:`TYPED_NULL<doxid-group__libccc__pointer_1ga6176da739036fc39ae7048edb82537ce>`(TYPE)
+	#define :target:`c_ptr_to_str<doxid-group__libccc__pointer_1ga9bdcfb7a6eb5f4fcd0384369500d3ce3>`
+	#define :target:`c_ptr_to_strhex<doxid-group__libccc__pointer_1ga19714ab170f9c3526eb59ac9f71b8538>`
+	#define :target:`c_size_to_str<doxid-group__libccc__pointer_1ga3f64bcae3458c33f127266fadae4ca89>`
+	#define :target:`c_size_to_str_readable<doxid-group__libccc__pointer_1ga648005a628adc52a7c15dd29e2c1f8fc>`
+	#define :target:`c_size_to_strhex<doxid-group__libccc__pointer_1ga2bc81b07f06964f8c788c3ce32ef7b35>`
+	#define :target:`c_str_to_size<doxid-group__libccc__pointer_1gaf564346af001ccae6a2151c916b71f25>`
+
+.. _details-group__libccc__pointer:
+
+Detailed Documentation
+~~~~~~~~~~~~~~~~~~~~~~
+
+This header defines the common standard memory manipulation functions.
+
+Typedefs
+--------
+
+.. index:: pair: typedef; t_size
+.. _doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef size_t t_size
+
+The RAM memory size type.
+
+This typedef is here purely for nomenclature consistency (all primitive typedefs are prefixed with 't\_')
+
+.. index:: pair: typedef; t_ptrdiff
+.. _doxid-group__libccc__pointer_1gaaf13bc256e9c704039e08ec061508a0c:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef ptrdiff_t t_ptrdiff
+
+The pointer difference substraction result type.
+
+This typedef is here purely for nomenclature consistency (all primitive typedefs are prefixed with 't\_')
+
+.. index:: pair: typedef; t_sintmax
+.. _doxid-group__libccc__pointer_1ga3feee0b4ea86f11374f27fdf15a71b70:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef intmax_t t_sintmax
+
+Maximum-width signed integer type.
+
+.. index:: pair: typedef; t_uintmax
+.. _doxid-group__libccc__pointer_1gac0aecea9015652a32969ae48f1e6bd2c:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef uintmax_t t_uintmax
+
+Maximum-width unsigned integer type.
+
+.. index:: pair: typedef; t_sintptr
+.. _doxid-group__libccc__pointer_1gacbd1c0307c55e5f81a2e837cb6c5541e:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef intptr_t t_sintptr
+
+Pointer-size signed integer type.
+
+.. index:: pair: typedef; t_uintptr
+.. _doxid-group__libccc__pointer_1ga99f60fa8c0b01452e12df739f000a5c4:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef uintptr_t t_uintptr
+
+Pointer-size unsigned integer type.
+
+Global Functions
+----------------
+
+.. index:: pair: function; Size_ToString
+.. _doxid-group__libccc__pointer_1gac94c4f345aa1616abc02608f8365aa5b:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* Size_ToString(:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` value)
+
+Get the string decimal representation of a RAM memory size integer.
+
+.. index:: pair: function; Size_ToString_Hex
+.. _doxid-group__libccc__pointer_1ga8b4db13660bd943d9c1281dfd4a9aba0:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* Size_ToString_Hex(:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` value)
+
+Get the string hexadecimal representation of a RAM memory size integer.
+
+.. index:: pair: function; Size_ToString_Readable
+.. _doxid-group__libccc__pointer_1ga1c832afe71724520eb9ede992cbac0be:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* Size_ToString_Readable(:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` value)
+
+Get the string human-readable representation of a RAM memory size integer, in short readable form, with bytes units (KB,MB,GB,etc)
+
+.. index:: pair: function; Size_FromString
+.. _doxid-group__libccc__pointer_1ga820e0f5cdce4c4088d44099cf490ba91:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` Size_FromString(char const* str)
+
+Parse a memory-size uint from the given string.
+
+.. index:: pair: function; Pointer_ToString
+.. _doxid-group__libccc__pointer_1gae505f5a39ce336b9283164467a123262:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* Pointer_ToString(void const* ptr)
+
+Get the string decimal representation of a pointer/address value.
+
+.. index:: pair: function; Pointer_ToString_Hex
+.. _doxid-group__libccc__pointer_1ga93cf592597a50d4f13fd00518e2e0e4a:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* Pointer_ToString_Hex(void const* ptr)
+
+Get the string hexadecimal representation of a pointer/address value.
+
+Macros
+------
+
+.. index:: pair: define; NULL
+.. _doxid-group__libccc__pointer_1ga070d2ce7b6bb7e5c05602aa8c308d0c4:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define NULL
+
+Represents a NULL (0-value) pointer, of type 'void'.
+
+.. index:: pair: define; TYPED_NULL
+.. _doxid-group__libccc__pointer_1ga6176da739036fc39ae7048edb82537ce:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define TYPED_NULL(TYPE)
+
+Represents a NULL pointer, of the given 'TYPE'.
+

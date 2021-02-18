@@ -1,0 +1,70 @@
+.. index:: pair: struct; s_list_
+.. _doxid-structs__list__:
+
+struct s_list\_
+===============
+
+.. toctree::
+	:hidden:
+
+Overview
+~~~~~~~~
+
+This is a simple linked list struct, with dynamic content type. :ref:`More...<details-structs__list__>`
+
+
+.. ref-code-block:: cpp
+	:class: doxyrest-overview-code-block
+
+	#include <list.h>
+	
+	struct s_list_
+	{
+		// fields
+	
+		struct s_list_* :ref:`next<doxid-structs__list___1adb805ce1164fa779aa13734aeba1500d>`;
+		:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` :ref:`item_size<doxid-structs__list___1a1e15109e65b597a1ddc6df6243476772>`;
+		void* :ref:`item<doxid-structs__list___1aeeeae972d4d97226aa998aa9ca91346c>`;
+	};
+.. _details-structs__list__:
+
+Detailed Documentation
+~~~~~~~~~~~~~~~~~~~~~~
+
+This is a simple linked list struct, with dynamic content type.
+
+The ``s_list`` struct represents one chainlink in the linked-list, so a linked-list with 3 elements would consist of 3 different ``s_list`` structs, all chained together with their ``next`` pointer, and the last element would have this ``next`` pointer set to :ref:`NULL(0) <doxid-group__libccc__pointer_1ga070d2ce7b6bb7e5c05602aa8c308d0c4>`
+
+Fields
+------
+
+.. index:: pair: variable; next
+.. _doxid-structs__list___1adb805ce1164fa779aa13734aeba1500d:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	struct s_list_* next
+
+The pointer to the next item in the list (or NULL if this is the last item)
+
+.. index:: pair: variable; item_size
+.. _doxid-structs__list___1a1e15109e65b597a1ddc6df6243476772:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` item_size
+
+The size of the data contained within ``item``
+
+.. index:: pair: variable; item
+.. _doxid-structs__list___1aeeeae972d4d97226aa998aa9ca91346c:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void* item
+
+The contents of this linked-list element.
+

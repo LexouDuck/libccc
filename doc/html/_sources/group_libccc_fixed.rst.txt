@@ -1,0 +1,344 @@
+.. index:: pair: group; 03) libccc/fixed
+.. _doxid-group__libccc__fixed:
+
+03) libccc/fixed
+================
+
+.. toctree::
+	:hidden:
+
+Overview
+~~~~~~~~
+
+This header defines the fixed-point number primitive types and functions. :ref:`More...<details-group__libccc__fixed>`
+
+
+.. ref-code-block:: cpp
+	:class: doxyrest-overview-code-block
+
+	
+	// typedefs
+
+	typedef t_s16 :ref:`t_q16<doxid-group__libccc__fixed_1ga890137c380c61e4f7216112925d12a67>`;
+	typedef t_s32 :ref:`t_q32<doxid-group__libccc__fixed_1ga5230b9a50ea6d030ab1cfb44afe60312>`;
+	typedef t_s64 :target:`t_q64<doxid-group__libccc__fixed_1gafa4093f4db30dbc105637cff12c18ba3>`;
+	typedef LIBCONFIG_TYPE_FIXED :ref:`t_fixed<doxid-group__libccc__fixed_1ga80fed1f279e38d59b7feee9af9e54408>`;
+
+	// global functions
+
+	:ref:`t_fixed<doxid-group__libccc__fixed_1ga80fed1f279e38d59b7feee9af9e54408>` :target:`Fixed<doxid-group__libccc__fixed_1ga52f6cfefa6a7fe66d7f92eb349abd670>`(
+		:ref:`t_fixed<doxid-group__libccc__fixed_1ga80fed1f279e38d59b7feee9af9e54408>` part_integer,
+		t_u64 part_fraction,
+		t_u64 denominator
+		);
+
+	:ref:`t_q16<doxid-group__libccc__fixed_1ga890137c380c61e4f7216112925d12a67>` :target:`Q16<doxid-group__libccc__fixed_1ga5056c50c36a0fd9a0aee55951fc347c6>`(
+		t_s64 part_integer,
+		t_u64 part_fraction,
+		t_u64 denominator
+		);
+
+	:ref:`t_q32<doxid-group__libccc__fixed_1ga5230b9a50ea6d030ab1cfb44afe60312>` :target:`Q32<doxid-group__libccc__fixed_1ga6e71834084a87115946a5274707be4bd>`(
+		t_s64 part_integer,
+		t_u64 part_fraction,
+		t_u64 denominator
+		);
+
+	t_q64 :target:`Q64<doxid-group__libccc__fixed_1ga9bd1c77054a986be74e8441085b21f6d>`(
+		t_s64 part_integer,
+		t_u64 part_fraction,
+		t_u64 denominator
+		);
+
+	:ref:`t_fixed<doxid-group__libccc__fixed_1ga80fed1f279e38d59b7feee9af9e54408>` :target:`Fixed_FromInt<doxid-group__libccc__fixed_1ga1cc6003ceac5ccd7a1cbb77eba6f1633>`(:ref:`t_fixed<doxid-group__libccc__fixed_1ga80fed1f279e38d59b7feee9af9e54408>` number);
+	:ref:`t_q16<doxid-group__libccc__fixed_1ga890137c380c61e4f7216112925d12a67>` :target:`Q16_FromInt<doxid-group__libccc__fixed_1gacdc712f80f84ec7c418ce7b500dc87fb>`(t_s16 number);
+	:ref:`t_q32<doxid-group__libccc__fixed_1ga5230b9a50ea6d030ab1cfb44afe60312>` :target:`Q32_FromInt<doxid-group__libccc__fixed_1ga1ed302e5f113d23e63a3085f4a9b8745>`(t_s32 number);
+	t_q64 :target:`Q64_FromInt<doxid-group__libccc__fixed_1gae3c62258dca455516d64b8b03d90b55d>`(t_s64 number);
+	:ref:`t_fixed<doxid-group__libccc__fixed_1ga80fed1f279e38d59b7feee9af9e54408>` :target:`Fixed_FromFloat<doxid-group__libccc__fixed_1gaebe575bb954612c7d9886bee27471592>`(:ref:`t_fixed<doxid-group__libccc__fixed_1ga80fed1f279e38d59b7feee9af9e54408>` number);
+	:ref:`t_q16<doxid-group__libccc__fixed_1ga890137c380c61e4f7216112925d12a67>` :target:`Q16_FromFloat<doxid-group__libccc__fixed_1ga5fa1081dd43ba0eb302e93c14301dcd1>`(:ref:`t_f64<doxid-group__libccc__float_1gad103913585e225d474d7bd173154f4e8>` number);
+	:ref:`t_q32<doxid-group__libccc__fixed_1ga5230b9a50ea6d030ab1cfb44afe60312>` :target:`Q32_FromFloat<doxid-group__libccc__fixed_1ga7f8f39c5cab55f7d010a3a9bdf0531eb>`(:ref:`t_f64<doxid-group__libccc__float_1gad103913585e225d474d7bd173154f4e8>` number);
+	t_q64 :target:`Q64_FromFloat<doxid-group__libccc__fixed_1gaba5a9e208f3527961d56b45d7bc40097>`(:ref:`t_f64<doxid-group__libccc__float_1gad103913585e225d474d7bd173154f4e8>` number);
+	:ref:`t_fixed<doxid-group__libccc__fixed_1ga80fed1f279e38d59b7feee9af9e54408>` :target:`Fixed_IntegerPart<doxid-group__libccc__fixed_1ga96df8a47fe778ea3a6fe1890e3ebd46f>`(:ref:`t_fixed<doxid-group__libccc__fixed_1ga80fed1f279e38d59b7feee9af9e54408>` number);
+	:ref:`t_q16<doxid-group__libccc__fixed_1ga890137c380c61e4f7216112925d12a67>` :target:`Q16_IntegerPart<doxid-group__libccc__fixed_1ga9841e27838cb8512bd68e90996d02001>`(:ref:`t_q16<doxid-group__libccc__fixed_1ga890137c380c61e4f7216112925d12a67>` number);
+	:ref:`t_q32<doxid-group__libccc__fixed_1ga5230b9a50ea6d030ab1cfb44afe60312>` :target:`Q32_IntegerPart<doxid-group__libccc__fixed_1ga09f4db960296b7220e2caf2e99d18873>`(:ref:`t_q32<doxid-group__libccc__fixed_1ga5230b9a50ea6d030ab1cfb44afe60312>` number);
+	t_q64 :target:`Q64_IntegerPart<doxid-group__libccc__fixed_1ga1c7ec13c3b7efd889d8a7f95576a30e2>`(t_q64 number);
+	:ref:`t_fixed<doxid-group__libccc__fixed_1ga80fed1f279e38d59b7feee9af9e54408>` :target:`Fixed_FractionPart<doxid-group__libccc__fixed_1ga51c56a0433240ecf2b7341a309784e98>`(:ref:`t_fixed<doxid-group__libccc__fixed_1ga80fed1f279e38d59b7feee9af9e54408>` number);
+	:ref:`t_q16<doxid-group__libccc__fixed_1ga890137c380c61e4f7216112925d12a67>` :target:`Q16_FractionPart<doxid-group__libccc__fixed_1ga85432c2f74f78f908443657da69b3739>`(:ref:`t_q16<doxid-group__libccc__fixed_1ga890137c380c61e4f7216112925d12a67>` number);
+	:ref:`t_q32<doxid-group__libccc__fixed_1ga5230b9a50ea6d030ab1cfb44afe60312>` :target:`Q32_FractionPart<doxid-group__libccc__fixed_1ga5301090d2d093ae05e487e33f45d4e49>`(:ref:`t_q32<doxid-group__libccc__fixed_1ga5230b9a50ea6d030ab1cfb44afe60312>` number);
+	t_q64 :target:`Q64_FractionPart<doxid-group__libccc__fixed_1ga7bdc937624715ee8adc76d705b9a3dc8>`(t_q64 number);
+	:ref:`t_fixed<doxid-group__libccc__fixed_1ga80fed1f279e38d59b7feee9af9e54408>` :target:`Fixed_Rounded<doxid-group__libccc__fixed_1ga14122e025c79ca714a38639fc9724042>`(:ref:`t_fixed<doxid-group__libccc__fixed_1ga80fed1f279e38d59b7feee9af9e54408>` number);
+	:ref:`t_q16<doxid-group__libccc__fixed_1ga890137c380c61e4f7216112925d12a67>` :target:`Q16_Rounded<doxid-group__libccc__fixed_1ga58af1410f69657717966b579a7054611>`(:ref:`t_q16<doxid-group__libccc__fixed_1ga890137c380c61e4f7216112925d12a67>` number);
+	:ref:`t_q32<doxid-group__libccc__fixed_1ga5230b9a50ea6d030ab1cfb44afe60312>` :target:`Q32_Rounded<doxid-group__libccc__fixed_1ga1dc6ddf336a9d7bb0a48926d39ebfe98>`(:ref:`t_q32<doxid-group__libccc__fixed_1ga5230b9a50ea6d030ab1cfb44afe60312>` number);
+	t_q64 :target:`Q64_Rounded<doxid-group__libccc__fixed_1gac82c9172f05676e916af832925427ab5>`(t_q64 number);
+	:ref:`t_fixed<doxid-group__libccc__fixed_1ga80fed1f279e38d59b7feee9af9e54408>` :target:`Fixed_Add<doxid-group__libccc__fixed_1gae703c79546a340ac655a45767bd8fd89>`(:ref:`t_fixed<doxid-group__libccc__fixed_1ga80fed1f279e38d59b7feee9af9e54408>` q1, :ref:`t_fixed<doxid-group__libccc__fixed_1ga80fed1f279e38d59b7feee9af9e54408>` q2);
+	:ref:`t_q16<doxid-group__libccc__fixed_1ga890137c380c61e4f7216112925d12a67>` :target:`Q16_Add<doxid-group__libccc__fixed_1ga7a8538529cf8630de201d80de78df12c>`(:ref:`t_q16<doxid-group__libccc__fixed_1ga890137c380c61e4f7216112925d12a67>` q1, :ref:`t_q16<doxid-group__libccc__fixed_1ga890137c380c61e4f7216112925d12a67>` q2);
+	:ref:`t_q32<doxid-group__libccc__fixed_1ga5230b9a50ea6d030ab1cfb44afe60312>` :target:`Q32_Add<doxid-group__libccc__fixed_1gac03828bf9007bce8c3eeb7e7d965145e>`(:ref:`t_q32<doxid-group__libccc__fixed_1ga5230b9a50ea6d030ab1cfb44afe60312>` q1, :ref:`t_q32<doxid-group__libccc__fixed_1ga5230b9a50ea6d030ab1cfb44afe60312>` q2);
+
+	t_q64 :target:`Q64_Add<doxid-group__libccc__fixed_1ga6a0b68f09482fc4f37de9b466a8700db>`(
+		t_q64 q1,
+		t_q64 q2
+		);
+
+	:ref:`t_fixed<doxid-group__libccc__fixed_1ga80fed1f279e38d59b7feee9af9e54408>` :target:`Fixed_Sub<doxid-group__libccc__fixed_1ga2671a34405bb23c428af1433b1a1ac30>`(:ref:`t_fixed<doxid-group__libccc__fixed_1ga80fed1f279e38d59b7feee9af9e54408>` q1, :ref:`t_fixed<doxid-group__libccc__fixed_1ga80fed1f279e38d59b7feee9af9e54408>` q2);
+	:ref:`t_q16<doxid-group__libccc__fixed_1ga890137c380c61e4f7216112925d12a67>` :target:`Q16_Sub<doxid-group__libccc__fixed_1gaedccc6cac143539132dc8447b7c04fc5>`(:ref:`t_q16<doxid-group__libccc__fixed_1ga890137c380c61e4f7216112925d12a67>` q1, :ref:`t_q16<doxid-group__libccc__fixed_1ga890137c380c61e4f7216112925d12a67>` q2);
+	:ref:`t_q32<doxid-group__libccc__fixed_1ga5230b9a50ea6d030ab1cfb44afe60312>` :target:`Q32_Sub<doxid-group__libccc__fixed_1gaab342a9d01a9ccb21b07a58dcd26b4a0>`(:ref:`t_q32<doxid-group__libccc__fixed_1ga5230b9a50ea6d030ab1cfb44afe60312>` q1, :ref:`t_q32<doxid-group__libccc__fixed_1ga5230b9a50ea6d030ab1cfb44afe60312>` q2);
+
+	t_q64 :target:`Q64_Sub<doxid-group__libccc__fixed_1ga6c75ee5f9c6cc9fff42701bda10a60f4>`(
+		t_q64 q1,
+		t_q64 q2
+		);
+
+	:ref:`t_fixed<doxid-group__libccc__fixed_1ga80fed1f279e38d59b7feee9af9e54408>` :target:`Fixed_Mul<doxid-group__libccc__fixed_1ga8f3e44fc81d68bd1b13afcb2a1074b3b>`(:ref:`t_fixed<doxid-group__libccc__fixed_1ga80fed1f279e38d59b7feee9af9e54408>` q1, :ref:`t_fixed<doxid-group__libccc__fixed_1ga80fed1f279e38d59b7feee9af9e54408>` q2);
+	:ref:`t_q16<doxid-group__libccc__fixed_1ga890137c380c61e4f7216112925d12a67>` :target:`Q16_Mul<doxid-group__libccc__fixed_1gad5a40b6334b6ea835409178621493d6c>`(:ref:`t_q16<doxid-group__libccc__fixed_1ga890137c380c61e4f7216112925d12a67>` q1, :ref:`t_q16<doxid-group__libccc__fixed_1ga890137c380c61e4f7216112925d12a67>` q2);
+	:ref:`t_q32<doxid-group__libccc__fixed_1ga5230b9a50ea6d030ab1cfb44afe60312>` :target:`Q32_Mul<doxid-group__libccc__fixed_1ga73902b2d4c164361e3f771145df40d5a>`(:ref:`t_q32<doxid-group__libccc__fixed_1ga5230b9a50ea6d030ab1cfb44afe60312>` q1, :ref:`t_q32<doxid-group__libccc__fixed_1ga5230b9a50ea6d030ab1cfb44afe60312>` q2);
+
+	t_q64 :target:`Q64_Mul<doxid-group__libccc__fixed_1ga0a8b21f42aff010414abe12d1580b1e5>`(
+		t_q64 q1,
+		t_q64 q2
+		);
+
+	:ref:`t_fixed<doxid-group__libccc__fixed_1ga80fed1f279e38d59b7feee9af9e54408>` :target:`Fixed_Div<doxid-group__libccc__fixed_1gaa1193629039b843d8d4b4e1c8152291d>`(:ref:`t_fixed<doxid-group__libccc__fixed_1ga80fed1f279e38d59b7feee9af9e54408>` q1, :ref:`t_fixed<doxid-group__libccc__fixed_1ga80fed1f279e38d59b7feee9af9e54408>` q2);
+	:ref:`t_q16<doxid-group__libccc__fixed_1ga890137c380c61e4f7216112925d12a67>` :target:`Q16_Div<doxid-group__libccc__fixed_1gaca231e212b09b96bf89f9d983bcfa589>`(:ref:`t_q16<doxid-group__libccc__fixed_1ga890137c380c61e4f7216112925d12a67>` q1, :ref:`t_q16<doxid-group__libccc__fixed_1ga890137c380c61e4f7216112925d12a67>` q2);
+	:ref:`t_q32<doxid-group__libccc__fixed_1ga5230b9a50ea6d030ab1cfb44afe60312>` :target:`Q32_Div<doxid-group__libccc__fixed_1ga36a4b4768ec8b917eaf1fa92ee258b34>`(:ref:`t_q32<doxid-group__libccc__fixed_1ga5230b9a50ea6d030ab1cfb44afe60312>` q1, :ref:`t_q32<doxid-group__libccc__fixed_1ga5230b9a50ea6d030ab1cfb44afe60312>` q2);
+
+	t_q64 :target:`Q64_Div<doxid-group__libccc__fixed_1ga7d83157263a50c63971b5b9f734e16d2>`(
+		t_q64 q1,
+		t_q64 q2
+		);
+
+	char* :ref:`Q16_ToString<doxid-group__libccc__fixed_1ga6d9969bee277c69258b141c5b5964e87>`(:ref:`t_q16<doxid-group__libccc__fixed_1ga890137c380c61e4f7216112925d12a67>` n);
+	char* :ref:`Q32_ToString<doxid-group__libccc__fixed_1ga6db26acec4bde0ef0770f7b0aac4a5f9>`(:ref:`t_q32<doxid-group__libccc__fixed_1ga5230b9a50ea6d030ab1cfb44afe60312>` n);
+	char* :ref:`Q64_ToString<doxid-group__libccc__fixed_1ga45996731daa05e5b6d4f61ca2d6bf204>`(t_q64 n);
+	char* :ref:`Q16_ToString_Hex<doxid-group__libccc__fixed_1ga02308ee63d97ae3499d53f8774d8fec0>`(:ref:`t_q16<doxid-group__libccc__fixed_1ga890137c380c61e4f7216112925d12a67>` n);
+	char* :ref:`Q32_ToString_Hex<doxid-group__libccc__fixed_1ga896044ac94829e6fdea6674296179ede>`(:ref:`t_q32<doxid-group__libccc__fixed_1ga5230b9a50ea6d030ab1cfb44afe60312>` n);
+	char* :ref:`Q64_ToString_Hex<doxid-group__libccc__fixed_1gae9b52a3f2329eefb29c50e2c12b7a01a>`(t_q64 n);
+	char* :ref:`Q16_ToString_Base<doxid-group__libccc__fixed_1ga42324449fbd4a23fdbaa986c4492eaab>`(:ref:`t_q16<doxid-group__libccc__fixed_1ga890137c380c61e4f7216112925d12a67>` n);
+	char* :ref:`Q32_ToString_Base<doxid-group__libccc__fixed_1ga86c7d7d1ab0ad93ecce666869fb1c013>`(:ref:`t_q32<doxid-group__libccc__fixed_1ga5230b9a50ea6d030ab1cfb44afe60312>` n);
+	char* :ref:`Q64_ToString_Base<doxid-group__libccc__fixed_1gad1e66bd3755099b4d46e4b5f9d5604a3>`(t_q64 n);
+	:ref:`t_q16<doxid-group__libccc__fixed_1ga890137c380c61e4f7216112925d12a67>` :ref:`Q16_FromString<doxid-group__libccc__fixed_1ga251d3042d1dfe046b78cc15413534dc9>`(char const* str);
+	:ref:`t_q32<doxid-group__libccc__fixed_1ga5230b9a50ea6d030ab1cfb44afe60312>` :ref:`Q32_FromString<doxid-group__libccc__fixed_1gab45c4de9251ff406822f1322ef955706>`(char const* str);
+	t_q64 :ref:`Q64_FromString<doxid-group__libccc__fixed_1ga97266722ea27e8afcb3b4acbd730387a>`(char const* str);
+
+	// macros
+
+	#define :ref:`FIXED_BITS_FRACTIONPART<doxid-group__libccc__fixed_1ga816760cfc1ceb5c74269c6183f4148e0>`
+	#define :ref:`FIXED_BITS_INTEGERPART<doxid-group__libccc__fixed_1ga28295e4c222f663e89c6094151321d3a>`
+	#define :target:`FIXED_MASK_FRACTIONPART<doxid-group__libccc__fixed_1gad4b258129b70325f674067b035f81bb7>`
+	#define :target:`FIXED_MASK_INTEGERPART<doxid-group__libccc__fixed_1ga65eb406aad3bf0d3977058a851362725>`
+	#define :target:`FIXED_MAX_FRACTIONPART<doxid-group__libccc__fixed_1ga73151d2a630b0eade56105b68de7e73c>`
+	#define :ref:`FIXED_MAX_INTEGERPART<doxid-group__libccc__fixed_1ga8d9aed807ea6a9ce968223d43ad400c3>`
+	#define :target:`Q16_MAX<doxid-group__libccc__fixed_1ga6c4af1bab0609a00efbe429151fc9b56>`
+	#define :target:`Q16_MIN<doxid-group__libccc__fixed_1ga699adbcd92740208a22eb47a7359c430>`
+	#define :target:`Q32_MAX<doxid-group__libccc__fixed_1ga13a5f2ed63e32f74b12177db7198e655>`
+	#define :target:`Q32_MIN<doxid-group__libccc__fixed_1ga5211bfa3419b776cebd863f87ff50548>`
+	#define :target:`Q64_MAX<doxid-group__libccc__fixed_1ga0a493c60855f5aa8dfd9e8123f69cb2d>`
+	#define :target:`Q64_MIN<doxid-group__libccc__fixed_1ga5c8df7226a2374e77095f37586fe7bc1>`
+	#define :target:`c_q16_to_str<doxid-group__libccc__fixed_1ga1c4f60b11022de48ea7fb822388d1f29>`
+	#define :target:`c_q16_to_strbase<doxid-group__libccc__fixed_1ga7d7a5cff098238edbf633b0ab136b40a>`
+	#define :target:`c_q16_to_strhex<doxid-group__libccc__fixed_1ga8c0935817ffa87298fa30887f954e643>`
+	#define :target:`c_q32_to_str<doxid-group__libccc__fixed_1ga2db9b4037e6877ba6df8a0cb47d43d2e>`
+	#define :target:`c_q32_to_strbase<doxid-group__libccc__fixed_1ga57cb26a4e57e769c1d7eeb46fcd53684>`
+	#define :target:`c_q32_to_strhex<doxid-group__libccc__fixed_1gaebb785cf716addbb38b08ab9dc48b8dc>`
+	#define :target:`c_q64_to_str<doxid-group__libccc__fixed_1ga2bbd94b9e594925e4d443c567c820c62>`
+	#define :target:`c_q64_to_strbase<doxid-group__libccc__fixed_1ga90d1042606a7602987c0e8f34460f064>`
+	#define :target:`c_q64_to_strhex<doxid-group__libccc__fixed_1gab526cccd2a2a5812507156021e15ca0f>`
+	#define :target:`c_str_to_q16<doxid-group__libccc__fixed_1ga409417e249ad3ac1b71fcbe0b1416e50>`
+	#define :target:`c_str_to_q32<doxid-group__libccc__fixed_1ga9bbe5f2b5ca0caebd4a2b7baf3e896a1>`
+	#define :target:`c_str_to_q64<doxid-group__libccc__fixed_1ga489bc51ecc39fa5f02167ef206bca664>`
+
+.. _details-group__libccc__fixed:
+
+Detailed Documentation
+~~~~~~~~~~~~~~~~~~~~~~
+
+This header defines the fixed-point number primitive types and functions.
+
+Typedefs
+--------
+
+.. index:: pair: typedef; t_q16
+.. _doxid-group__libccc__fixed_1ga890137c380c61e4f7216112925d12a67:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef t_s16 t_q16
+
+The type for 32-bit signed fixed-point rational numbers (configurable)
+
+.. index:: pair: typedef; t_q32
+.. _doxid-group__libccc__fixed_1ga5230b9a50ea6d030ab1cfb44afe60312:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef t_s32 t_q32
+
+The type for 64-bit signed fixed-point rational numbers (configurable)
+
+.. index:: pair: typedef; t_fixed
+.. _doxid-group__libccc__fixed_1ga80fed1f279e38d59b7feee9af9e54408:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef LIBCONFIG_TYPE_FIXED t_fixed
+
+The configurable-size fixed-point number primitive type.
+
+Global Functions
+----------------
+
+.. index:: pair: function; Q16_ToString
+.. _doxid-group__libccc__fixed_1ga6d9969bee277c69258b141c5b5964e87:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* Q16_ToString(:ref:`t_q16<doxid-group__libccc__fixed_1ga890137c380c61e4f7216112925d12a67>` n)
+
+Get the string decimal representation of a 16-bit signed fixed-point number.
+
+.. index:: pair: function; Q32_ToString
+.. _doxid-group__libccc__fixed_1ga6db26acec4bde0ef0770f7b0aac4a5f9:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* Q32_ToString(:ref:`t_q32<doxid-group__libccc__fixed_1ga5230b9a50ea6d030ab1cfb44afe60312>` n)
+
+Get the string decimal representation of a 32-bit signed fixed-point number.
+
+.. index:: pair: function; Q64_ToString
+.. _doxid-group__libccc__fixed_1ga45996731daa05e5b6d4f61ca2d6bf204:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* Q64_ToString(t_q64 n)
+
+Get the string decimal representation of a 64-bit signed fixed-point number.
+
+.. index:: pair: function; Q16_ToString_Hex
+.. _doxid-group__libccc__fixed_1ga02308ee63d97ae3499d53f8774d8fec0:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* Q16_ToString_Hex(:ref:`t_q16<doxid-group__libccc__fixed_1ga890137c380c61e4f7216112925d12a67>` n)
+
+Get the string decimal representation of a 16-bit signed fixed-point number.
+
+.. index:: pair: function; Q32_ToString_Hex
+.. _doxid-group__libccc__fixed_1ga896044ac94829e6fdea6674296179ede:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* Q32_ToString_Hex(:ref:`t_q32<doxid-group__libccc__fixed_1ga5230b9a50ea6d030ab1cfb44afe60312>` n)
+
+Get the string decimal representation of a 32-bit signed fixed-point number.
+
+.. index:: pair: function; Q64_ToString_Hex
+.. _doxid-group__libccc__fixed_1gae9b52a3f2329eefb29c50e2c12b7a01a:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* Q64_ToString_Hex(t_q64 n)
+
+Get the string decimal representation of a 64-bit signed fixed-point number.
+
+.. index:: pair: function; Q16_ToString_Base
+.. _doxid-group__libccc__fixed_1ga42324449fbd4a23fdbaa986c4492eaab:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* Q16_ToString_Base(:ref:`t_q16<doxid-group__libccc__fixed_1ga890137c380c61e4f7216112925d12a67>` n)
+
+Get the custom-base representation of a 16-bit signed fixed-point number.
+
+.. index:: pair: function; Q32_ToString_Base
+.. _doxid-group__libccc__fixed_1ga86c7d7d1ab0ad93ecce666869fb1c013:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* Q32_ToString_Base(:ref:`t_q32<doxid-group__libccc__fixed_1ga5230b9a50ea6d030ab1cfb44afe60312>` n)
+
+Get the custom-base representation of a 32-bit signed fixed-point number.
+
+.. index:: pair: function; Q64_ToString_Base
+.. _doxid-group__libccc__fixed_1gad1e66bd3755099b4d46e4b5f9d5604a3:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* Q64_ToString_Base(t_q64 n)
+
+Get the custom-base representation of a 64-bit signed fixed-point number.
+
+.. index:: pair: function; Q16_FromString
+.. _doxid-group__libccc__fixed_1ga251d3042d1dfe046b78cc15413534dc9:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_q16<doxid-group__libccc__fixed_1ga890137c380c61e4f7216112925d12a67>` Q16_FromString(char const* str)
+
+Parses the string decimal representation of a 16-bit signed fixed-point number.
+
+.. index:: pair: function; Q32_FromString
+.. _doxid-group__libccc__fixed_1gab45c4de9251ff406822f1322ef955706:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_q32<doxid-group__libccc__fixed_1ga5230b9a50ea6d030ab1cfb44afe60312>` Q32_FromString(char const* str)
+
+Parses the string decimal representation of a 32-bit signed fixed-point number.
+
+.. index:: pair: function; Q64_FromString
+.. _doxid-group__libccc__fixed_1ga97266722ea27e8afcb3b4acbd730387a:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	t_q64 Q64_FromString(char const* str)
+
+Parses the string decimal representation of a 64-bit signed fixed-point number.
+
+Macros
+------
+
+.. index:: pair: define; FIXED_BITS_FRACTIONPART
+.. _doxid-group__libccc__fixed_1ga816760cfc1ceb5c74269c6183f4148e0:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define FIXED_BITS_FRACTIONPART
+
+The amount of bits dedicated to the fixed-point number type's fractional number part.
+
+.. index:: pair: define; FIXED_BITS_INTEGERPART
+.. _doxid-group__libccc__fixed_1ga28295e4c222f663e89c6094151321d3a:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define FIXED_BITS_INTEGERPART
+
+The amount of bits dedicated to the fixed-point number type's integer number part.
+
+.. index:: pair: define; FIXED_MAX_INTEGERPART
+.. _doxid-group__libccc__fixed_1ga8d9aed807ea6a9ce968223d43ad400c3:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define FIXED_MAX_INTEGERPART
+
+The type for 16-bit signed fixed-point rational numbers (configurable)
+

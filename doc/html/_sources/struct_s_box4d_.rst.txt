@@ -1,0 +1,24 @@
+.. index:: pair: struct; s_box4d_
+.. _doxid-structs__box4d__:
+
+struct s_box4d\_
+================
+
+.. toctree::
+	:hidden:
+
+A 4-dimensional hypervolume of coordinates, defined by two corner-point vectors.
+
+
+.. ref-code-block:: cpp
+	:class: doxyrest-overview-code-block
+
+	#include <algebra.h>
+	
+	struct s_box4d_
+	{
+		// fields
+	
+		:ref:`u_vector4d<doxid-group__libccc__math__algebra_1ga2de1f4c8060962be9732b2a7d5845bc5>` :target:`start<doxid-structs__box4d___1aaf5af343df56773fb76b048ce6586f77>`;
+		:ref:`u_vector4d<doxid-group__libccc__math__algebra_1ga2de1f4c8060962be9732b2a7d5845bc5>` :target:`end<doxid-structs__box4d___1a4c15454da10be5707b2ae446ac29992a>`;
+	};

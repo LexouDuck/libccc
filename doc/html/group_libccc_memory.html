@@ -1,0 +1,336 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>06) libccc/memory &mdash; libccc 1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/doxyrest-sphinx_rtd_theme.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/target-highlight.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="07) libccc/char" href="group_libccc_char.html" />
+    <link rel="prev" title="05) libccc/pointer" href="group_libccc_pointer.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> libccc
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="group_libccc.html">00) libccc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">01) libccc/bool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">02) libccc/int</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_fixed.html">03) libccc/fixed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_float.html">04) libccc/float</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointer.html">05) libccc/pointer</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">06) libccc/memory</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#detailed-documentation">Detailed Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#global-functions">Global Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">07) libccc/char</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">08) libccc/string</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">09) libccc/format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_regex.html">10) libccc/regex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_color.html">11) libccc/color</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">12) libccc/sys/io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_time.html">13) libccc/sys/time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">14) libccc/sys/logger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_math.html">15) libccc/math/math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_vlq.html">16) libccc/math/vlq</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_stat.html">17) libccc/math/stat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_random.html">18) libccc/math/random</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra.html">19) libccc/math/algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">20) libccc/math/complex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_array.html">21) libccc/array/array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_list.html">22) libccc/array/list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_dict.html">23) libccc/array/dict</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_tree.html">24) libccc/array/tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_pointerarray.html">25) libccc/array/pointerarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_stringarray.html">26) libccc/array/stringarray</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="page_index.html"># libccc</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">libccc</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>06) libccc/memory</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/group_libccc_memory.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="libccc-memory">
+<span id="doxid-group-libccc-memory"></span><span id="index-0"></span><h1>06) libccc/memory<a class="headerlink" href="#libccc-memory" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>This header defines the common standard memory manipulation functions. <a class="reference internal" href="#details-group-libccc-memory"><span class="std std-ref">More…</span></a></p>
+<pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// global functions</span>
+
+<span class="kt">void</span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-memory-1ga7434ed28ca8d902102aab286f58351bb"><span class="std std-ref">Memory_Alloc</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">size</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-memory-1ga7c8b43285360f8f883c108529faa9500"><span class="std std-ref">Memory_New</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">size</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-memory-1ga14a2e464d849154fe381727a5b39bb68"><span class="std std-ref">Memory_New_C</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">size</span><span class="p">,</span> <span class="kt">char</span> <span class="n">c</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-memory-1ga1c4c04e36c9145a492ed7793376063e0"><span class="std std-ref">Memory_Free</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">ptr</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-memory-1ga6c25922e9f9fdb2083c3772db7070e83"><span class="std std-ref">Memory_Delete</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">**</span> <span class="n">a_ptr</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-memory-1gaa859acf2af192ebcc5fcf30f63f1d3de"><span class="std std-ref">Memory_Set</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">ptr</span><span class="p">,</span> <span class="n">t_u8</span> <span class="n">byte</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-memory-1gaa30b4940b752fa1ed0dab3cd2c5cbebb"><span class="std std-ref">Memory_Clear</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">ptr</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-memory-1gac550e7b4a24f9c86320e89cc274f4cf0"><span class="std std-ref">Memory_Copy</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">dest</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">src</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-memory-1ga8a0bcd59493f11d10e93dcc207a4e5ff"><span class="std std-ref">Memory_Copy_C</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">dest</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">src</span><span class="p">,</span> <span class="n">t_u8</span> <span class="n">byte</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-memory-1ga3ff5f0d40d8e6c12e1ce15e9d8910fd3"><span class="std std-ref">Memory_Move</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">dest</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">src</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-memory-1gaac495e9211f795cb14c6fd9ca4cad2d6"><span class="std std-ref">Memory_Duplicate</span></a><span></span><span class="p">(</span><span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-memory-1ga9a72e5cea344b7ad8f4e8bb01cba253b"><span class="std std-ref">Memory_Find</span></a><span></span><span class="p">(</span><span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr</span><span class="p">,</span> <span class="n">t_u8</span> <span class="n">byte</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-memory-1gaac7ea6d813c693c6b0f1a471692d6fff"><span class="std std-ref">Memory_Replace</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">ptr</span><span class="p">,</span> <span class="n">t_u8</span> <span class="n">old</span><span class="p">,</span> <span class="n">t_u8</span> <span class="k">new</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">);</span>
+<span class="kt">int</span> <a class="reference internal" href="#doxid-group-libccc-memory-1gaefe14b45b82e5003b1b48a073a670a0c"><span class="std std-ref">Memory_Compare</span></a><span></span><span class="p">(</span><span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr1</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr2</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">);</span>
+<span class="kt">int</span> <a class="reference internal" href="#doxid-group-libccc-memory-1gae8f7fcf2ef41932a8dc52f0a1a27fa4d"><span class="std std-ref">Memory_Swap</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">ptr1</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">ptr2</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">size</span><span class="p">);</span>
+<span class="n">t_u64</span> <a class="reference internal" href="#doxid-group-libccc-memory-1ga68ede9e357bddc21ce6fa96d27173f5b"><span class="std std-ref">Memory_GetBits</span></a><span></span><span class="p">(</span><span class="n">t_u64</span> <span class="n">value</span><span class="p">,</span> <span class="n">t_u8</span> <span class="n">bit</span><span class="p">,</span> <span class="n">t_u8</span> <span class="n">length</span><span class="p">);</span>
+
+<span class="c1">// macros</span>
+
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-memory-1ga0e434fd038be54a99b94e6adfccadb70"><span></span><span class="n">c_getbits</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-memory-1ga795f68255b939d6af0a0eaa6a0ac8b46"><span></span><span class="n">c_memalloc</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-memory-1ga2f333c722e1630285d86ea5b9d287875"><span></span><span class="n">c_memccpy</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-memory-1gaf4bb2900ccc0ba1332cd00ed60c943af"><span></span><span class="n">c_memchr</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-memory-1ga568d4062ed6afbe67c7f74697f4acdd0"><span></span><span class="n">c_memclr</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-memory-1ga5bad584dd79351e14215596b062c2aa6"><span></span><span class="n">c_memcmp</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-memory-1ga6ab1f24d7bab2be2361b3e894b59b914"><span></span><span class="n">c_memcnew</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-memory-1ga33c6f10b0cf92d89d292ab07bf0af934"><span></span><span class="n">c_memcpy</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-memory-1gae396e9ae0bd0f7ea6f490d162f8a568b"><span></span><span class="n">c_memdel</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-memory-1gaa0c9b0a73df107421fc7f9125f8d3ca0"><span></span><span class="n">c_memdup</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-memory-1ga7cb969b9b92954d72fc3c9561f1b6a28"><span></span><span class="n">c_memfree</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-memory-1ga3622496b6ee9c1adcba74720655f6d92"><span></span><span class="n">c_memmove</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-memory-1ga21729a359cc7fd389460273f2a37baee"><span></span><span class="n">c_memnew</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-memory-1gaa9bd2020893258b0dfb32d96a59f8438"><span></span><span class="n">c_memrep</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-memory-1ga6d0491fc7e398322517829009da1034f"><span></span><span class="n">c_memset</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-memory-1gac0ec452332f4d3438814ebbda13c1fe9"><span></span><span class="n">c_memswap</span></span></pre>
+</div>
+<div class="section" id="detailed-documentation">
+<span id="details-group-libccc-memory"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline">¶</a></h2>
+<p>This header defines the common standard memory manipulation functions.</p>
+<div class="section" id="global-functions">
+<h3>Global Functions<a class="headerlink" href="#global-functions" title="Permalink to this headline">¶</a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-memory-1ga7434ed28ca8d902102aab286f58351bb"><span id="index-1"></span><span></span><span class="kt">void</span><span class="o">*</span> <span class="n">Memory_Alloc</span><span class="p">(</span><a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">size</span><span class="p">)</span></pre>
+<p>Allocates <code class="docutils literal notranslate"><span class="pre">size</span></code> bytes in memory, returning the pointer at which said bytes were allocated, or NULL if the memory could not be allocated.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-memory-1ga7c8b43285360f8f883c108529faa9500"><span id="index-2"></span><span></span><span class="kt">void</span><span class="o">*</span> <span class="n">Memory_New</span><span class="p">(</span><a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">size</span><span class="p">)</span></pre>
+<p>Allocates <code class="docutils literal notranslate"><span class="pre">size</span></code> bytes in memory, setting each byte of this newly allocated memory space to <code class="docutils literal notranslate"><span class="pre">0</span></code>. Returns the pointer at which said bytes were allocated, or NULL if the memory could not be allocated.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-memory-1ga14a2e464d849154fe381727a5b39bb68"><span id="index-3"></span><span></span><span class="kt">void</span><span class="o">*</span> <span class="n">Memory_New_C</span><span class="p">(</span><a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">size</span><span class="p">,</span> <span class="kt">char</span> <span class="n">c</span><span class="p">)</span></pre>
+<p>Allocates <code class="docutils literal notranslate"><span class="pre">size</span></code> bytes in memory, setting each byte of this newly allocated memory space to <code class="docutils literal notranslate"><span class="pre">c</span></code>. Returns the pointer at which said bytes were allocated, or NULL if the memory could not be allocated.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-memory-1ga1c4c04e36c9145a492ed7793376063e0"><span id="index-4"></span><span></span><span class="kt">void</span> <span class="n">Memory_Free</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">ptr</span><span class="p">)</span></pre>
+<p>Frees the allocated memory at <code class="docutils literal notranslate"><span class="pre">*ptr</span></code>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-memory-1ga6c25922e9f9fdb2083c3772db7070e83"><span id="index-5"></span><span></span><span class="kt">void</span> <span class="n">Memory_Delete</span><span class="p">(</span><span class="kt">void</span><span class="o">**</span> <span class="n">a_ptr</span><span class="p">)</span></pre>
+<p>Frees the allocated memory at <code class="docutils literal notranslate"><span class="pre">**a_ptr</span></code>, and sets <code class="docutils literal notranslate"><span class="pre">*a_ptr</span></code> to NULL.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-memory-1gaa859acf2af192ebcc5fcf30f63f1d3de"><span id="index-6"></span><span></span><span class="kt">void</span> <span class="n">Memory_Set</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">ptr</span><span class="p">,</span> <span class="n">t_u8</span> <span class="n">byte</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">)</span></pre>
+<p>Sets <code class="docutils literal notranslate"><span class="pre">n</span></code> bytes of memory with the given 8-bit value <code class="docutils literal notranslate"><span class="pre">byte</span></code> (taking only the first 8 bits of this value and writing it byte-per-byte), starting at <code class="docutils literal notranslate"><span class="pre">ptr</span></code>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-memory-1gaa30b4940b752fa1ed0dab3cd2c5cbebb"><span id="index-7"></span><span></span><span class="kt">void</span> <span class="n">Memory_Clear</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">ptr</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">)</span></pre>
+<p>Sets <code class="docutils literal notranslate"><span class="pre">n</span></code> bytes of memory to 0, starting at <code class="docutils literal notranslate"><span class="pre">ptr</span></code>. (same as bzero)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-memory-1gac550e7b4a24f9c86320e89cc274f4cf0"><span id="index-8"></span><span></span><span class="kt">void</span><span class="o">*</span> <span class="n">Memory_Copy</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">dest</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">src</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">)</span></pre>
+<p>Copies <code class="docutils literal notranslate"><span class="pre">n</span></code> bytes of memory from <code class="docutils literal notranslate"><span class="pre">src</span></code> to <code class="docutils literal notranslate"><span class="pre">dest</span></code>, and returns <code class="docutils literal notranslate"><span class="pre">dest</span></code>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-memory-1ga8a0bcd59493f11d10e93dcc207a4e5ff"><span id="index-9"></span><span></span><span class="kt">void</span><span class="o">*</span> <span class="n">Memory_Copy_C</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">dest</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">src</span><span class="p">,</span> <span class="n">t_u8</span> <span class="n">byte</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">)</span></pre>
+<p>Copies at most <code class="docutils literal notranslate"><span class="pre">n</span></code> bytes of memory from <code class="docutils literal notranslate"><span class="pre">src</span></code> to <code class="docutils literal notranslate"><span class="pre">dest</span></code>, stopping after the first occurence of a byte equal to <code class="docutils literal notranslate"><span class="pre">byte</span></code>, and returns a pointer to (<code class="docutils literal notranslate"><span class="pre">byte</span></code> + 1) in <code class="docutils literal notranslate"><span class="pre">dest</span></code>, or NULL.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-memory-1ga3ff5f0d40d8e6c12e1ce15e9d8910fd3"><span id="index-10"></span><span></span><span class="kt">void</span><span class="o">*</span> <span class="n">Memory_Move</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">dest</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">src</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">)</span></pre>
+<p>Reads <code class="docutils literal notranslate"><span class="pre">n</span></code> bytes of memory from <code class="docutils literal notranslate"><span class="pre">src</span></code>, and then writes all of those bytes to <code class="docutils literal notranslate"><span class="pre">dest</span></code> after having read everything. This function is useful if the <code class="docutils literal notranslate"><span class="pre">src</span></code> and <code class="docutils literal notranslate"><span class="pre">dest</span></code> buffers overlap.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-memory-1gaac495e9211f795cb14c6fd9ca4cad2d6"><span id="index-11"></span><span></span><span class="kt">void</span><span class="o">*</span> <span class="n">Memory_Duplicate</span><span class="p">(</span><span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">)</span></pre>
+<p>Returns a newly allocated memory area which is a copy of the given memory area <code class="docutils literal notranslate"><span class="pre">ptr</span></code> (or NULL if the required memory could not be allocated, or if <code class="docutils literal notranslate"><span class="pre">ptr</span> <span class="pre">==</span> <span class="pre">NULL</span></code> or <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">==</span> <span class="pre">0</span></code>).</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-memory-1ga9a72e5cea344b7ad8f4e8bb01cba253b"><span id="index-12"></span><span></span><span class="kt">void</span><span class="o">*</span> <span class="n">Memory_Find</span><span class="p">(</span><span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr</span><span class="p">,</span> <span class="n">t_u8</span> <span class="n">byte</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">)</span></pre>
+<p>Returns a pointer to the first occurrence of a byte equal to the given <code class="docutils literal notranslate"><span class="pre">byte</span></code> (or NULL if no byte was a match), starting the search at <code class="docutils literal notranslate"><span class="pre">ptr</span></code> and searching <code class="docutils literal notranslate"><span class="pre">n</span></code> bytes of memory.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-memory-1gaac7ea6d813c693c6b0f1a471692d6fff"><span id="index-13"></span><span></span><span class="kt">void</span> <span class="n">Memory_Replace</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">ptr</span><span class="p">,</span> <span class="n">t_u8</span> <span class="n">old</span><span class="p">,</span> <span class="n">t_u8</span> <span class="k">new</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">)</span></pre>
+<p>Iterates through <code class="docutils literal notranslate"><span class="pre">n</span></code> bytes of memory starting at <code class="docutils literal notranslate"><span class="pre">ptr</span></code>, replacing every byte equal to <code class="docutils literal notranslate"><span class="pre">old</span></code> with the value <code class="docutils literal notranslate"><span class="pre">new</span></code> instead.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-memory-1gaefe14b45b82e5003b1b48a073a670a0c"><span id="index-14"></span><span></span><span class="kt">int</span> <span class="n">Memory_Compare</span><span class="p">(</span><span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr1</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr2</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">)</span></pre>
+<p>Compares <code class="docutils literal notranslate"><span class="pre">n</span></code> bytes of memory at <code class="docutils literal notranslate"><span class="pre">ptr1</span></code> and <code class="docutils literal notranslate"><span class="pre">ptr2</span></code>, returning (byte1 - byte2) at the first difference encountered. As such, will return 0 if the contents of <code class="docutils literal notranslate"><span class="pre">ptr1</span></code> and <code class="docutils literal notranslate"><span class="pre">ptr2</span></code> match.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-memory-1gae8f7fcf2ef41932a8dc52f0a1a27fa4d"><span id="index-15"></span><span></span><span class="kt">int</span> <span class="n">Memory_Swap</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">ptr1</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">ptr2</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">size</span><span class="p">)</span></pre>
+<p>Swaps the memory content pointed to by <code class="docutils literal notranslate"><span class="pre">ptr1</span></code> and <code class="docutils literal notranslate"><span class="pre">ptr2</span></code>, copying exactly <code class="docutils literal notranslate"><span class="pre">size</span></code> bytes of data between the two. (XOR swap method) Returns 0 if the swap was successful, and 1 otherwise.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-memory-1ga68ede9e357bddc21ce6fa96d27173f5b"><span id="index-16"></span><span></span><span class="n">t_u64</span> <span class="n">Memory_GetBits</span><span class="p">(</span><span class="n">t_u64</span> <span class="n">value</span><span class="p">,</span> <span class="n">t_u8</span> <span class="n">bit</span><span class="p">,</span> <span class="n">t_u8</span> <span class="n">length</span><span class="p">)</span></pre>
+<p>Returns a subsection of the <code class="docutils literal notranslate"><span class="pre">value</span></code> argument, taking <code class="docutils literal notranslate"><span class="pre">length</span></code> bits from <code class="docutils literal notranslate"><span class="pre">value</span></code> at the given bit index <code class="docutils literal notranslate"><span class="pre">bit</span></code>, and bitshifting the resulting bits to the right by <code class="docutils literal notranslate"><span class="pre">bit</span></code> bits (so as to center the value back to 0).</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="group_libccc_char.html" class="btn btn-neutral float-right" title="07) libccc/char" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="group_libccc_pointer.html" class="btn btn-neutral float-left" title="05) libccc/pointer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright FREE
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

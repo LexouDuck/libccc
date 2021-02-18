@@ -1,0 +1,190 @@
+.. index:: pair: group; 18) libccc/math/random
+.. _doxid-group__libccc__math__random:
+
+18) libccc/math/random
+======================
+
+.. toctree::
+	:hidden:
+
+Overview
+~~~~~~~~
+
+This header defines some simple pseudo-random number generator functions. :ref:`More...<details-group__libccc__math__random>`
+
+
+.. ref-code-block:: cpp
+	:class: doxyrest-overview-code-block
+
+	
+	// global functions
+
+	t_u32 :ref:`Random_Shuffle<doxid-group__libccc__math__random_1ga3b784b7285ecf6242f165d8c9700f1c8>`(t_u32 n);
+	void :ref:`Random_SetSeed<doxid-group__libccc__math__random_1gaa0b27cfcde0b867168a3bd1850f3dde3>`(t_u32 seed);
+	void :ref:`Random_RefreshSeed<doxid-group__libccc__math__random_1gaa31bfdae86594c2766eb63d246c65b57>`(void);
+	t_u32 :ref:`Random_U32<doxid-group__libccc__math__random_1ga66c88261a77764430fead89c8405e131>`(void);
+	t_u32 :ref:`Random_U32_Pow2N<doxid-group__libccc__math__random_1gaa10d2576ce2824c15f50f60938edde02>`(t_u32 n);
+	t_u32 :ref:`Random_U32_0toN<doxid-group__libccc__math__random_1ga01078f6eff6a8dc8c9aad3f9ca55dd8b>`(t_u32 n);
+	:ref:`t_sint<doxid-group__libccc__int_1gad9b833ec2906279e4f479df31778732a>` :ref:`Random_Int_AtoB<doxid-group__libccc__math__random_1gaefbcbea0766682f1ddc1dd30c59fde60>`(:ref:`t_sint<doxid-group__libccc__int_1gad9b833ec2906279e4f479df31778732a>` a, :ref:`t_sint<doxid-group__libccc__int_1gad9b833ec2906279e4f479df31778732a>` b);
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` :ref:`Random_Float_0to1<doxid-group__libccc__math__random_1ga674f8ff116d5eef828769b412ac16fd5>`(void);
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` :ref:`Random_Float_AtoB<doxid-group__libccc__math__random_1gac8b4f4fbee6224fbc31d0d2fd9932d49>`(:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` a, :ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` b);
+
+	// macros
+
+	#define :ref:`CEIL_SQRT_MOD<doxid-group__libccc__math__random_1ga9b45f596d0227ed7d3061dd50edb7810>`
+	#define :ref:`DEFAULT_SEED<doxid-group__libccc__math__random_1ga2de21eb687a4fd2ea6c1d5d7fb3a6e8d>`
+	#define :ref:`MODULUS<doxid-group__libccc__math__random_1ga9bc1fe94bf8c1b9aaef3dade106b6304>`
+	#define :ref:`OFFSET<doxid-group__libccc__math__random_1ga21005f9f4e2ce7597c5eb4351816d7e2>`
+	#define :target:`c_random_32bit_shuffle<doxid-group__libccc__math__random_1ga85b028fee99c4e20099a1366c3b2b600>`
+	#define :target:`c_random_float_0_to_1<doxid-group__libccc__math__random_1ga24f4f1fb206910e582c1b6db9ae40ee5>`
+	#define :target:`c_random_float_a_to_b<doxid-group__libccc__math__random_1gad3268f1d763b76947c3d35bd0fcc25dd>`
+	#define :target:`c_random_int_a_to_b<doxid-group__libccc__math__random_1ga1eb344c07fca7bf9c88eb0af071bb6ed>`
+	#define :target:`c_random_renew_seed<doxid-group__libccc__math__random_1ga89e94120fffe66a770d96652a279d009>`
+	#define :target:`c_random_set_seed<doxid-group__libccc__math__random_1ga990d3d8361dcfdd56cb442f8110ae100>`
+	#define :target:`c_random_u32<doxid-group__libccc__math__random_1ga8484d3f528c8eb68374de708072c87c9>`
+	#define :target:`c_random_u32_0_to_n<doxid-group__libccc__math__random_1gaa2402a6d9904547bc9d10e7118347242>`
+	#define :target:`c_random_u32_0_to_pow2n<doxid-group__libccc__math__random_1gae572c4bc1cb8fa61da630b13638c1ef1>`
+
+.. _details-group__libccc__math__random:
+
+Detailed Documentation
+~~~~~~~~~~~~~~~~~~~~~~
+
+This header defines some simple pseudo-random number generator functions.
+
+Global Functions
+----------------
+
+.. index:: pair: function; Random_Shuffle
+.. _doxid-group__libccc__math__random_1ga3b784b7285ecf6242f165d8c9700f1c8:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	t_u32 Random_Shuffle(t_u32 n)
+
+TODO document this.
+
+.. index:: pair: function; Random_SetSeed
+.. _doxid-group__libccc__math__random_1gaa0b27cfcde0b867168a3bd1850f3dde3:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void Random_SetSeed(t_u32 seed)
+
+TODO document this.
+
+.. index:: pair: function; Random_RefreshSeed
+.. _doxid-group__libccc__math__random_1gaa31bfdae86594c2766eb63d246c65b57:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void Random_RefreshSeed(void)
+
+TODO document this.
+
+.. index:: pair: function; Random_U32
+.. _doxid-group__libccc__math__random_1ga66c88261a77764430fead89c8405e131:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	t_u32 Random_U32(void)
+
+TODO document this.
+
+.. index:: pair: function; Random_U32_Pow2N
+.. _doxid-group__libccc__math__random_1gaa10d2576ce2824c15f50f60938edde02:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	t_u32 Random_U32_Pow2N(t_u32 n)
+
+TODO document this.
+
+.. index:: pair: function; Random_U32_0toN
+.. _doxid-group__libccc__math__random_1ga01078f6eff6a8dc8c9aad3f9ca55dd8b:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	t_u32 Random_U32_0toN(t_u32 n)
+
+TODO document this.
+
+.. index:: pair: function; Random_Int_AtoB
+.. _doxid-group__libccc__math__random_1gaefbcbea0766682f1ddc1dd30c59fde60:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_sint<doxid-group__libccc__int_1gad9b833ec2906279e4f479df31778732a>` Random_Int_AtoB(:ref:`t_sint<doxid-group__libccc__int_1gad9b833ec2906279e4f479df31778732a>` a, :ref:`t_sint<doxid-group__libccc__int_1gad9b833ec2906279e4f479df31778732a>` b)
+
+TODO document this.
+
+.. index:: pair: function; Random_Float_0to1
+.. _doxid-group__libccc__math__random_1ga674f8ff116d5eef828769b412ac16fd5:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` Random_Float_0to1(void)
+
+TODO document this.
+
+.. index:: pair: function; Random_Float_AtoB
+.. _doxid-group__libccc__math__random_1gac8b4f4fbee6224fbc31d0d2fd9932d49:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` Random_Float_AtoB(:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` a, :ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` b)
+
+TODO document this.
+
+Macros
+------
+
+.. index:: pair: define; CEIL_SQRT_MOD
+.. _doxid-group__libccc__math__random_1ga9b45f596d0227ed7d3061dd50edb7810:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define CEIL_SQRT_MOD
+
+TODO document this.
+
+.. index:: pair: define; DEFAULT_SEED
+.. _doxid-group__libccc__math__random_1ga2de21eb687a4fd2ea6c1d5d7fb3a6e8d:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define DEFAULT_SEED
+
+The default random seed for pseudo-random number generation.
+
+.. index:: pair: define; MODULUS
+.. _doxid-group__libccc__math__random_1ga9bc1fe94bf8c1b9aaef3dade106b6304:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define MODULUS
+
+TODO document this.
+
+.. index:: pair: define; OFFSET
+.. _doxid-group__libccc__math__random_1ga21005f9f4e2ce7597c5eb4351816d7e2:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define OFFSET
+
+TODO document this.
+

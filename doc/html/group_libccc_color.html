@@ -1,0 +1,800 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>11) libccc/color &mdash; libccc 1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/doxyrest-sphinx_rtd_theme.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/target-highlight.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="struct s_ahsl_" href="struct_s_ahsl_.html" />
+    <link rel="prev" title="10) libccc/regex" href="group_libccc_regex.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> libccc
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="group_libccc.html">00) libccc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">01) libccc/bool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">02) libccc/int</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_fixed.html">03) libccc/fixed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_float.html">04) libccc/float</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointer.html">05) libccc/pointer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_memory.html">06) libccc/memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">07) libccc/char</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">08) libccc/string</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">09) libccc/format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_regex.html">10) libccc/regex</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">11) libccc/color</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="struct_s_ahsl_.html">struct s_ahsl_</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct_s_argb_.html">struct s_argb_</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#detailed-documentation">Detailed Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#typedefs">Typedefs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#global-functions">Global Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#macros">Macros</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">12) libccc/sys/io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_time.html">13) libccc/sys/time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">14) libccc/sys/logger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_math.html">15) libccc/math/math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_vlq.html">16) libccc/math/vlq</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_stat.html">17) libccc/math/stat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_random.html">18) libccc/math/random</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra.html">19) libccc/math/algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">20) libccc/math/complex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_array.html">21) libccc/array/array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_list.html">22) libccc/array/list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_dict.html">23) libccc/array/dict</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_tree.html">24) libccc/array/tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_pointerarray.html">25) libccc/array/pointerarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_stringarray.html">26) libccc/array/stringarray</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="page_index.html"># libccc</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">libccc</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>11) libccc/color</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/group_libccc_color.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="libccc-color">
+<span id="doxid-group-libccc-color"></span><span id="index-0"></span><h1>11) libccc/color<a class="headerlink" href="#libccc-color" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>This header defines all the functions/bitmasks for encoding colors in ints. <a class="reference internal" href="#details-group-libccc-color"><span class="std std-ref">More…</span></a></p>
+<pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// typedefs</span>
+
+<span class="k">typedef</span> <span class="n">t_u16</span> <a class="reference internal" href="#doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span class="std std-ref">t_argb16</span></a><span></span><span class="p">;</span>
+<span class="k">typedef</span> <span class="n">t_u32</span> <a class="reference internal" href="#doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span class="std std-ref">t_argb32</span></a><span></span><span class="p">;</span>
+<span class="k">typedef</span> <span class="k">struct</span> <a class="reference internal" href="struct_s_argb_.html#doxid-structs-argb"><span class="std std-ref">s_argb_</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-color-1ga2ce6e41a7d4cf5623c5c7b68113df98e"><span class="std std-ref">s_argb</span></a><span></span><span class="p">;</span>
+<span class="k">typedef</span> <span class="k">struct</span> <a class="reference internal" href="struct_s_ahsl_.html#doxid-structs-ahsl"><span class="std std-ref">s_ahsl_</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-color-1gaf56178ad7a63d493cc434a68a626f548"><span class="std std-ref">s_ahsl</span></a><span></span><span class="p">;</span>
+
+<span class="c1">// structs</span>
+
+<span class="k">struct</span> <a class="reference internal" href="struct_s_ahsl_.html#doxid-structs-ahsl"><span class="std std-ref">s_ahsl_</span></a><span></span><span class="p">;</span>
+<span class="k">struct</span> <a class="reference internal" href="struct_s_argb_.html#doxid-structs-argb"><span class="std std-ref">s_argb_</span></a><span></span><span class="p">;</span>
+
+<span class="c1">// global functions</span>
+
+<span class="n">t_u8</span> <a class="reference internal" href="#doxid-group-libccc-color-1gafe75c0d3bcf96ecf3803296b36c05af0"><span class="std std-ref">Color_ARGB16_Get_A</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span class="std std-ref">t_argb16</span></a><span></span> <span class="n">color</span><span class="p">);</span>
+<span class="n">t_u8</span> <a class="reference internal" href="#doxid-group-libccc-color-1ga3f3c11f80b8c470cf66dbb1709949801"><span class="std std-ref">Color_ARGB16_Get_R</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span class="std std-ref">t_argb16</span></a><span></span> <span class="n">color</span><span class="p">);</span>
+<span class="n">t_u8</span> <a class="reference internal" href="#doxid-group-libccc-color-1ga6148c224ae94f60ebec2dd279d915531"><span class="std std-ref">Color_ARGB16_Get_G</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span class="std std-ref">t_argb16</span></a><span></span> <span class="n">color</span><span class="p">);</span>
+<span class="n">t_u8</span> <a class="reference internal" href="#doxid-group-libccc-color-1gabfd33ef1e812ddb98e40183c4edea5f7"><span class="std std-ref">Color_ARGB16_Get_B</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span class="std std-ref">t_argb16</span></a><span></span> <span class="n">color</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span class="std std-ref">t_argb16</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-color-1ga48310eef5d974dd37adc5b39a2edeb24"><span class="std std-ref">Color_ARGB16_Set</span></a><span></span><span class="p">(</span><span class="n">t_u8</span> <span class="n">a</span><span class="p">,</span> <span class="n">t_u8</span> <span class="n">r</span><span class="p">,</span> <span class="n">t_u8</span> <span class="n">g</span><span class="p">,</span> <span class="n">t_u8</span> <span class="n">b</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span class="std std-ref">t_argb16</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-color-1ga5ed67ed30f6a077d6db3f2f723dacd48"><span class="std std-ref">Color_ARGB16_Set_A</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span class="std std-ref">t_argb16</span></a><span></span> <span class="n">color</span><span class="p">,</span> <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaf15d2c7169c336f97175a2e218d22e73"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">a</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span class="std std-ref">t_argb16</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-color-1ga439c0aa8649c63c5686417009b6f6e1f"><span class="std std-ref">Color_ARGB16_Set_R</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span class="std std-ref">t_argb16</span></a><span></span> <span class="n">color</span><span class="p">,</span> <span class="n">t_u8</span> <span class="n">r</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span class="std std-ref">t_argb16</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-color-1ga011f3f1b31d30e83355b9b8330c19c5d"><span class="std std-ref">Color_ARGB16_Set_G</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span class="std std-ref">t_argb16</span></a><span></span> <span class="n">color</span><span class="p">,</span> <span class="n">t_u8</span> <span class="n">g</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span class="std std-ref">t_argb16</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-color-1ga86ec09537f5c9a721cb7562eddeb70e8"><span class="std std-ref">Color_ARGB16_Set_B</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span class="std std-ref">t_argb16</span></a><span></span> <span class="n">color</span><span class="p">,</span> <span class="n">t_u8</span> <span class="n">b</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span class="std std-ref">t_argb32</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-color-1ga6d569e092e91018dfa68554a2c9215a2"><span class="std std-ref">Color_ARGB16_To_ARGB32</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span class="std std-ref">t_argb16</span></a><span></span> <span class="n">color</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-color-1ga2ce6e41a7d4cf5623c5c7b68113df98e"><span class="std std-ref">s_argb</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-color-1gae7f85a5401a95c432a11268c635eb14b"><span class="std std-ref">Color_ARGB16_To_ARGB</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span class="std std-ref">t_argb16</span></a><span></span> <span class="n">color</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span class="std std-ref">t_argb16</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-color-1gad887b06f9628af01d477cc04f23685ce"><span class="std std-ref">Color_ARGB16_GetNearest</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span class="std std-ref">t_argb16</span></a><span></span> <span class="n">target</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span class="std std-ref">t_argb16</span></a><span></span><span class="o">*</span> <span class="n">colors</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">);</span>
+<span class="n">t_u8</span> <a class="reference internal" href="#doxid-group-libccc-color-1ga3e3258a2239cad8538c47e237c7acf71"><span class="std std-ref">Color_ARGB32_Get_A</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span class="std std-ref">t_argb32</span></a><span></span> <span class="n">color</span><span class="p">);</span>
+<span class="n">t_u8</span> <a class="reference internal" href="#doxid-group-libccc-color-1ga560ff42a09fd61a65cb9614bb6fc18e1"><span class="std std-ref">Color_ARGB32_Get_R</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span class="std std-ref">t_argb32</span></a><span></span> <span class="n">color</span><span class="p">);</span>
+<span class="n">t_u8</span> <a class="reference internal" href="#doxid-group-libccc-color-1gab11a548ed1d7e28fbb5eb8ea3497d48f"><span class="std std-ref">Color_ARGB32_Get_G</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span class="std std-ref">t_argb32</span></a><span></span> <span class="n">color</span><span class="p">);</span>
+<span class="n">t_u8</span> <a class="reference internal" href="#doxid-group-libccc-color-1gabd13591d4ea62d3ae108fdfc868bd6a0"><span class="std std-ref">Color_ARGB32_Get_B</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span class="std std-ref">t_argb32</span></a><span></span> <span class="n">color</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span class="std std-ref">t_argb32</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-color-1gad63b4cabf7587cd710a3e3d1432d92ed"><span class="std std-ref">Color_ARGB32_Set</span></a><span></span><span class="p">(</span><span class="n">t_u8</span> <span class="n">a</span><span class="p">,</span> <span class="n">t_u8</span> <span class="n">r</span><span class="p">,</span> <span class="n">t_u8</span> <span class="n">g</span><span class="p">,</span> <span class="n">t_u8</span> <span class="n">b</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span class="std std-ref">t_argb32</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-color-1ga0983a09c9b81eab6b4a31cf620b1b5ea"><span class="std std-ref">Color_ARGB32_Set_A</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span class="std std-ref">t_argb32</span></a><span></span> <span class="n">color</span><span class="p">,</span> <span class="n">t_u8</span> <span class="n">a</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span class="std std-ref">t_argb32</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-color-1ga969be09f3f5450a5591eaec741c5f568"><span class="std std-ref">Color_ARGB32_Set_R</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span class="std std-ref">t_argb32</span></a><span></span> <span class="n">color</span><span class="p">,</span> <span class="n">t_u8</span> <span class="n">r</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span class="std std-ref">t_argb32</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-color-1gae6b9ec3c80b30061619631e290953e51"><span class="std std-ref">Color_ARGB32_Set_G</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span class="std std-ref">t_argb32</span></a><span></span> <span class="n">color</span><span class="p">,</span> <span class="n">t_u8</span> <span class="n">g</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span class="std std-ref">t_argb32</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-color-1gafcd6b5811057adc6514928bcc2a84f2d"><span class="std std-ref">Color_ARGB32_Set_B</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span class="std std-ref">t_argb32</span></a><span></span> <span class="n">color</span><span class="p">,</span> <span class="n">t_u8</span> <span class="n">b</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span class="std std-ref">t_argb16</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-color-1ga77c15aa66b48ac08d54b53d4eef69112"><span class="std std-ref">Color_ARGB32_To_ARGB16</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span class="std std-ref">t_argb32</span></a><span></span> <span class="n">color</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-color-1ga2ce6e41a7d4cf5623c5c7b68113df98e"><span class="std std-ref">s_argb</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-color-1gaf9b8afe46953295cca1a4696a0bada76"><span class="std std-ref">Color_ARGB32_To_ARGB</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span class="std std-ref">t_argb32</span></a><span></span> <span class="n">color</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span class="std std-ref">t_argb32</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-color-1ga0ddb82050b94d61cb51541cbdc26a604"><span class="std std-ref">Color_ARGB32_GetNearest</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span class="std std-ref">t_argb32</span></a><span></span> <span class="n">target</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span class="std std-ref">t_argb32</span></a><span></span><span class="o">*</span> <span class="n">colors</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-color-1ga2ce6e41a7d4cf5623c5c7b68113df98e"><span class="std std-ref">s_argb</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-color-1ga3b62dab4a5263f9cedcc56b4a3ee8f57"><span class="std std-ref">Color_ARGB_Set</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">a</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">r</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">g</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">b</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-color-1gaada2d1dc436d21ea58de72fa2d13b6f9"><span class="std std-ref">Color_ARGB_Set_A</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1ga2ce6e41a7d4cf5623c5c7b68113df98e"><span class="std std-ref">s_argb</span></a><span></span><span class="o">*</span> <span class="n">color</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">a</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-color-1gac88872a49777a81dbb64e3c3914201a4"><span class="std std-ref">Color_ARGB_Set_R</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1ga2ce6e41a7d4cf5623c5c7b68113df98e"><span class="std std-ref">s_argb</span></a><span></span><span class="o">*</span> <span class="n">color</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">r</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-color-1ga838b3311f250a4f76ab0e881d0553f1c"><span class="std std-ref">Color_ARGB_Set_G</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1ga2ce6e41a7d4cf5623c5c7b68113df98e"><span class="std std-ref">s_argb</span></a><span></span><span class="o">*</span> <span class="n">color</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">g</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-color-1ga330d2cf921f97fdfc382b6037437822d"><span class="std std-ref">Color_ARGB_Set_B</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1ga2ce6e41a7d4cf5623c5c7b68113df98e"><span class="std std-ref">s_argb</span></a><span></span><span class="o">*</span> <span class="n">color</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">b</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span class="std std-ref">t_argb16</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-color-1gacb35536aa6188fafe3accb60e2576a71"><span class="std std-ref">Color_ARGB_To_ARGB16</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1ga2ce6e41a7d4cf5623c5c7b68113df98e"><span class="std std-ref">s_argb</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">color</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span class="std std-ref">t_argb32</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-color-1gaea403e694ddc5402b57570fd29e014f0"><span class="std std-ref">Color_ARGB_To_ARGB32</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1ga2ce6e41a7d4cf5623c5c7b68113df98e"><span class="std std-ref">s_argb</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">color</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-color-1gaf56178ad7a63d493cc434a68a626f548"><span class="std std-ref">s_ahsl</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-color-1gacdc502819c7ddf76dc58d3244d50f4c7"><span class="std std-ref">Color_ARGB_To_AHSL</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1ga2ce6e41a7d4cf5623c5c7b68113df98e"><span class="std std-ref">s_argb</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">color</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-color-1ga2ce6e41a7d4cf5623c5c7b68113df98e"><span class="std std-ref">s_argb</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-color-1gaf2509ab3ae77194f030976bd3bf3bc59"><span class="std std-ref">Color_ARGB_GetNearest</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1ga2ce6e41a7d4cf5623c5c7b68113df98e"><span class="std std-ref">s_argb</span></a><span></span> <span class="n">target</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-color-1ga2ce6e41a7d4cf5623c5c7b68113df98e"><span class="std std-ref">s_argb</span></a><span></span><span class="o">*</span> <span class="n">colors</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-color-1gaf56178ad7a63d493cc434a68a626f548"><span class="std std-ref">s_ahsl</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-color-1gaec863ed1e119f4a30fd3fad71c2e85e6"><span class="std std-ref">Color_AHSL_Set</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">a</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">hue</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">sat</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">lum</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-color-1ga253a7298c2e069bce7a9ed64fdb6b279"><span class="std std-ref">Color_AHSL_Set_A</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1gaf56178ad7a63d493cc434a68a626f548"><span class="std std-ref">s_ahsl</span></a><span></span><span class="o">*</span> <span class="n">color</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">a</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-color-1ga93e8d7a13864b658d5202a5fbea5eba0"><span class="std std-ref">Color_AHSL_Set_H</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1gaf56178ad7a63d493cc434a68a626f548"><span class="std std-ref">s_ahsl</span></a><span></span><span class="o">*</span> <span class="n">color</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">hue</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-color-1gacca2bc25cdb6548e1b7a2d0f6767fcb0"><span class="std std-ref">Color_AHSL_Set_S</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1gaf56178ad7a63d493cc434a68a626f548"><span class="std std-ref">s_ahsl</span></a><span></span><span class="o">*</span> <span class="n">color</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">sat</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-color-1ga9a8db3c8e1900761e8d17d78850e7ada"><span class="std std-ref">Color_AHSL_Set_L</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1gaf56178ad7a63d493cc434a68a626f548"><span class="std std-ref">s_ahsl</span></a><span></span><span class="o">*</span> <span class="n">color</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">lum</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-color-1ga2ce6e41a7d4cf5623c5c7b68113df98e"><span class="std std-ref">s_argb</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-color-1ga2b1930a815ebed2dd70dfd9c516c6273"><span class="std std-ref">Color_AHSL_To_ARGB</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1gaf56178ad7a63d493cc434a68a626f548"><span class="std std-ref">s_ahsl</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">color</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-color-1gaf56178ad7a63d493cc434a68a626f548"><span class="std std-ref">s_ahsl</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-color-1ga3c0edb628eb0662498f478ee56fdb1c2"><span class="std std-ref">Color_AHSL_GetNearest</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1gaf56178ad7a63d493cc434a68a626f548"><span class="std std-ref">s_ahsl</span></a><span></span> <span class="n">target</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-color-1gaf56178ad7a63d493cc434a68a626f548"><span class="std std-ref">s_ahsl</span></a><span></span><span class="o">*</span> <span class="n">colors</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">);</span>
+
+<span class="c1">// macros</span>
+
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-color-1ga255ba37b7dfeaf9c02d727896d4e1707"><span class="std std-ref">COLOR_ARGB16_A</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-color-1ga78b1bc17e23c9f4239d79b8bcb742154"><span class="std std-ref">COLOR_ARGB16_A_BITINDEX</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-color-1ga8e7bf3b9769ab90051bdaec2b8dddd43"><span class="std std-ref">COLOR_ARGB16_B</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-color-1gac61ab29341fcd6e8017f0c28f08875e0"><span class="std std-ref">COLOR_ARGB16_B_BITINDEX</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-color-1ga1244cd1f438f78e48f52f96394d09125"><span class="std std-ref">COLOR_ARGB16_CHANNEL</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-color-1ga778f96f46511b9a5784f25deb1a7e2af"><span class="std std-ref">COLOR_ARGB16_G</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-color-1ga3d80c01d2f38894868262b10b052ca07"><span class="std std-ref">COLOR_ARGB16_G_BITINDEX</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-color-1ga1b7bce0a3191d73cbe19c2d4cec7fa1b"><span class="std std-ref">COLOR_ARGB16_R</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-color-1gabc339153320653873a3a6ba96a74af37"><span class="std std-ref">COLOR_ARGB16_R_BITINDEX</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-color-1ga0dbf2be1e88684220017ba610970d2c0"><span class="std std-ref">COLOR_ARGB32_A</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-color-1ga10ecb3d73f55ab45344ca3a096ab5ba3"><span class="std std-ref">COLOR_ARGB32_A_BITINDEX</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-color-1gac4783a8cb1ed7522e7c2577eeb9bd3d2"><span class="std std-ref">COLOR_ARGB32_B</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-color-1gad67507373189b4fe7ceedb8f8ded03fc"><span class="std std-ref">COLOR_ARGB32_B_BITINDEX</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-color-1ga3ba45d610ad8618a0143331d688b2fe8"><span class="std std-ref">COLOR_ARGB32_CHANNEL</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-color-1gaeb63f74062ebe75c6b1007ae338b9d3d"><span class="std std-ref">COLOR_ARGB32_G</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-color-1ga6fadd9ca01d3591e4756617c1a423a18"><span class="std std-ref">COLOR_ARGB32_G_BITINDEX</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-color-1gab95791a4496c7541b4c06e73d20001d9"><span class="std std-ref">COLOR_ARGB32_R</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-color-1ga8d54b93a72cc572c49742e8171f068f2"><span class="std std-ref">COLOR_ARGB32_R_BITINDEX</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1gad0cbff34a2f53ee7fc6be4ef51f7d542"><span></span><span class="n">Color_AHSL_Set_Alpha</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1gac42473c8f8250cfb1f9a232110f7a77e"><span></span><span class="n">Color_AHSL_Set_Hue</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1ga393d4f202be99d2ffc4ea569b7530a85"><span></span><span class="n">Color_AHSL_Set_Lum</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1ga3112dcf8985f06dff4f114e2f41435d6"><span></span><span class="n">Color_AHSL_Set_Sat</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1ga24fe508b9a04d0a1759cd66a00252c8d"><span></span><span class="n">Color_ARGB16_Get_Alpha</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1gad44996fe1f2984ddc9689677abe9db23"><span></span><span class="n">Color_ARGB16_Get_Blue</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1gaf26ccce00a7de581821e9fbeda7707e1"><span></span><span class="n">Color_ARGB16_Get_Green</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1gacd4357c487dab4931afb2522a9c79c02"><span></span><span class="n">Color_ARGB16_Get_Red</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1gab267dbf4b18075ade7f9cb0502773da2"><span></span><span class="n">Color_ARGB16_Set_Alpha</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1ga96e71cd1440b5b25518561c749f59aa5"><span></span><span class="n">Color_ARGB16_Set_Blue</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1ga58444c156371a35ed624c7bb63a2b0b4"><span></span><span class="n">Color_ARGB16_Set_Green</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1gaf99e2f1d5d5dc0373707ed720723261b"><span></span><span class="n">Color_ARGB16_Set_Red</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1gac1faee1dc42738380b6a9c28ae7d2770"><span></span><span class="n">Color_ARGB32_Get_Alpha</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1gaaf2690282ce1b617caad4da7a7999098"><span></span><span class="n">Color_ARGB32_Get_Blue</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1ga3d07cd1ef26551a780178bd33a7bb162"><span></span><span class="n">Color_ARGB32_Get_Green</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1gaf5c71f3c858e057c8425d1a3bfbc0b82"><span></span><span class="n">Color_ARGB32_Get_Red</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1ga034e413d5c41781b62517a00e3ff6fc3"><span></span><span class="n">Color_ARGB32_Set_Alpha</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1ga94c4e21d7f73a4f76e90a8dd50ac74dc"><span></span><span class="n">Color_ARGB32_Set_Blue</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1ga0c81f36130d7a6d8c714ea3195c92c72"><span></span><span class="n">Color_ARGB32_Set_Green</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1ga3ac817ac997009fb677dd8148c512a73"><span></span><span class="n">Color_ARGB32_Set_Red</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1ga94979ef2a7ab8a646f09d97538198a8b"><span></span><span class="n">Color_ARGB_Set_Alpha</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1ga56dc824dd66bf75a1c7fdbeee1e9d674"><span></span><span class="n">Color_ARGB_Set_Blue</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1gad773688007418e13376a82c1c09a12d8"><span></span><span class="n">Color_ARGB_Set_Green</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1ga4a415b2d2fe15d4983f1f652f0475093"><span></span><span class="n">Color_ARGB_Set_Red</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1ga5933396d553bafd67289c7f388435d71"><span></span><span class="n">c_color_ahsl_nearest</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1gac6d6bcff90a32d34ba769cb81f140009"><span></span><span class="n">c_color_ahsl_set</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1gafc117b2883f33486c789d3b128711372"><span></span><span class="n">c_color_ahsl_set_a</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1gad6e51864503cba58b13baa6822e86cf5"><span></span><span class="n">c_color_ahsl_set_h</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1gabcbaed4d44de6f279b44f57d054e1471"><span></span><span class="n">c_color_ahsl_set_l</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1ga790f92860f179264b6b714d4960cdd42"><span></span><span class="n">c_color_ahsl_set_s</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1ga428840c0277a1c60bf0298d1d2ba3ab7"><span></span><span class="n">c_color_ahsl_to_argb</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1gacb129025bd180c71d867f94de526be9d"><span></span><span class="n">c_color_argb16_get_a</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1ga198605f547807de16762f8778e58e7fb"><span></span><span class="n">c_color_argb16_get_b</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1ga982b34b766bbe8bba341c31d57dd0071"><span></span><span class="n">c_color_argb16_get_g</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1gadcc51c88ace83c9e198e644fe886b486"><span></span><span class="n">c_color_argb16_get_r</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1ga3f2179f4a52c57f351f1424f1787856e"><span></span><span class="n">c_color_argb16_nearest</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1ga94cb9a13ba3506c8d5a96332fc1c58ba"><span></span><span class="n">c_color_argb16_set</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1gad59446ba8b28394eb041d6d8181af90c"><span></span><span class="n">c_color_argb16_set_a</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1ga9a33895fee2f464b5534a6c6537bc5db"><span></span><span class="n">c_color_argb16_set_b</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1gae1221da67aa489eb7b7cfd9b6a12eb99"><span></span><span class="n">c_color_argb16_set_g</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1ga69375a75564267aa8fac789aa83ef17e"><span></span><span class="n">c_color_argb16_set_r</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1gabb929c8d388a4ce16c8a0ae50c20a46f"><span></span><span class="n">c_color_argb16_to_argb</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1ga1b884a4672fbc8f0b6536c73dfd4e594"><span></span><span class="n">c_color_argb16_to_argb32</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1ga8b3e0da8eaac8abccb0b256b85e79b3b"><span></span><span class="n">c_color_argb32_get_a</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1ga88eb443d321cbb5be2b75bbd7cba6462"><span></span><span class="n">c_color_argb32_get_b</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1gac8dfa40a7606c22fd6c15be9ac5cb38c"><span></span><span class="n">c_color_argb32_get_g</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1ga41175325506c153fd2e30dbc1e37cdc2"><span></span><span class="n">c_color_argb32_get_r</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1ga5ec46f8559a94d04272229d06841ca04"><span></span><span class="n">c_color_argb32_nearest</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1gabac488f6224ccb0cbb5ee3604b45583b"><span></span><span class="n">c_color_argb32_set</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1ga2fa5ab88e0d62fec835e7e8986b11c37"><span></span><span class="n">c_color_argb32_set_a</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1gadc89325fee67a2b945bfe96a665a9828"><span></span><span class="n">c_color_argb32_set_b</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1gab3e6669cfd09147918ba76ea5955e9ec"><span></span><span class="n">c_color_argb32_set_g</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1ga618e7365023daaa618965a65b5765301"><span></span><span class="n">c_color_argb32_set_r</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1ga9d4c00a28026a4a362264088a6d4c6b7"><span></span><span class="n">c_color_argb32_to_argb</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1ga2bde2fb54a47a31c44431cf27af47546"><span></span><span class="n">c_color_argb32_to_argb16</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1gaa191195599b4a1dc537552cd9d63b1c1"><span></span><span class="n">c_color_argb_nearest</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1ga38e020a4595b15837485bc31ee9c9fc6"><span></span><span class="n">c_color_argb_set</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1ga89c6ea5ef5b785b7b5b2ec7a4ad31d2c"><span></span><span class="n">c_color_argb_set_a</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1gaf58d255a0511738846ca532aefc405df"><span></span><span class="n">c_color_argb_set_b</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1ga22bdc46d3c4d883bd7b36657c5e43e55"><span></span><span class="n">c_color_argb_set_g</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1ga0e3f00950d67d2ea8a01f75c9bf8ced1"><span></span><span class="n">c_color_argb_set_r</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1gadf30aa93c6db55918eaf905f31b5d927"><span></span><span class="n">c_color_argb_to_ahsl</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1gabccf701498800a3cc07718a8b410de20"><span></span><span class="n">c_color_argb_to_argb16</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-color-1gae40fe6167a1762c9e99c3ec941436dc8"><span></span><span class="n">c_color_argb_to_argb32</span></span></pre>
+</div>
+<div class="section" id="detailed-documentation">
+<span id="details-group-libccc-color"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline">¶</a></h2>
+<p>This header defines all the functions/bitmasks for encoding colors in ints.</p>
+<div class="section" id="typedefs">
+<h3>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span id="index-1"></span><span></span><span class="k">typedef</span> <span class="n">t_u16</span> <span class="n">t_argb16</span></pre>
+<p>This type represents an unsigned 16-bit number which stores an ARGB 1555 color.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span id="index-2"></span><span></span><span class="k">typedef</span> <span class="n">t_u32</span> <span class="n">t_argb32</span></pre>
+<p>This type represents an unsigned 32-bit number which stores an ARGB 8888 color.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1ga2ce6e41a7d4cf5623c5c7b68113df98e"><span id="index-3"></span><span></span><span class="k">typedef</span> <span class="k">struct</span> <a class="reference internal" href="struct_s_argb_.html#doxid-structs-argb"><span class="std std-ref">s_argb_</span></a><span></span> <span class="n">s_argb</span></pre>
+<p>A struct to store color values with each channel (alpha,red,green,blue) as floating-point values in the interval [0,1].</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1gaf56178ad7a63d493cc434a68a626f548"><span id="index-4"></span><span></span><span class="k">typedef</span> <span class="k">struct</span> <a class="reference internal" href="struct_s_ahsl_.html#doxid-structs-ahsl"><span class="std std-ref">s_ahsl_</span></a><span></span> <span class="n">s_ahsl</span></pre>
+<p>A struct to store color values with each channel (alpha,hue,sat,lum) as floating-point values in the interval [0,1].</p>
+</div>
+<div class="section" id="global-functions">
+<h3>Global Functions<a class="headerlink" href="#global-functions" title="Permalink to this headline">¶</a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1gafe75c0d3bcf96ecf3803296b36c05af0"><span id="index-5"></span><span></span><span class="n">t_u8</span> <span class="n">Color_ARGB16_Get_A</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span class="std std-ref">t_argb16</span></a><span></span> <span class="n">color</span><span class="p">)</span></pre>
+<p>Gets the alpha channel value for the given 16-bit ‘color’.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1ga3f3c11f80b8c470cf66dbb1709949801"><span id="index-6"></span><span></span><span class="n">t_u8</span> <span class="n">Color_ARGB16_Get_R</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span class="std std-ref">t_argb16</span></a><span></span> <span class="n">color</span><span class="p">)</span></pre>
+<p>Gets the red channel value for the given 16-bit ‘color’.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1ga6148c224ae94f60ebec2dd279d915531"><span id="index-7"></span><span></span><span class="n">t_u8</span> <span class="n">Color_ARGB16_Get_G</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span class="std std-ref">t_argb16</span></a><span></span> <span class="n">color</span><span class="p">)</span></pre>
+<p>Gets the green channel value for the given 16-bit ‘color’.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1gabfd33ef1e812ddb98e40183c4edea5f7"><span id="index-8"></span><span></span><span class="n">t_u8</span> <span class="n">Color_ARGB16_Get_B</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span class="std std-ref">t_argb16</span></a><span></span> <span class="n">color</span><span class="p">)</span></pre>
+<p>Gets the blue channel value for the given 16-bit ‘color’.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1ga48310eef5d974dd37adc5b39a2edeb24"><span id="index-9"></span><a class="reference internal" href="#doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span class="std std-ref">t_argb16</span></a><span></span> <span class="n">Color_ARGB16_Set</span><span class="p">(</span><span class="n">t_u8</span> <span class="n">a</span><span class="p">,</span> <span class="n">t_u8</span> <span class="n">r</span><span class="p">,</span> <span class="n">t_u8</span> <span class="n">g</span><span class="p">,</span> <span class="n">t_u8</span> <span class="n">b</span><span class="p">)</span></pre>
+<p>Create a 16-bit color from the given channel values.</p>
+<p>This function creates a new uint color value from the four given individual color channel values.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>a</p></td>
+<td><p>The alpha channel value (0-1)</p></td>
+</tr>
+<tr class="row-even"><td><p>r</p></td>
+<td><p>The red channel value (0-31)</p></td>
+</tr>
+<tr class="row-odd"><td><p>g</p></td>
+<td><p>The green channel value (0-31)</p></td>
+</tr>
+<tr class="row-even"><td><p>b</p></td>
+<td><p>The blue channel value (0-31)</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>the 16-bit color value from the given channel values</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1ga5ed67ed30f6a077d6db3f2f723dacd48"><span id="index-10"></span><a class="reference internal" href="#doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span class="std std-ref">t_argb16</span></a><span></span> <span class="n">Color_ARGB16_Set_A</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span class="std std-ref">t_argb16</span></a><span></span> <span class="n">color</span><span class="p">,</span> <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaf15d2c7169c336f97175a2e218d22e73"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">a</span><span class="p">)</span></pre>
+<p>Returns the given 16-bit ‘color’, with the ‘a’ alpha channel value changed.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1ga439c0aa8649c63c5686417009b6f6e1f"><span id="index-11"></span><a class="reference internal" href="#doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span class="std std-ref">t_argb16</span></a><span></span> <span class="n">Color_ARGB16_Set_R</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span class="std std-ref">t_argb16</span></a><span></span> <span class="n">color</span><span class="p">,</span> <span class="n">t_u8</span> <span class="n">r</span><span class="p">)</span></pre>
+<p>Returns the given 16-bit ‘color’, with the ‘r’ red channel value changed.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1ga011f3f1b31d30e83355b9b8330c19c5d"><span id="index-12"></span><a class="reference internal" href="#doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span class="std std-ref">t_argb16</span></a><span></span> <span class="n">Color_ARGB16_Set_G</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span class="std std-ref">t_argb16</span></a><span></span> <span class="n">color</span><span class="p">,</span> <span class="n">t_u8</span> <span class="n">g</span><span class="p">)</span></pre>
+<p>Returns the given 16-bit ‘color’, with the ‘g’ green channel value changed.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1ga86ec09537f5c9a721cb7562eddeb70e8"><span id="index-13"></span><a class="reference internal" href="#doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span class="std std-ref">t_argb16</span></a><span></span> <span class="n">Color_ARGB16_Set_B</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span class="std std-ref">t_argb16</span></a><span></span> <span class="n">color</span><span class="p">,</span> <span class="n">t_u8</span> <span class="n">b</span><span class="p">)</span></pre>
+<p>Returns the given 16-bit ‘color’, with the ‘b’ blue channel value changed.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1ga6d569e092e91018dfa68554a2c9215a2"><span id="index-14"></span><a class="reference internal" href="#doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span class="std std-ref">t_argb32</span></a><span></span> <span class="n">Color_ARGB16_To_ARGB32</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span class="std std-ref">t_argb16</span></a><span></span> <span class="n">color</span><span class="p">)</span></pre>
+<p>Converts the given 16-bit color value to its 32-bit equivalent.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>color</p></td>
+<td><p>The 16-bit color to convert</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>a 32-bit ARGB color by multiplying the color channel values of the given 16-bit ‘color’ value.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1gae7f85a5401a95c432a11268c635eb14b"><span id="index-15"></span><a class="reference internal" href="#doxid-group-libccc-color-1ga2ce6e41a7d4cf5623c5c7b68113df98e"><span class="std std-ref">s_argb</span></a><span></span> <span class="n">Color_ARGB16_To_ARGB</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span class="std std-ref">t_argb16</span></a><span></span> <span class="n">color</span><span class="p">)</span></pre>
+<p>Converts the given 16-bit color value to its float color equivalent.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1gad887b06f9628af01d477cc04f23685ce"><span id="index-16"></span><a class="reference internal" href="#doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span class="std std-ref">t_argb16</span></a><span></span><span class="o">*</span> <span class="n">Color_ARGB16_GetNearest</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span class="std std-ref">t_argb16</span></a><span></span> <span class="n">target</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span class="std std-ref">t_argb16</span></a><span></span><span class="o">*</span> <span class="n">colors</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">)</span></pre>
+<p>Find the nearest color to the given ‘target’ color, from within the given arrays of ‘colors’.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>target</p></td>
+<td><p>The desired color, for which the nearest will be returned</p></td>
+</tr>
+<tr class="row-even"><td><p>colors</p></td>
+<td><p>The array of different colors to check against</p></td>
+</tr>
+<tr class="row-odd"><td><p>n</p></td>
+<td><p>The amount of colors to check in the ‘colors’ array</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>a pointer to the color within ‘colors’ which is the closest match to the given ‘target’ color, searching through ‘n’ colors in the array.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1ga3e3258a2239cad8538c47e237c7acf71"><span id="index-17"></span><span></span><span class="n">t_u8</span> <span class="n">Color_ARGB32_Get_A</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span class="std std-ref">t_argb32</span></a><span></span> <span class="n">color</span><span class="p">)</span></pre>
+<p>Gets the alpha channel value for the given 32-bit ‘color’.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1ga560ff42a09fd61a65cb9614bb6fc18e1"><span id="index-18"></span><span></span><span class="n">t_u8</span> <span class="n">Color_ARGB32_Get_R</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span class="std std-ref">t_argb32</span></a><span></span> <span class="n">color</span><span class="p">)</span></pre>
+<p>Gets the red channel value for the given 32-bit ‘color’.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1gab11a548ed1d7e28fbb5eb8ea3497d48f"><span id="index-19"></span><span></span><span class="n">t_u8</span> <span class="n">Color_ARGB32_Get_G</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span class="std std-ref">t_argb32</span></a><span></span> <span class="n">color</span><span class="p">)</span></pre>
+<p>Gets the green channel value for the given 32-bit ‘color’.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1gabd13591d4ea62d3ae108fdfc868bd6a0"><span id="index-20"></span><span></span><span class="n">t_u8</span> <span class="n">Color_ARGB32_Get_B</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span class="std std-ref">t_argb32</span></a><span></span> <span class="n">color</span><span class="p">)</span></pre>
+<p>Gets the blue channel value for the given 32-bit ‘color’.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1gad63b4cabf7587cd710a3e3d1432d92ed"><span id="index-21"></span><a class="reference internal" href="#doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span class="std std-ref">t_argb32</span></a><span></span> <span class="n">Color_ARGB32_Set</span><span class="p">(</span><span class="n">t_u8</span> <span class="n">a</span><span class="p">,</span> <span class="n">t_u8</span> <span class="n">r</span><span class="p">,</span> <span class="n">t_u8</span> <span class="n">g</span><span class="p">,</span> <span class="n">t_u8</span> <span class="n">b</span><span class="p">)</span></pre>
+<p>Creates a 32-bit color value from the given channel values (alpha, red, green, blue)</p>
+<p>This function creates a new 32-bit ARGB color value from the four given color channel 1-byte values.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>a</p></td>
+<td><p>The alpha channel value (0-255)</p></td>
+</tr>
+<tr class="row-even"><td><p>r</p></td>
+<td><p>The red channel value (0-255)</p></td>
+</tr>
+<tr class="row-odd"><td><p>g</p></td>
+<td><p>The green channel value (0-255)</p></td>
+</tr>
+<tr class="row-even"><td><p>b</p></td>
+<td><p>The blue channel value (0-255)</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>the 32-bit color value assembled from the given channel values</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1ga0983a09c9b81eab6b4a31cf620b1b5ea"><span id="index-22"></span><a class="reference internal" href="#doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span class="std std-ref">t_argb32</span></a><span></span> <span class="n">Color_ARGB32_Set_A</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span class="std std-ref">t_argb32</span></a><span></span> <span class="n">color</span><span class="p">,</span> <span class="n">t_u8</span> <span class="n">a</span><span class="p">)</span></pre>
+<p>Returns the given 32-bit ‘color’, with the ‘a’ alpha channel value changed.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1ga969be09f3f5450a5591eaec741c5f568"><span id="index-23"></span><a class="reference internal" href="#doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span class="std std-ref">t_argb32</span></a><span></span> <span class="n">Color_ARGB32_Set_R</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span class="std std-ref">t_argb32</span></a><span></span> <span class="n">color</span><span class="p">,</span> <span class="n">t_u8</span> <span class="n">r</span><span class="p">)</span></pre>
+<p>Returns the given 32-bit ‘color’, with the ‘r’ red channel value changed.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1gae6b9ec3c80b30061619631e290953e51"><span id="index-24"></span><a class="reference internal" href="#doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span class="std std-ref">t_argb32</span></a><span></span> <span class="n">Color_ARGB32_Set_G</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span class="std std-ref">t_argb32</span></a><span></span> <span class="n">color</span><span class="p">,</span> <span class="n">t_u8</span> <span class="n">g</span><span class="p">)</span></pre>
+<p>Returns the given 32-bit ‘color’, with the ‘g’ green channel value changed.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1gafcd6b5811057adc6514928bcc2a84f2d"><span id="index-25"></span><a class="reference internal" href="#doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span class="std std-ref">t_argb32</span></a><span></span> <span class="n">Color_ARGB32_Set_B</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span class="std std-ref">t_argb32</span></a><span></span> <span class="n">color</span><span class="p">,</span> <span class="n">t_u8</span> <span class="n">b</span><span class="p">)</span></pre>
+<p>Returns the given 32-bit ‘color’, with the ‘b’ blue channel value changed.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1ga77c15aa66b48ac08d54b53d4eef69112"><span id="index-26"></span><a class="reference internal" href="#doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span class="std std-ref">t_argb16</span></a><span></span> <span class="n">Color_ARGB32_To_ARGB16</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span class="std std-ref">t_argb32</span></a><span></span> <span class="n">color</span><span class="p">)</span></pre>
+<p>Converts the given 32-bit color value to its 16-bit equivalent (rounding down)</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>color</p></td>
+<td><p>The 32-bit color to convert</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>a 16-bit ARGB color, by dividing the color channel values of the given 32-bit ‘color’ value (values are rounded down in the process).</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1gaf9b8afe46953295cca1a4696a0bada76"><span id="index-27"></span><a class="reference internal" href="#doxid-group-libccc-color-1ga2ce6e41a7d4cf5623c5c7b68113df98e"><span class="std std-ref">s_argb</span></a><span></span> <span class="n">Color_ARGB32_To_ARGB</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span class="std std-ref">t_argb32</span></a><span></span> <span class="n">color</span><span class="p">)</span></pre>
+<p>Converts the given 16-bit color value to its float color equivalent.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1ga0ddb82050b94d61cb51541cbdc26a604"><span id="index-28"></span><a class="reference internal" href="#doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span class="std std-ref">t_argb32</span></a><span></span><span class="o">*</span> <span class="n">Color_ARGB32_GetNearest</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span class="std std-ref">t_argb32</span></a><span></span> <span class="n">target</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span class="std std-ref">t_argb32</span></a><span></span><span class="o">*</span> <span class="n">colors</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">)</span></pre>
+<p>Find the nearest color to the given ‘target’ color, from within the given arrays of ‘colors’.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>target</p></td>
+<td><p>The desired color, for which the nearest will be returned</p></td>
+</tr>
+<tr class="row-even"><td><p>colors</p></td>
+<td><p>The array of different colors to check against</p></td>
+</tr>
+<tr class="row-odd"><td><p>n</p></td>
+<td><p>The amount of colors to check in the ‘colors’ array</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>a pointer to the color within ‘colors’ which is the closest match to the given ‘target’ color, searching through ‘n’ colors in the array.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1ga3b62dab4a5263f9cedcc56b4a3ee8f57"><span id="index-29"></span><a class="reference internal" href="#doxid-group-libccc-color-1ga2ce6e41a7d4cf5623c5c7b68113df98e"><span class="std std-ref">s_argb</span></a><span></span> <span class="n">Color_ARGB_Set</span><span class="p">(</span><a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">a</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">r</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">g</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">b</span><span class="p">)</span></pre>
+<p>Creates a float color struct from the given channel values (alpha, red, green, blue)</p>
+<p>This function creates a new floating-point color struct from the given four individual color channel values (constains them between 0 and 1)</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>a</p></td>
+<td><p>The alpha channel value (0.0 to 1.0)</p></td>
+</tr>
+<tr class="row-even"><td><p>r</p></td>
+<td><p>The red channel value (0.0 to 1.0)</p></td>
+</tr>
+<tr class="row-odd"><td><p>g</p></td>
+<td><p>The green channel value (0.0 to 1.0)</p></td>
+</tr>
+<tr class="row-even"><td><p>b</p></td>
+<td><p>The blue channel value (0.0 to 1.0)</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>the floating-point color struct from the given channel values</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1gaada2d1dc436d21ea58de72fa2d13b6f9"><span id="index-30"></span><span></span><span class="kt">void</span> <span class="n">Color_ARGB_Set_A</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1ga2ce6e41a7d4cf5623c5c7b68113df98e"><span class="std std-ref">s_argb</span></a><span></span><span class="o">*</span> <span class="n">color</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">a</span><span class="p">)</span></pre>
+<p>Sets the given ‘a’ alpha channel value in the given struct ‘color’ (constraining it between 0 and 1)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1gac88872a49777a81dbb64e3c3914201a4"><span id="index-31"></span><span></span><span class="kt">void</span> <span class="n">Color_ARGB_Set_R</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1ga2ce6e41a7d4cf5623c5c7b68113df98e"><span class="std std-ref">s_argb</span></a><span></span><span class="o">*</span> <span class="n">color</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">r</span><span class="p">)</span></pre>
+<p>Sets the given ‘r’ red channel value in the given struct ‘color’ (constraining it between 0 and 1)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1ga838b3311f250a4f76ab0e881d0553f1c"><span id="index-32"></span><span></span><span class="kt">void</span> <span class="n">Color_ARGB_Set_G</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1ga2ce6e41a7d4cf5623c5c7b68113df98e"><span class="std std-ref">s_argb</span></a><span></span><span class="o">*</span> <span class="n">color</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">g</span><span class="p">)</span></pre>
+<p>Sets the given ‘g’ green channel value in the given struct ‘color’ (constraining it between 0 and 1)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1ga330d2cf921f97fdfc382b6037437822d"><span id="index-33"></span><span></span><span class="kt">void</span> <span class="n">Color_ARGB_Set_B</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1ga2ce6e41a7d4cf5623c5c7b68113df98e"><span class="std std-ref">s_argb</span></a><span></span><span class="o">*</span> <span class="n">color</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">b</span><span class="p">)</span></pre>
+<p>Sets the given ‘b’ blue channel value in the given struct ‘color’ (constraining it between 0 and 1)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1gacb35536aa6188fafe3accb60e2576a71"><span id="index-34"></span><a class="reference internal" href="#doxid-group-libccc-color-1ga582b65837c6d003c9a33ff37bdc0a340"><span class="std std-ref">t_argb16</span></a><span></span> <span class="n">Color_ARGB_To_ARGB16</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1ga2ce6e41a7d4cf5623c5c7b68113df98e"><span class="std std-ref">s_argb</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">color</span><span class="p">)</span></pre>
+<p>Converts the given floating-point color struct value to its 16-bit equivalent.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>color</p></td>
+<td><p>The floating-point color struct to convert</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>a 16-bit ARGB color by dividing the color channel values of the given 32-bit ‘color’ value (values are rounded down in the process).</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1gaea403e694ddc5402b57570fd29e014f0"><span id="index-35"></span><a class="reference internal" href="#doxid-group-libccc-color-1gaa99a65ec9f3027d535a11dce70ee5f71"><span class="std std-ref">t_argb32</span></a><span></span> <span class="n">Color_ARGB_To_ARGB32</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1ga2ce6e41a7d4cf5623c5c7b68113df98e"><span class="std std-ref">s_argb</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">color</span><span class="p">)</span></pre>
+<p>Converts the given floating-point color struct value to its 32-bit equivalent.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>color</p></td>
+<td><p>The floating-point color struct to convert</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>a 16-bit ARGB color by dividing the color channel values of the given 32-bit ‘color’ value (values are rounded down in the process).</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1gacdc502819c7ddf76dc58d3244d50f4c7"><span id="index-36"></span><a class="reference internal" href="#doxid-group-libccc-color-1gaf56178ad7a63d493cc434a68a626f548"><span class="std std-ref">s_ahsl</span></a><span></span> <span class="n">Color_ARGB_To_AHSL</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1ga2ce6e41a7d4cf5623c5c7b68113df98e"><span class="std std-ref">s_argb</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">color</span><span class="p">)</span></pre>
+<p>Converts the given floating-point color struct value to hue/sat/lum color format.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>color</p></td>
+<td><p>The floating-point color struct to convert</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>the equivalent to the given ‘color’, in hue/sat/lum format</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1gaf2509ab3ae77194f030976bd3bf3bc59"><span id="index-37"></span><a class="reference internal" href="#doxid-group-libccc-color-1ga2ce6e41a7d4cf5623c5c7b68113df98e"><span class="std std-ref">s_argb</span></a><span></span><span class="o">*</span> <span class="n">Color_ARGB_GetNearest</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1ga2ce6e41a7d4cf5623c5c7b68113df98e"><span class="std std-ref">s_argb</span></a><span></span> <span class="n">target</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-color-1ga2ce6e41a7d4cf5623c5c7b68113df98e"><span class="std std-ref">s_argb</span></a><span></span><span class="o">*</span> <span class="n">colors</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">)</span></pre>
+<p>Find the nearest color to the given ‘target’ color from within the given arrays of ‘colors’.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>target</p></td>
+<td><p>The desired color, for which the nearest will be returned</p></td>
+</tr>
+<tr class="row-even"><td><p>colors</p></td>
+<td><p>The array of different colors to check against</p></td>
+</tr>
+<tr class="row-odd"><td><p>n</p></td>
+<td><p>The amount of colors to check in the ‘colors’ array</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>a pointer to the color within ‘colors’ which is the closest match to the given ‘target’ color, searching through ‘n’ colors in the array.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1gaec863ed1e119f4a30fd3fad71c2e85e6"><span id="index-38"></span><a class="reference internal" href="#doxid-group-libccc-color-1gaf56178ad7a63d493cc434a68a626f548"><span class="std std-ref">s_ahsl</span></a><span></span> <span class="n">Color_AHSL_Set</span><span class="p">(</span><a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">a</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">hue</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">sat</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">lum</span><span class="p">)</span></pre>
+<p>Creates a float color struct from the given channel values (alpha, hue, sat, lum)</p>
+<p>This function creates a new floating-point color struct from the given four individual color channel values (constains them)</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>a</p></td>
+<td><p>The alpha channel value (constrained to interval [0,1])</p></td>
+</tr>
+<tr class="row-even"><td><p>hue</p></td>
+<td><p>The color hue/value (constrained to interval [0,PI*2])</p></td>
+</tr>
+<tr class="row-odd"><td><p>sat</p></td>
+<td><p>The color saturation (constrained to interval [0,1])</p></td>
+</tr>
+<tr class="row-even"><td><p>lum</p></td>
+<td><p>The color luminance/brightness (constrained to interval [0,1])</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>the floating-point color struct from the given channel values</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1ga253a7298c2e069bce7a9ed64fdb6b279"><span id="index-39"></span><span></span><span class="kt">void</span> <span class="n">Color_AHSL_Set_A</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1gaf56178ad7a63d493cc434a68a626f548"><span class="std std-ref">s_ahsl</span></a><span></span><span class="o">*</span> <span class="n">color</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">a</span><span class="p">)</span></pre>
+<p>Sets the given ‘a’ channel value in the given struct ‘color’ (constraining it between 0 and 1)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1ga93e8d7a13864b658d5202a5fbea5eba0"><span id="index-40"></span><span></span><span class="kt">void</span> <span class="n">Color_AHSL_Set_H</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1gaf56178ad7a63d493cc434a68a626f548"><span class="std std-ref">s_ahsl</span></a><span></span><span class="o">*</span> <span class="n">color</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">hue</span><span class="p">)</span></pre>
+<p>Sets the given ‘r’ channel value in the given struct ‘color’ (constraining it between 0 and PI*2)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1gacca2bc25cdb6548e1b7a2d0f6767fcb0"><span id="index-41"></span><span></span><span class="kt">void</span> <span class="n">Color_AHSL_Set_S</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1gaf56178ad7a63d493cc434a68a626f548"><span class="std std-ref">s_ahsl</span></a><span></span><span class="o">*</span> <span class="n">color</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">sat</span><span class="p">)</span></pre>
+<p>Sets the given ‘g’ channel value in the given struct ‘color’ (constraining it between 0 and 1)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1ga9a8db3c8e1900761e8d17d78850e7ada"><span id="index-42"></span><span></span><span class="kt">void</span> <span class="n">Color_AHSL_Set_L</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1gaf56178ad7a63d493cc434a68a626f548"><span class="std std-ref">s_ahsl</span></a><span></span><span class="o">*</span> <span class="n">color</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">lum</span><span class="p">)</span></pre>
+<p>Sets the given ‘b’ channel value in the given struct ‘color’ (constraining it between 0 and 1)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1ga2b1930a815ebed2dd70dfd9c516c6273"><span id="index-43"></span><a class="reference internal" href="#doxid-group-libccc-color-1ga2ce6e41a7d4cf5623c5c7b68113df98e"><span class="std std-ref">s_argb</span></a><span></span> <span class="n">Color_AHSL_To_ARGB</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1gaf56178ad7a63d493cc434a68a626f548"><span class="std std-ref">s_ahsl</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">color</span><span class="p">)</span></pre>
+<p>Converts the given floating-point color struct value to hue/sat/lum color format.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>color</p></td>
+<td><p>The floating-point color struct to convert</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>the equivalent to the given ‘color’, in hue/sat/lum format</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1ga3c0edb628eb0662498f478ee56fdb1c2"><span id="index-44"></span><a class="reference internal" href="#doxid-group-libccc-color-1gaf56178ad7a63d493cc434a68a626f548"><span class="std std-ref">s_ahsl</span></a><span></span><span class="o">*</span> <span class="n">Color_AHSL_GetNearest</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-color-1gaf56178ad7a63d493cc434a68a626f548"><span class="std std-ref">s_ahsl</span></a><span></span> <span class="n">target</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-color-1gaf56178ad7a63d493cc434a68a626f548"><span class="std std-ref">s_ahsl</span></a><span></span><span class="o">*</span> <span class="n">colors</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">)</span></pre>
+<p>Find the nearest color to the given ‘target’ color from within the given arrays of ‘colors’.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>target</p></td>
+<td><p>The desired color, for which the nearest will be returned</p></td>
+</tr>
+<tr class="row-even"><td><p>colors</p></td>
+<td><p>The array of different colors to check against</p></td>
+</tr>
+<tr class="row-odd"><td><p>n</p></td>
+<td><p>The amount of colors to check in the ‘colors’ array</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>a pointer to the color within ‘colors’ which is the closest match to the given ‘target’ color, searching through ‘n’ colors in the array.</p>
+</div>
+<div class="section" id="macros">
+<h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1ga255ba37b7dfeaf9c02d727896d4e1707"><span id="index-45"></span><span></span><span class="cp">#define COLOR_ARGB16_A</span></pre>
+<p>0b1000000000000000 or 0x8000 - bitmask for the 16-bit color’s alpha channel (0 or 1)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1ga78b1bc17e23c9f4239d79b8bcb742154"><span id="index-46"></span><span></span><span class="cp">#define COLOR_ARGB16_A_BITINDEX</span></pre>
+<p>The bit index for the 16-bit color’s alpha channel (0 or 1)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1ga8e7bf3b9769ab90051bdaec2b8dddd43"><span id="index-47"></span><span></span><span class="cp">#define COLOR_ARGB16_B</span></pre>
+<p>0b0111110000000000 or 0x7C00 - bitmask for the 16-bit color’s blue channel [0,31]</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1gac61ab29341fcd6e8017f0c28f08875e0"><span id="index-48"></span><span></span><span class="cp">#define COLOR_ARGB16_B_BITINDEX</span></pre>
+<p>The bit index for the 16-bit color’s blue channel [0,31].</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1ga1244cd1f438f78e48f52f96394d09125"><span id="index-49"></span><span></span><span class="cp">#define COLOR_ARGB16_CHANNEL</span></pre>
+<p>The maximum possible value for one color channel of an ARGB16 color [0,31].</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1ga778f96f46511b9a5784f25deb1a7e2af"><span id="index-50"></span><span></span><span class="cp">#define COLOR_ARGB16_G</span></pre>
+<p>0b0000001111100000 or 0x03E0 - bitmask for the 16-bit color’s green channel [0,31]</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1ga3d80c01d2f38894868262b10b052ca07"><span id="index-51"></span><span></span><span class="cp">#define COLOR_ARGB16_G_BITINDEX</span></pre>
+<p>The bit index for the 16-bit color’s green channel [0,31].</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1ga1b7bce0a3191d73cbe19c2d4cec7fa1b"><span id="index-52"></span><span></span><span class="cp">#define COLOR_ARGB16_R</span></pre>
+<p>0b0000000000011111 or 0x001F - bitmask for the 16-bit color’s red channel [0,31]</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1gabc339153320653873a3a6ba96a74af37"><span id="index-53"></span><span></span><span class="cp">#define COLOR_ARGB16_R_BITINDEX</span></pre>
+<p>The bit index for the 16-bit color’s red channel [0,31].</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1ga0dbf2be1e88684220017ba610970d2c0"><span id="index-54"></span><span></span><span class="cp">#define COLOR_ARGB32_A</span></pre>
+<p>0xFF000000 - bitmask for the 32-bit color’s alpha channel [0,255]</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1ga10ecb3d73f55ab45344ca3a096ab5ba3"><span id="index-55"></span><span></span><span class="cp">#define COLOR_ARGB32_A_BITINDEX</span></pre>
+<p>The bit index for the 32-bit color’s alpha channel [0,255].</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1gac4783a8cb1ed7522e7c2577eeb9bd3d2"><span id="index-56"></span><span></span><span class="cp">#define COLOR_ARGB32_B</span></pre>
+<p>0x000000FF - bitmask for the 32-bit color’s blue channel [0,255]</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1gad67507373189b4fe7ceedb8f8ded03fc"><span id="index-57"></span><span></span><span class="cp">#define COLOR_ARGB32_B_BITINDEX</span></pre>
+<p>The bit index for the 32-bit color’s blue channel [0,255].</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1ga3ba45d610ad8618a0143331d688b2fe8"><span id="index-58"></span><span></span><span class="cp">#define COLOR_ARGB32_CHANNEL</span></pre>
+<p>The maximum possible value for one color channel of an ARGB16 color [0,255].</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1gaeb63f74062ebe75c6b1007ae338b9d3d"><span id="index-59"></span><span></span><span class="cp">#define COLOR_ARGB32_G</span></pre>
+<p>0x0000FF00 - bitmask for the 32-bit color’s green channel [0,255]</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1ga6fadd9ca01d3591e4756617c1a423a18"><span id="index-60"></span><span></span><span class="cp">#define COLOR_ARGB32_G_BITINDEX</span></pre>
+<p>The bit index for the 32-bit color’s green channel [0,255].</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1gab95791a4496c7541b4c06e73d20001d9"><span id="index-61"></span><span></span><span class="cp">#define COLOR_ARGB32_R</span></pre>
+<p>0x00FF0000 - bitmask for the 32-bit color’s red channel [0,255]</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-color-1ga8d54b93a72cc572c49742e8171f068f2"><span id="index-62"></span><span></span><span class="cp">#define COLOR_ARGB32_R_BITINDEX</span></pre>
+<p>The bit index for the 32-bit color’s red channel [0,255].</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="struct_s_ahsl_.html" class="btn btn-neutral float-right" title="struct s_ahsl_" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="group_libccc_regex.html" class="btn btn-neutral float-left" title="10) libccc/regex" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright FREE
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

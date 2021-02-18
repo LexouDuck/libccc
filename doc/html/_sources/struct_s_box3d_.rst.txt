@@ -1,0 +1,24 @@
+.. index:: pair: struct; s_box3d_
+.. _doxid-structs__box3d__:
+
+struct s_box3d\_
+================
+
+.. toctree::
+	:hidden:
+
+A 3-dimensional volume of coordinates, defined by two corner-point vectors.
+
+
+.. ref-code-block:: cpp
+	:class: doxyrest-overview-code-block
+
+	#include <algebra.h>
+	
+	struct s_box3d_
+	{
+		// fields
+	
+		:ref:`u_vector3d<doxid-group__libccc__math__algebra_1ga901447e6cefb11f55d62b737653f7b2e>` :target:`start<doxid-structs__box3d___1afc1e1fd3c9059dd3907050da5d12572b>`;
+		:ref:`u_vector3d<doxid-group__libccc__math__algebra_1ga901447e6cefb11f55d62b737653f7b2e>` :target:`end<doxid-structs__box3d___1afce7c4cfb9f2508e9e4b786730698d84>`;
+	};

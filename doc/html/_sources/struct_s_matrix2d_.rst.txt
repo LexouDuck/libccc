@@ -1,0 +1,24 @@
+.. index:: pair: struct; s_matrix2d_
+.. _doxid-structs__matrix2d__:
+
+struct s_matrix2d\_
+===================
+
+.. toctree::
+	:hidden:
+
+A simple struct which stores a 2x2 matrix of real numbers, arranged in 2 rows of 2D vectors.
+
+
+.. ref-code-block:: cpp
+	:class: doxyrest-overview-code-block
+
+	#include <algebra.h>
+	
+	struct s_matrix2d_
+	{
+		// fields
+	
+		:ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>` :target:`u<doxid-structs__matrix2d___1a3dce9cb704faec4718fd519ee797e5f5>`;
+		:ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>` :target:`v<doxid-structs__matrix2d___1a9e298bf59e4f82a0999060719b2fe608>`;
+	};

@@ -1,0 +1,633 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>22) libccc/array/list &mdash; libccc 1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/doxyrest-sphinx_rtd_theme.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/target-highlight.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="struct s_list_" href="struct_s_list_.html" />
+    <link rel="prev" title="struct s_array_" href="struct_s_array_.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> libccc
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="group_libccc.html">00) libccc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">01) libccc/bool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">02) libccc/int</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_fixed.html">03) libccc/fixed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_float.html">04) libccc/float</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointer.html">05) libccc/pointer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_memory.html">06) libccc/memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">07) libccc/char</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">08) libccc/string</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">09) libccc/format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_regex.html">10) libccc/regex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_color.html">11) libccc/color</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">12) libccc/sys/io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_time.html">13) libccc/sys/time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">14) libccc/sys/logger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_math.html">15) libccc/math/math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_vlq.html">16) libccc/math/vlq</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_stat.html">17) libccc/math/stat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_random.html">18) libccc/math/random</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra.html">19) libccc/math/algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">20) libccc/math/complex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_array.html">21) libccc/array/array</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">22) libccc/array/list</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="struct_s_list_.html">struct s_list_</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#detailed-documentation">Detailed Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#typedefs">Typedefs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#global-functions">Global Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#macros">Macros</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_dict.html">23) libccc/array/dict</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_tree.html">24) libccc/array/tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_pointerarray.html">25) libccc/array/pointerarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_stringarray.html">26) libccc/array/stringarray</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="page_index.html"># libccc</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">libccc</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>22) libccc/array/list</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/group_libccc_array_list.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="libccc-array-list">
+<span id="doxid-group-libccc-array-list"></span><span id="index-0"></span><h1>22) libccc/array/list<a class="headerlink" href="#libccc-array-list" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>This header defines a simple linked list type and utility functions for it. <a class="reference internal" href="#details-group-libccc-array-list"><span class="std std-ref">More…</span></a></p>
+<pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// typedefs</span>
+
+<span class="k">typedef</span> <span class="k">struct</span> <a class="reference internal" href="struct_s_array_.html#doxid-structs-array"><span class="std std-ref">s_array_</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-array-list-1ga017b4a0772f4fe0102050f0aba10e66e"><span></span><span class="n">s_array</span></span><span></span><span class="p">;</span>
+<span class="k">typedef</span> <span class="k">struct</span> <a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list_</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-array-list-1ga1db26a8fd53db75657fa6a5cb65b2bc9"><span class="std std-ref">s_list</span></a><span></span><span class="p">;</span>
+
+<span class="c1">// structs</span>
+
+<span class="k">struct</span> <a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list_</span></a><span></span><span class="p">;</span>
+
+<span class="c1">// global functions</span>
+
+<a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-array-list-1ga083e21b6cb20a3c4597f221181d7fa19"><span class="std std-ref">List_New</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">item</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">item_size</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-array-list-1ga9089f093d256af63bee65aa6c4eb6c89"><span class="std std-ref">List_Prepend</span></a><span></span><span class="p">(</span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">**</span> <span class="n">a_lst</span><span class="p">,</span> <a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">*</span> <span class="n">elem</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-array-list-1gab0be6f01331208a525305ebc1bfaecb7"><span class="std std-ref">List_Append</span></a><span></span><span class="p">(</span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">**</span> <span class="n">a_lst</span><span class="p">,</span> <a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">*</span> <span class="n">elem</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-array-list-1ga9d4f826099f3c19fc457df932441d34e"><span class="std std-ref">List_Insert</span></a><span></span><span class="p">(</span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">**</span> <span class="n">a_lst</span><span class="p">,</span> <a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">*</span> <span class="n">elem</span><span class="p">,</span> <span class="n">t_u32</span> <span class="n">index</span><span class="p">);</span>
+<a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-array-list-1gaf7fb8ce59cfd97c87461e6fcc950704a"><span class="std std-ref">List_Copy</span></a><span></span><span class="p">(</span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">lst</span><span class="p">);</span>
+<a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-array-list-1gaa626c18a4cc4a7ee1ae43d16280510ef"><span class="std std-ref">List_Duplicate</span></a><span></span><span class="p">(</span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">lst</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-array-list-1ga42b9b3d267b1cd4fc90de82bc2bf44d8"><span class="std std-ref">List_Remove</span></a><span></span><span class="p">(</span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">**</span> <span class="n">a_lst</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span><span class="p">)</span> <span class="n">del</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-array-list-1ga15c9487e05b836e1ee9db8bb5e902a37"><span class="std std-ref">List_Delete</span></a><span></span><span class="p">(</span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">**</span> <span class="n">a_lst</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span><span class="p">)</span> <span class="n">del</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-array-list-1ga3b3ee1fe8a07f30f8f018fe501fe9fa5"><span class="std std-ref">List_Pop</span></a><span></span><span class="p">(</span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">**</span> <span class="n">a_lst</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span><span class="p">)</span> <span class="n">del</span><span class="p">);</span>
+<span class="n">t_u32</span> <a class="reference internal" href="#doxid-group-libccc-array-list-1gad0e836023f702dab0cc5de1aa5ab6d92"><span class="std std-ref">List_Size</span></a><span></span><span class="p">(</span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">lst</span><span class="p">);</span>
+<a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-array-list-1gacbf95fa66c1654f090caad8f43dd2618"><span class="std std-ref">List_Get</span></a><span></span><span class="p">(</span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">lst</span><span class="p">,</span> <span class="n">t_u32</span> <span class="n">index</span><span class="p">);</span>
+<a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-array-list-1ga390aa9356abd04bd2994722df91daf02"><span class="std std-ref">List_Find</span></a><span></span><span class="p">(</span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">lst</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">query</span><span class="p">);</span>
+<a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-array-list-1ga5c8f571b95a81ff7092564336950fd67"><span class="std std-ref">List_Sub</span></a><span></span><span class="p">(</span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">*</span> <span class="n">lst</span><span class="p">,</span> <span class="n">t_u32</span> <span class="n">index</span><span class="p">,</span> <span class="n">t_u32</span> <span class="n">n</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-array-list-1gae6fa49f74cd90eccf33e78337b0e2b1b"><span class="std std-ref">List_Iterate</span></a><span></span><span class="p">(</span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">*</span> <span class="n">lst</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">*</span><span class="n">elem</span><span class="p">)</span> <span class="n">f</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="doxyrest-code-target target" id="doxid-group-libccc-array-list-1ga040890aca144b296e8f7232603291c00"><span></span><span class="n">List_Iterate_I</span></span><span></span><span class="p">(</span>
+    <a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">*</span> <span class="n">lst</span><span class="p">,</span>
+    <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">*</span><span class="n">elem</span><span class="p">,</span> <span class="n">t_u32</span> <span class="n">index</span><span class="p">)</span> <span class="n">f</span>
+    <span class="p">);</span>
+
+<a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-array-list-1ga863b77299a8347656bad0977d4a8d721"><span class="std std-ref">List_Map</span></a><span></span><span class="p">(</span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">*</span> <span class="n">lst</span><span class="p">,</span> <a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">*</span><span class="n">elem</span><span class="p">)</span> <span class="n">f</span><span class="p">);</span>
+
+<a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">*</span> <span class="doxyrest-code-target target" id="doxid-group-libccc-array-list-1gad33002429dae79bff236d273d357c851"><span></span><span class="n">List_Map_I</span></span><span></span><span class="p">(</span>
+    <a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">*</span> <span class="n">lst</span><span class="p">,</span>
+    <a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">*</span><span class="n">elem</span><span class="p">,</span> <span class="n">t_u32</span> <span class="n">index</span><span class="p">)</span> <span class="n">f</span>
+    <span class="p">);</span>
+
+<span class="kt">void</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-array-list-1ga1cff54299b6f5ea2b6dd3ae21d822dd8"><span class="std std-ref">List_To_PointerArray</span></a><span></span><span class="p">(</span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span> <span class="k">const</span><span class="o">**</span> <span class="n">a_lst</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_array_array.html#doxid-group-libccc-array-array-1ga017b4a0772f4fe0102050f0aba10e66e"><span class="std std-ref">s_array</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-array-list-1gae12971650af168aeabf56442634085f4"><span class="std std-ref">List_To_Array</span></a><span></span><span class="p">(</span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span> <span class="k">const</span><span class="o">**</span> <span class="n">a_lst</span><span class="p">);</span>
+
+<span class="c1">// macros</span>
+
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-array-list-1ga8010c3d97f1984c6a531eaaf3a1b6394"><span class="std std-ref">LIST_NULL</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-list-1ga18d05db4a8d68b46d2c9f4b8c4538cca"><span></span><span class="n">c_lst_to_array</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-list-1ga4a224d0ab89c926791ff25a7bccb9efb"><span></span><span class="n">c_lst_to_ptrarr</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-list-1ga1ada486ced8ccfa4bb5bf6d37cfc650b"><span></span><span class="n">c_lstadd</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-list-1gab603d28cc0b1c0d70032f7594e62d385"><span></span><span class="n">c_lstappend</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-list-1gadced3439e23263522832df6897d72d6f"><span></span><span class="n">c_lstcpy</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-list-1ga259753b29a955dc737b4009290d8349e"><span></span><span class="n">c_lstdel</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-list-1ga1ea89a50527607df8a87a6f14690d8ff"><span></span><span class="n">c_lstdelone</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-list-1ga433baf1dd75f5d167bf37576d3a68367"><span></span><span class="n">c_lstdup</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-list-1ga91c898febcaf2858183de7300b5c3857"><span></span><span class="n">c_lstfind</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-list-1gad2204d5b53116494577d119d81202865"><span></span><span class="n">c_lstget</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-list-1ga1ef782abc54b335299665cc7ea547316"><span></span><span class="n">c_lstinsert</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-list-1gac47e00164f8151d5e0167006b648726c"><span></span><span class="n">c_lstiter</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-list-1ga872b980e56f3ee5c496286d317b80d8d"><span></span><span class="n">c_lstiteri</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-list-1ga3eb81656326de4cdadb2d1333450de1e"><span></span><span class="n">c_lstmap</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-list-1ga06444dff027555000e2af8bc673f37ab"><span></span><span class="n">c_lstmapi</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-list-1gaa4d6bb03e8c0379e4129e27e00314104"><span></span><span class="n">c_lstnew</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-list-1ga1129c1e143c0f28bdf7df9fd175ebd5a"><span></span><span class="n">c_lstpop</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-list-1gac2824f9e6bc4099ff10ce77114817260"><span></span><span class="n">c_lstprepend</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-list-1gabdf92da8453e540994e83e2e19a58a6f"><span></span><span class="n">c_lstsize</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-list-1ga84d7e4fcbec301f8c60ca8150b1713b0"><span></span><span class="n">c_lstsub</span></span><span></span>
+
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-list-1gac1f12a5dff16c35567e430d42e9c8128"><span></span><span class="n">foreach_s_list_exit</span></span><span></span><span class="p">(</span> \
+    <span class="n">TYPE</span><span class="p">,</span> \
+    <span class="n">VAR</span><span class="p">,</span> \
+    <span class="n">LIST</span> \
+    <span class="p">)</span>
+
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-list-1ga425082121ad6cfef8c7f12382e7d5124"><span></span><span class="n">foreach_s_list_init</span></span><span></span><span class="p">(</span> \
+    <span class="n">TYPE</span><span class="p">,</span> \
+    <span class="n">VAR</span><span class="p">,</span> \
+    <span class="n">LIST</span> \
+    <span class="p">)</span>
+
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-list-1ga2c295e01ed4b1240dd3cfd8d52478fc0"><span></span><span class="n">foreach_s_list_init_1</span></span><span></span><span class="p">(</span> \
+    <span class="n">TYPE</span><span class="p">,</span> \
+    <span class="n">VAR</span><span class="p">,</span> \
+    <span class="n">LIST</span> \
+    <span class="p">)</span>
+
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-list-1ga773edd39c3d8c04583ac5e09051f45b1"><span></span><span class="n">foreach_s_list_init_2</span></span><span></span><span class="p">(</span> \
+    <span class="n">TYPE</span><span class="p">,</span> \
+    <span class="n">VAR</span><span class="p">,</span> \
+    <span class="n">LIST</span> \
+    <span class="p">)</span>
+
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-list-1gacd2603dc0699f09b669c82721167ea44"><span></span><span class="n">foreach_s_list_loop_exit</span></span><span></span><span class="p">(</span> \
+    <span class="n">TYPE</span><span class="p">,</span> \
+    <span class="n">VAR</span><span class="p">,</span> \
+    <span class="n">LIST</span> \
+    <span class="p">)</span>
+
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-list-1ga0db0594169de2e5a6483f51ac16873f4"><span></span><span class="n">foreach_s_list_loop_incr</span></span><span></span><span class="p">(</span> \
+    <span class="n">TYPE</span><span class="p">,</span> \
+    <span class="n">VAR</span><span class="p">,</span> \
+    <span class="n">LIST</span> \
+    <span class="p">)</span>
+
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-list-1ga08f61c839457d1a30f385d9e4e330ce6"><span></span><span class="n">foreach_s_list_loop_incr_1</span></span><span></span><span class="p">(</span> \
+    <span class="n">TYPE</span><span class="p">,</span> \
+    <span class="n">VAR</span><span class="p">,</span> \
+    <span class="n">LIST</span> \
+    <span class="p">)</span>
+
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-list-1ga9a36dfcfb2f157b10b2503e827b6058b"><span></span><span class="n">foreach_s_list_loop_incr_2</span></span><span></span><span class="p">(</span> \
+    <span class="n">TYPE</span><span class="p">,</span> \
+    <span class="n">VAR</span><span class="p">,</span> \
+    <span class="n">LIST</span> \
+    <span class="p">)</span>
+
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-list-1gaf086585204b38d446c35f8abe907df80"><span></span><span class="n">foreach_s_list_loop_init</span></span><span></span><span class="p">(</span> \
+    <span class="n">TYPE</span><span class="p">,</span> \
+    <span class="n">VAR</span><span class="p">,</span> \
+    <span class="n">LIST</span> \
+    <span class="p">)</span></pre>
+</div>
+<div class="section" id="detailed-documentation">
+<span id="details-group-libccc-array-list"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline">¶</a></h2>
+<p>This header defines a simple linked list type and utility functions for it.</p>
+<div class="section" id="typedefs">
+<h3>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-array-list-1ga1db26a8fd53db75657fa6a5cb65b2bc9"><span id="index-1"></span><span></span><span class="k">typedef</span> <span class="k">struct</span> <a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list_</span></a><span></span> <span class="n">s_list</span></pre>
+<p>This is a simple linked list struct, with dynamic content type.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">s_list</span></code> struct represents one chainlink in the linked-list, so a linked-list with 3 elements would consist of 3 different <code class="docutils literal notranslate"><span class="pre">s_list</span></code> structs, all chained together with their <code class="docutils literal notranslate"><span class="pre">next</span></code> pointer, and the last element would have this <code class="docutils literal notranslate"><span class="pre">next</span></code> pointer set to <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1ga070d2ce7b6bb7e5c05602aa8c308d0c4"><span class="std std-ref">NULL(0)</span></a></p>
+</div>
+<div class="section" id="global-functions">
+<h3>Global Functions<a class="headerlink" href="#global-functions" title="Permalink to this headline">¶</a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-array-list-1ga083e21b6cb20a3c4597f221181d7fa19"><span id="index-2"></span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">*</span> <span class="n">List_New</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">item</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">item_size</span><span class="p">)</span></pre>
+<p>Allocates and returns a list element from the given <code class="docutils literal notranslate"><span class="pre">item</span></code> pointer and <code class="docutils literal notranslate"><span class="pre">item_size</span></code></p>
+<p>Allocates a new linked list element, and feeds it the given <code class="docutils literal notranslate"><span class="pre">item</span></code> pointer and the given <code class="docutils literal notranslate"><span class="pre">item_size</span></code> (if <code class="docutils literal notranslate"><span class="pre">item</span></code> is NULL, item_size is set to 0). The <code class="docutils literal notranslate"><span class="pre">prev</span></code> and <code class="docutils literal notranslate"><span class="pre">next</span></code> pointers are both set to NULL.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>item</p></td>
+<td><p>A pointer to the data/value to store in this list</p></td>
+</tr>
+<tr class="row-even"><td><p>item_size</p></td>
+<td><p>The size (in bytes) of the data in question</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>the linked-list element containing the given data</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-array-list-1ga9089f093d256af63bee65aa6c4eb6c89"><span id="index-3"></span><span></span><span class="kt">void</span> <span class="n">List_Prepend</span><span class="p">(</span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">**</span> <span class="n">a_lst</span><span class="p">,</span> <a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">*</span> <span class="n">elem</span><span class="p">)</span></pre>
+<p>Inserts the given element <code class="docutils literal notranslate"><span class="pre">elem</span></code> to the beginning of the list starting at <code class="docutils literal notranslate"><span class="pre">a_lst</span></code></p>
+<p>Inserts a new element <code class="docutils literal notranslate"><span class="pre">elem</span></code> into the list at the address <code class="docutils literal notranslate"><span class="pre">a_lst</span></code>, chaining this new element with the next element of this list (ie: this function will set the <code class="docutils literal notranslate"><span class="pre">next</span></code> pointer to <code class="docutils literal notranslate"><span class="pre">*a_lst</span></code>, and ‘(*a_lst)-&gt;prev’ will be set to <code class="docutils literal notranslate"><span class="pre">elem</span></code>).</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>a_lst</p></td>
+<td><p>The address (‘&amp;’) of the beginning of the list (the address of the first item)</p></td>
+</tr>
+<tr class="row-even"><td><p>elem</p></td>
+<td><p>The list element to prepend to <code class="docutils literal notranslate"><span class="pre">alst</span></code> - if NULL, this function does nothing</p></td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-array-list-1gab0be6f01331208a525305ebc1bfaecb7"><span id="index-4"></span><span></span><span class="kt">void</span> <span class="n">List_Append</span><span class="p">(</span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">**</span> <span class="n">a_lst</span><span class="p">,</span> <a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">*</span> <span class="n">elem</span><span class="p">)</span></pre>
+<p>Appends the given element <code class="docutils literal notranslate"><span class="pre">elem</span></code> to the end of the list starting at <code class="docutils literal notranslate"><span class="pre">a_lst</span></code></p>
+<p>Appends the given element <code class="docutils literal notranslate"><span class="pre">elem</span></code> to the end of the list starting at <code class="docutils literal notranslate"><span class="pre">*a_lst</span></code>. If <code class="docutils literal notranslate"><span class="pre">*a_lst</span></code> is NULL, it’ll append <code class="docutils literal notranslate"><span class="pre">elem</span></code> at index 0, creating a 1-elem list.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>a_lst</p></td>
+<td><p>The address (‘&amp;’) of the beginning of the list (the address of the first item)</p></td>
+</tr>
+<tr class="row-even"><td><p>elem</p></td>
+<td><p>The list element to prepend to <code class="docutils literal notranslate"><span class="pre">alst</span></code> - if NULL, this function does nothing</p></td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-array-list-1ga9d4f826099f3c19fc457df932441d34e"><span id="index-5"></span><span></span><span class="kt">void</span> <span class="n">List_Insert</span><span class="p">(</span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">**</span> <span class="n">a_lst</span><span class="p">,</span> <a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">*</span> <span class="n">elem</span><span class="p">,</span> <span class="n">t_u32</span> <span class="n">index</span><span class="p">)</span></pre>
+<p>Inserts the given element <code class="docutils literal notranslate"><span class="pre">elem</span></code> at the given <code class="docutils literal notranslate"><span class="pre">index</span></code> of the list starting at <code class="docutils literal notranslate"><span class="pre">a_lst</span></code></p>
+<p>Inserts the given element <code class="docutils literal notranslate"><span class="pre">elem</span></code> at the given <code class="docutils literal notranslate"><span class="pre">index</span></code> of the list <code class="docutils literal notranslate"><span class="pre">*a_lst</span></code>. If <code class="docutils literal notranslate"><span class="pre">index</span></code> is too large, the <code class="docutils literal notranslate"><span class="pre">elem</span></code> is appended to the end of the list. If <code class="docutils literal notranslate"><span class="pre">elem</span></code> is NULL, then nothing is done by this function.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>a_lst</p></td>
+<td><p>The address (‘&amp;’) of the beginning of the list (the address of the first item)</p></td>
+</tr>
+<tr class="row-even"><td><p>elem</p></td>
+<td><p>The list element to insert in <code class="docutils literal notranslate"><span class="pre">alst</span></code> - if NULL, this function does nothing</p></td>
+</tr>
+<tr class="row-odd"><td><p>index</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-array-list-1gaf7fb8ce59cfd97c87461e6fcc950704a"><span id="index-6"></span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">*</span> <span class="n">List_Copy</span><span class="p">(</span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">lst</span><span class="p">)</span></pre>
+<p>Returns a “shallow copy” of the given list <code class="docutils literal notranslate"><span class="pre">lst</span></code> (copies only pointers, not the underlying data)</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>lst</p></td>
+<td><p>The list to copy</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>a newly allocated copy of the given linked list <code class="docutils literal notranslate"><span class="pre">lst</span></code>. The underlying data is not copied, only the s_list* structs are malloc’ed.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-array-list-1gaa626c18a4cc4a7ee1ae43d16280510ef"><span id="index-7"></span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">*</span> <span class="n">List_Duplicate</span><span class="p">(</span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">lst</span><span class="p">)</span></pre>
+<p>Returns a “deep copy” of the given list <code class="docutils literal notranslate"><span class="pre">lst</span></code> (copies s_list structs, and the data in <code class="docutils literal notranslate"><span class="pre">item</span></code>)</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>lst</p></td>
+<td><p>The list to duplicate</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>a newly allocated copy of the given linked list <code class="docutils literal notranslate"><span class="pre">lst</span></code>. The underlying data <code class="docutils literal notranslate"><span class="pre">item</span></code> for each element will be allocated and copied, according to <code class="docutils literal notranslate"><span class="pre">item_size</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-array-list-1ga42b9b3d267b1cd4fc90de82bc2bf44d8"><span id="index-8"></span><span></span><span class="kt">void</span> <span class="n">List_Remove</span><span class="p">(</span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">**</span> <span class="n">a_lst</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span><span class="p">)</span> <span class="n">del</span><span class="p">)</span></pre>
+<p>Deletes the given element pointed to by <code class="docutils literal notranslate"><span class="pre">a_lst</span></code> using the given <code class="docutils literal notranslate"><span class="pre">del()</span></code> function.</p>
+<p>Deletes the given element pointed to by <code class="docutils literal notranslate"><span class="pre">a_lst</span></code> with the given <code class="docutils literal notranslate"><span class="pre">del()</span></code> function, and then frees memory and sets <code class="docutils literal notranslate"><span class="pre">*a_lst</span></code> to the old value of ‘*a_lst-&gt;next’. So, the linked list remains “chained together” after removing an element in the middle.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>a_lst</p></td>
+<td><p>The address (‘&amp;’) of the beginning of the list (the address of the first item)</p></td>
+</tr>
+<tr class="row-even"><td><p>del</p></td>
+<td><p>The function used to delete one list item</p></td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-array-list-1ga15c9487e05b836e1ee9db8bb5e902a37"><span id="index-9"></span><span></span><span class="kt">void</span> <span class="n">List_Delete</span><span class="p">(</span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">**</span> <span class="n">a_lst</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span><span class="p">)</span> <span class="n">del</span><span class="p">)</span></pre>
+<p>Deletes all the elements in the list starting at <code class="docutils literal notranslate"><span class="pre">a_lst</span></code>, using the given <code class="docutils literal notranslate"><span class="pre">del()</span></code> function.</p>
+<p>Deletes all the elements in the list starting at <code class="docutils literal notranslate"><span class="pre">*a_lst</span></code>, calls <code class="docutils literal notranslate"><span class="pre">del</span></code> and frees memory for each, and lastly sets <code class="docutils literal notranslate"><span class="pre">*a_lst</span></code> as NULL.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>a_lst</p></td>
+<td><p>The address (‘&amp;’) of the beginning of the list (the address of the first item)</p></td>
+</tr>
+<tr class="row-even"><td><p>del</p></td>
+<td><p>The function used to delete one list item</p></td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-array-list-1ga3b3ee1fe8a07f30f8f018fe501fe9fa5"><span id="index-10"></span><span></span><span class="kt">void</span> <span class="n">List_Pop</span><span class="p">(</span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">**</span> <span class="n">a_lst</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span><span class="p">)</span> <span class="n">del</span><span class="p">)</span></pre>
+<p>Deletes the given element pointed to by <code class="docutils literal notranslate"><span class="pre">a_lst</span></code> using the given <code class="docutils literal notranslate"><span class="pre">del()</span></code> function.</p>
+<p>Deletes the last element in the list starting at <code class="docutils literal notranslate"><span class="pre">*a_lst</span></code>, calling <code class="docutils literal notranslate"><span class="pre">del()</span></code> and freeing that element, and setting the preceding <code class="docutils literal notranslate"><span class="pre">lst.next</span></code> as NULL.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>a_lst</p></td>
+<td><p>The address (‘&amp;’) of the beginning of the list (the address of the first item)</p></td>
+</tr>
+<tr class="row-even"><td><p>del</p></td>
+<td><p>The function used to delete one list item</p></td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-array-list-1gad0e836023f702dab0cc5de1aa5ab6d92"><span id="index-11"></span><span></span><span class="n">t_u32</span> <span class="n">List_Size</span><span class="p">(</span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">lst</span><span class="p">)</span></pre>
+<p>Returns the amount of elements in the given list <code class="docutils literal notranslate"><span class="pre">lst</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>lst</p></td>
+<td><p>the list to look through</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>the amount of elements in the given list <code class="docutils literal notranslate"><span class="pre">lst</span></code>, by traversing it, looping through every <code class="docutils literal notranslate"><span class="pre">next</span></code> pointer.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-array-list-1gacbf95fa66c1654f090caad8f43dd2618"><span id="index-12"></span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">*</span> <span class="n">List_Get</span><span class="p">(</span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">lst</span><span class="p">,</span> <span class="n">t_u32</span> <span class="n">index</span><span class="p">)</span></pre>
+<p>Gets the element at position <code class="docutils literal notranslate"><span class="pre">index</span></code> in the list, and returns it.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>lst</p></td>
+<td><p>the list to look through</p></td>
+</tr>
+<tr class="row-even"><td><p>index</p></td>
+<td><p>the index in the list of the element to get</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>the <code class="docutils literal notranslate"><span class="pre">index</span></code> th element in the given list <code class="docutils literal notranslate"><span class="pre">lst</span></code>. Will return NULL if <code class="docutils literal notranslate"><span class="pre">index</span></code> is beyond the last element.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-array-list-1ga390aa9356abd04bd2994722df91daf02"><span id="index-13"></span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">*</span> <span class="n">List_Find</span><span class="p">(</span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">lst</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">query</span><span class="p">)</span></pre>
+<p>Returns the first encountered item in the given list <code class="docutils literal notranslate"><span class="pre">lst</span></code> matching the given <code class="docutils literal notranslate"><span class="pre">query</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>lst</p></td>
+<td><p>the list to look through</p></td>
+</tr>
+<tr class="row-even"><td><p>query</p></td>
+<td><p>the <code class="docutils literal notranslate"><span class="pre">item</span></code> pointer to match against</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>the first encountered element of the given linked list <code class="docutils literal notranslate"><span class="pre">lst</span></code> for which (lst.item == query), matching only the pointers, not the data.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-array-list-1ga5c8f571b95a81ff7092564336950fd67"><span id="index-14"></span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">*</span> <span class="n">List_Sub</span><span class="p">(</span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">*</span> <span class="n">lst</span><span class="p">,</span> <span class="n">t_u32</span> <span class="n">index</span><span class="p">,</span> <span class="n">t_u32</span> <span class="n">n</span><span class="p">)</span></pre>
+<p>Returns a “shallow copy” of a subsection of the given list <code class="docutils literal notranslate"><span class="pre">lst</span></code>, starting at <code class="docutils literal notranslate"><span class="pre">index</span></code> and taking <code class="docutils literal notranslate"><span class="pre">n</span></code> elements.</p>
+<p>Returns a newly allocated subsection of the given list <code class="docutils literal notranslate"><span class="pre">lst</span></code>, starting at <code class="docutils literal notranslate"><span class="pre">index</span></code>, and copying <code class="docutils literal notranslate"><span class="pre">n</span></code> list elements (not their <code class="docutils literal notranslate"><span class="pre">item</span></code> data). Will return NULL if <code class="docutils literal notranslate"><span class="pre">index</span></code> is too large or if <code class="docutils literal notranslate"><span class="pre">n</span></code> is 0. If <code class="docutils literal notranslate"><span class="pre">index</span></code> is valid but the list is not large enough for <code class="docutils literal notranslate"><span class="pre">n</span></code>, then the resulting list will have fewer than <code class="docutils literal notranslate"><span class="pre">n</span></code> elements.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-array-list-1gae6fa49f74cd90eccf33e78337b0e2b1b"><span id="index-15"></span><span></span><span class="kt">void</span> <span class="n">List_Iterate</span><span class="p">(</span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">*</span> <span class="n">lst</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">*</span><span class="n">elem</span><span class="p">)</span> <span class="n">f</span><span class="p">)</span></pre>
+<p>Iterates upon each element of the given list <code class="docutils literal notranslate"><span class="pre">lst</span></code>, applying the given function <code class="docutils literal notranslate"><span class="pre">f</span></code> to each of its elements.</p>
+<p>Iterates upon each element of the given list <code class="docutils literal notranslate"><span class="pre">lst</span></code>, applying the given function <code class="docutils literal notranslate"><span class="pre">f</span></code> to each of its elements.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-array-list-1ga863b77299a8347656bad0977d4a8d721"><span id="index-16"></span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">*</span> <span class="n">List_Map</span><span class="p">(</span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">*</span> <span class="n">lst</span><span class="p">,</span> <a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span><span class="o">*</span><span class="n">elem</span><span class="p">)</span> <span class="n">f</span><span class="p">)</span></pre>
+<p>Creates a new list which is the result of applying the given function <code class="docutils literal notranslate"><span class="pre">f</span></code> to each element of <code class="docutils literal notranslate"><span class="pre">lst</span></code>.</p>
+<p>Creates a new list which is the result of applying the given function <code class="docutils literal notranslate"><span class="pre">f</span></code> to each element of <code class="docutils literal notranslate"><span class="pre">lst</span></code>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-array-list-1ga1cff54299b6f5ea2b6dd3ae21d822dd8"><span id="index-17"></span><span></span><span class="kt">void</span><span class="o">**</span> <span class="n">List_To_PointerArray</span><span class="p">(</span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span> <span class="k">const</span><span class="o">**</span> <span class="n">a_lst</span><span class="p">)</span></pre>
+<p>Converts the given list at address <code class="docutils literal notranslate"><span class="pre">a_lst</span></code> to a NULL-terminated pointer array.</p>
+<p>Creates a new jagged array (2D pointer array) from the given list <code class="docutils literal notranslate"><span class="pre">*a_lst</span></code>. The top-level pointer array is terminated by a NULL pointer. The underlying <code class="docutils literal notranslate"><span class="pre">lst.item</span></code> data is not copied, only the pointers are.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-array-list-1gae12971650af168aeabf56442634085f4"><span id="index-18"></span><a class="reference internal" href="group_libccc_array_array.html#doxid-group-libccc-array-array-1ga017b4a0772f4fe0102050f0aba10e66e"><span class="std std-ref">s_array</span></a><span></span> <span class="n">List_To_Array</span><span class="p">(</span><a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list</span></a><span></span> <span class="k">const</span><span class="o">**</span> <span class="n">a_lst</span><span class="p">)</span></pre>
+<p>Converts the given list at address <code class="docutils literal notranslate"><span class="pre">a_lst</span></code> to a array.</p>
+<p>Creates a new contiguous memory array from the given linked list. It sets this array pointer to the <code class="docutils literal notranslate"><span class="pre">items</span></code> pointer of the given <code class="docutils literal notranslate"><span class="pre">array</span></code>. It also sets the <code class="docutils literal notranslate"><span class="pre">item_size</span></code> and <code class="docutils literal notranslate"><span class="pre">length</span></code> fields of this <code class="docutils literal notranslate"><span class="pre">array</span></code>.</p>
+<p class="rubric">Returns:</p>
+<p>the resulting <code class="docutils literal notranslate"><span class="pre">s_array</span></code> struct from the given list, or NULL if any elements of <code class="docutils literal notranslate"><span class="pre">*a_lst</span></code> are of unequal <code class="docutils literal notranslate"><span class="pre">lst.item_size</span></code>.</p>
+</div>
+<div class="section" id="macros">
+<h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-array-list-1ga8010c3d97f1984c6a531eaaf3a1b6394"><span id="index-19"></span><span></span><span class="cp">#define LIST_NULL</span></pre>
+<p>A literal of an <code class="docutils literal notranslate"><span class="pre">s_list</span></code> struct which has all fields set to zero.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="struct_s_list_.html" class="btn btn-neutral float-right" title="struct s_list_" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="struct_s_array_.html" class="btn btn-neutral float-left" title="struct s_array_" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright FREE
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

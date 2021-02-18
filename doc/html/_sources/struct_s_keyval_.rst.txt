@@ -1,0 +1,79 @@
+.. index:: pair: struct; s_keyval_
+.. _doxid-structs__keyval__:
+
+struct s_keyval\_
+=================
+
+.. toctree::
+	:hidden:
+
+Overview
+~~~~~~~~
+
+A simple key+value pair struct, used in the 's_dict' dictionary struct. :ref:`More...<details-structs__keyval__>`
+
+
+.. ref-code-block:: cpp
+	:class: doxyrest-overview-code-block
+
+	#include <dict.h>
+	
+	struct s_keyval_
+	{
+		// fields
+	
+		char* :ref:`key<doxid-structs__keyval___1a5892a9181e6a332f84d27aecd41dcd12>`;
+		void* :ref:`value<doxid-structs__keyval___1a0f61d63b009d0880a89c843bd50d8d76>`;
+		char* :ref:`value_type<doxid-structs__keyval___1aea233b735668336e8c5e3aa49a5bf617>`;
+		:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` :ref:`value_size<doxid-structs__keyval___1aab538b94203bc9b35294c7916160c2fc>`;
+	};
+.. _details-structs__keyval__:
+
+Detailed Documentation
+~~~~~~~~~~~~~~~~~~~~~~
+
+A simple key+value pair struct, used in the 's_dict' dictionary struct.
+
+Fields
+------
+
+.. index:: pair: variable; key
+.. _doxid-structs__keyval___1a5892a9181e6a332f84d27aecd41dcd12:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* key
+
+The key string associated with the 'value'.
+
+.. index:: pair: variable; value
+.. _doxid-structs__keyval___1a0f61d63b009d0880a89c843bd50d8d76:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void* value
+
+The pointer to the data for the 'value'.
+
+.. index:: pair: variable; value_type
+.. _doxid-structs__keyval___1aea233b735668336e8c5e3aa49a5bf617:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* value_type
+
+The amount of elements in the 'items' array.
+
+.. index:: pair: variable; value_size
+.. _doxid-structs__keyval___1aab538b94203bc9b35294c7916160c2fc:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` value_size
+
+The size (in bytes) of one object in this array.
+

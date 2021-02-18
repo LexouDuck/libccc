@@ -1,0 +1,227 @@
+.. index:: pair: group; 06) libccc/memory
+.. _doxid-group__libccc__memory:
+
+06) libccc/memory
+=================
+
+.. toctree::
+	:hidden:
+
+Overview
+~~~~~~~~
+
+This header defines the common standard memory manipulation functions. :ref:`More...<details-group__libccc__memory>`
+
+
+.. ref-code-block:: cpp
+	:class: doxyrest-overview-code-block
+
+	
+	// global functions
+
+	void* :ref:`Memory_Alloc<doxid-group__libccc__memory_1ga7434ed28ca8d902102aab286f58351bb>`(:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` size);
+	void* :ref:`Memory_New<doxid-group__libccc__memory_1ga7c8b43285360f8f883c108529faa9500>`(:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` size);
+	void* :ref:`Memory_New_C<doxid-group__libccc__memory_1ga14a2e464d849154fe381727a5b39bb68>`(:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` size, char c);
+	void :ref:`Memory_Free<doxid-group__libccc__memory_1ga1c4c04e36c9145a492ed7793376063e0>`(void* ptr);
+	void :ref:`Memory_Delete<doxid-group__libccc__memory_1ga6c25922e9f9fdb2083c3772db7070e83>`(void** a_ptr);
+	void :ref:`Memory_Set<doxid-group__libccc__memory_1gaa859acf2af192ebcc5fcf30f63f1d3de>`(void* ptr, t_u8 byte, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n);
+	void :ref:`Memory_Clear<doxid-group__libccc__memory_1gaa30b4940b752fa1ed0dab3cd2c5cbebb>`(void* ptr, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n);
+	void* :ref:`Memory_Copy<doxid-group__libccc__memory_1gac550e7b4a24f9c86320e89cc274f4cf0>`(void* dest, void const* src, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n);
+	void* :ref:`Memory_Copy_C<doxid-group__libccc__memory_1ga8a0bcd59493f11d10e93dcc207a4e5ff>`(void* dest, void const* src, t_u8 byte, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n);
+	void* :ref:`Memory_Move<doxid-group__libccc__memory_1ga3ff5f0d40d8e6c12e1ce15e9d8910fd3>`(void* dest, void const* src, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n);
+	void* :ref:`Memory_Duplicate<doxid-group__libccc__memory_1gaac495e9211f795cb14c6fd9ca4cad2d6>`(void const* ptr, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n);
+	void* :ref:`Memory_Find<doxid-group__libccc__memory_1ga9a72e5cea344b7ad8f4e8bb01cba253b>`(void const* ptr, t_u8 byte, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n);
+	void :ref:`Memory_Replace<doxid-group__libccc__memory_1gaac7ea6d813c693c6b0f1a471692d6fff>`(void* ptr, t_u8 old, t_u8 new, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n);
+	int :ref:`Memory_Compare<doxid-group__libccc__memory_1gaefe14b45b82e5003b1b48a073a670a0c>`(void const* ptr1, void const* ptr2, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n);
+	int :ref:`Memory_Swap<doxid-group__libccc__memory_1gae8f7fcf2ef41932a8dc52f0a1a27fa4d>`(void* ptr1, void* ptr2, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` size);
+	t_u64 :ref:`Memory_GetBits<doxid-group__libccc__memory_1ga68ede9e357bddc21ce6fa96d27173f5b>`(t_u64 value, t_u8 bit, t_u8 length);
+
+	// macros
+
+	#define :target:`c_getbits<doxid-group__libccc__memory_1ga0e434fd038be54a99b94e6adfccadb70>`
+	#define :target:`c_memalloc<doxid-group__libccc__memory_1ga795f68255b939d6af0a0eaa6a0ac8b46>`
+	#define :target:`c_memccpy<doxid-group__libccc__memory_1ga2f333c722e1630285d86ea5b9d287875>`
+	#define :target:`c_memchr<doxid-group__libccc__memory_1gaf4bb2900ccc0ba1332cd00ed60c943af>`
+	#define :target:`c_memclr<doxid-group__libccc__memory_1ga568d4062ed6afbe67c7f74697f4acdd0>`
+	#define :target:`c_memcmp<doxid-group__libccc__memory_1ga5bad584dd79351e14215596b062c2aa6>`
+	#define :target:`c_memcnew<doxid-group__libccc__memory_1ga6ab1f24d7bab2be2361b3e894b59b914>`
+	#define :target:`c_memcpy<doxid-group__libccc__memory_1ga33c6f10b0cf92d89d292ab07bf0af934>`
+	#define :target:`c_memdel<doxid-group__libccc__memory_1gae396e9ae0bd0f7ea6f490d162f8a568b>`
+	#define :target:`c_memdup<doxid-group__libccc__memory_1gaa0c9b0a73df107421fc7f9125f8d3ca0>`
+	#define :target:`c_memfree<doxid-group__libccc__memory_1ga7cb969b9b92954d72fc3c9561f1b6a28>`
+	#define :target:`c_memmove<doxid-group__libccc__memory_1ga3622496b6ee9c1adcba74720655f6d92>`
+	#define :target:`c_memnew<doxid-group__libccc__memory_1ga21729a359cc7fd389460273f2a37baee>`
+	#define :target:`c_memrep<doxid-group__libccc__memory_1gaa9bd2020893258b0dfb32d96a59f8438>`
+	#define :target:`c_memset<doxid-group__libccc__memory_1ga6d0491fc7e398322517829009da1034f>`
+	#define :target:`c_memswap<doxid-group__libccc__memory_1gac0ec452332f4d3438814ebbda13c1fe9>`
+
+.. _details-group__libccc__memory:
+
+Detailed Documentation
+~~~~~~~~~~~~~~~~~~~~~~
+
+This header defines the common standard memory manipulation functions.
+
+Global Functions
+----------------
+
+.. index:: pair: function; Memory_Alloc
+.. _doxid-group__libccc__memory_1ga7434ed28ca8d902102aab286f58351bb:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void* Memory_Alloc(:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` size)
+
+Allocates ``size`` bytes in memory, returning the pointer at which said bytes were allocated, or NULL if the memory could not be allocated.
+
+.. index:: pair: function; Memory_New
+.. _doxid-group__libccc__memory_1ga7c8b43285360f8f883c108529faa9500:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void* Memory_New(:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` size)
+
+Allocates ``size`` bytes in memory, setting each byte of this newly allocated memory space to ``0``. Returns the pointer at which said bytes were allocated, or NULL if the memory could not be allocated.
+
+.. index:: pair: function; Memory_New_C
+.. _doxid-group__libccc__memory_1ga14a2e464d849154fe381727a5b39bb68:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void* Memory_New_C(:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` size, char c)
+
+Allocates ``size`` bytes in memory, setting each byte of this newly allocated memory space to ``c``. Returns the pointer at which said bytes were allocated, or NULL if the memory could not be allocated.
+
+.. index:: pair: function; Memory_Free
+.. _doxid-group__libccc__memory_1ga1c4c04e36c9145a492ed7793376063e0:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void Memory_Free(void* ptr)
+
+Frees the allocated memory at ``*ptr``.
+
+.. index:: pair: function; Memory_Delete
+.. _doxid-group__libccc__memory_1ga6c25922e9f9fdb2083c3772db7070e83:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void Memory_Delete(void** a_ptr)
+
+Frees the allocated memory at ``**a_ptr``, and sets ``*a_ptr`` to NULL.
+
+.. index:: pair: function; Memory_Set
+.. _doxid-group__libccc__memory_1gaa859acf2af192ebcc5fcf30f63f1d3de:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void Memory_Set(void* ptr, t_u8 byte, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n)
+
+Sets ``n`` bytes of memory with the given 8-bit value ``byte`` (taking only the first 8 bits of this value and writing it byte-per-byte), starting at ``ptr``.
+
+.. index:: pair: function; Memory_Clear
+.. _doxid-group__libccc__memory_1gaa30b4940b752fa1ed0dab3cd2c5cbebb:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void Memory_Clear(void* ptr, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n)
+
+Sets ``n`` bytes of memory to 0, starting at ``ptr``. (same as bzero)
+
+.. index:: pair: function; Memory_Copy
+.. _doxid-group__libccc__memory_1gac550e7b4a24f9c86320e89cc274f4cf0:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void* Memory_Copy(void* dest, void const* src, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n)
+
+Copies ``n`` bytes of memory from ``src`` to ``dest``, and returns ``dest``.
+
+.. index:: pair: function; Memory_Copy_C
+.. _doxid-group__libccc__memory_1ga8a0bcd59493f11d10e93dcc207a4e5ff:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void* Memory_Copy_C(void* dest, void const* src, t_u8 byte, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n)
+
+Copies at most ``n`` bytes of memory from ``src`` to ``dest``, stopping after the first occurence of a byte equal to ``byte``, and returns a pointer to (``byte`` + 1) in ``dest``, or NULL.
+
+.. index:: pair: function; Memory_Move
+.. _doxid-group__libccc__memory_1ga3ff5f0d40d8e6c12e1ce15e9d8910fd3:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void* Memory_Move(void* dest, void const* src, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n)
+
+Reads ``n`` bytes of memory from ``src``, and then writes all of those bytes to ``dest`` after having read everything. This function is useful if the ``src`` and ``dest`` buffers overlap.
+
+.. index:: pair: function; Memory_Duplicate
+.. _doxid-group__libccc__memory_1gaac495e9211f795cb14c6fd9ca4cad2d6:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void* Memory_Duplicate(void const* ptr, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n)
+
+Returns a newly allocated memory area which is a copy of the given memory area ``ptr`` (or NULL if the required memory could not be allocated, or if ``ptr == NULL`` or ``n == 0``).
+
+.. index:: pair: function; Memory_Find
+.. _doxid-group__libccc__memory_1ga9a72e5cea344b7ad8f4e8bb01cba253b:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void* Memory_Find(void const* ptr, t_u8 byte, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n)
+
+Returns a pointer to the first occurrence of a byte equal to the given ``byte`` (or NULL if no byte was a match), starting the search at ``ptr`` and searching ``n`` bytes of memory.
+
+.. index:: pair: function; Memory_Replace
+.. _doxid-group__libccc__memory_1gaac7ea6d813c693c6b0f1a471692d6fff:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	void Memory_Replace(void* ptr, t_u8 old, t_u8 new, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n)
+
+Iterates through ``n`` bytes of memory starting at ``ptr``, replacing every byte equal to ``old`` with the value ``new`` instead.
+
+.. index:: pair: function; Memory_Compare
+.. _doxid-group__libccc__memory_1gaefe14b45b82e5003b1b48a073a670a0c:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	int Memory_Compare(void const* ptr1, void const* ptr2, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` n)
+
+Compares ``n`` bytes of memory at ``ptr1`` and ``ptr2``, returning (byte1 - byte2) at the first difference encountered. As such, will return 0 if the contents of ``ptr1`` and ``ptr2`` match.
+
+.. index:: pair: function; Memory_Swap
+.. _doxid-group__libccc__memory_1gae8f7fcf2ef41932a8dc52f0a1a27fa4d:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	int Memory_Swap(void* ptr1, void* ptr2, :ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` size)
+
+Swaps the memory content pointed to by ``ptr1`` and ``ptr2``, copying exactly ``size`` bytes of data between the two. (XOR swap method) Returns 0 if the swap was successful, and 1 otherwise.
+
+.. index:: pair: function; Memory_GetBits
+.. _doxid-group__libccc__memory_1ga68ede9e357bddc21ce6fa96d27173f5b:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	t_u64 Memory_GetBits(t_u64 value, t_u8 bit, t_u8 length)
+
+Returns a subsection of the ``value`` argument, taking ``length`` bits from ``value`` at the given bit index ``bit``, and bitshifting the resulting bits to the right by ``bit`` bits (so as to center the value back to 0).
+

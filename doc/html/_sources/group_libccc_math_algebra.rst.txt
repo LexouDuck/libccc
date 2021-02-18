@@ -1,0 +1,900 @@
+.. index:: pair: group; 19) libccc/math/algebra
+.. _doxid-group__libccc__math__algebra:
+
+19) libccc/math/algebra
+=======================
+
+.. toctree::
+	:hidden:
+
+	struct_s_box1d_.rst
+	struct_s_box2d_.rst
+	struct_s_box3d_.rst
+	struct_s_box4d_.rst
+	struct_s_matrix2d_.rst
+	struct_s_matrix3d_.rst
+	struct_s_matrix4d_.rst
+	struct_s_vector2d_.rst
+	struct_s_vector3d_.rst
+	struct_s_vector4d_.rst
+	union_u_matrix2d_.rst
+	union_u_matrix3d_.rst
+	union_u_matrix4d_.rst
+	union_u_vector2d_.rst
+	union_u_vector3d_.rst
+	union_u_vector4d_.rst
+
+Overview
+~~~~~~~~
+
+This header defines useful algebra and calculus types, and functions. :ref:`More...<details-group__libccc__math__algebra>`
+
+
+.. ref-code-block:: cpp
+	:class: doxyrest-overview-code-block
+
+	
+	// typedefs
+
+	typedef struct :ref:`s_vector2d_<doxid-structs__vector2d__>` :ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>`;
+	typedef union :ref:`u_vector2d_<doxid-unionu__vector2d__>` :ref:`u_vector2d<doxid-group__libccc__math__algebra_1ga39ec4e36d8f079981faa26a263e209c7>`;
+	typedef struct :ref:`s_vector3d_<doxid-structs__vector3d__>` :ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>`;
+	typedef union :ref:`u_vector3d_<doxid-unionu__vector3d__>` :ref:`u_vector3d<doxid-group__libccc__math__algebra_1ga901447e6cefb11f55d62b737653f7b2e>`;
+	typedef struct :ref:`s_vector4d_<doxid-structs__vector4d__>` :ref:`s_vector4d<doxid-group__libccc__math__algebra_1ga89be66648e8af6bb9538e9fd0e879939>`;
+	typedef union :ref:`u_vector4d_<doxid-unionu__vector4d__>` :ref:`u_vector4d<doxid-group__libccc__math__algebra_1ga2de1f4c8060962be9732b2a7d5845bc5>`;
+	typedef struct :ref:`s_matrix2d_<doxid-structs__matrix2d__>` :ref:`s_matrix2d<doxid-group__libccc__math__algebra_1gac05a16c9f65c17c96d650a1637d8db0b>`;
+	typedef union :ref:`u_matrix2d_<doxid-unionu__matrix2d__>` :ref:`u_matrix2d<doxid-group__libccc__math__algebra_1gaf49b74a8dabdd258959147df39364817>`;
+	typedef struct :ref:`s_matrix3d_<doxid-structs__matrix3d__>` :ref:`s_matrix3d<doxid-group__libccc__math__algebra_1ga8d40f15df6a34d69d9fe6890695242e8>`;
+	typedef union :ref:`u_matrix3d_<doxid-unionu__matrix3d__>` :ref:`u_matrix3d<doxid-group__libccc__math__algebra_1ga0b14ffe0e6c8ecc9fa11c6c6681faedd>`;
+	typedef struct :ref:`s_matrix4d_<doxid-structs__matrix4d__>` :ref:`s_matrix4d<doxid-group__libccc__math__algebra_1gadf4624c9c8fe53b94307cc209d2503d7>`;
+	typedef union :ref:`u_matrix4d_<doxid-unionu__matrix4d__>` :ref:`u_matrix4d<doxid-group__libccc__math__algebra_1ga8a183a5cf3a58fcac744c9787aa54c23>`;
+	typedef struct :ref:`s_box1d_<doxid-structs__box1d__>` :ref:`s_box1d<doxid-group__libccc__math__algebra_1gadb6b08b307919bc48d921e79aa004b93>`;
+	typedef struct :ref:`s_box2d_<doxid-structs__box2d__>` :ref:`s_box2d<doxid-group__libccc__math__algebra_1gafcb81fc851bfae0578b297ac8477b25a>`;
+	typedef struct :ref:`s_box3d_<doxid-structs__box3d__>` :ref:`s_box3d<doxid-group__libccc__math__algebra_1ga4130a529bc1547e9d148b2201d454338>`;
+	typedef struct :ref:`s_box4d_<doxid-structs__box4d__>` :ref:`s_box4d<doxid-group__libccc__math__algebra_1gafc0fef08aa121fe8d59f8d0d0a8fc25d>`;
+	typedef :ref:`s_box1d<doxid-group__libccc__math__algebra_1gadb6b08b307919bc48d921e79aa004b93>` :ref:`s_interval<doxid-group__libccc__math__algebra_1ga82b306c684e81ecbbb813970d7b94181>`;
+	typedef :ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` (*:ref:`f_scalar_func1<doxid-group__libccc__math__algebra_1ga5186df6923414fa8e710d6138a4e9157>`)(t_float const v);
+	typedef :ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` (*:ref:`f_scalar_func2<doxid-group__libccc__math__algebra_1ga39a31ee739e0aceb11e2a390af338029>`)(u_vector2d const v);
+	typedef :ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` (*:ref:`f_scalar_func3<doxid-group__libccc__math__algebra_1gae3398253d21b78a68d2584373129c369>`)(u_vector3d const v);
+	typedef :ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` (*:ref:`f_scalar_func4<doxid-group__libccc__math__algebra_1ga0611ee62bac265eba119d2f622ed69fd>`)(u_vector4d const v);
+
+	// structs
+
+	struct :ref:`s_box1d_<doxid-structs__box1d__>`;
+	struct :ref:`s_box2d_<doxid-structs__box2d__>`;
+	struct :ref:`s_box3d_<doxid-structs__box3d__>`;
+	struct :ref:`s_box4d_<doxid-structs__box4d__>`;
+	struct :ref:`s_matrix2d_<doxid-structs__matrix2d__>`;
+	struct :ref:`s_matrix3d_<doxid-structs__matrix3d__>`;
+	struct :ref:`s_matrix4d_<doxid-structs__matrix4d__>`;
+	struct :ref:`s_vector2d_<doxid-structs__vector2d__>`;
+	struct :ref:`s_vector3d_<doxid-structs__vector3d__>`;
+	struct :ref:`s_vector4d_<doxid-structs__vector4d__>`;
+
+	// unions
+
+	union :ref:`u_matrix2d_<doxid-unionu__matrix2d__>`;
+	union :ref:`u_matrix3d_<doxid-unionu__matrix3d__>`;
+	union :ref:`u_matrix4d_<doxid-unionu__matrix4d__>`;
+	union :ref:`u_vector2d_<doxid-unionu__vector2d__>`;
+	union :ref:`u_vector3d_<doxid-unionu__vector3d__>`;
+	union :ref:`u_vector4d_<doxid-unionu__vector4d__>`;
+
+	// global functions
+
+	:ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>`* :ref:`Vector2D_New<doxid-group__libccc__math__algebra_1gaaa6b56dc8a5f5f41eac22ad094fe6e7c>`(:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` x, :ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` y);
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` :ref:`Vector2D_Equals<doxid-group__libccc__math__algebra_1ga459392d82670f7b684a5b3fd0fa03d9b>`(:ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>` const* v1, :ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>` const* v2);
+	:ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>` :ref:`Vector2D_Scale<doxid-group__libccc__math__algebra_1ga3c3d174c960141b402a25e9565c32b5b>`(:ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>` const* vector, :ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` scale);
+	:ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>` :ref:`Vector2D_Invert<doxid-group__libccc__math__algebra_1ga3eec430283c743c4bbce294438f4f30d>`(:ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>` const* vector);
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` :ref:`Vector2D_Norm<doxid-group__libccc__math__algebra_1gaacf74cabafe79db0c013cc4a44e5c83e>`(:ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>` const* vector);
+	:ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>` :ref:`Vector2D_Normalize<doxid-group__libccc__math__algebra_1ga220df5d71664afa5505cb31f67e3a8be>`(:ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>` const* vector);
+	:ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>` :ref:`Vector2D_Add<doxid-group__libccc__math__algebra_1gadc556ca0df7925365ab22adbaf17ab32>`(:ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>` const* v1, :ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>` const* v2);
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` :ref:`Vector2D_Dot<doxid-group__libccc__math__algebra_1gabcd7974539b1a879aca32982abb8e949>`(:ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>` const* v1, :ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>` const* v2);
+	:ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>`* :ref:`Vector3D_New<doxid-group__libccc__math__algebra_1gabf0428647a4b74154cff1337d6b531e7>`(:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` x, :ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` y, :ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` z);
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` :ref:`Vector3D_Equals<doxid-group__libccc__math__algebra_1gad61cb77a0bdeb905ae240a9d12bcaaa8>`(:ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` const* v1, :ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` const* v2);
+	:ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` :ref:`Vector3D_Scale<doxid-group__libccc__math__algebra_1ga4e613778de85a35551be205d83d44cdc>`(:ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` const* vector, :ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` scale);
+	:ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` :ref:`Vector3D_Invert<doxid-group__libccc__math__algebra_1ga1a9aa0b879cbd8502a5e56f26f6cb4ac>`(:ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` const* vector);
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` :ref:`Vector3D_Norm<doxid-group__libccc__math__algebra_1ga1686feae7339512f6c1abb14ae1cc02f>`(:ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` const* vector);
+	:ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` :ref:`Vector3D_Normalize<doxid-group__libccc__math__algebra_1ga04082858e2a1e503f3d4f7e9e4bc5731>`(:ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` const* vector);
+	:ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` :ref:`Vector3D_Add<doxid-group__libccc__math__algebra_1gaeed9b6075432ef20f03f7b4a551fef44>`(:ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` const* v1, :ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` const* v2);
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` :ref:`Vector3D_Dot<doxid-group__libccc__math__algebra_1ga4865f0ac8756cf233c88ee5a1a96847b>`(:ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` const* v1, :ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` const* v2);
+	:ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` :ref:`Vector3D_Cross<doxid-group__libccc__math__algebra_1ga3c73af7f79eddd761b38d64119c51f82>`(:ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` const* v1, :ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` const* v2);
+	:ref:`s_matrix2d<doxid-group__libccc__math__algebra_1gac05a16c9f65c17c96d650a1637d8db0b>`* :ref:`Matrix2D_New<doxid-group__libccc__math__algebra_1gac8a75fd0af89d218db0007a91041469c>`(:ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>` const* u, :ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>` const* v);
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` :ref:`Matrix2D_Equals<doxid-group__libccc__math__algebra_1ga39a2c65c8b687d07500bed4676a4409a>`(:ref:`s_matrix2d<doxid-group__libccc__math__algebra_1gac05a16c9f65c17c96d650a1637d8db0b>` const* m1, :ref:`s_matrix2d<doxid-group__libccc__math__algebra_1gac05a16c9f65c17c96d650a1637d8db0b>` const* m2);
+	:ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>` :ref:`Matrix2D_Apply<doxid-group__libccc__math__algebra_1ga72942691a1aeb7603021373b8830a63c>`(:ref:`s_matrix2d<doxid-group__libccc__math__algebra_1gac05a16c9f65c17c96d650a1637d8db0b>` const* matrix, :ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>` const* vector);
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` :ref:`Matrix2D_Determinant<doxid-group__libccc__math__algebra_1ga2235669c2f1db58804c97462dc09610b>`(:ref:`s_matrix2d<doxid-group__libccc__math__algebra_1gac05a16c9f65c17c96d650a1637d8db0b>` const* matrix);
+	:ref:`s_matrix2d<doxid-group__libccc__math__algebra_1gac05a16c9f65c17c96d650a1637d8db0b>` :ref:`Matrix2D_Inverse<doxid-group__libccc__math__algebra_1ga5db4047001297a4c87d5fd6af281b1ad>`(:ref:`s_matrix2d<doxid-group__libccc__math__algebra_1gac05a16c9f65c17c96d650a1637d8db0b>` const* matrix);
+	:ref:`s_matrix2d<doxid-group__libccc__math__algebra_1gac05a16c9f65c17c96d650a1637d8db0b>` :ref:`Matrix2D_Transpose<doxid-group__libccc__math__algebra_1gab15f5d4967009d51bff3bc21ff408d46>`(:ref:`s_matrix2d<doxid-group__libccc__math__algebra_1gac05a16c9f65c17c96d650a1637d8db0b>` const* matrix);
+	:ref:`s_matrix2d<doxid-group__libccc__math__algebra_1gac05a16c9f65c17c96d650a1637d8db0b>` :ref:`Matrix2D_Multiply<doxid-group__libccc__math__algebra_1ga1ffbe95ddd05575c7acc0662360e323a>`(:ref:`s_matrix2d<doxid-group__libccc__math__algebra_1gac05a16c9f65c17c96d650a1637d8db0b>` const* m1, :ref:`s_matrix2d<doxid-group__libccc__math__algebra_1gac05a16c9f65c17c96d650a1637d8db0b>` const* m2);
+	:ref:`s_matrix3d<doxid-group__libccc__math__algebra_1ga8d40f15df6a34d69d9fe6890695242e8>`* :ref:`Matrix3D_New<doxid-group__libccc__math__algebra_1ga29e12eb08e6b0a2bfe8b3a52d10368d5>`(:ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` const* u, :ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` const* v, :ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` const* w);
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` :ref:`Matrix3D_Equals<doxid-group__libccc__math__algebra_1gab0e5cb0b5dc3552100bc01685ae2e922>`(:ref:`s_matrix3d<doxid-group__libccc__math__algebra_1ga8d40f15df6a34d69d9fe6890695242e8>` const* m1, :ref:`s_matrix3d<doxid-group__libccc__math__algebra_1ga8d40f15df6a34d69d9fe6890695242e8>` const* m2);
+	:ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` :ref:`Matrix3D_Apply<doxid-group__libccc__math__algebra_1gaab33e892a9167898922dd72bce3dcafe>`(:ref:`s_matrix3d<doxid-group__libccc__math__algebra_1ga8d40f15df6a34d69d9fe6890695242e8>` const* matrix, :ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` const* vector);
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` :ref:`Matrix3D_Determinant<doxid-group__libccc__math__algebra_1ga6ecd84a206c2a115cb3ac4a38b12089a>`(:ref:`s_matrix3d<doxid-group__libccc__math__algebra_1ga8d40f15df6a34d69d9fe6890695242e8>` const* matrix);
+	:ref:`s_matrix3d<doxid-group__libccc__math__algebra_1ga8d40f15df6a34d69d9fe6890695242e8>` :ref:`Matrix3D_Inverse<doxid-group__libccc__math__algebra_1ga2b251ff544dfb49994204f8ec6b26b15>`(:ref:`s_matrix3d<doxid-group__libccc__math__algebra_1ga8d40f15df6a34d69d9fe6890695242e8>` const* matrix);
+	:ref:`s_matrix3d<doxid-group__libccc__math__algebra_1ga8d40f15df6a34d69d9fe6890695242e8>` :ref:`Matrix3D_Transpose<doxid-group__libccc__math__algebra_1ga2dd332869f5605b52fdd839f557436d2>`(:ref:`s_matrix3d<doxid-group__libccc__math__algebra_1ga8d40f15df6a34d69d9fe6890695242e8>` const* matrix);
+	:ref:`s_matrix3d<doxid-group__libccc__math__algebra_1ga8d40f15df6a34d69d9fe6890695242e8>` :ref:`Matrix3D_Multiply<doxid-group__libccc__math__algebra_1ga65eafbfec4172e277902bbd69cb5c0c8>`(:ref:`s_matrix3d<doxid-group__libccc__math__algebra_1ga8d40f15df6a34d69d9fe6890695242e8>` const* m1, :ref:`s_matrix3d<doxid-group__libccc__math__algebra_1ga8d40f15df6a34d69d9fe6890695242e8>` const* m2);
+
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` :target:`c_integrate<doxid-group__libccc__math__algebra_1ga36de3afd5b0f1a871cd6d41328e955d8>`(
+		:ref:`f_real_function<doxid-group__libccc__math__math_1ga6a1c1c72d7e04c29a8fb8cfffec274db>` const f,
+		:ref:`s_interval<doxid-group__libccc__math__algebra_1ga82b306c684e81ecbbb813970d7b94181>` const domain,
+		:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` step
+		);
+
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` :target:`c_mc_integrate_1d<doxid-group__libccc__math__algebra_1ga19bf580ff58ac7a45ee63a95166ad516>`(
+		:ref:`f_scalar_func1<doxid-group__libccc__math__algebra_1ga5186df6923414fa8e710d6138a4e9157>` const sf,
+		:ref:`s_box1d<doxid-group__libccc__math__algebra_1gadb6b08b307919bc48d921e79aa004b93>` const domain
+		);
+
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` :target:`c_mc_integrate_2d<doxid-group__libccc__math__algebra_1ga04d47a97e05bc0347837113e76700ac3>`(
+		:ref:`f_scalar_func2<doxid-group__libccc__math__algebra_1ga39a31ee739e0aceb11e2a390af338029>` const sf,
+		:ref:`s_box2d<doxid-group__libccc__math__algebra_1gafcb81fc851bfae0578b297ac8477b25a>` const domain
+		);
+
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` :target:`c_mc_integrate_3d<doxid-group__libccc__math__algebra_1ga1a8902ae51f38c814943652f48bbcf26>`(
+		:ref:`f_scalar_func3<doxid-group__libccc__math__algebra_1gae3398253d21b78a68d2584373129c369>` const sf,
+		:ref:`s_box3d<doxid-group__libccc__math__algebra_1ga4130a529bc1547e9d148b2201d454338>` const domain
+		);
+
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` :target:`c_mc_integrate_4d<doxid-group__libccc__math__algebra_1ga6c8e631b817dc69213556c2a8a867556>`(
+		:ref:`f_scalar_func4<doxid-group__libccc__math__algebra_1ga0611ee62bac265eba119d2f622ed69fd>` const sf,
+		:ref:`s_box4d<doxid-group__libccc__math__algebra_1gafc0fef08aa121fe8d59f8d0d0a8fc25d>` const domain
+		);
+
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` :target:`c_distance_float<doxid-group__libccc__math__algebra_1ga2d9ac99a1eb427fb14eb0054b895e92a>`(
+		:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` x,
+		:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` y
+		);
+
+	:ref:`t_f32<doxid-group__libccc__float_1gab4ca326c12ad2a26dbfe81c3d798bcdf>` :target:`c_distance_f32<doxid-group__libccc__math__algebra_1ga50979520ab14e404f999f4fd31c9ff4d>`(
+		:ref:`t_f32<doxid-group__libccc__float_1gab4ca326c12ad2a26dbfe81c3d798bcdf>` x,
+		:ref:`t_f32<doxid-group__libccc__float_1gab4ca326c12ad2a26dbfe81c3d798bcdf>` y
+		);
+
+	:ref:`t_f64<doxid-group__libccc__float_1gad103913585e225d474d7bd173154f4e8>` :target:`c_distance_f64<doxid-group__libccc__math__algebra_1ga8a9827d3b09dbf2063e57bdee084de76>`(
+		:ref:`t_f64<doxid-group__libccc__float_1gad103913585e225d474d7bd173154f4e8>` x,
+		:ref:`t_f64<doxid-group__libccc__float_1gad103913585e225d474d7bd173154f4e8>` y
+		);
+
+	:ref:`t_uint<doxid-group__libccc__int_1ga0cbd23836133c29bed9a983fdff733c8>` :target:`c_distance_uint<doxid-group__libccc__math__algebra_1gace8f873f8324c8b5a0fa6fd6788bea20>`(
+		:ref:`t_uint<doxid-group__libccc__int_1ga0cbd23836133c29bed9a983fdff733c8>` x,
+		:ref:`t_uint<doxid-group__libccc__int_1ga0cbd23836133c29bed9a983fdff733c8>` y
+		);
+
+	t_u8 :target:`c_distance_u8<doxid-group__libccc__math__algebra_1ga560024e1c942a34490cc39888118a11d>`(
+		t_u8 x,
+		t_u8 y
+		);
+
+	t_u16 :target:`c_distance_u16<doxid-group__libccc__math__algebra_1ga26d3f6b9de3fe79bb79d588de6697978>`(
+		t_u16 x,
+		t_u16 y
+		);
+
+	t_u32 :target:`c_distance_u32<doxid-group__libccc__math__algebra_1ga4430f9167616ab94bce5cb15f2520222>`(
+		t_u32 x,
+		t_u32 y
+		);
+
+	t_u64 :target:`c_distance_u64<doxid-group__libccc__math__algebra_1ga3966deb12f376ee15a3082cafd784bbe>`(
+		t_u64 x,
+		t_u64 y
+		);
+
+	:ref:`t_sint<doxid-group__libccc__int_1gad9b833ec2906279e4f479df31778732a>` :target:`c_distance_int<doxid-group__libccc__math__algebra_1ga9c87bf7e1eeee701a8c0cb58cdf64874>`(
+		:ref:`t_sint<doxid-group__libccc__int_1gad9b833ec2906279e4f479df31778732a>` x,
+		:ref:`t_sint<doxid-group__libccc__int_1gad9b833ec2906279e4f479df31778732a>` y
+		);
+
+	t_s8 :target:`c_distance_s8<doxid-group__libccc__math__algebra_1ga6dfa16a4bda42255ca5920cf5d9f0bee>`(
+		t_s8 x,
+		t_s8 y
+		);
+
+	t_s16 :target:`c_distance_s16<doxid-group__libccc__math__algebra_1gace24a9c452e0814f0c6a621a9097c960>`(
+		t_s16 x,
+		t_s16 y
+		);
+
+	t_s32 :target:`c_distance_s32<doxid-group__libccc__math__algebra_1ga1663941e5c86968e4c2f66aaa350cc55>`(
+		t_s32 x,
+		t_s32 y
+		);
+
+	t_s64 :target:`c_distance_s64<doxid-group__libccc__math__algebra_1ga4d7c6535f661fc7d2adc1b25e8e64994>`(
+		t_s64 x,
+		t_s64 y
+		);
+
+	// macros
+
+	#define :ref:`MATRIX2D_IDENTITY<doxid-group__libccc__math__algebra_1ga90f958af046eebe3216698b9fce0a7dc>`
+	#define :ref:`MATRIX2D_NULL<doxid-group__libccc__math__algebra_1ga2ed93ff72727954c574ed9e48ba46565>`
+	#define :ref:`MATRIX2D_ROTATE<doxid-group__libccc__math__algebra_1ga67cc134dce42525818c4823bcbf43a29>`(ANGLE)
+	#define :ref:`MATRIX3D_IDENTITY<doxid-group__libccc__math__algebra_1ga25e459d60b1841201d61ef1115bad16e>`
+	#define :ref:`MATRIX3D_NULL<doxid-group__libccc__math__algebra_1ga40164130e17289325e86fd135ba9c891>`
+	#define :ref:`MATRIX3D_ROTATE_X<doxid-group__libccc__math__algebra_1gaf7d31ca6447e1a4519e754da123214b9>`(ANGLE)
+	#define :ref:`MATRIX3D_ROTATE_Y<doxid-group__libccc__math__algebra_1ga59a6162e5b8ee5add64834050cdfa862>`(ANGLE)
+	#define :ref:`MATRIX3D_ROTATE_Z<doxid-group__libccc__math__algebra_1ga82d255fb0fe99483c7a4236f8c051a7e>`(ANGLE)
+	#define :ref:`MATRIX4D_IDENTITY<doxid-group__libccc__math__algebra_1gaa4d48a88d9c0da5ad737130e3be5547d>`
+	#define :ref:`MATRIX4D_NULL<doxid-group__libccc__math__algebra_1ga8652b26eecf16d846d89c2ff5854094a>`
+	#define :target:`Vector2D_DotProduct<doxid-group__libccc__math__algebra_1ga330b1c1e46d6dc9f042c6907d8d46c34>`
+	#define :target:`Vector2D_InnerProduct<doxid-group__libccc__math__algebra_1gae2df14810c2cf02b6af19daca7b2a232>`
+	#define :target:`Vector2D_Length<doxid-group__libccc__math__algebra_1ga06f5a2bf43d30498cb42a576a9bb2515>`
+	#define :target:`Vector2D_Magnitude<doxid-group__libccc__math__algebra_1gae877090474dc081ea3f5a580eb657af0>`
+	#define :target:`Vector2D_ScalarProduct<doxid-group__libccc__math__algebra_1ga7c2c7dddd5e80d59f74a134dce516a70>`
+	#define :target:`Vector3D_CrossProduct<doxid-group__libccc__math__algebra_1ga2b5e2e75b6a292f301d13dbc990b2f33>`
+	#define :target:`Vector3D_DotProduct<doxid-group__libccc__math__algebra_1ga0d3e1802c62c615d5755ae2fbdc1fb3d>`
+	#define :target:`Vector3D_InnerProduct<doxid-group__libccc__math__algebra_1ga4f9848275913d3535f567409a887bb6a>`
+	#define :target:`Vector3D_Length<doxid-group__libccc__math__algebra_1ga3f1fcf83da5e7b607c55eb55235ad604>`
+	#define :target:`Vector3D_Magnitude<doxid-group__libccc__math__algebra_1ga7b85410e52acabe3d35dd653efafa4b8>`
+	#define :target:`Vector3D_OuterProduct<doxid-group__libccc__math__algebra_1ga3da202fd40d661c85562731b993cc34b>`
+	#define :target:`Vector3D_ScalarProduct<doxid-group__libccc__math__algebra_1gaf8f60b32ab1f97052be7a3c06d364bf8>`
+	#define :target:`Vector3D_VectorProduct<doxid-group__libccc__math__algebra_1gac45e7599211ffda2b59fbfab66a5ae32>`
+	#define :target:`c_mat2apply<doxid-group__libccc__math__algebra_1ga967aeae812596f4b555f3c111c827073>`
+	#define :target:`c_mat2determ<doxid-group__libccc__math__algebra_1gaaaad9c6a73d61ad8d9ac07098db8194c>`
+	#define :target:`c_mat2equ<doxid-group__libccc__math__algebra_1ga8357b975751665bea30d78652c92686e>`
+	#define :target:`c_mat2inverse<doxid-group__libccc__math__algebra_1ga28f3d9e2e69d704e03212be59ee669fb>`
+	#define :target:`c_mat2mult<doxid-group__libccc__math__algebra_1gae63fca97a13056e1329593b78e2826a3>`
+	#define :target:`c_mat2new<doxid-group__libccc__math__algebra_1gaf30ecaf0ac9ce90077b590bbdd478e45>`
+	#define :target:`c_mat2transp<doxid-group__libccc__math__algebra_1gab9816fab16cb5376ba12f55eee9c9e5f>`
+	#define :target:`c_mat3apply<doxid-group__libccc__math__algebra_1ga892895f6c8398aa004d866e6fa76dff6>`
+	#define :target:`c_mat3determ<doxid-group__libccc__math__algebra_1gafb0b19b3a124d30d9580d45128f910ab>`
+	#define :target:`c_mat3equ<doxid-group__libccc__math__algebra_1ga0b7cf40950ec2b96a4c3b463391e0eaa>`
+	#define :target:`c_mat3inverse<doxid-group__libccc__math__algebra_1ga9fef098e7d96b53a9239105811e08cd3>`
+	#define :target:`c_mat3mult<doxid-group__libccc__math__algebra_1ga9a021c61bb3d2445e0252722aa9fbf38>`
+	#define :target:`c_mat3new<doxid-group__libccc__math__algebra_1ga7f69dab13bc5fcd2a07868a144e7cf21>`
+	#define :target:`c_mat3transp<doxid-group__libccc__math__algebra_1gab9e0ca1fe23b2b9fb2803980ed3e6354>`
+	#define :target:`c_vec2add<doxid-group__libccc__math__algebra_1gaa4a94b4d5987d8ca592087c65978bef0>`
+	#define :target:`c_vec2dot<doxid-group__libccc__math__algebra_1gae720bd2991597094d19be4f012e89914>`
+	#define :target:`c_vec2equ<doxid-group__libccc__math__algebra_1gaf027810455d6eda23895194d14376436>`
+	#define :target:`c_vec2invert<doxid-group__libccc__math__algebra_1ga0866c930ecad0d8b8d022bc997e65ad4>`
+	#define :target:`c_vec2new<doxid-group__libccc__math__algebra_1ga217f2a0f0d83e6b50172d0eba12e505f>`
+	#define :target:`c_vec2norm<doxid-group__libccc__math__algebra_1ga7bf6867c53ed91cca29c6e2630e3c45a>`
+	#define :target:`c_vec2normalize<doxid-group__libccc__math__algebra_1ga9c3c3dd96beb6a33a5f0c5f7abb51d2c>`
+	#define :target:`c_vec2scale<doxid-group__libccc__math__algebra_1ga79e7664aa764c17d9925796e5d55958a>`
+	#define :target:`c_vec3add<doxid-group__libccc__math__algebra_1gace4f3d591351f8645bbda0ffd6bdd53c>`
+	#define :target:`c_vec3cross<doxid-group__libccc__math__algebra_1gab9457adaf10e344633eafc21205991e0>`
+	#define :target:`c_vec3dot<doxid-group__libccc__math__algebra_1ga7892d54f7b5c8ba63a017087b2b384a3>`
+	#define :target:`c_vec3equ<doxid-group__libccc__math__algebra_1ga8b0b25a33af3660923cef10432a8498b>`
+	#define :target:`c_vec3invert<doxid-group__libccc__math__algebra_1gae43eee3299aa68172964bb838e895c82>`
+	#define :target:`c_vec3new<doxid-group__libccc__math__algebra_1gab3754d6913e2e6870a0db6b019050be3>`
+	#define :target:`c_vec3norm<doxid-group__libccc__math__algebra_1ga55c94afa7d8ec34a286b0bbb2d61204c>`
+	#define :target:`c_vec3normalize<doxid-group__libccc__math__algebra_1ga18478a623701ef2c11c1e74f0a017c9e>`
+	#define :target:`c_vec3scale<doxid-group__libccc__math__algebra_1gabed5672ef625b0a9bd90d657ce058404>`
+
+.. _details-group__libccc__math__algebra:
+
+Detailed Documentation
+~~~~~~~~~~~~~~~~~~~~~~
+
+This header defines useful algebra and calculus types, and functions.
+
+Typedefs
+--------
+
+.. index:: pair: typedef; s_vector2d
+.. _doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef struct :ref:`s_vector2d_<doxid-structs__vector2d__>` s_vector2d
+
+A simple vector struct for storing 2-dimensional values.
+
+.. index:: pair: typedef; u_vector2d
+.. _doxid-group__libccc__math__algebra_1ga39ec4e36d8f079981faa26a263e209c7:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef union :ref:`u_vector2d_<doxid-unionu__vector2d__>` u_vector2d
+
+This union stores a 2-dimensional value which can be accessed in several ways.
+
+.. index:: pair: typedef; s_vector3d
+.. _doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef struct :ref:`s_vector3d_<doxid-structs__vector3d__>` s_vector3d
+
+A simple vector struct for storing 3-dimensional values.
+
+.. index:: pair: typedef; u_vector3d
+.. _doxid-group__libccc__math__algebra_1ga901447e6cefb11f55d62b737653f7b2e:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef union :ref:`u_vector3d_<doxid-unionu__vector3d__>` u_vector3d
+
+This union stores a 3-dimensional value which can be accessed in several ways.
+
+.. index:: pair: typedef; s_vector4d
+.. _doxid-group__libccc__math__algebra_1ga89be66648e8af6bb9538e9fd0e879939:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef struct :ref:`s_vector4d_<doxid-structs__vector4d__>` s_vector4d
+
+A simple vector struct for storing 4-dimensional values.
+
+.. index:: pair: typedef; u_vector4d
+.. _doxid-group__libccc__math__algebra_1ga2de1f4c8060962be9732b2a7d5845bc5:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef union :ref:`u_vector4d_<doxid-unionu__vector4d__>` u_vector4d
+
+This union stores a 4-dimensional value which can be accessed in several ways.
+
+.. index:: pair: typedef; s_matrix2d
+.. _doxid-group__libccc__math__algebra_1gac05a16c9f65c17c96d650a1637d8db0b:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef struct :ref:`s_matrix2d_<doxid-structs__matrix2d__>` s_matrix2d
+
+A simple struct which stores a 2x2 matrix of real numbers, arranged in 2 rows of 2D vectors.
+
+.. index:: pair: typedef; u_matrix2d
+.. _doxid-group__libccc__math__algebra_1gaf49b74a8dabdd258959147df39364817:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef union :ref:`u_matrix2d_<doxid-unionu__matrix2d__>` u_matrix2d
+
+This union stores a 2x2 matrix which can be accessed in several ways.
+
+.. index:: pair: typedef; s_matrix3d
+.. _doxid-group__libccc__math__algebra_1ga8d40f15df6a34d69d9fe6890695242e8:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef struct :ref:`s_matrix3d_<doxid-structs__matrix3d__>` s_matrix3d
+
+A simple struct which stores a 3x3 matrix of real numbers, arranged in 3 rows of 3D vectors.
+
+.. index:: pair: typedef; u_matrix3d
+.. _doxid-group__libccc__math__algebra_1ga0b14ffe0e6c8ecc9fa11c6c6681faedd:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef union :ref:`u_matrix3d_<doxid-unionu__matrix3d__>` u_matrix3d
+
+This union stores a 3x3 matrix which can be accessed in several ways.
+
+.. index:: pair: typedef; s_matrix4d
+.. _doxid-group__libccc__math__algebra_1gadf4624c9c8fe53b94307cc209d2503d7:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef struct :ref:`s_matrix4d_<doxid-structs__matrix4d__>` s_matrix4d
+
+A simple struct which stores a 4x4 matrix of real numbers, arranged in 3 rows of 3D vectors.
+
+.. index:: pair: typedef; u_matrix4d
+.. _doxid-group__libccc__math__algebra_1ga8a183a5cf3a58fcac744c9787aa54c23:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef union :ref:`u_matrix4d_<doxid-unionu__matrix4d__>` u_matrix4d
+
+This union stores a 4x4 matrix which can be accessed in several ways.
+
+.. index:: pair: typedef; s_box1d
+.. _doxid-group__libccc__math__algebra_1gadb6b08b307919bc48d921e79aa004b93:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef struct :ref:`s_box1d_<doxid-structs__box1d__>` s_box1d
+
+A 1-dimensional interval of coordinates, defined by two corner-point vectors.
+
+.. index:: pair: typedef; s_box2d
+.. _doxid-group__libccc__math__algebra_1gafcb81fc851bfae0578b297ac8477b25a:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef struct :ref:`s_box2d_<doxid-structs__box2d__>` s_box2d
+
+A 2-dimensional area of coordinates, defined by two corner-point vectors.
+
+.. index:: pair: typedef; s_box3d
+.. _doxid-group__libccc__math__algebra_1ga4130a529bc1547e9d148b2201d454338:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef struct :ref:`s_box3d_<doxid-structs__box3d__>` s_box3d
+
+A 3-dimensional volume of coordinates, defined by two corner-point vectors.
+
+.. index:: pair: typedef; s_box4d
+.. _doxid-group__libccc__math__algebra_1gafc0fef08aa121fe8d59f8d0d0a8fc25d:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef struct :ref:`s_box4d_<doxid-structs__box4d__>` s_box4d
+
+A 4-dimensional hypervolume of coordinates, defined by two corner-point vectors.
+
+.. index:: pair: typedef; s_interval
+.. _doxid-group__libccc__math__algebra_1ga82b306c684e81ecbbb813970d7b94181:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef :ref:`s_box1d<doxid-group__libccc__math__algebra_1gadb6b08b307919bc48d921e79aa004b93>` s_interval
+
+An interval/range, defined by a 'start' number and 'end' number.
+
+.. index:: pair: typedef; f_scalar_func1
+.. _doxid-group__libccc__math__algebra_1ga5186df6923414fa8e710d6138a4e9157:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef :ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` (*f_scalar_func1)(t_float const v)
+
+The type of function which takes a 1-dimensional vector as input, and returns a real number.
+
+.. index:: pair: typedef; f_scalar_func2
+.. _doxid-group__libccc__math__algebra_1ga39a31ee739e0aceb11e2a390af338029:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef :ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` (*f_scalar_func2)(u_vector2d const v)
+
+The type of function which takes a 2-dimensional vector as input, and returns a real number.
+
+.. index:: pair: typedef; f_scalar_func3
+.. _doxid-group__libccc__math__algebra_1gae3398253d21b78a68d2584373129c369:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef :ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` (*f_scalar_func3)(u_vector3d const v)
+
+The type of function which takes a 3-dimensional vector as input, and returns a real number.
+
+.. index:: pair: typedef; f_scalar_func4
+.. _doxid-group__libccc__math__algebra_1ga0611ee62bac265eba119d2f622ed69fd:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef :ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` (*f_scalar_func4)(u_vector4d const v)
+
+The type of function which takes a 4-dimensional vector as input, and returns a real number.
+
+Global Functions
+----------------
+
+.. index:: pair: function; Vector2D_New
+.. _doxid-group__libccc__math__algebra_1gaaa6b56dc8a5f5f41eac22ad094fe6e7c:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>`* Vector2D_New(:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` x, :ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` y)
+
+Allocates a new vector struct on heap, setting the given coordinates.
+
+.. index:: pair: function; Vector2D_Equals
+.. _doxid-group__libccc__math__algebra_1ga459392d82670f7b684a5b3fd0fa03d9b:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` Vector2D_Equals(:ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>` const* v1, :ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>` const* v2)
+
+Returns TRUE if the two given vectors are equal (all their values are identical)
+
+.. index:: pair: function; Vector2D_Scale
+.. _doxid-group__libccc__math__algebra_1ga3c3d174c960141b402a25e9565c32b5b:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>` Vector2D_Scale(:ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>` const* vector, :ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` scale)
+
+Scales the given 'vector' by a factor of 'scale'.
+
+.. index:: pair: function; Vector2D_Invert
+.. _doxid-group__libccc__math__algebra_1ga3eec430283c743c4bbce294438f4f30d:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>` Vector2D_Invert(:ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>` const* vector)
+
+Inverts the sign of the coordinates of the given 'vector'.
+
+.. index:: pair: function; Vector2D_Norm
+.. _doxid-group__libccc__math__algebra_1gaacf74cabafe79db0c013cc4a44e5c83e:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` Vector2D_Norm(:ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>` const* vector)
+
+Returns the norm/magnitude of the given 'vector', squared (call sqrt to get the real norm)
+
+.. index:: pair: function; Vector2D_Normalize
+.. _doxid-group__libccc__math__algebra_1ga220df5d71664afa5505cb31f67e3a8be:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>` Vector2D_Normalize(:ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>` const* vector)
+
+Makes the norm/magnitude of the given 'vector' become 1 (without changing its direction)
+
+.. index:: pair: function; Vector2D_Add
+.. _doxid-group__libccc__math__algebra_1gadc556ca0df7925365ab22adbaf17ab32:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>` Vector2D_Add(:ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>` const* v1, :ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>` const* v2)
+
+Returns the sum of the two given vectors (adding each of their coordinates together)
+
+.. index:: pair: function; Vector2D_Dot
+.. _doxid-group__libccc__math__algebra_1gabcd7974539b1a879aca32982abb8e949:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` Vector2D_Dot(:ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>` const* v1, :ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>` const* v2)
+
+Returns the dot/scalar product of the two given vectors (the sum of their multiplied coordinates)
+
+.. index:: pair: function; Vector3D_New
+.. _doxid-group__libccc__math__algebra_1gabf0428647a4b74154cff1337d6b531e7:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>`* Vector3D_New(:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` x, :ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` y, :ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` z)
+
+Allocates a new vector struct on heap, setting the given coordinates.
+
+.. index:: pair: function; Vector3D_Equals
+.. _doxid-group__libccc__math__algebra_1gad61cb77a0bdeb905ae240a9d12bcaaa8:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` Vector3D_Equals(:ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` const* v1, :ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` const* v2)
+
+Returns TRUE if the two given vectors are equal (all their values are identical)
+
+.. index:: pair: function; Vector3D_Scale
+.. _doxid-group__libccc__math__algebra_1ga4e613778de85a35551be205d83d44cdc:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` Vector3D_Scale(:ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` const* vector, :ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` scale)
+
+Scales the given 'vector' by a factor of 'scale'.
+
+.. index:: pair: function; Vector3D_Invert
+.. _doxid-group__libccc__math__algebra_1ga1a9aa0b879cbd8502a5e56f26f6cb4ac:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` Vector3D_Invert(:ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` const* vector)
+
+Inverts the sign of the coordinates of the given 'vector'.
+
+.. index:: pair: function; Vector3D_Norm
+.. _doxid-group__libccc__math__algebra_1ga1686feae7339512f6c1abb14ae1cc02f:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` Vector3D_Norm(:ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` const* vector)
+
+Returns the norm/magnitude of the given 'vector', squared (call sqrt to get the real norm)
+
+.. index:: pair: function; Vector3D_Normalize
+.. _doxid-group__libccc__math__algebra_1ga04082858e2a1e503f3d4f7e9e4bc5731:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` Vector3D_Normalize(:ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` const* vector)
+
+Makes the norm/magnitude of the given 'vector' become 1 (without changing its direction)
+
+.. index:: pair: function; Vector3D_Add
+.. _doxid-group__libccc__math__algebra_1gaeed9b6075432ef20f03f7b4a551fef44:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` Vector3D_Add(:ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` const* v1, :ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` const* v2)
+
+Returns the sum of the two given vectors (adding each of their coordinates together)
+
+.. index:: pair: function; Vector3D_Dot
+.. _doxid-group__libccc__math__algebra_1ga4865f0ac8756cf233c88ee5a1a96847b:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` Vector3D_Dot(:ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` const* v1, :ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` const* v2)
+
+Returns the dot/scalar product of the two given vectors (the sum of their multiplied coordinates)
+
+.. index:: pair: function; Vector3D_Cross
+.. _doxid-group__libccc__math__algebra_1ga3c73af7f79eddd761b38d64119c51f82:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` Vector3D_Cross(:ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` const* v1, :ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` const* v2)
+
+Returns the cross/vector product of the two given vectors (the vector which is perpendicular to both)
+
+.. index:: pair: function; Matrix2D_New
+.. _doxid-group__libccc__math__algebra_1gac8a75fd0af89d218db0007a91041469c:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_matrix2d<doxid-group__libccc__math__algebra_1gac05a16c9f65c17c96d650a1637d8db0b>`* Matrix2D_New(:ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>` const* u, :ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>` const* v)
+
+Allocates a new matrix struct on heap, setting its values from the given vectors.
+
+.. index:: pair: function; Matrix2D_Equals
+.. _doxid-group__libccc__math__algebra_1ga39a2c65c8b687d07500bed4676a4409a:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` Matrix2D_Equals(:ref:`s_matrix2d<doxid-group__libccc__math__algebra_1gac05a16c9f65c17c96d650a1637d8db0b>` const* m1, :ref:`s_matrix2d<doxid-group__libccc__math__algebra_1gac05a16c9f65c17c96d650a1637d8db0b>` const* m2)
+
+Returns TRUE if the two given matrices are equal (all their values are identical)
+
+.. index:: pair: function; Matrix2D_Apply
+.. _doxid-group__libccc__math__algebra_1ga72942691a1aeb7603021373b8830a63c:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>` Matrix2D_Apply(:ref:`s_matrix2d<doxid-group__libccc__math__algebra_1gac05a16c9f65c17c96d650a1637d8db0b>` const* matrix, :ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>` const* vector)
+
+Applies the transformation stored by the given 'matrix' onto the given 'vector' and returns it.
+
+.. index:: pair: function; Matrix2D_Determinant
+.. _doxid-group__libccc__math__algebra_1ga2235669c2f1db58804c97462dc09610b:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` Matrix2D_Determinant(:ref:`s_matrix2d<doxid-group__libccc__math__algebra_1gac05a16c9f65c17c96d650a1637d8db0b>` const* matrix)
+
+Returns the determinant value for the given 'matrix'.
+
+.. index:: pair: function; Matrix2D_Inverse
+.. _doxid-group__libccc__math__algebra_1ga5db4047001297a4c87d5fd6af281b1ad:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_matrix2d<doxid-group__libccc__math__algebra_1gac05a16c9f65c17c96d650a1637d8db0b>` Matrix2D_Inverse(:ref:`s_matrix2d<doxid-group__libccc__math__algebra_1gac05a16c9f65c17c96d650a1637d8db0b>` const* matrix)
+
+Changes the values of the given 'matrix' to those of its inverse matrix.
+
+.. index:: pair: function; Matrix2D_Transpose
+.. _doxid-group__libccc__math__algebra_1gab15f5d4967009d51bff3bc21ff408d46:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_matrix2d<doxid-group__libccc__math__algebra_1gac05a16c9f65c17c96d650a1637d8db0b>` Matrix2D_Transpose(:ref:`s_matrix2d<doxid-group__libccc__math__algebra_1gac05a16c9f65c17c96d650a1637d8db0b>` const* matrix)
+
+Returns the transpose the given 'matrix', flipping its values across its diagonal.
+
+.. index:: pair: function; Matrix2D_Multiply
+.. _doxid-group__libccc__math__algebra_1ga1ffbe95ddd05575c7acc0662360e323a:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_matrix2d<doxid-group__libccc__math__algebra_1gac05a16c9f65c17c96d650a1637d8db0b>` Matrix2D_Multiply(:ref:`s_matrix2d<doxid-group__libccc__math__algebra_1gac05a16c9f65c17c96d650a1637d8db0b>` const* m1, :ref:`s_matrix2d<doxid-group__libccc__math__algebra_1gac05a16c9f65c17c96d650a1637d8db0b>` const* m2)
+
+Performs a matrix multiplication on the two given matrices 'm1' and 'm2'.
+
+.. index:: pair: function; Matrix3D_New
+.. _doxid-group__libccc__math__algebra_1ga29e12eb08e6b0a2bfe8b3a52d10368d5:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_matrix3d<doxid-group__libccc__math__algebra_1ga8d40f15df6a34d69d9fe6890695242e8>`* Matrix3D_New(:ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` const* u, :ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` const* v, :ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` const* w)
+
+Allocates a new matrix struct on heap, setting its values from the given vectors.
+
+.. index:: pair: function; Matrix3D_Equals
+.. _doxid-group__libccc__math__algebra_1gab0e5cb0b5dc3552100bc01685ae2e922:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` Matrix3D_Equals(:ref:`s_matrix3d<doxid-group__libccc__math__algebra_1ga8d40f15df6a34d69d9fe6890695242e8>` const* m1, :ref:`s_matrix3d<doxid-group__libccc__math__algebra_1ga8d40f15df6a34d69d9fe6890695242e8>` const* m2)
+
+Returns TRUE if the two given matrices are equal (all their values are identical)
+
+.. index:: pair: function; Matrix3D_Apply
+.. _doxid-group__libccc__math__algebra_1gaab33e892a9167898922dd72bce3dcafe:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` Matrix3D_Apply(:ref:`s_matrix3d<doxid-group__libccc__math__algebra_1ga8d40f15df6a34d69d9fe6890695242e8>` const* matrix, :ref:`s_vector3d<doxid-group__libccc__math__algebra_1ga8ffe1b855e6b8a55900252bb0d57e403>` const* vector)
+
+Applies the transformation stored by the given 'matrix' onto the given 'vector' and returns it.
+
+.. index:: pair: function; Matrix3D_Determinant
+.. _doxid-group__libccc__math__algebra_1ga6ecd84a206c2a115cb3ac4a38b12089a:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` Matrix3D_Determinant(:ref:`s_matrix3d<doxid-group__libccc__math__algebra_1ga8d40f15df6a34d69d9fe6890695242e8>` const* matrix)
+
+Returns the determinant value for the given 'matrix'.
+
+.. index:: pair: function; Matrix3D_Inverse
+.. _doxid-group__libccc__math__algebra_1ga2b251ff544dfb49994204f8ec6b26b15:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_matrix3d<doxid-group__libccc__math__algebra_1ga8d40f15df6a34d69d9fe6890695242e8>` Matrix3D_Inverse(:ref:`s_matrix3d<doxid-group__libccc__math__algebra_1ga8d40f15df6a34d69d9fe6890695242e8>` const* matrix)
+
+Changes the values of the given 'matrix' to those of its inverse matrix.
+
+.. index:: pair: function; Matrix3D_Transpose
+.. _doxid-group__libccc__math__algebra_1ga2dd332869f5605b52fdd839f557436d2:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_matrix3d<doxid-group__libccc__math__algebra_1ga8d40f15df6a34d69d9fe6890695242e8>` Matrix3D_Transpose(:ref:`s_matrix3d<doxid-group__libccc__math__algebra_1ga8d40f15df6a34d69d9fe6890695242e8>` const* matrix)
+
+Returns the transpose the given 'matrix', flipping its values across its diagonal.
+
+.. index:: pair: function; Matrix3D_Multiply
+.. _doxid-group__libccc__math__algebra_1ga65eafbfec4172e277902bbd69cb5c0c8:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_matrix3d<doxid-group__libccc__math__algebra_1ga8d40f15df6a34d69d9fe6890695242e8>` Matrix3D_Multiply(:ref:`s_matrix3d<doxid-group__libccc__math__algebra_1ga8d40f15df6a34d69d9fe6890695242e8>` const* m1, :ref:`s_matrix3d<doxid-group__libccc__math__algebra_1ga8d40f15df6a34d69d9fe6890695242e8>` const* m2)
+
+Performs a matrix multiplication on the two given matrices 'm1' and 'm2'.
+
+Macros
+------
+
+.. index:: pair: define; MATRIX2D_IDENTITY
+.. _doxid-group__libccc__math__algebra_1ga90f958af046eebe3216698b9fce0a7dc:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define MATRIX2D_IDENTITY
+
+A 2-dimensional matrix which is neutral (does nothing) when applied/multiplied.
+
+.. index:: pair: define; MATRIX2D_NULL
+.. _doxid-group__libccc__math__algebra_1ga2ed93ff72727954c574ed9e48ba46565:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define MATRIX2D_NULL
+
+A 2-dimensional matrix in which every number is zero.
+
+.. index:: pair: define; MATRIX2D_ROTATE
+.. _doxid-group__libccc__math__algebra_1ga67cc134dce42525818c4823bcbf43a29:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define MATRIX2D_ROTATE(ANGLE)
+
+A 2-dimensional matrix which, when applied, rotates a vector by the given 'ANGLE'.
+
+.. index:: pair: define; MATRIX3D_IDENTITY
+.. _doxid-group__libccc__math__algebra_1ga25e459d60b1841201d61ef1115bad16e:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define MATRIX3D_IDENTITY
+
+A 3-dimensional matrix which is neutral (does nothing) when applied/multiplied.
+
+.. index:: pair: define; MATRIX3D_NULL
+.. _doxid-group__libccc__math__algebra_1ga40164130e17289325e86fd135ba9c891:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define MATRIX3D_NULL
+
+A 3-dimensional matrix in which every number is zero.
+
+.. index:: pair: define; MATRIX3D_ROTATE_X
+.. _doxid-group__libccc__math__algebra_1gaf7d31ca6447e1a4519e754da123214b9:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define MATRIX3D_ROTATE_X(ANGLE)
+
+A 3-dimensional matrix which, when applied, rotates a vector about the X axis by the given 'ANGLE'.
+
+.. index:: pair: define; MATRIX3D_ROTATE_Y
+.. _doxid-group__libccc__math__algebra_1ga59a6162e5b8ee5add64834050cdfa862:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define MATRIX3D_ROTATE_Y(ANGLE)
+
+A 3-dimensional matrix which, when applied, rotates a vector about the Y axis by the given 'ANGLE'.
+
+.. index:: pair: define; MATRIX3D_ROTATE_Z
+.. _doxid-group__libccc__math__algebra_1ga82d255fb0fe99483c7a4236f8c051a7e:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define MATRIX3D_ROTATE_Z(ANGLE)
+
+A 3-dimensional matrix which, when applied, rotates a vector about the Z axis by the given 'ANGLE'.
+
+.. index:: pair: define; MATRIX4D_IDENTITY
+.. _doxid-group__libccc__math__algebra_1gaa4d48a88d9c0da5ad737130e3be5547d:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define MATRIX4D_IDENTITY
+
+A 4-dimensional matrix which is neutral (does nothing) when applied/multiplied.
+
+.. index:: pair: define; MATRIX4D_NULL
+.. _doxid-group__libccc__math__algebra_1ga8652b26eecf16d846d89c2ff5854094a:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define MATRIX4D_NULL
+
+A 4-dimensional matrix in which every number is zero.
+

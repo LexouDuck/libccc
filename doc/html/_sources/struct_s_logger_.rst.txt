@@ -1,0 +1,101 @@
+.. index:: pair: struct; s_logger_
+.. _doxid-structs__logger__:
+
+struct s_logger\_
+=================
+
+.. toctree::
+	:hidden:
+
+Overview
+~~~~~~~~
+
+This struct stores all the settings and internal state needed for a basic logging system. :ref:`More...<details-structs__logger__>`
+
+
+.. ref-code-block:: cpp
+	:class: doxyrest-overview-code-block
+
+	#include <logger.h>
+	
+	struct s_logger_
+	{
+		// fields
+	
+		:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` :ref:`show_timestamp<doxid-structs__logger___1af5abb6c019283fd1b9840b0e1869965d>`;
+		:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` :ref:`mode_verbose<doxid-structs__logger___1a322002e9ccaca963252614381ad9f8f2>`;
+		:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` :ref:`mode_obfuscated<doxid-structs__logger___1a8f8264b6a5389b3f839cade9e4359772>`;
+		:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` :ref:`dest_stdout<doxid-structs__logger___1af537f2f23809ed6509c52667c2be08b6>`;
+		:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` :ref:`dest_stderr<doxid-structs__logger___1a6cd3f88d391082a04f5129137d258f1b>`;
+		:ref:`s_logfile<doxid-structs__logfile__>` :ref:`dest_files<doxid-structs__logger___1ad52099302f9545bf5c6ba2377daba4ba>`[LOGFILES_MAX];
+	};
+.. _details-structs__logger__:
+
+Detailed Documentation
+~~~~~~~~~~~~~~~~~~~~~~
+
+This struct stores all the settings and internal state needed for a basic logging system.
+
+Fields
+------
+
+.. index:: pair: variable; show_timestamp
+.. _doxid-structs__logger___1af5abb6c019283fd1b9840b0e1869965d:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` show_timestamp
+
+If TRUE, the logger prints a timestamp at the beginning of each log line.
+
+.. index:: pair: variable; mode_verbose
+.. _doxid-structs__logger___1a322002e9ccaca963252614381ad9f8f2:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` mode_verbose
+
+If TRUE, additional logging messages will be displayed.
+
+.. index:: pair: variable; mode_obfuscated
+.. _doxid-structs__logger___1a8f8264b6a5389b3f839cade9e4359772:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` mode_obfuscated
+
+If TRUE, indicates that the logging messages should hide sensitive info, like passwords for instance.
+
+.. index:: pair: variable; dest_stdout
+.. _doxid-structs__logger___1af537f2f23809ed6509c52667c2be08b6:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` dest_stdout
+
+If TRUE, the logger outputs to the terminal standard output stream.
+
+.. index:: pair: variable; dest_stderr
+.. _doxid-structs__logger___1a6cd3f88d391082a04f5129137d258f1b:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` dest_stderr
+
+If TRUE, the logger outputs to the terminal standard error stream.
+
+.. index:: pair: variable; dest_files
+.. _doxid-structs__logger___1ad52099302f9545bf5c6ba2377daba4ba:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_logfile<doxid-structs__logfile__>` dest_files[LOGFILES_MAX]
+
+Each of these, if TRUE, will make to logger output to the specified dest.
+

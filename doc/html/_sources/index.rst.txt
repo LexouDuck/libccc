@@ -1,0 +1,84 @@
+.. include:: rst/page_index.rst
+
+.. toctree::
+	:hidden:
+
+	group_libccc.rst
+	group_libccc_bool.rst
+	group_libccc_int.rst
+	group_libccc_fixed.rst
+	group_libccc_float.rst
+	group_libccc_pointer.rst
+	group_libccc_memory.rst
+	group_libccc_char.rst
+	group_libccc_string.rst
+	group_libccc_format.rst
+	group_libccc_regex.rst
+	group_libccc_color.rst
+	group_libccc_sys_io.rst
+	group_libccc_sys_time.rst
+	group_libccc_sys_logger.rst
+	group_libccc_math_math.rst
+	group_libccc_math_vlq.rst
+	group_libccc_math_stat.rst
+	group_libccc_math_random.rst
+	group_libccc_math_algebra.rst
+	group_libccc_math_complex.rst
+	group_libccc_array_array.rst
+	group_libccc_array_list.rst
+	group_libccc_array_dict.rst
+	group_libccc_array_tree.rst
+	group_libccc_array_pointerarray.rst
+	group_libccc_array_stringarray.rst
+
+.. rubric:: Further Reading:
+
+|	:ref:`00) libccc<doxid-group__libccc>`
+|	:ref:`01) libccc/bool<doxid-group__libccc__bool>`
+|	:ref:`02) libccc/int<doxid-group__libccc__int>`
+|	:ref:`03) libccc/fixed<doxid-group__libccc__fixed>`
+|	:ref:`04) libccc/float<doxid-group__libccc__float>`
+|	:ref:`05) libccc/pointer<doxid-group__libccc__pointer>`
+|	:ref:`06) libccc/memory<doxid-group__libccc__memory>`
+|	:ref:`07) libccc/char<doxid-group__libccc__char>`
+|	:ref:`08) libccc/string<doxid-group__libccc__string>`
+|	:ref:`09) libccc/format<doxid-group__libccc__format>`
+|	:ref:`10) libccc/regex<doxid-group__libccc__regex>`
+|	:ref:`11) libccc/color<doxid-group__libccc__color>`
+|	:ref:`12) libccc/sys/io<doxid-group__libccc__sys__io>`
+|	:ref:`13) libccc/sys/time<doxid-group__libccc__sys__time>`
+|	:ref:`14) libccc/sys/logger<doxid-group__libccc__sys__logger>`
+|	:ref:`15) libccc/math/math<doxid-group__libccc__math__math>`
+|	:ref:`16) libccc/math/vlq<doxid-group__libccc__math__vlq>`
+|	:ref:`17) libccc/math/stat<doxid-group__libccc__math__stat>`
+|	:ref:`18) libccc/math/random<doxid-group__libccc__math__random>`
+|	:ref:`19) libccc/math/algebra<doxid-group__libccc__math__algebra>`
+|	:ref:`20) libccc/math/complex<doxid-group__libccc__math__complex>`
+|	:ref:`21) libccc/array/array<doxid-group__libccc__array__array>`
+|	:ref:`22) libccc/array/list<doxid-group__libccc__array__list>`
+|	:ref:`23) libccc/array/dict<doxid-group__libccc__array__dict>`
+|	:ref:`24) libccc/array/tree<doxid-group__libccc__array__tree>`
+|	:ref:`25) libccc/array/pointerarray<doxid-group__libccc__array__pointerarray>`
+|	:ref:`26) libccc/array/stringarray<doxid-group__libccc__array__stringarray>`
+
+
+.. toctree::
+	:hidden:
+
+	page_index.rst
+
+.. rubric:: Related Pages:
+
+|	:doc:`page_index`
+
+
+.. rubric:: Reference and Index:
+
+.. toctree::
+	:hidden:
+
+	global.rst
+
+|	:doc:`global`
+|	:ref:`genindex`
+

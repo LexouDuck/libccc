@@ -1,0 +1,57 @@
+.. index:: pair: struct; s_list_float_
+.. _doxid-structs__list__float__:
+
+struct s_list_float\_
+=====================
+
+.. toctree::
+	:hidden:
+
+Overview
+~~~~~~~~
+
+This struct stores a list of float values (contiguously, like an array) :ref:`More...<details-structs__list__float__>`
+
+
+.. ref-code-block:: cpp
+	:class: doxyrest-overview-code-block
+
+	#include <stat.h>
+	
+	struct s_list_float_
+	{
+		// fields
+	
+		:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>`* :ref:`data<doxid-structs__list__float___1a625e4d837ca04fed0338f11e0357ecb2>`;
+		t_u32 :ref:`length<doxid-structs__list__float___1a7aa02ac2ee3119e37e82c76526eab186>`;
+	};
+.. _details-structs__list__float__:
+
+Detailed Documentation
+~~~~~~~~~~~~~~~~~~~~~~
+
+This struct stores a list of float values (contiguously, like an array)
+
+Fields
+------
+
+.. index:: pair: variable; data
+.. _doxid-structs__list__float___1a625e4d837ca04fed0338f11e0357ecb2:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>`* data
+
+The list of float values.
+
+.. index:: pair: variable; length
+.. _doxid-structs__list__float___1a7aa02ac2ee3119e37e82c76526eab186:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	t_u32 length
+
+The amount of items in the list.
+

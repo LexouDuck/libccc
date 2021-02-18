@@ -1,0 +1,11 @@
+.. index:: pair: group; 10) libccc/regex
+.. _doxid-group__libccc__regex:
+
+10) libccc/regex
+================
+
+.. toctree::
+	:hidden:
+
+This header defines functions for regular expression matching/replacing.
+

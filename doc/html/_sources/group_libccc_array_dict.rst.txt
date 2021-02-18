@@ -1,0 +1,80 @@
+.. index:: pair: group; 23) libccc/array/dict
+.. _doxid-group__libccc__array__dict:
+
+23) libccc/array/dict
+=====================
+
+.. toctree::
+	:hidden:
+
+	struct_s_dict_.rst
+	struct_s_keyval_.rst
+
+Overview
+~~~~~~~~
+
+This header defines a simple dictionary type and utility functions for it. :ref:`More...<details-group__libccc__array__dict>`
+
+
+.. ref-code-block:: cpp
+	:class: doxyrest-overview-code-block
+
+	
+	// typedefs
+
+	typedef struct :ref:`s_keyval_<doxid-structs__keyval__>` :ref:`s_keyval<doxid-group__libccc__array__dict_1ga3c5b2ec554eeefe5cf3215681db10498>`;
+	typedef struct :ref:`s_dict_<doxid-structs__dict__>` :ref:`s_dict<doxid-group__libccc__array__dict_1ga9f47073c3537572d8450a4291a03f7be>`;
+
+	// structs
+
+	struct :ref:`s_dict_<doxid-structs__dict__>`;
+	struct :ref:`s_keyval_<doxid-structs__keyval__>`;
+
+	// macros
+
+	#define :ref:`DICT_NULL<doxid-group__libccc__array__dict_1ga4af8904e470e0ae1be31157fe548e8fa>`
+	#define :target:`KEYVAL_NULL<doxid-group__libccc__array__dict_1ga8793e8c57e18a0146e9372f3371f78c6>`
+
+.. _details-group__libccc__array__dict:
+
+Detailed Documentation
+~~~~~~~~~~~~~~~~~~~~~~
+
+This header defines a simple dictionary type and utility functions for it.
+
+Typedefs
+--------
+
+.. index:: pair: typedef; s_keyval
+.. _doxid-group__libccc__array__dict_1ga3c5b2ec554eeefe5cf3215681db10498:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef struct :ref:`s_keyval_<doxid-structs__keyval__>` s_keyval
+
+A simple key+value pair struct, used in the 's_dict' dictionary struct.
+
+.. index:: pair: typedef; s_dict
+.. _doxid-group__libccc__array__dict_1ga9f47073c3537572d8450a4291a03f7be:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef struct :ref:`s_dict_<doxid-structs__dict__>` s_dict
+
+A simple dictionary struct, stores an array of key/value pairs.
+
+Macros
+------
+
+.. index:: pair: define; DICT_NULL
+.. _doxid-group__libccc__array__dict_1ga4af8904e470e0ae1be31157fe548e8fa:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define DICT_NULL
+
+A literal of an 's_dict' struct which has all fields set to zero.
+

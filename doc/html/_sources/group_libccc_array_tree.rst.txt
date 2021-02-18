@@ -1,0 +1,80 @@
+.. index:: pair: group; 24) libccc/array/tree
+.. _doxid-group__libccc__array__tree:
+
+24) libccc/array/tree
+=====================
+
+.. toctree::
+	:hidden:
+
+	struct_s_leaf_.rst
+	struct_s_tree_.rst
+
+Overview
+~~~~~~~~
+
+This header defines a simple tree/node/leaf type and utility functions for it. :ref:`More...<details-group__libccc__array__tree>`
+
+
+.. ref-code-block:: cpp
+	:class: doxyrest-overview-code-block
+
+	
+	// typedefs
+
+	typedef struct :ref:`s_leaf_<doxid-structs__leaf__>` :ref:`s_leaf<doxid-group__libccc__array__tree_1ga2e650f20125f54112c0c4bc880ce9ce4>`;
+	typedef struct :ref:`s_tree_<doxid-structs__tree__>` :ref:`s_tree<doxid-group__libccc__array__tree_1ga80ab7c8a33654519936b8e845e00e229>`;
+
+	// structs
+
+	struct :ref:`s_leaf_<doxid-structs__leaf__>`;
+	struct :ref:`s_tree_<doxid-structs__tree__>`;
+
+	// macros
+
+	#define :target:`LEAF_NULL<doxid-group__libccc__array__tree_1ga9d8166b8c4c082407b6d522806105da8>`
+	#define :ref:`TREE_NULL<doxid-group__libccc__array__tree_1gab7546deb1c40c536f7646a53adb2e2df>`
+
+.. _details-group__libccc__array__tree:
+
+Detailed Documentation
+~~~~~~~~~~~~~~~~~~~~~~
+
+This header defines a simple tree/node/leaf type and utility functions for it.
+
+Typedefs
+--------
+
+.. index:: pair: typedef; s_leaf
+.. _doxid-group__libccc__array__tree_1ga2e650f20125f54112c0c4bc880ce9ce4:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef struct :ref:`s_leaf_<doxid-structs__leaf__>` s_leaf
+
+A simple tree leaf node struct, used in the 's_tree' tree/node/leaf struct.
+
+.. index:: pair: typedef; s_tree
+.. _doxid-group__libccc__array__tree_1ga80ab7c8a33654519936b8e845e00e229:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef struct :ref:`s_tree_<doxid-structs__tree__>` s_tree
+
+A simple tree/node/leaf struct, stores an array of "branches" (ie: nodes).
+
+Macros
+------
+
+.. index:: pair: define; TREE_NULL
+.. _doxid-group__libccc__array__tree_1gab7546deb1c40c536f7646a53adb2e2df:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define TREE_NULL
+
+A literal of an 's_tree' struct which has all fields set to zero.
+

@@ -1,0 +1,642 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>19) libccc/math/algebra &mdash; libccc 1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/doxyrest-sphinx_rtd_theme.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/target-highlight.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="struct s_box1d_" href="struct_s_box1d_.html" />
+    <link rel="prev" title="18) libccc/math/random" href="group_libccc_math_random.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> libccc
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="group_libccc.html">00) libccc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">01) libccc/bool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">02) libccc/int</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_fixed.html">03) libccc/fixed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_float.html">04) libccc/float</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointer.html">05) libccc/pointer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_memory.html">06) libccc/memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">07) libccc/char</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">08) libccc/string</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">09) libccc/format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_regex.html">10) libccc/regex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_color.html">11) libccc/color</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">12) libccc/sys/io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_time.html">13) libccc/sys/time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">14) libccc/sys/logger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_math.html">15) libccc/math/math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_vlq.html">16) libccc/math/vlq</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_stat.html">17) libccc/math/stat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_random.html">18) libccc/math/random</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">19) libccc/math/algebra</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="struct_s_box1d_.html">struct s_box1d_</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct_s_box2d_.html">struct s_box2d_</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct_s_box3d_.html">struct s_box3d_</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct_s_box4d_.html">struct s_box4d_</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct_s_matrix2d_.html">struct s_matrix2d_</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct_s_matrix3d_.html">struct s_matrix3d_</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct_s_matrix4d_.html">struct s_matrix4d_</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct_s_vector2d_.html">struct s_vector2d_</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct_s_vector3d_.html">struct s_vector3d_</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct_s_vector4d_.html">struct s_vector4d_</a></li>
+<li class="toctree-l2"><a class="reference internal" href="union_u_matrix2d_.html">union u_matrix2d_</a></li>
+<li class="toctree-l2"><a class="reference internal" href="union_u_matrix3d_.html">union u_matrix3d_</a></li>
+<li class="toctree-l2"><a class="reference internal" href="union_u_matrix4d_.html">union u_matrix4d_</a></li>
+<li class="toctree-l2"><a class="reference internal" href="union_u_vector2d_.html">union u_vector2d_</a></li>
+<li class="toctree-l2"><a class="reference internal" href="union_u_vector3d_.html">union u_vector3d_</a></li>
+<li class="toctree-l2"><a class="reference internal" href="union_u_vector4d_.html">union u_vector4d_</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#detailed-documentation">Detailed Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#typedefs">Typedefs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#global-functions">Global Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#macros">Macros</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">20) libccc/math/complex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_array.html">21) libccc/array/array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_list.html">22) libccc/array/list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_dict.html">23) libccc/array/dict</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_tree.html">24) libccc/array/tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_pointerarray.html">25) libccc/array/pointerarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_stringarray.html">26) libccc/array/stringarray</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="page_index.html"># libccc</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">libccc</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>19) libccc/math/algebra</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/group_libccc_math_algebra.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="libccc-math-algebra">
+<span id="doxid-group-libccc-math-algebra"></span><span id="index-0"></span><h1>19) libccc/math/algebra<a class="headerlink" href="#libccc-math-algebra" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>This header defines useful algebra and calculus types, and functions. <a class="reference internal" href="#details-group-libccc-math-algebra"><span class="std std-ref">More…</span></a></p>
+<pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// typedefs</span>
+
+<span class="k">typedef</span> <span class="k">struct</span> <a class="reference internal" href="struct_s_vector2d_.html#doxid-structs-vector2d"><span class="std std-ref">s_vector2d_</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga55a5111538414b501fd622a1b1abb7c3"><span class="std std-ref">s_vector2d</span></a><span></span><span class="p">;</span>
+<span class="k">typedef</span> <span class="k">union</span> <a class="reference internal" href="union_u_vector2d_.html#doxid-unionu-vector2d"><span class="std std-ref">u_vector2d_</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga39ec4e36d8f079981faa26a263e209c7"><span class="std std-ref">u_vector2d</span></a><span></span><span class="p">;</span>
+<span class="k">typedef</span> <span class="k">struct</span> <a class="reference internal" href="struct_s_vector3d_.html#doxid-structs-vector3d"><span class="std std-ref">s_vector3d_</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span><span class="p">;</span>
+<span class="k">typedef</span> <span class="k">union</span> <a class="reference internal" href="union_u_vector3d_.html#doxid-unionu-vector3d"><span class="std std-ref">u_vector3d_</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga901447e6cefb11f55d62b737653f7b2e"><span class="std std-ref">u_vector3d</span></a><span></span><span class="p">;</span>
+<span class="k">typedef</span> <span class="k">struct</span> <a class="reference internal" href="struct_s_vector4d_.html#doxid-structs-vector4d"><span class="std std-ref">s_vector4d_</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga89be66648e8af6bb9538e9fd0e879939"><span class="std std-ref">s_vector4d</span></a><span></span><span class="p">;</span>
+<span class="k">typedef</span> <span class="k">union</span> <a class="reference internal" href="union_u_vector4d_.html#doxid-unionu-vector4d"><span class="std std-ref">u_vector4d_</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga2de1f4c8060962be9732b2a7d5845bc5"><span class="std std-ref">u_vector4d</span></a><span></span><span class="p">;</span>
+<span class="k">typedef</span> <span class="k">struct</span> <a class="reference internal" href="struct_s_matrix2d_.html#doxid-structs-matrix2d"><span class="std std-ref">s_matrix2d_</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1gac05a16c9f65c17c96d650a1637d8db0b"><span class="std std-ref">s_matrix2d</span></a><span></span><span class="p">;</span>
+<span class="k">typedef</span> <span class="k">union</span> <a class="reference internal" href="union_u_matrix2d_.html#doxid-unionu-matrix2d"><span class="std std-ref">u_matrix2d_</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1gaf49b74a8dabdd258959147df39364817"><span class="std std-ref">u_matrix2d</span></a><span></span><span class="p">;</span>
+<span class="k">typedef</span> <span class="k">struct</span> <a class="reference internal" href="struct_s_matrix3d_.html#doxid-structs-matrix3d"><span class="std std-ref">s_matrix3d_</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8d40f15df6a34d69d9fe6890695242e8"><span class="std std-ref">s_matrix3d</span></a><span></span><span class="p">;</span>
+<span class="k">typedef</span> <span class="k">union</span> <a class="reference internal" href="union_u_matrix3d_.html#doxid-unionu-matrix3d"><span class="std std-ref">u_matrix3d_</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga0b14ffe0e6c8ecc9fa11c6c6681faedd"><span class="std std-ref">u_matrix3d</span></a><span></span><span class="p">;</span>
+<span class="k">typedef</span> <span class="k">struct</span> <a class="reference internal" href="struct_s_matrix4d_.html#doxid-structs-matrix4d"><span class="std std-ref">s_matrix4d_</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1gadf4624c9c8fe53b94307cc209d2503d7"><span class="std std-ref">s_matrix4d</span></a><span></span><span class="p">;</span>
+<span class="k">typedef</span> <span class="k">union</span> <a class="reference internal" href="union_u_matrix4d_.html#doxid-unionu-matrix4d"><span class="std std-ref">u_matrix4d_</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8a183a5cf3a58fcac744c9787aa54c23"><span class="std std-ref">u_matrix4d</span></a><span></span><span class="p">;</span>
+<span class="k">typedef</span> <span class="k">struct</span> <a class="reference internal" href="struct_s_box1d_.html#doxid-structs-box1d"><span class="std std-ref">s_box1d_</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1gadb6b08b307919bc48d921e79aa004b93"><span class="std std-ref">s_box1d</span></a><span></span><span class="p">;</span>
+<span class="k">typedef</span> <span class="k">struct</span> <a class="reference internal" href="struct_s_box2d_.html#doxid-structs-box2d"><span class="std std-ref">s_box2d_</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1gafcb81fc851bfae0578b297ac8477b25a"><span class="std std-ref">s_box2d</span></a><span></span><span class="p">;</span>
+<span class="k">typedef</span> <span class="k">struct</span> <a class="reference internal" href="struct_s_box3d_.html#doxid-structs-box3d"><span class="std std-ref">s_box3d_</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga4130a529bc1547e9d148b2201d454338"><span class="std std-ref">s_box3d</span></a><span></span><span class="p">;</span>
+<span class="k">typedef</span> <span class="k">struct</span> <a class="reference internal" href="struct_s_box4d_.html#doxid-structs-box4d"><span class="std std-ref">s_box4d_</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1gafc0fef08aa121fe8d59f8d0d0a8fc25d"><span class="std std-ref">s_box4d</span></a><span></span><span class="p">;</span>
+<span class="k">typedef</span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1gadb6b08b307919bc48d921e79aa004b93"><span class="std std-ref">s_box1d</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga82b306c684e81ecbbb813970d7b94181"><span class="std std-ref">s_interval</span></a><span></span><span class="p">;</span>
+<span class="k">typedef</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="p">(</span><span class="o">*</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga5186df6923414fa8e710d6138a4e9157"><span class="std std-ref">f_scalar_func1</span></a><span></span><span class="p">)(</span><span class="n">t_float</span> <span class="k">const</span> <span class="n">v</span><span class="p">);</span>
+<span class="k">typedef</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="p">(</span><span class="o">*</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga39a31ee739e0aceb11e2a390af338029"><span class="std std-ref">f_scalar_func2</span></a><span></span><span class="p">)(</span><span class="n">u_vector2d</span> <span class="k">const</span> <span class="n">v</span><span class="p">);</span>
+<span class="k">typedef</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="p">(</span><span class="o">*</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1gae3398253d21b78a68d2584373129c369"><span class="std std-ref">f_scalar_func3</span></a><span></span><span class="p">)(</span><span class="n">u_vector3d</span> <span class="k">const</span> <span class="n">v</span><span class="p">);</span>
+<span class="k">typedef</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="p">(</span><span class="o">*</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga0611ee62bac265eba119d2f622ed69fd"><span class="std std-ref">f_scalar_func4</span></a><span></span><span class="p">)(</span><span class="n">u_vector4d</span> <span class="k">const</span> <span class="n">v</span><span class="p">);</span>
+
+<span class="c1">// structs</span>
+
+<span class="k">struct</span> <a class="reference internal" href="struct_s_box1d_.html#doxid-structs-box1d"><span class="std std-ref">s_box1d_</span></a><span></span><span class="p">;</span>
+<span class="k">struct</span> <a class="reference internal" href="struct_s_box2d_.html#doxid-structs-box2d"><span class="std std-ref">s_box2d_</span></a><span></span><span class="p">;</span>
+<span class="k">struct</span> <a class="reference internal" href="struct_s_box3d_.html#doxid-structs-box3d"><span class="std std-ref">s_box3d_</span></a><span></span><span class="p">;</span>
+<span class="k">struct</span> <a class="reference internal" href="struct_s_box4d_.html#doxid-structs-box4d"><span class="std std-ref">s_box4d_</span></a><span></span><span class="p">;</span>
+<span class="k">struct</span> <a class="reference internal" href="struct_s_matrix2d_.html#doxid-structs-matrix2d"><span class="std std-ref">s_matrix2d_</span></a><span></span><span class="p">;</span>
+<span class="k">struct</span> <a class="reference internal" href="struct_s_matrix3d_.html#doxid-structs-matrix3d"><span class="std std-ref">s_matrix3d_</span></a><span></span><span class="p">;</span>
+<span class="k">struct</span> <a class="reference internal" href="struct_s_matrix4d_.html#doxid-structs-matrix4d"><span class="std std-ref">s_matrix4d_</span></a><span></span><span class="p">;</span>
+<span class="k">struct</span> <a class="reference internal" href="struct_s_vector2d_.html#doxid-structs-vector2d"><span class="std std-ref">s_vector2d_</span></a><span></span><span class="p">;</span>
+<span class="k">struct</span> <a class="reference internal" href="struct_s_vector3d_.html#doxid-structs-vector3d"><span class="std std-ref">s_vector3d_</span></a><span></span><span class="p">;</span>
+<span class="k">struct</span> <a class="reference internal" href="struct_s_vector4d_.html#doxid-structs-vector4d"><span class="std std-ref">s_vector4d_</span></a><span></span><span class="p">;</span>
+
+<span class="c1">// unions</span>
+
+<span class="k">union</span> <a class="reference internal" href="union_u_matrix2d_.html#doxid-unionu-matrix2d"><span class="std std-ref">u_matrix2d_</span></a><span></span><span class="p">;</span>
+<span class="k">union</span> <a class="reference internal" href="union_u_matrix3d_.html#doxid-unionu-matrix3d"><span class="std std-ref">u_matrix3d_</span></a><span></span><span class="p">;</span>
+<span class="k">union</span> <a class="reference internal" href="union_u_matrix4d_.html#doxid-unionu-matrix4d"><span class="std std-ref">u_matrix4d_</span></a><span></span><span class="p">;</span>
+<span class="k">union</span> <a class="reference internal" href="union_u_vector2d_.html#doxid-unionu-vector2d"><span class="std std-ref">u_vector2d_</span></a><span></span><span class="p">;</span>
+<span class="k">union</span> <a class="reference internal" href="union_u_vector3d_.html#doxid-unionu-vector3d"><span class="std std-ref">u_vector3d_</span></a><span></span><span class="p">;</span>
+<span class="k">union</span> <a class="reference internal" href="union_u_vector4d_.html#doxid-unionu-vector4d"><span class="std std-ref">u_vector4d_</span></a><span></span><span class="p">;</span>
+
+<span class="c1">// global functions</span>
+
+<a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga55a5111538414b501fd622a1b1abb7c3"><span class="std std-ref">s_vector2d</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1gaaa6b56dc8a5f5f41eac22ad094fe6e7c"><span class="std std-ref">Vector2D_New</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">x</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">y</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaf15d2c7169c336f97175a2e218d22e73"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga459392d82670f7b684a5b3fd0fa03d9b"><span class="std std-ref">Vector2D_Equals</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga55a5111538414b501fd622a1b1abb7c3"><span class="std std-ref">s_vector2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">v1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga55a5111538414b501fd622a1b1abb7c3"><span class="std std-ref">s_vector2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">v2</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga55a5111538414b501fd622a1b1abb7c3"><span class="std std-ref">s_vector2d</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga3c3d174c960141b402a25e9565c32b5b"><span class="std std-ref">Vector2D_Scale</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga55a5111538414b501fd622a1b1abb7c3"><span class="std std-ref">s_vector2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">vector</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">scale</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga55a5111538414b501fd622a1b1abb7c3"><span class="std std-ref">s_vector2d</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga3eec430283c743c4bbce294438f4f30d"><span class="std std-ref">Vector2D_Invert</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga55a5111538414b501fd622a1b1abb7c3"><span class="std std-ref">s_vector2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">vector</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1gaacf74cabafe79db0c013cc4a44e5c83e"><span class="std std-ref">Vector2D_Norm</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga55a5111538414b501fd622a1b1abb7c3"><span class="std std-ref">s_vector2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">vector</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga55a5111538414b501fd622a1b1abb7c3"><span class="std std-ref">s_vector2d</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga220df5d71664afa5505cb31f67e3a8be"><span class="std std-ref">Vector2D_Normalize</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga55a5111538414b501fd622a1b1abb7c3"><span class="std std-ref">s_vector2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">vector</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga55a5111538414b501fd622a1b1abb7c3"><span class="std std-ref">s_vector2d</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1gadc556ca0df7925365ab22adbaf17ab32"><span class="std std-ref">Vector2D_Add</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga55a5111538414b501fd622a1b1abb7c3"><span class="std std-ref">s_vector2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">v1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga55a5111538414b501fd622a1b1abb7c3"><span class="std std-ref">s_vector2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">v2</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1gabcd7974539b1a879aca32982abb8e949"><span class="std std-ref">Vector2D_Dot</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga55a5111538414b501fd622a1b1abb7c3"><span class="std std-ref">s_vector2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">v1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga55a5111538414b501fd622a1b1abb7c3"><span class="std std-ref">s_vector2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">v2</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1gabf0428647a4b74154cff1337d6b531e7"><span class="std std-ref">Vector3D_New</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">x</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">y</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">z</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaf15d2c7169c336f97175a2e218d22e73"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1gad61cb77a0bdeb905ae240a9d12bcaaa8"><span class="std std-ref">Vector3D_Equals</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">v1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">v2</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga4e613778de85a35551be205d83d44cdc"><span class="std std-ref">Vector3D_Scale</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">vector</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">scale</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga1a9aa0b879cbd8502a5e56f26f6cb4ac"><span class="std std-ref">Vector3D_Invert</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">vector</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga1686feae7339512f6c1abb14ae1cc02f"><span class="std std-ref">Vector3D_Norm</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">vector</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga04082858e2a1e503f3d4f7e9e4bc5731"><span class="std std-ref">Vector3D_Normalize</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">vector</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1gaeed9b6075432ef20f03f7b4a551fef44"><span class="std std-ref">Vector3D_Add</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">v1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">v2</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga4865f0ac8756cf233c88ee5a1a96847b"><span class="std std-ref">Vector3D_Dot</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">v1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">v2</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga3c73af7f79eddd761b38d64119c51f82"><span class="std std-ref">Vector3D_Cross</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">v1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">v2</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-math-algebra-1gac05a16c9f65c17c96d650a1637d8db0b"><span class="std std-ref">s_matrix2d</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1gac8a75fd0af89d218db0007a91041469c"><span class="std std-ref">Matrix2D_New</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga55a5111538414b501fd622a1b1abb7c3"><span class="std std-ref">s_vector2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">u</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga55a5111538414b501fd622a1b1abb7c3"><span class="std std-ref">s_vector2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaf15d2c7169c336f97175a2e218d22e73"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga39a2c65c8b687d07500bed4676a4409a"><span class="std std-ref">Matrix2D_Equals</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1gac05a16c9f65c17c96d650a1637d8db0b"><span class="std std-ref">s_matrix2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">m1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1gac05a16c9f65c17c96d650a1637d8db0b"><span class="std std-ref">s_matrix2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">m2</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga55a5111538414b501fd622a1b1abb7c3"><span class="std std-ref">s_vector2d</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga72942691a1aeb7603021373b8830a63c"><span class="std std-ref">Matrix2D_Apply</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1gac05a16c9f65c17c96d650a1637d8db0b"><span class="std std-ref">s_matrix2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">matrix</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga55a5111538414b501fd622a1b1abb7c3"><span class="std std-ref">s_vector2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">vector</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga2235669c2f1db58804c97462dc09610b"><span class="std std-ref">Matrix2D_Determinant</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1gac05a16c9f65c17c96d650a1637d8db0b"><span class="std std-ref">s_matrix2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">matrix</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-math-algebra-1gac05a16c9f65c17c96d650a1637d8db0b"><span class="std std-ref">s_matrix2d</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga5db4047001297a4c87d5fd6af281b1ad"><span class="std std-ref">Matrix2D_Inverse</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1gac05a16c9f65c17c96d650a1637d8db0b"><span class="std std-ref">s_matrix2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">matrix</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-math-algebra-1gac05a16c9f65c17c96d650a1637d8db0b"><span class="std std-ref">s_matrix2d</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1gab15f5d4967009d51bff3bc21ff408d46"><span class="std std-ref">Matrix2D_Transpose</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1gac05a16c9f65c17c96d650a1637d8db0b"><span class="std std-ref">s_matrix2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">matrix</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-math-algebra-1gac05a16c9f65c17c96d650a1637d8db0b"><span class="std std-ref">s_matrix2d</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga1ffbe95ddd05575c7acc0662360e323a"><span class="std std-ref">Matrix2D_Multiply</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1gac05a16c9f65c17c96d650a1637d8db0b"><span class="std std-ref">s_matrix2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">m1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1gac05a16c9f65c17c96d650a1637d8db0b"><span class="std std-ref">s_matrix2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">m2</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8d40f15df6a34d69d9fe6890695242e8"><span class="std std-ref">s_matrix3d</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga29e12eb08e6b0a2bfe8b3a52d10368d5"><span class="std std-ref">Matrix3D_New</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">u</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">w</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaf15d2c7169c336f97175a2e218d22e73"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1gab0e5cb0b5dc3552100bc01685ae2e922"><span class="std std-ref">Matrix3D_Equals</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8d40f15df6a34d69d9fe6890695242e8"><span class="std std-ref">s_matrix3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">m1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8d40f15df6a34d69d9fe6890695242e8"><span class="std std-ref">s_matrix3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">m2</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1gaab33e892a9167898922dd72bce3dcafe"><span class="std std-ref">Matrix3D_Apply</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8d40f15df6a34d69d9fe6890695242e8"><span class="std std-ref">s_matrix3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">matrix</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">vector</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga6ecd84a206c2a115cb3ac4a38b12089a"><span class="std std-ref">Matrix3D_Determinant</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8d40f15df6a34d69d9fe6890695242e8"><span class="std std-ref">s_matrix3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">matrix</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8d40f15df6a34d69d9fe6890695242e8"><span class="std std-ref">s_matrix3d</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga2b251ff544dfb49994204f8ec6b26b15"><span class="std std-ref">Matrix3D_Inverse</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8d40f15df6a34d69d9fe6890695242e8"><span class="std std-ref">s_matrix3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">matrix</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8d40f15df6a34d69d9fe6890695242e8"><span class="std std-ref">s_matrix3d</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga2dd332869f5605b52fdd839f557436d2"><span class="std std-ref">Matrix3D_Transpose</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8d40f15df6a34d69d9fe6890695242e8"><span class="std std-ref">s_matrix3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">matrix</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8d40f15df6a34d69d9fe6890695242e8"><span class="std std-ref">s_matrix3d</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga65eafbfec4172e277902bbd69cb5c0c8"><span class="std std-ref">Matrix3D_Multiply</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8d40f15df6a34d69d9fe6890695242e8"><span class="std std-ref">s_matrix3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">m1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8d40f15df6a34d69d9fe6890695242e8"><span class="std std-ref">s_matrix3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">m2</span><span class="p">);</span>
+
+<a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga36de3afd5b0f1a871cd6d41328e955d8"><span></span><span class="n">c_integrate</span></span><span></span><span class="p">(</span>
+    <a class="reference internal" href="group_libccc_math_math.html#doxid-group-libccc-math-math-1ga6a1c1c72d7e04c29a8fb8cfffec274db"><span class="std std-ref">f_real_function</span></a><span></span> <span class="k">const</span> <span class="n">f</span><span class="p">,</span>
+    <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga82b306c684e81ecbbb813970d7b94181"><span class="std std-ref">s_interval</span></a><span></span> <span class="k">const</span> <span class="n">domain</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">step</span>
+    <span class="p">);</span>
+
+<a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga19bf580ff58ac7a45ee63a95166ad516"><span></span><span class="n">c_mc_integrate_1d</span></span><span></span><span class="p">(</span>
+    <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga5186df6923414fa8e710d6138a4e9157"><span class="std std-ref">f_scalar_func1</span></a><span></span> <span class="k">const</span> <span class="n">sf</span><span class="p">,</span>
+    <a class="reference internal" href="#doxid-group-libccc-math-algebra-1gadb6b08b307919bc48d921e79aa004b93"><span class="std std-ref">s_box1d</span></a><span></span> <span class="k">const</span> <span class="n">domain</span>
+    <span class="p">);</span>
+
+<a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga04d47a97e05bc0347837113e76700ac3"><span></span><span class="n">c_mc_integrate_2d</span></span><span></span><span class="p">(</span>
+    <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga39a31ee739e0aceb11e2a390af338029"><span class="std std-ref">f_scalar_func2</span></a><span></span> <span class="k">const</span> <span class="n">sf</span><span class="p">,</span>
+    <a class="reference internal" href="#doxid-group-libccc-math-algebra-1gafcb81fc851bfae0578b297ac8477b25a"><span class="std std-ref">s_box2d</span></a><span></span> <span class="k">const</span> <span class="n">domain</span>
+    <span class="p">);</span>
+
+<a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga1a8902ae51f38c814943652f48bbcf26"><span></span><span class="n">c_mc_integrate_3d</span></span><span></span><span class="p">(</span>
+    <a class="reference internal" href="#doxid-group-libccc-math-algebra-1gae3398253d21b78a68d2584373129c369"><span class="std std-ref">f_scalar_func3</span></a><span></span> <span class="k">const</span> <span class="n">sf</span><span class="p">,</span>
+    <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga4130a529bc1547e9d148b2201d454338"><span class="std std-ref">s_box3d</span></a><span></span> <span class="k">const</span> <span class="n">domain</span>
+    <span class="p">);</span>
+
+<a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga6c8e631b817dc69213556c2a8a867556"><span></span><span class="n">c_mc_integrate_4d</span></span><span></span><span class="p">(</span>
+    <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga0611ee62bac265eba119d2f622ed69fd"><span class="std std-ref">f_scalar_func4</span></a><span></span> <span class="k">const</span> <span class="n">sf</span><span class="p">,</span>
+    <a class="reference internal" href="#doxid-group-libccc-math-algebra-1gafc0fef08aa121fe8d59f8d0d0a8fc25d"><span class="std std-ref">s_box4d</span></a><span></span> <span class="k">const</span> <span class="n">domain</span>
+    <span class="p">);</span>
+
+<a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga2d9ac99a1eb427fb14eb0054b895e92a"><span></span><span class="n">c_distance_float</span></span><span></span><span class="p">(</span>
+    <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">x</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">y</span>
+    <span class="p">);</span>
+
+<a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1gab4ca326c12ad2a26dbfe81c3d798bcdf"><span class="std std-ref">t_f32</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga50979520ab14e404f999f4fd31c9ff4d"><span></span><span class="n">c_distance_f32</span></span><span></span><span class="p">(</span>
+    <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1gab4ca326c12ad2a26dbfe81c3d798bcdf"><span class="std std-ref">t_f32</span></a><span></span> <span class="n">x</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1gab4ca326c12ad2a26dbfe81c3d798bcdf"><span class="std std-ref">t_f32</span></a><span></span> <span class="n">y</span>
+    <span class="p">);</span>
+
+<a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1gad103913585e225d474d7bd173154f4e8"><span class="std std-ref">t_f64</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga8a9827d3b09dbf2063e57bdee084de76"><span></span><span class="n">c_distance_f64</span></span><span></span><span class="p">(</span>
+    <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1gad103913585e225d474d7bd173154f4e8"><span class="std std-ref">t_f64</span></a><span></span> <span class="n">x</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1gad103913585e225d474d7bd173154f4e8"><span class="std std-ref">t_f64</span></a><span></span> <span class="n">y</span>
+    <span class="p">);</span>
+
+<a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga0cbd23836133c29bed9a983fdff733c8"><span class="std std-ref">t_uint</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1gace8f873f8324c8b5a0fa6fd6788bea20"><span></span><span class="n">c_distance_uint</span></span><span></span><span class="p">(</span>
+    <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga0cbd23836133c29bed9a983fdff733c8"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">x</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga0cbd23836133c29bed9a983fdff733c8"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">y</span>
+    <span class="p">);</span>
+
+<span class="n">t_u8</span> <span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga560024e1c942a34490cc39888118a11d"><span></span><span class="n">c_distance_u8</span></span><span></span><span class="p">(</span>
+    <span class="n">t_u8</span> <span class="n">x</span><span class="p">,</span>
+    <span class="n">t_u8</span> <span class="n">y</span>
+    <span class="p">);</span>
+
+<span class="n">t_u16</span> <span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga26d3f6b9de3fe79bb79d588de6697978"><span></span><span class="n">c_distance_u16</span></span><span></span><span class="p">(</span>
+    <span class="n">t_u16</span> <span class="n">x</span><span class="p">,</span>
+    <span class="n">t_u16</span> <span class="n">y</span>
+    <span class="p">);</span>
+
+<span class="n">t_u32</span> <span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga4430f9167616ab94bce5cb15f2520222"><span></span><span class="n">c_distance_u32</span></span><span></span><span class="p">(</span>
+    <span class="n">t_u32</span> <span class="n">x</span><span class="p">,</span>
+    <span class="n">t_u32</span> <span class="n">y</span>
+    <span class="p">);</span>
+
+<span class="n">t_u64</span> <span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga3966deb12f376ee15a3082cafd784bbe"><span></span><span class="n">c_distance_u64</span></span><span></span><span class="p">(</span>
+    <span class="n">t_u64</span> <span class="n">x</span><span class="p">,</span>
+    <span class="n">t_u64</span> <span class="n">y</span>
+    <span class="p">);</span>
+
+<a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1gad9b833ec2906279e4f479df31778732a"><span class="std std-ref">t_sint</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga9c87bf7e1eeee701a8c0cb58cdf64874"><span></span><span class="n">c_distance_int</span></span><span></span><span class="p">(</span>
+    <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1gad9b833ec2906279e4f479df31778732a"><span class="std std-ref">t_sint</span></a><span></span> <span class="n">x</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1gad9b833ec2906279e4f479df31778732a"><span class="std std-ref">t_sint</span></a><span></span> <span class="n">y</span>
+    <span class="p">);</span>
+
+<span class="n">t_s8</span> <span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga6dfa16a4bda42255ca5920cf5d9f0bee"><span></span><span class="n">c_distance_s8</span></span><span></span><span class="p">(</span>
+    <span class="n">t_s8</span> <span class="n">x</span><span class="p">,</span>
+    <span class="n">t_s8</span> <span class="n">y</span>
+    <span class="p">);</span>
+
+<span class="n">t_s16</span> <span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1gace24a9c452e0814f0c6a621a9097c960"><span></span><span class="n">c_distance_s16</span></span><span></span><span class="p">(</span>
+    <span class="n">t_s16</span> <span class="n">x</span><span class="p">,</span>
+    <span class="n">t_s16</span> <span class="n">y</span>
+    <span class="p">);</span>
+
+<span class="n">t_s32</span> <span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga1663941e5c86968e4c2f66aaa350cc55"><span></span><span class="n">c_distance_s32</span></span><span></span><span class="p">(</span>
+    <span class="n">t_s32</span> <span class="n">x</span><span class="p">,</span>
+    <span class="n">t_s32</span> <span class="n">y</span>
+    <span class="p">);</span>
+
+<span class="n">t_s64</span> <span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga4d7c6535f661fc7d2adc1b25e8e64994"><span></span><span class="n">c_distance_s64</span></span><span></span><span class="p">(</span>
+    <span class="n">t_s64</span> <span class="n">x</span><span class="p">,</span>
+    <span class="n">t_s64</span> <span class="n">y</span>
+    <span class="p">);</span>
+
+<span class="c1">// macros</span>
+
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga90f958af046eebe3216698b9fce0a7dc"><span class="std std-ref">MATRIX2D_IDENTITY</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga2ed93ff72727954c574ed9e48ba46565"><span class="std std-ref">MATRIX2D_NULL</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga67cc134dce42525818c4823bcbf43a29"><span class="std std-ref">MATRIX2D_ROTATE</span></a><span></span><span class="p">(</span><span class="n">ANGLE</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga25e459d60b1841201d61ef1115bad16e"><span class="std std-ref">MATRIX3D_IDENTITY</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga40164130e17289325e86fd135ba9c891"><span class="std std-ref">MATRIX3D_NULL</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1gaf7d31ca6447e1a4519e754da123214b9"><span class="std std-ref">MATRIX3D_ROTATE_X</span></a><span></span><span class="p">(</span><span class="n">ANGLE</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga59a6162e5b8ee5add64834050cdfa862"><span class="std std-ref">MATRIX3D_ROTATE_Y</span></a><span></span><span class="p">(</span><span class="n">ANGLE</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga82d255fb0fe99483c7a4236f8c051a7e"><span class="std std-ref">MATRIX3D_ROTATE_Z</span></a><span></span><span class="p">(</span><span class="n">ANGLE</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1gaa4d48a88d9c0da5ad737130e3be5547d"><span class="std std-ref">MATRIX4D_IDENTITY</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8652b26eecf16d846d89c2ff5854094a"><span class="std std-ref">MATRIX4D_NULL</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga330b1c1e46d6dc9f042c6907d8d46c34"><span></span><span class="n">Vector2D_DotProduct</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1gae2df14810c2cf02b6af19daca7b2a232"><span></span><span class="n">Vector2D_InnerProduct</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga06f5a2bf43d30498cb42a576a9bb2515"><span></span><span class="n">Vector2D_Length</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1gae877090474dc081ea3f5a580eb657af0"><span></span><span class="n">Vector2D_Magnitude</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga7c2c7dddd5e80d59f74a134dce516a70"><span></span><span class="n">Vector2D_ScalarProduct</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga2b5e2e75b6a292f301d13dbc990b2f33"><span></span><span class="n">Vector3D_CrossProduct</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga0d3e1802c62c615d5755ae2fbdc1fb3d"><span></span><span class="n">Vector3D_DotProduct</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga4f9848275913d3535f567409a887bb6a"><span></span><span class="n">Vector3D_InnerProduct</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga3f1fcf83da5e7b607c55eb55235ad604"><span></span><span class="n">Vector3D_Length</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga7b85410e52acabe3d35dd653efafa4b8"><span></span><span class="n">Vector3D_Magnitude</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga3da202fd40d661c85562731b993cc34b"><span></span><span class="n">Vector3D_OuterProduct</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1gaf8f60b32ab1f97052be7a3c06d364bf8"><span></span><span class="n">Vector3D_ScalarProduct</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1gac45e7599211ffda2b59fbfab66a5ae32"><span></span><span class="n">Vector3D_VectorProduct</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga967aeae812596f4b555f3c111c827073"><span></span><span class="n">c_mat2apply</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1gaaaad9c6a73d61ad8d9ac07098db8194c"><span></span><span class="n">c_mat2determ</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga8357b975751665bea30d78652c92686e"><span></span><span class="n">c_mat2equ</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga28f3d9e2e69d704e03212be59ee669fb"><span></span><span class="n">c_mat2inverse</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1gae63fca97a13056e1329593b78e2826a3"><span></span><span class="n">c_mat2mult</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1gaf30ecaf0ac9ce90077b590bbdd478e45"><span></span><span class="n">c_mat2new</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1gab9816fab16cb5376ba12f55eee9c9e5f"><span></span><span class="n">c_mat2transp</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga892895f6c8398aa004d866e6fa76dff6"><span></span><span class="n">c_mat3apply</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1gafb0b19b3a124d30d9580d45128f910ab"><span></span><span class="n">c_mat3determ</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga0b7cf40950ec2b96a4c3b463391e0eaa"><span></span><span class="n">c_mat3equ</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga9fef098e7d96b53a9239105811e08cd3"><span></span><span class="n">c_mat3inverse</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga9a021c61bb3d2445e0252722aa9fbf38"><span></span><span class="n">c_mat3mult</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga7f69dab13bc5fcd2a07868a144e7cf21"><span></span><span class="n">c_mat3new</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1gab9e0ca1fe23b2b9fb2803980ed3e6354"><span></span><span class="n">c_mat3transp</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1gaa4a94b4d5987d8ca592087c65978bef0"><span></span><span class="n">c_vec2add</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1gae720bd2991597094d19be4f012e89914"><span></span><span class="n">c_vec2dot</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1gaf027810455d6eda23895194d14376436"><span></span><span class="n">c_vec2equ</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga0866c930ecad0d8b8d022bc997e65ad4"><span></span><span class="n">c_vec2invert</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga217f2a0f0d83e6b50172d0eba12e505f"><span></span><span class="n">c_vec2new</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga7bf6867c53ed91cca29c6e2630e3c45a"><span></span><span class="n">c_vec2norm</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga9c3c3dd96beb6a33a5f0c5f7abb51d2c"><span></span><span class="n">c_vec2normalize</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga79e7664aa764c17d9925796e5d55958a"><span></span><span class="n">c_vec2scale</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1gace4f3d591351f8645bbda0ffd6bdd53c"><span></span><span class="n">c_vec3add</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1gab9457adaf10e344633eafc21205991e0"><span></span><span class="n">c_vec3cross</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga7892d54f7b5c8ba63a017087b2b384a3"><span></span><span class="n">c_vec3dot</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga8b0b25a33af3660923cef10432a8498b"><span></span><span class="n">c_vec3equ</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1gae43eee3299aa68172964bb838e895c82"><span></span><span class="n">c_vec3invert</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1gab3754d6913e2e6870a0db6b019050be3"><span></span><span class="n">c_vec3new</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga55c94afa7d8ec34a286b0bbb2d61204c"><span></span><span class="n">c_vec3norm</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1ga18478a623701ef2c11c1e74f0a017c9e"><span></span><span class="n">c_vec3normalize</span></span><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-algebra-1gabed5672ef625b0a9bd90d657ce058404"><span></span><span class="n">c_vec3scale</span></span></pre>
+</div>
+<div class="section" id="detailed-documentation">
+<span id="details-group-libccc-math-algebra"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline">¶</a></h2>
+<p>This header defines useful algebra and calculus types, and functions.</p>
+<div class="section" id="typedefs">
+<h3>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga55a5111538414b501fd622a1b1abb7c3"><span id="index-1"></span><span></span><span class="k">typedef</span> <span class="k">struct</span> <a class="reference internal" href="struct_s_vector2d_.html#doxid-structs-vector2d"><span class="std std-ref">s_vector2d_</span></a><span></span> <span class="n">s_vector2d</span></pre>
+<p>A simple vector struct for storing 2-dimensional values.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga39ec4e36d8f079981faa26a263e209c7"><span id="index-2"></span><span></span><span class="k">typedef</span> <span class="k">union</span> <a class="reference internal" href="union_u_vector2d_.html#doxid-unionu-vector2d"><span class="std std-ref">u_vector2d_</span></a><span></span> <span class="n">u_vector2d</span></pre>
+<p>This union stores a 2-dimensional value which can be accessed in several ways.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span id="index-3"></span><span></span><span class="k">typedef</span> <span class="k">struct</span> <a class="reference internal" href="struct_s_vector3d_.html#doxid-structs-vector3d"><span class="std std-ref">s_vector3d_</span></a><span></span> <span class="n">s_vector3d</span></pre>
+<p>A simple vector struct for storing 3-dimensional values.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga901447e6cefb11f55d62b737653f7b2e"><span id="index-4"></span><span></span><span class="k">typedef</span> <span class="k">union</span> <a class="reference internal" href="union_u_vector3d_.html#doxid-unionu-vector3d"><span class="std std-ref">u_vector3d_</span></a><span></span> <span class="n">u_vector3d</span></pre>
+<p>This union stores a 3-dimensional value which can be accessed in several ways.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga89be66648e8af6bb9538e9fd0e879939"><span id="index-5"></span><span></span><span class="k">typedef</span> <span class="k">struct</span> <a class="reference internal" href="struct_s_vector4d_.html#doxid-structs-vector4d"><span class="std std-ref">s_vector4d_</span></a><span></span> <span class="n">s_vector4d</span></pre>
+<p>A simple vector struct for storing 4-dimensional values.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga2de1f4c8060962be9732b2a7d5845bc5"><span id="index-6"></span><span></span><span class="k">typedef</span> <span class="k">union</span> <a class="reference internal" href="union_u_vector4d_.html#doxid-unionu-vector4d"><span class="std std-ref">u_vector4d_</span></a><span></span> <span class="n">u_vector4d</span></pre>
+<p>This union stores a 4-dimensional value which can be accessed in several ways.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1gac05a16c9f65c17c96d650a1637d8db0b"><span id="index-7"></span><span></span><span class="k">typedef</span> <span class="k">struct</span> <a class="reference internal" href="struct_s_matrix2d_.html#doxid-structs-matrix2d"><span class="std std-ref">s_matrix2d_</span></a><span></span> <span class="n">s_matrix2d</span></pre>
+<p>A simple struct which stores a 2x2 matrix of real numbers, arranged in 2 rows of 2D vectors.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1gaf49b74a8dabdd258959147df39364817"><span id="index-8"></span><span></span><span class="k">typedef</span> <span class="k">union</span> <a class="reference internal" href="union_u_matrix2d_.html#doxid-unionu-matrix2d"><span class="std std-ref">u_matrix2d_</span></a><span></span> <span class="n">u_matrix2d</span></pre>
+<p>This union stores a 2x2 matrix which can be accessed in several ways.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga8d40f15df6a34d69d9fe6890695242e8"><span id="index-9"></span><span></span><span class="k">typedef</span> <span class="k">struct</span> <a class="reference internal" href="struct_s_matrix3d_.html#doxid-structs-matrix3d"><span class="std std-ref">s_matrix3d_</span></a><span></span> <span class="n">s_matrix3d</span></pre>
+<p>A simple struct which stores a 3x3 matrix of real numbers, arranged in 3 rows of 3D vectors.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga0b14ffe0e6c8ecc9fa11c6c6681faedd"><span id="index-10"></span><span></span><span class="k">typedef</span> <span class="k">union</span> <a class="reference internal" href="union_u_matrix3d_.html#doxid-unionu-matrix3d"><span class="std std-ref">u_matrix3d_</span></a><span></span> <span class="n">u_matrix3d</span></pre>
+<p>This union stores a 3x3 matrix which can be accessed in several ways.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1gadf4624c9c8fe53b94307cc209d2503d7"><span id="index-11"></span><span></span><span class="k">typedef</span> <span class="k">struct</span> <a class="reference internal" href="struct_s_matrix4d_.html#doxid-structs-matrix4d"><span class="std std-ref">s_matrix4d_</span></a><span></span> <span class="n">s_matrix4d</span></pre>
+<p>A simple struct which stores a 4x4 matrix of real numbers, arranged in 3 rows of 3D vectors.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga8a183a5cf3a58fcac744c9787aa54c23"><span id="index-12"></span><span></span><span class="k">typedef</span> <span class="k">union</span> <a class="reference internal" href="union_u_matrix4d_.html#doxid-unionu-matrix4d"><span class="std std-ref">u_matrix4d_</span></a><span></span> <span class="n">u_matrix4d</span></pre>
+<p>This union stores a 4x4 matrix which can be accessed in several ways.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1gadb6b08b307919bc48d921e79aa004b93"><span id="index-13"></span><span></span><span class="k">typedef</span> <span class="k">struct</span> <a class="reference internal" href="struct_s_box1d_.html#doxid-structs-box1d"><span class="std std-ref">s_box1d_</span></a><span></span> <span class="n">s_box1d</span></pre>
+<p>A 1-dimensional interval of coordinates, defined by two corner-point vectors.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1gafcb81fc851bfae0578b297ac8477b25a"><span id="index-14"></span><span></span><span class="k">typedef</span> <span class="k">struct</span> <a class="reference internal" href="struct_s_box2d_.html#doxid-structs-box2d"><span class="std std-ref">s_box2d_</span></a><span></span> <span class="n">s_box2d</span></pre>
+<p>A 2-dimensional area of coordinates, defined by two corner-point vectors.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga4130a529bc1547e9d148b2201d454338"><span id="index-15"></span><span></span><span class="k">typedef</span> <span class="k">struct</span> <a class="reference internal" href="struct_s_box3d_.html#doxid-structs-box3d"><span class="std std-ref">s_box3d_</span></a><span></span> <span class="n">s_box3d</span></pre>
+<p>A 3-dimensional volume of coordinates, defined by two corner-point vectors.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1gafc0fef08aa121fe8d59f8d0d0a8fc25d"><span id="index-16"></span><span></span><span class="k">typedef</span> <span class="k">struct</span> <a class="reference internal" href="struct_s_box4d_.html#doxid-structs-box4d"><span class="std std-ref">s_box4d_</span></a><span></span> <span class="n">s_box4d</span></pre>
+<p>A 4-dimensional hypervolume of coordinates, defined by two corner-point vectors.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga82b306c684e81ecbbb813970d7b94181"><span id="index-17"></span><span></span><span class="k">typedef</span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1gadb6b08b307919bc48d921e79aa004b93"><span class="std std-ref">s_box1d</span></a><span></span> <span class="n">s_interval</span></pre>
+<p>An interval/range, defined by a ‘start’ number and ‘end’ number.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga5186df6923414fa8e710d6138a4e9157"><span id="index-18"></span><span></span><span class="k">typedef</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="p">(</span><span class="o">*</span><span class="n">f_scalar_func1</span><span class="p">)(</span><span class="n">t_float</span> <span class="k">const</span> <span class="n">v</span><span class="p">)</span></pre>
+<p>The type of function which takes a 1-dimensional vector as input, and returns a real number.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga39a31ee739e0aceb11e2a390af338029"><span id="index-19"></span><span></span><span class="k">typedef</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="p">(</span><span class="o">*</span><span class="n">f_scalar_func2</span><span class="p">)(</span><span class="n">u_vector2d</span> <span class="k">const</span> <span class="n">v</span><span class="p">)</span></pre>
+<p>The type of function which takes a 2-dimensional vector as input, and returns a real number.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1gae3398253d21b78a68d2584373129c369"><span id="index-20"></span><span></span><span class="k">typedef</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="p">(</span><span class="o">*</span><span class="n">f_scalar_func3</span><span class="p">)(</span><span class="n">u_vector3d</span> <span class="k">const</span> <span class="n">v</span><span class="p">)</span></pre>
+<p>The type of function which takes a 3-dimensional vector as input, and returns a real number.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga0611ee62bac265eba119d2f622ed69fd"><span id="index-21"></span><span></span><span class="k">typedef</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="p">(</span><span class="o">*</span><span class="n">f_scalar_func4</span><span class="p">)(</span><span class="n">u_vector4d</span> <span class="k">const</span> <span class="n">v</span><span class="p">)</span></pre>
+<p>The type of function which takes a 4-dimensional vector as input, and returns a real number.</p>
+</div>
+<div class="section" id="global-functions">
+<h3>Global Functions<a class="headerlink" href="#global-functions" title="Permalink to this headline">¶</a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1gaaa6b56dc8a5f5f41eac22ad094fe6e7c"><span id="index-22"></span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga55a5111538414b501fd622a1b1abb7c3"><span class="std std-ref">s_vector2d</span></a><span></span><span class="o">*</span> <span class="n">Vector2D_New</span><span class="p">(</span><a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">x</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">y</span><span class="p">)</span></pre>
+<p>Allocates a new vector struct on heap, setting the given coordinates.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga459392d82670f7b684a5b3fd0fa03d9b"><span id="index-23"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaf15d2c7169c336f97175a2e218d22e73"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">Vector2D_Equals</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga55a5111538414b501fd622a1b1abb7c3"><span class="std std-ref">s_vector2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">v1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga55a5111538414b501fd622a1b1abb7c3"><span class="std std-ref">s_vector2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">v2</span><span class="p">)</span></pre>
+<p>Returns TRUE if the two given vectors are equal (all their values are identical)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga3c3d174c960141b402a25e9565c32b5b"><span id="index-24"></span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga55a5111538414b501fd622a1b1abb7c3"><span class="std std-ref">s_vector2d</span></a><span></span> <span class="n">Vector2D_Scale</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga55a5111538414b501fd622a1b1abb7c3"><span class="std std-ref">s_vector2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">vector</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">scale</span><span class="p">)</span></pre>
+<p>Scales the given ‘vector’ by a factor of ‘scale’.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga3eec430283c743c4bbce294438f4f30d"><span id="index-25"></span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga55a5111538414b501fd622a1b1abb7c3"><span class="std std-ref">s_vector2d</span></a><span></span> <span class="n">Vector2D_Invert</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga55a5111538414b501fd622a1b1abb7c3"><span class="std std-ref">s_vector2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">vector</span><span class="p">)</span></pre>
+<p>Inverts the sign of the coordinates of the given ‘vector’.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1gaacf74cabafe79db0c013cc4a44e5c83e"><span id="index-26"></span><a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">Vector2D_Norm</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga55a5111538414b501fd622a1b1abb7c3"><span class="std std-ref">s_vector2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">vector</span><span class="p">)</span></pre>
+<p>Returns the norm/magnitude of the given ‘vector’, squared (call sqrt to get the real norm)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga220df5d71664afa5505cb31f67e3a8be"><span id="index-27"></span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga55a5111538414b501fd622a1b1abb7c3"><span class="std std-ref">s_vector2d</span></a><span></span> <span class="n">Vector2D_Normalize</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga55a5111538414b501fd622a1b1abb7c3"><span class="std std-ref">s_vector2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">vector</span><span class="p">)</span></pre>
+<p>Makes the norm/magnitude of the given ‘vector’ become 1 (without changing its direction)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1gadc556ca0df7925365ab22adbaf17ab32"><span id="index-28"></span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga55a5111538414b501fd622a1b1abb7c3"><span class="std std-ref">s_vector2d</span></a><span></span> <span class="n">Vector2D_Add</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga55a5111538414b501fd622a1b1abb7c3"><span class="std std-ref">s_vector2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">v1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga55a5111538414b501fd622a1b1abb7c3"><span class="std std-ref">s_vector2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">v2</span><span class="p">)</span></pre>
+<p>Returns the sum of the two given vectors (adding each of their coordinates together)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1gabcd7974539b1a879aca32982abb8e949"><span id="index-29"></span><a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">Vector2D_Dot</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga55a5111538414b501fd622a1b1abb7c3"><span class="std std-ref">s_vector2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">v1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga55a5111538414b501fd622a1b1abb7c3"><span class="std std-ref">s_vector2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">v2</span><span class="p">)</span></pre>
+<p>Returns the dot/scalar product of the two given vectors (the sum of their multiplied coordinates)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1gabf0428647a4b74154cff1337d6b531e7"><span id="index-30"></span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span><span class="o">*</span> <span class="n">Vector3D_New</span><span class="p">(</span><a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">x</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">y</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">z</span><span class="p">)</span></pre>
+<p>Allocates a new vector struct on heap, setting the given coordinates.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1gad61cb77a0bdeb905ae240a9d12bcaaa8"><span id="index-31"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaf15d2c7169c336f97175a2e218d22e73"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">Vector3D_Equals</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">v1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">v2</span><span class="p">)</span></pre>
+<p>Returns TRUE if the two given vectors are equal (all their values are identical)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga4e613778de85a35551be205d83d44cdc"><span id="index-32"></span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <span class="n">Vector3D_Scale</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">vector</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">scale</span><span class="p">)</span></pre>
+<p>Scales the given ‘vector’ by a factor of ‘scale’.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga1a9aa0b879cbd8502a5e56f26f6cb4ac"><span id="index-33"></span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <span class="n">Vector3D_Invert</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">vector</span><span class="p">)</span></pre>
+<p>Inverts the sign of the coordinates of the given ‘vector’.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga1686feae7339512f6c1abb14ae1cc02f"><span id="index-34"></span><a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">Vector3D_Norm</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">vector</span><span class="p">)</span></pre>
+<p>Returns the norm/magnitude of the given ‘vector’, squared (call sqrt to get the real norm)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga04082858e2a1e503f3d4f7e9e4bc5731"><span id="index-35"></span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <span class="n">Vector3D_Normalize</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">vector</span><span class="p">)</span></pre>
+<p>Makes the norm/magnitude of the given ‘vector’ become 1 (without changing its direction)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1gaeed9b6075432ef20f03f7b4a551fef44"><span id="index-36"></span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <span class="n">Vector3D_Add</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">v1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">v2</span><span class="p">)</span></pre>
+<p>Returns the sum of the two given vectors (adding each of their coordinates together)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga4865f0ac8756cf233c88ee5a1a96847b"><span id="index-37"></span><a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">Vector3D_Dot</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">v1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">v2</span><span class="p">)</span></pre>
+<p>Returns the dot/scalar product of the two given vectors (the sum of their multiplied coordinates)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga3c73af7f79eddd761b38d64119c51f82"><span id="index-38"></span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <span class="n">Vector3D_Cross</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">v1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">v2</span><span class="p">)</span></pre>
+<p>Returns the cross/vector product of the two given vectors (the vector which is perpendicular to both)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1gac8a75fd0af89d218db0007a91041469c"><span id="index-39"></span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1gac05a16c9f65c17c96d650a1637d8db0b"><span class="std std-ref">s_matrix2d</span></a><span></span><span class="o">*</span> <span class="n">Matrix2D_New</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga55a5111538414b501fd622a1b1abb7c3"><span class="std std-ref">s_vector2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">u</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga55a5111538414b501fd622a1b1abb7c3"><span class="std std-ref">s_vector2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">v</span><span class="p">)</span></pre>
+<p>Allocates a new matrix struct on heap, setting its values from the given vectors.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga39a2c65c8b687d07500bed4676a4409a"><span id="index-40"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaf15d2c7169c336f97175a2e218d22e73"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">Matrix2D_Equals</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1gac05a16c9f65c17c96d650a1637d8db0b"><span class="std std-ref">s_matrix2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">m1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1gac05a16c9f65c17c96d650a1637d8db0b"><span class="std std-ref">s_matrix2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">m2</span><span class="p">)</span></pre>
+<p>Returns TRUE if the two given matrices are equal (all their values are identical)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga72942691a1aeb7603021373b8830a63c"><span id="index-41"></span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga55a5111538414b501fd622a1b1abb7c3"><span class="std std-ref">s_vector2d</span></a><span></span> <span class="n">Matrix2D_Apply</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1gac05a16c9f65c17c96d650a1637d8db0b"><span class="std std-ref">s_matrix2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">matrix</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga55a5111538414b501fd622a1b1abb7c3"><span class="std std-ref">s_vector2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">vector</span><span class="p">)</span></pre>
+<p>Applies the transformation stored by the given ‘matrix’ onto the given ‘vector’ and returns it.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga2235669c2f1db58804c97462dc09610b"><span id="index-42"></span><a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">Matrix2D_Determinant</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1gac05a16c9f65c17c96d650a1637d8db0b"><span class="std std-ref">s_matrix2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">matrix</span><span class="p">)</span></pre>
+<p>Returns the determinant value for the given ‘matrix’.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga5db4047001297a4c87d5fd6af281b1ad"><span id="index-43"></span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1gac05a16c9f65c17c96d650a1637d8db0b"><span class="std std-ref">s_matrix2d</span></a><span></span> <span class="n">Matrix2D_Inverse</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1gac05a16c9f65c17c96d650a1637d8db0b"><span class="std std-ref">s_matrix2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">matrix</span><span class="p">)</span></pre>
+<p>Changes the values of the given ‘matrix’ to those of its inverse matrix.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1gab15f5d4967009d51bff3bc21ff408d46"><span id="index-44"></span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1gac05a16c9f65c17c96d650a1637d8db0b"><span class="std std-ref">s_matrix2d</span></a><span></span> <span class="n">Matrix2D_Transpose</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1gac05a16c9f65c17c96d650a1637d8db0b"><span class="std std-ref">s_matrix2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">matrix</span><span class="p">)</span></pre>
+<p>Returns the transpose the given ‘matrix’, flipping its values across its diagonal.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga1ffbe95ddd05575c7acc0662360e323a"><span id="index-45"></span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1gac05a16c9f65c17c96d650a1637d8db0b"><span class="std std-ref">s_matrix2d</span></a><span></span> <span class="n">Matrix2D_Multiply</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1gac05a16c9f65c17c96d650a1637d8db0b"><span class="std std-ref">s_matrix2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">m1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1gac05a16c9f65c17c96d650a1637d8db0b"><span class="std std-ref">s_matrix2d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">m2</span><span class="p">)</span></pre>
+<p>Performs a matrix multiplication on the two given matrices ‘m1’ and ‘m2’.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga29e12eb08e6b0a2bfe8b3a52d10368d5"><span id="index-46"></span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8d40f15df6a34d69d9fe6890695242e8"><span class="std std-ref">s_matrix3d</span></a><span></span><span class="o">*</span> <span class="n">Matrix3D_New</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">u</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">w</span><span class="p">)</span></pre>
+<p>Allocates a new matrix struct on heap, setting its values from the given vectors.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1gab0e5cb0b5dc3552100bc01685ae2e922"><span id="index-47"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaf15d2c7169c336f97175a2e218d22e73"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">Matrix3D_Equals</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8d40f15df6a34d69d9fe6890695242e8"><span class="std std-ref">s_matrix3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">m1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8d40f15df6a34d69d9fe6890695242e8"><span class="std std-ref">s_matrix3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">m2</span><span class="p">)</span></pre>
+<p>Returns TRUE if the two given matrices are equal (all their values are identical)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1gaab33e892a9167898922dd72bce3dcafe"><span id="index-48"></span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <span class="n">Matrix3D_Apply</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8d40f15df6a34d69d9fe6890695242e8"><span class="std std-ref">s_matrix3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">matrix</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8ffe1b855e6b8a55900252bb0d57e403"><span class="std std-ref">s_vector3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">vector</span><span class="p">)</span></pre>
+<p>Applies the transformation stored by the given ‘matrix’ onto the given ‘vector’ and returns it.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga6ecd84a206c2a115cb3ac4a38b12089a"><span id="index-49"></span><a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">Matrix3D_Determinant</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8d40f15df6a34d69d9fe6890695242e8"><span class="std std-ref">s_matrix3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">matrix</span><span class="p">)</span></pre>
+<p>Returns the determinant value for the given ‘matrix’.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga2b251ff544dfb49994204f8ec6b26b15"><span id="index-50"></span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8d40f15df6a34d69d9fe6890695242e8"><span class="std std-ref">s_matrix3d</span></a><span></span> <span class="n">Matrix3D_Inverse</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8d40f15df6a34d69d9fe6890695242e8"><span class="std std-ref">s_matrix3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">matrix</span><span class="p">)</span></pre>
+<p>Changes the values of the given ‘matrix’ to those of its inverse matrix.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga2dd332869f5605b52fdd839f557436d2"><span id="index-51"></span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8d40f15df6a34d69d9fe6890695242e8"><span class="std std-ref">s_matrix3d</span></a><span></span> <span class="n">Matrix3D_Transpose</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8d40f15df6a34d69d9fe6890695242e8"><span class="std std-ref">s_matrix3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">matrix</span><span class="p">)</span></pre>
+<p>Returns the transpose the given ‘matrix’, flipping its values across its diagonal.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga65eafbfec4172e277902bbd69cb5c0c8"><span id="index-52"></span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8d40f15df6a34d69d9fe6890695242e8"><span class="std std-ref">s_matrix3d</span></a><span></span> <span class="n">Matrix3D_Multiply</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8d40f15df6a34d69d9fe6890695242e8"><span class="std std-ref">s_matrix3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">m1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-algebra-1ga8d40f15df6a34d69d9fe6890695242e8"><span class="std std-ref">s_matrix3d</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">m2</span><span class="p">)</span></pre>
+<p>Performs a matrix multiplication on the two given matrices ‘m1’ and ‘m2’.</p>
+</div>
+<div class="section" id="macros">
+<h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga90f958af046eebe3216698b9fce0a7dc"><span id="index-53"></span><span></span><span class="cp">#define MATRIX2D_IDENTITY</span></pre>
+<p>A 2-dimensional matrix which is neutral (does nothing) when applied/multiplied.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga2ed93ff72727954c574ed9e48ba46565"><span id="index-54"></span><span></span><span class="cp">#define MATRIX2D_NULL</span></pre>
+<p>A 2-dimensional matrix in which every number is zero.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga67cc134dce42525818c4823bcbf43a29"><span id="index-55"></span><span></span><span class="cp">#define MATRIX2D_ROTATE(ANGLE)</span></pre>
+<p>A 2-dimensional matrix which, when applied, rotates a vector by the given ‘ANGLE’.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga25e459d60b1841201d61ef1115bad16e"><span id="index-56"></span><span></span><span class="cp">#define MATRIX3D_IDENTITY</span></pre>
+<p>A 3-dimensional matrix which is neutral (does nothing) when applied/multiplied.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga40164130e17289325e86fd135ba9c891"><span id="index-57"></span><span></span><span class="cp">#define MATRIX3D_NULL</span></pre>
+<p>A 3-dimensional matrix in which every number is zero.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1gaf7d31ca6447e1a4519e754da123214b9"><span id="index-58"></span><span></span><span class="cp">#define MATRIX3D_ROTATE_X(ANGLE)</span></pre>
+<p>A 3-dimensional matrix which, when applied, rotates a vector about the X axis by the given ‘ANGLE’.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga59a6162e5b8ee5add64834050cdfa862"><span id="index-59"></span><span></span><span class="cp">#define MATRIX3D_ROTATE_Y(ANGLE)</span></pre>
+<p>A 3-dimensional matrix which, when applied, rotates a vector about the Y axis by the given ‘ANGLE’.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga82d255fb0fe99483c7a4236f8c051a7e"><span id="index-60"></span><span></span><span class="cp">#define MATRIX3D_ROTATE_Z(ANGLE)</span></pre>
+<p>A 3-dimensional matrix which, when applied, rotates a vector about the Z axis by the given ‘ANGLE’.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1gaa4d48a88d9c0da5ad737130e3be5547d"><span id="index-61"></span><span></span><span class="cp">#define MATRIX4D_IDENTITY</span></pre>
+<p>A 4-dimensional matrix which is neutral (does nothing) when applied/multiplied.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-algebra-1ga8652b26eecf16d846d89c2ff5854094a"><span id="index-62"></span><span></span><span class="cp">#define MATRIX4D_NULL</span></pre>
+<p>A 4-dimensional matrix in which every number is zero.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="struct_s_box1d_.html" class="btn btn-neutral float-right" title="struct s_box1d_" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="group_libccc_math_random.html" class="btn btn-neutral float-left" title="18) libccc/math/random" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright FREE
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

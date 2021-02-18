@@ -1,0 +1,57 @@
+.. index:: pair: union; u_vector2d_
+.. _doxid-unionu__vector2d__:
+
+union u_vector2d\_
+==================
+
+.. toctree::
+	:hidden:
+
+Overview
+~~~~~~~~
+
+This union stores a 2-dimensional value which can be accessed in several ways. :ref:`More...<details-unionu__vector2d__>`
+
+
+.. ref-code-block:: cpp
+	:class: doxyrest-overview-code-block
+
+	#include <algebra.h>
+	
+	union u_vector2d_
+	{
+		// fields
+	
+		:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` :ref:`values<doxid-unionu__vector2d___1ac20343d2fa97d985bb7126956d63e337>`[2];
+		:ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>` :ref:`vector<doxid-unionu__vector2d___1a9410e9e60f19a3d3dd7ef579edb884a6>`;
+	};
+.. _details-unionu__vector2d__:
+
+Detailed Documentation
+~~~~~~~~~~~~~~~~~~~~~~
+
+This union stores a 2-dimensional value which can be accessed in several ways.
+
+Fields
+------
+
+.. index:: pair: variable; values
+.. _doxid-unionu__vector2d___1ac20343d2fa97d985bb7126956d63e337:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` values[2]
+
+An array, to access the 2 values from within brackets.
+
+.. index:: pair: variable; vector
+.. _doxid-unionu__vector2d___1a9410e9e60f19a3d3dd7ef579edb884a6:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_vector2d<doxid-group__libccc__math__algebra_1ga55a5111538414b501fd622a1b1abb7c3>` vector
+
+A vector, to access the 2 coordinates as ``.x`` and ``.y``
+

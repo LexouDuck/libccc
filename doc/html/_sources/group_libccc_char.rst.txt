@@ -1,0 +1,728 @@
+.. index:: pair: group; 07) libccc/char
+.. _doxid-group__libccc__char:
+
+07) libccc/char
+===============
+
+.. toctree::
+	:hidden:
+
+Overview
+~~~~~~~~
+
+This header defines all the functions/sets related to single ASCII chars. :ref:`More...<details-group__libccc__char>`
+
+
+.. ref-code-block:: cpp
+	:class: doxyrest-overview-code-block
+
+	
+	// typedefs
+
+	typedef char :ref:`t_char<doxid-group__libccc__char_1gaf0556422eb1ef9c94bb5d119f336756a>`;
+	typedef char :ref:`t_utf8<doxid-group__libccc__char_1ga2396a518dd5aee70d553e1963826d21f>`;
+	typedef uint_least16_t :ref:`t_utf16<doxid-group__libccc__char_1ga82a4b022407e8d917ae044e487c6b209>`;
+	typedef uint_least32_t :ref:`t_utf32<doxid-group__libccc__char_1ga8a19cee639e01a6ab50a19cf0bf914df>`;
+
+	// global functions
+
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` :ref:`Char_IsLetter<doxid-group__libccc__char_1ga638b3e1d25a967eef962602656af8693>`(:ref:`t_utf32<doxid-group__libccc__char_1ga8a19cee639e01a6ab50a19cf0bf914df>` c);
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` :ref:`Char_IsUppercase<doxid-group__libccc__char_1gacf1b3af7cbc51e7c077897536761196d>`(:ref:`t_utf32<doxid-group__libccc__char_1ga8a19cee639e01a6ab50a19cf0bf914df>` c);
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` :ref:`Char_IsLowercase<doxid-group__libccc__char_1ga8f504db474a1bc53d8c123252671c2ae>`(:ref:`t_utf32<doxid-group__libccc__char_1ga8a19cee639e01a6ab50a19cf0bf914df>` c);
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` :ref:`Char_IsAlphaNumeric<doxid-group__libccc__char_1ga79f4a848bdfed302d87eb8fca539ce68>`(:ref:`t_utf32<doxid-group__libccc__char_1ga8a19cee639e01a6ab50a19cf0bf914df>` c);
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` :ref:`Char_IsDigit<doxid-group__libccc__char_1gacb98e5f05667a996a143bc15a6c05302>`(:ref:`t_utf32<doxid-group__libccc__char_1ga8a19cee639e01a6ab50a19cf0bf914df>` c);
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` :ref:`Char_IsDigit_Hex<doxid-group__libccc__char_1ga52cb8ae024b00ed708d84dea13585879>`(:ref:`t_utf32<doxid-group__libccc__char_1ga8a19cee639e01a6ab50a19cf0bf914df>` c);
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` :ref:`Char_IsDigit_Oct<doxid-group__libccc__char_1ga2995256410596e9783d036ad6488c04e>`(:ref:`t_utf32<doxid-group__libccc__char_1ga8a19cee639e01a6ab50a19cf0bf914df>` c);
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` :ref:`Char_IsDigit_Bin<doxid-group__libccc__char_1gafcb4ddc5962d7558233ac58be9a34c48>`(:ref:`t_utf32<doxid-group__libccc__char_1ga8a19cee639e01a6ab50a19cf0bf914df>` c);
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` :ref:`Char_IsSpace<doxid-group__libccc__char_1ga3cb799e0b4f096ab95edcb1d295e1b5d>`(:ref:`t_utf32<doxid-group__libccc__char_1ga8a19cee639e01a6ab50a19cf0bf914df>` c);
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` :ref:`Char_IsPunctuation<doxid-group__libccc__char_1ga41ad4743e2713474690659e7a766aaff>`(:ref:`t_utf32<doxid-group__libccc__char_1ga8a19cee639e01a6ab50a19cf0bf914df>` c);
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` :ref:`Char_IsPrintable<doxid-group__libccc__char_1gaf9ac42c3a259dedaf2724dd0459a9ea6>`(:ref:`t_utf32<doxid-group__libccc__char_1ga8a19cee639e01a6ab50a19cf0bf914df>` c);
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` :ref:`Char_IsASCII<doxid-group__libccc__char_1ga71a8729448c8b88caaabc93b4363b835>`(:ref:`t_utf32<doxid-group__libccc__char_1ga8a19cee639e01a6ab50a19cf0bf914df>` c);
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` :ref:`Char_IsInCharset<doxid-group__libccc__char_1gabd335aa7bb76823c0757c3fe3b3cada4>`(:ref:`t_utf32<doxid-group__libccc__char_1ga8a19cee639e01a6ab50a19cf0bf914df>` c, :ref:`t_char<doxid-group__libccc__char_1gaf0556422eb1ef9c94bb5d119f336756a>` const* charset);
+	:ref:`t_char<doxid-group__libccc__char_1gaf0556422eb1ef9c94bb5d119f336756a>` :ref:`Char_ToUppercase<doxid-group__libccc__char_1ga4cf384c84478db67651e5879dabffe4c>`(:ref:`t_char<doxid-group__libccc__char_1gaf0556422eb1ef9c94bb5d119f336756a>` c);
+	:ref:`t_char<doxid-group__libccc__char_1gaf0556422eb1ef9c94bb5d119f336756a>` :ref:`Char_ToLowercase<doxid-group__libccc__char_1gaadf12469eb8d3f99ba8a48e3b4a56ceb>`(:ref:`t_char<doxid-group__libccc__char_1gaf0556422eb1ef9c94bb5d119f336756a>` c);
+	:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` :ref:`Char_ToUTF8<doxid-group__libccc__char_1gab840012db786653d7536572f2014f415>`(:ref:`t_utf8<doxid-group__libccc__char_1ga2396a518dd5aee70d553e1963826d21f>`* dest, :ref:`t_utf32<doxid-group__libccc__char_1ga8a19cee639e01a6ab50a19cf0bf914df>` c);
+	:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` :ref:`Char_ToUTF16<doxid-group__libccc__char_1gad2b6ae0c10348206b3fe4fb823854515>`(:ref:`t_utf16<doxid-group__libccc__char_1ga82a4b022407e8d917ae044e487c6b209>`* dest, :ref:`t_utf32<doxid-group__libccc__char_1ga8a19cee639e01a6ab50a19cf0bf914df>` c);
+	:ref:`t_utf32<doxid-group__libccc__char_1ga8a19cee639e01a6ab50a19cf0bf914df>` :ref:`UTF8_Get<doxid-group__libccc__char_1ga2ff0bdd80707e921c5588facced24b3e>`(:ref:`t_utf8<doxid-group__libccc__char_1ga2396a518dd5aee70d553e1963826d21f>` const* str);
+	:ref:`t_utf32<doxid-group__libccc__char_1ga8a19cee639e01a6ab50a19cf0bf914df>` :ref:`UTF16_Get<doxid-group__libccc__char_1ga11533f704a5538cf6dea2f3a01387e26>`(:ref:`t_utf16<doxid-group__libccc__char_1ga82a4b022407e8d917ae044e487c6b209>` const* str);
+
+	// macros
+
+	#define :ref:`CHARSET_ALPHABET<doxid-group__libccc__char_1ga557e3be923c99149ece646196d31d034>`
+	#define :target:`CHARSET_BINARY<doxid-group__libccc__char_1ga3ed1ae4210f17ae75c8450f2fb629050>`
+	#define :target:`CHARSET_DECIMAL<doxid-group__libccc__char_1gafe6581912d031b0568e13fe9ba93d6a7>`
+	#define :target:`CHARSET_HEX<doxid-group__libccc__char_1gabb97af58e7abddeda21eb9f2349ef1a4>`
+	#define :target:`CHARSET_HEXADECIMAL<doxid-group__libccc__char_1ga5c76eb97dfc709695ff75cf1732b09b4>`
+	#define :target:`CHARSET_HEX_LOWER<doxid-group__libccc__char_1ga272b456db69ac899c0e50990f7539225>`
+	#define :target:`CHARSET_HEX_UPPER<doxid-group__libccc__char_1ga2a6814726ef5cdec271f172ee371cf2c>`
+	#define :ref:`CHARSET_LOWERCASE<doxid-group__libccc__char_1ga296d0f6bc2fcd076b01c75ebc1ed4c52>`
+	#define :target:`CHARSET_OCTAL<doxid-group__libccc__char_1gaa0d07af5b799976a0b85c8c4e5d3e2b5>`
+	#define :ref:`CHARSET_PUNCTUATION<doxid-group__libccc__char_1gaefdb6940cc9eed8254ebb910a44b44b6>`
+	#define :ref:`CHARSET_UPPERCASE<doxid-group__libccc__char_1ga8e080b043ff5316a0ebc839d641a5390>`
+	#define :ref:`CHARSET_WHITESPACE<doxid-group__libccc__char_1gae27a61cbdccaa5260ab703b6bf112fb0>`
+	#define :target:`Char_IsAlNum<doxid-group__libccc__char_1gab0c312ce1ebc3aafff72170981f0594f>`
+	#define :target:`Char_IsAlpha<doxid-group__libccc__char_1ga2232037d132d47d8d54e2b5eda569ac6>`
+	#define :target:`Char_IsDigit<doxid-group__libccc__char_1ga83e53809bf438d8dfa84e83112891dc1>`
+	#define :target:`Char_IsDigit_Binary<doxid-group__libccc__char_1gacc50e1159636eba330b69ed54f1858b5>`
+	#define :target:`Char_IsDigit_Dec<doxid-group__libccc__char_1ga32b75313c0e885e3c4a2b16b604ec1e4>`
+	#define :target:`Char_IsDigit_Decimal<doxid-group__libccc__char_1gae0cc87501e52eecf646177cf4c38d08d>`
+	#define :target:`Char_IsDigit_Hexadecimal<doxid-group__libccc__char_1ga16b27bfb02d6d853e332038bb3e447b8>`
+	#define :target:`Char_IsDigit_Octal<doxid-group__libccc__char_1ga4d0f94017613be7a0c64d0d68c91e896>`
+	#define :target:`Char_IsLower<doxid-group__libccc__char_1ga7af581a6583fd824b26264d60db38883>`
+	#define :target:`Char_IsPrint<doxid-group__libccc__char_1ga073e999332c6abfc6cacdfc77b700a54>`
+	#define :target:`Char_IsPunct<doxid-group__libccc__char_1gab1a8f696a0e878ccaa95bd122f244363>`
+	#define :target:`Char_IsUpper<doxid-group__libccc__char_1ga71e337826d56f6d106819ed4a95c083f>`
+	#define :target:`Char_IsWhiteSpace<doxid-group__libccc__char_1gabb0764823f87fa29cb7c209e85f6bcdd>`
+	#define :target:`Char_ToLower<doxid-group__libccc__char_1ga0b881067b33fe7a8485e4d47fe9315e1>`
+	#define :target:`Char_ToUpper<doxid-group__libccc__char_1gae1f09f692036dd972b9820e3faa3a7cf>`
+	#define :target:`c_isalnum<doxid-group__libccc__char_1ga242a2cdf4bad6eae2fdeb25d5d7bb1c1>`
+	#define :target:`c_isalpha<doxid-group__libccc__char_1gac50127404adc3420890b06152813af91>`
+	#define :target:`c_isascii<doxid-group__libccc__char_1gace39a716918bafb234bff07d3f329401>`
+	#define :target:`c_isdigit<doxid-group__libccc__char_1ga64a07b32785aab0ee1764f00f116205c>`
+	#define :target:`c_isdigit_bin<doxid-group__libccc__char_1gadba9797ae2d7c824e918c183a289c331>`
+	#define :target:`c_isdigit_hex<doxid-group__libccc__char_1ga09206b3709c95b101154cfd52ac08d3e>`
+	#define :target:`c_isdigit_oct<doxid-group__libccc__char_1ga1fdee46d0e5f75f2894c43bfee0cd69e>`
+	#define :target:`c_isincharset<doxid-group__libccc__char_1ga0173ccf0013ddbbdc84bc70a2745434a>`
+	#define :target:`c_islower<doxid-group__libccc__char_1gaa10c4682ade14c174a31cdff4538bb9b>`
+	#define :target:`c_isprint<doxid-group__libccc__char_1gad4475ac237a02bc586a5520a59212a98>`
+	#define :target:`c_ispunct<doxid-group__libccc__char_1gae7a6c15c685ece8eda92aa80709e0fa0>`
+	#define :target:`c_isspace<doxid-group__libccc__char_1gaaec689c57b2e8c986e7b7e2fc76eb117>`
+	#define :target:`c_isupper<doxid-group__libccc__char_1gadf50d7390673c67564b902801015cc96>`
+	#define :target:`c_to_utf16<doxid-group__libccc__char_1gae25151999db6271f0afc6b3e95c344fb>`
+	#define :target:`c_to_utf8<doxid-group__libccc__char_1ga6e91708d4f1fa898ba0c7248266e1155>`
+	#define :target:`c_tolower<doxid-group__libccc__char_1ga15853ee81720da7e4d1c61702473daba>`
+	#define :target:`c_toupper<doxid-group__libccc__char_1ga8c369948f5a1691390b30b1573188744>`
+	#define :target:`c_utf16get<doxid-group__libccc__char_1ga9e933fb310c14fc14913d5d37e602321>`
+	#define :target:`c_utf8get<doxid-group__libccc__char_1ga5de30ec0a1946ef4383b72ead81e1eaf>`
+
+.. _details-group__libccc__char:
+
+Detailed Documentation
+~~~~~~~~~~~~~~~~~~~~~~
+
+This header defines all the functions/sets related to single ASCII chars.
+
+Typedefs
+--------
+
+.. index:: pair: typedef; t_char
+.. _doxid-group__libccc__char_1gaf0556422eb1ef9c94bb5d119f336756a:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef char t_char
+
+The primitive ``char`` text character type (1 byte: ANSI/ASCII)
+
+.. index:: pair: typedef; t_utf8
+.. _doxid-group__libccc__char_1ga2396a518dd5aee70d553e1963826d21f:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef char t_utf8
+
+The primitive type for a Unicode UTF-8 character (variable length: 1 to 4 bytes)
+
+.. index:: pair: typedef; t_utf16
+.. _doxid-group__libccc__char_1ga82a4b022407e8d917ae044e487c6b209:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef uint_least16_t t_utf16
+
+The primitive type for a Unicode UTF-16 character (variable length: 2 or 4 bytes)
+
+.. index:: pair: typedef; t_utf32
+.. _doxid-group__libccc__char_1ga8a19cee639e01a6ab50a19cf0bf914df:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef uint_least32_t t_utf32
+
+The primitive type for a Unicode UTF-32 character code point value (fixed length: 4 bytes)
+
+Global Functions
+----------------
+
+.. index:: pair: function; Char_IsLetter
+.. _doxid-group__libccc__char_1ga638b3e1d25a967eef962602656af8693:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` Char_IsLetter(:ref:`t_utf32<doxid-group__libccc__char_1ga8a19cee639e01a6ab50a19cf0bf914df>` c)
+
+Check if the given char ``c`` is a letter (lowercase or uppercase)
+
+Check if the given char ``c`` is a letter (lowercase or uppercase)
+
+
+
+.. rubric:: Parameters:
+
+.. list-table::
+	:widths: 20 80
+
+	*
+		- c
+
+		- The character to check (ASCII or Unicode)
+
+
+
+.. rubric:: Returns:
+
+1(TRUE) if the given char ``c`` is a letter (lowercase or uppercase), and returns 0(FALSE) otherwise.
+
+.. index:: pair: function; Char_IsUppercase
+.. _doxid-group__libccc__char_1gacf1b3af7cbc51e7c077897536761196d:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` Char_IsUppercase(:ref:`t_utf32<doxid-group__libccc__char_1ga8a19cee639e01a6ab50a19cf0bf914df>` c)
+
+Check if the given char ``c`` is a uppercase letter character.
+
+Check if the given char ``c`` is a uppercase letter character
+
+
+
+.. rubric:: Parameters:
+
+.. list-table::
+	:widths: 20 80
+
+	*
+		- c
+
+		- The character to check (ASCII or Unicode)
+
+
+
+.. rubric:: Returns:
+
+1(TRUE) if the given char ``c`` is a uppercase letter character, and returns 0(FALSE) otherwise.
+
+.. index:: pair: function; Char_IsLowercase
+.. _doxid-group__libccc__char_1ga8f504db474a1bc53d8c123252671c2ae:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` Char_IsLowercase(:ref:`t_utf32<doxid-group__libccc__char_1ga8a19cee639e01a6ab50a19cf0bf914df>` c)
+
+Check if the given char ``c`` is an lowercase letter character.
+
+Check if the given char ``c`` is an lowercase letter character
+
+
+
+.. rubric:: Parameters:
+
+.. list-table::
+	:widths: 20 80
+
+	*
+		- c
+
+		- The character to check (ASCII or Unicode)
+
+
+
+.. rubric:: Returns:
+
+1(TRUE) if the given char ``c`` is an lowercase letter character, and returns 0(FALSE) otherwise.
+
+.. index:: pair: function; Char_IsAlphaNumeric
+.. _doxid-group__libccc__char_1ga79f4a848bdfed302d87eb8fca539ce68:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` Char_IsAlphaNumeric(:ref:`t_utf32<doxid-group__libccc__char_1ga8a19cee639e01a6ab50a19cf0bf914df>` c)
+
+Check if the given char ``c`` is alphanumeric (letter or digit) character.
+
+Check if the given char ``c`` is alphanumeric (letter or digit) character
+
+
+
+.. rubric:: Parameters:
+
+.. list-table::
+	:widths: 20 80
+
+	*
+		- c
+
+		- The character to check (ASCII or Unicode)
+
+
+
+.. rubric:: Returns:
+
+1(TRUE) if the given char ``c`` is alphanumeric (letter or digit), and returns 0(FALSE) otherwise.
+
+.. index:: pair: function; Char_IsDigit
+.. _doxid-group__libccc__char_1gacb98e5f05667a996a143bc15a6c05302:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` Char_IsDigit(:ref:`t_utf32<doxid-group__libccc__char_1ga8a19cee639e01a6ab50a19cf0bf914df>` c)
+
+Check if the given char ``c`` is a decimal digit character.
+
+Check if the given char ``c`` is a decimal digit character
+
+
+
+.. rubric:: Parameters:
+
+.. list-table::
+	:widths: 20 80
+
+	*
+		- c
+
+		- The character to check (ASCII or Unicode)
+
+
+
+.. rubric:: Returns:
+
+1(TRUE) if the given char ``c`` is a numerical digit character, and returns 0(FALSE) otherwise.
+
+.. index:: pair: function; Char_IsDigit_Hex
+.. _doxid-group__libccc__char_1ga52cb8ae024b00ed708d84dea13585879:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` Char_IsDigit_Hex(:ref:`t_utf32<doxid-group__libccc__char_1ga8a19cee639e01a6ab50a19cf0bf914df>` c)
+
+Check if the given char ``c`` is a hexadecimal digit character (0-9 or A-F, lowercase or uppercase)
+
+.. index:: pair: function; Char_IsDigit_Oct
+.. _doxid-group__libccc__char_1ga2995256410596e9783d036ad6488c04e:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` Char_IsDigit_Oct(:ref:`t_utf32<doxid-group__libccc__char_1ga8a19cee639e01a6ab50a19cf0bf914df>` c)
+
+Check if the given char ``c`` is a octal-base digit character (ie: '0' to '7')
+
+.. index:: pair: function; Char_IsDigit_Bin
+.. _doxid-group__libccc__char_1gafcb4ddc5962d7558233ac58be9a34c48:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` Char_IsDigit_Bin(:ref:`t_utf32<doxid-group__libccc__char_1ga8a19cee639e01a6ab50a19cf0bf914df>` c)
+
+Check if the given char ``c`` is a binary-base digit character (ie: '0' or '1')
+
+.. index:: pair: function; Char_IsSpace
+.. _doxid-group__libccc__char_1ga3cb799e0b4f096ab95edcb1d295e1b5d:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` Char_IsSpace(:ref:`t_utf32<doxid-group__libccc__char_1ga8a19cee639e01a6ab50a19cf0bf914df>` c)
+
+Check if the given char ``c`` is whitespace character (' ','\t','\r','\n','\f','\v')
+
+Check if the given char ``c`` is whitespace character (' ','\t','\r','\n','\f','\v')
+
+
+
+.. rubric:: Parameters:
+
+.. list-table::
+	:widths: 20 80
+
+	*
+		- c
+
+		- The character to check (ASCII or Unicode)
+
+
+
+.. rubric:: Returns:
+
+1(TRUE) if the given char ``c`` is whitespace character: ' ','\t','\r','\n','\f','\v' (carriage return, newline, form feed, vertical tab, tab, or space), and returns 0(FALSE) otherwise.
+
+.. index:: pair: function; Char_IsPunctuation
+.. _doxid-group__libccc__char_1ga41ad4743e2713474690659e7a766aaff:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` Char_IsPunctuation(:ref:`t_utf32<doxid-group__libccc__char_1ga8a19cee639e01a6ab50a19cf0bf914df>` c)
+
+Check if the given char ``c`` is a punctuation character.
+
+Check if the given char ``c`` is a punctuation character
+
+
+
+.. rubric:: Parameters:
+
+.. list-table::
+	:widths: 20 80
+
+	*
+		- c
+
+		- The character to check (ASCII or Unicode)
+
+
+
+.. rubric:: Returns:
+
+1(TRUE) if the given char ``c`` is a punctuation character, and returns 0(FALSE) otherwise.
+
+.. index:: pair: function; Char_IsPrintable
+.. _doxid-group__libccc__char_1gaf9ac42c3a259dedaf2724dd0459a9ea6:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` Char_IsPrintable(:ref:`t_utf32<doxid-group__libccc__char_1ga8a19cee639e01a6ab50a19cf0bf914df>` c)
+
+Check if the given char ``c`` is a printable ASCII character.
+
+Check if the given char ``c`` is a printable ASCII character
+
+
+
+.. rubric:: Parameters:
+
+.. list-table::
+	:widths: 20 80
+
+	*
+		- c
+
+		- The character to check (ASCII or Unicode)
+
+
+
+.. rubric:: Returns:
+
+1(TRUE) if the given char ``c`` is a printable ASCII character, (0x20 <= c && c <= 0x7E) and returns 0(FALSE) otherwise.
+
+.. index:: pair: function; Char_IsASCII
+.. _doxid-group__libccc__char_1ga71a8729448c8b88caaabc93b4363b835:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` Char_IsASCII(:ref:`t_utf32<doxid-group__libccc__char_1ga8a19cee639e01a6ab50a19cf0bf914df>` c)
+
+Check if the given char ``c`` is an ASCII-compatible char (non-Unicode)
+
+Check if the given char ``c`` is an ASCII-compatible char (non-Unicode)
+
+
+
+.. rubric:: Parameters:
+
+.. list-table::
+	:widths: 20 80
+
+	*
+		- c
+
+		- The character to check (ASCII or Unicode)
+
+
+
+.. rubric:: Returns:
+
+1(TRUE) if the given char ``c`` has a value between 0 and 127, (0x00 <= c && c <= 0x7F) and returns 0(FALSE) otherwise.
+
+.. index:: pair: function; Char_IsInCharset
+.. _doxid-group__libccc__char_1gabd335aa7bb76823c0757c3fe3b3cada4:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` Char_IsInCharset(:ref:`t_utf32<doxid-group__libccc__char_1ga8a19cee639e01a6ab50a19cf0bf914df>` c, :ref:`t_char<doxid-group__libccc__char_1gaf0556422eb1ef9c94bb5d119f336756a>` const* charset)
+
+Check if the given char ``c`` is contained in the given 'charset'.
+
+Check if the given char ``c`` is contained in the given 'charset'
+
+
+
+.. rubric:: Parameters:
+
+.. list-table::
+	:widths: 20 80
+
+	*
+		- c
+
+		- The character to check (ASCII or Unicode)
+
+	*
+		- charset
+
+		- String, the set of characters to look through (the '\0' terminator ends the charset)
+
+
+
+.. rubric:: Returns:
+
+1(TRUE) if the given char ``c`` is a printable ASCII character, (0x20 <= c && c <= 0x7E) and returns 0(FALSE) otherwise.
+
+.. index:: pair: function; Char_ToUppercase
+.. _doxid-group__libccc__char_1ga4cf384c84478db67651e5879dabffe4c:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_char<doxid-group__libccc__char_1gaf0556422eb1ef9c94bb5d119f336756a>` Char_ToUppercase(:ref:`t_char<doxid-group__libccc__char_1gaf0556422eb1ef9c94bb5d119f336756a>` c)
+
+Get the uppercase version of the given char ``c``
+
+Get the uppercase version of the given char ``c``
+
+
+
+.. rubric:: Parameters:
+
+.. list-table::
+	:widths: 20 80
+
+	*
+		- c
+
+		- The character to uppercase-ify (ASCII only)
+
+
+
+.. rubric:: Returns:
+
+the uppercase equivalent of the given character ``c`` (nothing is done if ``c`` is not a letter character).
+
+.. index:: pair: function; Char_ToLowercase
+.. _doxid-group__libccc__char_1gaadf12469eb8d3f99ba8a48e3b4a56ceb:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_char<doxid-group__libccc__char_1gaf0556422eb1ef9c94bb5d119f336756a>` Char_ToLowercase(:ref:`t_char<doxid-group__libccc__char_1gaf0556422eb1ef9c94bb5d119f336756a>` c)
+
+Get the lowercase version of the given char ``c``
+
+Get the lowercase version of the given char ``c``
+
+
+
+.. rubric:: Parameters:
+
+.. list-table::
+	:widths: 20 80
+
+	*
+		- c
+
+		- The character to lowercase-ify (ASCII only)
+
+
+
+.. rubric:: Returns:
+
+the lowercase equivalent of the given character ``c`` (nothing is done if ``c`` is not a letter character).
+
+.. index:: pair: function; Char_ToUTF8
+.. _doxid-group__libccc__char_1gab840012db786653d7536572f2014f415:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` Char_ToUTF8(:ref:`t_utf8<doxid-group__libccc__char_1ga2396a518dd5aee70d553e1963826d21f>`* dest, :ref:`t_utf32<doxid-group__libccc__char_1ga8a19cee639e01a6ab50a19cf0bf914df>` c)
+
+Converts the given Unicode code point value ``c`` to its UTF-8 equivalent representation.
+
+Converts the given char ``c`` to UTF-8 representation, and writes it to 'dest'
+
+
+
+.. rubric:: Parameters:
+
+.. list-table::
+	:widths: 20 80
+
+	*
+		- c
+
+		- The character to convert (UTF-32 Unicode code point value)
+
+	*
+		- dest
+
+		- The pointer at which to write the resulting UTF-8 char (you must ensure that at least 4 bytes are writable to 'dest')
+
+
+
+.. rubric:: Returns:
+
+The size (in bytes) of the character written (can be 0, 1, 2, 3, or 4)
+
+.. index:: pair: function; Char_ToUTF16
+.. _doxid-group__libccc__char_1gad2b6ae0c10348206b3fe4fb823854515:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_size<doxid-group__libccc__pointer_1gab26ea4b5e8504781be1c368c28967472>` Char_ToUTF16(:ref:`t_utf16<doxid-group__libccc__char_1ga82a4b022407e8d917ae044e487c6b209>`* dest, :ref:`t_utf32<doxid-group__libccc__char_1ga8a19cee639e01a6ab50a19cf0bf914df>` c)
+
+Converts the given Unicode code point value ``c`` to its UTF-16 equivalent representation.
+
+Converts the given char ``c`` to UTF-16 representation, and writes it to 'dest'
+
+
+
+.. rubric:: Parameters:
+
+.. list-table::
+	:widths: 20 80
+
+	*
+		- c
+
+		- The character to convert (UTF-32 Unicode code point value)
+
+	*
+		- dest
+
+		- The pointer at which to write the resulting UTF-16 char (you must ensure that at least 4 bytes are writable to 'dest')
+
+
+
+.. rubric:: Returns:
+
+The size (in bytes) of the character written (can be 0, 2, or 4)
+
+.. index:: pair: function; UTF8_Get
+.. _doxid-group__libccc__char_1ga2ff0bdd80707e921c5588facced24b3e:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_utf32<doxid-group__libccc__char_1ga8a19cee639e01a6ab50a19cf0bf914df>` UTF8_Get(:ref:`t_utf8<doxid-group__libccc__char_1ga2396a518dd5aee70d553e1963826d21f>` const* str)
+
+Returns the Unicode code point value (UTF-32) for the UTF-8 character pointed to by 'str'.
+
+Reads up to 4 bytes in 'str', and converts these bytes to a Unicode code point value
+
+
+
+.. rubric:: Parameters:
+
+.. list-table::
+	:widths: 20 80
+
+	*
+		- str
+
+		- The string from which to read a UTF-8 character
+
+
+
+.. rubric:: Returns:
+
+The Unicode code point value for the character pointed to by 'str'
+
+.. index:: pair: function; UTF16_Get
+.. _doxid-group__libccc__char_1ga11533f704a5538cf6dea2f3a01387e26:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_utf32<doxid-group__libccc__char_1ga8a19cee639e01a6ab50a19cf0bf914df>` UTF16_Get(:ref:`t_utf16<doxid-group__libccc__char_1ga82a4b022407e8d917ae044e487c6b209>` const* str)
+
+Returns the Unicode code point value (UTF-32) for the UTF-16 character pointed to by 'str'.
+
+Reads 2 or 4 bytes in 'str', and converts these bytes to a Unicode code point value
+
+
+
+.. rubric:: Parameters:
+
+.. list-table::
+	:widths: 20 80
+
+	*
+		- str
+
+		- The string from which to read a UTF-16 character
+
+
+
+.. rubric:: Returns:
+
+The Unicode code point value for the character pointed to by 'str'
+
+Macros
+------
+
+.. index:: pair: define; CHARSET_ALPHABET
+.. _doxid-group__libccc__char_1ga557e3be923c99149ece646196d31d034:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define CHARSET_ALPHABET
+
+Set of characters for the latin alphabet (both lowercase and uppercase)
+
+.. index:: pair: define; CHARSET_LOWERCASE
+.. _doxid-group__libccc__char_1ga296d0f6bc2fcd076b01c75ebc1ed4c52:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define CHARSET_LOWERCASE
+
+Set of characters for the lowercase latin alphabet.
+
+.. index:: pair: define; CHARSET_PUNCTUATION
+.. _doxid-group__libccc__char_1gaefdb6940cc9eed8254ebb910a44b44b6:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define CHARSET_PUNCTUATION
+
+A charset containing all of the ASCII punctuation characters.
+
+.. index:: pair: define; CHARSET_UPPERCASE
+.. _doxid-group__libccc__char_1ga8e080b043ff5316a0ebc839d641a5390:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define CHARSET_UPPERCASE
+
+Set of characters for the uppercase latin alphabet.
+
+.. index:: pair: define; CHARSET_WHITESPACE
+.. _doxid-group__libccc__char_1gae27a61cbdccaa5260ab703b6bf112fb0:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define CHARSET_WHITESPACE
+
+A charset containing all of the different whitespace characters.
+

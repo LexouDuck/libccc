@@ -1,0 +1,42 @@
+.. index:: pair: union; u_varint_
+.. _doxid-unionu__varint__:
+
+union u_varint\_
+================
+
+.. toctree::
+	:hidden:
+
+Overview
+~~~~~~~~
+
+A union storing an integer (signed or unsigned) of any common storage size. :ref:`More...<details-unionu__varint__>`
+
+
+.. ref-code-block:: cpp
+	:class: doxyrest-overview-code-block
+
+	#include <int.h>
+	
+	union u_varint_
+	{
+		// fields
+	
+		t_s8 :target:`sc<doxid-unionu__varint___1a448bc235fa3ed6a58fee1c06f0c0aa98>`;
+		t_s16 :target:`ss<doxid-unionu__varint___1a13629bfbfa27e4409d27c060e613d78c>`;
+		t_s32 :target:`si<doxid-unionu__varint___1a059c701c898db958d49ac0e66999ed34>`;
+		t_s64 :target:`sl<doxid-unionu__varint___1ad19a95ecb4172fc7d738374d826061bd>`;
+		t_u8 :target:`uc<doxid-unionu__varint___1a51e6c9d6ef3205303946da30a6affeb0>`;
+		t_u16 :target:`us<doxid-unionu__varint___1ae6e3cb3dc8cf90ced51588c9fcd1682d>`;
+		t_u32 :target:`ui<doxid-unionu__varint___1ad5d38adb8c2aa65cc689eae75412d831>`;
+		t_u64 :target:`ul<doxid-unionu__varint___1a5d821c8194488322f4ffd10057ba31ea>`;
+	};
+.. _details-unionu__varint__:
+
+Detailed Documentation
+~~~~~~~~~~~~~~~~~~~~~~
+
+A union storing an integer (signed or unsigned) of any common storage size.
+
+These unions are used for certain difficult casting conditions. They are used in particular when casting an <stdarg.h> var_arg to the appropriate type in c_printf.
+

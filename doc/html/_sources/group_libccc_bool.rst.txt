@@ -1,0 +1,103 @@
+.. index:: pair: group; 01) libccc/bool
+.. _doxid-group__libccc__bool:
+
+01) libccc/bool
+===============
+
+.. toctree::
+	:hidden:
+
+Overview
+~~~~~~~~
+
+This header defines the boolean TRUE/FALSE primitive type and functions. :ref:`More...<details-group__libccc__bool>`
+
+
+.. ref-code-block:: cpp
+	:class: doxyrest-overview-code-block
+
+	
+	// typedefs
+
+	typedef _Bool :ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>`;
+
+	// global functions
+
+	char* :ref:`Bool_ToString<doxid-group__libccc__bool_1ga4cf2e90508ea0d41bd53b86722add159>`(:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` value, :ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` uppercase);
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` :ref:`Bool_FromString<doxid-group__libccc__bool_1gaa9b13c09a76c522d0bc3e86316cfbb17>`(char const* str);
+
+	// macros
+
+	#define :ref:`FALSE<doxid-group__libccc__bool_1gaa93f0eb578d23995850d61f7d61c55c1>`
+	#define :ref:`TRUE<doxid-group__libccc__bool_1gaa8cecfc5c5c054d2875c03e77b7be15d>`
+	#define :target:`c_bool_to_str<doxid-group__libccc__bool_1gadbdb134a7667f7eaab54152cb5c2c0bb>`
+	#define :target:`c_str_to_bool<doxid-group__libccc__bool_1gacc3d0f7cb029f5895392f1392ac1bb48>`
+
+.. _details-group__libccc__bool:
+
+Detailed Documentation
+~~~~~~~~~~~~~~~~~~~~~~
+
+This header defines the boolean TRUE/FALSE primitive type and functions.
+
+Typedefs
+--------
+
+.. index:: pair: typedef; t_bool
+.. _doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	typedef _Bool t_bool
+
+The primitive ``bool`` boolean type.
+
+Here, we use the native (from C99 onwards) '_Bool' type. This type is useful because its value will always be 0 or 1, never more.
+
+Global Functions
+----------------
+
+.. index:: pair: function; Bool_ToString
+.. _doxid-group__libccc__bool_1ga4cf2e90508ea0d41bd53b86722add159:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	char* Bool_ToString(:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` value, :ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` uppercase)
+
+Get the string representation of a boolean value (TRUE or FALSE)
+
+.. index:: pair: function; Bool_FromString
+.. _doxid-group__libccc__bool_1gaa9b13c09a76c522d0bc3e86316cfbb17:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_bool<doxid-group__libccc__bool_1gaf15d2c7169c336f97175a2e218d22e73>` Bool_FromString(char const* str)
+
+Parse a boolean value from the given string (can be 1/0/TRUE/FALSE/true/false)
+
+Macros
+------
+
+.. index:: pair: define; FALSE
+.. _doxid-group__libccc__bool_1gaa93f0eb578d23995850d61f7d61c55c1:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define FALSE
+
+Represents a boolean false value (0)
+
+.. index:: pair: define; TRUE
+.. _doxid-group__libccc__bool_1gaa8cecfc5c5c054d2875c03e77b7be15d:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	#define TRUE
+
+Represents a boolean true value (1)
+

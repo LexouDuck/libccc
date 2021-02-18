@@ -1,0 +1,57 @@
+.. index:: pair: union; u_matrix4d_
+.. _doxid-unionu__matrix4d__:
+
+union u_matrix4d\_
+==================
+
+.. toctree::
+	:hidden:
+
+Overview
+~~~~~~~~
+
+This union stores a 4x4 matrix which can be accessed in several ways. :ref:`More...<details-unionu__matrix4d__>`
+
+
+.. ref-code-block:: cpp
+	:class: doxyrest-overview-code-block
+
+	#include <algebra.h>
+	
+	union u_matrix4d_
+	{
+		// fields
+	
+		:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` :ref:`values<doxid-unionu__matrix4d___1acc2f603fc73b9f9877bb0e9eda72d48b>`[4 *4];
+		:ref:`s_matrix3d<doxid-group__libccc__math__algebra_1ga8d40f15df6a34d69d9fe6890695242e8>` :ref:`matrix<doxid-unionu__matrix4d___1a949332c42b55180fbf19fe0af0d4c016>`;
+	};
+.. _details-unionu__matrix4d__:
+
+Detailed Documentation
+~~~~~~~~~~~~~~~~~~~~~~
+
+This union stores a 4x4 matrix which can be accessed in several ways.
+
+Fields
+------
+
+.. index:: pair: variable; values
+.. _doxid-unionu__matrix4d___1acc2f603fc73b9f9877bb0e9eda72d48b:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`t_float<doxid-group__libccc__float_1ga062b5f7ac5af1921a0d50e5b59f7a496>` values[4 *4]
+
+An array, to access the matrix values from within brackets.
+
+.. index:: pair: variable; matrix
+.. _doxid-unionu__matrix4d___1a949332c42b55180fbf19fe0af0d4c016:
+
+.. ref-code-block:: cpp
+	:class: doxyrest-title-code-block
+
+	:ref:`s_matrix3d<doxid-group__libccc__math__algebra_1ga8d40f15df6a34d69d9fe6890695242e8>` matrix
+
+A struct, to access the matrix values as several row vectors.
+
