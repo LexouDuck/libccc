@@ -1,4 +1,4 @@
-# libccc
+libccc
 ---
 A comprehensive, cross-platform, customizable standard library for C
 
@@ -8,7 +8,7 @@ A comprehensive, cross-platform, customizable standard library for C
 
 
 
-### The Project
+The Project
 ---
 The objective is to have one simple, well-documented, efficient open-source implementation of the C standard library, but with easier to use functions and types than what is offered by the ISO standards - mostly by consistently handling undefined behaviors, and handling edge cases in a consistent, coherent way, so as to have code that is as little machine-specific as possible.
 
@@ -44,15 +44,15 @@ Furthermore, there are other functions here that are not found in the ISO standa
 
 
 
-### Why does this exist ?
+Why does this exist ?
 ---
 What started as a necessary exercise for the 42 school (called `libft`, for lib-forty-two) quickly became a much more expansive project, now dubbed `libccc` (for comprehensive, customizable, cross-platform). Whereas the 42 libft project only requires students to code a certain set of important memory/string/io functions, we decided to take it further. The libft is originally meant as an educational exercise, in which a student learns a lot by "reinventing wheels"; here the goal is to have a standard C library which is: fully cross-platform, uniformized, configurable and customizable, obviously being open source (MIT license) and which offers more than the "bare minimum" of the ISO standard library of functions.
 
 
 
-### Building
+How to use this library
 ---
-The Makefile simply builds a `libccc.a` library to link to your project. (eg: something like `gcc main.c -I./libccc/hdr/ -L./libccc/ -lccc`)
+The Makefile simply builds a `libccc.a` library to link to your project. (eg: you can link it with something like `gcc main.c -I./libccc/hdr/ -L./libccc/ -lccc`)
 
 You can also add this git repo as a "git submodule" to your own if you wish (this allows you to be up to date to the latest version at all times).
 
@@ -71,20 +71,16 @@ In general though, we recommend having the source code and compiling it yourself
 
 
 
-### Testing
+Testing
 ---
-To ensure proper functionality of all these important functions in every edge case, a big testing program was implemented, featuring segfault handling and execution time comparison among other things.
+To ensure proper functionality of all these important functions in every edge case, a rather exhaustive testing suite program was implemented, which compares libccc functions to their stdlib ISO equivalent, wherever applicable (otherwise tests expect results that are manually written out and asserted).
+This test suite program features segfault/signal handling and execution time comparison, among other things.
 You can test the `libccc` by running `make test`: this will compile and run the test suite program from the files found in the `./test` folder.
 
 
 
-### Contributing and Continuous Integration
+Continuous Integration
 ---
-Check `CONTRIBUTING.md`, this file serves as a "contributions style guide". This style was chosen because it allows for more efficient version control and code review.
-
-// TODO add description of coding style to `CONTRIBUTING.md`
-
-
 Every time a new commit/push is done, the automated CI testing job is run, as defined in `.github/workflows/ci.yml` (see the [official github documentation for Actions and Workflows to learn more](https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions)).
 
 This CI job builds everything with a `make`, and runs the testing suite with a `make test`. It runs with all of the following configurations:
@@ -94,11 +90,11 @@ This CI job builds everything with a `make`, and runs the testing suite with a `
 
 
 
-### Build system
----
-Cross-platform Makefile: builds a `libccc.a` library file to link against.
-The make commands are:
 
+Build system
+---
+This library is built using a cross-platform Makefile, which can build it on most platforms, in both static and dynamic library form.
+The available `make` commands are:
 
 ##### Building
 
@@ -143,3 +139,11 @@ The make commands are:
 
 - `make re`
 	Does a `make fclean` followed by a `make`
+
+
+
+Contributing
+---
+Check `CONTRIBUTING.md`, this file serves as a "contributions style guide". This style was chosen because it allows for more efficient version control and code review.
+
+- TODO add description of coding style to `CONTRIBUTING.md`

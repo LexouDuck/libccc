@@ -24,6 +24,7 @@
 #inline
 #pure
 #packed
+#guards __HEADER_H
 #reflect // ?
 ```
 
@@ -470,6 +471,38 @@ int main()
 }
 ```
 This is the difference between `#define` and `#alias` instructions, `#alias` will change the output C code directly.
+
+
+##### GUARDS
+Must be placed in a header file (ie: `.++h`,`.pph`,`.xxh`,etc), at the top of the file (before any `#include` directives).
+Surrounds the file with include guards, with the given token argument being the `#define` used for header inclusion guarding.
+```c
+// ++C code
+#guards __HEADER_H
+// this is a simple test header
+void HelloWorld(void);
+// ...
+```
+The above example would transpile to the following C code output:
+```c
+// C code
+#ifndef __HEADER_H
+#define __HEADER_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+// this is a simple test header
+void HelloWorld(void);
+// ...
+
+#ifdef __cplusplus
+} //extern c
+#endif
+
+#endif
+```
 
 
 ##### ALIAS

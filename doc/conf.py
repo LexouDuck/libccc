@@ -37,7 +37,8 @@ release = '1.0'
 # ones.
 extensions = [
 	'doxyrest',
-	'cpplexer'
+	'cpplexer',
+	'sphinx.ext.graphviz'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -64,3 +65,5 @@ html_copy_source = False # don't include RST files in the final HTML folder
 
 # Specify the size of tab indentation:
 doxyrest_tab_width = 4
+
+graphviz_output_format = 'svg'
