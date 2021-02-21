@@ -2716,6 +2716,13 @@
     <class kind="union">u_varfloat</class>
     <member kind="define">
       <type>#define</type>
+      <name>INF</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga12c2040f25d8e3a7b9e1c2024c618cb6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>INFINITY</name>
       <anchorfile>group__libccc__float.html</anchorfile>
       <anchor>ga956e2723d559858d08644ac99146e910</anchor>
@@ -2727,13 +2734,6 @@
       <anchorfile>group__libccc__float.html</anchorfile>
       <anchor>ga75b1c8ba2d9c38d0850b2aa25d4650df</anchor>
       <arglist>(X)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>INF</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga12c2040f25d8e3a7b9e1c2024c618cb6</anchor>
-      <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -2782,321 +2782,6 @@
       <name>FLOAT_THRESHOLD_TINY</name>
       <anchorfile>group__libccc__float.html</anchorfile>
       <anchor>ga5ed20a03af8dfc3ef1fb2df54e2ebe89</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F32_SIGNED</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gab68073391b4d1885aed3ef5f97a778ee</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F32_EXPONENT_BIAS</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaff4f94f02402a07e84f3d4604e47265d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F32_EXPONENT</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga45455f08229e3030c23cf964b6dd21af</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F32_EXPONENT_ZERO</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga459ccfba917ec2fbf69a9e20d064a1b4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F32_EXPONENT_BITS</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga5845049b2216118b5df6bef29a6da7fb</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F32_MANTISSA</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga84c366a82d97e2694c8c060a00605458</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F32_MANTISSA_SIGNED</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gae76962643a878de58c4cd2248dd43b7d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F32_MANTISSA_BITS</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gafc21584309956692a5a5286d056e9650</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F32_INIT_VALUE</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gac7093f0da3fd49fefdc63ca99f0ef506</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F64_SIGNED</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaac4617a7c49336b2819f5e12d071d863</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F64_EXPONENT_BIAS</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga59da18fad691074444fe07da93f07bbf</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F64_EXPONENT</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gab40d0a715ec4b6ce1a5cf26cf8499705</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F64_EXPONENT_ZERO</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaee4aac42f0dbefe36ecaa8db3caccf79</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F64_EXPONENT_BITS</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga654d00f825520eabd83f0f4c09071b97</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F64_MANTISSA</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaa46e75d8630c52a727b9c2c81087ebe2</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F64_MANTISSA_SIGNED</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga91f7fb5fab1a39ac561f6ca8684c1aa4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F64_MANTISSA_BITS</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga7d97beb92dd86d6bcaef34f8ef6adc64</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F64_INIT_VALUE</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gac1356252683f2585dc62bd892194c39c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F80_SIGNED</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga6c3805905f3280747ad499500733141f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F80_EXPONENT_BIAS</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga67cef136ae4751d4b1e2e34fa49ddf4d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F80_EXPONENT</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gacdcb853bc15209e5072c4213a367e503</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F80_EXPONENT_ZERO</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga28a155e3fdbe71a9843ce02d1c06402b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F80_EXPONENT_BITS</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gad55bcdeae34b3e526b102e0284a4bb58</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F80_MANTISSA</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga06cd90e1b5b74385e88ac419f04e989e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F80_MANTISSA_SIGNED</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga3ac651588bba97e6ef288d84ec80bdae</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F80_MANTISSA_BITS</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga0447bd3864f694362db253d6c069260d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F80_INIT_VALUE</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga6362eb2db4233ca34e7a73e2ead58a60</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F128_SIGNED</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gad2585244df8cc4a2417d3616baa1cc7c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F128_EXPONENT_BIAS</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga81d2a5ce44c433a2ceecefca4a2de08b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F128_EXPONENT</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gadc9b1c869833b31fea877ade10d6239c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F128_EXPONENT_ZERO</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga91f7727aca5c556c5f0a365a1bdb721a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F128_EXPONENT_BITS</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gad7a0f59b4868523a6fedb902e1504cfd</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F128_MANTISSA</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga7bb56169aeb699ceed610fbfa3944291</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F128_MANTISSA_SIGNED</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gae3e8cfada14735b3e598e639359843cc</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F128_MANTISSA_BITS</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga2a5e09a9be518c66810b9d790acea175</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F128_INIT_VALUE</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga7f6fd41f1f033300cba702f96c4d2d4b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>FLOAT_SIGNED</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaaca925756ed2b953f5503f193f6b4184</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>FLOAT_EXPONENT_BIAS</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gad5d7f2514ec4fedb740aae1027ef3494</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>FLOAT_EXPONENT</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga7a3ae2014c6e5a6cfb81a6b2688e3eb6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>FLOAT_EXPONENT_ZERO</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gac9c6d099a7f38dcbd78cdf862e0cdb06</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>FLOAT_EXPONENT_BITS</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gad45ad7d46f6c5149d681ba33ad8a2d4c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>FLOAT_MANTISSA</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga136fab482d9382c23beb0314ccc21f72</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>FLOAT_MANTISSA_SIGNED</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga391ca28748f713405b0da8b36007acd3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>FLOAT_MANTISSA_BITS</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga723fe972c074e2be5692a23dd7401709</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>FLOAT_INIT_VALUE</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gab52abd8ab7aedb33be8562223e680524</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -3603,6 +3288,321 @@
       <anchor>ga3eac845f9567f00d5efb8d5703820a78</anchor>
       <arglist></arglist>
     </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F32_SIGNED</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gab68073391b4d1885aed3ef5f97a778ee</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F32_EXPONENT_BIAS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gaff4f94f02402a07e84f3d4604e47265d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F32_EXPONENT</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga45455f08229e3030c23cf964b6dd21af</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F32_EXPONENT_ZERO</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga459ccfba917ec2fbf69a9e20d064a1b4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F32_EXPONENT_BITS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga5845049b2216118b5df6bef29a6da7fb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F32_MANTISSA</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga84c366a82d97e2694c8c060a00605458</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F32_MANTISSA_SIGNED</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gae76962643a878de58c4cd2248dd43b7d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F32_MANTISSA_BITS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gafc21584309956692a5a5286d056e9650</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F32_INIT_VALUE</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gac7093f0da3fd49fefdc63ca99f0ef506</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F64_SIGNED</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gaac4617a7c49336b2819f5e12d071d863</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F64_EXPONENT_BIAS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga59da18fad691074444fe07da93f07bbf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F64_EXPONENT</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gab40d0a715ec4b6ce1a5cf26cf8499705</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F64_EXPONENT_ZERO</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gaee4aac42f0dbefe36ecaa8db3caccf79</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F64_EXPONENT_BITS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga654d00f825520eabd83f0f4c09071b97</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F64_MANTISSA</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gaa46e75d8630c52a727b9c2c81087ebe2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F64_MANTISSA_SIGNED</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga91f7fb5fab1a39ac561f6ca8684c1aa4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F64_MANTISSA_BITS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga7d97beb92dd86d6bcaef34f8ef6adc64</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F64_INIT_VALUE</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gac1356252683f2585dc62bd892194c39c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F80_SIGNED</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga6c3805905f3280747ad499500733141f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F80_EXPONENT_BIAS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga67cef136ae4751d4b1e2e34fa49ddf4d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F80_EXPONENT</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gacdcb853bc15209e5072c4213a367e503</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F80_EXPONENT_ZERO</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga28a155e3fdbe71a9843ce02d1c06402b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F80_EXPONENT_BITS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gad55bcdeae34b3e526b102e0284a4bb58</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F80_MANTISSA</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga06cd90e1b5b74385e88ac419f04e989e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F80_MANTISSA_SIGNED</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga3ac651588bba97e6ef288d84ec80bdae</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F80_MANTISSA_BITS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga0447bd3864f694362db253d6c069260d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F80_INIT_VALUE</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga6362eb2db4233ca34e7a73e2ead58a60</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F128_SIGNED</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gad2585244df8cc4a2417d3616baa1cc7c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F128_EXPONENT_BIAS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga81d2a5ce44c433a2ceecefca4a2de08b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F128_EXPONENT</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gadc9b1c869833b31fea877ade10d6239c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F128_EXPONENT_ZERO</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga91f7727aca5c556c5f0a365a1bdb721a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F128_EXPONENT_BITS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gad7a0f59b4868523a6fedb902e1504cfd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F128_MANTISSA</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga7bb56169aeb699ceed610fbfa3944291</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F128_MANTISSA_SIGNED</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gae3e8cfada14735b3e598e639359843cc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F128_MANTISSA_BITS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga2a5e09a9be518c66810b9d790acea175</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F128_INIT_VALUE</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga7f6fd41f1f033300cba702f96c4d2d4b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLOAT_SIGNED</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gaaca925756ed2b953f5503f193f6b4184</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLOAT_EXPONENT_BIAS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gad5d7f2514ec4fedb740aae1027ef3494</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLOAT_EXPONENT</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga7a3ae2014c6e5a6cfb81a6b2688e3eb6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLOAT_EXPONENT_ZERO</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gac9c6d099a7f38dcbd78cdf862e0cdb06</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLOAT_EXPONENT_BITS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gad45ad7d46f6c5149d681ba33ad8a2d4c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLOAT_MANTISSA</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga136fab482d9382c23beb0314ccc21f72</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLOAT_MANTISSA_SIGNED</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga391ca28748f713405b0da8b36007acd3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLOAT_MANTISSA_BITS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga723fe972c074e2be5692a23dd7401709</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLOAT_INIT_VALUE</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gab52abd8ab7aedb33be8562223e680524</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="typedef">
       <type>float</type>
       <name>t_f32</name>
@@ -3833,6 +3833,321 @@
       <anchorfile>group__libccc__float.html</anchorfile>
       <anchor>gaa4090cc6374aae80574f220d569c6213</anchor>
       <arglist>(char const *str)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F32_SIGNED</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gab68073391b4d1885aed3ef5f97a778ee</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F32_EXPONENT_BIAS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gaff4f94f02402a07e84f3d4604e47265d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F32_EXPONENT</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga45455f08229e3030c23cf964b6dd21af</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F32_EXPONENT_ZERO</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga459ccfba917ec2fbf69a9e20d064a1b4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F32_EXPONENT_BITS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga5845049b2216118b5df6bef29a6da7fb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F32_MANTISSA</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga84c366a82d97e2694c8c060a00605458</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F32_MANTISSA_SIGNED</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gae76962643a878de58c4cd2248dd43b7d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F32_MANTISSA_BITS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gafc21584309956692a5a5286d056e9650</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F32_INIT_VALUE</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gac7093f0da3fd49fefdc63ca99f0ef506</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F64_SIGNED</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gaac4617a7c49336b2819f5e12d071d863</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F64_EXPONENT_BIAS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga59da18fad691074444fe07da93f07bbf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F64_EXPONENT</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gab40d0a715ec4b6ce1a5cf26cf8499705</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F64_EXPONENT_ZERO</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gaee4aac42f0dbefe36ecaa8db3caccf79</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F64_EXPONENT_BITS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga654d00f825520eabd83f0f4c09071b97</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F64_MANTISSA</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gaa46e75d8630c52a727b9c2c81087ebe2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F64_MANTISSA_SIGNED</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga91f7fb5fab1a39ac561f6ca8684c1aa4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F64_MANTISSA_BITS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga7d97beb92dd86d6bcaef34f8ef6adc64</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F64_INIT_VALUE</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gac1356252683f2585dc62bd892194c39c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F80_SIGNED</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga6c3805905f3280747ad499500733141f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F80_EXPONENT_BIAS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga67cef136ae4751d4b1e2e34fa49ddf4d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F80_EXPONENT</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gacdcb853bc15209e5072c4213a367e503</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F80_EXPONENT_ZERO</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga28a155e3fdbe71a9843ce02d1c06402b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F80_EXPONENT_BITS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gad55bcdeae34b3e526b102e0284a4bb58</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F80_MANTISSA</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga06cd90e1b5b74385e88ac419f04e989e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F80_MANTISSA_SIGNED</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga3ac651588bba97e6ef288d84ec80bdae</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F80_MANTISSA_BITS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga0447bd3864f694362db253d6c069260d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F80_INIT_VALUE</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga6362eb2db4233ca34e7a73e2ead58a60</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F128_SIGNED</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gad2585244df8cc4a2417d3616baa1cc7c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F128_EXPONENT_BIAS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga81d2a5ce44c433a2ceecefca4a2de08b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F128_EXPONENT</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gadc9b1c869833b31fea877ade10d6239c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F128_EXPONENT_ZERO</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga91f7727aca5c556c5f0a365a1bdb721a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F128_EXPONENT_BITS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gad7a0f59b4868523a6fedb902e1504cfd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F128_MANTISSA</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga7bb56169aeb699ceed610fbfa3944291</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F128_MANTISSA_SIGNED</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gae3e8cfada14735b3e598e639359843cc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F128_MANTISSA_BITS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga2a5e09a9be518c66810b9d790acea175</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F128_INIT_VALUE</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga7f6fd41f1f033300cba702f96c4d2d4b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLOAT_SIGNED</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gaaca925756ed2b953f5503f193f6b4184</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLOAT_EXPONENT_BIAS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gad5d7f2514ec4fedb740aae1027ef3494</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLOAT_EXPONENT</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga7a3ae2014c6e5a6cfb81a6b2688e3eb6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLOAT_EXPONENT_ZERO</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gac9c6d099a7f38dcbd78cdf862e0cdb06</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLOAT_EXPONENT_BITS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gad45ad7d46f6c5149d681ba33ad8a2d4c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLOAT_MANTISSA</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga136fab482d9382c23beb0314ccc21f72</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLOAT_MANTISSA_SIGNED</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga391ca28748f713405b0da8b36007acd3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLOAT_MANTISSA_BITS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga723fe972c074e2be5692a23dd7401709</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLOAT_INIT_VALUE</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gab52abd8ab7aedb33be8562223e680524</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -15169,6 +15484,13 @@
     <class kind="union">u_varfloat</class>
     <member kind="define">
       <type>#define</type>
+      <name>INF</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga12c2040f25d8e3a7b9e1c2024c618cb6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>INFINITY</name>
       <anchorfile>group__libccc__float.html</anchorfile>
       <anchor>ga956e2723d559858d08644ac99146e910</anchor>
@@ -15180,13 +15502,6 @@
       <anchorfile>group__libccc__float.html</anchorfile>
       <anchor>ga75b1c8ba2d9c38d0850b2aa25d4650df</anchor>
       <arglist>(X)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>INF</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga12c2040f25d8e3a7b9e1c2024c618cb6</anchor>
-      <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -15235,321 +15550,6 @@
       <name>FLOAT_THRESHOLD_TINY</name>
       <anchorfile>group__libccc__float.html</anchorfile>
       <anchor>ga5ed20a03af8dfc3ef1fb2df54e2ebe89</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F32_SIGNED</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gab68073391b4d1885aed3ef5f97a778ee</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F32_EXPONENT_BIAS</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaff4f94f02402a07e84f3d4604e47265d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F32_EXPONENT</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga45455f08229e3030c23cf964b6dd21af</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F32_EXPONENT_ZERO</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga459ccfba917ec2fbf69a9e20d064a1b4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F32_EXPONENT_BITS</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga5845049b2216118b5df6bef29a6da7fb</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F32_MANTISSA</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga84c366a82d97e2694c8c060a00605458</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F32_MANTISSA_SIGNED</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gae76962643a878de58c4cd2248dd43b7d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F32_MANTISSA_BITS</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gafc21584309956692a5a5286d056e9650</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F32_INIT_VALUE</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gac7093f0da3fd49fefdc63ca99f0ef506</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F64_SIGNED</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaac4617a7c49336b2819f5e12d071d863</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F64_EXPONENT_BIAS</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga59da18fad691074444fe07da93f07bbf</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F64_EXPONENT</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gab40d0a715ec4b6ce1a5cf26cf8499705</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F64_EXPONENT_ZERO</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaee4aac42f0dbefe36ecaa8db3caccf79</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F64_EXPONENT_BITS</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga654d00f825520eabd83f0f4c09071b97</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F64_MANTISSA</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaa46e75d8630c52a727b9c2c81087ebe2</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F64_MANTISSA_SIGNED</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga91f7fb5fab1a39ac561f6ca8684c1aa4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F64_MANTISSA_BITS</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga7d97beb92dd86d6bcaef34f8ef6adc64</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F64_INIT_VALUE</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gac1356252683f2585dc62bd892194c39c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F80_SIGNED</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga6c3805905f3280747ad499500733141f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F80_EXPONENT_BIAS</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga67cef136ae4751d4b1e2e34fa49ddf4d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F80_EXPONENT</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gacdcb853bc15209e5072c4213a367e503</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F80_EXPONENT_ZERO</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga28a155e3fdbe71a9843ce02d1c06402b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F80_EXPONENT_BITS</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gad55bcdeae34b3e526b102e0284a4bb58</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F80_MANTISSA</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga06cd90e1b5b74385e88ac419f04e989e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F80_MANTISSA_SIGNED</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga3ac651588bba97e6ef288d84ec80bdae</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F80_MANTISSA_BITS</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga0447bd3864f694362db253d6c069260d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F80_INIT_VALUE</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga6362eb2db4233ca34e7a73e2ead58a60</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F128_SIGNED</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gad2585244df8cc4a2417d3616baa1cc7c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F128_EXPONENT_BIAS</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga81d2a5ce44c433a2ceecefca4a2de08b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F128_EXPONENT</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gadc9b1c869833b31fea877ade10d6239c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F128_EXPONENT_ZERO</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga91f7727aca5c556c5f0a365a1bdb721a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F128_EXPONENT_BITS</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gad7a0f59b4868523a6fedb902e1504cfd</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F128_MANTISSA</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga7bb56169aeb699ceed610fbfa3944291</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F128_MANTISSA_SIGNED</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gae3e8cfada14735b3e598e639359843cc</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F128_MANTISSA_BITS</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga2a5e09a9be518c66810b9d790acea175</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>F128_INIT_VALUE</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga7f6fd41f1f033300cba702f96c4d2d4b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>FLOAT_SIGNED</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaaca925756ed2b953f5503f193f6b4184</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>FLOAT_EXPONENT_BIAS</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gad5d7f2514ec4fedb740aae1027ef3494</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>FLOAT_EXPONENT</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga7a3ae2014c6e5a6cfb81a6b2688e3eb6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>FLOAT_EXPONENT_ZERO</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gac9c6d099a7f38dcbd78cdf862e0cdb06</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>FLOAT_EXPONENT_BITS</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gad45ad7d46f6c5149d681ba33ad8a2d4c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>FLOAT_MANTISSA</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga136fab482d9382c23beb0314ccc21f72</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>FLOAT_MANTISSA_SIGNED</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga391ca28748f713405b0da8b36007acd3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>FLOAT_MANTISSA_BITS</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga723fe972c074e2be5692a23dd7401709</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>FLOAT_INIT_VALUE</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gab52abd8ab7aedb33be8562223e680524</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -16286,6 +16286,321 @@
       <anchorfile>group__libccc__float.html</anchorfile>
       <anchor>gaa4090cc6374aae80574f220d569c6213</anchor>
       <arglist>(char const *str)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F32_SIGNED</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gab68073391b4d1885aed3ef5f97a778ee</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F32_EXPONENT_BIAS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gaff4f94f02402a07e84f3d4604e47265d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F32_EXPONENT</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga45455f08229e3030c23cf964b6dd21af</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F32_EXPONENT_ZERO</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga459ccfba917ec2fbf69a9e20d064a1b4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F32_EXPONENT_BITS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga5845049b2216118b5df6bef29a6da7fb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F32_MANTISSA</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga84c366a82d97e2694c8c060a00605458</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F32_MANTISSA_SIGNED</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gae76962643a878de58c4cd2248dd43b7d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F32_MANTISSA_BITS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gafc21584309956692a5a5286d056e9650</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F32_INIT_VALUE</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gac7093f0da3fd49fefdc63ca99f0ef506</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F64_SIGNED</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gaac4617a7c49336b2819f5e12d071d863</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F64_EXPONENT_BIAS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga59da18fad691074444fe07da93f07bbf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F64_EXPONENT</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gab40d0a715ec4b6ce1a5cf26cf8499705</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F64_EXPONENT_ZERO</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gaee4aac42f0dbefe36ecaa8db3caccf79</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F64_EXPONENT_BITS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga654d00f825520eabd83f0f4c09071b97</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F64_MANTISSA</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gaa46e75d8630c52a727b9c2c81087ebe2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F64_MANTISSA_SIGNED</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga91f7fb5fab1a39ac561f6ca8684c1aa4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F64_MANTISSA_BITS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga7d97beb92dd86d6bcaef34f8ef6adc64</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F64_INIT_VALUE</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gac1356252683f2585dc62bd892194c39c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F80_SIGNED</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga6c3805905f3280747ad499500733141f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F80_EXPONENT_BIAS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga67cef136ae4751d4b1e2e34fa49ddf4d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F80_EXPONENT</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gacdcb853bc15209e5072c4213a367e503</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F80_EXPONENT_ZERO</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga28a155e3fdbe71a9843ce02d1c06402b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F80_EXPONENT_BITS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gad55bcdeae34b3e526b102e0284a4bb58</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F80_MANTISSA</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga06cd90e1b5b74385e88ac419f04e989e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F80_MANTISSA_SIGNED</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga3ac651588bba97e6ef288d84ec80bdae</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F80_MANTISSA_BITS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga0447bd3864f694362db253d6c069260d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F80_INIT_VALUE</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga6362eb2db4233ca34e7a73e2ead58a60</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F128_SIGNED</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gad2585244df8cc4a2417d3616baa1cc7c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F128_EXPONENT_BIAS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga81d2a5ce44c433a2ceecefca4a2de08b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F128_EXPONENT</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gadc9b1c869833b31fea877ade10d6239c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F128_EXPONENT_ZERO</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga91f7727aca5c556c5f0a365a1bdb721a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F128_EXPONENT_BITS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gad7a0f59b4868523a6fedb902e1504cfd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F128_MANTISSA</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga7bb56169aeb699ceed610fbfa3944291</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F128_MANTISSA_SIGNED</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gae3e8cfada14735b3e598e639359843cc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F128_MANTISSA_BITS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga2a5e09a9be518c66810b9d790acea175</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F128_INIT_VALUE</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga7f6fd41f1f033300cba702f96c4d2d4b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLOAT_SIGNED</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gaaca925756ed2b953f5503f193f6b4184</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLOAT_EXPONENT_BIAS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gad5d7f2514ec4fedb740aae1027ef3494</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLOAT_EXPONENT</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga7a3ae2014c6e5a6cfb81a6b2688e3eb6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLOAT_EXPONENT_ZERO</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gac9c6d099a7f38dcbd78cdf862e0cdb06</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLOAT_EXPONENT_BITS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gad45ad7d46f6c5149d681ba33ad8a2d4c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLOAT_MANTISSA</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga136fab482d9382c23beb0314ccc21f72</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLOAT_MANTISSA_SIGNED</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga391ca28748f713405b0da8b36007acd3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLOAT_MANTISSA_BITS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga723fe972c074e2be5692a23dd7401709</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLOAT_INIT_VALUE</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gab52abd8ab7aedb33be8562223e680524</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="group">

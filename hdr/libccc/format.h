@@ -154,7 +154,7 @@ HEADER_CPP
 
 //! Constructs a string from the given `format` string and multiple args (equivalent to `asprintf()`)
 /*!
-**	@isostd https://en.cppreference.com/w/c/variadic
+**	@isostd{https://en.cppreference.com/w/c/variadic}
 **
 **	Constructs a new null-terminated string, which is generated from the given `format` string,
 **	as well as any relevant variadic arguments - it is equivalent to the `asprintf()` function.

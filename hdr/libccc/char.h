@@ -16,7 +16,7 @@
 **	@{
 **	This header defines all the functions/sets related to single ASCII chars.
 **
-**	@isostd https://en.cppreference.com/w/c/language/ascii
+**	@isostd{https://en.cppreference.com/w/c/language/ascii}
 **	https://en.wikipedia.org/wiki/UTF-8
 **	https://en.wikipedia.org/wiki/UTF-16
 **	https://en.wikipedia.org/wiki/UTF-32
@@ -45,30 +45,30 @@ HEADER_CPP
 
 //! Primitive type: `char`, ie: a text character (1 byte: ANSI/ASCII)
 /*!
-**	@isostd https://en.cppreference.com/w/c/string/byte
+**	@isostd{https://en.cppreference.com/w/c/string/byte}
 */
 typedef char	t_char;
 TYPEDEF_ALIAS(	t_char, CHAR, PRIMITIVE)
 
 //! Primitive type: Unicode UTF-8 character (variable length: 1 to 4 bytes)
 /*!
-**	@isostd https://en.cppreference.com/w/c/string/multibyte
+**	@isostd{https://en.cppreference.com/w/c/string/multibyte}
 */
 typedef char		t_utf8;
 TYPEDEF_ALIAS(		t_utf8, UTF8, PRIMITIVE)
 
 //! Primitive type: Unicode UTF-16 character (variable length: 2 or 4 bytes)
 /*!
-**	@isostd https://en.cppreference.com/w/c/string/multibyte/char16_t
-**	@isostd https://en.cppreference.com/w/c/string/multibyte
+**	@isostd{https://en.cppreference.com/w/c/string/multibyte/char16_t}
+**	@isostd{https://en.cppreference.com/w/c/string/multibyte}
 */
 typedef uint_least16_t	t_utf16;
 TYPEDEF_ALIAS(			t_utf16, UTF16, PRIMITIVE)
 
 //! Primitive type: Unicode UTF-32 character code point value (fixed length: 4 bytes)
 /*!
-**	@isostd https://en.cppreference.com/w/c/string/multibyte/char32_t
-**	@isostd https://en.cppreference.com/w/c/string/wide
+**	@isostd{https://en.cppreference.com/w/c/string/multibyte/char32_t}
+**	@isostd{https://en.cppreference.com/w/c/string/wide}
 */
 typedef uint_least32_t	t_utf32;
 TYPEDEF_ALIAS(			t_utf32, UTF32, PRIMITIVE)

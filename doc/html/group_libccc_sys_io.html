@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,20 +12,12 @@
   
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/doxyrest-sphinx_rtd_theme.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -33,14 +26,37 @@
         <script src="_static/doctools.js"></script>
         <script src="_static/language_data.js"></script>
         <script src="_static/target-highlight.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="_static/js/custom.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="13) libccc/sys/time" href="group_libccc_sys_time.html" />
-    <link rel="prev" title="struct s_argb_" href="struct_s_argb_.html" /> 
+    <link rel="prev" title="struct s_argb" href="struct_s_argb.html" />
+	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
+	
+	<meta name="Description" content="12) libccc/sys/io">
+	<meta property="og:description" content="12) libccc/sys/io">
+	<meta property="og:title" content="libccc 1.0 documentation - 12) libccc/sys/io">
+	<meta property="og:image" content="_static/images/libccc_icon.png">
+	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="380" />
+	<meta property="og:image:height" content="380" />
+	<meta property="og:url" content="group_libccc_sys_io.html">
+	<meta property="og:site_name" content="libccc 1.0 documentation">
+
+
 </head>
 
 <body class="wy-body-for-nav">
@@ -54,7 +70,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> libccc
+            <a href="index.html" class="icon icon-home"> libccc
           
 
           
@@ -77,7 +93,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -124,7 +139,7 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_array_stringarray.html">26) libccc/array/stringarray</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="page_index.html"># libccc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
@@ -133,7 +148,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -172,7 +186,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="index.html">Docs</a> &raquo;</li>
         
       <li>12) libccc/sys/io</li>
     
@@ -222,9 +236,9 @@
 
 <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga2468f6097a96e11ea9356256dd5a9cbb"><span class="std std-ref">t_io_error</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1ga0230b7f195c19f3e5a225aaef3a3cad4"><span></span><span class="n">IO_Write_Memory</span></span><span></span><span class="p">(</span>
     <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f"><span class="std std-ref">t_fd</span></a><span></span> <span class="n">fd</span><span class="p">,</span>
-    <span class="n">t_u8</span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga8ddf940d2d7288b36e35ce78989c811e"><span class="std std-ref">t_u8</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr</span><span class="p">,</span>
     <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">,</span>
-    <span class="n">t_u8</span> <span class="n">cols</span>
+    <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga8ddf940d2d7288b36e35ce78989c811e"><span class="std std-ref">t_u8</span></a><span></span> <span class="n">cols</span>
     <span class="p">);</span>
 
 <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga2468f6097a96e11ea9356256dd5a9cbb"><span class="std std-ref">t_io_error</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga71029519197ad6999a09e053a3627b91"><span class="std std-ref">IO_Write_Format</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f"><span class="std std-ref">t_fd</span></a><span></span> <span class="n">fd</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">format</span><span class="p">,</span> <span class="p">...);</span>
@@ -232,13 +246,7 @@
 <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga2468f6097a96e11ea9356256dd5a9cbb"><span class="std std-ref">t_io_error</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga856b38e0e3361a06a03d10fd5ddad3c7"><span class="std std-ref">IO_Output_String</span></a><span></span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">);</span>
 <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga2468f6097a96e11ea9356256dd5a9cbb"><span class="std std-ref">t_io_error</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga8ae2e736e905519feb2531150b77ddc7"><span class="std std-ref">IO_Output_Line</span></a><span></span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">);</span>
 <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga2468f6097a96e11ea9356256dd5a9cbb"><span class="std std-ref">t_io_error</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1gaa2e30e079fa01808c7e4b33ebb897634"><span class="std std-ref">IO_Output_Lines</span></a><span></span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">**</span> <span class="n">strarr</span><span class="p">);</span>
-
-<a class="reference internal" href="#doxid-group-libccc-sys-io-1ga2468f6097a96e11ea9356256dd5a9cbb"><span class="std std-ref">t_io_error</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1gafd13a0157895b911c9b995e9829bc64d"><span></span><span class="n">IO_Output_Memory</span></span><span></span><span class="p">(</span>
-    <span class="n">t_u8</span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr</span><span class="p">,</span>
-    <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">,</span>
-    <span class="n">t_u8</span> <span class="n">cols</span>
-    <span class="p">);</span>
-
+<a class="reference internal" href="#doxid-group-libccc-sys-io-1ga2468f6097a96e11ea9356256dd5a9cbb"><span class="std std-ref">t_io_error</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1gafd13a0157895b911c9b995e9829bc64d"><span></span><span class="n">IO_Output_Memory</span></span><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga8ddf940d2d7288b36e35ce78989c811e"><span class="std std-ref">t_u8</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga8ddf940d2d7288b36e35ce78989c811e"><span class="std std-ref">t_u8</span></a><span></span> <span class="n">cols</span><span class="p">);</span>
 <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga2468f6097a96e11ea9356256dd5a9cbb"><span class="std std-ref">t_io_error</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga87b5944b07ef6addafce7f04e40192b0"><span class="std std-ref">IO_Output_Format</span></a><span></span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">format</span><span class="p">,</span> <span class="p">...);</span>
 
 <span class="c1">// macros</span>
@@ -442,6 +450,9 @@
 <div class="section" id="detailed-documentation">
 <span id="details-group-libccc-sys-io"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline">¶</a></h2>
 <p>This header defines all the functions for OS-level input/output, read/write.</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/io">https://en.cppreference.com/w/c/io</a></p></li>
+</ul>
 <div class="section" id="typedefs">
 <h3>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h3>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f"><span id="index-1"></span><span></span><span class="k">typedef</span> <span class="kt">int</span> <span class="n">t_fd</span></pre>
@@ -449,6 +460,10 @@
 <p>Define a type for file descriptors (which is usually the default machine ‘int’)</p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga2468f6097a96e11ea9356256dd5a9cbb"><span id="index-2"></span><span></span><span class="k">typedef</span> <span class="kt">int</span> <span class="n">t_io_error</span></pre>
 <p>This type represents an error code for a system call IO function (ie: a value for the ‘errno’ global variable)</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/error/errno">https://en.cppreference.com/w/c/error/errno</a></p></li>
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/error/errno_macros">https://en.cppreference.com/w/c/error/errno_macros</a></p></li>
+</ul>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga1de405b2724d2ab9e24318716e07511e"><span id="index-3"></span><span></span><span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">t_io_mode</span></pre>
 <p>This type represents a file access permissions bitflag value (like you would use with chmod)</p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga529de828c63062e6b522d48411c11219"><span id="index-4"></span><span></span><span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">t_io_open</span></pre>
@@ -926,12 +941,15 @@
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gaae689ff0d3c80212647035624b64072a"><span id="index-180"></span><span></span><span class="cp">#define OPEN_WRITEONLY</span></pre>
 <p>Open the file for write access.</p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga3a540e3eef339eec06aff31c4ba1eb25"><span id="index-181"></span><span></span><span class="cp">#define STDERR</span></pre>
-<p>Special file descriptor (2), refers to terminal error stream.</p>
+<p>Special file descriptor (2), refers to the standard error stream.</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/io/std_streams">https://en.cppreference.com/w/c/io/std_streams</a></p></li>
+</ul>
 <p>Define the 3 standard (std) streams of data - these numbers are special file descriptors used to read from and write to the terminal commandline.</p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gac00bfb46347d26fdc58568fe1ab5fa5b"><span id="index-182"></span><span></span><span class="cp">#define STDIN</span></pre>
-<p>Special file descriptor (0), refers to terminal input stream.</p>
+<p>Special file descriptor (0), refers to the standard input stream.</p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga8875037d0772a4fc34516f1e03d7e238"><span id="index-183"></span><span></span><span class="cp">#define STDOUT</span></pre>
-<p>Special file descriptor (1), refers to terminal output stream.</p>
+<p>Special file descriptor (1), refers to the standard output stream.</p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga77b06cd897c5e6c61cfe05ab0f208304"><span id="index-184"></span><span></span><span class="cp">#define c_putlines</span></pre>
 <p>Writes ‘n’ bytes of memory from ‘ptr’ as hexadecimal 2-char blocks in ‘cols’ columns, to the standard output.</p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga8dd1c7c5c1f72e98e52f225a6b475ab9"><span id="index-185"></span><span></span><span class="cp">#define c_write_lines</span></pre>
@@ -951,7 +969,7 @@
         <a href="group_libccc_sys_time.html" class="btn btn-neutral float-right" title="13) libccc/sys/time" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="struct_s_argb_.html" class="btn btn-neutral float-left" title="struct s_argb_" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="struct_s_argb.html" class="btn btn-neutral float-left" title="struct s_argb" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -960,19 +978,11 @@
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright FREE
+        &copy; Copyright Free &amp; Open Source: MIT License
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -983,6 +993,7 @@
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

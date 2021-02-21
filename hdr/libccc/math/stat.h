@@ -17,6 +17,8 @@
 **	This header defines some common statistics functions, for lists of int/float
 */
 
+// TODO add other function macros for integral, distance, etc
+
 /*
 ** ************************************************************************** *|
 **                                   Includes                                 *|
@@ -141,7 +143,7 @@ s_list_int						Stat_Int_MergeList(s_list_int* start, s_list_int* append);
 
 //! TODO document this
 /*!
-**	@isostd https://en.cppreference.com/w/c/algorithm/qsort
+**	@isostd{https://en.cppreference.com/w/c/algorithm/qsort}
 **
 */
 s_list_int 						Stat_Int_Quicksort(s_list_int const ilst);

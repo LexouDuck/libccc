@@ -16,8 +16,9 @@
 **	@{
 **	This header defines the integer number primitive types and functions.
 **
-**	@isostd https://en.cppreference.com/w/c/language/arithmetic_types#Integer_types
-**	@isostd https://en.cppreference.com/w/cpp/types/integer
+**	@isostd{https://en.cppreference.com/w/c/language/arithmetic_types#Integer_types}
+**	@isostd{https://en.cppreference.com/w/c/types/integer}
+**	@isostd{https://en.cppreference.com/w/c/types/limits}
 **
 **	These are wrapper types for all the primitive integer types in a more concise
 **	naming convention, to better reflect the amount of bits used by each type.

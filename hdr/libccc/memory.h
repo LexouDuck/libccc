@@ -16,7 +16,7 @@
 **	@{
 **	This header defines the common standard memory manipulation functions.
 **
-**	@isostd https://en.cppreference.com/w/c/memory
+**	@isostd{https://en.cppreference.com/w/c/memory}
 */
 
 /*
@@ -41,7 +41,7 @@ HEADER_CPP
 
 //! Returns a pointer to a newly allocated memory area which is `n` bytes long.
 /*!
-**	@isostd https://en.cppreference.com/w/c/memory/malloc
+**	@isostd{https://en.cppreference.com/w/c/memory/malloc}
 **
 **	Allocates `size` bytes in memory, returning the pointer at which
 **	said bytes were allocated, or NULL if the memory could not be allocated.
@@ -70,7 +70,7 @@ void*				Memory_New_C(t_size size, char c);
 
 //! Frees the previously allocated memory area at `*ptr`.
 /*!
-**	@isostd https://en.cppreference.com/w/c/memory/free
+**	@isostd{https://en.cppreference.com/w/c/memory/free}
 **
 **	Deallocates the area of memory pointed to by `ptr`, assuming it was
 **	previously allocated by a call to Memory_Alloc() or Memory_New()

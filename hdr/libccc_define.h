@@ -17,10 +17,10 @@
 **	This header defines all the common macros/defines used to "extend" C.
 **
 **	Important read - regarding identifiers, storage duration, alignment:
-**	@isostd https://en.cppreference.com/w/c/language/object
+**	@isostd{https://en.cppreference.com/w/c/language/object}
 **
 **	Interesting read, little known fact about C syntax and code text encodings.
-**	@isostd https://en.cppreference.com/w/c/language/operator_alternative
+**	@isostd{https://en.cppreference.com/w/c/language/operator_alternative}
 */
 
 /*
@@ -59,7 +59,7 @@ HEADER_CPP
 #endif
 //! Represents a successful function return
 /*!
-**	@isostd https://en.cppreference.com/w/c/program/EXIT_status
+**	@isostd{https://en.cppreference.com/w/c/program/EXIT_status}
 **
 **	Common macro for return values, used by several C functions.
 */
@@ -70,7 +70,7 @@ HEADER_CPP
 #endif
 //! Represents a failure function return
 /*!
-**	@isostd https://en.cppreference.com/w/c/program/EXIT_status
+**	@isostd{https://en.cppreference.com/w/c/program/EXIT_status}
 **
 **	Common macro for return values, used by several C functions.
 */
@@ -80,7 +80,7 @@ HEADER_CPP
 
 // TODO wrappers for exit() function (perhaps also abort(), )
 /*!
-**	@isostd https://en.cppreference.com/w/c/program
+**	@isostd{https://en.cppreference.com/w/c/program}
 */
 
 

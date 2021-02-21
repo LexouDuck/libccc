@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,20 +12,12 @@
   
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/doxyrest-sphinx_rtd_theme.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -33,14 +26,34 @@
         <script src="_static/doctools.js"></script>
         <script src="_static/language_data.js"></script>
         <script src="_static/target-highlight.js"></script>
+        <script src="_static/js/custom.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="struct s_timespec_" href="struct_s_timespec_.html" />
-    <link rel="prev" title="enum e_weekday_" href="enum_e_weekday_.html" /> 
+	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
+	
+	<meta name="Description" content="struct s_date_">
+	<meta property="og:description" content="struct s_date_">
+	<meta property="og:title" content="libccc 1.0 documentation - struct s_date_">
+	<meta property="og:image" content="_static/images/libccc_icon.png">
+	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="380" />
+	<meta property="og:image:height" content="380" />
+	<meta property="og:url" content="struct_s_date_.html">
+	<meta property="og:site_name" content="libccc 1.0 documentation">
+
+
 </head>
 
 <body class="wy-body-for-nav">
@@ -54,7 +67,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> libccc
+            <a href="index.html" class="icon icon-home"> libccc
           
 
           
@@ -77,7 +90,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -85,7 +97,7 @@
               
             
             
-              <ul class="current">
+              <ul>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc.html">00) libccc</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">01) libccc/bool</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">02) libccc/int</a></li>
@@ -99,22 +111,7 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_regex.html">10) libccc/regex</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_color.html">11) libccc/color</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">12) libccc/sys/io</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="group_libccc_sys_time.html">13) libccc/sys/time</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="enum_e_month_.html">enum e_month_</a></li>
-<li class="toctree-l2"><a class="reference internal" href="enum_e_weekday_.html">enum e_weekday_</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">struct s_date_</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#detailed-documentation">Detailed Documentation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#fields">Fields</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="struct_s_timespec_.html">struct s_timespec_</a></li>
-<li class="toctree-l2"><a class="reference internal" href="group_libccc_sys_time.html#overview">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="group_libccc_sys_time.html#detailed-documentation">Detailed Documentation</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_time.html">13) libccc/sys/time</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">14) libccc/sys/logger</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_math_math.html">15) libccc/math/math</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_math_vlq.html">16) libccc/math/vlq</a></li>
@@ -130,7 +127,7 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_array_stringarray.html">26) libccc/array/stringarray</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="page_index.html"># libccc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
@@ -139,7 +136,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -178,9 +174,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
-          <li><a href="group_libccc_sys_time.html">13) libccc/sys/time</a> &raquo;</li>
+      <li><a href="index.html">Docs</a> &raquo;</li>
         
       <li>struct s_date_</li>
     
@@ -215,10 +209,10 @@
     <span class="n">t_u8</span> <a class="reference internal" href="#doxid-structs-date-1acedfd6318b081dd98ab0f8b6d695de18"><span class="std std-ref">sec</span></a><span></span><span class="p">;</span>
     <span class="n">t_u8</span> <a class="reference internal" href="#doxid-structs-date-1ab75c5c3c4d4659f0408c57ac14323d5b"><span class="std std-ref">min</span></a><span></span><span class="p">;</span>
     <span class="n">t_u8</span> <a class="reference internal" href="#doxid-structs-date-1a8f9c8a1221549c874e7772416d9d3dee"><span class="std std-ref">hour</span></a><span></span><span class="p">;</span>
-    <a class="reference internal" href="group_libccc_sys_time.html#doxid-group-libccc-sys-time-1gadf660d127ff6a2087b5b40212d894ec6"><span class="std std-ref">e_weekday</span></a><span></span> <a class="reference internal" href="#doxid-structs-date-1a14b6e541b095999d87022aa1c72fec54"><span class="std std-ref">day_week</span></a><span></span><span class="p">;</span>
+    e_weekday<span></span> <a class="reference internal" href="#doxid-structs-date-1a14b6e541b095999d87022aa1c72fec54"><span class="std std-ref">day_week</span></a><span></span><span class="p">;</span>
     <span class="n">t_u8</span> <a class="reference internal" href="#doxid-structs-date-1a1798b22918c574c19a7f158bb5ec285c"><span class="std std-ref">day_month</span></a><span></span><span class="p">;</span>
     <span class="n">t_s32</span> <a class="reference internal" href="#doxid-structs-date-1accf011a2c3410fef5f216f38fd2b02a6"><span class="std std-ref">day_year</span></a><span></span><span class="p">;</span>
-    <a class="reference internal" href="group_libccc_sys_time.html#doxid-group-libccc-sys-time-1gabfbaef83dda6b8027691e3c77484cf60"><span class="std std-ref">e_month</span></a><span></span> <a class="reference internal" href="#doxid-structs-date-1a30a6ca816b827b5a07717b4a6e7d9104"><span class="std std-ref">month</span></a><span></span><span class="p">;</span>
+    e_month<span></span> <a class="reference internal" href="#doxid-structs-date-1a30a6ca816b827b5a07717b4a6e7d9104"><span class="std std-ref">month</span></a><span></span><span class="p">;</span>
     <span class="n">t_s32</span> <a class="reference internal" href="#doxid-structs-date-1a104d238e4b14ab135d9d8a912d190673"><span class="std std-ref">year</span></a><span></span><span class="p">;</span>
     <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaf15d2c7169c336f97175a2e218d22e73"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-structs-date-1afce358d0d549d7cd8e4c768c5650105f"><span class="std std-ref">is_dst</span></a><span></span><span class="p">;</span>
 <span class="p">};</span></pre>
@@ -237,13 +231,13 @@
 <p>[0,59] minutes after the hour</p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-structs-date-1a8f9c8a1221549c874e7772416d9d3dee"><span id="index-3"></span><span></span><span class="n">t_u8</span> <span class="n">hour</span></pre>
 <p>[0,23] hours since midnight</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-structs-date-1a14b6e541b095999d87022aa1c72fec54"><span id="index-4"></span><a class="reference internal" href="group_libccc_sys_time.html#doxid-group-libccc-sys-time-1gadf660d127ff6a2087b5b40212d894ec6"><span class="std std-ref">e_weekday</span></a><span></span> <span class="n">day_week</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-structs-date-1a14b6e541b095999d87022aa1c72fec54"><span id="index-4"></span>e_weekday<span></span> <span class="n">day_week</span></pre>
 <p>[0,6] days since Sunday</p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-structs-date-1a1798b22918c574c19a7f158bb5ec285c"><span id="index-5"></span><span></span><span class="n">t_u8</span> <span class="n">day_month</span></pre>
 <p>[1,31] day of the month</p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-structs-date-1accf011a2c3410fef5f216f38fd2b02a6"><span id="index-6"></span><span></span><span class="n">t_s32</span> <span class="n">day_year</span></pre>
 <p>[0,365] days since January 1 (max value is 365 every 4 years, otherwise 364)</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-structs-date-1a30a6ca816b827b5a07717b4a6e7d9104"><span id="index-7"></span><a class="reference internal" href="group_libccc_sys_time.html#doxid-group-libccc-sys-time-1gabfbaef83dda6b8027691e3c77484cf60"><span class="std std-ref">e_month</span></a><span></span> <span class="n">month</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-structs-date-1a30a6ca816b827b5a07717b4a6e7d9104"><span id="index-7"></span>e_month<span></span> <span class="n">month</span></pre>
 <p>[0,11] months since January</p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-structs-date-1a104d238e4b14ab135d9d8a912d190673"><span id="index-8"></span><span></span><span class="n">t_s32</span> <span class="n">year</span></pre>
 <p>Amount of years since 1900</p>
@@ -259,33 +253,16 @@
           </div>
           <footer>
   
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="struct_s_timespec_.html" class="btn btn-neutral float-right" title="struct s_timespec_" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="enum_e_weekday_.html" class="btn btn-neutral float-left" title="enum e_weekday_" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright FREE
+        &copy; Copyright Free &amp; Open Source: MIT License
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -296,6 +273,7 @@
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

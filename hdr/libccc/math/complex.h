@@ -15,8 +15,10 @@
 **	@addtogroup libccc_math_complex
 **	@{
 **	This header defines useful algebra and calculus types, and functions.
+**
+**	@isostd{https://en.cppreference.com/w/c/numeric/complex}
+**	@isostd{https://en.cppreference.com/w/c/numeric/tgmath}
 */
-// TODO add other function macros for integral, distance, etc
 
 /*
 ** ************************************************************************** *|
@@ -42,12 +44,23 @@ HEADER_CPP
 	typedef _Complex	s_complex;
 	TYPEDEF_ALIAS(		s_complex, COMPLEX, STRUCT)
 
-	//!	Zero, as a complex number type
+	//!	A complex number value of zero (both real and imaginary parts are zero)
+	/*!
+	**	@isostd{https://en.cppreference.com/w/c/numeric/complex/complex}
+	**	@isostd{https://en.cppreference.com/w/c/numeric/complex/imaginary}
+	**
+	**	The two parts of the complex number are stored as two fields in the struct.
+	*/
 	#define COMPLEX_NULL	(0.0 + 0.0*I)
 
 #else
 
 	//! A struct to store complex/imaginary number values
+	/*!
+	**	@nonstd
+	**
+	**	The two parts of the complex number are stored as two fields in the struct.
+	*/
 	typedef struct	s_complex_
 	{
 		t_float		re;		//!< The "real" part of this complex number
@@ -55,7 +68,7 @@ HEADER_CPP
 	}				s_complex;
 	TYPEDEF_ALIAS(	s_complex, COMPLEX, STRUCT)
 
-	//!	Zero, as a complex number type
+	//!	A complex number value of zero (both real and imaginary parts are zero)
 	#define COMPLEX_NULL	(s_complex){ .re = 0, .im = 0 }
 
 #endif
@@ -122,6 +135,31 @@ s_complex				Complex_Divide(s_complex const* z1, s_complex const* z2);
 s_complex				Complex_Power(s_complex const* z, t_u8 n);
 #define c_cplxpow		Complex_Power
 #define Complex_Pow		Complex_Power
+
+// TODO cabs
+// TODO carg
+// TODO conj
+// TODO cproj
+
+// TODO cexp
+// TODO clog
+
+// TODO cpow
+// TODO csqrt
+
+// TODO ccos
+// TODO csin
+// TODO ctan
+// TODO cacos
+// TODO casin
+// TODO catan
+
+// TODO ccosh
+// TODO csinh
+// TODO ctanh
+// TODO cacosh
+// TODO casinh
+// TODO catanh
 
 // TODO add polar form operations
 

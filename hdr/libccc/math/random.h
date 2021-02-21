@@ -15,6 +15,8 @@
 **	@addtogroup libccc_math_random
 **	@{
 **	This header defines some simple pseudo-random number generator functions.
+**
+**	@isostd{https://en.cppreference.com/w/c/numeric/random}
 */
 
 /*

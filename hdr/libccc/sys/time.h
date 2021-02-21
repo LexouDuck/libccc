@@ -16,7 +16,7 @@
 **	@{
 **	This header defines all the functions for date & time related functions.
 **
-**	@isostd https://en.cppreference.com/w/c/chrono
+**	@isostd{https://en.cppreference.com/w/c/chrono}
 */
 
 /*
@@ -44,7 +44,7 @@ HEADER_CPP
 
 //! The standard type used to represent a date and time, normal precision (seconds)
 /*!
-**	@isostd https://en.cppreference.com/w/c/chrono/time_t
+**	@isostd{https://en.cppreference.com/w/c/chrono/time_t}
 **
 **	This type stores an integer value representing a standard UNIX epoch time.
 **	That means that a `t_time` value holds a the number of seconds since
@@ -59,7 +59,7 @@ TYPEDEF_ALIAS(		t_time, TIME, PRIMITIVE)
 
 //! This struct is used to store a duration/interval with high precision (nanoseconds)
 /*!
-**	@isostd https://en.cppreference.com/w/c/chrono/timespec
+**	@isostd{https://en.cppreference.com/w/c/chrono/timespec}
 **
 **	This 'timespec' has an arbitrary begin point (typically the start of program
 **	execution, but it can be the last machine boot, among many other things).
@@ -85,7 +85,7 @@ TYPEDEF_ALIAS(	s_timespec, TIMESPEC, STRUCT)
 
 // TODO `t_clock`
 /*!
-**	@isostd https://en.cppreference.com/w/c/chrono/clock_t
+**	@isostd{https://en.cppreference.com/w/c/chrono/clock_t}
 **
 */
 
@@ -197,7 +197,7 @@ TYPEDEF_ALIAS(	t_timezone, TIMEZONE, PRIMITIVE)
 
 //! This struct is used to store all aspects about a certain date/time (equivalent to 'struct tm')
 /*!
-**	@isostd https://en.cppreference.com/w/c/chrono/tm
+**	@isostd{https://en.cppreference.com/w/c/chrono/tm}
 **
 **	This struct is equivalent to the ISO C library's 'struct tm',
 **	although it's sub-fields have different names:

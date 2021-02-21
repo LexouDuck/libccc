@@ -15,7 +15,12 @@
 **	@addtogroup libccc_float
 **	@{
 **	This header defines the floating-point number primitive types and functions.
+**
+**	@isostd{https://en.cppreference.com/w/c/numeric/math}
+**	@isostd{https://en.cppreference.com/w/c/numeric/fenv}
 */
+
+// TODO subnormal float util functions/macros ?
 
 /*
 ** ************************************************************************** *|
@@ -75,32 +80,62 @@ TYPEDEF_ALIAS(					t_float, FLOAT, PRIMITIVE)
 
 
 
-#ifndef INFINITY		//! Define the floating-point infinity value: use -INFINITY for negative inf
-#define INFINITY		(1. / 0.)
-#endif
-#ifndef IS_INFINITY		//! Checks if the given 'x' is either +INFINITY or -INFINITY
-#define IS_INFINITY(X)	((X) == INFINITY || (X) == -INFINITY)
-#endif
+//! The floating-point infinity value (use `-INF` for negative)
+/*!
+**	@isostd{https://en.cppreference.com/w/c/numeric/math/INFINITY}
+*/
 #ifndef INF
-#define INF				INFINITY
+#define INF			(1. / 0.)
 #endif
-#ifndef IS_INF
-#define IS_INF(X)		IS_INFINITY(X)
+//! The floating-point infinity value (use `-INFINITY` for negative) [alias for #INF]
+#ifndef INFINITY
+#define INFINITY	INF
 #endif
 
-#ifndef NAN				//! Define the floating-point "not a number" value.
-#define NAN				(0. / 0.)
+//! Checks if the given 'x' is either +INFINITY or -INFINITY
+/*!
+**	@isostd{https://en.cppreference.com/w/c/numeric/math/isinf}
+*/
+#ifndef IS_INFINITY
+#define IS_INFINITY(X)	((X) == INFINITY || (X) == -INFINITY)
 #endif
-#ifndef IS_NAN			//! Checks if the given 'x' has a "not a number" value.
-#define IS_NAN(X)		((X) != (X))
+#ifndef IS_INF
+#define IS_INF(X)	IS_INFINITY(X)
 #endif
+
+
+
+//! The floating-point "not a number" value.
+/*!
+**	@isostd{https://en.cppreference.com/w/c/numeric/math/nan}
+**	@isostd{https://en.cppreference.com/w/c/numeric/math/NAN}
+*/
+#ifndef NAN
+#define NAN			(0. / 0.)
+#endif
+
+//! Checks if the given 'x' has a "not a number" value.
+/*!
+**	@isostd{https://en.cppreference.com/w/c/numeric/math/isnan}
+*/
+#ifndef IS_NAN
+#define IS_NAN(X)	((X) != (X))
+#endif
+
+
+
+// TODO add HUGE and TINY min/max value macros
+/*!
+**	@isostd{https://en.cppreference.com/w/c/numeric/math/HUGE_VAL}
+**	@isostd{https://en.cppreference.com/w/c/types/limits#Limits_of_floating_point_types}
+*/
 
 
 
 /*!
 **	This very small float is typically used to compare two float values.
 **	Floating point equality checks aren't the most dependable kind of operation,
-**	so it's often better to do (ABS(x - y) <= FLOAT_BIAS) to check for equality.
+**	so it's often better to do `(ABS(x - y) <= FLOAT_BIAS)` to check for equality.
 */
 #define FLOAT_BIAS		(1.0e-10)
 
@@ -109,16 +144,17 @@ TYPEDEF_ALIAS(					t_float, FLOAT, PRIMITIVE)
 
 
 
-//! If (value >= FLOAT_THRESHOLD_HUGE), Float_ToString() functions print in scientific notation
+//! If `(value >= FLOAT_THRESHOLD_HUGE)`, Float_ToString() functions will write in scientific notation
 #define FLOAT_THRESHOLD_HUGE	(1e+9)
-//! If (value <= FLOAT_THRESHOLD_TINY), Float_ToString() functions print in scientific notation
+//! If `(value <= FLOAT_THRESHOLD_TINY)`, Float_ToString() functions will write in scientific notation
 #define FLOAT_THRESHOLD_TINY	(1e-9)
 
 
 
-/*
+/*! @name bitwise_macros_f32
 **	IEEE 754 32-bit floating point "single" precision bitwise macros
 */
+//!@{
 #define F32_SIGNED			(0x80000000)	//!< A 32-bit floating-point number's sign bit (bitmask)
 #define F32_EXPONENT_BIAS	(127)			//!< A 32-bit floating-point number's exponent bias offset
 #define F32_EXPONENT		(0x7F800000)	//!< A 32-bit floating-point number's exponent bit region (bitmask)
@@ -128,10 +164,12 @@ TYPEDEF_ALIAS(					t_float, FLOAT, PRIMITIVE)
 #define F32_MANTISSA_SIGNED	(0x807FFFFF)	//!< A 32-bit floating-point number's mantissa and sign bit regions (bitmask)
 #define F32_MANTISSA_BITS	(23)			//!< A 32-bit floating-point number's amount of bits dedicated to the mantissa
 #define F32_INIT_VALUE		(0x1.p-23)		//!< A 32-bit floating-point number's value if all bits are zero
+//!@}
 
-/*
+/*! @name bitwise_macros_f64
 **	IEEE 754 64-bit floating point double-precision bitwise macros
 */
+//!@{
 #define F64_SIGNED			(0x8000000000000000)	//!< A 64-bit floating-point number's sign bit (bitmask)
 #define F64_EXPONENT_BIAS	(1023)					//!< A 64-bit floating-point number's exponent bias offset
 #define F64_EXPONENT		(0x7FF0000000000000)	//!< A 64-bit floating-point number's exponent bit region (bitmask)
@@ -141,10 +179,12 @@ TYPEDEF_ALIAS(					t_float, FLOAT, PRIMITIVE)
 #define F64_MANTISSA_SIGNED	(0x800FFFFFFFFFFFFF)	//!< A 64-bit floating-point number's mantissa and sign bit regions (bitmask)
 #define F64_MANTISSA_BITS	(52)					//!< A 64-bit floating-point number's amount of bits dedicated to the mantissa
 #define F64_INIT_VALUE		(0x1.p-52)				//!< A 64-bit floating-point number's value if all bits are zero
+//!@}
 
-/*
+/*! @name bitwise_macros_f80
 **	x86 80-bit floating point extended precision bitwise macros
 */
+//!@{
 #define F80_SIGNED			(0x80000000000000000000L)	//!< A 80-bit floating-point number's sign bit (bitmask)
 #define F80_EXPONENT_BIAS	(16383)						//!< A 80-bit floating-point number's exponent bias offset
 #define F80_EXPONENT		(0x7FFF0000000000000000L)	//!< A 80-bit floating-point number's exponent bit region (bitmask)
@@ -154,10 +194,12 @@ TYPEDEF_ALIAS(					t_float, FLOAT, PRIMITIVE)
 #define F80_MANTISSA_SIGNED	(0x8000FFFFFFFFFFFFFFFFL)	//!< A 80-bit floating-point number's mantissa and sign bit regions (bitmask)
 #define F80_MANTISSA_BITS	(64)						//!< A 80-bit floating-point number's amount of bits dedicated to the mantissa
 #define F80_INIT_VALUE		(0x1.p-64)					//!< A 80-bit floating-point number's value if all bits are zero
+//!@}
 
-/*
+/*! @name bitwise_macros_f128
 **	IEEE 754 128-bit floating point quadruple-precision bitwise macros
 */
+//!@{
 #define F128_SIGNED				(0x80000000000000000000000000000000L)	//!< A 128-bit floating-point number's sign bit (bitmask)
 #define F128_EXPONENT_BIAS		(16383)									//!< A 128-bit floating-point number's exponent bias offset
 #define F128_EXPONENT			(0x7FFF0000000000000000000000000000L)	//!< A 128-bit floating-point number's exponent bit region (bitmask)
@@ -167,17 +209,18 @@ TYPEDEF_ALIAS(					t_float, FLOAT, PRIMITIVE)
 #define F128_MANTISSA_SIGNED	(0x8000FFFFFFFFFFFFFFFFFFFFFFFFFFFFL)	//!< A 128-bit floating-point number's mantissa and sign bit regions (bitmask)
 #define F128_MANTISSA_BITS		(112)									//!< A 128-bit floating-point number's amount of bits dedicated to the mantissa
 #define F128_INIT_VALUE			(0x1.p-112)								//!< A 128-bit floating-point number's value if all bits are zero
+//!@}
 
 
 
-/*
+/*! @name bitwise_macros_float
 **	Depending on the 't_float' type (_FLOAT_32_ or _FLOAT_64_, etc) chosen,
 **	the appropriate bitwise macros will be used by the math functions.
 **	It is often better to only use one type of floating-point precision
 **	for a given program, so the best way to do that is by using the 'FLOAT_'
 **	macros defined below, rather than the 'F32_' or 'F64_' macros above.
 */
-
+//!@{
 #define FLOAT_SIGNED			CONCAT(CONCAT(F,LIBCONFIG_BITS_FLOAT),_SIGNED)
 #define FLOAT_EXPONENT_BIAS		CONCAT(CONCAT(F,LIBCONFIG_BITS_FLOAT),_EXPONENT_BIAS)
 #define FLOAT_EXPONENT			CONCAT(CONCAT(F,LIBCONFIG_BITS_FLOAT),_EXPONENT)
@@ -187,12 +230,14 @@ TYPEDEF_ALIAS(					t_float, FLOAT, PRIMITIVE)
 #define FLOAT_MANTISSA_SIGNED	CONCAT(CONCAT(F,LIBCONFIG_BITS_FLOAT),_MANTISSA_SIGNED)
 #define FLOAT_MANTISSA_BITS		CONCAT(CONCAT(F,LIBCONFIG_BITS_FLOAT),_MANTISSA_BITS)
 #define FLOAT_INIT_VALUE		CONCAT(CONCAT(F,LIBCONFIG_BITS_FLOAT),_INIT_VALUE)
+//!@}
 
 
 
+//! Union type to allow direct bitwise manipulation of floating-point values
 /*!
-**	This union type is used in several math function implementations,
-**	to manipulate float bits directly with bitwise operators.
+**	This union type is used in several math function implementations, to
+**	manipulate float bits directly, by using bitwise operators with int types.
 */
 typedef union	u_float_cast_
 {

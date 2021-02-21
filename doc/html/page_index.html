@@ -1,20 +1,15 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title># libccc &mdash; libccc 1.0 documentation</title>
+  <title>libccc &mdash; libccc 1.0 documentation</title>
   
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/doxyrest-sphinx_rtd_theme.css" type="text/css" />
 
   
   
@@ -22,9 +17,7 @@
   
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -33,14 +26,37 @@
         <script src="_static/doctools.js"></script>
         <script src="_static/language_data.js"></script>
         <script src="_static/target-highlight.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="_static/js/custom.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Global Namespace" href="global.html" />
-    <link rel="prev" title="26) libccc/array/stringarray" href="group_libccc_array_stringarray.html" /> 
+    <link rel="prev" title="26) libccc/array/stringarray" href="group_libccc_array_stringarray.html" />
+	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
+	
+	<meta name="Description" content="libccc">
+	<meta property="og:description" content="libccc">
+	<meta property="og:title" content="libccc 1.0 documentation - libccc">
+	<meta property="og:image" content="_static/images/libccc_icon.png">
+	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="380" />
+	<meta property="og:image:height" content="380" />
+	<meta property="og:url" content="page_index.html">
+	<meta property="og:site_name" content="libccc 1.0 documentation">
+
+
 </head>
 
 <body class="wy-body-for-nav">
@@ -54,7 +70,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> libccc
+            <a href="index.html" class="icon icon-home"> libccc
           
 
           
@@ -77,7 +93,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -115,18 +130,19 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_array_stringarray.html">26) libccc/array/stringarray</a></li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#"># libccc</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#the-project">### The Project</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#why-does-this-exist">### Why does this exist ?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#building">### Building</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#testing">### Testing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#contributing-and-continuous-integration">### Contributing and Continuous Integration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#build-system">### Build system</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#doxid-index-1autotoc-md6">Building</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">libccc</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-project">The Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#why-does-this-exist">Why does this exist ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-use-this-library">How to use this library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#testing">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#continuous-integration">Continuous Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#build-system">Build system</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#building">Building</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#checking-ci">Checking/CI</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#deleting">Deleting</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#contributing">Contributing</a></li>
 </ul>
 </li>
 </ul>
@@ -137,7 +153,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -176,9 +191,9 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li># libccc</li>
+      <li>libccc</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -196,14 +211,14 @@
            <div itemprop="articleBody">
             
   <div class="section" id="libccc">
-<span id="doxid-indexpage"></span><span id="index-0"></span><h1># libccc<a class="headerlink" href="#libccc" title="Permalink to this headline">¶</a></h1>
+<span id="doxid-indexpage"></span><span id="index-0"></span><h1>libccc<a class="headerlink" href="#libccc" title="Permalink to this headline">¶</a></h1>
 <p><span class="target" id="doxid-index-1md-readme"></span> A comprehensive, cross-platform, customizable standard library for C</p>
 <dl class="simple">
 <dt><a href="#id1"><span class="problematic" id="id2">`</span></a></dt><dd><p>&lt;<a class="reference external" href="https://github.com/LexouDuck/libccc/actions">https://github.com/LexouDuck/libccc/actions</a>&gt;`__</p>
 </dd>
 </dl>
 <div class="section" id="the-project">
-<span id="doxid-index-1autotoc-md0"></span><h2>### The Project<a class="headerlink" href="#the-project" title="Permalink to this headline">¶</a></h2>
+<span id="doxid-index-1autotoc-md0"></span><h2>The Project<a class="headerlink" href="#the-project" title="Permalink to this headline">¶</a></h2>
 <p>The objective is to have one simple, well-documented, efficient open-source implementation of the C standard library, but with easier to use functions and types than what is offered by the ISO standards - mostly by consistently handling undefined behaviors, and handling edge cases in a consistent, coherent way, so as to have code that is as little machine-specific as possible.</p>
 <p>The first step to accomplishing this is to not use the native int/long/short types, which can have different storage size depending on the platform (‘int’ is defined as the fastest integer type for the given machine, typically this will be the CPU register size - so on a 64-bit machine, that’d be int64, on a 32-bit machine int32, and some old embedded systems you come across might have 16-bit ints as the machine’s default storage size). So first of all, using the integer types defined in “stdint.h” (‘int32_t’, ‘uint64_t’, etc) is essential for any cross-platform C code, as it ensures consistent cross-platform overflow behaviors (Note that these aren’t present on every platform though - sometimes we will have to settle for the ‘uint_fastX_t’ types, but macros have been provided to make this switch simply).</p>
 <p>The following categories/headers include the ISO standard library (types, functions, macros):</p>
@@ -237,12 +252,12 @@
 </ul>
 </div>
 <div class="section" id="why-does-this-exist">
-<span id="doxid-index-1autotoc-md1"></span><h2>### Why does this exist ?<a class="headerlink" href="#why-does-this-exist" title="Permalink to this headline">¶</a></h2>
+<span id="doxid-index-1autotoc-md1"></span><h2>Why does this exist ?<a class="headerlink" href="#why-does-this-exist" title="Permalink to this headline">¶</a></h2>
 <p>What started as a necessary exercise for the 42 school (called <code class="docutils literal notranslate"><span class="pre">libft</span></code>, for lib-forty-two) quickly became a much more expansive project, now dubbed <code class="docutils literal notranslate"><span class="pre">libccc</span></code> (for comprehensive, customizable, cross-platform). Whereas the 42 libft project only requires students to code a certain set of important memory/string/io functions, we decided to take it further. The libft is originally meant as an educational exercise, in which a student learns a lot by “reinventing wheels”; here the goal is to have a standard C library which is: fully cross-platform, uniformized, configurable and customizable, obviously being open source (MIT license) and which offers more than the “bare minimum” of the ISO standard library of functions.</p>
 </div>
-<div class="section" id="building">
-<span id="doxid-index-1autotoc-md2"></span><h2>### Building<a class="headerlink" href="#building" title="Permalink to this headline">¶</a></h2>
-<p>The Makefile simply builds a <code class="docutils literal notranslate"><span class="pre">libccc.a</span></code> library to link to your project. (eg: something like <code class="docutils literal notranslate"><span class="pre">gcc</span> <span class="pre">main.c</span> <span class="pre">-I./libccc/hdr/</span> <span class="pre">-L./libccc/</span> <span class="pre">-lccc</span></code>)</p>
+<div class="section" id="how-to-use-this-library">
+<span id="doxid-index-1autotoc-md2"></span><h2>How to use this library<a class="headerlink" href="#how-to-use-this-library" title="Permalink to this headline">¶</a></h2>
+<p>The Makefile simply builds a <code class="docutils literal notranslate"><span class="pre">libccc.a</span></code> library to link to your project. (eg: you can link it with something like <code class="docutils literal notranslate"><span class="pre">gcc</span> <span class="pre">main.c</span> <span class="pre">-I./libccc/hdr/</span> <span class="pre">-L./libccc/</span> <span class="pre">-lccc</span></code>)</p>
 <p>You can also add this git repo as a “git submodule” to your own if you wish (this allows you to be up to date to the latest version at all times).</p>
 <p>In general though, we recommend having the source code and compiling it yourself (as there are important customization flags in <code class="docutils literal notranslate"><span class="pre">./hdr/libccc.h</span></code> which change how the library is compiled). In particular:</p>
 <ul class="simple">
@@ -252,13 +267,11 @@
 </ul>
 </div>
 <div class="section" id="testing">
-<span id="doxid-index-1autotoc-md3"></span><h2>### Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
-<p>To ensure proper functionality of all these important functions in every edge case, a big testing program was implemented, featuring segfault handling and execution time comparison among other things. You can test the <code class="docutils literal notranslate"><span class="pre">libccc</span></code> by running <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">test</span></code> : this will compile and run the test suite program from the files found in the <code class="docutils literal notranslate"><span class="pre">./test</span></code> folder.</p>
+<span id="doxid-index-1autotoc-md3"></span><h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
+<p>To ensure proper functionality of all these important functions in every edge case, a rather exhaustive testing suite program was implemented, which compares libccc functions to their stdlib ISO equivalent, wherever applicable (otherwise tests expect results that are manually written out and asserted). This test suite program features segfault/signal handling and execution time comparison, among other things. You can test the <code class="docutils literal notranslate"><span class="pre">libccc</span></code> by running <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">test</span></code> : this will compile and run the test suite program from the files found in the <code class="docutils literal notranslate"><span class="pre">./test</span></code> folder.</p>
 </div>
-<div class="section" id="contributing-and-continuous-integration">
-<span id="doxid-index-1autotoc-md4"></span><h2>### Contributing and Continuous Integration<a class="headerlink" href="#contributing-and-continuous-integration" title="Permalink to this headline">¶</a></h2>
-<p>Check <code class="docutils literal notranslate"><span class="pre">CONTRIBUTING.md</span></code>, this file serves as a “contributions style guide”. This style was chosen because it allows for more efficient version control and code review.</p>
-<p>// TODO add description of coding style to <code class="docutils literal notranslate"><span class="pre">CONTRIBUTING.md</span></code></p>
+<div class="section" id="continuous-integration">
+<span id="doxid-index-1autotoc-md4"></span><h2>Continuous Integration<a class="headerlink" href="#continuous-integration" title="Permalink to this headline">¶</a></h2>
 <p>Every time a new commit/push is done, the automated CI testing job is run, as defined in <code class="docutils literal notranslate"><span class="pre">.github/workflows/ci.yml</span></code> (see the <a class="reference external" href="https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions">official github documentation for Actions and Workflows to learn more</a>).</p>
 <p>This CI job builds everything with a <code class="docutils literal notranslate"><span class="pre">make</span></code>, and runs the testing suite with a <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">test</span></code>. It runs with all of the following configurations:</p>
 <ul class="simple">
@@ -268,10 +281,10 @@
 </ul>
 </div>
 <div class="section" id="build-system">
-<span id="doxid-index-1autotoc-md5"></span><h2>### Build system<a class="headerlink" href="#build-system" title="Permalink to this headline">¶</a></h2>
-<p>Cross-platform Makefile: builds a <code class="docutils literal notranslate"><span class="pre">libccc.a</span></code> library file to link against. The make commands are:</p>
-<div class="section" id="doxid-index-1autotoc-md6">
-<span id="id3"></span><h3>Building<a class="headerlink" href="#doxid-index-1autotoc-md6" title="Permalink to this headline">¶</a></h3>
+<span id="doxid-index-1autotoc-md5"></span><h2>Build system<a class="headerlink" href="#build-system" title="Permalink to this headline">¶</a></h2>
+<p>This library is built using a cross-platform Makefile, which can build it on most platforms, in both static and dynamic library form. The available <code class="docutils literal notranslate"><span class="pre">make</span></code> commands are:</p>
+<div class="section" id="building">
+<span id="doxid-index-1autotoc-md6"></span><h3>Building<a class="headerlink" href="#building" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">debug</span></code> or <code class="docutils literal notranslate"><span class="pre">make</span></code> or <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">all</span></code> Build the <code class="docutils literal notranslate"><span class="pre">libccc.a</span></code> library file, in debug mode (with added flags: <code class="docutils literal notranslate"><span class="pre">-g</span> <span class="pre">-ggdb</span> <span class="pre">-D</span> <span class="pre">DEBUG=1</span></code>)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">release</span></code> Build the <code class="docutils literal notranslate"><span class="pre">libccc.a</span></code> library file, in release mode (builds both static and dynamic library files for the given OSMODE, with added flags like <code class="docutils literal notranslate"><span class="pre">-O3</span></code>)</p></li>
@@ -298,6 +311,13 @@
 </ul>
 </div>
 </div>
+<div class="section" id="contributing">
+<span id="doxid-index-1autotoc-md9"></span><h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h2>
+<p>Check <code class="docutils literal notranslate"><span class="pre">CONTRIBUTING.md</span></code>, this file serves as a “contributions style guide”. This style was chosen because it allows for more efficient version control and code review.</p>
+<ul class="simple">
+<li><p>TODO add description of coding style to <code class="docutils literal notranslate"><span class="pre">CONTRIBUTING.md</span></code></p></li>
+</ul>
+</div>
 </div>
 
 
@@ -320,19 +340,11 @@
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright FREE
+        &copy; Copyright Free &amp; Open Source: MIT License
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -343,6 +355,7 @@
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

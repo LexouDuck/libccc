@@ -15,6 +15,8 @@
 **	@addtogroup libccc_sys_io
 **	@{
 **	This header defines all the functions for OS-level input/output, read/write.
+**
+**	@isostd{https://en.cppreference.com/w/c/io}
 */
 
 /*
@@ -37,7 +39,7 @@ HEADER_CPP
 
 //! File descriptor integer type for libccc/sys/io functions
 /*!
-** Define a type for file descriptors (which is usually the default machine 'int')
+**	Define a type for file descriptors (which is usually the default machine 'int')
 */
 typedef int		t_fd;
 TYPEDEF_ALIAS(	t_fd, FILEDESC, PRIMITIVE)
@@ -46,12 +48,14 @@ TYPEDEF_ALIAS(	t_fd, FILEDESC, PRIMITIVE)
 **	@def STDIN
 **	@def STDOUT
 **	@def STDERR
+**	@isostd{https://en.cppreference.com/w/c/io/std_streams}
+**
 **	Define the 3 standard (std) streams of data - these numbers are special
 **	file descriptors used to read from and write to the terminal commandline.
 */
-#define STDIN	((t_fd)0)	//!< Special file descriptor (0), refers to terminal input stream
-#define STDOUT	((t_fd)1)	//!< Special file descriptor (1), refers to terminal output stream
-#define STDERR	((t_fd)2)	//!< Special file descriptor (2), refers to terminal error stream
+#define STDIN	((t_fd)stdin)	//!< Special file descriptor (0), refers to the standard input stream
+#define STDOUT	((t_fd)stdout)	//!< Special file descriptor (1), refers to the standard output stream
+#define STDERR	((t_fd)stderr)	//!< Special file descriptor (2), refers to the standard error stream
 
 
 
@@ -70,8 +74,8 @@ TYPEDEF_ALIAS(	t_fd, FILEDESC, PRIMITIVE)
 
 //! This type represents an error code for a system call IO function (ie: a value for the 'errno' global variable)
 /*!
-**	@isostd https://en.cppreference.com/w/c/error/errno
-**	@isostd https://en.cppreference.com/w/c/error/errno_macros
+**	@isostd{https://en.cppreference.com/w/c/error/errno}
+**	@isostd{https://en.cppreference.com/w/c/error/errno_macros}
 */
 typedef int				t_io_error;
 TYPEDEF_ALIAS(			t_io_error, IO_ERROR, PRIMITIVE)

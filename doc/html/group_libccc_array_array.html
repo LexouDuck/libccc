@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,20 +12,12 @@
   
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/doxyrest-sphinx_rtd_theme.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -33,14 +26,37 @@
         <script src="_static/doctools.js"></script>
         <script src="_static/language_data.js"></script>
         <script src="_static/target-highlight.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="_static/js/custom.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="struct s_array_" href="struct_s_array_.html" />
-    <link rel="prev" title="struct s_quaternion_" href="struct_s_quaternion_.html" /> 
+    <link rel="next" title="struct s_array" href="struct_s_array.html" />
+    <link rel="prev" title="struct s_quaternion" href="struct_s_quaternion.html" />
+	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
+	
+	<meta name="Description" content="21) libccc/array/array">
+	<meta property="og:description" content="21) libccc/array/array">
+	<meta property="og:title" content="libccc 1.0 documentation - 21) libccc/array/array">
+	<meta property="og:image" content="_static/images/libccc_icon.png">
+	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="380" />
+	<meta property="og:image:height" content="380" />
+	<meta property="og:url" content="group_libccc_array_array.html">
+	<meta property="og:site_name" content="libccc 1.0 documentation">
+
+
 </head>
 
 <body class="wy-body-for-nav">
@@ -54,7 +70,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> libccc
+            <a href="index.html" class="icon icon-home"> libccc
           
 
           
@@ -77,7 +93,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -108,10 +123,9 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra.html">19) libccc/math/algebra</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">20) libccc/math/complex</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">21) libccc/array/array</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="struct_s_array_.html">struct s_array_</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct_s_array.html">struct s_array</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#detailed-documentation">Detailed Documentation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#typedefs">Typedefs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#macros">Macros</a></li>
 </ul>
 </li>
@@ -124,7 +138,7 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_array_stringarray.html">26) libccc/array/stringarray</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="page_index.html"># libccc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
@@ -133,7 +147,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -172,7 +185,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="index.html">Docs</a> &raquo;</li>
         
       <li>21) libccc/array/array</li>
     
@@ -200,12 +213,11 @@
 <p>This header defines a simple linked list type and utility functions for it. <a class="reference internal" href="#details-group-libccc-array-array"><span class="std std-ref">More…</span></a></p>
 <pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// typedefs</span>
 
-<span class="k">typedef</span> <span class="k">struct</span> <a class="reference internal" href="struct_s_list_.html#doxid-structs-list"><span class="std std-ref">s_list_</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-array-array-1ga1db26a8fd53db75657fa6a5cb65b2bc9"><span></span><span class="n">s_list</span></span><span></span><span class="p">;</span>
-<span class="k">typedef</span> <span class="k">struct</span> <a class="reference internal" href="struct_s_array_.html#doxid-structs-array"><span class="std std-ref">s_array_</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-array-array-1ga017b4a0772f4fe0102050f0aba10e66e"><span class="std std-ref">s_array</span></a><span></span><span class="p">;</span>
+<span class="k">typedef</span> <span class="k">struct</span> <span class="n">s_list_</span> <span class="doxyrest-code-target target" id="doxid-group-libccc-array-array-1ga1db26a8fd53db75657fa6a5cb65b2bc9"><span></span><span class="n">s_list</span></span><span></span><span class="p">;</span>
 
 <span class="c1">// structs</span>
 
-<span class="k">struct</span> <a class="reference internal" href="struct_s_array_.html#doxid-structs-array"><span class="std std-ref">s_array_</span></a><span></span><span class="p">;</span>
+<span class="k">struct</span> <a class="reference internal" href="struct_s_array.html#doxid-structs-array"><span class="std std-ref">s_array</span></a><span></span><span class="p">;</span>
 
 <span class="c1">// macros</span>
 
@@ -214,16 +226,10 @@
 <div class="section" id="detailed-documentation">
 <span id="details-group-libccc-array-array"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline">¶</a></h2>
 <p>This header defines a simple linked list type and utility functions for it.</p>
-<div class="section" id="typedefs">
-<h3>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h3>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-array-array-1ga017b4a0772f4fe0102050f0aba10e66e"><span id="index-1"></span><span></span><span class="k">typedef</span> <span class="k">struct</span> <a class="reference internal" href="struct_s_array_.html#doxid-structs-array"><span class="std std-ref">s_array_</span></a><span></span> <span class="n">s_array</span></pre>
-<p>This struct holds an array of items which can be of any type.</p>
-<p>The ‘s_array’ struct holds a <code class="docutils literal notranslate"><span class="pre">void*</span></code> pointer to the array of items, the size of a single item in the array, and the total amount of items in this array. As such, a s_array can hold any number of items, but they must all share the same type.</p>
-</div>
 <div class="section" id="macros">
 <h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h3>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-array-array-1ga20321e3ee905b6de95f9988a86680e5b"><span id="index-2"></span><span></span><span class="cp">#define ARRAY_NULL</span></pre>
-<p>A literal of an ‘s_array’ struct which has all fields set to zero.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-array-array-1ga20321e3ee905b6de95f9988a86680e5b"><span id="index-1"></span><span></span><span class="cp">#define ARRAY_NULL</span></pre>
+<p>A literal of an ‘ <a class="reference internal" href="struct_s_array.html#doxid-structs-array"><span class="std std-ref">s_array</span></a> ‘ struct which has all fields set to zero.</p>
 </div>
 </div>
 </div>
@@ -236,10 +242,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="struct_s_array_.html" class="btn btn-neutral float-right" title="struct s_array_" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="struct_s_array.html" class="btn btn-neutral float-right" title="struct s_array" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="struct_s_quaternion_.html" class="btn btn-neutral float-left" title="struct s_quaternion_" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="struct_s_quaternion.html" class="btn btn-neutral float-left" title="struct s_quaternion" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -248,19 +254,11 @@
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright FREE
+        &copy; Copyright Free &amp; Open Source: MIT License
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -271,6 +269,7 @@
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

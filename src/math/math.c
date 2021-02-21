@@ -13,7 +13,7 @@ inline t_s32	c_getexp(t_float x)
 	return (((result.value_int & FLOAT_EXPONENT) >> FLOAT_MANTISSA_BITS) - FLOAT_EXPONENT_BIAS);
 }
 #else
-MATH_DECL_FUNCTION(t_s32, getexp, logb)
+MATH_DECL_FUNCTION(t_s32, getexp, ilogb)
 #endif
 
 

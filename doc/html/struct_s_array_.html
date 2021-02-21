@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,20 +12,12 @@
   
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/doxyrest-sphinx_rtd_theme.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -33,14 +26,34 @@
         <script src="_static/doctools.js"></script>
         <script src="_static/language_data.js"></script>
         <script src="_static/target-highlight.js"></script>
+        <script src="_static/js/custom.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="22) libccc/array/list" href="group_libccc_array_list.html" />
-    <link rel="prev" title="21) libccc/array/array" href="group_libccc_array_array.html" /> 
+	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
+	
+	<meta name="Description" content="struct s_array_">
+	<meta property="og:description" content="struct s_array_">
+	<meta property="og:title" content="libccc 1.0 documentation - struct s_array_">
+	<meta property="og:image" content="_static/images/libccc_icon.png">
+	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="380" />
+	<meta property="og:image:height" content="380" />
+	<meta property="og:url" content="struct_s_array_.html">
+	<meta property="og:site_name" content="libccc 1.0 documentation">
+
+
 </head>
 
 <body class="wy-body-for-nav">
@@ -54,7 +67,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> libccc
+            <a href="index.html" class="icon icon-home"> libccc
           
 
           
@@ -77,7 +90,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -85,7 +97,7 @@
               
             
             
-              <ul class="current">
+              <ul>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc.html">00) libccc</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">01) libccc/bool</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">02) libccc/int</a></li>
@@ -107,19 +119,7 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_math_random.html">18) libccc/math/random</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra.html">19) libccc/math/algebra</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">20) libccc/math/complex</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="group_libccc_array_array.html">21) libccc/array/array</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">struct s_array_</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#detailed-documentation">Detailed Documentation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#fields">Fields</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="group_libccc_array_array.html#overview">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="group_libccc_array_array.html#detailed-documentation">Detailed Documentation</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_array.html">21) libccc/array/array</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_array_list.html">22) libccc/array/list</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_array_dict.html">23) libccc/array/dict</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_array_tree.html">24) libccc/array/tree</a></li>
@@ -127,7 +127,7 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_array_stringarray.html">26) libccc/array/stringarray</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="page_index.html"># libccc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
@@ -136,7 +136,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -175,9 +174,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
-          <li><a href="group_libccc_array_array.html">21) libccc/array/array</a> &raquo;</li>
+      <li><a href="index.html">Docs</a> &raquo;</li>
         
       <li>struct s_array_</li>
     
@@ -236,33 +233,16 @@
           </div>
           <footer>
   
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="group_libccc_array_list.html" class="btn btn-neutral float-right" title="22) libccc/array/list" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="group_libccc_array_array.html" class="btn btn-neutral float-left" title="21) libccc/array/array" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright FREE
+        &copy; Copyright Free &amp; Open Source: MIT License
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -273,6 +253,7 @@
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

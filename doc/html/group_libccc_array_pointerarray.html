@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,20 +12,12 @@
   
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/doxyrest-sphinx_rtd_theme.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -33,14 +26,37 @@
         <script src="_static/doctools.js"></script>
         <script src="_static/language_data.js"></script>
         <script src="_static/target-highlight.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="_static/js/custom.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="26) libccc/array/stringarray" href="group_libccc_array_stringarray.html" />
-    <link rel="prev" title="struct s_tree_" href="struct_s_tree_.html" /> 
+    <link rel="prev" title="struct s_tree" href="struct_s_tree.html" />
+	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
+	
+	<meta name="Description" content="25) libccc/array/pointerarray">
+	<meta property="og:description" content="25) libccc/array/pointerarray">
+	<meta property="og:title" content="libccc 1.0 documentation - 25) libccc/array/pointerarray">
+	<meta property="og:image" content="_static/images/libccc_icon.png">
+	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="380" />
+	<meta property="og:image:height" content="380" />
+	<meta property="og:url" content="group_libccc_array_pointerarray.html">
+	<meta property="og:site_name" content="libccc 1.0 documentation">
+
+
 </head>
 
 <body class="wy-body-for-nav">
@@ -54,7 +70,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> libccc
+            <a href="index.html" class="icon icon-home"> libccc
           
 
           
@@ -77,7 +93,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -122,7 +137,7 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_array_stringarray.html">26) libccc/array/stringarray</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="page_index.html"># libccc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
@@ -131,7 +146,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -170,7 +184,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="index.html">Docs</a> &raquo;</li>
         
       <li>25) libccc/array/pointerarray</li>
     
@@ -199,7 +213,7 @@
 <pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// global functions</span>
 
 <span class="kt">void</span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-array-pointerarray-1ga51b4e5cf4474ad8cd2612dae9e561e90"><span class="std std-ref">PointerArray_New</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">size</span><span class="p">);</span>
-<span class="n">t_u32</span> <a class="reference internal" href="#doxid-group-libccc-array-pointerarray-1ga32b3bf41c9717aef2ae47dd1c1150628"><span class="std std-ref">PointerArray_Length</span></a><span></span><span class="p">(</span><span class="kt">void</span> <span class="k">const</span><span class="o">**</span> <span class="n">a_ptrarr</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1gaa7590a5fe5898685586e486b914bd4f4"><span class="std std-ref">t_u32</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-array-pointerarray-1ga32b3bf41c9717aef2ae47dd1c1150628"><span class="std std-ref">PointerArray_Length</span></a><span></span><span class="p">(</span><span class="kt">void</span> <span class="k">const</span><span class="o">**</span> <span class="n">a_ptrarr</span><span class="p">);</span>
 
 <span class="c1">// macros</span>
 
@@ -213,7 +227,7 @@
 <h3>Global Functions<a class="headerlink" href="#global-functions" title="Permalink to this headline">¶</a></h3>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-array-pointerarray-1ga51b4e5cf4474ad8cd2612dae9e561e90"><span id="index-1"></span><span></span><span class="kt">void</span><span class="o">*</span> <span class="n">PointerArray_New</span><span class="p">(</span><a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">size</span><span class="p">)</span></pre>
 <p>Returns a newly allocated memory array to serve as a null-terminated pointer array of length ‘n’. Returns NULL if memory allocation fails.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-array-pointerarray-1ga32b3bf41c9717aef2ae47dd1c1150628"><span id="index-2"></span><span></span><span class="n">t_u32</span> <span class="n">PointerArray_Length</span><span class="p">(</span><span class="kt">void</span> <span class="k">const</span><span class="o">**</span> <span class="n">a_ptrarr</span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-array-pointerarray-1ga32b3bf41c9717aef2ae47dd1c1150628"><span id="index-2"></span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1gaa7590a5fe5898685586e486b914bd4f4"><span class="std std-ref">t_u32</span></a><span></span> <span class="n">PointerArray_Length</span><span class="p">(</span><span class="kt">void</span> <span class="k">const</span><span class="o">**</span> <span class="n">a_ptrarr</span><span class="p">)</span></pre>
 <p>Returns the length of a null-terminated pointer array.</p>
 </div>
 </div>
@@ -230,7 +244,7 @@
         <a href="group_libccc_array_stringarray.html" class="btn btn-neutral float-right" title="26) libccc/array/stringarray" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="struct_s_tree_.html" class="btn btn-neutral float-left" title="struct s_tree_" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="struct_s_tree.html" class="btn btn-neutral float-left" title="struct s_tree" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -239,19 +253,11 @@
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright FREE
+        &copy; Copyright Free &amp; Open Source: MIT License
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -262,6 +268,7 @@
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {
