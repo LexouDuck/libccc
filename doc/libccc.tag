@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
-<tagfile doxygen_version="1.8.20" doxygen_gitid="f246dd2f1c58eea39ea3f50c108019e4d4137bd5">
+<tagfile doxygen_version="1.9.1" doxygen_gitid="ef9b20ac7f8a8621fcfc299f8bd0b80422390f4b">
   <compound kind="file">
     <name>libccc.h</name>
     <path>D:/Lexou/Projects/Castlevania/C/lib/libccc/hdr/</path>
@@ -14743,6 +14743,7 @@
     <name>libccc_int</name>
     <title>02) libccc/int</title>
     <filename>group__libccc__int.html</filename>
+    <file>int.h</file>
     <class kind="union">u_varint</class>
     <member kind="define">
       <type>#define</type>
@@ -15526,6 +15527,7 @@
     <name>libccc_fixed</name>
     <title>03) libccc/fixed</title>
     <filename>group__libccc__fixed.html</filename>
+    <file>fixed.h</file>
     <member kind="define">
       <type>#define</type>
       <name>FIXED_BITS_FRACTIONPART</name>
@@ -16091,6 +16093,7 @@
     <name>libccc_float</name>
     <title>04) libccc/float</title>
     <filename>group__libccc__float.html</filename>
+    <file>float.h</file>
     <class kind="union">u_float_cast</class>
     <class kind="union">u_varfloat</class>
     <member kind="define">
@@ -17218,6 +17221,7 @@
     <name>libccc_pointer</name>
     <title>05) libccc/pointer</title>
     <filename>group__libccc__pointer.html</filename>
+    <file>pointer.h</file>
     <member kind="define">
       <type>#define</type>
       <name>NULL</name>
@@ -17356,6 +17360,7 @@
     <name>libccc_memory</name>
     <title>06) libccc/memory</title>
     <filename>group__libccc__memory.html</filename>
+    <file>memory.h</file>
     <member kind="define">
       <type>#define</type>
       <name>c_memalloc</name>
@@ -17585,6 +17590,7 @@
     <name>libccc_char</name>
     <title>07) libccc/char</title>
     <filename>group__libccc__char.html</filename>
+    <file>char.h</file>
     <member kind="define">
       <type>#define</type>
       <name>CHARSET_LOWERCASE</name>
@@ -18073,6 +18079,7 @@
     <name>libccc_string</name>
     <title>08) libccc/string</title>
     <filename>group__libccc__string.html</filename>
+    <file>string.h</file>
     <member kind="define">
       <type>#define</type>
       <name>c_strnew</name>
@@ -19184,6 +19191,7 @@
     <name>libccc_format</name>
     <title>09) libccc/format</title>
     <filename>group__libccc__format.html</filename>
+    <file>format.h</file>
     <member kind="define">
       <type>#define</type>
       <name>FORMAT_ENUM</name>
@@ -19812,11 +19820,13 @@
     <name>libccc_regex</name>
     <title>10) libccc/regex</title>
     <filename>group__libccc__regex.html</filename>
+    <file>regex.h</file>
   </compound>
   <compound kind="group">
     <name>libccc_color</name>
     <title>11) libccc/color</title>
     <filename>group__libccc__color.html</filename>
+    <file>color.h</file>
     <class kind="struct">s_argb</class>
     <class kind="struct">s_ahsl</class>
     <member kind="define">
@@ -20692,6 +20702,7 @@
     <name>libccc_sys_io</name>
     <title>12) libccc/sys/io</title>
     <filename>group__libccc__sys__io.html</filename>
+    <file>io.h</file>
     <member kind="define">
       <type>#define</type>
       <name>STDIN</name>
@@ -22237,6 +22248,7 @@
     <name>libccc_sys_time</name>
     <title>13) libccc/sys/time</title>
     <filename>group__libccc__sys__time.html</filename>
+    <file>time.h</file>
     <class kind="struct">s_timespec</class>
     <class kind="struct">s_date</class>
     <member kind="define">
@@ -23063,6 +23075,7 @@
     <name>libccc_sys_logger</name>
     <title>14) libccc/sys/logger</title>
     <filename>group__libccc__sys__logger.html</filename>
+    <file>logger.h</file>
     <class kind="struct">s_logfile</class>
     <class kind="struct">s_logger</class>
     <member kind="define">
@@ -23350,6 +23363,7 @@
     <name>libccc_math_math</name>
     <title>15) libccc/math/math</title>
     <filename>group__libccc__math__math.html</filename>
+    <file>math.h</file>
     <member kind="define">
       <type>#define</type>
       <name>ABS</name>
@@ -24237,11 +24251,13 @@
     <name>libccc_math_vlq</name>
     <title>16) libccc/math/vlq</title>
     <filename>group__libccc__math__vlq.html</filename>
+    <file>vlq.h</file>
   </compound>
   <compound kind="group">
     <name>libccc_math_stat</name>
     <title>17) libccc/math/stat</title>
     <filename>group__libccc__math__stat.html</filename>
+    <file>stat.h</file>
     <file>stat.h</file>
     <class kind="struct">s_list_int</class>
     <class kind="struct">s_list_float</class>
@@ -24651,6 +24667,7 @@
     <title>18) libccc/math/random</title>
     <filename>group__libccc__math__random.html</filename>
     <file>random.h</file>
+    <file>random.h</file>
     <member kind="define">
       <type>#define</type>
       <name>DEFAULT_SEED</name>
@@ -24810,6 +24827,7 @@
     <name>libccc_math_algebra</name>
     <title>19) libccc/math/algebra</title>
     <filename>group__libccc__math__algebra.html</filename>
+    <file>algebra.h</file>
     <class kind="struct">s_vector2d</class>
     <class kind="union">u_vector2d</class>
     <class kind="struct">s_vector3d</class>
@@ -25587,6 +25605,7 @@
     <name>libccc_math_complex</name>
     <title>20) libccc/math/complex</title>
     <filename>group__libccc__math__complex.html</filename>
+    <file>complex.h</file>
     <class kind="struct">s_complex</class>
     <class kind="struct">s_quaternion</class>
     <member kind="define">
@@ -25769,6 +25788,7 @@
     <name>libccc_array_array</name>
     <title>21) libccc/array/array</title>
     <filename>group__libccc__array__array.html</filename>
+    <file>array.h</file>
     <class kind="struct">s_array</class>
     <member kind="define">
       <type>#define</type>
@@ -25789,6 +25809,7 @@
     <name>libccc_array_list</name>
     <title>22) libccc/array/list</title>
     <filename>group__libccc__array__list.html</filename>
+    <file>list.h</file>
     <class kind="struct">s_list</class>
     <member kind="define">
       <type>#define</type>
@@ -26082,6 +26103,7 @@
     <name>libccc_array_dict</name>
     <title>23) libccc/array/dict</title>
     <filename>group__libccc__array__dict.html</filename>
+    <file>dict.h</file>
     <class kind="struct">s_keyval</class>
     <class kind="struct">s_dict</class>
     <member kind="define">
@@ -26103,6 +26125,7 @@
     <name>libccc_array_tree</name>
     <title>24) libccc/array/tree</title>
     <filename>group__libccc__array__tree.html</filename>
+    <file>tree.h</file>
     <class kind="struct">s_leaf</class>
     <class kind="struct">s_tree</class>
     <member kind="define">
@@ -26124,6 +26147,7 @@
     <name>libccc_array_pointerarray</name>
     <title>25) libccc/array/pointerarray</title>
     <filename>group__libccc__array__pointerarray.html</filename>
+    <file>pointerarray.h</file>
     <member kind="define">
       <type>#define</type>
       <name>c_ptrarrnew</name>
@@ -26157,6 +26181,7 @@
     <name>libccc_array_stringarray</name>
     <title>26) libccc/array/stringarray</title>
     <filename>group__libccc__array__stringarray.html</filename>
+    <file>stringarray.h</file>
     <member kind="define">
       <type>#define</type>
       <name>c_strsplit_char</name>

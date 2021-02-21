@@ -11,12 +11,13 @@
 
 #ifndef __LIBCCC_MATH_H
 #define __LIBCCC_MATH_H
-/*! @file libccc/math/math.h
-**	@addtogroup libccc_math_math
-**	@{
+/*!@group{libccc_math_math}
+** @{
 **	This header defines the common standard math functions and macro defines.
 **
 **	@isostd{https://en.cppreference.com/w/c/numeric/math}
+**
+**	@file
 */
 
 /*

@@ -11,9 +11,8 @@
 
 #ifndef __LIBCCC_INT_H
 #define __LIBCCC_INT_H
-/*! @file libccc/int.h
-**	@addtogroup libccc_int
-**	@{
+/*!@group{libccc_int}
+** @{
 **	This header defines the integer number primitive types and functions.
 **
 **	@isostd{https://en.cppreference.com/w/c/language/arithmetic_types#Integer_types}
@@ -29,6 +28,8 @@
 **
 **	You can learn more about how the ISO standard defines integer types here:
 **	https://en.wikipedia.org/wiki/C_data_types
+**
+**	@file
 */
 
 /*

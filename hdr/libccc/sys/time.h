@@ -11,12 +11,13 @@
 
 #ifndef __LIBCCC_SYS_TIME_H
 #define __LIBCCC_SYS_TIME_H
-/*! @file libccc/sys/time.h
-**	@addtogroup libccc_sys_time
-**	@{
+/*!@group{libccc_sys_time}
+** @{
 **	This header defines all the functions for date & time related functions.
 **
 **	@isostd{https://en.cppreference.com/w/c/chrono}
+**
+**	@file
 */
 
 /*

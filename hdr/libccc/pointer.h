@@ -11,9 +11,8 @@
 
 #ifndef __LIBCCC_POINTER_H
 #define __LIBCCC_POINTER_H
-/*! @file libccc/pointer.h
-**	@addtogroup libccc_pointer
-**	@{
+/*!@group{libccc_pointer}
+** @{
 **	This header defines the standard memory size and pointer integer types.
 **
 **	@isostd{https://en.cppreference.com/w/c/types/integer}
@@ -26,6 +25,8 @@
 **	These `typedef`s are here purely for nomenclature consistency reasons.
 **	- all primitive type aliases are prefixed with 't_'
 **	- all signed integer types have names that start with `s`, ie: `sint`
+**
+**	@file
 */
 
 /*

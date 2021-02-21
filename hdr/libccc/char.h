@@ -11,15 +11,16 @@
 
 #ifndef __LIBCCC_CHAR_H
 #define __LIBCCC_CHAR_H
-/*! @file libccc/char.h
-**	@addtogroup libccc_char
-**	@{
+/*!@group{libccc_char}
+** @{
 **	This header defines all the functions/sets related to single ASCII chars.
 **
 **	@isostd{https://en.cppreference.com/w/c/language/ascii}
-**	https://en.wikipedia.org/wiki/UTF-8
-**	https://en.wikipedia.org/wiki/UTF-16
-**	https://en.wikipedia.org/wiki/UTF-32
+**	- https://en.wikipedia.org/wiki/UTF-8
+**	- https://en.wikipedia.org/wiki/UTF-16
+**	- https://en.wikipedia.org/wiki/UTF-32
+**
+**	@file
 */
 
 /*

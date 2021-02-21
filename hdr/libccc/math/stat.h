@@ -11,10 +11,11 @@
 
 #ifndef __LIBCCC_MATH_STAT_H
 #define __LIBCCC_MATH_STAT_H
-/*! @file libccc/math/stat.h
-**	@addtogroup libccc_math_stat
-**	@{
+/*!@group{libccc_math_stat}
+** @{
 **	This header defines some common statistics functions, for lists of int/float
+**
+**	@file
 */
 
 // TODO add other function macros for integral, distance, etc

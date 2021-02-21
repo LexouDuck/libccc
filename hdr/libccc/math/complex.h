@@ -11,13 +11,14 @@
 
 #ifndef __LIBCCC_MATH_COMPLEX_H
 #define __LIBCCC_MATH_COMPLEX_H
-/*! @file libccc/math/complex.h
-**	@addtogroup libccc_math_complex
-**	@{
+/*!@group{libccc_math_complex}
+** @{
 **	This header defines useful algebra and calculus types, and functions.
 **
 **	@isostd{https://en.cppreference.com/w/c/numeric/complex}
 **	@isostd{https://en.cppreference.com/w/c/numeric/tgmath}
+**
+**	@file
 */
 
 /*

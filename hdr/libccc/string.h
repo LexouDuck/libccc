@@ -11,12 +11,13 @@
 
 #ifndef __LIBCCC_STRING_H
 #define __LIBCCC_STRING_H
-/*! @file libccc/string.h
-**	@addtogroup libccc_string
-**	@{
+/*!@group{libccc_string}
+** @{
 **	This header defines the common standard string (char*) manipulation functions.
 **
 **	@isostd{https://en.cppreference.com/w/c/string/byte#String_manipulation}
+**
+**	@file
 */
 
 /*

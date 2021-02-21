@@ -11,13 +11,14 @@
 
 #ifndef __LIBCCC_FLOAT_H
 #define __LIBCCC_FLOAT_H
-/*! @file libccc/float.h
-**	@addtogroup libccc_float
-**	@{
+/*!@group{libccc_float}
+** @{
 **	This header defines the floating-point number primitive types and functions.
 **
 **	@isostd{https://en.cppreference.com/w/c/numeric/math}
 **	@isostd{https://en.cppreference.com/w/c/numeric/fenv}
+**
+**	@file
 */
 
 // TODO subnormal float util functions/macros ?

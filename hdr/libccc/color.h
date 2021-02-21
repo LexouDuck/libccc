@@ -11,10 +11,11 @@
 
 #ifndef __LIBCCC_COLOR_H
 #define __LIBCCC_COLOR_H
-/*! @file libccc/color.h
-**	@addtogroup libccc_color
-**	@{
+/*!@group{libccc_color}
+** @{
 **	This header defines all the functions/bitmasks for encoding colors in ints.
+**
+**	@file
 */
 // TODO add AHSL32 color typedef + conversion functions
 // TODO add conversion functions for float-color structs
