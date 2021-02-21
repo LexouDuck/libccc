@@ -79,7 +79,7 @@ EXTRA_PAGE_LIST = {}
 --! is not set (otherwise, the title of intro file will be used).
 --!
 
-INDEX_TITLE = ""
+INDEX_TITLE = "README"
 
 --!
 --! File with project introduction (reStructuredText). When non-nil, this file
@@ -364,7 +364,7 @@ PRE_BODY_NL = true
 			);
 ]]
 
-ML_PARAM_LIST_COUNT_THRESHOLD = 4
+ML_PARAM_LIST_COUNT_THRESHOLD = 5
 
 --[[!
 	Use multi-line parameter lists in function declarations if single-line
@@ -387,7 +387,7 @@ ML_PARAM_LIST_COUNT_THRESHOLD = 4
 
 ]]
 
-ML_PARAM_LIST_LENGTH_THRESHOLD = 100
+ML_PARAM_LIST_LENGTH_THRESHOLD = 120
 
 --[[!
 	Use multi-line specifier-modifier lists in function declarations, i.e
