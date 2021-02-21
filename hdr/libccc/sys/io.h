@@ -69,6 +69,10 @@ TYPEDEF_ALIAS(	t_fd, FILEDESC, PRIMITIVE)
 
 
 //! This type represents an error code for a system call IO function (ie: a value for the 'errno' global variable)
+/*!
+**	@isostd https://en.cppreference.com/w/c/error/errno
+**	@isostd https://en.cppreference.com/w/c/error/errno_macros
+*/
 typedef int				t_io_error;
 TYPEDEF_ALIAS(			t_io_error, IO_ERROR, PRIMITIVE)
 

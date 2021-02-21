@@ -15,6 +15,19 @@
 **	@addtogroup libccc_int
 **	@{
 **	This header defines the integer number primitive types and functions.
+**
+**	@isostd https://en.cppreference.com/w/c/language/arithmetic_types#Integer_types
+**	@isostd https://en.cppreference.com/w/cpp/types/integer
+**
+**	These are wrapper types for all the primitive integer types in a more concise
+**	naming convention, to better reflect the amount of bits used by each type.
+**	It is recommended to always use these types rather than the machine-specific
+**	default C types (`char`, `short`, `int`, `long`, etc) - the following
+**	`typedefs` are aliases over the more reliable integer types from `stdint.h`
+**	They have the size that one would expect, no matter the platform/machine.
+**
+**	You can learn more about how the ISO standard defines integer types here:
+**	https://en.wikipedia.org/wiki/C_data_types
 */
 
 /*
@@ -71,42 +84,50 @@ HEADER_CPP
 	#define STDINT(TYPE, BITS)	TYPE##LIBCONFIG_INTEGER_TYPES##BITS##_t
 #endif
 
-/*
-**	Define wrapper types for all the primitive number types in a clear naming
-**	convention, to better reflect the amount of bits used by each type.
-**	It is recommended to always use these types rather than the machine-specific
-**	default C types char,short,int,long - the following typedefs will always
-**	have the size that one would expect, no matter the machine.
-**	You can learn more about how the ISO standard defines integer types here:
-**	https://en.wikipedia.org/wiki/C_data_types
-*/
+typedef STDINT(uint, 8)	u8;
+typedef u8		t_u8;	//!< Primitive type: 8-bit unsigned integer
+TYPEDEF_ALIAS(	t_u8,	UINT_8,  PRIMITIVE)
 
-typedef STDINT(uint,  8)	t_u8;	//!< The type for 8-bit unsigned integers
-TYPEDEF_ALIAS(				t_u8,	UINT_8,  PRIMITIVE)
-typedef STDINT(uint, 16)	t_u16;	//!< The type for 16-bit unsigned integers
-TYPEDEF_ALIAS(				t_u16,	UINT_16, PRIMITIVE)
-typedef STDINT(uint, 32)	t_u32;	//!< The type for 32-bit unsigned integers
-TYPEDEF_ALIAS(				t_u32,	UINT_32, PRIMITIVE)
-typedef	STDINT(uint, 64)	t_u64;	//!< The type for 64-bit unsigned integers
-TYPEDEF_ALIAS(				t_u64,	UINT_64, PRIMITIVE)
+typedef STDINT(uint,16)	u16;
+typedef u16		t_u16;	//!< Primitive type: 16-bit unsigned integer
+TYPEDEF_ALIAS(	t_u16,	UINT_16, PRIMITIVE)
+
+typedef STDINT(uint,32)	u32;
+typedef u32		t_u32;	//!< Primitive type: 32-bit unsigned integer
+TYPEDEF_ALIAS(	t_u32,	UINT_32, PRIMITIVE)
+
+typedef	STDINT(uint,64)	u64;
+typedef	u64		t_u64;	//!< Primitive type: 64-bit unsigned integer
+TYPEDEF_ALIAS(	t_u64,	UINT_64, PRIMITIVE)
+
 #ifdef	__int128
-typedef unsigned __int128	t_u128;	//!< The type for 128-bit unsigned integers (only certain platforms)
-TYPEDEF_ALIAS(				t_u128,	UINT_128,PRIMITIVE)
+typedef unsigned __int128	u128;
+typedef u128	t_u128;	//!< Primitive type: 128-bit unsigned integer (only available on certain platforms)
+TYPEDEF_ALIAS(	t_u128,	UINT_128,PRIMITIVE)
 #elif (LIBCONFIG_BITS_UINT == 128)
 	#error "Cannot set default unsigned int type to 128-bit, unavailable on this platform"
 #endif
 
-typedef STDINT(int,  8)		t_s8;	//!< The type for 8-bit signed integers
-TYPEDEF_ALIAS(				t_s8,	SINT_8,  PRIMITIVE)
-typedef STDINT(int, 16)		t_s16;	//!< The type for 16-bit signed integers
-TYPEDEF_ALIAS(				t_s16,	SINT_16, PRIMITIVE)
-typedef STDINT(int, 32)		t_s32;	//!< The type for 32-bit signed integers
-TYPEDEF_ALIAS(				t_s32,	SINT_32, PRIMITIVE)
-typedef	STDINT(int, 64)		t_s64;	//!< The type for 64-bit signed integers
-TYPEDEF_ALIAS(				t_s64,	SINT_64, PRIMITIVE)
+typedef STDINT(int,  8)	s8;
+typedef s8		t_s8;	//!< Primitive type: 8-bit signed integer
+TYPEDEF_ALIAS(	t_s8,	SINT_8,  PRIMITIVE)
+
+typedef STDINT(int, 16)	s16;
+typedef s16		t_s16;	//!< Primitive type: 16-bit signed integer
+TYPEDEF_ALIAS(	t_s16,	SINT_16, PRIMITIVE)
+
+typedef STDINT(int, 32)	s32;
+typedef s32		t_s32;	//!< Primitive type: 32-bit signed integer
+TYPEDEF_ALIAS(	t_s32,	SINT_32, PRIMITIVE)
+
+typedef	STDINT(int, 64)	s64;
+typedef	s64		t_s64;	//!< Primitive type: 64-bit signed integer
+TYPEDEF_ALIAS(	t_s64,	SINT_64, PRIMITIVE)
+
 #ifdef	__int128
-typedef __int128			t_s128;	//!< The type for 128-bit signed integers (only certain platforms)
-TYPEDEF_ALIAS(				t_s128,	SINT_128,PRIMITIVE)
+typedef __int128		s128;
+typedef s128	t_s128;	//!< Primitive type: 128-bit signed integer (only available on certain platforms)
+TYPEDEF_ALIAS(	t_s128,	SINT_128,PRIMITIVE)
 #elif (LIBCONFIG_BITS_SINT == 128)
 	#error "Cannot set default signed int type to 128-bit, unavailable on this platform"
 #endif
@@ -121,25 +142,27 @@ TYPEDEF_ALIAS(				t_uint, UINT, PRIMITIVE)
 typedef LIBCONFIG_TYPE_SINT	t_sint;
 TYPEDEF_ALIAS(				t_sint, SINT, PRIMITIVE)
 
+//! @}
+
 
 
 #ifndef LIBCONFIG_INTEGER_TYPES
 
-	#define U8_MAX	(255)                  //!< The maximum value for  8-bit unsigned integers (0xFF)
-	#define S8_MAX	(+127)                 //!< The maximum value for  8-bit signed integers (0x7F)
-	#define S8_MIN	(-128)                 //!< The minimum value for  8-bit signed integers (0x80)
+	#define U8_MAX	(255)						//!< The maximum value for  8-bit unsigned integers (0xFF)
+	#define S8_MAX	(+127)						//!< The maximum value for  8-bit signed integers (0x7F)
+	#define S8_MIN	(-128)						//!< The minimum value for  8-bit signed integers (0x80)
 
-	#define U16_MAX	(65535)                //!< The maximum value for 16-bit unsigned integers (0xFFFF)
-	#define S16_MAX	(+32767)               //!< The maximum value for 16-bit signed integers (0x7FFF)
-	#define S16_MIN	(-32768)               //!< The minimum value for 16-bit signed integers (0x8000)
+	#define U16_MAX	(65535)						//!< The maximum value for 16-bit unsigned integers (0xFFFF)
+	#define S16_MAX	(+32767)					//!< The maximum value for 16-bit signed integers (0x7FFF)
+	#define S16_MIN	(-32768)					//!< The minimum value for 16-bit signed integers (0x8000)
 
-	#define U32_MAX	(4294967295)           //!< The maximum value for 32-bit unsigned integers (0xFFFFFFFF)
-	#define S32_MAX	(+2147483647)          //!< The maximum value for 32-bit signed integers (0x7FFFFFFF)
-	#define S32_MIN	(-2147483648)          //!< The minimum value for 32-bit signed integers (0x80000000)
+	#define U32_MAX	(4294967295)				//!< The maximum value for 32-bit unsigned integers (0xFFFFFFFF)
+	#define S32_MAX	(+2147483647)				//!< The maximum value for 32-bit signed integers (0x7FFFFFFF)
+	#define S32_MIN	(-2147483648)				//!< The minimum value for 32-bit signed integers (0x80000000)
 
-	#define U64_MAX	(18446744073709551615llu) //!< The maximum value for 64-bit unsigned integers (0xFFFFFFFFFFFFFFFF)
-	#define S64_MAX	(+9223372036854775807ll) //!< The maximum value for 64-bit signed integers (0x7FFFFFFFFFFFFFFF)
-	#define S64_MIN	(-9223372036854775807ll) //!< The minimum value for 64-bit signed integers (0x8000000000000000)
+	#define U64_MAX	(18446744073709551615llu)	//!< The maximum value for 64-bit unsigned integers (0xFFFFFFFFFFFFFFFF)
+	#define S64_MAX	(+9223372036854775807ll)	//!< The maximum value for 64-bit signed integers (0x7FFFFFFFFFFFFFFF)
+	#define S64_MIN	(-9223372036854775807ll)	//!< The minimum value for 64-bit signed integers (0x8000000000000000)
 
 #else
 

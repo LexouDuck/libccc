@@ -14,7 +14,7 @@
 /*! @file libccc/bool.h
 **	@addtogroup libccc_bool
 **	@{
-**	This header defines the boolean TRUE/FALSE primitive type and functions.
+**	This header defines the boolean (TRUE/FALSE) primitive type and functions.
 */
 
 /*
@@ -47,10 +47,20 @@ HEADER_CPP
 #endif	//! Represents a boolean true value  (1)
 #define TRUE	(1)
 
-//! The primitive `bool` boolean type
+//! Primitve type: The boolean type (`TRUE` or `FALSE`)
 /*!
-**	Here, we use the native (from C99 onwards) '_Bool' type.
+**	@isostd https://en.cppreference.com/w/c/types/boolean
+**
+**	Here, we use the native (since C99) `_Bool` boolean type.
 **	This type is useful because its value will always be 0 or 1, never more.
+**	This means you will not have strange behaviors caused by the use of integer
+**	arithmetic operations on booleans - do not assume `t_bool` works like int types.
+**	NB: Conversion to `_Bool` does not work the same as conversion to other
+**	integer types: `(bool)0.5` gives `1`, whereas `(int)0.5` gives `​0`​.
+**
+**	@see
+**	- Bool_ToString()
+**	- Bool_FromString()
 */
 typedef _Bool		t_bool;
 TYPEDEF_ALIAS(		t_bool, BOOL, PRIMITIVE)

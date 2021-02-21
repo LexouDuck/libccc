@@ -15,6 +15,12 @@
 **	@addtogroup libccc
 **	@{
 **	This header defines all the common macros/defines used to "extend" C.
+**
+**	Important read - regarding identifiers, storage duration, alignment:
+**	@isostd https://en.cppreference.com/w/c/language/object
+**
+**	Interesting read, little known fact about C syntax and code text encodings.
+**	@isostd https://en.cppreference.com/w/c/language/operator_alternative
 */
 
 /*
@@ -48,24 +54,39 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-/*
-**	Define the common macros for return values used by several C functions.
-*/
-
 #ifdef	OK
 #undef	OK
-#endif	//! Represents a successful function return
+#endif
+//! Represents a successful function return
+/*!
+**	@isostd https://en.cppreference.com/w/c/program/EXIT_status
+**
+**	Common macro for return values, used by several C functions.
+*/
 #define OK		(0)
 
 #ifdef	ERROR
 #undef	ERROR
-#endif	//! Represents a failure function return
+#endif
+//! Represents a failure function return
+/*!
+**	@isostd https://en.cppreference.com/w/c/program/EXIT_status
+**
+**	Common macro for return values, used by several C functions.
+*/
 #define ERROR	(-1)
 
 
 
+// TODO wrappers for exit() function (perhaps also abort(), )
+/*!
+**	@isostd https://en.cppreference.com/w/c/program
+*/
+
+
+
 //! This macro function expands and merges the two given tokens `TOKEN1` and `TOKEN2` into a single token
-/*
+/*!
 **	NB: This is useful because the token-paste concatenation operator `##`
 **		merges tokens after expanding the macro's arguments, but it happens
 **		before expanding their respective values. Here, an additional layer
@@ -75,7 +96,7 @@ HEADER_CPP
 #define CONCAT_(TOKEN1, TOKEN2)	TOKEN1##TOKEN2
 
 //! This macro function expands and stringizes the given `TOKEN` argument
-/*
+/*!
 **	NB: This is useful because the stringize token operator `#` converts
 **		the tokens after expanding the macro's arguments, but it happens
 **		before expanding their respective values. Here, an additional layer
@@ -87,7 +108,7 @@ HEADER_CPP
 
 
 //! A 'foreach' keyword macro, to use with any iterable types, rather than an index-based 'for' loop
-/*
+/*!
 **	Currently, the types that work with this 'foreach' keyword are: s_array, s_list, s_dict
 **	Here are some more details on how to use this macro:
 **	- s_array<char*>:	foreach (char*, str, s_array, array) { ... }
@@ -107,11 +128,13 @@ HEADER_CPP
 **	Define macros for common function attributes (as documented by GNU)
 */
 #ifndef __SWIG__
-	#if defined(__MINGW32__) && !defined(__clang__)
-		#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	__attribute__((format(gnu_##FUNCTION, POS_FORMAT, POS_VARARGS)))
-	#else
-		#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	__attribute__((format(FUNCTION, POS_FORMAT, POS_VARARGS)))
-	#endif
+#if defined(__MINGW32__) && !defined(__clang__)
+	//!< Before a function def: make the compiler give warnings for a variadic-args function with a format string
+	#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	__attribute__((format(gnu_##FUNCTION, POS_FORMAT, POS_VARARGS)))
+#else
+	//!< Before a function def: make the compiler give warnings for a variadic-args function with a format string
+	#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	__attribute__((format(FUNCTION, POS_FORMAT, POS_VARARGS)))
+#endif
 	#define _ALIAS(FUNCTION)	__attribute__((alias(#FUNCTION)))	//!< Before a function or variable def: sets the token to be an alias for the one given as arg
 	#define _ALIGN(MINIMUM)		__attribute__((aligned(MINIMUM)))	//!< Before a function or variable def: sets minimum byte alignment size (power of 2)
 	#define _PURE()				__attribute__((pure))				//!< Before a function def: indicates that the function has no side-effects

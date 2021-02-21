@@ -15,6 +15,8 @@
 **	@addtogroup libccc_memory
 **	@{
 **	This header defines the common standard memory manipulation functions.
+**
+**	@isostd https://en.cppreference.com/w/c/memory
 */
 
 /*
@@ -37,7 +39,10 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
+//! Returns a pointer to a newly allocated memory area which is `n` bytes long.
 /*!
+**	@isostd https://en.cppreference.com/w/c/memory/malloc
+**
 **	Allocates `size` bytes in memory, returning the pointer at which
 **	said bytes were allocated, or NULL if the memory could not be allocated.
 */
@@ -63,8 +68,12 @@ _MALLOC()
 void*				Memory_New_C(t_size size, char c);
 #define c_memcnew	Memory_New_C
 
+//! Frees the previously allocated memory area at `*ptr`.
 /*!
-**	Frees the allocated memory at `*ptr`.
+**	@isostd https://en.cppreference.com/w/c/memory/free
+**
+**	Deallocates the area of memory pointed to by `ptr`, assuming it was
+**	previously allocated by a call to Memory_Alloc() or Memory_New()
 */
 void				Memory_Free(void* ptr);
 #define c_memfree	Memory_Free

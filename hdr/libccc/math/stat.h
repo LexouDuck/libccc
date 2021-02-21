@@ -140,6 +140,10 @@ s_list_int						Stat_Int_MergeList(s_list_int* start, s_list_int* append);
 #define c_stat_merge_ilst		Stat_Int_MergeList
 
 //! TODO document this
+/*!
+**	@isostd https://en.cppreference.com/w/c/algorithm/qsort
+**
+*/
 s_list_int 						Stat_Int_Quicksort(s_list_int const ilst);
 #define c_stat_quicksort_i_new	Stat_Int_Quicksort
 

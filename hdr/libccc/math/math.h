@@ -15,6 +15,8 @@
 **	@addtogroup libccc_math_math
 **	@{
 **	This header defines the common standard math functions and macro defines.
+**
+**	@isostd https://en.cppreference.com/w/c/numeric/math
 */
 
 /*
@@ -59,14 +61,14 @@ HEADER_CPP
 #define HALF_PI			DIV_PI_2						//!< Alias for DIV_PI_2
 #define DIV_PI_4		(t_float)(0x1.921FB54442D18p-1)	//!< Quarter of pi (PI / 4):		
 #define DIV_PI_2		(t_float)(0x1.921FB54442D18p+0)	//!< Half of pi (PI / 2):			
-#define PI				(t_float)(0x1.921FB54442D18p+1)	//!< A circle's periphery, pi:		3.141592653589793238462643383279502884197169399375105820974...
-#define TAU 			(t_float)(0x1.921FB54442D18p+2)	//!< Double pi (PI * 2):			6.283185307179586476925286766559005768394338798750211641949...
-#define INV_PI			(t_float)(0x1.45F306DC9C883p-2)	//!< Inverse of pi (1 / PI):		0.318309886183790671537767526745028724068919291480912897495...
-#define INV_TAU			(t_float)(0x1.45F306DC9C883p-3)	//!< Inverse of tau (1 / (PI * 2)):	0.159154943091895335768883763372514362034459645740456448747...
+#define PI				(t_float)(0x1.921FB54442D18p+1)	//!< A circle's periphery, pi:		`3.141592653589793238462643383279502884197169399375105820974...`
+#define TAU 			(t_float)(0x1.921FB54442D18p+2)	//!< Double pi (PI * 2):			`6.283185307179586476925286766559005768394338798750211641949...`
+#define INV_PI			(t_float)(0x1.45F306DC9C883p-2)	//!< Inverse of pi (1 / PI):		`0.318309886183790671537767526745028724068919291480912897495...`
+#define INV_TAU			(t_float)(0x1.45F306DC9C883p-3)	//!< Inverse of tau (1 / (PI * 2)):	`0.159154943091895335768883763372514362034459645740456448747...`
 
-#define E				(t_float)(0x1.5BF0A8B145769p+1)	//!< The exponential number, e:		2.718281828459045235360287471352662497757247093699959574966...
-#define LN_2			(t_float)(0x1.62E42FEFA39EFp-1)	//!< The natural logarithm of 2:	0.693147180559945309417232121458176568075500134360255254120...
-#define LN_10			(t_float)(0x1.26BB1BBB55516p+1)	//!< The natural logarithm of 10:	2.302585092994045684017991454684364207601101488628772976033...
+#define E				(t_float)(0x1.5BF0A8B145769p+1)	//!< The exponential number, e:		`2.718281828459045235360287471352662497757247093699959574966...`
+#define LN_2			(t_float)(0x1.62E42FEFA39EFp-1)	//!< The natural logarithm of 2:	`0.693147180559945309417232121458176568075500134360255254120...`
+#define LN_10			(t_float)(0x1.26BB1BBB55516p+1)	//!< The natural logarithm of 10:	`2.302585092994045684017991454684364207601101488628772976033...`
 
 #define SQRT_2			(t_float)(0x1.6A09E667F3BCDp+0)	//!< The square root of 2:	1.414213562373095048801688724209698078569671875376948073176...
 #define INV_SQRT_2		(t_float)(0x1.6A09E667F3BCDp-1)	//!< The inverse square root of 2:	1 / SQRT_2
@@ -97,11 +99,18 @@ t_s32						Math_GetExp(t_float x);
 #define Math_GetExponent	Math_GetExp
 
 //! Returns the absolute value of 'x' (makes 'x' positive)
+/*!
+**	@isostd https://en.cppreference.com/w/c/numeric/math/abs
+**	@isostd https://en.cppreference.com/w/c/numeric/math/fabs
+*/
 t_float						Math_Abs(t_float x);
 #define c_fabs				Math_Abs
 #define Math_AbsoluteValue	Math_Abs
 
 //! Returns the division remainder of 'x' divided by 'y'
+/*!
+**	@isostd https://en.cppreference.com/w/c/numeric/math/fmod
+*/
 t_float						Math_Mod(t_float x, t_float y);
 #define c_fmod				Math_Mod
 #define Math_Modulo			Math_Mod
@@ -129,53 +138,85 @@ t_float						Math_Ceiling(t_float x);
 
 
 //! Returns the value of 'x' to the power of 'y' (float)
+/*!
+**	@isostd https://en.cppreference.com/w/c/numeric/math/pow
+*/
 t_float						Math_Pow(t_float x, t_float y);
 #define c_pow				Math_Pow
 #define Math_Power			Math_Pow
 
 //! Returns the value of 'x' to the power of 'n' (integer)
+/*!
+**	@isostd https://en.cppreference.com/w/c/numeric/math/pow
+*/
 t_float						Math_Pow_N(t_float x, t_sint n);
 #define c_pow_n				Math_Pow_N
 #define Math_Power_N		Math_Pow_N
 
 //! Returns the square root of 'x' (inverse of power of 2)
+/*!
+**	@isostd https://en.cppreference.com/w/c/numeric/math/sqrt
+*/
 t_float						Math_SqRt(t_float x);
 #define c_sqrt				Math_SqRt
 #define Math_SquareRoot		Math_SqRt
 
 //! Returns the cubic root of 'x' (inverse of power of 3)
+/*!
+**	@isostd https://en.cppreference.com/w/c/numeric/math/cbrt
+*/
 t_float						Math_CbRt(t_float x);
 #define c_cbrt				Math_CbRt
 #define Math_CubicRoot		Math_CbRt
 
 //! Returns the n-ic root of 'x' (inverse of power of 'n')
+/*!
+**	@isostd https://en.cppreference.com/w/c/numeric/math/nrt
+*/
 t_float						Math_NRt(t_float x, t_u8 n);
 #define c_nrt				Math_NRt
 #define Math_NRoot			Math_NRt
 
+// TODO hypot: {\sqrt{x^2+y^2}}
+
 
 
 //! Returns the exponential function's value for 'x'
+/*!
+**	@isostd https://en.cppreference.com/w/c/numeric/math/exp
+*/
 t_float							Math_Exp(t_float x);
 #define c_exp					Math_Exp
 #define Math_Exponential		Math_Exp
 
 //! Returns the natural logarithm of 'x'
+/*!
+**	@isostd https://en.cppreference.com/w/c/numeric/math/log
+*/
 t_float							Math_Ln(t_float x);
 #define c_ln					Math_Ln
 #define Math_NaturalLogarithm	Math_Ln
 
 //! Returns the binary (base-2) logarithm of 'x'
+/*!
+**	@isostd https://en.cppreference.com/w/c/numeric/math/log2
+*/
 t_float							Math_Log_2(t_float x);
 #define c_lg					Math_Log_2
 #define Math_Logarithm_Base2	Math_Log_2
 
 //! Returns the decimal (base-10) logarithm of 'x'
+/*!
+**	@isostd https://en.cppreference.com/w/c/numeric/math/log10
+*/
 t_float							Math_Log_10(t_float x);
 #define c_log					Math_Log_10
 #define Math_Logarithm_Base10	Math_Log_10
 
 //! Returns the base-'n' logarithm of 'x'
+/*!
+**	@nonstd
+*/
 t_float							Math_Log_N(t_float x, t_float n);
 #define c_logn					Math_Log_N
 #define Math_Logarithm_BaseN	Math_Log_N
@@ -184,33 +225,51 @@ t_float							Math_Log_N(t_float x, t_float n);
 
 
 //! Returns the cosine of 'x' (horizontal trigonometry coordinate)
+/*!
+**	@isostd https://en.cppreference.com/w/c/numeric/math/cos
+*/
 t_float								Math_Cos(t_float x);
 #define c_cos						Math_Cos
 #define Math_Cosine					Math_Cos
 
 //! Returns the sine of 'x' (vertical trigonometry coordinate)
+/*!
+**	@isostd https://en.cppreference.com/w/c/numeric/math/sin
+*/
 t_float								Math_Sin(t_float x);
 #define c_sin						Math_Sin
 #define Math_Sine					Math_Sin
 
 //! Returns the tangent of 'x' (trigonometry tangent line)
+/*!
+**	@isostd https://en.cppreference.com/w/c/numeric/math/tan
+*/
 t_float								Math_Tan(t_float x);
 #define c_tan						Math_Tan
 #define Math_Tangent				Math_Tan
 
 //! Returns the arc-cosine of 'x' (inverse of the cos function)
+/*!
+**	@isostd https://en.cppreference.com/w/c/numeric/math/acos
+*/
 t_float								Math_ArcCos(t_float x);
 #define c_acos						Math_ArcCos
 #define Math_Cos_1					Math_ArcCos
 #define Math_InvCosine				Math_ArcCos
 
 //! Returns the arc-sine of 'x' (inverse of the sin function)
+/*!
+**	@isostd https://en.cppreference.com/w/c/numeric/math/asin
+*/
 t_float								Math_ArcSin(t_float x);
 #define c_asin						Math_ArcSin
 #define Math_Sin_1					Math_ArcSin
 #define Math_InvSine				Math_ArcSin
 
 //! Returns the arc-tangent of 'x' (inverse of the tan function)
+/*!
+**	@isostd https://en.cppreference.com/w/c/numeric/math/atan
+*/
 t_float								Math_ArcTan(t_float x);
 #define c_atan						Math_ArcTan
 #define Math_Tan_1					Math_ArcTan
@@ -219,6 +278,9 @@ t_float								Math_ArcTan(t_float x);
 
 
 //! Returns the arc-tangent of ('y' / 'x'), used to find an angle from coordinates
+/*!
+**	@isostd https://en.cppreference.com/w/c/numeric/math/atan2
+*/
 t_float								Math_ArcTan2(t_float y, t_float x);
 #define c_atan2						Math_ArcTan2
 #define Math_ArcTangent2			Math_ArcTan2
@@ -227,36 +289,54 @@ t_float								Math_ArcTan2(t_float y, t_float x);
 
 
 //! Returns the hyperbolic cosine of 'x'
+/*!
+**	@isostd https://en.cppreference.com/w/c/numeric/math/cosh
+*/
 t_float								Math_CosH(t_float x);
 #define c_cosh						Math_CosH
 #define Math_Cos_H					Math_CosH
 #define Math_Cosine_Hyperbolic		Math_CosH
 
 //! Returns the hyperbolic sine of 'x'
+/*!
+**	@isostd https://en.cppreference.com/w/c/numeric/math/sinh
+*/
 t_float								Math_SinH(t_float x);
 #define c_sinh						Math_SinH
 #define Math_Sin_H					Math_SinH
 #define Math_Sine_Hyperbolic		Math_SinH
 
 //! Returns the hyperbolic tangent of 'x'
+/*!
+**	@isostd https://en.cppreference.com/w/c/numeric/math/tanh
+*/
 t_float								Math_TanH(t_float x);
 #define c_tanh						Math_TanH
 #define Math_Tan_H					Math_TanH
 #define Math_Tangent_Hyperbolic		Math_TanH
 
 //! Returns the hyperbolic arc-cosine of 'x' (inverse of the cosh function)
+/*!
+**	@isostd https://en.cppreference.com/w/c/numeric/math/acosh
+*/
 t_float								Math_InvCosH(t_float x);
 #define c_acosh						Math_InvCosH
 #define Math_Cos_1_H				Math_InvCosH
 #define Math_InvCosine_Hyperbolic	Math_InvCosH
 
 //! Returns the hyperbolic arc-sine of 'x' (inverse of the sinh function)
+/*!
+**	@isostd https://en.cppreference.com/w/c/numeric/math/asinh
+*/
 t_float								Math_InvSinH(t_float x);
 #define c_asinh						Math_InvSinH
 #define Math_Sin_1_H				Math_InvSinH
 #define Math_InvSine_Hyperbolic		Math_InvSinH
 
 //! Returns the hyperbolic arc-tangent of 'x' (inverse of the tanh function)
+/*!
+**	@isostd https://en.cppreference.com/w/c/numeric/math/atanh
+*/
 t_float								Math_InvTanH(t_float x);
 #define c_atanh						Math_InvTanH
 #define Math_Tan_1_H				Math_InvTanH

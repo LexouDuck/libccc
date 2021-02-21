@@ -15,6 +15,8 @@
 **	@addtogroup libccc_string
 **	@{
 **	This header defines the common standard string (char*) manipulation functions.
+**
+**	@isostd https://en.cppreference.com/w/c/string/byte#String_manipulation
 */
 
 /*
