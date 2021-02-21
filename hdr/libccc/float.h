@@ -151,7 +151,7 @@ TYPEDEF_ALIAS(					t_float, FLOAT, PRIMITIVE)
 
 
 
-/*! @name bitwise_macros_f32
+/*! @name 32-bit float bitwise constants
 **	IEEE 754 32-bit floating point "single" precision bitwise macros
 */
 //!@{
@@ -166,7 +166,7 @@ TYPEDEF_ALIAS(					t_float, FLOAT, PRIMITIVE)
 #define F32_INIT_VALUE		(0x1.p-23)		//!< A 32-bit floating-point number's value if all bits are zero
 //!@}
 
-/*! @name bitwise_macros_f64
+/*! @name 64-bit float bitwise constants
 **	IEEE 754 64-bit floating point double-precision bitwise macros
 */
 //!@{
@@ -181,7 +181,7 @@ TYPEDEF_ALIAS(					t_float, FLOAT, PRIMITIVE)
 #define F64_INIT_VALUE		(0x1.p-52)				//!< A 64-bit floating-point number's value if all bits are zero
 //!@}
 
-/*! @name bitwise_macros_f80
+/*! @name 80-bit float bitwise constants
 **	x86 80-bit floating point extended precision bitwise macros
 */
 //!@{
@@ -196,7 +196,7 @@ TYPEDEF_ALIAS(					t_float, FLOAT, PRIMITIVE)
 #define F80_INIT_VALUE		(0x1.p-64)					//!< A 80-bit floating-point number's value if all bits are zero
 //!@}
 
-/*! @name bitwise_macros_f128
+/*! @name 128-bit float bitwise constants
 **	IEEE 754 128-bit floating point quadruple-precision bitwise macros
 */
 //!@{
@@ -263,185 +263,185 @@ typedef union	u_float_cast_
 //! Get the shortest string representation of the given 32-bit floating-point number (dec or exp), with 'precision' fractional digits
 _MALLOC()
 char*						F32_ToString(t_f32 n, t_u8 precision);
-#define c_f32_to_str		F32_ToString
+#define c_f32_to_str		F32_ToString //!< @alias{F32_ToString}
 
 //! Get the shortest string representation of the given 64-bit floating-point number (dec or exp), with 'precision' fractional digits
 _MALLOC()
 char*						F64_ToString(t_f64 n, t_u8 precision);
-#define c_f64_to_str		F64_ToString
+#define c_f64_to_str		F64_ToString //!< @alias{F64_ToString}
 
 #ifdef	__float80
 //! Get the shortest string representation of the given 80-bit floating-point number (dec or exp), with 'precision' fractional digits
 _MALLOC()
 char*						F80_ToString(t_f80 n, t_u8 precision);
-#define c_f80_to_str		F80_ToString
+#define c_f80_to_str		F80_ToString //!< @alias{F80_ToString}
 #endif
 #ifdef	__float128
 //! Get the shortest string representation of the given 128-bit floating-point number (dec or exp), with 'precision' fractional digits
 _MALLOC()
 char*						F128_ToString(t_f128 n, t_u8 precision);
-#define c_f128_to_str		F128_ToString
+#define c_f128_to_str		F128_ToString //!< @alias{F128_ToString}
 #endif
 
 //! Get the shortest string representation of the given floating-point number (dec or exp), with 'precision' fractional digits
 _MALLOC()
 char*							Float_ToString(t_float n, t_u8 precision);
-#define c_float_to_str			Float_ToString
+#define c_float_to_str			Float_ToString //!< @alias{Float_ToString}
 
 
 
 //! Get the string scientific notation of a 32-bit floating-point number, with 'precision' fractional digits
 _MALLOC()
 char*								F32_ToString_Exp(t_f32 n, t_u8 precision);
-#define c_f32_to_strexp				F32_ToString_Exp
-#define c_f32_to_strsci				F32_ToString_Exp
-#define F32_ToString_Exponential	F32_ToString_Exp
-#define F32_ToString_Sci			F32_ToString_Exp
-#define F32_ToString_Scientific		F32_ToString_Exp
+#define c_f32_to_strexp				F32_ToString_Exp //!< @alias{F32_ToString_Exp}
+#define c_f32_to_strsci				F32_ToString_Exp //!< @alias{F32_ToString_Exp}
+#define F32_ToString_Exponential	F32_ToString_Exp //!< @alias{F32_ToString_Exp}
+#define F32_ToString_Sci			F32_ToString_Exp //!< @alias{F32_ToString_Exp}
+#define F32_ToString_Scientific		F32_ToString_Exp //!< @alias{F32_ToString_Exp}
 
 //! Get the string scientific notation of a 64-bit floating-point number, with 'precision' fractional digits
 _MALLOC()
 char*								F64_ToString_Exp(t_f64 n, t_u8 precision);
-#define c_f64_to_strexp				F64_ToString_Exp
-#define c_f64_to_strsci				F64_ToString_Exp
-#define F64_ToString_Exponential	F64_ToString_Exp
-#define F64_ToString_Sci			F64_ToString_Exp
-#define F64_ToString_Scientific		F64_ToString_Exp
+#define c_f64_to_strexp				F64_ToString_Exp //!< @alias{F64_ToString_Exp}
+#define c_f64_to_strsci				F64_ToString_Exp //!< @alias{F64_ToString_Exp}
+#define F64_ToString_Exponential	F64_ToString_Exp //!< @alias{F64_ToString_Exp}
+#define F64_ToString_Sci			F64_ToString_Exp //!< @alias{F64_ToString_Exp}
+#define F64_ToString_Scientific		F64_ToString_Exp //!< @alias{F64_ToString_Exp}
 
 #ifdef	__float80
 //! Get the string scientific notation of a 80-bit floating-point number, with 'precision' fractional digits
 _MALLOC()
 char*								F80_ToString_Exp(t_f80 n, t_u8 precision);
-#define c_f80_to_strexp				F80_ToString_Exp
-#define c_f80_to_strsci				F80_ToString_Exp
-#define F80_ToString_Exponential	F80_ToString_Exp
-#define F80_ToString_Sci			F80_ToString_Exp
-#define F80_ToString_Scientific		F80_ToString_Exp
+#define c_f80_to_strexp				F80_ToString_Exp //!< @alias{F80_ToString_Exp}
+#define c_f80_to_strsci				F80_ToString_Exp //!< @alias{F80_ToString_Exp}
+#define F80_ToString_Exponential	F80_ToString_Exp //!< @alias{F80_ToString_Exp}
+#define F80_ToString_Sci			F80_ToString_Exp //!< @alias{F80_ToString_Exp}
+#define F80_ToString_Scientific		F80_ToString_Exp //!< @alias{F80_ToString_Exp}
 #endif
 #ifdef	__float128
 //! Get the string scientific notation of a 128-bit floating-point number, with 'precision' fractional digits
 _MALLOC()
 char*								F128_ToString_Exp(t_f128 n, t_u8 precision);
-#define c_f128_to_strexp			F128_ToString_Exp
-#define c_f128_to_strsci			F128_ToString_Exp
-#define F128_ToString_Exponential	F128_ToString_Exp
-#define F128_ToString_Sci			F128_ToString_Exp
-#define F128_ToString_Scientific	F128_ToString_Exp
+#define c_f128_to_strexp			F128_ToString_Exp //!< @alias{F128_ToString_Exp}
+#define c_f128_to_strsci			F128_ToString_Exp //!< @alias{F128_ToString_Exp}
+#define F128_ToString_Exponential	F128_ToString_Exp //!< @alias{F128_ToString_Exp}
+#define F128_ToString_Sci			F128_ToString_Exp //!< @alias{F128_ToString_Exp}
+#define F128_ToString_Scientific	F128_ToString_Exp //!< @alias{F128_ToString_Exp}
 #endif
 
 //! Get the string scientific notation of a floating-point number, with 'precision' fractional digits
 _MALLOC()
 char*									Float_ToString_Exp(t_float n, t_u8 precision);
-#define c_float_to_strexp				Float_ToString_Exp
-#define c_float_to_strsci				Float_ToString_Exp
-#define Float_ToString_Exponential		Float_ToString_Exp
-#define Float_ToString_Sci				Float_ToString_Exp
-#define Float_ToString_Scientific		Float_ToString_Exp
+#define c_float_to_strexp				Float_ToString_Exp //!< @alias{Float_ToString_Exp}
+#define c_float_to_strsci				Float_ToString_Exp //!< @alias{Float_ToString_Exp}
+#define Float_ToString_Exponential		Float_ToString_Exp //!< @alias{Float_ToString_Exp}
+#define Float_ToString_Sci				Float_ToString_Exp //!< @alias{Float_ToString_Exp}
+#define Float_ToString_Scientific		Float_ToString_Exp //!< @alias{Float_ToString_Exp}
 
 
 
 //! Get the string decimal representation of a 32-bit floating-point number, with 'precision' fractional digits
 _MALLOC()
 char*								F32_ToString_Dec(t_f32 n, t_u8 precision);
-#define c_f32_to_strdec				F32_ToString_Dec
-#define F32_ToString_Decimal		F32_ToString_Dec
+#define c_f32_to_strdec				F32_ToString_Dec //!< @alias{F32_ToString_Dec}
+#define F32_ToString_Decimal		F32_ToString_Dec //!< @alias{F32_ToString_Dec}
 
 //! Get the string decimal representation of a 64-bit floating-point number, with 'precision' fractional digits
 _MALLOC()
 char*								F64_ToString_Dec(t_f64 n, t_u8 precision);
-#define c_f64_to_strdec				F64_ToString_Dec
-#define F64_ToString_Decimal		F64_ToString_Dec
+#define c_f64_to_strdec				F64_ToString_Dec //!< @alias{F64_ToString_Dec}
+#define F64_ToString_Decimal		F64_ToString_Dec //!< @alias{F64_ToString_Dec}
 
 #ifdef	__float80
 //! Get the string decimal representation of a 80-bit floating-point number, with 'precision' fractional digits
 _MALLOC()
 char*								F80_ToString_Dec(t_f80 n, t_u8 precision);
-#define c_f80_to_strdec				F80_ToString_Dec
-#define F80_ToString_Decimal		F80_ToString_Dec
+#define c_f80_to_strdec				F80_ToString_Dec //!< @alias{F80_ToString_Dec}
+#define F80_ToString_Decimal		F80_ToString_Dec //!< @alias{F80_ToString_Dec}
 #endif
 #ifdef	__float128
 //! Get the string decimal representation of a 128-bit floating-point number, with 'precision' fractional digits
 _MALLOC()
 char*								F128_ToString_Dec(t_f128 n, t_u8 precision);
-#define c_f128_to_strdec			F128_ToString_Dec
-#define F128_ToString_Decimal		F128_ToString_Dec
+#define c_f128_to_strdec			F128_ToString_Dec //!< @alias{F128_ToString_Dec}
+#define F128_ToString_Decimal		F128_ToString_Dec //!< @alias{F128_ToString_Dec}
 #endif
 
 //! Get the string decimal representation of a floating-point number, with 'precision' fractional digits
 _MALLOC()
 char*									Float_ToString_Dec(t_float n, t_u8 precision);
-#define c_float_to_strdec				Float_ToString_Dec
-#define Float_ToString_Decimal			Float_ToString_Dec
+#define c_float_to_strdec				Float_ToString_Dec //!< @alias{Float_ToString_Dec}
+#define Float_ToString_Decimal			Float_ToString_Dec //!< @alias{Float_ToString_Dec}
 
 
 
 //! Get the string hexadecimal representation of a 32-bit floating-point number, with 'precision' fractional digits (if 0, max precision)
 _MALLOC()
 char*								F32_ToString_Hex(t_f32 n, t_u8 precision);
-#define c_f32_to_strhex				F32_ToString_Hex
-#define F32_ToString_Hexadecimal	F32_ToString_Hex
+#define c_f32_to_strhex				F32_ToString_Hex //!< @alias{F32_ToString_Hex}
+#define F32_ToString_Hexadecimal	F32_ToString_Hex //!< @alias{F32_ToString_Hex}
 
 //! Get the string hexadecimal representation of a 64-bit floating-point number, with 'precision' fractional digits (if 0, max precision)
 _MALLOC()
 char*								F64_ToString_Hex(t_f64 n, t_u8 precision);
-#define c_f64_to_strhex				F64_ToString_Hex
-#define F64_ToString_Hexadecimal	F64_ToString_Hex
+#define c_f64_to_strhex				F64_ToString_Hex //!< @alias{F64_ToString_Hex}
+#define F64_ToString_Hexadecimal	F64_ToString_Hex //!< @alias{F64_ToString_Hex}
 
 #ifdef	__float80
 //! Get the string hexadecimal representation of a 80-bit floating-point number, with 'precision' fractional digits (if 0, max precision)
 _MALLOC()
 char*								F80_ToString_Hex(t_f80 n, t_u8 precision);
-#define c_f80_to_strhex				F80_ToString_Hex
-#define F80_ToString_Hexadecimal	F80_ToString_Hex
+#define c_f80_to_strhex				F80_ToString_Hex //!< @alias{F80_ToString_Hex}
+#define F80_ToString_Hexadecimal	F80_ToString_Hex //!< @alias{F80_ToString_Hex}
 #endif
 #ifdef	__float128
 //! Get the string hexadecimal representation of a 128-bit floating-point number, with 'precision' fractional digits (if 0, max precision)
 _MALLOC()
 char*								F128_ToString_Hex(t_f128 n, t_u8 precision);
-#define c_f128_to_strhex			F128_ToString_Hex
-#define F128_ToString_Hexadecimal	F128_ToString_Hex
+#define c_f128_to_strhex			F128_ToString_Hex //!< @alias{F128_ToString_Hex}
+#define F128_ToString_Hexadecimal	F128_ToString_Hex //!< @alias{F128_ToString_Hex}
 #endif
 
 //! Get the string hexadecimal representation of a floating-point number, with 'precision' fractional digits (if 0, max precision)
 _MALLOC()
 char*									Float_ToString_Hex(t_float n, t_u8 precision);
-#define c_float_to_strhex				Float_ToString_Hex
-#define Float_ToString_Hexadecimal		Float_ToString_Hex
+#define c_float_to_strhex				Float_ToString_Hex //!< @alias{Float_ToString_Hex}
+#define Float_ToString_Hexadecimal		Float_ToString_Hex //!< @alias{Float_ToString_Hex}
 
 
 
 //! Get the string binary representation of a 32-bit floating-point number, with 'precision' fractional digits (if 0, max precision)
 _MALLOC()
 char*								F32_ToString_Bin(t_f32 n, t_u8 precision);
-#define c_f32_to_strbin				F32_ToString_Bin
-#define F32_ToString_Binary			F32_ToString_Bin
+#define c_f32_to_strbin				F32_ToString_Bin //!< @alias{F32_ToString_Bin}
+#define F32_ToString_Binary			F32_ToString_Bin //!< @alias{F32_ToString_Bin}
 
 //! Get the string binary representation of a 64-bit floating-point number, with 'precision' fractional digits (if 0, max precision)
 _MALLOC()
 char*								F64_ToString_Bin(t_f64 n, t_u8 precision);
-#define c_f64_to_strbin				F64_ToString_Bin
-#define F64_ToString_Binary			F64_ToString_Bin
+#define c_f64_to_strbin				F64_ToString_Bin //!< @alias{F64_ToString_Bin}
+#define F64_ToString_Binary			F64_ToString_Bin //!< @alias{F64_ToString_Bin}
 
 #ifdef	__float80
 //! Get the string binary representation of a 80-bit floating-point number, with 'precision' fractional digits (if 0, max precision)
 _MALLOC()
 char*								F80_ToString_Bin(t_f80 n, t_u8 precision);
-#define c_f80_to_strbin				F80_ToString_Bin
-#define F80_ToString_Binary			F80_ToString_Bin
+#define c_f80_to_strbin				F80_ToString_Bin //!< @alias{F80_ToString_Bin}
+#define F80_ToString_Binary			F80_ToString_Bin //!< @alias{F80_ToString_Bin}
 #endif
 #ifdef	__float128
 //! Get the string binary representation of a 128-bit floating-point number, with 'precision' fractional digits (if 0, max precision)
 _MALLOC()
 char*								F128_ToString_Bin(t_f128 n, t_u8 precision);
-#define c_f128_to_strbin			F128_ToString_Bin
-#define F128_ToString_Binary		F128_ToString_Bin
+#define c_f128_to_strbin			F128_ToString_Bin //!< @alias{F128_ToString_Bin}
+#define F128_ToString_Binary		F128_ToString_Bin //!< @alias{F128_ToString_Bin}
 #endif
 
 //! Get the string binary representation of a floating-point number, with 'precision' fractional digits (if 0, max precision)
 _MALLOC()
 char*									Float_ToString_Bin(t_float n, t_u8 precision);
-#define c_float_to_strbin				Float_ToString_Bin
-#define Float_ToString_Binary			Float_ToString_Bin
+#define c_float_to_strbin				Float_ToString_Bin //!< @alias{Float_ToString_Bin}
+#define Float_ToString_Binary			Float_ToString_Bin //!< @alias{Float_ToString_Bin}
 
 
 
@@ -453,161 +453,161 @@ char*									Float_ToString_Bin(t_float n, t_u8 precision);
 
 //! Parse a 32-bit floating-point number from the given string (can be decimal/exponential/hexdecimal)
 t_f32					F32_FromString(char const* str);
-#define c_str_to_f32	F32_FromString
+#define c_str_to_f32	F32_FromString //!< @alias{F32_FromString}
 
 //! Parse a 64-bit floating-point number from the given string (can be decimal/exponential/hexdecimal)
 t_f64					F64_FromString(char const* str);
-#define c_str_to_f64	F64_FromString
+#define c_str_to_f64	F64_FromString //!< @alias{F64_FromString}
 
 #ifdef	__float80
 //! Parse a 80-bit floating-point number from the given string (can be decimal/exponential/hexdecimal)
 t_f80					F80_FromString(char const* str);
-#define c_str_to_f80	F80_FromString
+#define c_str_to_f80	F80_FromString //!< @alias{F80_FromString}
 #endif
 #ifdef	__float128
 //! Parse a 128-bit floating-point number from the given string (can be decimal/exponential/hexdecimal)
 t_f128					F128_FromString(char const* str);
-#define c_str_to_f128	F128_FromString
+#define c_str_to_f128	F128_FromString //!< @alias{F128_FromString}
 #endif
 
 //! Parse a floating-point number from the given string (can be decimal/exponential/hexdecimal)
 t_float						Float_FromString(char const* str);
-#define c_str_to_float		Float_FromString
+#define c_str_to_float		Float_FromString //!< @alias{Float_FromString}
 
 
 
 //! Parse the scientific notation of a 32-bit floating-point number
 t_f32								F32_FromString_Exp(char const* str);
-#define c_strexp_to_f32				F32_FromString_Exp
-#define c_strsci_to_f32				F32_FromString_Exp
-#define F32_FromString_Exponential	F32_FromString_Exp
-#define F32_FromString_Sci			F32_FromString_Exp
-#define F32_FromString_Scientific	F32_FromString_Exp
+#define c_strexp_to_f32				F32_FromString_Exp //!< @alias{F32_FromString_Exp}
+#define c_strsci_to_f32				F32_FromString_Exp //!< @alias{F32_FromString_Exp}
+#define F32_FromString_Exponential	F32_FromString_Exp //!< @alias{F32_FromString_Exp}
+#define F32_FromString_Sci			F32_FromString_Exp //!< @alias{F32_FromString_Exp}
+#define F32_FromString_Scientific	F32_FromString_Exp //!< @alias{F32_FromString_Exp}
 
 //! Parse the scientific notation of a 64-bit floating-point number
 t_f64								F64_FromString_Exp(char const* str);
-#define c_strexp_to_f64				F64_FromString_Exp
-#define c_strsci_to_f64				F64_FromString_Exp
-#define F64_FromString_Exponential	F64_FromString_Exp
-#define F64_FromString_Sci			F64_FromString_Exp
-#define F64_FromString_Scientific	F64_FromString_Exp
+#define c_strexp_to_f64				F64_FromString_Exp //!< @alias{F64_FromString_Exp}
+#define c_strsci_to_f64				F64_FromString_Exp //!< @alias{F64_FromString_Exp}
+#define F64_FromString_Exponential	F64_FromString_Exp //!< @alias{F64_FromString_Exp}
+#define F64_FromString_Sci			F64_FromString_Exp //!< @alias{F64_FromString_Exp}
+#define F64_FromString_Scientific	F64_FromString_Exp //!< @alias{F64_FromString_Exp}
 
 #ifdef	__float80
 //! Parse the scientific notation of a 80-bit floating-point number
 t_f80								F80_FromString_Exp(char const* str);
-#define c_strexp_to_f80				F80_FromString_Exp
-#define c_strsci_to_f80				F80_FromString_Exp
-#define F80_FromString_Exponential	F80_FromString_Exp
-#define F80_FromString_Sci			F80_FromString_Exp
-#define F80_FromString_Scientific	F80_FromString_Exp
+#define c_strexp_to_f80				F80_FromString_Exp //!< @alias{F80_FromString_Exp}
+#define c_strsci_to_f80				F80_FromString_Exp //!< @alias{F80_FromString_Exp}
+#define F80_FromString_Exponential	F80_FromString_Exp //!< @alias{F80_FromString_Exp}
+#define F80_FromString_Sci			F80_FromString_Exp //!< @alias{F80_FromString_Exp}
+#define F80_FromString_Scientific	F80_FromString_Exp //!< @alias{F80_FromString_Exp}
 #endif
 #ifdef	__float128
 //! Parse the scientific notation of a 128-bit floating-point number
 t_f128								F128FromoString_Exp(char const* str);
-#define c_strexp_to_f128			F128FromoString_Exp
-#define c_strsci_to_f128			F128FromoString_Exp
-#define F128_FromString_Exponential	F128FromoString_Exp
-#define F128_FromString_Sci			F128FromoString_Exp
-#define F128_FromString_Scientific	F128FromoString_Exp
+#define c_strexp_to_f128			F128FromoString_Exp //!< @alias{F128FromoString_Exp}
+#define c_strsci_to_f128			F128FromoString_Exp //!< @alias{F128FromoString_Exp}
+#define F128_FromString_Exponential	F128FromoString_Exp //!< @alias{F128FromoString_Exp}
+#define F128_FromString_Sci			F128FromoString_Exp //!< @alias{F128FromoString_Exp}
+#define F128_FromString_Scientific	F128FromoString_Exp //!< @alias{F128FromoString_Exp}
 #endif
 
 //! Parse the scientific notation of a floating-point number
 t_float									Float_FromString_Exp(char const* str);
-#define c_strexp_to_float				Float_FromString_Exp
-#define c_strsci_to_float				Float_FromString_Exp
-#define Float_FromString_Exponential	Float_FromString_Exp
-#define Float_FromString_Sci			Float_FromString_Exp
-#define Float_FromString_Scientific		Float_FromString_Exp
+#define c_strexp_to_float				Float_FromString_Exp //!< @alias{Float_FromString_Exp}
+#define c_strsci_to_float				Float_FromString_Exp //!< @alias{Float_FromString_Exp}
+#define Float_FromString_Exponential	Float_FromString_Exp //!< @alias{Float_FromString_Exp}
+#define Float_FromString_Sci			Float_FromString_Exp //!< @alias{Float_FromString_Exp}
+#define Float_FromString_Scientific		Float_FromString_Exp //!< @alias{Float_FromString_Exp}
 
 
 
 //! Parse the decimal representation of a 32-bit floating-point number
 t_f32								F32_FromString_Dec(char const* str);
-#define c_strdec_to_f32				F32_FromString_Dec
-#define F32_FromString_Decimal		F32_FromString_Dec
+#define c_strdec_to_f32				F32_FromString_Dec //!< @alias{F32_FromString_Dec}
+#define F32_FromString_Decimal		F32_FromString_Dec //!< @alias{F32_FromString_Dec}
 
 //! Parse the decimal representation of a 64-bit floating-point number
 t_f64								F64_FromString_Dec(char const* str);
-#define c_strdec_to_f64				F64_FromString_Dec
-#define F64_FromString_Decimal		F64_FromString_Dec
+#define c_strdec_to_f64				F64_FromString_Dec //!< @alias{F64_FromString_Dec}
+#define F64_FromString_Decimal		F64_FromString_Dec //!< @alias{F64_FromString_Dec}
 
 #ifdef	__float80
 //! Parse the decimal representation of a 80-bit floating-point number
 t_f80								F80_FromString_Dec(char const* str);
-#define c_strdec_to_f80				F80_FromString_Dec
-#define F80_FromString_Decimal		F80_FromString_Dec
+#define c_strdec_to_f80				F80_FromString_Dec //!< @alias{F80_FromString_Dec}
+#define F80_FromString_Decimal		F80_FromString_Dec //!< @alias{F80_FromString_Dec}
 #endif
 #ifdef	__float128
 //! Parse the decimal representation of a 128-bit floating-point number
 t_f128								F128_FromString_Dec(char const* str);
-#define c_strdec_to_f128			F128_FromString_Dec
-#define F128_FromString_Decimal		F128_FromString_Dec
+#define c_strdec_to_f128			F128_FromString_Dec //!< @alias{F128_FromString_Dec}
+#define F128_FromString_Decimal		F128_FromString_Dec //!< @alias{F128_FromString_Dec}
 #endif
 
 //! Parse the decimal representation of a floating-point number
 t_float									Float_FromString_Dec(char const* str);
-#define c_strdec_to_float				Float_FromString_Dec
-#define Float_FromString_Decimal		Float_FromString_Dec
+#define c_strdec_to_float				Float_FromString_Dec //!< @alias{Float_FromString_Dec}
+#define Float_FromString_Decimal		Float_FromString_Dec //!< @alias{Float_FromString_Dec}
 
 
 
 //! Parse the hexadecimal representation of a 32-bit floating-point number
 t_f32								F32_FromString_Hex(char const* str);
-#define c_strhex_to_f32				F32_FromString_Hex
-#define F32_FromString_Hexadecimal	F32_FromString_Hex
+#define c_strhex_to_f32				F32_FromString_Hex //!< @alias{F32_FromString_Hex}
+#define F32_FromString_Hexadecimal	F32_FromString_Hex //!< @alias{F32_FromString_Hex}
 
 //! Parse the hexadecimal representation of a 64-bit floating-point number
 t_f64								F64_FromString_Hex(char const* str);
-#define c_strhex_to_f64				F64_FromString_Hex
-#define F64_FromString_Hexadecimal	F64_FromString_Hex
+#define c_strhex_to_f64				F64_FromString_Hex //!< @alias{F64_FromString_Hex}
+#define F64_FromString_Hexadecimal	F64_FromString_Hex //!< @alias{F64_FromString_Hex}
 
 #ifdef	__float80
 //! Parse the hexadecimal representation of a 80-bit floating-point number
 t_f80								F80_FromString_Hex(char const* str);
-#define c_strhex_to_f80				F80_FromString_Hex
-#define F80_FromString_Hexadecimal	F80_FromString_Hex
+#define c_strhex_to_f80				F80_FromString_Hex //!< @alias{F80_FromString_Hex}
+#define F80_FromString_Hexadecimal	F80_FromString_Hex //!< @alias{F80_FromString_Hex}
 #endif
 #ifdef	__float128
 //! Parse the hexadecimal representation of a 128-bit floating-point number
 t_f128								F128_FromString_Hex(char const* str);
-#define c_strhex_to_f128			F128_FromString_Hex
-#define F128_FromString_Hexadecimal	F128_FromString_Hex
+#define c_strhex_to_f128			F128_FromString_Hex //!< @alias{F128_FromString_Hex}
+#define F128_FromString_Hexadecimal	F128_FromString_Hex //!< @alias{F128_FromString_Hex}
 #endif
 
 //! Parse the hexadecimal representation of a floating-point number
 t_float									Float_FromString_Hex(char const* str);
-#define c_strhex_to_float				Float_FromString_Hex
-#define Float_FromString_Hexadecimal	Float_FromString_Hex
+#define c_strhex_to_float				Float_FromString_Hex //!< @alias{Float_FromString_Hex}
+#define Float_FromString_Hexadecimal	Float_FromString_Hex //!< @alias{Float_FromString_Hex}
 
 
 
 //! Parse the binary representation of a 32-bit floating-point number
 t_f32								F32_FromString_Bin(char const* str);
-#define c_strbin_to_f32				F32_FromString_Bin
-#define F32_FromString_Binary		F32_FromString_Bin
+#define c_strbin_to_f32				F32_FromString_Bin //!< @alias{F32_FromString_Bin}
+#define F32_FromString_Binary		F32_FromString_Bin //!< @alias{F32_FromString_Bin}
 
 //! Parse the binary representation of a 64-bit floating-point number
 t_f64								F64_FromString_Bin(char const* str);
-#define c_strbin_to_f64				F64_FromString_Bin
-#define F64_FromString_Binary		F64_FromString_Bin
+#define c_strbin_to_f64				F64_FromString_Bin //!< @alias{F64_FromString_Bin}
+#define F64_FromString_Binary		F64_FromString_Bin //!< @alias{F64_FromString_Bin}
 
 #ifdef	__float80
 //! Parse the binary representation of a 80-bit floating-point number
 t_f80								F80_FromString_Bin(char const* str);
-#define c_strbin_to_f80				F80_FromString_Bin
-#define F80_FromString_Binary		F80_FromString_Bin
+#define c_strbin_to_f80				F80_FromString_Bin //!< @alias{F80_FromString_Bin}
+#define F80_FromString_Binary		F80_FromString_Bin //!< @alias{F80_FromString_Bin}
 #endif
 #ifdef	__float128
 //! Parse the binary representation of a 128-bit floating-point number
 t_f128								F128_FromString_Bin(char const* str);
-#define c_strbin_to_f128			F128_FromString_Bin
-#define F128_FromString_Binary		F128_FromString_Bin
+#define c_strbin_to_f128			F128_FromString_Bin //!< @alias{F128_FromString_Bin}
+#define F128_FromString_Binary		F128_FromString_Bin //!< @alias{F128_FromString_Bin}
 #endif
 
 //! Parse the binary representation of a floating-point number
 t_float									Float_FromString_Bin(char const* str);
-#define c_strbin_to_float				Float_FromString_Bin
-#define Float_FromString_Binary			Float_FromString_Bin
+#define c_strbin_to_float				Float_FromString_Bin //!< @alias{Float_FromString_Bin}
+#define Float_FromString_Binary			Float_FromString_Bin //!< @alias{Float_FromString_Bin}
 
 
 

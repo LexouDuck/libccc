@@ -1,199 +1,291 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
-<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<meta name="generator" content="Doxygen 1.8.20"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>libccc: libccc</title>
-<link href="tabs.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="jquery.js"></script>
-<script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<link href="search/search.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="search/searchdata.js"></script>
-<script type="text/javascript" src="search/search.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-  $(document).ready(function() { init_search(); });
-/* @license-end */
-</script>
-<link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>&lt;no title&gt; &mdash; libccc 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/target-highlight.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="_static/js/custom.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="00) libccc" href="group_libccc.html" />
+	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
+	
+	<meta name="Description" content="&lt;no title&gt;">
+	<meta property="og:description" content="&lt;no title&gt;">
+	<meta property="og:title" content="libccc 1.0 documentation - &lt;no title&gt;">
+	<meta property="og:image" content="_static/images/libccc_icon.png">
+	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="380" />
+	<meta property="og:image:height" content="380" />
+	<meta property="og:url" content="index.html">
+	<meta property="og:site_name" content="libccc 1.0 documentation">
+
+
 </head>
-<body>
-<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
-<div id="titlearea">
-<table cellspacing="0" cellpadding="0">
- <tbody>
- <tr style="height: 56px;">
-  <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">libccc
-   &#160;<span id="projectnumber">1.0</span>
-   </div>
-   <div id="projectbrief">A customizable cross-platform C standard library</div>
-  </td>
-   <td>        <div id="MSearchBox" class="MSearchBoxInactive">
-        <span class="left">
-          <img id="MSearchSelect" src="search/mag_sel.svg"
-               onmouseover="return searchBox.OnSearchSelectShow()"
-               onmouseout="return searchBox.OnSearchSelectHide()"
-               alt=""/>
-          <input type="text" id="MSearchField" value="Search" accesskey="S"
-               onfocus="searchBox.OnSearchFieldFocus(true)" 
-               onblur="searchBox.OnSearchFieldFocus(false)" 
-               onkeyup="searchBox.OnSearchFieldChange(event)"/>
-          </span><span class="right">
-            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
-          </span>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home"> libccc
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
         </div>
-</td>
- </tr>
- </tbody>
-</table>
-</div>
-<!-- end header part -->
-<!-- Generated by Doxygen 1.8.20 -->
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-var searchBox = new SearchBox("searchBox", "search",false,'Search');
-/* @license-end */
-</script>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('index.html',''); initResizable(); });
-/* @license-end */
-</script>
-<div id="doc-content">
-<!-- window showing the filter options -->
-<div id="MSearchSelectWindow"
-     onmouseover="return searchBox.OnSearchSelectShow()"
-     onmouseout="return searchBox.OnSearchSelectHide()"
-     onkeydown="return searchBox.OnSearchSelectKey(event)">
-</div>
 
-<!-- iframe showing the search results (closed by default) -->
-<div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0" 
-        name="MSearchResults" id="MSearchResults">
-</iframe>
-</div>
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc.html">00) libccc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">01) libccc/bool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">02) libccc/int</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_fixed.html">03) libccc/fixed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_float.html">04) libccc/float</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointer.html">05) libccc/pointer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_memory.html">06) libccc/memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">07) libccc/char</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">08) libccc/string</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">09) libccc/format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_regex.html">10) libccc/regex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_color.html">11) libccc/color</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">12) libccc/sys/io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_time.html">13) libccc/sys/time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">14) libccc/sys/logger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_math.html">15) libccc/math/math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_vlq.html">16) libccc/math/vlq</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_stat.html">17) libccc/math/stat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_random.html">18) libccc/math/random</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra.html">19) libccc/math/algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">20) libccc/math/complex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_array.html">21) libccc/array/array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_list.html">22) libccc/array/list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_dict.html">23) libccc/array/dict</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_tree.html">24) libccc/array/tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_pointerarray.html">25) libccc/array/pointerarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_stringarray.html">26) libccc/array/stringarray</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
+</ul>
 
-<div class="PageDoc"><div class="header">
-  <div class="headertitle">
-<div class="title">libccc </div>  </div>
-</div><!--header-->
-<div class="contents">
-<div class="textblock"><p><a class="anchor" id="md_README"></a> A comprehensive, cross-platform, customizable standard library for C</p>
-<p><a href="https://github.com/LexouDuck/libccc/actions"><img src="https://github.com/LexouDuck/libccc/workflows/CI+CD/badge.svg" alt="" style="pointer-events: none;" class="inline"/> </a></p>
-<h1><a class="anchor" id="autotoc_md0"></a>
-The Project</h1>
-<p>The objective is to have one simple, well-documented, efficient open-source implementation of the C standard library, but with easier to use functions and types than what is offered by the ISO standards - mostly by consistently handling undefined behaviors, and handling edge cases in a consistent, coherent way, so as to have code that is as little machine-specific as possible.</p>
-<p>The first step to accomplishing this is to not use the native int/long/short types, which can have different storage size depending on the platform ('int' is defined as the fastest integer type for the given machine, typically this will be the CPU register size - so on a 64-bit machine, that'd be int64, on a 32-bit machine int32, and some old embedded systems you come across might have 16-bit ints as the machine's default storage size). So first of all, using the integer types defined in "stdint.h" ('int32_t', 'uint64_t', etc) is essential for any cross-platform C code, as it ensures consistent cross-platform overflow behaviors (Note that these aren't present on every platform though - sometimes we will have to settle for the 'uint_fastX_t' types, but macros have been provided to make this switch simply).</p>
-<p>The following categories/headers include the ISO standard library (types, functions, macros):</p><ul>
-<li><em><b><a class="el" href="bool_8h.html">bool.h</a></b></em>: primitive boolean type (usually <code>_Bool</code>), and strtobool, booltostr, etc</li>
-<li><em><b><a class="el" href="char_8h.html">char.h</a></b></em>: functions to handle ANSI/ASCII characters (islower, isalpha, toupper, etc - but also <code>wchar_t</code> and UTF8 char handling)</li>
-<li><em><b><a class="el" href="int_8h.html">int.h</a></b></em>: integer number types, functions to replace the wonky STD C atoi/itoa functions with better type-specific conversion functions</li>
-<li><em><b><a class="el" href="float_8h.html">float.h</a></b></em>: floating-point types, functions to replace the wonky STD C atof/strtol functions with better type-specific conversion functions</li>
-<li><em><b><a class="el" href="pointer_8h.html">pointer.h</a></b></em>: important system types for pointer arithmetic (<code>size_t</code>, <code>ptrdiff_t</code>) and the functions associated with them</li>
-<li><em><b><a class="el" href="memory_8h.html">memory.h</a></b></em>: functions to manipulate memory directly (memcpy, memset, memchr, etc - but also extras like memdup, memrep, getbits)</li>
-<li><em><b><a class="el" href="string_8h.html">string.h</a></b></em>: functions to manipulate strings (strcpy,strchr,strsub,etc but also extras such as strformat,strsplit,strmap)</li>
-<li><em><b><a class="el" href="math_8h.html">math.h</a></b></em>: common mathematical functions operating on floating-point numbers (the implementations in this lib are fast-approximate versions, though by default LIBCONFIG_FAST_APPROX_MATH is defined as 0, so the functions are actually simple wrappers over the builtin FPU math functions)</li>
-<li><em><b><a class="el" href="time_8h.html">sys/time.h</a></b></em>: functions for handling times/dates/timezones/timespecs (handling of timezones is different from the stdlib 'global variable' tzset call)</li>
-<li><em><b><a class="el" href="io_8h.html">sys/io.h</a></b></em>: functions for reading and writing (from/to terminal, or from/to file(s) - wrapper functions over <code>unistd.h</code> and <code>stdio.h</code>)</li>
-</ul>
-<p>Furthermore, there are other functions here that are not found in the ISO standard, particularly in the following categories:</p><ul>
-<li><em><b><a class="el" href="fixed_8h.html">fixed.h</a></b></em>: fixed-point arithmetic, with a configurable fixed-point number type (regarding what portion is dedicated to the fractional part)</li>
-<li><em><b><a class="el" href="color_8h.html">color.h</a></b></em>: functions manipulating several common color encodings, as well as other useful color-related functions (like RGB_to_HSL, etc)</li>
-<li><em><b><a class="el" href="pointerarray_8h.html">array/pointerarray.h</a></b></em>: a set of functions used to manipulate pointer arrays (<code>void **</code>, the array is terminated by a NULL pointer)</li>
-<li><em><b><a class="el" href="stringarray_8h.html">array/stringarray.h</a></b></em>: a set of functions used to manipulate string arrays (<code>char **</code>, the array is terminated by a NULL pointer)</li>
-<li><em><b><a class="el" href="array_8h.html">array/array.h</a></b></em>: linked list functions (using a simple list type which only stores the 'next' pointer)</li>
-<li><em><b><a class="el" href="list_8h.html">array/list.h</a></b></em>: linked list functions (using a simple list type which only stores the 'next' pointer)</li>
-<li><em><b><a class="el" href="dict_8h.html">array/dict.h</a></b></em>: linked list functions (using a simple list type which only stores the 'next' pointer)</li>
-<li><em><b><a class="el" href="tree_8h.html">array/tree.h</a></b></em>: linked list functions (using a simple list type which only stores the 'next' pointer)</li>
-<li><em><b><a class="el" href="algebra_8h.html">math/algebra.h</a></b></em>: math functions for 2D/3D/4D vectors and matrices, as well as integrals and more</li>
-<li><em><b><a class="el" href="random_8h.html">math/random.h</a></b></em>: functions for simple pseudo-random number generation (many more functions than just the ISO rand/srand/rand_r functions)</li>
-<li><em><b><a class="el" href="complex_8h.html">math/complex.h</a></b></em>: math functions for complex number operations, as well as quaternions</li>
-<li><em><b><a class="el" href="stat_8h.html">math/stat.h</a></b></em>: statistics &amp; probabilities functions: int/float number array sort functions, median, standard deviation, etc</li>
-<li><em><b><a class="el" href="vlq_8h.html">math/vlq.h</a></b></em>: Variable-Length Quantity math functions, for variable-size "big ints".</li>
-</ul>
-<h1><a class="anchor" id="autotoc_md1"></a>
-Why does this exist ?</h1>
-<p>What started as a necessary exercise for the 42 school (called <code>libft</code>, for lib-forty-two) quickly became a much more expansive project, now dubbed <code>libccc</code> (for comprehensive, customizable, cross-platform). Whereas the 42 libft project only requires students to code a certain set of important memory/string/io functions, we decided to take it further. The libft is originally meant as an educational exercise, in which a student learns a lot by "reinventing wheels"; here the goal is to have a standard C library which is: fully cross-platform, uniformized, configurable and customizable, obviously being open source (MIT license) and which offers more than the "bare minimum" of the ISO standard library of functions.</p>
-<h1><a class="anchor" id="autotoc_md2"></a>
-How to use this library</h1>
-<p>The Makefile simply builds a <code>libccc.a</code> library to link to your project. (eg: you can link it with something like <code>gcc main.c -I./libccc/hdr/ -L./libccc/ -lccc</code>)</p>
-<p>You can also add this git repo as a "git submodule" to your own if you wish (this allows you to be up to date to the latest version at all times).</p>
-<p>In general though, we recommend having the source code and compiling it yourself (as there are important customization flags in <code>./hdr/libccc.h</code> which change how the library is compiled). In particular:</p><ul>
-<li><code>LIBCONFIG_HANDLE_NULLPOINTERS</code> If 0, then libccc functions will always try to dereference (and usually do a segmentation fault) when given NULL pointer arguments (this is useful for debug). If 1 (this is the default), then all NULL pointer accesses will be avoided, and an appropriate return value (eg:<code>NULL</code>, <code>0</code>, sometimes <code>-1</code>) will be returned by any libccc function when given a NULL pointer.</li>
-<li><code>LIBCONFIG_FAST_APPROX_MATH</code> If 0 (this is the default), the builtin FPU-call libc math functions will be used (eg: <code>__builtin_powf()</code>, etc) If 1, the libccc fast approximate math functions will be used (these can be quite unreliable, their purpose is to be faster in terms of execution time - the general precision error margin they are tested for is 0.0001)</li>
-<li><code>LIBCONFIG_INTTYPES_...</code> <code>EXACT</code>/<code>FAST</code>/<code>LEAST</code>: If <code>LIBCONFIG_INTTYPES_EXACT</code> is true, default <code>int</code> types are set to with the standard <code>(u)intSIZE_t</code> type specifiers. If <code>LIBCONFIG_INTTYPES_FAST</code> is true, default <code>int</code> types are set to with the standard <code>(u)int_fastSIZE_t</code> type specifiers. If <code>LIBCONFIG_INTTYPES_LEAST</code> is true, default <code>int</code> types are set to with the standard <code>(u)int_leastSIZE_t</code> type specifiers. If multiple of these macros are simultaneously true, EXACT takes precedence over FAST, which itself takes precedence over LEAST. If none are true, resolves to EXACT.</li>
-</ul>
-<h1><a class="anchor" id="autotoc_md3"></a>
-Testing</h1>
-<p>To ensure proper functionality of all these important functions in every edge case, a rather exhaustive testing suite program was implemented, which compares libccc functions to their stdlib ISO equivalent, wherever applicable (otherwise tests expect results that are manually written out and asserted). This test suite program features segfault/signal handling and execution time comparison, among other things. You can test the <code>libccc</code> by running <code>make test</code>: this will compile and run the test suite program from the files found in the <code>./test</code> folder.</p>
-<h1><a class="anchor" id="autotoc_md4"></a>
-Continuous Integration</h1>
-<p>Every time a new commit/push is done, the automated CI testing job is run, as defined in <code>.github/workflows/ci.yml</code> (see the <a href="https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions">official github documentation for Actions and Workflows to learn more</a>).</p>
-<p>This CI job builds everything with a <code>make</code>, and runs the testing suite with a <code>make test</code>. It runs with all of the following configurations:</p><ul>
-<li>Ubuntu (gcc and clang)</li>
-<li>MacOS (gcc and clang)</li>
-<li>Windows (mingw-gcc and clang)</li>
-</ul>
-<h1><a class="anchor" id="autotoc_md5"></a>
-Build system</h1>
-<p>This library is built using a cross-platform Makefile, which can build it on most platforms, in both static and dynamic library form. The available <code>make</code> commands are:</p>
-<h4><a class="anchor" id="autotoc_md6"></a>
-Building</h4>
-<ul>
-<li><code>make debug</code> or <code>make</code> or <code>make all</code> Build the <code>libccc.a</code> library file, in debug mode (with added flags: <code>-g -ggdb -D DEBUG=1</code>)</li>
-<li><code>make release</code> Build the <code>libccc.a</code> library file, in release mode (builds both static and dynamic library files for the given OSMODE, with added flags like <code>-O3</code>)</li>
-<li><code>make doc</code> Generate documentation from doxygen comments in the code to the ./doc/ folder (in several formats: html, latex, rtf, man)</li>
-</ul>
-<h4><a class="anchor" id="autotoc_md7"></a>
-Checking/CI</h4>
-<ul>
-<li><code>make libccc_test</code> Builds a test software <code>libccc_test</code>, which runs test suites on every libccc function.</li>
-<li><code>make test</code> Builds <code>libccc_test</code> and runs it without any arguments (running all tests).</li>
-<li><code>make lint</code> Runs CPPcheck on all source files</li>
-<li><code>make preprocessed</code> Fills the <code>./obj/</code> folder with <code>.c</code> files in their preprocessed state - this can help debug certain code macros, etc</li>
-</ul>
-<h4><a class="anchor" id="autotoc_md8"></a>
-Deleting</h4>
-<ul>
-<li><code>make clean</code> Delete all object files in <code>./obj/</code> folder.</li>
-<li><code>make rclean</code> Delete all object files in <code>./obj/</code> folder, and the folder itself.</li>
-<li><code>make fclean</code> Delete all object files in <code>./obj/</code> folder, as well as the executable and library files.</li>
-<li><code>make tclean</code> Delete the test executable file, if present.</li>
-<li><code>make re</code> Does a <code>make fclean</code> followed by a <code>make</code></li>
-</ul>
-<h1><a class="anchor" id="autotoc_md9"></a>
-Contributing</h1>
-<p>Check <code>CONTRIBUTING.md</code>, this file serves as a "contributions style guide". This style was chosen because it allows for more efficient version control and code review.</p>
-<ul>
-<li>TODO add description of coding style to <code>CONTRIBUTING.md</code> </li>
-</ul>
-</div></div><!-- PageDoc -->
-</div><!-- contents -->
-</div><!-- doc-content -->
-<!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="footer">Generated by <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">libccc</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>&lt;no title&gt;</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
   </ul>
+
+  
+  <hr/>
 </div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="toctree-wrapper compound">
+</div>
+<p class="rubric">Further Reading:</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="group_libccc.html#doxid-group-libccc"><span class="std std-ref">00) libccc</span></a></div>
+<div class="line"><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool"><span class="std std-ref">01) libccc/bool</span></a></div>
+<div class="line"><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int"><span class="std std-ref">02) libccc/int</span></a></div>
+<div class="line"><a class="reference internal" href="group_libccc_fixed.html#doxid-group-libccc-fixed"><span class="std std-ref">03) libccc/fixed</span></a></div>
+<div class="line"><a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float"><span class="std std-ref">04) libccc/float</span></a></div>
+<div class="line"><a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer"><span class="std std-ref">05) libccc/pointer</span></a></div>
+<div class="line"><a class="reference internal" href="group_libccc_memory.html#doxid-group-libccc-memory"><span class="std std-ref">06) libccc/memory</span></a></div>
+<div class="line"><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char"><span class="std std-ref">07) libccc/char</span></a></div>
+<div class="line"><a class="reference internal" href="group_libccc_string.html#doxid-group-libccc-string"><span class="std std-ref">08) libccc/string</span></a></div>
+<div class="line"><a class="reference internal" href="group_libccc_format.html#doxid-group-libccc-format"><span class="std std-ref">09) libccc/format</span></a></div>
+<div class="line"><a class="reference internal" href="group_libccc_regex.html#doxid-group-libccc-regex"><span class="std std-ref">10) libccc/regex</span></a></div>
+<div class="line"><a class="reference internal" href="group_libccc_color.html#doxid-group-libccc-color"><span class="std std-ref">11) libccc/color</span></a></div>
+<div class="line"><a class="reference internal" href="group_libccc_sys_io.html#doxid-group-libccc-sys-io"><span class="std std-ref">12) libccc/sys/io</span></a></div>
+<div class="line"><a class="reference internal" href="group_libccc_sys_time.html#doxid-group-libccc-sys-time"><span class="std std-ref">13) libccc/sys/time</span></a></div>
+<div class="line"><a class="reference internal" href="group_libccc_sys_logger.html#doxid-group-libccc-sys-logger"><span class="std std-ref">14) libccc/sys/logger</span></a></div>
+<div class="line"><a class="reference internal" href="group_libccc_math_math.html#doxid-group-libccc-math-math"><span class="std std-ref">15) libccc/math/math</span></a></div>
+<div class="line"><a class="reference internal" href="group_libccc_math_vlq.html#doxid-group-libccc-math-vlq"><span class="std std-ref">16) libccc/math/vlq</span></a></div>
+<div class="line"><a class="reference internal" href="group_libccc_math_stat.html#doxid-group-libccc-math-stat"><span class="std std-ref">17) libccc/math/stat</span></a></div>
+<div class="line"><a class="reference internal" href="group_libccc_math_random.html#doxid-group-libccc-math-random"><span class="std std-ref">18) libccc/math/random</span></a></div>
+<div class="line"><a class="reference internal" href="group_libccc_math_algebra.html#doxid-group-libccc-math-algebra"><span class="std std-ref">19) libccc/math/algebra</span></a></div>
+<div class="line"><a class="reference internal" href="group_libccc_math_complex.html#doxid-group-libccc-math-complex"><span class="std std-ref">20) libccc/math/complex</span></a></div>
+<div class="line"><a class="reference internal" href="group_libccc_array_array.html#doxid-group-libccc-array-array"><span class="std std-ref">21) libccc/array/array</span></a></div>
+<div class="line"><a class="reference internal" href="group_libccc_array_list.html#doxid-group-libccc-array-list"><span class="std std-ref">22) libccc/array/list</span></a></div>
+<div class="line"><a class="reference internal" href="group_libccc_array_dict.html#doxid-group-libccc-array-dict"><span class="std std-ref">23) libccc/array/dict</span></a></div>
+<div class="line"><a class="reference internal" href="group_libccc_array_tree.html#doxid-group-libccc-array-tree"><span class="std std-ref">24) libccc/array/tree</span></a></div>
+<div class="line"><a class="reference internal" href="group_libccc_array_pointerarray.html#doxid-group-libccc-array-pointerarray"><span class="std std-ref">25) libccc/array/pointerarray</span></a></div>
+<div class="line"><a class="reference internal" href="group_libccc_array_stringarray.html#doxid-group-libccc-array-stringarray"><span class="std std-ref">26) libccc/array/stringarray</span></a></div>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<p class="rubric">Related Pages:</p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="page_index.html"><span class="doc">libccc</span></a></div>
+</div>
+<p class="rubric">Reference and Index:</p>
+<div class="toctree-wrapper compound">
+</div>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="global.html"><span class="doc">Global Namespace</span></a></div>
+<div class="line"><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="group_libccc.html" class="btn btn-neutral float-right" title="00) libccc" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Free &amp; Open Source: MIT License
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
 </body>
 </html>

@@ -42,7 +42,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="04) libccc/float" href="group_libccc_float.html" />
-    <link rel="prev" title="02) libccc/int" href="group_libccc_int.html" />
+    <link rel="prev" title="union u_varint" href="union_u_varint.html" />
 	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
 	
 	<meta name="Description" content="03) libccc/fixed">
@@ -221,30 +221,10 @@
 
 <span class="c1">// global functions</span>
 
-<a class="reference internal" href="#doxid-group-libccc-fixed-1ga80fed1f279e38d59b7feee9af9e54408"><span class="std std-ref">t_fixed</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-fixed-1ga52f6cfefa6a7fe66d7f92eb349abd670"><span></span><span class="n">Fixed</span></span><span></span><span class="p">(</span>
-    <a class="reference internal" href="#doxid-group-libccc-fixed-1ga80fed1f279e38d59b7feee9af9e54408"><span class="std std-ref">t_fixed</span></a><span></span> <span class="n">part_integer</span><span class="p">,</span>
-    <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga83dd5dbdceb4b01e80cf7e1cf815057f"><span class="std std-ref">t_u64</span></a><span></span> <span class="n">part_fraction</span><span class="p">,</span>
-    <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga83dd5dbdceb4b01e80cf7e1cf815057f"><span class="std std-ref">t_u64</span></a><span></span> <span class="n">denominator</span>
-    <span class="p">);</span>
-
-<a class="reference internal" href="#doxid-group-libccc-fixed-1ga890137c380c61e4f7216112925d12a67"><span class="std std-ref">t_q16</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-fixed-1ga5056c50c36a0fd9a0aee55951fc347c6"><span></span><span class="n">Q16</span></span><span></span><span class="p">(</span>
-    <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga239729fce900f13ba62c38808aa6a8b6"><span class="std std-ref">t_s64</span></a><span></span> <span class="n">part_integer</span><span class="p">,</span>
-    <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga83dd5dbdceb4b01e80cf7e1cf815057f"><span class="std std-ref">t_u64</span></a><span></span> <span class="n">part_fraction</span><span class="p">,</span>
-    <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga83dd5dbdceb4b01e80cf7e1cf815057f"><span class="std std-ref">t_u64</span></a><span></span> <span class="n">denominator</span>
-    <span class="p">);</span>
-
-<a class="reference internal" href="#doxid-group-libccc-fixed-1ga5230b9a50ea6d030ab1cfb44afe60312"><span class="std std-ref">t_q32</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-fixed-1ga6e71834084a87115946a5274707be4bd"><span></span><span class="n">Q32</span></span><span></span><span class="p">(</span>
-    <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga239729fce900f13ba62c38808aa6a8b6"><span class="std std-ref">t_s64</span></a><span></span> <span class="n">part_integer</span><span class="p">,</span>
-    <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga83dd5dbdceb4b01e80cf7e1cf815057f"><span class="std std-ref">t_u64</span></a><span></span> <span class="n">part_fraction</span><span class="p">,</span>
-    <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga83dd5dbdceb4b01e80cf7e1cf815057f"><span class="std std-ref">t_u64</span></a><span></span> <span class="n">denominator</span>
-    <span class="p">);</span>
-
-<a class="reference internal" href="#doxid-group-libccc-fixed-1gafa4093f4db30dbc105637cff12c18ba3"><span class="std std-ref">t_q64</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-fixed-1ga9bd1c77054a986be74e8441085b21f6d"><span></span><span class="n">Q64</span></span><span></span><span class="p">(</span>
-    <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga239729fce900f13ba62c38808aa6a8b6"><span class="std std-ref">t_s64</span></a><span></span> <span class="n">part_integer</span><span class="p">,</span>
-    <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga83dd5dbdceb4b01e80cf7e1cf815057f"><span class="std std-ref">t_u64</span></a><span></span> <span class="n">part_fraction</span><span class="p">,</span>
-    <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga83dd5dbdceb4b01e80cf7e1cf815057f"><span class="std std-ref">t_u64</span></a><span></span> <span class="n">denominator</span>
-    <span class="p">);</span>
-
+<a class="reference internal" href="#doxid-group-libccc-fixed-1ga80fed1f279e38d59b7feee9af9e54408"><span class="std std-ref">t_fixed</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-fixed-1ga52f6cfefa6a7fe66d7f92eb349abd670"><span></span><span class="n">Fixed</span></span><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-fixed-1ga80fed1f279e38d59b7feee9af9e54408"><span class="std std-ref">t_fixed</span></a><span></span> <span class="n">part_integer</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga83dd5dbdceb4b01e80cf7e1cf815057f"><span class="std std-ref">t_u64</span></a><span></span> <span class="n">part_fraction</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga83dd5dbdceb4b01e80cf7e1cf815057f"><span class="std std-ref">t_u64</span></a><span></span> <span class="n">denominator</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-fixed-1ga890137c380c61e4f7216112925d12a67"><span class="std std-ref">t_q16</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-fixed-1ga5056c50c36a0fd9a0aee55951fc347c6"><span></span><span class="n">Q16</span></span><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga239729fce900f13ba62c38808aa6a8b6"><span class="std std-ref">t_s64</span></a><span></span> <span class="n">part_integer</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga83dd5dbdceb4b01e80cf7e1cf815057f"><span class="std std-ref">t_u64</span></a><span></span> <span class="n">part_fraction</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga83dd5dbdceb4b01e80cf7e1cf815057f"><span class="std std-ref">t_u64</span></a><span></span> <span class="n">denominator</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-fixed-1ga5230b9a50ea6d030ab1cfb44afe60312"><span class="std std-ref">t_q32</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-fixed-1ga6e71834084a87115946a5274707be4bd"><span></span><span class="n">Q32</span></span><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga239729fce900f13ba62c38808aa6a8b6"><span class="std std-ref">t_s64</span></a><span></span> <span class="n">part_integer</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga83dd5dbdceb4b01e80cf7e1cf815057f"><span class="std std-ref">t_u64</span></a><span></span> <span class="n">part_fraction</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga83dd5dbdceb4b01e80cf7e1cf815057f"><span class="std std-ref">t_u64</span></a><span></span> <span class="n">denominator</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-fixed-1gafa4093f4db30dbc105637cff12c18ba3"><span class="std std-ref">t_q64</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-fixed-1ga9bd1c77054a986be74e8441085b21f6d"><span></span><span class="n">Q64</span></span><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga239729fce900f13ba62c38808aa6a8b6"><span class="std std-ref">t_s64</span></a><span></span> <span class="n">part_integer</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga83dd5dbdceb4b01e80cf7e1cf815057f"><span class="std std-ref">t_u64</span></a><span></span> <span class="n">part_fraction</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga83dd5dbdceb4b01e80cf7e1cf815057f"><span class="std std-ref">t_u64</span></a><span></span> <span class="n">denominator</span><span class="p">);</span>
 <a class="reference internal" href="#doxid-group-libccc-fixed-1ga80fed1f279e38d59b7feee9af9e54408"><span class="std std-ref">t_fixed</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-fixed-1ga1cc6003ceac5ccd7a1cbb77eba6f1633"><span></span><span class="n">Fixed_FromInt</span></span><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-fixed-1ga80fed1f279e38d59b7feee9af9e54408"><span class="std std-ref">t_fixed</span></a><span></span> <span class="n">number</span><span class="p">);</span>
 <a class="reference internal" href="#doxid-group-libccc-fixed-1ga890137c380c61e4f7216112925d12a67"><span class="std std-ref">t_q16</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-fixed-1gacdc712f80f84ec7c418ce7b500dc87fb"><span></span><span class="n">Q16_FromInt</span></span><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1gafc899f1bf55ef29fff2fbdfbf671059f"><span class="std std-ref">t_s16</span></a><span></span> <span class="n">number</span><span class="p">);</span>
 <a class="reference internal" href="#doxid-group-libccc-fixed-1ga5230b9a50ea6d030ab1cfb44afe60312"><span class="std std-ref">t_q32</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-fixed-1ga1ed302e5f113d23e63a3085f4a9b8745"><span></span><span class="n">Q32_FromInt</span></span><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga35f7d2148a614c00e64d05d48e445a3b"><span class="std std-ref">t_s32</span></a><span></span> <span class="n">number</span><span class="p">);</span>
@@ -308,18 +288,18 @@
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-fixed-1ga5211bfa3419b776cebd863f87ff50548"><span></span><span class="n">Q32_MIN</span></span><span></span>
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-fixed-1ga0a493c60855f5aa8dfd9e8123f69cb2d"><span></span><span class="n">Q64_MAX</span></span><span></span>
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-fixed-1ga5c8df7226a2374e77095f37586fe7bc1"><span></span><span class="n">Q64_MIN</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-fixed-1ga1c4f60b11022de48ea7fb822388d1f29"><span></span><span class="n">c_q16_to_str</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-fixed-1ga7d7a5cff098238edbf633b0ab136b40a"><span></span><span class="n">c_q16_to_strbase</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-fixed-1ga8c0935817ffa87298fa30887f954e643"><span></span><span class="n">c_q16_to_strhex</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-fixed-1ga2db9b4037e6877ba6df8a0cb47d43d2e"><span></span><span class="n">c_q32_to_str</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-fixed-1ga57cb26a4e57e769c1d7eeb46fcd53684"><span></span><span class="n">c_q32_to_strbase</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-fixed-1gaebb785cf716addbb38b08ab9dc48b8dc"><span></span><span class="n">c_q32_to_strhex</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-fixed-1ga2bbd94b9e594925e4d443c567c820c62"><span></span><span class="n">c_q64_to_str</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-fixed-1ga90d1042606a7602987c0e8f34460f064"><span></span><span class="n">c_q64_to_strbase</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-fixed-1gab526cccd2a2a5812507156021e15ca0f"><span></span><span class="n">c_q64_to_strhex</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-fixed-1ga409417e249ad3ac1b71fcbe0b1416e50"><span></span><span class="n">c_str_to_q16</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-fixed-1ga9bbe5f2b5ca0caebd4a2b7baf3e896a1"><span></span><span class="n">c_str_to_q32</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-fixed-1ga489bc51ecc39fa5f02167ef206bca664"><span></span><span class="n">c_str_to_q64</span></span></pre>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-fixed-1ga1c4f60b11022de48ea7fb822388d1f29"><span class="std std-ref">c_q16_to_str</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-fixed-1ga7d7a5cff098238edbf633b0ab136b40a"><span class="std std-ref">c_q16_to_strbase</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-fixed-1ga8c0935817ffa87298fa30887f954e643"><span class="std std-ref">c_q16_to_strhex</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-fixed-1ga2db9b4037e6877ba6df8a0cb47d43d2e"><span class="std std-ref">c_q32_to_str</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-fixed-1ga57cb26a4e57e769c1d7eeb46fcd53684"><span class="std std-ref">c_q32_to_strbase</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-fixed-1gaebb785cf716addbb38b08ab9dc48b8dc"><span class="std std-ref">c_q32_to_strhex</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-fixed-1ga2bbd94b9e594925e4d443c567c820c62"><span class="std std-ref">c_q64_to_str</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-fixed-1ga90d1042606a7602987c0e8f34460f064"><span class="std std-ref">c_q64_to_strbase</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-fixed-1gab526cccd2a2a5812507156021e15ca0f"><span class="std std-ref">c_q64_to_strhex</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-fixed-1ga409417e249ad3ac1b71fcbe0b1416e50"><span class="std std-ref">c_str_to_q16</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-fixed-1ga9bbe5f2b5ca0caebd4a2b7baf3e896a1"><span class="std std-ref">c_str_to_q32</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-fixed-1ga489bc51ecc39fa5f02167ef206bca664"><span class="std std-ref">c_str_to_q64</span></a></pre>
 </div>
 <div class="section" id="detailed-documentation">
 <span id="details-group-libccc-fixed"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline">¶</a></h2>
@@ -368,6 +348,30 @@
 <p>The amount of bits dedicated to the fixed-point number type’s integer number part.</p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-fixed-1ga8d9aed807ea6a9ce968223d43ad400c3"><span id="index-18"></span><span></span><span class="cp">#define FIXED_MAX_INTEGERPART</span></pre>
 <p>The type for 16-bit signed fixed-point rational numbers (configurable)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-fixed-1ga1c4f60b11022de48ea7fb822388d1f29"><span id="index-19"></span><span></span><span class="cp">#define c_q16_to_str</span></pre>
+<p>[<em>Alias for</em> <a class="reference internal" href="#doxid-group-libccc-fixed-1ga6d9969bee277c69258b141c5b5964e87"><span class="std std-ref">Q16_ToString</span></a>]</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-fixed-1ga7d7a5cff098238edbf633b0ab136b40a"><span id="index-20"></span><span></span><span class="cp">#define c_q16_to_strbase</span></pre>
+<p>[<em>Alias for</em> <a class="reference internal" href="#doxid-group-libccc-fixed-1ga42324449fbd4a23fdbaa986c4492eaab"><span class="std std-ref">Q16_ToString_Base</span></a>]</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-fixed-1ga8c0935817ffa87298fa30887f954e643"><span id="index-21"></span><span></span><span class="cp">#define c_q16_to_strhex</span></pre>
+<p>[<em>Alias for</em> <a class="reference internal" href="#doxid-group-libccc-fixed-1ga02308ee63d97ae3499d53f8774d8fec0"><span class="std std-ref">Q16_ToString_Hex</span></a>]</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-fixed-1ga2db9b4037e6877ba6df8a0cb47d43d2e"><span id="index-22"></span><span></span><span class="cp">#define c_q32_to_str</span></pre>
+<p>[<em>Alias for</em> <a class="reference internal" href="#doxid-group-libccc-fixed-1ga6db26acec4bde0ef0770f7b0aac4a5f9"><span class="std std-ref">Q32_ToString</span></a>]</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-fixed-1ga57cb26a4e57e769c1d7eeb46fcd53684"><span id="index-23"></span><span></span><span class="cp">#define c_q32_to_strbase</span></pre>
+<p>[<em>Alias for</em> <a class="reference internal" href="#doxid-group-libccc-fixed-1ga86c7d7d1ab0ad93ecce666869fb1c013"><span class="std std-ref">Q32_ToString_Base</span></a>]</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-fixed-1gaebb785cf716addbb38b08ab9dc48b8dc"><span id="index-24"></span><span></span><span class="cp">#define c_q32_to_strhex</span></pre>
+<p>[<em>Alias for</em> <a class="reference internal" href="#doxid-group-libccc-fixed-1ga896044ac94829e6fdea6674296179ede"><span class="std std-ref">Q32_ToString_Hex</span></a>]</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-fixed-1ga2bbd94b9e594925e4d443c567c820c62"><span id="index-25"></span><span></span><span class="cp">#define c_q64_to_str</span></pre>
+<p>[<em>Alias for</em> <a class="reference internal" href="#doxid-group-libccc-fixed-1ga45996731daa05e5b6d4f61ca2d6bf204"><span class="std std-ref">Q64_ToString</span></a>]</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-fixed-1ga90d1042606a7602987c0e8f34460f064"><span id="index-26"></span><span></span><span class="cp">#define c_q64_to_strbase</span></pre>
+<p>[<em>Alias for</em> <a class="reference internal" href="#doxid-group-libccc-fixed-1gad1e66bd3755099b4d46e4b5f9d5604a3"><span class="std std-ref">Q64_ToString_Base</span></a>]</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-fixed-1gab526cccd2a2a5812507156021e15ca0f"><span id="index-27"></span><span></span><span class="cp">#define c_q64_to_strhex</span></pre>
+<p>[<em>Alias for</em> <a class="reference internal" href="#doxid-group-libccc-fixed-1gae9b52a3f2329eefb29c50e2c12b7a01a"><span class="std std-ref">Q64_ToString_Hex</span></a>]</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-fixed-1ga409417e249ad3ac1b71fcbe0b1416e50"><span id="index-28"></span><span></span><span class="cp">#define c_str_to_q16</span></pre>
+<p>[<em>Alias for</em> <a class="reference internal" href="#doxid-group-libccc-fixed-1ga251d3042d1dfe046b78cc15413534dc9"><span class="std std-ref">Q16_FromString</span></a>]</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-fixed-1ga9bbe5f2b5ca0caebd4a2b7baf3e896a1"><span id="index-29"></span><span></span><span class="cp">#define c_str_to_q32</span></pre>
+<p>[<em>Alias for</em> <a class="reference internal" href="#doxid-group-libccc-fixed-1gab45c4de9251ff406822f1322ef955706"><span class="std std-ref">Q32_FromString</span></a>]</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-fixed-1ga489bc51ecc39fa5f02167ef206bca664"><span id="index-30"></span><span></span><span class="cp">#define c_str_to_q64</span></pre>
+<p>[<em>Alias for</em> <a class="reference internal" href="#doxid-group-libccc-fixed-1ga97266722ea27e8afcb3b4acbd730387a"><span class="std std-ref">Q64_FromString</span></a>]</p>
 </div>
 </div>
 </div>
@@ -383,7 +387,7 @@
         <a href="group_libccc_float.html" class="btn btn-neutral float-right" title="04) libccc/float" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="group_libccc_int.html" class="btn btn-neutral float-left" title="02) libccc/int" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="union_u_varint.html" class="btn btn-neutral float-left" title="union u_varint" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

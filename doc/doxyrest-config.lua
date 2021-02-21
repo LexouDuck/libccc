@@ -29,7 +29,7 @@
 --! searched in directories -- and in the sequence -- specified here.
 --!
 
-FRAME_DIR_LIST = { "doc/doxyrest/frame/cfamily", "doc/doxyrest/frame/common" }
+FRAME_DIR_LIST = { "doc/_doxyrest/frame/cfamily", "doc/_doxyrest/frame/common" }
 
 --!
 --! The output master (index) reStructuredText file. Usually, the index frame

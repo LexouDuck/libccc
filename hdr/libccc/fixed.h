@@ -228,30 +228,30 @@ t_q128	 Q128_Div	(t_q128	q1, t_q128	q2);
 
 /*
 ** ************************************************************************** *|
-**                             String Conversions                             *|
+**                          Fixed-to-String Conversions                       *|
 ** ************************************************************************** *|
 */
 
 //! Get the string decimal representation of a 16-bit signed fixed-point number
 _MALLOC()
 char*					Q16_ToString(t_q16 n);	// TODO
-#define c_q16_to_str	Q16_ToString
+#define c_q16_to_str	Q16_ToString //!< @alias{Q16_ToString}
 
 //! Get the string decimal representation of a 32-bit signed fixed-point number
 _MALLOC()
 char*					Q32_ToString(t_q32 n);	// TODO
-#define c_q32_to_str	Q32_ToString
+#define c_q32_to_str	Q32_ToString //!< @alias{Q32_ToString}
 
 //! Get the string decimal representation of a 64-bit signed fixed-point number
 _MALLOC()
 char*					Q64_ToString(t_q64 n);	// TODO
-#define c_q64_to_str	Q64_ToString
+#define c_q64_to_str	Q64_ToString //!< @alias{Q64_ToString}
 
 #ifdef	__int128
 //! Get the string decimal representation of a 128-bit signed fixed-point number
 _MALLOC()
 char*					Q128_ToString(t_q128 n);	// TODO
-#define c_q128_to_str	Q128_ToString
+#define c_q128_to_str	Q128_ToString //!< @alias{Q128_ToString}
 #endif
 
 
@@ -259,23 +259,23 @@ char*					Q128_ToString(t_q128 n);	// TODO
 //! Get the string decimal representation of a 16-bit signed fixed-point number
 _MALLOC()
 char*						Q16_ToString_Hex(t_q16 n);	// TODO
-#define c_q16_to_strhex		Q16_ToString_Hex
+#define c_q16_to_strhex		Q16_ToString_Hex //!< @alias{Q16_ToString_Hex}
 
 //! Get the string decimal representation of a 32-bit signed fixed-point number
 _MALLOC()
 char*						Q32_ToString_Hex(t_q32 n);	// TODO
-#define c_q32_to_strhex		Q32_ToString_Hex
+#define c_q32_to_strhex		Q32_ToString_Hex //!< @alias{Q32_ToString_Hex}
 
 //! Get the string decimal representation of a 64-bit signed fixed-point number
 _MALLOC()
 char*						Q64_ToString_Hex(t_q64 n);	// TODO
-#define c_q64_to_strhex		Q64_ToString_Hex
+#define c_q64_to_strhex		Q64_ToString_Hex //!< @alias{Q64_ToString_Hex}
 
 #ifdef	__int128
 //! Get the string decimal representation of a 128-bit signed fixed-point number
 _MALLOC()
 char*						Q128_ToString_Hex(t_q128 n);	// TODO
-#define c_q128_to_strhex	Q128_ToString_Hex
+#define c_q128_to_strhex	Q128_ToString_Hex //!< @alias{Q128_ToString_Hex}
 #endif
 
 
@@ -283,43 +283,49 @@ char*						Q128_ToString_Hex(t_q128 n);	// TODO
 //! Get the custom-base representation of a 16-bit signed fixed-point number
 _MALLOC()
 char*						Q16_ToString_Base(t_q16 n);	// TODO
-#define c_q16_to_strbase	Q16_ToString_Base
+#define c_q16_to_strbase	Q16_ToString_Base //!< @alias{Q16_ToString_Base}
 
 //! Get the custom-base representation of a 32-bit signed fixed-point number
 _MALLOC()
 char*						Q32_ToString_Base(t_q32 n);	// TODO
-#define c_q32_to_strbase	Q32_ToString_Base
+#define c_q32_to_strbase	Q32_ToString_Base //!< @alias{Q32_ToString_Base}
 
 //! Get the custom-base representation of a 64-bit signed fixed-point number
 _MALLOC()
 char*						Q64_ToString_Base(t_q64 n);	// TODO
-#define c_q64_to_strbase	Q64_ToString_Base
+#define c_q64_to_strbase	Q64_ToString_Base //!< @alias{Q64_ToString_Base}
 
 #ifdef	__int128
 //! Get the string decimal representation of a 128-bit signed fixed-point number
 _MALLOC()
 char*						Q128_ToString_Base(t_q128 n);	// TODO
-#define c_q128_to_strbase	Q128_ToString_Base
+#define c_q128_to_strbase	Q128_ToString_Base //!< @alias{Q128_ToString_Base}
 #endif
 
 
 
+/*
+** ************************************************************************** *|
+**                          String-to-Fixed Conversions                       *|
+** ************************************************************************** *|
+*/
+
 //! Parses the string decimal representation of a 16-bit signed fixed-point number
 t_q16					Q16_FromString(char const* str);
-#define c_str_to_q16	Q16_FromString
+#define c_str_to_q16	Q16_FromString //!< @alias{Q16_FromString}
 
 //! Parses the string decimal representation of a 32-bit signed fixed-point number
 t_q32					Q32_FromString(char const* str);
-#define c_str_to_q32	Q32_FromString
+#define c_str_to_q32	Q32_FromString //!< @alias{Q32_FromString}
 
 //! Parses the string decimal representation of a 64-bit signed fixed-point number
 t_q64					Q64_FromString(char const* str);
-#define c_str_to_q64	Q64_FromString
+#define c_str_to_q64	Q64_FromString //!< @alias{Q64_FromString}
 
 #ifdef	__int128
 //! Parses the string decimal representation of a 128-bit signed fixed-point number
 t_q128					Q128_FromString(char const* str);
-#define c_str_to_q128	Q128_FromString
+#define c_str_to_q128	Q128_FromString //!< @alias{Q128_FromString}
 #endif
 
 

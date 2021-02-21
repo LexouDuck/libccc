@@ -407,12 +407,22 @@ re: fclean all
 #        Generate documentation       #
 #######################################
 
-DOXYREST = $(DOCDIR)doxyrest/bin/doxyrest.exe
+DOXYREST = $(DOCDIR)_doxyrest/bin/doxyrest
 
 doc:
+	@rm -rf $(DOCDIR)xml/*
+	@rm -rf $(DOCDIR)rst/*
+	@rm -rf $(DOCDIR)man/*
+	@rm -rf $(DOCDIR)rtf/*
+	@rm -rf $(DOCDIR)pdf/*
+	@rm -rf $(DOCDIR)html/*
+	@rm -rf $(DOCDIR)latex/*
 	@doxygen $(DOCDIR)project.doxygen
 	@$(DOXYREST) -c $(DOCDIR)doxyrest-config.lua
 	@sphinx-build -b html $(DOCDIR)rst $(DOCDIR)html -c $(DOCDIR)
+
+#	@sphinx-build -M latexpdf $(DOCDIR)rst $(DOCDIR)pdf  -c $(DOCDIR)
+#	@$(MAKE) -C $(DOCDIR)pdf/latex/ all
 
 
 

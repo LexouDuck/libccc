@@ -12,10 +12,6 @@
 #
 import os
 import sys
-# sys.path.insert(0, os.path.abspath("."))
-
-# Specify the path to Doxyrest extensions for Sphinx:
-sys.path.insert(1, os.path.abspath("doxyrest/sphinx"))
 
 
 
@@ -32,17 +28,28 @@ release = "1.0"
 
 # -- General configuration ---------------------------------------------------
 
+# sys.path.insert(0, os.path.abspath("."))
+
+# Folder path to Doxyrest extension:
+sys.path.insert(1, os.path.abspath("_doxyrest/sphinx/"))
+doxyrest_tab_width = 4 # Specify the size of tab indentation:
+
+# Folder path to Breathe extension:
+#sys.path.append(os.path.abspath("breathe"))
+#breathe_projects = { "libccc": os.path.abspath("xml/") }
+#breathe_default_project = "libccc"
+
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named "sphinx.ext.*") or your custom
 # ones.
 extensions = [
-	"doxyrest",
-	"cpplexer",
+	"doxyrest", "cpplexer",
+#	"breathe",
     "sphinx.ext.intersphinx",
     "sphinx.ext.autodoc",
     "sphinx.ext.mathjax",
     "sphinx.ext.viewcode",
-	"sphinx.ext.graphviz"
+	"sphinx.ext.graphviz",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -79,8 +86,5 @@ html_theme_path = ["./"]
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ["_theme/other/"]
 html_copy_source = False # don't include RST files in the final HTML folder
-
-# Specify the size of tab indentation:
-doxyrest_tab_width = 4
 
 graphviz_output_format = "svg"

@@ -272,6 +272,8 @@ TAB_SIZE               = 4
 ALIASES                = \
 nonstd="- <i>This function is not defined in the C ISO standard.</i>^^" \
 isostd{1}="- <i>C ISO Standard: </i>\1^^" \
+alias{1}="[<i>Alias for </i>#\1]" \
+group{1}="@addtogroup \1^^" \
 
 # Set the OPTIMIZE_OUTPUT_FOR_C tag to YES if your project consists of C sources
 # only. Doxygen will then generate output that is more tailored for C. For
@@ -2452,7 +2454,7 @@ INCLUDE_GRAPH          = YES
 # The default value is: YES.
 # This tag requires that the tag HAVE_DOT is set to YES.
 
-INCLUDED_BY_GRAPH      = YES
+INCLUDED_BY_GRAPH      = NO
 
 # If the CALL_GRAPH tag is set to YES then doxygen will generate a call
 # dependency graph for every global function or class method.
