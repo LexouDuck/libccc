@@ -225,19 +225,19 @@
 
 <span class="c1">// macros</span>
 
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-random-1ga9b45f596d0227ed7d3061dd50edb7810"><span class="std std-ref">CEIL_SQRT_MOD</span></a><span></span>
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-random-1ga2de21eb687a4fd2ea6c1d5d7fb3a6e8d"><span class="std std-ref">DEFAULT_SEED</span></a><span></span>
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-random-1ga9bc1fe94bf8c1b9aaef3dade106b6304"><span class="std std-ref">MODULUS</span></a><span></span>
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-random-1ga21005f9f4e2ce7597c5eb4351816d7e2"><span class="std std-ref">OFFSET</span></a><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-random-1ga85b028fee99c4e20099a1366c3b2b600"><span></span><span class="n">c_random_32bit_shuffle</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-random-1ga24f4f1fb206910e582c1b6db9ae40ee5"><span></span><span class="n">c_random_float_0_to_1</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-random-1gad3268f1d763b76947c3d35bd0fcc25dd"><span></span><span class="n">c_random_float_a_to_b</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-random-1ga1eb344c07fca7bf9c88eb0af071bb6ed"><span></span><span class="n">c_random_int_a_to_b</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-random-1ga89e94120fffe66a770d96652a279d009"><span></span><span class="n">c_random_renew_seed</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-random-1ga990d3d8361dcfdd56cb442f8110ae100"><span></span><span class="n">c_random_set_seed</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-random-1ga8484d3f528c8eb68374de708072c87c9"><span></span><span class="n">c_random_u32</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-random-1gaa2402a6d9904547bc9d10e7118347242"><span></span><span class="n">c_random_u32_0_to_n</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-random-1gae572c4bc1cb8fa61da630b13638c1ef1"><span></span><span class="n">c_random_u32_0_to_pow2n</span></span></pre>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-random-1ga9b45f596d0227ed7d3061dd50edb7810"><span class="std std-ref">CEIL_SQRT_MOD</span></a><span></span> <span class="p">(</span><span class="mi">46341</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-random-1ga2de21eb687a4fd2ea6c1d5d7fb3a6e8d"><span class="std std-ref">DEFAULT_SEED</span></a><span></span>  <span class="p">(</span><span class="mh">0x93E21FD5</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-random-1ga9bc1fe94bf8c1b9aaef3dade106b6304"><span class="std std-ref">MODULUS</span></a><span></span>   <span class="p">(</span><span class="mh">0x7FFFFFFF</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-random-1ga21005f9f4e2ce7597c5eb4351816d7e2"><span class="std std-ref">OFFSET</span></a><span></span>    <span class="p">(</span><span class="mi">2835</span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-random-1ga85b028fee99c4e20099a1366c3b2b600"><span></span><span class="n">c_random_32bit_shuffle</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-math-random-1ga3b784b7285ecf6242f165d8c9700f1c8"><span class="std std-ref">Random_Shuffle</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-random-1ga24f4f1fb206910e582c1b6db9ae40ee5"><span></span><span class="n">c_random_float_0_to_1</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-math-random-1ga674f8ff116d5eef828769b412ac16fd5"><span class="std std-ref">Random_Float_0to1</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-random-1gad3268f1d763b76947c3d35bd0fcc25dd"><span></span><span class="n">c_random_float_a_to_b</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-math-random-1gac8b4f4fbee6224fbc31d0d2fd9932d49"><span class="std std-ref">Random_Float_AtoB</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-random-1ga1eb344c07fca7bf9c88eb0af071bb6ed"><span></span><span class="n">c_random_int_a_to_b</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-math-random-1gaefbcbea0766682f1ddc1dd30c59fde60"><span class="std std-ref">Random_Int_AtoB</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-random-1ga89e94120fffe66a770d96652a279d009"><span></span><span class="n">c_random_renew_seed</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-math-random-1gaa31bfdae86594c2766eb63d246c65b57"><span class="std std-ref">Random_RefreshSeed</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-random-1ga990d3d8361dcfdd56cb442f8110ae100"><span></span><span class="n">c_random_set_seed</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-math-random-1gaa0b27cfcde0b867168a3bd1850f3dde3"><span class="std std-ref">Random_SetSeed</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-random-1ga8484d3f528c8eb68374de708072c87c9"><span></span><span class="n">c_random_u32</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-math-random-1ga66c88261a77764430fead89c8405e131"><span class="std std-ref">Random_U32</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-random-1gaa2402a6d9904547bc9d10e7118347242"><span></span><span class="n">c_random_u32_0_to_n</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-math-random-1ga01078f6eff6a8dc8c9aad3f9ca55dd8b"><span class="std std-ref">Random_U32_0toN</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-random-1gae572c4bc1cb8fa61da630b13638c1ef1"><span></span><span class="n">c_random_u32_0_to_pow2n</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-math-random-1gaa10d2576ce2824c15f50f60938edde02"><span class="std std-ref">Random_U32_Pow2N</span></a></pre>
 </div>
 <div class="section" id="detailed-documentation">
 <span id="details-group-libccc-math-random"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline">¶</a></h2>
@@ -268,13 +268,13 @@
 </div>
 <div class="section" id="macros">
 <h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h3>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-random-1ga9b45f596d0227ed7d3061dd50edb7810"><span id="index-10"></span><span></span><span class="cp">#define CEIL_SQRT_MOD</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-random-1ga9b45f596d0227ed7d3061dd50edb7810"><span id="index-10"></span><span></span><span class="cp">#define</span> <span class="n">CEIL_SQRT_MOD</span>   <span class="cp">(46341)</span></pre>
 <p>TODO document this.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-random-1ga2de21eb687a4fd2ea6c1d5d7fb3a6e8d"><span id="index-11"></span><span></span><span class="cp">#define DEFAULT_SEED</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-random-1ga2de21eb687a4fd2ea6c1d5d7fb3a6e8d"><span id="index-11"></span><span></span><span class="cp">#define</span> <span class="n">DEFAULT_SEED</span>    <span class="cp">(0x93E21FD5)</span></pre>
 <p>The default random seed for pseudo-random number generation.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-random-1ga9bc1fe94bf8c1b9aaef3dade106b6304"><span id="index-12"></span><span></span><span class="cp">#define MODULUS</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-random-1ga9bc1fe94bf8c1b9aaef3dade106b6304"><span id="index-12"></span><span></span><span class="cp">#define</span> <span class="n">MODULUS</span> <span class="cp">(0x7FFFFFFF)</span></pre>
 <p>TODO document this.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-random-1ga21005f9f4e2ce7597c5eb4351816d7e2"><span id="index-13"></span><span></span><span class="cp">#define OFFSET</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-random-1ga21005f9f4e2ce7597c5eb4351816d7e2"><span id="index-13"></span><span></span><span class="cp">#define</span> <span class="n">OFFSET</span>  <span class="cp">(2835)</span></pre>
 <p>TODO document this.</p>
 </div>
 </div>

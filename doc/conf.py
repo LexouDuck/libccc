@@ -33,6 +33,8 @@ release = "1.0"
 # Folder path to Doxyrest extension:
 sys.path.insert(1, os.path.abspath("_doxyrest/sphinx/"))
 doxyrest_tab_width = 4 # Specify the size of tab indentation:
+# To have macros display their value/expansion, paste the follow line of code to line 490 of _doxyrest/frame/cfamily/utils.lua:
+#	s = s .. '\t' .. getLinkedTextString(define.initializer, false)
 
 # Folder path to Breathe extension:
 #sys.path.append(os.path.abspath("breathe"))

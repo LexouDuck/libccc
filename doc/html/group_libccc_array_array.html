@@ -213,7 +213,7 @@
 <p>This header defines a simple linked list type and utility functions for it. <a class="reference internal" href="#details-group-libccc-array-array"><span class="std std-ref">More…</span></a></p>
 <pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// typedefs</span>
 
-<span class="k">typedef</span> <span class="k">struct</span> <span class="n">s_list_</span> <span class="doxyrest-code-target target" id="doxid-group-libccc-array-array-1ga1db26a8fd53db75657fa6a5cb65b2bc9"><span></span><span class="n">s_list</span></span><span></span><span class="p">;</span>
+<span class="k">typedef</span> <span class="k">struct</span> <span class="kt">s_list_</span> <span class="doxyrest-code-target target" id="doxid-group-libccc-array-array-1ga1db26a8fd53db75657fa6a5cb65b2bc9"><span></span><span class="kt">s_list</span></span><span></span><span class="p">;</span>
 
 <span class="c1">// structs</span>
 
@@ -221,14 +221,14 @@
 
 <span class="c1">// macros</span>
 
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-array-array-1ga20321e3ee905b6de95f9988a86680e5b"><span class="std std-ref">ARRAY_NULL</span></a></pre>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-array-array-1ga20321e3ee905b6de95f9988a86680e5b"><span class="std std-ref">ARRAY_NULL</span></a><span></span>    <span class="p">(</span><a class="reference internal" href="struct_s_array.html#doxid-structs-array"><span class="std std-ref">s_array</span></a><span></span><span class="p">){</span> <span class="p">.</span><span class="n">item_count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="p">.</span><span class="n">item_size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="p">.</span><span class="n">items</span> <span class="o">=</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1ga070d2ce7b6bb7e5c05602aa8c308d0c4"><span class="std std-ref">NULL</span></a><span></span> <span class="p">}</span></pre>
 </div>
 <div class="section" id="detailed-documentation">
 <span id="details-group-libccc-array-array"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline">¶</a></h2>
 <p>This header defines a simple linked list type and utility functions for it.</p>
 <div class="section" id="macros">
 <h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h3>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-array-array-1ga20321e3ee905b6de95f9988a86680e5b"><span id="index-1"></span><span></span><span class="cp">#define ARRAY_NULL</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-array-array-1ga20321e3ee905b6de95f9988a86680e5b"><span id="index-1"></span><span></span><span class="cp">#define</span> <span class="n">ARRAY_NULL</span>  <span class="cp">(</span><a class="reference internal" href="struct_s_array.html#doxid-structs-array"><span class="std std-ref">s_array</span></a><span></span><span class="p">){</span> <span class="p">.</span><span class="n">item_count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="p">.</span><span class="n">item_size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="p">.</span><span class="n">items</span> <span class="o">=</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1ga070d2ce7b6bb7e5c05602aa8c308d0c4"><span class="std std-ref">NULL</span></a><span></span> <span class="p">}</span></pre>
 <p>A literal of an ‘ <a class="reference internal" href="struct_s_array.html#doxid-structs-array"><span class="std std-ref">s_array</span></a> ‘ struct which has all fields set to zero.</p>
 </div>
 </div>

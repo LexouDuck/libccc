@@ -1,31 +1,7 @@
 /* Monokai-style pygments CSS theme */
 
-pre.highlight { color: #CCCCCC !important; }
-
-/* fix coloring for doxyrest sphinx doc auto-links */
-pre.highlight a.reference,
-pre.highlight a.reference:visited
-{
-	color: #F8F8F2 !important;
-	font-weight: bold !important;
-	text-decoration: underline !important;
-}
-pre.highlight .p + a.reference,
-pre.highlight .k + a.reference,
-pre.highlight .c + a.reference,
-pre.highlight .c1 + a.reference,
-pre.highlight.doxyrest-title-code-block a.reference
-{
-	color: #66D9EF !important;
-}
-
-pre.highlight.doxyrest-title-code-block
-{
-	font-size: 15px !important;
-}
-
-pre.highlight .hll	{ background-color: #333333 }
-pre.highlight   	{ background: #272822 !important; }
+pre.highlight .hll	{ background-color: #49483E }
+pre.highlight   	{ background: #272822 !important; color: #F8F8F2 !important; }
 
 pre.highlight .err	{ background-color: #FFAAAA !important; color: #AA0000 !important; } /* Error */
 
@@ -47,16 +23,16 @@ pre.highlight .k	{ color: #F92672 !important; font-weight: bold !important; } /*
 pre.highlight .kc	{ color: #F92672 !important; font-weight: bold !important; } /* Keyword.Constant */
 pre.highlight .kd	{ color: #F92672 !important; font-weight: bold !important; } /* Keyword.Declaration */
 pre.highlight .kn	{ color: #F92672 !important; font-weight: bold !important; } /* Keyword.Namespace */
+pre.highlight .kr	{ color: #F92672 !important; font-weight: bold !important; } /* Keyword.Reserved */
 pre.highlight .kt	{ color: #66D9EF !important; font-weight: bold !important; } /* Keyword.Type */
-pre.highlight .kr	{ color: #006699 !important; font-weight: bold !important; } /* Keyword.Reserved */
 pre.highlight .kp	{ color: #006699 !important; } /* Keyword.Pseudo */
 
 pre.highlight .n	{ color: #F8F8F2 !important; } /* Name */
 pre.highlight .nl	{ color: #F8F8F2 !important; } /* Name.Label */
-pre.highlight .nb	{ color: #336666 !important; } /* Name.Builtin */
-pre.highlight .bp	{ color: #336666 !important; } /* Name.Builtin.Pseudo */
+pre.highlight .nb	{ color: #AE81FF !important; } /* Name.Builtin */
+pre.highlight .bp	{ color: #AE81FF !important; } /* Name.Builtin.Pseudo */
 pre.highlight .no	{ color: #336600 !important; } /* Name.Constant */
-pre.highlight .na	{ color: #330099 !important; } /* Name.Attribute */
+pre.highlight .na	{ color: #E6DB74 !important; } /* Name.Attribute */
 pre.highlight .nd	{ color: #9999FF !important; } /* Name.Decorator */
 pre.highlight .nf	{ color: #CC00FF !important; } /* Name.Function */
 pre.highlight .fm	{ color: #CC00FF !important; } /* Name.Function.Magic */
@@ -107,6 +83,34 @@ pre.highlight .ge	{ font-style: italic !important; } /* Generic.Emph */
 
 
 
+/* fix coloring for doxyrest sphinx doc auto-links */
+
+.highlight a.reference,
+.highlight a.reference:visited
+{
+	color: inherit !important;
+	font-weight: bold !important;
+	text-decoration: underline !important;
+}
+pre.highlight .cp + .n ~ .cp,
+pre.highlight .cp + .n ~ a.reference
+{
+	color: #F8F8F2 !important;
+	font-style: normal;
+}
+pre.highlight .p + a.reference,
+pre.highlight .k + a.reference,
+pre.highlight .c + a.reference,
+pre.highlight .c1 + a.reference,
+pre.highlight.doxyrest-title-code-block a.reference
+{
+	color: #66D9EF !important;
+}
+
+
+
+/* Doxyrest CSS rules */
+
 #detailed-documentation > .section
 {
 	margin-top: 80px !important;
@@ -115,6 +119,7 @@ pre.highlight .ge	{ font-style: italic !important; } /* Generic.Emph */
 .doxyrest-title-code-block
 {
     margin-top: 80px !important;
+	font-size: 15px !important;
 }
 
 .wy-nav-content
