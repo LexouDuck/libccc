@@ -107,11 +107,6 @@ pre.highlight.doxyrest-title-code-block a.reference
 	color: #66D9EF !important;
 }
 
-pre.highlight.doxyrest-title-code-block
-{
-	font-size: 15px !important;
-}
-
 
 
 /* Doxyrest CSS rules */
@@ -124,6 +119,7 @@ pre.highlight.doxyrest-title-code-block
 .doxyrest-title-code-block
 {
     margin-top: 80px !important;
+	font-size: 15px !important;
 }
 
 .wy-nav-content

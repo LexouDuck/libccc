@@ -4675,16 +4675,16 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>s_strfmt_va</name>
+      <name>c_strfmt_va</name>
       <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>ga22d228a9cf511661fffee27674557231</anchor>
+      <anchor>ga8702bd0fce53ba9c47f75931af94cacd</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>s_strformat_va</name>
+      <name>c_strformat_va</name>
       <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>gacbf9624e5a69b2303e93ff0fc957ceb8</anchor>
+      <anchor>ga21a6e87039779b39aed5cf0578da4f52</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -19712,16 +19712,16 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>s_strfmt_va</name>
+      <name>c_strfmt_va</name>
       <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>ga22d228a9cf511661fffee27674557231</anchor>
+      <anchor>ga8702bd0fce53ba9c47f75931af94cacd</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>s_strformat_va</name>
+      <name>c_strformat_va</name>
       <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>gacbf9624e5a69b2303e93ff0fc957ceb8</anchor>
+      <anchor>ga21a6e87039779b39aed5cf0578da4f52</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">

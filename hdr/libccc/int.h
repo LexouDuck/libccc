@@ -102,7 +102,7 @@ typedef __int128		s128;
 
 
 
-//!< Primitive type: 8-bit unsigned integer
+//! Primitive type: 8-bit unsigned integer
 /*!
 **	@isostd{https://en.cppreference.com/w/c/types/integer}
 **
@@ -118,7 +118,7 @@ typedef __int128		s128;
 typedef u8		t_u8;
 TYPEDEF_ALIAS(	t_u8,	UINT_8,  PRIMITIVE)
 
-//!< Primitive type: 16-bit unsigned integer
+//! Primitive type: 16-bit unsigned integer
 /*!
 **	@isostd{https://en.cppreference.com/w/c/types/integer}
 **
@@ -134,7 +134,7 @@ TYPEDEF_ALIAS(	t_u8,	UINT_8,  PRIMITIVE)
 typedef u16		t_u16;
 TYPEDEF_ALIAS(	t_u16,	UINT_16, PRIMITIVE)
 
-//!< Primitive type: 32-bit unsigned integer
+//! Primitive type: 32-bit unsigned integer
 /*!
 **	@isostd{https://en.cppreference.com/w/c/types/integer}
 **
@@ -150,7 +150,7 @@ TYPEDEF_ALIAS(	t_u16,	UINT_16, PRIMITIVE)
 typedef u32		t_u32;
 TYPEDEF_ALIAS(	t_u32,	UINT_32, PRIMITIVE)
 
-//!< Primitive type: 64-bit unsigned integer
+//! Primitive type: 64-bit unsigned integer
 /*!
 **	@isostd{https://en.cppreference.com/w/c/types/integer}
 **
@@ -167,7 +167,7 @@ typedef	u64		t_u64;
 TYPEDEF_ALIAS(	t_u64,	UINT_64, PRIMITIVE)
 
 #ifdef	__int128
-//!< Primitive type: 128-bit unsigned integer (only available on certain platforms)
+//! Primitive type: 128-bit unsigned integer (only available on certain platforms)
 /*!
 **	@isostd{https://en.cppreference.com/w/c/types/integer}
 **
@@ -189,7 +189,7 @@ TYPEDEF_ALIAS(	t_u128,	UINT_128,PRIMITIVE)
 
 
 
-//!< Primitive type: 8-bit signed integer
+//! Primitive type: 8-bit signed integer
 /*!
 **	@isostd{https://en.cppreference.com/w/c/types/integer}
 **
@@ -205,7 +205,7 @@ TYPEDEF_ALIAS(	t_u128,	UINT_128,PRIMITIVE)
 typedef s8		t_s8;
 TYPEDEF_ALIAS(	t_s8,	SINT_8,  PRIMITIVE)
 
-//!< Primitive type: 16-bit signed integer
+//! Primitive type: 16-bit signed integer
 /*!
 **	@isostd{https://en.cppreference.com/w/c/types/integer}
 **
@@ -221,7 +221,7 @@ TYPEDEF_ALIAS(	t_s8,	SINT_8,  PRIMITIVE)
 typedef s16		t_s16;
 TYPEDEF_ALIAS(	t_s16,	SINT_16, PRIMITIVE)
 
-//!< Primitive type: 32-bit signed integer
+//! Primitive type: 32-bit signed integer
 /*!
 **	@isostd{https://en.cppreference.com/w/c/types/integer}
 **
@@ -237,7 +237,7 @@ TYPEDEF_ALIAS(	t_s16,	SINT_16, PRIMITIVE)
 typedef s32		t_s32;
 TYPEDEF_ALIAS(	t_s32,	SINT_32, PRIMITIVE)
 
-//!< Primitive type: 64-bit signed integer
+//! Primitive type: 64-bit signed integer
 /*!
 **	@isostd{https://en.cppreference.com/w/c/types/integer}
 **
@@ -254,7 +254,7 @@ typedef	s64		t_s64;
 TYPEDEF_ALIAS(	t_s64,	SINT_64, PRIMITIVE)
 
 #ifdef	__int128
-//!< Primitive type: 128-bit signed integer (only available on certain platforms)
+//! Primitive type: 128-bit signed integer (only available on certain platforms)
 /*!
 **	@isostd{https://en.cppreference.com/w/c/types/integer}
 **

@@ -231,18 +231,18 @@ HEADER_CPP
 _FORMAT(printf, 1, 2)
 _MALLOC()
 char*					String_Format(char const* format, ...);
-#define c_asprintf		String_Format
-#define c_strfmt		String_Format
-#define c_strformat		String_Format
-#define String_Build	String_Format
+#define c_asprintf		String_Format //!< @alias{String_Format}
+#define c_strfmt		String_Format //!< @alias{String_Format}
+#define c_strformat		String_Format //!< @alias{String_Format}
+#define String_Build	String_Format //!< @alias{String_Format}
 
 //! @see				String_Format
 _MALLOC()
 char*					String_Format_VA(char const* format, va_list args);
-#define c_vasprintf		String_Format_VA
-#define s_strfmt_va		String_Format_VA
-#define s_strformat_va	String_Format_VA
-#define String_Build_VA	String_Format_VA
+#define c_vasprintf		String_Format_VA //!< @alias{String_Format_VA}
+#define c_strfmt_va		String_Format_VA //!< @alias{String_Format_VA}
+#define c_strformat_va	String_Format_VA //!< @alias{String_Format_VA}
+#define String_Build_VA	String_Format_VA //!< @alias{String_Format_VA}
 
 
 
@@ -255,17 +255,17 @@ char*					String_Format_VA(char const* format, va_list args);
 */
 _FORMAT(printf, 3, 4)
 t_size						String_Format_N(char* dest, t_size max, char const* format, ...);
-#define c_snprintf			String_Format_N
-#define c_strnfmt			String_Format_N
-#define c_strnformat		String_Format_N
-#define String_Build_N		String_Format_N
+#define c_snprintf			String_Format_N //!< @alias{String_Format_N}
+#define c_strnfmt			String_Format_N //!< @alias{String_Format_N}
+#define c_strnformat		String_Format_N //!< @alias{String_Format_N}
+#define String_Build_N		String_Format_N //!< @alias{String_Format_N}
 
 //! @see					String_Format_N
 t_size						String_Format_N_VA(char* dest, t_size max, char const* format, va_list args);
-#define c_vsnprintf			String_Format_N_VA
-#define c_strnfmt_va		String_Format_N_VA
-#define c_strnformat_va		String_Format_N_VA
-#define String_Build_N_VA	String_Format_N_VA
+#define c_vsnprintf			String_Format_N_VA //!< @alias{String_Format_N_VA}
+#define c_strnfmt_va		String_Format_N_VA //!< @alias{String_Format_N_VA}
+#define c_strnformat_va		String_Format_N_VA //!< @alias{String_Format_N_VA}
+#define String_Build_N_VA	String_Format_N_VA //!< @alias{String_Format_N_VA}
 
 
 

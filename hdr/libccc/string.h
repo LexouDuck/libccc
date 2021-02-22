@@ -68,7 +68,7 @@ _MALLOC()
 **				and has every char set to '\0'.
 */
 char*				String_New(t_size n);
-#define c_strnew	String_New
+#define c_strnew	String_New //!< @alias{String_New}
 
 _MALLOC()
 //! Returns a newly allocated region of `c`-filled memory, which is `n + 1` bytes long.
@@ -82,7 +82,7 @@ _MALLOC()
 **				and has every char set to `c`, plus the last char set to '\0'.
 */
 char*				String_New_C(t_size n, char c);
-#define c_strcnew	String_New_C
+#define c_strcnew	String_New_C //!< @alias{String_New_C}
 
 //! Sets every char of the given string `str` to `c`, only stopping upon reading a '\0' string terminator character.
 /*!
@@ -92,52 +92,52 @@ char*				String_New_C(t_size n, char c);
 **	@param	c	The character value to fill with
 */
 void				String_Set(char* str, char c);
-#define c_strset	String_Set
+#define c_strset	String_Set //!< @alias{String_Set}
 
 //! Clears the given string `str`, setting each character of `str` to '\0'.
 /*!
 */
 void				String_Clear(char* str);
-#define c_strclr	String_Clear
+#define c_strclr	String_Clear //!< @alias{String_Clear}
 
 /*!
 **	Deletes the string pointed to by `ptr`, freeing the associated memory.
 */
 void				String_Delete(char* *a_str);
-#define c_strdel	String_Delete
+#define c_strdel	String_Delete //!< @alias{String_Delete}
 
 /*!
 **	Returns a newly allocated string which is a copy of the given string `str`,
-**	(or NULL if the required memory could not be allocated).
+**	(or #NUL required memory could not be allocated).
 */
 _MALLOC()
 char*				String_Duplicate(char const* str);
-#define c_strdup	String_Duplicate
+#define c_strdup	String_Duplicate //!< @alias{String_Duplicate}
 
 /*!
 **	Returns a newly allocated string which is a copy of the given string `str`,
-**	(or NULL if the required memory could not be allocated), copying at most
+**	(or #NUL required memory could not be allocated), copying at most
 **	`n` characters.
 */
 _MALLOC()
 char*				String_Duplicate_N(char const* str, t_size n);
-#define c_strndup	String_Duplicate_N
+#define c_strndup	String_Duplicate_N //!< @alias{String_Duplicate_N}
 
 /*!
 **	Returns a newly allocated string which is a copy of the given string `str`,
-**	(or NULL if the required memory could not be allocated), stopping at the
+**	(or #NUL required memory could not be allocated), stopping at the
 **	first occurence of `c`.
 */
 _MALLOC()
 char*				String_Duplicate_Char(char const* str, char const c);
-#define c_strcdup	String_Duplicate_Char
+#define c_strcdup	String_Duplicate_Char //!< @alias{String_Duplicate_Char}
 
 /*!
 **	Copies the given string `src` into `dest` (null-terminator included),
 **	and returns `dest` (no allocation is performed).
 */
 char*				String_Copy(char* dest, char const* src);
-#define c_strcpy	String_Copy
+#define c_strcpy	String_Copy //!< @alias{String_Copy}
 
 //! Copies the first `n` characters of the given string `src` into `dest`, and returns `dest`
 /*!
@@ -145,7 +145,7 @@ char*				String_Copy(char* dest, char const* src);
 **	and returns `dest` (no allocation is performed).
 */
 char*				String_Copy_N(char* dest, char const* src, t_size n);
-#define c_strncpy	String_Copy_N
+#define c_strncpy	String_Copy_N //!< @alias{String_Copy_N}
 
 //! Copies the given string `src` into `dest`, null-terminating the result and returning its length
 /*!
@@ -154,21 +154,21 @@ char*				String_Copy_N(char* dest, char const* src, t_size n);
 **	and returns the resulting size of `dest`.
 */
 t_size				String_Copy_L(char* dest, char const* src, t_size size);
-#define c_strlcpy	String_Copy_L
+#define c_strlcpy	String_Copy_L //!< @alias{String_Copy_L}
 
 /*!
 **	Concatenates the given string `src` to the end of `dest`,
 **	(removing dest's '\0' terminator) and returns `dest`.
 */
 char*				String_Concat(char* dest, char const* src);
-#define c_strcat	String_Concat
+#define c_strcat	String_Concat //!< @alias{String_Concat}
 
 /*!
 **	Concatenates the first `n` characters of the given string `src`
 **	to the end of `dest`, and returns `dest`.
 */
 char*				String_Concat_N(char* dest, char const* src, t_size n);
-#define c_strncat	String_Concat_N
+#define c_strncat	String_Concat_N //!< @alias{String_Concat_N}
 
 /*!
 **	Concatenates characters of the given string `src` to the end of `dest`,
@@ -176,7 +176,7 @@ char*				String_Concat_N(char* dest, char const* src, t_size n);
 **	and returns the resulting size of `dest`.
 */
 t_size				String_Concat_L(char* dest, char const* src, t_size size);
-#define c_strlcat	String_Concat_L
+#define c_strlcat	String_Concat_L //!< @alias{String_Concat_L}
 
 
 
@@ -190,7 +190,7 @@ t_size				String_Concat_L(char* dest, char const* src, t_size size);
 **	Returns the length of the given null-terminated string `str`.
 */
 t_size				String_Length(char const* str);
-#define c_strlen	String_Length
+#define c_strlen	String_Length //!< @alias{String_Length}
 
 /*!
 **	Compares the two given strings, and returns the first difference
@@ -198,14 +198,14 @@ t_size				String_Length(char const* str);
 **	Otherwise, it will return 0 if `str1` and `str2` are identical.
 */
 int						String_Compare(char const* str1, char const* str2);
-#define c_strcmp		String_Compare
+#define c_strcmp		String_Compare //!< @alias{String_Compare}
 
 /*!
 **	Compares at most `n` chars of the two given strings, and returns
 **	the first difference of characters encountered: `str1[i] - str2[i]`
 */
 int						String_Compare_N(char const* str1, char const* str2, t_size n);
-#define c_strncmp		String_Compare_N
+#define c_strncmp		String_Compare_N //!< @alias{String_Compare_N}
 
 /*!
 **	Compares the two given strings (case-insensitive), and returns the
@@ -213,79 +213,79 @@ int						String_Compare_N(char const* str1, char const* str2, t_size n);
 **	Otherwise, it will return 0 if `str1` and `str2` are identical.
 */
 int						String_Compare_IgnoreCase(char const* str1, char const* str2);
-#define c_stricmp		String_Compare_IgnoreCase
-#define c_strcasecmp	String_Compare_IgnoreCase
+#define c_stricmp		String_Compare_IgnoreCase //!< @alias{String_Compare_IgnoreCase}
+#define c_strcasecmp	String_Compare_IgnoreCase //!< @alias{String_Compare_IgnoreCase}
 
 /*!
 **	Compares at most `n` chars of the two given strings (case-insensitive),
 **	and returns the first difference of characters encountered: `str1[i] - str2[i]`
 */
 int						String_Compare_N_IgnoreCase(char const* str1, char const* str2, t_size n);
-#define c_strnicmp		String_Compare_N_IgnoreCase
-#define c_strncasecmp	String_Compare_N_IgnoreCase
+#define c_strnicmp		String_Compare_N_IgnoreCase //!< @alias{String_Compare_N_IgnoreCase}
+#define c_strncasecmp	String_Compare_N_IgnoreCase //!< @alias{String_Compare_N_IgnoreCase}
 
-//!	Returns TRUE if the two given strings have identical content, and FALSE otherwise
+//!	Returns #TRUE if the two given strings have identical content, and #FALSE otherwise
 /*!
-**	@returns 1(TRUE) if the two given strings have identical content, and 0(FALSE) otherwise
+**	@returns #TRUE if the two given strings have identical content, and #FALSE otherwise
 */
 t_bool					String_Equals(char const* str1, char const* str2);
-#define c_strequ		String_Equals
+#define c_strequ		String_Equals //!< @alias{String_Equals}
 
-//!	Returns TRUE if the first `n` chars of the two given strings match, and FALSE otherwise
+//!	Returns #TRUE if the first `n` chars of the two given strings match, and #FALSE otherwise
 /*!
-**	@returns 1(TRUE) if the first `n` chars of the two given strings match, and 0(FALSE) otherwise
+**	@returns #TRUE if the first `n` chars of the two given strings match, and #FALSE otherwise
 */
 t_bool					String_Equals_N(char const* str1, char const* str2, t_size n);
-#define c_strnequ		String_Equals_N
+#define c_strnequ		String_Equals_N //!< @alias{String_Equals_N}
 
-//!	Returns TRUE if the two given strings have identical content (case-insensitive), and FALSE otherwise
+//!	Returns #TRUE if the two given strings have identical content (case-insensitive), and #FALSE otherwise
 /*!
-**	@returns 1(TRUE) if the two given strings have identical content (case-insensitive), and 0(FALSE) otherwise
+**	@returns #TRUE if the two given strings have identical content (case-insensitive), and #FALSE otherwise
 */
 t_bool					String_Equals_IgnoreCase(char const* str1, char const* str2);
-#define c_striequ		String_Equals_IgnoreCase
-#define c_strcaseequ	String_Equals_IgnoreCase
+#define c_striequ		String_Equals_IgnoreCase //!< @alias{String_Equals_IgnoreCase}
+#define c_strcaseequ	String_Equals_IgnoreCase //!< @alias{String_Equals_IgnoreCase}
 
-//!	Returns TRUE if the first `n` chars of the two given strings match (ignoring case), and FALSE otherwise
+//!	Returns #TRUE if the first `n` chars of the two given strings match (ignoring case), and #FALSE otherwise
 /*!
-**	@returns 1(TRUE) if the first `n` chars of the two given strings match (ignoring case), and 0(FALSE) otherwise
+**	@returns #TRUE if the first `n` chars of the two given strings match (ignoring case), and #FALSE otherwise
 */
 t_bool					String_Equals_N_IgnoreCase(char const* str1, char const* str2, t_size n);
-#define c_strniequ		String_Equals_N_IgnoreCase
-#define c_strncaseequ	String_Equals_N_IgnoreCase
+#define c_strniequ		String_Equals_N_IgnoreCase //!< @alias{String_Equals_N_IgnoreCase}
+#define c_strncaseequ	String_Equals_N_IgnoreCase //!< @alias{String_Equals_N_IgnoreCase}
 
 /*!
 **	Returns 1 if the given string `str` contains at least one occurence
 **	of any character found inside `charset`, returns 0 otherwise.
 */
 t_bool						String_Has(char const* str, char const* charset);
-#define c_strhas			String_Has
+#define c_strhas			String_Has //!< @alias{String_Has}
 
 /*!
 **	Returns 1 if all the characters inside the given string `str`
 **	are contained within the string `charset`, returns 0 otherwise.
 */
 t_bool						String_HasOnly(char const* str, char const* charset);
-#define c_strhasonly		String_HasOnly
+#define c_strhasonly		String_HasOnly //!< @alias{String_HasOnly}
 
 /*!
 **	Returns the amount of occurences of char `c` in the given string `str`.
 */
 t_size						String_Count_Char(char const* str, char c);
-#define c_strcount_chr		String_Count_Char
+#define c_strcount_chr		String_Count_Char //!< @alias{String_Count_Char}
 
 /*!
 **	Returns the amount of occurences of chars in `charset` in the given string
 **	`str`.
 */
 t_size						String_Count_Charset(char const* str, char const* charset);
-#define c_strcount_chrset	String_Count_Charset
+#define c_strcount_chrset	String_Count_Charset //!< @alias{String_Count_Charset}
 
 /*!
 **	Returns the amount of occurences of `query` in the given string `str`.
 */
 t_size						String_Count_String(char const* str, char const* query);
-#define c_strcount_str		String_Count_String
+#define c_strcount_str		String_Count_String //!< @alias{String_Count_String}
 
 
 
@@ -295,73 +295,73 @@ t_size						String_Count_String(char const* str, char const* query);
 ** ************************************************************************** *|
 */
 
-//! Returns a pointer to the first occurence of the given char `c` within `str`, or NULL if no char matched.
+//! Returns the first occurence of the given char `c` within `str`, or #NULL if no char matched.
 char*				String_Find_Char(char const* str, char c);
-#define c_strchr	String_Find_Char
-//! Returns a pointer to the first occurence of any char in the given `charset` within `str`, or NULL if no char matched.
+#define c_strchr	String_Find_Char //!< @alias{String_Find_Char}
+//! Returns the first occurence of any char in the given `charset` within `str`, or #NULL if no char matched.
 char*				String_Find_Charset(char const* str, char const* charset);
-#define c_strchrset	String_Find_Charset
-//! Returns a pointer to the first occurence of the string `query` inside the given string `str`, or NULL if nothing matched.
+#define c_strchrset	String_Find_Charset //!< @alias{String_Find_Charset}
+//! Returns the first occurence of the string `query` inside the given string `str`, or #NULL if nothing matched.
 char*				String_Find_String(char const* str, char const* query);
-#define c_strstr	String_Find_String
+#define c_strstr	String_Find_String //!< @alias{String_Find_String}
 
-//! Returns a pointer to the last occurence of the given char `c` within `str`, or NULL if no char matched.
+//! Returns the last occurence of the given char `c` within `str`, or #NULL if no char matched.
 char*							String_Find_R_Char(char const* str, char c);
-#define c_strrchr				String_Find_R_Char
-#define String_FindLast_Char	String_Find_R_Char
-//! Returns a pointer to the last occurence of any char in the given `charset` within `str`, or NULL if no char matched.
+#define c_strrchr				String_Find_R_Char //!< @alias{String_Find_R_Char}
+#define String_FindLast_Char	String_Find_R_Char //!< @alias{String_Find_R_Char}
+//! Returns the last occurence of any char in the given `charset` within `str`, or #NULL if no char matched.
 char*							String_Find_R_Charset(char const* str, char const* charset);
-#define c_strrchrset			String_Find_R_Charset
-#define String_FindLast_Charset	String_Find_R_Charset
-//! Returns a pointer to the last occurence of the string `query` inside the given string `str`, or NULL if nothing matched.
+#define c_strrchrset			String_Find_R_Charset //!< @alias{String_Find_R_Charset}
+#define String_FindLast_Charset	String_Find_R_Charset //!< @alias{String_Find_R_Charset}
+//! Returns the last occurence of the string `query` inside the given string `str`, or #NULL if nothing matched.
 char*							String_Find_R_String(char const* str, char const* query);
-#define c_strrstr				String_Find_R_String
-#define String_FindLast_String	String_Find_R_String
+#define c_strrstr				String_Find_R_String //!< @alias{String_Find_R_String}
+#define String_FindLast_String	String_Find_R_String //!< @alias{String_Find_R_String}
 
-//! Returns a pointer to the first occurence of the given char `c` within `str`, or NULL if no char matched. (checks only `n` chars in `str`).
+//! Returns the first occurence of the given char `c` within `str`, or #NULL if no char matched. (checks only `n` chars in `str`).
 char*							String_Find_N_Char(char const* str, char c, t_size n);
-#define c_strnchr				String_Find_N_Char
-//! Returns a pointer to the first occurence of any char in the given `charset` within `str`, or NULL if no char matched. (checks only `n` chars in `str`).
+#define c_strnchr				String_Find_N_Char //!< @alias{String_Find_N_Char}
+//! Returns the first occurence of any char in the given `charset` within `str`, or #NULL if no char matched. (checks only `n` chars in `str`).
 char*							String_Find_N_Charset(char const* str, char const* charset, t_size n);
-#define c_strnchrset			String_Find_N_Charset
-//! Returns a pointer to the first occurence of the string `query` inside the given string `str`, or NULL if nothing matched. (checks only `n` chars in `str`).
+#define c_strnchrset			String_Find_N_Charset //!< @alias{String_Find_N_Charset}
+//! Returns the first occurence of the string `query` inside the given string `str`, or #NULL if nothing matched. (checks only `n` chars in `str`).
 char*							String_Find_N_String(char const* str, char const* query, t_size n);
-#define c_strnstr				String_Find_N_String
+#define c_strnstr				String_Find_N_String //!< @alias{String_Find_N_String}
 
 
 
 //! Returns the index of the first occurrence at which `c` is found in `str`, or -1 if `c` does not exist in `str`.
 t_ptrdiff				String_IndexOf_Char(char const* str, char c);
-#define c_strichr		String_IndexOf_Char
+#define c_strichr		String_IndexOf_Char //!< @alias{String_IndexOf_Char}
 //! Returns the index of the first occurrence at which `c` is found in `str`, or -1 if `c` does not exist in `str`.
 t_ptrdiff				String_IndexOf_Charset(char const* str, char const* charset);
-#define c_strichrset	String_IndexOf_Charset
+#define c_strichrset	String_IndexOf_Charset //!< @alias{String_IndexOf_Charset}
 //! Returns the index of the first occurrence at which `query` is found in `str`, or -1 if `query` does not exist in str.
 t_ptrdiff				String_IndexOf_String(char const* str, char const* query);
-#define c_stristr		String_IndexOf_String
+#define c_stristr		String_IndexOf_String //!< @alias{String_IndexOf_String}
 
-//! Returns a pointer to the last occurence of the given char `c` within `str`, or NULL if no char matched.
+//! Returns the last occurence of the given char `c` within `str`, or #NULL if no char matched.
 t_ptrdiff							String_IndexOf_R_Char(char const* str, char c);
-#define c_strirchr					String_IndexOf_R_Char
-#define String_LastIndexOf_Char		String_IndexOf_R_Char
-//! Returns a pointer to the last occurence of any char in the given `charset` within `str`, or NULL if no char matched.
+#define c_strirchr					String_IndexOf_R_Char //!< @alias{String_IndexOf_R_Char}
+#define String_LastIndexOf_Char		String_IndexOf_R_Char //!< @alias{String_IndexOf_R_Char}
+//! Returns the last occurence of any char in the given `charset` within `str`, or #NULL if no char matched.
 t_ptrdiff							String_IndexOf_R_Charset(char const* str, char const* charset);
-#define c_strirchrset				String_IndexOf_R_Charset
-#define String_LastIndexOf_Charset	String_IndexOf_R_Charset
-//! Returns a pointer to the last occurence of the string `query` inside the given string `str`, or NULL if nothing matched.
+#define c_strirchrset				String_IndexOf_R_Charset //!< @alias{String_IndexOf_R_Charset}
+#define String_LastIndexOf_Charset	String_IndexOf_R_Charset //!< @alias{String_IndexOf_R_Charset}
+//! Returns the last occurence of the string `query` inside the given string `str`, or #NULL if nothing matched.
 t_ptrdiff							String_IndexOf_R_String(char const* str, char const* query);
-#define c_strirstr					String_IndexOf_R_String
-#define String_LastIndexOf_String	String_IndexOf_R_String
+#define c_strirstr					String_IndexOf_R_String //!< @alias{String_IndexOf_R_String}
+#define String_LastIndexOf_String	String_IndexOf_R_String //!< @alias{String_IndexOf_R_String}
 
-//! Returns a pointer to the first occurence of the given char `c` within `str`, or NULL if no char matched. (checks only `n` chars in `str`).
+//! Returns the first occurence of the given char `c` within `str`, or #NULL if no char matched. (checks only `n` chars in `str`).
 t_ptrdiff							String_IndexOf_N_Char(char const* str, char c, t_size n);
-#define c_strinchr					String_IndexOf_N_Char
-//! Returns a pointer to the first occurence of any char in the given `charset` within `str`, or NULL if no char matched. (checks only `n` chars in `str`).
+#define c_strinchr					String_IndexOf_N_Char //!< @alias{String_IndexOf_N_Char}
+//! Returns the first occurence of any char in the given `charset` within `str`, or #NULL if no char matched. (checks only `n` chars in `str`).
 t_ptrdiff							String_IndexOf_N_Charset(char const* str, char const* charset, t_size n);
-#define c_strinchrset				String_IndexOf_N_Charset
-//! Returns a pointer to the first occurence of the string `query` inside the given string `str`, or NULL if nothing matched. (checks only `n` chars in `str`).
+#define c_strinchrset				String_IndexOf_N_Charset //!< @alias{String_IndexOf_N_Charset}
+//! Returns the first occurence of the string `query` inside the given string `str`, or #NULL if nothing matched. (checks only `n` chars in `str`).
 t_ptrdiff							String_IndexOf_N_String(char const* str, char const* query, t_size n);
-#define c_strinstr					String_IndexOf_N_String
+#define c_strinstr					String_IndexOf_N_String //!< @alias{String_IndexOf_N_String}
 
 
 
@@ -371,7 +371,7 @@ t_ptrdiff							String_IndexOf_N_String(char const* str, char const* query, t_si
 */
 _MALLOC()
 char*					String_Remove(char const* str, char const* query);
-#define c_strremove		String_Remove
+#define c_strremove		String_Remove //!< @alias{String_Remove}
 
 /*!
 **	Returns a new null-terminated string which is a copy of `str`, in which
@@ -380,7 +380,7 @@ char*					String_Remove(char const* str, char const* query);
 */
 _MALLOC()
 char*					String_ToEscape(char const* str);
-#define c_strtoescape	String_ToEscape
+#define c_strtoescape	String_ToEscape //!< @alias{String_ToEscape}
 
 /*!
 **	Returns a new null-terminated string which is a copy of `str`,
@@ -389,7 +389,7 @@ char*					String_ToEscape(char const* str);
 //TODO implement
 _MALLOC()
 char*						String_Replace_Char(char const* str, char const char_old, char const char_new);
-#define c_strrep_char		String_Replace_Char
+#define c_strrep_char		String_Replace_Char //!< @alias{String_Replace_Char}
 
 /*!
 **	Returns a new null-terminated string which is a copy of `str`,
@@ -399,7 +399,7 @@ char*						String_Replace_Char(char const* str, char const char_old, char const 
 //TODO implement
 _MALLOC()
 char*						String_Replace_Charset(char const* str, char const* charset_old, char const* charset_new);
-#define c_strrep_charset	String_Replace_Charset
+#define c_strrep_charset	String_Replace_Charset //!< @alias{String_Replace_Charset}
 
 /*!
 **	Returns a new null-terminated string which is a copy of `str`,
@@ -408,7 +408,7 @@ char*						String_Replace_Charset(char const* str, char const* charset_old, char
 */
 _MALLOC()
 char*						String_Replace_String(char const* str, char const* str_old, char const* str_new);
-#define c_strrep_str		String_Replace_String
+#define c_strrep_str		String_Replace_String //!< @alias{String_Replace_String}
 
 
 
@@ -424,7 +424,7 @@ char*						String_Replace_String(char const* str, char const* str_old, char cons
 */
 _MALLOC()
 char*					String_Merge(char* *a_s1, char* *a_s2);
-#define c_strmerge		String_Merge
+#define c_strmerge		String_Merge //!< @alias{String_Merge}
 
 /*!
 **	Returns a newly allocated string which is the concatenation of `dest` and `src`.
@@ -432,7 +432,7 @@ char*					String_Merge(char* *a_s1, char* *a_s2);
 */
 _MALLOC()
 char*					String_Append(char* *dest, char const* src);
-#define c_strappend		String_Append
+#define c_strappend		String_Append //!< @alias{String_Append}
 
 
 /*!
@@ -441,20 +441,20 @@ char*					String_Append(char* *dest, char const* src);
 */
 _MALLOC()
 char*					String_Prepend(char const* src, char* *dest);
-#define c_strprepend	String_Prepend
+#define c_strprepend	String_Prepend //!< @alias{String_Prepend}
 
 /*!
 **	Inserts the string `src` at index `index` in `dest`; deletes `dest` and
 **	replaces it by the result. Also returns the result.
 */
 char*							String_Insert_InPlace(char* *dest, char const* src, t_u32 index);
-#define c_strinsert_inplace		String_Insert_InPlace
+#define c_strinsert_inplace		String_Insert_InPlace //!< @alias{String_Insert_InPlace}
 
 /*!
 **	Replaces every occurence of `old` by `new` in `str`.
 */
 void								String_Replace_Char_InPlace(char* str, char const char_old, char const char_new);
-#define c_strrep_char_inplace		String_Replace_Char_InPlace
+#define c_strrep_char_inplace		String_Replace_Char_InPlace //!< @alias{String_Replace_Char_InPlace}
 
 /*!
 **	Replaces `old` charset by `new` charset in `str`.
@@ -464,14 +464,14 @@ void								String_Replace_Char_InPlace(char* str, char const char_old, char con
 **	`old` or `new` are the empty string.
 */
 void								String_Replace_Charset_InPlace(char* str, char const* charset_old, char const* charset_new);
-#define c_strrep_charset_inplace	String_Replace_Charset_InPlace
+#define c_strrep_charset_inplace	String_Replace_Charset_InPlace //!< @alias{String_Replace_Charset_InPlace}
 
 /*!
 **	Replaces every occurence of the query old by the string new in str.
 **	NB: see stringarray.h -> c_strsplit_str for extra notes on bevahior.
 */
 void								String_Replace_String_InPlace(char* *a_str, char const* str_old, char const* str_new);
-#define c_strrep_str_inplace		String_Replace_String_InPlace
+#define c_strrep_str_inplace		String_Replace_String_InPlace //!< @alias{String_Replace_String_InPlace}
 
 /*!
 **	Changes the content of '*a_str' by applying f to each of its chars.
@@ -479,7 +479,7 @@ void								String_Replace_String_InPlace(char* *a_str, char const* str_old, cha
 **	result.
 */
 char*								String_Map_InPlace(char* *a_str, char (*f)(char));
-#define c_strmap_inplace			String_Map_InPlace
+#define c_strmap_inplace			String_Map_InPlace //!< @alias{String_Map_InPlace}
 
 
 
@@ -495,7 +495,7 @@ char*								String_Map_InPlace(char* *a_str, char (*f)(char));
 */
 _MALLOC()
 char*					String_Trim(char const* str, char const* charset);
-#define c_strtrim		String_Trim
+#define c_strtrim		String_Trim //!< @alias{String_Trim}
 
 /*!
 **	Returns a new string from `str` in which all leading
@@ -503,7 +503,7 @@ char*					String_Trim(char const* str, char const* charset);
 */
 _MALLOC()
 char*					String_Trim_L(char const* str, char const* charset);
-#define c_strtrim_l		String_Trim_L
+#define c_strtrim_l		String_Trim_L //!< @alias{String_Trim_L}
 
 /*!
 **	Returns a new string from `str` in which all trailing
@@ -511,7 +511,7 @@ char*					String_Trim_L(char const* str, char const* charset);
 */
 _MALLOC()
 char*					String_Trim_R(char const* str, char const* charset);
-#define c_strtrim_r		String_Trim_R
+#define c_strtrim_r		String_Trim_R //!< @alias{String_Trim_R}
 
 /*!
 **	Returns a new null-terminated string duplicate of `str` which is
@@ -520,7 +520,7 @@ char*					String_Trim_R(char const* str, char const* charset);
 */
 _MALLOC()
 char*					String_Pad(char const* str, char c, t_size length);
-#define c_strpad		String_Pad
+#define c_strpad		String_Pad //!< @alias{String_Pad}
 
 /*!
 **	Returns a new null-terminated string duplicate of `str` which is
@@ -529,7 +529,7 @@ char*					String_Pad(char const* str, char c, t_size length);
 */
 _MALLOC()
 char*					String_Pad_L(char const* str, char c, t_size length);
-#define c_strpad_l		String_Pad_L
+#define c_strpad_l		String_Pad_L //!< @alias{String_Pad_L}
 
 /*!
 **	Returns a new null-terminated string duplicate of `str` which is
@@ -538,7 +538,7 @@ char*					String_Pad_L(char const* str, char c, t_size length);
 */
 _MALLOC()
 char*					String_Pad_R(char const* str, char c, t_size length);
-#define c_strpad_r		String_Pad_R
+#define c_strpad_r		String_Pad_R //!< @alias{String_Pad_R}
 
 /*!
 **	Returns a new null-terminated string where every non-printable character
@@ -547,7 +547,7 @@ char*					String_Pad_R(char const* str, char c, t_size length);
 */
 _MALLOC()
 char*					String_ToPrintableString(char const* str);
-#define c_strprint		String_ToPrintableString
+#define c_strprint		String_ToPrintableString //!< @alias{String_ToPrintableString}
 
 
 
@@ -563,7 +563,7 @@ char*					String_ToPrintableString(char const* str);
 */
 _MALLOC()
 char*					String_Reverse(char const* str);
-#define c_strrev		String_Reverse
+#define c_strrev		String_Reverse //!< @alias{String_Reverse}
 
 /*!
 **	Returns a new null-terminated string which is the result of
@@ -571,7 +571,7 @@ char*					String_Reverse(char const* str);
 */
 _MALLOC()
 char*					String_Join(char const* str1, char const* str2);
-#define c_strjoin		String_Join
+#define c_strjoin		String_Join //!< @alias{String_Join}
 
 /*!
 **	Returns a reallocated version of the given string `dest`, in which
@@ -579,7 +579,7 @@ char*					String_Join(char const* str1, char const* str2);
 */
 _MALLOC()
 char*					String_Insert(char const* dest, char const* src, t_size offset);
-#define c_strinsert		String_Insert
+#define c_strinsert		String_Insert //!< @alias{String_Insert}
 
 /*!
 **	Returns a new null-terminated string which is a subsection of `str`,
@@ -587,7 +587,7 @@ char*					String_Insert(char const* dest, char const* src, t_size offset);
 */
 _MALLOC()
 char*					String_Sub(char const* str, t_size index, t_size n);
-#define c_strsub		String_Sub
+#define c_strsub		String_Sub //!< @alias{String_Sub}
 
 
 
@@ -596,14 +596,14 @@ char*					String_Sub(char const* str, t_size index, t_size n);
 **	applying the given function `f` to each of its characters.
 */
 void					String_Iterate(char* str, void (*f)(char* c));
-#define c_striter		String_Iterate
+#define c_striter		String_Iterate //!< @alias{String_Iterate}
 
 /*!
 **	Iterates upon each character of the given string `str`,
 **	applying the function `f` to each of its chars (with index information).
 */
 void					String_Iterate_I(char* str, void (*f)(t_size index, char* c));
-#define c_striteri		String_Iterate_I
+#define c_striteri		String_Iterate_I //!< @alias{String_Iterate_I}
 
 /*!
 **	Creates a new null-terminated string by iterating upon the string `str`,
@@ -611,7 +611,7 @@ void					String_Iterate_I(char* str, void (*f)(t_size index, char* c));
 */
 _MALLOC()
 char*					String_Map(char const* str, char (*f)(char c));
-#define c_strmap		String_Map
+#define c_strmap		String_Map //!< @alias{String_Map}
 
 /*!
 **	Creates a new null-terminated string by iterating upon the string `str`,
@@ -619,7 +619,7 @@ char*					String_Map(char const* str, char (*f)(char c));
 */
 _MALLOC()
 char*					String_Map_I(char const* str, char (*f)(t_size index, char c));
-#define c_strmapi		String_Map_I
+#define c_strmapi		String_Map_I //!< @alias{String_Map_I}
 
 
 
