@@ -54,9 +54,9 @@ TYPEDEF_ALIAS(	t_fd, FILEDESC, PRIMITIVE)
 **	Define the 3 standard (std) streams of data - these numbers are special
 **	file descriptors used to read from and write to the terminal commandline.
 */
-#define STDIN	((t_fd)stdin)	//!< Special file descriptor (0), refers to the standard input stream
-#define STDOUT	((t_fd)stdout)	//!< Special file descriptor (1), refers to the standard output stream
-#define STDERR	((t_fd)stderr)	//!< Special file descriptor (2), refers to the standard error stream
+#define STDIN	((t_fd)0)	//!< Special file descriptor (0), refers to the standard input stream
+#define STDOUT	((t_fd)1)	//!< Special file descriptor (1), refers to the standard output stream
+#define STDERR	((t_fd)2)	//!< Special file descriptor (2), refers to the standard error stream
 
 
 
