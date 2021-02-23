@@ -276,8 +276,9 @@ t_io_error				IO_Read_Lines(t_fd const fd, char** *a_strarr);
 */
 //TODO DO NOT USE, TODO FIX, confirmed to have very, very rare, platform-specific problems...
 int						IO_Read_NextLine(t_fd const fd, char* *a_line);
-#define c_readnextline	IO_Read_NextLine
+#define c_getline		IO_Read_NextLine
 #define c_getnextline	IO_Read_NextLine
+#define c_readnextline	IO_Read_NextLine
 
 #define GNL_LINE  +1	//!< Return value for c_getnextline: indicates succesful line read, more to follow
 #define GNL_END    0	//!< Return value for c_getnextline: indicates successful line read, end of file reached

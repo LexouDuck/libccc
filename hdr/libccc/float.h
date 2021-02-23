@@ -17,6 +17,7 @@
 **
 **	@isostd{https://en.cppreference.com/w/c/numeric/math}
 **	@isostd{https://en.cppreference.com/w/c/numeric/fenv}
+**	- https://en.wikipedia.org/wiki/IEEE_754
 **
 **	@file
 */
@@ -45,29 +46,55 @@ HEADER_CPP
 #if LIBCONFIG_BITS_FLOAT != 32 && \
 	LIBCONFIG_BITS_FLOAT != 64 && \
 	LIBCONFIG_BITS_FLOAT != 80 && \
+	LIBCONFIG_BITS_FLOAT != 96 && \
 	LIBCONFIG_BITS_FLOAT != 128
-	#error "LIBCONFIG_BITS_UINT must be equal to one of: 32, 64, 80, 128"
+	#error "LIBCONFIG_BITS_UINT must be equal to one of: 32, 64, 80, 96, 128"
 #endif
 
 
 
-//! The type for 32-bit 'single precision' IEEE-754 floating-point numbers
+//! Primitive type: 32-bit 'single precision' IEEE-754 floating-point numbers
+/*!
+**	- https://en.wikipedia.org/wiki/Single-precision_floating-point_format
+*/
 typedef float		t_f32;
 TYPEDEF_ALIAS(		t_f32,	FLOAT_32,	PRIMITIVE)
 
-//! The type for 64-bit 'double precision' IEEE-754 floating-point numbers
+//! Primitive type: 64-bit 'double precision' IEEE-754 floating-point numbers
+/*!
+**	- https://en.wikipedia.org/wiki/Double-precision_floating-point_format
+*/
 typedef double		t_f64;
 TYPEDEF_ALIAS(		t_f64,	FLOAT_64,	PRIMITIVE)
 
 #ifdef	__float80
-typedef __float80	t_f80;	//!< The type for 32-bit 'extended precision' IEEE-754 floating-point numbers (only certain platforms)
+//! Primitive type: 80-bit 'extended precision' MacOS floating-point numbers (only certain platforms)
+/*!
+**	Consists of: 1 sign bit, 15 exponent bits, 1 integer bit, 63 fraction bits
+*/
+typedef __float80	t_f80;
 TYPEDEF_ALIAS(		t_f80,	FLOAT_80,	PRIMITIVE)
 #elif LIBCONFIG_BITS_FLOAT == 80
 	#error "Cannot set default float to 80-bit extended-precision, unavailable on this platform"
 #endif
 
+#ifdef	__float96
+//! Primitive type: 96-bit 'extended precision' 68881 floating-point numbers (only certain platforms)
+/*!
+**	Consists of: 1 sign bit, 15 exponent bits, 16 pad bits, 1 integer bit, 63 fraction bits
+*/
+typedef __float96	t_f96;
+TYPEDEF_ALIAS(		t_f96,	FLOAT_96,	PRIMITIVE)
+#elif LIBCONFIG_BITS_FLOAT == 96
+	#error "Cannot set default float to 96-bit extended-precision, unavailable on this platform"
+#endif
+
 #ifdef	__float128
-typedef __float128	t_f128;	//!< The type for 32-bit 'quadruple precision' IEEE-754 floating-point numbers (only certain platforms)
+//! Primitive type: 32-bit 'quadruple precision' IEEE-754 floating-point numbers (only certain platforms)
+/*!
+**	- https://en.wikipedia.org/wiki/Quadruple-precision_floating-point_format
+*/
+typedef __float128	t_f128;
 TYPEDEF_ALIAS(		t_f128,	FLOAT_128,	PRIMITIVE)
 #elif LIBCONFIG_BITS_FLOAT == 128
 	#error "Cannot set default float to 128-bit quadruple-precision, unavailable on this platform"
@@ -214,7 +241,7 @@ TYPEDEF_ALIAS(					t_float, FLOAT, PRIMITIVE)
 
 
 
-/*! @name bitwise_macros_float
+/*! @name float bitwise constants
 **	Depending on the 't_float' type (_FLOAT_32_ or _FLOAT_64_, etc) chosen,
 **	the appropriate bitwise macros will be used by the math functions.
 **	It is often better to only use one type of floating-point precision

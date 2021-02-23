@@ -15,6 +15,9 @@
 ** @{
 **	This header defines functions for regular expression matching/replacing.
 **
+**	- http://www.greenend.org.uk/rjk/tech/regexp.html#matchmulti
+**	- https://www.regular-expressions.info/modifiers.html
+**
 **	@file
 */
 
