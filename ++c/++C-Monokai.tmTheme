@@ -20,7 +20,7 @@
 				<key>foreground</key>
 				<string>#F8F8F2</string>
 				<key>invisibles</key>
-				<string>#3B3A32</string>
+				<string>#272822</string>
 				<key>lineHighlight</key>
 				<string>#3E3D32</string>
 				<key>selection</key>
@@ -251,9 +251,9 @@
 			<key>settings</key>
 			<dict>
 				<key>fontStyle</key>
-				<string></string>
+				<string>italic</string>
 				<key>foreground</key>
-				<string>#F8F8F0</string>
+				<string>#FD971F</string>
 			</dict>
 		</dict>
 		<dict>

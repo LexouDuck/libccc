@@ -56,10 +56,20 @@ value = $pointer; // ++C
 address = &value; // pure C
 address = @value; // ++C
 ```
-- pointer types: * = $ (mutable pointer) or @ (const pointer)
+
+- **/!\ NOT YET DECIDED, PROBABLY A BAD IDEA**: pointer types: * = $ (mutable pointer) or @ (const pointer)
 ```c
 void*		->	void$
 void const*	->	void@
+```
+
+### RegExp literals:
+
+regex literal strings are prefixed with an `r`, and flags may be placed after the ending quote:
+```c
+char const* regex1 = r"\b(My_\w*)\b"g;
+char const* regex2 = r"(?x) ( [^)] __damn__ )"i;
+char const* regex3 = r"[a-zA-Z_]\w*"sg;
 ```
 
 
@@ -490,7 +500,7 @@ The above example would transpile to the following C code output:
 #define __HEADER_H
 
 #ifdef __cplusplus
-extern "C" {
+extern "C" /{
 #endif
 
 // this is a simple test header
@@ -498,25 +508,53 @@ void HelloWorld(void);
 // ...
 
 #ifdef __cplusplus
-} //extern c
+} // extern c
 #endif
 
 #endif
 ```
+If no argument is supplied, `#guards` will generate a header based on the file name (relative to the folder from where `ppp` was invoked), with two leading underscores `__`, and ending with `_H`:
+- for example, in a file at path `./src/utils/header.++h`:
+```c
+// ++C code
+#guards
+// ...
+
+// transpiled output C code
+#ifndef __SRC_UTILS_HEADER_H
+#define __SRC_UTILS_HEADER_H
+// ...
+#endif
+```
+
 
 
 ##### ALIAS
-Creates an alias for a function/variable, using `__attribute__` (or, you can configure it to rather transpile like a `#define`, or a `#replace`).
+Creates an alias for a function/variable (must be globally scoped), using `__attribute__` (or, you can configure it to rather transpile like a `#define`, or a `#replace`).
 ```c
-void		MyFunction(void);
-#alias	f	MyFunction
+void			MyFunction(void);
+#alias	func	MyFunction
 ```
 The above example transpiles by declaring `f` with the function aliasing attribute, like so:
 ```c
 // transpiles to:
 void	MyFunction(void);
-void	f(void) __attribute__((weak, alias("MyFunction")));
+#ifdef __GNUC__
+void	func(void) __attribute__((weak, alias("MyFunction")));
+#else
+#define func	MyFunction
+#endif
 ```
+
+If no second argument is supplied, the alias will be applied to the last definition immediately before it:
+```c
+void		MyFunction(void);
+#alias	func	// `func` is an alias for `MyFunction`
+
+extern int my_global_var;
+#alias	my_gv	// `my_gv` is an alias for `my_global_var`
+```
+
 
 
 ##### PACKED
