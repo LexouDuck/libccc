@@ -1,0 +1,33 @@
+{
+	"extensions":
+	[
+		"h",
+		"c",
+		"H",
+		"C",
+		"h+",
+		"c+",
+		"H+",
+		"C+",
+		"++h",
+		"++c",
+		"++H",
+		"++C",
+		"pph",
+		"ppc",
+		"ppH",
+		"ppC",
+		"PPh",
+		"PPc",
+		"PPH",
+		"PPC",
+		"xxh",
+		"xxc",
+		"xxH",
+		"xxC",
+		"XXh",
+		"XXc",
+		"XXH",
+		"XXC",
+	]
+}

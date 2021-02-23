@@ -1,4 +1,6 @@
-/* Monokai-style pygments CSS theme */
+/*
+**	Monokai-style pygments CSS theme
+*/
 
 pre.highlight .hll	{ background-color: #49483E }
 pre.highlight   	{ background: #272822 !important; color: #F8F8F2 !important; }
@@ -83,18 +85,20 @@ pre.highlight .ge	{ font-style: italic !important; } /* Generic.Emph */
 
 
 
-/* fix coloring for doxyrest sphinx doc auto-links */
+/*
+**	Doxyrest fix coloring for sphinx doc auto-links
+*/
 
 .highlight a.reference,
 .highlight a.reference:visited
-{
+{	/* disable coloring for HTML links, instead show them as underlined+bold */
 	color: inherit !important;
 	font-weight: bold !important;
 	text-decoration: underline !important;
 }
 pre.highlight .cp + .n ~ .cp,
 pre.highlight .cp + .n ~ a.reference
-{
+{	/* fix faulty cpplexer highlighting when a code block is only one line, and has a preproc */
 	color: #F8F8F2 !important;
 	font-style: normal;
 }
@@ -103,8 +107,12 @@ pre.highlight .k + a.reference,
 pre.highlight .c + a.reference,
 pre.highlight .c1 + a.reference,
 pre.highlight.doxyrest-title-code-block a.reference
-{
+{	/* heuristically color C types in code blocks despite them being styled as HTML links */
 	color: #66D9EF !important;
+}
+pre.highlight.literal-block:not(.doxyrest-title-code-block):not(.doxyrest-overview-code-block)
+{	/* indent code blocks that aren't section titles */
+    margin: 30px;
 }
 
 

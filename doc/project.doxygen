@@ -270,10 +270,10 @@ TAB_SIZE               = 4
 # a double escape (\\{ and \\})
 
 ALIASES                = \
-nonstd="- <i>This function is not defined in the C ISO standard.</i>^^" \
-isostd{1}="- <i>C ISO Standard: </i>\1^^" \
-alias{1}="[<i>Alias for </i>#\1]" \
-group{1}="@addtogroup \1^^" \
+     nonstd="- <i>This function is not defined in the C ISO standard.</i>^^" \
+     isostd{1}="- <i>C ISO Standard: </i>\1^^" \
+     alias{1}="[<i>Alias for </i>#\1]" \
+     group{1}="@addtogroup \1^^" \
 
 # Set the OPTIMIZE_OUTPUT_FOR_C tag to YES if your project consists of C sources
 # only. Doxygen will then generate output that is more tailored for C. For

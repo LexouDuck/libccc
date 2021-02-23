@@ -45,14 +45,14 @@ doxyrest_tab_width = 4 # Specify the size of tab indentation:
 # extensions coming with Sphinx (named "sphinx.ext.*") or your custom
 # ones.
 extensions = [
-	"doxyrest", "cpplexer",
 #	"breathe",
+	"doxyrest",
+	"cpplexer",
     "sphinx.ext.intersphinx",
     "sphinx.ext.autodoc",
     "sphinx.ext.mathjax",
     "sphinx.ext.viewcode",
-	"sphinx.ext.graphviz",
-]
+	"sphinx.ext.graphviz"]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["html/_templates"]
@@ -69,13 +69,12 @@ exclude_patterns = ["html/_build", "Thumbs.db", ".DS_Store", "rst/page_index.rst
 # The theme to use for HTML and HTML Help pages.
 # See the documentation for a list of builtin themes.
 
-html_theme = "_theme"
+html_theme = "_theme" # custom libccc_sphinx_theme
 html_theme_path = ["./"]
 
 #html_theme = "sphinx_rtd_theme"
 #html_theme = "dask_sphinx_theme"
 #html_theme = "asteroid_sphinx_theme"
-
 #extensions.append("faculty_sphinx_theme")
 #html_theme = "faculty-sphinx-theme"
 #html_theme_options = {
