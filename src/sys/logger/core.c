@@ -32,8 +32,7 @@ t_io_error	Log_VA(s_logger const* logger,
 	char const*		format_str,
 	va_list			args)
 {
-	if (//logger.fd == 0 ||
-		( logger->silence_logs   && !error_code) ||
+	if (( logger->silence_logs   && !error_code) ||
 		( logger->silence_errors &&  error_code) ||
 		(!logger->verbose        && verbose_only))
 		return (OK);

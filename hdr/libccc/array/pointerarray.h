@@ -48,13 +48,16 @@ void*				PointerArray_New(t_size size);
 t_u32				PointerArray_Length(void const** a_ptrarr);
 #define c_ptrarrlen	PointerArray_Length
 
-// TODO ptrarrdup
+// TODO ptrarrdup //needs a function pointer to dup internals
 
 // TODO ptrarrsub
 
 // TODO ptrarrmerge
 // TODO ptrarrappend
 // TODO ptrarrprepend
+// TODO ptrarrmap
+// TODO ptrarrfilter
+// TODO ptrarrfold
 
 
 
