@@ -53,6 +53,7 @@ typedef enum	e_logformat_
 //! This struct stores all the settings and internal state needed for a basic logging system
 typedef struct	s_logger_
 {
+//	t_bool		in_use;			//!< If TRUE, logger should be considered locked (in use by a given process)
 	t_bool		silence_logs;	//!< If TRUE, successful and warning logging with this logger will be ignored
 	t_bool		silence_errors;	//!< If TRUE, error logging with this logger will be ignored
 	t_bool		timestamp;		//!< If TRUE, the logger prints a timestamp at the beginning of each log line
@@ -63,8 +64,18 @@ typedef struct	s_logger_
 	t_fd		fd;				//!< The file descriptor to which this logger outputs
 	char*		path;			//!< The file path (relative or absolute) for this logger output logfile
 }				s_logger;
-#define	NULL_LOGGER ((s_logger){ .silence_logs = FALSE, .silence_errors = FALSE, .timestamp = FALSE, .verbose = FALSE, .obfuscated = FALSE, .append = FALSE, .format = LOGFORMAT_ANSI, .fd = 0, .path = NULL })
+#define	NULL_LOGGER 			((s_logger){ /*.in_use = FALSE,*/ .silence_logs = FALSE, .silence_errors = FALSE, .timestamp = FALSE, .verbose = FALSE, .obfuscated = FALSE, .append = FALSE, .format = LOGFORMAT_ANSI, .fd = 0,      .path = NULL })
 
+#define DEFAULT_STDOUT_LOGGER	((s_logger){ /*.in_use = FALSE,*/ .silence_logs = FALSE, .silence_errors = TRUE,  .timestamp = TRUE,  .verbose = TRUE,  .obfuscated = FALSE, .append = FALSE, .format = LOGFORMAT_ANSI, .fd = stdout, .path = NULL })
+#define DEFAULT_STDERR_LOGGER	((s_logger){ /*.in_use = FALSE,*/ .silence_logs = TRUE,  .silence_errors = FALSE, .timestamp = TRUE,  .verbose = TRUE,  .obfuscated = FALSE, .append = FALSE, .format = LOGFORMAT_ANSI, .fd = stderr, .path = NULL })
+
+
+typedef struct	s_logptr_array_
+{
+	s_logger const* const*	logptrs;
+	t_u32					length;
+}				s_logptr_array;
+#define NULL_LOGPTR_ARRAY		((s_logptr_array){ .logptrs = NULL, .length = 0 })
 
 
 /*!
@@ -77,7 +88,7 @@ typedef struct	s_logger_
 ** As such, the amount of spaces here is equivalent to the size of a console log timestamp
 */
 #define LOG_TIMESTAMP_INDENT	"                    | "
-
+#define LOG_JSON_INDENT			"        "
 
 
 /* ************************************************************************** */
@@ -151,34 +162,34 @@ t_io_error				Log_Fatal	(s_logger const* logger, char const* str);
 
 
 //! Logging (perror-style) to both stderr and logfile (if applicable)
-_FORMAT(printf, 4, 5)
-t_io_error					LogAll_Error_IO			(t_u32 logger_amount, s_logger const* const* loggers, int error_code, char const* format_str, ...);
+_FORMAT(printf, 3, 4)
+t_io_error					LogAll_Error_IO			(s_logptr_array loggers, int error_code, char const* format_str, ...);
 #define c_logall_error_io	LogAll_Error_IO
 #define LogAll_SystemError	LogAll_Error_IO
 
 //! Logging perror-style to both stderr and logfile (if applicable)
-_FORMAT(printf, 4, 5)
-t_io_error					LogAll_Error			(t_u32 logger_amount, s_logger const* const* loggers, int error_code, char const* format_str, ...);
+_FORMAT(printf, 3, 4)
+t_io_error					LogAll_Error			(s_logptr_array loggers, int error_code, char const* format_str, ...);
 #define c_logall_error		LogAll_Error
 
 //! To be called when there is an important warning to show to the user
-_FORMAT(printf, 3, 4)
-t_io_error					LogAll_Warning			(t_u32 logger_amount, s_logger const* const* loggers,                 char const* format_str, ...);
+_FORMAT(printf, 2, 3)
+t_io_error					LogAll_Warning			(s_logptr_array loggers,                 char const* format_str, ...);
 #define c_logall_warning	LogAll_Warning
 
 //! To be called when there is an successful operation (or result) of which to notify the user
-_FORMAT(printf, 3, 4)
-t_io_error					LogAll_Success			(t_u32 logger_amount, s_logger const* const* loggers,                 char const* format_str, ...);
+_FORMAT(printf, 2, 3)
+t_io_error					LogAll_Success			(s_logptr_array loggers,                 char const* format_str, ...);
 #define c_logall_success	LogAll_Success
 
 //! Logging printf-style of message to both stdout and logfile (if applicable)
-_FORMAT(printf, 3, 4)
-t_io_error					LogAll_Message			(t_u32 logger_amount, s_logger const* const* loggers,                 char const* format_str, ...);
+_FORMAT(printf, 2, 3)
+t_io_error					LogAll_Message			(s_logptr_array loggers,                 char const* format_str, ...);
 #define c_logall_message	LogAll_Message
 
 //! Logging printf-style of verbose message to both stdout and logfile (if applicable)
-_FORMAT(printf, 3, 4)
-t_io_error					LogAll_Message_Verbose	(t_u32 logger_amount, s_logger const* const* loggers,                 char const* format_str, ...);
+_FORMAT(printf, 2, 3)
+t_io_error					LogAll_Message_Verbose	(s_logptr_array loggers,                 char const* format_str, ...);
 #define c_logall_verbose	LogAll_Message_Verbose
 #define LogAll_Verbose		LogAll_Message_Verbose
 
@@ -186,34 +197,34 @@ t_io_error					LogAll_Message_Verbose	(t_u32 logger_amount, s_logger const* cons
 
 
 //! Logging (perror-style) to both stderr and logfile (if applicable)
-#define	Log_Error_IO(                                     LOGGER,   ERROR_CODE,   FORMAT_STR,  ...) \
-	LogAll_Error_IO			(1, (s_logger const* const*)&(LOGGER), (ERROR_CODE), (FORMAT_STR), ##__VA_ARGS__)
+#define	Log_Error_IO(                                                               LOGGER,                 ERROR_CODE,   FORMAT_STR,  ...) \
+	LogAll_Error_IO			((s_logptr_array){ .logptrs = (s_logger const* const*)&(LOGGER), .length = 1}, (ERROR_CODE), (FORMAT_STR), ##__VA_ARGS__)
 #define c_log_error_io	Log_Error_IO
 #define Log_SystemError	Log_Error_IO
 
 //! Logging perror-style to both stderr and logfile (if applicable)
-#define	Log_Error(                                        LOGGER,   ERROR_CODE,   FORMAT_STR,  ...) \
-	LogAll_Error			(1, (s_logger const* const*)&(LOGGER), (ERROR_CODE), (FORMAT_STR), ##__VA_ARGS__)
+#define	Log_Error(                                                                  LOGGER,                 ERROR_CODE,   FORMAT_STR,  ...) \
+	LogAll_Error			((s_logptr_array){ .logptrs = (s_logger const* const*)&(LOGGER), .length = 1}, (ERROR_CODE), (FORMAT_STR), ##__VA_ARGS__)
 #define c_log_error		Log_Error
 
 //! To be called when there is an important warning to show to the user
-#define	Log_Warning(                                      LOGGER,                 FORMAT_STR,  ...) \
-	LogAll_Warning			(1, (s_logger const* const*)&(LOGGER),               (FORMAT_STR), ##__VA_ARGS__)
+#define	Log_Warning(                                                                LOGGER,                               FORMAT_STR,  ...) \
+	LogAll_Warning			((s_logptr_array){ .logptrs = (s_logger const* const*)&(LOGGER), .length = 1},               (FORMAT_STR), ##__VA_ARGS__)
 #define c_log_warning	Log_Warning
 
 //! To be called when there is an successful operation (or result) of which to notify the user
-#define	Log_Success(                                      LOGGER,                 FORMAT_STR,  ...) \
-	LogAll_Success			(1, (s_logger const* const*)&(LOGGER),               (FORMAT_STR), ##__VA_ARGS__)
+#define	Log_Success(                                                                LOGGER,                               FORMAT_STR,  ...) \
+	LogAll_Success			((s_logptr_array){ .logptrs = (s_logger const* const*)&(LOGGER), .length = 1},               (FORMAT_STR), ##__VA_ARGS__)
 #define c_log_success	Log_Success
 
 //! Logging printf-style of message to both stdout and logfile (if applicable)
-#define	Log_Message(                                      LOGGER,                 FORMAT_STR,  ...) \
-	LogAll_Message			(1, (s_logger const* const*)&(LOGGER),               (FORMAT_STR), ##__VA_ARGS__)
+#define	Log_Message(                                                                LOGGER,                               FORMAT_STR,  ...) \
+	LogAll_Message			((s_logptr_array){ .logptrs = (s_logger const* const*)&(LOGGER), .length = 1},               (FORMAT_STR), ##__VA_ARGS__)
 #define c_log_message	Log_Message
 
 //! Logging printf-style of verbose message to both stdout and logfile (if applicable)
-#define	Log_Message_Verbose(                              LOGGER,                 FORMAT_STR,  ...) \
-	LogAll_Message_Verbose	(1, (s_logger const* const*)&(LOGGER),               (FORMAT_STR), ##__VA_ARGS__)
+#define	Log_Message_Verbose(                                                        LOGGER,                               FORMAT_STR,  ...) \
+	LogAll_Message_Verbose	((s_logptr_array){ .logptrs = (s_logger const* const*)&(LOGGER), .length = 1},               (FORMAT_STR), ##__VA_ARGS__)
 #define c_log_verbose	Log_Message_Verbose
 #define Log_Verbose		Log_Message_Verbose
 
