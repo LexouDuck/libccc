@@ -285,7 +285,7 @@ typedef struct	s_dict_
 }				s_dict;
 
 #namespace Dict
-s_dict	New(int items, s_keyval ...);
+s_dict	New(int items, s_keyval ...)
 {
 	return ((s_dict)
 	{
