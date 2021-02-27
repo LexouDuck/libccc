@@ -16,7 +16,7 @@ void	Logger_Init(s_logger *a_logger)
 		if (a_logger->fd < 0)
 		{
 			a_logger->fd = 0;
-			Log_FatalError(a_logger, "Could not open a_logger");
+			Log_FatalError(a_logger, "Could not open a_logger\n");
 		}
 		else
 		{
@@ -33,7 +33,7 @@ void	Logger_Exit(s_logger *a_logger)
 	{
 		if (IO_Close(a_logger->fd))
 		{
-			Log_FatalError(a_logger, "Could not close a_logger");
+			Log_FatalError(a_logger, "Could not close a_logger\n");
 		}
 		a_logger->fd = 0;
 	}

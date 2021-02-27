@@ -5,34 +5,6 @@
 #include "libccc/sys/logger.h"
 
 
-#define LOGONE_FUNCTION_CONTENT(VERBOSE_ONLY, IS_ERROR, USE_ERRNO, PREFIX, PREFIX_COLOR) \
-	t_io_error	result;							\
-	va_list		args;							\
-												\
-	va_start(args, format_str);					\
-	result = Log_VA(logger,						\
-		VERBOSE_ONLY, IS_ERROR, USE_ERRNO,		\
-		PREFIX, PREFIX_COLOR,					\
-		format_str, args);						\
-	va_end(args);								\
-	return (result);							\
-
-
-#define LOGALL_FUNCTION_CONTENT(VERBOSE_ONLY, IS_ERROR, USE_ERRNO, PREFIX, PREFIX_COLOR) \
-	t_io_error	result;							\
-	va_list		args;							\
-												\
-	for (t_u32 i = 0; loggers[i]; ++i)			\
-	{ 											\
-		va_start(args, format_str);				\
-		result = Log_VA(loggers[i],				\
-		VERBOSE_ONLY, IS_ERROR, USE_ERRNO,		\
-		PREFIX, PREFIX_COLOR,					\
-			format_str, args);					\
-		va_end(args);							\
-	} 											\
-	return (result);							\
-
 
 t_io_error	LogAll(t_logptrarr const loggers,
 	t_bool verbose_only,

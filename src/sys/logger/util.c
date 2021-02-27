@@ -23,7 +23,7 @@ t_io_error	Log_FatalError(s_logger const* logger, char const* str)
 	if (logger->path && IO_IsTerminal(logger->fd))
 	{
 		result = IO_Write_Format(logger->fd,
-			C_RED"Fatal Error"C_RESET": %s\n%s", str, message);
+			C_RED"Fatal Error"C_RESET": %s\n\t-> %s\n", str, message);
 		if (result)	return (result);
 	}
 	else
