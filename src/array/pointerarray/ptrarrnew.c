@@ -3,9 +3,9 @@
 
 
 
-inline void	*c_ptrarrnew(t_size n)
+void**		PointerArray_New(t_size n)
 {
-	void	**result;
+	void**		result;
 
 	if (!(result = (void**)c_memnew(sizeof(void**) * (n + 1))))
 		return (NULL);

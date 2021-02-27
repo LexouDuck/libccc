@@ -3,7 +3,7 @@
 
 
 
-t_u32		c_ptrarrlen(const void **a_ptrarr)
+t_u32		PointerArray_Length(void const** a_ptrarr)
 {
 	t_u32		i;
 
@@ -14,7 +14,7 @@ t_u32		c_ptrarrlen(const void **a_ptrarr)
 	i = 0;
 	while (((void**)a_ptrarr)[i])
 	{
-		i++;
+		++i;
 	}
 	return (i);
 }
