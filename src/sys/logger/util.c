@@ -70,16 +70,16 @@ char*	Logger_GetSettings(s_logger const* logger)
 	}
 
 	result = String_Format(
-		"Logger settings:"
-		"\nSilence normal logs and warnings: %s"
-		"\nSilence error logs: %s"
-		"\nShow TimeStamp: %s"
-		"\nVerbose mode: %s"
-		"\nObfuscated mode: %s"
-		"\nAppend mode: %s"
-		"\nFormat mode: %s"
-		"\nLogging to fd: %d"
-		"\nLogging to file: \"%s\"",
+		"\n"LOG_TIMESTAMP_INDENT"\tLogger settings:"
+		"\n"LOG_TIMESTAMP_INDENT"\t- Silence normal logs and warnings: %s"
+		"\n"LOG_TIMESTAMP_INDENT"\t- Silence error logs: %s"
+		"\n"LOG_TIMESTAMP_INDENT"\t- Show TimeStamp: %s"
+		"\n"LOG_TIMESTAMP_INDENT"\t- Verbose mode: %s"
+		"\n"LOG_TIMESTAMP_INDENT"\t- Obfuscated mode: %s"
+		"\n"LOG_TIMESTAMP_INDENT"\t- Append mode: %s"
+		"\n"LOG_TIMESTAMP_INDENT"\t- Format mode: %s"
+		"\n"LOG_TIMESTAMP_INDENT"\t- Logging to fd: %d"
+		"\n"LOG_TIMESTAMP_INDENT"\t- Logging to file: \"%s\"",
 		(logger->silence_logs   ? "ON" : "OFF"),
 		(logger->silence_errors ? "ON" : "OFF"),
 		(logger->timestamp      ? "ON" : "OFF"),
