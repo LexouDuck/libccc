@@ -88,9 +88,20 @@ contexts:
     - match: '@[{}]'
       captures:
         0: comment.command.c
+    - match: '(?<=/[/\*])[/\*!]<?'
+      captures:
+        0: comment.command.c
+    - match: '\b(?:[a-zA-Z_]\w+)(\(\))'
+      captures:
+        0: comment.c
+        1: comment.command.c
+    - match: '(#)(?:[a-zA-Z_]\w+)\b'
+      captures:
+        0: comment.c
+        1: comment.command.c
     - match: |-
         (?ix)
-            (?= (?-i: @[a-zA-Z_]++) \b) @? \b
+            (?= (?-i: [@\\][a-zA-Z_]++) \b) [@\\]? \b
             ( GROUP
             | ALIAS
             | ARG
@@ -99,50 +110,18 @@ contexts:
             | ERRORS
             | PARAM_ENV
             | PARAM_RESULT
+            | (?:END)?EXAMPLES
+            | (?:END)?EXAMPLECODE
             ) \b
+            ({([^}]*)})?
       captures:
         0: comment.command.c
         1: comment.command.user.c
-      push:
-        - meta_scope: meta.toc-list.task-tag.prio-high.c
-        - match: '(?=[\s/*]*\*/)|(?<=$\n)'
-          pop: true
-        - include: comment-task-tag-line-innards
+        2: comment.command.c
+        3: comment.command.user.c
     - match: |-
         (?ix)
-            (?= (?-i: @[a-zA-Z_]++) \b) @? \b
-            ( SA
-            | SEE
-            | REF
-            | PARAM
-            | RETURNS
-            | RETURN
-            | RESULT
-            | FILE
-            | NAME
-            | PAGE
-            | SUBPAGE
-            | SECTION
-            | SUBSECTION
-            | INGROUP
-            | DEFGROUP
-            | WEAKGROUP
-            | ADDTOGROUP
-            | ({) | (})
-            ) \b
-      captures:
-        0: comment.command.c
-        1: comment.command.doxygen.c
-        2: comment.command.doxygen.group-brace.c
-        3: comment.command.doxygen.group-close.c
-      push:
-        - meta_scope: meta.toc-list.task-tag.prio-normal.c
-        - match: '(?=[\s/*]*\*/)|(?<=$\n)'
-          pop: true
-        - include: comment-task-tag-line-innards
-    - match: |-
-        (?ix)
-            (?= (?-i: @[a-zA-Z_]++ | \b [A-Z_]++) \b) @? \b
+            (?= (?-i: \b [A-Z_]++) \b) @? \b
             ( TODO
             | NOTE
             | NB
@@ -163,6 +142,221 @@ contexts:
         - match: '(?=[\s/*]*\*/)|(?<=$\n)'
           pop: true
         - include: comment-task-tag-line-innards
+    - match: |-
+        (?ix)
+          [@\\] \b
+          (?:
+            ( ({) | (})
+            | ADDINDEX
+            | ARG
+            | ATTENTION
+            | AUTHOR
+            | AUTHORS
+            | BRIEF
+            | BUG
+            | CALLERGRAPH
+            | CALLGRAPH
+            | CODE
+            | COND
+            | COPYRIGHT
+            | DATE
+            | DEPRECATED
+            | DETAILS
+            | DOCBOOKONLY
+            | DOT
+            | ELSE
+            | ELSEIF
+            | EMOJI
+            | ENDCODE
+            | ENDCOND
+            | ENDDOCBOOKONLY
+            | ENDDOT
+            | ENDHTMLONLY
+            | ENDIF
+            | ENDINTERNAL
+            | ENDLATEXONLY
+            | ENDLINK
+            | ENDMANONLY
+            | ENDMSC
+            | ENDPARBLOCK
+            | ENDRTFONLY
+            | ENDSECREFLIST
+            | ENDVERBATIM
+            | ENDUML
+            | ENDXMLONLY
+            | EXCEPTION
+            | EXTENDS
+            | FN
+            | HIDECALLERGRAPH
+            | HIDECALLGRAPH
+            | HIDEREFBY
+            | HIDEREFS
+            | HIDEINITIALIZER
+            | HTMLONLY
+            | IF
+            | IFNOT
+            | IMAGE
+            | INTERNAL
+            | INVARIANT
+            | LATEXONLY
+            | LI
+            | LINE
+            | MAINPAGE
+            | MANONLY
+            | MSC
+            | N
+            | NAME
+            | NOOP
+            | NOSUBGROUPING
+            | NOTE
+            | OVERLOAD
+            | PARBLOCK
+            | POST
+            | PRE
+            | PRIVATE
+            | PRIVATESECTION
+            | PROPERTY
+            | PROTECTED
+            | PROTECTEDSECTION
+            | PUBLIC
+            | PUBLICSECTION
+            | PURE
+            | REMARK
+            | REMARKS
+            | RESULT
+            | RETURN
+            | RETURNS
+            | RETVAL
+            | RTFONLY
+            | SA
+            | SECREFLIST
+            | SECTION
+            | SEE
+            | SHORT
+            | SHOWINITIALIZER
+            | SHOWREFBY
+            | SHOWREFS
+            | SINCE
+            | SKIP
+            | SKIPLINE
+            | STATIC
+            | STARTUML
+            | TABLEOFCONTENTS
+            | TEST
+            | THROW
+            | THROWS
+            | TODO
+            | TPARAM
+            | UNTIL
+            | VERBATIM
+            | VERSION
+            | VHDLFLOW
+            | WARNING
+            | XMLONLY
+            | XREFITEM
+            ) \b |
+            ( F[\$\[\]\{\}]
+            | \$
+            | \@
+            | \\
+            | \&
+            | \~
+            | \<
+            | \=
+            | \>
+            | \#
+            | \%
+            | \"
+            | \.
+            | \|
+            | ::
+            | --
+            | ---
+            )
+          )
+      captures:
+        0: comment.command.c
+        1: comment.command.doxygen.c
+        2: comment.command.doxygen.group-brace.c
+        3: comment.command.doxygen.group-close.c
+        4: comment.command.doxygen.c
+    - match: |-
+        (?ix)
+            [@\\] \b
+            ( ({) | (})
+            | A
+            | ADDTOGROUP
+            | ANCHOR
+            | B
+            | C
+            | CATEGORY
+            | CITE
+            | CLASS
+            | COPYBRIEF
+            | COPYDETAILS
+            | COPYDOC
+            | DEF
+            | DEFGROUP
+            | DIAFILE
+            | DIR
+            | DOCBOOKINCLUDE
+            | DONTINCLUDE
+            | DOTFILE
+            | E
+            | EM
+            | ENUM
+            | EXAMPLE
+            | FILE
+            | HEADERFILE
+            | HTMLINCLUDE
+            | IDLEXCEPT
+            | IMPLEMENTS
+            | INCLUDE
+            | INCLUDEDOC
+            | INCLUDELINENO
+            | INGROUP
+            | INTERFACE
+            | LATEXINCLUDE
+            | LINK
+            | MANINCLUDE
+            | MEMBEROF
+            | MSCFILE
+            | NAMESPACE
+            | P
+            | PACKAGE
+            | PAGE
+            | PAR
+            | PARAM
+            | PARAGRAPH
+            | PROTOCOL
+            | REF
+            | REFITEM
+            | RELATED
+            | RELATES
+            | RELATEDALSO
+            | RELATESALSO
+            | RTFINCLUDE
+            | SNIPPET
+            | SNIPPETDOC
+            | SNIPPETLINENO
+            | STRUCT
+            | SUBPAGE
+            | SUBSECTION
+            | SUBSUBSECTION
+            | TYPEDEF
+            | UNION
+            | VAR
+            | VERBINCLUDE
+            | WEAKGROUP
+            | XMLINCLUDE
+            ) \b
+            [\t\ ]*([^\s]+)
+      captures:
+        0: comment.command.c
+        1: comment.command.doxygen.c
+        2: comment.command.doxygen.group-brace.c
+        3: comment.command.doxygen.group-close.c
+        4: comment.command.user.c
   comment-task-tag-line-innards:
     - include: comment-task-tag-line
     - include: lex-continuation
