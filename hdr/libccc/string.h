@@ -414,9 +414,17 @@ char*						String_Replace_String(char const* str, char const* str_old, char cons
 
 /*
 ** ************************************************************************** *|
-**                           String In Place Editors                          *|
+**                      String Concatenation Operations                       *|
 ** ************************************************************************** *|
 */
+
+/*!
+**	Returns a new null-terminated string which is the result of
+**	the concatenation of the two given strings `str1` and `str2`.
+*/
+_MALLOC()
+char*					String_Join(char const* str1, char const* str2);
+#define c_strjoin		String_Join //!< @alias{String_Join}
 
 /*!
 **	Returns a newly allocated string which is the concatenation of `s1` and `s2`.
@@ -443,12 +451,22 @@ _MALLOC()
 char*					String_Prepend(char const* src, char* *dest);
 #define c_strprepend	String_Prepend //!< @alias{String_Prepend}
 
+
+
+/*
+** ************************************************************************** *|
+**                           String In-Place Editing                          *|
+** ************************************************************************** *|
+*/
+
 /*!
 **	Inserts the string `src` at index `index` in `dest`; deletes `dest` and
 **	replaces it by the result. Also returns the result.
 */
 char*							String_Insert_InPlace(char* *dest, char const* src, t_u32 index);
 #define c_strinsert_inplace		String_Insert_InPlace //!< @alias{String_Insert_InPlace}
+
+
 
 /*!
 **	Replaces every occurence of `old` by `new` in `str`.
@@ -472,6 +490,8 @@ void								String_Replace_Charset_InPlace(char* str, char const* charset_old, c
 */
 void								String_Replace_String_InPlace(char* *a_str, char const* str_old, char const* str_new);
 #define c_strrep_str_inplace		String_Replace_String_InPlace //!< @alias{String_Replace_String_InPlace}
+
+
 
 /*!
 **	Changes the content of '*a_str' by applying f to each of its chars.
@@ -564,14 +584,6 @@ char*					String_ToPrintableString(char const* str);
 _MALLOC()
 char*					String_Reverse(char const* str);
 #define c_strrev		String_Reverse //!< @alias{String_Reverse}
-
-/*!
-**	Returns a new null-terminated string which is the result of
-**	the concatenation of the two given strings `str1` and `str2`.
-*/
-_MALLOC()
-char*					String_Join(char const* str1, char const* str2);
-#define c_strjoin		String_Join //!< @alias{String_Join}
 
 /*!
 **	Returns a reallocated version of the given string `dest`, in which

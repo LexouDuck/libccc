@@ -108,6 +108,7 @@ SRCS = \
 	memory/memcpy.c		\
 	memory/memdup.c		\
 	memory/memmove.c	\
+	memory/memmerge.c	\
 	memory/memcmp.c		\
 	memory/memchr.c		\
 	memory/memswap.c	\
@@ -132,14 +133,13 @@ SRCS = \
 	string/strtrim.c	\
 	string/strpad.c		\
 	string/strrev.c		\
-	string/strjoin.c	\
+	string/strmerge.c	\
 	string/strinsert.c	\
 	string/strsub.c		\
 	string/strformat.c	\
 	string/striter.c	\
 	string/strmap.c		\
 	string/strrep.c		\
-	string/strmerge.c	\
 	string/strprint.c	\
 	color/color_argb_get.c	\
 	color/color_argb_set.c	\

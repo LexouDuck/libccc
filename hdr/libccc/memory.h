@@ -176,6 +176,30 @@ void*				Memory_Duplicate(void const* ptr, t_size n);
 
 /*
 ** ************************************************************************** *|
+**                       Memory Concatenation Operations                      *|
+** ************************************************************************** *|
+*/
+
+//! Return a newly allocated memory region, by concatenating `ptr1` and `ptr2`
+void*					Memory_Join(void const* ptr1, t_size length1, void const* ptr2, t_size length2);
+#define c_memjoin		Memory_Join //!< @alias{Memory_Join}
+
+//! Return a newly allocated memory region, by concatenating `*a_dest` (deletes old) and `src`
+void*					Memory_Append(void* *a_dest, t_size dest_length, void const* src, t_size src_length);
+#define c_memappend		Memory_Append //!< @alias{Memory_Append}
+
+//! Return a newly allocated memory region, by concatenating `src` and `*a_dest` (deletes old)
+void*					Memory_Prepend(void const* src, t_size src_length, void* *a_dest, t_size dest_length);
+#define c_memprepend	Memory_Prepend //!< @alias{Memory_Prepend}
+
+//! Return a newly allocated memory region, by concatenating `*a_ptr1` (deletes old) and `*a_ptr2` (deletes old)
+void*					Memory_Merge(void* *a_ptr1, t_size length1, void* *a_ptr2, t_size length2);
+#define c_memmerge		Memory_Merge //!< @alias{Memory_Merge}
+
+
+
+/*
+** ************************************************************************** *|
 **                          Other Memory Operations                           *|
 ** ************************************************************************** *|
 */
