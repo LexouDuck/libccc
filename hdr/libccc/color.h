@@ -185,7 +185,7 @@ s_argb								Color_ARGB16_To_ARGB(t_argb16 color);
 **	@returns a pointer to the color within 'colors' which is the closest match
 **			to the given 'target' color, searching through 'n' colors in the array.
 */
-t_argb16*						Color_ARGB16_GetNearest(t_argb16 target, t_argb16* colors, t_size n);
+t_argb16 const*					Color_ARGB16_GetNearest(t_argb16 target, t_argb16 const* colors, t_size n);
 #define c_color_argb16_nearest	Color_ARGB16_GetNearest
 
 
@@ -271,7 +271,7 @@ s_argb								Color_ARGB32_To_ARGB(t_argb32 color);
 **	@returns a pointer to the color within 'colors' which is the closest match
 **			to the given 'target' color, searching through 'n' colors in the array.
 */
-t_argb32*						Color_ARGB32_GetNearest(t_argb32 target, t_argb32* colors, t_size n);
+t_argb32 const*					Color_ARGB32_GetNearest(t_argb32 target, t_argb32 const* colors, t_size n);
 #define c_color_argb32_nearest	Color_ARGB32_GetNearest
 
 
@@ -351,7 +351,7 @@ s_ahsl							Color_ARGB_To_AHSL(s_argb const* color);
 **	@returns a pointer to the color within 'colors' which is the closest match
 **			to the given 'target' color, searching through 'n' colors in the array.
 */
-s_argb*							Color_ARGB_GetNearest(s_argb target, s_argb* colors, t_size n);
+s_argb const*					Color_ARGB_GetNearest(s_argb target, s_argb const* colors, t_size n);
 #define c_color_argb_nearest	Color_ARGB_GetNearest
 
 
@@ -413,7 +413,7 @@ s_argb							Color_AHSL_To_ARGB(s_ahsl const* color);
 **	@returns a pointer to the color within 'colors' which is the closest match
 **			to the given 'target' color, searching through 'n' colors in the array.
 */
-s_ahsl*							Color_AHSL_GetNearest(s_ahsl target, s_ahsl* colors, t_size n);
+s_ahsl const*					Color_AHSL_GetNearest(s_ahsl target, s_ahsl const* colors, t_size n);
 #define c_color_ahsl_nearest	Color_AHSL_GetNearest
 
 

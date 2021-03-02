@@ -1,33 +1,34 @@
 
+#include "libccc/math/math.h"
 #include "libccc/color.h"
 
 
 
-t_argb16*		c_color_argb16_nearest(
+t_argb16 const*		Color_ARGB16_GetNearest(
 	t_argb16 target,
-	t_argb16* colors,
+	t_argb16 const* colors,
 	t_size n)
 {
 	t_s16 r;
 	t_s16 g;
 	t_s16 b;
 	t_s16 min_diff;
-	t_argb16* result;
+	t_argb16 const* result;
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (colors == NULL)
 		return (NULL);
 #endif
-	min_diff = S16_MAX;
+	min_diff = 3 * (COLOR_ARGB16_CHANNEL + 1);
 	result = NULL;
 	while (n--)
 	{
-		r = c_color_argb16_get_r(target) - c_color_argb16_get_r(colors[n]);
-		g = c_color_argb16_get_g(target) - c_color_argb16_get_g(colors[n]);
-		b = c_color_argb16_get_b(target) - c_color_argb16_get_b(colors[n]);
-		r = (r < 0) ? -r : r;
-		g = (g < 0) ? -g : g;
-		b = (b < 0) ? -b : b;
+		r = (int)Color_ARGB16_Get_R(target) - (int)Color_ARGB16_Get_R(colors[n]);
+		g = (int)Color_ARGB16_Get_G(target) - (int)Color_ARGB16_Get_G(colors[n]);
+		b = (int)Color_ARGB16_Get_B(target) - (int)Color_ARGB16_Get_B(colors[n]);
+		r = ABS(r);
+		g = ABS(g);
+		b = ABS(b);
 		if ((r + g + b) < min_diff)
 		{
 			min_diff = (r + g + b);
@@ -39,31 +40,31 @@ t_argb16*		c_color_argb16_nearest(
 
 
 
-t_argb32*		c_color_argb32_nearest(
+t_argb32 const*		Color_ARGB32_GetNearest(
 	t_argb32 target,
-	t_argb32* colors,
+	t_argb32 const* colors,
 	t_size n)
 {
 	t_s16 r;
 	t_s16 g;
 	t_s16 b;
 	t_s16 min_diff;
-	t_argb32* result;
+	t_argb32 const* result;
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (colors == NULL)
 		return (NULL);
 #endif
-	min_diff = S16_MAX;
+	min_diff = 3 * (COLOR_ARGB32_CHANNEL + 1);
 	result = NULL;
 	while (n--)
 	{
-		r = c_color_argb32_get_r(target) - c_color_argb32_get_r(colors[n]);
-		g = c_color_argb32_get_g(target) - c_color_argb32_get_g(colors[n]);
-		b = c_color_argb32_get_b(target) - c_color_argb32_get_b(colors[n]);
-		r = (r < 0) ? -r : r;
-		g = (g < 0) ? -g : g;
-		b = (b < 0) ? -b : b;
+		r = (int)Color_ARGB32_Get_R(target) - (int)Color_ARGB32_Get_R(colors[n]);
+		g = (int)Color_ARGB32_Get_G(target) - (int)Color_ARGB32_Get_G(colors[n]);
+		b = (int)Color_ARGB32_Get_B(target) - (int)Color_ARGB32_Get_B(colors[n]);
+		r = ABS(r);
+		g = ABS(g);
+		b = ABS(b);
 		if ((r + g + b) < min_diff)
 		{
 			min_diff = (r + g + b);
@@ -75,31 +76,31 @@ t_argb32*		c_color_argb32_nearest(
 
 
 
-s_argb*		c_color_argb_nearest(
+s_argb const*		Color_ARGB_GetNearest(
 	s_argb target,
-	s_argb* colors,
+	s_argb const* colors,
 	t_size n)
 {
 	t_s16 r;
 	t_s16 g;
 	t_s16 b;
 	t_s16 min_diff;
-	s_argb* result;
+	s_argb const* result;
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (colors == NULL)
 		return (NULL);
 #endif
-	min_diff = S16_MAX;
+	min_diff = 3.0;
 	result = NULL;
 	while (n--)
 	{
 		r = target.r - colors[n].r;
 		g = target.g - colors[n].g;
 		b = target.b - colors[n].b;
-		r = (r < 0) ? -r : r;
-		g = (g < 0) ? -g : g;
-		b = (b < 0) ? -b : b;
+		r = ABS(r);
+		g = ABS(g);
+		b = ABS(b);
 		if ((r + g + b) < min_diff)
 		{
 			min_diff = (r + g + b);
@@ -108,3 +109,5 @@ s_argb*		c_color_argb_nearest(
 	}
 	return (result);
 }
+
+// TODO AHSL_GetNearest
