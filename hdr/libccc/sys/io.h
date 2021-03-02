@@ -236,14 +236,20 @@ t_io_error					IO_ChangeOwner(char const* filepath, char const* owner, char cons
 
 //! Reads the contents of 'fd' and fill a data buffer with those bytes
 /*!
-**	Reads the full contents of the file descriptor 'fd', and puts it into 'a_file'.
+**	SYSCALL wrapper:
+**		int	read(const char *pathname, int flags, mode_t mode);
+**
+**	Reads the full contents of the file descriptor `fd` (ie, until read() returns 0),
+**	and allocates a memory region which stores the file contents in `*a_file`.
 **
 **	@param	fd		The file descriptor to read data from
 **	@param	a_file	The address of the buffer to fill: is allocated and filled with the data
-**	@param	max		The maximum amount of bytes to read from 'fd'; if 0, replaced by (t_size)-1
-**	@returns 0(OK) if the stream was read successfully, or a non-zero error code (ie: an 'errno' value)
+**	@param	max		The maximum amount of bytes to read from 'fd' (if 0, replaced by `(t_size)-1`)
+**	@returns the amount of bytes read from the given file descriptor `fd` in total.
+**		If the return value is a negative number, there was a read error:
+**		You should then check `errno`, and/or use `IO_GetError(errno)` immediately after.
 */
-t_io_error				IO_Read_File(t_fd const fd, char* *a_file, t_size max);
+t_sintmax				IO_Read_File(t_fd const fd, char* *a_file, t_size max);
 #define c_readfile		IO_Read_File
 
 //! Reads the contents of 'fd' and makes an array of strings, one for each line
@@ -251,13 +257,16 @@ t_io_error				IO_Read_File(t_fd const fd, char* *a_file, t_size max);
 **	Reads the contents of the file descriptor 'fd', and puts that into
 **	an array of strings, one char pointer for each line (each '\\n' newline char).
 **	Each '\\n' character in the string are replaced by '\\0' string terminators.
+**	NB: If the file being read contains any `'\0'` chars, the string array will end there.
 **
 **	@param	fd			The file descriptor to read data from
 **	@param	a_strarr	The address of the string array to fill: the top-level
 **						top-level pointer array is allocated and filled appropriately.
-**	@returns 0(OK) if the stream was read successfully, or a non-zero error code (ie: an 'errno' value)
+**	@returns the amount of bytes read from the given file descriptor `fd` in total.
+**		If the return value is a negative number, there was a read error:
+**		You should then check `errno`, and/or use `IO_GetError(errno)` immediately after.
 */
-t_io_error				IO_Read_Lines(t_fd const fd, char** *a_strarr);
+t_sintmax				IO_Read_Lines(t_fd const fd, char** *a_strarr);
 #define c_readlines		IO_Read_Lines
 
 //! Reads the contents of the file descriptor 'fd' line-per-line.
