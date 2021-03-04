@@ -37,7 +37,7 @@ t_io_error	Log_VA(s_logger const* logger,
 		(!logger->verbose        && verbose_only))
 		return (OK);
 
-	char*	error_str;
+	char*	error_str = NULL;
 	if (use_errno)
 	{
 		error_str = IO_GetError(errno);
@@ -138,7 +138,7 @@ t_io_error	Log_VA(s_logger const* logger,
 			format_str, (format_str[0] != '\0' && format_str[String_Length(format_str) - 1] == '\n' ? "" : "\n")
 		);
 	}
-
+	String_Delete(&error_str);
 
 	if (full_format_str == NULL)
 	{

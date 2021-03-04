@@ -30,7 +30,6 @@ t_io_error	Log_Message				(s_logger const* logger,                 char const* f
 //! To be called when there is "verbose" data to be logged
 t_io_error	Log_Message_Verbose		(s_logger const* logger,                 char const* format_str, ...)		{ LOGONE_FUNCTION_CONTENT( TRUE, FALSE,          0,         "", NULL)     }
 
-
 //! To be called when there is an error which does not use errno
 t_io_error	LogAll_Error			(t_logptrarr const loggers, int error_code, char const* format_str, ...)	{ LOGALL_FUNCTION_CONTENT(FALSE, FALSE, error_code,    "Error", C_RED)    }
 //! To be called when there is an error that sets errno
