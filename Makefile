@@ -146,9 +146,11 @@ SRCS = \
 	color/color_argb_to.c	\
 	color/color_nearest.c	\
 	color/color_convert.c	\
+	sys/io/fd.c					\
+	sys/io/error.c				\
+	sys/io/color.c				\
 	sys/io/open.c				\
 	sys/io/close.c				\
-	sys/io/error.c				\
 	sys/io/chmod.c				\
 	sys/io/read.c				\
 	sys/io/read_nextline.c		\
