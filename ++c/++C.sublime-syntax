@@ -187,6 +187,7 @@ contexts:
             | EXCEPTION
             | EXTENDS
             | FN
+            | FILE
             | HIDECALLERGRAPH
             | HIDECALLGRAPH
             | HIDEREFBY
@@ -470,6 +471,9 @@ contexts:
     - match: \s*\b(NULL|true|false|TRUE|FALSE)\b
       captures:
         1: constant.language.c
+    - match: \s*\b(null|ERROR|OK)\b
+      captures:
+        1: constant.language.++c
   lex-continuation:
     - match: (\\)$(\n?)
       scope: punctuation.separator.continuation.c
@@ -777,7 +781,7 @@ contexts:
         - match: (?<=$\n)(?<!\\$\n)
           pop: true
         - include: lex-core
-    - match: ^\s*(#)\s*(namespace|function|operator|accessor|replace|incbin|guards|alias|align|inline|format|malloc|delete|packed|pure)\b
+    - match: ^\s*(#)\s*(namespace|function|operator|accessor|replace|incbin|header|reflect|alias|align|inline|format|malloc|delete|packed|pure)\b
       captures:
         0: keyword.other.preprocessor.++c
       push:
@@ -1252,8 +1256,8 @@ contexts:
           captures:
             1: entity.name.type.class.c entity.name.class.c
   type-usage:
-    - match: '\b((SDL_([A-Z])\w+(?!\()))\b'
-      scope: entity.name.type.usertype
+    - match: '\b((SDL_([A-Z][a-z]+)\w+(?!\()))\b'
+      scope: entity.name.type.usertype.SDL2.c
   typedef:
     - match: (?x) (?<= \A typedef | \W typedef ) \b
       push:
