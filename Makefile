@@ -144,8 +144,9 @@ SRCS = \
 	color/color_argb_get.c	\
 	color/color_argb_set.c	\
 	color/color_argb_to.c	\
-	color/color_nearest.c	\
 	color/color_convert.c	\
+	color/color_nearest.c	\
+	color/color_diff.c		\
 	sys/io/fd.c					\
 	sys/io/error.c				\
 	sys/io/color.c				\

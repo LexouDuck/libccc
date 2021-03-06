@@ -177,6 +177,16 @@ s_argb								Color_ARGB16_To_ARGB(t_argb16 color);
 
 
 
+//! Returns a value indicating the amount of visual difference between the two given colors
+/*!
+**	https://en.wikipedia.org/wiki/Color_difference
+**
+**	@returns A human-perception-weighted euclidian squared distance between the two given colors
+**		The greater the value, the more perceptually different these 2 colors are.
+*/
+t_u16						Color_ARGB16_Difference(t_argb16 c1, t_argb16 c2);
+#define c_color_argb16_diff	Color_ARGB16_Difference
+
 //! Find the nearest color to the given 'target' color, from within the given arrays of 'colors'
 /*!
 **	@param	target	The desired color, for which the nearest will be returned
@@ -262,6 +272,16 @@ s_argb								Color_ARGB32_To_ARGB(t_argb32 color);
 #define c_color_argb32_to_argb		Color_ARGB32_To_ARGB
 
 
+
+//! Returns a value indicating the amount of visual difference between the two given colors
+/*!
+**	https://en.wikipedia.org/wiki/Color_difference
+**
+**	@returns A human-perception-weighted euclidian squared distance between the two given colors
+**		The greater the value, the more perceptually different these 2 colors are.
+*/
+t_u32						Color_ARGB32_Difference(t_argb32 c1, t_argb32 c2);
+#define c_color_argb32_diff	Color_ARGB32_Difference
 
 //! Find the nearest color to the given 'target' color, from within the given arrays of 'colors'
 /*!
