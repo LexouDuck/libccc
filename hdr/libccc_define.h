@@ -127,12 +127,23 @@ HEADER_CPP
 /*
 **	Define macros for common function attributes (as documented by GNU)
 */
-#ifndef __SWIG__
+#if _MSC_VER || defined(__SWIG__)
+	#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)
+	#define _ALIAS(FUNCTION)
+	#define _ALIGN(MINIMUM)
+	#define _PURE()
+	#define _INLINE()
+	#define _MALLOC()
+	#define _DELETE()
+	#define _UNUSED()
+	#define _PACKED()
+#else
+
 #if defined(__MINGW32__) && !defined(__clang__)
-	//!< Before a function def: make the compiler give warnings for a variadic-args function with a format string
+	//! Before a function def: make the compiler give warnings for a variadic-args function with a format string
 	#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	__attribute__((format(gnu_##FUNCTION, POS_FORMAT, POS_VARARGS)))
 #else
-	//!< Before a function def: make the compiler give warnings for a variadic-args function with a format string
+	//! Before a function def: make the compiler give warnings for a variadic-args function with a format string
 	#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	__attribute__((format(FUNCTION, POS_FORMAT, POS_VARARGS)))
 #endif
 	#define _ALIAS(FUNCTION)	__attribute__((alias(#FUNCTION)))	//!< Before a function or variable def: sets the token to be an alias for the one given as arg
@@ -143,16 +154,6 @@ HEADER_CPP
 	#define _DELETE()			__attribute__((delete))				//!< Before a function def: indicates that it deletes/frees memory
 	#define _UNUSED()			__attribute__((unused))				//!< Before a function def: suppresses warnings for empty/incomplete function
 	#define _PACKED()			__attribute__((packed))				//!< Before a struct/union def: do not perform byte-padding on this struct/union type
-#else
-	#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)
-	#define _ALIAS(FUNCTION)
-	#define _ALIGN(MINIMUM)
-	#define _PURE()
-	#define _INLINE()
-	#define _MALLOC()
-	#define _DELETE()
-	#define _UNUSED()
-	#define _PACKED()
 #endif
 
 
