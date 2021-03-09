@@ -64,10 +64,10 @@ typedef struct	s_logger_
 	t_fd		fd;				//!< The file descriptor to which this logger outputs
 	char*		path;			//!< The file path (relative or absolute) for this logger output logfile
 }				s_logger;
-#define	NULL_LOGGER 			((s_logger){ /*.in_use = FALSE,*/ .silence_logs = FALSE, .silence_errors = FALSE, .timestamp = FALSE, .verbose = FALSE, .obfuscated = FALSE, .append = FALSE, .format = LOGFORMAT_ANSI, .fd = 0,      .path = NULL })
+#define	NULL_LOGGER 			((s_logger const){ 0 })
 
-#define DEFAULT_LOGGER_STDOUT	((s_logger){ /*.in_use = FALSE,*/ .silence_logs = FALSE, .silence_errors = TRUE,  .timestamp = TRUE,  .verbose = FALSE,  .obfuscated = FALSE, .append = FALSE, .format = LOGFORMAT_ANSI, .fd = STDOUT, .path = NULL })
-#define DEFAULT_LOGGER_STDERR	((s_logger){ /*.in_use = FALSE,*/ .silence_logs = TRUE,  .silence_errors = FALSE, .timestamp = TRUE,  .verbose = FALSE,  .obfuscated = FALSE, .append = FALSE, .format = LOGFORMAT_ANSI, .fd = STDERR, .path = NULL })
+#define DEFAULT_LOGGER_STDOUT	((s_logger const){ /*.in_use = FALSE,*/ .silence_logs = FALSE, .silence_errors = TRUE,  .timestamp = TRUE,  .verbose = FALSE,  .obfuscated = FALSE, .append = FALSE, .format = LOGFORMAT_ANSI, .fd = STDOUT, .path = NULL })
+#define DEFAULT_LOGGER_STDERR	((s_logger const){ /*.in_use = FALSE,*/ .silence_logs = TRUE,  .silence_errors = FALSE, .timestamp = TRUE,  .verbose = FALSE,  .obfuscated = FALSE, .append = FALSE, .format = LOGFORMAT_ANSI, .fd = STDERR, .path = NULL })
 
 //! A null-terminated pointer array of instantiated, active, read-only logger structs. Internals should be set through the internals of a void**. 
 typedef s_logger const* const*	t_logptrarr;
