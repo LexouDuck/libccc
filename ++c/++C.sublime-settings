@@ -1,4 +1,15 @@
 {
+/*
+SublimeText shortcuts & packages:
+
+(by default):			CTRL+K,CTRL+U	Convert the selected text to uppercase
+(by default):			CTRL+K,CTRL+L	Convert the selected text to lowercase
+Increment Selection:	CTRL+ALT+I		Generates a list of incrementing numbers at the selection cursors
+Increment Decrement:	CTRL+ALT+A		Increment all selected numbers (add 1)
+Increment Decrement:	CTRL+ALT+X		Decrement all selected numbers (subtract 1)
+EasyClangComplete:		autocomplete, code tooltips, in-line compilation errors for C
+RegReplace:				set up regex replace rules to automatically refactor code with a custom command
+*/
 	"extensions":
 	[
 		"h",

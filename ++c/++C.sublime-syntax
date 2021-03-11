@@ -687,7 +687,7 @@ contexts:
         (?ix)
                     (?<!\.) \b
 
-                    (0) [0-7]++
+                    (0|0o) [0-7]++
 
                     # any invalid chars
                     ([0-9a-z]*?)

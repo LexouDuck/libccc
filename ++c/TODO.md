@@ -61,10 +61,10 @@ address = &value; // pure C
 address = @value; // ++C
 ```
 
-- **/!\ NOT YET DECIDED, PROBABLY A BAD IDEA**: pointer types: * = $ (mutable pointer) or @ (const pointer)
+- octal number literals:
 ```c
-void*		->	void$
-void const*	->	void@
+value = 0644; // pure C
+value = 0o644; // ++C
 ```
 
 ### RegExp literals:
@@ -636,6 +636,12 @@ void	MyFunction(char* format, ...);
 ```
 
 
+Lastly,
+- **/!\ NOT YET DECIDED, PROBABLY A BAD IDEA**: pointer types: * = $ (mutable pointer) or @ (const pointer)
+```c
+void*		->	void$
+void const*	->	void@
+```
 
 
 ---
