@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,20 +12,12 @@
   
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/doxyrest-sphinx_rtd_theme.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -33,14 +26,37 @@
         <script src="_static/doctools.js"></script>
         <script src="_static/language_data.js"></script>
         <script src="_static/target-highlight.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="_static/js/custom.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="19) libccc/math/algebra" href="group_libccc_math_algebra.html" />
-    <link rel="prev" title="struct s_prob_mass_" href="struct_s_prob_mass_.html" /> 
+    <link rel="prev" title="struct s_prob_mass" href="struct_s_prob_mass.html" />
+	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
+	
+	<meta name="Description" content="18) libccc/math/random">
+	<meta property="og:description" content="18) libccc/math/random">
+	<meta property="og:title" content="libccc 1.0 documentation - 18) libccc/math/random">
+	<meta property="og:image" content="_static/images/libccc_icon.png">
+	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="380" />
+	<meta property="og:image:height" content="380" />
+	<meta property="og:url" content="group_libccc_math_random.html">
+	<meta property="og:site_name" content="libccc 1.0 documentation">
+
+
 </head>
 
 <body class="wy-body-for-nav">
@@ -54,7 +70,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> libccc
+            <a href="index.html" class="icon icon-home"> libccc
           
 
           
@@ -77,7 +93,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -123,7 +138,7 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_array_stringarray.html">26) libccc/array/stringarray</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="page_index.html"># libccc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
@@ -132,7 +147,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -171,7 +185,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="index.html">Docs</a> &raquo;</li>
         
       <li>18) libccc/math/random</li>
     
@@ -199,48 +213,51 @@
 <p>This header defines some simple pseudo-random number generator functions. <a class="reference internal" href="#details-group-libccc-math-random"><span class="std std-ref">More…</span></a></p>
 <pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// global functions</span>
 
-<span class="n">t_u32</span> <a class="reference internal" href="#doxid-group-libccc-math-random-1ga3b784b7285ecf6242f165d8c9700f1c8"><span class="std std-ref">Random_Shuffle</span></a><span></span><span class="p">(</span><span class="n">t_u32</span> <span class="n">n</span><span class="p">);</span>
-<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-math-random-1gaa0b27cfcde0b867168a3bd1850f3dde3"><span class="std std-ref">Random_SetSeed</span></a><span></span><span class="p">(</span><span class="n">t_u32</span> <span class="n">seed</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1gaa7590a5fe5898685586e486b914bd4f4"><span class="std std-ref">t_u32</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-random-1ga3b784b7285ecf6242f165d8c9700f1c8"><span class="std std-ref">Random_Shuffle</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1gaa7590a5fe5898685586e486b914bd4f4"><span class="std std-ref">t_u32</span></a><span></span> <span class="n">n</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-math-random-1gaa0b27cfcde0b867168a3bd1850f3dde3"><span class="std std-ref">Random_SetSeed</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1gaa7590a5fe5898685586e486b914bd4f4"><span class="std std-ref">t_u32</span></a><span></span> <span class="n">seed</span><span class="p">);</span>
 <span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-math-random-1gaa31bfdae86594c2766eb63d246c65b57"><span class="std std-ref">Random_RefreshSeed</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
-<span class="n">t_u32</span> <a class="reference internal" href="#doxid-group-libccc-math-random-1ga66c88261a77764430fead89c8405e131"><span class="std std-ref">Random_U32</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
-<span class="n">t_u32</span> <a class="reference internal" href="#doxid-group-libccc-math-random-1gaa10d2576ce2824c15f50f60938edde02"><span class="std std-ref">Random_U32_Pow2N</span></a><span></span><span class="p">(</span><span class="n">t_u32</span> <span class="n">n</span><span class="p">);</span>
-<span class="n">t_u32</span> <a class="reference internal" href="#doxid-group-libccc-math-random-1ga01078f6eff6a8dc8c9aad3f9ca55dd8b"><span class="std std-ref">Random_U32_0toN</span></a><span></span><span class="p">(</span><span class="n">t_u32</span> <span class="n">n</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1gaa7590a5fe5898685586e486b914bd4f4"><span class="std std-ref">t_u32</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-random-1ga66c88261a77764430fead89c8405e131"><span class="std std-ref">Random_U32</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1gaa7590a5fe5898685586e486b914bd4f4"><span class="std std-ref">t_u32</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-random-1gaa10d2576ce2824c15f50f60938edde02"><span class="std std-ref">Random_U32_Pow2N</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1gaa7590a5fe5898685586e486b914bd4f4"><span class="std std-ref">t_u32</span></a><span></span> <span class="n">n</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1gaa7590a5fe5898685586e486b914bd4f4"><span class="std std-ref">t_u32</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-random-1ga01078f6eff6a8dc8c9aad3f9ca55dd8b"><span class="std std-ref">Random_U32_0toN</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1gaa7590a5fe5898685586e486b914bd4f4"><span class="std std-ref">t_u32</span></a><span></span> <span class="n">n</span><span class="p">);</span>
 <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1gad9b833ec2906279e4f479df31778732a"><span class="std std-ref">t_sint</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-random-1gaefbcbea0766682f1ddc1dd30c59fde60"><span class="std std-ref">Random_Int_AtoB</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1gad9b833ec2906279e4f479df31778732a"><span class="std std-ref">t_sint</span></a><span></span> <span class="n">a</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1gad9b833ec2906279e4f479df31778732a"><span class="std std-ref">t_sint</span></a><span></span> <span class="n">b</span><span class="p">);</span>
 <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-random-1ga674f8ff116d5eef828769b412ac16fd5"><span class="std std-ref">Random_Float_0to1</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
 <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-random-1gac8b4f4fbee6224fbc31d0d2fd9932d49"><span class="std std-ref">Random_Float_AtoB</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">a</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">b</span><span class="p">);</span>
 
 <span class="c1">// macros</span>
 
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-random-1ga9b45f596d0227ed7d3061dd50edb7810"><span class="std std-ref">CEIL_SQRT_MOD</span></a><span></span>
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-random-1ga2de21eb687a4fd2ea6c1d5d7fb3a6e8d"><span class="std std-ref">DEFAULT_SEED</span></a><span></span>
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-random-1ga9bc1fe94bf8c1b9aaef3dade106b6304"><span class="std std-ref">MODULUS</span></a><span></span>
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-random-1ga21005f9f4e2ce7597c5eb4351816d7e2"><span class="std std-ref">OFFSET</span></a><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-random-1ga85b028fee99c4e20099a1366c3b2b600"><span></span><span class="n">c_random_32bit_shuffle</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-random-1ga24f4f1fb206910e582c1b6db9ae40ee5"><span></span><span class="n">c_random_float_0_to_1</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-random-1gad3268f1d763b76947c3d35bd0fcc25dd"><span></span><span class="n">c_random_float_a_to_b</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-random-1ga1eb344c07fca7bf9c88eb0af071bb6ed"><span></span><span class="n">c_random_int_a_to_b</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-random-1ga89e94120fffe66a770d96652a279d009"><span></span><span class="n">c_random_renew_seed</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-random-1ga990d3d8361dcfdd56cb442f8110ae100"><span></span><span class="n">c_random_set_seed</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-random-1ga8484d3f528c8eb68374de708072c87c9"><span></span><span class="n">c_random_u32</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-random-1gaa2402a6d9904547bc9d10e7118347242"><span></span><span class="n">c_random_u32_0_to_n</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-random-1gae572c4bc1cb8fa61da630b13638c1ef1"><span></span><span class="n">c_random_u32_0_to_pow2n</span></span></pre>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-random-1ga9b45f596d0227ed7d3061dd50edb7810"><span class="std std-ref">CEIL_SQRT_MOD</span></a><span></span> <span class="p">(</span><span class="mi">46341</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-random-1ga2de21eb687a4fd2ea6c1d5d7fb3a6e8d"><span class="std std-ref">DEFAULT_SEED</span></a><span></span>  <span class="p">(</span><span class="mh">0x93E21FD5</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-random-1ga9bc1fe94bf8c1b9aaef3dade106b6304"><span class="std std-ref">MODULUS</span></a><span></span>   <span class="p">(</span><span class="mh">0x7FFFFFFF</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-random-1ga21005f9f4e2ce7597c5eb4351816d7e2"><span class="std std-ref">OFFSET</span></a><span></span>    <span class="p">(</span><span class="mi">2835</span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-random-1ga85b028fee99c4e20099a1366c3b2b600"><span></span><span class="n">c_random_32bit_shuffle</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-math-random-1ga3b784b7285ecf6242f165d8c9700f1c8"><span class="std std-ref">Random_Shuffle</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-random-1ga24f4f1fb206910e582c1b6db9ae40ee5"><span></span><span class="n">c_random_float_0_to_1</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-math-random-1ga674f8ff116d5eef828769b412ac16fd5"><span class="std std-ref">Random_Float_0to1</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-random-1gad3268f1d763b76947c3d35bd0fcc25dd"><span></span><span class="n">c_random_float_a_to_b</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-math-random-1gac8b4f4fbee6224fbc31d0d2fd9932d49"><span class="std std-ref">Random_Float_AtoB</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-random-1ga1eb344c07fca7bf9c88eb0af071bb6ed"><span></span><span class="n">c_random_int_a_to_b</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-math-random-1gaefbcbea0766682f1ddc1dd30c59fde60"><span class="std std-ref">Random_Int_AtoB</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-random-1ga89e94120fffe66a770d96652a279d009"><span></span><span class="n">c_random_renew_seed</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-math-random-1gaa31bfdae86594c2766eb63d246c65b57"><span class="std std-ref">Random_RefreshSeed</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-random-1ga990d3d8361dcfdd56cb442f8110ae100"><span></span><span class="n">c_random_set_seed</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-math-random-1gaa0b27cfcde0b867168a3bd1850f3dde3"><span class="std std-ref">Random_SetSeed</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-random-1ga8484d3f528c8eb68374de708072c87c9"><span></span><span class="n">c_random_u32</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-math-random-1ga66c88261a77764430fead89c8405e131"><span class="std std-ref">Random_U32</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-random-1gaa2402a6d9904547bc9d10e7118347242"><span></span><span class="n">c_random_u32_0_to_n</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-math-random-1ga01078f6eff6a8dc8c9aad3f9ca55dd8b"><span class="std std-ref">Random_U32_0toN</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-random-1gae572c4bc1cb8fa61da630b13638c1ef1"><span></span><span class="n">c_random_u32_0_to_pow2n</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-math-random-1gaa10d2576ce2824c15f50f60938edde02"><span class="std std-ref">Random_U32_Pow2N</span></a></pre>
 </div>
 <div class="section" id="detailed-documentation">
 <span id="details-group-libccc-math-random"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline">¶</a></h2>
 <p>This header defines some simple pseudo-random number generator functions.</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/random">https://en.cppreference.com/w/c/numeric/random</a></p></li>
+</ul>
 <div class="section" id="global-functions">
 <h3>Global Functions<a class="headerlink" href="#global-functions" title="Permalink to this headline">¶</a></h3>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-random-1ga3b784b7285ecf6242f165d8c9700f1c8"><span id="index-1"></span><span></span><span class="n">t_u32</span> <span class="n">Random_Shuffle</span><span class="p">(</span><span class="n">t_u32</span> <span class="n">n</span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-random-1ga3b784b7285ecf6242f165d8c9700f1c8"><span id="index-1"></span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1gaa7590a5fe5898685586e486b914bd4f4"><span class="std std-ref">t_u32</span></a><span></span> <span class="n">Random_Shuffle</span><span class="p">(</span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1gaa7590a5fe5898685586e486b914bd4f4"><span class="std std-ref">t_u32</span></a><span></span> <span class="n">n</span><span class="p">)</span></pre>
 <p>TODO document this.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-random-1gaa0b27cfcde0b867168a3bd1850f3dde3"><span id="index-2"></span><span></span><span class="kt">void</span> <span class="n">Random_SetSeed</span><span class="p">(</span><span class="n">t_u32</span> <span class="n">seed</span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-random-1gaa0b27cfcde0b867168a3bd1850f3dde3"><span id="index-2"></span><span></span><span class="kt">void</span> <span class="n">Random_SetSeed</span><span class="p">(</span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1gaa7590a5fe5898685586e486b914bd4f4"><span class="std std-ref">t_u32</span></a><span></span> <span class="n">seed</span><span class="p">)</span></pre>
 <p>TODO document this.</p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-random-1gaa31bfdae86594c2766eb63d246c65b57"><span id="index-3"></span><span></span><span class="kt">void</span> <span class="n">Random_RefreshSeed</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span></pre>
 <p>TODO document this.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-random-1ga66c88261a77764430fead89c8405e131"><span id="index-4"></span><span></span><span class="n">t_u32</span> <span class="n">Random_U32</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-random-1ga66c88261a77764430fead89c8405e131"><span id="index-4"></span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1gaa7590a5fe5898685586e486b914bd4f4"><span class="std std-ref">t_u32</span></a><span></span> <span class="n">Random_U32</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span></pre>
 <p>TODO document this.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-random-1gaa10d2576ce2824c15f50f60938edde02"><span id="index-5"></span><span></span><span class="n">t_u32</span> <span class="n">Random_U32_Pow2N</span><span class="p">(</span><span class="n">t_u32</span> <span class="n">n</span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-random-1gaa10d2576ce2824c15f50f60938edde02"><span id="index-5"></span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1gaa7590a5fe5898685586e486b914bd4f4"><span class="std std-ref">t_u32</span></a><span></span> <span class="n">Random_U32_Pow2N</span><span class="p">(</span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1gaa7590a5fe5898685586e486b914bd4f4"><span class="std std-ref">t_u32</span></a><span></span> <span class="n">n</span><span class="p">)</span></pre>
 <p>TODO document this.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-random-1ga01078f6eff6a8dc8c9aad3f9ca55dd8b"><span id="index-6"></span><span></span><span class="n">t_u32</span> <span class="n">Random_U32_0toN</span><span class="p">(</span><span class="n">t_u32</span> <span class="n">n</span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-random-1ga01078f6eff6a8dc8c9aad3f9ca55dd8b"><span id="index-6"></span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1gaa7590a5fe5898685586e486b914bd4f4"><span class="std std-ref">t_u32</span></a><span></span> <span class="n">Random_U32_0toN</span><span class="p">(</span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1gaa7590a5fe5898685586e486b914bd4f4"><span class="std std-ref">t_u32</span></a><span></span> <span class="n">n</span><span class="p">)</span></pre>
 <p>TODO document this.</p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-random-1gaefbcbea0766682f1ddc1dd30c59fde60"><span id="index-7"></span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1gad9b833ec2906279e4f479df31778732a"><span class="std std-ref">t_sint</span></a><span></span> <span class="n">Random_Int_AtoB</span><span class="p">(</span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1gad9b833ec2906279e4f479df31778732a"><span class="std std-ref">t_sint</span></a><span></span> <span class="n">a</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1gad9b833ec2906279e4f479df31778732a"><span class="std std-ref">t_sint</span></a><span></span> <span class="n">b</span><span class="p">)</span></pre>
 <p>TODO document this.</p>
@@ -251,13 +268,13 @@
 </div>
 <div class="section" id="macros">
 <h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h3>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-random-1ga9b45f596d0227ed7d3061dd50edb7810"><span id="index-10"></span><span></span><span class="cp">#define CEIL_SQRT_MOD</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-random-1ga9b45f596d0227ed7d3061dd50edb7810"><span id="index-10"></span><span></span><span class="cp">#define</span> <span class="n">CEIL_SQRT_MOD</span>   <span class="cp">(46341)</span></pre>
 <p>TODO document this.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-random-1ga2de21eb687a4fd2ea6c1d5d7fb3a6e8d"><span id="index-11"></span><span></span><span class="cp">#define DEFAULT_SEED</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-random-1ga2de21eb687a4fd2ea6c1d5d7fb3a6e8d"><span id="index-11"></span><span></span><span class="cp">#define</span> <span class="n">DEFAULT_SEED</span>    <span class="cp">(0x93E21FD5)</span></pre>
 <p>The default random seed for pseudo-random number generation.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-random-1ga9bc1fe94bf8c1b9aaef3dade106b6304"><span id="index-12"></span><span></span><span class="cp">#define MODULUS</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-random-1ga9bc1fe94bf8c1b9aaef3dade106b6304"><span id="index-12"></span><span></span><span class="cp">#define</span> <span class="n">MODULUS</span> <span class="cp">(0x7FFFFFFF)</span></pre>
 <p>TODO document this.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-random-1ga21005f9f4e2ce7597c5eb4351816d7e2"><span id="index-13"></span><span></span><span class="cp">#define OFFSET</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-random-1ga21005f9f4e2ce7597c5eb4351816d7e2"><span id="index-13"></span><span></span><span class="cp">#define</span> <span class="n">OFFSET</span>  <span class="cp">(2835)</span></pre>
 <p>TODO document this.</p>
 </div>
 </div>
@@ -274,7 +291,7 @@
         <a href="group_libccc_math_algebra.html" class="btn btn-neutral float-right" title="19) libccc/math/algebra" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="struct_s_prob_mass_.html" class="btn btn-neutral float-left" title="struct s_prob_mass_" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="struct_s_prob_mass.html" class="btn btn-neutral float-left" title="struct s_prob_mass" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -283,19 +300,11 @@
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright FREE
+        &copy; Copyright Free &amp; Open Source: MIT License
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -306,6 +315,7 @@
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

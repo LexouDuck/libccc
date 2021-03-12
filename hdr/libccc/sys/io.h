@@ -11,10 +11,13 @@
 
 #ifndef __LIBCCC_SYS_IO_H
 #define __LIBCCC_SYS_IO_H
-/*! @file libccc/sys/io.h
-**	@addtogroup libccc_sys_io
-**	@{
+/*!@group{libccc_sys_io}
+** @{
 **	This header defines all the functions for OS-level input/output, read/write.
+**
+**	@isostd{https://en.cppreference.com/w/c/io}
+**
+**	@file
 */
 
 /*
@@ -26,6 +29,7 @@
 #include <fcntl.h>
 
 #include "libccc.h"
+#include "libccc/color.h"
 
 HEADER_CPP
 
@@ -37,7 +41,7 @@ HEADER_CPP
 
 //! File descriptor integer type for libccc/sys/io functions
 /*!
-** Define a type for file descriptors (which is usually the default machine 'int')
+**	Define a type for file descriptors (which is usually the default machine 'int')
 */
 typedef int		t_fd;
 TYPEDEF_ALIAS(	t_fd, FILEDESC, PRIMITIVE)
@@ -46,12 +50,14 @@ TYPEDEF_ALIAS(	t_fd, FILEDESC, PRIMITIVE)
 **	@def STDIN
 **	@def STDOUT
 **	@def STDERR
+**	@isostd{https://en.cppreference.com/w/c/io/std_streams}
+**
 **	Define the 3 standard (std) streams of data - these numbers are special
 **	file descriptors used to read from and write to the terminal commandline.
 */
-#define STDIN	((t_fd)0)	//!< Special file descriptor (0), refers to terminal input stream
-#define STDOUT	((t_fd)1)	//!< Special file descriptor (1), refers to terminal output stream
-#define STDERR	((t_fd)2)	//!< Special file descriptor (2), refers to terminal error stream
+#define STDIN	((t_fd)0)	//!< Special file descriptor (0), refers to the standard input stream
+#define STDOUT	((t_fd)1)	//!< Special file descriptor (1), refers to the standard output stream
+#define STDERR	((t_fd)2)	//!< Special file descriptor (2), refers to the standard error stream
 
 
 
@@ -69,6 +75,10 @@ TYPEDEF_ALIAS(	t_fd, FILEDESC, PRIMITIVE)
 
 
 //! This type represents an error code for a system call IO function (ie: a value for the 'errno' global variable)
+/*!
+**	@isostd{https://en.cppreference.com/w/c/error/errno}
+**	@isostd{https://en.cppreference.com/w/c/error/errno_macros}
+*/
 typedef int				t_io_error;
 TYPEDEF_ALIAS(			t_io_error, IO_ERROR, PRIMITIVE)
 
@@ -81,20 +91,20 @@ TYPEDEF_ALIAS(			t_io_mode, IO_MODE, PRIMITIVE)
 /*
 **	Access permissions bitflag (user/group/other and read/write/execute), used with the t_accessmode type
 */
-#define MODE_USER_RWX	0700	//!< S_IRWXU - User (file owner) has read, write, and execute permission
-#define MODE_USER_R		0400	//!< S_IRUSR - User has read permission
-#define MODE_USER_W		0200	//!< S_IWUSR - User has write permission
-#define MODE_USER_X		0100	//!< S_IXUSR - User has execute permission
+#define ACCESSMODE_USER_RWX		0700	//!< S_IRWXU - User (file owner) has read, write, and execute permission
+#define ACCESSMODE_USER_R		0400	//!< S_IRUSR - User has read permission
+#define ACCESSMODE_USER_W		0200	//!< S_IWUSR - User has write permission
+#define ACCESSMODE_USER_X		0100	//!< S_IXUSR - User has execute permission
 
-#define MODE_GROUP_RWX	0070	//!< S_IRWXG - Group has read, write, and execute permission
-#define MODE_GROUP_R	0040	//!< S_IRGRP - Group has read permission
-#define MODE_GROUP_W	0020	//!< S_IWGRP - Group has write permission
-#define MODE_GROUP_X	0010	//!< S_IXGRP - Group has execute permission
+#define ACCESSMODE_GROUP_RWX	0070	//!< S_IRWXG - Group has read, write, and execute permission
+#define ACCESSMODE_GROUP_R		0040	//!< S_IRGRP - Group has read permission
+#define ACCESSMODE_GROUP_W		0020	//!< S_IWGRP - Group has write permission
+#define ACCESSMODE_GROUP_X		0010	//!< S_IXGRP - Group has execute permission
 
-#define MODE_OTHER_RWX	0007	//!< S_IRWXO - Others have read, write, and execute permission
-#define MODE_OTHER_R	0004	//!< S_IROTH - Others have read permission
-#define MODE_OTHER_W	0002	//!< S_IWOTH - Others have write permission
-#define MODE_OTHER_X	0001	//!< S_IXOTH - Others have execute permission
+#define ACCESSMODE_OTHER_RWX	0007	//!< S_IRWXO - Others have read, write, and execute permission
+#define ACCESSMODE_OTHER_R		0004	//!< S_IROTH - Others have read permission
+#define ACCESSMODE_OTHER_W		0002	//!< S_IWOTH - Others have write permission
+#define ACCESSMODE_OTHER_X		0001	//!< S_IXOTH - Others have execute permission
 
 
 
@@ -111,7 +121,7 @@ TYPEDEF_ALIAS(			t_io_open, IO_OPEN, PRIMITIVE)
 // 2) open-time flags
 #define OPEN_CREATE		O_CREAT	//!< If set, the file will be created if it doesn’t already exist.
 #define OPEN_CLEARFILE	O_TRUNC	//!< If writing is allowed (ie: O_RDWR or O_WRONLY) then remove all contents of the file upon opening
-#define OPEN_EXCLUSIVE	O_EXCL	//!< If both O_CREAT and O_EXCL are set, then open fails if the specified file already exists. (otherwise, platform-specific)
+#define OPEN_NOEXISTING	O_EXCL	//!< If both O_CREAT and O_EXCL are set, then open fails if the specified file already exists. (otherwise, platform-specific)
 //#define OPEN_NOSYMLINK	O_NOFOLLOW	//! If set, the open operation fails if the final component of the file name refers to a symbolic link.
 //#define OPEN_SYMLINK	O_NOLINK	//!< If the named file is a symbolic link, open the link itself instead of the file it refers to.
 //#define OPEN_TEMPFILE	O_TMPFILE	//!< (GNU ext) If set, functions in the open family create an unnamed temporary file (must have write access, 'path' arg is the folder to put the temp file in)
@@ -128,7 +138,91 @@ TYPEDEF_ALIAS(			t_io_open, IO_OPEN, PRIMITIVE)
 /*!
 **	Define some useful string literals for commandline output colors.
 **	Can be used with any of the 'IO_Output_*' and 'IO_Write_*' functions.
+**
+**	(Learn more here)[https://misc.flogisoft.com/bash/tip_colors_and_formatting]
 */
+//! @{
+
+#define IO_RESET			"\x1B[0m"	//!< The string sequence to reset the terminal text output to its default color
+
+#define IO_TEXT_BOLD		"\x1B[1m"	//!< Display terminal output text in bold
+#define IO_TEXT_DIM			"\x1B[2m"	//!< Display terminal output text with dimmer, darker colors
+#define IO_TEXT_3			"\x1B[3m"	//!< ???
+#define IO_TEXT_UNDERLINE	"\x1B[4m"	//!< Display terminal output text with an underline
+#define IO_TEXT_BLINK		"\x1B[5m"	//!< Display terminal output text which blinks every second (only in tty and xterm)
+#define IO_TEXT_6			"\x1B[6m"	//!< ???
+#define IO_TEXT_INVERTED	"\x1B[7m"	//!< Display terminal output text with the background/foreground colors reversed
+#define IO_TEXT_HIDDEN		"\x1B[8m"	//!< Write, but do not display, the terminal output text (useful for passwords)
+#define IO_TEXT_9			"\x1B[9m"	//!< ???
+
+#define IO_TEXT_RESET_BOLD		"\x1B[21m"	//!< Undoes the effects of #IO_TEXT_BOLD
+#define IO_TEXT_RESET_DIM		"\x1B[22m"	//!< Undoes the effects of #IO_TEXT_DIM
+#define IO_TEXT_RESET_3			"\x1B[23m"	//!< Undoes the effects of #IO_TEXT_3
+#define IO_TEXT_RESET_UNDERLINE	"\x1B[24m"	//!< Undoes the effects of #IO_TEXT_UNDERLINE
+#define IO_TEXT_RESET_BLINK		"\x1B[25m"	//!< Undoes the effects of #IO_TEXT_BLINK
+#define IO_TEXT_RESET_6			"\x1B[26m"	//!< Undoes the effects of #IO_TEXT_6
+#define IO_TEXT_RESET_INVERTED	"\x1B[27m"	//!< Undoes the effects of #IO_TEXT_INVERTED
+#define IO_TEXT_RESET_HIDDEN	"\x1B[28m"	//!< Undoes the effects of #IO_TEXT_HIDDEN
+#define IO_TEXT_RESET_9			"\x1B[29m"	//!< Undoes the effects of #IO_TEXT_9
+
+#define IO_COLOR_FG_BLACK			"\x1B[30m"	//!< The string sequence to color the terminal text output black
+#define IO_COLOR_FG_GRAY_DARK		"\x1B[90m"	//!< The string sequence to color the terminal text output dark gray
+#define IO_COLOR_FG_RED				"\x1B[31m"	//!< The string sequence to color the terminal text output red
+#define IO_COLOR_FG_RED_LIGHT		"\x1B[91m"	//!< The string sequence to color the terminal text output light red
+#define IO_COLOR_FG_GREEN			"\x1B[32m"	//!< The string sequence to color the terminal text output green
+#define IO_COLOR_FG_GREEN_LIGHT		"\x1B[92m"	//!< The string sequence to color the terminal text output light green
+#define IO_COLOR_FG_YELLOW			"\x1B[33m"	//!< The string sequence to color the terminal text output yellow
+#define IO_COLOR_FG_YELLOW_LIGHT	"\x1B[93m"	//!< The string sequence to color the terminal text output light yellow
+#define IO_COLOR_FG_BLUE			"\x1B[34m"	//!< The string sequence to color the terminal text output blue
+#define IO_COLOR_FG_BLUE_LIGHT		"\x1B[94m"	//!< The string sequence to color the terminal text output light blue
+#define IO_COLOR_FG_MAGENTA			"\x1B[35m"	//!< The string sequence to color the terminal text output magenta
+#define IO_COLOR_FG_MAGENTA_LIGHT	"\x1B[95m"	//!< The string sequence to color the terminal text output light magenta
+#define IO_COLOR_FG_CYAN			"\x1B[36m"	//!< The string sequence to color the terminal text output cyan
+#define IO_COLOR_FG_CYAN_LIGHT		"\x1B[96m"	//!< The string sequence to color the terminal text output light cyan
+#define IO_COLOR_FG_GRAY_LIGHT		"\x1B[37m"	//!< The string sequence to color the terminal text output light gray
+#define IO_COLOR_FG_WHITE			"\x1B[97m"	//!< The string sequence to color the terminal text output white
+
+//! ANSI Color code (255-map, not supported on certain old terminals)
+/*!
+**	@param	CODE	should be a string, containing number between 0 and 255
+**	@see
+**	- IO_GetColor()
+*/
+#define IO_COLOR_FG(CODE)	"\x1B[38;5;"CODE"m"
+
+//!< The string sequence to color the terminal text output with the default color for this terminal
+#define IO_COLOR_FG_DEFAULT	"\x1B[39m"
+
+#define IO_COLOR_BG_BLACK			"\x1B[40m"	//!< The string sequence to color the terminal text background/highlight black
+#define IO_COLOR_BG_GRAY_DARK		"\x1B[100m"	//!< The string sequence to color the terminal text background/highlight dark gray
+#define IO_COLOR_BG_RED				"\x1B[41m"	//!< The string sequence to color the terminal text background/highlight red
+#define IO_COLOR_BG_RED_LIGHT		"\x1B[101m"	//!< The string sequence to color the terminal text background/highlight light red
+#define IO_COLOR_BG_GREEN			"\x1B[42m"	//!< The string sequence to color the terminal text background/highlight green
+#define IO_COLOR_BG_GREEN_LIGHT		"\x1B[102m"	//!< The string sequence to color the terminal text background/highlight light green
+#define IO_COLOR_BG_YELLOW			"\x1B[43m"	//!< The string sequence to color the terminal text background/highlight yellow
+#define IO_COLOR_BG_YELLOW_LIGHT	"\x1B[103m"	//!< The string sequence to color the terminal text background/highlight light yellow
+#define IO_COLOR_BG_BLUE			"\x1B[44m"	//!< The string sequence to color the terminal text background/highlight blue
+#define IO_COLOR_BG_BLUE_LIGHT		"\x1B[104m"	//!< The string sequence to color the terminal text background/highlight light blue
+#define IO_COLOR_BG_MAGENTA			"\x1B[45m"	//!< The string sequence to color the terminal text background/highlight magenta
+#define IO_COLOR_BG_MAGENTA_LIGHT	"\x1B[105m"	//!< The string sequence to color the terminal text background/highlight light magenta
+#define IO_COLOR_BG_CYAN			"\x1B[46m"	//!< The string sequence to color the terminal text background/highlight cyan
+#define IO_COLOR_BG_CYAN_LIGHT		"\x1B[106m"	//!< The string sequence to color the terminal text background/highlight light cyan
+#define IO_COLOR_BG_GRAY_LIGHT		"\x1B[47m"	//!< The string sequence to color the terminal text background/highlight light gray
+#define IO_COLOR_BG_WHITE			"\x1B[107m"	//!< The string sequence to color the terminal text background/highlight white
+
+//! ANSI Color code (255-map, not supported on certain old terminals)
+/*!
+**	@param	CODE	should be a string, containing number between 0 and 255
+**	@see
+**	- IO_GetColor()
+*/
+#define IO_COLOR_BG(CODE)	"\x1B[48;5;"CODE"m"
+
+//!< The string sequence to color the terminal text background with the default color for this terminal
+#define IO_COLOR_BG_DEFAULT	"\x1B[49m"
+
+//! @}
+
 #ifndef __COLORS__
 #define __COLORS__
 #define C_RED		"\x1b[31m"	//!< The string sequence to color the terminal text output red
@@ -139,6 +233,45 @@ TYPEDEF_ALIAS(			t_io_open, IO_OPEN, PRIMITIVE)
 #define C_CYAN		"\x1b[36m"	//!< The string sequence to color the terminal text output cyan
 #define C_RESET		"\x1b[0m"	//!< The string sequence to reset the terminal text output to its default color
 #endif
+
+
+
+/*
+** ************************************************************************** *|
+**                             General IO Functions                           *|
+** ************************************************************************** *|
+*/
+
+//! Returns the error message corresponding to the given 'errno' error number.
+/*!
+**	This is equivalent to the STD C strerror(), strerror_r() functions.
+**
+**	@returns A newly allocated string which contains the system IO error message.
+*/
+char*						IO_GetError(int error_num);
+#define c_strerror			IO_GetError
+#define c_strerror_r		IO_GetError
+#define IO_GetErrorMessage	IO_GetError
+
+
+
+//! Returns the ANSI color code number for the nearest color to the given 32-bit `color`.
+/*!
+**	(Learn more about ANSI colors)[https://misc.flogisoft.com/bash/tip_colors_and_formatting]
+*/
+t_u8						IO_GetColor(t_argb32 color);
+#define c_io_getcolor		IO_GetColor
+#define IO_GetANSIColor		IO_GetColor
+
+
+
+//! Returns 1(TRUE) if the given file descriptor `fd` corresponds to a terminal.
+/*!
+**	
+*/
+t_bool						IO_IsTerminal(t_fd fd);
+#define c_isatty			IO_IsTerminal
+#define IO_File_IsTerminal	IO_IsTerminal
 
 
 
@@ -173,19 +306,6 @@ t_fd					IO_Open(char const* filepath, t_io_open flags, t_io_mode mode);
 t_io_error				IO_Close(t_fd fd);
 #define c_close			IO_Close
 #define IO_File_Close	IO_Close
-
-
-
-//! Returns the error message (a string literal) corresponding to the given 'errno' error number
-char*						IO_GetError(int error_num);
-#define c_strerror			IO_GetError
-#define c_strerror_r		IO_GetError
-#define IO_GetErrorMessage	IO_GetError
-
-//! Returns 1(TRUE) if the given file fd corresponds to a terminal/commandline rather than a file
-t_bool						IO_IsTerminal(t_fd fd);
-#define c_isatty			IO_IsTerminal
-#define IO_File_IsTerminal	IO_IsTerminal
 
 //! Changes the file access mode permissions for the file at 'filepath' to the new value 'mode'
 /*!
@@ -227,14 +347,20 @@ t_io_error					IO_ChangeOwner(char const* filepath, char const* owner, char cons
 
 //! Reads the contents of 'fd' and fill a data buffer with those bytes
 /*!
-**	Reads the full contents of the file descriptor 'fd', and puts it into 'a_file'.
+**	SYSCALL wrapper:
+**		int	read(const char *pathname, int flags, mode_t mode);
+**
+**	Reads the full contents of the file descriptor `fd` (ie, until read() returns 0),
+**	and allocates a memory region which stores the file contents in `*a_file`.
 **
 **	@param	fd		The file descriptor to read data from
 **	@param	a_file	The address of the buffer to fill: is allocated and filled with the data
-**	@param	max		The maximum amount of bytes to read from 'fd'; if 0, replaced by (t_size)-1
-**	@returns 0(OK) if the stream was read successfully, or a non-zero error code (ie: an 'errno' value)
+**	@param	max		The maximum amount of bytes to read from 'fd' (if 0, replaced by `(t_size)-1`)
+**	@returns the amount of bytes read from the given file descriptor `fd` in total.
+**		If the return value is a negative number, there was a read error:
+**		You should then check `errno`, and/or use `IO_GetError(errno)` immediately after.
 */
-t_io_error				IO_Read_File(t_fd const fd, char* *a_file, t_size max);
+t_sintmax				IO_Read_File(t_fd const fd, char* *a_file, t_size max);
 #define c_readfile		IO_Read_File
 
 //! Reads the contents of 'fd' and makes an array of strings, one for each line
@@ -242,13 +368,16 @@ t_io_error				IO_Read_File(t_fd const fd, char* *a_file, t_size max);
 **	Reads the contents of the file descriptor 'fd', and puts that into
 **	an array of strings, one char pointer for each line (each '\\n' newline char).
 **	Each '\\n' character in the string are replaced by '\\0' string terminators.
+**	NB: If the file being read contains any '\\0' chars, the string array will end there.
 **
 **	@param	fd			The file descriptor to read data from
 **	@param	a_strarr	The address of the string array to fill: the top-level
 **						top-level pointer array is allocated and filled appropriately.
-**	@returns 0(OK) if the stream was read successfully, or a non-zero error code (ie: an 'errno' value)
+**	@returns the amount of bytes read from the given file descriptor `fd` in total.
+**		If the return value is a negative number, there was a read error:
+**		You should then check `errno`, and/or use `IO_GetError(errno)` immediately after.
 */
-t_io_error				IO_Read_Lines(t_fd const fd, char** *a_strarr);
+t_sintmax				IO_Read_Lines(t_fd const fd, char** *a_strarr);
 #define c_readlines		IO_Read_Lines
 
 //! Reads the contents of the file descriptor 'fd' line-per-line.
@@ -267,8 +396,9 @@ t_io_error				IO_Read_Lines(t_fd const fd, char** *a_strarr);
 */
 //TODO DO NOT USE, TODO FIX, confirmed to have very, very rare, platform-specific problems...
 int						IO_Read_NextLine(t_fd const fd, char* *a_line);
-#define c_readnextline	IO_Read_NextLine
+#define c_getline		IO_Read_NextLine
 #define c_getnextline	IO_Read_NextLine
+#define c_readnextline	IO_Read_NextLine
 
 #define GNL_LINE  +1	//!< Return value for c_getnextline: indicates succesful line read, more to follow
 #define GNL_END    0	//!< Return value for c_getnextline: indicates successful line read, end of file reached

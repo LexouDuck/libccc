@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,20 +12,12 @@
   
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/doxyrest-sphinx_rtd_theme.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -33,14 +26,37 @@
         <script src="_static/doctools.js"></script>
         <script src="_static/language_data.js"></script>
         <script src="_static/target-highlight.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="_static/js/custom.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="struct s_complex_" href="struct_s_complex_.html" />
-    <link rel="prev" title="union u_vector4d_" href="union_u_vector4d_.html" /> 
+    <link rel="next" title="struct s_complex" href="struct_s_complex.html" />
+    <link rel="prev" title="union u_vector4d" href="union_u_vector4d.html" />
+	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
+	
+	<meta name="Description" content="20) libccc/math/complex">
+	<meta property="og:description" content="20) libccc/math/complex">
+	<meta property="og:title" content="libccc 1.0 documentation - 20) libccc/math/complex">
+	<meta property="og:image" content="_static/images/libccc_icon.png">
+	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="380" />
+	<meta property="og:image:height" content="380" />
+	<meta property="og:url" content="group_libccc_math_complex.html">
+	<meta property="og:site_name" content="libccc 1.0 documentation">
+
+
 </head>
 
 <body class="wy-body-for-nav">
@@ -54,7 +70,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> libccc
+            <a href="index.html" class="icon icon-home"> libccc
           
 
           
@@ -77,7 +93,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -107,11 +122,10 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_math_random.html">18) libccc/math/random</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra.html">19) libccc/math/algebra</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">20) libccc/math/complex</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="struct_s_complex_.html">struct s_complex_</a></li>
-<li class="toctree-l2"><a class="reference internal" href="struct_s_quaternion_.html">struct s_quaternion_</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct_s_complex.html">struct s_complex</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct_s_quaternion.html">struct s_quaternion</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#detailed-documentation">Detailed Documentation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#typedefs">Typedefs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#global-functions">Global Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#macros">Macros</a></li>
 </ul>
@@ -126,7 +140,7 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_array_stringarray.html">26) libccc/array/stringarray</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="page_index.html"># libccc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
@@ -135,7 +149,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -174,7 +187,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="index.html">Docs</a> &raquo;</li>
         
       <li>20) libccc/math/complex</li>
     
@@ -200,82 +213,74 @@
 <div class="section" id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
 <p>This header defines useful algebra and calculus types, and functions. <a class="reference internal" href="#details-group-libccc-math-complex"><span class="std std-ref">More…</span></a></p>
-<pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// typedefs</span>
+<pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// structs</span>
 
-<span class="k">typedef</span> <span class="k">struct</span> <a class="reference internal" href="struct_s_complex_.html#doxid-structs-complex"><span class="std std-ref">s_complex_</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span class="std std-ref">s_complex</span></a><span></span><span class="p">;</span>
-<span class="k">typedef</span> <span class="k">struct</span> <a class="reference internal" href="struct_s_quaternion_.html#doxid-structs-quaternion"><span class="std std-ref">s_quaternion_</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-complex-1ga975ea629f3dfc37d4a8922451180afa5"><span class="std std-ref">s_quaternion</span></a><span></span><span class="p">;</span>
-
-<span class="c1">// structs</span>
-
-<span class="k">struct</span> <a class="reference internal" href="struct_s_complex_.html#doxid-structs-complex"><span class="std std-ref">s_complex_</span></a><span></span><span class="p">;</span>
-<span class="k">struct</span> <a class="reference internal" href="struct_s_quaternion_.html#doxid-structs-quaternion"><span class="std std-ref">s_quaternion_</span></a><span></span><span class="p">;</span>
+<span class="k">struct</span> <a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span><span class="p">;</span>
+<span class="k">struct</span> <a class="reference internal" href="struct_s_quaternion.html#doxid-structs-quaternion"><span class="std std-ref">s_quaternion</span></a><span></span><span class="p">;</span>
 
 <span class="c1">// global functions</span>
 
-<a class="reference internal" href="#doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span class="std std-ref">s_complex</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-math-complex-1ga0121bf347fb4e1c7b1d05a6e8b9620ad"><span class="std std-ref">Complex_New</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">re</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">im</span><span class="p">);</span>
-<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaf15d2c7169c336f97175a2e218d22e73"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-complex-1ga64aa8727d5f8c577393004fbd158d8f8"><span class="std std-ref">Complex_Equals</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z2</span><span class="p">);</span>
-<a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-complex-1gaef2137203f80dff3867d224e214bb212"><span class="std std-ref">Complex_Abs</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z1</span><span class="p">);</span>
-<a class="reference internal" href="#doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span class="std std-ref">s_complex</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-complex-1ga02c3f8e0fe099df17cef8c5d8239a41f"><span class="std std-ref">Complex_Conjugate</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z1</span><span class="p">);</span>
-<a class="reference internal" href="#doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span class="std std-ref">s_complex</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-complex-1ga54f72120d0a2f341b5c63b2539e98f98"><span class="std std-ref">Complex_Add</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z2</span><span class="p">);</span>
-<a class="reference internal" href="#doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span class="std std-ref">s_complex</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-complex-1ga0565e40f605c893b911ba69959ce7dbc"><span class="std std-ref">Complex_Subtract</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z2</span><span class="p">);</span>
-<a class="reference internal" href="#doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span class="std std-ref">s_complex</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-complex-1ga6bf1bd6b128627c53684b87cff0b9265"><span class="std std-ref">Complex_Multiply</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z2</span><span class="p">);</span>
-<a class="reference internal" href="#doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span class="std std-ref">s_complex</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-complex-1ga2cf4a45e78166da08f543737e2670651"><span class="std std-ref">Complex_Divide</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z2</span><span class="p">);</span>
-<a class="reference internal" href="#doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span class="std std-ref">s_complex</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-complex-1gab9a3f68d12a1df754b70673812ee04f9"><span class="std std-ref">Complex_Power</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z</span><span class="p">,</span> <span class="n">t_u8</span> <span class="n">n</span><span class="p">);</span>
+<a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-math-complex-1ga0121bf347fb4e1c7b1d05a6e8b9620ad"><span class="std std-ref">Complex_New</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">re</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">im</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaf15d2c7169c336f97175a2e218d22e73"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-complex-1ga64aa8727d5f8c577393004fbd158d8f8"><span class="std std-ref">Complex_Equals</span></a><span></span><span class="p">(</span><a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z1</span><span class="p">,</span> <a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z2</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-complex-1gaef2137203f80dff3867d224e214bb212"><span class="std std-ref">Complex_Abs</span></a><span></span><span class="p">(</span><a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z1</span><span class="p">);</span>
+<a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-complex-1ga02c3f8e0fe099df17cef8c5d8239a41f"><span class="std std-ref">Complex_Conjugate</span></a><span></span><span class="p">(</span><a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z1</span><span class="p">);</span>
+<a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-complex-1ga54f72120d0a2f341b5c63b2539e98f98"><span class="std std-ref">Complex_Add</span></a><span></span><span class="p">(</span><a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z1</span><span class="p">,</span> <a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z2</span><span class="p">);</span>
+<a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-complex-1ga0565e40f605c893b911ba69959ce7dbc"><span class="std std-ref">Complex_Subtract</span></a><span></span><span class="p">(</span><a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z1</span><span class="p">,</span> <a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z2</span><span class="p">);</span>
+<a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-complex-1ga6bf1bd6b128627c53684b87cff0b9265"><span class="std std-ref">Complex_Multiply</span></a><span></span><span class="p">(</span><a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z1</span><span class="p">,</span> <a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z2</span><span class="p">);</span>
+<a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-complex-1ga2cf4a45e78166da08f543737e2670651"><span class="std std-ref">Complex_Divide</span></a><span></span><span class="p">(</span><a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z1</span><span class="p">,</span> <a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z2</span><span class="p">);</span>
+<a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-complex-1gab9a3f68d12a1df754b70673812ee04f9"><span class="std std-ref">Complex_Power</span></a><span></span><span class="p">(</span><a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga8ddf940d2d7288b36e35ce78989c811e"><span class="std std-ref">t_u8</span></a><span></span> <span class="n">n</span><span class="p">);</span>
 
 <span class="c1">// macros</span>
 
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-complex-1ga6fbbbe01fed7f3a7bb2966d10dad2a44"><span class="std std-ref">COMPLEX_NULL</span></a><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-complex-1ga6224f2e147eff02270ad85515572685d"><span></span><span class="n">Complex_Conj</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-complex-1ga3f3726d2a524cd4bb8217d858ab9ee91"><span></span><span class="n">Complex_Div</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-complex-1gab50249335d6d24a65ff6efe4939aa589"><span></span><span class="n">Complex_Modulus</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-complex-1ga7aa62fa78aa30b33a9a64d07c323c29f"><span></span><span class="n">Complex_Mul</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-complex-1ga504e27c98534becd527b35e51754b9b0"><span></span><span class="n">Complex_Pow</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-complex-1ga92b4b34b2463cee4db7f0b1ffac4813f"><span></span><span class="n">Complex_Sub</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-complex-1gaea396201bf4c09a15ea1754da338098a"><span></span><span class="n">c_cplxabs</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-complex-1ga355cafca23dfd7480d1cea10b0047c3b"><span></span><span class="n">c_cplxadd</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-complex-1ga0cbe17de5111fa23d72c8bd55d721a80"><span></span><span class="n">c_cplxconj</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-complex-1gad718cfefc9c12ec75a0a92fabf5cbd04"><span></span><span class="n">c_cplxdiv</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-complex-1ga7ae66cb14bcbc5a55667a58e2e7fab0f"><span></span><span class="n">c_cplxequ</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-complex-1ga544a0bcc9ab319ddd8f98148bfc664bc"><span></span><span class="n">c_cplxmul</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-complex-1ga7c583003ea1e0670514c3530d69f851e"><span></span><span class="n">c_cplxnew</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-complex-1ga8b313992dc5de01445a3c64494541e26"><span></span><span class="n">c_cplxpow</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-complex-1ga6418444f027a35848c2a19e04325b8c6"><span></span><span class="n">c_cplxsub</span></span></pre>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-complex-1ga6fbbbe01fed7f3a7bb2966d10dad2a44"><span class="std std-ref">COMPLEX_NULL</span></a><span></span> <span class="p">(</span><a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span><span class="p">){</span> <span class="p">.</span><span class="n">re</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="p">.</span><span class="n">im</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">}</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-complex-1ga6224f2e147eff02270ad85515572685d"><span></span><span class="n">Complex_Conj</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-math-complex-1ga02c3f8e0fe099df17cef8c5d8239a41f"><span class="std std-ref">Complex_Conjugate</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-complex-1ga3f3726d2a524cd4bb8217d858ab9ee91"><span></span><span class="n">Complex_Div</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-math-complex-1ga2cf4a45e78166da08f543737e2670651"><span class="std std-ref">Complex_Divide</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-complex-1gab50249335d6d24a65ff6efe4939aa589"><span></span><span class="n">Complex_Modulus</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-math-complex-1gaef2137203f80dff3867d224e214bb212"><span class="std std-ref">Complex_Abs</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-complex-1ga7aa62fa78aa30b33a9a64d07c323c29f"><span></span><span class="n">Complex_Mul</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-math-complex-1ga6bf1bd6b128627c53684b87cff0b9265"><span class="std std-ref">Complex_Multiply</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-complex-1ga504e27c98534becd527b35e51754b9b0"><span></span><span class="n">Complex_Pow</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-math-complex-1gab9a3f68d12a1df754b70673812ee04f9"><span class="std std-ref">Complex_Power</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-complex-1ga92b4b34b2463cee4db7f0b1ffac4813f"><span></span><span class="n">Complex_Sub</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-math-complex-1ga0565e40f605c893b911ba69959ce7dbc"><span class="std std-ref">Complex_Subtract</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-complex-1gaea396201bf4c09a15ea1754da338098a"><span></span><span class="n">c_cplxabs</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-math-complex-1gaef2137203f80dff3867d224e214bb212"><span class="std std-ref">Complex_Abs</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-complex-1ga355cafca23dfd7480d1cea10b0047c3b"><span></span><span class="n">c_cplxadd</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-math-complex-1ga54f72120d0a2f341b5c63b2539e98f98"><span class="std std-ref">Complex_Add</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-complex-1ga0cbe17de5111fa23d72c8bd55d721a80"><span></span><span class="n">c_cplxconj</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-math-complex-1ga02c3f8e0fe099df17cef8c5d8239a41f"><span class="std std-ref">Complex_Conjugate</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-complex-1gad718cfefc9c12ec75a0a92fabf5cbd04"><span></span><span class="n">c_cplxdiv</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-math-complex-1ga2cf4a45e78166da08f543737e2670651"><span class="std std-ref">Complex_Divide</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-complex-1ga7ae66cb14bcbc5a55667a58e2e7fab0f"><span></span><span class="n">c_cplxequ</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-math-complex-1ga64aa8727d5f8c577393004fbd158d8f8"><span class="std std-ref">Complex_Equals</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-complex-1ga544a0bcc9ab319ddd8f98148bfc664bc"><span></span><span class="n">c_cplxmul</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-math-complex-1ga6bf1bd6b128627c53684b87cff0b9265"><span class="std std-ref">Complex_Multiply</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-complex-1ga7c583003ea1e0670514c3530d69f851e"><span></span><span class="n">c_cplxnew</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-math-complex-1ga0121bf347fb4e1c7b1d05a6e8b9620ad"><span class="std std-ref">Complex_New</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-complex-1ga8b313992dc5de01445a3c64494541e26"><span></span><span class="n">c_cplxpow</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-math-complex-1gab9a3f68d12a1df754b70673812ee04f9"><span class="std std-ref">Complex_Power</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-complex-1ga6418444f027a35848c2a19e04325b8c6"><span></span><span class="n">c_cplxsub</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-math-complex-1ga0565e40f605c893b911ba69959ce7dbc"><span class="std std-ref">Complex_Subtract</span></a></pre>
 </div>
 <div class="section" id="detailed-documentation">
 <span id="details-group-libccc-math-complex"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline">¶</a></h2>
 <p>This header defines useful algebra and calculus types, and functions.</p>
-<div class="section" id="typedefs">
-<h3>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h3>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span id="index-1"></span><span></span><span class="k">typedef</span> <span class="k">struct</span> <a class="reference internal" href="struct_s_complex_.html#doxid-structs-complex"><span class="std std-ref">s_complex_</span></a><span></span> <span class="n">s_complex</span></pre>
-<p>A struct to store complex/imaginary number values.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-complex-1ga975ea629f3dfc37d4a8922451180afa5"><span id="index-2"></span><span></span><span class="k">typedef</span> <span class="k">struct</span> <a class="reference internal" href="struct_s_quaternion_.html#doxid-structs-quaternion"><span class="std std-ref">s_quaternion_</span></a><span></span> <span class="n">s_quaternion</span></pre>
-<p>A struct for storing quaternions.</p>
-</div>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/complex">https://en.cppreference.com/w/c/numeric/complex</a></p></li>
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/tgmath">https://en.cppreference.com/w/c/numeric/tgmath</a></p></li>
+</ul>
 <div class="section" id="global-functions">
 <h3>Global Functions<a class="headerlink" href="#global-functions" title="Permalink to this headline">¶</a></h3>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-complex-1ga0121bf347fb4e1c7b1d05a6e8b9620ad"><span id="index-3"></span><a class="reference internal" href="#doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span class="std std-ref">s_complex</span></a><span></span><span class="o">*</span> <span class="n">Complex_New</span><span class="p">(</span><a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">re</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">im</span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-complex-1ga0121bf347fb4e1c7b1d05a6e8b9620ad"><span id="index-1"></span><a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span><span class="o">*</span> <span class="n">Complex_New</span><span class="p">(</span><a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">re</span><span class="p">,</span> <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">im</span><span class="p">)</span></pre>
 <p>Allocates a new complex number struct on heap, with the given ‘re’ real part and ‘im’ imaginary part.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-complex-1ga64aa8727d5f8c577393004fbd158d8f8"><span id="index-4"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaf15d2c7169c336f97175a2e218d22e73"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">Complex_Equals</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z2</span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-complex-1ga64aa8727d5f8c577393004fbd158d8f8"><span id="index-2"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaf15d2c7169c336f97175a2e218d22e73"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">Complex_Equals</span><span class="p">(</span><a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z1</span><span class="p">,</span> <a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z2</span><span class="p">)</span></pre>
 <p>Returns TRUE if the two given complex numbers are equal.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-complex-1gaef2137203f80dff3867d224e214bb212"><span id="index-5"></span><a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">Complex_Abs</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z1</span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-complex-1gaef2137203f80dff3867d224e214bb212"><span id="index-3"></span><a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span class="std std-ref">t_float</span></a><span></span> <span class="n">Complex_Abs</span><span class="p">(</span><a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z1</span><span class="p">)</span></pre>
 <p>Returns the absolute value |z| of the given complex number ‘z’ (its distance from zero)</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-complex-1ga02c3f8e0fe099df17cef8c5d8239a41f"><span id="index-6"></span><a class="reference internal" href="#doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span class="std std-ref">s_complex</span></a><span></span> <span class="n">Complex_Conjugate</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z1</span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-complex-1ga02c3f8e0fe099df17cef8c5d8239a41f"><span id="index-4"></span><a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span> <span class="n">Complex_Conjugate</span><span class="p">(</span><a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z1</span><span class="p">)</span></pre>
 <p>Returns the conjugate of the given complex number (inverts the sign of its imaginary part)</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-complex-1ga54f72120d0a2f341b5c63b2539e98f98"><span id="index-7"></span><a class="reference internal" href="#doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span class="std std-ref">s_complex</span></a><span></span> <span class="n">Complex_Add</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z2</span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-complex-1ga54f72120d0a2f341b5c63b2539e98f98"><span id="index-5"></span><a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span> <span class="n">Complex_Add</span><span class="p">(</span><a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z1</span><span class="p">,</span> <a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z2</span><span class="p">)</span></pre>
 <p>Returns the result of the addition of the two given complex numbers.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-complex-1ga0565e40f605c893b911ba69959ce7dbc"><span id="index-8"></span><a class="reference internal" href="#doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span class="std std-ref">s_complex</span></a><span></span> <span class="n">Complex_Subtract</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z2</span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-complex-1ga0565e40f605c893b911ba69959ce7dbc"><span id="index-6"></span><a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span> <span class="n">Complex_Subtract</span><span class="p">(</span><a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z1</span><span class="p">,</span> <a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z2</span><span class="p">)</span></pre>
 <p>Returns the result of the subtraction of the two given complex numbers.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-complex-1ga6bf1bd6b128627c53684b87cff0b9265"><span id="index-9"></span><a class="reference internal" href="#doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span class="std std-ref">s_complex</span></a><span></span> <span class="n">Complex_Multiply</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z2</span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-complex-1ga6bf1bd6b128627c53684b87cff0b9265"><span id="index-7"></span><a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span> <span class="n">Complex_Multiply</span><span class="p">(</span><a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z1</span><span class="p">,</span> <a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z2</span><span class="p">)</span></pre>
 <p>Returns the result of the multiplication of the two given complex numbers.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-complex-1ga2cf4a45e78166da08f543737e2670651"><span id="index-10"></span><a class="reference internal" href="#doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span class="std std-ref">s_complex</span></a><span></span> <span class="n">Complex_Divide</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z2</span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-complex-1ga2cf4a45e78166da08f543737e2670651"><span id="index-8"></span><a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span> <span class="n">Complex_Divide</span><span class="p">(</span><a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z1</span><span class="p">,</span> <a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z2</span><span class="p">)</span></pre>
 <p>Returns the result of the divide of the two given complex numbers.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-complex-1gab9a3f68d12a1df754b70673812ee04f9"><span id="index-11"></span><a class="reference internal" href="#doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span class="std std-ref">s_complex</span></a><span></span> <span class="n">Complex_Power</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-complex-1ga3df078c268b2888b4458fe04f46cd81d"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z</span><span class="p">,</span> <span class="n">t_u8</span> <span class="n">n</span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-complex-1gab9a3f68d12a1df754b70673812ee04f9"><span id="index-9"></span><a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span> <span class="n">Complex_Power</span><span class="p">(</span><a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">z</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga8ddf940d2d7288b36e35ce78989c811e"><span class="std std-ref">t_u8</span></a><span></span> <span class="n">n</span><span class="p">)</span></pre>
 <p>Returns the given complex number, to the power of ‘n’.</p>
 </div>
 <div class="section" id="macros">
 <h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h3>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-complex-1ga6fbbbe01fed7f3a7bb2966d10dad2a44"><span id="index-12"></span><span></span><span class="cp">#define COMPLEX_NULL</span></pre>
-<p>Zero, as a complex number type.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-complex-1ga6fbbbe01fed7f3a7bb2966d10dad2a44"><span id="index-10"></span><span></span><span class="cp">#define</span> <span class="n">COMPLEX_NULL</span>    <span class="cp">(</span><a class="reference internal" href="struct_s_complex.html#doxid-structs-complex"><span class="std std-ref">s_complex</span></a><span></span><span class="p">){</span> <span class="p">.</span><span class="n">re</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="p">.</span><span class="n">im</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">}</span></pre>
+<p>A complex number value of zero (both real and imaginary parts are zero)</p>
 </div>
 </div>
 </div>
@@ -288,10 +293,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="struct_s_complex_.html" class="btn btn-neutral float-right" title="struct s_complex_" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="struct_s_complex.html" class="btn btn-neutral float-right" title="struct s_complex" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="union_u_vector4d_.html" class="btn btn-neutral float-left" title="union u_vector4d_" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="union_u_vector4d.html" class="btn btn-neutral float-left" title="union u_vector4d" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -300,19 +305,11 @@
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright FREE
+        &copy; Copyright Free &amp; Open Source: MIT License
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -323,6 +320,7 @@
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

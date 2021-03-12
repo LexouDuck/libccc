@@ -8,24 +8,29 @@
 - To differentiate ++C code from C or C++, by convention the following file formats are accepted:
 	- `++c`, `ppc`, `xxc` (case insensitive), these transpile to `.c` files
 	- `++h`, `pph`, `xxh` (case insensitive), these transpile to `.h` files
-- Several language features added, all in the form of new pre-processor directives:
+- Several language features added, mostly in the form of new pre-processor directives:
 ```c
 #namespace NameSpace.SubSpace
 #function type	FunctionName(int arg)	{ DoSomething(); return (var); }
 #operator	$ (type a, type b) = int	{ return (DoOperation(a, b)); }
 #accessor (type var)[int index] = int	{ return (GetFunction(var, index)); }
-#incbin(myvar, "filepath")
+#reflect // type reflection - type stringization , enum stringization, etc ?
 #replace("old", "new")
-#alias(token)
-#align(4)
-#format(func, 1, 2)
-#malloc
-#delete
-#inline
-#pure
-#packed
-#reflect // ?
+#header(__HEADER_H)
+#incbin(myvar, "filepath")
+#alias(token)		// shorter way of writing __attribute__((alias, ...))
+#align(4)			// shorter way of writing __attribute__((align, ...))
+#format(func, 1, 2)	// shorter way of writing __attribute__((format, ...))
+#malloc				// shorter way of writing __attribute__((malloc, ...))
+#delete				// shorter way of writing __attribute__((delete, ...))
+#inline				// shorter way of writing __attribute__((inline, ...))
+#pure				// shorter way of writing __attribute__((pure, ...))
+#packed				// shorter way of writing __attribute__((packed, ...))
 ```
+
+The ++C language consists of 2 things:
+- `ppp`, the ++C pre-processor - this is the transpiler program
+- `libccc`, the ++C standard library (which can also be used in plain old C)
 
 
 
@@ -45,21 +50,32 @@ Here are the warnings which are added by default (any warning can be deactivated
 
 ### Accepted alternate notation:
 
-- dereference: * = $ (to avoid synonymy with the multiply operator)
+- dereference: `*` can be written `$` (to avoid synonymy with the multiply operator)
 ```c
 value = *pointer; // pure C
 value = $pointer; // ++C
 ```
-- get address: & = @ (to avoid synonymy with the bitwise AND operator)
+- get address: `&` can be written `@` (to avoid synonymy with the bitwise AND operator)
 ```c
 address = &value; // pure C
 address = @value; // ++C
 ```
-- pointer types: * = $ (mutable pointer) or @ (const pointer)
+
+- octal number literals:
 ```c
-void*		->	void$
-void const*	->	void@
+value = 0644; // pure C
+value = 0o644; // ++C
 ```
+
+### RegExp literals:
+
+regex literal strings are prefixed with an `r`, and flags may be placed after the ending quote:
+```c
+char const* regex1 = r"\b(My_\w*)\b"g;
+char const* regex2 = r"(?x) ( [^)] __damn__ )"i;
+char const* regex3 = r"[a-zA-Z_]\w*"sg;
+```
+When writing a regex literal, the transpiled C output string literal will have double backquotes `\\` wherever necessary
 
 
 
@@ -269,7 +285,7 @@ typedef struct	s_dict_
 }				s_dict;
 
 #namespace Dict
-s_dict	New(int items, s_keyval ...);
+s_dict	New(int items, s_keyval ...)
 {
 	return ((s_dict)
 	{
@@ -323,7 +339,7 @@ typedef struct	s_list_<TYPE>
 {
 	s_list*		next;
 	size_t		item_size;
-	<TYPE>		item;
+	TYPE		item;
 }				s_list<TYPE>;
 // usage example:
 s_list<char*> const*	string_list;
@@ -332,7 +348,7 @@ s_list<char*> const*	string_list;
 ```c
 // a generic type can be applied to a namespace as well
 #namespace Math<TYPE=float>
-<TYPE>	Cos(<TYPE> x);
+TYPE	Cos(TYPE x);
 
 // usage example:
 float cosine_float = Math<float>.Cos(value);	// specific implementation for 32-bit floating-point type cos()
@@ -344,7 +360,7 @@ Here's a set of examples of generic type usage with lists:
 // in .h header file
 #namespace List<TYPE=void*> // by default, 'void*' type will be used
 
-s_list<TYPE>	New(size_t length, <TYPE> ...);
+s_list<TYPE>	New(size_t length, TYPE ...);
 void			Append(s_list<TYPE> list, s_list<TYPE> element);
 s_list<TYPE>	Filter(s_list<TYPE> list, bool (*filter)(s_list<TYPE> element));
 
@@ -388,7 +404,7 @@ s_list<char*> concat = list1 + list2; // type inferrence for the operator
 ```c
 // list index get
 #namespace List<TYPE=void*>
-#accessor (s_list<TYPE>* list)[size_t index] = <TYPE>
+#accessor (s_list<TYPE>* list)[size_t index] = TYPE
 {
 	return (List<TYPE>.Get(list, index));
 }
@@ -405,10 +421,10 @@ typedef struct	keyval_<TYPE>
 {
 	char*	key;
 	char*	type;
-	<TYPE>	value;
+	TYPE	value;
 }				keyval<TYPE>;
 
-keyval<TYPE>	New(char* key, <TYPE> value);
+keyval<TYPE>	New(char* key, TYPE value);
 
 
 
@@ -418,7 +434,7 @@ typedef keyval<void*>*	object;
 
 object*	New(size_t items, keyval ...);
 
-#accessor (object* obj)[char const* key] = <TYPE>
+#accessor (object* obj)[char const* key] = TYPE
 {
 	return (Object<TYPE>.Get(obj, key));
 }
@@ -472,18 +488,78 @@ int main()
 This is the difference between `#define` and `#alias` instructions, `#alias` will change the output C code directly.
 
 
-##### ALIAS
-Creates an alias for a function/variable, using `__attribute__` (or, you can configure it to rather transpile like a `#define`, or a `#replace`).
+##### HEADER
+Should be placed in a header file (ie: `.++h`,`.pph`,`.xxh`,etc), at the top of the file (before any `#include` directives).
+Surrounds the file with include-guards, with the given token argument being the `#define` used for header inclusion guarding.
 ```c
-void		MyFunction(void);
-#alias	f	MyFunction
+// ++C code
+#header(__HEADER_H)
+// this is a simple test header
+void HelloWorld(void);
+// ...
+```
+The above example would transpile to the following C code output:
+```c
+// C code
+#ifndef __HEADER_H
+#define __HEADER_H
+
+#ifdef __cplusplus
+extern "C" /{
+#endif
+
+// this is a simple test header
+void HelloWorld(void);
+// ...
+
+#ifdef __cplusplus
+} // extern c
+#endif
+
+#endif
+```
+If no argument is supplied, `#header` will generate a header based on the file name (relative to the folder from where `ppp` was invoked), with two leading underscores `__`, and ending with `_H`:
+- for example, in a file at path `./src/utils/header.++h`:
+```c
+// ++C code
+#header
+// ...
+
+// transpiled output C code
+#ifndef __SRC_UTILS_HEADER_H
+#define __SRC_UTILS_HEADER_H
+// ...
+#endif
+```
+
+
+
+##### ALIAS
+Creates an alias for a function/variable (must be globally scoped), using `__attribute__` (or, you can configure it to rather transpile like a `#define`, or a `#replace`).
+```c
+void			MyFunction(void);
+#alias	func	MyFunction
 ```
 The above example transpiles by declaring `f` with the function aliasing attribute, like so:
 ```c
 // transpiles to:
 void	MyFunction(void);
-void	f(void) __attribute__((weak, alias("MyFunction")));
+#ifdef __GNUC__
+void	func(void) __attribute__((weak, alias("MyFunction")));
+#else
+#define func	MyFunction
+#endif
 ```
+
+If no second argument is supplied, the alias will be applied to the last definition immediately before it:
+```c
+void		MyFunction(void);
+#alias	func	// `func` is an alias for `MyFunction`
+
+extern int my_global_var;
+#alias	my_gv	// `my_gv` is an alias for `my_global_var`
+```
+
 
 
 ##### PACKED
@@ -560,6 +636,12 @@ void	MyFunction(char* format, ...);
 ```
 
 
+Lastly,
+- **/!\ NOT YET DECIDED, PROBABLY A BAD IDEA**: pointer types: * = $ (mutable pointer) or @ (const pointer)
+```c
+void*		->	void$
+void const*	->	void@
+```
 
 
 ---

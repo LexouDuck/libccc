@@ -11,10 +11,11 @@
 
 #ifndef __LIBCCC_ALGEBRA_H
 #define __LIBCCC_ALGEBRA_H
-/*! @file libccc/math/algebra.h
-**	@addtogroup libccc_math_algebra
-**	@{
+/*!@group{libccc_math_algebra}
+** @{
 **	This header defines useful algebra and calculus types, and functions.
+**
+**	@file
 */
 // TODO add other function macros for integral, distance, etc
 

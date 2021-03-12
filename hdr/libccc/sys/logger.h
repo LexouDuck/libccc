@@ -11,10 +11,11 @@
 
 #ifndef __LIBCCC_SYS_LOGGER_H
 #define __LIBCCC_SYS_LOGGER_H
-/*! @file libccc/sys/logger.h
-**	@addtogroup libccc_sys_logger
-**	@{
+/*!@group{libccc_sys_logger}
+** @{
 **	This header defines a simple yet useful set of functions to do program logging
+**
+**	@file
 */
 
 /*

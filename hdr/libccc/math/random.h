@@ -11,10 +11,13 @@
 
 #ifndef __LIBCCC_MATH_RANDOM_H
 #define __LIBCCC_MATH_RANDOM_H
-/*! @file libccc/math/random.h
-**	@addtogroup libccc_math_random
-**	@{
+/*!@group{libccc_math_random}
+** @{
 **	This header defines some simple pseudo-random number generator functions.
+**
+**	@isostd{https://en.cppreference.com/w/c/numeric/random}
+**
+**	@file
 */
 
 /*

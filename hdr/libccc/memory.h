@@ -11,10 +11,13 @@
 
 #ifndef __LIBCCC_MEMORY_H
 #define __LIBCCC_MEMORY_H
-/*! @file libccc/memory.h
-**	@addtogroup libccc_memory
-**	@{
+/*!@group{libccc_memory}
+** @{
 **	This header defines the common standard memory manipulation functions.
+**
+**	@isostd{https://en.cppreference.com/w/c/memory}
+**
+**	@file
 */
 
 /*
@@ -37,91 +40,161 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
+//! Returns a pointer to a newly allocated memory area which is `size` bytes long.
 /*!
-**	Allocates `size` bytes in memory, returning the pointer at which
-**	said bytes were allocated, or NULL if the memory could not be allocated.
+**	@isostd{https://en.cppreference.com/w/c/memory/malloc}
+**
+**	Allocates `size` bytes in memory, returning the pointer to allocated region.
+**	NB: This function only allocates the memory: there may be garbage leftover values.
+**		It is recommended to use Memory_New() instead, to avoid garbage memory issues.
+**
+**	@returns The pointer to newly allocated region, or #NULL if an error occurred
+**			(ie: the memory could not be allocated for whatever reason).
 */
 _MALLOC()
 void*				Memory_Alloc(t_size size);
-#define c_memalloc	Memory_Alloc
+#define c_memalloc	Memory_Alloc //!< @alias{Memory_Alloc}
 
+//! Returns a newly allocated memory area which is `size` bytes long, with every byte set to `0`.
 /*!
-**	Allocates `size` bytes in memory, setting each byte of this newly allocated
-**	memory space to `0`. Returns the pointer at which said bytes were allocated,
-**	or NULL if the memory could not be allocated.
+**	@nonstd
+**
+**	Allocates `size` bytes in memory, returning the pointer to allocated region.
+**	Sets each byte of this newly allocated memory space to `0`.
+**
+**	@returns The pointer to newly allocated region, or #NULL if an error occurred
+**			(ie: the memory could not be allocated for whatever reason).
 */
 _MALLOC()
 void*				Memory_New(t_size size);
-#define c_memnew	Memory_New
+#define c_memnew	Memory_New //!< @alias{Memory_New}
 
+//! Returns a newly allocated memory area which is `size` bytes long, with every byte set to `c`.
 /*!
+**	@nonstd
+**
 **	Allocates `size` bytes in memory, setting each byte of this newly allocated
 **	memory space to `c`. Returns the pointer at which said bytes were allocated,
-**	or NULL if the memory could not be allocated.
+**	or #NULL if the memory could not be allocated.
 */
 _MALLOC()
 void*				Memory_New_C(t_size size, char c);
-#define c_memcnew	Memory_New_C
+#define c_memcnew	Memory_New_C //!< @alias{Memory_New_C}
 
+
+
+//! Frees the previously allocated memory area at `*ptr`.
 /*!
-**	Frees the allocated memory at `*ptr`.
+**	@isostd{https://en.cppreference.com/w/c/memory/free}
+**
+**	Deallocates the area of memory pointed to by `ptr`, assuming it was
+**	previously allocated by a call to Memory_Alloc() or Memory_New()
 */
 void				Memory_Free(void* ptr);
-#define c_memfree	Memory_Free
+#define c_memfree	Memory_Free //!< @alias{Memory_Free}
 
+//! Frees the allocated memory at `**a_ptr`, and sets `*a_ptr` to #NULL.
 /*!
-**	Frees the allocated memory at `**a_ptr`, and sets `*a_ptr` to NULL.
+**	@nonstd
+**
+**	Frees the allocated memory at `**a_ptr`, and sets `*a_ptr` to #NULL.
+**
+**	@param	a_ptr	The address of the pointer to free and `NULL`ify
 */
 void				Memory_Delete(void* *a_ptr);
-#define c_memdel	Memory_Delete
+#define c_memdel	Memory_Delete //!< @alias{Memory_Delete}
 
 
 
+//! Sets `n` bytes of memory, starting at `ptr`, to the given value `byte`.
 /*!
+**	@isostd{https://en.cppreference.com/w/c/memory/memset}
+**
 **	Sets `n` bytes of memory with the given 8-bit value `byte` (taking only the
 **	first 8 bits of this value and writing it byte-per-byte), starting at `ptr`.
 */
 void				Memory_Set(void* ptr, t_u8 byte, t_size n);
-#define c_memset	Memory_Set
+#define c_memset	Memory_Set //!< @alias{Memory_Set}
 
+//! Sets `n` bytes of memory to 0, starting at `ptr`.
 /*!
-**	Sets `n` bytes of memory to 0, starting at `ptr`. (same as bzero)
+**	@isostd{https://en.cppreference.com/w/c/memory/bzero}
+**
+**	Sets `n` bytes of memory to 0, starting at `ptr`. (equivalent to bzero)
 */
 void				Memory_Clear(void* ptr, t_size n);
-#define c_memclr	Memory_Clear
+#define c_memclr	Memory_Clear //!< @alias{Memory_Clear}
 
+
+
+//! Copies `n` bytes of data from `src` into `dest`, and returns `dest`.
 /*!
+**	@isostd{https://en.cppreference.com/w/c/string/byte/memcpy}
+**
 **	Copies `n` bytes of memory from `src` to `dest`, and returns `dest`.
 */
 void*				Memory_Copy(void* dest, void const* src, t_size n);
-#define c_memcpy	Memory_Copy
+#define c_memcpy	Memory_Copy //!< @alias{Memory_Copy}
 
+//! Copies `n` bytes of data from `src` into `dest`, and returns `dest` (stops upon encountering `byte`).
 /*!
+**	@isostd{https://en.cppreference.com/w/c/string/byte/memccpy}
+**
 **	Copies at most `n` bytes of memory from `src` to `dest`,
 **	stopping after the first occurence of a byte equal to `byte`,
-**	and returns a pointer to (`byte` + 1) in `dest`, or NULL.
+**	and returns a pointer to (`byte` + 1) in `dest`, or #NULL.
 */
 void*				Memory_Copy_C(void* dest, void const* src, t_u8 byte, t_size n);
-#define c_memccpy	Memory_Copy_C
+#define c_memccpy	Memory_Copy_C //!< @alias{Memory_Copy_C}
 
+//! Moves `n` bytes of data from `src` into `dest`, and returns `dest`.
 /*!
+**	@isostd{https://en.cppreference.com/w/c/string/byte/memmove}
+**
 **	Reads `n` bytes of memory from `src`, and then writes
 **	all of those bytes to `dest` after having read everything.
 **	This function is useful if the `src` and `dest` buffers overlap.
 */
 void*				Memory_Move(void* dest, void const* src, t_size n);
-#define c_memmove	Memory_Move
+#define c_memmove	Memory_Move //!< @alias{Memory_Move}
 
 
 
+//! Allocates a memory region which is `n` bytes long and has the same content as `ptr`.
 /*!
+**	@nonstd
+**
 **	Returns a newly allocated memory area which is a copy of
-**	the given memory area `ptr` (or NULL if the required memory
-**	could not be allocated, or if `ptr == NULL` or `n == 0`).
+**	the given memory area `ptr` (or #NULL if the required memory
+**	could not be allocated, or if `ptr == #NULL` or `n == 0`).
 */
 _MALLOC()
 void*				Memory_Duplicate(void const* ptr, t_size n);
-#define c_memdup	Memory_Duplicate
+#define c_memdup	Memory_Duplicate //!< @alias{Memory_Duplicate}
+
+
+
+/*
+** ************************************************************************** *|
+**                       Memory Concatenation Operations                      *|
+** ************************************************************************** *|
+*/
+
+//! Return a newly allocated memory region, by concatenating `ptr1` and `ptr2`
+void*					Memory_Join(void const* ptr1, t_size length1, void const* ptr2, t_size length2);
+#define c_memjoin		Memory_Join //!< @alias{Memory_Join}
+
+//! Return a newly allocated memory region, by concatenating `*a_dest` (deletes old) and `src`
+void*					Memory_Append(void* *a_dest, t_size dest_length, void const* src, t_size src_length);
+#define c_memappend		Memory_Append //!< @alias{Memory_Append}
+
+//! Return a newly allocated memory region, by concatenating `src` and `*a_dest` (deletes old)
+void*					Memory_Prepend(void const* src, t_size src_length, void* *a_dest, t_size dest_length);
+#define c_memprepend	Memory_Prepend //!< @alias{Memory_Prepend}
+
+//! Return a newly allocated memory region, by concatenating `*a_ptr1` (deletes old) and `*a_ptr2` (deletes old)
+void*					Memory_Merge(void* *a_ptr1, t_size length1, void* *a_ptr2, t_size length2);
+#define c_memmerge		Memory_Merge //!< @alias{Memory_Merge}
 
 
 
@@ -131,44 +204,67 @@ void*				Memory_Duplicate(void const* ptr, t_size n);
 ** ************************************************************************** *|
 */
 
+//! Finds the first occurence of the given `byte` value in the first `n` bytes at `ptr`.
 /*!
-**	Returns a pointer to the first occurrence of a byte equal to the given `byte`
-**	(or NULL if no byte was a match), starting the search at `ptr`
-**	and searching `n` bytes of memory.
+**	@isostd{https://en.cppreference.com/w/c/string/byte/memchr}
+**
+**	Returns a pointer to the first occurrence of a byte which is equal to
+**	the given `byte` value, or #NULL if no matching byte was encountered.
+**	Begins the search at `ptr`, and reads through `n` bytes of memory.
 */
 void*				Memory_Find(void const* ptr, t_u8 byte, t_size n);
-#define c_memchr	Memory_Find
+#define c_memchr	Memory_Find //!< @alias{Memory_Find}
 
+
+
+//! Replaces every `old` byte with `new`, in the `n` byte long memory region starting at `ptr`.
 /*!
+**	@nonstd
+**
 **	Iterates through `n` bytes of memory starting at `ptr`, replacing every
 **	byte equal to `old` with the value `new` instead.
 */
 void				Memory_Replace(void* ptr, t_u8 old, t_u8 new, t_size n);
-#define c_memrep	Memory_Replace
+#define c_memrep	Memory_Replace //!< @alias{Memory_Replace}
 
+
+
+//! Compares `n` bytes of memory in `ptr1` and `ptr2`: returns the first difference of chars encountered, or zero, if the bytes all match.
 /*!
+**	@isostd{https://en.cppreference.com/w/c/string/byte/memcmp}
+**
 **	Compares `n` bytes of memory at `ptr1` and `ptr2`,
 **	returning (byte1 - byte2) at the first difference encountered.
 **	As such, will return 0 if the contents of `ptr1` and `ptr2` match.
 */
 int					Memory_Compare(void const* ptr1, void const* ptr2, t_size n);
-#define c_memcmp	Memory_Compare
+#define c_memcmp	Memory_Compare //!< @alias{Memory_Compare}
 
+
+
+//! Swaps `size` bytes of memory between `ptr1` and `ptr2`
 /*!
+**	@nonstd
+**
 **	Swaps the memory content pointed to by `ptr1` and `ptr2`,
 **	copying exactly `size` bytes of data between the two. (XOR swap method)
 **	Returns 0 if the swap was successful, and 1 otherwise.
 */
 int					Memory_Swap(void* ptr1, void* ptr2, t_size size);
-#define c_memswap	Memory_Swap
+#define c_memswap	Memory_Swap //!< @alias{Memory_Swap}
 
+
+
+//! Returns a subsection of `length` bits from `value`, starting at index `bit`.
 /*!
+**	@nonstd
+**
 **	Returns a subsection of the `value` argument, taking `length` bits
 **	from `value` at the given bit index `bit`, and bitshifting the resulting
 **	bits to the right by `bit` bits (so as to center the value back to 0).
 */
 t_u64				Memory_GetBits(t_u64 value, t_u8 bit, t_u8 length);
-#define c_getbits	Memory_GetBits
+#define c_getbits	Memory_GetBits //!< @alias{Memory_GetBits}
 
 
 

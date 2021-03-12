@@ -11,14 +11,10 @@ inline char*	Size_ToString(t_size number)
 	return (U64_ToString(number));
 }
 
-
-
 inline char*	Size_ToString_Hex(t_size number)
 {
 	return (U64_ToString_Hex(number));
 }
-
-
 
 char*	Size_ToString_Readable(t_size number)
 {
@@ -32,7 +28,7 @@ char*	Size_ToString_Readable(t_size number)
 	}
 
 	char	*result;
-	t_u8	digits[MAXDIGITS_64BIT];
+	t_u8	digits[sizeof(t_size) / 2 * 5];
 	t_u8	i;
 	t_size	n;
 

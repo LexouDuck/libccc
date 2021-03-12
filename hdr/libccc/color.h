@@ -11,10 +11,11 @@
 
 #ifndef __LIBCCC_COLOR_H
 #define __LIBCCC_COLOR_H
-/*! @file libccc/color.h
-**	@addtogroup libccc_color
-**	@{
+/*!@group{libccc_color}
+** @{
 **	This header defines all the functions/bitmasks for encoding colors in ints.
+**
+**	@file
 */
 // TODO add AHSL32 color typedef + conversion functions
 // TODO add conversion functions for float-color structs
@@ -176,6 +177,16 @@ s_argb								Color_ARGB16_To_ARGB(t_argb16 color);
 
 
 
+//! Returns a value indicating the amount of visual difference between the two given colors
+/*!
+**	https://en.wikipedia.org/wiki/Color_difference
+**
+**	@returns A human-perception-weighted euclidian squared distance between the two given colors
+**		The greater the value, the more perceptually different these 2 colors are.
+*/
+t_u16						Color_ARGB16_Difference(t_argb16 c1, t_argb16 c2);
+#define c_color_argb16_diff	Color_ARGB16_Difference
+
 //! Find the nearest color to the given 'target' color, from within the given arrays of 'colors'
 /*!
 **	@param	target	The desired color, for which the nearest will be returned
@@ -184,7 +195,7 @@ s_argb								Color_ARGB16_To_ARGB(t_argb16 color);
 **	@returns a pointer to the color within 'colors' which is the closest match
 **			to the given 'target' color, searching through 'n' colors in the array.
 */
-t_argb16*						Color_ARGB16_GetNearest(t_argb16 target, t_argb16* colors, t_size n);
+t_argb16 const*					Color_ARGB16_GetNearest(t_argb16 target, t_argb16 const* colors, t_size n);
 #define c_color_argb16_nearest	Color_ARGB16_GetNearest
 
 
@@ -262,6 +273,16 @@ s_argb								Color_ARGB32_To_ARGB(t_argb32 color);
 
 
 
+//! Returns a value indicating the amount of visual difference between the two given colors
+/*!
+**	https://en.wikipedia.org/wiki/Color_difference
+**
+**	@returns A human-perception-weighted euclidian squared distance between the two given colors
+**		The greater the value, the more perceptually different these 2 colors are.
+*/
+t_u32						Color_ARGB32_Difference(t_argb32 c1, t_argb32 c2);
+#define c_color_argb32_diff	Color_ARGB32_Difference
+
 //! Find the nearest color to the given 'target' color, from within the given arrays of 'colors'
 /*!
 **	@param	target	The desired color, for which the nearest will be returned
@@ -270,7 +291,7 @@ s_argb								Color_ARGB32_To_ARGB(t_argb32 color);
 **	@returns a pointer to the color within 'colors' which is the closest match
 **			to the given 'target' color, searching through 'n' colors in the array.
 */
-t_argb32*						Color_ARGB32_GetNearest(t_argb32 target, t_argb32* colors, t_size n);
+t_argb32 const*					Color_ARGB32_GetNearest(t_argb32 target, t_argb32 const* colors, t_size n);
 #define c_color_argb32_nearest	Color_ARGB32_GetNearest
 
 
@@ -350,7 +371,7 @@ s_ahsl							Color_ARGB_To_AHSL(s_argb const* color);
 **	@returns a pointer to the color within 'colors' which is the closest match
 **			to the given 'target' color, searching through 'n' colors in the array.
 */
-s_argb*							Color_ARGB_GetNearest(s_argb target, s_argb* colors, t_size n);
+s_argb const*					Color_ARGB_GetNearest(s_argb target, s_argb const* colors, t_size n);
 #define c_color_argb_nearest	Color_ARGB_GetNearest
 
 
@@ -412,7 +433,7 @@ s_argb							Color_AHSL_To_ARGB(s_ahsl const* color);
 **	@returns a pointer to the color within 'colors' which is the closest match
 **			to the given 'target' color, searching through 'n' colors in the array.
 */
-s_ahsl*							Color_AHSL_GetNearest(s_ahsl target, s_ahsl* colors, t_size n);
+s_ahsl const*					Color_AHSL_GetNearest(s_ahsl target, s_ahsl const* colors, t_size n);
 #define c_color_ahsl_nearest	Color_AHSL_GetNearest
 
 

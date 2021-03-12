@@ -11,10 +11,22 @@
 
 #ifndef __LIBCCC_POINTER_H
 #define __LIBCCC_POINTER_H
-/*! @file libccc/pointer.h
-**	@addtogroup libccc_pointer
-**	@{
+/*!@group{libccc_pointer}
+** @{
 **	This header defines the standard memory size and pointer integer types.
+**
+**	@isostd{https://en.cppreference.com/w/c/types/integer}
+**	@isostd{https://en.cppreference.com/w/c/types/limits}
+**
+**	The types defined here are aliases for all the primitive integer types
+**	which have a varying (platform-dependent) amount of bits. These types
+**	are all used to deal with computer memory or adresses/pointers in some way.
+**
+**	These `typedef`s are here purely for nomenclature consistency reasons.
+**	- all primitive type aliases are prefixed with 't_'
+**	- all signed integer types have names that start with `s`, ie: `sint`
+**
+**	@file
 */
 
 /*
@@ -49,54 +61,68 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-/*
-**	Define the common NULL pointer macros.
-*/
 #ifdef	NULL
 #undef	NULL
-#endif	//! Represents a NULL (0-value) pointer, of type 'void'
-#define NULL	(void*)(0)
-
-#ifdef	TYPED_NULL
-#undef	TYPED_NULL
-#endif	//! Represents a NULL pointer, of the given 'TYPE'
-#define TYPED_NULL(TYPE)	(TYPE*)(0)
-
-
-
-//! The RAM memory size type
+#endif
+//! Represents a NULL (0-value) pointer, of type 'void'
 /*!
-**	This typedef is here purely for nomenclature consistency
-**	(all primitive typedefs are prefixed with 't_')
+**	@isostd{https://en.cppreference.com/w/c/types/NULL}
+**
+**	The `NULL` pointer is simply an integer value of zero, cast to `void*`.
+*/
+#define NULL	((void*)0)
+
+
+
+//! Primitive type: The address memory size integer type
+/*!
+**	@isostd{https://en.cppreference.com/w/c/types/size_t}
+**
+**	@see
+**	- Size_ToString()
+**	- Size_ToString_Hex()
+**	- Size_ToString_Readable()
+**	- Size_FromString()
 */
 typedef size_t		t_size;
 TYPEDEF_ALIAS(		t_size, SIZE, PRIMITIVE)
 
-//! The pointer difference substraction result type
+//! Primitive type: The pointer subtraction integer type
 /*!
-**	This typedef is here purely for nomenclature consistency
-**	(all primitive typedefs are prefixed with 't_')
+**	@isostd{https://en.cppreference.com/w/c/types/ptrdiff_t}
 */
 typedef ptrdiff_t	t_ptrdiff;
 TYPEDEF_ALIAS(		t_ptrdiff, PTRDIFF, PRIMITIVE)
 
 
 
-//! Maximum-width signed integer type
+//! Primitive type: Maximum-width signed integer type
+/*!
+**	@isostd{https://en.cppreference.com/w/cpp/types/integer}
+*/
 typedef intmax_t	t_sintmax;
 TYPEDEF_ALIAS(		t_sintmax, SINTMAX, PRIMITIVE)
 
-//! Maximum-width unsigned integer type
+//! Primitive type: Maximum-width unsigned integer type
+/*!
+**	@isostd{https://en.cppreference.com/w/cpp/types/integer}
+*/
 typedef uintmax_t	t_uintmax;
 TYPEDEF_ALIAS(		t_uintmax, UINTMAX, PRIMITIVE)
 
 
 
-//! Pointer-size signed integer type
+//! Primitive type: Pointer-sized signed integer type
+/*!
+**	@isostd{https://en.cppreference.com/w/cpp/types/integer}
+*/
 typedef intptr_t	t_sintptr;
 TYPEDEF_ALIAS(		t_sintptr, SINTPTR, PRIMITIVE)
 
-//! Pointer-size unsigned integer type
+//! Primitive type: Pointer-sized unsigned integer type
+/*!
+**	@isostd{https://en.cppreference.com/w/cpp/types/integer}
+*/
 typedef uintptr_t	t_uintptr;
 TYPEDEF_ALIAS(		t_uintptr, UINTPTR, PRIMITIVE)
 
@@ -104,28 +130,28 @@ TYPEDEF_ALIAS(		t_uintptr, UINTPTR, PRIMITIVE)
 
 /*
 ** ************************************************************************** *|
-**                         Other Conversion Functions                         *|
+**                        String Conversion Functions                         *|
 ** ************************************************************************** *|
 */
 
-//! Get the string decimal representation of a RAM memory size integer
+//! Get the string decimal representation of the given size integer `value`
 _MALLOC()
 char*					Size_ToString(t_size value);
-#define c_size_to_str	Size_ToString
+#define c_size_to_str	Size_ToString //!< @alias{Size_ToString}
 
-//! Get the string hexadecimal representation of a RAM memory size integer
+//! Get the string hexadecimal representation of the given size integer `value`
 _MALLOC()
 char*						Size_ToString_Hex(t_size value);
-#define c_size_to_strhex	Size_ToString_Hex
+#define c_size_to_strhex	Size_ToString_Hex //!< @alias{Size_ToString_Hex}
 
-//! Get the string human-readable representation of a RAM memory size integer, in short readable form, with bytes units (KB,MB,GB,etc)
+//! Get the string representation of `value` in short readable form, ie: with bytes units (KB,MB,GB,etc)
 _MALLOC()
 char*							Size_ToString_Readable(t_size value);
-#define c_size_to_str_readable	Size_ToString_Readable
+#define c_size_to_str_readable	Size_ToString_Readable //!< @alias{Size_ToString_Readable}
 
-//! Parse a memory-size uint from the given string
+//! Parse a size integer value from the given string `str`
 t_size					Size_FromString(char const* str);
-#define c_str_to_size	Size_FromString
+#define c_str_to_size	Size_FromString //!< @alias{Size_FromString}
 
 
 
@@ -133,11 +159,11 @@ t_size					Size_FromString(char const* str);
 //! Get the string decimal representation of a pointer/address value
 _MALLOC()
 char*					Pointer_ToString(void const* ptr);
-#define c_ptr_to_str	Pointer_ToString
+#define c_ptr_to_str	Pointer_ToString //!< @alias{Pointer_ToString}
 //! Get the string hexadecimal representation of a pointer/address value
 _MALLOC()
 char*						Pointer_ToString_Hex(void const* ptr);
-#define c_ptr_to_strhex		Pointer_ToString_Hex
+#define c_ptr_to_strhex		Pointer_ToString_Hex //!< @alias{Pointer_ToString_Hex}
 
 
 

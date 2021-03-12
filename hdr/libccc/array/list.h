@@ -11,10 +11,11 @@
 
 #ifndef __LIBCCC_ARRAY_LIST_H
 #define __LIBCCC_ARRAY_LIST_H
-/*! @file libccc/array/list.h
-**	@addtogroup libccc_array_list
-**	@{
+/*!@group{libccc_array_list}
+** @{
 **	This header defines a simple linked list type and utility functions for it.
+**
+**	@file
 */
 
 /*

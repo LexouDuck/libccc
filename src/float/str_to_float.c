@@ -19,7 +19,10 @@
 	#define LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_FLOAT	
 #endif
 
-#include "libccc/sys/io.h"
+//! The maximum amount of digits that can be printed to the mantissa
+#define MAXLEN_MANTISSA	(64)
+
+
 
 //! Returns 1 if the given 'number' is either NaN, or +/- infinity
 t_float	Float_FromString_CheckSpecial(char const* str)
@@ -155,8 +158,8 @@ LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_FLOAT							\
 	tmp = String_Find_Char(str_mantissa, '.');						\
 	if (tmp && (frac_digits = String_Length(++tmp)) > 0)			\
 		exponent -= frac_digits;									\
-	if (String_Length(str_mantissa) > MAXDIGITS_64BIT)				\
-		exponent += String_Length(str_mantissa) - MAXDIGITS_64BIT;	\
+	if (String_Length(str_mantissa) > MAXLEN_MANTISSA)				\
+		exponent += String_Length(str_mantissa) - MAXLEN_MANTISSA;	\
 	return (result * Math_Pow(10., exponent) * (negative ? -1 : 1));\
 }																	\
 

@@ -108,6 +108,7 @@ SRCS = \
 	memory/memcpy.c		\
 	memory/memdup.c		\
 	memory/memmove.c	\
+	memory/memmerge.c	\
 	memory/memcmp.c		\
 	memory/memchr.c		\
 	memory/memswap.c	\
@@ -132,23 +133,25 @@ SRCS = \
 	string/strtrim.c	\
 	string/strpad.c		\
 	string/strrev.c		\
-	string/strjoin.c	\
+	string/strmerge.c	\
 	string/strinsert.c	\
 	string/strsub.c		\
 	string/strformat.c	\
 	string/striter.c	\
 	string/strmap.c		\
 	string/strrep.c		\
-	string/strmerge.c	\
 	string/strprint.c	\
 	color/color_argb_get.c	\
 	color/color_argb_set.c	\
 	color/color_argb_to.c	\
-	color/color_nearest.c	\
 	color/color_convert.c	\
+	color/color_nearest.c	\
+	color/color_diff.c		\
+	sys/io/fd.c					\
+	sys/io/error.c				\
+	sys/io/color.c				\
 	sys/io/open.c				\
 	sys/io/close.c				\
-	sys/io/error.c				\
 	sys/io/chmod.c				\
 	sys/io/read.c				\
 	sys/io/read_nextline.c		\
@@ -407,12 +410,22 @@ re: fclean all
 #        Generate documentation       #
 #######################################
 
-DOXYREST = $(DOCDIR)doxyrest/bin/doxyrest.exe
+DOXYREST = $(DOCDIR)_doxyrest/bin/doxyrest
 
 doc:
+	@rm -rf $(DOCDIR)xml/*
+	@rm -rf $(DOCDIR)rst/*
+	@rm -rf $(DOCDIR)man/*
+	@rm -rf $(DOCDIR)rtf/*
+	@rm -rf $(DOCDIR)pdf/*
+	@rm -rf $(DOCDIR)html/*
+	@rm -rf $(DOCDIR)latex/*
 	@doxygen $(DOCDIR)project.doxygen
 	@$(DOXYREST) -c $(DOCDIR)doxyrest-config.lua
 	@sphinx-build -b html $(DOCDIR)rst $(DOCDIR)html -c $(DOCDIR)
+
+#	@sphinx-build -M latexpdf $(DOCDIR)rst $(DOCDIR)pdf  -c $(DOCDIR)
+#	@$(MAKE) -C $(DOCDIR)pdf/latex/ all
 
 
 

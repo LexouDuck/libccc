@@ -1,0 +1,21 @@
+{% extends "sphinx_rtd_theme/layout.html" %}
+
+{% set css_files = css_files + ["_static/css/nbsphinx.css"] %}
+
+{% set script_files = script_files + ["_static/js/custom.js"] %}
+
+{% block extrahead %}
+	<link rel="shortcut icon" href="{{ pathto('_static/images/favicon.ico', 1) }}"/>
+	{# SOCIAL GRAPH #}
+	<meta name="Description" content="{{ title|striptags|e }}">
+	<meta property="og:description" content="{{ title|striptags|e }}">
+	<meta property="og:title" content="{{ docstitle }} - {{ title|striptags|e }}">
+	<meta property="og:image" content="{{ pathto('_static/images/libccc_icon.png', 1) }}">
+	<meta property="og:image:secure_url" content="{{ pathto('_static/images/libccc_icon.png', 1) }}" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="380" />
+	<meta property="og:image:height" content="380" />
+	<meta property="og:url" content="{{ theme_canonical_url }}{{ pagename }}.html">
+	<meta property="og:site_name" content="{{ docstitle }}">
+
+{% endblock %}

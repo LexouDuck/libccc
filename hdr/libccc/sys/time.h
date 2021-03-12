@@ -11,10 +11,13 @@
 
 #ifndef __LIBCCC_SYS_TIME_H
 #define __LIBCCC_SYS_TIME_H
-/*! @file libccc/sys/time.h
-**	@addtogroup libccc_sys_time
-**	@{
+/*!@group{libccc_sys_time}
+** @{
 **	This header defines all the functions for date & time related functions.
+**
+**	@isostd{https://en.cppreference.com/w/c/chrono}
+**
+**	@file
 */
 
 /*
@@ -40,10 +43,13 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! The standard type used to represent a date+time (smallest unit is seconds)
+//! The standard type used to represent a date and time, normal precision (seconds)
 /*!
-**	This type stores integer standard UNIX epoch time, so that means that a value of zero
-**	corresponds to midnight (00:00:00), January 1, 1970, UTC (Coordinated Universal Time)
+**	@isostd{https://en.cppreference.com/w/c/chrono/time_t}
+**
+**	This type stores an integer value representing a standard UNIX epoch time.
+**	That means that a `t_time` value holds a the number of seconds since
+**	midnight (00:00:00), January 1, 1970, UTC (Coordinated Universal Time)
 */
 typedef time_t		t_time;
 TYPEDEF_ALIAS(		t_time, TIME, PRIMITIVE)
@@ -52,8 +58,10 @@ TYPEDEF_ALIAS(		t_time, TIME, PRIMITIVE)
 
 
 
-//! This struct is used to store a precise, arbitrary timestamp (smallest unit is nanoseconds)
+//! This struct is used to store a duration/interval with high precision (nanoseconds)
 /*!
+**	@isostd{https://en.cppreference.com/w/c/chrono/timespec}
+**
 **	This 'timespec' has an arbitrary begin point (typically the start of program
 **	execution, but it can be the last machine boot, among many other things).
 **	It is meant to be used measure intervals of time during program execution,
@@ -66,13 +74,21 @@ TYPEDEF_ALIAS(		t_time, TIME, PRIMITIVE)
 */
 typedef struct	s_timespec_
 {
-	t_time		sec;
-	t_s64		nanosec;
+	t_time		sec;		//!< Only positive values are valid
+	t_s64		nanosec;	//!< Only values in the range [0, 999999999] are valid
 }				s_timespec;
 TYPEDEF_ALIAS(	s_timespec, TIMESPEC, STRUCT)
 // typedef struct timespec	s_timespec;
 
 #define TIMESPEC_NULL	((s_timespec){0})
+
+
+
+// TODO `t_clock`
+/*!
+**	@isostd{https://en.cppreference.com/w/c/chrono/clock_t}
+**
+*/
 
 
 
@@ -182,6 +198,8 @@ TYPEDEF_ALIAS(	t_timezone, TIMEZONE, PRIMITIVE)
 
 //! This struct is used to store all aspects about a certain date/time (equivalent to 'struct tm')
 /*!
+**	@isostd{https://en.cppreference.com/w/c/chrono/tm}
+**
 **	This struct is equivalent to the ISO C library's 'struct tm',
 **	although it's sub-fields have different names:
 **		tm_sec	 ->	sec

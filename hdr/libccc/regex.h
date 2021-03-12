@@ -11,10 +11,14 @@
 
 #ifndef __LIBCCC_REGEX_H
 #define __LIBCCC_REGEX_H
-/*! @file libccc/regex.h
-**	@addtogroup libccc_regex
-**	@{
+/*!@group{libccc_regex}
+** @{
 **	This header defines functions for regular expression matching/replacing.
+**
+**	- http://www.greenend.org.uk/rjk/tech/regexp.html#matchmulti
+**	- https://www.regular-expressions.info/modifiers.html
+**
+**	@file
 */
 
 /*

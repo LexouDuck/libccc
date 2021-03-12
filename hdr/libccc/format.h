@@ -11,10 +11,11 @@
 
 #ifndef __LIBCCC_FORMAT_H
 #define __LIBCCC_FORMAT_H
-/*! @file libccc/format.h
-**	@addtogroup libccc_format
-**	@{
+/*!@group{libccc_format}
+** @{
 **	This header defines printf-style functions, and their format specifiers
+**
+**	@file
 */
 
 /*
@@ -154,85 +155,94 @@ HEADER_CPP
 
 //! Constructs a string from the given `format` string and multiple args (equivalent to `asprintf()`)
 /*!
+**	@isostd{https://en.cppreference.com/w/c/variadic}
+**
 **	Constructs a new null-terminated string, which is generated from the given `format` string,
 **	as well as any relevant variadic arguments - it is equivalent to the `asprintf()` function.
 **
-**	The `format` string may contain format specifiers (ie: a '%' followed by certain chars)
+**	The `format` string may contain format specifiers (ie: a '%%' followed by
+**	certain specific text characters, documented below).
 **	A format specifier has the following syntax (items between brackets are optional):
 **
-**	`%[flags][minsize][.precision][bitsize]char`
-**		._______________________________________________________________
-**		| char	| Output									| Example	|
-**		|_______|___________________________________________|___________|
-**		| d, i	| Signed decimal integer					| 392
-**		| u		| Unsigned decimal integer					| 7235
-**		| o		| Unsigned octal							| 610
-**		| x		| Unsigned hexadecimal integer				| 7fa
-**		| X		| Unsigned hexadecimal integer (uppercase)	| 7FA
-**		| f		| Decimal floating point, lowercase			| 392.65
-**		| F		| Decimal floating point, uppercase			| 392.65
-**		| e		| Scientific notation float, lowercase		| 3.9265e+2
-**		| E		| Scientific notation float, uppercase		| 3.9265E+2
-**		| g		| Use the shortest representation: %e or %f	| 392.65
-**		| G		| Use the shortest representation: %E or %F	| 392.65
-**		| a		| Hexadecimal floating point, lowercase		| -0xc.90fep-2
-**		| A		| Hexadecimal floating point, uppercase		| -0XC.90FEP-2
-**		| c		| Character									| a
-**		| s		| String of characters						| example
-**		| p		| Pointer address							| b8000000
-**		| %		| A "%%" specifier will write a single '%'	| %
-**		| n		| Nothing printed: the corresponding argument must be a pointer to a signed int.
-**		|_______|	The number of characters written so far is stored in the pointed location.	
-**		.___________________________________________________________________________________________________________________
-**		| flags	| Description																								|
-**		|_______|___________________________________________________________________________________________________________|
-**		| +		| Precede the result with a plus '+' or minus '-' sign, even for positive/unsigned numbers.					|
-**		|_______|_By default, only negative numbers are preceded with a minus '-' sign._____________________________________|
-**		| #		| With o,x,X: the value is preceeded with 0, 0x or 0X respectively, for values different than zero.			|
-**		|_______|_With a,A,e,E,f,F,g,G: forces the written output to contain a decimal point, even if no more digits follow.|
-**		|(space)| If no sign is going to be written, a blank space is inserted before the value.							|
-**		|_______|___________________________________________________________________________________________________________|
-**		.___________________________________________________________________________________________
-**		| minsize	|	is a number (so, decimal numerical digit chars).							|
-**		|___________|_______________________________________________________________________________|
-**		| Minimum number of characters to be printed.
-**		| The value is not truncated, even if the result is larger.
-**		| If the value is shorter than this number, the result is padded with blank spaces.
-**		.___________________________________________________________________________________________
-**		| precision	|	is a number (so, decimal numerical digit chars), preceded by a '.' period.	|
-**		|___________|_______________________________________________________________________________|
-**		| With a,A,e,E,f,F: the number of digits to be printed after the decimal point (by default, this is 6).
-**		| With g,G: the maximum number of significant digits to be printed for the mantissa.
-**		| With s: this is the maximum number of characters to be printed (by default, all characters are printed until the '\0' null terminator).
-**		| If the period is specified without an explicit value for precision, 0 is assumed.
-**		.___________________________________________________________________________________________________________
-**		|bitsize| d, i			| u, o, x, X			|f,F,e,E,g,G,a,A| c		| s			| p		| n				|
-**		|_______|_______________|_______________________|_______________|_______|___________|_______|_______________|
-**		|(none)	| int			| unsigned int			| double		| int	|	char*	| void*	| int*			|
-**		| hh	| signed char	| unsigned char			|				|		|			|		| signed char*	|
-**		|  h	| short int		| unsigned short int	|				|		|			|		| short int*	|
-**		|  l	| long int		| unsigned long int		|				|wint_t	| wchar_t*	|		| long int*		|
-**		| ll	| long long int	| unsigned long long int|				|		|			|		| long long int*|
-**		|  j	| intmax_t		| uintmax_t				|				|		|			|		| intmax_t*		|
-**		|  z	| size_t		| size_t				|				|		|			|		| size_t*		|
-**		|  t	| ptrdiff_t		| ptrdiff_t				|				|		|			|		| ptrdiff_t*	|
-**		|__L____|_______________|_______________________|_long_double___|_______|___________|_______|_______________|
+**	```c
+**	%[flags][minsize][.precision][bitsize]char
+**	```
+**
+**	Here is a description of the valid possible choices for each of these 5 fields: (flags,minsize,precision,bitsize,char)
+**	```c
+**	.________________________________________________________________________
+**	| char	| Output										| Output Example |
+**	|_______|_______________________________________________|________________|
+**	|'d','i'| Signed decimal integer						| "392"
+**	| 'u'	| Unsigned decimal integer						| "7235"
+**	| 'o'	| Unsigned octal								| "610"
+**	| 'x'	| Unsigned hexadecimal integer, lowercase		| "7fa"
+**	| 'X'	| Unsigned hexadecimal integer, uppercase		| "7FA"
+**	| 'f'	| Decimal notation floating-point, lowercase	| "392.65"
+**	| 'F'	| Decimal notation floating-point, uppercase	| "392.65"
+**	| 'e'	| Scientific notation floating-point, lowercase	| "3.9265e+2"
+**	| 'E'	| Scientific notation floating-point, uppercase	| "3.9265E+2"
+**	| 'g'	| Use the shortest representation: "%e" or "%f"	| "392.65"
+**	| 'G'	| Use the shortest representation: "%E" or "%F"	| "392.65"
+**	| 'a'	| Hexadecimal floating point, lowercase			| "-0xc.90fep-2"
+**	| 'A'	| Hexadecimal floating point, uppercase			| "-0XC.90FEP-2"
+**	| 'c'	| Character										| "a"
+**	| 's'	| String of characters							| "example"
+**	| 'p'	| Pointer address								| "b8000000"
+**	| '%'	| A "%%" specifier will write a single '%' char	| "%"
+**	| 'n'	| Nothing printed: the corresponding argument must be a pointer to a signed int.
+**	|_______|	The number of characters written so far is stored in the pointed location.	
+**	.___________________________________________________________________________________________________________________
+**	| flags	| Description																								|
+**	|_______|___________________________________________________________________________________________________________|
+**	| '+'	| Precede the result with a plus '+' or minus '-' sign, even for positive/unsigned numbers.					|
+**	|_______|_By default, only negative numbers are preceded with a minus '-' sign._____________________________________|
+**	| '#'	| With 'o','x','X': the value is preceeded with 0, 0x or 0X respectively, for values different than zero.	|
+**	|_______|_With 'a','A','e','E','f','F','g','G': forces the written output number to contain a decimal point.________|
+**	|(space)| If no sign is going to be written, a blank space is inserted before the value.							|
+**	|_______|___________________________________________________________________________________________________________|
+**	.___________________________________________________________________________________________
+**	| minsize	|	is a number (so, decimal numerical digit chars).							|
+**	|___________|_______________________________________________________________________________|
+**	| The minimum amount of characters to be printed for this specifier.
+**	| The value is not truncated, even if the result is larger.
+**	| If the value is shorter than this number, the result is padded with blank spaces.
+**	.___________________________________________________________________________________________
+**	| precision	|	is a number (so, decimal numerical digit chars), preceded by a '.' period.	|
+**	|___________|_______________________________________________________________________________|
+**	| With 'a','A','e','E','f','F': the number of digits to be printed after the decimal point (by default, this is 6).
+**	| With 'g','G': the maximum number of significant digits to be printed for the mantissa.
+**	| With 's': this is the maximum number of characters to be printed (by default, all chars are printed until the '\0').
+**	| If the period is specified without an explicit value for precision, 0 is assumed.
+**	.___________________________________________________________________________________________________________
+**	|bitsize| 'd', 'i'		| 'u', 'o', 'x', 'X'	|'f','e','g','a'| 'c'	| 's'		| 'p'	| 'n'			|
+**	|_______|_______________|_______________________|'F'_'E'_'G'_'A'|_______|___________|_______|_______________|
+**	|(none)	| int			| unsigned int			| double		| int	| char*		| void*	| int*			|
+**	| "hh"	| signed char	| unsigned char			|				|		|			|		| signed char*	|
+**	|  "h"	| short int		| unsigned short int	|				|		|			|		| short int*	|
+**	|  "l"	| long int		| unsigned long int		|				| wint_t| wchar_t*	|		| long int*		|
+**	| "ll"	| long long int	| unsigned long long int|				|		|			|		| long long int*|
+**	|  "j"	| intmax_t		| uintmax_t				|				|		|			|		| intmax_t*		|
+**	|  "z"	| size_t		| size_t				|				|		|			|		| size_t*		|
+**	|  "t"	| ptrdiff_t		| ptrdiff_t				|				|		|			|		| ptrdiff_t*	|
+**	|__"L"__|_______________|_______________________|_long_double___|_______|___________|_______|_______________|
+**	```
 */
 _FORMAT(printf, 1, 2)
 _MALLOC()
 char*					String_Format(char const* format, ...);
-#define c_asprintf		String_Format
-#define c_strfmt		String_Format
-#define c_strformat		String_Format
-#define String_Build	String_Format
+#define c_asprintf		String_Format //!< @alias{String_Format}
+#define c_strfmt		String_Format //!< @alias{String_Format}
+#define c_strformat		String_Format //!< @alias{String_Format}
+#define String_Build	String_Format //!< @alias{String_Format}
 
 //! @see				String_Format
 _MALLOC()
 char*					String_Format_VA(char const* format, va_list args);
-#define c_vasprintf		String_Format_VA
-#define s_strfmt_va		String_Format_VA
-#define s_strformat_va	String_Format_VA
-#define String_Build_VA	String_Format_VA
+#define c_vasprintf		String_Format_VA //!< @alias{String_Format_VA}
+#define c_strfmt_va		String_Format_VA //!< @alias{String_Format_VA}
+#define c_strformat_va	String_Format_VA //!< @alias{String_Format_VA}
+#define String_Build_VA	String_Format_VA //!< @alias{String_Format_VA}
 
 
 
@@ -245,17 +255,17 @@ char*					String_Format_VA(char const* format, va_list args);
 */
 _FORMAT(printf, 3, 4)
 t_size						String_Format_N(char* dest, t_size max, char const* format, ...);
-#define c_snprintf			String_Format_N
-#define c_strnfmt			String_Format_N
-#define c_strnformat		String_Format_N
-#define String_Build_N		String_Format_N
+#define c_snprintf			String_Format_N //!< @alias{String_Format_N}
+#define c_strnfmt			String_Format_N //!< @alias{String_Format_N}
+#define c_strnformat		String_Format_N //!< @alias{String_Format_N}
+#define String_Build_N		String_Format_N //!< @alias{String_Format_N}
 
 //! @see					String_Format_N
 t_size						String_Format_N_VA(char* dest, t_size max, char const* format, va_list args);
-#define c_vsnprintf			String_Format_N_VA
-#define c_strnfmt_va		String_Format_N_VA
-#define c_strnformat_va		String_Format_N_VA
-#define String_Build_N_VA	String_Format_N_VA
+#define c_vsnprintf			String_Format_N_VA //!< @alias{String_Format_N_VA}
+#define c_strnfmt_va		String_Format_N_VA //!< @alias{String_Format_N_VA}
+#define c_strnformat_va		String_Format_N_VA //!< @alias{String_Format_N_VA}
+#define String_Build_N_VA	String_Format_N_VA //!< @alias{String_Format_N_VA}
 
 
 

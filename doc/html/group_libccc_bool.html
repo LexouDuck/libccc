@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,20 +12,12 @@
   
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/doxyrest-sphinx_rtd_theme.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -33,14 +26,37 @@
         <script src="_static/doctools.js"></script>
         <script src="_static/language_data.js"></script>
         <script src="_static/target-highlight.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="_static/js/custom.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="02) libccc/int" href="group_libccc_int.html" />
-    <link rel="prev" title="00) libccc" href="group_libccc.html" /> 
+    <link rel="prev" title="00) libccc" href="group_libccc.html" />
+	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
+	
+	<meta name="Description" content="01) libccc/bool">
+	<meta property="og:description" content="01) libccc/bool">
+	<meta property="og:title" content="libccc 1.0 documentation - 01) libccc/bool">
+	<meta property="og:image" content="_static/images/libccc_icon.png">
+	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="380" />
+	<meta property="og:image:height" content="380" />
+	<meta property="og:url" content="group_libccc_bool.html">
+	<meta property="og:site_name" content="libccc 1.0 documentation">
+
+
 </head>
 
 <body class="wy-body-for-nav">
@@ -54,7 +70,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> libccc
+            <a href="index.html" class="icon icon-home"> libccc
           
 
           
@@ -77,7 +93,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -124,7 +139,7 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_array_stringarray.html">26) libccc/array/stringarray</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="page_index.html"># libccc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
@@ -133,7 +148,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -172,7 +186,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="index.html">Docs</a> &raquo;</li>
         
       <li>01) libccc/bool</li>
     
@@ -197,7 +211,7 @@
 </div>
 <div class="section" id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
-<p>This header defines the boolean TRUE/FALSE primitive type and functions. <a class="reference internal" href="#details-group-libccc-bool"><span class="std std-ref">More…</span></a></p>
+<p>This header defines the boolean (TRUE/FALSE) primitive type and functions. <a class="reference internal" href="#details-group-libccc-bool"><span class="std std-ref">More…</span></a></p>
 <pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// typedefs</span>
 
 <span class="k">typedef</span> <span class="kt">_Bool</span> <a class="reference internal" href="#doxid-group-libccc-bool-1gaf15d2c7169c336f97175a2e218d22e73"><span class="std std-ref">t_bool</span></a><span></span><span class="p">;</span>
@@ -209,19 +223,27 @@
 
 <span class="c1">// macros</span>
 
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-bool-1gaa93f0eb578d23995850d61f7d61c55c1"><span class="std std-ref">FALSE</span></a><span></span>
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span class="std std-ref">TRUE</span></a><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-bool-1gadbdb134a7667f7eaab54152cb5c2c0bb"><span></span><span class="n">c_bool_to_str</span></span><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-bool-1gacc3d0f7cb029f5895392f1392ac1bb48"><span></span><span class="n">c_str_to_bool</span></span></pre>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-bool-1gaa93f0eb578d23995850d61f7d61c55c1"><span class="std std-ref">FALSE</span></a><span></span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span class="std std-ref">TRUE</span></a><span></span>  <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-bool-1gadbdb134a7667f7eaab54152cb5c2c0bb"><span class="std std-ref">c_bool_to_str</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-bool-1ga4cf2e90508ea0d41bd53b86722add159"><span class="std std-ref">Bool_ToString</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-bool-1gacc3d0f7cb029f5895392f1392ac1bb48"><span class="std std-ref">c_str_to_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-bool-1gaa9b13c09a76c522d0bc3e86316cfbb17"><span class="std std-ref">Bool_FromString</span></a></pre>
 </div>
 <div class="section" id="detailed-documentation">
 <span id="details-group-libccc-bool"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline">¶</a></h2>
-<p>This header defines the boolean TRUE/FALSE primitive type and functions.</p>
+<p>This header defines the boolean (TRUE/FALSE) primitive type and functions.</p>
 <div class="section" id="typedefs">
 <h3>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h3>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-bool-1gaf15d2c7169c336f97175a2e218d22e73"><span id="index-1"></span><span></span><span class="k">typedef</span> <span class="kt">_Bool</span> <span class="n">t_bool</span></pre>
-<p>The primitive <code class="docutils literal notranslate"><span class="pre">bool</span></code> boolean type.</p>
-<p>Here, we use the native (from C99 onwards) ‘_Bool’ type. This type is useful because its value will always be 0 or 1, never more.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-bool-1gaf15d2c7169c336f97175a2e218d22e73"><span id="index-1"></span><span></span><span class="k">typedef</span> <span class="kt">_Bool</span> <span class="kt">t_bool</span></pre>
+<p>Primitve type: The boolean type (<code class="docutils literal notranslate"><span class="pre">TRUE</span></code> or <code class="docutils literal notranslate"><span class="pre">FALSE</span></code>)</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/types/boolean">https://en.cppreference.com/w/c/types/boolean</a></p></li>
+</ul>
+<p>Here, we use the native (since C99) <code class="docutils literal notranslate"><span class="pre">_Bool</span></code> boolean type. This type is useful because its value will always be 0 or 1, never more. This means you will not have strange behaviors caused by the use of integer arithmetic operations on booleans - do not assume <code class="docutils literal notranslate"><span class="pre">t_bool</span></code> works like int types. NB: Conversion to <code class="docutils literal notranslate"><span class="pre">_Bool</span></code> does not work the same as conversion to other integer types: <code class="docutils literal notranslate"><span class="pre">(bool)0.5</span></code> gives <code class="docutils literal notranslate"><span class="pre">1</span></code>, whereas <code class="docutils literal notranslate"><span class="pre">(int)0.5</span></code> gives <code class="docutils literal notranslate"><span class="pre">​0</span></code> ​.</p>
+<p class="rubric">See also:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#doxid-group-libccc-bool-1ga4cf2e90508ea0d41bd53b86722add159"><span class="std std-ref">Bool_ToString()</span></a></p></li>
+<li><p><a class="reference internal" href="#doxid-group-libccc-bool-1gaa9b13c09a76c522d0bc3e86316cfbb17"><span class="std std-ref">Bool_FromString()</span></a></p></li>
+</ul>
 </div>
 <div class="section" id="global-functions">
 <h3>Global Functions<a class="headerlink" href="#global-functions" title="Permalink to this headline">¶</a></h3>
@@ -232,10 +254,14 @@
 </div>
 <div class="section" id="macros">
 <h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h3>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-bool-1gaa93f0eb578d23995850d61f7d61c55c1"><span id="index-4"></span><span></span><span class="cp">#define FALSE</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-bool-1gaa93f0eb578d23995850d61f7d61c55c1"><span id="index-4"></span><span></span><span class="cp">#define</span> <span class="n">FALSE</span>   <span class="cp">(0)</span></pre>
 <p>Represents a boolean false value (0)</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span id="index-5"></span><span></span><span class="cp">#define TRUE</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span id="index-5"></span><span></span><span class="cp">#define</span> <span class="n">TRUE</span>    <span class="cp">(1)</span></pre>
 <p>Represents a boolean true value (1)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-bool-1gadbdb134a7667f7eaab54152cb5c2c0bb"><span id="index-6"></span><span></span><span class="cp">#define</span> <span class="n">c_bool_to_str</span>   <a class="reference internal" href="#doxid-group-libccc-bool-1ga4cf2e90508ea0d41bd53b86722add159"><span class="std std-ref">Bool_ToString</span></a></pre>
+<p>[<em>Alias for</em> <a class="reference internal" href="#doxid-group-libccc-bool-1ga4cf2e90508ea0d41bd53b86722add159"><span class="std std-ref">Bool_ToString</span></a>]</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-bool-1gacc3d0f7cb029f5895392f1392ac1bb48"><span id="index-7"></span><span></span><span class="cp">#define</span> <span class="n">c_str_to_bool</span>   <a class="reference internal" href="#doxid-group-libccc-bool-1gaa9b13c09a76c522d0bc3e86316cfbb17"><span class="std std-ref">Bool_FromString</span></a></pre>
+<p>[<em>Alias for</em> <a class="reference internal" href="#doxid-group-libccc-bool-1gaa9b13c09a76c522d0bc3e86316cfbb17"><span class="std std-ref">Bool_FromString</span></a>]</p>
 </div>
 </div>
 </div>
@@ -260,19 +286,11 @@
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright FREE
+        &copy; Copyright Free &amp; Open Source: MIT License
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -283,6 +301,7 @@
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

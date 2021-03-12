@@ -11,10 +11,11 @@
 
 #ifndef __LIBCCC_MATH_VLQ_H
 #define __LIBCCC_MATH_VLQ_H
-/*! @file libccc/math/vlq.h
-**	@addtogroup libccc_math_vlq
-**	@{
+/*!@group{libccc_math_vlq}
+** @{
 **	This header defines a variable-length int type, and utility functions for it.
+**
+**	@file
 */
 
 /*

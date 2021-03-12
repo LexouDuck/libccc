@@ -11,10 +11,11 @@
 
 #ifndef __LIBCCC_BOOL_H
 #define __LIBCCC_BOOL_H
-/*! @file libccc/bool.h
-**	@addtogroup libccc_bool
-**	@{
-**	This header defines the boolean TRUE/FALSE primitive type and functions.
+/*!@group{libccc_bool}
+** @{
+**	This header defines the boolean (TRUE/FALSE) primitive type and functions.
+**
+**	@file
 */
 
 /*
@@ -47,10 +48,20 @@ HEADER_CPP
 #endif	//! Represents a boolean true value  (1)
 #define TRUE	(1)
 
-//! The primitive `bool` boolean type
+//! Primitve type: The boolean type (`TRUE` or `FALSE`)
 /*!
-**	Here, we use the native (from C99 onwards) '_Bool' type.
+**	@isostd{https://en.cppreference.com/w/c/types/boolean}
+**
+**	Here, we use the native (since C99) `_Bool` boolean type.
 **	This type is useful because its value will always be 0 or 1, never more.
+**	This means you will not have strange behaviors caused by the use of integer
+**	arithmetic operations on booleans - do not assume `t_bool` works like int types.
+**	NB: Conversion to `_Bool` does not work the same as conversion to other
+**	integer types: `(bool)0.5` gives `1`, whereas `(int)0.5` gives `​0`​.
+**
+**	@see
+**	- Bool_ToString()
+**	- Bool_FromString()
 */
 typedef _Bool		t_bool;
 TYPEDEF_ALIAS(		t_bool, BOOL, PRIMITIVE)
@@ -66,11 +77,11 @@ TYPEDEF_ALIAS(		t_bool, BOOL, PRIMITIVE)
 //! Get the string representation of a boolean value (TRUE or FALSE)
 _MALLOC()
 char*					Bool_ToString(t_bool value, t_bool uppercase);
-#define c_bool_to_str	Bool_ToString
+#define c_bool_to_str	Bool_ToString //!< @alias{Bool_ToString}
 
 //! Parse a boolean value from the given string (can be 1/0/TRUE/FALSE/true/false)
 t_bool					Bool_FromString(char const* str);
-#define c_str_to_bool	Bool_FromString
+#define c_str_to_bool	Bool_FromString //!< @alias{Bool_FromString}
 
 
 

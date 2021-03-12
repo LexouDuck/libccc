@@ -11,10 +11,50 @@
 
 #ifndef __LIBCCC_FIXED_H
 #define __LIBCCC_FIXED_H
-/*! @file libccc/fixed.h
-**	@addtogroup libccc_fixed
-**	@{
+/*!@group{libccc_fixed}
+** @{
 **	This header defines the fixed-point number primitive types and functions.
+**
+**	There has been a draft proposal to include fixed-point number types and
+**	all the relevant operators to the C standard, but it has not gone through.
+**	You can read it here: http://www.open-std.org/jtc1/sc22/wg14/www/docs/n968.pdf
+**
+**	This means that despite being older than the IEEE-754 floating-point standard,
+**	fixed-point number types are not yet defined in the C ISO standard,
+**	and the compilers that do implement some fixed-point type vary greatly
+**	in how they do it.
+**
+**	As such, it is not really recommended to use the "standard" fixed-point types,
+**	but you can nevertheless use them with the #LIBCONFIG_USE_STD_FIXEDPOINT setting.
+**
+**	NB: The `typedef`s here are "saturated" number types, what this means is
+**		that operations will not make the value overflow like they would with
+**		a typical `int` type. Instead, the fixed-point value is constrained
+**		to the largest and smallest possible values that it can hold (ie:
+**		the macros #Q16_MIN & #Q16_MAX, #Q32_MIN & #Q32_MAX, #Q64_MIN & #Q64_MAX,
+**		and #FIXED_MIN & #FIXED_MAX).
+**
+**	It also worth noting another difference with integers, the minimum possible value
+**	here is reserved to represent a NAN-like value, which is the result of 0-division.
+**	So, instead of having the negative value range be 1 greater than the positive range,
+**	The `0x800000...` value is set aside to represent NAN/not a number.
+**
+**	Finally there's the question of choosing a denominator value for the
+**	fixed-point number type. There are several advantages that come with choosing a
+**	denominator number which is a power of 2: many operations can be optimized, and
+**	there is a clear separation of the two parts of the number, in terms of bits.
+**	On the other hand, it can be useful to choose whichever arbitrary denominator
+**	one wishes (for instance, having 100 fractions, to represent currency cents).
+**	For this reason, the literal notation that is chosen to represent fixed-point
+**	numbers is the following: `123.(456/789)`
+**	It should appear obvious that the first part is the integer, and after the decimal
+**	point, inside the parentheses, the first number is the fractional part, and the
+**	last number is the denominator chosen.
+**	For another example: $42.75 would be `42.(75/100)`
+**	This notation was chosen because it allows any kind of configuration for a
+**	fixed-point number to be represented in an inter-compatible "lossless" fashion.
+**
+**	@file
 */
 
 /*
@@ -72,35 +112,99 @@ HEADER_CPP
 
 #if LIBCONFIG_USE_STD_FIXEDPOINT
 	#include <stdfix.h>
-	//!< The type for 16-bit signed fixed-point rational numbers (s4.7)
+
+	//! Primitive type: 16-bit signed fixed-point rational number (s4.7)
+	/*!
+	**	@nonstd
+	**
+	**	Fixed-point rational number type which has, at minimum:
+	**	- 4 bits dedicated to the integer part
+	**	- 7 bits dedicated to the fractional part
+	**	The largest possible value for this type is #Q16_MAX.
+	*/
 	typedef _Sat short _Accum		t_q16;
 	TYPEDEF_ALIAS(					t_q16,	FIXED_16,	PRIMITIVE)
-	//!< The type for 32-bit signed fixed-point rational numbers (s4.15)
+
+	//! Primitive type: 32-bit signed fixed-point rational numbers(s4.15)
+	/*!
+	**	@nonstd
+	**
+	**	Fixed-point rational number type which has, at minimum:
+	**	- 4 bits dedicated to the integer part
+	**	- 15 bits dedicated to the fractional part
+	**	The largest possible value for this type is #Q32_MAX.
+	*/
 	typedef _Sat _Accum				t_q32;
 	TYPEDEF_ALIAS(					t_q32,	FIXED_32,	PRIMITIVE)
-	//!< The type for 64-bit signed fixed-point rational numbers (s4.24)
+
+	//! Primitive type: 64-bit signed fixed-point rational numbers(s4.24)
+	/*!
+	**	@nonstd
+	**
+	**	Fixed-point rational number type which has, at minimum:
+	**	- 4 bits dedicated to the integer part
+	**	- 24 bits dedicated to the fractional part
+	**	The largest possible value for this type is #Q64_MAX.
+	*/
 	typedef	_Sat long _Accum		t_q64;
 	TYPEDEF_ALIAS(					t_q64,	FIXED_64,	PRIMITIVE)
-	#ifdef	__int128
-	//!< The type for 128-bit signed fixed-point rational numbers (only certain platforms)
-	typedef _Sat long long _Accum	t_q128;
-	TYPEDEF_ALIAS(					t_q128,	FIXED_128,	PRIMITIVE)
-	#elif LIBCONFIG_BITS_FIXED == 128
+
+	#if LIBCONFIG_BITS_FIXED == 128
 		#error "Cannot set default 't_fixed' to 128-bit size, unavailable on this platform"
 	#endif
 
 #else
-	//!< The type for 16-bit signed fixed-point rational numbers (configurable)
+
+	//! Primitive type: 16-bit signed fixed-point rational number (configurable bit portions)
+	/*!
+	**	@nonstd
+	**
+	**	Fixed-point rational number type which is 16 bits in size.
+	**	Which amount is dedicated to the fraction/integer part is
+	**	determined by the value of #FIXED_BITS_FRACTIONPART.
+	**	All the other `#define`s depend on this one macro.
+	**	The largest possible value for this type is #Q16_MAX.
+	*/
 	typedef t_s16		t_q16;
 	TYPEDEF_ALIAS(		t_q16,	FIXED_16,	PRIMITIVE)
-	//!< The type for 32-bit signed fixed-point rational numbers (configurable)
+
+	//! Primitive type: 32-bit signed fixed-point rational number (configurable bit portions)
+	/*!
+	**	@nonstd
+	**
+	**	Fixed-point rational number type which is 32 bits in size.
+	**	Which amount is dedicated to the fraction/integer part is
+	**	determined by the value of #FIXED_BITS_FRACTIONPART.
+	**	All the other `#define`s depend on this one macro.
+	**	The largest possible value for this type is #Q32_MAX.
+	*/
 	typedef t_s32		t_q32;
 	TYPEDEF_ALIAS(		t_q32,	FIXED_32,	PRIMITIVE)
-	//!< The type for 64-bit signed fixed-point rational numbers (configurable)
+
+	//! Primitive type: 64-bit signed fixed-point rational number (configurable bit portions)
+	/*!
+	**	@nonstd
+	**
+	**	Fixed-point rational number type which is 64 bits in size.
+	**	Which amount is dedicated to the fraction/integer part is
+	**	determined by the value of #FIXED_BITS_FRACTIONPART.
+	**	All the other `#define`s depend on this one macro.
+	**	The largest possible value for this type is #Q64_MAX.
+	*/
 	typedef	t_s64		t_q64;
 	TYPEDEF_ALIAS(		t_q64,	FIXED_64,	PRIMITIVE)
+
 	#ifdef	__int128
-	//!< The type for 128-bit signed fixed-point rational numbers (only certain platforms)
+	//! Primitive type: 128-bit signed fixed-point rational number (only certain platforms)
+	/*!
+	**	@nonstd
+	**
+	**	Fixed-point rational number type which is 128 bits in size.
+	**	Which amount is dedicated to the fraction/integer part is
+	**	determined by the value of #FIXED_BITS_FRACTIONPART.
+	**	All the other `#define`s depend on this one macro.
+	**	The largest possible value for this type is #Q128_MAX.
+	*/
 	typedef __int128	t_q128;
 	TYPEDEF_ALIAS(		t_q128,	FIXED_128,	PRIMITIVE)
 	#elif LIBCONFIG_BITS_FIXED == 128
@@ -109,24 +213,36 @@ HEADER_CPP
 
 #endif
 
+
+
 //! The configurable-size fixed-point number primitive type.
+/*!
+**	@nonstd
+**
+**	Fixed-point rational number type whose bit size depends
+**	on the value given to the #LIBCONFIG_TYPE_FIXED macro.
+**	Which amount is dedicated to the fraction/integer part is
+**	determined by the value of #FIXED_BITS_FRACTIONPART.
+**	All the other `#define`s depend on this one macro.
+**	The largest possible value for this type is #Q128_MAX.
+*/
 typedef	LIBCONFIG_TYPE_FIXED	t_fixed;
 TYPEDEF_ALIAS(					t_fixed, FIXED_128, PRIMITIVE)
 
 
 
-#define Q16_MAX	(t_q16)S16_MAX
-#define Q16_MIN	(t_q16)S16_MIN
+#define Q16_MAX	((t_q16)S16_MAX)	//!< The largest possible value that a 16-bit fixed-point can hold
+#define Q16_MIN	((t_q16)S16_MIN)	//!< The largest possible value that a 16-bit fixed-point can hold
 
-#define Q32_MAX	(t_q32)S32_MAX
-#define Q32_MIN	(t_q32)S32_MIN
+#define Q32_MAX	((t_q32)S32_MAX)	//!< The largest possible value that a 32-bit fixed-point can hold
+#define Q32_MIN	((t_q32)S32_MIN)	//!< The largest possible value that a 32-bit fixed-point can hold
 
-#define Q64_MAX	(t_q64)S64_MAX
-#define Q64_MIN	(t_q64)S64_MIN
+#define Q64_MAX	((t_q64)S64_MAX)	//!< The largest possible value that a 64-bit fixed-point can hold
+#define Q64_MIN	((t_q64)S64_MIN)	//!< The largest possible value that a 64-bit fixed-point can hold
 
 #ifdef __int128
-#define Q128_MAX	(t_q128)S128_MAX
-#define Q128_MIN	(t_q128)S128_MIN
+#define Q128_MAX	((t_q128)S128_MAX)	//!< The largest possible value that a 128-bit fixed-point can hold
+#define Q128_MIN	((t_q128)S128_MIN)	//!< The largest possible value that a 128-bit fixed-point can hold
 #endif
 
 //#define FIXED_MAX	(t_fixed)CONCAT(CONCAT(S,LIBCONFIG_BITS_FIXED),_MAX)
@@ -228,30 +344,30 @@ t_q128	 Q128_Div	(t_q128	q1, t_q128	q2);
 
 /*
 ** ************************************************************************** *|
-**                             String Conversions                             *|
+**                          Fixed-to-String Conversions                       *|
 ** ************************************************************************** *|
 */
 
 //! Get the string decimal representation of a 16-bit signed fixed-point number
 _MALLOC()
 char*					Q16_ToString(t_q16 n);	// TODO
-#define c_q16_to_str	Q16_ToString
+#define c_q16_to_str	Q16_ToString //!< @alias{Q16_ToString}
 
 //! Get the string decimal representation of a 32-bit signed fixed-point number
 _MALLOC()
 char*					Q32_ToString(t_q32 n);	// TODO
-#define c_q32_to_str	Q32_ToString
+#define c_q32_to_str	Q32_ToString //!< @alias{Q32_ToString}
 
 //! Get the string decimal representation of a 64-bit signed fixed-point number
 _MALLOC()
 char*					Q64_ToString(t_q64 n);	// TODO
-#define c_q64_to_str	Q64_ToString
+#define c_q64_to_str	Q64_ToString //!< @alias{Q64_ToString}
 
 #ifdef	__int128
 //! Get the string decimal representation of a 128-bit signed fixed-point number
 _MALLOC()
 char*					Q128_ToString(t_q128 n);	// TODO
-#define c_q128_to_str	Q128_ToString
+#define c_q128_to_str	Q128_ToString //!< @alias{Q128_ToString}
 #endif
 
 
@@ -259,23 +375,23 @@ char*					Q128_ToString(t_q128 n);	// TODO
 //! Get the string decimal representation of a 16-bit signed fixed-point number
 _MALLOC()
 char*						Q16_ToString_Hex(t_q16 n);	// TODO
-#define c_q16_to_strhex		Q16_ToString_Hex
+#define c_q16_to_strhex		Q16_ToString_Hex //!< @alias{Q16_ToString_Hex}
 
 //! Get the string decimal representation of a 32-bit signed fixed-point number
 _MALLOC()
 char*						Q32_ToString_Hex(t_q32 n);	// TODO
-#define c_q32_to_strhex		Q32_ToString_Hex
+#define c_q32_to_strhex		Q32_ToString_Hex //!< @alias{Q32_ToString_Hex}
 
 //! Get the string decimal representation of a 64-bit signed fixed-point number
 _MALLOC()
 char*						Q64_ToString_Hex(t_q64 n);	// TODO
-#define c_q64_to_strhex		Q64_ToString_Hex
+#define c_q64_to_strhex		Q64_ToString_Hex //!< @alias{Q64_ToString_Hex}
 
 #ifdef	__int128
 //! Get the string decimal representation of a 128-bit signed fixed-point number
 _MALLOC()
 char*						Q128_ToString_Hex(t_q128 n);	// TODO
-#define c_q128_to_strhex	Q128_ToString_Hex
+#define c_q128_to_strhex	Q128_ToString_Hex //!< @alias{Q128_ToString_Hex}
 #endif
 
 
@@ -283,43 +399,49 @@ char*						Q128_ToString_Hex(t_q128 n);	// TODO
 //! Get the custom-base representation of a 16-bit signed fixed-point number
 _MALLOC()
 char*						Q16_ToString_Base(t_q16 n);	// TODO
-#define c_q16_to_strbase	Q16_ToString_Base
+#define c_q16_to_strbase	Q16_ToString_Base //!< @alias{Q16_ToString_Base}
 
 //! Get the custom-base representation of a 32-bit signed fixed-point number
 _MALLOC()
 char*						Q32_ToString_Base(t_q32 n);	// TODO
-#define c_q32_to_strbase	Q32_ToString_Base
+#define c_q32_to_strbase	Q32_ToString_Base //!< @alias{Q32_ToString_Base}
 
 //! Get the custom-base representation of a 64-bit signed fixed-point number
 _MALLOC()
 char*						Q64_ToString_Base(t_q64 n);	// TODO
-#define c_q64_to_strbase	Q64_ToString_Base
+#define c_q64_to_strbase	Q64_ToString_Base //!< @alias{Q64_ToString_Base}
 
 #ifdef	__int128
 //! Get the string decimal representation of a 128-bit signed fixed-point number
 _MALLOC()
 char*						Q128_ToString_Base(t_q128 n);	// TODO
-#define c_q128_to_strbase	Q128_ToString_Base
+#define c_q128_to_strbase	Q128_ToString_Base //!< @alias{Q128_ToString_Base}
 #endif
 
 
 
+/*
+** ************************************************************************** *|
+**                          String-to-Fixed Conversions                       *|
+** ************************************************************************** *|
+*/
+
 //! Parses the string decimal representation of a 16-bit signed fixed-point number
 t_q16					Q16_FromString(char const* str);
-#define c_str_to_q16	Q16_FromString
+#define c_str_to_q16	Q16_FromString //!< @alias{Q16_FromString}
 
 //! Parses the string decimal representation of a 32-bit signed fixed-point number
 t_q32					Q32_FromString(char const* str);
-#define c_str_to_q32	Q32_FromString
+#define c_str_to_q32	Q32_FromString //!< @alias{Q32_FromString}
 
 //! Parses the string decimal representation of a 64-bit signed fixed-point number
 t_q64					Q64_FromString(char const* str);
-#define c_str_to_q64	Q64_FromString
+#define c_str_to_q64	Q64_FromString //!< @alias{Q64_FromString}
 
 #ifdef	__int128
 //! Parses the string decimal representation of a 128-bit signed fixed-point number
 t_q128					Q128_FromString(char const* str);
-#define c_str_to_q128	Q128_FromString
+#define c_str_to_q128	Q128_FromString //!< @alias{Q128_FromString}
 #endif
 
 
