@@ -93,7 +93,7 @@ typedef s_logger const* const*	t_logptrarr;
 /* ************************************************************************** */
 
 #define LOGONE_FUNCTION_CONTENT(VERBOSE_ONLY, IS_ERROR, USE_ERRNO, PREFIX, PREFIX_COLOR) \
-	t_io_error	result;							\
+	t_io_error	result = OK;					\
 	va_list		args;							\
 												\
 	va_start(args, format_str);					\
@@ -105,7 +105,7 @@ typedef s_logger const* const*	t_logptrarr;
 	return (result);							\
 
 #define LOGALL_FUNCTION_CONTENT(VERBOSE_ONLY, IS_ERROR, USE_ERRNO, PREFIX, PREFIX_COLOR) \
-	t_io_error	result;							\
+	t_io_error	result = OK;					\
 	va_list		args;							\
 												\
 	for (t_u32 i = 0; loggers[i]; ++i)			\
