@@ -40,7 +40,7 @@ HEADER_CPP
 **	pointer array of length 'n'. Returns NULL if memory allocation fails.
 */
 _MALLOC()
-void*				PointerArray_New(t_size size);
+void**				PointerArray_New(t_size size);
 #define c_ptrarrnew	PointerArray_New
 
 /*!
@@ -49,13 +49,16 @@ void*				PointerArray_New(t_size size);
 t_u32				PointerArray_Length(void const** a_ptrarr);
 #define c_ptrarrlen	PointerArray_Length
 
-// TODO ptrarrdup
+// TODO ptrarrdup //needs a function pointer to dup internals
 
 // TODO ptrarrsub
 
 // TODO ptrarrmerge
 // TODO ptrarrappend
 // TODO ptrarrprepend
+// TODO ptrarrmap
+// TODO ptrarrfilter
+// TODO ptrarrfold
 
 
 

@@ -3,7 +3,7 @@
 
 
 
-int		c_memcmp(void const *ptr1, void const *ptr2, t_size n)
+int		c_memcmp(void const* ptr1, void const* ptr2, t_size n)
 {
 	t_u8	*p1;
 	t_u8	*p2;
@@ -16,8 +16,10 @@ int		c_memcmp(void const *ptr1, void const *ptr2, t_size n)
 	{
 		if (ptr1 == ptr2)
 			return (0);
-		return ((ptr1 == NULL ? 0 : p1[0]) -
-				(ptr2 == NULL ? 0 : p2[0]));
+		if (ptr1 == NULL)
+			return (-1);
+		if (ptr2 == NULL)
+			return (1);
 	}
 #endif
 	i = 0;

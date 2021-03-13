@@ -75,11 +75,13 @@ char*	String_Find_String(char const *str, char const *query)
 	i = 0;
 	while (str[i])
 	{
-		for (t_size j = 0; (query[j] == str[i + j]); ++j)
+		t_size j = 0;
+		while (query[j] == str[i + j])
 		{
-			if (query[j + 1] == '\0')
+			++j;
+			if (query[j] == '\0')
 				return ((char*)str + i);
-			if (str[i + j + 1] == '\0')
+			if (str[i + j] == '\0')
 				return (NULL);
 		}
 		++i;

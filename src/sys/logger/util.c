@@ -18,36 +18,19 @@
 t_io_error	Log_FatalError(s_logger const* logger, char const* str)
 {
 	t_io_error result = OK;
-	s_logfile const* file;
 	char const* message = IO_GetError(errno);
 
-	if (logger->dest_stderr)
+	if (logger->path && IO_IsTerminal(logger->fd))
 	{
-		result = IO_Write_Format(STDERR,
-			C_RED"Fatal Error"C_RESET": %s\n%s", str, message);
+		result = IO_Write_Format(logger->fd,
+			C_RED"Fatal Error"C_RESET": %s\n\t-> %s\n", str, message);
 		if (result)	return (result);
 	}
-	else if (logger->dest_stdout)
+	else
 	{
-		result = IO_Write_Format(STDOUT,
-			C_RED"Fatal Error"C_RESET": %s\n%s", str, message);
+		result = IO_Write_Format(logger->fd,
+			"Fatal Error: %s\n%s", str, message);
 		if (result)	return (result);
-	}
-	for (t_uint i = 0; i < LOGFILES_MAX; ++i)
-	{
-		file = &logger->dest_files[i];
-		if (file->path && IO_IsTerminal(file->fd))
-		{
-			result = IO_Write_Format(file->fd,
-				C_RED"Fatal Error"C_RESET": %s\n%s", str, message);
-			if (result)	return (result);
-		}
-		else
-		{
-			result = IO_Write_Format(file->fd,
-				"Fatal Error: %s\n%s", str, message);
-			if (result)	return (result);
-		}
 	}
 	return (result);
 }
@@ -74,35 +57,40 @@ char*	Logger_GetTimestamp(t_time utc)
 
 char*	Logger_GetSettings(s_logger const* logger)
 {
-	char* result = NULL;
-	char* filepaths = NULL;
-	for (t_uint i = 0; i < LOGFILES_MAX; ++i)
+	char*		result = NULL;
+	char const*	logformat = NULL;
+
+	switch (logger->format)
 	{
-		if (logger->dest_files[i].path)
-		{
-			if (filepaths == NULL)
-				filepaths = String_Duplicate(logger->dest_files[i].path);
-			else
-			{
-				filepaths = String_Append(&filepaths, ", ");
-				filepaths = String_Append(&filepaths, logger->dest_files[i].path);
-			}
-		}
+		case LOGFORMAT_ANSI: logformat = LOGFORMAT_STRING_ANSI; break;
+		case LOGFORMAT_TEXT: logformat = LOGFORMAT_STRING_TEXT; break;
+		case LOGFORMAT_JSON: logformat = LOGFORMAT_STRING_JSON; break;
+		case LOGFORMAT_XML:  logformat = LOGFORMAT_STRING_XML ; break;
+		default: break;
 	}
-	result = String_Format("Logger settings:"
-		"\nShow TimeStamp: %s"
-		"\nVerbose mode: %s"
-		"\nObfuscated mode: %s"
-		"\nLogging to stdout: %s"
-		"\nLogging to stderr: %s"
-		"\nLogging to files: [%s]",
-		(logger->show_timestamp	 ? "ON" : "OFF"),
-		(logger->mode_verbose	 ? "ON" : "OFF"),
-		(logger->mode_obfuscated ? "ON" : "OFF"),
-		(logger->dest_stdout	 ? "ON" : "OFF"),
-		(logger->dest_stderr	 ? "ON" : "OFF"),
-		filepaths);
-	String_Delete(&filepaths);
+
+	result = String_Format(
+		"\n"LOG_TIMESTAMP_INDENT"\tLogger settings:"
+		"\n"LOG_TIMESTAMP_INDENT"\t- Silence normal logs and warnings: %s"
+		"\n"LOG_TIMESTAMP_INDENT"\t- Silence error logs: %s"
+		"\n"LOG_TIMESTAMP_INDENT"\t- Show TimeStamp: %s"
+		"\n"LOG_TIMESTAMP_INDENT"\t- Verbose mode: %s"
+		"\n"LOG_TIMESTAMP_INDENT"\t- Obfuscated mode: %s"
+		"\n"LOG_TIMESTAMP_INDENT"\t- Append mode: %s"
+		"\n"LOG_TIMESTAMP_INDENT"\t- Format mode: %s"
+		"\n"LOG_TIMESTAMP_INDENT"\t- Logging to fd: %d"
+		"\n"LOG_TIMESTAMP_INDENT"\t- Logging to file: \"%s\"",
+		(logger->silence_logs   ? "ON" : "OFF"),
+		(logger->silence_errors ? "ON" : "OFF"),
+		(logger->timestamp      ? "ON" : "OFF"),
+		(logger->verbose        ? "ON" : "OFF"),
+		(logger->obfuscated     ? "ON" : "OFF"),
+		(logger->append         ? "ON" : "OFF"),
+		logformat,
+		logger->fd,
+		logger->path
+	);
+	
 	return (result);
 }
 

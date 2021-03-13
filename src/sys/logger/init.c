@@ -8,23 +8,19 @@
 void	Logger_Init(s_logger *a_logger)
 {
 	t_io_open flags = (OPEN_CREATE | OPEN_WRITEONLY);
-	s_logfile* logfile = NULL;
-	for (t_uint i = 0; i < LOGFILES_MAX; ++i)
+
+	if (a_logger->path)
 	{
-		logfile = &a_logger->dest_files[i];
-		if (logfile->path)
+		a_logger->fd = IO_Open(a_logger->path,
+			(flags | (a_logger->append ? OPEN_APPEND : OPEN_CLEARFILE)), 0644);
+		if (a_logger->fd < 0)
 		{
-			logfile->fd = IO_Open(logfile->path,
-				(flags | (logfile->append ? OPEN_APPEND : OPEN_CLEARFILE)), 0644);
-			if (logfile->fd < 0)
-			{
-				logfile->fd = 0;
-				Log_FatalError(a_logger, "Could not open logfile");
-			}
-			else
-			{
-				Log_Verbose(a_logger, "Logging for software initialized\n");
-			}
+			a_logger->fd = 0;
+			Log_FatalError(a_logger, "Could not open a_logger\n");
+		}
+		else
+		{
+			Log_Verbose(a_logger, "Logging for software initialized\n");
 		}
 	}
 }
@@ -33,32 +29,20 @@ void	Logger_Init(s_logger *a_logger)
 
 void	Logger_Exit(s_logger *a_logger)
 {
-	s_logfile* logfile = NULL;
-	for (t_uint i = 0; i < LOGFILES_MAX; ++i)
+	if (a_logger->fd > STDERR)
 	{
-		logfile = &a_logger->dest_files[i];
-		if (logfile->path && logfile->fd > STDERR)
+		if (IO_Close(a_logger->fd))
 		{
-			if (IO_Close(logfile->fd))
-			{
-				Log_FatalError(a_logger, "Could not close logfile");
-			}
-			String_Delete(&logfile->path);
+			Log_FatalError(a_logger, "Could not close a_logger\n");
 		}
+		a_logger->fd = 0;
 	}
+	String_Delete(&a_logger->path);
 }
 
 
 
 void	Logger_DeleteMemory(s_logger *a_logger)
 {
-	s_logfile* logfile = NULL;
-	for (t_uint i = 0; i < LOGFILES_MAX; ++i)
-	{
-		logfile = &a_logger->dest_files[i];
-		if (logfile->path && logfile->fd > STDERR)
-		{
-			String_Delete(&logfile->path);
-		}
-	}
+	String_Delete(&a_logger->path);
 }

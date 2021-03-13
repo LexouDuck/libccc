@@ -58,11 +58,8 @@ char*	String_Format_VA(char const* format, va_list ap)
 {
 	int result;
 	char* str = NULL;
-	va_list ap_copy;
 
-	va_copy(ap_copy, ap);
-	result = vasprintf(&str, format, ap_copy);
-	va_end(ap_copy);
+	result = vasprintf(&str, format, ap);
 	if (result < 0)
 	{
 		if (str)
@@ -95,11 +92,8 @@ char*	String_Format(char const* format, ...)
 t_size	String_Format_N_VA(char* dest, t_size max, char const* format, va_list ap)
 {
 	t_size result;
-	va_list ap_copy;
 
-	va_copy(ap_copy, ap);
-	result = vsnprintf(dest, max, format, ap_copy);
-	va_end(ap_copy);
+	result = vsnprintf(dest, max, format, ap);
 	return (result);
 }
 
