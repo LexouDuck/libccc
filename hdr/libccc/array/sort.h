@@ -38,7 +38,7 @@ HEADER_CPP
 */
 
 #define DEFINE_QUICKSORT(TYPE, COMPARE) \
-void	QuickSort_Rec_##COMPARE(TYPE* array, int (*compare)(TYPE, TYPE), t_size start, t_size end)	\
+void	QuickSort_Rec_##COMPARE(TYPE* array, t_sint (*compare)(TYPE, TYPE), t_size start, t_size end)	\
 {																							\
 	t_size	pivot_id;																		\
 	t_size	rise_id;																		\

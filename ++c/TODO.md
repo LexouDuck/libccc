@@ -11,9 +11,9 @@
 - Several language features added, mostly in the form of new pre-processor directives:
 ```c
 #namespace NameSpace.SubSpace
-#function type	FunctionName(int arg)	{ DoSomething(); return (var); }
-#operator	$ (type a, type b) = int	{ return (DoOperation(a, b)); }
-#accessor (type var)[int index] = int	{ return (GetFunction(var, index)); }
+#function int	FunctionName(int arg)	{ DoSomething(); return (var); }
+#operator	$	(int a, int b) = int	{ return (DoOperation(a, b)); }
+#accessor (int var)[int index] = int	{ return (GetFunction(var, index)); }
 #reflect // type reflection - type stringization , enum stringization, etc ?
 #replace("old", "new")
 #header(__HEADER_H)
@@ -23,7 +23,7 @@
 #format(func, 1, 2)	// shorter way of writing __attribute__((format, ...))
 #malloc				// shorter way of writing __attribute__((malloc, ...))
 #delete				// shorter way of writing __attribute__((delete, ...))
-#inline				// shorter way of writing __attribute__((inline, ...))
+#inline				// shorter way of writing __attribute__((always_inline, ...)) inline
 #pure				// shorter way of writing __attribute__((pure, ...))
 #packed				// shorter way of writing __attribute__((packed, ...))
 ```
@@ -59,6 +59,11 @@ value = $pointer; // ++C
 ```c
 address = &value; // pure C
 address = @value; // ++C
+```
+
+- affectation: `=` can be written `:=` (for those who prefer mathematical notation)
+```c
+value := 0;
 ```
 
 - octal number literals:
@@ -332,6 +337,7 @@ t_utf8 utf8_char = (t_utf8*)str[5];
 
 
 ### Generic types:
+A namespace can declare a generic type:
 ```c
 #namespace List<TYPE=void*> // by default, 'void*' type will be used
 
@@ -344,6 +350,7 @@ typedef struct	s_list_<TYPE>
 // usage example:
 s_list<char*> const*	string_list;
 ```
+
 ##### Namespace:
 ```c
 // a generic type can be applied to a namespace as well

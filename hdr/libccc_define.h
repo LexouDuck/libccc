@@ -127,7 +127,7 @@ HEADER_CPP
 /*
 **	Define macros for common function attributes (as documented by GNU)
 */
-#if _MSC_VER || defined(__SWIG__)
+#if (_MSC_VER || defined(__SWIG__))
 	#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)
 	#define _ALIAS(FUNCTION)
 	#define _ALIGN(MINIMUM)
@@ -139,7 +139,7 @@ HEADER_CPP
 	#define _PACKED()
 #else
 
-#if defined(__MINGW32__) && !defined(__clang__)
+#if (defined(__MINGW32__) && !defined(__clang__))
 	//! Before a function def: make the compiler give warnings for a variadic-args function with a format string
 	#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	__attribute__((format(gnu_##FUNCTION, POS_FORMAT, POS_VARARGS)))
 #else

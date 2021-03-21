@@ -74,7 +74,7 @@ TYPEDEF_ALIAS(		t_f64,	FLOAT_64,	PRIMITIVE)
 */
 typedef __float80	t_f80;
 TYPEDEF_ALIAS(		t_f80,	FLOAT_80,	PRIMITIVE)
-#elif LIBCONFIG_BITS_FLOAT == 80
+#elif (LIBCONFIG_BITS_FLOAT == 80)
 	#error "Cannot set default float to 80-bit extended-precision, unavailable on this platform"
 #endif
 
@@ -85,7 +85,7 @@ TYPEDEF_ALIAS(		t_f80,	FLOAT_80,	PRIMITIVE)
 */
 typedef __float96	t_f96;
 TYPEDEF_ALIAS(		t_f96,	FLOAT_96,	PRIMITIVE)
-#elif LIBCONFIG_BITS_FLOAT == 96
+#elif (LIBCONFIG_BITS_FLOAT == 96)
 	#error "Cannot set default float to 96-bit extended-precision, unavailable on this platform"
 #endif
 
@@ -96,7 +96,7 @@ TYPEDEF_ALIAS(		t_f96,	FLOAT_96,	PRIMITIVE)
 */
 typedef __float128	t_f128;
 TYPEDEF_ALIAS(		t_f128,	FLOAT_128,	PRIMITIVE)
-#elif LIBCONFIG_BITS_FLOAT == 128
+#elif (LIBCONFIG_BITS_FLOAT == 128)
 	#error "Cannot set default float to 128-bit quadruple-precision, unavailable on this platform"
 #endif
 
@@ -270,14 +270,14 @@ TYPEDEF_ALIAS(					t_float, FLOAT, PRIMITIVE)
 typedef union	u_float_cast_
 {
 	t_float		value_float;
-#if LIBCONFIG_BITS_FLOAT == 32
+#if (LIBCONFIG_BITS_FLOAT == 32)
 	t_s32
-#elif LIBCONFIG_BITS_FLOAT == 64
+#elif (LIBCONFIG_BITS_FLOAT == 64)
 	t_s64
 #else
 	t_s64[2]
 #endif
-	value_int;
+				value_int;
 }				u_float_cast;
 
 
