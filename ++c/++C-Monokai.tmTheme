@@ -118,20 +118,9 @@
 
 		<dict>
 			<key>name</key>
-			<string>Constant (built-in)</string>
+			<string>Constant</string>
 			<key>scope</key>
-			<string>constant.language</string>
-			<key>settings</key>
-			<dict>
-				<key>foreground</key>
-				<string>#AE81FF</string>
-			</dict>
-		</dict>
-		<dict>
-			<key>name</key>
-			<string>Constant (library)</string>
-			<key>scope</key>
-			<string>support.constant</string>
+			<string>constant.language, support.constant</string>
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
@@ -161,6 +150,8 @@
 			<dict>
 				<key>foreground</key>
 				<string>#FD971F</string>
+				<key>fontStyle</key>
+				<string></string>
 			</dict>
 		</dict>
 
@@ -175,17 +166,8 @@
 			<dict>
 				<key>foreground</key>
 				<string>#F92672</string>
-			</dict>
-		</dict>
-		<dict>
-			<key>name</key>
-			<string>Keyword (declaration)</string>
-			<key>scope</key>
-			<string>keyword.declaration</string>
-			<key>settings</key>
-			<dict>
-				<key>foreground</key>
-				<string>#F92672</string>
+				<key>fontStyle</key>
+				<string>bold</string>
 			</dict>
 		</dict>
 		<dict>
@@ -197,13 +179,11 @@
 			<dict>
 				<key>foreground</key>
 				<string>#F92672</string>
-				<key>fontStyle</key>
-				<string>bold</string>
 			</dict>
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>Keyword (preprocessor)</string>
+			<string>Keyword (other/specific)</string>
 			<key>scope</key>
 			<string>keyword.other</string>
 			<key>settings</key>
@@ -214,14 +194,11 @@
 				<string>italic</string>
 			</dict>
 		</dict>
-
-
-
 		<dict>
 			<key>name</key>
-			<string>Type</string>
+			<string>Keyword (declaration)</string>
 			<key>scope</key>
-			<string>storage.type</string>
+			<string>keyword.declaration</string>
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
@@ -230,17 +207,20 @@
 				<string>bold</string>
 			</dict>
 		</dict>
+
+
+
 		<dict>
 			<key>name</key>
-			<string>Type (library)</string>
+			<string>Type</string>
 			<key>scope</key>
-			<string>support.type, support.class</string>
+			<string>storage.type, support.type, support.class</string>
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
 				<string>#66D9EF</string>
 				<key>fontStyle</key>
-				<string>bold</string>
+				<string>italic</string>
 			</dict>
 		</dict>
 		<dict>
@@ -253,7 +233,7 @@
 				<key>foreground</key>
 				<string>#66D9EF</string>
 				<key>fontStyle</key>
-				<string>bold</string>
+				<string>italic</string>
 			</dict>
 		</dict>
 		<dict>
@@ -276,18 +256,7 @@
 			<key>name</key>
 			<string>Variable</string>
 			<key>scope</key>
-			<string>variable.other</string>
-			<key>settings</key>
-			<dict>
-				<key>foreground</key>
-				<string>#F8F8F0</string>
-			</dict>
-		</dict>
-		<dict>
-			<key>name</key>
-			<string>Variable (library)</string>
-			<key>scope</key>
-			<string>support.other.variable</string>
+			<string>variable.other, support.other.variable</string>
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
@@ -304,7 +273,34 @@
 				<key>foreground</key>
 				<string>#F8F8F0</string>
 				<key>fontStyle</key>
+				<string>bold</string>
+			</dict>
+		</dict>
+
+		<dict>
+			<key>name</key>
+			<string>Macro/Symbol</string>
+			<key>scope</key>
+			<string>variable.other.constant</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#F8F8F0</string>
+				<key>fontStyle</key>
 				<string>italic</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Macro/Symbol declaration</string>
+			<key>scope</key>
+			<string>entity.name.constant</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#F8F8F0</string>
+				<key>fontStyle</key>
+				<string>italic bold</string>
 			</dict>
 		</dict>
 
@@ -314,26 +310,13 @@
 			<key>name</key>
 			<string>Function</string>
 			<key>scope</key>
-			<string>variable.function, variable.annotation</string>
+			<string>variable.function, variable.annotation, support.function</string>
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
 				<string>#E6DB74</string>
 				<key>fontStyle</key>
-				<string>bold</string>
-			</dict>
-		</dict>
-		<dict>
-			<key>name</key>
-			<string>Function (library)</string>
-			<key>scope</key>
-			<string>support.function</string>
-			<key>settings</key>
-			<dict>
-				<key>foreground</key>
-				<string>#E6DB74</string>
-				<key>fontStyle</key>
-				<string>bold</string>
+				<string></string>
 			</dict>
 		</dict>
 		<dict>
@@ -346,9 +329,38 @@
 				<key>foreground</key>
 				<string>#E6DB74</string>
 				<key>fontStyle</key>
+				<string>bold</string>
+			</dict>
+		</dict>
+
+		<dict>
+			<key>name</key>
+			<string>Macro/Symbol function</string>
+			<key>scope</key>
+			<string>variable.function.constant, support.function.constant</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#E6DB74</string>
+				<key>fontStyle</key>
+				<string>italic</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Macro/Symbol function declaration</string>
+			<key>scope</key>
+			<string>entity.name.function.constant</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#E6DB74</string>
+				<key>fontStyle</key>
 				<string>italic bold</string>
 			</dict>
 		</dict>
+
+
 
 		<dict>
 			<key>name</key>
@@ -391,35 +403,6 @@
 				<string>#66D9EF</string>
 				<key>fontStyle</key>
 				<string>bold underline</string>
-			</dict>
-		</dict>
-
-
-
-		<dict>
-			<key>name</key>
-			<string>Macro</string>
-			<key>scope</key>
-			<string>constant.other.preprocessor</string>
-			<key>settings</key>
-			<dict>
-				<key>foreground</key>
-				<string>#F8F8F0</string>
-				<key>fontStyle</key>
-				<string>bold</string>
-			</dict>
-		</dict>
-		<dict>
-			<key>name</key>
-			<string>Macro declaration</string>
-			<key>scope</key>
-			<string>entity.name.constant.preprocessor</string>
-			<key>settings</key>
-			<dict>
-				<key>foreground</key>
-				<string>#F8F8F0</string>
-				<key>fontStyle</key>
-				<string>italic bold</string>
 			</dict>
 		</dict>
 
