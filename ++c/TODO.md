@@ -36,12 +36,12 @@ The ++C language consists of 2 things:
 
 # Warnings:
 
-++C also acts as a linter - performing additional code checks and giving many useful warnings.
+++C also aims to act as a linter - performing additional code checks and giving many useful warnings.
 Here are the warnings which are added by default (any warning can be deactivated in the same way you would do with gcc: `-Wno-*`)
 - `-Wimplicit-cast` explicit type casting everywhere (float to int, int to float, enum to int, etc)
 - `-Wlingering-alloc` local variable 'a' was allocated, and function returned something which isn't 'a', 'a' should be freed
 - `-Wunchecked-null` pointer potentially NULL
-- `-Winvalid-enum` integer value was assigned to enum type, but this integer is not defined in the enum
+- `-Winvalid-enum-item` integer value was assigned to enum type, but this integer is outside of the enum
 - `-Wmisaligned-pointer` warn of potential pointer alignment issues, which can be platform-specific
 
 
@@ -63,14 +63,23 @@ address = @value; // ++C
 
 - affectation: `=` can be written `:=` (for those who prefer mathematical notation)
 ```c
-value := 0;
+value = 255;	// pure C
+value := 255;	// ++C
 ```
 
-- octal number literals:
+- octal number literals: in addition to leading zero notation, a `0o` literal number prefix is also accepted
 ```c
 value = 0644; // pure C
 value = 0o644; // ++C
 ```
+
+- function pointer types: to avoid hard-to-read function pointers using `(*func)` notation, you can instead use `=>` arrow notation
+```c
+void	(*f)(int, char*);	// pure C
+(int, char*) => void	f;	// ++C
+```
+
+
 
 ### RegExp literals:
 
