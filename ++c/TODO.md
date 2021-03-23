@@ -73,6 +73,12 @@ value = 0644; // pure C
 value = 0o644; // ++C
 ```
 
+- static array types: brackets can be written after the type (before the associated token), rather than after the variable name:
+```c
+char*	strings[9];	// pure C
+char*[9] strings;	// ++C
+```
+
 - function pointer types: to avoid hard-to-read function pointers using `(*func)` notation, you can instead use `=>` arrow notation
 ```c
 void	(*f)(int, char*);	// pure C
@@ -83,13 +89,20 @@ void	(*f)(int, char*);	// pure C
 
 ### RegExp literals:
 
-regex literal strings are prefixed with an `r`, and flags may be placed after the ending quote:
+regex literal strings are prefixed with an `r` character, and regex mode flags may be placed after the ending double quote:
 ```c
 char const* regex1 = r"\b(My_\w*)\b"g;
 char const* regex2 = r"(?x) ( [^)] __damn__ )"i;
 char const* regex3 = r"[a-zA-Z_]\w*"sg;
 ```
-When writing a regex literal, the transpiled C output string literal will have double backquotes `\\` wherever necessary
+When writing a regex literal, the transpiled C output string literal will:
+- have double backquotes `\\` wherever necessary
+- place the regex mode flags within the string, at the start, using `(?i)` notation (https://www.regular-expressions.info/modifiers.html?wlr=1)
+
+Note that libccc uses the Oniguruma Regex engine, which encompasses the features of many other regex engine into one:
+https://github.com/kkos/oniguruma
+https://raw.githubusercontent.com/kkos/oniguruma/5.9.6/doc/RE
+http://www.greenend.org.uk/rjk/tech/regexp.html
 
 
 
@@ -295,7 +308,7 @@ typedef struct	s_keyval_
 typedef struct	s_dict_
 {
 	t_size		count;
-	keyval*		items;
+	s_keyval*	items;
 }				s_dict;
 
 #namespace Dict
@@ -348,7 +361,9 @@ t_utf8 utf8_char = (t_utf8*)str[5];
 ### Generic types:
 A namespace can declare a generic type:
 ```c
+// a generic typed namespace can indicate a default type (which will be used if no <T> is written)
 #namespace List<TYPE=void*> // by default, 'void*' type will be used
+// Functions in this namespace cannot really use the generic type directly, they must treat it as opaque
 
 typedef struct	s_list_<TYPE>
 {
@@ -362,8 +377,9 @@ s_list<char*> const*	string_list;
 
 ##### Namespace:
 ```c
-// a generic type can be applied to a namespace as well
-#namespace Math<TYPE=float>
+// a generic typed namespace can have a restricted set of types
+// Functions using this namespace can have different implementations for each child type, such that they can use them directly
+#namespace Math<TYPE=float|double|fixed|int>
 TYPE	Cos(TYPE x);
 
 // usage example:
@@ -438,29 +454,29 @@ typedef struct	keyval_<TYPE>
 	char*	key;
 	char*	type;
 	TYPE	value;
-}				keyval<TYPE>;
+}				s_keyval<TYPE>;
 
-keyval<TYPE>	New(char* key, TYPE value);
+s_keyval<TYPE>	New(char* key, TYPE value);
 
 
 
 #namespace Object<TYPE=void*>
 
-typedef keyval<void*>*	object;
+typedef s_keyval<void*>*	t_object;
 
-object*	New(size_t items, keyval ...);
+t_object*	New(size_t items, s_keyval ...);
 
-#accessor (object* obj)[char const* key] = TYPE
+#accessor (t_object* obj)[char const* key] = TYPE
 {
 	return (Object<TYPE>.Get(obj, key));
 }
 
 
 
-object* obj = Object.New(3,
-	KeyVal<int>.New("index", 1), // = &(keyval<int>){ .key="index", .type="int", .value=1 }
+t_object* obj = Object.New(3,
+	KeyVal<int>.New("index", 1), // = &(s_keyval<int>){ .key="index", .type="int", .value=1 }
 	KeyVal<char*>.New("value", "foo"),
-	KeyVal<object>.New("sub", Object.New(2,
+	KeyVal<t_object>.New("sub", Object.New(2,
 		KeyVal<float>.New("float", 1.5),
 		KeyVal<char*>.New("str", "hello")),
 );

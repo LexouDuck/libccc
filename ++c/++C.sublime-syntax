@@ -105,6 +105,7 @@ contexts:
         - include: variable-declaration
         - include: macro
         - include: variable
+        - include: ppline-macro-operator
         - include: $top_level_main
         - match: '(?=\})'
           pop: true
@@ -131,6 +132,7 @@ contexts:
         - include: variable-declaration
         - include: macro
         - include: variable
+        - include: ppline-macro-operator
         - include: $top_level_main
         - match: (?=\))
           pop: true
@@ -219,7 +221,7 @@ contexts:
         1: invalid.deprecated.space-after-continuation.c
 
   lex-access:
-    - match: '(?:(?<=\.)|(?<=->))\b([a-zA-Z_]\w*+)\b(?!(?:\s|/\*.*?\*/)*+\()'
+    - match: '(?:(?<=\.)|(?<=->))\b([A-Za-z_]\w*+)\b(?!(?:\s|/\*.*?\*/)*+\()'
       scope: variable.other.member-access.c
 
   lex-constant:
@@ -528,7 +530,7 @@ contexts:
                         | #  or type modifier / closing bracket before name
                           (?<= [^&]& | [*>)}\]] ) ) \s*
 
-                      (?: [A-Za-z_]\w*+ | ::[^:] )++
+                      (?: [A-Za-z_]\w*+ | ::[^:] | \. )++
                       (?: (?<= ^ operator | \W operator )  # C++ operator?
                           (?: [-*&<>=+!]+ | \(\) | \[\] ) )?
                       (?:\s|/\*.*?\*/)*+ \( ) )
@@ -597,7 +599,7 @@ contexts:
     - include: function-call
 
   function-pointer:
-    - match: (?<=\()(?:\s*\*\s*)([_A-Za-z]\w*+)(?:\s*\)\s*\();
+    - match: (?<=\()(?:\s*\*\s*)([A-Za-z_]\w*+)(?:\s*\)\s*\();
       captures:
         1: entity.name.variable.c
 
@@ -615,7 +617,7 @@ contexts:
               (?<= [*>)}\]] )
           )
           \s*+
-          (   (?: [A-Za-z_]\w*+ | ::[^:] )++ )
+          (   (?: [A-Za-z_]\w*+ | ::[^:] | \. )++ )
           (?=
             (?:\s|/\*.*?\*/)*+
             (?'parens' \(
@@ -652,7 +654,7 @@ contexts:
               (?<= [*>)}\]] )
           )
           \s*+
-          (   (?: [A-Za-z_]\w*+ | ::[^:] )++ )
+          (   (?: [A-Za-z_]\w*+ | ::[^:] | \. )++ )
           (?=
             (?:\s|/\*.*?\*/)*+
             \(
@@ -674,7 +676,7 @@ contexts:
         (?x)
           \s*\b
           (?= # don't consume string, to recognize support functions
-              (?: [A-Za-z_]\w*+ | ::[^:] )++
+              (?: [A-Za-z_]\w*+ | ::[^:] | \. )++
               (?: \s|/\*.*?\*/)*+
               \(
           )
@@ -684,9 +686,10 @@ contexts:
         - include: support-function
         - match: '(?:(?<=\.)|(?<=->))\b([A-Za-z_]\w*+)\b'
           scope: variable.function.access.c
-        - match: '\b([A-Za-z_]\w*+|::[^:])++\b'
+        - match: '\b(?:([A-Za-z_]\w*+)|(::[^:]|\.))++\b'
           captures:
             1: variable.function.c
+            2: keyword.operator.access.c
         - include: parens-lookahead-end
         - match: \)
           pop: true
@@ -779,10 +782,12 @@ contexts:
         - include: lex-core
         - include: function
         - include: support
+        - include: block
+        - include: parens
 
 
   ppline-macro:
-    - match: '^\s*(#)(?=\s*(define)\s+[a-zA-Z_]\w*+)'
+    - match: '^\s*(#)(?=\s*(define)\s+[A-Za-z_]\w*+)'
       captures:
         0: keyword.other.preprocessor.c
       push:
@@ -790,20 +795,26 @@ contexts:
         - include: ppline-macro-head-function
         - include: ppline-macro-head-object
         - include: lex-core
+        - include: ppline-macro-operator
         - include: function
         - include: support
-        - match: \s*(##)
-          captures:
-            1: keyword.other.preprocessor.c
-        - match: '\s*(#)\s*([a-zA-Z_]\w*+)'
-          captures:
-            1: keyword.other.preprocessor.c
-            2: string.macro.stringify.c
+        - include: block
+        - include: parens
+        - include: macro
         - match: (?<=$\n)(?<!\\$\n)
           pop: true
 
+  ppline-macro-operator:
+        - match: '\s*(##)'
+          captures:
+            1: keyword.other.preprocessor.c
+        - match: '\s*(#)\s*([A-Za-z_]\w*+)'
+          captures:
+            1: keyword.other.preprocessor.c
+            2: string.macro.stringify.c
+
   ppline-macro-head-function:
-    - match: '(?<!##)(?<=#)(\s*define)\s+([a-zA-Z_]\w*+)(\()'
+    - match: '(?<!##)(?<=#)(\s*define)\s+([A-Za-z_]\w*+)(\()'
       captures:
         1: keyword.other.preprocessor.define.c
         2: entity.name.function.preprocessor.c
@@ -815,7 +826,7 @@ contexts:
             1: invalid.illegal.unexpected-end-of-line.c
           pop: true
         - match: \)
-        - match: '\b([a-zA-Z_]\w*+)\b'
+        - match: '\b([A-Za-z_]\w*+)\b'
           captures:
             1: variable.parameter.c
           push:
@@ -831,7 +842,7 @@ contexts:
         - include: ppline-macro-param-lex-invalid
 
   ppline-macro-head-object:
-    - match: '(?<!##)(?<=#)(\s*define)\s+([a-zA-Z_]\w*+)(?!\()[\s&&[^\n]]*'
+    - match: '(?<!##)(?<=#)(\s*define)\s+([A-Za-z_]\w*+)(?!\()[\s&&[^\n]]*'
       captures:
         1: keyword.other.preprocessor.define.c
         2: entity.name.constant.preprocessor.c
@@ -861,7 +872,7 @@ contexts:
       captures:
         1: punctuation.separator.parameter.c
       push:
-        - match: '\b([a-zA-Z_]\w*+)\b|(?=\.\.\.)|(\))|(?=(?<=^|[^\\])\s*(\n))'
+        - match: '\b([A-Za-z_]\w*+)\b|(?=\.\.\.)|(\))|(?=(?<=^|[^\\])\s*(\n))'
           captures:
             1: variable.parameter.c
             2: invalid.illegal.unexpected-closing-paren.c
@@ -870,7 +881,7 @@ contexts:
         - match: |-
             (?x)
               (?: (?! (?:\s|/\*.*?\*/)*+
-                    (?: \b([a-zA-Z_]\w*+)\b | \.\.\. | \) | (?>(?:\\\s*)?$\n?) | /[/*] ) )
+                    (?: \b([A-Za-z_]\w*+)\b | \.\.\. | \) | (?>(?:\\\s*)?$\n?) | /[/*] ) )
                   .)*
           scope: invalid.illegal.unexpected-character.c
 
@@ -890,10 +901,10 @@ contexts:
           scope: invalid.illegal.unexpected-character.c
 
   ppline-undef:
-    - match: '(^\s*(#)\s*(undef))\s+([a-zA-Z_]\w*+)'
+    - match: '(^\s*(#)\s*(undef))\s+([A-Za-z_]\w*+)'
       captures:
         1: keyword.other.preprocessor.c
-        4: variable.macro.undef.c
+        4: variable.other.constant.undef.c
       push:
         - meta_scope: meta.preprocessor.undef.c
         - match: (?<=$\n)(?<!\\$\n)
@@ -962,6 +973,7 @@ contexts:
         - match: (?<=$\n)(?<!\\$\n)
           pop: true
         - include: lex-core
+        - include: macro
     - match: ^\s*(#)\s*(namespace|function|operator|accessor|replace|incbin|header|reflect|alias|align|inline|format|malloc|delete|packed|pure)\b
       captures:
         0: keyword.other.preprocessor.++c
@@ -1022,12 +1034,15 @@ contexts:
     - include: support-function
 
   support-type:
-    - match: \s*\b(u_char|u_short|u_int|u_long|ushort|uint|(?:u_quad|quad|qaddr|caddr|daddr|dev|fixpt|blkcnt|blksize|gid|in_addr|in_port|ino|key|mode|nlink|id|pid|off|segsz|swblk|uid|id|clock|size|ssize|time|useconds|suseconds)_t)\b
+    - match: \s*\b(u_char|u_short|u_int|u_long|ushort|uint|(?:u_quad|quad|qaddr|caddr|daddr|dev|fixpt|blkcnt|blksize|gid|in_addr|in_port|ino|key|mode|nlink|id|pid|off|segsz|swblk|uid|id|clock|size|ssize|time|useconds|suseconds|siginfo)_t)\b
       captures:
         1: support.type.stdlib.c
     - match: \s*\b(u?int(?:(?:_least|_fast)?(?:8|16|32|64)_t|ptr_t|max_t))\b
       captures:
         1: support.type.stdint.c
+    - match: \s*\b(va_list)\b
+      captures:
+        1: support.type.stdarg.c
 
     - match: \s*\b([tseuf]_\w+)\b # TODO more restrictive category here, to potentially differntiate system types from user types ?
       captures:
@@ -1117,80 +1132,64 @@ contexts:
 
 
   lex-comment:
-    - match: \s*(/\*)
+    - match: '\s*(/\*)([*!])'
+      captures:
+        1: punctuation.definition.comment.block.documentation.c
+        2: comment.command
+      push:
+        - meta_scope: comment.block.documentation.c
+        - match: '(\*/)'
+          pop: true
+        - include: comment-documentation
+    - match: '\s*(//)([/!]<?)'
+      captures:
+        1: punctuation.definition.comment.line.documentation.c
+        2: comment.command
+      push:
+        - meta_scope: comment.line.documentation.c
+        - match: '(?<=$\n)(?<!\\$\n)'
+          pop: true
+        - include: comment-documentation
+
+    - match: '\s*(/\*)'
       captures:
         1: punctuation.definition.comment.block.c
       push:
         - meta_scope: comment.block.c
-        - match: (\*/)(\n?)
-          captures:
-            2: punctuation.whitespace.newline.c
+        - match: '(\*/)'
           pop: true
-        - include: comment-innards
+        - include: comment
+    - match: '\s*(//)'
+      captures:
+        1: punctuation.definition.comment.line.c
+      push:
+        - meta_scope: comment.line.++c
+        - match: '(?<=$\n)(?<!\\$\n)'
+          pop: true
+        - include: comment
+
     - match: '\*/(?![/*])'
       scope: invalid.illegal.stray-comment-end.c
-    - match: \s*(//)
-      captures:
-        1: punctuation.definition.comment.line.double-slash.c++
-      push:
-        - meta_scope: comment.line.double-slash.c++
-        - match: (?<=$\n)(?<!\\$\n)
-          pop: true
-        - include: comment-innards
 
-  comment-innards:
+  comment:
+    - include: comment-note
     - include: comment-banner-line
-    - include: comment-command
     - include: lex-continuation
     - include: lex-newline
 
-  comment-command-innards:
+  comment-documentation:
+    - include: comment-note
     - include: comment-command
     - include: lex-continuation
     - include: lex-newline
 
   comment-banner-line:
-    - match: '(?:(?<=//)|(?<=/\*)|^)[\s/*]*(=+\s*(.*?)\s*=+(?:(?=[\s/*+\-]*\*/)|$(\n?)))'
+    - match: '(?:(?<=/[/\*])|^)[\s/*]*(=+\s*(.*?)\s*=+(?:(?=[\s/*+\-]*\*/)|$(\n?)))'
       captures:
         1: meta.toc-list.banner.c
         3: punctuation.whitespace.newline.c
 
-  comment-command:
-    - match: '@[{}]'
-      captures:
-        0: comment.command.c
-    - match: '(?<=/[/\*])[/\*!]<?'
-      captures:
-        0: comment.command.c
-    - match: '\b(?:[a-zA-Z_]\w+)(\(\))'
-      captures:
-        0: comment.c
-        1: comment.command.c
-    - match: '(#)(?:[a-zA-Z_]\w+)\b'
-      captures:
-        0: comment.c
-        1: comment.command.c
-    - match: |-
-        (?ix)
-          (?= (?-i: [@\\][a-zA-Z_]++) \b) [@\\]? \b
-          ( GROUP
-          | ALIAS
-          | ARG
-          | ISOSTD
-          | NONSTD
-          | ERRORS
-          | PARAM_ENV
-          | PARAM_WORKER
-          | PARAM_RESULT
-          | (?:END)?EXAMPLES
-          | (?:END)?EXAMPLECODE
-          ) \b
-          ({([^}]*)})?
-      captures:
-        0: comment.command.c
-        1: comment.command.user.c
-        2: comment.command.c
-        3: comment.command.user.c
+  comment-note:
     - match: |-
         (?ix)
             (?= (?-i: \b [A-Z_]++) \b) @? \b
@@ -1213,7 +1212,40 @@ contexts:
         - meta_scope: meta.toc-list.task-tag.note.c
         - match: '(?=[\s/*]*\*/)|(?<=$\n)'
           pop: true
-        - include: comment-command-innards
+
+  comment-command:
+    - match: '\b(?:[A-Za-z_]\w+)(\(\))'
+      captures:
+        0: comment.c
+        1: comment.command.c
+    - match: '\b(#)(?:[A-Za-z_]\w+)\b'
+      captures:
+        0: comment.c
+        1: comment.command.c
+    - match: '@[{}]'
+      captures:
+        0: comment.command.c
+    - match: |-
+        (?ix)
+          (?= (?-i: [@\\][A-Za-z_]++) \b) [@\\]? \b
+          ( GROUP
+          | ALIAS
+          | ARG
+          | ISOSTD
+          | NONSTD
+          | ERRORS
+          | PARAM_ENV
+          | PARAM_WORKER
+          | PARAM_RESULT
+          | (?:END)?EXAMPLES
+          | (?:END)?EXAMPLECODE
+          ) \b
+          ({([^}]*)})?
+      captures:
+        0: comment.command.c
+        1: comment.command.user.c
+        2: comment.command.c
+        3: comment.command.user.c
     - match: |-
         (?ix)
           [@\\] \b
