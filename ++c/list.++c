@@ -4,8 +4,14 @@
 
 
 
+#namespace List<T=void*>
+
+
+
 s_list*	List<T>.New(T item, t_size item_size)
 {
+	int a;
+	typeof(a) b;
 	s_list* result;
 
 	if (!(result = (s_list*)Memory_Alloc(sizeof(s_list))))

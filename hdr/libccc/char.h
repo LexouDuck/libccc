@@ -63,7 +63,7 @@ TYPEDEF_ALIAS(		t_utf8, UTF8, PRIMITIVE)
 **	@isostd{https://en.cppreference.com/w/c/string/multibyte/char16_t}
 **	@isostd{https://en.cppreference.com/w/c/string/multibyte}
 */
-typedef uint_least16_t	t_utf16;
+typedef uint_least16_t	t_utf16; // TODO add option to use C11 `char16_t`
 TYPEDEF_ALIAS(			t_utf16, UTF16, PRIMITIVE)
 
 //! Primitive type: Unicode UTF-32 character code point value (fixed length: 4 bytes)
@@ -71,10 +71,10 @@ TYPEDEF_ALIAS(			t_utf16, UTF16, PRIMITIVE)
 **	@isostd{https://en.cppreference.com/w/c/string/multibyte/char32_t}
 **	@isostd{https://en.cppreference.com/w/c/string/wide}
 */
-typedef uint_least32_t	t_utf32;
+typedef uint_least32_t	t_utf32; // TODO add option to use C11 `char32_t`
 TYPEDEF_ALIAS(			t_utf32, UTF32, PRIMITIVE)
 
-
+// TODO add option with wrapper functions for the ones in C11 <uchar.h>
 
 
 /*

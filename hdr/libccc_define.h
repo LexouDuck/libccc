@@ -128,31 +128,49 @@ HEADER_CPP
 **	Define macros for common function attributes (as documented by GNU)
 */
 #if (_MSC_VER || defined(__SWIG__))
-	#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)
-	#define _ALIAS(FUNCTION)
-	#define _ALIGN(MINIMUM)
-	#define _PURE()
-	#define _INLINE()
-	#define _MALLOC()
-	#define _DELETE()
-	#define _UNUSED()
-	#define _PACKED()
-#else
+	#define __asm__			__asm
+	#define __inline__		__inline
+	#define __restrict__	__restrict
+	#define __nameof__		nameof
+	#define __typeof__		__typeof
+	#define __alignof__		_Alignof
 
-#if (defined(__MINGW32__) && !defined(__clang__))
-	//! Before a function def: make the compiler give warnings for a variadic-args function with a format string
-	#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	__attribute__((format(gnu_##FUNCTION, POS_FORMAT, POS_VARARGS)))
+	#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	
+	#define _ALIAS(FUNCTION)	define ALIAS	FUNCTION
+	#define _ALIGN(MINIMUM)		__declspec(align(MINIMUM))
+	#define _PURE()				__declspec(noalias)
+	#define _MALLOC()			__declspec(allocator)
+	#define _UNUSED()			__declspec(deprecated)
+	#define _INLINE()			inline
+	#define _NOINLINE()			__declspec(noinline)
+	#define _NORETURN()			__declspec(noreturn)
+	#define _PACKED()			__pragma(pack(push, 1))	__pragma(pack(pop))
+
 #else
-	//! Before a function def: make the compiler give warnings for a variadic-args function with a format string
-	#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	__attribute__((format(FUNCTION, POS_FORMAT, POS_VARARGS)))
-#endif
+	#ifndef __GNUC__
+		#define __asm__			asm
+		#define __inline__		inline
+		#define __restrict__	restrict
+		#define __nameof__		nameof
+		#define __typeof__		typeof
+		#define __alignof__		alignof
+	#endif
+
+	#if (defined(__MINGW32__) && !defined(__clang__))
+		//! Before a function def: make the compiler give warnings for a variadic-args function with a format string
+		#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	__attribute__((format(gnu_##FUNCTION, POS_FORMAT, POS_VARARGS)))
+	#else
+		//! Before a function def: make the compiler give warnings for a variadic-args function with a format string
+		#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	__attribute__((format(FUNCTION, POS_FORMAT, POS_VARARGS)))
+	#endif
 	#define _ALIAS(FUNCTION)	__attribute__((alias(#FUNCTION)))	//!< Before a function or variable def: sets the token to be an alias for the one given as arg
 	#define _ALIGN(MINIMUM)		__attribute__((aligned(MINIMUM)))	//!< Before a function or variable def: sets minimum byte alignment size (power of 2)
 	#define _PURE()				__attribute__((pure))				//!< Before a function def: indicates that the function has no side-effects
-	#define _INLINE()			__attribute__((always_inline))		//!< Before a function def: makes the function be always inlined regardless of compiler config
 	#define _MALLOC()			__attribute__((malloc))				//!< Before a function def: indicates that it returns newly allocated ptr
-	#define _DELETE()			__attribute__((delete))				//!< Before a function def: indicates that it deletes/frees memory
 	#define _UNUSED()			__attribute__((unused))				//!< Before a function def: suppresses warnings for empty/incomplete function
+	#define _INLINE()			__attribute__((always_inline))		//!< Before a function def: makes the function be always inlined regardless of compiler config
+	#define _NOINLINE()			__attribute__((noinline))			//!< Before a function def: makes the function be always inlined regardless of compiler config
+	#define _NORETURN()			__attribute__((noreturn))			//!< Before a function def: indicates that it never returns (runs forever, and/or calls abort() or exit())
 	#define _PACKED()			__attribute__((packed))				//!< Before a struct/union def: do not perform byte-padding on this struct/union type
 #endif
 
