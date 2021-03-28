@@ -28,7 +28,7 @@ s_point newpoint(int x, int y)
 int main()
 {
 	s_point* b = &(s_point){ 3, 5, increment };//newpoint(3, 5);
-	int a = b->incr(b)->incr(b)->incr(b)->incr(b)->incr(b)->x;
+	int a = b->incr(b)-> incr(b) ->incr(b) -> incr(b)->incr(b)->x;
 	printf("a = %d, b = (%d,%d)\n", a, b->x, b->y);
 	return (a);
 }

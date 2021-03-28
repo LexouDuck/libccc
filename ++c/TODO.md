@@ -43,10 +43,10 @@ address = &value; // pure C
 address = @value; // ++C
 ```
 
-- affectation: `=` can be written `:=` (for those who prefer mathematical notation)
+- binary number literals: instead of just being a GCC extension, any ++C code can have binary number literals, using the prefix `0b`:
 ```c
-value = 255;	// pure C
-value := 255;	// ++C
+value = 0b110;	// pure C (GCC extension only)
+value = 0b110;	// ++C
 ```
 
 - octal number literals: in addition to leading zero notation, a `0o` literal number prefix is also accepted
@@ -65,6 +65,10 @@ char*[9] strings;	// ++C
 ```c
 void	(*f)(int, char*);	// pure C
 (int, char*) => void	f;	// ++C
+
+// example nested function (with another function pointer as argument)
+void	(*g)(int, char*	(*)(char*));// pure C
+(int, (char*)=>char*) => void	g;	// ++C
 ```
 
 
@@ -74,6 +78,11 @@ void	(*f)(int, char*);	// pure C
 - `alignof(X)`: Transpiles to the minimum memory alignment requirement of a variable/value/token `X`
 - `typeof(X)`: Transpiles to inline code, the type of the variable/value/token `X`
 - `nameof(X)`: Transpiles to a string literal, the name of the variable/value/token `X`
+
+Also:
+- `asm`: Transpiles to the more cross-platform equivalent: `__asm__`
+- `inline`: Transpiles to the more cross-platform equivalent: `__inline__`
+- `restrict`: Transpiles to the more cross-platform equivalent: `__restrict__`
 
 
 
@@ -137,13 +146,13 @@ int	main()
 
 Most of the new additions take the form of new preprocessor directives, of which here is a brief list:
 ```c
-#operator	$	(char* a, char* b) => int	DoOperation(a, b)		// define a custom operator (optionally with a certain specified `precedence` and `associativity`)
-#accessor (struct s var)[int index] => int	GetFunction(var, index)	// define a custom accessor syntax for a struct/union (custom brackets `get` functions)
-#namespace NameSpace.SubSpace<T=(float|int), P>	// works similar to namespaces and templates in C++, but simpler and more powerful (read more aobut generic types below)
+#operator	$	(char* a, char* b) => int	= DoOperation(a, b)		// define a custom operator (optionally with a certain specified `precedence` and `associativity`)
+#accessor (struct s var)[int index] => int	= GetFunction(var, index)	// define a custom accessor syntax for a struct/union (custom brackets `get` functions)
+#namespace NameSpace.Type<T=(float|int), P>	// works similar to namespaces and templates in C++, but simpler and more powerful (read more about generic types below)
 #reflect // type reflection - type stringization , enum stringization, etc ? TODO define this and how it can work
-#replace(<old>, <new>)		// works like a `#define` macro, but occurs at transpile-time, and uses m4 (which allows for recursive macros, nested #replace directives, etc)
-#header(__HEADER_H)			// insert header include guards at the beginning and end of a header file (and c++ `extern "C" {}`guards)
-#incbin(myvar, "filepath")	// include a binary file into the executable as an extern const global variable
+#replace MACRO() <string>	// works like a `#define` macro, but occurs at transpile-time, and uses m4 (which allows us to do much more stuff)
+#header __HEADER_H			// insert header include guards at the beginning and end of a header file (and c++ `extern "C" {}`guards)
+#incbin myvar "filepath"	// include a binary file into the executable as an extern const global variable
 #alias(token)		// shorter way of writing `__attribute__((alias, ...))`
 #align(4)			// shorter way of writing `__attribute__((align, ...))` and/or `_Alignas`
 #format(func, 1, 2)	// shorter way of writing `__attribute__((format, ...))`
@@ -158,6 +167,10 @@ Also, some changes/fixes to existing preprocessor directives:
 ```c
 #if // compile-time operators like sizeof() can be used in #if directly now, the transpiler will handle it
 // TODO (perhaps even use static_assert() where appropriate ?)
+
+#elif defined(MACRO) // 
+
+#endif
 ```
 
 
@@ -167,7 +180,7 @@ Also, some changes/fixes to existing preprocessor directives:
 In ++C, you can define custom operators:
 ```c
 // integer power operator
-#operator ** (int left, int right) = int	\
+#operator ** (int left, int right) => int = \
 	Math<int>.Power(left, right)
 
 // usage example:
@@ -179,11 +192,12 @@ A custom operator has a maximum length of 4 characters, and it can use any of th
 Looking at it the other way around, the following ASCII characters cannot be used for a custom operator:
 `. , ; ( ) [ ] { } # ' " \`
 A custom operator cannot use any token characters (eg: alphanumeric characters `a-z,A-Z,0-9`, underscore `_`).
+Additionnally, some operators are special and cannot be overridden: `->`, `=>`, `?`, `:`, and `=`
 If you wish to define a "word" operator, you can make a `#replace` macro which wraps a custom operator
 
 ```c
 // NULL check and return operator
-#operator ?? (void const* left, void const* right) = void const* \
+#operator ?? (void const* left, void const* right) => void const* = \
 	(left == NULL ? right : left)
 
 // usage example:
@@ -193,21 +207,21 @@ You can specify operator precedence and associativity:
 https://en.cppreference.com/w/c/language/operator_precedence
 Simply place these two arguments within parentheses immediately after the `#operator` directive keyword
 - the first argument is an integer index of the operator - by default it will be 0 (highest priority)
-- the second argument is a boolean (int 0 or 1), 0 for left-to-right associativity, 1 for right-to-left associativity
+- the second argument is a boolean (int 0 or 1), 0 (default) for left-to-right associativity, 1 for right-to-left associativity
 ```c
 // fixed-point math
-#operator(4, FALSE)	+ (t_fixed a, t_fixed b) => t_fixed		Fixed.Add(a, b)
-#operator(4, FALSE)	- (t_fixed a, t_fixed b) => t_fixed		Fixed.Sub(a, b)
-#operator(3, FALSE)	* (t_fixed a, t_fixed b) => t_fixed		Fixed.Mul(a, b)
-#operator(3, FALSE)	/ (t_fixed a, t_fixed b) => t_fixed		Fixed.Div(a, b)
-#operator(3, FALSE)	% (t_fixed a, t_fixed b) => t_fixed		Fixed.Mod(a, b)
+#operator(4, FALSE)	+ (t_fixed a, t_fixed b) => t_fixed = Fixed.Add(a, b)
+#operator(4, FALSE)	- (t_fixed a, t_fixed b) => t_fixed = Fixed.Sub(a, b)
+#operator(3, FALSE)	* (t_fixed a, t_fixed b) => t_fixed = Fixed.Mul(a, b)
+#operator(3, FALSE)	/ (t_fixed a, t_fixed b) => t_fixed = Fixed.Div(a, b)
+#operator(3, FALSE)	% (t_fixed a, t_fixed b) => t_fixed = Fixed.Mod(a, b)
 ```
 ```c
 // string concatenation operators
-#operator  +	(char const* left, char const* right) => char*		String.Join(left, right)
-#operator  :+	(char*       left, char const* right) => char*		String.Append(left, right)
-#operator  +:	(char const* left, char*       right) => char*		String.Prepend(left, right)
-#operator  :+:	(char*       left, char*       right) => char*		String.Merge(left, right)
+#operator(5, FALSE) +	(char const* left, char const* right) => char* = String.Join(left, right)
+#operator(5, FALSE) :+	(char*       left, char const* right) => char* = String.Append(left, right)
+#operator(5, FALSE) +:	(char const* left, char*       right) => char* = String.Prepend(left, right)
+#operator(5, FALSE) :+:	(char*       left, char*       right) => char* = String.Merge(left, right)
 
 // usage example:
 char* new_str = "Concatenated: " + str;
@@ -221,7 +235,7 @@ typedef struct	s_complex_
 	float im;
 }				s_complex;
 
-#operator ! (s_complex right) = s_complex	\
+#operator ! (s_complex right) => s_complex = \
 	(Complex.Conjugate(right))
 
 // usage example:
@@ -230,7 +244,7 @@ s_complex conjug = !z;
 ```
 ```c
 // bool exclusive OR (XOR) operator
-#operator ^^ (bool left, bool right) = bool	\
+#operator(12, FALSE) ^^ (bool left, bool right) => bool = \
 	((left ? TRUE : FALSE) ^ (right ? TRUE : FALSE))
 
 // usage example:
@@ -238,7 +252,7 @@ if (i < 3 ^^ x >= 4) { /* do stuff */}
 ```
 ```c
 // 3D vector subtraction operator
-#operator - (s_vector3d left, s_vector3d right) = s_vector3d	\
+#operator - (s_vector3d left, s_vector3d right) => s_vector3d = \
 	(s_vector3d)				\
 	{							\
 		.x = left.x - right.x,	\
@@ -269,7 +283,7 @@ typedef struct	s_palette_
 }				s_palette;
 
 // declare an accessor to get colors from the palette
-#accessor (s_palette palette)[int index] = t_argb32	\
+#accessor (s_palette palette)[int index] => t_argb32 = \
 	palette.colors[index]
 
 // usage example:
@@ -285,7 +299,7 @@ typedef struct	s_bitmap_
 }				s_bitmap;
 
 // declare an accessor to get pixels from their coordinates
-#accessor (s_bitmap bitmap)[int x, int y] = t_argb32	\
+#accessor (s_bitmap bitmap)[int x, int y] => t_argb32 = \
 	bitmap.pixels[y * bitmap.width + x]
 
 // usage example:
@@ -321,7 +335,7 @@ s_dict	New(int items, s_keyval ...)
 }
 
 // declare an accessor to get dictionary values from their key names
-#accessor (s_dict dict)[char const* key] = void*	\
+#accessor (s_dict dict)[char const* key] => void* = \
 	Dict.Get(dict, key)
 
 // usage example:
@@ -347,7 +361,7 @@ t_utf8	String_Get_UTF8(t_utf8* str, size_t index)
 	return (result);
 }
 
-#accessor 	(t_utf8* str)[size_t index] = t_utf8	\
+#accessor 	(t_utf8* str)[size_t index] => t_utf8 = \
 	String_Get_UTF8(str, index)
 
 // usage example:
@@ -501,7 +515,7 @@ static bool	KeepOnlyEvenNumbers_filter(s_list<int> element)
 ```c
 // list concatenation operator
 #namespace List<T = void*>
-#operator + (s_list<T>* left, s_list<T>* right) = s_list<T>	\
+#operator + (s_list<T>* left, s_list<T>* right) => s_list<T> = \
 	List<T>.Join(left, right)
 
 // usage example:
@@ -513,7 +527,7 @@ s_list<char*> concat = list1 + list2; // type inferrence for the operator
 ```c
 // list index get
 #namespace List<T = void*>
-#accessor (s_list<T>* list)[size_t index] = T	\
+#accessor (s_list<T>* list)[size_t index] => T = \
 	List<T>.Get(list, index)
 
 // usage example:
@@ -541,7 +555,7 @@ typedef s_keyval<void*>*	t_object;
 
 t_object*	New(size_t items, s_keyval ...);
 
-#accessor (t_object* obj)[char const* key] = T	\
+#accessor (t_object* obj)[char const* key] => T	= \
 	Object<T>.Get(obj, key)
 
 
@@ -555,6 +569,83 @@ t_object* obj = Object.New(3,
 );
 
 printf("%s\n", obj<object*>["sub"]<char*>["str"]); // type inferrence cannot be done here
+```
+
+
+
+### Type reflection:
+The `#reflect` preprocessor directive inserts the contents of a type into the code
+```c
+// ++C
+#reflect(uint64_t)	type
+// transpiles to C:
+unsigned long int
+```
+```c
+// ++C
+#reflect(uint64_t)	#type
+// transpiles to C:
+"unsigned long int"
+```
+```c
+// ++C
+#reflect(uint64_t)	#type #name
+// transpiles to C:
+"unsigned long int" "uint64_t"
+```
+For a struct or a union, each field is inserted:
+```c
+// ++C
+struct s_test
+{
+	int x;
+	int y;
+	char* name;
+	void (*f)(void);
+};
+
+// ++C
+int main()
+{
+#reflect(struct s_test) \
+	printf("\t%s\t%s\n", #type, #name);
+}
+
+// transpiles to C:
+int main()
+{
+	printf("\t%s\t%s\n", "int", "x");
+	printf("\t%s\t%s\n", "int", "y");
+	printf("\t%s\t%s\n", "char*", "name");
+	printf("\t%s\t%s\n", "(void)=>void", "f");
+}
+```
+For an enum, each enum value is inserted:
+```c
+// ++C
+enum e_test
+{
+	NONE = 0, // null
+	TEST = 1,
+	OTHER = 2, // test comment
+	COOL = 3,
+};
+
+// ++C
+int main()
+{
+#reflect(enum e_test) \
+	printf("\t%s\t%s\n", #type, #name); comment
+}
+
+// transpiles to C:
+int main()
+{
+	printf("\t%s\t%s\n", "0", "NONE"); // null
+	printf("\t%s\t%s\n", "1", "TEST");
+	printf("\t%s\t%s\n", "2", "OTHER"); // test comment
+	printf("\t%s\t%s\n", "3", "COOL");
+}
 ```
 
 
