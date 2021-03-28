@@ -149,7 +149,7 @@
 			<key>name</key>
 			<string>Operator</string>
 			<key>scope</key>
-			<string>keyword.operator</string>
+			<string>keyword.operator, punctuation.accessor</string>
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
@@ -178,7 +178,7 @@
 			<key>name</key>
 			<string>Keyword (annotation)</string>
 			<key>scope</key>
-			<string>storage.modifier, punctuation.definition.annotation</string>
+			<string>storage.modifier, punctuation.definition.group, punctuation.definition.character-class, punctuation.definition.annotation</string>
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
