@@ -80,9 +80,9 @@ contexts:
         - match: '\{'
           push:
             - meta_scope: meta.block.special.c
-            - include: $top_level_main
             - match: '(?=\})'
               pop: true
+            - include: $top_level_main
 
 
 
@@ -97,6 +97,8 @@ contexts:
     - match: '\{'
       push:
         - meta_scope: meta.block.c
+        - match: '(?=\})'
+          pop: true
         - include: typedef
         - include: lex-type
         - include: lex
@@ -107,22 +109,22 @@ contexts:
         - include: variable
         - include: ppline-macro-operator
         - include: $top_level_main
-        - match: '(?=\})'
-          pop: true
 
 
 
   parens:
     - match: (?=\()
       push:
-        - include: parens-lookahead-end
         - match: \)
           pop: true
+        - include: parens-lookahead-end
 
   parens-lookahead-end:
     - match: \(
       push:
         - meta_scope: meta.parens.c
+        - match: (?=\))
+          pop: true
         - include: lex-type
         - include: lex
         - include: support
@@ -134,8 +136,6 @@ contexts:
         - include: variable
         - include: ppline-macro-operator
         - include: $top_level_main
-        - match: (?=\))
-          pop: true
 
 
 
@@ -176,7 +176,7 @@ contexts:
 
     - match: \s*\b(class|struct|union|enum)\b
       captures:
-        1: storage.type.c, keyword.declaration.c
+        1: keyword.declaration.c
     - match: \s*\b(bool|_Bool|char|_Complex|double|float|_Imaginary|int|long|short|signed|unsigned|void)\b
       captures:
         1: storage.type.c
@@ -430,26 +430,26 @@ contexts:
         0: punctuation.definition.string.begin.c
       push:
         - meta_scope: string.quoted.double.c
-        - include: lex-continuation
-        - include: string-escape-sequence
-        - include: string-format-specifier
         - match: '(")|(?<=^|[^\\])\s*(\n)'
           captures:
             1: punctuation.definition.string.end.c
             2: invalid.illegal.unexpected-end-of-line.c
           pop: true
+        - include: lex-continuation
+        - include: string-escape-sequence
+        - include: string-format-specifier
     - match: "'"
       captures:
         0: punctuation.definition.string.begin.c
       push:
         - meta_scope: string.quoted.single.c
-        - include: lex-continuation
-        - include: string-escape-sequence
         - match: '('')|(?<=^|[^\\])\s*(\n)'
           captures:
             1: punctuation.definition.string.end.c
             2: invalid.illegal.unexpected-end-of-line.c
           pop: true
+        - include: lex-continuation
+        - include: string-escape-sequence
 
   string-escape-sequence:
     - match: '\\(\\|[abefnprtv''"?]|[0-3]\d{,2}|[4-7]\d?|x[a-fA-F0-9]{,2}|u[a-fA-F0-9]{,4}|U[a-fA-F0-9]{,8})'
@@ -540,9 +540,12 @@ contexts:
 
                       (?: ^
                         | (?<! (?<!\w) new
-                              | (?<!\w) (?:else|enum) | (?<!\w) (?:class|union)
+                              | (?<!\w) (?:else|enum)
+                              | (?<!\w) (?:class|union)
                               | (?<!\w) (?:struct|return|sizeof|typeof)
-                              | (?<!\w) __typeof | (?<!\w) __typeof__ )
+                              | (?<!\w) __sizeof|__typeof
+                              | (?<!\w) __sizeof__|__typeof__
+                          )
                           (?<= \w ) \s
 
                         | #  or type modifier / closing bracket before name
@@ -556,11 +559,11 @@ contexts:
           pop: true
         - match: '(?<=\})'
           push:
+            - match: '(?!\s*(?:[A-Za-z_({]|/[/*]|$))'
+              pop: true
             - include: lex
             - include: block
             - include: parens
-            - match: '(?!\s*(?:[A-Za-z_({]|/[/*]|$))'
-              pop: true
         - include: lex
         - include: block
         - include: parens
@@ -686,10 +689,10 @@ contexts:
         1: entity.name.function.definition.c
       push:
         - meta_scope: meta.function.definition.c
-        - include: lex
-        - include: parens
         - match: (\}|;)
           pop: true
+        - include: lex
+        - include: parens
         - include: block-lookahead-end
         - match: \s*\b(const|override)\b
           scope: storage.modifier.c
@@ -705,6 +708,8 @@ contexts:
           )
       push:
         - meta_scope: meta.function-call.c
+        - match: \)
+          pop: true
         - include: lex
         - include: support-function
         - match: '(?:(?<=\.)|(?<=->))\b([A-Za-z_]\w*+)\b'
@@ -714,8 +719,6 @@ contexts:
             1: variable.function.c
             2: punctuation.accessor.c
         - include: parens-lookahead-end
-        - match: \)
-          pop: true
 
   function-call-macro:
     - match: |-
@@ -728,14 +731,14 @@ contexts:
           )
       push:
         - meta_scope: meta.function-call.constant.c
+        - match: \)
+          pop: true
         - include: lex
         - include: support-macro
         - match: '\b([_A-Z][_A-Z0-9]*+)\b'
           captures:
             1: variable.function.constant.c
         - include: parens-lookahead-end
-        - match: \)
-          pop: true
 
 
 
@@ -766,26 +769,26 @@ contexts:
         - match: ^
           push:
             - meta_scope: comment.other.preprocessor-disabled.c
-            - include: preprocessor-disabled-conditional
-            - include: preprocessor-disabled-directive
             - match: $\n?
               pop: true
+            - include: preprocessor-disabled-conditional
+            - include: preprocessor-disabled-directive
         - match: '(?<!##)(?<=#)\s*(if)\b(?=(?:\s|/\*.*?\*/)*+(0[xX])?0++\b(?:\s|/\*.*?\*/)*+(//.*)?\\?$)'
           captures:
             1: keyword.other.preprocessor.define.c
           push:
             - meta_scope: meta.preprocessor.directive.c
-            - include: lex-core
             - match: (?<=$\n)(?<!\\$\n)
               pop: true
+            - include: lex-core
 
   preprocessor-disabled-conditional:
     - match: ^\s*(#)\s*if(n?def)?\b
       push:
-        - include: preprocessor-disabled-conditional
-        - include: preprocessor-disabled-directive
         - match: ^\s*(#)\s*endif\b.*$\n?
           pop: true
+        - include: preprocessor-disabled-conditional
+        - include: preprocessor-disabled-directive
 
   preprocessor-disabled-directive:
     - match: ^\s*(#)
@@ -815,6 +818,8 @@ contexts:
         0: keyword.other.preprocessor.c
       push:
         - meta_scope: meta.preprocessor.macro.c
+        - match: (?<=$\n)(?<!\\$\n)
+          pop: true
         - include: ppline-macro-head-function
         - include: ppline-macro-head-object
         - include: lex-core
@@ -824,8 +829,6 @@ contexts:
         - include: block
         - include: parens
         - include: macro
-        - match: (?<=$\n)(?<!\\$\n)
-          pop: true
 
   ppline-macro-operator:
         - match: '\s*(##)'
