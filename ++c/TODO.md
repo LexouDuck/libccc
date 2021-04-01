@@ -4,7 +4,7 @@
 - A superset of C -> transpiles to C code (while keeping it as clean and readible as possible)
 - You can enforce a certain code style to the resulting transpiled C code
 - Automatic header include-guard insertion (and C++ `#ifdef __cplusplus extern "C" { ... }`)
-- Includes m4 multi-pass pre-processor
+- Includes m4 multi-pass pre-processor (https://www.gnu.org/savannah-checkouts/gnu/m4/manual/m4-1.4.18/m4.html)
 - To differentiate ++C code from C or C++, by convention the following file formats are accepted:
 	- `++c`, `ppc`, `xxc` (case insensitive), these transpile to `.c` files
 	- `++h`, `pph`, `xxh` (case insensitive), these transpile to `.h` files
@@ -192,16 +192,28 @@ A custom operator has a maximum length of 4 characters, and it can use any of th
 Looking at it the other way around, the following ASCII characters cannot be used for a custom operator:
 `. , ; ( ) [ ] { } # ' " \`
 A custom operator cannot use any token characters (eg: alphanumeric characters `a-z,A-Z,0-9`, underscore `_`).
-Additionnally, some operators are special and cannot be overridden: `->`, `=>`, `?`, `:`, and `=`
-If you wish to define a "word" operator, you can make a `#replace` macro which wraps a custom operator
+Additionnally, some sequences of characters are special and cannot be overridden (even though they only contain legal characters):
+- `=`	(assignment)
+- `->`	(deref access)
+- `=>`	(function pointer)
+- `?`	(conditional ternary operator)
+- `:`	(conditional ternary separator)
+- `//`	(comment one-line) or any sequence which contains this string
+- `/*`	(comment start) or any sequence which contains this string
+- `*/`	(comment end) or any sequence which contains this string
 
+If you wish to define a "word" operator, you can make a `#replace` macro which wraps a custom operator:
 ```c
 // NULL check and return operator
 #operator ?? (void const* left, void const* right) => void const* = \
 	(left == NULL ? right : left)
 
+// define a 'word' operator wrapper above the actual operator
+#replace OTHERWISE	<??>
+
 // usage example:
 char* new_str = str ?? "str is NULL";
+char* new_str = str OTHERWISE "str is NULL";
 ```
 You can specify operator precedence and associativity:
 https://en.cppreference.com/w/c/language/operator_precedence
@@ -849,26 +861,28 @@ void const*	->	void@
 TODO: write detailed description of the `#replace` directive, which explains how it interfaces with m4
 
 ```sh
-m4 --synclines
+m4 --synclines --prefix-builtins
 ```
 
 ```m4
-m4_changecom()m4_dnl
-m4_changequote(`|[', `]|')m4_dnl
-m4_define(#incbin	, |[INCBIN($1,$2)]|)m4_dnl
-m4_define(#packed	, |[__attribute__((packed))]|)m4_dnl
-m4_define(#format	, |[__attribute__((format($1,$2,$3)))]|)m4_dnl
-m4_define(#alias	, |[__attribute__((alias(#$1)))]|)m4_dnl
-m4_define(#align	, |[__attribute__((aligned($1)))]|)m4_dnl
-m4_define(#pure		, |[__attribute__((pure))]|)m4_dnl
-m4_define(#inline	, |[__attribute__((always_inline)) inline]|)m4_dnl
-m4_define(#malloc	, |[__attribute__((malloc))]|)m4_dnl
-m4_define(#delete	, |[__attribute__((delete))]|)m4_dnl
-m4_define(#unused	, |[__attribute__((unused))]|)m4_dnl
-m4_define(#replace	, |[define(|[$1]|,|[$2]|)]|)m4_dnl
-m4_define(#operator	, |[]|)m4_dnl
-m4_define(#accessor	, |[]|)m4_dnl
-m4_define(#namespace, |[]|)m4_dnl
+m4_changecom(`/*',`*/')m4_dnl
+m4_changequote(`<',`>')m4_dnl
+```
+```c
+#replace #incbin	<INCBIN($1,$2)>
+#replace #packed	<__attribute__((packed))>
+#replace #format	<__attribute__((format($1,$2,$3)))>
+#replace #alias		<__attribute__((alias(#$1)))>
+#replace #align		<__attribute__((aligned($1)))>
+#replace #pure		<__attribute__((pure))>
+#replace #inline	<__attribute__((always_inline)) inline>
+#replace #malloc	<__attribute__((malloc))>
+#replace #delete	<__attribute__((delete))>
+#replace #unused	<__attribute__((unused))>
+#replace #replace	<define(|[$1]|,|[$2]|)>
+#replace #operator	<>
+#replace #accessor	<>
+#replace #namespace	<>
 ```
 
 PS: RegExp to get all code block contents here:
