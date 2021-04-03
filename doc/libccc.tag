@@ -370,10 +370,10 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>void *</type>
+      <type>void **</type>
       <name>PointerArray_New</name>
       <anchorfile>group__libccc__array__pointerarray.html</anchorfile>
-      <anchor>ga51b4e5cf4474ad8cd2612dae9e561e90</anchor>
+      <anchor>gac8bb950447b29f147b3db89dbe600b10</anchor>
       <arglist>(t_size size)</arglist>
     </member>
     <member kind="function">
@@ -382,6 +382,19 @@
       <anchorfile>group__libccc__array__pointerarray.html</anchorfile>
       <anchor>ga32b3bf41c9717aef2ae47dd1c1150628</anchor>
       <arglist>(void const **a_ptrarr)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>sort.h</name>
+    <path>D:/Lexou/Projects/Castlevania/C/lib/libccc/hdr/libccc/array/</path>
+    <filename>sort_8h.html</filename>
+    <includes id="libccc_8h" name="libccc.h" local="yes" imported="no">libccc.h</includes>
+    <member kind="define">
+      <type>#define</type>
+      <name>DEFINE_QUICKSORT</name>
+      <anchorfile>group__libccc__array__sort.html</anchorfile>
+      <anchor>gafabd7ee365140ffedfd384a2129fa8de</anchor>
+      <arglist>(TYPE, COMPARE)</arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -689,15 +702,7 @@
     <path>D:/Lexou/Projects/Castlevania/C/lib/libccc/hdr/libccc/array/</path>
     <filename>tree_8h.html</filename>
     <includes id="libccc_8h" name="libccc.h" local="yes" imported="no">libccc.h</includes>
-    <class kind="struct">s_leaf</class>
     <class kind="struct">s_tree</class>
-    <member kind="define">
-      <type>#define</type>
-      <name>LEAF_NULL</name>
-      <anchorfile>group__libccc__array__tree.html</anchorfile>
-      <anchor>ga9d8166b8c4c082407b6d522806105da8</anchor>
-      <arglist></arglist>
-    </member>
     <member kind="define">
       <type>#define</type>
       <name>TREE_NULL</name>
@@ -1528,6 +1533,13 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>c_color_argb16_diff</name>
+      <anchorfile>group__libccc__color.html</anchorfile>
+      <anchor>ga60c37b248df4f26716e437e8463cc38b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>c_color_argb16_nearest</name>
       <anchorfile>group__libccc__color.html</anchorfile>
       <anchor>ga3f2179f4a52c57f351f1424f1787856e</anchor>
@@ -1664,6 +1676,13 @@
       <name>c_color_argb32_to_argb</name>
       <anchorfile>group__libccc__color.html</anchorfile>
       <anchor>ga9d4c00a28026a4a362264088a6d4c6b7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_color_argb32_diff</name>
+      <anchorfile>group__libccc__color.html</anchorfile>
+      <anchor>gab18336ffe695b28c2fb87a6b91a0c01c</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -1933,11 +1952,18 @@
       <arglist>(t_argb16 color)</arglist>
     </member>
     <member kind="function">
-      <type>t_argb16 *</type>
+      <type>t_u16</type>
+      <name>Color_ARGB16_Difference</name>
+      <anchorfile>group__libccc__color.html</anchorfile>
+      <anchor>ga1d50367eaf8f5fcc1ac6fa4eecc8405f</anchor>
+      <arglist>(t_argb16 c1, t_argb16 c2)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_argb16 const  *</type>
       <name>Color_ARGB16_GetNearest</name>
       <anchorfile>group__libccc__color.html</anchorfile>
-      <anchor>gad887b06f9628af01d477cc04f23685ce</anchor>
-      <arglist>(t_argb16 target, t_argb16 *colors, t_size n)</arglist>
+      <anchor>ga80b36c0d5d04246b16b5b89c9644975c</anchor>
+      <arglist>(t_argb16 target, t_argb16 const *colors, t_size n)</arglist>
     </member>
     <member kind="function">
       <type>t_u8</type>
@@ -2017,11 +2043,18 @@
       <arglist>(t_argb32 color)</arglist>
     </member>
     <member kind="function">
-      <type>t_argb32 *</type>
+      <type>t_u32</type>
+      <name>Color_ARGB32_Difference</name>
+      <anchorfile>group__libccc__color.html</anchorfile>
+      <anchor>ga38dca8573201e3361a63ae64954ab4d8</anchor>
+      <arglist>(t_argb32 c1, t_argb32 c2)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_argb32 const  *</type>
       <name>Color_ARGB32_GetNearest</name>
       <anchorfile>group__libccc__color.html</anchorfile>
-      <anchor>ga0ddb82050b94d61cb51541cbdc26a604</anchor>
-      <arglist>(t_argb32 target, t_argb32 *colors, t_size n)</arglist>
+      <anchor>ga2a7437a0c79fde40b91c08d97d4766f5</anchor>
+      <arglist>(t_argb32 target, t_argb32 const *colors, t_size n)</arglist>
     </member>
     <member kind="function">
       <type>s_argb</type>
@@ -2080,11 +2113,11 @@
       <arglist>(s_argb const *color)</arglist>
     </member>
     <member kind="function">
-      <type>s_argb *</type>
+      <type>s_argb const  *</type>
       <name>Color_ARGB_GetNearest</name>
       <anchorfile>group__libccc__color.html</anchorfile>
-      <anchor>gaf2509ab3ae77194f030976bd3bf3bc59</anchor>
-      <arglist>(s_argb target, s_argb *colors, t_size n)</arglist>
+      <anchor>ga66868c3785104d7947b53fc0afc62169</anchor>
+      <arglist>(s_argb target, s_argb const *colors, t_size n)</arglist>
     </member>
     <member kind="function">
       <type>s_ahsl</type>
@@ -2129,11 +2162,11 @@
       <arglist>(s_ahsl const *color)</arglist>
     </member>
     <member kind="function">
-      <type>s_ahsl *</type>
+      <type>s_ahsl const  *</type>
       <name>Color_AHSL_GetNearest</name>
       <anchorfile>group__libccc__color.html</anchorfile>
-      <anchor>ga3c0edb628eb0662498f478ee56fdb1c2</anchor>
-      <arglist>(s_ahsl target, s_ahsl *colors, t_size n)</arglist>
+      <anchor>ga9269f2cc251feafc445ebaec0d0c9e64</anchor>
+      <arglist>(s_ahsl target, s_ahsl const *colors, t_size n)</arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -8076,6 +8109,34 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>c_memjoin</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>ga362e51bbf24737e0844eb7eb37684c61</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_memappend</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>ga418945f1d998541e1dde3e234303c344</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_memprepend</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>gac0d80edc34222f7c0a07368933c3fdb4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_memmerge</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>gafc92d792bcf9b544552327d67df1ac09</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>c_memchr</name>
       <anchorfile>group__libccc__memory.html</anchorfile>
       <anchor>gaf4bb2900ccc0ba1332cd00ed60c943af</anchor>
@@ -8185,6 +8246,34 @@
       <anchorfile>group__libccc__memory.html</anchorfile>
       <anchor>gaac495e9211f795cb14c6fd9ca4cad2d6</anchor>
       <arglist>(void const *ptr, t_size n)</arglist>
+    </member>
+    <member kind="function">
+      <type>void *</type>
+      <name>Memory_Join</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>ga5cfb835c04f1df85bada5fd0f4d67bf4</anchor>
+      <arglist>(void const *ptr1, t_size length1, void const *ptr2, t_size length2)</arglist>
+    </member>
+    <member kind="function">
+      <type>void *</type>
+      <name>Memory_Append</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>ga64624aa3eabddd03d71d602cba0432d6</anchor>
+      <arglist>(void **a_dest, t_size dest_length, void const *src, t_size src_length)</arglist>
+    </member>
+    <member kind="function">
+      <type>void *</type>
+      <name>Memory_Prepend</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>ga2d14a4cfd38dcb7b0830663c65c9cd79</anchor>
+      <arglist>(void const *src, t_size src_length, void **a_dest, t_size dest_length)</arglist>
+    </member>
+    <member kind="function">
+      <type>void *</type>
+      <name>Memory_Merge</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>gaf4d6f97134369887ee5c4dfbdf690a45</anchor>
+      <arglist>(void **a_ptr1, t_size length1, void **a_ptr2, t_size length2)</arglist>
     </member>
     <member kind="function">
       <type>void *</type>
@@ -8807,6 +8896,13 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>c_strjoin</name>
+      <anchorfile>group__libccc__string.html</anchorfile>
+      <anchor>ga8e76d92364ca834a7af9a7c3a1ae8026</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>c_strmerge</name>
       <anchorfile>group__libccc__string.html</anchorfile>
       <anchor>ga74095e8e8c9d4f1be46ae06e692e753c</anchor>
@@ -8915,13 +9011,6 @@
       <name>c_strrev</name>
       <anchorfile>group__libccc__string.html</anchorfile>
       <anchor>ga7dd69d70fbc7ca3a5951c003e52f3efc</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_strjoin</name>
-      <anchorfile>group__libccc__string.html</anchorfile>
-      <anchor>ga8e76d92364ca834a7af9a7c3a1ae8026</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -9325,6 +9414,13 @@
     </member>
     <member kind="function">
       <type>char *</type>
+      <name>String_Join</name>
+      <anchorfile>group__libccc__string.html</anchorfile>
+      <anchor>gad8dbc873143b630344e41fc198b1df5a</anchor>
+      <arglist>(char const *str1, char const *str2)</arglist>
+    </member>
+    <member kind="function">
+      <type>char *</type>
       <name>String_Merge</name>
       <anchorfile>group__libccc__string.html</anchorfile>
       <anchor>gaa53bc940cb64199019872c001ec1bed8</anchor>
@@ -9437,13 +9533,6 @@
     </member>
     <member kind="function">
       <type>char *</type>
-      <name>String_Join</name>
-      <anchorfile>group__libccc__string.html</anchorfile>
-      <anchor>gad8dbc873143b630344e41fc198b1df5a</anchor>
-      <arglist>(char const *str1, char const *str2)</arglist>
-    </member>
-    <member kind="function">
-      <type>char *</type>
       <name>String_Insert</name>
       <anchorfile>group__libccc__string.html</anchorfile>
       <anchor>ga6743eaef759ce8e6c6d1ee8a166e99b5</anchor>
@@ -9490,6 +9579,7 @@
     <path>D:/Lexou/Projects/Castlevania/C/lib/libccc/hdr/libccc/sys/</path>
     <filename>io_8h.html</filename>
     <includes id="libccc_8h" name="libccc.h" local="yes" imported="no">libccc.h</includes>
+    <includes id="color_8h" name="color.h" local="yes" imported="no">libccc/color.h</includes>
     <member kind="define">
       <type>#define</type>
       <name>STDIN</name>
@@ -9520,86 +9610,86 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>MODE_USER_RWX</name>
+      <name>ACCESSMODE_USER_RWX</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga50d52a8d65ece23e8800537c0637919a</anchor>
+      <anchor>ga1a86278af7e6a9c48e34e35b0e47f522</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>MODE_USER_R</name>
+      <name>ACCESSMODE_USER_R</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga4e3df7b2e3df34dcd3fef7065450b073</anchor>
+      <anchor>ga39fd426ef290b2210a5580e50a73572e</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>MODE_USER_W</name>
+      <name>ACCESSMODE_USER_W</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>gabde9d48b1166e65098755ae6c75f9c3e</anchor>
+      <anchor>ga32862b2f3ae46fc3ca35cab3d5ab6581</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>MODE_USER_X</name>
+      <name>ACCESSMODE_USER_X</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga0ca54a02c6c6d3d75244bd8fdb533535</anchor>
+      <anchor>gaccdc26671acd720f980d79a1798a0b9d</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>MODE_GROUP_RWX</name>
+      <name>ACCESSMODE_GROUP_RWX</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>gad4f944078ba076c7871e6df85791af92</anchor>
+      <anchor>gae9986470766bc9713ebcc6a5492bcb84</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>MODE_GROUP_R</name>
+      <name>ACCESSMODE_GROUP_R</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga05e8d90ccf3e23dfb05970c5ae504182</anchor>
+      <anchor>ga302a0781fb89ad9e0d4fb7dd5c1d4f2e</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>MODE_GROUP_W</name>
+      <name>ACCESSMODE_GROUP_W</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga1ca2e74cdabfa520df4e2694a7cc8ba1</anchor>
+      <anchor>gab9bb07a792adb4c8c255d6939bedf684</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>MODE_GROUP_X</name>
+      <name>ACCESSMODE_GROUP_X</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga5162289005e2862cc3e6368cd0184a68</anchor>
+      <anchor>gade50d023ff9266a78ce7ea210b141c99</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>MODE_OTHER_RWX</name>
+      <name>ACCESSMODE_OTHER_RWX</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>gab87cfb6e62cf97d40d0552640a9d5ec3</anchor>
+      <anchor>gaafe924212c65eff66d4fd66b901a31c6</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>MODE_OTHER_R</name>
+      <name>ACCESSMODE_OTHER_R</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga67234af6cfabdcd6c141fdee1fef7f45</anchor>
+      <anchor>ga7e4b4b37959eecc1d0d624f22cf25672</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>MODE_OTHER_W</name>
+      <name>ACCESSMODE_OTHER_W</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga92e5594bda7e343b255aab4545254f1a</anchor>
+      <anchor>ga3ac75879ad995b9c29fdfa218155a596</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>MODE_OTHER_X</name>
+      <name>ACCESSMODE_OTHER_X</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga2598e6adcf92003675b657d619c193bb</anchor>
+      <anchor>gadd7eeb6dd2fe471bd0cf3c183ed472b7</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -9646,9 +9736,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>OPEN_EXCLUSIVE</name>
+      <name>OPEN_NOEXISTING</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>gad0316228219cb40a7b419c731a391341</anchor>
+      <anchor>gaabe27d730300bbc3bafaef77f053fa8c</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -9716,6 +9806,55 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>c_strerror</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga7eaf62f4ec1abea4d11f9f1d4aab6ae9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strerror_r</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga865b297a009d3b300e13925f3167974a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_GetErrorMessage</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga625fa85530efeaa27d6e716379a1fba7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_io_getcolor</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gae5797dbb442336e193a46a42c8a2697a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_GetANSIColor</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gaedcd36ea947752b20f1af6e9ac49370b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_isatty</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga24e2fbb54d481653d4bbd166f2bb712f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_File_IsTerminal</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gab0b9e2457dee8e04131b969a75eebf7c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>c_open</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
       <anchor>gaf0856f3f68da7c237acd460f094aa342</anchor>
@@ -9740,41 +9879,6 @@
       <name>IO_File_Close</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
       <anchor>gabb6848c1ebb82ae805d85b6e681d7e18</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_strerror</name>
-      <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga7eaf62f4ec1abea4d11f9f1d4aab6ae9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_strerror_r</name>
-      <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga865b297a009d3b300e13925f3167974a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_GetErrorMessage</name>
-      <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga625fa85530efeaa27d6e716379a1fba7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_isatty</name>
-      <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga24e2fbb54d481653d4bbd166f2bb712f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_File_IsTerminal</name>
-      <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>gab0b9e2457dee8e04131b969a75eebf7c</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -9807,9 +9911,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_readnextline</name>
+      <name>c_getline</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga8d352c1d7bafe99a1b3e6f40cea9773d</anchor>
+      <anchor>ga8c267296a21b56df601f980e089da009</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -9817,6 +9921,13 @@
       <name>c_getnextline</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
       <anchor>ga7929c81e1c7c1f872d05aa20b66509fe</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_readnextline</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga8d352c1d7bafe99a1b3e6f40cea9773d</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -10862,6 +10973,391 @@
       <anchor>ga3e3e64c495ba862ec916accc97f316a3</anchor>
       <arglist></arglist>
     </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_RESET</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gac81982784d97338b81fd2a54340c0b00</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_BOLD</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga7f5db861561bbf42955a6c7bd71217db</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_DIM</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gaf87c42a02a9a3e583e69a0441113d3bb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_3</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gaa9ed6a09ed0d99f8a3f45c2fa65678fa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_UNDERLINE</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gad40552cab717addecf66999f34f80bf2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_BLINK</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga80dc8605510ddddb6bc5bc14f4dfdd6c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_6</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gadb7d3a0999cd525b1468fe9c8127a9df</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_INVERTED</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga00ebfe98e47c1dc3c295d415ef43c41e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_HIDDEN</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gab91d5b05972e1cd3ac476bc29288172a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_9</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga7b80a64dd49aec55705d42e7cd2ac95c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_BOLD</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gad99ff5aa24729220c2dbd175ff6d1369</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_DIM</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gaabbcaa0a97883c57081e6217ea2a6782</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_3</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gacc133b9612777ae9259ca0e827c6016e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_UNDERLINE</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga81de1ccbf55802dc11f2a8881d46a9eb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_BLINK</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga72d589c7ed30e1a5ae19d0302909c041</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_6</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga9bc27fef31f6958819891c3453c48f4e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_INVERTED</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gaf80735fb21078a1e8095a22597092bd7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_HIDDEN</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga7829681d1d0e19f7799c44e08a7cd1ca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_9</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga8012b614be13a98f69cdcb5139766b78</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_BLACK</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga178f7bd8aa2cb39a74171b24c3903bfa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_GRAY_DARK</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gaf67ea146996f28af24a8aaddbc184fca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_RED</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga125e9c08fc48d2310a501e50ca37f2fa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_RED_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga703126f7e6a44f57f0bcfe6a09a10cbb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_GREEN</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga4d8d738ec5d9c427efe7bec0310b1319</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_GREEN_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga5f92baa1e553d33cfae382b27d879eb0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_YELLOW</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga58c62fd3af7786a9efcbfa52befd3fed</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_YELLOW_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga28945d6daca1a432d3593ea5c2aebfda</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_BLUE</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga173eac0768a62c09355ac69fab4ce0a2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_BLUE_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga23dfaaf54af97d31903ffaaa0ba309bc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_MAGENTA</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga9863906924996123d989e3beeef17d1f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_MAGENTA_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga3206c160f2f866269b2f6cabf0aeec9e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_CYAN</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga7f78b280ecb7a8917f7a980746a081d6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_CYAN_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gabf7bcf19360b7e1922f8084ef0154288</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_GRAY_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gad24c920ee4123d7133f44986918aefea</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_WHITE</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gafd04a2ff549eb5bbfc5f994e888f26bb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga8413d8cc0d4c8cf11da67ff344b8654b</anchor>
+      <arglist>(CODE)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_DEFAULT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga162176136345f256f233e0ddd1c7a577</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_BLACK</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga0e6d9102bb7d8733d9739f058900564d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_GRAY_DARK</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga61b2d3daade64b5710ad3a06140cb8b8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_RED</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga0b6883cee7f145ec92c3cef386b59227</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_RED_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga77a6fd84024c9bbbd7d8207982a0e656</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_GREEN</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga04a659076f0b262e571ea4f3e6932352</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_GREEN_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gad4354070e7d86b4c188240d7732476e0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_YELLOW</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga812ddb5d9d841a57bc58f7e645dcbcce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_YELLOW_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga0c3f4ea8f414d50f8ae47bcd6d518df0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_BLUE</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga250067e14725f2eceb20cc6bfd89e44b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_BLUE_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga5b6408b036db61a28f078d512abab9b3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_MAGENTA</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga0f7a4372b3e38a8f6ecc042d6cec4251</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_MAGENTA_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gac65a56f4fef3909ab32fdf2b14be0e20</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_CYAN</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gae249ef98b992636b843487172db9cda5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_CYAN_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga83394539e8364d9e4fda0ef261f5c74c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_GRAY_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga312aa1c2d18fd6847c6d88e8c153092a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_WHITE</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gaffee69c7b797736581c06ccc7ea76fd6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gac4646fea5fac91e728c8b4d651b58216</anchor>
+      <arglist>(CODE)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_DEFAULT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga5766144a8d48ffe3bbdd0c8e3973df52</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="typedef">
       <type>int</type>
       <name>t_fd</name>
@@ -10891,6 +11387,27 @@
       <arglist></arglist>
     </member>
     <member kind="function">
+      <type>char *</type>
+      <name>IO_GetError</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gaa55ba0c27b2c2a3c32bdc30c734e1fb8</anchor>
+      <arglist>(int error_num)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_u8</type>
+      <name>IO_GetColor</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga2d94641dce33e903f3117aed1d472bf2</anchor>
+      <arglist>(t_argb32 color)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>IO_IsTerminal</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gafbf2e86ab1f9a29cf5ac772d96aad1f4</anchor>
+      <arglist>(t_fd fd)</arglist>
+    </member>
+    <member kind="function">
       <type>t_fd</type>
       <name>IO_Open</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
@@ -10905,20 +11422,6 @@
       <arglist>(t_fd fd)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
-      <name>IO_GetError</name>
-      <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>gaa55ba0c27b2c2a3c32bdc30c734e1fb8</anchor>
-      <arglist>(int error_num)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_bool</type>
-      <name>IO_IsTerminal</name>
-      <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>gafbf2e86ab1f9a29cf5ac772d96aad1f4</anchor>
-      <arglist>(t_fd fd)</arglist>
-    </member>
-    <member kind="function">
       <type>t_io_error</type>
       <name>IO_ChangeMode</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
@@ -10926,17 +11429,17 @@
       <arglist>(char const *filepath, t_io_mode mode)</arglist>
     </member>
     <member kind="function">
-      <type>t_io_error</type>
+      <type>t_sintmax</type>
       <name>IO_Read_File</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga353a481847df1a8130d101e7fbaa8a5d</anchor>
+      <anchor>gaa9b85d6c42cb57eb69dee7d4aaaeb5dc</anchor>
       <arglist>(t_fd const fd, char **a_file, t_size max)</arglist>
     </member>
     <member kind="function">
-      <type>t_io_error</type>
+      <type>t_sintmax</type>
       <name>IO_Read_Lines</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga16564032123850963167d124814d3e36</anchor>
+      <anchor>gad58edc3f234e99419b30761256297004</anchor>
       <arglist>(t_fd const fd, char ***a_strarr)</arglist>
     </member>
     <member kind="function">
@@ -11030,6 +11533,391 @@
       <anchor>ga87b5944b07ef6addafce7f04e40192b0</anchor>
       <arglist>(char const *format,...)</arglist>
     </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_RESET</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gac81982784d97338b81fd2a54340c0b00</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_BOLD</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga7f5db861561bbf42955a6c7bd71217db</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_DIM</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gaf87c42a02a9a3e583e69a0441113d3bb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_3</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gaa9ed6a09ed0d99f8a3f45c2fa65678fa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_UNDERLINE</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gad40552cab717addecf66999f34f80bf2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_BLINK</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga80dc8605510ddddb6bc5bc14f4dfdd6c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_6</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gadb7d3a0999cd525b1468fe9c8127a9df</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_INVERTED</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga00ebfe98e47c1dc3c295d415ef43c41e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_HIDDEN</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gab91d5b05972e1cd3ac476bc29288172a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_9</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga7b80a64dd49aec55705d42e7cd2ac95c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_BOLD</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gad99ff5aa24729220c2dbd175ff6d1369</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_DIM</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gaabbcaa0a97883c57081e6217ea2a6782</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_3</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gacc133b9612777ae9259ca0e827c6016e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_UNDERLINE</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga81de1ccbf55802dc11f2a8881d46a9eb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_BLINK</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga72d589c7ed30e1a5ae19d0302909c041</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_6</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga9bc27fef31f6958819891c3453c48f4e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_INVERTED</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gaf80735fb21078a1e8095a22597092bd7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_HIDDEN</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga7829681d1d0e19f7799c44e08a7cd1ca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_9</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga8012b614be13a98f69cdcb5139766b78</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_BLACK</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga178f7bd8aa2cb39a74171b24c3903bfa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_GRAY_DARK</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gaf67ea146996f28af24a8aaddbc184fca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_RED</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga125e9c08fc48d2310a501e50ca37f2fa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_RED_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga703126f7e6a44f57f0bcfe6a09a10cbb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_GREEN</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga4d8d738ec5d9c427efe7bec0310b1319</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_GREEN_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga5f92baa1e553d33cfae382b27d879eb0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_YELLOW</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga58c62fd3af7786a9efcbfa52befd3fed</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_YELLOW_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga28945d6daca1a432d3593ea5c2aebfda</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_BLUE</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga173eac0768a62c09355ac69fab4ce0a2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_BLUE_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga23dfaaf54af97d31903ffaaa0ba309bc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_MAGENTA</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga9863906924996123d989e3beeef17d1f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_MAGENTA_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga3206c160f2f866269b2f6cabf0aeec9e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_CYAN</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga7f78b280ecb7a8917f7a980746a081d6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_CYAN_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gabf7bcf19360b7e1922f8084ef0154288</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_GRAY_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gad24c920ee4123d7133f44986918aefea</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_WHITE</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gafd04a2ff549eb5bbfc5f994e888f26bb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga8413d8cc0d4c8cf11da67ff344b8654b</anchor>
+      <arglist>(CODE)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_DEFAULT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga162176136345f256f233e0ddd1c7a577</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_BLACK</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga0e6d9102bb7d8733d9739f058900564d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_GRAY_DARK</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga61b2d3daade64b5710ad3a06140cb8b8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_RED</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga0b6883cee7f145ec92c3cef386b59227</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_RED_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga77a6fd84024c9bbbd7d8207982a0e656</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_GREEN</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga04a659076f0b262e571ea4f3e6932352</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_GREEN_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gad4354070e7d86b4c188240d7732476e0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_YELLOW</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga812ddb5d9d841a57bc58f7e645dcbcce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_YELLOW_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga0c3f4ea8f414d50f8ae47bcd6d518df0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_BLUE</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga250067e14725f2eceb20cc6bfd89e44b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_BLUE_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga5b6408b036db61a28f078d512abab9b3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_MAGENTA</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga0f7a4372b3e38a8f6ecc042d6cec4251</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_MAGENTA_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gac65a56f4fef3909ab32fdf2b14be0e20</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_CYAN</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gae249ef98b992636b843487172db9cda5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_CYAN_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga83394539e8364d9e4fda0ef261f5c74c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_GRAY_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga312aa1c2d18fd6847c6d88e8c153092a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_WHITE</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gaffee69c7b797736581c06ccc7ea76fd6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gac4646fea5fac91e728c8b4d651b58216</anchor>
+      <arglist>(CODE)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_DEFAULT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga5766144a8d48ffe3bbdd0c8e3973df52</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>logger.h</name>
@@ -11039,20 +11927,33 @@
     <includes id="libccc__define_8h" name="libccc_define.h" local="yes" imported="no">libccc_define.h</includes>
     <includes id="io_8h" name="io.h" local="yes" imported="no">libccc/sys/io.h</includes>
     <includes id="time_8h" name="time.h" local="yes" imported="no">libccc/sys/time.h</includes>
-    <class kind="struct">s_logfile</class>
     <class kind="struct">s_logger</class>
     <member kind="define">
       <type>#define</type>
-      <name>NULL_LOGFILE</name>
+      <name>LOGFORMAT_STRING_ANSI</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>gab3f1a96b0b7d7561644ba6994a1c0744</anchor>
+      <anchor>gab88c677395cbf6801b15bd4a859a9080</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>LOGFILES_MAX</name>
+      <name>LOGFORMAT_STRING_TEXT</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga7578b7b1beddac3036f88cff0eecd3a2</anchor>
+      <anchor>ga1eb4cffffbf46889d20c23ec81198830</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LOGFORMAT_STRING_JSON</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gafbba8a3bab56c384d01fe094addff5fc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LOGFORMAT_STRING_XML</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gac90b52a5aa9af32b594ac9225ba42d18</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -11060,6 +11961,20 @@
       <name>NULL_LOGGER</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
       <anchor>gada3edae0070ddc1c761ab45e69e79168</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>DEFAULT_LOGGER_STDOUT</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga4150064d5ec9dd8779c14783e265c476</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>DEFAULT_LOGGER_STDERR</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga0a0e26df7c51c849a427108b6679f81e</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -11075,6 +11990,27 @@
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
       <anchor>ga016fd9fef8c6d3b4c7f085ca63dfa402</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LOG_JSON_INDENT</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga70a419fd2cd69fce858219a1677aa092</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LOGONE_FUNCTION_CONTENT</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga63c3de50d77deebd22a9fd8b59fc4a43</anchor>
+      <arglist>(VERBOSE_ONLY, IS_ERROR, USE_ERRNO, PREFIX, PREFIX_COLOR)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LOGALL_FUNCTION_CONTENT</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga92ffd46c3b8e30b7d5265ed04ef51375</anchor>
+      <arglist>(VERBOSE_ONLY, IS_ERROR, USE_ERRNO, PREFIX, PREFIX_COLOR)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -11162,6 +12098,62 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>c_logall_error_io</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gabb83a31b7f009bf115eb11c7f19e82bb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LogAll_SystemError</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gaa0373e0af14c49d02ce89dfef92b6021</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_logall_error</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga91975d6623be9c4376debaecd712b0c7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_logall_warning</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gafbfa2151b1bd1aa5e582331c957e8ab4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_logall_success</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga245ceffcae02731dfab487eb350a3c07</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_logall_message</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga7d0138a5b26f4c2de1119dd317fb5544</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_logall_verbose</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gaa22edf819d3cd64698820ef60bd5cdcc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LogAll_Verbose</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga1ef54b434bc304d3626d3b78cba737fc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>c_log_error_io</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
       <anchor>ga9e02f02c8e50d7a87d17d8719c407ad6</anchor>
@@ -11214,6 +12206,44 @@
       <name>Log_Verbose</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
       <anchor>gac4598727ed57c656e288f113ed345712</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>s_logger const  *const  *</type>
+      <name>t_logptrarr</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga3ee217e6560a550b1f4d3edfc9c20aaf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>e_logformat</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga8a30116402ebacc6b724741f00b6da36</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>LOGFORMAT_ANSI</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gga8a30116402ebacc6b724741f00b6da36ab70526b8d47a051cf1b2ed036500042c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>LOGFORMAT_TEXT</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gga8a30116402ebacc6b724741f00b6da36ae799ffb3cb6c30a60f40ac8f3cb960ec</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>LOGFORMAT_JSON</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gga8a30116402ebacc6b724741f00b6da36a0e4e010d8bbfadea438607b0fbd48524</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>LOGFORMAT_XML</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gga8a30116402ebacc6b724741f00b6da36ae22e3f3b6c545736219bc1dfb22956dd</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -11269,8 +12299,8 @@
       <type>t_io_error</type>
       <name>Log_VA</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga80b732b1b66f6b1704de0bf401796b44</anchor>
-      <arglist>(s_logger const *logger, t_bool verbose_only, t_bool is_error, t_bool use_errno, char const *prefix, char const *prefix_color, char const *format_str, va_list args)</arglist>
+      <anchor>ga7267ae5db21545c5c236983f7b782ab2</anchor>
+      <arglist>(s_logger const *logger, t_bool verbose_only, t_bool use_errno, int is_error, char const *prefix, char const *prefix_color, char const *format_str, va_list args)</arglist>
     </member>
     <member kind="function">
       <type>t_io_error</type>
@@ -11281,17 +12311,59 @@
     </member>
     <member kind="function">
       <type>t_io_error</type>
+      <name>LogAll_Error_IO</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga2d949d293e43d5bb99e5ddfdfe541e65</anchor>
+      <arglist>(t_logptrarr const loggers, int error_code, char const *format_str,...)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_io_error</type>
+      <name>LogAll_Error</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gabb47b0517a61887e42d73c794bc0b82d</anchor>
+      <arglist>(t_logptrarr const loggers, int error_code, char const *format_str,...)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_io_error</type>
+      <name>LogAll_Warning</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga56447d71e4ebe815102a50f2dbcb0f63</anchor>
+      <arglist>(t_logptrarr const loggers, char const *format_str,...)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_io_error</type>
+      <name>LogAll_Success</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga188eeae8557d396d8fc703239626ca0e</anchor>
+      <arglist>(t_logptrarr const loggers, char const *format_str,...)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_io_error</type>
+      <name>LogAll_Message</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gaa6eff9dbb5e0136c72ee29da8ce631e7</anchor>
+      <arglist>(t_logptrarr const loggers, char const *format_str,...)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_io_error</type>
+      <name>LogAll_Message_Verbose</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga4bcb83bc1612f4e1a7d94916190ef650</anchor>
+      <arglist>(t_logptrarr const loggers, char const *format_str,...)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_io_error</type>
       <name>Log_Error_IO</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga867f56bbfc2c1fa9f1e3dbc92c357113</anchor>
-      <arglist>(s_logger const *logger, char const *format_str,...)</arglist>
+      <anchor>ga640dc9e3a0529628b56c9813acb8e039</anchor>
+      <arglist>(s_logger const *logger, int error_code, char const *format_str,...)</arglist>
     </member>
     <member kind="function">
       <type>t_io_error</type>
       <name>Log_Error</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga1c71ae136155353bb25126e36a83745e</anchor>
-      <arglist>(s_logger const *logger, char const *format_str,...)</arglist>
+      <anchor>ga4791029daef7bbda9540687fcb3cc893</anchor>
+      <arglist>(s_logger const *logger, int error_code, char const *format_str,...)</arglist>
     </member>
     <member kind="function">
       <type>t_io_error</type>
@@ -12876,6 +13948,48 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>__asm__</name>
+      <anchorfile>group__libccc.html</anchorfile>
+      <anchor>ga2ff2e12278c3cb56ce52e20f936a2d00</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>__inline__</name>
+      <anchorfile>group__libccc.html</anchorfile>
+      <anchor>ga9f04218fe09e6ee659e045b2f11542ed</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>__restrict__</name>
+      <anchorfile>group__libccc.html</anchorfile>
+      <anchor>ga2696baa1bab39e6380e56b5893dea4ad</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>__nameof__</name>
+      <anchorfile>group__libccc.html</anchorfile>
+      <anchor>ga0025c9c90d824f215fa10525dda58468</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>__typeof__</name>
+      <anchorfile>group__libccc.html</anchorfile>
+      <anchor>ga541e44a41b0ec161d68ba02fab7aa643</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>__alignof__</name>
+      <anchorfile>group__libccc.html</anchorfile>
+      <anchor>gad1126a332102572c849de5b008bd8e46</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>_FORMAT</name>
       <anchorfile>group__libccc.html</anchorfile>
       <anchor>ga522161b3594f2e7a25396132d9e2f267</anchor>
@@ -12904,13 +14018,6 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>_INLINE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga2359d700da2e1722d779b765d82eb347</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
       <name>_MALLOC</name>
       <anchorfile>group__libccc.html</anchorfile>
       <anchor>ga651950e6134e00bc771947f298d148c1</anchor>
@@ -12918,16 +14025,30 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>_DELETE</name>
+      <name>_UNUSED</name>
       <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga2ea0aa5efd4ff12eb16eade210d03ec9</anchor>
+      <anchor>ga5f027d285413c8866f56382500a75f40</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>_UNUSED</name>
+      <name>_INLINE</name>
       <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga5f027d285413c8866f56382500a75f40</anchor>
+      <anchor>ga2359d700da2e1722d779b765d82eb347</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>_NOINLINE</name>
+      <anchorfile>group__libccc.html</anchorfile>
+      <anchor>ga50375d101e271f013900d57a181467e0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>_NORETURN</name>
+      <anchorfile>group__libccc.html</anchorfile>
+      <anchor>ga168a0af6303a3f1dfae8ffac0e813083</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="define">
@@ -13258,32 +14379,6 @@
     </member>
   </compound>
   <compound kind="struct">
-    <name>s_leaf</name>
-    <filename>group__libccc__array__tree.html</filename>
-    <anchor>structs__leaf</anchor>
-    <member kind="variable">
-      <type>void *</type>
-      <name>value</name>
-      <anchorfile>group__libccc__array__tree.html</anchorfile>
-      <anchor>a0f61d63b009d0880a89c843bd50d8d76</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>char *</type>
-      <name>value_type</name>
-      <anchorfile>group__libccc__array__tree.html</anchorfile>
-      <anchor>aea233b735668336e8c5e3aa49a5bf617</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>t_size</type>
-      <name>value_size</name>
-      <anchorfile>group__libccc__array__tree.html</anchorfile>
-      <anchor>aab538b94203bc9b35294c7916160c2fc</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="struct">
     <name>s_list</name>
     <filename>group__libccc__array__list.html</filename>
     <anchor>structs__list</anchor>
@@ -13348,9 +14443,58 @@
     </member>
   </compound>
   <compound kind="struct">
-    <name>s_logfile</name>
+    <name>s_logger</name>
     <filename>group__libccc__sys__logger.html</filename>
-    <anchor>structs__logfile</anchor>
+    <anchor>structs__logger</anchor>
+    <member kind="variable">
+      <type>t_bool</type>
+      <name>silence_logs</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>a6694971f0c958ced73bbed5d97c7ae73</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>t_bool</type>
+      <name>silence_errors</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>a113738535b80e5e13385fded755e5445</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>t_bool</type>
+      <name>timestamp</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>add6b30f8ac9f1dc24e0b540e19de0e03</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>t_bool</type>
+      <name>verbose</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>a8ca8257433f7bf08549f16a43bce31e5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>t_bool</type>
+      <name>obfuscated</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>af7a55ea79b8f6ff1ec03523c58a6af5b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>t_bool</type>
+      <name>append</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ac9acc76083cb277cfe30331fcf136b96</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>e_logformat</type>
+      <name>format</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ad6cd43f7a50444c14c5bf3efb6d9486d</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="variable">
       <type>t_fd</type>
       <name>fd</name>
@@ -13364,60 +14508,6 @@
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
       <anchor>a44196e6a5696d10442c29e639437196e</anchor>
       <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>t_bool</type>
-      <name>append</name>
-      <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ac9acc76083cb277cfe30331fcf136b96</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="struct">
-    <name>s_logger</name>
-    <filename>group__libccc__sys__logger.html</filename>
-    <anchor>structs__logger</anchor>
-    <member kind="variable">
-      <type>t_bool</type>
-      <name>show_timestamp</name>
-      <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>af5abb6c019283fd1b9840b0e1869965d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>t_bool</type>
-      <name>mode_verbose</name>
-      <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>a322002e9ccaca963252614381ad9f8f2</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>t_bool</type>
-      <name>mode_obfuscated</name>
-      <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>a8f8264b6a5389b3f839cade9e4359772</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>t_bool</type>
-      <name>dest_stdout</name>
-      <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>af537f2f23809ed6509c52667c2be08b6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>t_bool</type>
-      <name>dest_stderr</name>
-      <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>a6cd3f88d391082a04f5129137d258f1b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>s_logfile</type>
-      <name>dest_files</name>
-      <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ad52099302f9545bf5c6ba2377daba4ba</anchor>
-      <arglist>[LOGFILES_MAX]</arglist>
     </member>
   </compound>
   <compound kind="struct">
@@ -13599,6 +14689,20 @@
       <name>value</name>
       <anchorfile>group__libccc__array__tree.html</anchorfile>
       <anchor>a0f61d63b009d0880a89c843bd50d8d76</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>char *</type>
+      <name>value_type</name>
+      <anchorfile>group__libccc__array__tree.html</anchorfile>
+      <anchor>aea233b735668336e8c5e3aa49a5bf617</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>t_size</type>
+      <name>value_size</name>
+      <anchorfile>group__libccc__array__tree.html</anchorfile>
+      <anchor>aab538b94203bc9b35294c7916160c2fc</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -13950,6 +15054,48 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>__asm__</name>
+      <anchorfile>group__libccc.html</anchorfile>
+      <anchor>ga2ff2e12278c3cb56ce52e20f936a2d00</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>__inline__</name>
+      <anchorfile>group__libccc.html</anchorfile>
+      <anchor>ga9f04218fe09e6ee659e045b2f11542ed</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>__restrict__</name>
+      <anchorfile>group__libccc.html</anchorfile>
+      <anchor>ga2696baa1bab39e6380e56b5893dea4ad</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>__nameof__</name>
+      <anchorfile>group__libccc.html</anchorfile>
+      <anchor>ga0025c9c90d824f215fa10525dda58468</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>__typeof__</name>
+      <anchorfile>group__libccc.html</anchorfile>
+      <anchor>ga541e44a41b0ec161d68ba02fab7aa643</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>__alignof__</name>
+      <anchorfile>group__libccc.html</anchorfile>
+      <anchor>gad1126a332102572c849de5b008bd8e46</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>_FORMAT</name>
       <anchorfile>group__libccc.html</anchorfile>
       <anchor>ga522161b3594f2e7a25396132d9e2f267</anchor>
@@ -13978,13 +15124,6 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>_INLINE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga2359d700da2e1722d779b765d82eb347</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
       <name>_MALLOC</name>
       <anchorfile>group__libccc.html</anchorfile>
       <anchor>ga651950e6134e00bc771947f298d148c1</anchor>
@@ -13992,16 +15131,30 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>_DELETE</name>
+      <name>_UNUSED</name>
       <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga2ea0aa5efd4ff12eb16eade210d03ec9</anchor>
+      <anchor>ga5f027d285413c8866f56382500a75f40</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>_UNUSED</name>
+      <name>_INLINE</name>
       <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga5f027d285413c8866f56382500a75f40</anchor>
+      <anchor>ga2359d700da2e1722d779b765d82eb347</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>_NOINLINE</name>
+      <anchorfile>group__libccc.html</anchorfile>
+      <anchor>ga50375d101e271f013900d57a181467e0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>_NORETURN</name>
+      <anchorfile>group__libccc.html</anchorfile>
+      <anchor>ga168a0af6303a3f1dfae8ffac0e813083</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="define">
@@ -17440,6 +18593,34 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>c_memjoin</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>ga362e51bbf24737e0844eb7eb37684c61</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_memappend</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>ga418945f1d998541e1dde3e234303c344</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_memprepend</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>gac0d80edc34222f7c0a07368933c3fdb4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_memmerge</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>gafc92d792bcf9b544552327d67df1ac09</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>c_memchr</name>
       <anchorfile>group__libccc__memory.html</anchorfile>
       <anchor>gaf4bb2900ccc0ba1332cd00ed60c943af</anchor>
@@ -17549,6 +18730,34 @@
       <anchorfile>group__libccc__memory.html</anchorfile>
       <anchor>gaac495e9211f795cb14c6fd9ca4cad2d6</anchor>
       <arglist>(void const *ptr, t_size n)</arglist>
+    </member>
+    <member kind="function">
+      <type>void *</type>
+      <name>Memory_Join</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>ga5cfb835c04f1df85bada5fd0f4d67bf4</anchor>
+      <arglist>(void const *ptr1, t_size length1, void const *ptr2, t_size length2)</arglist>
+    </member>
+    <member kind="function">
+      <type>void *</type>
+      <name>Memory_Append</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>ga64624aa3eabddd03d71d602cba0432d6</anchor>
+      <arglist>(void **a_dest, t_size dest_length, void const *src, t_size src_length)</arglist>
+    </member>
+    <member kind="function">
+      <type>void *</type>
+      <name>Memory_Prepend</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>ga2d14a4cfd38dcb7b0830663c65c9cd79</anchor>
+      <arglist>(void const *src, t_size src_length, void **a_dest, t_size dest_length)</arglist>
+    </member>
+    <member kind="function">
+      <type>void *</type>
+      <name>Memory_Merge</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>gaf4d6f97134369887ee5c4dfbdf690a45</anchor>
+      <arglist>(void **a_ptr1, t_size length1, void **a_ptr2, t_size length2)</arglist>
     </member>
     <member kind="function">
       <type>void *</type>
@@ -18509,6 +19718,13 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>c_strjoin</name>
+      <anchorfile>group__libccc__string.html</anchorfile>
+      <anchor>ga8e76d92364ca834a7af9a7c3a1ae8026</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>c_strmerge</name>
       <anchorfile>group__libccc__string.html</anchorfile>
       <anchor>ga74095e8e8c9d4f1be46ae06e692e753c</anchor>
@@ -18617,13 +19833,6 @@
       <name>c_strrev</name>
       <anchorfile>group__libccc__string.html</anchorfile>
       <anchor>ga7dd69d70fbc7ca3a5951c003e52f3efc</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_strjoin</name>
-      <anchorfile>group__libccc__string.html</anchorfile>
-      <anchor>ga8e76d92364ca834a7af9a7c3a1ae8026</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -19027,6 +20236,13 @@
     </member>
     <member kind="function">
       <type>char *</type>
+      <name>String_Join</name>
+      <anchorfile>group__libccc__string.html</anchorfile>
+      <anchor>gad8dbc873143b630344e41fc198b1df5a</anchor>
+      <arglist>(char const *str1, char const *str2)</arglist>
+    </member>
+    <member kind="function">
+      <type>char *</type>
       <name>String_Merge</name>
       <anchorfile>group__libccc__string.html</anchorfile>
       <anchor>gaa53bc940cb64199019872c001ec1bed8</anchor>
@@ -19136,13 +20352,6 @@
       <anchorfile>group__libccc__string.html</anchorfile>
       <anchor>ga9efe55befb6f4c8babfbbde36ec43679</anchor>
       <arglist>(char const *str)</arglist>
-    </member>
-    <member kind="function">
-      <type>char *</type>
-      <name>String_Join</name>
-      <anchorfile>group__libccc__string.html</anchorfile>
-      <anchor>gad8dbc873143b630344e41fc198b1df5a</anchor>
-      <arglist>(char const *str1, char const *str2)</arglist>
     </member>
     <member kind="function">
       <type>char *</type>
@@ -20090,6 +21299,13 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>c_color_argb16_diff</name>
+      <anchorfile>group__libccc__color.html</anchorfile>
+      <anchor>ga60c37b248df4f26716e437e8463cc38b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>c_color_argb16_nearest</name>
       <anchorfile>group__libccc__color.html</anchorfile>
       <anchor>ga3f2179f4a52c57f351f1424f1787856e</anchor>
@@ -20226,6 +21442,13 @@
       <name>c_color_argb32_to_argb</name>
       <anchorfile>group__libccc__color.html</anchorfile>
       <anchor>ga9d4c00a28026a4a362264088a6d4c6b7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_color_argb32_diff</name>
+      <anchorfile>group__libccc__color.html</anchorfile>
+      <anchor>gab18336ffe695b28c2fb87a6b91a0c01c</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -20495,11 +21718,18 @@
       <arglist>(t_argb16 color)</arglist>
     </member>
     <member kind="function">
-      <type>t_argb16 *</type>
+      <type>t_u16</type>
+      <name>Color_ARGB16_Difference</name>
+      <anchorfile>group__libccc__color.html</anchorfile>
+      <anchor>ga1d50367eaf8f5fcc1ac6fa4eecc8405f</anchor>
+      <arglist>(t_argb16 c1, t_argb16 c2)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_argb16 const  *</type>
       <name>Color_ARGB16_GetNearest</name>
       <anchorfile>group__libccc__color.html</anchorfile>
-      <anchor>gad887b06f9628af01d477cc04f23685ce</anchor>
-      <arglist>(t_argb16 target, t_argb16 *colors, t_size n)</arglist>
+      <anchor>ga80b36c0d5d04246b16b5b89c9644975c</anchor>
+      <arglist>(t_argb16 target, t_argb16 const *colors, t_size n)</arglist>
     </member>
     <member kind="function">
       <type>t_u8</type>
@@ -20579,11 +21809,18 @@
       <arglist>(t_argb32 color)</arglist>
     </member>
     <member kind="function">
-      <type>t_argb32 *</type>
+      <type>t_u32</type>
+      <name>Color_ARGB32_Difference</name>
+      <anchorfile>group__libccc__color.html</anchorfile>
+      <anchor>ga38dca8573201e3361a63ae64954ab4d8</anchor>
+      <arglist>(t_argb32 c1, t_argb32 c2)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_argb32 const  *</type>
       <name>Color_ARGB32_GetNearest</name>
       <anchorfile>group__libccc__color.html</anchorfile>
-      <anchor>ga0ddb82050b94d61cb51541cbdc26a604</anchor>
-      <arglist>(t_argb32 target, t_argb32 *colors, t_size n)</arglist>
+      <anchor>ga2a7437a0c79fde40b91c08d97d4766f5</anchor>
+      <arglist>(t_argb32 target, t_argb32 const *colors, t_size n)</arglist>
     </member>
     <member kind="function">
       <type>s_argb</type>
@@ -20642,11 +21879,11 @@
       <arglist>(s_argb const *color)</arglist>
     </member>
     <member kind="function">
-      <type>s_argb *</type>
+      <type>s_argb const  *</type>
       <name>Color_ARGB_GetNearest</name>
       <anchorfile>group__libccc__color.html</anchorfile>
-      <anchor>gaf2509ab3ae77194f030976bd3bf3bc59</anchor>
-      <arglist>(s_argb target, s_argb *colors, t_size n)</arglist>
+      <anchor>ga66868c3785104d7947b53fc0afc62169</anchor>
+      <arglist>(s_argb target, s_argb const *colors, t_size n)</arglist>
     </member>
     <member kind="function">
       <type>s_ahsl</type>
@@ -20691,11 +21928,11 @@
       <arglist>(s_ahsl const *color)</arglist>
     </member>
     <member kind="function">
-      <type>s_ahsl *</type>
+      <type>s_ahsl const  *</type>
       <name>Color_AHSL_GetNearest</name>
       <anchorfile>group__libccc__color.html</anchorfile>
-      <anchor>ga3c0edb628eb0662498f478ee56fdb1c2</anchor>
-      <arglist>(s_ahsl target, s_ahsl *colors, t_size n)</arglist>
+      <anchor>ga9269f2cc251feafc445ebaec0d0c9e64</anchor>
+      <arglist>(s_ahsl target, s_ahsl const *colors, t_size n)</arglist>
     </member>
   </compound>
   <compound kind="group">
@@ -20733,86 +21970,86 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>MODE_USER_RWX</name>
+      <name>ACCESSMODE_USER_RWX</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga50d52a8d65ece23e8800537c0637919a</anchor>
+      <anchor>ga1a86278af7e6a9c48e34e35b0e47f522</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>MODE_USER_R</name>
+      <name>ACCESSMODE_USER_R</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga4e3df7b2e3df34dcd3fef7065450b073</anchor>
+      <anchor>ga39fd426ef290b2210a5580e50a73572e</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>MODE_USER_W</name>
+      <name>ACCESSMODE_USER_W</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>gabde9d48b1166e65098755ae6c75f9c3e</anchor>
+      <anchor>ga32862b2f3ae46fc3ca35cab3d5ab6581</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>MODE_USER_X</name>
+      <name>ACCESSMODE_USER_X</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga0ca54a02c6c6d3d75244bd8fdb533535</anchor>
+      <anchor>gaccdc26671acd720f980d79a1798a0b9d</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>MODE_GROUP_RWX</name>
+      <name>ACCESSMODE_GROUP_RWX</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>gad4f944078ba076c7871e6df85791af92</anchor>
+      <anchor>gae9986470766bc9713ebcc6a5492bcb84</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>MODE_GROUP_R</name>
+      <name>ACCESSMODE_GROUP_R</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga05e8d90ccf3e23dfb05970c5ae504182</anchor>
+      <anchor>ga302a0781fb89ad9e0d4fb7dd5c1d4f2e</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>MODE_GROUP_W</name>
+      <name>ACCESSMODE_GROUP_W</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga1ca2e74cdabfa520df4e2694a7cc8ba1</anchor>
+      <anchor>gab9bb07a792adb4c8c255d6939bedf684</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>MODE_GROUP_X</name>
+      <name>ACCESSMODE_GROUP_X</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga5162289005e2862cc3e6368cd0184a68</anchor>
+      <anchor>gade50d023ff9266a78ce7ea210b141c99</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>MODE_OTHER_RWX</name>
+      <name>ACCESSMODE_OTHER_RWX</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>gab87cfb6e62cf97d40d0552640a9d5ec3</anchor>
+      <anchor>gaafe924212c65eff66d4fd66b901a31c6</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>MODE_OTHER_R</name>
+      <name>ACCESSMODE_OTHER_R</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga67234af6cfabdcd6c141fdee1fef7f45</anchor>
+      <anchor>ga7e4b4b37959eecc1d0d624f22cf25672</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>MODE_OTHER_W</name>
+      <name>ACCESSMODE_OTHER_W</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga92e5594bda7e343b255aab4545254f1a</anchor>
+      <anchor>ga3ac75879ad995b9c29fdfa218155a596</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>MODE_OTHER_X</name>
+      <name>ACCESSMODE_OTHER_X</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga2598e6adcf92003675b657d619c193bb</anchor>
+      <anchor>gadd7eeb6dd2fe471bd0cf3c183ed472b7</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -20859,9 +22096,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>OPEN_EXCLUSIVE</name>
+      <name>OPEN_NOEXISTING</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>gad0316228219cb40a7b419c731a391341</anchor>
+      <anchor>gaabe27d730300bbc3bafaef77f053fa8c</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -20929,6 +22166,55 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>c_strerror</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga7eaf62f4ec1abea4d11f9f1d4aab6ae9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strerror_r</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga865b297a009d3b300e13925f3167974a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_GetErrorMessage</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga625fa85530efeaa27d6e716379a1fba7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_io_getcolor</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gae5797dbb442336e193a46a42c8a2697a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_GetANSIColor</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gaedcd36ea947752b20f1af6e9ac49370b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_isatty</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga24e2fbb54d481653d4bbd166f2bb712f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_File_IsTerminal</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gab0b9e2457dee8e04131b969a75eebf7c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>c_open</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
       <anchor>gaf0856f3f68da7c237acd460f094aa342</anchor>
@@ -20953,41 +22239,6 @@
       <name>IO_File_Close</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
       <anchor>gabb6848c1ebb82ae805d85b6e681d7e18</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_strerror</name>
-      <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga7eaf62f4ec1abea4d11f9f1d4aab6ae9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_strerror_r</name>
-      <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga865b297a009d3b300e13925f3167974a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_GetErrorMessage</name>
-      <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga625fa85530efeaa27d6e716379a1fba7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_isatty</name>
-      <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga24e2fbb54d481653d4bbd166f2bb712f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_File_IsTerminal</name>
-      <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>gab0b9e2457dee8e04131b969a75eebf7c</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -21020,9 +22271,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_readnextline</name>
+      <name>c_getline</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga8d352c1d7bafe99a1b3e6f40cea9773d</anchor>
+      <anchor>ga8c267296a21b56df601f980e089da009</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -21030,6 +22281,13 @@
       <name>c_getnextline</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
       <anchor>ga7929c81e1c7c1f872d05aa20b66509fe</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_readnextline</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga8d352c1d7bafe99a1b3e6f40cea9773d</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -22104,6 +23362,27 @@
       <arglist></arglist>
     </member>
     <member kind="function">
+      <type>char *</type>
+      <name>IO_GetError</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gaa55ba0c27b2c2a3c32bdc30c734e1fb8</anchor>
+      <arglist>(int error_num)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_u8</type>
+      <name>IO_GetColor</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga2d94641dce33e903f3117aed1d472bf2</anchor>
+      <arglist>(t_argb32 color)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>IO_IsTerminal</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gafbf2e86ab1f9a29cf5ac772d96aad1f4</anchor>
+      <arglist>(t_fd fd)</arglist>
+    </member>
+    <member kind="function">
       <type>t_fd</type>
       <name>IO_Open</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
@@ -22118,20 +23397,6 @@
       <arglist>(t_fd fd)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
-      <name>IO_GetError</name>
-      <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>gaa55ba0c27b2c2a3c32bdc30c734e1fb8</anchor>
-      <arglist>(int error_num)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_bool</type>
-      <name>IO_IsTerminal</name>
-      <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>gafbf2e86ab1f9a29cf5ac772d96aad1f4</anchor>
-      <arglist>(t_fd fd)</arglist>
-    </member>
-    <member kind="function">
       <type>t_io_error</type>
       <name>IO_ChangeMode</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
@@ -22139,17 +23404,17 @@
       <arglist>(char const *filepath, t_io_mode mode)</arglist>
     </member>
     <member kind="function">
-      <type>t_io_error</type>
+      <type>t_sintmax</type>
       <name>IO_Read_File</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga353a481847df1a8130d101e7fbaa8a5d</anchor>
+      <anchor>gaa9b85d6c42cb57eb69dee7d4aaaeb5dc</anchor>
       <arglist>(t_fd const fd, char **a_file, t_size max)</arglist>
     </member>
     <member kind="function">
-      <type>t_io_error</type>
+      <type>t_sintmax</type>
       <name>IO_Read_Lines</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga16564032123850963167d124814d3e36</anchor>
+      <anchor>gad58edc3f234e99419b30761256297004</anchor>
       <arglist>(t_fd const fd, char ***a_strarr)</arglist>
     </member>
     <member kind="function">
@@ -22242,6 +23507,391 @@
       <anchorfile>group__libccc__sys__io.html</anchorfile>
       <anchor>ga87b5944b07ef6addafce7f04e40192b0</anchor>
       <arglist>(char const *format,...)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_RESET</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gac81982784d97338b81fd2a54340c0b00</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_BOLD</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga7f5db861561bbf42955a6c7bd71217db</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_DIM</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gaf87c42a02a9a3e583e69a0441113d3bb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_3</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gaa9ed6a09ed0d99f8a3f45c2fa65678fa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_UNDERLINE</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gad40552cab717addecf66999f34f80bf2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_BLINK</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga80dc8605510ddddb6bc5bc14f4dfdd6c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_6</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gadb7d3a0999cd525b1468fe9c8127a9df</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_INVERTED</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga00ebfe98e47c1dc3c295d415ef43c41e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_HIDDEN</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gab91d5b05972e1cd3ac476bc29288172a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_9</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga7b80a64dd49aec55705d42e7cd2ac95c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_BOLD</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gad99ff5aa24729220c2dbd175ff6d1369</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_DIM</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gaabbcaa0a97883c57081e6217ea2a6782</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_3</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gacc133b9612777ae9259ca0e827c6016e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_UNDERLINE</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga81de1ccbf55802dc11f2a8881d46a9eb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_BLINK</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga72d589c7ed30e1a5ae19d0302909c041</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_6</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga9bc27fef31f6958819891c3453c48f4e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_INVERTED</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gaf80735fb21078a1e8095a22597092bd7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_HIDDEN</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga7829681d1d0e19f7799c44e08a7cd1ca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_9</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga8012b614be13a98f69cdcb5139766b78</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_BLACK</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga178f7bd8aa2cb39a74171b24c3903bfa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_GRAY_DARK</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gaf67ea146996f28af24a8aaddbc184fca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_RED</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga125e9c08fc48d2310a501e50ca37f2fa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_RED_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga703126f7e6a44f57f0bcfe6a09a10cbb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_GREEN</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga4d8d738ec5d9c427efe7bec0310b1319</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_GREEN_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga5f92baa1e553d33cfae382b27d879eb0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_YELLOW</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga58c62fd3af7786a9efcbfa52befd3fed</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_YELLOW_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga28945d6daca1a432d3593ea5c2aebfda</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_BLUE</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga173eac0768a62c09355ac69fab4ce0a2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_BLUE_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga23dfaaf54af97d31903ffaaa0ba309bc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_MAGENTA</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga9863906924996123d989e3beeef17d1f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_MAGENTA_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga3206c160f2f866269b2f6cabf0aeec9e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_CYAN</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga7f78b280ecb7a8917f7a980746a081d6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_CYAN_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gabf7bcf19360b7e1922f8084ef0154288</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_GRAY_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gad24c920ee4123d7133f44986918aefea</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_WHITE</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gafd04a2ff549eb5bbfc5f994e888f26bb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga8413d8cc0d4c8cf11da67ff344b8654b</anchor>
+      <arglist>(CODE)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_DEFAULT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga162176136345f256f233e0ddd1c7a577</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_BLACK</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga0e6d9102bb7d8733d9739f058900564d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_GRAY_DARK</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga61b2d3daade64b5710ad3a06140cb8b8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_RED</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga0b6883cee7f145ec92c3cef386b59227</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_RED_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga77a6fd84024c9bbbd7d8207982a0e656</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_GREEN</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga04a659076f0b262e571ea4f3e6932352</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_GREEN_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gad4354070e7d86b4c188240d7732476e0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_YELLOW</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga812ddb5d9d841a57bc58f7e645dcbcce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_YELLOW_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga0c3f4ea8f414d50f8ae47bcd6d518df0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_BLUE</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga250067e14725f2eceb20cc6bfd89e44b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_BLUE_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga5b6408b036db61a28f078d512abab9b3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_MAGENTA</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga0f7a4372b3e38a8f6ecc042d6cec4251</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_MAGENTA_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gac65a56f4fef3909ab32fdf2b14be0e20</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_CYAN</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gae249ef98b992636b843487172db9cda5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_CYAN_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga83394539e8364d9e4fda0ef261f5c74c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_GRAY_LIGHT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga312aa1c2d18fd6847c6d88e8c153092a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_WHITE</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gaffee69c7b797736581c06ccc7ea76fd6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gac4646fea5fac91e728c8b4d651b58216</anchor>
+      <arglist>(CODE)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_DEFAULT</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>ga5766144a8d48ffe3bbdd0c8e3973df52</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="group">
@@ -23076,20 +24726,33 @@
     <title>14) libccc/sys/logger</title>
     <filename>group__libccc__sys__logger.html</filename>
     <file>logger.h</file>
-    <class kind="struct">s_logfile</class>
     <class kind="struct">s_logger</class>
     <member kind="define">
       <type>#define</type>
-      <name>NULL_LOGFILE</name>
+      <name>LOGFORMAT_STRING_ANSI</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>gab3f1a96b0b7d7561644ba6994a1c0744</anchor>
+      <anchor>gab88c677395cbf6801b15bd4a859a9080</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>LOGFILES_MAX</name>
+      <name>LOGFORMAT_STRING_TEXT</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga7578b7b1beddac3036f88cff0eecd3a2</anchor>
+      <anchor>ga1eb4cffffbf46889d20c23ec81198830</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LOGFORMAT_STRING_JSON</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gafbba8a3bab56c384d01fe094addff5fc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LOGFORMAT_STRING_XML</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gac90b52a5aa9af32b594ac9225ba42d18</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -23097,6 +24760,20 @@
       <name>NULL_LOGGER</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
       <anchor>gada3edae0070ddc1c761ab45e69e79168</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>DEFAULT_LOGGER_STDOUT</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga4150064d5ec9dd8779c14783e265c476</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>DEFAULT_LOGGER_STDERR</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga0a0e26df7c51c849a427108b6679f81e</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -23112,6 +24789,27 @@
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
       <anchor>ga016fd9fef8c6d3b4c7f085ca63dfa402</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LOG_JSON_INDENT</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga70a419fd2cd69fce858219a1677aa092</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LOGONE_FUNCTION_CONTENT</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga63c3de50d77deebd22a9fd8b59fc4a43</anchor>
+      <arglist>(VERBOSE_ONLY, IS_ERROR, USE_ERRNO, PREFIX, PREFIX_COLOR)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LOGALL_FUNCTION_CONTENT</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga92ffd46c3b8e30b7d5265ed04ef51375</anchor>
+      <arglist>(VERBOSE_ONLY, IS_ERROR, USE_ERRNO, PREFIX, PREFIX_COLOR)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -23199,6 +24897,62 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>c_logall_error_io</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gabb83a31b7f009bf115eb11c7f19e82bb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LogAll_SystemError</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gaa0373e0af14c49d02ce89dfef92b6021</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_logall_error</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga91975d6623be9c4376debaecd712b0c7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_logall_warning</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gafbfa2151b1bd1aa5e582331c957e8ab4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_logall_success</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga245ceffcae02731dfab487eb350a3c07</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_logall_message</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga7d0138a5b26f4c2de1119dd317fb5544</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_logall_verbose</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gaa22edf819d3cd64698820ef60bd5cdcc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LogAll_Verbose</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga1ef54b434bc304d3626d3b78cba737fc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>c_log_error_io</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
       <anchor>ga9e02f02c8e50d7a87d17d8719c407ad6</anchor>
@@ -23251,6 +25005,44 @@
       <name>Log_Verbose</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
       <anchor>gac4598727ed57c656e288f113ed345712</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>s_logger const  *const  *</type>
+      <name>t_logptrarr</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga3ee217e6560a550b1f4d3edfc9c20aaf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>e_logformat</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga8a30116402ebacc6b724741f00b6da36</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>LOGFORMAT_ANSI</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gga8a30116402ebacc6b724741f00b6da36ab70526b8d47a051cf1b2ed036500042c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>LOGFORMAT_TEXT</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gga8a30116402ebacc6b724741f00b6da36ae799ffb3cb6c30a60f40ac8f3cb960ec</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>LOGFORMAT_JSON</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gga8a30116402ebacc6b724741f00b6da36a0e4e010d8bbfadea438607b0fbd48524</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>LOGFORMAT_XML</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gga8a30116402ebacc6b724741f00b6da36ae22e3f3b6c545736219bc1dfb22956dd</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -23306,8 +25098,8 @@
       <type>t_io_error</type>
       <name>Log_VA</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga80b732b1b66f6b1704de0bf401796b44</anchor>
-      <arglist>(s_logger const *logger, t_bool verbose_only, t_bool is_error, t_bool use_errno, char const *prefix, char const *prefix_color, char const *format_str, va_list args)</arglist>
+      <anchor>ga7267ae5db21545c5c236983f7b782ab2</anchor>
+      <arglist>(s_logger const *logger, t_bool verbose_only, t_bool use_errno, int is_error, char const *prefix, char const *prefix_color, char const *format_str, va_list args)</arglist>
     </member>
     <member kind="function">
       <type>t_io_error</type>
@@ -23318,17 +25110,59 @@
     </member>
     <member kind="function">
       <type>t_io_error</type>
+      <name>LogAll_Error_IO</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga2d949d293e43d5bb99e5ddfdfe541e65</anchor>
+      <arglist>(t_logptrarr const loggers, int error_code, char const *format_str,...)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_io_error</type>
+      <name>LogAll_Error</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gabb47b0517a61887e42d73c794bc0b82d</anchor>
+      <arglist>(t_logptrarr const loggers, int error_code, char const *format_str,...)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_io_error</type>
+      <name>LogAll_Warning</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga56447d71e4ebe815102a50f2dbcb0f63</anchor>
+      <arglist>(t_logptrarr const loggers, char const *format_str,...)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_io_error</type>
+      <name>LogAll_Success</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga188eeae8557d396d8fc703239626ca0e</anchor>
+      <arglist>(t_logptrarr const loggers, char const *format_str,...)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_io_error</type>
+      <name>LogAll_Message</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gaa6eff9dbb5e0136c72ee29da8ce631e7</anchor>
+      <arglist>(t_logptrarr const loggers, char const *format_str,...)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_io_error</type>
+      <name>LogAll_Message_Verbose</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga4bcb83bc1612f4e1a7d94916190ef650</anchor>
+      <arglist>(t_logptrarr const loggers, char const *format_str,...)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_io_error</type>
       <name>Log_Error_IO</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga867f56bbfc2c1fa9f1e3dbc92c357113</anchor>
-      <arglist>(s_logger const *logger, char const *format_str,...)</arglist>
+      <anchor>ga640dc9e3a0529628b56c9813acb8e039</anchor>
+      <arglist>(s_logger const *logger, int error_code, char const *format_str,...)</arglist>
     </member>
     <member kind="function">
       <type>t_io_error</type>
       <name>Log_Error</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga1c71ae136155353bb25126e36a83745e</anchor>
-      <arglist>(s_logger const *logger, char const *format_str,...)</arglist>
+      <anchor>ga4791029daef7bbda9540687fcb3cc893</anchor>
+      <arglist>(s_logger const *logger, int error_code, char const *format_str,...)</arglist>
     </member>
     <member kind="function">
       <type>t_io_error</type>
@@ -26126,15 +27960,7 @@
     <title>24) libccc/array/tree</title>
     <filename>group__libccc__array__tree.html</filename>
     <file>tree.h</file>
-    <class kind="struct">s_leaf</class>
     <class kind="struct">s_tree</class>
-    <member kind="define">
-      <type>#define</type>
-      <name>LEAF_NULL</name>
-      <anchorfile>group__libccc__array__tree.html</anchorfile>
-      <anchor>ga9d8166b8c4c082407b6d522806105da8</anchor>
-      <arglist></arglist>
-    </member>
     <member kind="define">
       <type>#define</type>
       <name>TREE_NULL</name>
@@ -26163,10 +27989,10 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>void *</type>
+      <type>void **</type>
       <name>PointerArray_New</name>
       <anchorfile>group__libccc__array__pointerarray.html</anchorfile>
-      <anchor>ga51b4e5cf4474ad8cd2612dae9e561e90</anchor>
+      <anchor>gac8bb950447b29f147b3db89dbe600b10</anchor>
       <arglist>(t_size size)</arglist>
     </member>
     <member kind="function">
@@ -26475,6 +28301,19 @@
       <anchorfile>group__libccc__array__stringarray.html</anchorfile>
       <anchor>ga8a3b7e9bef5499a5f046d540da8f8f44</anchor>
       <arglist>(char const **strarr, char const *query)</arglist>
+    </member>
+  </compound>
+  <compound kind="group">
+    <name>libccc_array_sort</name>
+    <title>Libccc_array_sort</title>
+    <filename>group__libccc__array__sort.html</filename>
+    <file>sort.h</file>
+    <member kind="define">
+      <type>#define</type>
+      <name>DEFINE_QUICKSORT</name>
+      <anchorfile>group__libccc__array__sort.html</anchorfile>
+      <anchor>gafabd7ee365140ffedfd384a2129fa8de</anchor>
+      <arglist>(TYPE, COMPARE)</arglist>
     </member>
   </compound>
   <compound kind="page">

@@ -39,8 +39,8 @@ HEADER_CPP
 **	both an enum and a bitflag simultaneously: you can see how this works at the bottom of this file.
 **	NB: By default, this is (NAMINGSTYLE_ENUM_SNAKECASE | NAMINGSTYLE_FLAG_HUNGARIAN_PREFIX)
 **		This style is used thoughout libccc's code. As such, if you set another style, it
-**		will actually a typedef alias above the existing type. For example:
-**		Having NAMINGSTYLE_ENUM_SCREAMCASE will create a typedef for `t_u32` which is `U32`
+**		will actually generate a typedef alias above the existing type. For example:
+**		Having `(NAMINGSTYLE_ENUM_SCREAMCASE)` will create a typedef for `t_bool` which is `BOOL`
 */
 #define LIBCONFIG_NAMINGSTYLE_TYPES		(NAMINGSTYLE_ENUM_SNAKECASE | NAMINGSTYLE_FLAG_HUNGARIAN_PREFIX)
 
@@ -397,8 +397,8 @@ HEADER_CPP
 	#define LIBCONFIG_TYPENAME_UINTMAX		UIntMax
 	#define LIBCONFIG_TYPENAME_SINTPTR		SIntPtr
 	#define LIBCONFIG_TYPENAME_UINTPTR		UIntPtr
-	#define LIBCONFIG_TYPENAME_COLOR_RGB	ARGB
-	#define LIBCONFIG_TYPENAME_COLOR_HSL	AHSL
+	#define LIBCONFIG_TYPENAME_COLOR_RGB	ColorARGB
+	#define LIBCONFIG_TYPENAME_COLOR_HSL	ColorAHSL
 	#define LIBCONFIG_TYPENAME_IO_FILEDESC	FileDesc
 	#define LIBCONFIG_TYPENAME_IO_MODE		IO_Mode
 	#define LIBCONFIG_TYPENAME_IO_OPEN		IO_Open

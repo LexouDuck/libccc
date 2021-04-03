@@ -42,8 +42,8 @@ typedef struct	s_keyval_
 {
 	char*		key;		//!< The key string associated with the 'value'
 	void*		value;		//!< The pointer to the data for the 'value'
-	char*		value_type;	//!< The amount of elements in the 'items' array
-	t_size		value_size;	//!< The size (in bytes) of one object in this array
+	char*		value_type;	//!< The type of the value stored
+	t_size		value_size;	//!< The size (in bytes) of the value
 }				s_keyval;
 TYPEDEF_ALIAS(	s_keyval, KEYVAL, STRUCT)
 
@@ -57,8 +57,8 @@ TYPEDEF_ALIAS(	s_keyval, KEYVAL, STRUCT)
 */
 typedef struct	s_dict_
 {
-	t_size		item_count;
-	s_keyval*	items;
+	t_size		item_count;	//!< The amount of key/value pairs stored in this dictionary
+	s_keyval*	items;		//!< The array of key/value pairs stored in this dictionary
 }				s_dict;
 TYPEDEF_ALIAS(	s_dict, DICT, STRUCT)
 

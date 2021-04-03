@@ -18,6 +18,8 @@
 **	Some of these algorithms are better suited for arrays, others for lists -
 **	some are better for small sizes, others for large sizes, etc.
 **
+**	TODO other algorithms than quicksort
+**
 **	@file
 */
 

@@ -10,8 +10,8 @@ pre.highlight .err	{ background-color: #FFAAAA !important; color: #AA0000 !impor
 pre.highlight .p	{ color: #F8F8F2 !important; } /* Text */
 pre.highlight .w	{ color: #bbbbbb !important; } /* Text.Whitespace */
 
-pre.highlight .o	{ color: #FFFFFF !important; } /* Operator */
-pre.highlight .ow	{ color: #F8F8F2 !important; font-weight: bold !important; } /* Operator.Word */
+pre.highlight .o	{ color: #FD971F !important; } /* Operator */
+pre.highlight .ow	{ color: #FD971F !important; font-weight: bold !important; } /* Operator.Word */
 
 pre.highlight .c	{ color: #75715E !important; font-style: italic !important; } /* Comment */
 pre.highlight .c1	{ color: #75715E !important; font-style: italic !important; } /* Comment.Single */
@@ -19,35 +19,35 @@ pre.highlight .cm	{ color: #75715E !important; font-style: italic !important; } 
 pre.highlight .ch	{ color: #75715E !important; font-style: italic !important; } /* Comment.Hashbang */
 pre.highlight .cs	{ color: #75715E !important; font-style: italic !important; font-weight: bold !important; } /* Comment.Special */
 pre.highlight .cp	{ color: #F92672 !important; font-style: italic !important; } /* Comment.Preproc */
-pre.highlight .cpf	{ color: #A6E22E !important; font-style: italic !important; } /* Comment.PreprocFile */
+pre.highlight .cpf	{ color: #A6E22E !important; } /* Comment.PreprocFile */
 
 pre.highlight .k	{ color: #F92672 !important; font-weight: bold !important; } /* Keyword */
 pre.highlight .kc	{ color: #F92672 !important; font-weight: bold !important; } /* Keyword.Constant */
 pre.highlight .kd	{ color: #F92672 !important; font-weight: bold !important; } /* Keyword.Declaration */
 pre.highlight .kn	{ color: #F92672 !important; font-weight: bold !important; } /* Keyword.Namespace */
 pre.highlight .kr	{ color: #F92672 !important; font-weight: bold !important; } /* Keyword.Reserved */
-pre.highlight .kt	{ color: #66D9EF !important; font-weight: bold !important; } /* Keyword.Type */
 pre.highlight .kp	{ color: #006699 !important; } /* Keyword.Pseudo */
+pre.highlight .kt	{ color: #66D9EF !important; font-weight: normal !important; font-style: italic !important; } /* Keyword.Type */
+pre.highlight .nc	{ color: #66D9EF !important; font-weight: bold !important; } /* Name.Class */
 
 pre.highlight .n	{ color: #F8F8F2 !important; } /* Name */
-pre.highlight .nl	{ color: #F8F8F2 !important; } /* Name.Label */
-pre.highlight .nb	{ color: #AE81FF !important; } /* Name.Builtin */
-pre.highlight .bp	{ color: #AE81FF !important; } /* Name.Builtin.Pseudo */
-pre.highlight .no	{ color: #336600 !important; } /* Name.Constant */
-pre.highlight .na	{ color: #E6DB74 !important; } /* Name.Attribute */
-pre.highlight .nd	{ color: #9999FF !important; } /* Name.Decorator */
-pre.highlight .nf	{ color: #CC00FF !important; } /* Name.Function */
-pre.highlight .fm	{ color: #CC00FF !important; } /* Name.Function.Magic */
-pre.highlight .nv	{ color: #FAFAFA !important; } /* Name.Variable */
-pre.highlight .vc	{ color: #FAFAFA !important; } /* Name.Variable.Class */
-pre.highlight .vg	{ color: #FAFAFA !important; } /* Name.Variable.Global */
-pre.highlight .vi	{ color: #FAFAFA !important; } /* Name.Variable.Instance */
-pre.highlight .vm	{ color: #FAFAFA !important; } /* Name.Variable.Magic */
-pre.highlight .nc	{ color: #00AA88 !important; font-weight: bold !important; } /* Name.Class */
-pre.highlight .ni	{ color: #999999 !important; font-weight: bold !important; } /* Name.Entity */
-pre.highlight .ne	{ color: #CC0000 !important; font-weight: bold !important; } /* Name.Exception */
-pre.highlight .nn	{ color: #00CCFF !important; font-weight: bold !important; } /* Name.Namespace */
-pre.highlight .nt	{ color: #330099 !important; font-weight: bold !important; } /* Name.Tag */
+pre.highlight .nl	{ color: #F8F8F2 !important; font-weight: bold !important; } /* Name.Label */
+pre.highlight .nb	{ color: #AE81FF !important; font-weight: bold !important; } /* Name.Builtin */
+pre.highlight .bp	{ color: #AE81FF !important; font-weight: bold !important; } /* Name.Builtin.Pseudo */
+pre.highlight .no	{ color: #AE81FF !important; font-weight: bold !important; } /* Name.Constant */
+pre.highlight .na	{ color: #F8F8F2 !important; font-weight: bold !important; } /* Name.Attribute */
+pre.highlight .nd	{ color: #F8F8F2 !important; font-weight: bold !important; } /* Name.Decorator */
+pre.highlight .nv	{ color: #F8F8F2 !important; font-weight: bold !important; } /* Name.Variable */
+pre.highlight .vc	{ color: #F8F8F2 !important; font-weight: bold !important; } /* Name.Variable.Class */
+pre.highlight .vg	{ color: #F8F8F2 !important; font-weight: bold !important; } /* Name.Variable.Global */
+pre.highlight .vi	{ color: #F8F8F2 !important; font-weight: bold !important; } /* Name.Variable.Instance */
+pre.highlight .vm	{ color: #F8F8F2 !important; font-weight: bold !important; } /* Name.Variable.Magic */
+pre.highlight .ni	{ color: #F8F8F2 !important; font-weight: bold !important; } /* Name.Entity */
+pre.highlight .ne	{ color: #F8F8F2 !important; font-weight: bold !important; } /* Name.Exception */
+pre.highlight .nn	{ color: #F8F8F2 !important; font-weight: bold !important; } /* Name.Namespace */
+pre.highlight .nt	{ color: #F8F8F2 !important; font-weight: bold !important; } /* Name.Tag */
+pre.highlight .nf	{ color: #E6DB74 !important; font-weight: bold !important; } /* Name.Function */
+pre.highlight .fm	{ color: #E6DB74 !important; font-weight: bold !important; } /* Name.Function.Magic */
 
 pre.highlight .m	{ color: #AE81FF !important; } /* Literal.Number */
 pre.highlight .mb	{ color: #AE81FF !important; } /* Literal.Number.Bin */
@@ -67,7 +67,7 @@ pre.highlight .sh	{ color: #A6E22E !important; } /* Literal.String.Heredoc */
 pre.highlight .sx	{ color: #A6E22E !important; } /* Literal.String.Other */
 pre.highlight .s1	{ color: #A6E22E !important; } /* Literal.String.Single */
 pre.highlight .sd	{ color: #A6E22E !important; font-style: italic !important; } /* Literal.String.Doc */
-pre.highlight .se	{ color: #A6E22E !important; font-weight: bold !important; } /* Literal.String.Escape */
+pre.highlight .se	{ color: #AE81FF !important; } /* Literal.String.Escape */
 pre.highlight .si	{ color: #AA0000 !important; } /* Literal.String.Interpol */
 pre.highlight .sr	{ color: #33AAAA !important; } /* Literal.String.Regex */
 pre.highlight .ss	{ color: #FFCC33 !important; } /* Literal.String.Symbol */
@@ -91,9 +91,8 @@ pre.highlight .ge	{ font-style: italic !important; } /* Generic.Emph */
 
 .highlight a.reference,
 .highlight a.reference:visited
-{	/* disable coloring for HTML links, instead show them as underlined+bold */
+{	/* disable coloring for HTML links, instead show them as underlined */
 	color: inherit !important;
-	font-weight: bold !important;
 	text-decoration: underline !important;
 }
 pre.highlight .cp + .n ~ .cp,
@@ -109,15 +108,16 @@ pre.highlight .c1 + a.reference,
 pre.highlight.doxyrest-title-code-block a.reference
 {	/* heuristically color C types in code blocks despite them being styled as HTML links */
 	color: #66D9EF !important;
+	font-style: italic !important;
 }
 pre.highlight.literal-block:not(.doxyrest-title-code-block):not(.doxyrest-overview-code-block)
 {	/* indent code blocks that aren't section titles */
-    margin: 30px;
+	margin: 30px;
 }
 
 
 
-/* Doxyrest CSS rules */
+/* Doxyrest-specific CSS rule fixes */
 
 #detailed-documentation > .section
 {
@@ -126,13 +126,13 @@ pre.highlight.literal-block:not(.doxyrest-title-code-block):not(.doxyrest-overvi
 
 .doxyrest-title-code-block
 {
-    margin-top: 80px !important;
+	margin-top: 80px !important;
 	font-size: 15px !important;
 }
 
 .wy-nav-content
 {
-    max-width: 1000px !important;
+	max-width: 1000px !important;
 }
 
 table.docutils
@@ -145,4 +145,79 @@ table.docutils tr td
 	max-width: 100% !important;
 	word-wrap: break-word !important;
 	white-space: normal !important;
+}
+
+
+
+/* EasyTabs CSS for multiple-language code examples */
+
+.tab
+{
+	display: inline-block;
+	zoom: 1;
+	*display: inline;
+	border: 1px solid #E7E7E7;
+}
+
+.tab-container > ul > li:first-child
+{
+	border-radius: 0.3em 0em 0em 0.3em;
+}
+
+.tab-container > ul > li:last-child
+{
+	border-radius: 0em 0.3em 0.3em 0em;
+}
+
+.tab a
+{
+	font-size: 14px;
+	line-height: 2em;
+	display: block;
+	padding: 0 10px;
+	outline: none;
+	text-decoration: none;
+}
+
+.tab a:hover
+{
+	font-weight: bold;
+}
+
+.tab a.active
+{
+	font-weight: bold;
+	color: #FF7A00;
+}
+
+.tab a:visited
+{
+	color: #FF7A00;
+}
+
+.tab.active
+{
+	position: relative;
+}
+
+.tab:not(.active) a
+{
+	color: grey;
+}
+
+.tab-container > ul
+{
+	padding-left: 0px;
+	margin: 0px 0px;
+	padding-bottom: 5px;
+}
+
+li > div.tab-container
+{
+	padding-top: 15px;
+}
+
+.example-container
+{
+	height: 800px;
 }

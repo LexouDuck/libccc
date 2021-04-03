@@ -24,7 +24,6 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
         <script src="_static/target-highlight.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script src="_static/js/custom.js"></script>
@@ -126,6 +125,7 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_array_tree.html">24) libccc/array/tree</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_array_pointerarray.html">25) libccc/array/pointerarray</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_array_stringarray.html">26) libccc/array/stringarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_sort.html">Libccc_array_sort</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
@@ -442,21 +442,21 @@
 </li>
       </ul></li>
       <li>
-    _DELETE
+    _FORMAT
 
       <ul>
         <li><a href="group_libccc.html#index-35">define</a>
 </li>
       </ul></li>
       <li>
-    _FORMAT
+    _INLINE
 
       <ul>
         <li><a href="group_libccc.html#index-36">define</a>
 </li>
       </ul></li>
       <li>
-    _INLINE
+    _MALLOC
 
       <ul>
         <li><a href="group_libccc.html#index-37">define</a>
@@ -465,31 +465,38 @@
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li>
-    _MALLOC
+    _NOINLINE
 
       <ul>
         <li><a href="group_libccc.html#index-38">define</a>
 </li>
       </ul></li>
       <li>
-    _PACKED
+    _NORETURN
 
       <ul>
         <li><a href="group_libccc.html#index-39">define</a>
 </li>
       </ul></li>
       <li>
-    _PURE
+    _PACKED
 
       <ul>
         <li><a href="group_libccc.html#index-40">define</a>
 </li>
       </ul></li>
       <li>
-    _UNUSED
+    _PURE
 
       <ul>
         <li><a href="group_libccc.html#index-41">define</a>
+</li>
+      </ul></li>
+      <li>
+    _UNUSED
+
+      <ul>
+        <li><a href="group_libccc.html#index-42">define</a>
 </li>
       </ul></li>
   </ul></td>
@@ -512,13 +519,97 @@
         <li><a href="group_libccc_math_math.html#index-33">define</a>
 </li>
       </ul></li>
+      <li>
+    ACCESSMODE_GROUP_R
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-24">define</a>
+</li>
+      </ul></li>
+      <li>
+    ACCESSMODE_GROUP_RWX
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-25">define</a>
+</li>
+      </ul></li>
+      <li>
+    ACCESSMODE_GROUP_W
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-26">define</a>
+</li>
+      </ul></li>
+      <li>
+    ACCESSMODE_GROUP_X
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-27">define</a>
+</li>
+      </ul></li>
+      <li>
+    ACCESSMODE_OTHER_R
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-28">define</a>
+</li>
+      </ul></li>
+      <li>
+    ACCESSMODE_OTHER_RWX
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-29">define</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    ACCESSMODE_OTHER_W
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-30">define</a>
+</li>
+      </ul></li>
+      <li>
+    ACCESSMODE_OTHER_X
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-31">define</a>
+</li>
+      </ul></li>
+      <li>
+    ACCESSMODE_USER_R
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-32">define</a>
+</li>
+      </ul></li>
+      <li>
+    ACCESSMODE_USER_RWX
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-33">define</a>
+</li>
+      </ul></li>
+      <li>
+    ACCESSMODE_USER_W
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-34">define</a>
+</li>
+      </ul></li>
+      <li>
+    ACCESSMODE_USER_X
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-35">define</a>
+</li>
+      </ul></li>
       <li>
     append
 
       <ul>
-        <li><a href="struct_s_logfile.html#index-3">variable</a>
+        <li><a href="struct_s_logger.html#index-6">variable</a>
 </li>
       </ul></li>
       <li>
@@ -574,7 +665,7 @@
     C_BLUE
 
       <ul>
-        <li><a href="group_libccc_sys_io.html#index-23">define</a>
+        <li><a href="group_libccc_sys_io.html#index-36">define</a>
 </li>
       </ul></li>
       <li>
@@ -588,7 +679,7 @@
     C_CYAN
 
       <ul>
-        <li><a href="group_libccc_sys_io.html#index-24">define</a>
+        <li><a href="group_libccc_sys_io.html#index-37">define</a>
 </li>
       </ul></li>
       <li>
@@ -721,126 +812,154 @@
     c_getbits
 
       <ul>
-        <li><a href="group_libccc_memory.html#index-17">define</a>
+        <li><a href="group_libccc_memory.html#index-21">define</a>
 </li>
       </ul></li>
       <li>
     C_GREEN
 
       <ul>
-        <li><a href="group_libccc_sys_io.html#index-25">define</a>
+        <li><a href="group_libccc_sys_io.html#index-38">define</a>
 </li>
       </ul></li>
       <li>
     C_MAGENTA
 
       <ul>
-        <li><a href="group_libccc_sys_io.html#index-26">define</a>
+        <li><a href="group_libccc_sys_io.html#index-39">define</a>
 </li>
       </ul></li>
       <li>
     c_memalloc
 
       <ul>
-        <li><a href="group_libccc_memory.html#index-18">define</a>
-</li>
-      </ul></li>
-      <li>
-    c_memccpy
-
-      <ul>
-        <li><a href="group_libccc_memory.html#index-19">define</a>
-</li>
-      </ul></li>
-      <li>
-    c_memchr
-
-      <ul>
-        <li><a href="group_libccc_memory.html#index-20">define</a>
-</li>
-      </ul></li>
-      <li>
-    c_memclr
-
-      <ul>
-        <li><a href="group_libccc_memory.html#index-21">define</a>
-</li>
-      </ul></li>
-      <li>
-    c_memcmp
-
-      <ul>
         <li><a href="group_libccc_memory.html#index-22">define</a>
 </li>
       </ul></li>
       <li>
-    c_memcnew
+    c_memappend
 
       <ul>
         <li><a href="group_libccc_memory.html#index-23">define</a>
 </li>
       </ul></li>
       <li>
-    c_memcpy
+    c_memccpy
 
       <ul>
         <li><a href="group_libccc_memory.html#index-24">define</a>
 </li>
       </ul></li>
       <li>
-    c_memdel
+    c_memchr
 
       <ul>
         <li><a href="group_libccc_memory.html#index-25">define</a>
 </li>
       </ul></li>
       <li>
-    c_memdup
+    c_memclr
 
       <ul>
         <li><a href="group_libccc_memory.html#index-26">define</a>
 </li>
       </ul></li>
       <li>
-    c_memfree
+    c_memcmp
 
       <ul>
         <li><a href="group_libccc_memory.html#index-27">define</a>
 </li>
       </ul></li>
       <li>
-    c_memmove
+    c_memcnew
 
       <ul>
         <li><a href="group_libccc_memory.html#index-28">define</a>
 </li>
       </ul></li>
       <li>
-    c_memnew
+    c_memcpy
 
       <ul>
         <li><a href="group_libccc_memory.html#index-29">define</a>
 </li>
       </ul></li>
       <li>
-    c_memrep
+    c_memdel
 
       <ul>
         <li><a href="group_libccc_memory.html#index-30">define</a>
 </li>
       </ul></li>
       <li>
-    c_memset
+    c_memdup
 
       <ul>
         <li><a href="group_libccc_memory.html#index-31">define</a>
 </li>
       </ul></li>
       <li>
-    c_memswap
+    c_memfree
 
       <ul>
         <li><a href="group_libccc_memory.html#index-32">define</a>
+</li>
+      </ul></li>
+      <li>
+    c_memjoin
+
+      <ul>
+        <li><a href="group_libccc_memory.html#index-33">define</a>
+</li>
+      </ul></li>
+      <li>
+    c_memmerge
+
+      <ul>
+        <li><a href="group_libccc_memory.html#index-34">define</a>
+</li>
+      </ul></li>
+      <li>
+    c_memmove
+
+      <ul>
+        <li><a href="group_libccc_memory.html#index-35">define</a>
+</li>
+      </ul></li>
+      <li>
+    c_memnew
+
+      <ul>
+        <li><a href="group_libccc_memory.html#index-36">define</a>
+</li>
+      </ul></li>
+      <li>
+    c_memprepend
+
+      <ul>
+        <li><a href="group_libccc_memory.html#index-37">define</a>
+</li>
+      </ul></li>
+      <li>
+    c_memrep
+
+      <ul>
+        <li><a href="group_libccc_memory.html#index-38">define</a>
+</li>
+      </ul></li>
+      <li>
+    c_memset
+
+      <ul>
+        <li><a href="group_libccc_memory.html#index-39">define</a>
+</li>
+      </ul></li>
+      <li>
+    c_memswap
+
+      <ul>
+        <li><a href="group_libccc_memory.html#index-40">define</a>
 </li>
       </ul></li>
       <li>
@@ -861,7 +980,7 @@
     c_putlines
 
       <ul>
-        <li><a href="group_libccc_sys_io.html#index-184">define</a>
+        <li><a href="group_libccc_sys_io.html#index-240">define</a>
 </li>
       </ul></li>
       <li>
@@ -931,14 +1050,14 @@
     C_RED
 
       <ul>
-        <li><a href="group_libccc_sys_io.html#index-27">define</a>
+        <li><a href="group_libccc_sys_io.html#index-40">define</a>
 </li>
       </ul></li>
       <li>
     C_RESET
 
       <ul>
-        <li><a href="group_libccc_sys_io.html#index-28">define</a>
+        <li><a href="group_libccc_sys_io.html#index-41">define</a>
 </li>
       </ul></li>
       <li>
@@ -1620,6 +1739,8 @@
         <li><a href="group_libccc_string.html#index-121">define</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     c_strmerge
 
@@ -1627,8 +1748,6 @@
         <li><a href="group_libccc_string.html#index-122">define</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     c_strncasecmp
 
@@ -2032,14 +2151,14 @@
     c_write_lines
 
       <ul>
-        <li><a href="group_libccc_sys_io.html#index-185">define</a>
+        <li><a href="group_libccc_sys_io.html#index-241">define</a>
 </li>
       </ul></li>
       <li>
     C_YELLOW
 
       <ul>
-        <li><a href="group_libccc_sys_io.html#index-29">define</a>
+        <li><a href="group_libccc_sys_io.html#index-42">define</a>
 </li>
       </ul></li>
       <li>
@@ -2207,98 +2326,105 @@
     Color_AHSL_GetNearest
 
       <ul>
-        <li><a href="group_libccc_color.html#index-42">function</a>
+        <li><a href="group_libccc_color.html#index-44">function</a>
 </li>
       </ul></li>
       <li>
     Color_AHSL_Set
 
       <ul>
-        <li><a href="group_libccc_color.html#index-36">function</a>
+        <li><a href="group_libccc_color.html#index-38">function</a>
 </li>
       </ul></li>
       <li>
     Color_AHSL_Set_A
 
       <ul>
-        <li><a href="group_libccc_color.html#index-37">function</a>
+        <li><a href="group_libccc_color.html#index-39">function</a>
 </li>
       </ul></li>
       <li>
     Color_AHSL_Set_H
 
       <ul>
-        <li><a href="group_libccc_color.html#index-38">function</a>
+        <li><a href="group_libccc_color.html#index-40">function</a>
 </li>
       </ul></li>
       <li>
     Color_AHSL_Set_L
 
       <ul>
-        <li><a href="group_libccc_color.html#index-40">function</a>
+        <li><a href="group_libccc_color.html#index-42">function</a>
 </li>
       </ul></li>
       <li>
     Color_AHSL_Set_S
 
       <ul>
-        <li><a href="group_libccc_color.html#index-39">function</a>
+        <li><a href="group_libccc_color.html#index-41">function</a>
 </li>
       </ul></li>
       <li>
     Color_AHSL_To_ARGB
 
       <ul>
-        <li><a href="group_libccc_color.html#index-41">function</a>
+        <li><a href="group_libccc_color.html#index-43">function</a>
 </li>
       </ul></li>
       <li>
     COLOR_ARGB16_A
 
       <ul>
-        <li><a href="group_libccc_color.html#index-43">define</a>
+        <li><a href="group_libccc_color.html#index-45">define</a>
 </li>
       </ul></li>
       <li>
     COLOR_ARGB16_A_BITINDEX
 
       <ul>
-        <li><a href="group_libccc_color.html#index-44">define</a>
+        <li><a href="group_libccc_color.html#index-46">define</a>
 </li>
       </ul></li>
       <li>
     COLOR_ARGB16_B
 
       <ul>
-        <li><a href="group_libccc_color.html#index-45">define</a>
+        <li><a href="group_libccc_color.html#index-47">define</a>
 </li>
       </ul></li>
       <li>
     COLOR_ARGB16_B_BITINDEX
 
       <ul>
-        <li><a href="group_libccc_color.html#index-46">define</a>
+        <li><a href="group_libccc_color.html#index-48">define</a>
 </li>
       </ul></li>
       <li>
     COLOR_ARGB16_CHANNEL
 
       <ul>
-        <li><a href="group_libccc_color.html#index-47">define</a>
+        <li><a href="group_libccc_color.html#index-49">define</a>
+</li>
+      </ul></li>
+      <li>
+    Color_ARGB16_Difference
+
+      <ul>
+        <li><a href="group_libccc_color.html#index-14">function</a>
 </li>
       </ul></li>
       <li>
     COLOR_ARGB16_G
 
       <ul>
-        <li><a href="group_libccc_color.html#index-48">define</a>
+        <li><a href="group_libccc_color.html#index-50">define</a>
 </li>
       </ul></li>
       <li>
     COLOR_ARGB16_G_BITINDEX
 
       <ul>
-        <li><a href="group_libccc_color.html#index-49">define</a>
+        <li><a href="group_libccc_color.html#index-51">define</a>
 </li>
       </ul></li>
       <li>
@@ -2333,21 +2459,21 @@
     Color_ARGB16_GetNearest
 
       <ul>
-        <li><a href="group_libccc_color.html#index-14">function</a>
+        <li><a href="group_libccc_color.html#index-15">function</a>
 </li>
       </ul></li>
       <li>
     COLOR_ARGB16_R
 
       <ul>
-        <li><a href="group_libccc_color.html#index-50">define</a>
+        <li><a href="group_libccc_color.html#index-52">define</a>
 </li>
       </ul></li>
       <li>
     COLOR_ARGB16_R_BITINDEX
 
       <ul>
-        <li><a href="group_libccc_color.html#index-51">define</a>
+        <li><a href="group_libccc_color.html#index-53">define</a>
 </li>
       </ul></li>
       <li>
@@ -2403,210 +2529,217 @@
     COLOR_ARGB32_A
 
       <ul>
-        <li><a href="group_libccc_color.html#index-52">define</a>
+        <li><a href="group_libccc_color.html#index-54">define</a>
 </li>
       </ul></li>
       <li>
     COLOR_ARGB32_A_BITINDEX
 
       <ul>
-        <li><a href="group_libccc_color.html#index-53">define</a>
+        <li><a href="group_libccc_color.html#index-55">define</a>
 </li>
       </ul></li>
       <li>
     COLOR_ARGB32_B
 
       <ul>
-        <li><a href="group_libccc_color.html#index-54">define</a>
+        <li><a href="group_libccc_color.html#index-56">define</a>
 </li>
       </ul></li>
       <li>
     COLOR_ARGB32_B_BITINDEX
 
       <ul>
-        <li><a href="group_libccc_color.html#index-55">define</a>
+        <li><a href="group_libccc_color.html#index-57">define</a>
 </li>
       </ul></li>
       <li>
     COLOR_ARGB32_CHANNEL
 
       <ul>
-        <li><a href="group_libccc_color.html#index-56">define</a>
-</li>
-      </ul></li>
-      <li>
-    COLOR_ARGB32_G
-
-      <ul>
-        <li><a href="group_libccc_color.html#index-57">define</a>
-</li>
-      </ul></li>
-      <li>
-    COLOR_ARGB32_G_BITINDEX
-
-      <ul>
         <li><a href="group_libccc_color.html#index-58">define</a>
 </li>
       </ul></li>
       <li>
-    Color_ARGB32_Get_A
-
-      <ul>
-        <li><a href="group_libccc_color.html#index-15">function</a>
-</li>
-      </ul></li>
-      <li>
-    Color_ARGB32_Get_B
-
-      <ul>
-        <li><a href="group_libccc_color.html#index-18">function</a>
-</li>
-      </ul></li>
-      <li>
-    Color_ARGB32_Get_G
-
-      <ul>
-        <li><a href="group_libccc_color.html#index-17">function</a>
-</li>
-      </ul></li>
-      <li>
-    Color_ARGB32_Get_R
-
-      <ul>
-        <li><a href="group_libccc_color.html#index-16">function</a>
-</li>
-      </ul></li>
-      <li>
-    Color_ARGB32_GetNearest
-
-      <ul>
-        <li><a href="group_libccc_color.html#index-26">function</a>
-</li>
-      </ul></li>
-      <li>
-    COLOR_ARGB32_R
-
-      <ul>
-        <li><a href="group_libccc_color.html#index-59">define</a>
-</li>
-      </ul></li>
-      <li>
-    COLOR_ARGB32_R_BITINDEX
-
-      <ul>
-        <li><a href="group_libccc_color.html#index-60">define</a>
-</li>
-      </ul></li>
-      <li>
-    Color_ARGB32_Set
-
-      <ul>
-        <li><a href="group_libccc_color.html#index-19">function</a>
-</li>
-      </ul></li>
-      <li>
-    Color_ARGB32_Set_A
-
-      <ul>
-        <li><a href="group_libccc_color.html#index-20">function</a>
-</li>
-      </ul></li>
-      <li>
-    Color_ARGB32_Set_B
-
-      <ul>
-        <li><a href="group_libccc_color.html#index-23">function</a>
-</li>
-      </ul></li>
-      <li>
-    Color_ARGB32_Set_G
-
-      <ul>
-        <li><a href="group_libccc_color.html#index-22">function</a>
-</li>
-      </ul></li>
-      <li>
-    Color_ARGB32_Set_R
-
-      <ul>
-        <li><a href="group_libccc_color.html#index-21">function</a>
-</li>
-      </ul></li>
-      <li>
-    Color_ARGB32_To_ARGB
-
-      <ul>
-        <li><a href="group_libccc_color.html#index-25">function</a>
-</li>
-      </ul></li>
-      <li>
-    Color_ARGB32_To_ARGB16
-
-      <ul>
-        <li><a href="group_libccc_color.html#index-24">function</a>
-</li>
-      </ul></li>
-      <li>
-    Color_ARGB_GetNearest
-
-      <ul>
-        <li><a href="group_libccc_color.html#index-35">function</a>
-</li>
-      </ul></li>
-      <li>
-    Color_ARGB_Set
+    Color_ARGB32_Difference
 
       <ul>
         <li><a href="group_libccc_color.html#index-27">function</a>
 </li>
       </ul></li>
       <li>
-    Color_ARGB_Set_A
+    COLOR_ARGB32_G
+
+      <ul>
+        <li><a href="group_libccc_color.html#index-59">define</a>
+</li>
+      </ul></li>
+      <li>
+    COLOR_ARGB32_G_BITINDEX
+
+      <ul>
+        <li><a href="group_libccc_color.html#index-60">define</a>
+</li>
+      </ul></li>
+      <li>
+    Color_ARGB32_Get_A
+
+      <ul>
+        <li><a href="group_libccc_color.html#index-16">function</a>
+</li>
+      </ul></li>
+      <li>
+    Color_ARGB32_Get_B
+
+      <ul>
+        <li><a href="group_libccc_color.html#index-19">function</a>
+</li>
+      </ul></li>
+      <li>
+    Color_ARGB32_Get_G
+
+      <ul>
+        <li><a href="group_libccc_color.html#index-18">function</a>
+</li>
+      </ul></li>
+      <li>
+    Color_ARGB32_Get_R
+
+      <ul>
+        <li><a href="group_libccc_color.html#index-17">function</a>
+</li>
+      </ul></li>
+      <li>
+    Color_ARGB32_GetNearest
 
       <ul>
         <li><a href="group_libccc_color.html#index-28">function</a>
 </li>
       </ul></li>
       <li>
-    Color_ARGB_Set_B
+    COLOR_ARGB32_R
 
       <ul>
-        <li><a href="group_libccc_color.html#index-31">function</a>
+        <li><a href="group_libccc_color.html#index-61">define</a>
 </li>
       </ul></li>
       <li>
-    Color_ARGB_Set_G
+    COLOR_ARGB32_R_BITINDEX
 
       <ul>
-        <li><a href="group_libccc_color.html#index-30">function</a>
+        <li><a href="group_libccc_color.html#index-62">define</a>
 </li>
       </ul></li>
       <li>
-    Color_ARGB_Set_R
+    Color_ARGB32_Set
+
+      <ul>
+        <li><a href="group_libccc_color.html#index-20">function</a>
+</li>
+      </ul></li>
+      <li>
+    Color_ARGB32_Set_A
+
+      <ul>
+        <li><a href="group_libccc_color.html#index-21">function</a>
+</li>
+      </ul></li>
+      <li>
+    Color_ARGB32_Set_B
+
+      <ul>
+        <li><a href="group_libccc_color.html#index-24">function</a>
+</li>
+      </ul></li>
+      <li>
+    Color_ARGB32_Set_G
+
+      <ul>
+        <li><a href="group_libccc_color.html#index-23">function</a>
+</li>
+      </ul></li>
+      <li>
+    Color_ARGB32_Set_R
+
+      <ul>
+        <li><a href="group_libccc_color.html#index-22">function</a>
+</li>
+      </ul></li>
+      <li>
+    Color_ARGB32_To_ARGB
+
+      <ul>
+        <li><a href="group_libccc_color.html#index-26">function</a>
+</li>
+      </ul></li>
+      <li>
+    Color_ARGB32_To_ARGB16
+
+      <ul>
+        <li><a href="group_libccc_color.html#index-25">function</a>
+</li>
+      </ul></li>
+      <li>
+    Color_ARGB_GetNearest
+
+      <ul>
+        <li><a href="group_libccc_color.html#index-37">function</a>
+</li>
+      </ul></li>
+      <li>
+    Color_ARGB_Set
 
       <ul>
         <li><a href="group_libccc_color.html#index-29">function</a>
 </li>
       </ul></li>
       <li>
-    Color_ARGB_To_AHSL
+    Color_ARGB_Set_A
 
       <ul>
-        <li><a href="group_libccc_color.html#index-34">function</a>
+        <li><a href="group_libccc_color.html#index-30">function</a>
 </li>
       </ul></li>
       <li>
-    Color_ARGB_To_ARGB16
+    Color_ARGB_Set_B
+
+      <ul>
+        <li><a href="group_libccc_color.html#index-33">function</a>
+</li>
+      </ul></li>
+      <li>
+    Color_ARGB_Set_G
 
       <ul>
         <li><a href="group_libccc_color.html#index-32">function</a>
 </li>
       </ul></li>
       <li>
+    Color_ARGB_Set_R
+
+      <ul>
+        <li><a href="group_libccc_color.html#index-31">function</a>
+</li>
+      </ul></li>
+      <li>
+    Color_ARGB_To_AHSL
+
+      <ul>
+        <li><a href="group_libccc_color.html#index-36">function</a>
+</li>
+      </ul></li>
+      <li>
+    Color_ARGB_To_ARGB16
+
+      <ul>
+        <li><a href="group_libccc_color.html#index-34">function</a>
+</li>
+      </ul></li>
+      <li>
     Color_ARGB_To_ARGB32
 
       <ul>
-        <li><a href="group_libccc_color.html#index-33">function</a>
+        <li><a href="group_libccc_color.html#index-35">function</a>
 </li>
       </ul></li>
       <li>
@@ -2798,31 +2931,57 @@
 </li>
         <li><a href="group_libccc.html#index-34">_ALIGN</a>
 </li>
-        <li><a href="group_libccc.html#index-35">_DELETE</a>
+        <li><a href="group_libccc.html#index-35">_FORMAT</a>
 </li>
-        <li><a href="group_libccc.html#index-36">_FORMAT</a>
+        <li><a href="group_libccc.html#index-36">_INLINE</a>
 </li>
-        <li><a href="group_libccc.html#index-37">_INLINE</a>
+        <li><a href="group_libccc.html#index-37">_MALLOC</a>
 </li>
-        <li><a href="group_libccc.html#index-38">_MALLOC</a>
+        <li><a href="group_libccc.html#index-38">_NOINLINE</a>
 </li>
-        <li><a href="group_libccc.html#index-39">_PACKED</a>
+        <li><a href="group_libccc.html#index-39">_NORETURN</a>
 </li>
-        <li><a href="group_libccc.html#index-40">_PURE</a>
+        <li><a href="group_libccc.html#index-40">_PACKED</a>
 </li>
-        <li><a href="group_libccc.html#index-41">_UNUSED</a>
+        <li><a href="group_libccc.html#index-41">_PURE</a>
+</li>
+        <li><a href="group_libccc.html#index-42">_UNUSED</a>
 </li>
         <li><a href="group_libccc_math_math.html#index-33">ABS</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-24">ACCESSMODE_GROUP_R</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-25">ACCESSMODE_GROUP_RWX</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-26">ACCESSMODE_GROUP_W</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-27">ACCESSMODE_GROUP_X</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-28">ACCESSMODE_OTHER_R</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-29">ACCESSMODE_OTHER_RWX</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-30">ACCESSMODE_OTHER_W</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-31">ACCESSMODE_OTHER_X</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-32">ACCESSMODE_USER_R</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-33">ACCESSMODE_USER_RWX</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-34">ACCESSMODE_USER_W</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-35">ACCESSMODE_USER_X</a>
 </li>
         <li><a href="group_libccc_array_array.html#index-1">ARRAY_NULL</a>
 </li>
         <li><a href="group_libccc_format.html#index-9">c_asprintf</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-23">C_BLUE</a>
+        <li><a href="group_libccc_sys_io.html#index-36">C_BLUE</a>
 </li>
         <li><a href="group_libccc_bool.html#index-6">c_bool_to_str</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-24">C_CYAN</a>
+        <li><a href="group_libccc_sys_io.html#index-37">C_CYAN</a>
 </li>
         <li><a href="group_libccc_float.html#index-114">c_f32_to_str</a>
 </li>
@@ -2860,47 +3019,55 @@
 </li>
         <li><a href="group_libccc_float.html#index-131">c_float_to_strsci</a>
 </li>
-        <li><a href="group_libccc_memory.html#index-17">c_getbits</a>
+        <li><a href="group_libccc_memory.html#index-21">c_getbits</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-25">C_GREEN</a>
+        <li><a href="group_libccc_sys_io.html#index-38">C_GREEN</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-26">C_MAGENTA</a>
+        <li><a href="group_libccc_sys_io.html#index-39">C_MAGENTA</a>
 </li>
-        <li><a href="group_libccc_memory.html#index-18">c_memalloc</a>
+        <li><a href="group_libccc_memory.html#index-22">c_memalloc</a>
 </li>
-        <li><a href="group_libccc_memory.html#index-19">c_memccpy</a>
+        <li><a href="group_libccc_memory.html#index-23">c_memappend</a>
 </li>
-        <li><a href="group_libccc_memory.html#index-20">c_memchr</a>
+        <li><a href="group_libccc_memory.html#index-24">c_memccpy</a>
 </li>
-        <li><a href="group_libccc_memory.html#index-21">c_memclr</a>
+        <li><a href="group_libccc_memory.html#index-25">c_memchr</a>
 </li>
-        <li><a href="group_libccc_memory.html#index-22">c_memcmp</a>
+        <li><a href="group_libccc_memory.html#index-26">c_memclr</a>
 </li>
-        <li><a href="group_libccc_memory.html#index-23">c_memcnew</a>
+        <li><a href="group_libccc_memory.html#index-27">c_memcmp</a>
 </li>
-        <li><a href="group_libccc_memory.html#index-24">c_memcpy</a>
+        <li><a href="group_libccc_memory.html#index-28">c_memcnew</a>
 </li>
-        <li><a href="group_libccc_memory.html#index-25">c_memdel</a>
+        <li><a href="group_libccc_memory.html#index-29">c_memcpy</a>
 </li>
-        <li><a href="group_libccc_memory.html#index-26">c_memdup</a>
+        <li><a href="group_libccc_memory.html#index-30">c_memdel</a>
 </li>
-        <li><a href="group_libccc_memory.html#index-27">c_memfree</a>
+        <li><a href="group_libccc_memory.html#index-31">c_memdup</a>
 </li>
-        <li><a href="group_libccc_memory.html#index-28">c_memmove</a>
+        <li><a href="group_libccc_memory.html#index-32">c_memfree</a>
 </li>
-        <li><a href="group_libccc_memory.html#index-29">c_memnew</a>
+        <li><a href="group_libccc_memory.html#index-33">c_memjoin</a>
 </li>
-        <li><a href="group_libccc_memory.html#index-30">c_memrep</a>
+        <li><a href="group_libccc_memory.html#index-34">c_memmerge</a>
 </li>
-        <li><a href="group_libccc_memory.html#index-31">c_memset</a>
+        <li><a href="group_libccc_memory.html#index-35">c_memmove</a>
 </li>
-        <li><a href="group_libccc_memory.html#index-32">c_memswap</a>
+        <li><a href="group_libccc_memory.html#index-36">c_memnew</a>
+</li>
+        <li><a href="group_libccc_memory.html#index-37">c_memprepend</a>
+</li>
+        <li><a href="group_libccc_memory.html#index-38">c_memrep</a>
+</li>
+        <li><a href="group_libccc_memory.html#index-39">c_memset</a>
+</li>
+        <li><a href="group_libccc_memory.html#index-40">c_memswap</a>
 </li>
         <li><a href="group_libccc_pointer.html#index-14">c_ptr_to_str</a>
 </li>
         <li><a href="group_libccc_pointer.html#index-15">c_ptr_to_strhex</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-184">c_putlines</a>
+        <li><a href="group_libccc_sys_io.html#index-240">c_putlines</a>
 </li>
         <li><a href="group_libccc_fixed.html#index-25">c_q16_to_str</a>
 </li>
@@ -2920,9 +3087,9 @@
 </li>
         <li><a href="group_libccc_fixed.html#index-33">c_q64_to_strhex</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-27">C_RED</a>
+        <li><a href="group_libccc_sys_io.html#index-40">C_RED</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-28">C_RESET</a>
+        <li><a href="group_libccc_sys_io.html#index-41">C_RESET</a>
 </li>
         <li><a href="group_libccc_int.html#index-63">c_s16_to_str</a>
 </li>
@@ -3234,9 +3401,9 @@
 </li>
         <li><a href="group_libccc_format.html#index-20">c_vsnprintf</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-185">c_write_lines</a>
+        <li><a href="group_libccc_sys_io.html#index-241">c_write_lines</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-29">C_YELLOW</a>
+        <li><a href="group_libccc_sys_io.html#index-42">C_YELLOW</a>
 </li>
         <li><a href="group_libccc_math_random.html#index-10">CEIL_SQRT_MOD</a>
 </li>
@@ -3250,41 +3417,41 @@
 </li>
         <li><a href="group_libccc_char.html#index-28">CHARSET_WHITESPACE</a>
 </li>
-        <li><a href="group_libccc_color.html#index-43">COLOR_ARGB16_A</a>
+        <li><a href="group_libccc_color.html#index-45">COLOR_ARGB16_A</a>
 </li>
-        <li><a href="group_libccc_color.html#index-44">COLOR_ARGB16_A_BITINDEX</a>
+        <li><a href="group_libccc_color.html#index-46">COLOR_ARGB16_A_BITINDEX</a>
 </li>
-        <li><a href="group_libccc_color.html#index-45">COLOR_ARGB16_B</a>
+        <li><a href="group_libccc_color.html#index-47">COLOR_ARGB16_B</a>
 </li>
-        <li><a href="group_libccc_color.html#index-46">COLOR_ARGB16_B_BITINDEX</a>
+        <li><a href="group_libccc_color.html#index-48">COLOR_ARGB16_B_BITINDEX</a>
 </li>
-        <li><a href="group_libccc_color.html#index-47">COLOR_ARGB16_CHANNEL</a>
+        <li><a href="group_libccc_color.html#index-49">COLOR_ARGB16_CHANNEL</a>
 </li>
-        <li><a href="group_libccc_color.html#index-48">COLOR_ARGB16_G</a>
+        <li><a href="group_libccc_color.html#index-50">COLOR_ARGB16_G</a>
 </li>
-        <li><a href="group_libccc_color.html#index-49">COLOR_ARGB16_G_BITINDEX</a>
+        <li><a href="group_libccc_color.html#index-51">COLOR_ARGB16_G_BITINDEX</a>
 </li>
-        <li><a href="group_libccc_color.html#index-50">COLOR_ARGB16_R</a>
+        <li><a href="group_libccc_color.html#index-52">COLOR_ARGB16_R</a>
 </li>
-        <li><a href="group_libccc_color.html#index-51">COLOR_ARGB16_R_BITINDEX</a>
+        <li><a href="group_libccc_color.html#index-53">COLOR_ARGB16_R_BITINDEX</a>
 </li>
-        <li><a href="group_libccc_color.html#index-52">COLOR_ARGB32_A</a>
+        <li><a href="group_libccc_color.html#index-54">COLOR_ARGB32_A</a>
 </li>
-        <li><a href="group_libccc_color.html#index-53">COLOR_ARGB32_A_BITINDEX</a>
+        <li><a href="group_libccc_color.html#index-55">COLOR_ARGB32_A_BITINDEX</a>
 </li>
-        <li><a href="group_libccc_color.html#index-54">COLOR_ARGB32_B</a>
+        <li><a href="group_libccc_color.html#index-56">COLOR_ARGB32_B</a>
 </li>
-        <li><a href="group_libccc_color.html#index-55">COLOR_ARGB32_B_BITINDEX</a>
+        <li><a href="group_libccc_color.html#index-57">COLOR_ARGB32_B_BITINDEX</a>
 </li>
-        <li><a href="group_libccc_color.html#index-56">COLOR_ARGB32_CHANNEL</a>
+        <li><a href="group_libccc_color.html#index-58">COLOR_ARGB32_CHANNEL</a>
 </li>
-        <li><a href="group_libccc_color.html#index-57">COLOR_ARGB32_G</a>
+        <li><a href="group_libccc_color.html#index-59">COLOR_ARGB32_G</a>
 </li>
-        <li><a href="group_libccc_color.html#index-58">COLOR_ARGB32_G_BITINDEX</a>
+        <li><a href="group_libccc_color.html#index-60">COLOR_ARGB32_G_BITINDEX</a>
 </li>
-        <li><a href="group_libccc_color.html#index-59">COLOR_ARGB32_R</a>
+        <li><a href="group_libccc_color.html#index-61">COLOR_ARGB32_R</a>
 </li>
-        <li><a href="group_libccc_color.html#index-60">COLOR_ARGB32_R_BITINDEX</a>
+        <li><a href="group_libccc_color.html#index-62">COLOR_ARGB32_R_BITINDEX</a>
 </li>
         <li><a href="group_libccc_math_complex.html#index-10">COMPLEX_NULL</a>
 </li>
@@ -3458,7 +3625,7 @@
 </li>
         <li><a href="group_libccc_float.html#index-108">Float_ToString_Scientific</a>
 </li>
-        <li><a href="group_libccc.html#index-42">foreach</a>
+        <li><a href="group_libccc.html#index-43">foreach</a>
 </li>
         <li><a href="group_libccc_sys_time.html#index-22">FORMAT_DATE_DMY</a>
 </li>
@@ -3472,11 +3639,11 @@
 </li>
         <li><a href="group_libccc_sys_time.html#index-27">FORMAT_TIME_UNIX</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-30">GNL_END</a>
+        <li><a href="group_libccc_sys_io.html#index-43">GNL_END</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-31">GNL_ERROR</a>
+        <li><a href="group_libccc_sys_io.html#index-44">GNL_ERROR</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-32">GNL_LINE</a>
+        <li><a href="group_libccc_sys_io.html#index-45">GNL_LINE</a>
 </li>
         <li><a href="group_libccc_math_math.html#index-37">HALF_PI</a>
 </li>
@@ -3506,261 +3673,371 @@
 </li>
         <li><a href="group_libccc_math_math.html#index-42">INV_TAU</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-33">IO_BUFFER_SIZE</a>
+        <li><a href="group_libccc_sys_io.html#index-46">IO_BUFFER_SIZE</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-34">IO_ERROR_2BIG</a>
+        <li><a href="group_libccc_sys_io.html#index-47">IO_COLOR_BG</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-35">IO_ERROR_ACCES</a>
+        <li><a href="group_libccc_sys_io.html#index-48">IO_COLOR_BG_BLACK</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-36">IO_ERROR_ADDRINUSE</a>
+        <li><a href="group_libccc_sys_io.html#index-49">IO_COLOR_BG_BLUE</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-37">IO_ERROR_ADDRNOTAVAIL</a>
+        <li><a href="group_libccc_sys_io.html#index-50">IO_COLOR_BG_BLUE_LIGHT</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-38">IO_ERROR_AFNOSUPPORT</a>
+        <li><a href="group_libccc_sys_io.html#index-51">IO_COLOR_BG_CYAN</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-39">IO_ERROR_AGAIN</a>
+        <li><a href="group_libccc_sys_io.html#index-52">IO_COLOR_BG_CYAN_LIGHT</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-40">IO_ERROR_ALREADY</a>
+        <li><a href="group_libccc_sys_io.html#index-53">IO_COLOR_BG_DEFAULT</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-41">IO_ERROR_BADE</a>
+        <li><a href="group_libccc_sys_io.html#index-54">IO_COLOR_BG_GRAY_DARK</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-42">IO_ERROR_BADF</a>
+        <li><a href="group_libccc_sys_io.html#index-55">IO_COLOR_BG_GRAY_LIGHT</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-43">IO_ERROR_BADFD</a>
+        <li><a href="group_libccc_sys_io.html#index-56">IO_COLOR_BG_GREEN</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-44">IO_ERROR_BADMSG</a>
+        <li><a href="group_libccc_sys_io.html#index-57">IO_COLOR_BG_GREEN_LIGHT</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-45">IO_ERROR_BADR</a>
+        <li><a href="group_libccc_sys_io.html#index-58">IO_COLOR_BG_MAGENTA</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-46">IO_ERROR_BADRQC</a>
+        <li><a href="group_libccc_sys_io.html#index-59">IO_COLOR_BG_MAGENTA_LIGHT</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-47">IO_ERROR_BADSLT</a>
+        <li><a href="group_libccc_sys_io.html#index-60">IO_COLOR_BG_RED</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-48">IO_ERROR_BUSY</a>
+        <li><a href="group_libccc_sys_io.html#index-61">IO_COLOR_BG_RED_LIGHT</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-49">IO_ERROR_CANCELED</a>
+        <li><a href="group_libccc_sys_io.html#index-62">IO_COLOR_BG_WHITE</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-50">IO_ERROR_CHILD</a>
+        <li><a href="group_libccc_sys_io.html#index-63">IO_COLOR_BG_YELLOW</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-51">IO_ERROR_CHRNG</a>
+        <li><a href="group_libccc_sys_io.html#index-64">IO_COLOR_BG_YELLOW_LIGHT</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-52">IO_ERROR_COMM</a>
+        <li><a href="group_libccc_sys_io.html#index-65">IO_COLOR_FG</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-53">IO_ERROR_CONNABORTED</a>
+        <li><a href="group_libccc_sys_io.html#index-66">IO_COLOR_FG_BLACK</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-54">IO_ERROR_CONNREFUSED</a>
+        <li><a href="group_libccc_sys_io.html#index-67">IO_COLOR_FG_BLUE</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-55">IO_ERROR_CONNRESET</a>
+        <li><a href="group_libccc_sys_io.html#index-68">IO_COLOR_FG_BLUE_LIGHT</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-56">IO_ERROR_DEADLK</a>
+        <li><a href="group_libccc_sys_io.html#index-69">IO_COLOR_FG_CYAN</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-57">IO_ERROR_DEADLOCK</a>
+        <li><a href="group_libccc_sys_io.html#index-70">IO_COLOR_FG_CYAN_LIGHT</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-58">IO_ERROR_DESTADDRREQ</a>
+        <li><a href="group_libccc_sys_io.html#index-71">IO_COLOR_FG_DEFAULT</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-59">IO_ERROR_DOM</a>
+        <li><a href="group_libccc_sys_io.html#index-72">IO_COLOR_FG_GRAY_DARK</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-60">IO_ERROR_DQUOT</a>
+        <li><a href="group_libccc_sys_io.html#index-73">IO_COLOR_FG_GRAY_LIGHT</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-61">IO_ERROR_EXIST</a>
+        <li><a href="group_libccc_sys_io.html#index-74">IO_COLOR_FG_GREEN</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-62">IO_ERROR_FAULT</a>
+        <li><a href="group_libccc_sys_io.html#index-75">IO_COLOR_FG_GREEN_LIGHT</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-63">IO_ERROR_FBIG</a>
+        <li><a href="group_libccc_sys_io.html#index-76">IO_COLOR_FG_MAGENTA</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-64">IO_ERROR_HOSTDOWN</a>
+        <li><a href="group_libccc_sys_io.html#index-77">IO_COLOR_FG_MAGENTA_LIGHT</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-65">IO_ERROR_HOSTUNREACH</a>
+        <li><a href="group_libccc_sys_io.html#index-78">IO_COLOR_FG_RED</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-66">IO_ERROR_HWPOISON</a>
+        <li><a href="group_libccc_sys_io.html#index-79">IO_COLOR_FG_RED_LIGHT</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-67">IO_ERROR_IDRM</a>
+        <li><a href="group_libccc_sys_io.html#index-80">IO_COLOR_FG_WHITE</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-68">IO_ERROR_ILSEQ</a>
+        <li><a href="group_libccc_sys_io.html#index-81">IO_COLOR_FG_YELLOW</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-69">IO_ERROR_INPROGRESS</a>
+        <li><a href="group_libccc_sys_io.html#index-82">IO_COLOR_FG_YELLOW_LIGHT</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-70">IO_ERROR_INTR</a>
+        <li><a href="group_libccc_sys_io.html#index-83">IO_ERROR_2BIG</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-71">IO_ERROR_INVAL</a>
+        <li><a href="group_libccc_sys_io.html#index-84">IO_ERROR_ACCES</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-72">IO_ERROR_IO</a>
+        <li><a href="group_libccc_sys_io.html#index-85">IO_ERROR_ADDRINUSE</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-73">IO_ERROR_ISCONN</a>
+        <li><a href="group_libccc_sys_io.html#index-86">IO_ERROR_ADDRNOTAVAIL</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-74">IO_ERROR_ISDIR</a>
+        <li><a href="group_libccc_sys_io.html#index-87">IO_ERROR_AFNOSUPPORT</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-75">IO_ERROR_ISNAM</a>
+        <li><a href="group_libccc_sys_io.html#index-88">IO_ERROR_AGAIN</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-76">IO_ERROR_KEYEXPIRED</a>
+        <li><a href="group_libccc_sys_io.html#index-89">IO_ERROR_ALREADY</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-77">IO_ERROR_KEYREJECTED</a>
+        <li><a href="group_libccc_sys_io.html#index-90">IO_ERROR_BADE</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-78">IO_ERROR_KEYREVOKED</a>
+        <li><a href="group_libccc_sys_io.html#index-91">IO_ERROR_BADF</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-79">IO_ERROR_L2HLT</a>
+        <li><a href="group_libccc_sys_io.html#index-92">IO_ERROR_BADFD</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-80">IO_ERROR_L2NSYNC</a>
+        <li><a href="group_libccc_sys_io.html#index-93">IO_ERROR_BADMSG</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-81">IO_ERROR_L3HLT</a>
+        <li><a href="group_libccc_sys_io.html#index-94">IO_ERROR_BADR</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-82">IO_ERROR_L3RST</a>
+        <li><a href="group_libccc_sys_io.html#index-95">IO_ERROR_BADRQC</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-83">IO_ERROR_LIBACC</a>
+        <li><a href="group_libccc_sys_io.html#index-96">IO_ERROR_BADSLT</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-84">IO_ERROR_LIBBAD</a>
+        <li><a href="group_libccc_sys_io.html#index-97">IO_ERROR_BUSY</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-85">IO_ERROR_LIBEXEC</a>
+        <li><a href="group_libccc_sys_io.html#index-98">IO_ERROR_CANCELED</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-86">IO_ERROR_LIBMAX</a>
+        <li><a href="group_libccc_sys_io.html#index-99">IO_ERROR_CHILD</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-87">IO_ERROR_LIBSCN</a>
+        <li><a href="group_libccc_sys_io.html#index-100">IO_ERROR_CHRNG</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-88">IO_ERROR_LNRANGE</a>
+        <li><a href="group_libccc_sys_io.html#index-101">IO_ERROR_COMM</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-89">IO_ERROR_LOOP</a>
+        <li><a href="group_libccc_sys_io.html#index-102">IO_ERROR_CONNABORTED</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-90">IO_ERROR_MEDIUMTYPE</a>
+        <li><a href="group_libccc_sys_io.html#index-103">IO_ERROR_CONNREFUSED</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-91">IO_ERROR_MFILE</a>
+        <li><a href="group_libccc_sys_io.html#index-104">IO_ERROR_CONNRESET</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-92">IO_ERROR_MLINK</a>
+        <li><a href="group_libccc_sys_io.html#index-105">IO_ERROR_DEADLK</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-93">IO_ERROR_MSGSIZE</a>
+        <li><a href="group_libccc_sys_io.html#index-106">IO_ERROR_DEADLOCK</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-94">IO_ERROR_MULTIHOP</a>
+        <li><a href="group_libccc_sys_io.html#index-107">IO_ERROR_DESTADDRREQ</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-95">IO_ERROR_NAMETOOLONG</a>
+        <li><a href="group_libccc_sys_io.html#index-108">IO_ERROR_DOM</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-96">IO_ERROR_NETDOWN</a>
+        <li><a href="group_libccc_sys_io.html#index-109">IO_ERROR_DQUOT</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-97">IO_ERROR_NETRESET</a>
+        <li><a href="group_libccc_sys_io.html#index-110">IO_ERROR_EXIST</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-98">IO_ERROR_NETUNREACH</a>
+        <li><a href="group_libccc_sys_io.html#index-111">IO_ERROR_FAULT</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-99">IO_ERROR_NFILE</a>
+        <li><a href="group_libccc_sys_io.html#index-112">IO_ERROR_FBIG</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-100">IO_ERROR_NOANO</a>
+        <li><a href="group_libccc_sys_io.html#index-113">IO_ERROR_HOSTDOWN</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-101">IO_ERROR_NOBUFS</a>
+        <li><a href="group_libccc_sys_io.html#index-114">IO_ERROR_HOSTUNREACH</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-102">IO_ERROR_NODATA</a>
+        <li><a href="group_libccc_sys_io.html#index-115">IO_ERROR_HWPOISON</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-103">IO_ERROR_NODEV</a>
+        <li><a href="group_libccc_sys_io.html#index-116">IO_ERROR_IDRM</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-104">IO_ERROR_NOENT</a>
+        <li><a href="group_libccc_sys_io.html#index-117">IO_ERROR_ILSEQ</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-105">IO_ERROR_NOEXEC</a>
+        <li><a href="group_libccc_sys_io.html#index-118">IO_ERROR_INPROGRESS</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-106">IO_ERROR_NOKEY</a>
+        <li><a href="group_libccc_sys_io.html#index-119">IO_ERROR_INTR</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-107">IO_ERROR_NOLCK</a>
+        <li><a href="group_libccc_sys_io.html#index-120">IO_ERROR_INVAL</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-108">IO_ERROR_NOLINK</a>
+        <li><a href="group_libccc_sys_io.html#index-121">IO_ERROR_IO</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-109">IO_ERROR_NOMEDIUM</a>
+        <li><a href="group_libccc_sys_io.html#index-122">IO_ERROR_ISCONN</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-110">IO_ERROR_NOMEM</a>
+        <li><a href="group_libccc_sys_io.html#index-123">IO_ERROR_ISDIR</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-111">IO_ERROR_NOMSG</a>
+        <li><a href="group_libccc_sys_io.html#index-124">IO_ERROR_ISNAM</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-112">IO_ERROR_NONET</a>
+        <li><a href="group_libccc_sys_io.html#index-125">IO_ERROR_KEYEXPIRED</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-113">IO_ERROR_NOPKG</a>
+        <li><a href="group_libccc_sys_io.html#index-126">IO_ERROR_KEYREJECTED</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-114">IO_ERROR_NOPROTOOPT</a>
+        <li><a href="group_libccc_sys_io.html#index-127">IO_ERROR_KEYREVOKED</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-115">IO_ERROR_NOSPC</a>
+        <li><a href="group_libccc_sys_io.html#index-128">IO_ERROR_L2HLT</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-116">IO_ERROR_NOSR</a>
+        <li><a href="group_libccc_sys_io.html#index-129">IO_ERROR_L2NSYNC</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-117">IO_ERROR_NOSTR</a>
+        <li><a href="group_libccc_sys_io.html#index-130">IO_ERROR_L3HLT</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-118">IO_ERROR_NOSYS</a>
+        <li><a href="group_libccc_sys_io.html#index-131">IO_ERROR_L3RST</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-119">IO_ERROR_NOTBLK</a>
+        <li><a href="group_libccc_sys_io.html#index-132">IO_ERROR_LIBACC</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-120">IO_ERROR_NOTCONN</a>
+        <li><a href="group_libccc_sys_io.html#index-133">IO_ERROR_LIBBAD</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-121">IO_ERROR_NOTDIR</a>
+        <li><a href="group_libccc_sys_io.html#index-134">IO_ERROR_LIBEXEC</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-122">IO_ERROR_NOTEMPTY</a>
+        <li><a href="group_libccc_sys_io.html#index-135">IO_ERROR_LIBMAX</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-123">IO_ERROR_NOTRECOVERABLE</a>
+        <li><a href="group_libccc_sys_io.html#index-136">IO_ERROR_LIBSCN</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-124">IO_ERROR_NOTSOCK</a>
+        <li><a href="group_libccc_sys_io.html#index-137">IO_ERROR_LNRANGE</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-125">IO_ERROR_NOTSUP</a>
+        <li><a href="group_libccc_sys_io.html#index-138">IO_ERROR_LOOP</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-126">IO_ERROR_NOTTY</a>
+        <li><a href="group_libccc_sys_io.html#index-139">IO_ERROR_MEDIUMTYPE</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-127">IO_ERROR_NOTUNIQ</a>
+        <li><a href="group_libccc_sys_io.html#index-140">IO_ERROR_MFILE</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-128">IO_ERROR_NXIO</a>
+        <li><a href="group_libccc_sys_io.html#index-141">IO_ERROR_MLINK</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-129">IO_ERROR_OPNOTSUPP</a>
+        <li><a href="group_libccc_sys_io.html#index-142">IO_ERROR_MSGSIZE</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-130">IO_ERROR_OVERFLOW</a>
+        <li><a href="group_libccc_sys_io.html#index-143">IO_ERROR_MULTIHOP</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-131">IO_ERROR_OWNERDEAD</a>
+        <li><a href="group_libccc_sys_io.html#index-144">IO_ERROR_NAMETOOLONG</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-132">IO_ERROR_PERM</a>
+        <li><a href="group_libccc_sys_io.html#index-145">IO_ERROR_NETDOWN</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-133">IO_ERROR_PFNOSUPPORT</a>
+        <li><a href="group_libccc_sys_io.html#index-146">IO_ERROR_NETRESET</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-134">IO_ERROR_PIPE</a>
+        <li><a href="group_libccc_sys_io.html#index-147">IO_ERROR_NETUNREACH</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-135">IO_ERROR_PROTO</a>
+        <li><a href="group_libccc_sys_io.html#index-148">IO_ERROR_NFILE</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-136">IO_ERROR_PROTONOSUPPORT</a>
+        <li><a href="group_libccc_sys_io.html#index-149">IO_ERROR_NOANO</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-137">IO_ERROR_PROTOTYPE</a>
+        <li><a href="group_libccc_sys_io.html#index-150">IO_ERROR_NOBUFS</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-138">IO_ERROR_RANGE</a>
+        <li><a href="group_libccc_sys_io.html#index-151">IO_ERROR_NODATA</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-139">IO_ERROR_REMCHG</a>
+        <li><a href="group_libccc_sys_io.html#index-152">IO_ERROR_NODEV</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-140">IO_ERROR_REMOTE</a>
+        <li><a href="group_libccc_sys_io.html#index-153">IO_ERROR_NOENT</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-141">IO_ERROR_REMOTEIO</a>
+        <li><a href="group_libccc_sys_io.html#index-154">IO_ERROR_NOEXEC</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-142">IO_ERROR_RESTART</a>
+        <li><a href="group_libccc_sys_io.html#index-155">IO_ERROR_NOKEY</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-143">IO_ERROR_RFKILL</a>
+        <li><a href="group_libccc_sys_io.html#index-156">IO_ERROR_NOLCK</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-144">IO_ERROR_ROFS</a>
+        <li><a href="group_libccc_sys_io.html#index-157">IO_ERROR_NOLINK</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-145">IO_ERROR_SHUTDOWN</a>
+        <li><a href="group_libccc_sys_io.html#index-158">IO_ERROR_NOMEDIUM</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-146">IO_ERROR_SOCKTNOSUPPORT</a>
+        <li><a href="group_libccc_sys_io.html#index-159">IO_ERROR_NOMEM</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-147">IO_ERROR_SPIPE</a>
+        <li><a href="group_libccc_sys_io.html#index-160">IO_ERROR_NOMSG</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-148">IO_ERROR_SRCH</a>
+        <li><a href="group_libccc_sys_io.html#index-161">IO_ERROR_NONET</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-149">IO_ERROR_STALE</a>
+        <li><a href="group_libccc_sys_io.html#index-162">IO_ERROR_NOPKG</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-150">IO_ERROR_STRPIPE</a>
+        <li><a href="group_libccc_sys_io.html#index-163">IO_ERROR_NOPROTOOPT</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-151">IO_ERROR_TIME</a>
+        <li><a href="group_libccc_sys_io.html#index-164">IO_ERROR_NOSPC</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-152">IO_ERROR_TIMEDOUT</a>
+        <li><a href="group_libccc_sys_io.html#index-165">IO_ERROR_NOSR</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-153">IO_ERROR_TOOMANYREFS</a>
+        <li><a href="group_libccc_sys_io.html#index-166">IO_ERROR_NOSTR</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-154">IO_ERROR_TXTBSY</a>
+        <li><a href="group_libccc_sys_io.html#index-167">IO_ERROR_NOSYS</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-155">IO_ERROR_UCLEAN</a>
+        <li><a href="group_libccc_sys_io.html#index-168">IO_ERROR_NOTBLK</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-156">IO_ERROR_UNATCH</a>
+        <li><a href="group_libccc_sys_io.html#index-169">IO_ERROR_NOTCONN</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-157">IO_ERROR_USERS</a>
+        <li><a href="group_libccc_sys_io.html#index-170">IO_ERROR_NOTDIR</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-158">IO_ERROR_WOULDBLOCK</a>
+        <li><a href="group_libccc_sys_io.html#index-171">IO_ERROR_NOTEMPTY</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-159">IO_ERROR_XDEV</a>
+        <li><a href="group_libccc_sys_io.html#index-172">IO_ERROR_NOTRECOVERABLE</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-160">IO_ERROR_XFULL</a>
+        <li><a href="group_libccc_sys_io.html#index-173">IO_ERROR_NOTSOCK</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-174">IO_ERROR_NOTSUP</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-175">IO_ERROR_NOTTY</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-176">IO_ERROR_NOTUNIQ</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-177">IO_ERROR_NXIO</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-178">IO_ERROR_OPNOTSUPP</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-179">IO_ERROR_OVERFLOW</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-180">IO_ERROR_OWNERDEAD</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-181">IO_ERROR_PERM</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-182">IO_ERROR_PFNOSUPPORT</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-183">IO_ERROR_PIPE</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-184">IO_ERROR_PROTO</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-185">IO_ERROR_PROTONOSUPPORT</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-186">IO_ERROR_PROTOTYPE</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-187">IO_ERROR_RANGE</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-188">IO_ERROR_REMCHG</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-189">IO_ERROR_REMOTE</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-190">IO_ERROR_REMOTEIO</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-191">IO_ERROR_RESTART</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-192">IO_ERROR_RFKILL</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-193">IO_ERROR_ROFS</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-194">IO_ERROR_SHUTDOWN</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-195">IO_ERROR_SOCKTNOSUPPORT</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-196">IO_ERROR_SPIPE</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-197">IO_ERROR_SRCH</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-198">IO_ERROR_STALE</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-199">IO_ERROR_STRPIPE</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-200">IO_ERROR_TIME</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-201">IO_ERROR_TIMEDOUT</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-202">IO_ERROR_TOOMANYREFS</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-203">IO_ERROR_TXTBSY</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-204">IO_ERROR_UCLEAN</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-205">IO_ERROR_UNATCH</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-206">IO_ERROR_USERS</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-207">IO_ERROR_WOULDBLOCK</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-208">IO_ERROR_XDEV</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-209">IO_ERROR_XFULL</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-210">IO_RESET</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-211">IO_TEXT_3</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-212">IO_TEXT_6</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-213">IO_TEXT_9</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-214">IO_TEXT_BLINK</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-215">IO_TEXT_BOLD</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-216">IO_TEXT_DIM</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-217">IO_TEXT_HIDDEN</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-218">IO_TEXT_INVERTED</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-219">IO_TEXT_RESET_3</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-220">IO_TEXT_RESET_6</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-221">IO_TEXT_RESET_9</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-222">IO_TEXT_RESET_BLINK</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-223">IO_TEXT_RESET_BOLD</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-224">IO_TEXT_RESET_DIM</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-225">IO_TEXT_RESET_HIDDEN</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-226">IO_TEXT_RESET_INVERTED</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-227">IO_TEXT_RESET_UNDERLINE</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-228">IO_TEXT_UNDERLINE</a>
 </li>
         <li><a href="group_libccc_float.html#index-111">IS_INFINITY</a>
 </li>
@@ -3798,11 +4075,9 @@
 </li>
         <li><a href="group_libccc_math_math.html#index-44">LN_2</a>
 </li>
-        <li><a href="group_libccc_sys_logger.html#index-16">LOG_TIMESTAMP_FORMAT</a>
+        <li><a href="group_libccc_sys_logger.html#index-22">LOG_TIMESTAMP_FORMAT</a>
 </li>
-        <li><a href="group_libccc_sys_logger.html#index-17">LOG_TIMESTAMP_INDENT</a>
-</li>
-        <li><a href="group_libccc_sys_logger.html#index-15">LOGFILES_MAX</a>
+        <li><a href="group_libccc_sys_logger.html#index-23">LOG_TIMESTAMP_INDENT</a>
 </li>
         <li><a href="group_libccc_math_algebra.html#index-37">MATRIX2D_IDENTITY</a>
 </li>
@@ -3827,30 +4102,6 @@
         <li><a href="group_libccc_math_math.html#index-45">MAX</a>
 </li>
         <li><a href="group_libccc_math_math.html#index-46">MIN</a>
-</li>
-        <li><a href="group_libccc_sys_io.html#index-161">MODE_GROUP_R</a>
-</li>
-        <li><a href="group_libccc_sys_io.html#index-162">MODE_GROUP_RWX</a>
-</li>
-        <li><a href="group_libccc_sys_io.html#index-163">MODE_GROUP_W</a>
-</li>
-        <li><a href="group_libccc_sys_io.html#index-164">MODE_GROUP_X</a>
-</li>
-        <li><a href="group_libccc_sys_io.html#index-165">MODE_OTHER_R</a>
-</li>
-        <li><a href="group_libccc_sys_io.html#index-166">MODE_OTHER_RWX</a>
-</li>
-        <li><a href="group_libccc_sys_io.html#index-167">MODE_OTHER_W</a>
-</li>
-        <li><a href="group_libccc_sys_io.html#index-168">MODE_OTHER_X</a>
-</li>
-        <li><a href="group_libccc_sys_io.html#index-169">MODE_USER_R</a>
-</li>
-        <li><a href="group_libccc_sys_io.html#index-170">MODE_USER_RWX</a>
-</li>
-        <li><a href="group_libccc_sys_io.html#index-171">MODE_USER_W</a>
-</li>
-        <li><a href="group_libccc_sys_io.html#index-172">MODE_USER_X</a>
 </li>
         <li><a href="group_libccc_math_random.html#index-12">MODULUS</a>
 </li>
@@ -3884,21 +4135,21 @@
 </li>
         <li><a href="group_libccc.html#index-31">OK</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-173">OPEN_ACCESSMODE</a>
+        <li><a href="group_libccc_sys_io.html#index-229">OPEN_ACCESSMODE</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-174">OPEN_APPEND</a>
+        <li><a href="group_libccc_sys_io.html#index-230">OPEN_APPEND</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-175">OPEN_CLEARFILE</a>
+        <li><a href="group_libccc_sys_io.html#index-231">OPEN_CLEARFILE</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-176">OPEN_CREATE</a>
+        <li><a href="group_libccc_sys_io.html#index-232">OPEN_CREATE</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-177">OPEN_EXCLUSIVE</a>
+        <li><a href="group_libccc_sys_io.html#index-233">OPEN_NOEXISTING</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-178">OPEN_READONLY</a>
+        <li><a href="group_libccc_sys_io.html#index-234">OPEN_READONLY</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-179">OPEN_READWRITE</a>
+        <li><a href="group_libccc_sys_io.html#index-235">OPEN_READWRITE</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-180">OPEN_WRITEONLY</a>
+        <li><a href="group_libccc_sys_io.html#index-236">OPEN_WRITEONLY</a>
 </li>
         <li><a href="group_libccc_math_math.html#index-47">PI</a>
 </li>
@@ -3942,11 +4193,11 @@
 </li>
         <li><a href="group_libccc_math_math.html#index-52">SQRT_5</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-181">STDERR</a>
+        <li><a href="group_libccc_sys_io.html#index-237">STDERR</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-182">STDIN</a>
+        <li><a href="group_libccc_sys_io.html#index-238">STDIN</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-183">STDOUT</a>
+        <li><a href="group_libccc_sys_io.html#index-239">STDOUT</a>
 </li>
         <li><a href="group_libccc.html#index-32">STRING</a>
 </li>
@@ -4026,27 +4277,6 @@
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li>
-    dest_files
-
-      <ul>
-        <li><a href="struct_s_logger.html#index-6">variable</a>
-</li>
-      </ul></li>
-      <li>
-    dest_stderr
-
-      <ul>
-        <li><a href="struct_s_logger.html#index-5">variable</a>
-</li>
-      </ul></li>
-      <li>
-    dest_stdout
-
-      <ul>
-        <li><a href="struct_s_logger.html#index-4">variable</a>
-</li>
-      </ul></li>
-      <li>
     DICT_NULL
 
       <ul>
@@ -4081,6 +4311,13 @@
 </li>
       </ul></li>
       <li>
+    e_logformat
+
+      <ul>
+        <li><a href="enum_e_logformat.html#index-0">enum</a>
+</li>
+      </ul></li>
+      <li>
     e_month
 
       <ul>
@@ -4094,15 +4331,28 @@
         <li><a href="enum_e_weekday.html#index-0">enum</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     enum
 
       <ul>
+        <li><a href="enum_e_logformat.html#index-0">e_logformat</a>
+</li>
         <li><a href="enum_e_month.html#index-0">e_month</a>
 </li>
         <li><a href="enum_e_weekday.html#index-0">e_weekday</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    enumvalue
+
+      <ul>
+        <li><a href="enum_e_logformat.html#index-2">LOGFORMAT_JSON</a>
+</li>
+        <li><a href="enum_e_logformat.html#index-1">LOGFORMAT_TEXT</a>
+</li>
+        <li><a href="enum_e_logformat.html#index-3">LOGFORMAT_XML</a>
 </li>
       </ul></li>
       <li>
@@ -4731,7 +4981,7 @@
     fd
 
       <ul>
-        <li><a href="struct_s_logfile.html#index-1">variable</a>
+        <li><a href="struct_s_logger.html#index-8">variable</a>
 </li>
       </ul></li>
       <li>
@@ -4927,7 +5177,14 @@
     foreach
 
       <ul>
-        <li><a href="group_libccc.html#index-42">define</a>
+        <li><a href="group_libccc.html#index-43">define</a>
+</li>
+      </ul></li>
+      <li>
+    format
+
+      <ul>
+        <li><a href="struct_s_logger.html#index-7">variable</a>
 </li>
       </ul></li>
       <li>
@@ -5014,19 +5271,21 @@
 </li>
         <li><a href="group_libccc_char.html#index-20">Char_ToUTF8</a>
 </li>
-        <li><a href="group_libccc_color.html#index-42">Color_AHSL_GetNearest</a>
+        <li><a href="group_libccc_color.html#index-44">Color_AHSL_GetNearest</a>
 </li>
-        <li><a href="group_libccc_color.html#index-36">Color_AHSL_Set</a>
+        <li><a href="group_libccc_color.html#index-38">Color_AHSL_Set</a>
 </li>
-        <li><a href="group_libccc_color.html#index-37">Color_AHSL_Set_A</a>
+        <li><a href="group_libccc_color.html#index-39">Color_AHSL_Set_A</a>
 </li>
-        <li><a href="group_libccc_color.html#index-38">Color_AHSL_Set_H</a>
+        <li><a href="group_libccc_color.html#index-40">Color_AHSL_Set_H</a>
 </li>
-        <li><a href="group_libccc_color.html#index-40">Color_AHSL_Set_L</a>
+        <li><a href="group_libccc_color.html#index-42">Color_AHSL_Set_L</a>
 </li>
-        <li><a href="group_libccc_color.html#index-39">Color_AHSL_Set_S</a>
+        <li><a href="group_libccc_color.html#index-41">Color_AHSL_Set_S</a>
 </li>
-        <li><a href="group_libccc_color.html#index-41">Color_AHSL_To_ARGB</a>
+        <li><a href="group_libccc_color.html#index-43">Color_AHSL_To_ARGB</a>
+</li>
+        <li><a href="group_libccc_color.html#index-14">Color_ARGB16_Difference</a>
 </li>
         <li><a href="group_libccc_color.html#index-3">Color_ARGB16_Get_A</a>
 </li>
@@ -5036,7 +5295,7 @@
 </li>
         <li><a href="group_libccc_color.html#index-4">Color_ARGB16_Get_R</a>
 </li>
-        <li><a href="group_libccc_color.html#index-14">Color_ARGB16_GetNearest</a>
+        <li><a href="group_libccc_color.html#index-15">Color_ARGB16_GetNearest</a>
 </li>
         <li><a href="group_libccc_color.html#index-7">Color_ARGB16_Set</a>
 </li>
@@ -5052,47 +5311,49 @@
 </li>
         <li><a href="group_libccc_color.html#index-12">Color_ARGB16_To_ARGB32</a>
 </li>
-        <li><a href="group_libccc_color.html#index-15">Color_ARGB32_Get_A</a>
+        <li><a href="group_libccc_color.html#index-27">Color_ARGB32_Difference</a>
 </li>
-        <li><a href="group_libccc_color.html#index-18">Color_ARGB32_Get_B</a>
+        <li><a href="group_libccc_color.html#index-16">Color_ARGB32_Get_A</a>
 </li>
-        <li><a href="group_libccc_color.html#index-17">Color_ARGB32_Get_G</a>
+        <li><a href="group_libccc_color.html#index-19">Color_ARGB32_Get_B</a>
 </li>
-        <li><a href="group_libccc_color.html#index-16">Color_ARGB32_Get_R</a>
+        <li><a href="group_libccc_color.html#index-18">Color_ARGB32_Get_G</a>
 </li>
-        <li><a href="group_libccc_color.html#index-26">Color_ARGB32_GetNearest</a>
+        <li><a href="group_libccc_color.html#index-17">Color_ARGB32_Get_R</a>
 </li>
-        <li><a href="group_libccc_color.html#index-19">Color_ARGB32_Set</a>
+        <li><a href="group_libccc_color.html#index-28">Color_ARGB32_GetNearest</a>
 </li>
-        <li><a href="group_libccc_color.html#index-20">Color_ARGB32_Set_A</a>
+        <li><a href="group_libccc_color.html#index-20">Color_ARGB32_Set</a>
 </li>
-        <li><a href="group_libccc_color.html#index-23">Color_ARGB32_Set_B</a>
+        <li><a href="group_libccc_color.html#index-21">Color_ARGB32_Set_A</a>
 </li>
-        <li><a href="group_libccc_color.html#index-22">Color_ARGB32_Set_G</a>
+        <li><a href="group_libccc_color.html#index-24">Color_ARGB32_Set_B</a>
 </li>
-        <li><a href="group_libccc_color.html#index-21">Color_ARGB32_Set_R</a>
+        <li><a href="group_libccc_color.html#index-23">Color_ARGB32_Set_G</a>
 </li>
-        <li><a href="group_libccc_color.html#index-25">Color_ARGB32_To_ARGB</a>
+        <li><a href="group_libccc_color.html#index-22">Color_ARGB32_Set_R</a>
 </li>
-        <li><a href="group_libccc_color.html#index-24">Color_ARGB32_To_ARGB16</a>
+        <li><a href="group_libccc_color.html#index-26">Color_ARGB32_To_ARGB</a>
 </li>
-        <li><a href="group_libccc_color.html#index-35">Color_ARGB_GetNearest</a>
+        <li><a href="group_libccc_color.html#index-25">Color_ARGB32_To_ARGB16</a>
 </li>
-        <li><a href="group_libccc_color.html#index-27">Color_ARGB_Set</a>
+        <li><a href="group_libccc_color.html#index-37">Color_ARGB_GetNearest</a>
 </li>
-        <li><a href="group_libccc_color.html#index-28">Color_ARGB_Set_A</a>
+        <li><a href="group_libccc_color.html#index-29">Color_ARGB_Set</a>
 </li>
-        <li><a href="group_libccc_color.html#index-31">Color_ARGB_Set_B</a>
+        <li><a href="group_libccc_color.html#index-30">Color_ARGB_Set_A</a>
 </li>
-        <li><a href="group_libccc_color.html#index-30">Color_ARGB_Set_G</a>
+        <li><a href="group_libccc_color.html#index-33">Color_ARGB_Set_B</a>
 </li>
-        <li><a href="group_libccc_color.html#index-29">Color_ARGB_Set_R</a>
+        <li><a href="group_libccc_color.html#index-32">Color_ARGB_Set_G</a>
 </li>
-        <li><a href="group_libccc_color.html#index-34">Color_ARGB_To_AHSL</a>
+        <li><a href="group_libccc_color.html#index-31">Color_ARGB_Set_R</a>
 </li>
-        <li><a href="group_libccc_color.html#index-32">Color_ARGB_To_ARGB16</a>
+        <li><a href="group_libccc_color.html#index-36">Color_ARGB_To_AHSL</a>
 </li>
-        <li><a href="group_libccc_color.html#index-33">Color_ARGB_To_ARGB32</a>
+        <li><a href="group_libccc_color.html#index-34">Color_ARGB_To_ARGB16</a>
+</li>
+        <li><a href="group_libccc_color.html#index-35">Color_ARGB_To_ARGB32</a>
 </li>
         <li><a href="group_libccc_math_complex.html#index-3">Complex_Abs</a>
 </li>
@@ -5190,41 +5451,43 @@
 </li>
         <li><a href="group_libccc_float.html#index-15">Float_ToString_Hex</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-9">IO_ChangeMode</a>
+        <li><a href="group_libccc_sys_io.html#index-10">IO_ChangeMode</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-6">IO_Close</a>
+        <li><a href="group_libccc_sys_io.html#index-9">IO_Close</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-7">IO_GetError</a>
+        <li><a href="group_libccc_sys_io.html#index-6">IO_GetColor</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-8">IO_IsTerminal</a>
+        <li><a href="group_libccc_sys_io.html#index-5">IO_GetError</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-5">IO_Open</a>
+        <li><a href="group_libccc_sys_io.html#index-7">IO_IsTerminal</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-18">IO_Output_Char</a>
+        <li><a href="group_libccc_sys_io.html#index-8">IO_Open</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-22">IO_Output_Format</a>
+        <li><a href="group_libccc_sys_io.html#index-19">IO_Output_Char</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-20">IO_Output_Line</a>
+        <li><a href="group_libccc_sys_io.html#index-23">IO_Output_Format</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-21">IO_Output_Lines</a>
+        <li><a href="group_libccc_sys_io.html#index-21">IO_Output_Line</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-19">IO_Output_String</a>
+        <li><a href="group_libccc_sys_io.html#index-22">IO_Output_Lines</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-10">IO_Read_File</a>
+        <li><a href="group_libccc_sys_io.html#index-20">IO_Output_String</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-11">IO_Read_Lines</a>
+        <li><a href="group_libccc_sys_io.html#index-11">IO_Read_File</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-12">IO_Read_NextLine</a>
+        <li><a href="group_libccc_sys_io.html#index-12">IO_Read_Lines</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-13">IO_Write_Char</a>
+        <li><a href="group_libccc_sys_io.html#index-13">IO_Read_NextLine</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-17">IO_Write_Format</a>
+        <li><a href="group_libccc_sys_io.html#index-14">IO_Write_Char</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-15">IO_Write_Line</a>
+        <li><a href="group_libccc_sys_io.html#index-18">IO_Write_Format</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-16">IO_Write_Lines</a>
+        <li><a href="group_libccc_sys_io.html#index-16">IO_Write_Line</a>
 </li>
-        <li><a href="group_libccc_sys_io.html#index-14">IO_Write_String</a>
+        <li><a href="group_libccc_sys_io.html#index-17">IO_Write_Lines</a>
+</li>
+        <li><a href="group_libccc_sys_io.html#index-15">IO_Write_String</a>
 </li>
         <li><a href="group_libccc_array_list.html#index-3">List_Append</a>
 </li>
@@ -5260,33 +5523,45 @@
 </li>
         <li><a href="group_libccc_array_list.html#index-16">List_To_PointerArray</a>
 </li>
-        <li><a href="group_libccc_sys_logger.html#index-7">Log</a>
+        <li><a href="group_libccc_sys_logger.html#index-8">Log</a>
 </li>
-        <li><a href="group_libccc_sys_logger.html#index-10">Log_Error</a>
+        <li><a href="group_libccc_sys_logger.html#index-17">Log_Error</a>
 </li>
-        <li><a href="group_libccc_sys_logger.html#index-9">Log_Error_IO</a>
+        <li><a href="group_libccc_sys_logger.html#index-16">Log_Error_IO</a>
 </li>
-        <li><a href="group_libccc_sys_logger.html#index-8">Log_Fatal</a>
+        <li><a href="group_libccc_sys_logger.html#index-9">Log_Fatal</a>
 </li>
-        <li><a href="group_libccc_sys_logger.html#index-13">Log_Message</a>
+        <li><a href="group_libccc_sys_logger.html#index-20">Log_Message</a>
 </li>
-        <li><a href="group_libccc_sys_logger.html#index-14">Log_Message_Verbose</a>
+        <li><a href="group_libccc_sys_logger.html#index-21">Log_Message_Verbose</a>
 </li>
-        <li><a href="group_libccc_sys_logger.html#index-12">Log_Success</a>
+        <li><a href="group_libccc_sys_logger.html#index-19">Log_Success</a>
 </li>
-        <li><a href="group_libccc_sys_logger.html#index-11">Log_Warning</a>
+        <li><a href="group_libccc_sys_logger.html#index-18">Log_Warning</a>
 </li>
-        <li><a href="group_libccc_sys_logger.html#index-3">Logger_DeleteMemory</a>
+        <li><a href="group_libccc_sys_logger.html#index-11">LogAll_Error</a>
 </li>
-        <li><a href="group_libccc_sys_logger.html#index-2">Logger_Exit</a>
+        <li><a href="group_libccc_sys_logger.html#index-10">LogAll_Error_IO</a>
 </li>
-        <li><a href="group_libccc_sys_logger.html#index-4">Logger_GetSettings</a>
+        <li><a href="group_libccc_sys_logger.html#index-14">LogAll_Message</a>
 </li>
-        <li><a href="group_libccc_sys_logger.html#index-6">Logger_GetTimestamp</a>
+        <li><a href="group_libccc_sys_logger.html#index-15">LogAll_Message_Verbose</a>
 </li>
-        <li><a href="group_libccc_sys_logger.html#index-1">Logger_Init</a>
+        <li><a href="group_libccc_sys_logger.html#index-13">LogAll_Success</a>
 </li>
-        <li><a href="group_libccc_sys_logger.html#index-5">Logger_LogSettings</a>
+        <li><a href="group_libccc_sys_logger.html#index-12">LogAll_Warning</a>
+</li>
+        <li><a href="group_libccc_sys_logger.html#index-4">Logger_DeleteMemory</a>
+</li>
+        <li><a href="group_libccc_sys_logger.html#index-3">Logger_Exit</a>
+</li>
+        <li><a href="group_libccc_sys_logger.html#index-5">Logger_GetSettings</a>
+</li>
+        <li><a href="group_libccc_sys_logger.html#index-7">Logger_GetTimestamp</a>
+</li>
+        <li><a href="group_libccc_sys_logger.html#index-2">Logger_Init</a>
+</li>
+        <li><a href="group_libccc_sys_logger.html#index-6">Logger_LogSettings</a>
 </li>
         <li><a href="group_libccc_math_math.html#index-4">Math_Abs</a>
 </li>
@@ -5378,9 +5653,11 @@
 </li>
         <li><a href="group_libccc_memory.html#index-1">Memory_Alloc</a>
 </li>
+        <li><a href="group_libccc_memory.html#index-13">Memory_Append</a>
+</li>
         <li><a href="group_libccc_memory.html#index-7">Memory_Clear</a>
 </li>
-        <li><a href="group_libccc_memory.html#index-14">Memory_Compare</a>
+        <li><a href="group_libccc_memory.html#index-18">Memory_Compare</a>
 </li>
         <li><a href="group_libccc_memory.html#index-8">Memory_Copy</a>
 </li>
@@ -5390,11 +5667,15 @@
 </li>
         <li><a href="group_libccc_memory.html#index-11">Memory_Duplicate</a>
 </li>
-        <li><a href="group_libccc_memory.html#index-12">Memory_Find</a>
+        <li><a href="group_libccc_memory.html#index-16">Memory_Find</a>
 </li>
         <li><a href="group_libccc_memory.html#index-4">Memory_Free</a>
 </li>
-        <li><a href="group_libccc_memory.html#index-16">Memory_GetBits</a>
+        <li><a href="group_libccc_memory.html#index-20">Memory_GetBits</a>
+</li>
+        <li><a href="group_libccc_memory.html#index-12">Memory_Join</a>
+</li>
+        <li><a href="group_libccc_memory.html#index-15">Memory_Merge</a>
 </li>
         <li><a href="group_libccc_memory.html#index-10">Memory_Move</a>
 </li>
@@ -5402,11 +5683,13 @@
 </li>
         <li><a href="group_libccc_memory.html#index-3">Memory_New_C</a>
 </li>
-        <li><a href="group_libccc_memory.html#index-13">Memory_Replace</a>
+        <li><a href="group_libccc_memory.html#index-14">Memory_Prepend</a>
+</li>
+        <li><a href="group_libccc_memory.html#index-17">Memory_Replace</a>
 </li>
         <li><a href="group_libccc_memory.html#index-6">Memory_Set</a>
 </li>
-        <li><a href="group_libccc_memory.html#index-15">Memory_Swap</a>
+        <li><a href="group_libccc_memory.html#index-19">Memory_Swap</a>
 </li>
         <li><a href="group_libccc_pointer.html#index-11">Pointer_ToString</a>
 </li>
@@ -5548,7 +5831,7 @@
 </li>
         <li><a href="group_libccc_math_stat.html#index-25">Stat_NewPMF</a>
 </li>
-        <li><a href="group_libccc_string.html#index-53">String_Append</a>
+        <li><a href="group_libccc_string.html#index-54">String_Append</a>
 </li>
         <li><a href="group_libccc_string.html#index-4">String_Clear</a>
 </li>
@@ -5646,13 +5929,13 @@
 </li>
         <li><a href="group_libccc_string.html#index-69">String_Insert</a>
 </li>
-        <li><a href="group_libccc_string.html#index-55">String_Insert_InPlace</a>
+        <li><a href="group_libccc_string.html#index-56">String_Insert_InPlace</a>
 </li>
         <li><a href="group_libccc_string.html#index-71">String_Iterate</a>
 </li>
         <li><a href="group_libccc_string.html#index-72">String_Iterate_I</a>
 </li>
-        <li><a href="group_libccc_string.html#index-68">String_Join</a>
+        <li><a href="group_libccc_string.html#index-52">String_Join</a>
 </li>
         <li><a href="group_libccc_string.html#index-15">String_Length</a>
 </li>
@@ -5660,37 +5943,37 @@
 </li>
         <li><a href="group_libccc_string.html#index-74">String_Map_I</a>
 </li>
-        <li><a href="group_libccc_string.html#index-59">String_Map_InPlace</a>
+        <li><a href="group_libccc_string.html#index-60">String_Map_InPlace</a>
 </li>
-        <li><a href="group_libccc_string.html#index-52">String_Merge</a>
+        <li><a href="group_libccc_string.html#index-53">String_Merge</a>
 </li>
         <li><a href="group_libccc_string.html#index-1">String_New</a>
 </li>
         <li><a href="group_libccc_string.html#index-2">String_New_C</a>
 </li>
-        <li><a href="group_libccc_string.html#index-63">String_Pad</a>
+        <li><a href="group_libccc_string.html#index-64">String_Pad</a>
 </li>
-        <li><a href="group_libccc_string.html#index-64">String_Pad_L</a>
+        <li><a href="group_libccc_string.html#index-65">String_Pad_L</a>
 </li>
-        <li><a href="group_libccc_string.html#index-65">String_Pad_R</a>
+        <li><a href="group_libccc_string.html#index-66">String_Pad_R</a>
 </li>
-        <li><a href="group_libccc_string.html#index-54">String_Prepend</a>
+        <li><a href="group_libccc_string.html#index-55">String_Prepend</a>
 </li>
         <li><a href="group_libccc_string.html#index-47">String_Remove</a>
 </li>
         <li><a href="group_libccc_string.html#index-49">String_Replace_Char</a>
 </li>
-        <li><a href="group_libccc_string.html#index-56">String_Replace_Char_InPlace</a>
+        <li><a href="group_libccc_string.html#index-57">String_Replace_Char_InPlace</a>
 </li>
         <li><a href="group_libccc_string.html#index-50">String_Replace_Charset</a>
 </li>
-        <li><a href="group_libccc_string.html#index-57">String_Replace_Charset_InPlace</a>
+        <li><a href="group_libccc_string.html#index-58">String_Replace_Charset_InPlace</a>
 </li>
         <li><a href="group_libccc_string.html#index-51">String_Replace_String</a>
 </li>
-        <li><a href="group_libccc_string.html#index-58">String_Replace_String_InPlace</a>
+        <li><a href="group_libccc_string.html#index-59">String_Replace_String_InPlace</a>
 </li>
-        <li><a href="group_libccc_string.html#index-67">String_Reverse</a>
+        <li><a href="group_libccc_string.html#index-68">String_Reverse</a>
 </li>
         <li><a href="group_libccc_string.html#index-3">String_Set</a>
 </li>
@@ -5704,13 +5987,13 @@
 </li>
         <li><a href="group_libccc_string.html#index-48">String_ToEscape</a>
 </li>
-        <li><a href="group_libccc_string.html#index-66">String_ToPrintableString</a>
+        <li><a href="group_libccc_string.html#index-67">String_ToPrintableString</a>
 </li>
-        <li><a href="group_libccc_string.html#index-60">String_Trim</a>
+        <li><a href="group_libccc_string.html#index-61">String_Trim</a>
 </li>
-        <li><a href="group_libccc_string.html#index-61">String_Trim_L</a>
+        <li><a href="group_libccc_string.html#index-62">String_Trim_L</a>
 </li>
-        <li><a href="group_libccc_string.html#index-62">String_Trim_R</a>
+        <li><a href="group_libccc_string.html#index-63">String_Trim_R</a>
 </li>
         <li><a href="group_libccc_array_stringarray.html#index-15">StringArray_Append</a>
 </li>
@@ -5897,21 +6180,21 @@
     GNL_END
 
       <ul>
-        <li><a href="group_libccc_sys_io.html#index-30">define</a>
+        <li><a href="group_libccc_sys_io.html#index-43">define</a>
 </li>
       </ul></li>
       <li>
     GNL_ERROR
 
       <ul>
-        <li><a href="group_libccc_sys_io.html#index-31">define</a>
+        <li><a href="group_libccc_sys_io.html#index-44">define</a>
 </li>
       </ul></li>
       <li>
     GNL_LINE
 
       <ul>
-        <li><a href="group_libccc_sys_io.html#index-32">define</a>
+        <li><a href="group_libccc_sys_io.html#index-45">define</a>
 </li>
       </ul></li>
       <li>
@@ -5971,6 +6254,8 @@
         <li><a href="group_libccc_array_pointerarray.html#index-0">25) libccc/array/pointerarray</a>
 </li>
         <li><a href="group_libccc_array_stringarray.html#index-0">26) libccc/array/stringarray</a>
+</li>
+        <li><a href="group_libccc_array_sort.html#index-0">Libccc_array_sort</a>
 </li>
       </ul></li>
   </ul></td>
@@ -6117,1024 +6402,1416 @@
     IO_BUFFER_SIZE
 
       <ul>
-        <li><a href="group_libccc_sys_io.html#index-33">define</a>
+        <li><a href="group_libccc_sys_io.html#index-46">define</a>
 </li>
       </ul></li>
       <li>
     IO_ChangeMode
 
       <ul>
-        <li><a href="group_libccc_sys_io.html#index-9">function</a>
+        <li><a href="group_libccc_sys_io.html#index-10">function</a>
 </li>
       </ul></li>
       <li>
     IO_Close
 
       <ul>
-        <li><a href="group_libccc_sys_io.html#index-6">function</a>
+        <li><a href="group_libccc_sys_io.html#index-9">function</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_2BIG
-
-      <ul>
-        <li><a href="group_libccc_sys_io.html#index-34">define</a>
-</li>
-      </ul></li>
-      <li>
-    IO_ERROR_ACCES
-
-      <ul>
-        <li><a href="group_libccc_sys_io.html#index-35">define</a>
-</li>
-      </ul></li>
-      <li>
-    IO_ERROR_ADDRINUSE
-
-      <ul>
-        <li><a href="group_libccc_sys_io.html#index-36">define</a>
-</li>
-      </ul></li>
-      <li>
-    IO_ERROR_ADDRNOTAVAIL
-
-      <ul>
-        <li><a href="group_libccc_sys_io.html#index-37">define</a>
-</li>
-      </ul></li>
-      <li>
-    IO_ERROR_AFNOSUPPORT
-
-      <ul>
-        <li><a href="group_libccc_sys_io.html#index-38">define</a>
-</li>
-      </ul></li>
-      <li>
-    IO_ERROR_AGAIN
-
-      <ul>
-        <li><a href="group_libccc_sys_io.html#index-39">define</a>
-</li>
-      </ul></li>
-      <li>
-    IO_ERROR_ALREADY
-
-      <ul>
-        <li><a href="group_libccc_sys_io.html#index-40">define</a>
-</li>
-      </ul></li>
-      <li>
-    IO_ERROR_BADE
-
-      <ul>
-        <li><a href="group_libccc_sys_io.html#index-41">define</a>
-</li>
-      </ul></li>
-      <li>
-    IO_ERROR_BADF
-
-      <ul>
-        <li><a href="group_libccc_sys_io.html#index-42">define</a>
-</li>
-      </ul></li>
-      <li>
-    IO_ERROR_BADFD
-
-      <ul>
-        <li><a href="group_libccc_sys_io.html#index-43">define</a>
-</li>
-      </ul></li>
-      <li>
-    IO_ERROR_BADMSG
-
-      <ul>
-        <li><a href="group_libccc_sys_io.html#index-44">define</a>
-</li>
-      </ul></li>
-      <li>
-    IO_ERROR_BADR
-
-      <ul>
-        <li><a href="group_libccc_sys_io.html#index-45">define</a>
-</li>
-      </ul></li>
-      <li>
-    IO_ERROR_BADRQC
-
-      <ul>
-        <li><a href="group_libccc_sys_io.html#index-46">define</a>
-</li>
-      </ul></li>
-      <li>
-    IO_ERROR_BADSLT
+    IO_COLOR_BG
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-47">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_BUSY
+    IO_COLOR_BG_BLACK
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-48">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_CANCELED
+    IO_COLOR_BG_BLUE
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-49">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_CHILD
+    IO_COLOR_BG_BLUE_LIGHT
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-50">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_CHRNG
+    IO_COLOR_BG_CYAN
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-51">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_COMM
+    IO_COLOR_BG_CYAN_LIGHT
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-52">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_CONNABORTED
+    IO_COLOR_BG_DEFAULT
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-53">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_CONNREFUSED
+    IO_COLOR_BG_GRAY_DARK
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-54">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_CONNRESET
+    IO_COLOR_BG_GRAY_LIGHT
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-55">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_DEADLK
+    IO_COLOR_BG_GREEN
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-56">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_DEADLOCK
+    IO_COLOR_BG_GREEN_LIGHT
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-57">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_DESTADDRREQ
+    IO_COLOR_BG_MAGENTA
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-58">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_DOM
+    IO_COLOR_BG_MAGENTA_LIGHT
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-59">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_DQUOT
+    IO_COLOR_BG_RED
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-60">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_EXIST
+    IO_COLOR_BG_RED_LIGHT
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-61">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_FAULT
+    IO_COLOR_BG_WHITE
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-62">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_FBIG
+    IO_COLOR_BG_YELLOW
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-63">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_HOSTDOWN
+    IO_COLOR_BG_YELLOW_LIGHT
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-64">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_HOSTUNREACH
+    IO_COLOR_FG
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-65">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_HWPOISON
+    IO_COLOR_FG_BLACK
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-66">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_IDRM
+    IO_COLOR_FG_BLUE
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-67">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_ILSEQ
+    IO_COLOR_FG_BLUE_LIGHT
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-68">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_INPROGRESS
+    IO_COLOR_FG_CYAN
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-69">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_INTR
+    IO_COLOR_FG_CYAN_LIGHT
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-70">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_INVAL
+    IO_COLOR_FG_DEFAULT
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-71">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_IO
+    IO_COLOR_FG_GRAY_DARK
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-72">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_ISCONN
+    IO_COLOR_FG_GRAY_LIGHT
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-73">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_ISDIR
+    IO_COLOR_FG_GREEN
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-74">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_ISNAM
+    IO_COLOR_FG_GREEN_LIGHT
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-75">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_KEYEXPIRED
+    IO_COLOR_FG_MAGENTA
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-76">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_KEYREJECTED
+    IO_COLOR_FG_MAGENTA_LIGHT
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-77">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_KEYREVOKED
+    IO_COLOR_FG_RED
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-78">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_L2HLT
+    IO_COLOR_FG_RED_LIGHT
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-79">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_L2NSYNC
+    IO_COLOR_FG_WHITE
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-80">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_L3HLT
+    IO_COLOR_FG_YELLOW
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-81">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_L3RST
+    IO_COLOR_FG_YELLOW_LIGHT
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-82">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_LIBACC
+    IO_ERROR_2BIG
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-83">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_LIBBAD
+    IO_ERROR_ACCES
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-84">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_LIBEXEC
+    IO_ERROR_ADDRINUSE
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-85">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_LIBMAX
+    IO_ERROR_ADDRNOTAVAIL
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-86">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_LIBSCN
+    IO_ERROR_AFNOSUPPORT
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-87">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_LNRANGE
+    IO_ERROR_AGAIN
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-88">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_LOOP
+    IO_ERROR_ALREADY
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-89">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_MEDIUMTYPE
+    IO_ERROR_BADE
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-90">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_MFILE
+    IO_ERROR_BADF
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-91">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_MLINK
+    IO_ERROR_BADFD
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-92">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_MSGSIZE
+    IO_ERROR_BADMSG
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-93">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_MULTIHOP
+    IO_ERROR_BADR
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-94">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_NAMETOOLONG
+    IO_ERROR_BADRQC
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-95">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_NETDOWN
+    IO_ERROR_BADSLT
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-96">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_NETRESET
+    IO_ERROR_BUSY
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-97">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_NETUNREACH
+    IO_ERROR_CANCELED
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-98">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_NFILE
+    IO_ERROR_CHILD
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-99">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_NOANO
+    IO_ERROR_CHRNG
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-100">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_NOBUFS
+    IO_ERROR_COMM
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-101">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_NODATA
+    IO_ERROR_CONNABORTED
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-102">define</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
-    IO_ERROR_NODEV
+    IO_ERROR_CONNREFUSED
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-103">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_NOENT
+    IO_ERROR_CONNRESET
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-104">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_NOEXEC
+    IO_ERROR_DEADLK
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-105">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_NOKEY
+    IO_ERROR_DEADLOCK
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-106">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_NOLCK
+    IO_ERROR_DESTADDRREQ
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-107">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_NOLINK
+    IO_ERROR_DOM
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-108">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_NOMEDIUM
+    IO_ERROR_DQUOT
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-109">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_NOMEM
+    IO_ERROR_EXIST
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-110">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_NOMSG
+    IO_ERROR_FAULT
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-111">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_NONET
+    IO_ERROR_FBIG
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-112">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_NOPKG
+    IO_ERROR_HOSTDOWN
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-113">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_NOPROTOOPT
+    IO_ERROR_HOSTUNREACH
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-114">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_NOSPC
+    IO_ERROR_HWPOISON
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-115">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_NOSR
+    IO_ERROR_IDRM
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-116">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_NOSTR
+    IO_ERROR_ILSEQ
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-117">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_NOSYS
+    IO_ERROR_INPROGRESS
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-118">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_NOTBLK
+    IO_ERROR_INTR
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-119">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_NOTCONN
+    IO_ERROR_INVAL
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-120">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_NOTDIR
+    IO_ERROR_IO
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-121">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_NOTEMPTY
+    IO_ERROR_ISCONN
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-122">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_NOTRECOVERABLE
+    IO_ERROR_ISDIR
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-123">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_NOTSOCK
+    IO_ERROR_ISNAM
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-124">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_NOTSUP
+    IO_ERROR_KEYEXPIRED
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-125">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_NOTTY
+    IO_ERROR_KEYREJECTED
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-126">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_NOTUNIQ
+    IO_ERROR_KEYREVOKED
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-127">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_NXIO
+    IO_ERROR_L2HLT
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-128">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_OPNOTSUPP
+    IO_ERROR_L2NSYNC
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-129">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_OVERFLOW
+    IO_ERROR_L3HLT
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-130">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_OWNERDEAD
+    IO_ERROR_L3RST
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-131">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_PERM
+    IO_ERROR_LIBACC
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-132">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_PFNOSUPPORT
+    IO_ERROR_LIBBAD
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-133">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_PIPE
+    IO_ERROR_LIBEXEC
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-134">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_PROTO
+    IO_ERROR_LIBMAX
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-135">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_PROTONOSUPPORT
+    IO_ERROR_LIBSCN
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-136">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_PROTOTYPE
+    IO_ERROR_LNRANGE
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-137">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_RANGE
+    IO_ERROR_LOOP
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-138">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_REMCHG
+    IO_ERROR_MEDIUMTYPE
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-139">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_REMOTE
+    IO_ERROR_MFILE
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-140">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_REMOTEIO
+    IO_ERROR_MLINK
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-141">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_RESTART
+    IO_ERROR_MSGSIZE
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-142">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_RFKILL
+    IO_ERROR_MULTIHOP
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-143">define</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
-    IO_ERROR_ROFS
+    IO_ERROR_NAMETOOLONG
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-144">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_SHUTDOWN
+    IO_ERROR_NETDOWN
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-145">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_SOCKTNOSUPPORT
+    IO_ERROR_NETRESET
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-146">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_SPIPE
+    IO_ERROR_NETUNREACH
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-147">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_SRCH
+    IO_ERROR_NFILE
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-148">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_STALE
+    IO_ERROR_NOANO
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-149">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_STRPIPE
+    IO_ERROR_NOBUFS
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-150">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_TIME
+    IO_ERROR_NODATA
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-151">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_TIMEDOUT
+    IO_ERROR_NODEV
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-152">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_TOOMANYREFS
+    IO_ERROR_NOENT
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-153">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_TXTBSY
+    IO_ERROR_NOEXEC
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-154">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_UCLEAN
+    IO_ERROR_NOKEY
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-155">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_UNATCH
+    IO_ERROR_NOLCK
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-156">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_USERS
+    IO_ERROR_NOLINK
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-157">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_WOULDBLOCK
+    IO_ERROR_NOMEDIUM
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-158">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_XDEV
+    IO_ERROR_NOMEM
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-159">define</a>
 </li>
       </ul></li>
       <li>
-    IO_ERROR_XFULL
+    IO_ERROR_NOMSG
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-160">define</a>
 </li>
       </ul></li>
       <li>
+    IO_ERROR_NONET
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-161">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_NOPKG
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-162">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_NOPROTOOPT
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-163">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_NOSPC
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-164">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_NOSR
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-165">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_NOSTR
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-166">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_NOSYS
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-167">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_NOTBLK
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-168">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_NOTCONN
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-169">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_NOTDIR
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-170">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_NOTEMPTY
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-171">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_NOTRECOVERABLE
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-172">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_NOTSOCK
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-173">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_NOTSUP
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-174">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_NOTTY
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-175">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_NOTUNIQ
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-176">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_NXIO
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-177">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_OPNOTSUPP
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-178">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_OVERFLOW
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-179">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_OWNERDEAD
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-180">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_PERM
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-181">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_PFNOSUPPORT
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-182">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_PIPE
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-183">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_PROTO
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-184">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_PROTONOSUPPORT
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-185">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_PROTOTYPE
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-186">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_RANGE
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-187">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_REMCHG
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-188">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_REMOTE
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-189">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_REMOTEIO
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-190">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_RESTART
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-191">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_RFKILL
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-192">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_ROFS
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-193">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_SHUTDOWN
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-194">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_SOCKTNOSUPPORT
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-195">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_SPIPE
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-196">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_SRCH
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-197">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_STALE
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-198">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_STRPIPE
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-199">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_TIME
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-200">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_TIMEDOUT
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-201">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_TOOMANYREFS
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-202">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_TXTBSY
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-203">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_UCLEAN
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-204">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_UNATCH
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-205">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_USERS
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-206">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_WOULDBLOCK
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-207">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_XDEV
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-208">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_ERROR_XFULL
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-209">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_GetColor
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-6">function</a>
+</li>
+      </ul></li>
+      <li>
     IO_GetError
-
-      <ul>
-        <li><a href="group_libccc_sys_io.html#index-7">function</a>
-</li>
-      </ul></li>
-      <li>
-    IO_IsTerminal
-
-      <ul>
-        <li><a href="group_libccc_sys_io.html#index-8">function</a>
-</li>
-      </ul></li>
-      <li>
-    IO_Open
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-5">function</a>
 </li>
       </ul></li>
       <li>
+    IO_IsTerminal
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-7">function</a>
+</li>
+      </ul></li>
+      <li>
+    IO_Open
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-8">function</a>
+</li>
+      </ul></li>
+      <li>
     IO_Output_Char
-
-      <ul>
-        <li><a href="group_libccc_sys_io.html#index-18">function</a>
-</li>
-      </ul></li>
-      <li>
-    IO_Output_Format
-
-      <ul>
-        <li><a href="group_libccc_sys_io.html#index-22">function</a>
-</li>
-      </ul></li>
-      <li>
-    IO_Output_Line
-
-      <ul>
-        <li><a href="group_libccc_sys_io.html#index-20">function</a>
-</li>
-      </ul></li>
-      <li>
-    IO_Output_Lines
-
-      <ul>
-        <li><a href="group_libccc_sys_io.html#index-21">function</a>
-</li>
-      </ul></li>
-      <li>
-    IO_Output_String
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-19">function</a>
 </li>
       </ul></li>
       <li>
-    IO_Read_File
+    IO_Output_Format
 
       <ul>
-        <li><a href="group_libccc_sys_io.html#index-10">function</a>
+        <li><a href="group_libccc_sys_io.html#index-23">function</a>
 </li>
       </ul></li>
       <li>
-    IO_Read_Lines
+    IO_Output_Line
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-21">function</a>
+</li>
+      </ul></li>
+      <li>
+    IO_Output_Lines
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-22">function</a>
+</li>
+      </ul></li>
+      <li>
+    IO_Output_String
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-20">function</a>
+</li>
+      </ul></li>
+      <li>
+    IO_Read_File
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-11">function</a>
 </li>
       </ul></li>
       <li>
-    IO_Read_NextLine
+    IO_Read_Lines
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-12">function</a>
 </li>
       </ul></li>
       <li>
-    IO_Write_Char
+    IO_Read_NextLine
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-13">function</a>
 </li>
       </ul></li>
       <li>
+    IO_RESET
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-210">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_TEXT_3
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-211">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_TEXT_6
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-212">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_TEXT_9
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-213">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_TEXT_BLINK
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-214">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_TEXT_BOLD
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-215">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_TEXT_DIM
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-216">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_TEXT_HIDDEN
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-217">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_TEXT_INVERTED
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-218">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_TEXT_RESET_3
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-219">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_TEXT_RESET_6
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-220">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_TEXT_RESET_9
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-221">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_TEXT_RESET_BLINK
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-222">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_TEXT_RESET_BOLD
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-223">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_TEXT_RESET_DIM
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-224">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_TEXT_RESET_HIDDEN
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-225">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_TEXT_RESET_INVERTED
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-226">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_TEXT_RESET_UNDERLINE
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-227">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_TEXT_UNDERLINE
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-228">define</a>
+</li>
+      </ul></li>
+      <li>
+    IO_Write_Char
+
+      <ul>
+        <li><a href="group_libccc_sys_io.html#index-14">function</a>
+</li>
+      </ul></li>
+      <li>
     IO_Write_Format
 
       <ul>
-        <li><a href="group_libccc_sys_io.html#index-17">function</a>
+        <li><a href="group_libccc_sys_io.html#index-18">function</a>
 </li>
       </ul></li>
       <li>
     IO_Write_Line
 
       <ul>
-        <li><a href="group_libccc_sys_io.html#index-15">function</a>
+        <li><a href="group_libccc_sys_io.html#index-16">function</a>
 </li>
       </ul></li>
       <li>
     IO_Write_Lines
 
       <ul>
-        <li><a href="group_libccc_sys_io.html#index-16">function</a>
+        <li><a href="group_libccc_sys_io.html#index-17">function</a>
 </li>
       </ul></li>
       <li>
     IO_Write_String
 
       <ul>
-        <li><a href="group_libccc_sys_io.html#index-14">function</a>
+        <li><a href="group_libccc_sys_io.html#index-15">function</a>
 </li>
       </ul></li>
       <li>
@@ -7169,7 +7846,7 @@
     item_count
 
       <ul>
-        <li><a href="struct_s_array.html#index-1">variable</a>
+        <li><a href="struct_s_array.html#index-1">variable</a>, <a href="struct_s_dict.html#index-1">[1]</a>
 </li>
       </ul></li>
       <li>
@@ -7183,7 +7860,7 @@
     items
 
       <ul>
-        <li><a href="struct_s_array.html#index-3">variable</a>
+        <li><a href="struct_s_array.html#index-3">variable</a>, <a href="struct_s_dict.html#index-2">[1]</a>
 </li>
       </ul></li>
   </ul></td>
@@ -7239,6 +7916,13 @@
 
       <ul>
         <li><a href="page_index.html#index-0">page</a>
+</li>
+      </ul></li>
+      <li>
+    Libccc_array_sort
+
+      <ul>
+        <li><a href="group_libccc_array_sort.html#index-0">group</a>
 </li>
       </ul></li>
       <li>
@@ -7416,8 +8100,6 @@
         <li><a href="group_libccc_array_list.html#index-9">function</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     List_Prepend
 
@@ -7439,6 +8121,8 @@
         <li><a href="group_libccc_array_list.html#index-10">function</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     List_Sub
 
@@ -7478,119 +8162,175 @@
     Log
 
       <ul>
-        <li><a href="group_libccc_sys_logger.html#index-7">function</a>
+        <li><a href="group_libccc_sys_logger.html#index-8">function</a>
 </li>
       </ul></li>
       <li>
     Log_Error
 
       <ul>
-        <li><a href="group_libccc_sys_logger.html#index-10">function</a>
+        <li><a href="group_libccc_sys_logger.html#index-17">function</a>
 </li>
       </ul></li>
       <li>
     Log_Error_IO
 
       <ul>
-        <li><a href="group_libccc_sys_logger.html#index-9">function</a>
+        <li><a href="group_libccc_sys_logger.html#index-16">function</a>
 </li>
       </ul></li>
       <li>
     Log_Fatal
 
       <ul>
-        <li><a href="group_libccc_sys_logger.html#index-8">function</a>
+        <li><a href="group_libccc_sys_logger.html#index-9">function</a>
 </li>
       </ul></li>
       <li>
     Log_Message
 
       <ul>
-        <li><a href="group_libccc_sys_logger.html#index-13">function</a>
+        <li><a href="group_libccc_sys_logger.html#index-20">function</a>
 </li>
       </ul></li>
       <li>
     Log_Message_Verbose
 
       <ul>
-        <li><a href="group_libccc_sys_logger.html#index-14">function</a>
+        <li><a href="group_libccc_sys_logger.html#index-21">function</a>
 </li>
       </ul></li>
       <li>
     Log_Success
 
       <ul>
-        <li><a href="group_libccc_sys_logger.html#index-12">function</a>
+        <li><a href="group_libccc_sys_logger.html#index-19">function</a>
 </li>
       </ul></li>
       <li>
     LOG_TIMESTAMP_FORMAT
 
       <ul>
-        <li><a href="group_libccc_sys_logger.html#index-16">define</a>
+        <li><a href="group_libccc_sys_logger.html#index-22">define</a>
 </li>
       </ul></li>
       <li>
     LOG_TIMESTAMP_INDENT
 
       <ul>
-        <li><a href="group_libccc_sys_logger.html#index-17">define</a>
+        <li><a href="group_libccc_sys_logger.html#index-23">define</a>
 </li>
       </ul></li>
       <li>
     Log_Warning
 
       <ul>
+        <li><a href="group_libccc_sys_logger.html#index-18">function</a>
+</li>
+      </ul></li>
+      <li>
+    LogAll_Error
+
+      <ul>
         <li><a href="group_libccc_sys_logger.html#index-11">function</a>
 </li>
       </ul></li>
       <li>
-    LOGFILES_MAX
+    LogAll_Error_IO
 
       <ul>
-        <li><a href="group_libccc_sys_logger.html#index-15">define</a>
+        <li><a href="group_libccc_sys_logger.html#index-10">function</a>
+</li>
+      </ul></li>
+      <li>
+    LogAll_Message
+
+      <ul>
+        <li><a href="group_libccc_sys_logger.html#index-14">function</a>
+</li>
+      </ul></li>
+      <li>
+    LogAll_Message_Verbose
+
+      <ul>
+        <li><a href="group_libccc_sys_logger.html#index-15">function</a>
+</li>
+      </ul></li>
+      <li>
+    LogAll_Success
+
+      <ul>
+        <li><a href="group_libccc_sys_logger.html#index-13">function</a>
+</li>
+      </ul></li>
+      <li>
+    LogAll_Warning
+
+      <ul>
+        <li><a href="group_libccc_sys_logger.html#index-12">function</a>
+</li>
+      </ul></li>
+      <li>
+    LOGFORMAT_JSON
+
+      <ul>
+        <li><a href="enum_e_logformat.html#index-2">enumvalue</a>
+</li>
+      </ul></li>
+      <li>
+    LOGFORMAT_TEXT
+
+      <ul>
+        <li><a href="enum_e_logformat.html#index-1">enumvalue</a>
+</li>
+      </ul></li>
+      <li>
+    LOGFORMAT_XML
+
+      <ul>
+        <li><a href="enum_e_logformat.html#index-3">enumvalue</a>
 </li>
       </ul></li>
       <li>
     Logger_DeleteMemory
 
       <ul>
-        <li><a href="group_libccc_sys_logger.html#index-3">function</a>
+        <li><a href="group_libccc_sys_logger.html#index-4">function</a>
 </li>
       </ul></li>
       <li>
     Logger_Exit
 
       <ul>
-        <li><a href="group_libccc_sys_logger.html#index-2">function</a>
+        <li><a href="group_libccc_sys_logger.html#index-3">function</a>
 </li>
       </ul></li>
       <li>
     Logger_GetSettings
 
       <ul>
-        <li><a href="group_libccc_sys_logger.html#index-4">function</a>
+        <li><a href="group_libccc_sys_logger.html#index-5">function</a>
 </li>
       </ul></li>
       <li>
     Logger_GetTimestamp
 
       <ul>
-        <li><a href="group_libccc_sys_logger.html#index-6">function</a>
+        <li><a href="group_libccc_sys_logger.html#index-7">function</a>
 </li>
       </ul></li>
       <li>
     Logger_Init
 
       <ul>
-        <li><a href="group_libccc_sys_logger.html#index-1">function</a>
+        <li><a href="group_libccc_sys_logger.html#index-2">function</a>
 </li>
       </ul></li>
       <li>
     Logger_LogSettings
 
       <ul>
-        <li><a href="group_libccc_sys_logger.html#index-5">function</a>
+        <li><a href="group_libccc_sys_logger.html#index-6">function</a>
 </li>
       </ul></li>
       <li>
@@ -7886,6 +8626,8 @@
         <li><a href="group_libccc_math_algebra.html#index-39">define</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     Matrix2D_Transpose
 
@@ -7921,8 +8663,6 @@
         <li><a href="group_libccc_math_algebra.html#index-40">define</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     Matrix3D_Inverse
 
@@ -8008,6 +8748,13 @@
 </li>
       </ul></li>
       <li>
+    Memory_Append
+
+      <ul>
+        <li><a href="group_libccc_memory.html#index-13">function</a>
+</li>
+      </ul></li>
+      <li>
     Memory_Clear
 
       <ul>
@@ -8018,7 +8765,7 @@
     Memory_Compare
 
       <ul>
-        <li><a href="group_libccc_memory.html#index-14">function</a>
+        <li><a href="group_libccc_memory.html#index-18">function</a>
 </li>
       </ul></li>
       <li>
@@ -8053,7 +8800,7 @@
     Memory_Find
 
       <ul>
-        <li><a href="group_libccc_memory.html#index-12">function</a>
+        <li><a href="group_libccc_memory.html#index-16">function</a>
 </li>
       </ul></li>
       <li>
@@ -8067,7 +8814,21 @@
     Memory_GetBits
 
       <ul>
-        <li><a href="group_libccc_memory.html#index-16">function</a>
+        <li><a href="group_libccc_memory.html#index-20">function</a>
+</li>
+      </ul></li>
+      <li>
+    Memory_Join
+
+      <ul>
+        <li><a href="group_libccc_memory.html#index-12">function</a>
+</li>
+      </ul></li>
+      <li>
+    Memory_Merge
+
+      <ul>
+        <li><a href="group_libccc_memory.html#index-15">function</a>
 </li>
       </ul></li>
       <li>
@@ -8092,10 +8853,17 @@
 </li>
       </ul></li>
       <li>
+    Memory_Prepend
+
+      <ul>
+        <li><a href="group_libccc_memory.html#index-14">function</a>
+</li>
+      </ul></li>
+      <li>
     Memory_Replace
 
       <ul>
-        <li><a href="group_libccc_memory.html#index-13">function</a>
+        <li><a href="group_libccc_memory.html#index-17">function</a>
 </li>
       </ul></li>
       <li>
@@ -8109,7 +8877,7 @@
     Memory_Swap
 
       <ul>
-        <li><a href="group_libccc_memory.html#index-15">function</a>
+        <li><a href="group_libccc_memory.html#index-19">function</a>
 </li>
       </ul></li>
       <li>
@@ -8124,104 +8892,6 @@
 
       <ul>
         <li><a href="struct_s_date.html#index-2">variable</a>
-</li>
-      </ul></li>
-      <li>
-    MODE_GROUP_R
-
-      <ul>
-        <li><a href="group_libccc_sys_io.html#index-161">define</a>
-</li>
-      </ul></li>
-      <li>
-    MODE_GROUP_RWX
-
-      <ul>
-        <li><a href="group_libccc_sys_io.html#index-162">define</a>
-</li>
-      </ul></li>
-      <li>
-    MODE_GROUP_W
-
-      <ul>
-        <li><a href="group_libccc_sys_io.html#index-163">define</a>
-</li>
-      </ul></li>
-      <li>
-    MODE_GROUP_X
-
-      <ul>
-        <li><a href="group_libccc_sys_io.html#index-164">define</a>
-</li>
-      </ul></li>
-      <li>
-    mode_obfuscated
-
-      <ul>
-        <li><a href="struct_s_logger.html#index-3">variable</a>
-</li>
-      </ul></li>
-      <li>
-    MODE_OTHER_R
-
-      <ul>
-        <li><a href="group_libccc_sys_io.html#index-165">define</a>
-</li>
-      </ul></li>
-      <li>
-    MODE_OTHER_RWX
-
-      <ul>
-        <li><a href="group_libccc_sys_io.html#index-166">define</a>
-</li>
-      </ul></li>
-      <li>
-    MODE_OTHER_W
-
-      <ul>
-        <li><a href="group_libccc_sys_io.html#index-167">define</a>
-</li>
-      </ul></li>
-      <li>
-    MODE_OTHER_X
-
-      <ul>
-        <li><a href="group_libccc_sys_io.html#index-168">define</a>
-</li>
-      </ul></li>
-      <li>
-    MODE_USER_R
-
-      <ul>
-        <li><a href="group_libccc_sys_io.html#index-169">define</a>
-</li>
-      </ul></li>
-      <li>
-    MODE_USER_RWX
-
-      <ul>
-        <li><a href="group_libccc_sys_io.html#index-170">define</a>
-</li>
-      </ul></li>
-      <li>
-    MODE_USER_W
-
-      <ul>
-        <li><a href="group_libccc_sys_io.html#index-171">define</a>
-</li>
-      </ul></li>
-      <li>
-    MODE_USER_X
-
-      <ul>
-        <li><a href="group_libccc_sys_io.html#index-172">define</a>
-</li>
-      </ul></li>
-      <li>
-    mode_verbose
-
-      <ul>
-        <li><a href="struct_s_logger.html#index-2">variable</a>
 </li>
       </ul></li>
       <li>
@@ -8300,8 +8970,6 @@
         <li><a href="group_libccc.html#index-28">define</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     NAMINGSTYLE_FLAG_HUNGARIAN_SUFFIX
 
@@ -8309,6 +8977,8 @@
         <li><a href="group_libccc.html#index-29">define</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     NAMINGSTYLE_FLAG_HUNGARIAN_UPPERCASE
 
@@ -8335,6 +9005,20 @@
 
       <ul>
         <li><a href="struct_s_list.html#index-1">variable</a>
+</li>
+      </ul></li>
+      <li>
+    node_count
+
+      <ul>
+        <li><a href="struct_s_tree.html#index-1">variable</a>
+</li>
+      </ul></li>
+      <li>
+    nodes
+
+      <ul>
+        <li><a href="struct_s_tree.html#index-2">variable</a>
 </li>
       </ul></li>
       <li>
@@ -8365,6 +9049,13 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li>
+    obfuscated
+
+      <ul>
+        <li><a href="struct_s_logger.html#index-5">variable</a>
+</li>
+      </ul></li>
+      <li>
     OFFSET
 
       <ul>
@@ -8382,21 +9073,21 @@
     OPEN_ACCESSMODE
 
       <ul>
-        <li><a href="group_libccc_sys_io.html#index-173">define</a>
+        <li><a href="group_libccc_sys_io.html#index-229">define</a>
 </li>
       </ul></li>
       <li>
     OPEN_APPEND
 
       <ul>
-        <li><a href="group_libccc_sys_io.html#index-174">define</a>
+        <li><a href="group_libccc_sys_io.html#index-230">define</a>
 </li>
       </ul></li>
       <li>
     OPEN_CLEARFILE
 
       <ul>
-        <li><a href="group_libccc_sys_io.html#index-175">define</a>
+        <li><a href="group_libccc_sys_io.html#index-231">define</a>
 </li>
       </ul></li>
   </ul></td>
@@ -8405,35 +9096,35 @@
     OPEN_CREATE
 
       <ul>
-        <li><a href="group_libccc_sys_io.html#index-176">define</a>
+        <li><a href="group_libccc_sys_io.html#index-232">define</a>
 </li>
       </ul></li>
       <li>
-    OPEN_EXCLUSIVE
+    OPEN_NOEXISTING
 
       <ul>
-        <li><a href="group_libccc_sys_io.html#index-177">define</a>
+        <li><a href="group_libccc_sys_io.html#index-233">define</a>
 </li>
       </ul></li>
       <li>
     OPEN_READONLY
 
       <ul>
-        <li><a href="group_libccc_sys_io.html#index-178">define</a>
+        <li><a href="group_libccc_sys_io.html#index-234">define</a>
 </li>
       </ul></li>
       <li>
     OPEN_READWRITE
 
       <ul>
-        <li><a href="group_libccc_sys_io.html#index-179">define</a>
+        <li><a href="group_libccc_sys_io.html#index-235">define</a>
 </li>
       </ul></li>
       <li>
     OPEN_WRITEONLY
 
       <ul>
-        <li><a href="group_libccc_sys_io.html#index-180">define</a>
+        <li><a href="group_libccc_sys_io.html#index-236">define</a>
 </li>
       </ul></li>
   </ul></td>
@@ -8453,7 +9144,7 @@
     path
 
       <ul>
-        <li><a href="struct_s_logfile.html#index-2">variable</a>
+        <li><a href="struct_s_logger.html#index-9">variable</a>
 </li>
       </ul></li>
       <li>
@@ -8992,13 +9683,6 @@
 </li>
       </ul></li>
       <li>
-    s_leaf
-
-      <ul>
-        <li><a href="struct_s_leaf.html#index-0">struct</a>
-</li>
-      </ul></li>
-      <li>
     s_list
 
       <ul>
@@ -9017,13 +9701,6 @@
 
       <ul>
         <li><a href="struct_s_list_int.html#index-0">struct</a>
-</li>
-      </ul></li>
-      <li>
-    s_logfile
-
-      <ul>
-        <li><a href="struct_s_logfile.html#index-0">struct</a>
 </li>
       </ul></li>
       <li>
@@ -9146,17 +9823,24 @@
 </li>
       </ul></li>
       <li>
-    show_timestamp
-
-      <ul>
-        <li><a href="struct_s_logger.html#index-1">variable</a>
-</li>
-      </ul></li>
-      <li>
     SIGN
 
       <ul>
         <li><a href="group_libccc_math_math.html#index-49">define</a>
+</li>
+      </ul></li>
+      <li>
+    silence_errors
+
+      <ul>
+        <li><a href="struct_s_logger.html#index-2">variable</a>
+</li>
+      </ul></li>
+      <li>
+    silence_logs
+
+      <ul>
+        <li><a href="struct_s_logger.html#index-1">variable</a>
 </li>
       </ul></li>
       <li>
@@ -9387,21 +10071,21 @@
     STDERR
 
       <ul>
-        <li><a href="group_libccc_sys_io.html#index-181">define</a>
+        <li><a href="group_libccc_sys_io.html#index-237">define</a>
 </li>
       </ul></li>
       <li>
     STDIN
 
       <ul>
-        <li><a href="group_libccc_sys_io.html#index-182">define</a>
+        <li><a href="group_libccc_sys_io.html#index-238">define</a>
 </li>
       </ul></li>
       <li>
     STDOUT
 
       <ul>
-        <li><a href="group_libccc_sys_io.html#index-183">define</a>
+        <li><a href="group_libccc_sys_io.html#index-239">define</a>
 </li>
       </ul></li>
       <li>
@@ -9415,7 +10099,7 @@
     String_Append
 
       <ul>
-        <li><a href="group_libccc_string.html#index-53">function</a>
+        <li><a href="group_libccc_string.html#index-54">function</a>
 </li>
       </ul></li>
       <li>
@@ -9809,7 +10493,7 @@
     String_Insert_InPlace
 
       <ul>
-        <li><a href="group_libccc_string.html#index-55">function</a>
+        <li><a href="group_libccc_string.html#index-56">function</a>
 </li>
       </ul></li>
       <li>
@@ -9830,7 +10514,7 @@
     String_Join
 
       <ul>
-        <li><a href="group_libccc_string.html#index-68">function</a>
+        <li><a href="group_libccc_string.html#index-52">function</a>
 </li>
       </ul></li>
       <li>
@@ -9879,14 +10563,14 @@
     String_Map_InPlace
 
       <ul>
-        <li><a href="group_libccc_string.html#index-59">function</a>
+        <li><a href="group_libccc_string.html#index-60">function</a>
 </li>
       </ul></li>
       <li>
     String_Merge
 
       <ul>
-        <li><a href="group_libccc_string.html#index-52">function</a>
+        <li><a href="group_libccc_string.html#index-53">function</a>
 </li>
       </ul></li>
       <li>
@@ -9907,28 +10591,28 @@
     String_Pad
 
       <ul>
-        <li><a href="group_libccc_string.html#index-63">function</a>
+        <li><a href="group_libccc_string.html#index-64">function</a>
 </li>
       </ul></li>
       <li>
     String_Pad_L
 
       <ul>
-        <li><a href="group_libccc_string.html#index-64">function</a>
+        <li><a href="group_libccc_string.html#index-65">function</a>
 </li>
       </ul></li>
       <li>
     String_Pad_R
 
       <ul>
-        <li><a href="group_libccc_string.html#index-65">function</a>
+        <li><a href="group_libccc_string.html#index-66">function</a>
 </li>
       </ul></li>
       <li>
     String_Prepend
 
       <ul>
-        <li><a href="group_libccc_string.html#index-54">function</a>
+        <li><a href="group_libccc_string.html#index-55">function</a>
 </li>
       </ul></li>
       <li>
@@ -9949,7 +10633,7 @@
     String_Replace_Char_InPlace
 
       <ul>
-        <li><a href="group_libccc_string.html#index-56">function</a>
+        <li><a href="group_libccc_string.html#index-57">function</a>
 </li>
       </ul></li>
       <li>
@@ -9963,7 +10647,7 @@
     String_Replace_Charset_InPlace
 
       <ul>
-        <li><a href="group_libccc_string.html#index-57">function</a>
+        <li><a href="group_libccc_string.html#index-58">function</a>
 </li>
       </ul></li>
       <li>
@@ -9977,14 +10661,14 @@
     String_Replace_String_InPlace
 
       <ul>
-        <li><a href="group_libccc_string.html#index-58">function</a>
+        <li><a href="group_libccc_string.html#index-59">function</a>
 </li>
       </ul></li>
       <li>
     String_Reverse
 
       <ul>
-        <li><a href="group_libccc_string.html#index-67">function</a>
+        <li><a href="group_libccc_string.html#index-68">function</a>
 </li>
       </ul></li>
       <li>
@@ -10033,28 +10717,28 @@
     String_ToPrintableString
 
       <ul>
-        <li><a href="group_libccc_string.html#index-66">function</a>
+        <li><a href="group_libccc_string.html#index-67">function</a>
 </li>
       </ul></li>
       <li>
     String_Trim
 
       <ul>
-        <li><a href="group_libccc_string.html#index-60">function</a>
+        <li><a href="group_libccc_string.html#index-61">function</a>
 </li>
       </ul></li>
       <li>
     String_Trim_L
 
       <ul>
-        <li><a href="group_libccc_string.html#index-61">function</a>
+        <li><a href="group_libccc_string.html#index-62">function</a>
 </li>
       </ul></li>
       <li>
     String_Trim_R
 
       <ul>
-        <li><a href="group_libccc_string.html#index-62">function</a>
+        <li><a href="group_libccc_string.html#index-63">function</a>
 </li>
       </ul></li>
       <li>
@@ -10202,15 +10886,11 @@
 </li>
         <li><a href="struct_s_keyval.html#index-0">s_keyval</a>
 </li>
-        <li><a href="struct_s_leaf.html#index-0">s_leaf</a>
-</li>
         <li><a href="struct_s_list.html#index-0">s_list</a>
 </li>
         <li><a href="struct_s_list_float.html#index-0">s_list_float</a>
 </li>
         <li><a href="struct_s_list_int.html#index-0">s_list_int</a>
-</li>
-        <li><a href="struct_s_logfile.html#index-0">s_logfile</a>
 </li>
         <li><a href="struct_s_logger.html#index-0">s_logger</a>
 </li>
@@ -10330,6 +11010,13 @@
 
       <ul>
         <li><a href="group_libccc_sys_io.html#index-4">typedef</a>
+</li>
+      </ul></li>
+      <li>
+    t_logptrarr
+
+      <ul>
+        <li><a href="group_libccc_sys_logger.html#index-1">typedef</a>
 </li>
       </ul></li>
       <li>
@@ -10601,6 +11288,13 @@
 </li>
       </ul></li>
       <li>
+    timestamp
+
+      <ul>
+        <li><a href="struct_s_logger.html#index-3">variable</a>
+</li>
+      </ul></li>
+      <li>
     TIMEZONE_CDT
 
       <ul>
@@ -10747,6 +11441,8 @@
         <li><a href="group_libccc_sys_io.html#index-3">t_io_mode</a>
 </li>
         <li><a href="group_libccc_sys_io.html#index-4">t_io_open</a>
+</li>
+        <li><a href="group_libccc_sys_logger.html#index-1">t_logptrarr</a>
 </li>
         <li><a href="group_libccc_pointer.html#index-2">t_ptrdiff</a>
 </li>
@@ -11111,21 +11807,21 @@
     value
 
       <ul>
-        <li><a href="struct_s_keyval.html#index-2">variable</a>, <a href="struct_s_leaf.html#index-1">[1]</a>
+        <li><a href="struct_s_keyval.html#index-2">variable</a>, <a href="struct_s_tree.html#index-3">[1]</a>
 </li>
       </ul></li>
       <li>
     value_size
 
       <ul>
-        <li><a href="struct_s_keyval.html#index-4">variable</a>, <a href="struct_s_leaf.html#index-3">[1]</a>
+        <li><a href="struct_s_keyval.html#index-4">variable</a>, <a href="struct_s_tree.html#index-5">[1]</a>
 </li>
       </ul></li>
       <li>
     value_type
 
       <ul>
-        <li><a href="struct_s_keyval.html#index-3">variable</a>, <a href="struct_s_leaf.html#index-2">[1]</a>
+        <li><a href="struct_s_keyval.html#index-3">variable</a>, <a href="struct_s_tree.html#index-4">[1]</a>
 </li>
       </ul></li>
       <li>
@@ -11141,7 +11837,7 @@
       <ul>
         <li><a href="struct_s_ahsl.html#index-1">a</a>, <a href="struct_s_argb.html#index-1">[1]</a>
 </li>
-        <li><a href="struct_s_logfile.html#index-3">append</a>
+        <li><a href="struct_s_logger.html#index-6">append</a>
 </li>
         <li><a href="struct_s_argb.html#index-4">b</a>
 </li>
@@ -11153,13 +11849,9 @@
 </li>
         <li><a href="struct_s_date.html#index-6">day_year</a>
 </li>
-        <li><a href="struct_s_logger.html#index-6">dest_files</a>
+        <li><a href="struct_s_logger.html#index-8">fd</a>
 </li>
-        <li><a href="struct_s_logger.html#index-5">dest_stderr</a>
-</li>
-        <li><a href="struct_s_logger.html#index-4">dest_stdout</a>
-</li>
-        <li><a href="struct_s_logfile.html#index-1">fd</a>
+        <li><a href="struct_s_logger.html#index-7">format</a>
 </li>
         <li><a href="struct_s_argb.html#index-3">g</a>
 </li>
@@ -11183,11 +11875,11 @@
 </li>
         <li><a href="struct_s_list.html#index-3">item</a>
 </li>
-        <li><a href="struct_s_array.html#index-1">item_count</a>
+        <li><a href="struct_s_array.html#index-1">item_count</a>, <a href="struct_s_dict.html#index-1">[1]</a>
 </li>
         <li><a href="struct_s_array.html#index-2">item_size</a>, <a href="struct_s_list.html#index-2">[1]</a>
 </li>
-        <li><a href="struct_s_array.html#index-3">items</a>
+        <li><a href="struct_s_array.html#index-3">items</a>, <a href="struct_s_dict.html#index-2">[1]</a>
 </li>
         <li><a href="struct_s_quaternion.html#index-3">j</a>
 </li>
@@ -11203,17 +11895,19 @@
 </li>
         <li><a href="struct_s_date.html#index-2">min</a>
 </li>
-        <li><a href="struct_s_logger.html#index-3">mode_obfuscated</a>
-</li>
-        <li><a href="struct_s_logger.html#index-2">mode_verbose</a>
-</li>
         <li><a href="struct_s_date.html#index-7">month</a>
 </li>
         <li><a href="struct_s_timespec.html#index-2">nanosec</a>
 </li>
         <li><a href="struct_s_list.html#index-1">next</a>
 </li>
-        <li><a href="struct_s_logfile.html#index-2">path</a>
+        <li><a href="struct_s_tree.html#index-1">node_count</a>
+</li>
+        <li><a href="struct_s_tree.html#index-2">nodes</a>
+</li>
+        <li><a href="struct_s_logger.html#index-5">obfuscated</a>
+</li>
+        <li><a href="struct_s_logger.html#index-9">path</a>
 </li>
         <li><a href="struct_s_argb.html#index-2">r</a>
 </li>
@@ -11225,19 +11919,25 @@
 </li>
         <li><a href="struct_s_date.html#index-1">sec</a>, <a href="struct_s_timespec.html#index-1">[1]</a>
 </li>
-        <li><a href="struct_s_logger.html#index-1">show_timestamp</a>
+        <li><a href="struct_s_logger.html#index-2">silence_errors</a>
+</li>
+        <li><a href="struct_s_logger.html#index-1">silence_logs</a>
 </li>
         <li><a href="struct_s_vector4d.html#index-4">t</a>
 </li>
-        <li><a href="struct_s_keyval.html#index-2">value</a>, <a href="struct_s_leaf.html#index-1">[1]</a>
+        <li><a href="struct_s_logger.html#index-3">timestamp</a>
 </li>
-        <li><a href="struct_s_keyval.html#index-4">value_size</a>, <a href="struct_s_leaf.html#index-3">[1]</a>
+        <li><a href="struct_s_keyval.html#index-2">value</a>, <a href="struct_s_tree.html#index-3">[1]</a>
 </li>
-        <li><a href="struct_s_keyval.html#index-3">value_type</a>, <a href="struct_s_leaf.html#index-2">[1]</a>
+        <li><a href="struct_s_keyval.html#index-4">value_size</a>, <a href="struct_s_tree.html#index-5">[1]</a>
+</li>
+        <li><a href="struct_s_keyval.html#index-3">value_type</a>, <a href="struct_s_tree.html#index-4">[1]</a>
 </li>
         <li><a href="union_u_matrix2d.html#index-1">values</a>, <a href="union_u_matrix3d.html#index-1">[1]</a>, <a href="union_u_matrix4d.html#index-1">[2]</a>, <a href="union_u_vector2d.html#index-1">[3]</a>, <a href="union_u_vector3d.html#index-1">[4]</a>, <a href="union_u_vector4d.html#index-1">[5]</a>
 </li>
         <li><a href="union_u_vector2d.html#index-2">vector</a>, <a href="union_u_vector3d.html#index-2">[1]</a>, <a href="union_u_vector4d.html#index-2">[2]</a>
+</li>
+        <li><a href="struct_s_logger.html#index-4">verbose</a>
 </li>
         <li><a href="struct_s_vector2d.html#index-1">x</a>, <a href="struct_s_vector3d.html#index-1">[1]</a>, <a href="struct_s_vector4d.html#index-1">[2]</a>
 </li>
@@ -11374,6 +12074,13 @@
 
       <ul>
         <li><a href="group_libccc_math_algebra.html#index-16">function</a>
+</li>
+      </ul></li>
+      <li>
+    verbose
+
+      <ul>
+        <li><a href="struct_s_logger.html#index-4">variable</a>
 </li>
       </ul></li>
   </ul></td>

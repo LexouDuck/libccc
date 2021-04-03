@@ -34,31 +34,17 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! A simple tree leaf node struct, used in the 's_tree' tree/node/leaf struct
-/*
-**	TODO document this
-*/
-typedef struct	s_leaf_
-{
-	void*		value;		//!< The pointer to the data for the 'value'
-	char*		value_type;	//!< The amount of elements in the 'items' array
-	t_size		value_size;	//!< The size (in bytes) of one object in this array
-}				s_leaf;
-TYPEDEF_ALIAS(	s_leaf, LEAF, STRUCT)
-
-#define LEAF_NULL	(s_leaf){ 0 } // TODO
-
-
-
-//! A simple tree/node/leaf struct, stores an array of "branches" (ie: nodes).
+//! A simple tree/node/leaf struct, stores an array of "branches" (ie: sub-nodes).
 /*
 **	TODO document this
 */
 typedef struct	s_tree_
 {
-	t_size			node_count;
-	struct s_tree_*	nodes;
-	void*			value;
+	t_size			node_count;	//!< The amount of sub-nodes of this tree node
+	struct s_tree_*	nodes;		//!< The array of sub-nodes of this tree node
+	void*			value;		//!< The value stored in this tree node
+	char*			value_type;	//!< The type of the value stored in `value`
+	t_size			value_size;	//!< The size (in bytes) of `value`
 }				s_tree;
 TYPEDEF_ALIAS(	s_tree, TREE, STRUCT)
 

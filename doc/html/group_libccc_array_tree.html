@@ -24,7 +24,6 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
         <script src="_static/target-highlight.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script src="_static/js/custom.js"></script>
@@ -41,7 +40,7 @@
   <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="struct s_leaf" href="struct_s_leaf.html" />
+    <link rel="next" title="struct s_tree" href="struct_s_tree.html" />
     <link rel="prev" title="struct s_keyval" href="struct_s_keyval.html" />
 	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
 	
@@ -126,7 +125,6 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_array_list.html">22) libccc/array/list</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_array_dict.html">23) libccc/array/dict</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">24) libccc/array/tree</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="struct_s_leaf.html">struct s_leaf</a></li>
 <li class="toctree-l2"><a class="reference internal" href="struct_s_tree.html">struct s_tree</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#detailed-documentation">Detailed Documentation</a><ul>
@@ -137,6 +135,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_array_pointerarray.html">25) libccc/array/pointerarray</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_array_stringarray.html">26) libccc/array/stringarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_sort.html">Libccc_array_sort</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
@@ -214,12 +213,10 @@
 <p>This header defines a simple tree/node/leaf type and utility functions for it. <a class="reference internal" href="#details-group-libccc-array-tree"><span class="std std-ref">More…</span></a></p>
 <pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// structs</span>
 
-<span class="k">struct</span> <a class="reference internal" href="struct_s_leaf.html#doxid-structs-leaf"><span class="std std-ref">s_leaf</span></a><span></span><span class="p">;</span>
 <span class="k">struct</span> <a class="reference internal" href="struct_s_tree.html#doxid-structs-tree"><span class="std std-ref">s_tree</span></a><span></span><span class="p">;</span>
 
 <span class="c1">// macros</span>
 
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-array-tree-1ga9d8166b8c4c082407b6d522806105da8"><span></span><span class="n">LEAF_NULL</span></span><span></span>   <span class="p">(</span><a class="reference internal" href="struct_s_leaf.html#doxid-structs-leaf"><span class="std std-ref">s_leaf</span></a><span></span><span class="p">){</span> <span class="mi">0</span> <span class="p">}</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-array-tree-1gab7546deb1c40c536f7646a53adb2e2df"><span class="std std-ref">TREE_NULL</span></a><span></span>  <span class="p">(</span><a class="reference internal" href="struct_s_tree.html#doxid-structs-tree"><span class="std std-ref">s_tree</span></a><span></span><span class="p">){</span> <span class="p">.</span><span class="n">node_count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="p">.</span><span class="n">nodes</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="p">.</span><span class="n">value</span> <span class="o">=</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1ga070d2ce7b6bb7e5c05602aa8c308d0c4"><span class="std std-ref">NULL</span></a><span></span> <span class="p">}</span></pre>
 </div>
 <div class="section" id="detailed-documentation">
@@ -241,7 +238,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="struct_s_leaf.html" class="btn btn-neutral float-right" title="struct s_leaf" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="struct_s_tree.html" class="btn btn-neutral float-right" title="struct s_tree" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="struct_s_keyval.html" class="btn btn-neutral float-left" title="struct s_keyval" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

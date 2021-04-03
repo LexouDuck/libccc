@@ -24,7 +24,6 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
         <script src="_static/target-highlight.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script src="_static/js/custom.js"></script>
@@ -139,6 +138,7 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_array_tree.html">24) libccc/array/tree</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_array_pointerarray.html">25) libccc/array/pointerarray</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_array_stringarray.html">26) libccc/array/stringarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_sort.html">Libccc_array_sort</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
@@ -392,15 +392,26 @@
 <span id="details-group-libccc-float"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline">¶</a></h2>
 <p>This header defines the floating-point number primitive types and functions.</p>
 <ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/language/arithmetic_types#Real_floating_types">https://en.cppreference.com/w/c/language/arithmetic_types#Real_floating_types</a></p></li>
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/language/floating_constant">https://en.cppreference.com/w/c/language/floating_constant</a></p></li>
 <li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/math">https://en.cppreference.com/w/c/numeric/math</a></p></li>
 <li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/fenv">https://en.cppreference.com/w/c/numeric/fenv</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/IEEE_754">https://en.wikipedia.org/wiki/IEEE_754</a></p></li>
 </ul>
 <div class="section" id="typedefs">
 <h3>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h3>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-float-1gab4ca326c12ad2a26dbfe81c3d798bcdf"><span id="index-1"></span><span></span><span class="k">typedef</span> <span class="kt">float</span> <span class="kt">t_f32</span></pre>
-<p>The type for 32-bit ‘single precision’ IEEE-754 floating-point numbers.</p>
+<p>Primitive type: 32-bit ‘single precision’ IEEE-754 floating-point numbers.</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/language/arithmetic_types#Real_floating_types">https://en.cppreference.com/w/c/language/arithmetic_types#Real_floating_types</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Single-precision_floating-point_format">https://en.wikipedia.org/wiki/Single-precision_floating-point_format</a></p></li>
+</ul>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-float-1gad103913585e225d474d7bd173154f4e8"><span id="index-2"></span><span></span><span class="k">typedef</span> <span class="kt">double</span> <span class="kt">t_f64</span></pre>
-<p>The type for 64-bit ‘double precision’ IEEE-754 floating-point numbers.</p>
+<p>Primitive type: 64-bit ‘double precision’ IEEE-754 floating-point numbers.</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/language/arithmetic_types#Real_floating_types">https://en.cppreference.com/w/c/language/arithmetic_types#Real_floating_types</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Double-precision_floating-point_format">https://en.wikipedia.org/wiki/Double-precision_floating-point_format</a></p></li>
+</ul>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-float-1ga062b5f7ac5af1921a0d50e5b59f7a496"><span id="index-3"></span><span></span><span class="k">typedef</span> <a class="reference internal" href="group_libccc.html#doxid-group-libccc-1ga8b4efeeb90964088b7251e88b640732e"><span class="std std-ref">LIBCONFIG_TYPE_FLOAT</span></a><span></span> <span class="kt">t_float</span></pre>
 <p>The configurable-size floating-point number primitive type.</p>
 </div>

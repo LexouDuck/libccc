@@ -24,7 +24,6 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
         <script src="_static/target-highlight.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script src="_static/js/custom.js"></script>
@@ -125,7 +124,12 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_array_array.html">21) libccc/array/array</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_array_list.html">22) libccc/array/list</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="group_libccc_array_dict.html">23) libccc/array/dict</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">struct s_dict</a><ul class="simple">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">struct s_dict</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#detailed-documentation">Detailed Documentation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#fields">Fields</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="struct_s_keyval.html">struct s_keyval</a></li>
@@ -136,6 +140,7 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_array_tree.html">24) libccc/array/tree</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_array_pointerarray.html">25) libccc/array/pointerarray</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_array_stringarray.html">26) libccc/array/stringarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_sort.html">Libccc_array_sort</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
@@ -210,16 +215,30 @@
 <span id="doxid-structs-dict"></span><span id="index-0"></span><h1>struct s_dict<a class="headerlink" href="#struct-s-dict" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<p>A simple dictionary struct, stores an array of key/value pairs.</p>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>A simple dictionary struct, stores an array of key/value pairs. <a class="reference internal" href="#details-structs-dict"><span class="std std-ref">More…</span></a></p>
 <pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="cp">#include</span> <span class="cpf">&lt;dict.h&gt;</span><span class="cp"></span>
 
 <span class="k">struct</span> <span class="kt">s_dict</span>
 <span class="p">{</span>
     <span class="c1">// fields</span>
 
-    <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-structs-dict-1a9663cc9d6fdfc1ecaa245229ef6b9b90"><span></span><span class="n">item_count</span></span><span></span><span class="p">;</span>
-    <a class="reference internal" href="struct_s_keyval.html#doxid-structs-keyval"><span class="std std-ref">s_keyval</span></a><span></span><span class="o">*</span> <span class="doxyrest-code-target target" id="doxid-structs-dict-1aebad984d021948506e4424c170f5bb37"><span></span><span class="n">items</span></span><span></span><span class="p">;</span>
+    <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <a class="reference internal" href="#doxid-structs-dict-1a9663cc9d6fdfc1ecaa245229ef6b9b90"><span class="std std-ref">item_count</span></a><span></span><span class="p">;</span>
+    <a class="reference internal" href="struct_s_keyval.html#doxid-structs-keyval"><span class="std std-ref">s_keyval</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-structs-dict-1aebad984d021948506e4424c170f5bb37"><span class="std std-ref">items</span></a><span></span><span class="p">;</span>
 <span class="p">};</span></pre>
+</div>
+<div class="section" id="detailed-documentation">
+<span id="details-structs-dict"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline">¶</a></h2>
+<p>A simple dictionary struct, stores an array of key/value pairs.</p>
+<div class="section" id="fields">
+<h3>Fields<a class="headerlink" href="#fields" title="Permalink to this headline">¶</a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-structs-dict-1a9663cc9d6fdfc1ecaa245229ef6b9b90"><span id="index-1"></span><a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">item_count</span></pre>
+<p>The amount of key/value pairs stored in this dictionary.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-structs-dict-1aebad984d021948506e4424c170f5bb37"><span id="index-2"></span><a class="reference internal" href="struct_s_keyval.html#doxid-structs-keyval"><span class="std std-ref">s_keyval</span></a><span></span><span class="o">*</span> <span class="n">items</span></pre>
+<p>The array of key/value pairs stored in this dictionary.</p>
+</div>
+</div>
 </div>
 
 
