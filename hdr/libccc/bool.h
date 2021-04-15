@@ -41,12 +41,26 @@ HEADER_CPP
 #ifdef	FALSE
 #undef	FALSE
 #endif	//! Represents a boolean false value (0)
-#define FALSE	(0)
+#define FALSE	((t_bool)0)
 
 #ifdef	TRUE
 #undef	TRUE
 #endif	//! Represents a boolean true value  (1)
-#define TRUE	(1)
+#define TRUE	((t_bool)1)
+
+
+
+#ifdef	false
+#undef	false
+#endif	//! Represents a boolean false value (0)
+#define false	FALSE
+
+#ifdef	true
+#undef	true
+#endif	//! Represents a boolean true value  (1)
+#define true	TRUE
+
+
 
 //! Primitve type: The boolean type (`TRUE` or `FALSE`)
 /*!

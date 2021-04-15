@@ -120,31 +120,6 @@ TYPEDEF_ALIAS(					t_float, FLOAT, PRIMITIVE)
 
 
 
-//! The floating-point infinity value (use `-INF` for negative)
-/*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/INFINITY}
-*/
-#ifndef INF
-#define INF			(1. / 0.)
-#endif
-//! The floating-point infinity value (use `-INFINITY` for negative) [alias for #INF]
-#ifndef INFINITY
-#define INFINITY	INF
-#endif
-
-//! Checks if the given 'x' is either +INFINITY or -INFINITY
-/*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/isinf}
-*/
-#ifndef IS_INFINITY
-#define IS_INFINITY(X)	((X) == INFINITY || (X) == -INFINITY)
-#endif
-#ifndef IS_INF
-#define IS_INF(X)	IS_INFINITY(X)
-#endif
-
-
-
 //! The floating-point "not a number" value.
 /*!
 **	@isostd{https://en.cppreference.com/w/c/numeric/math/nan}
@@ -153,13 +128,50 @@ TYPEDEF_ALIAS(					t_float, FLOAT, PRIMITIVE)
 #ifndef NAN
 #define NAN			(0. / 0.)
 #endif
+#ifndef NOTNUMBER
+#define NOTNUMBER	nan
+#endif
 
 //! Checks if the given 'x' has a "not a number" value.
 /*!
 **	@isostd{https://en.cppreference.com/w/c/numeric/math/isnan}
+**
+**	Also, define isnan() for ANSI C compatibility, if needed.
 */
+#ifndef isnan
+#define isnan(X)	(X != X)
+#endif
 #ifndef IS_NAN
-#define IS_NAN(X)	((X) != (X))
+#define IS_NAN(X)	isnan(X)
+#endif
+
+
+
+//! The floating-point infinity value (use `-INF` for negative)
+/*!
+**	@isostd{https://en.cppreference.com/w/c/numeric/math/INFINITY}
+*/
+#ifndef INF
+#define INF			(1. / 0.)
+#endif
+#ifndef INFINITY
+#define INFINITY	inf
+#endif
+
+//! Checks if the given 'x' is either +INFINITY or -INFINITY
+/*!
+**	@isostd{https://en.cppreference.com/w/c/numeric/math/isinf}
+**
+**	Also, define isinf() for ANSI C compatibility, if needed.
+*/
+#ifndef isinf
+#define isinf(X)	(isnan((X - X)) && !isnan(X))
+#endif
+#ifndef IS_INF
+#define IS_INF(X)		isinf(X)
+#endif
+#ifndef IS_INFINITY
+#define IS_INFINITY(X)	isinf(X)
 #endif
 
 
@@ -176,6 +188,7 @@ TYPEDEF_ALIAS(					t_float, FLOAT, PRIMITIVE)
 **	This very small float is typically used to compare two float values.
 **	Floating point equality checks aren't the most dependable kind of operation,
 **	so it's often better to do `(ABS(x - y) <= FLOAT_BIAS)` to check for equality.
+**	@see #FLOAT_EPSILON
 */
 #define FLOAT_BIAS		(1.0e-10)
 
@@ -184,26 +197,68 @@ TYPEDEF_ALIAS(					t_float, FLOAT, PRIMITIVE)
 
 
 
-//! If `(value >= FLOAT_THRESHOLD_HUGE)`, Float_ToString() functions will write in scientific notation
+//! This macro sets the rounding behavior for floating-point number operations.
+/*!
+**	Rounding behavior for floating-point types. Possible values are:
+**	-1 undetermined
+**	 0 towards zero
+**	 1 to nearest
+**	 2 toward positive infinity
+**	 3 toward negative infinity
+*/
+#ifndef FLT_ROUNDS
+#define FLT_ROUNDS	1
+#endif
+
+//! This macro sets the floating-point expression evaluation method (ie: how floats are operated upon).
+/*!
+**	The floating-point evaluation method. Possible values are:
+**	-1  indeterminate
+**	 0  evaluate all operations and constants, whose semantic type has at most the range and precision of float, to the range and precision of float;
+**	    evaluate all other operations and constants to the range and precision of the semantic type.
+**	 1  evaluate all operations and constants, whose semantic type has at most the range and precision of double, to the range and precision of double;
+**	    evaluate all other operations and constants to the range and precision of the semantic type.
+**	 2  evaluate all operations and constants, whose semantic type has at most the range and precision of long double, to the range and precision of long double;
+**	    evaluate all other operations and constants to the range and precision of the semantic type.
+**	 N  where _FloatN  is a supported interchange floating type:
+**	    evaluate all operations and constants, whose semantic type has at most the range and precision of the _FloatN type, to the range and precision of the _FloatN type;
+**	    evaluate all other operations and constants to the range and precision of the semantic type.
+**	 N + 1, where _FloatNx is a supported extended floating type:
+**	    evaluate operations and constants, whose semantic type has at most the range and precision of the _FloatNx type, to the range and precision of the _FloatNx type;
+**	    evaluate all other operations and constants to the range and precision of the semantic type.
+*/
+#ifndef FLT_EVAL_METHOD
+#define FLT_EVAL_METHOD	1
+#endif
+
+
+
+//! If `(value >= FLOAT_THRESHOLD_HUGE)`, Float_ToString() functions will write in scientific notation rather than decimal notation
 #define FLOAT_THRESHOLD_HUGE	(1e+9)
-//! If `(value <= FLOAT_THRESHOLD_TINY)`, Float_ToString() functions will write in scientific notation
+//! If `(value <= FLOAT_THRESHOLD_TINY)`, Float_ToString() functions will write in scientific notation rather than decimal notation
 #define FLOAT_THRESHOLD_TINY	(1e-9)
 
 
+
+// TODO instead of using FLT_MIN/FLT_MAX/FLT_EPSILON, calculate them manually (in a cross-platform manner)
 
 /*! @name 32-bit float bitwise constants
 **	IEEE 754 32-bit floating point "single" precision bitwise macros
 */
 //!@{
-#define F32_SIGNED			(0x80000000)	//!< A 32-bit floating-point number's sign bit (bitmask)
-#define F32_EXPONENT_BIAS	(127)			//!< A 32-bit floating-point number's exponent bias offset
-#define F32_EXPONENT		(0x7F800000)	//!< A 32-bit floating-point number's exponent bit region (bitmask)
-#define F32_EXPONENT_ZERO	(0x3F800000)	//!< A 32-bit floating-point number's 0-exponent value, accounting for bias (bitmask)
-#define F32_EXPONENT_BITS	(8)				//!< A 32-bit floating-point number's amount of bits dedicated to the exponent
-#define F32_MANTISSA		(0x007FFFFF)	//!< A 32-bit floating-point number's mantissa bit region (bitmask)
-#define F32_MANTISSA_SIGNED	(0x807FFFFF)	//!< A 32-bit floating-point number's mantissa and sign bit regions (bitmask)
-#define F32_MANTISSA_BITS	(23)			//!< A 32-bit floating-point number's amount of bits dedicated to the mantissa
-#define F32_INIT_VALUE		(0x1.p-23)		//!< A 32-bit floating-point number's value if all bits are zero
+#define F32_SIGNED			(0x80000000)			//!< A 32-bit floating-point number's sign bit (bitmask)
+#define F32_EXPONENT_BIAS	(127)					//!< A 32-bit floating-point number's exponent bias offset
+#define F32_EXPONENT		(0x7F800000)			//!< A 32-bit floating-point number's exponent bit region (bitmask)
+#define F32_EXPONENT_ZERO	(0x3F800000)			//!< A 32-bit floating-point number's 0-exponent value, accounting for bias (bitmask)
+#define F32_EXPONENT_BITS	(8)						//!< A 32-bit floating-point number's amount of bits dedicated to the exponent
+#define F32_MANTISSA		(0x007FFFFF)			//!< A 32-bit floating-point number's mantissa bit region (bitmask)
+#define F32_MANTISSA_SIGNED	(0x807FFFFF)			//!< A 32-bit floating-point number's mantissa and sign bit regions (bitmask)
+#define F32_MANTISSA_BITS	(23)					//!< A 32-bit floating-point number's amount of bits dedicated to the mantissa
+#define F32_INIT_VALUE		(0x1.p-23)				//!< A 32-bit floating-point number's value if all bits are zero
+#define F32_NEXT(X, TOWARD)	(nextafterf(X, TOWARD))	//!< Returns the nearest float value greater than the one given as `X`, going in the direction of `TOWARD`
+#define F32_MIN				(FLT_MIN)				//!< A 32-bit floating-point's minimum representable positive normal value.
+#define F32_MAX				(FLT_MAX)				//!< A 32-bit floating-point's maximum finite representable value.
+#define F32_EPSILON			(FLT_EPSILON)			//!< Difference between 1 and the least value greater than 1 that is representable.
 //!@}
 
 /*! @name 64-bit float bitwise constants
@@ -219,36 +274,48 @@ TYPEDEF_ALIAS(					t_float, FLOAT, PRIMITIVE)
 #define F64_MANTISSA_SIGNED	(0x800FFFFFFFFFFFFF)	//!< A 64-bit floating-point number's mantissa and sign bit regions (bitmask)
 #define F64_MANTISSA_BITS	(52)					//!< A 64-bit floating-point number's amount of bits dedicated to the mantissa
 #define F64_INIT_VALUE		(0x1.p-52)				//!< A 64-bit floating-point number's value if all bits are zero
+#define F64_NEXT(X, TOWARD)	(nextafterd(X, TOWARD))	//!< Returns the nearest float value greater than the one given as `X`, going in the direction of `TOWARD`
+#define F64_MIN				(DBL_MIN)				//!< A 64-bit floating-point's minimum representable positive normal value.
+#define F64_MAX				(DBL_MAX)				//!< A 64-bit floating-point's maximum finite representable value.
+#define F64_EPSILON			(DBL_EPSILON)			//!< Difference between 1 and the least value greater than 1 that is representable.
 //!@}
 
 /*! @name 80-bit float bitwise constants
 **	x86 80-bit floating point extended precision bitwise macros
 */
 //!@{
-#define F80_SIGNED			(0x80000000000000000000L)	//!< A 80-bit floating-point number's sign bit (bitmask)
+#define F80_SIGNED			(0x80000000000000000000l)	//!< A 80-bit floating-point number's sign bit (bitmask)
 #define F80_EXPONENT_BIAS	(16383)						//!< A 80-bit floating-point number's exponent bias offset
-#define F80_EXPONENT		(0x7FFF0000000000000000L)	//!< A 80-bit floating-point number's exponent bit region (bitmask)
-#define F80_EXPONENT_ZERO	(0x3FFF0000000000000000L)	//!< A 80-bit floating-point number's 0-exponent value, accounting for bias (bitmask)
+#define F80_EXPONENT		(0x7FFF0000000000000000l)	//!< A 80-bit floating-point number's exponent bit region (bitmask)
+#define F80_EXPONENT_ZERO	(0x3FFF0000000000000000l)	//!< A 80-bit floating-point number's 0-exponent value, accounting for bias (bitmask)
 #define F80_EXPONENT_BITS	(15)						//!< A 80-bit floating-point number's amount of bits dedicated to the exponent
-#define F80_MANTISSA		(0x0000FFFFFFFFFFFFFFFFL)	//!< A 80-bit floating-point number's mantissa bit region (bitmask)
-#define F80_MANTISSA_SIGNED	(0x8000FFFFFFFFFFFFFFFFL)	//!< A 80-bit floating-point number's mantissa and sign bit regions (bitmask)
+#define F80_MANTISSA		(0x0000FFFFFFFFFFFFFFFFl)	//!< A 80-bit floating-point number's mantissa bit region (bitmask)
+#define F80_MANTISSA_SIGNED	(0x8000FFFFFFFFFFFFFFFFl)	//!< A 80-bit floating-point number's mantissa and sign bit regions (bitmask)
 #define F80_MANTISSA_BITS	(64)						//!< A 80-bit floating-point number's amount of bits dedicated to the mantissa
 #define F80_INIT_VALUE		(0x1.p-64)					//!< A 80-bit floating-point number's value if all bits are zero
+#define F80_NEXT(X, TOWARD)	(nextafterld(X, TOWARD))	//!< Returns the nearest float value greater than the one given as `X`, going in the direction of `TOWARD`
+#define F80_MIN				(LDBL_MIN)					//!< A 80-bit floating-point's minimum representable positive normal value.
+#define F80_MAX				(LDBL_MAX)					//!< A 80-bit floating-point's maximum finite representable value.
+#define F80_EPSILON			(LDBL_EPSILON)				//!< Difference between 1 and the least value greater than 1 that is representable.
 //!@}
 
 /*! @name 128-bit float bitwise constants
 **	IEEE 754 128-bit floating point quadruple-precision bitwise macros
 */
 //!@{
-#define F128_SIGNED				(0x80000000000000000000000000000000L)	//!< A 128-bit floating-point number's sign bit (bitmask)
+#define F128_SIGNED				(0x80000000000000000000000000000000l)	//!< A 128-bit floating-point number's sign bit (bitmask)
 #define F128_EXPONENT_BIAS		(16383)									//!< A 128-bit floating-point number's exponent bias offset
-#define F128_EXPONENT			(0x7FFF0000000000000000000000000000L)	//!< A 128-bit floating-point number's exponent bit region (bitmask)
-#define F128_EXPONENT_ZERO		(0x3FFF0000000000000000000000000000L)	//!< A 128-bit floating-point number's 0-exponent value, accounting for bias (bitmask)
+#define F128_EXPONENT			(0x7FFF0000000000000000000000000000l)	//!< A 128-bit floating-point number's exponent bit region (bitmask)
+#define F128_EXPONENT_ZERO		(0x3FFF0000000000000000000000000000l)	//!< A 128-bit floating-point number's 0-exponent value, accounting for bias (bitmask)
 #define F128_EXPONENT_BITS		(15)									//!< A 128-bit floating-point number's amount of bits dedicated to the exponent
-#define F128_MANTISSA			(0x0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFL)	//!< A 128-bit floating-point number's mantissa bit region (bitmask)
-#define F128_MANTISSA_SIGNED	(0x8000FFFFFFFFFFFFFFFFFFFFFFFFFFFFL)	//!< A 128-bit floating-point number's mantissa and sign bit regions (bitmask)
+#define F128_MANTISSA			(0x0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFl)	//!< A 128-bit floating-point number's mantissa bit region (bitmask)
+#define F128_MANTISSA_SIGNED	(0x8000FFFFFFFFFFFFFFFFFFFFFFFFFFFFl)	//!< A 128-bit floating-point number's mantissa and sign bit regions (bitmask)
 #define F128_MANTISSA_BITS		(112)									//!< A 128-bit floating-point number's amount of bits dedicated to the mantissa
 #define F128_INIT_VALUE			(0x1.p-112)								//!< A 128-bit floating-point number's value if all bits are zero
+#define F128_NEXT(X, TOWARD)	(nextafterq(X, TOWARD))					//!< Returns the nearest float value greater than the one given as `X`, going in the direction of `TOWARD`
+#define F128_MIN				(LDBL_MIN)								//!< A 128-bit floating-point's minimum representable positive normal value.
+#define F128_MAX				(LDBL_MAX)								//!< A 128-bit floating-point's maximum finite representable value.
+#define F128_EPSILON			(LDBL_EPSILON)							//!< Difference between 1 and the least value greater than 1 that is representable.
 //!@}
 
 
@@ -270,6 +337,10 @@ TYPEDEF_ALIAS(					t_float, FLOAT, PRIMITIVE)
 #define FLOAT_MANTISSA_SIGNED	CONCAT(CONCAT(F,LIBCONFIG_BITS_FLOAT),_MANTISSA_SIGNED)
 #define FLOAT_MANTISSA_BITS		CONCAT(CONCAT(F,LIBCONFIG_BITS_FLOAT),_MANTISSA_BITS)
 #define FLOAT_INIT_VALUE		CONCAT(CONCAT(F,LIBCONFIG_BITS_FLOAT),_INIT_VALUE)
+#define FLOAT_NEXT				CONCAT(CONCAT(F,LIBCONFIG_BITS_FLOAT),_NEXT)
+#define FLOAT_MIN				CONCAT(CONCAT(F,LIBCONFIG_BITS_FLOAT),_MIN)
+#define FLOAT_MAX				CONCAT(CONCAT(F,LIBCONFIG_BITS_FLOAT),_MAX)
+#define FLOAT_EPSILON			CONCAT(CONCAT(F,LIBCONFIG_BITS_FLOAT),_EPSILON)
 //!@}
 
 
