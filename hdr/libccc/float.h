@@ -35,6 +35,7 @@
 #include "libccc_config.h"
 #include "libccc_define.h"
 
+#include "libccc/bool.h"
 #include "libccc/int.h"
 
 HEADER_CPP
@@ -128,8 +129,9 @@ TYPEDEF_ALIAS(					t_float, FLOAT, PRIMITIVE)
 #ifndef NAN
 #define NAN			(0. / 0.)
 #endif
+
 #ifndef NOTNUMBER
-#define NOTNUMBER	nan
+#define NOTNUMBER	NAN
 #endif
 
 //! Checks if the given 'x' has a "not a number" value.
@@ -141,8 +143,13 @@ TYPEDEF_ALIAS(					t_float, FLOAT, PRIMITIVE)
 #ifndef isnan
 #define isnan(X)	(X != X)
 #endif
+
 #ifndef IS_NAN
-#define IS_NAN(X)	isnan(X)
+#define IS_NAN(X)		isnan(X)
+#endif
+
+#ifndef IS_NOTNUMBER
+#define IS_NOTNUMBER(X)	isnan(X)
 #endif
 
 
@@ -155,7 +162,7 @@ TYPEDEF_ALIAS(					t_float, FLOAT, PRIMITIVE)
 #define INF			(1. / 0.)
 #endif
 #ifndef INFINITY
-#define INFINITY	inf
+#define INFINITY	INF
 #endif
 
 //! Checks if the given 'x' is either +INFINITY or -INFINITY
@@ -362,6 +369,40 @@ typedef union	u_float_cast_
 #endif
 				value_int;
 }				u_float_cast;
+
+
+
+/*
+** ************************************************************************** *|
+**                        Floating-point equality checks                      *|
+** ************************************************************************** *|
+*/
+
+//! Returns 1(TRUE) if the 2 given floating-point values are close enough to be considered equal
+t_bool					F32_Equals(t_f32 n1, t_f32 n2);
+#define c_f32_equals	F32_Equals
+
+
+//! Returns 1(TRUE) if the 2 given floating-point values are close enough to be considered equal
+t_bool					F64_Equals(t_f64 n1, t_f64 n2);
+#define c_f64_equals	F64_Equals
+
+#ifdef	__float80
+//! Returns 1(TRUE) if the 2 given floating-point values are close enough to be considered equal
+t_bool					F80_Equals(t_f80 n1, t_f80 n2);
+#define c_f80_equals	F80_Equals
+#endif
+
+#ifdef	__float128
+//! Returns 1(TRUE) if the 2 given floating-point values are close enough to be considered equal
+t_bool					F128_Equals(t_f128 n1, t_f128 n2);
+#define c_f128_equals	F128_Equals
+#endif
+
+
+//! Returns 1(TRUE) if the 2 given floating-point values are close enough to be considered equal
+t_bool					Float_Equals(t_float n1, t_float n2);
+#define c_float_equals	Float_Equals
 
 
 

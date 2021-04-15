@@ -98,6 +98,7 @@ SRCS = \
 	fixed/fixed.c				\
 	fixed/fixed_to_str.c		\
 	fixed/str_to_fixed.c		\
+	float/float_equals.c	\
 	float/float_to_str.c	\
 	float/str_to_float.c	\
 	memory/memalloc.c	\

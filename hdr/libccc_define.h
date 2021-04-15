@@ -88,7 +88,7 @@ HEADER_CPP
 
 #if (defined(WIN32) || defined(WIN64) || defined(_WIN32) || defined(_MSC_VER) || defined(__SWIG__))
 #ifndef __WINDOWS__
-#define __WINDOWS__	//!< Platform macro to check if the current environment is windows (regardless of compiler)
+#define __WINDOWS__	1 //!< Platform macro to check if the current environment is windows (regardless of compiler)
 #endif
 #endif
 
@@ -182,7 +182,8 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-#ifdef __WINDOWS__
+#if (defined(_MSC_VER) || defined(__SWIG__))
+
 	#define __asm__			__asm
 	#define __inline__		__inline
 	#define __restrict__	__restrict
@@ -209,7 +210,7 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-#ifdef __WINDOWS__
+#if (defined(_MSC_VER) || defined(__SWIG__))
 
 	#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	
 	#define _ALIAS(FUNCTION)	define ALIAS	FUNCTION
