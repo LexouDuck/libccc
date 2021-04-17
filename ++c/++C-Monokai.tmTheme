@@ -108,7 +108,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#FD971F</string>
+				<string>#66D9EF</string>
 				<key>fontStyle</key>
 				<string>italic</string>
 			</dict>
@@ -231,7 +231,7 @@
 			<key>name</key>
 			<string>Type (user-defined)</string>
 			<key>scope</key>
-			<string>entity.name.type.usertype</string>
+			<string>entity.name.type.usertype, variable.other.readwrite.shell</string>
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>

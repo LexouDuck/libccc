@@ -174,6 +174,10 @@ contexts:
       captures:
         1: storage.modifier.c
 
+    - match: \s*\b(class|struct|union|enum)\b\s+([_a-zA-Z0-9]\w*)
+      captures:
+        1: keyword.declaration.c
+        2: support.type.user.c
     - match: \s*\b(class|struct|union|enum)\b
       captures:
         1: keyword.declaration.c
@@ -242,7 +246,7 @@ contexts:
       scope: variable.other.member-access.c
 
   lex-constant:
-    - match: \s*\b(NULL|TRUE|FALSE)\b
+    - match: \s*\b(NULL|TRUE|FALSE|NAN|NOTNUMBER|INF|INFINITY)\b
       captures:
         1: constant.language.c
     - match: \s*\b(null|true|false|ERROR|OK)\b
@@ -549,8 +553,9 @@ contexts:
                           (?<= \w ) \s
 
                         | #  or type modifier / closing bracket before name
-                          (?<= [^&]& | [*>)}\]] ) ) \s*
-
+                          (?<= [^&]& | [^ -]> | [*}\]] )
+                      )
+                      \s*
                       (?: [A-Za-z_]\w*+ | ::[^:] | \. )++
                       (?: (?<= ^ operator | \W operator )  # C++ operator?
                           (?: [-*&<>=+!]+ | \(\) | \[\] ) )?
@@ -602,7 +607,7 @@ contexts:
               )
               (?<= \w\b)
             | #  or type modifier / closing bracket before name
-              (?<= [*>)}\]] )
+              (?<= [^&]& | [^ -]> | [*}\]] )
           )
           \s*+
           (   (?: [A-Za-z_]\w*+ | ::[^:] )++ )
@@ -635,11 +640,12 @@ contexts:
                 | (?<!\w) (?:else|enum)
                 | (?<!\w) (?:class|union)
                 | (?<!\w) (?:struct|return|sizeof|typeof)
-                | (?<!\w) __typeof | (?<!\w) __typeof__
+                | (?<!\w) __typeof
+                | (?<!\w) __typeof__
               )
               (?<= \w\b)
             | #  or type modifier / closing bracket before name
-              (?<= [*>)}\]] )
+              (?<= [^&]& | [^ -]> | [*}\]] )
           )
           \s*+
           (   (?: [A-Za-z_]\w*+ | ::[^:] | \. )++ )
@@ -673,11 +679,12 @@ contexts:
                 | (?<!\w) (?:else|enum)
                 | (?<!\w) (?:class|union)
                 | (?<!\w) (?:struct|return|sizeof|typeof)
-                | (?<!\w) __typeof | (?<!\w) __typeof__
+                | (?<!\w) __typeof
+                | (?<!\w) __typeof__
               )
               (?<= \w\b)
             | #  or type modifier / closing bracket before name
-              (?<= [*>)}\]] )
+              (?<= [^&]& | [^ -]> | [*}\]] )
           )
           \s*+
           (   (?: [A-Za-z_]\w*+ | ::[^:] | \. )++ )
