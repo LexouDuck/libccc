@@ -191,13 +191,14 @@ A custom operator has a maximum length of 4 characters, and it can use any of th
 `= - + * / % & | ^ ! ~ ? : < > $ @`
 Looking at it the other way around, the following ASCII characters cannot be used for a custom operator:
 `. , ; ( ) [ ] { } # ' " \`
-A custom operator cannot use any token characters (eg: alphanumeric characters `a-z,A-Z,0-9`, underscore `_`).
+A custom operator cannot use any token characters (eg: alphanumeric characters `a-z,A-Z,0-9`, or underscore `_`).
 Additionnally, some sequences of characters are special and cannot be overridden (even though they only contain legal characters):
-- `=`	(assignment)
-- `->`	(deref access)
-- `=>`	(function pointer)
-- `?`	(conditional ternary operator)
-- `:`	(conditional ternary separator)
+- `=` assignment
+- `->` deref sub-field access
+- `?` and `:` ternary conditional
+- `&` / `@` unary get address
+- `*` / `$` unary get value (deref)
+- `=>` function pointer
 - `//`	(comment one-line) or any sequence which contains this string
 - `/*`	(comment start) or any sequence which contains this string
 - `*/`	(comment end) or any sequence which contains this string
