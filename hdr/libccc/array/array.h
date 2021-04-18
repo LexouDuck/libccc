@@ -55,15 +55,11 @@ TYPEDEF_ALIAS(	s_array, ARRAY, STRUCT)
 
 
 
-#define foreach_s_array_init(		TYPE, VAR, ARRAY)	foreach_s_array_init_1(TYPE, VAR, ARRAY); foreach_s_array_init_2(TYPE, VAR, ARRAY);
-#define foreach_s_array_init_1(		TYPE, VAR, ARRAY)	t_size VAR##_i = 0
-#define foreach_s_array_init_2(		TYPE, VAR, ARRAY)	TYPE* VAR##_ptr = (TYPE*)((ARRAY)->items)
+#define foreach_s_array_init(		TYPE, VAR, ARRAY)	t_size VAR##_i = 0;
 #define foreach_s_array_exit(		TYPE, VAR, ARRAY)	if (ARRAY && (ARRAY)->items)
-#define foreach_s_array_loop_init(	TYPE, VAR, ARRAY)	TYPE VAR = *VAR##_ptr
+#define foreach_s_array_loop_init(	TYPE, VAR, ARRAY)	TYPE VAR = ((TYPE*)(ARRAY)->items)[0]
 #define foreach_s_array_loop_exit(	TYPE, VAR, ARRAY)	VAR##_i < (ARRAY)->item_count
-#define foreach_s_array_loop_incr(	TYPE, VAR, ARRAY)	++VAR##_i, foreach_s_array_loop_incr_1(TYPE, VAR, ARRAY), foreach_s_array_loop_incr_2(TYPE, VAR, ARRAY)
-#define foreach_s_array_loop_incr_1(TYPE, VAR, ARRAY)	VAR##_ptr = (TYPE*)((t_u8*)(ARRAY)->items + VAR##_i * (ARRAY)->item_size)
-#define foreach_s_array_loop_incr_2(TYPE, VAR, ARRAY)	VAR = *VAR##_ptr
+#define foreach_s_array_loop_incr(	TYPE, VAR, ARRAY)	++VAR##_i, VAR = ((TYPE*)((t_u8*)(ARRAY)->items + VAR##_i * (ARRAY)->item_size))[0]
 
 
 

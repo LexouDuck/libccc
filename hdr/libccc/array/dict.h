@@ -68,14 +68,10 @@ TYPEDEF_ALIAS(	s_dict, DICT, STRUCT)
 
 
 #define foreach_s_dict_init(		TYPE, VAR, DICT)	
-#define foreach_s_dict_init_1(		TYPE, VAR, DICT)	
-#define foreach_s_dict_init_2(		TYPE, VAR, DICT)	
 #define foreach_s_dict_exit(		TYPE, VAR, DICT)	
 #define foreach_s_dict_loop_init(	TYPE, VAR, DICT)	
 #define foreach_s_dict_loop_exit(	TYPE, VAR, DICT)	
 #define foreach_s_dict_loop_incr(	TYPE, VAR, DICT)	
-#define foreach_s_dict_loop_incr_1(	TYPE, VAR, DICT)	
-#define foreach_s_dict_loop_incr_2(	TYPE, VAR, DICT)	
 
 
 

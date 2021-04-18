@@ -54,14 +54,10 @@ TYPEDEF_ALIAS(	s_tree, TREE, STRUCT)
 
 
 #define foreach_s_tree_init(		TYPE, VAR, TREE)	
-#define foreach_s_tree_init_1(		TYPE, VAR, TREE)	
-#define foreach_s_tree_init_2(		TYPE, VAR, TREE)	
 #define foreach_s_tree_exit(		TYPE, VAR, TREE)	
 #define foreach_s_tree_loop_init(	TYPE, VAR, TREE)	
 #define foreach_s_tree_loop_exit(	TYPE, VAR, TREE)	
 #define foreach_s_tree_loop_incr(	TYPE, VAR, TREE)	
-#define foreach_s_tree_loop_incr_1(	TYPE, VAR, TREE)	
-#define foreach_s_tree_loop_incr_2(	TYPE, VAR, TREE)	
 
 
 

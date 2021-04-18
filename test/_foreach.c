@@ -3,6 +3,7 @@
 
 #include <libccc.h>
 #include <libccc/string.h>
+#include <libccc/array/array.h>
 #include <libccc/array/list.h>
 #include <libccc/sys/io.h>
 
@@ -24,6 +25,7 @@ int main()
 		"You got the dope ?",
 		"I ask the questions.",
 	};
+	t_size i;
 
 	// s_array
 	{
@@ -33,9 +35,10 @@ int main()
 			.item_size = sizeof(char*),
 			.items = lines,
 		};
+		i = 0;
 		foreach (char*, str, s_array, str_array)
 		{
-			IO_Output_Format("i:%zu,ptr:%p,\tstr:%p -> \"%s\"\n", str_i, str_ptr, str, str);
+			IO_Output_Format("i:%zu,\titer:%zu,\tstr:%p -> \"%s\"\n", i++, str_i, str, str);
 		}
 	}
 
@@ -48,7 +51,7 @@ int main()
 		}
 		foreach (char*, str, s_list, str_list)
 		{
-			IO_Output_Format("i:%zu,lst:%p, size: %llu,\tstr:%p -> \"%s\"\n", str_i, str_lst, str_lst->item_size, str, str);
+			IO_Output_Format("i:%zu,\titer:%p,\tstr:%p -> \"%s\"\n", i++, str_lst, str, str);
 		}
 	}
 	return (OK);

@@ -59,15 +59,11 @@ TYPEDEF_ALIAS(		s_list, LIST, STRUCT)
 
 
 
-#define foreach_s_list_init(		TYPE, VAR, LIST)	foreach_s_list_init_1(TYPE, VAR, LIST); foreach_s_list_init_2(TYPE, VAR, LIST);
-#define foreach_s_list_init_1(		TYPE, VAR, LIST)	t_size VAR##_i = 0
-#define foreach_s_list_init_2(		TYPE, VAR, LIST)	s_list* VAR##_lst = (LIST)
+#define foreach_s_list_init(		TYPE, VAR, LIST)	s_list* VAR##_lst = (LIST);
 #define foreach_s_list_exit(		TYPE, VAR, LIST)	if (LIST)
 #define foreach_s_list_loop_init(	TYPE, VAR, LIST)	TYPE VAR = (TYPE)((LIST)->item)
 #define foreach_s_list_loop_exit(	TYPE, VAR, LIST)	VAR##_lst != NULL
-#define foreach_s_list_loop_incr(	TYPE, VAR, LIST)	++VAR##_i, foreach_s_list_loop_incr_1(TYPE, VAR, LIST), foreach_s_list_loop_incr_2(TYPE, VAR, LIST)
-#define foreach_s_list_loop_incr_1(	TYPE, VAR, LIST)	VAR##_lst = VAR##_lst->next
-#define foreach_s_list_loop_incr_2(	TYPE, VAR, LIST)	VAR = (VAR##_lst ? (TYPE)(VAR##_lst->item) : NULL)
+#define foreach_s_list_loop_incr(	TYPE, VAR, LIST)	VAR##_lst = VAR##_lst->next, VAR = (VAR##_lst ? (TYPE)(VAR##_lst->item) : NULL)
 
 
 
