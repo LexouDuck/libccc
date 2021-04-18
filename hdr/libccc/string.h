@@ -296,14 +296,14 @@ t_size						String_Count_String(char const* str, char const* query);
 */
 
 //! Returns the first occurence of the given char `c` within `str`, or #NULL if no char matched.
-char*				String_Find_Char(char const* str, char c);
-#define c_strchr	String_Find_Char //!< @alias{String_Find_Char}
+char*							String_Find_Char(char const* str, char c);
+#define c_strchr				String_Find_Char //!< @alias{String_Find_Char}
 //! Returns the first occurence of any char in the given `charset` within `str`, or #NULL if no char matched.
-char*				String_Find_Charset(char const* str, char const* charset);
-#define c_strchrset	String_Find_Charset //!< @alias{String_Find_Charset}
+char*							String_Find_Charset(char const* str, char const* charset);
+#define c_strchrset				String_Find_Charset //!< @alias{String_Find_Charset}
 //! Returns the first occurence of the string `query` inside the given string `str`, or #NULL if nothing matched.
-char*				String_Find_String(char const* str, char const* query);
-#define c_strstr	String_Find_String //!< @alias{String_Find_String}
+char*							String_Find_String(char const* str, char const* query);
+#define c_strstr				String_Find_String //!< @alias{String_Find_String}
 
 //! Returns the last occurence of the given char `c` within `str`, or #NULL if no char matched.
 char*							String_Find_R_Char(char const* str, char c);
@@ -331,14 +331,14 @@ char*							String_Find_N_String(char const* str, char const* query, t_size n);
 
 
 //! Returns the index of the first occurrence at which `c` is found in `str`, or -1 if `c` does not exist in `str`.
-t_ptrdiff				String_IndexOf_Char(char const* str, char c);
-#define c_strichr		String_IndexOf_Char //!< @alias{String_IndexOf_Char}
+t_ptrdiff							String_IndexOf_Char(char const* str, char c);
+#define c_strichr					String_IndexOf_Char //!< @alias{String_IndexOf_Char}
 //! Returns the index of the first occurrence at which `c` is found in `str`, or -1 if `c` does not exist in `str`.
-t_ptrdiff				String_IndexOf_Charset(char const* str, char const* charset);
-#define c_strichrset	String_IndexOf_Charset //!< @alias{String_IndexOf_Charset}
+t_ptrdiff							String_IndexOf_Charset(char const* str, char const* charset);
+#define c_strichrset				String_IndexOf_Charset //!< @alias{String_IndexOf_Charset}
 //! Returns the index of the first occurrence at which `query` is found in `str`, or -1 if `query` does not exist in str.
-t_ptrdiff				String_IndexOf_String(char const* str, char const* query);
-#define c_stristr		String_IndexOf_String //!< @alias{String_IndexOf_String}
+t_ptrdiff							String_IndexOf_String(char const* str, char const* query);
+#define c_stristr					String_IndexOf_String //!< @alias{String_IndexOf_String}
 
 //! Returns the last occurence of the given char `c` within `str`, or #NULL if no char matched.
 t_ptrdiff							String_IndexOf_R_Char(char const* str, char c);

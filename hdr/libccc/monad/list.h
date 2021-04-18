@@ -18,6 +18,14 @@
 **	@file
 */
 
+#ifndef T
+#define T	void*
+#endif
+
+#ifndef TYPE
+#define TYPE	
+#endif
+
 /*
 ** ************************************************************************** *|
 **                                   Includes                                 *|
@@ -25,7 +33,6 @@
 */
 
 #include "libccc.h"
-#include "libccc/monad/array.h"
 
 HEADER_CPP
 
@@ -35,6 +42,16 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
+#ifdef	list_T
+#undef	list_T
+#endif
+#define list_T		CONCAT(list, TYPE)
+
+#ifdef	s_list_T
+#undef	s_list_T
+#endif
+#define s_list_T	CONCAT(s_list, TYPE)
+
 //! This is a simple linked list struct, with dynamic content type
 /*!
 **	The `s_list` struct represents one chainlink in the linked-list, so a
@@ -42,35 +59,26 @@ HEADER_CPP
 **	all chained together with their `next` pointer, and the last element would
 **	have this `next` pointer set to NULL(0)
 */
-typedef struct list
+typedef struct list_T
 {
-//	struct list*	prev;		//!< The pointer to the previous item in the list (or NULL if this is the first item)
-	struct list*	next;		//!< The pointer to the next item in the list (or NULL if this is the last item)
-	t_size			item_size;	//!< The size of the data contained within `item`
-	void*			item;		//!< The contents of this linked-list element
-}					s_list;
-TYPEDEF_ALIAS(		s_list, LIST, STRUCT)
+//	struct list*	prev;	//!< The pointer to the previous item in the list (or NULL if this is the first item)
+	struct list*	next;	//!< The pointer to the next item in the list (or NULL if this is the last item)
+	T				item;	//!< The content of this linked-list element
+}				s_list_T;
+TYPEDEF_ALIAS(	s_list_T, LIST, STRUCT)
 
 
 
 //! A literal of an `s_list` struct which has all fields set to zero
-#define LIST_NULL	(s_list){ .next = NULL, .item_size = 0, .item = NULL }
+#define LIST_NULL	(s_list_T){ .next = NULL, .item_size = 0, .item = NULL }
 
 
 
-#define foreach_s_list_init(		_TYPE_, _VAR_, _LIST_)	s_list* _VAR_##_lst = (_LIST_);
+#define foreach_s_list_init(		_TYPE_, _VAR_, _LIST_)	s_list_T* _VAR_##_lst = (_LIST_);
 #define foreach_s_list_exit(		_TYPE_, _VAR_, _LIST_)	if (_LIST_)
 #define foreach_s_list_loop_init(	_TYPE_, _VAR_, _LIST_)	_TYPE_ _VAR_ = (_TYPE_)((_LIST_)->item)
 #define foreach_s_list_loop_exit(	_TYPE_, _VAR_, _LIST_)	_VAR_##_lst != NULL
 #define foreach_s_list_loop_incr(	_TYPE_, _VAR_, _LIST_)	_VAR_##_lst = _VAR_##_lst->next, _VAR_ = (_VAR_##_lst ? (_TYPE_)(_VAR_##_lst->item) : NULL)
-
-
-
-/* TODO function pointer types
-**	typedef void	(*f_list_delete)	(void*, t_size)
-**	typedef void	(*f_list_iterate)	(s_list *)
-**	typedef s_list*	(*f_list_map)		(s_list *)
-*/
 
 
 
@@ -267,34 +275,12 @@ void					List_Iterate_I(s_list* lst, void (*f)(s_list* elem, t_u32 index));
 **	the given function `f` to each element of `lst`.
 */
 _MALLOC()
-s_list*					List_Map(s_list* lst, s_list *(*f)(s_list* elem));
+s_list*					List_Map(s_list* lst, s_list* (*map)(s_list* elem));
 #define c_lstmap		List_Map
 
 _MALLOC()
-s_list*					List_Map_I(s_list* lst, s_list *(*f)(s_list* elem, t_u32 index));
+s_list*					List_Map_I(s_list* lst, s_list* (*map)(s_list* elem, t_u32 index));
 #define c_lstmapi		List_Map_I
-
-//! Converts the given list at address `a_lst` to a NULL-terminated pointer array
-/*!
-**	Creates a new jagged array (2D pointer array) from the given list `*a_lst`.
-**	The top-level pointer array is terminated by a NULL pointer.
-**	The underlying `lst.item` data is not copied, only the pointers are.
-*/
-_MALLOC()
-void**					List_To_PointerArray(s_list const** a_lst);
-#define c_lst_to_ptrarr	List_To_PointerArray
-
-//! Converts the given list at address `a_lst` to a array
-/*!
-**	Creates a new contiguous memory array from the given linked list.
-**	It sets this array pointer to the `items` pointer of the given `array`.
-**	It also sets the `item_size` and `length` fields of this `array`.
-**
-**	@returns the resulting `s_array` struct from the given list, or NULL
-**		if any elements of `*a_lst` are of unequal `lst.item_size`.
-*/
-s_array					List_To_Array(s_list const** a_lst);
-#define c_lst_to_array	List_To_Array
 
 
 

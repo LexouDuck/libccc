@@ -44,13 +44,13 @@ HEADER_CPP
 
 #ifdef	array_T
 #undef	array_T
-#define array_T		CONCAT(array, TYPE)
 #endif
+#define array_T		CONCAT(array, TYPE)
 
 #ifdef	s_array_T
 #undef	s_array_T
-#define s_array_T	CONCAT(s_array, TYPE)
 #endif
+#define s_array_T	CONCAT(s_array, TYPE)
 
 //! This struct holds an array of items which can be of any type
 /*!
@@ -86,96 +86,98 @@ TYPEDEF_ALIAS(	s_array_T, ARRAY, STRUCT)
 
 //! TODO
 s_array_T*			Array_New(T* content);
-#define c_arrnew	Array_New
+#define c_arrnew	Array_New //!< @alias{Array_New}
 
 //! TODO
 void				Array_Delete(s_array_T* *array);
-#define c_arrdel	Array_Delete
+#define c_arrdel	Array_Delete //!< @alias{Array_Delete}
 
 //! TODO
 s_array_T*			Array_Duplicate(s_array_T* array);
-#define c_arrdup	Array_Duplicate
+#define c_arrdup	Array_Duplicate //!< @alias{Array_Duplicate}
 
 
 
 
 //! TODO
 T					Array_Get(s_array_T* array, t_size index);
-#define c_arrget	Array_Get
+#define c_arrget	Array_Get //!< @alias{Array_Get}
 
 //! TODO
 void				Array_Set(s_array_T* array, t_size index, T item);
-#define c_arrset	Array_Set
+#define c_arrset	Array_Set //!< @alias{Array_Set}
 
 //! TODO
 void				Array_Copy(s_array_T* dest, s_array_T* src, t_size n);
-#define c_arrcpy	Array_Copy
+#define c_arrcpy	Array_Copy //!< @alias{Array_Copy}
 
 
 
 //! TODO
 void					Array_Append(s_array_T* array, T item);
-#define c_arrappend		Array_Append
+#define c_arrappend		Array_Append //!< @alias{Array_Append}
 
 //! TODO
 void					Array_Prepend(s_array_T* array, T item);
-#define c_arrprepend	Array_Prepend
+#define c_arrprepend	Array_Prepend //!< @alias{Array_Prepend}
 
 //! TODO
 void					Array_Insert(s_array_T* array, T item, t_size index);
-#define c_arrinsert		Array_Insert
+#define c_arrinsert		Array_Insert //!< @alias{Array_Insert}
 
 
 
 //! TODO
 t_bool				Array_Equals(s_array_T* array1, s_array_T* array2);
-#define c_arrequ	Array_Equals
+#define c_arrequ	Array_Equals //!< @alias{Array_Equals}
 
 //! TODO
 t_bool				Array_Equals_N(s_array_T* array1, s_array_T* array2, t_size n);
-#define c_arrnequ	Array_Equals_N
+#define c_arrnequ	Array_Equals_N //!< @alias{Array_Equals_N}
 
 //! TODO
 t_sint				Array_Compare(s_array_T* array1, s_array_T* array2, t_sint (*compare)(T item1, T item2));
-#define c_arrcmp	Array_Compare
+#define c_arrcmp	Array_Compare //!< @alias{Array_Compare}
 
 //! TODO
 t_sint				Array_Compare_N(s_array_T* array1, s_array_T* array2, t_sint (*compare)(T item1, T item2), t_size n);
-#define c_arrncmp	Array_Compare_N
+#define c_arrncmp	Array_Compare_N //!< @alias{Array_Compare_N}
 
 
 
 //! TODO
 s_array_T*			Array_Replace(s_array_T* array, T old, T new);
-#define c_arrrep	Array_Replace
+#define c_arrrep	Array_Replace //!< @alias{Array_Replace}
 
 //! TODO
 T*					Array_Find(s_array_T* array, T item);
-#define c_arrfind	Array_Find
+#define c_arrfind	Array_Find //!< @alias{Array_Find}
 
 //! TODO
 t_size				Array_IndexOf(s_array_T* array, T item);
-#define c_arrfindi	Array_IndexOf
+#define c_arrfindi	Array_IndexOf //!< @alias{Array_IndexOf}
 
 
 
 //! TODO
 void				Array_Iterate	(s_array_T* array, T (*iterate)(T item));
-#define c_arriter	Array_Iterate
+#define c_arriter	Array_Iterate //!< @alias{Array_Iterate}
 void				Array_Iterate_I	(s_array_T* array, T (*iterate)(T item, t_size index));
-#define c_arriteri	Array_Iterate_I
+#define c_arriteri	Array_Iterate_I //!< @alias{Array_Iterate_I}
 
 //! TODO
 s_array_T*			Array_Map		(s_array_T* array, T (*map)(T item));
-#define c_arrmap	Array_Map
+#define c_arrmap	Array_Map //!< @alias{Array_Map}
 s_array_T*			Array_Map_I		(s_array_T* array, T (*map)(T item, t_size index));
-#define c_arrmapi	Array_Map_I
+#define c_arrmapi	Array_Map_I //!< @alias{Array_Map_I}
 
 //! TODO
 s_array_T*			Array_Filter	(s_array_T* array, t_bool (*filter)(T item));
-#define c_arrfold	Array_Filter
+#define c_arrfold	Array_Filter //!< @alias{Array_Filter}
 s_array_T*			Array_Filter_I	(s_array_T* array, t_bool (*filter)(T item, t_size index));
-#define c_arrfoldi	Array_Filter_I
+#define c_arrfoldi	Array_Filter_I //!< @alias{Array_Filter_I}
+
+// TODO Array_Reduce ?
 
 
 

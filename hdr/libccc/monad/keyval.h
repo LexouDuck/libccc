@@ -1,6 +1,6 @@
 /*============================================================================*/
 /*                                            ______________________________  */
-/*  libccc/monad/dict.h                      |    __    __  ___      _____  | */
+/*  libccc/monad/keyval.h                    |    __    __  ___      _____  | */
 /*                                           |   / /\  / /\/ . |\   /  __|\ | */
 /*  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | */
 /*                                           | /___/\/_/ /___-'\   \____/\  | */
@@ -9,9 +9,9 @@
 /*                                                                            */
 /*============================================================================*/
 
-#ifndef __LIBCCC_MONAD_DICT_H
-#define __LIBCCC_MONAD_DICT_H
-/*!@group{libccc_monad_dict}
+#ifndef __LIBCCC_MONAD_KEYVAL_H
+#define __LIBCCC_MONAD_KEYVAL_H
+/*!@group{libccc_monad_keyval}
 ** @{
 **	This header defines a simple dictionary type and utility functions for it.
 **
@@ -33,7 +33,6 @@
 */
 
 #include "libccc.h"
-#include "libccc/monad/keyval.h"
 
 HEADER_CPP
 
@@ -43,75 +42,49 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-#ifdef	dict_T
-#undef	dict_T
+#ifdef	keyval_T
+#undef	keyval_T
 #endif
-#define dict_T		CONCAT(dict, TYPE)
+#define keyval_T	CONCAT(keyval, TYPE)
 
-#ifdef	s_dict_T
-#undef	s_dict_T
+#ifdef	s_keyval_T
+#undef	s_keyval_T
 #endif
-#define s_dict_T	CONCAT(s_dict, TYPE)
+#define s_keyval_T	CONCAT(s_keyval, TYPE)
 
-//! A simple dictionary struct, stores an array of key/value pairs.
+//! A simple key+value pair struct, used in the 's_dict' dictionary struct
 /*
 **	TODO document this
 */
-typedef struct dict_T
+typedef struct keyval_T
 {
-	t_size		item_count;	//!< The amount of key/value pairs stored in this dictionary
-	s_keyval_T*	items;		//!< The array of key/value pairs stored in this dictionary
-}				s_dict_T;
-TYPEDEF_ALIAS(	s_dict_T, DICT, STRUCT)
+	char*	key;	//!< The key string associated with the `value`
+	T		value;	//!< The pointer to the data for the `value`
+}				s_keyval_T;
+TYPEDEF_ALIAS(	s_keyval_T, KEYVAL, STRUCT)
 
-//! A literal of an 's_dict' struct which has all fields set to zero
-#define DICT_NULL	(s_dict_T){ .item_count = 0, .item_size = 0, .items = NULL }
-
-
-
-#define foreach_s_dict_init(		_TYPE_, _VAR_, _DICT_)	
-#define foreach_s_dict_exit(		_TYPE_, _VAR_, _DICT_)	
-#define foreach_s_dict_loop_init(	_TYPE_, _VAR_, _DICT_)	
-#define foreach_s_dict_loop_exit(	_TYPE_, _VAR_, _DICT_)	
-#define foreach_s_dict_loop_incr(	_TYPE_, _VAR_, _DICT_)	
+#define KEYVAL_NULL	(s_keyval_T){ .key = NULL } // TODO
 
 
 
 /*
 ** ************************************************************************** *|
-**                             Basic Dict Operations                          *|
+**                            Basic KeyVal Operations                         *|
 ** ************************************************************************** *|
 */
 
-// TODO Dict_New
-// TODO Dict_Delete
-// TODO Dict_Duplicate
+// TODO KeyVal_New
+// TODO KeyVal_Delete
+// TODO KeyVal_Duplicate
 
-// TODO Dict_Get
-// TODO Dict_Set
-// TODO Dict_Copy
+// TODO KeyVal_Get
+// TODO KeyVal_Set
+// TODO KeyVal_Copy
 
-// TODO Dict_Append
-// TODO Dict_Prepend
-// TODO Dict_Insert
-
-// TODO Dict_Equals
-// TODO Dict_Equals_N
-// TODO Dict_Compare
-// TODO Dict_Compare_N
-
-// TODO Dict_Replace
-// TODO Dict_Find
-// TODO Dict_IndexOf
-
-// TODO Dict_Iterate
-// TODO Dict_Iterate_I
-// TODO Dict_Map
-// TODO Dict_Map_I
-// TODO Dict_Filter
-// TODO Dict_Filter_I
-
-// TODO Dict_Reduce ?
+// TODO KeyVal_Equals
+// TODO KeyVal_Equals_N
+// TODO KeyVal_Compare
+// TODO KeyVal_Compare_N
 
 
 

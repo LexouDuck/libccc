@@ -6,14 +6,22 @@
 #include <libccc/string.h>
 #include <libccc/sys/io.h>
 
-#define T		char*
+#define T		t_char*
 #define TYPE	_str
-
 #include <libccc/monad/array.h>
 #include <libccc/monad/list.h>
-//#include <libccc/monad/dict.h>
-//#include <libccc/monad/tree.h>
-//#include <libccc/monad/object.h>
+#include <libccc/monad/dict.h>
+#include <libccc/monad/tree.h>
+#include <libccc/monad/object.h>
+/*
+#define T		t_sint
+#define TYPE	_sint
+#include <libccc/monad/array.h>
+#include <libccc/monad/list.h>
+#include <libccc/monad/dict.h>
+#include <libccc/monad/tree.h>
+#include <libccc/monad/object.h>
+*/
 
 
 
