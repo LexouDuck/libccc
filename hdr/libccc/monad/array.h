@@ -26,7 +26,7 @@
 
 #include "libccc.h"
 
-typedef struct s_list_	s_list;
+typedef struct list	s_list;
 
 HEADER_CPP
 
@@ -42,7 +42,7 @@ HEADER_CPP
 **	of a single item in the array, and the total amount of items in this array.
 **	As such, a s_array can hold any number of items, but they must all share the same type.
 */
-typedef struct	s_array_
+typedef struct array
 {
 	t_size		item_count;	//!< The amount of elements in the 'items' array
 	t_size		item_size;	//!< The size (in bytes) of one object in this array

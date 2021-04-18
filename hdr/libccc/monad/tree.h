@@ -38,10 +38,10 @@ HEADER_CPP
 /*
 **	TODO document this
 */
-typedef struct	s_tree_
+typedef struct tree
 {
 	t_size			node_count;	//!< The amount of sub-nodes of this tree node
-	struct s_tree_*	nodes;		//!< The array of sub-nodes of this tree node
+	struct tree*	nodes;		//!< The array of sub-nodes of this tree node
 	void*			value;		//!< The value stored in this tree node
 	t_size			value_size;	//!< The size (in bytes) of `value`
 }				s_tree;

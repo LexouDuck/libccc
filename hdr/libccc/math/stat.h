@@ -37,7 +37,7 @@ HEADER_CPP
 */
 
 //! This struct stores a list of integer values (contiguously, like an array)
-typedef struct	s_list_int_
+typedef struct list_int
 {
 	t_sint		*data;		//!< The list of integer values
 	t_u32		length;		//!< The amount of items in the list
@@ -49,7 +49,7 @@ typedef struct	s_list_int_
 
 
 //! This struct stores a list of float values (contiguously, like an array)
-typedef struct	s_list_float_
+typedef struct list_float
 {
 	t_float		*data;		//!< The list of float values
 	t_u32		length;		//!< The amount of items in the list
@@ -115,7 +115,7 @@ typedef s_list_float	s_sortedlist_float;	//!< This type represents a list of flo
 #define PROB_APPROX			(0.000001)
 
 //! A struct for the probability mass function describing a discrete random var.
-typedef struct	s_prob_mass_
+typedef struct prob_mass
 {
 	t_float		*value;		// TODO document this
 	t_float		*prob;		// TODO document this

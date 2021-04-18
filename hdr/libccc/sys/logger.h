@@ -39,20 +39,20 @@ HEADER_CPP
 /* ************************************************************************** */
 
 //!	This enum specifies a specific text formatting wrapper
-typedef enum	e_logformat_
+typedef enum logformat
 {
 	LOGFORMAT_ANSI = 0, //! Prints in a format that is friendly for terminals (ANSI colors)
 	LOGFORMAT_TEXT = 1, //! Prints in a format that is friendly for raw text (same as above, but without ANSI color codes)
 	LOGFORMAT_JSON = 2, //! Prints in a format that can be easily parsed by a JSON parser
 	LOGFORMAT_XML  = 3, //! Prints in a format that can be easily parsed by an XML parser
-}				e_logformat;
+}			e_logformat;
 #define LOGFORMAT_STRING_ANSI		"ANSI"
 #define LOGFORMAT_STRING_TEXT		"TEXT"
 #define LOGFORMAT_STRING_JSON		"JSON"
 #define LOGFORMAT_STRING_XML		"XML"
 
 //! This struct stores all the settings and internal state needed for a basic logging system
-typedef struct	s_logger_
+typedef struct logger
 {
 //	t_bool		in_use;			//!< If TRUE, logger should be considered locked (in use by a given process)
 	t_bool		silence_logs;	//!< If TRUE, successful and warning logging with this logger will be ignored

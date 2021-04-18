@@ -38,7 +38,7 @@ HEADER_CPP
 /*
 **	TODO document this
 */
-typedef struct	s_keyval_
+typedef struct keyval
 {
 	char*		key;		//!< The key string associated with the `value`
 	void*		value;		//!< The pointer to the data for the `value`
@@ -54,7 +54,7 @@ TYPEDEF_ALIAS(	s_keyval, KEYVAL, STRUCT)
 /*
 **	TODO document this
 */
-typedef struct	s_dict_
+typedef struct dict
 {
 	t_size		item_count;	//!< The amount of key/value pairs stored in this dictionary
 	s_keyval*	items;		//!< The array of key/value pairs stored in this dictionary

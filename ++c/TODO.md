@@ -242,7 +242,7 @@ char* new_str = "Concatenated: " + str;
 You can also define unary operators (but not ternary operators):
 ```c
 // unary complex number conjugate operator
-typedef struct	s_complex_
+typedef struct complex
 {
 	float re;
 	float im;
@@ -289,7 +289,7 @@ The accessor function body must be a simple inline-able `return` statement. Only
 // example color type
 typedef	uint32_t	t_argb32;
 // example palette color array struct
-typedef struct	s_palette_
+typedef struct palette
 {
 	size_t		color_count;
 	t_argb32*	colors;
@@ -304,7 +304,7 @@ t_argb32 color = palette[3];
 ```
 ```c
 // example 32-bit color bitmap array
-typedef struct	s_bitmap_
+typedef struct bitmap
 {
 	t_argb32*	pixels;
 	int			width;
@@ -323,14 +323,14 @@ for (int y = 0; y < bitmap->height; ++y)
 }
 ```
 ```c
-typedef struct	s_keyval_
+typedef struct keyval
 {
 	char*		key;
 	char*		type;
 	void*		value;
 }				s_keyval;
 
-typedef struct	s_dict_
+typedef struct dict
 {
 	t_size		count;
 	s_keyval*	items;
@@ -432,7 +432,7 @@ A namespace can declare a generic type:
 #namespace List<T>
 // Functions in this namespace cannot really use the generic type directly, they must treat it as opaque
 
-typedef struct	s_list_<T>
+typedef struct list<T>
 {
 	s_list<T>*	next;
 	size_t		item_size;
@@ -777,7 +777,7 @@ extern int my_global_var;
 Sets the struct declared after it to be packed a tight as possible, removing any and all byte-padding, by using `__attribute__`:
 ```c
 #packed
-typedef struct	s_example_
+typedef struct example
 {
 	char a;
 	int x;
@@ -788,7 +788,7 @@ typedef struct	s_example_
 ```c
 // transpiles to:
 __attribute__((packed))
-typedef struct	s_example_
+typedef struct example
 {
 	...
 ```

@@ -570,7 +570,7 @@ t_u64						U64_FromString_Base(char const* str, char const* base);
 ** They are used in particular when casting an <stdarg.h> var_arg to the
 ** appropriate type in c_printf.
 */
-typedef union		u_varint_
+typedef union varint
 {
 	t_s8			sc;
 	t_s16			ss;

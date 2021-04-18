@@ -62,7 +62,7 @@ HEADER_CPP
 	**
 	**	The two parts of the complex number are stored as two fields in the struct.
 	*/
-	typedef struct	s_complex_
+	typedef struct complex
 	{
 		t_float		re;		//!< The "real" part of this complex number
 		t_float		im;		//!< The "imaginary" part of this complex number
@@ -77,7 +77,7 @@ HEADER_CPP
 
 
 //! A struct for storing quaternions
-typedef struct		s_quaternion_
+typedef struct quaternion
 {
 	t_float		s;		//!< The S value of this quaternion
 	t_float		i;		//!< The I value of this quaternion

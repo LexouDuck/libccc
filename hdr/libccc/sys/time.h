@@ -72,7 +72,7 @@ TYPEDEF_ALIAS(		t_time, TIME, PRIMITIVE)
 **		tv_sec	->	sec
 **		tv_nsec	->	nanosec
 */
-typedef struct	s_timespec_
+typedef struct timespec
 {
 	t_time		sec;		//!< Only positive values are valid
 	t_s64		nanosec;	//!< Only values in the range [0, 999999999] are valid
@@ -93,7 +93,7 @@ TYPEDEF_ALIAS(	s_timespec, TIMESPEC, STRUCT)
 
 
 //! This enum lists each day of the week, Sunday counting as zero
-typedef enum	e_weekday_
+typedef enum weekday
 {
 	WEEKDAY_SUNDAY,
 	WEEKDAY_MONDAY,
@@ -122,7 +122,7 @@ extern char const* const g_weekday_abbreviated[ENUMLENGTH_WEEKDAY];
 
 
 //! This enum lists each month of the year, January counting as zero
-typedef enum	e_month_
+typedef enum month
 {
 	MONTH_JANUARY,
 	MONTH_FEBRUARY,
@@ -214,7 +214,7 @@ TYPEDEF_ALIAS(	t_timezone, TIMEZONE, PRIMITIVE)
 **	NB: This struct does not store timezone information, there are conversion functions for that:
 **	@see	Time_To_Date_Timezone, Date_To_Time_Timezone
 */
-typedef struct	s_date_
+typedef struct date
 {
 	t_u8		sec;		//!< [0,59(61)] seconds after the minute (usually 0-59 - there is extra range to accommodate for leap seconds)
 	t_u8		min;		//!< [0,59] minutes after the hour

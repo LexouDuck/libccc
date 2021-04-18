@@ -29,8 +29,7 @@
 ** ************************************************************************** *|
 */
 
-namespace List<T=void*>
-{
+#namespace List<T=void*>
 
 //! This is a simple linked list struct, with dynamic content type
 /*!
@@ -39,7 +38,7 @@ namespace List<T=void*>
 **	all chained together with their 'next' pointer, and the last element would
 **	have this 'next' pointer set to NULL(0)
 */
-typedef struct		s_list_<T>
+typedef struct list<T>
 {
 //	struct s_list<T>_*	prev;	//!< The pointer to the previous item in the list (or NULL if this is the first item)
 	struct s_list<T>_*	next;	//!< The pointer to the next item in the list (or NULL if this is the last item)

@@ -53,7 +53,7 @@
 
 
 
-typedef struct	s_test_flags_
+typedef struct test_flags
 {
 	bool	verbose;		//!< if TRUE, display all logger output for each test
 	bool	show_args;		//!< if TRUE, display arguments given to each test
@@ -62,13 +62,13 @@ typedef struct	s_test_flags_
 	bool	test_overflow;	//!< if TRUE, perform all the libccc_convert overflowing number tests
 }				s_test_flags;
 
-typedef struct	s_test_totals_
+typedef struct test_totals
 {
 	int		tests;	//!< The total amount of tests ran.
 	int		failed; //!< The amount of tests which had an ERROR result.
 }				s_test_totals;
 
-typedef struct	s_test_suite_
+typedef struct test_suite
 {
 	bool		run;		// If 0, does not run
 	char const*	name;		// Name for test suite to identify
@@ -77,7 +77,7 @@ typedef struct	s_test_suite_
 #define TEST_SUITE_AMOUNT	24
 
 //! Args for main are: help, verbose, arguments, performance, overflow
-typedef struct	s_test_arg_
+typedef struct test_arg
 {
 	void	(*handle_arg)();
 	char		arg;
@@ -89,7 +89,7 @@ typedef struct	s_test_arg_
 
 
 //! This struct holds all program state data
-typedef struct	s_test_
+typedef struct test
 {
 	bool			last_test_failed;			//!< is TRUE if the lastest test performed had an error.
 	s_test_totals	totals;						//!< Stores the total amounts of tests ran/failed
@@ -131,7 +131,7 @@ void	signal_handler(int signaltype, siginfo_t *info, void *ptr);
 
 typedef struct timespec s_time;
 
-typedef struct	s_timer_
+typedef struct timer
 {
 	s_time	start1;
 	s_time	start2;

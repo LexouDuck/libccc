@@ -81,7 +81,7 @@ TYPEDEF_ALIAS(	t_argb32, COLOR_ARGB32, PRIMITIVE)
 
 
 //! A struct to store color values with each channel (alpha,red,green,blue) as floating-point values in the interval [0,1]
-typedef struct	s_argb_
+typedef struct argb
 {
 	t_float		a;		//!< The alpha channel of this color [0,1] (transparency)
 	t_float		r;		//!< The red channel of this color   [0,1]
@@ -93,7 +93,7 @@ TYPEDEF_ALIAS(	s_argb, COLOR_ARGB, STRUCT)
 
 
 //! A struct to store color values with each channel (alpha,hue,sat,lum) as floating-point values in the interval [0,1]
-typedef struct	s_ahsl_
+typedef struct ahsl
 {
 	t_float		a;		//!< The alpha channel of this color [0,1] (transparency)
 	t_float		hue;	//!< The hue/value of this color (its angle on the color wheel) [0,PI*2]

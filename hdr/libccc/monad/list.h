@@ -26,7 +26,7 @@
 
 #include "libccc.h"
 
-typedef struct s_array_	s_array;
+typedef struct array	s_array;
 
 HEADER_CPP
 
@@ -43,10 +43,10 @@ HEADER_CPP
 **	all chained together with their `next` pointer, and the last element would
 **	have this `next` pointer set to NULL(0)
 */
-typedef struct		s_list_
+typedef struct list
 {
-//	struct s_list_*	prev;		//!< The pointer to the previous item in the list (or NULL if this is the first item)
-	struct s_list_*	next;		//!< The pointer to the next item in the list (or NULL if this is the last item)
+//	struct list*	prev;		//!< The pointer to the previous item in the list (or NULL if this is the first item)
+	struct list*	next;		//!< The pointer to the next item in the list (or NULL if this is the last item)
 	t_size			item_size;	//!< The size of the data contained within `item`
 	void*			item;		//!< The contents of this linked-list element
 }					s_list;

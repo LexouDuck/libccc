@@ -2,11 +2,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-typedef struct s_point_
+typedef struct point
 {
 	int x;
 	int y;
-	struct s_point_* (*incr)(struct s_point_* p);
+	struct point* (*incr)(struct point* p);
 }		s_point;
 
 s_point* increment(s_point* p)

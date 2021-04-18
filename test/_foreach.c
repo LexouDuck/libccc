@@ -1,29 +1,34 @@
-
 // this is a small independent file (not part of the libccc test suite)
-
-#include <libccc.h>
-#include <libccc/string.h>
-#include <libccc/array/array.h>
-#include <libccc/array/list.h>
-#include <libccc/sys/io.h>
 
 #include <stdio.h>
 
+#include <libccc.h>
+#include <libccc/string.h>
+#include <libccc/sys/io.h>
+
+#include <libccc/monad/array.h>
+#include <libccc/monad/list.h>
+//#include <libccc/monad/dict.h>
+//#include <libccc/monad/tree.h>
+//#include <libccc/monad/object.h>
 
 
-#define COUNT 8
+
+#define COUNT 10
 int main()
 {
 	static char* lines[COUNT] =
 	{
-		"Yo my boi",
-		"What's up dog",
+		"Yo, my boi!",
+		"What's up, dog?",
 		"Not much, you ?",
 		"...",
-		"Yo spit it out",
+		"Yo, spit it out.",
 		"What's the deal ?",
 		"You got the dope ?",
 		"I ask the questions.",
+		"He's got a gun!",
+		"FREEZE! HANDS IN THE AIR!",
 	};
 	t_size i;
 

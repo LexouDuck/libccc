@@ -357,7 +357,7 @@ TYPEDEF_ALIAS(					t_float, FLOAT, PRIMITIVE)
 **	This union type is used in several math function implementations, to
 **	manipulate float bits directly, by using bitwise operators with int types.
 */
-typedef union	u_float_cast_
+typedef union float_cast
 {
 	t_float		value_float;
 #if (LIBCONFIG_BITS_FLOAT == 32)
@@ -775,7 +775,7 @@ t_float									Float_FromString_Bin(char const* str);
 ** They are used in particular when casting an <stdarg.h> var_arg to the
 ** appropriate type in c_printf.
 */
-typedef union		u_varfloat_
+typedef union varfloat
 {
 	t_f32			f;
 	t_f64			d;
