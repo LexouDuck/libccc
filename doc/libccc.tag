@@ -2,7 +2,7 @@
 <tagfile doxygen_version="1.9.1" doxygen_gitid="ef9b20ac7f8a8621fcfc299f8bd0b80422390f4b">
   <compound kind="file">
     <name>libccc.h</name>
-    <path>D:/Lexou/Projects/Castlevania/C/lib/libccc/hdr/</path>
+    <path>D:/Lexou/Projects/C/libccc/hdr/</path>
     <filename>libccc_8h.html</filename>
     <includes id="libccc__config_8h" name="libccc_config.h" local="yes" imported="no">libccc_config.h</includes>
     <includes id="libccc__define_8h" name="libccc_define.h" local="yes" imported="no">libccc_define.h</includes>
@@ -14,7 +14,7 @@
   </compound>
   <compound kind="file">
     <name>array.h</name>
-    <path>D:/Lexou/Projects/Castlevania/C/lib/libccc/hdr/libccc/array/</path>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/array/</path>
     <filename>array_8h.html</filename>
     <includes id="libccc_8h" name="libccc.h" local="yes" imported="no">libccc.h</includes>
     <class kind="struct">s_array</class>
@@ -35,7 +35,7 @@
   </compound>
   <compound kind="file">
     <name>dict.h</name>
-    <path>D:/Lexou/Projects/Castlevania/C/lib/libccc/hdr/libccc/array/</path>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/array/</path>
     <filename>dict_8h.html</filename>
     <includes id="libccc_8h" name="libccc.h" local="yes" imported="no">libccc.h</includes>
     <class kind="struct">s_keyval</class>
@@ -57,7 +57,7 @@
   </compound>
   <compound kind="file">
     <name>list.h</name>
-    <path>D:/Lexou/Projects/Castlevania/C/lib/libccc/hdr/libccc/array/</path>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/array/</path>
     <filename>list_8h.html</filename>
     <includes id="libccc_8h" name="libccc.h" local="yes" imported="no">libccc.h</includes>
     <class kind="struct">s_list</class>
@@ -351,7 +351,7 @@
   </compound>
   <compound kind="file">
     <name>pointerarray.h</name>
-    <path>D:/Lexou/Projects/Castlevania/C/lib/libccc/hdr/libccc/array/</path>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/array/</path>
     <filename>pointerarray_8h.html</filename>
     <includes id="libccc_8h" name="libccc.h" local="yes" imported="no">libccc.h</includes>
     <includes id="pointer_8h" name="pointer.h" local="yes" imported="no">libccc/pointer.h</includes>
@@ -386,7 +386,7 @@
   </compound>
   <compound kind="file">
     <name>sort.h</name>
-    <path>D:/Lexou/Projects/Castlevania/C/lib/libccc/hdr/libccc/array/</path>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/array/</path>
     <filename>sort_8h.html</filename>
     <includes id="libccc_8h" name="libccc.h" local="yes" imported="no">libccc.h</includes>
     <member kind="define">
@@ -399,7 +399,7 @@
   </compound>
   <compound kind="file">
     <name>stringarray.h</name>
-    <path>D:/Lexou/Projects/Castlevania/C/lib/libccc/hdr/libccc/array/</path>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/array/</path>
     <filename>stringarray_8h.html</filename>
     <includes id="libccc_8h" name="libccc.h" local="yes" imported="no">libccc.h</includes>
     <member kind="define">
@@ -699,7 +699,7 @@
   </compound>
   <compound kind="file">
     <name>tree.h</name>
-    <path>D:/Lexou/Projects/Castlevania/C/lib/libccc/hdr/libccc/array/</path>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/array/</path>
     <filename>tree_8h.html</filename>
     <includes id="libccc_8h" name="libccc.h" local="yes" imported="no">libccc.h</includes>
     <class kind="struct">s_tree</class>
@@ -713,7 +713,7 @@
   </compound>
   <compound kind="file">
     <name>bool.h</name>
-    <path>D:/Lexou/Projects/Castlevania/C/lib/libccc/hdr/libccc/</path>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/</path>
     <filename>bool_8h.html</filename>
     <includes id="libccc__config_8h" name="libccc_config.h" local="yes" imported="no">libccc_config.h</includes>
     <includes id="libccc__define_8h" name="libccc_define.h" local="yes" imported="no">libccc_define.h</includes>
@@ -729,6 +729,20 @@
       <name>TRUE</name>
       <anchorfile>group__libccc__bool.html</anchorfile>
       <anchor>gaa8cecfc5c5c054d2875c03e77b7be15d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>false</name>
+      <anchorfile>group__libccc__bool.html</anchorfile>
+      <anchor>ga65e9886d74aaee76545e83dd09011727</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>true</name>
+      <anchorfile>group__libccc__bool.html</anchorfile>
+      <anchor>ga41f9c5fb8b08eb5dc3edce4dcb37fee7</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -769,7 +783,7 @@
   </compound>
   <compound kind="file">
     <name>char.h</name>
-    <path>D:/Lexou/Projects/Castlevania/C/lib/libccc/hdr/libccc/</path>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/</path>
     <filename>char_8h.html</filename>
     <includes id="libccc__config_8h" name="libccc_config.h" local="yes" imported="no">libccc_config.h</includes>
     <includes id="libccc__define_8h" name="libccc_define.h" local="yes" imported="no">libccc_define.h</includes>
@@ -1262,7 +1276,7 @@
   </compound>
   <compound kind="file">
     <name>color.h</name>
-    <path>D:/Lexou/Projects/Castlevania/C/lib/libccc/hdr/libccc/</path>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/</path>
     <filename>color_8h.html</filename>
     <includes id="libccc__config_8h" name="libccc_config.h" local="yes" imported="no">libccc_config.h</includes>
     <includes id="libccc__define_8h" name="libccc_define.h" local="yes" imported="no">libccc_define.h</includes>
@@ -2171,7 +2185,7 @@
   </compound>
   <compound kind="file">
     <name>fixed.h</name>
-    <path>D:/Lexou/Projects/Castlevania/C/lib/libccc/hdr/libccc/</path>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/</path>
     <filename>fixed_8h.html</filename>
     <includes id="libccc__config_8h" name="libccc_config.h" local="yes" imported="no">libccc_config.h</includes>
     <includes id="libccc__define_8h" name="libccc_define.h" local="yes" imported="no">libccc_define.h</includes>
@@ -2740,13 +2754,49 @@
   </compound>
   <compound kind="file">
     <name>float.h</name>
-    <path>D:/Lexou/Projects/Castlevania/C/lib/libccc/hdr/libccc/</path>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/</path>
     <filename>float_8h.html</filename>
     <includes id="libccc__config_8h" name="libccc_config.h" local="yes" imported="no">libccc_config.h</includes>
     <includes id="libccc__define_8h" name="libccc_define.h" local="yes" imported="no">libccc_define.h</includes>
+    <includes id="bool_8h" name="bool.h" local="yes" imported="no">libccc/bool.h</includes>
     <includes id="int_8h" name="int.h" local="yes" imported="no">libccc/int.h</includes>
     <class kind="union">u_float_cast</class>
     <class kind="union">u_varfloat</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>NAN</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga8abfcc76130f3f991d124dd22d7e69bc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>NOTNUMBER</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga33e218ebe9d71b0101d79bdc93a5c8af</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>isnan</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gaed3d93c4bc16739191c85a44c8a03cb5</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IS_NAN</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga5f1a3a07bc95a87692963d4066380813</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IS_NOTNUMBER</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gaec9e88b3acd785695870c92799c723dd</anchor>
+      <arglist>(X)</arglist>
+    </member>
     <member kind="define">
       <type>#define</type>
       <name>INF</name>
@@ -2763,9 +2813,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>IS_INFINITY</name>
+      <name>isinf</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga75b1c8ba2d9c38d0850b2aa25d4650df</anchor>
+      <anchor>gafe0ec0ba0f3b1bdf1b739a01977e0de5</anchor>
       <arglist>(X)</arglist>
     </member>
     <member kind="define">
@@ -2777,16 +2827,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>NAN</name>
+      <name>IS_INFINITY</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga8abfcc76130f3f991d124dd22d7e69bc</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IS_NAN</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga5f1a3a07bc95a87692963d4066380813</anchor>
+      <anchor>ga75b1c8ba2d9c38d0850b2aa25d4650df</anchor>
       <arglist>(X)</arglist>
     </member>
     <member kind="define">
@@ -2805,6 +2848,20 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>FLT_ROUNDS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga744ae7c1870e42f6b620ccd8f1911895</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLT_EVAL_METHOD</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gaae38a34e50eb45aca66a037454d9a555</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>FLOAT_THRESHOLD_HUGE</name>
       <anchorfile>group__libccc__float.html</anchorfile>
       <anchor>ga381da602a823f0ad88c57d4c6a127368</anchor>
@@ -2815,6 +2872,27 @@
       <name>FLOAT_THRESHOLD_TINY</name>
       <anchorfile>group__libccc__float.html</anchorfile>
       <anchor>ga5ed20a03af8dfc3ef1fb2df54e2ebe89</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32_equals</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gaed62b7a5ab65d3de70cb2e38c2126863</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64_equals</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga2fc28b26e215719ffc369daac117d056</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_float_equals</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga4608cbd8403aa634569346b4d9d3dfa1</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -3386,6 +3464,34 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>F32_NEXT</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga5f14464eb4dea156524c078eb2312997</anchor>
+      <arglist>(X, TOWARD)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F32_MIN</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga0f9ce95191fb035fcd53ab63b9663e20</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F32_MAX</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga754d8f564bd5d1fb49931b2f4c0ec00c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F32_EPSILON</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gab8f5716886114b6abae51ee9b41f23c5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>F64_SIGNED</name>
       <anchorfile>group__libccc__float.html</anchorfile>
       <anchor>gaac4617a7c49336b2819f5e12d071d863</anchor>
@@ -3445,6 +3551,34 @@
       <name>F64_INIT_VALUE</name>
       <anchorfile>group__libccc__float.html</anchorfile>
       <anchor>gac1356252683f2585dc62bd892194c39c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F64_NEXT</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga484fabe569f27c3e8ee1e31028560a83</anchor>
+      <arglist>(X, TOWARD)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F64_MIN</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga4ef26fd77745fadb40f370d63943d5eb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F64_MAX</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga82daf28d8d0052302ccf95c163687ce5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F64_EPSILON</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga738b6dae892a513d104574ebbfbfd44c</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -3512,6 +3646,34 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>F80_NEXT</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga0ed8492099cd2a209a255a1af9567ed5</anchor>
+      <arglist>(X, TOWARD)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F80_MIN</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga5130e8824dece6c5fc7bc8e52ad79abc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F80_MAX</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga1bbfc8df821b85ca8a743e33b65fe458</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F80_EPSILON</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gaab0c0fc9af70f814f2dcbd79eed77e29</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>F128_SIGNED</name>
       <anchorfile>group__libccc__float.html</anchorfile>
       <anchor>gad2585244df8cc4a2417d3616baa1cc7c</anchor>
@@ -3571,6 +3733,34 @@
       <name>F128_INIT_VALUE</name>
       <anchorfile>group__libccc__float.html</anchorfile>
       <anchor>ga7f6fd41f1f033300cba702f96c4d2d4b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F128_NEXT</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gaaa1ec1cb633c1914470d78217b6dbb93</anchor>
+      <arglist>(X, TOWARD)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F128_MIN</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga636e619c3c3d5f5596b3b44fd890491e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F128_MAX</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga45e6cda3962133a4f95ee438d0b3f60d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F128_EPSILON</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gae320372194e6dfa5dbdc8463e94b0e0b</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -3636,6 +3826,34 @@
       <anchor>gab52abd8ab7aedb33be8562223e680524</anchor>
       <arglist></arglist>
     </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLOAT_NEXT</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga46ab374ae14a488471ef33964ab65ec5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLOAT_MIN</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gaf5950268eabe03299763ca25bc35d33d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLOAT_MAX</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga2124ca619b2968b0cc8429e2a7036869</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLOAT_EPSILON</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gab1f73cdbc25f0b24f246249efa98ee14</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="typedef">
       <type>float</type>
       <name>t_f32</name>
@@ -3656,6 +3874,27 @@
       <anchorfile>group__libccc__float.html</anchorfile>
       <anchor>ga062b5f7ac5af1921a0d50e5b59f7a496</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>F32_Equals</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gad0100179615627d32bd1fa6047d3d066</anchor>
+      <arglist>(t_f32 n1, t_f32 n2)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>F64_Equals</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga56ea367013b6b71ce6293edee0bedc80</anchor>
+      <arglist>(t_f64 n1, t_f64 n2)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>Float_Equals</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga2c543ae285358235dbe25f1a7917256b</anchor>
+      <arglist>(t_float n1, t_float n2)</arglist>
     </member>
     <member kind="function">
       <type>char *</type>
@@ -3932,6 +4171,34 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>F32_NEXT</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga5f14464eb4dea156524c078eb2312997</anchor>
+      <arglist>(X, TOWARD)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F32_MIN</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga0f9ce95191fb035fcd53ab63b9663e20</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F32_MAX</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga754d8f564bd5d1fb49931b2f4c0ec00c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F32_EPSILON</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gab8f5716886114b6abae51ee9b41f23c5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>F64_SIGNED</name>
       <anchorfile>group__libccc__float.html</anchorfile>
       <anchor>gaac4617a7c49336b2819f5e12d071d863</anchor>
@@ -3991,6 +4258,34 @@
       <name>F64_INIT_VALUE</name>
       <anchorfile>group__libccc__float.html</anchorfile>
       <anchor>gac1356252683f2585dc62bd892194c39c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F64_NEXT</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga484fabe569f27c3e8ee1e31028560a83</anchor>
+      <arglist>(X, TOWARD)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F64_MIN</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga4ef26fd77745fadb40f370d63943d5eb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F64_MAX</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga82daf28d8d0052302ccf95c163687ce5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F64_EPSILON</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga738b6dae892a513d104574ebbfbfd44c</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -4058,6 +4353,34 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>F80_NEXT</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga0ed8492099cd2a209a255a1af9567ed5</anchor>
+      <arglist>(X, TOWARD)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F80_MIN</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga5130e8824dece6c5fc7bc8e52ad79abc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F80_MAX</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga1bbfc8df821b85ca8a743e33b65fe458</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F80_EPSILON</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gaab0c0fc9af70f814f2dcbd79eed77e29</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>F128_SIGNED</name>
       <anchorfile>group__libccc__float.html</anchorfile>
       <anchor>gad2585244df8cc4a2417d3616baa1cc7c</anchor>
@@ -4117,6 +4440,34 @@
       <name>F128_INIT_VALUE</name>
       <anchorfile>group__libccc__float.html</anchorfile>
       <anchor>ga7f6fd41f1f033300cba702f96c4d2d4b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F128_NEXT</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gaaa1ec1cb633c1914470d78217b6dbb93</anchor>
+      <arglist>(X, TOWARD)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F128_MIN</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga636e619c3c3d5f5596b3b44fd890491e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F128_MAX</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga45e6cda3962133a4f95ee438d0b3f60d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F128_EPSILON</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gae320372194e6dfa5dbdc8463e94b0e0b</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -4182,10 +4533,38 @@
       <anchor>gab52abd8ab7aedb33be8562223e680524</anchor>
       <arglist></arglist>
     </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLOAT_NEXT</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga46ab374ae14a488471ef33964ab65ec5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLOAT_MIN</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gaf5950268eabe03299763ca25bc35d33d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLOAT_MAX</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga2124ca619b2968b0cc8429e2a7036869</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLOAT_EPSILON</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gab1f73cdbc25f0b24f246249efa98ee14</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>format.h</name>
-    <path>D:/Lexou/Projects/Castlevania/C/lib/libccc/hdr/libccc/</path>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/</path>
     <filename>format_8h.html</filename>
     <includes id="libccc_8h" name="libccc.h" local="yes" imported="no">libccc.h</includes>
     <member kind="define">
@@ -4814,7 +5193,7 @@
   </compound>
   <compound kind="file">
     <name>int.h</name>
-    <path>D:/Lexou/Projects/Castlevania/C/lib/libccc/hdr/libccc/</path>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/</path>
     <filename>int_8h.html</filename>
     <includes id="libccc__config_8h" name="libccc_config.h" local="yes" imported="no">libccc_config.h</includes>
     <includes id="libccc__define_8h" name="libccc_define.h" local="yes" imported="no">libccc_define.h</includes>
@@ -5599,7 +5978,7 @@
   </compound>
   <compound kind="file">
     <name>algebra.h</name>
-    <path>D:/Lexou/Projects/Castlevania/C/lib/libccc/hdr/libccc/math/</path>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/math/</path>
     <filename>algebra_8h.html</filename>
     <includes id="libccc_8h" name="libccc.h" local="yes" imported="no">libccc.h</includes>
     <includes id="math_8h" name="math.h" local="yes" imported="no">libccc/math/math.h</includes>
@@ -6378,7 +6757,7 @@
   </compound>
   <compound kind="file">
     <name>complex.h</name>
-    <path>D:/Lexou/Projects/Castlevania/C/lib/libccc/hdr/libccc/math/</path>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/math/</path>
     <filename>complex_8h.html</filename>
     <includes id="libccc_8h" name="libccc.h" local="yes" imported="no">libccc.h</includes>
     <includes id="float_8h" name="float.h" local="yes" imported="no">libccc/float.h</includes>
@@ -6562,7 +6941,7 @@
   </compound>
   <compound kind="file">
     <name>math.h</name>
-    <path>D:/Lexou/Projects/Castlevania/C/lib/libccc/hdr/libccc/math/</path>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/math/</path>
     <filename>math_8h.html</filename>
     <includes id="libccc_8h" name="libccc.h" local="yes" imported="no">libccc.h</includes>
     <member kind="define">
@@ -7450,7 +7829,7 @@
   </compound>
   <compound kind="file">
     <name>random.h</name>
-    <path>D:/Lexou/Projects/Castlevania/C/lib/libccc/hdr/libccc/math/</path>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/math/</path>
     <filename>random_8h.html</filename>
     <includes id="libccc_8h" name="libccc.h" local="yes" imported="no">libccc.h</includes>
     <member kind="define">
@@ -7610,7 +7989,7 @@
   </compound>
   <compound kind="file">
     <name>stat.h</name>
-    <path>D:/Lexou/Projects/Castlevania/C/lib/libccc/hdr/libccc/math/</path>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/math/</path>
     <filename>stat_8h.html</filename>
     <includes id="libccc_8h" name="libccc.h" local="yes" imported="no">libccc.h</includes>
     <class kind="struct">s_list_int</class>
@@ -8018,13 +8397,13 @@
   </compound>
   <compound kind="file">
     <name>vlq.h</name>
-    <path>D:/Lexou/Projects/Castlevania/C/lib/libccc/hdr/libccc/math/</path>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/math/</path>
     <filename>vlq_8h.html</filename>
     <includes id="libccc_8h" name="libccc.h" local="yes" imported="no">libccc.h</includes>
   </compound>
   <compound kind="file">
     <name>memory.h</name>
-    <path>D:/Lexou/Projects/Castlevania/C/lib/libccc/hdr/libccc/</path>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/</path>
     <filename>memory_8h.html</filename>
     <includes id="libccc__config_8h" name="libccc_config.h" local="yes" imported="no">libccc_config.h</includes>
     <includes id="libccc__define_8h" name="libccc_define.h" local="yes" imported="no">libccc_define.h</includes>
@@ -8313,7 +8692,7 @@
   </compound>
   <compound kind="file">
     <name>pointer.h</name>
-    <path>D:/Lexou/Projects/Castlevania/C/lib/libccc/hdr/libccc/</path>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/</path>
     <filename>pointer_8h.html</filename>
     <includes id="libccc__config_8h" name="libccc_config.h" local="yes" imported="no">libccc_config.h</includes>
     <includes id="libccc__define_8h" name="libccc_define.h" local="yes" imported="no">libccc_define.h</includes>
@@ -8453,13 +8832,13 @@
   </compound>
   <compound kind="file">
     <name>regex.h</name>
-    <path>D:/Lexou/Projects/Castlevania/C/lib/libccc/hdr/libccc/</path>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/</path>
     <filename>regex_8h.html</filename>
     <includes id="libccc_8h" name="libccc.h" local="yes" imported="no">libccc.h</includes>
   </compound>
   <compound kind="file">
     <name>string.h</name>
-    <path>D:/Lexou/Projects/Castlevania/C/lib/libccc/hdr/libccc/</path>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/</path>
     <filename>string_8h.html</filename>
     <includes id="libccc__config_8h" name="libccc_config.h" local="yes" imported="no">libccc_config.h</includes>
     <includes id="libccc__define_8h" name="libccc_define.h" local="yes" imported="no">libccc_define.h</includes>
@@ -9576,7 +9955,7 @@
   </compound>
   <compound kind="file">
     <name>io.h</name>
-    <path>D:/Lexou/Projects/Castlevania/C/lib/libccc/hdr/libccc/sys/</path>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/sys/</path>
     <filename>io_8h.html</filename>
     <includes id="libccc_8h" name="libccc.h" local="yes" imported="no">libccc.h</includes>
     <includes id="color_8h" name="color.h" local="yes" imported="no">libccc/color.h</includes>
@@ -11921,7 +12300,7 @@
   </compound>
   <compound kind="file">
     <name>logger.h</name>
-    <path>D:/Lexou/Projects/Castlevania/C/lib/libccc/hdr/libccc/sys/</path>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/sys/</path>
     <filename>logger_8h.html</filename>
     <includes id="libccc__config_8h" name="libccc_config.h" local="yes" imported="no">libccc_config.h</includes>
     <includes id="libccc__define_8h" name="libccc_define.h" local="yes" imported="no">libccc_define.h</includes>
@@ -12396,7 +12775,7 @@
   </compound>
   <compound kind="file">
     <name>time.h</name>
-    <path>D:/Lexou/Projects/Castlevania/C/lib/libccc/hdr/libccc/sys/</path>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/sys/</path>
     <filename>time_8h.html</filename>
     <includes id="time_8h" name="time.h" local="no" imported="no">sys/time.h</includes>
     <includes id="libccc_8h" name="libccc.h" local="yes" imported="no">libccc.h</includes>
@@ -13224,7 +13603,7 @@
   </compound>
   <compound kind="file">
     <name>libccc_config.h</name>
-    <path>D:/Lexou/Projects/Castlevania/C/lib/libccc/hdr/</path>
+    <path>D:/Lexou/Projects/C/libccc/hdr/</path>
     <filename>libccc__config_8h.html</filename>
     <includes id="libccc__define_8h" name="libccc_define.h" local="yes" imported="no">libccc_define.h</includes>
     <member kind="define">
@@ -13895,7 +14274,7 @@
   </compound>
   <compound kind="file">
     <name>libccc_define.h</name>
-    <path>D:/Lexou/Projects/Castlevania/C/lib/libccc/hdr/</path>
+    <path>D:/Lexou/Projects/C/libccc/hdr/</path>
     <filename>libccc__define_8h.html</filename>
     <member kind="define">
       <type>#define</type>
@@ -13941,10 +14320,10 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>foreach</name>
+      <name>STRING_LENGTH</name>
       <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga28ab025aeaec3b498d66e2b9cc43c74f</anchor>
-      <arglist>(VARIABLE_TYPE, VARIABLE, ITERABLE_TYPE, ITERABLE)</arglist>
+      <anchor>gadf33f17cc995534ffea6e27a44fc80d3</anchor>
+      <arglist>(X)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -13971,22 +14350,22 @@
       <type>#define</type>
       <name>__nameof__</name>
       <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga0025c9c90d824f215fa10525dda58468</anchor>
-      <arglist></arglist>
+      <anchor>ga79fd5a9bc3c575bb100c5fb8aa82545e</anchor>
+      <arglist>(x)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>__typeof__</name>
       <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga541e44a41b0ec161d68ba02fab7aa643</anchor>
-      <arglist></arglist>
+      <anchor>ga174603f8ece5dac553d7f34758219841</anchor>
+      <arglist>(x)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>__alignof__</name>
       <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gad1126a332102572c849de5b008bd8e46</anchor>
-      <arglist></arglist>
+      <anchor>ga6e441f9a9e4ab87512552344473b6199</anchor>
+      <arglist>(x)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -14060,6 +14439,13 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>foreach</name>
+      <anchorfile>group__libccc.html</anchorfile>
+      <anchor>ga28ab025aeaec3b498d66e2b9cc43c74f</anchor>
+      <arglist>(VARIABLE_TYPE, VARIABLE, ITERABLE_TYPE, ITERABLE)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>INCBIN</name>
       <anchorfile>group__libccc.html</anchorfile>
       <anchor>ga73431ba9d27af74793901561ae448116</anchor>
@@ -14068,7 +14454,7 @@
   </compound>
   <compound kind="file">
     <name>README.md</name>
-    <path>D:/Lexou/Projects/Castlevania/C/lib/libccc/</path>
+    <path>D:/Lexou/Projects/C/libccc/</path>
     <filename>_r_e_a_d_m_e_8md.html</filename>
   </compound>
   <compound kind="struct">
@@ -15047,10 +15433,10 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>foreach</name>
+      <name>STRING_LENGTH</name>
       <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga28ab025aeaec3b498d66e2b9cc43c74f</anchor>
-      <arglist>(VARIABLE_TYPE, VARIABLE, ITERABLE_TYPE, ITERABLE)</arglist>
+      <anchor>gadf33f17cc995534ffea6e27a44fc80d3</anchor>
+      <arglist>(X)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -15077,22 +15463,22 @@
       <type>#define</type>
       <name>__nameof__</name>
       <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga0025c9c90d824f215fa10525dda58468</anchor>
-      <arglist></arglist>
+      <anchor>ga79fd5a9bc3c575bb100c5fb8aa82545e</anchor>
+      <arglist>(x)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>__typeof__</name>
       <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga541e44a41b0ec161d68ba02fab7aa643</anchor>
-      <arglist></arglist>
+      <anchor>ga174603f8ece5dac553d7f34758219841</anchor>
+      <arglist>(x)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>__alignof__</name>
       <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gad1126a332102572c849de5b008bd8e46</anchor>
-      <arglist></arglist>
+      <anchor>ga6e441f9a9e4ab87512552344473b6199</anchor>
+      <arglist>(x)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -15163,6 +15549,13 @@
       <anchorfile>group__libccc.html</anchorfile>
       <anchor>ga87f2008814364facc78ee21953ac5b12</anchor>
       <arglist>()</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>foreach</name>
+      <anchorfile>group__libccc.html</anchorfile>
+      <anchor>ga28ab025aeaec3b498d66e2b9cc43c74f</anchor>
+      <arglist>(VARIABLE_TYPE, VARIABLE, ITERABLE_TYPE, ITERABLE)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -15854,6 +16247,20 @@
       <name>TRUE</name>
       <anchorfile>group__libccc__bool.html</anchorfile>
       <anchor>gaa8cecfc5c5c054d2875c03e77b7be15d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>false</name>
+      <anchorfile>group__libccc__bool.html</anchorfile>
+      <anchor>ga65e9886d74aaee76545e83dd09011727</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>true</name>
+      <anchorfile>group__libccc__bool.html</anchorfile>
+      <anchor>ga41f9c5fb8b08eb5dc3edce4dcb37fee7</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -17251,6 +17658,41 @@
     <class kind="union">u_varfloat</class>
     <member kind="define">
       <type>#define</type>
+      <name>NAN</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga8abfcc76130f3f991d124dd22d7e69bc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>NOTNUMBER</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga33e218ebe9d71b0101d79bdc93a5c8af</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>isnan</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gaed3d93c4bc16739191c85a44c8a03cb5</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IS_NAN</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga5f1a3a07bc95a87692963d4066380813</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IS_NOTNUMBER</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gaec9e88b3acd785695870c92799c723dd</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>INF</name>
       <anchorfile>group__libccc__float.html</anchorfile>
       <anchor>ga12c2040f25d8e3a7b9e1c2024c618cb6</anchor>
@@ -17265,9 +17707,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>IS_INFINITY</name>
+      <name>isinf</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga75b1c8ba2d9c38d0850b2aa25d4650df</anchor>
+      <anchor>gafe0ec0ba0f3b1bdf1b739a01977e0de5</anchor>
       <arglist>(X)</arglist>
     </member>
     <member kind="define">
@@ -17279,16 +17721,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>NAN</name>
+      <name>IS_INFINITY</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga8abfcc76130f3f991d124dd22d7e69bc</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IS_NAN</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga5f1a3a07bc95a87692963d4066380813</anchor>
+      <anchor>ga75b1c8ba2d9c38d0850b2aa25d4650df</anchor>
       <arglist>(X)</arglist>
     </member>
     <member kind="define">
@@ -17307,6 +17742,20 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>FLT_ROUNDS</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga744ae7c1870e42f6b620ccd8f1911895</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLT_EVAL_METHOD</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gaae38a34e50eb45aca66a037454d9a555</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>FLOAT_THRESHOLD_HUGE</name>
       <anchorfile>group__libccc__float.html</anchorfile>
       <anchor>ga381da602a823f0ad88c57d4c6a127368</anchor>
@@ -17317,6 +17766,27 @@
       <name>FLOAT_THRESHOLD_TINY</name>
       <anchorfile>group__libccc__float.html</anchorfile>
       <anchor>ga5ed20a03af8dfc3ef1fb2df54e2ebe89</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32_equals</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gaed62b7a5ab65d3de70cb2e38c2126863</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64_equals</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga2fc28b26e215719ffc369daac117d056</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_float_equals</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga4608cbd8403aa634569346b4d9d3dfa1</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -17845,6 +18315,27 @@
       <arglist></arglist>
     </member>
     <member kind="function">
+      <type>t_bool</type>
+      <name>F32_Equals</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gad0100179615627d32bd1fa6047d3d066</anchor>
+      <arglist>(t_f32 n1, t_f32 n2)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>F64_Equals</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga56ea367013b6b71ce6293edee0bedc80</anchor>
+      <arglist>(t_f64 n1, t_f64 n2)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>Float_Equals</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga2c543ae285358235dbe25f1a7917256b</anchor>
+      <arglist>(t_float n1, t_float n2)</arglist>
+    </member>
+    <member kind="function">
       <type>char *</type>
       <name>F32_ToString</name>
       <anchorfile>group__libccc__float.html</anchorfile>
@@ -18119,6 +18610,34 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>F32_NEXT</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga5f14464eb4dea156524c078eb2312997</anchor>
+      <arglist>(X, TOWARD)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F32_MIN</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga0f9ce95191fb035fcd53ab63b9663e20</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F32_MAX</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga754d8f564bd5d1fb49931b2f4c0ec00c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F32_EPSILON</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gab8f5716886114b6abae51ee9b41f23c5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>F64_SIGNED</name>
       <anchorfile>group__libccc__float.html</anchorfile>
       <anchor>gaac4617a7c49336b2819f5e12d071d863</anchor>
@@ -18178,6 +18697,34 @@
       <name>F64_INIT_VALUE</name>
       <anchorfile>group__libccc__float.html</anchorfile>
       <anchor>gac1356252683f2585dc62bd892194c39c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F64_NEXT</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga484fabe569f27c3e8ee1e31028560a83</anchor>
+      <arglist>(X, TOWARD)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F64_MIN</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga4ef26fd77745fadb40f370d63943d5eb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F64_MAX</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga82daf28d8d0052302ccf95c163687ce5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F64_EPSILON</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga738b6dae892a513d104574ebbfbfd44c</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -18245,6 +18792,34 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>F80_NEXT</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga0ed8492099cd2a209a255a1af9567ed5</anchor>
+      <arglist>(X, TOWARD)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F80_MIN</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga5130e8824dece6c5fc7bc8e52ad79abc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F80_MAX</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga1bbfc8df821b85ca8a743e33b65fe458</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F80_EPSILON</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gaab0c0fc9af70f814f2dcbd79eed77e29</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>F128_SIGNED</name>
       <anchorfile>group__libccc__float.html</anchorfile>
       <anchor>gad2585244df8cc4a2417d3616baa1cc7c</anchor>
@@ -18308,6 +18883,34 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>F128_NEXT</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gaaa1ec1cb633c1914470d78217b6dbb93</anchor>
+      <arglist>(X, TOWARD)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F128_MIN</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga636e619c3c3d5f5596b3b44fd890491e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F128_MAX</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga45e6cda3962133a4f95ee438d0b3f60d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>F128_EPSILON</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gae320372194e6dfa5dbdc8463e94b0e0b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>FLOAT_SIGNED</name>
       <anchorfile>group__libccc__float.html</anchorfile>
       <anchor>gaaca925756ed2b953f5503f193f6b4184</anchor>
@@ -18367,6 +18970,34 @@
       <name>FLOAT_INIT_VALUE</name>
       <anchorfile>group__libccc__float.html</anchorfile>
       <anchor>gab52abd8ab7aedb33be8562223e680524</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLOAT_NEXT</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga46ab374ae14a488471ef33964ab65ec5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLOAT_MIN</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gaf5950268eabe03299763ca25bc35d33d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLOAT_MAX</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga2124ca619b2968b0cc8429e2a7036869</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLOAT_EPSILON</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gab1f73cdbc25f0b24f246249efa98ee14</anchor>
       <arglist></arglist>
     </member>
   </compound>
