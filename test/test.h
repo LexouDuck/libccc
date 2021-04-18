@@ -18,7 +18,7 @@
 
 #include "libccc.h"
 #include "libccc/char.h"
-#include "libccc/array/list.h"
+#include "libccc/monad/list.h"
 #include "libccc/math/stat.h"
 
 

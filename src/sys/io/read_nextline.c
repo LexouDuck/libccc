@@ -8,7 +8,7 @@
 
 #include "libccc/memory.h"
 #include "libccc/string.h"
-#include "libccc/array/array.h"
+#include "libccc/monad/array.h"
 #include "libccc/sys/io.h"
 
 

@@ -170,7 +170,7 @@ HEADER_CPP
 
 
 
-//! If 1, doing `#include "libccc/array/list.h"` will define a doubly-linked list
+//! If 1, doing `#include "libccc/monad/list.h"` will define a doubly-linked list
 /*!
 **	This macro configures whether the `s_list` type is singly-linked or doubly-linked.
 **	NB: This must be set BEFORE including the libccc/array/list.h header file

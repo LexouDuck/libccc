@@ -167,33 +167,6 @@ SRCS = \
 	sys/logger/util.c	\
 	sys/logger/init.c	\
 	sys/logger/log.c	\
-	array/pointerarray/ptrarrnew.c		\
-	array/pointerarray/ptrarrlen.c		\
-	array/stringarray/strsplit_char.c		\
-	array/stringarray/strsplit_charset.c	\
-	array/stringarray/strsplit_str.c		\
-	array/stringarray/strdivide.c			\
-	array/stringarray/strarrnew.c			\
-	array/stringarray/strarrcnew.c			\
-	array/stringarray/strarrdel.c			\
-	array/stringarray/strarrmap.c			\
-	array/stringarray/strarrsub.c			\
-	array/stringarray/strarrpad_l.c			\
-	array/stringarray/strarrfold.c			\
-	array/stringarray/strarrjoin.c			\
-	array/stringarray/strarrlen.c			\
-	array/stringarray/strarrcount.c			\
-	array/stringarray/strarrmerge.c			\
-	array/list/lstnew.c		\
-	array/list/lstadd.c		\
-	array/list/lstcpy.c		\
-	array/list/lstdel.c		\
-	array/list/lstsize.c	\
-	array/list/lstget.c		\
-	array/list/lstsub.c		\
-	array/list/lstiter.c	\
-	array/list/lstmap.c		\
-	array/list/lst_to.c		\
 	math/math.c		\
 	math/pow.c		\
 	math/root.c		\
@@ -229,6 +202,33 @@ SRCS = \
 	math/complex/complex_div.c		\
 	math/stat/stat_int.c	\
 	math/stat/stat_float.c	\
+	monad/pointerarray/ptrarrnew.c		\
+	monad/pointerarray/ptrarrlen.c		\
+	monad/stringarray/strsplit_char.c		\
+	monad/stringarray/strsplit_charset.c	\
+	monad/stringarray/strsplit_str.c		\
+	monad/stringarray/strdivide.c			\
+	monad/stringarray/strarrnew.c			\
+	monad/stringarray/strarrcnew.c			\
+	monad/stringarray/strarrdel.c			\
+	monad/stringarray/strarrmap.c			\
+	monad/stringarray/strarrsub.c			\
+	monad/stringarray/strarrpad_l.c			\
+	monad/stringarray/strarrfold.c			\
+	monad/stringarray/strarrjoin.c			\
+	monad/stringarray/strarrlen.c			\
+	monad/stringarray/strarrcount.c			\
+	monad/stringarray/strarrmerge.c			\
+	monad/list/lstnew.c		\
+	monad/list/lstadd.c		\
+	monad/list/lstcpy.c		\
+	monad/list/lstdel.c		\
+	monad/list/lstsize.c	\
+	monad/list/lstget.c		\
+	monad/list/lstsub.c		\
+	monad/list/lstiter.c	\
+	monad/list/lstmap.c		\
+	monad/list/lst_to.c		\
 
 # define object files list (.o) from source list
 OBJS = ${SRCS:%.c=$(OBJDIR)%.o}
@@ -347,12 +347,12 @@ TEST_SRCS = \
 	$(TEST_DIR)libccc/math/complex.c	\
 	$(TEST_DIR)libccc/math/random.c		\
 	$(TEST_DIR)libccc/math/vlq.c		\
-	$(TEST_DIR)libccc/array/array.c			\
-	$(TEST_DIR)libccc/array/pointerarray.c	\
-	$(TEST_DIR)libccc/array/stringarray.c	\
-	$(TEST_DIR)libccc/array/list.c			\
-	$(TEST_DIR)libccc/array/tree.c			\
-	$(TEST_DIR)libccc/array/dict.c			\
+	$(TEST_DIR)libccc/monad/array.c			\
+	$(TEST_DIR)libccc/monad/pointerarray.c	\
+	$(TEST_DIR)libccc/monad/stringarray.c	\
+	$(TEST_DIR)libccc/monad/list.c			\
+	$(TEST_DIR)libccc/monad/tree.c			\
+	$(TEST_DIR)libccc/monad/dict.c			\
 
 TEST_OBJS = ${TEST_SRCS:%.c=$(OBJDIR)%.o}
 
