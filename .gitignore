@@ -1,7 +1,8 @@
-obj/*
-bin/*
-dist/*
+obj
+bin
+dist
 doc/*/*
+doc/html/.doctrees
 
 libccc_test*
 pclint_*.*
