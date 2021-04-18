@@ -1,6 +1,6 @@
 /*============================================================================*/
 /*                                            ______________________________  */
-/*  libccc/array/tree.h                      |    __    __  ___      _____  | */
+/*  libccc/monad/tree.h                      |    __    __  ___      _____  | */
 /*                                           |   / /\  / /\/ . |\   /  __|\ | */
 /*  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | */
 /*                                           | /___/\/_/ /___-'\   \____/\  | */
@@ -9,14 +9,18 @@
 /*                                                                            */
 /*============================================================================*/
 
-#ifndef __LIBCCC_ARRAY_TREE_H
-#define __LIBCCC_ARRAY_TREE_H
-/*!@group{libccc_array_tree}
+#ifndef __LIBCCC_MONAD_TREE_H
+#define __LIBCCC_MONAD_TREE_H
+/*!@group{libccc_monad_tree}
 ** @{
 **	This header defines a simple tree/node/leaf type and utility functions for it.
 **
 **	@file
 */
+
+#ifndef T
+#define T	void*
+#endif
 
 /*
 ** ************************************************************************** *|
@@ -52,11 +56,11 @@ TYPEDEF_ALIAS(	s_tree, TREE, STRUCT)
 
 
 
-#define foreach_s_tree_init(		TYPE, VAR, TREE)	
-#define foreach_s_tree_exit(		TYPE, VAR, TREE)	
-#define foreach_s_tree_loop_init(	TYPE, VAR, TREE)	
-#define foreach_s_tree_loop_exit(	TYPE, VAR, TREE)	
-#define foreach_s_tree_loop_incr(	TYPE, VAR, TREE)	
+#define foreach_s_tree_init(		_TYPE_, _VAR_, _TREE_)	
+#define foreach_s_tree_exit(		_TYPE_, _VAR_, _TREE_)	
+#define foreach_s_tree_loop_init(	_TYPE_, _VAR_, _TREE_)	
+#define foreach_s_tree_loop_exit(	_TYPE_, _VAR_, _TREE_)	
+#define foreach_s_tree_loop_incr(	_TYPE_, _VAR_, _TREE_)	
 
 
 

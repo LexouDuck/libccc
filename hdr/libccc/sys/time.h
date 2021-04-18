@@ -62,7 +62,7 @@ TYPEDEF_ALIAS(		t_time, TIME, PRIMITIVE)
 /*!
 **	@isostd{https://en.cppreference.com/w/c/chrono/timespec}
 **
-**	This 'timespec' has an arbitrary begin point (typically the start of program
+**	This 'nanotime' has an arbitrary begin point (typically the start of program
 **	execution, but it can be the last machine boot, among many other things).
 **	It is meant to be used measure intervals of time during program execution,
 **	by calling the 'clock()' function several times and comparing their outputs.
@@ -72,15 +72,15 @@ TYPEDEF_ALIAS(		t_time, TIME, PRIMITIVE)
 **		tv_sec	->	sec
 **		tv_nsec	->	nanosec
 */
-typedef struct timespec
+typedef struct nanotime
 {
 	t_time		sec;		//!< Only positive values are valid
 	t_s64		nanosec;	//!< Only values in the range [0, 999999999] are valid
-}				s_timespec;
-TYPEDEF_ALIAS(	s_timespec, TIMESPEC, STRUCT)
-// typedef struct timespec	s_timespec;
+}				s_nanotime;
+TYPEDEF_ALIAS(	s_nanotime, TIMESPEC, STRUCT)
+// typedef struct timespec	s_nanotime;
 
-#define TIMESPEC_NULL	((s_timespec){0})
+#define TIMESPEC_NULL	((s_nanotime){0})
 
 
 
@@ -281,16 +281,16 @@ s_date							Time_ToDate_LocalTime(t_time const value);
 
 /*
 ** ************************************************************************** *|
-**                s_timespec: Precise arbitrary time functions                *|
+**                s_nanotime: Precise arbitrary time functions                *|
 ** ************************************************************************** *|
 */
 
 //! Converts the given 's_date' struct to its ISO STD LIBC 'struct tm' equivalent
-struct timespec				Timespec_ToSTDC(s_timespec const* value);
+struct timespec				Timespec_ToSTDC(s_nanotime const* value);
 #define c_timespec_to_stdc	Timespec_ToSTDC
 
 //! Converts the given ISO STD LIBC 'struct tm' to its 's_date' struct equivalent
-s_timespec					Timespec_FromSTDC(struct timespec const* value);
+s_nanotime					Timespec_FromSTDC(struct timespec const* value);
 #define c_stdc_to_timespec	Timespec_FromSTDC
 
 

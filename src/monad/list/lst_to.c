@@ -34,7 +34,7 @@ void**	List_To_PointerArray(s_list const** a_lst)
 }
 
 
-
+/*
 s_array	List_To_Array(s_list const** a_lst)
 {
 	s_list const* lst;
@@ -68,3 +68,4 @@ s_array	List_To_Array(s_list const** a_lst)
 //	Memory_Clear(result + (i * result.item_size), result.item_size);
 	return (result);
 }
+*/

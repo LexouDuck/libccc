@@ -43,7 +43,7 @@ s_date		Time_ToDate_LocalTime(t_time const value)
 
 
 
-inline struct timespec	Timespec_ToSTDC(s_timespec const* value)
+inline struct timespec	Timespec_ToSTDC(s_nanotime const* value)
 {
 	return ((struct timespec)
 	{
@@ -52,9 +52,9 @@ inline struct timespec	Timespec_ToSTDC(s_timespec const* value)
 	});
 }
 
-inline s_timespec		Timespec_FromSTDC(struct timespec const* value)
+inline s_nanotime		Timespec_FromSTDC(struct timespec const* value)
 {
-	return ((s_timespec)
+	return ((s_nanotime)
 	{
 		.sec = value->tv_sec,
 		.nanosec = value->tv_nsec,

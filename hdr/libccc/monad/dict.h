@@ -1,6 +1,6 @@
 /*============================================================================*/
 /*                                            ______________________________  */
-/*  libccc/array/dict.h                      |    __    __  ___      _____  | */
+/*  libccc/monad/dict.h                      |    __    __  ___      _____  | */
 /*                                           |   / /\  / /\/ . |\   /  __|\ | */
 /*  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | */
 /*                                           | /___/\/_/ /___-'\   \____/\  | */
@@ -9,14 +9,18 @@
 /*                                                                            */
 /*============================================================================*/
 
-#ifndef __LIBCCC_ARRAY_DICT_H
-#define __LIBCCC_ARRAY_DICT_H
-/*!@group{libccc_array_dict}
+#ifndef __LIBCCC_MONAD_DICT_H
+#define __LIBCCC_MONAD_DICT_H
+/*!@group{libccc_monad_dict}
 ** @{
 **	This header defines a simple dictionary type and utility functions for it.
 **
 **	@file
 */
+
+#ifndef T
+#define T	void*
+#endif
 
 /*
 ** ************************************************************************** *|
@@ -66,11 +70,11 @@ TYPEDEF_ALIAS(	s_dict, DICT, STRUCT)
 
 
 
-#define foreach_s_dict_init(		TYPE, VAR, DICT)	
-#define foreach_s_dict_exit(		TYPE, VAR, DICT)	
-#define foreach_s_dict_loop_init(	TYPE, VAR, DICT)	
-#define foreach_s_dict_loop_exit(	TYPE, VAR, DICT)	
-#define foreach_s_dict_loop_incr(	TYPE, VAR, DICT)	
+#define foreach_s_dict_init(		_TYPE_, _VAR_, _DICT_)	
+#define foreach_s_dict_exit(		_TYPE_, _VAR_, _DICT_)	
+#define foreach_s_dict_loop_init(	_TYPE_, _VAR_, _DICT_)	
+#define foreach_s_dict_loop_exit(	_TYPE_, _VAR_, _DICT_)	
+#define foreach_s_dict_loop_incr(	_TYPE_, _VAR_, _DICT_)	
 
 
 

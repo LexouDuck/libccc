@@ -37,7 +37,7 @@ HEADER_CPP
 */
 
 //! A simple vector struct for storing 2-dimensional values
-typedef struct vector2d
+typedef struct vec2d
 {
 	t_float		x;			//!< The X axis coordinate of this vector
 	t_float		y;			//!< The Y axis coordinate of this vector
@@ -92,7 +92,7 @@ t_float							Vector2D_Dot(s_vector2d const* v1, s_vector2d const* v2);
 
 
 //! A simple vector struct for storing 3-dimensional values
-typedef struct vector3d
+typedef struct vec3d
 {
 	t_float		x;			//!< The X axis coordinate of this vector
 	t_float		y;			//!< The Y axis coordinate of this vector
@@ -155,7 +155,7 @@ s_vector3d						Vector3D_Cross(s_vector3d const* v1, s_vector3d const* v2);
 
 
 //! A simple vector struct for storing 4-dimensional values
-typedef struct vector4d
+typedef struct vec4d
 {
 	t_float		x;			//!<< The X axis coordinate of this vector
 	t_float		y;			//!<< The Y axis coordinate of this vector
@@ -182,7 +182,7 @@ TYPEDEF_ALIAS(	u_vector4d, VECTOR_4D, UNION)
 */
 
 //! A simple struct which stores a 2x2 matrix of real numbers, arranged in 2 rows of 2D vectors
-typedef struct matrix2d
+typedef struct mtx2d
 {
 	s_vector2d	u;
 	s_vector2d	v;
@@ -246,7 +246,7 @@ s_matrix2d				Matrix2D_Multiply(s_matrix2d const* m1, s_matrix2d const* m2);
 
 
 //! A simple struct which stores a 3x3 matrix of real numbers, arranged in 3 rows of 3D vectors
-typedef struct matrix3d
+typedef struct mtx3d
 {
 	s_vector3d	u;
 	s_vector3d	v;
@@ -328,7 +328,7 @@ s_matrix3d				Matrix3D_Multiply(s_matrix3d const* m1, s_matrix3d const* m2);
 
 
 //! A simple struct which stores a 4x4 matrix of real numbers, arranged in 3 rows of 3D vectors
-typedef struct matrix4d
+typedef struct mtx4d
 {
 	s_vector4d	u;
 	s_vector4d	v;

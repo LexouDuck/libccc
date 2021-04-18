@@ -6,6 +6,9 @@
 #include <libccc/string.h>
 #include <libccc/sys/io.h>
 
+#define T		char*
+#define TYPE	_str
+
 #include <libccc/monad/array.h>
 #include <libccc/monad/list.h>
 //#include <libccc/monad/dict.h>
@@ -34,10 +37,9 @@ int main()
 
 	// s_array
 	{
-		s_array* str_array = &(s_array)
+		s_array_str* str_array = &(s_array_str)
 		{
-			.item_count = COUNT,
-			.item_size = sizeof(char*),
+			.length = COUNT,
 			.items = lines,
 		};
 		i = 0;

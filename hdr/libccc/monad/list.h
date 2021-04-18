@@ -1,6 +1,6 @@
 /*============================================================================*/
 /*                                            ______________________________  */
-/*  libccc/array/list.h                      |    __    __  ___      _____  | */
+/*  libccc/monad/list.h                      |    __    __  ___      _____  | */
 /*                                           |   / /\  / /\/ . |\   /  __|\ | */
 /*  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | */
 /*                                           | /___/\/_/ /___-'\   \____/\  | */
@@ -9,9 +9,9 @@
 /*                                                                            */
 /*============================================================================*/
 
-#ifndef __LIBCCC_ARRAY_LIST_H
-#define __LIBCCC_ARRAY_LIST_H
-/*!@group{libccc_array_list}
+#ifndef __LIBCCC_MONAD_LIST_H
+#define __LIBCCC_MONAD_LIST_H
+/*!@group{libccc_monad_list}
 ** @{
 **	This header defines a simple linked list type and utility functions for it.
 **
@@ -25,8 +25,7 @@
 */
 
 #include "libccc.h"
-
-typedef struct array	s_array;
+#include "libccc/monad/array.h"
 
 HEADER_CPP
 
@@ -59,11 +58,11 @@ TYPEDEF_ALIAS(		s_list, LIST, STRUCT)
 
 
 
-#define foreach_s_list_init(		TYPE, VAR, LIST)	s_list* VAR##_lst = (LIST);
-#define foreach_s_list_exit(		TYPE, VAR, LIST)	if (LIST)
-#define foreach_s_list_loop_init(	TYPE, VAR, LIST)	TYPE VAR = (TYPE)((LIST)->item)
-#define foreach_s_list_loop_exit(	TYPE, VAR, LIST)	VAR##_lst != NULL
-#define foreach_s_list_loop_incr(	TYPE, VAR, LIST)	VAR##_lst = VAR##_lst->next, VAR = (VAR##_lst ? (TYPE)(VAR##_lst->item) : NULL)
+#define foreach_s_list_init(		_TYPE_, _VAR_, _LIST_)	s_list* _VAR_##_lst = (_LIST_);
+#define foreach_s_list_exit(		_TYPE_, _VAR_, _LIST_)	if (_LIST_)
+#define foreach_s_list_loop_init(	_TYPE_, _VAR_, _LIST_)	_TYPE_ _VAR_ = (_TYPE_)((_LIST_)->item)
+#define foreach_s_list_loop_exit(	_TYPE_, _VAR_, _LIST_)	_VAR_##_lst != NULL
+#define foreach_s_list_loop_incr(	_TYPE_, _VAR_, _LIST_)	_VAR_##_lst = _VAR_##_lst->next, _VAR_ = (_VAR_##_lst ? (_TYPE_)(_VAR_##_lst->item) : NULL)
 
 
 
