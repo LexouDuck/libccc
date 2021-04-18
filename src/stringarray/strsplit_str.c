@@ -3,7 +3,7 @@
 
 #include "libccc/memory.h"
 #include "libccc/string.h"
-#include "libccc/monad/stringarray.h"
+#include "libccc/stringarray.h"
 
 
 

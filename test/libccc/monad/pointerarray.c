@@ -1,5 +1,5 @@
 
-#include "libccc/monad/pointerarray.h"
+#include "libccc/pointerarray.h"
 
 #include "test.h"
 

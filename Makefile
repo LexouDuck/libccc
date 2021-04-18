@@ -92,9 +92,6 @@ SRCS = \
 	int/str_to_int.c			\
 	int/strbase_to_int.c		\
 	int/strhex_to_int.c			\
-	pointer/size_to_str.c	\
-	pointer/str_to_size.c	\
-	pointer/ptr_to_str.c	\
 	fixed/fixed.c				\
 	fixed/fixed_to_str.c		\
 	fixed/str_to_fixed.c		\
@@ -115,6 +112,11 @@ SRCS = \
 	memory/memswap.c	\
 	memory/memrep.c		\
 	memory/getbits.c	\
+	pointer/size_to_str.c	\
+	pointer/str_to_size.c	\
+	pointer/ptr_to_str.c	\
+	pointerarray/ptrarrnew.c		\
+	pointerarray/ptrarrlen.c		\
 	string/strnew.c		\
 	string/strset.c		\
 	string/strclr.c		\
@@ -142,6 +144,21 @@ SRCS = \
 	string/strmap.c		\
 	string/strrep.c		\
 	string/strprint.c	\
+	stringarray/strsplit_char.c		\
+	stringarray/strsplit_charset.c	\
+	stringarray/strsplit_str.c		\
+	stringarray/strdivide.c			\
+	stringarray/strarrnew.c			\
+	stringarray/strarrcnew.c		\
+	stringarray/strarrdel.c			\
+	stringarray/strarrmap.c			\
+	stringarray/strarrsub.c			\
+	stringarray/strarrpad_l.c		\
+	stringarray/strarrfold.c		\
+	stringarray/strarrjoin.c		\
+	stringarray/strarrlen.c			\
+	stringarray/strarrcount.c		\
+	stringarray/strarrmerge.c		\
 	color/color_argb_get.c	\
 	color/color_argb_set.c	\
 	color/color_argb_to.c	\
@@ -202,23 +219,6 @@ SRCS = \
 	math/complex/complex_div.c		\
 	math/stat/stat_int.c	\
 	math/stat/stat_float.c	\
-	monad/pointerarray/ptrarrnew.c		\
-	monad/pointerarray/ptrarrlen.c		\
-	monad/stringarray/strsplit_char.c		\
-	monad/stringarray/strsplit_charset.c	\
-	monad/stringarray/strsplit_str.c		\
-	monad/stringarray/strdivide.c			\
-	monad/stringarray/strarrnew.c			\
-	monad/stringarray/strarrcnew.c			\
-	monad/stringarray/strarrdel.c			\
-	monad/stringarray/strarrmap.c			\
-	monad/stringarray/strarrsub.c			\
-	monad/stringarray/strarrpad_l.c			\
-	monad/stringarray/strarrfold.c			\
-	monad/stringarray/strarrjoin.c			\
-	monad/stringarray/strarrlen.c			\
-	monad/stringarray/strarrcount.c			\
-	monad/stringarray/strarrmerge.c			\
 	monad/list/lstnew.c		\
 	monad/list/lstadd.c		\
 	monad/list/lstcpy.c		\

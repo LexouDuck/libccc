@@ -43,7 +43,6 @@ typedef struct	s_tree_
 	t_size			node_count;	//!< The amount of sub-nodes of this tree node
 	struct s_tree_*	nodes;		//!< The array of sub-nodes of this tree node
 	void*			value;		//!< The value stored in this tree node
-	char*			value_type;	//!< The type of the value stored in `value`
 	t_size			value_size;	//!< The size (in bytes) of `value`
 }				s_tree;
 TYPEDEF_ALIAS(	s_tree, TREE, STRUCT)

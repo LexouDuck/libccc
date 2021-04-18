@@ -1,5 +1,5 @@
 
-#include "libccc/monad/stringarray.h"
+#include "libccc/stringarray.h"
 
 #include "test.h"
 

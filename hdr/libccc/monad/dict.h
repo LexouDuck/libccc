@@ -40,10 +40,9 @@ HEADER_CPP
 */
 typedef struct	s_keyval_
 {
-	char*		key;		//!< The key string associated with the 'value'
-	void*		value;		//!< The pointer to the data for the 'value'
-	char*		value_type;	//!< The type of the value stored
-	t_size		value_size;	//!< The size (in bytes) of the value
+	char*		key;		//!< The key string associated with the `value`
+	void*		value;		//!< The pointer to the data for the `value`
+	t_size		value_size;	//!< The size (in bytes) of the contents of `value`
 }				s_keyval;
 TYPEDEF_ALIAS(	s_keyval, KEYVAL, STRUCT)
 
