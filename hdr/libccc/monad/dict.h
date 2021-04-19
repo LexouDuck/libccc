@@ -92,6 +92,8 @@ TYPEDEF_ALIAS(	s_dict_T, DICT, STRUCT)
 // TODO Dict_Append
 // TODO Dict_Prepend
 // TODO Dict_Insert
+// TODO Dict_Remove
+// TODO Dict_RemoveAll
 // TODO Dict_Replace
 
 // TODO Dict_Find

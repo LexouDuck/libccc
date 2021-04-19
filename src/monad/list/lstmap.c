@@ -2,22 +2,12 @@
 #include "libccc/memory.h"
 #include "libccc/monad/list.h"
 
+/*
 
-
-static void	List_Map_Delete(void* item, t_size item_size)
+s_list_T*		List_Map(s_list_T* lst, s_list_T *(*f)(s_list_T* elem))
 {
-	if (item && item_size > 0)
-	{
-		Memory_Free(item);
-	}
-}
-
-
-
-s_list*		List_Map(s_list* lst, s_list *(*f)(s_list* elem))
-{
-	s_list	*result;
-	s_list	*current;
+	s_list_T	*result;
+	s_list_T	*current;
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (lst == NULL || f == NULL)
@@ -40,10 +30,10 @@ s_list*		List_Map(s_list* lst, s_list *(*f)(s_list* elem))
 
 
 
-s_list*		List_Map_I(s_list* lst, s_list *(*f)(s_list* elem, t_u32 index))
+s_list_T*		List_Map_I(s_list_T* lst, s_list_T *(*f)(s_list_T* elem, t_u32 index))
 {
-	s_list	*result;
-	s_list	*current;
+	s_list_T	*result;
+	s_list_T	*current;
 	t_u32	i;
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
@@ -65,3 +55,4 @@ s_list*		List_Map_I(s_list* lst, s_list *(*f)(s_list* elem, t_u32 index))
 	}
 	return (result);
 }
+*/

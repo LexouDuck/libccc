@@ -70,7 +70,7 @@ TYPEDEF_ALIAS(	s_array_T, ARRAY, STRUCT)
 #define foreach_s_array_init(		_TYPE_, _VAR_, _ARRAY_)	t_size _VAR_##_i = 0;
 #define foreach_s_array_exit(		_TYPE_, _VAR_, _ARRAY_)	if (_ARRAY_ && (_ARRAY_)->items)
 #define foreach_s_array_loop_init(	_TYPE_, _VAR_, _ARRAY_)	_TYPE_ _VAR_
-#define foreach_s_array_loop_exit(	_TYPE_, _VAR_, _ARRAY_)	(_VAR_##_i < (_ARRAY_)->length) || ((_VAR_ = (_TYPE_)((_ARRAY_)->items[_VAR_##_i])) && 0)
+#define foreach_s_array_loop_exit(	_TYPE_, _VAR_, _ARRAY_)	(_VAR_##_i < (_ARRAY_)->length) && ((_VAR_ = (_TYPE_)((_ARRAY_)->items[_VAR_##_i])) || 1)
 #define foreach_s_array_loop_incr(	_TYPE_, _VAR_, _ARRAY_)	++_VAR_##_i
 
 
@@ -144,7 +144,7 @@ void					Array_Remove(s_array_T* array, t_size index);
 #define c_arrdelone		Array_Remove //!< @alias{Array_Insert}
 
 //! TODO
-void					Array_RemoveAll(s_array_T* array, T item);
+void					Array_RemoveAll(s_array_T* array, T target);
 #define c_arrremall		Array_RemoveAll //!< @alias{Array_Insert}
 #define c_arrdelall		Array_RemoveAll //!< @alias{Array_Insert}
 

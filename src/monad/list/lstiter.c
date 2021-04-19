@@ -3,7 +3,7 @@
 
 
 
-void	List_Iterate(s_list* lst, void (*f)(s_list* elem))
+void	List_Iterate(s_list_T* lst, void (*f)(s_list_T* elem))
 {
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (lst == NULL || f == NULL)
@@ -18,7 +18,7 @@ void	List_Iterate(s_list* lst, void (*f)(s_list* elem))
 
 
 
-void	List_Iterate_I(s_list* lst, void (*f)(s_list* elem, t_u32 index))
+void	List_Iterate_I(s_list_T* lst, void (*f)(s_list_T* elem, t_u32 index))
 {
 	t_u32 i;
 

@@ -6,7 +6,7 @@
 #include <libccc/string.h>
 #include <libccc/sys/io.h>
 
-#define T		t_char*
+#define T		char*
 #define TYPE	_str
 #include <libccc/monad/array.h>
 #include <libccc/monad/list.h>
@@ -73,7 +73,7 @@ int main()
 		);
 		foreach (char*, str, s_list, str_list)
 		{
-			IO_Output_Format("i:%zu,\titer:%p,\tstr:%p -> \"%s\"\n", i++, str_lst, str, str);
+			IO_Output_Format("i:%zu,\titer:%p,\tstr:%p -> \"%s\"\n", i++, str_i, str, str);
 		}
 	}
 	return (OK);

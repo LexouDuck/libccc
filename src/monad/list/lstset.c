@@ -3,7 +3,7 @@
 
 
 
-s_list_T*	List_Get(s_list_T const* list, t_uint index)
+s_list_T*	List_Set(s_list_T* list, t_uint index, T item)
 {
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (list == NULL)
@@ -14,7 +14,11 @@ s_list_T*	List_Get(s_list_T const* list, t_uint index)
 		if (list->next == NULL)
 			return (NULL);
 		else
-			list = list->next;
+		{
+			list->item = item;
+			return (list);
+		}
+		list = list->next;
 	}
-	return ((s_list_T*)list);
+	return (NULL);
 }

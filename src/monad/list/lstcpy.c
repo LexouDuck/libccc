@@ -1,56 +1,22 @@
 
-#include "libccc/memory.h"
 #include "libccc/monad/list.h"
 
 
 
-s_list*	List_Copy(s_list const* lst)
+s_list_T*	List_Copy(s_list_T* dest, s_list_T const* src, t_uint n)
 {
-	s_list	*result;
-	s_list	*result_lst;
-	s_list	*tmp;
+	s_list_T	*list;
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (lst == NULL)
+	if (dest == NULL || src == NULL)
 		return (NULL);
 #endif
-	result = List_New(lst->item, lst->item_size);
-	result_lst = result;
-	lst = lst->next;
-	while (lst)
+	list = dest;
+	while (list && n--)
 	{
-		tmp = List_New(lst->item, lst->item_size);
-//		tmp->prev = result_lst;
-		result_lst->next = tmp;
-		result_lst = result_lst->next;
-		lst = lst->next;
+		list->item = src->item;
+		src = src->next;
+		list = list->next;
 	}
-	return (result);
-}
-
-
-
-s_list*	List_Duplicate(s_list const* lst)
-{
-	s_list	*result;
-	s_list	*result_lst;
-	s_list	*tmp;
-
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (lst == NULL)
-		return (NULL);
-#endif
-	result = List_New(lst->item, lst->item_size);
-	result_lst = result;
-	lst = lst->next;
-	while (lst)
-	{
-		tmp = List_New(lst->item, lst->item_size);
-		tmp->item = Memory_Duplicate(lst->item, lst->item_size);
-//		tmp->prev = result_lst;
-		result_lst->next = tmp;
-		result_lst = result_lst->next;
-		lst = lst->next;
-	}
-	return (result);
+	return (dest);
 }

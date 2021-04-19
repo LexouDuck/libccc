@@ -74,7 +74,7 @@ TYPEDEF_ALIAS(	s_list_T, LIST, STRUCT)
 #define foreach_s_list_init(		_TYPE_, _VAR_, _LIST_)	s_list_T* _VAR_##_i = (_LIST_);
 #define foreach_s_list_exit(		_TYPE_, _VAR_, _LIST_)	if (_LIST_)
 #define foreach_s_list_loop_init(	_TYPE_, _VAR_, _LIST_)	_TYPE_ _VAR_
-#define foreach_s_list_loop_exit(	_TYPE_, _VAR_, _LIST_)	(_VAR_##_i != NULL) || ((_VAR_ = (_VAR_##_i ? (_TYPE_)(_VAR_##_i->item) : NULL)) && 0)
+#define foreach_s_list_loop_exit(	_TYPE_, _VAR_, _LIST_)	(_VAR_##_i != NULL) && ((_VAR_ = (_TYPE_)(_VAR_##_i->item)) || 1)
 #define foreach_s_list_loop_incr(	_TYPE_, _VAR_, _LIST_)	_VAR_##_i = _VAR_##_i->next
 
 
@@ -219,7 +219,7 @@ s_list_T*				List_Remove(s_list_T* list, t_uint index);
 #define c_lstdelone		List_Remove //!< @alias{List_Remove}
 
 //! TODO
-s_list_T*				List_RemoveAll(s_list_T* list, T item);
+s_list_T*				List_RemoveAll(s_list_T* list, T target);
 #define c_lstremall		List_RemoveAll //!< @alias{List_Remove}
 #define c_lstdelall		List_RemoveAll //!< @alias{List_Remove}
 

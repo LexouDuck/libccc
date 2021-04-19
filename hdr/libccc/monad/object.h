@@ -93,6 +93,8 @@ TYPEDEF_ALIAS(	s_object_T, OBJECT, STRUCT)
 // TODO Object_Append
 // TODO Object_Prepend
 // TODO Object_Insert
+// TODO Object_Remove
+// TODO Object_RemoveAll
 // TODO Object_Replace
 
 // TODO Object_Find

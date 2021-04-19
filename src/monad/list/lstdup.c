@@ -4,27 +4,17 @@
 
 
 
-s_list_T*		List_Sub(s_list_T const* list, t_u32 index, t_u32 n)
+s_list_T*	List_Duplicate(s_list_T const* list)
 {
-	s_list_T*	result = NULL;
-	s_list_T*	elem = NULL;
-	s_list_T*	tmp;
+	s_list_T	*result = NULL;
+	s_list_T	*elem = NULL;
+	s_list_T	*tmp;
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (list == NULL)
 		return (NULL);
 #endif
-	if (n == 0)
-		return (NULL);
-	while (list && index--)
-	{
-		list = list->next;
-	}
-	if (list == NULL)
-		return (NULL);
-	elem = result;
-	list = list->next;
-	while (list && n--)
+	while (list)
 	{
 		if (!(tmp = (s_list_T*)Memory_Duplicate(list, sizeof(s_list_T))))
 			break;
