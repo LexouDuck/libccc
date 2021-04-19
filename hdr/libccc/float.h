@@ -245,7 +245,7 @@ TYPEDEF_ALIAS(					t_float, FLOAT, PRIMITIVE)
 //! If `(value <= FLOAT_THRESHOLD_TINY)`, Float_ToString() functions will write in scientific notation rather than decimal notation
 #define FLOAT_THRESHOLD_TINY	(1e-9)
 
-
+// TODO add IS_NORMAL() and IS_SUBNORMAL()
 
 // TODO instead of using FLT_MIN/FLT_MAX/FLT_EPSILON, calculate them manually (in a cross-platform manner)
 

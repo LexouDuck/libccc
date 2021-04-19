@@ -59,13 +59,10 @@ HEADER_CPP
 typedef struct tree_T
 {
 	t_size			node_count;	//!< The amount of sub-nodes of this tree node
-	struct tree*	nodes;		//!< The array of sub-nodes of this tree node
+	struct tree_T*	nodes;		//!< The array of sub-nodes of this tree node
 	T				value;		//!< The value stored in this tree node
 }				s_tree_T;
 TYPEDEF_ALIAS(	s_tree_T, TREE, STRUCT)
-
-//! A literal of an 's_tree' struct which has all fields set to zero
-#define TREE_NULL	(s_tree){ .node_count = 0, .nodes = 0, .value = NULL }
 
 
 

@@ -43,7 +43,7 @@ int main()
 	};
 	t_size i;
 
-	// s_array
+	IO_Output_String("\n- s_array:\n");
 	{
 		s_array_str* str_array = &(s_array_str)
 		{
@@ -57,13 +57,20 @@ int main()
 		}
 	}
 
-	// s_list
+	IO_Output_String("\n- s_list:\n");
 	{
-		s_list* str_list = NULL;
-		for (int i = 0; i < COUNT; ++i)
-		{
-			List_Append(&str_list, List_New(lines[i], lines[i] ? String_Length(lines[i]) : 0));
-		}
+		s_list_str* str_list = List_New(COUNT,
+			"Yo, my boi!",
+			"What's up, dog?",
+			"Not much, you ?",
+			"...",
+			"Yo, spit it out.",
+			"What's the deal ?",
+			"You got the dope ?",
+			"I ask the questions.",
+			"He's got a gun!",
+			"FREEZE! HANDS IN THE AIR!"
+		);
 		foreach (char*, str, s_list, str_list)
 		{
 			IO_Output_Format("i:%zu,\titer:%p,\tstr:%p -> \"%s\"\n", i++, str_lst, str, str);

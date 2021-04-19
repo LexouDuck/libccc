@@ -1092,6 +1092,9 @@ contexts:
     - match: \s*\b([tseuf]_\w+)\b # TODO more restrictive category here, to potentially differntiate system types from user types ?
       captures:
         1: support.type.libccc.++c
+    - match: \s*\b(T)\b
+      captures:
+        1: support.type.generic.++c
 
     - match: \s*\b(pthread_(?:t|attr_t|once_t|key_t|(?:cond|mutex|rwlock)(?:attr)?_t))\b
       captures:

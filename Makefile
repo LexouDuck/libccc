@@ -220,15 +220,24 @@ SRCS = \
 	math/stat/stat_int.c	\
 	math/stat/stat_float.c	\
 	monad/list/lstnew.c		\
-	monad/list/lstadd.c		\
-	monad/list/lstcpy.c		\
 	monad/list/lstdel.c		\
-	monad/list/lstsize.c	\
+	monad/list/lstdup.c		\
 	monad/list/lstget.c		\
+	monad/list/lstset.c		\
+	monad/list/lstcpy.c		\
 	monad/list/lstsub.c		\
+	monad/list/lstappend.c	\
+	monad/list/lstprepend.c	\
+	monad/list/lstinsert.c	\
+	monad/list/lstremove.c	\
+	monad/list/lstreplace.c	\
+	monad/list/lstsize.c	\
+	monad/list/lstequ.c		\
+	monad/list/lstcmp.c		\
 	monad/list/lstiter.c	\
 	monad/list/lstmap.c		\
-	monad/list/lst_to.c		\
+	monad/list/lstfilt.c	\
+	monad/convert/list.c	\
 
 # define object files list (.o) from source list
 OBJS = ${SRCS:%.c=$(OBJDIR)%.o}

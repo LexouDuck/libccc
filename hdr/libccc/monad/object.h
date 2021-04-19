@@ -46,7 +46,7 @@ HEADER_CPP
 #ifdef	object_T
 #undef	object_T
 #endif
-#define object_T		CONCAT(object, TYPE)
+#define object_T	CONCAT(object, TYPE)
 
 #ifdef	s_object_T
 #undef	s_object_T
@@ -57,14 +57,13 @@ HEADER_CPP
 /*
 **	TODO document this
 */
-typedef struct object
+typedef struct object_T
 {
-
-}				s_object;
-TYPEDEF_ALIAS(	s_object, OBJECT, STRUCT)
-
-//! A literal of an 's_object' struct which has all fields set to zero
-#define OBJECT_NULL	(s_object){ .node_count = 0, .nodes = 0, .value = NULL }
+//	struct object_T*	prev;	//!< The pointer to the previous item in the list (or NULL if this is the first item)
+	struct object_T*	next;	//!< The pointer to the next item in the list (or NULL if this is the last item)
+	s_keyval_T*			items;	//!< The fields (key-value pairs) contained within this object
+}				s_object_T;
+TYPEDEF_ALIAS(	s_object_T, OBJECT, STRUCT)
 
 
 
@@ -89,19 +88,20 @@ TYPEDEF_ALIAS(	s_object, OBJECT, STRUCT)
 // TODO Object_Get
 // TODO Object_Set
 // TODO Object_Copy
+// TODO Object_Sub
 
 // TODO Object_Append
 // TODO Object_Prepend
 // TODO Object_Insert
+// TODO Object_Replace
+
+// TODO Object_Find
+// TODO Object_IndexOf
 
 // TODO Object_Equals
 // TODO Object_Equals_N
 // TODO Object_Compare
 // TODO Object_Compare_N
-
-// TODO Object_Replace
-// TODO Object_Find
-// TODO Object_IndexOf
 
 // TODO Object_Iterate
 // TODO Object_Iterate_I

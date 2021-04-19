@@ -24,10 +24,6 @@
 ** ************************************************************************** *|
 */
 
-/*
-**	Types used from <stdarg.h>:
-**	-	va_list
-*/
 #include <stdarg.h>
 
 #include "libccc.h"

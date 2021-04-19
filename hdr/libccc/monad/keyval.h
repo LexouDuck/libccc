@@ -63,8 +63,6 @@ typedef struct keyval_T
 }				s_keyval_T;
 TYPEDEF_ALIAS(	s_keyval_T, KEYVAL, STRUCT)
 
-#define KEYVAL_NULL	(s_keyval_T){ .key = NULL } // TODO
-
 
 
 /*
@@ -79,7 +77,6 @@ TYPEDEF_ALIAS(	s_keyval_T, KEYVAL, STRUCT)
 
 // TODO KeyVal_Get
 // TODO KeyVal_Set
-// TODO KeyVal_Copy
 
 // TODO KeyVal_Equals
 // TODO KeyVal_Equals_N

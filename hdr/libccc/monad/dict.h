@@ -59,13 +59,10 @@ HEADER_CPP
 */
 typedef struct dict_T
 {
-	t_size		item_count;	//!< The amount of key/value pairs stored in this dictionary
-	s_keyval_T*	items;		//!< The array of key/value pairs stored in this dictionary
+	t_size		length;	//!< The amount of key/value pairs stored in this dictionary
+	s_keyval_T*	items;	//!< The array of key/value pairs stored in this dictionary
 }				s_dict_T;
 TYPEDEF_ALIAS(	s_dict_T, DICT, STRUCT)
-
-//! A literal of an 's_dict' struct which has all fields set to zero
-#define DICT_NULL	(s_dict_T){ .item_count = 0, .item_size = 0, .items = NULL }
 
 
 
@@ -90,19 +87,20 @@ TYPEDEF_ALIAS(	s_dict_T, DICT, STRUCT)
 // TODO Dict_Get
 // TODO Dict_Set
 // TODO Dict_Copy
+// TODO Dict_Sub
 
 // TODO Dict_Append
 // TODO Dict_Prepend
 // TODO Dict_Insert
+// TODO Dict_Replace
+
+// TODO Dict_Find
+// TODO Dict_IndexOf
 
 // TODO Dict_Equals
 // TODO Dict_Equals_N
 // TODO Dict_Compare
 // TODO Dict_Compare_N
-
-// TODO Dict_Replace
-// TODO Dict_Find
-// TODO Dict_IndexOf
 
 // TODO Dict_Iterate
 // TODO Dict_Iterate_I

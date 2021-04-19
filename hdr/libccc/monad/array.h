@@ -65,16 +65,13 @@ typedef struct array_T
 }				s_array_T;
 TYPEDEF_ALIAS(	s_array_T, ARRAY, STRUCT)
 
-//! A literal of an 's_array' struct which has all fields set to zero
-#define ARRAY_NULL	(s_array_T){ .length = 0, .items = NULL }
-
 
 
 #define foreach_s_array_init(		_TYPE_, _VAR_, _ARRAY_)	t_size _VAR_##_i = 0;
 #define foreach_s_array_exit(		_TYPE_, _VAR_, _ARRAY_)	if (_ARRAY_ && (_ARRAY_)->items)
-#define foreach_s_array_loop_init(	_TYPE_, _VAR_, _ARRAY_)	_TYPE_ _VAR_ = (_TYPE_)((_ARRAY_)->items[0])
-#define foreach_s_array_loop_exit(	_TYPE_, _VAR_, _ARRAY_)	_VAR_##_i < (_ARRAY_)->length
-#define foreach_s_array_loop_incr(	_TYPE_, _VAR_, _ARRAY_)	++_VAR_##_i, _VAR_ = (_TYPE_)((_ARRAY_)->items[_VAR_##_i])
+#define foreach_s_array_loop_init(	_TYPE_, _VAR_, _ARRAY_)	_TYPE_ _VAR_
+#define foreach_s_array_loop_exit(	_TYPE_, _VAR_, _ARRAY_)	(_VAR_##_i < (_ARRAY_)->length) || ((_VAR_ = (_TYPE_)((_ARRAY_)->items[_VAR_##_i])) && 0)
+#define foreach_s_array_loop_incr(	_TYPE_, _VAR_, _ARRAY_)	++_VAR_##_i
 
 
 
@@ -85,22 +82,23 @@ TYPEDEF_ALIAS(	s_array_T, ARRAY, STRUCT)
 */
 
 //! TODO
+_MALLOC()
 s_array_T*			Array_New(T* content);
 #define c_arrnew	Array_New //!< @alias{Array_New}
 
 //! TODO
-void				Array_Delete(s_array_T* *array);
+void				Array_Delete(s_array_T* *a_array);
 #define c_arrdel	Array_Delete //!< @alias{Array_Delete}
 
 //! TODO
-s_array_T*			Array_Duplicate(s_array_T* array);
+_MALLOC()
+s_array_T*			Array_Duplicate(s_array_T const* array);
 #define c_arrdup	Array_Duplicate //!< @alias{Array_Duplicate}
 
 
 
-
 //! TODO
-T					Array_Get(s_array_T* array, t_size index);
+T					Array_Get(s_array_T const* array, t_size index);
 #define c_arrget	Array_Get //!< @alias{Array_Get}
 
 //! TODO
@@ -108,10 +106,23 @@ void				Array_Set(s_array_T* array, t_size index, T item);
 #define c_arrset	Array_Set //!< @alias{Array_Set}
 
 //! TODO
-void				Array_Copy(s_array_T* dest, s_array_T* src, t_size n);
+s_array_T*			Array_Copy(s_array_T* dest, s_array_T const* src, t_size n);
 #define c_arrcpy	Array_Copy //!< @alias{Array_Copy}
 
+//! TODO
+_MALLOC()
+s_array_T*					Array_Sub(s_array_T const* array, T item);
+#define c_arrsub			Array_Sub //!< @alias{Array_IndexOf}
+#define Array_Subset		Array_Sub //!< @alias{Array_IndexOf}
+#define Array_Subsection	Array_Sub //!< @alias{Array_IndexOf}
 
+
+
+/*
+** ************************************************************************** *|
+**                           Array Editing Operations                         *|
+** ************************************************************************** *|
+*/
 
 //! TODO
 void					Array_Append(s_array_T* array, T item);
@@ -128,56 +139,96 @@ void					Array_Insert(s_array_T* array, T item, t_size index);
 
 
 //! TODO
-t_bool				Array_Equals(s_array_T* array1, s_array_T* array2);
-#define c_arrequ	Array_Equals //!< @alias{Array_Equals}
+void					Array_Remove(s_array_T* array, t_size index);
+#define c_arrremove		Array_Remove //!< @alias{Array_Insert}
+#define c_arrdelone		Array_Remove //!< @alias{Array_Insert}
 
 //! TODO
-t_bool				Array_Equals_N(s_array_T* array1, s_array_T* array2, t_size n);
-#define c_arrnequ	Array_Equals_N //!< @alias{Array_Equals_N}
-
-//! TODO
-t_sint				Array_Compare(s_array_T* array1, s_array_T* array2, t_sint (*compare)(T item1, T item2));
-#define c_arrcmp	Array_Compare //!< @alias{Array_Compare}
-
-//! TODO
-t_sint				Array_Compare_N(s_array_T* array1, s_array_T* array2, t_sint (*compare)(T item1, T item2), t_size n);
-#define c_arrncmp	Array_Compare_N //!< @alias{Array_Compare_N}
+void					Array_RemoveAll(s_array_T* array, T item);
+#define c_arrremall		Array_RemoveAll //!< @alias{Array_Insert}
+#define c_arrdelall		Array_RemoveAll //!< @alias{Array_Insert}
 
 
 
 //! TODO
-s_array_T*			Array_Replace(s_array_T* array, T old, T new);
-#define c_arrrep	Array_Replace //!< @alias{Array_Replace}
+_MALLOC()
+s_array_T*				Array_Replace(s_array_T const* array, T old, T new);
+#define c_arrrep		Array_Replace //!< @alias{Array_Replace}
+#define c_arrreplace	Array_Replace //!< @alias{Array_Replace}
+
+
+
+/*
+** ************************************************************************** *|
+**                           Array Checking Operations                        *|
+** ************************************************************************** *|
+*/
 
 //! TODO
-T*					Array_Find(s_array_T* array, T item);
+T*					Array_Find(s_array_T const* array, T item);
 #define c_arrfind	Array_Find //!< @alias{Array_Find}
 
 //! TODO
-t_size				Array_IndexOf(s_array_T* array, T item);
+t_size				Array_IndexOf(s_array_T const* array, T item);
 #define c_arrfindi	Array_IndexOf //!< @alias{Array_IndexOf}
 
 
 
 //! TODO
-void				Array_Iterate	(s_array_T* array, T (*iterate)(T item));
+t_bool				Array_Equals(s_array_T const* array1, s_array_T const* array2);
+#define c_arrequ	Array_Equals //!< @alias{Array_Equals}
+
+//! TODO
+t_bool				Array_Equals_N(s_array_T const* array1, s_array_T const* array2, t_size n);
+#define c_arrnequ	Array_Equals_N //!< @alias{Array_Equals_N}
+
+//! TODO
+t_sint				Array_Compare(s_array_T const* array1, s_array_T const* array2, t_sint (*compare)(T item1, T item2));
+#define c_arrcmp	Array_Compare //!< @alias{Array_Compare}
+
+//! TODO
+t_sint				Array_Compare_N(s_array_T const* array1, s_array_T const* array2, t_sint (*compare)(T item1, T item2), t_size n);
+#define c_arrncmp	Array_Compare_N //!< @alias{Array_Compare_N}
+
+
+
+/*
+** ************************************************************************** *|
+**                          Array Functional Operations                       *|
+** ************************************************************************** *|
+*/
+
+//! TODO
+void				Array_Iterate	(s_array_T* array, void (*f)(T* item));
 #define c_arriter	Array_Iterate //!< @alias{Array_Iterate}
-void				Array_Iterate_I	(s_array_T* array, T (*iterate)(T item, t_size index));
+
+void				Array_Iterate_I	(s_array_T* array, void (*f)(T* item, t_size index));
 #define c_arriteri	Array_Iterate_I //!< @alias{Array_Iterate_I}
 
+
+
 //! TODO
-s_array_T*			Array_Map		(s_array_T* array, T (*map)(T item));
+_MALLOC()
+s_array_T*			Array_Map		(s_array_T const* array, T (*map)(T* item));
 #define c_arrmap	Array_Map //!< @alias{Array_Map}
-s_array_T*			Array_Map_I		(s_array_T* array, T (*map)(T item, t_size index));
+
+_MALLOC()
+s_array_T*			Array_Map_I		(s_array_T const* array, T (*map)(T* item, t_size index));
 #define c_arrmapi	Array_Map_I //!< @alias{Array_Map_I}
 
-//! TODO
-s_array_T*			Array_Filter	(s_array_T* array, t_bool (*filter)(T item));
-#define c_arrfold	Array_Filter //!< @alias{Array_Filter}
-s_array_T*			Array_Filter_I	(s_array_T* array, t_bool (*filter)(T item, t_size index));
-#define c_arrfoldi	Array_Filter_I //!< @alias{Array_Filter_I}
 
-// TODO Array_Reduce ?
+
+//! TODO
+_MALLOC()
+s_array_T*			Array_Filter	(s_array_T const* array, t_bool (*filter)(T* item));
+#define c_arrfilt	Array_Filter //!< @alias{Array_Filter}
+
+_MALLOC()
+s_array_T*			Array_Filter_I	(s_array_T const* array, t_bool (*filter)(T* item, t_size index));
+#define c_arrfilti	Array_Filter_I //!< @alias{Array_Filter_I}
+
+
+//! TODO Array_Reduce ?
 
 
 

@@ -598,8 +598,10 @@ char*					String_Insert(char const* dest, char const* src, t_size offset);
 **	starting at char index `index` and copying `n` characters.
 */
 _MALLOC()
-char*					String_Sub(char const* str, t_size index, t_size n);
-#define c_strsub		String_Sub //!< @alias{String_Sub}
+char*						String_Sub(char const* str, t_size index, t_size n);
+#define c_strsub			String_Sub //!< @alias{String_Sub}
+#define String_Subset		String_Sub //!< @alias{String_Sub}
+#define String_Subsection	String_Sub //!< @alias{String_Sub}
 
 
 
