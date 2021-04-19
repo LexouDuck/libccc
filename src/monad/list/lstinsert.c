@@ -4,7 +4,7 @@
 
 
 
-s_list_T*	List_Insert(s_list_T* list, T item, t_uint index)
+s_list_T*	CONCAT(List_T,_Insert)(s_list_T* list, T item, t_uint index)
 {
 	s_list_T*	elem;
 	s_list_T*	new;

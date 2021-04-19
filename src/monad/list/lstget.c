@@ -3,7 +3,7 @@
 
 
 
-s_list_T*	List_Get(s_list_T const* list, t_uint index)
+s_list_T*	CONCAT(List_T,_Get)(s_list_T const* list, t_uint index)
 {
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (list == NULL)

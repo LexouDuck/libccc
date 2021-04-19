@@ -757,7 +757,7 @@ contexts:
         - include: preprocessor-disabled
         - include: ppline-directive-invalid-usage
         - include: ppline-macro
-        - include: ppline-undef
+        - include: ppline-def
         - include: ppline-pragma-mark
         - include: ppline-include
         - include: ppline-plusplusc
@@ -933,13 +933,13 @@ contexts:
                   .)*
           scope: invalid.illegal.unexpected-character.c
 
-  ppline-undef:
-    - match: '(^\s*(#)\s*(undef))\s+([A-Za-z_]\w*+)'
+  ppline-def:
+    - match: '(^\s*(#)\s*(ifdef|ifndef|undef))\s+([A-Za-z_]\w*+)'
       captures:
         1: keyword.other.preprocessor.c
-        4: variable.other.constant.undef.c
+        4: variable.other.constant.def.c
       push:
-        - meta_scope: meta.preprocessor.undef.c
+        - meta_scope: meta.preprocessor.def.c
         - match: (?<=$\n)(?<!\\$\n)
           pop: true
 
@@ -998,7 +998,7 @@ contexts:
         - include: ppline-include-innards
 
   ppline-directive:
-    - match: ^\s*(#)\s*(if|ifdef|ifndef|elif|else|endif|pragma|line|define|undef|error|warning)\b
+    - match: ^\s*(#)\s*(if|elif|else|endif|pragma|line|define|ifdef|ifndef|undef|error|warning)\b
       captures:
         0: keyword.other.preprocessor.c
       push:
@@ -1029,7 +1029,7 @@ contexts:
         - include: ppline-include-innards
 
   ppline-directive-invalid-usage:
-    - match: (^\s*(#)\s*(if|ifdef|ifndef|elif|pragma|define|undef|include|include_next|import)\b)\s*?(\n|$)
+    - match: (^\s*(#)\s*(if|elif|pragma|define|ifdef|ifndef|undef|include|include_next|import)\b)\s*?(\n|$)
       scope: meta.preprocessor.directive.c
       captures:
         1: keyword.other.preprocessor.c

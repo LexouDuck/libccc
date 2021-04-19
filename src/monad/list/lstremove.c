@@ -2,49 +2,59 @@
 #include "libccc/memory.h"
 #include "libccc/monad/list.h"
 
-/*
 
-s_list_T*	List_Remove(s_list_T* list, t_uint index)
+
+s_list_T*	CONCAT(List_T,_Remove)(s_list_T* list, t_uint index)
 {
-//	s_list_T* prev;
-	s_list_T* next;
-	s_list_T* i;
+	s_list_T* elem;
+	s_list_T* tmp;
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (list == NULL)
-		return ;
+		return (NULL);
 #endif
-	i = list;
-	del(lst->item, lst->item_size);
-//	prev = lst->prev;
-	next = lst->next;
-	Memory_Free(lst);
-	*a_lst = next;
-//	if (next)
-//		next->prev = prev;
+	elem = list;
+	if (index == 0)
+	{
+		list = list->next;
+		Memory_Free(elem);
+		return (list);
+	}
+	for (t_uint	i = 0; elem && i < index; ++i)
+	{
+		elem = elem->next;
+	}
+	if (elem == NULL || elem->next == NULL)
+		return (list);
+	tmp = elem->next;
+	elem->next = tmp->next;
+//	elem->next->prev = elem;
+	Memory_Free(tmp);
 	return (list);
 }
 
 
 
-s_list_T*	List_RemoveAll(s_list_T* list, T target)
+s_list_T*	CONCAT(List_T,_RemoveAll)(s_list_T* list, T target)
 {
-//	s_list_T* prev;
-	s_list_T* next;
-	s_list_T* i;
+	s_list_T* elem;
+	s_list_T* tmp;
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (list == NULL)
-		return ;
+		return (NULL);
 #endif
-	i = list;
-	del(lst->item, lst->item_size);
-//	prev = lst->prev;
-	next = lst->next;
-	Memory_Free(lst);
-	*a_lst = next;
-//	if (next)
-//		next->prev = prev;
+	elem = list;
+	for (t_uint	i = 0; elem; ++i)
+	{
+		if (elem->item == target)
+		{
+			tmp = elem->next;
+			elem->next = tmp->next;
+		//	elem->next->prev = elem;
+			Memory_Free(tmp);
+		}
+		elem = elem->next;
+	}
 	return (list);
 }
-*/

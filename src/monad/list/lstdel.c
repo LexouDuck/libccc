@@ -4,7 +4,7 @@
 
 
 
-void	List_Delete(s_list_T* *a_list)
+void	CONCAT(List_T,_Delete)(s_list_T* *a_list)
 {
 //	s_list_T* prev;
 	s_list_T* next;

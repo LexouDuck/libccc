@@ -3,7 +3,7 @@
 
 
 
-s_list_T*	List_Find(s_list_T const* lst, void const* query)
+s_list_T*	CONCAT(List_T,_Find)(s_list_T const* lst, void const* query)
 {
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (lst == NULL)

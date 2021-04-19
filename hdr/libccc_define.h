@@ -173,6 +173,7 @@ HEADER_CPP
 
 //! Works like strlen() or String_Length() but is resolved at compile time
 #define STRING_LENGTH(X)	(sizeof(X) - sizeof(""))
+#define STRLEN(X)			STRING_LENGTH(X)
 
 
 

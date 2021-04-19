@@ -1,58 +1,49 @@
 
-#include "libccc/memory.h"
 #include "libccc/monad/list.h"
 
-/*
 
-s_list_T*		List_Map(s_list_T* lst, s_list_T *(*f)(s_list_T* elem))
+
+s_list_T*		CONCAT(List_T,_Map)(s_list_T const* list, T (*map)(T item))
 {
-	s_list_T	*result;
-	s_list_T	*current;
+	s_list_T*	result = NULL;
+	s_list_T*	elem;
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (lst == NULL || f == NULL)
+	if (list == NULL || map == NULL)
 		return (NULL);
 #endif
-	result = NULL;
-	while (lst)
+	while (list)
 	{
-		current = f(lst);
-		if (current == NULL)
-		{
-			List_Delete(&result, List_Map_Delete);
-			return (NULL);
-		}
-		List_Append(&result, current);
-		lst = lst->next;
+		elem = CONCAT(List_T,_Item)(map(list->item));
+		if (elem == NULL)
+			break;
+		CONCAT(List_T,_Append)(result, elem);
+		list = list->next;
 	}
 	return (result);
 }
 
 
 
-s_list_T*		List_Map_I(s_list_T* lst, s_list_T *(*f)(s_list_T* elem, t_u32 index))
+s_list_T*		CONCAT(List_T,_Map_I)(s_list_T const* list, T (*map)(T item, t_uint index))
 {
-	s_list_T	*result;
-	s_list_T	*current;
-	t_u32	i;
+	s_list_T*	result = NULL;
+	s_list_T*	elem;
+	t_uint	i;
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (lst == NULL || f == NULL)
+	if (list == NULL || map == NULL)
 		return (NULL);
 #endif
 	i = 0;
-	while (lst)
+	while (list)
 	{
-		current = f(lst, i);
-		if (current == NULL)
-		{
-			List_Delete(&result, List_Map_Delete);
-			return (NULL);
-		}
-		List_Append(&result, current);
-		lst = lst->next;
+		elem = CONCAT(List_T,_Item)(map(list->item, i));
+		if (elem == NULL)
+			break;
+		CONCAT(List_T,_Append)(result, elem);
+		list = list->next;
 		++i;
 	}
 	return (result);
 }
-*/

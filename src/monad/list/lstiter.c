@@ -3,34 +3,34 @@
 
 
 
-void	List_Iterate(s_list_T* lst, void (*f)(s_list_T* elem))
+void	CONCAT(List_T,_Iterate)(s_list_T* list, void (*f)(T item))
 {
 #if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (lst == NULL || f == NULL)
+	if (list == NULL || f == NULL)
 		return ;
 #endif
-	while (lst)
+	while (list)
 	{
-		f(lst);
-		lst = lst->next;
+		f(list->item);
+		list = list->next;
 	}
 }
 
 
 
-void	List_Iterate_I(s_list_T* lst, void (*f)(s_list_T* elem, t_u32 index))
+void	CONCAT(List_T,_Iterate_I)(s_list_T* list, void (*f)(T item, t_uint index))
 {
-	t_u32 i;
+	t_uint i;
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (lst == NULL || f == NULL)
+	if (list == NULL || f == NULL)
 		return ;
 #endif
 	i = 0;
-	while (lst)
+	while (list)
 	{
-		f(lst, i);
-		lst = lst->next;
+		f(list->item, i);
+		list = list->next;
 		++i;
 	}
 }

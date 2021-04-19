@@ -219,6 +219,7 @@ SRCS = \
 	math/complex/complex_div.c		\
 	math/stat/stat_int.c	\
 	math/stat/stat_float.c	\
+	monad/list/lstitem.c	\
 	monad/list/lstnew.c		\
 	monad/list/lstdel.c		\
 	monad/list/lstdup.c		\
