@@ -5,6 +5,13 @@
 
 
 
+inline char	**c_strarrnew(t_u32 length)
+{
+	return ((char**)c_memnew(sizeof(char*) * (length + 1)));
+}
+
+
+
 char	**c_strarrcnew(t_u32 y, t_size x, const char c)
 {
 	char	**strarr;
