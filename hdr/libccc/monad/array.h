@@ -265,7 +265,8 @@ s_array_T			CONCAT(Array_T,_Filter_I)	(s_array_T const* array, t_bool (*filter)(
 #define c_arrfilti	CONCAT(Array_T,_Filter_I)
 
 
-//! TODO CONCAT(Array_T,_Reduce) ?
+
+//! TODO Array_Reduce() ?
 
 
 

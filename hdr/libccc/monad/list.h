@@ -373,6 +373,10 @@ s_list_T*				CONCAT(List_T,_Filter_I)(s_list_T const* list, t_bool (*filter)(T i
 
 
 
+//! TODO List_Reduce() ?
+
+
+
 /*! @} */
 HEADER_END
 #endif

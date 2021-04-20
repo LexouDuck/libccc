@@ -233,12 +233,16 @@ SRCS = \
 	monad/array/removeat.c	\
 	monad/array/replace.c	\
 	monad/array/find.c		\
+	monad/array/count.c		\
+	monad/array/contains.c	\
+	monad/array/has.c		\
 	monad/array/equals.c	\
 	monad/array/compare.c	\
 	monad/array/iterate.c	\
 	monad/array/map.c		\
 	monad/array/filter.c	\
 	monad/list/item.c		\
+	monad/list/length.c		\
 	monad/list/new.c		\
 	monad/list/delete.c		\
 	monad/list/duplicate.c	\
@@ -254,9 +258,11 @@ SRCS = \
 	monad/list/removeat.c	\
 	monad/list/replace.c	\
 	monad/list/find.c		\
+	monad/list/count.c		\
+	monad/list/contains.c	\
+	monad/list/has.c		\
 	monad/list/equals.c		\
 	monad/list/compare.c	\
-	monad/list/length.c		\
 	monad/list/iterate.c	\
 	monad/list/map.c		\
 	monad/list/filter.c		\
