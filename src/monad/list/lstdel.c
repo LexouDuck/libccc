@@ -6,9 +6,9 @@
 
 void	CONCAT(List_T,_Delete)(s_list_T* *a_list)
 {
-//	s_list_T* prev;
-	s_list_T* next;
-	s_list_T* i;
+//	s_list_T*	prev;
+	s_list_T*	next;
+	s_list_T*	i;
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (a_list == NULL)

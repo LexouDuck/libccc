@@ -14,9 +14,9 @@ s_list_T*	CONCAT(List_T,_New)(t_uint n, ...)
 	s_list_T*	elem;
 	s_list_T*	new;
 
-	va_start(list, n);
 	if (n == 0)
 		return (NULL);
+	va_start(list, n);
 	for (t_uint i = 1; i <= n; ++i)
 	{
 		item = va_arg(list, T);

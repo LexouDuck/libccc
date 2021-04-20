@@ -6,21 +6,24 @@
 #include <libccc/string.h>
 #include <libccc/sys/io.h>
 
-#define T		char*
-#define TYPE	_str
+#define T			char*
+#define T_NAME		_str
+#define T_DEFAULT	NULL
+
 #include <libccc/monad/array.h>
+#include <libccc/monad/array.c>
 #include <libccc/monad/list.h>
+#include <libccc/monad/list.c>
 #include <libccc/monad/dict.h>
+//#include <libccc/monad/dict.c>
 #include <libccc/monad/tree.h>
+//#include <libccc/monad/tree.c>
 #include <libccc/monad/object.h>
+//#include <libccc/monad/object.c>
+
 /*
 #define T		t_sint
 #define TYPE	_sint
-#include <libccc/monad/array.h>
-#include <libccc/monad/list.h>
-#include <libccc/monad/dict.h>
-#include <libccc/monad/tree.h>
-#include <libccc/monad/object.h>
 */
 
 
@@ -32,7 +35,7 @@ int main()
 
 	IO_Output_String("\n- s_array:\n");
 	{
-		s_array_str* str_array = Array_str_New(COUNT,
+		s_array_str str_array = Array_str_New(COUNT,
 			"Yo, my boi!",
 			"What's up, dog?",
 			"Not much, you ?",
@@ -45,7 +48,7 @@ int main()
 			"FREEZE! HANDS IN THE AIR!"
 		);
 		i = 0;
-		foreach (char*, str, s_array, str_array)
+		foreach (char*, str, s_array, &str_array)
 		{
 			IO_Output_Format("i:%zu,\titer:%zu,\tstr:%p -> \"%s\"\n", i++, str_i, str, str);
 		}

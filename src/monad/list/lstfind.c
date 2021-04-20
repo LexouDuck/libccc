@@ -3,19 +3,38 @@
 
 
 
-s_list_T*	CONCAT(List_T,_Find)(s_list_T const* lst, void const* query)
+s_list_T const*	CONCAT(List_T,_Find)(s_list_T const* list, T item)
 {
 #if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (lst == NULL)
+	if (list == NULL)
 		return (NULL);
 #endif
-	if (query == NULL)
-		return (NULL);
-	while (lst)
+	while (list)
 	{
-		if (lst->item == query)
-			return ((s_list_T*)lst);
-		lst = lst->next;
+		if (list->item == item)
+			return (list);
+		list = list->next;
 	}
 	return (NULL);
+}
+
+
+
+t_sint	CONCAT(List_T,_IndexOf)(s_list_T const* list, T item)
+{
+	t_uint	i;
+
+#if LIBCONFIG_HANDLE_NULLPOINTERS
+	if (list == NULL)
+		return (ERROR);
+#endif
+	i = 0;
+	while (list)
+	{
+		if (list->item == item)
+			return (i);
+		list = list->next;
+		++i;
+	}
+	return (ERROR);
 }

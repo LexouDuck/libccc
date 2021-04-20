@@ -22,8 +22,12 @@
 #define T	void*
 #endif
 
-#ifndef TYPE
-#define TYPE	
+#ifndef T_NAME
+#define T_NAME	
+#endif
+
+#ifndef T_DEFAULT
+#define T_DEFAULT	NULL
 #endif
 
 /*
@@ -47,17 +51,17 @@ HEADER_CPP
 #ifdef	List_T
 #undef	List_T
 #endif
-#define List_T		CONCAT(List, TYPE)
+#define List_T		CONCAT(List, T_NAME)
 
 #ifdef	list_T
 #undef	list_T
 #endif
-#define list_T		CONCAT(list, TYPE)
+#define list_T		CONCAT(list, T_NAME)
 
 #ifdef	s_list_T
 #undef	s_list_T
 #endif
-#define s_list_T	CONCAT(s_list, TYPE)
+#define s_list_T	CONCAT(s_list, T_NAME)
 
 //! This is a simple linked list struct, with dynamic content type
 /*!
@@ -170,8 +174,8 @@ s_list_T*			CONCAT(List_T,_Copy)(s_list_T* dest, s_list_T const* src, t_uint n);
 **	then the resulting list will have fewer than `n` elements.
 */
 _MALLOC()
-s_list_T*				CONCAT(List_T,_Sub)(s_list_T const* list, t_uint index, t_uint n);
-#define c_lstsub		CONCAT(List_T,_Sub)
+s_list_T*			CONCAT(List_T,_Sub)(s_list_T const* list, t_uint index, t_uint n);
+#define c_lstsub	CONCAT(List_T,_Sub)
 
 
 
@@ -231,7 +235,7 @@ s_list_T*				CONCAT(List_T,_Remove)(s_list_T* list, t_uint index);
 #define c_lstdelone		CONCAT(List_T,_Remove)
 
 //! TODO
-s_list_T*				CONCAT(List_T,_RemoveAll)(s_list_T* list, T target);
+s_list_T*				CONCAT(List_T,_RemoveAll)(s_list_T* list, T item);
 #define c_lstremall		CONCAT(List_T,_RemoveAll)
 #define c_lstdelall		CONCAT(List_T,_RemoveAll)
 
@@ -257,28 +261,34 @@ s_list_T*				CONCAT(List_T,_Replace)(s_list_T const* list, T old, T new);
 **	@returns the amount of elements in the given `list`,
 **	by traversing it, looping through every `next` pointer.
 */
-t_uint					CONCAT(List_T,_Size)(s_list_T const* list);
-#define c_lstsize		CONCAT(List_T,_Size)
+t_uint					CONCAT(List_T,_Length)(s_list_T const* list);
+#define c_lstlen		CONCAT(List_T,_Length)
 
-//! Returns the first encountered item in the given `list` matching the given `target`
+//! Returns the first encountered item in the given `list` matching the given `item`
 /*!
 **	@param	list	the linked list to look through
-**	@param	target	the `item` pointer to match against
+**	@param	item	the `item` pointer to match against
 **	@returns the first encountered element of the given linked `list`,
-**		for which `(list->item == target)`, or `NULL` otherwise
+**		for which `(list->item == item)`, or `NULL` otherwise
 */
-s_list_T*				CONCAT(List_T,_Find)(s_list_T const* list, T target);
+s_list_T const*			CONCAT(List_T,_Find)(s_list_T const* list, T item);
 #define c_lstfind		CONCAT(List_T,_Find)
 
-//! Returns the index of the first encountered item in the given `list` matching the given `target`
+//! Returns the index of the first encountered item in the given `list` matching the given `item`
 /*!
 **	@param	list	the linked list to look through
-**	@param	target	the `item` pointer to match against
+**	@param	item	the `item` pointer to match against
 **	@returns the index of the first encountered element of the given `list`,
-**		for which `(list->item == target)`, or `-1` otherwise.
+**		for which `(list->item == item)`, or `-1` otherwise.
 */
-t_sint					CONCAT(List_T,_IndexOf)(s_list_T const* list, T target);
+t_sint					CONCAT(List_T,_IndexOf)(s_list_T const* list, T item);
 #define c_lstfindi		CONCAT(List_T,_IndexOf)
+
+
+
+// TODO List_Contains
+// TODO List_Has
+// TODO List_HasOnly
 
 
 

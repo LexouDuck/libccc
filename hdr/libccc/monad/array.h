@@ -22,8 +22,12 @@
 #define T	void*
 #endif
 
-#ifndef TYPE
-#define TYPE	
+#ifndef T_NAME
+#define T_NAME	
+#endif
+
+#ifndef T_DEFAULT
+#define T_DEFAULT	NULL
 #endif
 
 /*
@@ -47,17 +51,17 @@ HEADER_CPP
 #ifdef	Array_T
 #undef	Array_T
 #endif
-#define Array_T		CONCAT(Array, TYPE)
+#define Array_T		CONCAT(Array, T_NAME)
 
 #ifdef	array_T
 #undef	array_T
 #endif
-#define array_T		CONCAT(array, TYPE)
+#define array_T		CONCAT(array, T_NAME)
 
 #ifdef	s_array_T
 #undef	s_array_T
 #endif
-#define s_array_T	CONCAT(s_array, TYPE)
+#define s_array_T	CONCAT(s_array, T_NAME)
 
 //! This struct holds an array of items which can be of any type
 /*!
@@ -67,14 +71,14 @@ HEADER_CPP
 */
 typedef struct array_T
 {
-	t_size	length;	//!< The amount of elements in the 'items' array
+	t_uint	length;	//!< The amount of elements in the 'items' array
 	T*		items;	//!< The pointer to the array (items can be of any one type)
 }				s_array_T;
 TYPEDEF_ALIAS(	s_array_T, ARRAY, STRUCT)
 
 
 
-#define foreach_s_array_init(		_TYPE_, _VAR_, _ARRAY_)	t_size _VAR_##_i = 0;
+#define foreach_s_array_init(		_TYPE_, _VAR_, _ARRAY_)	t_uint _VAR_##_i = 0;
 #define foreach_s_array_exit(		_TYPE_, _VAR_, _ARRAY_)	if (_ARRAY_ && (_ARRAY_)->items)
 #define foreach_s_array_loop_init(	_TYPE_, _VAR_, _ARRAY_)	_TYPE_ _VAR_
 #define foreach_s_array_loop_exit(	_TYPE_, _VAR_, _ARRAY_)	(_VAR_##_i < (_ARRAY_)->length) && ((_VAR_ = (_TYPE_)((_ARRAY_)->items[_VAR_##_i])) || 1)
@@ -88,38 +92,47 @@ TYPEDEF_ALIAS(	s_array_T, ARRAY, STRUCT)
 ** ************************************************************************** *|
 */
 
-//! TODO
-_MALLOC()
-s_array_T*			CONCAT(Array_T,_New)(t_uint n, ...);
+//! Allocates a new array which consists of `n` items.
+/*!
+**	@param	n		The amount of items in this list (amount of variadic args)
+**	@param	...		The variadic list of arguments: there must be `n` arguments, of type `T`
+**	@returns a newly allocated linked list which consists of `n` structs chained together.
+*/
+s_array_T			CONCAT(Array_T,_New)(t_uint n, ...);
 #define c_arrnew	CONCAT(Array_T,_New)
 
-//! TODO
-void				CONCAT(Array_T,_Delete)(s_array_T* *a_array);
+//! Deletes the allocated buffer contained within the given `array` (frees and sets to NULL)
+/*!
+**	@param	array	The array whose `items` buffer should be deleted - its `length` will be set to 0
+*/
+void				CONCAT(Array_T,_Delete)(s_array_T* array);
 #define c_arrdel	CONCAT(Array_T,_Delete)
 
-//! TODO
-_MALLOC()
-s_array_T*			CONCAT(Array_T,_Duplicate)(s_array_T const* array);
+//! Returns a newly allocated copy of the given `list`
+/*!
+**	@param	array	The list to duplicate
+**	@returns a newly allocated copy of the given linked `list`.
+*/
+s_array_T			CONCAT(Array_T,_Duplicate)(s_array_T const* array);
 #define c_arrdup	CONCAT(Array_T,_Duplicate)
 
 
 
 //! TODO
-T					CONCAT(Array_T,_Get)(s_array_T const* array, t_size index);
+T					CONCAT(Array_T,_Get)(s_array_T const* array, t_uint index);
 #define c_arrget	CONCAT(Array_T,_Get)
 
 //! TODO
-void				CONCAT(Array_T,_Set)(s_array_T* array, t_size index, T item);
+void				CONCAT(Array_T,_Set)(s_array_T* array, t_uint index, T item);
 #define c_arrset	CONCAT(Array_T,_Set)
 
 //! TODO
-s_array_T*			CONCAT(Array_T,_Copy)(s_array_T* dest, s_array_T const* src, t_size n);
+s_array_T*			CONCAT(Array_T,_Copy)(s_array_T* dest, s_array_T const* src, t_uint n);
 #define c_arrcpy	CONCAT(Array_T,_Copy)
 
 //! TODO
-_MALLOC()
-s_array_T*					CONCAT(Array_T,_Sub)(s_array_T const* array, T item);
-#define c_arrsub			CONCAT(Array_T,_Sub)
+s_array_T			CONCAT(Array_T,_Sub)(s_array_T const* array, t_uint index, t_uint n);
+#define c_arrsub	CONCAT(Array_T,_Sub)
 
 
 
@@ -138,13 +151,13 @@ void					CONCAT(Array_T,_Prepend)(s_array_T* array, T item);
 #define c_arrprepend	CONCAT(Array_T,_Prepend)
 
 //! TODO
-void					CONCAT(Array_T,_Insert)(s_array_T* array, T item, t_size index);
+void					CONCAT(Array_T,_Insert)(s_array_T* array, T item, t_uint index);
 #define c_arrinsert		CONCAT(Array_T,_Insert)
 
 
 
 //! TODO
-void					CONCAT(Array_T,_Remove)(s_array_T* array, t_size index);
+void					CONCAT(Array_T,_Remove)(s_array_T* array, t_uint index);
 #define c_arrremove		CONCAT(Array_T,_Remove)
 #define c_arrdelone		CONCAT(Array_T,_Remove)
 
@@ -156,8 +169,7 @@ void					CONCAT(Array_T,_RemoveAll)(s_array_T* array, T target);
 
 
 //! TODO
-_MALLOC()
-s_array_T*				CONCAT(Array_T,_Replace)(s_array_T const* array, T old, T new);
+s_array_T				CONCAT(Array_T,_Replace)(s_array_T const* array, T old, T new);
 #define c_arrrep		CONCAT(Array_T,_Replace)
 #define c_arrreplace	CONCAT(Array_T,_Replace)
 
@@ -170,12 +182,18 @@ s_array_T*				CONCAT(Array_T,_Replace)(s_array_T const* array, T old, T new);
 */
 
 //! TODO
-T*					CONCAT(Array_T,_Find)		(s_array_T const* array, T item);
+T*					CONCAT(Array_T,_Find)(s_array_T const* array, T item);
 #define c_arrfind	CONCAT(Array_T,_Find)
 
 //! TODO
-t_size				CONCAT(Array_T,_IndexOf)	(s_array_T const* array, T item);
+t_sint				CONCAT(Array_T,_IndexOf)(s_array_T const* array, T item);
 #define c_arrfindi	CONCAT(Array_T,_IndexOf)
+
+
+
+// TODO Array_Contains
+// TODO Array_Has
+// TODO Array_HasOnly
 
 
 
@@ -184,7 +202,7 @@ t_bool				CONCAT(Array_T,_Equals)		(s_array_T const* array1, s_array_T const* ar
 #define c_arrequ	CONCAT(Array_T,_Equals)
 
 //! TODO
-t_bool				CONCAT(Array_T,_Equals_N)	(s_array_T const* array1, s_array_T const* array2, t_size n);
+t_bool				CONCAT(Array_T,_Equals_N)	(s_array_T const* array1, s_array_T const* array2, t_uint n);
 #define c_arrnequ	CONCAT(Array_T,_Equals_N)
 
 //! TODO
@@ -192,7 +210,7 @@ t_sint				CONCAT(Array_T,_Compare)	(s_array_T const* array1, s_array_T const* ar
 #define c_arrcmp	CONCAT(Array_T,_Compare)
 
 //! TODO
-t_sint				CONCAT(Array_T,_Compare_N)	(s_array_T const* array1, s_array_T const* array2, t_sint (*compare)(T item1, T item2), t_size n);
+t_sint				CONCAT(Array_T,_Compare_N)	(s_array_T const* array1, s_array_T const* array2, t_sint (*compare)(T item1, T item2), t_uint n);
 #define c_arrncmp	CONCAT(Array_T,_Compare_N)
 
 
@@ -207,29 +225,25 @@ t_sint				CONCAT(Array_T,_Compare_N)	(s_array_T const* array1, s_array_T const* 
 void				CONCAT(Array_T,_Iterate)	(s_array_T* array, void (*f)(T item));
 #define c_arriter	CONCAT(Array_T,_Iterate)
 
-void				CONCAT(Array_T,_Iterate_I)	(s_array_T* array, void (*f)(T item, t_size index));
+void				CONCAT(Array_T,_Iterate_I)	(s_array_T* array, void (*f)(T item, t_uint index));
 #define c_arriteri	CONCAT(Array_T,_Iterate_I)
 
 
 
 //! TODO
-_MALLOC()
-s_array_T*			CONCAT(Array_T,_Map)		(s_array_T const* array, T (*map)(T item));
+s_array_T			CONCAT(Array_T,_Map)		(s_array_T const* array, T (*map)(T item));
 #define c_arrmap	CONCAT(Array_T,_Map)
 
-_MALLOC()
-s_array_T*			CONCAT(Array_T,_Map_I)		(s_array_T const* array, T (*map)(T item, t_size index));
+s_array_T			CONCAT(Array_T,_Map_I)		(s_array_T const* array, T (*map)(T item, t_uint index));
 #define c_arrmapi	CONCAT(Array_T,_Map_I)
 
 
 
 //! TODO
-_MALLOC()
-s_array_T*			CONCAT(Array_T,_Filter)		(s_array_T const* array, t_bool (*filter)(T item));
+s_array_T			CONCAT(Array_T,_Filter)		(s_array_T const* array, t_bool (*filter)(T item));
 #define c_arrfilt	CONCAT(Array_T,_Filter)
 
-_MALLOC()
-s_array_T*			CONCAT(Array_T,_Filter_I)	(s_array_T const* array, t_bool (*filter)(T item, t_size index));
+s_array_T			CONCAT(Array_T,_Filter_I)	(s_array_T const* array, t_bool (*filter)(T item, t_uint index));
 #define c_arrfilti	CONCAT(Array_T,_Filter_I)
 
 

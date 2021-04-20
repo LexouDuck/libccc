@@ -6,8 +6,8 @@
 
 s_list_T*	CONCAT(List_T,_Remove)(s_list_T* list, t_uint index)
 {
-	s_list_T* elem;
-	s_list_T* tmp;
+	s_list_T*	elem;
+	s_list_T*	tmp;
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (list == NULL)
@@ -37,8 +37,8 @@ s_list_T*	CONCAT(List_T,_Remove)(s_list_T* list, t_uint index)
 
 s_list_T*	CONCAT(List_T,_RemoveAll)(s_list_T* list, T target)
 {
-	s_list_T* elem;
-	s_list_T* tmp;
+	s_list_T*	elem;
+	s_list_T*	tmp;
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (list == NULL)

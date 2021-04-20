@@ -22,8 +22,12 @@
 #define T	void*
 #endif
 
-#ifndef TYPE
-#define TYPE	
+#ifndef T_NAME
+#define T_NAME	
+#endif
+
+#ifndef T_DEFAULT
+#define T_DEFAULT	NULL
 #endif
 
 /*
@@ -42,15 +46,20 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
+#ifdef	Tree_T
+#undef	Tree_T
+#endif
+#define Tree_T		CONCAT(Tree, T_NAME)
+
 #ifdef	tree_T
 #undef	tree_T
 #endif
-#define tree_T		CONCAT(tree, TYPE)
+#define tree_T		CONCAT(tree, T_NAME)
 
 #ifdef	s_tree_T
 #undef	s_tree_T
 #endif
-#define s_tree_T	CONCAT(s_tree, TYPE)
+#define s_tree_T	CONCAT(s_tree, T_NAME)
 
 //! A simple tree/node/leaf struct, stores an array of "branches" (ie: sub-nodes).
 /*

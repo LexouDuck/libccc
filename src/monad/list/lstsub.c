@@ -4,7 +4,7 @@
 
 
 
-s_list_T*		CONCAT(List_T,_Sub)(s_list_T const* list, t_u32 index, t_u32 n)
+s_list_T*		CONCAT(List_T,_Sub)(s_list_T const* list, t_uint index, t_uint n)
 {
 	s_list_T*	result = NULL;
 	s_list_T*	elem = NULL;

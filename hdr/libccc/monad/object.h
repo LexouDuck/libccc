@@ -22,8 +22,12 @@
 #define T	void*
 #endif
 
-#ifndef TYPE
-#define TYPE	
+#ifndef T_NAME
+#define T_NAME	
+#endif
+
+#ifndef T_DEFAULT
+#define T_DEFAULT	NULL
 #endif
 
 /*
@@ -33,6 +37,7 @@
 */
 
 #include "libccc.h"
+
 #include "libccc/monad/keyval.h"
 
 HEADER_CPP
@@ -43,15 +48,20 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
+#ifdef	Object_T
+#undef	Object_T
+#endif
+#define Object_T	CONCAT(Object, T_NAME)
+
 #ifdef	object_T
 #undef	object_T
 #endif
-#define object_T	CONCAT(object, TYPE)
+#define object_T	CONCAT(object, T_NAME)
 
 #ifdef	s_object_T
 #undef	s_object_T
 #endif
-#define s_object_T	CONCAT(s_object, TYPE)
+#define s_object_T	CONCAT(s_object, T_NAME)
 
 //! A dynamic object struct, stores several key-value pairs
 /*

@@ -22,8 +22,12 @@
 #define T	void*
 #endif
 
-#ifndef TYPE
-#define TYPE	
+#ifndef T_NAME
+#define T_NAME	
+#endif
+
+#ifndef T_DEFAULT
+#define T_DEFAULT	NULL
 #endif
 
 /*
@@ -42,15 +46,20 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
+#ifdef	KeyVal_T
+#undef	KeyVal_T
+#endif
+#define KeyVal_T	CONCAT(KeyVal, T_NAME)
+
 #ifdef	keyval_T
 #undef	keyval_T
 #endif
-#define keyval_T	CONCAT(keyval, TYPE)
+#define keyval_T	CONCAT(keyval, T_NAME)
 
 #ifdef	s_keyval_T
 #undef	s_keyval_T
 #endif
-#define s_keyval_T	CONCAT(s_keyval, TYPE)
+#define s_keyval_T	CONCAT(s_keyval, T_NAME)
 
 //! A simple key+value pair struct, used in the 's_dict' dictionary struct
 /*

@@ -6,9 +6,9 @@
 
 s_list_T*	CONCAT(List_T,_Duplicate)(s_list_T const* list)
 {
-	s_list_T	*result = NULL;
-	s_list_T	*elem = NULL;
-	s_list_T	*tmp;
+	s_list_T*	result = NULL;
+	s_list_T*	elem = NULL;
+	s_list_T*	tmp;
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (list == NULL)
