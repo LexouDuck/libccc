@@ -34,7 +34,7 @@ void	CONCAT(Array_T,_Remove)(s_array_T* array, t_uint index)
 
 
 
-void	CONCAT(Array_T,_RemoveAll)(s_array_T* array, T target)
+void	CONCAT(Array_T,_RemoveAll)(s_array_T* array, T item)
 {
 	T*	result;
 	t_uint	i;
@@ -49,7 +49,7 @@ void	CONCAT(Array_T,_RemoveAll)(s_array_T* array, T target)
 	amount = 0;
 	for (i = 0; i < array->length; ++i)
 	{
-		if (array->items[i] == target)
+		if (T_EQUALS(array->items[i], item))
 		{
 			++amount;
 		}
@@ -67,7 +67,7 @@ void	CONCAT(Array_T,_RemoveAll)(s_array_T* array, T target)
 	amount = 0;
 	for (i = 0; i < array->length; ++i)
 	{
-		if (array->items[i] == target)
+		if (T_EQUALS(array->items[i], item))
 		{
 			++amount;
 			continue;

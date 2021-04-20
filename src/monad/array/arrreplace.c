@@ -18,7 +18,7 @@ s_array_T	CONCAT(Array_T,_Replace)(s_array_T const* array, T old, T new)
 	result.length = array->length;
 	for (t_uint i = 0; i < result.length; ++i)
 	{
-		if (result.items[i] == old)
+		if (T_EQUALS(result.items[i], old))
 			result.items[i] = new;
 	}
 	return (result);

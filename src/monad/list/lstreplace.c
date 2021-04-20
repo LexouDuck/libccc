@@ -14,7 +14,7 @@ s_list_T*	CONCAT(List_T,_Replace)(s_list_T const* list, T old, T new)
 #endif
 	while (list)
 	{
-		elem = CONCAT(List_T,_Item)(list->item == old ? new : list->item);
+		elem = CONCAT(List_T,_Item)(T_EQUALS(list->item, old) ? new : list->item);
 		if (elem == NULL)
 			break;
 		CONCAT(List_T,_Append)(result, elem);

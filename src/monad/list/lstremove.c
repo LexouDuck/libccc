@@ -35,7 +35,7 @@ s_list_T*	CONCAT(List_T,_Remove)(s_list_T* list, t_uint index)
 
 
 
-s_list_T*	CONCAT(List_T,_RemoveAll)(s_list_T* list, T target)
+s_list_T*	CONCAT(List_T,_RemoveAll)(s_list_T* list, T item)
 {
 	s_list_T*	elem;
 	s_list_T*	tmp;
@@ -47,7 +47,7 @@ s_list_T*	CONCAT(List_T,_RemoveAll)(s_list_T* list, T target)
 	elem = list;
 	for (t_uint	i = 0; elem; ++i)
 	{
-		if (elem->item == target)
+		if (T_EQUALS(elem->item, item))
 		{
 			tmp = elem->next;
 			elem->next = tmp->next;

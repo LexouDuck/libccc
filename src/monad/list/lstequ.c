@@ -13,7 +13,7 @@ t_bool	CONCAT(List_T,_Equals)(s_list_T const* list1, s_list_T const* list2)
 //#endif
 	while (list1 && list2)
 	{
-		if (list1->item != list2->item)
+		if (!T_EQUALS(list1->item, list2->item))
 			return (FALSE);
 		list1 = list1->next;
 		list2 = list2->next;
@@ -33,7 +33,7 @@ t_bool	CONCAT(List_T,_Equals_N)(s_list_T const* list1, s_list_T const* list2, t_
 //#endif
 	while (list1 && list2 && n--)
 	{
-		if (list1->item != list2->item)
+		if (!T_EQUALS(list1->item, list2->item))
 			return (FALSE);
 		list1 = list1->next;
 		list2 = list2->next;
