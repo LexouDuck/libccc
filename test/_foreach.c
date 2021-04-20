@@ -35,7 +35,7 @@
 #define T				s_list_int
 #define T_NAME			_list_int
 #define T_DEFAULT		(s_list_int){ .length = 0, .items = NULL }
-#define T_EQUALS(A, B)	((A).next == (B).next && (A).item == (B).item)
+#define T_EQUALS(A, B)	((A).item == (B).item)
 #include <libccc/monad/list.c>
 
 //#include <libccc/monad/dict.c>

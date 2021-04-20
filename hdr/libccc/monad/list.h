@@ -49,19 +49,8 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-#ifdef	List_T
-#undef	List_T
-#endif
 #define List_T		CONCAT(List, T_NAME)
-
-#ifdef	list_T
-#undef	list_T
-#endif
 #define list_T		CONCAT(list, T_NAME)
-
-#ifdef	s_list_T
-#undef	s_list_T
-#endif
 #define s_list_T	CONCAT(s_list, T_NAME)
 
 //! This is a simple linked list struct, with dynamic content type

@@ -47,19 +47,8 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-#ifdef	Tree_T
-#undef	Tree_T
-#endif
 #define Tree_T		CONCAT(Tree, T_NAME)
-
-#ifdef	tree_T
-#undef	tree_T
-#endif
 #define tree_T		CONCAT(tree, T_NAME)
-
-#ifdef	s_tree_T
-#undef	s_tree_T
-#endif
 #define s_tree_T	CONCAT(s_tree, T_NAME)
 
 //! A simple tree/node/leaf struct, stores an array of "branches" (ie: sub-nodes).

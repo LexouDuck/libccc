@@ -24,3 +24,7 @@
 #undef T_NAME
 #undef T_DEFAULT
 #undef T_EQUALS
+
+#undef	Array_T
+#undef	array_T
+#undef	s_array_T

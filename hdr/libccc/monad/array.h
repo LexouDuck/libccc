@@ -49,19 +49,8 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-#ifdef	Array_T
-#undef	Array_T
-#endif
 #define Array_T		CONCAT(Array, T_NAME)
-
-#ifdef	array_T
-#undef	array_T
-#endif
 #define array_T		CONCAT(array, T_NAME)
-
-#ifdef	s_array_T
-#undef	s_array_T
-#endif
 #define s_array_T	CONCAT(s_array, T_NAME)
 
 //! This struct holds an array of items which can be of any type

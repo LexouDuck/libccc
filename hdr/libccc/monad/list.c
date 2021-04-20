@@ -26,3 +26,7 @@
 #undef T_NAME
 #undef T_DEFAULT
 #undef T_EQUALS
+
+#undef List_T
+#undef list_T
+#undef s_list_T

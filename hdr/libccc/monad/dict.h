@@ -49,19 +49,8 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-#ifdef	Dict_T
-#undef	Dict_T
-#endif
 #define Dict_T		CONCAT(Dict, T_NAME)
-
-#ifdef	dict_T
-#undef	dict_T
-#endif
 #define dict_T		CONCAT(dict, T_NAME)
-
-#ifdef	s_dict_T
-#undef	s_dict_T
-#endif
 #define s_dict_T	CONCAT(s_dict, T_NAME)
 
 //! A simple dictionary struct, stores an array of key/value pairs.
