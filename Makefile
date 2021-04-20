@@ -369,10 +369,10 @@ TEST_SRCS = \
 	$(TEST_DIR)libccc/pointer.c	\
 	$(TEST_DIR)libccc/memory.c	\
 	$(TEST_DIR)libccc/string.c	\
-	$(TEST_DIR)libccc/regex.c	\
 	$(TEST_DIR)libccc/color.c	\
 	$(TEST_DIR)libccc/sys/io.c		\
 	$(TEST_DIR)libccc/sys/time.c	\
+	$(TEST_DIR)libccc/sys/regex.c	\
 	$(TEST_DIR)libccc/math/math.c		\
 	$(TEST_DIR)libccc/math/stat.c		\
 	$(TEST_DIR)libccc/math/algebra.c	\

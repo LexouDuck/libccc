@@ -279,14 +279,14 @@ void	print_test_float	(char const *test_name, char const *function, t_float 	res
 void	print_test_sign		(char const *test_name, char const *function, t_s64		result, t_s64	expect, int can_segfault);
 
 void	print_test_str		(char const *test_name, char const *function, char const *result, char const *expect, int can_segfault);
-void	print_test_mem		(char const *test_name, char const *function, void const *result, void const *expect, t_size length, int can_segfault);
+void	print_test_mem		(char const *test_name, char const *function, void const *result, void const *expect, int can_segfault, size_t length);
 
 void	print_test_alloc	(char const *test_name, char const *function, char const *result, t_size length);
 
 void	print_test_ptrarr	(char const *test_name, char const *function, void const **result, void const **expect, int can_segfault);
 void	print_test_strarr	(char const *test_name, char const *function, char const **result, char const **expect, int can_segfault);
 
-void	print_test_lst(char const *test_name, char const *function, s_list const *result, char const *expect[], int can_segfault);
+void	print_test_lst		(char const *test_name, char const *function, s_list const *result, char const *expect[], int can_segfault, size_t length);
 
 
 

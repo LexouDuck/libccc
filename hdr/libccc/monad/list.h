@@ -292,9 +292,21 @@ t_sint					CONCAT(List_T,_IndexOf)(s_list_T const* list, T item);
 
 
 
-// TODO List_Contains
-// TODO List_Has
-// TODO List_HasOnly
+//! TODO
+t_uint					CONCAT(List_T,_Count)	(s_list_T const* list, T item);
+#define c_lstcount		CONCAT(List_T,_Count)
+
+//! TODO
+t_bool					CONCAT(List_T,_Contains)(s_list_T const* list, T item);
+#define c_lstcontains	CONCAT(List_T,_Contains)
+
+//! TODO
+t_bool					CONCAT(List_T,_Has)		(s_list_T const* list, s_list_T const* target);
+#define c_lsthas		CONCAT(List_T,_Has)
+
+//! TODO
+t_bool					CONCAT(List_T,_HasOnly)	(s_list_T const* list, s_list_T const* target);
+#define c_lsthasonly	CONCAT(List_T,_HasOnly)
 
 
 

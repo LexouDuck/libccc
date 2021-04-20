@@ -197,9 +197,21 @@ t_sint				CONCAT(Array_T,_IndexOf)(s_array_T const* array, T item);
 
 
 
-// TODO Array_Contains
-// TODO Array_Has
-// TODO Array_HasOnly
+//! TODO
+t_uint					CONCAT(Array_T,_Count)	(s_array_T const* array, T item);
+#define c_arrcount		CONCAT(Array_T,_Count)
+
+//! TODO
+t_bool					CONCAT(Array_T,_Contains)(s_array_T const* array, T item);
+#define c_arrcontains	CONCAT(Array_T,_Contains)
+
+//! TODO
+t_bool					CONCAT(Array_T,_Has)	(s_array_T const* array, s_array_T const* target);
+#define c_arrhas		CONCAT(Array_T,_Has)
+
+//! TODO
+t_bool					CONCAT(Array_T,_HasOnly)(s_array_T const* array, s_array_T const* target);
+#define c_arrhasonly	CONCAT(Array_T,_HasOnly)
 
 
 

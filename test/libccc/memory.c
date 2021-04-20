@@ -56,7 +56,7 @@ void	print_test_memfree(char const* test_name, int can_segfault,
 		void *ptr)
 {
 	TEST_PERFORM(ptr, memfree, ptr)
-	print_test_mem(test_name, "memfree arg", ptr, ptr, 0, can_segfault);
+	print_test_mem(test_name, "memfree arg", ptr, ptr, can_segfault, 0);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("ptr=%p", ptr)
 }
@@ -82,7 +82,7 @@ void	print_test_memdel(char const* test_name, int can_segfault,
 		void **ptr)
 {
 	TEST_PERFORM(*ptr, memdel, ptr)
-	print_test_mem(test_name, "memdel arg", *ptr, NULL, 0, can_segfault);
+	print_test_mem(test_name, "memdel arg", *ptr, NULL, can_segfault, 0);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("ptr=%p", ptr)
 }
@@ -110,7 +110,7 @@ void	print_test_memset(char const* test_name, int can_segfault,
 		t_size n)
 {
 	TEST_PERFORM_LIBC_DEST(memset, byte, n)
-	print_test_mem(test_name, "memset 'dest' arg", dest_libccc, dest_libc, n, can_segfault);
+	print_test_mem(test_name, "memset 'dest' arg", dest_libccc, dest_libc, can_segfault, n);
 	print_timer_result(&t, TRUE);
 	TEST_PRINT_ARGS("dest=\"%s\", c=0x%x/'%c', n=%lu", dest_libccc, byte, byte, n)
 }
@@ -149,8 +149,8 @@ void	print_test_memclr(char const* test_name, int can_segfault,
 		t_size n)
 {
 	TEST_PERFORM_LIBC_DEST(memclr, n)
-	print_test_mem(test_name, "memclr/bzero arg",                     dest_libccc,     dest_libc,     n, can_segfault);
-//	print_test_mem(NULL,      "memclr/bzero (byte after the '\\0's)", dest_libccc + n, dest_libc + n, 1, can_segfault);
+	print_test_mem(test_name, "memclr/bzero arg",                     dest_libccc,     dest_libc,     can_segfault, n);
+//	print_test_mem(NULL,      "memclr/bzero (byte after the '\\0's)", dest_libccc + n, dest_libc + n, can_segfault, 1);
 	print_timer_result(&t, TRUE);
 	TEST_PRINT_ARGS("dest=\"%s\", n=%lu", dest_libccc, n)
 }
@@ -183,8 +183,8 @@ void	print_test_memcpy(char const* test_name, int can_segfault,
 		t_size n)
 {
 	TEST_PERFORM_RESULT_LIBC_DEST(memcpy, src, n)
-	print_test_mem(test_name, "memcpy 'dest' arg", dest_libccc,   dest_libc,   n, can_segfault);
-	print_test_mem(NULL,      "memcpy return",     result_libccc, result_libc, n, can_segfault);
+	print_test_mem(test_name, "memcpy 'dest' arg", dest_libccc,   dest_libc,   can_segfault, n);
+	print_test_mem(NULL,      "memcpy return",     result_libccc, result_libc, can_segfault, n);
 	print_timer_result(&t, TRUE);
 	TEST_PRINT_ARGS("dest=\"%s\", src=\"%s\", n=%lu", dest_libccc, src, n)
 }
@@ -225,8 +225,8 @@ void	print_test_memccpy(char const* test_name, int can_segfault,
 		t_size n)
 {
 	TEST_PERFORM_RESULT_LIBC_DEST(memccpy, src, byte, n)
-	print_test_mem(test_name, "memccpy 'dest' arg", dest_libccc,   dest_libc, n, can_segfault);// if (byte !='\0')
-	print_test_str(NULL,      "memccpy return",     result_libccc, result_libc,  can_segfault);
+	print_test_mem(test_name, "memccpy 'dest' arg", dest_libccc,   dest_libc,   can_segfault, n);// if (byte !='\0')
+	print_test_str(NULL,      "memccpy return",     result_libccc, result_libc, can_segfault);
 	print_timer_result(&t, TRUE);
 	TEST_PRINT_ARGS("dest=\"%s\", src=\"%s\", c=0x%x/'%c', n=%lu", dest_libccc, src, byte, byte, n)
 }
@@ -269,8 +269,8 @@ void	print_test_memmove(char const* test_name, int can_segfault, int show_dest_a
 {
 	TEST_PERFORM_RESULT_LIBC_DEST(memmove, src, n)
 	if (show_dest_arg)
-	print_test_mem(test_name,                    "memmove 'dest' arg", dest_libccc,   dest_libc, n, can_segfault);
-	print_test_mem(show_dest_arg ? NULL : test_name, "memmove return", result_libccc, result_libc, n, can_segfault);
+	print_test_mem(test_name,                    "memmove 'dest' arg", dest_libccc,   dest_libc,   can_segfault, n);
+	print_test_mem(show_dest_arg ? NULL : test_name, "memmove return", result_libccc, result_libc, can_segfault, n);
 	print_timer_result(&t, TRUE);
 	TEST_PRINT_ARGS("dest=\"%s\", src=\"%s\", n=%lu", dest_libccc, src, n)
 }
@@ -309,7 +309,7 @@ void	print_test_memchr(char const* test_name, int can_segfault,
 		t_size n)
 {
 	TEST_PERFORM_RESULT_LIBC(memchr, ptr, byte, n)
-	print_test_mem(test_name, "memchr return", result_libccc, result_libc, n, can_segfault);
+	print_test_mem(test_name, "memchr return", result_libccc, result_libc, can_segfault, n);
 	print_timer_result(&t, TRUE);
 	TEST_PRINT_ARGS("ptr=%p, c=0x%x/'%c', n=%lu", ptr, byte, byte, n)
 }
@@ -386,7 +386,7 @@ void	print_test_memdup(char const* test_name, int can_segfault,
 		t_size n)
 {
 	TEST_PERFORM_RESULT(memdup, src, n)
-	print_test_mem(test_name, "_memdup return", result_libccc, expecting, n, can_segfault);
+	print_test_mem(test_name, "_memdup return", result_libccc, expecting, can_segfault, n);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("src=\"%s\", n=%lu", src, n)
 	TEST_FREE()
@@ -442,7 +442,7 @@ void	print_test_memrep(char const* test_name, int can_segfault,
 		t_size n)
 {
 	TEST_PERFORM(ptr, memrep, ptr, old, new, n)
-	print_test_mem(test_name, "_memrep return", ptr, expecting, n, can_segfault);
+	print_test_mem(test_name, "_memrep return", ptr, expecting, can_segfault, n);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("ptr=\"%p\", old=0x%x/'%c', new=0x%x/'%c', n=%lu", ptr, old, old, new, new, n)
 }
