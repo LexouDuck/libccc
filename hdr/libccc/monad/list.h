@@ -21,13 +21,14 @@
 #ifndef T
 #define T	void*
 #endif
-
 #ifndef T_NAME
 #define T_NAME	
 #endif
-
 #ifndef T_DEFAULT
 #define T_DEFAULT	NULL
+#endif
+#ifndef T_EQUALS
+#define T_EQUALS(A, B)	((A) == (B))
 #endif
 
 /*
@@ -79,11 +80,14 @@ typedef struct list_T
 
 
 
-#define foreach_s_list_init(		_TYPE_, _VAR_, _LIST_)	s_list_T* _VAR_##_i = (_LIST_);
-#define foreach_s_list_exit(		_TYPE_, _VAR_, _LIST_)	if (_LIST_)
-#define foreach_s_list_loop_init(	_TYPE_, _VAR_, _LIST_)	_TYPE_ _VAR_
-#define foreach_s_list_loop_exit(	_TYPE_, _VAR_, _LIST_)	(_VAR_##_i != NULL) && ((_VAR_ = (_TYPE_)(_VAR_##_i->item)) || 1)
+#define foreach_s_list(_TYPE_, _VAR_, _LIST_)		foreach (_TYPE_, _VAR_, s_list, _LIST_)
+
+#define foreach_s_list_init(		_TYPE_, _VAR_, _LIST_)	struct _##_VAR_{ struct _##_VAR_*next; _TYPE_ item; }* _VAR_##_i = (struct _##_VAR_*)(_LIST_);
+#define foreach_s_list_exit(		_TYPE_, _VAR_, _LIST_)	if ((void*)(_LIST_) != NULL)
+#define foreach_s_list_loop_init(	_TYPE_, _VAR_, _LIST_)	_TYPE_ _VAR_ = (_TYPE_)(_VAR_##_i->item)
+#define foreach_s_list_loop_exit(	_TYPE_, _VAR_, _LIST_)	(_VAR_##_i != NULL)
 #define foreach_s_list_loop_incr(	_TYPE_, _VAR_, _LIST_)	_VAR_##_i = _VAR_##_i->next
+#define foreach_s_list_loop_setv(	_TYPE_, _VAR_, _LIST_)	_VAR_ = (_VAR_##_i == NULL ? _VAR_ : (_TYPE_)(_VAR_##_i->item))
 
 
 

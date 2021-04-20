@@ -19,3 +19,8 @@
 #include "libccc/../../src/monad/array/arriter.c"
 #include "libccc/../../src/monad/array/arrmap.c"
 #include "libccc/../../src/monad/array/arrfilt.c"
+
+#undef T
+#undef T_NAME
+#undef T_DEFAULT
+#undef T_EQUALS

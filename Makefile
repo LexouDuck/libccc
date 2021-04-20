@@ -235,7 +235,7 @@ SRCS = \
 	monad/array/arrcmp.c		\
 	monad/array/arriter.c		\
 	monad/array/arrmap.c		\
-	monad/array/arrfilt.c	\
+	monad/array/arrfilt.c		\
 	monad/list/lstitem.c	\
 	monad/list/lstnew.c		\
 	monad/list/lstdel.c		\

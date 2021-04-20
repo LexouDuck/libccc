@@ -21,13 +21,14 @@
 #ifndef T
 #define T	void*
 #endif
-
 #ifndef T_NAME
 #define T_NAME	
 #endif
-
 #ifndef T_DEFAULT
 #define T_DEFAULT	NULL
+#endif
+#ifndef T_EQUALS
+#define T_EQUALS(A, B)	((A) == (B))
 #endif
 
 /*
@@ -73,15 +74,18 @@ typedef struct array_T
 {
 	t_uint	length;	//!< The amount of elements in the 'items' array
 	T*		items;	//!< The pointer to the array (items can be of any one type)
-}				s_array_T;
+}			s_array_T;
 
 
+
+#define foreach_s_array(_TYPE_, _VAR_, _ARRAY_)		foreach (_TYPE_, _VAR_, s_array, _ARRAY_)
 
 #define foreach_s_array_init(		_TYPE_, _VAR_, _ARRAY_)	t_uint _VAR_##_i = 0;
-#define foreach_s_array_exit(		_TYPE_, _VAR_, _ARRAY_)	if ((_ARRAY_)->items)
-#define foreach_s_array_loop_init(	_TYPE_, _VAR_, _ARRAY_)	_TYPE_ _VAR_
-#define foreach_s_array_loop_exit(	_TYPE_, _VAR_, _ARRAY_)	(_VAR_##_i < (_ARRAY_)->length) && ((_VAR_ = (_TYPE_)((_ARRAY_)->items[_VAR_##_i])) || 1)
+#define foreach_s_array_exit(		_TYPE_, _VAR_, _ARRAY_)	if ((void*)(_ARRAY_) != NULL && (_ARRAY_)->items != NULL)
+#define foreach_s_array_loop_init(	_TYPE_, _VAR_, _ARRAY_)	_TYPE_ _VAR_ = (_ARRAY_)->items[_VAR_##_i]
+#define foreach_s_array_loop_exit(	_TYPE_, _VAR_, _ARRAY_)	(_VAR_##_i < (_ARRAY_)->length)
 #define foreach_s_array_loop_incr(	_TYPE_, _VAR_, _ARRAY_)	++_VAR_##_i
+#define foreach_s_array_loop_setv(	_TYPE_, _VAR_, _ARRAY_)	_VAR_ = (_VAR_##_i == (_ARRAY_)->length ? _VAR_ : (_ARRAY_)->items[_VAR_##_i])
 
 
 

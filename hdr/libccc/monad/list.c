@@ -21,3 +21,8 @@
 #include "libccc/../../src/monad/list/lstiter.c"
 #include "libccc/../../src/monad/list/lstmap.c"
 #include "libccc/../../src/monad/list/lstfilt.c"
+
+#undef T
+#undef T_NAME
+#undef T_DEFAULT
+#undef T_EQUALS

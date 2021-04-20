@@ -6,35 +6,41 @@
 #include <libccc/string.h>
 #include <libccc/sys/io.h>
 
+#include <libccc/monad/list.c>
 #define T			char*
 #define T_NAME		_str
-#define T_DEFAULT	NULL
-
 #include <libccc/monad/array.c>
+#define T			char*
+#define T_NAME		_str
 #include <libccc/monad/list.c>
+
 //#include <libccc/monad/dict.c>
 //#include <libccc/monad/tree.c>
 //#include <libccc/monad/object.c>
 
-
-#undef T
-#undef T_NAME
-#undef T_DEFAULT
 #define T			int
 #define T_NAME		_int
 #define T_DEFAULT	0
-
+#include <libccc/monad/array.c>
+#define T				s_array_int
+#define T_NAME			_array_int
+#define T_DEFAULT		(s_array_int){ .length = 0, .items = NULL }
+#define T_EQUALS(A, B)	((A).length == (B).length && (A).items == (B).items)
 #include <libccc/monad/array.c>
 
+#define T			int
+#define T_NAME		_int
+#define T_DEFAULT	0
+#include <libccc/monad/list.c>
+#define T				s_list_int
+#define T_NAME			_list_int
+#define T_DEFAULT		(s_list_int){ .length = 0, .items = NULL }
+#define T_EQUALS(A, B)	((A).next == (B).next && (A).item == (B).item)
+#include <libccc/monad/list.c>
 
-#undef T
-#undef T_NAME
-#undef T_DEFAULT
-#define T			s_array_int
-#define T_NAME		_array_int
-#define T_DEFAULT	(s_array_int){ .length = 0, .items = NULL }
-
-#include <libccc/monad/array.c>
+//#include <libccc/monad/dict.c>
+//#include <libccc/monad/tree.c>
+//#include <libccc/monad/object.c>
 
 
 
@@ -45,7 +51,7 @@ int main()
 
 	IO_Output_String("\n- s_array<char*>:\n");
 	{
-		s_array_str str_array = Array_str_New(COUNT,
+		s_array_str tmp = Array_str_New(COUNT,
 			"Yo, my boi!",
 			"What's up, dog?",
 			"Not much, you ?",
@@ -56,13 +62,13 @@ int main()
 			"I ask the questions.",
 			"He's got a gun!",
 			"FREEZE! HANDS IN THE AIR!");
+		s_array_str* str_array = &tmp;
 		i = 0;
-		foreach (char*, str, s_array, &str_array)
+		foreach (char*, str, s_array, str_array)
 		{
 			IO_Output_Format("i:%u,\titer:%u,\tstr:%p -> \"%s\"\n", i++, str_i, str, str);
 		}
 	}
-/*
 	IO_Output_String("\n- s_list<char*>:\n");
 	{
 		s_list_str* str_list = List_str_New(COUNT,
@@ -82,34 +88,37 @@ int main()
 			IO_Output_Format("i:%u,\titer:%p,\tstr:%p -> \"%s\"\n", i++, str_i, str, str);
 		}
 	}
-*/
-	IO_Output_String("\n- s_array<int>:\n");
+
+
+
+	IO_Output_String("\n- s_array<s_array<int>>:\n");
 	{
-		s_array_int int_array = Array_int_New(6,
-			42,
-			69,
-			420,
-			0,
-			1,
-			10);
-		i = 0;
-		foreach (int, integer, s_array, &int_array)
-		{
-			IO_Output_Format("i:%u,\titer:%u,\tint: %i\n", i++, integer_i, integer);
-		}
-	}
-	IO_Output_String("\n- s_array<int>:\n");
-	{
-		s_array_array_int int_array_array = Array_array_int_New(3,
+		s_array_array_int tmp = Array_array_int_New(3,
 			Array_int_New(3,	0, 1, 10),
 			Array_int_New(3,	42, 69, 420),
 			Array_int_New(6,	42, 69, 420, 0, 1, 10));
+		s_array_array_int* int_array_array = &tmp;
 		i = 0;
-		foreach (s_array_int, int_array, s_array, &int_array_array)
+		foreach (s_array_int, int_array, s_array, int_array_array)
 		{
 			foreach (int, integer, s_array, &int_array)
 			{
 				IO_Output_Format("i:%u,\titer:%u,\tint: %i\n", i++, integer_i, integer);
+			}
+		}
+	}
+	IO_Output_String("\n- s_list<s_list<int>>:\n");
+	{
+		s_list_list_int* int_list_list = List_list_int_New(3,
+			List_int_New(3, 	0, 1, 10),
+			List_int_New(3, 	42, 69, 420),
+			List_int_New(6, 	42, 69, 420, 0, 1, 10));
+		i = 0;
+		foreach (s_list_int, int_list, s_list, int_list_list)
+		{
+			foreach (int, integer, s_list, &int_list)
+			{
+				IO_Output_Format("i:%u,\titer:%p,\tint: %i\n", i++, integer_i, integer);
 			}
 		}
 	}

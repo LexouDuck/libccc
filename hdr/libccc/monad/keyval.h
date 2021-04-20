@@ -21,13 +21,14 @@
 #ifndef T
 #define T	void*
 #endif
-
 #ifndef T_NAME
 #define T_NAME	
 #endif
-
 #ifndef T_DEFAULT
 #define T_DEFAULT	NULL
+#endif
+#ifndef T_EQUALS
+#define T_EQUALS(A, B)	((A) == (B))
 #endif
 
 /*
