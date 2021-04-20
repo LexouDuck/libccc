@@ -92,7 +92,11 @@ typedef struct dict_T
 // TODO Dict_Prepend
 // TODO Dict_Insert
 // TODO Dict_Remove
+// TODO Dict_Remove_F
 // TODO Dict_RemoveAll
+// TODO Dict_RemoveAll_F
+// TODO Dict_RemoveAt
+// TODO Dict_RemoveAt_F
 // TODO Dict_Replace
 
 // TODO Dict_Find

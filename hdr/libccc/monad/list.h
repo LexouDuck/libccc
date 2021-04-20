@@ -222,14 +222,28 @@ s_list_T*				CONCAT(List_T,_Insert)(s_list_T* list, T item, t_uint index);
 
 
 //! TODO
-s_list_T*				CONCAT(List_T,_Remove)(s_list_T* list, t_uint index);
-#define c_lstremove		CONCAT(List_T,_Remove)
+s_list_T*				CONCAT(List_T,_Remove)(s_list_T* list, T item);
 #define c_lstdelone		CONCAT(List_T,_Remove)
 
 //! TODO
+s_list_T*				CONCAT(List_T,_Remove_F)(s_list_T* list, T item, void (*delete)(T));
+#define c_lstfdelone	CONCAT(List_T,_Remove_F)
+
+//! TODO
 s_list_T*				CONCAT(List_T,_RemoveAll)(s_list_T* list, T item);
-#define c_lstremall		CONCAT(List_T,_RemoveAll)
 #define c_lstdelall		CONCAT(List_T,_RemoveAll)
+
+//! TODO
+s_list_T*				CONCAT(List_T,_RemoveAll_F)(s_list_T* list, T item, void (*delete)(T));
+#define c_lstfdelall	CONCAT(List_T,_RemoveAll_F)
+
+//! TODO
+s_list_T*				CONCAT(List_T,_RemoveAt)(s_list_T* list, t_uint index);
+#define c_lstdelat		CONCAT(List_T,_RemoveAt)
+
+//! TODO
+s_list_T*				CONCAT(List_T,_RemoveAt_F)(s_list_T* list, t_uint index, void (*delete)(T));
+#define c_lstfdelat		CONCAT(List_T,_RemoveAt_F)
 
 
 

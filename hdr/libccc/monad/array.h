@@ -149,14 +149,28 @@ void					CONCAT(Array_T,_Insert)(s_array_T* array, T item, t_uint index);
 
 
 //! TODO
-void					CONCAT(Array_T,_Remove)(s_array_T* array, t_uint index);
-#define c_arrremove		CONCAT(Array_T,_Remove)
+void					CONCAT(Array_T,_Remove)(s_array_T* array, T item);
 #define c_arrdelone		CONCAT(Array_T,_Remove)
 
 //! TODO
-void					CONCAT(Array_T,_RemoveAll)(s_array_T* array, T target);
-#define c_arrremall		CONCAT(Array_T,_RemoveAll)
+void					CONCAT(Array_T,_Remove_F)(s_array_T* array, T item, void (*delete)(T));
+#define c_arrdfelone	CONCAT(Array_T,_Remove_F)
+
+//! TODO
+void					CONCAT(Array_T,_RemoveAll)(s_array_T* array, T item);
 #define c_arrdelall		CONCAT(Array_T,_RemoveAll)
+
+//! TODO
+void					CONCAT(Array_T,_RemoveAll_F)(s_array_T* array, T item, void (*delete)(T));
+#define c_arrdfelall	CONCAT(Array_T,_RemoveAll_F)
+
+//! TODO
+void					CONCAT(Array_T,_RemoveAt)(s_array_T* array, t_uint index);
+#define c_arrdelat		CONCAT(Array_T,_RemoveAt)
+
+//! TODO
+void					CONCAT(Array_T,_RemoveAt_F)(s_array_T* array, t_uint index, void (*delete)(T));
+#define c_arrfdelat		CONCAT(Array_T,_RemoveAt_F)
 
 
 

@@ -11,7 +11,7 @@ s_list_T const*	CONCAT(List_T,_Find)(s_list_T const* list, T item)
 #endif
 	while (list)
 	{
-		if (list->item == item)
+		if (T_EQUALS(list->item, item))
 			return (list);
 		list = list->next;
 	}
@@ -31,7 +31,7 @@ t_sint	CONCAT(List_T,_IndexOf)(s_list_T const* list, T item)
 	i = 0;
 	while (list)
 	{
-		if (list->item == item)
+		if (T_EQUALS(list->item, item))
 			return (i);
 		list = list->next;
 		++i;

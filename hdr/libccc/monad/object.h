@@ -93,7 +93,11 @@ typedef struct object_T
 // TODO Object_Prepend
 // TODO Object_Insert
 // TODO Object_Remove
+// TODO Object_Remove_F
 // TODO Object_RemoveAll
+// TODO Object_RemoveAll_F
+// TODO Object_RemoveAt
+// TODO Object_RemoveAt_F
 // TODO Object_Replace
 
 // TODO Object_Find

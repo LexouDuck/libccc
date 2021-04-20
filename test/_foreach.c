@@ -98,6 +98,7 @@ int main()
 			Array_int_New(3,	42, 69, 420),
 			Array_int_New(6,	42, 69, 420, 0, 1, 10));
 		s_array_array_int* int_array_array = &tmp;
+		Array_array_int_RemoveAt(int_array_array, 1);
 		i = 0;
 		foreach (s_array_int, int_array, s_array, int_array_array)
 		{
@@ -113,6 +114,7 @@ int main()
 			List_int_New(3, 	0, 1, 10),
 			List_int_New(3, 	42, 69, 420),
 			List_int_New(6, 	42, 69, 420, 0, 1, 10));
+		List_list_int_RemoveAt(int_list_list, 1);
 		i = 0;
 		foreach (s_list_int, int_list, s_list, int_list_list)
 		{

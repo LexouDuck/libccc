@@ -89,6 +89,13 @@ typedef struct tree_T
 // TODO Tree_Append
 // TODO Tree_Prepend
 // TODO Tree_Insert
+// TODO Tree_Remove
+// TODO Tree_Remove_F
+// TODO Tree_RemoveAll
+// TODO Tree_RemoveAll_F
+// TODO Tree_RemoveAt
+// TODO Tree_RemoveAt_F
+// TODO Tree_Replace
 
 // TODO Tree_Equals
 // TODO Tree_Equals_N

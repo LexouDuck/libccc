@@ -230,32 +230,38 @@ SRCS = \
 	monad/array/arrprepend.c	\
 	monad/array/arrinsert.c		\
 	monad/array/arrremove.c		\
+	monad/array/arrremoveall.c	\
+	monad/array/arrremoveat.c	\
 	monad/array/arrreplace.c	\
+	monad/array/arrfind.c		\
 	monad/array/arrequ.c		\
 	monad/array/arrcmp.c		\
 	monad/array/arriter.c		\
 	monad/array/arrmap.c		\
 	monad/array/arrfilt.c		\
-	monad/list/lstitem.c	\
-	monad/list/lstnew.c		\
-	monad/list/lstdel.c		\
-	monad/list/lstdup.c		\
-	monad/list/lstget.c		\
-	monad/list/lstset.c		\
-	monad/list/lstcpy.c		\
-	monad/list/lstsub.c		\
-	monad/list/lstappend.c	\
-	monad/list/lstprepend.c	\
-	monad/list/lstinsert.c	\
-	monad/list/lstremove.c	\
-	monad/list/lstreplace.c	\
-	monad/list/lstsize.c	\
-	monad/list/lstequ.c		\
-	monad/list/lstcmp.c		\
-	monad/list/lstiter.c	\
-	monad/list/lstmap.c		\
-	monad/list/lstfilt.c	\
-	monad/convert/list.c	\
+	monad/list/lstitem.c		\
+	monad/list/lstnew.c			\
+	monad/list/lstdel.c			\
+	monad/list/lstdup.c			\
+	monad/list/lstget.c			\
+	monad/list/lstset.c			\
+	monad/list/lstcpy.c			\
+	monad/list/lstsub.c			\
+	monad/list/lstappend.c		\
+	monad/list/lstprepend.c		\
+	monad/list/lstinsert.c		\
+	monad/list/lstremove.c		\
+	monad/list/lstremoveall.c	\
+	monad/list/lstremoveat.c	\
+	monad/list/lstreplace.c		\
+	monad/list/lstfind.c		\
+	monad/list/lstequ.c			\
+	monad/list/lstcmp.c			\
+	monad/list/lstsize.c		\
+	monad/list/lstiter.c		\
+	monad/list/lstmap.c			\
+	monad/list/lstfilt.c		\
+	monad/convert/list.c		\
 
 # define object files list (.o) from source list
 OBJS = ${SRCS:%.c=$(OBJDIR)%.o}

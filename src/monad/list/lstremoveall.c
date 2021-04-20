@@ -4,7 +4,7 @@
 
 
 
-s_list_T*	CONCAT(List_T,_Remove)(s_list_T* list, T item)
+s_list_T*	CONCAT(List_T,_RemoveAll)(s_list_T* list, T item)
 {
 	s_list_T*	elem;
 	s_list_T*	tmp;
@@ -20,9 +20,8 @@ s_list_T*	CONCAT(List_T,_Remove)(s_list_T* list, T item)
 		{
 			tmp = elem->next;
 			elem->next = tmp->next;
-//			elem->next->prev = elem;
+		//	elem->next->prev = elem;
 			Memory_Free(tmp);
-			return (list);
 		}
 		elem = elem->next;
 	}
@@ -31,7 +30,7 @@ s_list_T*	CONCAT(List_T,_Remove)(s_list_T* list, T item)
 
 
 
-s_list_T*	CONCAT(List_T,_Remove_F)(s_list_T* list, T item, void (*delete)(T))
+s_list_T*	CONCAT(List_T,_RemoveAll_F)(s_list_T* list, T item, void (*delete)(T))
 {
 	s_list_T*	elem;
 	s_list_T*	tmp;
@@ -48,9 +47,8 @@ s_list_T*	CONCAT(List_T,_Remove_F)(s_list_T* list, T item, void (*delete)(T))
 			delete(elem->item);
 			tmp = elem->next;
 			elem->next = tmp->next;
-//			elem->next->prev = elem;
+		//	elem->next->prev = elem;
 			Memory_Free(tmp);
-			return (list);
 		}
 		elem = elem->next;
 	}
