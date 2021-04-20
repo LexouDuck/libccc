@@ -73,7 +73,6 @@ typedef struct object_T
 	struct object_T*	next;	//!< The pointer to the next item in the list (or NULL if this is the last item)
 	s_keyval_T*			items;	//!< The fields (key-value pairs) contained within this object
 }				s_object_T;
-TYPEDEF_ALIAS(	s_object_T, OBJECT, STRUCT)
 
 
 

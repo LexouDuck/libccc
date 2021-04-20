@@ -219,6 +219,23 @@ SRCS = \
 	math/complex/complex_div.c		\
 	math/stat/stat_int.c	\
 	math/stat/stat_float.c	\
+	monad/array/arrnew.c		\
+	monad/array/arrdel.c		\
+	monad/array/arrdup.c		\
+	monad/array/arrget.c		\
+	monad/array/arrset.c		\
+	monad/array/arrcpy.c		\
+	monad/array/arrsub.c		\
+	monad/array/arrappend.c		\
+	monad/array/arrprepend.c	\
+	monad/array/arrinsert.c		\
+	monad/array/arrremove.c		\
+	monad/array/arrreplace.c	\
+	monad/array/arrequ.c		\
+	monad/array/arrcmp.c		\
+	monad/array/arriter.c		\
+	monad/array/arrmap.c		\
+	monad/array/arrfilt.c	\
 	monad/list/lstitem.c	\
 	monad/list/lstnew.c		\
 	monad/list/lstdel.c		\

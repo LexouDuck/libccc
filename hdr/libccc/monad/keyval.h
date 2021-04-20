@@ -70,7 +70,6 @@ typedef struct keyval_T
 	char*	key;	//!< The key string associated with the `value`
 	T		value;	//!< The pointer to the data for the `value`
 }				s_keyval_T;
-TYPEDEF_ALIAS(	s_keyval_T, KEYVAL, STRUCT)
 
 
 

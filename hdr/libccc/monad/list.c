@@ -1,4 +1,7 @@
 
+#undef __LIBCCC_MONAD_LIST_H
+#include "libccc/monad/list.h"
+
 #include "libccc/../../src/monad/list/lstitem.c"
 #include "libccc/../../src/monad/list/lstnew.c"
 #include "libccc/../../src/monad/list/lstdel.c"

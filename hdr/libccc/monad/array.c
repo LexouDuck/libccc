@@ -1,4 +1,7 @@
 
+#undef __LIBCCC_MONAD_ARRAY_H
+#include "libccc/monad/array.h"
+
 #include "libccc/../../src/monad/array/arrnew.c"
 #include "libccc/../../src/monad/array/arrdel.c"
 #include "libccc/../../src/monad/array/arrdup.c"

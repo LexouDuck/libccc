@@ -72,7 +72,6 @@ typedef struct dict_T
 	t_size		length;	//!< The amount of key/value pairs stored in this dictionary
 	s_keyval_T*	items;	//!< The array of key/value pairs stored in this dictionary
 }				s_dict_T;
-TYPEDEF_ALIAS(	s_dict_T, DICT, STRUCT)
 
 
 

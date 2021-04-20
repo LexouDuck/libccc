@@ -71,7 +71,6 @@ typedef struct tree_T
 	struct tree_T*	nodes;		//!< The array of sub-nodes of this tree node
 	T				value;		//!< The value stored in this tree node
 }				s_tree_T;
-TYPEDEF_ALIAS(	s_tree_T, TREE, STRUCT)
 
 
 

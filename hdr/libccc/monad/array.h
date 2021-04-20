@@ -74,12 +74,11 @@ typedef struct array_T
 	t_uint	length;	//!< The amount of elements in the 'items' array
 	T*		items;	//!< The pointer to the array (items can be of any one type)
 }				s_array_T;
-TYPEDEF_ALIAS(	s_array_T, ARRAY, STRUCT)
 
 
 
 #define foreach_s_array_init(		_TYPE_, _VAR_, _ARRAY_)	t_uint _VAR_##_i = 0;
-#define foreach_s_array_exit(		_TYPE_, _VAR_, _ARRAY_)	if (_ARRAY_ && (_ARRAY_)->items)
+#define foreach_s_array_exit(		_TYPE_, _VAR_, _ARRAY_)	if ((_ARRAY_)->items)
 #define foreach_s_array_loop_init(	_TYPE_, _VAR_, _ARRAY_)	_TYPE_ _VAR_
 #define foreach_s_array_loop_exit(	_TYPE_, _VAR_, _ARRAY_)	(_VAR_##_i < (_ARRAY_)->length) && ((_VAR_ = (_TYPE_)((_ARRAY_)->items[_VAR_##_i])) || 1)
 #define foreach_s_array_loop_incr(	_TYPE_, _VAR_, _ARRAY_)	++_VAR_##_i
