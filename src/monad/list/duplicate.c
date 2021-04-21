@@ -22,7 +22,9 @@ s_list_T*	CONCAT(List_T,_Duplicate)(s_list_T const* list)
 			result = tmp;
 		else
 		{
-//			elem->prev = elem;
+#if LIBCONFIG_LIST_DOUBLYLINKED
+			tmp->prev = elem;
+#endif
 			elem->next = tmp;
 		}
 		elem = tmp;

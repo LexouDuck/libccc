@@ -6,7 +6,6 @@
 
 void	CONCAT(List_T,_Delete)(s_list_T* *a_list)
 {
-//	s_list_T*	prev;
 	s_list_T*	next;
 	s_list_T*	i;
 
@@ -17,12 +16,9 @@ void	CONCAT(List_T,_Delete)(s_list_T* *a_list)
 	i = *a_list;
 	while (i)
 	{
-//		prev = i->prev;
 		next = i->next;
 		Memory_Free(i);
 		i = next;
-//		if (next)
-//			next->prev = prev;
 	}
 	*a_list = NULL;
 }

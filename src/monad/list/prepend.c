@@ -11,7 +11,9 @@ s_list_T*	CONCAT(List_T,_Prepend)(s_list_T* list, s_list_T* elem)
 #endif
 	if (elem == NULL)
 		return (list);
-//	elem->prev = NULL;
+#if LIBCONFIG_LIST_DOUBLYLINKED
+	elem->prev = NULL;
+#endif
 	elem->next = list;
 	return (elem);
 }

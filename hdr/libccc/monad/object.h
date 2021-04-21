@@ -59,7 +59,9 @@ HEADER_CPP
 */
 typedef struct object_T
 {
-//	struct object_T*	prev;	//!< The pointer to the previous item in the list (or NULL if this is the first item)
+#if LIBCONFIG_LIST_DOUBLYLINKED
+	struct object_T*	prev;	//!< The pointer to the previous item in the list (or NULL if this is the first item)
+#endif
 	struct object_T*	next;	//!< The pointer to the next item in the list (or NULL if this is the last item)
 	s_keyval_T*			items;	//!< The fields (key-value pairs) contained within this object
 }				s_object_T;

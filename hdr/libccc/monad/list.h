@@ -62,7 +62,9 @@ HEADER_CPP
 */
 typedef struct list_T
 {
-//	struct list_T*	prev;	//!< The pointer to the previous item in the list (or NULL if this is the first item)
+#if LIBCONFIG_LIST_DOUBLYLINKED
+	struct list_T*	prev;	//!< The pointer to the previous item in the list (or NULL if this is the first item)
+#endif
 	struct list_T*	next;	//!< The pointer to the next item in the list (or NULL if this is the last item)
 	T				item;	//!< The content of this linked-list element
 }				s_list_T;

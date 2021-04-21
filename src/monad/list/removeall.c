@@ -20,7 +20,9 @@ s_list_T*	CONCAT(List_T,_RemoveAll)(s_list_T* list, T item)
 		{
 			tmp = elem->next;
 			elem->next = tmp->next;
-		//	elem->next->prev = elem;
+#if LIBCONFIG_LIST_DOUBLYLINKED
+			elem->next->prev = elem;
+#endif
 			Memory_Free(tmp);
 		}
 		elem = elem->next;
@@ -47,7 +49,9 @@ s_list_T*	CONCAT(List_T,_RemoveAll_F)(s_list_T* list, T item, void (*delete)(T))
 			delete(elem->item);
 			tmp = elem->next;
 			elem->next = tmp->next;
-		//	elem->next->prev = elem;
+#if LIBCONFIG_LIST_DOUBLYLINKED
+			elem->next->prev = elem;
+#endif
 			Memory_Free(tmp);
 		}
 		elem = elem->next;

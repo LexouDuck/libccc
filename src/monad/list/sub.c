@@ -32,7 +32,9 @@ s_list_T*		CONCAT(List_T,_Sub)(s_list_T const* list, t_uint index, t_uint n)
 			result = tmp;
 		else
 		{
-//			elem->prev = elem;
+#if LIBCONFIG_LIST_DOUBLYLINKED
+			elem->prev = elem;
+#endif
 			elem->next = tmp;
 		}
 		elem = tmp;

@@ -18,7 +18,9 @@ s_list_T*	CONCAT(List_T,_Append)(s_list_T* list, s_list_T* elem)
 	{
 		i = i->next;
 	}
-//	elem->prev = i;
+#if LIBCONFIG_LIST_DOUBLYLINKED
+	elem->prev = i;
+#endif
 	i->next = elem;
 	return (list);
 }

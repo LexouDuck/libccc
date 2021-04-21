@@ -22,6 +22,9 @@ s_list_T*	CONCAT(List_T,_New)(t_uint n, ...)
 		item = va_arg(list, T);
 		if (!(new = (s_list_T*)Memory_Alloc(sizeof(s_list_T))))
 			break;
+#if LIBCONFIG_LIST_DOUBLYLINKED
+		new->prev = NULL;
+#endif
 		new->next = NULL;
 		new->item = item;
 		if (i == 1)
@@ -31,8 +34,11 @@ s_list_T*	CONCAT(List_T,_New)(t_uint n, ...)
 		}
 		else
 		{
+#if LIBCONFIG_LIST_DOUBLYLINKED
+			new->prev = elem;
+#endif
 			elem->next = new;
-			elem = new;
+			elem = elem->next;
 		}
 	}
 	va_end(list);

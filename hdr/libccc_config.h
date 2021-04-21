@@ -163,37 +163,22 @@ HEADER_CPP
 **	It is recommended to keep this set to 0, as the STD C fixed-point types are not yet standard
 **	(ie: `_Accum`, `_Fract`, and `_Sat` are not present on all platforms, only GCC implements them).
 **	Furthermore, the libccc fixed-point type may not be as fast as a STD C implementation which
-**	may leverage the platform's ASM, but it is configurable in terms of what portion of the
-**	fixed-point number type is dedicated to the integral/fractional part.
+**	may leverage the platform's full capacities, but it does offer the signficant advantage of
+**	being entirely configurable, regarding what portion of the fixed-point number type
+**	is dedicated to the integer part and the fraction part.
 */
 #define LIBCONFIG_USE_STD_FIXEDPOINT	0
 
 
 
-//! If 1, doing `#include "libccc/monad/list.h"` will define a doubly-linked list
+//! If 1, the `s_list` and `s_object` types in "libccc/monad" will be doubly-linked
 /*!
 **	This macro configures whether the `s_list` type is singly-linked or doubly-linked.
-**	NB: This must be set BEFORE including the libccc/array/list.h header file
+**	NB: This must be set BEFORE including the <libccc/monad/list.(c|h)> files
 **	- If 0, `s_list` is singly-linked (that is, the struct only holds a `.next` pointer)
 **	- If 1, `s_list` is doubly-linked (that is, the struct has both a `.prev` and `.next` pointer)
 */
 #define LIBCONFIG_LIST_DOUBLYLINKED		0 // TODO
-
-
-
-//! The item type used by the `s_list` struct (by default it is `void*`, ie: dynamic list).
-/*
-**	This macro sets the type for the item stored within each `s_list` element.
-**	NB: This must be set BEFORE including the libccc/array/list.h header file
-*/
-#define LIBCONFIG_LIST_TYPE				void*	// TODO
-
-//! The type name used by the linked-list type (by default it is `s_list`).
-/*
-**	This macro sets the typedef name for the linked-list struct (by default `s_list`).
-**	NB: This must be set BEFORE including the `libccc/array/list.h` header file
-*/
-#define LIBCONFIG_LIST_NAME				s_list	// TODO
 
 
 

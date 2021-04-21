@@ -27,7 +27,9 @@ s_list_T*	CONCAT(List_T,_Insert)(s_list_T* list, T item, t_uint index)
 	{
 		elem = elem->next;
 	}
-//	elem->prev = tmp;
+#if LIBCONFIG_LIST_DOUBLYLINKED
+	new->prev = elem;
+#endif
 	tmp = elem->next;
 	elem->next = new;
 	new->next = tmp;
