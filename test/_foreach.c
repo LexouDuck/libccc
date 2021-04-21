@@ -1,7 +1,5 @@
 // this is a small independent file (not part of the libccc test suite)
 
-#include <stdio.h>
-
 #include <libccc.h>
 #include <libccc/string.h>
 #include <libccc/sys/io.h>
