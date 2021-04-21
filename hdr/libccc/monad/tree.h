@@ -81,7 +81,6 @@ typedef struct tree_T
 // TODO Tree_New
 // TODO Tree_Delete
 // TODO Tree_Duplicate
-
 // TODO Tree_Get
 // TODO Tree_Set
 // TODO Tree_Copy
@@ -97,14 +96,16 @@ typedef struct tree_T
 // TODO Tree_RemoveAt_F
 // TODO Tree_Replace
 
+// TODO Tree_Find
+// TODO Tree_Find_F
+// TODO Tree_Count
+// TODO Tree_Contains
+// TODO Tree_Has
+// TODO Tree_HasOnly
 // TODO Tree_Equals
 // TODO Tree_Equals_N
 // TODO Tree_Compare
 // TODO Tree_Compare_N
-
-// TODO Tree_Replace
-// TODO Tree_Find
-// TODO Tree_IndexOf
 
 // TODO Tree_Iterate
 // TODO Tree_Iterate_I

@@ -95,6 +95,17 @@ _MALLOC()
 s_list_T*			CONCAT(List_T,_Item)(T item);
 #define c_lstitem	CONCAT(List_T,_Item)
 
+//! Returns the amount of elements in the given `list`
+/*!
+**	@param	list		the list to look through
+**	@returns the amount of elements in the given `list`,
+**	by traversing it, looping through every `next` pointer.
+*/
+t_uint				CONCAT(List_T,_Length)(s_list_T const* list);
+#define c_lstlen	CONCAT(List_T,_Length)
+
+
+
 //! Allocates and returns a list element from the given list of arguments.
 /*!
 **	Allocates a new linked list, consisting of several `s_list` structs chained
@@ -207,8 +218,7 @@ s_list_T*				CONCAT(List_T,_Prepend)(s_list_T* list, s_list_T* elem);
 //! Inserts the given `item` at the given `index` of the given `list`
 /*!
 **	Inserts the given element `elem` at the given `index` of the list `list`.
-**	If `index` is too large, the `elem` is appended to the end of the list.
-**	If `elem` is NULL, then nothing is done by this function.
+**	If `index` is too large, then nothing is done by this function.
 **
 **	@param	list	The address ('&') of the beginning of the list (the address of the first item)
 **	@param	elem	The list element to insert in `alst` - if NULL, this function does nothing
@@ -261,15 +271,6 @@ s_list_T*				CONCAT(List_T,_Replace)(s_list_T const* list, T old, T new);
 ** ************************************************************************** *|
 */
 
-//! Returns the amount of elements in the given `list`
-/*!
-**	@param	list		the list to look through
-**	@returns the amount of elements in the given `list`,
-**	by traversing it, looping through every `next` pointer.
-*/
-t_uint					CONCAT(List_T,_Length)(s_list_T const* list);
-#define c_lstlen		CONCAT(List_T,_Length)
-
 //! Returns the first encountered item in the given `list` matching the given `item`
 /*!
 **	@param	list	the linked list to look through
@@ -280,6 +281,16 @@ t_uint					CONCAT(List_T,_Length)(s_list_T const* list);
 s_list_T const*			CONCAT(List_T,_Find)(s_list_T const* list, T item);
 #define c_lstfind		CONCAT(List_T,_Find)
 
+//! Returns the first encountered item in the given `list` matching the given `item`
+/*!
+**	@param	list	the linked list to look through
+**	@param	item	the `item` pointer to match against
+**	@returns the first encountered element of the given linked `list`,
+**		for which `(list->item == item)`, or `NULL` otherwise
+*/
+s_list_T const*			CONCAT(List_T,_Find_F)(s_list_T const* list, t_bool (*match)(T item));
+#define c_lstffind		CONCAT(List_T,_Find_F)
+
 //! Returns the index of the first encountered item in the given `list` matching the given `item`
 /*!
 **	@param	list	the linked list to look through
@@ -289,6 +300,16 @@ s_list_T const*			CONCAT(List_T,_Find)(s_list_T const* list, T item);
 */
 t_sint					CONCAT(List_T,_IndexOf)(s_list_T const* list, T item);
 #define c_lstfindi		CONCAT(List_T,_IndexOf)
+
+//! Returns the index of the first encountered item in the given `list` matching the given `item`
+/*!
+**	@param	list	the linked list to look through
+**	@param	item	the `item` pointer to match against
+**	@returns the index of the first encountered element of the given `list`,
+**		for which `(list->item == item)`, or `-1` otherwise.
+*/
+t_sint					CONCAT(List_T,_IndexOf_F)(s_list_T const* list, t_bool (*match)(T item));
+#define c_lstffindi		CONCAT(List_T,_IndexOf_F)
 
 
 

@@ -77,9 +77,7 @@ typedef struct keyval_T
 // TODO KeyVal_Set
 
 // TODO KeyVal_Equals
-// TODO KeyVal_Equals_N
 // TODO KeyVal_Compare
-// TODO KeyVal_Compare_N
 
 
 

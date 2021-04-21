@@ -83,7 +83,6 @@ typedef struct object_T
 // TODO Object_New
 // TODO Object_Delete
 // TODO Object_Duplicate
-
 // TODO Object_Get
 // TODO Object_Set
 // TODO Object_Copy
@@ -101,8 +100,11 @@ typedef struct object_T
 // TODO Object_Replace
 
 // TODO Object_Find
-// TODO Object_IndexOf
-
+// TODO Object_Find_F
+// TODO Object_Count
+// TODO Object_Contains
+// TODO Object_Has
+// TODO Object_HasOnly
 // TODO Object_Equals
 // TODO Object_Equals_N
 // TODO Object_Compare

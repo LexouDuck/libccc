@@ -192,8 +192,16 @@ T*					CONCAT(Array_T,_Find)(s_array_T const* array, T item);
 #define c_arrfind	CONCAT(Array_T,_Find)
 
 //! TODO
+T*					CONCAT(Array_T,_Find_F)(s_array_T const* array, t_bool (*match)(T item));
+#define c_arrffind	CONCAT(Array_T,_Find_F)
+
+//! TODO
 t_sint				CONCAT(Array_T,_IndexOf)(s_array_T const* array, T item);
 #define c_arrfindi	CONCAT(Array_T,_IndexOf)
+
+//! TODO
+t_sint				CONCAT(Array_T,_IndexOf_F)(s_array_T const* array, t_bool (*match)(T item));
+#define c_arrffindi	CONCAT(Array_T,_IndexOf_F)
 
 
 
