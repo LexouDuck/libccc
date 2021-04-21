@@ -2,7 +2,7 @@
 #include "libccc/monad/list.h"
 
 
-
+_GENERIC()
 s_list_T*	CONCAT(List_T,_Prepend)(s_list_T* list, s_list_T* elem)
 {
 #if LIBCONFIG_HANDLE_NULLPOINTERS

@@ -2,7 +2,7 @@
 #include "libccc/monad/list.h"
 
 
-
+_GENERIC()
 s_list_T*		CONCAT(List_T,_Map)(s_list_T const* list, T (*map)(T item))
 {
 	s_list_T*	result = NULL;
@@ -24,7 +24,7 @@ s_list_T*		CONCAT(List_T,_Map)(s_list_T const* list, T (*map)(T item))
 }
 
 
-
+_GENERIC()
 s_list_T*		CONCAT(List_T,_Map_I)(s_list_T const* list, T (*map)(T item, t_uint index))
 {
 	s_list_T*	result = NULL;

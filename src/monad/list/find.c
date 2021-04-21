@@ -2,7 +2,7 @@
 #include "libccc/monad/list.h"
 
 
-
+_GENERIC()
 s_list_T const*	CONCAT(List_T,_Find)(s_list_T const* list, T item)
 {
 #if LIBCONFIG_HANDLE_NULLPOINTERS
@@ -19,7 +19,7 @@ s_list_T const*	CONCAT(List_T,_Find)(s_list_T const* list, T item)
 }
 
 
-
+_GENERIC()
 s_list_T const*	CONCAT(List_T,_Find_F)(s_list_T const* list, t_bool (*match)(T item))
 {
 #if LIBCONFIG_HANDLE_NULLPOINTERS
@@ -36,7 +36,7 @@ s_list_T const*	CONCAT(List_T,_Find_F)(s_list_T const* list, t_bool (*match)(T i
 }
 
 
-
+_GENERIC()
 t_sint	CONCAT(List_T,_IndexOf)(s_list_T const* list, T item)
 {
 	t_uint	i;
@@ -57,7 +57,7 @@ t_sint	CONCAT(List_T,_IndexOf)(s_list_T const* list, T item)
 }
 
 
-
+_GENERIC()
 t_sint	CONCAT(List_T,_IndexOf_F)(s_list_T const* list, t_bool (*match)(T item))
 {
 	t_uint	i;

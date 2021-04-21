@@ -3,7 +3,7 @@
 #include "libccc/monad/array.h"
 
 
-
+_GENERIC()
 s_array_T	CONCAT(Array_T,_Filter)(s_array_T const* array, t_bool (*filter)(T item))
 {
 	s_array_T	result = {0};
@@ -43,7 +43,7 @@ s_array_T	CONCAT(Array_T,_Filter)(s_array_T const* array, t_bool (*filter)(T ite
 }
 
 
-
+_GENERIC()
 s_array_T	CONCAT(Array_T,_Filter_I)(s_array_T const* array, t_bool (*filter)(T item, t_uint index))
 {
 	s_array_T	result = {0};

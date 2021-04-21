@@ -2,7 +2,7 @@
 #include "libccc/monad/array.h"
 
 
-
+_GENERIC()
 T*	CONCAT(Array_T,_Find)(s_array_T const* array, T item)
 {
 #if LIBCONFIG_HANDLE_NULLPOINTERS
@@ -18,7 +18,7 @@ T*	CONCAT(Array_T,_Find)(s_array_T const* array, T item)
 }
 
 
-
+_GENERIC()
 T*	CONCAT(Array_T,_Find_F)(s_array_T const* array, t_bool (*match)(T item))
 {
 #if LIBCONFIG_HANDLE_NULLPOINTERS
@@ -34,7 +34,7 @@ T*	CONCAT(Array_T,_Find_F)(s_array_T const* array, t_bool (*match)(T item))
 }
 
 
-
+_GENERIC()
 t_sint	CONCAT(Array_T,_IndexOf)(s_array_T const* array, T item)
 {
 #if LIBCONFIG_HANDLE_NULLPOINTERS
@@ -50,7 +50,7 @@ t_sint	CONCAT(Array_T,_IndexOf)(s_array_T const* array, T item)
 }
 
 
-
+_GENERIC()
 t_sint	CONCAT(Array_T,_IndexOf_F)(s_array_T const* array, t_bool (*match)(T item))
 {
 #if LIBCONFIG_HANDLE_NULLPOINTERS

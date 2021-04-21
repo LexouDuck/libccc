@@ -3,7 +3,7 @@
 #include "libccc/monad/array.h"
 
 
-
+_GENERIC()
 void	CONCAT(Array_T,_Insert)(s_array_T* array, T item, t_uint index)
 {
 	T*	result;

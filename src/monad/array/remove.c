@@ -3,7 +3,7 @@
 #include "libccc/monad/array.h"
 
 
-
+_GENERIC()
 void	CONCAT(Array_T,_Remove)(s_array_T* array, T item)
 {
 	t_sint	index = CONCAT(Array_T,_IndexOf)(array, item);
@@ -13,7 +13,7 @@ void	CONCAT(Array_T,_Remove)(s_array_T* array, T item)
 }
 
 
-
+_GENERIC()
 void	CONCAT(Array_T,_Remove_F)(s_array_T* array, T item, void (*delete)(T))
 {
 	t_sint	index = CONCAT(Array_T,_IndexOf)(array, item);

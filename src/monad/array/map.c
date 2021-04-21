@@ -3,7 +3,7 @@
 #include "libccc/monad/array.h"
 
 
-
+_GENERIC()
 s_array_T	CONCAT(Array_T,_Map)(s_array_T const* array, T (*map)(T item))
 {
 	s_array_T	result = {0};
@@ -25,7 +25,7 @@ s_array_T	CONCAT(Array_T,_Map)(s_array_T const* array, T (*map)(T item))
 }
 
 
-
+_GENERIC()
 s_array_T	CONCAT(Array_T,_Map_I)(s_array_T const* array, T (*map)(T item, t_uint index))
 {
 	s_array_T	result = {0};

@@ -2,7 +2,7 @@
 #include "libccc/monad/list.h"
 
 
-
+_GENERIC()
 t_uint	CONCAT(List_T,_Count)(s_list_T const* list, T item)
 {
 	t_uint	result = 0;

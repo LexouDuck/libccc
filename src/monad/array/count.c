@@ -2,7 +2,7 @@
 #include "libccc/monad/array.h"
 
 
-
+_GENERIC()
 t_uint	CONCAT(Array_T,_Count)(s_array_T const* array, T item)
 {
 	t_uint	result = 0;

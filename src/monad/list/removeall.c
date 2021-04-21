@@ -3,7 +3,7 @@
 #include "libccc/monad/list.h"
 
 
-
+_GENERIC()
 s_list_T*	CONCAT(List_T,_RemoveAll)(s_list_T* list, T item)
 {
 	s_list_T*	elem;
@@ -31,7 +31,7 @@ s_list_T*	CONCAT(List_T,_RemoveAll)(s_list_T* list, T item)
 }
 
 
-
+_GENERIC()
 s_list_T*	CONCAT(List_T,_RemoveAll_F)(s_list_T* list, T item, void (*delete)(T))
 {
 	s_list_T*	elem;

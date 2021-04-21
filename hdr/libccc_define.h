@@ -86,7 +86,7 @@ HEADER_CPP
 
 
 
-#if (defined(WIN32) || defined(WIN64) || defined(_WIN32) || defined(_MSC_VER) || defined(__SWIG__))
+#if (defined(_WIN32) || defined(_WIN64) || defined(_MSC_VER) || defined(__SWIG__))
 #ifndef __WINDOWS__
 #define __WINDOWS__	1 //!< Platform macro to check if the current environment is windows (regardless of compiler)
 #endif
@@ -101,14 +101,15 @@ HEADER_CPP
 	#else
 		#define _IS_32BIT	(1)	//!< If this is a 32-bit platform, then this is defined with value (1)
 	#endif
-#endif
+
 // Check GCC
-#if (__GNUC__)
+#elif (__GNUC__)
 	#if (__x86_64__ || __ppc64__)
 		#define _IS_64BIT	(1)	//!< If this is a 64-bit platform, then this is defined with value (1)
 	#else
 		#define _IS_32BIT	(1)	//!< If this is a 32-bit platform, then this is defined with value (1)
 	#endif
+
 #endif
 
 
@@ -183,7 +184,9 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-#if (defined(_MSC_VER) || defined(__SWIG__))
+#if (defined(__GNUC__) || defined(__llvm__))
+
+#elif (defined(_MSC_VER) || defined(__SWIG__))
 
 	#define __asm__			__asm
 	#define __inline__		__inline
@@ -193,14 +196,14 @@ HEADER_CPP
 	#define __alignof__(x)	_Alignof(x)
 
 #else
-	#ifndef __GNUC__
-		#define __asm__			asm
-		#define __inline__		inline
-		#define __restrict__	restrict
-		#define __nameof__(x)	nameof(x)
-		#define __typeof__(x)	typeof(x)
-		#define __alignof__(x)	alignof(x)
-	#endif
+
+	#define __asm__			asm
+	#define __inline__		inline
+	#define __restrict__	restrict
+	#define __nameof__(x)	nameof(x)
+	#define __typeof__(x)	typeof(x)
+	#define __alignof__(x)	alignof(x)
+
 #endif
 
 
@@ -211,20 +214,7 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-#if (defined(_MSC_VER) || defined(__SWIG__))
-
-	#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	
-	#define _ALIAS(FUNCTION)	define ALIAS	FUNCTION
-	#define _ALIGN(MINIMUM)		__declspec(align(MINIMUM))
-	#define _PURE()				__declspec(noalias)
-	#define _MALLOC()			__declspec(allocator)
-	#define _UNUSED()			__declspec(deprecated)
-	#define _INLINE()			inline
-	#define _NOINLINE()			__declspec(noinline)
-	#define _NORETURN()			__declspec(noreturn)
-	#define _PACKED()			__pragma(pack(push, 1))	__pragma(pack(pop))
-
-#else
+#if (defined(__GNUC__) || defined(__llvm__))
 
 	#if (defined(__MINGW32__) && !defined(__clang__))
 		//! Before a function def: make the compiler give warnings for a variadic-args function with a format string
@@ -243,7 +233,44 @@ HEADER_CPP
 	#define _NORETURN()			__attribute__((noreturn))			//!< Before a function def: indicates that it never returns (runs forever, and/or calls abort() or exit())
 	#define _PACKED()			__attribute__((packed))				//!< Before a struct/union def: do not perform byte-padding on this struct/union type
 
+#elif (defined(_MSC_VER) || defined(__SWIG__))
+
+	#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	
+	#define _ALIAS(FUNCTION)	define ALIAS	FUNCTION
+	#define _ALIGN(MINIMUM)		__declspec(align(MINIMUM))
+	#define _PURE()				__declspec(noalias)
+	#define _MALLOC()			__declspec(allocator)
+	#define _UNUSED()			__declspec(deprecated)
+	#define _INLINE()			inline
+	#define _NOINLINE()			__declspec(noinline)
+	#define _NORETURN()			__declspec(noreturn)
+	#define _PACKED()			__pragma(pack(push, 1))	__pragma(pack(pop))
+
+#else
+
+	#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	
+	#define _ALIAS(FUNCTION)	
+	#define _ALIGN(MINIMUM)		
+	#define _PURE()				
+	#define _MALLOC()			
+	#define _UNUSED()			
+	#define _INLINE()			
+	#define _NOINLINE()			
+	#define _NORETURN()			
+	#define _PACKED()			
+
 #endif
+
+
+
+//! This macro is used for generic-type functions, to perform DCE on unused functions
+/*!
+**	To be more precise, this macro is used when including a generic-type file
+**	(ie: the .c files located in `hdr/libccc/monad/`), to make all generic-type
+**	functions be declared as 'static', all the while suppressing the annoying
+**	'static function never used' warning, and still perform dead code elimination (DCE).
+*/
+#define _GENERIC()	
 
 
 

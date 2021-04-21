@@ -3,7 +3,7 @@
 #include "libccc/monad/list.h"
 
 
-
+_GENERIC()
 s_list_T*	CONCAT(List_T,_Item)(T item)
 {
 	s_list_T*	result;

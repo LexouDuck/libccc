@@ -5,7 +5,7 @@
 #include "libccc/monad/list.h"
 
 
-
+_GENERIC()
 s_list_T*	CONCAT(List_T,_New)(t_uint n, ...)
 {
 	va_list		list;

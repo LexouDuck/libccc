@@ -2,7 +2,7 @@
 #include "libccc/monad/list.h"
 
 
-
+_GENERIC()
 t_uint	CONCAT(List_T,_Length)(s_list_T const* lst)
 {
 	t_uint	result;

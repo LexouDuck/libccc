@@ -2,7 +2,7 @@
 #include "libccc/monad/array.h"
 
 
-
+_GENERIC()
 t_bool	CONCAT(Array_T,_Contains)(s_array_T const* array, T item)
 {
 #if LIBCONFIG_HANDLE_NULLPOINTERS

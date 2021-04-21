@@ -2,7 +2,7 @@
 #include "libccc/monad/list.h"
 
 
-
+_GENERIC()
 t_bool	CONCAT(List_T,_Equals)(s_list_T const* list1, s_list_T const* list2)
 {
 //#if LIBCONFIG_HANDLE_NULLPOINTERS
@@ -22,7 +22,7 @@ t_bool	CONCAT(List_T,_Equals)(s_list_T const* list1, s_list_T const* list2)
 }
 
 
-
+_GENERIC()
 t_bool	CONCAT(List_T,_Equals_N)(s_list_T const* list1, s_list_T const* list2, t_uint n)
 {
 //#if LIBCONFIG_HANDLE_NULLPOINTERS

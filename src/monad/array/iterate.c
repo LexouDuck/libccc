@@ -2,7 +2,7 @@
 #include "libccc/monad/array.h"
 
 
-
+_GENERIC()
 void	CONCAT(Array_T,_Iterate)(s_array_T* array, void (*f)(T item))
 {
 	t_uint i;
@@ -18,7 +18,7 @@ void	CONCAT(Array_T,_Iterate)(s_array_T* array, void (*f)(T item))
 }
 
 
-
+_GENERIC()
 void	CONCAT(Array_T,_Iterate_I)(s_array_T* array, void (*f)(T item, t_uint index))
 {
 	t_uint i;

@@ -4,6 +4,7 @@
 
 
 
+_GENERIC()
 void	CONCAT(Array_T,_Append)(s_array_T* array, T item)
 {
 	T*	result;

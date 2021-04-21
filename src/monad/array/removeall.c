@@ -3,7 +3,7 @@
 #include "libccc/monad/array.h"
 
 
-
+_GENERIC()
 void	CONCAT(Array_T,_RemoveAll)(s_array_T* array, T item)
 {
 	T*	result;
@@ -50,7 +50,7 @@ void	CONCAT(Array_T,_RemoveAll)(s_array_T* array, T item)
 }
 
 
-
+_GENERIC()
 void	CONCAT(Array_T,_RemoveAll_F)(s_array_T* array, T item, void (*delete)(T))
 {
 	T*	result;

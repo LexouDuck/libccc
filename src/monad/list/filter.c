@@ -2,7 +2,7 @@
 #include "libccc/monad/list.h"
 
 
-
+_GENERIC()
 s_list_T*	CONCAT(List_T,_Filter)(s_list_T const* list, t_bool (*filter)(T item))
 {
 	s_list_T*	result = NULL;
@@ -25,7 +25,7 @@ s_list_T*	CONCAT(List_T,_Filter)(s_list_T const* list, t_bool (*filter)(T item))
 }
 
 
-
+_GENERIC()
 s_list_T*	CONCAT(List_T,_Filter_I)(s_list_T const* list, t_bool (*filter)(T item, t_uint index))
 {
 	s_list_T*	result = NULL;

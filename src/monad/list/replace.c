@@ -2,7 +2,7 @@
 #include "libccc/monad/list.h"
 
 
-
+_GENERIC()
 s_list_T*	CONCAT(List_T,_Replace)(s_list_T const* list, T old, T new)
 {
 	s_list_T*	result = NULL;

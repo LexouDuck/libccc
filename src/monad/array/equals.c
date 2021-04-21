@@ -2,7 +2,7 @@
 #include "libccc/monad/array.h"
 
 
-
+_GENERIC()
 t_bool	CONCAT(Array_T,_Equals)(s_array_T const* array1, s_array_T const* array2)
 {
 //#if LIBCONFIG_HANDLE_NULLPOINTERS
@@ -21,7 +21,7 @@ t_bool	CONCAT(Array_T,_Equals)(s_array_T const* array1, s_array_T const* array2)
 }
 
 
-
+_GENERIC()
 t_bool	CONCAT(Array_T,_Equals_N)(s_array_T const* array1, s_array_T const* array2, t_uint n)
 {
 //#if LIBCONFIG_HANDLE_NULLPOINTERS

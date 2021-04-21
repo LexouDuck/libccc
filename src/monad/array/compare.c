@@ -3,6 +3,7 @@
 
 
 
+_GENERIC()
 t_sint	CONCAT(Array_T,_Compare)(s_array_T const* array1, s_array_T const* array2, t_sint (*compare)(T item1, T item2))
 {
 	t_sint	result;
@@ -26,6 +27,7 @@ t_sint	CONCAT(Array_T,_Compare)(s_array_T const* array1, s_array_T const* array2
 
 
 
+_GENERIC()
 t_sint	CONCAT(Array_T,_Compare_N)(s_array_T const* array1, s_array_T const* array2, t_sint (*compare)(T item1, T item2), t_uint n)
 {
 	t_sint	result;
