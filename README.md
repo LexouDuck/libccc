@@ -75,6 +75,14 @@ In general though, we recommend having the source code and compiling it yourself
 
 
 
+Documentation
+---
+The documentation for libccc is available at the following address: https://lexouduck.github.io/libccc/doc/html/index.html
+This documentation website is generated from special comments written directly within the code, so, as usual in C, it is recommended that you take a look at the .h header files located in the `hdr` folder of this repo.
+Thank you to Doxygen, Doxyrest, Sphinx, and GitHub Pages to make this auto-generated documentation work.
+
+
+
 Testing
 ---
 To ensure proper functionality of all these important functions in every edge case, a rather exhaustive testing suite program was implemented, which compares libccc functions to their stdlib ISO equivalent, wherever applicable (otherwise tests expect results that are manually written out and asserted).
