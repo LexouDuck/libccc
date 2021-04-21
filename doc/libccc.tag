@@ -4930,7 +4930,7 @@
       <type>LIBCONFIG_TYPE_UINT</type>
       <name>t_uint</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga0cbd23836133c29bed9a983fdff733c8</anchor>
+      <anchor>ga6192ce3fd8374a64d7e7f8af5d903f72</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
@@ -8002,6 +8002,2153 @@
       <anchorfile>group__libccc__memory.html</anchorfile>
       <anchor>ga68ede9e357bddc21ce6fa96d27173f5b</anchor>
       <arglist>(t_u64 value, t_u8 bit, t_u8 length)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>array.c</name>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/monad/</path>
+    <filename>array_8c.html</filename>
+    <includes id="array_8h" name="array.h" local="yes" imported="no">libccc/monad/array.h</includes>
+    <member kind="define">
+      <type>#define</type>
+      <name>_GENERIC</name>
+      <anchorfile>array_8c.html</anchorfile>
+      <anchor>acc41e7c2b8fb4fb74cb4a73ed65ce667</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>_GENERIC</name>
+      <anchorfile>array_8c.html</anchorfile>
+      <anchor>acc41e7c2b8fb4fb74cb4a73ed65ce667</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>array.h</name>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/monad/</path>
+    <filename>array_8h.html</filename>
+    <includes id="libccc_8h" name="libccc.h" local="yes" imported="no">libccc.h</includes>
+    <class kind="struct">s_array_T</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>T</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga0acb682b8260ab1c60b918599864e2e5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_NAME</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga19da2b67b058ddda4f4b0508f47ad6d2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_DEFAULT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga9b10f19a4f29fd2599888400adc48b0e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_EQUALS</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gab0de29dd51b2d0bc92d331eafb977751</anchor>
+      <arglist>(A, B)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>array_T</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga6a0e3e7f5a7840679407d6ef94a834b0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>s_array_T</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gab04320dc2c649d5804141ff10a67643a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrnew</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga2f78cbe4996fd26c54e54b87f615d99a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrdel</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga205f434703201c3da0b3c5c8993240a0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrdup</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gaa4fccecbbf6061d3ae764f034c38c94c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrget</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gaed8ee86ad02723bbffbb5509a0ff68c6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrset</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga57cc573308bc57293b62dd97dd6448c8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrcpy</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gab35416e4e45fa2faeddbf6c1a80411d7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrsub</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga52476a735f999524ab651c39060d258b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrappend</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga311429281a101397f92748ad5e8110d3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrprepend</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga00bbcf2f8fba5de7f51ed7b43d6211bd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrinsert</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gab7177668a0cbb447cfbf42a20ae5dbdd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrdelone</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga61ba7b3a4c2a777367078dadadd7c0b8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrdfelone</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga57fdc2221e58f4df684223154d67659e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrdelall</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga9faaef91545f997b0955349b23469f91</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrdfelall</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga1c9e58aec9c269e91beb83c9972f72d0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrdelat</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga628fc8135f234dcb537544aafa2b6dfe</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrfdelat</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gaaa3a949be3c1d02fe4323b891622560c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrrep</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga2d52ab1f3d46e3b6e9a277fc10e9484a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrreplace</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga065572b7e4763d422a61940079f33137</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrfind</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga620847417378dd075c4f37f6390a75d5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrffind</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gaaabbee1de831fde18782ba6b1f79f460</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrfindi</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga6758e216ef9cc0e5a82f369fd9b46387</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrffindi</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga92cd100543681b36616bd69d1238569a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrcount</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga2c108611b284c6f90d3a3a7133aaf286</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrcontains</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gae71b9c8bf4fa1d500ab19de2b0cc1bdc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrhas</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gaf14cea5566b9527a30eea63bce0239bb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrhasonly</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga5b5680a3e6a7dcf0ae2280434e902004</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrequ</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gac06e445303e402aa8497684e73cb65df</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrnequ</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga9ca0c0adcb1b59903e48e21733a855e2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrcmp</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga4328b6409a550f46107ad8d7c82aaa84</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrncmp</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gaa82ee709a3cd63945f4918c620362fd6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arriter</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga34271589388611bbce68e1c2bcf4924f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arriteri</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga60ea498080422c2330508b7c039bbd81</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrmap</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga378d6dd59554a10bec2f88cb8dcf0509</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrmapi</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga147bce21803519aceee58043af4e1ce8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrfilt</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga07394f3de24c4db0201627be86d391c0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrfilti</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga5af7f8f82bb8371d94c44c519205302b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>s_array_T</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga2daa0f9af49b44d4d093e28a218ce376</anchor>
+      <arglist>(Array_New, T_NAME)(t_uint n</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga1c1db7f9e77db53cd8ffa1961c432b3a</anchor>
+      <arglist>(Array_Delete, T_NAME)(s_array_T *array)</arglist>
+    </member>
+    <member kind="function">
+      <type>s_array_T</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga733df759af6ee8b42dee4db05125c7c5</anchor>
+      <arglist>(Array_Duplicate, T_NAME)(s_array_T const *array)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga7229dc13ba07f9c03780f8c51c4a4afd</anchor>
+      <arglist>(Array_Get, T_NAME)(s_array_T const *array</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gaab1aeb6372e17ef30260ad6531142c84</anchor>
+      <arglist>(Array_Set, T_NAME)(s_array_T *array</arglist>
+    </member>
+    <member kind="function">
+      <type>s_array_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gaabe8d67812a95fccc39a784b43f5023a</anchor>
+      <arglist>(Array_Copy, T_NAME)(s_array_T *dest</arglist>
+    </member>
+    <member kind="function">
+      <type>s_array_T</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga6fbefc81e5620e1b242bf650dc2075a3</anchor>
+      <arglist>(Array_Sub, T_NAME)(s_array_T const *array</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gad9a5a60b5d366b744606730674c2d70a</anchor>
+      <arglist>(Array_Append, T_NAME)(s_array_T *array</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga09affd92d0f4202e621acb3bddfc1749</anchor>
+      <arglist>(Array_Prepend, T_NAME)(s_array_T *array</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gad34e4b5f02eed37130e1bcf715d22fee</anchor>
+      <arglist>(Array_Insert, T_NAME)(s_array_T *array</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gab0f40dfb14514cdf6525d515e179966e</anchor>
+      <arglist>(Array_Remove, T_NAME)(s_array_T *array</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gaead45d60ade5ed0ca9d076feee8f891b</anchor>
+      <arglist>(Array_Remove_F, T_NAME)(s_array_T *array</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga71dc65d34aa89494eb2174b2e429acfe</anchor>
+      <arglist>(Array_RemoveAll, T_NAME)(s_array_T *array</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga9a46fcd3c5aa058721f010b87b690fa7</anchor>
+      <arglist>(Array_RemoveAll_F, T_NAME)(s_array_T *array</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gae70e63a6f77b5156bda4064ad1941b51</anchor>
+      <arglist>(Array_RemoveAt, T_NAME)(s_array_T *array</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga5453e53c568dfe0603e0f2a5805d66bf</anchor>
+      <arglist>(Array_RemoveAt_F, T_NAME)(s_array_T *array</arglist>
+    </member>
+    <member kind="function">
+      <type>s_array_T</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga5a5d51dfc66895d7e14660b9c51cf049</anchor>
+      <arglist>(Array_Replace, T_NAME)(s_array_T const *array</arglist>
+    </member>
+    <member kind="function">
+      <type>T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gabd301c3ec89f8c64259c7f2966a9d505</anchor>
+      <arglist>(Array_Find, T_NAME)(s_array_T const *array</arglist>
+    </member>
+    <member kind="function">
+      <type>T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gadc535db313ab2ccadcdd88902d5384aa</anchor>
+      <arglist>(Array_Find_F, T_NAME)(s_array_T const *array</arglist>
+    </member>
+    <member kind="function">
+      <type>t_sint</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga1cf571156a651f038363390d8ff9c710</anchor>
+      <arglist>(Array_IndexOf, T_NAME)(s_array_T const *array</arglist>
+    </member>
+    <member kind="function">
+      <type>t_sint</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga77c174f7eaadee8ec307bada60f83412</anchor>
+      <arglist>(Array_IndexOf_F, T_NAME)(s_array_T const *array</arglist>
+    </member>
+    <member kind="function">
+      <type>t_uint</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga28e3ce2c6e52754ee54603504ef1a27c</anchor>
+      <arglist>(Array_Count, T_NAME)(s_array_T const *array</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga68f24464ab9bf29d4d350e1848c23110</anchor>
+      <arglist>(Array_Contains, T_NAME)(s_array_T const *array</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga4b6b1ee8f7f045fd0e1025b1bb90d9cf</anchor>
+      <arglist>(Array_Has, T_NAME)(s_array_T const *array</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gadea4e2eae45baed314ed5e540c3509a3</anchor>
+      <arglist>(Array_HasOnly, T_NAME)(s_array_T const *array</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga6e36fe388eaf7ba3f50c2345408e6f24</anchor>
+      <arglist>(Array_Equals, T_NAME)(s_array_T const *array1</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga88475f544dfa9697380a2a18fae7baa7</anchor>
+      <arglist>(Array_Equals_N, T_NAME)(s_array_T const *array1</arglist>
+    </member>
+    <member kind="function">
+      <type>t_sint</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga97eb6e9f88ce8d1bc954f546d4a0e5f9</anchor>
+      <arglist>(Array_Compare, T_NAME)(s_array_T const *array1</arglist>
+    </member>
+    <member kind="function">
+      <type>t_sint</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga641cc87de2503c3df8717e55d2ad5126</anchor>
+      <arglist>(Array_Compare_N, T_NAME)(s_array_T const *array1</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga614e9f020479053a211ddc6200bbfc1b</anchor>
+      <arglist>(Array_Iterate, T_NAME)(s_array_T *array</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga6e12a4cf587dc0fedb16bc27ddffc7de</anchor>
+      <arglist>(Array_Iterate_I, T_NAME)(s_array_T *array</arglist>
+    </member>
+    <member kind="function">
+      <type>s_array_T</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gaca3f7a729ce4cac26af3412b1aaf2f71</anchor>
+      <arglist>(Array_Map, T_NAME)(s_array_T const *array</arglist>
+    </member>
+    <member kind="function">
+      <type>s_array_T</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gad7542472dc74cfedc03f15732e84e1bf</anchor>
+      <arglist>(Array_Map_I, T_NAME)(s_array_T const *array</arglist>
+    </member>
+    <member kind="function">
+      <type>s_array_T</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga2c6f75494658bba8b85fce8d94e4c2bf</anchor>
+      <arglist>(Array_Filter, T_NAME)(s_array_T const *array</arglist>
+    </member>
+    <member kind="function">
+      <type>s_array_T</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gabd7d5b7d94c13ef645914f6b3c74f31b</anchor>
+      <arglist>(Array_Filter_I, T_NAME)(s_array_T const *array</arglist>
+    </member>
+    <member kind="variable">
+      <type>T t_uint</type>
+      <name>index</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga118b063fa79e87510e08ffae4cedd0d7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>void t_uint T</type>
+      <name>item</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gad51a845d2820ab29b21da4275135465a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>s_array_T s_array_T const  *</type>
+      <name>src</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga923a8674f86b178d1b91246e8a2af7ca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>s_array_T s_array_T const t_uint</type>
+      <name>n</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga2df83d615503639597265ea34f40b086</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>void T void(*</type>
+      <name>delete</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gadeb683203bb6b1d9d9e7e2879f3c88ec</anchor>
+      <arglist>)(T))</arglist>
+    </member>
+    <member kind="variable">
+      <type>s_array_T T</type>
+      <name>old</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gab50d4195560a1f886dfa4b17c8b98beb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>s_array_T T T</type>
+      <name>new</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga04daaa27f4bb7cc47117a3ab7e5cd1be</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>T t_bool(*</type>
+      <name>match</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga3dee764b4cf540a9e7d82e4e482400de</anchor>
+      <arglist>)(T item))</arglist>
+    </member>
+    <member kind="variable">
+      <type>t_bool s_array_T const  *</type>
+      <name>target</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga32ab468f2c1d30e0ff71befc9f671d00</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>t_bool s_array_T const  *</type>
+      <name>array2</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gae76352e437f12415b672ed2c1fc796eb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>t_sint s_array_T const t_sint(*</type>
+      <name>compare</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gaa5106bc9e026c69893b7f1a67f90b66b</anchor>
+      <arglist>)(T item1, T item2))</arglist>
+    </member>
+    <member kind="variable">
+      <type>void void(*</type>
+      <name>f</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga0c7fda132b781f492b9661c63664a5e8</anchor>
+      <arglist>)(T item))</arglist>
+    </member>
+    <member kind="variable">
+      <type>s_array_T T(*</type>
+      <name>map</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga172f4747e38b077d5bbed0b12d658024</anchor>
+      <arglist>)(T item))</arglist>
+    </member>
+    <member kind="variable">
+      <type>s_array_T t_bool(*</type>
+      <name>filter</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga73a0f7a8c342447cc4f867bee374908b</anchor>
+      <arglist>)(T item))</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>convert.h</name>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/monad/</path>
+    <filename>convert_8h.html</filename>
+    <includes id="libccc_8h" name="libccc.h" local="yes" imported="no">libccc.h</includes>
+    <includes id="array_8h" name="array.h" local="yes" imported="no">libccc/monad/array.h</includes>
+    <includes id="list_8h" name="list.h" local="yes" imported="no">libccc/monad/list.h</includes>
+    <includes id="dict_8h" name="dict.h" local="yes" imported="no">libccc/monad/dict.h</includes>
+    <includes id="tree_8h" name="tree.h" local="yes" imported="no">libccc/monad/tree.h</includes>
+    <includes id="object_8h" name="object.h" local="yes" imported="no">libccc/monad/object.h</includes>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lst_to_array</name>
+      <anchorfile>group__libccc__monad__convert.html</anchorfile>
+      <anchor>ga18d05db4a8d68b46d2c9f4b8c4538cca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lst_to_ptrarr</name>
+      <anchorfile>group__libccc__monad__convert.html</anchorfile>
+      <anchor>ga4a224d0ab89c926791ff25a7bccb9efb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>s_array</type>
+      <name>List_To_Array</name>
+      <anchorfile>group__libccc__monad__convert.html</anchorfile>
+      <anchor>gae12971650af168aeabf56442634085f4</anchor>
+      <arglist>(s_list const **a_lst)</arglist>
+    </member>
+    <member kind="function">
+      <type>void **</type>
+      <name>List_To_PointerArray</name>
+      <anchorfile>group__libccc__monad__convert.html</anchorfile>
+      <anchor>ga1cff54299b6f5ea2b6dd3ae21d822dd8</anchor>
+      <arglist>(s_list const **a_lst)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>dict.c</name>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/monad/</path>
+    <filename>dict_8c.html</filename>
+    <includes id="dict_8h" name="dict.h" local="yes" imported="no">libccc/monad/dict.h</includes>
+    <member kind="define">
+      <type>#define</type>
+      <name>_GENERIC</name>
+      <anchorfile>dict_8c.html</anchorfile>
+      <anchor>acc41e7c2b8fb4fb74cb4a73ed65ce667</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>_GENERIC</name>
+      <anchorfile>dict_8c.html</anchorfile>
+      <anchor>acc41e7c2b8fb4fb74cb4a73ed65ce667</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>dict.h</name>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/monad/</path>
+    <filename>dict_8h.html</filename>
+    <includes id="libccc_8h" name="libccc.h" local="yes" imported="no">libccc.h</includes>
+    <includes id="keyval_8h" name="keyval.h" local="yes" imported="no">libccc/monad/keyval.h</includes>
+    <class kind="struct">s_dict_T</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>T</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga0acb682b8260ab1c60b918599864e2e5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_NAME</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga19da2b67b058ddda4f4b0508f47ad6d2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_DEFAULT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga9b10f19a4f29fd2599888400adc48b0e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_EQUALS</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>gab0de29dd51b2d0bc92d331eafb977751</anchor>
+      <arglist>(A, B)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>dict_T</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga26591b844c5145d6be2f6dacb90b01aa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>s_dict_T</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>gadd58f8547d0b1690b2640118fa46213f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>s_dict_T</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga3330aee85f2eb047b5acda76deda1419</anchor>
+      <arglist>(Dict_New, T_NAME)(t_uint n</arglist>
+    </member>
+    <member kind="function">
+      <type>s_dict_T void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>gaebddc37ba2732970498d51311145b7f2</anchor>
+      <arglist>(Dict_Delete, T_NAME)(s_dict_T *dict)</arglist>
+    </member>
+    <member kind="function">
+      <type>s_dict_T</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga8d46fb116a514c2497c2337b1f539aa0</anchor>
+      <arglist>(Dict_Duplicate, T_NAME)(s_dict_T *dict)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>gaf3ce3ba427cbdfab48e241d04b291d6d</anchor>
+      <arglist>(Dict_Get, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga7f870c0d388b3b4c9bb91575cf944a37</anchor>
+      <arglist>(Dict_Set, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga5ed67d9b9e8ec0a3eb0ad1c8c4ce5f7e</anchor>
+      <arglist>(Dict_Copy, T_NAME)(s_dict_T *dest</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga1ee3acb16576ae39fb848142c91833ed</anchor>
+      <arglist>(Dict_Sub, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>s_keyval_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga5b506a179b6309e82581461c5b27b2b2</anchor>
+      <arglist>(Dict_Add, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga45ff157cabef6f56f1ff370904221137</anchor>
+      <arglist>(Dict_Remove, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga21ada8d2b5b7d64a36683d8381bf64fa</anchor>
+      <arglist>(Dict_Remove_F, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>gaab79e4ca880f00e9c57bc974215ab1ea</anchor>
+      <arglist>(Dict_RemoveAll, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga929b6f714e593bf9e6e418f85fbf2b63</anchor>
+      <arglist>(Dict_RemoveAll_F, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga43ccb84e6989446e8bbaa8434845755d</anchor>
+      <arglist>(Dict_RemoveMatch, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga73c2edbe6f8b140f4c33dced93788975</anchor>
+      <arglist>(Dict_RemoveMatch_F, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>gac209008f1180e9a74981fa5f52c9b1db</anchor>
+      <arglist>(Dict_RemoveMatches, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>gaeda7aa798b08a7d1a691b9c1cfc1197c</anchor>
+      <arglist>(Dict_RemoveMatches_F, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga66637b060dd3e9ad65610be480dc74d8</anchor>
+      <arglist>(Dict_Replace, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>char *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga04724aa56b2179c882ca66a187ce3018</anchor>
+      <arglist>(Dict_KeyOf, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>s_keyval_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>gafe4485bf50c316ad6cdbc62220bc320c</anchor>
+      <arglist>(Dict_Find, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>s_keyval_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>gad4e12300305f308e2d121cbf3b0a3fa9</anchor>
+      <arglist>(Dict_Find_F, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>t_uint</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga8c42dfc6adbc9a478acd38392c564b67</anchor>
+      <arglist>(Dict_Count, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>gaf82c078878a43d571a819b20c35c5298</anchor>
+      <arglist>(Dict_Contains, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga2e7f9b3f2fa87e37986ed8fd175debe0</anchor>
+      <arglist>(Dict_Has, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga3e2dd3c9ae5cce01bd11a70411fd3436</anchor>
+      <arglist>(Dict_HasOnly, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga16204b17e7ddcaa193d082c15fc8407c</anchor>
+      <arglist>(Dict_Equals, T_NAME)(s_dict_T *dict1</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>gadbc5acb87fc8fd71d025710f1103371d</anchor>
+      <arglist>(Dict_Equals_K, T_NAME)(s_dict_T *dict1</arglist>
+    </member>
+    <member kind="function">
+      <type>t_sint</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga56fae8e7b11f3e1f570999c73cfc6d9d</anchor>
+      <arglist>(Dict_Compare, T_NAME)(s_dict_T *dict1</arglist>
+    </member>
+    <member kind="function">
+      <type>t_sint</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga923e3606a66224f4c1a3501b17153803</anchor>
+      <arglist>(Dict_Compare_K, T_NAME)(s_dict_T *dict1</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga6277b43d07b7af3f3ed525202bdccf47</anchor>
+      <arglist>(Dict_Iterate, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga7d923068f9aba27aec7ab7f081b54722</anchor>
+      <arglist>(Dict_Iterate_I, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>s_dict_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga76ea2aff662a4b24d243f7a15efe6360</anchor>
+      <arglist>(Dict_Map, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>s_dict_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga9a470259d05a63040f14c76ee49d4a87</anchor>
+      <arglist>(Dict_Map_I, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>s_dict_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga6345ee85905ce7fc896630f6eac63cf7</anchor>
+      <arglist>(Dict_Filter, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>s_dict_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>gaec8ddf4ca0b2c42a8d36b226acb7fa19</anchor>
+      <arglist>(Dict_Filter_I, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="variable">
+      <type>void char *</type>
+      <name>key</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga068d0a9a48ceee9929604d1c8330bdfa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>void char T</type>
+      <name>value</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>gaf30118244e81393df07e8fcc56888d15</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>void s_dict_T const  *</type>
+      <name>src</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>gaa0656d19ee14d8f1c0871d3c007dd177</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>void s_dict_T const char **</type>
+      <name>keys</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>gaf92135163cf1226bb2d4579dfa3363ce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>void char void(*</type>
+      <name>delete</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga1319c4e620d77677bab6d623b4086e0f</anchor>
+      <arglist>)(s_keyval_T *keyval))</arglist>
+    </member>
+    <member kind="variable">
+      <type>void char s_keyval_T</type>
+      <name>new</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga3420daf9f560ad029e44fe44be3cb985</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>s_keyval_T t_bool(*</type>
+      <name>match</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>gadebfdedc1840aea73e66e27db430e681</anchor>
+      <arglist>)(s_keyval_T value))</arglist>
+    </member>
+    <member kind="variable">
+      <type>t_bool s_dict_T *</type>
+      <name>target</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga5ce4462ba79b122654b0b018161e4bd7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>t_bool s_dict_T *</type>
+      <name>dict2</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga9ac95bf714b51c630af46f195b968c87</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>t_sint s_dict_T t_sint(*</type>
+      <name>compare</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga60ae164bbe7ad86011c6da1a7ff3d6de</anchor>
+      <arglist>)(s_keyval_T item1, s_keyval_T item2))</arglist>
+    </member>
+    <member kind="variable">
+      <type>void void(*</type>
+      <name>f</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga5b8aa847e02fe377ccec18c063110e21</anchor>
+      <arglist>)(s_keyval_T item))</arglist>
+    </member>
+    <member kind="variable">
+      <type>s_dict_T s_keyval_T(*</type>
+      <name>map</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga0e6f167db27abc6178c501349579c38e</anchor>
+      <arglist>)(s_keyval_T item))</arglist>
+    </member>
+    <member kind="variable">
+      <type>s_dict_T t_bool(*</type>
+      <name>filter</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>gae40efe46a05976499fd1774983d5c043</anchor>
+      <arglist>)(s_keyval_T item))</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>keyval.c</name>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/monad/</path>
+    <filename>keyval_8c.html</filename>
+    <includes id="keyval_8h" name="keyval.h" local="yes" imported="no">libccc/monad/keyval.h</includes>
+    <member kind="define">
+      <type>#define</type>
+      <name>_GENERIC</name>
+      <anchorfile>keyval_8c.html</anchorfile>
+      <anchor>acc41e7c2b8fb4fb74cb4a73ed65ce667</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>_GENERIC</name>
+      <anchorfile>keyval_8c.html</anchorfile>
+      <anchor>acc41e7c2b8fb4fb74cb4a73ed65ce667</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>keyval.h</name>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/monad/</path>
+    <filename>keyval_8h.html</filename>
+    <includes id="libccc_8h" name="libccc.h" local="yes" imported="no">libccc.h</includes>
+    <class kind="struct">s_keyval_T</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>T</name>
+      <anchorfile>group__libccc__monad__keyval.html</anchorfile>
+      <anchor>ga0acb682b8260ab1c60b918599864e2e5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_NAME</name>
+      <anchorfile>group__libccc__monad__keyval.html</anchorfile>
+      <anchor>ga19da2b67b058ddda4f4b0508f47ad6d2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_DEFAULT</name>
+      <anchorfile>group__libccc__monad__keyval.html</anchorfile>
+      <anchor>ga9b10f19a4f29fd2599888400adc48b0e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_EQUALS</name>
+      <anchorfile>group__libccc__monad__keyval.html</anchorfile>
+      <anchor>gab0de29dd51b2d0bc92d331eafb977751</anchor>
+      <arglist>(A, B)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>keyval_T</name>
+      <anchorfile>group__libccc__monad__keyval.html</anchorfile>
+      <anchor>ga5d9a4dc6a791c061ff3b35ddaf77298d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>s_keyval_T</name>
+      <anchorfile>group__libccc__monad__keyval.html</anchorfile>
+      <anchor>ga24085b8571076eb54a487f9a2b5bea11</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>list.c</name>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/monad/</path>
+    <filename>list_8c.html</filename>
+    <includes id="list_8h" name="list.h" local="yes" imported="no">libccc/monad/list.h</includes>
+    <member kind="define">
+      <type>#define</type>
+      <name>_GENERIC</name>
+      <anchorfile>list_8c.html</anchorfile>
+      <anchor>acc41e7c2b8fb4fb74cb4a73ed65ce667</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>_GENERIC</name>
+      <anchorfile>list_8c.html</anchorfile>
+      <anchor>acc41e7c2b8fb4fb74cb4a73ed65ce667</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>list.h</name>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/monad/</path>
+    <filename>list_8h.html</filename>
+    <includes id="libccc_8h" name="libccc.h" local="yes" imported="no">libccc.h</includes>
+    <class kind="struct">s_list_T</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>T</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga0acb682b8260ab1c60b918599864e2e5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_NAME</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga19da2b67b058ddda4f4b0508f47ad6d2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_DEFAULT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga9b10f19a4f29fd2599888400adc48b0e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_EQUALS</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gab0de29dd51b2d0bc92d331eafb977751</anchor>
+      <arglist>(A, B)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>list_T</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gac05b3fb8be78c632e165022f7361611f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>s_list_T</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga69a2f7c6dbcffa48a919fb9ce067786d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstitem</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga8a2ce14746075873666ba0725de08276</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstlen</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga9d4ab54e36d2112ec1867fccb6d220e8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstnew</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gaa4d6bb03e8c0379e4129e27e00314104</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstdel</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga259753b29a955dc737b4009290d8349e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstdup</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga433baf1dd75f5d167bf37576d3a68367</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstget</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gad2204d5b53116494577d119d81202865</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstset</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga623d561857f6b465260b22cd35412e72</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstcpy</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gadced3439e23263522832df6897d72d6f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstsub</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga84d7e4fcbec301f8c60ca8150b1713b0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstappend</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gab603d28cc0b1c0d70032f7594e62d385</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstprepend</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gac2824f9e6bc4099ff10ce77114817260</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstinsert</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga1ef782abc54b335299665cc7ea547316</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstdelone</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga1ea89a50527607df8a87a6f14690d8ff</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstfdelone</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gac71147f0ac41e6475949df02c093c175</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstdelall</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga9f99edabc579ca502c772d5e30f6c372</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstfdelall</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga9d4167202ccff5627a57afd180777f51</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstdelat</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga07ce23ae1ec84fd136fc8e7b847c18f7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstfdelat</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga4dbb4703882932834d30217d7d4666b5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstrep</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gafcbb57c4315a9ecb8eeb157a5d03dbda</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstreplace</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga20a98e777f26cbaf9fe3159cdb5b9093</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstfind</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga91c898febcaf2858183de7300b5c3857</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstffind</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga40776cfdf21d573240ebf7eec764017b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstfindi</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga003f06d0d0150a6327d491f9804c9887</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstffindi</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga3ffb47cf051807ce39041daaac1526dc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstcount</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gab003aa0c855ae0c39842b56ff58230b4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstcontains</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gae6e114e1b887ea00c3b0a43ef0d980f4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lsthas</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga414111dfbedcddfa925d764b4fbdd1e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lsthasonly</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga576fbb3ec8b2d433e039c705b211984e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstequ</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gafd3600c59880daf73862446925cd6c15</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstnequ</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga61009659299e7b98ca287d5a0666b618</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstcmp</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gac2204e128c04cd69f38940a8ae6a4dfb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstncmp</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gaf002c7c93979611c586271ceef0d51e0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstiter</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gac47e00164f8151d5e0167006b648726c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstiteri</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga872b980e56f3ee5c496286d317b80d8d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstmap</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga3eb81656326de4cdadb2d1333450de1e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstmapi</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga06444dff027555000e2af8bc673f37ab</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstfilt</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga08fd1f3d28a5a5f4a7ec52a238a71293</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstfilti</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga47c242260ec71e31a9dc153464f30200</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gaf4f535298ccbc3e4ab17f40328933ab8</anchor>
+      <arglist>(List_Item, T_NAME)(T item)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_uint</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga169d7dc1a0dd08809d2c1d459329d645</anchor>
+      <arglist>(List_Length, T_NAME)(s_list_T const *list)</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gaf718acf47a863e06d40022c586df8ee6</anchor>
+      <arglist>(List_New, T_NAME)(t_uint n</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga7dd7060e97d90796aee11fb9f9772819</anchor>
+      <arglist>(List_Delete, T_NAME)(s_list_T **a_list)</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gae48ec438089b762c7332c695c8f1d89e</anchor>
+      <arglist>(List_Duplicate, T_NAME)(s_list_T const *list)</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gabebb4d4a30fde26ce0cc2b9b4a849eda</anchor>
+      <arglist>(List_Get, T_NAME)(s_list_T const *list</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga95d149ae2fa70baf1a9bb70dbfba3e24</anchor>
+      <arglist>(List_Set, T_NAME)(s_list_T *list</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gacb7636015a990d056e5fd7160d52872a</anchor>
+      <arglist>(List_Copy, T_NAME)(s_list_T *dest</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga57f1a4780a509f40bf15112f5f61d552</anchor>
+      <arglist>(List_Sub, T_NAME)(s_list_T const *list</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gadec7646ee3fd2d9808b5855489b0f0af</anchor>
+      <arglist>(List_Append, T_NAME)(s_list_T *list</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gae1a0621b778fa75af39ba4d566aab84d</anchor>
+      <arglist>(List_Prepend, T_NAME)(s_list_T *list</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gaeb04cb864c5fa99a042795650a75dfaa</anchor>
+      <arglist>(List_Insert, T_NAME)(s_list_T *list</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga857a98dff27cb39b76beb6cc1eaf15ad</anchor>
+      <arglist>(List_Remove, T_NAME)(s_list_T *list</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga77758e678506e600ec798477b13b7a2d</anchor>
+      <arglist>(List_Remove_F, T_NAME)(s_list_T *list</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga53fd1293556b2426a210f089eaac05ad</anchor>
+      <arglist>(List_RemoveAll, T_NAME)(s_list_T *list</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga8860770c9016f088b0806612ba54e8b2</anchor>
+      <arglist>(List_RemoveAll_F, T_NAME)(s_list_T *list</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gaac41c7c2adcbc86285062b77e2f91936</anchor>
+      <arglist>(List_RemoveAt, T_NAME)(s_list_T *list</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gacedb3738549df507f779062ea5c8807f</anchor>
+      <arglist>(List_RemoveAt_F, T_NAME)(s_list_T *list</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga09c8b8082300a472620f615769d76ba2</anchor>
+      <arglist>(List_Replace, T_NAME)(s_list_T const *list</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T const  *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gafc091db1ccee4e26c5ac01b9cecbf470</anchor>
+      <arglist>(List_Find, T_NAME)(s_list_T const *list</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T const  *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga91eaebff96ec180c847f8f7930283783</anchor>
+      <arglist>(List_Find_F, T_NAME)(s_list_T const *list</arglist>
+    </member>
+    <member kind="function">
+      <type>t_sint</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga5169a04d98bfd04fc09c1a761a32f10c</anchor>
+      <arglist>(List_IndexOf, T_NAME)(s_list_T const *list</arglist>
+    </member>
+    <member kind="function">
+      <type>t_sint</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gabf4424d88427703317c8931f1c27f263</anchor>
+      <arglist>(List_IndexOf_F, T_NAME)(s_list_T const *list</arglist>
+    </member>
+    <member kind="function">
+      <type>t_uint</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga1513fb438a068de52529e0d4d0079ae3</anchor>
+      <arglist>(List_Count, T_NAME)(s_list_T const *list</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga62d6ccb57dcc66f885eaa5c2c6791a0e</anchor>
+      <arglist>(List_Contains, T_NAME)(s_list_T const *list</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gaedfe8ec3241cc561ea2faeb365dd8f81</anchor>
+      <arglist>(List_Has, T_NAME)(s_list_T const *list</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga33f941e6a64c03ee954f2e15af50f8e1</anchor>
+      <arglist>(List_HasOnly, T_NAME)(s_list_T const *list</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga0d88db6b4ca2a88b8551b63b316931dc</anchor>
+      <arglist>(List_Equals, T_NAME)(s_list_T const *list1</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga45f13224a1e004fe18560fd7e2953c71</anchor>
+      <arglist>(List_Equals_N, T_NAME)(s_list_T const *list1</arglist>
+    </member>
+    <member kind="function">
+      <type>t_sint</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga3163423e75e2d16560e0236a23d02d09</anchor>
+      <arglist>(List_Compare, T_NAME)(s_list_T const *list1</arglist>
+    </member>
+    <member kind="function">
+      <type>t_sint</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga230d50199a60bd0b2cc4ed3cbf9ac5f4</anchor>
+      <arglist>(List_Compare_N, T_NAME)(s_list_T const *list1</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga419f420d728ee32e0f66257e1f0f4716</anchor>
+      <arglist>(List_Iterate, T_NAME)(s_list_T *list</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gaadb42db6f1612e2b8fe18d616b97f2d3</anchor>
+      <arglist>(List_Iterate_I, T_NAME)(s_list_T *list</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gac6b6a2002023336ca053151751b856e1</anchor>
+      <arglist>(List_Map, T_NAME)(s_list_T const *list</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gaa986ae42ed2a0c6bd5a20d91e5cdca18</anchor>
+      <arglist>(List_Map_I, T_NAME)(s_list_T const *list</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga4c56a97e85b1203a24a41a940c5cd8fa</anchor>
+      <arglist>(List_Filter, T_NAME)(s_list_T const *list</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gaf4fa3ede0a1c06c8248792c93c2e3fed</anchor>
+      <arglist>(List_Filter_I, T_NAME)(s_list_T const *list</arglist>
+    </member>
+    <member kind="variable">
+      <type>s_list_T t_uint</type>
+      <name>index</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga118b063fa79e87510e08ffae4cedd0d7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>s_list_T t_uint T</type>
+      <name>item</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gad51a845d2820ab29b21da4275135465a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>s_list_T s_list_T const  *</type>
+      <name>src</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gabd1e531b2febb7c70cff46fda5a54b20</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>s_list_T s_list_T const t_uint</type>
+      <name>n</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gafad59d899c7ec4da2df8afb3dff61f1f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>s_list_T s_list_T *</type>
+      <name>elem</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gaacd7b39c3abfc9b3fa05f5328dd70369</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>s_list_T T void(*</type>
+      <name>delete</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga2bbe6c8321fe778d2f0ee0e90261f83b</anchor>
+      <arglist>)(T))</arglist>
+    </member>
+    <member kind="variable">
+      <type>s_list_T T</type>
+      <name>old</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga55a923f3274ee0245fed109cc2eebf0d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>s_list_T T T</type>
+      <name>new</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gac4118ff80a02d9b196852fcb165972eb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>s_list_T const t_bool(*</type>
+      <name>match</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gae7459379a876a8dbc3c8c51547751b5a</anchor>
+      <arglist>)(T item))</arglist>
+    </member>
+    <member kind="variable">
+      <type>t_bool s_list_T const  *</type>
+      <name>target</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gaa61506197ad43a6039c9bc4c534a7fb0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>t_bool s_list_T const  *</type>
+      <name>list2</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga07f98d2f29b7849bf7ec6768b5783090</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>t_sint s_list_T const t_sint(*</type>
+      <name>compare</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gaf0d09780b3d82821305a773b82052774</anchor>
+      <arglist>)(T item1, T item2))</arglist>
+    </member>
+    <member kind="variable">
+      <type>void void(*</type>
+      <name>f</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga9bfae40d84e31566188f46450b4f114b</anchor>
+      <arglist>)(T item))</arglist>
+    </member>
+    <member kind="variable">
+      <type>s_list_T T(*</type>
+      <name>map</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga289623a988abc2b1c3b1e1fd23a07b28</anchor>
+      <arglist>)(T item))</arglist>
+    </member>
+    <member kind="variable">
+      <type>s_list_T t_bool(*</type>
+      <name>filter</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga65d4dcb09c5a042a1b70861d4efd83c5</anchor>
+      <arglist>)(T item))</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>object.c</name>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/monad/</path>
+    <filename>object_8c.html</filename>
+    <includes id="object_8h" name="object.h" local="yes" imported="no">libccc/monad/object.h</includes>
+    <member kind="define">
+      <type>#define</type>
+      <name>_GENERIC</name>
+      <anchorfile>object_8c.html</anchorfile>
+      <anchor>acc41e7c2b8fb4fb74cb4a73ed65ce667</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>_GENERIC</name>
+      <anchorfile>object_8c.html</anchorfile>
+      <anchor>acc41e7c2b8fb4fb74cb4a73ed65ce667</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>object.h</name>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/monad/</path>
+    <filename>object_8h.html</filename>
+    <includes id="libccc_8h" name="libccc.h" local="yes" imported="no">libccc.h</includes>
+    <includes id="keyval_8h" name="keyval.h" local="yes" imported="no">libccc/monad/keyval.h</includes>
+    <class kind="struct">s_object_T</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>T</name>
+      <anchorfile>group__libccc__monad__object.html</anchorfile>
+      <anchor>ga0acb682b8260ab1c60b918599864e2e5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_NAME</name>
+      <anchorfile>group__libccc__monad__object.html</anchorfile>
+      <anchor>ga19da2b67b058ddda4f4b0508f47ad6d2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_DEFAULT</name>
+      <anchorfile>group__libccc__monad__object.html</anchorfile>
+      <anchor>ga9b10f19a4f29fd2599888400adc48b0e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_EQUALS</name>
+      <anchorfile>group__libccc__monad__object.html</anchorfile>
+      <anchor>gab0de29dd51b2d0bc92d331eafb977751</anchor>
+      <arglist>(A, B)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>object_T</name>
+      <anchorfile>group__libccc__monad__object.html</anchorfile>
+      <anchor>ga49a85e654c209297d6bb76ffc4764887</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>s_object_T</name>
+      <anchorfile>group__libccc__monad__object.html</anchorfile>
+      <anchor>gad2c4ea64c0ecaa8fb27fd5031b0a5798</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>queue.c</name>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/monad/</path>
+    <filename>queue_8c.html</filename>
+    <includes id="queue_8h" name="queue.h" local="yes" imported="no">libccc/monad/queue.h</includes>
+    <member kind="define">
+      <type>#define</type>
+      <name>_GENERIC</name>
+      <anchorfile>queue_8c.html</anchorfile>
+      <anchor>acc41e7c2b8fb4fb74cb4a73ed65ce667</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>_GENERIC</name>
+      <anchorfile>queue_8c.html</anchorfile>
+      <anchor>acc41e7c2b8fb4fb74cb4a73ed65ce667</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>queue.h</name>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/monad/</path>
+    <filename>queue_8h.html</filename>
+    <includes id="libccc_8h" name="libccc.h" local="yes" imported="no">libccc.h</includes>
+    <class kind="struct">s_queue_T</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>T</name>
+      <anchorfile>group__libccc__monad__queue.html</anchorfile>
+      <anchor>ga0acb682b8260ab1c60b918599864e2e5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_NAME</name>
+      <anchorfile>group__libccc__monad__queue.html</anchorfile>
+      <anchor>ga19da2b67b058ddda4f4b0508f47ad6d2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_DEFAULT</name>
+      <anchorfile>group__libccc__monad__queue.html</anchorfile>
+      <anchor>ga9b10f19a4f29fd2599888400adc48b0e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_EQUALS</name>
+      <anchorfile>group__libccc__monad__queue.html</anchorfile>
+      <anchor>gab0de29dd51b2d0bc92d331eafb977751</anchor>
+      <arglist>(A, B)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>queue_T</name>
+      <anchorfile>group__libccc__monad__queue.html</anchorfile>
+      <anchor>ga5e80991e4813efc9623f80666183e374</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>s_queue_T</name>
+      <anchorfile>group__libccc__monad__queue.html</anchorfile>
+      <anchor>ga037a07813930a8376fe8477de8212600</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>stack.c</name>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/monad/</path>
+    <filename>stack_8c.html</filename>
+    <includes id="stack_8h" name="stack.h" local="yes" imported="no">libccc/monad/stack.h</includes>
+    <member kind="define">
+      <type>#define</type>
+      <name>_GENERIC</name>
+      <anchorfile>stack_8c.html</anchorfile>
+      <anchor>acc41e7c2b8fb4fb74cb4a73ed65ce667</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>_GENERIC</name>
+      <anchorfile>stack_8c.html</anchorfile>
+      <anchor>acc41e7c2b8fb4fb74cb4a73ed65ce667</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>stack.h</name>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/monad/</path>
+    <filename>stack_8h.html</filename>
+    <includes id="libccc_8h" name="libccc.h" local="yes" imported="no">libccc.h</includes>
+    <class kind="struct">s_stack_T</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>T</name>
+      <anchorfile>group__libccc__monad__stack.html</anchorfile>
+      <anchor>ga0acb682b8260ab1c60b918599864e2e5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_NAME</name>
+      <anchorfile>group__libccc__monad__stack.html</anchorfile>
+      <anchor>ga19da2b67b058ddda4f4b0508f47ad6d2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_DEFAULT</name>
+      <anchorfile>group__libccc__monad__stack.html</anchorfile>
+      <anchor>ga9b10f19a4f29fd2599888400adc48b0e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_EQUALS</name>
+      <anchorfile>group__libccc__monad__stack.html</anchorfile>
+      <anchor>gab0de29dd51b2d0bc92d331eafb977751</anchor>
+      <arglist>(A, B)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>stack_T</name>
+      <anchorfile>group__libccc__monad__stack.html</anchorfile>
+      <anchor>ga5cfd956e95f6dca65fcd9702eb056d4f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>s_stack_T</name>
+      <anchorfile>group__libccc__monad__stack.html</anchorfile>
+      <anchor>gaff69f4bcc3a678e75939b3e12ec3017e</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>tree.c</name>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/monad/</path>
+    <filename>tree_8c.html</filename>
+    <includes id="tree_8h" name="tree.h" local="yes" imported="no">libccc/monad/tree.h</includes>
+    <member kind="define">
+      <type>#define</type>
+      <name>_GENERIC</name>
+      <anchorfile>tree_8c.html</anchorfile>
+      <anchor>acc41e7c2b8fb4fb74cb4a73ed65ce667</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>_GENERIC</name>
+      <anchorfile>tree_8c.html</anchorfile>
+      <anchor>acc41e7c2b8fb4fb74cb4a73ed65ce667</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>tree.h</name>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/monad/</path>
+    <filename>tree_8h.html</filename>
+    <includes id="libccc_8h" name="libccc.h" local="yes" imported="no">libccc.h</includes>
+    <class kind="struct">s_tree_T</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>T</name>
+      <anchorfile>group__libccc__monad__tree.html</anchorfile>
+      <anchor>ga0acb682b8260ab1c60b918599864e2e5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_NAME</name>
+      <anchorfile>group__libccc__monad__tree.html</anchorfile>
+      <anchor>ga19da2b67b058ddda4f4b0508f47ad6d2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_DEFAULT</name>
+      <anchorfile>group__libccc__monad__tree.html</anchorfile>
+      <anchor>ga9b10f19a4f29fd2599888400adc48b0e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_EQUALS</name>
+      <anchorfile>group__libccc__monad__tree.html</anchorfile>
+      <anchor>gab0de29dd51b2d0bc92d331eafb977751</anchor>
+      <arglist>(A, B)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>tree_T</name>
+      <anchorfile>group__libccc__monad__tree.html</anchorfile>
+      <anchor>ga479e11468e97ef9bec5f004b97176284</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>s_tree_T</name>
+      <anchorfile>group__libccc__monad__tree.html</anchorfile>
+      <anchor>gaf5b8c79abb052fbd90a08da159a30b9d</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -14173,6 +16320,25 @@
     </member>
   </compound>
   <compound kind="struct">
+    <name>s_array_T</name>
+    <filename>group__libccc__monad__array.html</filename>
+    <anchor>structs__array___t</anchor>
+    <member kind="variable">
+      <type>t_uint</type>
+      <name>length</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>af254525fd5a51671ebf256c83a7571ba</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>T *</type>
+      <name>items</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>af497da5a439b3beefca30141988c4668</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
     <name>s_box1d</name>
     <filename>group__libccc__math__algebra.html</filename>
     <anchor>structs__box1d</anchor>
@@ -14336,6 +16502,44 @@
     </member>
   </compound>
   <compound kind="struct">
+    <name>s_dict_T</name>
+    <filename>group__libccc__monad__dict.html</filename>
+    <anchor>structs__dict___t</anchor>
+    <member kind="variable">
+      <type>t_uint</type>
+      <name>length</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>af254525fd5a51671ebf256c83a7571ba</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>s_keyval_T *</type>
+      <name>items</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>aa222c4a6810ed3de7ed1994250db635d</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>s_keyval_T</name>
+    <filename>group__libccc__monad__keyval.html</filename>
+    <anchor>structs__keyval___t</anchor>
+    <member kind="variable">
+      <type>char *</type>
+      <name>key</name>
+      <anchorfile>group__libccc__monad__keyval.html</anchorfile>
+      <anchor>a5892a9181e6a332f84d27aecd41dcd12</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>T</type>
+      <name>value</name>
+      <anchorfile>group__libccc__monad__keyval.html</anchorfile>
+      <anchor>a4fc7f59e3113e19697159919a5aad095</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
     <name>s_list_float</name>
     <filename>group__libccc__math__stat.html</filename>
     <anchor>structs__list__float</anchor>
@@ -14370,6 +16574,25 @@
       <name>length</name>
       <anchorfile>group__libccc__math__stat.html</anchorfile>
       <anchor>a7aa02ac2ee3119e37e82c76526eab186</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>s_list_T</name>
+    <filename>group__libccc__monad__list.html</filename>
+    <anchor>structs__list___t</anchor>
+    <member kind="variable">
+      <type>struct list_T *</type>
+      <name>next</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>af44b70a8ac211f8c3c7ef3110563f47f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>T</type>
+      <name>item</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>aaeb0f0ed34c31a834ce36fe4defd6c5e</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -14539,6 +16762,25 @@
     </member>
   </compound>
   <compound kind="struct">
+    <name>s_object_T</name>
+    <filename>group__libccc__monad__object.html</filename>
+    <anchor>structs__object___t</anchor>
+    <member kind="variable">
+      <type>struct object_T *</type>
+      <name>next</name>
+      <anchorfile>group__libccc__monad__object.html</anchorfile>
+      <anchor>acb4a51424dbf9ff949e035a87d72e255</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>s_keyval_T *</type>
+      <name>items</name>
+      <anchorfile>group__libccc__monad__object.html</anchorfile>
+      <anchor>aa222c4a6810ed3de7ed1994250db635d</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
     <name>s_prob_mass</name>
     <filename>group__libccc__math__stat.html</filename>
     <anchor>structs__prob__mass</anchor>
@@ -14594,6 +16836,70 @@
       <name>k</name>
       <anchorfile>group__libccc__math__complex.html</anchorfile>
       <anchor>a7d2d5289b503886f53d7b945d1b28370</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>s_queue_T</name>
+    <filename>group__libccc__monad__queue.html</filename>
+    <anchor>structs__queue___t</anchor>
+    <member kind="variable">
+      <type>t_uint</type>
+      <name>length</name>
+      <anchorfile>group__libccc__monad__queue.html</anchorfile>
+      <anchor>af254525fd5a51671ebf256c83a7571ba</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>T *</type>
+      <name>items</name>
+      <anchorfile>group__libccc__monad__queue.html</anchorfile>
+      <anchor>af497da5a439b3beefca30141988c4668</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>s_stack_T</name>
+    <filename>group__libccc__monad__stack.html</filename>
+    <anchor>structs__stack___t</anchor>
+    <member kind="variable">
+      <type>t_uint</type>
+      <name>length</name>
+      <anchorfile>group__libccc__monad__stack.html</anchorfile>
+      <anchor>af254525fd5a51671ebf256c83a7571ba</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>T *</type>
+      <name>items</name>
+      <anchorfile>group__libccc__monad__stack.html</anchorfile>
+      <anchor>af497da5a439b3beefca30141988c4668</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>s_tree_T</name>
+    <filename>group__libccc__monad__tree.html</filename>
+    <anchor>structs__tree___t</anchor>
+    <member kind="variable">
+      <type>t_size</type>
+      <name>node_count</name>
+      <anchorfile>group__libccc__monad__tree.html</anchorfile>
+      <anchor>a9fd1bb925a0aa72d0ab8f4feaa4fe941</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>struct tree_T *</type>
+      <name>nodes</name>
+      <anchorfile>group__libccc__monad__tree.html</anchorfile>
+      <anchor>a5012aa999b82443d482ea8c4d2001d4b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>T</type>
+      <name>value</name>
+      <anchorfile>group__libccc__monad__tree.html</anchorfile>
+      <anchor>a4fc7f59e3113e19697159919a5aad095</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -16241,7 +18547,7 @@
       <type>LIBCONFIG_TYPE_UINT</type>
       <name>t_uint</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga0cbd23836133c29bed9a983fdff733c8</anchor>
+      <anchor>ga6192ce3fd8374a64d7e7f8af5d903f72</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
@@ -28119,6 +30425,1986 @@
       <anchorfile>group__libccc__array__sort.html</anchorfile>
       <anchor>gafabd7ee365140ffedfd384a2129fa8de</anchor>
       <arglist>(TYPE, COMPARE)</arglist>
+    </member>
+  </compound>
+  <compound kind="group">
+    <name>libccc_monad_array</name>
+    <title>Libccc_monad_array</title>
+    <filename>group__libccc__monad__array.html</filename>
+    <file>array.h</file>
+    <class kind="struct">s_array_T</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>T</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga0acb682b8260ab1c60b918599864e2e5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_NAME</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga19da2b67b058ddda4f4b0508f47ad6d2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_DEFAULT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga9b10f19a4f29fd2599888400adc48b0e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_EQUALS</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gab0de29dd51b2d0bc92d331eafb977751</anchor>
+      <arglist>(A, B)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>array_T</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga6a0e3e7f5a7840679407d6ef94a834b0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>s_array_T</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gab04320dc2c649d5804141ff10a67643a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrnew</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga2f78cbe4996fd26c54e54b87f615d99a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrdel</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga205f434703201c3da0b3c5c8993240a0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrdup</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gaa4fccecbbf6061d3ae764f034c38c94c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrget</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gaed8ee86ad02723bbffbb5509a0ff68c6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrset</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga57cc573308bc57293b62dd97dd6448c8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrcpy</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gab35416e4e45fa2faeddbf6c1a80411d7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrsub</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga52476a735f999524ab651c39060d258b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrappend</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga311429281a101397f92748ad5e8110d3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrprepend</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga00bbcf2f8fba5de7f51ed7b43d6211bd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrinsert</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gab7177668a0cbb447cfbf42a20ae5dbdd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrdelone</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga61ba7b3a4c2a777367078dadadd7c0b8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrdfelone</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga57fdc2221e58f4df684223154d67659e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrdelall</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga9faaef91545f997b0955349b23469f91</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrdfelall</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga1c9e58aec9c269e91beb83c9972f72d0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrdelat</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga628fc8135f234dcb537544aafa2b6dfe</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrfdelat</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gaaa3a949be3c1d02fe4323b891622560c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrrep</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga2d52ab1f3d46e3b6e9a277fc10e9484a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrreplace</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga065572b7e4763d422a61940079f33137</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrfind</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga620847417378dd075c4f37f6390a75d5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrffind</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gaaabbee1de831fde18782ba6b1f79f460</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrfindi</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga6758e216ef9cc0e5a82f369fd9b46387</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrffindi</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga92cd100543681b36616bd69d1238569a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrcount</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga2c108611b284c6f90d3a3a7133aaf286</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrcontains</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gae71b9c8bf4fa1d500ab19de2b0cc1bdc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrhas</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gaf14cea5566b9527a30eea63bce0239bb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrhasonly</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga5b5680a3e6a7dcf0ae2280434e902004</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrequ</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gac06e445303e402aa8497684e73cb65df</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrnequ</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga9ca0c0adcb1b59903e48e21733a855e2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrcmp</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga4328b6409a550f46107ad8d7c82aaa84</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrncmp</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gaa82ee709a3cd63945f4918c620362fd6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arriter</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga34271589388611bbce68e1c2bcf4924f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arriteri</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga60ea498080422c2330508b7c039bbd81</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrmap</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga378d6dd59554a10bec2f88cb8dcf0509</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrmapi</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga147bce21803519aceee58043af4e1ce8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrfilt</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga07394f3de24c4db0201627be86d391c0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_arrfilti</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga5af7f8f82bb8371d94c44c519205302b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>s_array_T</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga2daa0f9af49b44d4d093e28a218ce376</anchor>
+      <arglist>(Array_New, T_NAME)(t_uint n</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga1c1db7f9e77db53cd8ffa1961c432b3a</anchor>
+      <arglist>(Array_Delete, T_NAME)(s_array_T *array)</arglist>
+    </member>
+    <member kind="function">
+      <type>s_array_T</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga733df759af6ee8b42dee4db05125c7c5</anchor>
+      <arglist>(Array_Duplicate, T_NAME)(s_array_T const *array)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga7229dc13ba07f9c03780f8c51c4a4afd</anchor>
+      <arglist>(Array_Get, T_NAME)(s_array_T const *array</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gaab1aeb6372e17ef30260ad6531142c84</anchor>
+      <arglist>(Array_Set, T_NAME)(s_array_T *array</arglist>
+    </member>
+    <member kind="function">
+      <type>s_array_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gaabe8d67812a95fccc39a784b43f5023a</anchor>
+      <arglist>(Array_Copy, T_NAME)(s_array_T *dest</arglist>
+    </member>
+    <member kind="function">
+      <type>s_array_T</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga6fbefc81e5620e1b242bf650dc2075a3</anchor>
+      <arglist>(Array_Sub, T_NAME)(s_array_T const *array</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gad9a5a60b5d366b744606730674c2d70a</anchor>
+      <arglist>(Array_Append, T_NAME)(s_array_T *array</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga09affd92d0f4202e621acb3bddfc1749</anchor>
+      <arglist>(Array_Prepend, T_NAME)(s_array_T *array</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gad34e4b5f02eed37130e1bcf715d22fee</anchor>
+      <arglist>(Array_Insert, T_NAME)(s_array_T *array</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gab0f40dfb14514cdf6525d515e179966e</anchor>
+      <arglist>(Array_Remove, T_NAME)(s_array_T *array</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gaead45d60ade5ed0ca9d076feee8f891b</anchor>
+      <arglist>(Array_Remove_F, T_NAME)(s_array_T *array</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga71dc65d34aa89494eb2174b2e429acfe</anchor>
+      <arglist>(Array_RemoveAll, T_NAME)(s_array_T *array</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga9a46fcd3c5aa058721f010b87b690fa7</anchor>
+      <arglist>(Array_RemoveAll_F, T_NAME)(s_array_T *array</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gae70e63a6f77b5156bda4064ad1941b51</anchor>
+      <arglist>(Array_RemoveAt, T_NAME)(s_array_T *array</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga5453e53c568dfe0603e0f2a5805d66bf</anchor>
+      <arglist>(Array_RemoveAt_F, T_NAME)(s_array_T *array</arglist>
+    </member>
+    <member kind="function">
+      <type>s_array_T</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga5a5d51dfc66895d7e14660b9c51cf049</anchor>
+      <arglist>(Array_Replace, T_NAME)(s_array_T const *array</arglist>
+    </member>
+    <member kind="function">
+      <type>T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gabd301c3ec89f8c64259c7f2966a9d505</anchor>
+      <arglist>(Array_Find, T_NAME)(s_array_T const *array</arglist>
+    </member>
+    <member kind="function">
+      <type>T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gadc535db313ab2ccadcdd88902d5384aa</anchor>
+      <arglist>(Array_Find_F, T_NAME)(s_array_T const *array</arglist>
+    </member>
+    <member kind="function">
+      <type>t_sint</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga1cf571156a651f038363390d8ff9c710</anchor>
+      <arglist>(Array_IndexOf, T_NAME)(s_array_T const *array</arglist>
+    </member>
+    <member kind="function">
+      <type>t_sint</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga77c174f7eaadee8ec307bada60f83412</anchor>
+      <arglist>(Array_IndexOf_F, T_NAME)(s_array_T const *array</arglist>
+    </member>
+    <member kind="function">
+      <type>t_uint</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga28e3ce2c6e52754ee54603504ef1a27c</anchor>
+      <arglist>(Array_Count, T_NAME)(s_array_T const *array</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga68f24464ab9bf29d4d350e1848c23110</anchor>
+      <arglist>(Array_Contains, T_NAME)(s_array_T const *array</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga4b6b1ee8f7f045fd0e1025b1bb90d9cf</anchor>
+      <arglist>(Array_Has, T_NAME)(s_array_T const *array</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gadea4e2eae45baed314ed5e540c3509a3</anchor>
+      <arglist>(Array_HasOnly, T_NAME)(s_array_T const *array</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga6e36fe388eaf7ba3f50c2345408e6f24</anchor>
+      <arglist>(Array_Equals, T_NAME)(s_array_T const *array1</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga88475f544dfa9697380a2a18fae7baa7</anchor>
+      <arglist>(Array_Equals_N, T_NAME)(s_array_T const *array1</arglist>
+    </member>
+    <member kind="function">
+      <type>t_sint</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga97eb6e9f88ce8d1bc954f546d4a0e5f9</anchor>
+      <arglist>(Array_Compare, T_NAME)(s_array_T const *array1</arglist>
+    </member>
+    <member kind="function">
+      <type>t_sint</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga641cc87de2503c3df8717e55d2ad5126</anchor>
+      <arglist>(Array_Compare_N, T_NAME)(s_array_T const *array1</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga614e9f020479053a211ddc6200bbfc1b</anchor>
+      <arglist>(Array_Iterate, T_NAME)(s_array_T *array</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga6e12a4cf587dc0fedb16bc27ddffc7de</anchor>
+      <arglist>(Array_Iterate_I, T_NAME)(s_array_T *array</arglist>
+    </member>
+    <member kind="function">
+      <type>s_array_T</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gaca3f7a729ce4cac26af3412b1aaf2f71</anchor>
+      <arglist>(Array_Map, T_NAME)(s_array_T const *array</arglist>
+    </member>
+    <member kind="function">
+      <type>s_array_T</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gad7542472dc74cfedc03f15732e84e1bf</anchor>
+      <arglist>(Array_Map_I, T_NAME)(s_array_T const *array</arglist>
+    </member>
+    <member kind="function">
+      <type>s_array_T</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga2c6f75494658bba8b85fce8d94e4c2bf</anchor>
+      <arglist>(Array_Filter, T_NAME)(s_array_T const *array</arglist>
+    </member>
+    <member kind="function">
+      <type>s_array_T</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gabd7d5b7d94c13ef645914f6b3c74f31b</anchor>
+      <arglist>(Array_Filter_I, T_NAME)(s_array_T const *array</arglist>
+    </member>
+    <member kind="variable">
+      <type>T t_uint</type>
+      <name>index</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga118b063fa79e87510e08ffae4cedd0d7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>void t_uint T</type>
+      <name>item</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gad51a845d2820ab29b21da4275135465a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>s_array_T s_array_T const  *</type>
+      <name>src</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga923a8674f86b178d1b91246e8a2af7ca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>s_array_T s_array_T const t_uint</type>
+      <name>n</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga2df83d615503639597265ea34f40b086</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>void T void(*</type>
+      <name>delete</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gadeb683203bb6b1d9d9e7e2879f3c88ec</anchor>
+      <arglist>)(T))</arglist>
+    </member>
+    <member kind="variable">
+      <type>s_array_T T</type>
+      <name>old</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gab50d4195560a1f886dfa4b17c8b98beb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>s_array_T T T</type>
+      <name>new</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga04daaa27f4bb7cc47117a3ab7e5cd1be</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>T t_bool(*</type>
+      <name>match</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga3dee764b4cf540a9e7d82e4e482400de</anchor>
+      <arglist>)(T item))</arglist>
+    </member>
+    <member kind="variable">
+      <type>t_bool s_array_T const  *</type>
+      <name>target</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga32ab468f2c1d30e0ff71befc9f671d00</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>t_bool s_array_T const  *</type>
+      <name>array2</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gae76352e437f12415b672ed2c1fc796eb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>t_sint s_array_T const t_sint(*</type>
+      <name>compare</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>gaa5106bc9e026c69893b7f1a67f90b66b</anchor>
+      <arglist>)(T item1, T item2))</arglist>
+    </member>
+    <member kind="variable">
+      <type>void void(*</type>
+      <name>f</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga0c7fda132b781f492b9661c63664a5e8</anchor>
+      <arglist>)(T item))</arglist>
+    </member>
+    <member kind="variable">
+      <type>s_array_T T(*</type>
+      <name>map</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga172f4747e38b077d5bbed0b12d658024</anchor>
+      <arglist>)(T item))</arglist>
+    </member>
+    <member kind="variable">
+      <type>s_array_T t_bool(*</type>
+      <name>filter</name>
+      <anchorfile>group__libccc__monad__array.html</anchorfile>
+      <anchor>ga73a0f7a8c342447cc4f867bee374908b</anchor>
+      <arglist>)(T item))</arglist>
+    </member>
+  </compound>
+  <compound kind="group">
+    <name>libccc_monad_convert</name>
+    <title>Libccc_monad_convert</title>
+    <filename>group__libccc__monad__convert.html</filename>
+    <file>convert.h</file>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lst_to_array</name>
+      <anchorfile>group__libccc__monad__convert.html</anchorfile>
+      <anchor>ga18d05db4a8d68b46d2c9f4b8c4538cca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lst_to_ptrarr</name>
+      <anchorfile>group__libccc__monad__convert.html</anchorfile>
+      <anchor>ga4a224d0ab89c926791ff25a7bccb9efb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>s_array</type>
+      <name>List_To_Array</name>
+      <anchorfile>group__libccc__monad__convert.html</anchorfile>
+      <anchor>gae12971650af168aeabf56442634085f4</anchor>
+      <arglist>(s_list const **a_lst)</arglist>
+    </member>
+    <member kind="function">
+      <type>void **</type>
+      <name>List_To_PointerArray</name>
+      <anchorfile>group__libccc__monad__convert.html</anchorfile>
+      <anchor>ga1cff54299b6f5ea2b6dd3ae21d822dd8</anchor>
+      <arglist>(s_list const **a_lst)</arglist>
+    </member>
+  </compound>
+  <compound kind="group">
+    <name>libccc_monad_dict</name>
+    <title>Libccc_monad_dict</title>
+    <filename>group__libccc__monad__dict.html</filename>
+    <file>dict.h</file>
+    <class kind="struct">s_dict_T</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>T</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga0acb682b8260ab1c60b918599864e2e5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_NAME</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga19da2b67b058ddda4f4b0508f47ad6d2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_DEFAULT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga9b10f19a4f29fd2599888400adc48b0e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_EQUALS</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>gab0de29dd51b2d0bc92d331eafb977751</anchor>
+      <arglist>(A, B)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>dict_T</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga26591b844c5145d6be2f6dacb90b01aa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>s_dict_T</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>gadd58f8547d0b1690b2640118fa46213f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>s_dict_T</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga3330aee85f2eb047b5acda76deda1419</anchor>
+      <arglist>(Dict_New, T_NAME)(t_uint n</arglist>
+    </member>
+    <member kind="function">
+      <type>s_dict_T void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>gaebddc37ba2732970498d51311145b7f2</anchor>
+      <arglist>(Dict_Delete, T_NAME)(s_dict_T *dict)</arglist>
+    </member>
+    <member kind="function">
+      <type>s_dict_T</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga8d46fb116a514c2497c2337b1f539aa0</anchor>
+      <arglist>(Dict_Duplicate, T_NAME)(s_dict_T *dict)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>gaf3ce3ba427cbdfab48e241d04b291d6d</anchor>
+      <arglist>(Dict_Get, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga7f870c0d388b3b4c9bb91575cf944a37</anchor>
+      <arglist>(Dict_Set, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga5ed67d9b9e8ec0a3eb0ad1c8c4ce5f7e</anchor>
+      <arglist>(Dict_Copy, T_NAME)(s_dict_T *dest</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga1ee3acb16576ae39fb848142c91833ed</anchor>
+      <arglist>(Dict_Sub, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>s_keyval_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga5b506a179b6309e82581461c5b27b2b2</anchor>
+      <arglist>(Dict_Add, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga45ff157cabef6f56f1ff370904221137</anchor>
+      <arglist>(Dict_Remove, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga21ada8d2b5b7d64a36683d8381bf64fa</anchor>
+      <arglist>(Dict_Remove_F, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>gaab79e4ca880f00e9c57bc974215ab1ea</anchor>
+      <arglist>(Dict_RemoveAll, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga929b6f714e593bf9e6e418f85fbf2b63</anchor>
+      <arglist>(Dict_RemoveAll_F, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga43ccb84e6989446e8bbaa8434845755d</anchor>
+      <arglist>(Dict_RemoveMatch, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga73c2edbe6f8b140f4c33dced93788975</anchor>
+      <arglist>(Dict_RemoveMatch_F, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>gac209008f1180e9a74981fa5f52c9b1db</anchor>
+      <arglist>(Dict_RemoveMatches, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>gaeda7aa798b08a7d1a691b9c1cfc1197c</anchor>
+      <arglist>(Dict_RemoveMatches_F, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga66637b060dd3e9ad65610be480dc74d8</anchor>
+      <arglist>(Dict_Replace, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>char *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga04724aa56b2179c882ca66a187ce3018</anchor>
+      <arglist>(Dict_KeyOf, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>s_keyval_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>gafe4485bf50c316ad6cdbc62220bc320c</anchor>
+      <arglist>(Dict_Find, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>s_keyval_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>gad4e12300305f308e2d121cbf3b0a3fa9</anchor>
+      <arglist>(Dict_Find_F, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>t_uint</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga8c42dfc6adbc9a478acd38392c564b67</anchor>
+      <arglist>(Dict_Count, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>gaf82c078878a43d571a819b20c35c5298</anchor>
+      <arglist>(Dict_Contains, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga2e7f9b3f2fa87e37986ed8fd175debe0</anchor>
+      <arglist>(Dict_Has, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga3e2dd3c9ae5cce01bd11a70411fd3436</anchor>
+      <arglist>(Dict_HasOnly, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga16204b17e7ddcaa193d082c15fc8407c</anchor>
+      <arglist>(Dict_Equals, T_NAME)(s_dict_T *dict1</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>gadbc5acb87fc8fd71d025710f1103371d</anchor>
+      <arglist>(Dict_Equals_K, T_NAME)(s_dict_T *dict1</arglist>
+    </member>
+    <member kind="function">
+      <type>t_sint</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga56fae8e7b11f3e1f570999c73cfc6d9d</anchor>
+      <arglist>(Dict_Compare, T_NAME)(s_dict_T *dict1</arglist>
+    </member>
+    <member kind="function">
+      <type>t_sint</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga923e3606a66224f4c1a3501b17153803</anchor>
+      <arglist>(Dict_Compare_K, T_NAME)(s_dict_T *dict1</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga6277b43d07b7af3f3ed525202bdccf47</anchor>
+      <arglist>(Dict_Iterate, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga7d923068f9aba27aec7ab7f081b54722</anchor>
+      <arglist>(Dict_Iterate_I, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>s_dict_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga76ea2aff662a4b24d243f7a15efe6360</anchor>
+      <arglist>(Dict_Map, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>s_dict_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga9a470259d05a63040f14c76ee49d4a87</anchor>
+      <arglist>(Dict_Map_I, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>s_dict_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga6345ee85905ce7fc896630f6eac63cf7</anchor>
+      <arglist>(Dict_Filter, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="function">
+      <type>s_dict_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>gaec8ddf4ca0b2c42a8d36b226acb7fa19</anchor>
+      <arglist>(Dict_Filter_I, T_NAME)(s_dict_T *dict</arglist>
+    </member>
+    <member kind="variable">
+      <type>void char *</type>
+      <name>key</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga068d0a9a48ceee9929604d1c8330bdfa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>void char T</type>
+      <name>value</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>gaf30118244e81393df07e8fcc56888d15</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>void s_dict_T const  *</type>
+      <name>src</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>gaa0656d19ee14d8f1c0871d3c007dd177</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>void s_dict_T const char **</type>
+      <name>keys</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>gaf92135163cf1226bb2d4579dfa3363ce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>void char void(*</type>
+      <name>delete</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga1319c4e620d77677bab6d623b4086e0f</anchor>
+      <arglist>)(s_keyval_T *keyval))</arglist>
+    </member>
+    <member kind="variable">
+      <type>void char s_keyval_T</type>
+      <name>new</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga3420daf9f560ad029e44fe44be3cb985</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>s_keyval_T t_bool(*</type>
+      <name>match</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>gadebfdedc1840aea73e66e27db430e681</anchor>
+      <arglist>)(s_keyval_T value))</arglist>
+    </member>
+    <member kind="variable">
+      <type>t_bool s_dict_T *</type>
+      <name>target</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga5ce4462ba79b122654b0b018161e4bd7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>t_bool s_dict_T *</type>
+      <name>dict2</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga9ac95bf714b51c630af46f195b968c87</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>t_sint s_dict_T t_sint(*</type>
+      <name>compare</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga60ae164bbe7ad86011c6da1a7ff3d6de</anchor>
+      <arglist>)(s_keyval_T item1, s_keyval_T item2))</arglist>
+    </member>
+    <member kind="variable">
+      <type>void void(*</type>
+      <name>f</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga5b8aa847e02fe377ccec18c063110e21</anchor>
+      <arglist>)(s_keyval_T item))</arglist>
+    </member>
+    <member kind="variable">
+      <type>s_dict_T s_keyval_T(*</type>
+      <name>map</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>ga0e6f167db27abc6178c501349579c38e</anchor>
+      <arglist>)(s_keyval_T item))</arglist>
+    </member>
+    <member kind="variable">
+      <type>s_dict_T t_bool(*</type>
+      <name>filter</name>
+      <anchorfile>group__libccc__monad__dict.html</anchorfile>
+      <anchor>gae40efe46a05976499fd1774983d5c043</anchor>
+      <arglist>)(s_keyval_T item))</arglist>
+    </member>
+  </compound>
+  <compound kind="group">
+    <name>libccc_monad_keyval</name>
+    <title>Libccc_monad_keyval</title>
+    <filename>group__libccc__monad__keyval.html</filename>
+    <file>keyval.h</file>
+    <class kind="struct">s_keyval_T</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>T</name>
+      <anchorfile>group__libccc__monad__keyval.html</anchorfile>
+      <anchor>ga0acb682b8260ab1c60b918599864e2e5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_NAME</name>
+      <anchorfile>group__libccc__monad__keyval.html</anchorfile>
+      <anchor>ga19da2b67b058ddda4f4b0508f47ad6d2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_DEFAULT</name>
+      <anchorfile>group__libccc__monad__keyval.html</anchorfile>
+      <anchor>ga9b10f19a4f29fd2599888400adc48b0e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_EQUALS</name>
+      <anchorfile>group__libccc__monad__keyval.html</anchorfile>
+      <anchor>gab0de29dd51b2d0bc92d331eafb977751</anchor>
+      <arglist>(A, B)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>keyval_T</name>
+      <anchorfile>group__libccc__monad__keyval.html</anchorfile>
+      <anchor>ga5d9a4dc6a791c061ff3b35ddaf77298d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>s_keyval_T</name>
+      <anchorfile>group__libccc__monad__keyval.html</anchorfile>
+      <anchor>ga24085b8571076eb54a487f9a2b5bea11</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="group">
+    <name>libccc_monad_list</name>
+    <title>Libccc_monad_list</title>
+    <filename>group__libccc__monad__list.html</filename>
+    <file>list.h</file>
+    <class kind="struct">s_list_T</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>T</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga0acb682b8260ab1c60b918599864e2e5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_NAME</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga19da2b67b058ddda4f4b0508f47ad6d2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_DEFAULT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga9b10f19a4f29fd2599888400adc48b0e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_EQUALS</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gab0de29dd51b2d0bc92d331eafb977751</anchor>
+      <arglist>(A, B)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>list_T</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gac05b3fb8be78c632e165022f7361611f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>s_list_T</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga69a2f7c6dbcffa48a919fb9ce067786d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstitem</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga8a2ce14746075873666ba0725de08276</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstlen</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga9d4ab54e36d2112ec1867fccb6d220e8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstnew</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gaa4d6bb03e8c0379e4129e27e00314104</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstdel</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga259753b29a955dc737b4009290d8349e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstdup</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga433baf1dd75f5d167bf37576d3a68367</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstget</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gad2204d5b53116494577d119d81202865</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstset</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga623d561857f6b465260b22cd35412e72</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstcpy</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gadced3439e23263522832df6897d72d6f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstsub</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga84d7e4fcbec301f8c60ca8150b1713b0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstappend</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gab603d28cc0b1c0d70032f7594e62d385</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstprepend</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gac2824f9e6bc4099ff10ce77114817260</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstinsert</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga1ef782abc54b335299665cc7ea547316</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstdelone</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga1ea89a50527607df8a87a6f14690d8ff</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstfdelone</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gac71147f0ac41e6475949df02c093c175</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstdelall</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga9f99edabc579ca502c772d5e30f6c372</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstfdelall</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga9d4167202ccff5627a57afd180777f51</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstdelat</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga07ce23ae1ec84fd136fc8e7b847c18f7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstfdelat</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga4dbb4703882932834d30217d7d4666b5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstrep</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gafcbb57c4315a9ecb8eeb157a5d03dbda</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstreplace</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga20a98e777f26cbaf9fe3159cdb5b9093</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstfind</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga91c898febcaf2858183de7300b5c3857</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstffind</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga40776cfdf21d573240ebf7eec764017b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstfindi</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga003f06d0d0150a6327d491f9804c9887</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstffindi</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga3ffb47cf051807ce39041daaac1526dc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstcount</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gab003aa0c855ae0c39842b56ff58230b4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstcontains</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gae6e114e1b887ea00c3b0a43ef0d980f4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lsthas</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga414111dfbedcddfa925d764b4fbdd1e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lsthasonly</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga576fbb3ec8b2d433e039c705b211984e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstequ</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gafd3600c59880daf73862446925cd6c15</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstnequ</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga61009659299e7b98ca287d5a0666b618</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstcmp</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gac2204e128c04cd69f38940a8ae6a4dfb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstncmp</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gaf002c7c93979611c586271ceef0d51e0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstiter</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gac47e00164f8151d5e0167006b648726c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstiteri</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga872b980e56f3ee5c496286d317b80d8d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstmap</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga3eb81656326de4cdadb2d1333450de1e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstmapi</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga06444dff027555000e2af8bc673f37ab</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstfilt</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga08fd1f3d28a5a5f4a7ec52a238a71293</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lstfilti</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga47c242260ec71e31a9dc153464f30200</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gaf4f535298ccbc3e4ab17f40328933ab8</anchor>
+      <arglist>(List_Item, T_NAME)(T item)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_uint</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga169d7dc1a0dd08809d2c1d459329d645</anchor>
+      <arglist>(List_Length, T_NAME)(s_list_T const *list)</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gaf718acf47a863e06d40022c586df8ee6</anchor>
+      <arglist>(List_New, T_NAME)(t_uint n</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga7dd7060e97d90796aee11fb9f9772819</anchor>
+      <arglist>(List_Delete, T_NAME)(s_list_T **a_list)</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gae48ec438089b762c7332c695c8f1d89e</anchor>
+      <arglist>(List_Duplicate, T_NAME)(s_list_T const *list)</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gabebb4d4a30fde26ce0cc2b9b4a849eda</anchor>
+      <arglist>(List_Get, T_NAME)(s_list_T const *list</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga95d149ae2fa70baf1a9bb70dbfba3e24</anchor>
+      <arglist>(List_Set, T_NAME)(s_list_T *list</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gacb7636015a990d056e5fd7160d52872a</anchor>
+      <arglist>(List_Copy, T_NAME)(s_list_T *dest</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga57f1a4780a509f40bf15112f5f61d552</anchor>
+      <arglist>(List_Sub, T_NAME)(s_list_T const *list</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gadec7646ee3fd2d9808b5855489b0f0af</anchor>
+      <arglist>(List_Append, T_NAME)(s_list_T *list</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gae1a0621b778fa75af39ba4d566aab84d</anchor>
+      <arglist>(List_Prepend, T_NAME)(s_list_T *list</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gaeb04cb864c5fa99a042795650a75dfaa</anchor>
+      <arglist>(List_Insert, T_NAME)(s_list_T *list</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga857a98dff27cb39b76beb6cc1eaf15ad</anchor>
+      <arglist>(List_Remove, T_NAME)(s_list_T *list</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga77758e678506e600ec798477b13b7a2d</anchor>
+      <arglist>(List_Remove_F, T_NAME)(s_list_T *list</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga53fd1293556b2426a210f089eaac05ad</anchor>
+      <arglist>(List_RemoveAll, T_NAME)(s_list_T *list</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga8860770c9016f088b0806612ba54e8b2</anchor>
+      <arglist>(List_RemoveAll_F, T_NAME)(s_list_T *list</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gaac41c7c2adcbc86285062b77e2f91936</anchor>
+      <arglist>(List_RemoveAt, T_NAME)(s_list_T *list</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gacedb3738549df507f779062ea5c8807f</anchor>
+      <arglist>(List_RemoveAt_F, T_NAME)(s_list_T *list</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga09c8b8082300a472620f615769d76ba2</anchor>
+      <arglist>(List_Replace, T_NAME)(s_list_T const *list</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T const  *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gafc091db1ccee4e26c5ac01b9cecbf470</anchor>
+      <arglist>(List_Find, T_NAME)(s_list_T const *list</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T const  *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga91eaebff96ec180c847f8f7930283783</anchor>
+      <arglist>(List_Find_F, T_NAME)(s_list_T const *list</arglist>
+    </member>
+    <member kind="function">
+      <type>t_sint</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga5169a04d98bfd04fc09c1a761a32f10c</anchor>
+      <arglist>(List_IndexOf, T_NAME)(s_list_T const *list</arglist>
+    </member>
+    <member kind="function">
+      <type>t_sint</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gabf4424d88427703317c8931f1c27f263</anchor>
+      <arglist>(List_IndexOf_F, T_NAME)(s_list_T const *list</arglist>
+    </member>
+    <member kind="function">
+      <type>t_uint</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga1513fb438a068de52529e0d4d0079ae3</anchor>
+      <arglist>(List_Count, T_NAME)(s_list_T const *list</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga62d6ccb57dcc66f885eaa5c2c6791a0e</anchor>
+      <arglist>(List_Contains, T_NAME)(s_list_T const *list</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gaedfe8ec3241cc561ea2faeb365dd8f81</anchor>
+      <arglist>(List_Has, T_NAME)(s_list_T const *list</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga33f941e6a64c03ee954f2e15af50f8e1</anchor>
+      <arglist>(List_HasOnly, T_NAME)(s_list_T const *list</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga0d88db6b4ca2a88b8551b63b316931dc</anchor>
+      <arglist>(List_Equals, T_NAME)(s_list_T const *list1</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga45f13224a1e004fe18560fd7e2953c71</anchor>
+      <arglist>(List_Equals_N, T_NAME)(s_list_T const *list1</arglist>
+    </member>
+    <member kind="function">
+      <type>t_sint</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga3163423e75e2d16560e0236a23d02d09</anchor>
+      <arglist>(List_Compare, T_NAME)(s_list_T const *list1</arglist>
+    </member>
+    <member kind="function">
+      <type>t_sint</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga230d50199a60bd0b2cc4ed3cbf9ac5f4</anchor>
+      <arglist>(List_Compare_N, T_NAME)(s_list_T const *list1</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga419f420d728ee32e0f66257e1f0f4716</anchor>
+      <arglist>(List_Iterate, T_NAME)(s_list_T *list</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gaadb42db6f1612e2b8fe18d616b97f2d3</anchor>
+      <arglist>(List_Iterate_I, T_NAME)(s_list_T *list</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gac6b6a2002023336ca053151751b856e1</anchor>
+      <arglist>(List_Map, T_NAME)(s_list_T const *list</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gaa986ae42ed2a0c6bd5a20d91e5cdca18</anchor>
+      <arglist>(List_Map_I, T_NAME)(s_list_T const *list</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga4c56a97e85b1203a24a41a940c5cd8fa</anchor>
+      <arglist>(List_Filter, T_NAME)(s_list_T const *list</arglist>
+    </member>
+    <member kind="function">
+      <type>s_list_T *</type>
+      <name>CONCAT</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gaf4fa3ede0a1c06c8248792c93c2e3fed</anchor>
+      <arglist>(List_Filter_I, T_NAME)(s_list_T const *list</arglist>
+    </member>
+    <member kind="variable">
+      <type>s_list_T t_uint</type>
+      <name>index</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga118b063fa79e87510e08ffae4cedd0d7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>s_list_T t_uint T</type>
+      <name>item</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gad51a845d2820ab29b21da4275135465a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>s_list_T s_list_T const  *</type>
+      <name>src</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gabd1e531b2febb7c70cff46fda5a54b20</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>s_list_T s_list_T const t_uint</type>
+      <name>n</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gafad59d899c7ec4da2df8afb3dff61f1f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>s_list_T s_list_T *</type>
+      <name>elem</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gaacd7b39c3abfc9b3fa05f5328dd70369</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>s_list_T T void(*</type>
+      <name>delete</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga2bbe6c8321fe778d2f0ee0e90261f83b</anchor>
+      <arglist>)(T))</arglist>
+    </member>
+    <member kind="variable">
+      <type>s_list_T T</type>
+      <name>old</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga55a923f3274ee0245fed109cc2eebf0d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>s_list_T T T</type>
+      <name>new</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gac4118ff80a02d9b196852fcb165972eb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>s_list_T const t_bool(*</type>
+      <name>match</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gae7459379a876a8dbc3c8c51547751b5a</anchor>
+      <arglist>)(T item))</arglist>
+    </member>
+    <member kind="variable">
+      <type>t_bool s_list_T const  *</type>
+      <name>target</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gaa61506197ad43a6039c9bc4c534a7fb0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>t_bool s_list_T const  *</type>
+      <name>list2</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga07f98d2f29b7849bf7ec6768b5783090</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>t_sint s_list_T const t_sint(*</type>
+      <name>compare</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>gaf0d09780b3d82821305a773b82052774</anchor>
+      <arglist>)(T item1, T item2))</arglist>
+    </member>
+    <member kind="variable">
+      <type>void void(*</type>
+      <name>f</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga9bfae40d84e31566188f46450b4f114b</anchor>
+      <arglist>)(T item))</arglist>
+    </member>
+    <member kind="variable">
+      <type>s_list_T T(*</type>
+      <name>map</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga289623a988abc2b1c3b1e1fd23a07b28</anchor>
+      <arglist>)(T item))</arglist>
+    </member>
+    <member kind="variable">
+      <type>s_list_T t_bool(*</type>
+      <name>filter</name>
+      <anchorfile>group__libccc__monad__list.html</anchorfile>
+      <anchor>ga65d4dcb09c5a042a1b70861d4efd83c5</anchor>
+      <arglist>)(T item))</arglist>
+    </member>
+  </compound>
+  <compound kind="group">
+    <name>libccc_monad_object</name>
+    <title>Libccc_monad_object</title>
+    <filename>group__libccc__monad__object.html</filename>
+    <file>object.h</file>
+    <class kind="struct">s_object_T</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>T</name>
+      <anchorfile>group__libccc__monad__object.html</anchorfile>
+      <anchor>ga0acb682b8260ab1c60b918599864e2e5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_NAME</name>
+      <anchorfile>group__libccc__monad__object.html</anchorfile>
+      <anchor>ga19da2b67b058ddda4f4b0508f47ad6d2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_DEFAULT</name>
+      <anchorfile>group__libccc__monad__object.html</anchorfile>
+      <anchor>ga9b10f19a4f29fd2599888400adc48b0e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_EQUALS</name>
+      <anchorfile>group__libccc__monad__object.html</anchorfile>
+      <anchor>gab0de29dd51b2d0bc92d331eafb977751</anchor>
+      <arglist>(A, B)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>object_T</name>
+      <anchorfile>group__libccc__monad__object.html</anchorfile>
+      <anchor>ga49a85e654c209297d6bb76ffc4764887</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>s_object_T</name>
+      <anchorfile>group__libccc__monad__object.html</anchorfile>
+      <anchor>gad2c4ea64c0ecaa8fb27fd5031b0a5798</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="group">
+    <name>libccc_monad_queue</name>
+    <title>Libccc_monad_queue</title>
+    <filename>group__libccc__monad__queue.html</filename>
+    <file>queue.h</file>
+    <class kind="struct">s_queue_T</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>T</name>
+      <anchorfile>group__libccc__monad__queue.html</anchorfile>
+      <anchor>ga0acb682b8260ab1c60b918599864e2e5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_NAME</name>
+      <anchorfile>group__libccc__monad__queue.html</anchorfile>
+      <anchor>ga19da2b67b058ddda4f4b0508f47ad6d2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_DEFAULT</name>
+      <anchorfile>group__libccc__monad__queue.html</anchorfile>
+      <anchor>ga9b10f19a4f29fd2599888400adc48b0e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_EQUALS</name>
+      <anchorfile>group__libccc__monad__queue.html</anchorfile>
+      <anchor>gab0de29dd51b2d0bc92d331eafb977751</anchor>
+      <arglist>(A, B)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>queue_T</name>
+      <anchorfile>group__libccc__monad__queue.html</anchorfile>
+      <anchor>ga5e80991e4813efc9623f80666183e374</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>s_queue_T</name>
+      <anchorfile>group__libccc__monad__queue.html</anchorfile>
+      <anchor>ga037a07813930a8376fe8477de8212600</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="group">
+    <name>libccc_monad_stack</name>
+    <title>Libccc_monad_stack</title>
+    <filename>group__libccc__monad__stack.html</filename>
+    <file>stack.h</file>
+    <class kind="struct">s_stack_T</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>T</name>
+      <anchorfile>group__libccc__monad__stack.html</anchorfile>
+      <anchor>ga0acb682b8260ab1c60b918599864e2e5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_NAME</name>
+      <anchorfile>group__libccc__monad__stack.html</anchorfile>
+      <anchor>ga19da2b67b058ddda4f4b0508f47ad6d2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_DEFAULT</name>
+      <anchorfile>group__libccc__monad__stack.html</anchorfile>
+      <anchor>ga9b10f19a4f29fd2599888400adc48b0e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_EQUALS</name>
+      <anchorfile>group__libccc__monad__stack.html</anchorfile>
+      <anchor>gab0de29dd51b2d0bc92d331eafb977751</anchor>
+      <arglist>(A, B)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>stack_T</name>
+      <anchorfile>group__libccc__monad__stack.html</anchorfile>
+      <anchor>ga5cfd956e95f6dca65fcd9702eb056d4f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>s_stack_T</name>
+      <anchorfile>group__libccc__monad__stack.html</anchorfile>
+      <anchor>gaff69f4bcc3a678e75939b3e12ec3017e</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="group">
+    <name>libccc_monad_tree</name>
+    <title>Libccc_monad_tree</title>
+    <filename>group__libccc__monad__tree.html</filename>
+    <file>tree.h</file>
+    <class kind="struct">s_tree_T</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>T</name>
+      <anchorfile>group__libccc__monad__tree.html</anchorfile>
+      <anchor>ga0acb682b8260ab1c60b918599864e2e5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_NAME</name>
+      <anchorfile>group__libccc__monad__tree.html</anchorfile>
+      <anchor>ga19da2b67b058ddda4f4b0508f47ad6d2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_DEFAULT</name>
+      <anchorfile>group__libccc__monad__tree.html</anchorfile>
+      <anchor>ga9b10f19a4f29fd2599888400adc48b0e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T_EQUALS</name>
+      <anchorfile>group__libccc__monad__tree.html</anchorfile>
+      <anchor>gab0de29dd51b2d0bc92d331eafb977751</anchor>
+      <arglist>(A, B)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>tree_T</name>
+      <anchorfile>group__libccc__monad__tree.html</anchorfile>
+      <anchor>ga479e11468e97ef9bec5f004b97176284</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>s_tree_T</name>
+      <anchorfile>group__libccc__monad__tree.html</anchorfile>
+      <anchor>gaf5b8c79abb052fbd90a08da159a30b9d</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="page">

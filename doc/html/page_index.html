@@ -41,7 +41,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Global Namespace" href="global.html" />
-    <link rel="prev" title="Libccc_array_sort" href="group_libccc_array_sort.html" />
+    <link rel="prev" title="struct s_tree_T" href="struct_s_tree_T.html" />
 	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
 	
 	<meta name="Description" content="libccc">
@@ -124,12 +124,22 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_array_pointerarray.html">25) libccc/array/pointerarray</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_array_stringarray.html">26) libccc/array/stringarray</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_array_sort.html">Libccc_array_sort</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_array.html">Libccc_monad_array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_convert.html">Libccc_monad_convert</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_dict.html">Libccc_monad_dict</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_keyval.html">Libccc_monad_keyval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_list.html">Libccc_monad_list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_object.html">Libccc_monad_object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_queue.html">Libccc_monad_queue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_stack.html">Libccc_monad_stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_tree.html">Libccc_monad_tree</a></li>
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">libccc</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#the-project">The Project</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#why-does-this-exist">Why does this exist ?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-to-use-this-library">How to use this library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#documentation">Documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#testing">Testing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#continuous-integration">Continuous Integration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#build-system">Build system</a><ul>
@@ -236,13 +246,13 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">color.h</span></code> : functions manipulating several common color encodings, as well as other useful color-related functions (like RGB_to_HSL, etc)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">pointerarray.h</span></code> : a set of functions used to manipulate pointer arrays (<code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">**</span></code>, where the array is terminated by a NULL pointer)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">stringarray.h</span></code> : a set of functions used to manipulate string arrays (<code class="docutils literal notranslate"><span class="pre">char</span> <span class="pre">**</span></code>, where the array is terminated by a NULL pointer)</p></li>
-<li><p><strong>monad/array.h</strong> : generic-type array functions (simply stores a contiguous memory buffer <code class="docutils literal notranslate"><span class="pre">.items</span></code> and a <code class="docutils literal notranslate"><span class="pre">.length</span></code>)</p></li>
-<li><p><strong>monad/list.h</strong> : generic-type linked-list functions (which can be configured to be singly-linked or doubly-linked)</p></li>
-<li><p><strong>monad/stack.h</strong> : generic-type stack functions (mainly push/pop, made to act like a FIFO/LILO type)</p></li>
-<li><p><strong>monad/queue.h</strong> : generic-type queue functions (mainly push/pop, made to act like a LIFO/FILO type)</p></li>
-<li><p><strong>monad/dict.h</strong> : generic-type dictionary (key/value pair) functions (access items via their string <code class="docutils literal notranslate"><span class="pre">key</span></code> rather than their index)</p></li>
-<li><p><strong>monad/tree.h</strong> : generic-type tree functions (each <code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">tree</span></code> stores a value of type <code class="docutils literal notranslate"><span class="pre">T</span></code>)</p></li>
-<li><p><strong>monad/object.h</strong> : generic-type nestable object, works similar to a JSON data structure (stores key/value pairs).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">monad/array.h</span></code> : generic-type array functions (simply stores a contiguous memory buffer <code class="docutils literal notranslate"><span class="pre">.items</span></code> and a <code class="docutils literal notranslate"><span class="pre">.length</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">monad/list.h</span></code> : generic-type linked-list functions (which can be configured to be singly-linked or doubly-linked)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">monad/stack.h</span></code> : generic-type stack functions (mainly push/pop, made to act like a FIFO/LILO type)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">monad/queue.h</span></code> : generic-type queue functions (mainly push/pop, made to act like a LIFO/FILO type)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">monad/dict.h</span></code> : generic-type dictionary (key/value pair) functions (access items via their string <code class="docutils literal notranslate"><span class="pre">key</span></code> rather than their index)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">monad/tree.h</span></code> : generic-type tree functions (each <code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">tree</span></code> stores a value of type <code class="docutils literal notranslate"><span class="pre">T</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">monad/object.h</span></code> : generic-type nestable object, works similar to a JSON data structure (stores key/value pairs).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">math/algebra.h</span></code> : math functions for 2D/3D/4D vectors and matrices, as well as integrals and more</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">math/random.h</span></code> : functions for simple pseudo-random number generation (many more functions than just the ISO rand/srand/rand_r functions)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">math/complex.h</span></code> : math functions for complex number operations, as well as quaternions</p></li>
@@ -266,12 +276,16 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">LIBCONFIG_INTTYPES_...</span></code> <code class="docutils literal notranslate"><span class="pre">EXACT</span></code> / <code class="docutils literal notranslate"><span class="pre">FAST</span></code> / <code class="docutils literal notranslate"><span class="pre">LEAST</span></code> : If <code class="docutils literal notranslate"><span class="pre">LIBCONFIG_INTTYPES_EXACT</span></code> is true, default <code class="docutils literal notranslate"><span class="pre">int</span></code> types are set to with the standard <code class="docutils literal notranslate"><span class="pre">(u)intSIZE_t</span></code> type specifiers. If <code class="docutils literal notranslate"><span class="pre">LIBCONFIG_INTTYPES_FAST</span></code> is true, default <code class="docutils literal notranslate"><span class="pre">int</span></code> types are set to with the standard <code class="docutils literal notranslate"><span class="pre">(u)int_fastSIZE_t</span></code> type specifiers. If <code class="docutils literal notranslate"><span class="pre">LIBCONFIG_INTTYPES_LEAST</span></code> is true, default <code class="docutils literal notranslate"><span class="pre">int</span></code> types are set to with the standard <code class="docutils literal notranslate"><span class="pre">(u)int_leastSIZE_t</span></code> type specifiers. If multiple of these macros are simultaneously true, EXACT takes precedence over FAST, which itself takes precedence over LEAST. If none are true, resolves to EXACT.</p></li>
 </ul>
 </div>
+<div class="section" id="documentation">
+<span id="doxid-index-1autotoc-md3"></span><h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+<p>The documentation for libccc is available at the following address: <a class="reference external" href="https://lexouduck.github.io/libccc/doc/html/index.html">https://lexouduck.github.io/libccc/doc/html/index.html</a> This documentation website is generated from special comments written directly within the code, so, as usual in C, it is recommended that you take a look at the .h header files located in the <code class="docutils literal notranslate"><span class="pre">hdr</span></code> folder of this repo. Thank you to Doxygen, Doxyrest, Sphinx, and GitHub Pages to make this auto-generated documentation work.</p>
+</div>
 <div class="section" id="testing">
-<span id="doxid-index-1autotoc-md3"></span><h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
+<span id="doxid-index-1autotoc-md4"></span><h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
 <p>To ensure proper functionality of all these important functions in every edge case, a rather exhaustive testing suite program was implemented, which compares libccc functions to their stdlib ISO equivalent, wherever applicable (otherwise tests expect results that are manually written out and asserted). This test suite program features segfault/signal handling and execution time comparison, among other things. You can test the <code class="docutils literal notranslate"><span class="pre">libccc</span></code> by running <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">test</span></code> : this will compile and run the test suite program from the files found in the <code class="docutils literal notranslate"><span class="pre">./test</span></code> folder.</p>
 </div>
 <div class="section" id="continuous-integration">
-<span id="doxid-index-1autotoc-md4"></span><h2>Continuous Integration<a class="headerlink" href="#continuous-integration" title="Permalink to this headline">¶</a></h2>
+<span id="doxid-index-1autotoc-md5"></span><h2>Continuous Integration<a class="headerlink" href="#continuous-integration" title="Permalink to this headline">¶</a></h2>
 <p>Every time a new commit/push is done, the automated CI testing job is run, as defined in <code class="docutils literal notranslate"><span class="pre">.github/workflows/ci.yml</span></code> (see the <a class="reference external" href="https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions">official github documentation for Actions and Workflows to learn more</a>).</p>
 <p>This CI job builds everything with a <code class="docutils literal notranslate"><span class="pre">make</span></code>, and runs the testing suite with a <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">test</span></code>. It runs with all of the following configurations:</p>
 <ul class="simple">
@@ -282,7 +296,7 @@
 <p>You can check the latest CI/CD run of libccc over on the <a class="reference external" href="https://github.com/LexouDuck/libccc/actions">GitHub Actions</a> page of this repo.</p>
 </div>
 <div class="section" id="build-system">
-<span id="doxid-index-1autotoc-md5"></span><h2>Build system<a class="headerlink" href="#build-system" title="Permalink to this headline">¶</a></h2>
+<span id="doxid-index-1autotoc-md6"></span><h2>Build system<a class="headerlink" href="#build-system" title="Permalink to this headline">¶</a></h2>
 <p>This library is built using a cross-platform Makefile, which can build it on most platforms, in both static and dynamic library form.</p>
 <p>There a couple of important custom Makefile variables used, which you should keep in mind:</p>
 <ul class="simple">
@@ -292,7 +306,7 @@
 </ul>
 <p>The available <code class="docutils literal notranslate"><span class="pre">make</span></code> commands are:</p>
 <div class="section" id="building">
-<span id="doxid-index-1autotoc-md6"></span><h3>Building<a class="headerlink" href="#building" title="Permalink to this headline">¶</a></h3>
+<span id="doxid-index-1autotoc-md7"></span><h3>Building<a class="headerlink" href="#building" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">debug</span></code> or <code class="docutils literal notranslate"><span class="pre">make</span></code> or <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">all</span></code> Build the <code class="docutils literal notranslate"><span class="pre">libccc.a</span></code> library file, in debug mode (with added flags: <code class="docutils literal notranslate"><span class="pre">-g</span> <span class="pre">-ggdb</span> <span class="pre">-D</span> <span class="pre">DEBUG=1</span></code>)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">release</span></code> Build the <code class="docutils literal notranslate"><span class="pre">libccc.a</span></code> library file, in release mode (builds both static and dynamic library files for the given OSMODE, with added flags like <code class="docutils literal notranslate"><span class="pre">-O3</span></code>)</p></li>
@@ -300,7 +314,7 @@
 </ul>
 </div>
 <div class="section" id="checking-ci">
-<span id="doxid-index-1autotoc-md7"></span><h3>Checking/CI<a class="headerlink" href="#checking-ci" title="Permalink to this headline">¶</a></h3>
+<span id="doxid-index-1autotoc-md8"></span><h3>Checking/CI<a class="headerlink" href="#checking-ci" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">libccc_test</span></code> Builds a test software <code class="docutils literal notranslate"><span class="pre">libccc_test</span></code>, which runs test suites on every libccc function.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">test</span></code> Builds <code class="docutils literal notranslate"><span class="pre">libccc_test</span></code> and runs it without any arguments (running all tests).</p></li>
@@ -309,7 +323,7 @@
 </ul>
 </div>
 <div class="section" id="deleting">
-<span id="doxid-index-1autotoc-md8"></span><h3>Deleting<a class="headerlink" href="#deleting" title="Permalink to this headline">¶</a></h3>
+<span id="doxid-index-1autotoc-md9"></span><h3>Deleting<a class="headerlink" href="#deleting" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">clean</span></code> Delete all object files in <code class="docutils literal notranslate"><span class="pre">./obj/</span></code> folder.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">rclean</span></code> Delete all object files in <code class="docutils literal notranslate"><span class="pre">./obj/</span></code> folder, and the folder itself.</p></li>
@@ -320,7 +334,7 @@
 </div>
 </div>
 <div class="section" id="contributing">
-<span id="doxid-index-1autotoc-md9"></span><h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h2>
+<span id="doxid-index-1autotoc-md10"></span><h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h2>
 <p>Check <code class="docutils literal notranslate"><span class="pre">CONTRIBUTING.md</span></code>, this file serves as a “contributions style guide”. This style was chosen because it allows for more efficient version control and code review.</p>
 <ul class="simple">
 <li><p>TODO add description of coding style to <code class="docutils literal notranslate"><span class="pre">CONTRIBUTING.md</span></code></p></li>
@@ -339,7 +353,7 @@
         <a href="global.html" class="btn btn-neutral float-right" title="Global Namespace" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="group_libccc_array_sort.html" class="btn btn-neutral float-left" title="Libccc_array_sort" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="struct_s_tree_T.html" class="btn btn-neutral float-left" title="struct s_tree_T" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

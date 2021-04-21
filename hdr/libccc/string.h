@@ -108,7 +108,7 @@ void				String_Delete(char* *a_str);
 
 /*!
 **	Returns a newly allocated string which is a copy of the given string `str`,
-**	(or #NUL required memory could not be allocated).
+**	(or #NULL required memory could not be allocated).
 */
 _MALLOC()
 char*				String_Duplicate(char const* str);
@@ -116,7 +116,7 @@ char*				String_Duplicate(char const* str);
 
 /*!
 **	Returns a newly allocated string which is a copy of the given string `str`,
-**	(or #NUL required memory could not be allocated), copying at most
+**	(or #NULL required memory could not be allocated), copying at most
 **	`n` characters.
 */
 _MALLOC()
@@ -125,7 +125,7 @@ char*				String_Duplicate_N(char const* str, t_size n);
 
 /*!
 **	Returns a newly allocated string which is a copy of the given string `str`,
-**	(or #NUL required memory could not be allocated), stopping at the
+**	(or #NULL required memory could not be allocated), stopping at the
 **	first occurence of `c`.
 */
 _MALLOC()

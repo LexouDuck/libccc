@@ -855,7 +855,7 @@ INPUT                  = ./README.md \
 ./hdr/libccc/ \
 ./hdr/libccc/sys/ \
 ./hdr/libccc/math/ \
-./hdr/libccc/array/ \
+./hdr/libccc/monad/ \
 
 # This tag can be used to specify the character encoding of the source files
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding. Doxygen uses
