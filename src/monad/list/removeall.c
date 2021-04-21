@@ -4,7 +4,7 @@
 
 
 _GENERIC()
-s_list_T*	CONCAT(List_T,_RemoveAll)(s_list_T* list, T item)
+s_list_T*	CONCAT(List_RemoveAll,T_NAME)(s_list_T* list, T item)
 {
 	s_list_T*	elem;
 	s_list_T*	tmp;
@@ -32,7 +32,7 @@ s_list_T*	CONCAT(List_T,_RemoveAll)(s_list_T* list, T item)
 
 
 _GENERIC()
-s_list_T*	CONCAT(List_T,_RemoveAll_F)(s_list_T* list, T item, void (*delete)(T))
+s_list_T*	CONCAT(List_RemoveAll_F,T_NAME)(s_list_T* list, T item, void (*delete)(T))
 {
 	s_list_T*	elem;
 	s_list_T*	tmp;

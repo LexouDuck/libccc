@@ -3,7 +3,7 @@
 
 
 _GENERIC()
-t_bool	CONCAT(List_T,_Equals)(s_list_T const* list1, s_list_T const* list2)
+t_bool	CONCAT(List_Equals,T_NAME)(s_list_T const* list1, s_list_T const* list2)
 {
 //#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (list1 == list2)
@@ -23,7 +23,7 @@ t_bool	CONCAT(List_T,_Equals)(s_list_T const* list1, s_list_T const* list2)
 
 
 _GENERIC()
-t_bool	CONCAT(List_T,_Equals_N)(s_list_T const* list1, s_list_T const* list2, t_uint n)
+t_bool	CONCAT(List_Equals_N,T_NAME)(s_list_T const* list1, s_list_T const* list2, t_uint n)
 {
 //#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (list1 == list2)

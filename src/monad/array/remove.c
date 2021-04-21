@@ -4,20 +4,20 @@
 
 
 _GENERIC()
-void	CONCAT(Array_T,_Remove)(s_array_T* array, T item)
+void	CONCAT(Array_Remove,T_NAME)(s_array_T* array, T item)
 {
-	t_sint	index = CONCAT(Array_T,_IndexOf)(array, item);
+	t_sint	index = CONCAT(Array_IndexOf,T_NAME)(array, item);
 	if (index == ERROR)
 		return;
-	CONCAT(Array_T,_RemoveAt)(array, index);
+	CONCAT(Array_RemoveAt,T_NAME)(array, index);
 }
 
 
 _GENERIC()
-void	CONCAT(Array_T,_Remove_F)(s_array_T* array, T item, void (*delete)(T))
+void	CONCAT(Array_Remove_F,T_NAME)(s_array_T* array, T item, void (*delete)(T))
 {
-	t_sint	index = CONCAT(Array_T,_IndexOf)(array, item);
+	t_sint	index = CONCAT(Array_IndexOf,T_NAME)(array, item);
 	if (index == ERROR)
 		return;
-	CONCAT(Array_T,_RemoveAt_F)(array, index, delete);
+	CONCAT(Array_RemoveAt_F,T_NAME)(array, index, delete);
 }

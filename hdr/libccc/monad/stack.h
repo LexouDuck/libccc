@@ -47,7 +47,6 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-#define Stack_T		CONCAT(Stack, T_NAME)
 #define stack_T		CONCAT(stack, T_NAME)
 #define s_stack_T	CONCAT(s_stack, T_NAME)
 

@@ -19,7 +19,6 @@
 //#include "libccc/../../src/monad/tree/new.c"
 
 // remove all generic type macros
-#undef	Tree_T
 #undef	tree_T
 #undef	s_tree_T
 

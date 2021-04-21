@@ -47,7 +47,6 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-#define KeyVal_T	CONCAT(KeyVal, T_NAME)
 #define keyval_T	CONCAT(keyval, T_NAME)
 #define s_keyval_T	CONCAT(s_keyval, T_NAME)
 

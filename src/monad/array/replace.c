@@ -4,7 +4,7 @@
 
 
 _GENERIC()
-s_array_T	CONCAT(Array_T,_Replace)(s_array_T const* array, T old, T new)
+s_array_T	CONCAT(Array_Replace,T_NAME)(s_array_T const* array, T old, T new)
 {
 	s_array_T	result = {0};
 

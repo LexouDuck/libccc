@@ -3,7 +3,7 @@
 
 
 _GENERIC()
-s_list_T*		CONCAT(List_T,_Map)(s_list_T const* list, T (*map)(T item))
+s_list_T*		CONCAT(List_Map,T_NAME)(s_list_T const* list, T (*map)(T item))
 {
 	s_list_T*	result = NULL;
 	s_list_T*	elem;
@@ -14,10 +14,10 @@ s_list_T*		CONCAT(List_T,_Map)(s_list_T const* list, T (*map)(T item))
 #endif
 	while (list)
 	{
-		elem = CONCAT(List_T,_Item)(map(list->item));
+		elem = CONCAT(List_Item,T_NAME)(map(list->item));
 		if (elem == NULL)
 			break;
-		CONCAT(List_T,_Append)(result, elem);
+		CONCAT(List_Append,T_NAME)(result, elem);
 		list = list->next;
 	}
 	return (result);
@@ -25,7 +25,7 @@ s_list_T*		CONCAT(List_T,_Map)(s_list_T const* list, T (*map)(T item))
 
 
 _GENERIC()
-s_list_T*		CONCAT(List_T,_Map_I)(s_list_T const* list, T (*map)(T item, t_uint index))
+s_list_T*		CONCAT(List_Map_I,T_NAME)(s_list_T const* list, T (*map)(T item, t_uint index))
 {
 	s_list_T*	result = NULL;
 	s_list_T*	elem;
@@ -38,10 +38,10 @@ s_list_T*		CONCAT(List_T,_Map_I)(s_list_T const* list, T (*map)(T item, t_uint i
 	i = 0;
 	while (list)
 	{
-		elem = CONCAT(List_T,_Item)(map(list->item, i));
+		elem = CONCAT(List_Item,T_NAME)(map(list->item, i));
 		if (elem == NULL)
 			break;
-		CONCAT(List_T,_Append)(result, elem);
+		CONCAT(List_Append,T_NAME)(result, elem);
 		list = list->next;
 		++i;
 	}

@@ -4,7 +4,7 @@
 
 
 _GENERIC()
-void	CONCAT(Array_T,_Insert)(s_array_T* array, T item, t_uint index)
+void	CONCAT(Array_Insert,T_NAME)(s_array_T* array, T item, t_uint index)
 {
 	T*	result;
 

@@ -3,7 +3,7 @@
 
 
 _GENERIC()
-T*	CONCAT(Array_T,_Find)(s_array_T const* array, T item)
+T*	CONCAT(Array_Find,T_NAME)(s_array_T const* array, T item)
 {
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (array == NULL || array->items == NULL)
@@ -19,7 +19,7 @@ T*	CONCAT(Array_T,_Find)(s_array_T const* array, T item)
 
 
 _GENERIC()
-T*	CONCAT(Array_T,_Find_F)(s_array_T const* array, t_bool (*match)(T item))
+T*	CONCAT(Array_Find_F,T_NAME)(s_array_T const* array, t_bool (*match)(T item))
 {
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (array == NULL || array->items == NULL)
@@ -35,7 +35,7 @@ T*	CONCAT(Array_T,_Find_F)(s_array_T const* array, t_bool (*match)(T item))
 
 
 _GENERIC()
-t_sint	CONCAT(Array_T,_IndexOf)(s_array_T const* array, T item)
+t_sint	CONCAT(Array_IndexOf,T_NAME)(s_array_T const* array, T item)
 {
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (array == NULL || array->items == NULL)
@@ -51,7 +51,7 @@ t_sint	CONCAT(Array_T,_IndexOf)(s_array_T const* array, T item)
 
 
 _GENERIC()
-t_sint	CONCAT(Array_T,_IndexOf_F)(s_array_T const* array, t_bool (*match)(T item))
+t_sint	CONCAT(Array_IndexOf_F,T_NAME)(s_array_T const* array, t_bool (*match)(T item))
 {
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (array == NULL || array->items == NULL)

@@ -6,7 +6,7 @@
 
 
 _GENERIC()
-s_array_T	CONCAT(Array_T,_New)(t_uint n, ...)
+s_array_T	CONCAT(Array_New,T_NAME)(t_uint n, ...)
 {
 	va_list		array;
 	T			item;

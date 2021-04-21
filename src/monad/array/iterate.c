@@ -3,7 +3,7 @@
 
 
 _GENERIC()
-void	CONCAT(Array_T,_Iterate)(s_array_T* array, void (*f)(T item))
+void	CONCAT(Array_Iterate,T_NAME)(s_array_T* array, void (*f)(T item))
 {
 	t_uint i;
 
@@ -19,7 +19,7 @@ void	CONCAT(Array_T,_Iterate)(s_array_T* array, void (*f)(T item))
 
 
 _GENERIC()
-void	CONCAT(Array_T,_Iterate_I)(s_array_T* array, void (*f)(T item, t_uint index))
+void	CONCAT(Array_Iterate_I,T_NAME)(s_array_T* array, void (*f)(T item, t_uint index))
 {
 	t_uint i;
 

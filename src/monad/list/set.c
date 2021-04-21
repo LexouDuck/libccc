@@ -3,7 +3,7 @@
 
 
 _GENERIC()
-s_list_T*	CONCAT(List_T,_Set)(s_list_T* list, t_uint index, T item)
+s_list_T*	CONCAT(List_Set,T_NAME)(s_list_T* list, t_uint index, T item)
 {
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (list == NULL)

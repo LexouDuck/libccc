@@ -41,7 +41,6 @@
 #include "libccc/../../src/monad/array/filter.c"
 
 // remove all generic type macros
-#undef	Array_T
 #undef	array_T
 #undef	s_array_T
 

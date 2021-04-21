@@ -49,7 +49,6 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-#define Object_T	CONCAT(Object, T_NAME)
 #define object_T	CONCAT(object, T_NAME)
 #define s_object_T	CONCAT(s_object, T_NAME)
 

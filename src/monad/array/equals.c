@@ -3,7 +3,7 @@
 
 
 _GENERIC()
-t_bool	CONCAT(Array_T,_Equals)(s_array_T const* array1, s_array_T const* array2)
+t_bool	CONCAT(Array_Equals,T_NAME)(s_array_T const* array1, s_array_T const* array2)
 {
 //#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (array1 == array2 || (array1->length == array2->length && array1->items == array2->items))
@@ -22,7 +22,7 @@ t_bool	CONCAT(Array_T,_Equals)(s_array_T const* array1, s_array_T const* array2)
 
 
 _GENERIC()
-t_bool	CONCAT(Array_T,_Equals_N)(s_array_T const* array1, s_array_T const* array2, t_uint n)
+t_bool	CONCAT(Array_Equals_N,T_NAME)(s_array_T const* array1, s_array_T const* array2, t_uint n)
 {
 //#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (array1 == array2 || (array1->length == array2->length && array1->items == array2->items))

@@ -4,7 +4,7 @@
 
 
 _GENERIC()
-s_list_T*	CONCAT(List_T,_RemoveAt)(s_list_T* list, t_uint index)
+s_list_T*	CONCAT(List_RemoveAt,T_NAME)(s_list_T* list, t_uint index)
 {
 	s_list_T*	elem;
 	s_list_T*	tmp;
@@ -37,7 +37,7 @@ s_list_T*	CONCAT(List_T,_RemoveAt)(s_list_T* list, t_uint index)
 
 
 _GENERIC()
-s_list_T*	CONCAT(List_T,_RemoveAt_F)(s_list_T* list, t_uint index, void (*delete)(T))
+s_list_T*	CONCAT(List_RemoveAt_F,T_NAME)(s_list_T* list, t_uint index, void (*delete)(T))
 {
 	s_list_T*	elem;
 	s_list_T*	tmp;

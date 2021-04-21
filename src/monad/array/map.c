@@ -4,7 +4,7 @@
 
 
 _GENERIC()
-s_array_T	CONCAT(Array_T,_Map)(s_array_T const* array, T (*map)(T item))
+s_array_T	CONCAT(Array_Map,T_NAME)(s_array_T const* array, T (*map)(T item))
 {
 	s_array_T	result = {0};
 	t_uint	i;
@@ -26,7 +26,7 @@ s_array_T	CONCAT(Array_T,_Map)(s_array_T const* array, T (*map)(T item))
 
 
 _GENERIC()
-s_array_T	CONCAT(Array_T,_Map_I)(s_array_T const* array, T (*map)(T item, t_uint index))
+s_array_T	CONCAT(Array_Map_I,T_NAME)(s_array_T const* array, T (*map)(T item, t_uint index))
 {
 	s_array_T	result = {0};
 	t_uint	i;

@@ -3,7 +3,7 @@
 
 
 _GENERIC()
-T	CONCAT(Array_T,_Get)(s_array_T const* array, t_uint index)
+T	CONCAT(Array_Get,T_NAME)(s_array_T const* array, t_uint index)
 {
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (array == NULL || array->items == NULL)

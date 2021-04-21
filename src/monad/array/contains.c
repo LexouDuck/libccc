@@ -3,7 +3,7 @@
 
 
 _GENERIC()
-t_bool	CONCAT(Array_T,_Contains)(s_array_T const* array, T item)
+t_bool	CONCAT(Array_Contains,T_NAME)(s_array_T const* array, T item)
 {
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (array == NULL || array->items == NULL)

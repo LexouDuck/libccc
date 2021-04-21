@@ -43,7 +43,6 @@
 #include "libccc/../../src/monad/list/filter.c"
 
 // remove all generic type macros
-#undef List_T
 #undef list_T
 #undef s_list_T
 

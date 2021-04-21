@@ -47,7 +47,6 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-#define Queue_T		CONCAT(Queue, T_NAME)
 #define queue_T		CONCAT(queue, T_NAME)
 #define s_queue_T	CONCAT(s_queue, T_NAME)
 

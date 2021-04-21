@@ -4,7 +4,7 @@
 
 
 _GENERIC()
-void	CONCAT(Array_T,_RemoveAt)(s_array_T* array, t_uint index)
+void	CONCAT(Array_RemoveAt,T_NAME)(s_array_T* array, t_uint index)
 {
 	T*	result;
 
@@ -32,7 +32,7 @@ void	CONCAT(Array_T,_RemoveAt)(s_array_T* array, t_uint index)
 
 
 _GENERIC()
-void	CONCAT(Array_T,_RemoveAt_F)(s_array_T* array, t_uint index, void (*delete)(T))
+void	CONCAT(Array_RemoveAt_F,T_NAME)(s_array_T* array, t_uint index, void (*delete)(T))
 {
 	T*	result;
 

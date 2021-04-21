@@ -4,7 +4,7 @@
 
 
 _GENERIC()
-s_array_T	CONCAT(Array_T,_Filter)(s_array_T const* array, t_bool (*filter)(T item))
+s_array_T	CONCAT(Array_Filter,T_NAME)(s_array_T const* array, t_bool (*filter)(T item))
 {
 	s_array_T	result = {0};
 	t_bool*	tmp;
@@ -44,7 +44,7 @@ s_array_T	CONCAT(Array_T,_Filter)(s_array_T const* array, t_bool (*filter)(T ite
 
 
 _GENERIC()
-s_array_T	CONCAT(Array_T,_Filter_I)(s_array_T const* array, t_bool (*filter)(T item, t_uint index))
+s_array_T	CONCAT(Array_Filter_I,T_NAME)(s_array_T const* array, t_bool (*filter)(T item, t_uint index))
 {
 	s_array_T	result = {0};
 	t_bool*	tmp;

@@ -3,7 +3,7 @@
 
 
 _GENERIC()
-t_uint	CONCAT(List_T,_Count)(s_list_T const* list, T item)
+t_uint	CONCAT(List_Count,T_NAME)(s_list_T const* list, T item)
 {
 	t_uint	result = 0;
 

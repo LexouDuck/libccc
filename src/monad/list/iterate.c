@@ -3,7 +3,7 @@
 
 
 _GENERIC()
-void	CONCAT(List_T,_Iterate)(s_list_T* list, void (*f)(T item))
+void	CONCAT(List_Iterate,T_NAME)(s_list_T* list, void (*f)(T item))
 {
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (list == NULL || f == NULL)
@@ -18,7 +18,7 @@ void	CONCAT(List_T,_Iterate)(s_list_T* list, void (*f)(T item))
 
 
 _GENERIC()
-void	CONCAT(List_T,_Iterate_I)(s_list_T* list, void (*f)(T item, t_uint index))
+void	CONCAT(List_Iterate_I,T_NAME)(s_list_T* list, void (*f)(T item, t_uint index))
 {
 	t_uint i;
 

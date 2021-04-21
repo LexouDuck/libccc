@@ -19,7 +19,6 @@
 //#include "libccc/../../src/monad/keyval/new.c"
 
 // remove all generic type macros
-#undef	KeyVal_T
 #undef	keyval_T
 #undef	s_keyval_T
 

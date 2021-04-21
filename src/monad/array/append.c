@@ -5,7 +5,7 @@
 
 
 _GENERIC()
-void	CONCAT(Array_T,_Append)(s_array_T* array, T item)
+void	CONCAT(Array_Append,T_NAME)(s_array_T* array, T item)
 {
 	T*	result;
 

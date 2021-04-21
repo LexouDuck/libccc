@@ -3,7 +3,7 @@
 
 
 _GENERIC()
-t_bool	CONCAT(List_T,_Has)(s_list_T const* list, s_list_T const* target)
+t_bool	CONCAT(List_Has,T_NAME)(s_list_T const* list, s_list_T const* target)
 {
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (list == NULL)
@@ -11,7 +11,7 @@ t_bool	CONCAT(List_T,_Has)(s_list_T const* list, s_list_T const* target)
 #endif
 	while (list)
 	{
-		if (CONCAT(List_T,_Contains)(target, list->item))
+		if (CONCAT(List_Contains,T_NAME)(target, list->item))
 			return (TRUE);
 		list = list->next;
 	}
@@ -20,7 +20,7 @@ t_bool	CONCAT(List_T,_Has)(s_list_T const* list, s_list_T const* target)
 
 
 _GENERIC()
-t_bool	CONCAT(List_T,_HasOnly)(s_list_T const* list, s_list_T const* target)
+t_bool	CONCAT(List_HasOnly,T_NAME)(s_list_T const* list, s_list_T const* target)
 {
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (list == NULL)
@@ -28,7 +28,7 @@ t_bool	CONCAT(List_T,_HasOnly)(s_list_T const* list, s_list_T const* target)
 #endif
 	while (list)
 	{
-		if (!CONCAT(List_T,_Contains)(target, list->item))
+		if (!CONCAT(List_Contains,T_NAME)(target, list->item))
 			return (FALSE);
 		list = list->next;
 	}

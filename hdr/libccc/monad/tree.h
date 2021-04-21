@@ -47,7 +47,6 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-#define Tree_T		CONCAT(Tree, T_NAME)
 #define tree_T		CONCAT(tree, T_NAME)
 #define s_tree_T	CONCAT(s_tree, T_NAME)
 

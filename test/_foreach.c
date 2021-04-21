@@ -51,7 +51,7 @@ int main()
 
 	IO_Output_String("\n- s_array<char*>:\n");
 	{
-		s_array_str tmp = Array_str_New(COUNT,
+		s_array_str tmp = Array_New_str(COUNT,
 			"Yo, my boi!",
 			"What's up, dog?",
 			"Not much, you ?",
@@ -71,7 +71,7 @@ int main()
 	}
 	IO_Output_String("\n- s_list<char*>:\n");
 	{
-		s_list_str* str_list = List_str_New(COUNT,
+		s_list_str* str_list = List_New_str(COUNT,
 			"Yo, my boi!",
 			"What's up, dog?",
 			"Not much, you ?",
@@ -93,12 +93,12 @@ int main()
 
 	IO_Output_String("\n- s_array<s_array<int>>:\n");
 	{
-		s_array_array_int tmp = Array_array_int_New(3,
-			Array_int_New(3,	0, 1, 10),
-			Array_int_New(3,	42, 69, 420),
-			Array_int_New(6,	42, 69, 420, 0, 1, 10));
+		s_array_array_int tmp = Array_New_array_int(3,
+			Array_New_int(3,	0, 1, 10),
+			Array_New_int(3,	42, 69, 420),
+			Array_New_int(6,	42, 69, 420, 0, 1, 10));
 		s_array_array_int* int_array_array = &tmp;
-		Array_array_int_RemoveAt(int_array_array, 1);
+		Array_RemoveAt_array_int(int_array_array, 1);
 		i = 0;
 		foreach (s_array_int, int_array, s_array, int_array_array)
 		{
@@ -110,11 +110,11 @@ int main()
 	}
 	IO_Output_String("\n- s_list<s_list<int>>:\n");
 	{
-		s_list_list_int* int_list_list = List_list_int_New(3,
-			List_int_New(3, 	0, 1, 10),
-			List_int_New(3, 	42, 69, 420),
-			List_int_New(6, 	42, 69, 420, 0, 1, 10));
-		List_list_int_RemoveAt(int_list_list, 1);
+		s_list_list_int* int_list_list = List_New_list_int(3,
+			List_New_int(3, 	0, 1, 10),
+			List_New_int(3, 	42, 69, 420),
+			List_New_int(6, 	42, 69, 420, 0, 1, 10));
+		List_RemoveAt_list_int(int_list_list, 1);
 		i = 0;
 		foreach (s_list_int, int_list, s_list, int_list_list)
 		{

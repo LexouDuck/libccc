@@ -3,7 +3,7 @@
 
 
 _GENERIC()
-void	CONCAT(Array_T,_Set)(s_array_T* array, t_uint index, T item)
+void	CONCAT(Array_Set,T_NAME)(s_array_T* array, t_uint index, T item)
 {
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (array == NULL)

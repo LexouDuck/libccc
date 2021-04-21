@@ -19,7 +19,6 @@
 //#include "libccc/../../src/monad/object/new.c"
 
 // remove all generic type macros
-#undef	Object_T
 #undef	object_T
 #undef	s_object_T
 

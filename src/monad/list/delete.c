@@ -4,7 +4,7 @@
 
 
 _GENERIC()
-void	CONCAT(List_T,_Delete)(s_list_T* *a_list)
+void	CONCAT(List_Delete,T_NAME)(s_list_T* *a_list)
 {
 	s_list_T*	next;
 	s_list_T*	i;

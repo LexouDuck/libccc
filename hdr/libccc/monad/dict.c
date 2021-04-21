@@ -19,7 +19,6 @@
 //#include "libccc/../../src/monad/dict/new.c"
 
 // remove all generic type macros
-#undef	Dict_T
 #undef	dict_T
 #undef	s_dict_T
 

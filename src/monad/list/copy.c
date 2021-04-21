@@ -3,7 +3,7 @@
 
 
 _GENERIC()
-s_list_T*	CONCAT(List_T,_Copy)(s_list_T* dest, s_list_T const* src, t_uint n)
+s_list_T*	CONCAT(List_Copy,T_NAME)(s_list_T* dest, s_list_T const* src, t_uint n)
 {
 	s_list_T*	list;
 

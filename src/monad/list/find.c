@@ -3,7 +3,7 @@
 
 
 _GENERIC()
-s_list_T const*	CONCAT(List_T,_Find)(s_list_T const* list, T item)
+s_list_T const*	CONCAT(List_Find,T_NAME)(s_list_T const* list, T item)
 {
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (list == NULL)
@@ -20,7 +20,7 @@ s_list_T const*	CONCAT(List_T,_Find)(s_list_T const* list, T item)
 
 
 _GENERIC()
-s_list_T const*	CONCAT(List_T,_Find_F)(s_list_T const* list, t_bool (*match)(T item))
+s_list_T const*	CONCAT(List_Find_F,T_NAME)(s_list_T const* list, t_bool (*match)(T item))
 {
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (list == NULL)
@@ -37,7 +37,7 @@ s_list_T const*	CONCAT(List_T,_Find_F)(s_list_T const* list, t_bool (*match)(T i
 
 
 _GENERIC()
-t_sint	CONCAT(List_T,_IndexOf)(s_list_T const* list, T item)
+t_sint	CONCAT(List_IndexOf,T_NAME)(s_list_T const* list, T item)
 {
 	t_uint	i;
 
@@ -58,7 +58,7 @@ t_sint	CONCAT(List_T,_IndexOf)(s_list_T const* list, T item)
 
 
 _GENERIC()
-t_sint	CONCAT(List_T,_IndexOf_F)(s_list_T const* list, t_bool (*match)(T item))
+t_sint	CONCAT(List_IndexOf_F,T_NAME)(s_list_T const* list, t_bool (*match)(T item))
 {
 	t_uint	i;
 

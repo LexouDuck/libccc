@@ -6,7 +6,7 @@
 
 
 _GENERIC()
-s_list_T*	CONCAT(List_T,_New)(t_uint n, ...)
+s_list_T*	CONCAT(List_New,T_NAME)(t_uint n, ...)
 {
 	va_list		list;
 	T			item;

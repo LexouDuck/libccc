@@ -3,7 +3,7 @@
 
 
 _GENERIC()
-t_bool	CONCAT(List_T,_Contains)(s_list_T const* list, T item)
+t_bool	CONCAT(List_Contains,T_NAME)(s_list_T const* list, T item)
 {
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (list == NULL)

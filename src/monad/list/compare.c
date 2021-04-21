@@ -3,7 +3,7 @@
 
 
 _GENERIC()
-t_sint	CONCAT(List_T,_Compare)(s_list_T const* list1, s_list_T const* list2, t_sint (*compare)(T item1, T item2))
+t_sint	CONCAT(List_Compare,T_NAME)(s_list_T const* list1, s_list_T const* list2, t_sint (*compare)(T item1, T item2))
 {
 	t_sint	result;
 
@@ -26,7 +26,7 @@ t_sint	CONCAT(List_T,_Compare)(s_list_T const* list1, s_list_T const* list2, t_s
 
 
 _GENERIC()
-t_sint	CONCAT(List_T,_Compare_N)(s_list_T const* list1, s_list_T const* list2, t_sint (*compare)(T item1, T item2), t_uint n)
+t_sint	CONCAT(List_Compare_N,T_NAME)(s_list_T const* list1, s_list_T const* list2, t_sint (*compare)(T item1, T item2), t_uint n)
 {
 	t_sint	result;
 
