@@ -292,7 +292,7 @@ EXCLUDE_DESTRUCTORS = true
 	included.
 ]]
 
-EXCLUDE_PRIMITIVE_TYPEDEFS = true
+EXCLUDE_PRIMITIVE_TYPEDEFS = false
 
 --!
 --! For a base class/struct, show all the types directly derived from it.

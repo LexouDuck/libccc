@@ -459,7 +459,7 @@ doc:
 	@rm -rf $(DOCDIR)pdf/*
 	@rm -rf $(DOCDIR)html/*
 	@rm -rf $(DOCDIR)latex/*
-	@doxygen $(DOCDIR)project.doxygen
+	@doxygen $(DOCDIR)doxygen-config.doxygen
 	@$(DOXYREST) -c $(DOCDIR)doxyrest-config.lua
 	@sphinx-build -b html $(DOCDIR)rst $(DOCDIR)html -c $(DOCDIR)
 

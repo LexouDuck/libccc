@@ -101,6 +101,8 @@ _GENERIC()
 void				CONCAT(Array_Delete,T_NAME)(s_array_T* array);
 #define c_arrdel	CONCAT(Array_Delete,T_NAME)
 
+// TODO Array_Delete_F
+
 //! Returns a newly allocated copy of the given `list`
 /*!
 **	@param	array	The list to duplicate
