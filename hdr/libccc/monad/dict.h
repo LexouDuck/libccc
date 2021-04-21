@@ -85,6 +85,9 @@ s_dict_T	CONCAT(Dict_New,T_NAME)(t_uint n, ...);
 void		CONCAT(Dict_Delete,T_NAME)(s_dict_T* dict);
 
 //! TODO
+void		CONCAT(Dict_Delete_F,T_NAME)(s_dict_T* dict, void (*delete)(s_keyval_T* keyval));
+
+//! TODO
 s_dict_T	CONCAT(Dict_Duplicate,T_NAME)(s_dict_T* dict);
 
 
