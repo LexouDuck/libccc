@@ -472,7 +472,7 @@ LOOKUP_CACHE_SIZE      = 0
 # DOT_NUM_THREADS setting.
 # Minimum value: 0, maximum value: 32, default value: 1.
 
-NUM_PROC_THREADS       = 1
+NUM_PROC_THREADS       = 2
 
 #---------------------------------------------------------------------------
 # Build related configuration options
@@ -2239,6 +2239,10 @@ INCLUDE_FILE_PATTERNS  = *.h
 # This tag requires that the tag ENABLE_PREPROCESSING is set to YES.
 
 PREDEFINED             = \
+     __int128=1 \
+     __float80=1 \
+     __float128=1 \
+     HEADER_CPP \
      HEADER_CPP \
      HEADER_END \
      _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)= \

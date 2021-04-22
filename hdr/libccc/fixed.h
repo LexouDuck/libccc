@@ -287,141 +287,125 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 */
 //!@{
 #define				Fixed	CONCAT(FIXED_TYPE,)
-#define c_fixed		Fixed 	//!< @alias{Fixed}
-
 t_q16				Q16(t_s16 part_integer, t_u16 part_fraction, t_u16 denominator);
-#define c_q16		Q16 	//!< @alias{Q16}
-
 t_q32				Q32(t_s32 part_integer, t_u32 part_fraction, t_u32 denominator);
-#define c_q32		Q32 	//!< @alias{Q32}
-
 t_q64				Q64(t_s64 part_integer, t_u64 part_fraction, t_u64 denominator);
-#define c_q64		Q64 	//!< @alias{Q64}
 #ifdef __int128
 t_q128				Q128(t_s128 part_integer, t_u128 part_fraction, t_u128 denominator);
-#define c_q128		Q128 	//!< @alias{Q128}
 #endif
+#define c_fixed		Fixed 	//!< @alias{Fixed}
+#define c_q16		Q16 	//!< @alias{Q16}
+#define c_q32		Q32 	//!< @alias{Q32}
+#define c_q64		Q64 	//!< @alias{Q64}
+#define c_q128		Q128 	//!< @alias{Q128}
 //!@}
 
 
 
-//! 
+//! Returns the nearest fixed-point value to the given integer `number`
 /*!
 **	TODO document
 */
 //!@{
 #define					Fixed_FromInt	CONCAT(FIXED_TYPE,_FromInt)
-#define c_itofixed		Fixed_FromInt 	//!< @alias{Fixed_FromInt}
-
 t_q16					Q16_FromInt(t_s16 number);
-#define c_itoq16		Q16_FromInt 	//!< @alias{Q16_FromInt}
-
 t_q32					Q32_FromInt(t_s32 number);
-#define c_itoq32		Q32_FromInt 	//!< @alias{Q32_FromInt}
-
 t_q64					Q64_FromInt(t_s64 number);
-#define c_itoq64		Q64_FromInt 	//!< @alias{Q64_FromInt}
 #ifdef __int128
 t_q128					Q128_FromInt(t_s128 number);
-#define c_itoq128		Q128_FromInt 	//!< @alias{Q128_FromInt}
 #endif
+#define c_itofixed		Fixed_FromInt 	//!< @alias{Fixed_FromInt}
+#define c_itoq16		Q16_FromInt 	//!< @alias{Q16_FromInt}
+#define c_itoq32		Q32_FromInt 	//!< @alias{Q32_FromInt}
+#define c_itoq64		Q64_FromInt 	//!< @alias{Q64_FromInt}
+#define c_itoq128		Q128_FromInt 	//!< @alias{Q128_FromInt}
 //!@}
 
-//! 
+//! Returns the nearest fixed-point value to the given floating-point `number`
 /*!
 **	TODO document
 */
 //!@{
 #define	 				Fixed_FromFloat	CONCAT(FIXED_TYPE,_FromFloat)
-#define c_ftofixed		Fixed_FromFloat	//!< @alias{Fixed_FromFloat}
-
 t_q16	 				Q16_FromFloat(t_f64 number);
-#define c_ftoq16		Q16_FromFloat	//!< @alias{Q16_FromFloat}
-
 t_q32	 				Q32_FromFloat(t_f64 number);
-#define c_ftoq32		Q32_FromFloat	//!< @alias{Q32_FromFloat}
-
 t_q64	 				Q64_FromFloat(t_f64 number);
-#define c_ftoq64		Q64_FromFloat	//!< @alias{Q64_FromFloat}
 #ifdef __int128
 t_q128	 				Q128_FromFloat(t_f64 number);
-#define c_ftoq128		Q128_FromFloat	//!< @alias{Q128_FromFloat}
 #endif
+#define c_ftofixed		Fixed_FromFloat	//!< @alias{Fixed_FromFloat}
+#define c_ftoq16		Q16_FromFloat	//!< @alias{Q16_FromFloat}
+#define c_ftoq32		Q32_FromFloat	//!< @alias{Q32_FromFloat}
+#define c_ftoq64		Q64_FromFloat	//!< @alias{Q64_FromFloat}
+#define c_ftoq128		Q128_FromFloat	//!< @alias{Q128_FromFloat}
 //!@}
 
 
 
-//! 
+//! Returns the integer portion of the given fixed-point `number`
 /*!
 **	TODO document
 */
 //!@{
 #define							Fixed_IntegerPart	CONCAT(FIXED_TYPE,_IntegerPart)
-#define c_fixed_integerpart		Fixed_IntegerPart	//!< @alias{Fixed_IntegerPart}
-
-t_q16							Q16_IntegerPart(t_q16 number);
-#define c_q16_integerpart		Q16_IntegerPart	//!< @alias{Q16_IntegerPart}
-
-t_q32							Q32_IntegerPart(t_q32 number);
-#define c_q32_integerpart		Q32_IntegerPart	//!< @alias{Q32_IntegerPart}
-
-t_q64							Q64_IntegerPart(t_q64 number);
-#define c_q64_integerpart		Q64_IntegerPart	//!< @alias{Q64_IntegerPart}
-
+t_s16							Q16_IntegerPart(t_q16 number);
+t_s32							Q32_IntegerPart(t_q32 number);
+t_s64							Q64_IntegerPart(t_q64 number);
 #ifdef __int128
-t_q128							Q128_IntegerPart(t_q128 number);
-#define c_q128_integerpart		Q128_IntegerPart	//!< @alias{Q128_IntegerPart}
+t_s128							Q128_IntegerPart(t_q128 number);
 #endif
+#define c_fixed_integerpart		Fixed_IntegerPart 	//!< @alias{Fixed_IntegerPart}
+#define c_q16_integerpart		Q16_IntegerPart 	//!< @alias{Q16_IntegerPart}
+#define c_q32_integerpart		Q32_IntegerPart 	//!< @alias{Q32_IntegerPart}
+#define c_q64_integerpart		Q64_IntegerPart 	//!< @alias{Q64_IntegerPart}
+#define c_q128_integerpart		Q128_IntegerPart 	//!< @alias{Q128_IntegerPart}
 //!@}
 
-//! 
+//! Returns the fractional portion of the given fixed-point `number`
 /*!
 **	TODO document
 */
 //!@{
 #define							Fixed_FractionPart	CONCAT(FIXED_TYPE,_FractionPart)
-#define c_fixed_fractionpart	Fixed_FractionPart	//!< @alias{Fixed_FractionPart}
-
-t_q16							Q16_FractionPart(t_q16 number);
-#define c_q16_fractionpart		Q16_FractionPart	//!< @alias{Q16_FractionPart}
-
-t_q32							Q32_FractionPart(t_q32 number);
-#define c_q32_fractionpart		Q32_FractionPart	//!< @alias{Q32_FractionPart}
-
-t_q64							Q64_FractionPart(t_q64 number);
-#define c_q64_fractionpart		Q64_FractionPart	//!< @alias{Q64_FractionPart}
-
+t_s16							Q16_FractionPart(t_q16 number);
+t_s32							Q32_FractionPart(t_q32 number);
+t_s64							Q64_FractionPart(t_q64 number);
 #ifdef __int128
-t_q128							Q128_FractionPart(t_q128 number);
-#define c_q128_fractionpart		Q128_FractionPart	//!< @alias{Q128_FractionPart}
+t_s128							Q128_FractionPart(t_q128 number);
 #endif
+#define c_fixed_fractionpart	Fixed_FractionPart	//!< @alias{Fixed_FractionPart}
+#define c_q16_fractionpart		Q16_FractionPart	//!< @alias{Q16_FractionPart}
+#define c_q32_fractionpart		Q32_FractionPart	//!< @alias{Q32_FractionPart}
+#define c_q64_fractionpart		Q64_FractionPart	//!< @alias{Q64_FractionPart}
+#define c_q128_fractionpart		Q128_FractionPart	//!< @alias{Q128_FractionPart}
 //!@}
 
 
 
-//! Returns the nearest integer value to the given fixed-point `number`
+//! Rounds the given fixed-point `number` to the nearest whole number (integer)
 /*!
 **	TODO document
 */
 //!@{
 #define					Fixed_Rounded	CONCAT(FIXED_TYPE,_Rounded)
-#define c_fixed_round	Fixed_Rounded	//!< @alias{Fixed_Rounded}
-
 t_q16					Q16_Rounded(t_q16 number);
-#define c_q16_round		Q16_Rounded	//!< @alias{Q16_Rounded}
-
 t_q32					Q32_Rounded(t_q32 number);
-#define c_q32_round		Q32_Rounded	//!< @alias{Q32_Rounded}
-
 t_q64					Q64_Rounded(t_q64 number);
-#define c_q64_round		Q64_Rounded	//!< @alias{Q64_Rounded}
-
 #ifdef __int128
 t_q128					Q128_Rounded(t_q128 number);
-#define c_q128_round	Q128_Rounded	//!< @alias{Q128_Rounded}
-
 #endif
+#define c_fixed_round	Fixed_Rounded 	//!< @alias{Fixed_Rounded}
+#define c_q16_round		Q16_Rounded 	//!< @alias{Q16_Rounded}
+#define c_q32_round		Q32_Rounded 	//!< @alias{Q32_Rounded}
+#define c_q64_round		Q64_Rounded 	//!< @alias{Q64_Rounded}
+#define c_q128_round	Q128_Rounded 	//!< @alias{Q128_Rounded}
 //!@}
+
+
+
+// TODO Fixed_Truncate
+// TODO Fixed_Floor
+// TODO Fixed_Ceiling
 
 
 
@@ -436,81 +420,71 @@ t_q128					Q128_Rounded(t_q128 number);
 //! Performs an addition between the 2 given floating-point values (operator: `+`)
 //!@{
 #define				Fixed_Add	CONCAT(FIXED_TYPE,_Add)
-#define c_qadd		Fixed_Add	//! @alias{Fixed_Add}
-
 t_q16				Q16_Add(t_q16 number1, t_q16 number2);
-#define c_q16add	Q16_Add 	//! @alias{Q16_Add}
-
 t_q32				Q32_Add(t_q32 number1, t_q32 number2);
-#define c_q32add	Q32_Add 	//! @alias{Q32_Add}
-
 t_q64				Q64_Add(t_q64 number1, t_q64 number2);
-#define c_q64add	Q64_Add 	//! @alias{Q64_Add}
-
 #ifdef __int128
 t_q128				Q128_Add(t_q128 number1, t_q128 number2);
-#define c_q128add	Q128_Add 	//! @alias{Q128_Add}
 #endif
+#define c_qadd		Fixed_Add	//! @alias{Fixed_Add}
+#define c_q16add	Q16_Add 	//! @alias{Q16_Add}
+#define c_q32add	Q32_Add 	//! @alias{Q32_Add}
+#define c_q64add	Q64_Add 	//! @alias{Q64_Add}
+#define c_q128add	Q128_Add 	//! @alias{Q128_Add}
 //!@}
+
+
 
 //! Performs an addition between the 2 given floating-point values (operator: `-`)
 //!@{
 #define				Fixed_Sub	CONCAT(FIXED_TYPE,_Sub)
-#define c_qsub		Fixed_Sub	//! @alias{Fixed_Sub}
-
 t_q16				Q16_Sub(t_q16 number1, t_q16 number2);
-#define c_q16sub	Q16_Sub 	//! @alias{Q16_Sub}
-
 t_q32				Q32_Sub(t_q32 number1, t_q32 number2);
-#define c_q32sub	Q32_Sub 	//! @alias{Q32_Sub}
-
 t_q64				Q64_Sub(t_q64 number1, t_q64 number2);
-#define c_q64sub	Q64_Sub 	//! @alias{Q64_Sub}
-
 #ifdef __int128
 t_q128				Q128_Sub(t_q128 number1, t_q128 number2);
-#define c_q128sub	Q128_Sub 	//! @alias{Q128_Sub}
 #endif
+#define c_qsub		Fixed_Sub	//! @alias{Fixed_Sub}
+#define c_q16sub	Q16_Sub 	//! @alias{Q16_Sub}
+#define c_q32sub	Q32_Sub 	//! @alias{Q32_Sub}
+#define c_q64sub	Q64_Sub 	//! @alias{Q64_Sub}
+#define c_q128sub	Q128_Sub 	//! @alias{Q128_Sub}
 //!@}
+
+
 
 //! Performs an addition between the 2 given floating-point values (operator: `*`)
 //!@{
 #define				Fixed_Mul	CONCAT(FIXED_TYPE,_Mul)
-#define c_qmul		Fixed_Mul	//! @alias{Fixed_Mul}
-
 t_q16				Q16_Mul(t_q16 number1, t_q16 number2);
-#define c_q16mul	Q16_Mul 	//! @alias{Q16_Mul}
-
 t_q32				Q32_Mul(t_q32 number1, t_q32 number2);
-#define c_q32mul	Q32_Mul 	//! @alias{Q32_Mul}
-
 t_q64				Q64_Mul(t_q64 number1, t_q64 number2);
-#define c_q64mul	Q64_Mul 	//! @alias{Q64_Mul}
-
 #ifdef __int128
 t_q128				Q128_Mul(t_q128 number1, t_q128 number2);
-#define c_q128mul	Q128_Mul 	//! @alias{Q128_Mul}
 #endif
+#define c_qmul		Fixed_Mul	//! @alias{Fixed_Mul}
+#define c_q16mul	Q16_Mul 	//! @alias{Q16_Mul}
+#define c_q32mul	Q32_Mul 	//! @alias{Q32_Mul}
+#define c_q64mul	Q64_Mul 	//! @alias{Q64_Mul}
+#define c_q128mul	Q128_Mul 	//! @alias{Q128_Mul}
 //!@}
+
+
 
 //! Performs a division between the 2 given floating-point values (operator: `/`)
 //!@{
 #define				Fixed_Div	CONCAT(FIXED_TYPE,_Div)
-#define c_qdiv		Fixed_Div	//! @alias{Fixed_Div}
-
 t_q16				Q16_Div(t_q16 number1, t_q16 number2);
-#define c_q16div	Q16_Div 	//! @alias{Q16_Div}
-
 t_q32				Q32_Div(t_q32 number1, t_q32 number2);
-#define c_q32div	Q32_Div 	//! @alias{Q32_Div}
-
 t_q64				Q64_Div(t_q64 number1, t_q64 number2);
-#define c_q64div	Q64_Div 	//! @alias{Q64_Div}
-
 #ifdef __int128
 t_q128				Q128_Div(t_q128 number1, t_q128 number2);
-#define c_q128div	Q128_Div 	//! @alias{Q128_Div}
 #endif
+#define c_qdiv		Fixed_Div	//! @alias{Fixed_Div}
+#define c_q16div	Q16_Div 	//! @alias{Q16_Div}
+#define c_q32div	Q32_Div 	//! @alias{Q32_Div}
+#define c_q64div	Q64_Div 	//! @alias{Q64_Div}
+#define c_q128div	Q128_Div 	//! @alias{Q128_Div}
 //!@}
 
 
@@ -531,22 +505,17 @@ t_q128				Q128_Div(t_q128 number1, t_q128 number2);
 */
 //!@{
 #define					Fixed_Equals	CONCAT(FLOAT_TYPE,_Equals)
-#define c_qequ			Fixed_Equals	//!< @alias{Fixed_Equals}
-
+t_bool					Q16_Equals(t_q16 number1, t_q16 number2);
 t_bool					Q32_Equals(t_q32 number1, t_q32 number2);
-#define c_q32equ		Q32_Equals	//!< @alias{Q32_Equals}
-
 t_bool					Q64_Equals(t_q64 number1, t_q64 number2);
-#define c_q64equ		Q64_Equals	//!< @alias{Q64_Equals}
-
-#ifdef	__float80
-t_bool					Q80_Equals(t_q80 number1, t_q80 number2);
-#define c_q80equ		Q80_Equals	//!< @alias{Q80_Equals}
-#endif
-#ifdef	__float128
+#ifdef	__int128
 t_bool					Q128_Equals(t_q128 number1, t_q128 number2);
-#define c_q128equ		Q128_Equals	//!< @alias{Q128_Equals}
 #endif
+#define c_qequ			Fixed_Equals	//!< @alias{Fixed_Equals}
+#define c_q16equ		Q16_Equals	//!< @alias{Q16_Equals}
+#define c_q32equ		Q32_Equals	//!< @alias{Q32_Equals}
+#define c_q64equ		Q64_Equals	//!< @alias{Q64_Equals}
+#define c_q128equ		Q128_Equals	//!< @alias{Q128_Equals}
 //!@}
 
 
@@ -560,22 +529,17 @@ t_bool					Q128_Equals(t_q128 number1, t_q128 number2);
 */
 //!@{
 #define					Fixed_EqualsApprox	CONCAT(FLOAT_TYPE,_EqualsApprox)
-#define c_qequa			Fixed_EqualsApprox	//!< @alias{Fixed_EqualsApprox}
-
+t_bool					Q16_EqualsApprox(t_q16 number1, t_q16 number2);
 t_bool					Q32_EqualsApprox(t_q32 number1, t_q32 number2);
-#define c_q32equa		Q32_EqualsApprox	//!< @alias{Q32_EqualsApprox}
-
 t_bool					Q64_EqualsApprox(t_q64 number1, t_q64 number2);
-#define c_q64equa		Q64_EqualsApprox	//!< @alias{Q64_EqualsApprox}
-
-#ifdef	__float80
-t_bool					Q80_EqualsApprox(t_q80 number1, t_q80 number2);
-#define c_q80equa		Q80_EqualsApprox	//!< @alias{Q80_EqualsApprox}
-#endif
-#ifdef	__float128
+#ifdef	__int128
 t_bool					Q128_EqualsApprox(t_q128 number1, t_q128 number2);
-#define c_q128equa		Q128_EqualsApprox	//!< @alias{Q128_EqualsApprox}
 #endif
+#define c_qequa			Fixed_EqualsApprox	//!< @alias{Fixed_EqualsApprox}
+#define c_q16equa		Q16_EqualsApprox	//!< @alias{Q16_EqualsApprox}
+#define c_q32equa		Q32_EqualsApprox	//!< @alias{Q32_EqualsApprox}
+#define c_q64equa		Q64_EqualsApprox	//!< @alias{Q64_EqualsApprox}
+#define c_q128equa		Q128_EqualsApprox	//!< @alias{Q128_EqualsApprox}
 //!@}
 
 
@@ -601,21 +565,17 @@ t_bool					Q128_EqualsApprox(t_q128 number1, t_q128 number2);
 */
 //!@{
 #define					Fixed_ToString	CONCAT(FIXED_TYPE,_ToString)
-#define c_qtostr		Fixed_ToString	//!<  @alias{Fixed_ToString}
-
 _MALLOC()	char*		Q16_ToString(t_q16 number); // TODO implement
-#define c_q16tostr		Q16_ToString	//!< @alias{Q16_ToString}
-
 _MALLOC()	char*		Q32_ToString(t_q32 number); // TODO implement
-#define c_q32tostr		Q32_ToString	//!< @alias{Q32_ToString}
-
 _MALLOC()	char*		Q64_ToString(t_q64 number); // TODO implement
-#define c_q64tostr		Q64_ToString	//!< @alias{Q64_ToString}
-
 #ifdef	__int128
 _MALLOC()	char*		Q128_ToString(t_q128 number); // TODO implement
-#define c_q128tostr		Q128_ToString	//!< @alias{Q128_ToString}
 #endif
+#define c_qtostr		Fixed_ToString	//!< @alias{Fixed_ToString}
+#define c_q16tostr		Q16_ToString	//!< @alias{Q16_ToString}
+#define c_q32tostr		Q32_ToString	//!< @alias{Q32_ToString}
+#define c_q64tostr		Q64_ToString	//!< @alias{Q64_ToString}
+#define c_q128tostr		Q128_ToString	//!< @alias{Q128_ToString}
 //!@}
 
 
@@ -627,21 +587,17 @@ _MALLOC()	char*		Q128_ToString(t_q128 number); // TODO implement
 */
 //!@{
 #define					Fixed_ToString_Hex	CONCAT(FIXED_TYPE,_ToString_Hex)
-#define c_qtostrhex		Fixed_ToString_Hex	//!<  @alias{Fixed_ToString_Hex}
-
 _MALLOC()	char*		Q16_ToString_Hex(t_q16 number); // TODO implement
-#define c_q16tostrhex	Q16_ToString_Hex	//!< @alias{Q16_ToString_Hex}
-
 _MALLOC()	char*		Q32_ToString_Hex(t_q32 number); // TODO implement
-#define c_q32tostrhex	Q32_ToString_Hex	//!< @alias{Q32_ToString_Hex}
-
 _MALLOC()	char*		Q64_ToString_Hex(t_q64 number); // TODO implement
-#define c_q64tostrhex	Q64_ToString_Hex	//!< @alias{Q64_ToString_Hex}
-
 #ifdef	__int128
 _MALLOC()	char*		Q128_ToString_Hex(t_q128 number); // TODO implement
-#define c_q128tostrhex	Q128_ToString_Hex	//!< @alias{Q128_ToString_Hex}
 #endif
+#define c_qtostrhex		Fixed_ToString_Hex	//!< @alias{Fixed_ToString_Hex}
+#define c_q16tostrhex	Q16_ToString_Hex	//!< @alias{Q16_ToString_Hex}
+#define c_q32tostrhex	Q32_ToString_Hex	//!< @alias{Q32_ToString_Hex}
+#define c_q64tostrhex	Q64_ToString_Hex	//!< @alias{Q64_ToString_Hex}
+#define c_q128tostrhex	Q128_ToString_Hex	//!< @alias{Q128_ToString_Hex}
 //!@}
 
 
@@ -653,21 +609,17 @@ _MALLOC()	char*		Q128_ToString_Hex(t_q128 number); // TODO implement
 */
 //!@{
 #define					Fixed_ToString_Bin	CONCAT(FIXED_TYPE,_ToString_Bin)
-#define c_qtostrbin		Fixed_ToString_Bin	//!<  @alias{Fixed_ToString_Bin}
-
 _MALLOC()	char*		Q16_ToString_Bin(t_q16 number); // TODO implement
-#define c_q16tostrbin	Q16_ToString_Bin	//!< @alias{Q16_ToString_Bin}
-
 _MALLOC()	char*		Q32_ToString_Bin(t_q32 number); // TODO implement
-#define c_q32tostrbin	Q32_ToString_Bin	//!< @alias{Q32_ToString_Bin}
-
 _MALLOC()	char*		Q64_ToString_Bin(t_q64 number); // TODO implement
-#define c_q64tostrbin	Q64_ToString_Bin	//!< @alias{Q64_ToString_Bin}
-
 #ifdef	__int128
 _MALLOC()	char*		Q128_ToString_Bin(t_q128 number); // TODO implement
-#define c_q128tostrbin	Q128_ToString_Bin	//!< @alias{Q128_ToString_Bin}
 #endif
+#define c_qtostrbin		Fixed_ToString_Bin	//!< @alias{Fixed_ToString_Bin}
+#define c_q16tostrbin	Q16_ToString_Bin	//!< @alias{Q16_ToString_Bin}
+#define c_q32tostrbin	Q32_ToString_Bin	//!< @alias{Q32_ToString_Bin}
+#define c_q64tostrbin	Q64_ToString_Bin	//!< @alias{Q64_ToString_Bin}
+#define c_q128tostrbin	Q128_ToString_Bin	//!< @alias{Q128_ToString_Bin}
 //!@}
 
 
@@ -680,21 +632,17 @@ _MALLOC()	char*		Q128_ToString_Bin(t_q128 number); // TODO implement
 */
 //!@{
 #define					Fixed_ToString_Base	CONCAT(FIXED_TYPE,_ToString_Base)
-#define c_qtostrbase	Fixed_ToString_Base	//!<  @alias{Fixed_ToString_Base}
-
 _MALLOC()	char*		Q16_ToString_Base(t_q16 number, char const* base); // TODO implement
-#define c_q16tostrbase	Q16_ToString_Base	//!< @alias{Q16_ToString_Base}
-
 _MALLOC()	char*		Q32_ToString_Base(t_q32 number, char const* base); // TODO implement
-#define c_q32tostrbase	Q32_ToString_Base	//!< @alias{Q32_ToString_Base}
-
 _MALLOC()	char*		Q64_ToString_Base(t_q64 number, char const* base); // TODO implement
-#define c_q64tostrbase	Q64_ToString_Base	//!< @alias{Q64_ToString_Base}
-
 #ifdef	__int128
 _MALLOC()	char*		Q128_ToString_Base(t_q128 number, char const* base); // TODO implement
-#define c_q128tostrbase	Q128_ToString_Base	//!< @alias{Q128_ToString_Base}
 #endif
+#define c_qtostrbase	Fixed_ToString_Base	//!< @alias{Fixed_ToString_Base}
+#define c_q16tostrbase	Q16_ToString_Base	//!< @alias{Q16_ToString_Base}
+#define c_q32tostrbase	Q32_ToString_Base	//!< @alias{Q32_ToString_Base}
+#define c_q64tostrbase	Q64_ToString_Base	//!< @alias{Q64_ToString_Base}
+#define c_q128tostrbase	Q128_ToString_Base	//!< @alias{Q128_ToString_Base}
 //!@}
 
 
@@ -715,21 +663,17 @@ _MALLOC()	char*		Q128_ToString_Base(t_q128 number, char const* base); // TODO im
 */
 //!@{
 #define					Fixed_FromString	CONCAT(FIXED_TYPE,_FromString)
-#define c_strtoq		Fixed_FromString	//!<  @alias{Fixed_FromString}
-
 t_q16					Q16_FromString(char const* str); // TODO implement
-#define c_strtoq16		Q16_FromString //!< @alias{Q16_FromString}
-
 t_q32					Q32_FromString(char const* str); // TODO implement
-#define c_strtoq32		Q32_FromString //!< @alias{Q32_FromString}
-
 t_q64					Q64_FromString(char const* str); // TODO implement
-#define c_strtoq64		Q64_FromString //!< @alias{Q64_FromString}
-
 #ifdef	__int128
 t_q128					Q128_FromString(char const* str); // TODO implement
-#define c_strtoq128		Q128_FromString //!< @alias{Q128_FromString}
 #endif
+#define c_strtoq		Fixed_FromString	//!< @alias{Fixed_FromString}
+#define c_strtoq16		Q16_FromString //!< @alias{Q16_FromString}
+#define c_strtoq32		Q32_FromString //!< @alias{Q32_FromString}
+#define c_strtoq64		Q64_FromString //!< @alias{Q64_FromString}
+#define c_strtoq128		Q128_FromString //!< @alias{Q128_FromString}
 //!@}
 
 
@@ -742,21 +686,17 @@ t_q128					Q128_FromString(char const* str); // TODO implement
 */
 //!@{
 #define					Fixed_FromString_Hex	CONCAT(FIXED_TYPE,_FromString_Hex)
-#define c_strhextoq		Fixed_FromString_Hex	//!<  @alias{Fixed_FromString_Hex}
-
 t_q16					Q16_FromString_Hex(char const* str); // TODO implement
-#define c_strhextoq16	Q16_FromString_Hex //!< @alias{Q16_FromString_Hex}
-
 t_q32					Q32_FromString_Hex(char const* str); // TODO implement
-#define c_strhextoq32	Q32_FromString_Hex //!< @alias{Q32_FromString_Hex}
-
 t_q64					Q64_FromString_Hex(char const* str); // TODO implement
-#define c_strhextoq64	Q64_FromString_Hex //!< @alias{Q64_FromString_Hex}
-
 #ifdef	__int128
 t_q128					Q128_FromString_Hex(char const* str); // TODO implement
-#define c_strhextoq128	Q128_FromString_Hex //!< @alias{Q128_FromString_Hex}
 #endif
+#define c_strhextoq		Fixed_FromString_Hex	//!< @alias{Fixed_FromString_Hex}
+#define c_strhextoq16	Q16_FromString_Hex //!< @alias{Q16_FromString_Hex}
+#define c_strhextoq32	Q32_FromString_Hex //!< @alias{Q32_FromString_Hex}
+#define c_strhextoq64	Q64_FromString_Hex //!< @alias{Q64_FromString_Hex}
+#define c_strhextoq128	Q128_FromString_Hex //!< @alias{Q128_FromString_Hex}
 //!@}
 
 
@@ -769,21 +709,17 @@ t_q128					Q128_FromString_Hex(char const* str); // TODO implement
 */
 //!@{
 #define					Fixed_FromString_Bin	CONCAT(FIXED_TYPE,_FromString_Bin)
-#define c_strbintoq		Fixed_FromString_Bin	//!<  @alias{Fixed_FromString_Bin}
-
 t_q16					Q16_FromString_Bin(char const* str); // TODO implement
-#define c_strbintoq16	Q16_FromString_Bin //!< @alias{Q16_FromString_Bin}
-
 t_q32					Q32_FromString_Bin(char const* str); // TODO implement
-#define c_strbintoq32	Q32_FromString_Bin //!< @alias{Q32_FromString_Bin}
-
 t_q64					Q64_FromString_Bin(char const* str); // TODO implement
-#define c_strbintoq64	Q64_FromString_Bin //!< @alias{Q64_FromString_Bin}
-
 #ifdef	__int128
 t_q128					Q128_FromString_Bin(char const* str); // TODO implement
-#define c_strbintoq128	Q128_FromString_Bin //!< @alias{Q128_FromString_Bin}
 #endif
+#define c_strbintoq		Fixed_FromString_Bin	//!< @alias{Fixed_FromString_Bin}
+#define c_strbintoq16	Q16_FromString_Bin //!< @alias{Q16_FromString_Bin}
+#define c_strbintoq32	Q32_FromString_Bin //!< @alias{Q32_FromString_Bin}
+#define c_strbintoq64	Q64_FromString_Bin //!< @alias{Q64_FromString_Bin}
+#define c_strbintoq128	Q128_FromString_Bin //!< @alias{Q128_FromString_Bin}
 //!@}
 
 
@@ -797,23 +733,18 @@ t_q128					Q128_FromString_Bin(char const* str); // TODO implement
 */
 //!@{
 #define					Fixed_FromString_Base	CONCAT(FIXED_TYPE,_FromString_Base)
-#define c_strbasetoq	Fixed_FromString_Base	//!<  @alias{Fixed_FromString_Base}
-
 t_q16					Q16_FromString_Base(char const* str, char const* base); // TODO implement
-#define c_strbasetoq16	Q16_FromString_Base //!< @alias{Q16_FromString_Base}
-
 t_q32					Q32_FromString_Base(char const* str, char const* base); // TODO implement
-#define c_strbasetoq32	Q32_FromString_Base //!< @alias{Q32_FromString_Base}
-
 t_q64					Q64_FromString_Base(char const* str, char const* base); // TODO implement
-#define c_strbasetoq64	Q64_FromString_Base //!< @alias{Q64_FromString_Base}
-
 #ifdef	__int128
 t_q128					Q128_FromString_Base(char const* str, char const* base); // TODO implement
-#define c_strbasetoq128	Q128_FromString_Base //!< @alias{Q128_FromString_Base}
 #endif
+#define c_strbasetoq	Fixed_FromString_Base	//!< @alias{Fixed_FromString_Base}
+#define c_strbasetoq16	Q16_FromString_Base //!< @alias{Q16_FromString_Base}
+#define c_strbasetoq32	Q32_FromString_Base //!< @alias{Q32_FromString_Base}
+#define c_strbasetoq64	Q64_FromString_Base //!< @alias{Q64_FromString_Base}
+#define c_strbasetoq128	Q128_FromString_Base //!< @alias{Q128_FromString_Base}
 //!@}
-
 
 
 /*! @} */

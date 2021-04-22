@@ -9,9 +9,9 @@
 /*                                                                            */
 /*============================================================================*/
 
-#ifndef __LIBCCC_ARRAY_POINTERARRAY_H
-#define __LIBCCC_ARRAY_POINTERARRAY_H
-/*!@group{libccc_array_pointerarray}
+#ifndef __LIBCCC_POINTERARRAY_H
+#define __LIBCCC_POINTERARRAY_H
+/*!@group{libccc_pointerarray}
 ** @{
 **	This header defines the common standard memory manipulation functions.
 **

@@ -391,24 +391,19 @@ TYPEDEF_ALIAS(t_sint, SINT, PRIMITIVE)
 */
 //!@{
 #define					UInt_ToString	CONCAT(UINT_TYPE,_ToString)
-#define c_utostr		UInt_ToString	//!<  @alias{UInt_ToString}
-
 _MALLOC()	char*		U8_ToString(t_u8 number);
-#define c_u8tostr		U8_ToString 	//!< @alias{U8_ToString}
-
 _MALLOC()	char*		U16_ToString(t_u16 number);
-#define c_u16tostr		U16_ToString 	//!< @alias{U16_ToString}
-
 _MALLOC()	char*		U32_ToString(t_u32 number);
-#define c_u32tostr		U32_ToString 	//!< @alias{U32_ToString}
-
 _MALLOC()	char*		U64_ToString(t_u64 number);
-#define c_u64tostr		U64_ToString 	//!< @alias{U64_ToString}
-
 #ifdef __int128
 _MALLOC()	char*		U128_ToString(t_u128 number); // TODO implement
-#define c_u128tostr		U128_ToString 	//!< @alias{U128_ToString}
 #endif
+#define c_utostr		UInt_ToString	//!< @alias{UInt_ToString}
+#define c_u8tostr		U8_ToString 	//!< @alias{U8_ToString}
+#define c_u16tostr		U16_ToString 	//!< @alias{U16_ToString}
+#define c_u32tostr		U32_ToString 	//!< @alias{U32_ToString}
+#define c_u64tostr		U64_ToString 	//!< @alias{U64_ToString}
+#define c_u128tostr		U128_ToString 	//!< @alias{U128_ToString}
 //!@}
 
 //! Get the string decimal representation of a signed integer
@@ -418,24 +413,19 @@ _MALLOC()	char*		U128_ToString(t_u128 number); // TODO implement
 */
 //!@{
 #define					SInt_ToString	CONCAT(SINT_TYPE,_ToString)
-#define c_stostr		SInt_ToString	//!<  @alias{SInt_ToString}
-
 _MALLOC()	char*		S8_ToString(t_s8 number);
-#define c_s8tostr		S8_ToString 	//!< @alias{S8_ToString}
-
 _MALLOC()	char*		S16_ToString(t_s16 number);
-#define c_s16tostr		S16_ToString 	//!< @alias{S16_ToString}
-
 _MALLOC()	char*		S32_ToString(t_s32 number);
-#define c_s32tostr		S32_ToString 	//!< @alias{S32_ToString}
-
 _MALLOC()	char*		S64_ToString(t_s64 number);
-#define c_s64tostr		S64_ToString 	//!< @alias{S64_ToString}
-
 #ifdef __int128
 _MALLOC()	char*		S128_ToString(t_s128 number); // TODO implement
-#define c_s128tostr		S128_ToString 	//!< @alias{S128_ToString}
 #endif
+#define c_stostr		SInt_ToString	//!< @alias{SInt_ToString}
+#define c_s8tostr		S8_ToString 	//!< @alias{S8_ToString}
+#define c_s16tostr		S16_ToString 	//!< @alias{S16_ToString}
+#define c_s32tostr		S32_ToString 	//!< @alias{S32_ToString}
+#define c_s64tostr		S64_ToString 	//!< @alias{S64_ToString}
+#define c_s128tostr		S128_ToString 	//!< @alias{S128_ToString}
 //!@}
 
 
@@ -447,24 +437,19 @@ _MALLOC()	char*		S128_ToString(t_s128 number); // TODO implement
 */
 //!@{
 #define					UInt_ToString_Hex	CONCAT(UINT_TYPE,_ToString_Hex)
-#define c_utostrhex		UInt_ToString_Hex	//!<  @alias{UInt_ToString_Hex}
-
 _MALLOC()	char*		U8_ToString_Hex(t_u8 number);
-#define c_u8tostrhex	U8_ToString_Hex 	//!< @alias{U8_ToString_Hex}
-
 _MALLOC()	char*		U16_ToString_Hex(t_u16 number);
-#define c_u16tostrhex	U16_ToString_Hex 	//!< @alias{U16_ToString_Hex}
-
 _MALLOC()	char*		U32_ToString_Hex(t_u32 number);
-#define c_u32tostrhex	U32_ToString_Hex 	//!< @alias{U32_ToString_Hex}
-
 _MALLOC()	char*		U64_ToString_Hex(t_u64 number);
-#define c_u64tostrhex	U64_ToString_Hex 	//!< @alias{U64_ToString_Hex}
-
 #ifdef __int128
 _MALLOC()	char*		U128_ToString_Hex(t_u128 number); // TODO implement
-#define c_u128tostrhex	U128_ToString_Hex 	//!< @alias{U128_ToString_Hex}
 #endif
+#define c_utostrhex		UInt_ToString_Hex	//!< @alias{UInt_ToString_Hex}
+#define c_u8tostrhex	U8_ToString_Hex 	//!< @alias{U8_ToString_Hex}
+#define c_u16tostrhex	U16_ToString_Hex 	//!< @alias{U16_ToString_Hex}
+#define c_u32tostrhex	U32_ToString_Hex 	//!< @alias{U32_ToString_Hex}
+#define c_u64tostrhex	U64_ToString_Hex 	//!< @alias{U64_ToString_Hex}
+#define c_u128tostrhex	U128_ToString_Hex 	//!< @alias{U128_ToString_Hex}
 //!@}
 
 //! Get the string hexadecimal representation of a signed integer
@@ -474,24 +459,19 @@ _MALLOC()	char*		U128_ToString_Hex(t_u128 number); // TODO implement
 */
 //!@{
 #define					SInt_ToString_Hex	CONCAT(SINT_TYPE,_ToString)
-#define c_stostrhex		SInt_ToString_Hex	//!<  @alias{SInt_ToString_Hex}
-
 _MALLOC()	char*		S8_ToString_Hex(t_s8 number);
-#define c_s8tostrhex	S8_ToString_Hex 	//!< @alias{S8_ToString_Hex}
-
 _MALLOC()	char*		S16_ToString_Hex(t_s16 number);
-#define c_s16tostrhex	S16_ToString_Hex 	//!< @alias{S16_ToString_Hex}
-
 _MALLOC()	char*		S32_ToString_Hex(t_s32 number);
-#define c_s32tostrhex	S32_ToString_Hex 	//!< @alias{S32_ToString_Hex}
-
 _MALLOC()	char*		S64_ToString_Hex(t_s64 number);
-#define c_s64tostrhex	S64_ToString_Hex 	//!< @alias{S64_ToString_Hex}
-
 #ifdef __int128
 _MALLOC()	char*		S128_ToString_Hex(t_s128 number); // TODO implement
-#define c_s128tostrhex	S128_ToString_Hex 	//!< @alias{S128_ToString_Hex}
 #endif
+#define c_stostrhex		SInt_ToString_Hex	//!< @alias{SInt_ToString_Hex}
+#define c_s8tostrhex	S8_ToString_Hex 	//!< @alias{S8_ToString_Hex}
+#define c_s16tostrhex	S16_ToString_Hex 	//!< @alias{S16_ToString_Hex}
+#define c_s32tostrhex	S32_ToString_Hex 	//!< @alias{S32_ToString_Hex}
+#define c_s64tostrhex	S64_ToString_Hex 	//!< @alias{S64_ToString_Hex}
+#define c_s128tostrhex	S128_ToString_Hex 	//!< @alias{S128_ToString_Hex}
 //!@}
 
 
@@ -503,24 +483,19 @@ _MALLOC()	char*		S128_ToString_Hex(t_s128 number); // TODO implement
 */
 //!@{
 #define					UInt_ToString_Bin	CONCAT(UINT_TYPE,_ToString_Hex)
-#define c_utostrbin		UInt_ToString_Bin	//!<  @alias{UInt_ToString_Bin}
-
 _MALLOC()	char*		U8_ToString_Bin(t_u8 number);
-#define c_u8tostrbin	U8_ToString_Bin 	//!< @alias{U8_ToString_Bin}
-
 _MALLOC()	char*		U16_ToString_Bin(t_u16 number);
-#define c_u16tostrbin	U16_ToString_Bin 	//!< @alias{U16_ToString_Bin}
-
 _MALLOC()	char*		U32_ToString_Bin(t_u32 number);
-#define c_u32tostrbin	U32_ToString_Bin 	//!< @alias{U32_ToString_Bin}
-
 _MALLOC()	char*		U64_ToString_Bin(t_u64 number);
-#define c_u64tostrbin	U64_ToString_Bin 	//!< @alias{U64_ToString_Bin}
-
 #ifdef __int128
 _MALLOC()	char*		U128_ToString_Bin(t_u128 number); // TODO implement
-#define c_u128tostrbin	U128_ToString_Bin 	//!< @alias{U128_ToString_Bin}
 #endif
+#define c_utostrbin		UInt_ToString_Bin	//!< @alias{UInt_ToString_Bin}
+#define c_u8tostrbin	U8_ToString_Bin 	//!< @alias{U8_ToString_Bin}
+#define c_u16tostrbin	U16_ToString_Bin 	//!< @alias{U16_ToString_Bin}
+#define c_u32tostrbin	U32_ToString_Bin 	//!< @alias{U32_ToString_Bin}
+#define c_u64tostrbin	U64_ToString_Bin 	//!< @alias{U64_ToString_Bin}
+#define c_u128tostrbin	U128_ToString_Bin 	//!< @alias{U128_ToString_Bin}
 //!@}
 
 //! Get the string binary representation of a signed integer
@@ -530,24 +505,19 @@ _MALLOC()	char*		U128_ToString_Bin(t_u128 number); // TODO implement
 */
 //!@{
 #define					SInt_ToString_Bin	CONCAT(SINT_TYPE,_ToString)
-#define c_stostrbin		SInt_ToString_Bin	//!<  @alias{SInt_ToString_Bin}
-
 _MALLOC()	char*		S8_ToString_Bin(t_s8 number);
-#define c_s8tostrbin	S8_ToString_Bin 	//!< @alias{S8_ToString_Bin}
-
 _MALLOC()	char*		S16_ToString_Bin(t_s16 number);
-#define c_s16tostrbin	S16_ToString_Bin 	//!< @alias{S16_ToString_Bin}
-
 _MALLOC()	char*		S32_ToString_Bin(t_s32 number);
-#define c_s32tostrbin	S32_ToString_Bin 	//!< @alias{S32_ToString_Bin}
-
 _MALLOC()	char*		S64_ToString_Bin(t_s64 number);
-#define c_s64tostrbin	S64_ToString_Bin 	//!< @alias{S64_ToString_Bin}
-
 #ifdef __int128
 _MALLOC()	char*		S128_ToString_Bin(t_s128 number); // TODO implement
-#define c_s128tostrbin	S128_ToString_Bin 	//!< @alias{S128_ToString_Bin}
 #endif
+#define c_stostrbin		SInt_ToString_Bin	//!< @alias{SInt_ToString_Bin}
+#define c_s8tostrbin	S8_ToString_Bin 	//!< @alias{S8_ToString_Bin}
+#define c_s16tostrbin	S16_ToString_Bin 	//!< @alias{S16_ToString_Bin}
+#define c_s32tostrbin	S32_ToString_Bin 	//!< @alias{S32_ToString_Bin}
+#define c_s64tostrbin	S64_ToString_Bin 	//!< @alias{S64_ToString_Bin}
+#define c_s128tostrbin	S128_ToString_Bin 	//!< @alias{S128_ToString_Bin}
 //!@}
 
 
@@ -559,24 +529,19 @@ _MALLOC()	char*		S128_ToString_Bin(t_s128 number); // TODO implement
 */
 //!@{
 #define					SInt_ToString_Base	CONCAT(SINT_TYPE,_ToString_Base)
-#define c_stostrbase	SInt_ToString_Base	//!<  @alias{SInt_ToString_Base}
-
 _MALLOC()	char*		S8_ToString_Base(t_s8 number, char const* base);
-#define c_s8tostrbase	S8_ToString_Base	//!< @alias{S8_ToString_Base}
-
 _MALLOC()	char*		S16_ToString_Base(t_s16 number, char const* base);
-#define c_s16tostrbase	S16_ToString_Base	//!< @alias{S16_ToString_Base}
-
 _MALLOC()	char*		S32_ToString_Base(t_s32 number, char const* base);
-#define c_s32tostrbase	S32_ToString_Base	//!< @alias{S32_ToString_Base}
-
 _MALLOC()	char*		S64_ToString_Base(t_s64 number, char const* base);
-#define c_s64tostrbase	S64_ToString_Base	//!< @alias{S64_ToString_Base}
-
 #ifdef __int128
 _MALLOC()	char*		S128_ToString_Base(t_s128 number, char const* base); // TODO implement
-#define c_s128tostrbase	S128_ToString_Base 	//!< @alias{S128_ToString_Base}
 #endif
+#define c_stostrbase	SInt_ToString_Base	//!< @alias{SInt_ToString_Base}
+#define c_s8tostrbase	S8_ToString_Base	//!< @alias{S8_ToString_Base}
+#define c_s16tostrbase	S16_ToString_Base	//!< @alias{S16_ToString_Base}
+#define c_s32tostrbase	S32_ToString_Base	//!< @alias{S32_ToString_Base}
+#define c_s64tostrbase	S64_ToString_Base	//!< @alias{S64_ToString_Base}
+#define c_s128tostrbase	S128_ToString_Base 	//!< @alias{S128_ToString_Base}
 //!@}
 
 //! Returns newly allocated string custom-base representation of an 8-bit unsigned integer
@@ -586,24 +551,19 @@ _MALLOC()	char*		S128_ToString_Base(t_s128 number, char const* base); // TODO im
 */
 //!@{
 #define					UInt_ToString_Base	CONCAT(UINT_TYPE,_ToString_Base)
-#define c_utostrbase	UInt_ToString_Base	//!<  @alias{UInt_ToString_Base}
-
 _MALLOC()	char*		U8_ToString_Base(t_u8 number, char const* base);
-#define c_u8tostrbase	U8_ToString_Base //!< @alias{U8_ToString_Base}
-
 _MALLOC()	char*		U16_ToString_Base(t_u16 number, char const* base);
-#define c_u16tostrbase	U16_ToString_Base //!< @alias{U16_ToString_Base}
-
 _MALLOC()	char*		U32_ToString_Base(t_u32 number, char const* base);
-#define c_u32tostrbase	U32_ToString_Base //!< @alias{U32_ToString_Base}
-
 _MALLOC()	char*		U64_ToString_Base(t_u64 number, char const* base);
-#define c_u64tostrbase	U64_ToString_Base //!< @alias{U64_ToString_Base}
-
 #ifdef __int128
 _MALLOC()	char*		U128_ToString_Base(t_u128 number, char const* base); // TODO implement
-#define c_u128tostrbase	U128_ToString_Base 	//!< @alias{U128_ToString_Base}
 #endif
+#define c_utostrbase	UInt_ToString_Base	//!< @alias{UInt_ToString_Base}
+#define c_u8tostrbase	U8_ToString_Base 	//!< @alias{U8_ToString_Base}
+#define c_u16tostrbase	U16_ToString_Base 	//!< @alias{U16_ToString_Base}
+#define c_u32tostrbase	U32_ToString_Base 	//!< @alias{U32_ToString_Base}
+#define c_u64tostrbase	U64_ToString_Base 	//!< @alias{U64_ToString_Base}
+#define c_u128tostrbase	U128_ToString_Base 	//!< @alias{U128_ToString_Base}
 //!@}
 
 
@@ -626,7 +586,7 @@ t_s16					S16_FromString(char const* str);
 t_s32					S32_FromString(char const* str);
 t_s64					S64_FromString(char const* str);
 #ifdef __int128
-t_s64					S128_FromString(char const* str);
+t_s128					S128_FromString(char const* str);
 #endif
 #define c_strtos		SInt_FromString	//!< @alias{SInt_FromString}
 #define c_strtos8		S8_FromString	//!< @alias{S8_FromString}
@@ -643,24 +603,19 @@ t_s64					S128_FromString(char const* str);
 */
 //!@{
 #define					UInt_FromString	CONCAT(UINT_TYPE,_FromString)
-#define c_strtou		UInt_FromString	//!<  @alias{UInt_FromString}
-
 t_u8					U8_FromString(char const* str);
-#define c_strtou8		U8_FromString //!< @alias{U8_FromString}
-
 t_u16					U16_FromString(char const* str);
-#define c_strtou16		U16_FromString //!< @alias{U16_FromString}
-
 t_u32					U32_FromString(char const* str);
-#define c_strtou32		U32_FromString //!< @alias{U32_FromString}
-
 t_u64					U64_FromString(char const* str);
-#define c_strtou64		U64_FromString //!< @alias{U64_FromString}
-
 #ifdef __int128
-t_u64					U128_FromString(char const* str);
-#define c_strtou128		U128_FromString //!< @alias{U128_FromString}
+t_u128					U128_FromString(char const* str);
 #endif
+#define c_strtou		UInt_FromString	//!< @alias{UInt_FromString}
+#define c_strtou8		U8_FromString	//!< @alias{U8_FromString}
+#define c_strtou16		U16_FromString	//!< @alias{U16_FromString}
+#define c_strtou32		U32_FromString	//!< @alias{U32_FromString}
+#define c_strtou64		U64_FromString	//!< @alias{U64_FromString}
+#define c_strtou128		U128_FromString	//!< @alias{U128_FromString}
 //!@}
 
 
@@ -672,24 +627,19 @@ t_u64					U128_FromString(char const* str);
 */
 //!@{
 #define					UInt_FromString_Hex	CONCAT(UINT_TYPE,_FromString_Hex)
-#define c_strhextou		UInt_FromString_Hex	//!<  @alias{UInt_FromString_Hex}
-
 t_u8					U8_FromString_Hex(char const* str);
-#define c_strhextou8	U8_FromString_Hex //!< @alias{U8_FromString_Hex}
-
 t_u16					U16_FromString_Hex(char const* str);
-#define c_strhextou16	U16_FromString_Hex //!< @alias{U16_FromString_Hex}
-
 t_u32					U32_FromString_Hex(char const* str);
-#define c_strhextou32	U32_FromString_Hex //!< @alias{U32_FromString_Hex}
-
 t_u64					U64_FromString_Hex(char const* str);
-#define c_strhextou64	U64_FromString_Hex //!< @alias{U64_FromString_Hex}
-
 #ifdef __int128
-t_u64					U64_FromString_Hex(char const* str);
-#define c_strhextou64	U64_FromString_Hex //!< @alias{U64_FromString_Hex}
+t_u128					U128_FromString_Hex(char const* str);
 #endif
+#define c_strhextou		UInt_FromString_Hex	//!< @alias{UInt_FromString_Hex}
+#define c_strhextou8	U8_FromString_Hex	//!< @alias{U8_FromString_Hex}
+#define c_strhextou16	U16_FromString_Hex	//!< @alias{U16_FromString_Hex}
+#define c_strhextou32	U32_FromString_Hex	//!< @alias{U32_FromString_Hex}
+#define c_strhextou64	U64_FromString_Hex	//!< @alias{U64_FromString_Hex}
+#define c_strhextou128	U128_FromString_Hex	//!< @alias{U128_FromString_Hex}
 //!@}
 
 //! Parse an 8-bit unsigned integer from the given haxedecimal number string
@@ -699,24 +649,19 @@ t_u64					U64_FromString_Hex(char const* str);
 */
 //!@{
 #define					SInt_FromString_Hex	CONCAT(SINT_TYPE,_FromString_Hex)
-#define c_strhextos		SInt_FromString_Hex	//!<  @alias{SInt_FromString_Hex}
-
 t_u8					S8_FromString_Hex(char const* str);
-#define c_strhextos8	S8_FromString_Hex //!< @alias{S8_FromString_Hex}
-
 t_u16					S16_FromString_Hex(char const* str);
-#define c_strhextos16	S16_FromString_Hex //!< @alias{S16_FromString_Hex}
-
 t_u32					S32_FromString_Hex(char const* str);
-#define c_strhextos32	S32_FromString_Hex //!< @alias{S32_FromString_Hex}
-
 t_u64					S64_FromString_Hex(char const* str);
-#define c_strhextos64	S64_FromString_Hex //!< @alias{S64_FromString_Hex}
-
 #ifdef __int128
-t_u64					S64_FromString_Hex(char const* str);
-#define c_strhextos64	S64_FromString_Hex //!< @alias{S64_FromString_Hex}
+t_u128					S128_FromString_Hex(char const* str);
 #endif
+#define c_strhextos		SInt_FromString_Hex	//!< @alias{SInt_FromString_Hex}
+#define c_strhextos8	S8_FromString_Hex	//!< @alias{S8_FromString_Hex}
+#define c_strhextos16	S16_FromString_Hex	//!< @alias{S16_FromString_Hex}
+#define c_strhextos32	S32_FromString_Hex	//!< @alias{S32_FromString_Hex}
+#define c_strhextos64	S64_FromString_Hex	//!< @alias{S64_FromString_Hex}
+#define c_strhextos128	S128_FromString_Hex	//!< @alias{S128_FromString_Hex}
 //!@}
 
 
@@ -728,22 +673,19 @@ t_u64					S64_FromString_Hex(char const* str);
 */
 //!@{
 #define					SInt_FromString_Base	CONCAT(SINT_TYPE,_FromString_Base)
-#define c_strbasetos	SInt_FromString_Base	//!<  @alias{SInt_FromString_Base}
-
 t_s8					S8_FromString_Base(char const* str, char const* base);
-#define c_strbasetos8	S8_FromString_Base //!< @alias{S8_FromString_Base}
-
 t_s16					S16_FromString_Base(char const* str, char const* base);
-#define c_strbasetos16	S16_FromString_Base //!< @alias{S16_FromString_Base}
-
 t_s32					S32_FromString_Base(char const* str, char const* base);
-#define c_strbasetos32	S32_FromString_Base //!< @alias{S32_FromString_Base}
-
 t_s64					S64_FromString_Base(char const* str, char const* base);
-#define c_strbasetos64	S64_FromString_Base //!< @alias{S64_FromString_Base}
-
 #ifdef __int128
+t_s128					S128_FromString_Base(char const* str, char const* base);
 #endif
+#define c_strbasetos	SInt_FromString_Base//!< @alias{SInt_FromString_Base}
+#define c_strbasetos8	S8_FromString_Base	//!< @alias{S8_FromString_Base}
+#define c_strbasetos16	S16_FromString_Base	//!< @alias{S16_FromString_Base}
+#define c_strbasetos32	S32_FromString_Base	//!< @alias{S32_FromString_Base}
+#define c_strbasetos64	S64_FromString_Base	//!< @alias{S64_FromString_Base}
+#define c_strbasetos128	S128_FromString_Base//!< @alias{S128_FromString_Base}
 //!@}
 
 //! Parse an 8-bit unsigned integer from a custom-base number string
@@ -753,22 +695,19 @@ t_s64					S64_FromString_Base(char const* str, char const* base);
 */
 //!@{
 #define					UInt_FromString_Base	CONCAT(UINT_TYPE,_FromString_Base)
-#define c_strbasetou	UInt_FromString_Base	//!<  @alias{UInt_FromString_Base}
-
 t_u8					U8_FromString_Base(char const* str, char const* base);
-#define c_strbasetou8	U8_FromString_Base //!< @alias{U8_FromString_Base}
-
 t_u16					U16_FromString_Base(char const* str, char const* base);
-#define c_strbasetou16	U16_FromString_Base //!< @alias{U16_FromString_Base}
-
 t_u32					U32_FromString_Base(char const* str, char const* base);
-#define c_strbasetou32	U32_FromString_Base //!< @alias{U32_FromString_Base}
-
 t_u64					U64_FromString_Base(char const* str, char const* base);
-#define c_strbasetou64	U64_FromString_Base //!< @alias{U64_FromString_Base}
-
 #ifdef __int128
+t_u128					U128_FromString_Base(char const* str, char const* base);
 #endif
+#define c_strbasetou	UInt_FromString_Base//!< @alias{UInt_FromString_Base}
+#define c_strbasetou8	U8_FromString_Base	//!< @alias{U8_FromString_Base}
+#define c_strbasetou16	U16_FromString_Base	//!< @alias{U16_FromString_Base}
+#define c_strbasetou32	U32_FromString_Base	//!< @alias{U32_FromString_Base}
+#define c_strbasetou64	U64_FromString_Base	//!< @alias{U64_FromString_Base}
+#define c_strbasetou128	U128_FromString_Base//!< @alias{U128_FromString_Base}
 //!@}
 
 

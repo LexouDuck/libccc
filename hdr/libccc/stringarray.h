@@ -9,9 +9,9 @@
 /*                                                                            */
 /*============================================================================*/
 
-#ifndef __LIBCCC_ARRAY_STRINGARRAY_H
-#define __LIBCCC_ARRAY_STRINGARRAY_H
-/*!@group{libccc_array_stringarray}
+#ifndef __LIBCCC_STRINGARRAY_H
+#define __LIBCCC_STRINGARRAY_H
+/*!@group{libccc_stringarray}
 ** @{
 **	This header defines some useful functions for string array (char**) handling.
 **
