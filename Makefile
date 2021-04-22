@@ -85,19 +85,21 @@ SRCS = \
 	char/utf8.c			\
 	char/utf16.c		\
 	bool/bool_to_str.c		\
-	bool/str_to_bool.c		\
+	bool/bool_from_str.c	\
 	int/int_to_str.c		\
 	int/int_to_strbase.c	\
 	int/int_to_strhex.c		\
-	int/str_to_int.c		\
-	int/strbase_to_int.c	\
-	int/strhex_to_int.c		\
+	int/int_from_str.c		\
+	int/int_from_strbase.c	\
+	int/int_from_strhex.c	\
 	fixed/fixed.c			\
 	fixed/fixed_to_str.c	\
-	fixed/str_to_fixed.c	\
-	float/equals.c			\
+	fixed/fixed_from_str.c	\
+	fixed/operators.c		\
+	float/float.c			\
 	float/float_to_str.c	\
-	float/str_to_float.c	\
+	float/float_from_str.c	\
+	float/operators.c		\
 	memory/allocate.c	\
 	memory/new.c		\
 	memory/free.c		\
