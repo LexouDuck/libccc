@@ -597,7 +597,7 @@ t_bool					Q128_EqualsApprox(t_q128 number1, t_q128 number2);
 //! Get the string decimal representation of a signed fixed-point number
 /*!
 **	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `q`
+**	@returns A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					Fixed_ToString	CONCAT(FIXED_TYPE,_ToString)
@@ -623,7 +623,7 @@ _MALLOC()	char*		Q128_ToString(t_q128 number); // TODO implement
 //! Get the string hexadecimal representation of a signed fixed-point number
 /*!
 **	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `q`
+**	@returns A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					Fixed_ToString_Hex	CONCAT(FIXED_TYPE,_ToString_Hex)
@@ -649,7 +649,7 @@ _MALLOC()	char*		Q128_ToString_Hex(t_q128 number); // TODO implement
 //! Get the string binary representation of a signed fixed-point number
 /*!
 **	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `q`
+**	@returns A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					Fixed_ToString_Bin	CONCAT(FIXED_TYPE,_ToString_Bin)
@@ -676,7 +676,7 @@ _MALLOC()	char*		Q128_ToString_Bin(t_q128 number); // TODO implement
 /*!
 **	@param	number	The number to convert to string
 **	@param	base	The numerical base to use to represent the given `number`
-**	@returns A newly allocated string, converted from the given `q`
+**	@returns A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					Fixed_ToString_Base	CONCAT(FIXED_TYPE,_ToString_Base)
@@ -710,7 +710,7 @@ _MALLOC()	char*		Q128_ToString_Base(t_q128 number, char const* base); // TODO im
 //! Parses the string decimal representation of a signed fixed-point number
 /*!
 **	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `q`,
+**	@returns A newly allocated string, converted from the given `number`,
 **		or `NULL` if there was a parsing error.
 */
 //!@{
@@ -737,7 +737,7 @@ t_q128					Q128_FromString(char const* str); // TODO implement
 //! Parses the string hexadecimal representation of a signed fixed-point number
 /*!
 **	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `q`,
+**	@returns A newly allocated string, converted from the given `number`,
 **		or `NULL` if there was a parsing error.
 */
 //!@{
@@ -764,7 +764,7 @@ t_q128					Q128_FromString_Hex(char const* str); // TODO implement
 //! Parses the string binary representation of a signed fixed-point number
 /*!
 **	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `q`,
+**	@returns A newly allocated string, converted from the given `number`,
 **		or `NULL` if there was a parsing error.
 */
 //!@{
@@ -792,7 +792,7 @@ t_q128					Q128_FromString_Bin(char const* str); // TODO implement
 /*!
 **	@param	number	The number to convert to string
 **	@param	base	The numerical base used to represent the given `number`
-**	@returns A newly allocated string, converted from the given `q`,
+**	@returns A newly allocated string, converted from the given `number`,
 **		or `NULL` if there was a parsing error.
 */
 //!@{
