@@ -48,8 +48,3 @@ DEFINEFUNC_CONVERT_STR_TO_FIXED(64)
 #ifdef __int128
 DEFINEFUNC_CONVERT_STR_TO_FIXED(128)
 #endif
-
-t_fixed	Fixed_FromString(char const* str)
-{
-	return
-}

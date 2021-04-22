@@ -62,22 +62,6 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-#if LIBCONFIG_BITS_UINT != 8 && \
-	LIBCONFIG_BITS_UINT != 16 && \
-	LIBCONFIG_BITS_UINT != 32 && \
-	LIBCONFIG_BITS_UINT != 64 && \
-	LIBCONFIG_BITS_UINT != 128
-	#error "LIBCONFIG_BITS_UINT must be equal to one of: 8, 16, 32, 64, 128"
-#endif
-
-#if LIBCONFIG_BITS_SINT != 8 && \
-	LIBCONFIG_BITS_SINT != 16 && \
-	LIBCONFIG_BITS_SINT != 32 && \
-	LIBCONFIG_BITS_SINT != 64 && \
-	LIBCONFIG_BITS_SINT != 128
-	#error "LIBCONFIG_BITS_SINT must be equal to one of: 8, 16, 32, 64, 128"
-#endif
-
 
 
 #ifndef LIBCONFIG_INTEGER_TYPES
@@ -280,25 +264,55 @@ TYPEDEF_ALIAS(	t_s128,	SINT_128,PRIMITIVE)
 /*!
 **	@isostd{https://en.cppreference.com/w/c/language/arithmetic_types#Integer_types}
 **
-**	The size of this integer type depends on the value of #LIBCONFIG_TYPE_UINT.
+**	Configurable-width unsigned integer type.
+**	The size of this integer type depends on the value of #LIBCONFIG_BITS_UINT.
 **	This is meant to be used as a "default integer type", a type where the
 **	programmer doesn't need to worry about integer overflow behaviors being
 **	platform-dependent (like they would if they used the C native `int` type).
+**	This type can express a number between `0` and #UINT_MAX
 */
-typedef LIBCONFIG_TYPE_UINT	t_uint;
-TYPEDEF_ALIAS(				t_uint, UINT, PRIMITIVE)
+typedef CONCAT(t_u,LIBCONFIG_BITS_UINT)	t_uint;
+TYPEDEF_ALIAS(t_uint, UINT, PRIMITIVE)
+
+//! The actual underlying type for the `t_uint` configurable type, in uppercase
+#define UINT_TYPE		CONCAT(U,LIBCONFIG_BITS_UINT)
+
+
 
 //! The configurable-size signed integer primitive type.
 /*!
 **	@isostd{https://en.cppreference.com/w/c/language/arithmetic_types#Integer_types}
 **
-**	The size of this integer type depends on the value of #LIBCONFIG_TYPE_SINT.
+**	Configurable-width signed integer type.
+**	The size of this integer type depends on the value of #LIBCONFIG_BITS_SINT.
 **	This is meant to be used as a "default integer type", a type where the
 **	programmer doesn't need to worry about integer overflow behaviors being
 **	platform-dependent (like they would if they used the C native `int` type).
+**	This type can express a number between #SINT_MIN and #SINT_MAX.
 */
-typedef LIBCONFIG_TYPE_SINT	t_sint;
-TYPEDEF_ALIAS(				t_sint, SINT, PRIMITIVE)
+typedef CONCAT(t_s,LIBCONFIG_BITS_SINT)	t_sint;
+TYPEDEF_ALIAS(t_sint, SINT, PRIMITIVE)
+
+//! The actual underlying type for the `t_sint` configurable type, in uppercase
+#define SINT_TYPE		CONCAT(S,LIBCONFIG_BITS_SINT)
+
+
+
+#if LIBCONFIG_BITS_UINT != 8 && \
+	LIBCONFIG_BITS_UINT != 16 && \
+	LIBCONFIG_BITS_UINT != 32 && \
+	LIBCONFIG_BITS_UINT != 64 && \
+	LIBCONFIG_BITS_UINT != 128
+	#error "LIBCONFIG_BITS_UINT must be equal to one of: 8, 16, 32, 64, 128"
+#endif
+
+#if LIBCONFIG_BITS_SINT != 8 && \
+	LIBCONFIG_BITS_SINT != 16 && \
+	LIBCONFIG_BITS_SINT != 32 && \
+	LIBCONFIG_BITS_SINT != 64 && \
+	LIBCONFIG_BITS_SINT != 128
+	#error "LIBCONFIG_BITS_SINT must be equal to one of: 8, 16, 32, 64, 128"
+#endif
 
 
 
@@ -320,6 +334,12 @@ TYPEDEF_ALIAS(				t_sint, SINT, PRIMITIVE)
 	#define S64_MAX (0x7FFFFFFFFFFFFFFFll)	//!< The largest possible value for any 64-bit signed integer	(+9223372036854775807)
 	#define S64_MIN (0x8000000000000000ll)	//!< The minimum possible value for any 64-bit signed integer	(-9223372036854775807)
 
+	#ifdef __int128
+	#define U128_MAX (0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFllu) //!< The largest possible value for a 128-bit unsigned integer	(340282366920938463463374607431768211455llu)
+	#define S128_MAX (0x7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFll)  //!< The largest possible value for a 128-bit signed integer	(+170141183460469231731687303715884105727ll)
+	#define S128_MIN (0x80000000000000000000000000000000ll)  //!< The minimum possible value for a 128-bit signed integer	(−170141183460469231731687303715884105728ll)
+	#endif
+
 #else
 
 	#define U8_MAX	((t_u8 )-1)						//!< The largest possible value for at least size  8-bit, unsigned integer type
@@ -338,19 +358,19 @@ TYPEDEF_ALIAS(				t_sint, SINT, PRIMITIVE)
 	#define S64_MAX	((t_s64)(U64_MAX >> 1))			//!< The largest possible value for at least size 64-bit, signed integer type
 	#define S64_MIN	((t_s64)((U64_MAX >> 1) + 1))	//!< The minimum possible value for at least size 64-bit, signed integer type
 
+	#ifdef __int128
+	#define U128_MAX ((t_u128)-1)					//!< The largest possible value for at least size 128-bit, unsigned integer type
+	#define S128_MAX ((t_s128)(U128_MAX >> 1))		//!< The largest possible value for at least size 128-bit, signed integer type
+	#define S128_MIN ((t_s128)((U128_MAX >> 1) + 1))//!< The minimum possible value for at least size 128-bit, signed integer type
+	#endif
 #endif
 
-#ifdef __int128
 
-	#define U128_MAX (0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFllu) //!< The largest possible value for a 128-bit unsigned integer	(340282366920938463463374607431768211455llu)
-	#define S128_MAX (0x7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFll)  //!< The largest possible value for a 128-bit signed integer	(+170141183460469231731687303715884105727ll)
-	#define S128_MIN (0x80000000000000000000000000000000ll)  //!< The minimum possible value for a 128-bit signed integer	(−170141183460469231731687303715884105728ll)
 
-#endif
-
-//#define UINT_MAX	(t_uint)CONCAT(CONCAT(U,LIBCONFIG_BITS_UINT),_MAX)
-//#define SINT_MAX	(t_sint)CONCAT(CONCAT(S,LIBCONFIG_BITS_SINT),_MAX)
-//#define SINT_MIN	(t_sint)CONCAT(CONCAT(S,LIBCONFIG_BITS_SINT),_MIN)
+#undef	UINT_MAX
+#define UINT_MAX	((t_uint)-1)
+#define SINT_MAX	((t_sint)(UINT_MAX >> 1))
+#define SINT_MIN	((t_sint)((UINT_MAX >> 1) + 1))
 
 
 

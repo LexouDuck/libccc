@@ -6,45 +6,11 @@
 
 
 
-#define DEFINEFUNC_FLOAT_EQUALS(BITS) \
-t_bool	F##BITS##_Equals(t_f##BITS a, t_f##BITS b)					\
-{																	\
-	t_f##BITS abs_a = ABS(a);										\
-	t_f##BITS abs_b = ABS(b);										\
-	return (ABS(a - b) <= MAX(abs_a, abs_b) * F##BITS##_EPSILON);	\
-}																	\
-
-
-
-#define DEFINEFUNC_FLOAT_ADD(BITS) \
-inline t_bool	F##BITS##_Add(t_f##BITS a, t_f##BITS b)	\
-{														\
-	return (a + b);										\
-}														\
-
-
-
-#define DEFINEFUNC_FLOAT_SUB(BITS) \
-inline t_bool	F##BITS##_Sub(t_f##BITS a, t_f##BITS b)	\
-{														\
-	return (a - b);										\
-}														\
-
-
-
-#define DEFINEFUNC_FLOAT_MUL(BITS) \
-inline t_bool	F##BITS##_Mul(t_f##BITS a, t_f##BITS b)	\
-{														\
-	return (a * b);										\
-}														\
-
-
-
-#define DEFINEFUNC_FLOAT_DIV(BITS) \
-inline t_bool	F##BITS##_Div(t_f##BITS a, t_f##BITS b)	\
-{														\
-	return (a / b);										\
-}														\
+#define DEFINEFUNC_FLOAT(BITS) \
+t_f##BITS	F##BITS(t_fixed mantissa, t_sint exponent)		\
+{															\
+	return ((t_f##BITS)(mantissa >> FIXED_BITS_FRACTIONPART) * Math_Pow(2, exponent));	\
+}															\
 
 
 
@@ -59,10 +25,3 @@ DEFINEFUNC_FLOAT(80)
 #ifdef	__float128
 DEFINEFUNC_FLOAT(128)
 #endif
-
-
-
-t_bool	Float(t_float a, t_float b)
-{
-	return (CONCAT(TYPE_FLOAT,_Equals)(a, b));
-}

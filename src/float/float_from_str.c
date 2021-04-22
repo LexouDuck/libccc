@@ -283,13 +283,3 @@ DEFINEFUNC_STRDEC_TO_FLOAT(128)
 DEFINEFUNC_STRHEX_TO_FLOAT(128)
 DEFINEFUNC_STRBIN_TO_FLOAT(128)
 #endif
-
-
-
-#define TYPE_FLOAT	CONCAT(F,LIBCONFIG_BITS_FLOAT)
-
-inline t_float	Float_FromString    (char const* str)	{ return (CONCAT(TYPE_FLOAT,_FromString    )(str)); }
-inline t_float	Float_FromString_Exp(char const* str)	{ return (CONCAT(TYPE_FLOAT,_FromString_Exp)(str)); }
-inline t_float	Float_FromString_Dec(char const* str)	{ return (CONCAT(TYPE_FLOAT,_FromString_Dec)(str)); }
-inline t_float	Float_FromString_Hex(char const* str)	{ return (CONCAT(TYPE_FLOAT,_FromString_Hex)(str)); }
-inline t_float	Float_FromString_Bin(char const* str)	{ return (CONCAT(TYPE_FLOAT,_FromString_Bin)(str)); }

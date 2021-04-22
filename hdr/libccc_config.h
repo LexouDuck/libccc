@@ -93,7 +93,6 @@ HEADER_CPP
 **	-	128	for 128-bit uint (not present on all platforms)
 */
 #define LIBCONFIG_BITS_UINT		32
-#define LIBCONFIG_TYPE_UINT		t_u32
 
 //! Defines which type/bit size the `t_sint` default signed integer type will be
 /*!
@@ -106,7 +105,6 @@ HEADER_CPP
 **	-	128	for 128-bit int (not present on all platforms)
 */
 #define LIBCONFIG_BITS_SINT		32
-#define LIBCONFIG_TYPE_SINT		t_s32
 
 //! Defines which type/bit size the `t_fixed` default fixed-point number type will be
 /*!
@@ -118,7 +116,6 @@ HEADER_CPP
 **	-	128	for 128-bit fixed-point number (not present on all platforms)
 */
 #define LIBCONFIG_BITS_FIXED	32
-#define LIBCONFIG_TYPE_FIXED	t_q32
 
 //! Defines which type/bit size the `t_float` default floating-point number type will be
 /*!
@@ -130,7 +127,6 @@ HEADER_CPP
 **	-	128	for 128-bit IEEE 754 quadruple-precision floating-point number (not present on all platforms)
 */
 #define LIBCONFIG_BITS_FLOAT	32
-#define LIBCONFIG_TYPE_FLOAT	t_f32
 
 
 

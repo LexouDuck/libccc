@@ -77,6 +77,8 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
+// TODO make fixed-point type have configurable denominator, not just bitwise point
+
 //! The amount of bits dedicated to the fixed-point number type's fractional number part
 #define FIXED_BITS_FRACTIONPART	(LIBCONFIG_BITS_FIXED / 4)
 #define FIXED_MASK_FRACTIONPART	(((t_s64)1 << FIXED_BITS_FRACTIONPART) - 1)
@@ -86,27 +88,6 @@ HEADER_CPP
 #define FIXED_BITS_INTEGERPART	(LIBCONFIG_BITS_FIXED - FIXED_BITS_FRACTIONPART)
 #define FIXED_MASK_INTEGERPART	((((t_s64)1 << FIXED_BITS_INTEGERPART) - 1) << FIXED_BITS_FRACTIONPART)
 #define FIXED_MAX_INTEGERPART	  ((t_s64)1 << FIXED_BITS_INTEGERPART)
-
-
-
-#if LIBCONFIG_BITS_FIXED != 16 && \
-	LIBCONFIG_BITS_FIXED != 32 && \
-	LIBCONFIG_BITS_FIXED != 64 && \
-	LIBCONFIG_BITS_FIXED != 128
-	#error "LIBCONFIG_BITS_FIXED must be equal to one of: 16, 32, 64, 128"
-#endif
-
-#if (FIXED_BITS_INTEGERPART > LIBCONFIG_BITS_FIXED)
-	#error "FIXED_BITS_INTEGERPART must be inferior or equal to LIBCONFIG_BITS_FIXED"
-#endif
-
-#if (FIXED_BITS_FRACTIONPART > LIBCONFIG_BITS_FIXED)
-	#error "FIXED_BITS_FRACTIONPART must be inferior or equal to LIBCONFIG_BITS_FIXED"
-#endif
-
-#if (FIXED_BITS_INTEGERPART + FIXED_BITS_FRACTIONPART > LIBCONFIG_BITS_FIXED)
-	#error "The sum of both _INTEGERPART and _DECIMALPART must be inferior or equal to LIBCONFIG_BITS_FIXED"
-#endif
 
 
 
@@ -149,7 +130,7 @@ HEADER_CPP
 	typedef	_Sat long _Accum		t_q64;
 	TYPEDEF_ALIAS(					t_q64,	FIXED_64,	PRIMITIVE)
 
-	#if LIBCONFIG_BITS_FIXED == 128
+	#if (LIBCONFIG_BITS_FIXED == 128)
 		#error "Cannot set default 't_fixed' to 128-bit size, unavailable on this platform"
 	#endif
 
@@ -207,7 +188,7 @@ HEADER_CPP
 	*/
 	typedef __int128	t_q128;
 	TYPEDEF_ALIAS(		t_q128,	FIXED_128,	PRIMITIVE)
-	#elif LIBCONFIG_BITS_FIXED == 128
+	#elif (LIBCONFIG_BITS_FIXED == 128)
 		#error "Cannot set default 't_fixed' to 128-bit size, unavailable on this platform"
 	#endif
 
@@ -219,34 +200,57 @@ HEADER_CPP
 /*!
 **	@nonstd
 **
-**	Fixed-point rational number type whose bit size depends
-**	on the value given to the #LIBCONFIG_TYPE_FIXED macro.
-**	Which amount is dedicated to the fraction/integer part is
-**	determined by the value of #FIXED_BITS_FRACTIONPART.
-**	All the other `#define`s depend on this one macro.
-**	The largest possible value for this type is #Q128_MAX.
+**	Configurable-width fixed-point rational number type.
+**	The size of this fixed-point type depends on the value of #LIBCONFIG_BITS_FIXED.
+**	The portion dedicated to the fractional part depends on the value of #FIXED_BITS_FRACTIONPART.
+**	All the other important `#define`s depend on this one macro (FIXED_BITS_FRACTIONPART).
+**	This type can express a number between #FIXED_MIN and #FIXED_MAX.
 */
-typedef	LIBCONFIG_TYPE_FIXED	t_fixed;
-TYPEDEF_ALIAS(					t_fixed, FIXED_128, PRIMITIVE)
+typedef	CONCAT(t_q,LIBCONFIG_BITS_FIXED)	t_fixed;
+TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
+
+//! The actual underlying type for the `t_fixed` configurable type, in uppercase
+#define FIXED_TYPE		CONCAT(Q,LIBCONFIG_BITS_FIXED)
 
 
 
-#define Q16_MAX	((t_q16)S16_MAX)	//!< The largest possible value that a 16-bit fixed-point can hold
-#define Q16_MIN	((t_q16)S16_MIN)	//!< The largest possible value that a 16-bit fixed-point can hold
+#if(LIBCONFIG_BITS_FIXED != 16 && \
+	LIBCONFIG_BITS_FIXED != 32 && \
+	LIBCONFIG_BITS_FIXED != 64 && \
+	LIBCONFIG_BITS_FIXED != 128)
+	#error "LIBCONFIG_BITS_FIXED must be equal to one of: 16, 32, 64, 128"
+#endif
 
-#define Q32_MAX	((t_q32)S32_MAX)	//!< The largest possible value that a 32-bit fixed-point can hold
-#define Q32_MIN	((t_q32)S32_MIN)	//!< The largest possible value that a 32-bit fixed-point can hold
+#if (FIXED_BITS_INTEGERPART > LIBCONFIG_BITS_FIXED)
+	#error "FIXED_BITS_INTEGERPART must be inferior or equal to LIBCONFIG_BITS_FIXED"
+#endif
 
-#define Q64_MAX	((t_q64)S64_MAX)	//!< The largest possible value that a 64-bit fixed-point can hold
-#define Q64_MIN	((t_q64)S64_MIN)	//!< The largest possible value that a 64-bit fixed-point can hold
+#if (FIXED_BITS_FRACTIONPART > LIBCONFIG_BITS_FIXED)
+	#error "FIXED_BITS_FRACTIONPART must be inferior or equal to LIBCONFIG_BITS_FIXED"
+#endif
+
+#if (FIXED_BITS_INTEGERPART + FIXED_BITS_FRACTIONPART > LIBCONFIG_BITS_FIXED)
+	#error "The sum of both _INTEGERPART and _DECIMALPART must be inferior or equal to LIBCONFIG_BITS_FIXED"
+#endif
+
+
+
+#define Q16_MAX		((t_q16)S16_MAX)	//!< The largest possible value that a 16-bit fixed-point can hold
+#define Q16_MIN		((t_q16)S16_MIN)	//!< The largest possible value that a 16-bit fixed-point can hold
+
+#define Q32_MAX		((t_q32)S32_MAX)	//!< The largest possible value that a 32-bit fixed-point can hold
+#define Q32_MIN		((t_q32)S32_MIN)	//!< The largest possible value that a 32-bit fixed-point can hold
+
+#define Q64_MAX		((t_q64)S64_MAX)	//!< The largest possible value that a 64-bit fixed-point can hold
+#define Q64_MIN		((t_q64)S64_MIN)	//!< The largest possible value that a 64-bit fixed-point can hold
 
 #ifdef __int128
 #define Q128_MAX	((t_q128)S128_MAX)	//!< The largest possible value that a 128-bit fixed-point can hold
 #define Q128_MIN	((t_q128)S128_MIN)	//!< The largest possible value that a 128-bit fixed-point can hold
 #endif
 
-//#define FIXED_MAX	(t_fixed)CONCAT(CONCAT(S,LIBCONFIG_BITS_FIXED),_MAX)
-//#define FIXED_MIN	(t_fixed)CONCAT(CONCAT(S,LIBCONFIG_BITS_FIXED),_MIN)
+#define FIXED_MAX	((t_fixed)SINT_MAX)
+#define FIXED_MIN	((t_fixed)SINT_MIN)
 
 
 

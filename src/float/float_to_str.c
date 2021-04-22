@@ -243,13 +243,3 @@ DEFINEFUNC_FLOAT_TO_STRBIN(128)
 
 
 #endif
-
-
-
-#define TYPE_FLOAT	CONCAT(F,LIBCONFIG_BITS_FLOAT)
-
-inline char*	Float_ToString    (t_float number, t_u8 precision)	{ return (CONCAT(TYPE_FLOAT,_ToString    )(number, precision)); }
-inline char*	Float_ToString_Exp(t_float number, t_u8 precision)	{ return (CONCAT(TYPE_FLOAT,_ToString_Exp)(number, precision)); }
-inline char*	Float_ToString_Dec(t_float number, t_u8 precision)	{ return (CONCAT(TYPE_FLOAT,_ToString_Dec)(number, precision)); }
-inline char*	Float_ToString_Hex(t_float number, t_u8 precision)	{ return (CONCAT(TYPE_FLOAT,_ToString_Hex)(number, precision)); }
-inline char*	Float_ToString_Bin(t_float number, t_u8 precision)	{ return (CONCAT(TYPE_FLOAT,_ToString_Bin)(number, precision)); }
