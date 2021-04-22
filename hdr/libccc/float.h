@@ -108,6 +108,11 @@ TYPEDEF_ALIAS(		t_f128,	FLOAT_128,	PRIMITIVE)
 
 
 
+//! The actual underlying type for the `t_float` configurable type
+#define FLOAT_T		CONCAT(t_f,LIBCONFIG_BITS_FLOAT)
+//! The actual underlying type for the `t_float` configurable type, in uppercase
+#define FLOAT_TYPE	CONCAT(F,LIBCONFIG_BITS_FLOAT)
+
 //! The configurable-size floating-point number primitive type.
 /*!
 **	@isostd{https://en.cppreference.com/w/c/language/arithmetic_types#Real_floating_types}
@@ -126,9 +131,6 @@ TYPEDEF_ALIAS(		t_f128,	FLOAT_128,	PRIMITIVE)
 typedef CONCAT(t_f,LIBCONFIG_BITS_FLOAT)	t_float;
 TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 
-//! The actual underlying type for the `t_float` configurable type, in uppercase
-#define FLOAT_TYPE		CONCAT(F,LIBCONFIG_BITS_FLOAT)
-
 
 
 #if(LIBCONFIG_BITS_FLOAT != 32 && \
@@ -138,6 +140,17 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 	LIBCONFIG_BITS_FLOAT != 128)
 	#error "LIBCONFIG_BITS_FLOAT must be equal to one of: 32, 64, 80, 96, 128"
 #endif
+
+
+
+/*!
+**	This very small float is typically used to compare two floating-point values.
+**	Floating point equality checks aren't the most dependable kind of operation,
+**	so it's often better to do `(ABS(x - y) <= FLOAT_APPROX)` to check for equality.
+**	You can use the Float_EqualsApprox() functions for this purpose.
+**	@see not to be confused with #FLOAT_EPSILON
+*/
+#define FLOAT_APPROX	LIBCONFIG_FLOAT_APPROX
 
 
 
@@ -210,15 +223,6 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 */
 
 
-
-/*!
-**	This very small float is typically used to compare two float values.
-**	Floating point equality checks aren't the most dependable kind of operation,
-**	so it's often better to do `(ABS(x - y) <= FLOAT_APPROX)` to check for equality.
-**	You can use the Float_EqualsApprox() functions for this purpose.
-**	@see not to be confused with #FLOAT_EPSILON
-*/
-#define FLOAT_APPROX	(1.0e-10)
 
 //	TODO document this
 #define SAMPLE_NB		(1024)
@@ -388,7 +392,7 @@ typedef union float_cast
 #else
 	t_s64[2]
 #endif
-				value_int;
+	value_int;
 }				u_float_cast;
 
 
@@ -438,93 +442,108 @@ t_f128					F128(t_fixed mantissa, t_sint exponent);
 
 
 
-//! Performs an addition between the 2 given floating-point values (operator: `+`)
+//! Performs an addition with the 2 given floating-point values (operator: `+`)
 //!@{
 #define					Float_Add	CONCAT(FLOAT_TYPE,_Add)
 #define c_fadd			Float_Add	//!< @alias{Float_Add}
 
-t_bool					F32_Add(t_f32 number1, t_f32 number2);
+t_f32					F32_Add(t_f32 number1, t_f32 number2);
 #define c_f32add		F32_Add 	//!< @alias{F32_Add}
 
-t_bool					F64_Add(t_f64 number1, t_f64 number2);
+t_f64					F64_Add(t_f64 number1, t_f64 number2);
 #define c_f64add		F64_Add 	//!< @alias{F64_Add}
 
 #ifdef	__float80
-t_bool					F80_Add(t_f80 number1, t_f80 number2);
+t_f80					F80_Add(t_f80 number1, t_f80 number2);
 #define c_f80add		F80_Add 	//!< @alias{F80_Add}
 #endif
 #ifdef	__float128
-t_bool					F128_Add(t_f128 number1, t_f128 number2);
+t_f128					F128_Add(t_f128 number1, t_f128 number2);
 #define c_f128add		F128_Add	//!< @alias{F128_Add}
 #endif
 //!@}
 
 
 
-//! Performs an addition between the 2 given floating-point values (operator: `-`)
+//! Performs a subtraction with the 2 given floating-point values (operator: `-`)
 //!@{
 #define					Float_Sub	CONCAT(FLOAT_TYPE,_Sub)
 #define c_fsub			Float_Sub	//!< @alias{Float_Sub}
+#define Float_Subtract	Float_Sub	//!< @alias{Float_Sub}
 
-t_bool					F32_Sub(t_f32 number1, t_f32 number2);
+t_f32					F32_Sub(t_f32 number1, t_f32 number2);
 #define c_f32sub		F32_Sub 	//!< @alias{F32_Sub}
+#define F32_Subtract	F32_Sub 	//!< @alias{F32_Sub}
 
-t_bool					F64_Sub(t_f64 number1, t_f64 number2);
+t_f64					F64_Sub(t_f64 number1, t_f64 number2);
 #define c_f64sub		F64_Sub 	//!< @alias{F64_Sub}
+#define F64_Subtract	F64_Sub 	//!< @alias{F64_Sub}
 
 #ifdef	__float80
-t_bool					F80_Sub(t_f80 number1, t_f80 number2);
+t_f80					F80_Sub(t_f80 number1, t_f80 number2);
 #define c_f80sub		F80_Sub 	//!< @alias{F80_Sub}
+#define F80_Subtract	F80_Sub 	//!< @alias{F80_Sub}
 #endif
 #ifdef	__float128
-t_bool					F128_Sub(t_f128 number1, t_f128 number2);
+t_f128					F128_Sub(t_f128 number1, t_f128 number2);
 #define c_f128sub		F128_Sub	//!< @alias{F128_Sub}
+#define F128_Subtract	F128_Sub	//!< @alias{F128_Sub}
 #endif
 //!@}
 
 
 
-//! Performs an addition between the 2 given floating-point values (operator: `*`)
+//! Performs a multiplication with the 2 given floating-point values (operator: `*`)
 //!@{
 #define					Float_Mul	CONCAT(FLOAT_TYPE,_Mul)
 #define c_fmul			Float_Mul	//!< @alias{Float_Mul}
+#define Float_Multiply	Float_Mul	//!< @alias{Float_Mul}
 
-t_bool					F32_Mul(t_f32 number1, t_f32 number2);
+t_f32					F32_Mul(t_f32 number1, t_f32 number2);
 #define c_f32mul		F32_Mul 	//!< @alias{F32_Mul}
+#define F32_Multiply	F32_Mul 	//!< @alias{F32_Mul}
 
-t_bool					F64_Mul(t_f64 number1, t_f64 number2);
+t_f64					F64_Mul(t_f64 number1, t_f64 number2);
 #define c_f64mul		F64_Mul 	//!< @alias{F64_Mul}
+#define F64_Multiply	F64_Mul 	//!< @alias{F64_Mul}
 
 #ifdef	__float80
-t_bool					F80_Mul(t_f80 number1, t_f80 number2);
+t_f80					F80_Mul(t_f80 number1, t_f80 number2);
 #define c_f80mul		F80_Mul 	//!< @alias{F80_Mul}
+#define F80_Multiply	F80_Mul 	//!< @alias{F80_Mul}
 #endif
 #ifdef	__float128
-t_bool					F128_Mul(t_f128 number1, t_f128 number2);
+t_f128					F128_Mul(t_f128 number1, t_f128 number2);
 #define c_f128mul		F128_Mul	//!< @alias{F128_Mul}
+#define F128_Multiply	F128_Mul	//!< @alias{F128_Mul}
 #endif
 //!@}
 
 
 
-//! Performs a division between the 2 given floating-point values (operator: `/`)
+//! Performs a division with the 2 given floating-point values (operator: `/`)
 //!@{
 #define					Float_Div	CONCAT(FLOAT_TYPE,_Div)
 #define c_fdiv			Float_Div	//!< @alias{Float_Div}
+#define Float_Divide	Float_Div	//!< @alias{Float_Div}
 
-t_bool					F32_Div(t_f32 number1, t_f32 number2);
+t_f32					F32_Div(t_f32 number1, t_f32 number2);
 #define c_f32div		F32_Div 	//!< @alias{F32_Div}
+#define F32_Divide		F32_Div 	//!< @alias{F32_Div}
 
-t_bool					F64_Div(t_f64 number1, t_f64 number2);
+t_f64					F64_Div(t_f64 number1, t_f64 number2);
 #define c_f64div		F64_Div 	//!< @alias{F64_Div}
+#define F64_Divide		F64_Div 	//!< @alias{F64_Div}
 
 #ifdef	__float80
-t_bool					F80_Div(t_f80 number1, t_f80 number2);
+t_f80					F80_Div(t_f80 number1, t_f80 number2);
 #define c_f80div		F80_Div 	//!< @alias{F80_Div}
+#define F80_Divide		F80_Div 	//!< @alias{F80_Div}
 #endif
 #ifdef	__float128
-t_bool					F128_Div(t_f128 number1, t_f128 number2);
+t_f128					F128_Div(t_f128 number1, t_f128 number2);
 #define c_f128div		F128_Div	//!< @alias{F128_Div}
+#define F128_Divide		F128_Div	//!< @alias{F128_Div}
 #endif
 //!@}
 

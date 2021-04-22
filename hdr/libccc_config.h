@@ -82,6 +82,17 @@ HEADER_CPP
 
 
 
+//! If 1, the `s_list` and `s_object` types in "libccc/monad" will be doubly-linked
+/*!
+**	This macro configures whether the `s_list` type is singly-linked or doubly-linked.
+**	NB: This must be set BEFORE including the <libccc/monad/list.(c|h)> files
+**	- If 0, `s_list` is singly-linked (that is, the struct only holds a `.next` pointer)
+**	- If 1, `s_list` is doubly-linked (that is, the struct has both a `.prev` and `.next` pointer)
+*/
+#define LIBCONFIG_LIST_DOUBLYLINKED		0
+
+
+
 //! Defines which type/bit size the `t_uint` default unsigned integer type will be
 /*!
 **	This macro sets the default `t_uint` default unsigned integer type to use.
@@ -116,6 +127,12 @@ HEADER_CPP
 **	-	128	for 128-bit fixed-point number (not present on all platforms)
 */
 #define LIBCONFIG_BITS_FIXED	32
+//! @see #FIXED_APPROX and Fixed_EqualsApprox()
+#define LIBCONFIG_FIXED_APPROX	(1.0e-10)
+//! the amount of bits dedicated to the fraction part of the fixed-point types
+#define LIBCONFIG_FIXED_BITS_FRACTIONPART	(LIBCONFIG_BITS_FIXED / 4)
+//! the amount of bits dedicated to the integer part of the fixed-point types
+#define LIBCONFIG_FIXED_BITS_INTEGERPART	(LIBCONFIG_BITS_FIXED - FIXED_BITS_FRACTIONPART)
 
 //! Defines which type/bit size the `t_float` default floating-point number type will be
 /*!
@@ -127,6 +144,8 @@ HEADER_CPP
 **	-	128	for 128-bit IEEE 754 quadruple-precision floating-point number (not present on all platforms)
 */
 #define LIBCONFIG_BITS_FLOAT	32
+//! @see #FLOAT_APPROX and Float_EqualsApprox()
+#define LIBCONFIG_FLOAT_APPROX	(1.0e-10)
 
 
 
@@ -164,17 +183,6 @@ HEADER_CPP
 **	is dedicated to the integer part and the fraction part.
 */
 #define LIBCONFIG_USE_STD_FIXEDPOINT	0
-
-
-
-//! If 1, the `s_list` and `s_object` types in "libccc/monad" will be doubly-linked
-/*!
-**	This macro configures whether the `s_list` type is singly-linked or doubly-linked.
-**	NB: This must be set BEFORE including the <libccc/monad/list.(c|h)> files
-**	- If 0, `s_list` is singly-linked (that is, the struct only holds a `.next` pointer)
-**	- If 1, `s_list` is doubly-linked (that is, the struct has both a `.prev` and `.next` pointer)
-*/
-#define LIBCONFIG_LIST_DOUBLYLINKED		0 // TODO
 
 
 

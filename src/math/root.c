@@ -123,7 +123,7 @@ t_float	c_sqrt(t_float x)
 	result = (i < 0 ? 0.75 : 1.25) * c_sqrt_2_pow_n(i);
 	previous = INFINITY;
 	i = 0;
-	while (c_fabs(result - previous) > FLOAT_BIAS)
+	while (c_fabs(result - previous) > FLOAT_APPROX)
 	{
 		previous = result;
 		result -= (result * result - x) / (2 * result);
@@ -159,7 +159,7 @@ t_float	c_cbrt(t_float x)
 	result = SIGN(x) * (i < 0 ? 0.75 : 1.25) * c_sqrt_2_pow_n(i * 2 / 3);
 	previous = INFINITY;
 	i = 0;
-	while (c_fabs(result - previous) > FLOAT_BIAS)
+	while (c_fabs(result - previous) > FLOAT_APPROX)
 	{
 		previous = result;
 		square = result * result;
@@ -199,7 +199,7 @@ t_float	c_nrt(t_float x, t_u8 n)
 	previous = 0.;
 	i = 0;
 	n -= 1;
-	while (c_fabs(result - previous) > FLOAT_BIAS)
+	while (c_fabs(result - previous) > FLOAT_APPROX)
 	{
 		previous = result;
 		power = result;

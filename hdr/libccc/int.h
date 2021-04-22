@@ -380,109 +380,111 @@ TYPEDEF_ALIAS(t_sint, SINT, PRIMITIVE)
 ** ************************************************************************** *|
 */
 
+//! Returns newly allocated string decimal representation of an 8-bit unsigned integer
+#define					Fixed_ToString	CONCAT(FIXED_TYPE,_ToString)
+#define c_qtostr		Fixed_ToString	//!<  @alias{Fixed_ToString}
+
+_MALLOC()	char*		U8_ToString(t_u8 n);
+#define c_u8tostr		U8_ToString //!< @alias{U8_ToString}
+
+_MALLOC()	char*		U16_ToString(t_u16 n);
+#define c_u16tostr		U16_ToString //!< @alias{U16_ToString}
+
+_MALLOC()	char*		U32_ToString(t_u32 n);
+#define c_u32tostr		U32_ToString //!< @alias{U32_ToString}
+
+_MALLOC()	char*		U64_ToString(t_u64 n);
+#define c_u64tostr		U64_ToString //!< @alias{U64_ToString}
+
+#ifdef __int128
+_MALLOC()	char*		U128_ToString(t_u128 n); // TODO implement
+#define c_u128tostr		U128_ToString //!< @alias{U128_ToString}
+#endif
+//!@}
+
 //! Returns newly allocated string decimal representation of an 8-bit signed integer
-_MALLOC()
-char*					S8_ToString(t_s8 n);
-#define c_s8_to_str		S8_ToString //!< @alias{S8_ToString}
+_MALLOC()	char*		S8_ToString(t_s8 n);
+#define c_s8tostr		S8_ToString //!< @alias{S8_ToString}
 
 //! Returns newly allocated string decimal representation of a 16-bit signed integer
-_MALLOC()
-char*					S16_ToString(t_s16 n);
-#define c_s16_to_str	S16_ToString //!< @alias{S16_ToString}
+_MALLOC()	char*		S16_ToString(t_s16 n);
+#define c_s16tostr		S16_ToString //!< @alias{S16_ToString}
 
 //! Returns newly allocated string decimal representation of a 32-bit signed integer
-_MALLOC()
-char*					S32_ToString(t_s32 n);
-#define c_s32_to_str	S32_ToString //!< @alias{S32_ToString}
+_MALLOC()	char*		S32_ToString(t_s32 n);
+#define c_s32tostr		S32_ToString //!< @alias{S32_ToString}
 
 //! Returns newly allocated string decimal representation of a 64-bit signed integer
-_MALLOC()
-char*					S64_ToString(t_s64 n);
-#define c_s64_to_str	S64_ToString //!< @alias{S64_ToString}
+_MALLOC()	char*		S64_ToString(t_s64 n);
+#define c_s64tostr		S64_ToString //!< @alias{S64_ToString}
 
-//! Returns newly allocated string decimal representation of an 8-bit unsigned integer
-_MALLOC()
-char*					U8_ToString(t_u8 n);
-#define c_u8_to_str		U8_ToString //!< @alias{U8_ToString}
-
-//! Returns newly allocated string decimal representation of a 16-bit unsigned integer
-_MALLOC()
-char*					U16_ToString(t_u16 n);
-#define c_u16_to_str	U16_ToString //!< @alias{U16_ToString}
-
-//! Returns newly allocated string decimal representation of a 32-bit unsigned integer
-_MALLOC()
-char*					U32_ToString(t_u32 n);
-#define c_u32_to_str	U32_ToString //!< @alias{U32_ToString}
-
-//! Returns newly allocated string decimal representation of a 64-bit unsigned integer
-_MALLOC()
-char*					U64_ToString(t_u64 n);
-#define c_u64_to_str	U64_ToString //!< @alias{U64_ToString}
+#ifdef __int128
+#endif
+//!@}
 
 
 
 //! Returns newly allocated string decimal representation of an 8-bit unsigned integer
-_MALLOC()
-char*						U8_ToString_Hex(t_u8 n);
-#define c_u8_to_strhex		U8_ToString_Hex //!< @alias{U8_ToString_Hex}
+_MALLOC()	char*			U8_ToString_Hex(t_u8 n);
+#define c_u8tostrhex		U8_ToString_Hex //!< @alias{U8_ToString_Hex}
 
 //! Returns newly allocated string decimal representation of a 16-bit unsigned integer
-_MALLOC()
-char*						U16_ToString_Hex(t_u16 n);
-#define c_u16_to_strhex		U16_ToString_Hex //!< @alias{U16_ToString_Hex}
+_MALLOC()	char*			U16_ToString_Hex(t_u16 n);
+#define c_u16tostrhex		U16_ToString_Hex //!< @alias{U16_ToString_Hex}
 
 //! Returns newly allocated string decimal representation of a 32-bit unsigned integer
-_MALLOC()
-char*						U32_ToString_Hex(t_u32 n);
-#define c_u32_to_strhex		U32_ToString_Hex //!< @alias{U32_ToString_Hex}
+_MALLOC()	char*			U32_ToString_Hex(t_u32 n);
+#define c_u32tostrhex		U32_ToString_Hex //!< @alias{U32_ToString_Hex}
 
 //! Returns newly allocated string decimal representation of a 64-bit unsigned integer
-_MALLOC()
-char*						U64_ToString_Hex(t_u64 n);
-#define c_u64_to_strhex		U64_ToString_Hex //!< @alias{U64_ToString_Hex}
+_MALLOC()	char*			U64_ToString_Hex(t_u64 n);
+#define c_u64tostrhex		U64_ToString_Hex //!< @alias{U64_ToString_Hex}
+
+#ifdef __int128
+#endif
+//!@}
 
 
 
 //! Returns newly allocated string custom-base representation of an 8-bit signed integer
-_MALLOC()
-char*						S8_ToString_Base(t_s8 n, char const* base);
-#define c_s8_to_strbase		S8_ToString_Base //!< @alias{S8_ToString_Base}
+_MALLOC()	char*			S8_ToString_Base(t_s8 n, char const* base);
+#define c_s8tostrbase		S8_ToString_Base //!< @alias{S8_ToString_Base}
 
 //! Returns newly allocated string custom-base representation of a 16-bit signed integer
-_MALLOC()
-char*						S16_ToString_Base(t_s16 n, char const* base);
-#define c_s16_to_strbase	S16_ToString_Base //!< @alias{S16_ToString_Base}
+_MALLOC()	char*			S16_ToString_Base(t_s16 n, char const* base);
+#define c_s16tostrbase		S16_ToString_Base //!< @alias{S16_ToString_Base}
 
 //! Returns newly allocated string custom-base representation of a 32-bit signed integer
-_MALLOC()
-char*						S32_ToString_Base(t_s32 n, char const* base);
-#define c_s32_to_strbase	S32_ToString_Base //!< @alias{S32_ToString_Base}
+_MALLOC()	char*			S32_ToString_Base(t_s32 n, char const* base);
+#define c_s32tostrbase		S32_ToString_Base //!< @alias{S32_ToString_Base}
 
 //! Returns newly allocated string custom-base representation of a 64-bit signed integer
-_MALLOC()
-char*						S64_ToString_Base(t_s64 n, char const* base);
-#define c_s64_to_strbase	S64_ToString_Base //!< @alias{S64_ToString_Base}
+_MALLOC()	char*			S64_ToString_Base(t_s64 n, char const* base);
+#define c_s64tostrbase		S64_ToString_Base //!< @alias{S64_ToString_Base}
+
+#ifdef __int128
+#endif
+//!@}
 
 //! Returns newly allocated string custom-base representation of an 8-bit unsigned integer
-_MALLOC()
-char*						U8_ToString_Base(t_u8 n, char const* base);
-#define c_u8_to_strbase		U8_ToString_Base //!< @alias{U8_ToString_Base}
+_MALLOC()	char*			U8_ToString_Base(t_u8 n, char const* base);
+#define c_u8tostrbase		U8_ToString_Base //!< @alias{U8_ToString_Base}
 
 //! Returns newly allocated string custom-base representation of a 16-bit unsigned integer
-_MALLOC()
-char*						U16_ToString_Base(t_u16 n, char const* base);
-#define c_u16_to_strbase	U16_ToString_Base //!< @alias{U16_ToString_Base}
+_MALLOC()	char*			U16_ToString_Base(t_u16 n, char const* base);
+#define c_u16tostrbase		U16_ToString_Base //!< @alias{U16_ToString_Base}
 
 //! Returns newly allocated string custom-base representation of a 32-bit unsigned integer
-_MALLOC()
-char*						U32_ToString_Base(t_u32 n, char const* base);
-#define c_u32_to_strbase	U32_ToString_Base //!< @alias{U32_ToString_Base}
+_MALLOC()	char*			U32_ToString_Base(t_u32 n, char const* base);
+#define c_u32tostrbase		U32_ToString_Base //!< @alias{U32_ToString_Base}
 
 //! Returns newly allocated string custom-base representation of a 64-bit unsigned integer
-_MALLOC()
-char*						U64_ToString_Base(t_u64 n, char const* base);
-#define c_u64_to_strbase	U64_ToString_Base //!< @alias{U64_ToString_Base}
+_MALLOC()	char*			U64_ToString_Base(t_u64 n, char const* base);
+#define c_u64tostrbase		U64_ToString_Base //!< @alias{U64_ToString_Base}
+
+#ifdef __int128
+#endif
+//!@}
 
 
 
@@ -494,87 +496,107 @@ char*						U64_ToString_Base(t_u64 n, char const* base);
 
 //! Parse an 8-bit signed integer from the given decimal number string
 t_s8					S8_FromString(char const* str);
-#define c_str_to_s8		S8_FromString //!< @alias{S8_FromString}
+#define c_strtos8		S8_FromString //!< @alias{S8_FromString}
 
 //! Parse a 16-bit signed integer from the given decimal number string
 t_s16					S16_FromString(char const* str);
-#define c_str_to_s16	S16_FromString //!< @alias{S16_FromString}
+#define c_strtos16		S16_FromString //!< @alias{S16_FromString}
 
 //! Parse a 32-bit signed integer from the given decimal number string
 t_s32					S32_FromString(char const* str);
-#define c_str_to_s32	S32_FromString //!< @alias{S32_FromString}
+#define c_strtos32		S32_FromString //!< @alias{S32_FromString}
 
 //! Parse a 64-bit signed integer from the given decimal number string
 t_s64					S64_FromString(char const* str);
-#define c_str_to_s64	S64_FromString //!< @alias{S64_FromString}
+#define c_strtos64		S64_FromString //!< @alias{S64_FromString}
+
+#ifdef __int128
+#endif
+//!@}
 
 //! Parse an 8-bit unsigned integer from the given decimal number string
 t_u8					U8_FromString(char const* str);
-#define c_str_to_u8		U8_FromString //!< @alias{U8_FromString}
+#define c_strtou8		U8_FromString //!< @alias{U8_FromString}
 
 //! Parse a 16-bit unsigned integer from the given decimal number string
 t_u16					U16_FromString(char const* str);
-#define c_str_to_u16	U16_FromString //!< @alias{U16_FromString}
+#define c_strtou16		U16_FromString //!< @alias{U16_FromString}
 
 //! Parse a 32-bit unsigned integer from the given decimal number string
 t_u32					U32_FromString(char const* str);
-#define c_str_to_u32	U32_FromString //!< @alias{U32_FromString}
+#define c_strtou32		U32_FromString //!< @alias{U32_FromString}
 
 //! Parse a 64-bit unsigned integer from the given decimal number string
 t_u64					U64_FromString(char const* str);
-#define c_str_to_u64	U64_FromString //!< @alias{U64_FromString}
+#define c_strtou64		U64_FromString //!< @alias{U64_FromString}
+
+#ifdef __int128
+#endif
+//!@}
 
 
 
 //! Parse an 8-bit unsigned integer from the given haxedecimal number string
 t_u8						U8_FromString_Hex(char const* str);
-#define c_strhex_to_u8		U8_FromString_Hex //!< @alias{U8_FromString_Hex}
+#define c_strhextou8		U8_FromString_Hex //!< @alias{U8_FromString_Hex}
 
 //! Parse a 16-bit unsigned integer from the given haxedecimal number string
 t_u16						U16_FromString_Hex(char const* str);
-#define c_strhex_to_u16		U16_FromString_Hex //!< @alias{U16_FromString_Hex}
+#define c_strhextou16		U16_FromString_Hex //!< @alias{U16_FromString_Hex}
 
 //! Parse a 32-bit unsigned integer from the given haxedecimal number string
 t_u32						U32_FromString_Hex(char const* str);
-#define c_strhex_to_u32		U32_FromString_Hex //!< @alias{U32_FromString_Hex}
+#define c_strhextou32		U32_FromString_Hex //!< @alias{U32_FromString_Hex}
 
 //! Parse a 64-bit unsigned integer from the given haxedecimal number string
 t_u64						U64_FromString_Hex(char const* str);
-#define c_strhex_to_u64		U64_FromString_Hex //!< @alias{U64_FromString_Hex}
+#define c_strhextou64		U64_FromString_Hex //!< @alias{U64_FromString_Hex}
+
+#ifdef __int128
+#endif
+//!@}
 
 
 
 //! Parse an 8-bit signed integer from a custom-base number string
 t_s8						S8_FromString_Base(char const* str, char const* base);
-#define c_strbase_to_s8		S8_FromString_Base //!< @alias{S8_FromString_Base}
+#define c_strbasetos8		S8_FromString_Base //!< @alias{S8_FromString_Base}
 
 //! Parse a 16-bit signed integer from a custom-base number string
 t_s16						S16_FromString_Base(char const* str, char const* base);
-#define c_strbase_to_s16	S16_FromString_Base //!< @alias{S16_FromString_Base}
+#define c_strbasetos16		S16_FromString_Base //!< @alias{S16_FromString_Base}
 
 //! Parse a 32-bit signed integer from a custom-base number string
 t_s32						S32_FromString_Base(char const* str, char const* base);
-#define c_strbase_to_s32	S32_FromString_Base //!< @alias{S32_FromString_Base}
+#define c_strbasetos32		S32_FromString_Base //!< @alias{S32_FromString_Base}
 
 //! Parse a 64-bit signed integer from a custom-base number string
 t_s64						S64_FromString_Base(char const* str, char const* base);
-#define c_strbase_to_s64	S64_FromString_Base //!< @alias{S64_FromString_Base}
+#define c_strbasetos64		S64_FromString_Base //!< @alias{S64_FromString_Base}
+
+#ifdef __int128
+#endif
+//!@}
 
 //! Parse an 8-bit unsigned integer from a custom-base number string
 t_u8						U8_FromString_Base(char const* str, char const* base);
-#define c_strbase_to_u8		U8_FromString_Base //!< @alias{U8_FromString_Base}
+#define c_strbasetou8		U8_FromString_Base //!< @alias{U8_FromString_Base}
 
 //! Parse a 16-bit unsigned integer from a custom-base number string
 t_u16						U16_FromString_Base(char const* str, char const* base);
-#define c_strbase_to_u16	U16_FromString_Base //!< @alias{U16_FromString_Base}
+#define c_strbasetou16		U16_FromString_Base //!< @alias{U16_FromString_Base}
 
 //! Parse a 32-bit unsigned integer from a custom-base number string
 t_u32						U32_FromString_Base(char const* str, char const* base);
-#define c_strbase_to_u32	U32_FromString_Base //!< @alias{U32_FromString_Base}
+#define c_strbasetou32		U32_FromString_Base //!< @alias{U32_FromString_Base}
 
 //! Parse a 64-bit unsigned integer from a custom-base number string
 t_u64						U64_FromString_Base(char const* str, char const* base);
-#define c_strbase_to_u64	U64_FromString_Base //!< @alias{U64_FromString_Base}
+#define c_strbasetou64		U64_FromString_Base //!< @alias{U64_FromString_Base}
+
+#ifdef __int128
+#endif
+//!@}
 
 
 

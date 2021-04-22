@@ -24,9 +24,9 @@ t_float			c_pow_n(t_float x, t_sint n)
 	}
 /*
 	t_float result = 1;
-	while (c_fabs(n) > FLOAT_BIAS)
+	while (c_fabs(n) > FLOAT_APPROX)
 	{
-		if (c_fabs(n & 1) > FLOAT_BIAS)
+		if (c_fabs(n & 1) > FLOAT_APPROX)
 		{
 			result *= x;
 			n -= 1;

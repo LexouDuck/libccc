@@ -50,7 +50,7 @@ t_float		c_exp(t_float x)
 	acc_x = 1.;
 	acc_i = 1.;
 	result_prev = 0.;
-	while (ABS(result - result_prev) > FLOAT_BIAS)
+	while (ABS(result - result_prev) > FLOAT_APPROX)
 	{
 		result_prev = result;
 		acc_x *= x;

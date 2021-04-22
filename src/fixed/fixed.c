@@ -7,9 +7,9 @@
 
 #define DEFINEFUNC_FIXED(BITS) \
 inline t_q##BITS	Q##BITS(												\
-	t_s64 part_integer,														\
-	t_u64 part_fraction,													\
-	t_u64 denominator)														\
+	t_s##BITS part_integer,													\
+	t_u##BITS part_fraction,												\
+	t_u##BITS denominator)													\
 {																			\
 	t_q##BITS result = 0;													\
 	if (part_fraction == denominator)	part_integer += 1;					\

@@ -23,7 +23,7 @@ static t_float	c_ln_taylor_series(t_float x)
 	power = x;
 	result = x;
 	result_previous = NAN;
-	while (ABS(power) > FLOAT_BIAS)
+	while (ABS(power) > FLOAT_APPROX)
 	{
 		power *= x;
 		result += (((((int)i % 2)) * 2.) - 1.) * (power / i);
