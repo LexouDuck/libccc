@@ -1,6 +1,6 @@
 /*============================================================================*/
 /*                                            ______________________________  */
-/*  libccc/array/json.h                      |    __    __  ___      _____  | */
+/*  libccc/encode/json.h                     |    __    __  ___      _____  | */
 /*                                           |   / /\  / /\/ . |\   /  __|\ | */
 /*  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | */
 /*                                           | /___/\/_/ /___-'\   \____/\  | */
@@ -9,13 +9,13 @@
 /*                                                                            */
 /*============================================================================*/
 
-#ifndef __LIBCCC_ARRAY_JSON_H
-#define __LIBCCC_ARRAY_JSON_H
-/*!@group{libccc_array_json}
+#ifndef __LIBCCC_ENCODE_JSON_H
+#define __LIBCCC_ENCODE_JSON_H
+/*!@group{libccc_encode_json}
 ** @{
 **	This header defines a dynamic runtime object type, similar to objects in JS.
-**	In particular, most of the code exposed from this header comes from s_json:
-**	https://github.com/DaveGamble/s_json
+**	In particular, most of the code exposed from this header comes from cJSON:
+**	https://github.com/DaveGamble/cJSON
 **
 **	@file
 */
@@ -134,9 +134,9 @@ s_json*	JSON_ParseStrict_N(t_char const* value, t_size buffer_length, t_char con
 
 
 
-//! Render a s_json entity to text for transfer/storage.
+//! Render a s_json entity to text for transfer/storage (with 'pretty' formatting).
 t_char*	JSON_Print(s_json const* item);
-//! Render a s_json entity to text for transfer/storage without any formatting.
+//! Render a s_json entity to text for transfer/storage, without any formatting.
 t_char*	JSON_PrintUnformatted(s_json const* item);
 //! Render a s_json entity to text using a buffered strategy. prebuffer is a guess at the final size. guessing well reduces reallocation. fmt=0 gives unformatted, =1 gives formatted.
 t_char*	JSON_PrintBuffered(s_json const* item, t_sint prebuffer, t_bool fmt);

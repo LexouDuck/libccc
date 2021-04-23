@@ -21334,653 +21334,107 @@
     <member kind="define">
       <type>#define</type>
       <name>LIBCONFIG_NAMINGSTYLE_TYPES</name>
-      <anchorfile>group__libccc.html</anchorfile>
+      <anchorfile>group__libccc__config.html</anchorfile>
       <anchor>ga8ef160b822ec74fd6c6455647386e506</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>LIBCONFIG_HANDLE_NULLPOINTERS</name>
-      <anchorfile>group__libccc.html</anchorfile>
+      <anchorfile>group__libccc__config.html</anchorfile>
       <anchor>ga97f207da9392f6cba9c7946bb7697a70</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS</name>
-      <anchorfile>group__libccc.html</anchorfile>
+      <anchorfile>group__libccc__config.html</anchorfile>
       <anchor>ga1020a8568fd919f9da80aa0c2bffbab7</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>LIBCONFIG_USE_FAST_APPROX_MATH</name>
-      <anchorfile>group__libccc.html</anchorfile>
+      <anchorfile>group__libccc__config.html</anchorfile>
       <anchor>gac47e7bbad89ac9ce2a3c9906b798c346</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>LIBCONFIG_LIST_DOUBLYLINKED</name>
-      <anchorfile>group__libccc.html</anchorfile>
+      <anchorfile>group__libccc__config.html</anchorfile>
       <anchor>ga2dbec267fbf6efd24e1efc6d21d1ff68</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>LIBCONFIG_BITS_UINT</name>
-      <anchorfile>group__libccc.html</anchorfile>
+      <anchorfile>group__libccc__config.html</anchorfile>
       <anchor>ga86d00a69dfe2e664c87a03499d7b5f5a</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>LIBCONFIG_BITS_SINT</name>
-      <anchorfile>group__libccc.html</anchorfile>
+      <anchorfile>group__libccc__config.html</anchorfile>
       <anchor>gaac372d149c7d1452ad8f81414a6c75ab</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>LIBCONFIG_BITS_FIXED</name>
-      <anchorfile>group__libccc.html</anchorfile>
+      <anchorfile>group__libccc__config.html</anchorfile>
       <anchor>gaa5d56c2abf4a218f7a150dbab66ef199</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>LIBCONFIG_FIXED_APPROX</name>
-      <anchorfile>group__libccc.html</anchorfile>
+      <anchorfile>group__libccc__config.html</anchorfile>
       <anchor>gac3559624016adae60fd6f2985c393fe2</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>LIBCONFIG_FIXED_BITS_FRACTIONPART</name>
-      <anchorfile>group__libccc.html</anchorfile>
+      <anchorfile>group__libccc__config.html</anchorfile>
       <anchor>gaa140481612fee0286b1a2183a37a88e2</anchor>
       <arglist>(BITS)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>LIBCONFIG_FIXED_BITS_INTEGERPART</name>
-      <anchorfile>group__libccc.html</anchorfile>
+      <anchorfile>group__libccc__config.html</anchorfile>
       <anchor>gab7f803f93e9353b2c1e8773bf7138a11</anchor>
       <arglist>(BITS)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>LIBCONFIG_BITS_FLOAT</name>
-      <anchorfile>group__libccc.html</anchorfile>
+      <anchorfile>group__libccc__config.html</anchorfile>
       <anchor>gae831a75f400b727ef8cb54fec109ca28</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>LIBCONFIG_FLOAT_APPROX</name>
-      <anchorfile>group__libccc.html</anchorfile>
+      <anchorfile>group__libccc__config.html</anchorfile>
       <anchor>gaf37b6635173f4ae68dbc9a04aba88802</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>LIBCONFIG_USE_STD_COMPLEX</name>
-      <anchorfile>group__libccc.html</anchorfile>
+      <anchorfile>group__libccc__config.html</anchorfile>
       <anchor>ga70e5ad90076999fac5205baf90d96e90</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>LIBCONFIG_USE_STD_FIXEDPOINT</name>
-      <anchorfile>group__libccc.html</anchorfile>
+      <anchorfile>group__libccc__config.html</anchorfile>
       <anchor>gaaa6bb8eb6ebe31ebf0fce3b39f0db81e</anchor>
       <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NAMINGSTYLE_ENUM</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga43a83706af330061eb0e7a9b6b160f32</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NAMINGSTYLE_ENUM_CSTYLE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga421988ad9cf4ee7f90e74f7ef8897314</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NAMINGSTYLE_ENUM_SNAKECASE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gae3014584f84ff770a8b66368a06b9249</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NAMINGSTYLE_ENUM_CAMELCASE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gacd21a9fd8b25d2bc9514ccdf5c5c0edf</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NAMINGSTYLE_ENUM_PASCALCASE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga72b78c8e2c3bd3b57698f0e0795c2038</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NAMINGSTYLE_ENUM_SCREAMCASE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga92327050664567b0b46ba38d6a29d818</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NAMINGSTYLE_FLAG_HUNGARIAN_PREFIX</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga5f1b045aa48cbceb2a73b4fb6d30968e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NAMINGSTYLE_FLAG_HUNGARIAN_SUFFIX</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga7f354a43ce36cbda79bd43b72a1915f0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NAMINGSTYLE_FLAG_HUNGARIAN_UPPERCASE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga704768d8192c1cf157dbe7ec92eb75b9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>HUNGARIAN_PRIMITIVE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga18c31071065cc09d74764cd99bc34a4e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>HUNGARIAN_STRUCT</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaaeed2faba04f0354fd8f01296e46a342</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>HUNGARIAN_ENUM</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga58990bff0dc5971dbfa1baeb2a5de57c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>HUNGARIAN_UNION</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga49e29c9d235b230d591e6a89b180b103</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>HUNGARIAN_FUNCTION</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga7692350364cf399c014ef369fb846397</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_BOOL</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga9d3ccaca9a71d022917881fef2311575</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_CHAR</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaab8cc588f2e188402b2802eba8dd3af9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_UTF8</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga00209267eadb17c7b1bfe136bba00307</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_SINT</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga4287c44b179572de6fa193cdf4c7ad65</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_SINT_8</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaaaceb59a80ac8c96643680ad185de030</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_SINT_16</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga7219a72551d3f460ded02df4d3fd5b8a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_SINT_32</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gac0afcaf171d55d1182a4e28619629fda</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_SINT_64</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga7274abda4b74294e033d50ab4d28d438</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_SINT_128</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gac7b05dfee2d1125df9e41805cef9d77f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_UINT</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga9a8af80b10ce4d4f7b06329219a0fa39</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_UINT_8</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaa5818ee41c3e216e9adeb2e4eccf30de</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_UINT_16</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaee9ebc0b2c8d6fbb07b016d91b06fad8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_UINT_32</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gae5144bae183141909d866bddfea2000a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_UINT_64</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gac4d73b57d3d6bd79d45f9d811dc1f99a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_UINT_128</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga4af57da3c8cf664e8b8bb78931e7d248</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_FIXED</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga56a62a248007cbd3341f62e56b1dcc66</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_FIXED_16</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga88ab492e88bd82d548b64976293fe82e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_FIXED_32</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga9848a67600653ab1878f39c06b7f515e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_FIXED_64</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gab0d1dbefdf7d13edffcf4f5e37563670</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_FIXED_128</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga412a1d4911c004bfcd2f77c035313c58</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_FLOAT</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga13b28809428fea17c574f87e3816fa58</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_FLOAT_32</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gac36c2faa9edf829cf5b280827677b8f8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_FLOAT_64</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaa4e703ad3cd71832af1aef8a345831d6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_FLOAT_80</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga23790d244c1199b4bc0bb9eade34fe00</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_FLOAT_128</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga752ec73c2086d34e394f6650ac48851c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_SIZE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gad855c26654c3f603d318646db4362fc7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_PTRDIFF</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaf853fe4ebfd3d5751c0e427867b783e1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_SINTMAX</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga56f79996824a321b410d0f54626d51c5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_UINTMAX</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga08126be4ac4ce7b0a3acf409015b5aaa</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_SINTPTR</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga3ff28e718887659d888deb8f4dfd4571</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_UINTPTR</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gacc3d2d30cc797011bdb298e587cc9bf3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_COLOR_RGB</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga891fc15a31798451083f374b9328a381</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_COLOR_HSL</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga99aa73efaff1aa21a28d39f1edb55671</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_IO_FILEDESC</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaffea4bde7b07a5d3889b693906c2037d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_IO_MODE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaa3c011b7500b4da80d37117dbd90b17d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_IO_OPEN</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga2e9030cb692491cfe4ec76fd663285bb</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_IO_ERROR</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga1569509f37145370191080a3c8a1b3f5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_TIME</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga34418e603f8b1c5948137b7b9132babc</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_TIMESPEC</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga4237f57f121a3ba0bf13fd98fcdcf4c9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_TIMEZONE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga1408b65be04ea749240da6d88b52f1b5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_TIME_DATE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga72d4030eacadcaf44a8dbb79bb44526c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_TIME_WEEKDAY</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gab9cdcfa526e65f27f2dce626ac14e126</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_TIME_MONTH</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga97661fc1a004b4672792cc15d8759e48</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_VECTOR</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaba84b5ddc87ae4ef57367429f735d7b0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_VECTOR2D</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga0651854334c2c53b5e6d3d5f4f193cc2</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_VECTOR3D</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gac41a26a852bcc6a62804ee96bb3d7b72</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_VECTOR4D</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gac39fd60014ae7300a9f426f456f835a7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_MATRIX</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga1547683c016ea659afadb58423c72984</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_MATRIX2D</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga57695f8100490f2393e8e4af634795cc</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_MATRIX3D</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gacdd7c367750651fa11a3855184fb8f1e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_MATRIX4D</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gac6ee7f156fb1da406894d4bab0bf5de9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_TENSOR</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga0abce5be5b1c843955f9844d2d051e71</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_AABB</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gae023cdd13b4fa3d321ed5e56ce2be093</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_INTERVAL</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga38074960f0523597ae189c945eb154fe</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_COMPLEX</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gac1acaf44a9aca39f51131ad4fcd495a4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_QUATERNION</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga9fbffd44f0f2f3642ec011d733990d0b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_ARRAY</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga40f9893522ff63314e1fa54ed90f8a05</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_LIST</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga4928a8dbae11efe6369a313e552d1d65</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_TREE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga2aac33a0af5ea5d6f663d8d6a6b8ff1d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_LEAF</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga938f5e4048a13cc191283f51dd042e5c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_DICT</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga69e740d4768cfb48e131a0eceacbb003</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_KEYVAL</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaedbf101c5d538be39cb246c241b55495</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_OBJECT</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gac78a6b5531a0582ba85b08419361377e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga4d319b9aec474f87e5cbd66e82270714</anchor>
-      <arglist>(TYPE, NAME, KIND)</arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -22780,657 +22234,6 @@
       <anchorfile>group__libccc.html</anchorfile>
       <anchor>ga73431ba9d27af74793901561ae448116</anchor>
       <arglist>(_NAME, _FILEPATH)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_NAMINGSTYLE_TYPES</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga8ef160b822ec74fd6c6455647386e506</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_HANDLE_NULLPOINTERS</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga97f207da9392f6cba9c7946bb7697a70</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga1020a8568fd919f9da80aa0c2bffbab7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_USE_FAST_APPROX_MATH</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gac47e7bbad89ac9ce2a3c9906b798c346</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_LIST_DOUBLYLINKED</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga2dbec267fbf6efd24e1efc6d21d1ff68</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_BITS_UINT</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga86d00a69dfe2e664c87a03499d7b5f5a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_BITS_SINT</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaac372d149c7d1452ad8f81414a6c75ab</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_BITS_FIXED</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaa5d56c2abf4a218f7a150dbab66ef199</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_FIXED_APPROX</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gac3559624016adae60fd6f2985c393fe2</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_FIXED_BITS_FRACTIONPART</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaa140481612fee0286b1a2183a37a88e2</anchor>
-      <arglist>(BITS)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_FIXED_BITS_INTEGERPART</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gab7f803f93e9353b2c1e8773bf7138a11</anchor>
-      <arglist>(BITS)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_BITS_FLOAT</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gae831a75f400b727ef8cb54fec109ca28</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_FLOAT_APPROX</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaf37b6635173f4ae68dbc9a04aba88802</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_USE_STD_COMPLEX</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga70e5ad90076999fac5205baf90d96e90</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_USE_STD_FIXEDPOINT</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaaa6bb8eb6ebe31ebf0fce3b39f0db81e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NAMINGSTYLE_ENUM</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga43a83706af330061eb0e7a9b6b160f32</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NAMINGSTYLE_ENUM_CSTYLE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga421988ad9cf4ee7f90e74f7ef8897314</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NAMINGSTYLE_ENUM_SNAKECASE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gae3014584f84ff770a8b66368a06b9249</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NAMINGSTYLE_ENUM_CAMELCASE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gacd21a9fd8b25d2bc9514ccdf5c5c0edf</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NAMINGSTYLE_ENUM_PASCALCASE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga72b78c8e2c3bd3b57698f0e0795c2038</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NAMINGSTYLE_ENUM_SCREAMCASE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga92327050664567b0b46ba38d6a29d818</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NAMINGSTYLE_FLAG_HUNGARIAN_PREFIX</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga5f1b045aa48cbceb2a73b4fb6d30968e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NAMINGSTYLE_FLAG_HUNGARIAN_SUFFIX</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga7f354a43ce36cbda79bd43b72a1915f0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NAMINGSTYLE_FLAG_HUNGARIAN_UPPERCASE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga704768d8192c1cf157dbe7ec92eb75b9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>HUNGARIAN_PRIMITIVE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga18c31071065cc09d74764cd99bc34a4e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>HUNGARIAN_STRUCT</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaaeed2faba04f0354fd8f01296e46a342</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>HUNGARIAN_ENUM</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga58990bff0dc5971dbfa1baeb2a5de57c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>HUNGARIAN_UNION</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga49e29c9d235b230d591e6a89b180b103</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>HUNGARIAN_FUNCTION</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga7692350364cf399c014ef369fb846397</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_BOOL</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga9d3ccaca9a71d022917881fef2311575</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_CHAR</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaab8cc588f2e188402b2802eba8dd3af9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_UTF8</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga00209267eadb17c7b1bfe136bba00307</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_SINT</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga4287c44b179572de6fa193cdf4c7ad65</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_SINT_8</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaaaceb59a80ac8c96643680ad185de030</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_SINT_16</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga7219a72551d3f460ded02df4d3fd5b8a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_SINT_32</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gac0afcaf171d55d1182a4e28619629fda</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_SINT_64</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga7274abda4b74294e033d50ab4d28d438</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_SINT_128</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gac7b05dfee2d1125df9e41805cef9d77f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_UINT</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga9a8af80b10ce4d4f7b06329219a0fa39</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_UINT_8</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaa5818ee41c3e216e9adeb2e4eccf30de</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_UINT_16</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaee9ebc0b2c8d6fbb07b016d91b06fad8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_UINT_32</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gae5144bae183141909d866bddfea2000a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_UINT_64</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gac4d73b57d3d6bd79d45f9d811dc1f99a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_UINT_128</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga4af57da3c8cf664e8b8bb78931e7d248</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_FIXED</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga56a62a248007cbd3341f62e56b1dcc66</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_FIXED_16</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga88ab492e88bd82d548b64976293fe82e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_FIXED_32</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga9848a67600653ab1878f39c06b7f515e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_FIXED_64</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gab0d1dbefdf7d13edffcf4f5e37563670</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_FIXED_128</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga412a1d4911c004bfcd2f77c035313c58</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_FLOAT</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga13b28809428fea17c574f87e3816fa58</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_FLOAT_32</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gac36c2faa9edf829cf5b280827677b8f8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_FLOAT_64</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaa4e703ad3cd71832af1aef8a345831d6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_FLOAT_80</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga23790d244c1199b4bc0bb9eade34fe00</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_FLOAT_128</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga752ec73c2086d34e394f6650ac48851c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_SIZE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gad855c26654c3f603d318646db4362fc7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_PTRDIFF</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaf853fe4ebfd3d5751c0e427867b783e1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_SINTMAX</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga56f79996824a321b410d0f54626d51c5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_UINTMAX</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga08126be4ac4ce7b0a3acf409015b5aaa</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_SINTPTR</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga3ff28e718887659d888deb8f4dfd4571</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_UINTPTR</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gacc3d2d30cc797011bdb298e587cc9bf3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_COLOR_RGB</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga891fc15a31798451083f374b9328a381</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_COLOR_HSL</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga99aa73efaff1aa21a28d39f1edb55671</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_IO_FILEDESC</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaffea4bde7b07a5d3889b693906c2037d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_IO_MODE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaa3c011b7500b4da80d37117dbd90b17d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_IO_OPEN</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga2e9030cb692491cfe4ec76fd663285bb</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_IO_ERROR</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga1569509f37145370191080a3c8a1b3f5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_TIME</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga34418e603f8b1c5948137b7b9132babc</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_TIMESPEC</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga4237f57f121a3ba0bf13fd98fcdcf4c9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_TIMEZONE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga1408b65be04ea749240da6d88b52f1b5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_TIME_DATE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga72d4030eacadcaf44a8dbb79bb44526c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_TIME_WEEKDAY</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gab9cdcfa526e65f27f2dce626ac14e126</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_TIME_MONTH</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga97661fc1a004b4672792cc15d8759e48</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_VECTOR</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaba84b5ddc87ae4ef57367429f735d7b0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_VECTOR2D</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga0651854334c2c53b5e6d3d5f4f193cc2</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_VECTOR3D</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gac41a26a852bcc6a62804ee96bb3d7b72</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_VECTOR4D</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gac39fd60014ae7300a9f426f456f835a7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_MATRIX</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga1547683c016ea659afadb58423c72984</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_MATRIX2D</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga57695f8100490f2393e8e4af634795cc</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_MATRIX3D</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gacdd7c367750651fa11a3855184fb8f1e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_MATRIX4D</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gac6ee7f156fb1da406894d4bab0bf5de9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_TENSOR</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga0abce5be5b1c843955f9844d2d051e71</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_AABB</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gae023cdd13b4fa3d321ed5e56ce2be093</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_INTERVAL</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga38074960f0523597ae189c945eb154fe</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_COMPLEX</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gac1acaf44a9aca39f51131ad4fcd495a4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_QUATERNION</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga9fbffd44f0f2f3642ec011d733990d0b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_ARRAY</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga40f9893522ff63314e1fa54ed90f8a05</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_LIST</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga4928a8dbae11efe6369a313e552d1d65</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_TREE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga2aac33a0af5ea5d6f663d8d6a6b8ff1d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_LEAF</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga938f5e4048a13cc191283f51dd042e5c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_DICT</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga69e740d4768cfb48e131a0eceacbb003</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_KEYVAL</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaedbf101c5d538be39cb246c241b55495</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_OBJECT</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gac78a6b5531a0582ba85b08419361377e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga4d319b9aec474f87e5cbd66e82270714</anchor>
-      <arglist>(TYPE, NAME, KIND)</arglist>
     </member>
   </compound>
   <compound kind="group">
@@ -41640,6 +40443,121 @@
       <name>s_object_T</name>
       <anchorfile>group__libccc__monad__object.html</anchorfile>
       <anchor>gadba9431dd743ff3a1988de7f0b602dda</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="group">
+    <name>libccc_encode_json</name>
+    <title>36) libccc/encode/json</title>
+    <filename>group__libccc__encode__json.html</filename>
+  </compound>
+  <compound kind="group">
+    <name>libccc_config</name>
+    <title>Libccc_config</title>
+    <filename>group__libccc__config.html</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_NAMINGSTYLE_TYPES</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>ga8ef160b822ec74fd6c6455647386e506</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_HANDLE_NULLPOINTERS</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>ga97f207da9392f6cba9c7946bb7697a70</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>ga1020a8568fd919f9da80aa0c2bffbab7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_USE_FAST_APPROX_MATH</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>gac47e7bbad89ac9ce2a3c9906b798c346</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_LIST_DOUBLYLINKED</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>ga2dbec267fbf6efd24e1efc6d21d1ff68</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_BITS_UINT</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>ga86d00a69dfe2e664c87a03499d7b5f5a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_BITS_SINT</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>gaac372d149c7d1452ad8f81414a6c75ab</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_BITS_FIXED</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>gaa5d56c2abf4a218f7a150dbab66ef199</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_FIXED_APPROX</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>gac3559624016adae60fd6f2985c393fe2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_FIXED_BITS_FRACTIONPART</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>gaa140481612fee0286b1a2183a37a88e2</anchor>
+      <arglist>(BITS)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_FIXED_BITS_INTEGERPART</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>gab7f803f93e9353b2c1e8773bf7138a11</anchor>
+      <arglist>(BITS)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_BITS_FLOAT</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>gae831a75f400b727ef8cb54fec109ca28</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_FLOAT_APPROX</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>gaf37b6635173f4ae68dbc9a04aba88802</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_USE_STD_COMPLEX</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>ga70e5ad90076999fac5205baf90d96e90</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_USE_STD_FIXEDPOINT</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>gaaa6bb8eb6ebe31ebf0fce3b39f0db81e</anchor>
       <arglist></arglist>
     </member>
   </compound>
