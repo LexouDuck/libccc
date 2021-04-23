@@ -227,9 +227,9 @@ static t_char* ensure(s_json_print* const p, t_size needed)
 		// make sure that offset is valid
 		return (NULL);
 	}
-	if (needed > INT_MAX)
+	if (needed > SIZE_MAX)
 	{
-		// sizes bigger than INT_MAX are currently not supported
+		// sizes bigger than SIZE_MAX are currently not supported
 		return (NULL);
 	}
 	needed += p->offset + 1;
@@ -242,12 +242,12 @@ static t_char* ensure(s_json_print* const p, t_size needed)
 		return (NULL);
 	}
 	// calculate new buffer size
-	if (needed > (INT_MAX / 2))
+	if (needed > (SIZE_MAX / 2))
 	{
-		// overflow of t_sint, use INT_MAX if possible
-		if (needed <= INT_MAX)
+		// overflow of t_sint, use SIZE_MAX if possible
+		if (needed <= SIZE_MAX)
 		{
-			newsize = INT_MAX;
+			newsize = SIZE_MAX;
 		}
 		else
 		{
