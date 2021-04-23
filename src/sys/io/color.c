@@ -19,12 +19,12 @@ t_u8	IO_GetColor(t_argb32 color)
 		(r - delta <= b && b <= r + delta) &&
 		(g - delta <= b && b <= g + delta))
 	{
-		ansi = 232 + (t_s32)Math_Round(b * factor * 4.8);
+		ansi = 232 + (t_s32)Float_Round(b * factor * 4.8);
 		if (ansi >= 256) ansi = 15;
 	}
 	else ansi = 16 +
-		(t_s32)Math_Round(r * factor) * 36 +
-		(t_s32)Math_Round(g * factor) * 6 +
-		(t_s32)Math_Round(b * factor);
+		(t_s32)Float_Round(r * factor) * 36 +
+		(t_s32)Float_Round(g * factor) * 6 +
+		(t_s32)Float_Round(b * factor);
 	return ((t_u8)ansi);
 }

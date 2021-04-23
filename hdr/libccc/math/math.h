@@ -28,7 +28,7 @@
 
 #include "libccc.h"
 
-#include "libccc/math/int.h"
+#include "libccc/math/constants.h"
 #include "libccc/math/fixed.h"
 #include "libccc/math/float.h"
 
@@ -113,54 +113,30 @@ HEADER_CPP
 
 #define DEFINE_GENERIC_MATH_FUNCTION(FUNCTION, X) \
 	_Generic((X),	\
-		t_u8:	U8##FUNCTION,	\
-		t_u16:	U16##FUNCTION,	\
-		t_u32:	U32##FUNCTION,	\
-		t_u64:	U64##FUNCTION,	\
-		t_u128:	U128##FUNCTION,	\
-		t_uint:	UInt##FUNCTION,	\
-		t_s8:	S8##FUNCTION,	\
-		t_s16:	S16##FUNCTION,	\
-		t_s32:	S32##FUNCTION,	\
-		t_s64:	S64##FUNCTION,	\
-		t_s128:	S128##FUNCTION,	\
-		t_sint:	SInt##FUNCTION,	\
-		t_q16:	Q16##FUNCTION,	\
-		t_q32:	Q32##FUNCTION,	\
-		t_q64:	Q64##FUNCTION,	\
-		t_q128:	Q128##FUNCTION,	\
-		t_fixed:Fixed##FUNCTION,\
-		t_f32:	F32##FUNCTION,	\
-		t_f64:	F64##FUNCTION,	\
-		t_f80:	F80##FUNCTION,	\
-		t_f128:	F128##FUNCTION,	\
-		t_float:Float##FUNCTION,\
+		t_q16:	 Q16_##FUNCTION,	\
+		t_q32:	 Q32_##FUNCTION,	\
+		t_q64:	 Q64_##FUNCTION,	\
+		t_q128:	 Q128_##FUNCTION,	\
+		t_fixed: Fixed_##FUNCTION,	\
+		t_f32:	 F32_##FUNCTION,	\
+		t_f64:	 F64_##FUNCTION,	\
+		t_f80:	 F80_##FUNCTION,	\
+		t_f128:	 F128_##FUNCTION,	\
+		t_float: Float_##FUNCTION,	\
 	)(X)
 
 #define DEFINE_GENERIC_MATH_OPERATOR(FUNCTION, X, Y) \
 	_Generic((X),	\
-		t_u8:	U8##FUNCTION,	\
-		t_u16:	U16##FUNCTION,	\
-		t_u32:	U32##FUNCTION,	\
-		t_u64:	U64##FUNCTION,	\
-		t_u128:	U128##FUNCTION,	\
-		t_uint:	UInt##FUNCTION,	\
-		t_s8:	S8##FUNCTION,	\
-		t_s16:	S16##FUNCTION,	\
-		t_s32:	S32##FUNCTION,	\
-		t_s64:	S64##FUNCTION,	\
-		t_s128:	S128##FUNCTION,	\
-		t_sint:	SInt##FUNCTION,	\
-		t_q16:	Q16##FUNCTION,	\
-		t_q32:	Q32##FUNCTION,	\
-		t_q64:	Q64##FUNCTION,	\
-		t_q128:	Q128##FUNCTION,	\
-		t_fixed:Fixed##FUNCTION,\
-		t_f32:	F32##FUNCTION,	\
-		t_f64:	F64##FUNCTION,	\
-		t_f80:	F80##FUNCTION,	\
-		t_f128:	F128##FUNCTION,	\
-		t_float:Float##FUNCTION,\
+		t_q16:	 Q16_##FUNCTION,	\
+		t_q32:	 Q32_##FUNCTION,	\
+		t_q64:	 Q64_##FUNCTION,	\
+		t_q128:	 Q128_##FUNCTION,	\
+		t_fixed: Fixed_##FUNCTION,	\
+		t_f32:	 F32_##FUNCTION,	\
+		t_f64:	 F64_##FUNCTION,	\
+		t_f80:	 F80_##FUNCTION,	\
+		t_f128:	 F128_##FUNCTION,	\
+		t_float: Float_##FUNCTION,	\
 	)(X, Y)
 
 

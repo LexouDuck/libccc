@@ -15,11 +15,11 @@ t_bool	Bool_FromString(char const* str)
 		return (FALSE);
 #endif
 	i = 0;
-	while (str[i] && c_isspace(str[i]))
+	while (str[i] && Char_IsSpace(str[i]))
 		++i;
 	if (!str[i])
 		return (FALSE);
-	if (c_isdigit(str[i]) && c_str_to_s64(str + i))
+	if (Char_IsDigit(str[i]) && S64_FromString(str + i))
 		return (TRUE);
 	if ((str[i + 0] == 'T' || str[i + 0] == 't') &&
 		(str[i + 1] == 'R' || str[i + 1] == 'r') &&

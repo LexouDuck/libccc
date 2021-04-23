@@ -11,7 +11,7 @@ s_vector2d	Vector2D_Normalize(s_vector2d const* vector)
 	norm = Vector2D_Norm(vector);
 	if (norm > 0)
 	{
-		norm = 1 / Math_SquareRoot(norm); // TODO InvSqRt function ?
+		norm = 1 / Float_SquareRoot(norm); // TODO InvSqRt function ?
 		result.x = vector->x * norm;
 		result.y = vector->y * norm;
 	}
@@ -28,7 +28,7 @@ s_vector3d	Vector3D_Normalize(s_vector3d const* vector)
 	norm = Vector3D_Norm(vector);
 	if (norm > 0)
 	{
-		norm = 1 / Math_SquareRoot(norm); // TODO InvSqRt function ?
+		norm = 1 / Float_SquareRoot(norm); // TODO InvSqRt function ?
 		result.x = vector->x * norm;
 		result.y = vector->y * norm;
 		result.z = vector->z * norm;

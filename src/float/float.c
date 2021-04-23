@@ -9,7 +9,7 @@
 #define DEFINEFUNC_FLOAT(BITS) \
 t_f##BITS	F##BITS(t_fixed mantissa, t_sint exponent)		\
 {															\
-	return ((t_f##BITS)(mantissa >> FIXED_BITS_FRACTIONPART) * Math_Pow(2, exponent));	\
+	return ((t_f##BITS)(mantissa >> FIXED_BITS_FRACTIONPART) * Float_Pow(2, exponent));	\
 }															\
 
 

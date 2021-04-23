@@ -160,7 +160,7 @@ LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_FLOAT							\
 		exponent -= frac_digits;									\
 	if (String_Length(str_mantissa) > MAXLEN_MANTISSA)				\
 		exponent += String_Length(str_mantissa) - MAXLEN_MANTISSA;	\
-	return (result * Math_Pow(10., exponent) * (negative ? -1 : 1));\
+	return (result * Float_Pow(10., exponent) * (negative ? -1 : 1));\
 }																	\
 
 
@@ -232,7 +232,7 @@ LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_FLOAT									\
 	}																		\
 	mantissa = U64_FromString_Hex(tmp);										\
 	result *= (mantissa * F##BITS##_INIT_VALUE) *							\
-		Math_Pow(2., (String_Length(tmp) - 1) * 4);							\
+		Float_Pow(2., (String_Length(tmp) - 1) * 4);							\
 	exponent = (str_exponent ? S16_FromString(str_exponent) : 0);			\
 	if (exponent > F##BITS##_EXPONENT_BIAS)									\
 		return ((negative ? -1. : 1.) / 0.);								\

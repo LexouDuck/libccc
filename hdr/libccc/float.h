@@ -37,7 +37,6 @@
 
 #include "libccc/bool.h"
 #include "libccc/int.h"
-#include "libccc/fixed.h"
 
 HEADER_CPP
 
@@ -414,13 +413,13 @@ typedef union float_cast
 */
 //!@{
 #define					Float	CONCAT(FLOAT_TYPE,)
-t_f32					F32(t_fixed mantissa, t_sint exponent);
-t_f64					F64(t_fixed mantissa, t_sint exponent);
+t_f32					F32(t_sint mantissa, t_sint exponent);
+t_f64					F64(t_sint mantissa, t_sint exponent);
 #ifdef	__float80
-t_f80					F80(t_fixed mantissa, t_sint exponent);
+t_f80					F80(t_sint mantissa, t_sint exponent);
 #endif
 #ifdef	__float128
-t_f128					F128(t_fixed mantissa, t_sint exponent);
+t_f128					F128(t_sint mantissa, t_sint exponent);
 #endif
 #define c_float			Float 	//!< @alias{Float}
 #define c_f32			F32 	//!< @alias{F32}
@@ -437,13 +436,13 @@ t_f128					F128(t_fixed mantissa, t_sint exponent);
 */
 //!@{
 #define						Float_GetExp	CONCAT(FLOAT_TYPE,_GetExp)
-t_sint						F32_GetExp(t_fixed mantissa, t_sint exponent);
-t_sint						F64_GetExp(t_fixed mantissa, t_sint exponent);
+t_sint						F32_GetExp(t_f32 number);
+t_sint						F64_GetExp(t_f64 number);
 #ifdef	__float80
-t_sint						F80_GetExp(t_fixed mantissa, t_sint exponent);
+t_sint						F80_GetExp(t_f80 number);
 #endif
 #ifdef	__float128
-t_sint						F128_GetExp(t_fixed mantissa, t_sint exponent);
+t_sint						F128_GetExp(t_f128 number);
 #endif
 #define c_fgetexp			Float_GetExp//!< @alias{Float}
 #define c_f32getexp			F32_GetExp	//!< @alias{F32}

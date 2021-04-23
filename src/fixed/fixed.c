@@ -14,8 +14,8 @@ inline t_q##BITS	Q##BITS(												\
 	t_q##BITS result = 0;													\
 	if (part_fraction == denominator)	part_integer += 1;					\
 	else if (part_fraction > denominator)	return (0);						\
-	if (part_integer >= FIXED_MAX_INTEGERPART)								\
-		part_integer = (FIXED_MAX_INTEGERPART - 1);							\
+	if (part_integer >= Q##BITS##_MAX_INTEGERPART)							\
+		part_integer = (Q##BITS##_MAX_INTEGERPART - 1);						\
 	result = ((t_q##BITS)part_integer << FIXED_BITS_FRACTIONPART);			\
 	result |= (part_fraction * FIXED_MAX_FRACTIONPART) / denominator;		\
 	return (result);														\
@@ -35,8 +35,8 @@ inline t_q##BITS	Q##BITS##_FromFloat(t_f64 number)						\
 	if (number > (t_f64)(Q##BITS##_MAX >> FIXED_BITS_FRACTIONPART))	return (Q##BITS##_MAX);	\
 	if (number < (t_f64)(Q##BITS##_MIN >> FIXED_BITS_FRACTIONPART))	return (Q##BITS##_MIN);	\
 	return (																\
-		((t_q##BITS)Math_Truncate(number) << FIXED_BITS_FRACTIONPART) |		\
-		((t_q##BITS)Math_Mod(number, 1) & (FIXED_MASK_FRACTIONPART))		\
+		((t_q##BITS)Q##BITS##_Truncate(number) << FIXED_BITS_FRACTIONPART) |\
+		((t_q##BITS)Q##BITS##_Mod(number, 1) & (FIXED_MASK_FRACTIONPART))	\
 	);																		\
 }
 

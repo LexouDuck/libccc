@@ -130,9 +130,9 @@ HEADER_CPP
 //! @see #FIXED_APPROX and Fixed_EqualsApprox()
 #define LIBCONFIG_FIXED_APPROX	(1.0e-10)
 //! the amount of bits dedicated to the fraction part of the fixed-point types
-#define LIBCONFIG_FIXED_BITS_FRACTIONPART	(LIBCONFIG_BITS_FIXED / 4)
+#define LIBCONFIG_FIXED_BITS_FRACTIONPART(BITS)	(BITS / 4)
 //! the amount of bits dedicated to the integer part of the fixed-point types
-#define LIBCONFIG_FIXED_BITS_INTEGERPART	(LIBCONFIG_BITS_FIXED - FIXED_BITS_FRACTIONPART)
+#define LIBCONFIG_FIXED_BITS_INTEGERPART(BITS)	(BITS - FIXED_BITS_FRACTIONPART)
 
 //! Defines which type/bit size the `t_float` default floating-point number type will be
 /*!
