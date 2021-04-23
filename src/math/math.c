@@ -13,7 +13,7 @@ inline t_s32	c_getexp(t_float x)
 	return (((result.value_int & FLOAT_EXPONENT) >> FLOAT_MANTISSA_BITS) - FLOAT_EXPONENT_BIAS);
 }
 #else
-MATH_DECL_FUNCTION(t_s32, getexp, ilogb)
+MATH_DECL_FUNCTION(t_sint, getexp, ilogb)
 #endif
 
 
@@ -31,7 +31,7 @@ inline t_float	c_fabs(t_float x)
 	return (result.value_float);
 }
 #else
-MATH_DECL_REALFUNCTION(fabs, fabs)
+MATH_DECL_REALFUNCTION(abs, fabs)
 #endif
 
 
@@ -47,7 +47,7 @@ inline t_float	c_fmod(t_float x, t_float y)
 	return ((a - (t_float)floor_a) * y);
 }
 #else
-MATH_DECL_REALOPERATOR(fmod, fmod)
+MATH_DECL_REALOPERATOR(mod, fmod)
 #endif
 
 

@@ -81,33 +81,30 @@ HEADER_CPP
 
 
 
-#if (LIBCONFIG_USE_FAST_APPROX_MATH == 0)
 
-	#if LIBCONFIG_BITS_FLOAT == 32
-		#define MATH_DECL_FUNCTION(RETURN, FT_NAME, NAME)	inline RETURN c_##FT_NAME(t_float x)				{ return (__builtin_##NAME##f(x)); }
-		#define MATH_DECL_REALFUNCTION(FT_NAME, NAME)		inline t_float c_##FT_NAME(t_float x)				{ return (__builtin_##NAME##f(x)); }
-		#define MATH_DECL_REALOPERATOR(FT_NAME, NAME)		inline t_float c_##FT_NAME(t_float x, t_float y)	{ return (__builtin_##NAME##f(x, y)); }
-	#endif
+#define MATH_DEFINE_FUNCTION(RETURN, BITS, NAME, CNAME, TYPE)	inline RETURN	 c_f##BITS##NAME(t_f##BITS x)				{ return (__builtin_##CNAME##TYPE(x)); }
+#define MATH_DEFINE_REALFUNCTION(BITS, NAME, CNAME, TYPE)		inline t_f##BITS c_f##BITS##NAME(t_f##BITS x)				{ return (__builtin_##CNAME##TYPE(x)); }
+#define MATH_DEFINE_REALOPERATOR(BITS, NAME, CNAME, TYPE)		inline t_f##BITS c_f##BITS##NAME(t_f##BITS x, t_f##BITS y)	{ return (__builtin_##CNAME##TYPE(x, y)); }
 
-	#if LIBCONFIG_BITS_FLOAT == 64
-		#define MATH_DECL_FUNCTION(RETURN, FT_NAME, NAME)	inline RETURN c_##FT_NAME(t_float x)				{ return (__builtin_##NAME(x)); }
-		#define MATH_DECL_REALFUNCTION(FT_NAME, NAME)		inline t_float c_##FT_NAME(t_float x)				{ return (__builtin_##NAME(x)); }
-		#define MATH_DECL_REALOPERATOR(FT_NAME, NAME)		inline t_float c_##FT_NAME(t_float x, t_float y)	{ return (__builtin_##NAME(x, y)); }
-	#endif
 
-	#if LIBCONFIG_BITS_FLOAT == 80
-		#define MATH_DECL_FUNCTION(RETURN, FT_NAME, NAME)	inline RETURN c_##FT_NAME(t_float x)				{ return (__builtin_##NAME##l(x)); }
-		#define MATH_DECL_REALFUNCTION(FT_NAME, NAME)		inline t_float c_##FT_NAME(t_float x)				{ return (__builtin_##NAME##l(x)); }
-		#define MATH_DECL_REALOPERATOR(FT_NAME, NAME)		inline t_float c_##FT_NAME(t_float x, t_float y)	{ return (__builtin_##NAME##l(x, y)); }
-	#endif
 
-	#if LIBCONFIG_BITS_FLOAT == 128
-		#define MATH_DECL_FUNCTION(RETURN, FT_NAME, NAME)	inline RETURN c_##FT_NAME(t_float x)				{ return (__builtin_##NAME##q(x)); }
-		#define MATH_DECL_REALFUNCTION(FT_NAME, NAME)		inline t_float c_##FT_NAME(t_float x)				{ return (__builtin_##NAME##q(x)); }
-		#define MATH_DECL_REALOPERATOR(FT_NAME, NAME)		inline t_float c_##FT_NAME(t_float x, t_float y)	{ return (__builtin_##NAME##q(x, y)); }
-	#endif
+#define MATH_DECL_FUNCTION(RETURN, NAME, CNAME)	\
+	MATH_DEFINE_FUNCTION(RETURN, 32, NAME, CNAME,f)	\
+	MATH_DEFINE_FUNCTION(RETURN, 64, NAME, CNAME,)	\
+/*	MATH_DEFINE_FUNCTION(RETURN, 80, NAME, CNAME,l)	\*/
+/*	MATH_DEFINE_FUNCTION(RETURN, 128,NAME, CNAME,q)	\*/
 
-#endif
+#define MATH_DECL_REALFUNCTION(NAME, CNAME)		\
+	MATH_DEFINE_REALFUNCTION(32, NAME, CNAME,f)	\
+	MATH_DEFINE_REALFUNCTION(64, NAME, CNAME,)	\
+/*	MATH_DEFINE_REALFUNCTION(80, NAME, CNAME,l)	\*/
+/*	MATH_DEFINE_REALFUNCTION(128,NAME, CNAME,q)	\*/
+
+#define MATH_DECL_REALOPERATOR(NAME, CNAME)		\
+	MATH_DEFINE_REALOPERATOR(32, NAME, CNAME,f)	\
+	MATH_DEFINE_REALOPERATOR(64, NAME, CNAME,)	\
+/*	MATH_DEFINE_REALOPERATOR(80, NAME, CNAME,l)	\*/
+/*	MATH_DEFINE_REALOPERATOR(128,NAME, CNAME,q)	\*/
 
 
 

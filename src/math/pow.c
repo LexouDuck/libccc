@@ -4,7 +4,8 @@
 
 
 
-t_float			c_pow_n(t_float x, t_sint n)
+#if LIBCONFIG_USE_FAST_APPROX_MATH
+t_float			c_intpow(t_float x, t_sint n)
 {
 	t_float	tmp;
 
@@ -37,6 +38,10 @@ t_float			c_pow_n(t_float x, t_sint n)
 	return (result);
 */
 }
+#else
+//MATH_DECL_REALOPERATOR(intpow, pow)
+// TODO fix this
+#endif
 
 
 

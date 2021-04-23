@@ -175,7 +175,7 @@ MATH_DECL_REALFUNCTION(cbrt, cbrt)
 
 
 
-t_float	c_nrt(t_float x, t_u8 n)
+t_float	Float_RootN(t_float x, t_u8 n)
 {
 //	Newton derivative approximation by iteration
 	static const t_s32	i_max = 4;
@@ -194,7 +194,7 @@ t_float	c_nrt(t_float x, t_u8 n)
 		return (SIGN(x));
 	if (n % 2 == 0 && x < 0)
 		return (NAN);
-	i = c_getexp(x);
+	i = Float_GetExp(x);
 	result = SIGN(x) * (i < 0 ? 1 : 1.25) * c_sqrt_2_pow_n(i * 2 / (t_s32)n);
 	previous = 0.;
 	i = 0;

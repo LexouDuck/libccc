@@ -26,7 +26,8 @@
 */
 
 #include "libccc.h"
-#include "libccc/math/math.h"
+#include "libccc/math/float.h"
+#include "libccc/math/algebra/vector.h"
 
 HEADER_CPP
 
@@ -99,7 +100,7 @@ typedef t_float	(*f_scalar_func4)(u_vector4d const v);
 */
 // TODO document these functions
 //t_float	lin_integrate(sf, domain);
-t_float		c_integrate(f_real_function const f, s_interval const domain, t_float step);
+t_float		c_integrate(f_float_function const f, s_interval const domain, t_float step);
 t_float		c_mc_integrate_1d(f_scalar_func1 const sf, s_box1d const domain);
 t_float		c_mc_integrate_2d(f_scalar_func2 const sf, s_box2d const domain);
 t_float		c_mc_integrate_3d(f_scalar_func3 const sf, s_box3d const domain);

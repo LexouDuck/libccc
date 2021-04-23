@@ -26,6 +26,7 @@
 */
 
 #include "libccc.h"
+#include "libccc/math/float.h"
 #include "libccc/math/algebra/vector.h"
 
 HEADER_CPP

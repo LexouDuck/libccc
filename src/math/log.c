@@ -97,9 +97,9 @@ MATH_DECL_REALFUNCTION(log, log10)
 inline t_float	c_log_n(t_float x, t_float n)
 {
 	if (n == 2)
-		return (c_lg(x));
+		return (Float_Log2(x));
 	else if (n == 10)
-		return (c_log(x));
+		return (Float_Log10(x));
 	else
-		return (c_ln(x) / c_ln(n));
+		return (Float_Ln(x) / Float_Ln(n));
 }
