@@ -194,12 +194,12 @@ static void	print_test_math(s_timer timer, s_list_float error_list, t_float prec
 
 
 int		test_math_realfunction_libc(
-	char const *	func_name,
-	f_real_function	func_libc,
-	f_real_function	func_libccc,
-	t_float			precision,
-	int				tests,
-	s_interval		interval)
+	char const *		func_name,
+	f_float_function	func_libc,
+	f_float_function	func_libccc,
+	t_float				precision,
+	int					tests,
+	s_interval			interval)
 {
 	TEST_INIT_MATH_REALFUNCTION()
 	TEST_PERFORM_MATH_REALFUNCTION(1, results, func_libccc)
@@ -214,13 +214,13 @@ int		test_math_realfunction_libc(
 }
 
 int		test_math_realoperator_libc(
-	char const *	func_name,
-	f_real_operator	func_libc,
-	f_real_operator	func_libccc,
-	t_float			precision,
-	int				tests,
-	s_interval		interval_x,
-	s_interval		interval_y)
+	char const *		func_name,
+	f_float_operator	func_libc,
+	f_float_operator	func_libccc,
+	t_float				precision,
+	int					tests,
+	s_interval			interval_x,
+	s_interval			interval_y)
 {
 	TEST_INIT_MATH_REALOPERATOR()
 	TEST_PERFORM_MATH_REALOPERATOR(1, results, func_libccc)
@@ -396,41 +396,41 @@ int		testsuite_math(void)
 //	test_math_realfunction_libc("round", &_round, &c_round, 0.0001, 1000, (s_interval){-1e9, 1e9});
 
 	print_math_title("Truncate");
-	test_math_realfunction_libc("trunc", &_trunc, &c_trunc, 0.0001, 1000, (s_interval){-10, 10});
-	test_math_realfunction_libc("trunc", &_trunc, &c_trunc, 0.0001, 1000, (s_interval){-1e9, 1e9});
+	test_math_realfunction_libc("trunc", &_trunc, &c_ftrunc, 0.0001, 1000, (s_interval){-10, 10});
+	test_math_realfunction_libc("trunc", &_trunc, &c_ftrunc, 0.0001, 1000, (s_interval){-1e9, 1e9});
 
 	print_math_title("Floor");
-	test_math_realfunction_libc("floor", &_floor, &c_floor, 0.0001, 1000, (s_interval){-10, 10});
-	test_math_realfunction_libc("floor", &_floor, &c_floor, 0.0001, 1000, (s_interval){-1e9, 1e9});
+	test_math_realfunction_libc("floor", &_floor, &c_ffloor, 0.0001, 1000, (s_interval){-10, 10});
+	test_math_realfunction_libc("floor", &_floor, &c_ffloor, 0.0001, 1000, (s_interval){-1e9, 1e9});
 
 	print_math_title("Ceiling");
-	test_math_realfunction_libc("ceil", &_ceil, &c_ceil, 0.0001, 1000, (s_interval){-10, 10});
-	test_math_realfunction_libc("ceil", &_ceil, &c_ceil, 0.0001, 1000, (s_interval){-1e9, 1e9});
+	test_math_realfunction_libc("ceil", &_ceil, &c_fceil, 0.0001, 1000, (s_interval){-10, 10});
+	test_math_realfunction_libc("ceil", &_ceil, &c_fceil, 0.0001, 1000, (s_interval){-1e9, 1e9});
 
 
 
 	print_math_title("Power");
-	test_math_realoperator_libc("pow", &_pow, &c_pow, 0.0001, 100, (s_interval){0, 4},		(s_interval){-10, 10});
-	test_math_realoperator_libc("pow", &_pow, &c_pow, 0.0001, 100, (s_interval){-100, 1e9},(s_interval){-10, 10});
-	test_math_realoperator_libc("pow", &_pow, &c_pow, 0.0001, 100, (s_interval){0, 4},		(s_interval){-1e6, 1e6});
-	test_math_realoperator_libc("pow", &_pow, &c_pow, 0.0001, 100, (s_interval){-100, 1e9},(s_interval){-1e6, 1e6});
+	test_math_realoperator_libc("pow", &_pow, &c_fpow, 0.0001, 100, (s_interval){0, 4},		(s_interval){-10, 10});
+	test_math_realoperator_libc("pow", &_pow, &c_fpow, 0.0001, 100, (s_interval){-100, 1e9},(s_interval){-10, 10});
+	test_math_realoperator_libc("pow", &_pow, &c_fpow, 0.0001, 100, (s_interval){0, 4},		(s_interval){-1e6, 1e6});
+	test_math_realoperator_libc("pow", &_pow, &c_fpow, 0.0001, 100, (s_interval){-100, 1e9},(s_interval){-1e6, 1e6});
 
 //	TODO
 //	print_math_title("N-Power");
-//	test_math_realoperator_libc("pow_n", NULL, &c_pow_n, 0.0001, 100, (s_interval){0, 4},		(s_interval){-10, 10});
-//	test_math_realoperator_libc("pow_n", NULL, &c_pow_n, 0.0001, 100, (s_interval){-100, 1e9},	(s_interval){-10, 10});
-//	test_math_realoperator_libc("pow_n", NULL, &c_pow_n, 0.0001, 100, (s_interval){0, 4},		(s_interval){-1e6, 1e6});
-//	test_math_realoperator_libc("pow_n", NULL, &c_pow_n, 0.0001, 100, (s_interval){-100, 1e9},	(s_interval){-1e6, 1e6});
+//	test_math_realoperator_libc("pow_n", NULL, &c_fintpow, 0.0001, 100, (s_interval){0, 4},		(s_interval){-10, 10});
+//	test_math_realoperator_libc("pow_n", NULL, &c_fintpow, 0.0001, 100, (s_interval){-100, 1e9},	(s_interval){-10, 10});
+//	test_math_realoperator_libc("pow_n", NULL, &c_fintpow, 0.0001, 100, (s_interval){0, 4},		(s_interval){-1e6, 1e6});
+//	test_math_realoperator_libc("pow_n", NULL, &c_fintpow, 0.0001, 100, (s_interval){-100, 1e9},	(s_interval){-1e6, 1e6});
 
 
 
 	print_math_title("Square root");
-	test_math_realfunction_libc("sqrt", &_sqrt, &c_sqrt, 0.0001, 1000, (s_interval){0., 5.});
-	test_math_realfunction_libc("sqrt", &_sqrt, &c_sqrt, 0.0001, 1000, (s_interval){-100., 1e9});
+	test_math_realfunction_libc("sqrt", &_sqrt, &c_fsqrt, 0.0001, 1000, (s_interval){0., 5.});
+	test_math_realfunction_libc("sqrt", &_sqrt, &c_fsqrt, 0.0001, 1000, (s_interval){-100., 1e9});
 
 	print_math_title("Cubic root");
-	test_math_realfunction_libc("cbrt", &_cbrt, &c_cbrt, 0.0001, 1000, (s_interval){0., 5.});
-	test_math_realfunction_libc("cbrt", &_cbrt, &c_cbrt, 0.0001, 1000, (s_interval){-1e9, 1e9});
+	test_math_realfunction_libc("cbrt", &_cbrt, &c_fcbrt, 0.0001, 1000, (s_interval){0., 5.});
+	test_math_realfunction_libc("cbrt", &_cbrt, &c_fcbrt, 0.0001, 1000, (s_interval){-1e9, 1e9});
 
 //	TODO
 //	print_math_title("N-Power root");
@@ -442,87 +442,87 @@ int		testsuite_math(void)
 
 
 	print_math_title("Exponential");
-	test_math_realfunction_libc("exp", &_exp, &c_exp, 0.0001, 1000, (s_interval){-1000., 1.});
-	test_math_realfunction_libc("exp", &_exp, &c_exp, 0.0001, 1000, (s_interval){1., 1e9});
+	test_math_realfunction_libc("exp", &_exp, &c_fexp, 0.0001, 1000, (s_interval){-1000., 1.});
+	test_math_realfunction_libc("exp", &_exp, &c_fexp, 0.0001, 1000, (s_interval){1., 1e9});
 
 	print_math_title("Natural Logarithm");
-	test_math_realfunction_libc("ln", &_ln, &c_ln, 0.0001, 1000, (s_interval){0., 1.});
-	test_math_realfunction_libc("ln", &_ln, &c_ln, 0.0001, 1000, (s_interval){1., 1e9});
+	test_math_realfunction_libc("ln", &_ln, &c_fln, 0.0001, 1000, (s_interval){0., 1.});
+	test_math_realfunction_libc("ln", &_ln, &c_fln, 0.0001, 1000, (s_interval){1., 1e9});
 
 	print_math_title("Logarithm, base 2");
-	test_math_realfunction_libc("lg", &_lg, &c_lg, 0.0001, 1000, (s_interval){0., 1.});
-	test_math_realfunction_libc("lg", &_lg, &c_lg, 0.0001, 1000, (s_interval){1., 1e9});
+	test_math_realfunction_libc("lg", &_lg, &c_flog2, 0.0001, 1000, (s_interval){0., 1.});
+	test_math_realfunction_libc("lg", &_lg, &c_flog2, 0.0001, 1000, (s_interval){1., 1e9});
 
 	print_math_title("Logarithm, base 10");
-	test_math_realfunction_libc("log", &_log, &c_log, 0.0001, 1000, (s_interval){0., 1.});
-	test_math_realfunction_libc("log", &_log, &c_log, 0.0001, 1000, (s_interval){1., 1e9});
+	test_math_realfunction_libc("log", &_log, &c_flog10, 0.0001, 1000, (s_interval){0., 1.});
+	test_math_realfunction_libc("log", &_log, &c_flog10, 0.0001, 1000, (s_interval){1., 1e9});
 
 //	TODO
 //	print_math_title("Logarithm, base N");
-//	test_math_realoperator_libc("log_n", NULL, &c_log_n, 0.0001, 100, (s_interval){-10, 10},	(s_interval){-10, 10});
-//	test_math_realoperator_libc("log_n", NULL, &c_log_n, 0.0001, 100, (s_interval){-100, 1e9},	(s_interval){-10, 10});
-//	test_math_realoperator_libc("log_n", NULL, &c_log_n, 0.0001, 100, (s_interval){-10, 10},	(s_interval){-1e9, 1e9});
-//	test_math_realoperator_libc("log_n", NULL, &c_log_n, 0.0001, 100, (s_interval){-100, 1e9},	(s_interval){-1e9, 1e9});
+//	test_math_realoperator_libc("log_n", NULL, &c_flogn, 0.0001, 100, (s_interval){-10, 10},	(s_interval){-10, 10});
+//	test_math_realoperator_libc("log_n", NULL, &c_flogn, 0.0001, 100, (s_interval){-100, 1e9},	(s_interval){-10, 10});
+//	test_math_realoperator_libc("log_n", NULL, &c_flogn, 0.0001, 100, (s_interval){-10, 10},	(s_interval){-1e9, 1e9});
+//	test_math_realoperator_libc("log_n", NULL, &c_flogn, 0.0001, 100, (s_interval){-100, 1e9},	(s_interval){-1e9, 1e9});
 
 
 
 	print_math_title("Cosine");
-	test_math_realfunction_libc("cos", &_cos, &c_cos, 0.0001, 1000, (s_interval){-TAU, 2 * TAU});
-	test_math_realfunction_libc("cos", &_cos, &c_cos, 0.0001, 1000, (s_interval){-1e9, 1e9});
+	test_math_realfunction_libc("cos", &_cos, &c_fcos, 0.0001, 1000, (s_interval){-TAU, 2 * TAU});
+	test_math_realfunction_libc("cos", &_cos, &c_fcos, 0.0001, 1000, (s_interval){-1e9, 1e9});
 
 	print_math_title("Sine");
-	test_math_realfunction_libc("sin", &_sin, &c_sin, 0.0001, 1000, (s_interval){-TAU, 2 * TAU});
-	test_math_realfunction_libc("sin", &_sin, &c_sin, 0.0001, 1000, (s_interval){-1e9, 1e9});
+	test_math_realfunction_libc("sin", &_sin, &c_fsin, 0.0001, 1000, (s_interval){-TAU, 2 * TAU});
+	test_math_realfunction_libc("sin", &_sin, &c_fsin, 0.0001, 1000, (s_interval){-1e9, 1e9});
 
 	print_math_title("Tangent");
-	test_math_realfunction_libc("tan", &_tan, &c_tan, 0.0001, 1000, (s_interval){-HALF_PI, HALF_PI});
-	test_math_realfunction_libc("tan", &_tan, &c_tan, 0.0001, 1000, (s_interval){-1e9, 1e9});
+	test_math_realfunction_libc("tan", &_tan, &c_ftan, 0.0001, 1000, (s_interval){-HALF_PI, HALF_PI});
+	test_math_realfunction_libc("tan", &_tan, &c_ftan, 0.0001, 1000, (s_interval){-1e9, 1e9});
 
 	print_math_title("Arc-Cosine");
-	test_math_realfunction_libc("acos", &_acos, &c_acos, 0.0001, 1000, (s_interval){-1, 1});
-	test_math_realfunction_libc("acos", &_acos, &c_acos, 0.0001, 1000, (s_interval){-1e9, 1e9});
+	test_math_realfunction_libc("acos", &_acos, &c_facos, 0.0001, 1000, (s_interval){-1, 1});
+	test_math_realfunction_libc("acos", &_acos, &c_facos, 0.0001, 1000, (s_interval){-1e9, 1e9});
 
 	print_math_title("Arc-Sine");
-	test_math_realfunction_libc("asin", &_asin, &c_asin, 0.0001, 1000, (s_interval){-1, 1});
-	test_math_realfunction_libc("asin", &_asin, &c_asin, 0.0001, 1000, (s_interval){-1e9, 1e9});
+	test_math_realfunction_libc("asin", &_asin, &c_fasin, 0.0001, 1000, (s_interval){-1, 1});
+	test_math_realfunction_libc("asin", &_asin, &c_fasin, 0.0001, 1000, (s_interval){-1e9, 1e9});
 
 	print_math_title("Arc-Tangent");
-	test_math_realfunction_libc("atan", &_atan, &c_atan, 0.0001, 1000, (s_interval){-TAU, TAU});
-	test_math_realfunction_libc("atan", &_atan, &c_atan, 0.0001, 1000, (s_interval){-1e9, 1e9});
+	test_math_realfunction_libc("atan", &_atan, &c_fatan, 0.0001, 1000, (s_interval){-TAU, TAU});
+	test_math_realfunction_libc("atan", &_atan, &c_fatan, 0.0001, 1000, (s_interval){-1e9, 1e9});
 
 
 
 	print_math_title("Arc-Tangent of (Y / X)");
-	test_math_realoperator_libc("atan2", &_atan2, &c_atan2, 0.0001, 100, (s_interval){-10, 10},	(s_interval){-10, 10});
-	test_math_realoperator_libc("atan2", &_atan2, &c_atan2, 0.0001, 100, (s_interval){-1e9, 1e9},	(s_interval){-10, 10});
-	test_math_realoperator_libc("atan2", &_atan2, &c_atan2, 0.0001, 100, (s_interval){-10, 10},	(s_interval){-1e9, 1e9});
-	test_math_realoperator_libc("atan2", &_atan2, &c_atan2, 0.0001, 100, (s_interval){-1e9, 1e9},	(s_interval){-1e9, 1e9});
+	test_math_realoperator_libc("atan2", &_atan2, &c_fatan2, 0.0001, 100, (s_interval){-10, 10},	(s_interval){-10, 10});
+	test_math_realoperator_libc("atan2", &_atan2, &c_fatan2, 0.0001, 100, (s_interval){-1e9, 1e9},	(s_interval){-10, 10});
+	test_math_realoperator_libc("atan2", &_atan2, &c_fatan2, 0.0001, 100, (s_interval){-10, 10},	(s_interval){-1e9, 1e9});
+	test_math_realoperator_libc("atan2", &_atan2, &c_fatan2, 0.0001, 100, (s_interval){-1e9, 1e9},	(s_interval){-1e9, 1e9});
 
 
 
 	print_math_title("Hyperbolic Cosine");
-	test_math_realfunction_libc("cosh", &_cosh, &c_cosh, 0.0001, 1000, (s_interval){-TAU, TAU});
-	test_math_realfunction_libc("cosh", &_cosh, &c_cosh, 0.0001, 1000, (s_interval){-1e9, 1e9});
+	test_math_realfunction_libc("cosh", &_cosh, &c_fcosh, 0.0001, 1000, (s_interval){-TAU, TAU});
+	test_math_realfunction_libc("cosh", &_cosh, &c_fcosh, 0.0001, 1000, (s_interval){-1e9, 1e9});
 
 	print_math_title("Hyperbolic Sine");
-	test_math_realfunction_libc("sinh", &_sinh, &c_sinh, 0.0001, 1000, (s_interval){-TAU, TAU});
-	test_math_realfunction_libc("sinh", &_sinh, &c_sinh, 0.0001, 1000, (s_interval){-1e9, 1e9});
+	test_math_realfunction_libc("sinh", &_sinh, &c_fsinh, 0.0001, 1000, (s_interval){-TAU, TAU});
+	test_math_realfunction_libc("sinh", &_sinh, &c_fsinh, 0.0001, 1000, (s_interval){-1e9, 1e9});
 
 	print_math_title("Hyperbolic Tangent");
-	test_math_realfunction_libc("tanh", &_tanh, &c_tanh, 0.0001, 1000, (s_interval){-TAU, TAU});
-	test_math_realfunction_libc("tanh", &_tanh, &c_tanh, 0.0001, 1000, (s_interval){-1e9, 1e9});
+	test_math_realfunction_libc("tanh", &_tanh, &c_ftanh, 0.0001, 1000, (s_interval){-TAU, TAU});
+	test_math_realfunction_libc("tanh", &_tanh, &c_ftanh, 0.0001, 1000, (s_interval){-1e9, 1e9});
 
 	print_math_title("Hyperbolic Arc-Cosine");
-	test_math_realfunction_libc("acosh", &_acosh, &c_acosh, 0.0001, 1000, (s_interval){1., 50.});
-	test_math_realfunction_libc("acosh", &_acosh, &c_acosh, 0.0001, 1000, (s_interval){-1e9, 1e9});
+	test_math_realfunction_libc("acosh", &_acosh, &c_facosh, 0.0001, 1000, (s_interval){1., 50.});
+	test_math_realfunction_libc("acosh", &_acosh, &c_facosh, 0.0001, 1000, (s_interval){-1e9, 1e9});
 
 	print_math_title("Hyperbolic Arc-Sine");
-	test_math_realfunction_libc("asinh", &_asinh, &c_asinh, 0.0001, 1000, (s_interval){-50., 50.});
-	test_math_realfunction_libc("asinh", &_asinh, &c_asinh, 0.0001, 1000, (s_interval){-1e9, 1e9});
+	test_math_realfunction_libc("asinh", &_asinh, &c_fasinh, 0.0001, 1000, (s_interval){-50., 50.});
+	test_math_realfunction_libc("asinh", &_asinh, &c_fasinh, 0.0001, 1000, (s_interval){-1e9, 1e9});
 
 	print_math_title("Hyperbolic Arc-Tangent");
-	test_math_realfunction_libc("atanh", &_atanh, &c_atanh, 0.0001, 1000, (s_interval){-1., 1.});
-	test_math_realfunction_libc("atanh", &_atanh, &c_atanh, 0.0001, 1000, (s_interval){-1e9, 1e9});
+	test_math_realfunction_libc("atanh", &_atanh, &c_fatanh, 0.0001, 1000, (s_interval){-1., 1.});
+	test_math_realfunction_libc("atanh", &_atanh, &c_fatanh, 0.0001, 1000, (s_interval){-1e9, 1e9});
 
 	return (OK);
 }

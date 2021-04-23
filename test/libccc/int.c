@@ -27,227 +27,215 @@
 */
 
 #define DEFINETEST_UINT_TO_STR(TYPE) \
-void	print_test_##TYPE##_to_str(char const* test_name, int can_segfault,					\
+void	print_test_##TYPE##tostr(char const* test_name, int can_segfault,					\
 		char const* expecting,																\
 		t_u64 number)																		\
 {																							\
-	TEST_PERFORM_RESULT(TYPE##_to_str, number)												\
-	print_test_str(test_name, "_"#TYPE"_to_str", result_libccc, expecting, can_segfault);	\
+	TEST_PERFORM_RESULT(TYPE##tostr, number)												\
+	print_test_str(test_name, "_"#TYPE"tostr", result_libccc, expecting, can_segfault);	\
 	print_timer_result(&t, FALSE);															\
 	TEST_PRINT_ARGS("%llu", number)															\
 }																							\
-void	test_##TYPE##_to_str(void)																							\
+void	test_##TYPE##tostr(void)																							\
 {																															\
 /*	| TEST FUNCTION            | TEST NAME                       |CAN SEGV| EXPECTING              | TEST ARGS			*/	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (n = min)       ",	FALSE,                      "0", 0                     );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str                 ",	FALSE,                      "1", 1                     );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str                 ",	FALSE,                      "9", 9                     );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str                 ",	FALSE,                     "10", 10                    );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str                 ",	FALSE,                     "11", 11                    );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str                 ",	FALSE,                     "42", 42                    );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str                 ",	FALSE,                     "99", 99                    );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str                 ",	FALSE,                    "100", 100                   );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str                 ",	FALSE,                    "111", 111                   );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str                 ",	FALSE,                    "123", 123                   );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str                 ",	FALSE,                    "127", 127                   );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str                 ",	FALSE,                    "128", 128                   );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str                 ",	FALSE,                    "129", 129                   );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (n = 8max)      ",	FALSE,                    "255", 255                   );	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n = min)       ",	FALSE,                      "0", 0                     );	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                      "1", 1                     );	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                      "9", 9                     );	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                     "10", 10                    );	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                     "11", 11                    );	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                     "42", 42                    );	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                     "99", 99                    );	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                    "100", 100                   );	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                    "111", 111                   );	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                    "123", 123                   );	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                    "127", 127                   );	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                    "128", 128                   );	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                    "129", 129                   );	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n = 8max)      ",	FALSE,                    "255", 255                   );	\
 	if (g_test.flags.test_overflow) {																						\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (n < 8min)      ",	FALSE,                     "-1", -1                    );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (n > 8max)      ",	FALSE,                    "256", 256                   );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (n > 8maxdigit) ",	FALSE,                  "99999", 99999                 );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (n < 8maxdigit) ",	FALSE,                 "-99999",-99999                 );	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n < 8min)      ",	FALSE,                     "-1", -1                    );	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n > 8max)      ",	FALSE,                    "256", 256                   );	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n > 8maxdigit) ",	FALSE,                  "99999", 99999                 );	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n < 8maxdigit) ",	FALSE,                 "-99999",-99999                 );	\
 	}																														\
 	if (sizeof(t_##TYPE) * 8 >= 16)																							\
 	{																														\
-	print_test_##TYPE##_to_str(#TYPE"_to_str                 ",	FALSE,                    "777", 777                   );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str                 ",	FALSE,                   "7777", 7777                  );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str                 ",	FALSE,                  "10000", 10000                 );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (n = 16max)     ",	FALSE,                  "65535", 65535                 );	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                    "777", 777                   );	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                   "7777", 7777                  );	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                  "10000", 10000                 );	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n = 16max)     ",	FALSE,                  "65535", 65535                 );	\
 	if (g_test.flags.test_overflow) {																						\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (n < 16min)     ",	FALSE,                     "-1", -1                    );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (n > 16max)     ",	FALSE,                  "65536", 65536                 );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (n > 16maxdigit)",	FALSE,                "9999999", 9999999               );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (n < 16maxdigit)",	FALSE,               "-9999999",-9999999               );	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n < 16min)     ",	FALSE,                     "-1", -1                    );	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n > 16max)     ",	FALSE,                  "65536", 65536                 );	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n > 16maxdigit)",	FALSE,                "9999999", 9999999               );	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n < 16maxdigit)",	FALSE,               "-9999999",-9999999               );	\
 	}																														\
 	if (sizeof(t_##TYPE) * 8 >= 32)																							\
 	{																														\
-	print_test_##TYPE##_to_str(#TYPE"_to_str                 ",	FALSE,              "123456789", 123456789             );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str                 ",	FALSE,              "555555555", 555555555             );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str                 ",	FALSE,              "987654321", 987654321             );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (n = 32max)     ",	FALSE,             "4294967295", 4294967295            );	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,              "123456789", 123456789             );	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,              "555555555", 555555555             );	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,              "987654321", 987654321             );	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n = 32max)     ",	FALSE,             "4294967295", 4294967295            );	\
 	if (g_test.flags.test_overflow) {																						\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (n < 32min)     ",	FALSE,                     "-1", -1                    );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (n > 32max)     ",	FALSE,             "4294967296", 4294967296            );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (n > 32maxdigit)",	FALSE,           "999999999999", 999999999999          );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (n < 32maxdigit)",	FALSE,          "-999999999999",-999999999999          );	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n < 32min)     ",	FALSE,                     "-1", -1                    );	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n > 32max)     ",	FALSE,             "4294967296", 4294967296            );	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n > 32maxdigit)",	FALSE,           "999999999999", 999999999999          );	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n < 32maxdigit)",	FALSE,          "-999999999999",-999999999999          );	\
 	}																														\
 	if (sizeof(t_##TYPE) * 8 >= 64)																							\
 	{																														\
-	print_test_##TYPE##_to_str(#TYPE"_to_str                 ",	FALSE,           "999999999999", 999999999999          );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str                 ",	FALSE,        "999999999999000", 999999999999000       );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str                 ",	FALSE,     "999999999999000999", 999999999999000999    );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (n = 64max)     ",	FALSE,   "18446744073709551615", 18446744073709551615UL);	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,           "999999999999", 999999999999          );	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,        "999999999999000", 999999999999000       );	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,     "999999999999000999", 999999999999000999    );	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n = 64max)     ",	FALSE,   "18446744073709551615", 18446744073709551615UL);	\
 	if (g_test.flags.test_overflow) {																						\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (n < 64min)     ",	FALSE,                     "-1", -1                    );	\
-/*	print_test_##TYPE##_to_str(#TYPE"_to_str (n > 64max)     ",	FALSE,   "18446744073709551616", 18446744073709551616UL); */\
-/*	print_test_##TYPE##_to_str(#TYPE"_to_str (n > 64maxdigit)",	FALSE,  "999999999999999999999", 999999999999999999999UL);*/\
-/*	print_test_##TYPE##_to_str(#TYPE"_to_str (n < 64maxdigit)",	FALSE, "-999999999999999999999",-999999999999999999999UL);*/\
+	print_test_##TYPE##tostr(#TYPE"tostr (n < 64min)     ",	FALSE,                     "-1", -1                    );	\
+/*	print_test_##TYPE##tostr(#TYPE"tostr (n > 64max)     ",	FALSE,   "18446744073709551616", 18446744073709551616UL); */\
+/*	print_test_##TYPE##tostr(#TYPE"tostr (n > 64maxdigit)",	FALSE,  "999999999999999999999", 999999999999999999999UL);*/\
+/*	print_test_##TYPE##tostr(#TYPE"tostr (n < 64maxdigit)",	FALSE, "-999999999999999999999",-999999999999999999999UL);*/\
 	}																														\
 	}}}																														\
 }
 
-#ifndef _u8_to_str
-void test_u8_to_str(void)	{}
+#ifndef c_u8tostr
+void test_u8tostr(void)	{}
 #else
 DEFINETEST_UINT_TO_STR(u8)
 #endif
 
-#ifndef _u16_to_str
-void test_u16_to_str(void)	{}
+#ifndef c_u16tostr
+void test_u16tostr(void)	{}
 #else
 DEFINETEST_UINT_TO_STR(u16)
 #endif
 
-#ifndef _u32_to_str
-void test_u32_to_str(void)	{}
+#ifndef c_u32tostr
+void test_u32tostr(void)	{}
 #else
 DEFINETEST_UINT_TO_STR(u32)
 #endif
 
-#ifndef _u64_to_str
-void test_u64_to_str(void)	{}
+#ifndef c_u64tostr
+void test_u64tostr(void)	{}
 #else
 DEFINETEST_UINT_TO_STR(u64)
 #endif
 
 #ifdef __int128
-#ifndef _u128_to_str
-void test_u128_to_str(void)	{}
+#ifndef c_u128tostr
+void test_u128tostr(void)	{}
 #else
 DEFINETEST_UINT_TO_STR(u128)
 #endif
 #endif
 
-#ifndef _uint_to_str
-void test_uint_to_str(void)	{}
-#else
-DEFINETEST_UINT_TO_STR(uint)
-#endif
-
 
 
 #define DEFINETEST_SINT_TO_STR(TYPE) \
-void	print_test_##TYPE##_to_str(char const* test_name, int can_segfault,					\
+void	print_test_##TYPE##tostr(char const* test_name, int can_segfault,					\
 		char const* expecting,																\
 		t_##TYPE number)																	\
 {																							\
-	TEST_PERFORM_RESULT(TYPE##_to_str, number)												\
-	print_test_str(test_name, "_s"#TYPE"_to_str", result_libccc, expecting, can_segfault);	\
+	TEST_PERFORM_RESULT(TYPE##tostr, number)												\
+	print_test_str(test_name, "_s"#TYPE"tostr", result_libccc, expecting, can_segfault);	\
 	print_timer_result(&t, FALSE);															\
 	TEST_PRINT_ARGS("%lli", number)															\
 }																							\
-void	test_##TYPE##_to_str(void)																							\
+void	test_##TYPE##tostr(void)																							\
 {																															\
 /*	| TEST FUNCTION      | TEST NAME                         |CAN SEGV| EXPECTING              | TEST ARGS				*/	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str                 ",	FALSE,                      "1", 1                      );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str                 ",	FALSE,                     "-1",-1                      );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str                 ",	FALSE,                     "10", 10                     );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str                 ",	FALSE,                    "-10",-10                     );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str                 ",	FALSE,                      "0", 0                      );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str                 ",	FALSE,                     "42", 42                     );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str                 ",	FALSE,                    "111", 111                    );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str                 ",	FALSE,                   "-111",-111                    );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (n = 8min)      ",	FALSE,                   "-128",-128                    );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (n = 8max)      ",	FALSE,                    "127", 127                    );	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                      "1", 1                      );	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                     "-1",-1                      );	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                     "10", 10                     );	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                    "-10",-10                     );	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                      "0", 0                      );	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                     "42", 42                     );	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                    "111", 111                    );	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                   "-111",-111                    );	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n = 8min)      ",	FALSE,                   "-128",-128                    );	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n = 8max)      ",	FALSE,                    "127", 127                    );	\
 	if (g_test.flags.test_overflow) {																						\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (n < 8min)      ",	FALSE,                   "-129",-129                    );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (n > 8max)      ",	FALSE,                    "128", 128                    );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (n > 8maxdigit) ",	FALSE,                  "99999", 99999                  );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (n < 8maxdigit) ",	FALSE,                 "-99999",-99999                  );	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n < 8min)      ",	FALSE,                   "-129",-129                    );	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n > 8max)      ",	FALSE,                    "128", 128                    );	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n > 8maxdigit) ",	FALSE,                  "99999", 99999                  );	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n < 8maxdigit) ",	FALSE,                 "-99999",-99999                  );	\
 	}																														\
 	if (sizeof(t_##TYPE) * 8 >= 16)																							\
 	{																														\
-	print_test_##TYPE##_to_str(#TYPE"_to_str                 ",	FALSE,                    "777", 777                    );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str                 ",	FALSE,                   "-666",-666                    );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str                 ",	FALSE,                 "-10000",-10000                  );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str                 ",	FALSE,                  "10000",+10000                  );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (n = 16min)     ",	FALSE,                 "-32768",-32768                  );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (n = 16max)     ",	FALSE,                  "32767", 32767                  );	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                    "777", 777                    );	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                   "-666",-666                    );	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                 "-10000",-10000                  );	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                  "10000",+10000                  );	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n = 16min)     ",	FALSE,                 "-32768",-32768                  );	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n = 16max)     ",	FALSE,                  "32767", 32767                  );	\
 	if (g_test.flags.test_overflow) {																						\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (n < 16min)     ",	FALSE,                 "-32769",-32769                  );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (n > 16max)     ",	FALSE,                  "32768", 32768                  );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (n > 16maxdigit)",	FALSE,                "9999999", 9999999                );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (n < 16maxdigit)",	FALSE,               "-9999999",-9999999                );	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n < 16min)     ",	FALSE,                 "-32769",-32769                  );	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n > 16max)     ",	FALSE,                  "32768", 32768                  );	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n > 16maxdigit)",	FALSE,                "9999999", 9999999                );	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n < 16maxdigit)",	FALSE,               "-9999999",-9999999                );	\
 	}																														\
 	if (sizeof(t_##TYPE) * 8 >= 32)																							\
 	{																														\
-	print_test_##TYPE##_to_str(#TYPE"_to_str                 ",	FALSE,             "-123456789",-123456789              );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str                 ",	FALSE,              "123456789", 123456789              );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str                 ",	FALSE,             "-987654321",-987654321              );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str                 ",	FALSE,              "987654321", 987654321              );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (n = 32min)     ",	FALSE,            "-2147483648",-2147483648             );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (n = 32max)     ",	FALSE,             "2147483647", 2147483647             );	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,             "-123456789",-123456789              );	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,              "123456789", 123456789              );	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,             "-987654321",-987654321              );	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,              "987654321", 987654321              );	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n = 32min)     ",	FALSE,            "-2147483648",-2147483648             );	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n = 32max)     ",	FALSE,             "2147483647", 2147483647             );	\
 	if (g_test.flags.test_overflow) {																						\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (n < 32min)     ",	FALSE,            "-2147483649",-2147483649             );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (n > 32max)     ",	FALSE,             "2147483648", 2147483648             );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (n > 32maxdigit)",	FALSE,           "999999999999", 999999999999           );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (n < 32maxdigit)",	FALSE,          "-999999999999",-999999999999           );	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n < 32min)     ",	FALSE,            "-2147483649",-2147483649             );	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n > 32max)     ",	FALSE,             "2147483648", 2147483648             );	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n > 32maxdigit)",	FALSE,           "999999999999", 999999999999           );	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n < 32maxdigit)",	FALSE,          "-999999999999",-999999999999           );	\
 	}																														\
 	if (sizeof(t_##TYPE) * 8 >= 64)																							\
 	{																														\
-	print_test_##TYPE##_to_str(#TYPE"_to_str                 ",	FALSE,             "2147483648", 2147483648             );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str                 ",	FALSE,            "-2147483649",-2147483649             );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str                 ",	FALSE,           "999999999999", 999999999999           );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str                 ",	FALSE,          "-999999999999",-999999999999           );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (n = 64min)     ",	FALSE,   "-9223372036854775808",-9223372036854775808LL  );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (n = 64max)     ",	FALSE,    "9223372036854775807", 9223372036854775807LL  );	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,             "2147483648", 2147483648             );	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,            "-2147483649",-2147483649             );	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,           "999999999999", 999999999999           );	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,          "-999999999999",-999999999999           );	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n = 64min)     ",	FALSE,   "-9223372036854775808",-9223372036854775808LL  );	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n = 64max)     ",	FALSE,    "9223372036854775807", 9223372036854775807LL  );	\
 	if (g_test.flags.test_overflow) {																						\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (n < 64min)     ",	FALSE,   "-9223372036854775809",-9223372036854775809LL  );	\
-	print_test_##TYPE##_to_str(#TYPE"_to_str (n > 64max)     ",	FALSE,    "9223372036854775808", 9223372036854775808LL  );	\
-/*	print_test_##TYPE##_to_str(#TYPE"_to_str (n > 64maxdigit)",	FALSE,  "999999999999999999999", 999999999999999999999LL);*/\
-/*	print_test_##TYPE##_to_str(#TYPE"_to_str (n < 64maxdigit)",	FALSE, "-999999999999999999999",-999999999999999999999LL);*/\
+	print_test_##TYPE##tostr(#TYPE"tostr (n < 64min)     ",	FALSE,   "-9223372036854775809",-9223372036854775809LL  );	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n > 64max)     ",	FALSE,    "9223372036854775808", 9223372036854775808LL  );	\
+/*	print_test_##TYPE##tostr(#TYPE"tostr (n > 64maxdigit)",	FALSE,  "999999999999999999999", 999999999999999999999LL);*/\
+/*	print_test_##TYPE##tostr(#TYPE"tostr (n < 64maxdigit)",	FALSE, "-999999999999999999999",-999999999999999999999LL);*/\
 	}																														\
 	}}}																														\
 }
 
-#ifndef _s8_to_str
-void test_s8_to_str(void)	{}
+#ifndef c_s8tostr
+void test_s8tostr(void)	{}
 #else
 DEFINETEST_SINT_TO_STR(s8)
 #endif
 
-#ifndef _s16_to_str
-void test_s16_to_str(void)	{}
+#ifndef c_s16tostr
+void test_s16tostr(void)	{}
 #else
 DEFINETEST_SINT_TO_STR(s16)
 #endif
 
-#ifndef _s32_to_str
-void test_s32_to_str(void)	{}
+#ifndef c_s32tostr
+void test_s32tostr(void)	{}
 #else
 DEFINETEST_SINT_TO_STR(s32)
 #endif
 
-#ifndef _s64_to_str
-void test_s64_to_str(void)	{}
+#ifndef c_s64tostr
+void test_s64tostr(void)	{}
 #else
 DEFINETEST_SINT_TO_STR(s64)
 #endif
 
 #ifdef __int128
-#ifndef _s128_to_str
-void test_s128_to_str(void)	{}
+#ifndef c_s128tostr
+void test_s128tostr(void)	{}
 #else
 DEFINETEST_SINT_TO_STR(s128)
 #endif
-#endif
-
-#ifndef _sint_to_str
-void test_sint_to_str(void)	{}
-#else
-DEFINETEST_SINT_TO_STR(sint)
 #endif
 
 
@@ -259,105 +247,99 @@ DEFINETEST_SINT_TO_STR(sint)
 */
 
 #define DEFINETEST_UINT_TO_STRHEX(TYPE) \
-void	print_test_##TYPE##_to_strhex(char const* test_name, int can_segfault,					\
+void	print_test_##TYPE##tostrhex(char const* test_name, int can_segfault,					\
 		char const* expecting,																	\
 		t_u64 number)																			\
 {																								\
-	TEST_PERFORM_RESULT(TYPE##_to_strhex, number)												\
-	print_test_str(test_name, "_"#TYPE"_to_strhex", result_libccc, expecting, can_segfault);	\
+	TEST_PERFORM_RESULT(TYPE##tostrhex, number)												\
+	print_test_str(test_name, "_"#TYPE"tostrhex", result_libccc, expecting, can_segfault);	\
 	print_timer_result(&t, FALSE);																\
 	TEST_PRINT_ARGS("%lld", number)																\
 }																								\
-void	test_##TYPE##_to_strhex(void)																								\
+void	test_##TYPE##tostrhex(void)																								\
 {																																	\
 /*	| TEST FUNCTION              | TEST NAME                         |CAN SEGV| EXPECTING              | TEST ARGS				*/	\
-	print_test_##TYPE##_to_strhex(#TYPE"_to_strhex (n = min)       ",	FALSE,                      "0", 0                     );	\
-	print_test_##TYPE##_to_strhex(#TYPE"_to_strhex                 ",	FALSE,                      "1", 1                     );	\
-	print_test_##TYPE##_to_strhex(#TYPE"_to_strhex                 ",	FALSE,                      "2", 2                     );	\
-	print_test_##TYPE##_to_strhex(#TYPE"_to_strhex                 ",	FALSE,                      "3", 3                     );	\
-	print_test_##TYPE##_to_strhex(#TYPE"_to_strhex                 ",	FALSE,                      "F", 15                    );	\
-	print_test_##TYPE##_to_strhex(#TYPE"_to_strhex                 ",	FALSE,                     "10", 16                    );	\
-	print_test_##TYPE##_to_strhex(#TYPE"_to_strhex                 ",	FALSE,                     "2A", 42                    );	\
-	print_test_##TYPE##_to_strhex(#TYPE"_to_strhex                 ",	FALSE,                     "6F", 111                   );	\
-	print_test_##TYPE##_to_strhex(#TYPE"_to_strhex (n = 8max)      ",	FALSE,                     "FF", 255                   );	\
+	print_test_##TYPE##tostrhex(#TYPE"tostrhex (n = min)       ",	FALSE,                      "0", 0                     );	\
+	print_test_##TYPE##tostrhex(#TYPE"tostrhex                 ",	FALSE,                      "1", 1                     );	\
+	print_test_##TYPE##tostrhex(#TYPE"tostrhex                 ",	FALSE,                      "2", 2                     );	\
+	print_test_##TYPE##tostrhex(#TYPE"tostrhex                 ",	FALSE,                      "3", 3                     );	\
+	print_test_##TYPE##tostrhex(#TYPE"tostrhex                 ",	FALSE,                      "F", 15                    );	\
+	print_test_##TYPE##tostrhex(#TYPE"tostrhex                 ",	FALSE,                     "10", 16                    );	\
+	print_test_##TYPE##tostrhex(#TYPE"tostrhex                 ",	FALSE,                     "2A", 42                    );	\
+	print_test_##TYPE##tostrhex(#TYPE"tostrhex                 ",	FALSE,                     "6F", 111                   );	\
+	print_test_##TYPE##tostrhex(#TYPE"tostrhex (n = 8max)      ",	FALSE,                     "FF", 255                   );	\
 	if (g_test.flags.test_overflow) {																								\
-		print_test_##TYPE##_to_strhex(#TYPE"_to_strhex (n < 8min)      ",	FALSE,                 "-1", -1                    );	\
-		print_test_##TYPE##_to_strhex(#TYPE"_to_strhex (n > 8max)      ",	FALSE,                "100", 256                   );	\
-		print_test_##TYPE##_to_strhex(#TYPE"_to_strhex (n > 8maxdigit) ",	FALSE,              "1869F", 99999                 );	\
-		print_test_##TYPE##_to_strhex(#TYPE"_to_strhex (n < 8maxdigit) ",	FALSE,             "-1869F",-99999                 );	\
+		print_test_##TYPE##tostrhex(#TYPE"tostrhex (n < 8min)      ",	FALSE,                 "-1", -1                    );	\
+		print_test_##TYPE##tostrhex(#TYPE"tostrhex (n > 8max)      ",	FALSE,                "100", 256                   );	\
+		print_test_##TYPE##tostrhex(#TYPE"tostrhex (n > 8maxdigit) ",	FALSE,              "1869F", 99999                 );	\
+		print_test_##TYPE##tostrhex(#TYPE"tostrhex (n < 8maxdigit) ",	FALSE,             "-1869F",-99999                 );	\
 	}																																\
 	if (sizeof(t_##TYPE) * 8 >= 16)																									\
 	{																																\
-	print_test_##TYPE##_to_strhex(#TYPE"_to_strhex                 ",	FALSE,                    "30A", 778                   );	\
-	print_test_##TYPE##_to_strhex(#TYPE"_to_strhex                 ",	FALSE,                   "2710", 10000                 );	\
-	print_test_##TYPE##_to_strhex(#TYPE"_to_strhex (n = 16max)     ",	FALSE,                   "FFFF", 65535                 );	\
+	print_test_##TYPE##tostrhex(#TYPE"tostrhex                 ",	FALSE,                    "30A", 778                   );	\
+	print_test_##TYPE##tostrhex(#TYPE"tostrhex                 ",	FALSE,                   "2710", 10000                 );	\
+	print_test_##TYPE##tostrhex(#TYPE"tostrhex (n = 16max)     ",	FALSE,                   "FFFF", 65535                 );	\
 	if (g_test.flags.test_overflow) {																								\
-		print_test_##TYPE##_to_strhex(#TYPE"_to_strhex (n < 16min)     ",	FALSE,                 "-1", -1                    );	\
-		print_test_##TYPE##_to_strhex(#TYPE"_to_strhex (n > 16max)     ",	FALSE,              "10000", 65536                 );	\
-		print_test_##TYPE##_to_strhex(#TYPE"_to_strhex (n > 16maxdigit)",	FALSE,             "98967F", 9999999               );	\
-		print_test_##TYPE##_to_strhex(#TYPE"_to_strhex (n < 16maxdigit)",	FALSE,            "-98967F",-9999999               );	\
+		print_test_##TYPE##tostrhex(#TYPE"tostrhex (n < 16min)     ",	FALSE,                 "-1", -1                    );	\
+		print_test_##TYPE##tostrhex(#TYPE"tostrhex (n > 16max)     ",	FALSE,              "10000", 65536                 );	\
+		print_test_##TYPE##tostrhex(#TYPE"tostrhex (n > 16maxdigit)",	FALSE,             "98967F", 9999999               );	\
+		print_test_##TYPE##tostrhex(#TYPE"tostrhex (n < 16maxdigit)",	FALSE,            "-98967F",-9999999               );	\
 	}																																\
 	if (sizeof(t_##TYPE) * 8 >= 32)																									\
 	{																																\
-	print_test_##TYPE##_to_strhex(#TYPE"_to_strhex                 ",	FALSE,                "75BCD15", 123456789             );	\
-	print_test_##TYPE##_to_strhex(#TYPE"_to_strhex                 ",	FALSE,               "3ADE68B1", 987654321             );	\
-	print_test_##TYPE##_to_strhex(#TYPE"_to_strhex (n = 32max)     ",	FALSE,               "FFFFFFFF", 4294967295            );	\
+	print_test_##TYPE##tostrhex(#TYPE"tostrhex                 ",	FALSE,                "75BCD15", 123456789             );	\
+	print_test_##TYPE##tostrhex(#TYPE"tostrhex                 ",	FALSE,               "3ADE68B1", 987654321             );	\
+	print_test_##TYPE##tostrhex(#TYPE"tostrhex (n = 32max)     ",	FALSE,               "FFFFFFFF", 4294967295            );	\
 	if (g_test.flags.test_overflow) {																								\
-		print_test_##TYPE##_to_strhex(#TYPE"_to_strhex (n < 32min)     ",	FALSE,                 "-1", -1                    );	\
-		print_test_##TYPE##_to_strhex(#TYPE"_to_strhex (n > 32max)     ",	FALSE,          "100000000", 4294967296            );	\
-		print_test_##TYPE##_to_strhex(#TYPE"_to_strhex (n > 32maxdigit)",	FALSE,         "E8D4A50FFF", 999999999999          );	\
-		print_test_##TYPE##_to_strhex(#TYPE"_to_strhex (n < 32maxdigit)",	FALSE,         "E8D4A51000", 1000000000000         );	\
+		print_test_##TYPE##tostrhex(#TYPE"tostrhex (n < 32min)     ",	FALSE,                 "-1", -1                    );	\
+		print_test_##TYPE##tostrhex(#TYPE"tostrhex (n > 32max)     ",	FALSE,          "100000000", 4294967296            );	\
+		print_test_##TYPE##tostrhex(#TYPE"tostrhex (n > 32maxdigit)",	FALSE,         "E8D4A50FFF", 999999999999          );	\
+		print_test_##TYPE##tostrhex(#TYPE"tostrhex (n < 32maxdigit)",	FALSE,         "E8D4A51000", 1000000000000         );	\
 	}																																\
 	if (sizeof(t_##TYPE) * 8 >= 64)																									\
 	{																																\
-	print_test_##TYPE##_to_strhex(#TYPE"_to_strhex                 ",	FALSE,             "E8D4A50FFF", 999999999999L         );	\
-	print_test_##TYPE##_to_strhex(#TYPE"_to_strhex                 ",	FALSE,             "E8D4A51000", 1000000000000         );	\
-	print_test_##TYPE##_to_strhex(#TYPE"_to_strhex (n = 64max)     ",	FALSE,       "FFFFFFFFFFFFFFFF", 18446744073709551615UL);	\
+	print_test_##TYPE##tostrhex(#TYPE"tostrhex                 ",	FALSE,             "E8D4A50FFF", 999999999999L         );	\
+	print_test_##TYPE##tostrhex(#TYPE"tostrhex                 ",	FALSE,             "E8D4A51000", 1000000000000         );	\
+	print_test_##TYPE##tostrhex(#TYPE"tostrhex (n = 64max)     ",	FALSE,       "FFFFFFFFFFFFFFFF", 18446744073709551615UL);	\
 	if (g_test.flags.test_overflow) {																								\
-		print_test_##TYPE##_to_strhex(#TYPE"_to_strhex (n < 64min)     ",	FALSE,                 "-1", -1                    );	\
-		/*print_test_##TYPE##_to_strhex(#TYPE"_to_strhex (n > 64max)     ",	FALSE,  "10000000000000000", 18446744073709551616UL);*/	\
-		/*print_test_##TYPE##_to_strhex(#TYPE"_to_strhex (n > 64maxdigit)",	FALSE,                  "0", 999999999999999999999UL);*/\
-		/*print_test_##TYPE##_to_strhex(#TYPE"_to_strhex (n < 64maxdigit)",	FALSE,                  "0",-999999999999999999999UL);*/\
+		print_test_##TYPE##tostrhex(#TYPE"tostrhex (n < 64min)     ",	FALSE,                 "-1", -1                    );	\
+		/*print_test_##TYPE##tostrhex(#TYPE"tostrhex (n > 64max)     ",	FALSE,  "10000000000000000", 18446744073709551616UL);*/	\
+		/*print_test_##TYPE##tostrhex(#TYPE"tostrhex (n > 64maxdigit)",	FALSE,                  "0", 999999999999999999999UL);*/\
+		/*print_test_##TYPE##tostrhex(#TYPE"tostrhex (n < 64maxdigit)",	FALSE,                  "0",-999999999999999999999UL);*/\
 	}																																\
 	}}}																																\
 }
 
-#ifndef c_u8_to_strhex
-void test_u8_to_strhex(void)	{}
+#ifndef c_u8tostrhex
+void test_u8tostrhex(void)	{}
 #else
 DEFINETEST_UINT_TO_STRHEX(u8)
 #endif
 
-#ifndef c_u16_to_strhex
-void test_u16_to_strhex(void)	{}
+#ifndef c_u16tostrhex
+void test_u16tostrhex(void)	{}
 #else
 DEFINETEST_UINT_TO_STRHEX(u16)
 #endif
 
-#ifndef c_u32_to_strhex
-void test_u32_to_strhex(void)	{}
+#ifndef c_u32tostrhex
+void test_u32tostrhex(void)	{}
 #else
 DEFINETEST_UINT_TO_STRHEX(u32)
 #endif
 
-#ifndef c_u64_to_strhex
-void test_u64_to_strhex(void)	{}
+#ifndef c_u64tostrhex
+void test_u64tostrhex(void)	{}
 #else
 DEFINETEST_UINT_TO_STRHEX(u64)
 #endif
 
 #ifdef __int128
-#ifndef c_u128_to_strhex
-void test_u128_to_strhex(void)	{}
+#ifndef c_u128tostrhex
+void test_u128tostrhex(void)	{}
 #else
 DEFINETEST_UINT_TO_STRHEX(u128)
 #endif
-#endif
-
-#ifndef c_uint_to_strhex
-void test_uint_to_strhex(void)	{}
-#else
-DEFINETEST_UINT_TO_STRHEX(uint)
 #endif
 
 
@@ -369,304 +351,279 @@ DEFINETEST_UINT_TO_STRHEX(uint)
 */
 
 #define DEFINETEST_SINT_TO_STRBASE(TYPE, BITS) \
-void	print_test_##TYPE##_to_strbase(char const* test_name, int can_segfault,					\
+void	print_test_##TYPE##tostrbase(char const* test_name, int can_segfault,					\
 		char const* expecting,																	\
 		t_##TYPE number,																		\
 		char const* base)																		\
 {																								\
-	TEST_PERFORM_RESULT(TYPE##_to_strbase, number, base)										\
-	print_test_str(test_name, "_s"#TYPE"_to_strbase", result_libccc, expecting, can_segfault);	\
+	TEST_PERFORM_RESULT(TYPE##tostrbase, number, base)											\
+	print_test_str(test_name, "_s"#TYPE"tostrbase", result_libccc, expecting, can_segfault);	\
 	print_timer_result(&t, FALSE);																\
 	TEST_PRINT_ARGS("base='%s', n=%lli", base, number);											\
 }																								\
-void	test_##TYPE##_to_strbase(void)																													\
+void	test_##TYPE##tostrbase(void)																													\
 {																																						\
 /*	| TEST FUNCTION                | TEST NAME                       |CAN SEGV| EXPECTING                | TEST ARGS								*/	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                         "1",                   1,               "01");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                        NULL,                   1,               "+1");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                        NULL,                   0,                "m");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                        NULL,                   1,                "m");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                    "101010",                  42,               "01");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                        NULL,                   0,              "mom");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                        "2A",                  42, "0123456789ABCDEF");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                         "0",                   0,              "0az");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                       "aaa",                 111,       "_abcdefghi");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                      "-aaa",                -111,       "_abcdefghi");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                        "-F",                 -15, "0123456789ABCDEF");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                      "rdmm",                  63,              "mdr");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                     "|*_*|",                 100,              "*|_");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                      ".._.",                  13,               "_.");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                        "2A",                  42, "0123456789ABCDEF");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                        "42",                  42,       "0123456789");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                        NULL,               12345,       "012345678-");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                        NULL,               12345,       "012345678+");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                        NULL,                 999,       "01+3456789");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 8min, dec) ",	FALSE,                      "-128",                -128,       "0123456789");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 8max, dec) ",	FALSE,                       "127",                 127,       "0123456789");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 8min, hex) ",	FALSE,                       "-80",                -128, "0123456789ABCDEF");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 8max, hex) ",	FALSE,                        "7F",                 127, "0123456789ABCDEF");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 8min, oct) ",	FALSE,                      "-200",                -128,         "01234567");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 8max, oct) ",	FALSE,                       "177",                 127,         "01234567");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 8min, bin) ",	FALSE,                 "-10000000",                -128,               "01");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 8max, bin) ",	FALSE,                   "1111111",                 127,               "01");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                         "1",                   1,               "01");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                        NULL,                   1,               "+1");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                        NULL,                   0,                "m");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                        NULL,                   1,                "m");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                    "101010",                  42,               "01");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                        NULL,                   0,              "mom");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                        "2A",                  42, "0123456789ABCDEF");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                         "0",                   0,              "0az");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                       "aaa",                 111,       "_abcdefghi");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                      "-aaa",                -111,       "_abcdefghi");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                        "-F",                 -15, "0123456789ABCDEF");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                      "rdmm",                  63,              "mdr");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                     "|*_*|",                 100,              "*|_");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                      ".._.",                  13,               "_.");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                        "2A",                  42, "0123456789ABCDEF");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                        "42",                  42,       "0123456789");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                        NULL,               12345,       "012345678-");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                        NULL,               12345,       "012345678+");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                        NULL,                 999,       "01+3456789");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 8min, dec) ",	FALSE,                      "-128",                -128,       "0123456789");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 8max, dec) ",	FALSE,                       "127",                 127,       "0123456789");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 8min, hex) ",	FALSE,                       "-80",                -128, "0123456789ABCDEF");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 8max, hex) ",	FALSE,                        "7F",                 127, "0123456789ABCDEF");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 8min, oct) ",	FALSE,                      "-200",                -128,         "01234567");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 8max, oct) ",	FALSE,                       "177",                 127,         "01234567");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 8min, bin) ",	FALSE,                 "-10000000",                -128,               "01");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 8max, bin) ",	FALSE,                   "1111111",                 127,               "01");	\
 	if (g_test.flags.test_overflow) {																													\
-		print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n < 8min)      ",	FALSE,                  "-129",                -129,       "0123456789");	\
-		print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n > 8max)      ",	FALSE,                   "128",                 128,       "0123456789");	\
-		print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n > 8maxdigit) ",	FALSE,                    NULL,               99999,               "01");	\
-		print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n < 8maxdigit) ",	FALSE,                    NULL,              -99999,               "01");	\
+		print_test_##TYPE##tostrbase(#TYPE"tostrbase (n < 8min)      ",	FALSE,                  "-129",                -129,       "0123456789");	\
+		print_test_##TYPE##tostrbase(#TYPE"tostrbase (n > 8max)      ",	FALSE,                   "128",                 128,       "0123456789");	\
+		print_test_##TYPE##tostrbase(#TYPE"tostrbase (n > 8maxdigit) ",	FALSE,                    NULL,               99999,               "01");	\
+		print_test_##TYPE##tostrbase(#TYPE"tostrbase (n < 8maxdigit) ",	FALSE,                    NULL,              -99999,               "01");	\
 	}																																					\
 	if (sizeof(t_##TYPE) * 8 >= 16)																														\
 	{																																					\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                     "12345",               12345,       "0123456789");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                     "12345",               12345,       "0123456789");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                     "c===3",               10007,       "=cbadef389");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                      "swag",                1234,       "0swag56789");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                      "-3e8",               -1000, "0123456789abcdef");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                        "2A",                  42, "0123456789ABCDEF");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 16min, dec)",	FALSE,                    "-32768",              -32768,       "0123456789");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 16max, dec)",	FALSE,                     "32767",               32767,       "0123456789");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 16min, hex)",	FALSE,                     "-8000",              -32768, "0123456789ABCDEF");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 16max, hex)",	FALSE,                      "7FFF",               32767, "0123456789ABCDEF");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 16min, oct)",	FALSE,                   "-100000",              -32768,         "01234567");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 16max, oct)",	FALSE,                     "77777",               32767,         "01234567");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 16min, bin)",	FALSE,         "-1000000000000000",              -32768,               "01");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 16max, bin)",	FALSE,           "111111111111111",               32767,               "01");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                     "12345",               12345,       "0123456789");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                     "12345",               12345,       "0123456789");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                     "c===3",               10007,       "=cbadef389");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                      "swag",                1234,       "0swag56789");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                      "-3e8",               -1000, "0123456789abcdef");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                        "2A",                  42, "0123456789ABCDEF");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 16min, dec)",	FALSE,                    "-32768",              -32768,       "0123456789");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 16max, dec)",	FALSE,                     "32767",               32767,       "0123456789");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 16min, hex)",	FALSE,                     "-8000",              -32768, "0123456789ABCDEF");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 16max, hex)",	FALSE,                      "7FFF",               32767, "0123456789ABCDEF");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 16min, oct)",	FALSE,                   "-100000",              -32768,         "01234567");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 16max, oct)",	FALSE,                     "77777",               32767,         "01234567");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 16min, bin)",	FALSE,         "-1000000000000000",              -32768,               "01");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 16max, bin)",	FALSE,           "111111111111111",               32767,               "01");	\
 	if (g_test.flags.test_overflow) {																													\
-		print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n < 16min)     ",	FALSE,                "-32769",              -32769,       "0123456789");	\
-		print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n > 16max)     ",	FALSE,                 "32768",               32768,       "0123456789");	\
-		print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n > 16maxdigit)",	FALSE,                    NULL,             9999999,               "01");	\
-		print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n < 16maxdigit)",	FALSE,                    NULL,            -9999999,               "01");	\
+		print_test_##TYPE##tostrbase(#TYPE"tostrbase (n < 16min)     ",	FALSE,                "-32769",              -32769,       "0123456789");	\
+		print_test_##TYPE##tostrbase(#TYPE"tostrbase (n > 16max)     ",	FALSE,                 "32768",               32768,       "0123456789");	\
+		print_test_##TYPE##tostrbase(#TYPE"tostrbase (n > 16maxdigit)",	FALSE,                    NULL,             9999999,               "01");	\
+		print_test_##TYPE##tostrbase(#TYPE"tostrbase (n < 16maxdigit)",	FALSE,                    NULL,            -9999999,               "01");	\
 	}																																					\
 	if (sizeof(t_##TYPE) * 8 >= 32)																														\
 	{																																					\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                    "*xurin",             +987123,       "grincheux*");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                 "abcdefghi",           123456789,       " abcdefghi");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 32min, dec)",	FALSE,               "-2147483648",         -2147483648,       "0123456789");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 32max, dec)",	FALSE,                "2147483647",          2147483647,       "0123456789");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 32min, hex)",	FALSE,                 "-80000000",         -2147483648, "0123456789ABCDEF");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 32max, hex)",	FALSE,                  "7FFFFFFF",          2147483647, "0123456789ABCDEF");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 32min, oct)",	FALSE,              "-20000000000",         -2147483648,         "01234567");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 32max, oct)",	FALSE,               "17777777777",          2147483647,         "01234567");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 32min, bin)",	FALSE,"-10000000000000000000000000000000",  -2147483648,               "01");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 32max, bin)",	FALSE,  "1111111111111111111111111111111",   2147483647,               "01");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                    "*xurin",             +987123,       "grincheux*");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                 "abcdefghi",           123456789,       " abcdefghi");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 32min, dec)",	FALSE,               "-2147483648",         -2147483648,       "0123456789");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 32max, dec)",	FALSE,                "2147483647",          2147483647,       "0123456789");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 32min, hex)",	FALSE,                 "-80000000",         -2147483648, "0123456789ABCDEF");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 32max, hex)",	FALSE,                  "7FFFFFFF",          2147483647, "0123456789ABCDEF");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 32min, oct)",	FALSE,              "-20000000000",         -2147483648,         "01234567");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 32max, oct)",	FALSE,               "17777777777",          2147483647,         "01234567");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 32min, bin)",	FALSE,"-10000000000000000000000000000000",  -2147483648,               "01");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 32max, bin)",	FALSE,  "1111111111111111111111111111111",   2147483647,               "01");	\
 	if (g_test.flags.test_overflow) {																													\
-		print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n < 32min)     ",	FALSE,           "-2147483649",         -2147483649,       "0123456789");	\
-		print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n > 32max)     ",	FALSE,            "2147483648",          2147483648,       "0123456789");	\
-		print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n > 32maxdigit)",	FALSE,                    NULL,        999999999999,               "01");	\
-		print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n < 32maxdigit)",	FALSE,                    NULL,       -999999999999,               "01");	\
+		print_test_##TYPE##tostrbase(#TYPE"tostrbase (n < 32min)     ",	FALSE,           "-2147483649",         -2147483649,       "0123456789");	\
+		print_test_##TYPE##tostrbase(#TYPE"tostrbase (n > 32max)     ",	FALSE,            "2147483648",          2147483648,       "0123456789");	\
+		print_test_##TYPE##tostrbase(#TYPE"tostrbase (n > 32maxdigit)",	FALSE,                    NULL,        999999999999,               "01");	\
+		print_test_##TYPE##tostrbase(#TYPE"tostrbase (n < 32maxdigit)",	FALSE,                    NULL,       -999999999999,               "01");	\
 	}																																					\
 	if (sizeof(t_##TYPE) * 8 >= 64)																														\
 	{																																					\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                  "7FFFFFFF",          2147483647, "0123456789ABCDEF");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,               "-2147483648",         -2147483648,       "0123456789");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 64min, dec)",	FALSE,      "-9223372036854775808",-9223372036854775808,       "0123456789");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 64max, dec)",	FALSE,       "9223372036854775807", 9223372036854775807,       "0123456789");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 64min, hex)",	FALSE,         "-8000000000000000",-9223372036854775808, "0123456789ABCDEF");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 64max, hex)",	FALSE,          "7FFFFFFFFFFFFFFF", 9223372036854775807, "0123456789ABCDEF");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 64min, oct)",	FALSE,   "-1000000000000000000000",-9223372036854775808,         "01234567");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 64max, oct)",	FALSE,     "777777777777777777777", 9223372036854775807,         "01234567");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 64min, bin)",	FALSE,"-1000000000000000000000000000000000000000000000000000000000000000",-9223372036854775808,"01");\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 64max, bin)",	FALSE,  "111111111111111111111111111111111111111111111111111111111111111", 9223372036854775807,"01");\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                  "7FFFFFFF",          2147483647, "0123456789ABCDEF");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,               "-2147483648",         -2147483648,       "0123456789");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 64min, dec)",	FALSE,      "-9223372036854775808",-9223372036854775808,       "0123456789");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 64max, dec)",	FALSE,       "9223372036854775807", 9223372036854775807,       "0123456789");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 64min, hex)",	FALSE,         "-8000000000000000",-9223372036854775808, "0123456789ABCDEF");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 64max, hex)",	FALSE,          "7FFFFFFFFFFFFFFF", 9223372036854775807, "0123456789ABCDEF");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 64min, oct)",	FALSE,   "-1000000000000000000000",-9223372036854775808,         "01234567");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 64max, oct)",	FALSE,     "777777777777777777777", 9223372036854775807,         "01234567");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 64min, bin)",	FALSE,"-1000000000000000000000000000000000000000000000000000000000000000",-9223372036854775808,"01");\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 64max, bin)",	FALSE,  "111111111111111111111111111111111111111111111111111111111111111", 9223372036854775807,"01");\
 	if (g_test.flags.test_overflow) {																													\
-		print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n < 64min)     ",	FALSE,  "-9223372036854775808",-9223372036854775808,       "0123456789");	\
-		print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n > 64max)     ",	FALSE,   "9223372036854775808", 9223372036854775808,       "0123456789");	\
-	/*	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n > 64maxdigit)",	FALSE,                  NULL, 999999999999999999999,               "01");*/	\
-	/*	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n < 64maxdigit)",	FALSE,                  NULL,-999999999999999999999,               "01");*/	\
+		print_test_##TYPE##tostrbase(#TYPE"tostrbase (n < 64min)     ",	FALSE,  "-9223372036854775808",-9223372036854775808,       "0123456789");	\
+		print_test_##TYPE##tostrbase(#TYPE"tostrbase (n > 64max)     ",	FALSE,   "9223372036854775808", 9223372036854775808,       "0123456789");	\
+	/*	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n > 64maxdigit)",	FALSE,                  NULL, 999999999999999999999,               "01");*/	\
+	/*	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n < 64maxdigit)",	FALSE,                  NULL,-999999999999999999999,               "01");*/	\
 	}																																					\
 	}}}																																					\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (empty base)    ",	FALSE,                        NULL,                  42,                 "");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (null base)     ",	TRUE,                       segstr,                  42,               NULL);	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (empty base)    ",	FALSE,                        NULL,                  42,                 "");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (null base)     ",	TRUE,                       segstr,                  42,               NULL);	\
 }
 
-#ifndef c_s8_to_strbase
-void test_s8_to_strbase(void)	{}
+#ifndef c_s8tostrbase
+void test_s8tostrbase(void)	{}
 #else
 DEFINETEST_SINT_TO_STRBASE(s8, 8)
 #endif
 
-#ifndef c_s16_to_strbase
-void test_s16_to_strbase(void)	{}
+#ifndef c_s16tostrbase
+void test_s16tostrbase(void)	{}
 #else
 DEFINETEST_SINT_TO_STRBASE(s16, 16)
 #endif
 
-#ifndef c_s32_to_strbase
-void test_s32_to_strbase(void)	{}
+#ifndef c_s32tostrbase
+void test_s32tostrbase(void)	{}
 #else
 DEFINETEST_SINT_TO_STRBASE(s32, 32)
 #endif
 
-#ifndef c_s64_to_strbase
-void test_s64_to_strbase(void)	{}
+#ifndef c_s64tostrbase
+void test_s64tostrbase(void)	{}
 #else
 DEFINETEST_SINT_TO_STRBASE(s64, 64)
 #endif
 
 #ifdef __int128
-#ifndef c_s128_to_strbase
-void test_s128_to_strbase(void)	{}
+#ifndef c_s128tostrbase
+void test_s128tostrbase(void)	{}
 #else
 DEFINETEST_S128_TO_STRBASE(s128, 128)
 #endif
-
-#endif
-#ifndef c_sint_to_strbase
-void test_sint_to_strbase(void)	{}
-#else
-DEFINETEST_SINT_TO_STRBASE(sint, INT)
 #endif
 
 
 
 #define DEFINETEST_UINT_TO_STRBASE(TYPE) \
-void	print_test_##TYPE##_to_strbase(char const* test_name, int can_segfault,					\
+void	print_test_##TYPE##tostrbase(char const* test_name, int can_segfault,					\
 		char const* expecting,																	\
 		t_u32 number,																			\
 		char const* base)																		\
 {																								\
-	TEST_PERFORM_RESULT(TYPE##_to_strbase, number, base)										\
-	print_test_str(test_name, "_"#TYPE"_to_strbase", result_libccc, expecting, can_segfault);	\
+	TEST_PERFORM_RESULT(TYPE##tostrbase, number, base)										\
+	print_test_str(test_name, "_"#TYPE"tostrbase", result_libccc, expecting, can_segfault);	\
 	print_timer_result(&t, FALSE);																\
 	TEST_PRINT_ARGS("base='%s', n=%d", base, number);											\
 }																								\
-void	test_##TYPE##_to_strbase(void)																												\
+void	test_##TYPE##tostrbase(void)																												\
 {																																					\
 /*	| TEST FUNCTION          | TEST NAME                             |CAN SEGV|  EXPECTING              | TEST ARGS								*/	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = min, dec)  ",	FALSE,                       "0",                   0,       "0123456789");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = min, hex)  ",	FALSE,                       "0",                   0, "0123456789ABCDEF");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = min, oct)  ",	FALSE,                       "0",                   0,         "01234567");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = min, bin)  ",	FALSE,                       "0",                   0,               "01");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                       "1",                   1,               "01");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                       "1",                   1,               "+1");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                      NULL,                   0,                "m");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                      NULL,                   1,                "m");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                  "101010",                  42,               "01");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                      NULL,                   0,              "mom");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                       "F",                  15, "0123456789ABCDEF");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                       "0",                   0,              "0az");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                     "aaa",                 111,       "_abcdefghi");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                    "rdmm",                  63,              "mdr");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                   "|*_*|",                 100,              "*|_");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                    ".._.",                  13,               "_.");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                      "2A",                  42, "0123456789ABCDEF");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                      "42",                  42,       "0123456789");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                      "42",                  42,       "012345678-");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                      "42",                  42,       "012345678+");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                       "0",                   0,              "0az");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                     "aaa",                 111,       "_abcdefghi");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 8max, dec) ",	FALSE,                     "255",                 255,       "0123456789");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 8max, hex) ",	FALSE,                      "FF",                 255, "0123456789ABCDEF");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 8max, oct) ",	FALSE,                     "377",                 255,         "01234567");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 8max, bin) ",	FALSE,                "11111111",                 255,               "01");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = min, dec)  ",	FALSE,                       "0",                   0,       "0123456789");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = min, hex)  ",	FALSE,                       "0",                   0, "0123456789ABCDEF");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = min, oct)  ",	FALSE,                       "0",                   0,         "01234567");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = min, bin)  ",	FALSE,                       "0",                   0,               "01");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                       "1",                   1,               "01");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                       "1",                   1,               "+1");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                      NULL,                   0,                "m");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                      NULL,                   1,                "m");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                  "101010",                  42,               "01");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                      NULL,                   0,              "mom");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                       "F",                  15, "0123456789ABCDEF");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                       "0",                   0,              "0az");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                     "aaa",                 111,       "_abcdefghi");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                    "rdmm",                  63,              "mdr");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                   "|*_*|",                 100,              "*|_");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                    ".._.",                  13,               "_.");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                      "2A",                  42, "0123456789ABCDEF");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                      "42",                  42,       "0123456789");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                      "42",                  42,       "012345678-");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                      "42",                  42,       "012345678+");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                       "0",                   0,              "0az");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                     "aaa",                 111,       "_abcdefghi");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 8max, dec) ",	FALSE,                     "255",                 255,       "0123456789");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 8max, hex) ",	FALSE,                      "FF",                 255, "0123456789ABCDEF");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 8max, oct) ",	FALSE,                     "377",                 255,         "01234567");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 8max, bin) ",	FALSE,                "11111111",                 255,               "01");	\
 	if (g_test.flags.test_overflow) {																												\
-		print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n < 8min)      ",	FALSE,                  "-1",                  -1,       "0123456789");	\
-		print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n > 8max)      ",	FALSE,                 "256",                 256,       "0123456789");	\
-		print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n > 8maxdigit) ",	FALSE,                  NULL,               99999,               "01");	\
-		print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n < 8maxdigit) ",	FALSE,                  NULL,              -99999,               "01");	\
+		print_test_##TYPE##tostrbase(#TYPE"tostrbase (n < 8min)      ",	FALSE,                  "-1",                  -1,       "0123456789");	\
+		print_test_##TYPE##tostrbase(#TYPE"tostrbase (n > 8max)      ",	FALSE,                 "256",                 256,       "0123456789");	\
+		print_test_##TYPE##tostrbase(#TYPE"tostrbase (n > 8maxdigit) ",	FALSE,                  NULL,               99999,               "01");	\
+		print_test_##TYPE##tostrbase(#TYPE"tostrbase (n < 8maxdigit) ",	FALSE,                  NULL,              -99999,               "01");	\
 	}																																				\
 	if (sizeof(t_##TYPE) * 8 >= 16)																													\
 	{																																				\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                   "12345",               12345,       "0123456789");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                   "12345",               12345,       "012345678-");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                   "12345",               12345,       "012345678+");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                      NULL,                 999,       "0123456739");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                   "c===3",               10007,       "=cbadef389");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                    "swag",                1234,       "0swag56789");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                     "3e8",                1000, "0123456789abcdef");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                     "3E8",                1000, "0123456789abcdEf");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                      "2A",                  42, "0123456789ABCDEF");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 16max, dec)",	FALSE,                   "65535",               65535,       "0123456789");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 16max, hex)",	FALSE,                    "FFFF",               65535, "0123456789ABCDEF");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 16max, oct)",	FALSE,                  "177777",               65535,         "01234567");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 16max, bin)",	FALSE,        "1111111111111111",               65535,               "01");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                   "12345",               12345,       "0123456789");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                   "12345",               12345,       "012345678-");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                   "12345",               12345,       "012345678+");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                      NULL,                 999,       "0123456739");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                   "c===3",               10007,       "=cbadef389");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                    "swag",                1234,       "0swag56789");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                     "3e8",                1000, "0123456789abcdef");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                     "3E8",                1000, "0123456789abcdEf");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                      "2A",                  42, "0123456789ABCDEF");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 16max, dec)",	FALSE,                   "65535",               65535,       "0123456789");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 16max, hex)",	FALSE,                    "FFFF",               65535, "0123456789ABCDEF");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 16max, oct)",	FALSE,                  "177777",               65535,         "01234567");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 16max, bin)",	FALSE,        "1111111111111111",               65535,               "01");	\
 	if (g_test.flags.test_overflow) {																												\
-		print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n < 16min)     ",	FALSE,                  "-1",                  -1,       "0123456789");	\
-		print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n > 16max)     ",	FALSE,               "65536",               65536,       "0123456789");	\
-		print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n > 16maxdigit)",	FALSE,                  NULL,             9999999,               "01");	\
-		print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n < 16maxdigit)",	FALSE,                  NULL,            -9999999,               "01");	\
+		print_test_##TYPE##tostrbase(#TYPE"tostrbase (n < 16min)     ",	FALSE,                  "-1",                  -1,       "0123456789");	\
+		print_test_##TYPE##tostrbase(#TYPE"tostrbase (n > 16max)     ",	FALSE,               "65536",               65536,       "0123456789");	\
+		print_test_##TYPE##tostrbase(#TYPE"tostrbase (n > 16maxdigit)",	FALSE,                  NULL,             9999999,               "01");	\
+		print_test_##TYPE##tostrbase(#TYPE"tostrbase (n < 16maxdigit)",	FALSE,                  NULL,            -9999999,               "01");	\
 	}																																				\
 	if (sizeof(t_##TYPE) * 8 >= 32)																													\
 	{																																				\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                  "*xurin",             +987123,       "grincheux*");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,                "7FFFFFFF",          2147483647, "0123456789ABCDEF");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase                 ",	FALSE,              "2147483648",          2147483648,       "0123456789");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 32max, dec)",	FALSE,              "4294967295",          4294967295,       "0123456789");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 32max, hex)",	FALSE,                "FFFFFFFF",          4294967295, "0123456789ABCDEF");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 32max, oct)",	FALSE,             "37777777777",          4294967295,         "01234567");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 32max, bin)",	FALSE, "11111111111111111111111111111111", 4294967295,               "01");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                  "*xurin",             +987123,       "grincheux*");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,                "7FFFFFFF",          2147483647, "0123456789ABCDEF");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase                 ",	FALSE,              "2147483648",          2147483648,       "0123456789");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 32max, dec)",	FALSE,              "4294967295",          4294967295,       "0123456789");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 32max, hex)",	FALSE,                "FFFFFFFF",          4294967295, "0123456789ABCDEF");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 32max, oct)",	FALSE,             "37777777777",          4294967295,         "01234567");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 32max, bin)",	FALSE, "11111111111111111111111111111111", 4294967295,               "01");	\
 	if (g_test.flags.test_overflow) {																												\
-		print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n < 32min)     ",	FALSE,                  "-1",                  -1,       "0123456789");	\
-		print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n > 32max)     ",	FALSE,          "4294967296",          4294967296,       "0123456789");	\
-		print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n > 32maxdigit)",	FALSE,                  NULL,        999999999999,               "01");	\
-		print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n < 32maxdigit)",	FALSE,                  NULL,       -999999999999,               "01");	\
+		print_test_##TYPE##tostrbase(#TYPE"tostrbase (n < 32min)     ",	FALSE,                  "-1",                  -1,       "0123456789");	\
+		print_test_##TYPE##tostrbase(#TYPE"tostrbase (n > 32max)     ",	FALSE,          "4294967296",          4294967296,       "0123456789");	\
+		print_test_##TYPE##tostrbase(#TYPE"tostrbase (n > 32maxdigit)",	FALSE,                  NULL,        999999999999,               "01");	\
+		print_test_##TYPE##tostrbase(#TYPE"tostrbase (n < 32maxdigit)",	FALSE,                  NULL,       -999999999999,               "01");	\
 	}																																				\
 	if (sizeof(t_##TYPE) * 8 >= 64)																													\
 	{																																				\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 64max, dec)",	FALSE,  "18446744073709551615",18446744073709551615llu,      "0123456789");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 64max, hex)",	FALSE,      "FFFFFFFFFFFFFFFF",18446744073709551615llu,"0123456789ABCDEF");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 64max, oct)",	FALSE,"1777777777777777777777",18446744073709551615llu,        "01234567");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n = 64max, bin)",	FALSE,"1111111111111111111111111111111111111111111111111111111111111111", 18446744073709551615UL,"01");\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 64max, dec)",	FALSE,  "18446744073709551615",18446744073709551615llu,      "0123456789");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 64max, hex)",	FALSE,      "FFFFFFFFFFFFFFFF",18446744073709551615llu,"0123456789ABCDEF");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 64max, oct)",	FALSE,"1777777777777777777777",18446744073709551615llu,        "01234567");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n = 64max, bin)",	FALSE,"1111111111111111111111111111111111111111111111111111111111111111", 18446744073709551615UL,"01");\
 	if (g_test.flags.test_overflow) {																												\
-		print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n < 64min)     ",	FALSE,                  "-1",                      -1,   "0123456789");	\
-	/*	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n > 64max)     ",	FALSE,"18446744073709551616",  18446744073709551616UL,   "0123456789");*/\
-	/*	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n > 64maxdigit)",	FALSE,                  NULL, 999999999999999999999LL,           "01");*/\
-	/*	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (n < 64maxdigit)",	FALSE,                  NULL,-999999999999999999999LL,           "01");*/\
+		print_test_##TYPE##tostrbase(#TYPE"tostrbase (n < 64min)     ",	FALSE,                  "-1",                      -1,   "0123456789");	\
+	/*	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n > 64max)     ",	FALSE,"18446744073709551616",  18446744073709551616UL,   "0123456789");*/\
+	/*	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n > 64maxdigit)",	FALSE,                  NULL, 999999999999999999999LL,           "01");*/\
+	/*	print_test_##TYPE##tostrbase(#TYPE"tostrbase (n < 64maxdigit)",	FALSE,                  NULL,-999999999999999999999LL,           "01");*/\
 	}																																				\
 	}}}																																				\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (empty base)  ",	FALSE,                      NULL,                  42,                 "");	\
-	print_test_##TYPE##_to_strbase(#TYPE"_to_strbase (null base)   ",	TRUE,                     segstr,                  42,               NULL);	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (empty base)  ",	FALSE,                      NULL,                  42,                 "");	\
+	print_test_##TYPE##tostrbase(#TYPE"tostrbase (null base)   ",	TRUE,                     segstr,                  42,               NULL);	\
 }
 
-#ifndef c_u8_to_strbase
-void test_u8_to_strbase(void)	{}
+#ifndef c_u8tostrbase
+void test_u8tostrbase(void)	{}
 #else
 DEFINETEST_UINT_TO_STRBASE(u8)
 #endif
 
-#ifndef c_u16_to_strbase
-void test_u16_to_strbase(void)	{}
+#ifndef c_u16tostrbase
+void test_u16tostrbase(void)	{}
 #else
 DEFINETEST_UINT_TO_STRBASE(u16)
 #endif
 
-#ifndef c_u32_to_strbase
-void test_u32_to_strbase(void)	{}
+#ifndef c_u32tostrbase
+void test_u32tostrbase(void)	{}
 #else
 DEFINETEST_UINT_TO_STRBASE(u32)
 #endif
 
-#ifndef c_u64_to_strbase
-void test_u64_to_strbase(void)	{}
+#ifndef c_u64tostrbase
+void test_u64tostrbase(void)	{}
 #else
 DEFINETEST_UINT_TO_STRBASE(u64)
 #endif
 
 #ifdef __int128
-#ifndef c_u128_to_strbase
-void test_u128_to_strbase(void)	{}
+#ifndef c_u128tostrbase
+void test_u128tostrbase(void)	{}
 #else
 DEFINETEST_UINT_TO_STRBASE(u128)
 #endif
-
 #endif
-#ifndef c_uint_to_strbase
-void test_uint_to_strbase(void)	{}
-#else
-DEFINETEST_UINT_TO_STRBASE(uint)
-#endif
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -861,12 +818,6 @@ DEFINETEST_STR_TO_UINT(u128)
 #endif
 #endif
 
-#ifndef c_str_to_uint
-void test_str_to_uint(void)	{}
-#else
-DEFINETEST_STR_TO_UINT(uint)
-#endif
-
 
 
 #define DEFINETEST_STR_TO_SINT(TYPE) \
@@ -1041,17 +992,11 @@ DEFINETEST_STR_TO_SINT(s64)
 #endif
 
 #ifdef __int128
-#ifndef _str_to_s128
+#ifndef c_str_to_s128
 void test_str_to_s128(void)	{}
 #else
 DEFINETEST_STR_TO_SINT(s128)
 #endif
-
-#endif
-#ifndef _str_to_sint
-void test_str_to_sint(void)	{}
-#else
-DEFINETEST_STR_TO_SINT(sint)
 #endif
 
 
@@ -1282,12 +1227,6 @@ DEFINETEST_STRBASE_TO_UINT(u128)
 #endif
 #endif
 
-#ifndef c_strbase_to_uint
-void test_strbase_to_uint(void)	{}
-#else
-DEFINETEST_STRBASE_TO_UINT(uint)
-#endif
-
 
 
 #define DEFINETEST_STRBASE_TO_SINT(TYPE) \
@@ -1436,12 +1375,6 @@ void test_strbase_to_s128(void)	{}
 #else
 DEFINETEST_STRBASE_TO_SINT(s128)
 #endif
-
-#endif
-#ifndef c_strbase_to_sint
-void test_strbase_to_sint(void)	{}
-#else
-DEFINETEST_STRBASE_TO_SINT(sint)
 #endif
 
 
@@ -1467,42 +1400,37 @@ int		testsuite_int(void)
 
 	print_nonstd();
 
-	test_u8_to_str();
-	test_u16_to_str();
-	test_u32_to_str();
-	test_u64_to_str();
-//	test_u128_to_str();
-	test_uint_to_str();
+	test_u8tostr();
+	test_u16tostr();
+	test_u32tostr();
+	test_u64tostr();
+//	test_u128tostr();
 
-	test_s8_to_str();
-	test_s16_to_str();
-	test_s32_to_str();
-	test_s64_to_str();
-//	test_s128_to_str();
-	test_sint_to_str();
+	test_s8tostr();
+	test_s16tostr();
+	test_s32tostr();
+	test_s64tostr();
+//	test_s128tostr();
 
 
-	test_u8_to_strhex();
-	test_u16_to_strhex();
-	test_u32_to_strhex();
-	test_u64_to_strhex();
-//	test_u128_to_strhex();
-	test_uint_to_strhex();
+	test_u8tostrhex();
+	test_u16tostrhex();
+	test_u32tostrhex();
+	test_u64tostrhex();
+//	test_u128tostrhex();
 
 
-	test_s8_to_strbase();
-	test_s16_to_strbase();
-	test_s32_to_strbase();
-	test_s64_to_strbase();
-//	test_s128_to_strbase();
-	test_sint_to_strbase();
+	test_s8tostrbase();
+	test_s16tostrbase();
+	test_s32tostrbase();
+	test_s64tostrbase();
+//	test_s128tostrbase();
 
-	test_u8_to_strbase();
-	test_u16_to_strbase();
-	test_u32_to_strbase();
-	test_u64_to_strbase();
-//	test_u128_to_strbase();
-	test_uint_to_strbase();
+	test_u8tostrbase();
+	test_u16tostrbase();
+	test_u32tostrbase();
+	test_u64tostrbase();
+//	test_u128tostrbase();
 
 
 
@@ -1511,14 +1439,12 @@ int		testsuite_int(void)
 	test_str_to_s32();
 	test_str_to_s64();
 //	test_str_to_s128();
-	test_str_to_sint();
 
 	test_str_to_u8();
 	test_str_to_u16();
 	test_str_to_u32();
 	test_str_to_u64();
 //	test_str_to_u128();
-	test_str_to_uint();
 
 
 //	test_strhex_to_u8();
@@ -1526,7 +1452,6 @@ int		testsuite_int(void)
 //	test_strhex_to_u32();
 //	test_strhex_to_u64();
 //	test_strhex_to_u128();
-//	test_strhex_to_uint();
 
 
 	test_strbase_to_s8();
@@ -1534,14 +1459,12 @@ int		testsuite_int(void)
 	test_strbase_to_s32();
 	test_strbase_to_s64();
 //	test_strbase_to_s128();
-	test_strbase_to_sint();
 
 	test_strbase_to_u8();
 	test_strbase_to_u16();
 	test_strbase_to_u32();
 	test_strbase_to_u64();
 //	test_strbase_to_u128();
-	test_strbase_to_uint();
 
 	return (OK);
 }
