@@ -9,37 +9,42 @@
 /*                                                                            */
 /*============================================================================*/
 
-//! @defgroup libccc					00) libccc
-//! @defgroup libccc_bool				01) libccc/bool
-//! @defgroup libccc_int				02) libccc/int
-//! @defgroup libccc_fixed				03) libccc/fixed
-//! @defgroup libccc_float				04) libccc/float
-//! @defgroup libccc_pointer			05) libccc/pointer
-//! @defgroup libccc_pointerarray		06) libccc/pointerarray
-//! @defgroup libccc_memory				07) libccc/memory
-//! @defgroup libccc_char				08) libccc/char
-//! @defgroup libccc_string				09) libccc/string
-//! @defgroup libccc_stringarray		10) libccc/stringarray
-//! @defgroup libccc_format				11) libccc/format
-//! @defgroup libccc_color				12) libccc/color
-//! @defgroup libccc_sys_io				13) libccc/sys/io
-//! @defgroup libccc_sys_time			14) libccc/sys/time
-//! @defgroup libccc_sys_logger			15) libccc/sys/logger
-//! @defgroup libccc_sys_regex			16) libccc/sys/regex
-//! @defgroup libccc_math_math			17) libccc/math/math
-//! @defgroup libccc_math_vlq			18) libccc/math/vlq
-//! @defgroup libccc_math_stat			19) libccc/math/stat
-//! @defgroup libccc_math_random		20) libccc/math/random
-//! @defgroup libccc_math_algebra		21) libccc/math/algebra
-//! @defgroup libccc_math_complex		22) libccc/math/complex
-//! @defgroup libccc_monad_array		23) libccc/monad/array
-//! @defgroup libccc_monad_list			24) libccc/monad/list
-//! @defgroup libccc_monad_stack		25) libccc/monad/stack
-//! @defgroup libccc_monad_queue		26) libccc/monad/queue
-//! @defgroup libccc_monad_tree			27) libccc/monad/tree
-//! @defgroup libccc_monad_keyval		28) libccc/monad/keyval
-//! @defgroup libccc_monad_dict			29) libccc/monad/dict
-//! @defgroup libccc_monad_object		30) libccc/monad/object
+//! @defgroup libccc						00) libccc
+//! @defgroup libccc_bool					01) libccc/bool
+//! @defgroup libccc_int					02) libccc/int
+//! @defgroup libccc_fixed					03) libccc/fixed
+//! @defgroup libccc_float					04) libccc/float
+//! @defgroup libccc_pointer				05) libccc/pointer
+//! @defgroup libccc_pointerarray			06) libccc/pointerarray
+//! @defgroup libccc_memory					07) libccc/memory
+//! @defgroup libccc_char					08) libccc/char
+//! @defgroup libccc_string					09) libccc/string
+//! @defgroup libccc_stringarray			10) libccc/stringarray
+//! @defgroup libccc_format					11) libccc/format
+//! @defgroup libccc_color					12) libccc/color
+//! @defgroup libccc_sys_io					13) libccc/sys/io
+//! @defgroup libccc_sys_time				14) libccc/sys/time
+//! @defgroup libccc_sys_logger				15) libccc/sys/logger
+//! @defgroup libccc_sys_regex				16) libccc/sys/regex
+//! @defgroup libccc_math_constants			27) libccc/math/constants
+//! @defgroup libccc_math_float				18) libccc/math/float
+//! @defgroup libccc_math_fixed				19) libccc/math/fixed
+//! @defgroup libccc_math_vlq				20) libccc/math/vlq
+//! @defgroup libccc_math_stat				21) libccc/math/stat
+//! @defgroup libccc_math_random			22) libccc/math/random
+//! @defgroup libccc_math_complex			23) libccc/math/complex
+//! @defgroup libccc_math_algebra			24) libccc/math/algebra
+//! @defgroup libccc_math_algebra_vector	25) libccc/math/algebra/vector
+//! @defgroup libccc_math_algebra_matrix	26) libccc/math/algebra/matrix
+//! @defgroup libccc_math_algebra_interval	27) libccc/math/algebra/interval
+//! @defgroup libccc_monad_array			28) libccc/monad/array
+//! @defgroup libccc_monad_list				29) libccc/monad/list
+//! @defgroup libccc_monad_stack			30) libccc/monad/stack
+//! @defgroup libccc_monad_queue			31) libccc/monad/queue
+//! @defgroup libccc_monad_tree				32) libccc/monad/tree
+//! @defgroup libccc_monad_keyval			33) libccc/monad/keyval
+//! @defgroup libccc_monad_dict				34) libccc/monad/dict
+//! @defgroup libccc_monad_object			35) libccc/monad/object
 
 #ifndef __LIBCCC_H
 #define __LIBCCC_H

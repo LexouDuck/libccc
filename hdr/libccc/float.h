@@ -431,91 +431,30 @@ t_f128					F128(t_fixed mantissa, t_sint exponent);
 
 
 
-/*
-** ************************************************************************** *|
-**                       Floating-point basic operators                       *|
-** ************************************************************************** *|
+//! Returns the base-2 exponent of `x`, as an integer
+/*!
+**	@isostd{https://en.cppreference.com/w/c/numeric/math/ilogb}
 */
-
-
-
-//! Performs an addition with the 2 given floating-point values (operator: `+`)
 //!@{
-#define					Float_Add	CONCAT(FLOAT_TYPE,_Add)
-t_f32					F32_Add(t_f32 number1, t_f32 number2);
-t_f64					F64_Add(t_f64 number1, t_f64 number2);
+#define						Float_GetExp	CONCAT(FLOAT_TYPE,_GetExp)
+t_sint						F32_GetExp(t_fixed mantissa, t_sint exponent);
+t_sint						F64_GetExp(t_fixed mantissa, t_sint exponent);
 #ifdef	__float80
-t_f80					F80_Add(t_f80 number1, t_f80 number2);
+t_sint						F80_GetExp(t_fixed mantissa, t_sint exponent);
 #endif
 #ifdef	__float128
-t_f128					F128_Add(t_f128 number1, t_f128 number2);
+t_sint						F128_GetExp(t_fixed mantissa, t_sint exponent);
 #endif
-#define c_fadd			Float_Add	//!< @alias{Float_Add}
-#define c_f32add		F32_Add 	//!< @alias{F32_Add}
-#define c_f64add		F64_Add 	//!< @alias{F64_Add}
-#define c_f80add		F80_Add 	//!< @alias{F80_Add}
-#define c_f128add		F128_Add	//!< @alias{F128_Add}
+#define c_fgetexp			Float_GetExp//!< @alias{Float}
+#define c_f32getexp			F32_GetExp	//!< @alias{F32}
+#define c_f64getexp			F64_GetExp	//!< @alias{F64}
+#define c_f80getexp			F80_GetExp	//!< @alias{F80}
+#define c_f128getexp		F128_GetExp	//!< @alias{F128}
+
+#define Float_GetExponent	Float_GetExp
 //!@}
 
-
-
-//! Performs a subtraction with the 2 given floating-point values (operator: `-`)
-//!@{
-#define					Float_Sub	CONCAT(FLOAT_TYPE,_Sub)
-t_f32					F32_Sub(t_f32 number1, t_f32 number2);
-t_f64					F64_Sub(t_f64 number1, t_f64 number2);
-#ifdef	__float80
-t_f80					F80_Sub(t_f80 number1, t_f80 number2);
-#endif
-#ifdef	__float128
-t_f128					F128_Sub(t_f128 number1, t_f128 number2);
-#endif
-#define c_fsub			Float_Sub	//!< @alias{Float_Sub}
-#define c_f32sub		F32_Sub 	//!< @alias{F32_Sub}
-#define c_f64sub		F64_Sub 	//!< @alias{F64_Sub}
-#define c_f80sub		F80_Sub 	//!< @alias{F80_Sub}
-#define c_f128sub		F128_Sub	//!< @alias{F128_Sub}
-//!@}
-
-
-
-//! Performs a multiplication with the 2 given floating-point values (operator: `*`)
-//!@{
-#define					Float_Mul	CONCAT(FLOAT_TYPE,_Mul)
-t_f32					F32_Mul(t_f32 number1, t_f32 number2);
-t_f64					F64_Mul(t_f64 number1, t_f64 number2);
-#ifdef	__float80
-t_f80					F80_Mul(t_f80 number1, t_f80 number2);
-#endif
-#ifdef	__float128
-t_f128					F128_Mul(t_f128 number1, t_f128 number2);
-#endif
-#define c_fmul			Float_Mul	//!< @alias{Float_Mul}
-#define c_f32mul		F32_Mul 	//!< @alias{F32_Mul}
-#define c_f64mul		F64_Mul 	//!< @alias{F64_Mul}
-#define c_f80mul		F80_Mul 	//!< @alias{F80_Mul}
-#define c_f128mul		F128_Mul	//!< @alias{F128_Mul}
-//!@}
-
-
-
-//! Performs a division with the 2 given floating-point values (operator: `/`)
-//!@{
-#define					Float_Div	CONCAT(FLOAT_TYPE,_Div)
-t_f32					F32_Div(t_f32 number1, t_f32 number2);
-t_f64					F64_Div(t_f64 number1, t_f64 number2);
-#ifdef	__float80
-t_f80					F80_Div(t_f80 number1, t_f80 number2);
-#endif
-#ifdef	__float128
-t_f128					F128_Div(t_f128 number1, t_f128 number2);
-#endif
-#define c_fdiv			Float_Div	//!< @alias{Float_Div}
-#define c_f32div		F32_Div 	//!< @alias{F32_Div}
-#define c_f64div		F64_Div 	//!< @alias{F64_Div}
-#define c_f80div		F80_Div 	//!< @alias{F80_Div}
-#define c_f128div		F128_Div	//!< @alias{F128_Div}
-//!@}
+// TODO logb, ie: Float_GetExp_Float ?
 
 
 
