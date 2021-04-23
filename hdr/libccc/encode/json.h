@@ -72,7 +72,7 @@ typedef struct	json
 	t_char*		key;		//!< The item's name string, if this item is the child of, or is in the list of subitems of an object.
 
 	t_char*		value_string;	//!< The item's string, if `type == JSON_TYPE_STRING || type == JSON_TYPE_RAW`
-	t_f64		value_double;	//!< The item's number, if `type == JSON_TYPE_NUMBER`
+	t_f64		value_number;	//!< The item's number, if `type == JSON_TYPE_NUMBER`
 }				s_json;
 
 /*!
@@ -146,8 +146,8 @@ t_bool	JSON_PrintPreallocated(s_json* item, t_char* buffer, t_sint const length,
 
 
 
-//! Returns the number of items in an array (or object).
-t_sint	JSON_GetArraySize(s_json const* array);
+//! Returns the amount of items in an array (or object).
+t_sint	JSON_GetArrayLength(s_json const* array);
 //! Retrieve item number "index" from array "array". Returns NULL if unsuccessful.
 s_json*	JSON_GetArrayItem(s_json const* array, t_sint index);
 
@@ -222,25 +222,25 @@ s_json*	JSON_CreateStringArray	(t_char const* const *strings, t_sint count);
 
 
 
-//! Appends an item to the given array.
+//! Appends the given `item` to the given `array`.
 t_bool	JSON_AddToArray_Item(s_json* array, s_json* item);
 
-//! Append reference to item to the given array.
+//! Append a reference to `item` to the given `array`.
 t_bool	JSON_AddToArray_ItemReference(s_json* array, s_json* item);
 
-//! Appends an item to the given object.
-t_bool	JSON_AddToObject_Item(s_json* object, t_char const* string, s_json* item);
+//! Appends the given `item` to the given `object`, with the given `key`.
+t_bool	JSON_AddToObject_Item(s_json* object, t_char const* key, s_json* item);
 
-//! Appends an item to an object with constant string as key
+//! Append reference to item to the given object.
+t_bool	JSON_AddToObject_ItemReference(s_json* object, t_char const* key, s_json* item);
+
+//! Appends the given `item` to an object with constant string as key
 /*!
 **	Use this when string is definitely const (i.e. a literal, or as good as), and will definitely survive the JSON object.
 **	NOTE: When this function was used, make sure to always perform the following check:
 **	`(item->type & JSON_TYPE_CONSTSTRING) == 0` before writing to `item->string`.
 */
 t_bool	JSON_AddToObject_ItemCS(s_json* object, t_char const* key, s_json* item);
-
-//! Append reference to item to the given object.
-t_bool	JSON_AddToObject_ItemReference(s_json* object, t_char const* key, s_json* item);
 
 /*!
 **	Helper functions for creating and adding items to an object at the same time.
@@ -296,7 +296,7 @@ t_bool	JSON_ReplaceItemInObject_CaseSensitive	(s_json* object, t_char const* key
 //! Duplicates a JSON object.
 /*!
 **	Duplicate will create a new, identical s_json item to the one you pass, in new memory that will
-**	need to be released. With recurse!=0, it will duplicate any children connected to the item.
+**	need to be released. With `recurse != FALSE`, it will duplicate any children connected to the item.
 **	The item->next and ->prev pointers are always zero on return from Duplicate.
 */
 s_json*	JSON_Duplicate(s_json const* item, t_bool recurse);
@@ -308,7 +308,12 @@ s_json*	JSON_Duplicate(s_json const* item, t_bool recurse);
 **	If either a or b is NULL or invalid, they will be considered unequal.
 **	case_sensitive determines if object keys are treated case sensitive (1) or case insensitive (0).
 */
-t_bool	JSON_Equals(s_json const* const a, s_json const* const b, t_bool const case_sensitive);
+t_bool	JSON_Equals(s_json const* a, s_json const* b, t_bool const case_sensitive);
+
+
+
+//! Creates a new JSON object by concatenating two existing ones
+s_json*	JSON_Concat(s_json const* a, s_json const* b);
 
 
 
@@ -316,9 +321,9 @@ t_bool	JSON_Equals(s_json const* const a, s_json const* const b, t_bool const ca
 /*!
 **	Minify a JSON, removing blank characters (such as ' ', '\t', '\r', '\n') from strings.
 **	The input pointer json cannot point to a read-only address area, such as a string constant, 
-**	but should point to a readable and writable adress area.
+**	but should point to a readable and writable address area.
 */
-void	JSON_Minify(t_char* json);
+void	JSON_Minify(t_char* json); //!< TODO rename to JSON_Minify_InPlace(), and add JSON_Minify(), which would allocate
 
 
 

@@ -16,7 +16,7 @@
 
 #define JSON_TYPE_MASK	(0xFF)
 
-
+// TODO fix code to not use any global state for error handling
 
 typedef struct	s_json_error
 {
@@ -38,18 +38,14 @@ t_char const*	JSON_GetErrorPtr(void)
 t_f64	JSON_GetValue_Number(s_json const* const item) 
 {
 	if (!JSON_IsNumber(item)) 
-	{
 		return ((t_f64)NAN);
-	}
-	return (item->value_double);
+	return (item->value_number);
 }
 
 char*	JSON_GetValue_String(s_json const* const item) 
 {
 	if (!JSON_IsString(item)) 
-	{
 		return (NULL);
-	}
 	return (item->value_string);
 }
 
@@ -121,9 +117,7 @@ static t_bool parse_number(s_json* const item, s_json_parse* const input_buffer)
 	t_size i = 0;
 
 	if ((input_buffer == NULL) || (input_buffer->content == NULL))
-	{
 		return (FALSE);
-	}
 	// copy the number into a temporary buffer and replace '.' with the decimal point of the current locale (for strtod)
 	// This also takes care of '\0' not necessarily being available for marking the end of the input
 	for (i = 0; (i < (sizeof(number_c_string) - 1)) && can_access_at_index(input_buffer, i); i++)
@@ -160,10 +154,8 @@ loop_end:
 
 	number = F64_FromString((t_char const*)number_c_string);
 	if (IS_NAN(number_c_string))
-	{
 		return (FALSE); // parse_error
-	}
-	item->value_double = number;
+	item->value_number = number;
 	item->type = JSON_TYPE_NUMBER;
 	input_buffer->offset += i;
 	return (TRUE);
@@ -172,7 +164,7 @@ loop_end:
 // don't ask me, but the original JSON_SetNumberValue returns an integer or t_f64
 t_f64	JSON_SetValue_Number(s_json* object, t_f64 value)
 {
-	object->value_double = value;
+	object->value_number = value;
 	return (value);
 }
 
@@ -181,9 +173,7 @@ char*	JSON_SetValue_String(s_json* object, t_char* value)
 	char* copy = NULL;
 	// if object's type is not JSON_TYPE_STRING or is JSON_TYPE_ISREFERENCE, it should not set value_string
 	if (!(object->type & JSON_TYPE_STRING) || (object->type & JSON_TYPE_ISREFERENCE))
-	{
 		return (NULL);
-	}
 	if (String_Length(value) <= String_Length(object->value_string))
 	{
 		String_Copy(object->value_string, value);
@@ -191,9 +181,7 @@ char*	JSON_SetValue_String(s_json* object, t_char* value)
 	}
     copy = (char*)String_Duplicate((t_char const*)value);
 	if (copy == NULL)
-	{
 		return (NULL);
-	}
 	if (object->value_string != NULL)
 	{
 		Memory_Free(object->value_string);
@@ -219,9 +207,7 @@ static t_char* ensure(s_json_print* const p, t_size needed)
 	t_size newsize = 0;
 
 	if ((p == NULL) || (p->buffer == NULL))
-	{
 		return (NULL);
-	}
 	if ((p->length > 0) && (p->offset >= p->length))
 	{
 		// make sure that offset is valid
@@ -234,13 +220,9 @@ static t_char* ensure(s_json_print* const p, t_size needed)
 	}
 	needed += p->offset + 1;
 	if (needed <= p->length)
-	{
 		return (p->buffer + p->offset);
-	}
 	if (p->noalloc)
-	{
 		return (NULL);
-	}
 	// calculate new buffer size
 	if (needed > (SIZE_MAX / 2))
 	{
@@ -250,9 +232,7 @@ static t_char* ensure(s_json_print* const p, t_size needed)
 			newsize = SIZE_MAX;
 		}
 		else
-		{
 			return (NULL);
-		}
 	}
 	else
 	{
@@ -292,9 +272,7 @@ static void update_offset(s_json_print* const buffer)
 {
 	t_char const* buffer_pointer = NULL;
 	if ((buffer == NULL) || (buffer->buffer == NULL))
-	{
 		return;
-	}
 	buffer_pointer = buffer->buffer + buffer->offset;
 
 	buffer->offset += String_Length((t_char const*)buffer_pointer);
@@ -306,16 +284,14 @@ static t_bool print_number(s_json const* const item, s_json_print* const output_
 {
 	t_char*	output_pointer = NULL;
 	t_sint	length = 0;
-	t_f64	d = item->value_double;
+	t_f64	d = item->value_number;
 	t_size	i = 0;
 	t_f64	test = 0.0;
 	t_char	number_buffer[JSON_NUMBER_BUFFERSIZE] = {0}; // temporary buffer to print the number into
 	t_char	decimal_point = get_decimal_point();
 
 	if (output_buffer == NULL)
-	{
 		return (FALSE);
-	}
 	// This checks for NaN and Infinity
 	if (isnan(d) || isinf(d))
 	{
@@ -335,15 +311,11 @@ static t_bool print_number(s_json const* const item, s_json_print* const output_
 	}
 	// sprintf failed or buffer overrun occurred
 	if ((length < 0) || (length > (t_sint)(sizeof(number_buffer) - 1)))
-	{
 		return (FALSE);
-	}
 	// reserve appropriate space in the output
 	output_pointer = ensure(output_buffer, (t_size)length + sizeof(""));
 	if (output_pointer == NULL)
-	{
 		return (FALSE);
-	}
 	// copy the printed number to the output and replace locale dependent decimal point with '.'
 	for (i = 0; i < ((t_size)length); i++)
 	{
@@ -381,9 +353,7 @@ static t_uint	parse_hex4(t_char const* const input)
 			h += (t_uint) 10 + input[i] - 'a';
 		}
 		else // invalid
-		{
 			return (0);
-		}
 
 		if (i < 3)
 		{
@@ -648,18 +618,14 @@ static t_bool print_string_ptr(t_char const* const input, s_json_print* const ou
 	t_size escape_characters = 0;
 
 	if (output_buffer == NULL)
-	{
 		return (FALSE);
-	}
 
 	// empty string
 	if (input == NULL)
 	{
 		output = ensure(output_buffer, sizeof("\"\""));
 		if (output == NULL)
-		{
 			return (FALSE);
-		}
 		String_Copy((char*)output, "\"\"");
 		return (TRUE);
 	}
@@ -692,9 +658,7 @@ static t_bool print_string_ptr(t_char const* const input, s_json_print* const ou
 
 	output = ensure(output_buffer, output_length + sizeof("\"\""));
 	if (output == NULL)
-	{
 		return (FALSE);
-	}
 
 	// no characters have to be escaped
 	if (escape_characters == 0)
@@ -773,14 +737,10 @@ static t_bool print_object(s_json const* const item, s_json_print* const output_
 static s_json_parse *buffer_skip_whitespace(s_json_parse* const buffer)
 {
 	if ((buffer == NULL) || (buffer->content == NULL))
-	{
 		return (NULL);
-	}
 
 	if (cannot_access_at_index(buffer, 0))
-	{
 		return (buffer);
-	}
 
 	while (can_access_at_index(buffer, 0) && (buffer_at_offset(buffer)[0] <= 32))
 	{
@@ -798,9 +758,7 @@ static s_json_parse *buffer_skip_whitespace(s_json_parse* const buffer)
 static s_json_parse *skip_utf8_bom(s_json_parse* const buffer)
 {
 	if ((buffer == NULL) || (buffer->content == NULL) || (buffer->offset != 0))
-	{
 		return (NULL);
-	}
 	if (can_access_at_index(buffer, 4) && (String_Compare_N((t_char const*)buffer_at_offset(buffer), "\xEF\xBB\xBF", 3) == 0))
 	{
 		buffer->offset += 3;
@@ -813,9 +771,7 @@ s_json*	JSON_ParseStrict(t_char const* value, t_char const* *return_parse_end, t
 	t_size buffer_length;
 
 	if (NULL == value)
-	{
 		return (NULL);
-	}
 
 	// Adding null character size due to require_null_terminated.
 	buffer_length = String_Length(value) + sizeof("");
@@ -983,14 +939,10 @@ char*	JSON_PrintBuffered(s_json const* item, t_sint prebuffer, t_bool fmt)
 	s_json_print p = { 0 };
 
 	if (prebuffer < 0)
-	{
 		return (NULL);
-	}
 	p.buffer = (t_char*)Memory_Alloc((t_size)prebuffer);
 	if (!p.buffer)
-	{
 		return (NULL);
-	}
 	p.length = (t_size)prebuffer;
 	p.offset = 0;
 	p.noalloc = FALSE;
@@ -1008,9 +960,7 @@ t_bool	JSON_PrintPreallocated(s_json* item, char* buffer, const t_sint length, c
 	s_json_print p = { 0 };
 
 	if ((length < 0) || (buffer == NULL))
-	{
 		return (FALSE);
-	}
 
 	p.buffer = (t_char*)buffer;
 	p.length = (t_size)length;
@@ -1024,9 +974,7 @@ t_bool	JSON_PrintPreallocated(s_json* item, char* buffer, const t_sint length, c
 static t_bool parse_value(s_json* const item, s_json_parse* const input_buffer)
 {
 	if ((input_buffer == NULL) || (input_buffer->content == NULL))
-	{
 		return (FALSE); // no input
-	}
 
 	// parse the different types of values
 	if (can_read(input_buffer, 4) && (String_Compare_N((t_char const*)buffer_at_offset(input_buffer), "null", 4) == 0))
@@ -1072,36 +1020,28 @@ static t_bool print_value(s_json const* const item, s_json_print* const output_b
 	t_char* output = NULL;
 
 	if ((item == NULL) || (output_buffer == NULL))
-	{
 		return (FALSE);
-	}
 
 	switch ((item->type) & JSON_TYPE_MASK)
 	{
 		case JSON_TYPE_NULL:
 			output = ensure(output_buffer, 5);
 			if (output == NULL)
-			{
 				return (FALSE);
-			}
 			String_Copy((char*)output, "null");
 			return (TRUE);
 
 		case JSON_TYPE_FALSE:
 			output = ensure(output_buffer, 6);
 			if (output == NULL)
-			{
 				return (FALSE);
-			}
 			String_Copy((char*)output, "FALSE");
 			return (TRUE);
 
 		case JSON_TYPE_TRUE:
 			output = ensure(output_buffer, 5);
 			if (output == NULL)
-			{
 				return (FALSE);
-			}
 			String_Copy((char*)output, "TRUE");
 			return (TRUE);
 
@@ -1112,16 +1052,12 @@ static t_bool print_value(s_json const* const item, s_json_print* const output_b
 		{
 			t_size raw_length = 0;
 			if (item->value_string == NULL)
-			{
 				return (FALSE);
-			}
 
 			raw_length = String_Length(item->value_string) + sizeof("");
 			output = ensure(output_buffer, raw_length);
 			if (output == NULL)
-			{
 				return (FALSE);
-			}
 			Memory_Copy(output, item->value_string, raw_length);
 			return (TRUE);
 		}
@@ -1147,9 +1083,7 @@ static t_bool parse_array(s_json* const item, s_json_parse* const input_buffer)
 	s_json* current_item = NULL;
 
 	if (input_buffer->depth >= JSON_NESTING_LIMIT)
-	{
 		return (FALSE); // too deeply nested
-	}
 	input_buffer->depth++;
 
 	if (buffer_at_offset(input_buffer)[0] != '[')
@@ -1241,17 +1175,13 @@ static t_bool print_array(s_json const* const item, s_json_print* const output_b
 	s_json* current_element = item->child;
 
 	if (output_buffer == NULL)
-	{
 		return (FALSE);
-	}
 
 	// Compose the output array.
 	// opening square bracket
 	output_pointer = ensure(output_buffer, 1);
 	if (output_pointer == NULL)
-	{
 		return (FALSE);
-	}
 
 	*output_pointer = '[';
 	output_buffer->offset++;
@@ -1260,18 +1190,14 @@ static t_bool print_array(s_json const* const item, s_json_print* const output_b
 	while (current_element != NULL)
 	{
 		if (!print_value(current_element, output_buffer))
-		{
 			return (FALSE);
-		}
 		update_offset(output_buffer);
 		if (current_element->next)
 		{
 			length = (t_size) (output_buffer->format ? 2 : 1);
 			output_pointer = ensure(output_buffer, length + 1);
 			if (output_pointer == NULL)
-			{
 				return (FALSE);
-			}
 			*output_pointer++ = ',';
 			if (output_buffer->format)
 			{
@@ -1285,9 +1211,7 @@ static t_bool print_array(s_json const* const item, s_json_print* const output_b
 
 	output_pointer = ensure(output_buffer, 2);
 	if (output_pointer == NULL)
-	{
 		return (FALSE);
-	}
 	*output_pointer++ = ']';
 	*output_pointer = '\0';
 	output_buffer->depth--;
@@ -1301,9 +1225,7 @@ static t_bool parse_object(s_json* const item, s_json_parse* const input_buffer)
 	s_json* current_item = NULL;
 
 	if (input_buffer->depth >= JSON_NESTING_LIMIT)
-	{
 		return (FALSE); // to deeply nested
-	}
 	input_buffer->depth++;
 
 	if (cannot_access_at_index(input_buffer, 0) || (buffer_at_offset(input_buffer)[0] != '{'))
@@ -1411,18 +1333,14 @@ static t_bool print_object(s_json const* const item, s_json_print* const output_
 	s_json* current_item = item->child;
 
 	if (output_buffer == NULL)
-	{
 		return (FALSE);
-	}
 
 	// Compose the output:
 	length = (t_size) (output_buffer->format ? 2 : 1); /* fmt:
 	{\n */
 	output_pointer = ensure(output_buffer, length + 1);
 	if (output_pointer == NULL)
-	{
 		return (FALSE);
-	}
 
 	*output_pointer++ = '{';
 	output_buffer->depth++;
@@ -1439,9 +1357,7 @@ static t_bool print_object(s_json const* const item, s_json_print* const output_
 			t_size i;
 			output_pointer = ensure(output_buffer, output_buffer->depth);
 			if (output_pointer == NULL)
-			{
 				return (FALSE);
-			}
 			for (i = 0; i < output_buffer->depth; i++)
 			{
 				*output_pointer++ = '\t';
@@ -1451,17 +1367,13 @@ static t_bool print_object(s_json const* const item, s_json_print* const output_
 
 		// print key
 		if (!print_string_ptr((t_char*)current_item->key, output_buffer))
-		{
 			return (FALSE);
-		}
 		update_offset(output_buffer);
 
 		length = (t_size) (output_buffer->format ? 2 : 1);
 		output_pointer = ensure(output_buffer, length);
 		if (output_pointer == NULL)
-		{
 			return (FALSE);
-		}
 		*output_pointer++ = ':';
 		if (output_buffer->format)
 		{
@@ -1471,18 +1383,14 @@ static t_bool print_object(s_json const* const item, s_json_print* const output_
 
 		// print value
 		if (!print_value(current_item, output_buffer))
-		{
 			return (FALSE);
-		}
 		update_offset(output_buffer);
 
 		// print comma if not last
 		length = ((t_size)(output_buffer->format ? 1 : 0) + (t_size)(current_item->next ? 1 : 0));
 		output_pointer = ensure(output_buffer, length + 1);
 		if (output_pointer == NULL)
-		{
 			return (FALSE);
-		}
 		if (current_item->next)
 		{
 			*output_pointer++ = ',';
@@ -1500,9 +1408,7 @@ static t_bool print_object(s_json const* const item, s_json_print* const output_
 
 	output_pointer = ensure(output_buffer, output_buffer->format ? (output_buffer->depth + 1) : 2);
 	if (output_pointer == NULL)
-	{
 		return (FALSE);
-	}
 	if (output_buffer->format)
 	{
 		t_size i;
@@ -1518,24 +1424,19 @@ static t_bool print_object(s_json const* const item, s_json_print* const output_
 }
 
 // Get Array size/item / object item.
-t_sint	JSON_GetArraySize(s_json const* array)
+t_sint	JSON_GetArrayLength(s_json const* array)
 {
 	s_json* child = NULL;
 	t_size size = 0;
 
 	if (array == NULL)
-	{
 		return (0);
-	}
-
 	child = array->child;
-
 	while (child != NULL)
 	{
 		size++;
 		child = child->next;
 	}
-
 	// FIXME: Can overflow here. Cannot be fixed without breaking the API
 	return (t_sint)size;
 }
@@ -1545,10 +1446,7 @@ static s_json* get_array_item(s_json const* array, t_size index)
 	s_json* current_child = NULL;
 
 	if (array == NULL)
-	{
 		return (NULL);
-	}
-
 	current_child = array->child;
 	while ((current_child != NULL) && (index > 0))
 	{
@@ -1561,9 +1459,7 @@ static s_json* get_array_item(s_json const* array, t_size index)
 s_json*	JSON_GetArrayItem(s_json const* array, t_sint index)
 {
 	if (index < 0)
-	{
 		return (NULL);
-	}
 	return (get_array_item(array, (t_size)index));
 }
 
@@ -1572,9 +1468,7 @@ static s_json* get_object_item(s_json const* const object, t_char const* const n
 	s_json* current_element = NULL;
 
 	if ((object == NULL) || (name == NULL))
-	{
 		return (NULL);
-	}
 
 	current_element = object->child;
 	if (case_sensitive)
@@ -1591,11 +1485,8 @@ static s_json* get_object_item(s_json const* const object, t_char const* const n
 			current_element = current_element->next;
 		}
 	}
-
 	if ((current_element == NULL) || (current_element->key == NULL))
-	{
 		return (NULL);
-	}
 	return (current_element);
 }
 
@@ -1626,16 +1517,10 @@ static s_json* create_reference(s_json const* item)
 {
 	s_json* reference = NULL;
 	if (item == NULL)
-	{
 		return (NULL);
-	}
-
 	reference = JSON_New_Item();
 	if (reference == NULL)
-	{
 		return (NULL);
-	}
-
 	Memory_Copy(reference, item, sizeof(s_json));
 	reference->key = NULL;
 	reference->type |= JSON_TYPE_ISREFERENCE;
@@ -1648,9 +1533,7 @@ static t_bool add_item_to_array(s_json* array, s_json* item)
 	s_json* child = NULL;
 
 	if ((item == NULL) || (array == NULL) || (array == item))
-	{
 		return (FALSE);
-	}
 
 	child = array->child;
 	// To find the last item in array quickly, we use prev in array
@@ -1704,10 +1587,7 @@ static t_bool add_item_to_object(s_json* const object, t_char const* const key, 
 	t_sint new_type = JSON_TYPE_INVALID;
 
 	if ((object == NULL) || (key == NULL) || (item == NULL) || (object == item))
-	{
 		return (FALSE);
-	}
-
 	if (constant_key)
 	{
 		new_key = (char*)cast_away_const(key);
@@ -1717,10 +1597,7 @@ static t_bool add_item_to_object(s_json* const object, t_char const* const key, 
 	{
 		new_key = (char*)String_Duplicate((t_char const*)key);
 		if (new_key == NULL)
-		{
 			return (FALSE);
-		}
-
 		new_type = item->type & ~JSON_TYPE_CONSTSTRING;
 	}
 
@@ -1728,7 +1605,6 @@ static t_bool add_item_to_object(s_json* const object, t_char const* const key, 
 	{
 		Memory_Free(item->key);
 	}
-
 	item->key = new_key;
 	item->type = new_type;
 	return (add_item_to_array(object, item));
@@ -1747,18 +1623,14 @@ t_bool	JSON_AddToObject_ItemCS(s_json* object, t_char const* key, s_json* item)
 t_bool	JSON_AddToArray_ItemReference(s_json* array, s_json* item)
 {
 	if (array == NULL)
-	{
 		return (FALSE);
-	}
 	return (add_item_to_array(array, create_reference(item)));
 }
 
 t_bool	JSON_AddToObject_ItemReference(s_json* object, t_char const* key, s_json* item)
 {
 	if ((object == NULL) || (key == NULL))
-	{
 		return (FALSE);
-	}
 	return (add_item_to_object(object, key, create_reference(item), FALSE));
 }
 
@@ -1766,9 +1638,7 @@ s_json*	JSON_AddToObject_Null(s_json* const object, t_char const* const name)
 {
 	s_json* item_null = JSON_CreateNull();
 	if (add_item_to_object(object, name, item_null, FALSE))
-	{
 		return (item_null);
-	}
 	JSON_Delete(item_null);
 	return (NULL);
 }
@@ -1777,9 +1647,7 @@ s_json*	JSON_AddToObject_True(s_json* const object, t_char const* const name)
 {
 	s_json* item_true = JSON_CreateTrue();
 	if (add_item_to_object(object, name, item_true, FALSE))
-	{
 		return (item_true);
-	}
 	JSON_Delete(item_true);
 	return (NULL);
 }
@@ -1788,9 +1656,7 @@ s_json*	JSON_AddToObject_False(s_json* const object, t_char const* const name)
 {
 	s_json* item_false = JSON_CreateFalse();
 	if (add_item_to_object(object, name, item_false, FALSE))
-	{
 		return (item_false);
-	}
 	JSON_Delete(item_false);
 	return (NULL);
 }
@@ -1799,9 +1665,7 @@ s_json*	JSON_AddToObject_Bool(s_json* const object, t_char const* const name, co
 {
 	s_json* item_bool = JSON_CreateBool(boolean);
 	if (add_item_to_object(object, name, item_bool, FALSE))
-	{
 		return (item_bool);
-	}
 	JSON_Delete(item_bool);
 	return (NULL);
 }
@@ -1810,9 +1674,7 @@ s_json*	JSON_AddToObject_Number(s_json* const object, t_char const* const name, 
 {
 	s_json* item_number = JSON_CreateNumber(number);
 	if (add_item_to_object(object, name, item_number, FALSE))
-	{
 		return (item_number);
-	}
 	JSON_Delete(item_number);
 	return (NULL);
 }
@@ -1821,9 +1683,7 @@ s_json*	JSON_AddToObject_String(s_json* const object, t_char const* const name, 
 {
 	s_json* item_string = JSON_CreateString(string);
 	if (add_item_to_object(object, name, item_string, FALSE))
-	{
 		return (item_string);
-	}
 	JSON_Delete(item_string);
 	return (NULL);
 }
@@ -1832,9 +1692,7 @@ s_json*	JSON_AddToObject_Raw(s_json* const object, t_char const* const name, t_c
 {
 	s_json* item_raw = JSON_CreateRaw(raw);
 	if (add_item_to_object(object, name, item_raw, FALSE))
-	{
 		return (item_raw);
-	}
 	JSON_Delete(item_raw);
 	return (NULL);
 }
@@ -1843,9 +1701,7 @@ s_json*	JSON_AddToObject_Object(s_json* const object, t_char const* const name)
 {
 	s_json* item_object = JSON_CreateObject();
 	if (add_item_to_object(object, name, item_object, FALSE))
-	{
 		return (item_object);
-	}
 	JSON_Delete(item_object);
 	return (NULL);
 }
@@ -1854,9 +1710,7 @@ s_json*	JSON_AddToObject_Array(s_json* const object, t_char const* const name)
 {
 	s_json* item_array = JSON_CreateArray();
 	if (add_item_to_object(object, name, item_array, FALSE))
-	{
 		return (item_array);
-	}
 	JSON_Delete(item_array);
 	return (NULL);
 }
@@ -1864,9 +1718,7 @@ s_json*	JSON_AddToObject_Array(s_json* const object, t_char const* const name)
 s_json*	JSON_DetachItem(s_json* parent, s_json* const item)
 {
 	if ((parent == NULL) || (item == NULL))
-	{
 		return (NULL);
-	}
 
 	if (item != parent->child)
 	{
@@ -1899,9 +1751,7 @@ s_json*	JSON_DetachItem(s_json* parent, s_json* const item)
 s_json*	JSON_DetachItemFromArray(s_json* array, t_sint which)
 {
 	if (which < 0)
-	{
 		return (NULL);
-	}
 	return (JSON_DetachItem(array, get_array_item(array, (t_size)which)));
 }
 
@@ -1938,15 +1788,11 @@ t_bool	JSON_InsertItemInArray(s_json* array, t_sint which, s_json* newitem)
 	s_json* after_inserted = NULL;
 
 	if (which < 0)
-	{
 		return (FALSE);
-	}
 
 	after_inserted = get_array_item(array, (t_size)which);
 	if (after_inserted == NULL)
-	{
 		return (add_item_to_array(array, newitem));
-	}
 
 	newitem->next = after_inserted;
 	newitem->prev = after_inserted->prev;
@@ -1965,14 +1811,10 @@ t_bool	JSON_InsertItemInArray(s_json* array, t_sint which, s_json* newitem)
 t_bool	JSON_ReplaceItem(s_json* const parent, s_json* const item, s_json * replacement)
 {
 	if ((parent == NULL) || (replacement == NULL) || (item == NULL))
-	{
 		return (FALSE);
-	}
 
 	if (replacement == item)
-	{
 		return (TRUE);
-	}
 
 	replacement->next = item->next;
 	replacement->prev = item->prev;
@@ -2011,18 +1853,14 @@ t_bool	JSON_ReplaceItem(s_json* const parent, s_json* const item, s_json * repla
 t_bool	JSON_ReplaceItemInArray(s_json* array, t_sint which, s_json* newitem)
 {
 	if (which < 0)
-	{
 		return (FALSE);
-	}
 	return (JSON_ReplaceItem(array, get_array_item(array, (t_size)which), newitem));
 }
 
 static t_bool replace_item_in_object(s_json* object, t_char const* key, s_json* replacement, t_bool case_sensitive)
 {
 	if ((replacement == NULL) || (key == NULL))
-	{
 		return (FALSE);
-	}
 
 	// replace the name in the replacement
 	if (!(replacement->type & JSON_TYPE_CONSTSTRING) && (replacement->key != NULL))
@@ -2091,7 +1929,7 @@ s_json*	JSON_CreateNumber(t_f64 num)
 	if (item)
 	{
 		item->type = JSON_TYPE_NUMBER;
-		item->value_double = num;
+		item->value_number = num;
 	}
 	return (item);
 }
@@ -2190,9 +2028,7 @@ s_json*	JSON_CreateIntArray(const t_sint *numbers, t_sint count)
 	s_json* a = NULL;
 
 	if ((count < 0) || (numbers == NULL))
-	{
 		return (NULL);
-	}
 
 	a = JSON_CreateArray();
 
@@ -2230,9 +2066,7 @@ s_json*	JSON_CreateFloatArray(const t_f32 *numbers, t_sint count)
 	s_json* a = NULL;
 
 	if ((count < 0) || (numbers == NULL))
-	{
 		return (NULL);
-	}
 
 	a = JSON_CreateArray();
 
@@ -2270,9 +2104,7 @@ s_json*	JSON_CreateDoubleArray(const t_f64 *numbers, t_sint count)
 	s_json* a = NULL;
 
 	if ((count < 0) || (numbers == NULL))
-	{
 		return (NULL);
-	}
 
 	a = JSON_CreateArray();
 
@@ -2310,9 +2142,7 @@ s_json*	JSON_CreateStringArray(t_char const* const *strings, t_sint count)
 	s_json* a = NULL;
 
 	if ((count < 0) || (strings == NULL))
-	{
 		return (NULL);
-	}
 
 	a = JSON_CreateArray();
 
@@ -2364,7 +2194,7 @@ s_json*	JSON_Duplicate(s_json const* item, t_bool recurse)
 	}
 	// Copy over all vars
 	newitem->type = item->type & (~JSON_TYPE_ISREFERENCE);
-	newitem->value_double = item->value_double;
+	newitem->value_number = item->value_number;
 	if (item->value_string)
 	{
 		newitem->value_string = (char*)String_Duplicate((t_char*)item->value_string);
@@ -2384,9 +2214,7 @@ s_json*	JSON_Duplicate(s_json const* item, t_bool recurse)
 	}
 	// If non-recursive, then we're done!
 	if (!recurse)
-	{
 		return (newitem);
-	}
 	// Walk the ->next chain for the child.
 	child = item->child;
 	while (child != NULL)
@@ -2484,9 +2312,7 @@ void	JSON_Minify(char* json)
 	char* into = json;
 
 	if (json == NULL)
-	{
 		return;
-	}
 
 	while (json[0] != '\0')
 	{
@@ -2532,98 +2358,76 @@ void	JSON_Minify(char* json)
 t_bool	JSON_IsInvalid(s_json const* const item)
 {
 	if (item == NULL)
-	{
 		return (FALSE);
-	}
 	return (item->type & JSON_TYPE_MASK) == JSON_TYPE_INVALID;
 }
 
 t_bool	JSON_IsFalse(s_json const* const item)
 {
 	if (item == NULL)
-	{
 		return (FALSE);
-	}
 	return (item->type & JSON_TYPE_MASK) == JSON_TYPE_FALSE;
 }
 
 t_bool	JSON_IsTrue(s_json const* const item)
 {
 	if (item == NULL)
-	{
 		return (FALSE);
-	}
 	return (item->type & 0xff) == JSON_TYPE_TRUE;
 }
 
 t_bool	JSON_IsBool(s_json const* const item)
 {
 	if (item == NULL)
-	{
 		return (FALSE);
-	}
 	return (item->type & (JSON_TYPE_TRUE | JSON_TYPE_FALSE)) != 0;
 }
 t_bool	JSON_IsNull(s_json const* const item)
 {
 	if (item == NULL)
-	{
 		return (FALSE);
-	}
 	return (item->type & JSON_TYPE_MASK) == JSON_TYPE_NULL;
 }
 
 t_bool	JSON_IsNumber(s_json const* const item)
 {
 	if (item == NULL)
-	{
 		return (FALSE);
-	}
 	return (item->type & JSON_TYPE_MASK) == JSON_TYPE_NUMBER;
 }
 
 t_bool	JSON_IsString(s_json const* const item)
 {
 	if (item == NULL)
-	{
 		return (FALSE);
-	}
 	return (item->type & JSON_TYPE_MASK) == JSON_TYPE_STRING;
 }
 
 t_bool	JSON_IsArray(s_json const* const item)
 {
 	if (item == NULL)
-	{
 		return (FALSE);
-	}
 	return (item->type & JSON_TYPE_MASK) == JSON_TYPE_ARRAY;
 }
 
 t_bool	JSON_IsObject(s_json const* const item)
 {
 	if (item == NULL)
-	{
 		return (FALSE);
-	}
 	return (item->type & JSON_TYPE_MASK) == JSON_TYPE_OBJECT;
 }
 
 t_bool	JSON_IsRaw(s_json const* const item)
 {
 	if (item == NULL)
-	{
 		return (FALSE);
-	}
 	return (item->type & JSON_TYPE_MASK) == JSON_TYPE_RAW;
 }
 
 t_bool	JSON_Equals(s_json const* const a, s_json const* const b, const t_bool case_sensitive)
 {
 	if ((a == NULL) || (b == NULL) || ((a->type & JSON_TYPE_MASK) != (b->type & JSON_TYPE_MASK)) || JSON_IsInvalid(a))
-	{
 		return (FALSE);
-	}
 
 	// check if type is valid
 	switch (a->type & JSON_TYPE_MASK)
@@ -2644,9 +2448,7 @@ t_bool	JSON_Equals(s_json const* const a, s_json const* const b, const t_bool ca
 
 	// identical objects are equal
 	if (a == b)
-	{
 		return (TRUE);
-	}
 
 	switch (a->type & JSON_TYPE_MASK)
 	{
@@ -2657,22 +2459,16 @@ t_bool	JSON_Equals(s_json const* const a, s_json const* const b, const t_bool ca
 			return (TRUE);
 
 		case JSON_TYPE_NUMBER:
-			if (F64_Equals(a->value_double, b->value_double))
-			{
+			if (F64_Equals(a->value_number, b->value_number))
 				return (TRUE);
-			}
 			return (FALSE);
 
 		case JSON_TYPE_STRING:
 		case JSON_TYPE_RAW:
 			if ((a->value_string == NULL) || (b->value_string == NULL))
-			{
 				return (FALSE);
-			}
 			if (String_Compare(a->value_string, b->value_string) == 0)
-			{
 				return (TRUE);
-			}
 			return (FALSE);
 
 		case JSON_TYPE_ARRAY:
@@ -2683,9 +2479,7 @@ t_bool	JSON_Equals(s_json const* const a, s_json const* const b, const t_bool ca
 			for (; (a_element != NULL) && (b_element != NULL);)
 			{
 				if (!JSON_Equals(a_element, b_element, case_sensitive))
-				{
 					return (FALSE);
-				}
 
 				a_element = a_element->next;
 				b_element = b_element->next;
@@ -2693,9 +2487,7 @@ t_bool	JSON_Equals(s_json const* const a, s_json const* const b, const t_bool ca
 
 			// one of the arrays is longer than the other
 			if (a_element != b_element)
-			{
 				return (FALSE);
-			}
 			return (TRUE);
 		}
 
@@ -2709,14 +2501,10 @@ t_bool	JSON_Equals(s_json const* const a, s_json const* const b, const t_bool ca
 				// TODO This has O(n^2) runtime, which is horrible!
 				b_element = get_object_item(b, a_element->key, case_sensitive);
 				if (b_element == NULL)
-				{
 					return (FALSE);
-				}
 
 				if (!JSON_Equals(a_element, b_element, case_sensitive))
-				{
 					return (FALSE);
-				}
 			}
 
 			// Doing this twice, once on a and b to prevent TRUE comparison if a subset of b
@@ -2725,14 +2513,10 @@ t_bool	JSON_Equals(s_json const* const a, s_json const* const b, const t_bool ca
 			{
 				a_element = get_object_item(a, b_element->key, case_sensitive);
 				if (a_element == NULL)
-				{
 					return (FALSE);
-				}
 
 				if (!JSON_Equals(b_element, a_element, case_sensitive))
-				{
 					return (FALSE);
-				}
 			}
 			return (TRUE);
 		}
@@ -2856,3 +2640,19 @@ s_json*	JSON_Get(s_json const* object, char const* format_path, ...)
 	props = JSON_Get(result.v.json, "[\"Attributes\"][\"CHILD_ATTRIBUTE\"][4]");
 	if (!JSON_IsObject(props))
 */
+
+s_json*	JSON_Concat(s_json const* a, s_json const* b)
+{
+	s_json*	result;
+	s_json*	concat;
+
+	result = JSON_Duplicate(a, TRUE);
+	concat = JSON_Duplicate(b, TRUE);
+	if (!JSON_AddToArray_Item(result, concat))
+	{
+		JSON_Delete(result);
+		JSON_Delete(concat);
+		return (NULL);
+	}
+	return (result);
+}
