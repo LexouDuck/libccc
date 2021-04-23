@@ -8,7 +8,7 @@
 _GENERIC()
 s_array_T	CONCAT(Array_New,T_NAME)(t_uint n, ...)
 {
-	va_list		array;
+	va_list		args;
 	T			item;
 	s_array_T	result;
 
@@ -19,12 +19,12 @@ s_array_T	CONCAT(Array_New,T_NAME)(t_uint n, ...)
 	result.items = (T*)Memory_Alloc(sizeof(T) * n);
 	if (result.items == NULL)
 		return (result);
-	va_start(array, n);
+	va_start(args, n);
 	for (t_uint i = 1; i <= n; ++i)
 	{
-		item = va_arg(array, T);
+		item = va_arg(args, T);
 		result.items[i - 1] = item;
 	}
-	va_end(array);
+	va_end(args);
 	return (result);
 }

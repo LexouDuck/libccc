@@ -19,27 +19,27 @@
 #ifndef __APPLE__
 
 	#ifndef vscprintf
-static int	vscprintf(char const* format, va_list ap)
+static int	vscprintf(char const* format, va_list args)
 {
-	va_list ap_copy;
+	va_list args_copy;
 
-	va_copy(ap_copy, ap);
-	int result = vsnprintf(NULL, 0, format, ap_copy);
-	va_end(ap_copy);
+	va_copy(args_copy, args);
+	int result = vsnprintf(NULL, 0, format, args_copy);
+	va_end(args_copy);
 	return (result);
 }
 	#endif
 
 	#ifndef vasprintf
-static int	vasprintf(char* *a_str, char const* format, va_list ap)
+static int	vasprintf(char* *a_str, char const* format, va_list args)
 {
-	int length = vscprintf(format, ap);
+	int length = vscprintf(format, args);
 	if (length == -1)
 		return -1;
 	char *str = (char*)Memory_Alloc((size_t)length + 1);
 	if (!str)
 		return -1;
-	int result = vsnprintf(str, length + 1, format, ap);
+	int result = vsnprintf(str, length + 1, format, args);
 	if (result == -1)
 	{
 		String_Delete(&str);
@@ -54,12 +54,12 @@ static int	vasprintf(char* *a_str, char const* format, va_list ap)
 
 
 
-char*	String_Format_VA(char const* format, va_list ap)
+char*	String_Format_VA(char const* format, va_list args)
 {
 	int result;
 	char* str = NULL;
 
-	result = vasprintf(&str, format, ap);
+	result = vasprintf(&str, format, args);
 	if (result < 0)
 	{
 		if (str)
@@ -89,11 +89,11 @@ char*	String_Format(char const* format, ...)
 
 
 
-t_size	String_Format_N_VA(char* dest, t_size max, char const* format, va_list ap)
+t_size	String_Format_N_VA(char* dest, t_size max, char const* format, va_list args)
 {
 	t_size result;
 
-	result = vsnprintf(dest, max, format, ap);
+	result = vsnprintf(dest, max, format, args);
 	return (result);
 }
 

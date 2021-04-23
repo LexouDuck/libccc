@@ -8,7 +8,7 @@
 _GENERIC()
 s_list_T*	CONCAT(List_New,T_NAME)(t_uint n, ...)
 {
-	va_list		list;
+	va_list		args;
 	T			item;
 	s_list_T*	result = NULL;
 	s_list_T*	elem;
@@ -16,10 +16,10 @@ s_list_T*	CONCAT(List_New,T_NAME)(t_uint n, ...)
 
 	if (n == 0)
 		return (NULL);
-	va_start(list, n);
+	va_start(args, n);
 	for (t_uint i = 1; i <= n; ++i)
 	{
-		item = va_arg(list, T);
+		item = va_arg(args, T);
 		if (!(new = (s_list_T*)Memory_Alloc(sizeof(s_list_T))))
 			break;
 #if LIBCONFIG_LIST_DOUBLYLINKED
@@ -41,6 +41,6 @@ s_list_T*	CONCAT(List_New,T_NAME)(t_uint n, ...)
 			elem = elem->next;
 		}
 	}
-	va_end(list);
+	va_end(args);
 	return (result);
 }
