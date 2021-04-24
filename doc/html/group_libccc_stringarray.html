@@ -1,0 +1,371 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>10) libccc/stringarray &mdash; libccc 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/target-highlight.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="_static/js/custom.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="11) libccc/format" href="group_libccc_format.html" />
+    <link rel="prev" title="09) libccc/string" href="group_libccc_string.html" />
+	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
+	
+	<meta name="Description" content="10) libccc/stringarray">
+	<meta property="og:description" content="10) libccc/stringarray">
+	<meta property="og:title" content="libccc 1.0 documentation - 10) libccc/stringarray">
+	<meta property="og:image" content="_static/images/libccc_icon.png">
+	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="380" />
+	<meta property="og:image:height" content="380" />
+	<meta property="og:url" content="group_libccc_stringarray.html">
+	<meta property="og:site_name" content="libccc 1.0 documentation">
+
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> libccc
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="group_libccc.html">00) libccc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">01) libccc/bool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">02) libccc/int</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_fixed.html">03) libccc/fixed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_float.html">04) libccc/float</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointer.html">05) libccc/pointer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointerarray.html">06) libccc/pointerarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_memory.html">07) libccc/memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">08) libccc/char</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">09) libccc/string</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">10) libccc/stringarray</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#detailed-documentation">Detailed Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#global-functions">Global Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">11) libccc/format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_color.html">12) libccc/color</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">13) libccc/sys/io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_time.html">14) libccc/sys/time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">15) libccc/sys/logger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_constants.html">27) libccc/math/constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_float.html">18) libccc/math/float</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_fixed.html">19) libccc/math/fixed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_vlq.html">20) libccc/math/vlq</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_stat.html">21) libccc/math/stat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_random.html">22) libccc/math/random</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">23) libccc/math/complex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra.html">24) libccc/math/algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_array.html">28) libccc/monad/array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_list.html">29) libccc/monad/list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_stack.html">30) libccc/monad/stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_queue.html">31) libccc/monad/queue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_tree.html">32) libccc/monad/tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_keyval.html">33) libccc/monad/keyval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_dict.html">34) libccc/monad/dict</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_object.html">35) libccc/monad/object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_config.html">Libccc_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_regex.html">Libccc_regex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_math.html">Libccc_math_math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_sort.html">Libccc_array_sort</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_convert.html">Libccc_monad_convert</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">libccc</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>10) libccc/stringarray</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="libccc-stringarray">
+<span id="doxid-group-libccc-stringarray"></span><span id="index-0"></span><h1>10) libccc/stringarray<a class="headerlink" href="#libccc-stringarray" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>This header defines some useful functions for string array (char**) handling. <a class="reference internal" href="#details-group-libccc-stringarray"><span class="std std-ref">More…</span></a></p>
+<pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// global functions</span>
+
+<span class="kt">char</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-stringarray-1gac0aed9f57db8399560febee3e4eecf52"><span class="std std-ref">String_Split_Char</span></a><span></span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">,</span> <span class="kt">char</span> <span class="n">c</span><span class="p">);</span>
+<span class="kt">char</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-stringarray-1gae30725b8e11d3cdb9e52fbd777f90693"><span class="std std-ref">String_Split_Charset</span></a><span></span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">sep_chars</span><span class="p">);</span>
+<span class="kt">char</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-stringarray-1gabc503ca2871a1fd541f6b4e45045a8b6"><span class="std std-ref">String_Split_String</span></a><span></span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">query</span><span class="p">);</span>
+<span class="kt">char</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-stringarray-1ga343eb4e7dfe7d9b4791d07e1ea6baaf2"><span class="std std-ref">String_Divide</span></a><span></span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">);</span>
+<span class="kt">char</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-stringarray-1ga1d8469415dd6c9208f8e8cbf587120c5"><span class="std std-ref">StringArray_New</span></a><span></span><span class="p">(</span><span class="kt">t_u32</span> <span class="n">length</span><span class="p">);</span>
+<span class="kt">char</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-stringarray-1ga43138cd27fe530b9af8f304a04aa11fb"><span class="std std-ref">StringArray_New_C</span></a><span></span><span class="p">(</span><span class="kt">t_u32</span> <span class="n">y</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">x</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="n">c</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-stringarray-1ga9a5235fd9831409f07582205cad25de7"><span class="std std-ref">StringArray_Delete</span></a><span></span><span class="p">(</span><span class="kt">char</span><span class="o">***</span> <span class="n">a_strarr</span><span class="p">);</span>
+<span class="kt">char</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-stringarray-1ga9d29c093001e74bc96ae2fe13055c908"><span class="std std-ref">StringArray_Map</span></a><span></span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">**</span> <span class="n">strarr</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">char</span> <span class="k">const</span><span class="o">*</span><span class="p">)</span> <span class="n">f</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-stringarray-1ga451ce445c2396031965242e95b5584f7"><span class="std std-ref">StringArray_Map_InPlace</span></a><span></span><span class="p">(</span><span class="kt">char</span><span class="o">***</span> <span class="n">a_strarr</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span> <span class="n">f</span><span class="p">);</span>
+<span class="kt">char</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-stringarray-1ga7987cfb5e627110799e7e27370ee2676"><span class="std std-ref">StringArray_Pad_L</span></a><span></span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">**</span> <span class="n">strarr</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="n">c</span><span class="p">,</span> <span class="kt">t_u32</span> <span class="n">n</span><span class="p">);</span>
+<span class="kt">char</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-stringarray-1ga04a6941dfe089904a995a7e6a9001b1b"><span class="std std-ref">StringArray_Sub</span></a><span></span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">**</span> <span class="n">strarr</span><span class="p">,</span> <span class="kt">t_u32</span> <span class="n">start</span><span class="p">,</span> <span class="kt">t_u32</span> <span class="n">length</span><span class="p">);</span>
+<span class="kt">char</span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-stringarray-1ga0391100b43eb3681a339078033d6346e"><span class="std std-ref">StringArray_Fold</span></a><span></span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">**</span> <span class="n">strarr</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">sep</span><span class="p">);</span>
+<span class="kt">char</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-stringarray-1ga36c741f4156e39e70f2e7b9e6d809959"><span class="std std-ref">StringArray_Join</span></a><span></span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">**</span> <span class="n">strarr1</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span><span class="o">**</span> <span class="n">strarr2</span><span class="p">);</span>
+<span class="kt">char</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-stringarray-1ga9768b2dc3bf733c464469699b7dade17"><span class="std std-ref">StringArray_Merge</span></a><span></span><span class="p">(</span><span class="kt">char</span><span class="o">***</span> <span class="n">a_strarr1</span><span class="p">,</span> <span class="kt">char</span><span class="o">***</span> <span class="n">a_strarr2</span><span class="p">);</span>
+<span class="kt">char</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-stringarray-1gab68d8ffec57072dd3b6e628cada090b1"><span class="std std-ref">StringArray_Append</span></a><span></span><span class="p">(</span><span class="kt">char</span><span class="o">***</span> <span class="n">a_dest</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span><span class="o">**</span> <span class="n">src</span><span class="p">);</span>
+<span class="kt">char</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-stringarray-1gadb8aea98fbd91a6e1e25f8d53c5d254f"><span class="std std-ref">StringArray_Prepend</span></a><span></span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">**</span> <span class="n">src</span><span class="p">,</span> <span class="kt">char</span><span class="o">***</span> <span class="n">a_dest</span><span class="p">);</span>
+<span class="kt">char</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-stringarray-1ga8122ede89678362fc421436e00813611"><span class="std std-ref">StringArray_Insert_InPlace</span></a><span></span><span class="p">(</span><span class="kt">char</span><span class="o">***</span> <span class="n">a_dest</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span><span class="o">**</span> <span class="n">src</span><span class="p">,</span> <span class="kt">t_u32</span> <span class="n">index</span><span class="p">);</span>
+<span class="kt">t_u32</span> <a class="reference internal" href="#doxid-group-libccc-stringarray-1ga27e20ad58d996d7be6d9b6960e0819cd"><span class="std std-ref">StringArray_Length</span></a><span></span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">**</span> <span class="n">strarr</span><span class="p">);</span>
+<span class="kt">t_u32</span> <a class="reference internal" href="#doxid-group-libccc-stringarray-1gad6cfc01994604e7d5dfad3bf20a8e044"><span class="std std-ref">StringArray_Count_Char</span></a><span></span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">**</span> <span class="n">strarr</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="n">c</span><span class="p">);</span>
+<span class="kt">t_u32</span> <a class="reference internal" href="#doxid-group-libccc-stringarray-1ga09d0ca56b6be7e5490532568de8631e5"><span class="std std-ref">StringArray_Count_Charset</span></a><span></span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">**</span> <span class="n">strarr</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">cset</span><span class="p">);</span>
+<span class="kt">t_u32</span> <a class="reference internal" href="#doxid-group-libccc-stringarray-1ga8a3b7e9bef5499a5f046d540da8f8f44"><span class="std std-ref">StringArray_Count_String</span></a><span></span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">**</span> <span class="n">strarr</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">query</span><span class="p">);</span>
+
+<span class="c1">// macros</span>
+
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-stringarray-1ga860c090904804eca3216927436464831"><span></span><span class="n">c_strarrappend</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-stringarray-1gab68d8ffec57072dd3b6e628cada090b1"><span class="std std-ref">StringArray_Append</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-stringarray-1gaf9e2669054f88c70304ebdb099eece3a"><span></span><span class="n">c_strarrcnew</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-stringarray-1ga43138cd27fe530b9af8f304a04aa11fb"><span class="std std-ref">StringArray_New_C</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-stringarray-1ga795af70d9ef1e594bd4ca27bb1e58931"><span></span><span class="n">c_strarrcount_char</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-stringarray-1gad6cfc01994604e7d5dfad3bf20a8e044"><span class="std std-ref">StringArray_Count_Char</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-stringarray-1ga82796598f6356381d492712912c4dc56"><span></span><span class="n">c_strarrcount_charset</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-stringarray-1ga09d0ca56b6be7e5490532568de8631e5"><span class="std std-ref">StringArray_Count_Charset</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-stringarray-1gad8378cb25508900961101ea2c3dca66b"><span></span><span class="n">c_strarrcount_str</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-stringarray-1ga8a3b7e9bef5499a5f046d540da8f8f44"><span class="std std-ref">StringArray_Count_String</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-stringarray-1ga4d51ca896ea454bfa1b877557d1626eb"><span></span><span class="n">c_strarrdel</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-stringarray-1ga9a5235fd9831409f07582205cad25de7"><span class="std std-ref">StringArray_Delete</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-stringarray-1ga3b2957e6214d92e9cdfb52af18bc51f3"><span></span><span class="n">c_strarrfold</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-stringarray-1ga0391100b43eb3681a339078033d6346e"><span class="std std-ref">StringArray_Fold</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-stringarray-1ga999b3db2ab025cebdc9fece5a5fd61bc"><span></span><span class="n">c_strarrinsert_inplace</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-stringarray-1ga8122ede89678362fc421436e00813611"><span class="std std-ref">StringArray_Insert_InPlace</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-stringarray-1gaa7ec69f4ef1d9a38f97adb1226de9c3d"><span></span><span class="n">c_strarrjoin</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-stringarray-1ga36c741f4156e39e70f2e7b9e6d809959"><span class="std std-ref">StringArray_Join</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-stringarray-1ga76398dab1c86bb3c7485bd550834de76"><span></span><span class="n">c_strarrlen</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-stringarray-1ga27e20ad58d996d7be6d9b6960e0819cd"><span class="std std-ref">StringArray_Length</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-stringarray-1gacaed10b7b0d1ac1e738c515663454bba"><span></span><span class="n">c_strarrmap</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-stringarray-1ga9d29c093001e74bc96ae2fe13055c908"><span class="std std-ref">StringArray_Map</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-stringarray-1gaba7d213dd8f926d7ec9d5e55dfe02c1e"><span></span><span class="n">c_strarrmap_inplace</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-stringarray-1ga451ce445c2396031965242e95b5584f7"><span class="std std-ref">StringArray_Map_InPlace</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-stringarray-1ga91f2b982dd584928569647979e45f8d7"><span></span><span class="n">c_strarrmerge</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-stringarray-1ga9768b2dc3bf733c464469699b7dade17"><span class="std std-ref">StringArray_Merge</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-stringarray-1ga98b8332648eede9b0dc618cdc1b11a53"><span></span><span class="n">c_strarrnew</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-stringarray-1ga1d8469415dd6c9208f8e8cbf587120c5"><span class="std std-ref">StringArray_New</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-stringarray-1ga0e403add53eb7ec80008d56782b455b8"><span></span><span class="n">c_strarrpad_l</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-stringarray-1ga7987cfb5e627110799e7e27370ee2676"><span class="std std-ref">StringArray_Pad_L</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-stringarray-1gab236e3391c9e9911ae9f5e4d3341e51e"><span></span><span class="n">c_strarrprepend</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-stringarray-1gadb8aea98fbd91a6e1e25f8d53c5d254f"><span class="std std-ref">StringArray_Prepend</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-stringarray-1ga4794f95a77bb07c14cd3614027c340d5"><span></span><span class="n">c_strarrsub</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-stringarray-1ga04a6941dfe089904a995a7e6a9001b1b"><span class="std std-ref">StringArray_Sub</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-stringarray-1ga0963f1f53b529c88e13a62a69f208940"><span></span><span class="n">c_strdivide</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-stringarray-1ga343eb4e7dfe7d9b4791d07e1ea6baaf2"><span class="std std-ref">String_Divide</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-stringarray-1gaaf1ecb2878cc901b1565c4d6390d9f16"><span></span><span class="n">c_strsplit_char</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-stringarray-1gac0aed9f57db8399560febee3e4eecf52"><span class="std std-ref">String_Split_Char</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-stringarray-1gaaff1a42659acf960a13b8923548c5e5c"><span></span><span class="n">c_strsplit_charset</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-stringarray-1gae30725b8e11d3cdb9e52fbd777f90693"><span class="std std-ref">String_Split_Charset</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-stringarray-1gaf076504f93f0c48539f5f2d7dc9ab3ff"><span></span><span class="n">c_strsplit_str</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-stringarray-1gabc503ca2871a1fd541f6b4e45045a8b6"><span class="std std-ref">String_Split_String</span></a></pre>
+</div>
+<div class="section" id="detailed-documentation">
+<span id="details-group-libccc-stringarray"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline">¶</a></h2>
+<p>This header defines some useful functions for string array (char**) handling.</p>
+<div class="section" id="global-functions">
+<h3>Global Functions<a class="headerlink" href="#global-functions" title="Permalink to this headline">¶</a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-stringarray-1gac0aed9f57db8399560febee3e4eecf52"><span id="index-1"></span><span></span><span class="kt">char</span><span class="o">**</span> <span class="n">String_Split_Char</span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">,</span> <span class="kt">char</span> <span class="n">c</span><span class="p">)</span></pre>
+<p>Returns a string array made up of substrings of ‘str’, where each element is a section delimited by ‘c’ separators, or the edges of the string.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-stringarray-1gae30725b8e11d3cdb9e52fbd777f90693"><span id="index-2"></span><span></span><span class="kt">char</span><span class="o">**</span> <span class="n">String_Split_Charset</span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">sep_chars</span><span class="p">)</span></pre>
+<p>Returns a string array made up of substrings of ‘str’, where each element is a section delimited by any of the ‘char_sep’ separators, or the edges of the string.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-stringarray-1gabc503ca2871a1fd541f6b4e45045a8b6"><span id="index-3"></span><span></span><span class="kt">char</span><span class="o">**</span> <span class="n">String_Split_String</span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">query</span><span class="p">)</span></pre>
+<p>Splits up the given string ‘str’ into several parts in a string array, using ‘query’ as separator.</p>
+<p>Returns a string array made up of substrings of ‘str’, where each element is a section delimited by the full string ‘query’, or the edges of the string. NB: if a dual query overlaps in str, the query is only counted for distinct parts, ie “||” for “|||aa” will return [“”, “|aa”] and not [“”, “”, “aa”]. Note that this is the same behavior as many Ctrl+F: to get the second result, simply keep the second part of the pattern and call replace twice, without the pattern the second time. Ex: “enenen” s/enen/HIen/-&gt; “HIenen” s/enen/HI/–&gt; “HIHI”</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-stringarray-1ga343eb4e7dfe7d9b4791d07e1ea6baaf2"><span id="index-4"></span><span></span><span class="kt">char</span><span class="o">**</span> <span class="n">String_Divide</span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">)</span></pre>
+<p>Returns a string array which is the result of dividing str into chunks of equal size n, safe for the last chunk of length &lt;= n.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-stringarray-1ga1d8469415dd6c9208f8e8cbf587120c5"><span id="index-5"></span><span></span><span class="kt">char</span><span class="o">**</span> <span class="n">StringArray_New</span><span class="p">(</span><span class="kt">t_u32</span> <span class="n">length</span><span class="p">)</span></pre>
+<p>Returns a null-terminated list of unset char*, of length length.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-stringarray-1ga43138cd27fe530b9af8f304a04aa11fb"><span id="index-6"></span><span></span><span class="kt">char</span><span class="o">**</span> <span class="n">StringArray_New_C</span><span class="p">(</span><span class="kt">t_u32</span> <span class="n">y</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">x</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="n">c</span><span class="p">)</span></pre>
+<p>Returns a newly allocated string array, which has y line and x characters per lines (+1 for null-termination), every character set to the value c.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-stringarray-1ga9a5235fd9831409f07582205cad25de7"><span id="index-7"></span><span></span><span class="kt">void</span> <span class="n">StringArray_Delete</span><span class="p">(</span><span class="kt">char</span><span class="o">***</span> <span class="n">a_strarr</span><span class="p">)</span></pre>
+<p>Frees all allocations in a string array, then the string array itself.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-stringarray-1ga9d29c093001e74bc96ae2fe13055c908"><span id="index-8"></span><span></span><span class="kt">char</span><span class="o">**</span> <span class="n">StringArray_Map</span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">**</span> <span class="n">strarr</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">char</span> <span class="k">const</span><span class="o">*</span><span class="p">)</span> <span class="n">f</span><span class="p">)</span></pre>
+<p>Returns a newly allocated string array, the result of mapping each string of strarr by f. f should be a function that allocates and returns a new string.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-stringarray-1ga451ce445c2396031965242e95b5584f7"><span id="index-9"></span><span></span><span class="kt">void</span> <span class="n">StringArray_Map_InPlace</span><span class="p">(</span><span class="kt">char</span><span class="o">***</span> <span class="n">a_strarr</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span> <span class="n">f</span><span class="p">)</span></pre>
+<p>Transforms the content of the input string array, by mapping each string of strarr by f. f should be a function that does not allocate a new string; but instead edits the string’s content in place.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-stringarray-1ga7987cfb5e627110799e7e27370ee2676"><span id="index-10"></span><span></span><span class="kt">char</span><span class="o">**</span> <span class="n">StringArray_Pad_L</span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">**</span> <span class="n">strarr</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="n">c</span><span class="p">,</span> <span class="kt">t_u32</span> <span class="n">n</span><span class="p">)</span></pre>
+<p>Returns a newly allocated string array such that every string is now preceded by n times the character c.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-stringarray-1ga04a6941dfe089904a995a7e6a9001b1b"><span id="index-11"></span><span></span><span class="kt">char</span><span class="o">**</span> <span class="n">StringArray_Sub</span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">**</span> <span class="n">strarr</span><span class="p">,</span> <span class="kt">t_u32</span> <span class="n">start</span><span class="p">,</span> <span class="kt">t_u32</span> <span class="n">length</span><span class="p">)</span></pre>
+<p>Returns a newly allocated string array, which is the result of removing the lines from index ‘start’ to ‘start + length’ from strarr.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-stringarray-1ga0391100b43eb3681a339078033d6346e"><span id="index-12"></span><span></span><span class="kt">char</span><span class="o">*</span> <span class="n">StringArray_Fold</span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">**</span> <span class="n">strarr</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">sep</span><span class="p">)</span></pre>
+<p>Returns a newly allocated string which is the fold/reduce concatenation of all strings in strarr, with the string ‘sep’ added between each string.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-stringarray-1ga36c741f4156e39e70f2e7b9e6d809959"><span id="index-13"></span><span></span><span class="kt">char</span><span class="o">**</span> <span class="n">StringArray_Join</span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">**</span> <span class="n">strarr1</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span><span class="o">**</span> <span class="n">strarr2</span><span class="p">)</span></pre>
+<p>Returns the concatenation of ‘strarr1’ and ‘strarr2’, and deletes both inputs from memory. Also returns the result.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-stringarray-1ga9768b2dc3bf733c464469699b7dade17"><span id="index-14"></span><span></span><span class="kt">char</span><span class="o">**</span> <span class="n">StringArray_Merge</span><span class="p">(</span><span class="kt">char</span><span class="o">***</span> <span class="n">a_strarr1</span><span class="p">,</span> <span class="kt">char</span><span class="o">***</span> <span class="n">a_strarr2</span><span class="p">)</span></pre>
+<p>Returns the concatenation of ‘strarr1’ and ‘strarr2’, and deletes both inputs from memory. Also returns the result.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-stringarray-1gab68d8ffec57072dd3b6e628cada090b1"><span id="index-15"></span><span></span><span class="kt">char</span><span class="o">**</span> <span class="n">StringArray_Append</span><span class="p">(</span><span class="kt">char</span><span class="o">***</span> <span class="n">a_dest</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span><span class="o">**</span> <span class="n">src</span><span class="p">)</span></pre>
+<p>Returns the concatenation of ‘dest’ and ‘src’, and deletes ‘dest’, replacing it by the result. Also returns the result.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-stringarray-1gadb8aea98fbd91a6e1e25f8d53c5d254f"><span id="index-16"></span><span></span><span class="kt">char</span><span class="o">**</span> <span class="n">StringArray_Prepend</span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">**</span> <span class="n">src</span><span class="p">,</span> <span class="kt">char</span><span class="o">***</span> <span class="n">a_dest</span><span class="p">)</span></pre>
+<p>Returns the concatenation of ‘src’ and ‘dest’, and deletes ‘dest’, replacing it by the result. Also returns the result.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-stringarray-1ga8122ede89678362fc421436e00813611"><span id="index-17"></span><span></span><span class="kt">char</span><span class="o">**</span> <span class="n">StringArray_Insert_InPlace</span><span class="p">(</span><span class="kt">char</span><span class="o">***</span> <span class="n">a_dest</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span><span class="o">**</span> <span class="n">src</span><span class="p">,</span> <span class="kt">t_u32</span> <span class="n">index</span><span class="p">)</span></pre>
+<p>Inserts the string array ‘src’ at index ‘index’ in ‘dest’; deletes ‘dest’ and replaces it by the result. Also returns the result.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-stringarray-1ga27e20ad58d996d7be6d9b6960e0819cd"><span id="index-18"></span><span></span><span class="kt">t_u32</span> <span class="n">StringArray_Length</span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">**</span> <span class="n">strarr</span><span class="p">)</span></pre>
+<p>Returns the number of strings in a null-terminated string array.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-stringarray-1gad6cfc01994604e7d5dfad3bf20a8e044"><span id="index-19"></span><span></span><span class="kt">t_u32</span> <span class="n">StringArray_Count_Char</span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">**</span> <span class="n">strarr</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="n">c</span><span class="p">)</span></pre>
+<p>Counts the number of occurences of char c in string array strarr/</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-stringarray-1ga09d0ca56b6be7e5490532568de8631e5"><span id="index-20"></span><span></span><span class="kt">t_u32</span> <span class="n">StringArray_Count_Charset</span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">**</span> <span class="n">strarr</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">cset</span><span class="p">)</span></pre>
+<p>Counts the total number of occurences of any of the chars in cset in strarr.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-stringarray-1ga8a3b7e9bef5499a5f046d540da8f8f44"><span id="index-21"></span><span></span><span class="kt">t_u32</span> <span class="n">StringArray_Count_String</span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">**</span> <span class="n">strarr</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">query</span><span class="p">)</span></pre>
+<p>Counts the number of occurences of the string ‘query’ in strarr.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="group_libccc_format.html" class="btn btn-neutral float-right" title="11) libccc/format" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="group_libccc_string.html" class="btn btn-neutral float-left" title="09) libccc/string" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Free &amp; Open Source: MIT License
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
