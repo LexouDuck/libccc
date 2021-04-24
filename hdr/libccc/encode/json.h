@@ -52,6 +52,8 @@ typedef t_sint		t_json_type;
 #define JSON_TYPE_OBJECT	(t_json_type)(1 << 6)
 #define JSON_TYPE_RAW		(t_json_type)(1 << 7) // raw json
 
+#define JSON_TYPE_MASK	(0xFF)
+
 #define JSON_TYPE_ISREFERENCE	(t_json_type)(1 << 8)
 #define JSON_TYPE_CONSTSTRING	(t_json_type)(1 << 9)
 
@@ -62,14 +64,14 @@ typedef t_sint		t_json_type;
 */
 typedef struct	json
 {
-	struct json*	next;	//!< linked-list pointers to neighboring items
-	struct json*	prev;	//!< linked-list pointers to neighboring items
+	struct json* next;	//!< linked-list pointers to neighboring items
+	struct json* prev;	//!< linked-list pointers to neighboring items
 
-	struct json*	child;	//!< An array or object item will have a child pointer pointing to a chain of the items in the array/object.
+	struct json* child;	//!< An array or object item will have a child pointer pointing to a chain of the items in the array/object.
 
-	t_json_type	type;		//!< The type of the item: uses the `JSON_TYPE_*` macros defined above.
+	t_json_type	type;	//!< The type of the item: uses the `JSON_TYPE_*` macros defined above.
 
-	t_char*		key;		//!< The item's name string, if this item is the child of, or is in the list of subitems of an object.
+	t_char*		key;	//!< The item's name string, if this item is the child of, or is in the list of subitems of an object.
 
 	t_char*		value_string;	//!< The item's string, if `type == JSON_TYPE_STRING || type == JSON_TYPE_RAW`
 	t_f64		value_number;	//!< The item's number, if `type == JSON_TYPE_NUMBER`
@@ -110,6 +112,9 @@ typedef struct	json
 ** ************************************************************************** *|
 */
 
+//! Allocated one single JSON struct
+s_json* JSON_New_Item(void);
+
 //! Create a new `s_json` object, parsed from a (valid) JSON string
 /*!
 **	Memory Management: the caller is always responsible to free the results,
@@ -118,9 +123,15 @@ typedef struct	json
 **	The exception is JSON_PrintPreallocated(), where the caller has full responsibility of the buffer.
 **	Supply a block of JSON, and this returns a `s_json` object you can interrogate.
 */
-s_json*	JSON_Parse(t_char const* value);
+s_json*	JSON_FromString(t_char const* value);
+#define JSON_Parse	JSON_FromString
+#define JSON_Decode	JSON_FromString
+
 //! Create a new `s_json` object, parsed from a (valid) JSON string, (only the first `buffer_length` chars are parsed)
-s_json*	JSON_Parse_N(t_char const* value, t_size buffer_length);
+s_json*	JSON_FromString_N(t_char const* value, t_size buffer_length);
+#define JSON_Parse_N	JSON_FromString_N
+#define JSON_Decode_N	JSON_FromString_N
+
 //! Create a new `s_json` object, parsed from a (valid) JSON string
 /*!
 **	JSON_ParseStrict() allows you to require (and check) that the JSON is null terminated,
@@ -128,31 +139,50 @@ s_json*	JSON_Parse_N(t_char const* value, t_size buffer_length);
 **	If you supply a ptr in return_parse_end and parsing fails, then `return_parse_end`
 **	will contain a pointer to the error, such that it will match the return of JSON_GetErrorPtr().
 */
-s_json*	JSON_ParseStrict(t_char const* value, t_char const* *return_parse_end, t_bool require_null_terminated);
+s_json*	JSON_FromString_Strict(t_char const* value, t_char const* *return_parse_end, t_bool require_null_terminated);
+#define JSON_Parse_Strict	JSON_FromString_Strict
+#define JSON_Decode_Strict	JSON_FromString_Strict
+
 //! Create a new `s_json` object, parsed from a (valid) JSON string, (only the first `buffer_length` chars are parsed)
-s_json*	JSON_ParseStrict_N(t_char const* value, t_size buffer_length, t_char const* *return_parse_end, t_bool require_null_terminated);
+s_json*	JSON_FromString_Strict_N(t_char const* value, t_size buffer_length, t_char const* *return_parse_end, t_bool require_null_terminated);
+#define JSON_Parse_Strict_N 	JSON_FromString_Strict_N
+#define JSON_Decode_Strict_N	JSON_FromString_Strict_N
 
 
 
+#define JSON_ToString	JSON_ToString_Pretty
+#define JSON_Print		JSON_ToString_Pretty
 //! Render a s_json entity to text for transfer/storage (with 'pretty' formatting).
-t_char*	JSON_Print(s_json const* item);
-//! Render a s_json entity to text for transfer/storage, without any formatting.
-t_char*	JSON_PrintUnformatted(s_json const* item);
-//! Render a s_json entity to text using a buffered strategy. prebuffer is a guess at the final size. guessing well reduces reallocation. fmt=0 gives unformatted, =1 gives formatted.
-t_char*	JSON_PrintBuffered(s_json const* item, t_sint prebuffer, t_bool fmt);
-//! Render a s_json entity to text using a buffer already allocated in memory with given length. Returns 1 on success and 0 on failure.
-//! NOTE: s_json is not always 100% accurate in estimating how much memory it will use, so to be safe allocate 5 bytes more than you actually need.
-t_bool	JSON_PrintPreallocated(s_json* item, t_char* buffer, t_sint const length, t_bool const format);
+t_char*	JSON_ToString_Pretty(s_json const* item);
+#define JSON_Print_Pretty	JSON_ToString_Pretty
+//! Render a s_json entity to text for transfer/storage, without any formatting/whitespace
+t_char*	JSON_ToString_Minify(s_json const* item);
+#define JSON_Print_Minify	JSON_ToString_Minify
+//! Render a s_json entity to text using a buffered strategy.
+/*!
+**	prebuffer is a guess at the final size. guessing well reduces reallocation. fmt=0 gives unformatted, =1 gives formatted.
+*/
+t_char*	JSON_ToString_Buffered(s_json const* item, t_sint prebuffer, t_bool fmt);
+#define JSON_Print_Buffered	JSON_ToString_Buffered
+//! Render a `s_json` entity to text using a buffer already allocated in memory with given length.
+/*!
+**	@returns 1(TRUE) on success and 0(FALSE) on failure.
+**	NOTE: s_json is not always 100% accurate in estimating how much memory it will use, so to be safe allocate 5 bytes more than you actually need.
+*/
+t_bool	JSON_ToString_Preallocated(s_json* item, t_char* buffer, t_sint const length, t_bool const format);
+#define JSON_Print_Preallocated	JSON_ToString_Preallocated
 
 
 
 //! Returns the amount of items in an array (or object).
 t_sint	JSON_GetArrayLength(s_json const* array);
+
 //! Retrieve item number "index" from array "array". Returns NULL if unsuccessful.
 s_json*	JSON_GetArrayItem(s_json const* array, t_sint index);
 
-//! Get item "string" from object. Case insensitive.
+//! Get the item with the given `key` from the given `object` (case-insensitive).
 s_json*	JSON_GetObjectItem				(s_json const* const object, t_char const* const key);
+//! Get the item with the given `key` from the given `object` (case-sensitive).
 s_json*	JSON_GetObjectItem_CaseSensitive(s_json const* const object, t_char const* const key);
 
 t_bool	JSON_HasObjectItem(s_json const* object, t_char const* key);
@@ -160,12 +190,18 @@ t_bool	JSON_HasObjectItem(s_json const* object, t_char const* key);
 
 
 //! Access the contents of a JSON with a 'JSON path', ie: a format string of 'accessors' (ie: strings or numbers in brackets)
-s_json*	JSON_Get(s_json const* object, char const* format_path, ...)
+/*!
+**	@param	object		The JSON object to get an item from
+**	@param	format_path	The format string with an accessor pattern (example: `JSON_Get(json, "[\"subarray\"][3][\"name\"]")`)
+**	@param	...			The variadic arguments list which goes along with `format_path` (works like printf)
+**	@returns the JSON object gotten from the given accessor path, or NULL if the path or JSON was invalid.
+*/
+s_json*	JSON_Get(s_json const* object, t_char const* format_path, ...)
 _FORMAT(printf, 2, 3);
 
-//! Returns the value contained within the given `item`.
+//! Returns the number value contained within the given `item`, or `NAN` if type is not #JSON_TYPE_NUMBER.
 t_f64	JSON_GetValue_Number(s_json const* const item);
-//! Returns the value contained within the given `item`.
+//! Returns the string value contained within the given `item`, or `NULL` if type is not #JSON_TYPE_STRING.
 t_char*	JSON_GetValue_String(s_json const* const item);
 
 
@@ -178,6 +214,7 @@ t_char*	JSON_SetValue_String(s_json* object, t_char* value);
 
 
 //! These functions check the type of an item.
+//!@{
 t_bool	JSON_IsInvalid	(s_json const* const item);
 t_bool	JSON_IsNull		(s_json const* const item);
 t_bool	JSON_IsFalse	(s_json const* const item);
@@ -188,10 +225,12 @@ t_bool	JSON_IsString	(s_json const* const item);
 t_bool	JSON_IsArray	(s_json const* const item);
 t_bool	JSON_IsObject	(s_json const* const item);
 t_bool	JSON_IsRaw		(s_json const* const item);
+//!@}
 
 
 
 //! These calls create a s_json item of the appropriate type.
+//!@{
 s_json*	JSON_CreateNull(void);
 s_json*	JSON_CreateTrue(void);
 s_json*	JSON_CreateFalse(void);
@@ -201,6 +240,7 @@ s_json*	JSON_CreateString(t_char const* string);
 s_json*	JSON_CreateRaw(t_char const* raw);
 s_json*	JSON_CreateArray(void);
 s_json*	JSON_CreateObject(void);
+//!@}
 
 //! Create a string where `value_string` references a string, so it will not be freed by JSON_Delete()
 s_json*	JSON_CreateStringReference(t_char const* string);
@@ -215,10 +255,12 @@ s_json*	JSON_CreateObjectReference(s_json const* child);
 **	The given `count` cannot be greater than the number of elements in
 **	the given `numbers` array, otherwise array access will be out of bounds.
 */
+//!@{
 s_json*	JSON_CreateIntArray		(t_sint const* numbers, t_sint count);
 s_json*	JSON_CreateFloatArray	(t_f32 const* numbers, t_sint count);
 s_json*	JSON_CreateDoubleArray	(t_f64 const* numbers, t_sint count);
 s_json*	JSON_CreateStringArray	(t_char const* const *strings, t_sint count);
+//!@}
 
 
 
@@ -246,6 +288,7 @@ t_bool	JSON_AddToObject_ItemCS(s_json* object, t_char const* key, s_json* item);
 **	Helper functions for creating and adding items to an object at the same time.
 **	They return the added item or NULL on failure.
 */
+//!@{
 s_json*	JSON_AddToObject_Null	(s_json* const object, t_char const* key);
 s_json*	JSON_AddToObject_True	(s_json* const object, t_char const* key);
 s_json*	JSON_AddToObject_False	(s_json* const object, t_char const* key);
@@ -255,6 +298,7 @@ s_json*	JSON_AddToObject_String	(s_json* const object, t_char const* key, t_char
 s_json*	JSON_AddToObject_Raw	(s_json* const object, t_char const* key, t_char const* raw);
 s_json*	JSON_AddToObject_Object	(s_json* const object, t_char const* key);
 s_json*	JSON_AddToObject_Array	(s_json* const object, t_char const* key);
+//!@}
 
 
 
@@ -287,8 +331,9 @@ s_json*	JSON_DetachItemFromObject_CaseSensitive	(s_json* object, t_char const* k
 t_bool	JSON_ReplaceItem(s_json* parent, s_json* item, s_json* newitem);
 //! Replaces the given `item` from the given `array`, with the given `newitem`.
 t_bool	JSON_ReplaceItemInArray					(s_json* array, t_sint index, s_json* newitem);
-//! Replaces the given `item` from the given `object`, with the given `newitem`.
+//! Replaces the given `item` from the given `object`, with the given `newitem` (case-insensitive).
 t_bool	JSON_ReplaceItemInObject				(s_json* object, t_char const* key, s_json* newitem);
+//! Replaces the given `item` from the given `object`, with the given `newitem` (case-sensitive).
 t_bool	JSON_ReplaceItemInObject_CaseSensitive	(s_json* object, t_char const* key, s_json* newitem);
 
 
@@ -327,12 +372,13 @@ void	JSON_Minify(t_char* json); //!< TODO rename to JSON_Minify_InPlace(), and a
 
 
 
-//! The error message function
+//! The "get error" function, to be used after getting an unsatisfactory result return
 /*!
-**	For analysing failed parses.
-**	This returns a pointer to the parse error.
+**	This function can be used for analysing failed parses.
+**	This returns a pointer to the parse error location in the given JSON string.
 **	You'll probably need to look a few chars back to make sense of it.
-**	Defined when JSON_Parse() returns 0. 0 when JSON_Parse() succeeds.
+**	Defined when JSON_Parse() returns 0.
+**	Otherwise, NULL when JSON_Parse() succeeds.
 */
 t_char const*	JSON_GetErrorPtr(void);
 

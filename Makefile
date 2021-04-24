@@ -269,7 +269,23 @@ SRCS = \
 	monad/list/map.c		\
 	monad/list/filter.c		\
 	monad/convert/list.c	\
-	encode/json.c			\
+	encode/json/add.c		\
+	encode/json/concat.c	\
+	encode/json/create.c	\
+	encode/json/delete.c	\
+	encode/json/detach.c	\
+	encode/json/duplicate.c	\
+	encode/json/equals.c	\
+	encode/json/get.c		\
+	encode/json/insert.c	\
+	encode/json/is.c		\
+	encode/json/parse.c		\
+	encode/json/print.c		\
+	encode/json/length.c	\
+	encode/json/minify.c	\
+	encode/json/new.c		\
+	encode/json/replace.c	\
+	encode/json/set.c		\
 
 # define object files list (.o) from source list
 OBJS = ${SRCS:%.c=$(OBJDIR)%.o}
