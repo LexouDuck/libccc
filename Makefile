@@ -146,6 +146,7 @@ SRCS = \
 	string/map.c		\
 	string/replace.c	\
 	string/print.c		\
+	string/parse.c		\
 	stringarray/split_char.c	\
 	stringarray/split_charset.c	\
 	stringarray/split_str.c		\

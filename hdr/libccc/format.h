@@ -59,7 +59,7 @@ HEADER_CPP
 #define FORMAT_HEX_U8	"%#X"
 #define FORMAT_HEX_U16	"%#X"
 #define FORMAT_HEX_U32	"%#X"
-#if defined(__APPLE__) || defined(_WIN32)
+#if (defined(__APPLE__) || defined(_WIN32))
 	#define FORMAT_S64		"%+lli"
 	#define FORMAT_U64		"%llu"
 	#define FORMAT_HEX_U64	"%#llX"
@@ -221,7 +221,8 @@ HEADER_CPP
 **	|  "j"	| intmax_t		| uintmax_t				|				|		|			|		| intmax_t*		|
 **	|  "z"	| size_t		| size_t				|				|		|			|		| size_t*		|
 **	|  "t"	| ptrdiff_t		| ptrdiff_t				|				|		|			|		| ptrdiff_t*	|
-**	|__"L"__|_______________|_______________________|_long_double___|_______|___________|_______|_______________|
+**	|  "L"	|				|						| long double	|		|			|		|				|
+**	|_______|_______________|_______________________|_______________|_______|___________|_______|_______________|
 **	```
 */
 _FORMAT(printf, 1, 2)

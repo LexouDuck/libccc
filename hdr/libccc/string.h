@@ -561,6 +561,7 @@ t_char*					String_Pad_R(t_char const* str, t_char c, t_size length);
 ** ************************************************************************** *|
 */
 
+//! Creates a new string with character escape-sequences
 /*!
 **	Returns a new null-terminated string where every non-printable character
 **	of `str` is replaced by either its `normal` escape sequence (if available)
@@ -579,16 +580,22 @@ t_char*					String_Pad_R(t_char const* str, t_char c, t_size length);
 **	- `\r`	Carriage return
 **	- `\e`	Escape
 **	- `\x??`		Byte value, written as hexadecimal
-**	- `\u????`		Unicode character with hexadecimal code point (Unicode: U+????)
-**	- `\U????????`	Unicode character with hexadecimal code point (Unicode: U+????????)
+**	- TODO `\u????`		UTF-8 multi-byte character, written as a hexadecimal code point (Unicode: U+????)
+**	- TODO `\U????????`	UTF-8 multi-byte character, written as a hexadecimal code point (Unicode: U+????????)
+**
+**	@param	str				The string to duplicate with escape-sequences
+**	@param	charset_extra	A string containing any extra characters which should be escaped (ie: preceded by a backslash)
+**	@returns a newly allocated modified copy of the given `str`, with special characters being escape-sequenced.
 */
 _MALLOC()
 t_char*							String_Print(t_char const* str, t_char const* charset_extra);
 #define c_strprint				String_Print //!< @alias{String_Print}
+#define String_Encode			String_Print //!< @alias{String_Print}
 #define String_ToPrintable		String_Print //!< @alias{String_Print}
 
 
 
+//! Creates a new string, replacing escape-sequences with their corresponding char value
 /*!
 **	Returns a new null-terminated string where every valid backslash escape sequence
 **	is converted to its corresponding string byte.
@@ -606,17 +613,18 @@ t_char*							String_Print(t_char const* str, t_char const* charset_extra);
 **	- `\r`	Carriage return
 **	- `\e`	Escape
 **	- `\x??`		Byte value, written as hexadecimal
-**	- `\u????`		Unicode character with hexadecimal code point (Unicode: U+????)
-**	- `\U????????`	Unicode character with hexadecimal code point (Unicode: U+????????)
+**	- `\u????`		UTF-8 multi-byte character, written as a hexadecimal code point (Unicode: U+????)
+**	- `\U????????`	UTF-8 multi-byte character, written as a hexadecimal code point (Unicode: U+????????)
 **	Any other backslash-ed character will simply resolve to itself (ie: removing the preceding backslash)
 **
-**	@param	str				The string to duplicate with escape-sequences
-**	@param	charset_extra	A string containing any extra characters which should be escaped (ie: preceded by a backslash)
-**	@returns a newly allocated modified copy of the given `str`, with special characters being escape-sequenced.
+**	@param	str			The string to duplicate, while resolving all escape-sequences to their corresponding char
+**	@param	any_escape	If `TRUE`, every backslash will be understood as an escape character (any single backslash will dissappear)
+**	@returns a newly allocated modified copy of the given `str`, with escape-sequences transformed into their target value.
 */
 _MALLOC()
-t_char*							String_Parse(t_char const* str);
+t_char*							String_Parse(t_char const* str, t_bool any_escape);
 #define c_strparse				String_Parse //!< @alias{String_Parse}
+#define String_Decode			String_Parse //!< @alias{String_Parse}
 #define String_FromPrintable	String_Parse //!< @alias{String_Parse}
 
 
