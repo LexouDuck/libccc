@@ -166,7 +166,7 @@ static t_char utf16_literal_to_utf8(t_char const* const input_pointer, t_char co
 	if ((input_end - first_sequence) < 6)
 	{
 		// input ends unexpectedly
-		goto fail;
+		goto failure;
 	}
 
 	// get the first utf16 sequence
@@ -175,7 +175,7 @@ static t_char utf16_literal_to_utf8(t_char const* const input_pointer, t_char co
 	// check that the code is valid
 	if (((first_code >= 0xDC00) && (first_code <= 0xDFFF)))
 	{
-		goto fail;
+		goto failure;
 	}
 
 	// UTF16 surrogate pair
@@ -188,13 +188,13 @@ static t_char utf16_literal_to_utf8(t_char const* const input_pointer, t_char co
 		if ((input_end - second_sequence) < 6)
 		{
 			// input ends unexpectedly
-			goto fail;
+			goto failure;
 		}
 
 		if ((second_sequence[0] != '\\') || (second_sequence[1] != 'u'))
 		{
 			// missing second half of the surrogate pair
-			goto fail;
+			goto failure;
 		}
 
 		// get the second utf16 sequence
@@ -203,7 +203,7 @@ static t_char utf16_literal_to_utf8(t_char const* const input_pointer, t_char co
 		if ((second_code < 0xDC00) || (second_code > 0xDFFF))
 		{
 			// invalid second half of the surrogate pair
-			goto fail;
+			goto failure;
 		}
 		// calculate the unicode codepoint from the surrogate pair
 		codepoint = 0x10000 + (((first_code & 0x3FF) << 10) | (second_code & 0x3FF));
@@ -242,7 +242,7 @@ static t_char utf16_literal_to_utf8(t_char const* const input_pointer, t_char co
 	else
 	{
 		// invalid unicode codepoint
-		goto fail;
+		goto failure;
 	}
 
 	// encode as utf8
@@ -265,7 +265,7 @@ static t_char utf16_literal_to_utf8(t_char const* const input_pointer, t_char co
 	*output_pointer += utf8_length;
 	return (sequence_length);
 
-fail:
+failure:
 	return (0);
 }
 
@@ -282,7 +282,7 @@ static t_bool parse_string(s_json* const item, s_json_parse* const input_buffer)
 	// not a string
 	if (buffer_at_offset(input_buffer)[0] != '\"')
 	{
-		goto fail;
+		goto failure;
 	}
 
 	{
@@ -297,7 +297,7 @@ static t_bool parse_string(s_json* const item, s_json_parse* const input_buffer)
 				if ((t_size)(input_end + 1 - input_buffer->content) >= input_buffer->length)
 				{
 					// prevent buffer overflow when last input character is a backslash
-					goto fail;
+					goto failure;
 				}
 				skipped_bytes++;
 				input_end++;
@@ -306,7 +306,7 @@ static t_bool parse_string(s_json* const item, s_json_parse* const input_buffer)
 		}
 		if (((t_size)(input_end - input_buffer->content) >= input_buffer->length) || (*input_end != '\"'))
 		{
-			goto fail; // string ended unexpectedly
+			goto failure; // string ended unexpectedly
 		}
 
 		// This is at most how much we need for the output
@@ -314,7 +314,7 @@ static t_bool parse_string(s_json* const item, s_json_parse* const input_buffer)
 		output = (t_char*)Memory_Alloc(allocation_length + sizeof(""));
 		if (output == NULL)
 		{
-			goto fail; // allocation failure
+			goto failure; // allocation failure
 		}
 	}
 
@@ -332,7 +332,7 @@ static t_bool parse_string(s_json* const item, s_json_parse* const input_buffer)
 			t_char sequence_length = 2;
 			if ((input_end - input_pointer) < 1)
 			{
-				goto fail;
+				goto failure;
 			}
 
 			switch (input_pointer[1])
@@ -364,12 +364,12 @@ static t_bool parse_string(s_json* const item, s_json_parse* const input_buffer)
 					if (sequence_length == 0)
 					{
 						// failed to convert UTF16-literal to UTF-8
-						goto fail;
+						goto failure;
 					}
 					break;
 
 				default:
-					goto fail;
+					goto failure;
 			}
 			input_pointer += sequence_length;
 		}
@@ -385,7 +385,7 @@ static t_bool parse_string(s_json* const item, s_json_parse* const input_buffer)
 	input_buffer->offset++;
 	return (TRUE);
 
-fail:
+failure:
 	if (output != NULL)
 	{
 		Memory_Free(output);
@@ -460,7 +460,7 @@ static t_bool parse_array(s_json* const item, s_json_parse* const input_buffer)
 
 	if (buffer_at_offset(input_buffer)[0] != '[')
 	{	// not an array
-		goto fail;
+		goto failure;
 	}
 	input_buffer->offset++;
 	buffer_skip_whitespace(input_buffer);
@@ -472,7 +472,7 @@ static t_bool parse_array(s_json* const item, s_json_parse* const input_buffer)
 	if (!can_access_at_index(input_buffer, 0))
 	{
 		input_buffer->offset--;
-		goto fail;
+		goto failure;
 	}
 
 	// step back to character in front of the first element
@@ -484,7 +484,7 @@ static t_bool parse_array(s_json* const item, s_json_parse* const input_buffer)
 		s_json* new_item = JSON_New_Item();
 		if (new_item == NULL)
 		{
-			goto fail; // allocation failure
+			goto failure; // allocation failure
 		}
 
 		// attach next item to list
@@ -506,7 +506,7 @@ static t_bool parse_array(s_json* const item, s_json_parse* const input_buffer)
 		buffer_skip_whitespace(input_buffer);
 		if (!parse_value(current_item, input_buffer))
 		{
-			goto fail; // failed to parse value
+			goto failure; // failed to parse value
 		}
 		buffer_skip_whitespace(input_buffer);
 	}
@@ -514,7 +514,7 @@ static t_bool parse_array(s_json* const item, s_json_parse* const input_buffer)
 
 	if (!can_access_at_index(input_buffer, 0) || buffer_at_offset(input_buffer)[0] != ']')
 	{
-		goto fail; // expected end of array
+		goto failure; // expected end of array
 	}
 
 success:
@@ -531,7 +531,7 @@ success:
 	input_buffer->offset++;
 	return (TRUE);
 
-fail:
+failure:
 	if (head != NULL)
 	{
 		JSON_Delete(head);
@@ -552,7 +552,7 @@ static t_bool parse_object(s_json* const item, s_json_parse* const input_buffer)
 
 	if (!can_access_at_index(input_buffer, 0) || (buffer_at_offset(input_buffer)[0] != '{'))
 	{
-		goto fail; // not an object
+		goto failure; // not an object
 	}
 
 	input_buffer->offset++;
@@ -565,7 +565,7 @@ static t_bool parse_object(s_json* const item, s_json_parse* const input_buffer)
 	if (!can_access_at_index(input_buffer, 0))
 	{
 		input_buffer->offset--;
-		goto fail;
+		goto failure;
 	}
 
 	// step back to character in front of the first element
@@ -577,7 +577,7 @@ static t_bool parse_object(s_json* const item, s_json_parse* const input_buffer)
 		s_json* new_item = JSON_New_Item();
 		if (new_item == NULL)
 		{
-			goto fail; // allocation failure
+			goto failure; // allocation failure
 		}
 		// attach next item to list
 		if (head == NULL)
@@ -596,7 +596,7 @@ static t_bool parse_object(s_json* const item, s_json_parse* const input_buffer)
 		buffer_skip_whitespace(input_buffer);
 		if (!parse_string(current_item, input_buffer))
 		{
-			goto fail; // failed to parse name
+			goto failure; // failed to parse name
 		}
 		buffer_skip_whitespace(input_buffer);
 
@@ -606,7 +606,7 @@ static t_bool parse_object(s_json* const item, s_json_parse* const input_buffer)
 
 		if (!can_access_at_index(input_buffer, 0) || (buffer_at_offset(input_buffer)[0] != ':'))
 		{
-			goto fail; // invalid object
+			goto failure; // invalid object
 		}
 
 		// parse the value
@@ -614,7 +614,7 @@ static t_bool parse_object(s_json* const item, s_json_parse* const input_buffer)
 		buffer_skip_whitespace(input_buffer);
 		if (!parse_value(current_item, input_buffer))
 		{
-			goto fail; // failed to parse value
+			goto failure; // failed to parse value
 		}
 		buffer_skip_whitespace(input_buffer);
 	}
@@ -622,7 +622,7 @@ static t_bool parse_object(s_json* const item, s_json_parse* const input_buffer)
 
 	if (!can_access_at_index(input_buffer, 0) || (buffer_at_offset(input_buffer)[0] != '}'))
 	{
-		goto fail; // expected end of object
+		goto failure; // expected end of object
 	}
 
 success:
@@ -639,7 +639,7 @@ success:
 	input_buffer->offset++;
 	return (TRUE);
 
-fail:
+failure:
 	if (head != NULL)
 	{
 		JSON_Delete(head);
@@ -657,7 +657,7 @@ s_json*	JSON_ParseStrict_N(t_char const* value, t_size buffer_length, t_char con
 
 	if (value == NULL || 0 == buffer_length)
 	{
-		goto fail;
+		goto failure;
 	}
 
 	buffer.content = (t_char const*)value;
@@ -665,15 +665,15 @@ s_json*	JSON_ParseStrict_N(t_char const* value, t_size buffer_length, t_char con
 	buffer.offset = 0;
 
 	item = JSON_New_Item();
-	if (item == NULL) // memory fail
+	if (item == NULL) // memory failure
 	{
-		goto fail;
+		goto failure;
 	}
 
 	if (!parse_value(item, buffer_skip_whitespace(skip_utf8_bom(&buffer))))
 	{
 		// parse failure. ep is set.
-		goto fail;
+		goto failure;
 	}
 
 	// if we require null-terminated JSON without appended garbage, skip and then check for a null terminator
@@ -682,7 +682,7 @@ s_json*	JSON_ParseStrict_N(t_char const* value, t_size buffer_length, t_char con
 		buffer_skip_whitespace(&buffer);
 		if ((buffer.offset >= buffer.length) || buffer_at_offset(&buffer)[0] != '\0')
 		{
-			goto fail;
+			goto failure;
 		}
 	}
 	if (return_parse_end)
@@ -691,7 +691,7 @@ s_json*	JSON_ParseStrict_N(t_char const* value, t_size buffer_length, t_char con
 	}
 	return (item);
 
-fail:
+failure:
 	if (item != NULL)
 	{
 		JSON_Delete(item);

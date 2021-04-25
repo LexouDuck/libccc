@@ -69,8 +69,9 @@
 #include "libccc/fixed.h"
 #include "libccc/float.h"
 #include "libccc/pointer.h"
-//#include "libccc/memory.h"
+//#include "libccc/char.h"
 //#include "libccc/string.h"
+//#include "libccc/memory.h"
 
 HEADER_CPP
 

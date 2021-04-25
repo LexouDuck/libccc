@@ -28,11 +28,12 @@ char	*c_strprint(char const *str)
 			{
 				case 0x07: result[i++] =  'a'; break; // Alert (Beep, Bell) (added in C89)[1]
 				case 0x08: result[i++] =  'b'; break; // Backspace
-				case 0x0C: result[i++] =  'f'; break; // Formfeed
-				case 0x0A: result[i++] =  'n'; break; // Newline (Line Feed); see notes below
-				case 0x0D: result[i++] =  'r'; break; // Carriage Return
 				case 0x09: result[i++] =  't'; break; // Horizontal Tab
+				case 0x0A: result[i++] =  'n'; break; // Newline (Line Feed); see notes below
 				case 0x0B: result[i++] =  'v'; break; // Vertical Tab
+				case 0x0C: result[i++] =  'f'; break; // Formfeed
+				case 0x0D: result[i++] =  'r'; break; // Carriage Return
+				case 0x1B: result[i++] =  'e'; break; // Escape
 				case 0x5C: result[i++] = '\\'; break; // Backslash
 				case 0x27: result[i++] = '\''; break; // Single quotation mark
 				case 0x22: result[i++] = '\"'; break; // Double quotation mark

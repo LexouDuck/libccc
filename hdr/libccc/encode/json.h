@@ -14,6 +14,8 @@
 /*!@group{libccc_encode_json}
 ** @{
 **	This header defines a dynamic runtime object type, similar to objects in JS.
+**	- JSON spec: https://www.json.org/json-en.html
+**
 **	In particular, most of the code exposed from this header comes from cJSON:
 **	https://github.com/DaveGamble/cJSON
 **
@@ -43,9 +45,9 @@ HEADER_CPP
 typedef t_sint		t_json_type;
 
 #define JSON_TYPE_INVALID	(t_json_type)(0)
-#define JSON_TYPE_FALSE		(t_json_type)(1 << 0)
-#define JSON_TYPE_TRUE		(t_json_type)(1 << 1)
-#define JSON_TYPE_NULL		(t_json_type)(1 << 2)
+#define JSON_TYPE_NULL		(t_json_type)(1 << 0)
+#define JSON_TYPE_FALSE		(t_json_type)(1 << 1)
+#define JSON_TYPE_TRUE		(t_json_type)(1 << 2)
 #define JSON_TYPE_NUMBER	(t_json_type)(1 << 3)
 #define JSON_TYPE_STRING	(t_json_type)(1 << 4)
 #define JSON_TYPE_ARRAY		(t_json_type)(1 << 5)
