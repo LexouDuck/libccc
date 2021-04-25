@@ -8,7 +8,7 @@
 
 
 
-typedef struct	json_print
+typedef struct json_print
 {
 	t_char*	buffer;
 	t_size	length;
@@ -16,7 +16,7 @@ typedef struct	json_print
 	t_size	depth;	// current nesting depth (for formatted printing)
 	t_bool	noalloc;
 	t_bool	format;	// is this print a formatted print
-}				s_json_print;
+}			s_json_print;
 
 
 

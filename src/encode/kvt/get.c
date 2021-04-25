@@ -5,25 +5,25 @@
 #include "libccc/char.h"
 #include "libccc/string.h"
 #include "libccc/sys/io.h"
-#include "libccc/encode/json.h"
+#include "libccc/encode/common.h"
 
 
 
-#define PARSE_JSONPATH_WHITESPACE(EXPECTED, ERRORMESSAGE) \
+#define PARSE_KVTPATH_WHITESPACE(EXPECTED, ERRORMESSAGE) \
 	while (str[i] && Char_IsSpace(str[i]))	{ ++i; }				\
 	if (str[i] == '\0')												\
 	{																\
-		IO_Output_Format(C_RED"JSON PATH PARSE ERROR:"C_RESET		\
+		IO_Output_Format(C_RED"KVT PATH PARSE ERROR:"C_RESET		\
 			"Unexpected end of accessor string, "					\
 			"expected %s "ERRORMESSAGE".\n",						\
 			EXPECTED);												\
 		return (result);											\
 	}																\
 
-#define PARSE_JSONPATH_MATCH_CHAR(CHAR, ERRORMESSAGE) \
+#define PARSE_KVTPATH_MATCH_CHAR(CHAR, ERRORMESSAGE) \
 	if (str[i] != CHAR)												\
 	{																\
-		IO_Output_Format(C_RED"JSON PATH PARSE ERROR:"C_RESET		\
+		IO_Output_Format(C_RED"KVT PATH PARSE ERROR:"C_RESET		\
 			"Expected t_char '%c' "ERRORMESSAGE", "					\
 			"but instead found: '%c'\n",							\
 			CHAR, str[i]);											\
@@ -31,10 +31,10 @@
 	}																\
 	else ++i;														\
 
-#define PARSE_JSONPATH_MATCH_STRING(STRING, ERRORMESSAGE) \
+#define PARSE_KVTPATH_MATCH_STRING(STRING, ERRORMESSAGE) \
 	if (String_Compare_N(str + i, STRING, String_Length(STRING)))	\
 	{																\
-		IO_Output_Format(C_RED"JSON PATH PARSE ERROR:"C_RESET		\
+		IO_Output_Format(C_RED"KVT PATH PARSE ERROR:"C_RESET		\
 			"Expected \"%s\" "ERRORMESSAGE", "						\
 			"but instead found: '%.16s'\n",							\
 			STRING, str);											\
@@ -43,12 +43,12 @@
 	else ++i;														\
 
 _FORMAT(printf, 2, 3)
-s_json*	JSON_Get(s_json const* object, t_char const* format_path, ...)
+s_kvt*	KVT_Get(s_kvt const* object, t_char const* format_path, ...)
 {
 	va_list args;
 	t_char*	path;
 	t_char*	str;
-	s_json*	result = NULL;
+	s_kvt*	result = NULL;
 	t_size	length;
 	t_char*	accessor;
 
@@ -59,13 +59,13 @@ s_json*	JSON_Get(s_json const* object, t_char const* format_path, ...)
 	va_end(args);
 	if (path == NULL)
 		return (NULL);
-	result = (s_json*)object;
+	result = (s_kvt*)object;
 	str = path;
 	for (t_size i = 0; str[i]; ++i)
 	{
-		PARSE_JSONPATH_WHITESPACE("'['", "to begin accessor")
-		PARSE_JSONPATH_MATCH_CHAR( '[',  "to begin accessor")
-		PARSE_JSONPATH_WHITESPACE("number or string value", "accessor")
+		PARSE_KVTPATH_WHITESPACE("'['", "to begin accessor")
+		PARSE_KVTPATH_MATCH_CHAR( '[',  "to begin accessor")
+		PARSE_KVTPATH_WHITESPACE("number or string value", "accessor")
 		if (Char_IsDigit(str[i]))
 		{	// number accessor
 			length = 1;
@@ -75,11 +75,11 @@ s_json*	JSON_Get(s_json const* object, t_char const* format_path, ...)
 			}
 			accessor = String_Sub(str, i, length);
 			t_u64 index = U64_FromString(accessor);
-			result = JSON_GetArrayItem(result, index);
+			result = KVT_GetArrayItem(result, index);
 		}
 		else if (str[i] == '\"')
 		{	// string accessor
-			PARSE_JSONPATH_MATCH_CHAR('"', "to begin string accessor")
+			PARSE_KVTPATH_MATCH_CHAR('"', "to begin string accessor")
 			length = 1;
 			while (str[i + length] != '\"')
 			{
@@ -90,44 +90,44 @@ s_json*	JSON_Get(s_json const* object, t_char const* format_path, ...)
 				}
 				++length;
 			}
-			PARSE_JSONPATH_MATCH_CHAR('"', "to end string accessor")
+			PARSE_KVTPATH_MATCH_CHAR('"', "to end string accessor")
 			accessor = String_Sub(str, i, length);
-			result = JSON_GetObjectItem(result, accessor);
+			result = KVT_GetObjectItem(result, accessor);
 		}
 		else
 		{
-			IO_Output_Format(C_RED"JSON PATH PARSE ERROR"C_RESET": "
+			IO_Output_Format(C_RED"KVT PATH PARSE ERROR"C_RESET": "
 				"Expected number or double-quoted string within brackets, but instead found: '%s'\n", str);
 			return (result);
 		}
 		String_Delete(&accessor);
-		PARSE_JSONPATH_WHITESPACE("']'", "to end accessor")
-		PARSE_JSONPATH_MATCH_CHAR( ']',  "to end accessor")
+		PARSE_KVTPATH_WHITESPACE("']'", "to end accessor")
+		PARSE_KVTPATH_MATCH_CHAR( ']',  "to end accessor")
 	}
 	return (result);
 }
 
 
 
-t_f64	JSON_GetValue_Number(s_json const* const item) 
+t_f64	KVT_GetValue_Number(s_kvt const* const item) 
 {
-	if (!JSON_IsNumber(item)) 
+	if (!KVT_IsNumber(item)) 
 		return ((t_f64)NAN);
 	return (item->value_number);
 }
 
-t_char*	JSON_GetValue_String(s_json const* const item) 
+t_char*	KVT_GetValue_String(s_kvt const* const item) 
 {
-	if (!JSON_IsString(item)) 
+	if (!KVT_IsString(item)) 
 		return (NULL);
 	return (item->value_string);
 }
 
 
 
-s_json*	JSON_GetArrayItem(s_json const* array, t_sint index)
+s_kvt*	KVT_GetArrayItem(s_kvt const* array, t_sint index)
 {
-	s_json* current_child;
+	s_kvt* current_child;
 
 	if (index < 0)
 		return (NULL);
@@ -144,9 +144,9 @@ s_json*	JSON_GetArrayItem(s_json const* array, t_sint index)
 
 
 
-static s_json* get_object_item(s_json const* const object, t_char const* const name, const t_bool case_sensitive)
+static s_kvt* get_object_item(s_kvt const* const object, t_char const* const name, const t_bool case_sensitive)
 {
-	s_json* current_element = NULL;
+	s_kvt* current_element = NULL;
 
 	if ((object == NULL) || (name == NULL))
 		return (NULL);
@@ -171,17 +171,17 @@ static s_json* get_object_item(s_json const* const object, t_char const* const n
 	return (current_element);
 }
 
-s_json*	JSON_GetObjectItem(s_json const* const object, t_char const* const key)
+s_kvt*	KVT_GetObjectItem(s_kvt const* const object, t_char const* const key)
 {
 	return (get_object_item(object, key, FALSE));
 }
 
-s_json*	JSON_GetObjectItem_CaseSensitive(s_json const* const object, t_char const* const key)
+s_kvt*	KVT_GetObjectItem_CaseSensitive(s_kvt const* const object, t_char const* const key)
 {
 	return (get_object_item(object, key, TRUE));
 }
 
-t_bool	JSON_HasObjectItem(s_json const* object, t_char const* key)
+t_bool	KVT_HasObjectItem(s_kvt const* object, t_char const* key)
 {
-	return (JSON_GetObjectItem(object, key) ? 1 : 0);
+	return (KVT_GetObjectItem(object, key) ? 1 : 0);
 }

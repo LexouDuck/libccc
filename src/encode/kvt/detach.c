@@ -1,11 +1,11 @@
 
 #include "libccc.h"
 #include "libccc/char.h"
-#include "libccc/encode/json.h"
+#include "libccc/encode/common.h"
 
 
 
-s_json*	JSON_DetachItem(s_json* parent, s_json* const item)
+s_kvt*	KVT_DetachItem(s_kvt* parent, s_kvt* const item)
 {
 	if ((parent == NULL) || (item == NULL))
 		return (NULL);
@@ -38,21 +38,21 @@ s_json*	JSON_DetachItem(s_json* parent, s_json* const item)
 	return (item);
 }
 
-s_json*	JSON_DetachItemFromArray(s_json* array, t_sint which)
+s_kvt*	KVT_DetachItemFromArray(s_kvt* array, t_sint which)
 {
 	if (which < 0)
 		return (NULL);
-	return (JSON_DetachItem(array, JSON_GetArrayItem(array, which)));
+	return (KVT_DetachItem(array, KVT_GetArrayItem(array, which)));
 }
 
-s_json*	JSON_DetachItemFromObject(s_json* object, t_char const* key)
+s_kvt*	KVT_DetachItemFromObject(s_kvt* object, t_char const* key)
 {
-	s_json* to_detach = JSON_GetObjectItem(object, key);
-	return (JSON_DetachItem(object, to_detach));
+	s_kvt* to_detach = KVT_GetObjectItem(object, key);
+	return (KVT_DetachItem(object, to_detach));
 }
 
-s_json*	JSON_DetachItemFromObject_CaseSensitive(s_json* object, t_char const* key)
+s_kvt*	KVT_DetachItemFromObject_CaseSensitive(s_kvt* object, t_char const* key)
 {
-	s_json* to_detach = JSON_GetObjectItem_CaseSensitive(object, key);
-	return (JSON_DetachItem(object, to_detach));
+	s_kvt* to_detach = KVT_GetObjectItem_CaseSensitive(object, key);
+	return (KVT_DetachItem(object, to_detach));
 }

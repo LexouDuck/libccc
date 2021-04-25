@@ -1,20 +1,20 @@
 
 #include "libccc.h"
 #include "libccc/char.h"
-#include "libccc/encode/json.h"
+#include "libccc/encode/common.h"
 
 
 
-t_bool	JSON_InsertItemInArray(s_json* array, t_sint which, s_json* newitem)
+t_bool	KVT_InsertItemInArray(s_kvt* array, t_sint which, s_kvt* newitem)
 {
-	s_json* after_inserted = NULL;
+	s_kvt* after_inserted = NULL;
 
 	if (which < 0)
 		return (FALSE);
 
-	after_inserted = JSON_GetArrayItem(array, which);
+	after_inserted = KVT_GetArrayItem(array, which);
 	if (after_inserted == NULL)
-		return (JSON_AddToArray_Item(array, newitem));
+		return (KVT_AddToArray_Item(array, newitem));
 
 	newitem->next = after_inserted;
 	newitem->prev = after_inserted->prev;

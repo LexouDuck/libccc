@@ -2,16 +2,16 @@
 #include "libccc.h"
 #include "libccc/char.h"
 #include "libccc/string.h"
-#include "libccc/encode/json.h"
+#include "libccc/encode/common.h"
 
 
 
-s_json*	JSON_Duplicate(s_json const* item, t_bool recurse)
+s_kvt*	KVT_Duplicate(s_kvt const* item, t_bool recurse)
 {
-	s_json* newitem = NULL;
-	s_json* child = NULL;
-	s_json* next = NULL;
-	s_json* newchild = NULL;
+	s_kvt* newitem = NULL;
+	s_kvt* child = NULL;
+	s_kvt* next = NULL;
+	s_kvt* newchild = NULL;
 
 	// Bail on bad ptr
 	if (!item)
@@ -19,13 +19,13 @@ s_json*	JSON_Duplicate(s_json const* item, t_bool recurse)
 		goto fail;
 	}
 	// Create new item
-	newitem = JSON_New_Item();
+	newitem = KVT_New_Item();
 	if (!newitem)
 	{
 		goto fail;
 	}
 	// Copy over all vars
-	newitem->type = item->type & (~JSON_TYPE_ISREFERENCE);
+	newitem->type = item->type & (~KVT_TYPE_ISREFERENCE);
 	newitem->value_number = item->value_number;
 	if (item->value_string)
 	{
@@ -37,7 +37,7 @@ s_json*	JSON_Duplicate(s_json const* item, t_bool recurse)
 	}
 	if (item->key)
 	{
-		newitem->key = (item->type & JSON_TYPE_CONSTSTRING) ? item->key :
+		newitem->key = (item->type & KVT_TYPE_CONSTSTRING) ? item->key :
 			(t_char*)String_Duplicate((t_char*)item->key);
 		if (!newitem->key)
 		{
@@ -51,7 +51,7 @@ s_json*	JSON_Duplicate(s_json const* item, t_bool recurse)
 	child = item->child;
 	while (child != NULL)
 	{
-		newchild = JSON_Duplicate(child, TRUE); // Duplicate (with recurse) each item in the ->next chain
+		newchild = KVT_Duplicate(child, TRUE); // Duplicate (with recurse) each item in the ->next chain
 		if (!newchild)
 		{
 			goto fail;
@@ -80,7 +80,7 @@ s_json*	JSON_Duplicate(s_json const* item, t_bool recurse)
 fail:
 	if (newitem != NULL)
 	{
-		JSON_Delete(newitem);
+		KVT_Delete(newitem);
 	}
 	return (NULL);
 }

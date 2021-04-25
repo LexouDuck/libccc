@@ -2,21 +2,21 @@
 #include "libccc.h"
 #include "libccc/memory.h"
 #include "libccc/string.h"
-#include "libccc/encode/json.h"
+#include "libccc/encode/common.h"
 
 
 
-t_f64	JSON_SetValue_Number(s_json* object, t_f64 value)
+t_f64	KVT_SetValue_Number(s_kvt* object, t_f64 value)
 {
 	object->value_number = value;
 	return (value);
 }
 
-t_char*	JSON_SetValue_String(s_json* object, t_char* value)
+t_char*	KVT_SetValue_String(s_kvt* object, t_char* value)
 {
 	t_char* copy = NULL;
-	// if object's type is not JSON_TYPE_STRING or is JSON_TYPE_ISREFERENCE, it should not set value_string
-	if (!(object->type & JSON_TYPE_STRING) || (object->type & JSON_TYPE_ISREFERENCE))
+	// if object's type is not KVT_TYPE_STRING or is KVT_TYPE_ISREFERENCE, it should not set value_string
+	if (!(object->type & KVT_TYPE_STRING) || (object->type & KVT_TYPE_ISREFERENCE))
 		return (NULL);
 	if (String_Length(value) <= String_Length(object->value_string))
 	{

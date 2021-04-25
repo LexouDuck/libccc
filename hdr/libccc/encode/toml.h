@@ -42,6 +42,7 @@
 
 #include "libccc.h"
 #include "libccc/char.h"
+#include "libccc/encode/common.h"
 
 HEADER_CPP
 
@@ -51,58 +52,7 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-/*!
-**	TOML value data ypes enum/bitflag
-*/
-typedef t_sint		t_toml_type;
-
-#define TOML_TYPE_INVALID	(t_toml_type)(0)
-#define TOML_TYPE_NULL		(t_toml_type)(1 << 0)
-#define TOML_TYPE_BOOLEAN	(t_toml_type)(1 << 1)
-#define TOML_TYPE_INTEGER	(t_toml_type)(1 << 2)
-#define TOML_TYPE_FLOAT		(t_toml_type)(1 << 3)
-#define TOML_TYPE_STRING	(t_toml_type)(1 << 4)
-#define TOML_TYPE_ARRAY		(t_toml_type)(1 << 5)
-#define TOML_TYPE_OBJECT	(t_toml_type)(1 << 6)
-#define TOML_TYPE_RAW		(t_toml_type)(1 << 7) // raw toml
-
-#define TOML_TYPE_MASK	(0xFF)
-
-#define TOML_TYPE_ISREFERENCE	(t_toml_type)(1 << 8)
-#define TOML_TYPE_CONSTSTRING	(t_toml_type)(1 << 9)
-
-typedef struct	toml	s_toml;
-
-//! This union type can express a value of any (TOML-compatible) data type
-typedef union toml_value
-{
-	t_bool	boolean;
-	t_s64	integer;
-	t_f64	floating;
-	t_char*	string;
-	s_toml*	child;
-}		u_toml_value;
-
-/*!
-**	The s_toml structure: nest-able, list-able, etc
-*/
-typedef struct	toml
-{
-	struct toml*	next;	//!< linked-list pointers to neighboring items
-	struct toml*	prev;	//!< linked-list pointers to neighboring items
-
-	t_char*			key;	//!< The item's name string, if this item is the child of, or is in the list of subitems of an object.
-	t_toml_type		type;	//!< The type of the item: uses the `TOML_TYPE_*` macros defined above.
-	u_toml_value	value;	//!< The item's stored value (can be of any type)
-}				s_toml;
-
-/*!
-**	Limits how deeply nested arrays/objects can be before s_toml rejects to parse them.
-**	This is to prevent stack overflows.
-*/
-#ifndef TOML_NESTING_LIMIT
-#define TOML_NESTING_LIMIT 1000
-#endif
+typedef s_kvt	s_toml;
 
 
 
@@ -127,12 +77,9 @@ typedef struct	toml
 
 /*
 ** ************************************************************************** *|
-**                             Basic TOML Operations                          *|
+**                             TOML String Operations                         *|
 ** ************************************************************************** *|
 */
-
-//! Allocated one single TOML struct
-s_toml* TOML_New_Item(void);
 
 //! Create a new `s_toml` object, parsed from a (valid) TOML string
 /*!
@@ -169,237 +116,228 @@ s_toml*	TOML_FromString_Strict_N(t_char const* value, t_size buffer_length, t_ch
 
 
 
-#define TOML_ToString	TOML_ToString_Pretty
-#define TOML_Print		TOML_ToString_Pretty
+#define TOML_ToString	JSON_ToString_Pretty
+#define TOML_Print		JSON_ToString
+#define TOML_Encode		JSON_ToString
+
 //! Render a s_toml entity to text for transfer/storage (with 'pretty' formatting).
 t_char*	TOML_ToString_Pretty(s_toml const* item);
 #define TOML_Print_Pretty	TOML_ToString_Pretty
+#define TOML_Encode_Pretty	TOML_ToString_Pretty
+
 //! Render a s_toml entity to text for transfer/storage, without any formatting/whitespace
 t_char*	TOML_ToString_Minify(s_toml const* item);
 #define TOML_Print_Minify	TOML_ToString_Minify
+#define TOML_Encode_Minify	TOML_ToString_Minify
+
 //! Render a s_toml entity to text using a buffered strategy.
 /*!
 **	prebuffer is a guess at the final size. guessing well reduces reallocation. fmt=0 gives unformatted, =1 gives formatted.
 */
 t_char*	TOML_ToString_Buffered(s_toml const* item, t_sint prebuffer, t_bool fmt);
-#define TOML_Print_Buffered	TOML_ToString_Buffered
+#define TOML_Print_Buffered		TOML_ToString_Buffered
+#define TOML_Encode_Buffered	TOML_ToString_Buffered
+
 //! Render a `s_toml` entity to text using a buffer already allocated in memory with given length.
 /*!
 **	@returns 1(TRUE) on success and 0(FALSE) on failure.
 **	NOTE: s_toml is not always 100% accurate in estimating how much memory it will use, so to be safe allocate 5 bytes more than you actually need.
 */
 t_bool	TOML_ToString_Preallocated(s_toml* item, t_char* buffer, t_sint const length, t_bool const format);
-#define TOML_Print_Preallocated	TOML_ToString_Preallocated
+#define TOML_Print_Preallocated		TOML_ToString_Preallocated
+#define TOML_Encode_Preallocated	TOML_ToString_Preallocated
 
 
 
-//! Returns the amount of items in an array (or object).
-t_sint	TOML_GetArrayLength(s_toml const* array);
-
-//! Retrieve item number "index" from array "array". Returns NULL if unsuccessful.
-s_toml*	TOML_GetArrayItem(s_toml const* array, t_sint index);
-
-//! Get the item with the given `key` from the given `object` (case-insensitive).
-s_toml*	TOML_GetObjectItem				(s_toml const* const object, t_char const* const key);
-//! Get the item with the given `key` from the given `object` (case-sensitive).
-s_toml*	TOML_GetObjectItem_CaseSensitive(s_toml const* const object, t_char const* const key);
-
-t_bool	TOML_HasObjectItem(s_toml const* object, t_char const* key);
-
-
-
-//! Access the contents of a TOML with a 'TOML path', ie: a format string of 'accessors' (ie: strings or numbers in brackets)
-/*!
-**	@param	object		The TOML object to get an item from
-**	@param	format_path	The format string with an accessor pattern (example: `TOML_Get(toml, "[\"subarray\"][3][\"name\"]")`)
-**	@param	...			The variadic arguments list which goes along with `format_path` (works like printf)
-**	@returns the TOML object gotten from the given accessor path, or NULL if the path or TOML was invalid.
+/*
+** ************************************************************************** *|
+**                             Basic TOML Operations                           *|
+** ************************************************************************** *|
 */
-s_toml*	TOML_Get(s_toml const* object, t_char const* format_path, ...)
-_FORMAT(printf, 2, 3);
 
-//! Returns the number value contained within the given `item`, or `NAN` if type is not #TOML_TYPE_NUMBER.
-t_f64	TOML_GetValue_Number(s_toml const* const item);
-//! Returns the string value contained within the given `item`, or `NULL` if type is not #TOML_TYPE_STRING.
-t_char*	TOML_GetValue_String(s_toml const* const item);
+#define TOML_Item		KVT_Item		//!< @alias{KVT_Item}
 
+#define TOML_Duplicate	KVT_Duplicate	//!< @alias{KVT_Duplicate}
 
+#define TOML_Equals		KVT_Equals		//!< @alias{KVT_Equals}
 
-//! Change the `value_number` of a TOML_TYPE_STRING object, only takes effect when type of object is TOML_TYPE_STRING.
-t_f64	TOML_SetValue_Number(s_toml* object, t_f64 value);
-//! Change the `value_string` of a TOML_TYPE_STRING object, only takes effect when type of object is TOML_TYPE_STRING.
-t_char*	TOML_SetValue_String(s_toml* object, t_char* value);
+#define TOML_Concat		KVT_Concat		//!< @alias{KVT_Concat}
 
 
 
-//! These functions check the type of an item.
-//!@{
-t_bool	TOML_IsInvalid	(s_toml const* const item);
-t_bool	TOML_IsNull		(s_toml const* const item);
-t_bool	TOML_IsFalse	(s_toml const* const item);
-t_bool	TOML_IsTrue		(s_toml const* const item);
-t_bool	TOML_IsBool		(s_toml const* const item);
-t_bool	TOML_IsNumber	(s_toml const* const item);
-t_bool	TOML_IsString	(s_toml const* const item);
-t_bool	TOML_IsArray	(s_toml const* const item);
-t_bool	TOML_IsObject	(s_toml const* const item);
-t_bool	TOML_IsRaw		(s_toml const* const item);
-//!@}
+#define TOML_GetError			KVT_GetError		//!< @alias{KVT_GetError}
+
+#define TOML_GetErrorMessage	KVT_GetErrorMessage	//!< @alias{KVT_GetErrorMessage}
 
 
 
-//! These calls create a s_toml item of the appropriate type.
-//!@{
-s_toml*	TOML_CreateNull(void);
-s_toml*	TOML_CreateTrue(void);
-s_toml*	TOML_CreateFalse(void);
-s_toml*	TOML_CreateBool(t_bool boolean);
-s_toml*	TOML_CreateNumber(t_f64 num);
-s_toml*	TOML_CreateString(t_char const* string);
-s_toml*	TOML_CreateRaw(t_char const* raw);
-s_toml*	TOML_CreateArray(void);
-s_toml*	TOML_CreateObject(void);
-//!@}
-
-//! Create a string where `value_string` references a string, so it will not be freed by TOML_Delete()
-s_toml*	TOML_CreateStringReference(t_char const* string);
-//! Create an array that only references it's elements, so they will not be freed by TOML_Delete()
-s_toml*	TOML_CreateArrayReference(s_toml const* child);
-//! Create an object that only references it's elements, so they will not be freed by TOML_Delete()
-s_toml*	TOML_CreateObjectReference(s_toml const* child);
-
-//! Create and fill a TOML array
-/*!
-**	These utilities create a TOML array of `count` items.
-**	The given `count` cannot be greater than the number of elements in
-**	the given `numbers` array, otherwise array access will be out of bounds.
+/*
+** ************************************************************************** *|
+**                            TOML "create" Operations                         *|
+** ************************************************************************** *|
 */
-//!@{
-s_toml*	TOML_CreateIntArray		(t_sint const* numbers, t_sint count);
-s_toml*	TOML_CreateFloatArray	(t_f32 const* numbers, t_sint count);
-s_toml*	TOML_CreateDoubleArray	(t_f64 const* numbers, t_sint count);
-s_toml*	TOML_CreateStringArray	(t_char const* const *strings, t_sint count);
-//!@}
+
+#define TOML_CreateNull		KVT_CreateNull		//!< @alias{KVT_CreateNull}
+#define TOML_CreateBoolean	KVT_CreateBoolean	//!< @alias{KVT_CreateBoolean}
+#define TOML_CreateInteger	KVT_CreateInteger	//!< @alias{KVT_CreateInteger}
+#define TOML_CreateFloat	KVT_CreateFloat		//!< @alias{KVT_CreateFloat}
+#define TOML_CreateString	KVT_CreateString	//!< @alias{KVT_CreateString}
+#define TOML_CreateArray	KVT_CreateArray		//!< @alias{KVT_CreateArray}
+#define TOML_CreateObject	KVT_CreateObject	//!< @alias{KVT_CreateObject}
+#define TOML_CreateRaw		KVT_CreateRaw		//!< @alias{KVT_CreateRaw}
 
 
 
-//! Appends the given `item` to the given `array`.
-t_bool	TOML_AddToArray_Item(s_toml* array, s_toml* item);
+#define TOML_CreateArrayReference	KVT_CreateArrayReference	//!< @alias{KVT_CreateArrayReference}
+#define TOML_CreateObjectReference	KVT_CreateObjectReference	//!< @alias{KVT_CreateObjectReference}
+#define TOML_CreateStringReference	KVT_CreateStringReference	//!< @alias{KVT_CreateStringReference}
 
-//! Append a reference to `item` to the given `array`.
-t_bool	TOML_AddToArray_ItemReference(s_toml* array, s_toml* item);
 
-//! Appends the given `item` to the given `object`, with the given `key`.
-t_bool	TOML_AddToObject_Item(s_toml* object, t_char const* key, s_toml* item);
 
-//! Append reference to item to the given object.
-t_bool	TOML_AddToObject_ItemReference(s_toml* object, t_char const* key, s_toml* item);
+#define TOML_CreateArray_Boolean	KVT_CreateArray_Boolean	//!< @alias{KVT_CreateArray_Boolean}
+#define TOML_CreateArray_UInt		KVT_CreateArray_UInt	//!< @alias{KVT_CreateArray_UInt}
+#define TOML_CreateArray_U8			KVT_CreateArray_U8		//!< @alias{KVT_CreateArray_U8}
+#define TOML_CreateArray_U16		KVT_CreateArray_U16		//!< @alias{KVT_CreateArray_U16}
+#define TOML_CreateArray_U32		KVT_CreateArray_U32		//!< @alias{KVT_CreateArray_U32}
+#define TOML_CreateArray_U64		KVT_CreateArray_U64		//!< @alias{KVT_CreateArray_U64}
+#define TOML_CreateArray_U128		KVT_CreateArray_U128	//!< @alias{KVT_CreateArray_U128}
+#define TOML_CreateArray_SInt		KVT_CreateArray_SInt	//!< @alias{KVT_CreateArray_SInt}
+#define TOML_CreateArray_S8			KVT_CreateArray_S8		//!< @alias{KVT_CreateArray_S8}
+#define TOML_CreateArray_S16		KVT_CreateArray_S16		//!< @alias{KVT_CreateArray_S16}
+#define TOML_CreateArray_S32		KVT_CreateArray_S32		//!< @alias{KVT_CreateArray_S32}
+#define TOML_CreateArray_S64		KVT_CreateArray_S64		//!< @alias{KVT_CreateArray_S64}
+#define TOML_CreateArray_S128		KVT_CreateArray_S128	//!< @alias{KVT_CreateArray_S128}
+#define TOML_CreateArray_Float		KVT_CreateArray_Float	//!< @alias{KVT_CreateArray_Float}
+#define TOML_CreateArray_F32		KVT_CreateArray_F32		//!< @alias{KVT_CreateArray_F32}
+#define TOML_CreateArray_F64		KVT_CreateArray_F64		//!< @alias{KVT_CreateArray_F64}
+#define TOML_CreateArray_F80		KVT_CreateArray_F80		//!< @alias{KVT_CreateArray_F80}
+#define TOML_CreateArray_F128		KVT_CreateArray_F128	//!< @alias{KVT_CreateArray_F128}
+#define TOML_CreateArray_String		KVT_CreateArray_String	//!< @alias{KVT_CreateArray_String}
 
-//! Appends the given `item` to an object with constant string as key
-/*!
-**	Use this when string is definitely const (i.e. a literal, or as good as), and will definitely survive the TOML object.
-**	NOTE: When this function was used, make sure to always perform the following check:
-**	`(item->type & TOML_TYPE_CONSTSTRING) == 0` before writing to `item->string`.
+
+
+/*
+** ************************************************************************** *|
+**                             TOML "get" Operations                           *|
+** ************************************************************************** *|
 */
-t_bool	TOML_AddToObject_ItemCS(s_toml* object, t_char const* key, s_toml* item);
 
-/*!
-**	Helper functions for creating and adding items to an object at the same time.
-**	They return the added item or NULL on failure.
+#define TOML_GetArrayLength		KVT_GetArrayLength	//!< @alias{KVT_GetArrayLength}
+
+#define TOML_GetArrayItem		KVT_GetArrayItem	//!< @alias{KVT_GetArrayItem}
+
+
+
+#define TOML_GetObjectItem \
+		TOML_GetObjectItem_IgnoreCase
+#define TOML_GetObjectItem_IgnoreCase		KVT_GetObjectItem_IgnoreCase	//!< @alias{KVT_GetObjectItem_IgnoreCase}
+#define TOML_GetObjectItem_CaseSensitive	KVT_GetObjectItem_CaseSensitive	//!< @alias{KVT_GetObjectItem_CaseSensitive}
+
+
+
+#define TOML_HasObjectItem		KVT_HasObjectItem	//!< @alias{KVT_HasObjectItem}
+
+
+
+#define TOML_Get				KVT_Get	//!< @alias{KVT_Get}
+
+#define TOML_GetValue_Boolean 	KVT_GetValue_Boolean	//!< @alias{KVT_GetValue_Boolean}
+#define TOML_GetValue_Integer 	KVT_GetValue_Integer	//!< @alias{KVT_GetValue_Integer}
+#define TOML_GetValue_Float 	KVT_GetValue_Float		//!< @alias{KVT_GetValue_Float}
+#define TOML_GetValue_String 	KVT_GetValue_String		//!< @alias{KVT_GetValue_String}
+
+
+
+/*
+** ************************************************************************** *|
+**                             TOML "set" Operations                           *|
+** ************************************************************************** *|
 */
-//!@{
-s_toml*	TOML_AddToObject_Null	(s_toml* const object, t_char const* key);
-s_toml*	TOML_AddToObject_True	(s_toml* const object, t_char const* key);
-s_toml*	TOML_AddToObject_False	(s_toml* const object, t_char const* key);
-s_toml*	TOML_AddToObject_Bool	(s_toml* const object, t_char const* key, t_bool boolean);
-s_toml*	TOML_AddToObject_Number	(s_toml* const object, t_char const* key, t_f64 number);
-s_toml*	TOML_AddToObject_String	(s_toml* const object, t_char const* key, t_char const* string);
-s_toml*	TOML_AddToObject_Raw	(s_toml* const object, t_char const* key, t_char const* raw);
-s_toml*	TOML_AddToObject_Object	(s_toml* const object, t_char const* key);
-s_toml*	TOML_AddToObject_Array	(s_toml* const object, t_char const* key);
-//!@}
+
+#define TOML_SetValue_Boolean 	KVT_SetValue_Boolean	//!< @alias{KVT_SetValue_Boolean}
+#define TOML_SetValue_Integer 	KVT_SetValue_Integer	//!< @alias{KVT_SetValue_Integer}
+#define TOML_SetValue_Float 	KVT_SetValue_Float		//!< @alias{KVT_SetValue_Float}
+#define TOML_SetValue_String 	KVT_SetValue_String		//!< @alias{KVT_SetValue_String}
 
 
 
-//! Shifts pre-existing items to the right.
-t_bool	TOML_InsertItemInArray(s_toml* array, t_sint index, s_toml* newitem);
+#define TOML_AddToArray_Item				KVT_AddToArray_Item				//!< @alias{KVT_AddToArray_Item}
+#define TOML_AddToArray_ItemReference		KVT_AddToArray_ItemReference	//!< @alias{KVT_AddToArray_ItemReference}
+#define TOML_AddToArray_ItemConstString		KVT_AddToArray_ItemConstString	//!< @alias{KVT_AddToArray_ItemConstString}
+
+#define TOML_AddToObject_Item				KVT_AddToObject_Item			//!< @alias{KVT_AddToObject_Item}
+#define TOML_AddToObject_ItemReference		KVT_AddToObject_ItemReference	//!< @alias{KVT_AddToObject_ItemReference}
+#define TOML_AddToObject_ItemConstString	KVT_AddToObject_ItemConstString	//!< @alias{KVT_AddToObject_ItemConstString}
 
 
 
-//! Delete a s_toml entity and all subentities.
-void	TOML_Delete(s_toml* item);
-
-//! Deletes the item at the given `index` from the given `array`.
-void	TOML_DeleteItemFromArray				(s_toml* array, t_sint index);
-//! Deletes the item with the given `key` from the given `object`.
-void	TOML_DeleteItemFromObject				(s_toml* object, t_char const* key);
-void	TOML_DeleteItemFromObject_CaseSensitive	(s_toml* object, t_char const* key);
-
-
-
-//! Removes (without deleting) the given `item` from the given `parent` object.
-s_toml*	TOML_DetachItem(s_toml* parent, s_toml* const item);
-//! Removes (without deleting) the given `item` from the given `array`.
-s_toml*	TOML_DetachItemFromArray				(s_toml* array, t_sint index);
-//! Removes (without deleting) the given `item` from the given `object`.
-s_toml*	TOML_DetachItemFromObject				(s_toml* object, t_char const* key);
-s_toml*	TOML_DetachItemFromObject_CaseSensitive	(s_toml* object, t_char const* key);
-
-
-//! Replaces the given `item` from the given `parent` object, with the given `newitem`.
-t_bool	TOML_ReplaceItem(s_toml* parent, s_toml* item, s_toml* newitem);
-//! Replaces the given `item` from the given `array`, with the given `newitem`.
-t_bool	TOML_ReplaceItemInArray					(s_toml* array, t_sint index, s_toml* newitem);
-//! Replaces the given `item` from the given `object`, with the given `newitem` (case-insensitive).
-t_bool	TOML_ReplaceItemInObject				(s_toml* object, t_char const* key, s_toml* newitem);
-//! Replaces the given `item` from the given `object`, with the given `newitem` (case-sensitive).
-t_bool	TOML_ReplaceItemInObject_CaseSensitive	(s_toml* object, t_char const* key, s_toml* newitem);
+#define TOML_AddToObject_Null		KVT_AddToObject_Null	//!< @alias{KVT_AddToObject_Null}
+#define TOML_AddToObject_Boolean	KVT_AddToObject_Boolean	//!< @alias{KVT_AddToObject_Boolean}
+#define TOML_AddToObject_Integer	KVT_AddToObject_Integer	//!< @alias{KVT_AddToObject_Integer}
+#define TOML_AddToObject_Float		KVT_AddToObject_Float	//!< @alias{KVT_AddToObject_Float}
+#define TOML_AddToObject_String		KVT_AddToObject_String	//!< @alias{KVT_AddToObject_String}
+#define TOML_AddToObject_Object		KVT_AddToObject_Object	//!< @alias{KVT_AddToObject_Object}
+#define TOML_AddToObject_Array		KVT_AddToObject_Array	//!< @alias{KVT_AddToObject_Array}
+#define TOML_AddToObject_Raw		KVT_AddToObject_Raw		//!< @alias{KVT_AddToObject_Raw}
 
 
 
-//! Duplicates a TOML object.
-/*!
-**	Duplicate will create a new, identical s_toml item to the one you pass, in new memory that will
-**	need to be released. With `recurse != FALSE`, it will duplicate any children connected to the item.
-**	The item->next and ->prev pointers are always zero on return from Duplicate.
+/*
+** ************************************************************************** *|
+**                             TOML Check Operations                          *|
+** ************************************************************************** *|
 */
-s_toml*	TOML_Duplicate(s_toml const* item, t_bool recurse);
+
+#define TOML_IsInvalid	KVT_IsInvalid	//!< @alias{KVT_IsInvalid}
+#define TOML_IsNull		KVT_IsNull		//!< @alias{KVT_IsNull}
+#define TOML_IsBoolean	KVT_IsBoolean	//!< @alias{KVT_IsBoolean}
+#define TOML_IsInteger	KVT_IsInteger	//!< @alias{KVT_IsInteger}
+#define TOML_IsFloat	KVT_IsFloat		//!< @alias{KVT_IsFloat}
+#define TOML_IsString	KVT_IsString	//!< @alias{KVT_IsString}
+#define TOML_IsArray	KVT_IsArray		//!< @alias{KVT_IsArray}
+#define TOML_IsObject	KVT_IsObject	//!< @alias{KVT_IsObject}
+#define TOML_IsRaw		KVT_IsRaw		//!< @alias{KVT_IsRaw}
 
 
 
-//! Recursively compare two s_toml items for equality.
-/*!
-**	If either a or b is NULL or invalid, they will be considered unequal.
-**	case_sensitive determines if object keys are treated case sensitive (1) or case insensitive (0).
+/*
+** ************************************************************************** *|
+**                             TOML Other Operations                           *|
+** ************************************************************************** *|
 */
-t_bool	TOML_Equals(s_toml const* a, s_toml const* b, t_bool const case_sensitive);
+
+#define TOML_Delete 	KVT_Delete	//!< @alias{KVT_Delete}
+
+#define TOML_Detach 	KVT_Detach	//!< @alias{KVT_Detach}
+
+#define TOML_Replace 	KVT_Replace	//!< @alias{KVT_Replace}
 
 
 
-//! Creates a new TOML object by concatenating two existing ones
-s_toml*	TOML_Concat(s_toml const* a, s_toml const* b);
+#define TOML_Delete_FromArray 	KVT_Delete_FromArray	//!< @alias{KVT_Delete_FromArray}
+
+#define TOML_Detach_FromArray 	KVT_Detach_FromArray	//!< @alias{KVT_Detach_FromArray}
+
+#define TOML_Replace_InArray 	KVT_Replace_InArray		//!< @alias{KVT_Replace_InArray}
+
+#define TOML_Insert_InArray 	KVT_Insert_InArray		//!< @alias{KVT_Insert_InArray}
 
 
 
-//! Minify a TOML string, to make it more lightweight: removes all whitespace characters
-/*!
-**	Minify a TOML, removing blank characters (such as ' ', '\t', '\r', '\n') from strings.
-**	The input pointer toml cannot point to a read-only address area, such as a string constant, 
-**	but should point to a readable and writable address area.
-*/
-void	TOML_Minify(t_char* toml); //!< TODO rename to TOML_Minify_InPlace(), and add TOML_Minify(), which would allocate
+#define TOML_Delete_FromObject \
+			TOML_Delete_FromObject_IgnoreCase
+#define TOML_Delete_FromObject_IgnoreCase		KVT_Delete_FromObject_IgnoreCase	//! @alias{KVT_Delete_FromObject_IgnoreCase}
+#define TOML_Delete_FromObject_CaseSensitive	KVT_Delete_FromObject_CaseSensitive	//! @alias{KVT_Delete_FromObject_CaseSensitive}
 
+#define TOML_Detach_FromObject \
+			TOML_Detach_FromObject_IgnoreCase
+#define TOML_Detach_FromObject_IgnoreCase		KVT_Detach_FromObject_IgnoreCase	//! @alias{KVT_Detach_FromObject_IgnoreCase}
+#define TOML_Detach_FromObject_CaseSensitive	KVT_Detach_FromObject_CaseSensitive	//! @alias{KVT_Detach_FromObject_CaseSensitive}
 
-
-//! The "get error" function, to be used after getting an unsatisfactory result return
-/*!
-**	This function can be used for analysing failed parses.
-**	This returns a pointer to the parse error location in the given TOML string.
-**	You'll probably need to look a few chars back to make sense of it.
-**	Defined when TOML_Parse() returns 0.
-**	Otherwise, NULL when TOML_Parse() succeeds.
-*/
-t_char const*	TOML_GetErrorPtr(void);
+#define TOML_Replace_InObject \
+			TOML_Replace_InObject_IgnoreCase
+#define TOML_Replace_InObject_IgnoreCase		KVT_Replace_InObject_IgnoreCase		//! @alias{KVT_Replace_InObject_IgnoreCase}
+#define TOML_Replace_InObject_CaseSensitive		KVT_Replace_InObject_CaseSensitive	//! @alias{KVT_Replace_InObject_CaseSensitive}
 
 
 

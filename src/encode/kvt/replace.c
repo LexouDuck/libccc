@@ -2,11 +2,11 @@
 #include "libccc.h"
 #include "libccc/string.h"
 #include "libccc/memory.h"
-#include "libccc/encode/json.h"
+#include "libccc/encode/common.h"
 
 
 
-t_bool	JSON_ReplaceItem(s_json* const parent, s_json* const item, s_json * replacement)
+t_bool	KVT_ReplaceItem(s_kvt* const parent, s_kvt* const item, s_kvt * replacement)
 {
 	if ((parent == NULL) || (replacement == NULL) || (item == NULL))
 		return (FALSE);
@@ -44,42 +44,42 @@ t_bool	JSON_ReplaceItem(s_json* const parent, s_json* const item, s_json * repla
 
 	item->next = NULL;
 	item->prev = NULL;
-	JSON_Delete(item);
+	KVT_Delete(item);
 	return (TRUE);
 }
 
-t_bool	JSON_ReplaceItemInArray(s_json* array, t_sint which, s_json* newitem)
+t_bool	KVT_ReplaceItemInArray(s_kvt* array, t_sint which, s_kvt* newitem)
 {
 	if (which < 0)
 		return (FALSE);
-	return (JSON_ReplaceItem(array, JSON_GetArrayItem(array, which), newitem));
+	return (KVT_ReplaceItem(array, KVT_GetArrayItem(array, which), newitem));
 }
 
 
 
-static t_bool replace_item_in_object(s_json* object, t_char const* key, s_json* replacement, t_bool case_sensitive)
+static t_bool replace_item_in_object(s_kvt* object, t_char const* key, s_kvt* replacement, t_bool case_sensitive)
 {
 	if ((replacement == NULL) || (key == NULL))
 		return (FALSE);
 
 	// replace the name in the replacement
-	if (!(replacement->type & JSON_TYPE_CONSTSTRING) && (replacement->key != NULL))
+	if (!(replacement->type & KVT_TYPE_CONSTSTRING) && (replacement->key != NULL))
 	{
 		Memory_Free(replacement->key);
 	}
 	replacement->key = (t_char*)String_Duplicate((t_char const*)key);
-	replacement->type &= ~JSON_TYPE_CONSTSTRING;
-	return (JSON_ReplaceItem(object, case_sensitive ?
-		JSON_GetObjectItem_CaseSensitive(object, key) :
-		JSON_GetObjectItem(object, key), replacement));
+	replacement->type &= ~KVT_TYPE_CONSTSTRING;
+	return (KVT_ReplaceItem(object, case_sensitive ?
+		KVT_GetObjectItem_CaseSensitive(object, key) :
+		KVT_GetObjectItem(object, key), replacement));
 }
 
-t_bool	JSON_ReplaceItemInObject(s_json* object, t_char const* key, s_json* newitem)
+t_bool	KVT_ReplaceItemInObject(s_kvt* object, t_char const* key, s_kvt* newitem)
 {
 	return (replace_item_in_object(object, key, newitem, FALSE));
 }
 
-t_bool	JSON_ReplaceItemInObject_CaseSensitive(s_json* object, t_char const* key, s_json* newitem)
+t_bool	KVT_ReplaceItemInObject_CaseSensitive(s_kvt* object, t_char const* key, s_kvt* newitem)
 {
 	return (replace_item_in_object(object, key, newitem, TRUE));
 }

@@ -30,6 +30,7 @@
 
 #include "libccc.h"
 #include "libccc/char.h"
+#include "libccc/encode/common.h"
 
 HEADER_CPP
 
@@ -39,53 +40,7 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-/*!
-**	s_json Types enum/bitflag
-*/
-typedef t_sint		t_json_type;
-
-#define JSON_TYPE_INVALID	(t_json_type)(0)
-#define JSON_TYPE_NULL		(t_json_type)(1 << 0)
-#define JSON_TYPE_FALSE		(t_json_type)(1 << 1)
-#define JSON_TYPE_TRUE		(t_json_type)(1 << 2)
-#define JSON_TYPE_NUMBER	(t_json_type)(1 << 3)
-#define JSON_TYPE_STRING	(t_json_type)(1 << 4)
-#define JSON_TYPE_ARRAY		(t_json_type)(1 << 5)
-#define JSON_TYPE_OBJECT	(t_json_type)(1 << 6)
-#define JSON_TYPE_RAW		(t_json_type)(1 << 7) // raw json
-
-#define JSON_TYPE_MASK	(0xFF)
-
-#define JSON_TYPE_ISREFERENCE	(t_json_type)(1 << 8)
-#define JSON_TYPE_CONSTSTRING	(t_json_type)(1 << 9)
-
-
-
-/*!
-**	The s_json structure: nest-able, list-able, etc
-*/
-typedef struct	json
-{
-	struct json* next;	//!< linked-list pointers to neighboring items
-	struct json* prev;	//!< linked-list pointers to neighboring items
-
-	struct json* child;	//!< An array or object item will have a child pointer pointing to a chain of the items in the array/object.
-
-	t_json_type	type;	//!< The type of the item: uses the `JSON_TYPE_*` macros defined above.
-
-	t_char*		key;	//!< The item's name string, if this item is the child of, or is in the list of subitems of an object.
-
-	t_char*		value_string;	//!< The item's string, if `type == JSON_TYPE_STRING || type == JSON_TYPE_RAW`
-	t_f64		value_number;	//!< The item's number, if `type == JSON_TYPE_NUMBER`
-}				s_json;
-
-/*!
-**	Limits how deeply nested arrays/objects can be before s_json rejects to parse them.
-**	This is to prevent stack overflows.
-*/
-#ifndef JSON_NESTING_LIMIT
-#define JSON_NESTING_LIMIT 1000
-#endif
+typedef s_json	s_json;
 
 
 
@@ -108,14 +63,12 @@ typedef struct	json
 */
 
 
+
 /*
 ** ************************************************************************** *|
-**                             Basic JSON Operations                          *|
+**                             JSON String Operations                         *|
 ** ************************************************************************** *|
 */
-
-//! Allocated one single JSON struct
-s_json* JSON_New_Item(void);
 
 //! Create a new `s_json` object, parsed from a (valid) JSON string
 /*!
@@ -153,214 +106,35 @@ s_json*	JSON_FromString_Strict_N(t_char const* value, t_size buffer_length, t_ch
 
 
 #define JSON_ToString	JSON_ToString_Pretty
-#define JSON_Print		JSON_ToString_Pretty
+#define JSON_Print		JSON_ToString
+#define JSON_Encode		JSON_ToString
+
 //! Render a s_json entity to text for transfer/storage (with 'pretty' formatting).
 t_char*	JSON_ToString_Pretty(s_json const* item);
 #define JSON_Print_Pretty	JSON_ToString_Pretty
+#define JSON_Encode_Pretty	JSON_ToString_Pretty
+
 //! Render a s_json entity to text for transfer/storage, without any formatting/whitespace
 t_char*	JSON_ToString_Minify(s_json const* item);
 #define JSON_Print_Minify	JSON_ToString_Minify
+#define JSON_Decode_Minify	JSON_ToString_Minify
+
 //! Render a s_json entity to text using a buffered strategy.
 /*!
 **	prebuffer is a guess at the final size. guessing well reduces reallocation. fmt=0 gives unformatted, =1 gives formatted.
 */
 t_char*	JSON_ToString_Buffered(s_json const* item, t_sint prebuffer, t_bool fmt);
-#define JSON_Print_Buffered	JSON_ToString_Buffered
+#define JSON_Print_Buffered 	JSON_ToString_Buffered
+#define JSON_Decode_Buffered 	JSON_ToString_Buffered
+
 //! Render a `s_json` entity to text using a buffer already allocated in memory with given length.
 /*!
 **	@returns 1(TRUE) on success and 0(FALSE) on failure.
 **	NOTE: s_json is not always 100% accurate in estimating how much memory it will use, so to be safe allocate 5 bytes more than you actually need.
 */
 t_bool	JSON_ToString_Preallocated(s_json* item, t_char* buffer, t_sint const length, t_bool const format);
-#define JSON_Print_Preallocated	JSON_ToString_Preallocated
-
-
-
-//! Returns the amount of items in an array (or object).
-t_sint	JSON_GetArrayLength(s_json const* array);
-
-//! Retrieve item number "index" from array "array". Returns NULL if unsuccessful.
-s_json*	JSON_GetArrayItem(s_json const* array, t_sint index);
-
-//! Get the item with the given `key` from the given `object` (case-insensitive).
-s_json*	JSON_GetObjectItem				(s_json const* const object, t_char const* const key);
-//! Get the item with the given `key` from the given `object` (case-sensitive).
-s_json*	JSON_GetObjectItem_CaseSensitive(s_json const* const object, t_char const* const key);
-
-t_bool	JSON_HasObjectItem(s_json const* object, t_char const* key);
-
-
-
-//! Access the contents of a JSON with a 'JSON path', ie: a format string of 'accessors' (ie: strings or numbers in brackets)
-/*!
-**	@param	object		The JSON object to get an item from
-**	@param	format_path	The format string with an accessor pattern (example: `JSON_Get(json, "[\"subarray\"][3][\"name\"]")`)
-**	@param	...			The variadic arguments list which goes along with `format_path` (works like printf)
-**	@returns the JSON object gotten from the given accessor path, or NULL if the path or JSON was invalid.
-*/
-s_json*	JSON_Get(s_json const* object, t_char const* format_path, ...)
-_FORMAT(printf, 2, 3);
-
-//! Returns the number value contained within the given `item`, or `NAN` if type is not #JSON_TYPE_NUMBER.
-t_f64	JSON_GetValue_Number(s_json const* const item);
-//! Returns the string value contained within the given `item`, or `NULL` if type is not #JSON_TYPE_STRING.
-t_char*	JSON_GetValue_String(s_json const* const item);
-
-
-
-//! Change the `value_number` of a JSON_TYPE_STRING object, only takes effect when type of object is JSON_TYPE_STRING.
-t_f64	JSON_SetValue_Number(s_json* object, t_f64 value);
-//! Change the `value_string` of a JSON_TYPE_STRING object, only takes effect when type of object is JSON_TYPE_STRING.
-t_char*	JSON_SetValue_String(s_json* object, t_char* value);
-
-
-
-//! These functions check the type of an item.
-//!@{
-t_bool	JSON_IsInvalid	(s_json const* const item);
-t_bool	JSON_IsNull		(s_json const* const item);
-t_bool	JSON_IsFalse	(s_json const* const item);
-t_bool	JSON_IsTrue		(s_json const* const item);
-t_bool	JSON_IsBool		(s_json const* const item);
-t_bool	JSON_IsNumber	(s_json const* const item);
-t_bool	JSON_IsString	(s_json const* const item);
-t_bool	JSON_IsArray	(s_json const* const item);
-t_bool	JSON_IsObject	(s_json const* const item);
-t_bool	JSON_IsRaw		(s_json const* const item);
-//!@}
-
-
-
-//! These calls create a s_json item of the appropriate type.
-//!@{
-s_json*	JSON_CreateNull(void);
-s_json*	JSON_CreateTrue(void);
-s_json*	JSON_CreateFalse(void);
-s_json*	JSON_CreateBool(t_bool boolean);
-s_json*	JSON_CreateNumber(t_f64 num);
-s_json*	JSON_CreateString(t_char const* string);
-s_json*	JSON_CreateRaw(t_char const* raw);
-s_json*	JSON_CreateArray(void);
-s_json*	JSON_CreateObject(void);
-//!@}
-
-//! Create a string where `value_string` references a string, so it will not be freed by JSON_Delete()
-s_json*	JSON_CreateStringReference(t_char const* string);
-//! Create an array that only references it's elements, so they will not be freed by JSON_Delete()
-s_json*	JSON_CreateArrayReference(s_json const* child);
-//! Create an object that only references it's elements, so they will not be freed by JSON_Delete()
-s_json*	JSON_CreateObjectReference(s_json const* child);
-
-//! Create and fill a JSON array
-/*!
-**	These utilities create a JSON array of `count` items.
-**	The given `count` cannot be greater than the number of elements in
-**	the given `numbers` array, otherwise array access will be out of bounds.
-*/
-//!@{
-s_json*	JSON_CreateIntArray		(t_sint const* numbers, t_sint count);
-s_json*	JSON_CreateFloatArray	(t_f32 const* numbers, t_sint count);
-s_json*	JSON_CreateDoubleArray	(t_f64 const* numbers, t_sint count);
-s_json*	JSON_CreateStringArray	(t_char const* const *strings, t_sint count);
-//!@}
-
-
-
-//! Appends the given `item` to the given `array`.
-t_bool	JSON_AddToArray_Item(s_json* array, s_json* item);
-
-//! Append a reference to `item` to the given `array`.
-t_bool	JSON_AddToArray_ItemReference(s_json* array, s_json* item);
-
-//! Appends the given `item` to the given `object`, with the given `key`.
-t_bool	JSON_AddToObject_Item(s_json* object, t_char const* key, s_json* item);
-
-//! Append reference to item to the given object.
-t_bool	JSON_AddToObject_ItemReference(s_json* object, t_char const* key, s_json* item);
-
-//! Appends the given `item` to an object with constant string as key
-/*!
-**	Use this when string is definitely const (i.e. a literal, or as good as), and will definitely survive the JSON object.
-**	NOTE: When this function was used, make sure to always perform the following check:
-**	`(item->type & JSON_TYPE_CONSTSTRING) == 0` before writing to `item->string`.
-*/
-t_bool	JSON_AddToObject_ItemCS(s_json* object, t_char const* key, s_json* item);
-
-/*!
-**	Helper functions for creating and adding items to an object at the same time.
-**	They return the added item or NULL on failure.
-*/
-//!@{
-s_json*	JSON_AddToObject_Null	(s_json* const object, t_char const* key);
-s_json*	JSON_AddToObject_True	(s_json* const object, t_char const* key);
-s_json*	JSON_AddToObject_False	(s_json* const object, t_char const* key);
-s_json*	JSON_AddToObject_Bool	(s_json* const object, t_char const* key, t_bool boolean);
-s_json*	JSON_AddToObject_Number	(s_json* const object, t_char const* key, t_f64 number);
-s_json*	JSON_AddToObject_String	(s_json* const object, t_char const* key, t_char const* string);
-s_json*	JSON_AddToObject_Raw	(s_json* const object, t_char const* key, t_char const* raw);
-s_json*	JSON_AddToObject_Object	(s_json* const object, t_char const* key);
-s_json*	JSON_AddToObject_Array	(s_json* const object, t_char const* key);
-//!@}
-
-
-
-//! Shifts pre-existing items to the right.
-t_bool	JSON_InsertItemInArray(s_json* array, t_sint index, s_json* newitem);
-
-
-
-//! Delete a s_json entity and all subentities.
-void	JSON_Delete(s_json* item);
-
-//! Deletes the item at the given `index` from the given `array`.
-void	JSON_DeleteItemFromArray				(s_json* array, t_sint index);
-//! Deletes the item with the given `key` from the given `object`.
-void	JSON_DeleteItemFromObject				(s_json* object, t_char const* key);
-void	JSON_DeleteItemFromObject_CaseSensitive	(s_json* object, t_char const* key);
-
-
-
-//! Removes (without deleting) the given `item` from the given `parent` object.
-s_json*	JSON_DetachItem(s_json* parent, s_json* const item);
-//! Removes (without deleting) the given `item` from the given `array`.
-s_json*	JSON_DetachItemFromArray				(s_json* array, t_sint index);
-//! Removes (without deleting) the given `item` from the given `object`.
-s_json*	JSON_DetachItemFromObject				(s_json* object, t_char const* key);
-s_json*	JSON_DetachItemFromObject_CaseSensitive	(s_json* object, t_char const* key);
-
-
-//! Replaces the given `item` from the given `parent` object, with the given `newitem`.
-t_bool	JSON_ReplaceItem(s_json* parent, s_json* item, s_json* newitem);
-//! Replaces the given `item` from the given `array`, with the given `newitem`.
-t_bool	JSON_ReplaceItemInArray					(s_json* array, t_sint index, s_json* newitem);
-//! Replaces the given `item` from the given `object`, with the given `newitem` (case-insensitive).
-t_bool	JSON_ReplaceItemInObject				(s_json* object, t_char const* key, s_json* newitem);
-//! Replaces the given `item` from the given `object`, with the given `newitem` (case-sensitive).
-t_bool	JSON_ReplaceItemInObject_CaseSensitive	(s_json* object, t_char const* key, s_json* newitem);
-
-
-
-//! Duplicates a JSON object.
-/*!
-**	Duplicate will create a new, identical s_json item to the one you pass, in new memory that will
-**	need to be released. With `recurse != FALSE`, it will duplicate any children connected to the item.
-**	The item->next and ->prev pointers are always zero on return from Duplicate.
-*/
-s_json*	JSON_Duplicate(s_json const* item, t_bool recurse);
-
-
-
-//! Recursively compare two s_json items for equality.
-/*!
-**	If either a or b is NULL or invalid, they will be considered unequal.
-**	case_sensitive determines if object keys are treated case sensitive (1) or case insensitive (0).
-*/
-t_bool	JSON_Equals(s_json const* a, s_json const* b, t_bool const case_sensitive);
-
-
-
-//! Creates a new JSON object by concatenating two existing ones
-s_json*	JSON_Concat(s_json const* a, s_json const* b);
+#define JSON_Print_Preallocated 	JSON_ToString_Preallocated
+#define JSON_Encode_Preallocated 	JSON_ToString_Preallocated
 
 
 
@@ -374,15 +148,195 @@ void	JSON_Minify(t_char* json); //!< TODO rename to JSON_Minify_InPlace(), and a
 
 
 
-//! The "get error" function, to be used after getting an unsatisfactory result return
-/*!
-**	This function can be used for analysing failed parses.
-**	This returns a pointer to the parse error location in the given JSON string.
-**	You'll probably need to look a few chars back to make sense of it.
-**	Defined when JSON_Parse() returns 0.
-**	Otherwise, NULL when JSON_Parse() succeeds.
+/*
+** ************************************************************************** *|
+**                             Basic JSON Operations                           *|
+** ************************************************************************** *|
 */
-t_char const*	JSON_GetErrorPtr(void);
+
+#define JSON_Item		KVT_Item		//!< @alias{KVT_Item}
+
+#define JSON_Duplicate	KVT_Duplicate	//!< @alias{KVT_Duplicate}
+
+#define JSON_Equals		KVT_Equals		//!< @alias{KVT_Equals}
+
+#define JSON_Concat		KVT_Concat		//!< @alias{KVT_Concat}
+
+
+
+#define JSON_GetError			KVT_GetError		//!< @alias{KVT_GetError}
+
+#define JSON_GetErrorMessage	KVT_GetErrorMessage	//!< @alias{KVT_GetErrorMessage}
+
+
+
+/*
+** ************************************************************************** *|
+**                            JSON "create" Operations                         *|
+** ************************************************************************** *|
+*/
+
+#define JSON_CreateNull		KVT_CreateNull		//!< @alias{KVT_CreateNull}
+#define JSON_CreateBoolean	KVT_CreateBoolean	//!< @alias{KVT_CreateBoolean}
+#define JSON_CreateInteger	KVT_CreateInteger	//!< @alias{KVT_CreateInteger}
+#define JSON_CreateFloat	KVT_CreateFloat		//!< @alias{KVT_CreateFloat}
+#define JSON_CreateString	KVT_CreateString	//!< @alias{KVT_CreateString}
+#define JSON_CreateArray	KVT_CreateArray		//!< @alias{KVT_CreateArray}
+#define JSON_CreateObject	KVT_CreateObject	//!< @alias{KVT_CreateObject}
+#define JSON_CreateRaw		KVT_CreateRaw		//!< @alias{KVT_CreateRaw}
+
+
+
+#define JSON_CreateArrayReference	KVT_CreateArrayReference	//!< @alias{KVT_CreateArrayReference}
+#define JSON_CreateObjectReference	KVT_CreateObjectReference	//!< @alias{KVT_CreateObjectReference}
+#define JSON_CreateStringReference	KVT_CreateStringReference	//!< @alias{KVT_CreateStringReference}
+
+
+
+#define JSON_CreateArray_Boolean	KVT_CreateArray_Boolean	//!< @alias{KVT_CreateArray_Boolean}
+#define JSON_CreateArray_UInt		KVT_CreateArray_UInt	//!< @alias{KVT_CreateArray_UInt}
+#define JSON_CreateArray_U8			KVT_CreateArray_U8		//!< @alias{KVT_CreateArray_U8}
+#define JSON_CreateArray_U16		KVT_CreateArray_U16		//!< @alias{KVT_CreateArray_U16}
+#define JSON_CreateArray_U32		KVT_CreateArray_U32		//!< @alias{KVT_CreateArray_U32}
+#define JSON_CreateArray_U64		KVT_CreateArray_U64		//!< @alias{KVT_CreateArray_U64}
+#define JSON_CreateArray_U128		KVT_CreateArray_U128	//!< @alias{KVT_CreateArray_U128}
+#define JSON_CreateArray_SInt		KVT_CreateArray_SInt	//!< @alias{KVT_CreateArray_SInt}
+#define JSON_CreateArray_S8			KVT_CreateArray_S8		//!< @alias{KVT_CreateArray_S8}
+#define JSON_CreateArray_S16		KVT_CreateArray_S16		//!< @alias{KVT_CreateArray_S16}
+#define JSON_CreateArray_S32		KVT_CreateArray_S32		//!< @alias{KVT_CreateArray_S32}
+#define JSON_CreateArray_S64		KVT_CreateArray_S64		//!< @alias{KVT_CreateArray_S64}
+#define JSON_CreateArray_S128		KVT_CreateArray_S128	//!< @alias{KVT_CreateArray_S128}
+#define JSON_CreateArray_Float		KVT_CreateArray_Float	//!< @alias{KVT_CreateArray_Float}
+#define JSON_CreateArray_F32		KVT_CreateArray_F32		//!< @alias{KVT_CreateArray_F32}
+#define JSON_CreateArray_F64		KVT_CreateArray_F64		//!< @alias{KVT_CreateArray_F64}
+#define JSON_CreateArray_F80		KVT_CreateArray_F80		//!< @alias{KVT_CreateArray_F80}
+#define JSON_CreateArray_F128		KVT_CreateArray_F128	//!< @alias{KVT_CreateArray_F128}
+#define JSON_CreateArray_String		KVT_CreateArray_String	//!< @alias{KVT_CreateArray_String}
+
+
+
+/*
+** ************************************************************************** *|
+**                             JSON "get" Operations                           *|
+** ************************************************************************** *|
+*/
+
+#define JSON_GetArrayLength		KVT_GetArrayLength	//!< @alias{KVT_GetArrayLength}
+
+#define JSON_GetArrayItem		KVT_GetArrayItem	//!< @alias{KVT_GetArrayItem}
+
+
+
+#define JSON_GetObjectItem \
+		JSON_GetObjectItem_IgnoreCase
+#define JSON_GetObjectItem_IgnoreCase		KVT_GetObjectItem_IgnoreCase	//!< @alias{KVT_GetObjectItem_IgnoreCase}
+#define JSON_GetObjectItem_CaseSensitive	KVT_GetObjectItem_CaseSensitive	//!< @alias{KVT_GetObjectItem_CaseSensitive}
+
+
+
+#define JSON_HasObjectItem		KVT_HasObjectItem	//!< @alias{KVT_HasObjectItem}
+
+
+
+#define JSON_Get				KVT_Get	//!< @alias{KVT_Get}
+
+#define JSON_GetValue_Boolean 	KVT_GetValue_Boolean	//!< @alias{KVT_GetValue_Boolean}
+#define JSON_GetValue_Integer 	KVT_GetValue_Integer	//!< @alias{KVT_GetValue_Integer}
+#define JSON_GetValue_Float 	KVT_GetValue_Float		//!< @alias{KVT_GetValue_Float}
+#define JSON_GetValue_String 	KVT_GetValue_String		//!< @alias{KVT_GetValue_String}
+
+
+
+/*
+** ************************************************************************** *|
+**                             JSON "set" Operations                           *|
+** ************************************************************************** *|
+*/
+
+#define JSON_SetValue_Boolean 	KVT_SetValue_Boolean	//!< @alias{KVT_SetValue_Boolean}
+#define JSON_SetValue_Integer 	KVT_SetValue_Integer	//!< @alias{KVT_SetValue_Integer}
+#define JSON_SetValue_Float 	KVT_SetValue_Float		//!< @alias{KVT_SetValue_Float}
+#define JSON_SetValue_String 	KVT_SetValue_String		//!< @alias{KVT_SetValue_String}
+
+
+
+#define JSON_AddToArray_Item				KVT_AddToArray_Item				//!< @alias{KVT_AddToArray_Item}
+#define JSON_AddToArray_ItemReference		KVT_AddToArray_ItemReference	//!< @alias{KVT_AddToArray_ItemReference}
+#define JSON_AddToArray_ItemConstString		KVT_AddToArray_ItemConstString	//!< @alias{KVT_AddToArray_ItemConstString}
+
+#define JSON_AddToObject_Item				KVT_AddToObject_Item			//!< @alias{KVT_AddToObject_Item}
+#define JSON_AddToObject_ItemReference		KVT_AddToObject_ItemReference	//!< @alias{KVT_AddToObject_ItemReference}
+#define JSON_AddToObject_ItemConstString	KVT_AddToObject_ItemConstString	//!< @alias{KVT_AddToObject_ItemConstString}
+
+
+
+#define JSON_AddToObject_Null		KVT_AddToObject_Null	//!< @alias{KVT_AddToObject_Null}
+#define JSON_AddToObject_Boolean	KVT_AddToObject_Boolean	//!< @alias{KVT_AddToObject_Boolean}
+#define JSON_AddToObject_Integer	KVT_AddToObject_Integer	//!< @alias{KVT_AddToObject_Integer}
+#define JSON_AddToObject_Float		KVT_AddToObject_Float	//!< @alias{KVT_AddToObject_Float}
+#define JSON_AddToObject_String		KVT_AddToObject_String	//!< @alias{KVT_AddToObject_String}
+#define JSON_AddToObject_Object		KVT_AddToObject_Object	//!< @alias{KVT_AddToObject_Object}
+#define JSON_AddToObject_Array		KVT_AddToObject_Array	//!< @alias{KVT_AddToObject_Array}
+#define JSON_AddToObject_Raw		KVT_AddToObject_Raw		//!< @alias{KVT_AddToObject_Raw}
+
+
+
+/*
+** ************************************************************************** *|
+**                             JSON Check Operations                          *|
+** ************************************************************************** *|
+*/
+
+#define JSON_IsInvalid	KVT_IsInvalid	//!< @alias{KVT_IsInvalid}
+#define JSON_IsNull		KVT_IsNull		//!< @alias{KVT_IsNull}
+#define JSON_IsBoolean	KVT_IsBoolean	//!< @alias{KVT_IsBoolean}
+#define JSON_IsInteger	KVT_IsInteger	//!< @alias{KVT_IsInteger}
+#define JSON_IsFloat	KVT_IsFloat		//!< @alias{KVT_IsFloat}
+#define JSON_IsString	KVT_IsString	//!< @alias{KVT_IsString}
+#define JSON_IsArray	KVT_IsArray		//!< @alias{KVT_IsArray}
+#define JSON_IsObject	KVT_IsObject	//!< @alias{KVT_IsObject}
+#define JSON_IsRaw		KVT_IsRaw		//!< @alias{KVT_IsRaw}
+
+
+
+/*
+** ************************************************************************** *|
+**                             JSON Other Operations                           *|
+** ************************************************************************** *|
+*/
+
+#define JSON_Delete 	KVT_Delete	//!< @alias{KVT_Delete}
+
+#define JSON_Detach 	KVT_Detach	//!< @alias{KVT_Detach}
+
+#define JSON_Replace 	KVT_Replace	//!< @alias{KVT_Replace}
+
+
+
+#define JSON_Delete_FromArray 	KVT_Delete_FromArray	//!< @alias{KVT_Delete_FromArray}
+
+#define JSON_Detach_FromArray 	KVT_Detach_FromArray	//!< @alias{KVT_Detach_FromArray}
+
+#define JSON_Replace_InArray 	KVT_Replace_InArray		//!< @alias{KVT_Replace_InArray}
+
+#define JSON_Insert_InArray 	KVT_Insert_InArray		//!< @alias{KVT_Insert_InArray}
+
+
+
+#define JSON_Delete_FromObject \
+			JSON_Delete_FromObject_IgnoreCase
+#define JSON_Delete_FromObject_IgnoreCase		KVT_Delete_FromObject_IgnoreCase	//! @alias{KVT_Delete_FromObject_IgnoreCase}
+#define JSON_Delete_FromObject_CaseSensitive	KVT_Delete_FromObject_CaseSensitive	//! @alias{KVT_Delete_FromObject_CaseSensitive}
+
+#define JSON_Detach_FromObject \
+			JSON_Detach_FromObject_IgnoreCase
+#define JSON_Detach_FromObject_IgnoreCase		KVT_Detach_FromObject_IgnoreCase	//! @alias{KVT_Detach_FromObject_IgnoreCase}
+#define JSON_Detach_FromObject_CaseSensitive	KVT_Detach_FromObject_CaseSensitive	//! @alias{KVT_Detach_FromObject_CaseSensitive}
+
+#define JSON_Replace_InObject \
+			JSON_Replace_InObject_IgnoreCase
+#define JSON_Replace_InObject_IgnoreCase		KVT_Replace_InObject_IgnoreCase		//! @alias{KVT_Replace_InObject_IgnoreCase}
+#define JSON_Replace_InObject_CaseSensitive		KVT_Replace_InObject_CaseSensitive	//! @alias{KVT_Replace_InObject_CaseSensitive}
 
 
 

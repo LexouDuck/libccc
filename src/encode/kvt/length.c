@@ -1,13 +1,13 @@
 
 #include "libccc.h"
 #include "libccc/char.h"
-#include "libccc/encode/json.h"
+#include "libccc/encode/common.h"
 
 
 
-t_sint	JSON_GetArrayLength(s_json const* array)
+t_sint	KVT_GetArrayLength(s_kvt const* array)
 {
-	s_json* child = NULL;
+	s_kvt* child = NULL;
 	t_size size = 0;
 
 	if (array == NULL)

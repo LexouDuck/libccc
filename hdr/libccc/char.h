@@ -268,7 +268,7 @@ t_bool					Char_IsInCharset(t_utf32 c, t_char const* charset);
 **	@returns the uppercase equivalent of the given character `c`
 **			(nothing is done if `c` is not a letter character).
 */
-t_char					Char_ToUppercase(t_char c);
+t_char					Char_ToUppercase(t_char c); // TODO refactor `t_char` here to `t_utf32` (breaking change)
 #define c_toupper		Char_ToUppercase
 #define Char_ToUpper	Char_ToUppercase
 
@@ -280,7 +280,7 @@ t_char					Char_ToUppercase(t_char c);
 **	@returns the lowercase equivalent of the given character `c`
 **			(nothing is done if `c` is not a letter character).
 */
-t_char					Char_ToLowercase(t_char c);
+t_char					Char_ToLowercase(t_char c); // TODO refactor `t_char` here to `t_utf32` (breaking change)
 #define c_tolower		Char_ToLowercase
 #define Char_ToLower	Char_ToLowercase
 
@@ -296,6 +296,8 @@ t_char					Char_ToLowercase(t_char c);
 
 //! Converts the given Unicode code point value `c` to its UTF-8 equivalent representation
 /*!
+**	@isostd{https://en.cppreference.com/w/c/string/multibyte/wctomb}
+**
 **	Converts the given char `c` to UTF-8 representation, and writes it to 'dest'
 **	@param	c		The character to convert (UTF-32 Unicode code point value)
 **	@param	dest	The pointer at which to write the resulting UTF-8 char
@@ -303,10 +305,13 @@ t_char					Char_ToLowercase(t_char c);
 **	@returns The size (in bytes) of the character written (can be 0, 1, 2, 3, or 4)
 */
 t_size					Char_ToUTF8(t_utf8* dest, t_utf32 c);
-#define c_to_utf8		Char_ToUTF8
+#define c_wctomb		Char_ToUTF8
+#define c_ctoutf8		Char_ToUTF8
 
 //! Converts the given Unicode code point value `c` to its UTF-16 equivalent representation
 /*!
+**	@isostd{https://en.cppreference.com/w/c/string/multibyte/wctomb}
+**
 **	Converts the given char `c` to UTF-16 representation, and writes it to 'dest'
 **	@param	c		The character to convert (UTF-32 Unicode code point value)
 **	@param	dest	The pointer at which to write the resulting UTF-16 char
@@ -314,27 +319,36 @@ t_size					Char_ToUTF8(t_utf8* dest, t_utf32 c);
 **	@returns The size (in bytes) of the character written (can be 0, 2, or 4)
 */
 t_size					Char_ToUTF16(t_utf16* dest, t_utf32 c);
-#define c_to_utf16		Char_ToUTF16
+#define c_wctomb2		Char_ToUTF16
+#define c_ctoutf16		Char_ToUTF16
 
 
 
 //! Returns the Unicode code point value (UTF-32) for the UTF-8 character pointed to by 'str'
 /*!
+**	@isostd{https://en.cppreference.com/w/c/string/multibyte/mbtowc}
+**
 **	Reads up to 4 bytes in 'str', and converts these bytes to a Unicode code point value
 **	@param	str		The string from which to read a UTF-8 character
 **	@returns The Unicode code point value for the character pointed to by 'str'
 */
-t_utf32					UTF8_Get(t_utf8 const* str);
-#define c_utf8get		UTF8_Get
+t_utf32					Char_FromUTF8(t_utf8 const* str);
+#define c_mbtowc		Char_FromUTF8
+#define c_utf8toc		Char_FromUTF8
+#define UTF8_Get		Char_FromUTF8
 
 //! Returns the Unicode code point value (UTF-32) for the UTF-16 character pointed to by 'str'
 /*!
+**	@isostd{https://en.cppreference.com/w/c/string/multibyte/mbtowc}
+**
 **	Reads 2 or 4 bytes in 'str', and converts these bytes to a Unicode code point value
 **	@param	str		The string from which to read a UTF-16 character
 **	@returns The Unicode code point value for the character pointed to by 'str'
 */
-t_utf32					UTF16_Get(t_utf16 const* str);
-#define c_utf16get		UTF16_Get
+t_utf32					Char_FromUTF16(t_utf16 const* str);
+#define c_mb2towc		Char_FromUTF16
+#define c_utf16toc		Char_FromUTF16
+#define UTF16_Get		Char_FromUTF16
 
 
 

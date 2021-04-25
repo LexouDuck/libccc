@@ -7,13 +7,13 @@
 
 
 
-typedef struct	json_parse
+typedef struct json_parse
 {
 	t_char const*	content;
 	t_size	length;
 	t_size	offset;
 	t_size	depth; // How deeply nested (in arrays/objects) is the input at the current offset.
-}				s_json_parse;
+}			s_json_parse;
 
 
 
@@ -111,8 +111,8 @@ loop_end:
 	number = F64_FromString((t_char const*)number_c_string);
 	if (IS_NAN(number_c_string))
 		return (FALSE); // parse_error
-	item->value_number = number;
-	item->type = JSON_TYPE_NUMBER;
+	item->value.number = number;
+	item->type = DYNAMIC_TYPE_FLOAT;
 	input_buffer->offset += i;
 	return (TRUE);
 }
@@ -142,8 +142,7 @@ static t_uint	parse_hex4(t_char const* const input)
 			return (0);
 
 		if (i < 3)
-		{
-			// shift left to make place for the next nibble
+		{	// shift left to make place for the next nibble
 			h = h << 4;
 		}
 	}
@@ -186,25 +185,16 @@ static t_char utf16_literal_to_utf8(t_char const* const input_pointer, t_char co
 		sequence_length = 12; // \uXXXX\uXXXX
 
 		if ((input_end - second_sequence) < 6)
-		{
-			// input ends unexpectedly
-			goto failure;
-		}
+			goto failure; // input ends unexpectedly
 
 		if ((second_sequence[0] != '\\') || (second_sequence[1] != 'u'))
-		{
-			// missing second half of the surrogate pair
-			goto failure;
-		}
+			goto failure; // missing second half of the surrogate pair
 
 		// get the second utf16 sequence
 		second_code = parse_hex4(second_sequence + 2);
 		// check that the code is valid
 		if ((second_code < 0xDC00) || (second_code > 0xDFFF))
-		{
-			// invalid second half of the surrogate pair
-			goto failure;
-		}
+			goto failure; // invalid second half of the surrogate pair
 		// calculate the unicode codepoint from the surrogate pair
 		codepoint = 0x10000 + (((first_code & 0x3FF) << 10) | (second_code & 0x3FF));
 	}
@@ -213,7 +203,6 @@ static t_char utf16_literal_to_utf8(t_char const* const input_pointer, t_char co
 		sequence_length = 6; // \uXXXX
 		codepoint = first_code;
 	}
-
 	// encode as UTF-8 -> takes at maximum 4 bytes to encode:
 	// 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
 	if (codepoint < 0x80)
@@ -240,10 +229,7 @@ static t_char utf16_literal_to_utf8(t_char const* const input_pointer, t_char co
 		first_byte_mark = (t_char)0xF0; // 11110000
 	}
 	else
-	{
-		// invalid unicode codepoint
-		goto failure;
-	}
+		goto failure; // invalid unicode codepoint
 
 	// encode as utf8
 	for (utf8_position = (t_char)(utf8_length - 1); utf8_position > 0; utf8_position--)
