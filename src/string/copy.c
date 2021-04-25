@@ -3,7 +3,7 @@
 
 
 
-char	*c_strcpy(char *dest, char const *src)
+t_char*	c_strcpy(t_char* dest, t_char const* src)
 {
 	t_size	i;
 
@@ -25,9 +25,9 @@ char	*c_strcpy(char *dest, char const *src)
 
 
 
-char	*c_strncpy(char *dest, char const *src, t_size n)
+t_char*	c_strncpy(t_char* dest, t_char const* src, t_size n)
 {
-	char	*str;
+	t_char*	str;
 	t_size	i;
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
@@ -55,7 +55,7 @@ char	*c_strncpy(char *dest, char const *src, t_size n)
 
 
 
-t_size	c_strlcpy(char *dest, char const *src, t_size size)
+t_size	c_strlcpy(t_char* dest, t_char const* src, t_size size)
 {
 	t_size	i;
 

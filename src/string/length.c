@@ -3,7 +3,7 @@
 
 
 
-inline t_size	c_strlen(char const *str)
+inline t_size	c_strlen(t_char const* str)
 {
 	t_size	i;
 

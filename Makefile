@@ -270,23 +270,23 @@ SRCS = \
 	monad/list/map.c		\
 	monad/list/filter.c		\
 	monad/convert/list.c	\
-	encode/json/add.c		\
-	encode/json/concat.c	\
-	encode/json/create.c	\
-	encode/json/delete.c	\
-	encode/json/detach.c	\
-	encode/json/duplicate.c	\
-	encode/json/equals.c	\
-	encode/json/get.c		\
-	encode/json/insert.c	\
-	encode/json/is.c		\
+	encode/kvt/add.c		\
+	encode/kvt/concat.c		\
+	encode/kvt/create.c		\
+	encode/kvt/delete.c		\
+	encode/kvt/detach.c		\
+	encode/kvt/duplicate.c	\
+	encode/kvt/equals.c		\
+	encode/kvt/get.c		\
+	encode/kvt/insert.c		\
+	encode/kvt/is.c			\
+	encode/kvt/length.c		\
+	encode/kvt/new.c		\
+	encode/kvt/replace.c	\
+	encode/kvt/set.c		\
 	encode/json/parse.c		\
 	encode/json/print.c		\
-	encode/json/length.c	\
 	encode/json/minify.c	\
-	encode/json/new.c		\
-	encode/json/replace.c	\
-	encode/json/set.c		\
 
 # define object files list (.o) from source list
 OBJS = ${SRCS:%.c=$(OBJDIR)%.o}

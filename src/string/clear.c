@@ -3,7 +3,7 @@
 
 
 
-void	c_strclr(char *str)
+void	c_strclr(t_char* str)
 {
 	t_size	i;
 

@@ -3,7 +3,7 @@
 
 
 
-char*	String_Find_R_Char(char const *str, char c)
+t_char*	String_Find_R_Char(t_char const* str, t_char c)
 {
 	t_size	i;
 
@@ -15,26 +15,26 @@ char*	String_Find_R_Char(char const *str, char c)
 	while (str[i])
 		++i;
 	if (c == '\0')
-		return ((char *)(str + i));
+		return ((t_char* )(str + i));
 	else if (i == 0)
 		return (NULL);
 	while (i--)
 	{
 		if (str[i] == c)
-			return ((char *)str + i);
+			return ((t_char* )str + i);
 	}
 	return (NULL);
 }
 inline
-t_ptrdiff	String_IndexOf_R_Char(char const *str, char c)
+t_ptrdiff	String_IndexOf_R_Char(t_char const* str, t_char c)
 {
-	char* result = String_Find_R_Char(str, c);
+	t_char* result = String_Find_R_Char(str, c);
 	return (result ? result - str : -1);
 }
 
 
 
-char*	String_Find_R_Charset(char const *str, char const* charset)
+t_char*	String_Find_R_Charset(t_char const* str, t_char const* charset)
 {
 	t_size	i;
 
@@ -46,7 +46,7 @@ char*	String_Find_R_Charset(char const *str, char const* charset)
 	while (str[i])
 		++i;
 	if (charset[0] == '\0')
-		return ((char *)(str + i));
+		return ((t_char* )(str + i));
 	else if (i == 0)
 		return (NULL);
 	while (i--)
@@ -54,21 +54,21 @@ char*	String_Find_R_Charset(char const *str, char const* charset)
 		for (t_size j = 0; charset[j]; ++j)
 		{
 			if (str[i] == charset[j])
-				return ((char *)str + i);
+				return ((t_char* )str + i);
 		}
 	}
 	return (NULL);
 }
 inline
-t_ptrdiff	String_IndexOf_R_Charset(char const *str, char const *charset)
+t_ptrdiff	String_IndexOf_R_Charset(t_char const* str, t_char const* charset)
 {
-	char* result = String_Find_R_Charset(str, charset);
+	t_char* result = String_Find_R_Charset(str, charset);
 	return (result ? result - str : -1);
 }
 
 
 
-char*	String_Find_R_String(char const *str, char const *query)
+t_char*	String_Find_R_String(t_char const* str, t_char const* query)
 {
 	t_size	length;
 	t_size	match;
@@ -95,13 +95,13 @@ char*	String_Find_R_String(char const *str, char const *query)
 				break ;
 		}
 		if (match == length)
-			return ((char *)str + i);
+			return ((t_char* )str + i);
 	}
 	return (NULL);
 }
 inline
-t_ptrdiff	String_IndexOf_R_String(char const *str, char const *query)
+t_ptrdiff	String_IndexOf_R_String(t_char const* str, t_char const* query)
 {
-	char* result = String_Find_R_String(str, query);
+	t_char* result = String_Find_R_String(str, query);
 	return (result ? result - str : -1);
 }

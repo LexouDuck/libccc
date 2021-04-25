@@ -665,14 +665,14 @@ t_char*					String_Sub(t_char const* str, t_size index, t_size n);
 **	Iterates upon each character of the given string `str`,
 **	applying the given function `f` to each of its characters.
 */
-void					String_Iterate(t_char* str, void (*f)(t_char* c));
+void					String_Iterate(t_char* str, void (*f)(t_char c));
 #define c_striter		String_Iterate //!< @alias{String_Iterate}
 
 /*!
 **	Iterates upon each character of the given string `str`,
 **	applying the function `f` to each of its chars (with index information).
 */
-void					String_Iterate_I(t_char* str, void (*f)(t_char* c, t_size index));
+void					String_Iterate_I(t_char* str, void (*f)(t_char c, t_size index));
 #define c_striteri		String_Iterate_I //!< @alias{String_Iterate_I}
 
 

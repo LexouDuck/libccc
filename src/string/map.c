@@ -4,9 +4,9 @@
 
 
 
-char	*c_strmap(char const *str, char (*f)(char))
+t_char*	c_strmap(t_char const* str, t_char (*f)(t_char c))
 {
-	char	*result;
+	t_char*	result;
 	t_size	length;
 	t_size	i;
 
@@ -17,7 +17,7 @@ char	*c_strmap(char const *str, char (*f)(char))
 	length = 0;
 	while (str[length])
 		++length;
-	if (!(result = (char *)c_memalloc(length + 1)))
+	if (!(result = (t_char* )c_memalloc(length + 1)))
 		return (NULL);
 	i = 0;
 	while (i < length)
@@ -31,9 +31,9 @@ char	*c_strmap(char const *str, char (*f)(char))
 
 
 
-char	*c_strmapi(char const *str, char (*f)(t_size, char))
+t_char*	c_strmapi(t_char const* str, t_char (*f)(t_char c, t_size index))
 {
-	char	*result;
+	t_char*	result;
 	t_size	length;
 	t_size	i;
 
@@ -44,7 +44,7 @@ char	*c_strmapi(char const *str, char (*f)(t_size, char))
 	length = 0;
 	while (str[length])
 		++length;
-	if (!(result = (char *)c_memalloc(length + 1)))
+	if (!(result = (t_char* )c_memalloc(length + 1)))
 		return (NULL);
 	i = 0;
 	while (i < length)
@@ -58,9 +58,9 @@ char	*c_strmapi(char const *str, char (*f)(t_size, char))
 
 
 
-char	*c_strmap_inplace(char **a_str, char (*f)(char))
+t_char*	c_strmap_inplace(t_char* *a_str, t_char (*f)(t_char))
 {
-	char	*tmp;
+	t_char*	tmp;
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (a_str == NULL || *a_str == NULL || f == NULL)

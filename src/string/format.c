@@ -1,7 +1,7 @@
 
 /*
 **	Functions used from <stdio.h>:
-**	-	int vasprintf(char* const* result, const char* format, va_list args);
+**	-	int vasprintf(t_char* const* result, const t_char* format, va_list args);
 */
 #include <stdio.h>
 /*
@@ -19,7 +19,7 @@
 #ifndef __APPLE__
 
 	#ifndef vscprintf
-static int	vscprintf(char const* format, va_list args)
+static int	vscprintf(t_char const* format, va_list args)
 {
 	va_list args_copy;
 
@@ -31,12 +31,12 @@ static int	vscprintf(char const* format, va_list args)
 	#endif
 
 	#ifndef vasprintf
-static int	vasprintf(char* *a_str, char const* format, va_list args)
+static int	vasprintf(t_char* *a_str, t_char const* format, va_list args)
 {
 	int length = vscprintf(format, args);
 	if (length == -1)
 		return -1;
-	char *str = (char*)Memory_Alloc((size_t)length + 1);
+	t_char* str = (t_char*)Memory_Alloc((size_t)length + 1);
 	if (!str)
 		return -1;
 	int result = vsnprintf(str, length + 1, format, args);
@@ -54,10 +54,10 @@ static int	vasprintf(char* *a_str, char const* format, va_list args)
 
 
 
-char*	String_Format_VA(char const* format, va_list args)
+t_char*	String_Format_VA(t_char const* format, va_list args)
 {
 	int result;
-	char* str = NULL;
+	t_char* str = NULL;
 
 	result = vasprintf(&str, format, args);
 	if (result < 0)
@@ -69,10 +69,10 @@ char*	String_Format_VA(char const* format, va_list args)
 	return (str);
 }
 
-char*	String_Format(char const* format, ...)
+t_char*	String_Format(t_char const* format, ...)
 {
 	int result;
-	char* str = NULL;
+	t_char* str = NULL;
 	va_list args;
 
 	va_start(args, format);
@@ -89,7 +89,7 @@ char*	String_Format(char const* format, ...)
 
 
 
-t_size	String_Format_N_VA(char* dest, t_size max, char const* format, va_list args)
+t_size	String_Format_N_VA(t_char* dest, t_size max, t_char const* format, va_list args)
 {
 	t_size result;
 
@@ -97,7 +97,7 @@ t_size	String_Format_N_VA(char* dest, t_size max, char const* format, va_list ar
 	return (result);
 }
 
-t_size	String_Format_N(char* dest, t_size max, char const* format, ...)
+t_size	String_Format_N(t_char* dest, t_size max, t_char const* format, ...)
 {
 	t_size result;
 	va_list args;

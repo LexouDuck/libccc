@@ -3,7 +3,7 @@
 
 
 
-t_bool		c_strhas(char const *str, char const *charset)
+t_bool		c_strhas(t_char const* str, t_char const* charset)
 {
 	t_size	i;
 	t_size	c;
@@ -29,7 +29,7 @@ t_bool		c_strhas(char const *str, char const *charset)
 
 
 
-t_bool		c_strhasonly(char const *str, char const *charset)
+t_bool		c_strhasonly(t_char const* str, t_char const* charset)
 {
 	t_size	i;
 	t_size	c;

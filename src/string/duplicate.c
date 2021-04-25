@@ -3,9 +3,9 @@
 #include "libccc/string.h"
 
 
-char	*c_strcdup(char const *str, char const c)
+t_char*	c_strcdup(t_char const* str, t_char const c)
 {
-	char	*result;
+	t_char*	result;
 	t_size	i;
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
@@ -27,9 +27,9 @@ char	*c_strcdup(char const *str, char const c)
 	return (result);
 }
 
-char	*c_strndup(char const *str, t_size n)
+t_char*	c_strndup(t_char const* str, t_size n)
 {
-	char	*result;
+	t_char*	result;
 	t_size	i;
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
@@ -51,9 +51,9 @@ char	*c_strndup(char const *str, t_size n)
 	return (result);
 }
 
-char	*c_strdup(char const *str)
+t_char*	c_strdup(t_char const* str)
 {
-	char	*result;
+	t_char*	result;
 	t_size	i;
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS

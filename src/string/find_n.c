@@ -3,7 +3,7 @@
 
 
 
-char*	String_Find_N_Char(char const *str, char c, t_size n)
+t_char*	String_Find_N_Char(t_char const* str, t_char c, t_size n)
 {
 	t_size	i;
 
@@ -15,7 +15,7 @@ char*	String_Find_N_Char(char const *str, char c, t_size n)
 	while (i < n)
 	{
 		if (str[i] == c)
-			return ((char *)str + i);
+			return ((t_char* )str + i);
 		if (str[i] == '\0')
 			break ;
 		++i;
@@ -23,15 +23,15 @@ char*	String_Find_N_Char(char const *str, char c, t_size n)
 	return (NULL);
 }
 inline
-t_ptrdiff	String_IndexOf_N_Char(char const *str, char c, t_size n)
+t_ptrdiff	String_IndexOf_N_Char(t_char const* str, t_char c, t_size n)
 {
-	char* result = String_Find_N_Char(str, c, n);
+	t_char* result = String_Find_N_Char(str, c, n);
 	return (result ? result - str : -1);
 }
 
 
 
-char*	String_Find_N_Charset(char const *str, char const *charset, t_size n)
+t_char*	String_Find_N_Charset(t_char const* str, t_char const* charset, t_size n)
 {
 	t_size	i;
 
@@ -45,22 +45,22 @@ char*	String_Find_N_Charset(char const *str, char const *charset, t_size n)
 		for (t_size j = 0; charset[j]; ++j)
 		{
 			if (str[i] == charset[j])
-				return ((char *)str + i);
+				return ((t_char* )str + i);
 		}
 		++i;
 	}
 	return (NULL);
 }
 inline
-t_ptrdiff	String_IndexOf_N_Charset(char const *str, char const *charset, t_size n)
+t_ptrdiff	String_IndexOf_N_Charset(t_char const* str, t_char const* charset, t_size n)
 {
-	char* result = String_Find_N_Charset(str, charset, n);
+	t_char* result = String_Find_N_Charset(str, charset, n);
 	return (result ? result - str : -1);
 }
 
 
 
-char*	String_Find_N_String(char const *str, char const *query, t_size n)
+t_char*	String_Find_N_String(t_char const* str, t_char const* query, t_size n)
 {
 	t_size	length;
 	t_size	match;
@@ -85,14 +85,14 @@ char*	String_Find_N_String(char const *str, char const *query, t_size n)
 				break ;
 		}
 		if (match == length)
-			return ((char *)str + i);
+			return ((t_char* )str + i);
 		++i;
 	}
 	return (NULL);
 }
 inline
-t_ptrdiff	String_IndexOf_N_String(char const *str, char const *query, t_size n)
+t_ptrdiff	String_IndexOf_N_String(t_char const* str, t_char const* query, t_size n)
 {
-	char* result = String_Find_N_String(str, query, n);
+	t_char* result = String_Find_N_String(str, query, n);
 	return (result ? result - str : -1);
 }

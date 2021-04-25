@@ -3,7 +3,7 @@
 
 
 
-char	*c_strcat(char *dest, char const *src)
+t_char*	c_strcat(t_char* dest, t_char const* src)
 {
 	t_size	length;
 	t_size	i;
@@ -29,7 +29,7 @@ char	*c_strcat(char *dest, char const *src)
 
 
 
-char	*c_strncat(char *dest, char const *src, t_size n)
+t_char*	c_strncat(t_char* dest, t_char const* src, t_size n)
 {
 	t_size	length;
 	t_size	i;
@@ -60,7 +60,7 @@ char	*c_strncat(char *dest, char const *src, t_size n)
 
 
 
-t_size	c_strlcat(char *dest, char const *src, t_size size)
+t_size	c_strlcat(t_char* dest, t_char const* src, t_size size)
 {
 	t_size	dst_len;
 	t_size	src_len;

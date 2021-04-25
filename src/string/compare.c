@@ -1,10 +1,10 @@
 
-#include "libccc/char.h"
+#include "libccc/t_char.h"
 #include "libccc/string.h"
 
 
 
-int	String_Compare(char const *str1, char const *str2)
+int	String_Compare(t_char const* str1, t_char const* str2)
 {
 	t_size	i;
 
@@ -27,7 +27,7 @@ int	String_Compare(char const *str1, char const *str2)
 
 
 
-int	String_Compare_N(char const *str1, char const *str2, t_size n)
+int	String_Compare_N(t_char const* str1, t_char const* str2, t_size n)
 {
 	t_size	i;
 
@@ -54,7 +54,7 @@ int	String_Compare_N(char const *str1, char const *str2, t_size n)
 
 
 
-int	String_Compare_IgnoreCase(char const *str1, char const *str2)
+int	String_Compare_IgnoreCase(t_char const* str1, t_char const* str2)
 {
 	t_size	i;
 
@@ -79,7 +79,7 @@ int	String_Compare_IgnoreCase(char const *str1, char const *str2)
 
 
 
-int	String_Compare_N_IgnoreCase(char const *str1, char const *str2, t_size n)
+int	String_Compare_N_IgnoreCase(t_char const* str1, t_char const* str2, t_size n)
 {
 	t_size	i;
 

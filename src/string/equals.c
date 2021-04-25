@@ -1,10 +1,10 @@
 
-#include "libccc/char.h"
+#include "libccc/t_char.h"
 #include "libccc/string.h"
 
 
 
-t_bool	String_Equals(char const *str1, char const *str2)
+t_bool	String_Equals(t_char const* str1, t_char const* str2)
 {
 	t_size i;
 
@@ -26,7 +26,7 @@ t_bool	String_Equals(char const *str1, char const *str2)
 
 
 
-t_bool	String_Equals_N(char const *str1, char const *str2, t_size n)
+t_bool	String_Equals_N(t_char const* str1, t_char const* str2, t_size n)
 {
 	t_size i;
 
@@ -50,7 +50,7 @@ t_bool	String_Equals_N(char const *str1, char const *str2, t_size n)
 
 
 
-t_bool	String_Equals_IgnoreCase(char const *str1, char const *str2)
+t_bool	String_Equals_IgnoreCase(t_char const* str1, t_char const* str2)
 {
 	t_size i;
 
@@ -74,7 +74,7 @@ t_bool	String_Equals_IgnoreCase(char const *str1, char const *str2)
 
 
 
-t_bool	String_Equals_N_IgnoreCase(char const *str1, char const *str2, t_size n)
+t_bool	String_Equals_N_IgnoreCase(t_char const* str1, t_char const* str2, t_size n)
 {
 	t_size i;
 

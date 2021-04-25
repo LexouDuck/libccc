@@ -3,7 +3,7 @@
 
 
 
-inline void	c_strset(char *str, char c)
+inline void	c_strset(t_char* str, t_char c)
 {
 	t_size	i;
 

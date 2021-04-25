@@ -4,9 +4,9 @@
 
 
 
-char*		String_Join(char const* str1, char const* str2)
+t_char*		String_Join(t_char const* str1, t_char const* str2)
 {
-	char*	result;
+	t_char*	result;
 	t_size	length1;
 	t_size	length2;
 	t_size	i;
@@ -17,7 +17,7 @@ char*		String_Join(char const* str1, char const* str2)
 #endif
 	length1 = String_Length(str1);
 	length2 = String_Length(str2);
-	if (!(result = (char*)Memory_Alloc(length1 + length2 + 1)))
+	if (!(result = (t_char*)Memory_Alloc(length1 + length2 + 1)))
 		return (NULL);
 	i = 0;
 	while (i < length1)
@@ -37,9 +37,9 @@ char*		String_Join(char const* str1, char const* str2)
 
 
 
-char*	String_Append(char* *a_dest, char const* src)
+t_char*	String_Append(t_char* *a_dest, t_char const* src)
 {
-	char*	tmp;
+	t_char*	tmp;
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (a_dest == NULL || src == NULL)
@@ -53,9 +53,9 @@ char*	String_Append(char* *a_dest, char const* src)
 
 
 
-char*	String_Prepend(char const* src, char* *a_dest)
+t_char*	String_Prepend(t_char const* src, t_char* *a_dest)
 {
-	char*	tmp;
+	t_char*	tmp;
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (a_dest == NULL || src == NULL)
@@ -69,9 +69,9 @@ char*	String_Prepend(char const* src, char* *a_dest)
 
 
 
-char*	String_Merge(char* *a_str1, char* *a_str2)
+t_char*	String_Merge(t_char* *a_str1, t_char* *a_str2)
 {
-	char*	result;
+	t_char*	result;
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (a_str1 == NULL || a_str2 == NULL)

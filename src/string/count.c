@@ -3,7 +3,7 @@
 
 
 
-t_size	String_Count_Char(char const *str, char c)
+t_size	String_Count_Char(t_char const* str, t_char c)
 {
 	t_size	result;
 	t_size	i;
@@ -25,7 +25,7 @@ t_size	String_Count_Char(char const *str, char c)
 
 
 
-t_size	String_Count_Charset(char const *str, char const *charset)
+t_size	String_Count_Charset(t_char const* str, t_char const* charset)
 {
 	t_size	result;
 	t_size	i;
@@ -47,7 +47,7 @@ t_size	String_Count_Charset(char const *str, char const *charset)
 
 
 
-t_size	String_Count_String(char const *str, char const *query)
+t_size	String_Count_String(t_char const* str, t_char const* query)
 {
 	t_size	result;
 	t_size	length;

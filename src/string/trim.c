@@ -3,7 +3,7 @@
 
 
 
-static t_bool	charset_contains(char const *charset, char c)
+static t_bool	charset_contains(t_char const* charset, t_char c)
 {
 	t_size	i;
 
@@ -19,7 +19,7 @@ static t_bool	charset_contains(char const *charset, char c)
 
 
 
-char			*c_strtrim(char const *str, char const *charset)
+t_char			*c_strtrim(t_char const* str, t_char const* charset)
 {
 	t_size	offset;
 	t_size	length;
@@ -43,7 +43,7 @@ char			*c_strtrim(char const *str, char const *charset)
 	return (c_strsub(str, offset, length));
 }
 
-char			*c_strtrim_l(char const *str, char const *charset)
+t_char			*c_strtrim_l(t_char const* str, t_char const* charset)
 {
 	t_size	i;
 
@@ -64,7 +64,7 @@ char			*c_strtrim_l(char const *str, char const *charset)
 
 
 
-char			*c_strtrim_r(char const *str, char const *charset)
+t_char			*c_strtrim_r(t_char const* str, t_char const* charset)
 {
 	t_size	i;
 

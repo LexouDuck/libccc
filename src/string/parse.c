@@ -1,5 +1,5 @@
 
-#include "libccc/char.h"
+#include "libccc/t_char.h"
 #include "libccc/memory.h"
 #include "libccc/string.h"
 
@@ -31,8 +31,8 @@ t_size	String_Parse_GetLength(t_char const* str, t_bool any_escape)
 				case  '?':	length += 1;	break; // Question mark (used to avoid trigraphs)
 				case '\\':	length += 1;	break; // Backslash
 				case 'x':	length += 1;	break; // Hexadecimal byte value
-				case 'u':	length += 2;	break; // Unicode 2-byte char (UTF-16)
-				case 'U':	length += 4;	break; // Unicode 4-byte char (UTF-32)
+				case 'u':	length += 2;	break; // Unicode 2-byte t_char (UTF-16)
+				case 'U':	length += 4;	break; // Unicode 4-byte t_char (UTF-32)
 				default:
 					if (any_escape)
 					{
@@ -98,8 +98,8 @@ t_char*	String_Parse(t_char const* str, t_bool any_escape)
 				case '\"':	result[i++] = '\x22';	break; // Double quotation mark
 				case  '?':	result[i++] = '\x3F';	break; // Question mark (used to avoid trigraphs)
 				case '\\':	result[i++] = '\x5C';	break; // Backslash
-				case 'u':	String_Parse_Unicode(16)	break; // Unicode 2-byte char (encodes UTF-32 code point to UTF-8)
-				case 'U':	String_Parse_Unicode(32)	break; // Unicode 4-byte char (encodes UTF-32 code point to UTF-8)
+				case 'u':	String_Parse_Unicode(16)	break; // Unicode 2-byte t_char (encodes UTF-32 code point to UTF-8)
+				case 'U':	String_Parse_Unicode(32)	break; // Unicode 4-byte t_char (encodes UTF-32 code point to UTF-8)
 				case 'x': // Hexadecimal byte value
 					tmp[0] = str[++index];
 					tmp[1] = str[++index];

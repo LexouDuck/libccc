@@ -4,9 +4,9 @@
 
 
 
-char	*c_strsub(char const *str, t_size index, t_size n)
+t_char*	c_strsub(t_char const* str, t_size index, t_size n)
 {
-	char	*result;
+	t_char*	result;
 	t_size	length;
 	t_size	i;
 
@@ -19,7 +19,7 @@ char	*c_strsub(char const *str, t_size index, t_size n)
 		++length;
 	if (index > length || index + n > length)
 		return (NULL);
-	if (!(result = (char *)c_memalloc(n + 1)))
+	if (!(result = (t_char* )c_memalloc(n + 1)))
 		return (NULL);
 	i = 0;
 	while (i < n)
