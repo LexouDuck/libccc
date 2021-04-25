@@ -101,7 +101,7 @@ contexts:
           pop: true
         - include: typedef
         - include: lex-type
-        - include: lex-core
+        - include: lex
         - include: support
         - include: function
         - include: variable-declaration
@@ -162,28 +162,49 @@ contexts:
     - include: lex-newline
 
   lex-keyword:
-    - match: \s*\b((?:__|(?!\w+__))asm(?:__)?|break|case|continue|default|do|else|for|goto|if|_Pragma|return|switch|typedef|while|__extension__)\b
+    - match: \s*\b(break|case|continue|default|do|else|for|goto|if|return|switch|typedef|while)\b
       captures:
         1: keyword.control.c
+    - match: \s*\b((__)?(asm|fortran|extension)(__)?)\b
+      captures:
+        1: keyword.control.extension.c
+    - match: \s*\b(_Pragma)\b
+      captures:
+        1: keyword.control.C99.c
     - match: \s*\b(foreach)\b
       captures:
         1: keyword.control.++c
 
   lex-storage:
-    - match: \s*\b(auto|extern|static|register|__attribute__|(?:__|(?!\w+__))(?:const|restrict|volatile|inline)(?:__)?)\b
+    - match: \s*\b((__)?(attribute)(__)?)\b
+      captures:
+        1: storage.modifier.attribute.c
+    - match: \s*\b(auto|const|extern|register|static|volatile)\b
       captures:
         1: storage.modifier.c
+    - match: \s*\b((__)?(inline|restrict)(__)?)\b
+      captures:
+        1: storage.modifier.C99.c
+    - match: \s*\b(_Atomic|_Noreturn|noreturn|_Thread_local|thread_local)\b
+      captures:
+        1: storage.modifier.C11.c
 
-    - match: \s*\b(class|struct|union|enum)\b\s+([_a-zA-Z0-9]\w*)
-      captures:
-        1: keyword.declaration.c
-        2: support.type.user.c
-    - match: \s*\b(class|struct|union|enum)\b
-      captures:
-        1: keyword.declaration.c
-    - match: \s*\b(bool|_Bool|char|_Complex|double|float|_Imaginary|int|long|short|signed|unsigned|void)\b
+    - match: \s*\b(bool|char|double|float|int|long|short|signed|unsigned|void)\b
       captures:
         1: storage.type.c
+    - match: \s*\b(signed|unsigned)\b
+      captures:
+        1: storage.type.sign.c
+    - match: \s*\b(enum|struct|union)\b\s+([_a-zA-Z0-9]\w*)
+      captures:
+        1: keyword.declaration.tag.c
+        2: support.type.user.c
+    - match: \s*\b(enum|struct|union)\b
+      captures:
+        1: keyword.declaration.anonymous.c
+    - match: \s*\b(class)\b
+      captures:
+        1: keyword.declaration.c++
 
   lex-operator:
     - match: '(\.|->)(?=(?:\s|/\*.*?\*/)*+[A-Za-z_]\w*+)'
@@ -212,20 +233,24 @@ contexts:
     - match: \s*\b(sizeof|defined)\b
       captures:
         1: keyword.operator.word.c
-    - match: \s*\b(_Alignof|__alignof|__alignof__|__typeof|__typeof__)\b
+    - match: \s*\b(_Alignas|alignas|alignof|_Alignof|_Generic|_Static_assert|static_assert)\b
       captures:
-        1: keyword.operator.word.c
-    - match: \s*\b(alignof|typeof|nameof)\b
+        1: keyword.operator.word.C11.c
+    - match: \s*\b((__)?(typeof)(__)?)\b
+      captures:
+        1: keyword.operator.extension.c
+    - match: \s*\b(typeof|nameof)\b
       captures:
         1: keyword.operator.word.++c
-    - match: \s*\b([\=\-\+\*\/\%\&\|\^\!\~\?\:\<\>\$\@])\b
-      captures:
-        1: keyword.operator.custom.++c
-
     - match: (\*|\$)(?=[A-Za-z_]\w*)
       scope: keyword.operator.getvalue.++c
     - match: (\&|\@)(?=[A-Za-z_]\w*)
       scope: keyword.operator.getaddress.++c
+    - match: \s*\b(=>)\b
+      scope: keyword.operator.function.++c
+    - match: \s*\b([\=\-\+\*\/\%\&\|\^\!\~\?\:\<\>\$\@]+)\b
+      captures:
+        1: keyword.operator.custom.++c
 
   lex-newline:
     - match: $\n
@@ -1088,6 +1113,15 @@ contexts:
     - match: \s*\b(va_list)\b
       captures:
         1: support.type.stdarg.c
+    - match: \s*\b(_Bool|_Complex|_Imaginary)\b
+      captures:
+        1: support.type.C99.c
+    - match: \s*\b(((w(int|char|ctype|ctrans))|(char(16|32))|mbstate)_t)\b
+      captures:
+        1: support.type.C11.c
+    - match: \s*\b(_Decimal(32|64|128))\b
+      captures:
+        1: support.type.C23.c
 
     - match: \s*\b([tseuf]_\w+)\b # TODO more restrictive category here, to potentially differntiate system types from user types ?
       captures:
@@ -1173,9 +1207,6 @@ contexts:
     - match: '\s*\bPyId_([A-Za-z_]\w*+)\b'
       captures:
         1: string.support.cpython.identifier.c
-    - match: '\s*\b((?:CONFIG|HAVE)_[A-Z0-9_]++)\b'
-      captures:
-        1: support.constant.config.c
 
 
 
