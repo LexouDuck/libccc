@@ -194,27 +194,26 @@ TYPEDEF_ALIAS(			t_io_open, IO_OPEN, PRIMITIVE)
 #define IO_COLOR_FG_DEFAULT	"\x1B[39m"
 
 #define IO_COLOR_BG_BLACK			"\x1B[40m"	//!< The string sequence to color the terminal text background/highlight black
-#define IO_COLOR_BG_GRAY_DARK		"\x1B[100m"	//!< The string sequence to color the terminal text background/highlight dark gray
 #define IO_COLOR_BG_RED				"\x1B[41m"	//!< The string sequence to color the terminal text background/highlight red
-#define IO_COLOR_BG_RED_LIGHT		"\x1B[101m"	//!< The string sequence to color the terminal text background/highlight light red
 #define IO_COLOR_BG_GREEN			"\x1B[42m"	//!< The string sequence to color the terminal text background/highlight green
-#define IO_COLOR_BG_GREEN_LIGHT		"\x1B[102m"	//!< The string sequence to color the terminal text background/highlight light green
 #define IO_COLOR_BG_YELLOW			"\x1B[43m"	//!< The string sequence to color the terminal text background/highlight yellow
-#define IO_COLOR_BG_YELLOW_LIGHT	"\x1B[103m"	//!< The string sequence to color the terminal text background/highlight light yellow
 #define IO_COLOR_BG_BLUE			"\x1B[44m"	//!< The string sequence to color the terminal text background/highlight blue
-#define IO_COLOR_BG_BLUE_LIGHT		"\x1B[104m"	//!< The string sequence to color the terminal text background/highlight light blue
 #define IO_COLOR_BG_MAGENTA			"\x1B[45m"	//!< The string sequence to color the terminal text background/highlight magenta
-#define IO_COLOR_BG_MAGENTA_LIGHT	"\x1B[105m"	//!< The string sequence to color the terminal text background/highlight light magenta
 #define IO_COLOR_BG_CYAN			"\x1B[46m"	//!< The string sequence to color the terminal text background/highlight cyan
-#define IO_COLOR_BG_CYAN_LIGHT		"\x1B[106m"	//!< The string sequence to color the terminal text background/highlight light cyan
 #define IO_COLOR_BG_GRAY_LIGHT		"\x1B[47m"	//!< The string sequence to color the terminal text background/highlight light gray
+#define IO_COLOR_BG_GRAY_DARK		"\x1B[100m"	//!< The string sequence to color the terminal text background/highlight dark gray
+#define IO_COLOR_BG_RED_LIGHT		"\x1B[101m"	//!< The string sequence to color the terminal text background/highlight light red
+#define IO_COLOR_BG_GREEN_LIGHT		"\x1B[102m"	//!< The string sequence to color the terminal text background/highlight light green
+#define IO_COLOR_BG_YELLOW_LIGHT	"\x1B[103m"	//!< The string sequence to color the terminal text background/highlight light yellow
+#define IO_COLOR_BG_BLUE_LIGHT		"\x1B[104m"	//!< The string sequence to color the terminal text background/highlight light blue
+#define IO_COLOR_BG_MAGENTA_LIGHT	"\x1B[105m"	//!< The string sequence to color the terminal text background/highlight light magenta
+#define IO_COLOR_BG_CYAN_LIGHT		"\x1B[106m"	//!< The string sequence to color the terminal text background/highlight light cyan
 #define IO_COLOR_BG_WHITE			"\x1B[107m"	//!< The string sequence to color the terminal text background/highlight white
 
 //! ANSI Color code (255-map, not supported on certain old terminals)
 /*!
 **	@param	CODE	should be a string, containing number between 0 and 255
-**	@see
-**	- IO_GetColor()
+**	@see IO_GetColor()
 */
 #define IO_COLOR_BG(CODE)	"\x1B[48;5;"CODE"m"
 
@@ -225,13 +224,13 @@ TYPEDEF_ALIAS(			t_io_open, IO_OPEN, PRIMITIVE)
 
 #ifndef __COLORS__
 #define __COLORS__
-#define C_RED		"\x1b[31m"	//!< The string sequence to color the terminal text output red
-#define C_GREEN		"\x1b[32m"	//!< The string sequence to color the terminal text output green
-#define C_YELLOW	"\x1b[33m"	//!< The string sequence to color the terminal text output yellow
-#define C_BLUE		"\x1b[34m"	//!< The string sequence to color the terminal text output blue
-#define C_MAGENTA	"\x1b[35m"	//!< The string sequence to color the terminal text output magenta
-#define C_CYAN		"\x1b[36m"	//!< The string sequence to color the terminal text output cyan
-#define C_RESET		"\x1b[0m"	//!< The string sequence to reset the terminal text output to its default color
+#define C_RED		"\x1B[31m"	//!< The string sequence to color the terminal text output red
+#define C_GREEN		"\x1B[32m"	//!< The string sequence to color the terminal text output green
+#define C_YELLOW	"\x1B[33m"	//!< The string sequence to color the terminal text output yellow
+#define C_BLUE		"\x1B[34m"	//!< The string sequence to color the terminal text output blue
+#define C_MAGENTA	"\x1B[35m"	//!< The string sequence to color the terminal text output magenta
+#define C_CYAN		"\x1B[36m"	//!< The string sequence to color the terminal text output cyan
+#define C_RESET		"\x1B[0m"	//!< The string sequence to reset the terminal text output to its default color
 #endif
 
 

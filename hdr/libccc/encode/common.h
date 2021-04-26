@@ -102,7 +102,7 @@ typedef struct kvt
 #define foreach_s_kvt(_TYPE_, _VAR_, _KVT_)		foreach (_TYPE_, _VAR_, s_kvt, _KVT_)
 
 #define foreach_s_kvt_init(		_TYPE_, _VAR_, _KVT_)	s_kvt const* _VAR_##_i = (_KVT_ != NULL ? (_KVT_)->value.child : NULL);
-#define foreach_s_kvt_exit(		_TYPE_, _VAR_, _KVT_)	if ((_KVT_ != NULL) && (((_KVT_)->type & DYNAMIC_TYPE_ARRAY) || ((_KVT_)->type & DYNAMIC_TYPE_OBJECT)))
+#define foreach_s_kvt_exit(		_TYPE_, _VAR_, _KVT_)	if ((_KVT_ != NULL) && (KVT_IsArray(_KVT_) || KVT_IsObject(_KVT_)))
 #define foreach_s_kvt_loop_init(_TYPE_, _VAR_, _KVT_)	_TYPE_ _VAR_ = (_TYPE_)_VAR_##_i
 #define foreach_s_kvt_loop_exit(_TYPE_, _VAR_, _KVT_)	(_VAR_##_i != NULL)
 #define foreach_s_kvt_loop_incr(_TYPE_, _VAR_, _KVT_)	_VAR_##_i = _VAR_##_i->next
@@ -124,6 +124,7 @@ typedef struct kvt
 typedef enum error_kvt
 {
 	ERROR_KVT_OK = 0,
+	ERROR_KVT_PARSING,
 	ERROR_KVT_INVALIDARGS,
 	ERROR_KVT_ALLOCATIONFAILURE,
 	ERROR_KVT_OBJECTKEYNOTFOUND,
@@ -293,13 +294,13 @@ s_kvt*	KVT_Get(s_kvt const* object, t_char const* format_path, ...)
 _FORMAT(printf, 2, 3);
 
 //! Returns the boolean value contained within the given `item`, or `FALSE` if type is not #KVT_TYPE_BOOLEAN.
-t_bool	KVT_GetValue_Boolean(s_kvt const* const item);
+t_bool	KVT_GetValue_Boolean(s_kvt const* item);
 //! Returns the integer value contained within the given `item`, or `0` if type is not #KVT_TYPE_INTEGER.
-t_s64	KVT_GetValue_Integer(s_kvt const* const item);
+t_s64	KVT_GetValue_Integer(s_kvt const* item);
 //! Returns the number value contained within the given `item`, or `NAN` if type is not #KVT_TYPE_FLOAT.
-t_f64	KVT_GetValue_Float(s_kvt const* const item);
+t_f64	KVT_GetValue_Float	(s_kvt const* item);
 //! Returns the string value contained within the given `item`, or `NULL` if type is not #KVT_TYPE_STRING.
-t_char*	KVT_GetValue_String(s_kvt const* const item);
+t_char*	KVT_GetValue_String	(s_kvt const* item);
 
 
 
@@ -314,9 +315,9 @@ e_error_kvt	KVT_SetValue_Boolean(s_kvt* object, t_bool value);
 //! Change the `value` of a #KVT_TYPE_INTEGER object, only takes effect when `object->type == KVT_TYPE_INTEGER`.
 e_error_kvt	KVT_SetValue_Integer(s_kvt* object, t_s64 value);
 //! Change the `value` of a #KVT_TYPE_FLOAT object, only takes effect when `object->type == KVT_TYPE_FLOAT`.
-e_error_kvt	KVT_SetValue_Float(s_kvt* object, t_f64 value);
+e_error_kvt	KVT_SetValue_Float	(s_kvt* object, t_f64 value);
 //! Change the `value` of a #KVT_TYPE_STRING object, only takes effect when `object->type == KVT_TYPE_STRING`.
-e_error_kvt	KVT_SetValue_String(s_kvt* object, t_char* value);
+e_error_kvt	KVT_SetValue_String	(s_kvt* object, t_char* value);
 
 
 
@@ -341,14 +342,14 @@ e_error_kvt	KVT_AddToObject_ItemReference(s_kvt* object, t_char const* key, s_kv
 **	They return the added item or NULL on failure.
 */
 //!@{
-s_kvt*	KVT_AddToObject_Null	(s_kvt* const object, t_char const* key);
-s_kvt*	KVT_AddToObject_Boolean	(s_kvt* const object, t_char const* key, t_bool value);
-s_kvt*	KVT_AddToObject_Integer	(s_kvt* const object, t_char const* key, t_s64 value);
-s_kvt*	KVT_AddToObject_Float	(s_kvt* const object, t_char const* key, t_f64 value);
-s_kvt*	KVT_AddToObject_String	(s_kvt* const object, t_char const* key, t_char const* value);
-s_kvt*	KVT_AddToObject_Object	(s_kvt* const object, t_char const* key);
-s_kvt*	KVT_AddToObject_Array	(s_kvt* const object, t_char const* key);
-s_kvt*	KVT_AddToObject_Raw		(s_kvt* const object, t_char const* key, t_char const* raw);
+s_kvt*	KVT_AddToObject_Null	(s_kvt* object, t_char const* key);
+s_kvt*	KVT_AddToObject_Boolean	(s_kvt* object, t_char const* key, t_bool value);
+s_kvt*	KVT_AddToObject_Integer	(s_kvt* object, t_char const* key, t_s64 value);
+s_kvt*	KVT_AddToObject_Float	(s_kvt* object, t_char const* key, t_f64 value);
+s_kvt*	KVT_AddToObject_String	(s_kvt* object, t_char const* key, t_char const* value);
+s_kvt*	KVT_AddToObject_Object	(s_kvt* object, t_char const* key);
+s_kvt*	KVT_AddToObject_Array	(s_kvt* object, t_char const* key);
+s_kvt*	KVT_AddToObject_Raw		(s_kvt* object, t_char const* key, t_char const* raw);
 //!@}
 
 
@@ -361,15 +362,15 @@ s_kvt*	KVT_AddToObject_Raw		(s_kvt* const object, t_char const* key, t_char cons
 
 //! These functions are used to check the type of an item.
 //!@{
-t_bool	KVT_IsInvalid	(s_kvt const* const item);
-t_bool	KVT_IsNull		(s_kvt const* const item);
-t_bool	KVT_IsBoolean	(s_kvt const* const item);
-t_bool	KVT_IsInteger	(s_kvt const* const item);
-t_bool	KVT_IsFloat		(s_kvt const* const item);
-t_bool	KVT_IsString	(s_kvt const* const item);
-t_bool	KVT_IsArray		(s_kvt const* const item);
-t_bool	KVT_IsObject	(s_kvt const* const item);
-t_bool	KVT_IsRaw		(s_kvt const* const item);
+t_bool	KVT_IsInvalid	(s_kvt const* item);
+t_bool	KVT_IsNull		(s_kvt const* item);
+t_bool	KVT_IsBoolean	(s_kvt const* item);
+t_bool	KVT_IsInteger	(s_kvt const* item);
+t_bool	KVT_IsFloat		(s_kvt const* item);
+t_bool	KVT_IsString	(s_kvt const* item);
+t_bool	KVT_IsArray		(s_kvt const* item);
+t_bool	KVT_IsObject	(s_kvt const* item);
+t_bool	KVT_IsRaw		(s_kvt const* item);
 //!@}
 
 
@@ -385,7 +386,7 @@ t_bool	KVT_IsRaw		(s_kvt const* const item);
 */
 
 //! Removes (without deleting) the given `item` from the given `parent` object.
-s_kvt*		KVT_Detach(s_kvt* parent, s_kvt* const item);
+s_kvt*		KVT_Detach(s_kvt* parent, s_kvt* item);
 
 //! Delete a s_kvt entity and all subentities.
 e_error_kvt	KVT_Delete(s_kvt* item);

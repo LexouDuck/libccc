@@ -405,27 +405,27 @@ void	print_test(
 
 
 #define DEFINE_TESTFUNCTION_INT(TYPE, FUNCNAME, SIGNED) \
-void	print_test_##FUNCNAME( \
-		char const *test_name, \
-		char const *function, \
-		TYPE result, \
-		TYPE expect, \
-		int can_segfault) \
-{ \
-	int error; \
-	int result_segfault = can_segfault & (1 << 1); \
-	int expect_segfault = can_segfault & (1 << 2); \
-	if (result_segfault) \
-		error = (expect_segfault ? FALSE : TRUE); \
-	else if (expect_segfault) \
-		 error = TRUE; \
-	else error = (result != expect); \
-	print_test(test_name, function, \
-		(result_segfault ? segstr : int_##SIGNED##_to_str(result)), \
-		(expect_segfault ? segstr : int_##SIGNED##_to_str(expect)), \
-		can_segfault, \
-		error, NULL); \
-} \
+void	print_test_##FUNCNAME(										\
+		char const *test_name,										\
+		char const *function,										\
+		TYPE result,												\
+		TYPE expect,												\
+		int can_segfault)											\
+{																	\
+	int error;														\
+	int result_segfault = can_segfault & (1 << 1);					\
+	int expect_segfault = can_segfault & (1 << 2);					\
+	if (result_segfault)											\
+		error = !expect_segfault;									\
+	else if (expect_segfault)										\
+		error = !LIBCONFIG_HANDLE_NULLPOINTERS;						\
+	else error = (result != expect);								\
+	print_test(test_name, function,									\
+		(result_segfault ? segstr : int_##SIGNED##_to_str(result)),	\
+		(expect_segfault ? segstr : int_##SIGNED##_to_str(expect)),	\
+		can_segfault,												\
+		error, NULL);												\
+}																	\
 
 DEFINE_TESTFUNCTION_INT(t_bool, bool, u)
 
@@ -433,17 +433,21 @@ DEFINE_TESTFUNCTION_INT(t_u8,  u8,  u)
 DEFINE_TESTFUNCTION_INT(t_u16, u16, u)
 DEFINE_TESTFUNCTION_INT(t_u32, u32, u)
 DEFINE_TESTFUNCTION_INT(t_u64, u64, u)
-
+#ifdef __int128
+DEFINE_TESTFUNCTION_INT(t_u128, u128, u)
+#endif
 DEFINE_TESTFUNCTION_INT(t_uint, uint, u)
 
 DEFINE_TESTFUNCTION_INT(t_s8,  s8,  s)
 DEFINE_TESTFUNCTION_INT(t_s16, s16, s)
 DEFINE_TESTFUNCTION_INT(t_s32, s32, s)
 DEFINE_TESTFUNCTION_INT(t_s64, s64, s)
-
+#ifdef __int128
+DEFINE_TESTFUNCTION_INT(t_s128, s128, s)
+#endif
 DEFINE_TESTFUNCTION_INT(t_sint, sint, s)
 
-DEFINE_TESTFUNCTION_INT(size_t, size, u)
+DEFINE_TESTFUNCTION_INT(t_size, size, u)
 DEFINE_TESTFUNCTION_INT(t_ptrdiff, ptrdiff, s)
 DEFINE_TESTFUNCTION_INT(t_sintptr, sintptr, s)
 DEFINE_TESTFUNCTION_INT(t_uintptr, uintptr, u)
@@ -464,33 +468,33 @@ DEFINE_TESTFUNCTION_INT(t_uintmax, uintmax, u)
 #define FLOAT_PRECISION_FORMAT	CONCAT(CONCAT(F,LIBCONFIG_BITS_FLOAT),_PRECISION_FORMAT)
 
 #define DEFINE_TESTFUNCTION_FLOAT(TYPE, FUNCNAME, SIZE) \
-void	print_test_##FUNCNAME( \
-		char const *test_name, \
-		char const *function, \
-		TYPE result, \
-		TYPE expect, \
-		int can_segfault) \
-{ \
-	int error; \
-	int result_segfault = can_segfault & (1 << 1); \
-	int expect_segfault = can_segfault & (1 << 2); \
-	char str_result[SIZE]; \
-	char str_expect[SIZE]; \
-	if (result_segfault) \
-		error = (expect_segfault ? FALSE : TRUE); \
-	else if (expect_segfault) \
-		error = TRUE; \
-	else error = (result != expect); \
-	if (isnan(result) && isnan(expect)) \
-		error = FALSE; \
-	snprintf(str_result, SIZE, FLOAT_PRECISION_FORMAT, result); \
-	snprintf(str_expect, SIZE, FLOAT_PRECISION_FORMAT, expect); \
-	print_test(test_name, function, \
-		(result_segfault ? segstr : str_result), \
-		(expect_segfault ? segstr : str_expect), \
-		can_segfault, \
-		error, NULL); \
-} \
+void	print_test_##FUNCNAME(									\
+		char const *test_name,									\
+		char const *function,									\
+		TYPE result,											\
+		TYPE expect,											\
+		int can_segfault)										\
+{																\
+	int error;													\
+	int result_segfault = can_segfault & (1 << 1);				\
+	int expect_segfault = can_segfault & (1 << 2);				\
+	char str_result[SIZE];										\
+	char str_expect[SIZE];										\
+	if (result_segfault)										\
+		error = !expect_segfault;								\
+	else if (expect_segfault)									\
+		error = !LIBCONFIG_HANDLE_NULLPOINTERS;					\
+	else error = (result != expect);							\
+	if (isnan(result) && isnan(expect))							\
+		error = FALSE;											\
+	snprintf(str_result, SIZE, FLOAT_PRECISION_FORMAT, result);	\
+	snprintf(str_expect, SIZE, FLOAT_PRECISION_FORMAT, expect);	\
+	print_test(test_name, function,								\
+		(result_segfault ? segstr : str_result),				\
+		(expect_segfault ? segstr : str_expect),				\
+		can_segfault,											\
+		error, NULL);											\
+}																\
 
 DEFINE_TESTFUNCTION_FLOAT(t_f32, f32, 32)
 DEFINE_TESTFUNCTION_FLOAT(t_f64, f64, 64)
@@ -516,9 +520,9 @@ void	print_test_sign(
 	int result_segfault = can_segfault & (1 << 1);
 	int expect_segfault = can_segfault & (1 << 2);
 	if (result_segfault)
-		error = (expect_segfault ? FALSE : TRUE);
+		error = !expect_segfault;
 	else if (expect_segfault)
-		error = TRUE;
+		error = !LIBCONFIG_HANDLE_NULLPOINTERS;
 	else
 	{
 		result_segfault = 0; // reuse this variable to store sign (-1, 0, +1)
@@ -553,10 +557,13 @@ void	print_test_mem(
 {
 	int error;
 
-	error = (result && expect) ?
+	if (result == segstr)
+		error = !(expect == segstr);
+	else if (expect == segstr)
+		error = !LIBCONFIG_HANDLE_NULLPOINTERS;
+	else error = (result && expect) ?
 		(memcmp(result, expect, length) != 0) :
 		(result != expect);
-
 	print_test(test_name, function,
 		print_memory(result, length),
 		print_memory(expect, length),
@@ -575,11 +582,18 @@ void	print_test_str(
 {
 	char* tmp_result = str_to_escape(result);
 	char* tmp_expect = str_to_escape(expect);
+	int error;
+
+	if (result == segstr)
+		error = !(expect == segstr);
+	else if (expect == segstr)
+		error = !LIBCONFIG_HANDLE_NULLPOINTERS;
+	else error = !str_equals(result, expect);
 	print_test(test_name, function,
 		tmp_result,
 		tmp_expect,
 		can_segfault,
-		!str_equals(result, expect), NULL);
+		error, NULL);
 	free(tmp_result);
 	free(tmp_expect);
 }

@@ -4,25 +4,25 @@
 
 
 
-t_char*	c_strmap(t_char const* str, t_char (*f)(t_char c))
+t_char*	String_Map(t_char const* str, t_char (*map)(t_char c))
 {
 	t_char*	result;
 	t_size	length;
 	t_size	i;
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL || f == NULL)
+	if (str == NULL || map == NULL)
 		return (NULL);
 #endif
 	length = 0;
 	while (str[length])
 		++length;
-	if (!(result = (t_char* )c_memalloc(length + 1)))
+	if (!(result = (t_char* )Memory_Alloc(length + 1)))
 		return (NULL);
 	i = 0;
 	while (i < length)
 	{
-		result[i] = f(str[i]);
+		result[i] = map(str[i]);
 		++i;
 	}
 	result[i] = '\0';
@@ -31,25 +31,25 @@ t_char*	c_strmap(t_char const* str, t_char (*f)(t_char c))
 
 
 
-t_char*	c_strmapi(t_char const* str, t_char (*f)(t_char c, t_size index))
+t_char*	String_Map_I(t_char const* str, t_char (*map)(t_char c, t_size index))
 {
 	t_char*	result;
 	t_size	length;
 	t_size	i;
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL || f == NULL)
+	if (str == NULL || map == NULL)
 		return (NULL);
 #endif
 	length = 0;
 	while (str[length])
 		++length;
-	if (!(result = (t_char* )c_memalloc(length + 1)))
+	if (!(result = (t_char* )Memory_Alloc(length + 1)))
 		return (NULL);
 	i = 0;
 	while (i < length)
 	{
-		result[i] = f(i, str[i]);
+		result[i] = map(i, str[i]);
 		++i;
 	}
 	result[i] = '\0';
