@@ -3,14 +3,11 @@
 
 
 
-t_u32		c_strarrlen(char const** strarr)
+t_u32		StringArray_Length(t_char const** strarr)
 {
 	t_u32		i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (strarr == NULL)
-		return (0);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(strarr, 0)
 	i = 0;
 	while (strarr[i])
 	{

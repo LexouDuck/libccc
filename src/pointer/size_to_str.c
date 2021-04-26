@@ -27,7 +27,7 @@ char*	Size_ToString_Readable(t_size number)
 		len /= 1024;
 	}
 
-	char	*result;
+	char*	result;
 	t_u8	digits[sizeof(t_size) / 2 * 5];
 	t_u8	i;
 	t_size	n;

@@ -29,10 +29,7 @@ inline t_io_error	IO_Write_Char(int fd, char c)
 
 inline t_io_error	IO_Write_String(int fd, const char* str)
 {
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL)
-		return (OK);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(str, OK)
 	int result;
 	if ((result = write(fd, str, c_strlen(str))) < 0)
 		return (errno);
@@ -43,10 +40,7 @@ inline t_io_error	IO_Write_String(int fd, const char* str)
 
 inline t_io_error	IO_Write_Line(int fd, const char* str)
 {
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL)
-		return (OK);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(str, OK)
 	int result;
 	if ((result = write(fd, str, c_strlen(str))) < 0)
 		return (errno);
@@ -59,10 +53,7 @@ inline t_io_error	IO_Write_Line(int fd, const char* str)
 
 t_io_error		IO_Write_Lines(int fd, const char** strarr)
 {
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (strarr == NULL)
-		return (OK);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(strarr, OK)
 	int result;
 	int i = 0;
 	while (strarr[i])
@@ -78,12 +69,11 @@ t_io_error		IO_Write_Lines(int fd, const char** strarr)
 
 
 
-t_io_error		IO_Write_Memory(int fd, t_u8 const* ptr, t_size n, t_u8 cols)
+t_io_error		IO_Write_Memory(int fd, t_u8 const* ptr, t_size n, t_u8 columns)
 {
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (ptr == NULL || n == 0 || cols == 0)
+	LIBCONFIG_HANDLE_NULLPOINTER(ptr, OK)
+	if (n == 0 || columns == 0)
 		return (OK);
-#endif
 	int result;
 	t_u8	nibble;
 	t_size	i = 0;
@@ -98,7 +88,7 @@ t_io_error		IO_Write_Memory(int fd, t_u8 const* ptr, t_size n, t_u8 cols)
 		if ((result = write(fd, &nibble, 1)) < 0)
 			return (errno);
 		++i;
-		if ((result = write(fd, (i % cols == 0 ? "\n" : " "), 1)) < 0)
+		if ((result = write(fd, (i % columns == 0 ? "\n" : " "), 1)) < 0)
 			return (errno);
 	}
 	return (OK);
@@ -108,10 +98,7 @@ t_io_error		IO_Write_Memory(int fd, t_u8 const* ptr, t_size n, t_u8 cols)
 
 t_io_error		IO_Write_Format(t_fd fd, char const* format, ...)
 {
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (format == NULL)
-		return (OK);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(format, OK)
 	int result;
 	char* str;
 	va_list args;

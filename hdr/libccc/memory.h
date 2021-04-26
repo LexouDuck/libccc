@@ -237,6 +237,7 @@ void*					Memory_Merge(void* *a_ptr1, t_size length1, void* *a_ptr2, t_size leng
 */
 void*				Memory_Find(void const* ptr, t_u8 byte, t_size n);
 #define c_memchr	Memory_Find //!< @alias{Memory_Find}
+#define c_memfind	Memory_Find //!< @alias{Memory_Find}
 
 
 

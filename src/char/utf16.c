@@ -12,10 +12,7 @@
 
 t_size		Char_ToUTF16(t_utf16* dest, t_utf32 c)
 {
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (dest == NULL)
-		return (0);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(dest, 0)
 	if (c >= SURROGATE_HI)
 	{
 		// if (c < 0xE000) // INVALID UTF-16
@@ -37,10 +34,7 @@ t_utf32		UTF16_Get(t_utf16 const* str)
 {
 	t_u16 c;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL)
-		return (ERROR);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(str, ERROR)
 	c = str[0];
 	if (c >= SURROGATE_HI)
 	{

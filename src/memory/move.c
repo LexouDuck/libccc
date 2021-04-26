@@ -3,22 +3,18 @@
 
 
 
-void	*c_memmove(void *dest, void const *src, t_size n)
+void*	Memory_Move(void* dest, void const* src, t_size n)
 {
-	t_u8	*result;
-	t_u8	*source;
+	t_u8*	result;
+	t_u8*	source;
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (dest == NULL)
-		return (NULL);
-	if (src == NULL)
-		return (dest);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(dest, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(src, dest)
 	if (dest && dest == src)
 		return (dest);
-	result = (t_u8 *)dest;
-	source = (t_u8 *)src;
+	result = (t_u8*)dest;
+	source = (t_u8*)src;
 	if (source < result && source + n >= result)
 	{
 		i = n;

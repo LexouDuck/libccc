@@ -31,7 +31,7 @@ static int	vscprintf(t_char const* format, va_list args)
 	#endif
 
 	#ifndef vasprintf
-static int	vasprintf(t_char* *a_str, t_char const* format, va_list args)
+static int	vasprintf(t_char** a_str, t_char const* format, va_list args)
 {
 	int length = vscprintf(format, args);
 	if (length == -1)

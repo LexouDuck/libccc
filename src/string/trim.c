@@ -19,15 +19,13 @@ static t_bool	charset_contains(t_char const* charset, t_char c)
 
 
 
-t_char			*c_strtrim(t_char const* str, t_char const* charset)
+t_char*			String_Trim(t_char const* str, t_char const* charset)
 {
 	t_size	offset;
 	t_size	length;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL || charset == NULL)
-		return (NULL);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(str, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(charset, NULL)
 	offset = 0;
 	length = 0;
 	while (str[length])
@@ -43,14 +41,12 @@ t_char			*c_strtrim(t_char const* str, t_char const* charset)
 	return (c_strsub(str, offset, length));
 }
 
-t_char			*c_strtrim_l(t_char const* str, t_char const* charset)
+t_char*			String_Trim_L(t_char const* str, t_char const* charset)
 {
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL || charset == NULL)
-		return (NULL);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(str, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(charset, NULL)
 	i = 0;
 	while (str[i])
 	{
@@ -59,20 +55,18 @@ t_char			*c_strtrim_l(t_char const* str, t_char const* charset)
 		else
 			break ;
 	}
-	return (c_strsub(str, i, c_strlen(str + i)));
+	return (String_Sub(str, i, String_Length(str + i)));
 }
 
 
 
-t_char			*c_strtrim_r(t_char const* str, t_char const* charset)
+t_char*			String_Trim_R(t_char const* str, t_char const* charset)
 {
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL || charset == NULL)
-		return (NULL);
-#endif
-	i = c_strlen(str);
+	LIBCONFIG_HANDLE_NULLPOINTER(str, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(charset, NULL)
+	i = String_Length(str);
 	while (--i)
 
 	{
@@ -81,5 +75,5 @@ t_char			*c_strtrim_r(t_char const* str, t_char const* charset)
 	}
 	if (i || !charset_contains(charset, str[i]))
 		++i;
-	return (c_strsub(str, 0, i));
+	return (String_Sub(str, 0, i));
 }

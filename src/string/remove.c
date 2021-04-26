@@ -12,10 +12,8 @@ t_char*	c_strremove(t_char const* str, t_char const* query)
 	t_size	length_query;
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL || query == NULL)
-		return (NULL);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(str, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(query, NULL)
 	matches = c_strcount_str(str, query);
 	length = c_strlen(str);
 	length_query = c_strlen(query);

@@ -5,14 +5,11 @@
 
 
 
-void	c_strarrdel(char** *a_strarr)
+void	StringArray_Delete(t_char** *a_strarr)
 {
 	int		i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (a_strarr == NULL)
-		return;
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(a_strarr, )
 	if (*a_strarr)
 	{
 		i = 0;

@@ -5,17 +5,6 @@
 
 
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	#define LIBCONFIG_HANDLE_NULLPOINTER_STRBASE_TO_INT \
-		if (str == NULL) return (0);	\
-		if (base == NULL) return (0);	\
-
-#else
-	#define LIBCONFIG_HANDLE_NULLPOINTER_STRBASE_TO_INT	
-#endif
-
-
-
 static t_size	String_Base_GetLength(char const* base)
 {
 	t_size	i;
@@ -61,7 +50,9 @@ t_s##BITS	S##BITS##_FromString_Base(char const* str, char const* base)		\
 	t_s32	digit;																\
 	t_size	length;																\
 	t_size	i;																	\
-LIBCONFIG_HANDLE_NULLPOINTER_STRBASE_TO_INT										\
+																				\
+	LIBCONFIG_HANDLE_NULLPOINTER(str, 0)										\
+	LIBCONFIG_HANDLE_NULLPOINTER(base, 0)										\
 	length = String_Base_GetLength(base);										\
 	if (length == 0)															\
 		return (0);																\
@@ -110,7 +101,9 @@ t_u##BITS	U##BITS##_FromString_Base(char const* str, char const* base)		\
 	t_s32	digit;																\
 	t_size	length;																\
 	t_size	i;																	\
-LIBCONFIG_HANDLE_NULLPOINTER_STRBASE_TO_INT										\
+																				\
+	LIBCONFIG_HANDLE_NULLPOINTER(str, 0)										\
+	LIBCONFIG_HANDLE_NULLPOINTER(base, 0)										\
 	length = String_Base_GetLength(base);										\
 	if (length == 0)															\
 		return (0);																\

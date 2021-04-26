@@ -5,14 +5,6 @@
 
 
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	#define LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_INT	if (str == NULL) return (0);
-#else
-	#define LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_INT	
-#endif
-
-
-
 static inline int	UInt_GetDigit_FromString_Hex(char c)
 {
 	if ('0' <= c && c <= '9')
@@ -27,11 +19,12 @@ static inline int	UInt_GetDigit_FromString_Hex(char c)
 
 
 #define DEFINEFUNC_CONVERT_STRHEX_TO_UINT(BITS) \
-t_u##BITS				U##BITS##_FromString_Hex(char const *str)		\
+t_u##BITS				U##BITS##_FromString_Hex(char const* str)		\
 {																		\
 	t_u##BITS	result;													\
 	t_size	i;															\
-LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_INT									\
+																		\
+	LIBCONFIG_HANDLE_NULLPOINTER(str, 0)								\
 	i = 0;																\
 	while (!(str[i] == '+' ||											\
 		('0' <= str[i] && str[i] <= '9') ||								\
@@ -65,3 +58,7 @@ DEFINEFUNC_CONVERT_STRHEX_TO_UINT(64)
 #ifdef __int128
 DEFINEFUNC_CONVERT_STRHEX_TO_UINT(128)
 #endif
+
+
+
+// TODO SInt_FromString_Hex()

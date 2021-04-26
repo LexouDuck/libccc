@@ -5,10 +5,7 @@
 _GENERIC()
 t_bool	CONCAT(List_Has,T_NAME)(s_list_T const* list, s_list_T const* target)
 {
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (list == NULL)
-		return (NULL);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(list, FALSE)
 	while (list)
 	{
 		if (CONCAT(List_Contains,T_NAME)(target, list->item))
@@ -22,10 +19,7 @@ t_bool	CONCAT(List_Has,T_NAME)(s_list_T const* list, s_list_T const* target)
 _GENERIC()
 t_bool	CONCAT(List_HasOnly,T_NAME)(s_list_T const* list, s_list_T const* target)
 {
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (list == NULL)
-		return (NULL);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(list, FALSE)
 	while (list)
 	{
 		if (!CONCAT(List_Contains,T_NAME)(target, list->item))

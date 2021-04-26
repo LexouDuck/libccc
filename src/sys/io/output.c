@@ -38,7 +38,7 @@ inline t_io_error	IO_Output_Line(char const* str)
 
 
 
-inline t_io_error	IO_Output_Lines(char const* *strarr)
+inline t_io_error	IO_Output_Lines(char const** strarr)
 {
 	return (IO_Write_Lines(STDOUT, strarr));
 }
@@ -54,10 +54,7 @@ inline t_io_error	IO_Output_Memory(t_u8 const* ptr, t_size n, t_u8 cols)
 
 t_io_error			IO_Output_Format(char const* format, ...)
 {
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (format == NULL)
-		return (OK);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(format, OK)
 	int result;
 	char* str;
 	va_list args;

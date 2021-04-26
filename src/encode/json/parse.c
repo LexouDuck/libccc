@@ -152,7 +152,7 @@ static t_uint	parse_hex4(t_char const* const input)
 
 
 // converts a UTF-16 literal to UTF-8: a literal can be one or two sequences of the form \uXXXX
-static t_char utf16_literal_to_utf8(t_char const* const input_pointer, t_char const* const input_end, t_char* *output_pointer)
+static t_char utf16_literal_to_utf8(t_char const* const input_pointer, t_char const* const input_end, t_char** output_pointer)
 {
 	t_u32	codepoint = 0;
 	t_uint	first_code = 0;
@@ -645,7 +645,7 @@ success:
 
 
 
-s_json*	JSON_ParseStrict_N(t_char const* value, t_size buffer_length, t_char const* *return_parse_end, t_bool require_null_terminated)
+s_json*	JSON_ParseStrict_N(t_char const* value, t_size buffer_length, t_char const** return_parse_end, t_bool require_null_terminated)
 {
 	s_json_parse buffer = { 0 };
 	s_json* item = NULL;
@@ -704,7 +704,7 @@ failure:
 	return (NULL);
 }
 
-s_json*	JSON_ParseStrict(t_char const* value, t_char const* *return_parse_end, t_bool require_null_terminated)
+s_json*	JSON_ParseStrict(t_char const* value, t_char const** return_parse_end, t_bool require_null_terminated)
 {
 	t_size buffer_length;
 

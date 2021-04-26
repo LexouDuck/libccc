@@ -3,14 +3,11 @@
 
 
 
-void	c_strclr(t_char* str)
+void	String_Clear(t_char* str)
 {
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL)
-		return;
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(str, )
 	i = 0;
 	while (str[i])
 	{

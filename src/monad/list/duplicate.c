@@ -10,10 +10,7 @@ s_list_T*	CONCAT(List_Duplicate,T_NAME)(s_list_T const* list)
 	s_list_T*	elem = NULL;
 	s_list_T*	tmp;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (list == NULL)
-		return (NULL);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(list, NULL)
 	while (list)
 	{
 		if (!(tmp = (s_list_T*)Memory_Duplicate(list, sizeof(s_list_T))))

@@ -10,12 +10,9 @@ t_char*		String_Replace_Char(t_char const* str, t_char const old, t_char const n
 	t_char*	result;
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
+	LIBCONFIG_HANDLE_NULLPOINTER(str, NULL)
 	if (old == new)
 		return (String_Duplicate(str));
-	if (str == NULL)
-		return (NULL);
-#endif
 	if (old == '\0')
 		return (NULL);
 	i = 0;
@@ -42,12 +39,11 @@ t_char*		String_Replace_Charset(t_char const* str, t_char const* old, t_char con
 	t_size	j;
 	int		c_index;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
+	LIBCONFIG_HANDLE_NULLPOINTER(str, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(old, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(new, NULL)
 	if (old == new)
 		return (String_Duplicate(str));
-	if (str == NULL || old == NULL || new == NULL)
-		return (NULL);
-#endif
 	if (String_Length(old) != String_Length(new))
 		return (NULL);
 	i = 0;
@@ -81,12 +77,11 @@ t_char*		String_Replace_String(t_char const* str, t_char const* old, t_char cons
 	t_char*	result;
 	t_char**	strarr;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
+	LIBCONFIG_HANDLE_NULLPOINTER(str, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(old, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(new, NULL)
 	if (old == new)
 		return (String_Duplicate(str));
-	if (str == NULL || old == NULL || new == NULL)
-		return (NULL);
-#endif
 	strarr = String_Split_String(str, old);
 	result = StringArray_Fold((t_char const**)strarr, new);
 	StringArray_Delete(&strarr);
@@ -99,10 +94,7 @@ void		String_Replace_Char_InPlace(t_char* str, t_char const old, t_char const ne
 {
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL)
-		return;
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(str, )
 	if (old == '\0')
 		return;
 	i = 0;
@@ -122,10 +114,9 @@ void		String_Replace_Charset_InPlace(t_char* str, t_char const* old, t_char cons
 	t_size	j;
 	int		c_index;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL || old == NULL || new == NULL)
-		return;
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(str, )
+	LIBCONFIG_HANDLE_NULLPOINTER(old, )
+	LIBCONFIG_HANDLE_NULLPOINTER(new, )
 	if (String_Length(old) != String_Length(new))
 		return;
 	i = 0;
@@ -148,7 +139,7 @@ void		String_Replace_Charset_InPlace(t_char* str, t_char const* old, t_char cons
 
 
 
-void	String_Replace_String_InPlace(t_char* *a_str, t_char const* old, t_char const* new)
+void	String_Replace_String_InPlace(t_char** a_str, t_char const* old, t_char const* new)
 {
 	t_char*	tmp;
 	tmp = String_Replace_String(*a_str, old, new);

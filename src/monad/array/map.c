@@ -9,10 +9,9 @@ s_array_T	CONCAT(Array_Map,T_NAME)(s_array_T const* array, T (*map)(T item))
 	s_array_T	result = {0};
 	t_uint	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (array == NULL || array->items == NULL || map == NULL)
-		return (result);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(map, result)
+	LIBCONFIG_HANDLE_NULLPOINTER(array, result)
+	LIBCONFIG_HANDLE_NULLPOINTER(array->items, result)
 	result.items = (T*)Memory_Alloc(sizeof(T) * array->length);
 	if (result.items == NULL)
 		return (result);
@@ -31,10 +30,9 @@ s_array_T	CONCAT(Array_Map_I,T_NAME)(s_array_T const* array, T (*map)(T item, t_
 	s_array_T	result = {0};
 	t_uint	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (array == NULL || array->items == NULL || map == NULL)
-		return (result);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(map, result)
+	LIBCONFIG_HANDLE_NULLPOINTER(array, result)
+	LIBCONFIG_HANDLE_NULLPOINTER(array->items, result)
 	result.items = (T*)Memory_Alloc(sizeof(T) * array->length);
 	if (result.items == NULL)
 		return (result);

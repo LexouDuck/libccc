@@ -7,10 +7,7 @@
 _GENERIC()
 void	CONCAT(Array_Delete,T_NAME)(s_array_T* array)
 {
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (array == NULL)
-		return;
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(array, )
 	Memory_Free(array->items);
 	array->items = NULL;
 	array->length = 0;
@@ -21,10 +18,7 @@ void	CONCAT(Array_Delete,T_NAME)(s_array_T* array)
 _GENERIC()
 void	CONCAT(Array_Delete_F,T_NAME)(s_array_T* array, void (*delete)(T item))
 {
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (array == NULL)
-		return;
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(array, )
 	for (t_uint i = 0; i < array->length; ++i)
 	{
 		delete(array->items[i]);

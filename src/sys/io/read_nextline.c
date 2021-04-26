@@ -13,13 +13,13 @@
 
 
 
-static	int		gnl_read(t_fd const fd, char* *a_newline)
+static	int		gnl_read(t_fd const fd, char** a_newline)
 {
 	static t_size	buf_pos = 0;
 	static char		buffer[IO_BUFFER_SIZE + 1] = {0};
 	int				status = 0;
 	int				offset = 0;
-	char			*temp = NULL;
+	char*			temp = NULL;
 	t_bool			end_of_buffer = FALSE;
 	t_bool			done_new_line = FALSE;
 
@@ -62,9 +62,9 @@ static	int		gnl_read(t_fd const fd, char* *a_newline)
 	return (status);
 }
 
-int				c_getnextline(t_fd const fd, char* *a_line)
+int				c_getnextline(t_fd const fd, char** a_line)
 {
-	char			*new_line = NULL;
+	char*			new_line = NULL;
 	int				status = GNL_ERROR;
 
 	if (a_line == NULL || fd < 0)

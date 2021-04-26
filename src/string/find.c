@@ -7,10 +7,7 @@ t_char*	String_Find_Char(t_char const* str, t_char c)
 {
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL)
-		return (NULL);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(str, NULL)
 	i = 0;
 	while (TRUE)
 	{
@@ -35,10 +32,8 @@ t_char*	String_Find_Charset(t_char const* str, t_char const* charset)
 {
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL || charset == NULL)
-		return (NULL);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(str, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(charset, NULL)
 	if (charset[0] == '\0')
 		return (NULL);
 	i = 0;
@@ -66,10 +61,8 @@ t_char*	String_Find_String(t_char const* str, t_char const* query)
 {
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL || query == NULL)
-		return (NULL);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(str, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(query, NULL)
 	if (query[0] == '\0')
 		return (NULL);
 	i = 0;

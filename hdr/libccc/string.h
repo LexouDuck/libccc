@@ -131,8 +131,8 @@ t_char*				String_Duplicate_N(t_char const* str, t_size n);
 **	first occurence of `c`.
 */
 _MALLOC()
-t_char*				String_Duplicate_Char(t_char const* str, t_char const c);
-#define c_strcdup	String_Duplicate_Char //!< @alias{String_Duplicate_Char}
+t_char*				String_Duplicate_C(t_char const* str, t_char const c);
+#define c_strcdup	String_Duplicate_C //!< @alias{String_Duplicate_Char}
 
 /*!
 **	Copies the given string `src` into `dest` (null-terminator included),
@@ -491,7 +491,7 @@ void								String_Replace_String_InPlace(t_char* *a_str, t_char const* str_old,
 **	Deletes `a_str`, and sets the result in it instead. Also returns the 
 **	result.
 */
-t_char*								String_Map_InPlace(t_char* *a_str, t_char (*f)(t_char));
+t_char*								String_Map_InPlace(t_char* *a_str, t_char (*map)(t_char));
 #define c_strmap_inplace			String_Map_InPlace //!< @alias{String_Map_InPlace}
 
 

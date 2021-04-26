@@ -4,17 +4,14 @@
 
 
 
-t_char*	c_strrev(t_char const* str)
+t_char*	String_Reverse(t_char const* str)
 {
 	t_char*	result;
 	t_size	length;
 	t_size	i;
 	t_size	j;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL)
-		return (NULL);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(str, NULL)
 	length = 0;
 	while (str[length])
 		++length;

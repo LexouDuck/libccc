@@ -12,10 +12,7 @@ t_size		Char_ToUTF8(t_utf8* dest, t_utf32 c)
 {
 	t_u8 mask;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (dest == NULL)
-		return (0);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(dest, 0)
 	if (c < 0x80)
 	{
 		dest[0] = (t_u8)c;
@@ -54,10 +51,7 @@ t_utf32		UTF8_Get(t_utf8 const* str)
 {
 	t_u8 c;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL)
-		return (ERROR);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(str, ERROR)
 	c = str[0];
 	if (c & (1 << 7)) // multi-byte character
 	{

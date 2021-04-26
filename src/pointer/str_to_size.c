@@ -9,10 +9,7 @@ t_size	Size_FromString(char const* str)
 	t_size	result;
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL)
-		return (0);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(str, 0)
 	i = 0;
 	while (!(str[i] == '+' || Char_IsDigit(str[i])))
 	{

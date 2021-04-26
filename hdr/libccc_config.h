@@ -46,17 +46,6 @@ HEADER_CPP
 
 
 
-//! If 1, libccc functions handle NULL pointers args, otherwise they segfault.
-/*!
-**	This macro determines how NULL pointer arguments are to be handled
-**	- If 0, then libccc functions will always segfault when given NULL pointers.
-**	- If 1, then all NULL pointer accesses in libccc functions will be avoided, and
-**		an appropriate return value (eg:NULL, 0, sometimes -1) will be returned.
-*/
-#define LIBCONFIG_HANDLE_NULLPOINTERS		1
-
-
-
 //! If 1, libccc will define its functions as simple inline wrappers for STD C calls.
 /*!
 **	This macro determines if the compiler should prefer function implementations
@@ -90,6 +79,67 @@ HEADER_CPP
 **	- If 1, `s_list` is doubly-linked (that is, the struct has both a `.prev` and `.next` pointer)
 */
 #define LIBCONFIG_LIST_DOUBLYLINKED		0
+
+
+
+//! These macros allow you to configure how libccc handles parameter validation.
+/*!
+**	The "plural-named" macros should only ever have a value of `0` or `1`,
+**	they are used to activate or deactivate parameter validation at will.
+**	The "single-named" macro functions determine how the arguments are to be
+**	checked, validated, and handled. These macro functions are the important part,
+**	where you may customize the logic (to implement custom exception handling for example).
+*/
+//!@{
+//! comment out this `#define` to deactivate this kind of parameter validation
+#define LIBCONFIG_HANDLE_NULLPOINTERS
+#ifndef LIBCONFIG_HANDLE_NULLPOINTERS
+#define LIBCONFIG_HANDLE_NULLPOINTER(ARG, RESULT)
+#else
+#define LIBCONFIG_HANDLE_NULLPOINTER(ARG, RESULT) \
+	if ((ARG) == NULL)	return RESULT;
+#endif
+//! comment out this `#define` to deactivate this kind of parameter validation
+#define LIBCONFIG_HANDLE_INVALIDENUMS
+#ifndef LIBCONFIG_HANDLE_INVALIDENUMS
+#define LIBCONFIG_HANDLE_INVALIDENUM(ARG, RESULT, MIN, MAX)
+#else
+#define LIBCONFIG_HANDLE_INVALIDENUM(ARG, RESULT, MIN, MAX) \
+	if ((ARG) < (MIN) || (ARG) >= (MAX))	return RESULT;
+#endif
+//! comment out this `#define` to deactivate this kind of parameter validation
+#define LIBCONFIG_HANDLE_INDEX2SMALLS
+#ifndef LIBCONFIG_HANDLE_INDEX2SMALLS
+#define LIBCONFIG_HANDLE_INDEX2SMALL(ARG, RESULT, MIN)
+#else
+#define LIBCONFIG_HANDLE_INDEX2SMALL(ARG, RESULT, MIN) \
+	if ((ARG) < (MIN))	return RESULT;
+#endif
+//! comment out this `#define` to deactivate this kind of parameter validation
+#define LIBCONFIG_HANDLE_INDEX2LARGES
+#ifndef LIBCONFIG_HANDLE_INDEX2LARGES
+#define LIBCONFIG_HANDLE_INDEX2LARGE(ARG, RESULT, MAX)
+#else
+#define LIBCONFIG_HANDLE_INDEX2LARGE(ARG, RESULT, MAX) \
+	if ((ARG) >= (MAX))	return RESULT;
+#endif
+//! comment out this `#define` to deactivate this kind of parameter validation
+#define LIBCONFIG_HANDLE_LENGTH2SMALLS
+#ifndef LIBCONFIG_HANDLE_LENGTH2SMALLS
+#define LIBCONFIG_HANDLE_LENGTH2SMALL(ARG, RESULT, MIN)
+#else
+#define LIBCONFIG_HANDLE_LENGTH2SMALL(ARG, RESULT, MIN) \
+	if ((ARG) < (MIN))	return RESULT;
+#endif
+//! comment out this `#define` to deactivate this kind of parameter validation
+#define LIBCONFIG_HANDLE_LENGTH2LARGES
+#ifndef LIBCONFIG_HANDLE_LENGTH2LARGES
+#define LIBCONFIG_HANDLE_LENGTH2LARGE(ARG, RESULT, MAX)
+#else
+#define LIBCONFIG_HANDLE_LENGTH2LARGE(ARG, RESULT, MAX) \
+	if ((ARG) >= (MAX))	return(RESULT;
+#endif
+//!@}
 
 
 

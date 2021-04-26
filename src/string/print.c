@@ -51,10 +51,7 @@ t_char*	String_Print(t_char const* str, t_char const* charset_extra)
 	t_size	index = 0;
 	t_size	i = 0;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL)
-		return (NULL);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(str, NULL)
 	if (!(result = (t_char*)Memory_Alloc(String_Print_GetLength(str, charset_extra) + 1)))
 		return (NULL);
 	while (str[index])

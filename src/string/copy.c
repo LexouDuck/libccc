@@ -3,16 +3,12 @@
 
 
 
-t_char*	c_strcpy(t_char* dest, t_char const* src)
+t_char*	String_Copy(t_char* dest, t_char const* src)
 {
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (dest == NULL)
-		return (NULL);
-	if (src == NULL)
-		return (dest);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(dest, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(src, dest)
 	i = 0;
 	while (src[i])
 	{
@@ -25,17 +21,13 @@ t_char*	c_strcpy(t_char* dest, t_char const* src)
 
 
 
-t_char*	c_strncpy(t_char* dest, t_char const* src, t_size n)
+t_char*	String_Copy_N(t_char* dest, t_char const* src, t_size n)
 {
 	t_char*	str;
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (dest == NULL)
-		return (NULL);
-	if (src == NULL)
-		return (dest);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(dest, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(src, dest)
 	str = dest;
 	i = 0;
 	while (n > 0 && src[i])
@@ -55,14 +47,12 @@ t_char*	c_strncpy(t_char* dest, t_char const* src, t_size n)
 
 
 
-t_size	c_strlcpy(t_char* dest, t_char const* src, t_size size)
+t_size	String_Copy_L(t_char* dest, t_char const* src, t_size size)
 {
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (dest == NULL || src == NULL)
-		return (0);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(dest, 0)
+	LIBCONFIG_HANDLE_NULLPOINTER(src, 0)
 	i = 0;
 	while (i < size - 1 && src[i])
 	{

@@ -20,23 +20,17 @@ void*	Memory_Allocate(t_size size)
 
 
 inline
-void*	Memory_Reallocate(void *ptr, t_size size)
+void*	Memory_Reallocate(void* ptr, t_size size)
 {
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (ptr == NULL)
-		return (NULL);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(ptr, NULL)
 	return (realloc(ptr, size));
 }
 
 
 
 inline
-void	Memory_Deallocate(void *ptr)
+void	Memory_Deallocate(void* ptr)
 {
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (ptr == NULL)
-		return;
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(ptr, )
 	free(ptr);
 }

@@ -4,17 +4,14 @@
 
 
 
-char	**c_strdivide(char const* str, t_size n)
+t_char**	String_Divide(t_char const* str, t_size n)
 {
-	char	**result;
+	t_char**	result;
 	int		lines;
 	t_size	length;
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL)
-		return (NULL);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(str, NULL)
 	length = c_strlen(str);
 	lines = length % n == 0 ? length / n : length / n + 1;
 	if (lines == 0 || !(result = c_strarrnew(lines)))

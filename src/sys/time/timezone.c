@@ -14,7 +14,7 @@ inline s_date	Date_SetTimezone(s_date const* value, t_timezone old, t_timezone n
 {
 	t_time t;
 
-	t = Date_To_Time(value);
+	t = Date_ToTime(value);
 	t = t + (new - old);
-	return (Time_To_Date(t));
+	return (Time_ToDate(t));
 }

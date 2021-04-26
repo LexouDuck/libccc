@@ -3,14 +3,11 @@
 
 
 
-inline void	c_strset(t_char* str, t_char c)
+inline void	String_Set(t_char* str, t_char c)
 {
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL)
-		return;
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(str, )
 	i = 0;
 	while (str[i])
 	{

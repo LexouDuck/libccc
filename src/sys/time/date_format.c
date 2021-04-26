@@ -1,7 +1,7 @@
 
 /*
 **	Functions used from <time.h>:
-**	-	size_t	strftime(char *s, size_t max, const char *format, const struct tm *tm);
+**	-	size_t	strftime(char* s, size_t max, const char* format, const struct tm *tm);
 */
 #include <time.h>
 

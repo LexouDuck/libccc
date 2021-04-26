@@ -53,7 +53,7 @@ static t_s16	F##BITS##_ToString_GetExp(t_f##BITS* number)				\
 	if (*number >= FLOAT_THRESHOLD_HUGE ||									\
 		*number <= -FLOAT_THRESHOLD_HUGE)									\
 		while ((power /= 2) > 0)											\
-			if (*number >= (nearest = Float_Pow(10, power)))					\
+			if (*number >= (nearest = Float_Pow(10, power)))				\
 			{																\
 				*number /= nearest;											\
 				exponent += power;											\
@@ -63,7 +63,7 @@ static t_s16	F##BITS##_ToString_GetExp(t_f##BITS* number)				\
 		while ((power /= 2) > 0)											\
 			if (*number < Float_Pow(10, 1 - power))							\
 			{																\
-				*number *= Float_Pow(10, power);								\
+				*number *= Float_Pow(10, power);							\
 				exponent -= power;											\
 			}																\
 	return (exponent);														\

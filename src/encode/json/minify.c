@@ -5,7 +5,7 @@
 
 
 
-static void skip_oneline_comment(t_char* *input)
+static void skip_oneline_comment(t_char** input)
 {
 	*input += STRING_LENGTH("//");
 
@@ -19,7 +19,7 @@ static void skip_oneline_comment(t_char* *input)
 	}
 }
 
-static void skip_multiline_comment(t_char* *input)
+static void skip_multiline_comment(t_char** input)
 {
 	*input += STRING_LENGTH("/*");
 
@@ -33,7 +33,7 @@ static void skip_multiline_comment(t_char* *input)
 	}
 }
 
-static void minify_string(t_char* *input, t_char* *output)
+static void minify_string(t_char** input, t_char** output)
 {
 	(*output)[0] = (*input)[0];
 	*input += STRING_LENGTH("\"");

@@ -5,12 +5,10 @@
 _GENERIC()
 t_bool	CONCAT(List_Equals,T_NAME)(s_list_T const* list1, s_list_T const* list2)
 {
-//#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (list1 == list2)
 		return (TRUE);
-	if (list1 == NULL || list2 == NULL)
-		return (FALSE);
-//#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(list1, FALSE)
+	LIBCONFIG_HANDLE_NULLPOINTER(list2, FALSE)
 	while (list1 && list2)
 	{
 		if (!T_EQUALS(list1->item, list2->item))
@@ -25,12 +23,10 @@ t_bool	CONCAT(List_Equals,T_NAME)(s_list_T const* list1, s_list_T const* list2)
 _GENERIC()
 t_bool	CONCAT(List_Equals_N,T_NAME)(s_list_T const* list1, s_list_T const* list2, t_uint n)
 {
-//#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (list1 == list2)
 		return (TRUE);
-	if (list1 == NULL || list2 == NULL)
-		return (FALSE);
-//#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(list1, FALSE)
+	LIBCONFIG_HANDLE_NULLPOINTER(list2, FALSE)
 	while (list1 && list2 && n--)
 	{
 		if (!T_EQUALS(list1->item, list2->item))

@@ -1,7 +1,7 @@
 
 /*
 **	Functions used from <unistd.h>:
-**	-	int	open(const char *pathname, int flags, mode_t mode);
+**	-	int	open(const char* pathname, int flags, mode_t mode);
 */
 #include <unistd.h>
 #include <fcntl.h>

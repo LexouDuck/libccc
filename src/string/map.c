@@ -10,10 +10,8 @@ t_char*	String_Map(t_char const* str, t_char (*map)(t_char c))
 	t_size	length;
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL || map == NULL)
-		return (NULL);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(str, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(map, NULL)
 	length = 0;
 	while (str[length])
 		++length;
@@ -37,10 +35,8 @@ t_char*	String_Map_I(t_char const* str, t_char (*map)(t_char c, t_size index))
 	t_size	length;
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL || map == NULL)
-		return (NULL);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(str, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(map, NULL)
 	length = 0;
 	while (str[length])
 		++length;
@@ -58,16 +54,15 @@ t_char*	String_Map_I(t_char const* str, t_char (*map)(t_char c, t_size index))
 
 
 
-t_char*	c_strmap_inplace(t_char* *a_str, t_char (*f)(t_char))
+t_char*	String_Map_InPlace(t_char** a_str, t_char (*f)(t_char))
 {
 	t_char*	tmp;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (a_str == NULL || *a_str == NULL || f == NULL)
-		return (NULL);
-#endif
-	tmp = c_strmap(*a_str, f);
-	c_strdel(a_str);
+	LIBCONFIG_HANDLE_NULLPOINTER(f, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(a_str, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(*a_str, NULL)
+	tmp = String_Map(*a_str, f);
+	String_Delete(a_str);
 	*a_str = tmp;
 	return (tmp);
 }

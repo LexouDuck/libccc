@@ -5,16 +5,13 @@
 
 
 
-char	**c_strarrsub(char const **strarr, t_u32 start, t_u32 n)
+t_char**	c_strarrsub(t_char const** strarr, t_u32 start, t_u32 n)
 {
-	char		**result;
+	t_char**		result;
 	t_u32		length;
 	t_u32		i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (strarr == NULL)
-		return (NULL);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(strarr, NULL)
 	length = c_strarrlen(strarr);
 	if (start > length || start + n > length)
 		return (NULL);

@@ -75,7 +75,6 @@ __weak_alias(strptime,_strptime)
 /*                                 Definitions                                */
 /* ************************************************************************** */
 
-typedef unsigned char u_char;
 typedef unsigned int uint;
 //typedef unsigned __int64 uint64_t;
 
@@ -93,7 +92,7 @@ static int TM_YEAR_BASE = 1900;
 static char gmt[] = { "GMT" };
 static char utc[] = { "UTC" };
 /* RFC-822/RFC-2822 */
-static const char * const nast[5] =
+static const char*  const nast[5] =
 {
 	"EST",
 	"CST",
@@ -101,7 +100,7 @@ static const char * const nast[5] =
 	"PST",
 	"\0\0\0"
 };
-static const char * const nadt[5] =
+static const char*  const nadt[5] =
 {
 	"EDT",
 	"CDT",
@@ -109,18 +108,18 @@ static const char * const nadt[5] =
 	"PDT",
 	"\0\0\0"
 };
-static const char * const am_pm[2] =
+static const char*  const am_pm[2] =
 {
 	"am",
 	"pm"
 };
 
-static const u_char *conv_num(const unsigned char *, int *, uint, uint);
-static const u_char *find_string(const u_char *, int *, const char * const *,
-	const char * const *, int);
+static const t_u8* conv_num(const unsigned char* , int*, uint, uint);
+static const t_u8* find_string(const t_u8*, int*, const char*  const* ,
+	const char*  const* , int);
 
 
-static const u_char *	conv_num(const unsigned char *buf, int *dest, uint llim, uint ulim)
+static const t_u8* 	conv_num(const unsigned char* buf, int *dest, uint llim, uint ulim)
 {
 	uint result = 0;
 	unsigned char ch;
@@ -146,7 +145,7 @@ static const u_char *	conv_num(const unsigned char *buf, int *dest, uint llim, u
 	return buf;
 }
 
-static const u_char *	find_string(const u_char *bp, int *tgt, const char * const *n1, const char * const *n2, int c)
+static const t_u8* 	find_string(const t_u8* bp, int *tgt, const char*  const* n1, const char*  const* n2, int c)
 {
 	int i;
 	size_t len;
@@ -155,7 +154,7 @@ static const u_char *	find_string(const u_char *bp, int *tgt, const char * const
 	for (; n1 != NULL; n1 = n2, n2 = NULL) {
 		for (i = 0; i < c; i++, n1++) {
 			len = strlen(*n1);
-			if (strncasecmp(*n1, (const char *)bp, len) == 0) {
+			if (strncasecmp(*n1, (const char* )bp, len) == 0) {
 				*tgt = i;
 				return bp + len;
 			}
@@ -168,12 +167,12 @@ static const u_char *	find_string(const u_char *bp, int *tgt, const char * const
 
 /*
 #if !defined(MO_MINGW32) && !defined(__linux__)
-static int strncasecmp(const char *a, const char *b, size_t c);
+static int strncasecmp(const char* a, const char* b, size_t c);
 #endif
 
 #if !defined(MO_MINGW32) && !defined(__linux__)
 static int
-strncasecmp(const char *a, const char *b, size_t c)
+strncasecmp(const char* a, const char* b, size_t c)
 {
 	return _strnicmp(a, b, c);
 }
@@ -183,14 +182,14 @@ strncasecmp(const char *a, const char *b, size_t c)
 /*
 ** NB: Reminder that tm must be set to 0 before being passed here.
 */
-char *	strptime(const char *buf, const char *fmt, struct tm *tm)
+char* 	strptime(const char* buf, const char* fmt, struct tm *tm)
 {
 	unsigned char c;
-	const unsigned char *bp, *ep;
+	const unsigned char* bp, *ep;
 	int alt_format, i, split_year = 0, neg = 0, offs;
-	const char *new_fmt;
+	const char* new_fmt;
 
-	bp = (const u_char *)buf;
+	bp = (const t_u8* )buf;
 
 	while (bp != NULL && (c = *fmt++) != '\0') {
 		/* Clear `alternate' modifier prior to new conversion. */
@@ -274,7 +273,7 @@ literal:
 	  case 'x': The date, using the locale's format.
 			new_fmt =_ctloc(d_fmt);*/
 recurse:
-			bp = (const u_char *)strptime((const char *)bp,
+			bp = (const t_u8* )strptime((const char* )bp,
 								new_fmt, tm);
 			LEGAL_ALT(ALT_E);
 			continue;
@@ -465,8 +464,8 @@ recurse:
 #else
 			tzset();
 #endif
-			if (strncasecmp((const char *)bp, gmt, 3) == 0
-		  || strncasecmp((const char *)bp, utc, 3) == 0) {
+			if (strncasecmp((const char* )bp, gmt, 3) == 0
+		  || strncasecmp((const char* )bp, utc, 3) == 0) {
 				tm->tm_isdst = 0;
 #ifdef TM_GMTOFF
 				tm->TM_GMTOFF = 0;
@@ -477,7 +476,7 @@ recurse:
 				bp += 3;
 			} else {
 				ep = find_string(bp, &i,
-							 (const char * const *)tzname,
+							 (const char*  const* )tzname,
 							  NULL, 2);
 				if (ep != NULL) {
 					tm->tm_isdst = i;
@@ -637,7 +636,7 @@ recurse:
 		}
 	}
 
-	return (char *)(bp);
+	return (char* )(bp);
 }
 
 #ifdef __cplusplus

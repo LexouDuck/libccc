@@ -271,7 +271,7 @@ t_time					Time_Now(void);
 s_date							Time_ToDate_UTC(t_time const value);
 #define c_time_to_date			Time_ToDate_UTC
 #define c_time_to_date_utc		Time_ToDate_UTC
-#define Time_To_Date			Time_ToDate_UTC
+#define Time_ToDate				Time_ToDate_UTC
 
 //! Converts the given 't_time value' to its equivalent 's_date' representation (according to the system timezone)
 s_date							Time_ToDate_LocalTime(t_time const value);

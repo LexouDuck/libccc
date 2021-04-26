@@ -5,15 +5,12 @@
 
 
 
-static t_size	Int_ToString_Base_GetLength(char const *base, t_bool sign)
+static t_size	Int_ToString_Base_GetLength(char const* base, t_bool sign)
 {
 	t_size	i;
 	t_size	j;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (base == NULL)
-		return (0);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(base, 0)
 	i = 0;
 	while (base[i])
 	{

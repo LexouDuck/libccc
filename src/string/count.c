@@ -8,10 +8,7 @@ t_size	String_Count_Char(t_char const* str, t_char c)
 	t_size	result;
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL)
-		return (0);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(str, 0)
 	result = 0;
 	i = 0;
 	while (str[i])
@@ -30,10 +27,8 @@ t_size	String_Count_Charset(t_char const* str, t_char const* charset)
 	t_size	result;
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL || charset == NULL)
-		return (0);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(str, 0)
+	LIBCONFIG_HANDLE_NULLPOINTER(charset, 0)
 	result = 0;
 	i = 0;
 	while (str[i])
@@ -54,10 +49,8 @@ t_size	String_Count_String(t_char const* str, t_char const* query)
 	t_size	i;
 	t_size	j;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL || query == NULL)
-		return (0);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(str, 0)
+	LIBCONFIG_HANDLE_NULLPOINTER(query, 0)
 	result = 0;
 	length = 0;
 	while (query[length])

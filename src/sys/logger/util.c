@@ -68,7 +68,6 @@ char*	Logger_GetSettings(s_logger const* logger)
 		case LOGFORMAT_XML:  logformat = LOGFORMAT_STRING_XML ; break;
 		default: break;
 	}
-
 	result = String_Format(
 		"\n"LOG_TIMESTAMP_INDENT"\tLogger settings:"
 		"\n"LOG_TIMESTAMP_INDENT"\t- Silence normal logs and warnings: %s"
@@ -90,7 +89,6 @@ char*	Logger_GetSettings(s_logger const* logger)
 		logger->fd,
 		logger->path
 	);
-	
 	return (result);
 }
 

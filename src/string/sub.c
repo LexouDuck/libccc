@@ -4,22 +4,19 @@
 
 
 
-t_char*	c_strsub(t_char const* str, t_size index, t_size n)
+t_char*	String_Sub(t_char const* str, t_size index, t_size n)
 {
 	t_char*	result;
 	t_size	length;
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL)
-		return (NULL);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(str, NULL)
 	length = 0;
 	while (str[length])
 		++length;
-	if (index > length || index + n > length)
-		return (NULL);
-	if (!(result = (t_char* )c_memalloc(n + 1)))
+	LIBCONFIG_HANDLE_INDEX2LARGE(index, NULL, length)
+	LIBCONFIG_HANDLE_INDEX2LARGE(index + n, NULL, length)
+	if (!(result = (t_char* )Memory_Alloc(n + 1)))
 		return (NULL);
 	i = 0;
 	while (i < n)

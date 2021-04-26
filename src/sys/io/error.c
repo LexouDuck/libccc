@@ -2,7 +2,7 @@
 /*
 **	Functions used from <string.h>:
 **	-	char const* strerror(int errnum);
-**	-	int strerror_r(int errnum, char *buf, size_t buflen);
+**	-	int strerror_r(int errnum, char* buf, size_t buflen);
 */
 #include <string.h>
 #include <sys/types.h>

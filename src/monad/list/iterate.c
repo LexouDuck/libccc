@@ -5,10 +5,8 @@
 _GENERIC()
 void	CONCAT(List_Iterate,T_NAME)(s_list_T* list, void (*f)(T item))
 {
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (list == NULL || f == NULL)
-		return;
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(f, )
+	LIBCONFIG_HANDLE_NULLPOINTER(list, )
 	while (list)
 	{
 		f(list->item);
@@ -22,10 +20,8 @@ void	CONCAT(List_Iterate_I,T_NAME)(s_list_T* list, void (*f)(T item, t_uint inde
 {
 	t_uint i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (list == NULL || f == NULL)
-		return;
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(f, )
+	LIBCONFIG_HANDLE_NULLPOINTER(list, )
 	i = 0;
 	while (list)
 	{

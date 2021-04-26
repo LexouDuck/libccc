@@ -75,7 +75,7 @@ typedef struct kvt
 	struct kvt*	next;	//!< linked-list pointers to neighboring items
 	struct kvt*	prev;	//!< linked-list pointers to neighboring items
 
-	t_char*		key;	//!< The item's name string, if this item is the child of, or is in the list of subitems of an object.
+	t_char*		key;	//!< The item's key string, if this item is the child of, or is in the list of subitems of, an object.
 	t_dynamic	type;	//!< The type of the item: uses the `TOML_TYPE_*` macros defined above.
 	union dynamic
 	{
@@ -157,7 +157,7 @@ s_kvt*	KVT_Duplicate(s_kvt const* item, t_bool recurse);
 **	If either a or b is NULL or invalid, they will be considered unequal.
 **	case_sensitive determines if object keys are treated case sensitive (1) or case insensitive (0).
 */
-t_bool	KVT_Equals(s_kvt const* a, s_kvt const* b, t_bool const case_sensitive);
+t_bool	KVT_Equals(s_kvt const* a, s_kvt const* b, t_bool case_sensitive);
 
 
 
@@ -273,8 +273,8 @@ s_kvt*	KVT_GetArrayItem(s_kvt const* array, t_sint index);
 //! Get the item with the given `key` from the given `object`.
 #define KVT_GetObjectItem \
 		KVT_GetObjectItem_IgnoreCase
-s_kvt*	KVT_GetObjectItem_IgnoreCase	(s_kvt const* const object, t_char const* const key);	//!< (case-insensitive)
-s_kvt*	KVT_GetObjectItem_CaseSensitive	(s_kvt const* const object, t_char const* const key);	//!< (case-sensitive)
+s_kvt*	KVT_GetObjectItem_IgnoreCase	(s_kvt const* object, t_char const* key);	//!< (case-insensitive)
+s_kvt*	KVT_GetObjectItem_CaseSensitive	(s_kvt const* object, t_char const* key);	//!< (case-sensitive)
 
 //! Returns `TRUE` if the given `object` contains an item with the given `key`.
 #define KVT_HasObjectItem \

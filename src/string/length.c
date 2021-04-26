@@ -3,14 +3,11 @@
 
 
 
-inline t_size	c_strlen(t_char const* str)
+inline t_size	String_Length(t_char const* str)
 {
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL)
-		return (0);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(str, 0)
 	i = 0;
 	while (str[i])
 		++i;

@@ -8,10 +8,8 @@ s_list_T*	CONCAT(List_Filter,T_NAME)(s_list_T const* list, t_bool (*filter)(T it
 	s_list_T*	result = NULL;
 	s_list_T*	elem;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (list == NULL || filter == NULL)
-		return (NULL);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(filter, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(list, NULL)
 	while (list)
 	{
 		if (filter(list->item))
@@ -32,10 +30,8 @@ s_list_T*	CONCAT(List_Filter_I,T_NAME)(s_list_T const* list, t_bool (*filter)(T 
 	s_list_T*	elem;
 	t_uint	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (list == NULL || filter == NULL)
-		return (NULL);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(filter, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(list, NULL)
 	i = 0;
 	while (list)
 	{

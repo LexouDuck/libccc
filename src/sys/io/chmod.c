@@ -1,8 +1,8 @@
 
 /*
 **	Functions used from <sys/stat.h>:
-**	-	int chmod(const char *pathname, mode_t mode);
-**	-	int chown(const char *pathname, uid_t owner, gid_t group);
+**	-	int chmod(const char* pathname, mode_t mode);
+**	-	int chown(const char* pathname, uid_t owner, gid_t group);
 */
 #include <errno.h>
 #include <sys/stat.h>

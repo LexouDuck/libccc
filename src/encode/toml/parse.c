@@ -12,9 +12,9 @@
 
 
 
-static char	*TOML_Parse_Error(char expected, char *description, char instead)
+static char*	TOML_Parse_Error(char expected, char* description, char instead)
 {
-	char	*result;
+	char*	result;
 	t_size	length;
 	t_size	i;
 
@@ -37,7 +37,7 @@ static char	*TOML_Parse_Error(char expected, char *description, char instead)
 
 static void	TOML_Parse_SkipWhitespace(s_parser *p)
 {
-	char	*file;
+	char*	file;
 
 	file = p->file;
 	while (file[p->index] && (Char_IsSpace(file[p->index]) ||
@@ -58,7 +58,7 @@ static void	TOML_Parse_SkipWhitespace(s_parser *p)
 	}
 }
 
-static char	*TOML_Parse_ApplySetting(s_parser *p)
+static char*	TOML_Parse_ApplySetting(s_parser *p)
 {
 	t_s32	index;
 	t_s32	i;
@@ -82,9 +82,9 @@ static char	*TOML_Parse_ApplySetting(s_parser *p)
 	return (NULL);
 }
 
-static char	*TOML_Parse_ReadSetting(s_parser *p)
+static char*	TOML_Parse_ReadSetting(s_parser *p)
 {
-	char	*file;
+	char*	file;
 
 	file = p->file;
 	p->label = (p->file + p->index);
@@ -113,7 +113,7 @@ static char	*TOML_Parse_ReadSetting(s_parser *p)
 void		TOML_Parse(t_fd fd, s_config* config, s_logger const* logger)
 {
 	s_parser	parser;
-	char		*error;
+	char*		error;
 
 	parser.config = config;
 	parser.file = NULL;
