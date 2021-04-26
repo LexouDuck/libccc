@@ -45,6 +45,8 @@
 	}																\
 	else ++i;														\
 
+
+
 _FORMAT(printf, 2, 3)
 s_kvt*	KVT_Get(s_kvt const* object, t_char const* format_path, ...)
 {
@@ -102,7 +104,7 @@ s_kvt*	KVT_Get(s_kvt const* object, t_char const* format_path, ...)
 			}
 			PARSE_KVTPATH_MATCH_CHAR('"', "to end string accessor")
 			accessor = String_Sub(str, i, length);
-			result = KVT_GetObjectItem(result, accessor);
+			result = KVT_GetObjectItem(result, accessor); // TODO find a smart way to handle this problem
 		}
 		else
 		{
@@ -196,7 +198,7 @@ static s_kvt* get_object_item(s_kvt const* const object, t_char const* const nam
 	return (current_element);
 }
 
-s_kvt*	KVT_GetObjectItem(s_kvt const* const object, t_char const* const key)
+s_kvt*	KVT_GetObjectItem_IgnoreCase(s_kvt const* const object, t_char const* const key)
 {
 	return (get_object_item(object, key, FALSE));
 }
@@ -206,7 +208,12 @@ s_kvt*	KVT_GetObjectItem_CaseSensitive(s_kvt const* const object, t_char const* 
 	return (get_object_item(object, key, TRUE));
 }
 
-t_bool	KVT_HasObjectItem(s_kvt const* object, t_char const* key)
+t_bool	KVT_HasObjectItem_IgnoreCase(s_kvt const* object, t_char const* key)
 {
-	return (KVT_GetObjectItem(object, key) ? 1 : 0);
+	return (KVT_GetObjectItem_IgnoreCase(object, key) ? 1 : 0);
+}
+
+t_bool	KVT_HasObjectItem_CaseSensitive(s_kvt const* object, t_char const* key)
+{
+	return (KVT_GetObjectItem_CaseSensitive(object, key) ? 1 : 0);
 }

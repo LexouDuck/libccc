@@ -225,7 +225,10 @@ void	JSON_Minify(t_char* json); //!< TODO rename to JSON_Minify_InPlace(), and a
 
 
 
-#define JSON_HasObjectItem		KVT_HasObjectItem	//!< @alias{KVT_HasObjectItem}
+#define JSON_HasObjectItem \
+		JSON_HasObjectItem_IgnoreCase
+#define JSON_HasObjectItem_IgnoreCase		KVT_HasObjectItem_IgnoreCase	//!< @alias{KVT_HasObjectItem_IgnoreCase}
+#define JSON_HasObjectItem_CaseSensitive	KVT_HasObjectItem_CaseSensitive	//!< @alias{KVT_HasObjectItem_CaseSensitive}
 
 
 
@@ -313,17 +316,17 @@ void	JSON_Minify(t_char* json); //!< TODO rename to JSON_Minify_InPlace(), and a
 
 
 #define JSON_Delete_FromObject \
-			JSON_Delete_FromObject_IgnoreCase
+		JSON_Delete_FromObject_IgnoreCase
 #define JSON_Delete_FromObject_IgnoreCase		KVT_Delete_FromObject_IgnoreCase	//! @alias{KVT_Delete_FromObject_IgnoreCase}
 #define JSON_Delete_FromObject_CaseSensitive	KVT_Delete_FromObject_CaseSensitive	//! @alias{KVT_Delete_FromObject_CaseSensitive}
 
 #define JSON_Detach_FromObject \
-			JSON_Detach_FromObject_IgnoreCase
+		JSON_Detach_FromObject_IgnoreCase
 #define JSON_Detach_FromObject_IgnoreCase		KVT_Detach_FromObject_IgnoreCase	//! @alias{KVT_Detach_FromObject_IgnoreCase}
 #define JSON_Detach_FromObject_CaseSensitive	KVT_Detach_FromObject_CaseSensitive	//! @alias{KVT_Detach_FromObject_CaseSensitive}
 
 #define JSON_Replace_InObject \
-			JSON_Replace_InObject_IgnoreCase
+		JSON_Replace_InObject_IgnoreCase
 #define JSON_Replace_InObject_IgnoreCase		KVT_Replace_InObject_IgnoreCase		//! @alias{KVT_Replace_InObject_IgnoreCase}
 #define JSON_Replace_InObject_CaseSensitive		KVT_Replace_InObject_CaseSensitive	//! @alias{KVT_Replace_InObject_CaseSensitive}
 

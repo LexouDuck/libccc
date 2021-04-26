@@ -27,7 +27,7 @@ t_bool	KVT_Equals(s_kvt const* const a, s_kvt const* const b, const t_bool case_
 		default:
 			return (FALSE);
 	}
-	// identical objects are equal
+	// objects with identical pointers are necessarily equal
 	if (a == b)
 		return (TRUE);
 	switch (a->type & DYNAMIC_TYPE_MASK)
@@ -64,7 +64,7 @@ t_bool	KVT_Equals(s_kvt const* const a, s_kvt const* const b, const t_bool case_
 				// TODO This has O(n^2) runtime, which is horrible!
 				b_element = case_sensitive ?
 					KVT_GetObjectItem_CaseSensitive(b, a_element->key) :
-					KVT_GetObjectItem(b, a_element->key);
+					KVT_GetObjectItem_IgnoreCase(b, a_element->key);
 				if (b_element == NULL)
 					return (FALSE);
 
@@ -77,7 +77,7 @@ t_bool	KVT_Equals(s_kvt const* const a, s_kvt const* const b, const t_bool case_
 			{
 				a_element = case_sensitive ?
 					KVT_GetObjectItem_CaseSensitive(a, b_element->key) :
-					KVT_GetObjectItem(a, b_element->key);
+					KVT_GetObjectItem_IgnoreCase(a, b_element->key);
 				if (a_element == NULL)
 					return (FALSE);
 

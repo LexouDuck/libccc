@@ -1,5 +1,6 @@
 
 #include "libccc.h"
+#include "libccc/format.h"
 #include "libccc/encode/common.h"
 
 
@@ -23,7 +24,7 @@ e_error_kvt	KVT_SetError(e_error_kvt error)
 
 
 
-t_char const*	KVT_GetErrorMessage(e_error_kvt error)
+t_char const*	KVT_GetErrorString(e_error_kvt error)
 {
 	switch (error)
 	{
@@ -37,4 +38,11 @@ t_char const*	KVT_GetErrorMessage(e_error_kvt error)
 		case ERROR_KVT_ISREFERENCE:			return ("An operation was aborted since it attempted to free a 'reference' item");
 		default:							return ("Unknown");
 	}
+}
+
+
+
+t_char*	KVT_GetErrorMessage(void)
+{
+	return (String_Format("%s", KVT_GetErrorString(KVT_GetError()))); // TODO add global to store specific string message
 }

@@ -40,11 +40,6 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-// forward declaration, since the struct can hold itself
-typedef struct kvt	s_kvt;
-
-
-
 //! An integer type which works as a bitflag enum, used to express a dynamiclly-typed value's type at runtime
 typedef t_sint		t_dynamic;
 
@@ -68,18 +63,6 @@ typedef t_sint		t_dynamic;
 
 
 
-//! This union type can express a value of any major data type, see #t_dynamic
-typedef union dynamic
-{
-	t_bool	boolean;
-	t_s64	integer;
-	t_f64	number;
-	t_char*	string;
-	s_kvt*	child;
-}			u_dynamic;
-
-
-
 //! A general key-value tree struct, used to model data for several file formats: INI, KVT, TOML, YAML, XML, etc
 /*!
 **	This struct can be used to store any kind of data, much like a general
@@ -94,8 +77,20 @@ typedef struct kvt
 
 	t_char*		key;	//!< The item's name string, if this item is the child of, or is in the list of subitems of an object.
 	t_dynamic	type;	//!< The type of the item: uses the `TOML_TYPE_*` macros defined above.
-	u_dynamic	value;	//!< The item's stored value (can be of any type)
+	union dynamic
+	{
+		t_bool		boolean;
+		t_s64		integer;
+		t_f64		number;
+		t_char*		string;
+		struct kvt*	child;
+	}			value;	//!< The item's stored value (can be of any type)
 }		s_kvt;
+
+
+
+//! This union type can express a value of any major data type, see #t_dynamic
+typedef union dynamic	u_dynamic;
 
 
 
@@ -186,7 +181,9 @@ e_error_kvt		KVT_GetError(void);
 //! Sets the current 'errno' global
 e_error_kvt		KVT_SetError(e_error_kvt error);
 //! Returns the (string literal) error message corresponding to the given `error` number
-t_char const*	KVT_GetErrorMessage(e_error_kvt error);
+t_char const*	KVT_GetErrorString(e_error_kvt error);
+//! Returns a specific error message corresponding to the latest error
+t_char*			KVT_GetErrorMessage(void);
 
 
 
@@ -273,13 +270,17 @@ s_kvt*	KVT_GetArrayItem(s_kvt const* array, t_sint index);
 
 
 
-//! Get the item with the given `key` from the given `object` (case-insensitive).
-s_kvt*	KVT_GetObjectItem(s_kvt const* const object, t_char const* const key);
-//! Get the item with the given `key` from the given `object` (case-sensitive).
-s_kvt*	KVT_GetObjectItem_CaseSensitive(s_kvt const* const object, t_char const* const key);
+//! Get the item with the given `key` from the given `object`.
+#define KVT_GetObjectItem \
+		KVT_GetObjectItem_IgnoreCase
+s_kvt*	KVT_GetObjectItem_IgnoreCase	(s_kvt const* const object, t_char const* const key);	//!< (case-insensitive)
+s_kvt*	KVT_GetObjectItem_CaseSensitive	(s_kvt const* const object, t_char const* const key);	//!< (case-sensitive)
 
-//! Returns `TRUE` if the given `object` contains an item with the given `key`
-t_bool	KVT_HasObjectItem(s_kvt const* object, t_char const* key);
+//! Returns `TRUE` if the given `object` contains an item with the given `key`.
+#define KVT_HasObjectItem \
+		KVT_HasObjectItem_IgnoreCase
+t_bool	KVT_HasObjectItem_IgnoreCase	(s_kvt const* object, t_char const* key);	//!< (case-insensitive)
+t_bool	KVT_HasObjectItem_CaseSensitive	(s_kvt const* object, t_char const* key);	//!< (case-sensitive)
 
 
 
@@ -405,25 +406,31 @@ s_kvt*		KVT_Detach_FromArray(s_kvt* array, t_sint index);
 //! Replaces the given `item` from the given `array`, with the given `newitem`.
 e_error_kvt	KVT_Replace_InArray(s_kvt* array, t_sint index, s_kvt* newitem);
 
-//! Shifts pre-existing items to the right.
+//! Inserts the given `newitem` in the givne `array`, shifting pre-existing items to the right.
 e_error_kvt	KVT_Insert_InArray(s_kvt* array, t_sint index, s_kvt* newitem);
 
 
 
 //! Deletes the item with the given `key` from the given `object`.
 //!@{
+#define 	KVT_Delete_FromObject \
+			KVT_Delete_FromObject_IgnoreCase
 e_error_kvt	KVT_Delete_FromObject_IgnoreCase	(s_kvt* object, t_char const* key); //!< (case-insensitive)
 e_error_kvt	KVT_Delete_FromObject_CaseSensitive	(s_kvt* object, t_char const* key); //!< (case-sensitive)
 //!@}
 
 //! Removes (without deleting) the given `item` from the given `object`.
 //!@{
+#define 	KVT_Detach_FromObject \
+			KVT_Detach_FromObject_IgnoreCase
 s_kvt*		KVT_Detach_FromObject_IgnoreCase	(s_kvt* object, t_char const* key); //!< (case-insensitive)
 s_kvt*		KVT_Detach_FromObject_CaseSensitive	(s_kvt* object, t_char const* key); //!< (case-sensitive)
 //!@}
 
 //! Replaces the given `item` from the given `object`, with the given `newitem`
 //!@{
+#define 	KVT_Replace_InObject \
+			KVT_Replace_InObject_IgnoreCase
 e_error_kvt	KVT_Replace_InObject_IgnoreCase		(s_kvt* object, t_char const* key, s_kvt* newitem); //!< (case-insensitive)
 e_error_kvt	KVT_Replace_InObject_CaseSensitive	(s_kvt* object, t_char const* key, s_kvt* newitem); //!< (case-sensitive)
 //!@}
