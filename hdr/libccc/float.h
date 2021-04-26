@@ -216,6 +216,13 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 
 
 
+// TODO add wrapper for isfinite(x)
+// TODO add wrapper for isnormal(x)
+// TODO add wrapper for isunordered(x, y)
+// TODO add wrapper for fpclassify()
+
+
+
 // TODO add HUGE and TINY min/max value macros
 /*!
 **	@isostd{https://en.cppreference.com/w/c/numeric/math/HUGE_VAL}

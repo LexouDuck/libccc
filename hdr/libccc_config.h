@@ -57,7 +57,7 @@ HEADER_CPP
 **		Also, it invalidates the LIBCONFIG_HANDLE_NULLPOINTERS setting:
 **		NULL pointer handling is implementation-dependent for STD C functions.
 */
-#define LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS	0 // TODO implement this config flag
+#define LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS	(0) // TODO implement this config flag
 
 
 
@@ -67,7 +67,7 @@ HEADER_CPP
 **	- If 1, the libccc fast approximate functions will be used (precision error margin: 0.0001)
 **	- If 0, the builtin FPU-call libc math functions will be used (eg: __builtin_powf(), etc)
 */
-#define LIBCONFIG_USE_FAST_APPROX_MATH		0
+#define LIBCONFIG_USE_FAST_APPROX_MATH		(0)
 
 
 
@@ -78,7 +78,7 @@ HEADER_CPP
 **	- If 0, `s_list` is singly-linked (that is, the struct only holds a `.next` pointer)
 **	- If 1, `s_list` is doubly-linked (that is, the struct has both a `.prev` and `.next` pointer)
 */
-#define LIBCONFIG_LIST_DOUBLYLINKED		0
+#define LIBCONFIG_LIST_DOUBLYLINKED		(0)
 
 
 
@@ -92,7 +92,7 @@ HEADER_CPP
 */
 //!@{
 //! comment out this `#define` to deactivate this kind of parameter validation
-#define LIBCONFIG_HANDLE_NULLPOINTERS	1
+#define LIBCONFIG_HANDLE_NULLPOINTERS	(1)
 #ifndef LIBCONFIG_HANDLE_NULLPOINTERS
 #define LIBCONFIG_HANDLE_NULLPOINTER(ARG, RESULT)
 #else
@@ -100,7 +100,7 @@ HEADER_CPP
 	if ((ARG) == NULL)	return RESULT;
 #endif
 //! comment out this `#define` to deactivate this kind of parameter validation
-#define LIBCONFIG_HANDLE_INVALIDENUMS	1
+#define LIBCONFIG_HANDLE_INVALIDENUMS	(1)
 #ifndef LIBCONFIG_HANDLE_INVALIDENUMS
 #define LIBCONFIG_HANDLE_INVALIDENUM(ARG, RESULT, MIN, MAX)
 #else
@@ -108,7 +108,7 @@ HEADER_CPP
 	if ((ARG) < (MIN) || (ARG) > (MAX))	return RESULT;
 #endif
 //! comment out this `#define` to deactivate this kind of parameter validation
-#define LIBCONFIG_HANDLE_INDEX2SMALLS	1
+#define LIBCONFIG_HANDLE_INDEX2SMALLS	(1)
 #ifndef LIBCONFIG_HANDLE_INDEX2SMALLS
 #define LIBCONFIG_HANDLE_INDEX2SMALL(ARG, RESULT, MIN)
 #else
@@ -116,7 +116,7 @@ HEADER_CPP
 	if ((ARG) < (MIN))	return RESULT;
 #endif
 //! comment out this `#define` to deactivate this kind of parameter validation
-#define LIBCONFIG_HANDLE_INDEX2LARGES	1
+#define LIBCONFIG_HANDLE_INDEX2LARGES	(1)
 #ifndef LIBCONFIG_HANDLE_INDEX2LARGES
 #define LIBCONFIG_HANDLE_INDEX2LARGE(ARG, RESULT, MAX)
 #else
@@ -124,7 +124,7 @@ HEADER_CPP
 	if ((ARG) > (MAX))	return RESULT;
 #endif
 //! comment out this `#define` to deactivate this kind of parameter validation
-#define LIBCONFIG_HANDLE_LENGTH2SMALLS	1
+#define LIBCONFIG_HANDLE_LENGTH2SMALLS	(1)
 #ifndef LIBCONFIG_HANDLE_LENGTH2SMALLS
 #define LIBCONFIG_HANDLE_LENGTH2SMALL(ARG, RESULT, MIN)
 #else
@@ -132,12 +132,12 @@ HEADER_CPP
 	if ((ARG) < (MIN))	return RESULT;
 #endif
 //! comment out this `#define` to deactivate this kind of parameter validation
-#define LIBCONFIG_HANDLE_LENGTH2LARGES	1
+#define LIBCONFIG_HANDLE_LENGTH2LARGES	(1)
 #ifndef LIBCONFIG_HANDLE_LENGTH2LARGES
 #define LIBCONFIG_HANDLE_LENGTH2LARGE(ARG, RESULT, MAX)
 #else
 #define LIBCONFIG_HANDLE_LENGTH2LARGE(ARG, RESULT, MAX) \
-	if ((ARG) > (MAX))	return(RESULT;
+	if ((ARG) > (MAX))	return RESULT;
 #endif
 //!@}
 

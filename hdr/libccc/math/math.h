@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_MATH_H
 #define __LIBCCC_MATH_H
-/*!@group{libccc_math_math}
+/*!@group{libccc_math}
 ** @{
 **	This header defines the common standard math functions and macro defines.
 **
@@ -81,12 +81,11 @@ HEADER_CPP
 
 
 
-
 #define MATH_DEFINE_FUNCTION(RETURN, BITS, NAME, CNAME, TYPE)	inline RETURN	 c_f##BITS##NAME(t_f##BITS x)				{ return (__builtin_##CNAME##TYPE(x)); }
 #define MATH_DEFINE_REALFUNCTION(BITS, NAME, CNAME, TYPE)		inline t_f##BITS c_f##BITS##NAME(t_f##BITS x)				{ return (__builtin_##CNAME##TYPE(x)); }
 #define MATH_DEFINE_REALOPERATOR(BITS, NAME, CNAME, TYPE)		inline t_f##BITS c_f##BITS##NAME(t_f##BITS x, t_f##BITS y)	{ return (__builtin_##CNAME##TYPE(x, y)); }
 
-
+// TODO ascertain platform macros for sizeof(long double), and use them to conditionally defien wrappers for std libc math functions
 
 #define MATH_DECL_FUNCTION(RETURN, NAME, CNAME)	\
 	MATH_DEFINE_FUNCTION(RETURN, 32, NAME, CNAME,f)	\

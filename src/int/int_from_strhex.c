@@ -5,7 +5,7 @@
 
 
 
-static inline int	UInt_GetDigit_FromString_Hex(char c)
+static inline int	GetDigit_FromString_Hex(char c)
 {
 	if ('0' <= c && c <= '9')
 		return (c - '0');
@@ -19,7 +19,7 @@ static inline int	UInt_GetDigit_FromString_Hex(char c)
 
 
 #define DEFINEFUNC_CONVERT_STRHEX_TO_UINT(BITS) \
-t_u##BITS				U##BITS##_FromString_Hex(char const* str)		\
+t_u##BITS	U##BITS##_FromString_Hex(char const* str)					\
 {																		\
 	t_u##BITS	result;													\
 	t_size	i;															\
@@ -37,7 +37,7 @@ t_u##BITS				U##BITS##_FromString_Hex(char const* str)		\
 	}																	\
 	if (str[i] == '+')													\
 		++i;															\
-	else if (str[i] == '0' && str[i + 1] == 'x')						\
+	if (str[i] == '0' && str[i + 1] == 'x')								\
 		i += 2;															\
 	result = 0;															\
 	while (str[i] && (													\
@@ -45,7 +45,7 @@ t_u##BITS				U##BITS##_FromString_Hex(char const* str)		\
 		('A' <= str[i] && str[i] <= 'F') ||								\
 		('a' <= str[i] && str[i] <= 'f')))								\
 	{																	\
-		result = result * 16 + UInt_GetDigit_FromString_Hex(str[i]);	\
+		result = result * 16 + GetDigit_FromString_Hex(str[i]);			\
 		++i;															\
 	}																	\
 	return (result);													\
@@ -61,4 +61,49 @@ DEFINEFUNC_CONVERT_STRHEX_TO_UINT(128)
 
 
 
-// TODO SInt_FromString_Hex()
+#define DEFINEFUNC_CONVERT_STRHEX_TO_SINT(BITS) \
+t_s##BITS	S##BITS##_FromString_Hex(char const* str)					\
+{																		\
+	t_u##BITS	result;													\
+	t_bool	negative;													\
+	t_size	i;															\
+																		\
+	LIBCONFIG_HANDLE_NULLPOINTER(str, 0)								\
+	i = 0;																\
+	while (!(str[i] == '+' || str[i] == '+' ||							\
+		('0' <= str[i] && str[i] <= '9') ||								\
+		('A' <= str[i] && str[i] <= 'F') ||								\
+		('a' <= str[i] && str[i] <= 'f')))								\
+	{																	\
+		if (!str[i] || !Char_IsSpace(str[i]))							\
+			return (0);													\
+		++i;															\
+	}																	\
+	if (str[i] == '-')													\
+	{																	\
+		negative = TRUE;												\
+		++i;															\
+	}																	\
+	else if (str[i] == '+')												\
+		++i;															\
+	if (str[i] == '0' && str[i + 1] == 'x')								\
+		i += 2;															\
+	result = 0;															\
+	while (str[i] && (													\
+		('0' <= str[i] && str[i] <= '9') ||								\
+		('A' <= str[i] && str[i] <= 'F') ||								\
+		('a' <= str[i] && str[i] <= 'f')))								\
+	{																	\
+		result = result * 16 + GetDigit_FromString_Hex(str[i]);			\
+		++i;															\
+	}																	\
+	return (negative ? -(t_s##BITS)result : (t_s##BITS)result);			\
+}																		\
+
+DEFINEFUNC_CONVERT_STRHEX_TO_SINT(8)
+DEFINEFUNC_CONVERT_STRHEX_TO_SINT(16)
+DEFINEFUNC_CONVERT_STRHEX_TO_SINT(32)
+DEFINEFUNC_CONVERT_STRHEX_TO_SINT(64)
+#ifdef __int128
+DEFINEFUNC_CONVERT_STRHEX_TO_SINT(128)
+#endif

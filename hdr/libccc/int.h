@@ -523,28 +523,6 @@ _MALLOC()	char*		S128_ToString_Bin(t_s128 number); // TODO implement
 
 
 
-//! Returns newly allocated string custom-base representation of an 8-bit signed integer
-/*!
-**	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`
-*/
-//!@{
-#define					SInt_ToString_Base	CONCAT(SINT_TYPE,_ToString_Base)
-_MALLOC()	char*		S8_ToString_Base(t_s8 number, char const* base);
-_MALLOC()	char*		S16_ToString_Base(t_s16 number, char const* base);
-_MALLOC()	char*		S32_ToString_Base(t_s32 number, char const* base);
-_MALLOC()	char*		S64_ToString_Base(t_s64 number, char const* base);
-#ifdef __int128
-_MALLOC()	char*		S128_ToString_Base(t_s128 number, char const* base); // TODO implement
-#endif
-#define c_stostrbase	SInt_ToString_Base	//!< @alias{SInt_ToString_Base}
-#define c_s8tostrbase	S8_ToString_Base	//!< @alias{S8_ToString_Base}
-#define c_s16tostrbase	S16_ToString_Base	//!< @alias{S16_ToString_Base}
-#define c_s32tostrbase	S32_ToString_Base	//!< @alias{S32_ToString_Base}
-#define c_s64tostrbase	S64_ToString_Base	//!< @alias{S64_ToString_Base}
-#define c_s128tostrbase	S128_ToString_Base 	//!< @alias{S128_ToString_Base}
-//!@}
-
 //! Returns newly allocated string custom-base representation of an 8-bit unsigned integer
 /*!
 **	@param	number	The number to convert to string
@@ -567,6 +545,28 @@ _MALLOC()	char*		U128_ToString_Base(t_u128 number, char const* base); // TODO im
 #define c_u128tostrbase	U128_ToString_Base 	//!< @alias{U128_ToString_Base}
 //!@}
 
+//! Returns newly allocated string custom-base representation of an 8-bit signed integer
+/*!
+**	@param	number	The number to convert to string
+**	@returns A newly allocated string, converted from the given `number`
+*/
+//!@{
+#define					SInt_ToString_Base	CONCAT(SINT_TYPE,_ToString_Base)
+_MALLOC()	char*		S8_ToString_Base(t_s8 number, char const* base);
+_MALLOC()	char*		S16_ToString_Base(t_s16 number, char const* base);
+_MALLOC()	char*		S32_ToString_Base(t_s32 number, char const* base);
+_MALLOC()	char*		S64_ToString_Base(t_s64 number, char const* base);
+#ifdef __int128
+_MALLOC()	char*		S128_ToString_Base(t_s128 number, char const* base); // TODO implement
+#endif
+#define c_stostrbase	SInt_ToString_Base	//!< @alias{SInt_ToString_Base}
+#define c_s8tostrbase	S8_ToString_Base	//!< @alias{S8_ToString_Base}
+#define c_s16tostrbase	S16_ToString_Base	//!< @alias{S16_ToString_Base}
+#define c_s32tostrbase	S32_ToString_Base	//!< @alias{S32_ToString_Base}
+#define c_s64tostrbase	S64_ToString_Base	//!< @alias{S64_ToString_Base}
+#define c_s128tostrbase	S128_ToString_Base 	//!< @alias{S128_ToString_Base}
+//!@}
+
 
 
 /*
@@ -574,28 +574,6 @@ _MALLOC()	char*		U128_ToString_Base(t_u128 number, char const* base); // TODO im
 **                          String-to-int Conversions                         *|
 ** ************************************************************************** *|
 */
-
-//! Parse an 8-bit signed integer from the given decimal number string
-/*!
-**	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`
-*/
-//!@{
-#define					SInt_FromString	CONCAT(SINT_TYPE,_FromString)
-t_s8					S8_FromString(char const* str);
-t_s16					S16_FromString(char const* str);
-t_s32					S32_FromString(char const* str);
-t_s64					S64_FromString(char const* str);
-#ifdef __int128
-t_s128					S128_FromString(char const* str);
-#endif
-#define c_strtos		SInt_FromString	//!< @alias{SInt_FromString}
-#define c_strtos8		S8_FromString	//!< @alias{S8_FromString}
-#define c_strtos16		S16_FromString	//!< @alias{S16_FromString}
-#define c_strtos32		S32_FromString	//!< @alias{S32_FromString}
-#define c_strtos64		S64_FromString	//!< @alias{S64_FromString}
-#define c_strtos128		S128_FromString	//!< @alias{S128_FromString}
-//!@}
 
 //! Parse an 8-bit unsigned integer from the given decimal number string
 /*!
@@ -617,6 +595,28 @@ t_u128					U128_FromString(char const* str);
 #define c_strtou32		U32_FromString	//!< @alias{U32_FromString}
 #define c_strtou64		U64_FromString	//!< @alias{U64_FromString}
 #define c_strtou128		U128_FromString	//!< @alias{U128_FromString}
+//!@}
+
+//! Parse an 8-bit signed integer from the given decimal number string
+/*!
+**	@param	number	The number to convert to string
+**	@returns A newly allocated string, converted from the given `number`
+*/
+//!@{
+#define					SInt_FromString	CONCAT(SINT_TYPE,_FromString)
+t_s8					S8_FromString(char const* str);
+t_s16					S16_FromString(char const* str);
+t_s32					S32_FromString(char const* str);
+t_s64					S64_FromString(char const* str);
+#ifdef __int128
+t_s128					S128_FromString(char const* str);
+#endif
+#define c_strtos		SInt_FromString	//!< @alias{SInt_FromString}
+#define c_strtos8		S8_FromString	//!< @alias{S8_FromString}
+#define c_strtos16		S16_FromString	//!< @alias{S16_FromString}
+#define c_strtos32		S32_FromString	//!< @alias{S32_FromString}
+#define c_strtos64		S64_FromString	//!< @alias{S64_FromString}
+#define c_strtos128		S128_FromString	//!< @alias{S128_FromString}
 //!@}
 
 
@@ -650,12 +650,12 @@ t_u128					U128_FromString_Hex(char const* str);
 */
 //!@{
 #define					SInt_FromString_Hex	CONCAT(SINT_TYPE,_FromString_Hex)
-t_u8					S8_FromString_Hex(char const* str);
-t_u16					S16_FromString_Hex(char const* str);
-t_u32					S32_FromString_Hex(char const* str);
-t_u64					S64_FromString_Hex(char const* str);
+t_s8					S8_FromString_Hex(char const* str);
+t_s16					S16_FromString_Hex(char const* str);
+t_s32					S32_FromString_Hex(char const* str);
+t_s64					S64_FromString_Hex(char const* str);
 #ifdef __int128
-t_u128					S128_FromString_Hex(char const* str);
+t_s128					S128_FromString_Hex(char const* str);
 #endif
 #define c_strhextos		SInt_FromString_Hex	//!< @alias{SInt_FromString_Hex}
 #define c_strhextos8	S8_FromString_Hex	//!< @alias{S8_FromString_Hex}
@@ -666,28 +666,6 @@ t_u128					S128_FromString_Hex(char const* str);
 //!@}
 
 
-
-//! Parse an 8-bit signed integer from a custom-base number string
-/*!
-**	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`
-*/
-//!@{
-#define					SInt_FromString_Base	CONCAT(SINT_TYPE,_FromString_Base)
-t_s8					S8_FromString_Base(char const* str, char const* base);
-t_s16					S16_FromString_Base(char const* str, char const* base);
-t_s32					S32_FromString_Base(char const* str, char const* base);
-t_s64					S64_FromString_Base(char const* str, char const* base);
-#ifdef __int128
-t_s128					S128_FromString_Base(char const* str, char const* base);
-#endif
-#define c_strbasetos	SInt_FromString_Base//!< @alias{SInt_FromString_Base}
-#define c_strbasetos8	S8_FromString_Base	//!< @alias{S8_FromString_Base}
-#define c_strbasetos16	S16_FromString_Base	//!< @alias{S16_FromString_Base}
-#define c_strbasetos32	S32_FromString_Base	//!< @alias{S32_FromString_Base}
-#define c_strbasetos64	S64_FromString_Base	//!< @alias{S64_FromString_Base}
-#define c_strbasetos128	S128_FromString_Base//!< @alias{S128_FromString_Base}
-//!@}
 
 //! Parse an 8-bit unsigned integer from a custom-base number string
 /*!
@@ -709,6 +687,28 @@ t_u128					U128_FromString_Base(char const* str, char const* base);
 #define c_strbasetou32	U32_FromString_Base	//!< @alias{U32_FromString_Base}
 #define c_strbasetou64	U64_FromString_Base	//!< @alias{U64_FromString_Base}
 #define c_strbasetou128	U128_FromString_Base//!< @alias{U128_FromString_Base}
+//!@}
+
+//! Parse an 8-bit signed integer from a custom-base number string
+/*!
+**	@param	number	The number to convert to string
+**	@returns A newly allocated string, converted from the given `number`
+*/
+//!@{
+#define					SInt_FromString_Base	CONCAT(SINT_TYPE,_FromString_Base)
+t_s8					S8_FromString_Base(char const* str, char const* base);
+t_s16					S16_FromString_Base(char const* str, char const* base);
+t_s32					S32_FromString_Base(char const* str, char const* base);
+t_s64					S64_FromString_Base(char const* str, char const* base);
+#ifdef __int128
+t_s128					S128_FromString_Base(char const* str, char const* base);
+#endif
+#define c_strbasetos	SInt_FromString_Base//!< @alias{SInt_FromString_Base}
+#define c_strbasetos8	S8_FromString_Base	//!< @alias{S8_FromString_Base}
+#define c_strbasetos16	S16_FromString_Base	//!< @alias{S16_FromString_Base}
+#define c_strbasetos32	S32_FromString_Base	//!< @alias{S32_FromString_Base}
+#define c_strbasetos64	S64_FromString_Base	//!< @alias{S64_FromString_Base}
+#define c_strbasetos128	S128_FromString_Base//!< @alias{S128_FromString_Base}
 //!@}
 
 

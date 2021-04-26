@@ -4,11 +4,11 @@
 
 
 
-#define DEFINEFUNC_CONVERT_UINT_TO_STRHEX(BITS) \
-char*	U##BITS##_ToString_Hex(t_u##BITS number)						\
+#define DEFINEFUNC_CONVERT_UINT_TO_STRBIN(BITS) \
+char*	U##BITS##_ToString_Bin(t_u##BITS number)						\
 {																		\
 	char*	result;														\
-	t_u8	digits[BITS / 4];											\
+	t_u8	digits[BITS];												\
 	t_u8	i;															\
 	t_u##BITS	n;														\
 																		\
@@ -16,8 +16,8 @@ char*	U##BITS##_ToString_Hex(t_u##BITS number)						\
 	i = 0;																\
 	while (n > 0)														\
 	{																	\
-		digits[i++] = n % 16;											\
-		n /= 16;														\
+		digits[i++] = n % 2;											\
+		n /= 2;															\
 	}																	\
 	if (i == 0)															\
 		digits[i++] = 0;												\
@@ -25,26 +25,26 @@ char*	U##BITS##_ToString_Hex(t_u##BITS number)						\
 		return (NULL);													\
 	n = 0;																\
 	while (i--)															\
-		result[n++] = digits[i] + (digits[i] < 10 ? '0' : 'A' - 10);	\
+		result[n++] = digits[i] ? '1' : '0';							\
 	result[n] = '\0';													\
 	return (result);													\
 }																		\
 
-DEFINEFUNC_CONVERT_UINT_TO_STRHEX(8)
-DEFINEFUNC_CONVERT_UINT_TO_STRHEX(16)
-DEFINEFUNC_CONVERT_UINT_TO_STRHEX(32)
-DEFINEFUNC_CONVERT_UINT_TO_STRHEX(64)
+DEFINEFUNC_CONVERT_UINT_TO_STRBIN(8)
+DEFINEFUNC_CONVERT_UINT_TO_STRBIN(16)
+DEFINEFUNC_CONVERT_UINT_TO_STRBIN(32)
+DEFINEFUNC_CONVERT_UINT_TO_STRBIN(64)
 #ifdef __int128
-DEFINEFUNC_CONVERT_UINT_TO_STRHEX(128)
+DEFINEFUNC_CONVERT_UINT_TO_STRBIN(128)
 #endif
 
 
 
-#define DEFINEFUNC_CONVERT_SINT_TO_STRHEX(BITS) \
-char*	S##BITS##_ToString_Hex(t_s##BITS number)						\
+#define DEFINEFUNC_CONVERT_SINT_TO_STRBIN(BITS) \
+char*	S##BITS##_ToString_Bin(t_s##BITS number)						\
 {																		\
 	char*	result;														\
-	t_u8	digits[BITS / 4];											\
+	t_u8	digits[BITS];												\
 	t_u8	i;															\
 	t_u##BITS	n;														\
 																		\
@@ -54,23 +54,23 @@ char*	S##BITS##_ToString_Hex(t_s##BITS number)						\
 	i = 0;																\
 	while (n > 0)														\
 	{																	\
-		digits[i++] = n % 16;											\
-		n /= 16;														\
+		digits[i++] = n % 2;											\
+		n /= 2;															\
 	}																	\
 	if (!(result = (char*)Memory_Alloc(i + 1)))							\
 		return (NULL);													\
 	result[0] = (number == 0) ? '0' : '-';								\
 	n = (number <= 0) ? 1 : 0;											\
 	while (i--)															\
-		result[n++] = digits[i] + (digits[i] < 10 ? '0' : 'A' - 10);	\
+		result[n++] = digits[i] ? '1' : '0';							\
 	result[n] = '\0';													\
 	return (result);													\
 }																		\
 
-DEFINEFUNC_CONVERT_SINT_TO_STRHEX(8)
-DEFINEFUNC_CONVERT_SINT_TO_STRHEX(16)
-DEFINEFUNC_CONVERT_SINT_TO_STRHEX(32)
-DEFINEFUNC_CONVERT_SINT_TO_STRHEX(64)
+DEFINEFUNC_CONVERT_SINT_TO_STRBIN(8)
+DEFINEFUNC_CONVERT_SINT_TO_STRBIN(16)
+DEFINEFUNC_CONVERT_SINT_TO_STRBIN(32)
+DEFINEFUNC_CONVERT_SINT_TO_STRBIN(64)
 #ifdef __int128
-DEFINEFUNC_CONVERT_SINT_TO_STRHEX(128)
+DEFINEFUNC_CONVERT_SINT_TO_STRBIN(128)
 #endif

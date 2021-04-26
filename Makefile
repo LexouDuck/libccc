@@ -89,9 +89,13 @@ SRCS = \
 	int/int_to_str.c		\
 	int/int_to_strbase.c	\
 	int/int_to_strhex.c		\
+	int/int_to_stroct.c		\
+	int/int_to_strbin.c		\
 	int/int_from_str.c		\
 	int/int_from_strbase.c	\
 	int/int_from_strhex.c	\
+	int/int_from_stroct.c	\
+	int/int_from_strbin.c	\
 	fixed/fixed.c			\
 	fixed/fixed_to_str.c	\
 	fixed/fixed_from_str.c	\
