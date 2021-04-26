@@ -620,6 +620,13 @@ static t_bool parse_object(s_json* const item, s_json_parse* const input_buffer)
 		goto failure; // expected end of object
 	}
 
+failure:
+	if (head != NULL)
+	{
+		JSON_Delete(head);
+	}
+	return (FALSE);
+
 success:
 	input_buffer->depth--;
 
@@ -633,13 +640,6 @@ success:
 
 	input_buffer->offset++;
 	return (TRUE);
-
-failure:
-	if (head != NULL)
-	{
-		JSON_Delete(head);
-	}
-	return (FALSE);
 }
 
 
@@ -696,7 +696,6 @@ failure:
 		{
 			position = buffer.length - 1;
 		}
-
 		if (return_parse_end != NULL)
 		{
 			*return_parse_end = (t_char const*)value + position;

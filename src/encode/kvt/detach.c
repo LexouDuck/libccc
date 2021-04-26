@@ -9,28 +9,24 @@ s_kvt*	KVT_DetachItem(s_kvt* parent, s_kvt* const item)
 {
 	if ((parent == NULL) || (item == NULL))
 	{
-		KVT_SetError(KVT_SetError(ERROR_KVT_INVALIDARGS));
+		KVT_SetError(ERROR_KVT_INVALIDARGS);
 		return (NULL);
 	}
 	if (item != parent->value.child)
-	{
-		// not the first element
+	{	// not the first element
 		item->prev->next = item->next;
 	}
 	if (item->next != NULL)
-	{
-		// not the last element
+	{	// not the last element
 		item->next->prev = item->prev;
 	}
 
 	if (item == parent->value.child)
-	{
-		// first element
+	{	// first element
 		parent->value.child = item->next;
 	}
 	else if (item->next == NULL)
-	{
-		// last element
+	{	// last element
 		parent->value.child->prev = item->prev;
 	}
 	// make sure the detached item doesn't point anywhere anymore
@@ -43,7 +39,7 @@ s_kvt*	KVT_Detach_FromArray(s_kvt* array, t_sint index)
 {
 	if (index < 0)
 	{
-		KVT_SetError(KVT_SetError(ERROR_KVT_INVALIDARGS));
+		KVT_SetError(ERROR_KVT_INVALIDARGS);
 		return (NULL);
 	}
 	return (KVT_DetachItem(array, KVT_GetArrayItem(array, index)));

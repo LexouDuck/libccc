@@ -10,7 +10,7 @@ e_error_kvt	KVT_Insert_InArray(s_kvt* array, t_sint index, s_kvt* newitem)
 	s_kvt* after_inserted = NULL;
 
 	if (index < 0)
-		return (KVT_SetError(KVT_SetError(ERROR_KVT_INVALIDARGS)));
+		return (KVT_SetError(ERROR_KVT_INVALIDARGS));
 	after_inserted = KVT_GetArrayItem(array, index);
 	if (after_inserted == NULL)
 		return (KVT_AddToArray_Item(array, newitem));

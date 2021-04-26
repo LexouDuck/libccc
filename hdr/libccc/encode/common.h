@@ -71,10 +71,10 @@ typedef t_sint		t_dynamic;
 //! This union type can express a value of any major data type, see #t_dynamic
 typedef union dynamic
 {
-	t_bool			boolean;
-	t_s64			integer;
-	t_f64			number;
-	t_char*			string;
+	t_bool	boolean;
+	t_s64	integer;
+	t_f64	number;
+	t_char*	string;
 	s_kvt*	child;
 }			u_dynamic;
 

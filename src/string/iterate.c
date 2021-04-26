@@ -3,7 +3,7 @@
 
 
 
-void	c_striter(t_char* str, void (*f)(t_char c))
+void	c_striter(t_char* str, void (*f)(t_char* c))
 {
 	t_size	i;
 
@@ -14,14 +14,14 @@ void	c_striter(t_char* str, void (*f)(t_char c))
 	i = 0;
 	while (str[i])
 	{
-		f(str[i]);
+		f(&(str[i]));
 		++i;
 	}
 }
 
 
 
-void	c_striteri(t_char* str, void (*f)(t_char c, t_size index))
+void	c_striteri(t_char* str, void (*f)(t_char* c, t_size index))
 {
 	t_size	i;
 
@@ -32,7 +32,7 @@ void	c_striteri(t_char* str, void (*f)(t_char c, t_size index))
 	i = 0;
 	while (str[i])
 	{
-		f(i, str[i]);
+		f(&(str[i]), i);
 		++i;
 	}
 }

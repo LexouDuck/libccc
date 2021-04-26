@@ -869,15 +869,39 @@ void test_strprint(void)	{}
 #else
 void	print_test_strprint(char const* test_name, int can_segfault,
 		char const* expecting,
-		char const* str)
+		char const* str,
+		char const* charset_extra)
 {
-	TEST_PERFORM_RESULT(strprint, str)
+	TEST_PERFORM_RESULT(strprint, str, charset_extra)
 	print_test_str(test_name, "_strprint return", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("str=\"%s\"", str)
 	TEST_FREE()
 }
 void	test_strprint(void)
+{
+//	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
+//	TODO
+}
+#endif
+
+
+
+#ifndef c_strparse
+void test_strparse(void)	{}
+#else
+void	print_test_strparse(char const* test_name, int can_segfault,
+		char const* expecting,
+		char const* str,
+		t_bool escape_any)
+{
+	TEST_PERFORM_RESULT(strparse, str, escape_any)
+	print_test_str(test_name, "_strparse return", result_libccc, expecting, can_segfault);
+	print_timer_result(&t, FALSE);
+	TEST_PRINT_ARGS("str=\"%s\"", str)
+	TEST_FREE()
+}
+void	test_strparse(void)
 {
 //	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
 //	TODO
@@ -1332,26 +1356,26 @@ void	test_strsub(void)
 
 
 
-void	strtolower(char* c)
+void	strtolower(t_char* c)
 {
 	if (isupper(*c))
 		*c = tolower(*c);
 }
 
-void	strtolower_1on2(t_size i, char* c)
+void	strtolower_1on2(t_char* c, t_size i)
 {
 	if (i % 2 == 0 && isupper(*c))
 		*c = tolower(*c);
 }
 
-char	strtoupper(char c)
+t_char	strtoupper(t_char c)
 {
 	if (islower(c))
 		 return (toupper(c));
 	else return (c);
 }
 
-char	strtoupper_1on2(t_size i, char c)
+t_char	strtoupper_1on2(t_char c, t_size i)
 {
 	if (i % 2 == 1 && islower(c))
 		 return (toupper(c));
@@ -1366,7 +1390,7 @@ void test_striter(void)	{}
 void	print_test_striter(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str,
-		void (*f)(char*))
+		void (*f)(t_char*))
 {
 	char* result_libccc = str == NULL ? NULL : strdup(str);
 	TEST_PERFORM(result_libccc, striter, result_libccc, f)
@@ -1394,7 +1418,7 @@ void test_striteri(void)	{}
 void	print_test_striteri(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str,
-		void (*f)(t_size, char*))
+		void (*f)(t_char*, t_size))
 {
 	char* result_libccc = str == NULL ? NULL : strdup(str);
 	TEST_PERFORM(result_libccc, striteri, result_libccc, f)
@@ -1422,7 +1446,7 @@ void test_strmap(void)	{}
 void	print_test_strmap(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str,
-		char (*f)(char))
+		t_char (*f)(t_char))
 {
 	TEST_PERFORM_RESULT(strmap, str, f)
 	print_test_str(test_name, "_strmap", result_libccc, expecting, can_segfault);
@@ -1447,7 +1471,7 @@ void test_strmapi(void)	{}
 void	print_test_strmapi(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str,
-		char (*f)(t_size, char))
+		t_char (*f)(t_char, t_size))
 {
 	TEST_PERFORM_RESULT(strmapi, str, f)
 	print_test_str(test_name, "_strmapi", result_libccc, expecting, can_segfault);
@@ -1519,6 +1543,7 @@ int		testsuite_string(void)
 	test_strnchr();
 	test_strrstr();
 	test_strprint();
+	test_strparse();
 //	test_strrep_char();
 //	test_strrep_charset();
 //	test_strrep_str();
