@@ -13,7 +13,7 @@ inline char*	Size_ToString(t_size number)
 
 inline char*	Size_ToString_Hex(t_size number)
 {
-	return (U64_ToString_Hex(number));
+	return (U64_ToString_Hex(number, TRUE));
 }
 
 char*	Size_ToString_Readable(t_size number)

@@ -302,6 +302,10 @@ t_char					Char_ToLowercase(t_char c); // TODO refactor `t_char` here to `t_utf3
 ** ************************************************************************** *|
 */
 
+// TODO UTF8_Length(), to mirror the mblen() function
+
+
+
 //! Converts the given Unicode code point value `c` to its UTF-8 equivalent representation
 /*!
 **	@isostd{https://en.cppreference.com/w/c/string/multibyte/wctomb}

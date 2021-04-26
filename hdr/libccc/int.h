@@ -55,6 +55,8 @@
 #include "libccc_naming.h"
 #include "libccc_define.h"
 
+#include "libccc/bool.h"
+
 HEADER_CPP
 
 /*
@@ -385,7 +387,7 @@ TYPEDEF_ALIAS(t_sint, SINT, PRIMITIVE)
 ** ************************************************************************** *|
 */
 
-//! Get the string decimal representation of an unsigned integer
+//! Get the string decimal (base 10) representation of an unsigned integer
 /*!
 **	@param	number	The number to convert to string
 **	@returns A newly allocated string, converted from the given `number`
@@ -407,7 +409,7 @@ _MALLOC()	char*		U128_ToString(t_u128 number); // TODO implement
 #define c_u128tostr		U128_ToString 	//!< @alias{U128_ToString}
 //!@}
 
-//! Get the string decimal representation of a signed integer
+//! Get the string decimal (base 10) representation of a signed integer
 /*!
 **	@param	number	The number to convert to string
 **	@returns A newly allocated string, converted from the given `number`
@@ -431,19 +433,20 @@ _MALLOC()	char*		S128_ToString(t_s128 number); // TODO implement
 
 
 
-//! Get the string hexadecimal representation of an unsigned integer
+//! Get the string hexadecimal (base 16) representation of an unsigned integer
 /*!
 **	@param	number	The number to convert to string
+**	@param	prefix	If #TRUE, the output string will have a `0x` hexadecimal number literal prefix
 **	@returns A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					UInt_ToString_Hex	CONCAT(UINT_TYPE,_ToString_Hex)
-_MALLOC()	char*		U8_ToString_Hex(t_u8 number);
-_MALLOC()	char*		U16_ToString_Hex(t_u16 number);
-_MALLOC()	char*		U32_ToString_Hex(t_u32 number);
-_MALLOC()	char*		U64_ToString_Hex(t_u64 number);
+_MALLOC()	char*		U8_ToString_Hex(t_u8 number, t_bool prefix);
+_MALLOC()	char*		U16_ToString_Hex(t_u16 number, t_bool prefix);
+_MALLOC()	char*		U32_ToString_Hex(t_u32 number, t_bool prefix);
+_MALLOC()	char*		U64_ToString_Hex(t_u64 number, t_bool prefix);
 #ifdef __int128
-_MALLOC()	char*		U128_ToString_Hex(t_u128 number); // TODO implement
+_MALLOC()	char*		U128_ToString_Hex(t_u128 number, t_bool prefix); // TODO implement
 #endif
 #define c_utostrhex		UInt_ToString_Hex	//!< @alias{UInt_ToString_Hex}
 #define c_u8tostrhex	U8_ToString_Hex 	//!< @alias{U8_ToString_Hex}
@@ -453,19 +456,20 @@ _MALLOC()	char*		U128_ToString_Hex(t_u128 number); // TODO implement
 #define c_u128tostrhex	U128_ToString_Hex 	//!< @alias{U128_ToString_Hex}
 //!@}
 
-//! Get the string hexadecimal representation of a signed integer
+//! Get the string hexadecimal (base 16) representation of a signed integer
 /*!
 **	@param	number	The number to convert to string
+**	@param	prefix	If #TRUE, the output string will have a `0x` hexadecimal number literal prefix
 **	@returns A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					SInt_ToString_Hex	CONCAT(SINT_TYPE,_ToString)
-_MALLOC()	char*		S8_ToString_Hex(t_s8 number);
-_MALLOC()	char*		S16_ToString_Hex(t_s16 number);
-_MALLOC()	char*		S32_ToString_Hex(t_s32 number);
-_MALLOC()	char*		S64_ToString_Hex(t_s64 number);
+_MALLOC()	char*		S8_ToString_Hex(t_s8 number, t_bool prefix);
+_MALLOC()	char*		S16_ToString_Hex(t_s16 number, t_bool prefix);
+_MALLOC()	char*		S32_ToString_Hex(t_s32 number, t_bool prefix);
+_MALLOC()	char*		S64_ToString_Hex(t_s64 number, t_bool prefix);
 #ifdef __int128
-_MALLOC()	char*		S128_ToString_Hex(t_s128 number); // TODO implement
+_MALLOC()	char*		S128_ToString_Hex(t_s128 number, t_bool prefix); // TODO implement
 #endif
 #define c_stostrhex		SInt_ToString_Hex	//!< @alias{SInt_ToString_Hex}
 #define c_s8tostrhex	S8_ToString_Hex 	//!< @alias{S8_ToString_Hex}
@@ -477,19 +481,68 @@ _MALLOC()	char*		S128_ToString_Hex(t_s128 number); // TODO implement
 
 
 
-//! Get the string binary representation of an unsigned integer
+//! Get the string octal (base 8) representation of an unsigned integer
 /*!
 **	@param	number	The number to convert to string
+**	@param	prefix	If #TRUE, the output string will have a `0o` octal number literal prefix
+**	@returns A newly allocated string, converted from the given `number`
+*/
+//!@{
+#define					UInt_ToString_Oct	CONCAT(UINT_TYPE,_ToString_Oct)
+_MALLOC()	char*		U8_ToString_Oct(t_u8 number, t_bool prefix);
+_MALLOC()	char*		U16_ToString_Oct(t_u16 number, t_bool prefix);
+_MALLOC()	char*		U32_ToString_Oct(t_u32 number, t_bool prefix);
+_MALLOC()	char*		U64_ToString_Oct(t_u64 number, t_bool prefix);
+#ifdef __int128
+_MALLOC()	char*		U128_ToString_Oct(t_u128 number, t_bool prefix); // TODO implement
+#endif
+#define c_utostroct		UInt_ToString_Oct	//!< @alias{UInt_ToString_Oct}
+#define c_u8tostroct	U8_ToString_Oct 	//!< @alias{U8_ToString_Oct}
+#define c_u16tostroct	U16_ToString_Oct 	//!< @alias{U16_ToString_Oct}
+#define c_u32tostroct	U32_ToString_Oct 	//!< @alias{U32_ToString_Oct}
+#define c_u64tostroct	U64_ToString_Oct 	//!< @alias{U64_ToString_Oct}
+#define c_u128tostroct	U128_ToString_Oct 	//!< @alias{U128_ToString_Oct}
+//!@}
+
+//! Get the string octal (base 8) representation of a signed integer
+/*!
+**	@param	number	The number to convert to string
+**	@param	prefix	If #TRUE, the output string will have a `0o` octal number literal prefix
+**	@returns A newly allocated string, converted from the given `number`
+*/
+//!@{
+#define					SInt_ToString_Oct	CONCAT(SINT_TYPE,_ToString)
+_MALLOC()	char*		S8_ToString_Oct(t_s8 number, t_bool prefix);
+_MALLOC()	char*		S16_ToString_Oct(t_s16 number, t_bool prefix);
+_MALLOC()	char*		S32_ToString_Oct(t_s32 number, t_bool prefix);
+_MALLOC()	char*		S64_ToString_Oct(t_s64 number, t_bool prefix);
+#ifdef __int128
+_MALLOC()	char*		S128_ToString_Oct(t_s128 number, t_bool prefix); // TODO implement
+#endif
+#define c_stostroct		SInt_ToString_Oct	//!< @alias{SInt_ToString_Oct}
+#define c_s8tostroct	S8_ToString_Oct 	//!< @alias{S8_ToString_Oct}
+#define c_s16tostroct	S16_ToString_Oct 	//!< @alias{S16_ToString_Oct}
+#define c_s32tostroct	S32_ToString_Oct 	//!< @alias{S32_ToString_Oct}
+#define c_s64tostroct	S64_ToString_Oct 	//!< @alias{S64_ToString_Oct}
+#define c_s128tostroct	S128_ToString_Oct 	//!< @alias{S128_ToString_Oct}
+//!@}
+
+
+
+//! Get the string binary (base 2) representation of an unsigned integer
+/*!
+**	@param	number	The number to convert to string
+**	@param	prefix	If #TRUE, the output string will have a `0b` binary number literal prefix
 **	@returns A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					UInt_ToString_Bin	CONCAT(UINT_TYPE,_ToString_Hex)
-_MALLOC()	char*		U8_ToString_Bin(t_u8 number);
-_MALLOC()	char*		U16_ToString_Bin(t_u16 number);
-_MALLOC()	char*		U32_ToString_Bin(t_u32 number);
-_MALLOC()	char*		U64_ToString_Bin(t_u64 number);
+_MALLOC()	char*		U8_ToString_Bin(t_u8 number, t_bool prefix);
+_MALLOC()	char*		U16_ToString_Bin(t_u16 number, t_bool prefix);
+_MALLOC()	char*		U32_ToString_Bin(t_u32 number, t_bool prefix);
+_MALLOC()	char*		U64_ToString_Bin(t_u64 number, t_bool prefix);
 #ifdef __int128
-_MALLOC()	char*		U128_ToString_Bin(t_u128 number); // TODO implement
+_MALLOC()	char*		U128_ToString_Bin(t_u128 number, t_bool prefix); // TODO implement
 #endif
 #define c_utostrbin		UInt_ToString_Bin	//!< @alias{UInt_ToString_Bin}
 #define c_u8tostrbin	U8_ToString_Bin 	//!< @alias{U8_ToString_Bin}
@@ -499,19 +552,20 @@ _MALLOC()	char*		U128_ToString_Bin(t_u128 number); // TODO implement
 #define c_u128tostrbin	U128_ToString_Bin 	//!< @alias{U128_ToString_Bin}
 //!@}
 
-//! Get the string binary representation of a signed integer
+//! Get the string binary (base 2) representation of a signed integer
 /*!
 **	@param	number	The number to convert to string
+**	@param	prefix	If #TRUE, the output string will have a `0b` binary number literal prefix
 **	@returns A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					SInt_ToString_Bin	CONCAT(SINT_TYPE,_ToString)
-_MALLOC()	char*		S8_ToString_Bin(t_s8 number);
-_MALLOC()	char*		S16_ToString_Bin(t_s16 number);
-_MALLOC()	char*		S32_ToString_Bin(t_s32 number);
-_MALLOC()	char*		S64_ToString_Bin(t_s64 number);
+_MALLOC()	char*		S8_ToString_Bin(t_s8 number, t_bool prefix);
+_MALLOC()	char*		S16_ToString_Bin(t_s16 number, t_bool prefix);
+_MALLOC()	char*		S32_ToString_Bin(t_s32 number, t_bool prefix);
+_MALLOC()	char*		S64_ToString_Bin(t_s64 number, t_bool prefix);
 #ifdef __int128
-_MALLOC()	char*		S128_ToString_Bin(t_s128 number); // TODO implement
+_MALLOC()	char*		S128_ToString_Bin(t_s128 number, t_bool prefix); // TODO implement
 #endif
 #define c_stostrbin		SInt_ToString_Bin	//!< @alias{SInt_ToString_Bin}
 #define c_s8tostrbin	S8_ToString_Bin 	//!< @alias{S8_ToString_Bin}
@@ -621,7 +675,7 @@ t_s128					S128_FromString(char const* str);
 
 
 
-//! Parse an 8-bit unsigned integer from the given haxedecimal number string
+//! Parse an 8-bit unsigned integer from the given hexadecimal (base 16) number string
 /*!
 **	@param	number	The number to convert to string
 **	@returns A newly allocated string, converted from the given `number`
@@ -643,7 +697,7 @@ t_u128					U128_FromString_Hex(char const* str);
 #define c_strhextou128	U128_FromString_Hex	//!< @alias{U128_FromString_Hex}
 //!@}
 
-//! Parse an 8-bit unsigned integer from the given haxedecimal number string
+//! Parse an 8-bit unsigned integer from the given hexadecimal (base 16) number string
 /*!
 **	@param	number	The number to convert to string
 **	@returns A newly allocated string, converted from the given `number`
@@ -663,6 +717,98 @@ t_s128					S128_FromString_Hex(char const* str);
 #define c_strhextos32	S32_FromString_Hex	//!< @alias{S32_FromString_Hex}
 #define c_strhextos64	S64_FromString_Hex	//!< @alias{S64_FromString_Hex}
 #define c_strhextos128	S128_FromString_Hex	//!< @alias{S128_FromString_Hex}
+//!@}
+
+
+
+//! Parse an 8-bit unsigned integer from the given octal (base 8) number string
+/*!
+**	@param	number	The number to convert to string
+**	@returns A newly allocated string, converted from the given `number`
+*/
+//!@{
+#define					UInt_FromString_Oct	CONCAT(UINT_TYPE,_FromString_Oct)
+t_u8					U8_FromString_Oct(char const* str);
+t_u16					U16_FromString_Oct(char const* str);
+t_u32					U32_FromString_Oct(char const* str);
+t_u64					U64_FromString_Oct(char const* str);
+#ifdef __int128
+t_u128					U128_FromString_Oct(char const* str);
+#endif
+#define c_strocttou		UInt_FromString_Oct	//!< @alias{UInt_FromString_Oct}
+#define c_strocttou8	U8_FromString_Oct	//!< @alias{U8_FromString_Oct}
+#define c_strocttou16	U16_FromString_Oct	//!< @alias{U16_FromString_Oct}
+#define c_strocttou32	U32_FromString_Oct	//!< @alias{U32_FromString_Oct}
+#define c_strocttou64	U64_FromString_Oct	//!< @alias{U64_FromString_Oct}
+#define c_strocttou128	U128_FromString_Oct	//!< @alias{U128_FromString_Oct}
+//!@}
+
+//! Parse an 8-bit unsigned integer from the given octal (base 8) number string
+/*!
+**	@param	number	The number to convert to string
+**	@returns A newly allocated string, converted from the given `number`
+*/
+//!@{
+#define					SInt_FromString_Oct	CONCAT(SINT_TYPE,_FromString_Oct)
+t_s8					S8_FromString_Oct(char const* str);
+t_s16					S16_FromString_Oct(char const* str);
+t_s32					S32_FromString_Oct(char const* str);
+t_s64					S64_FromString_Oct(char const* str);
+#ifdef __int128
+t_s128					S128_FromString_Oct(char const* str);
+#endif
+#define c_strocttos		SInt_FromString_Oct	//!< @alias{SInt_FromString_Oct}
+#define c_strocttos8	S8_FromString_Oct	//!< @alias{S8_FromString_Oct}
+#define c_strocttos16	S16_FromString_Oct	//!< @alias{S16_FromString_Oct}
+#define c_strocttos32	S32_FromString_Oct	//!< @alias{S32_FromString_Oct}
+#define c_strocttos64	S64_FromString_Oct	//!< @alias{S64_FromString_Oct}
+#define c_strocttos128	S128_FromString_Oct	//!< @alias{S128_FromString_Oct}
+//!@}
+
+
+
+//! Parse an 8-bit unsigned integer from the given binary (base 2) number string
+/*!
+**	@param	number	The number to convert to string
+**	@returns A newly allocated string, converted from the given `number`
+*/
+//!@{
+#define					UInt_FromString_Bin	CONCAT(UINT_TYPE,_FromString_Bin)
+t_u8					U8_FromString_Bin(char const* str);
+t_u16					U16_FromString_Bin(char const* str);
+t_u32					U32_FromString_Bin(char const* str);
+t_u64					U64_FromString_Bin(char const* str);
+#ifdef __int128
+t_u128					U128_FromString_Bin(char const* str);
+#endif
+#define c_strbintou		UInt_FromString_Bin	//!< @alias{UInt_FromString_Bin}
+#define c_strbintou8	U8_FromString_Bin	//!< @alias{U8_FromString_Bin}
+#define c_strbintou16	U16_FromString_Bin	//!< @alias{U16_FromString_Bin}
+#define c_strbintou32	U32_FromString_Bin	//!< @alias{U32_FromString_Bin}
+#define c_strbintou64	U64_FromString_Bin	//!< @alias{U64_FromString_Bin}
+#define c_strbintou128	U128_FromString_Bin	//!< @alias{U128_FromString_Bin}
+//!@}
+
+//! Parse an 8-bit unsigned integer from the given binary (base 2) number string
+/*!
+**	@param	number	The number to convert to string
+**	@returns A newly allocated string, converted from the given `number`
+*/
+//!@{
+#define					SInt_FromString_Bin	CONCAT(SINT_TYPE,_FromString_Bin)
+t_s8					S8_FromString_Bin(char const* str);
+t_s16					S16_FromString_Bin(char const* str);
+t_s32					S32_FromString_Bin(char const* str);
+t_s64					S64_FromString_Bin(char const* str);
+#ifdef __int128
+t_s128					S128_FromString_Bin(char const* str);
+#endif
+#define c_strbintos		SInt_FromString_Bin	//!< @alias{SInt_FromString_Bin}
+#define c_strbintos8	S8_FromString_Bin	//!< @alias{S8_FromString_Bin}
+#define c_strbintos16	S16_FromString_Bin	//!< @alias{S16_FromString_Bin}
+#define c_strbintos32	S32_FromString_Bin	//!< @alias{S32_FromString_Bin}
+#define c_strbintos64	S64_FromString_Bin	//!< @alias{S64_FromString_Bin}
+#define c_strbintos128	S128_FromString_Bin	//!< @alias{S128_FromString_Bin}
 //!@}
 
 

@@ -251,8 +251,8 @@ void	print_test_##TYPE##tostrhex(char const* test_name, int can_segfault,					\
 		char const* expecting,																	\
 		t_u64 number)																			\
 {																								\
-	TEST_PERFORM_RESULT(TYPE##tostrhex, number)												\
-	print_test_str(test_name, "_"#TYPE"tostrhex", result_libccc, expecting, can_segfault);	\
+	TEST_PERFORM_RESULT(TYPE##tostrhex, number, FALSE)											\
+	print_test_str(test_name, "_"#TYPE"tostrhex", result_libccc, expecting, can_segfault);		\
 	print_timer_result(&t, FALSE);																\
 	TEST_PRINT_ARGS("%lld", number)																\
 }																								\
