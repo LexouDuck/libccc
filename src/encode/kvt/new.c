@@ -4,7 +4,7 @@
 
 
 
-inline s_kvt* KVT_New_Item(void)
+inline s_kvt* KVT_Item(void)
 {
 	return ((s_kvt*)Memory_New(sizeof(s_kvt)));
 }

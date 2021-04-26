@@ -1,5 +1,5 @@
 
-#include "libccc/t_char.h"
+#include "libccc/char.h"
 #include "libccc/string.h"
 #include "libccc/memory.h"
 

@@ -241,7 +241,7 @@ static t_char utf16_literal_to_utf8(t_char const* const input_pointer, t_char co
 	// encode first byte
 	if (utf8_length > 1)
 	{
-		(*output_pointer)[0] = (t_char)((codepoint | first_byte_mark) & JSON_TYPE_MASK);
+		(*output_pointer)[0] = (t_char)((codepoint | first_byte_mark) & DYNAMIC_TYPE_MASK);
 	}
 	else
 	{
@@ -364,8 +364,8 @@ static t_bool parse_string(s_json* const item, s_json_parse* const input_buffer)
 	// zero terminate the output
 	*output_pointer = '\0';
 
-	item->type = JSON_TYPE_STRING;
-	item->value_string = (t_char*)output;
+	item->type = DYNAMIC_TYPE_STRING;
+	item->value.string = (t_char*)output;
 
 	input_buffer->offset = (t_size) (input_end - input_buffer->content);
 	input_buffer->offset++;
@@ -396,21 +396,29 @@ static t_bool parse_value(s_json* const item, s_json_parse* const input_buffer)
 		return (FALSE); // no input
 
 	// parse the different types of values
-	if (can_read(input_buffer, 4) && (String_Compare_N((t_char const*)buffer_at_offset(input_buffer), "null", 4) == 0))
+	if (can_read(input_buffer, 4) && (
+		String_Equals_N((t_char const*)buffer_at_offset(input_buffer), "null", 4) ||
+		String_Equals_N((t_char const*)buffer_at_offset(input_buffer), "NULL", 4)))
 	{	// null
-		item->type = JSON_TYPE_NULL;
+		item->type = DYNAMIC_TYPE_NULL;
 		input_buffer->offset += 4;
 		return (TRUE);
 	}
-	if (can_read(input_buffer, 5) && (String_Compare_N((t_char const*)buffer_at_offset(input_buffer), "FALSE", 5) == 0))
+	if (can_read(input_buffer, 5) && (
+		String_Equals_N((t_char const*)buffer_at_offset(input_buffer), "false", 5) &&
+		String_Equals_N((t_char const*)buffer_at_offset(input_buffer), "FALSE", 5)))
 	{	// FALSE
-		item->type = JSON_TYPE_FALSE;
+		item->type = DYNAMIC_TYPE_BOOLEAN;
+		item->value.boolean = FALSE;
 		input_buffer->offset += 5;
 		return (TRUE);
 	}
-	if (can_read(input_buffer, 4) && (String_Compare_N((t_char const*)buffer_at_offset(input_buffer), "TRUE", 4) == 0))
+	if (can_read(input_buffer, 4) && (
+		String_Equals_N((t_char const*)buffer_at_offset(input_buffer), "true", 4) &&
+		String_Equals_N((t_char const*)buffer_at_offset(input_buffer), "TRUE", 4)))
 	{	// TRUE
-		item->type = JSON_TYPE_TRUE;
+		item->type = DYNAMIC_TYPE_BOOLEAN;
+		item->value.boolean = TRUE;
 		input_buffer->offset += 4;
 		return (TRUE);
 	}
@@ -418,7 +426,8 @@ static t_bool parse_value(s_json* const item, s_json_parse* const input_buffer)
 	{	// string
 		return (parse_string(item, input_buffer));
 	}
-	if (can_access_at_index(input_buffer, 0) && ((buffer_at_offset(input_buffer)[0] == '-') || ((buffer_at_offset(input_buffer)[0] >= '0') && (buffer_at_offset(input_buffer)[0] <= '9'))))
+	if (can_access_at_index(input_buffer, 0) && ((buffer_at_offset(input_buffer)[0] == '-') ||
+		((buffer_at_offset(input_buffer)[0] >= '0') && (buffer_at_offset(input_buffer)[0] <= '9'))))
 	{	// number
 		return (parse_number(item, input_buffer));
 	}
@@ -440,7 +449,7 @@ static t_bool parse_array(s_json* const item, s_json_parse* const input_buffer)
 	s_json* head = NULL; // head of the linked list
 	s_json* current_item = NULL;
 
-	if (input_buffer->depth >= JSON_NESTING_LIMIT)
+	if (input_buffer->depth >= KVT_NESTING_LIMIT)
 		return (FALSE); // too deeply nested
 	input_buffer->depth++;
 
@@ -467,7 +476,7 @@ static t_bool parse_array(s_json* const item, s_json_parse* const input_buffer)
 	do
 	{
 		// allocate next item
-		s_json* new_item = JSON_New_Item();
+		s_json* new_item = JSON_Item();
 		if (new_item == NULL)
 		{
 			goto failure; // allocation failure
@@ -511,8 +520,8 @@ success:
 		head->prev = current_item;
 	}
 
-	item->type = JSON_TYPE_ARRAY;
-	item->child = head;
+	item->type = DYNAMIC_TYPE_ARRAY;
+	item->value.child = head;
 
 	input_buffer->offset++;
 	return (TRUE);
@@ -532,7 +541,7 @@ static t_bool parse_object(s_json* const item, s_json_parse* const input_buffer)
 	s_json* head = NULL; // linked list head
 	s_json* current_item = NULL;
 
-	if (input_buffer->depth >= JSON_NESTING_LIMIT)
+	if (input_buffer->depth >= KVT_NESTING_LIMIT)
 		return (FALSE); // to deeply nested
 	input_buffer->depth++;
 
@@ -560,7 +569,7 @@ static t_bool parse_object(s_json* const item, s_json_parse* const input_buffer)
 	do
 	{
 		// allocate next item
-		s_json* new_item = JSON_New_Item();
+		s_json* new_item = JSON_Item();
 		if (new_item == NULL)
 		{
 			goto failure; // allocation failure
@@ -586,9 +595,9 @@ static t_bool parse_object(s_json* const item, s_json_parse* const input_buffer)
 		}
 		buffer_skip_whitespace(input_buffer);
 
-		// swap value_string and string, because we parsed the name
-		current_item->key = current_item->value_string;
-		current_item->value_string = NULL;
+		// swap value.string and string, because we parsed the name
+		current_item->key = current_item->value.string;
+		current_item->value.string = NULL;
 
 		if (!can_access_at_index(input_buffer, 0) || (buffer_at_offset(input_buffer)[0] != ':'))
 		{
@@ -619,8 +628,8 @@ success:
 		head->prev = current_item;
 	}
 
-	item->type = JSON_TYPE_OBJECT;
-	item->child = head;
+	item->type = DYNAMIC_TYPE_OBJECT;
+	item->value.child = head;
 
 	input_buffer->offset++;
 	return (TRUE);
@@ -650,18 +659,11 @@ s_json*	JSON_ParseStrict_N(t_char const* value, t_size buffer_length, t_char con
 	buffer.length = buffer_length; 
 	buffer.offset = 0;
 
-	item = JSON_New_Item();
-	if (item == NULL) // memory failure
-	{
-		goto failure;
-	}
-
+	item = JSON_Item();
+	if (item == NULL)
+		goto failure; // memory failure
 	if (!parse_value(item, buffer_skip_whitespace(skip_utf8_bom(&buffer))))
-	{
-		// parse failure. ep is set.
-		goto failure;
-	}
-
+		goto failure; // parse failure. ep is set.
 	// if we require null-terminated JSON without appended garbage, skip and then check for a null terminator
 	if (require_null_terminated)
 	{
@@ -682,7 +684,6 @@ failure:
 	{
 		JSON_Delete(item);
 	}
-
 	if (value != NULL)
 	{
 		t_size	position = 0;

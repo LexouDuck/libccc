@@ -6,7 +6,7 @@
 
 
 
-t_bool	KVT_ReplaceItem(s_kvt* const parent, s_kvt* const item, s_kvt * replacement)
+e_error_kvt	KVT_Replace(s_kvt* const parent, s_kvt* const item, s_kvt* replacement)
 {
 	if ((parent == NULL) || (replacement == NULL) || (item == NULL))
 		return (FALSE);
@@ -21,13 +21,13 @@ t_bool	KVT_ReplaceItem(s_kvt* const parent, s_kvt* const item, s_kvt * replaceme
 	{
 		replacement->next->prev = replacement;
 	}
-	if (parent->child == item)
+	if (parent->value.child == item)
 	{
-		if (parent->child->prev == parent->child)
+		if (parent->value.child->prev == parent->value.child)
 		{
 			replacement->prev = replacement;
 		}
-		parent->child = replacement;
+		parent->value.child = replacement;
 	}
 	else
 	{   // To find the last item in array quickly, we use prev in array.
@@ -38,7 +38,7 @@ t_bool	KVT_ReplaceItem(s_kvt* const parent, s_kvt* const item, s_kvt * replaceme
 		}
 		if (replacement->next == NULL)
 		{
-			parent->child->prev = replacement;
+			parent->value.child->prev = replacement;
 		}
 	}
 
@@ -48,38 +48,37 @@ t_bool	KVT_ReplaceItem(s_kvt* const parent, s_kvt* const item, s_kvt * replaceme
 	return (TRUE);
 }
 
-t_bool	KVT_ReplaceItemInArray(s_kvt* array, t_sint which, s_kvt* newitem)
+e_error_kvt	KVT_Replace_InArray(s_kvt* array, t_sint index, s_kvt* newitem)
 {
-	if (which < 0)
-		return (FALSE);
-	return (KVT_ReplaceItem(array, KVT_GetArrayItem(array, which), newitem));
+	if (index < 0)
+		return (KVT_SetError(ERROR_KVT_INVALIDARGS));
+	return (KVT_Replace(array, KVT_GetArrayItem(array, index), newitem));
 }
 
 
 
-static t_bool replace_item_in_object(s_kvt* object, t_char const* key, s_kvt* replacement, t_bool case_sensitive)
+static
+e_error_kvt replace_item_in_object(s_kvt* object, t_char const* key, s_kvt* replacement, t_bool case_sensitive)
 {
 	if ((replacement == NULL) || (key == NULL))
-		return (FALSE);
-
+		return (KVT_SetError(ERROR_KVT_INVALIDARGS));
 	// replace the name in the replacement
-	if (!(replacement->type & KVT_TYPE_CONSTSTRING) && (replacement->key != NULL))
+	if (replacement->key != NULL)
 	{
 		Memory_Free(replacement->key);
 	}
 	replacement->key = (t_char*)String_Duplicate((t_char const*)key);
-	replacement->type &= ~KVT_TYPE_CONSTSTRING;
-	return (KVT_ReplaceItem(object, case_sensitive ?
+	return (KVT_Replace(object, case_sensitive ?
 		KVT_GetObjectItem_CaseSensitive(object, key) :
 		KVT_GetObjectItem(object, key), replacement));
 }
 
-t_bool	KVT_ReplaceItemInObject(s_kvt* object, t_char const* key, s_kvt* newitem)
+e_error_kvt	KVT_Replace_InObject_IgnoreCase(s_kvt* object, t_char const* key, s_kvt* newitem)
 {
 	return (replace_item_in_object(object, key, newitem, FALSE));
 }
 
-t_bool	KVT_ReplaceItemInObject_CaseSensitive(s_kvt* object, t_char const* key, s_kvt* newitem)
+e_error_kvt	KVT_Replace_InObject_CaseSensitive(s_kvt* object, t_char const* key, s_kvt* newitem)
 {
 	return (replace_item_in_object(object, key, newitem, TRUE));
 }

@@ -209,7 +209,7 @@ static t_bool print_string_ptr(t_char const* const input, s_json_print* const ou
 // Invoke print_string_ptr (which is useful) on an item.
 static t_bool print_string(s_json const* const item, s_json_print* const p)
 {
-	return (print_string_ptr((t_char*)item->value_string, p));
+	return (print_string_ptr((t_char*)item->value.string, p));
 }
 
 // calculate the new length of the string in a s_json_print and update the offset
@@ -229,7 +229,7 @@ static t_bool print_number(s_json const* const item, s_json_print* const output_
 {
 	t_char*	output_pointer = NULL;
 	t_sint	length = 0;
-	t_f64	d = item->value_number;
+	t_f64	d = item->value.number;
 	t_size	i = 0;
 	t_f64	test = 0.0;
 	t_char	number_buffer[JSON_NUMBER_BUFFERSIZE] = {0}; // temporary buffer to print the number into
@@ -285,57 +285,56 @@ static t_bool print_object(s_json const* const item, s_json_print* const output_
 static t_bool print_value(s_json const* const item, s_json_print* const output_buffer)
 {
 	t_char* output = NULL;
+	t_char const* str;
 
 	if ((item == NULL) || (output_buffer == NULL))
 		return (FALSE);
 
-	switch ((item->type) & JSON_TYPE_MASK)
+	switch ((item->type) & DYNAMIC_TYPE_MASK)
 	{
-		case JSON_TYPE_NULL:
-			output = ensure(output_buffer, 5);
+		case DYNAMIC_TYPE_NULL:
+			str = "null";
+			output = ensure(output_buffer, String_Length(str) + 1);
 			if (output == NULL)
 				return (FALSE);
-			String_Copy((t_char*)output, "null");
+			String_Copy((t_char*)output, str);
 			return (TRUE);
 
-		case JSON_TYPE_FALSE:
-			output = ensure(output_buffer, 6);
+		case DYNAMIC_TYPE_BOOLEAN:
+			str = (item->value.boolean ? "true" : "false");
+			output = ensure(output_buffer, String_Length(str) + 1);
 			if (output == NULL)
 				return (FALSE);
-			String_Copy((t_char*)output, "FALSE");
+			String_Copy((t_char*)output, str);
 			return (TRUE);
 
-		case JSON_TYPE_TRUE:
-			output = ensure(output_buffer, 5);
-			if (output == NULL)
-				return (FALSE);
-			String_Copy((t_char*)output, "TRUE");
-			return (TRUE);
+		case DYNAMIC_TYPE_INTEGER:
+			return (print_number(item, output_buffer)); // TODO handle intege/float separately ?
 
-		case JSON_TYPE_NUMBER:
-			return (print_number(item, output_buffer));
+		case DYNAMIC_TYPE_FLOAT:
+			return (print_number(item, output_buffer)); // TODO handle intege/float separately ?
 
-		case JSON_TYPE_RAW:
+		case DYNAMIC_TYPE_RAW:
 		{
 			t_size raw_length = 0;
-			if (item->value_string == NULL)
+			if (item->value.string == NULL)
 				return (FALSE);
 
-			raw_length = String_Length(item->value_string) + sizeof("");
+			raw_length = String_Length(item->value.string) + sizeof("");
 			output = ensure(output_buffer, raw_length);
 			if (output == NULL)
 				return (FALSE);
-			Memory_Copy(output, item->value_string, raw_length);
+			Memory_Copy(output, item->value.string, raw_length);
 			return (TRUE);
 		}
 
-		case JSON_TYPE_STRING:
+		case DYNAMIC_TYPE_STRING:
 			return (print_string(item, output_buffer));
 
-		case JSON_TYPE_ARRAY:
+		case DYNAMIC_TYPE_ARRAY:
 			return (print_array(item, output_buffer));
 
-		case JSON_TYPE_OBJECT:
+		case DYNAMIC_TYPE_OBJECT:
 			return (print_object(item, output_buffer));
 
 		default:
@@ -348,7 +347,7 @@ static t_bool print_array(s_json const* const item, s_json_print* const output_b
 {
 	t_char* output_pointer = NULL;
 	t_size length = 0;
-	s_json* current_element = item->child;
+	s_json* current_element = item->value.child;
 
 	if (output_buffer == NULL)
 		return (FALSE);
@@ -399,7 +398,7 @@ static t_bool print_object(s_json const* const item, s_json_print* const output_
 {
 	t_char* output_pointer = NULL;
 	t_size length = 0;
-	s_json* current_item = item->child;
+	s_json* current_item = item->value.child;
 
 	if (output_buffer == NULL)
 		return (FALSE);

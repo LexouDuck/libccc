@@ -40,27 +40,18 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-typedef s_json	s_json;
+typedef s_kvt	s_json;
 
 
 
 #define foreach_s_json(_TYPE_, _VAR_, _JSON_)		foreach (_TYPE_, _VAR_, s_json, _JSON_)
 
-#define foreach_s_json_init(		_TYPE_, _VAR_, _JSON_)	s_json const* _VAR_##_i = (_JSON_ != NULL ? (_JSON_)->child : NULL);
-#define foreach_s_json_exit(		_TYPE_, _VAR_, _JSON_)	if (_JSON_ != NULL)
-#define foreach_s_json_loop_init(	_TYPE_, _VAR_, _JSON_)	_TYPE_ _VAR_ = (_TYPE_)_VAR_##_i
-#define foreach_s_json_loop_exit(	_TYPE_, _VAR_, _JSON_)	(_VAR_##_i != NULL)
-#define foreach_s_json_loop_incr(	_TYPE_, _VAR_, _JSON_)	_VAR_##_i = _VAR_##_i->next
-#define foreach_s_json_loop_setv(	_TYPE_, _VAR_, _JSON_)	_VAR_ = (_VAR_##_i == NULL ? _VAR_ : (_TYPE_)_VAR_##_i)
-/*
-#define foreach_s_json_init(		TYPE, VAR, JSON)	foreach_s_json_init_1(TYPE, VAR, JSON); foreach_s_json_init_2(TYPE, VAR, JSON);
-#define foreach_s_json_init_1(		TYPE, VAR, JSON)	t_size VAR##_i = 0
-#define foreach_s_json_init_2(		TYPE, VAR, JSON)	s_json* VAR = (JSON)
-#define foreach_s_json_exit(		TYPE, VAR, JSON)	if (JSON)
-#define foreach_s_json_loop_init(	TYPE, VAR, JSON)	VAR = (JSON != NULL) ? (JSON)->child : NULL
-#define foreach_s_json_loop_exit(	TYPE, VAR, JSON)	VAR != NULL
-#define foreach_s_json_loop_incr(	TYPE, VAR, JSON)	++VAR##_i, VAR = VAR->next
-*/
+#define foreach_s_json_init			foreach_s_kvt_init
+#define foreach_s_json_exit			foreach_s_kvt_exit
+#define foreach_s_json_loop_init	foreach_s_kvt_loop_init
+#define foreach_s_json_loop_exit	foreach_s_kvt_loop_exit
+#define foreach_s_json_loop_incr	foreach_s_kvt_loop_incr
+#define foreach_s_json_loop_setv	foreach_s_kvt_loop_setv
 
 
 
@@ -262,11 +253,9 @@ void	JSON_Minify(t_char* json); //!< TODO rename to JSON_Minify_InPlace(), and a
 
 #define JSON_AddToArray_Item				KVT_AddToArray_Item				//!< @alias{KVT_AddToArray_Item}
 #define JSON_AddToArray_ItemReference		KVT_AddToArray_ItemReference	//!< @alias{KVT_AddToArray_ItemReference}
-#define JSON_AddToArray_ItemConstString		KVT_AddToArray_ItemConstString	//!< @alias{KVT_AddToArray_ItemConstString}
 
 #define JSON_AddToObject_Item				KVT_AddToObject_Item			//!< @alias{KVT_AddToObject_Item}
 #define JSON_AddToObject_ItemReference		KVT_AddToObject_ItemReference	//!< @alias{KVT_AddToObject_ItemReference}
-#define JSON_AddToObject_ItemConstString	KVT_AddToObject_ItemConstString	//!< @alias{KVT_AddToObject_ItemConstString}
 
 
 

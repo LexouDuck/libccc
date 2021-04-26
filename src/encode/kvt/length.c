@@ -12,7 +12,7 @@ t_sint	KVT_GetArrayLength(s_kvt const* array)
 
 	if (array == NULL)
 		return (0);
-	child = array->child;
+	child = array->value.child;
 	while (child != NULL)
 	{
 		size++;

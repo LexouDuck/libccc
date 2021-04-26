@@ -58,21 +58,13 @@ typedef s_kvt	s_toml;
 
 #define foreach_s_toml(_TYPE_, _VAR_, _TOML_)		foreach (_TYPE_, _VAR_, s_toml, _TOML_)
 
-#define foreach_s_toml_init(		_TYPE_, _VAR_, _TOML_)	s_toml const* _VAR_##_i = (_TOML_ != NULL ? (_TOML_)->child : NULL);
-#define foreach_s_toml_exit(		_TYPE_, _VAR_, _TOML_)	if (_TOML_ != NULL)
-#define foreach_s_toml_loop_init(	_TYPE_, _VAR_, _TOML_)	_TYPE_ _VAR_ = (_TYPE_)_VAR_##_i
-#define foreach_s_toml_loop_exit(	_TYPE_, _VAR_, _TOML_)	(_VAR_##_i != NULL)
-#define foreach_s_toml_loop_incr(	_TYPE_, _VAR_, _TOML_)	_VAR_##_i = _VAR_##_i->next
-#define foreach_s_toml_loop_setv(	_TYPE_, _VAR_, _TOML_)	_VAR_ = (_VAR_##_i == NULL ? _VAR_ : (_TYPE_)_VAR_##_i)
-/*
-#define foreach_s_toml_init(		TYPE, VAR, TOML)	foreach_s_toml_init_1(TYPE, VAR, TOML); foreach_s_toml_init_2(TYPE, VAR, TOML);
-#define foreach_s_toml_init_1(		TYPE, VAR, TOML)	t_size VAR##_i = 0
-#define foreach_s_toml_init_2(		TYPE, VAR, TOML)	s_toml* VAR = (TOML)
-#define foreach_s_toml_exit(		TYPE, VAR, TOML)	if (TOML)
-#define foreach_s_toml_loop_init(	TYPE, VAR, TOML)	VAR = (TOML != NULL) ? (TOML)->child : NULL
-#define foreach_s_toml_loop_exit(	TYPE, VAR, TOML)	VAR != NULL
-#define foreach_s_toml_loop_incr(	TYPE, VAR, TOML)	++VAR##_i, VAR = VAR->next
-*/
+#define foreach_s_toml_init			foreach_s_kvt_init
+#define foreach_s_toml_exit			foreach_s_kvt_exit
+#define foreach_s_toml_loop_init	foreach_s_kvt_loop_init
+#define foreach_s_toml_loop_exit	foreach_s_kvt_loop_exit
+#define foreach_s_toml_loop_incr	foreach_s_kvt_loop_incr
+#define foreach_s_toml_loop_setv	foreach_s_kvt_loop_setv
+
 
 
 /*
@@ -263,11 +255,9 @@ t_bool	TOML_ToString_Preallocated(s_toml* item, t_char* buffer, t_sint const len
 
 #define TOML_AddToArray_Item				KVT_AddToArray_Item				//!< @alias{KVT_AddToArray_Item}
 #define TOML_AddToArray_ItemReference		KVT_AddToArray_ItemReference	//!< @alias{KVT_AddToArray_ItemReference}
-#define TOML_AddToArray_ItemConstString		KVT_AddToArray_ItemConstString	//!< @alias{KVT_AddToArray_ItemConstString}
 
 #define TOML_AddToObject_Item				KVT_AddToObject_Item			//!< @alias{KVT_AddToObject_Item}
 #define TOML_AddToObject_ItemReference		KVT_AddToObject_ItemReference	//!< @alias{KVT_AddToObject_ItemReference}
-#define TOML_AddToObject_ItemConstString	KVT_AddToObject_ItemConstString	//!< @alias{KVT_AddToObject_ItemConstString}
 
 
 

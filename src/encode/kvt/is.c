@@ -9,67 +9,61 @@ t_bool	KVT_IsInvalid(s_kvt const* const item)
 {
 	if (item == NULL)
 		return (FALSE);
-	return (item->type & KVT_TYPE_MASK) == KVT_TYPE_INVALID;
+	return ((item->type & DYNAMIC_TYPE_MASK) == DYNAMIC_TYPE_INVALID);
 }
 
-t_bool	KVT_IsFalse(s_kvt const* const item)
-{
-	if (item == NULL)
-		return (FALSE);
-	return (item->type & KVT_TYPE_MASK) == KVT_TYPE_FALSE;
-}
-
-t_bool	KVT_IsTrue(s_kvt const* const item)
-{
-	if (item == NULL)
-		return (FALSE);
-	return (item->type & 0xff) == KVT_TYPE_TRUE;
-}
-
-t_bool	KVT_IsBool(s_kvt const* const item)
-{
-	if (item == NULL)
-		return (FALSE);
-	return (item->type & (KVT_TYPE_TRUE | KVT_TYPE_FALSE)) != 0;
-}
 t_bool	KVT_IsNull(s_kvt const* const item)
 {
 	if (item == NULL)
 		return (FALSE);
-	return (item->type & KVT_TYPE_MASK) == KVT_TYPE_NULL;
+	return ((item->type & DYNAMIC_TYPE_MASK) == DYNAMIC_TYPE_NULL);
 }
 
-t_bool	KVT_IsNumber(s_kvt const* const item)
+t_bool	KVT_IsBoolean(s_kvt const* const item)
 {
 	if (item == NULL)
 		return (FALSE);
-	return (item->type & KVT_TYPE_MASK) == KVT_TYPE_NUMBER;
+	return ((item->type & DYNAMIC_TYPE_BOOLEAN) != 0);
+}
+
+t_bool	KVT_IsInteger(s_kvt const* const item)
+{
+	if (item == NULL)
+		return (FALSE);
+	return ((item->type & DYNAMIC_TYPE_MASK) == DYNAMIC_TYPE_INTEGER);
+}
+
+t_bool	KVT_IsFloat(s_kvt const* const item)
+{
+	if (item == NULL)
+		return (FALSE);
+	return ((item->type & DYNAMIC_TYPE_MASK) == DYNAMIC_TYPE_FLOAT);
 }
 
 t_bool	KVT_IsString(s_kvt const* const item)
 {
 	if (item == NULL)
 		return (FALSE);
-	return (item->type & KVT_TYPE_MASK) == KVT_TYPE_STRING;
+	return ((item->type & DYNAMIC_TYPE_MASK) == DYNAMIC_TYPE_STRING);
 }
 
 t_bool	KVT_IsArray(s_kvt const* const item)
 {
 	if (item == NULL)
 		return (FALSE);
-	return (item->type & KVT_TYPE_MASK) == KVT_TYPE_ARRAY;
+	return ((item->type & DYNAMIC_TYPE_MASK) == DYNAMIC_TYPE_ARRAY);
 }
 
 t_bool	KVT_IsObject(s_kvt const* const item)
 {
 	if (item == NULL)
 		return (FALSE);
-	return (item->type & KVT_TYPE_MASK) == KVT_TYPE_OBJECT;
+	return ((item->type & DYNAMIC_TYPE_MASK) == DYNAMIC_TYPE_OBJECT);
 }
 
 t_bool	KVT_IsRaw(s_kvt const* const item)
 {
 	if (item == NULL)
 		return (FALSE);
-	return (item->type & KVT_TYPE_MASK) == KVT_TYPE_RAW;
+	return ((item->type & DYNAMIC_TYPE_MASK) == DYNAMIC_TYPE_RAW);
 }

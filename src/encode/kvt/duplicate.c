@@ -19,26 +19,25 @@ s_kvt*	KVT_Duplicate(s_kvt const* item, t_bool recurse)
 		goto fail;
 	}
 	// Create new item
-	newitem = KVT_New_Item();
+	newitem = KVT_Item();
 	if (!newitem)
 	{
 		goto fail;
 	}
 	// Copy over all vars
-	newitem->type = item->type & (~KVT_TYPE_ISREFERENCE);
-	newitem->value_number = item->value_number;
-	if (item->value_string)
+	newitem->type = item->type & (~DYNAMIC_TYPE_ISREFERENCE);
+	newitem->value.number = item->value.number;
+	if (item->value.string)
 	{
-		newitem->value_string = (t_char*)String_Duplicate((t_char*)item->value_string);
-		if (!newitem->value_string)
+		newitem->value.string = (t_char*)String_Duplicate((t_char*)item->value.string);
+		if (!newitem->value.string)
 		{
 			goto fail;
 		}
 	}
 	if (item->key)
 	{
-		newitem->key = (item->type & KVT_TYPE_CONSTSTRING) ? item->key :
-			(t_char*)String_Duplicate((t_char*)item->key);
+		newitem->key = (t_char*)String_Duplicate((t_char*)item->key);
 		if (!newitem->key)
 		{
 			goto fail;
@@ -48,7 +47,7 @@ s_kvt*	KVT_Duplicate(s_kvt const* item, t_bool recurse)
 	if (!recurse)
 		return (newitem);
 	// Walk the ->next chain for the child.
-	child = item->child;
+	child = item->value.child;
 	while (child != NULL)
 	{
 		newchild = KVT_Duplicate(child, TRUE); // Duplicate (with recurse) each item in the ->next chain
@@ -66,14 +65,14 @@ s_kvt*	KVT_Duplicate(s_kvt const* item, t_bool recurse)
 		else
 		{
 			// Set newitem->child and move to it
-			newitem->child = newchild;
+			newitem->value.child = newchild;
 			next = newchild;
 		}
 		child = child->next;
 	}
-	if (newitem && newitem->child)
+	if (newitem && newitem->value.child)
 	{
-		newitem->child->prev = newchild;
+		newitem->value.child->prev = newchild;
 	}
 	return (newitem);
 

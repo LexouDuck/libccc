@@ -5,27 +5,25 @@
 
 
 
-t_bool	KVT_InsertItemInArray(s_kvt* array, t_sint which, s_kvt* newitem)
+e_error_kvt	KVT_Insert_InArray(s_kvt* array, t_sint index, s_kvt* newitem)
 {
 	s_kvt* after_inserted = NULL;
 
-	if (which < 0)
-		return (FALSE);
-
-	after_inserted = KVT_GetArrayItem(array, which);
+	if (index < 0)
+		return (KVT_SetError(KVT_SetError(ERROR_KVT_INVALIDARGS)));
+	after_inserted = KVT_GetArrayItem(array, index);
 	if (after_inserted == NULL)
 		return (KVT_AddToArray_Item(array, newitem));
-
 	newitem->next = after_inserted;
 	newitem->prev = after_inserted->prev;
 	after_inserted->prev = newitem;
-	if (after_inserted == array->child)
+	if (after_inserted == array->value.child)
 	{
-		array->child = newitem;
+		array->value.child = newitem;
 	}
 	else
 	{
 		newitem->prev->next = newitem;
 	}
-	return (TRUE);
+	return (OK);
 }

@@ -270,20 +270,22 @@ SRCS = \
 	monad/list/map.c		\
 	monad/list/filter.c		\
 	monad/convert/list.c	\
+	encode/kvt/new.c		\
 	encode/kvt/add.c		\
 	encode/kvt/concat.c		\
 	encode/kvt/create.c		\
-	encode/kvt/delete.c		\
-	encode/kvt/detach.c		\
+	encode/kvt/length.c		\
+	encode/kvt/get.c		\
+	encode/kvt/set.c		\
+	encode/kvt/array.c		\
 	encode/kvt/duplicate.c	\
 	encode/kvt/equals.c		\
-	encode/kvt/get.c		\
 	encode/kvt/insert.c		\
 	encode/kvt/is.c			\
-	encode/kvt/length.c		\
-	encode/kvt/new.c		\
+	encode/kvt/delete.c		\
+	encode/kvt/detach.c		\
 	encode/kvt/replace.c	\
-	encode/kvt/set.c		\
+	encode/kvt/error.c		\
 	encode/json/parse.c		\
 	encode/json/print.c		\
 	encode/json/minify.c	\

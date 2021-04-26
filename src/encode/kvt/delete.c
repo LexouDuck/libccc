@@ -6,40 +6,50 @@
 
 
 
-void	KVT_Delete(s_kvt* item)
+e_error_kvt	KVT_Delete(s_kvt* item)
 {
 	s_kvt* next = NULL;
 	while (item != NULL)
 	{
 		next = item->next;
-		if (!(item->type & KVT_TYPE_ISREFERENCE) && (item->child != NULL))
+		if (!(item->type & DYNAMIC_TYPE_ISREFERENCE))
 		{
-			KVT_Delete(item->child);
+			if ((item->type & DYNAMIC_TYPE_ARRAY) ||
+				(item->type & DYNAMIC_TYPE_OBJECT))
+			{
+				if (item->value.child != NULL)
+				{
+					e_error_kvt error = KVT_Delete(item->value.child);
+					if (error)	return (error);
+				}
+			}
+			else if ((item->type & DYNAMIC_TYPE_STRING))
+			{
+				if (item->value.string != NULL)
+					Memory_Free(item->value.string);
+			}
 		}
-		if (!(item->type & KVT_TYPE_ISREFERENCE) && (item->value_string != NULL))
-		{
-			Memory_Free(item->value_string);
-		}
-		if (!(item->type & KVT_TYPE_CONSTSTRING) && (item->key != NULL))
+		if (item->key != NULL)
 		{
 			Memory_Free(item->key);
 		}
 		Memory_Free(item);
 		item = next;
 	}
+	return (OK);
 }
 
-void	KVT_DeleteItemFromArray(s_kvt* array, t_sint which)
+e_error_kvt	KVT_Delete_FromArray(s_kvt* array, t_sint which)
 {
-	KVT_Delete(KVT_DetachItemFromArray(array, which));
+	return (KVT_Delete(KVT_Detach_FromArray(array, which)));
 }
 
-void	KVT_DeleteItemFromObject(s_kvt* object, t_char const* key)
+e_error_kvt	KVT_Delete_FromObject_IgnoreCase(s_kvt* object, t_char const* key)
 {
-	KVT_Delete(KVT_DetachItemFromObject(object, key));
+	return (KVT_Delete(KVT_Detach_FromObject_IgnoreCase(object, key)));
 }
 
-void	KVT_DeleteItemFromObject_CaseSensitive(s_kvt* object, t_char const* key)
+e_error_kvt	KVT_Delete_FromObject_CaseSensitive(s_kvt* object, t_char const* key)
 {
-	KVT_Delete(KVT_DetachItemFromObject_CaseSensitive(object, key));
+	return (KVT_Delete(KVT_Detach_FromObject_CaseSensitive(object, key)));
 }

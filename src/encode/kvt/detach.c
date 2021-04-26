@@ -8,9 +8,11 @@
 s_kvt*	KVT_DetachItem(s_kvt* parent, s_kvt* const item)
 {
 	if ((parent == NULL) || (item == NULL))
+	{
+		KVT_SetError(KVT_SetError(ERROR_KVT_INVALIDARGS));
 		return (NULL);
-
-	if (item != parent->child)
+	}
+	if (item != parent->value.child)
 	{
 		// not the first element
 		item->prev->next = item->next;
@@ -21,37 +23,39 @@ s_kvt*	KVT_DetachItem(s_kvt* parent, s_kvt* const item)
 		item->next->prev = item->prev;
 	}
 
-	if (item == parent->child)
+	if (item == parent->value.child)
 	{
 		// first element
-		parent->child = item->next;
+		parent->value.child = item->next;
 	}
 	else if (item->next == NULL)
 	{
 		// last element
-		parent->child->prev = item->prev;
+		parent->value.child->prev = item->prev;
 	}
-
 	// make sure the detached item doesn't point anywhere anymore
 	item->prev = NULL;
 	item->next = NULL;
 	return (item);
 }
 
-s_kvt*	KVT_DetachItemFromArray(s_kvt* array, t_sint which)
+s_kvt*	KVT_Detach_FromArray(s_kvt* array, t_sint index)
 {
-	if (which < 0)
+	if (index < 0)
+	{
+		KVT_SetError(KVT_SetError(ERROR_KVT_INVALIDARGS));
 		return (NULL);
-	return (KVT_DetachItem(array, KVT_GetArrayItem(array, which)));
+	}
+	return (KVT_DetachItem(array, KVT_GetArrayItem(array, index)));
 }
 
-s_kvt*	KVT_DetachItemFromObject(s_kvt* object, t_char const* key)
+s_kvt*	KVT_Detach_FromObject_IgnoreCase(s_kvt* object, t_char const* key)
 {
 	s_kvt* to_detach = KVT_GetObjectItem(object, key);
 	return (KVT_DetachItem(object, to_detach));
 }
 
-s_kvt*	KVT_DetachItemFromObject_CaseSensitive(s_kvt* object, t_char const* key)
+s_kvt*	KVT_Detach_FromObject_CaseSensitive(s_kvt* object, t_char const* key)
 {
 	s_kvt* to_detach = KVT_GetObjectItem_CaseSensitive(object, key);
 	return (KVT_DetachItem(object, to_detach));

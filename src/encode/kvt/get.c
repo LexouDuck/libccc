@@ -109,18 +109,32 @@ s_kvt*	KVT_Get(s_kvt const* object, t_char const* format_path, ...)
 
 
 
-t_f64	KVT_GetValue_Number(s_kvt const* const item) 
+t_bool	KVT_GetValue_Boolean(s_kvt const* const item) 
 {
-	if (!KVT_IsNumber(item)) 
+	if (!KVT_IsBoolean(item)) 
+		return ((t_bool)FALSE);
+	return (item->value.number);
+}
+
+t_s64	KVT_GetValue_Integer(s_kvt const* const item) 
+{
+	if (!KVT_IsInteger(item)) 
+		return ((t_s64)0);
+	return (item->value.number);
+}
+
+t_f64	KVT_GetValue_Float(s_kvt const* const item) 
+{
+	if (!KVT_IsFloat(item)) 
 		return ((t_f64)NAN);
-	return (item->value_number);
+	return (item->value.number);
 }
 
 t_char*	KVT_GetValue_String(s_kvt const* const item) 
 {
 	if (!KVT_IsString(item)) 
 		return (NULL);
-	return (item->value_string);
+	return (item->value.string);
 }
 
 
@@ -133,7 +147,7 @@ s_kvt*	KVT_GetArrayItem(s_kvt const* array, t_sint index)
 		return (NULL);
 	if (array == NULL)
 		return (NULL);
-	current_child = array->child;
+	current_child = array->value.child;
 	while ((current_child != NULL) && (index > 0))
 	{
 		index--;
@@ -151,7 +165,7 @@ static s_kvt* get_object_item(s_kvt const* const object, t_char const* const nam
 	if ((object == NULL) || (name == NULL))
 		return (NULL);
 
-	current_element = object->child;
+	current_element = object->value.child;
 	if (case_sensitive)
 	{
 		while ((current_element != NULL) && (current_element->key != NULL) && (String_Compare(name, current_element->key) != 0))

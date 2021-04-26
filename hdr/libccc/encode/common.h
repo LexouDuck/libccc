@@ -60,8 +60,7 @@ typedef t_sint		t_dynamic;
 #define DYNAMIC_TYPE_OBJECT		(t_dynamic)(1 << 6)	//!< value stored as dict of values (with keys)
 #define DYNAMIC_TYPE_RAW		(t_dynamic)(1 << 7)	//!< value stored as raw string (language-specific syntax)
 
-#define DYNAMIC_TYPE_ISREFERENCE	(t_dynamic)(1 << 8)	//!< If this bit is set, the value is not to be freed
-#define DYNAMIC_TYPE_CONSTSTRING	(t_dynamic)(1 << 9)	//!< If this bit is set, the value is not to be freed (is a string literal, or as good as)
+#define DYNAMIC_TYPE_ISREFERENCE	(t_dynamic)(1 << 8)	//!< If this bit is set, the `value` is not to be freed
 //!@}
 
 //! The bitmask expressing the 'type enum' portion of a `t_dynamic` type specifier
@@ -100,6 +99,17 @@ typedef struct kvt
 
 
 
+#define foreach_s_kvt(_TYPE_, _VAR_, _KVT_)		foreach (_TYPE_, _VAR_, s_kvt, _KVT_)
+
+#define foreach_s_kvt_init(		_TYPE_, _VAR_, _KVT_)	s_kvt const* _VAR_##_i = (_KVT_ != NULL ? (_KVT_)->value.child : NULL);
+#define foreach_s_kvt_exit(		_TYPE_, _VAR_, _KVT_)	if ((_KVT_ != NULL) && (((_KVT_)->type & DYNAMIC_TYPE_ARRAY) || ((_KVT_)->type & DYNAMIC_TYPE_OBJECT)))
+#define foreach_s_kvt_loop_init(_TYPE_, _VAR_, _KVT_)	_TYPE_ _VAR_ = (_TYPE_)_VAR_##_i
+#define foreach_s_kvt_loop_exit(_TYPE_, _VAR_, _KVT_)	(_VAR_##_i != NULL)
+#define foreach_s_kvt_loop_incr(_TYPE_, _VAR_, _KVT_)	_VAR_##_i = _VAR_##_i->next
+#define foreach_s_kvt_loop_setv(_TYPE_, _VAR_, _KVT_)	_VAR_ = (_VAR_##_i == NULL ? _VAR_ : (_TYPE_)_VAR_##_i)
+
+
+
 /*!
 **	Limits how deeply nested arrays/objects can be before KVT rejects to parse them.
 **	The existence of this macro serves to prevent stack overflows.
@@ -114,6 +124,13 @@ typedef struct kvt
 typedef enum error_kvt
 {
 	ERROR_KVT_OK = 0,
+	ERROR_KVT_INVALIDARGS,
+	ERROR_KVT_ALLOCATIONFAILURE,
+	ERROR_KVT_OBJECTKEYNOTFOUND,
+	ERROR_KVT_INCORRECTTYPE,
+	ERROR_KVT_INDEXTOOLARGE,
+	ERROR_KVT_ENUMTOOLARGE,
+	ERROR_KVT_ISREFERENCE,
 }		e_error_kvt;
 
 
@@ -165,6 +182,8 @@ s_kvt*	KVT_Concat(s_kvt const* a, s_kvt const* b);
 **	Otherwise, NULL when KVT_Parse() succeeds.
 */
 e_error_kvt		KVT_GetError(void);
+//! Sets the current 'errno' global
+e_error_kvt		KVT_SetError(e_error_kvt error);
 //! Returns the (string literal) error message corresponding to the given `error` number
 t_char const*	KVT_GetErrorMessage(e_error_kvt error);
 
@@ -291,9 +310,9 @@ t_char*	KVT_GetValue_String(s_kvt const* const item);
 */
 
 //! Change the `value` of a #KVT_TYPE_BOOLEAN object, only takes effect when `object->type == KVT_TYPE_BOOLEAN`.
-e_error_kvt	KVT_SetValue_Boolean(s_kvt* object, t_f64 value);
+e_error_kvt	KVT_SetValue_Boolean(s_kvt* object, t_bool value);
 //! Change the `value` of a #KVT_TYPE_INTEGER object, only takes effect when `object->type == KVT_TYPE_INTEGER`.
-e_error_kvt	KVT_SetValue_Integer(s_kvt* object, t_f64 value);
+e_error_kvt	KVT_SetValue_Integer(s_kvt* object, t_s64 value);
 //! Change the `value` of a #KVT_TYPE_FLOAT object, only takes effect when `object->type == KVT_TYPE_FLOAT`.
 e_error_kvt	KVT_SetValue_Float(s_kvt* object, t_f64 value);
 //! Change the `value` of a #KVT_TYPE_STRING object, only takes effect when `object->type == KVT_TYPE_STRING`.
@@ -307,15 +326,6 @@ e_error_kvt	KVT_AddToArray_Item(s_kvt* array, s_kvt* item);
 //! Append a reference to `item` to the given `array`.
 e_error_kvt	KVT_AddToArray_ItemReference(s_kvt* array, s_kvt* item);
 
-//! Appends the given `item` to an object with constant string as key
-/*!
-**	Use this when string is definitely const (i.e. a literal, or as good as),
-**	and said string should definitely survive the KVT object, never being freed.
-**	NOTE: When this function was used, make sure to always perform the following check:
-**	`(item->type & KVT_TYPE_CONSTSTRING) == 0` before writing to `item->value.string`.
-*/
-e_error_kvt	KVT_AddToArray_ItemConstString(s_kvt* object, s_kvt* item);
-
 
 
 //! Appends the given `item` to the given `object`, with the given `key`.
@@ -323,15 +333,6 @@ e_error_kvt	KVT_AddToObject_Item(s_kvt* object, t_char const* key, s_kvt* item);
 
 //! Append reference to item to the given object.
 e_error_kvt	KVT_AddToObject_ItemReference(s_kvt* object, t_char const* key, s_kvt* item);
-
-//! Appends the given `item` to an object with constant string as key
-/*!
-**	Use this when string is definitely const (i.e. a literal, or as good as),
-**	and said string should definitely survive the KVT object, never being freed.
-**	NOTE: When this function was used, make sure to always perform the following check:
-**	`(item->type & KVT_TYPE_CONSTSTRING) == 0` before writing to `item->value.string`.
-*/
-e_error_kvt	KVT_AddToObject_ItemConstString(s_kvt* object, t_char const* key, s_kvt* item);
 
 
 
@@ -383,11 +384,11 @@ t_bool	KVT_IsRaw		(s_kvt const* const item);
 ** ************************************************************************** *|
 */
 
+//! Removes (without deleting) the given `item` from the given `parent` object.
+s_kvt*		KVT_Detach(s_kvt* parent, s_kvt* const item);
+
 //! Delete a s_kvt entity and all subentities.
 e_error_kvt	KVT_Delete(s_kvt* item);
-
-//! Removes (without deleting) the given `item` from the given `parent` object.
-e_error_kvt	KVT_Detach(s_kvt* parent, s_kvt* const item);
 
 //! Replaces the given `item` from the given `parent` object, with the given `newitem`.
 e_error_kvt	KVT_Replace(s_kvt* parent, s_kvt* item, s_kvt* newitem);
@@ -398,7 +399,7 @@ e_error_kvt	KVT_Replace(s_kvt* parent, s_kvt* item, s_kvt* newitem);
 e_error_kvt	KVT_Delete_FromArray(s_kvt* array, t_sint index);
 
 //! Removes (without deleting) the given `item` from the given `array`.
-e_error_kvt	KVT_Detach_FromArray(s_kvt* array, t_sint index);
+s_kvt*		KVT_Detach_FromArray(s_kvt* array, t_sint index);
 
 //! Replaces the given `item` from the given `array`, with the given `newitem`.
 e_error_kvt	KVT_Replace_InArray(s_kvt* array, t_sint index, s_kvt* newitem);
@@ -416,8 +417,8 @@ e_error_kvt	KVT_Delete_FromObject_CaseSensitive	(s_kvt* object, t_char const* ke
 
 //! Removes (without deleting) the given `item` from the given `object`.
 //!@{
-e_error_kvt	KVT_Detach_FromObject_IgnoreCase	(s_kvt* object, t_char const* key); //!< (case-insensitive)
-e_error_kvt	KVT_Detach_FromObject_CaseSensitive	(s_kvt* object, t_char const* key); //!< (case-sensitive)
+s_kvt*		KVT_Detach_FromObject_IgnoreCase	(s_kvt* object, t_char const* key); //!< (case-insensitive)
+s_kvt*		KVT_Detach_FromObject_CaseSensitive	(s_kvt* object, t_char const* key); //!< (case-sensitive)
 //!@}
 
 //! Replaces the given `item` from the given `object`, with the given `newitem`
