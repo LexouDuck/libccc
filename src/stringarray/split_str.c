@@ -24,7 +24,7 @@ static t_u32	String_Split_String_CountDistinctSubs(t_char const* str, t_char con
 			{
 				++occ;
 				i += j;
-				break ;
+				break;
 			}
 			++j;
 		}

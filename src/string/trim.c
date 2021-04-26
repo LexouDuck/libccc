@@ -3,23 +3,7 @@
 
 
 
-static t_bool	charset_contains(t_char const* charset, t_char c)
-{
-	t_size	i;
-
-	i = 0;
-	while (charset[i])
-	{
-		if (charset[i] == c)
-			return (TRUE);
-		++i;
-	}
-	return (FALSE);
-}
-
-
-
-t_char*			String_Trim(t_char const* str, t_char const* charset)
+t_char*		String_Trim(t_char const* str, t_char const* charset)
 {
 	t_size	offset;
 	t_size	length;
@@ -30,18 +14,18 @@ t_char*			String_Trim(t_char const* str, t_char const* charset)
 	length = 0;
 	while (str[length])
 		++length;
-	while (offset < length && charset_contains(charset, str[offset]))
+	while (offset < length && Char_IsInCharset(str[offset], charset))
 		++offset;
 	if (offset == length)
-		return (c_strnew(0));
+		return (String_New(0));
 	length -= 1;
-	while (length > offset && charset_contains(charset, str[length]))
+	while (length > offset && Char_IsInCharset(str[length], charset))
 		--length;
 	length -= offset - 1;
-	return (c_strsub(str, offset, length));
+	return (String_Sub(str, offset, length));
 }
 
-t_char*			String_Trim_L(t_char const* str, t_char const* charset)
+t_char*		String_Trim_L(t_char const* str, t_char const* charset)
 {
 	t_size	i;
 
@@ -50,17 +34,17 @@ t_char*			String_Trim_L(t_char const* str, t_char const* charset)
 	i = 0;
 	while (str[i])
 	{
-		if (charset_contains(charset, str[i]))
+		if (Char_IsInCharset(str[i], charset))
 			++i;
 		else
-			break ;
+			break;
 	}
 	return (String_Sub(str, i, String_Length(str + i)));
 }
 
 
 
-t_char*			String_Trim_R(t_char const* str, t_char const* charset)
+t_char*		String_Trim_R(t_char const* str, t_char const* charset)
 {
 	t_size	i;
 
@@ -68,12 +52,11 @@ t_char*			String_Trim_R(t_char const* str, t_char const* charset)
 	LIBCONFIG_HANDLE_NULLPOINTER(charset, NULL)
 	i = String_Length(str);
 	while (--i)
-
 	{
-		if (!charset_contains(charset, str[i]))
-			break ;
+		if (!Char_IsInCharset(str[i], charset))
+			break;
 	}
-	if (i || !charset_contains(charset, str[i]))
+	if (i || !Char_IsInCharset(str[i], charset))
 		++i;
 	return (String_Sub(str, 0, i));
 }

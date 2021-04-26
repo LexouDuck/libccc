@@ -45,7 +45,7 @@ t_bool		String_HasOnly(t_char const* str, t_char const* charset)
 			if (str[i] == charset[c])
 			{
 				match = TRUE;
-				break ;
+				break;
 			}
 			++c;
 		}

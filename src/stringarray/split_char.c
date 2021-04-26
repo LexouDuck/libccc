@@ -26,7 +26,7 @@ static int	String_Split_Char_GetCount(t_char const* str, t_char c)
 				++result;
 		}
 		else
-			break ;
+			break;
 		separator = FALSE;
 		++i;
 	}

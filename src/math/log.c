@@ -28,7 +28,7 @@ static t_float	c_ln_taylor_series(t_float x)
 		power *= x;
 		result += (((((int)i % 2)) * 2.) - 1.) * (power / i);
 		if (result == result_previous)
-			break ;
+			break;
 		result_previous = result;
 		++i;
 	}

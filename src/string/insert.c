@@ -15,7 +15,7 @@ t_char*	String_Insert(t_char const* dest, t_char const* src, t_size offset)
 	LIBCONFIG_HANDLE_NULLPOINTER(src, NULL)
 	len_dst = String_Length(dest);
 	len_src = String_Length(src);
-	if (!(result = (t_char* )Memory_Alloc(len_dst + len_src + 1)))
+	if (!(result = (t_char*)Memory_Alloc(len_dst + len_src + 1)))
 		return (NULL);
 	i = (t_size)-1;
 	while (++i < offset)

@@ -12,13 +12,13 @@ t_char*	String_Find_R_Char(t_char const* str, t_char c)
 	while (str[i])
 		++i;
 	if (c == '\0')
-		return ((t_char* )(str + i));
+		return ((t_char*)(str + i));
 	else if (i == 0)
 		return (NULL);
 	while (i--)
 	{
 		if (str[i] == c)
-			return ((t_char* )str + i);
+			return ((t_char*)str + i);
 	}
 	return (NULL);
 }
@@ -41,7 +41,7 @@ t_char*	String_Find_R_Charset(t_char const* str, t_char const* charset)
 	while (str[i])
 		++i;
 	if (charset[0] == '\0')
-		return ((t_char* )(str + i));
+		return ((t_char*)(str + i));
 	else if (i == 0)
 		return (NULL);
 	while (i--)
@@ -49,7 +49,7 @@ t_char*	String_Find_R_Charset(t_char const* str, t_char const* charset)
 		for (t_size j = 0; charset[j]; ++j)
 		{
 			if (str[i] == charset[j])
-				return ((t_char* )str + i);
+				return ((t_char*)str + i);
 		}
 	}
 	return (NULL);
@@ -85,10 +85,10 @@ t_char*	String_Find_R_String(t_char const* str, t_char const* query)
 			if (str[i + match] == query[match])
 				++match;
 			else
-				break ;
+				break;
 		}
 		if (match == length)
-			return ((t_char* )str + i);
+			return ((t_char*)str + i);
 	}
 	return (NULL);
 }

@@ -14,7 +14,7 @@ t_char*	String_Find_Char(t_char const* str, t_char c)
 		if (str[i] == c)
 			return ((t_char*)str + i);
 		if (str[i] == '\0')
-			break ;
+			break;
 		++i;
 	}
 	return (NULL);

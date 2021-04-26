@@ -16,7 +16,7 @@ t_char*	String_Sub(t_char const* str, t_size index, t_size n)
 		++length;
 	LIBCONFIG_HANDLE_INDEX2LARGE(index, NULL, length)
 	LIBCONFIG_HANDLE_INDEX2LARGE(index + n, NULL, length)
-	if (!(result = (t_char* )Memory_Alloc(n + 1)))
+	if (!(result = (t_char*)Memory_Alloc(n + 1)))
 		return (NULL);
 	i = 0;
 	while (i < n)

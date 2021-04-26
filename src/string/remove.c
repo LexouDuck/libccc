@@ -19,7 +19,7 @@ t_char*	c_strremove(t_char const* str, t_char const* query)
 	length_query = c_strlen(query);
 	i = matches * length_query;
 	length = (length < i) ? 0 : length - i;
-	if (!(result = (t_char* )c_memalloc(length + 1)))
+	if (!(result = (t_char*)c_memalloc(length + 1)))
 		return (NULL);
 	matches = (t_size)(c_strstr(str, query) - str);
 	i = 0;
