@@ -108,7 +108,7 @@ s_kvt*	KVT_CreateRaw(t_char const* raw)
 s_kvt*	KVT_CreateStringReference(t_char const* string)
 {
 	s_kvt* item = KVT_Item();
-	if (item != NULL)
+	if (item)
 	{
 		item->type = DYNAMIC_TYPE_STRING;
 		item->type |= DYNAMIC_TYPE_ISREFERENCE;
@@ -120,7 +120,7 @@ s_kvt*	KVT_CreateStringReference(t_char const* string)
 s_kvt*	KVT_CreateObjectReference(s_kvt const* child)
 {
 	s_kvt* item = KVT_Item();
-	if (item != NULL)
+	if (item)
 	{
 		item->type = DYNAMIC_TYPE_OBJECT;
 		item->type |= DYNAMIC_TYPE_ISREFERENCE;
@@ -132,7 +132,7 @@ s_kvt*	KVT_CreateObjectReference(s_kvt const* child)
 s_kvt*	KVT_CreateArrayReference(s_kvt const* child)
 {
 	s_kvt* item = KVT_Item();
-	if (item != NULL)
+	if (item)
 	{
 		item->type = DYNAMIC_TYPE_ARRAY;
 		item->type |= DYNAMIC_TYPE_ISREFERENCE;

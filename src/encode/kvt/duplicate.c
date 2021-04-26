@@ -16,13 +16,13 @@ s_kvt*	KVT_Duplicate(s_kvt const* item, t_bool recurse)
 	// Bail on bad ptr
 	if (!item)
 	{
-		goto fail;
+		goto failure;
 	}
 	// Create new item
 	newitem = KVT_Item();
 	if (!newitem)
 	{
-		goto fail;
+		goto failure;
 	}
 	// Copy over all vars
 	newitem->type = item->type & (~DYNAMIC_TYPE_ISREFERENCE);
@@ -32,7 +32,7 @@ s_kvt*	KVT_Duplicate(s_kvt const* item, t_bool recurse)
 		newitem->value.string = (t_char*)String_Duplicate((t_char*)item->value.string);
 		if (!newitem->value.string)
 		{
-			goto fail;
+			goto failure;
 		}
 	}
 	if (item->key)
@@ -40,7 +40,7 @@ s_kvt*	KVT_Duplicate(s_kvt const* item, t_bool recurse)
 		newitem->key = (t_char*)String_Duplicate((t_char*)item->key);
 		if (!newitem->key)
 		{
-			goto fail;
+			goto failure;
 		}
 	}
 	// If non-recursive, then we're done!
@@ -53,7 +53,7 @@ s_kvt*	KVT_Duplicate(s_kvt const* item, t_bool recurse)
 		newchild = KVT_Duplicate(child, TRUE); // Duplicate (with recurse) each item in the ->next chain
 		if (!newchild)
 		{
-			goto fail;
+			goto failure;
 		}
 		if (next != NULL)
 		{
@@ -76,7 +76,7 @@ s_kvt*	KVT_Duplicate(s_kvt const* item, t_bool recurse)
 	}
 	return (newitem);
 
-fail:
+failure:
 	if (newitem != NULL)
 	{
 		KVT_Delete(newitem);

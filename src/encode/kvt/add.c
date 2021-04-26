@@ -12,10 +12,16 @@ static s_kvt* create_reference(s_kvt const* item)
 {
 	s_kvt* reference = NULL;
 	if (item == NULL)
+	{
+		KVT_SetError(ERROR_KVT_INVALIDARGS);
 		return (NULL);
+	}
 	reference = KVT_Item();
 	if (reference == NULL)
+	{
+		KVT_SetError(ERROR_KVT_ALLOCATIONFAILURE);
 		return (NULL);
+	}
 	Memory_Copy(reference, item, sizeof(s_kvt));
 	reference->key = NULL;
 	reference->type |= DYNAMIC_TYPE_ISREFERENCE;
@@ -32,7 +38,6 @@ e_error_kvt	add_item_to_array(s_kvt* array, s_kvt* item)
 
 	if ((item == NULL) || (array == NULL) || (array == item))
 		return (KVT_SetError(ERROR_KVT_INVALIDARGS));
-
 	child = array->value.child;
 	// To find the last item in array quickly, we use prev in array
 	if (child == NULL)
@@ -111,71 +116,103 @@ e_error_kvt	KVT_AddToObject_ItemReference(s_kvt* object, t_char const* key, s_kv
 s_kvt*	KVT_AddToObject_Null(s_kvt* object, t_char const* key)
 {
 	s_kvt* item_null = KVT_CreateNull();
-	if (add_item_to_object(object, key, item_null))
-		return (item_null);
-	KVT_Delete(item_null);
-	return (NULL);
+	e_error_kvt error = add_item_to_object(object, key, item_null);
+	if (error)
+	{
+		KVT_SetError(error);
+		KVT_Delete(item_null);
+		return (NULL);
+	}
+	return (item_null);
 }
 
 s_kvt*	KVT_AddToObject_Boolean(s_kvt* object, t_char const* key, t_bool value)
 {
 	s_kvt* item_bool = KVT_CreateBoolean(value);
-	if (add_item_to_object(object, key, item_bool))
-		return (item_bool);
-	KVT_Delete(item_bool);
-	return (NULL);
+	e_error_kvt error = add_item_to_object(object, key, item_bool);
+	if (error)
+	{
+		KVT_SetError(error);
+		KVT_Delete(item_bool);
+		return (NULL);
+	}
+	return (item_bool);
 }
 
 s_kvt*	KVT_AddToObject_Integer(s_kvt* object, t_char const* key, t_s64 value)
 {
 	s_kvt* item_number = KVT_CreateInteger(value);
-	if (add_item_to_object(object, key, item_number))
-		return (item_number);
-	KVT_Delete(item_number);
-	return (NULL);
+	e_error_kvt error = add_item_to_object(object, key, item_number);
+	if (error)
+	{
+		KVT_SetError(error);
+		KVT_Delete(item_number);
+		return (NULL);
+	}
+	return (item_number);
 }
 
 s_kvt*	KVT_AddToObject_Float(s_kvt* object, t_char const* key, t_f64 value)
 {
 	s_kvt* item_number = KVT_CreateFloat(value);
-	if (add_item_to_object(object, key, item_number))
-		return (item_number);
-	KVT_Delete(item_number);
-	return (NULL);
+	e_error_kvt error = add_item_to_object(object, key, item_number);
+	if (error)
+	{
+		KVT_SetError(error);
+		KVT_Delete(item_number);
+		return (NULL);
+	}
+	return (item_number);
 }
 
 s_kvt*	KVT_AddToObject_String(s_kvt* object, t_char const* key, t_char const* string)
 {
 	s_kvt* item_string = KVT_CreateString(string);
-	if (add_item_to_object(object, key, item_string))
-		return (item_string);
-	KVT_Delete(item_string);
-	return (NULL);
+	e_error_kvt error = add_item_to_object(object, key, item_string);
+	if (error)
+	{
+		KVT_SetError(error);
+		KVT_Delete(item_string);
+		return (NULL);
+	}
+	return (item_string);
 }
 
 s_kvt*	KVT_AddToObject_Raw(s_kvt* object, t_char const* key, t_char const* raw)
 {
 	s_kvt* item_raw = KVT_CreateRaw(raw);
-	if (add_item_to_object(object, key, item_raw))
-		return (item_raw);
-	KVT_Delete(item_raw);
-	return (NULL);
+	e_error_kvt error = add_item_to_object(object, key, item_raw);
+	if (error)
+	{
+		KVT_SetError(error);
+		KVT_Delete(item_raw);
+		return (NULL);
+	}
+	return (item_raw);
 }
 
 s_kvt*	KVT_AddToObject_Object(s_kvt* object, t_char const* key)
 {
 	s_kvt* item_object = KVT_CreateObject();
-	if (add_item_to_object(object, key, item_object))
-		return (item_object);
-	KVT_Delete(item_object);
-	return (NULL);
+	e_error_kvt error = add_item_to_object(object, key, item_object);
+	if (error)
+	{
+		KVT_SetError(error);
+		KVT_Delete(item_object);
+		return (NULL);
+	}
+	return (item_object);
 }
 
 s_kvt*	KVT_AddToObject_Array(s_kvt* object, t_char const* key)
 {
 	s_kvt* item_array = KVT_CreateArray();
-	if (add_item_to_object(object, key, item_array))
-		return (item_array);
-	KVT_Delete(item_array);
-	return (NULL);
+	e_error_kvt error = add_item_to_object(object, key, item_array);
+	if (error)
+	{
+		KVT_SetError(error);
+		KVT_Delete(item_array);
+		return (NULL);
+	}
+	return (item_array);
 }

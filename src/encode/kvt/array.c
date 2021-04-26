@@ -7,37 +7,41 @@
 
 
 #define KVT_CREATE_ARRAY(_TYPE_) \
-	t_sint i = 0;							\
-	s_kvt* n = NULL;						\
-	s_kvt* p = NULL;						\
-	s_kvt* array = NULL;					\
-	if ((count < 0) || (source == NULL))	\
-		return (NULL);						\
-	array = KVT_CreateArray();				\
-	for (i = 0; array && (i < count); i++)	\
-	{										\
-		n = KVT_Create##_TYPE_(source[i]);	\
-		if (!n)								\
-		{									\
-			KVT_Delete(array);				\
-			return (NULL);					\
-		}									\
-		if (!i)								\
-		{									\
-			array->value.child = n;			\
-		}									\
-		else								\
-		{									\
-			p->next = n;					\
-			n->prev = p;					\
-		}									\
-		p = n;								\
-	}										\
-	if (array && array->value.child)		\
-	{										\
-		array->value.child->prev = n;		\
-	}										\
-	return (array);							\
+	t_sint i = 0;										\
+	s_kvt* n = NULL;									\
+	s_kvt* p = NULL;									\
+	s_kvt* array = NULL;								\
+	if ((count < 0) || (source == NULL))				\
+	{													\
+		KVT_SetError(ERROR_KVT_INVALIDARGS);			\
+		return (NULL);									\
+	}													\
+	array = KVT_CreateArray();							\
+	for (i = 0; array && (i < count); i++)				\
+	{													\
+		n = KVT_Create##_TYPE_(source[i]);				\
+		if (!n)											\
+		{												\
+			KVT_Delete(array);							\
+			KVT_SetError(ERROR_KVT_ALLOCATIONFAILURE);	\
+			return (NULL);								\
+		}												\
+		if (!i)											\
+		{												\
+			array->value.child = n;						\
+		}												\
+		else											\
+		{												\
+			p->next = n;								\
+			n->prev = p;								\
+		}												\
+		p = n;											\
+	}													\
+	if (array && array->value.child)					\
+	{													\
+		array->value.child->prev = n;					\
+	}													\
+	return (array);										\
 
 
 

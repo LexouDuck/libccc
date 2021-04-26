@@ -9,11 +9,9 @@
 e_error_kvt	KVT_Replace(s_kvt* const parent, s_kvt* const item, s_kvt* replacement)
 {
 	if ((parent == NULL) || (replacement == NULL) || (item == NULL))
-		return (FALSE);
-
+		return (KVT_SetError(ERROR_KVT_INVALIDARGS));
 	if (replacement == item)
-		return (TRUE);
-
+		return (KVT_SetError(ERROR_KVT_INVALIDARGS));
 	replacement->next = item->next;
 	replacement->prev = item->prev;
 

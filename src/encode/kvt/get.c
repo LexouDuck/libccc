@@ -17,6 +17,7 @@
 			"Unexpected end of accessor string, "					\
 			"expected %s "ERRORMESSAGE".\n",						\
 			EXPECTED);												\
+		KVT_SetError(ERROR_KVT_PARSING);							\
 		return (result);											\
 	}																\
 
@@ -27,6 +28,7 @@
 			"Expected t_char '%c' "ERRORMESSAGE", "					\
 			"but instead found: '%c'\n",							\
 			CHAR, str[i]);											\
+		KVT_SetError(ERROR_KVT_PARSING);							\
 		return (result);											\
 	}																\
 	else ++i;														\
@@ -38,6 +40,7 @@
 			"Expected \"%s\" "ERRORMESSAGE", "						\
 			"but instead found: '%.16s'\n",							\
 			STRING, str);											\
+		KVT_SetError(ERROR_KVT_PARSING);							\
 		return (result);											\
 	}																\
 	else ++i;														\
@@ -53,12 +56,18 @@ s_kvt*	KVT_Get(s_kvt const* object, t_char const* format_path, ...)
 	t_char*	accessor;
 
 	if (object == NULL || format_path == NULL)
+	{
+		KVT_SetError(ERROR_KVT_INVALIDARGS);
 		return (NULL);
+	}
 	va_start(args, format_path);
 	path = String_Format_VA(format_path, args);
 	va_end(args);
 	if (path == NULL)
+	{
+		KVT_SetError(ERROR_KVT_ALLOCATIONFAILURE);
 		return (NULL);
+	}
 	result = (s_kvt*)object;
 	str = path;
 	for (t_size i = 0; str[i]; ++i)
@@ -86,6 +95,7 @@ s_kvt*	KVT_Get(s_kvt const* object, t_char const* format_path, ...)
 				if (str[i + length] == '\0')
 				{
 					IO_Output_Line("Unexpected end of accessor string, expected a closing double-quote '\"' t_char");
+					KVT_SetError(ERROR_KVT_PARSING);
 					return (result);
 				}
 				++length;
@@ -98,6 +108,7 @@ s_kvt*	KVT_Get(s_kvt const* object, t_char const* format_path, ...)
 		{
 			IO_Output_Format(C_RED"KVT PATH PARSE ERROR"C_RESET": "
 				"Expected number or double-quoted string within brackets, but instead found: '%s'\n", str);
+			KVT_SetError(ERROR_KVT_PARSING);
 			return (result);
 		}
 		String_Delete(&accessor);
