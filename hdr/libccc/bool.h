@@ -36,9 +36,6 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-/*
-**	Define the common useful macros for writing some pseudo-boolean syntax.
-*/
 #ifdef	FALSE
 #undef	FALSE
 #endif	//! Represents a boolean false value (0)
@@ -51,15 +48,13 @@ HEADER_CPP
 
 
 
-#ifdef	false
-#undef	false
-#endif	//! Represents a boolean false value (0)
+#ifndef	false
 #define false	FALSE
+#endif	//! Represents a boolean false value (0)
 
-#ifdef	true
-#undef	true
-#endif	//! Represents a boolean true value  (1)
+#ifndef	true
 #define true	TRUE
+#endif	//! Represents a boolean true value  (1)
 
 
 
@@ -78,8 +73,16 @@ HEADER_CPP
 **	- Bool_ToString()
 **	- Bool_FromString()
 */
-typedef _Bool		t_bool;
+//!@{
+#ifdef bool
+	typedef bool	t_bool;
+#elif (defined(__STDC__) && (__STDC_VERSION__ >= __STDC_VERSION_C99__))
+	typedef _Bool	t_bool;
+#else
+	typedef int		t_bool;
+#endif
 TYPEDEF_ALIAS(		t_bool, BOOL, PRIMITIVE)
+//!@}
 
 
 

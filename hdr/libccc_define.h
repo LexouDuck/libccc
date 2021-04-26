@@ -89,7 +89,7 @@ HEADER_CPP
 
 //! These are convienence macros, to check for different C standards in preprocessor `#if` statements.
 //!@{
-#define __STDC_VERSION_C95__	199409L
+#define __STDC_VERSION_C90__	199409L
 #define __STDC_VERSION_C99__	199901L
 #define __STDC_VERSION_C11__	201112L
 #define __STDC_VERSION_C17__	201710L
@@ -124,9 +124,29 @@ HEADER_CPP
 #endif
 
 
+
 /*
 ** ************************************************************************** *|
-**                             Common Definitions                             *|
+**                           Common Program Utilities                         *|
+** ************************************************************************** *|
+*/
+
+/*!
+**	@isostd{https://en.cppreference.com/w/c/program}
+*/
+//!@{
+// TODO wrapper function for abort()
+// TODO wrapper function for exit() & at_exit()
+// TODO wrapper function for quick_exit() & at_quick_exit()
+// TODO wrapper function for system() https://en.cppreference.com/w/c/program/system
+// TODO wrapper function for getenv() https://en.cppreference.com/w/c/program/getenv -> make it safe with a strdup()
+//!@}
+
+
+
+/*
+** ************************************************************************** *|
+**                           Common Macro Definitions                         *|
 ** ************************************************************************** *|
 */
 
@@ -148,16 +168,6 @@ HEADER_CPP
 //!@{
 #undef	ERROR
 #define ERROR	(-1)
-//!@}
-
-
-
-/*!
-**	@isostd{https://en.cppreference.com/w/c/program}
-*/
-//!@{
-
-// TODO wrapper function for abort(), )
 //!@}
 
 

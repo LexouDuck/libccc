@@ -338,6 +338,10 @@ t_io_error					IO_ChangeOwner(char const* filepath, char const* owner, char cons
 
 
 
+// TODO wrapper for tmpfile() @isostd{https://en.cppreference.com/w/c/io/tmpfile}
+
+
+
 /*
 ** ************************************************************************** *|
 **                              Reading Functions                             *|

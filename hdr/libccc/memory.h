@@ -54,6 +54,7 @@ HEADER_CPP
 */
 _MALLOC()
 void*				Memory_Alloc(t_size size);
+#define c_malloc	Memory_Alloc //!< @alias{Memory_Alloc}
 #define c_memalloc	Memory_Alloc //!< @alias{Memory_Alloc}
 
 //! Returns a newly allocated memory area which is `size` bytes long, with every byte set to `0`.
@@ -68,6 +69,7 @@ void*				Memory_Alloc(t_size size);
 */
 _MALLOC()
 void*				Memory_New(t_size size);
+#define c_calloc	Memory_New //!< @alias{Memory_New}
 #define c_memnew	Memory_New //!< @alias{Memory_New}
 
 //! Returns a newly allocated memory area which is `size` bytes long, with every byte set to `c`.

@@ -263,7 +263,9 @@ void	print_test_uintmax	(char const *test_name, char const *function, t_uintmax	
 void	print_test_q16		(char const *test_name, char const *function, t_q16		result, t_q16	expect, int can_segfault);
 void	print_test_q32		(char const *test_name, char const *function, t_q32		result, t_q32	expect, int can_segfault);
 void	print_test_q64		(char const *test_name, char const *function, t_q64		result, t_q64	expect, int can_segfault);
+#ifdef __int128
 void	print_test_q128		(char const *test_name, char const *function, t_q128	result, t_q128	expect, int can_segfault);
+#endif
 void	print_test_fixed	(char const *test_name, char const *function, t_fixed	result, t_fixed	expect, int can_segfault);
 
 void	print_test_f32		(char const *test_name, char const *function, t_f32 	result, t_f32	expect, int can_segfault);

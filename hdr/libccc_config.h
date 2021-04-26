@@ -37,12 +37,12 @@ HEADER_CPP
 /*!
 **	This macro sets the nomenclature style that libccc uses for typedefs. The value works like
 **	both an enum and a bitflag simultaneously: you can see how this works at the bottom of this file.
-**	NB: By default, this is (NAMINGSTYLE_ENUM_SNAKECASE | NAMINGSTYLE_FLAG_HUNGARIAN_PREFIX)
-**		This style is used thoughout libccc's code. As such, if you set another style, it
-**		will actually generate a typedef alias above the existing type. For example:
-**		Having `(NAMINGSTYLE_ENUM_SCREAMCASE)` will create a typedef for `t_bool` which is `BOOL`
+**	NB: The style used throughout libccc's code is `(NAMINGSTYLE_SNAKECASE | NAMINGSTYLE_FLAG_HUNGARIAN_PREFIX)`
+**		You can set another style, it will actually generate a typedef alias above the existing typedef.
+**		For example, having `(NAMINGSTYLE_SCREAMCASE)` will create a typedef for `t_bool` which is `BOOL`
+**		Here, by default, the value is zero (no typedef aliases are generated).
 */
-#define LIBCONFIG_NAMINGSTYLE_TYPES		(NAMINGSTYLE_SNAKECASE | NAMINGSTYLE_FLAG_HUNGARIAN_PREFIX)
+#define LIBCONFIG_NAMINGSTYLE_TYPES		(0)
 
 
 

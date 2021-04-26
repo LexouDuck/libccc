@@ -113,6 +113,11 @@ HEADER_CPP
 
 
 #if LIBCONFIG_USE_STD_FIXEDPOINT
+
+	#if (!defined(__STDC__) || (__STDC_VERSION__ < __STDC_VERSION_C17__))
+		#error "C ISO standard fixed-point types are not available for this C standard: "__STDC_VERSION__"L"
+	#endif
+
 	#include <stdfix.h>
 
 	//! Primitive type: 16-bit signed fixed-point rational number (s4.7)
