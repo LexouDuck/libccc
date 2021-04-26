@@ -10,7 +10,7 @@ void*	Memory_Duplicate(const void* ptr, t_size n)
 	t_size	i;
 
 	LIBCONFIG_HANDLE_NULLPOINTER(ptr, NULL)
-	if (!(result = (t_u8* )c_memalloc(n)))
+	if (!(result = (t_u8* )Memory_Alloc(n)))
 		return (NULL);
 	source = (t_u8* )ptr;
 	i = 0;

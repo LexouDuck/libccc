@@ -13,7 +13,7 @@ t_char**		StringArray_Map(t_char const** strarr, t_char* (*map)(t_char const*))
 	LIBCONFIG_HANDLE_NULLPOINTER(strarr, NULL)
 	LIBCONFIG_HANDLE_NULLPOINTER(*strarr, NULL)
 	LIBCONFIG_HANDLE_NULLPOINTER(map, NULL)
-	if (!(result = c_strarrnew(c_strarrlen(strarr))))
+	if (!(result = StringArray_New(StringArray_Length(strarr))))
 		return (NULL);
 	i = 0;
 	while (strarr[i])
@@ -39,7 +39,7 @@ void		StringArray_Map_InPlace(t_char** *a_strarr, t_char* (*map)(t_char*))
 	{
 		tmp = (*map)((*a_strarr)[i]);
 		if (tmp != (*a_strarr)[i])
-			c_strdel(*a_strarr + i);
+			String_Delete(*a_strarr + i);
 		(*a_strarr)[i] = tmp;
 		++i;
 	}

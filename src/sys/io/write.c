@@ -31,7 +31,7 @@ inline t_io_error	IO_Write_String(int fd, const char* str)
 {
 	LIBCONFIG_HANDLE_NULLPOINTER(str, OK)
 	int result;
-	if ((result = write(fd, str, c_strlen(str))) < 0)
+	if ((result = write(fd, str, String_Length(str))) < 0)
 		return (errno);
 	return (OK);
 }
@@ -42,7 +42,7 @@ inline t_io_error	IO_Write_Line(int fd, const char* str)
 {
 	LIBCONFIG_HANDLE_NULLPOINTER(str, OK)
 	int result;
-	if ((result = write(fd, str, c_strlen(str))) < 0)
+	if ((result = write(fd, str, String_Length(str))) < 0)
 		return (errno);
 	if ((result = write(fd, "\n", 1)) < 0)
 		return (errno);
@@ -58,7 +58,7 @@ t_io_error		IO_Write_Lines(int fd, const char** strarr)
 	int i = 0;
 	while (strarr[i])
 	{
-		if ((result = write(fd, strarr[i], c_strlen(strarr[i]))) < 0)
+		if ((result = write(fd, strarr[i], String_Length(strarr[i]))) < 0)
 			return (errno);
 		if ((result = write(fd, "\n", 1)) < 0)
 			return (errno);

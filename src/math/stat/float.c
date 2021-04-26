@@ -13,7 +13,7 @@ s_list_float	c_stat_new_flst(t_u32 length)
 	result.length = 0;
 	if (length == 0)
 		return (result);
-	if (!(result.data = (t_float*)c_memalloc(sizeof(t_float) * length)))
+	if (!(result.data = (t_float*)Memory_Alloc(sizeof(t_float) * length)))
 		return (result);
 	result.length = length;
 	return (result);
@@ -24,7 +24,7 @@ void			c_stat_free_flst(s_list_float *flst)
 	LIBCONFIG_HANDLE_NULLPOINTER(flst, )
 	if (flst->data)
 	{
-		c_memfree(flst->data);
+		Memory_Free(flst->data);
 		flst->data = NULL;
 	}
 	flst->length = 0;

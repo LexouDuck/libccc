@@ -55,7 +55,7 @@ t_char**	String_Split_Charset(t_char const* str, t_char const* sep_chars)
 			++j;
 		wstart = j--;
 		length = String_Split_SingleWordLetterCount(str, wstart, sep_chars);
-		if (!(strarr[i] = c_strnew(length)))
+		if (!(strarr[i] = String_New(length)))
 			return (NULL);
 		while (++j < wstart + length)
 			strarr[i][j - wstart] = str[j];

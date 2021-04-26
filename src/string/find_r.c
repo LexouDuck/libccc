@@ -76,7 +76,7 @@ t_char*	String_Find_R_String(t_char const* str, t_char const* query)
 		++length;
 	if (length == 0)
 		return (NULL);
-	i = c_strlen(str);
+	i = String_Length(str);
 	while (i--)
 	{
 		match = 0;

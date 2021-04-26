@@ -15,7 +15,7 @@ t_char*	String_Reverse(t_char const* str)
 	length = 0;
 	while (str[length])
 		++length;
-	result = (t_char*)c_memalloc(length + 1);
+	result = (t_char*)Memory_Alloc(length + 1);
 	i = 0;
 	j = length - 1;
 	while (i < length)

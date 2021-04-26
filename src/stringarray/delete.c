@@ -15,9 +15,9 @@ void	StringArray_Delete(t_char** *a_strarr)
 		i = 0;
 		while ((*a_strarr)[i])
 		{
-			c_strdel((*a_strarr) + i);
+			String_Delete((*a_strarr) + i);
 			++i;
 		}
-		c_memdel((void**)a_strarr);
+		Memory_Delete((void**)a_strarr);
 	}
 }

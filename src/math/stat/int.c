@@ -12,7 +12,7 @@ s_list_int		c_stat_new_ilst(t_u32 length)
 	result.length = 0;
 	if (length == 0)
 		return (result);
-	if (!(result.data = (t_sint*)c_memalloc(sizeof(t_sint) * length)))
+	if (!(result.data = (t_sint*)Memory_Alloc(sizeof(t_sint) * length)))
 		return (result);
 	result.length = length;
 	return (result);
@@ -23,7 +23,7 @@ void			c_stat_free_ilst(s_list_int *ilst)
 	LIBCONFIG_HANDLE_NULLPOINTER(ilst, )
 	if (ilst->data)
 	{
-		c_memfree(ilst->data);
+		Memory_Free(ilst->data);
 		ilst->data = NULL;
 	}
 	ilst->length = 0;
@@ -231,8 +231,8 @@ s_prob_mass				c_stat_new_pmf(t_u32 length)
 	result.prob = NULL;
 	result.length = 0;
 	if (length == 0 ||
-		!(result.value	= (t_float*)c_memalloc(length * sizeof(t_float))) ||
-		!(result.prob	= (t_float*)c_memalloc(length * sizeof(t_float))))
+		!(result.value	= (t_float*)Memory_Alloc(length * sizeof(t_float))) ||
+		!(result.prob	= (t_float*)Memory_Alloc(length * sizeof(t_float))))
 		return (result);
 	result.length = length;
 	return (result);
@@ -243,12 +243,12 @@ void					c_stat_free_pmf(s_prob_mass *drv)
 	LIBCONFIG_HANDLE_NULLPOINTER(drv, )
 	if (drv->value)
 	{
-		c_memfree(drv->value);
+		Memory_Free(drv->value);
 		drv->value = NULL;
 	}
 	if (drv->prob)
 	{
-		c_memfree(drv->prob);
+		Memory_Free(drv->prob);
 		drv->prob = NULL;
 	}
 	drv->length = 0;
@@ -278,9 +278,9 @@ s_set_int				c_stat_ilst_to_iset(s_list_int const ilst)
 		++i;
 	}
 	result = c_stat_new_ilst(set.length);
-	c_memcpy(result.data, set.data, set.length * sizeof(t_sint));
+	Memory_Copy(result.data, set.data, set.length * sizeof(t_sint));
 //	memcpy(result.data, set.data, set.length * sizeof(t_sint));
-	c_memfree(set.data);
+	Memory_Free(set.data);
 	return (result);
 }
 

@@ -13,7 +13,7 @@ t_char*	String_Duplicate(t_char const* str)
 	i = 0;
 	while (str[i])
 		++i;
-	if (!(result = c_strnew(i)))
+	if (!(result = String_New(i)))
 		return (NULL);
 	i = 0;
 	while (str[i])
@@ -36,7 +36,7 @@ t_char*	String_Duplicate_C(t_char const* str, t_char const c)
 	i = 0;
 	while (str[i] && str[i] != c)
 		++i;
-	if (!(result = c_strnew(i)))
+	if (!(result = String_New(i)))
 		return (NULL);
 	i = 0;
 	while (str[i] && str[i] != c)
@@ -59,7 +59,7 @@ t_char*	String_Duplicate_N(t_char const* str, t_size n)
 	i = 0;
 	while (str[i] && i < n)
 		++i;
-	if (!(result = c_strnew(i)))
+	if (!(result = String_New(i)))
 		return (NULL);
 	i = 0;
 	while (str[i] && i < n)

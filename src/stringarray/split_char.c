@@ -57,7 +57,7 @@ t_char**		String_Split_Char(t_char const* str, t_char c)
 		while (str[offset + length] && str[offset + length] != c)
 			++length;
 		if (length > 0)
-			result[i++] = c_strsub(str, offset, length);
+			result[i++] = String_Sub(str, offset, length);
 	}
 	result[count] = NULL;
 	return (result);
