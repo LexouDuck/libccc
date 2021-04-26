@@ -102,7 +102,7 @@ HEADER_CPP
 //! comment out this `#define` to deactivate this kind of parameter validation
 #define LIBCONFIG_HANDLE_INVALIDENUMS	(1)
 #ifndef LIBCONFIG_HANDLE_INVALIDENUMS
-#define LIBCONFIG_HANDLE_INVALIDENUM(ARG, RESULT, MIN, MAX)
+#define LIBCONFIG_HANDLE_INVALIDENUM(ARG, RESULT, MIN, MAX) // TODO check everywhere where this should be used, and use it
 #else
 #define LIBCONFIG_HANDLE_INVALIDENUM(ARG, RESULT, MIN, MAX) \
 	if ((ARG) < (MIN) || (ARG) > (MAX))	return RESULT;
@@ -110,7 +110,7 @@ HEADER_CPP
 //! comment out this `#define` to deactivate this kind of parameter validation
 #define LIBCONFIG_HANDLE_INDEX2SMALLS	(1)
 #ifndef LIBCONFIG_HANDLE_INDEX2SMALLS
-#define LIBCONFIG_HANDLE_INDEX2SMALL(ARG, RESULT, MIN)
+#define LIBCONFIG_HANDLE_INDEX2SMALL(ARG, RESULT, MIN) // TODO check everywhere where this should be used, and use it
 #else
 #define LIBCONFIG_HANDLE_INDEX2SMALL(ARG, RESULT, MIN) \
 	if ((ARG) < (MIN))	return RESULT;
@@ -118,7 +118,7 @@ HEADER_CPP
 //! comment out this `#define` to deactivate this kind of parameter validation
 #define LIBCONFIG_HANDLE_INDEX2LARGES	(1)
 #ifndef LIBCONFIG_HANDLE_INDEX2LARGES
-#define LIBCONFIG_HANDLE_INDEX2LARGE(ARG, RESULT, MAX)
+#define LIBCONFIG_HANDLE_INDEX2LARGE(ARG, RESULT, MAX) // TODO check everywhere where this should be used, and use it
 #else
 #define LIBCONFIG_HANDLE_INDEX2LARGE(ARG, RESULT, MAX) \
 	if ((ARG) > (MAX))	return RESULT;
@@ -126,7 +126,7 @@ HEADER_CPP
 //! comment out this `#define` to deactivate this kind of parameter validation
 #define LIBCONFIG_HANDLE_LENGTH2SMALLS	(1)
 #ifndef LIBCONFIG_HANDLE_LENGTH2SMALLS
-#define LIBCONFIG_HANDLE_LENGTH2SMALL(ARG, RESULT, MIN)
+#define LIBCONFIG_HANDLE_LENGTH2SMALL(ARG, RESULT, MIN) // TODO check everywhere where this should be used, and use it
 #else
 #define LIBCONFIG_HANDLE_LENGTH2SMALL(ARG, RESULT, MIN) \
 	if ((ARG) < (MIN))	return RESULT;
@@ -134,7 +134,7 @@ HEADER_CPP
 //! comment out this `#define` to deactivate this kind of parameter validation
 #define LIBCONFIG_HANDLE_LENGTH2LARGES	(1)
 #ifndef LIBCONFIG_HANDLE_LENGTH2LARGES
-#define LIBCONFIG_HANDLE_LENGTH2LARGE(ARG, RESULT, MAX)
+#define LIBCONFIG_HANDLE_LENGTH2LARGE(ARG, RESULT, MAX) // TODO check everywhere where this should be used, and use it
 #else
 #define LIBCONFIG_HANDLE_LENGTH2LARGE(ARG, RESULT, MAX) \
 	if ((ARG) > (MAX))	return RESULT;

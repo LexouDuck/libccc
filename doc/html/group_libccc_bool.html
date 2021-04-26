@@ -143,7 +143,7 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_object.html">35) libccc/monad/object</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_config.html">Libccc_config</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_regex.html">Libccc_regex</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_math.html">Libccc_math_math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math.html">Libccc_math</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_array_sort.html">Libccc_array_sort</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_convert.html">Libccc_monad_convert</a></li>
 </ul>
@@ -223,16 +223,15 @@
 <p>This header defines the boolean (TRUE/FALSE) primitive type and functions. <a class="reference internal" href="#details-group-libccc-bool"><span class="std std-ref">More…</span></a></p>
 <pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// typedefs</span>
 
-<span class="k">typedef</span> <span class="kt">_Bool</span> <a class="reference internal" href="#doxid-group-libccc-bool-1gaf15d2c7169c336f97175a2e218d22e73"><span class="std std-ref">t_bool</span></a><span></span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">int</span> <a class="reference internal" href="#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span><span class="p">;</span>
 
 <span class="c1">// global variables</span>
 
-<a class="reference internal" href="#doxid-group-libccc-bool-1gaf15d2c7169c336f97175a2e218d22e73"><span class="std std-ref">t_bool</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-bool-1ga779f60bcf0c114cbc855c02f7e1db66b"><span></span><span class="n">uppercase</span></span><span></span><span class="p">;</span>
+<a class="reference internal" href="#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-bool-1ga779f60bcf0c114cbc855c02f7e1db66b"><span></span><span class="n">uppercase</span></span><span></span><span class="p">;</span>
 
 <span class="c1">// global functions</span>
 
-<a class="reference internal" href="#doxid-group-libccc-bool-1gafb9316fd8363f002142a73673b0fdc47"><span class="std std-ref">TYPEDEF_ALIAS</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-bool-1gaf15d2c7169c336f97175a2e218d22e73"><span class="std std-ref">t_bool</span></a><span></span><span class="p">,</span> <span class="n">BOOL</span><span class="p">,</span> <span class="n">PRIMITIVE</span><span class="p">);</span>
-<a class="reference internal" href="#doxid-group-libccc-bool-1gaf15d2c7169c336f97175a2e218d22e73"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-bool-1gaa9b13c09a76c522d0bc3e86316cfbb17"><span class="std std-ref">Bool_FromString</span></a><span></span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-bool-1gaa9b13c09a76c522d0bc3e86316cfbb17"><span class="std std-ref">Bool_FromString</span></a><span></span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">);</span>
 
 <span class="c1">// macros</span>
 
@@ -240,7 +239,7 @@
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span class="std std-ref">TRUE</span></a><span></span>  <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-bool-1gadbdb134a7667f7eaab54152cb5c2c0bb"><span class="std std-ref">c_bool_to_str</span></a><span></span> <span class="n">Bool_ToString</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-bool-1gacc3d0f7cb029f5895392f1392ac1bb48"><span class="std std-ref">c_str_to_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-bool-1gaa9b13c09a76c522d0bc3e86316cfbb17"><span class="std std-ref">Bool_FromString</span></a><span></span>
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-bool-1ga65e9886d74aaee76545e83dd09011727"><span class="std std-ref">false</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-bool-1gaa93f0eb578d23995850d61f7d61c55c1"><span class="std std-ref">FALSE</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-bool-1ga65e9886d74aaee76545e83dd09011727"><span></span><span class="nb">false</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-bool-1gaa93f0eb578d23995850d61f7d61c55c1"><span class="std std-ref">FALSE</span></a><span></span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-bool-1ga41f9c5fb8b08eb5dc3edce4dcb37fee7"><span class="std std-ref">true</span></a><span></span>  <a class="reference internal" href="#doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span class="std std-ref">TRUE</span></a></pre>
 </div>
 <div class="section" id="detailed-documentation">
@@ -248,7 +247,8 @@
 <p>This header defines the boolean (TRUE/FALSE) primitive type and functions.</p>
 <div class="section" id="typedefs">
 <h3>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h3>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-bool-1gaf15d2c7169c336f97175a2e218d22e73"><span id="index-1"></span><span></span><span class="k">typedef</span> <span class="kt">_Bool</span> <span class="kt">t_bool</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span id="index-1"></span><span></span><span class="k">typedef</span> <span class="kt">int</span> <span class="kt">t_bool</span></pre>
+<p>Represents a boolean true value (1)</p>
 <p>Primitve type: The boolean type (<code class="docutils literal notranslate"><span class="pre">TRUE</span></code> or <code class="docutils literal notranslate"><span class="pre">FALSE</span></code>)</p>
 <ul class="simple">
 <li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/types/boolean">https://en.cppreference.com/w/c/types/boolean</a></p></li>
@@ -262,25 +262,21 @@
 </div>
 <div class="section" id="global-functions">
 <h3>Global Functions<a class="headerlink" href="#global-functions" title="Permalink to this headline">¶</a></h3>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-bool-1gafb9316fd8363f002142a73673b0fdc47"><span id="index-2"></span><span></span><span class="n">TYPEDEF_ALIAS</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-bool-1gaf15d2c7169c336f97175a2e218d22e73"><span class="std std-ref">t_bool</span></a><span></span><span class="p">,</span> <span class="n">BOOL</span><span class="p">,</span> <span class="n">PRIMITIVE</span><span class="p">)</span></pre>
-<p>Get the string representation of a boolean value (TRUE or FALSE)</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-bool-1gaa9b13c09a76c522d0bc3e86316cfbb17"><span id="index-3"></span><a class="reference internal" href="#doxid-group-libccc-bool-1gaf15d2c7169c336f97175a2e218d22e73"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">Bool_FromString</span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-bool-1gaa9b13c09a76c522d0bc3e86316cfbb17"><span id="index-2"></span><a class="reference internal" href="#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">Bool_FromString</span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">)</span></pre>
 <p>Parse a boolean value from the given string (can be 1/0/TRUE/FALSE/true/false)</p>
 </div>
 <div class="section" id="macros">
 <h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h3>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-bool-1gaa93f0eb578d23995850d61f7d61c55c1"><span id="index-4"></span><span></span><span class="cp">#define</span> <span class="n">FALSE</span>   <span class="cp">(0)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-bool-1gaa93f0eb578d23995850d61f7d61c55c1"><span id="index-3"></span><span></span><span class="cp">#define</span> <span class="n">FALSE</span>   <span class="cp">(0)</span></pre>
 <p>Represents a boolean false value (0)</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span id="index-5"></span><span></span><span class="cp">#define</span> <span class="n">TRUE</span>    <span class="cp">(1)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span id="index-4"></span><span></span><span class="cp">#define</span> <span class="n">TRUE</span>    <span class="cp">(1)</span></pre>
 <p>Represents a boolean true value (1)</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-bool-1gadbdb134a7667f7eaab54152cb5c2c0bb"><span id="index-6"></span><span></span><span class="cp">#define</span> <span class="n">c_bool_to_str</span>   <span class="cp">Bool_ToString</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-bool-1gadbdb134a7667f7eaab54152cb5c2c0bb"><span id="index-5"></span><span></span><span class="cp">#define</span> <span class="n">c_bool_to_str</span>   <span class="cp">Bool_ToString</span></pre>
 <p>[<em>Alias for</em> #Bool_ToString]</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-bool-1gacc3d0f7cb029f5895392f1392ac1bb48"><span id="index-7"></span><span></span><span class="cp">#define</span> <span class="n">c_str_to_bool</span>   <a class="reference internal" href="#doxid-group-libccc-bool-1gaa9b13c09a76c522d0bc3e86316cfbb17"><span class="std std-ref">Bool_FromString</span></a></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-bool-1gacc3d0f7cb029f5895392f1392ac1bb48"><span id="index-6"></span><span></span><span class="cp">#define</span> <span class="n">c_str_to_bool</span>   <a class="reference internal" href="#doxid-group-libccc-bool-1gaa9b13c09a76c522d0bc3e86316cfbb17"><span class="std std-ref">Bool_FromString</span></a></pre>
 <p>[<em>Alias for</em> <a class="reference internal" href="#doxid-group-libccc-bool-1gaa9b13c09a76c522d0bc3e86316cfbb17"><span class="std std-ref">Bool_FromString</span></a>]</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-bool-1ga65e9886d74aaee76545e83dd09011727"><span id="index-8"></span><span></span><span class="cp">#define</span> <span class="n">false</span>   <a class="reference internal" href="#doxid-group-libccc-bool-1gaa93f0eb578d23995850d61f7d61c55c1"><span class="std std-ref">FALSE</span></a></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-bool-1ga41f9c5fb8b08eb5dc3edce4dcb37fee7"><span id="index-7"></span><span></span><span class="cp">#define</span> <span class="n">true</span>    <a class="reference internal" href="#doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span class="std std-ref">TRUE</span></a></pre>
 <p>Represents a boolean false value (0)</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-bool-1ga41f9c5fb8b08eb5dc3edce4dcb37fee7"><span id="index-9"></span><span></span><span class="cp">#define</span> <span class="n">true</span>    <a class="reference internal" href="#doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span class="std std-ref">TRUE</span></a></pre>
-<p>Represents a boolean true value (1)</p>
 </div>
 </div>
 </div>
