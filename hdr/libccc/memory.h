@@ -41,25 +41,11 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! Returns a pointer to a newly allocated memory area which is `size` bytes long.
-/*!
-**	@isostd{https://en.cppreference.com/w/c/memory/malloc}
-**
-**	Allocates `size` bytes in memory, returning the pointer to allocated region.
-**	NB: This function only allocates the memory: there may be garbage leftover values.
-**		It is recommended to use Memory_New() instead, to avoid garbage memory issues.
-**
-**	@returns The pointer to newly allocated region, or #NULL if an error occurred
-**			(ie: the memory could not be allocated for whatever reason).
-*/
-_MALLOC()
-void*				Memory_Alloc(t_size size);
-#define c_malloc	Memory_Alloc //!< @alias{Memory_Alloc}
-#define c_memalloc	Memory_Alloc //!< @alias{Memory_Alloc}
-
 //! Returns a newly allocated memory area which is `size` bytes long, with every byte set to `0`.
 /*!
 **	@nonstd
+**	This function is similar to:
+**	@isostd{https://en.cppreference.com/w/c/memory/calloc}
 **
 **	Allocates `size` bytes in memory, returning the pointer to allocated region.
 **	Sets each byte of this newly allocated memory space to `0`.
@@ -69,7 +55,6 @@ void*				Memory_Alloc(t_size size);
 */
 _MALLOC()
 void*				Memory_New(t_size size);
-#define c_calloc	Memory_New //!< @alias{Memory_New}
 #define c_memnew	Memory_New //!< @alias{Memory_New}
 
 //! Returns a newly allocated memory area which is `size` bytes long, with every byte set to `c`.
@@ -84,7 +69,39 @@ _MALLOC()
 void*				Memory_New_C(t_size size, char c);
 #define c_memcnew	Memory_New_C //!< @alias{Memory_New_C}
 
+//! Returns a pointer to a newly allocated memory area which is `size` bytes long, uninitialized.
+/*!
+**	@isostd{https://en.cppreference.com/w/c/memory/malloc}
+**
+**	Allocates `size` bytes in memory, returning the pointer to allocated region.
+**	NB: This function only allocates a new memory region and does nothign more:
+**		This means that there may be garbage leftover values in the newly allocated region.
+**		It generally recommended to use Memory_New() instead, to avoid garbage memory issues.
+**
+**	@returns The pointer to newly allocated region, or #NULL if an error occurred
+**			(ie: the memory could not be allocated for whatever reason).
+*/
+_MALLOC()
+void*					Memory_Allocate(t_size size);
+#define c_malloc		Memory_Allocate //!< @alias{Memory_Allocate}
+#define c_memalloc		Memory_Allocate //!< @alias{Memory_Allocate}
+#define Memory_Alloc	Memory_Allocate //!< @alias{Memory_Allocate}
 
+//! Reallocates the given area of memory `ptr` to be `size` bytes long, returning the new (or same) pointer.
+/*!
+**	@isostd{https://en.cppreference.com/w/c/memory/realloc}
+**
+**	This function will either reallocate in-place (ie: not changing the pointer),
+**	or, if that is not possible, it will allocate the needed `size` to a new region.
+**
+**	@returns The pointer to newly allocated region, or the same old `ptr` given as arg.
+**		May also return #NULL if an error occurred (the memory could not be allocated for whatever reason).
+*/
+_MALLOC()
+void*					Memory_Reallocate(void* ptr, t_size size);
+#define c_realloc		Memory_Reallocate //!< @alias{Memory_Reallocate}
+#define c_memrealloc	Memory_Reallocate //!< @alias{Memory_Reallocate}
+#define Memory_Realloc	Memory_Reallocate //!< @alias{Memory_Reallocate}
 
 //! Frees the previously allocated memory area at `*ptr`.
 /*!
@@ -93,8 +110,11 @@ void*				Memory_New_C(t_size size, char c);
 **	Deallocates the area of memory pointed to by `ptr`, assuming it was
 **	previously allocated by a call to Memory_Alloc() or Memory_New()
 */
-void				Memory_Free(void* ptr);
-#define c_memfree	Memory_Free //!< @alias{Memory_Free}
+void					Memory_Deallocate(void* ptr);
+#define c_free			Memory_Deallocate //!< @alias{Memory_Deallocate}
+#define c_memfree		Memory_Deallocate //!< @alias{Memory_Deallocate}
+#define Memory_Free		Memory_Deallocate //!< @alias{Memory_Deallocate}
+#define Memory_Dealloc	Memory_Deallocate //!< @alias{Memory_Deallocate}
 
 //! Frees the allocated memory at `**a_ptr`, and sets `*a_ptr` to #NULL.
 /*!

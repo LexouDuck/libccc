@@ -10,7 +10,7 @@ void	c_memset(void *ptr, t_u8 byte, t_size n)
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (ptr == NULL)
-		return ;
+		return;
 #endif
 	byte &= 0xFF;
 	result = (t_u8 *)ptr;
@@ -31,7 +31,7 @@ void	c_memclr(void *ptr, t_size n)
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (ptr == NULL)
-		return ;
+		return;
 #endif
 	result = (t_u8 *)ptr;
 	i = 0;

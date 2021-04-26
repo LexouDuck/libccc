@@ -101,10 +101,10 @@ void		String_Replace_Char_InPlace(t_char* str, t_char const old, t_char const ne
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
-		return ;
+		return;
 #endif
 	if (old == '\0')
-		return ;
+		return;
 	i = 0;
 	while (str[i])
 	{
@@ -124,17 +124,17 @@ void		String_Replace_Charset_InPlace(t_char* str, t_char const* old, t_char cons
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || old == NULL || new == NULL)
-		return ;
+		return;
 #endif
 	if (String_Length(old) != String_Length(new))
-		return ;
+		return;
 	i = 0;
 	while (old[i])
 	{
 		j = i;
 		while (old[++j])
 			if (old[i] == old[j])
-				return ;
+				return;
 		++i;
 	}
 	i = 0;

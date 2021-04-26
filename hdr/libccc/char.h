@@ -245,12 +245,20 @@ t_bool				Char_IsASCII(t_utf32 c);
 **
 **	@param	c		The character to check (ASCII or Unicode)
 **	@param	charset	String, the set of characters to look through (the '\0' terminator ends the charset)
-**	@returns 1(TRUE) if the given char `c` is a printable ASCII character,
-**			(0x20 <= c && c <= 0x7E) and returns 0(FALSE) otherwise.
+**	@returns 1(TRUE) if the given char `c` is contained within the given `charset` array
 */
+//!@{
 t_bool					Char_IsInCharset(t_utf32 c, t_char const* charset);
 #define c_isincharset	Char_IsInCharset
-// TODO make charset UTF-8 compatible
+/* TODO
+t_bool						Char_IsInCharset_UTF8(t_utf32 c, t_utf8 const* charset);
+#define c_isinutf8charset	Char_IsInCharset_UTF8
+*/
+/* TODO
+t_bool						Char_IsInCharset_UTF16(t_utf32 c, t_utf16 const* charset);
+#define c_isinutf16charset	Char_IsInCharset_UTF16
+*/
+//!@}
 
 
 

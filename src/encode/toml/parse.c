@@ -120,7 +120,7 @@ void		TOML_Parse(t_fd fd, s_config* config, s_logger const* logger)
 	if (IO_Read_File(fd, &parser.file, CONFIG_FILEBUFFER) < 0)
 	{
 		Log_Error_IO(logger, errno, "Couldn't read config INI file.");
-		return ;
+		return;
 	}
 	parser.index = 0;
 	parser.line = 1;

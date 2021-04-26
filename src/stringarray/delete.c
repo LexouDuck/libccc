@@ -11,7 +11,7 @@ void	c_strarrdel(char** *a_strarr)
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (a_strarr == NULL)
-		return ;
+		return;
 #endif
 	if (*a_strarr)
 	{

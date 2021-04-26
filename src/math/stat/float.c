@@ -23,7 +23,7 @@ void			c_stat_free_flst(s_list_float *flst)
 {
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (flst == NULL)
-		return ;
+		return;
 #endif
 	if (flst->data)
 	{
@@ -98,12 +98,12 @@ void				c_stat_quicksort_f_rec
 
 	pivot = tmp_lst.data[start];
 	if (start >= end || pivot != pivot)
-		return ;
+		return;
 	if (start == end - 1)
 	{
 		if (pivot > tmp_lst.data[end])
 			c_memswap(tmp_lst.data + start, tmp_lst.data + end, sizeof(t_float));
-		return ;
+		return;
 	}
 
 	rise_id = start + 1;

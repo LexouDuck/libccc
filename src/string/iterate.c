@@ -9,7 +9,7 @@ void	c_striter(t_char* str, void (*f)(t_char* c))
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || f == NULL)
-		return ;
+		return;
 #endif
 	i = 0;
 	while (str[i])
@@ -27,7 +27,7 @@ void	c_striteri(t_char* str, void (*f)(t_char* c, t_size index))
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL || f == NULL)
-		return ;
+		return;
 #endif
 	i = 0;
 	while (str[i])

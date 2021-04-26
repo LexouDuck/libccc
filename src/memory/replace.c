@@ -10,7 +10,7 @@ void	c_memrep(void *ptr, t_u8 old, t_u8 new, t_size n)
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (ptr == NULL)
-		return ;
+		return;
 #endif
 	result = (t_u8*)ptr;
 	i = 0;

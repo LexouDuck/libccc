@@ -22,7 +22,7 @@ void			c_stat_free_ilst(s_list_int *ilst)
 {
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (ilst == NULL)
-		return ;
+		return;
 #endif
 	if (ilst->data)
 	{
@@ -97,12 +97,12 @@ void			c_stat_quicksort_i_rec
 
 	pivot = tmp_lst.data[start];
 	if (start >= end)
-		return ;
+		return;
 	if (start == end - 1)
 	{
 		if (pivot > tmp_lst.data[end])
 			c_memswap(tmp_lst.data + start, tmp_lst.data + end, sizeof(t_sint));
-		return ;
+		return;
 	}
 
 	rise_id = start + 1;
@@ -247,7 +247,7 @@ void					c_stat_free_pmf(s_prob_mass *drv)
 {
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (drv == NULL)
-		return ;
+		return;
 #endif
 	if (drv->value)
 	{

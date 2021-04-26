@@ -7,7 +7,7 @@ void	CONCAT(List_Iterate,T_NAME)(s_list_T* list, void (*f)(T item))
 {
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (list == NULL || f == NULL)
-		return ;
+		return;
 #endif
 	while (list)
 	{
@@ -24,7 +24,7 @@ void	CONCAT(List_Iterate_I,T_NAME)(s_list_T* list, void (*f)(T item, t_uint inde
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (list == NULL || f == NULL)
-		return ;
+		return;
 #endif
 	i = 0;
 	while (list)

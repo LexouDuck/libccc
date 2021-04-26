@@ -34,7 +34,7 @@ void		c_strarrmap_inplace(char** *a_strarr, char* (*f)(char*))
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (a_strarr == NULL || *a_strarr == NULL || f == NULL)
-		return ;
+		return;
 #endif
 	i = 0;
 	while ((*a_strarr)[i])

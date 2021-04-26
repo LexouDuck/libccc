@@ -9,7 +9,7 @@ inline void	c_strset(t_char* str, t_char c)
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
-		return ;
+		return;
 #endif
 	i = 0;
 	while (str[i])

@@ -12,7 +12,7 @@ void	CONCAT(List_Delete,T_NAME)(s_list_T* *a_list)
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (a_list == NULL)
-		return ;
+		return;
 #endif
 	i = *a_list;
 	while (i)
@@ -34,7 +34,7 @@ void	CONCAT(List_Delete_F,T_NAME)(s_list_T* *a_list, void (*delete)(T item))
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (a_list == NULL)
-		return ;
+		return;
 #endif
 	i = *a_list;
 	while (i)

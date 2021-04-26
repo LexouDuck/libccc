@@ -8,7 +8,7 @@ inline void	c_strdel(t_char* *a_str)
 {
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (a_str == NULL)
-		return ;
+		return;
 #endif
 	if (*a_str)
 	{

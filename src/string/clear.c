@@ -9,7 +9,7 @@ void	c_strclr(t_char* str)
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str == NULL)
-		return ;
+		return;
 #endif
 	i = 0;
 	while (str[i])
