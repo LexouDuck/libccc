@@ -74,7 +74,7 @@ t_char*	String_Parse(t_char const* str, t_bool any_escape)
 	t_size	i = 0;
 
 	LIBCONFIG_HANDLE_NULLPOINTER(str, NULL)
-	if (!(result = (t_char*)Memory_Alloc(String_Parse_GetLength(str, any_escape) + 1)))
+	if (!(result = (t_char*)Memory_Alloc(String_Parse_GetLength(str, any_escape) + sizeof(""))))
 		return (NULL);
 	while (str[index])
 	{

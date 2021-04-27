@@ -15,7 +15,7 @@ t_char*		String_Pad(t_char const* str, t_char c, t_size size)
 	length = String_Length(str);
 	if (size == length)
 		return (String_Duplicate(str));
-	if (!(result = (t_char*)Memory_Alloc(size + 1)))
+	if (!(result = (t_char*)Memory_Alloc(size + sizeof(""))))
 		return (NULL);
 	result[size] = '\0';
 	i = 0;
@@ -59,7 +59,7 @@ t_char*		String_Pad_L(t_char const* str, t_char c, t_size size)
 	length = String_Length(str);
 	if (size == length)
 		return (String_Duplicate(str));
-	if (!(result = (t_char*)Memory_Alloc(size + 1)))
+	if (!(result = (t_char*)Memory_Alloc(size + sizeof(""))))
 		return (NULL);
 	result[size] = '\0';
 	if (size < length)
@@ -102,7 +102,7 @@ t_char*		String_Pad_R(t_char const* str, t_char c, t_size size)
 	length = String_Length(str);
 	if (size == length)
 		return (String_Duplicate(str));
-	if (!(result = (t_char*)Memory_Alloc(size + 1)))
+	if (!(result = (t_char*)Memory_Alloc(size + sizeof(""))))
 		return (NULL);
 	result[size] = '\0';
 	i = 0;

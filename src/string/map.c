@@ -15,7 +15,7 @@ t_char*	String_Map(t_char const* str, t_char (*map)(t_char c))
 	length = 0;
 	while (str[length])
 		++length;
-	if (!(result = (t_char*)Memory_Alloc(length + 1)))
+	if (!(result = (t_char*)Memory_Alloc(length + sizeof(""))))
 		return (NULL);
 	i = 0;
 	while (i < length)
@@ -40,7 +40,7 @@ t_char*	String_Map_I(t_char const* str, t_char (*map)(t_char c, t_size index))
 	length = 0;
 	while (str[length])
 		++length;
-	if (!(result = (t_char*)Memory_Alloc(length + 1)))
+	if (!(result = (t_char*)Memory_Alloc(length + sizeof(""))))
 		return (NULL);
 	i = 0;
 	while (i < length)

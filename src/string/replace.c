@@ -18,7 +18,7 @@ t_char*		String_Replace_Char(t_char const* str, t_char const old, t_char const n
 	i = 0;
 	while (str[i])
 		++i;
-	if (!(result = (t_char*)Memory_Alloc(i + 1)))
+	if (!(result = (t_char*)Memory_Alloc(i + sizeof(""))))
 		return (NULL);
 	i = 0;
 	while (str[i])
@@ -55,7 +55,7 @@ t_char*		String_Replace_Charset(t_char const* str, t_char const* old, t_char con
 				return (NULL);
 		++i;
 	}
-	if (!(result = (t_char*)Memory_Alloc(i + 1)))
+	if (!(result = (t_char*)Memory_Alloc(i + sizeof(""))))
 		return (NULL);
 	i = 0;
 	while (str[i])

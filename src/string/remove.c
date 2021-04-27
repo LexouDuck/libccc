@@ -19,7 +19,7 @@ t_char*	String_Remove(t_char const* str, t_char const* query)
 	length_query = String_Length(query);
 	i = matches * length_query;
 	length = (length < i) ? 0 : length - i;
-	if (!(result = (t_char*)Memory_Alloc(length + 1)))
+	if (!(result = (t_char*)Memory_Alloc(length + sizeof(""))))
 		return (NULL);
 	matches = (t_size)(String_Find_String(str, query) - str);
 	i = 0;

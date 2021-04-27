@@ -52,7 +52,7 @@ t_char*	String_Print(t_char const* str, t_char const* charset_extra)
 	t_size	i = 0;
 
 	LIBCONFIG_HANDLE_NULLPOINTER(str, NULL)
-	if (!(result = (t_char*)Memory_Alloc(String_Print_GetLength(str, charset_extra) + 1)))
+	if (!(result = (t_char*)Memory_Alloc(String_Print_GetLength(str, charset_extra) + sizeof(""))))
 		return (NULL);
 	while (str[index])
 	{

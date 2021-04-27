@@ -36,7 +36,7 @@ static int	vasprintf(t_char** a_str, t_char const* format, va_list args)
 	int length = vscprintf(format, args);
 	if (length == -1)
 		return -1;
-	t_char* str = (t_char*)Memory_Alloc((size_t)length + 1);
+	t_char* str = (t_char*)Memory_Alloc((size_t)length + sizeof(""));
 	if (!str)
 		return -1;
 	int result = vsnprintf(str, length + 1, format, args);

@@ -15,7 +15,7 @@ t_char*		String_Join(t_char const* str1, t_char const* str2)
 	LIBCONFIG_HANDLE_NULLPOINTER(str2, NULL)
 	length1 = String_Length(str1);
 	length2 = String_Length(str2);
-	if (!(result = (t_char*)Memory_Alloc(length1 + length2 + 1)))
+	if (!(result = (t_char*)Memory_Alloc(length1 + length2 + sizeof(""))))
 		return (NULL);
 	i = 0;
 	while (i < length1)
