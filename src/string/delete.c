@@ -6,7 +6,7 @@
 
 inline void	String_Delete(t_char** a_str)
 {
-	LIBCONFIG_HANDLE_NULLPOINTER(a_str, )
+	LIBCONFIG_HANDLE_NULLPOINTER(, a_str)
 	if (*a_str)
 	{
 		Memory_Free(*a_str);

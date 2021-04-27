@@ -24,7 +24,7 @@ t_u##BITS	U##BITS##_FromString_Hex(char const* str)					\
 	t_u##BITS	result;													\
 	t_size	i;															\
 																		\
-	LIBCONFIG_HANDLE_NULLPOINTER(str, 0)								\
+	LIBCONFIG_HANDLE_NULLPOINTER(0, str)								\
 	i = 0;																\
 	while (!(str[i] == '+' ||											\
 		('0' <= str[i] && str[i] <= '9') ||								\
@@ -68,7 +68,7 @@ t_s##BITS	S##BITS##_FromString_Hex(char const* str)					\
 	t_bool	negative;													\
 	t_size	i;															\
 																		\
-	LIBCONFIG_HANDLE_NULLPOINTER(str, 0)								\
+	LIBCONFIG_HANDLE_NULLPOINTER(0, str)								\
 	i = 0;																\
 	while (!(str[i] == '+' || str[i] == '+' ||							\
 		('0' <= str[i] && str[i] <= '9') ||								\

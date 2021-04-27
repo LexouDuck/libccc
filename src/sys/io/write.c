@@ -29,7 +29,7 @@ inline t_io_error	IO_Write_Char(int fd, char c)
 
 inline t_io_error	IO_Write_String(int fd, const char* str)
 {
-	LIBCONFIG_HANDLE_NULLPOINTER(str, OK)
+	LIBCONFIG_HANDLE_NULLPOINTER(OK, str)
 	int result;
 	if ((result = write(fd, str, String_Length(str))) < 0)
 		return (errno);
@@ -40,7 +40,7 @@ inline t_io_error	IO_Write_String(int fd, const char* str)
 
 inline t_io_error	IO_Write_Line(int fd, const char* str)
 {
-	LIBCONFIG_HANDLE_NULLPOINTER(str, OK)
+	LIBCONFIG_HANDLE_NULLPOINTER(OK, str)
 	int result;
 	if ((result = write(fd, str, String_Length(str))) < 0)
 		return (errno);
@@ -53,7 +53,7 @@ inline t_io_error	IO_Write_Line(int fd, const char* str)
 
 t_io_error		IO_Write_Lines(int fd, const char** strarr)
 {
-	LIBCONFIG_HANDLE_NULLPOINTER(strarr, OK)
+	LIBCONFIG_HANDLE_NULLPOINTER(OK, strarr)
 	int result;
 	int i = 0;
 	while (strarr[i])
@@ -71,7 +71,7 @@ t_io_error		IO_Write_Lines(int fd, const char** strarr)
 
 t_io_error		IO_Write_Memory(int fd, t_u8 const* ptr, t_size n, t_u8 columns)
 {
-	LIBCONFIG_HANDLE_NULLPOINTER(ptr, OK)
+	LIBCONFIG_HANDLE_NULLPOINTER(OK, ptr)
 	if (n == 0 || columns == 0)
 		return (OK);
 	int result;
@@ -98,7 +98,7 @@ t_io_error		IO_Write_Memory(int fd, t_u8 const* ptr, t_size n, t_u8 columns)
 
 t_io_error		IO_Write_Format(t_fd fd, char const* format, ...)
 {
-	LIBCONFIG_HANDLE_NULLPOINTER(format, OK)
+	LIBCONFIG_HANDLE_NULLPOINTER(OK, format)
 	int result;
 	char* str;
 	va_list args;

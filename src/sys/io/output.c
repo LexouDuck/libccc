@@ -54,7 +54,7 @@ inline t_io_error	IO_Output_Memory(t_u8 const* ptr, t_size n, t_u8 cols)
 
 t_io_error			IO_Output_Format(char const* format, ...)
 {
-	LIBCONFIG_HANDLE_NULLPOINTER(format, OK)
+	LIBCONFIG_HANDLE_NULLPOINTER(OK, format)
 	int result;
 	char* str;
 	va_list args;

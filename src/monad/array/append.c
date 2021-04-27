@@ -9,8 +9,8 @@ void	CONCAT(Array_Append,T_NAME)(s_array_T* array, T item)
 {
 	T*	result;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(array, )
-	LIBCONFIG_HANDLE_NULLPOINTER(array->items, )
+	LIBCONFIG_HANDLE_NULLPOINTER(, array)
+	LIBCONFIG_HANDLE_NULLPOINTER(, array->items)
 	result = (T*)Memory_Alloc(sizeof(T) * (array->length + 1));
 	if (result == NULL)
 		return;

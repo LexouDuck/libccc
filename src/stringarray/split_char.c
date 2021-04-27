@@ -41,7 +41,7 @@ t_char**		String_Split_Char(t_char const* str, t_char c)
 	int		count;
 	int		i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(str, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
 	count = String_Split_Char_GetCount(str, c);
 	if (!(result = StringArray_New(count)))
 		return (NULL);

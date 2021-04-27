@@ -11,7 +11,7 @@ t_char**	StringArray_Sub(t_char const** strarr, t_u32 start, t_u32 n)
 	t_u32		length;
 	t_u32		i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(strarr, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, strarr)
 	length = StringArray_Length(strarr);
 	if (start > length || start + n > length)
 		return (NULL);

@@ -12,8 +12,8 @@ t_char*	String_Remove(t_char const* str, t_char const* query)
 	t_size	length_query;
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(str, NULL)
-	LIBCONFIG_HANDLE_NULLPOINTER(query, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, query)
 	matches = String_Count_String(str, query);
 	length = String_Length(str);
 	length_query = String_Length(query);

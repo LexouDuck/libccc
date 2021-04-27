@@ -59,8 +59,8 @@ t_char**		String_Split_String(t_char const* str, t_char const* sub)
 	t_u32	i;
 	t_u32	j;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(str, NULL)
-	LIBCONFIG_HANDLE_NULLPOINTER(sub, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, sub)
 	if (sub[0] == '\0')
 		return (String_Divide(str, 1));
 	reslen = String_Split_String_CountDistinctSubs(str, sub) + 1;

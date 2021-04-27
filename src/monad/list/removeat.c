@@ -9,7 +9,7 @@ s_list_T*	CONCAT(List_RemoveAt,T_NAME)(s_list_T* list, t_uint index)
 	s_list_T*	elem;
 	s_list_T*	tmp;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(list, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, list)
 	elem = list;
 	if (index == 0)
 	{
@@ -39,7 +39,7 @@ s_list_T*	CONCAT(List_RemoveAt_F,T_NAME)(s_list_T* list, t_uint index, void (*de
 	s_list_T*	elem;
 	s_list_T*	tmp;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(list, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, list)
 	elem = list;
 	if (index == 0)
 	{

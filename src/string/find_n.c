@@ -7,7 +7,7 @@ t_char*	String_Find_N_Char(t_char const* str, t_char c, t_size n)
 {
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(str, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
 	i = 0;
 	while (i < n)
 	{
@@ -32,8 +32,8 @@ t_char*	String_Find_N_Charset(t_char const* str, t_char const* charset, t_size n
 {
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(str, NULL)
-	LIBCONFIG_HANDLE_NULLPOINTER(charset, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, charset)
 	i = 0;
 	while (str[i] && i <= n)
 	{
@@ -61,8 +61,8 @@ t_char*	String_Find_N_String(t_char const* str, t_char const* query, t_size n)
 	t_size	match;
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(str, NULL)
-	LIBCONFIG_HANDLE_NULLPOINTER(query, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, query)
 	length = 0;
 	while (query[length])
 		++length;

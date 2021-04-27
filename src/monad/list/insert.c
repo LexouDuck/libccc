@@ -10,7 +10,7 @@ s_list_T*	CONCAT(List_Insert,T_NAME)(s_list_T* list, T item, t_uint index)
 	s_list_T*	new;
 	s_list_T*	tmp;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(list, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, list)
 	if (!(new = (s_list_T*)Memory_Alloc(sizeof(s_list_T))))
 		return (list);
 	if (list == NULL || index == 0)

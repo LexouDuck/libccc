@@ -9,7 +9,7 @@ void	StringArray_Delete(t_char** *a_strarr)
 {
 	int		i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(a_strarr, )
+	LIBCONFIG_HANDLE_NULLPOINTER(, a_strarr)
 	if (*a_strarr)
 	{
 		i = 0;

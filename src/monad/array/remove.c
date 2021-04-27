@@ -6,8 +6,8 @@
 _GENERIC()
 void	CONCAT(Array_Remove,T_NAME)(s_array_T* array, T item)
 {
-	LIBCONFIG_HANDLE_NULLPOINTER(array, )
-	LIBCONFIG_HANDLE_NULLPOINTER(array->items, )
+	LIBCONFIG_HANDLE_NULLPOINTER(, array)
+	LIBCONFIG_HANDLE_NULLPOINTER(, array->items)
 	t_sint	index = CONCAT(Array_IndexOf,T_NAME)(array, item);
 	if (index == ERROR)
 		return;
@@ -18,8 +18,8 @@ void	CONCAT(Array_Remove,T_NAME)(s_array_T* array, T item)
 _GENERIC()
 void	CONCAT(Array_Remove_F,T_NAME)(s_array_T* array, T item, void (*delete)(T))
 {
-	LIBCONFIG_HANDLE_NULLPOINTER(array, )
-	LIBCONFIG_HANDLE_NULLPOINTER(array->items, )
+	LIBCONFIG_HANDLE_NULLPOINTER(, array)
+	LIBCONFIG_HANDLE_NULLPOINTER(, array->items)
 	t_sint	index = CONCAT(Array_IndexOf,T_NAME)(array, item);
 	if (index == ERROR)
 		return;

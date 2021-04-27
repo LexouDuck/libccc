@@ -5,7 +5,7 @@
 _GENERIC()
 s_list_T*	CONCAT(List_Set,T_NAME)(s_list_T* list, t_uint index, T item)
 {
-	LIBCONFIG_HANDLE_NULLPOINTER(list, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, list)
 	for (t_uint	i = 0; i < index; ++i)
 	{
 		if (list->next == NULL)

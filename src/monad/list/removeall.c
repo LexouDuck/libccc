@@ -9,7 +9,7 @@ s_list_T*	CONCAT(List_RemoveAll,T_NAME)(s_list_T* list, T item)
 	s_list_T*	elem;
 	s_list_T*	tmp;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(list, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, list)
 	elem = list;
 	while (elem)
 	{
@@ -34,7 +34,7 @@ s_list_T*	CONCAT(List_RemoveAll_F,T_NAME)(s_list_T* list, T item, void (*delete)
 	s_list_T*	elem;
 	s_list_T*	tmp;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(list, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, list)
 	elem = list;
 	while (elem)
 	{

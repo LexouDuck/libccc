@@ -7,8 +7,8 @@ t_char*	String_Copy(t_char* dest, t_char const* src)
 {
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(dest, NULL)
-	LIBCONFIG_HANDLE_NULLPOINTER(src, dest)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, dest)
+	LIBCONFIG_HANDLE_NULLPOINTER(dest, src)
 	i = 0;
 	while (src[i])
 	{
@@ -26,8 +26,8 @@ t_char*	String_Copy_N(t_char* dest, t_char const* src, t_size n)
 	t_char*	str;
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(dest, NULL)
-	LIBCONFIG_HANDLE_NULLPOINTER(src, dest)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, dest)
+	LIBCONFIG_HANDLE_NULLPOINTER(dest, src)
 	str = dest;
 	i = 0;
 	while (n > 0 && src[i])
@@ -51,8 +51,8 @@ t_size	String_Copy_L(t_char* dest, t_char const* src, t_size size)
 {
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(dest, 0)
-	LIBCONFIG_HANDLE_NULLPOINTER(src, 0)
+	LIBCONFIG_HANDLE_NULLPOINTER(0, dest)
+	LIBCONFIG_HANDLE_NULLPOINTER(0, src)
 	i = 0;
 	while (i < size - 1 && src[i])
 	{

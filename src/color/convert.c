@@ -13,7 +13,7 @@ s_ahsl		Color_ARGB_To_AHSL(s_argb const* color)
 	t_float max = 0.;
 	t_float chroma;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(color, result)
+	LIBCONFIG_HANDLE_NULLPOINTER(result, color)
 	c = *color;
 	result.a = c.a;
 	// get min and max channel values
@@ -53,7 +53,7 @@ s_argb		Color_AHSL_To_ARGB(s_ahsl const* color)
 	t_float tmp1;
 	t_float tmp2;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(color, result)
+	LIBCONFIG_HANDLE_NULLPOINTER(result, color)
 	c = *color;
 	result.a = c.a;
 	if (c.sat == 0)

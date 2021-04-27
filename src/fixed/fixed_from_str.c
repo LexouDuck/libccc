@@ -14,7 +14,7 @@ t_q##BITS	Q##BITS##_FromString(char const* str)						\
 	t_bool	negative;													\
 	t_size	i;															\
 																		\
-	LIBCONFIG_HANDLE_NULLPOINTER(str, 0)								\
+	LIBCONFIG_HANDLE_NULLPOINTER(0, str)								\
 	for (i = 0; str[i] && Char_IsSpace(str[i]); ++i)					\
 		continue;														\
 	if (!(str[i] == '+' || str[i] == '-' || Char_IsDigit(str[i])))		\

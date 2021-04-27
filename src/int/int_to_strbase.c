@@ -10,7 +10,7 @@ static t_size	Int_ToString_Base_GetLength(char const* base, t_bool sign)
 	t_size	i;
 	t_size	j;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(base, 0)
+	LIBCONFIG_HANDLE_NULLPOINTER(0, base)
 	i = 0;
 	while (base[i])
 	{

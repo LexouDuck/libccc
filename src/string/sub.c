@@ -10,7 +10,7 @@ t_char*	String_Sub(t_char const* str, t_size index, t_size n)
 	t_size	length;
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(str, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
 	length = 0;
 	while (str[length])
 		++length;

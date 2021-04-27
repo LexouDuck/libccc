@@ -7,7 +7,7 @@ inline void	String_Set(t_char* str, t_char c)
 {
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(str, )
+	LIBCONFIG_HANDLE_NULLPOINTER(, str)
 	i = 0;
 	while (str[i])
 	{

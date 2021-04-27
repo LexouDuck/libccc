@@ -12,7 +12,7 @@ t_u##BITS	U##BITS##_FromString(char const* str)						\
 	t_u##BITS	result;													\
 	t_size	i;															\
 																		\
-	LIBCONFIG_HANDLE_NULLPOINTER(str, 0)								\
+	LIBCONFIG_HANDLE_NULLPOINTER(0, str)								\
 	for (i = 0; str[i] && Char_IsSpace(str[i]); ++i)					\
 		continue;														\
 	if (!(str[i] == '+' || Char_IsDigit(str[i])))						\
@@ -45,7 +45,7 @@ t_s##BITS	S##BITS##_FromString(char const* str)						\
 	t_bool	negative;													\
 	t_size	i;															\
 																		\
-	LIBCONFIG_HANDLE_NULLPOINTER(str, 0)								\
+	LIBCONFIG_HANDLE_NULLPOINTER(0, str)								\
 	for (i = 0; str[i] && Char_IsSpace(str[i]); ++i)					\
 		continue;														\
 	if (!(str[i] == '+' || str[i] == '-' || Char_IsDigit(str[i])))		\

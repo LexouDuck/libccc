@@ -45,7 +45,7 @@ static t_bool	Float_FromString_CheckInvalid(char const* str)
 	t_size	count_expon;
 	t_size	count_signs;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(str, TRUE)
+	LIBCONFIG_HANDLE_NULLPOINTER(TRUE, str)
 	if (str[0] == '\0')
 		return (TRUE);
 	if (str[0] != '+' &&
@@ -76,7 +76,7 @@ t_f##BITS			F##BITS##_FromString(char const* str)			\
 {																	\
 	t_f##BITS	result;												\
 																	\
-	LIBCONFIG_HANDLE_NULLPOINTER(str, 0)							\
+	LIBCONFIG_HANDLE_NULLPOINTER(0, str)							\
 	while (*str && Char_IsSpace(*str))								\
 		++str;														\
 	result = Float_FromString_CheckSpecial(str);					\
@@ -112,7 +112,7 @@ t_f##BITS	F##BITS##_FromString_Exp(char const* str)				\
 	char*		tmp;												\
 	t_size	i = 0;													\
 																	\
-	LIBCONFIG_HANDLE_NULLPOINTER(str, 0)							\
+	LIBCONFIG_HANDLE_NULLPOINTER(0, str)							\
 	while (*str && Char_IsSpace(*str))								\
 		++str;														\
 	result = Float_FromString_CheckSpecial(str);					\
@@ -164,7 +164,7 @@ t_f##BITS	F##BITS##_FromString_Dec(char const* str)				\
 	t_bool	negative;												\
 	t_size	i = 0;													\
 																	\
-	LIBCONFIG_HANDLE_NULLPOINTER(str, 0)							\
+	LIBCONFIG_HANDLE_NULLPOINTER(0, str)							\
 	while (*str && Char_IsSpace(*str))								\
 		++str;														\
 	result = Float_FromString_CheckSpecial(str);					\
@@ -203,7 +203,7 @@ t_f##BITS	F##BITS##_FromString_Hex(char const* str)						\
 	t_s16		exponent;													\
 	char*		tmp;														\
 																			\
-	LIBCONFIG_HANDLE_NULLPOINTER(str, 0)									\
+	LIBCONFIG_HANDLE_NULLPOINTER(0, str)									\
 	while (*str && Char_IsSpace(*str))										\
 		++str;																\
 	result = Float_FromString_CheckSpecial(str);							\
@@ -212,7 +212,7 @@ t_f##BITS	F##BITS##_FromString_Hex(char const* str)						\
 	if (Float_FromString_CheckInvalid(str))									\
 		return (NAN);														\
 																			\
-	LIBCONFIG_HANDLE_NULLPOINTER(str, 0)									\
+	LIBCONFIG_HANDLE_NULLPOINTER(0, str)									\
 	negative = (str[0] == '-');												\
 	str_mantissa = (negative || str[0] == '+') ? str + 1 : str;				\
 	str_exponent = String_Find_Charset(str, "pP");							\

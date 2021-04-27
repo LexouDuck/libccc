@@ -8,8 +8,8 @@ t_char*	String_Concat(t_char* dest, t_char const* src)
 	t_size	length;
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(dest, NULL)
-	LIBCONFIG_HANDLE_NULLPOINTER(src, dest)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, dest)
+	LIBCONFIG_HANDLE_NULLPOINTER(dest, src)
 	length = 0;
 	while (dest[length])
 		++length;
@@ -30,8 +30,8 @@ t_char*	String_Concat_N(t_char* dest, t_char const* src, t_size n)
 	t_size	length;
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(dest, NULL)
-	LIBCONFIG_HANDLE_NULLPOINTER(src, dest)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, dest)
+	LIBCONFIG_HANDLE_NULLPOINTER(dest, src)
 	length = 0;
 	while (dest[length])
 		++length;
@@ -58,8 +58,8 @@ t_size	String_Concat_L(t_char* dest, t_char const* src, t_size size)
 	t_size	src_len;
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(dest, 0)
-	LIBCONFIG_HANDLE_NULLPOINTER(src, 0)
+	LIBCONFIG_HANDLE_NULLPOINTER(0, dest)
+	LIBCONFIG_HANDLE_NULLPOINTER(0, src)
 	src_len = 0;
 	while (src[src_len])
 		++src_len;

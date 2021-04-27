@@ -10,7 +10,7 @@ t_bool	Bool_FromString(char const* str)
 {
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(str, FALSE)
+	LIBCONFIG_HANDLE_NULLPOINTER(FALSE, str)
 	i = 0;
 	while (str[i] && Char_IsSpace(str[i]))
 		++i;

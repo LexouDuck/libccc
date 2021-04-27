@@ -82,67 +82,6 @@ HEADER_CPP
 
 
 
-//! These macros allow you to configure how libccc handles parameter validation.
-/*!
-**	The "plural-named" macros should only ever have a value of `0` or `1`,
-**	they are used to activate or deactivate parameter validation at will.
-**	The "single-named" macro functions determine how the arguments are to be
-**	checked, validated, and handled. These macro functions are the important part,
-**	where you may customize the logic (to implement custom exception handling for example).
-*/
-//!@{
-//! comment out this `#define` to deactivate this kind of parameter validation
-#define LIBCONFIG_HANDLE_NULLPOINTERS	(1)
-#ifndef LIBCONFIG_HANDLE_NULLPOINTERS
-#define LIBCONFIG_HANDLE_NULLPOINTER(ARG, RESULT)
-#else
-#define LIBCONFIG_HANDLE_NULLPOINTER(ARG, RESULT) \
-	if ((ARG) == NULL)	return RESULT;
-#endif
-//! comment out this `#define` to deactivate this kind of parameter validation
-#define LIBCONFIG_HANDLE_INVALIDENUMS	(1)
-#ifndef LIBCONFIG_HANDLE_INVALIDENUMS
-#define LIBCONFIG_HANDLE_INVALIDENUM(ARG, RESULT, MIN, MAX) // TODO check everywhere where this should be used, and use it
-#else
-#define LIBCONFIG_HANDLE_INVALIDENUM(ARG, RESULT, MIN, MAX) \
-	if ((ARG) < (MIN) || (ARG) > (MAX))	return RESULT;
-#endif
-//! comment out this `#define` to deactivate this kind of parameter validation
-#define LIBCONFIG_HANDLE_INDEX2SMALLS	(1)
-#ifndef LIBCONFIG_HANDLE_INDEX2SMALLS
-#define LIBCONFIG_HANDLE_INDEX2SMALL(ARG, RESULT, MIN) // TODO check everywhere where this should be used, and use it
-#else
-#define LIBCONFIG_HANDLE_INDEX2SMALL(ARG, RESULT, MIN) \
-	if ((ARG) < (MIN))	return RESULT;
-#endif
-//! comment out this `#define` to deactivate this kind of parameter validation
-#define LIBCONFIG_HANDLE_INDEX2LARGES	(1)
-#ifndef LIBCONFIG_HANDLE_INDEX2LARGES
-#define LIBCONFIG_HANDLE_INDEX2LARGE(ARG, RESULT, MAX) // TODO check everywhere where this should be used, and use it
-#else
-#define LIBCONFIG_HANDLE_INDEX2LARGE(ARG, RESULT, MAX) \
-	if ((ARG) > (MAX))	return RESULT;
-#endif
-//! comment out this `#define` to deactivate this kind of parameter validation
-#define LIBCONFIG_HANDLE_LENGTH2SMALLS	(1)
-#ifndef LIBCONFIG_HANDLE_LENGTH2SMALLS
-#define LIBCONFIG_HANDLE_LENGTH2SMALL(ARG, RESULT, MIN) // TODO check everywhere where this should be used, and use it
-#else
-#define LIBCONFIG_HANDLE_LENGTH2SMALL(ARG, RESULT, MIN) \
-	if ((ARG) < (MIN))	return RESULT;
-#endif
-//! comment out this `#define` to deactivate this kind of parameter validation
-#define LIBCONFIG_HANDLE_LENGTH2LARGES	(1)
-#ifndef LIBCONFIG_HANDLE_LENGTH2LARGES
-#define LIBCONFIG_HANDLE_LENGTH2LARGE(ARG, RESULT, MAX) // TODO check everywhere where this should be used, and use it
-#else
-#define LIBCONFIG_HANDLE_LENGTH2LARGE(ARG, RESULT, MAX) \
-	if ((ARG) > (MAX))	return RESULT;
-#endif
-//!@}
-
-
-
 //! Defines which type/bit size the `t_uint` default unsigned integer type will be
 /*!
 **	This macro sets the default `t_uint` default unsigned integer type to use.
@@ -233,6 +172,110 @@ HEADER_CPP
 **	is dedicated to the integer part and the fraction part.
 */
 #define LIBCONFIG_USE_STD_FIXEDPOINT	0
+
+
+
+//! These macros allow you to configure how libccc handles parameter validation.
+/*!
+**	The "plural-named" macros should only ever have a value of `0` or `1`,
+**	they are used to activate or deactivate parameter validation at will.
+**	The "single-named" macro functions determine how the arguments are to be
+**	checked, validated, and handled. These macro functions are the important part,
+**	where you may customize the logic (to implement custom exception handling for example).
+*/
+//!@{
+
+//! Set value to `(0)` or comment out this `#define` to deactivate this kind of error handling
+#define LIBCONFIG_HANDLE_NULLPOINTERS	(1)
+#define LIBCONFIG_HANDLE_NULLPOINTER(RESULT, PTR) \
+	if ((PTR) == NULL)	return RESULT;
+
+//! Set value to `(0)` or comment out this `#define` to deactivate this kind of error handling
+#define LIBCONFIG_HANDLE_INVALIDENUMS	(1) // TODO check everywhere where this should be used, and use it
+#define LIBCONFIG_HANDLE_INVALIDENUM(RESULT, ENUM, MIN, MAX) \
+	if ((ENUM) < (MIN) || (ENUM) > (MAX))	return RESULT;
+
+//! Set value to `(0)` or comment out this `#define` to deactivate this kind of error handling
+#define LIBCONFIG_HANDLE_INDEX2SMALLS	(1) // TODO check everywhere where this should be used, and use it
+#define LIBCONFIG_HANDLE_INDEX2SMALL(RESULT, INDEX, MIN) \
+	if ((INDEX) < (MIN))	return RESULT;
+
+//! Set value to `(0)` or comment out this `#define` to deactivate this kind of error handling
+#define LIBCONFIG_HANDLE_INDEX2LARGES	(1) // TODO check everywhere where this should be used, and use it
+#define LIBCONFIG_HANDLE_INDEX2LARGE(RESULT, INDEX, MAX) \
+	if ((INDEX) >= (MAX))	return RESULT;
+
+//! Set value to `(0)` or comment out this `#define` to deactivate this kind of error handling
+#define LIBCONFIG_HANDLE_LENGTH2SMALLS	(1) // TODO check everywhere where this should be used, and use it
+#define LIBCONFIG_HANDLE_LENGTH2SMALL(RESULT, LENGTH, MIN) \
+	if ((LENGTH) < (MIN))	return RESULT;
+
+//! Set value to `(0)` or comment out this `#define` to deactivate this kind of error handling
+#define LIBCONFIG_HANDLE_LENGTH2LARGES	(1) // TODO check everywhere where this should be used, and use it
+#define LIBCONFIG_HANDLE_LENGTH2LARGE(RESULT, LENGTH, MAX) \
+	if ((LENGTH) > (MAX))	return RESULT;
+
+//! Set value to `(0)` or comment out this `#define` to deactivate this kind of error handling
+#define LIBCONFIG_HANDLE_PARSINGERRORS	(1) // TODO check everywhere where this should be used, and use it
+#define LIBCONFIG_HANDLE_PARSINGERROR(RESULT, FORMAT, ...) \
+	{											\
+		IO_Output_Format(FORMAT, ##__VA_ARGS__);\
+		return RESULT;							\
+	}											\
+//!@}
+
+
+
+// if the `(1)` macros are notdefined, or have value zero, deactivate this handler macro functions
+
+#if !( \
+defined(LIBCONFIG_HANDLE_LENGTH2LARGES) && \
+		LIBCONFIG_HANDLE_LENGTH2LARGES)
+#undef  LIBCONFIG_HANDLE_LENGTH2LARGE
+#define LIBCONFIG_HANDLE_LENGTH2LARGE(ARG, RESULT, MAX)
+#endif
+
+#if !( \
+defined(LIBCONFIG_HANDLE_NULLPOINTERS) && \
+		LIBCONFIG_HANDLE_NULLPOINTERS)
+#undef  LIBCONFIG_HANDLE_NULLPOINTER
+#define LIBCONFIG_HANDLE_NULLPOINTER(ARG, RESULT)
+#endif
+
+#if !( \
+defined(LIBCONFIG_HANDLE_INVALIDENUMS) && \
+		LIBCONFIG_HANDLE_INVALIDENUMS)
+#undef  LIBCONFIG_HANDLE_INVALIDENUM
+#define LIBCONFIG_HANDLE_INVALIDENUM(ARG, RESULT, MIN, MAX)
+#endif
+
+#if !( \
+defined(LIBCONFIG_HANDLE_INDEX2SMALLS) && \
+		LIBCONFIG_HANDLE_INDEX2SMALLS)
+#undef  LIBCONFIG_HANDLE_INDEX2SMALL
+#define LIBCONFIG_HANDLE_INDEX2SMALL(ARG, RESULT, MIN)
+#endif
+
+#if !( \
+defined(LIBCONFIG_HANDLE_INDEX2LARGES) && \
+		LIBCONFIG_HANDLE_INDEX2LARGES)
+#undef  LIBCONFIG_HANDLE_INDEX2LARGE
+#define LIBCONFIG_HANDLE_INDEX2LARGE(ARG, RESULT, MAX)
+#endif
+
+#if !( \
+defined(LIBCONFIG_HANDLE_LENGTH2SMALLS) && \
+		LIBCONFIG_HANDLE_LENGTH2SMALLS)
+#undef  LIBCONFIG_HANDLE_LENGTH2SMALL
+#define LIBCONFIG_HANDLE_LENGTH2SMALL(ARG, RESULT, MIN)
+#endif
+
+#if !( \
+defined(LIBCONFIG_HANDLE_LENGTH2LARGES) && \
+		LIBCONFIG_HANDLE_LENGTH2LARGES)
+#undef  LIBCONFIG_HANDLE_LENGTH2LARGE
+#define LIBCONFIG_HANDLE_LENGTH2LARGE(ARG, RESULT, MAX)
+#endif
 
 
 

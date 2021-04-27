@@ -43,8 +43,8 @@ t_char**	String_Split_Charset(t_char const* str, t_char const* sep_chars)
 	int		length;
 	t_char**	strarr;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(str, NULL)
-	LIBCONFIG_HANDLE_NULLPOINTER(sep_chars, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, sep_chars)
 	if (!(strarr = StringArray_New(String_Split_WordCount(str, sep_chars))))
 		return (NULL);
 	i = 0;

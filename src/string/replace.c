@@ -10,7 +10,7 @@ t_char*		String_Replace_Char(t_char const* str, t_char const old, t_char const n
 	t_char*	result;
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(str, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
 	if (old == new)
 		return (String_Duplicate(str));
 	if (old == '\0')
@@ -39,9 +39,9 @@ t_char*		String_Replace_Charset(t_char const* str, t_char const* old, t_char con
 	t_size	j;
 	int		c_index;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(str, NULL)
-	LIBCONFIG_HANDLE_NULLPOINTER(old, NULL)
-	LIBCONFIG_HANDLE_NULLPOINTER(new, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, old)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, new)
 	if (old == new)
 		return (String_Duplicate(str));
 	if (String_Length(old) != String_Length(new))
@@ -77,9 +77,9 @@ t_char*		String_Replace_String(t_char const* str, t_char const* old, t_char cons
 	t_char*	result;
 	t_char**	strarr;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(str, NULL)
-	LIBCONFIG_HANDLE_NULLPOINTER(old, NULL)
-	LIBCONFIG_HANDLE_NULLPOINTER(new, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, old)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, new)
 	if (old == new)
 		return (String_Duplicate(str));
 	strarr = String_Split_String(str, old);
@@ -94,7 +94,7 @@ void		String_Replace_Char_InPlace(t_char* str, t_char const old, t_char const ne
 {
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(str, )
+	LIBCONFIG_HANDLE_NULLPOINTER(, str)
 	if (old == '\0')
 		return;
 	i = 0;
@@ -114,9 +114,9 @@ void		String_Replace_Charset_InPlace(t_char* str, t_char const* old, t_char cons
 	t_size	j;
 	int		c_index;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(str, )
-	LIBCONFIG_HANDLE_NULLPOINTER(old, )
-	LIBCONFIG_HANDLE_NULLPOINTER(new, )
+	LIBCONFIG_HANDLE_NULLPOINTER(, str)
+	LIBCONFIG_HANDLE_NULLPOINTER(, old)
+	LIBCONFIG_HANDLE_NULLPOINTER(, new)
 	if (String_Length(old) != String_Length(new))
 		return;
 	i = 0;

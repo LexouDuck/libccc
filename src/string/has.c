@@ -8,8 +8,8 @@ t_bool		String_Has(t_char const* str, t_char const* charset)
 	t_size	i;
 	t_size	c;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(str, FALSE)
-	LIBCONFIG_HANDLE_NULLPOINTER(charset, FALSE)
+	LIBCONFIG_HANDLE_NULLPOINTER(FALSE, str)
+	LIBCONFIG_HANDLE_NULLPOINTER(FALSE, charset)
 	i = 0;
 	while (str[i])
 	{
@@ -33,8 +33,8 @@ t_bool		String_HasOnly(t_char const* str, t_char const* charset)
 	t_size	c;
 	t_bool	match;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(str, FALSE)
-	LIBCONFIG_HANDLE_NULLPOINTER(charset, FALSE)
+	LIBCONFIG_HANDLE_NULLPOINTER(FALSE, str)
+	LIBCONFIG_HANDLE_NULLPOINTER(FALSE, charset)
 	i = 0;
 	while (str[i])
 	{

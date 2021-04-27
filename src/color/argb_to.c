@@ -59,7 +59,7 @@ t_argb16	Color_ARGB_To_ARGB16(s_argb const* color)
 	static const t_float factor = (float)COLOR_ARGB16_CHANNEL;
 	t_argb16 result;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(color, 0)
+	LIBCONFIG_HANDLE_NULLPOINTER(0, color)
 	result = (t_argb16)((color->a > 0) ? COLOR_ARGB16_A : 0);
 	result |= (t_argb16)(color->r * factor) << COLOR_ARGB16_R_BITINDEX;
 	result |= (t_argb16)(color->g * factor) << COLOR_ARGB16_G_BITINDEX;
@@ -72,7 +72,7 @@ t_argb32	Color_ARGB_To_ARGB32(s_argb const* color)
 	static const t_float factor = (float)COLOR_ARGB32_CHANNEL;
 	t_argb32 result = 0;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(color, 0)
+	LIBCONFIG_HANDLE_NULLPOINTER(0, color)
 	result |= (t_argb32)(color->a * factor) << COLOR_ARGB32_A_BITINDEX;
 	result |= (t_argb32)(color->r * factor) << COLOR_ARGB32_R_BITINDEX;
 	result |= (t_argb32)(color->g * factor) << COLOR_ARGB32_G_BITINDEX;

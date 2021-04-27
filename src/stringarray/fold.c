@@ -54,8 +54,8 @@ t_char*		StringArray_Fold(t_char const** strarr, t_char const* separator)
 	int		total_sep_char_nb;
 	int		total_char_nb;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(strarr, NULL)
-	LIBCONFIG_HANDLE_NULLPOINTER(separator, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, strarr)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, separator)
 	strarr_str_nb = 0;
 	strarr_char_nb = 0;
 	StringArray_GetWordAndCharCount(strarr, &strarr_str_nb, &strarr_char_nb);

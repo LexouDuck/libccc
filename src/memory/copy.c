@@ -9,8 +9,8 @@ void*	Memory_Copy(void* dest, void const* src, t_size n)
 	t_u8*	source;
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(dest, NULL)
-	LIBCONFIG_HANDLE_NULLPOINTER(src, dest)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, dest)
+	LIBCONFIG_HANDLE_NULLPOINTER(dest, src)
 	result = (t_u8*)dest;
 	source = (t_u8*)src;
 	i = 0;
@@ -30,8 +30,8 @@ void*	Memory_Copy_C(void* dest, void const* src, t_u8 byte, t_size n)
 	t_u8*	source;
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(dest, NULL)
-	LIBCONFIG_HANDLE_NULLPOINTER(src, dest)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, dest)
+	LIBCONFIG_HANDLE_NULLPOINTER(dest, src)
 	result = (t_u8*)dest;
 	source = (t_u8*)src;
 	i = 0;

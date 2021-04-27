@@ -51,8 +51,8 @@ t_s##BITS	S##BITS##_FromString_Base(char const* str, char const* base)		\
 	t_size	length;																\
 	t_size	i;																	\
 																				\
-	LIBCONFIG_HANDLE_NULLPOINTER(str, 0)										\
-	LIBCONFIG_HANDLE_NULLPOINTER(base, 0)										\
+	LIBCONFIG_HANDLE_NULLPOINTER(0, str)										\
+	LIBCONFIG_HANDLE_NULLPOINTER(0, base)										\
 	length = String_Base_GetLength(base);										\
 	if (length == 0)															\
 		return (0);																\
@@ -102,8 +102,8 @@ t_u##BITS	U##BITS##_FromString_Base(char const* str, char const* base)		\
 	t_size	length;																\
 	t_size	i;																	\
 																				\
-	LIBCONFIG_HANDLE_NULLPOINTER(str, 0)										\
-	LIBCONFIG_HANDLE_NULLPOINTER(base, 0)										\
+	LIBCONFIG_HANDLE_NULLPOINTER(0, str)										\
+	LIBCONFIG_HANDLE_NULLPOINTER(0, base)										\
 	length = String_Base_GetLength(base);										\
 	if (length == 0)															\
 		return (0);																\

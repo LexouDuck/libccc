@@ -10,7 +10,7 @@ s_list_T*		CONCAT(List_Sub,T_NAME)(s_list_T const* list, t_uint index, t_uint n)
 	s_list_T*	elem = NULL;
 	s_list_T*	tmp;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(list, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, list)
 	if (n == 0)
 		return (NULL);
 	while (list && index--)

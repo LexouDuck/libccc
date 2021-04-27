@@ -9,8 +9,8 @@ void*	Memory_Move(void* dest, void const* src, t_size n)
 	t_u8*	source;
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(dest, NULL)
-	LIBCONFIG_HANDLE_NULLPOINTER(src, dest)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, dest)
+	LIBCONFIG_HANDLE_NULLPOINTER(dest, src)
 	if (dest && dest == src)
 		return (dest);
 	result = (t_u8*)dest;

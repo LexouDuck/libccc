@@ -10,8 +10,8 @@ t_bool	String_Equals(t_char const* str1, t_char const* str2)
 
 	if (str1 == str2)
 		return (TRUE);
-	LIBCONFIG_HANDLE_NULLPOINTER(str1, FALSE)
-	LIBCONFIG_HANDLE_NULLPOINTER(str2, FALSE)
+	LIBCONFIG_HANDLE_NULLPOINTER(FALSE, str1)
+	LIBCONFIG_HANDLE_NULLPOINTER(FALSE, str2)
 	i = 0;
 	while (str1[i] && str2[i])
 	{
@@ -30,8 +30,8 @@ t_bool	String_Equals_N(t_char const* str1, t_char const* str2, t_size n)
 
 	if (str1 == str2 || n == 0)
 		return (TRUE);
-	LIBCONFIG_HANDLE_NULLPOINTER(str1, FALSE)
-	LIBCONFIG_HANDLE_NULLPOINTER(str2, FALSE)
+	LIBCONFIG_HANDLE_NULLPOINTER(FALSE, str1)
+	LIBCONFIG_HANDLE_NULLPOINTER(FALSE, str2)
 	i = 0;
 	while (str1[i] && str2[i])
 	{
@@ -52,8 +52,8 @@ t_bool	String_Equals_IgnoreCase(t_char const* str1, t_char const* str2)
 
 	if (str1 == str2)
 		return (TRUE);
-	LIBCONFIG_HANDLE_NULLPOINTER(str1, FALSE)
-	LIBCONFIG_HANDLE_NULLPOINTER(str2, FALSE)
+	LIBCONFIG_HANDLE_NULLPOINTER(FALSE, str1)
+	LIBCONFIG_HANDLE_NULLPOINTER(FALSE, str2)
 	i = 0;
 	while (str1[i] && str2[i])
 	{
@@ -74,8 +74,8 @@ t_bool	String_Equals_N_IgnoreCase(t_char const* str1, t_char const* str2, t_size
 
 	if (str1 == str2 || n == 0)
 		return (TRUE);
-	LIBCONFIG_HANDLE_NULLPOINTER(str1, FALSE)
-	LIBCONFIG_HANDLE_NULLPOINTER(str2, FALSE)
+	LIBCONFIG_HANDLE_NULLPOINTER(FALSE, str1)
+	LIBCONFIG_HANDLE_NULLPOINTER(FALSE, str2)
 	i = 0;
 	while (str1[i] && str2[i])
 	{

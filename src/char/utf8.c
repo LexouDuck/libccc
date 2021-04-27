@@ -12,7 +12,7 @@ t_size		Char_ToUTF8(t_utf8* dest, t_utf32 c)
 {
 	t_u8 mask;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(dest, 0)
+	LIBCONFIG_HANDLE_NULLPOINTER(0, dest)
 	if (c < 0x80)
 	{
 		dest[0] = (t_u8)c;
@@ -42,16 +42,16 @@ t_size		Char_ToUTF8(t_utf8* dest, t_utf32 c)
 		dest[3] = (MASK & (c >> (6 * 0))) | 0x80;
 		return (4);
 	}
-	else return (0); // INVALID UTF-8
+	else return (ERROR); // INVALID UTF-8
 }
 
 
 
-t_utf32		UTF8_Get(t_utf8 const* str)
+t_utf32		Char_FromUTF8(t_utf8 const* str)
 {
 	t_u8 c;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(str, ERROR)
+	LIBCONFIG_HANDLE_NULLPOINTER(ERROR, str)
 	c = str[0];
 	if (c & (1 << 7)) // multi-byte character
 	{
@@ -64,7 +64,7 @@ t_utf32		UTF8_Get(t_utf8 const* str)
 				if (c & (1 << 4)) // 4-byte character
 				{
 					if (c & (1 << 3))
-						return ((t_utf32)c); // INVALID UTF-8
+						return (ERROR); // INVALID UTF-8
 					mask = ((1 << 3) - 1);
 					result |= (c & mask) << (6 * 3);	c = str[1];
 					result |= (c & MASK) << (6 * 2);	c = str[2];
@@ -89,7 +89,7 @@ t_utf32		UTF8_Get(t_utf8 const* str)
 				return (result);
 			}
 		}
-		else return ((t_utf32)c); // INVALID UTF-8
+		else return (ERROR); // INVALID UTF-8
 	}
 	else return ((t_utf32)c);
 }

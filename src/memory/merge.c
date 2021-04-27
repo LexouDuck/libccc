@@ -10,8 +10,8 @@ void*		Memory_Join(
 	t_u8*	result;
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(ptr1, NULL)
-	LIBCONFIG_HANDLE_NULLPOINTER(ptr2, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, ptr1)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, ptr2)
 	if (!(result = Memory_Alloc(length1 + length2 + 1)))
 		return (NULL);
 	i = 0;
@@ -38,8 +38,8 @@ void*	Memory_Append(
 {
 	void*	tmp;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(a_dest, NULL)
-	LIBCONFIG_HANDLE_NULLPOINTER(src, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, a_dest)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, src)
 	tmp = Memory_Join(
 		*a_dest, dest_length,
 		src, src_length);
@@ -56,8 +56,8 @@ void*	Memory_Prepend(
 {
 	void*	tmp;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(a_dest, NULL)
-	LIBCONFIG_HANDLE_NULLPOINTER(src, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, a_dest)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, src)
 	tmp = Memory_Join(
 		src, src_length,
 		*a_dest, dest_length);
@@ -74,8 +74,8 @@ void*	Memory_Merge(
 {
 	void*	result;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(a_ptr1, NULL)
-	LIBCONFIG_HANDLE_NULLPOINTER(a_ptr2, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, a_ptr1)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, a_ptr2)
 	result = Memory_Join(
 		*a_ptr1, length1,
 		*a_ptr2, length2);

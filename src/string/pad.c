@@ -11,7 +11,7 @@ t_char*		String_Pad(t_char const* str, t_char c, t_size size)
 	t_size	length;
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(str, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
 	length = String_Length(str);
 	if (size == length)
 		return (String_Duplicate(str));
@@ -55,7 +55,7 @@ t_char*		String_Pad_L(t_char const* str, t_char c, t_size size)
 	t_size	length;
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(str, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
 	length = String_Length(str);
 	if (size == length)
 		return (String_Duplicate(str));
@@ -98,7 +98,7 @@ t_char*		String_Pad_R(t_char const* str, t_char c, t_size size)
 	t_size	length;
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(str, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
 	length = String_Length(str);
 	if (size == length)
 		return (String_Duplicate(str));

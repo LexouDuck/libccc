@@ -11,7 +11,7 @@ t_char*	String_Reverse(t_char const* str)
 	t_size	i;
 	t_size	j;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(str, NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
 	length = 0;
 	while (str[length])
 		++length;
