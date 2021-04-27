@@ -6,58 +6,46 @@
 #include <libccc/memory.h>
 #include <libccc/string.h>
 #include <libccc/sys/io.h>
-
-#include "src/config.h"
-#include "src/logger.h"
+#include <libccc/encode/toml.h>
 
 
 
-static char*	TOML_Parse_Error(char expected, char* description, char instead)
+typedef struct toml_parse
 {
-	char*	result;
-	t_size	length;
-	t_size	i;
+	s_toml*		result;		//!< the result TOML
+	char const*	content;	//!< the string to parse
+	t_size		length;		//!< the length of the string to parse
+	t_bool		strict;		//!< if TRUE, strict parsing mode is on (rigourously follows the spec)
+	t_size		offset;		//!< current parsing offset
+	t_uint		depth;		//!< current section nesting level
+	t_size		line;		//!< current line number
+}			s_toml_parse;
 
-	length = String_Length(description);
-	if (!(result = Memory_New((64 + length) * sizeof(char))))
-		return (NULL);
-	i = 0;
-	String_Copy(result, "Expected \'");
-	i += 10;
-	result[i++] = expected;
-	String_Copy(result + i, "\' (");
-	i += 3;
-	String_Copy(result + i, description);
-	i += length;
-	String_Copy(result + i, "), but instead found: \'");
-	i += 21;
-	result[i] = instead;
-	return (result);
-}
 
-static void	TOML_Parse_SkipWhitespace(s_parser *p)
+
+static
+void	TOML_Parse_SkipWhitespace(s_toml_parse *p, t_bool skip_comments)
 {
-	char*	file;
-
-	file = p->file;
-	while (file[p->index] && (Char_IsSpace(file[p->index]) ||
-		file[p->index] == '#' ||
-		file[p->index] == ';'))
+	while (p->content[p->offset])
 	{
-		if (file[p->index] == '\n')
+		if (p->content[p->offset] == '\n')
 			++(p->line);
-		else if (
-			file[p->index] == '#' ||
-			file[p->index] == ';')
+		else if (skip_comments && (
+			(p->content[p->offset] == '#') ||
+			(p->content[p->offset] == ';')))
 		{
-			while (file[p->index] && file[p->index] != '\n')
-				++(p->index);
+			while (p->content[p->offset] && p->content[p->offset] != '\n')
+			{
+				++(p->offset);
+			}
 			++(p->line);
 		}
-		++(p->index);
+		else if (!Char_IsSpace(p->content[p->offset]))
+			break;
+		++(p->offset);
 	}
 }
-
+/*
 static char*	TOML_Parse_ApplySetting(s_parser *p)
 {
 	t_s32	index;
@@ -87,26 +75,26 @@ static char*	TOML_Parse_ReadSetting(s_parser *p)
 	char*	file;
 
 	file = p->file;
-	p->label = (p->file + p->index);
-	while (file[p->index] && !(Char_IsSpace(file[p->index]) ||
-		file[p->index] == '=' ||
-		file[p->index] == '#' ||
-		file[p->index] == ';'))
-		++(p->index);
-	p->label_length = (file + p->index) - p->label;
-	if (file[p->index] != '=')
+	p->label = (p->file + p->offset);
+	while (file[p->offset] && !(Char_IsSpace(file[p->offset]) ||
+		file[p->offset] == '=' ||
+		file[p->offset] == '#' ||
+		file[p->offset] == ';'))
+		++(p->offset);
+	p->label_length = (file + p->offset) - p->label;
+	if (file[p->offset] != '=')
 		TOML_Parse_SkipWhitespace(p);
-	if (file[p->index] != '=')
-		return (TOML_Parse_Error('=', " symbol but instead found ", file[p->index]));
-	++(p->index);
+	if (file[p->offset] != '=')
+		return (TOML_Parse_Error('=', " symbol but instead found ", file[p->offset]));
+	++(p->offset);
 	TOML_Parse_SkipWhitespace(p);
-	if (!file[p->index])
+	if (!file[p->offset])
 		return ("Unexpected end of file encountered before value.");
-	p->value = (file + p->index);
-	while (file[p->index] && !Char_IsSpace(file[p->index]))
-		++(p->index);
-	p->value_length = (file + p->index) - p->value;
-	++(p->index);
+	p->value = (file + p->offset);
+	while (file[p->offset] && !Char_IsSpace(file[p->offset]))
+		++(p->offset);
+	p->value_length = (file + p->offset) - p->value;
+	++(p->offset);
 	return (TOML_Parse_ApplySetting(p));
 }
 
@@ -136,4 +124,71 @@ void		TOML_Parse(t_fd fd, s_config* config, s_logger const* logger)
 		TOML_Parse_SkipWhitespace(&parser);
 	}
 	String_Delete(&parser.file);
+}
+*/
+
+static
+t_bool	TOML_Parse_Key(s_toml_parse* p)
+{
+
+}
+
+
+
+static
+t_bool	TOML_Parse_Value(s_toml_parse* p)
+{
+
+}
+
+
+
+static
+t_bool	TOML_Parse_Section(s_toml_parse* p)
+{
+	while (p->content[p->offset] && p->content[p->offset] != ']')
+	{
+
+		p->offset += 1;
+	}
+}
+
+
+
+s_toml*	TOML_Parse(t_char const* toml)
+{
+	s_toml_parse p = { 0 };
+
+	p.content = toml;
+//	p.result = ;
+	TOML_Parse_SkipWhitespace(&p, TRUE);
+	while (p.content[p.offset])
+	{
+		if (p.content[p.offset] == '[')
+		{
+			if (TOML_Parse_Section(&p))
+				goto failure;
+		}
+		else
+		{
+			if (TOML_Parse_Key(&p))
+				goto failure;
+			TOML_Parse_SkipWhitespace(&p, TRUE);
+			if (p.content[p.offset] == '=')
+				p.offset += 1;
+			else
+				goto failure;
+			TOML_Parse_SkipWhitespace(&p, TRUE);
+			if (TOML_Parse_Value(&p))
+				goto failure;
+		}
+		TOML_Parse_SkipWhitespace(&p, TRUE);
+		++p.offset;
+	}
+
+success:
+	return (p.result);
+
+failure:
+	return (NULL);
 }

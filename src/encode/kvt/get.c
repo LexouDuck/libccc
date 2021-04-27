@@ -25,7 +25,7 @@
 	if (str[i] != CHAR)												\
 	{																\
 		IO_Output_Format(C_RED"KVT PATH PARSE ERROR:"C_RESET		\
-			"Expected t_char '%c' "ERRORMESSAGE", "					\
+			"Expected char '%c' "ERRORMESSAGE", "					\
 			"but instead found: '%c'\n",							\
 			CHAR, str[i]);											\
 		KVT_SetError(ERROR_KVT_PARSING);							\

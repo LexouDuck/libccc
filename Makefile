@@ -84,6 +84,7 @@ SRCS = \
 	char/to.c			\
 	char/utf8.c			\
 	char/utf16.c		\
+	char/parse.c		\
 	bool/bool_to_str.c		\
 	bool/bool_from_str.c	\
 	int/int_to_str.c		\

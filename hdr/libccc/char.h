@@ -107,6 +107,41 @@ TYPEDEF_ALIAS(			t_utf32, UTF32, PRIMITIVE)
 
 
 
+/*!
+**	The Unicode byte order mark (https://en.wikipedia.org/wiki/Byte_order_mark) macros.
+**	A byte order mark is used at the beginning of a string, to indicate that the string is
+**	indeed a Unicode string, the type of Unicode encoding, and the byte endian-ness used.
+*/
+//!@{
+//! The UTF-8 byte order mark: `EF BB BF`
+#define UTF8_BOM	"\xEF\xBB\xBF"
+
+//! The UTF-16 byte order mark: `FE FF` (Big-Endian)
+#define UTF16_BOM_BE	"\xFE\xFF"
+//! The UTF-16 byte order mark: `FF FE` (Little-Endian)
+#define UTF16_BOM_LE	"\xFF\xFE"
+
+//! The UTF-16 byte order mark: `00 00 FE FF` (Big-Endian)
+#define UTF32_BOM_BE	"\x00\x00\xFE\xFF"
+//! The UTF-16 byte order mark: `FF FE 00 00` (Little-Endian)
+#define UTF32_BOM_LE	"\xFF\xFE\x00\x00"
+//!@}
+
+
+
+/*!
+**	These macros are used to encode/decode UTF-16 strings.
+*/
+//!@{
+#define UTF16_BIAS		0x10000
+#define UTF16_SURROGATE_HI	0xD800
+#define UTF16_SURROGATE_LO	0xDC00
+#define UTF16_SURROGATE_END	0xE000
+#define UTF16_SURROGATE_MASK	0x3FF
+//!@}
+
+
+
 /*
 ** ************************************************************************** *|
 **                              Character Checks                              *|
@@ -361,6 +396,26 @@ t_utf32					Char_FromUTF16(t_utf16 const* str);
 #define c_mb2towc		Char_FromUTF16
 #define c_utf16toc		Char_FromUTF16
 #define UTF16_Get		Char_FromUTF16
+
+
+
+//! Parses a `\U????????`, or `\u????` or `\u????\u????` UTF-8 string escape sequence
+/*!
+**	@param	str	The string from which to parse an escape sequence
+**	@returns the UTF-32 code point for the parsed unicode character,
+**		or #ERROR (`-1`) if there was a parsing error.
+*/
+t_utf32		Char_Parse_Unicode(t_char const* str);
+
+//! Parses a `\U????????`, or `\u????` or `\u????\u????` UTF-8 string escape sequence, reading at most `n` chars from `str`
+/*!
+**	@param	dest	The pointer to the 32-bit integer in which the result will be written.
+**	@param	str		The string from which to parse an escape sequence.
+**	@param	n		The maximum amount of characters to read from `str`.
+**		NOTE: if `0` is given, then there will be no maximum amount.
+**	@returns the total amount of bytes read from the given `str` buffer.
+*/
+t_size		Char_Parse_Unicode_N(t_utf32* dest, t_char const* str, t_size n);
 
 
 

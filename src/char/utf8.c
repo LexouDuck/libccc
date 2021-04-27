@@ -33,7 +33,7 @@ t_size		Char_ToUTF8(t_utf8* dest, t_utf32 c)
 		dest[2] = (MASK & (c >> (6 * 0))) | 0x80;
 		return (3);
 	}
-	else if (c < 0x10FFFF)
+	else if (c <= 0x10FFFF)
 	{
 		mask = ((1 << 3) - 1);
 		dest[0] = (mask & (c >> (6 * 3))) | 0xF0;
@@ -93,3 +93,59 @@ t_utf32		Char_FromUTF8(t_utf8 const* str)
 	}
 	else return ((t_utf32)c);
 }
+
+
+/*
+void	Char_Print_UTF8(t_utf8* dest, t_utf32 c)
+{
+	t_char	utf8_length = 0;
+	t_char	utf8_position = 0;
+	t_char	sequence_length = 0;
+	t_char	first_byte_mark = 0;
+
+	// encode as UTF-8 -> takes at maximum 4 bytes to encode:
+	// 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
+	if (codepoint < 0x80)
+	{
+		// normal ASCII, encoding 0xxxxxxx
+		utf8_length = 1;
+	}
+	else if (codepoint < 0x800)
+	{
+		// two bytes, encoding 110xxxxx 10xxxxxx
+		utf8_length = 2;
+		first_byte_mark = (t_char)0xC0; // 11000000
+	}
+	else if (codepoint < 0x10000)
+	{
+		// three bytes, encoding 1110xxxx 10xxxxxx 10xxxxxx
+		utf8_length = 3;
+		first_byte_mark = (t_char)0xE0; // 11100000
+	}
+	else if (codepoint <= 0x10FFFF)
+	{
+		// four bytes, encoding 1110xxxx 10xxxxxx 10xxxxxx 10xxxxxx
+		utf8_length = 4;
+		first_byte_mark = (t_char)0xF0; // 11110000
+	}
+	else
+		goto failure; // invalid unicode codepoint
+
+	// encode as utf8
+	for (utf8_position = (t_char)(utf8_length - 1); utf8_position > 0; utf8_position--)
+	{
+		// 10xxxxxx
+		(*output_pointer)[(t_sint)utf8_position] = (t_char)((codepoint | 0x80) & 0xBF);
+		codepoint >>= 6;
+	}
+	// encode first byte
+	if (utf8_length > 1)
+	{
+		(*output_pointer)[0] = (t_char)((codepoint | first_byte_mark) & DYNAMIC_TYPE_MASK);
+	}
+	else
+	{
+		(*output_pointer)[0] = (t_char)(codepoint & 0x7F);
+	}
+}
+*/

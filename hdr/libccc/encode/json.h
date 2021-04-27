@@ -69,12 +69,12 @@ typedef s_kvt	s_json;
 **	The exception is JSON_PrintPreallocated(), where the caller has full responsibility of the buffer.
 **	Supply a block of JSON, and this returns a `s_json` object you can interrogate.
 */
-s_json*	JSON_FromString(t_char const* value);
+s_json*	JSON_FromString(t_char const* json);
 #define JSON_Parse	JSON_FromString
 #define JSON_Decode	JSON_FromString
 
 //! Create a new `s_json` object, parsed from a (valid) JSON string, (only the first `buffer_length` chars are parsed)
-s_json*	JSON_FromString_N(t_char const* value, t_size buffer_length);
+s_json*	JSON_FromString_N(t_char const* json, t_size buffer_length);
 #define JSON_Parse_N	JSON_FromString_N
 #define JSON_Decode_N	JSON_FromString_N
 
@@ -85,12 +85,12 @@ s_json*	JSON_FromString_N(t_char const* value, t_size buffer_length);
 **	If you supply a ptr in return_parse_end and parsing fails, then `return_parse_end`
 **	will contain a pointer to the error, such that it will match the return of JSON_GetErrorPtr().
 */
-s_json*	JSON_FromString_Strict(t_char const* value, t_char const* *return_parse_end, t_bool require_null_terminated);
+s_json*	JSON_FromString_Strict(t_char const* json, t_char const* *return_parse_end, t_bool require_null_terminated);
 #define JSON_Parse_Strict	JSON_FromString_Strict
 #define JSON_Decode_Strict	JSON_FromString_Strict
 
 //! Create a new `s_json` object, parsed from a (valid) JSON string, (only the first `buffer_length` chars are parsed)
-s_json*	JSON_FromString_Strict_N(t_char const* value, t_size buffer_length, t_char const* *return_parse_end, t_bool require_null_terminated);
+s_json*	JSON_FromString_Strict_N(t_char const* json, t_size buffer_length, t_char const* *return_parse_end, t_bool require_null_terminated);
 #define JSON_Parse_Strict_N 	JSON_FromString_Strict_N
 #define JSON_Decode_Strict_N	JSON_FromString_Strict_N
 
