@@ -438,30 +438,55 @@ t_f128					F128(t_sint mantissa, t_sint exponent);
 
 
 
-//! Returns the base-2 exponent of `x`, as an integer
+//! Returns the base-2 exponent of the given number `x`, as an integer
 /*!
 **	@isostd{https://en.cppreference.com/w/c/numeric/math/ilogb}
 */
 //!@{
-#define						Float_GetExp	CONCAT(FLOAT_TYPE,_GetExp)
-t_sint						F32_GetExp(t_f32 number);
-t_sint						F64_GetExp(t_f64 number);
+#define						Float_GetExp2	CONCAT(FLOAT_TYPE,_GetExp2)
+t_sint						F32_GetExp2(t_f32 number);
+t_sint						F64_GetExp2(t_f64 number);
 #ifdef	__float80
-t_sint						F80_GetExp(t_f80 number);
+t_sint						F80_GetExp2(t_f80 number);
 #endif
 #ifdef	__float128
-t_sint						F128_GetExp(t_f128 number);
+t_sint						F128_GetExp2(t_f128 number);
 #endif
-#define c_fgetexp			Float_GetExp//!< @alias{Float}
-#define c_f32getexp			F32_GetExp	//!< @alias{F32}
-#define c_f64getexp			F64_GetExp	//!< @alias{F64}
-#define c_f80getexp			F80_GetExp	//!< @alias{F80}
-#define c_f128getexp		F128_GetExp	//!< @alias{F128}
+#define c_filogb			Float_GetExp2	//!< @alias{Float_GetExp2}
+#define c_fgetexp2			Float_GetExp2	//!< @alias{Float_GetExp2}
+#define c_f32getexp2		F32_GetExp2		//!< @alias{F32_GetExp2}
+#define c_f64getexp2		F64_GetExp2		//!< @alias{F64_GetExp2}
+#define c_f80getexp2		F80_GetExp2		//!< @alias{F80_GetExp2}
+#define c_f128getexp2		F128_GetExp2	//!< @alias{F128_GetExp2}
 
-#define Float_GetExponent	Float_GetExp
+#define Float_GetExponent2	Float_GetExp2
 //!@}
 
-// TODO logb, ie: Float_GetExp_Float ?
+
+
+//! Returns the base-10 exponent of the given number `x`, as an integer
+/*!
+**	@nonstd
+*/
+//!@{
+#define						Float_GetExp10	CONCAT(FLOAT_TYPE,_GetExp10)
+t_sint						F32_GetExp10(t_f32 number);
+t_sint						F64_GetExp10(t_f64 number);
+#ifdef	__float80
+t_sint						F80_GetExp10(t_f80 number);
+#endif
+#ifdef	__float128
+t_sint						F128_GetExp10(t_f128 number);
+#endif
+#define c_filog10			Float_GetExp10	//!< @alias{Float_GetExp10}
+#define c_fgetexp10			Float_GetExp10	//!< @alias{Float_GetExp10}
+#define c_f32getexp10		F32_GetExp10	//!< @alias{F32_GetExp10}
+#define c_f64getexp10		F64_GetExp10	//!< @alias{F64_GetExp10}
+#define c_f80getexp10		F80_GetExp10	//!< @alias{F80_GetExp10}
+#define c_f128getexp10		F128_GetExp10	//!< @alias{F128_GetExp10}
+
+#define Float_GetExponent10	Float_GetExp10
+//!@}
 
 
 

@@ -194,7 +194,7 @@ t_float	Float_RootN(t_float x, t_u8 n)
 		return (SIGN(x));
 	if (n % 2 == 0 && x < 0)
 		return (NAN);
-	i = Float_GetExp(x);
+	i = Float_GetExp2(x);
 	result = SIGN(x) * (i < 0 ? 1 : 1.25) * c_sqrt_2_pow_n(i * 2 / (t_s32)n);
 	previous = 0.;
 	i = 0;
