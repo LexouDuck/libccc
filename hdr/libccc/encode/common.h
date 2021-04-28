@@ -105,9 +105,10 @@ typedef union dynamic	u_dynamic;
 
 
 
+//! The maximum depth of nested arrays/objects within a key-value-tree
 /*!
 **	Limits how deeply nested arrays/objects can be before KVT rejects to parse them.
-**	The existence of this macro serves to prevent stack overflows.
+**	The existence of this macro serves to prevent stack overflows in several cases.
 */
 #ifndef KVT_NESTING_LIMIT
 #define KVT_NESTING_LIMIT 1000

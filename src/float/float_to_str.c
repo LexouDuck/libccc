@@ -42,66 +42,67 @@ char*		F##BITS##_ToString(t_f##BITS number, t_u8 precision)	\
 
 
 
+// TODO refactor where getexp is defined, implement both ilogb() and ilog()
 #define DEFINEFUNC_FLOAT_TO_STREXP(BITS, POWER) \
-static t_s16	F##BITS##_ToString_GetExp(t_f##BITS* number)				\
-{																			\
-	t_f##BITS	nearest;													\
-	t_s16	power;															\
-	t_s16	exponent;														\
-	exponent = 0;															\
-	power = POWER;															\
-	if (*number >= FLOAT_THRESHOLD_HUGE ||									\
-		*number <= -FLOAT_THRESHOLD_HUGE)									\
-		while ((power /= 2) > 0)											\
-			if (*number >= (nearest = Float_Pow(10, power)))				\
-			{																\
-				*number /= nearest;											\
-				exponent += power;											\
-			}																\
-	if ((*number > 0 && *number <= FLOAT_THRESHOLD_TINY) ||					\
-		(*number < 0 && *number >= -FLOAT_THRESHOLD_TINY))					\
-		while ((power /= 2) > 0)											\
-			if (*number < Float_Pow(10, 1 - power))							\
-			{																\
-				*number *= Float_Pow(10, power);							\
-				exponent -= power;											\
-			}																\
-	return (exponent);														\
-}																			\
-																			\
-char*	F##BITS##_ToString_Exp(t_f##BITS number, t_u8 precision)			\
-{																			\
-	char*	result = NULL;													\
-	char*	result_exp = NULL;												\
-	char*	result_mant = NULL;												\
-	t_size	i;																\
-	t_bool	sign;															\
-	result = Float_ToString_CheckSpecial(number);							\
-	if (result)																\
-		return (result);													\
-	sign = (number < 0);													\
-	number = (sign ? -number : number);										\
-	if (!(*result_exp = S16_ToString(F##BITS##_ToString_GetExp(&number))) ||\
-		!(*result_mant = F##BITS##_ToString_Dec(number, precision)) ||		\
-		!(result = (char*)Memory_Alloc(										\
-			String_Length(*result_mant) +									\
-			String_Length(*result_exp) + 2 + (t_u8)sign)))					\
-	{																		\
-		return (NULL);														\
-	}																		\
-	i = 0;																	\
-	if (sign)																\
-		result[i++] = '-';													\
-	String_Copy(result + i, *result_mant);									\
-	i += String_Length(*result_mant);										\
-	result[i++] = 'e';														\
-	String_Copy(result + i, *result_exp);									\
-	i += String_Length(*result_exp);										\
-	result[i] = '\0';														\
-	if (result_exp)		Memory_Free(result_exp);							\
-	if (result_mant)	Memory_Free(result_mant);							\
-	return (result);														\
-}																			\
+static t_s16	F##BITS##_ToString_GetExp(t_f##BITS* number)						\
+{																					\
+	t_f##BITS	nearest;															\
+	t_s16	power;																	\
+	t_s16	exponent;																\
+	exponent = 0;																	\
+	power = POWER;																	\
+	if (*number >= FLOAT_THRESHOLD_HUGE ||											\
+		*number <= -FLOAT_THRESHOLD_HUGE)											\
+		while ((power /= 2) > 0)													\
+			if (*number >= (nearest = Float_Pow(10, power)))						\
+			{																		\
+				*number /= nearest;													\
+				exponent += power;													\
+			}																		\
+	if ((*number > 0 && *number <= FLOAT_THRESHOLD_TINY) ||							\
+		(*number < 0 && *number >= -FLOAT_THRESHOLD_TINY))							\
+		while ((power /= 2) > 0)													\
+			if (*number < Float_Pow(10, 1 - power))									\
+			{																		\
+				*number *= Float_Pow(10, power);									\
+				exponent -= power;													\
+			}																		\
+	return (exponent);																\
+}																					\
+																					\
+char*	F##BITS##_ToString_Exp(t_f##BITS number, t_u8 precision)					\
+{																					\
+	char*	result = NULL;															\
+	char*	result_exponent = NULL;													\
+	char*	result_mantissa = NULL;													\
+	t_size	i;																		\
+	t_bool	sign;																	\
+	result = Float_ToString_CheckSpecial(number);									\
+	if (result)																		\
+		return (result);															\
+	sign = (number < 0);															\
+	number = (sign ? -number : number);												\
+	if (!(*result_exponent = S16_ToString(F##BITS##_ToString_GetExp(&number))) ||	\
+		!(*result_mantissa = F##BITS##_ToString_Dec(number, precision)) ||			\
+		!(result = (char*)Memory_Alloc(												\
+			String_Length(*result_mantissa) +										\
+			String_Length(*result_exponent) + 2 + (t_u8)sign)))						\
+	{																				\
+		return (NULL);																\
+	}																				\
+	i = 0;																			\
+	if (sign)																		\
+		result[i++] = '-';															\
+	String_Copy(result + i, *result_mantissa);										\
+	i += String_Length(*result_mantissa);											\
+	result[i++] = 'e';																\
+	String_Copy(result + i, *result_exponent);										\
+	i += String_Length(*result_exponent);											\
+	result[i] = '\0';																\
+	if (result_exponent)	Memory_Free(result_exponent);							\
+	if (result_mantissa)	Memory_Free(result_mantissa);							\
+	return (result);																\
+}																					\
 
 
 
