@@ -176,9 +176,12 @@ contexts:
         1: keyword.control.++c
 
   lex-storage:
-    - match: \s*\b((__)?(attribute)(__)?)\b
+    - match: \s*\b(__attribute__)\b
       captures:
         1: storage.modifier.attribute.c
+    - match: \s*\b(__declspec)\b
+      captures:
+        1: storage.modifier.declspec.c
     - match: \s*\b(auto|const|extern|register|static|volatile)\b
       captures:
         1: storage.modifier.c
@@ -578,7 +581,7 @@ contexts:
                           (?<= \w ) \s
 
                         | #  or type modifier / closing bracket before name
-                          (?<= [^ -]> | [*}\]] )
+                          (?<= [^ >-]> | [*}\]] )
                       )
                       \s*
                       (?: [A-Za-z_]\w*+ | ::[^:] | \. )++
@@ -632,7 +635,7 @@ contexts:
               )
               (?<= \w\b)
             | #  or type modifier / closing bracket before name
-              (?<= [^ -]> | [*}\]] )
+              (?<= [^ >-]> | [*}\]] )
           )
           \s*+
           (   (?: [A-Za-z_]\w*+ | ::[^:] )++ )
@@ -670,7 +673,7 @@ contexts:
               )
               (?<= \w\b)
             | #  or type modifier / closing bracket before name
-              (?<= [^ -]> | [*}\]] )
+              (?<= [^ >-]> | [*}\]] )
           )
           \s*+
           (   (?: [A-Za-z_]\w*+ | ::[^:] | \. )++ )
@@ -709,7 +712,7 @@ contexts:
               )
               (?<= \w\b)
             | #  or type modifier / closing bracket before name
-              (?<= [^ -]> | [*}\]] )
+              (?<= [^ >-]> | [*}\]] )
           )
           \s*+
           (   (?: [A-Za-z_]\w*+ | ::[^:] | \. )++ )
@@ -1104,7 +1107,7 @@ contexts:
     - include: support-function
 
   support-type:
-    - match: \s*\b(u_char|u_short|u_int|u_long|ushort|uint|(?:u_quad|quad|qaddr|caddr|daddr|dev|fixpt|blkcnt|blksize|gid|in_addr|in_port|ino|key|mode|nlink|id|pid|off|segsz|swblk|uid|id|clock|size|ssize|time|useconds|suseconds|siginfo)_t)\b
+    - match: \s*\b(u_char|u_short|u_int|u_long|(?:u_quad|quad|qaddr|caddr|daddr|dev|fixpt|blkcnt|blksize|gid|in_addr|in_port|ino|key|mode|nlink|id|pid|off|segsz|swblk|uid|id|clock|size|ssize|time|useconds|suseconds|siginfo)_t)\b
       captures:
         1: support.type.stdlib.c
     - match: \s*\b(u?int(?:(?:_least|_fast)?(?:8|16|32|64)_t|ptr_t|max_t))\b
