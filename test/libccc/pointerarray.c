@@ -11,9 +11,9 @@
 ** ************************************************************************** *|
 */
 
-int		testsuite_array_pointerarray(void)
+int		testsuite_pointerarray(void)
 {
-	print_suite_title("array/pointerarray");
+	print_suite_title("pointerarray");
 
 	// TODO
 

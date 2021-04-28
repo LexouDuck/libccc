@@ -20,6 +20,7 @@
 #include "libccc/char.h"
 #include "libccc/monad/list.h"
 #include "libccc/math/stat.h"
+#include "libccc/sys/time.h"
 
 
 
@@ -74,7 +75,7 @@ typedef struct test_suite
 	char const*	name;		// Name for test suite to identify
 	int		(*test)(void);	// Test suite launcher
 }				s_test_suite;
-#define TEST_SUITE_AMOUNT	24
+#define TEST_SUITE_AMOUNT	25
 
 //! Args for main are: help, verbose, arguments, performance, overflow
 typedef struct test_arg
@@ -162,25 +163,30 @@ int		testsuite_char(void);
 int		testsuite_int(void);
 int		testsuite_fixed(void);
 int		testsuite_float(void);
-int		testsuite_pointer(void);
 int		testsuite_memory(void);
+int		testsuite_pointer(void);
+int		testsuite_pointerarray(void);
 int		testsuite_string(void);
+int		testsuite_stringarray(void);
 int		testsuite_color(void);
-int		testsuite_regex(void);
 int		testsuite_sys_io(void);
 int		testsuite_sys_time(void);
-int		testsuite_array_pointerarray(void);
-int		testsuite_array_stringarray(void);
-int		testsuite_array(void);
-int		testsuite_array_list(void);
-int		testsuite_array_dict(void);
-int		testsuite_array_tree(void);
+int		testsuite_sys_regex(void);
 int		testsuite_math(void);
+//int	testsuite_math_fixed(void);
+//int	testsuite_math_float(void);
 int		testsuite_math_stat(void);
 int		testsuite_math_algebra(void);
 int		testsuite_math_complex(void);
 int		testsuite_math_random(void);
 int		testsuite_math_vlq(void);
+int		testsuite_monad_array(void);
+int		testsuite_monad_list(void);
+//int	testsuite_monad_stack(void);
+//int	testsuite_monad_queue(void);
+int		testsuite_monad_dict(void);
+int		testsuite_monad_tree(void);
+int		testsuite_monad_object(void);
 
 /*
 **	Global variables used in tests
@@ -197,11 +203,11 @@ extern char const* test3; extern t_size const test3_len;
 ** ************************************************************************** *|
 */
 
-void	print_error(char const * format_error, ...);
+void	print_error(char const*  format_error, ...);
 void	print_percent(double percent);
-void	print_totals(s_test_totals totals, char const * category);
-void	print_usage(char const * program_name);
-void	print_suite_title(char const * suite_name);
+void	print_totals(s_test_totals totals, char const*  category);
+void	print_usage(char const*  program_name);
+void	print_suite_title(char const*  suite_name);
 void	print_title(void);
 void	print_endian_warning(void);
 void	print_nonstd(void);
@@ -226,69 +232,71 @@ char*	str_to_escape(char const* str);
 
 
 
-void	print_test_enum		(char const *test_name, char const *function, int		result, int		expect, int can_segfault);	// TODO
+void	print_test_enum		(char const* test_name, char const* function, int		result, int		expect, int can_segfault);	// TODO
 
-void	print_test_bool		(char const *test_name, char const *function, t_bool	result, t_bool	expect, int can_segfault);
+void	print_test_bool		(char const* test_name, char const* function, t_bool	result, t_bool	expect, int can_segfault);
 
-void	print_test_char		(char const *test_name, char const *function, t_char	result, t_char	expect, int can_segfault);	// TODO
-void	print_test_utf8		(char const *test_name, char const *function, t_utf8	result, t_utf8	expect, int can_segfault);	// TODO
-void	print_test_utf16	(char const *test_name, char const *function, t_utf16	result, t_utf16	expect, int can_segfault);	// TODO
-void	print_test_utf32	(char const *test_name, char const *function, t_utf32	result, t_utf32	expect, int can_segfault);	// TODO
+void	print_test_char		(char const* test_name, char const* function, t_char	result, t_char	expect, int can_segfault);	// TODO
+void	print_test_utf8		(char const* test_name, char const* function, t_utf8	result, t_utf8	expect, int can_segfault);	// TODO
+void	print_test_utf16	(char const* test_name, char const* function, t_utf16	result, t_utf16	expect, int can_segfault);	// TODO
+void	print_test_utf32	(char const* test_name, char const* function, t_utf32	result, t_utf32	expect, int can_segfault);	// TODO
 
-void	print_test_s8		(char const *test_name, char const *function, t_s8		result, t_s8	expect, int can_segfault);
-void	print_test_s16		(char const *test_name, char const *function, t_s16		result, t_s16	expect, int can_segfault);
-void	print_test_s32		(char const *test_name, char const *function, t_s32		result, t_s32	expect, int can_segfault);
-void	print_test_s64		(char const *test_name, char const *function, t_s64		result, t_s64	expect, int can_segfault);
+void	print_test_s8		(char const* test_name, char const* function, t_s8		result, t_s8	expect, int can_segfault);
+void	print_test_s16		(char const* test_name, char const* function, t_s16		result, t_s16	expect, int can_segfault);
+void	print_test_s32		(char const* test_name, char const* function, t_s32		result, t_s32	expect, int can_segfault);
+void	print_test_s64		(char const* test_name, char const* function, t_s64		result, t_s64	expect, int can_segfault);
 #ifdef __int128
-void	print_test_s128		(char const *test_name, char const *function, t_s128	result, t_s128	expect, int can_segfault);
+void	print_test_s128		(char const* test_name, char const* function, t_s128	result, t_s128	expect, int can_segfault);
 #endif
-void	print_test_sint		(char const *test_name, char const *function, t_sint	result, t_sint	expect, int can_segfault);
+void	print_test_sint		(char const* test_name, char const* function, t_sint	result, t_sint	expect, int can_segfault);
 
-void	print_test_u8		(char const *test_name, char const *function, t_u8		result, t_u8	expect, int can_segfault);
-void	print_test_u16		(char const *test_name, char const *function, t_u16		result, t_u16	expect, int can_segfault);
-void	print_test_u32		(char const *test_name, char const *function, t_u32		result, t_u32	expect, int can_segfault);
-void	print_test_u64		(char const *test_name, char const *function, t_u64		result, t_u64	expect, int can_segfault);
+void	print_test_u8		(char const* test_name, char const* function, t_u8		result, t_u8	expect, int can_segfault);
+void	print_test_u16		(char const* test_name, char const* function, t_u16		result, t_u16	expect, int can_segfault);
+void	print_test_u32		(char const* test_name, char const* function, t_u32		result, t_u32	expect, int can_segfault);
+void	print_test_u64		(char const* test_name, char const* function, t_u64		result, t_u64	expect, int can_segfault);
 #ifdef __int128
-void	print_test_u128		(char const *test_name, char const *function, t_u128	result, t_u128	expect, int can_segfault);
+void	print_test_u128		(char const* test_name, char const* function, t_u128	result, t_u128	expect, int can_segfault);
 #endif
-void	print_test_uint		(char const *test_name, char const *function, t_uint	result, t_uint	expect, int can_segfault);
+void	print_test_uint		(char const* test_name, char const* function, t_uint	result, t_uint	expect, int can_segfault);
 
-void	print_test_size		(char const *test_name, char const *function, t_size	result, t_size		expect, int can_segfault);
-void	print_test_ptrdiff	(char const *test_name, char const *function, t_ptrdiff	result, t_ptrdiff	expect, int can_segfault);
-void	print_test_sintptr	(char const *test_name, char const *function, t_sintptr	result, t_sintptr	expect, int can_segfault);
-void	print_test_uintptr	(char const *test_name, char const *function, t_uintptr	result, t_uintptr	expect, int can_segfault);
-void	print_test_sintmax	(char const *test_name, char const *function, t_sintmax	result, t_sintmax	expect, int can_segfault);
-void	print_test_uintmax	(char const *test_name, char const *function, t_uintmax	result, t_uintmax	expect, int can_segfault);
+void	print_test_size		(char const* test_name, char const* function, t_size	result, t_size		expect, int can_segfault);
+void	print_test_ptrdiff	(char const* test_name, char const* function, t_ptrdiff	result, t_ptrdiff	expect, int can_segfault);
+void	print_test_sintptr	(char const* test_name, char const* function, t_sintptr	result, t_sintptr	expect, int can_segfault);
+void	print_test_uintptr	(char const* test_name, char const* function, t_uintptr	result, t_uintptr	expect, int can_segfault);
+void	print_test_sintmax	(char const* test_name, char const* function, t_sintmax	result, t_sintmax	expect, int can_segfault);
+void	print_test_uintmax	(char const* test_name, char const* function, t_uintmax	result, t_uintmax	expect, int can_segfault);
 
-void	print_test_q16		(char const *test_name, char const *function, t_q16		result, t_q16	expect, int can_segfault);
-void	print_test_q32		(char const *test_name, char const *function, t_q32		result, t_q32	expect, int can_segfault);
-void	print_test_q64		(char const *test_name, char const *function, t_q64		result, t_q64	expect, int can_segfault);
+void	print_test_q16		(char const* test_name, char const* function, t_q16		result, t_q16	expect, int can_segfault);
+void	print_test_q32		(char const* test_name, char const* function, t_q32		result, t_q32	expect, int can_segfault);
+void	print_test_q64		(char const* test_name, char const* function, t_q64		result, t_q64	expect, int can_segfault);
 #ifdef __int128
-void	print_test_q128		(char const *test_name, char const *function, t_q128	result, t_q128	expect, int can_segfault);
+void	print_test_q128		(char const* test_name, char const* function, t_q128	result, t_q128	expect, int can_segfault);
 #endif
-void	print_test_fixed	(char const *test_name, char const *function, t_fixed	result, t_fixed	expect, int can_segfault);
+void	print_test_fixed	(char const* test_name, char const* function, t_fixed	result, t_fixed	expect, int can_segfault);
 
-void	print_test_f32		(char const *test_name, char const *function, t_f32 	result, t_f32	expect, int can_segfault);
-void	print_test_f64		(char const *test_name, char const *function, t_f64 	result, t_f64	expect, int can_segfault);
+void	print_test_f32		(char const* test_name, char const* function, t_f32 	result, t_f32	expect, int can_segfault);
+void	print_test_f64		(char const* test_name, char const* function, t_f64 	result, t_f64	expect, int can_segfault);
 #ifdef __float80
-void	print_test_f80		(char const *test_name, char const *function, t_f80 	result, t_f80	expect, int can_segfault);
+void	print_test_f80		(char const* test_name, char const* function, t_f80 	result, t_f80	expect, int can_segfault);
 #endif
 #ifdef __float128
-void	print_test_f128		(char const *test_name, char const *function, t_f128 	result, t_f128	expect, int can_segfault);
+void	print_test_f128		(char const* test_name, char const* function, t_f128 	result, t_f128	expect, int can_segfault);
 #endif
-void	print_test_float	(char const *test_name, char const *function, t_float 	result, t_float	expect, int can_segfault);
+void	print_test_float	(char const* test_name, char const* function, t_float 	result, t_float	expect, int can_segfault);
 
-void	print_test_sign		(char const *test_name, char const *function, t_s64		result, t_s64	expect, int can_segfault);
+void	print_test_sign		(char const* test_name, char const* function, t_s64		result, t_s64	expect, int can_segfault);
 
-void	print_test_str		(char const *test_name, char const *function, char const *result, char const *expect, int can_segfault);
-void	print_test_mem		(char const *test_name, char const *function, void const *result, void const *expect, int can_segfault, size_t length);
+void	print_test_str		(char const* test_name, char const* function, char const* result, char const* expect, int can_segfault);
+void	print_test_mem		(char const* test_name, char const* function, void const* result, void const* expect, int can_segfault, size_t length);
 
-void	print_test_alloc	(char const *test_name, char const *function, char const *result, t_size length);
+void	print_test_alloc	(char const* test_name, char const* function, char const* result, t_size length);
 
-void	print_test_ptrarr	(char const *test_name, char const *function, void const **result, void const **expect, int can_segfault);
-void	print_test_strarr	(char const *test_name, char const *function, char const **result, char const **expect, int can_segfault);
+void	print_test_ptrarr	(char const* test_name, char const* function, void const** result, void const** expect, int can_segfault);
+void	print_test_strarr	(char const* test_name, char const* function, char const** result, char const** expect, int can_segfault);
 
-void	print_test_lst		(char const *test_name, char const *function, s_list const *result, char const *expect[], int can_segfault, size_t length);
+void	print_test_list		(char const* test_name, char const* function, s_list const* result, char const* expect[], int can_segfault, size_t length);
+
+void	print_test_date		(char const* test_name, char const* function, s_date const* result, s_date const* expect, int can_segfault);
 
 
 

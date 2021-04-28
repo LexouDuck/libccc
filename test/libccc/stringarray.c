@@ -284,9 +284,9 @@ void	test_strarrfold()
 ** ************************************************************************** *|
 */
 
-int		testsuite_array_stringarray(void)
+int		testsuite_stringarray(void)
 {
-	print_suite_title("array/stringarray");
+	print_suite_title("stringarray");
 
 	print_nonstd();
 

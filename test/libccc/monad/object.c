@@ -1,5 +1,5 @@
 
-#include "libccc/monad/tree.h"
+#include "libccc/monad/object.h"
 
 #include "test.h"
 
@@ -11,9 +11,9 @@
 ** ************************************************************************** *|
 */
 
-int		testsuite_monad_tree(void)
+int		testsuite_monad_object(void)
 {
-	print_suite_title("monad/tree");
+	print_suite_title("monad/object");
 
 	// TODO
 

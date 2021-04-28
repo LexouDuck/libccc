@@ -262,7 +262,7 @@ void	test_lstadd(void)
 	c_lstadd(a_lst, lst_2);
 	c_lstadd(a_lst, lst_1);
 	c_lstadd(a_lst, lst_0);
-	print_test_lst("lstadd", "lstadd", lst_0, expect, FALSE);
+	print_test_list("lstadd", "lstadd", lst_0, expect, FALSE);
 */
 }
 #endif
@@ -454,7 +454,7 @@ void	test_lstiter(void)
 /*	TODO
 //	c_lstiter(s_list *list, void (*f)(s_list *elem));
 	c_lstiter(*a_lst, c_lstiter_tolower);
-	print_test_lst("lstiter", "lstiter", a_lst, expect_lower, FALSE);
+	print_test_list("lstiter", "lstiter", a_lst, expect_lower, FALSE);
 */
 }
 #endif
@@ -482,7 +482,7 @@ void	test_lstiteri(void)
 /*	TODO
 //	c_lstiteri(s_list *list, void (*f)(s_list *elem));
 	c_lstiteri(*a_lst, c_lstiter_tolower);
-	print_test_lst("lstiteri", "lstiteri", a_lst, expect_lower, FALSE);
+	print_test_list("lstiteri", "lstiteri", a_lst, expect_lower, FALSE);
 */
 }
 #endif
@@ -510,7 +510,7 @@ void	test_lstmap(void)
 /*	TODO
 //	s_list	*c_lstmap(s_list *list, s_list *(*f)(s_list *elem));
 	segfault = setjmp(restore); if (!segfault) *a_lst = c_lstmap(*a_lst, c_lstmap_toupper); else *a_lst = NULL;
-	print_test_lst("lstmap", "lstmap", *a_lst, expect_upper, FALSE);
+	print_test_list("lstmap", "lstmap", *a_lst, expect_upper, FALSE);
 */
 }
 #endif
@@ -538,7 +538,7 @@ void	test_lstmapi(void)
 /*	TODO
 //	s_list	*c_lstmapi(s_list *list, s_list *(*f)(s_list *elem));
 	segfault = setjmp(restore); if (!segfault) *a_lst = c_lstmap(*a_lst, c_lstmap_toupper); else *a_lst = NULL;
-	print_test_lst("lstmapi", "lstmapi", *a_lst, expect_upper, FALSE);
+	print_test_list("lstmapi", "lstmapi", *a_lst, expect_upper, FALSE);
 */
 }
 #endif
@@ -626,9 +626,9 @@ void	test_lst_to_array(void)
 ** ************************************************************************** *|
 */
 
-int		testsuite_array_list(void)
+int		testsuite_monad_list(void)
 {
-	print_suite_title("array/list");
+	print_suite_title("monad/list");
 
 	print_nonstd();
 

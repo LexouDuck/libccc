@@ -11,9 +11,9 @@
 ** ************************************************************************** *|
 */
 
-int		testsuite_array_dict(void)
+int		testsuite_monad_dict(void)
 {
-	print_suite_title("array/dict");
+	print_suite_title("monad/dict");
 
 	// TODO
 

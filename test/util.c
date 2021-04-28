@@ -9,6 +9,7 @@
 #include <math.h>
 
 #include "libccc/math/math.h"
+#include "libccc/sys/time.h"
 
 #include "test.h"
 
@@ -105,7 +106,7 @@ int	strarr_equals(char const** strarr1, char const** strarr2)
 	return (FALSE);
 }
 
-char *print_memory(void const *ptr, size_t length)
+char *print_memory(void const* ptr, size_t length)
 {
 	char *	result;
 	t_u8	byte;
@@ -114,13 +115,13 @@ char *print_memory(void const *ptr, size_t length)
 
 	if (ptr == NULL)
 		return (NULL);
-	if (str_equals((char const *)ptr, segstr))
+	if (str_equals((char const* )ptr, segstr))
 		return (segstr);
 	if (!(result = (char *)malloc(length * 3)))
 		return (NULL);
 	for (size_t i = 0; i < length; ++i)
 	{
-		byte = ((t_u8 const *)ptr)[i];
+		byte = ((t_u8 const* )ptr)[i];
 		hi = ((byte >> 4) & 0xF);
 		lo = (byte & 0xF);
 		result[i * 3 + 0] = hi + (hi < 10 ? '0' : 'A' - 10);
@@ -130,7 +131,7 @@ char *print_memory(void const *ptr, size_t length)
 	return (result);
 }
 
-char	*str_padleft(char const *str, char c, size_t length)
+char	*str_padleft(char const* str, char c, size_t length)
 {
 	char	*result;
 	long	offset;
@@ -346,15 +347,15 @@ void		print_timer_result(s_timer* t, t_s64 compare)
 */
 
 void	print_test(
-		char const *test_name,
-		char const *function,
-		char const *result,
-		char const *expect,
+		char const* test_name,
+		char const* function,
+		char const* result,
+		char const* expect,
 		int can_segfault,
 		int error,
-		char const *warning)
+		char const* warning)
 {
-	static char const * previous_function = NULL;
+	static char const*  previous_function = NULL;
 
 	g_test.totals.tests += 1;
 	if (error)
@@ -406,8 +407,8 @@ void	print_test(
 
 #define DEFINE_TESTFUNCTION_INT(TYPE, FUNCNAME, SIGNED) \
 void	print_test_##FUNCNAME(										\
-		char const *test_name,										\
-		char const *function,										\
+		char const* test_name,										\
+		char const* function,										\
 		TYPE result,												\
 		TYPE expect,												\
 		int can_segfault)											\
@@ -469,8 +470,8 @@ DEFINE_TESTFUNCTION_INT(t_uintmax, uintmax, u)
 
 #define DEFINE_TESTFUNCTION_FLOAT(TYPE, FUNCNAME, SIZE) \
 void	print_test_##FUNCNAME(									\
-		char const *test_name,									\
-		char const *function,									\
+		char const* test_name,									\
+		char const* function,									\
 		TYPE result,											\
 		TYPE expect,											\
 		int can_segfault)										\
@@ -509,8 +510,8 @@ DEFINE_TESTFUNCTION_FLOAT(t_float, float, sizeof(t_float) * 8)
 
 
 void	print_test_sign(
-		char const *test_name,
-		char const *function,
+		char const* test_name,
+		char const* function,
 		t_s64 result,
 		t_s64 expect,
 		int can_segfault)
@@ -548,10 +549,10 @@ void	print_test_sign(
 
 
 void	print_test_mem(
-		char const *test_name,
-		char const *function,
-		void const *result,
-		void const *expect,
+		char const* test_name,
+		char const* function,
+		void const* result,
+		void const* expect,
 		int can_segfault,
 		size_t length)
 {
@@ -574,10 +575,10 @@ void	print_test_mem(
 
 
 void	print_test_str(
-		char const *test_name,
-		char const *function,
-		char const *result,
-		char const *expect,
+		char const* test_name,
+		char const* function,
+		char const* result,
+		char const* expect,
 		int can_segfault)
 {
 	char* tmp_result = str_to_escape(result);
@@ -601,9 +602,9 @@ void	print_test_str(
 
 
 void	print_test_alloc(
-		char const *test_name,
-		char const *function,
-		char const *result,
+		char const* test_name,
+		char const* function,
+		char const* result,
 		size_t length)
 {
 	int		error = FALSE;
@@ -639,10 +640,10 @@ void	print_test_alloc(
 
 
 void	print_test_strarr(
-		char const *test_name,
-		char const *function,
-		char const **result,
-		char const **expect,
+		char const* test_name,
+		char const* function,
+		char const* *result,
+		char const* *expect,
 		int can_segfault)
 {
 	int error = FALSE;
@@ -706,11 +707,11 @@ void	print_test_strarr(
 
 
 
-void	print_test_lst(
-		char const *test_name,
-		char const *function,
-		s_list const *result,
-		char const *expect[],
+void	print_test_list(
+		char const* test_name,
+		char const* function,
+		s_list const* result,
+		char const* expect[],
 		int can_segfault,
 		size_t item_size)
 {
@@ -763,4 +764,45 @@ void	print_test_lst(
 		printf("]\n"C_RESET);
 	}
 	else printf(C_GREEN"OK!"C_RESET);
+}
+
+
+
+#define DATE_STR_BUFFER		128
+#define DATE_STR_FORMAT	\
+	"\n.sec       = %u," \
+	"\n.min       = %u," \
+	"\n.hour      = %u," \
+	"\n.day_week  = %s," \
+	"\n.day_month = %u," \
+	"\n.day_year  = %i," \
+	"\n.month     = %s," \
+	"\n.year      = %i," \
+	"\n.is_dst    = %s," \
+
+void	print_test_date(
+	char const* test_name,
+	char const* function,
+	s_date const* result,
+	s_date const* expect,
+	int can_segfault)
+{
+	int error;
+	char str_result[DATE_STR_BUFFER];
+	char str_expect[DATE_STR_BUFFER];
+
+	if (result == (s_date*)segstr)
+		error = !(expect == (s_date*)segstr);
+	else if (expect == (s_date*)segstr)
+		error = !LIBCONFIG_HANDLE_NULLPOINTERS;
+	else error = (result && expect) ?
+		(memcmp(result, expect, sizeof(s_date)) != 0) :
+		(result != expect);
+	snprintf(str_result, DATE_STR_BUFFER, DATE_STR_FORMAT, result->sec, result->min, result->hour, g_weekday[result->day_week], result->day_month, result->day_year, g_month[result->month], result->year, (result->is_dst ? "TRUE" : "FALSE"));
+	snprintf(str_expect, DATE_STR_BUFFER, DATE_STR_FORMAT, expect->sec, expect->min, expect->hour, g_weekday[expect->day_week], expect->day_month, expect->day_year, g_month[expect->month], expect->year, (expect->is_dst ? "TRUE" : "FALSE"));
+	print_test(test_name, function,
+		print_memory(result, sizeof(s_date)),
+		print_memory(expect, sizeof(s_date)),
+		can_segfault,
+		error, NULL);
 }
