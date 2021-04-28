@@ -359,6 +359,8 @@ t_bool	JSON_Parse_Object(s_json* const item, s_json_parse* const p)
 	// loop through the comma separated array elements
 	do
 	{
+		if (!p->strict && CAN_PARSE(0) && (p->content[p->offset] == '}'))
+			goto success; // allow trailing commas when not in strict mode
 		// allocate next item
 		s_json* new_item = JSON_Item();
 		if (new_item == NULL)
@@ -383,7 +385,9 @@ t_bool	JSON_Parse_Object(s_json* const item, s_json_parse* const p)
 		// swap value.string and string, because we parsed the name
 		current_item->key = current_item->value.string;
 		current_item->value.string = NULL;
-		if (!CAN_PARSE(0) || (p->content[p->offset] != ':'))
+		if (!CAN_PARSE(0))
+			PARSINGERROR_JSON_GOTO("Could not parse object: Unexpected end of input after object member key")
+		if (p->content[p->offset] != ':')
 			PARSINGERROR_JSON_GOTO("Could not parse object: Invalid object")
 		// p the value
 		p->offset++;
@@ -395,7 +399,7 @@ t_bool	JSON_Parse_Object(s_json* const item, s_json_parse* const p)
 	while (CAN_PARSE(0) && (p->content[p->offset] == ','));
 
 	if (!CAN_PARSE(0))
-		PARSINGERROR_JSON_GOTO("Could not parse object: Unexpected end of end of input within object")
+		PARSINGERROR_JSON_GOTO("Could not parse object: Unexpected end of input within object")
 	if (p->content[p->offset] != '}')
 		PARSINGERROR_JSON_GOTO("Could not parse object: Expected end of object char '}', instead found '%c'", p->content[p->offset])
 

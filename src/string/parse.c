@@ -18,33 +18,32 @@ t_size	String_Parse_GetLength(t_char const* str, t_bool any_escape)
 			++i;
 			switch (str[i])
 			{
-				case 'a':	length += 1;	break; // Alert (Beep, Bell) (added in C89)[1]
-				case 'b':	length += 1;	break; // Backspace
-				case 't':	length += 1;	break; // Horizontal Tab
-				case 'n':	length += 1;	break; // Newline (Line Feed); see notes below
-				case 'v':	length += 1;	break; // Vertical Tab
-				case 'f':	length += 1;	break; // Form-feed
-				case 'r':	length += 1;	break; // Carriage Return
-				case 'e':	length += 1;	break; // Escape
-				case '\'':	length += 1;	break; // Single quotation mark
-				case '\"':	length += 1;	break; // Double quotation mark
-				case  '?':	length += 1;	break; // Question mark (used to avoid trigraphs)
-				case '\\':	length += 1;	break; // Backslash
-				case 'x':	length += 1;	break; // Hexadecimal byte value
-				case 'u':	length += 2;	break; // Unicode 2-byte t_char (UTF-16)
-				case 'U':	length += 4;	break; // Unicode 4-byte t_char (UTF-32)
+				case 'a':	length += 1 * sizeof(t_char);	break; // Alert (Beep, Bell) (added in C89)[1]
+				case 'b':	length += 1 * sizeof(t_char);	break; // Backspace
+				case 't':	length += 1 * sizeof(t_char);	break; // Horizontal Tab
+				case 'n':	length += 1 * sizeof(t_char);	break; // Newline (Line Feed); see notes below
+				case 'v':	length += 1 * sizeof(t_char);	break; // Vertical Tab
+				case 'f':	length += 1 * sizeof(t_char);	break; // Form-feed
+				case 'r':	length += 1 * sizeof(t_char);	break; // Carriage Return
+				case 'e':	length += 1 * sizeof(t_char);	break; // Escape
+				case '\'':	length += 1 * sizeof(t_char);	break; // Single quotation mark
+				case '\"':	length += 1 * sizeof(t_char);	break; // Double quotation mark
+				case  '?':	length += 1 * sizeof(t_char);	break; // Question mark (used to avoid trigraphs)
+				case '\\':	length += 1 * sizeof(t_char);	break; // Backslash
+				case 'x':	length += 1 * sizeof(t_char);	break; // Hexadecimal t_char value
+				case 'u':	length += 2 * sizeof(t_char);	break; // Unicode 2-char (UTF-16)
+				case 'U':	length += 4 * sizeof(t_char);	break; // Unicode 4-char (UTF-32)
 				default:
-					if (any_escape)
-					{
-						length += 1;
-					}
+					if (Char_IsDigit_Oct(str[i])) // Octal t_char value
+						length += 1 * sizeof(t_char);
+					else if (any_escape)
+						length += 1 * sizeof(t_char);
 					else
-					{
-						length += 2;
-					}
+						length += 2 * sizeof(t_char);
 					break;
 			}
 		}
+		length += 1 * sizeof(t_char);
 		++i;
 	}
 	return (length);
