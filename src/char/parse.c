@@ -6,14 +6,6 @@
 
 
 
-#define SURROGATE_MASK	0x3FF
-#define SURROGATE_HI	0xD800
-#define SURROGATE_LO	0xDC00
-#define SURROGATE_END	0xE000
-#define UTF16_BIAS		0x10000
-
-
-
 //! parse a 4-digit hexadecimal number from the given `str`
 #define DEFINEFUNC_PARSE_HEX(BITS) \
 static t_bool	Char_Parse_Unicode_Hex_##BITS(t_u##BITS* dest, t_char const* str)	\
@@ -79,9 +71,9 @@ t_size		Char_Parse_Unicode_N(t_utf32* dest, t_char const* str, t_size n)
 		if (Char_Parse_Unicode_Hex_16(&code1, str + i)) // get the first UTF-16 sequence
 			LIBCONFIG_HANDLE_PARSINGERROR(ERROR, PARSINGERROR_UTF16"not a valid UTF-16 escape sequence, expected 4 hexadecimal digits")
 		i += 4;
-		if (((code1 >= SURROGATE_LO) && (code1 < SURROGATE_END)))
+		if (((code1 >= UTF16_SURROGATE_LO) && (code1 < UTF16_SURROGATE_END)))
 			LIBCONFIG_HANDLE_PARSINGERROR(ERROR, PARSINGERROR_UTF16"invalid UTF-16 char code ("FORMAT_HEX_U16")", code1)
-		if ((code1 >= SURROGATE_HI) && (code1 < SURROGATE_LO))
+		if ((code1 >= UTF16_SURROGATE_HI) && (code1 < UTF16_SURROGATE_LO))
 		{	// UTF16 surrogate pair
 			code2 = 0;
 			length = 12; // "\uXXXX\uXXXX"
@@ -96,10 +88,10 @@ t_size		Char_Parse_Unicode_N(t_utf32* dest, t_char const* str, t_size n)
 			if (Char_Parse_Unicode_Hex_16(&code2, str + 2)) // get the second UTF-16 sequence
 				LIBCONFIG_HANDLE_PARSINGERROR(ERROR, PARSINGERROR_UTF16_SURROGATE"not a valid UTF-16 escape sequence, expected 4 hexadecimal digits")
 			i += 4;
-			if ((code2 < SURROGATE_LO) || (code2 >= SURROGATE_END))
+			if ((code2 < UTF16_SURROGATE_LO) || (code2 >= UTF16_SURROGATE_END))
 				LIBCONFIG_HANDLE_PARSINGERROR(ERROR, PARSINGERROR_UTF16_SURROGATE"invalid UTF-16 char code for second half of the surrogate pair ("FORMAT_HEX_U16")", code2)
 			// calculate the unicode codepoint from the surrogate pair
-			result = (t_utf32)(UTF16_BIAS + (((code1 & SURROGATE_MASK) << 10) | (code2 & SURROGATE_MASK)));
+			result = (t_utf32)(UTF16_BIAS + (((code1 & UTF16_SURROGATE_MASK) << 10) | (code2 & UTF16_SURROGATE_MASK)));
 		}
 		else
 		{

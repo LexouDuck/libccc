@@ -9,13 +9,13 @@
 t_size		Char_ToUTF16(t_utf16* dest, t_utf32 c)
 {
 	LIBCONFIG_HANDLE_NULLPOINTER(0, dest)
-	if (c >= SURROGATE_HI)
+	if (c >= UTF16_SURROGATE_HI)
 	{
-		if (c < SURROGATE_END) // INVALID UTF-16
+		if (c < UTF16_SURROGATE_END) // INVALID UTF-16
 			return (ERROR);
 		c -= UTF16_BIAS;
-		dest[0] = (c >> 10) + SURROGATE_HI;
-		dest[1] = (c & ((1 << 10) - 1)) + SURROGATE_LO;
+		dest[0] = (c >> 10) + UTF16_SURROGATE_HI;
+		dest[1] = (c & ((1 << 10) - 1)) + UTF16_SURROGATE_LO;
 		return (4);
 	}
 	else
@@ -33,13 +33,13 @@ t_utf32		Char_FromUTF16(t_utf16 const* str)
 
 	LIBCONFIG_HANDLE_NULLPOINTER(ERROR, str)
 	c = str[0];
-	if (c >= SURROGATE_HI)
+	if (c >= UTF16_SURROGATE_HI)
 	{
-		t_utf32 result = (c - SURROGATE_HI) << 10;
+		t_utf32 result = (c - UTF16_SURROGATE_HI) << 10;
 		c = str[1];
-		if (c < SURROGATE_LO) // INVALID UTF-16
+		if (c < UTF16_SURROGATE_LO) // INVALID UTF-16
 			return (ERROR);
-		result |= (c - SURROGATE_LO);
+		result |= (c - UTF16_SURROGATE_LO);
 		result += UTF16_BIAS;
 		return (result);
 	}
