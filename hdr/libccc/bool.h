@@ -92,6 +92,15 @@ TYPEDEF_ALIAS(		t_bool, BOOL, PRIMITIVE)
 ** ************************************************************************** *|
 */
 
+
+#define BOOL_TOSTRING \
+		BOOL_TOSTRING_UPPER
+#define BOOL_TOSTRING_UPPER(VALUE)	((VALUE) ? "TRUE" : "FALSE")
+#define BOOL_TOSTRING_LOWER(VALUE)	((VALUE) ? "true" : "false")
+#define BOOL_TOSTRING_MIXED(VALUE)	((VALUE) ? "True" : "False")
+
+// TODO split Bool_ToString() into 3 sub-functions with one configurable macro ?
+
 //! Get the string representation of a boolean value (TRUE or FALSE)
 _MALLOC()
 char*					Bool_ToString(t_bool value, t_bool uppercase);

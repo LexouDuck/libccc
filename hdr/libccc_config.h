@@ -185,6 +185,10 @@ HEADER_CPP
 */
 //!@{
 
+//! TODO configurable allocation failure error handling
+//! TODO configurable IO error handling
+//! TODO configurable parse error handling
+
 //! Set value to `(0)` or comment out this `#define` to deactivate this kind of error handling
 #define LIBCONFIG_HANDLE_NULLPOINTERS	(1)
 #define LIBCONFIG_HANDLE_NULLPOINTER(RESULT, PTR) \

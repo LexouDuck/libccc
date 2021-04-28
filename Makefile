@@ -398,9 +398,11 @@ TEST_SRCS = \
 	$(TEST_DIR)libccc/int.c		\
 	$(TEST_DIR)libccc/fixed.c	\
 	$(TEST_DIR)libccc/float.c	\
-	$(TEST_DIR)libccc/pointer.c	\
-	$(TEST_DIR)libccc/memory.c	\
-	$(TEST_DIR)libccc/string.c	\
+	$(TEST_DIR)libccc/memory.c			\
+	$(TEST_DIR)libccc/pointer.c			\
+	$(TEST_DIR)libccc/pointerarray.c	\
+	$(TEST_DIR)libccc/string.c			\
+	$(TEST_DIR)libccc/stringarray.c		\
 	$(TEST_DIR)libccc/color.c	\
 	$(TEST_DIR)libccc/sys/io.c		\
 	$(TEST_DIR)libccc/sys/time.c	\
@@ -412,11 +414,10 @@ TEST_SRCS = \
 	$(TEST_DIR)libccc/math/random.c		\
 	$(TEST_DIR)libccc/math/vlq.c		\
 	$(TEST_DIR)libccc/monad/array.c			\
-	$(TEST_DIR)libccc/monad/pointerarray.c	\
-	$(TEST_DIR)libccc/monad/stringarray.c	\
 	$(TEST_DIR)libccc/monad/list.c			\
 	$(TEST_DIR)libccc/monad/tree.c			\
 	$(TEST_DIR)libccc/monad/dict.c			\
+	$(TEST_DIR)libccc/monad/object.c		\
 
 TEST_OBJS = ${TEST_SRCS:%.c=$(OBJDIR)%.o}
 
