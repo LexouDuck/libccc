@@ -86,7 +86,14 @@ Also:
 
 
 
-### RegExp literals:
+### String literals:
+
+##### Unicode literals:
+```c
+t_utf8 const* unicode = u"Any unicode character directly works: それは本当に作品";
+```
+
+##### RegExp literals:
 
 regex literal strings are prefixed with an `r` character, and regex mode flags may be placed after the ending double quote:
 ```c

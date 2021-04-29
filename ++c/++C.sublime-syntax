@@ -581,7 +581,7 @@ contexts:
                           (?<= \w ) \s
 
                         | #  or type modifier / closing bracket before name
-                          (?<= [^ >-]> | [*}\]] )
+                          (?<= [^ >-]> | [^(]\* | [}\]] )
                       )
                       \s*
                       (?: [A-Za-z_]\w*+ | ::[^:] | \. )++
@@ -635,7 +635,7 @@ contexts:
               )
               (?<= \w\b)
             | #  or type modifier / closing bracket before name
-              (?<= [^ >-]> | [*}\]] )
+              (?<= [^ >-]> | [^(]\* | [}\]] )
           )
           \s*+
           (   (?: [A-Za-z_]\w*+ | ::[^:] )++ )
@@ -673,7 +673,7 @@ contexts:
               )
               (?<= \w\b)
             | #  or type modifier / closing bracket before name
-              (?<= [^ >-]> | [*}\]] )
+              (?<= [^ >-]> | [^(]\* | [}\]] )
           )
           \s*+
           (   (?: [A-Za-z_]\w*+ | ::[^:] | \. )++ )
@@ -712,7 +712,7 @@ contexts:
               )
               (?<= \w\b)
             | #  or type modifier / closing bracket before name
-              (?<= [^ >-]> | [*}\]] )
+              (?<= [^ >-]> | [^(]\* | [}\]] )
           )
           \s*+
           (   (?: [A-Za-z_]\w*+ | ::[^:] | \. )++ )

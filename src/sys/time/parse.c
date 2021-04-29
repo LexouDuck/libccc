@@ -93,16 +93,19 @@ typedef t_s16	t_bitmask_tm;
 #define BITMASK_tm_isdst	tm_isdst
 #ifdef TM_GMTOFF
 #define BITMASK_tm_gmtoff	tm_gmtoff
-#define SET_TM_GMTOFF(X)	tm->tm_gmtoff = (X);
+#define SET_TM_GMTOFF(X)	tm->tm_gmtoff = (X)
 #else
 #define SET_TM_GMTOFF(X)	
 #endif
 #ifdef TM_ZONE
 #define BITMASK_tm_zone		tm_zone
-#define SET_TM_ZONE(X)		tm->tm_zone = (X);
+#define SET_TM_ZONE(X)		tm->tm_zone = (X)
 #else
 #define SET_TM_ZONE(X)	
 #endif
+
+#define SET_WRITTEN(FIELD) \
+	(*written) |= (1 << TM_BITMASK_##FIELD)
 
 #define HAS_WRITTEN(FIELD) \
 	((*written) & (1 << TM_BITMASK_##FIELD))
@@ -481,8 +484,8 @@ recurse:
 					c_strnicmp((char const*)bp, utc, 3) == 0)
 				{
 					tm->tm_isdst = 0;
-					SET_TM_GMTOFF(0)
-					SET_TM_ZONE(gmt)
+					SET_TM_GMTOFF(0);
+					SET_TM_ZONE(gmt);
 					bp += 3;
 				}
 				else
@@ -491,8 +494,8 @@ recurse:
 					if (ep != NULL)
 					{
 						tm->tm_isdst = i;
-						SET_TM_GMTOFF(-(timezone))
-						SET_TM_ZONE(tzname[i])
+						SET_TM_GMTOFF(-(timezone));
+						SET_TM_ZONE(tzname[i]);
 					}
 					bp = ep;
 				}
@@ -528,8 +531,8 @@ recurse:
 					case 'U':	if (*bp++ != 'T')	return (NULL);	/*FALLTHROUGH*/
 					case 'Z':
 						tm->tm_isdst = 0;
-						SET_TM_GMTOFF(0)
-						SET_TM_ZONE(utc)
+						SET_TM_GMTOFF(0);
+						SET_TM_ZONE(utc);
 						continue;
 
 					case '+':	neg = 0;	break;
@@ -540,8 +543,8 @@ recurse:
 						ep = strptime_find_string(bp, &i, nast, NULL, 4);
 						if (ep != NULL)
 						{
-							SET_TM_GMTOFF(-5 - i)
-							SET_TM_ZONE(__UNCONST(nast[i]))
+							SET_TM_GMTOFF(-5 - i);
+							SET_TM_ZONE(__UNCONST(nast[i]));
 							bp = ep;
 							continue;
 						}
@@ -549,8 +552,8 @@ recurse:
 						if (ep != NULL)
 						{
 							tm->tm_isdst = 1;
-							SET_TM_GMTOFF(-4 - i)
-							SET_TM_ZONE(__UNCONST(nadt[i]))
+							SET_TM_GMTOFF(-4 - i);
+							SET_TM_ZONE(__UNCONST(nadt[i]));
 							bp = ep;
 							continue;
 						}
@@ -560,11 +563,11 @@ recurse:
 						{
 #ifdef TM_GMTOFF
 							/* Argh! No 'J'! */
-							if (*bp >= 'A' && *bp <= 'I')		SET_TM_GMTOFF(('A' - 1) - (int)*bp)
-							else if (*bp >= 'L' && *bp <= 'M')	SET_TM_GMTOFF('A' - (int)*bp)
-							else if (*bp >= 'N' && *bp <= 'Y')	SET_TM_GMTOFF((int)*bp - 'M')
+							if (*bp >= 'A' && *bp <= 'I')		SET_TM_GMTOFF(('A' - 1) - (int)*bp);
+							else if (*bp >= 'L' && *bp <= 'M')	SET_TM_GMTOFF('A' - (int)*bp);
+							else if (*bp >= 'N' && *bp <= 'Y')	SET_TM_GMTOFF((int)*bp - 'M');
 #endif
-							SET_TM_ZONE(NULL) /* XXX */
+							SET_TM_ZONE(NULL); /* XXX */
 							bp++;
 							continue;
 						}
@@ -610,8 +613,8 @@ recurse:
 				if (neg)
 					offset = -offset;
 				tm->tm_isdst = 0;	/* XXX */
-				SET_TM_GMTOFF(offset)
-				SET_TM_ZONE(NULL)	/* XXX */
+				SET_TM_GMTOFF(offset);
+				SET_TM_ZONE(NULL);	/* XXX */
 				continue;
 			}
 /*
@@ -638,12 +641,12 @@ recurse:
 s_date		Date_FromString(char const* str, char const* format)
 {
 	struct tm t = { 0 };
-	t_bitmask_tm written;
+	t_bitmask_tm written = 0;
 	s_date result;
 
 	LIBCONFIG_HANDLE_NULLPOINTER(DATE_NULL, str)
 	LIBCONFIG_HANDLE_NULLPOINTER(DATE_NULL, format)
-	if (strptime(str, format, &t) == NULL)
+	if (strptime(str, format, &t, &written) == NULL)
 		return (DATE_NULL); // TODO handle error here ?
 	result = Date_FromSTDC(&t);
 	if (result.day_year == 0 && result.month > 0 && result.day_month > 0)
