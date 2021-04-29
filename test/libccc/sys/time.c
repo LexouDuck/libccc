@@ -1,4 +1,7 @@
 
+#include <time.h>
+#include <sys/time.h>
+
 #include "libccc/sys/time.h"
 
 #include "test.h"
@@ -13,7 +16,17 @@
 
 #define FORMAT_UTC	(FORMAT_DATE_UNIX" "FORMAT_TIME_UNIX)
 
-
+/*
+	.year		; Amount of years since 1900	
+	.month		; [0,11] months since January
+	.day_week	; [0,6] days since Sunday
+	.day_month	; [1,31] day of the month
+	.day_year	; [0,365] days since January 1 (max value is 365 every 4 years, otherwise 364)
+	.hour		; [0,23] hours since midnight
+	.min		; [0,59] minutes after the hour
+	.sec		; [0,59(61)] seconds after the minute (usually 0-59 - there is extra range to accommodate for leap seconds)
+	.is_dst		; If TRUE, then Daylight Savings Time is on
+*/
 
 #define DATE_STR_BUFFER		512
 #define DATE_STR_FORMAT	\
@@ -30,15 +43,28 @@
 char*	y99_str = "1999-01-01 00:00:00";
 s_date	y99_date = (s_date)
 {
-	.sec = 0,		//!< [0,59(61)] seconds after the minute (usually 0-59 - there is extra range to accommodate for leap seconds)
-	.min = 0,		//!< [0,59] minutes after the hour
-	.hour = 0,		//!< [0,23] hours since midnight
-	.day_week = 0,	//!< [0,6] days since Sunday
-	.day_month = 1,	//!< [1,31] day of the month
-	.day_year = 0,	//!< [0,365] days since January 1 (max value is 365 every 4 years, otherwise 364)
-	.month = 0,		//!< [0,11] months since January
-	.year = 99,		//!< Amount of years since 1900	
-	.is_dst = FALSE,//!< If TRUE, then Daylight Savings Time is on
+	.year		= 99,
+	.month		= 0,
+	.day_week	= 0,
+	.day_month	= 1,
+	.day_year	= 0,
+	.hour		= 0,
+	.min		= 0,
+	.sec		= 0,
+	.is_dst		= FALSE,
+};
+char*	y2k_str = "2000-01-01 00:00:00";
+s_date	y2k_date = (s_date)
+{
+	.year		= 100,
+	.month		= 0,
+	.day_week	= 0,
+	.day_month	= 1,
+	.day_year	= 0,
+	.hour		= 0,
+	.min		= 0,
+	.sec		= 0,
+	.is_dst		= FALSE,
 };
 
 
@@ -73,15 +99,15 @@ void	print_test_datetostr(char const* test_name, int can_segfault,
 }
 void	test_datetostr(void)
 {
-	/*
-	s_date now = c_date();
-	struct tm now_tm = Date_ToSTDC(&now);
+	time_t now_time = time(NULL);
+	struct tm* now_tm = gmtime(&now_time);
+	s_date now_date = Date_FromSTDC(now_tm);
 	char now_str[DATE_STR_BUFFER];
-	strftime(now_str, DATE_STR_BUFFER, FORMAT_UTC, &now_tm);
-	*/
+	strftime(now_str, DATE_STR_BUFFER, FORMAT_UTC, now_tm);
 /*	| TEST FUNCTION     | TEST NAME                  |CAN SEGV| EXPECTING              | TEST ARGS				*/
-//	print_test_datetostr("datetostr                 ",	FALSE,                  now_str, FORMAT_UTC, &now);
 	print_test_datetostr("datetostr                 ",	FALSE,                  y99_str, FORMAT_UTC, &y99_date);
+	print_test_datetostr("datetostr                 ",	FALSE,                  y2k_str, FORMAT_UTC, &y2k_date);
+	print_test_datetostr("datetostr                 ",	FALSE,                  now_str, FORMAT_UTC, &now_date);
 }
 #endif
 
@@ -102,15 +128,15 @@ void	print_test_strtodate(char const* test_name, int can_segfault,
 }
 void	test_strtodate(void)
 {
-	/*
-	s_date now = c_date();
-	struct tm now_tm = Date_ToSTDC(&now);
+	time_t now_time = time(NULL);
+	struct tm* now_tm = gmtime(&now_time);
+	s_date now_date = Date_FromSTDC(now_tm);
 	char now_str[DATE_STR_BUFFER];
-	strftime(now_str, DATE_STR_BUFFER, FORMAT_UTC, &now_tm);
-	*/
+	strftime(now_str, DATE_STR_BUFFER, FORMAT_UTC, now_tm);
 /*	| TEST FUNCTION     | TEST NAME                  |CAN SEGV| EXPECTING              | TEST ARGS				*/
-//	print_test_strtodate("strtodate                 ",	FALSE,                     &now, FORMAT_UTC, now_str);
 	print_test_strtodate("strtodate                 ",	FALSE,                &y99_date, FORMAT_UTC, y99_str);
+	print_test_strtodate("strtodate                 ",	FALSE,                &y2k_date, FORMAT_UTC, y2k_str);
+	print_test_strtodate("strtodate                 ",	FALSE,                &now_date, FORMAT_UTC, now_str);
 }
 #endif
 
@@ -126,7 +152,7 @@ void	test_strtodate(void)
 
 int		testsuite_sys_time(void)
 {
-	print_suite_title("sys/time");
+	print_suite_title("libccc/sys/time");
 
 	test_datetostr();
 

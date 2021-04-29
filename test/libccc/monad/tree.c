@@ -13,7 +13,7 @@
 
 int		testsuite_monad_tree(void)
 {
-	print_suite_title("monad/tree");
+	print_suite_title("libccc/monad/tree");
 
 	// TODO
 

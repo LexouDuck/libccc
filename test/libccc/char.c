@@ -48,7 +48,7 @@ static void	print_char_foreword(void)
 
 int		testsuite_char(void)
 {
-	print_suite_title("char");
+	print_suite_title("libccc/char");
 
 	print_char_foreword();
 

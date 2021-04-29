@@ -628,7 +628,7 @@ void	test_lst_to_array(void)
 
 int		testsuite_monad_list(void)
 {
-	print_suite_title("monad/list");
+	print_suite_title("libccc/monad/list");
 
 	print_nonstd();
 

@@ -14,7 +14,7 @@
 t_time		Time_Now(void)
 {
 	t_time result;
-	if (time(&result) == (t_time)-1)
+	if (time(&result) == (t_time)ERROR)
 		return (TIME_NULL);
 	return (result);
 }
@@ -23,20 +23,24 @@ t_time		Time_Now(void)
 
 s_date		Time_ToDate_UTC(t_time const value)
 {
-	s_date result;
+	s_date result = { 0 };
  	struct tm* tm;
 
  	tm = gmtime(&value);
+ 	if (tm == NULL)
+ 		return (result);
 	result = Date_FromSTDC(tm);
 	return (result);
 }
 
 s_date		Time_ToDate_LocalTime(t_time const value)
 {
-	s_date result;
+	s_date result = { 0 };
  	struct tm* tm;
 
  	tm = localtime(&value);
+ 	if (tm == NULL)
+ 		return (result);
 	result = Date_FromSTDC(tm);
 	return (result);
 }

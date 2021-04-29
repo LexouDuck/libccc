@@ -737,7 +737,7 @@ DEFINETEST_STR_TO_FLOAT(float)
 
 int		testsuite_float(void)
 {
-	print_suite_title("float");
+	print_suite_title("libccc/float");
 
 	print_nonstd();
 

@@ -286,7 +286,7 @@ void	test_strarrfold()
 
 int		testsuite_stringarray(void)
 {
-	print_suite_title("stringarray");
+	print_suite_title("libccc/stringarray");
 
 	print_nonstd();
 

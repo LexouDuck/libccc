@@ -198,7 +198,7 @@ void	test_str_to_size(void)
 
 int		testsuite_pointer(void)
 {
-	print_suite_title("pointer");
+	print_suite_title("libccc/pointer");
 
 	print_nonstd();
 

@@ -13,7 +13,7 @@
 
 int		testsuite_pointerarray(void)
 {
-	print_suite_title("pointerarray");
+	print_suite_title("libccc/pointerarray");
 
 	// TODO
 

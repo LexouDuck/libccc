@@ -13,7 +13,7 @@
 
 int		testsuite_monad_array(void)
 {
-	print_suite_title("monad/array");
+	print_suite_title("libccc/monad/array");
 
 	// TODO
 

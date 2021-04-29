@@ -231,7 +231,7 @@ void	test_str_to_bool(void)
 
 int		testsuite_bool(void)
 {
-	print_suite_title("bool");
+	print_suite_title("libccc/bool");
 
 	print_nonstd();
 

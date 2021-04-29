@@ -13,7 +13,7 @@
 
 int		testsuite_math_vlq(void)
 {
-	print_suite_title("math/vlq");
+	print_suite_title("libccc/math/vlq");
 
 	// TODO
 

@@ -768,17 +768,17 @@ void	print_test_list(
 
 
 
-#define DATE_STR_BUFFER		128
+#define DATE_STR_BUFFER		512
 #define DATE_STR_FORMAT	\
-	"\n.sec       = %u," \
-	"\n.min       = %u," \
-	"\n.hour      = %u," \
-	"\n.day_week  = %s," \
-	"\n.day_month = %u," \
-	"\n.day_year  = %i," \
-	"\n.month     = %s," \
-	"\n.year      = %i," \
-	"\n.is_dst    = %s," \
+	"\n\t.year      = %i," \
+	"\n\t.month     = %i," \
+	"\n\t.day_month = %u," \
+	"\n\t.hour      = %u," \
+	"\n\t.min       = %u," \
+	"\n\t.sec       = %u," \
+	"\n\t.is_dst    = %s," \
+	"\n\t.day_week  = %i," \
+	"\n\t.day_year  = %i\n" \
 
 void	print_test_date(
 	char const* test_name,
@@ -795,14 +795,23 @@ void	print_test_date(
 		error = !(expect == (s_date*)segstr);
 	else if (expect == (s_date*)segstr)
 		error = !LIBCONFIG_HANDLE_NULLPOINTERS;
-	else error = (result && expect) ?
-		(memcmp(result, expect, sizeof(s_date)) != 0) :
-		(result != expect);
-	snprintf(str_result, DATE_STR_BUFFER, DATE_STR_FORMAT, result->sec, result->min, result->hour, g_weekday[result->day_week], result->day_month, result->day_year, g_month[result->month], result->year, (result->is_dst ? "TRUE" : "FALSE"));
-	snprintf(str_expect, DATE_STR_BUFFER, DATE_STR_FORMAT, expect->sec, expect->min, expect->hour, g_weekday[expect->day_week], expect->day_month, expect->day_year, g_month[expect->month], expect->year, (expect->is_dst ? "TRUE" : "FALSE"));
+	else if (!result || !expect)
+		error = (result != expect);
+	else
+		error = !( result->sec       == expect->sec
+				&& result->min       == expect->min
+				&& result->hour      == expect->hour
+				&& result->day_week  == expect->day_week
+				&& result->day_month == expect->day_month
+				&& result->day_year  == expect->day_year
+				&& result->month     == expect->month
+				&& result->year      == expect->year
+				&& result->is_dst    == expect->is_dst);
+	snprintf(str_result, DATE_STR_BUFFER, DATE_STR_FORMAT, result->year, result->month, result->day_month, result->hour, result->min, result->sec, (result->is_dst ? "TRUE" : "FALSE"), result->day_week, result->day_year);
+	snprintf(str_expect, DATE_STR_BUFFER, DATE_STR_FORMAT, expect->year, expect->month, expect->day_month, expect->hour, expect->min, expect->sec, (expect->is_dst ? "TRUE" : "FALSE"), expect->day_week, expect->day_year);
 	print_test(test_name, function,
-		print_memory(result, sizeof(s_date)),
-		print_memory(expect, sizeof(s_date)),
+		str_result,
+		str_expect,
 		can_segfault,
 		error, NULL);
 }

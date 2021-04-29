@@ -370,7 +370,7 @@ int		test_math_realoperator_libc(
 
 int		testsuite_math(void)
 {
-	print_suite_title("math");
+	print_suite_title("libccc/math");
 
 	print_math_foreword();
 

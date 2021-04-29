@@ -1396,7 +1396,7 @@ DEFINETEST_STRBASE_TO_SINT(s128)
 
 int		testsuite_int(void)
 {
-	print_suite_title("int");
+	print_suite_title("libccc/int");
 
 	print_nonstd();
 

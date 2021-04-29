@@ -1499,7 +1499,7 @@ void	test_strmapi(void)
 
 int		testsuite_string(void)
 {
-	print_suite_title("string");
+	print_suite_title("libccc/string");
 
 
 	test_strnew();

@@ -13,7 +13,7 @@
 
 int		testsuite_monad_object(void)
 {
-	print_suite_title("monad/object");
+	print_suite_title("libccc/monad/object");
 
 	// TODO
 

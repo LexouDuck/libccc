@@ -13,7 +13,7 @@
 ** ************************************************************************** *|
 */
 
-void	print_error(char const * format_error, ...)
+void	print_error(char const* format_error, ...)
 {
 	va_list		args;
 
@@ -33,7 +33,7 @@ void	print_percent(double percent)
 
 
 
-void	print_totals(s_test_totals totals, char const * category)
+void	print_totals(s_test_totals totals, char const* category)
 {
 	double percent = (totals.tests - totals.failed) * 100. / totals.tests;
 
@@ -66,7 +66,7 @@ void	print_totals(s_test_totals totals, char const * category)
 
 
 
-void	print_usage(char const * program_name)
+void	print_usage(char const* program_name)
 {
 	printf("\nUSAGE");
 	printf("\n\t%s [TEST_SUITES] [OPTIONS]", program_name);
@@ -91,14 +91,14 @@ void	print_usage(char const * program_name)
 
 
 
-void	print_suite_title(char const * suite_name)
+void	print_suite_title(char const* suite_name)
 {
 	if (g_test.flags.verbose)
 	{
 		printf("\n");
-		printf("       .----------------------------------.       \n");
-		printf("---==={   LIBCCC TEST: libccc_%-12s   }===---\n", suite_name);
-		printf("       '----------------------------------'       \n");
+		printf("       .-------------------------------------.       \n");
+		printf("---==={   LIBCCC TEST: %20.20s   }===---\n", suite_name);
+		printf("       '-------------------------------------'       \n");
 	}
 }
 

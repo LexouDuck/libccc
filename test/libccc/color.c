@@ -44,7 +44,7 @@ void	test_color_(void)
 
 int		testsuite_color(void)
 {
-	print_suite_title("color");
+	print_suite_title("libccc/color");
 
 	print_nonstd();
 

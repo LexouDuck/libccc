@@ -13,7 +13,7 @@
 
 int		testsuite_math_complex(void)
 {
-	print_suite_title("math/complex");
+	print_suite_title("libccc/math/complex");
 
 	// TODO
 

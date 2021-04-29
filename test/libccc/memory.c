@@ -498,7 +498,7 @@ void	test_getbits(void)
 
 int		testsuite_memory(void)
 {
-	print_suite_title("memory");
+	print_suite_title("libccc/memory");
 
 
 	test_memset();

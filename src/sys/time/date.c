@@ -50,34 +50,52 @@ t_time		Date_ToTime_LocalTime(s_date const* value)
 
 
 
-inline struct tm	Date_ToSTDC(s_date const* value)
+inline
+struct tm	Date_ToSTDC(s_date const* value)
 {
 	return ((struct tm)
 	{
-		.tm_sec   = value->sec,
-		.tm_min   = value->min,
-		.tm_hour  = value->hour,
-		.tm_wday  = value->day_week,
-		.tm_mday  = value->day_month,
-		.tm_yday  = value->day_year,
-		.tm_mon   = value->month,
-		.tm_year  = value->year,
-		.tm_isdst = value->is_dst,
+		.tm_sec 	= value->sec,
+		.tm_min 	= value->min,
+		.tm_hour 	= value->hour,
+		.tm_wday 	= value->day_week,
+		.tm_mday 	= value->day_month,
+		.tm_yday 	= value->day_year,
+		.tm_mon 	= value->month,
+		.tm_year 	= value->year,
+		.tm_isdst 	= value->is_dst,
+#ifdef TM_GMTOFF
+		.TM_GMTOFF	= value->timezone;;
+#else
+#endif
+#ifdef TM_ZONE
+		.TM_ZONE	= value->timezone;
+#else
+#endif
 	});
 }
 
-inline s_date		Date_FromSTDC(struct tm const* value)
+inline
+s_date		Date_FromSTDC(struct tm const* value)
 {
 	return ((s_date)
 	{
-		.sec       = value->tm_sec,
-		.min       = value->tm_min,
-		.hour      = value->tm_hour,
-		.day_week  = value->tm_wday,
-		.day_month = value->tm_mday,
-		.day_year  = value->tm_yday,
-		.month     = value->tm_mon,
-		.year      = value->tm_year,
-		.is_dst    = value->tm_isdst,
+		.sec		= value->tm_sec,
+		.min		= value->tm_min,
+		.hour		= value->tm_hour,
+		.day_week	= value->tm_wday,
+		.day_month	= value->tm_mday,
+		.day_year	= value->tm_yday,
+		.month		= value->tm_mon,
+		.year		= value->tm_year,
+		.is_dst		= value->tm_isdst,
+#ifdef TM_GMTOFF
+		.timezone	= value->TM_GMTOFF,
+#else
+#endif
+#ifdef TM_ZONE
+		.timezone	= value->TM_ZONE,
+#else
+#endif
 	});
 }

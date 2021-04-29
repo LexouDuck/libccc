@@ -75,7 +75,8 @@ __weak_alias(strptime,_strptime)
 /*                                 Definitions                                */
 /* ************************************************************************** */
 
-typedef unsigned int uint;
+typedef unsigned int	uint;
+typedef unsigned char	uchar;
 //typedef unsigned __int64 uint64_t;
 
 #define	_ctloc(x)		(_CurrentTimeLocale->x)
@@ -114,15 +115,17 @@ static const char*  const am_pm[2] =
 	"pm"
 };
 
-static const t_u8* conv_num(const unsigned char* , int*, uint, uint);
-static const t_u8* find_string(const t_u8*, int*, const char*  const* ,
-	const char*  const* , int);
+static
+const t_u8* conv_num(const uchar* , int*, uint, uint);
+static
+const t_u8* find_string(const t_u8*, int*, const char* const*, const char* const*, int);
 
 
-static const t_u8* 	conv_num(const unsigned char* buf, int *dest, uint llim, uint ulim)
+static
+const t_u8* conv_num(const uchar* buf, int *dest, uint llim, uint ulim)
 {
 	uint result = 0;
-	unsigned char ch;
+	uchar ch;
 
 	/* The limit also determines the number of valid digits. */
 	uint rulim = ulim;
@@ -145,7 +148,8 @@ static const t_u8* 	conv_num(const unsigned char* buf, int *dest, uint llim, uin
 	return buf;
 }
 
-static const t_u8* 	find_string(const t_u8* bp, int *tgt, const char*  const* n1, const char*  const* n2, int c)
+static
+const t_u8* find_string(const t_u8* bp, int *tgt, const char*  const* n1, const char*  const* n2, int c)
 {
 	int i;
 	size_t len;
@@ -184,9 +188,9 @@ strncasecmp(const char* a, const char* b, size_t c)
 */
 char* 	strptime(const char* buf, const char* fmt, struct tm *tm)
 {
-	unsigned char c;
-	const unsigned char* bp, *ep;
-	int alt_format, i, split_year = 0, neg = 0, offs;
+	uchar c;
+	const uchar* bp, *ep;
+	int alt_format, i, split_year = 0, neg = 0, offset;
 	const char* new_fmt;
 
 	bp = (const t_u8* )buf;
@@ -582,10 +586,10 @@ recurse:
 				}
 				return NULL;
 			}
-			offs = 0;
+			offset = 0;
 			for (i = 0; i < 4; ) {
 				if (isdigit(*bp)) {
-					offs = offs * 10 + (*bp++ - '0');
+					offset = offset * 10 + (*bp++ - '0');
 					i++;
 					continue;
 				}
@@ -597,23 +601,23 @@ recurse:
 			}
 			switch (i) {
 			case 2:
-				offs *= 100;
+				offset *= 100;
 				break;
 			case 4:
-				i = offs % 100;
+				i = offset % 100;
 				if (i >= 60)
 					return NULL;
 				/* Convert minutes into decimal */
-				offs = (offs / 100) * 100 + (i * 50) / 30;
+				offset = (offset / 100) * 100 + (i * 50) / 30;
 				break;
 			default:
 				return NULL;
 			}
 			if (neg)
-				offs = -offs;
+				offset = -offset;
 			tm->tm_isdst = 0;	/* XXX */
 #ifdef TM_GMTOFF
-			tm->TM_GMTOFF = offs;
+			tm->TM_GMTOFF = offset;
 #endif
 #ifdef TM_ZONE
 			tm->TM_ZONE = NULL;	/* XXX */
@@ -638,10 +642,6 @@ recurse:
 
 	return (char* )(bp);
 }
-
-#ifdef __cplusplus
-} //extern c
-#endif
 
 #endif
 

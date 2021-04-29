@@ -13,7 +13,7 @@
 
 int		testsuite_monad_dict(void)
 {
-	print_suite_title("monad/dict");
+	print_suite_title("libccc/monad/dict");
 
 	// TODO
 

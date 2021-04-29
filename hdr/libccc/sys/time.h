@@ -233,6 +233,10 @@ TYPEDEF_ALIAS(	s_date, TIME_DATE, STRUCT)
 
 
 
+#define DATE_YEAR_BASE		1900
+
+
+
 #define FORMAT_TIME_UNIX	"%H:%M:%S"	//!< @ref Date_ToString() date format: hh:mm:ss	 -> 11:59:59
 #define FORMAT_TIME_PRIME	"%Hh%m'%s\""//!< @ref Date_ToString() date format: hhhmm'ss" -> 11h59'59"
 

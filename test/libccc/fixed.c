@@ -183,7 +183,7 @@ DEFINETEST_FIXED_TO_STR(fixed, Fixed)
 
 int		testsuite_fixed(void)
 {
-	print_suite_title("fixed");
+	print_suite_title("libccc/fixed");
 
 	print_nonstd();
 
