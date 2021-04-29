@@ -359,6 +359,8 @@ t_bool	JSON_Parse_Object(s_json* const item, s_json_parse* const p)
 	// loop through the comma separated array elements
 	do
 	{
+		p->offset++;
+		JSON_Parse_SkipWhiteSpace(p, p->strict);
 		if (!p->strict && CAN_PARSE(0) && (p->content[p->offset] == '}'))
 			goto success; // allow trailing commas when not in strict mode
 		// allocate next item
@@ -377,8 +379,6 @@ t_bool	JSON_Parse_Object(s_json* const item, s_json_parse* const p)
 			current_item = new_item;
 		}
 		// p the name of the child
-		p->offset++;
-		JSON_Parse_SkipWhiteSpace(p, p->strict);
 		if (!JSON_Parse_String(current_item, p))
 			PARSINGERROR_JSON_GOTO("Could not parse object: Failed to parse object member key")
 		JSON_Parse_SkipWhiteSpace(p, p->strict);

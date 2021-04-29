@@ -44,8 +44,8 @@ char*	y99_str = "1999-01-01 00:00:00";
 s_date	y99_date = (s_date)
 {
 	.year		= 99,
-	.month		= 0,
-	.day_week	= 0,
+	.month		= MONTH_JANUARY,
+	.day_week	= WEEKDAY_FRIDAY,
 	.day_month	= 1,
 	.day_year	= 0,
 	.hour		= 0,
@@ -57,8 +57,8 @@ char*	y2k_str = "2000-01-01 00:00:00";
 s_date	y2k_date = (s_date)
 {
 	.year		= 100,
-	.month		= 0,
-	.day_week	= 0,
+	.month		= MONTH_JANUARY,
+	.day_week	= WEEKDAY_SATURDAY,
 	.day_month	= 1,
 	.day_year	= 0,
 	.hour		= 0,

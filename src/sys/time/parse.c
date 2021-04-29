@@ -82,33 +82,35 @@ typedef unsigned char	uchar;
 
 typedef t_s16	t_bitmask_tm;
 
-#define BITMASK_tm_sec		tm_sec
-#define BITMASK_tm_min		tm_min
-#define BITMASK_tm_hour		tm_hour
-#define BITMASK_tm_wday		tm_wday
-#define BITMASK_tm_mday		tm_mday
-#define BITMASK_tm_yday		tm_yday
-#define BITMASK_tm_mon		tm_mon
-#define BITMASK_tm_year		tm_year
-#define BITMASK_tm_isdst	tm_isdst
+#define BITMASK_tm_sec		0
+#define BITMASK_tm_min		1
+#define BITMASK_tm_hour		2
+#define BITMASK_tm_wday		3
+#define BITMASK_tm_mday		4
+#define BITMASK_tm_yday		5
+#define BITMASK_tm_mon		6
+#define BITMASK_tm_year		7
+#define BITMASK_tm_isdst	8
+
 #ifdef TM_GMTOFF
-#define BITMASK_tm_gmtoff	tm_gmtoff
-#define SET_TM_GMTOFF(X)	tm->tm_gmtoff = (X)
+#define BITMASK_tm_gmtoff	9
+#define SET_TM_GMTOFF(X)	tm->tm_gmtoff = (X); SET_WRITTEN(tm_gmtoff)
 #else
 #define SET_TM_GMTOFF(X)	
 #endif
+
 #ifdef TM_ZONE
-#define BITMASK_tm_zone		tm_zone
-#define SET_TM_ZONE(X)		tm->tm_zone = (X)
+#define BITMASK_tm_zone		10
+#define SET_TM_ZONE(X)		tm->tm_zone = (X);	 SET_WRITTEN(tm_zone)
 #else
-#define SET_TM_ZONE(X)	
+#define SET_TM_ZONE(X)		
 #endif
 
-#define SET_WRITTEN(FIELD) \
-	(*written) |= (1 << TM_BITMASK_##FIELD)
+#define SET_WRITTEN(_FIELD_) \
+	(*written) |= (1 << BITMASK_##_FIELD_)
 
-#define HAS_WRITTEN(FIELD) \
-	((*written) & (1 << TM_BITMASK_##FIELD))
+#define HAS_WRITTEN(_FIELD_) \
+	(written & (1 << BITMASK_##_FIELD_))
 
 
 
@@ -296,6 +298,7 @@ recurse:
 				i = TM_YEAR_BASE;	/* just for data sanity... */
 				bp = strptime_convert_number(bp, &i, 0, 9999);
 				tm->tm_year = i - TM_YEAR_BASE;
+				SET_WRITTEN(tm_year);
 				LEGAL_ALT(ALT_E);
 				continue;
 			}
@@ -303,15 +306,17 @@ recurse:
 			{
 				/* LEGAL_ALT(ALT_E | ALT_O); */
 				bp = strptime_convert_number(bp, &i, 0, 99);
-
 				if (split_year) /* preserve century */
+				{
 					i += (tm->tm_year / 100) * 100;
+				}
 				else
 				{
 					split_year = 1;
 					i += ((i <= 68) ? 2000 : 1900) - TM_YEAR_BASE;
 				}
 				tm->tm_year = i;
+				SET_WRITTEN(tm_year);
 				continue;
 			}
 
@@ -320,6 +325,7 @@ recurse:
 				i = 1;
 				bp = strptime_convert_number(bp, &i, 1, 12);
 				tm->tm_mon = i - 1;
+				SET_WRITTEN(tm_mon);
 				LEGAL_ALT(ALT_O);
 				continue;
 			}
@@ -328,6 +334,7 @@ recurse:
 			case 'h':
 			{
 				bp = strptime_find_string(bp, &tm->tm_mon, g_month, g_month_abbreviated, 12);
+				SET_WRITTEN(tm_mon);
 				LEGAL_ALT(0);
 				continue;
 			}
@@ -336,6 +343,7 @@ recurse:
 			case 'e':
 			{
 				bp = strptime_convert_number(bp, &tm->tm_mday, 1, 31);
+				SET_WRITTEN(tm_mday);
 				LEGAL_ALT(ALT_O);
 				continue;
 			}
@@ -345,6 +353,7 @@ recurse:
 				i = 1;
 				bp = strptime_convert_number(bp, &i, 1, 366);
 				tm->tm_yday = i - 1;
+				SET_WRITTEN(tm_yday);
 				LEGAL_ALT(0);
 				continue;
 			}
@@ -363,6 +372,7 @@ recurse:
 			case 'w':	/* The day of week, beginning on sunday. */
 			{
 				bp = strptime_convert_number(bp, &tm->tm_wday, 0, 6);
+				SET_WRITTEN(tm_wday);
 				LEGAL_ALT(ALT_O);
 				continue;
 			}
@@ -370,6 +380,7 @@ recurse:
 			{
 				bp = strptime_convert_number(bp, &i, 1, 7);
 				tm->tm_wday = i % 7;
+				SET_WRITTEN(tm_wday);
 				LEGAL_ALT(ALT_O);
 				continue;
 			}
@@ -377,6 +388,7 @@ recurse:
 			case 'a':
 			{
 				bp = strptime_find_string(bp, &tm->tm_wday, g_weekday, g_weekday_abbreviated, 7);
+				SET_WRITTEN(tm_wday);
 				LEGAL_ALT(0);
 				continue;
 			}
@@ -387,6 +399,7 @@ recurse:
 			case 'H':
 			{
 				bp = strptime_convert_number(bp, &tm->tm_hour, 0, 23);
+				SET_WRITTEN(tm_hour);
 				LEGAL_ALT(ALT_O);
 				continue;
 			}
@@ -396,6 +409,7 @@ recurse:
 				bp = strptime_convert_number(bp, &tm->tm_hour, 1, 12);
 				if (tm->tm_hour == 12)
 					tm->tm_hour = 0;
+				SET_WRITTEN(tm_hour);
 				LEGAL_ALT(ALT_O);
 				continue;
 			}
@@ -403,6 +417,7 @@ recurse:
 			case 'M':	/* The minute. */
 			{
 				bp = strptime_convert_number(bp, &tm->tm_min, 0, 59);
+				SET_WRITTEN(tm_min);
 				LEGAL_ALT(ALT_O);
 				continue;
 			}
@@ -410,6 +425,7 @@ recurse:
 			case 'S':	/* The seconds. */
 			{
 				bp = strptime_convert_number(bp, &tm->tm_sec, 0, 61);
+				SET_WRITTEN(tm_sec);
 				LEGAL_ALT(ALT_O);
 				continue;
 			}
@@ -440,6 +456,18 @@ recurse:
 				tm = localtime(&sse);
 				if (tm == NULL)
 					bp = NULL;
+				else
+				{
+					SET_WRITTEN(tm_sec);
+					SET_WRITTEN(tm_min);
+					SET_WRITTEN(tm_hour);
+					SET_WRITTEN(tm_wday);
+					SET_WRITTEN(tm_mday);
+					SET_WRITTEN(tm_yday);
+					SET_WRITTEN(tm_mon);
+					SET_WRITTEN(tm_year);
+					SET_WRITTEN(tm_isdst);
+				}
 				continue;
 			}
 
@@ -451,6 +479,7 @@ recurse:
 				if (tm->tm_hour > 11)
 					return (NULL);
 				tm->tm_hour += i * 12;
+				SET_WRITTEN(tm_hour);
 				LEGAL_ALT(0);
 				continue;
 			}
@@ -467,6 +496,7 @@ recurse:
 					i += tm->tm_year % 100;
 				split_year = 1;
 				tm->tm_year = i;
+				SET_WRITTEN(tm_year);
 				LEGAL_ALT(ALT_E);
 				continue;
 			}
@@ -484,6 +514,7 @@ recurse:
 					c_strnicmp((char const*)bp, utc, 3) == 0)
 				{
 					tm->tm_isdst = 0;
+					SET_WRITTEN(tm_isdst);
 					SET_TM_GMTOFF(0);
 					SET_TM_ZONE(gmt);
 					bp += 3;
@@ -494,6 +525,7 @@ recurse:
 					if (ep != NULL)
 					{
 						tm->tm_isdst = i;
+						SET_WRITTEN(tm_isdst);
 						SET_TM_GMTOFF(-(timezone));
 						SET_TM_ZONE(tzname[i]);
 					}
@@ -531,6 +563,7 @@ recurse:
 					case 'U':	if (*bp++ != 'T')	return (NULL);	/*FALLTHROUGH*/
 					case 'Z':
 						tm->tm_isdst = 0;
+						SET_WRITTEN(tm_isdst);
 						SET_TM_GMTOFF(0);
 						SET_TM_ZONE(utc);
 						continue;
@@ -552,6 +585,7 @@ recurse:
 						if (ep != NULL)
 						{
 							tm->tm_isdst = 1;
+							SET_WRITTEN(tm_isdst);
 							SET_TM_GMTOFF(-4 - i);
 							SET_TM_ZONE(__UNCONST(nadt[i]));
 							bp = ep;
@@ -613,6 +647,7 @@ recurse:
 				if (neg)
 					offset = -offset;
 				tm->tm_isdst = 0;	/* XXX */
+				SET_WRITTEN(tm_isdst);
 				SET_TM_GMTOFF(offset);
 				SET_TM_ZONE(NULL);	/* XXX */
 				continue;
@@ -649,15 +684,15 @@ s_date		Date_FromString(char const* str, char const* format)
 	if (strptime(str, format, &t, &written) == NULL)
 		return (DATE_NULL); // TODO handle error here ?
 	result = Date_FromSTDC(&t);
-	if (result.day_year == 0 && result.month > 0 && result.day_month > 0)
+	if (!HAS_WRITTEN(tm_yday))
 	{
 		for (e_month i = 0; i < result.month; ++i)
 		{
 			result.day_year += Date_DaysInMonth(i, result.year);
 		}
-		result.day_year += result.day_month;
+		result.day_year += result.day_month - 1;
 	}
-	if (result.day_week == 0)
+	if (!HAS_WRITTEN(tm_wday))
 	{
 		result.day_week = Date_DayOfTheWeek(&result);
 	}
