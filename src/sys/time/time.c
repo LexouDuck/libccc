@@ -13,7 +13,8 @@
 
 t_time		Time_Now(void)
 {
-	t_time result;
+	t_time result = 0;
+
 	if (time(&result) == (t_time)ERROR)
 		return (TIME_NULL);
 	return (result);

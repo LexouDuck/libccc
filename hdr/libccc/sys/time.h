@@ -454,6 +454,23 @@ s_date						Date_FromSTDC(struct tm const* value);
 
 
 
+/*
+** ************************************************************************** *|
+**                       Date-related utility functions                       *|
+** ************************************************************************** *|
+*/
+
+//! returns TRUE if the given year is a leap year
+t_bool	Date_IsLeapYear(t_s32 year);
+
+//! returns the amount of days in the given `month`
+t_uint	Date_DaysInMonth(e_month month, t_s32 year);
+
+//! returns the day of the week
+t_uint	Date_DayOfTheWeek(s_date* date);
+
+
+
 /*! @} */
 HEADER_END
 #endif

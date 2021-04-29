@@ -171,21 +171,22 @@ SRCS = \
 	color/convert.c		\
 	color/nearest.c		\
 	color/diff.c		\
-	sys/io/fd.c					\
-	sys/io/error.c				\
-	sys/io/color.c				\
-	sys/io/open.c				\
-	sys/io/close.c				\
-	sys/io/chmod.c				\
-	sys/io/read.c				\
-	sys/io/read_nextline.c		\
-	sys/io/write.c				\
-	sys/io/output.c				\
-	sys/time/time.c			\
-	sys/time/date.c			\
-	sys/time/date_format.c	\
-	sys/time/date_parse.c	\
-	sys/time/strings.c		\
+	sys/io/fd.c			\
+	sys/io/error.c		\
+	sys/io/color.c		\
+	sys/io/open.c		\
+	sys/io/close.c		\
+	sys/io/chmod.c		\
+	sys/io/read.c		\
+	sys/io/readline.c	\
+	sys/io/write.c		\
+	sys/io/output.c		\
+	sys/time/time.c		\
+	sys/time/date.c		\
+	sys/time/print.c	\
+	sys/time/parse.c	\
+	sys/time/utils.c	\
+	sys/time/strings.c	\
 	sys/logger/core.c	\
 	sys/logger/util.c	\
 	sys/logger/init.c	\
@@ -448,10 +449,10 @@ test: $(NAME_TEST)
 #######################################
 
 clean:
-	@printf "Deleting object files...\n"
+	@printf "Deleting all .o files...\n"
 	@rm -rf $(OBJS)
 	@rm -rf $(TEST_OBJS)
-	@printf "Deleting dependency files...\n"
+	@printf "Deleting all .d files...\n"
 	@rm -rf $(DPDS)
 	@rm -rf *.d
 
@@ -463,9 +464,11 @@ fclean: clean
 	@rm -rf $(NAME_TEST).d
 
 rclean: fclean
-	@printf "Deleting obj folder...\n"
+	@printf "Deleting "$(OBJDIR)" folder...\n"
 	@rm -rf $(OBJDIR)
-	@printf "Deleting bin folder...\n"
+
+aclean: rclean
+	@printf "Deleting "$(BINDIR)" folder...\n"
 	@rm -rf $(BINDIR)
 
 re: fclean all
