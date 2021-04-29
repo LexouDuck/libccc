@@ -30,6 +30,7 @@
 
 #include "libccc.h"
 #include "libccc/color.h"
+#include "libccc/sys/ansi.h"
 
 HEADER_CPP
 
@@ -122,7 +123,7 @@ TYPEDEF_ALIAS(			t_io_open, IO_OPEN, PRIMITIVE)
 #define OPEN_CREATE		O_CREAT	//!< If set, the file will be created if it doesn’t already exist.
 #define OPEN_CLEARFILE	O_TRUNC	//!< If writing is allowed (ie: O_RDWR or O_WRONLY) then remove all contents of the file upon opening
 #define OPEN_NOEXISTING	O_EXCL	//!< If both O_CREAT and O_EXCL are set, then open fails if the specified file already exists. (otherwise, platform-specific)
-//#define OPEN_NOSYMLINK	O_NOFOLLOW	//! If set, the open operation fails if the final component of the file name refers to a symbolic link.
+//#define OPEN_NOSYMLINK	O_NOFOLLOW	//!< If set, the open operation fails if the final component of the file name refers to a symbolic link.
 //#define OPEN_SYMLINK	O_NOLINK	//!< If the named file is a symbolic link, open the link itself instead of the file it refers to.
 //#define OPEN_TEMPFILE	O_TMPFILE	//!< (GNU ext) If set, functions in the open family create an unnamed temporary file (must have write access, 'path' arg is the folder to put the temp file in)
 
@@ -132,106 +133,6 @@ TYPEDEF_ALIAS(			t_io_open, IO_OPEN, PRIMITIVE)
 //#define OPEN_ASYNC	O_ASYNC		//!< (BSD only) If set, then SIGIO signals will be generated when input is available.
 //#define OPEN_FSYNC	O_FSYNC		//!< (BSD only) If set, each write call will make sure the data is reliably stored on disk before returning.
 //#define OPEN_NOTIME	O_NOATIME	//!< (GNU ext) If set, read will not update the access time of the file. (only the file owner or sudo can use this)
-
-
-
-/*!
-**	Define some useful string literals for commandline output colors.
-**	Can be used with any of the 'IO_Output_*' and 'IO_Write_*' functions.
-**
-**	(Learn more here)[https://misc.flogisoft.com/bash/tip_colors_and_formatting]
-*/
-//! @{
-
-#define IO_RESET			"\x1B[0m"	//!< The string sequence to reset the terminal text output to its default color
-
-#define IO_TEXT_BOLD		"\x1B[1m"	//!< Display terminal output text in bold
-#define IO_TEXT_DIM			"\x1B[2m"	//!< Display terminal output text with dimmer, darker colors
-#define IO_TEXT_3			"\x1B[3m"	//!< ???
-#define IO_TEXT_UNDERLINE	"\x1B[4m"	//!< Display terminal output text with an underline
-#define IO_TEXT_BLINK		"\x1B[5m"	//!< Display terminal output text which blinks every second (only in tty and xterm)
-#define IO_TEXT_6			"\x1B[6m"	//!< ???
-#define IO_TEXT_INVERTED	"\x1B[7m"	//!< Display terminal output text with the background/foreground colors reversed
-#define IO_TEXT_HIDDEN		"\x1B[8m"	//!< Write, but do not display, the terminal output text (useful for passwords)
-#define IO_TEXT_9			"\x1B[9m"	//!< ???
-
-#define IO_TEXT_RESET_BOLD		"\x1B[21m"	//!< Undoes the effects of #IO_TEXT_BOLD
-#define IO_TEXT_RESET_DIM		"\x1B[22m"	//!< Undoes the effects of #IO_TEXT_DIM
-#define IO_TEXT_RESET_3			"\x1B[23m"	//!< Undoes the effects of #IO_TEXT_3
-#define IO_TEXT_RESET_UNDERLINE	"\x1B[24m"	//!< Undoes the effects of #IO_TEXT_UNDERLINE
-#define IO_TEXT_RESET_BLINK		"\x1B[25m"	//!< Undoes the effects of #IO_TEXT_BLINK
-#define IO_TEXT_RESET_6			"\x1B[26m"	//!< Undoes the effects of #IO_TEXT_6
-#define IO_TEXT_RESET_INVERTED	"\x1B[27m"	//!< Undoes the effects of #IO_TEXT_INVERTED
-#define IO_TEXT_RESET_HIDDEN	"\x1B[28m"	//!< Undoes the effects of #IO_TEXT_HIDDEN
-#define IO_TEXT_RESET_9			"\x1B[29m"	//!< Undoes the effects of #IO_TEXT_9
-
-#define IO_COLOR_FG_BLACK			"\x1B[30m"	//!< The string sequence to color the terminal text output black
-#define IO_COLOR_FG_GRAY_DARK		"\x1B[90m"	//!< The string sequence to color the terminal text output dark gray
-#define IO_COLOR_FG_RED				"\x1B[31m"	//!< The string sequence to color the terminal text output red
-#define IO_COLOR_FG_RED_LIGHT		"\x1B[91m"	//!< The string sequence to color the terminal text output light red
-#define IO_COLOR_FG_GREEN			"\x1B[32m"	//!< The string sequence to color the terminal text output green
-#define IO_COLOR_FG_GREEN_LIGHT		"\x1B[92m"	//!< The string sequence to color the terminal text output light green
-#define IO_COLOR_FG_YELLOW			"\x1B[33m"	//!< The string sequence to color the terminal text output yellow
-#define IO_COLOR_FG_YELLOW_LIGHT	"\x1B[93m"	//!< The string sequence to color the terminal text output light yellow
-#define IO_COLOR_FG_BLUE			"\x1B[34m"	//!< The string sequence to color the terminal text output blue
-#define IO_COLOR_FG_BLUE_LIGHT		"\x1B[94m"	//!< The string sequence to color the terminal text output light blue
-#define IO_COLOR_FG_MAGENTA			"\x1B[35m"	//!< The string sequence to color the terminal text output magenta
-#define IO_COLOR_FG_MAGENTA_LIGHT	"\x1B[95m"	//!< The string sequence to color the terminal text output light magenta
-#define IO_COLOR_FG_CYAN			"\x1B[36m"	//!< The string sequence to color the terminal text output cyan
-#define IO_COLOR_FG_CYAN_LIGHT		"\x1B[96m"	//!< The string sequence to color the terminal text output light cyan
-#define IO_COLOR_FG_GRAY_LIGHT		"\x1B[37m"	//!< The string sequence to color the terminal text output light gray
-#define IO_COLOR_FG_WHITE			"\x1B[97m"	//!< The string sequence to color the terminal text output white
-
-//! ANSI Color code (255-map, not supported on certain old terminals)
-/*!
-**	@param	CODE	should be a string, containing number between 0 and 255
-**	@see
-**	- IO_GetColor()
-*/
-#define IO_COLOR_FG(CODE)	"\x1B[38;5;"CODE"m"
-
-//!< The string sequence to color the terminal text output with the default color for this terminal
-#define IO_COLOR_FG_DEFAULT	"\x1B[39m"
-
-#define IO_COLOR_BG_BLACK			"\x1B[40m"	//!< The string sequence to color the terminal text background/highlight black
-#define IO_COLOR_BG_RED				"\x1B[41m"	//!< The string sequence to color the terminal text background/highlight red
-#define IO_COLOR_BG_GREEN			"\x1B[42m"	//!< The string sequence to color the terminal text background/highlight green
-#define IO_COLOR_BG_YELLOW			"\x1B[43m"	//!< The string sequence to color the terminal text background/highlight yellow
-#define IO_COLOR_BG_BLUE			"\x1B[44m"	//!< The string sequence to color the terminal text background/highlight blue
-#define IO_COLOR_BG_MAGENTA			"\x1B[45m"	//!< The string sequence to color the terminal text background/highlight magenta
-#define IO_COLOR_BG_CYAN			"\x1B[46m"	//!< The string sequence to color the terminal text background/highlight cyan
-#define IO_COLOR_BG_GRAY_LIGHT		"\x1B[47m"	//!< The string sequence to color the terminal text background/highlight light gray
-#define IO_COLOR_BG_GRAY_DARK		"\x1B[100m"	//!< The string sequence to color the terminal text background/highlight dark gray
-#define IO_COLOR_BG_RED_LIGHT		"\x1B[101m"	//!< The string sequence to color the terminal text background/highlight light red
-#define IO_COLOR_BG_GREEN_LIGHT		"\x1B[102m"	//!< The string sequence to color the terminal text background/highlight light green
-#define IO_COLOR_BG_YELLOW_LIGHT	"\x1B[103m"	//!< The string sequence to color the terminal text background/highlight light yellow
-#define IO_COLOR_BG_BLUE_LIGHT		"\x1B[104m"	//!< The string sequence to color the terminal text background/highlight light blue
-#define IO_COLOR_BG_MAGENTA_LIGHT	"\x1B[105m"	//!< The string sequence to color the terminal text background/highlight light magenta
-#define IO_COLOR_BG_CYAN_LIGHT		"\x1B[106m"	//!< The string sequence to color the terminal text background/highlight light cyan
-#define IO_COLOR_BG_WHITE			"\x1B[107m"	//!< The string sequence to color the terminal text background/highlight white
-
-//! ANSI Color code (255-map, not supported on certain old terminals)
-/*!
-**	@param	CODE	should be a string, containing number between 0 and 255
-**	@see IO_GetColor()
-*/
-#define IO_COLOR_BG(CODE)	"\x1B[48;5;"CODE"m"
-
-//!< The string sequence to color the terminal text background with the default color for this terminal
-#define IO_COLOR_BG_DEFAULT	"\x1B[49m"
-
-//! @}
-
-#ifndef __COLORS__
-#define __COLORS__
-#define C_RED		"\x1B[31m"	//!< The string sequence to color the terminal text output red
-#define C_GREEN		"\x1B[32m"	//!< The string sequence to color the terminal text output green
-#define C_YELLOW	"\x1B[33m"	//!< The string sequence to color the terminal text output yellow
-#define C_BLUE		"\x1B[34m"	//!< The string sequence to color the terminal text output blue
-#define C_MAGENTA	"\x1B[35m"	//!< The string sequence to color the terminal text output magenta
-#define C_CYAN		"\x1B[36m"	//!< The string sequence to color the terminal text output cyan
-#define C_RESET		"\x1B[0m"	//!< The string sequence to reset the terminal text output to its default color
-#endif
 
 
 
@@ -491,47 +392,47 @@ t_io_error				IO_Output_Format(char const* format, ...);
 /*
 **	Below is a list of the symbolic error names that are defined on Linux:
 */
-#define IO_ERROR_2BIG			E2BIG			//!< Argument list too long (POSIX.1-2001).
-#define IO_ERROR_ACCES			EACCES			//!< Permission denied (POSIX.1-2001).
-#define IO_ERROR_ADDRINUSE		EADDRINUSE		//!< Address already in use (POSIX.1-2001).
-#define IO_ERROR_ADDRNOTAVAIL	EADDRNOTAVAIL	//!< Address not available (POSIX.1-2001).
-#define IO_ERROR_AFNOSUPPORT	EAFNOSUPPORT	//!< Address family not supported (POSIX.1-2001).
-#define IO_ERROR_AGAIN			EAGAIN			//!< Resource temporarily unavailable (may be the same value as EWOULDBLOCK) (POSIX.1-2001).
-#define IO_ERROR_ALREADY		EALREADY		//!< Connection already in progress (POSIX.1-2001).
+#define IO_ERROR_2BIG			E2BIG			//!< (POSIX.1-2001) Argument list too long.
+#define IO_ERROR_ACCES			EACCES			//!< (POSIX.1-2001) Permission denied.
+#define IO_ERROR_ADDRINUSE		EADDRINUSE		//!< (POSIX.1-2001) Address already in use.
+#define IO_ERROR_ADDRNOTAVAIL	EADDRNOTAVAIL	//!< (POSIX.1-2001) Address not available.
+#define IO_ERROR_AFNOSUPPORT	EAFNOSUPPORT	//!< (POSIX.1-2001) Address family not supported.
+#define IO_ERROR_AGAIN			EAGAIN			//!< (POSIX.1-2001) Resource temporarily unavailable (may be the same value as EWOULDBLOCK).
+#define IO_ERROR_ALREADY		EALREADY		//!< (POSIX.1-2001) Connection already in progress.
 #define IO_ERROR_BADE			EBADE			//!< Invalid exchange.
-#define IO_ERROR_BADF			EBADF			//!< Bad file descriptor (POSIX.1-2001).
+#define IO_ERROR_BADF			EBADF			//!< (POSIX.1-2001) Bad file descriptor.
 #define IO_ERROR_BADFD			EBADFD			//!< File descriptor in bad state.
-#define IO_ERROR_BADMSG			EBADMSG			//!< Bad message (POSIX.1-2001).
+#define IO_ERROR_BADMSG			EBADMSG			//!< (POSIX.1-2001) Bad message.
 #define IO_ERROR_BADR			EBADR			//!< Invalid request descriptor.
 #define IO_ERROR_BADRQC			EBADRQC			//!< Invalid request code.
 #define IO_ERROR_BADSLT			EBADSLT			//!< Invalid slot.
-#define IO_ERROR_BUSY			EBUSY			//!< Device or resource busy (POSIX.1-2001).
-#define IO_ERROR_CANCELED		ECANCELED		//!< Operation canceled (POSIX.1-2001).
-#define IO_ERROR_CHILD			ECHILD			//!< No child processes (POSIX.1-2001).
+#define IO_ERROR_BUSY			EBUSY			//!< (POSIX.1-2001) Device or resource busy.
+#define IO_ERROR_CANCELED		ECANCELED		//!< (POSIX.1-2001) Operation canceled.
+#define IO_ERROR_CHILD			ECHILD			//!< (POSIX.1-2001) No child processes.
 #define IO_ERROR_CHRNG			ECHRNG			//!< Channel number out of range.
 #define IO_ERROR_COMM			ECOMM			//!< Communication error on send.
-#define IO_ERROR_CONNABORTED	ECONNABORTED	//!< Connection aborted (POSIX.1-2001).
-#define IO_ERROR_CONNREFUSED	ECONNREFUSED	//!< Connection refused (POSIX.1-2001).
-#define IO_ERROR_CONNRESET		ECONNRESET		//!< Connection reset (POSIX.1-2001).
-#define IO_ERROR_DEADLK			EDEADLK			//!< Resource deadlock avoided (POSIX.1-2001).
-#define IO_ERROR_DEADLOCK		EDEADLOCK		//!< On most architectures, a synonym for EDEADLK.  On some architectures (e.g., Linux MIPS, PowerPC, SPARC), it is a separate error code "File locking deadlock error".
-#define IO_ERROR_DESTADDRREQ	EDESTADDRREQ	//!< Destination address required (POSIX.1-2001).
-#define IO_ERROR_DOM			EDOM			//!< Mathematics argument out of domain of function (POSIX.1,	C99).
-#define IO_ERROR_DQUOT			EDQUOT			//!< Disk quota exceeded (POSIX.1-2001).
-#define IO_ERROR_EXIST			EEXIST			//!< File exists (POSIX.1-2001).
-#define IO_ERROR_FAULT			EFAULT			//!< Bad address (POSIX.1-2001).
-#define IO_ERROR_FBIG			EFBIG			//!< File too large (POSIX.1-2001).
+#define IO_ERROR_CONNABORTED	ECONNABORTED	//!< (POSIX.1-2001) Connection aborted.
+#define IO_ERROR_CONNREFUSED	ECONNREFUSED	//!< (POSIX.1-2001) Connection refused.
+#define IO_ERROR_CONNRESET		ECONNRESET		//!< (POSIX.1-2001) Connection reset.
+#define IO_ERROR_DEADLK			EDEADLK			//!< (POSIX.1-2001) Resource deadlock avoided.
+#define IO_ERROR_DEADLOCK		EDEADLOCK		//!< On most architectures, a synonym for EDEADLK. On some architectures (e.g., Linux MIPS, PowerPC, SPARC), it is a separate error code "File locking deadlock error".
+#define IO_ERROR_DESTADDRREQ	EDESTADDRREQ	//!< (POSIX.1-2001) Destination address required.
+#define IO_ERROR_DOM			EDOM			//!< (POSIX.1, C99) Mathematics argument out of domain of function.
+#define IO_ERROR_DQUOT			EDQUOT			//!< (POSIX.1-2001) Disk quota exceeded.
+#define IO_ERROR_EXIST			EEXIST			//!< (POSIX.1-2001) File exists.
+#define IO_ERROR_FAULT			EFAULT			//!< (POSIX.1-2001) Bad address.
+#define IO_ERROR_FBIG			EFBIG			//!< (POSIX.1-2001) File too large.
 #define IO_ERROR_HOSTDOWN		EHOSTDOWN		//!< Host is down.
-#define IO_ERROR_HOSTUNREACH	EHOSTUNREACH	//!< Host is unreachable (POSIX.1-2001).
+#define IO_ERROR_HOSTUNREACH	EHOSTUNREACH	//!< (POSIX.1-2001) Host is unreachable.
 #define IO_ERROR_HWPOISON		EHWPOISON		//!< Memory page has hardware error.
-#define IO_ERROR_IDRM			EIDRM			//!< Identifier removed (POSIX.1-2001).
-#define IO_ERROR_ILSEQ			EILSEQ			//!< Invalid or incomplete multibyte or wide character	(POSIX.1, C99). The text shown here is the glibc error description; in POSIX.1, this error is described as "Illegal byte sequence".
-#define IO_ERROR_INPROGRESS		EINPROGRESS		//!< Operation in progress (POSIX.1-2001).
-#define IO_ERROR_INTR			EINTR			//!< Interrupted function call (POSIX.1-2001); see signal(7).
-#define IO_ERROR_INVAL			EINVAL			//!< Invalid argument (POSIX.1-2001).
-#define IO_ERROR_IO				EIO				//!< Input/output error (POSIX.1-2001).
-#define IO_ERROR_ISCONN			EISCONN			//!< Socket is connected (POSIX.1-2001).
-#define IO_ERROR_ISDIR			EISDIR			//!< Is a directory (POSIX.1-2001).
+#define IO_ERROR_IDRM			EIDRM			//!< (POSIX.1-2001) Identifier removed.
+#define IO_ERROR_ILSEQ			EILSEQ			//!< (POSIX.1, C99) Invalid or incomplete multibyte or wide character. The text shown here is the glibc error description; in POSIX.1, this error is described as "Illegal byte sequence".
+#define IO_ERROR_INPROGRESS		EINPROGRESS		//!< (POSIX.1-2001) Operation in progress.
+#define IO_ERROR_INTR			EINTR			//!< (POSIX.1-2001) Interrupted function call; see signal(7).
+#define IO_ERROR_INVAL			EINVAL			//!< (POSIX.1-2001) Invalid argument.
+#define IO_ERROR_IO				EIO				//!< (POSIX.1-2001) Input/output error.
+#define IO_ERROR_ISCONN			EISCONN			//!< (POSIX.1-2001) Socket is connected.
+#define IO_ERROR_ISDIR			EISDIR			//!< (POSIX.1-2001) Is a directory.
 #define IO_ERROR_ISNAM			EISNAM			//!< Is a named type file.
 #define IO_ERROR_KEYEXPIRED		EKEYEXPIRED		//!< Key has expired.
 #define IO_ERROR_KEYREJECTED	EKEYREJECTED	//!< Key was rejected by service.
@@ -546,77 +447,77 @@ t_io_error				IO_Output_Format(char const* format, ...);
 #define IO_ERROR_LIBSCN			ELIBSCN			//!< lib section in a.out corrupted
 #define IO_ERROR_LIBEXEC		ELIBEXEC		//!< Cannot exec a shared library directly.
 #define IO_ERROR_LNRANGE		ELNRANGE		//!< Link number out of range.
-#define IO_ERROR_LOOP			ELOOP			//!< Too many levels of symbolic links (POSIX.1-2001).
+#define IO_ERROR_LOOP			ELOOP			//!< (POSIX.1-2001) Too many levels of symbolic links.
 #define IO_ERROR_MEDIUMTYPE		EMEDIUMTYPE		//!< Wrong medium type.
-#define IO_ERROR_MFILE			EMFILE			//!< Too many open files (POSIX.1-2001).  Commonly caused by	exceeding the RLIMIT_NOFILE resource limit described in getrlimit(2).  Can also be caused by exceeding the limit specified in /proc/sys/fs/nr_open.
-#define IO_ERROR_MLINK			EMLINK			//!< Too many links (POSIX.1-2001).
-#define IO_ERROR_MSGSIZE		EMSGSIZE		//!< Message too long (POSIX.1-2001).
-#define IO_ERROR_MULTIHOP		EMULTIHOP		//!< Multihop attempted (POSIX.1-2001).
-#define IO_ERROR_NAMETOOLONG	ENAMETOOLONG	//!< Filename too long (POSIX.1-2001).
-#define IO_ERROR_NETDOWN		ENETDOWN		//!< Network is down (POSIX.1-2001).
-#define IO_ERROR_NETRESET		ENETRESET		//!< Connection aborted by network (POSIX.1-2001).
-#define IO_ERROR_NETUNREACH		ENETUNREACH		//!< Network unreachable (POSIX.1-2001).
-#define IO_ERROR_NFILE			ENFILE			//!< Too many open files in system (POSIX.1-2001).  On Linux,	this is probably a result of encountering the /proc/sys/fs/file-max limit (see proc(5)).
+#define IO_ERROR_MFILE			EMFILE			//!< (POSIX.1-2001) Too many open files.  Commonly caused by exceeding the RLIMIT_NOFILE resource limit described in getrlimit(2). Can also be caused by exceeding the limit specified in /proc/sys/fs/nr_open.
+#define IO_ERROR_MLINK			EMLINK			//!< (POSIX.1-2001) Too many links.
+#define IO_ERROR_MSGSIZE		EMSGSIZE		//!< (POSIX.1-2001) Message too long.
+#define IO_ERROR_MULTIHOP		EMULTIHOP		//!< (POSIX.1-2001) Multihop attempted.
+#define IO_ERROR_NAMETOOLONG	ENAMETOOLONG	//!< (POSIX.1-2001) Filename too long.
+#define IO_ERROR_NETDOWN		ENETDOWN		//!< (POSIX.1-2001) Network is down.
+#define IO_ERROR_NETRESET		ENETRESET		//!< (POSIX.1-2001) Connection aborted by network.
+#define IO_ERROR_NETUNREACH		ENETUNREACH		//!< (POSIX.1-2001) Network unreachable.
+#define IO_ERROR_NFILE			ENFILE			//!< (POSIX.1-2001) Too many open files in system. On Linux, this is probably a result of encountering the /proc/sys/fs/file-max limit (see proc(5)).
 #define IO_ERROR_NOANO			ENOANO			//!< No anode.
-#define IO_ERROR_NOBUFS			ENOBUFS			//!< No buffer space available (POSIX.1 (XSI STREAMS option)).
-#define IO_ERROR_NODATA			ENODATA			//!< No message is available on the STREAM head read queue (POSIX.1-2001).
-#define IO_ERROR_NODEV			ENODEV			//!< No such device (POSIX.1-2001).
-#define IO_ERROR_NOENT			ENOENT			//!< No such file or directory (POSIX.1-2001). Typically, this error results when a specified pathname does not exist, or one of the components in the directory prefix of a pathname does not exist, or the specified pathname is a dangling symbolic link.
-#define IO_ERROR_NOEXEC			ENOEXEC			//!< define Exec			//!< format error (POSIX.1-2001).
+#define IO_ERROR_NOBUFS			ENOBUFS			//!< (POSIX.1 (XSI STREAMS option)) No buffer space available.
+#define IO_ERROR_NODATA			ENODATA			//!< (POSIX.1-2001) No message is available on the STREAM head read queue.
+#define IO_ERROR_NODEV			ENODEV			//!< (POSIX.1-2001) No such device.
+#define IO_ERROR_NOENT			ENOENT			//!< (POSIX.1-2001) No such file or directory. Typically, this error results when a specified pathname does not exist, or one of the components in the directory prefix of a pathname does not exist, or the specified pathname is a dangling symbolic link.
+#define IO_ERROR_NOEXEC			ENOEXEC			//!< (POSIX.1-2001) define Exec			//!< format error.
 #define IO_ERROR_NOKEY			ENOKEY			//!< Required key not available.
-#define IO_ERROR_NOLCK			ENOLCK			//!< No locks available (POSIX.1-2001).
-#define IO_ERROR_NOLINK			ENOLINK			//!< Link has been severed (POSIX.1-2001).
+#define IO_ERROR_NOLCK			ENOLCK			//!< (POSIX.1-2001) No locks available.
+#define IO_ERROR_NOLINK			ENOLINK			//!< (POSIX.1-2001) Link has been severed.
 #define IO_ERROR_NOMEDIUM		ENOMEDIUM		//!< No medium found.
-#define IO_ERROR_NOMEM			ENOMEM			//!< Not enough space/cannot allocate memory (POSIX.1-2001).
-#define IO_ERROR_NOMSG			ENOMSG			//!< No message of the desired type (POSIX.1-2001).
+#define IO_ERROR_NOMEM			ENOMEM			//!< (POSIX.1-2001) Not enough space/cannot allocate memory.
+#define IO_ERROR_NOMSG			ENOMSG			//!< (POSIX.1-2001) No message of the desired type.
 #define IO_ERROR_NONET			ENONET			//!< Machine is not on the network.
 #define IO_ERROR_NOPKG			ENOPKG			//!< Package not installed.
-#define IO_ERROR_NOPROTOOPT		ENOPROTOOPT		//!< Protocol not available (POSIX.1-2001).
-#define IO_ERROR_NOSPC			ENOSPC			//!< No space left on device (POSIX.1-2001).
-#define IO_ERROR_NOSR			ENOSR			//!< No STREAM resources (POSIX.1 (XSI STREAMS option)).
-#define IO_ERROR_NOSTR			ENOSTR			//!< Not a STREAM (POSIX.1 (XSI STREAMS option)).
-#define IO_ERROR_NOSYS			ENOSYS			//!< Function not implemented (POSIX.1-2001).
+#define IO_ERROR_NOPROTOOPT		ENOPROTOOPT		//!< (POSIX.1-2001) Protocol not available.
+#define IO_ERROR_NOSPC			ENOSPC			//!< (POSIX.1-2001) No space left on device.
+#define IO_ERROR_NOSR			ENOSR			//!< (POSIX.1 (XSI STREAMS option)) No STREAM resources.
+#define IO_ERROR_NOSTR			ENOSTR			//!< (POSIX.1 (XSI STREAMS option)) Not a STREAM.
+#define IO_ERROR_NOSYS			ENOSYS			//!< (POSIX.1-2001) Function not implemented.
 #define IO_ERROR_NOTBLK			ENOTBLK			//!< Block device required.
-#define IO_ERROR_NOTCONN		ENOTCONN		//!< The socket is not connected (POSIX.1-2001).
-#define IO_ERROR_NOTDIR			ENOTDIR			//!< Not a directory (POSIX.1-2001).
-#define IO_ERROR_NOTEMPTY		ENOTEMPTY		//!< Directory not empty (POSIX.1-2001).
-#define IO_ERROR_NOTRECOVERABLE	ENOTRECOVERABLE	//!< State not recoverable (POSIX.1-2008).
-#define IO_ERROR_NOTSOCK		ENOTSOCK		//!< Not a socket (POSIX.1-2001).
-#define IO_ERROR_NOTSUP			ENOTSUP			//!< Operation not supported (POSIX.1-2001).
-#define IO_ERROR_NOTTY			ENOTTY			//!< Inappropriate I/O control operation (POSIX.1-2001).
+#define IO_ERROR_NOTCONN		ENOTCONN		//!< (POSIX.1-2001) The socket is not connected.
+#define IO_ERROR_NOTDIR			ENOTDIR			//!< (POSIX.1-2001) Not a directory.
+#define IO_ERROR_NOTEMPTY		ENOTEMPTY		//!< (POSIX.1-2001) Directory not empty.
+#define IO_ERROR_NOTRECOVERABLE	ENOTRECOVERABLE	//!< (POSIX.1-2008) State not recoverable.
+#define IO_ERROR_NOTSOCK		ENOTSOCK		//!< (POSIX.1-2001) Not a socket.
+#define IO_ERROR_NOTSUP			ENOTSUP			//!< (POSIX.1-2001) Operation not supported.
+#define IO_ERROR_NOTTY			ENOTTY			//!< (POSIX.1-2001) Inappropriate I/O control operation.
 #define IO_ERROR_NOTUNIQ		ENOTUNIQ		//!< Name not unique on network.
-#define IO_ERROR_NXIO			ENXIO			//!< No such device or address (POSIX.1-2001).
-#define IO_ERROR_OPNOTSUPP		EOPNOTSUPP		//!< Operation not supported on socket (POSIX.1-2001). (ENOTSUP and EOPNOTSUPP have the same value on Linux, but according to POSIX.1 these error values should be distinct.)
-#define IO_ERROR_OVERFLOW		EOVERFLOW		//!< Value too large to be stored in data type (POSIX.1-2001).
-#define IO_ERROR_OWNERDEAD		EOWNERDEAD		//!< Owner died (POSIX.1-2008).
-#define IO_ERROR_PERM			EPERM			//!< Operation not permitted (POSIX.1-2001).
+#define IO_ERROR_NXIO			ENXIO			//!< (POSIX.1-2001) No such device or address.
+#define IO_ERROR_OPNOTSUPP		EOPNOTSUPP		//!< (POSIX.1-2001) Operation not supported on socket. (ENOTSUP and EOPNOTSUPP have the same value on Linux, but according to POSIX.1 these error values should be distinct.)
+#define IO_ERROR_OVERFLOW		EOVERFLOW		//!< (POSIX.1-2001) Value too large to be stored in data type.
+#define IO_ERROR_OWNERDEAD		EOWNERDEAD		//!< (POSIX.1-2008) Owner died.
+#define IO_ERROR_PERM			EPERM			//!< (POSIX.1-2001) Operation not permitted.
 #define IO_ERROR_PFNOSUPPORT	EPFNOSUPPORT	//!< Protocol family not supported.
-#define IO_ERROR_PIPE			EPIPE			//!< Broken pipe (POSIX.1-2001).
-#define IO_ERROR_PROTO			EPROTO			//!< Protocol error (POSIX.1-2001).
-#define IO_ERROR_PROTONOSUPPORT	EPROTONOSUPPORT	//!< Protocol not supported (POSIX.1-2001).
-#define IO_ERROR_PROTOTYPE		EPROTOTYPE		//!< Protocol wrong type for socket (POSIX.1-2001).
-#define IO_ERROR_RANGE			ERANGE			//!< Result too large (POSIX.1, C99).
+#define IO_ERROR_PIPE			EPIPE			//!< (POSIX.1-2001) Broken pipe.
+#define IO_ERROR_PROTO			EPROTO			//!< (POSIX.1-2001) Protocol error.
+#define IO_ERROR_PROTONOSUPPORT	EPROTONOSUPPORT	//!< (POSIX.1-2001) Protocol not supported.
+#define IO_ERROR_PROTOTYPE		EPROTOTYPE		//!< (POSIX.1-2001) Protocol wrong type for socket.
+#define IO_ERROR_RANGE			ERANGE			//!< (POSIX.1, C99) Result too large.
 #define IO_ERROR_REMCHG			EREMCHG			//!< Remote address changed.
 #define IO_ERROR_REMOTE			EREMOTE			//!< Object is remote.
 #define IO_ERROR_REMOTEIO		EREMOTEIO		//!< Remote I/O error.
 #define IO_ERROR_RESTART		ERESTART		//!< Interrupted system call should be restarted.
 #define IO_ERROR_RFKILL			ERFKILL			//!< Operation not possible due to RF-kill.
-#define IO_ERROR_ROFS			EROFS			//!< Read-only filesystem (POSIX.1-2001).
+#define IO_ERROR_ROFS			EROFS			//!< (POSIX.1-2001) Read-only filesystem.
 #define IO_ERROR_SHUTDOWN		ESHUTDOWN		//!< Cannot send after transport endpoint shutdown.
-#define IO_ERROR_SPIPE			ESPIPE			//!< Invalid seek (POSIX.1-2001).
+#define IO_ERROR_SPIPE			ESPIPE			//!< (POSIX.1-2001) Invalid seek.
 #define IO_ERROR_SOCKTNOSUPPORT	ESOCKTNOSUPPORT	//!< Socket type not supported.
-#define IO_ERROR_SRCH			ESRCH			//!< No such process (POSIX.1-2001).
-#define IO_ERROR_STALE			ESTALE			//!< Stale file handle (POSIX.1-2001). This error can occur for NFS and for other filesystems.
+#define IO_ERROR_SRCH			ESRCH			//!< (POSIX.1-2001) No such process.
+#define IO_ERROR_STALE			ESTALE			//!< (POSIX.1-2001) Stale file handle. This error can occur for NFS and for other filesystems.
 #define IO_ERROR_STRPIPE		ESTRPIPE		//!< Streams pipe error.
-#define IO_ERROR_TIME			ETIME			//!< Timer expired (POSIX.1 (XSI STREAMS option)). (POSIX.1 says "STREAM ioctl(2) timeout".)
-#define IO_ERROR_TIMEDOUT		ETIMEDOUT		//!< Connection timed out (POSIX.1-2001).
+#define IO_ERROR_TIME			ETIME			//!< (POSIX.1 (XSI STREAMS option)) Timer expired. (POSIX.1 says "STREAM ioctl(2) timeout".)
+#define IO_ERROR_TIMEDOUT		ETIMEDOUT		//!< (POSIX.1-2001) Connection timed out.
 #define IO_ERROR_TOOMANYREFS	ETOOMANYREFS	//!< Too many references: cannot splice.
-#define IO_ERROR_TXTBSY			ETXTBSY			//!< Text file busy (POSIX.1-2001).
+#define IO_ERROR_TXTBSY			ETXTBSY			//!< (POSIX.1-2001) Text file busy.
 #define IO_ERROR_UCLEAN			EUCLEAN			//!< Structure needs cleaning.
 #define IO_ERROR_UNATCH			EUNATCH			//!< Protocol driver not attached.
 #define IO_ERROR_USERS			EUSERS			//!< Too many users.
-#define IO_ERROR_WOULDBLOCK		EWOULDBLOCK		//!< Operation would block (may be same value as EAGAIN) (POSIX.1-2001).
-#define IO_ERROR_XDEV			EXDEV			//!< Improper link (POSIX.1-2001).
+#define IO_ERROR_WOULDBLOCK		EWOULDBLOCK		//!< (POSIX.1-2001) Operation would block (may be same value as EAGAIN).
+#define IO_ERROR_XDEV			EXDEV			//!< (POSIX.1-2001) Improper link.
 #define IO_ERROR_XFULL			EXFULL			//!< Exchange full.
 
 
