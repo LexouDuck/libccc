@@ -150,11 +150,10 @@ TYPEDEF_ALIAS(			t_utf32, UTF32, PRIMITIVE)
 
 //! Check if the given char `c` is a letter (lowercase or uppercase)
 /*!
-**	Check if the given char `c` is a letter (lowercase or uppercase)
+**	@isostd{https://en.cppreference.com/w/c/string/byte/isalpha}
 **
 **	@param	c	The character to check (ASCII or Unicode)
-**	@returns 1(TRUE) if the given char `c` is a letter (lowercase or uppercase),
-**			and returns 0(FALSE) otherwise.
+**	@returns #TRUE if the given char `c` is a letter (lowercase or uppercase), otherwise #FALSE.
 */
 t_bool					Char_IsLetter(t_utf32 c);
 #define c_isalpha		Char_IsLetter
@@ -162,11 +161,10 @@ t_bool					Char_IsLetter(t_utf32 c);
 
 //! Check if the given char `c` is a uppercase letter character
 /*!
-**	Check if the given char `c` is a uppercase letter character
+**	@isostd{https://en.cppreference.com/w/c/string/byte/isupper}
 **
 **	@param	c	The character to check (ASCII or Unicode)
-**	@returns 1(TRUE) if the given char `c` is a uppercase letter character,
-**			and returns 0(FALSE) otherwise.
+**	@returns #TRUE if the given char `c` is a uppercase letter character, otherwise #FALSE.
 */
 t_bool					Char_IsUppercase(t_utf32 c);
 #define c_isupper		Char_IsUppercase
@@ -174,11 +172,10 @@ t_bool					Char_IsUppercase(t_utf32 c);
 
 //! Check if the given char `c` is an lowercase letter character
 /*!
-**	Check if the given char `c` is an lowercase letter character
+**	@isostd{https://en.cppreference.com/w/c/string/byte/islower}
 **
 **	@param	c	The character to check (ASCII or Unicode)
-**	@returns 1(TRUE) if the given char `c` is an lowercase letter character,
-**			and returns 0(FALSE) otherwise.
+**	@returns #TRUE if the given char `c` is an lowercase letter character, otherwise #FALSE.
 */
 t_bool					Char_IsLowercase(t_utf32 c);
 #define c_islower		Char_IsLowercase
@@ -189,20 +186,19 @@ t_bool					Char_IsLowercase(t_utf32 c);
 **	Check if the given char `c` is alphanumeric (letter or digit) character
 **
 **	@param	c	The character to check (ASCII or Unicode)
-**	@returns 1(TRUE) if the given char `c` is alphanumeric (letter or digit),
-**			and returns 0(FALSE) otherwise.
+**	@returns #TRUE if the given char `c` is alphanumeric (letter or digit), otherwise #FALSE.
+**	@isostd{https://en.cppreference.com/w/c/string/byte/isalnum}
 */
 t_bool					Char_IsAlphaNumeric(t_utf32 c);
 #define c_isalnum		Char_IsAlphaNumeric
 #define Char_IsAlNum	Char_IsAlphaNumeric
 
-//! Check if the given char `c` is a decimal digit character
+//! Check if the given char `c` is a decimal digit character (ie: #CHARSET_DEC: `0123456789`)
 /*!
-**	Check if the given char `c` is a decimal digit character
+**	@isostd{https://en.cppreference.com/w/c/string/byte/isdigit}
 **
 **	@param	c	The character to check (ASCII or Unicode)
-**	@returns 1(TRUE) if the given char `c` is a numerical digit character,
-**			and returns 0(FALSE) otherwise.
+**	@returns #TRUE if the given char `c` is a decimal digit character, otherwise #FALSE.
 */
 t_bool							Char_IsDigit(t_utf32 c);
 #define c_isdigit				Char_IsDigit
@@ -210,28 +206,46 @@ t_bool							Char_IsDigit(t_utf32 c);
 #define Char_IsDigit_Dec		Char_IsDigit
 #define Char_IsDigit_Decimal	Char_IsDigit
 
-//! Check if the given char `c` is a hexadecimal digit character (0-9 or A-F, lowercase or uppercase)
+//! Checks if the given char `c` is a hexadecimal digit character (ie: #CHARSET_HEX: `0123456789abcdefABCDEF`)
+/*!
+**	@isostd{https://en.cppreference.com/w/c/string/byte/isxdigit}
+**
+**	@param	c	The character to check (ASCII or Unicode)
+**	@returns #TRUE if the given char `c` is a hexadecimal digit character, otherwise #FALSE.
+*/
 t_bool								Char_IsDigit_Hex(t_utf32 c);
 #define c_isdigit_hex				Char_IsDigit_Hex
 #define Char_IsDigit_Hexadecimal	Char_IsDigit_Hex
 
-//! Check if the given char `c` is a octal-base digit character (ie: '0' to '7')
+//! Checks if the given char `c` is a octal-base digit character (ie: #CHARSET_OCT: `01234567`)
+/*!
+**	@nonstd
+**
+**	@param	c	The character to check (ASCII or Unicode)
+**	@returns #TRUE if the given char `c` is an octal digit character, otherwise #FALSE.
+*/
 t_bool								Char_IsDigit_Oct(t_utf32 c);
 #define c_isdigit_oct				Char_IsDigit_Oct
 #define Char_IsDigit_Octal			Char_IsDigit_Oct
 
-//! Check if the given char `c` is a binary-base digit character (ie: '0' or '1')
+//! Checks if the given char `c` is a binary-base digit character (ie: '0' or '1')
+/*!
+**	@nonstd
+**
+**	@param	c	The character to check (ASCII or Unicode)
+**	@returns #TRUE if the given char `c` is a binary digit character, otherwise #FALSE.
+*/
 t_bool								Char_IsDigit_Bin(t_utf32 c);
 #define c_isdigit_bin				Char_IsDigit_Bin
 #define Char_IsDigit_Binary			Char_IsDigit_Bin
 
 //! Check if the given char `c` is whitespace character (' ','\\t','\\r','\\n','\\f','\\v')
 /*!
-**	Check if the given char `c` is whitespace character (' ','\\t','\\r','\\n','\\f','\\v')
+**	@isostd{https://en.cppreference.com/w/c/string/byte/isspace}
 **
 **	@param	c	The character to check (ASCII or Unicode)
-**	@returns 1(TRUE) if the given char `c` is whitespace character: ' ','\\t','\\r','\\n','\\f','\\v'
-**			(carriage return, newline, form feed, vertical tab, tab, or space), and returns 0(FALSE) otherwise.
+**	@returns #TRUE if the given char `c` is whitespace character: ' ','\\t','\\r','\\n','\\f','\\v'
+**			(carriage return, newline, form feed, vertical tab, tab, or space), and returns #FALSE otherwise.
 */
 t_bool						Char_IsSpace(t_utf32 c);
 #define c_isspace			Char_IsSpace
@@ -239,23 +253,25 @@ t_bool						Char_IsSpace(t_utf32 c);
 
 //! Check if the given char `c` is a punctuation character
 /*!
-**	Check if the given char `c` is a punctuation character
+**	@isostd{https://en.cppreference.com/w/c/string/byte/ispunct}
 **
 **	@param	c	The character to check (ASCII or Unicode)
-**	@returns 1(TRUE) if the given char `c` is a punctuation character,
-**			and returns 0(FALSE) otherwise.
+**	@returns #TRUE if the given char `c` is a punctuation character,
+**			and returns #FALSE otherwise.
 */
 t_bool					Char_IsPunctuation(t_utf32 c);
 #define c_ispunct		Char_IsPunctuation
 #define Char_IsPunct	Char_IsPunctuation
 
+// TODO https://en.cppreference.com/w/c/string/byte/iscntrl
+
 //! Check if the given char `c` is a printable ASCII character
 /*!
-**	Check if the given char `c` is a printable ASCII character
+**	@isostd{https://en.cppreference.com/w/c/string/byte/isprint}
 **
 **	@param	c	The character to check (ASCII or Unicode)
-**	@returns 1(TRUE) if the given char `c` is a printable ASCII character,
-**			(0x20 <= c && c <= 0x7E) and returns 0(FALSE) otherwise.
+**	@returns #TRUE if the given char `c` is a printable ASCII character,
+**			(0x20 <= c && c <= 0x7E) and returns #FALSE otherwise.
 */
 t_bool					Char_IsPrintable(t_utf32 c);
 #define c_isprint		Char_IsPrintable
@@ -263,14 +279,16 @@ t_bool					Char_IsPrintable(t_utf32 c);
 
 //! Check if the given char `c` is an ASCII-compatible char (non-Unicode)
 /*!
-**	Check if the given char `c` is an ASCII-compatible char (non-Unicode)
+**	@nonstd
 **
 **	@param	c	The character to check (ASCII or Unicode)
-**	@returns 1(TRUE) if the given char `c` has a value between 0 and 127,
-**			(0x00 <= c && c <= 0x7F) and returns 0(FALSE) otherwise.
+**	@returns #TRUE if the given char `c` has a value between 0 and 127,
+**			(0x00 <= c && c <= 0x7F) and returns #FALSE otherwise.
 */
 t_bool				Char_IsASCII(t_utf32 c);
 #define c_isascii	Char_IsASCII
+
+
 
 
 
@@ -280,7 +298,7 @@ t_bool				Char_IsASCII(t_utf32 c);
 **
 **	@param	c		The character to check (ASCII or Unicode)
 **	@param	charset	String, the set of characters to look through (the '\0' terminator ends the charset)
-**	@returns 1(TRUE) if the given char `c` is contained within the given `charset` array
+**	@returns #TRUE if the given char `c` is contained within the given `charset` array
 */
 //!@{
 t_bool					Char_IsInCharset(t_utf32 c, t_char const* charset);
@@ -303,31 +321,30 @@ t_bool						Char_IsInCharset_UTF16(t_utf32 c, t_utf16 const* charset);
 ** ************************************************************************** *|
 */
 
-//! Get the uppercase version of the given char `c`
+//! Get the uppercase version of the given char `c`, if possible
 /*!
-**	Get the uppercase version of the given char `c`
+**	@isostd{https://en.cppreference.com/w/c/string/byte/toupper}
 **
-**	@param	c	The character to uppercase-ify (ASCII only)
-**	@returns the uppercase equivalent of the given character `c`
-**			(nothing is done if `c` is not a letter character).
+**	@param	c	The character to uppercase-ify (only ASCII characters will be affected)
+**	@returns the uppercase equivalent of the given character, or returns `c` itself if it is not a letter character.
 */
 t_char					Char_ToUppercase(t_char c); // TODO refactor `t_char` here to `t_utf32` (breaking change)
 #define c_toupper		Char_ToUppercase
 #define Char_ToUpper	Char_ToUppercase
 
-//! Get the lowercase version of the given char `c`
+//! Get the lowercase version of the given char `c`, if possible
 /*!
-**	Get the lowercase version of the given char `c`
+**	@isostd{https://en.cppreference.com/w/c/string/byte/tolower}
 **
-**	@param	c	The character to lowercase-ify (ASCII only)
-**	@returns the lowercase equivalent of the given character `c`
-**			(nothing is done if `c` is not a letter character).
+**	@param	c	The character to lowercase-ify (only ASCII characters will be affected)
+**	@returns the lowercase equivalent of the given character, or returns `c` itself if it is not a letter character.
 */
 t_char					Char_ToLowercase(t_char c); // TODO refactor `t_char` here to `t_utf32` (breaking change)
 #define c_tolower		Char_ToLowercase
 #define Char_ToLower	Char_ToLowercase
 
-// TODO add Char_ToMixedCase
+// TODO Char_ToASCII()
+// TODO Char_ToMixedCase()
 
 
 
