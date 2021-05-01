@@ -63,24 +63,24 @@ TYPEDEF_ALIAS(		t_time, TIME, PRIMITIVE)
 **	@isostd{https://en.cppreference.com/w/c/chrono/timespec}
 **
 **	This 'nanotime' has an arbitrary begin point (typically the start of program
-**	execution, but it can be the last machine boot, among many other things).
+**	execution, but it can be the last machine boot, among many other possibilities).
 **	It is meant to be used measure intervals of time during program execution,
 **	by calling the 'clock()' function several times and comparing their outputs.
 **	
 **	This struct is equivalent to the ISO C library's 'struct timespec',
-**	although it's sub-fields have different names:
+**	although the struct member fields have different names:
 **		tv_sec	->	sec
 **		tv_nsec	->	nanosec
 */
 typedef struct nanotime
 {
-	t_time		sec;		//!< Only positive values are valid
-	t_s64		nanosec;	//!< Only values in the range [0, 999999999] are valid
+	t_time		sec;		//!< The amount of seconds: only positive values are valid
+	t_s64		nanosec;	//!< The amount of nanoseconds: only values in the range [0, 999999999] are valid
 }				s_nanotime;
 TYPEDEF_ALIAS(	s_nanotime, TIMESPEC, STRUCT)
 // typedef struct timespec	s_nanotime;
 
-#define TIMESPEC_NULL	((s_nanotime){0})
+#define NANOTIME_NULL	((s_nanotime){0})
 
 
 
@@ -160,39 +160,37 @@ extern char const* const g_month_abbreviated[ENUMLENGTH_MONTH];
 
 
 
-//! This signed int represents a timezone difference (in seconds)
+//! This signed int represents a timezone offset (expressed in seconds)
 /*!
 **	This signed int is based on the UTC time system - it expresses a time difference, in seconds.
 **	The idea is to notate timezones in the commonly accepted UTC format (eg: UTC+01, UTC-06, etc)
 **	There are several defines below that are meant to be used within this type:
-**	@see TIMEZONE_GMT,
-**		 TIMEZONE_EST,
-**		 TIMEZONE_CST,
-**		 TIMEZONE_MST,
-**		 TIMEZONE_PST,
-**		 TIMEZONE_EDT,
-**		 TIMEZONE_CDT,
-**		 TIMEZONE_MDT,
-**		 TIMEZONE_PDT,
+**	@see
+**	- TIMEZONE_UTC()
+**	- TIMEZONE_GMT
+**	- #TIMEZONE_US_EST, #TIMEZONE_US_EDT
+**	- #TIMEZONE_US_CST, #TIMEZONE_US_CDT
+**	- #TIMEZONE_US_MST, #TIMEZONE_US_MDT
+**	- #TIMEZONE_US_PST, #TIMEZONE_US_PDT
 */
 typedef t_sint	t_timezone;
 TYPEDEF_ALIAS(	t_timezone, TIMEZONE, PRIMITIVE)
 
 // Commonly used timezones
-#define TIMEZONE_UTC(X)	(3600 * X)			//!< Timezone (UTC 00): Universal Coordinated Time (same as GMT)
+#define TIMEZONE_UTC(X)	(3600 * (X))		//!< Timezone (UTC 00): Universal Coordinated Time (same as GMT)
 #define TIMEZONE_GMT	TIMEZONE_UTC(0)		//!< Timezone (UTC 00): Greenwich Mean Time (same as UTC)
 #define TIMEZONE_UTCMIN	TIMEZONE_UTC(-12)	//!< Timezone (UTC-12): The minimum UTC timezone (most late)
 #define TIMEZONE_UTCMAX	TIMEZONE_UTC(+12)	//!< Timezone (UTC+12): The maximum UTC timezone (most early)
 // NAST
-#define TIMEZONE_EST	TIMEZONE_UTC(-5)	//!< Timezone (UTC-05): North American Eastern Standard Time
-#define TIMEZONE_CST	TIMEZONE_UTC(-6)	//!< Timezone (UTC-06): North American Central Standard Time
-#define TIMEZONE_MST	TIMEZONE_UTC(-7)	//!< Timezone (UTC-07): North American Mountain Standard Time
-#define TIMEZONE_PST	TIMEZONE_UTC(-8)	//!< Timezone (UTC-08): North American Pacific Standard Time
+#define TIMEZONE_US_EST	TIMEZONE_UTC(-5)	//!< Timezone (UTC-05): North American Eastern Standard Time
+#define TIMEZONE_US_CST	TIMEZONE_UTC(-6)	//!< Timezone (UTC-06): North American Central Standard Time
+#define TIMEZONE_US_MST	TIMEZONE_UTC(-7)	//!< Timezone (UTC-07): North American Mountain Standard Time
+#define TIMEZONE_US_PST	TIMEZONE_UTC(-8)	//!< Timezone (UTC-08): North American Pacific Standard Time
 // NADT
-#define TIMEZONE_EDT	TIMEZONE_UTC(-4)	//!< Timezone (UTC-04): North American Eastern Daylight Time
-#define TIMEZONE_CDT	TIMEZONE_UTC(-5)	//!< Timezone (UTC-05): North American Central Daylight Time
-#define TIMEZONE_MDT	TIMEZONE_UTC(-6)	//!< Timezone (UTC-06): North American Mountain Daylight Time
-#define TIMEZONE_PDT	TIMEZONE_UTC(-7)	//!< Timezone (UTC-07): North American Pacific Daylight Time
+#define TIMEZONE_US_EDT	TIMEZONE_UTC(-4)	//!< Timezone (UTC-04): North American Eastern Daylight Time
+#define TIMEZONE_US_CDT	TIMEZONE_UTC(-5)	//!< Timezone (UTC-05): North American Central Daylight Time
+#define TIMEZONE_US_MDT	TIMEZONE_UTC(-6)	//!< Timezone (UTC-06): North American Mountain Daylight Time
+#define TIMEZONE_US_PDT	TIMEZONE_UTC(-7)	//!< Timezone (UTC-07): North American Pacific Daylight Time
 
 
 
@@ -225,6 +223,7 @@ typedef struct date
 	e_month		month;		//!< [0,11] months since January
 	t_s32		year;		//!< Amount of years since 1900	
 	t_bool		is_dst;		//!< If TRUE, then Daylight Savings Time is on
+	t_timezone	offset;		//!< [UTC-12,UTC+12] The timezone offset of this date, expressed in seconds (ie: range is [3600*-12, 3600*+12]
 }				s_date;
 TYPEDEF_ALIAS(	s_date, TIME_DATE, STRUCT)
 // typedef struct tm	s_time
@@ -234,6 +233,8 @@ TYPEDEF_ALIAS(	s_date, TIME_DATE, STRUCT)
 
 
 #define DATE_YEAR_BASE		1900
+#define DATE_YEAR(X)		((X) - DATE_YEAR_BASE)
+#define YEAR(X)				DATE_YEAR(X)
 
 
 
@@ -370,50 +371,6 @@ s_date					Date_Now(void);
 
 
 
-//! Parses the given string representation of a date/time, and returns the resulting 's_date' struct
-/*!
-**	@nonstd
-*/
-//_FORMAT(strptime, 2, 0) // TODO check if this format() attribute exists even
-s_date						Date_FromString(char const* str, char const* format);
-#define c_strptime			Date_FromString
-#define c_strtodate			Date_FromString
-#define c_dateparse			Date_FromString
-#define Date_Parse			Date_FromString
-
-//! Creates a string representation of the given 'date', according to the given 'format' string
-/*!
-**	@nonstd
-**
-**	This function works similarly to the strftime() function from 'time.h' STDC header
-**	It is closer to 'asprintf()' as well, making for a rather easy-to-use equivalent to strftime().
-**	That being said, it is probably better to use Date_String_Format_N for machines with little RAM.
-*/
-_FORMAT(strftime, 2, 0)
-_MALLOC()
-char*						Date_ToString(s_date const* date, char const* format);
-#define c_strftime			Date_ToString
-#define c_datetostr			Date_ToString
-#define c_datefmt			Date_ToString
-#define Date_Print			Date_ToString
-#define Date_Format			Date_ToString
-
-//! Creates a string representation of the given 'date', according to the given 'format' string
-/*!
-**	@isostd{https://en.cppreference.com/w/c/chrono/strftime}
-**
-**	@see Date_ToString
-*/
-_FORMAT(strftime, 4, 0)
-t_size						Date_ToString_N(char* dest, t_size max, s_date const* date, char const* format);
-#define c_strnftime			Date_ToString_N
-#define c_datetostrn		Date_ToString_N
-#define c_datefmtn			Date_ToString_N
-#define Date_Print_N		Date_ToString_N
-#define Date_Format_N		Date_ToString_N
-
-
-
 //! Configurable function (default: "_UTC")
 /*!
 **	@nonstd
@@ -451,6 +408,129 @@ struct tm					Date_ToSTDC(s_date const* date);
 */
 s_date						Date_FromSTDC(struct tm const* value);
 #define c_stdctodate		Date_FromSTDC
+
+
+
+//! Parses the given string representation of a date/time, and returns the resulting 's_date' struct
+/*!
+**	@nonstd
+**
+**	NOTE: The `tm` argument must be set to 0 before being passed here.
+**
+**	%%			The '%' character.
+**	%a, %A		The name of the day of the week according to the current locale, in abbreviated form or the full name.
+**	%b, %B, %h	The month name according to the current locale, in abbreviated form or the full name.
+**	%c			The date and time representation for the current locale.
+**	%C			The century number (0–99).
+**	%d, %e		The day of month (1–31).
+**	%D			Equivalent to `%m/%d/%y`. (This is the American style date, very confusing to non-Americans.. The ISO 8601 standard format is `%Y-%m-%d`.)
+**	%H			The hour (0–23).
+**	%I			The hour on a 12-hour clock (1–12).
+**	%j			The day number in the year (1–366).
+**	%m			The month number (1–12).
+**	%M			The minute (0–59).
+**	%n			Arbitrary whitespace.
+**	%p			The locale's equivalent of AM or PM. (NOTE: there may be none.)
+**	%r			The 12-hour clock time (using the locale's AM or PM). In the POSIX locale equivalent to `%I:%M:%S %p` (NOTE: If the locale's `t_fmt_ampm` is empty, then the behavior is undefined).
+**	%R			Equivalent to `%H:%M`.
+**	%S			The second (0–60; 60 may occur for leap seconds; earlier also 61 was allowed).
+**	%t			Arbitrary whitespace.
+**	%T			Equivalent to `%H:%M:%S`.
+**	%U			The week number with Sunday the first day of the week (0–53). The first Sunday of January is the first day of week 1.
+**	%W			The week number with Monday the first day of the week (0–53). The first Monday of January is the first day of week 1.
+**	%w			The ordinal number of the day of the week (0–6), with Sunday = 0.
+**	%X			The time, using the locale's time format.
+**	%x			The date, using the locale's date format.
+**	%Y			The year, including century (for example, 1991).
+**	%y			The year within century (0–99). When a century is not otherwise specified,
+**				values in the range 69–99 refer to years in the twentieth century (1969–1999);
+**				values in the range 00–68 refer to years in the twenty-first century (2000–2068).
+**
+**	Some field descriptors can be modified by the E or O modifier characters
+**	to indicate that an alternative format or specification should be used.
+**	If the alternative format or specification does not exist in the current locale,
+**	then the unmodified field descriptor is used.
+**
+**	The `E` modifier specifies that the input string may contain alternative
+**	locale-dependent versions of the date and time representation:
+**
+**	%Ec			The locale's alternative date and time representation.
+**	%EC			The name of the base year (period) in the locale's alternative representation.
+**	%Ex			The locale's alternative date representation.
+**	%EX			The locale's alternative time representation.
+**	%Ey			The offset from %EC (year only) in the locale's alternative representation.
+**	%EY			The full alternative year representation.
+**
+**	The `O` modifier specifies that the numerical input may be in an alternative locale-dependent format:
+**
+**	%Od, %Oe	The day of the month using the locale's alternative numeric symbols; leading zeros are permitted but not required.
+**	%OH			The hour (24-hour clock) using the locale's alternative numeric symbols.
+**	%OI			The hour (12-hour clock) using the locale's alternative numeric symbols.
+**	%Om			The month using the locale's alternative numeric symbols.
+**	%OM			The minutes using the locale's alternative numeric symbols.
+**	%OS			The seconds using the locale's alternative numeric symbols.
+**	%OU			The week number of the year (Sunday as the first day of the week) using the locale's alternative numeric symbols.
+**	%Ow			The ordinal number of the day of the week (Sunday=0), using the locale's alternative numeric symbols.
+**	%OW			The week number of the year (Monday as the first day of the week) using the locale's alternative numeric symbols.
+**	%Oy			The year (offset from %C) using the locale's alternative numeric symbols.
+*/
+//_FORMAT(strptime, 2, 0) // TODO check if this format() attribute exists even
+s_date						Date_Parse(char const* str, char const* format);
+#define c_strptime			Date_Parse
+#define c_strtodate			Date_Parse
+#define c_dateparse			Date_Parse
+#define Date_FromString		Date_Parse
+
+s_date						Date_Parse_N(char const* str, char const* format, t_size n);
+#define c_strnptime			Date_Parse_N
+#define c_strntodate		Date_Parse_N
+#define c_dateparsen		Date_Parse_N
+#define Date_FromString_N	Date_Parse_N
+
+t_size							Date_ParseStrict(s_date* dest, char const* str, char const* format);
+#define c_strsptime				Date_ParseStrict
+#define c_strstodate			Date_ParseStrict
+#define c_dateparses			Date_ParseStrict
+#define Date_FromStringStrict	Date_ParseStrict
+
+t_size							Date_ParseStrict_N(s_date* dest, char const* str, char const* format, t_size n);
+#define c_strnsptime			Date_ParseStrict_N
+#define c_strnstodate			Date_ParseStrict_N
+#define c_dateparsesn			Date_ParseStrict_N
+#define Date_FromStringStrict_N	Date_ParseStrict_N
+
+
+
+//! Creates a string representation of the given 'date', according to the given 'format' string
+/*!
+**	@nonstd
+**
+**	This function works similarly to the strftime() function from 'time.h' STDC header
+**	It is closer to 'asprintf()' as well, making for a rather easy-to-use equivalent to strftime().
+**	That being said, it is probably better to use Date_String_Format_N for machines with little RAM.
+*/
+_FORMAT(strftime, 2, 0)
+_MALLOC()
+char*						Date_Print(s_date const* date, char const* format);
+#define c_strftime			Date_Print
+#define c_datetostr			Date_Print
+#define c_datefmt			Date_Print
+#define Date_Format			Date_Print
+#define Date_ToString		Date_Print
+
+//! Creates a string representation of the given 'date', according to the given 'format' string
+/*!
+**	@isostd{https://en.cppreference.com/w/c/chrono/strftime}
+**
+**	@see Date_ToString
+*/
+_FORMAT(strftime, 4, 0)
+t_size						Date_Print_N(char* dest, t_size max, s_date const* date, char const* format);
+#define c_strnftime			Date_Print_N
+#define c_datetostrn		Date_Print_N
+#define c_datefmtn			Date_Print_N
+#define Date_Format_N		Date_Print_N
+#define Date_ToString_N		Date_Print_N
 
 
 

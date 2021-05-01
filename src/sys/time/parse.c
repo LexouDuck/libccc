@@ -25,15 +25,15 @@
 **	modification, are permitted provided that the following conditions
 **	are met:
 **	1. Redistributions of source code must retain the above copyright
-**	   notice, this list of conditions and the following disclaimer.
+**	 notice, this list of conditions and the following disclaimer.
 **	2. Redistributions in binary form must reproduce the above copyright
-**	   notice, this list of conditions and the following disclaimer in the
-**	   documentation and/or other materials provided with the distribution.
+**	 notice, this list of conditions and the following disclaimer in the
+**	 documentation and/or other materials provided with the distribution.
 **	
 **	THIS SOFTWARE IS PROVIDED BY THE NETBSD FOUNDATION, INC. AND CONTRIBUTORS
 **	``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
 **	TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
-**	PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR CONTRIBUTORS
+**	PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE FOUNDATION OR CONTRIBUTORS
 **	BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 **	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
 **	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
@@ -107,7 +107,7 @@ typedef t_s16	t_bitmask_tm;
 #endif
 
 #define SET_WRITTEN(_FIELD_) \
-	(*written) |= (1 << BITMASK_##_FIELD_)
+	if (written) (*written) |= (1 << BITMASK_##_FIELD_)
 
 #define HAS_WRITTEN(_FIELD_) \
 	(written & (1 << BITMASK_##_FIELD_))
@@ -124,7 +124,7 @@ typedef t_s16	t_bitmask_tm;
 //! However, we always check whether a given modifier is allowed for a certain conversion.
 #define ALT_E			0x01
 #define ALT_O			0x02
-#define	LEGAL_ALT(x)	{ if (alt_format & ~(x)) return (NULL); }
+#define	LEGAL_ALT(x)	{ if (alt_format & ~(x)) return (0); }
 
 
 
@@ -157,13 +157,13 @@ static char const*  const am_pm[2] =
 
 
 static
-uchar const* strptime_convert_number(uchar const* , int*, uint, uint);
+uchar const*	strptime_convert_number(uchar const* , int*, uint, uint);
 static
-uchar const* strptime_find_string(uchar const*, int*, char const* const*, char const* const*, int);
+uchar const*	strptime_find_string(uchar const*, int*, char const* const*, char const* const*, int);
 
 
 static
-uchar const* strptime_convert_number(uchar const* buffer, int *dest, uint llim, uint ulim)
+uchar const*	strptime_convert_number(uchar const* buffer, int *dest, uint llim, uint ulim)
 {
 	uint result = 0;
 	uchar ch;
@@ -192,21 +192,21 @@ uchar const* strptime_convert_number(uchar const* buffer, int *dest, uint llim, 
 }
 
 static
-uchar const* strptime_find_string(uchar const* bp, int *tgt, char const* const* n1, char const* const* n2, int c)
+uchar const*	strptime_find_string(uchar const* buffer, int *target, char const* const* n1, char const* const* n2, int c)
 {
 	int i;
-	size_t len;
+	size_t length;
 
 	/* check full name - then abbreviated ones */
 	for (; n1 != NULL; n1 = n2, n2 = NULL)
 	{
 		for (i = 0; i < c; i++, n1++)
 		{
-			len = c_strlen(*n1);
-			if (c_strnicmp(*n1, (char const*)bp, len) == 0)
+			length = String_Length(*n1);
+			if (String_Equals_N_IgnoreCase(*n1, (char const*)buffer, length))
 			{
-				*tgt = i;
-				return (bp + len);
+				*target = i;
+				return (buffer + length);
 			}
 		}
 	}
@@ -215,39 +215,39 @@ uchar const* strptime_find_string(uchar const* bp, int *tgt, char const* const* 
 	return (NULL);
 }
 
-/*
-** NB: Reminder that tm must be set to 0 before being passed here.
-*/
-char* 	strptime(char const* buffer, char const* format, struct tm *tm, t_bitmask_tm* written)
+
+
+size_t	strptime_r(char const* str, char const* format, struct tm *tm, t_bitmask_tm* written)
 {
 	uchar c;
-	uchar const* bp;
+	uchar const* buffer;
 	uchar const* ep;
 	char const* new_fmt;
+	size_t length;
 	int alt_format;
 	int offset;
 	int split_year = 0;
 	int neg = 0;
 	int i;
 
-	bp = (uchar const*)buffer;
+	buffer = (uchar const*)str;
 
-	while (bp != NULL && (c = *format++) != '\0')
+	while (buffer != NULL && (c = *format++) != '\0')
 	{
 		/* Clear `alternate' modifier prior to new conversion. */
 		alt_format = 0;
 		i = 0;
 		/* Eat up white-space. */
-		if (isspace(c))
+		if (Char_IsSpace(c))
 		{
-			while (isspace(*bp))
-				bp++;
+			while (Char_IsSpace(*buffer))
+				buffer++;
 			continue;
 		}
 		if (c != '%')
 		{
-			if (c != *bp++)
-				return (NULL);
+			if (c != *buffer++)
+				return (0);
 			LEGAL_ALT(0);
 			continue;
 		}
@@ -257,8 +257,8 @@ again:
 		{
 			case '%':	/* "%%" is converted to "%". */
 			{
-				if (c != *bp++)
-					return (NULL);
+				if (c != *buffer++)
+					return (0);
 				LEGAL_ALT(0);
 				continue;
 			}
@@ -277,7 +277,8 @@ again:
 /*			case 'X':	new_fmt = _CurrentTimeLocale->t_fmt;	goto recurse;	// The time, using the locale's format. */
 /*			case 'x':	new_fmt = _CurrentTimeLocale->d_fmt;	goto recurse;	// The date, using the locale's format. */
 recurse:
-				bp = (uchar const*)strptime((char const*)bp, new_fmt, tm, written);
+				length = strptime_r((char const*)buffer, new_fmt, tm, written);
+				buffer = (length == 0 ? NULL : buffer + length);
 				LEGAL_ALT(ALT_E);
 				continue;
 /*!
@@ -285,18 +286,18 @@ recurse:
 */
 			case 'g':	/* The year corresponding to the ISO week number but without the century. */
 			{
-				bp = strptime_convert_number(bp, &i, 0, 99);
+				buffer = strptime_convert_number(buffer, &i, 0, 99);
 				continue;
 			}
 			case 'G':	/* The year corresponding to the ISO week number with century. */
 			{
-				do { bp++; } while (isdigit(*bp));
+				do { buffer++; } while (Char_IsDigit(*buffer));
 				continue;
 			}
 			case 'Y':	/* The year. */
 			{
 				i = TM_YEAR_BASE;	/* just for data sanity... */
-				bp = strptime_convert_number(bp, &i, 0, 9999);
+				buffer = strptime_convert_number(buffer, &i, 0, 9999);
 				tm->tm_year = i - TM_YEAR_BASE;
 				SET_WRITTEN(tm_year);
 				LEGAL_ALT(ALT_E);
@@ -305,7 +306,7 @@ recurse:
 			case 'y':	/* The year within 100 years of the epoch. */
 			{
 				/* LEGAL_ALT(ALT_E | ALT_O); */
-				bp = strptime_convert_number(bp, &i, 0, 99);
+				buffer = strptime_convert_number(buffer, &i, 0, 99);
 				if (split_year) /* preserve century */
 				{
 					i += (tm->tm_year / 100) * 100;
@@ -323,7 +324,7 @@ recurse:
 			case 'm':	/* The month. */
 			{
 				i = 1;
-				bp = strptime_convert_number(bp, &i, 1, 12);
+				buffer = strptime_convert_number(buffer, &i, 1, 12);
 				tm->tm_mon = i - 1;
 				SET_WRITTEN(tm_mon);
 				LEGAL_ALT(ALT_O);
@@ -333,7 +334,7 @@ recurse:
 			case 'b':
 			case 'h':
 			{
-				bp = strptime_find_string(bp, &tm->tm_mon, g_month, g_month_abbreviated, 12);
+				buffer = strptime_find_string(buffer, &tm->tm_mon, g_month, g_month_abbreviated, 12);
 				SET_WRITTEN(tm_mon);
 				LEGAL_ALT(0);
 				continue;
@@ -342,7 +343,7 @@ recurse:
 			case 'd':	/* The day of month. */
 			case 'e':
 			{
-				bp = strptime_convert_number(bp, &tm->tm_mday, 1, 31);
+				buffer = strptime_convert_number(buffer, &tm->tm_mday, 1, 31);
 				SET_WRITTEN(tm_mday);
 				LEGAL_ALT(ALT_O);
 				continue;
@@ -351,7 +352,7 @@ recurse:
 			case 'j':	/* The day of year. */
 			{
 				i = 1;
-				bp = strptime_convert_number(bp, &i, 1, 366);
+				buffer = strptime_convert_number(buffer, &i, 1, 366);
 				tm->tm_yday = i - 1;
 				SET_WRITTEN(tm_yday);
 				LEGAL_ALT(0);
@@ -359,26 +360,26 @@ recurse:
 			}
 
 			case 'V':	/* The ISO 8601:1988 week number as decimal */
-				bp = strptime_convert_number(bp, &i, 0, 53);
+				buffer = strptime_convert_number(buffer, &i, 0, 53);
 				continue;
 			case 'U':	/* The week of year, beginning on sunday. */
 			case 'W':	/* The week of year, beginning on monday. */
 				/* XXX This is bogus, as we can not assume any valid information present in the tm structure */
 				/* at this point to calculate a real value, so just check the range for now. */
-				bp = strptime_convert_number(bp, &i, 0, 53);
+				buffer = strptime_convert_number(buffer, &i, 0, 53);
 				LEGAL_ALT(ALT_O);
 				continue;
 
 			case 'w':	/* The day of week, beginning on sunday. */
 			{
-				bp = strptime_convert_number(bp, &tm->tm_wday, 0, 6);
+				buffer = strptime_convert_number(buffer, &tm->tm_wday, 0, 6);
 				SET_WRITTEN(tm_wday);
 				LEGAL_ALT(ALT_O);
 				continue;
 			}
 			case 'u':	/* The day of week, monday = 1. */
 			{
-				bp = strptime_convert_number(bp, &i, 1, 7);
+				buffer = strptime_convert_number(buffer, &i, 1, 7);
 				tm->tm_wday = i % 7;
 				SET_WRITTEN(tm_wday);
 				LEGAL_ALT(ALT_O);
@@ -387,7 +388,7 @@ recurse:
 			case 'A':	/* The day of week, using the locale's form. */
 			case 'a':
 			{
-				bp = strptime_find_string(bp, &tm->tm_wday, g_weekday, g_weekday_abbreviated, 7);
+				buffer = strptime_find_string(buffer, &tm->tm_wday, g_weekday, g_weekday_abbreviated, 7);
 				SET_WRITTEN(tm_wday);
 				LEGAL_ALT(0);
 				continue;
@@ -398,7 +399,7 @@ recurse:
 			case 'k':	LEGAL_ALT(0); /* FALLTHROUGH */	/* The hour (24-hour clock representation). */
 			case 'H':
 			{
-				bp = strptime_convert_number(bp, &tm->tm_hour, 0, 23);
+				buffer = strptime_convert_number(buffer, &tm->tm_hour, 0, 23);
 				SET_WRITTEN(tm_hour);
 				LEGAL_ALT(ALT_O);
 				continue;
@@ -406,7 +407,7 @@ recurse:
 			case 'l':	LEGAL_ALT(0); /* FALLTHROUGH */	/* The hour (12-hour clock representation). */
 			case 'I':
 			{
-				bp = strptime_convert_number(bp, &tm->tm_hour, 1, 12);
+				buffer = strptime_convert_number(buffer, &tm->tm_hour, 1, 12);
 				if (tm->tm_hour == 12)
 					tm->tm_hour = 0;
 				SET_WRITTEN(tm_hour);
@@ -416,7 +417,7 @@ recurse:
 
 			case 'M':	/* The minute. */
 			{
-				bp = strptime_convert_number(bp, &tm->tm_min, 0, 59);
+				buffer = strptime_convert_number(buffer, &tm->tm_min, 0, 59);
 				SET_WRITTEN(tm_min);
 				LEGAL_ALT(ALT_O);
 				continue;
@@ -424,7 +425,7 @@ recurse:
 
 			case 'S':	/* The seconds. */
 			{
-				bp = strptime_convert_number(bp, &tm->tm_sec, 0, 61);
+				buffer = strptime_convert_number(buffer, &tm->tm_sec, 0, 61);
 				SET_WRITTEN(tm_sec);
 				LEGAL_ALT(ALT_O);
 				continue;
@@ -434,28 +435,28 @@ recurse:
 				time_t sse = 0;
 				uint64_t rulim = TIME_MAX;
 
-				if (*bp < '0' || *bp > '9')
+				if (*buffer < '0' || *buffer > '9')
 				{
-					bp = NULL;
+					buffer = NULL;
 					continue;
 				}
 
 				do
 				{
 					sse *= 10;
-					sse += *bp++ - '0';
+					sse += *buffer++ - '0';
 					rulim /= 10;
 				}
-				while (rulim && *bp >= '0' && *bp <= '9'); // (sse * 10 <= TIME_MAX) && (...)
+				while (rulim && *buffer >= '0' && *buffer <= '9'); // (sse * 10 <= TIME_MAX) && (...)
 
 				if (sse < 0 || (uint64_t)sse > TIME_MAX)
 				{
-					bp = NULL;
+					buffer = NULL;
 					continue;
 				}
 				tm = localtime(&sse);
 				if (tm == NULL)
-					bp = NULL;
+					buffer = NULL;
 				else
 				{
 					SET_WRITTEN(tm_sec);
@@ -475,9 +476,9 @@ recurse:
 
 			case 'p':	/* The locale's equivalent of AM/PM. */
 			{
-				bp = strptime_find_string(bp, &i, am_pm, NULL, 2);
+				buffer = strptime_find_string(buffer, &i, am_pm, NULL, 2);
 				if (tm->tm_hour > 11)
-					return (NULL);
+					return (0);
 				tm->tm_hour += i * 12;
 				SET_WRITTEN(tm_hour);
 				LEGAL_ALT(0);
@@ -489,7 +490,7 @@ recurse:
 			case 'C':	/* The century number. */
 			{
 				i = 20;
-				bp = strptime_convert_number(bp, &i, 0, 99);
+				buffer = strptime_convert_number(buffer, &i, 0, 99);
 
 				i = i * 100 - TM_YEAR_BASE;
 				if (split_year)
@@ -510,18 +511,18 @@ recurse:
 #else
 				tzset();
 #endif
-				if (c_strnicmp((char const*)bp, gmt, 3) == 0 ||
-					c_strnicmp((char const*)bp, utc, 3) == 0)
+				if (String_Equals_N_IgnoreCase((char const*)buffer, gmt, 3) ||
+					String_Equals_N_IgnoreCase((char const*)buffer, utc, 3))
 				{
 					tm->tm_isdst = 0;
 					SET_WRITTEN(tm_isdst);
 					SET_TM_GMTOFF(0);
 					SET_TM_ZONE(gmt);
-					bp += 3;
+					buffer += 3;
 				}
 				else
 				{
-					ep = strptime_find_string(bp, &i, (char const* const*)tzname, NULL, 2);
+					ep = strptime_find_string(buffer, &i, (char const* const*)tzname, NULL, 2);
 					if (ep != NULL)
 					{
 						tm->tm_isdst = i;
@@ -529,7 +530,7 @@ recurse:
 						SET_TM_GMTOFF(-(timezone));
 						SET_TM_ZONE(tzname[i]);
 					}
-					bp = ep;
+					buffer = ep;
 				}
 				continue;
 			}
@@ -538,29 +539,29 @@ recurse:
 			{
 				/*
 				**	We recognize all ISO 8601 formats:
-				**	Z	= Zulu time/UTC
-				**	[+-]hhmm
-				**	[+-]hh:mm
-				**	[+-]hh
+				**		Z	= Zulu time/UTC
+				**		[+-]hhmm
+				**		[+-]hh:mm
+				**		[+-]hh
 				**	We recognize all RFC-822/RFC-2822 formats:
-				**	UT|GMT
-				**	         North American : UTC offsets
-				**	E[DS]T = Eastern : -4 | -5
-				**	C[DS]T = Central : -5 | -6
-				**	M[DS]T = Mountain: -6 | -7
-				**	P[DS]T = Pacific : -7 | -8
-				**	         Military
-				**	[A-IL-M] = -1 ... -9 (J not used)
-				**	[N-Y]  = +1 ... +12
+				**		UT|GMT
+				**	North American : UTC offsets
+				**		E[DS]T = Eastern : -4 | -5
+				**		C[DS]T = Central : -5 | -6
+				**		M[DS]T = Mountain: -6 | -7
+				**		P[DS]T = Pacific : -7 | -8
+				**	Military
+				**		[A-IL-M] = -1 ... -9 (J not used)
+				**		[N-Y]  = +1 ... +12
 				*/
-				while (isspace(*bp))
+				while (Char_IsSpace(*buffer))
 				{
-					bp++;
+					buffer++;
 				}
-				switch (*bp++)
+				switch (*buffer++)
 				{
-					case 'G':	if (*bp++ != 'M')	return (NULL);	/*FALLTHROUGH*/
-					case 'U':	if (*bp++ != 'T')	return (NULL);	/*FALLTHROUGH*/
+					case 'G':	if (*buffer++ != 'M')	return (0);	/*FALLTHROUGH*/
+					case 'U':	if (*buffer++ != 'T')	return (0);	/*FALLTHROUGH*/
 					case 'Z':
 						tm->tm_isdst = 0;
 						SET_WRITTEN(tm_isdst);
@@ -572,53 +573,53 @@ recurse:
 					case '-':	neg = 1;	break;
 
 					default:
-						--bp;
-						ep = strptime_find_string(bp, &i, nast, NULL, 4);
+						--buffer;
+						ep = strptime_find_string(buffer, &i, nast, NULL, 4);
 						if (ep != NULL)
 						{
 							SET_TM_GMTOFF(-5 - i);
 							SET_TM_ZONE(__UNCONST(nast[i]));
-							bp = ep;
+							buffer = ep;
 							continue;
 						}
-						ep = strptime_find_string(bp, &i, nadt, NULL, 4);
+						ep = strptime_find_string(buffer, &i, nadt, NULL, 4);
 						if (ep != NULL)
 						{
 							tm->tm_isdst = 1;
 							SET_WRITTEN(tm_isdst);
 							SET_TM_GMTOFF(-4 - i);
 							SET_TM_ZONE(__UNCONST(nadt[i]));
-							bp = ep;
+							buffer = ep;
 							continue;
 						}
 
-						if ((*bp >= 'A' && *bp <= 'I') ||
-							(*bp >= 'L' && *bp <= 'Y'))
+						if ((*buffer >= 'A' && *buffer <= 'I') ||
+							(*buffer >= 'L' && *buffer <= 'Y'))
 						{
 #ifdef TM_GMTOFF
 							/* Argh! No 'J'! */
-							if (*bp >= 'A' && *bp <= 'I')		SET_TM_GMTOFF(('A' - 1) - (int)*bp);
-							else if (*bp >= 'L' && *bp <= 'M')	SET_TM_GMTOFF('A' - (int)*bp);
-							else if (*bp >= 'N' && *bp <= 'Y')	SET_TM_GMTOFF((int)*bp - 'M');
+							if (*buffer >= 'A' && *buffer <= 'I')		SET_TM_GMTOFF(('A' - 1) - (int)*buffer);
+							else if (*buffer >= 'L' && *buffer <= 'M')	SET_TM_GMTOFF('A' - (int)*buffer);
+							else if (*buffer >= 'N' && *buffer <= 'Y')	SET_TM_GMTOFF((int)*buffer - 'M');
 #endif
 							SET_TM_ZONE(NULL); /* XXX */
-							bp++;
+							buffer++;
 							continue;
 						}
-						return (NULL);
+						return (0);
 				}
 				offset = 0;
 				for (i = 0; i < 4; )
 				{
-					if (isdigit(*bp))
+					if (Char_IsDigit(*buffer))
 					{
-						offset = offset * 10 + (*bp++ - '0');
+						offset = offset * 10 + (*buffer++ - '0');
 						i++;
 						continue;
 					}
-					if (i == 2 && *bp == ':')
+					if (i == 2 && *buffer == ':')
 					{
-						bp++;
+						buffer++;
 						continue;
 					}
 					break;
@@ -634,14 +635,14 @@ recurse:
 					{
 						i = offset % 100;
 						if (i >= 60)
-							return (NULL);
+							return (0);
 						/* Convert minutes into decimal */
 						offset = (offset / 100) * 100 + (i * 50) / 30;
 						break;
 					}
 					default:
 					{
-						return (NULL);
+						return (0);
 					}
 				}
 				if (neg)
@@ -657,31 +658,46 @@ recurse:
 */
 		case 'n':	/* Any kind of white-space. */
 		case 't':
-			while (c_isspace(*bp))
-				bp++;
+			while (c_isspace(*buffer))
+				buffer++;
 			LEGAL_ALT(0);
 			continue;
 
 		default:	/* Unknown/unsupported conversion. */
-			return (NULL);
+			return (0);
 		}
 	}
-	return ((char*)bp);
+	return ((char*)buffer - str);
+}
+
+
+
+char*	strptime(char const* str, char const* format, struct tm *tm)
+{
+	t_bitmask_tm written = 0;
+	char* parse_end;
+
+	parse_end = (char*)(str + strptime_r(str, format, tm, &written));
+	if (written == 0)
+		return (NULL);
+	return (parse_end);
 }
 
 #endif
 
 
 
-s_date		Date_FromString(char const* str, char const* format)
+s_date		Date_Parse(char const* str, char const* format)
 {
 	struct tm t = { 0 };
 	t_bitmask_tm written = 0;
-	s_date result;
+	t_size	parsed;
+	s_date	result;
 
 	LIBCONFIG_HANDLE_NULLPOINTER(DATE_NULL, str)
 	LIBCONFIG_HANDLE_NULLPOINTER(DATE_NULL, format)
-	if (strptime(str, format, &t, &written) == NULL)
+	parsed = strptime_r(str, format, &t, &written);
+	if (parsed == 0)
 		return (DATE_NULL); // TODO handle error here ?
 	result = Date_FromSTDC(&t);
 	if (!HAS_WRITTEN(tm_yday))
@@ -698,3 +714,24 @@ s_date		Date_FromString(char const* str, char const* format)
 	}
 	return (result);
 }
+
+/*
+
+s_date		Date_Parse_N(char const* str, char const* format, t_size n)
+{
+
+}
+
+
+
+t_size		Date_ParseStrict(s_date* dest, char const* str, char const* format)
+{
+
+}
+
+
+
+t_size		Date_ParseStrict_N(s_date* dest, char const* str, char const* format, t_size n)
+{
+
+}*/
