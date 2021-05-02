@@ -343,8 +343,8 @@ t_char					Char_ToLowercase(t_char c); // TODO refactor `t_char` here to `t_utf3
 #define c_tolower		Char_ToLowercase
 #define Char_ToLower	Char_ToLowercase
 
-// TODO Char_ToASCII()
 // TODO Char_ToMixedCase()
+// TODO Char_ToASCII()
 
 
 

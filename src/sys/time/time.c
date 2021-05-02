@@ -24,7 +24,7 @@ t_time		Time_Now(void)
 
 s_date		Time_ToDate_UTC(t_time const value)
 {
-	s_date result = { 0 };
+	s_date result = DATE_NULL;
  	struct tm* tm;
 
  	tm = gmtime(&value);
@@ -36,13 +36,15 @@ s_date		Time_ToDate_UTC(t_time const value)
 
 s_date		Time_ToDate_LocalTime(t_time const value)
 {
-	s_date result = { 0 };
+	s_date result = DATE_NULL;
  	struct tm* tm;
 
  	tm = localtime(&value);
  	if (tm == NULL)
  		return (result);
 	result = Date_FromSTDC(tm);
+	if (result.offset == 0)
+		result.offset = -timezone;
 	return (result);
 }
 

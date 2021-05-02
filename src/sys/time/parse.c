@@ -70,38 +70,42 @@ __weak_alias(strptime,_strptime)
 #endif
 */
 
-#include <inttypes.h>
-
 /* ************************************************************************** */
 /*                                 Definitions                                */
 /* ************************************************************************** */
 
-typedef unsigned int	uint;
-typedef unsigned char	uchar;
-//typedef unsigned __int64 uint64_t;
+#ifndef TIME_MAX
+#define TIME_MAX	INT64_MAX
+#endif
+
+
 
 typedef t_s16	t_bitmask_tm;
 
-#define BITMASK_tm_sec		0
-#define BITMASK_tm_min		1
-#define BITMASK_tm_hour		2
-#define BITMASK_tm_wday		3
-#define BITMASK_tm_mday		4
-#define BITMASK_tm_yday		5
-#define BITMASK_tm_mon		6
-#define BITMASK_tm_year		7
-#define BITMASK_tm_isdst	8
+#define BITMASK_sec			0
+#define BITMASK_min			1
+#define BITMASK_hour		2
+#define BITMASK_day_week	3
+#define BITMASK_day_month	4
+#define BITMASK_day_year	5
+#define BITMASK_month		6
+#define BITMASK_year		7
+#define BITMASK_is_dst		8
+#define BITMASK_offset		9
+
+#define SET_TM(FIELD, VALUE) \
+	date->FIELD = VALUE;	SET_WRITTEN(FIELD)
 
 #ifdef TM_GMTOFF
-#define BITMASK_tm_gmtoff	9
-#define SET_TM_GMTOFF(X)	tm->tm_gmtoff = (X); SET_WRITTEN(tm_gmtoff)
+#define BITMASK_tm_gmtoff	10
+#define SET_TM_GMTOFF(X)	/* tm->offset = (X); 	SET_WRITTEN(tm_gmtoff) */
 #else
 #define SET_TM_GMTOFF(X)	
 #endif
 
 #ifdef TM_ZONE
-#define BITMASK_tm_zone		10
-#define SET_TM_ZONE(X)		tm->tm_zone = (X);	 SET_WRITTEN(tm_zone)
+#define BITMASK_tm_zone		11
+#define SET_TM_ZONE(X)		/* tm->offset = (X); 	SET_WRITTEN(tm_zone) */
 #else
 #define SET_TM_ZONE(X)		
 #endif
@@ -112,27 +116,16 @@ typedef t_s16	t_bitmask_tm;
 #define HAS_WRITTEN(_FIELD_) \
 	(written & (1 << BITMASK_##_FIELD_))
 
-
-
-#ifndef TIME_MAX
-#define TIME_MAX	INT64_MAX
-#endif
-
-
-
 //! We do not implement alternate representations.
 //! However, we always check whether a given modifier is allowed for a certain conversion.
 #define ALT_E			0x01
 #define ALT_O			0x02
 #define	LEGAL_ALT(x)	{ if (alt_format & ~(x)) return (0); }
 
-
-
-static int TM_YEAR_BASE = 1900;
-static char gmt[] = { "GMT" };
-static char utc[] = { "UTC" };
+static t_char gmt[] = { "GMT" };
+static t_char utc[] = { "UTC" };
 /* RFC-822/RFC-2822 */
-static char const*  const nast[5] =
+static t_char const*  const nast[5] =
 {
 	"EST",
 	"CST",
@@ -140,7 +133,7 @@ static char const*  const nast[5] =
 	"PST",
 	"\0\0\0"
 };
-static char const*  const nadt[5] =
+static t_char const*  const nadt[5] =
 {
 	"EDT",
 	"CDT",
@@ -148,89 +141,94 @@ static char const*  const nadt[5] =
 	"PDT",
 	"\0\0\0"
 };
-static char const*  const am_pm[2] =
+static t_char const*  const am_pm[2] =
 {
 	"am",
-	"pm"
+	"pm",
 };
 
 
 
 static
-uchar const*	strptime_convert_number(uchar const* , int*, uint, uint);
+t_s64	strptime_parsenumber(t_u8 const* *, t_uint, t_uint);
 static
-uchar const*	strptime_find_string(uchar const*, int*, char const* const*, char const* const*, int);
+t_s64	strptime_parsestring(t_u8 const* *, t_char const* const*, t_char const* const*, t_sint);
 
 
 static
-uchar const*	strptime_convert_number(uchar const* buffer, int *dest, uint llim, uint ulim)
+t_s64	strptime_parsenumber(t_u8 const* *a_buffer, t_uint min, t_uint max)
 {
-	uint result = 0;
-	uchar ch;
+	t_u8 const*	buffer = *a_buffer;
+	t_uint result = 0;
+	t_uint limit = max;	/* The limit also determines the number of valid digits. */
+	t_u8 c;
 
-	/* The limit also determines the number of valid digits. */
-	uint rulim = ulim;
-
-	ch = *buffer;
-	if (ch < '0' || ch > '9')
-		return (NULL);
-
+	c = *buffer;
+	if (!Char_IsDigit(c))
+		goto failure;
 	do
 	{
 		result *= 10;
-		result += ch - '0';
-		rulim /= 10;
-		ch = *++buffer;
+		result += c - '0';
+		limit /= 10;
+		c = (++buffer)[0];
 	}
-	while ((result * 10 <= ulim) && rulim && ch >= '0' && ch <= '9');
+	while ((result * 10 <= max) && limit && Char_IsDigit(c));
 
-	if (result < llim || result > ulim)
-		return (NULL);
+	if (result < min || result > max)
+		goto failure;
 
-	*dest = result;
-	return (buffer);
+//success:
+	*a_buffer = buffer;
+	return (result);
+
+failure:
+	*a_buffer = NULL;
+	return (0);
 }
 
 static
-uchar const*	strptime_find_string(uchar const* buffer, int *target, char const* const* n1, char const* const* n2, int c)
+t_s64	strptime_parsestring(t_u8 const* *a_buffer, t_char const* const* n1, t_char const* const* n2, t_sint c)
 {
-	int i;
-	size_t length;
+	t_u8 const*	buffer = *a_buffer;
+	t_size length;
+	t_sint i;
 
 	/* check full name - then abbreviated ones */
-	for (; n1 != NULL; n1 = n2, n2 = NULL)
+	while (n1 != NULL)
 	{
-		for (i = 0; i < c; i++, n1++)
+		for (i = 0; i < c; ++i, ++n1)
 		{
 			length = String_Length(*n1);
-			if (String_Equals_N_IgnoreCase(*n1, (char const*)buffer, length))
+			if (String_Equals_N_IgnoreCase(*n1, (t_char const*)buffer, length))
 			{
-				*target = i;
-				return (buffer + length);
+				*a_buffer = buffer + length;
+				return (i);
 			}
 		}
+		n1 = n2;
+		n2 = NULL;
 	}
-
-	/* Nothing matched */
-	return (NULL);
+	*a_buffer = NULL;
+	return (0); /* Nothing matched */
 }
 
 
 
-size_t	strptime_r(char const* str, char const* format, struct tm *tm, t_bitmask_tm* written)
+t_size	strptime_r(t_char const* str, t_char const* format, s_date* date, t_bitmask_tm* written)
 {
-	uchar c;
-	uchar const* buffer;
-	uchar const* ep;
-	char const* new_fmt;
-	size_t length;
-	int alt_format;
-	int offset;
-	int split_year = 0;
-	int neg = 0;
-	int i;
+	t_u8 c;
+	t_u8 const* buffer;
+	t_u8 const* ep;
+	t_char const* new_fmt;
+	t_size length;
+	t_sint alt_format;
+	t_sint offset;
+	t_sint split_year = 0;
+	t_sint neg = 0;
+	t_sint i;
 
-	buffer = (uchar const*)str;
+	buffer = (t_u8 const*)str;
 
 	while (buffer != NULL && (c = *format++) != '\0')
 	{
@@ -277,7 +275,7 @@ again:
 /*			case 'X':	new_fmt = _CurrentTimeLocale->t_fmt;	goto recurse;	// The time, using the locale's format. */
 /*			case 'x':	new_fmt = _CurrentTimeLocale->d_fmt;	goto recurse;	// The date, using the locale's format. */
 recurse:
-				length = strptime_r((char const*)buffer, new_fmt, tm, written);
+				length = strptime_r((t_char const*)buffer, new_fmt, date, written);
 				buffer = (length == 0 ? NULL : buffer + length);
 				LEGAL_ALT(ALT_E);
 				continue;
@@ -286,7 +284,7 @@ recurse:
 */
 			case 'g':	/* The year corresponding to the ISO week number but without the century. */
 			{
-				buffer = strptime_convert_number(buffer, &i, 0, 99);
+				i = strptime_parsenumber(&buffer, 0, 99);
 				continue;
 			}
 			case 'G':	/* The year corresponding to the ISO week number with century. */
@@ -296,37 +294,33 @@ recurse:
 			}
 			case 'Y':	/* The year. */
 			{
-				i = TM_YEAR_BASE;	/* just for data sanity... */
-				buffer = strptime_convert_number(buffer, &i, 0, 9999);
-				tm->tm_year = i - TM_YEAR_BASE;
-				SET_WRITTEN(tm_year);
+				i = strptime_parsenumber(&buffer, 0, 9999);
+				SET_TM(year, i);
 				LEGAL_ALT(ALT_E);
 				continue;
 			}
 			case 'y':	/* The year within 100 years of the epoch. */
 			{
 				/* LEGAL_ALT(ALT_E | ALT_O); */
-				buffer = strptime_convert_number(buffer, &i, 0, 99);
+				i = strptime_parsenumber(&buffer, 0, 99);
 				if (split_year) /* preserve century */
 				{
-					i += (tm->tm_year / 100) * 100;
+					i += (date->year / 100) * 100;
 				}
 				else
 				{
 					split_year = 1;
-					i += ((i <= 68) ? 2000 : 1900) - TM_YEAR_BASE;
+					i += ((i <= 68) ? 2000 : 1900);
 				}
-				tm->tm_year = i;
-				SET_WRITTEN(tm_year);
+				SET_TM(year, i);
 				continue;
 			}
 
 			case 'm':	/* The month. */
 			{
 				i = 1;
-				buffer = strptime_convert_number(buffer, &i, 1, 12);
-				tm->tm_mon = i - 1;
-				SET_WRITTEN(tm_mon);
+				i = strptime_parsenumber(&buffer, 1, ENUMLENGTH_MONTH);
+				SET_TM(month, i - 1);
 				LEGAL_ALT(ALT_O);
 				continue;
 			}
@@ -334,8 +328,7 @@ recurse:
 			case 'b':
 			case 'h':
 			{
-				buffer = strptime_find_string(buffer, &tm->tm_mon, g_month, g_month_abbreviated, 12);
-				SET_WRITTEN(tm_mon);
+				SET_TM(month, strptime_parsestring(&buffer, g_month, g_month_abbreviated, ENUMLENGTH_MONTH));
 				LEGAL_ALT(0);
 				continue;
 			}
@@ -343,8 +336,7 @@ recurse:
 			case 'd':	/* The day of month. */
 			case 'e':
 			{
-				buffer = strptime_convert_number(buffer, &tm->tm_mday, 1, 31);
-				SET_WRITTEN(tm_mday);
+				SET_TM(day_month, strptime_parsenumber(&buffer, 1, 31));
 				LEGAL_ALT(ALT_O);
 				continue;
 			}
@@ -352,44 +344,40 @@ recurse:
 			case 'j':	/* The day of year. */
 			{
 				i = 1;
-				buffer = strptime_convert_number(buffer, &i, 1, 366);
-				tm->tm_yday = i - 1;
-				SET_WRITTEN(tm_yday);
+				i = strptime_parsenumber(&buffer, 1, 366);
+				SET_TM(day_year, i - 1);
 				LEGAL_ALT(0);
 				continue;
 			}
 
 			case 'V':	/* The ISO 8601:1988 week number as decimal */
-				buffer = strptime_convert_number(buffer, &i, 0, 53);
+				i = strptime_parsenumber(&buffer, 0, 53);
 				continue;
 			case 'U':	/* The week of year, beginning on sunday. */
 			case 'W':	/* The week of year, beginning on monday. */
-				/* XXX This is bogus, as we can not assume any valid information present in the tm structure */
+				/* XXX This is bogus, as we can not assume any valid information present in the date structure */
 				/* at this point to calculate a real value, so just check the range for now. */
-				buffer = strptime_convert_number(buffer, &i, 0, 53);
+				i = strptime_parsenumber(&buffer, 0, 53);
 				LEGAL_ALT(ALT_O);
 				continue;
 
 			case 'w':	/* The day of week, beginning on sunday. */
 			{
-				buffer = strptime_convert_number(buffer, &tm->tm_wday, 0, 6);
-				SET_WRITTEN(tm_wday);
+				SET_TM(day_week, strptime_parsenumber(&buffer, WEEKDAY_SUNDAY, WEEKDAY_SATURDAY));
 				LEGAL_ALT(ALT_O);
 				continue;
 			}
 			case 'u':	/* The day of week, monday = 1. */
 			{
-				buffer = strptime_convert_number(buffer, &i, 1, 7);
-				tm->tm_wday = i % 7;
-				SET_WRITTEN(tm_wday);
+				i = strptime_parsenumber(&buffer, WEEKDAY_MONDAY, ENUMLENGTH_WEEKDAY);
+				SET_TM(day_week, i % ENUMLENGTH_WEEKDAY);
 				LEGAL_ALT(ALT_O);
 				continue;
 			}
 			case 'A':	/* The day of week, using the locale's form. */
 			case 'a':
 			{
-				buffer = strptime_find_string(buffer, &tm->tm_wday, g_weekday, g_weekday_abbreviated, 7);
-				SET_WRITTEN(tm_wday);
+				SET_TM(day_week, strptime_parsestring(&buffer, g_weekday, g_weekday_abbreviated, ENUMLENGTH_WEEKDAY));
 				LEGAL_ALT(0);
 				continue;
 			}
@@ -397,77 +385,72 @@ recurse:
 
 
 			case 'k':	LEGAL_ALT(0); /* FALLTHROUGH */	/* The hour (24-hour clock representation). */
-			case 'H':
+			case 'H':   
 			{
-				buffer = strptime_convert_number(buffer, &tm->tm_hour, 0, 23);
-				SET_WRITTEN(tm_hour);
+				SET_TM(hour, strptime_parsenumber(&buffer, 0, 23));
 				LEGAL_ALT(ALT_O);
 				continue;
 			}
 			case 'l':	LEGAL_ALT(0); /* FALLTHROUGH */	/* The hour (12-hour clock representation). */
 			case 'I':
 			{
-				buffer = strptime_convert_number(buffer, &tm->tm_hour, 1, 12);
-				if (tm->tm_hour == 12)
-					tm->tm_hour = 0;
-				SET_WRITTEN(tm_hour);
+				i = strptime_parsenumber(&buffer, 1, 12);
+				SET_TM(hour, (i == 12 ? 0 : i));
 				LEGAL_ALT(ALT_O);
 				continue;
 			}
 
 			case 'M':	/* The minute. */
 			{
-				buffer = strptime_convert_number(buffer, &tm->tm_min, 0, 59);
-				SET_WRITTEN(tm_min);
+				SET_TM(min, strptime_parsenumber(&buffer, 0, 59));
 				LEGAL_ALT(ALT_O);
 				continue;
 			}
 
 			case 'S':	/* The seconds. */
 			{
-				buffer = strptime_convert_number(buffer, &tm->tm_sec, 0, 61);
-				SET_WRITTEN(tm_sec);
+				SET_TM(sec, strptime_parsenumber(&buffer, 0, 61));
 				LEGAL_ALT(ALT_O);
 				continue;
 			}
 			case 's':	/* The seconds since the epoch */
 			{
 				time_t sse = 0;
-				uint64_t rulim = TIME_MAX;
+				t_u64 limit = TIME_MAX;
 
-				if (*buffer < '0' || *buffer > '9')
+				if (!Char_IsDigit(*buffer))
 				{
 					buffer = NULL;
 					continue;
 				}
-
 				do
 				{
 					sse *= 10;
 					sse += *buffer++ - '0';
-					rulim /= 10;
+					limit /= 10;
 				}
-				while (rulim && *buffer >= '0' && *buffer <= '9'); // (sse * 10 <= TIME_MAX) && (...)
+				while (limit && Char_IsDigit(*buffer)); // (sse * 10 <= TIME_MAX) && (...)
 
-				if (sse < 0 || (uint64_t)sse > TIME_MAX)
+				if (sse < 0 || (t_u64)sse > TIME_MAX)
 				{
 					buffer = NULL;
 					continue;
 				}
-				tm = localtime(&sse);
-				if (tm == NULL)
+				if (date == NULL)
 					buffer = NULL;
 				else
 				{
-					SET_WRITTEN(tm_sec);
-					SET_WRITTEN(tm_min);
-					SET_WRITTEN(tm_hour);
-					SET_WRITTEN(tm_wday);
-					SET_WRITTEN(tm_mday);
-					SET_WRITTEN(tm_yday);
-					SET_WRITTEN(tm_mon);
-					SET_WRITTEN(tm_year);
-					SET_WRITTEN(tm_isdst);
+					*date = Time_ToDate_LocalTime(sse);
+					SET_WRITTEN(sec);
+					SET_WRITTEN(min);
+					SET_WRITTEN(hour);
+					SET_WRITTEN(day_week);
+					SET_WRITTEN(day_month);
+					SET_WRITTEN(day_year);
+					SET_WRITTEN(month);
+					SET_WRITTEN(year);
+					SET_WRITTEN(is_dst);
+					SET_WRITTEN(offset);
 				}
 				continue;
 			}
@@ -476,11 +459,10 @@ recurse:
 
 			case 'p':	/* The locale's equivalent of AM/PM. */
 			{
-				buffer = strptime_find_string(buffer, &i, am_pm, NULL, 2);
-				if (tm->tm_hour > 11)
+				i = strptime_parsestring(&buffer, am_pm, NULL, 2);
+				if (date->hour > 11)
 					return (0);
-				tm->tm_hour += i * 12;
-				SET_WRITTEN(tm_hour);
+				SET_TM(hour, date->hour + (i ? 12 : 0));
 				LEGAL_ALT(0);
 				continue;
 			}
@@ -490,14 +472,12 @@ recurse:
 			case 'C':	/* The century number. */
 			{
 				i = 20;
-				buffer = strptime_convert_number(buffer, &i, 0, 99);
-
-				i = i * 100 - TM_YEAR_BASE;
+				i = strptime_parsenumber(&buffer, 0, 99);
+				i = i * 100;
 				if (split_year)
-					i += tm->tm_year % 100;
+					i += (date->year % 100);
 				split_year = 1;
-				tm->tm_year = i;
-				SET_WRITTEN(tm_year);
+				SET_TM(year, i);
 				LEGAL_ALT(ALT_E);
 				continue;
 			}
@@ -511,22 +491,23 @@ recurse:
 #else
 				tzset();
 #endif
-				if (String_Equals_N_IgnoreCase((char const*)buffer, gmt, 3) ||
-					String_Equals_N_IgnoreCase((char const*)buffer, utc, 3))
+				if (String_Equals_N_IgnoreCase((t_char const*)buffer, gmt, 3) ||
+					String_Equals_N_IgnoreCase((t_char const*)buffer, utc, 3))
 				{
-					tm->tm_isdst = 0;
-					SET_WRITTEN(tm_isdst);
+					SET_TM(is_dst, FALSE);
+					SET_TM(offset, 0);
 					SET_TM_GMTOFF(0);
 					SET_TM_ZONE(gmt);
 					buffer += 3;
 				}
 				else
 				{
-					ep = strptime_find_string(buffer, &i, (char const* const*)tzname, NULL, 2);
+					ep = buffer;
+					i = strptime_parsestring(&ep, (t_char const* const*)tzname, NULL, 2);
 					if (ep != NULL)
 					{
-						tm->tm_isdst = i;
-						SET_WRITTEN(tm_isdst);
+						SET_TM(is_dst, (t_bool)i);
+						SET_TM(offset, -(timezone));
 						SET_TM_GMTOFF(-(timezone));
 						SET_TM_ZONE(tzname[i]);
 					}
@@ -563,8 +544,8 @@ recurse:
 					case 'G':	if (*buffer++ != 'M')	return (0);	/*FALLTHROUGH*/
 					case 'U':	if (*buffer++ != 'T')	return (0);	/*FALLTHROUGH*/
 					case 'Z':
-						tm->tm_isdst = 0;
-						SET_WRITTEN(tm_isdst);
+						SET_TM(is_dst, FALSE);
+						SET_TM(offset, 0);
 						SET_TM_GMTOFF(0);
 						SET_TM_ZONE(utc);
 						continue;
@@ -574,19 +555,21 @@ recurse:
 
 					default:
 						--buffer;
-						ep = strptime_find_string(buffer, &i, nast, NULL, 4);
+						ep = buffer;
+						i = strptime_parsestring(&ep, nast, NULL, 4);
 						if (ep != NULL)
 						{
+							SET_TM(offset, 0);
 							SET_TM_GMTOFF(-5 - i);
 							SET_TM_ZONE(__UNCONST(nast[i]));
 							buffer = ep;
 							continue;
 						}
-						ep = strptime_find_string(buffer, &i, nadt, NULL, 4);
+						ep = buffer;
+						i = strptime_parsestring(&ep, nadt, NULL, 4);
 						if (ep != NULL)
 						{
-							tm->tm_isdst = 1;
-							SET_WRITTEN(tm_isdst);
+							SET_TM(is_dst, TRUE);
 							SET_TM_GMTOFF(-4 - i);
 							SET_TM_ZONE(__UNCONST(nadt[i]));
 							buffer = ep;
@@ -598,9 +581,9 @@ recurse:
 						{
 #ifdef TM_GMTOFF
 							/* Argh! No 'J'! */
-							if (*buffer >= 'A' && *buffer <= 'I')		SET_TM_GMTOFF(('A' - 1) - (int)*buffer);
-							else if (*buffer >= 'L' && *buffer <= 'M')	SET_TM_GMTOFF('A' - (int)*buffer);
-							else if (*buffer >= 'N' && *buffer <= 'Y')	SET_TM_GMTOFF((int)*buffer - 'M');
+							if (*buffer >= 'A' && *buffer <= 'I')		SET_TM_GMTOFF(('A' - 1) - (t_sint)*buffer);
+							else if (*buffer >= 'L' && *buffer <= 'M')	SET_TM_GMTOFF('A' - (t_sint)*buffer);
+							else if (*buffer >= 'N' && *buffer <= 'Y')	SET_TM_GMTOFF((t_sint)*buffer - 'M');
 #endif
 							SET_TM_ZONE(NULL); /* XXX */
 							buffer++;
@@ -647,8 +630,8 @@ recurse:
 				}
 				if (neg)
 					offset = -offset;
-				tm->tm_isdst = 0;	/* XXX */
-				SET_WRITTEN(tm_isdst);
+				SET_TM(is_dst, FALSE);
+				SET_TM(offset, offset);
 				SET_TM_GMTOFF(offset);
 				SET_TM_ZONE(NULL);	/* XXX */
 				continue;
@@ -667,17 +650,17 @@ recurse:
 			return (0);
 		}
 	}
-	return ((char*)buffer - str);
+	return ((t_char*)buffer - str);
 }
 
 
 
-char*	strptime(char const* str, char const* format, struct tm *tm)
+t_char*	strptime(t_char const* str, t_char const* format, s_date* date)
 {
 	t_bitmask_tm written = 0;
-	char* parse_end;
+	t_char* parse_end;
 
-	parse_end = (char*)(str + strptime_r(str, format, tm, &written));
+	parse_end = (t_char*)(str + strptime_r(str, format, date, &written));
 	if (written == 0)
 		return (NULL);
 	return (parse_end);
@@ -685,53 +668,108 @@ char*	strptime(char const* str, char const* format, struct tm *tm)
 
 #endif
 
+#include "libccc/sys/io.h"
 
-
-s_date		Date_Parse(char const* str, char const* format)
+static
+t_size		Date_Parse_(s_date* dest, t_char const* str, t_char const* format, t_bool onlyknown, t_bool strict)
 {
-	struct tm t = { 0 };
+	s_date result = DATE_NULL;
 	t_bitmask_tm written = 0;
 	t_size	parsed;
-	s_date	result;
+
+	parsed = strptime_r(str, format, &result, &written);
+	if (parsed == 0)
+		return (0); // TODO handle parsing error here ?
+	if (strict)
+	{
+		if (!Date_IsValid(&result))
+			return (0);
+	}
+	if (!onlyknown)
+	{
+		if (HAS_WRITTEN(year) && HAS_WRITTEN(month))
+		{
+			if (HAS_WRITTEN(day_month) || HAS_WRITTEN(day_year))
+			{
+				if (HAS_WRITTEN(day_month) && !HAS_WRITTEN(day_year))
+				{
+					for (e_month i = 0; i < result.month; ++i)
+					{
+						result.day_year += Date_DaysInMonth(i, result.year);
+					}
+					result.day_year += result.day_month - 1;
+				}
+				if (HAS_WRITTEN(day_year) && !HAS_WRITTEN(day_month))
+				{
+					t_s32 day = result.day_year;
+					e_month i = result.month;
+					while (i--)
+					{
+						day -= Date_DaysInMonth(i, result.year);
+					}
+					result.day_month = day;
+				}
+				if (!HAS_WRITTEN(day_week))
+				{
+IO_Output_Format("\n\nDEBUG1: %i\n", result.day_week);
+					result.day_week = Date_DayOfTheWeek(&result);
+IO_Output_Format("\n\nDEBUG2: %i\n", result.day_week);
+				}
+			}
+		}
+	}
+	*dest = result;
+	return (parsed);
+}
+
+
+
+s_date		Date_Parse(t_char const* str, t_char const* format)
+{
+	s_date result = DATE_NULL;
 
 	LIBCONFIG_HANDLE_NULLPOINTER(DATE_NULL, str)
 	LIBCONFIG_HANDLE_NULLPOINTER(DATE_NULL, format)
-	parsed = strptime_r(str, format, &t, &written);
-	if (parsed == 0)
-		return (DATE_NULL); // TODO handle error here ?
-	result = Date_FromSTDC(&t);
-	if (!HAS_WRITTEN(tm_yday))
-	{
-		for (e_month i = 0; i < result.month; ++i)
-		{
-			result.day_year += Date_DaysInMonth(i, result.year);
-		}
-		result.day_year += result.day_month - 1;
-	}
-	if (!HAS_WRITTEN(tm_wday))
-	{
-		result.day_week = Date_DayOfTheWeek(&result);
-	}
+	Date_Parse_(&result, str, format, FALSE, FALSE);
 	return (result);
 }
 
-/*
 
-s_date		Date_Parse_N(char const* str, char const* format, t_size n)
+
+s_date		Date_Parse_Min(t_char const* str, t_char const* format)
 {
+	s_date result = DATE_NULL;
 
+	LIBCONFIG_HANDLE_NULLPOINTER(DATE_NULL, str)
+	LIBCONFIG_HANDLE_NULLPOINTER(DATE_NULL, format)
+	Date_Parse_(&result, str, format, TRUE, FALSE);
+	return (result);
 }
 
 
 
-t_size		Date_ParseStrict(s_date* dest, char const* str, char const* format)
+t_size		Date_ParseStrict(s_date* dest, t_char const* str, t_char const* format)
 {
+	s_date result = DATE_NULL;
+	t_size parsed;
 
+	LIBCONFIG_HANDLE_NULLPOINTER(0, str)
+	LIBCONFIG_HANDLE_NULLPOINTER(0, format)
+	parsed = Date_Parse_(&result, str, format, FALSE, TRUE);
+	*dest = result;
+	return (parsed);
 }
 
 
 
-t_size		Date_ParseStrict_N(s_date* dest, char const* str, char const* format, t_size n)
+t_size		Date_ParseStrict_Min(s_date* dest, t_char const* str, t_char const* format)
 {
+	s_date result = DATE_NULL;
+	t_size parsed;
 
-}*/
+	LIBCONFIG_HANDLE_NULLPOINTER(0, str)
+	LIBCONFIG_HANDLE_NULLPOINTER(0, format)
+	parsed = Date_Parse_(&result, str, format, TRUE, TRUE);
+	*dest = result;
+	return (parsed);
+}

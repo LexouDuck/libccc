@@ -399,7 +399,7 @@ void	print_test(
 	else if (g_test.flags.verbose)
 		printf(C_GREEN"OK!"C_RESET);
 	fflush(stdout);
-
+	fflush(stderr);
 	previous_function = function;
 }
 
@@ -724,7 +724,7 @@ void	print_test_list(
 		printf(" -> ");
 	}
 	else printf(", ");
-	s_list *lst = (s_list *)result;
+	s_list* lst = (s_list*)result;
 	t_u32 i = 0;
 	if (lst)
 	{
@@ -743,7 +743,7 @@ void	print_test_list(
 	if (error)
 	{
 		printf(C_RED"Error:\n");
-		lst = (s_list *)result;
+		lst = (s_list*)result;
 		printf(">c_%s: [", function);
 		char* tmp;
 		while (lst)
@@ -770,15 +770,16 @@ void	print_test_list(
 
 #define DATE_STR_BUFFER		512
 #define DATE_STR_FORMAT	\
-	"\n\t.year      = %i," \
-	"\n\t.month     = %i," \
-	"\n\t.day_month = %u," \
 	"\n\t.hour      = %u," \
 	"\n\t.min       = %u," \
 	"\n\t.sec       = %u," \
-	"\n\t.is_dst    = %s," \
+	"\n\t.year      = %i," \
+	"\n\t.month     = %i," \
+	"\n\t.day_month = %u," \
 	"\n\t.day_week  = %i," \
-	"\n\t.day_year  = %i\n" \
+	"\n\t.day_year  = %i," \
+	"\n\t.is_dst    = %s," \
+	"\n\t.offset    = %i\n" \
 
 void	print_test_date(
 	char const* test_name,
@@ -798,17 +799,18 @@ void	print_test_date(
 	else if (!result || !expect)
 		error = (result != expect);
 	else
-		error = !( result->sec       == expect->sec
+		error = !( result->hour      == expect->hour
 				&& result->min       == expect->min
-				&& result->hour      == expect->hour
-				&& result->day_week  == expect->day_week
-				&& result->day_month == expect->day_month
-				&& result->day_year  == expect->day_year
-				&& result->month     == expect->month
+				&& result->sec       == expect->sec
 				&& result->year      == expect->year
-				&& result->is_dst    == expect->is_dst);
-	snprintf(str_result, DATE_STR_BUFFER, DATE_STR_FORMAT, result->year, result->month, result->day_month, result->hour, result->min, result->sec, (result->is_dst ? "TRUE" : "FALSE"), result->day_week, result->day_year);
-	snprintf(str_expect, DATE_STR_BUFFER, DATE_STR_FORMAT, expect->year, expect->month, expect->day_month, expect->hour, expect->min, expect->sec, (expect->is_dst ? "TRUE" : "FALSE"), expect->day_week, expect->day_year);
+				&& result->month     == expect->month
+				&& result->day_month == expect->day_month
+				&& result->day_week  == expect->day_week
+				&& result->day_year  == expect->day_year
+				&& result->is_dst    == expect->is_dst
+				&& result->offset    == expect->offset);
+	snprintf(str_result, DATE_STR_BUFFER, DATE_STR_FORMAT, result->hour, result->min, result->sec, result->year, result->month, result->day_month, result->day_week, result->day_year, (result->is_dst ? "TRUE" : "FALSE"), result->offset);
+	snprintf(str_expect, DATE_STR_BUFFER, DATE_STR_FORMAT, expect->hour, expect->min, expect->sec, expect->year, expect->month, expect->day_month, expect->day_week, expect->day_year, (expect->is_dst ? "TRUE" : "FALSE"), expect->offset);
 	print_test(test_name, function,
 		str_result,
 		str_expect,

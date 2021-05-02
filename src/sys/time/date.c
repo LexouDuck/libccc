@@ -14,6 +14,10 @@
 
 
 
+#define TM_YEAR_BASE	1900
+
+
+
 s_date		Date_Now(void)
 {
 	t_time result;
@@ -26,25 +30,25 @@ s_date		Date_Now(void)
 
 t_time		Date_ToTime_UTC(s_date const* value)
 {
-	struct tm	date;
+	struct tm	tm;
 
-	date = Date_ToSTDC(value);
+	tm = Date_ToSTDC(value);
 #ifdef _WIN32
-	return (_mkgmtime(&date));
+	return (_mkgmtime(&tm));
 #else
-	return (timegm(&date));
+	return (timegm(&tm));
 #endif
 }
 
 t_time		Date_ToTime_LocalTime(s_date const* value)
 {
-	struct tm	date;
+	struct tm	tm;
 
-	date = Date_ToSTDC(value);
+	tm = Date_ToSTDC(value);
 #ifdef _WIN32
-	return (mktime(&date));
+	return (mktime(&tm));
 #else
-	return (timelocal(&date));
+	return (timelocal(&tm));
 #endif
 }
 
@@ -62,15 +66,10 @@ struct tm	Date_ToSTDC(s_date const* value)
 		.tm_mday 	= value->day_month,
 		.tm_yday 	= value->day_year,
 		.tm_mon 	= value->month,
-		.tm_year 	= value->year,
+		.tm_year 	= value->year - TM_YEAR_BASE,
 		.tm_isdst 	= value->is_dst,
 #ifdef TM_GMTOFF
-		.TM_GMTOFF	= value->timezone;;
-#else
-#endif
-#ifdef TM_ZONE
-		.TM_ZONE	= value->timezone;
-#else
+		.tm_gmtoff	= value->timezone;
 #endif
 	});
 }
@@ -87,15 +86,13 @@ s_date		Date_FromSTDC(struct tm const* value)
 		.day_month	= value->tm_mday,
 		.day_year	= value->tm_yday,
 		.month		= value->tm_mon,
-		.year		= value->tm_year,
+		.year		= value->tm_year + TM_YEAR_BASE,
 		.is_dst		= value->tm_isdst,
+		.offset		=
 #ifdef TM_GMTOFF
-		.timezone	= value->TM_GMTOFF,
+			value->tm_gmtoff,
 #else
-#endif
-#ifdef TM_ZONE
-		.timezone	= value->TM_ZONE,
-#else
+			0
 #endif
 	});
 }

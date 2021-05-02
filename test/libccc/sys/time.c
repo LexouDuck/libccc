@@ -52,6 +52,7 @@ s_date	y99_date = (s_date)
 	.min		= 0,
 	.sec		= 0,
 	.is_dst		= FALSE,
+	.offset		= 0,
 };
 
 char*	y2k_str = "2000-01-01 00:00:00";
@@ -66,6 +67,7 @@ s_date	y2k_date = (s_date)
 	.min		= 0,
 	.sec		= 0,
 	.is_dst		= FALSE,
+	.offset		= 0,
 };
 
 char*	xmas_str = "1981-12-25 12:34:56";
@@ -80,6 +82,7 @@ s_date	xmas_date = (s_date)
 	.min		= 34,
 	.sec		= 56,
 	.is_dst		= FALSE,
+	.offset		= 0,
 };
 
 char*	ween_str = "2007-10-31 01:23:45";
@@ -94,6 +97,7 @@ s_date	ween_date = (s_date)
 	.min		= 23,
 	.sec		= 45,
 	.is_dst		= FALSE,
+	.offset		= 0,
 };
 
 char*	leap_year_str = "2008-02-29 12:30:05";
@@ -108,6 +112,7 @@ s_date	leap_year_date = (s_date)
 	.min		= 30,
 	.sec		= 5,
 	.is_dst		= FALSE,
+	.offset		= 0,
 };
 
 char*	leap_second_str = "2016-12-31 23:59:60";
@@ -122,6 +127,7 @@ s_date	leap_second_date = (s_date)
 	.min		= 59,
 	.sec		= 60,
 	.is_dst		= FALSE,
+	.offset		= 0,
 };
 
 
