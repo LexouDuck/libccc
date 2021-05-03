@@ -19,6 +19,7 @@
 
 
 //! Returns 1 if the given 'number' is either NaN, or +/- infinity
+static
 t_float	Float_FromString_CheckSpecial(char const* str)
 {
 	char sign = str[0];
@@ -40,7 +41,8 @@ t_float	Float_FromString_CheckSpecial(char const* str)
 }
 
 //! Returns TRUE if the given 'str' contains any invalid characters for float parsing, or FALSE otherwise
-static t_bool	Float_FromString_CheckInvalid(char const* str)
+static
+t_bool	Float_FromString_CheckInvalid(char const* str)
 {
 	t_size	count_expon;
 	t_size	count_signs;

@@ -482,16 +482,16 @@ s_date						Date_Parse_Min(char const* str, char const* format);
 #define c_dateparsemin		Date_Parse_Min
 #define Date_FromString_N	Date_Parse_Min
 
-t_size							Date_ParseStrict(s_date* dest, char const* str, char const* format);
-#define c_strstodate			Date_ParseStrict
-#define c_dateparses			Date_ParseStrict
-#define Date_FromStringStrict	Date_ParseStrict
+t_size							Date_Parse_Strict(s_date* dest, char const* str, char const* format);
+#define c_strstodate			Date_Parse_Strict
+#define c_dateparses			Date_Parse_Strict
+#define Date_FromStringStrict	Date_Parse_Strict
 
-t_size							Date_ParseStrict_Min(s_date* dest, char const* str, char const* format);
-#define c_strsptime				Date_ParseStrict_Min
-#define c_strstodatemin			Date_ParseStrict_Min
-#define c_dateparsesmin			Date_ParseStrict_Min
-#define Date_FromStringStrict_N	Date_ParseStrict_Min
+t_size							Date_Parse_Strict_Min(s_date* dest, char const* str, char const* format);
+#define c_strsptime				Date_Parse_Strict_Min
+#define c_strstodatemin			Date_Parse_Strict_Min
+#define c_dateparsesmin			Date_Parse_Strict_Min
+#define Date_FromStringStrict_N	Date_Parse_Strict_Min
 
 
 

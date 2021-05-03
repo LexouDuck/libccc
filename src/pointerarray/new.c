@@ -1,5 +1,6 @@
 
 #include "libccc/memory.h"
+#include "libccc/pointerarray.h"
 
 
 

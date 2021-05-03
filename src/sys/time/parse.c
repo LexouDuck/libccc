@@ -215,6 +215,7 @@ t_s64	strptime_parsestring(t_u8 const* *a_buffer, t_char const* const* n1, t_cha
 
 
 
+static
 t_size	strptime_r(t_char const* str, t_char const* format, s_date* date, t_bitmask_tm* written)
 {
 	t_u8 c;
@@ -641,7 +642,7 @@ recurse:
 */
 		case 'n':	/* Any kind of white-space. */
 		case 't':
-			while (c_isspace(*buffer))
+			while (Char_IsSpace(*buffer))
 				buffer++;
 			LEGAL_ALT(0);
 			continue;
@@ -653,8 +654,9 @@ recurse:
 	return ((t_char*)buffer - str);
 }
 
+/*
 
-
+static
 t_char*	strptime(t_char const* str, t_char const* format, s_date* date)
 {
 	t_bitmask_tm written = 0;
@@ -665,6 +667,8 @@ t_char*	strptime(t_char const* str, t_char const* format, s_date* date)
 		return (NULL);
 	return (parse_end);
 }
+
+*/
 
 #endif
 
@@ -748,7 +752,7 @@ s_date		Date_Parse_Min(t_char const* str, t_char const* format)
 
 
 
-t_size		Date_ParseStrict(s_date* dest, t_char const* str, t_char const* format)
+t_size		Date_Parse_Strict(s_date* dest, t_char const* str, t_char const* format)
 {
 	s_date result = DATE_NULL;
 	t_size parsed;
@@ -762,7 +766,7 @@ t_size		Date_ParseStrict(s_date* dest, t_char const* str, t_char const* format)
 
 
 
-t_size		Date_ParseStrict_Min(s_date* dest, t_char const* str, t_char const* format)
+t_size		Date_Parse_Strict_Min(s_date* dest, t_char const* str, t_char const* format)
 {
 	s_date result = DATE_NULL;
 	t_size parsed;

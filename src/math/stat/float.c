@@ -30,6 +30,7 @@ void			c_stat_free_flst(s_list_float *flst)
 	flst->length = 0;
 }
 
+static
 s_list_float	c_stat_flst_dup(s_list_float const flst)
 {
 	s_list_float	result;
@@ -79,6 +80,7 @@ s_list_float 	c_stat_merge_flst(
 ** The recursive function can be called with start at 0 and end at
 ** tmp_lst.length - 1 to sort in place.
 */
+static
 void				c_stat_quicksort_f_rec
 (
 	s_list_float	tmp_lst,
@@ -133,7 +135,7 @@ s_list_float 		c_stat_quicksort_f_new(s_list_float const flst)
 	return (result);
 }
 
-inline void			c_stat_quicksort_f(s_list_float flst)
+void			c_stat_quicksort_f(s_list_float flst)
 {
 	c_stat_quicksort_f_rec(flst, 0, flst.length - 1);
 }

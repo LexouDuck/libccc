@@ -541,13 +541,13 @@ s_json*	JSON_Parse_N(t_char const* json, t_size maxlength)
 	return (JSON_Parse_(json, maxlength, FALSE, NULL));
 }
 
-s_json*	JSON_ParseStrict(t_char const* json, t_char const** return_parse_end)
+s_json*	JSON_Parse_Strict(t_char const* json, t_char const** return_parse_end)
 {
 	LIBCONFIG_HANDLE_NULLPOINTER(NULL, json)
 	return (JSON_Parse_(json, String_Length(json), TRUE, return_parse_end));
 }
 
-s_json*	JSON_ParseStrict_N(t_char const* json, t_size maxlength, t_char const** return_parse_end)
+s_json*	JSON_Parse_Strict_N(t_char const* json, t_size maxlength, t_char const** return_parse_end)
 {
 	LIBCONFIG_HANDLE_NULLPOINTER(NULL, json)
 	return (JSON_Parse_(json, maxlength, TRUE, return_parse_end));

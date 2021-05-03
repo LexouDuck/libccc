@@ -6,13 +6,13 @@ VERSION = 0.7
 
 # Compiler
 CC	= _
-CC_WIN32 = i686-w64-mingw32-gcc -static -static-libgcc
+CC_WIN32 =   i686-w64-mingw32-gcc -static -static-libgcc
 CC_WIN64 = x86_64-w64-mingw32-gcc -static -static-libgcc
 CC_LINUX = gcc
 CC_MACOS = gcc
 
 # Compiler flags
-CFLAGS = -Wall -Wextra -Winline -Wpedantic -Werror $(CFLAGS_OS) -MMD -fstrict-aliasing
+CFLAGS = -Wall -Wextra -Winline -Wpedantic -Wstrict-prototypes -Wmissing-prototypes -Wold-style-definition -Werror $(CFLAGS_OS) -MMD -fstrict-aliasing
 CFLAGS_DEBUG = -g -ggdb -D DEBUG=1
 CFLAGS_RELEASE = -O3
 # -Wno-unused-result -Wno-unused-parameter
@@ -159,6 +159,7 @@ SRCS = \
 	stringarray/delete.c	\
 	stringarray/length.c	\
 	stringarray/count.c		\
+	stringarray/add.c		\
 	stringarray/sub.c		\
 	stringarray/join.c		\
 	stringarray/merge.c		\

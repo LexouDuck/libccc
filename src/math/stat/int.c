@@ -29,6 +29,7 @@ void			c_stat_free_ilst(s_list_int *ilst)
 	ilst->length = 0;
 }
 
+static
 s_list_int		c_stat_ilst_dup(s_list_int const ilst)
 {
 	s_list_int	result;
@@ -78,6 +79,7 @@ s_list_int		c_stat_merge_ilst(
 ** The recursive function can be called with start at 0 and end at
 ** tmp_lst.length - 1 to sort in place.
 */
+static
 void			c_stat_quicksort_i_rec
 (
 	s_list_int	tmp_lst,
@@ -121,7 +123,7 @@ void			c_stat_quicksort_i_rec
 		c_stat_quicksort_i_rec(tmp_lst, pivot_id + 1, end);
 }
 
-s_list_int 			c_stat_quicksort_i_new(s_list_int const ilst)
+s_list_int 		c_stat_quicksort_i_new(s_list_int const ilst)
 {
 	s_list_int	result;
 
@@ -132,21 +134,21 @@ s_list_int 			c_stat_quicksort_i_new(s_list_int const ilst)
 	return (result);
 }
 
-inline void			c_stat_quicksort_i(s_list_int ilst)
+void			c_stat_quicksort_i(s_list_int ilst)
 {
 	c_stat_quicksort_i_rec(ilst, 0, ilst.length - 1);
 }
 
 
 
-inline t_float		c_stat_median_i(s_sortedlist_int const ilst)
+inline t_float	c_stat_median_i(s_sortedlist_int const ilst)
 {
 	return ((ilst.length % 2) ?
 		ilst.data[ilst.length / 2] :
 		(ilst.data[ilst.length / 2] + ilst.data[ilst.length / 2 + 1]) / 2);
 }
 
-t_float				c_stat_average_i(s_list_int const ilst)
+t_float			c_stat_average_i(s_list_int const ilst)
 {
 	t_float		sum;
 	t_u32		i;
@@ -165,7 +167,7 @@ t_float				c_stat_average_i(s_list_int const ilst)
 ** Using V(X) = E(X^2) - E(X)^2 rather than E( [X - E(X)]^2 ) which has more
 **	operations (n subtractions).
 */
-t_float				c_stat_variance_i(s_list_int const ilst)
+t_float			c_stat_variance_i(s_list_int const ilst)
 {
 	t_float		sum;
 	t_u32		i;
@@ -186,14 +188,14 @@ t_float				c_stat_variance_i(s_list_int const ilst)
 
 // TODO
 /*
-inline t_float		c_stat_stddev_i(s_list_int const ilst)
+inline t_float	c_stat_stddev_i(s_list_int const ilst)
 {
 
 }
 */
 
 /*
-t_bool				c_prob_is_valid_i(t_prob_sample_i const i_problst)
+t_bool			c_prob_is_valid_i(t_prob_sample_i const i_problst)
 {
 	t_float		prob_sum;
 	t_float		tmp;
@@ -223,7 +225,7 @@ t_bool				c_prob_is_valid_i(t_prob_sample_i const i_problst)
 
 
 
-s_prob_mass				c_stat_new_pmf(t_u32 length)
+s_prob_mass		c_stat_new_pmf(t_u32 length)
 {
 	s_prob_mass	result;
 
@@ -238,7 +240,7 @@ s_prob_mass				c_stat_new_pmf(t_u32 length)
 	return (result);
 }
 
-void					c_stat_free_pmf(s_prob_mass *drv)
+void			c_stat_free_pmf(s_prob_mass *drv)
 {
 	LIBCONFIG_HANDLE_NULLPOINTER(, drv)
 	if (drv->value)
@@ -254,7 +256,7 @@ void					c_stat_free_pmf(s_prob_mass *drv)
 	drv->length = 0;
 }
 
-s_set_int				c_stat_ilst_to_iset(s_list_int const ilst)
+s_set_int		c_stat_ilst_to_iset(s_list_int const ilst)
 {
 	s_list_int				result;
 	s_list_int				set;
@@ -284,7 +286,7 @@ s_set_int				c_stat_ilst_to_iset(s_list_int const ilst)
 	return (result);
 }
 
-t_u32				c_stat_ilst_count(s_list_int ilst, t_sint elem)
+t_u32			c_stat_ilst_count(s_list_int ilst, t_sint elem)
 {
 	t_u32		i;
 	t_u32		result;
@@ -303,12 +305,12 @@ t_u32				c_stat_ilst_count(s_list_int ilst, t_sint elem)
 /*
 ** Returns the probability distribution of a list of integers.
 */
-s_prob_mass			c_stat_ilst_to_pmf(s_list_int const ilst)
+s_prob_mass		c_stat_ilst_to_pmf(s_list_int const ilst)
 {
-	s_prob_mass			result;
-	s_list_int			set;
-	t_u32				i;
-	t_float				inv_sample_size;
+	s_prob_mass	result;
+	s_list_int	set;
+	t_u32		i;
+	t_float		inv_sample_size;
 
 	if (ilst.data == NULL || ilst.length == 0)
 		return (c_stat_new_pmf(0));

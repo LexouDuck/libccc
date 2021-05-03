@@ -69,14 +69,15 @@ typedef s_kvt	s_json;
 **	The exception is JSON_PrintPreallocated(), where the caller has full responsibility of the buffer.
 **	Supply a block of JSON, and this returns a `s_json` object you can interrogate.
 */
-s_json*	JSON_FromString(t_char const* json);
-#define JSON_Parse	JSON_FromString
-#define JSON_Decode	JSON_FromString
+s_json*						JSON_Parse(t_char const* json);
+#define JSON_Parse			JSON_Parse
+#define JSON_Decode			JSON_Parse
+#define JSON_FromString		JSON_Parse
 
-//! Create a new `s_json` object, parsed from a (valid) JSON string, (only the first `buffer_length` chars are parsed)
-s_json*	JSON_FromString_N(t_char const* json, t_size buffer_length);
-#define JSON_Parse_N	JSON_FromString_N
-#define JSON_Decode_N	JSON_FromString_N
+//! Create a new `s_json` object, parsed from a (valid) JSON string, (only the first `n` chars are parsed)
+s_json*						JSON_Parse_N(t_char const* json, t_size n);
+#define JSON_Decode_N		JSON_Parse_N
+#define JSON_FromString_N	JSON_Parse_N
 
 //! Create a new `s_json` object, parsed from a (valid) JSON string
 /*!
@@ -85,47 +86,47 @@ s_json*	JSON_FromString_N(t_char const* json, t_size buffer_length);
 **	If you supply a ptr in return_parse_end and parsing fails, then `return_parse_end`
 **	will contain a pointer to the error, such that it will match the return of JSON_GetErrorPtr().
 */
-s_json*	JSON_FromString_Strict(t_char const* json, t_char const* *return_parse_end, t_bool require_null_terminated);
-#define JSON_Parse_Strict	JSON_FromString_Strict
-#define JSON_Decode_Strict	JSON_FromString_Strict
+s_json*								JSON_Parse_Strict(t_char const* json, t_char const** return_parse_end);
+#define JSON_Decode_Strict			JSON_Parse_Strict
+#define JSON_FromString_Strict		JSON_Parse_Strict
 
-//! Create a new `s_json` object, parsed from a (valid) JSON string, (only the first `buffer_length` chars are parsed)
-s_json*	JSON_FromString_Strict_N(t_char const* json, t_size buffer_length, t_char const* *return_parse_end, t_bool require_null_terminated);
-#define JSON_Parse_Strict_N 	JSON_FromString_Strict_N
-#define JSON_Decode_Strict_N	JSON_FromString_Strict_N
+//! Create a new `s_json` object, parsed from a (valid) JSON string, (only the first `n` chars are parsed)
+s_json*								JSON_Parse_Strict_N(t_char const* json, t_size n, t_char const** return_parse_end);
+#define JSON_Decode_Strict_N		JSON_Parse_Strict_N
+#define JSON_FromString_Strict_N	JSON_Parse_Strict_N
 
 
 
-#define JSON_ToString	JSON_ToString_Pretty
-#define JSON_Print		JSON_ToString
-#define JSON_Encode		JSON_ToString
+#define 				JSON_Print	JSON_Print_Pretty
+#define JSON_Encode		JSON_Print
+#define JSON_ToString	JSON_Print
 
 //! Render a s_json entity to text for transfer/storage (with 'pretty' formatting).
-t_char*	JSON_ToString_Pretty(s_json const* item);
-#define JSON_Print_Pretty	JSON_ToString_Pretty
-#define JSON_Encode_Pretty	JSON_ToString_Pretty
+t_char*							JSON_Print_Pretty(s_json const* item);
+#define JSON_Encode_Pretty		JSON_Print_Pretty
+#define JSON_ToString_Pretty	JSON_Print_Pretty
 
 //! Render a s_json entity to text for transfer/storage, without any formatting/whitespace
-t_char*	JSON_ToString_Minify(s_json const* item);
-#define JSON_Print_Minify	JSON_ToString_Minify
-#define JSON_Decode_Minify	JSON_ToString_Minify
+t_char*							JSON_Print_Minify(s_json const* item);
+#define JSON_Decode_Minify		JSON_Print_Minify
+#define JSON_ToString_Minify	JSON_Print_Minify
 
 //! Render a s_json entity to text using a buffered strategy.
 /*!
-**	prebuffer is a guess at the final size. guessing well reduces reallocation. fmt=0 gives unformatted, =1 gives formatted.
+**	prebuffer is a guess at the final size. guessing well reduces reallocation. `format = 0` means minified, `format = 0` means formatted/pretty.
 */
-t_char*	JSON_ToString_Buffered(s_json const* item, t_sint prebuffer, t_bool fmt);
-#define JSON_Print_Buffered 	JSON_ToString_Buffered
-#define JSON_Decode_Buffered 	JSON_ToString_Buffered
+t_char*							JSON_Print_Buffered(s_json const* item, t_sint prebuffer, t_bool format);
+#define JSON_Decode_Buffered 	JSON_Print_Buffered
+#define JSON_ToString_Buffered 	JSON_Print_Buffered
 
 //! Render a `s_json` entity to text using a buffer already allocated in memory with given length.
 /*!
 **	@returns 1(TRUE) on success and 0(FALSE) on failure.
 **	NOTE: s_json is not always 100% accurate in estimating how much memory it will use, so to be safe allocate 5 bytes more than you actually need.
 */
-t_bool	JSON_ToString_Preallocated(s_json* item, t_char* buffer, t_sint const length, t_bool const format);
-#define JSON_Print_Preallocated 	JSON_ToString_Preallocated
-#define JSON_Encode_Preallocated 	JSON_ToString_Preallocated
+t_bool								JSON_Print_Preallocated(s_json* item, t_char* buffer, t_sint const length, t_bool const format);
+#define JSON_Encode_Preallocated 	JSON_Print_Preallocated
+#define JSON_ToString_Preallocated 	JSON_Print_Preallocated
 
 
 

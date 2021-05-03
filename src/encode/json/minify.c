@@ -1,7 +1,7 @@
 
 #include "libccc.h"
 #include "libccc/char.h"
-#include "libccc/encode/common.h"
+#include "libccc/encode/json.h"
 
 
 

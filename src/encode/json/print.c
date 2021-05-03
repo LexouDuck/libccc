@@ -550,18 +550,19 @@ fail:
 	return (NULL);
 }
 
-// Render a s_json item/entity/structure to text.
-t_char*	JSON_Print(s_json const* item)
+
+
+t_char*	JSON_Print_Pretty(s_json const* item)
 {
 	return (t_char*)print(item, TRUE);
 }
 
-t_char*	JSON_PrintUnformatted(s_json const* item)
+t_char*	JSON_Print_Minify(s_json const* item)
 {
 	return (t_char*)print(item, FALSE);
 }
 
-t_char*	JSON_PrintBuffered(s_json const* item, t_sint prebuffer, t_bool fmt)
+t_char*	JSON_Print_Buffered(s_json const* item, t_sint prebuffer, t_bool fmt)
 {
 	s_json_print p = { 0 };
 
@@ -582,7 +583,7 @@ t_char*	JSON_PrintBuffered(s_json const* item, t_sint prebuffer, t_bool fmt)
 	return (t_char*)p.buffer;
 }
 
-t_bool	JSON_PrintPreallocated(s_json* item, t_char* buffer, const t_sint length, const t_bool format)
+t_bool	JSON_Print_Preallocated(s_json* item, t_char* buffer, const t_sint length, const t_bool format)
 {
 	s_json_print p = { 0 };
 

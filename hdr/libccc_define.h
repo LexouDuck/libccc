@@ -274,6 +274,19 @@ HEADER_CPP
 	#define _NORETURN()			__declspec(noreturn)
 	#define _PACKED()			__pragma(pack(push, 1))	__pragma(pack(pop))
 
+#elif (defined(__CC_ARM))
+
+	#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	
+	#define _ALIAS(FUNCTION)	
+	#define _ALIGN(MINIMUM)		__align(MINIMUM)
+	#define _PURE()				__pure
+	#define _MALLOC()			
+	#define _UNUSED()			
+	#define _INLINE()			__inline
+	#define _NOINLINE()			
+	#define _NORETURN()			__declspec(noreturn)
+	#define _PACKED()			__packed
+
 #else
 
 	#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	

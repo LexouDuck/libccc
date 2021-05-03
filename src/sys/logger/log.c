@@ -4,7 +4,7 @@
 #include "libccc/sys/io.h"
 #include "libccc/sys/logger.h"
 
-
+/*
 
 t_io_error	LogAll(t_logptrarr const loggers,
 	t_bool verbose_only,
@@ -15,7 +15,7 @@ t_io_error	LogAll(t_logptrarr const loggers,
 	LOGALL_FUNCTION_CONTENT(verbose_only, is_error, use_errno, "", NULL)
 }
 
-
+*/
 
 //! To be called when there is an error which does not use errno
 t_io_error	Log_Error				(s_logger const* logger, int error_code, char const* format_str, ...)		{ LOGONE_FUNCTION_CONTENT(FALSE, FALSE, error_code,    "Error", C_RED)    }

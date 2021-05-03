@@ -8,6 +8,7 @@
 
 
 //! Returns the appropriate string if the given 'number' is either NaN or +/- infinity, otherwise returns NULL
+static
 char*	Float_ToString_CheckSpecial(t_f32 number)
 {
 	if (IS_NAN(number))
