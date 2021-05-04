@@ -163,8 +163,9 @@ char*	str_to_escape(char const* str)
 	size_t	index = 0;
 	size_t	i = 0;
 
-	if (!str || !(result = (char *)malloc(strlen(str) * 4)))
+	if (!str || !(result = (char *)malloc(strlen(str) * 4 + 4)))
 		return (NULL);
+	result[i++] = '\"';
 	while (str[index])
 	{
 		if (!isprint(str[index]))
@@ -194,6 +195,7 @@ char*	str_to_escape(char const* str)
 		else result[i++] = str[index];
 		++index;
 	}
+	result[i++] = '\"';
 	result[i] = '\0';
 	return (result);
 }
@@ -385,12 +387,12 @@ void	print_test(
 		if (function[0] == '_')
 		{
 			char *expected = str_padleft("Expected", ' ', strlen(function) + 1);
-			printf(">c%s: {%s}\n>%s: {%s}"C_RESET,
+			printf(">c%s: (%s)\n>%s: (%s)"C_RESET,
 				function, result,
 				expected, expect);
 			free(expected);
 		}
-		else printf(">c_%s: {%s}\n>   %s: {%s}"C_RESET,
+		else printf(">c_%s: (%s)\n>   %s: (%s)"C_RESET,
 			function, result,
 			function, expect);
 	}
@@ -809,8 +811,8 @@ void	print_test_date(
 				&& result->day_year  == expect->day_year
 				&& result->is_dst    == expect->is_dst
 				&& result->offset    == expect->offset);
-	snprintf(str_result, DATE_STR_BUFFER, DATE_STR_FORMAT, result->hour, result->min, result->sec, result->year, result->month, result->day_month, result->day_week, result->day_year, (result->is_dst ? "TRUE" : "FALSE"), result->offset);
-	snprintf(str_expect, DATE_STR_BUFFER, DATE_STR_FORMAT, expect->hour, expect->min, expect->sec, expect->year, expect->month, expect->day_month, expect->day_week, expect->day_year, (expect->is_dst ? "TRUE" : "FALSE"), expect->offset);
+	snprintf(str_result, DATE_STR_BUFFER, "{"DATE_STR_FORMAT"}", result->hour, result->min, result->sec, result->year, result->month, result->day_month, result->day_week, result->day_year, (result->is_dst ? "TRUE" : "FALSE"), result->offset);
+	snprintf(str_expect, DATE_STR_BUFFER, "{"DATE_STR_FORMAT"}", expect->hour, expect->min, expect->sec, expect->year, expect->month, expect->day_month, expect->day_week, expect->day_year, (expect->is_dst ? "TRUE" : "FALSE"), expect->offset);
 	print_test(test_name, function,
 		str_result,
 		str_expect,

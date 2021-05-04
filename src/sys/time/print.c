@@ -10,6 +10,10 @@
 
 
 
+#define MAX_BUFFER_SIZE		1024
+
+
+
 char*	Date_ToString(s_date const* date, char const* format)
 {
 	struct tm tm;
@@ -23,7 +27,7 @@ char*	Date_ToString(s_date const* date, char const* format)
 	if (result == NULL)
 		return (NULL);
 	r = strftime(result, size, format, &tm);
-	while (r == 0)
+	while (r == 0 && size < MAX_BUFFER_SIZE)
 	{
 		String_Delete(&result);
 		size *= 2;

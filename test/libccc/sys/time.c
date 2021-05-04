@@ -30,13 +30,14 @@
 
 #define DATE_STR_BUFFER		512
 #define DATE_STR_FORMAT	\
-	" .year"      "=%i," \
-	" .month"     "=%i," \
-	" .day_month" "=%u," \
-	" .hour"      "=%u," \
-	" .min"       "=%u," \
-	" .sec"       "=%u," \
-	" .is_dst"    "=%s " \
+	" .year"      "=%4i," \
+	" .month"     "=%2i," \
+	" .day_month" "=%2u," \
+	" .hour"      "=%2u," \
+	" .min"       "=%2u," \
+	" .sec"       "=%2u," \
+	" .is_dst"    "=%5s," \
+	" .offset"    "=%+i " \
 
 
 
@@ -130,6 +131,36 @@ s_date	leap_second_date = (s_date)
 	.offset		= 0,
 };
 
+char*	bad_leap_year_str = "2007-02-29 12:30:05";
+s_date	bad_leap_year_date = (s_date)
+{
+	.year		= 2007,
+	.month		= MONTH_FEBRUARY,
+	.day_week	= WEEKDAY_FRIDAY,
+	.day_month	= 29,
+	.day_year	= 59,
+	.hour		= 12,
+	.min		= 30,
+	.sec		= 5,
+	.is_dst		= FALSE,
+	.offset		= 0,
+};
+
+char*	bad_leap_second_str = "2015-12-31 23:59:60";
+s_date	bad_leap_second_date = (s_date)
+{
+	.year		= 2015,
+	.month		= MONTH_DECEMBER,
+	.day_week	= WEEKDAY_SATURDAY,
+	.day_month	= 31,
+	.day_year	= 365,
+	.hour		= 23,
+	.min		= 59,
+	.sec		= 60,
+	.is_dst		= FALSE,
+	.offset		= 0,
+};
+
 
 
 /*
@@ -158,7 +189,8 @@ void	print_test_datetostr(char const* test_name, int can_segfault,
 		date->hour,
 		date->min,
 		date->sec,
-		BOOL_TOSTRING(date->is_dst))
+		BOOL_TOSTRING(date->is_dst),
+		date->offset)
 }
 void	test_datetostr(void)
 {
@@ -168,15 +200,15 @@ void	test_datetostr(void)
 	char now_str[DATE_STR_BUFFER];
 	strftime(now_str, DATE_STR_BUFFER, FORMAT_UTC, now_tm);
 /*	| TEST FUNCTION     | TEST NAME                  |CAN SEGV| EXPECTING              | TEST ARGS				*/
-	print_test_datetostr("datetostr                 ",	FALSE,                  y99_str, FORMAT_UTC, &y99_date);
-	print_test_datetostr("datetostr                 ",	FALSE,                  y2k_str, FORMAT_UTC, &y2k_date);
-	print_test_datetostr("datetostr                 ",	FALSE,                  now_str, FORMAT_UTC, &now_date);
-	print_test_datetostr("datetostr                 ",	FALSE,                 xmas_str, FORMAT_UTC, &xmas_date);
-	print_test_datetostr("datetostr                 ",	FALSE,                 ween_str, FORMAT_UTC, &ween_date);
-	/*
-	print_test_datetostr("datetostr (leap_year)     ",	FALSE,            leap_year_str, FORMAT_UTC, &leap_year_date);
-	print_test_datetostr("datetostr (leap_second)   ",	FALSE,          leap_second_str, FORMAT_UTC, &leap_second_date);
-	*/
+	print_test_datetostr("datetostr                  ",	FALSE,                  y99_str, FORMAT_UTC, &y99_date);
+	print_test_datetostr("datetostr                  ",	FALSE,                  y2k_str, FORMAT_UTC, &y2k_date);
+	print_test_datetostr("datetostr                  ",	FALSE,                  now_str, FORMAT_UTC, &now_date);
+	print_test_datetostr("datetostr                  ",	FALSE,                 xmas_str, FORMAT_UTC, &xmas_date);
+	print_test_datetostr("datetostr                  ",	FALSE,                 ween_str, FORMAT_UTC, &ween_date);
+	print_test_datetostr("datetostr (leap year)      ",	FALSE,            leap_year_str, FORMAT_UTC, &leap_year_date);
+	print_test_datetostr("datetostr (leap second)    ",	FALSE,          leap_second_str, FORMAT_UTC, &leap_second_date);
+	print_test_datetostr("datetostr (bad leap year)  ",	FALSE,                     NULL, FORMAT_UTC, &bad_leap_year_date);
+	print_test_datetostr("datetostr (bad leap second)",	FALSE,                     NULL, FORMAT_UTC, &bad_leap_second_date);
 }
 #endif
 
@@ -203,13 +235,15 @@ void	test_strtodate(void)
 	char now_str[DATE_STR_BUFFER];
 	strftime(now_str, DATE_STR_BUFFER, FORMAT_UTC, now_tm);
 /*	| TEST FUNCTION     | TEST NAME                  |CAN SEGV| EXPECTING              | TEST ARGS				*/
-	print_test_strtodate("strtodate                 ",	FALSE,                &y99_date, FORMAT_UTC, y99_str);
-	print_test_strtodate("strtodate                 ",	FALSE,                &y2k_date, FORMAT_UTC, y2k_str);
-	print_test_strtodate("strtodate                 ",	FALSE,                &now_date, FORMAT_UTC, now_str);
-	print_test_strtodate("strtodate                 ",	FALSE,               &xmas_date, FORMAT_UTC, xmas_str);
-	print_test_strtodate("strtodate                 ",	FALSE,               &ween_date, FORMAT_UTC, ween_str);
-	print_test_strtodate("strtodate (leap_year)     ",	FALSE,          &leap_year_date, FORMAT_UTC, leap_year_str);
-	print_test_strtodate("strtodate (leap_second)   ",	FALSE,        &leap_second_date, FORMAT_UTC, leap_second_str);
+	print_test_strtodate("strtodate                  ",	FALSE,                &y99_date, FORMAT_UTC, y99_str);
+	print_test_strtodate("strtodate                  ",	FALSE,                &y2k_date, FORMAT_UTC, y2k_str);
+	print_test_strtodate("strtodate                  ",	FALSE,                &now_date, FORMAT_UTC, now_str);
+	print_test_strtodate("strtodate                  ",	FALSE,               &xmas_date, FORMAT_UTC, xmas_str);
+	print_test_strtodate("strtodate                  ",	FALSE,               &ween_date, FORMAT_UTC, ween_str);
+	print_test_strtodate("strtodate (leap year)      ",	FALSE,          &leap_year_date, FORMAT_UTC, leap_year_str);
+	print_test_strtodate("strtodate (leap second)    ",	FALSE,        &leap_second_date, FORMAT_UTC, leap_second_str);
+	print_test_strtodate("strtodate (bad leap year)  ",	FALSE,               &DATE_NULL, FORMAT_UTC, bad_leap_year_str);
+	print_test_strtodate("strtodate (bad leap second)",	FALSE,               &DATE_NULL, FORMAT_UTC, bad_leap_second_str);
 }
 #endif
 

@@ -312,22 +312,22 @@ void	print_test_date		(char const* test_name, char const* function, s_date const
 
 //! Prints the given format string + values (if global flags demand so)
 #define TEST_PRINT_ARGS(FORMAT, ...) \
-	if (g_test.flags.show_args && (g_test.flags.verbose || g_test.last_test_failed)) \
-	{ \
-		printf(" -> ("); \
-		printf(FORMAT, ##__VA_ARGS__); \
-		printf(")"); \
-	} \
+	if (g_test.flags.show_args && (g_test.flags.verbose || g_test.last_test_failed))\
+	{																				\
+		printf(" -> (");															\
+		printf(FORMAT, ##__VA_ARGS__);												\
+		printf(")");																\
+	}																				\
 
 //! Prints the given argument variable as a string with non-printable chars as escape sequences
 #define TEST_PRINT_ARGS_ESCAPED(ARG) \
-	char* tmp = str_to_escape(ARG); \
-	TEST_PRINT_ARGS("\"%s\"", tmp); \
-	if (tmp) \
-	{ \
-		free(tmp); \
-		tmp = NULL; \
-	} \
+	char* tmp = str_to_escape(ARG);	\
+	TEST_PRINT_ARGS("\"%s\"", tmp);	\
+	if (tmp)						\
+	{								\
+		free(tmp);					\
+		tmp = NULL;					\
+	}								\
 
 
 
@@ -351,7 +351,7 @@ void	print_test_date		(char const* test_name, char const* function, s_date const
 #define TEST_PERFORM_LIBC_DEST(FUNCTION, ...) \
 	_TEST_INIT() \
 	_TEST_PERFORM(1, dest_libccc, c_##FUNCTION, dest_libccc, ##__VA_ARGS__) \
-	_TEST_PERFORM(2, dest_libc,       FUNCTION, dest_libc,  ##__VA_ARGS__) \
+	_TEST_PERFORM(2, dest_libc,       FUNCTION, dest_libc,   ##__VA_ARGS__) \
 
 
 //! Use this for string-return functions
@@ -374,7 +374,7 @@ void	print_test_date		(char const* test_name, char const* function, s_date const
 #define TEST_PERFORM_RESULT_LIBC_DEST(FUNCTION, ...) \
 	_TEST_INIT() \
 	_TEST_PERFORM_RESULT_STR(1, libccc, c_##FUNCTION, dest_libccc, ##__VA_ARGS__) \
-	_TEST_PERFORM_RESULT_STR(2, libc,       FUNCTION, dest_libc,  ##__VA_ARGS__) \
+	_TEST_PERFORM_RESULT_STR(2, libc,       FUNCTION, dest_libc,   ##__VA_ARGS__) \
 
 
 //! Use this for (any_type)-return functions
@@ -397,22 +397,22 @@ void	print_test_date		(char const* test_name, char const* function, s_date const
 #define TEST_PERFORM_RESULT_TYPE_LIBC_DEST(TYPE, FUNCTION, ...) \
 	_TEST_INIT() \
 	_TEST_PERFORM_RESULT(1, TYPE, libccc, c_##FUNCTION, dest_libccc, ##__VA_ARGS__) \
-	_TEST_PERFORM_RESULT(2, TYPE, libc,       FUNCTION, dest_libc,  ##__VA_ARGS__) \
+	_TEST_PERFORM_RESULT(2, TYPE, libc,       FUNCTION, dest_libc,   ##__VA_ARGS__) \
 
 
 
 //! Frees the 'result_libccc' variable, if appropriate
 #define TEST_FREE() \
-	_TEST_FREE(libccc) \
+	_TEST_FREE(libccc)	\
 
 //! Frees the 'result_libccc' and 'result_libc' variables, if appropriate
 #define TEST_FREE_LIBC() \
-	_TEST_FREE(libccc) \
-	_TEST_FREE(libc) \
+	_TEST_FREE(libccc)	\
+	_TEST_FREE(libc)	\
 
 //! Frees the 'result_libccc', if appropriate, when that result is a nested allocation of rank 2 (ie, a char**/string array)
 #define TEST_FREE_ARRAY_NULLTERM() \
-	_TEST_FREE_ARRAY_NULLTERM(libccc) \
+	_TEST_FREE_ARRAY_NULLTERM(libccc)	\
 
 
 /*
@@ -429,17 +429,17 @@ void	print_test_date		(char const* test_name, char const* function, s_date const
 **	@params				Variadic arguments are passed to FUNCTION
 */
 #define _TEST_PERFORM(CALL, RESULT, FUNCTION, ...) \
-	_TRY \
-	{ \
-		timer_clock(&t.start##CALL); \
-		FUNCTION(__VA_ARGS__); \
-		timer_clock(&t.end##CALL); \
-	} \
-	_CATCH \
-	{ \
-		RESULT = segstr; \
-	} \
-	_END
+	_TRY								\
+	{									\
+		timer_clock(&t.start##CALL);	\
+		FUNCTION(__VA_ARGS__);			\
+		timer_clock(&t.end##CALL);		\
+	}									\
+	_CATCH								\
+	{									\
+		RESULT = segstr;				\
+	}									\
+	_END								\
 
 /*!
 **	This macro performs a test (with segfault handling and execution timer) for the given string-returning function.
@@ -450,18 +450,18 @@ void	print_test_date		(char const* test_name, char const* function, s_date const
 **	@params				Variadic arguments are passed to FUNCTION
 */
 #define _TEST_PERFORM_RESULT_STR(CALL, LIB, FUNCTION, ...) \
-	char* result_##LIB = NULL; \
-	_TRY \
-	{ \
-		timer_clock(&t.start##CALL); \
-		result_##LIB = FUNCTION(__VA_ARGS__); \
-		timer_clock(&t.end##CALL); \
-	} \
-	_CATCH \
-	{ \
-		result_##LIB = segstr; \
-	} \
-	_END
+	char* result_##LIB = NULL;					\
+	_TRY										\
+	{											\
+		timer_clock(&t.start##CALL);			\
+		result_##LIB = FUNCTION(__VA_ARGS__);	\
+		timer_clock(&t.end##CALL);				\
+	}											\
+	_CATCH										\
+	{											\
+		result_##LIB = segstr;					\
+	}											\
+	_END										\
 
 /*!
 **	This macro performs a test (with segfault handling and execution timer) for the given function.
@@ -473,36 +473,37 @@ void	print_test_date		(char const* test_name, char const* function, s_date const
 **	@params				Variadic arguments are passed to FUNCTION
 */
 #define _TEST_PERFORM_RESULT(CALL, TYPE, LIB, FUNCTION, ...) \
-	TYPE result_##LIB; \
-	_TRY \
-	{ \
-		timer_clock(&t.start##CALL); \
-		result_##LIB = FUNCTION(__VA_ARGS__); \
-		timer_clock(&t.end##CALL); \
-	} \
-	_CATCH \
-	{ \
-		can_segfault |= (1 << CALL); \
-	} \
-	_END
+	TYPE result_##LIB;							\
+	_TRY										\
+	{											\
+		timer_clock(&t.start##CALL);			\
+		result_##LIB = FUNCTION(__VA_ARGS__);	\
+		timer_clock(&t.end##CALL);				\
+	}											\
+	_CATCH										\
+	{											\
+		can_segfault |= (1 << CALL);			\
+	}											\
+	_END										\
 
 /*!
 **	Initialization logic for any test
 */
 #define _TEST_INIT() \
-	if (can_segfault && !g_test.flags.test_nullptrs) return; \
-	s_timer t = {0}; \
+	if (can_segfault && !g_test.flags.test_nullptrs)\
+		return;										\
+	s_timer t = {0};								\
 
 /*!
 **	This macro frees the result variable for a test, if it is appropriate to do so
 **	@param	LIB			The name of the result variable to freed (token-pasted as 'result_##LIB')
 */
 #define _TEST_FREE(LIB) \
-	if (result_##LIB && result_##LIB != segstr) \
-	{ \
-		free(result_##LIB); \
-		result_##LIB = NULL; \
-	} \
+	if (result_##LIB && result_##LIB != segstr)	\
+	{											\
+		free(result_##LIB);						\
+		result_##LIB = NULL;					\
+	}											\
 
 /*!
 **	This macro frees the result variable for a test, if it is appropriate to do so,
@@ -511,16 +512,16 @@ void	print_test_date		(char const* test_name, char const* function, s_date const
 **	@param	LIB			The name of the array result variable to freed (token-pasted as 'result_##LIB')
 */
 #define _TEST_FREE_ARRAY_NULLTERM(LIB) \
-	if (result_##LIB && *result_##LIB != segstr) \
-	{ \
-		for (int i = 0; result_##LIB[i]; ++i) \
-		{ \
-			free(result_##LIB[i]); \
-			result_##LIB[i] = NULL; \
-		} \
-		free(result_##LIB); \
-		result_##LIB = NULL; \
-	} \
+	if (result_##LIB && *result_##LIB != segstr)	\
+	{												\
+		for (int i = 0; result_##LIB[i]; ++i)		\
+		{											\
+			free(result_##LIB[i]);					\
+			result_##LIB[i] = NULL;					\
+		}											\
+		free(result_##LIB);							\
+		result_##LIB = NULL;						\
+	}												\
 
 
 /*
@@ -528,16 +529,16 @@ void	print_test_date		(char const* test_name, char const* function, s_date const
 */
 
 #define _TRY \
-	segfault = setjmp(restore); \
-	if (!segfault) \
+	segfault = setjmp(restore);			\
+	if (!segfault)						\
 
 #define _CATCH \
-	else \
+	else								\
 
 #ifdef __MINGW32__
 #define _END \
-	if (segfault) \
-		signal(SIGSEGV,	signal_handler); \
+	if (segfault)						\
+		signal(SIGSEGV,	signal_handler);\
 
 #else
 #define _END	;
@@ -572,10 +573,10 @@ void	print_test_date		(char const* test_name, char const* function, s_date const
 	char* result_libccc = NULL; \
 	char* result_libc  = NULL; \
 	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start1); result_libccc = c_##FUNCTION(##__VA_ARGS__); timer_clock(&t.end1); } else result_libccc = segstr; \
-	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start2); result_libc  =      FUNCTION(##__VA_ARGS__); timer_clock(&t.end2); } else result_libc  = segstr; \
+	segfault = setjmp(restore); if (!segfault) { timer_clock(&t.start2); result_libc   =     FUNCTION(##__VA_ARGS__); timer_clock(&t.end2); } else result_libc   = segstr; \
 	print_test_str(test_name, #FUNCTION" return", result_libccc, result_libc, can_segfault); \
-	if (result_libccc && result_libccc != segstr) free(result_libccc); \
-	if (result_libc  && result_libc  != segstr) free(result_libc); \
+	if (result_libccc && result_libccc != segstr)	free(result_libccc); \
+	if (result_libc   && result_libc  != segstr)	free(result_libc); \
 	print_timer_result(&t, TRUE); \
 } \
 */
