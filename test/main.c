@@ -23,7 +23,7 @@ char const* test3 = "Un ange mange de la fange.\0";	t_size const test3_len = 27;
 
 
 
-s_test	g_test;
+s_program	g_test;
 
 
 
@@ -60,6 +60,17 @@ void	init_segfault_handler(void)
 	sigaction(SIGSEGV, &sig, NULL);
 #endif
 }
+
+char const*	signals[7] =
+{
+	"#SIGTERM",	//!< termination request, sent to the program
+	"#SIGSEGV",	//!< invalid memory access (segmentation fault)
+	"#SIGINT",	//!< external interrupt, usually initiated by the user
+	"#SIGILL",	//!< invalid program image, such as invalid instruction
+	"#SIGABRT",	//!< abnormal termination condition, as is e.g. initiated by abort()
+	"#SIGFPE",	//!< erroneous arithmetic operation such as divide by zero
+	NULL
+};
 
 
 

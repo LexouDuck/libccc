@@ -390,7 +390,12 @@ $(NAME).a: $(OBJS)
 
 TEST_DIR = ./test/
 
-TEST_HDRS = $(TEST_DIR)test.h
+TEST_HDRS = \
+	$(TEST_DIR)test.h		\
+	$(TEST_DIR)test_catch.h	\
+	$(TEST_DIR)test_timer.h	\
+	$(TEST_DIR)test_utils.h	\
+
 TEST_SRCS = \
 	$(TEST_DIR)main.c		\
 	$(TEST_DIR)util.c		\
