@@ -33,7 +33,7 @@ static t_bool JSON_Parse_Object(s_json* const item, s_json_parse* const p);
 #define PARSINGERROR_JSON_MESSAGE	"Error while parsing JSON: "
 
 //! used to handle errors during parsing
-#define PARSINGERROR_JSON_GOTO(MESSAGE, ...) \
+#define PARSINGERROR_JSON(MESSAGE, ...) \
 	{ p->error = String_Format(PARSINGERROR_JSON_MESSAGE MESSAGE, ##__VA_ARGS__);	goto failure; }
 
 //! Safely checks if the content to parse can be accessed at the given index
@@ -75,7 +75,7 @@ s_json_parse*	JSON_Parse_SkipWhiteSpace(s_json_parse* const p, t_bool skip_comme
 					}
 				}
 				if (p->offset + i == p->length)
-					PARSINGERROR_JSON_GOTO("input ends unexpectedly, expected end of comment block \"*/\"")
+					PARSINGERROR_JSON("input ends unexpectedly, expected end of comment block \"*/\"")
 				p->offset += i;
 			}
 			else if (p->content[p->offset] == '/') // single-line
@@ -145,7 +145,7 @@ t_bool		JSON_Parse_Number(s_json* const item, s_json_parse* const p)
 	number = String_Sub(p->content, p->offset, length);
 	result = F64_FromString((t_char const*)number);
 	if (IS_NAN(result))
-		PARSINGERROR_JSON_GOTO("Could not parse number: \"%s\"", number)
+		PARSINGERROR_JSON("Could not parse number: \"%s\"", number)
 	item->value.number = result;
 	item->type = DYNAMIC_TYPE_FLOAT;
 	p->offset += length;
@@ -172,7 +172,7 @@ static t_bool JSON_Parse_String(s_json* const item, s_json_parse* const p)
 	LIBCONFIG_HANDLE_NULLPOINTER(NULL, p->content)
 	// not a string
 	if (p->content[p->offset] != '\"')
-		PARSINGERROR_JSON_GOTO("Could not parse string: Expected double-quote char '\"', instead found '%c'", p->content[p->offset])
+		PARSINGERROR_JSON("Could not parse string: Expected double-quote char '\"', instead found '%c'", p->content[p->offset])
 	// calculate approximate size of the output (overestimate)
 	allocation_length = 0;
 	skipped_bytes = 0;
@@ -182,19 +182,19 @@ static t_bool JSON_Parse_String(s_json* const item, s_json_parse* const p)
 		if (input_end[0] == '\\')
 		{
 			if ((t_size)(input_end + 1 - p->content) >= p->length)
-				PARSINGERROR_JSON_GOTO("Could not parse string: Potential buffer-overflow, string ends with backslash")
+				PARSINGERROR_JSON("Could not parse string: Potential buffer-overflow, string ends with backslash")
 			skipped_bytes++;
 			input_end++;
 		}
 		input_end++;
 	}
 	if (((t_size)(input_end - p->content) >= p->length) || (*input_end != '\"'))
-		PARSINGERROR_JSON_GOTO("Could not parse string: Unexpected end of input before closing quote")
+		PARSINGERROR_JSON("Could not parse string: Unexpected end of input before closing quote")
 	// This is at most how much we need for the output
 	allocation_length = (t_size) (input_end - &p->content[p->offset]) - skipped_bytes;
 	output = (t_char*)Memory_Alloc(allocation_length + sizeof(""));
 	if (output == NULL)
-		PARSINGERROR_JSON_GOTO("Could not parse string: Allocation failure")
+		PARSINGERROR_JSON("Could not parse string: Allocation failure")
 	output_pointer = output;
 	// loop through the string literal
 	while (input_pointer < input_end)
@@ -203,7 +203,7 @@ static t_bool JSON_Parse_String(s_json* const item, s_json_parse* const p)
 		{
 			t_char sequence_length = 2;
 			if ((input_end - input_pointer) < 1)
-				PARSINGERROR_JSON_GOTO("Could not parse string: Unexpected end of input within string escape sequence")
+				PARSINGERROR_JSON("Could not parse string: Unexpected end of input within string escape sequence")
 			switch (input_pointer[1])
 			{
 				case 'b':	*output_pointer++ = '\b';	break;
@@ -219,11 +219,11 @@ static t_bool JSON_Parse_String(s_json* const item, s_json_parse* const p)
 				case 'u': // UTF-16 literal
 					sequence_length = Char_Parse_Unicode_N(&c, input_pointer, (input_end - input_pointer));
 					if (sequence_length == 0)
-						PARSINGERROR_JSON_GOTO("Could not parse string: Failed to convert UTF16-literal to UTF-8")
+						PARSINGERROR_JSON("Could not parse string: Failed to convert UTF16-literal to UTF-8")
 					output_pointer += Char_ToUTF8(output_pointer, c);
 					break;
 				default:
-					PARSINGERROR_JSON_GOTO("Could not parse string: Invalid string escape sequence encountered: \\%c", input_pointer[1])
+					PARSINGERROR_JSON("Could not parse string: Invalid string escape sequence encountered: \\%c", input_pointer[1])
 			}
 			input_pointer += sequence_length;
 		}
@@ -264,7 +264,7 @@ t_bool	JSON_Parse_Array(s_json* const item, s_json_parse* const p)
 	p->depth++;
 
 	if (p->content[p->offset] != '[')
-		PARSINGERROR_JSON_GOTO("Could not parse array: Expected '[' char to begin array, instead found '%c'", p->content[p->offset])
+		PARSINGERROR_JSON("Could not parse array: Expected '[' char to begin array, instead found '%c'", p->content[p->offset])
 	p->offset++;
 	JSON_Parse_SkipWhiteSpace(p, p->strict);
 	if (CAN_PARSE(0) && (p->content[p->offset] == ']'))
@@ -273,7 +273,7 @@ t_bool	JSON_Parse_Array(s_json* const item, s_json_parse* const p)
 	if (!CAN_PARSE(0))
 	{
 		p->offset--;
-		PARSINGERROR_JSON_GOTO("Could not parse array: Unexpected end of input after '[' array start char")
+		PARSINGERROR_JSON("Could not parse array: Unexpected end of input after '[' array start char")
 	}
 	// step back to character in front of the first element
 	p->offset--;
@@ -283,7 +283,7 @@ t_bool	JSON_Parse_Array(s_json* const item, s_json_parse* const p)
 		// allocate next item
 		s_json* new_item = JSON_Item();
 		if (new_item == NULL)
-			PARSINGERROR_JSON_GOTO("Could not parse array: Allocation failure")
+			PARSINGERROR_JSON("Could not parse array: Allocation failure")
 		// attach next item to list
 		if (head == NULL)
 		{	// start the linked list
@@ -300,15 +300,15 @@ t_bool	JSON_Parse_Array(s_json* const item, s_json_parse* const p)
 		p->offset++;
 		JSON_Parse_SkipWhiteSpace(p, p->strict);
 		if (!JSON_Parse_Value(current_item, p))
-			PARSINGERROR_JSON_GOTO("Could not parse array: failed to parse value within array")
+			PARSINGERROR_JSON("Could not parse array: failed to parse value within array")
 		JSON_Parse_SkipWhiteSpace(p, p->strict);
 	}
 	while (CAN_PARSE(0) && p->content[p->offset] == ',');
 
 	if (!CAN_PARSE(0))
-		PARSINGERROR_JSON_GOTO("Could not parse array: Unexpected end of end of input within array")
+		PARSINGERROR_JSON("Could not parse array: Unexpected end of end of input within array")
 	if (p->content[p->offset] != ']')
-		PARSINGERROR_JSON_GOTO("Could not parse array: Expected end of array ']' char, instead found '%c'", p->content[p->offset])
+		PARSINGERROR_JSON("Could not parse array: Expected end of array ']' char, instead found '%c'", p->content[p->offset])
 
 success:
 	p->depth--;
@@ -343,7 +343,7 @@ t_bool	JSON_Parse_Object(s_json* const item, s_json_parse* const p)
 		return (FALSE); // reached nesting depth limit
 	p->depth++;
 	if (!CAN_PARSE(0) || (p->content[p->offset] != '{'))
-		PARSINGERROR_JSON_GOTO("Could not parse object: Expected '{' to begin object, instead found '%c'", p->content[p->offset])
+		PARSINGERROR_JSON("Could not parse object: Expected '{' to begin object, instead found '%c'", p->content[p->offset])
 	p->offset++;
 	JSON_Parse_SkipWhiteSpace(p, p->strict);
 	if (CAN_PARSE(0) && (p->content[p->offset] == '}'))
@@ -352,7 +352,7 @@ t_bool	JSON_Parse_Object(s_json* const item, s_json_parse* const p)
 	if (!CAN_PARSE(0))
 	{
 		p->offset--;
-		PARSINGERROR_JSON_GOTO("Could not parse object: Unexpected end of input after '{' object start char")
+		PARSINGERROR_JSON("Could not parse object: Unexpected end of input after '{' object start char")
 	}
 	// step back to character in front of the first element
 	p->offset--;
@@ -366,7 +366,7 @@ t_bool	JSON_Parse_Object(s_json* const item, s_json_parse* const p)
 		// allocate next item
 		s_json* new_item = JSON_Item();
 		if (new_item == NULL)
-			PARSINGERROR_JSON_GOTO("Could not parse object: Allocation failure")
+			PARSINGERROR_JSON("Could not parse object: Allocation failure")
 		// attach next item to list
 		if (head == NULL)
 		{	// start the linked list
@@ -380,28 +380,28 @@ t_bool	JSON_Parse_Object(s_json* const item, s_json_parse* const p)
 		}
 		// p the name of the child
 		if (!JSON_Parse_String(current_item, p))
-			PARSINGERROR_JSON_GOTO("Could not parse object: Failed to parse object member key")
+			PARSINGERROR_JSON("Could not parse object: Failed to parse object member key")
 		JSON_Parse_SkipWhiteSpace(p, p->strict);
 		// swap value.string and string, because we parsed the name
 		current_item->key = current_item->value.string;
 		current_item->value.string = NULL;
 		if (!CAN_PARSE(0))
-			PARSINGERROR_JSON_GOTO("Could not parse object: Unexpected end of input after object member key")
+			PARSINGERROR_JSON("Could not parse object: Unexpected end of input after object member key")
 		if (p->content[p->offset] != ':')
-			PARSINGERROR_JSON_GOTO("Could not parse object: Invalid object")
+			PARSINGERROR_JSON("Could not parse object: Invalid object")
 		// p the value
 		p->offset++;
 		JSON_Parse_SkipWhiteSpace(p, p->strict);
 		if (!JSON_Parse_Value(current_item, p))
-			PARSINGERROR_JSON_GOTO("Could not parse object: Failed to parse object member value")
+			PARSINGERROR_JSON("Could not parse object: Failed to parse object member value")
 		JSON_Parse_SkipWhiteSpace(p, p->strict);
 	}
 	while (CAN_PARSE(0) && (p->content[p->offset] == ','));
 
 	if (!CAN_PARSE(0))
-		PARSINGERROR_JSON_GOTO("Could not parse object: Unexpected end of input within object")
+		PARSINGERROR_JSON("Could not parse object: Unexpected end of input within object")
 	if (p->content[p->offset] != '}')
-		PARSINGERROR_JSON_GOTO("Could not parse object: Expected end of object char '}', instead found '%c'", p->content[p->offset])
+		PARSINGERROR_JSON("Could not parse object: Expected end of object char '}', instead found '%c'", p->content[p->offset])
 
 success:
 	p->depth--;
