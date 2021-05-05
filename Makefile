@@ -69,9 +69,10 @@ endif
 
 
 # Define colors for terminal output
-RED   = "\033[0;31m"
-GREEN = "\033[0;32m"
-RESET = "\033[0m"
+RESET  = "\e[0m"
+RED    = "\e[31m"
+GREEN  = "\e[32m"
+YELLOW = "\e[33m"
 
 
 
@@ -398,6 +399,9 @@ TEST_HDRS = \
 
 TEST_SRCS = \
 	$(TEST_DIR)main.c		\
+	$(TEST_DIR)test.c		\
+	$(TEST_DIR)test_timer.c	\
+	$(TEST_DIR)test_catch.c	\
 	$(TEST_DIR)util.c		\
 	$(TEST_DIR)util_print.c	\
 	$(TEST_DIR)libccc/bool.c	\

@@ -34,7 +34,7 @@ typedef struct test_arg
 	char const*	name;
 	char const* description;
 }				s_test_arg;
-#define TEST_ARGS_AMOUNT	7
+#define TEST_ARGS_AMOUNT	8
 
 //! This struct stores the program argument boolean flags
 typedef struct test_flags

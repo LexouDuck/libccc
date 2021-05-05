@@ -179,7 +179,7 @@ void	print_test_datetostr(char const* test_name, int can_segfault,
 		char const* format,
 		s_date const* date)
 {
-	TEST_PERFORM_RESULT(datetostr, date, format)
+	TEST_PERFORM(char*, datetostr, date, format)
 	print_test_str(test_name, "_datetostr", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("date = {"DATE_STR_FORMAT"}",

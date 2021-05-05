@@ -33,9 +33,9 @@ void	print_percent(double percent)
 
 
 
-void	print_totals(s_test_totals totals, char const* category)
+void	print_totals(int amount, int failed, char const* category)
 {
-	double percent = (totals.tests - totals.failed) * 100. / totals.tests;
+	double percent = (amount - failed) * 100. / amount;
 
 	printf("\n\n");
 	printf("|========================================\n");
@@ -43,21 +43,21 @@ void	print_totals(s_test_totals totals, char const* category)
 		printf("|  Test suite: libccc/%s\n", category);
 	else printf("|  In total:\n");
 	printf("|========================================\n");
-	printf("- Amount of tests: %d\n", totals.tests);
+	printf("- Amount of tests: %d\n", amount);
 
-	int passed = totals.tests - totals.failed;
+	int passed = amount - failed;
 	printf("- Tests: %s%d failed"C_RESET" / %s%d passed"C_RESET"\n",
-		(totals.failed == 0 ? C_GREEN : C_RED), totals.failed,
-		(totals.tests ? (passed == totals.tests ? C_GREEN : C_YELLOW) : C_RED), passed);
+		(failed == 0 ? C_GREEN : C_RED), failed,
+		(amount ? (passed == amount ? C_GREEN : C_YELLOW) : C_RED), passed);
 	printf("- Success rate: ");
-	if (totals.tests == 0)
+	if (amount == 0)
 		print_percent(0);
 	else print_percent(percent);
 	if (category == NULL)
 	{
-		if (totals.failed)
+		if (failed)
 		{
-			printf("\n"C_RED"FAIL: Failed %d out of %d tests in total."C_RESET"\n", totals.failed, totals.tests);
+			printf("\n"C_RED"FAIL: Failed %d out of %d tests in total."C_RESET"\n", failed, amount);
 		}
 		else printf("\n"C_GREEN"SUCCESS: All tests passed."C_RESET"\n");
 	}

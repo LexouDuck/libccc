@@ -54,7 +54,7 @@ void	print_test_##TYPE##_to_str(char const* test_name, int can_segfault,			\
 		(t_s64)(number >> FIXED_BITS_FRACTIONPART),									\
 		(t_u64)(number & (FIXED_MASK_FRACTIONPART)),								\
 		(t_u64)1 << FIXED_BITS_FRACTIONPART);										\
-	TEST_PERFORM_RESULT(TYPE##_to_str, number)										\
+	TEST_PERFORM(char*, TYPE##_to_str, number)										\
 	print_test_str(test_name, "_"#TYPE"_to_str", result_libccc, tmp, can_segfault);	\
 	print_timer_result(&t, FALSE);													\
 	TEST_PRINT_ARGS("%s", tmp)														\

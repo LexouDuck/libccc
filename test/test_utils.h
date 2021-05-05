@@ -1,6 +1,6 @@
 
-#ifndef LIBCCC_TEST_UTILS_H
-#define LIBCCC_TEST_UTILS_H
+#ifndef LIBCCCTEST_UTILS_H_
+#define LIBCCCTEST_UTILS_H_
 
 /*
 ** ************************************************************************** *|
@@ -72,13 +72,18 @@ int		ptrarr_equals(void const** ptr1, void const** ptr2);
 
 int		strarr_equals(char const** strarr1, char const** strarr2);
 
+int		str_equals_until(char const* str1, char const* str2, char c);
 
 
-char	*print_memory(void const* ptr, t_size length);
+char*	print_memory(void const* ptr, t_size length);
 
-char	*str_padleft(char const* str, char c, t_size length);
+char*	str_padleft(char const* str, char c, t_size length);
 
 char*	str_to_escape(char const* str);
+
+char*	int_s_to_str(t_s64 number);
+
+char*	int_u_to_str(t_u64 number);
 
 
 
@@ -88,18 +93,19 @@ char*	str_to_escape(char const* str);
 ** ************************************************************************** *|
 */
 
-#define DEFINEFUNC_PRINT_TEST(_NAME_, _TYPE_) \
-typedef struct test_##_NAME_	\
+#define DEFINEFUNC_PRINT_TEST(NAME, TYPE) \
+typedef struct test_##NAME	\
 {								\
-	char const*	testname;	/*!< the name of this unit test */\
+	char const*	name;		/*!< the name of this unit test */\
 	char const*	function;	/*!< the name of the function tested */\
-	_TYPE_		result;		/*!< the result of the tested function */\
-	_TYPE_		 expect;	/*!< the result which is expected to pass this test */\
 	bool		can_sig;	/*!< if TRUE, this test may cause a program-ending error */\
-	e_signal	signal;		/*!< the signal emitted by the tested function, if any */\
+	TYPE		result;		/*!< the result of the tested function */\
+	e_signal	result_sig;	/*!< the signal emitted by the tested function, if any */\
+	TYPE		expect;		/*!< the result which is expected to pass this test */\
+	e_signal	expect_sig;	/*!< the signal emitted by the expect function, if any */\
 	size_t		length;		/*!< used by certain types, notably 'mem'(void*) and 'list'(s_list*) */\
-}			s_test_##_NAME_;	\
-void print_test_##_NAME_(s_test_##_NAME_ test, char const* format, ...);
+}			s_test_##NAME;	\
+void	print_test_##NAME(s_test_##NAME* test, char const* args);
 
 
 
@@ -178,115 +184,21 @@ DEFINEFUNC_PRINT_TEST(alloc,	char const*)
 **	The following macros are used for tests, to avoid boilerplate and code repetition.
 */
 
-//! Prints the given format string + values (if global flags demand so)
-#define TEST_PRINT_ARGS(FORMAT, ...) \
-	if (g_test.flags.show_args && (g_test.flags.verbose || g_test.last_test_failed))\
-	{																				\
-		printf(" -> (");															\
-		printf(FORMAT, ##__VA_ARGS__);												\
-		printf(")");																\
-	}																				\
-
-//! Prints the given argument variable as a string with non-printable chars as escape sequences
-#define TEST_PRINT_ARGS_ESCAPED(ARG) \
-	char* tmp = str_to_escape(ARG);	\
-	TEST_PRINT_ARGS("\"%s\"", tmp);	\
-	if (tmp)						\
-	{								\
-		free(tmp);					\
-		tmp = NULL;					\
-	}								\
-
-
-
-//! Use this for void-return functions
-#define TEST_PERFORM(RESULT, FUNCTION, ...) \
-	_TEST_INIT() \
-	_TEST_PERFORM(1, RESULT, c_##FUNCTION, ##__VA_ARGS__) \
-
-//! Use this for void-return functions, which use a 'dest' argument
-#define TEST_PERFORM_DEST(FUNCTION, ...) \
-	_TEST_INIT() \
-	_TEST_PERFORM(1, dest_libccc, c_##FUNCTION, dest_libccc, ##__VA_ARGS__) \
-
-//! Use this for void-return functions that exist in libc
-#define TEST_PERFORM_LIBC(PREFIX, FUNCTION, ...) \
-	_TEST_INIT() \
-	_TEST_PERFORM(1, PREFIX##_libccc, c_##FUNCTION, ##__VA_ARGS__) \
-	_TEST_PERFORM(2, PREFIX##_libc,       FUNCTION, ##__VA_ARGS__) \
-
-//! Use this for void-return functions that exist in libc, which use a 'dest' argument
-#define TEST_PERFORM_LIBC_DEST(FUNCTION, ...) \
-	_TEST_INIT() \
-	_TEST_PERFORM(1, dest_libccc, c_##FUNCTION, dest_libccc, ##__VA_ARGS__) \
-	_TEST_PERFORM(2, dest_libc,       FUNCTION, dest_libc,   ##__VA_ARGS__) \
-
-
-//! Use this for string-return functions
-#define TEST_PERFORM_RESULT(FUNCTION, ...) \
-	_TEST_INIT() \
-	_TEST_PERFORM_RESULT_STR(1, libccc, c_##FUNCTION, ##__VA_ARGS__) \
-
-//! Use this for string-return functions, which use a 'dest' argument
-#define TEST_PERFORM_RESULT_DEST(FUNCTION, ...) \
-	_TEST_INIT() \
-	_TEST_PERFORM_RESULT_STR(1, libccc, c_##FUNCTION, dest_libccc, ##__VA_ARGS__) \
-
-//! Use this for string-return functions that exist in libc
-#define TEST_PERFORM_RESULT_LIBC(FUNCTION, ...) \
-	_TEST_INIT() \
-	_TEST_PERFORM_RESULT_STR(1, libccc, c_##FUNCTION, ##__VA_ARGS__) \
-	_TEST_PERFORM_RESULT_STR(2, libc,       FUNCTION, ##__VA_ARGS__) \
-
-//! Use this for string-return functions that exist in libc, which use a 'dest' argument
-#define TEST_PERFORM_RESULT_LIBC_DEST(FUNCTION, ...) \
-	_TEST_INIT() \
-	_TEST_PERFORM_RESULT_STR(1, libccc, c_##FUNCTION, dest_libccc, ##__VA_ARGS__) \
-	_TEST_PERFORM_RESULT_STR(2, libc,       FUNCTION, dest_libc,   ##__VA_ARGS__) \
-
-
-//! Use this for (any_type)-return functions
-#define TEST_PERFORM_RESULT_TYPE(TYPE, FUNCTION, ...) \
-	_TEST_INIT() \
-	_TEST_PERFORM_RESULT(1, TYPE, libccc, c_##FUNCTION, ##__VA_ARGS__) \
-
-//! Use this for (any_type)-return functions, which use a 'dest' argument
-#define TEST_PERFORM_RESULT_TYPE_DEST(TYPE, FUNCTION, ...) \
-	_TEST_INIT() \
-	_TEST_PERFORM_RESULT(1, TYPE, libccc, c_##FUNCTION, dest_libccc, ##__VA_ARGS__) \
-
-//! Use this for (any_type)-return functions that exist in libc
-#define TEST_PERFORM_RESULT_TYPE_LIBC(TYPE, FUNCTION, ...) \
-	_TEST_INIT() \
-	_TEST_PERFORM_RESULT(1, TYPE, libccc, c_##FUNCTION, ##__VA_ARGS__) \
-	_TEST_PERFORM_RESULT(2, TYPE, libc,       FUNCTION, ##__VA_ARGS__) \
-
-//! Use this for (any_type)-return functions that exist in libc, which use a 'dest' argument
-#define TEST_PERFORM_RESULT_TYPE_LIBC_DEST(TYPE, FUNCTION, ...) \
-	_TEST_INIT() \
-	_TEST_PERFORM_RESULT(1, TYPE, libccc, c_##FUNCTION, dest_libccc, ##__VA_ARGS__) \
-	_TEST_PERFORM_RESULT(2, TYPE, libc,       FUNCTION, dest_libc,   ##__VA_ARGS__) \
-
-
-
-//! Frees the 'result_libccc' variable, if appropriate
-#define TEST_FREE() \
-	_TEST_FREE(libccc)	\
-
-//! Frees the 'result_libccc' and 'result_libc' variables, if appropriate
-#define TEST_FREE_LIBC() \
-	_TEST_FREE(libccc)	\
-	_TEST_FREE(libc)	\
-
-//! Frees the 'result_libccc', if appropriate, when that result is a nested allocation of rank 2 (ie, a char**/string array)
-#define TEST_FREE_ARRAY_NULLTERM() \
-	_TEST_FREE_ARRAY_NULLTERM(libccc)	\
-
-
-/*
-**	_PRIVATE MACROS
-**	These are the core macro functions which are uses by all the macros above
+/*!
+**	Initialization logic for any test
 */
+#define TEST_INIT_() \
+	if (can_segfault && !g_test.flags.test_nullptrs)\
+		return;										\
+	s_test_##TYPE test = (s_test_##TYPE)			\
+	{												\
+		.name = test_name;							\
+		.can_sig = can_segfault;					\
+		.result = result_libccc;					\
+	};												\
+	s_timer t = {0};								\
+
+
 
 /*!
 **	This macro performs a test (with segfault handling and execution timer) for the given void-returning function.
@@ -296,7 +208,7 @@ DEFINEFUNC_PRINT_TEST(alloc,	char const*)
 **	@param	FUNCTION	The name of the function to test
 **	@params				Variadic arguments are passed to FUNCTION
 */
-#define _TEST_PERFORM(CALL, RESULT, FUNCTION, ...) \
+#define TEST_PERFORM_VOID_(CALL, RESULT, FUNCTION, ...) \
 	_TRY								\
 	{									\
 		timer_clock(&t.start##CALL);	\
@@ -305,31 +217,33 @@ DEFINEFUNC_PRINT_TEST(alloc,	char const*)
 	}									\
 	_CATCH								\
 	{									\
-		RESULT = segstr;				\
+		test->result_sig = sig;			\
 	}									\
 	_END								\
 
-/*!
-**	This macro performs a test (with segfault handling and execution timer) for the given string-returning function.
-**	Expects a 's_timer t' variable to be accessible and initialized.
-**	@param	CALL		The number of this call (1 or 2), token-pasted to the timer 'start_' and 'end_' fields.
-**	@param	LIB			The name of the result variable to assign to (token-pasted as 'result_##LIB')
-**	@param	FUNCTION	The name of the function to test
-**	@params				Variadic arguments are passed to FUNCTION
-*/
-#define _TEST_PERFORM_RESULT_STR(CALL, LIB, FUNCTION, ...) \
-	char* result_##LIB = NULL;					\
-	_TRY										\
-	{											\
-		timer_clock(&t.start##CALL);			\
-		result_##LIB = FUNCTION(__VA_ARGS__);	\
-		timer_clock(&t.end##CALL);				\
-	}											\
-	_CATCH										\
-	{											\
-		result_##LIB = segstr;					\
-	}											\
-	_END										\
+//! Use this for void-return functions
+#define TEST_PERFORM_VOID(RESULT, FUNCTION, ...) \
+	TEST_INIT_()												\
+	TEST_PERFORM_VOID_(1, RESULT, c_##FUNCTION, ##__VA_ARGS__)	\
+
+//! Use this for void-return functions, which use a 'dest' argument
+#define TEST_PERFORM_VOID_DEST(FUNCTION, ...) \
+	TEST_INIT_()																	\
+	TEST_PERFORM_VOID_(1, dest_libccc, c_##FUNCTION, dest_libccc, ##__VA_ARGS__)	\
+
+//! Use this for void-return functions that exist in libc
+#define TEST_PERFORM_VOID_LIBC(PREFIX, FUNCTION, ...) \
+	TEST_INIT_()														\
+	TEST_PERFORM_VOID_(1, PREFIX##_libccc, c_##FUNCTION, ##__VA_ARGS__)	\
+	TEST_PERFORM_VOID_(2, PREFIX##_libc,       FUNCTION, ##__VA_ARGS__)	\
+
+//! Use this for void-return functions that exist in libc, which use a 'dest' argument
+#define TEST_PERFORM_VOID_LIBC_DEST(FUNCTION, ...) \
+	TEST_INIT_()																	\
+	TEST_PERFORM_VOID_(1, dest_libccc, c_##FUNCTION, dest_libccc, ##__VA_ARGS__)	\
+	TEST_PERFORM_VOID_(2, dest_libc,       FUNCTION, dest_libc,   ##__VA_ARGS__)	\
+
+
 
 /*!
 **	This macro performs a test (with segfault handling and execution timer) for the given function.
@@ -338,9 +252,9 @@ DEFINEFUNC_PRINT_TEST(alloc,	char const*)
 **	@param	TYPE		The type of the result variable
 **	@param	LIB			The name of the result variable to assign to (token-pasted as 'result_##LIB')
 **	@param	FUNCTION	The name of the function to test
-**	@params				Variadic arguments are passed to FUNCTION
+**	@param	...			Variadic arguments are passed to FUNCTION
 */
-#define _TEST_PERFORM_RESULT(CALL, TYPE, LIB, FUNCTION, ...) \
+#define TEST_PERFORM_(TYPE, CALL, LIB, FUNCTION, ...) \
 	TYPE result_##LIB;							\
 	_TRY										\
 	{											\
@@ -350,23 +264,91 @@ DEFINEFUNC_PRINT_TEST(alloc,	char const*)
 	}											\
 	_CATCH										\
 	{											\
-		can_segfault |= (1 << CALL);			\
+		test->result_sig = sig;					\
 	}											\
 	_END										\
 
-/*!
-**	Initialization logic for any test
+//! Use this for (any_type)-return functions
+#define TEST_PERFORM(TYPE, FUNCTION, ...) \
+	TEST_INIT_() 												\
+	TEST_PERFORM_(TYPE, 1, libccc, c_##FUNCTION, ##__VA_ARGS__)	\
+
+//! Use this for (any_type)-return functions, which use a 'dest' argument
+#define TEST_PERFORM_DEST(TYPE, FUNCTION, ...) \
+	TEST_INIT_()																\
+	TEST_PERFORM_(TYPE, 1, libccc, c_##FUNCTION, dest_libccc, ##__VA_ARGS__)	\
+
+//! Use this for (any_type)-return functions that exist in libc
+#define TEST_PERFORM_LIBC(TYPE, FUNCTION, ...) \
+	TEST_INIT_()												\
+	TEST_PERFORM_(TYPE, 1, libccc, c_##FUNCTION, ##__VA_ARGS__)	\
+	TEST_PERFORM_(TYPE, 2, libc,       FUNCTION, ##__VA_ARGS__)	\
+
+//! Use this for (any_type)-return functions that exist in libc, which use a 'dest' argument
+#define TEST_PERFORM_LIBC_DEST(TYPE, FUNCTION, ...) \
+	TEST_INIT_()																\
+	TEST_PERFORM_(TYPE, 1, libccc, c_##FUNCTION, dest_libccc, ##__VA_ARGS__)	\
+	TEST_PERFORM_(TYPE, 2, libc,       FUNCTION, dest_libc,   ##__VA_ARGS__)	\
+
+
+
+/*
+//! Prints the given argument variable as a string with non-printable chars as escape sequences
+#define TEST_PRINT_ARGS_ESCAPED(ARG) \
+	char* tmp = str_to_escape(ARG);	\
+	TEST_PRINT_ARGS("\"%s\"", tmp);	\
+	if (tmp)						\
+	{								\
+		free(tmp);					\
+		tmp = NULL;					\
+	}								\
 */
-#define _TEST_INIT() \
-	if (can_segfault && !g_test.flags.test_nullptrs)\
-		return;										\
-	s_timer t = {0};								\
+
+/*!
+**	This macro will prepare the test result struct, so as to print the test result output
+*/
+#define TEST_PRINT_(TYPE, FUNCTION, FORMAT, ...) \
+	size_t len;											\
+	char* args;											\
+	len = snprintf(NULL, (0), FORMAT, ##__VA_ARGS__);	\
+	if (len < 0)		return;							\
+	args = (char*)malloc((size_t)len + sizeof(""));		\
+	if (args == NULL)	return;							\
+	len = snprintf(&args, len, FORMAT, ##__VA_ARGS__);	\
+	if (len < 0)		return;							\
+
+
+
+//! Prints the test result for a "expect test" (one which does not have an equivalent function in the C standard library)
+#define TEST_PRINT(TYPE, FUNCTION, FORMAT, ...) \
+	TEST_PRINT_(TYPE, FUNCTION, FORMAT, ##__VA_ARGS__)	\
+	test.function = "_"#FUNCTION;						\
+	test.expect = expecting;							\
+/*	test.result_sig = ;*/								\
+/*	test.expect_sig = ;*/								\
+	print_test_##TYPE(test, args);						\
+	print_timer_result(&t, FALSE);						\
+
+//! Prints the test result for a "compare test" (one which has an equivalent function in the C standard library)
+#define TEST_PRINT_LIBC(TYPE, FUNCTION, FORMAT, ...) \
+	TEST_PRINT_(TYPE, FUNCTION, FORMAT, ##__VA_ARGS__)	\
+	test.function = #FUNCTION;							\
+	test.expect = result_libc;							\
+/*	test.result_sig = ;*/								\
+/*	test.expect_sig = ;*/								\
+	print_test_##TYPE(test, args);						\
+	print_timer_result(&t, TRUE);						\
+
+
+
+
+
 
 /*!
 **	This macro frees the result variable for a test, if it is appropriate to do so
 **	@param	LIB			The name of the result variable to freed (token-pasted as 'result_##LIB')
 */
-#define _TEST_FREE(LIB) \
+#define TEST_FREE_(LIB) \
 	if (result_##LIB && result_##LIB != segstr)	\
 	{											\
 		free(result_##LIB);						\
@@ -379,7 +361,7 @@ DEFINEFUNC_PRINT_TEST(alloc,	char const*)
 **	this array is a null-terminated pointer array.
 **	@param	LIB			The name of the array result variable to freed (token-pasted as 'result_##LIB')
 */
-#define _TEST_FREE_ARRAY_NULLTERM(LIB) \
+#define TEST_FREE_ARRAY_NULLTERM_(LIB) \
 	if (result_##LIB && *result_##LIB != segstr)	\
 	{												\
 		for (int i = 0; result_##LIB[i]; ++i)		\
@@ -391,26 +373,39 @@ DEFINEFUNC_PRINT_TEST(alloc,	char const*)
 		result_##LIB = NULL;						\
 	}												\
 
+//! Frees the 'result_libccc' variable, if appropriate
+#define TEST_FREE() \
+	TEST_FREE_(libccc)	\
+
+//! Frees the 'result_libccc' and 'result_libc' variables, if appropriate
+#define TEST_FREE_LIBC() \
+	TEST_FREE_(libccc)	\
+	TEST_FREE_(libc)	\
+
+//! Frees the 'result_libccc', if appropriate, when that result is a nested allocation of rank 2 (ie, a char**/string array)
+#define TEST_FREE_ARRAY_NULLTERM() \
+	TEST_FREE_ARRAY_NULLTERM_(libccc)	\
+
 
 
 /* TODO perhaps find a way to macro-ify result printing ? its probably not really necessary...
 
-#define _TEST_PRINT(RESULT_STR, RESULT, EXPECT) \
+#define TEST_PRINT_(RESULT_STR, RESULT, EXPECT) \
 	print_test_str(test_name, RESULT_STR, RESULT, EXPECT, can_segfault); \
 
 
 
 #define TEST_PRINT(RESULT_STR, RESULT) \
-	_TEST_PRINT(RESULT_STR, RESULT, expecting) \
+	TEST_PRINT_(RESULT_STR, RESULT, expecting) \
 
 #define TEST_PRINT_LIBC(RESULT_STR, PREFIX) \
-	_TEST_PRINT(RESULT_STR, PREFIX##_libccc, PREFIX##_libc) \
+	TEST_PRINT_(RESULT_STR, PREFIX##_libccc, PREFIX##_libc) \
 
 #define TEST_PRINT_RESULT(RESULT_STR) \
-	_TEST_PRINT(RESULT_STR, result_libccc, expecting) \
+	TEST_PRINT_(RESULT_STR, result_libccc, expecting) \
 
 #define TEST_PRINT_RESULT_LIBC(RESULT_STR) \
-	_TEST_PRINT(RESULT_STR, result_libccc, result_libc) \
+	TEST_PRINT_(RESULT_STR, result_libccc, result_libc) \
 
 
 // lo and behold, what a typical testing function used to look like: very boilerplate!

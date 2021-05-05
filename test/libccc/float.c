@@ -34,7 +34,7 @@ void	print_test_##TYPE##tostr(char const* test_name, int can_segfault,					\
 		t_##TYPE number,																	\
 		t_u8 precision)																		\
 {																							\
-	TEST_PERFORM_RESULT(TYPE##tostr, number, precision)									\
+	TEST_PERFORM(char*, TYPE##tostr, number, precision)									\
 	print_test_str(test_name, "_"#TYPE"tostr", result_libccc, expecting, can_segfault);	\
 	print_timer_result(&t, FALSE);															\
 	TEST_PRINT_ARGS("%+#.*g, p=%u", precision, number, precision)							\

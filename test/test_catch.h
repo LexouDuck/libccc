@@ -29,8 +29,6 @@
 
 
 
-extern char*	nullstr;
-extern char*	segstr;
 extern int		segfault;
 extern jmp_buf	restore;
 
@@ -48,7 +46,7 @@ typedef enum signal
 ENUMLENGTH_SIGNAL
 }			e_signal;
 
-char const*	signals[ENUMLENGTH_SIGNAL];
+char const*	signals[ENUMLENGTH_SIGNAL + 1];
 
 
 
@@ -57,6 +55,8 @@ char const*	signals[ENUMLENGTH_SIGNAL];
 **                           Signal catching/handling                         *|
 ** ************************************************************************** *|
 */
+
+void	init_segfault_handler(void);
 
 #ifdef __MINGW32__
 void	signal_handler(int signaltype);

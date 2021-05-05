@@ -29,60 +29,14 @@ s_program	g_test;
 
 /*
 ** ************************************************************************** *|
-**                              Segfault Handling                             *|
-** ************************************************************************** *|
-*/
-
-char*	nullstr	= "(NULL)";
-char*	segstr	= "(segfault)";
-int		segfault;
-jmp_buf	restore;
-
-#ifdef __MINGW32__
-void	signal_handler(int signaltype)
-#else
-void	signal_handler(int signaltype, siginfo_t *info, void *ptr)
-#endif
-{
-	longjmp(restore, 1);
-}
-
-// TODO add SIGFPE floating-point exception handling ?
-void	init_segfault_handler(void)
-{
-#ifdef __MINGW32__
-	signal(SIGSEGV,	signal_handler);
-#else
-	memset(&sig, 0, sizeof(sigaction));
-	sigemptyset(&sig.sa_mask);
-	sig.sa_flags     = SA_NODEFER;
-	sig.sa_sigaction = signal_handler;
-	sigaction(SIGSEGV, &sig, NULL);
-#endif
-}
-
-char const*	signals[7] =
-{
-	"#SIGTERM",	//!< termination request, sent to the program
-	"#SIGSEGV",	//!< invalid memory access (segmentation fault)
-	"#SIGINT",	//!< external interrupt, usually initiated by the user
-	"#SIGILL",	//!< invalid program image, such as invalid instruction
-	"#SIGABRT",	//!< abnormal termination condition, as is e.g. initiated by abort()
-	"#SIGFPE",	//!< erroneous arithmetic operation such as divide by zero
-	NULL
-};
-
-
-
-/*
-** ************************************************************************** *|
 **                           Main Program Definitions                         *|
 ** ************************************************************************** *|
 */
 
-static void	handle_arg_verbose()		{ g_test.flags.verbose = TRUE; }
-static void	handle_arg_arguments()		{ g_test.flags.show_args = TRUE; }
-static void handle_arg_performance()	{ g_test.flags.show_speed = TRUE; }
+static void	handle_arg_verbose()		{ g_test.flags.verbose		 = TRUE; }
+static void	handle_arg_show_args()		{ g_test.flags.show_args	 = TRUE; }
+static void	handle_arg_show_result()	{ g_test.flags.show_result	 = TRUE; }
+static void handle_arg_show_speed()		{ g_test.flags.show_speed	 = TRUE; }
 static void	handle_arg_test_nullptrs()	{ g_test.flags.test_nullptrs = TRUE; }
 static void	handle_arg_test_overflow()	{ g_test.flags.test_overflow = TRUE; }
 static void	handle_arg_test_all()
@@ -139,10 +93,11 @@ static void	init(void)
 
 	static const s_test_arg args[TEST_ARGS_AMOUNT] =
 	{
-		(s_test_arg){ NULL,						'h', "help",			"If provided, display only the program usage help and exit." },
+		(s_test_arg){ NULL,						'h', "help",			"If provided, output only the program usage help and exit." },
 		(s_test_arg){ handle_arg_verbose,		'v', "verbose",			"If provided, output each test result (as either 'OK!' or 'ERROR: return was _')." },
-		(s_test_arg){ handle_arg_arguments,		'a', "arguments",		"If provided, output the arguments used for each test performed." },
-		(s_test_arg){ handle_arg_performance,	'p', "performance",		"If provided, output the execution speed for each test performed." },
+		(s_test_arg){ handle_arg_show_args,		'a', "show-args",		"If provided, output the arguments used for each test performed." },
+		(s_test_arg){ handle_arg_show_result,	'r', "show-result",		"If provided, output the result for each test performed, even when passed." },
+		(s_test_arg){ handle_arg_show_speed,	'p', "show-performance","If provided, output the execution speed for each test performed." },
 		(s_test_arg){ handle_arg_test_all,		't', "test-all",		"Sets all the 'test-something' arguments below (is equivalent to doing '-no')" },
 		(s_test_arg){ handle_arg_test_nullptrs,	'n', "test-nullptrs",	"If provided, perform the NULL pointer tests for all functions." },
 		(s_test_arg){ handle_arg_test_overflow,	'o', "test-overflow",	"If provided, perform the overflowing number tests for 'libccc_convert' functions." },
@@ -296,9 +251,9 @@ int		main(int argc, char **argv)
 			suite.tests = g_test.totals.tests - suite.tests;
 			suite.failed = g_test.totals.failed - suite.failed;
 			if (suite.tests)
-				print_totals(suite, g_test.suites[i].name);
+				print_totals(suite.tests, suite.failed, g_test.suites[i].name);
 		}
 	}
-	print_totals(g_test.totals, NULL);
+	print_totals(g_test.totals.tests, g_test.totals.failed, NULL);
 	return (OK);
 }

@@ -31,7 +31,7 @@ void	print_test_##TYPE##tostr(char const* test_name, int can_segfault,					\
 		char const* expecting,																\
 		t_u64 number)																		\
 {																							\
-	TEST_PERFORM_RESULT(TYPE##tostr, number)												\
+	TEST_PERFORM(char*, TYPE##tostr, number)												\
 	print_test_str(test_name, "_"#TYPE"tostr", result_libccc, expecting, can_segfault);		\
 	print_timer_result(&t, FALSE);															\
 	TEST_PRINT_ARGS("%llu", number)															\
@@ -137,7 +137,7 @@ void	print_test_##TYPE##tostr(char const* test_name, int can_segfault,					\
 		char const* expecting,																\
 		t_##TYPE number)																	\
 {																							\
-	TEST_PERFORM_RESULT(TYPE##tostr, number)												\
+	TEST_PERFORM(char*, TYPE##tostr, number)												\
 	print_test_str(test_name, "_s"#TYPE"tostr", result_libccc, expecting, can_segfault);	\
 	print_timer_result(&t, FALSE);															\
 	TEST_PRINT_ARGS("%lli", number)															\
@@ -251,7 +251,7 @@ void	print_test_##TYPE##tostrhex(char const* test_name, int can_segfault,					\
 		char const* expecting,																	\
 		t_u64 number)																			\
 {																								\
-	TEST_PERFORM_RESULT(TYPE##tostrhex, number, FALSE)											\
+	TEST_PERFORM(char*, TYPE##tostrhex, number, FALSE)											\
 	print_test_str(test_name, "_"#TYPE"tostrhex", result_libccc, expecting, can_segfault);		\
 	print_timer_result(&t, FALSE);																\
 	TEST_PRINT_ARGS("%lld", number)																\
@@ -356,7 +356,7 @@ void	print_test_##TYPE##tostrbase(char const* test_name, int can_segfault,					\
 		t_##TYPE number,																		\
 		char const* base)																		\
 {																								\
-	TEST_PERFORM_RESULT(TYPE##tostrbase, number, base)											\
+	TEST_PERFORM(char*, TYPE##tostrbase, number, base)											\
 	print_test_str(test_name, "_s"#TYPE"tostrbase", result_libccc, expecting, can_segfault);	\
 	print_timer_result(&t, FALSE);																\
 	TEST_PRINT_ARGS("base='%s', n=%lli", base, number);											\
@@ -500,7 +500,7 @@ void	print_test_##TYPE##tostrbase(char const* test_name, int can_segfault,					\
 		t_u32 number,																			\
 		char const* base)																		\
 {																								\
-	TEST_PERFORM_RESULT(TYPE##tostrbase, number, base)										\
+	TEST_PERFORM(char*, TYPE##tostrbase, number, base)										\
 	print_test_str(test_name, "_"#TYPE"tostrbase", result_libccc, expecting, can_segfault);	\
 	print_timer_result(&t, FALSE);																\
 	TEST_PRINT_ARGS("base='%s', n=%d", base, number);											\

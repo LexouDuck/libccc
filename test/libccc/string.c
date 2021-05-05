@@ -20,7 +20,7 @@ void test_strnew(void)	{}
 void	print_test_strnew(char const* test_name, int can_segfault,
 		t_size n)
 {
-	TEST_PERFORM_RESULT(strnew, n);
+	TEST_PERFORM(char*, strnew, n);
 	print_test_alloc(test_name, "strnew", result_libccc, n);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("n=%lu", n)
@@ -46,7 +46,7 @@ void	print_test_strset(char const* test_name, int can_segfault,
 		char* dest_libc,
 		char c)
 {
-	TEST_PERFORM(dest_libccc, strset, dest_libccc, c)
+	TEST_PERFORM_VOID(dest_libccc, strset, dest_libccc, c)
 	print_test_str(test_name, "strset arg", dest_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("str=\"%s\", c=0x%x/'%c'", dest_libccc, c, c)
@@ -72,7 +72,7 @@ void	print_test_strclr(char const* test_name, int can_segfault,
 		char* dest_libccc,
 		char* dest_libc)
 {
-	TEST_PERFORM(dest_libccc, strclr, dest_libccc)
+	TEST_PERFORM_VOID(dest_libccc, strclr, dest_libccc)
 	print_test_str(test_name, "strclr arg", dest_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("str=\"%s\"", dest_libccc)
@@ -98,7 +98,7 @@ void	print_test_strdel(char const* test_name, int can_segfault,
 		char** dest_libccc,
 		char** dest_libc)
 {
-	TEST_PERFORM(*dest_libccc, strdel, dest_libccc)
+	TEST_PERFORM_VOID(*dest_libccc, strdel, dest_libccc)
 	print_test_str(test_name, "strdel arg", *dest_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("ptr=%p (str=\"%s\")", dest_libccc, *dest_libccc)
@@ -120,7 +120,7 @@ void test_strdup(void)	{}
 void	print_test_strdup(char const* test_name, int can_segfault,
 		char const* src)
 {
-	TEST_PERFORM_RESULT_LIBC(strdup, src)
+	TEST_PERFORM_LIBC(char*, strdup, src)
 	print_test_str(test_name, "strdup return", result_libccc, result_libc, can_segfault);
 	print_timer_result(&t, TRUE);
 	TEST_PRINT_ARGS("src=\"%s\"", src)
@@ -148,7 +148,7 @@ void	print_test_strcpy(char const* test_name, int can_segfault,
 		char* dest_libc,
 		char const* src)
 {
-	TEST_PERFORM_RESULT_LIBC_DEST(strcpy, src)
+	TEST_PERFORM_LIBC_DEST(char*, strcpy, src)
 	print_test_str(test_name, "strcpy 'dest' arg", dest_libccc,   dest_libc,   can_segfault);
 	print_test_str(NULL,      "strcpy return",     result_libccc, result_libc, can_segfault);
 	print_timer_result(&t, TRUE);
@@ -181,7 +181,7 @@ void	print_test_strncpy(char const* test_name, int can_segfault,
 		char const* src,
 		t_size n)
 {
-	TEST_PERFORM_RESULT_LIBC_DEST(strncpy, src, n)
+	TEST_PERFORM_LIBC_DEST(char*, strncpy, src, n)
 	print_test_str(test_name, "strncpy 'dest' arg", dest_libccc,   dest_libc,   can_segfault);
 	print_test_str(NULL,      "strncpy return",     result_libccc, result_libc, can_segfault);
 	print_timer_result(&t, TRUE);
@@ -262,7 +262,7 @@ void	print_test_strcat(char const* test_name, int can_segfault,
 		char* dest_libc,
 		char const* src)
 {
-	TEST_PERFORM_RESULT_LIBC_DEST(strcat, src)
+	TEST_PERFORM_LIBC_DEST(char*, strcat, src)
 	print_test_str(test_name, "strcat 'dest' arg", dest_libccc,   dest_libc,   can_segfault);
 	print_test_str(NULL,      "strcat return",     result_libccc, result_libc, can_segfault);
 	print_timer_result(&t, TRUE);
@@ -297,7 +297,7 @@ void	print_test_strncat(char const* test_name, int can_segfault,
 		char const* src,
 		t_size n)
 {
-	TEST_PERFORM_RESULT_LIBC_DEST(strncat, src, n)
+	TEST_PERFORM_LIBC_DEST(char*, strncat, src, n)
 	print_test_str(test_name, "strncat 'dest' arg", dest_libccc,   dest_libc,   can_segfault);
 	print_test_str(NULL,      "strncat return",     result_libccc, result_libc, can_segfault);
 	print_timer_result(&t, TRUE);
@@ -671,7 +671,7 @@ void	print_test_strchr(char const* test_name, int can_segfault,
 		char const* str,
 		char c)
 {
-	TEST_PERFORM_RESULT_LIBC(strchr, str, c)
+	TEST_PERFORM_LIBC(char*, strchr, str, c)
 	print_test_str(test_name, "strchr return", result_libccc, result_libc, can_segfault);
 	print_timer_result(&t, TRUE);
 	TEST_PRINT_ARGS("str=\"%s\", c=0x%x/'%c'", str, c, c)
@@ -698,7 +698,7 @@ void	print_test_strstr(char const* test_name, int can_segfault,
 		char const* str,
 		char const* query)
 {
-	TEST_PERFORM_RESULT_LIBC(strstr, str, query)
+	TEST_PERFORM_LIBC(char*, strstr, str, query)
 	print_test_str(test_name, "strstr return", result_libccc, result_libc, can_segfault);
 	print_timer_result(&t, TRUE);
 	TEST_PRINT_ARGS("str=\"%s\", query=\"%s\"", str, query)
@@ -727,7 +727,7 @@ void	print_test_strrchr(char const* test_name, int can_segfault,
 		char const* str,
 		char c)
 {
-	TEST_PERFORM_RESULT_LIBC(strrchr, str, c)
+	TEST_PERFORM_LIBC(char*, strrchr, str, c)
 	print_test_str(test_name, "strrchr return", result_libccc, result_libc, can_segfault);
 	print_timer_result(&t, TRUE);
 	TEST_PRINT_ARGS("str=\"%s\", c=0x%x/'%c'", str, c, c)
@@ -755,7 +755,7 @@ void	print_test_strrstr(char const* test_name, int can_segfault,
 		char const* str,
 		char const* query)
 {
-	TEST_PERFORM_RESULT(strrstr, str, query)
+	TEST_PERFORM(char*, strrstr, str, query)
 	print_test_str(test_name, "_strrstr return", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("str=\"%s\", query=\"%s\"", str, query)
@@ -783,7 +783,7 @@ void	print_test_strnchr(char const* test_name, int can_segfault,
 		char c,
 		t_size n)
 {
-	TEST_PERFORM_RESULT(strnchr, str, c, n)
+	TEST_PERFORM(char*, strnchr, str, c, n)
 	print_test_str(test_name, "_strnchr return", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("str=\"%s\", c=0x%x/'%c', n=%lu", str, c, c, n)
@@ -814,10 +814,10 @@ void	print_test_strnstr(char const* test_name, int can_segfault,
 		t_size n)
 {
 #ifdef __APPLE__
-	TEST_PERFORM_RESULT_LIBC(strnstr, str, query, n)
+	TEST_PERFORM_LIBC(char*, strnstr, str, query, n)
 	print_test_str(test_name, "strnstr return", result_libccc, result_libc, can_segfault);
 #else
-	TEST_PERFORM_RESULT(strnstr, str, query, n)
+	TEST_PERFORM(char*, strnstr, str, query, n)
 	print_test_str(test_name, "_strnstr return", result_libccc, expecting, can_segfault);
 #endif
 	print_timer_result(&t, TRUE);
@@ -849,7 +849,7 @@ void	print_test_strremove(char const* test_name, int can_segfault,
 		char const* str,
 		char const* query)
 {
-	TEST_PERFORM_RESULT(strremove, str, query)
+	TEST_PERFORM(char*, strremove, str, query)
 	print_test_str(test_name, "_strremove return", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("str=\"%s\", query=\"%s\"", str, query)
@@ -872,7 +872,7 @@ void	print_test_strprint(char const* test_name, int can_segfault,
 		char const* str,
 		char const* charset_extra)
 {
-	TEST_PERFORM_RESULT(strprint, str, charset_extra)
+	TEST_PERFORM(char*, strprint, str, charset_extra)
 	print_test_str(test_name, "_strprint return", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("str=\"%s\"", str)
@@ -895,7 +895,7 @@ void	print_test_strparse(char const* test_name, int can_segfault,
 		char const* str,
 		t_bool escape_any)
 {
-	TEST_PERFORM_RESULT(strparse, str, escape_any)
+	TEST_PERFORM(char*, strparse, str, escape_any)
 	print_test_str(test_name, "_strparse return", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("str=\"%s\"", str)
@@ -919,7 +919,7 @@ void	print_test_strrep_char(char const* test_name, int can_segfault,
 		char old,
 		char new)
 {
-	TEST_PERFORM_RESULT(strrep_char, str, old, new)
+	TEST_PERFORM(char*, strrep_char, str, old, new)
 	print_test_str(test_name, "_strrep_char return", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("str=\"%s\", old=0x%x/'%c', new=0x%x/'%c'", str, old, old, new, new)
@@ -943,7 +943,7 @@ void	print_test_strrep_charset(char const* test_name, int can_segfault,
 		char const* old,
 		char const* new)
 {
-	TEST_PERFORM_RESULT(strrep_charset, str, old, new)
+	TEST_PERFORM(char*, strrep_charset, str, old, new)
 	print_test_str(test_name, "_strrep_charset return", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("str=\"%s\", old=\"%s\", new=\"%s\"", str, old, new)
@@ -967,7 +967,7 @@ void	print_test_strrep_str(char const* test_name, int can_segfault,
 		char const* old,
 		char const* new)
 {
-	TEST_PERFORM_RESULT(strrep_str, str, old, new)
+	TEST_PERFORM(char*, strrep_str, str, old, new)
 	print_test_str(test_name, "_strrep_str return", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("str=\"%s\", old=\"%s\", new=\"%s\"", str, old, new)
@@ -996,7 +996,7 @@ void	print_test_strtrim(char const* test_name, int can_segfault,
 		char const* charset,
 		char const* str)
 {
-	TEST_PERFORM_RESULT(strtrim, str, charset)
+	TEST_PERFORM(char*, strtrim, str, charset)
 	print_test_str(test_name, "_strtrim", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	char* tmp_str		= str_to_escape(str);
@@ -1035,7 +1035,7 @@ void	print_test_strtrim_l(char const* test_name, int can_segfault,
 		char const* charset,
 		char const* str)
 {
-	TEST_PERFORM_RESULT(strtrim_l, str, charset)
+	TEST_PERFORM(char*, strtrim_l, str, charset)
 	print_test_str(test_name, "_strtrim_l", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	char* tmp_str		= str_to_escape(str);
@@ -1074,7 +1074,7 @@ void	print_test_strtrim_r(char const* test_name, int can_segfault,
 		char const* charset,
 		char const* str)
 {
-	TEST_PERFORM_RESULT(strtrim_r, str, charset)
+	TEST_PERFORM(char*, strtrim_r, str, charset)
 	print_test_str(test_name, "_strtrim_r", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	char* tmp_str		= str_to_escape(str);
@@ -1115,7 +1115,7 @@ void	print_test_strpad(char const* test_name, int can_segfault,
 		char c,
 		t_size length)
 {
-	TEST_PERFORM_RESULT(strpad, str, c, length)
+	TEST_PERFORM(char*, strpad, str, c, length)
 	print_test_str(test_name, "_strpad", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("str=\"%s\", c=0x%x/'%c', n=%lu", str, c, c, length)
@@ -1154,7 +1154,7 @@ void	print_test_strpad_l(char const* test_name, int can_segfault,
 		char c,
 		t_size length)
 {
-	TEST_PERFORM_RESULT(strpad_l, str, c, length)
+	TEST_PERFORM(char*, strpad_l, str, c, length)
 	print_test_str(test_name, "_strpad_l", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("str=\"%s\", c=0x%x/'%c', n=%lu", str, c, c, length)
@@ -1193,7 +1193,7 @@ void	print_test_strpad_r(char const* test_name, int can_segfault,
 		char c,
 		t_size length)
 {
-	TEST_PERFORM_RESULT(strpad_r, str, c, length)
+	TEST_PERFORM(char*, strpad_r, str, c, length)
 	print_test_str(test_name, "_strpad_r", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("str=\"%s\", c=0x%x/'%c', n=%lu", str, c, c, length)
@@ -1237,7 +1237,7 @@ void	print_test_strrev(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const *str)
 {
-	TEST_PERFORM_RESULT(strrev, str)
+	TEST_PERFORM(char*, strrev, str)
 	print_test_str(test_name, "_strrev", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("str=\"%s\"", str)
@@ -1267,7 +1267,7 @@ void	print_test_strjoin(char const* test_name, int can_segfault,
 		char const *str1,
 		char const *str2)
 {
-	TEST_PERFORM_RESULT(strjoin, str1, str2)
+	TEST_PERFORM(char*, strjoin, str1, str2)
 	print_test_str(test_name, "_strjoin", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("str1=\"%s\", str2=\"%s\"", str1, str2)
@@ -1298,7 +1298,7 @@ void	print_test_strinsert(char const* test_name, int can_segfault,
 		char const *src,
 		t_size offset)
 {
-	TEST_PERFORM_RESULT(strinsert, dest, src, offset)
+	TEST_PERFORM(char*, strinsert, dest, src, offset)
 	print_test_str(test_name, "_strinsert", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("dest=\"%s\", src=\"%s\", offset=%lu", dest, src, offset)
@@ -1322,7 +1322,7 @@ void	print_test_strsub(char const* test_name, int can_segfault,
 		t_size offset,
 		t_size n)
 {
-	TEST_PERFORM_RESULT(strsub, str, offset, n)
+	TEST_PERFORM(char*, strsub, str, offset, n)
 	print_test_str(test_name, "_strsub", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("str=\"%s\", offset=%lu, n=%lu", str, offset, n)
@@ -1393,7 +1393,7 @@ void	print_test_striter(char const* test_name, int can_segfault,
 		void (*f)(t_char*))
 {
 	char* result_libccc = str == NULL ? NULL : strdup(str);
-	TEST_PERFORM(result_libccc, striter, result_libccc, f)
+	TEST_PERFORM_VOID(result_libccc, striter, result_libccc, f)
 	print_test_str(test_name, "_striter", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("str=\"%s\", f=%p", str, f)
@@ -1421,7 +1421,7 @@ void	print_test_striteri(char const* test_name, int can_segfault,
 		void (*f)(t_char*, t_size))
 {
 	char* result_libccc = str == NULL ? NULL : strdup(str);
-	TEST_PERFORM(result_libccc, striteri, result_libccc, f)
+	TEST_PERFORM_VOID(result_libccc, striteri, result_libccc, f)
 	print_test_str(test_name, "_striteri", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("str=\"%s\", f=%p", str, f)
@@ -1448,7 +1448,7 @@ void	print_test_strmap(char const* test_name, int can_segfault,
 		char const* str,
 		t_char (*f)(t_char))
 {
-	TEST_PERFORM_RESULT(strmap, str, f)
+	TEST_PERFORM(char*, strmap, str, f)
 	print_test_str(test_name, "_strmap", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("str=\"%s\", f=%p", str, f)
@@ -1473,7 +1473,7 @@ void	print_test_strmapi(char const* test_name, int can_segfault,
 		char const* str,
 		t_char (*f)(t_char, t_size))
 {
-	TEST_PERFORM_RESULT(strmapi, str, f)
+	TEST_PERFORM(char*, strmapi, str, f)
 	print_test_str(test_name, "_strmapi", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("str=\"%s\", f=%p", str, f)

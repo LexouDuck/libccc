@@ -256,7 +256,7 @@ void	print_test_strarrfold(char const* test_name, int can_segfault,
 		char const**	strarr,
 		char const*		sep)
 {
-	TEST_PERFORM_RESULT(strarrfold, strarr, sep)
+	TEST_PERFORM(char*, strarrfold, strarr, sep)
 	print_test_str(test_name, "_strarrfold", result_libccc, expecting, can_segfault);
 	TEST_FREE()
 	print_timer_result(&t, FALSE);

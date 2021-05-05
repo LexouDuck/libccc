@@ -34,10 +34,8 @@ void	print_test_bool_to_str(char const* test_name, int can_segfault,
 		t_bool value,
 		t_bool uppercase)
 {
-	TEST_PERFORM_RESULT(bool_to_str, value, uppercase)
-	print_test_str(test_name, "_bool_to_str", result_libccc, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS("value=%d, uppercase=%d", value, uppercase)
+	TEST_PERFORM(char*, str, bool_to_str, value, uppercase)
+	TEST_PRINT(  char*, str, bool_to_str, "value=%d, uppercase=%d", value, uppercase)
 }
 void	test_bool_to_str(void)
 {
