@@ -69,10 +69,10 @@ endif
 
 
 # Define colors for terminal output
-RESET  = "\e[0m"
-RED    = "\e[31m"
-GREEN  = "\e[32m"
-YELLOW = "\e[33m"
+C_RESET  = "\e[0m"
+C_RED    = "\e[31m"
+C_GREEN  = "\e[32m"
+C_YELLOW = "\e[33m"
 
 
 
@@ -322,6 +322,11 @@ release: MODE = release
 release: CFLAGS += $(CFLAGS_RELEASE)
 release: $(NAME).a dynlib
 
+# This rule should be executed once, after cloning the repo
+init:
+	@git config core.hooksPath ./.github/hooks
+
+# This rule builds the dynamically-linked library files for the current target platform
 dynlib: $(NAME).a
 	@mkdir -p $(BINDIR)dynamic/$(OSMODE)/
 	@mkdir -p $(BINDIR)static/$(OSMODE)/
@@ -342,10 +347,10 @@ else ifeq ($(OSMODE),linux)
 	"Compiling .so: "$(BINDIR)dynamic/$(OSMODE)/$(NAME).so" -> " ; \
 	$(CC) -shared -o $(BINDIR)dynamic/$(OSMODE)/$(NAME).so $(OBJS)
 else
-	@printf $(RED)"ERROR"$(RESET)": OS not supported -> OSMODE="$(OSMODE)"\n"
+	@printf $(C_RED)"ERROR"$(C_RESET)": OS not supported -> OSMODE="$(OSMODE)"\n"
 	exit 1
 endif
-	@printf $(GREEN)"OK!"$(RESET)"\n"
+	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
 
 # This rule prepares ZIP archives in ./dist for each platform from the contents of the ./bin folder
 dist: release
@@ -365,7 +370,7 @@ dist_version:
 	@printf "Preparing ZIP: "
 	@printf $(DISTDIR)$(NAME)_$(VERSION)_$(OSMODE)_$(LIBMODE).zip"\n"
 	@zip -j $(DISTDIR)$(NAME)_$(VERSION)_$(OSMODE)_$(LIBMODE).zip	$(BINDIR)$(LIBMODE)/$(OSMODE)/*
-	@printf $(GREEN)"  OK!"$(RESET)"\n"
+	@printf $(C_GREEN)"  OK!"$(C_RESET)"\n"
 
 
 
@@ -374,14 +379,14 @@ $(OBJDIR)%.o : $(SRCDIR)%.c
 	@mkdir -p $(@D)
 	@printf "Compiling file: "$@" -> "
 	@$(CC) $(CFLAGS) -c $< -I$(HDRDIR) -o $@
-	@printf $(GREEN)"OK!"$(RESET)"\n"
+	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
 
 # This rule builds the static library file to link against, in the root directory
 $(NAME).a: $(OBJS)
 	@printf "Compiling library: "$@" -> "
 	@ar -rc $@ $(OBJS)
 	@ranlib $@
-	@printf $(GREEN)"OK!"$(RESET)"\n"
+	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
 
 
 
@@ -440,13 +445,13 @@ $(OBJDIR)$(TEST_DIR)%.o: $(TEST_DIR)%.c $(TEST_HDRS)
 	@mkdir -p $(@D)
 	@printf "Compiling file: "$@" -> "
 	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -c $< -o $@
-	@printf $(GREEN)"OK!"$(RESET)"\n"
+	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
 
 # This rule builds the testing/CI program
 $(NAME_TEST): debug $(TEST_OBJS)
 	@printf "Compiling testing program: "$@" -> "
 	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -o $@ $(TEST_OBJS) -L./ -lccc -lm -lpthread
-	@printf $(GREEN)"OK!"$(RESET)"\n"
+	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
 
 # This rule builds and runs the test executable
 test: $(NAME_TEST)
@@ -491,6 +496,7 @@ re: fclean all
 
 DOXYREST = $(DOCDIR)_doxyrest/bin/doxyrest
 
+# This rule generates documentation for libccc
 doc:
 	@rm -rf $(DOCDIR)xml/*
 	@rm -rf $(DOCDIR)rst/*
@@ -559,7 +565,7 @@ pclint:
 	@$(PCLP) -width"(120,4)" -format="%(%f:%l%):\n[%n]->%t: %m" -w2 \
 		-e438 -e534 -e641 -e655 -e695 -e835 -e2445 \
 		$(PCLP_CONFIG).lnt $(PCLP_PROJECT).lnt > $(PCLP_LOG)
-	@printf $(GREEN)"SUCCESS"$(RESET)": output file is "$(PCLP_LOG)"\n"
+	@printf $(C_GREEN)"SUCCESS"$(C_RESET)": output file is "$(PCLP_LOG)"\n"
 
 
 
@@ -575,7 +581,7 @@ preprocessed: all $(PREPROCESSED)
 $(OBJDIR)%.c: $(SRCDIR)%.c
 	@printf "Preprocessing file: "$@" -> "
 	@$(CC) $(CFLAGS) -E $< -o $@
-	@printf $(GREEN)"OK!"$(RESET)"\n"
+	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
 
 
 
