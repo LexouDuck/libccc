@@ -26,7 +26,7 @@ The idea here is for commit messages to be "short and effective". This means the
 | `refactor`    | for refactoring commits |
 | `style`       | for coding style commits |
 | `test`        | for testing commits |
-| `docs`        | for documentation commits |
+| `doc`         | for documentation commits |
 | `example`     | for example code commits |
 | `dependency`  | for dependencies upgrading or downgrading commits |
 | `i18n`        | for i18n (internationalization) commits |
