@@ -13,7 +13,7 @@ CC_MACOS = clang
 
 # Compiler flags
 CFLAGS = -Wall -Wextra -Winline -Wpedantic -Wstrict-prototypes -Wmissing-prototypes -Wold-style-definition -Werror $(CFLAGS_OS) -MMD -fstrict-aliasing
-CFLAGS_DEBUG = -g -ggdb -D DEBUG=1
+CFLAGS_DEBUG = -g -ggdb -D DEBUG=1 # -fanalyzer
 CFLAGS_RELEASE = -O3
 # -Wno-unused-result -Wno-unused-parameter
 CFLAGS_OS = _
@@ -437,7 +437,7 @@ TEST_SRCS = \
 
 TEST_OBJS = ${TEST_SRCS:%.c=$(OBJDIR)%.o}
 
-TEST_CFLAGS = -O2 -g -ggdb
+TEST_CFLAGS = -O2 -g -ggdb # -fanalyzer
 TEST_INCLUDEDIRS = -I$(HDRDIR) -I$(TEST_DIR)
 
 # This rule compiles object files from source files

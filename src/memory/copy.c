@@ -35,13 +35,13 @@ void*	Memory_Copy_C(void* dest, void const* src, t_u8 byte, t_size n)
 	result = (t_u8*)dest;
 	source = (t_u8*)src;
 	i = 0;
-	while (source[i] != byte)
+	while (i < n && source[i] != byte)
 	{
-		if (i == n)
-			return (NULL);
 		result[i] = source[i];
 		++i;
 	}
+	if (i == n)
+		return (NULL);
 	result[i] = byte;
 	return (result + i + 1);
 }

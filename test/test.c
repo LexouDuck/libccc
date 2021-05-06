@@ -26,7 +26,7 @@ void	print_test(
 	int			error,
 	char const*	warning)
 {
-	static char const*  previous_function = NULL;
+	static char const*  previous = NULL;
 
 	g_test.totals.tests += 1;
 	if (error)
@@ -40,19 +40,21 @@ void	print_test(
 		{
 			printf(", ");
 		}
-		else
+		else if (function)
 		{
-			if (!str_equals_until(previous_function, function, ' '))
+			if (previous && function && !str_equals_until(
+				(previous[0] == '_' ? previous + 1 : previous),
+				(function[0] == '_' ? function + 1 : function), ' '))
 				printf("\n");
 			if (can_sig & 1)
 				printf("\n%s - "C_YELLOW"can segfault"C_RESET, test_name);
 			else printf("\n%s", test_name);
-			printf(" -> ");
+			printf(" | ");
 		}
 	}
-	if (g_test.flags.show_args && (g_test.flags.verbose || g_test.last_test_failed))
+	if (g_test.flags.show_args && args && (g_test.flags.verbose || g_test.last_test_failed))
 	{
-		printf(" -> (%s)", args);
+		printf("(%s)\t=> ", args);
 	}
 	if (error)
 	{
@@ -67,7 +69,7 @@ void	print_test(
 				expected, expect);
 			free(expected);
 		}
-		else printf(">c_%s: (%s)\n>   %s: (%s)"C_RESET,
+		else printf(">c_%s: (%s)\n>  %s: (%s)"C_RESET,
 			function, result,
 			function, expect);
 	}
@@ -77,7 +79,7 @@ void	print_test(
 		printf(C_GREEN"OK!"C_RESET);
 	fflush(stdout);
 	fflush(stderr);
-	previous_function = function;
+	previous = function;
 }
 
 
@@ -206,22 +208,28 @@ void	print_test_sign(s_test_sign* test, char const* args)
 
 void	print_test_ptr(s_test_ptr* test, char const* args)
 {
+	char* tmp_result = ptr_to_str(test->result);
+	char* tmp_expect = ptr_to_str(test->expect);
 	int error;
 
 	if (test->result_sig || test->expect_sig)
 		error = (test->result_sig != test->expect_sig);
 	else error = (test->result != test->expect);
 	print_test(test->name, test->function, args,
-		(test->result_sig ? signals[test->result_sig] : ptr_to_str(test->result)),
-		(test->expect_sig ? signals[test->expect_sig] : ptr_to_str(test->expect)),
+		(test->result_sig ? signals[test->result_sig] : tmp_result),
+		(test->expect_sig ? signals[test->expect_sig] : tmp_expect),
 		test->can_sig,
 		error, NULL);
+	free(tmp_result);
+	free(tmp_expect);
 }
 
 
 
 void	print_test_mem(s_test_mem* test, char const* args)
 {
+	char* tmp_result = print_memory(test->result, test->length);
+	char* tmp_expect = print_memory(test->expect, test->length);
 	int error;
 
 	if (test->result_sig || test->expect_sig)
@@ -231,10 +239,12 @@ void	print_test_mem(s_test_mem* test, char const* args)
 	else
 		error = memcmp(test->result, test->expect, test->length);
 	print_test(test->name, test->function, args,
-		(test->result_sig ? signals[test->result_sig] : print_memory(test->result, test->length)),
-		(test->expect_sig ? signals[test->expect_sig] : print_memory(test->expect, test->length)),
+		(test->result_sig ? signals[test->result_sig] : tmp_result),
+		(test->expect_sig ? signals[test->expect_sig] : tmp_expect),
 		test->can_sig,
 		error, NULL);
+	free(tmp_result);
+	free(tmp_expect);
 }
 
 
@@ -264,6 +274,8 @@ void	print_test_str(s_test_str* test, char const* args)
 
 void	print_test_alloc(s_test_alloc* test, char const* args)
 {
+	char* tmp_result = print_memory(test->result, test->length);
+	char* tmp_expect = print_memory(test->expect, test->length);
 	int		error = FALSE;
 	size_t	i;
 
@@ -279,11 +291,19 @@ void	print_test_alloc(s_test_alloc* test, char const* args)
 			break;
 		}
 	}
+	print_test(test->name, test->function, args,
+		tmp_result,
+		tmp_expect,
+		test->can_sig,
+		error, NULL);
+	free(tmp_result);
+	free(tmp_expect);
+// TODO call print_test() here
+/*
 	if (error || g_test.flags.verbose)
 	{
 		printf("\n%s -> ", test->name);
 	}
-// TODO call print_test() here
 	if (error)
 	{
 		printf(C_RED"\nError"C_RESET": ");
@@ -293,6 +313,7 @@ void	print_test_alloc(s_test_alloc* test, char const* args)
 	}
 	else if (g_test.flags.verbose)
 		printf(C_GREEN"OK!"C_RESET);
+*/
 }
 
 
@@ -304,7 +325,7 @@ void	print_test_alloc(s_test_alloc* test, char const* args)
 		length += strlen(test->expect[i]);								\
 	}																	\
 	if (!(str_expect = (char*)malloc(length + (i ? (i - 1) * 2 : 0))))	\
-		return;															\
+		goto failure;													\
 	length = 0;															\
 	for (i = 0; test->expect[i]; ++i)									\
 	{																	\
@@ -319,10 +340,10 @@ void	print_test_alloc(s_test_alloc* test, char const* args)
 
 void	print_test_strarr(s_test_strarr* test, char const* args)
 {
-	int		error = FALSE;
-	int		length;
 	char*	str_result;
 	char*	str_expect;
+	int		error = FALSE;
+	int		length;
 	size_t	i;
 
 	for (int i = 0; test->result[i] && test->expect[i]; ++i)
@@ -340,6 +361,7 @@ void	print_test_strarr(s_test_strarr* test, char const* args)
 		str_expect,
 		test->can_sig,
 		error, NULL);
+failure:
 	if (str_result) free(str_result);
 	if (str_expect) free(str_expect);
 }

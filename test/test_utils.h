@@ -309,32 +309,36 @@ DEFINEFUNC_PRINT_TEST(alloc,	char const*)
 **	This macro will prepare the test result struct, so as to print the test result output
 */
 #define TEST_PRINT_(FORMAT, ...) \
-	len = snprintf(NULL, (0), FORMAT, ##__VA_ARGS__);	\
-	if (len < 0)		return;							\
-	tmp = (char*)malloc((size_t)len + sizeof(""));		\
-	if (tmp == NULL)	return;							\
-	len = snprintf((tmp), len, FORMAT, ##__VA_ARGS__);	\
-	if (len < 0)		return;							\
-	args = str_to_escape(tmp);							\
-	free(tmp);											\
-	tmp = NULL;											\
-	if (args == NULL)	return;							\
+	len = snprintf(NULL, (0), FORMAT, ##__VA_ARGS__);		\
+	if (len < 0)		return;								\
+	tmp = (char*)malloc((size_t)len + sizeof(""));			\
+	if (tmp == NULL)	return;								\
+	len = snprintf((tmp), len + 1, FORMAT, ##__VA_ARGS__);	\
+	if (len < 0)		return;								\
+	args = str_to_escape(tmp);								\
+	free(tmp);												\
+	tmp = NULL;												\
+	if (args == NULL)	return;								\
 
 
 
 //! Prints the test result for a "expect test" (one which does not have an equivalent function in the C standard library)
 #define TEST_PRINT(TYPENAME, FUNCTION, FORMAT, ...) \
+	print_timer_result(&test.timer, FALSE);	\
 	TEST_PRINT_(FORMAT, ##__VA_ARGS__)		\
 	test.function = "_"#FUNCTION;			\
 	print_test_##TYPENAME(&test, args);		\
-	print_timer_result(&test.timer, FALSE);	\
+	free(args);								\
+	args = NULL;							\
 
 //! Prints the test result for a "compare test" (one which has an equivalent function in the C standard library)
 #define TEST_PRINT_LIBC(TYPENAME, FUNCTION, FORMAT, ...) \
+	print_timer_result(&test.timer, TRUE);	\
 	TEST_PRINT_(FORMAT, ##__VA_ARGS__)		\
 	test.function = #FUNCTION;				\
 	print_test_##TYPENAME(&test, args);		\
-	print_timer_result(&test.timer, TRUE);	\
+	free(args);								\
+	args = NULL;							\
 
 
 

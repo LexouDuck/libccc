@@ -32,12 +32,12 @@
 typedef enum signal
 {
 	SIGNAL_NULL = 0,//!< No signal emitted by function tested
-	SIGNAL_SIGTERM,	//!< Signal emitted: termination request, sent to the program
-	SIGNAL_SIGSEGV,	//!< Signal emitted: invalid memory access (segmentation fault)
-	SIGNAL_SIGINT,	//!< Signal emitted: external interrupt, usually initiated by the user
-	SIGNAL_SIGILL,	//!< Signal emitted: invalid program image, such as invalid instruction
-	SIGNAL_SIGABRT,	//!< Signal emitted: abnormal termination condition, as is e.g. initiated by abort()
-	SIGNAL_SIGFPE,	//!< Signal emitted: erroneous arithmetic operation such as divide by zero
+	SIGNAL_SIGTERM	= (1 << 0),	//!< Signal emitted: termination request, sent to the program
+	SIGNAL_SIGSEGV	= (1 << 1),	//!< Signal emitted: invalid memory access (segmentation fault)
+	SIGNAL_SIGINT	= (1 << 2),	//!< Signal emitted: external interrupt, usually initiated by the user
+	SIGNAL_SIGILL	= (1 << 3),	//!< Signal emitted: invalid program image, such as invalid instruction
+	SIGNAL_SIGABRT	= (1 << 4),	//!< Signal emitted: abnormal termination condition, as is e.g. initiated by abort()
+	SIGNAL_SIGFPE	= (1 << 5),	//!< Signal emitted: erroneous arithmetic operation such as divide by zero
 ENUMLENGTH_SIGNAL
 }			e_signal;
 

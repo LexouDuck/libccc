@@ -55,6 +55,9 @@ int str_equals_until(char const* str1, char const* str2, char c)
 				return (FALSE);
 			++i;
 		}
+		if (str1[i] == c ||
+			str2[i] == c)
+			return (TRUE);
 		return (str1[i] == str2[i]);
 	}
 	return (FALSE);
@@ -165,9 +168,8 @@ char*	str_to_escape(char const* str)
 	size_t	index = 0;
 	size_t	i = 0;
 
-	if (!str || !(result = (char*)malloc(strlen(str) * 4 + 4)))
+	if (!str || !(result = (char*)malloc(strlen(str) * 4 + 2)))
 		return (NULL);
-	result[i++] = '\"';
 	while (str[index])
 	{
 		if (!isprint(str[index]))
@@ -197,7 +199,6 @@ char*	str_to_escape(char const* str)
 		else result[i++] = str[index];
 		++index;
 	}
-	result[i++] = '\"';
 	result[i] = '\0';
 	return (result);
 }

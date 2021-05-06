@@ -83,7 +83,7 @@ void	print_timer_result(s_timer* t, t_s64 compare)
 
 	t->result_time = timer_getdiff(t->result_start, t->result_end);
 	if (t->result_time.tv_nsec < 0 || t->result_time.tv_nsec < 0)
-		sprintf((char*)&result1, "SEGV");
+		sprintf((char*)&result1, "SIGNAL EMITTED");
 	else sprintf((char*)&result1, TIMER_FORMATSTRING, (long long)t->result_time.tv_sec, t->result_time.tv_nsec);
 
 	printf(" [libccc:");
@@ -91,7 +91,7 @@ void	print_timer_result(s_timer* t, t_s64 compare)
 	{
 		t->expect_time = timer_getdiff(t->expect_start, t->expect_end);
 		if (t->expect_time.tv_nsec < 0 || t->expect_time.tv_nsec < 0)
-			sprintf((char*)&result2, "SEGV");
+			sprintf((char*)&result2, "SIGNAL EMITTED");
 		else sprintf((char*)&result2, TIMER_FORMATSTRING, (long long)t->expect_time.tv_sec, t->expect_time.tv_nsec);
 
 		if ((t->result_time.tv_sec >= 0 && t->result_time.tv_nsec >= 0) ||
