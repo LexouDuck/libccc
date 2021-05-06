@@ -34,8 +34,10 @@ void	print_test_bool_to_str(char const* test_name, int can_segfault,
 		t_bool value,
 		t_bool uppercase)
 {
-	TEST_PERFORM(char*, str, bool_to_str, value, uppercase)
-	TEST_PRINT(  char*, str, bool_to_str, "value=%d, uppercase=%d", value, uppercase)
+	TEST_INIT(str)
+	TEST_PERFORM(	bool_to_str, value, uppercase)
+	TEST_PRINT(str,	bool_to_str, "value=%d, uppercase=%d", value, uppercase)
+	TEST_FREE()
 }
 void	test_bool_to_str(void)
 {
@@ -76,10 +78,9 @@ void	print_test_str_to_bool(char const* test_name, int can_segfault,
 		t_bool expecting,
 		char const* str)
 {
-	TEST_PERFORM_RESULT_TYPE(t_bool, str_to_bool, str)
-	print_test_bool(test_name, "_str_to_bool", result_libccc, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS_ESCAPED(str)
+	TEST_INIT(bool)
+	TEST_PERFORM(	str_to_bool, str)
+	TEST_PRINT(bool,str_to_bool, "str=\"%s\"", str)
 }
 void	test_str_to_bool(void)
 { 

@@ -179,10 +179,10 @@ void	print_test_datetostr(char const* test_name, int can_segfault,
 		char const* format,
 		s_date const* date)
 {
-	TEST_PERFORM(char*, datetostr, date, format)
-	print_test_str(test_name, "_datetostr", result_libccc, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS("date = {"DATE_STR_FORMAT"}",
+	TEST_INIT(str)
+	TEST_PERFORM(	datetostr, date, format)
+	TEST_PRINT(str,	datetostr, "format=\"%s\", date = {"DATE_STR_FORMAT"}",
+		format,
 		date->year,
 		date->month,
 		date->day_month,
@@ -191,6 +191,7 @@ void	print_test_datetostr(char const* test_name, int can_segfault,
 		date->sec,
 		BOOL_TOSTRING(date->is_dst),
 		date->offset)
+	TEST_FREE()
 }
 void	test_datetostr(void)
 {
@@ -218,14 +219,13 @@ void	test_datetostr(void)
 void test_strtodate(void)	{}
 #else
 void	print_test_strtodate(char const* test_name, int can_segfault,
-		s_date const* expecting,
+		s_date expecting,
 		char const* format,
 		char const* str)
 {
-	TEST_PERFORM_RESULT_TYPE(s_date, strtodate, str, format)
-	print_test_date(test_name, "_strtodate", &result_libccc, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS("format=\"%s\", str=\"%s\"", format, str)
+	TEST_INIT(date)
+	TEST_PERFORM(	strtodate, str, format)
+	TEST_PRINT(date,strtodate, "format=\"%s\", str=\"%s\"", format, str)
 }
 void	test_strtodate(void)
 {
@@ -235,15 +235,15 @@ void	test_strtodate(void)
 	char now_str[DATE_STR_BUFFER];
 	strftime(now_str, DATE_STR_BUFFER, FORMAT_UTC, now_tm);
 /*	| TEST FUNCTION     | TEST NAME                  |CAN SEGV| EXPECTING              | TEST ARGS				*/
-	print_test_strtodate("strtodate                  ",	FALSE,                &y99_date, FORMAT_UTC, y99_str);
-	print_test_strtodate("strtodate                  ",	FALSE,                &y2k_date, FORMAT_UTC, y2k_str);
-	print_test_strtodate("strtodate                  ",	FALSE,                &now_date, FORMAT_UTC, now_str);
-	print_test_strtodate("strtodate                  ",	FALSE,               &xmas_date, FORMAT_UTC, xmas_str);
-	print_test_strtodate("strtodate                  ",	FALSE,               &ween_date, FORMAT_UTC, ween_str);
-	print_test_strtodate("strtodate (leap year)      ",	FALSE,          &leap_year_date, FORMAT_UTC, leap_year_str);
-	print_test_strtodate("strtodate (leap second)    ",	FALSE,        &leap_second_date, FORMAT_UTC, leap_second_str);
-	print_test_strtodate("strtodate (bad leap year)  ",	FALSE,               &DATE_NULL, FORMAT_UTC, bad_leap_year_str);
-	print_test_strtodate("strtodate (bad leap second)",	FALSE,               &DATE_NULL, FORMAT_UTC, bad_leap_second_str);
+	print_test_strtodate("strtodate                  ",	FALSE,                 y99_date, FORMAT_UTC, y99_str);
+	print_test_strtodate("strtodate                  ",	FALSE,                 y2k_date, FORMAT_UTC, y2k_str);
+	print_test_strtodate("strtodate                  ",	FALSE,                 now_date, FORMAT_UTC, now_str);
+	print_test_strtodate("strtodate                  ",	FALSE,                xmas_date, FORMAT_UTC, xmas_str);
+	print_test_strtodate("strtodate                  ",	FALSE,                ween_date, FORMAT_UTC, ween_str);
+	print_test_strtodate("strtodate (leap year)      ",	FALSE,           leap_year_date, FORMAT_UTC, leap_year_str);
+	print_test_strtodate("strtodate (leap second)    ",	FALSE,         leap_second_date, FORMAT_UTC, leap_second_str);
+	print_test_strtodate("strtodate (bad leap year)  ",	FALSE,                DATE_NULL, FORMAT_UTC, bad_leap_year_str);
+	print_test_strtodate("strtodate (bad leap second)",	FALSE,                DATE_NULL, FORMAT_UTC, bad_leap_second_str);
 }
 #endif
 

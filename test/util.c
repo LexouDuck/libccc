@@ -256,3 +256,32 @@ char*	int_u_to_str(t_u64 number)
 	result[n] = '\0';
 	return (result);
 }
+
+
+
+char*	ptr_to_str(void const* ptr)
+{
+	char*	result;
+	t_u8	digits[sizeof(void const*) * 2];
+	t_u8	i;
+	t_uintmax	n;
+
+	n = (t_uintmax)ptr;
+	i = 0;
+	while (n > 0)
+	{
+		digits[i++] = n % 16;
+		n /= 16;
+	}
+	if (i == 0)
+		digits[i++] = 0;
+	if (!(result = (char*)malloc(2 + i + 1)))
+		return (NULL);
+	n = 0;
+	result[n++] = '0';
+	result[n++] = 'x';
+	while (i--)
+		result[n++] = digits[i] + (digits[i] < 10 ? '0' : 'A' - 10);
+	result[n] = '\0';
+	return (result);
+}

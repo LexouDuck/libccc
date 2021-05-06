@@ -81,22 +81,22 @@ void	print_timer_result(s_timer* t, t_s64 compare)
 	if (!g_test.flags.verbose || !g_test.flags.show_speed)
 		return;
 
-	t->time1 = timer_getdiff(t->start1, t->end1);
-	if (t->time1.tv_nsec < 0 || t->time1.tv_nsec < 0)
+	t->result_time = timer_getdiff(t->result_start, t->result_end);
+	if (t->result_time.tv_nsec < 0 || t->result_time.tv_nsec < 0)
 		sprintf((char*)&result1, "SEGV");
-	else sprintf((char*)&result1, TIMER_FORMATSTRING, (long long)t->time1.tv_sec, t->time1.tv_nsec);
+	else sprintf((char*)&result1, TIMER_FORMATSTRING, (long long)t->result_time.tv_sec, t->result_time.tv_nsec);
 
 	printf(" [libccc:");
 	if (compare)
 	{
-		t->time2 = timer_getdiff(t->start2, t->end2);
-		if (t->time2.tv_nsec < 0 || t->time2.tv_nsec < 0)
+		t->expect_time = timer_getdiff(t->expect_start, t->expect_end);
+		if (t->expect_time.tv_nsec < 0 || t->expect_time.tv_nsec < 0)
 			sprintf((char*)&result2, "SEGV");
-		else sprintf((char*)&result2, TIMER_FORMATSTRING, (long long)t->time2.tv_sec, t->time2.tv_nsec);
+		else sprintf((char*)&result2, TIMER_FORMATSTRING, (long long)t->expect_time.tv_sec, t->expect_time.tv_nsec);
 
-		if ((t->time1.tv_sec >= 0 && t->time1.tv_nsec >= 0) ||
-			(t->time2.tv_sec >= 0 && t->time2.tv_nsec >= 0))
-			compare = timer_compare(t->time1, t->time2);
+		if ((t->result_time.tv_sec >= 0 && t->result_time.tv_nsec >= 0) ||
+			(t->expect_time.tv_sec >= 0 && t->expect_time.tv_nsec >= 0))
+			compare = timer_compare(t->result_time, t->expect_time);
 		else compare = 0;
 
 		if (compare == 0)

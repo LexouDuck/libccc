@@ -9,7 +9,7 @@ CC	= _
 CC_WIN32 =   i686-w64-mingw32-gcc -static -static-libgcc
 CC_WIN64 = x86_64-w64-mingw32-gcc -static -static-libgcc
 CC_LINUX = gcc
-CC_MACOS = gcc
+CC_MACOS = clang
 
 # Compiler flags
 CFLAGS = -Wall -Wextra -Winline -Wpedantic -Wstrict-prototypes -Wmissing-prototypes -Wold-style-definition -Werror $(CFLAGS_OS) -MMD -fstrict-aliasing

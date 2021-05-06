@@ -114,9 +114,9 @@ void	print_test_strarrlen(char const* test_name, int can_segfault,
 		t_size			expecting,
 		char const**	strarr)
 {
-	TEST_PERFORM_RESULT_TYPE(t_size, strarrlen, strarr)
-	print_test_size(test_name, "_strarrlen", result_libccc, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
+	TEST_INIT(size)
+	TEST_PERFORM(	strarrlen, strarr)
+//	TEST_PRINT(size,strarrlen, "strarr=[ %s ]", tmp) // TODO
 }
 void	test_strarrlen()
 {
@@ -144,19 +144,19 @@ void	print_test_strsplit_char(char const* test_name, int can_segfault,
 		char const*		str,
 		char			separator)
 {
-	TEST_PERFORM_RESULT_TYPE(char**, strsplit_char, str, separator)
-	print_test_strarr(test_name, "_strsplit_char", (char const **)result_libccc, expecting, can_segfault);
+	TEST_INIT(strarr)
+	TEST_PERFORM(		strsplit_char, str, separator)
+	TEST_PRINT(strarr,	strsplit_char, "str=\"%s\", sep='%c'", str, separator)
 	TEST_FREE_ARRAY_NULLTERM()
-	print_timer_result(&t, FALSE);
 }
 void	test_strsplit_char()
 {
-//	| TEST FUNCTION			| TEST NAME						| CAN SEGV	| EXPECTING					| TEST ARGS
-	print_test_strsplit_char("strsplit_char",				FALSE,		strarr1_A,					strarr1_as_str,		'\n');
-	print_test_strsplit_char("strsplit_char",				FALSE,		strarr2_B,					strarr2_as_str,		'a');
-	print_test_strsplit_char("strsplit_char",				FALSE,		strarr3,					strarr3_as_str_A,	' ');
-	print_test_strsplit_char("strsplit_char",				FALSE,		strarr4_A,					strarr4_as_str,		'a');
-	print_test_strsplit_char("strsplit_char (null str)",	TRUE,		(char const **)&segstr,		NULL,				'a');
+//	| TEST FUNCTION			| TEST NAME					| CAN SEGV	| EXPECTING					| TEST ARGS
+	print_test_strsplit_char("strsplit_char",			FALSE,			strarr1_A,				strarr1_as_str,		'\n');
+	print_test_strsplit_char("strsplit_char",			FALSE,			strarr2_B,				strarr2_as_str,		'a');
+	print_test_strsplit_char("strsplit_char",			FALSE,			strarr3,				strarr3_as_str_A,	' ');
+	print_test_strsplit_char("strsplit_char",			FALSE,			strarr4_A,				strarr4_as_str,		'a');
+	print_test_strsplit_char("strsplit_char (null str)",SIGNAL_SIGSEGV,	NULL,					NULL,				'a');
 }
 #endif
 
@@ -170,26 +170,26 @@ void	print_test_strsplit_charset(char const* test_name, int can_segfault,
 		char const*		str,
 		char const*		separators)
 {
-	TEST_PERFORM_RESULT_TYPE(char**, strsplit_charset, str, separators)
-	print_test_strarr(test_name, "_strsplit_charset", (char const **)result_libccc, expecting, can_segfault);
+	TEST_INIT(strarr)
+	TEST_PERFORM(		strsplit_charset, str, separators)
+	TEST_PRINT(strarr,	strsplit_charset, "str=\"%s\", seps=\"%s\"", str, separators)
 	TEST_FREE_ARRAY_NULLTERM()
-	print_timer_result(&t, FALSE);
 }
 void	test_strsplit_charset()
 {
 	char const* numbers[4] = {"2130706433", "136661", "46", NULL};
 //	| TEST FUNCTION				| TEST NAME						| CAN SEGV	| EXPECTING				| TEST ARGS
-	print_test_strsplit_charset("strsplit_charset",				FALSE,		strarr1_A,				strarr1_as_str,				"\n");
-	print_test_strsplit_charset("strsplit_charset",				FALSE,		strarr1_B,				strarr1_as_str,				"\n\t");
-	print_test_strsplit_charset("strsplit_charset",				FALSE,		strarr2_B,				strarr2_as_str,				"a");
-	print_test_strsplit_charset("strsplit_charset",				FALSE,		strarr3,				strarr3_as_str_A,			" ");
-	print_test_strsplit_charset("strsplit_charset",				FALSE,		strarr3,				strarr3_as_str_B,			" \n\t");
-	print_test_strsplit_charset("strsplit_charset",				FALSE,		strarr4_A,				strarr4_as_str,				"a");
-	print_test_strsplit_charset("strsplit_charset",				FALSE,		strarr_empty,			strarr4_as_str,				"ab");
-	print_test_strsplit_charset("strsplit_charset",				FALSE,		numbers,				"2130706433 136661 46",		" ");
-	print_test_strsplit_charset("strsplit_charset (null str)",	TRUE,		(char const**)&segstr,	NULL,						"a");
-	print_test_strsplit_charset("strsplit_charset (null seps)",	TRUE,		(char const**)&segstr,	strarr1_as_str,				NULL);
-	print_test_strsplit_charset("strsplit_charset (both null)",	TRUE,		(char const**)&segstr,	NULL,						NULL);
+	print_test_strsplit_charset("strsplit_charset",				FALSE,			strarr1_A,			strarr1_as_str,				"\n");
+	print_test_strsplit_charset("strsplit_charset",				FALSE,			strarr1_B,			strarr1_as_str,				"\n\t");
+	print_test_strsplit_charset("strsplit_charset",				FALSE,			strarr2_B,			strarr2_as_str,				"a");
+	print_test_strsplit_charset("strsplit_charset",				FALSE,			strarr3,			strarr3_as_str_A,			" ");
+	print_test_strsplit_charset("strsplit_charset",				FALSE,			strarr3,			strarr3_as_str_B,			" \n\t");
+	print_test_strsplit_charset("strsplit_charset",				FALSE,			strarr4_A,			strarr4_as_str,				"a");
+	print_test_strsplit_charset("strsplit_charset",				FALSE,			strarr_empty,		strarr4_as_str,				"ab");
+	print_test_strsplit_charset("strsplit_charset",				FALSE,			numbers,			"2130706433 136661 46",		" ");
+	print_test_strsplit_charset("strsplit_charset (null str)",	SIGNAL_SIGSEGV,	NULL,				NULL,						"a");
+	print_test_strsplit_charset("strsplit_charset (null seps)",	SIGNAL_SIGSEGV,	NULL,				strarr1_as_str,				NULL);
+	print_test_strsplit_charset("strsplit_charset (both null)",	SIGNAL_SIGSEGV,	NULL,				NULL,						NULL);
 }
 #endif
 
@@ -201,26 +201,26 @@ void test_strsplit_str(void)	{}
 void	print_test_strsplit_str(char const* test_name, int can_segfault,
 		char const**	expecting,
 		char const*		str,
-		char const*		sub)
+		char const*		separator)
 {
-	TEST_PERFORM_RESULT_TYPE(char**, strsplit_str, str, sub)
-	print_test_strarr(test_name, "_strsplit_str", (char const **)result_libccc, expecting, can_segfault);
+	TEST_INIT(strarr)
+	TEST_PERFORM(		strsplit_str, str, separator)
+	TEST_PRINT(strarr,	strsplit_str, "str=\"%s\", sep=\"%s\"", str, separator)
 	TEST_FREE_ARRAY_NULLTERM()
-	print_timer_result(&t, FALSE);
 }
 void	test_strsplit_str()
 {
 //	| TEST FUNCTION			| TEST NAME					| CAN SEGV	| EXPECTING				| TEST ARGS
-	print_test_strsplit_str("strsplit_str",				FALSE,		strarr1_A,				strarr1_as_str,		"\n");
-	print_test_strsplit_str("strsplit_str",				FALSE,		strarr1_C,				strarr1_as_str,		"\n\t");
-	print_test_strsplit_str("strsplit_str",				FALSE,		strarr2_A,				strarr2_as_str,		"ange");
-	print_test_strsplit_str("strsplit_str",				FALSE,		strarr2_B,				strarr2_as_str,		"a");
-	print_test_strsplit_str("strsplit_str",				FALSE,		strarr3,				strarr3_as_str_A,	" ");
-	print_test_strsplit_str("strsplit_str",				FALSE,		strarr4_B,				strarr4_as_str,		"aa");
-	print_test_strsplit_str("strsplit_str",				FALSE,		strarr4_C,				strarr4_as_str,		"a");
-	print_test_strsplit_str("strsplit_str (null str)",	TRUE,		(char const **)&segstr,	NULL,				"a");
-	print_test_strsplit_str("strsplit_str (null seps)",	TRUE,		(char const **)&segstr,	strarr1_as_str,		NULL);
-	print_test_strsplit_str("strsplit_str (both null)",	TRUE,		(char const **)&segstr,	NULL,				NULL);
+	print_test_strsplit_str("strsplit_str",				FALSE,			strarr1_A,			strarr1_as_str,		"\n");
+	print_test_strsplit_str("strsplit_str",				FALSE,			strarr1_C,			strarr1_as_str,		"\n\t");
+	print_test_strsplit_str("strsplit_str",				FALSE,			strarr2_A,			strarr2_as_str,		"ange");
+	print_test_strsplit_str("strsplit_str",				FALSE,			strarr2_B,			strarr2_as_str,		"a");
+	print_test_strsplit_str("strsplit_str",				FALSE,			strarr3,			strarr3_as_str_A,	" ");
+	print_test_strsplit_str("strsplit_str",				FALSE,			strarr4_B,			strarr4_as_str,		"aa");
+	print_test_strsplit_str("strsplit_str",				FALSE,			strarr4_C,			strarr4_as_str,		"a");
+	print_test_strsplit_str("strsplit_str (null str)",	SIGNAL_SIGSEGV,	NULL,				NULL,				"a");
+	print_test_strsplit_str("strsplit_str (null seps)",	SIGNAL_SIGSEGV,	NULL,				strarr1_as_str,		NULL);
+	print_test_strsplit_str("strsplit_str (both null)",	SIGNAL_SIGSEGV,	NULL,				NULL,				NULL);
 }
 #endif
 
@@ -234,10 +234,10 @@ void	print_test_strarrjoin(char const* test_name, int can_segfault,
 		char const**	strarr1,
 		char const**	strarr2)
 {
-	TEST_PERFORM_RESULT_TYPE(char**, strarrjoin, strarr1, strarr2)
-	print_test_strarr(test_name, "_strarrjoin", (char const**)result_libccc, expecting, can_segfault);
+	TEST_INIT(strarr)
+	TEST_PERFORM(		strarrjoin, strarr1, strarr2)
+//	TEST_PRINT(strarr,	strarrjoin, "strarr1=[ %s ], strarr2=[ %s ]", strarr1, strarr2) // TODO
 	TEST_FREE_ARRAY_NULLTERM()
-	print_timer_result(&t, FALSE);
 }
 void	test_strarrjoin()
 {
@@ -256,23 +256,23 @@ void	print_test_strarrfold(char const* test_name, int can_segfault,
 		char const**	strarr,
 		char const*		sep)
 {
-	TEST_PERFORM(char*, strarrfold, strarr, sep)
-	print_test_str(test_name, "_strarrfold", result_libccc, expecting, can_segfault);
+	TEST_INIT(str)
+	TEST_PERFORM(	strarrfold, strarr, sep)
+//	TEST_PRINT(str,	strarrfold, "strarr=[ %s ], sep=\"%s\", strarr, sep) // TODO
 	TEST_FREE()
-	print_timer_result(&t, FALSE);
 }
 void	test_strarrfold()
 {
 //	| TEST FUNCTION			| TEST NAME					| CAN SEGV	| EXPECTING			| TEST ARGS
-	print_test_strarrfold("strarrfold",					FALSE,		strarr1_as_str,		strarr1_A,	"\n");
-	print_test_strarrfold("strarrfold",					FALSE,		strarr1_as_str,		strarr1_C,	"\n\t");
-	print_test_strarrfold("strarrfold",					FALSE,		strarr2_as_str,		strarr2_A,	"ange");
-	print_test_strarrfold("strarrfold",					FALSE,		strarr2_as_str,		strarr2_B,	"a");
-	print_test_strarrfold("strarrfold",					FALSE,		strarr3_as_str_A,	strarr3,	" ");
-	print_test_strarrfold("strarrfold",					FALSE,		strarr4_as_str,		strarr4_B,	"aa");
-	print_test_strarrfold("strarrfold (null strarr)",	TRUE,		segstr,				NULL,		"");
-	print_test_strarrfold("strarrfold (null sep)",		TRUE,		segstr,				strarr3,	NULL);
-	print_test_strarrfold("strarrfold (both null)",		TRUE,		segstr,				NULL,		NULL);
+	print_test_strarrfold("strarrfold",					FALSE,			strarr1_as_str,		strarr1_A,	"\n");
+	print_test_strarrfold("strarrfold",					FALSE,			strarr1_as_str,		strarr1_C,	"\n\t");
+	print_test_strarrfold("strarrfold",					FALSE,			strarr2_as_str,		strarr2_A,	"ange");
+	print_test_strarrfold("strarrfold",					FALSE,			strarr2_as_str,		strarr2_B,	"a");
+	print_test_strarrfold("strarrfold",					FALSE,			strarr3_as_str_A,	strarr3,	" ");
+	print_test_strarrfold("strarrfold",					FALSE,			strarr4_as_str,		strarr4_B,	"aa");
+	print_test_strarrfold("strarrfold (null strarr)",	SIGNAL_SIGSEGV,	NULL,				NULL,		"");
+	print_test_strarrfold("strarrfold (null sep)",		SIGNAL_SIGSEGV,	NULL,				strarr3,	NULL);
+	print_test_strarrfold("strarrfold (both null)",		SIGNAL_SIGSEGV,	NULL,				NULL,		NULL);
 }
 #endif
 

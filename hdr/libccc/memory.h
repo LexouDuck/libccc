@@ -174,7 +174,7 @@ void				Memory_Delete(void* *a_ptr);
 
 //! Sets `n` bytes of memory, starting at `ptr`, to the given value `byte`.
 /*!
-**	@isostd{https://en.cppreference.com/w/c/memory/memset}
+**	@isostd{https://en.cppreference.com/w/c/string/byte/memset}
 **
 **	Sets `n` bytes of memory with the given 8-bit value `byte` (taking only the
 **	first 8 bits of this value and writing it byte-per-byte), starting at `ptr`.
@@ -184,7 +184,7 @@ void				Memory_Set(void* ptr, t_u8 byte, t_size n);
 
 //! Sets `n` bytes of memory to 0, starting at `ptr`.
 /*!
-**	@isostd{https://en.cppreference.com/w/c/memory/bzero}
+**	@nonstd, similar to bzero()
 **
 **	Sets `n` bytes of memory to 0, starting at `ptr`. (equivalent to bzero)
 */
@@ -304,7 +304,7 @@ void				Memory_Replace(void* ptr, t_u8 old, t_u8 new, t_size n);
 **	returning (byte1 - byte2) at the first difference encountered.
 **	As such, will return 0 if the contents of `ptr1` and `ptr2` match.
 */
-int					Memory_Compare(void const* ptr1, void const* ptr2, t_size n);
+int					Memory_Compare(void const* ptr1, void const* ptr2, t_size n); // TODO change retrun type to t_sint
 #define c_memcmp	Memory_Compare //!< @alias{Memory_Compare}
 
 
@@ -317,7 +317,7 @@ int					Memory_Compare(void const* ptr1, void const* ptr2, t_size n);
 **	copying exactly `size` bytes of data between the two. (XOR swap method)
 **	Returns 0 if the swap was successful, and 1 otherwise.
 */
-int					Memory_Swap(void* ptr1, void* ptr2, t_size size);
+int					Memory_Swap(void* ptr1, void* ptr2, t_size size); // TODO change retrun type to t_error
 #define c_memswap	Memory_Swap //!< @alias{Memory_Swap}
 
 

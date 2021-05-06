@@ -36,7 +36,11 @@ void	print_test(
 	g_test.last_test_failed = error;
 	if (g_test.flags.verbose || error || warning)
 	{
-		if (test_name)
+		if (args == NULL)
+		{
+			printf(", ");
+		}
+		else
 		{
 			if (!str_equals_until(previous_function, function, ' '))
 				printf("\n");
@@ -45,7 +49,6 @@ void	print_test(
 			else printf("\n%s", test_name);
 			printf(" -> ");
 		}
-		else printf(", ");
 	}
 	if (g_test.flags.show_args && (g_test.flags.verbose || g_test.last_test_failed))
 	{
@@ -201,6 +204,22 @@ void	print_test_sign(s_test_sign* test, char const* args)
 
 
 
+void	print_test_ptr(s_test_ptr* test, char const* args)
+{
+	int error;
+
+	if (test->result_sig || test->expect_sig)
+		error = (test->result_sig != test->expect_sig);
+	else error = (test->result != test->expect);
+	print_test(test->name, test->function, args,
+		(test->result_sig ? signals[test->result_sig] : ptr_to_str(test->result)),
+		(test->expect_sig ? signals[test->expect_sig] : ptr_to_str(test->expect)),
+		test->can_sig,
+		error, NULL);
+}
+
+
+
 void	print_test_mem(s_test_mem* test, char const* args)
 {
 	int error;
@@ -264,6 +283,7 @@ void	print_test_alloc(s_test_alloc* test, char const* args)
 	{
 		printf("\n%s -> ", test->name);
 	}
+// TODO call print_test() here
 	if (error)
 	{
 		printf(C_RED"\nError"C_RESET": ");
@@ -417,30 +437,24 @@ void	print_test_list(s_test_list* test, char const* args)
 void	print_test_date(s_test_date* test, char const* args)
 {
 	int error;
-	s_date result;
-	s_date expect;
 	char str_result[DATE_STR_BUFFER];
 	char str_expect[DATE_STR_BUFFER];
 
-	result = *test->result;
-	expect = *test->expect;
 	if (test->result_sig || test->expect_sig)
 		error = (test->result_sig != test->expect_sig);
-	else if (test->result == NULL || test->expect == NULL)
-		error = (test->result != test->expect);
 	else
-		error = !( result.hour      == expect.hour
-				&& result.min       == expect.min
-				&& result.sec       == expect.sec
-				&& result.year      == expect.year
-				&& result.month     == expect.month
-				&& result.day_month == expect.day_month
-				&& result.day_week  == expect.day_week
-				&& result.day_year  == expect.day_year
-				&& result.is_dst    == expect.is_dst
-				&& result.offset    == expect.offset);
-	snprintf(str_result, DATE_STR_BUFFER, "{"DATE_STR_FORMAT"}", result.hour, result.min, result.sec, result.year, result.month, result.day_month, result.day_week, result.day_year, (result.is_dst ? "TRUE" : "FALSE"), result.offset);
-	snprintf(str_expect, DATE_STR_BUFFER, "{"DATE_STR_FORMAT"}", expect.hour, expect.min, expect.sec, expect.year, expect.month, expect.day_month, expect.day_week, expect.day_year, (expect.is_dst ? "TRUE" : "FALSE"), expect.offset);
+		error = !( test->result.hour      == test->expect.hour
+				&& test->result.min       == test->expect.min
+				&& test->result.sec       == test->expect.sec
+				&& test->result.year      == test->expect.year
+				&& test->result.month     == test->expect.month
+				&& test->result.day_month == test->expect.day_month
+				&& test->result.day_week  == test->expect.day_week
+				&& test->result.day_year  == test->expect.day_year
+				&& test->result.is_dst    == test->expect.is_dst
+				&& test->result.offset    == test->expect.offset);
+	snprintf(str_result, DATE_STR_BUFFER, "{"DATE_STR_FORMAT"}", test->result.hour, test->result.min, test->result.sec, test->result.year, test->result.month, test->result.day_month, test->result.day_week, test->result.day_year, (test->result.is_dst ? "TRUE" : "FALSE"), test->result.offset);
+	snprintf(str_expect, DATE_STR_BUFFER, "{"DATE_STR_FORMAT"}", test->expect.hour, test->expect.min, test->expect.sec, test->expect.year, test->expect.month, test->expect.day_month, test->expect.day_week, test->expect.day_year, (test->expect.is_dst ? "TRUE" : "FALSE"), test->expect.offset);
 	print_test(test->name, test->function, args,
 		str_result,
 		str_expect,

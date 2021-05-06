@@ -17,7 +17,7 @@ char const*	signals[ENUMLENGTH_SIGNAL + 1] =
 
 
 
-int		segfault;
+e_signal	sig;
 
 jmp_buf	restore;
 

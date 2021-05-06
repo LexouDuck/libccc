@@ -33,10 +33,10 @@ void	print_test_size_to_str(char const* test_name, int can_segfault,
 		char const* expecting,
 		t_size number)
 {
-	TEST_PERFORM(char*, size_to_str, number)
-	print_test_str(test_name, "_size_to_str", result_libccc, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS("%zu", number)
+	TEST_INIT(str)
+	TEST_PERFORM(	size_to_str, number)
+	TEST_PRINT(str,	size_to_str, "%zu", number)
+	TEST_FREE()
 }
 void	test_size_to_str(void)
 {
@@ -85,10 +85,9 @@ void	print_test_str_to_size(char const* test_name, int can_segfault,
 		t_size expecting,
 		char const* str)
 {
-	TEST_PERFORM_RESULT_TYPE(t_size, str_to_size, str)
-	print_test_size(test_name, "_str_to_size", result_libccc, expecting, can_segfault);
-	print_timer_result(&t, FALSE);
-	TEST_PRINT_ARGS_ESCAPED(str)
+	TEST_INIT(size)
+	TEST_PERFORM(	str_to_size, str)
+	TEST_PRINT(size,str_to_size, "str=\"%s\"", str)
 }
 void	test_str_to_size(void)
 {

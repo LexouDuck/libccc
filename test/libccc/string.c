@@ -476,7 +476,7 @@ void	print_test_strequ(char const* test_name, int can_segfault,
 		char const* str1,
 		char const* str2)
 {
-	TEST_PERFORM_RESULT_TYPE(t_bool, strequ, str1, str2)
+	TEST_PERFORM(t_bool, strequ, str1, str2)
 	print_test_bool(test_name, "_strequ return", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("str1=\"%s\", str2=\"%s\"", str1, str2)
@@ -510,7 +510,7 @@ void	print_test_strnequ(char const* test_name, int can_segfault,
 		char const* str2,
 		t_size n)
 {
-	TEST_PERFORM_RESULT_TYPE(t_bool, strnequ, str1, str2, n)
+	TEST_PERFORM(t_bool, strnequ, str1, str2, n)
 	print_test_bool(test_name, "_strnequ return", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("str1=\"%s\", str2=\"%s\", n=%lu", str1, str2, n)
@@ -545,7 +545,7 @@ void	print_test_strhas(char const* test_name, int can_segfault,
 		char const* str,
 		char const* charset)
 {
-	TEST_PERFORM_RESULT_TYPE(t_bool, strhas, str, charset)
+	TEST_PERFORM(t_bool, strhas, str, charset)
 	print_test_bool(test_name, "_strhas", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("str=\"%s\", charset=\"%s\"", str, charset)
@@ -574,7 +574,7 @@ void	print_test_strhasonly(char const* test_name, int can_segfault,
 		char const* str,
 		char const* charset)
 {
-	TEST_PERFORM_RESULT_TYPE(t_bool, strhasonly, str, charset)
+	TEST_PERFORM(t_bool, strhasonly, str, charset)
 	print_test_bool(test_name, "_strhasonly", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("str=\"%s\", charset=\"%s\"", str, charset)
@@ -604,7 +604,7 @@ void	print_test_strcount_char(char const* test_name, int can_segfault,
 		char const* str,
 		char c)
 {
-	TEST_PERFORM_RESULT_TYPE(t_size, strcount_char, str, c)
+	TEST_PERFORM(t_size, strcount_char, str, c)
 	print_test_size(test_name, "_strcount_char", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("str=\"%s\", c=0x%x/'%c'", str, c, c)
@@ -633,7 +633,7 @@ void	print_test_strcount_str(char const* test_name, int can_segfault,
 		char const* str,
 		char const* query)
 {
-	TEST_PERFORM_RESULT_TYPE(t_size, strcount_str, str, query)
+	TEST_PERFORM(t_size, strcount_str, str, query)
 	print_test_size(test_name, "_strcount_str", result_libccc, expecting, can_segfault);
 	print_timer_result(&t, FALSE);
 	TEST_PRINT_ARGS("str=\"%s\", query=\"%s\"", str, query)

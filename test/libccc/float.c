@@ -29,19 +29,19 @@
 */
 
 #define DEFINETEST_FLOAT_TO_STR(TYPE) \
-void	print_test_##TYPE##tostr(char const* test_name, int can_segfault,					\
-		char const* expecting,																\
-		t_##TYPE number,																	\
-		t_u8 precision)																		\
-{																							\
-	TEST_PERFORM(char*, TYPE##tostr, number, precision)									\
-	print_test_str(test_name, "_"#TYPE"tostr", result_libccc, expecting, can_segfault);	\
-	print_timer_result(&t, FALSE);															\
-	TEST_PRINT_ARGS("%+#.*g, p=%u", precision, number, precision)							\
-}																							\
-void	test_##TYPE##tostr(void)																								\
-{																																\
-/*	| TEST FUNCTION           | TEST NAME                     |CAN SEGV| EXPECTING              | TEST ARGS				*/		\
+void	print_test_##TYPE##tostr(char const* test_name, int can_segfault,		\
+		char const* expecting,													\
+		t_##TYPE number,														\
+		t_u8 precision)															\
+{																				\
+	TEST_INIT(str)																\
+	TEST_PERFORM(	TYPE##tostr, number, precision)								\
+	TEST_PRINT(str, TYPE##tostr, "%+#.*g, p=%u", precision, number, precision)	\
+	TEST_FREE()																	\
+}																				\
+void	test_##TYPE##tostr(void)																							\
+{																															\
+/*	| TEST FUNCTION         | TEST NAME                   |CAN SEGV| EXPECTING              | TEST ARGS				*/		\
 	print_test_##TYPE##tostr(#TYPE"tostr               ",	FALSE,                       "1", 1.                   , 0);	\
 	print_test_##TYPE##tostr(#TYPE"tostr               ",	FALSE,                     "1.0", 1.                   , 1);	\
 	print_test_##TYPE##tostr(#TYPE"tostr               ",	FALSE,                    "1.00", 1.                   , 2);	\
@@ -126,13 +126,13 @@ void test_f64tostr(void)	{}
 DEFINETEST_FLOAT_TO_STR(f64)
 #endif
 
-#if !defined(c_f80tostr) || !defined(__float80)
+#if (!defined(c_f80tostr) || !defined(__float80))
 void test_f80tostr(void)	{}
 #else
 DEFINETEST_FLOAT_TO_STR(f80)
 #endif
 
-#if !defined(c_f128tostr) || !defined(__float128)
+#if (!defined(c_f128tostr) || !defined(__float128))
 void test_f128tostr(void)	{}
 #else
 DEFINETEST_FLOAT_TO_STR(f128)
@@ -158,13 +158,13 @@ void test_f64tostrexp(void)	{}
 DEFINETEST_FLOAT_TO_STREXP(f64)
 #endif
 
-#ifn defined(c_f80tostrexp) && defined(__float80)
+#if (!defined(c_f80tostrexp) || !defined(__float80))
 void test_f80tostrexp(void)	{}
 #else
 DEFINETEST_FLOAT_TO_STREXP(f80)
 #endif
 
-#ifn defined(c_f128tostrexp) && defined(__float128)
+#if (!defined(c_f128tostrexp) || !defined(__float128))
 void test_f128tostrexp(void)	{}
 #else
 DEFINETEST_FLOAT_TO_STREXP(f128)
@@ -190,13 +190,13 @@ void test_f64tostrdec(void)	{}
 DEFINETEST_FLOAT_TO_STRDEC(f64)
 #endif
 
-#ifn defined(c_f80tostrdec) && defined(__float80)
+#if (!defined(c_f80tostrdec) || !defined(__float80))
 void test_f80tostrdec(void)	{}
 #else
 DEFINETEST_FLOAT_TO_STRDEC(f80)
 #endif
 
-#ifn defined(c_f128tostrdec) && defined(__float128)
+#if (!defined(c_f128tostrdec) || !defined(__float128))
 void test_f128tostrdec(void)	{}
 #else
 DEFINETEST_FLOAT_TO_STRDEC(f128)
@@ -222,13 +222,13 @@ void test_f64tostrhex(void)	{}
 DEFINETEST_FLOAT_TO_STRHEX(f64)
 #endif
 
-#ifn defined(c_f80tostrhex) && defined(__float80)
+#if (!defined(c_f80tostrhex) || !defined(__float80))
 void test_f80tostrhex(void)	{}
 #else
 DEFINETEST_FLOAT_TO_STRHEX(f80)
 #endif
 
-#ifn defined(c_f128tostrhex) && defined(__float128)
+#if (!defined(c_f128tostrhex) || !defined(__float128))
 void test_f128tostrhex(void)	{}
 #else
 DEFINETEST_FLOAT_TO_STRHEX(f128)
@@ -254,13 +254,13 @@ void test_f64tostrbin(void)	{}
 DEFINETEST_FLOAT_TO_STRBIN(f64) // TODO
 #endif
 
-#ifn defined(c_f80tostrbin) && defined(__float80)
+#if (!defined(c_f80tostrbin) || !defined(__float80))
 void test_f80tostrbin(void)	{}
 #else
 DEFINETEST_FLOAT_TO_STRBIN(f80) // TODO
 #endif
 
-#ifn defined(c_f128tostrbin) && defined(__float128)
+#if (!defined(c_f128tostrbin) || !defined(__float128))
 void test_f128tostrbin(void)	{}
 #else
 DEFINETEST_FLOAT_TO_STRBIN(f128) // TODO
@@ -281,18 +281,17 @@ DEFINETEST_FLOAT_TO_STRBIN(float) // TODO
 */
 
 #define DEFINETEST_STR_TO_FLOAT(TYPE) \
-void	print_test_strto##TYPE(char const* test_name, int can_segfault,					\
-		t_##TYPE expecting,																	\
-		char const* str)																	\
-{																							\
-	TEST_PERFORM_RESULT_TYPE(t_##TYPE, strto##TYPE, str)									\
-	print_test_##TYPE(test_name, "_strto"#TYPE, result_libccc, expecting, can_segfault);	\
-	print_timer_result(&t, FALSE);															\
-	TEST_PRINT_ARGS_ESCAPED(str)															\
-}																							\
+void	print_test_strto##TYPE(char const* test_name, int can_segfault,	\
+		t_##TYPE expecting,												\
+		char const* str)												\
+{																		\
+	TEST_INIT(TYPE)														\
+	TEST_PERFORM(	strto##TYPE, str)									\
+	TEST_PRINT(TYPE,strto##TYPE, "str=\"%s\"", str)						\
+}																		\
 void	test_strto##TYPE(void)																									\
-{																																	\
-/*	| TEST FUNCTION  | TEST NAME                              |CAN SEGV| EXPECTING                | TEST ARGS					*/	\
+{																																\
+/*	| TEST FUNCTION       | TEST NAME                     |CAN SEGV| EXPECTING                | TEST ARGS					*/	\
 	print_test_strto##TYPE("strto"#TYPE,                	FALSE,                          0., "0"                          );	\
 	print_test_strto##TYPE("strto"#TYPE,                	FALSE,                          1., "1"                          );	\
 	print_test_strto##TYPE("strto"#TYPE,                	FALSE,                          2., "2"                          );	\
@@ -699,13 +698,13 @@ void test_strtof64(void)	{}
 DEFINETEST_STR_TO_FLOAT(f64)
 #endif
 
-#if !defined(c_strtof80) || !defined(__float80)
+#if (!defined(c_strtof80) || !defined(__float80))
 void test_strtof80(void)	{}
 #else
 DEFINETEST_STR_TO_FLOAT(f80)
 #endif
 
-#if !defined(c_strtof128) || !defined(__float128)
+#if (!defined(c_strtof128) || !defined(__float128))
 void test_strtof128(void)	{}
 #else
 DEFINETEST_STR_TO_FLOAT(f128)

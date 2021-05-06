@@ -29,11 +29,6 @@
 
 
 
-extern int		segfault;
-extern jmp_buf	restore;
-
-
-
 typedef enum signal
 {
 	SIGNAL_NULL = 0,//!< No signal emitted by function tested
@@ -46,7 +41,15 @@ typedef enum signal
 ENUMLENGTH_SIGNAL
 }			e_signal;
 
-char const*	signals[ENUMLENGTH_SIGNAL + 1];
+
+
+//! global array which holds the string equivalents for the SIGNAL_ enum
+extern char const*	signals[ENUMLENGTH_SIGNAL + 1];
+
+//! global variable which stores the latest signal emitted
+extern e_signal		sig;
+//! global variable which stores the execution context, to restore execution after a signal
+extern jmp_buf	restore;
 
 
 
@@ -72,15 +75,15 @@ void	signal_handler(int signaltype, siginfo_t *info, void *ptr);
 */
 
 #define _TRY \
-	segfault = setjmp(restore);			\
-	if (!segfault)						\
+	sig = setjmp(restore);				\
+	if (!sig)							\
 
 #define _CATCH \
 	else								\
 
 #ifdef __MINGW32__
 #define _END \
-	if (segfault)						\
+	if (sig)							\
 		signal(SIGSEGV,	signal_handler);\
 
 #else

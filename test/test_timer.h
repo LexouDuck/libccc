@@ -24,13 +24,15 @@ typedef struct timespec s_time;
 
 typedef struct timer
 {
-	s_time	start1;
-	s_time	start2;
-	s_time	end1;
-	s_time	end2;
-	s_time	time1;
-	s_time	time2;
-}				s_timer;
+	s_time	result_start;
+	s_time	result_end;
+	s_time	result_time;
+
+	s_time	expect_start;
+	s_time	expect_end;
+	s_time	expect_time;
+
+}			s_timer;
 
 
 
