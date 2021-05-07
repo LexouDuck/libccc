@@ -434,6 +434,7 @@ TEST_SRCS = \
 	$(TEST_DIR)libccc/monad/tree.c			\
 	$(TEST_DIR)libccc/monad/dict.c			\
 	$(TEST_DIR)libccc/monad/object.c		\
+	$(TEST_DIR)libccc/encode/json.c			\
 
 TEST_OBJS = ${TEST_SRCS:%.c=$(OBJDIR)%.o}
 

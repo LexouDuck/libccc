@@ -70,12 +70,14 @@ typedef s_kvt	s_json;
 **	Supply a block of JSON, and this returns a `s_json` object you can interrogate.
 */
 s_json*						JSON_Parse(t_char const* json);
+#define c_jsonparse			JSON_Parse
 #define JSON_Parse			JSON_Parse
 #define JSON_Decode			JSON_Parse
 #define JSON_FromString		JSON_Parse
 
 //! Create a new `s_json` object, parsed from a (valid) JSON string, (only the first `n` chars are parsed)
 s_json*						JSON_Parse_N(t_char const* json, t_size n);
+#define c_jsonparsen		JSON_Parse_N
 #define JSON_Decode_N		JSON_Parse_N
 #define JSON_FromString_N	JSON_Parse_N
 
@@ -87,27 +89,32 @@ s_json*						JSON_Parse_N(t_char const* json, t_size n);
 **	will contain a pointer to the error, such that it will match the return of JSON_GetErrorPtr().
 */
 s_json*								JSON_Parse_Strict(t_char const* json, t_char const** return_parse_end);
+#define c_jsonsparse				JSON_Parse_Strict
 #define JSON_Decode_Strict			JSON_Parse_Strict
 #define JSON_FromString_Strict		JSON_Parse_Strict
 
 //! Create a new `s_json` object, parsed from a (valid) JSON string, (only the first `n` chars are parsed)
 s_json*								JSON_Parse_Strict_N(t_char const* json, t_size n, t_char const** return_parse_end);
+#define c_jsonsparsen				JSON_Parse_Strict_N
 #define JSON_Decode_Strict_N		JSON_Parse_Strict_N
 #define JSON_FromString_Strict_N	JSON_Parse_Strict_N
 
 
 
 #define 				JSON_Print	JSON_Print_Pretty
+#define c_jsonprint		JSON_Print
 #define JSON_Encode		JSON_Print
 #define JSON_ToString	JSON_Print
 
 //! Render a s_json entity to text for transfer/storage (with 'pretty' formatting).
 t_char*							JSON_Print_Pretty(s_json const* item);
+#define c_jsonprintfmt			JSON_Parse
 #define JSON_Encode_Pretty		JSON_Print_Pretty
 #define JSON_ToString_Pretty	JSON_Print_Pretty
 
 //! Render a s_json entity to text for transfer/storage, without any formatting/whitespace
 t_char*							JSON_Print_Minify(s_json const* item);
+#define c_jsonprintmin			JSON_Parse
 #define JSON_Decode_Minify		JSON_Print_Minify
 #define JSON_ToString_Minify	JSON_Print_Minify
 

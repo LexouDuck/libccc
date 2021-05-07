@@ -69,14 +69,21 @@ void	print_test(
 				expected, expect);
 			free(expected);
 		}
-		else printf(">c_%s: (%s)\n>  %s: (%s)"C_RESET,
-			function, result,
-			function, expect);
+		else
+		{
+			printf(">c_%s: (%s)\n>  %s: (%s)"C_RESET,
+				function, result,
+				function, expect);
+		}
 	}
 	else if (warning)
+	{
 		printf(C_YELLOW"Warning"C_RESET": %s", warning);
+	}
 	else if (g_test.flags.verbose)
+	{
 		printf(C_GREEN"OK!"C_RESET);
+	}
 	fflush(stdout);
 	fflush(stderr);
 	previous = function;
@@ -251,8 +258,8 @@ void	print_test_mem(s_test_mem* test, char const* args)
 
 void	print_test_str(s_test_str* test, char const* args)
 {
-	char* tmp_result = str_to_escape(test->result);
-	char* tmp_expect = str_to_escape(test->expect);
+	char* tmp_result = strlen(test->result) < STRING_ESCAPE_THRESHOLD ? str_to_escape(test->result) : strdup(test->result);
+	char* tmp_expect = strlen(test->expect) < STRING_ESCAPE_THRESHOLD ? str_to_escape(test->expect) : strdup(test->expect);
 	int error;
 
 	if (test->result_sig || test->expect_sig)

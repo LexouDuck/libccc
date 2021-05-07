@@ -172,7 +172,10 @@ char*	str_to_escape(char const* str)
 		return (NULL);
 	while (str[index])
 	{
-		if (!isprint(str[index]))
+		if (str[index] == '\'' ||
+			str[index] == '\"' ||
+			str[index] == '\\' ||
+			!isprint(str[index]))
 		{
 			result[i++] = '\\';
 			switch (str[index])
@@ -184,9 +187,9 @@ char*	str_to_escape(char const* str)
 				case 0x0D: result[i++] =  'r'; break; // Carriage Return
 				case 0x09: result[i++] =  't'; break; // Horizontal Tab
 				case 0x0B: result[i++] =  'v'; break; // Vertical Tab
-				case 0x5C: result[i++] = '\\'; break; // Backslash
 				case 0x27: result[i++] = '\''; break; // Single quotation mark
 				case 0x22: result[i++] = '\"'; break; // Double quotation mark
+				case 0x5C: result[i++] = '\\'; break; // Backslash
 				case 0x3F: result[i++] =  '?'; break; // Question mark (used to avoid trigraphs)
 				default: result[i++] = 'x'; // Hexadecimal char notation: \xFF
 					HI_nibble = (str[index] & 0xF0) >> 4;

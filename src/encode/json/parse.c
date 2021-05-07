@@ -34,7 +34,7 @@ static t_bool JSON_Parse_Object(s_json* const item, s_json_parse* const p);
 
 //! used to handle errors during parsing
 #define PARSINGERROR_JSON(MESSAGE, ...) \
-	{ p->error = String_Format(PARSINGERROR_JSON_MESSAGE MESSAGE, ##__VA_ARGS__);	goto failure; }
+	{ p->error = String_Format("%s\n"MESSAGE, (p->error ? p->error : ""), ##__VA_ARGS__);	goto failure; }
 
 //! Safely checks if the content to parse can be accessed at the given index
 #define CAN_PARSE(i) \
@@ -428,26 +428,27 @@ static
 t_bool	JSON_Parse_Value(s_json* const item, s_json_parse* const p)
 {
 	if ((p == NULL) || (p->content == NULL))
-		return (FALSE); // no input
-
+	{
+		PARSINGERROR_JSON("No input, unable to determine what to attempt parsing")
+	}
 	// p the different types of values
-	if (CAN_PARSE(4) && (String_Equals_N((t_char const*)&p->content[p->offset], "null", 4) ||
-		p->strict ? 0 :	 String_Equals_N((t_char const*)&p->content[p->offset], "NULL", 4)))
+	if (CAN_PARSE(4) && (String_Equals_N((t_char const*)&p->content[p->offset], "null", 4) || (
+		p->strict ? 0 :	 String_Equals_N((t_char const*)&p->content[p->offset], "NULL", 4))))
 	{	// null
 		item->type = DYNAMIC_TYPE_NULL;
 		p->offset += 4;
 		return (TRUE);
 	}
-	if (CAN_PARSE(5) && (String_Equals_N((t_char const*)&p->content[p->offset], "false", 5) ||
-		p->strict ? 0 :	 String_Equals_N((t_char const*)&p->content[p->offset], "FALSE", 5)))
+	if (CAN_PARSE(5) && (String_Equals_N((t_char const*)&p->content[p->offset], "false", 5) || (
+		p->strict ? 0 :	 String_Equals_N((t_char const*)&p->content[p->offset], "FALSE", 5))))
 	{	// FALSE
 		item->type = DYNAMIC_TYPE_BOOLEAN;
 		item->value.boolean = FALSE;
 		p->offset += 5;
 		return (TRUE);
 	}
-	if (CAN_PARSE(4) && (String_Equals_N((t_char const*)&p->content[p->offset], "true", 4) ||
-		p->strict ? 0 :	 String_Equals_N((t_char const*)&p->content[p->offset], "TRUE", 4)))
+	if (CAN_PARSE(4) && (String_Equals_N((t_char const*)&p->content[p->offset], "true", 4) || (
+		p->strict ? 0 :	 String_Equals_N((t_char const*)&p->content[p->offset], "TRUE", 4))))
 	{	// TRUE
 		item->type = DYNAMIC_TYPE_BOOLEAN;
 		item->value.boolean = TRUE;
@@ -472,6 +473,8 @@ t_bool	JSON_Parse_Value(s_json* const item, s_json_parse* const p)
 	{	// object
 		return (JSON_Parse_Object(item, p));
 	}
+	PARSINGERROR_JSON("No match, unable to determine what to attempt parsing (at \"%.6s\")", p->content + p->offset)
+failure:
 	return (FALSE);
 }
 
@@ -524,7 +527,7 @@ failure:
 			*return_parse_end = (t_char const*)(json + position);
 		}
 	}
-	return (NULL);
+	LIBCONFIG_HANDLE_PARSINGERROR(NULL, "%s", p.error)
 }
 
 

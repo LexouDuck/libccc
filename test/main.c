@@ -9,7 +9,7 @@
 
 
 
-static char const * program_name = NULL;
+static char const* program_name = NULL;
 
 /*
 ** ************************************************************************** *|
@@ -84,7 +84,7 @@ static void	init(void)
 		(s_test_suite){ FALSE, "monad/dict",		testsuite_monad_dict },
 		(s_test_suite){ FALSE, "monad/tree",		testsuite_monad_tree },
 		(s_test_suite){ FALSE, "monad/object",		testsuite_monad_object },
-//		(s_test_suite){ FALSE, "encode/json",		testsuite_encode_json },
+		(s_test_suite){ FALSE, "encode/json",		testsuite_encode_json },
 //		(s_test_suite){ FALSE, "encode/toml",		testsuite_encode_toml },
 //		(s_test_suite){ FALSE, "encode/yaml",		testsuite_encode_yaml },
 //		(s_test_suite){ FALSE, "encode/xml",		testsuite_encode_xml },
@@ -129,7 +129,7 @@ static int	check_no_test_suites(void)
 // A special return value to signal when a help argument has been provided by the user
 #define MATCHED_HELP	((int)-1)
 
-static int	handle_args_test_suites(char const * arg)
+static int	handle_args_test_suites(char const* arg)
 {
 	for (int i = 0; i < TEST_SUITE_AMOUNT; ++i)
 	{
@@ -157,7 +157,7 @@ static int	handle_args_option_char(char arg)
 	return (FALSE);
 }
 
-static int	handle_args_option_string(char const * arg)
+static int	handle_args_option_string(char const* arg)
 {
 	for (int i = 0; i < TEST_ARGS_AMOUNT; ++i)
 	{
@@ -174,7 +174,7 @@ static int	handle_args_option_string(char const * arg)
 
 
 
-int		main(int argc, char **argv)
+int		main(int argc, char** argv)
 {
 	if (argc < 1 || argv == NULL)
 	{

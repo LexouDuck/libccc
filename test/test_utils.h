@@ -80,6 +80,7 @@ char*	print_memory(void const* ptr, t_size length);
 
 char*	str_padleft(char const* str, char c, t_size length);
 
+#define STRING_ESCAPE_THRESHOLD	128
 char*	str_to_escape(char const* str);
 
 char*	int_s_to_str(t_s64 number);
@@ -193,9 +194,9 @@ DEFINEFUNC_PRINT_TEST(alloc,	char const*)
 **	Initialization logic for any test
 */
 #define TEST_INIT(TYPENAME) \
-	char*	args;									\
-	size_t	len;									\
-	char*	tmp;									\
+	char*	args = NULL;							\
+	char*	tmp = NULL;								\
+	size_t	len = 0;								\
 	s_test_##TYPENAME test = (s_test_##TYPENAME)	\
 	{												\
 		.name = test_name,							\
@@ -315,10 +316,17 @@ DEFINEFUNC_PRINT_TEST(alloc,	char const*)
 	if (tmp == NULL)	return;								\
 	len = snprintf((tmp), len + 1, FORMAT, ##__VA_ARGS__);	\
 	if (len < 0)		return;								\
-	args = str_to_escape(tmp);								\
-	free(tmp);												\
+	if (len < STRING_ESCAPE_THRESHOLD)						\
+	{														\
+		args = str_to_escape(tmp);							\
+		free(tmp);											\
+		if (args == NULL)	return;							\
+	}														\
+	else													\
+	{														\
+		args = tmp;											\
+	}														\
 	tmp = NULL;												\
-	if (args == NULL)	return;								\
 
 
 
