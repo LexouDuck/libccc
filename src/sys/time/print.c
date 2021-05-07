@@ -19,24 +19,50 @@ char*	Date_ToString(s_date const* date, char const* format)
 	struct tm tm;
 	char*	result;
 	t_size	size;
-	t_size	r;
+	t_size	wrote;
+	t_uint	leapsec;
 
+	if (!Date_IsValid(date))
+		return (NULL);
 	tm = Date_ToSTDC(date);
 	size = String_Length(format) + 1;
 	result = String_New(size);
 	if (result == NULL)
 		return (NULL);
-	r = strftime(result, size, format, &tm);
-	while (r == 0 && size < MAX_BUFFER_SIZE)
+	leapsec = (tm.tm_sec >= TIME_MAX_SECONDS) ? (tm.tm_sec - (TIME_MAX_SECONDS - 1)) : 0;
+	tm.tm_sec -= leapsec;
+	wrote = strftime(result, size - 1, format, &tm);
+	while (wrote == 0 && size < MAX_BUFFER_SIZE)
 	{
 		String_Delete(&result);
 		size *= 2;
 		result = String_New(size);
 		if (result == NULL)
 			return (NULL);
-		r = strftime(result, size - 1, format, &tm);
+		wrote = strftime(result, size - 1, format, &tm);
 	}
-	result[r] = '\0';
+	if (size >= MAX_BUFFER_SIZE)
+		return (NULL);
+	result[wrote] = '\0';
+/*
+	if (leapsec) // TODO fix this heuristic shit (waiting for ISO to fix their shit)
+	{
+		char target[4] = { '%','S','\0','\0' };
+		char* secs = String_Find_String(format, target);
+		if (secs)
+		{
+			target[0] = '5';
+			target[1] = '9';
+			target[2] = (secs[2] == '%' ? '\0' : secs[2]);
+			secs = String_Find_String(result, target);
+			if (secs)
+			{
+				secs[0] = '6';
+				secs[1] = '0';
+			}
+		}
+	}
+*/
 	return (result);
 }
 

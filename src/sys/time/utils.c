@@ -83,9 +83,20 @@ t_uint	Date_DaysInMonth(e_month month, t_s32 year)
 
 e_weekday	Date_DayOfTheWeek(s_date* date)
 {
+// algorithm courtesy of Tomohiko Sakamoto
+    static char const t[] = { 0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4 };
+    t_s32 y = date->year;
+    if (date->month < MONTH_MARCH)
+    {
+        y -= 1;
+    }
+    return ((y + y/4 - y/100 + y/400 + t[date->month] + date->day_month) % ENUMLENGTH_WEEKDAY);
+/*
+// simple epoch-based algorithm
 	t_time t = Date_ToTime(date);
 	t_s64 days_since_epoch = (t / (TIME_MAX_SECONDS * TIME_MAX_MINUTES * TIME_MAX_HOURS));
 	return ((days_since_epoch + 4) % ENUMLENGTH_WEEKDAY); // 1 Jan 1970 was a Thursday, we add 4 so Sunday is day 0
+*/
 }
 
 

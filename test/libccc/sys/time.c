@@ -242,8 +242,8 @@ void	test_strtodate(void)
 	print_test_strtodate("strtodate                  ",	FALSE,                ween_date, FORMAT_UTC, ween_str);
 	print_test_strtodate("strtodate (leap year)      ",	FALSE,           leap_year_date, FORMAT_UTC, leap_year_str);
 	print_test_strtodate("strtodate (leap second)    ",	FALSE,         leap_second_date, FORMAT_UTC, leap_second_str);
-	print_test_strtodate("strtodate (bad leap year)  ",	FALSE,                DATE_NULL, FORMAT_UTC, bad_leap_year_str);
-	print_test_strtodate("strtodate (bad leap second)",	FALSE,                DATE_NULL, FORMAT_UTC, bad_leap_second_str);
+	print_test_strtodate("strtodate (bad leap year)  ",	FALSE,       bad_leap_year_date, FORMAT_UTC, bad_leap_year_str);
+	print_test_strtodate("strtodate (bad leap second)",	FALSE,     bad_leap_second_date, FORMAT_UTC, bad_leap_second_str);
 }
 #endif
 

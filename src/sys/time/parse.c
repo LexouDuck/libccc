@@ -200,18 +200,18 @@ t_s64	strptime_parsestring(t_u8 const* *a_buffer, t_char const* const* n1, t_cha
 {
 	t_u8 const*	buffer = *a_buffer;
 	t_size length;
-	t_sint _i;
+	t_sint i;
 
 	/* check full name - then abbreviated ones */
 	while (n1 != NULL)
 	{
-		for (_i = 0; _i < c; ++_i, ++n1)
+		for (i = 0; i < c; ++i, ++n1)
 		{
 			length = String_Length(*n1);
 			if (String_Equals_N_IgnoreCase(*n1, (t_char const*)buffer, length))
 			{
 				*a_buffer = buffer + length;
-				return (_i);
+				return (i);
 			}
 		}
 		n1 = n2;
@@ -704,6 +704,8 @@ t_size		Date_Parse_(s_date* dest, t_char const* str, t_char const* format, t_boo
 		if (!Date_IsValid(&result))
 			return (0);
 	}
+	t_uint leapsec = (result.sec >= TIME_MAX_SECONDS) ? (result.sec - (TIME_MAX_SECONDS - 1)) : 0;
+	result.sec -= leapsec;
 	if (!onlyknown)
 	{
 		if (HAS_WRITTEN(year) && HAS_WRITTEN(month))
@@ -712,19 +714,19 @@ t_size		Date_Parse_(s_date* dest, t_char const* str, t_char const* format, t_boo
 			{
 				if (HAS_WRITTEN(day_month) && !HAS_WRITTEN(day_year))
 				{
-					for (e_month _i = 0; _i < result.month; ++_i)
+					for (e_month i = 0; i < result.month; ++i)
 					{
-						result.day_year += Date_DaysInMonth(_i, result.year);
+						result.day_year += Date_DaysInMonth(i, result.year);
 					}
 					result.day_year += result.day_month - 1;
 				}
 				if (HAS_WRITTEN(day_year) && !HAS_WRITTEN(day_month))
 				{
 					t_s32 day = result.day_year;
-					e_month _i = result.month;
-					while (_i--)
+					e_month i = result.month;
+					while (i--)
 					{
-						day -= Date_DaysInMonth(_i, result.year);
+						day -= Date_DaysInMonth(i, result.year);
 					}
 					result.day_month = day;
 				}
@@ -735,6 +737,7 @@ t_size		Date_Parse_(s_date* dest, t_char const* str, t_char const* format, t_boo
 			}
 		}
 	}
+	result.sec += leapsec;
 	*dest = result;
 	return (parsed);
 }

@@ -281,7 +281,7 @@ void	test_memccpy(void)
 	print_test_memccpy("memccpy (chars>0x80)", FALSE,			str1, str2, "\x78\x7F\x80\x81\x90\xA0\xB0", '\x90', 8);
 	print_test_memccpy("memccpy (chars>0x80)", FALSE,			str1, str2, "\x78\x7F\x80\x81\x90\xA0\xB0", '\xB0', 8);
 	print_test_memccpy("memccpy (int*)      ", FALSE,			num1, num2, num,   0xAA, sizeof(n));
-	print_test_memccpy("memccpy (c = '\\0') ", FALSE,			str1, str2, test3, '\0', test3_len);
+	print_test_memccpy("memccpy (c = '\\0')  ",FALSE,			str1, str2, test3, '\0', test3_len);
 	print_test_memccpy("memccpy (null dest) ", SIGNAL_SIGSEGV,	NULL, NULL, test3, 'e',  test3_len);
 	print_test_memccpy("memccpy (null src)  ", SIGNAL_SIGSEGV,	str1, str2, NULL,  'e',  5);
 	print_test_memccpy("memccpy (both null) ", SIGNAL_SIGSEGV,	NULL, NULL, NULL,  'e',  5);
