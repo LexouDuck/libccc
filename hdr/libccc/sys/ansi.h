@@ -71,20 +71,20 @@ HEADER_CPP
 #define IO_TEXT_RESET_9			ANSI("29")	//!< Undoes the effects of #IO_TEXT_9
 
 #define IO_COLOR_FG_BLACK			ANSI("30")	//!< The string sequence to color the terminal text output black
-#define IO_COLOR_FG_GRAY_DARK		ANSI("90")	//!< The string sequence to color the terminal text output dark gray
 #define IO_COLOR_FG_RED				ANSI("31")	//!< The string sequence to color the terminal text output red
-#define IO_COLOR_FG_RED_LIGHT		ANSI("91")	//!< The string sequence to color the terminal text output light red
 #define IO_COLOR_FG_GREEN			ANSI("32")	//!< The string sequence to color the terminal text output green
-#define IO_COLOR_FG_GREEN_LIGHT		ANSI("92")	//!< The string sequence to color the terminal text output light green
 #define IO_COLOR_FG_YELLOW			ANSI("33")	//!< The string sequence to color the terminal text output yellow
-#define IO_COLOR_FG_YELLOW_LIGHT	ANSI("93")	//!< The string sequence to color the terminal text output light yellow
 #define IO_COLOR_FG_BLUE			ANSI("34")	//!< The string sequence to color the terminal text output blue
-#define IO_COLOR_FG_BLUE_LIGHT		ANSI("94")	//!< The string sequence to color the terminal text output light blue
 #define IO_COLOR_FG_MAGENTA			ANSI("35")	//!< The string sequence to color the terminal text output magenta
-#define IO_COLOR_FG_MAGENTA_LIGHT	ANSI("95")	//!< The string sequence to color the terminal text output light magenta
 #define IO_COLOR_FG_CYAN			ANSI("36")	//!< The string sequence to color the terminal text output cyan
-#define IO_COLOR_FG_CYAN_LIGHT		ANSI("96")	//!< The string sequence to color the terminal text output light cyan
 #define IO_COLOR_FG_GRAY_LIGHT		ANSI("37")	//!< The string sequence to color the terminal text output light gray
+#define IO_COLOR_FG_GRAY_DARK		ANSI("90")	//!< The string sequence to color the terminal text output dark gray
+#define IO_COLOR_FG_RED_LIGHT		ANSI("91")	//!< The string sequence to color the terminal text output light red
+#define IO_COLOR_FG_GREEN_LIGHT		ANSI("92")	//!< The string sequence to color the terminal text output light green
+#define IO_COLOR_FG_YELLOW_LIGHT	ANSI("93")	//!< The string sequence to color the terminal text output light yellow
+#define IO_COLOR_FG_BLUE_LIGHT		ANSI("94")	//!< The string sequence to color the terminal text output light blue
+#define IO_COLOR_FG_MAGENTA_LIGHT	ANSI("95")	//!< The string sequence to color the terminal text output light magenta
+#define IO_COLOR_FG_CYAN_LIGHT		ANSI("96")	//!< The string sequence to color the terminal text output light cyan
 #define IO_COLOR_FG_WHITE			ANSI("97")	//!< The string sequence to color the terminal text output white
 
 //! ANSI Color code (255-map, not supported on certain old terminals)

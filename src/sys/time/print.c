@@ -44,8 +44,8 @@ char*	Date_ToString(s_date const* date, char const* format)
 	if (size >= MAX_BUFFER_SIZE)
 		return (NULL);
 	result[wrote] = '\0';
-/*
-	if (leapsec) // TODO fix this heuristic shit (waiting for ISO to fix their shit)
+/*	// TODO fix this bad heuristic correction (waiting for ISO to get their story straight concerning leap seconds)
+	if (leapsec) 
 	{
 		char target[4] = { '%','S','\0','\0' };
 		char* secs = String_Find_String(format, target);

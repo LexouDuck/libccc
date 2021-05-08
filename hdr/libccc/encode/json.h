@@ -262,11 +262,11 @@ void	JSON_Minify(t_char* json); //!< TODO rename to JSON_Minify_InPlace(), and a
 
 
 
-#define JSON_AddToArray_Item				KVT_AddToArray_Item				//!< @alias{KVT_AddToArray_Item}
-#define JSON_AddToArray_ItemReference		KVT_AddToArray_ItemReference	//!< @alias{KVT_AddToArray_ItemReference}
+#define JSON_AddToArray_Item			KVT_AddToArray_Item				//!< @alias{KVT_AddToArray_Item}
+#define JSON_AddToArray_ItemReference	KVT_AddToArray_ItemReference	//!< @alias{KVT_AddToArray_ItemReference}
 
-#define JSON_AddToObject_Item				KVT_AddToObject_Item			//!< @alias{KVT_AddToObject_Item}
-#define JSON_AddToObject_ItemReference		KVT_AddToObject_ItemReference	//!< @alias{KVT_AddToObject_ItemReference}
+#define JSON_AddToObject_Item			KVT_AddToObject_Item			//!< @alias{KVT_AddToObject_Item}
+#define JSON_AddToObject_ItemReference	KVT_AddToObject_ItemReference	//!< @alias{KVT_AddToObject_ItemReference}
 
 
 

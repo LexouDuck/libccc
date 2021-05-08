@@ -30,11 +30,15 @@ static t_bool JSON_Parse_Object(s_json* const item, s_json_parse* const p);
 
 
 
-#define PARSINGERROR_JSON_MESSAGE	"Error while parsing JSON: "
+#define PARSINGERROR_JSON_MESSAGE	IO_COLOR_FG_RED"JSON PARSE ERROR"IO_RESET":"
 
 //! used to handle errors during parsing
 #define PARSINGERROR_JSON(MESSAGE, ...) \
-	{ p->error = String_Format("%s\n"MESSAGE, (p->error ? p->error : ""), ##__VA_ARGS__);	goto failure; }
+	{																		\
+		p->error = String_Format("%s\n"PARSINGERROR_JSON_MESSAGE" "MESSAGE,	\
+			(p->error ? p->error : ""), ##__VA_ARGS__);						\
+		goto failure;														\
+	}																		\
 
 //! Safely checks if the content to parse can be accessed at the given index
 #define CAN_PARSE(i) \
@@ -61,6 +65,8 @@ s_json_parse*	JSON_Parse_SkipWhiteSpace(s_json_parse* const p, t_bool skip_comme
 	LIBCONFIG_HANDLE_NULLPOINTER(NULL, p->content)
 	while (CAN_PARSE(0))
 	{
+		if (p->content[p->offset] == '\n')
+			p->line += 1;
 		if (skip_comments && p->content[p->offset] == '/')
 		{
 			if (p->content[p->offset] == '*') // multiple-line
@@ -191,7 +197,7 @@ static t_bool JSON_Parse_String(s_json* const item, s_json_parse* const p)
 	if (((t_size)(input_end - p->content) >= p->length) || (*input_end != '\"'))
 		PARSINGERROR_JSON("Could not parse string: Unexpected end of input before closing quote")
 	// This is at most how much we need for the output
-	allocation_length = (t_size) (input_end - &p->content[p->offset]) - skipped_bytes;
+	allocation_length = (t_size)(input_end - &p->content[p->offset]) - skipped_bytes;
 	output = (t_char*)Memory_Alloc(allocation_length + sizeof(""));
 	if (output == NULL)
 		PARSINGERROR_JSON("Could not parse string: Allocation failure")
@@ -256,6 +262,7 @@ t_bool	JSON_Parse_Array(s_json* const item, s_json_parse* const p)
 {
 	s_json* head = NULL; // head of the linked list
 	s_json* current_item = NULL;
+	t_uint index;
 
 	LIBCONFIG_HANDLE_NULLPOINTER(NULL, p)
 	LIBCONFIG_HANDLE_NULLPOINTER(NULL, p->content)
@@ -278,8 +285,13 @@ t_bool	JSON_Parse_Array(s_json* const item, s_json_parse* const p)
 	// step back to character in front of the first element
 	p->offset--;
 	// loop through the comma separated array elements
+	index = 0;
 	do
 	{
+		p->offset++;
+		JSON_Parse_SkipWhiteSpace(p, p->strict);
+		if (!p->strict && CAN_PARSE(0) && (p->content[p->offset] == ']'))
+			goto success; // allow trailing commas when not in strict mode
 		// allocate next item
 		s_json* new_item = JSON_Item();
 		if (new_item == NULL)
@@ -296,12 +308,12 @@ t_bool	JSON_Parse_Array(s_json* const item, s_json_parse* const p)
 			new_item->prev = current_item;
 			current_item = new_item;
 		}
-		// p next value
-		p->offset++;
+		// parse next value
 		JSON_Parse_SkipWhiteSpace(p, p->strict);
 		if (!JSON_Parse_Value(current_item, p))
-			PARSINGERROR_JSON("Could not parse array: failed to parse value within array")
+			PARSINGERROR_JSON("Inside array: failed to parse value within array, at index %u", index)
 		JSON_Parse_SkipWhiteSpace(p, p->strict);
+		index++;
 	}
 	while (CAN_PARSE(0) && p->content[p->offset] == ',');
 
@@ -370,7 +382,8 @@ t_bool	JSON_Parse_Object(s_json* const item, s_json_parse* const p)
 		// attach next item to list
 		if (head == NULL)
 		{	// start the linked list
-			current_item = head = new_item;
+			head = new_item;
+			current_item = new_item;
 		}
 		else
 		{	// add to the end and advance
@@ -378,7 +391,7 @@ t_bool	JSON_Parse_Object(s_json* const item, s_json_parse* const p)
 			new_item->prev = current_item;
 			current_item = new_item;
 		}
-		// p the name of the child
+		// parse the name of the child
 		if (!JSON_Parse_String(current_item, p))
 			PARSINGERROR_JSON("Could not parse object: Failed to parse object member key")
 		JSON_Parse_SkipWhiteSpace(p, p->strict);
@@ -388,12 +401,12 @@ t_bool	JSON_Parse_Object(s_json* const item, s_json_parse* const p)
 		if (!CAN_PARSE(0))
 			PARSINGERROR_JSON("Could not parse object: Unexpected end of input after object member key")
 		if (p->content[p->offset] != ':')
-			PARSINGERROR_JSON("Could not parse object: Invalid object")
-		// p the value
+			PARSINGERROR_JSON("Could not parse object: Invalid object key/value pair, expected ':' char")
+		// parse the value
 		p->offset++;
 		JSON_Parse_SkipWhiteSpace(p, p->strict);
 		if (!JSON_Parse_Value(current_item, p))
-			PARSINGERROR_JSON("Could not parse object: Failed to parse object member value")
+			PARSINGERROR_JSON("Inside object: Failed to parse object member value (key is \"%s\")", current_item->key)
 		JSON_Parse_SkipWhiteSpace(p, p->strict);
 	}
 	while (CAN_PARSE(0) && (p->content[p->offset] == ','));
@@ -429,9 +442,9 @@ t_bool	JSON_Parse_Value(s_json* const item, s_json_parse* const p)
 {
 	if ((p == NULL) || (p->content == NULL))
 	{
-		PARSINGERROR_JSON("No input, unable to determine what to attempt parsing")
+		PARSINGERROR_JSON("Unexpected end of input, unable to parse JSON value")
 	}
-	// p the different types of values
+	// parse the different types of values
 	if (CAN_PARSE(4) && (String_Equals_N((t_char const*)&p->content[p->offset], "null", 4) || (
 		p->strict ? 0 :	 String_Equals_N((t_char const*)&p->content[p->offset], "NULL", 4))))
 	{	// null
@@ -473,7 +486,8 @@ t_bool	JSON_Parse_Value(s_json* const item, s_json_parse* const p)
 	{	// object
 		return (JSON_Parse_Object(item, p));
 	}
-	PARSINGERROR_JSON("No match, unable to determine what to attempt parsing (at \"%.6s\")", p->content + p->offset)
+	PARSINGERROR_JSON("No match, unable to determine the kind of parsing to attempt: \"%.6s\"", p->content + p->offset)
+
 failure:
 	return (FALSE);
 }
@@ -495,10 +509,10 @@ s_json*	JSON_Parse_(t_char const* json, t_size buffer_length, t_bool strict, t_c
 	if (result == NULL)
 		goto failure; // memory failure
 	if (!JSON_Parse_Value(result, JSON_Parse_SkipWhiteSpace(JSON_Parse_SkipUTF8BOM(&p), !p.strict)))
-		goto failure; // p failure. ep is set.
+		goto failure; // parse failure. ep is set.
 	if (p.strict)
 	{	// if we require null-terminated JSON without appended garbage, skip and then check for a null terminator
-		JSON_Parse_SkipWhiteSpace(&p, !p.strict);
+		JSON_Parse_SkipWhiteSpace(&p, FALSE);
 		if ((p.offset >= p.length) || (&p.content[p.offset])[0] != '\0')
 			goto failure;
 	}
@@ -527,7 +541,15 @@ failure:
 			*return_parse_end = (t_char const*)(json + position);
 		}
 	}
-	LIBCONFIG_HANDLE_PARSINGERROR(NULL, "%s", p.error)
+	t_size column = 0;
+	while (p.offset - column != 0)
+	{
+		if (p.content[p.offset - column] == '\n')
+			break;
+		column++;
+	}
+	LIBCONFIG_HANDLE_PARSINGERROR(NULL, "\n"PARSINGERROR_JSON_MESSAGE" at nesting depth %u -> line %zu, column %zu (char index %zu: '%c')%s",
+		p.depth, p.line, column, p.offset, p.content[p.offset], p.error)
 }
 
 

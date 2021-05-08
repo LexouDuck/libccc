@@ -25,8 +25,16 @@ typedef struct json_print
 
 
 
+static t_bool	JSON_Print_String(s_json const* item, s_json_print* p);
+static t_bool	JSON_Print_Number(s_json const* item, s_json_print* p);
+static t_bool	JSON_Print_Object(s_json const* item, s_json_print* p);
+static t_bool	JSON_Print_Array (s_json const* item, s_json_print* p);
+static t_bool	JSON_Print_Value (s_json const* item, s_json_print* p);
+
+
+
 // realloc s_json_print if necessary to have at least "needed" bytes more
-static t_char* ensure(s_json_print* const p, t_size needed)
+static t_char* ensure(s_json_print* p, t_size needed)
 {
 	t_char* newbuffer = NULL;
 	t_size newsize = 0;
@@ -95,22 +103,22 @@ static t_char* ensure(s_json_print* const p, t_size needed)
 
 
 // Render the cstring provided to an escaped version that can be printed.
-static t_bool print_string_ptr(t_char const* const input, s_json_print* const output_buffer)
+static t_bool JSON_Print_StringPtr(t_char const* const input, s_json_print* p)
 {
 	t_char const* input_pointer = NULL;
 	t_char* output = NULL;
-	t_char* output_pointer = NULL;
+	t_char* result = NULL;
 	t_size output_length = 0;
 	// numbers of additional characters needed for escaping
 	t_size escape_characters = 0;
 
-	if (output_buffer == NULL)
+	if (p == NULL)
 		return (FALSE);
 
 	// empty string
 	if (input == NULL)
 	{
-		output = ensure(output_buffer, sizeof("\"\""));
+		output = ensure(p, sizeof("\"\""));
 		if (output == NULL)
 			return (FALSE);
 		String_Copy((t_char*)output, "\"\"");
@@ -143,7 +151,7 @@ static t_bool print_string_ptr(t_char const* const input, s_json_print* const ou
 	}
 	output_length = (t_size)(input_pointer - input) + escape_characters;
 
-	output = ensure(output_buffer, output_length + sizeof("\"\""));
+	output = ensure(p, output_length + sizeof("\"\""));
 	if (output == NULL)
 		return (FALSE);
 
@@ -158,45 +166,45 @@ static t_bool print_string_ptr(t_char const* const input, s_json_print* const ou
 	}
 
 	output[0] = '\"';
-	output_pointer = output + 1;
+	result = output + 1;
 	// copy the string
-	for (input_pointer = input; *input_pointer != '\0'; (void)input_pointer++, output_pointer++)
+	for (input_pointer = input; *input_pointer != '\0'; (void)input_pointer++, result++)
 	{
 		if ((*input_pointer > 31) && (*input_pointer != '\"') && (*input_pointer != '\\'))
 		{
 			// normal character, copy
-			*output_pointer = *input_pointer;
+			*result = *input_pointer;
 		}
 		else
 		{
 			// character needs to be escaped
-			*output_pointer++ = '\\';
+			*result++ = '\\';
 			switch (*input_pointer)
 			{
 				case '\\':
-					*output_pointer = '\\';
+					*result = '\\';
 					break;
 				case '\"':
-					*output_pointer = '\"';
+					*result = '\"';
 					break;
 				case '\b':
-					*output_pointer = 'b';
+					*result = 'b';
 					break;
 				case '\f':
-					*output_pointer = 'f';
+					*result = 'f';
 					break;
 				case '\n':
-					*output_pointer = 'n';
+					*result = 'n';
 					break;
 				case '\r':
-					*output_pointer = 'r';
+					*result = 'r';
 					break;
 				case '\t':
-					*output_pointer = 't';
+					*result = 't';
 					break;
 				default: // escape and print as unicode codepoint
-					String_Format_N((t_char*)output_pointer, 6, "u%04x", *input_pointer);
-					output_pointer += 4;
+					String_Format_N((t_char*)result, 6, "u%04x", *input_pointer);
+					result += 4;
 					break;
 			}
 		}
@@ -206,35 +214,37 @@ static t_bool print_string_ptr(t_char const* const input, s_json_print* const ou
 	return (TRUE);
 }
 
-// Invoke print_string_ptr (which is useful) on an item.
-static t_bool print_string(s_json const* const item, s_json_print* const p)
+// Invoke JSON_Print_StringPtr (which is useful) on an item.
+static
+t_bool	JSON_Print_String(s_json const* item, s_json_print* p)
 {
-	return (print_string_ptr((t_char*)item->value.string, p));
+	return (JSON_Print_StringPtr((t_char*)item->value.string, p));
 }
 
 // calculate the new length of the string in a s_json_print and update the offset
-static void update_offset(s_json_print* const buffer)
+static
+void	JSON_Print_UpdateOffset(s_json_print* const buffer)
 {
 	t_char const* buffer_pointer = NULL;
 	if ((buffer == NULL) || (buffer->buffer == NULL))
 		return;
 	buffer_pointer = buffer->buffer + buffer->offset;
-
 	buffer->offset += String_Length((t_char const*)buffer_pointer);
 }
 
 // Render the number nicely from the given item into a string.
 #define JSON_NUMBER_BUFFERSIZE	26
-static t_bool print_number(s_json const* const item, s_json_print* const output_buffer)
+static
+t_bool	JSON_Print_Number(s_json const* item, s_json_print* p)
 {
-	t_char*	output_pointer = NULL;
+	t_char*	result = NULL;
 	t_sint	length = 0;
 	t_f64	d = item->value.number;
 	t_size	i = 0;
 	t_f64	test = 0.0;
 	t_char	number_buffer[JSON_NUMBER_BUFFERSIZE] = {0}; // temporary buffer to print the number into
 
-	if (output_buffer == NULL)
+	if (p == NULL)
 		return (FALSE);
 	// This checks for NaN and Infinity
 	if (isnan(d) || isinf(d))
@@ -257,44 +267,238 @@ static t_bool print_number(s_json const* const item, s_json_print* const output_
 	if ((length < 0) || (length > (t_sint)(sizeof(number_buffer) - 1)))
 		return (FALSE);
 	// reserve appropriate space in the output
-	output_pointer = ensure(output_buffer, (t_size)length + sizeof(""));
-	if (output_pointer == NULL)
+	result = ensure(p, (t_size)length + sizeof(""));
+	if (result == NULL)
 		return (FALSE);
 	// copy the printed number to the output and replace locale dependent decimal point with '.'
 	for (i = 0; i < ((t_size)length); i++)
 	{
 		if (number_buffer[i] == '.')
 		{
-			output_pointer[i] = '.';
+			result[i] = '.';
 			continue;
 		}
-		output_pointer[i] = number_buffer[i];
+		result[i] = number_buffer[i];
 	}
-	output_pointer[i] = '\0';
-	output_buffer->offset += (t_size)length;
+	result[i] = '\0';
+	p->offset += (t_size)length;
+	return (TRUE);
+}
+
+#include <stdio.h>
+
+// Render an array to text
+static
+t_bool	JSON_Print_Array(s_json const* item, s_json_print* p)
+{
+	t_char*	result = NULL;
+	s_json*	current_item = item->value.child;
+	t_size	length = 0;
+	t_bool	multiline = p->format;
+
+	if (p == NULL)
+		return (FALSE);
+	// Compose the output array.
+	if (!(current_item && (current_item->next || current_item->prev != current_item)))
+		multiline = FALSE;
+	if (multiline)
+	{
+		result = ensure(p, p->depth + 1);
+		if (result == NULL)
+			return (FALSE);
+		*result++ = '\n';
+		for (t_size i = 0; i < p->depth; i++)
+		{
+			*result++ = '\t';
+		}
+		p->offset += p->depth + 1;
+	}
+	// opening square bracket
+	length = (t_size)(multiline ? 2 : 1); /* fmt: {\n */
+	result = ensure(p, length + 1);
+	if (result == NULL)
+		return (FALSE);
+	*result++ = '[';
+	p->offset += length;
+	p->depth++;
+	if (multiline)
+	{
+		*result++ = '\n';
+	}
+	while (current_item != NULL)
+	{
+		if (multiline)
+		{
+			result = ensure(p, p->depth);
+			if (result == NULL)
+				return (FALSE);
+			for (t_size i = 0; i < p->depth; i++)
+			{
+				*result++ = '\t';
+			}
+			p->offset += p->depth;
+		}
+		if (!JSON_Print_Value(current_item, p))
+			return (FALSE);
+		JSON_Print_UpdateOffset(p);
+		length = ((t_size)(current_item->next ? 1 : 0) + (t_size)(multiline ? 1 : 0));
+		result = ensure(p, length + 1);
+		if (result == NULL)
+			return (FALSE);
+		if (current_item->next)
+		{
+			*result++ = ',';
+		}
+		if (multiline)
+		{
+			*result++ = '\n';
+		}
+		*result = '\0';
+		p->offset += length;
+		current_item = current_item->next;
+	}
+
+	result = ensure(p, 2 + (multiline ? (p->depth - 1) : 0));
+	if (result == NULL)
+		return (FALSE);
+	if (multiline)
+	{
+		for (t_size i = 0; i < (p->depth - 1); i++)
+		{
+			*result++ = '\t';
+		}
+	}
+	*result++ = ']';
+	*result = '\0';
+	p->depth--;
 	return (TRUE);
 }
 
 
 
-static t_bool print_array(s_json const* const item, s_json_print* const output_buffer);
-static t_bool print_object(s_json const* const item, s_json_print* const output_buffer);
+// Render an object to text.
+static
+t_bool	JSON_Print_Object(s_json const* item, s_json_print* p)
+{
+	t_char*	result = NULL;
+	s_json*	current_item = item->value.child;
+	t_size	length = 0;
+	t_bool	multiline = p->format;
+
+	if (p == NULL)
+		return (FALSE);
+
+	// Compose the output:
+	if (!(current_item && (current_item->next || current_item->prev != current_item)))
+		multiline = FALSE;
+	if (multiline)
+	{
+		result = ensure(p, p->depth + 1);
+		if (result == NULL)
+			return (FALSE);
+		*result++ = '\n';
+		for (t_size i = 0; i < p->depth; i++)
+		{
+			*result++ = '\t';
+		}
+		p->offset += p->depth + 1;
+	}
+	// opening curly brace
+	length = (t_size)(multiline ? 2 : 1); /* fmt: {\n */
+	result = ensure(p, length + 1);
+	if (result == NULL)
+		return (FALSE);
+	*result++ = '{';
+	p->offset += length;
+	p->depth++;
+	if (multiline)
+	{
+		*result++ = '\n';
+	}
+	while (current_item)
+	{
+		if (multiline)
+		{
+			t_size i;
+			result = ensure(p, p->depth);
+			if (result == NULL)
+				return (FALSE);
+			for (i = 0; i < p->depth; i++)
+			{
+				*result++ = '\t';
+			}
+			p->offset += p->depth;
+		}
+		// print key
+		if (!JSON_Print_StringPtr((t_char*)current_item->key, p))
+			return (FALSE);
+		JSON_Print_UpdateOffset(p);
+
+		length = (t_size) (p->format ? 2 : 1);
+		result = ensure(p, length);
+		if (result == NULL)
+			return (FALSE);
+		*result++ = ':';
+		if (p->format)
+			*result++ = ' ';
+		p->offset += length;
+
+		// print value
+		if (!JSON_Print_Value(current_item, p))
+			return (FALSE);
+		JSON_Print_UpdateOffset(p);
+
+		// print comma if not last
+		length = ((t_size)(current_item->next ? 1 : 0) + (t_size)(multiline ? 1 : 0));
+		result = ensure(p, length + 1);
+		if (result == NULL)
+			return (FALSE);
+		if (current_item->next)
+		{
+			*result++ = ',';
+		}
+		if (multiline)
+		{
+			*result++ = '\n';
+		}
+		*result = '\0';
+		p->offset += length;
+		current_item = current_item->next;
+	}
+
+	result = ensure(p, 2 + (multiline ? (p->depth - 1) : 0));
+	if (result == NULL)
+		return (FALSE);
+	if (multiline)
+	{
+		t_size i;
+		for (i = 0; i < (p->depth - 1); i++)
+		{
+			*result++ = '\t';
+		}
+	}
+	*result++ = '}';
+	*result = '\0';
+	p->depth--;
+	return (TRUE);
+}
 
 
 
-static t_bool print_value(s_json const* const item, s_json_print* const output_buffer)
+static
+t_bool	JSON_Print_Value(s_json const* item, s_json_print* p)
 {
 	t_char* output = NULL;
 	t_char const* str;
 
-	if ((item == NULL) || (output_buffer == NULL))
+	if ((item == NULL) || (p == NULL))
 		return (FALSE);
 
 	switch ((item->type) & DYNAMIC_TYPE_MASK)
 	{
 		case DYNAMIC_TYPE_NULL:
 			str = "null";
-			output = ensure(output_buffer, String_Length(str) + 1);
+			output = ensure(p, String_Length(str) + 1);
 			if (output == NULL)
 				return (FALSE);
 			String_Copy((t_char*)output, str);
@@ -302,17 +506,17 @@ static t_bool print_value(s_json const* const item, s_json_print* const output_b
 
 		case DYNAMIC_TYPE_BOOLEAN:
 			str = (item->value.boolean ? "true" : "false");
-			output = ensure(output_buffer, String_Length(str) + 1);
+			output = ensure(p, String_Length(str) + 1);
 			if (output == NULL)
 				return (FALSE);
 			String_Copy((t_char*)output, str);
 			return (TRUE);
 
 		case DYNAMIC_TYPE_INTEGER:
-			return (print_number(item, output_buffer)); // TODO handle intege/float separately ?
+			return (JSON_Print_Number(item, p)); // TODO handle intege/float separately ?
 
 		case DYNAMIC_TYPE_FLOAT:
-			return (print_number(item, output_buffer)); // TODO handle intege/float separately ?
+			return (JSON_Print_Number(item, p)); // TODO handle intege/float separately ?
 
 		case DYNAMIC_TYPE_RAW:
 		{
@@ -321,7 +525,7 @@ static t_bool print_value(s_json const* const item, s_json_print* const output_b
 				return (FALSE);
 
 			raw_length = String_Length(item->value.string) + sizeof("");
-			output = ensure(output_buffer, raw_length);
+			output = ensure(p, raw_length);
 			if (output == NULL)
 				return (FALSE);
 			Memory_Copy(output, item->value.string, raw_length);
@@ -329,172 +533,23 @@ static t_bool print_value(s_json const* const item, s_json_print* const output_b
 		}
 
 		case DYNAMIC_TYPE_STRING:
-			return (print_string(item, output_buffer));
+			return (JSON_Print_String(item, p));
 
 		case DYNAMIC_TYPE_ARRAY:
-			return (print_array(item, output_buffer));
+			return (JSON_Print_Array(item, p));
 
 		case DYNAMIC_TYPE_OBJECT:
-			return (print_object(item, output_buffer));
+			return (JSON_Print_Object(item, p));
 
 		default:
 			return (FALSE);
 	}
 }
 
-// Render an array to text
-static t_bool print_array(s_json const* const item, s_json_print* const output_buffer)
-{
-	t_char* output_pointer = NULL;
-	t_size length = 0;
-	s_json* current_element = item->value.child;
-
-	if (output_buffer == NULL)
-		return (FALSE);
-
-	// Compose the output array.
-	// opening square bracket
-	output_pointer = ensure(output_buffer, 1);
-	if (output_pointer == NULL)
-		return (FALSE);
-
-	*output_pointer = '[';
-	output_buffer->offset++;
-	output_buffer->depth++;
-
-	while (current_element != NULL)
-	{
-		if (!print_value(current_element, output_buffer))
-			return (FALSE);
-		update_offset(output_buffer);
-		if (current_element->next)
-		{
-			length = (t_size) (output_buffer->format ? 2 : 1);
-			output_pointer = ensure(output_buffer, length + 1);
-			if (output_pointer == NULL)
-				return (FALSE);
-			*output_pointer++ = ',';
-			if (output_buffer->format)
-			{
-				*output_pointer++ = ' ';
-			}
-			*output_pointer = '\0';
-			output_buffer->offset += length;
-		}
-		current_element = current_element->next;
-	}
-
-	output_pointer = ensure(output_buffer, 2);
-	if (output_pointer == NULL)
-		return (FALSE);
-	*output_pointer++ = ']';
-	*output_pointer = '\0';
-	output_buffer->depth--;
-	return (TRUE);
-}
-
-// Render an object to text.
-static t_bool print_object(s_json const* const item, s_json_print* const output_buffer)
-{
-	t_char* output_pointer = NULL;
-	t_size length = 0;
-	s_json* current_item = item->value.child;
-
-	if (output_buffer == NULL)
-		return (FALSE);
-
-	// Compose the output:
-	length = (t_size) (output_buffer->format ? 2 : 1); /* fmt:
-	{\n */
-	output_pointer = ensure(output_buffer, length + 1);
-	if (output_pointer == NULL)
-		return (FALSE);
-
-	*output_pointer++ = '{';
-	output_buffer->depth++;
-	if (output_buffer->format)
-	{
-		*output_pointer++ = '\n';
-	}
-	output_buffer->offset += length;
-
-	while (current_item)
-	{
-		if (output_buffer->format)
-		{
-			t_size i;
-			output_pointer = ensure(output_buffer, output_buffer->depth);
-			if (output_pointer == NULL)
-				return (FALSE);
-			for (i = 0; i < output_buffer->depth; i++)
-			{
-				*output_pointer++ = '\t';
-			}
-			output_buffer->offset += output_buffer->depth;
-		}
-
-		// print key
-		if (!print_string_ptr((t_char*)current_item->key, output_buffer))
-			return (FALSE);
-		update_offset(output_buffer);
-
-		length = (t_size) (output_buffer->format ? 2 : 1);
-		output_pointer = ensure(output_buffer, length);
-		if (output_pointer == NULL)
-			return (FALSE);
-		*output_pointer++ = ':';
-		if (output_buffer->format)
-		{
-			*output_pointer++ = '\t';
-		}
-		output_buffer->offset += length;
-
-		// print value
-		if (!print_value(current_item, output_buffer))
-			return (FALSE);
-		update_offset(output_buffer);
-
-		// print comma if not last
-		length = ((t_size)(output_buffer->format ? 1 : 0) + (t_size)(current_item->next ? 1 : 0));
-		output_pointer = ensure(output_buffer, length + 1);
-		if (output_pointer == NULL)
-			return (FALSE);
-		if (current_item->next)
-		{
-			*output_pointer++ = ',';
-		}
-
-		if (output_buffer->format)
-		{
-			*output_pointer++ = '\n';
-		}
-		*output_pointer = '\0';
-		output_buffer->offset += length;
-
-		current_item = current_item->next;
-	}
-
-	output_pointer = ensure(output_buffer, output_buffer->format ? (output_buffer->depth + 1) : 2);
-	if (output_pointer == NULL)
-		return (FALSE);
-	if (output_buffer->format)
-	{
-		t_size i;
-		for (i = 0; i < (output_buffer->depth - 1); i++)
-		{
-			*output_pointer++ = '\t';
-		}
-	}
-	*output_pointer++ = '}';
-	*output_pointer = '\0';
-	output_buffer->depth--;
-	return (TRUE);
-}
 
 
-
-
-static t_char* print(s_json const* const item, t_bool format)
+static
+t_char*	JSON_Print_(s_json const* item, t_bool format)
 {
 	static const t_size default_buffer_size = 256;
 	s_json_print buffer[1];
@@ -502,32 +557,32 @@ static t_char* print(s_json const* const item, t_bool format)
 
 	Memory_Set(buffer, 0, sizeof(buffer));
 	// create buffer
-	buffer->buffer = (t_char*) Memory_Alloc(default_buffer_size);
+	buffer->buffer = (t_char*)Memory_Alloc(default_buffer_size);
 	buffer->length = default_buffer_size;
 	buffer->format = format;
 	if (buffer->buffer == NULL)
 	{
-		goto fail;
+		goto failure;
 	}
 	// print the value
-	if (!print_value(item, buffer))
+	if (!JSON_Print_Value(item, buffer))
 	{
-		goto fail;
+		goto failure;
 	}
-	update_offset(buffer);
+	JSON_Print_UpdateOffset(buffer);
 
 #ifdef Memory_Realloc // check if reallocate is available
 		printed = (t_char*)Memory_Realloc(buffer->buffer, buffer->offset + 1);
 		if (printed == NULL)
 		{
-			goto fail;
+			goto failure;
 		}
 		buffer->buffer = NULL;
 #else // otherwise copy the JSON over to a new buffer
 		printed = (t_char*) Memory_Alloc(buffer->offset + 1);
 		if (printed == NULL)
 		{
-			goto fail;
+			goto failure;
 		}
 		Memory_Copy(printed, buffer->buffer, MIN(buffer->length, buffer->offset + 1));
 		printed[buffer->offset] = '\0'; // just to be sure
@@ -537,7 +592,7 @@ static t_char* print(s_json const* const item, t_bool format)
 #endif
 	return (printed);
 
-fail:
+failure:
 	if (buffer->buffer != NULL)
 	{
 		Memory_Free(buffer->buffer);
@@ -554,12 +609,12 @@ fail:
 
 t_char*	JSON_Print_Pretty(s_json const* item)
 {
-	return (t_char*)print(item, TRUE);
+	return (JSON_Print_(item, TRUE));
 }
 
 t_char*	JSON_Print_Minify(s_json const* item)
 {
-	return (t_char*)print(item, FALSE);
+	return (JSON_Print_(item, FALSE));
 }
 
 t_char*	JSON_Print_Buffered(s_json const* item, t_sint prebuffer, t_bool fmt)
@@ -575,12 +630,12 @@ t_char*	JSON_Print_Buffered(s_json const* item, t_sint prebuffer, t_bool fmt)
 	p.offset = 0;
 	p.noalloc = FALSE;
 	p.format = fmt;
-	if (!print_value(item, &p))
+	if (!JSON_Print_Value(item, &p))
 	{
 		Memory_Free(p.buffer);
 		return (NULL);
 	}
-	return (t_char*)p.buffer;
+	return ((t_char*)p.buffer);
 }
 
 t_bool	JSON_Print_Preallocated(s_json* item, t_char* buffer, const t_sint length, const t_bool format)
@@ -595,5 +650,5 @@ t_bool	JSON_Print_Preallocated(s_json* item, t_char* buffer, const t_sint length
 	p.offset = 0;
 	p.noalloc = TRUE;
 	p.format = format;
-	return (print_value(item, &p));
+	return (JSON_Print_Value(item, &p));
 }

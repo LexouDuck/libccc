@@ -258,8 +258,8 @@ void	print_test_mem(s_test_mem* test, char const* args)
 
 void	print_test_str(s_test_str* test, char const* args)
 {
-	char* tmp_result = strlen(test->result) < STRING_ESCAPE_THRESHOLD ? str_to_escape(test->result) : strdup(test->result);
-	char* tmp_expect = strlen(test->expect) < STRING_ESCAPE_THRESHOLD ? str_to_escape(test->expect) : strdup(test->expect);
+	char* tmp_result = test->result == NULL ? NULL : (strlen(test->result) < STRING_ESCAPE_THRESHOLD ? str_to_escape(test->result) : strdup(test->result));
+	char* tmp_expect = test->expect == NULL ? NULL : (strlen(test->expect) < STRING_ESCAPE_THRESHOLD ? str_to_escape(test->expect) : strdup(test->expect));
 	int error;
 
 	if (test->result_sig || test->expect_sig)
