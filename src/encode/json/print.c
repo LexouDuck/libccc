@@ -109,8 +109,7 @@ static t_bool JSON_Print_StringPtr(t_char const* const input, s_json_print* p)
 	t_char* output = NULL;
 	t_char* result = NULL;
 	t_size output_length = 0;
-	// numbers of additional characters needed for escaping
-	t_size escape_characters = 0;
+	t_size escape_characters = 0; //!< amount of additional characters needed for escaping
 
 	if (p == NULL)
 		return (FALSE);
@@ -126,7 +125,8 @@ static t_bool JSON_Print_StringPtr(t_char const* const input, s_json_print* p)
 	}
 
 	// set "flag" to 1 if something needs to be escaped
-	for (input_pointer = input; *input_pointer; input_pointer++)
+	input_pointer = input;
+	while (*input_pointer != '\0')
 	{
 		switch (*input_pointer)
 		{
@@ -141,13 +141,14 @@ static t_bool JSON_Print_StringPtr(t_char const* const input, s_json_print* p)
 				escape_characters++;
 				break;
 			default:
-				if (*input_pointer < 32)
+				if (!Char_IsPrintable(Char_FromUTF8(input_pointer)))
 				{
 					// UTF-16 escape sequence uXXXX
 					escape_characters += 5;
 				}
 				break;
 		}
+		input_pointer++;
 	}
 	output_length = (t_size)(input_pointer - input) + escape_characters;
 
@@ -164,53 +165,64 @@ static t_bool JSON_Print_StringPtr(t_char const* const input, s_json_print* p)
 		output[output_length + 2] = '\0';
 		return (TRUE);
 	}
-
 	output[0] = '\"';
 	result = output + 1;
 	// copy the string
-	for (input_pointer = input; *input_pointer != '\0'; (void)input_pointer++, result++)
+	input_pointer = input;
+	while (*input_pointer != '\0')
 	{
-		if ((*input_pointer > 31) && (*input_pointer != '\"') && (*input_pointer != '\\'))
-		{
-			// normal character, copy
-			*result = *input_pointer;
-		}
-		else
-		{
-			// character needs to be escaped
-			*result++ = '\\';
-			switch (*input_pointer)
+		t_utf32 c = Char_FromUTF8(input_pointer);
+		t_size len;
+			 if (c < UTF8_1BYTE)	len = 1;
+		else if (c < UTF8_2BYTE)	len = 2;
+		else if (c < UTF8_3BYTE)	len = 3;
+		else if (c <= UTF8_4BYTE)	len = 4;
+		if (Char_IsPrintable(c) &&
+			(c != '\"') &&
+			(c != '\\'))
+		{	// normal character, copy
+			*result++ = *input_pointer;
+			while (--len && *input_pointer != '\0')
 			{
-				case '\\':
-					*result = '\\';
-					break;
-				case '\"':
-					*result = '\"';
-					break;
-				case '\b':
-					*result = 'b';
-					break;
-				case '\f':
-					*result = 'f';
-					break;
-				case '\n':
-					*result = 'n';
-					break;
-				case '\r':
-					*result = 'r';
-					break;
-				case '\t':
-					*result = 't';
-					break;
-				default: // escape and print as unicode codepoint
-					String_Format_N((t_char*)result, 6, "u%04x", *input_pointer);
-					result += 4;
-					break;
+				input_pointer++;
+				*result++ = *input_pointer;
 			}
 		}
+		else
+		{	// character needs to be escaped
+			*result++ = '\\';
+			switch (c)
+			{
+				case '\\':	*result++ = '\\';	break;
+				case '\"':	*result++ = '\"';	break;
+				case '\b':	*result++ = 'b';	break;
+				case '\f':	*result++ = 'f';	break;
+				case '\n':	*result++ = 'n';	break;
+				case '\r':	*result++ = 'r';	break;
+				case '\t':	*result++ = 't';	break;
+				default: // escape and print as unicode codepoint
+				{
+					t_utf16 u[2] = {0};
+					len = Char_ToUTF16(u, c);
+					if (len > 0)
+					{
+						String_Format_N(result, 6, "u%4.4X", u[0]);
+						result += 5;
+						if (u[1])
+						{
+							*result++ = '\\';
+							String_Format_N(result, 6, "u%4.4X", u[1]);
+							result += 5;
+						}
+					}
+					break;
+				}
+			}
+		}
+		input_pointer++;
 	}
-	output[output_length + 1] = '\"';
-	output[output_length + 2] = '\0';
+	*result++ = '\"';
+	*result++ = '\0';
 	return (TRUE);
 }
 
@@ -285,7 +297,7 @@ t_bool	JSON_Print_Number(s_json const* item, s_json_print* p)
 	return (TRUE);
 }
 
-#include <stdio.h>
+
 
 // Render an array to text
 static
@@ -301,7 +313,9 @@ t_bool	JSON_Print_Array(s_json const* item, s_json_print* p)
 	// Compose the output array.
 	if (!(current_item && (current_item->next || current_item->prev != current_item)))
 		multiline = FALSE;
-	if (multiline)
+	if (multiline &&
+		p->buffer[p->offset - 1] == ' ' &&
+		p->buffer[p->offset - 2] == ':')
 	{
 		result = ensure(p, p->depth + 1);
 		if (result == NULL)
@@ -314,34 +328,33 @@ t_bool	JSON_Print_Array(s_json const* item, s_json_print* p)
 		p->offset += p->depth + 1;
 	}
 	// opening square bracket
-	length = (t_size)(multiline ? 2 : 1); /* fmt: {\n */
-	result = ensure(p, length + 1);
+	length = 1;//(t_size)(1 + (p->format && !multiline ? 1 : 0));
+	result = ensure(p, length);
 	if (result == NULL)
 		return (FALSE);
 	*result++ = '[';
+//	if (p->format && !multiline)
+//		*result++ = ' ';
 	p->offset += length;
 	p->depth++;
-	if (multiline)
-	{
-		*result++ = '\n';
-	}
 	while (current_item != NULL)
 	{
 		if (multiline)
 		{
-			result = ensure(p, p->depth);
+			result = ensure(p, p->depth + 1);
 			if (result == NULL)
 				return (FALSE);
+			*result++ = '\n';
 			for (t_size i = 0; i < p->depth; i++)
 			{
 				*result++ = '\t';
 			}
-			p->offset += p->depth;
+			p->offset += p->depth + 1;
 		}
 		if (!JSON_Print_Value(current_item, p))
 			return (FALSE);
 		JSON_Print_UpdateOffset(p);
-		length = ((t_size)(current_item->next ? 1 : 0) + (t_size)(multiline ? 1 : 0));
+		length = (t_size)(current_item->next ? 1 : 0);
 		result = ensure(p, length + 1);
 		if (result == NULL)
 			return (FALSE);
@@ -349,28 +362,32 @@ t_bool	JSON_Print_Array(s_json const* item, s_json_print* p)
 		{
 			*result++ = ',';
 		}
-		if (multiline)
-		{
-			*result++ = '\n';
-		}
 		*result = '\0';
 		p->offset += length;
 		current_item = current_item->next;
 	}
 
-	result = ensure(p, 2 + (multiline ? (p->depth - 1) : 0));
-	if (result == NULL)
-		return (FALSE);
+	p->depth--;
 	if (multiline)
 	{
-		for (t_size i = 0; i < (p->depth - 1); i++)
+		result = ensure(p, p->depth + 1);
+		if (result == NULL)
+			return (FALSE);
+		*result++ = '\n';
+		for (t_size i = 0; i < p->depth; ++i)
 		{
 			*result++ = '\t';
 		}
+		p->offset += p->depth + 1;
 	}
+	length = 2;//(t_size)(2 + (p->format && !multiline ? 1 : 0));
+	result = ensure(p, length);
+	if (result == NULL)
+		return (FALSE);
+//	if (p->format && !multiline)
+//		*result++ = ' ';
 	*result++ = ']';
 	*result = '\0';
-	p->depth--;
 	return (TRUE);
 }
 
@@ -391,7 +408,9 @@ t_bool	JSON_Print_Object(s_json const* item, s_json_print* p)
 	// Compose the output:
 	if (!(current_item && (current_item->next || current_item->prev != current_item)))
 		multiline = FALSE;
-	if (multiline)
+	if (multiline &&
+		p->buffer[p->offset - 1] == ' ' &&
+		p->buffer[p->offset - 2] == ':')
 	{
 		result = ensure(p, p->depth + 1);
 		if (result == NULL)
@@ -404,43 +423,43 @@ t_bool	JSON_Print_Object(s_json const* item, s_json_print* p)
 		p->offset += p->depth + 1;
 	}
 	// opening curly brace
-	length = (t_size)(multiline ? 2 : 1); /* fmt: {\n */
-	result = ensure(p, length + 1);
+	length = 1;//(t_size)(1 + (p->format && !multiline ? 1 : 0));
+	result = ensure(p, length);
 	if (result == NULL)
 		return (FALSE);
 	*result++ = '{';
+//	if (p->format && !multiline)
+//		*result++ = ' ';
 	p->offset += length;
 	p->depth++;
-	if (multiline)
-	{
-		*result++ = '\n';
-	}
 	while (current_item)
 	{
 		if (multiline)
 		{
-			t_size i;
-			result = ensure(p, p->depth);
+			result = ensure(p, p->depth + 1);
 			if (result == NULL)
 				return (FALSE);
-			for (i = 0; i < p->depth; i++)
+			*result++ = '\n';
+			for (t_size i = 0; i < p->depth; i++)
 			{
 				*result++ = '\t';
 			}
-			p->offset += p->depth;
+			p->offset += p->depth + 1;
 		}
 		// print key
 		if (!JSON_Print_StringPtr((t_char*)current_item->key, p))
 			return (FALSE);
 		JSON_Print_UpdateOffset(p);
 
-		length = (t_size) (p->format ? 2 : 1);
+		length = (t_size)(p->format ? 2 : 1);
 		result = ensure(p, length);
 		if (result == NULL)
 			return (FALSE);
 		*result++ = ':';
 		if (p->format)
+		{
 			*result++ = ' ';
+		}
 		p->offset += length;
 
 		// print value
@@ -449,7 +468,7 @@ t_bool	JSON_Print_Object(s_json const* item, s_json_print* p)
 		JSON_Print_UpdateOffset(p);
 
 		// print comma if not last
-		length = ((t_size)(current_item->next ? 1 : 0) + (t_size)(multiline ? 1 : 0));
+		length = (t_size)(current_item->next ? 1 : 0);
 		result = ensure(p, length + 1);
 		if (result == NULL)
 			return (FALSE);
@@ -457,29 +476,32 @@ t_bool	JSON_Print_Object(s_json const* item, s_json_print* p)
 		{
 			*result++ = ',';
 		}
-		if (multiline)
-		{
-			*result++ = '\n';
-		}
 		*result = '\0';
 		p->offset += length;
 		current_item = current_item->next;
 	}
 
-	result = ensure(p, 2 + (multiline ? (p->depth - 1) : 0));
-	if (result == NULL)
-		return (FALSE);
+	p->depth--;
 	if (multiline)
 	{
-		t_size i;
-		for (i = 0; i < (p->depth - 1); i++)
+		result = ensure(p, p->depth + 1);
+		if (result == NULL)
+			return (FALSE);
+		*result++ = '\n';
+		for (t_size i = 0; i < p->depth; ++i)
 		{
 			*result++ = '\t';
 		}
+		p->offset += p->depth + 1;
 	}
+	length = 2;//(t_size)(2 + (p->format && !multiline ? 1 : 0));
+	result = ensure(p, length);
+	if (result == NULL)
+		return (FALSE);
+//	if (p->format && !multiline)
+//		*result++ = ' ';
 	*result++ = '}';
 	*result = '\0';
-	p->depth--;
 	return (TRUE);
 }
 

@@ -26,7 +26,7 @@ t_bool	Char_IsPunctuation(t_utf32 c)
 inline
 t_bool	Char_IsPrintable(t_utf32 c)
 {
-	return (!(c < 0x20) && !(c >= 0x7F) && Char_IsValid(c));
+	return (!(c < 0x20) && !(c == 0x7F) && Char_IsValid(c));
 }
 
 

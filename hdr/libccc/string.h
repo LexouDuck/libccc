@@ -226,6 +226,12 @@ int						String_Compare_N_IgnoreCase(t_char const* str1, t_char const* str2, t_s
 #define c_strnicmp		String_Compare_N_IgnoreCase //!< @alias{String_Compare_N_IgnoreCase}
 #define c_strncasecmp	String_Compare_N_IgnoreCase //!< @alias{String_Compare_N_IgnoreCase}
 
+// TODO String_CompareUntil_Char()
+// TODO String_CompareUntil_Charset()
+// TODO String_CompareUntil_String()
+
+
+
 //!	Returns #TRUE if the two given strings have identical content, and #FALSE otherwise
 /*!
 **	@returns #TRUE if the two given strings have identical content, and #FALSE otherwise
@@ -255,6 +261,12 @@ t_bool					String_Equals_IgnoreCase(t_char const* str1, t_char const* str2);
 t_bool					String_Equals_N_IgnoreCase(t_char const* str1, t_char const* str2, t_size n);
 #define c_strniequ		String_Equals_N_IgnoreCase //!< @alias{String_Equals_N_IgnoreCase}
 #define c_strncaseequ	String_Equals_N_IgnoreCase //!< @alias{String_Equals_N_IgnoreCase}
+
+// TODO String_EqualsUntil_Char()
+// TODO String_EqualsUntil_Charset()
+// TODO String_EqualsUntil_String()
+
+
 
 /*!
 **	Returns 1 if the given string `str` contains at least one occurence

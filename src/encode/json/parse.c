@@ -229,7 +229,7 @@ static t_bool JSON_Parse_String(s_json* const item, s_json_parse* const p)
 					output_pointer += Char_ToUTF8(output_pointer, c);
 					break;
 				default:
-					PARSINGERROR_JSON("Could not parse string: Invalid string escape sequence encountered: \\%c", input_pointer[1])
+					PARSINGERROR_JSON("Could not parse string: Invalid string escape sequence encountered: \"\\%c\"", input_pointer[1])
 			}
 			input_pointer += sequence_length;
 		}
