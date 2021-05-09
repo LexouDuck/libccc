@@ -105,6 +105,113 @@ TYPEDEF_ALIAS(			t_utf32, UTF32, PRIMITIVE)
 //! A charset containing all of the ASCII punctuation characters
 #define CHARSET_PUNCTUATION	"!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
 
+ 
+
+//! ASCII/Unicode C0 control code characters (from 0x00 to 0x1F)
+/*!
+**	@see https://en.wikipedia.org/wiki/C0_and_C1_control_codes
+*/
+//!@{
+#define C0_NUL	0x00	//!< ^@	`␀`	NUL	`\0`	Null
+#define C0_SOH	0x01	//!< ^A	`␁`	SOH			Start of Heading
+#define C0_STX	0x02	//!< ^B	`␂`	STX			Start of Text
+#define C0_ETX	0x03	//!< ^C	`␃`	ETX			End of Text
+#define C0_EOT	0x04	//!< ^D	`␄`	EOT			End of Transmission
+#define C0_ENQ	0x05	//!< ^E	`␅`	ENQ			Enquiry
+#define C0_ACK	0x06	//!< ^F	`␆`	ACK			Acknowledge
+#define C0_BEL	0x07	//!< ^G	`␇`	BEL	`\a`	Bell, Alert
+#define C0_BS	0x08	//!< ^H	`␈`	BS	`\b`	Backspace
+#define C0_HT	0x09	//!< ^I	`␉`	HT	`\t`	Char/Horizontal Tab
+#define C0_LF	0x0A	//!< ^J	`␊`	LF	`\n`	Line Feed
+#define C0_VT	0x0B	//!< ^K	`␋`	VT	`\v`	Line/Vertical Tab
+#define C0_FF	0x0C	//!< ^L	`␌`	FF	`\f`	Form Feed
+#define C0_CR	0x0D	//!< ^M	`␍`	CR	`\r`	Carriage Return
+#define C0_SO	0x0E	//!< ^N	`␎`	SO			Shift Out
+#define C0_SI	0x0F	//!< ^O	`␏`	SI			Shift In
+#define C0_DLE	0x10	//!< ^P	`␐`	DLE			Data Link Escape
+#define C0_DC1	0x11	//!< ^Q	`␑`	DC1			Device Control One (XON)
+#define C0_DC2	0x12	//!< ^R	`␒`	DC2			Device Control Two
+#define C0_DC3	0x13	//!< ^S	`␓`	DC3			Device Control Three (XOFF)
+#define C0_DC4	0x14	//!< ^T	`␔`	DC4			Device Control Four
+#define C0_NAK	0x15	//!< ^U	`␕`	NAK			Negative Acknowledge
+#define C0_SYN	0x16	//!< ^V	`␖`	SYN			Synchronous Idle
+#define C0_ETB	0x17	//!< ^W	`␗`	ETB			End of Transmission Block
+#define C0_CAN	0x18	//!< ^X	`␘`	CAN			Cancel
+#define C0_EM	0x19	//!< ^Y	`␙`	EM			End of medium
+#define C0_SUB	0x1A	//!< ^Z	`␚`	SUB			Substitute
+#define C0_ESC	0x1B	//!< ^[	`␛`	ESC	`\e`	Escape
+#define C0_FS	0x1C	//!< ^\	`␜`	FS			File Separator
+#define C0_GS	0x1D	//!< ^]	`␝`	GS			Group Separator
+#define C0_RS	0x1E	//!< ^^	`␞`	RS			Record Separator
+#define C0_US	0x1F	//!< ^_	`␟`	US			Unit Separator
+
+#define C0_DEL	0x7F	//!< ^?	`␡`	DEL			Delete	(Not technically part of the C0 control character range)
+//!@}
+
+//! ASCII/Unicode C1 control code characters (from 0x80 to 0x9F)
+/*!
+**	@see https://en.wikipedia.org/wiki/C0_and_C1_control_codes
+*/
+//!@{
+#define C1_PAD	0x80	//!< ^ 	``	PAD		Padding Character
+#define C1_HOP	0x81	//!< ^ 	``	HOP		High Octet Preset
+#define C1_BPH	0x82	//!< ^ 	``	BPH		Break Permitted Here
+#define C1_NBH	0x83	//!< ^ 	``	NBH		No Break Here
+#define C1_IND	0x84	//!< ^ 	``	IND		Index
+#define C1_NEL	0x85	//!< ^ 	``	NEL		Next Line
+#define C1_SSA	0x86	//!< ^ 	``	SSA		Start of Selected Area
+#define C1_ESA	0x87	//!< ^ 	``	ESA		End of Selected Area
+#define C1_HTS	0x88	//!< ^ 	``	HTS		Char/Horizontal Tabulation Set
+#define C1_HTJ	0x89	//!< ^ 	``	HTJ		Char/Horizontal Tabulation With Justification
+#define C1_VTS	0x8A	//!< ^ 	``	VTS		Line/Vertical Tabulation Set
+#define C1_PLD	0x8B	//!< ^ 	``	PLD		Partial Line Forward / Partial Line Down
+#define C1_PLU	0x8C	//!< ^ 	``	PLU		Partial Line Backward / Partial Line Up
+#define C1_RI	0x8D	//!< ^ 	``	RI		Reverse Line Feed / Reverse Index
+#define C1_SS2	0x8E	//!< ^ 	``	SS2		Single-Shift 2
+#define C1_SS3	0x8F	//!< ^ 	``	SS3		Single-Shift 3
+#define C1_DCS	0x90	//!< ^ 	``	DCS		Device Control String
+#define C1_PU1	0x91	//!< ^ 	``	PU1		Private Use 1
+#define C1_PU2	0x92	//!< ^ 	``	PU2		Private Use 2
+#define C1_STS	0x93	//!< ^ 	``	STS		Set Transmit State
+#define C1_CCH	0x94	//!< ^ 	``	CCH		Cancel character
+#define C1_MW	0x95	//!< ^ 	``	MW		Message Waiting
+#define C1_SPA	0x96	//!< ^ 	``	SPA		Start of Protected Area
+#define C1_EPA	0x97	//!< ^ 	``	EPA		End of Protected Area
+#define C1_SOS	0x98	//!< ^ 	``	SOS		Start of String
+#define C1_SGC	0x99	//!< ^ 	``	SGC		Single Graphic Character Introducer
+#define C1_SCI	0x9A	//!< ^ 	``	SCI		Single Character Introducer
+#define C1_CSI	0x9B	//!< ^ 	``	CSI		Control Sequence Introducer
+#define C1_ST	0x9C	//!< ^ 	``	ST		String Terminator
+#define C1_OSC	0x9D	//!< ^ 	``	OSC		Operating System Command
+#define C1_PM	0x9E	//!< ^ 	``	PM		Privacy Message
+#define C1_APC	0x9F	//!< ^ 	``	APC		Application Program Command
+//!@}
+
+
+
+/*!
+**	These macros are used to encode/decode UTF-8 strings.
+*/
+//!@{
+#define UTF8_1BYTE	0x00000080	//!< Beneath this code point, UTF-8 encodes this as a 1-byte character
+#define UTF8_2BYTE	0x00000800	//!< Beneath this code point, UTF-8 encodes this as a 2-byte character
+#define UTF8_3BYTE	0x00010000	//!< Beneath this code point, UTF-8 encodes this as a 3-byte character
+#define UTF8_4BYTE	0x0010FFFF	//!< Beneath this code point, UTF-8 encodes this as a 4-byte character
+//!@}
+
+
+
+/*!
+**	These macros are used to encode/decode UTF-16 strings.
+*/
+//!@{
+#define UTF16_BIAS		0x10000
+#define UTF16_SURROGATE_HI	0xD800
+#define UTF16_SURROGATE_LO	0xDC00
+#define UTF16_SURROGATE_END	0xE000
+#define UTF16_SURROGATE_MASK	0x3FF
+//!@}
+
 
 
 /*!
@@ -125,31 +232,6 @@ TYPEDEF_ALIAS(			t_utf32, UTF32, PRIMITIVE)
 #define UTF32_BOM_BE	"\x00\x00\xFE\xFF"
 //! The UTF-16 byte order mark: `FF FE 00 00` (Little-Endian)
 #define UTF32_BOM_LE	"\xFF\xFE\x00\x00"
-//!@}
-
-
-
-/*!
-**	These macros are used to encode/decode UTF-16 strings.
-*/
-//!@{
-#define UTF16_BIAS		0x10000
-#define UTF16_SURROGATE_HI	0xD800
-#define UTF16_SURROGATE_LO	0xDC00
-#define UTF16_SURROGATE_END	0xE000
-#define UTF16_SURROGATE_MASK	0x3FF
-//!@}
-
-
-
-/*!
-**	These macros are used to encode/decode UTF-8 strings.
-*/
-//!@{
-#define UTF8_1BYTE	0x00000080	//!< Beneath this code point, UTF-8 encodes this as a 1-byte character
-#define UTF8_2BYTE	0x00000800	//!< Beneath this code point, UTF-8 encodes this as a 2-byte character
-#define UTF8_3BYTE	0x00010000	//!< Beneath this code point, UTF-8 encodes this as a 3-byte character
-#define UTF8_4BYTE	0x0010FFFF	//!< Beneath this code point, UTF-8 encodes this as a 4-byte character
 //!@}
 
 
