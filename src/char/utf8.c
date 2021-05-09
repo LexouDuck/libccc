@@ -13,36 +13,39 @@ t_size		Char_ToUTF8(t_utf8* dest, t_utf32 c)
 	t_u8 mask;
 
 	LIBCONFIG_HANDLE_NULLPOINTER(0, dest)
-	if (c < 0x80)
+	if (Char_IsValid(c))
 	{
-		dest[0] = (t_u8)c;
-		return (1);
+		if (c < UTF8_1BYTE)
+		{
+			dest[0] = (t_u8)c;
+			return (1);
+		}
+		else if (c < UTF8_2BYTE)
+		{
+			mask = ((1 << 5) - 1);
+			dest[0] = (mask & (c >> (6 * 1))) | 0xC0;
+			dest[1] = (MASK & (c >> (6 * 0))) | 0x80;
+			return (2);
+		}
+		else if (c < UTF8_3BYTE)
+		{
+			mask = ((1 << 4) - 1);
+			dest[0] = (mask & (c >> (6 * 2))) | 0xE0;
+			dest[1] = (MASK & (c >> (6 * 1))) | 0x80;
+			dest[2] = (MASK & (c >> (6 * 0))) | 0x80;
+			return (3);
+		}
+		else if (c <= UTF8_4BYTE)
+		{
+			mask = ((1 << 3) - 1);
+			dest[0] = (mask & (c >> (6 * 3))) | 0xF0;
+			dest[1] = (MASK & (c >> (6 * 2))) | 0x80;
+			dest[2] = (MASK & (c >> (6 * 1))) | 0x80;
+			dest[3] = (MASK & (c >> (6 * 0))) | 0x80;
+			return (4);
+		}
 	}
-	else if (c < 0x800)
-	{
-		mask = ((1 << 5) - 1);
-		dest[0] = (mask & (c >> (6 * 1))) | 0xC0;
-		dest[1] = (MASK & (c >> (6 * 0))) | 0x80;
-		return (2);
-	}
-	else if (c < 0x10000)
-	{
-		mask = ((1 << 4) - 1);
-		dest[0] = (mask & (c >> (6 * 2))) | 0xE0;
-		dest[1] = (MASK & (c >> (6 * 1))) | 0x80;
-		dest[2] = (MASK & (c >> (6 * 0))) | 0x80;
-		return (3);
-	}
-	else if (c <= 0x10FFFF)
-	{
-		mask = ((1 << 3) - 1);
-		dest[0] = (mask & (c >> (6 * 3))) | 0xF0;
-		dest[1] = (MASK & (c >> (6 * 2))) | 0x80;
-		dest[2] = (MASK & (c >> (6 * 1))) | 0x80;
-		dest[3] = (MASK & (c >> (6 * 0))) | 0x80;
-		return (4);
-	}
-	else return (ERROR); // INVALID UTF-8
+	return (0); // INVALID UTF-8
 }
 
 

@@ -142,6 +142,18 @@ TYPEDEF_ALIAS(			t_utf32, UTF32, PRIMITIVE)
 
 
 
+/*!
+**	These macros are used to encode/decode UTF-8 strings.
+*/
+//!@{
+#define UTF8_1BYTE	0x00000080	//!< Beneath this code point, UTF-8 encodes this as a 1-byte character
+#define UTF8_2BYTE	0x00000800	//!< Beneath this code point, UTF-8 encodes this as a 2-byte character
+#define UTF8_3BYTE	0x00010000	//!< Beneath this code point, UTF-8 encodes this as a 3-byte character
+#define UTF8_4BYTE	0x0010FFFF	//!< Beneath this code point, UTF-8 encodes this as a 4-byte character
+//!@}
+
+
+
 /*
 ** ************************************************************************** *|
 **                              Character Checks                              *|
@@ -288,7 +300,15 @@ t_bool					Char_IsPrintable(t_utf32 c);
 t_bool				Char_IsASCII(t_utf32 c);
 #define c_isascii	Char_IsASCII
 
-
+//! Check if the given char `c` is a valid Unicode code point
+/*!
+**	@nonstd
+**
+**	@param	c	The character to check (ASCII or Unicode)
+**	@returns #TRUE if the given char `c` is a valid UTF-32 code point
+*/
+t_bool				Char_IsValid(t_utf32 c);
+#define c_isvalid	Char_IsValid
 
 
 
