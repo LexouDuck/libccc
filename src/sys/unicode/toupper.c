@@ -6,11 +6,12 @@
 t_utf32	UTF32_ToUppercase(t_utf32 c) // TODO make lookup table for weird 'if's with no discernible pattern
 {
 	if ('a' <= c && c <= 'z')						return (c - ('A' - 'a'));	// LATIN_SMALL					-> LATIN_CAPITAL
-	if (0x00E0 <= c && c < 0x00FF)					return (c - 0x20);			// LATIN_SMALL					-> LATIN_CAPITAL
+	if (0xC0 <= c && c < 0xDF)						return (c);					// 								-> LATIN_CAPITAL
+	if (0xE0 <= c && c < 0xFF)						return (c - 0x20);			// LATIN_SMALL					-> LATIN_CAPITAL
 	if (c == 0x00FF)								return (0x0178);			// LATIN_SMALL_extA_Y_DIAERESIS	-> LATIN_CAPITAL_extA_Y_wDIAERESIS
 	if (0x0100 <= c && c < 0x0130 && (c % 2 == 1))	return (c - 1);				// LATIN_SMALL_extA				-> LATIN_CAPITAL_extA
 	if (c == 0x0130)								return (c);					// 								-> LATIN_CAPITAL_extA_I_wDOT
-	if (c == 0x0131)								return (0x0049);			// LATIN_SMALL_extA_DOTLESS_I	-> LATIN_CAPITAL_extA_I
+	if (c == 0x0131)								return ('I');				// LATIN_SMALL_extA_DOTLESS_I	-> LATIN_CAPITAL_I
 	if (0x0132 <= c && c < 0x0138 && (c % 2 == 1))	return (c - 1);				// LATIN_SMALL_extA				-> LATIN_CAPITAL_extA
 	if (0x0139 <= c && c < 0x0149 && (c % 2 == 0))	return (c - 1);				// LATIN_SMALL_extA				-> LATIN_CAPITAL_extA
 	if (0x014A <= c && c < 0x0178 && (c % 2 == 1))	return (c - 1);				// LATIN_SMALL_extA				-> LATIN_CAPITAL_extA
@@ -35,7 +36,7 @@ t_utf32	UTF32_ToUppercase(t_utf32 c) // TODO make lookup table for weird 'if's w
 	if (0x01CD <= c && c < 0x01DD && (c % 2 == 0))	return (c - 1);				// LATIN_SMALL_extB				-> LATIN_CAPITAL_extB
 	if (0x01DE <= c && c < 0x01F0 && (c % 2 == 1))	return (c - 1);				// LATIN_SMALL_extB				-> LATIN_CAPITAL_extB
 	if (c == 0x01F3)								return (0x01F1);			// LATIN_SMALL_extB_DZ			-> LATIN_CAPITAL_extB_DZ
-	if (c == 0x01F5)								return (0x01F4);			// LATIN_SMALL_extB_G_wACUTE	-> LATIN_CAPITAL_extB_G_wACUTE
+	if (c == 0x01F5)								return (c - 1);				// LATIN_SMALL_extB_G_wACUTE	-> LATIN_CAPITAL_extB_G_wACUTE
 	if (0x01F8 <= c && c < 0x0220 && (c % 2 == 1))	return (c - 1);				// LATIN_SMALL_extB				-> LATIN_CAPITAL_extB
 
 	if (c == 0x0253)								return (0x0181);			// LATIN_SMALL_extI_B_wHOOK		-> LATIN_CAPITAL_extI_B_wHOOK
@@ -62,13 +63,16 @@ t_utf32	UTF32_ToUppercase(t_utf32 c) // TODO make lookup table for weird 'if's w
 	if (c == 0x03AE)								return (0x0389);			// GREEK_SMALL_ETA_wTONOS		-> GREEK_CAPITAL_ETA_wTONOS
 	if (c == 0x03AF)								return (0x038A);			// GREEK_SMALL_IOTA_wTONOS		-> GREEK_CAPITAL_IOTA_wTONOS
 	if (c == 0x03C2)								return (c);					// GREEK_SMALL_FINAL_SIGMA
-	if (0x03B1 <= c && c < 0x03CC)					return (c - 0x20);			// GREEK_SMALL					-> GREEK_CAPITAL
 	if (c == 0x03CC)								return (0x038C);			// GREEK_SMALL_OMICRON_wTONOS	-> GREEK_CAPITAL_OMICRON_wTONOS
 	if (c == 0x03CD)								return (0x038E);			// GREEK_SMALL_UPSILON_wTONOS	-> GREEK_CAPITAL_UPSILON_wTONOS
 	if (c == 0x03CE)								return (0x038F);			// GREEK_SMALL_OMEGA_wTONOS		-> GREEK_CAPITAL_OMEGA_wTONOS
+	if (0x0391 <= c && c < 0x03AC)					return (c);					// 								-> GREEK_CAPITAL
+	if (0x03B1 <= c && c < 0x03CC)					return (c - 0x20);			// GREEK_SMALL					-> GREEK_CAPITAL
 
 	if (0x03E2 <= c && c < 0x03F0 && (c % 2 == 1))	return (c - 1);				// COPTIC_SMALL					-> COPTIC_CAPITAL
 
+	if (0x0400 <= c && c < 0x0410)					return (c);					// 								-> CYRILLIC_CAPITAL
+	if (0x0410 <= c && c < 0x0430)					return (c);					// 								-> CYRILLIC_CAPITAL
 	if (0x0430 <= c && c < 0x0450)					return (c - 0x20);			// CYRILLIC_SMALL				-> CYRILLIC_CAPITAL
 	if (0x0450 <= c && c < 0x0460)					return (c - 0x50);			// CYRILLIC_SMALL				-> CYRILLIC_CAPITAL
 	if (0x0460 <= c && c < 0x0482 && (c % 2 == 1))	return (c - 1);				// CYRILLIC_SMALL				-> CYRILLIC_CAPITAL
@@ -77,8 +81,10 @@ t_utf32	UTF32_ToUppercase(t_utf32 c) // TODO make lookup table for weird 'if's w
 	if (c == 0x04CF)								return (0x04C0);			// CYRILLIC_SMALL_PALOCHKA		-> CYRILLIC_CAPITAL_PALOCHKA
 	if (0x04D0 <= c && c < 0x0530 && (c % 2 == 1))	return (c - 1);				// CYRILLIC_SMALL				-> CYRILLIC_CAPITAL
 
+	if (0x0531 <= c && c < 0x0557)					return (c);					// 								-> ARMENIAN_CAPITAL
 	if (0x0561 <= c && c < 0x0587)					return (c - 0x30);			// ARMENIAN_SMALL				-> ARMENIAN_CAPITAL
 
+	if (0x10A0 <= c && c < 0x10D0)					return (c);					// 								-> GEORGIAN_CAPITAL
 	if (0x10D0 <= c && c < 0x1100)					return (c - 0x30);			// GEORGIAN_SMALL				-> GEORGIAN_CAPITAL
 
 	if (0x1E00 <= c && c < 0x1E96 && (c % 2 == 1))	return (c - 1);				// LATIN_SMALL					-> LATIN_CAPITAL
@@ -86,10 +92,13 @@ t_utf32	UTF32_ToUppercase(t_utf32 c) // TODO make lookup table for weird 'if's w
 
 	if (0x1F00 <= c && c < 0x2000 && (c & 8))		return (c + 8);				// GREEK_SMALL					-> GREEK_CAPITAL
 
+	if (0x2170 <= c && c < 0x2180)					return (c);					// 								-> ROMAN_NUMERAL_CAPITAL
 	if (0x2170 <= c && c < 0x2180)					return (c - 0x10);			// ROMAN_NUMERAL_SMALL			-> ROMAN_NUMERAL_CAPITAL
 
+	if (0x24D0 <= c && c < 0x24EA)					return (c);					// 								-> LATIN_CIRCLED_CAPITAL
 	if (0x24D0 <= c && c < 0x24EA)					return (c - 0x1A);			// LATIN_CIRCLED_SMALL			-> LATIN_CIRCLED_CAPITAL
 
+	if (0x2C30 <= c && c < 0x2C60)					return (c);					// 								-> GLAGOLITIC_CAPITAL
 	if (0x2C30 <= c && c < 0x2C60)					return (c - 0x30);			// GLAGOLITIC_SMALL				-> GLAGOLITIC_CAPITAL
 
 	if (c == 0x2C61)								return (c - 1);				// LATIN_SMALL_L_wDOUBLEBAR		-> LATIN_CAPITAL_L_wDOUBLEBAR
@@ -118,10 +127,13 @@ t_utf32	UTF32_ToUppercase(t_utf32 c) // TODO make lookup table for weird 'if's w
 
 	// TODO inspect this region to see if there's anything not yet handled
 
+	if (0xFF21 <= c && c < 0xFF3B)					return (c);					// 								-> LATIN_CAPITAL_FULLWIDTH
 	if (0xFF41 <= c && c < 0xFF5B)					return (c - 0x20);			// LATIN_SMALL_FULLWIDTH		-> LATIN_CAPITAL_FULLWIDTH
 
+	if (0x10400 <= c && c < 0x10428)				return (c);					// 								-> DESERET_CAPITAL
 	if (0x10428 <= c && c < 0x10450)				return (c - 0x28);			// DESERET_SMALL				-> DESERET_CAPITAL
 
+	if (0x104B0 <= c && c < 0x104D8)				return (c);					// 								-> OSAGE_CAPITAL
 	if (0x104D8 <= c && c < 0x10500)				return (c - 0x28);			// OSAGE_SMALL					-> OSAGE_CAPITAL
 
 	// TODO inspect this region to see if there's anything not yet handled
@@ -149,13 +161,5 @@ t_utf32	UTF32_ToUppercase(t_utf32 c) // TODO make lookup table for weird 'if's w
 
 	// TODO inspect this region to see if there's anything not yet handled
 
-	return (c);
-}
-
-
-
-t_utf32	UTF32_ToLowercase(t_utf32 c)
-{
-	if ('A' <= c && c <= 'Z')	return (c + ('A' - 'a'));	// LATIN_CAPITAL -> LATIN_SMALL
 	return (c);
 }

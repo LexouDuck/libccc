@@ -399,8 +399,9 @@ t_size					UTF32_Parse_N(t_utf32* dest, t_ascii const* str, t_size n);
 ** ************************************************************************** *|
 */
 
+// TODO UTF32_Charset()
 
-
+// TODO enum e_unicode
 //!< 0x0000 — 0x007F	Basic Latin
 //!< 0x0080 — 0x00FF	Latin-1 Supplement
 //!< 0x0100 — 0x017F	Latin Extended-A
