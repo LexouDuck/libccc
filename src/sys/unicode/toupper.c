@@ -5,7 +5,7 @@
 
 t_utf32	UTF32_ToUppercase(t_utf32 c) // TODO make lookup table for weird 'if's with no discernible pattern
 {
-	if ('a' <= c && c <= 'z')						return (c - ('A' - 'a'));	// LATIN_SMALL					-> LATIN_CAPITAL
+	if ('a' <= c && c <= 'z')						return (c - 0x20);			// LATIN_SMALL					-> LATIN_CAPITAL
 	if (0xC0 <= c && c < 0xDF)						return (c);					// 								-> LATIN_CAPITAL
 	if (0xE0 <= c && c < 0xFF)						return (c - 0x20);			// LATIN_SMALL					-> LATIN_CAPITAL
 	if (c == 0x00FF)								return (0x0178);			// LATIN_SMALL_extA_Y_DIAERESIS	-> LATIN_CAPITAL_extA_Y_wDIAERESIS

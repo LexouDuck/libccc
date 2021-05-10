@@ -7,7 +7,7 @@
 inline
 t_ascii	ASCII_ToUppercase(t_ascii c)
 {
-	return (('a' <= c && c <= 'z') ? (c - ('A' - 'a')) : c);
+	return (('a' <= c && c <= 'z') ? (c - ('a' - 'A')) : c);
 }
 
 
@@ -15,5 +15,5 @@ t_ascii	ASCII_ToUppercase(t_ascii c)
 inline
 t_ascii	ASCII_ToLowercase(t_ascii c)
 {
-	return (('A' <= c && c <= 'Z') ? (c + ('A' - 'a')) : c);
+	return (('A' <= c && c <= 'Z') ? (c + ('a' - 'A')) : c);
 }

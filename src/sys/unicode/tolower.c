@@ -5,7 +5,7 @@
 
 t_utf32	UTF32_ToLowercase(t_utf32 c)
 {
-	if ('A' <= c && c <= 'Z')						return (c + ('A' - 'a'));	// LATIN_CAPITAL					-> LATIN_SMALL
+	if ('A' <= c && c <= 'Z')						return (c + 0x20);			// LATIN_CAPITAL					-> LATIN_SMALL
 	if (0xC0 <= c && c < 0xDF)						return (c + 0x20);			// LATIN_CAPITAL					-> LATIN_SMALL
 	if (0xE0 <= c && c < 0xFF)						return (c);					// 									-> LATIN_SMALL
 	if (c == 0x0178)								return (0x00FF);			// LATIN_CAPITAL_extA_Y_DIAERESIS	-> LATIN_SMALL_extA_Y_wDIAERESIS
