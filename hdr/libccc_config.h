@@ -82,6 +82,21 @@ HEADER_CPP
 
 
 
+//! Defines which type the `t_char` default text character type will be
+/*!
+**	This macro sets the default `t_char` text string character type to use.
+**	There are 2 possible accepted values for these:
+**		|`TYPE_CHAR`|`NAME_CHAR`|__________________________________________
+**	-	| t_ascii	| ASCII		| for simple 8-bit ASCII character strings
+**	-	| t_utf32	| UTF32		| for unicode 32-bit wide character strings
+*/
+//!@{
+#define LIBCONFIG_TYPE_CHAR		t_ascii
+#define LIBCONFIG_NAME_CHAR		ASCII
+//!@}
+
+
+
 //! Defines which type/bit size the `t_uint` default unsigned integer type will be
 /*!
 **	This macro sets the default `t_uint` default unsigned integer type to use.

@@ -17,6 +17,9 @@
 **
 **	@isostd{https://en.cppreference.com/w/c/ansi}
 **
+**	@see
+**	- https://en.wikipedia.org/wiki/ANSI_escape_code
+**
 **	@file
 */
 
@@ -36,7 +39,7 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! ANSI text output display macros
+//! ANSI text output display escape code macros
 /*!
 **	These are some useful string literals for commandline output colors.
 **	Can be used with any of the 'IO_Output_*' and 'IO_Write_*' functions.
@@ -120,22 +123,22 @@ HEADER_CPP
 **	@param	CODE	should be a string, containing number between 0 and 255
 **	@see IO_GetColor()
 */
-#define IO_COLOR_BG(CODE)	ANSI("48;5;"CODE"")
+#define IO_COLOR_BG(CODE)		ANSI("48;5;"CODE"")
 
 //!< The string sequence to color the terminal text background with the default color for this terminal
-#define IO_COLOR_BG_DEFAULT	ANSI("49")
+#define IO_COLOR_BG_DEFAULT		ANSI("49")
 
 //! @}
 
 #ifndef __COLORS__
 #define __COLORS__
+#define C_RESET		ANSI("0")	//!< The string sequence to reset the terminal text output to its default color
 #define C_RED		ANSI("31")	//!< The string sequence to color the terminal text output red
 #define C_GREEN		ANSI("32")	//!< The string sequence to color the terminal text output green
 #define C_YELLOW	ANSI("33")	//!< The string sequence to color the terminal text output yellow
 #define C_BLUE		ANSI("34")	//!< The string sequence to color the terminal text output blue
 #define C_MAGENTA	ANSI("35")	//!< The string sequence to color the terminal text output magenta
 #define C_CYAN		ANSI("36")	//!< The string sequence to color the terminal text output cyan
-#define C_RESET		ANSI("0")	//!< The string sequence to reset the terminal text output to its default color
 #endif
 
 
