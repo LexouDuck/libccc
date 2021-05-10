@@ -3,7 +3,7 @@
 
 
 
-inline
+// TODO UTF handling
 t_bool	UTF32_IsSpace(t_utf32 c)
 {
 	return ((c == ' ') || ('\t' <= c && c <= '\r'));
@@ -11,7 +11,7 @@ t_bool	UTF32_IsSpace(t_utf32 c)
 
 
 
-inline
+// TODO UTF handling
 t_bool	UTF32_IsPunctuation(t_utf32 c)
 {
 	return (
@@ -23,7 +23,7 @@ t_bool	UTF32_IsPunctuation(t_utf32 c)
 
 
 
-inline
+// TODO UTF handling
 t_bool	UTF32_IsPrintable(t_utf32 c)
 {
 	return (!(c < 0x20) &&	// C0 control code char

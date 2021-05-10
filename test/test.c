@@ -101,8 +101,8 @@ void	print_test_##NAME(s_test_##NAME* test, char const* args)								\
 		error = !LIBCONFIG_HANDLE_NULLPOINTERS;													\
 	else error = (test->result != test->expect);												\
 	print_test(test->name, test->function, args,												\
-		(test->result_sig ? signals[test->result_sig] : int_##SIGNED##_to_str(test->result)),	\
-		(test->expect_sig ? signals[test->expect_sig] : int_##SIGNED##_to_str(test->expect)),	\
+		(test->result_sig ? signals[test->result_sig] : int_##SIGNED##tostr(test->result)),	\
+		(test->expect_sig ? signals[test->expect_sig] : int_##SIGNED##tostr(test->expect)),	\
 		test->can_sig,																			\
 		error, NULL);																			\
 }																								\
@@ -205,8 +205,8 @@ void	print_test_sign(s_test_sign* test, char const* args)
 		test->expect_sig = 0;
 	}
 	print_test(test->name, test->function, args,
-		(test->result_sig ? signals[test->result_sig] : int_s_to_str(test->result)),
-		(test->expect_sig ? signals[test->expect_sig] : int_s_to_str(test->expect)),
+		(test->result_sig ? signals[test->result_sig] : int_stostr(test->result)),
+		(test->expect_sig ? signals[test->expect_sig] : int_stostr(test->expect)),
 		test->can_sig,
 		error, warning ? "return value differed, but sign was the same." : NULL);
 }
@@ -215,8 +215,8 @@ void	print_test_sign(s_test_sign* test, char const* args)
 
 void	print_test_ptr(s_test_ptr* test, char const* args)
 {
-	char* tmp_result = ptr_to_str(test->result);
-	char* tmp_expect = ptr_to_str(test->expect);
+	char* tmp_result = ptrtostr(test->result);
+	char* tmp_expect = ptrtostr(test->expect);
 	int error;
 
 	if (test->result_sig || test->expect_sig)
@@ -258,8 +258,8 @@ void	print_test_mem(s_test_mem* test, char const* args)
 
 void	print_test_str(s_test_str* test, char const* args)
 {
-	char* tmp_result = test->result == NULL ? NULL : (strlen(test->result) < STRING_ESCAPE_THRESHOLD ? str_to_escape(test->result) : strdup(test->result));
-	char* tmp_expect = test->expect == NULL ? NULL : (strlen(test->expect) < STRING_ESCAPE_THRESHOLD ? str_to_escape(test->expect) : strdup(test->expect));
+	char* tmp_result = test->result == NULL ? NULL : (strlen(test->result) < STRING_ESCAPE_THRESHOLD ? strtoescape(test->result) : strdup(test->result));
+	char* tmp_expect = test->expect == NULL ? NULL : (strlen(test->expect) < STRING_ESCAPE_THRESHOLD ? strtoescape(test->expect) : strdup(test->expect));
 	int error;
 
 	if (test->result_sig || test->expect_sig)

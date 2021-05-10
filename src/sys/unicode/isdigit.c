@@ -3,7 +3,7 @@
 
 
 
-inline
+// TODO UTF handling
 t_bool	UTF32_IsDigit(t_utf32 c)
 {
 	return ('0' <= c && c <= '9');
@@ -11,7 +11,7 @@ t_bool	UTF32_IsDigit(t_utf32 c)
 
 
 
-inline
+// TODO UTF handling
 t_bool	UTF32_IsDigit_Hex(t_utf32 c)
 {
 	return (('0' <= c && c <= '9') ||
@@ -21,7 +21,7 @@ t_bool	UTF32_IsDigit_Hex(t_utf32 c)
 
 
 
-inline
+// TODO UTF handling
 t_bool	UTF32_IsDigit_Oct(t_utf32 c)
 {
 	return (('0' <= c && c <= '7'));
@@ -29,7 +29,7 @@ t_bool	UTF32_IsDigit_Oct(t_utf32 c)
 
 
 
-inline
+// TODO UTF handling
 t_bool	UTF32_IsDigit_Bin(t_utf32 c)
 {
 	return (c == '0' || c == '1');

@@ -83,8 +83,17 @@ TYPEDEF_ALIAS(			t_utf32, UTF32, PRIMITIVE)
 typedef t_ascii	t_char;
 TYPEDEF_ALIAS(	t_char, CHAR, PRIMITIVE)
 
+
+
 // TODO add option with wrapper functions for the ones in C11 <uchar.h>
 
+
+
+//! A charset containing all of the different whitespace characters
+#define CHARSET_WHITESPACE	" \t\n\r\v\f"
+
+//! A charset containing all of the ASCII punctuation characters
+#define CHARSET_PUNCTUATION	"!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
 
 /*
 **	Define string literals for alphabet characters
@@ -99,19 +108,21 @@ TYPEDEF_ALIAS(	t_char, CHAR, PRIMITIVE)
 /*
 **	Define string literals for some of the commonly used number bases.
 */
+//!@{
+#define CHARSET_BIN			CHARSET_BINARY
 #define CHARSET_BINARY		"01"
+
+#define CHARSET_OCT			CHARSET_OCTAL
 #define CHARSET_OCTAL		"01234567"
+
+#define CHARSET_DEC			CHARSET_DECIMAL
 #define CHARSET_DECIMAL		"0123456789"
-#define CHARSET_HEX_LOWER	"0123456789abcdef"
-#define CHARSET_HEX_UPPER	"0123456789ABCDEF"
+
 #define CHARSET_HEX			CHARSET_HEXADECIMAL
 #define CHARSET_HEXADECIMAL	"0123456789aAbBcCdDeEfF"
-
-//! A charset containing all of the different whitespace characters
-#define CHARSET_WHITESPACE	" \t\n\r\v\f"
-
-//! A charset containing all of the ASCII punctuation characters
-#define CHARSET_PUNCTUATION	"!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
+#define CHARSET_HEX_LOWER	"0123456789abcdef"
+#define CHARSET_HEX_UPPER	"0123456789ABCDEF"
+//!@}
 
 
 

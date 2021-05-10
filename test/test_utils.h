@@ -81,13 +81,13 @@ char*	print_memory(void const* ptr, t_size length);
 char*	str_padleft(char const* str, char c, t_size length);
 
 #define STRING_ESCAPE_THRESHOLD	128
-char*	str_to_escape(char const* str);
+char*	strtoescape(char const* str);
 
-char*	int_s_to_str(t_s64 number);
+char*	int_stostr(t_s64 number);
 
-char*	int_u_to_str(t_u64 number);
+char*	int_utostr(t_u64 number);
 
-char*	ptr_to_str(void const* ptr);
+char*	ptrtostr(void const* ptr);
 
 
 
@@ -297,7 +297,7 @@ DEFINEFUNC_PRINT_TEST(alloc,	char const*)
 /*
 //! Prints the given argument variable as a string with non-printable chars as escape sequences
 #define TEST_PRINT_ARGS_ESCAPED(ARG) \
-	char* tmp = str_to_escape(ARG);	\
+	char* tmp = strtoescape(ARG);	\
 	TEST_PRINT_ARGS("\"%s\"", tmp);	\
 	if (tmp)						\
 	{								\
@@ -318,7 +318,7 @@ DEFINEFUNC_PRINT_TEST(alloc,	char const*)
 	if (len < 0)		return;								\
 	if (len < STRING_ESCAPE_THRESHOLD)						\
 	{														\
-		args = str_to_escape(tmp);							\
+		args = strtoescape(tmp);							\
 		free(tmp);											\
 		if (args == NULL)	return;							\
 	}														\

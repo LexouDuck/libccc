@@ -16,7 +16,7 @@ inline t_char*	Size_ToString_Hex(t_size number)
 	return (U64_ToString_Hex(number, TRUE));
 }
 
-t_char*	Size_ToString_Readable(t_size number)
+t_char*	Size_ToString_Pretty(t_size number)
 {
 	static const t_char* units[6] = { "B\0", "KB", "MB", "GB", "TB", "PB" };
 	t_float len = (t_float)number;

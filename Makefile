@@ -174,7 +174,8 @@ SRCS = \
 	sys/unicode/isdigit.c	\
 	sys/unicode/isprint.c	\
 	sys/unicode/incharset.c	\
-	sys/unicode/to.c		\
+	sys/unicode/toupper.c	\
+	sys/unicode/tolower.c	\
 	sys/unicode/utf8.c		\
 	sys/unicode/utf16.c		\
 	sys/unicode/parse.c		\

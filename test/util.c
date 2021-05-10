@@ -160,7 +160,7 @@ char*	str_padleft(char const* str, char c, size_t length)
 
 
 
-char*	str_to_escape(char const* str)
+char*	strtoescape(char const* str)
 {
 	unsigned char HI_nibble;
 	unsigned char LO_nibble;
@@ -208,7 +208,7 @@ char*	str_to_escape(char const* str)
 
 
 
-char*	int_s_to_str(t_s64 number)
+char*	int_stostr(t_s64 number)
 {
 	char*	result;
 	t_u8	digits[20];
@@ -236,7 +236,7 @@ char*	int_s_to_str(t_s64 number)
 
 
 
-char*	int_u_to_str(t_u64 number)
+char*	int_utostr(t_u64 number)
 {
 	char*	result;
 	t_u8	digits[20];
@@ -263,7 +263,7 @@ char*	int_u_to_str(t_u64 number)
 
 
 
-char*	ptr_to_str(void const* ptr)
+char*	ptrtostr(void const* ptr)
 {
 	char*	result;
 	t_u8	digits[sizeof(void const*) * 2];
