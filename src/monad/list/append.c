@@ -9,7 +9,10 @@ s_list_T*	CONCAT(List_Append,T_NAME)(s_list_T* list, s_list_T* elem)
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (list == NULL)
-		return (NULL);
+	{
+		list = elem;
+		return (list);
+	}
 #endif
 	if (elem == NULL)
 		return (list);

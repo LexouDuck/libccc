@@ -17,7 +17,7 @@ s_list_T*	CONCAT(List_New,T_NAME)(t_uint n, ...)
 	if (n == 0)
 		return (NULL);
 	va_start(list, n);
-	for (t_uint i = 1; i <= n; ++i)
+	for (t_uint i = 0; i < n; ++i)
 	{
 		item = va_arg(list, T);
 		if (!(new = (s_list_T*)Memory_Alloc(sizeof(s_list_T))))
@@ -27,7 +27,7 @@ s_list_T*	CONCAT(List_New,T_NAME)(t_uint n, ...)
 #endif
 		new->next = NULL;
 		new->item = item;
-		if (i == 1)
+		if (i == 0)
 		{
 			elem = new;
 			result = new;
