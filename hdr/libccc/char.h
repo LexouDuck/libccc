@@ -109,7 +109,7 @@ TYPEDEF_ALIAS(			t_utf32, UTF32, PRIMITIVE)
 
 //! ASCII/Unicode C0 control code characters (from 0x00 to 0x1F)
 /*!
-**	@see https://en.wikipedia.org/wiki/C0_and_C1_control_codes
+**	@see https://en.wikipedia.org/wiki/C0_and_C1_control_codes#C0_controls
 */
 //!@{
 #define C0_NUL	0x00	//!< ^@	`␀`	NUL	`\0`	Null
@@ -150,7 +150,7 @@ TYPEDEF_ALIAS(			t_utf32, UTF32, PRIMITIVE)
 
 //! ASCII/Unicode C1 control code characters (from 0x80 to 0x9F)
 /*!
-**	@see https://en.wikipedia.org/wiki/C0_and_C1_control_codes
+**	@see https://en.wikipedia.org/wiki/C0_and_C1_control_codes#C1_controls
 */
 //!@{
 #define C1_PAD	0x80	//!< ^ 	``	PAD		Padding Character
@@ -430,9 +430,16 @@ t_bool						Char_IsInCharset_UTF16(t_utf32 c, t_utf16 const* charset);
 **	@param	c	The character to uppercase-ify (only ASCII characters will be affected)
 **	@returns the uppercase equivalent of the given character, or returns `c` itself if it is not a letter character.
 */
-t_char					Char_ToUppercase(t_char c); // TODO refactor `t_char` here to `t_utf32` (breaking change)
-#define c_toupper		Char_ToUppercase
+//!@{
+t_char					Char_ToUppercase(t_char c);
+#define c_ctoupper		Char_ToUppercase
 #define Char_ToUpper	Char_ToUppercase
+
+t_utf32					Unicode_ToUppercase(t_utf32 c);
+#define c_toupper		Unicode_ToUppercase
+#define c_wctoupper		Unicode_ToUppercase
+#define Unicode_ToUpper	Unicode_ToUppercase
+//!@}
 
 //! Get the lowercase version of the given char `c`, if possible
 /*!
@@ -441,11 +448,17 @@ t_char					Char_ToUppercase(t_char c); // TODO refactor `t_char` here to `t_utf3
 **	@param	c	The character to lowercase-ify (only ASCII characters will be affected)
 **	@returns the lowercase equivalent of the given character, or returns `c` itself if it is not a letter character.
 */
+//!@{
 t_char					Char_ToLowercase(t_char c); // TODO refactor `t_char` here to `t_utf32` (breaking change)
-#define c_tolower		Char_ToLowercase
+#define c_ctolower		Char_ToLowercase
 #define Char_ToLower	Char_ToLowercase
 
-// TODO Char_ToMixedCase()
+t_utf32					Unicode_ToLowercase(t_utf32 c);
+#define c_tolower		Unicode_ToLowercase
+#define c_wctolower		Unicode_ToLowercase
+#define Unicode_ToLower	Unicode_ToLowercase
+//!@}
+
 // TODO Char_ToASCII()
 
 

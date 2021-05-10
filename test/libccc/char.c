@@ -21,22 +21,29 @@ static void	print_char_foreword(void)
 
 
 
-#define TEST_PERFORM_CHAR(FUNCTION) \
-	g_test.totals.tests += 1; \
-	if (!bool_equals(c_##FUNCTION(i), FUNCTION(i))) \
-	{ \
-		g_test.totals.failed += 1; \
-		++errors; \
-		printf(C_RED">Error"C_RESET": c_%s(%d) returned %d\n", #FUNCTION, i, c_##FUNCTION(i)); \
-	} \
+#define TEST_PERFORM_CHAR_(FUNCTION, ERRORPREFIX) \
+	printf( ERRORPREFIX "c_%s(c=0x%4.4X/'%c') returned %i, but the C stdlib equivalent returned %i\n", #FUNCTION, c, c, result, expect);
 
-#define TEST_PERFORM_CHAR_WARNING(FUNCTION) \
-	g_test.totals.tests += 1; \
-	if (!bool_equals(c_##FUNCTION(i), FUNCTION(i))) \
-	{ \
-		++warnings; \
-		printf(C_YELLOW">Warning"C_RESET": c_%s(%d) returned %d\n", #FUNCTION, i, c_##FUNCTION(i)); \
-	} \
+#define TEST_PERFORM_CHAR(FUNCTION, STRICT) \
+	g_test.totals.tests += 1;						\
+	result = c_##FUNCTION(c);						\
+	expect =     FUNCTION(c);						\
+	if (result != expect)							\
+	{												\
+		if (STRICT && !bool_equals(result, expect))	\
+		{											\
+			errors++;								\
+			TEST_PERFORM_CHAR_(FUNCTION,			\
+				C_RED">Error"C_RESET": ")			\
+			g_test.totals.failed += 1;				\
+		}											\
+		else										\
+		{											\
+			warnings++;								\
+			TEST_PERFORM_CHAR_(FUNCTION,			\
+				C_YELLOW">Warning"C_RESET": ")		\
+		}											\
+	}												\
 
 
 
@@ -60,40 +67,42 @@ int		testsuite_char(void)
 //	int		c_toupper(int c);
 //	int		c_tolower(int c);
 
-	int char_max = 256;
 	int warnings = 0;
 	int errors = 0;
-	int i = -1;
-	while (++i < char_max)
+	t_utf32 char_max = 0x7F;
+	t_utf32 c = 0;
+	t_sint result;
+	t_sint expect;
+	while (c++ < char_max)
 	{
-		TEST_PERFORM_CHAR(isalpha)
-		TEST_PERFORM_CHAR(isupper)
-		TEST_PERFORM_CHAR(islower)
-		TEST_PERFORM_CHAR(isalnum)
-		TEST_PERFORM_CHAR(isdigit)
-		TEST_PERFORM_CHAR(isspace)
-		TEST_PERFORM_CHAR(ispunct)
-		TEST_PERFORM_CHAR(isprint)
-		TEST_PERFORM_CHAR(isascii)
+		TEST_PERFORM_CHAR(isalpha, TRUE)
+		TEST_PERFORM_CHAR(isupper, TRUE)
+		TEST_PERFORM_CHAR(islower, TRUE)
+		TEST_PERFORM_CHAR(isalnum, TRUE)
+		TEST_PERFORM_CHAR(isdigit, TRUE)
+		TEST_PERFORM_CHAR(isspace, TRUE)
+		TEST_PERFORM_CHAR(ispunct, TRUE)
+		TEST_PERFORM_CHAR(isprint, TRUE)
+		TEST_PERFORM_CHAR(isascii, TRUE)
 
-		TEST_PERFORM_CHAR(toupper)
-		TEST_PERFORM_CHAR(tolower)
+		TEST_PERFORM_CHAR(toupper, TRUE)
+		TEST_PERFORM_CHAR(tolower, TRUE)
 	}
-	char_max = 260;
-	while (++i < char_max)
+	char_max = 300;
+	while (c++ < char_max)
 	{
-		TEST_PERFORM_CHAR_WARNING(isalpha)
-		TEST_PERFORM_CHAR_WARNING(isupper)
-		TEST_PERFORM_CHAR_WARNING(islower)
-		TEST_PERFORM_CHAR_WARNING(isalnum)
-		TEST_PERFORM_CHAR_WARNING(isdigit)
-		TEST_PERFORM_CHAR_WARNING(isspace)
-		TEST_PERFORM_CHAR_WARNING(ispunct)
-		TEST_PERFORM_CHAR_WARNING(isprint)
-		TEST_PERFORM_CHAR_WARNING(isascii)
+		TEST_PERFORM_CHAR(isalpha, FALSE)
+		TEST_PERFORM_CHAR(isupper, FALSE)
+		TEST_PERFORM_CHAR(islower, FALSE)
+		TEST_PERFORM_CHAR(isalnum, FALSE)
+		TEST_PERFORM_CHAR(isdigit, FALSE)
+		TEST_PERFORM_CHAR(isspace, FALSE)
+		TEST_PERFORM_CHAR(ispunct, FALSE)
+		TEST_PERFORM_CHAR(isprint, FALSE)
+		TEST_PERFORM_CHAR(isascii, FALSE)
 
-		TEST_PERFORM_CHAR_WARNING(toupper)
-		TEST_PERFORM_CHAR_WARNING(tolower)
+		TEST_PERFORM_CHAR(toupper, FALSE)
+		TEST_PERFORM_CHAR(tolower, FALSE)
 	}
 
 	if (g_test.flags.verbose)
