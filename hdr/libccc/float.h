@@ -36,6 +36,7 @@
 #include "libccc_naming.h"
 #include "libccc_define.h"
 
+#include "libccc/char.h"
 #include "libccc/bool.h"
 #include "libccc/int.h"
 
@@ -410,8 +411,6 @@ typedef union float_cast
 ** ************************************************************************** *|
 */
 
-
-
 //! Creates a float value from its individual parts.
 /*!
 **	@param	mantissa	The significant digits of this floating-point number
@@ -496,8 +495,6 @@ t_sint						F128_GetExp10(t_f128 number);
 ** ************************************************************************** *|
 */
 
-
-
 //! Returns 1(TRUE) if the 2 given floating-point values are exactly equal (operator: `==`)
 /*!
 **	@param	number1	The first value to check for (exact) equality
@@ -561,8 +558,6 @@ t_bool					F128_EqualsApprox(t_f128 number1, t_f128 number2);
 ** ************************************************************************** *|
 */
 
-
-
 //! Get the shortest string representation of the given floating-point number (dec or exp), with 'precision' fractional digits
 /*!
 **	@param	number		The number to convert to a string
@@ -571,13 +566,13 @@ t_bool					F128_EqualsApprox(t_f128 number1, t_f128 number2);
 */
 //!@{
 #define					Float_ToString	CONCAT(FLOAT_TYPE,_ToString)
-_MALLOC()	char*		F32_ToString(t_f32 number, t_u8 precision);
-_MALLOC()	char*		F64_ToString(t_f64 number, t_u8 precision);
+_MALLOC()	t_char*		F32_ToString(t_f32 number, t_u8 precision);
+_MALLOC()	t_char*		F64_ToString(t_f64 number, t_u8 precision);
 #ifdef	__float80
-_MALLOC()	char*		F80_ToString(t_f80 number, t_u8 precision);
+_MALLOC()	t_char*		F80_ToString(t_f80 number, t_u8 precision);
 #endif
 #ifdef	__float128
-_MALLOC()	char*		F128_ToString(t_f128 number, t_u8 precision);
+_MALLOC()	t_char*		F128_ToString(t_f128 number, t_u8 precision);
 #endif
 #define c_ftostr		Float_ToString	//!< @alias{Float_ToString}
 #define c_f32tostr		F32_ToString	//!< @alias{F32_ToString}
@@ -596,13 +591,13 @@ _MALLOC()	char*		F128_ToString(t_f128 number, t_u8 precision);
 */
 //!@{
 #define								Float_ToString_Exp	CONCAT(FLOAT_TYPE,_ToString_Exp)
-_MALLOC()	char*					F32_ToString_Exp(t_f32 number, t_u8 precision);
-_MALLOC()	char*					F64_ToString_Exp(t_f64 number, t_u8 precision);
+_MALLOC()	t_char*					F32_ToString_Exp(t_f32 number, t_u8 precision);
+_MALLOC()	t_char*					F64_ToString_Exp(t_f64 number, t_u8 precision);
 #ifdef	__float80
-_MALLOC()	char*					F80_ToString_Exp(t_f80 number, t_u8 precision);
+_MALLOC()	t_char*					F80_ToString_Exp(t_f80 number, t_u8 precision);
 #endif
 #ifdef	__float128
-_MALLOC()	char*					F128_ToString_Exp(t_f128 number, t_u8 precision);
+_MALLOC()	t_char*					F128_ToString_Exp(t_f128 number, t_u8 precision);
 #endif
 #define c_ftostrexp					Float_ToString_Exp	//!< @alias{Float_ToString_Exp}
 #define c_f32tostrexp				F32_ToString_Exp	//!< @alias{F32_ToString_Exp}
@@ -643,13 +638,13 @@ _MALLOC()	char*					F128_ToString_Exp(t_f128 number, t_u8 precision);
 */
 //!@{
 #define								Float_ToString_Dec	CONCAT(FLOAT_TYPE,_ToString_Dec)
-_MALLOC()	char*					F32_ToString_Dec(t_f32 number, t_u8 precision);
-_MALLOC()	char*					F64_ToString_Dec(t_f64 number, t_u8 precision);
+_MALLOC()	t_char*					F32_ToString_Dec(t_f32 number, t_u8 precision);
+_MALLOC()	t_char*					F64_ToString_Dec(t_f64 number, t_u8 precision);
 #ifdef	__float80
-_MALLOC()	char*					F80_ToString_Dec(t_f80 number, t_u8 precision);
+_MALLOC()	t_char*					F80_ToString_Dec(t_f80 number, t_u8 precision);
 #endif
 #ifdef	__float128
-_MALLOC()	char*					F128_ToString_Dec(t_f128 number, t_u8 precision);
+_MALLOC()	t_char*					F128_ToString_Dec(t_f128 number, t_u8 precision);
 #endif
 #define c_ftostrdec					Float_ToString_Dec	//!< @alias{Float_ToString_Dec}
 #define c_f32tostrdec				F32_ToString_Dec	//!< @alias{F32_ToString_Dec}
@@ -668,13 +663,13 @@ _MALLOC()	char*					F128_ToString_Dec(t_f128 number, t_u8 precision);
 */
 //!@{
 #define								Float_ToString_Hex	CONCAT(FLOAT_TYPE,_ToString_Hex)
-_MALLOC()	char*					F32_ToString_Hex(t_f32 number, t_u8 precision);
-_MALLOC()	char*					F64_ToString_Hex(t_f64 number, t_u8 precision);
+_MALLOC()	t_char*					F32_ToString_Hex(t_f32 number, t_u8 precision);
+_MALLOC()	t_char*					F64_ToString_Hex(t_f64 number, t_u8 precision);
 #ifdef	__float80
-_MALLOC()	char*					F80_ToString_Hex(t_f80 number, t_u8 precision);
+_MALLOC()	t_char*					F80_ToString_Hex(t_f80 number, t_u8 precision);
 #endif
 #ifdef	__float128
-_MALLOC()	char*					F128_ToString_Hex(t_f128 number, t_u8 precision);
+_MALLOC()	t_char*					F128_ToString_Hex(t_f128 number, t_u8 precision);
 #endif
 #define c_ftostrhex					Float_ToString_Hex	//!< @alias{Float_ToString_Hex}
 #define c_f32tostrhex				F32_ToString_Hex	//!< @alias{F32_ToString_Hex}
@@ -693,13 +688,13 @@ _MALLOC()	char*					F128_ToString_Hex(t_f128 number, t_u8 precision);
 */
 //!@{
 #define								Float_ToString_Bin	CONCAT(FLOAT_TYPE,_ToString_Bin)
-_MALLOC()	char*					F32_ToString_Bin(t_f32 number, t_u8 precision);
-_MALLOC()	char*					F64_ToString_Bin(t_f64 number, t_u8 precision);
+_MALLOC()	t_char*					F32_ToString_Bin(t_f32 number, t_u8 precision);
+_MALLOC()	t_char*					F64_ToString_Bin(t_f64 number, t_u8 precision);
 #ifdef	__float80
-_MALLOC()	char*					F80_ToString_Bin(t_f80 number, t_u8 precision);
+_MALLOC()	t_char*					F80_ToString_Bin(t_f80 number, t_u8 precision);
 #endif
 #ifdef	__float128
-_MALLOC()	char*					F128_ToString_Bin(t_f128 number, t_u8 precision);
+_MALLOC()	t_char*					F128_ToString_Bin(t_f128 number, t_u8 precision);
 #endif
 #define c_ftostrbin					Float_ToString_Bin	//!< @alias{Float_ToString_Bin}
 #define c_f32tostrbin				F32_ToString_Bin	//!< @alias{F32_ToString_Bin}
@@ -716,8 +711,6 @@ _MALLOC()	char*					F128_ToString_Bin(t_f128 number, t_u8 precision);
 ** ************************************************************************** *|
 */
 
-
-
 //! Parse a floating-point number from the given string (can be decimal/exponential/hexdecimal)
 /*!
 **	@param	str	The string to parse a floating-point value from.
@@ -725,13 +718,13 @@ _MALLOC()	char*					F128_ToString_Bin(t_f128 number, t_u8 precision);
 */
 //!@{
 #define					Float_FromString	CONCAT(FLOAT_TYPE,_FromString)
-t_f32					F32_FromString(char const* str);
-t_f64					F64_FromString(char const* str);
+t_f32					F32_FromString(t_char const* str);
+t_f64					F64_FromString(t_char const* str);
 #ifdef	__float80
-t_f80					F80_FromString(char const* str);
+t_f80					F80_FromString(t_char const* str);
 #endif
 #ifdef	__float128
-t_f128					F128_FromString(char const* str);
+t_f128					F128_FromString(t_char const* str);
 #endif
 #define c_strtof		Float_FromString//!< @alias{Float_FromString}
 #define c_strtof32		F32_FromString	//!< @alias{F32_FromString}
@@ -749,13 +742,13 @@ t_f128					F128_FromString(char const* str);
 */
 //!@{
 #define									Float_FromString_Exp	CONCAT(FLOAT_TYPE,_FromString_Exp)
-t_f32									F32_FromString_Exp(char const* str);
-t_f64									F64_FromString_Exp(char const* str);
+t_f32									F32_FromString_Exp(t_char const* str);
+t_f64									F64_FromString_Exp(t_char const* str);
 #ifdef	__float80
-t_f80									F80_FromString_Exp(char const* str);
+t_f80									F80_FromString_Exp(t_char const* str);
 #endif
 #ifdef	__float128
-t_f128									F128_FromString_Exp(char const* str);
+t_f128									F128_FromString_Exp(t_char const* str);
 #endif
 #define c_strexptof						Float_FromString_Exp//!< @alias{Float_FromString_Exp}
 #define c_strexptof32					F32_FromString_Exp	//!< @alias{F32_FromString_Exp}
@@ -795,13 +788,13 @@ t_f128									F128_FromString_Exp(char const* str);
 */
 //!@{
 #define									Float_FromString_Dec	CONCAT(FLOAT_TYPE,_FromString_Dec)
-t_f32									F32_FromString_Dec(char const* str);
-t_f64									F64_FromString_Dec(char const* str);
+t_f32									F32_FromString_Dec(t_char const* str);
+t_f64									F64_FromString_Dec(t_char const* str);
 #ifdef	__float80
-t_f80									F80_FromString_Dec(char const* str);
+t_f80									F80_FromString_Dec(t_char const* str);
 #endif
 #ifdef	__float128
-t_f128									F128_FromString_Dec(char const* str);
+t_f128									F128_FromString_Dec(t_char const* str);
 #endif
 #define c_strdectof						Float_FromString_Dec//!< @alias{Float_FromString_Dec}
 #define c_strdectof32					F32_FromString_Dec	//!< @alias{F32_FromString_Dec}
@@ -819,13 +812,13 @@ t_f128									F128_FromString_Dec(char const* str);
 */
 //!@{
 #define									Float_FromString_Hex	CONCAT(FLOAT_TYPE,_FromString_Hex)
-t_f32									F32_FromString_Hex(char const* str);
-t_f64									F64_FromString_Hex(char const* str);
+t_f32									F32_FromString_Hex(t_char const* str);
+t_f64									F64_FromString_Hex(t_char const* str);
 #ifdef	__float80
-t_f80									F80_FromString_Hex(char const* str);
+t_f80									F80_FromString_Hex(t_char const* str);
 #endif
 #ifdef	__float128
-t_f128									F128_FromString_Hex(char const* str);
+t_f128									F128_FromString_Hex(t_char const* str);
 #endif
 #define c_strhextof						Float_FromString_Hex//!< @alias{Float_FromString_Hex}
 #define c_strhextof32					F32_FromString_Hex	//!< @alias{F32_FromString_Hex}
@@ -843,13 +836,13 @@ t_f128									F128_FromString_Hex(char const* str);
 */
 //!@{
 #define								Float_FromString_Bin	CONCAT(TYPE_FLOAT,_FromString_Bin)
-t_f32								F32_FromString_Bin(char const* str);
-t_f64								F64_FromString_Bin(char const* str);
+t_f32								F32_FromString_Bin(t_char const* str);
+t_f64								F64_FromString_Bin(t_char const* str);
 #ifdef	__float80
-t_f80								F80_FromString_Bin(char const* str);
+t_f80								F80_FromString_Bin(t_char const* str);
 #endif
 #ifdef	__float128
-t_f128								F128_FromString_Bin(char const* str);
+t_f128								F128_FromString_Bin(t_char const* str);
 #endif
 #define c_strbintof					Float_FromString_Bin//!< @alias{Float_FromString_Bin}
 #define c_strbintof32				F32_FromString_Bin	//!< @alias{F32_FromString_Bin}

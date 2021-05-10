@@ -86,12 +86,45 @@ TYPEDEF_ALIAS(		t_bool, BOOL, PRIMITIVE)
 
 
 
+//! Boolean logical operator macros
+//!@{
+#ifndef and
+#define and	&&
+#endif
+#ifndef or
+#define or	||
+#endif
+#ifndef xor
+#define xor	^	// TODO force boolean logic for this operator
+#endif
+#ifndef not
+#define not	!
+#endif
+//!@}
+
+//! Boolean bitwise operator macros
+//!@{
+#ifndef bitand
+#define bitand	&
+#endif
+#ifndef bitor
+#define bitor	|
+#endif
+#ifndef bitxor
+#define bitxor	^
+#endif
+#ifndef bitnot
+#define bitnot	~
+#endif
+//!@}
+
+
+
 /*
 ** ************************************************************************** *|
 **                             String Conversions                             *|
 ** ************************************************************************** *|
 */
-
 
 #define BOOL_TOSTRING \
 		BOOL_TOSTRING_UPPER
@@ -101,14 +134,20 @@ TYPEDEF_ALIAS(		t_bool, BOOL, PRIMITIVE)
 
 // TODO split Bool_ToString() into 3 sub-functions with one configurable macro ?
 
+
+
+#ifdef __LIBCCC_CHAR_H
+
 //! Get the string representation of a boolean value (TRUE or FALSE)
 _MALLOC()
-char*					Bool_ToString(t_bool value, t_bool uppercase);
+t_char*					Bool_ToString(t_bool value, t_bool uppercase);
 #define c_bool_to_str	Bool_ToString //!< @alias{Bool_ToString}
 
 //! Parse a boolean value from the given string (can be 1/0/TRUE/FALSE/true/false)
-t_bool					Bool_FromString(char const* str);
+t_bool					Bool_FromString(t_char const* str);
 #define c_str_to_bool	Bool_FromString //!< @alias{Bool_FromString}
+
+#endif
 
 
 

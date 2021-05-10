@@ -213,8 +213,8 @@ HEADER_CPP
 **	.___________________________________________________________________________________________________________
 **	|bitsize| 'd', 'i'		| 'u', 'o', 'x', 'X'	|'f','e','g','a'| 'c'	| 's'		| 'p'	| 'n'			|
 **	|_______|_______________|_______________________|'F'_'E'_'G'_'A'|_______|___________|_______|_______________|
-**	|(none)	| int			| unsigned int			| double		| int	| char*		| void*	| int*			|
-**	| "hh"	| signed char	| unsigned char			|				|		|			|		| signed char*	|
+**	|(none)	| int			| unsigned int			| double		| int	| t_char*		| void*	| int*			|
+**	| "hh"	| signed char	| unsigned char			|				|		|			|		| signed t_char*	|
 **	|  "h"	| short int		| unsigned short int	|				|		|			|		| short int*	|
 **	|  "l"	| long int		| unsigned long int		|				| wint_t| wchar_t*	|		| long int*		|
 **	| "ll"	| long long int	| unsigned long long int|				|		|			|		| long long int*|
@@ -227,7 +227,7 @@ HEADER_CPP
 */
 _FORMAT(printf, 1, 2)
 _MALLOC()
-char*					String_Format(char const* format, ...);
+t_char*					String_Format(t_char const* format, ...);
 #define c_asprintf		String_Format //!< @alias{String_Format}
 #define c_strfmt		String_Format //!< @alias{String_Format}
 #define c_strformat		String_Format //!< @alias{String_Format}
@@ -235,7 +235,7 @@ char*					String_Format(char const* format, ...);
 
 //! @see				String_Format
 _MALLOC()
-char*					String_Format_VA(char const* format, va_list args);
+t_char*					String_Format_VA(t_char const* format, va_list args);
 #define c_vasprintf		String_Format_VA //!< @alias{String_Format_VA}
 #define c_strfmt_va		String_Format_VA //!< @alias{String_Format_VA}
 #define c_strformat_va	String_Format_VA //!< @alias{String_Format_VA}
@@ -251,14 +251,14 @@ char*					String_Format_VA(char const* format, va_list args);
 **	@returns the amount of characters in the constructed format string, regardless of `max` size
 */
 _FORMAT(printf, 3, 4)
-t_size						String_Format_N(char* dest, t_size max, char const* format, ...);
+t_size						String_Format_N(t_char* dest, t_size max, t_char const* format, ...);
 #define c_snprintf			String_Format_N //!< @alias{String_Format_N}
 #define c_strnfmt			String_Format_N //!< @alias{String_Format_N}
 #define c_strnformat		String_Format_N //!< @alias{String_Format_N}
 #define String_Build_N		String_Format_N //!< @alias{String_Format_N}
 
 //! @see					String_Format_N
-t_size						String_Format_N_VA(char* dest, t_size max, char const* format, va_list args);
+t_size						String_Format_N_VA(t_char* dest, t_size max, t_char const* format, va_list args);
 #define c_vsnprintf			String_Format_N_VA //!< @alias{String_Format_N_VA}
 #define c_strnfmt_va		String_Format_N_VA //!< @alias{String_Format_N_VA}
 #define c_strnformat_va		String_Format_N_VA //!< @alias{String_Format_N_VA}
@@ -270,13 +270,13 @@ t_size						String_Format_N_VA(char* dest, t_size max, char const* format, va_li
 
 //! Writes the given formatted string to the standard output - equivalent to `fprintf()`, or rather `dprintf()`
 _FORMAT(printf, 2, 3)
-int						IO_Write_Format(t_fd fd, char const* format, ...);
+int						IO_Write_Format(t_fd fd, t_char const* format, ...);
 #define c_write_format	IO_Write_Format
 #define c_dprintf		IO_Write_Format
 
 //! Writes the given formatted string to the standard output - equivalent to `printf()`
 _FORMAT(printf, 1, 2)
-int						IO_Output_Format(char const* format, ...);
+int						IO_Output_Format(t_char const* format, ...);
 #define c_output_format	IO_Output_Format
 #define c_printf		IO_Output_Format
 

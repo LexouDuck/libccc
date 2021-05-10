@@ -34,13 +34,3 @@ t_bool	UTF32_IsDigit_Bin(t_utf32 c)
 {
 	return (c == '0' || c == '1');
 }
-
-
-
-inline
-t_bool	UTF32_IsAlphaNumeric(t_utf32 c)
-{
-	return (('A' <= c && c <= 'Z') ||
-			('a' <= c && c <= 'z') ||
-			('0' <= c && c <= '9'));
-}

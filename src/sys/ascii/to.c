@@ -1,5 +1,6 @@
 
-#include "libccc/sys/ascii.h"
+#include "libccc/bool.h"
+#include "libccc/char.h"
 
 
 

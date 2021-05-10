@@ -1,4 +1,5 @@
 
+#include "libccc/char.h"
 #include "libccc/bool.h"
 #include "libccc/memory.h"
 

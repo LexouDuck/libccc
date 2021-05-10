@@ -70,6 +70,7 @@
 #include "libccc_naming.h"
 #include "libccc_define.h"
 
+#include "libccc/char.h"
 #include "libccc/bool.h"
 #include "libccc/int.h"
 #include "libccc/float.h"
@@ -481,11 +482,11 @@ t_bool					Q128_EqualsApprox(t_q128 number1, t_q128 number2);
 */
 //!@{
 #define					Fixed_ToString	CONCAT(FIXED_TYPE,_ToString)
-_MALLOC()	char*		Q16_ToString(t_q16 number); // TODO implement
-_MALLOC()	char*		Q32_ToString(t_q32 number); // TODO implement
-_MALLOC()	char*		Q64_ToString(t_q64 number); // TODO implement
+_MALLOC()	t_char*		Q16_ToString(t_q16 number); // TODO implement
+_MALLOC()	t_char*		Q32_ToString(t_q32 number); // TODO implement
+_MALLOC()	t_char*		Q64_ToString(t_q64 number); // TODO implement
 #ifdef	__int128
-_MALLOC()	char*		Q128_ToString(t_q128 number); // TODO implement
+_MALLOC()	t_char*		Q128_ToString(t_q128 number); // TODO implement
 #endif
 #define c_qtostr		Fixed_ToString	//!< @alias{Fixed_ToString}
 #define c_q16tostr		Q16_ToString	//!< @alias{Q16_ToString}
@@ -503,11 +504,11 @@ _MALLOC()	char*		Q128_ToString(t_q128 number); // TODO implement
 */
 //!@{
 #define					Fixed_ToString_Hex	CONCAT(FIXED_TYPE,_ToString_Hex)
-_MALLOC()	char*		Q16_ToString_Hex(t_q16 number); // TODO implement
-_MALLOC()	char*		Q32_ToString_Hex(t_q32 number); // TODO implement
-_MALLOC()	char*		Q64_ToString_Hex(t_q64 number); // TODO implement
+_MALLOC()	t_char*		Q16_ToString_Hex(t_q16 number); // TODO implement
+_MALLOC()	t_char*		Q32_ToString_Hex(t_q32 number); // TODO implement
+_MALLOC()	t_char*		Q64_ToString_Hex(t_q64 number); // TODO implement
 #ifdef	__int128
-_MALLOC()	char*		Q128_ToString_Hex(t_q128 number); // TODO implement
+_MALLOC()	t_char*		Q128_ToString_Hex(t_q128 number); // TODO implement
 #endif
 #define c_qtostrhex		Fixed_ToString_Hex	//!< @alias{Fixed_ToString_Hex}
 #define c_q16tostrhex	Q16_ToString_Hex	//!< @alias{Q16_ToString_Hex}
@@ -525,11 +526,11 @@ _MALLOC()	char*		Q128_ToString_Hex(t_q128 number); // TODO implement
 */
 //!@{
 #define					Fixed_ToString_Bin	CONCAT(FIXED_TYPE,_ToString_Bin)
-_MALLOC()	char*		Q16_ToString_Bin(t_q16 number); // TODO implement
-_MALLOC()	char*		Q32_ToString_Bin(t_q32 number); // TODO implement
-_MALLOC()	char*		Q64_ToString_Bin(t_q64 number); // TODO implement
+_MALLOC()	t_char*		Q16_ToString_Bin(t_q16 number); // TODO implement
+_MALLOC()	t_char*		Q32_ToString_Bin(t_q32 number); // TODO implement
+_MALLOC()	t_char*		Q64_ToString_Bin(t_q64 number); // TODO implement
 #ifdef	__int128
-_MALLOC()	char*		Q128_ToString_Bin(t_q128 number); // TODO implement
+_MALLOC()	t_char*		Q128_ToString_Bin(t_q128 number); // TODO implement
 #endif
 #define c_qtostrbin		Fixed_ToString_Bin	//!< @alias{Fixed_ToString_Bin}
 #define c_q16tostrbin	Q16_ToString_Bin	//!< @alias{Q16_ToString_Bin}
@@ -548,11 +549,11 @@ _MALLOC()	char*		Q128_ToString_Bin(t_q128 number); // TODO implement
 */
 //!@{
 #define					Fixed_ToString_Base	CONCAT(FIXED_TYPE,_ToString_Base)
-_MALLOC()	char*		Q16_ToString_Base(t_q16 number, char const* base); // TODO implement
-_MALLOC()	char*		Q32_ToString_Base(t_q32 number, char const* base); // TODO implement
-_MALLOC()	char*		Q64_ToString_Base(t_q64 number, char const* base); // TODO implement
+_MALLOC()	t_char*		Q16_ToString_Base(t_q16 number, t_char const* base); // TODO implement
+_MALLOC()	t_char*		Q32_ToString_Base(t_q32 number, t_char const* base); // TODO implement
+_MALLOC()	t_char*		Q64_ToString_Base(t_q64 number, t_char const* base); // TODO implement
 #ifdef	__int128
-_MALLOC()	char*		Q128_ToString_Base(t_q128 number, char const* base); // TODO implement
+_MALLOC()	t_char*		Q128_ToString_Base(t_q128 number, t_char const* base); // TODO implement
 #endif
 #define c_qtostrbase	Fixed_ToString_Base	//!< @alias{Fixed_ToString_Base}
 #define c_q16tostrbase	Q16_ToString_Base	//!< @alias{Q16_ToString_Base}
@@ -579,11 +580,11 @@ _MALLOC()	char*		Q128_ToString_Base(t_q128 number, char const* base); // TODO im
 */
 //!@{
 #define					Fixed_FromString	CONCAT(FIXED_TYPE,_FromString)
-t_q16					Q16_FromString(char const* str); // TODO implement
-t_q32					Q32_FromString(char const* str); // TODO implement
-t_q64					Q64_FromString(char const* str); // TODO implement
+t_q16					Q16_FromString(t_char const* str); // TODO implement
+t_q32					Q32_FromString(t_char const* str); // TODO implement
+t_q64					Q64_FromString(t_char const* str); // TODO implement
 #ifdef	__int128
-t_q128					Q128_FromString(char const* str); // TODO implement
+t_q128					Q128_FromString(t_char const* str); // TODO implement
 #endif
 #define c_strtoq		Fixed_FromString//!< @alias{Fixed_FromString}
 #define c_strtoq16		Q16_FromString	//!< @alias{Q16_FromString}
@@ -602,11 +603,11 @@ t_q128					Q128_FromString(char const* str); // TODO implement
 */
 //!@{
 #define					Fixed_FromString_Hex	CONCAT(FIXED_TYPE,_FromString_Hex)
-t_q16					Q16_FromString_Hex(char const* str); // TODO implement
-t_q32					Q32_FromString_Hex(char const* str); // TODO implement
-t_q64					Q64_FromString_Hex(char const* str); // TODO implement
+t_q16					Q16_FromString_Hex(t_char const* str); // TODO implement
+t_q32					Q32_FromString_Hex(t_char const* str); // TODO implement
+t_q64					Q64_FromString_Hex(t_char const* str); // TODO implement
 #ifdef	__int128
-t_q128					Q128_FromString_Hex(char const* str); // TODO implement
+t_q128					Q128_FromString_Hex(t_char const* str); // TODO implement
 #endif
 #define c_strhextoq		Fixed_FromString_Hex//!< @alias{Fixed_FromString_Hex}
 #define c_strhextoq16	Q16_FromString_Hex	//!< @alias{Q16_FromString_Hex}
@@ -625,11 +626,11 @@ t_q128					Q128_FromString_Hex(char const* str); // TODO implement
 */
 //!@{
 #define					Fixed_FromString_Bin	CONCAT(FIXED_TYPE,_FromString_Bin)
-t_q16					Q16_FromString_Bin(char const* str); // TODO implement
-t_q32					Q32_FromString_Bin(char const* str); // TODO implement
-t_q64					Q64_FromString_Bin(char const* str); // TODO implement
+t_q16					Q16_FromString_Bin(t_char const* str); // TODO implement
+t_q32					Q32_FromString_Bin(t_char const* str); // TODO implement
+t_q64					Q64_FromString_Bin(t_char const* str); // TODO implement
 #ifdef	__int128
-t_q128					Q128_FromString_Bin(char const* str); // TODO implement
+t_q128					Q128_FromString_Bin(t_char const* str); // TODO implement
 #endif
 #define c_strbintoq		Fixed_FromString_Bin//!< @alias{Fixed_FromString_Bin}
 #define c_strbintoq16	Q16_FromString_Bin	//!< @alias{Q16_FromString_Bin}
@@ -649,11 +650,11 @@ t_q128					Q128_FromString_Bin(char const* str); // TODO implement
 */
 //!@{
 #define					Fixed_FromString_Base	CONCAT(FIXED_TYPE,_FromString_Base)
-t_q16					Q16_FromString_Base(char const* str, char const* base); // TODO implement
-t_q32					Q32_FromString_Base(char const* str, char const* base); // TODO implement
-t_q64					Q64_FromString_Base(char const* str, char const* base); // TODO implement
+t_q16					Q16_FromString_Base(t_char const* str, t_char const* base); // TODO implement
+t_q32					Q32_FromString_Base(t_char const* str, t_char const* base); // TODO implement
+t_q64					Q64_FromString_Base(t_char const* str, t_char const* base); // TODO implement
 #ifdef	__int128
-t_q128					Q128_FromString_Base(char const* str, char const* base); // TODO implement
+t_q128					Q128_FromString_Base(t_char const* str, t_char const* base); // TODO implement
 #endif
 #define c_strbasetoq	Fixed_FromString_Base 	//!< @alias{Fixed_FromString_Base}
 #define c_strbasetoq16	Q16_FromString_Base 	//!< @alias{Q16_FromString_Base}

@@ -31,8 +31,6 @@
 #include "libccc_define.h"
 
 #include "libccc/bool.h"
-#include "libccc/int.h"
-#include "libccc/pointer.h"
 
 HEADER_CPP
 
@@ -41,13 +39,6 @@ HEADER_CPP
 **                                 Definitions                                *|
 ** ************************************************************************** *|
 */
-
-//! Primitive type: `char`, ie: a text character (1 byte: ANSI/ASCII)
-/*!
-**	@isostd{https://en.cppreference.com/w/c/string/byte}
-*/
-typedef char	t_ascii;
-TYPEDEF_ALIAS(	t_ascii, ASCII, PRIMITIVE)
 
 // TODO add option with wrapper functions for the ones in C11 <uchar.h>
 

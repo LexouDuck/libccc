@@ -115,9 +115,9 @@ TYPEDEF_ALIAS(	e_weekday, WEEKDAY, ENUM)
 #define WEEKDAY_SAT		WEEKDAY_SATURDAY
 
 //! This global constant stores all the string names of the WEEKDAY enum, in lowercase
-extern char const* const g_weekday[ENUMLENGTH_WEEKDAY];
+extern t_char const* const g_weekday[ENUMLENGTH_WEEKDAY];
 //! This global constant stores all the string names of the WEEKDAY enum, abbreviated to 3 letters
-extern char const* const g_weekday_abbreviated[ENUMLENGTH_WEEKDAY];
+extern t_char const* const g_weekday_abbreviated[ENUMLENGTH_WEEKDAY];
 
 
 
@@ -154,9 +154,9 @@ TYPEDEF_ALIAS(	e_month, MONTH, ENUM)
 #define MONTH_DEC	MONTH_DECEMBER
 
 //! This global constant stores all the string names of the MONTH enum, in lowercase
-extern char const* const g_month[ENUMLENGTH_MONTH];
+extern t_char const* const g_month[ENUMLENGTH_MONTH];
 //! This global constant stores all the string names of the MONTH enum, abbreviated to 3 letters
-extern char const* const g_month_abbreviated[ENUMLENGTH_MONTH];
+extern t_char const* const g_month_abbreviated[ENUMLENGTH_MONTH];
 
 
 
@@ -470,24 +470,24 @@ s_date						Date_FromSTDC(struct tm const* value);
 **	%Oy			The year (offset from `%C`) using the locale's alternative numeric symbols.
 */
 //_FORMAT(strptime, 2, 0) // TODO check if this format() attribute exists even
-s_date						Date_Parse(char const* str, char const* format);
+s_date						Date_Parse(t_char const* str, t_char const* format);
 #define c_strtodate			Date_Parse
 #define c_dateparse			Date_Parse
 #define Date_FromString		Date_Parse
 
 //! Like Date_Parse(), but will not set every field in the `s_date` struct, only those directly parsed
-s_date						Date_Parse_Min(char const* str, char const* format);
+s_date						Date_Parse_Min(t_char const* str, t_char const* format);
 #define c_strptime			Date_Parse_Min
 #define c_strtodatemin		Date_Parse_Min
 #define c_dateparsemin		Date_Parse_Min
 #define Date_FromString_N	Date_Parse_Min
 
-t_size							Date_Parse_Strict(s_date* dest, char const* str, char const* format);
+t_size							Date_Parse_Strict(s_date* dest, t_char const* str, t_char const* format);
 #define c_strstodate			Date_Parse_Strict
 #define c_dateparses			Date_Parse_Strict
 #define Date_FromStringStrict	Date_Parse_Strict
 
-t_size							Date_Parse_Strict_Min(s_date* dest, char const* str, char const* format);
+t_size							Date_Parse_Strict_Min(s_date* dest, t_char const* str, t_char const* format);
 #define c_strsptime				Date_Parse_Strict_Min
 #define c_strstodatemin			Date_Parse_Strict_Min
 #define c_dateparsesmin			Date_Parse_Strict_Min
@@ -615,7 +615,7 @@ t_size							Date_Parse_Strict_Min(s_date* dest, char const* str, char const* fo
 */
 _FORMAT(strftime, 2, 0)
 _MALLOC()
-char*						Date_Print(s_date const* date, char const* format);
+t_char*						Date_Print(s_date const* date, t_char const* format);
 #define c_strftime			Date_Print
 #define c_datetostr			Date_Print
 #define c_datefmt			Date_Print
@@ -629,7 +629,7 @@ char*						Date_Print(s_date const* date, char const* format);
 **	@see Date_Print
 */
 _FORMAT(strftime, 4, 0)
-t_size						Date_Print_N(char* dest, t_size max, s_date const* date, char const* format);
+t_size						Date_Print_N(t_char* dest, t_size max, s_date const* date, t_char const* format);
 #define c_strnftime			Date_Print_N
 #define c_datetostrn		Date_Print_N
 #define c_datefmtn			Date_Print_N

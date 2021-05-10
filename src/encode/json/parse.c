@@ -223,10 +223,10 @@ static t_bool JSON_Parse_String(s_json* const item, s_json_parse* const p)
 					*output_pointer++ = input_pointer[1];
 					break;
 				case 'u': // UTF-16 literal
-					sequence_length = Char_Parse_Unicode_N(&c, input_pointer, (input_end - input_pointer));
+					sequence_length = UTF32_Parse_N(&c, input_pointer, (input_end - input_pointer));
 					if (sequence_length == 0)
 						PARSINGERROR_JSON("Could not parse string: Failed to convert UTF16-literal to UTF-8")
-					output_pointer += Char_ToUTF8(output_pointer, c);
+					output_pointer += UTF32_ToUTF8((t_utf8*)output_pointer, c);
 					break;
 				default:
 					PARSINGERROR_JSON("Could not parse string: Invalid string escape sequence encountered: \"\\%c\"", input_pointer[1])

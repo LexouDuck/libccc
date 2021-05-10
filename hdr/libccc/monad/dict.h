@@ -93,16 +93,16 @@ s_dict_T	CONCAT(Dict_Duplicate,T_NAME)(s_dict_T* dict);
 
 
 //! TODO
-void	CONCAT(Dict_Get,T_NAME)(s_dict_T* dict, char* key);
+void	CONCAT(Dict_Get,T_NAME)(s_dict_T* dict, t_char* key);
 
 //! TODO
-void	CONCAT(Dict_Set,T_NAME)(s_dict_T* dict, char* key, T value);
+void	CONCAT(Dict_Set,T_NAME)(s_dict_T* dict, t_char* key, T value);
 
 //! TODO
-void	CONCAT(Dict_Copy,T_NAME)(s_dict_T* dest, s_dict_T const* src, char** keys);
+void	CONCAT(Dict_Copy,T_NAME)(s_dict_T* dest, s_dict_T const* src, t_char** keys);
 
 //! TODO
-void	CONCAT(Dict_Sub,T_NAME)(s_dict_T* dict, char** keys);
+void	CONCAT(Dict_Sub,T_NAME)(s_dict_T* dict, t_char** keys);
 
 
 
@@ -113,21 +113,21 @@ void	CONCAT(Dict_Sub,T_NAME)(s_dict_T* dict, char** keys);
 */
 
 //! TODO
-s_keyval_T*	CONCAT(Dict_Add,T_NAME)(s_dict_T* dict, char* key, T value);
+s_keyval_T*	CONCAT(Dict_Add,T_NAME)(s_dict_T* dict, t_char* key, T value);
 
 
 
 //! TODO
-void	CONCAT(Dict_Remove,T_NAME)(s_dict_T* dict, char* key);
+void	CONCAT(Dict_Remove,T_NAME)(s_dict_T* dict, t_char* key);
 
 //! TODO
-void	CONCAT(Dict_Remove_F,T_NAME)(s_dict_T* dict, char* key, void (*delete)(s_keyval_T* keyval));
+void	CONCAT(Dict_Remove_F,T_NAME)(s_dict_T* dict, t_char* key, void (*delete)(s_keyval_T* keyval));
 
 //! TODO
-void	CONCAT(Dict_RemoveAll,T_NAME)(s_dict_T* dict, char* key);
+void	CONCAT(Dict_RemoveAll,T_NAME)(s_dict_T* dict, t_char* key);
 
 //! TODO
-void	CONCAT(Dict_RemoveAll_F,T_NAME)(s_dict_T* dict, char* key, void (*delete)(s_keyval_T* keyval));
+void	CONCAT(Dict_RemoveAll_F,T_NAME)(s_dict_T* dict, t_char* key, void (*delete)(s_keyval_T* keyval));
 
 //! TODO
 void	CONCAT(Dict_RemoveMatch,T_NAME)(s_dict_T* dict, T value);
@@ -144,7 +144,7 @@ void	CONCAT(Dict_RemoveMatches_F,T_NAME)(s_dict_T* dict, T value, void (*delete)
 
 
 //! TODO
-void	CONCAT(Dict_Replace,T_NAME)(s_dict_T* dict, char* key, s_keyval_T new);
+void	CONCAT(Dict_Replace,T_NAME)(s_dict_T* dict, t_char* key, s_keyval_T new);
 
 
 
@@ -155,7 +155,7 @@ void	CONCAT(Dict_Replace,T_NAME)(s_dict_T* dict, char* key, s_keyval_T new);
 */
 
 //! TODO
-char*		CONCAT(Dict_KeyOf,T_NAME)(s_dict_T* dict, T value);
+t_char*		CONCAT(Dict_KeyOf,T_NAME)(s_dict_T* dict, T value);
 
 
 
@@ -183,13 +183,13 @@ t_bool		CONCAT(Dict_HasOnly,T_NAME)(s_dict_T* dict, s_dict_T* target);
 t_bool	CONCAT(Dict_Equals,T_NAME)(s_dict_T* dict1, s_dict_T* dict2);
 
 //! TODO
-t_bool	CONCAT(Dict_Equals_K,T_NAME)(s_dict_T* dict1, s_dict_T* dict2, char** keys);
+t_bool	CONCAT(Dict_Equals_K,T_NAME)(s_dict_T* dict1, s_dict_T* dict2, t_char** keys);
 
 //! TODO
 t_sint	CONCAT(Dict_Compare,T_NAME)(s_dict_T* dict1, s_dict_T* dict2, t_sint (*compare)(s_keyval_T item1, s_keyval_T item2));
 
 //! TODO
-t_sint	CONCAT(Dict_Compare_K,T_NAME)(s_dict_T* dict1, s_dict_T* dict2, char** keys, t_sint (*compare)(s_keyval_T item1, s_keyval_T item2));
+t_sint	CONCAT(Dict_Compare_K,T_NAME)(s_dict_T* dict1, s_dict_T* dict2, t_char** keys, t_sint (*compare)(s_keyval_T item1, s_keyval_T item2));
 
 
 

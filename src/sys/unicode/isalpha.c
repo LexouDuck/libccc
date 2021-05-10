@@ -3,7 +3,7 @@
 
 
 
-inline
+// TODO UTF handling
 t_bool	UTF32_IsLetter(t_utf32 c)
 {
 	return (('A' <= c && c <= 'Z') ||
@@ -12,7 +12,7 @@ t_bool	UTF32_IsLetter(t_utf32 c)
 
 
 
-inline
+// TODO UTF handling
 t_bool	UTF32_IsUppercase(t_utf32 c)
 {
 	return ('A' <= c && c <= 'Z');
@@ -20,7 +20,7 @@ t_bool	UTF32_IsUppercase(t_utf32 c)
 
 
 
-inline
+// TODO UTF handling
 t_bool	UTF32_IsLowercase(t_utf32 c)
 {
 	return ('a' <= c && c <= 'z');
@@ -28,7 +28,7 @@ t_bool	UTF32_IsLowercase(t_utf32 c)
 
 
 
-inline
+// TODO UTF handling
 t_bool	UTF32_IsAlphaNumeric(t_utf32 c)
 {
 	return (('A' <= c && c <= 'Z') ||

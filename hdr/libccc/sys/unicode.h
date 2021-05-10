@@ -33,6 +33,9 @@
 #include "libccc_naming.h"
 #include "libccc_define.h"
 
+#include "libccc/bool.h"
+#include "libccc/int.h"
+#include "libccc/pointer.h"
 #include "libccc/sys/ascii.h"
 
 HEADER_CPP
@@ -42,29 +45,6 @@ HEADER_CPP
 **                                 Definitions                                *|
 ** ************************************************************************** *|
 */
-
-//! Primitive type: Unicode UTF-8 character (variable length: 1 to 4 bytes)
-/*!
-**	@isostd{https://en.cppreference.com/w/c/string/multibyte}
-*/
-typedef uint_least8_t	t_utf8;
-TYPEDEF_ALIAS(			t_utf8, UTF8, PRIMITIVE)
-
-//! Primitive type: Unicode UTF-16 character (variable length: 2 or 4 bytes)
-/*!
-**	@isostd{https://en.cppreference.com/w/c/string/multibyte/char16_t}
-**	@isostd{https://en.cppreference.com/w/c/string/multibyte}
-*/
-typedef uint_least16_t	t_utf16; // TODO add option to use C11 `char16_t`
-TYPEDEF_ALIAS(			t_utf16, UTF16, PRIMITIVE)
-
-//! Primitive type: Unicode UTF-32 character code point value (fixed length: 4 bytes)
-/*!
-**	@isostd{https://en.cppreference.com/w/c/string/multibyte/char32_t}
-**	@isostd{https://en.cppreference.com/w/c/string/wide}
-*/
-typedef uint_least32_t	t_utf32; // TODO add option to use C11 `char32_t`
-TYPEDEF_ALIAS(			t_utf32, UTF32, PRIMITIVE)
 
 // TODO add option with wrapper functions for the ones in C11 <uchar.h>
 
@@ -192,7 +172,7 @@ t_bool						UTF32_IsDigit_Decimal(t_utf32 c);
 **	@param	c	The character to check
 **	@returns #TRUE if the given char `c` is a hexadecimal digit character, otherwise #FALSE.
 */
-t_bool						UTF32_IsDigit_Hexadecimal(t_ascii c);
+t_bool						UTF32_IsDigit_Hexadecimal(t_utf32 c);
 #define c_wcisxdigit		UTF32_IsDigit_Hexadecimal
 #define UTF32_IsDigit_Hex	UTF32_IsDigit_Hexadecimal
 
@@ -203,7 +183,7 @@ t_bool						UTF32_IsDigit_Hexadecimal(t_ascii c);
 **	@param	c	The character to check
 **	@returns #TRUE if the given char `c` is an octal digit character, otherwise #FALSE.
 */
-t_bool						UTF32_IsDigit_Octal(t_ascii c);
+t_bool						UTF32_IsDigit_Octal(t_utf32 c);
 #define c_wcisodigit		UTF32_IsDigit_Octal
 #define UTF32_IsDigit_Oct	UTF32_IsDigit_Octal
 
@@ -214,7 +194,7 @@ t_bool						UTF32_IsDigit_Octal(t_ascii c);
 **	@param	c	The character to check
 **	@returns #TRUE if the given char `c` is a binary digit character, otherwise #FALSE.
 */
-t_bool						UTF32_IsDigit_Binary(t_ascii c);
+t_bool						UTF32_IsDigit_Binary(t_utf32 c);
 #define c_wcisbdigit		UTF32_IsDigit_Binary
 #define UTF32_IsDigit_Bin	UTF32_IsDigit_Binary
 

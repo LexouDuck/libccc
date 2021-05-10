@@ -327,9 +327,9 @@ HEADER_CPP
 /*!
 **	Currently, the types that work with this 'foreach' keyword are: s_array, s_list, s_dict
 **	Here are some more details on how to use this macro:
-**	- s_array<char*>:	foreach (char*, my_str, s_array, my_array) { ... }
-**	- s_list<char*>:	foreach (char*, my_str, s_list,  my_list)  { ... }
-**	- s_dict<char*>:	foreach (char*, my_str, s_dict,  my_dict)  { ... }
+**	- s_array<t_char*>:	foreach (t_char*, my_str, s_array, my_array) { ... }
+**	- s_list<t_char*>:	foreach (t_char*, my_str, s_list,  my_list)  { ... }
+**	- s_dict<t_char*>:	foreach (t_char*, my_str, s_dict,  my_dict)  { ... }
 */
 #define foreach(VARIABLE_TYPE, VARIABLE, ITERABLE_TYPE, ITERABLE) \
 	foreach_##ITERABLE_TYPE##_init(VARIABLE_TYPE, VARIABLE, ITERABLE)			\

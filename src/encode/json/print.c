@@ -141,7 +141,7 @@ static t_bool JSON_Print_StringPtr(t_char const* const input, s_json_print* p)
 				escape_characters++;
 				break;
 			default:
-				if (!Char_IsPrintable(Char_FromUTF8(input_pointer)))
+				if (!UTF32_IsPrintable(UTF32_FromUTF8((t_utf8*)input_pointer)))
 				{
 					// UTF-16 escape sequence uXXXX
 					escape_characters += 5;
@@ -171,13 +171,13 @@ static t_bool JSON_Print_StringPtr(t_char const* const input, s_json_print* p)
 	input_pointer = input;
 	while (*input_pointer != '\0')
 	{
-		t_utf32 c = Char_FromUTF8(input_pointer);
+		t_utf32 c = UTF32_FromUTF8((t_utf8*)input_pointer);
 		t_size len;
 			 if (c < UTF8_1BYTE)	len = 1;
 		else if (c < UTF8_2BYTE)	len = 2;
 		else if (c < UTF8_3BYTE)	len = 3;
 		else if (c <= UTF8_4BYTE)	len = 4;
-		if (Char_IsPrintable(c) &&
+		if (UTF32_IsPrintable(c) &&
 			(c != '\"') &&
 			(c != '\\'))
 		{	// normal character, copy
@@ -203,7 +203,7 @@ static t_bool JSON_Print_StringPtr(t_char const* const input, s_json_print* p)
 				default: // escape and print as unicode codepoint
 				{
 					t_utf16 u[2] = {0};
-					len = Char_ToUTF16(u, c);
+					len = UTF32_ToUTF16(u, c);
 					if (len > 0)
 					{
 						String_Format_N(result, 6, "u%4.4X", u[0]);

@@ -28,12 +28,11 @@
 ** ************************************************************************** *|
 */
 
+#include <stdint.h>
+
 #include "libccc_config.h"
 #include "libccc_naming.h"
 #include "libccc_define.h"
-
-#include "libccc/sys/ascii.h"
-#include "libccc/sys/unicode.h"
 
 HEADER_CPP
 
@@ -42,6 +41,40 @@ HEADER_CPP
 **                                 Definitions                                *|
 ** ************************************************************************** *|
 */
+
+//! Primitive type: `char`, ie: a text character (1 byte: ANSI/ASCII)
+/*!
+**	@isostd{https://en.cppreference.com/w/c/string/byte}
+*/
+typedef char	t_ascii;
+TYPEDEF_ALIAS(	t_ascii, ASCII, PRIMITIVE)
+
+
+
+//! Primitive type: Unicode UTF-8 character (variable length: 1 to 4 bytes)
+/*!
+**	@isostd{https://en.cppreference.com/w/c/string/multibyte}
+*/
+typedef uint_least8_t	t_utf8;
+TYPEDEF_ALIAS(			t_utf8, UTF8, PRIMITIVE)
+
+//! Primitive type: Unicode UTF-16 character (variable length: 2 or 4 bytes)
+/*!
+**	@isostd{https://en.cppreference.com/w/c/string/multibyte/char16_t}
+**	@isostd{https://en.cppreference.com/w/c/string/multibyte}
+*/
+typedef uint_least16_t	t_utf16; // TODO add option to use C11 `char16_t`
+TYPEDEF_ALIAS(			t_utf16, UTF16, PRIMITIVE)
+
+//! Primitive type: Unicode UTF-32 character code point value (fixed length: 4 bytes)
+/*!
+**	@isostd{https://en.cppreference.com/w/c/string/multibyte/char32_t}
+**	@isostd{https://en.cppreference.com/w/c/string/wide}
+*/
+typedef uint_least32_t	t_utf32; // TODO add option to use C11 `char32_t`
+TYPEDEF_ALIAS(			t_utf32, UTF32, PRIMITIVE)
+
+
 
 //! Primitive type: `char`, configurable (ASCII or UTF8)
 /*!
@@ -276,4 +309,12 @@ TYPEDEF_ALIAS(	t_char, CHAR, PRIMITIVE)
 
 /*! @} */
 HEADER_END
+#endif
+
+
+
+// export all Char_*() functions, while avoiding cyclical header dependencies
+#ifdef __LIBCCC_BOOL_H
+#include "libccc/sys/ascii.h"
+#include "libccc/sys/unicode.h"
 #endif

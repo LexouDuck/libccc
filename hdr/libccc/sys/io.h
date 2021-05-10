@@ -148,7 +148,7 @@ TYPEDEF_ALIAS(			t_io_open, IO_OPEN, PRIMITIVE)
 **
 **	@returns A newly allocated string which contains the system IO error message.
 */
-char*						IO_GetError(int error_num);
+t_char*						IO_GetError(int error_num);
 #define c_strerror			IO_GetError
 #define c_strerror_r		IO_GetError
 #define IO_GetErrorMessage	IO_GetError
@@ -191,7 +191,7 @@ t_bool						IO_IsTerminal(t_fd fd);
 **	@param	mode		The file access mode (permissions) with which to open the file
 **	@returns the new file descriptor value for the opened file, or a non-zero error code (ie: an 'errno' value)
 */
-t_fd					IO_Open(char const* filepath, t_io_open flags, t_io_mode mode);
+t_fd					IO_Open(t_char const* filepath, t_io_open flags, t_io_mode mode);
 #define c_open			IO_Open
 #define IO_File_Open	IO_Open
 
@@ -216,7 +216,7 @@ t_io_error				IO_Close(t_fd fd);
 **	@param	mode		The new file access mode permissions bitflag value to set
 **	@returns 0(OK) on success, or a non-zero error code (ie: an 'errno' value)
 */
-t_io_error					IO_ChangeMode(char const* filepath, t_io_mode mode);
+t_io_error					IO_ChangeMode(t_char const* filepath, t_io_mode mode);
 #define c_chmod				IO_ChangeMode
 #define IO_File_ChangeMode	IO_ChangeMode
 
@@ -232,7 +232,7 @@ t_io_error					IO_ChangeMode(char const* filepath, t_io_mode mode);
 **	@param	group		The new group to set for the file
 **	@returns 0(OK) on success, or a non-zero error code (ie: an 'errno' value)
 */
-t_io_error					IO_ChangeOwner(char const* filepath, char const* owner, char const* group);
+t_io_error					IO_ChangeOwner(t_char const* filepath, t_char const* owner, t_char const* group);
 #define c_chown				IO_ChangeOwner
 #define IO_File_ChangeOwner	IO_ChangeOwner
 #endif
@@ -264,7 +264,7 @@ t_io_error					IO_ChangeOwner(char const* filepath, char const* owner, char cons
 **		If the return value is a negative number, there was a read error:
 **		You should then check `errno`, and/or use `IO_GetError(errno)` immediately after.
 */
-t_sintmax				IO_Read_File(t_fd const fd, char* *a_file, t_size max);
+t_sintmax				IO_Read_File(t_fd const fd, t_char* *a_file, t_size max);
 #define c_readfile		IO_Read_File
 
 //! Reads the contents of 'fd' and makes an array of strings, one for each line
@@ -281,7 +281,7 @@ t_sintmax				IO_Read_File(t_fd const fd, char* *a_file, t_size max);
 **		If the return value is a negative number, there was a read error:
 **		You should then check `errno`, and/or use `IO_GetError(errno)` immediately after.
 */
-t_sintmax				IO_Read_Lines(t_fd const fd, char** *a_strarr);
+t_sintmax				IO_Read_Lines(t_fd const fd, t_char** *a_strarr);
 #define c_readlines		IO_Read_Lines
 
 //! Reads the contents of the file descriptor 'fd' line-per-line.
@@ -299,7 +299,7 @@ t_sintmax				IO_Read_Lines(t_fd const fd, char** *a_strarr);
 **		-1 (GNL_ERROR)	if there's an error
 */
 //TODO DO NOT USE, TODO FIX, confirmed to have very, very rare, platform-specific problems...
-int						IO_Read_NextLine(t_fd const fd, char* *a_line);
+int						IO_Read_NextLine(t_fd const fd, t_char* *a_line);
 #define c_getline		IO_Read_NextLine
 #define c_getnextline	IO_Read_NextLine
 #define c_readnextline	IO_Read_NextLine
@@ -321,15 +321,15 @@ t_io_error				IO_Write_Char(t_fd fd, char c);
 #define c_write_char	IO_Write_Char
 
 //! Writes the given string 'str' to the given file descriptor 'fd'
-t_io_error				IO_Write_String(t_fd fd, char const* str);
+t_io_error				IO_Write_String(t_fd fd, t_char const* str);
 #define c_write_string	IO_Write_String
 
 //! Writes the given string 'str' to the given file descriptor 'fd', and a newline '\n' char at the end
-t_io_error				IO_Write_Line(t_fd fd, char const* str);
+t_io_error				IO_Write_Line(t_fd fd, t_char const* str);
 #define c_write_line	IO_Write_Line
 
 //! Writes the given string array 'strarr' to the given file descriptor 'fd'
-t_io_error				IO_Write_Lines(t_fd fd, char const** strarr);
+t_io_error				IO_Write_Lines(t_fd fd, t_char const** strarr);
 #define c_write_lines	IO_Write_Lines
 
 //!< Writes 'n' bytes of memory from 'ptr' as hexadecimal 2-char blocks in 'cols' columns, to the given file descriptor 'fd'
@@ -338,7 +338,7 @@ t_io_error				IO_Write_Memory(t_fd fd, t_u8 const* ptr, t_size n, t_u8 cols);
 
 //! Writes the given formatted string to the standard output - equivalent to 'fprintf()', or rather 'dprintf()'
 _FORMAT(printf, 2, 3)
-t_io_error				IO_Write_Format(t_fd fd, char const* format, ...);
+t_io_error				IO_Write_Format(t_fd fd, t_char const* format, ...);
 #define c_write_format	IO_Write_Format
 #define c_dprintf		IO_Write_Format
 
@@ -356,17 +356,17 @@ t_io_error				IO_Output_Char(char c);
 #define c_putchar		IO_Output_Char
 
 //! Writes the given string 'str' to the standard output.
-t_io_error				IO_Output_String(char const* str);
+t_io_error				IO_Output_String(t_char const* str);
 #define c_output_string	IO_Output_String
 #define c_putstr		IO_Output_String
 
 //! Writes the given string 'str' to the standard output, with a newline '\n' character at the end.
-t_io_error				IO_Output_Line(char const* str);
+t_io_error				IO_Output_Line(t_char const* str);
 #define c_output_line	IO_Output_Line
 #define c_putline		IO_Output_Line
 
 //! Writes the given string array 'strls' to the standard output.
-t_io_error				IO_Output_Lines(char const** strarr);
+t_io_error				IO_Output_Lines(t_char const** strarr);
 #define c_output_lines	IO_Output_Lines
 #define c_putlines		IO_Output_Lines
 
@@ -377,7 +377,7 @@ t_io_error				IO_Output_Memory(t_u8 const* ptr, t_size n, t_u8 cols);
 
 //! Writes the given formatted string to the standard output - equivalent to 'printf()'
 _FORMAT(printf, 1, 2)
-t_io_error				IO_Output_Format(char const* format, ...);
+t_io_error				IO_Output_Format(t_char const* format, ...);
 #define c_output_format	IO_Output_Format
 #define c_printf		IO_Output_Format
 

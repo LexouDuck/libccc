@@ -54,6 +54,8 @@ char*	json_number_fmax_gt = "9007199254740993";
 
 char*	json_string_empty	= "\"\"";
 char*	json_string			= "\"Hello World!\"";
+char*	json_string_cc_c0	= "\"␡␁␂␃␄␅␆␇␈␉␊␋␌␍␎␏␐␑␒␓␔␕␖␗␘␙␚␛␜␝␞␟\"";
+char*	json_string_cc_c1	= "\"\"";
 char*	json_string_utf8_fr	= "\"Être à même de ça, père de maïs sûr, d'où son âme\"";
 char*	json_string_utf8_ru	= "\"Яцк Ничолсон.\"";
 char*	json_string_utf8_jp	= "\"お前はもう死んでいる - 愛\"";
@@ -114,6 +116,7 @@ char*	json_escape_cr	=	"[\"test:\\r.\"]";
 char*	json_escape_ff	=	"[\"test:\\f.\"]";
 char*	json_escape_vt	=	"[\"test:\\v.\"]";
 char*	json_escape_esc	=	"[\"test:\\e.\"]";
+char*	json_escape_bel	=	"[\"test:\\a.\"]";
 char*	json_escape_bs	=	"[\"test:\\b.\"]";
 
 
@@ -491,6 +494,8 @@ void	test_json(void)
 	print_test_json("json_number_fmax_gt    (parse lenient / print pretty)", FALSE,		json_number_fmax_eq,json_number_fmax_gt);
 	print_test_json("json_string_empty      (parse lenient / print pretty)", FALSE,		json_string_empty,	json_string_empty);
 	print_test_json("json_string            (parse lenient / print pretty)", FALSE,		json_string,		json_string);
+	print_test_json("json_string_cc_c0      (parse lenient / print pretty)", FALSE,		json_string_cc_c0,	json_string_cc_c0);
+	print_test_json("json_string_cc_c1      (parse lenient / print pretty)", FALSE,		json_string_cc_c1,	json_string_cc_c1);
 	print_test_json("json_string_utf8_fr    (parse lenient / print pretty)", FALSE,		json_string_utf8_fr,json_string_utf8_fr);
 	print_test_json("json_string_utf8_ru    (parse lenient / print pretty)", FALSE,		json_string_utf8_ru,json_string_utf8_ru);
 	print_test_json("json_string_utf8_jp    (parse lenient / print pretty)", FALSE,		json_string_utf8_jp,json_string_utf8_jp);
@@ -506,8 +511,8 @@ void	test_json(void)
 	print_test_json("json_object_nested     (parse lenient / print pretty)", FALSE,		json_object_nested,	json_object_nested);
 	print_test_json("json_object_nested_min (parse lenient / print pretty)", FALSE,		json_object_nested,	json_object_nested_min);
 	print_test_json("json_whitespace        (parse lenient / print pretty)", FALSE,		json_helloworld,	json_whitespace);
-	print_test_json("json_whitespace_cr     (parse lenient / print pretty)", FALSE,		json_helloworld,	json_whitespace_tab);
-	print_test_json("json_whitespace_cr     (parse lenient / print pretty)", FALSE,		json_helloworld,	json_whitespace_nl);
+	print_test_json("json_whitespace_tab    (parse lenient / print pretty)", FALSE,		json_helloworld,	json_whitespace_tab);
+	print_test_json("json_whitespace_nl     (parse lenient / print pretty)", FALSE,		json_helloworld,	json_whitespace_nl);
 	print_test_json("json_whitespace_cr     (parse lenient / print pretty)", FALSE,		json_helloworld,	json_whitespace_cr);
 	print_test_json("json_whitespace_ff     (parse lenient / print pretty)", FALSE,		json_helloworld,	json_whitespace_ff);
 	print_test_json("json_whitespace_vt     (parse lenient / print pretty)", FALSE,		json_helloworld,	json_whitespace_vt);
@@ -532,13 +537,14 @@ void	test_json(void)
 	print_test_json("json_escape_ff         (parse lenient / print pretty)", FALSE,		json_escape_ff,		json_escape_ff);
 	print_test_json("json_escape_vt         (parse lenient / print pretty)", FALSE,		json_escape_vt,		json_escape_vt);
 	print_test_json("json_escape_esc        (parse lenient / print pretty)", FALSE,		json_escape_esc,	json_escape_esc);
+	print_test_json("json_escape_bel        (parse lenient / print pretty)", FALSE,		json_escape_bel,	json_escape_bel);
 	print_test_json("json_escape_bs         (parse lenient / print pretty)", FALSE,		json_escape_bs,		json_escape_bs);
-	print_test_json("json_escape_sot        (parse lenient / print pretty)", FALSE,		NULL,				json_strange_sot);
-	print_test_json("json_escape_stx        (parse lenient / print pretty)", FALSE,		NULL,				json_strange_stx);
-	print_test_json("json_escape_etx        (parse lenient / print pretty)", FALSE,		NULL,				json_strange_etx);
-	print_test_json("json_escape_eot        (parse lenient / print pretty)", FALSE,		NULL,				json_strange_eot);
-	print_test_json("json_escape_esc        (parse lenient / print pretty)", FALSE,		NULL,				json_strange_esc);
-	print_test_json("json_escape_bs         (parse lenient / print pretty)", FALSE,		NULL,				json_strange_bs);
+	print_test_json("json_strange_sot       (parse lenient / print pretty)", FALSE,		NULL,				json_strange_sot);
+	print_test_json("json_strange_stx       (parse lenient / print pretty)", FALSE,		NULL,				json_strange_stx);
+	print_test_json("json_strange_etx       (parse lenient / print pretty)", FALSE,		NULL,				json_strange_etx);
+	print_test_json("json_strange_eot       (parse lenient / print pretty)", FALSE,		NULL,				json_strange_eot);
+	print_test_json("json_strange_esc       (parse lenient / print pretty)", FALSE,		NULL,				json_strange_esc);
+	print_test_json("json_strange_bs        (parse lenient / print pretty)", FALSE,		NULL,				json_strange_bs);
 	// TODO more tests
 }
 #endif
