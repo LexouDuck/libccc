@@ -1,12 +1,12 @@
 
-#include "libccc/char.h"
+#include "libccc/sys/unicode.h"
 #include "libccc/pointer.h"
 #include "libccc/string.h"
 #include "libccc/sys/io.h"
 
 
 
-t_size		Char_ToUTF16(t_utf16* dest, t_utf32 c)
+t_size		UTF32_ToUTF16(t_utf16* dest, t_utf32 c)
 {
 	LIBCONFIG_HANDLE_NULLPOINTER(0, dest)
 	if (c >= UTF16_SURROGATE_HI)
@@ -27,7 +27,7 @@ t_size		Char_ToUTF16(t_utf16* dest, t_utf32 c)
 
 
 
-t_utf32		Char_FromUTF16(t_utf16 const* str)
+t_utf32		UTF32_FromUTF16(t_utf16 const* str)
 {
 	t_u16 c;
 

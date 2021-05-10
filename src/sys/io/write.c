@@ -1,7 +1,7 @@
 
 /*
 **	Functions used from <stdlib.h>:
-**	-	t_io_error	write(int fd, char* buffer, size_t n);
+**	-	t_io_error	write(int fd, t_char* buffer, size_t n);
 */
 #include <unistd.h>
 /*
@@ -27,7 +27,7 @@ inline t_io_error	IO_Write_Char(int fd, char c)
 
 
 
-inline t_io_error	IO_Write_String(int fd, const char* str)
+inline t_io_error	IO_Write_String(int fd, const t_char* str)
 {
 	LIBCONFIG_HANDLE_NULLPOINTER(OK, str)
 	int result;
@@ -38,7 +38,7 @@ inline t_io_error	IO_Write_String(int fd, const char* str)
 
 
 
-inline t_io_error	IO_Write_Line(int fd, const char* str)
+inline t_io_error	IO_Write_Line(int fd, const t_char* str)
 {
 	LIBCONFIG_HANDLE_NULLPOINTER(OK, str)
 	int result;
@@ -51,7 +51,7 @@ inline t_io_error	IO_Write_Line(int fd, const char* str)
 
 
 
-t_io_error		IO_Write_Lines(int fd, const char** strarr)
+t_io_error		IO_Write_Lines(int fd, const t_char** strarr)
 {
 	LIBCONFIG_HANDLE_NULLPOINTER(OK, strarr)
 	int result;
@@ -96,11 +96,11 @@ t_io_error		IO_Write_Memory(int fd, t_u8 const* ptr, t_size n, t_u8 columns)
 
 
 
-t_io_error		IO_Write_Format(t_fd fd, char const* format, ...)
+t_io_error		IO_Write_Format(t_fd fd, t_char const* format, ...)
 {
 	LIBCONFIG_HANDLE_NULLPOINTER(OK, format)
 	int result;
-	char* str;
+	t_char* str;
 	va_list args;
 	va_start(args, format);
 	str = String_Format_VA(format, args);

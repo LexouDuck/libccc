@@ -8,7 +8,7 @@
 
 
 #define DEFINEFUNC_CONVERT_STR_TO_FIXED(BITS) \
-t_q##BITS	Q##BITS##_FromString(char const* str)						\
+t_q##BITS	Q##BITS##_FromString(t_char const* str)						\
 {																		\
 	t_u##BITS	result;													\
 	t_bool	negative;													\

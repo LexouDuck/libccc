@@ -1,25 +1,9 @@
 
-#include "libccc/char.h"
+#include "libccc/sys/unicode.h"
 
 
 
-inline
-t_char	Char_ToUppercase(t_char c)
-{
-	return (('a' <= c && c <= 'z') ? (c - ('A' - 'a')) : c);
-}
-
-
-
-inline
-t_char	Char_ToLowercase(t_char c)
-{
-	return (('A' <= c && c <= 'Z') ? (c + ('A' - 'a')) : c);
-}
-
-
-
-t_utf32	Unicode_ToUppercase(t_utf32 c) // TODO make lookup table for weird 'if's with no discernible pattern
+t_utf32	UTF32_ToUppercase(t_utf32 c) // TODO make lookup table for weird 'if's with no discernible pattern
 {
 	if ('a' <= c && c <= 'z')						return (c - ('A' - 'a'));	// LATIN_SMALL					-> LATIN_CAPITAL
 	if (0x00E0 <= c && c < 0x00FF)					return (c - 0x20);			// LATIN_SMALL					-> LATIN_CAPITAL
@@ -170,7 +154,7 @@ t_utf32	Unicode_ToUppercase(t_utf32 c) // TODO make lookup table for weird 'if's
 
 
 
-t_utf32	Unicode_ToLowercase(t_utf32 c)
+t_utf32	UTF32_ToLowercase(t_utf32 c)
 {
 	if ('A' <= c && c <= 'Z')	return (c + ('A' - 'a'));	// LATIN_CAPITAL -> LATIN_SMALL
 	return (c);

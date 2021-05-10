@@ -1,7 +1,7 @@
 
 /*
 **	Functions used from <unistd.h>:
-**	-	void	read(int fd, char* buffer, size_t n);
+**	-	void	read(int fd, t_char* buffer, size_t n);
 */
 #include <unistd.h>
 #include <stdio.h>
@@ -13,13 +13,13 @@
 
 
 
-static	int		gnl_read(t_fd const fd, char** a_newline)
+static	int		gnl_read(t_fd const fd, t_char** a_newline)
 {
 	static t_size	buf_pos = 0;
 	static char		buffer[IO_BUFFER_SIZE + 1] = {0};
 	int				status = 0;
 	int				offset = 0;
-	char*			temp = NULL;
+	t_char*			temp = NULL;
 	t_bool			end_of_buffer = FALSE;
 	t_bool			done_new_line = FALSE;
 
@@ -62,9 +62,9 @@ static	int		gnl_read(t_fd const fd, char** a_newline)
 	return (status);
 }
 
-int				IO_Read_NextLine(t_fd const fd, char** a_line)
+int				IO_Read_NextLine(t_fd const fd, t_char** a_line)
 {
-	char*			new_line = NULL;
+	t_char*			new_line = NULL;
 	int				status = GNL_ERROR;
 
 	if (a_line == NULL || fd < 0)

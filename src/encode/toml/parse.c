@@ -13,7 +13,7 @@
 typedef struct toml_parse
 {
 	s_toml*		result;		//!< the result TOML
-	char const*	content;	//!< the string to parse
+	t_char const*	content;	//!< the string to parse
 	t_size		length;		//!< the length of the string to parse
 	t_bool		strict;		//!< if TRUE, strict parsing mode is on (rigourously follows the spec)
 	t_size		offset;		//!< current parsing offset
@@ -46,7 +46,7 @@ void	TOML_Parse_SkipWhitespace(s_toml_parse *p, t_bool skip_comments)
 	}
 }
 /*
-static char*	TOML_Parse_ApplySetting(s_parser *p)
+static t_char*	TOML_Parse_ApplySetting(s_parser *p)
 {
 	t_s32	index;
 	t_s32	i;
@@ -70,9 +70,9 @@ static char*	TOML_Parse_ApplySetting(s_parser *p)
 	return (NULL);
 }
 
-static char*	TOML_Parse_ReadSetting(s_parser *p)
+static t_char*	TOML_Parse_ReadSetting(s_parser *p)
 {
-	char*	file;
+	t_char*	file;
 
 	file = p->file;
 	p->label = (p->file + p->offset);
@@ -101,7 +101,7 @@ static char*	TOML_Parse_ReadSetting(s_parser *p)
 void		TOML_Parse(t_fd fd, s_config* config, s_logger const* logger)
 {
 	s_parser	parser;
-	char*		error;
+	t_char*		error;
 
 	parser.config = config;
 	parser.file = NULL;

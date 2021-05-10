@@ -9,7 +9,7 @@
 
 //! Returns the appropriate string if the given 'number' is either NaN or +/- infinity, otherwise returns NULL
 static
-char*	Float_ToString_CheckSpecial(t_f32 number)
+t_char*	Float_ToString_CheckSpecial(t_f32 number)
 {
 	if (IS_NAN(number))
 	{
@@ -29,7 +29,7 @@ char*	Float_ToString_CheckSpecial(t_f32 number)
 #if LIBCONFIG_USE_FAST_APPROX_MATH
 
 #define DEFINEFUNC_FLOAT_TO_STR(BITS) \
-char*		F##BITS##_ToString(t_f##BITS number, t_u8 precision)	\
+t_char*		F##BITS##_ToString(t_f##BITS number, t_u8 precision)	\
 {																	\
 	if ((number >=  FLOAT_THRESHOLD_HUGE) ||						\
 		(number <= -FLOAT_THRESHOLD_HUGE) ||						\
@@ -44,11 +44,11 @@ char*		F##BITS##_ToString(t_f##BITS number, t_u8 precision)	\
 
 
 #define DEFINEFUNC_FLOAT_TO_STREXP(BITS) \
-char*	F##BITS##_ToString_Exp(t_f##BITS number, t_u8 precision)			\
+t_char*	F##BITS##_ToString_Exp(t_f##BITS number, t_u8 precision)			\
 {																			\
-	char*	result = NULL;													\
-	char*	result_exponent = NULL;											\
-	char*	result_mantissa = NULL;											\
+	t_char*	result = NULL;													\
+	t_char*	result_exponent = NULL;											\
+	t_char*	result_mantissa = NULL;											\
 	t_size	i;																\
 	t_bool	sign;															\
 	result = Float_ToString_CheckSpecial(number);							\
@@ -58,7 +58,7 @@ char*	F##BITS##_ToString_Exp(t_f##BITS number, t_u8 precision)			\
 	number = (sign ? -number : number);										\
 	if (!(*result_exponent = S16_ToString(F##BITS##_GetExp10(&number))) ||	\
 		!(*result_mantissa = F##BITS##_ToString_Dec(number, precision)) ||	\
-		!(result = (char*)Memory_Alloc(										\
+		!(result = (t_char*)Memory_Alloc(										\
 			String_Length(*result_mantissa) +								\
 			String_Length(*result_exponent) + 2 + (t_u8)sign)))				\
 	{																		\
@@ -81,9 +81,9 @@ char*	F##BITS##_ToString_Exp(t_f##BITS number, t_u8 precision)			\
 
 
 #define DEFINEFUNC_FLOAT_TO_STRDEC(BITS) \
-static char*	F##BITS##_ToString_Dec(t_f##BITS number, t_u8 precision)	\
+static t_char*	F##BITS##_ToString_Dec(t_f##BITS number, t_u8 precision)	\
 {																			\
-	char*	result = NULL;													\
+	t_char*	result = NULL;													\
 	char	digits[BITS];													\
 	t_u8	i;																\
 	t_u64	n;																\
@@ -102,7 +102,7 @@ static char*	F##BITS##_ToString_Dec(t_f##BITS number, t_u8 precision)	\
 			if (n == 0 && number != 0)										\
 				digits[i++] = '0';											\
 	}																		\
-	if (!(result = (char*)Memory_Alloc(i + 2)))								\
+	if (!(result = (t_char*)Memory_Alloc(i + 2)))								\
 		return (NULL);														\
 	result[0] = (number == 0) ? '0' : '-';									\
 	n = (number <= 0) ? 1 : 0;												\
@@ -116,14 +116,14 @@ static char*	F##BITS##_ToString_Dec(t_f##BITS number, t_u8 precision)	\
 
 // TODO Float_ToString_Hex()
 #define DEFINEFUNC_FLOAT_TO_STRHEX(BITS) \
-static char*	F##BITS##_ToString_Hex(t_f##BITS number, t_u8 precision)	\
+static t_char*	F##BITS##_ToString_Hex(t_f##BITS number, t_u8 precision)	\
 { return (IS_NAN(number) ? NAN : precision); }
 
 
 
 // TODO Float_ToString_Bin()
 #define DEFINEFUNC_FLOAT_TO_STRBIN(BITS) \
-static char*	F##BITS##_ToString_Bin(t_f##BITS number, t_u8 precision)	\
+static t_char*	F##BITS##_ToString_Bin(t_f##BITS number, t_u8 precision)	\
 { return (IS_NAN(number) ? NAN : precision); }
 
 
@@ -161,9 +161,9 @@ DEFINEFUNC_FLOAT_TO_STRBIN(128)
 #else
 
 	#define DEFINEFUNC_FLOAT_TO_STR_ANY_(BITS, FORMAT) \
-	inline char*	F##BITS##_ToString(t_f##BITS number, t_u8 precision)			\
+	inline t_char*	F##BITS##_ToString(t_f##BITS number, t_u8 precision)			\
 	{																				\
-		char*	result = Float_ToString_CheckSpecial(number);						\
+		t_char*	result = Float_ToString_CheckSpecial(number);						\
 		if (result)																	\
 			return (result);														\
 		if ((number >=  FLOAT_THRESHOLD_HUGE) ||									\
@@ -177,9 +177,9 @@ DEFINEFUNC_FLOAT_TO_STRBIN(128)
 	}																				\
 
 	#define DEFINEFUNC_FLOAT_TO_STR(SUFFIX, BITS, FORMAT) \
-	inline char*	F##BITS##_ToString##SUFFIX(t_f##BITS number, t_u8 precision)	\
+	inline t_char*	F##BITS##_ToString##SUFFIX(t_f##BITS number, t_u8 precision)	\
 	{																				\
-		char*	result = Float_ToString_CheckSpecial(number);						\
+		t_char*	result = Float_ToString_CheckSpecial(number);						\
 		if (result)																	\
 			return (result);														\
 		return (String_Format(FORMAT, precision, number));							\

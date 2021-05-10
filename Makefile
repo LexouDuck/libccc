@@ -78,14 +78,6 @@ C_YELLOW = "\e[33m"
 
 # List of all source code files
 SRCS = \
-	char/isalpha.c		\
-	char/isdigit.c		\
-	char/isprint.c		\
-	char/incharset.c	\
-	char/to.c			\
-	char/utf8.c			\
-	char/utf16.c		\
-	char/parse.c		\
 	bool/bool_to_str.c		\
 	bool/bool_from_str.c	\
 	int/int_to_str.c		\
@@ -173,6 +165,19 @@ SRCS = \
 	color/convert.c		\
 	color/nearest.c		\
 	color/diff.c		\
+	sys/ascii/isalpha.c		\
+	sys/ascii/isdigit.c		\
+	sys/ascii/isprint.c		\
+	sys/ascii/incharset.c	\
+	sys/ascii/to.c			\
+	sys/unicode/isalpha.c	\
+	sys/unicode/isdigit.c	\
+	sys/unicode/isprint.c	\
+	sys/unicode/incharset.c	\
+	sys/unicode/to.c		\
+	sys/unicode/utf8.c		\
+	sys/unicode/utf16.c		\
+	sys/unicode/parse.c		\
 	sys/io/fd.c			\
 	sys/io/error.c		\
 	sys/io/color.c		\

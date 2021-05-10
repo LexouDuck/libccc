@@ -10,12 +10,12 @@
 
 
 
-static inline void Log_VA_Write(s_logger const* logger, t_fd fd, char const* output, char const* log_msg)
+static inline void Log_VA_Write(s_logger const* logger, t_fd fd, t_char const* output, t_char const* log_msg)
 {
 	int status = IO_Write_String(fd, log_msg);
 	if (status < 0)
 	{
-		char* tmp = String_Join("Could not write log message to ", output);
+		t_char* tmp = String_Join("Could not write log message to ", output);
 		Log_FatalError(logger, tmp);
 		String_Delete(&tmp);
 	}
@@ -27,9 +27,9 @@ t_io_error	Log_VA(s_logger const* logger,
 	t_bool			verbose_only,
 	t_bool			use_errno,
 	int				error_code,
-	char const*		prefix,
-	char const*		prefix_color,
-	char const*		format_str,
+	t_char const*		prefix,
+	t_char const*		prefix_color,
+	t_char const*		format_str,
 	va_list			args)
 {
 	if (( logger->silence_logs   && !error_code) ||
@@ -37,14 +37,14 @@ t_io_error	Log_VA(s_logger const* logger,
 		(!logger->verbose        && verbose_only))
 		return (OK);
 
-	char*	error_str = NULL;
+	t_char*	error_str = NULL;
 	if (use_errno)
 	{
 		error_str = IO_GetError(errno);
 	}
-	char*	full_format_str = NULL;
-	char*	log_msg			= NULL;
-	char*	timestamp 		= logger->timestamp ? Logger_GetTimestamp(Time_Now()) : NULL;
+	t_char*	full_format_str = NULL;
+	t_char*	log_msg			= NULL;
+	t_char*	timestamp 		= logger->timestamp ? Logger_GetTimestamp(Time_Now()) : NULL;
 /*
 	size_t	length = String_Length(time_now_utc);
 	if (length > 0 && time_now_utc[length - 1] == '\n')

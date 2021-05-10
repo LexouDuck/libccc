@@ -1,7 +1,7 @@
 
 /*
 **	Functions used from <stdlib.h>:
-**	-	t_io_error	write(int fd, char* buffer, size_t n);
+**	-	t_io_error	write(int fd, t_char* buffer, size_t n);
 */
 #include <unistd.h>
 /*
@@ -24,21 +24,21 @@ inline t_io_error	IO_Output_Char(char c)
 
 
 
-inline t_io_error	IO_Output_String(char const* str)
+inline t_io_error	IO_Output_String(t_char const* str)
 {
 	return (IO_Write_String(STDOUT, str));
 }
 
 
 
-inline t_io_error	IO_Output_Line(char const* str)
+inline t_io_error	IO_Output_Line(t_char const* str)
 {
 	return (IO_Write_Line(STDOUT, str));
 }
 
 
 
-inline t_io_error	IO_Output_Lines(char const** strarr)
+inline t_io_error	IO_Output_Lines(t_char const** strarr)
 {
 	return (IO_Write_Lines(STDOUT, strarr));
 }
@@ -52,11 +52,11 @@ inline t_io_error	IO_Output_Memory(t_u8 const* ptr, t_size n, t_u8 cols)
 
 
 
-t_io_error			IO_Output_Format(char const* format, ...)
+t_io_error			IO_Output_Format(t_char const* format, ...)
 {
 	LIBCONFIG_HANDLE_NULLPOINTER(OK, format)
 	int result;
-	char* str;
+	t_char* str;
 	va_list args;
 	va_start(args, format);
 	str = String_Format_VA(format, args);

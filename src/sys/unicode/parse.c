@@ -1,5 +1,5 @@
 
-#include "libccc/char.h"
+#include "libccc/sys/unicode.h"
 #include "libccc/pointer.h"
 #include "libccc/string.h"
 #include "libccc/sys/io.h"
@@ -8,7 +8,7 @@
 
 //! parse a 4-digit hexadecimal number from the given `str`
 #define DEFINEFUNC_PARSE_HEX(BITS) \
-static t_bool	Char_Parse_Unicode_Hex_##BITS(t_u##BITS* dest, t_char const* str)	\
+static t_bool	UTF32_Parse_Hex_##BITS(t_u##BITS* dest, t_ascii const* str)	\
 {																					\
 	t_u##BITS result;																\
 	t_size i;																		\
@@ -17,11 +17,11 @@ static t_bool	Char_Parse_Unicode_Hex_##BITS(t_u##BITS* dest, t_char const* str)	
 	for (i = 0; i < (BITS / 4); i++)												\
 	{																				\
 		if ((str[i] >= '0') && (str[i] <= '9'))										\
-			result += (t_uint)(str[i] - '0');										\
+			result += (t_u##BITS)(str[i] - '0');									\
 		else if ((str[i] >= 'A') && (str[i] <= 'F'))								\
-			result += (t_uint)(str[i] - 'A' + 10);									\
+			result += (t_u##BITS)(str[i] - 'A' + 10);								\
 		else if ((str[i] >= 'a') && (str[i] <= 'f'))								\
-			result += (t_uint)(str[i] - 'a' + 10);									\
+			result += (t_u##BITS)(str[i] - 'a' + 10);								\
 		else /* invalid */															\
 			return (ERROR);															\
 		if (i < ((BITS / 4) - 1))													\
@@ -41,7 +41,7 @@ DEFINEFUNC_PARSE_HEX(32)
 #define PARSINGERROR_UTF16	"Could not parse UTF-16 escape sequence: "
 #define PARSINGERROR_UTF16_SURROGATE	PARSINGERROR_UTF16"2nd half of surrogate pair -> "
 
-t_size		Char_Parse_Unicode_N(t_utf32* dest, t_char const* str, t_size n)
+t_size		UTF32_Parse_N(t_utf32* dest, t_ascii const* str, t_size n)
 {
 	t_utf32	result = 0;
 	t_size	length;
@@ -61,14 +61,14 @@ t_size		Char_Parse_Unicode_N(t_utf32* dest, t_char const* str, t_size n)
 	if (str[i] == 'U')
 	{
 		i += 1;
-		if (Char_Parse_Unicode_Hex_32(&result, str + i)) // get the whole UTF-32 sequence
+		if (UTF32_Parse_Hex_32(&result, str + i)) // get the whole UTF-32 sequence
 			LIBCONFIG_HANDLE_PARSINGERROR(ERROR, PARSINGERROR_UTF16"not a valid UTF-16 escape sequence, expected 4 hexadecimal digits")
 		i += 8;
 	}
 	else if (str[i] == 'u')
 	{
 		i += 1;
-		if (Char_Parse_Unicode_Hex_16(&code1, str + i)) // get the first UTF-16 sequence
+		if (UTF32_Parse_Hex_16(&code1, str + i)) // get the first UTF-16 sequence
 			LIBCONFIG_HANDLE_PARSINGERROR(ERROR, PARSINGERROR_UTF16"not a valid UTF-16 escape sequence, expected 4 hexadecimal digits")
 		i += 4;
 		if (((code1 >= UTF16_SURROGATE_LO) && (code1 < UTF16_SURROGATE_END)))
@@ -85,7 +85,7 @@ t_size		Char_Parse_Unicode_N(t_utf32* dest, t_char const* str, t_size n)
 			if (str[i] != 'u')
 				LIBCONFIG_HANDLE_PARSINGERROR(ERROR, PARSINGERROR_UTF16_SURROGATE"not a valid UTF-16 escape sequence, expected 'u' char")
 			i += 1;
-			if (Char_Parse_Unicode_Hex_16(&code2, str + 2)) // get the second UTF-16 sequence
+			if (UTF32_Parse_Hex_16(&code2, str + 2)) // get the second UTF-16 sequence
 				LIBCONFIG_HANDLE_PARSINGERROR(ERROR, PARSINGERROR_UTF16_SURROGATE"not a valid UTF-16 escape sequence, expected 4 hexadecimal digits")
 			i += 4;
 			if ((code2 < UTF16_SURROGATE_LO) || (code2 >= UTF16_SURROGATE_END))
@@ -104,10 +104,10 @@ t_size		Char_Parse_Unicode_N(t_utf32* dest, t_char const* str, t_size n)
 	return (i);
 }
 
-t_utf32		Char_Parse_Unicode(t_char const* str)
+t_utf32		UTF32_Parse(t_ascii const* str)
 {
 	t_utf32	result = ERROR;
-	if (Char_Parse_Unicode_N(&result, str, 0))
+	if (UTF32_Parse_N(&result, str, 0))
 		return (result);
 	return (ERROR);
 }

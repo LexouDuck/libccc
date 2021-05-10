@@ -5,7 +5,7 @@
 
 
 
-static t_size	Int_ToString_Base_GetLength(char const* base, t_bool sign)
+static t_size	Int_ToString_Base_GetLength(t_char const* base, t_bool sign)
 {
 	t_size	i;
 	t_size	j;
@@ -31,9 +31,9 @@ static t_size	Int_ToString_Base_GetLength(char const* base, t_bool sign)
 
 
 #define DEFINEFUNC_CONVERT_UINT_TO_STRBASE(BITS) \
-char*	U##BITS##_ToString_Base(t_u##BITS number, char const* base)			\
+t_char*	U##BITS##_ToString_Base(t_u##BITS number, t_char const* base)			\
 {																			\
-	char*	result;															\
+	t_char*	result;															\
 	char	digits[BITS];													\
 	t_size	length;															\
 	t_size	i;																\
@@ -51,7 +51,7 @@ char*	U##BITS##_ToString_Base(t_u##BITS number, char const* base)			\
 	}																		\
 	if (i == 0)																\
 		digits[i++] = base[0];												\
-	if (!(result = (char*)Memory_Alloc(i + 1)))								\
+	if (!(result = (t_char*)Memory_Alloc(i + 1)))								\
 		return (NULL);														\
 	n = 0;																	\
 	while (i--)																\
@@ -73,9 +73,9 @@ DEFINEFUNC_CONVERT_UINT_TO_STRBASE(128)
 
 
 #define DEFINEFUNC_CONVERT_SINT_TO_STRBASE(BITS) \
-char*	S##BITS##_ToString_Base(t_s##BITS number, char const* base)			\
+t_char*	S##BITS##_ToString_Base(t_s##BITS number, t_char const* base)			\
 {																			\
-	char*	result;															\
+	t_char*	result;															\
 	char	digits[BITS];													\
 	t_size	length;															\
 	t_size	i;																\
@@ -93,7 +93,7 @@ char*	S##BITS##_ToString_Base(t_s##BITS number, char const* base)			\
 		digits[i++] = base[n % length];										\
 		n /= length;														\
 	}																		\
-	if (!(result = (char*)Memory_Alloc(i + 2)))								\
+	if (!(result = (t_char*)Memory_Alloc(i + 2)))								\
 		return (NULL);														\
 	result[0] = (number == 0) ? base[0] : '-';								\
 	n = (number <= 0) ? 1 : 0;												\

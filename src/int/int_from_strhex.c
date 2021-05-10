@@ -19,7 +19,7 @@ static inline int	GetDigit_FromString_Hex(char c)
 
 
 #define DEFINEFUNC_CONVERT_STRHEX_TO_UINT(BITS) \
-t_u##BITS	U##BITS##_FromString_Hex(char const* str)					\
+t_u##BITS	U##BITS##_FromString_Hex(t_char const* str)					\
 {																		\
 	t_u##BITS	result;													\
 	t_size	i;															\
@@ -62,7 +62,7 @@ DEFINEFUNC_CONVERT_STRHEX_TO_UINT(128)
 
 
 #define DEFINEFUNC_CONVERT_STRHEX_TO_SINT(BITS) \
-t_s##BITS	S##BITS##_FromString_Hex(char const* str)					\
+t_s##BITS	S##BITS##_FromString_Hex(t_char const* str)					\
 {																		\
 	t_u##BITS	result;													\
 	t_bool	negative;													\

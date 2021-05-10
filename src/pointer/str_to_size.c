@@ -4,7 +4,7 @@
 
 
 
-t_size	Size_FromString(char const* str)
+t_size	Size_FromString(t_char const* str)
 {
 	t_size	result;
 	t_size	i;

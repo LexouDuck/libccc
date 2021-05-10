@@ -1,10 +1,10 @@
 
-#include "libccc/char.h"
+#include "libccc/sys/unicode.h"
 
 
 
 inline
-t_bool	Char_IsSpace(t_utf32 c)
+t_bool	UTF32_IsSpace(t_utf32 c)
 {
 	return ((c == ' ') || ('\t' <= c && c <= '\r'));
 }
@@ -12,7 +12,7 @@ t_bool	Char_IsSpace(t_utf32 c)
 
 
 inline
-t_bool	Char_IsPunctuation(t_utf32 c)
+t_bool	UTF32_IsPunctuation(t_utf32 c)
 {
 	return (
 		('!' <= c && c <= '/') ||
@@ -24,18 +24,18 @@ t_bool	Char_IsPunctuation(t_utf32 c)
 
 
 inline
-t_bool	Char_IsPrintable(t_utf32 c)
+t_bool	UTF32_IsPrintable(t_utf32 c)
 {
 	return (!(c < 0x20) &&	// C0 control code char
 		!(c == 0x7F) &&	// DEL character
 		!(0x80 <= c && c < 0xA0) &&	// C1 control code char
-		Char_IsValid(c));
+		UTF32_IsValid(c));
 }
 
 
 
 inline
-t_bool	Char_IsASCII(t_utf32 c)
+t_bool	UTF32_IsASCII(t_utf32 c)
 {
 	return (c < 0x80);
 }
@@ -43,7 +43,7 @@ t_bool	Char_IsASCII(t_utf32 c)
 
 
 inline
-t_bool	Char_IsValid(t_utf32 c)
+t_bool	UTF32_IsValid(t_utf32 c)
 {
 	return (c < 0xFDD0 ||
 		(c >= 0xFDF0 &&

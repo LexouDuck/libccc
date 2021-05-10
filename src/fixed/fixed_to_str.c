@@ -6,7 +6,7 @@
 
 
 #define DEFINEFUNC_CONVERT_FIXED_TO_STR(BITS) \
-inline char*	Q##BITS##_ToString(t_q##BITS number)			\
+inline t_char*	Q##BITS##_ToString(t_q##BITS number)			\
 {																\
 	return (String_Format(										\
 		FORMAT_S##BITS".("FORMAT_U##BITS"/"FORMAT_U##BITS")",	\

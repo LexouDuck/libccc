@@ -1,7 +1,7 @@
 
 /*
 **	Functions used from <stdlib.h>: (only when LIBCONFIG_USE_FAST_APPROX_MATH is 0)
-**	-	double	atof(char* str);
+**	-	double	atof(t_char* str);
 */
 #include <stdlib.h>
 
@@ -20,7 +20,7 @@
 
 //! Returns 1 if the given 'number' is either NaN, or +/- infinity
 static
-t_float	Float_FromString_CheckSpecial(char const* str)
+t_float	Float_FromString_CheckSpecial(t_char const* str)
 {
 	char sign = str[0];
 	if (sign == '-' || sign == '+')
@@ -31,7 +31,7 @@ t_float	Float_FromString_CheckSpecial(char const* str)
 	}
 	if (String_Equals_N_IgnoreCase(str, "INFINITY", 8) ||
 		String_Equals_N_IgnoreCase(str, "INF", 3) ||
-		UTF8_Get((t_utf8*)str) == 0x221E) // infinity unicode char
+		UTF32_FromUTF8((t_utf8*)str) == 0x221E) // infinity unicode char
 	{
 		return (sign == '-' ?
 			-INFINITY :
@@ -42,7 +42,7 @@ t_float	Float_FromString_CheckSpecial(char const* str)
 
 //! Returns TRUE if the given 'str' contains any invalid characters for float parsing, or FALSE otherwise
 static
-t_bool	Float_FromString_CheckInvalid(char const* str)
+t_bool	Float_FromString_CheckInvalid(t_char const* str)
 {
 	t_size	count_expon;
 	t_size	count_signs;
@@ -74,7 +74,7 @@ t_bool	Float_FromString_CheckInvalid(char const* str)
 
 
 #define DEFINEFUNC_STR_TO_FLOAT(BITS) \
-t_f##BITS			F##BITS##_FromString(char const* str)			\
+t_f##BITS			F##BITS##_FromString(t_char const* str)			\
 {																	\
 	t_f##BITS	result;												\
 																	\
@@ -103,15 +103,15 @@ t_f##BITS			F##BITS##_FromString(char const* str)			\
 
 
 #define DEFINEFUNC_STREXP_TO_FLOAT(BITS) \
-t_f##BITS	F##BITS##_FromString_Exp(char const* str)				\
+t_f##BITS	F##BITS##_FromString_Exp(t_char const* str)				\
 {																	\
 	t_f##BITS	result;												\
-	char const* str_mantissa;										\
-	char const* str_exponent;										\
+	t_char const* str_mantissa;										\
+	t_char const* str_exponent;										\
 	t_size		frac_digits;										\
 	t_bool		negative;											\
 	t_s16		exponent;											\
-	char*		tmp;												\
+	t_char*		tmp;												\
 	t_size	i = 0;													\
 																	\
 	LIBCONFIG_HANDLE_NULLPOINTER(0, str)							\
@@ -160,7 +160,7 @@ t_f##BITS	F##BITS##_FromString_Exp(char const* str)				\
 
 
 #define DEFINEFUNC_STRDEC_TO_FLOAT(BITS) \
-t_f##BITS	F##BITS##_FromString_Dec(char const* str)				\
+t_f##BITS	F##BITS##_FromString_Dec(t_char const* str)				\
 {																	\
 	t_f##BITS	result;												\
 	t_bool	negative;												\
@@ -195,15 +195,15 @@ t_f##BITS	F##BITS##_FromString_Dec(char const* str)				\
 
 
 #define DEFINEFUNC_STRHEX_TO_FLOAT(BITS) \
-t_f##BITS	F##BITS##_FromString_Hex(char const* str)						\
+t_f##BITS	F##BITS##_FromString_Hex(t_char const* str)						\
 {																			\
 	t_f##BITS	result;														\
-	char const* str_mantissa;												\
-	char const* str_exponent;												\
+	t_char const* str_mantissa;												\
+	t_char const* str_exponent;												\
 	t_bool		negative;													\
 	t_u##BITS	mantissa;													\
 	t_s16		exponent;													\
-	char*		tmp;														\
+	t_char*		tmp;														\
 																			\
 	LIBCONFIG_HANDLE_NULLPOINTER(0, str)									\
 	while (*str && Char_IsSpace(*str))										\
@@ -247,7 +247,7 @@ t_f##BITS	F##BITS##_FromString_Hex(char const* str)						\
 
 // TODO Float_ToString_Bin()
 #define DEFINEFUNC_STRBIN_TO_FLOAT(BITS) \
-t_f##BITS	F##BITS##_FromString_Bin(char const* str)						\
+t_f##BITS	F##BITS##_FromString_Bin(t_char const* str)						\
 { return (str == NULL ? NAN : 0.); }
 
 

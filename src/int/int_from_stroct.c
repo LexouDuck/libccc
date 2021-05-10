@@ -7,7 +7,7 @@
 
 
 #define DEFINEFUNC_CONVERT_STROCT_TO_UINT(BITS) \
-t_u##BITS	U##BITS##_FromString_Oct(char const* str)					\
+t_u##BITS	U##BITS##_FromString_Oct(t_char const* str)					\
 {																		\
 	t_u##BITS	result;													\
 	t_size	i;															\
@@ -41,7 +41,7 @@ DEFINEFUNC_CONVERT_STROCT_TO_UINT(128)
 
 
 #define DEFINEFUNC_CONVERT_STROCT_TO_SINT(BITS) \
-t_s##BITS	S##BITS##_FromString_Oct(char const* str)					\
+t_s##BITS	S##BITS##_FromString_Oct(t_char const* str)					\
 {																		\
 	t_u##BITS	result;													\
 	t_bool	negative;													\

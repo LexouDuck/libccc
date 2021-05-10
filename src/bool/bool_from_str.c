@@ -6,7 +6,7 @@
 
 
 
-t_bool	Bool_FromString(char const* str)
+t_bool	Bool_FromString(t_char const* str)
 {
 	t_size	i;
 

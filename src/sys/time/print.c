@@ -1,7 +1,7 @@
 
 /*
 **	Functions used from <time.h>:
-**	-	size_t	strftime(char* s, size_t max, const char* format, const struct tm *tm);
+**	-	size_t	strftime(t_char* s, size_t max, const t_char* format, const struct tm *tm);
 */
 #include <time.h>
 
@@ -14,10 +14,10 @@
 
 
 
-char*	Date_ToString(s_date const* date, char const* format)
+t_char*	Date_ToString(s_date const* date, t_char const* format)
 {
 	struct tm tm;
-	char*	result;
+	t_char*	result;
 	t_size	size;
 	t_size	wrote;
 	t_uint	leapsec;
@@ -48,7 +48,7 @@ char*	Date_ToString(s_date const* date, char const* format)
 	if (leapsec) 
 	{
 		char target[4] = { '%','S','\0','\0' };
-		char* secs = String_Find_String(format, target);
+		t_char* secs = String_Find_String(format, target);
 		if (secs)
 		{
 			target[0] = '5';
@@ -68,7 +68,7 @@ char*	Date_ToString(s_date const* date, char const* format)
 
 
 
-t_size	Date_ToString_N(char* dest, t_size max, s_date const* date, char const* format)
+t_size	Date_ToString_N(t_char* dest, t_size max, s_date const* date, t_char const* format)
 {
 	struct tm tm;
 

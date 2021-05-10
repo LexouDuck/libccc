@@ -4,7 +4,7 @@
 **	-	time_t	time(time_t* t);
 **	-	time_t	timegm(struct tm* tm);		-> alias:_mkgmtime()
 **	-	time_t	timelocal(struct tm* tm);	-> alias: mktime()
-**	-	size_t	strftime(char* s, size_t max, const char* format, const struct tm *tm);
+**	-	size_t	strftime(t_char* s, size_t max, const t_char* format, const struct tm *tm);
 */
 #include <time.h>
 

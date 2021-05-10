@@ -13,9 +13,9 @@
 
 
 #define DEFINEFUNC_CONVERT_UINT_TO_STR(BITS) \
-char*	U##BITS##_ToString(t_u##BITS number)			\
+t_char*	U##BITS##_ToString(t_u##BITS number)			\
 {														\
-	char*	result;										\
+	t_char*	result;										\
 	t_u8	digits[MAXDIGITS_##BITS##BIT];				\
 	t_u8	i;											\
 	t_u##BITS	n;										\
@@ -29,7 +29,7 @@ char*	U##BITS##_ToString(t_u##BITS number)			\
 	}													\
 	if (i == 0)											\
 		digits[i++] = 0;								\
-	if (!(result = (char*)Memory_Alloc(i + 1)))			\
+	if (!(result = (t_char*)Memory_Alloc(i + 1)))			\
 		return (NULL);									\
 	n = 0;												\
 	while (i--)											\
@@ -49,9 +49,9 @@ DEFINEFUNC_CONVERT_UINT_TO_STR(128)
 
 
 #define DEFINEFUNC_CONVERT_SINT_TO_STR(BITS) \
-char*	S##BITS##_ToString(t_s##BITS number)			\
+t_char*	S##BITS##_ToString(t_s##BITS number)			\
 {														\
-	char*	result;										\
+	t_char*	result;										\
 	t_u8	digits[MAXDIGITS_##BITS##BIT];				\
 	t_u8	i;											\
 	t_u##BITS	n;										\
@@ -65,7 +65,7 @@ char*	S##BITS##_ToString(t_s##BITS number)			\
 		digits[i++] = n % 10;							\
 		n /= 10;										\
 	}													\
-	if (!(result = (char*)Memory_Alloc(i + 2)))			\
+	if (!(result = (t_char*)Memory_Alloc(i + 2)))			\
 		return (NULL);									\
 	result[0] = (number == 0) ? '0' : '-';				\
 	n = (number <= 0) ? 1 : 0;							\
