@@ -55,9 +55,9 @@ HEADER_CPP
 
 //! @see libccc/int.h
 //!@{
-#define FORMAT_S8		"%+i"
-#define FORMAT_S16		"%+i"
-#define FORMAT_S32		"%+i"
+#define FORMAT_S8		"%i"
+#define FORMAT_S16		"%i"
+#define FORMAT_S32		"%i"
 #define FORMAT_U8		"%u"
 #define FORMAT_U16		"%u"
 #define FORMAT_U32		"%u"
@@ -65,15 +65,15 @@ HEADER_CPP
 #define FORMAT_HEX_U16	"%#X"
 #define FORMAT_HEX_U32	"%#X"
 #if (defined(__APPLE__) || defined(_WIN32))
-	#define FORMAT_S64		"%+lli"
+	#define FORMAT_S64		"%lli"
 	#define FORMAT_U64		"%llu"
 	#define FORMAT_HEX_U64	"%#llX"
 #else
-	#define FORMAT_S64		"%+li"
+	#define FORMAT_S64		"%li"
 	#define FORMAT_U64		"%lu"
 	#define FORMAT_HEX_U64	"%#lX"
 #endif
-#define FORMAT_S128		"%+lli"
+#define FORMAT_S128		"%lli"
 #define FORMAT_U128		"%llu"
 #define FORMAT_HEX_U128	"%#llX"
 

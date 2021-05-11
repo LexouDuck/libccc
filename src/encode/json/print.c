@@ -25,8 +25,8 @@ typedef struct json_print
 
 
 
+static t_bool	JSON_Print_Number(s_json const* item, s_json_print* p, t_bool bigint);
 static t_bool	JSON_Print_String(s_json const* item, s_json_print* p);
-static t_bool	JSON_Print_Number(s_json const* item, s_json_print* p);
 static t_bool	JSON_Print_Object(s_json const* item, s_json_print* p);
 static t_bool	JSON_Print_Array (s_json const* item, s_json_print* p);
 static t_bool	JSON_Print_Value (s_json const* item, s_json_print* p);
@@ -249,37 +249,44 @@ void	JSON_Print_UpdateOffset(s_json_print* const buffer)
 // Render the number nicely from the given item into a string.
 #define JSON_NUMBER_BUFFERSIZE	26
 static
-t_bool	JSON_Print_Number(s_json const* item, s_json_print* p)
+t_bool	JSON_Print_Number(s_json const* item, s_json_print* p, t_bool bigint)
 {
 	t_utf8*	result = NULL;
 	t_sint	length = 0;
-	t_f64	d = item->value.number;
 	t_size	i = 0;
 	t_f64	test = 0.0;
 	t_utf8	number_buffer[JSON_NUMBER_BUFFERSIZE] = {0}; // temporary buffer to print the number into
 
 	if (p == NULL)
 		return (FALSE);
-	// This checks for NaN and Infinity
-	if (IS_NAN(d))
+	if (bigint) // TODO handle variable-length integers
 	{
-		length = String_Format_N(number_buffer, JSON_NUMBER_BUFFERSIZE, "nan");
-	}
-	else if (IS_INF(d))
-	{
-		if (d > 0)	length = String_Format_N(number_buffer, JSON_NUMBER_BUFFERSIZE, "+inf");
-		if (d < 0)	length = String_Format_N(number_buffer, JSON_NUMBER_BUFFERSIZE, "-inf");
+		t_s64	d = item->value.integer;
+		length = String_Format_N(number_buffer, JSON_NUMBER_BUFFERSIZE, FORMAT_S64"n", d);
 	}
 	else
 	{
-		// Try 15 decimal places of precision to avoid nonsignificant nonzero digits
-		length = String_Format_N(number_buffer, JSON_NUMBER_BUFFERSIZE, "%1.15g", d);
-		// Check whether the original t_f64 can be recovered
-		test = F64_FromString(number_buffer);
-		if (!F64_Equals(test, d))
+		t_f64	d = item->value.number;
+		if (IS_NAN(d))
 		{
-			// If not, print with 17 decimal places of precision
-			length = String_Format_N(number_buffer, JSON_NUMBER_BUFFERSIZE, "%1.17g", d);
+			length = String_Format_N(number_buffer, JSON_NUMBER_BUFFERSIZE, "nan");
+		}
+		else if (IS_INF(d))
+		{
+			if (d > 0)	length = String_Format_N(number_buffer, JSON_NUMBER_BUFFERSIZE, "+inf");
+			if (d < 0)	length = String_Format_N(number_buffer, JSON_NUMBER_BUFFERSIZE, "-inf");
+		}
+		else
+		{
+			// Try 15 decimal places of precision to avoid nonsignificant nonzero digits
+			length = String_Format_N(number_buffer, JSON_NUMBER_BUFFERSIZE, "%1.15g", d);
+			// Check whether the original t_f64 can be recovered
+			test = F64_FromString(number_buffer);
+			if (test != d)
+			{
+				// If not, print with 17 decimal places of precision
+				length = String_Format_N(number_buffer, JSON_NUMBER_BUFFERSIZE, "%1.17g", d);
+			}
 		}
 	}
 	// sprintf failed or buffer overrun occurred
@@ -289,16 +296,12 @@ t_bool	JSON_Print_Number(s_json const* item, s_json_print* p)
 	result = ensure(p, (t_size)length + sizeof(""));
 	if (result == NULL)
 		return (FALSE);
-	// copy the printed number to the output and replace locale dependent decimal point with '.'
-	for (i = 0; i < ((t_size)length); i++)
+	// copy the printed number to the output
+	for (i = 0; i < ((t_size)length); ++i)
 	{
-		if (number_buffer[i] == '.')
-		{
-			result[i] = '.';
-			continue;
-		}
 		result[i] = number_buffer[i];
 	}
+	// TODO ? replace any locale-dependent decimal point with '.' (inspect whether printf/snprintf may output with other decimal point chars ?)
 	result[i] = '\0';
 	p->offset += (t_size)length;
 	return (TRUE);
@@ -542,10 +545,10 @@ t_bool	JSON_Print_Value(s_json const* item, s_json_print* p)
 			return (TRUE);
 
 		case DYNAMIC_TYPE_INTEGER:
-			return (JSON_Print_Number(item, p)); // TODO handle intege/float separately ?
+			return (JSON_Print_Number(item, p, TRUE));
 
 		case DYNAMIC_TYPE_FLOAT:
-			return (JSON_Print_Number(item, p)); // TODO handle intege/float separately ?
+			return (JSON_Print_Number(item, p, FALSE));
 
 		case DYNAMIC_TYPE_RAW:
 		{

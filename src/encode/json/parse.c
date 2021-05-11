@@ -132,7 +132,6 @@ s_json_parse*	JSON_Parse_SkipUTF8BOM(s_json_parse* const p)
 static
 t_bool		JSON_Parse_Number(s_json* const item, s_json_parse* const p)
 {
-	t_f64	result;
 	t_utf8*	number;
 	t_size	length;
 
@@ -168,12 +167,21 @@ t_bool		JSON_Parse_Number(s_json* const item, s_json_parse* const p)
 	number = String_Sub(p->content, p->offset, length);
 	if (number == NULL)
 		PARSINGERROR_JSON("Could not parse number: \"%.*s\"", (int)length, p->content + p->offset)
-	result = F64_FromString(number);
+	if (!p->strict && String_Has(number, CHARSET_DIGIT) && number[length - 1] == 'n')
+	{
+		t_s64	result = S64_FromString(number); // TODO variable-length integer
+		item->type = DYNAMIC_TYPE_INTEGER;
+		item->value.integer = result;
+	}
+	else
+	{
+		t_f64	result = F64_FromString(number);
+		item->type = DYNAMIC_TYPE_FLOAT;
+		item->value.number = result;
+	}
 //	if (IS_NAN(result)) // && String_HasOnly(number, CHARSET_ALPHABET".-+"CHARSET_DIGIT))
 //		PARSINGERROR_JSON("Error while parsing number: \"%s\"", number)
 	String_Delete(&number);
-	item->value.number = result;
-	item->type = DYNAMIC_TYPE_FLOAT;
 	p->offset += length;
 	return (TRUE);
 
