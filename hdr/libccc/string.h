@@ -254,9 +254,9 @@ t_bool					String_Equals_IgnoreCase(t_char const* str1, t_char const* str2);
 #define c_striequ		String_Equals_IgnoreCase //!< @alias{String_Equals_IgnoreCase}
 #define c_strcaseequ	String_Equals_IgnoreCase //!< @alias{String_Equals_IgnoreCase}
 
-//!	Returns #TRUE if the first `n` chars of the two given strings match (ignoring case), and #FALSE otherwise
+//!	Returns #TRUE if the first `n` chars of the two given strings match (case-insensitive), and #FALSE otherwise
 /*!
-**	@returns #TRUE if the first `n` chars of the two given strings match (ignoring case), and #FALSE otherwise
+**	@returns #TRUE if the first `n` chars of the two given strings match (case-insensitive), and #FALSE otherwise
 */
 t_bool					String_Equals_N_IgnoreCase(t_char const* str1, t_char const* str2, t_size n);
 #define c_strniequ		String_Equals_N_IgnoreCase //!< @alias{String_Equals_N_IgnoreCase}

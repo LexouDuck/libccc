@@ -12,7 +12,7 @@ inline t_char*	Q##BITS##_ToString(t_q##BITS number)			\
 		FORMAT_S##BITS".("FORMAT_U##BITS"/"FORMAT_U##BITS")",	\
 		(t_s##BITS)Q##BITS##_IntegerPart(number),				\
 		(t_s##BITS)Q##BITS##_FractionPart(number),				\
-		(t_s##BITS)1 << FIXED_BITS_FRACTIONPART)				\
+		(t_s##BITS)(1 << FIXED_BITS_FRACTIONPART))				\
 	);															\
 }																\
 

@@ -138,15 +138,26 @@ t_bool		JSON_Parse_Number(s_json* const item, s_json_parse* const p)
 
 	LIBCONFIG_HANDLE_NULLPOINTER(NULL, p)
 	LIBCONFIG_HANDLE_NULLPOINTER(NULL, p->content)
-	for (length = 0; CAN_PARSE(length); length++)
+	if (p->strict)
 	{
-		if (Char_IsInCharset(p->content[p->offset + length], "0123456789.+-eE"))
-			continue; // decimal floating-point notation
-		else if (!p->strict && Char_IsInCharset(p->content[p->offset + length], "01.+-pPbB"))
-			continue; // binary floating-point notation
-		else if (!p->strict && Char_IsInCharset(p->content[p->offset + length], "0123456789aAbBcCdDeEfF.+-pPxX"))
-			continue; // hexadecimal floating-point notation
-		else break;
+		for (length = 0; CAN_PARSE(length); ++length)
+		{
+			if (Char_IsInCharset(p->content[p->offset + length], "0123456789.+-eE"))
+				continue; // decimal floating-point notation
+			else break;
+		}
+	}
+	else
+	{
+		for (length = 0; CAN_PARSE(length); ++length)
+		{
+			if (p->content[p->offset + length] == '.' ||
+				p->content[p->offset + length] == '-' ||
+				p->content[p->offset + length] == '+')
+				continue;
+			if (!Char_IsAlphaNumeric(p->content[p->offset + length]))
+				break;
+		}
 	}
 	number = String_Sub(p->content, p->offset, length);
 	result = F64_FromString(number);
@@ -444,47 +455,68 @@ t_bool	JSON_Parse_Value(s_json* const item, s_json_parse* const p)
 	{
 		PARSINGERROR_JSON("Unexpected end of input, unable to parse JSON value")
 	}
-	// parse the different types of values
-	if (CAN_PARSE(4) && (String_Equals_N(&p->content[p->offset], "null", 4) || (
-		p->strict ? 0 :	 String_Equals_N(&p->content[p->offset], "NULL", 4))))
+	else if (CAN_PARSE(4) && ((String_Equals_N(p->content + p->offset, "null", 4)) ||
+				(!p->strict && String_Equals_N(p->content + p->offset, "Null", 4)) ||
+				(!p->strict && String_Equals_N(p->content + p->offset, "NULL", 4))))
 	{	// null
 		item->type = DYNAMIC_TYPE_NULL;
+//		Memory_Clear(&item->value, sizeof(item->value));
 		p->offset += 4;
 		return (TRUE);
 	}
-	if (CAN_PARSE(5) && (String_Equals_N(&p->content[p->offset], "false", 5) || (
-		p->strict ? 0 :	 String_Equals_N(&p->content[p->offset], "FALSE", 5))))
+	else if (CAN_PARSE(5) && ((String_Equals_N(p->content + p->offset, "false", 5)) ||
+				(!p->strict && String_Equals_N(p->content + p->offset, "False", 5)) ||
+				(!p->strict && String_Equals_N(p->content + p->offset, "FALSE", 5))))
 	{	// FALSE
 		item->type = DYNAMIC_TYPE_BOOLEAN;
 		item->value.boolean = FALSE;
 		p->offset += 5;
 		return (TRUE);
 	}
-	if (CAN_PARSE(4) && (String_Equals_N(&p->content[p->offset], "true", 4) || (
-		p->strict ? 0 :	 String_Equals_N(&p->content[p->offset], "TRUE", 4))))
+	else if (CAN_PARSE(4) && ((String_Equals_N(p->content + p->offset, "true", 4)) ||
+				(!p->strict && String_Equals_N(p->content + p->offset, "True", 4)) ||
+				(!p->strict && String_Equals_N(p->content + p->offset, "TRUE", 4))))
 	{	// TRUE
 		item->type = DYNAMIC_TYPE_BOOLEAN;
 		item->value.boolean = TRUE;
 		p->offset += 4;
 		return (TRUE);
 	}
-	if (CAN_PARSE(0) && (p->content[p->offset] == '\"'))
-	{	// string
-		return (JSON_Parse_String(item, p));
+	else if (CAN_PARSE(0))
+	{
+		if (p->content[p->offset] == '[')
+			return (JSON_Parse_Array( item, p));	// array
+		if (p->content[p->offset] == '{')
+			return (JSON_Parse_Object(item, p));	// object
+		if (p->content[p->offset] == '\"')
+			return (JSON_Parse_String(item, p));	// string
+		if (p->content[p->offset] == '-' || Char_IsDigit(p->content[p->offset]))
+			return (JSON_Parse_Number(item, p));	// number
 	}
-	if (CAN_PARSE(0) && (Char_IsDigit(p->content[p->offset]) ||
-							(p->content[p->offset] == '-') ||
-		(p->strict ? 0 :	(p->content[p->offset] == '+'))))
-	{	// number
-		return (JSON_Parse_Number(item, p));
-	}
-	if (CAN_PARSE(0) && (p->content[p->offset] == '['))
-	{	// array
-		return (JSON_Parse_Array(item, p));
-	}
-	if (CAN_PARSE(0) && (p->content[p->offset] == '{'))
-	{	// object
-		return (JSON_Parse_Object(item, p));
+
+	if (!p->strict)
+	{
+		if (CAN_PARSE(0))
+		{
+//			if (p->content[p->offset] == '\'')
+//				return (JSON_Parse_String(item, p));	// string
+			if (p->content[p->offset] == '+')
+				return (JSON_Parse_Number(item, p));	// number
+		}
+		if (CAN_PARSE(3) && (
+			String_Equals_N(p->content + p->offset, "inf", 3) ||
+			String_Equals_N(p->content + p->offset, "Inf", 3) ||
+			String_Equals_N(p->content + p->offset, "INF", 3)))
+		{	// number
+			return (JSON_Parse_Number(item, p));
+		}
+		if (CAN_PARSE(3) && (
+			String_Equals_N(p->content + p->offset, "nan", 3) ||
+			String_Equals_N(p->content + p->offset, "NaN", 3) ||
+			String_Equals_N(p->content + p->offset, "NAN", 3)))
+		{	// number
+			return (JSON_Parse_Number(item, p));
+		}
 	}
 	PARSINGERROR_JSON("No match, unable to determine the kind of parsing to attempt: \"%.6s\"", p->content + p->offset)
 

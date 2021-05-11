@@ -42,14 +42,19 @@ HEADER_CPP
 
 #define FORMAT_ENUM	"%d"
 
-// libccc/bool.h
+//! @see libccc/bool.h
+//!@{
 #define FORMAT_BOOL	"%d"
+//!@}
 
-// libccc/char.h
+//! @see libccc/char.h
+//!@{
 #define FORMAT_CHAR	"%c"
 #define FORMAT_UTF8	"%c"
+//!@}
 
-// libccc/int.h
+//! @see libccc/int.h
+//!@{
 #define FORMAT_S8		"%+i"
 #define FORMAT_S16		"%+i"
 #define FORMAT_S32		"%+i"
@@ -75,8 +80,10 @@ HEADER_CPP
 #define FORMAT_SINT		CONCAT(FORMAT_S,	 LIBCONFIG_BITS_SINT)
 #define FORMAT_UINT		CONCAT(FORMAT_U,	 LIBCONFIG_BITS_UINT)
 #define FORMAT_HEX_UINT	CONCAT(FORMAT_HEX_U, LIBCONFIG_BITS_UINT)
+//!@}
 
-// libccc/fixed.h
+//! @see libccc/fixed.h
+//!@{
 #define FORMAT_Q16		"%0.8i"
 #define FORMAT_Q32		"%0.8i"
 #define FORMAT_Q64		"%0.8i"
@@ -88,8 +95,10 @@ HEADER_CPP
 
 #define FORMAT_FIXED		"%0.8i"
 #define FORMAT_HEX_FIXED	"%#0.8X"
+//!@}
 
-// libccc/float.h
+//! @see libccc/float.h
+//!@{
 #define FORMAT_F32		"%#g"
 #define FORMAT_F64		"%#g"
 #define FORMAT_F80		"%#g"
@@ -101,8 +110,10 @@ HEADER_CPP
 
 #define FORMAT_FLOAT		"%#g"
 #define FORMAT_HEX_FLOAT	"%#g"
+//!@}
 
-// libccc/pointer.h
+//! @see libccc/pointer.h
+//!@{
 #define FORMAT_PTR			FORMAT_POINTER
 #define FORMAT_POINTER		"%#p"
 #define FORMAT_SIZE			"%zu"
@@ -113,25 +124,35 @@ HEADER_CPP
 #define FORMAT_UINTPTR		"%zu"
 #define FORMAT_SINTMAX		"%ji"
 #define FORMAT_UINTMAX		"%ju"
+//!@}
 
-// libccc/memory.h
+//! @see libccc/memory.h
+//!@{
 #define FORMAT_MEM(N)		FORMAT_MEMORY(N)
 #define FORMAT_MEMORY(N)	"%."#N"s"
+//!@}
 
-// libccc/string.h
+//! @see libccc/string.h
+//!@{
 #define FORMAT_STR			FORMAT_STRING
 #define FORMAT_STRING		"%s"
+//!@}
 
-// libccc/color.h
+//! @see libccc/color.h
+//!@{
 #define FORMAT_COLOR_ARGB16	"#%X"
 #define FORMAT_COLOR_ARGB32	"#%X"
 #define FORMAT_COLOR_ARGB	"(A:%g, R:%g, G:%g, B:%g)"
 #define FORMAT_COLOR_AHSL	"(A:%g, H:%g, S:%g, L:%g)"
+//!@}
 
-// libccc/math/complex.h
+//! @see libccc/math/complex.h
+//!@{
 #define FORMAT_COMPLEX	"(%g + %g*i)"
+//!@}
 
-// libccc/math/algebra.h
+//! @see libccc/math/algebra.h
+//!@{
 #define FORMAT_VECTOR	"(%g)"
 #define FORMAT_VECTOR2D	"(%g, %g)"
 #define FORMAT_VECTOR3D	"(%g, %g, %g)"
@@ -140,6 +161,7 @@ HEADER_CPP
 #define FORMAT_MATRIX2D	FORMAT_VECTOR2D"\n"FORMAT_VECTOR2D"\n"
 #define FORMAT_MATRIX3D	FORMAT_VECTOR3D"\n"FORMAT_VECTOR3D"\n"FORMAT_VECTOR3D"\n"
 #define FORMAT_MATRIX4D	FORMAT_VECTOR4D"\n"FORMAT_VECTOR4D"\n"FORMAT_VECTOR4D"\n"FORMAT_VECTOR4D"\n"
+//!@}
 
 
 
@@ -213,8 +235,8 @@ HEADER_CPP
 **	.___________________________________________________________________________________________________________
 **	|bitsize| 'd', 'i'		| 'u', 'o', 'x', 'X'	|'f','e','g','a'| 'c'	| 's'		| 'p'	| 'n'			|
 **	|_______|_______________|_______________________|'F'_'E'_'G'_'A'|_______|___________|_______|_______________|
-**	|(none)	| int			| unsigned int			| double		| int	| t_char*		| void*	| int*			|
-**	| "hh"	| signed char	| unsigned char			|				|		|			|		| signed t_char*	|
+**	|(none)	| int			| unsigned int			| double		| int	| char*		| void*	| int*			|
+**	| "hh"	| signed char	| unsigned char			|				|		|			|		| signed char*	|
 **	|  "h"	| short int		| unsigned short int	|				|		|			|		| short int*	|
 **	|  "l"	| long int		| unsigned long int		|				| wint_t| wchar_t*	|		| long int*		|
 **	| "ll"	| long long int	| unsigned long long int|				|		|			|		| long long int*|

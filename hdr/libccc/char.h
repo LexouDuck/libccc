@@ -264,6 +264,8 @@ TYPEDEF_ALIAS(	t_char, CHAR, PRIMITIVE)
 #define c_isprint		Char_IsPrintable
 #define Char_IsPrint	Char_IsPrintable
 
+// TODO https://en.cppreference.com/w/c/string/byte/isgraph
+
 //! Check if the given char `c` is a valid character integer
 /*!
 **	@nonstd

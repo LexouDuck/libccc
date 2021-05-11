@@ -11,117 +11,184 @@
 ** ************************************************************************** *|
 */
 
-char*	json_null	= "null";
+t_utf8*	json_null	= "null";
 
-char*	json_bool_0	= "false";
-char*	json_bool_1	= "true";
-
-
-
-char*	json_number_0	= "0";
-char*	json_number_1	= "1";
-char*	json_number_2	= "42";
-char*	json_number_3	= "777";
-char*	json_number_4	= "123456";
-char*	json_number_0f	= "0.";
-char*	json_number_1f	= "1.";
-char*	json_number_2f	= "42.";
-char*	json_number_3f	= "777.";
-char*	json_number_4f	= "123456.";
-char*	json_number_0f1	= "0.0";
-char*	json_number_1f1	= "1.0";
-char*	json_number_2f1	= "42.0";
-char*	json_number_3f1	= "777.0";
-char*	json_number_4f1	= "123456.7";
-char*	json_number_0f2	= "0.00";
-char*	json_number_1f2	= "1.00";
-char*	json_number_2f2	= "42.00";
-char*	json_number_3f2	= "777.00";
-char*	json_number_4f2	= "123456.78";
-char*	json_number_0f3	= "0.000";
-char*	json_number_1f3	= "1.000";
-char*	json_number_2f3	= "42.000";
-char*	json_number_3f3	= "777.000";
-char*	json_number_4f3	= "123456.789";
-char*	json_number_fmin_lt = "-9007199254740991";
-char*	json_number_fmin_eq = "-9007199254740992";
-char*	json_number_fmin_gt = "-9007199254740993";
-char*	json_number_fmax_lt = "9007199254740991";
-char*	json_number_fmax_eq = "9007199254740992";
-char*	json_number_fmax_gt = "9007199254740993";
+t_utf8*	json_bool_0	= "false";
+t_utf8*	json_bool_1	= "true";
 
 
 
-char*	json_string_empty	= "\"\"";
-char*	json_string			= "\"Hello World!\"";
-char*	json_string_cc_c0	= "\"␡␁␂␃␄␅␆␇␈␉␊␋␌␍␎␏␐␑␒␓␔␕␖␗␘␙␚␛␜␝␞␟\"";
-char*	json_string_cc_c1	= "\"\"";
-char*	json_string_utf8_fr	= "\"Être à même de ça, père de maïs sûr, d'où son âme\"";
-char*	json_string_utf8_ru	= "\"Яцк Ничолсон.\"";
-char*	json_string_utf8_jp	= "\"お前はもう死んでいる - 愛\"";
-char*	json_string_utf8_ho = "\"�𑢰����� 𐐔𐐯𐑅𐐨𐑉𐐯𐐻\"";
+t_utf8*	json_number_0	= "0";
+t_utf8*	json_number_1	= "1";
+t_utf8*	json_number_2	= "42";
+t_utf8*	json_number_3	= "777";
+t_utf8*	json_number_4	= "123456";
+t_utf8*	json_number_0f	= "0.";
+t_utf8*	json_number_1f	= "1.";
+t_utf8*	json_number_2f	= "42.";
+t_utf8*	json_number_3f	= "777.";
+t_utf8*	json_number_4f	= "123456.";
+t_utf8*	json_number_0f1	= "0.0";
+t_utf8*	json_number_1f1	= "1.0";
+t_utf8*	json_number_2f1	= "42.0";
+t_utf8*	json_number_3f1	= "777.0";
+t_utf8*	json_number_4f1	= "123456.7";
+t_utf8*	json_number_0f2	= "0.00";
+t_utf8*	json_number_1f2	= "1.00";
+t_utf8*	json_number_2f2	= "42.00";
+t_utf8*	json_number_3f2	= "777.00";
+t_utf8*	json_number_4f2	= "123456.78";
+t_utf8*	json_number_0f3	= "0.000";
+t_utf8*	json_number_1f3	= "1.000";
+t_utf8*	json_number_2f3	= "42.000";
+t_utf8*	json_number_3f3	= "777.000";
+t_utf8*	json_number_4f3	= "123456.789";
+t_utf8*	json_number_fmin_lt = "-9007199254740991";
+t_utf8*	json_number_fmin_eq = "-9007199254740992";
+t_utf8*	json_number_fmin_gt = "-9007199254740993";
+t_utf8*	json_number_fmax_lt = "9007199254740991";
+t_utf8*	json_number_fmax_eq = "9007199254740992";
+t_utf8*	json_number_fmax_gt = "9007199254740993";
+t_utf8*	json_number_inf_u_lower_0 =  "inf";
+t_utf8*	json_number_inf_p_lower_0 = "+inf";
+t_utf8*	json_number_inf_n_lower_0 = "-inf";
+t_utf8*	json_number_inf_u_lower_1 =  "infinity";
+t_utf8*	json_number_inf_p_lower_1 = "+infinity";
+t_utf8*	json_number_inf_n_lower_1 = "-infinity";
+t_utf8*	json_number_inf_u_mixed_0 =  "Inf";
+t_utf8*	json_number_inf_p_mixed_0 = "+Inf";
+t_utf8*	json_number_inf_n_mixed_0 = "-Inf";
+t_utf8*	json_number_inf_u_mixed_1 =  "Infinity";
+t_utf8*	json_number_inf_p_mixed_1 = "+Infinity";
+t_utf8*	json_number_inf_n_mixed_1 = "-Infinity";
+t_utf8*	json_number_inf_u_upper_0 =  "INF";
+t_utf8*	json_number_inf_p_upper_0 = "+INF";
+t_utf8*	json_number_inf_n_upper_0 = "-INF";
+t_utf8*	json_number_inf_u_upper_1 =  "INFINITY";
+t_utf8*	json_number_inf_p_upper_1 = "+INFINITY";
+t_utf8*	json_number_inf_n_upper_1 = "-INFINITY";
+t_utf8*	json_number_inf_u_utf8_0 =  "∞";
+t_utf8*	json_number_inf_p_utf8_0 = "+∞";
+t_utf8*	json_number_inf_n_utf8_0 = "-∞";
+t_utf8*	json_number_inf_u_utf8_1 =  "\u221E";
+t_utf8*	json_number_inf_p_utf8_1 = "+\u221E";
+t_utf8*	json_number_inf_n_utf8_1 = "-\u221E";
+t_utf8*	json_number_nan_u_lower_0 =  "nan";
+t_utf8*	json_number_nan_p_lower_0 = "+nan";
+t_utf8*	json_number_nan_n_lower_0 = "-nan";
+t_utf8*	json_number_nan_u_mixed_0 =  "NaN";
+t_utf8*	json_number_nan_p_mixed_0 = "+NaN";
+t_utf8*	json_number_nan_n_mixed_0 = "-NaN";
+t_utf8*	json_number_nan_u_upper_0 =  "NAN";
+t_utf8*	json_number_nan_p_upper_0 = "+NAN";
+t_utf8*	json_number_nan_n_upper_0 = "-NAN";
 
 
-char*	json_array_empty	= "[]";
-char*	json_array_min	= "[false,true,null]";
-char*	json_array		= "\
+
+t_utf8*	json_bigint_0	= "0n";
+t_utf8*	json_bigint_1	= "1n";
+t_utf8*	json_bigint_2	= "42n";
+t_utf8*	json_bigint_3	= "777n";
+t_utf8*	json_bigint_4	= "123456n";
+t_utf8*	json_bigint_0f	= "0.n";
+t_utf8*	json_bigint_1f	= "1.n";
+t_utf8*	json_bigint_2f	= "42.n";
+t_utf8*	json_bigint_3f	= "777.n";
+t_utf8*	json_bigint_4f	= "123456.n";
+t_utf8*	json_bigint_0f1	= "0.0n";
+t_utf8*	json_bigint_1f1	= "1.0n";
+t_utf8*	json_bigint_2f1	= "42.0n";
+t_utf8*	json_bigint_3f1	= "777.0n";
+t_utf8*	json_bigint_4f1	= "123456.7n";
+t_utf8*	json_bigint_0f2	= "0.00n";
+t_utf8*	json_bigint_1f2	= "1.00n";
+t_utf8*	json_bigint_2f2	= "42.00n";
+t_utf8*	json_bigint_3f2	= "777.00n";
+t_utf8*	json_bigint_4f2	= "123456.78n";
+t_utf8*	json_bigint_0f3	= "0.000n";
+t_utf8*	json_bigint_1f3	= "1.000n";
+t_utf8*	json_bigint_2f3	= "42.000n";
+t_utf8*	json_bigint_3f3	= "777.000n";
+t_utf8*	json_bigint_4f3	= "123456.789n";
+t_utf8*	json_bigint_fmin_lt = "-9007199254740991n";
+t_utf8*	json_bigint_fmin_eq = "-9007199254740992n";
+t_utf8*	json_bigint_fmin_gt = "-9007199254740993n";
+t_utf8*	json_bigint_fmax_lt = "9007199254740991n";
+t_utf8*	json_bigint_fmax_eq = "9007199254740992n";
+t_utf8*	json_bigint_fmax_gt = "9007199254740993n";
+
+
+
+t_utf8*	json_string_empty	= "\"\"";
+t_utf8*	json_string			= "\"Hello World!\"";
+t_utf8*	json_string_cc_c0	= "\"␡␁␂␃␄␅␆␇␈␉␊␋␌␍␎␏␐␑␒␓␔␕␖␗␘␙␚␛␜␝␞␟\"";
+t_utf8*	json_string_cc_c1	= "\"\"";
+t_utf8*	json_string_utf8_fr	= "\"Être à même de ça, père de maïs sûr, d'où son âme\"";
+t_utf8*	json_string_utf8_ru	= "\"Яцк Ничолсон.\"";
+t_utf8*	json_string_utf8_jp	= "\"お前はもう死んでいる - 愛\"";
+t_utf8*	json_string_utf8_ho = "\"�𑢰����� 𐐔𐐯𐑅𐐨𐑉𐐯𐐻\"";
+
+
+t_utf8*	json_array_empty	= "[]";
+t_utf8*	json_array_min	= "[false,true,null]";
+t_utf8*	json_array		= "\
 [\
 \n	false,\
 \n	true,\
 \n	null\
 \n]";
-char*	json_array_nested_min = "[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{\"swag\":1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]";
-char*	json_array_nested = "[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{\"swag\": 1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]";
+t_utf8*	json_array_nested_min = "[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{\"swag\":1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]";
+t_utf8*	json_array_nested = "[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{\"swag\": 1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]";
 
 
 
-char*	json_object_empty	= "{}";
-char*	json_object_min	= "{\"a\":false,\"b\":true,\"c\":null}";
-char*	json_object		= "\
+t_utf8*	json_object_empty	= "{}";
+t_utf8*	json_object_min	= "{\"a\":false,\"b\":true,\"c\":null}";
+t_utf8*	json_object		= "\
 {\
 \n	\"a\": false,\
 \n	\"b\": true,\
 \n	\"c\": null\
 \n}";
-char*	json_object_nested_min	= "{\"a\":{\"b\":{\"c\":{\"d\":{\"e\":{\"f\":{\"g\":{\"h\":{\"i\":{\"j\":{\"k\":{\"l\":{\"m\":{\"n\":{\"o\":{\"p\":{\"q\":{\"r\":{\"s\":{\"t\":{\"u\":{\"v\":{\"w\":{\"x\":{\"y\":{\"z\":\"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}";
-char*	json_object_nested	= "{\"a\": {\"b\": {\"c\": {\"d\": {\"e\": {\"f\": {\"g\": {\"h\": {\"i\": {\"j\": {\"k\": {\"l\": {\"m\": {\"n\": {\"o\": {\"p\": {\"q\": {\"r\": {\"s\": {\"t\": {\"u\": {\"v\": {\"w\": {\"x\": {\"y\": {\"z\": \"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}";
+t_utf8*	json_object_nested_min	= "{\"a\":{\"b\":{\"c\":{\"d\":{\"e\":{\"f\":{\"g\":{\"h\":{\"i\":{\"j\":{\"k\":{\"l\":{\"m\":{\"n\":{\"o\":{\"p\":{\"q\":{\"r\":{\"s\":{\"t\":{\"u\":{\"v\":{\"w\":{\"x\":{\"y\":{\"z\":\"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}";
+t_utf8*	json_object_nested	= "{\"a\": {\"b\": {\"c\": {\"d\": {\"e\": {\"f\": {\"g\": {\"h\": {\"i\": {\"j\": {\"k\": {\"l\": {\"m\": {\"n\": {\"o\": {\"p\": {\"q\": {\"r\": {\"s\": {\"t\": {\"u\": {\"v\": {\"w\": {\"x\": {\"y\": {\"z\": \"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}";
 
 
 
-char*	json_helloworld		=	"{\"hello\": \"world\"}";
+t_utf8*	json_helloworld		=	"{\"hello\": \"world\"}";
 
-char*	json_whitespace		=	"  {  \"hello\"  :  \"world\"  }  ";
-char*	json_whitespace_tab	=	"\t{\t\"hello\"\t:\t\"world\"\t}\t";
-char*	json_whitespace_nl	=	"\n{\n\"hello\"\n:\n\"world\"\n}\t";
-char*	json_whitespace_cr	=	"\r{\r\"hello\"\r:\r\"world\"\r}\r";
-char*	json_whitespace_ff	=	"\f{\f\"hello\"\f:\f\"world\"\f}\f";
-char*	json_whitespace_vt	=	"\v{\v\"hello\"\v:\v\"world\"\v}\v";
-char*	json_whitespace_all	=	"\t\f\r\n{\t\f\r\n\"hello\":\t\f\r\n\"world\"\t\f\r\n}\t\f\r\n";
+t_utf8*	json_whitespace		=	"  {  \"hello\"  :  \"world\"  }  ";
+t_utf8*	json_whitespace_tab	=	"\t{\t\"hello\"\t:\t\"world\"\t}\t";
+t_utf8*	json_whitespace_nl	=	"\n{\n\"hello\"\n:\n\"world\"\n}\t";
+t_utf8*	json_whitespace_cr	=	"\r{\r\"hello\"\r:\r\"world\"\r}\r";
+t_utf8*	json_whitespace_ff	=	"\f{\f\"hello\"\f:\f\"world\"\f}\f";
+t_utf8*	json_whitespace_vt	=	"\v{\v\"hello\"\v:\v\"world\"\v}\v";
+t_utf8*	json_whitespace_all	=	"\t\f\r\n{\t\f\r\n\"hello\":\t\f\r\n\"world\"\t\f\r\n}\t\f\r\n";
 
-char*	json_strange_sot	=	"\1{\"hello\":\1\"world\"\1}\n";
-char*	json_strange_stx	=	"\2{\"hello\":\2\"world\"\2}\n";
-char*	json_strange_etx	=	"\3{\"hello\":\3\"world\"\3}\n";
-char*	json_strange_eot	=	"\4{\"hello\":\4\"world\"\4}\n";
-char*	json_strange_esc	=	"\e{\"hello\":\e\"world\"\e}\n";
-char*	json_strange_bs		=	"\b{\"hello\":\b\"world\"\b}\n";
+t_utf8*	json_strange_sot	=	"\1{\"hello\":\1\"world\"\1}\n";
+t_utf8*	json_strange_stx	=	"\2{\"hello\":\2\"world\"\2}\n";
+t_utf8*	json_strange_etx	=	"\3{\"hello\":\3\"world\"\3}\n";
+t_utf8*	json_strange_eot	=	"\4{\"hello\":\4\"world\"\4}\n";
+t_utf8*	json_strange_esc	=	"\e{\"hello\":\e\"world\"\e}\n";
+t_utf8*	json_strange_bs		=	"\b{\"hello\":\b\"world\"\b}\n";
 
-char*	json_escape_sq1	=	"[\"test:\\\'.\"]";
-char*	json_escape_sq2	=	"[\"test:\\\".\"]";
-char*	json_escape_slb	=	"[\"test:\\\\.\"]";
-char*	json_escape_slf	=	"[\"test:\\/.\"]";
-char*	json_escape_spc	=	"[\"test:\\ .\"]";
-char*	json_escape_tab	=	"[\"test:\\t.\"]";
-char*	json_escape_nl	=	"[\"test:\\n.\"]";
-char*	json_escape_cr	=	"[\"test:\\r.\"]";
-char*	json_escape_ff	=	"[\"test:\\f.\"]";
-char*	json_escape_vt	=	"[\"test:\\v.\"]";
-char*	json_escape_esc	=	"[\"test:\\e.\"]";
-char*	json_escape_bel	=	"[\"test:\\a.\"]";
-char*	json_escape_bs	=	"[\"test:\\b.\"]";
+t_utf8*	json_escape_sq1	=	"[\"test:\\\'.\"]";
+t_utf8*	json_escape_sq2	=	"[\"test:\\\".\"]";
+t_utf8*	json_escape_slb	=	"[\"test:\\\\.\"]";
+t_utf8*	json_escape_slf	=	"[\"test:\\/.\"]";
+t_utf8*	json_escape_spc	=	"[\"test:\\ .\"]";
+t_utf8*	json_escape_tab	=	"[\"test:\\t.\"]";
+t_utf8*	json_escape_nl	=	"[\"test:\\n.\"]";
+t_utf8*	json_escape_cr	=	"[\"test:\\r.\"]";
+t_utf8*	json_escape_ff	=	"[\"test:\\f.\"]";
+t_utf8*	json_escape_vt	=	"[\"test:\\v.\"]";
+t_utf8*	json_escape_esc	=	"[\"test:\\e.\"]";
+t_utf8*	json_escape_bel	=	"[\"test:\\a.\"]";
+t_utf8*	json_escape_bs	=	"[\"test:\\b.\"]";
 
 
 
-char*	json_simple_min =
+t_utf8*	json_simple_min =
 "{"
 	"\"test_bool_0\":false,"
 	"\"test_bool_1\":true,"
@@ -138,7 +205,7 @@ char*	json_simple_min =
 		"\"nest_object\":null"
 	"}"
 "}";
-char*	json_simple = "\
+t_utf8*	json_simple = "\
 {\
 \n	\"test_bool_0\": false,\
 \n	\"test_bool_1\": true,\
@@ -169,7 +236,7 @@ char*	json_simple = "\
 
 
 
-char*	json_commas_min =
+t_utf8*	json_commas_min =
 "{"
 	"\"test_bool_0\":false,"
 	"\"test_bool_1\":true,"
@@ -186,7 +253,7 @@ char*	json_commas_min =
 		"\"nest_object\":null,"
 	"},"
 "}";
-char*	json_commas = "\
+t_utf8*	json_commas = "\
 {\
 \n	\"test_bool_0\": false,\
 \n	\"test_bool_1\": true,\
@@ -217,7 +284,7 @@ char*	json_commas = "\
 
 
 
-char*	json_newline = "\n\n\
+t_utf8*	json_newline = "\n\n\
 \n{\
 \n\n\"test_bool_0\":\nfalse,\
 \n\n\"test_bool_1\":\ntrue,\
@@ -248,7 +315,7 @@ char*	json_newline = "\n\n\
 
 
 
-char*	json_complex_min =
+t_utf8*	json_complex_min =
 "{"
 	"\"Attributes\":"
 	"{"
@@ -280,7 +347,7 @@ char*	json_complex_min =
 	"\"Properties\":[[\"known for\",\"most popular role\",\"The Shining\"],[\"fan of\",\"famous fan\",\"Los Angeles Lakers\"],[\"fan of\",\"\",\"Bob Dylan\"],[\"also known for\",\"best performance\",\"Chinatown\"]],"
 	"\"Values\":[\"actor\",\"player\",\"filmmaker\"]"
 "}";
-char*	json_complex = "\
+t_utf8*	json_complex = "\
 {\
 \n	\"Attributes\": \
 \n	{\
@@ -429,10 +496,10 @@ char*	json_complex = "\
 void test_json(void)	{}
 #else
 static
-char*	c_jsoncode(char* json)
+t_utf8*	c_jsoncode(t_utf8* json)
 {
 	s_json* tmp = JSON_Parse(json);
-	char* result = JSON_Print(tmp);
+	t_utf8* result = JSON_Print(tmp);
 	free(tmp);
 	return (result);
 }
@@ -441,102 +508,135 @@ void	print_test_json(char const* test_name, int can_segfault,
 		char const* str)
 {
 	TEST_INIT(str)
-	TEST_PERFORM(	jsoncode, (char*)str)
+	TEST_PERFORM(	jsoncode, (t_utf8*)str)
 	TEST_PRINT(str,	jsoncode, "str=\"%s\"", str)
 	TEST_FREE()
 }
 void	test_json(void)
 {
-//	| TEST FUNCTION | TEST NAME                                            | CAN SEGV  | EXPECTING         | TEST ARGS
-	print_test_json("null pointer           (parse lenient / print pretty)", FALSE,		NULL,				NULL);
-	print_test_json("empty string           (parse lenient / print pretty)", FALSE,		NULL,				"");
-	print_test_json("json_null              (parse lenient / print pretty)", FALSE,		json_null,			json_null);
-	print_test_json("json_bool_0            (parse lenient / print pretty)", FALSE,		json_bool_0,		json_bool_0);
-	print_test_json("json_bool_1            (parse lenient / print pretty)", FALSE,		json_bool_1,		json_bool_1);
-	print_test_json("json_number_0          (parse lenient / print pretty)", FALSE,		json_number_0,		json_number_0);
-	print_test_json("json_number_1          (parse lenient / print pretty)", FALSE,		json_number_1,		json_number_1);
-	print_test_json("json_number_2          (parse lenient / print pretty)", FALSE,		json_number_2,		json_number_2);
-	print_test_json("json_number_3          (parse lenient / print pretty)", FALSE,		json_number_3,		json_number_3);
-	print_test_json("json_number_4          (parse lenient / print pretty)", FALSE,		json_number_4,		json_number_4);
-	print_test_json("json_number_0f         (parse lenient / print pretty)", FALSE,		json_number_0,		json_number_0f);
-	print_test_json("json_number_1f         (parse lenient / print pretty)", FALSE,		json_number_1,		json_number_1f);
-	print_test_json("json_number_2f         (parse lenient / print pretty)", FALSE,		json_number_2,		json_number_2f);
-	print_test_json("json_number_3f         (parse lenient / print pretty)", FALSE,		json_number_3,		json_number_3f);
-	print_test_json("json_number_4f         (parse lenient / print pretty)", FALSE,		json_number_4,		json_number_4f);
-	print_test_json("json_number_0f1        (parse lenient / print pretty)", FALSE,		json_number_0,		json_number_0f1);
-	print_test_json("json_number_1f1        (parse lenient / print pretty)", FALSE,		json_number_1,		json_number_1f1);
-	print_test_json("json_number_2f1        (parse lenient / print pretty)", FALSE,		json_number_2,		json_number_2f1);
-	print_test_json("json_number_3f1        (parse lenient / print pretty)", FALSE,		json_number_3,		json_number_3f1);
-	print_test_json("json_number_4f1        (parse lenient / print pretty)", FALSE,		json_number_4f1,	json_number_4f1);
-	print_test_json("json_number_0f2        (parse lenient / print pretty)", FALSE,		json_number_0,		json_number_0f2);
-	print_test_json("json_number_1f2        (parse lenient / print pretty)", FALSE,		json_number_1,		json_number_1f2);
-	print_test_json("json_number_2f2        (parse lenient / print pretty)", FALSE,		json_number_2,		json_number_2f2);
-	print_test_json("json_number_3f2        (parse lenient / print pretty)", FALSE,		json_number_3,		json_number_3f2);
-	print_test_json("json_number_4f2        (parse lenient / print pretty)", FALSE,		json_number_4f2,	json_number_4f2);
-	print_test_json("json_number_0f3        (parse lenient / print pretty)", FALSE,		json_number_0,		json_number_0f3);
-	print_test_json("json_number_1f3        (parse lenient / print pretty)", FALSE,		json_number_1,		json_number_1f3);
-	print_test_json("json_number_2f3        (parse lenient / print pretty)", FALSE,		json_number_2,		json_number_2f3);
-	print_test_json("json_number_3f3        (parse lenient / print pretty)", FALSE,		json_number_3,		json_number_3f3);
-	print_test_json("json_number_4f3        (parse lenient / print pretty)", FALSE,		json_number_4f3,	json_number_4f3);
-	print_test_json("json_number_fmin_lt    (parse lenient / print pretty)", FALSE,		json_number_fmin_lt,json_number_fmin_lt);
-	print_test_json("json_number_fmin_eq    (parse lenient / print pretty)", FALSE,		json_number_fmin_eq,json_number_fmin_eq);
-	print_test_json("json_number_fmin_gt    (parse lenient / print pretty)", FALSE,		json_number_fmin_eq,json_number_fmin_gt);
-	print_test_json("json_number_fmax_lt    (parse lenient / print pretty)", FALSE,		json_number_fmax_lt,json_number_fmax_lt);
-	print_test_json("json_number_fmax_eq    (parse lenient / print pretty)", FALSE,		json_number_fmax_eq,json_number_fmax_eq);
-	print_test_json("json_number_fmax_gt    (parse lenient / print pretty)", FALSE,		json_number_fmax_eq,json_number_fmax_gt);
-	print_test_json("json_string_empty      (parse lenient / print pretty)", FALSE,		json_string_empty,	json_string_empty);
-	print_test_json("json_string            (parse lenient / print pretty)", FALSE,		json_string,		json_string);
-	print_test_json("json_string_cc_c0      (parse lenient / print pretty)", FALSE,		json_string_cc_c0,	json_string_cc_c0);
-	print_test_json("json_string_cc_c1      (parse lenient / print pretty)", FALSE,		json_string_cc_c1,	json_string_cc_c1);
-	print_test_json("json_string_utf8_fr    (parse lenient / print pretty)", FALSE,		json_string_utf8_fr,json_string_utf8_fr);
-	print_test_json("json_string_utf8_ru    (parse lenient / print pretty)", FALSE,		json_string_utf8_ru,json_string_utf8_ru);
-	print_test_json("json_string_utf8_jp    (parse lenient / print pretty)", FALSE,		json_string_utf8_jp,json_string_utf8_jp);
-	print_test_json("json_string_utf8_ho    (parse lenient / print pretty)", FALSE,		json_string_utf8_ho,json_string_utf8_ho);
-	print_test_json("json_array_empty       (parse lenient / print pretty)", FALSE,		json_array_empty,	json_array_empty);
-	print_test_json("json_array             (parse lenient / print pretty)", FALSE,		json_array,			json_array);
-	print_test_json("json_array_min         (parse lenient / print pretty)", FALSE,		json_array,			json_array_min);
-	print_test_json("json_array_nested      (parse lenient / print pretty)", FALSE,		json_array_nested,	json_array_nested);
-	print_test_json("json_array_nested_min  (parse lenient / print pretty)", FALSE,		json_array_nested,	json_array_nested_min);
-	print_test_json("json_object_empty      (parse lenient / print pretty)", FALSE,		json_object_empty,	json_object_empty);
-	print_test_json("json_object            (parse lenient / print pretty)", FALSE,		json_object,		json_object);
-	print_test_json("json_object_min        (parse lenient / print pretty)", FALSE,		json_object,		json_object_min);
-	print_test_json("json_object_nested     (parse lenient / print pretty)", FALSE,		json_object_nested,	json_object_nested);
-	print_test_json("json_object_nested_min (parse lenient / print pretty)", FALSE,		json_object_nested,	json_object_nested_min);
-	print_test_json("json_whitespace        (parse lenient / print pretty)", FALSE,		json_helloworld,	json_whitespace);
-	print_test_json("json_whitespace_tab    (parse lenient / print pretty)", FALSE,		json_helloworld,	json_whitespace_tab);
-	print_test_json("json_whitespace_nl     (parse lenient / print pretty)", FALSE,		json_helloworld,	json_whitespace_nl);
-	print_test_json("json_whitespace_cr     (parse lenient / print pretty)", FALSE,		json_helloworld,	json_whitespace_cr);
-	print_test_json("json_whitespace_ff     (parse lenient / print pretty)", FALSE,		json_helloworld,	json_whitespace_ff);
-	print_test_json("json_whitespace_vt     (parse lenient / print pretty)", FALSE,		json_helloworld,	json_whitespace_vt);
-	print_test_json("json_whitespace_all    (parse lenient / print pretty)", FALSE,		json_helloworld,	json_whitespace_all);
-	print_test_json("json_simple            (parse lenient / print pretty)", FALSE,		json_simple,		json_simple);
-	print_test_json("json_simple_min        (parse lenient / print pretty)", FALSE,		json_simple,		json_simple_min);
-	print_test_json("json_commas            (parse lenient / print pretty)", FALSE,		json_simple,		json_commas);
-	print_test_json("json_commas_min        (parse lenient / print pretty)", FALSE,		json_simple,		json_commas_min);
-	print_test_json("json_newline           (parse lenient / print pretty)", FALSE,		json_simple,		json_newline);
-	print_test_json("json_complex           (parse lenient / print pretty)", FALSE,		json_complex,		json_complex);
-	print_test_json("json_complex_min       (parse lenient / print pretty)", FALSE,		json_complex,		json_complex_min);
+//	| TEST FUNCTION | TEST NAME                                   | CAN SEGV  | EXPECTING         | TEST ARGS
+	print_test_json("null pointer              (lenient -> pretty)", FALSE,		NULL,						NULL);
+	print_test_json("empty string              (lenient -> pretty)", FALSE,		NULL,						"");
+	print_test_json("json_null                 (lenient -> pretty)", FALSE,		json_null,					json_null);
+	print_test_json("json_bool_0               (lenient -> pretty)", FALSE,		json_bool_0,				json_bool_0);
+	print_test_json("json_bool_1               (lenient -> pretty)", FALSE,		json_bool_1,				json_bool_1);
+	print_test_json("json_number_0             (lenient -> pretty)", FALSE,		json_number_0,				json_number_0);
+	print_test_json("json_number_1             (lenient -> pretty)", FALSE,		json_number_1,				json_number_1);
+	print_test_json("json_number_2             (lenient -> pretty)", FALSE,		json_number_2,				json_number_2);
+	print_test_json("json_number_3             (lenient -> pretty)", FALSE,		json_number_3,				json_number_3);
+	print_test_json("json_number_4             (lenient -> pretty)", FALSE,		json_number_4,				json_number_4);
+	print_test_json("json_number_0f            (lenient -> pretty)", FALSE,		json_number_0,				json_number_0f);
+	print_test_json("json_number_1f            (lenient -> pretty)", FALSE,		json_number_1,				json_number_1f);
+	print_test_json("json_number_2f            (lenient -> pretty)", FALSE,		json_number_2,				json_number_2f);
+	print_test_json("json_number_3f            (lenient -> pretty)", FALSE,		json_number_3,				json_number_3f);
+	print_test_json("json_number_4f            (lenient -> pretty)", FALSE,		json_number_4,				json_number_4f);
+	print_test_json("json_number_0f1           (lenient -> pretty)", FALSE,		json_number_0,				json_number_0f1);
+	print_test_json("json_number_1f1           (lenient -> pretty)", FALSE,		json_number_1,				json_number_1f1);
+	print_test_json("json_number_2f1           (lenient -> pretty)", FALSE,		json_number_2,				json_number_2f1);
+	print_test_json("json_number_3f1           (lenient -> pretty)", FALSE,		json_number_3,				json_number_3f1);
+	print_test_json("json_number_4f1           (lenient -> pretty)", FALSE,		json_number_4f1,			json_number_4f1);
+	print_test_json("json_number_0f2           (lenient -> pretty)", FALSE,		json_number_0,				json_number_0f2);
+	print_test_json("json_number_1f2           (lenient -> pretty)", FALSE,		json_number_1,				json_number_1f2);
+	print_test_json("json_number_2f2           (lenient -> pretty)", FALSE,		json_number_2,				json_number_2f2);
+	print_test_json("json_number_3f2           (lenient -> pretty)", FALSE,		json_number_3,				json_number_3f2);
+	print_test_json("json_number_4f2           (lenient -> pretty)", FALSE,		json_number_4f2,			json_number_4f2);
+	print_test_json("json_number_0f3           (lenient -> pretty)", FALSE,		json_number_0,				json_number_0f3);
+	print_test_json("json_number_1f3           (lenient -> pretty)", FALSE,		json_number_1,				json_number_1f3);
+	print_test_json("json_number_2f3           (lenient -> pretty)", FALSE,		json_number_2,				json_number_2f3);
+	print_test_json("json_number_3f3           (lenient -> pretty)", FALSE,		json_number_3,				json_number_3f3);
+	print_test_json("json_number_4f3           (lenient -> pretty)", FALSE,		json_number_4f3,			json_number_4f3);
+	print_test_json("json_number_fmin_lt       (lenient -> pretty)", FALSE,		json_number_fmin_lt,		json_number_fmin_lt);
+	print_test_json("json_number_fmin_eq       (lenient -> pretty)", FALSE,		json_number_fmin_eq,		json_number_fmin_eq);
+	print_test_json("json_number_fmin_gt       (lenient -> pretty)", FALSE,		json_number_fmin_eq,		json_number_fmin_gt);
+	print_test_json("json_number_fmax_lt       (lenient -> pretty)", FALSE,		json_number_fmax_lt,		json_number_fmax_lt);
+	print_test_json("json_number_fmax_eq       (lenient -> pretty)", FALSE,		json_number_fmax_eq,		json_number_fmax_eq);
+	print_test_json("json_number_fmax_gt       (lenient -> pretty)", FALSE,		json_number_fmax_eq,		json_number_fmax_gt);
+	print_test_json("json_number_inf_u_lower_0 (lenient -> pretty)", FALSE,		json_number_inf_u_lower_0,	json_number_inf_u_lower_0);
+	print_test_json("json_number_inf_p_lower_0 (lenient -> pretty)", FALSE,		json_number_inf_p_lower_0,	json_number_inf_p_lower_0);
+	print_test_json("json_number_inf_n_lower_0 (lenient -> pretty)", FALSE,		json_number_inf_n_lower_0,	json_number_inf_n_lower_0);
+	print_test_json("json_number_inf_u_lower_1 (lenient -> pretty)", FALSE,		json_number_inf_u_lower_1,	json_number_inf_u_lower_1);
+	print_test_json("json_number_inf_p_lower_1 (lenient -> pretty)", FALSE,		json_number_inf_p_lower_1,	json_number_inf_p_lower_1);
+	print_test_json("json_number_inf_n_lower_1 (lenient -> pretty)", FALSE,		json_number_inf_n_lower_1,	json_number_inf_n_lower_1);
+	print_test_json("json_number_inf_u_mixed_0 (lenient -> pretty)", FALSE,		json_number_inf_u_mixed_0,	json_number_inf_u_mixed_0);
+	print_test_json("json_number_inf_p_mixed_0 (lenient -> pretty)", FALSE,		json_number_inf_p_mixed_0,	json_number_inf_p_mixed_0);
+	print_test_json("json_number_inf_n_mixed_0 (lenient -> pretty)", FALSE,		json_number_inf_n_mixed_0,	json_number_inf_n_mixed_0);
+	print_test_json("json_number_inf_u_mixed_1 (lenient -> pretty)", FALSE,		json_number_inf_u_mixed_1,	json_number_inf_u_mixed_1);
+	print_test_json("json_number_inf_p_mixed_1 (lenient -> pretty)", FALSE,		json_number_inf_p_mixed_1,	json_number_inf_p_mixed_1);
+	print_test_json("json_number_inf_n_mixed_1 (lenient -> pretty)", FALSE,		json_number_inf_n_mixed_1,	json_number_inf_n_mixed_1);
+	print_test_json("json_number_inf_u_upper_0 (lenient -> pretty)", FALSE,		json_number_inf_u_upper_0,	json_number_inf_u_upper_0);
+	print_test_json("json_number_inf_p_upper_0 (lenient -> pretty)", FALSE,		json_number_inf_p_upper_0,	json_number_inf_p_upper_0);
+	print_test_json("json_number_inf_n_upper_0 (lenient -> pretty)", FALSE,		json_number_inf_n_upper_0,	json_number_inf_n_upper_0);
+	print_test_json("json_number_inf_u_upper_1 (lenient -> pretty)", FALSE,		json_number_inf_u_upper_1,	json_number_inf_u_upper_1);
+	print_test_json("json_number_inf_p_upper_1 (lenient -> pretty)", FALSE,		json_number_inf_p_upper_1,	json_number_inf_p_upper_1);
+	print_test_json("json_number_inf_n_upper_1 (lenient -> pretty)", FALSE,		json_number_inf_n_upper_1,	json_number_inf_n_upper_1);
+	print_test_json("json_number_inf_u_utf8_0  (lenient -> pretty)", FALSE,		json_number_inf_u_utf8_0 ,	json_number_inf_u_utf8_0 );
+	print_test_json("json_number_inf_p_utf8_0  (lenient -> pretty)", FALSE,		json_number_inf_p_utf8_0 ,	json_number_inf_p_utf8_0 );
+	print_test_json("json_number_inf_n_utf8_0  (lenient -> pretty)", FALSE,		json_number_inf_n_utf8_0 ,	json_number_inf_n_utf8_0 );
+	print_test_json("json_number_inf_u_utf8_1  (lenient -> pretty)", FALSE,		json_number_inf_u_utf8_1 ,	json_number_inf_u_utf8_1 );
+	print_test_json("json_number_inf_p_utf8_1  (lenient -> pretty)", FALSE,		json_number_inf_p_utf8_1 ,	json_number_inf_p_utf8_1 );
+	print_test_json("json_number_inf_n_utf8_1  (lenient -> pretty)", FALSE,		json_number_inf_n_utf8_1 ,	json_number_inf_n_utf8_1 );
+	print_test_json("json_number_nan_u_lower_0 (lenient -> pretty)", FALSE,		json_number_nan_u_lower_0,	json_number_nan_u_lower_0);
+	print_test_json("json_number_nan_p_lower_0 (lenient -> pretty)", FALSE,		json_number_nan_p_lower_0,	json_number_nan_p_lower_0);
+	print_test_json("json_number_nan_n_lower_0 (lenient -> pretty)", FALSE,		json_number_nan_n_lower_0,	json_number_nan_n_lower_0);
+	print_test_json("json_number_nan_u_mixed_0 (lenient -> pretty)", FALSE,		json_number_nan_u_mixed_0,	json_number_nan_u_mixed_0);
+	print_test_json("json_number_nan_p_mixed_0 (lenient -> pretty)", FALSE,		json_number_nan_p_mixed_0,	json_number_nan_p_mixed_0);
+	print_test_json("json_number_nan_n_mixed_0 (lenient -> pretty)", FALSE,		json_number_nan_n_mixed_0,	json_number_nan_n_mixed_0);
+	print_test_json("json_number_nan_u_upper_0 (lenient -> pretty)", FALSE,		json_number_nan_u_upper_0,	json_number_nan_u_upper_0);
+	print_test_json("json_number_nan_p_upper_0 (lenient -> pretty)", FALSE,		json_number_nan_p_upper_0,	json_number_nan_p_upper_0);
+	print_test_json("json_number_nan_n_upper_0 (lenient -> pretty)", FALSE,		json_number_nan_n_upper_0,	json_number_nan_n_upper_0);
+	print_test_json("json_string_empty         (lenient -> pretty)", FALSE,		json_string_empty,			json_string_empty);
+	print_test_json("json_string               (lenient -> pretty)", FALSE,		json_string,				json_string);
+	print_test_json("json_string_cc_c0         (lenient -> pretty)", FALSE,		json_string_cc_c0,			json_string_cc_c0);
+	print_test_json("json_string_cc_c1         (lenient -> pretty)", FALSE,		json_string_cc_c1,			json_string_cc_c1);
+	print_test_json("json_string_utf8_fr       (lenient -> pretty)", FALSE,		json_string_utf8_fr,		json_string_utf8_fr);
+	print_test_json("json_string_utf8_ru       (lenient -> pretty)", FALSE,		json_string_utf8_ru,		json_string_utf8_ru);
+	print_test_json("json_string_utf8_jp       (lenient -> pretty)", FALSE,		json_string_utf8_jp,		json_string_utf8_jp);
+	print_test_json("json_string_utf8_ho       (lenient -> pretty)", FALSE,		json_string_utf8_ho,		json_string_utf8_ho);
+	print_test_json("json_array_empty          (lenient -> pretty)", FALSE,		json_array_empty,			json_array_empty);
+	print_test_json("json_array                (lenient -> pretty)", FALSE,		json_array,					json_array);
+	print_test_json("json_array_min            (lenient -> pretty)", FALSE,		json_array,					json_array_min);
+	print_test_json("json_array_nested         (lenient -> pretty)", FALSE,		json_array_nested,			json_array_nested);
+	print_test_json("json_array_nested_min     (lenient -> pretty)", FALSE,		json_array_nested,			json_array_nested_min);
+	print_test_json("json_object_empty         (lenient -> pretty)", FALSE,		json_object_empty,			json_object_empty);
+	print_test_json("json_object               (lenient -> pretty)", FALSE,		json_object,				json_object);
+	print_test_json("json_object_min           (lenient -> pretty)", FALSE,		json_object,				json_object_min);
+	print_test_json("json_object_nested        (lenient -> pretty)", FALSE,		json_object_nested,			json_object_nested);
+	print_test_json("json_object_nested_min    (lenient -> pretty)", FALSE,		json_object_nested,			json_object_nested_min);
+	print_test_json("json_whitespace           (lenient -> pretty)", FALSE,		json_helloworld,			json_whitespace);
+	print_test_json("json_whitespace_tab       (lenient -> pretty)", FALSE,		json_helloworld,			json_whitespace_tab);
+	print_test_json("json_whitespace_nl        (lenient -> pretty)", FALSE,		json_helloworld,			json_whitespace_nl);
+	print_test_json("json_whitespace_cr        (lenient -> pretty)", FALSE,		json_helloworld,			json_whitespace_cr);
+	print_test_json("json_whitespace_ff        (lenient -> pretty)", FALSE,		json_helloworld,			json_whitespace_ff);
+	print_test_json("json_whitespace_vt        (lenient -> pretty)", FALSE,		json_helloworld,			json_whitespace_vt);
+	print_test_json("json_whitespace_all       (lenient -> pretty)", FALSE,		json_helloworld,			json_whitespace_all);
+	print_test_json("json_simple               (lenient -> pretty)", FALSE,		json_simple,				json_simple);
+	print_test_json("json_simple_min           (lenient -> pretty)", FALSE,		json_simple,				json_simple_min);
+	print_test_json("json_commas               (lenient -> pretty)", FALSE,		json_simple,				json_commas);
+	print_test_json("json_commas_min           (lenient -> pretty)", FALSE,		json_simple,				json_commas_min);
+	print_test_json("json_newline              (lenient -> pretty)", FALSE,		json_simple,				json_newline);
+	print_test_json("json_complex              (lenient -> pretty)", FALSE,		json_complex,				json_complex);
+	print_test_json("json_complex_min          (lenient -> pretty)", FALSE,		json_complex,				json_complex_min);
 #undef  LIBCONFIG_HANDLE_PARSINGERROR
 #define LIBCONFIG_HANDLE_PARSINGERROR(...)	
-	print_test_json("json_escape_sq1        (parse lenient / print pretty)", FALSE,		NULL,				json_escape_sq1);
-	print_test_json("json_escape_sq2        (parse lenient / print pretty)", FALSE,		json_escape_sq2,	json_escape_sq2);
-	print_test_json("json_escape_slb        (parse lenient / print pretty)", FALSE,		json_escape_slb,	json_escape_slb);
-	print_test_json("json_escape_slf        (parse lenient / print pretty)", FALSE,		json_escape_slf,	json_escape_slf);
-	print_test_json("json_escape_spc        (parse lenient / print pretty)", FALSE,		NULL,				json_escape_spc);
-	print_test_json("json_escape_tab        (parse lenient / print pretty)", FALSE,		json_escape_tab,	json_escape_tab);
-	print_test_json("json_escape_nl         (parse lenient / print pretty)", FALSE,		json_escape_nl,		json_escape_nl);
-	print_test_json("json_escape_cr         (parse lenient / print pretty)", FALSE,		json_escape_cr,		json_escape_cr);
-	print_test_json("json_escape_ff         (parse lenient / print pretty)", FALSE,		json_escape_ff,		json_escape_ff);
-	print_test_json("json_escape_vt         (parse lenient / print pretty)", FALSE,		NULL,				json_escape_vt);
-	print_test_json("json_escape_esc        (parse lenient / print pretty)", FALSE,		NULL,				json_escape_esc);
-	print_test_json("json_escape_bel        (parse lenient / print pretty)", FALSE,		NULL,				json_escape_bel);
-	print_test_json("json_escape_bs         (parse lenient / print pretty)", FALSE,		json_escape_bs,		json_escape_bs);
-	print_test_json("json_strange_sot       (parse lenient / print pretty)", FALSE,		NULL,				json_strange_sot);
-	print_test_json("json_strange_stx       (parse lenient / print pretty)", FALSE,		NULL,				json_strange_stx);
-	print_test_json("json_strange_etx       (parse lenient / print pretty)", FALSE,		NULL,				json_strange_etx);
-	print_test_json("json_strange_eot       (parse lenient / print pretty)", FALSE,		NULL,				json_strange_eot);
-	print_test_json("json_strange_esc       (parse lenient / print pretty)", FALSE,		NULL,				json_strange_esc);
-	print_test_json("json_strange_bs        (parse lenient / print pretty)", FALSE,		NULL,				json_strange_bs);
+	print_test_json("json_escape_sq1           (lenient -> pretty)", FALSE,		NULL,						json_escape_sq1);
+	print_test_json("json_escape_sq2           (lenient -> pretty)", FALSE,		json_escape_sq2,			json_escape_sq2);
+	print_test_json("json_escape_slb           (lenient -> pretty)", FALSE,		json_escape_slb,			json_escape_slb);
+	print_test_json("json_escape_slf           (lenient -> pretty)", FALSE,		json_escape_slf,			json_escape_slf);
+	print_test_json("json_escape_spc           (lenient -> pretty)", FALSE,		NULL,						json_escape_spc);
+	print_test_json("json_escape_tab           (lenient -> pretty)", FALSE,		json_escape_tab,			json_escape_tab);
+	print_test_json("json_escape_nl            (lenient -> pretty)", FALSE,		json_escape_nl,				json_escape_nl);
+	print_test_json("json_escape_cr            (lenient -> pretty)", FALSE,		json_escape_cr,				json_escape_cr);
+	print_test_json("json_escape_ff            (lenient -> pretty)", FALSE,		json_escape_ff,				json_escape_ff);
+	print_test_json("json_escape_vt            (lenient -> pretty)", FALSE,		NULL,						json_escape_vt);
+	print_test_json("json_escape_esc           (lenient -> pretty)", FALSE,		NULL,						json_escape_esc);
+	print_test_json("json_escape_bel           (lenient -> pretty)", FALSE,		NULL,						json_escape_bel);
+	print_test_json("json_escape_bs            (lenient -> pretty)", FALSE,		json_escape_bs,				json_escape_bs);
+	print_test_json("json_strange_sot          (lenient -> pretty)", FALSE,		NULL,						json_strange_sot);
+	print_test_json("json_strange_stx          (lenient -> pretty)", FALSE,		NULL,						json_strange_stx);
+	print_test_json("json_strange_etx          (lenient -> pretty)", FALSE,		NULL,						json_strange_etx);
+	print_test_json("json_strange_eot          (lenient -> pretty)", FALSE,		NULL,						json_strange_eot);
+	print_test_json("json_strange_esc          (lenient -> pretty)", FALSE,		NULL,						json_strange_esc);
+	print_test_json("json_strange_bs           (lenient -> pretty)", FALSE,		NULL,						json_strange_bs);
 	// TODO more tests
 }
 #endif

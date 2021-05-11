@@ -34,7 +34,8 @@ static t_bool	JSON_Print_Value (s_json const* item, s_json_print* p);
 
 
 // realloc s_json_print if necessary to have at least "needed" bytes more
-static t_utf8* ensure(s_json_print* p, t_size needed)
+static
+t_utf8*	ensure(s_json_print* p, t_size needed)
 {
 	t_utf8* newbuffer = NULL;
 	t_size newsize = 0;
@@ -103,7 +104,8 @@ static t_utf8* ensure(s_json_print* p, t_size needed)
 
 
 // Render the cstring provided to an escaped version that can be printed.
-static t_bool JSON_Print_StringPtr(t_utf8 const* const input, s_json_print* p)
+static
+t_bool	JSON_Print_StringPtr(t_utf8 const* const input, s_json_print* p)
 {
 	t_utf8 const* input_pointer = NULL;
 	t_utf8* output = NULL;

@@ -312,21 +312,10 @@ DEFINEFUNC_PRINT_TEST(alloc,	char const*)
 #define TEST_PRINT_(FORMAT, ...) \
 	len = snprintf(NULL, (0), FORMAT, ##__VA_ARGS__);		\
 	if (len < 0)		return;								\
-	tmp = (char*)malloc((size_t)len + sizeof(""));			\
-	if (tmp == NULL)	return;								\
-	len = snprintf((tmp), len + 1, FORMAT, ##__VA_ARGS__);	\
+	args = (char*)malloc((size_t)len + sizeof(""));			\
+	if (args == NULL)	return;								\
+	len = snprintf((args), len + 1, FORMAT, ##__VA_ARGS__);	\
 	if (len < 0)		return;								\
-	if (len < STRING_ESCAPE_THRESHOLD)						\
-	{														\
-		args = strtoescape(tmp);							\
-		free(tmp);											\
-		if (args == NULL)	return;							\
-	}														\
-	else													\
-	{														\
-		args = tmp;											\
-	}														\
-	tmp = NULL;												\
 
 
 
