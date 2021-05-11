@@ -518,18 +518,18 @@ void	test_json(void)
 	print_test_json("json_complex_min       (parse lenient / print pretty)", FALSE,		json_complex,		json_complex_min);
 #undef  LIBCONFIG_HANDLE_PARSINGERROR
 #define LIBCONFIG_HANDLE_PARSINGERROR(...)	
-	print_test_json("json_escape_sq1        (parse lenient / print pretty)", FALSE,		json_escape_sq1,	json_escape_sq1);
+	print_test_json("json_escape_sq1        (parse lenient / print pretty)", FALSE,		NULL,				json_escape_sq1);
 	print_test_json("json_escape_sq2        (parse lenient / print pretty)", FALSE,		json_escape_sq2,	json_escape_sq2);
 	print_test_json("json_escape_slb        (parse lenient / print pretty)", FALSE,		json_escape_slb,	json_escape_slb);
 	print_test_json("json_escape_slf        (parse lenient / print pretty)", FALSE,		json_escape_slf,	json_escape_slf);
-	print_test_json("json_escape_spc        (parse lenient / print pretty)", FALSE,		json_escape_spc,	json_escape_spc);
+	print_test_json("json_escape_spc        (parse lenient / print pretty)", FALSE,		NULL,				json_escape_spc);
 	print_test_json("json_escape_tab        (parse lenient / print pretty)", FALSE,		json_escape_tab,	json_escape_tab);
 	print_test_json("json_escape_nl         (parse lenient / print pretty)", FALSE,		json_escape_nl,		json_escape_nl);
 	print_test_json("json_escape_cr         (parse lenient / print pretty)", FALSE,		json_escape_cr,		json_escape_cr);
 	print_test_json("json_escape_ff         (parse lenient / print pretty)", FALSE,		json_escape_ff,		json_escape_ff);
-	print_test_json("json_escape_vt         (parse lenient / print pretty)", FALSE,		json_escape_vt,		json_escape_vt);
-	print_test_json("json_escape_esc        (parse lenient / print pretty)", FALSE,		json_escape_esc,	json_escape_esc);
-	print_test_json("json_escape_bel        (parse lenient / print pretty)", FALSE,		json_escape_bel,	json_escape_bel);
+	print_test_json("json_escape_vt         (parse lenient / print pretty)", FALSE,		NULL,				json_escape_vt);
+	print_test_json("json_escape_esc        (parse lenient / print pretty)", FALSE,		NULL,				json_escape_esc);
+	print_test_json("json_escape_bel        (parse lenient / print pretty)", FALSE,		NULL,				json_escape_bel);
 	print_test_json("json_escape_bs         (parse lenient / print pretty)", FALSE,		json_escape_bs,		json_escape_bs);
 	print_test_json("json_strange_sot       (parse lenient / print pretty)", FALSE,		NULL,				json_strange_sot);
 	print_test_json("json_strange_stx       (parse lenient / print pretty)", FALSE,		NULL,				json_strange_stx);
