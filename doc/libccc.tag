@@ -1523,6 +1523,7 @@
     <filename>fixed_8h.html</filename>
     <includes id="libccc__config_8h" name="libccc_config.h" local="yes" imported="no">libccc_config.h</includes>
     <includes id="libccc__define_8h" name="libccc_define.h" local="yes" imported="no">libccc_define.h</includes>
+    <includes id="bool_8h" name="bool.h" local="yes" imported="no">libccc/bool.h</includes>
     <includes id="int_8h" name="int.h" local="yes" imported="no">libccc/int.h</includes>
     <includes id="float_8h" name="float.h" local="yes" imported="no">libccc/float.h</includes>
     <member kind="define">
@@ -1530,6 +1531,34 @@
       <name>FIXED_BITS_FRACTIONPART</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
       <anchor>ga816760cfc1ceb5c74269c6183f4148e0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Q16_BITS_FRACTIONPART</name>
+      <anchorfile>group__libccc__fixed.html</anchorfile>
+      <anchor>ga80bb374d4e809df5111510b13870657e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Q32_BITS_FRACTIONPART</name>
+      <anchorfile>group__libccc__fixed.html</anchorfile>
+      <anchor>ga2869edfe8c749905796d457f8e0e9997</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Q64_BITS_FRACTIONPART</name>
+      <anchorfile>group__libccc__fixed.html</anchorfile>
+      <anchor>gaaf32c0950ff06e2b520087ef2e36c90e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Q128_BITS_FRACTIONPART</name>
+      <anchorfile>group__libccc__fixed.html</anchorfile>
+      <anchor>gab432e25a90c013e68a936d92197e8f08</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -1548,9 +1577,65 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>Q16_MAX_FRACTIONPART</name>
+      <anchorfile>group__libccc__fixed.html</anchorfile>
+      <anchor>gab8c39ed6c5307648beac46d7ca14c76d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Q32_MAX_FRACTIONPART</name>
+      <anchorfile>group__libccc__fixed.html</anchorfile>
+      <anchor>gaec823aa10579725f81a80b33c31ef69a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Q64_MAX_FRACTIONPART</name>
+      <anchorfile>group__libccc__fixed.html</anchorfile>
+      <anchor>ga69f056681a03c2efe5747802a8757520</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Q128_MAX_FRACTIONPART</name>
+      <anchorfile>group__libccc__fixed.html</anchorfile>
+      <anchor>ga01413c74dd4985267a38f0d8845ffab1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>FIXED_BITS_INTEGERPART</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
       <anchor>ga28295e4c222f663e89c6094151321d3a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Q16_BITS_INTEGERPART</name>
+      <anchorfile>group__libccc__fixed.html</anchorfile>
+      <anchor>ga67b6fa82e4321c62075c4171bbbb35f8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Q32_BITS_INTEGERPART</name>
+      <anchorfile>group__libccc__fixed.html</anchorfile>
+      <anchor>ga69c31d9d604f9406ff52efefb311b094</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Q64_BITS_INTEGERPART</name>
+      <anchorfile>group__libccc__fixed.html</anchorfile>
+      <anchor>ga5bb9b7bc31b93cf5cc8f9b1e57e0c178</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Q128_BITS_INTEGERPART</name>
+      <anchorfile>group__libccc__fixed.html</anchorfile>
+      <anchor>gaae03515f3ee2378a8aa710d5fd51b2c4</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -1565,6 +1650,34 @@
       <name>FIXED_MAX_INTEGERPART</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
       <anchor>ga8d9aed807ea6a9ce968223d43ad400c3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Q16_MAX_INTEGERPART</name>
+      <anchorfile>group__libccc__fixed.html</anchorfile>
+      <anchor>ga96efe924be038e49771c6c366f0efcb3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Q32_MAX_INTEGERPART</name>
+      <anchorfile>group__libccc__fixed.html</anchorfile>
+      <anchor>gaafa4b277cc57517df11f2c6770562676</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Q64_MAX_INTEGERPART</name>
+      <anchorfile>group__libccc__fixed.html</anchorfile>
+      <anchor>ga73ed6d7b827f5f560be11b194685efe5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Q128_MAX_INTEGERPART</name>
+      <anchorfile>group__libccc__fixed.html</anchorfile>
+      <anchor>gad985a4080487ca86d78929cd6b01aa07</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -2056,356 +2169,6 @@
       <anchorfile>group__libccc__fixed.html</anchorfile>
       <anchor>ga057f37dc4369f64a85ced59c1594efae</anchor>
       <arglist>(t_q128 number)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Fixed_Rounded</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gaf0380cd30a498f8993ff9747fe6be111</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_fixed_round</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga17872d4c40976d64a10db11f47a999ca</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_q16_round</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gaccad2e9baead6a4a56581ea339937ed9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_q32_round</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gadcfd3b047d49b5ce36ba18fc6ab23a6f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_q64_round</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gae6dd3012041722f60e168afbf65b4b96</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_q128_round</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga8276ef21861f5506a127fd2f15fde1f4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type>t_q16</type>
-      <name>Q16_Rounded</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga58af1410f69657717966b579a7054611</anchor>
-      <arglist>(t_q16 number)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_q32</type>
-      <name>Q32_Rounded</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga1dc6ddf336a9d7bb0a48926d39ebfe98</anchor>
-      <arglist>(t_q32 number)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_q64</type>
-      <name>Q64_Rounded</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gac82c9172f05676e916af832925427ab5</anchor>
-      <arglist>(t_q64 number)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_q128</type>
-      <name>Q128_Rounded</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga342d69bfdc52b773cfbe78fa9cc3f9be</anchor>
-      <arglist>(t_q128 number)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Fixed_Add</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gaf91e9bc04cf76d7b06dfcac94d88cc3d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_qadd</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga118bf22126c0585b9d237fa71bedb394</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_q16add</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga531daf5e62b9ec1ced9167dcd325f57d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_q32add</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga794dcd6b702020c3b60a9acf8327ea0c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_q64add</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gaf1e1edad543344ce075c3d5ecd4f14d0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_q128add</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gab9925b5993af96f291a37c0a09aed9ef</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type>t_q16</type>
-      <name>Q16_Add</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga5a3dc508f69436066cf15d724f48f5a6</anchor>
-      <arglist>(t_q16 number1, t_q16 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_q32</type>
-      <name>Q32_Add</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga001e253298ea7dec4dbf507a994caa3a</anchor>
-      <arglist>(t_q32 number1, t_q32 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_q64</type>
-      <name>Q64_Add</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gadf3f0db56724045f7976f147fefd65ec</anchor>
-      <arglist>(t_q64 number1, t_q64 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_q128</type>
-      <name>Q128_Add</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga74b3aa361c1daa1ec25c0275bdc7a8e4</anchor>
-      <arglist>(t_q128 number1, t_q128 number2)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Fixed_Sub</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga71e0af8e9b2da0bf1d185ea9887adae5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_qsub</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga85aa8dbf28b31079f57e08b2736ce9c6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_q16sub</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga34bbba01066285569614293ef9e760c3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_q32sub</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gadf280a9bb5249235beef960ef862faa6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_q64sub</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga2a545c24b3c24e9cee8d05cfc3b09ce4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_q128sub</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gad65df0ecd627ff9034c5328965e5ab38</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type>t_q16</type>
-      <name>Q16_Sub</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gae684746a090b8c72da4112d838a0979d</anchor>
-      <arglist>(t_q16 number1, t_q16 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_q32</type>
-      <name>Q32_Sub</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga0937164bb23587b867f4f6cec0dfd5ca</anchor>
-      <arglist>(t_q32 number1, t_q32 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_q64</type>
-      <name>Q64_Sub</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga8462bc7f4f71ad87d4101e1eb6327846</anchor>
-      <arglist>(t_q64 number1, t_q64 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_q128</type>
-      <name>Q128_Sub</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gae12c0d4648c7d0b67b35014427fa3154</anchor>
-      <arglist>(t_q128 number1, t_q128 number2)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Fixed_Mul</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gac18f3d4fba2aaea464b7d5fa91573943</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_qmul</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga7b0a4a737ce2f065870508bcdedc3461</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_q16mul</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gaadf2e632ce14204c2aefcf84c14fb834</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_q32mul</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga89e133a90582dcc3bce2b69f3d68dea9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_q64mul</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga573c9767d825432bf17dc18e3000f672</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_q128mul</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga962b3c688a9af30d98aa444dcc71ee9f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type>t_q16</type>
-      <name>Q16_Mul</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gaaf388c3cf5295320078c79d3c2aae27f</anchor>
-      <arglist>(t_q16 number1, t_q16 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_q32</type>
-      <name>Q32_Mul</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gade1b5ca37c8a49b607142e417d8ed3ea</anchor>
-      <arglist>(t_q32 number1, t_q32 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_q64</type>
-      <name>Q64_Mul</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga64ee5f991ab42ced4f92df73727d00be</anchor>
-      <arglist>(t_q64 number1, t_q64 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_q128</type>
-      <name>Q128_Mul</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga2dc20fb3e032d324e4ffa8786dd5c8ca</anchor>
-      <arglist>(t_q128 number1, t_q128 number2)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Fixed_Div</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga3adeab33fb00be4d5ac66d7237176acd</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_qdiv</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga378e484f114d4328e5cc54e199aa3dcf</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_q16div</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga602fcb63f0aa4103b022d944cf2ee11c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_q32div</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga99ab8e86e890bf6db81ab91af4d18928</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_q64div</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gab4da3981cb308be80b626c03a7206be8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_q128div</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga76b6376c058f0c33ef77b93153c12d98</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type>t_q16</type>
-      <name>Q16_Div</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga74f28f8b032b0d8a63e3021bf9ae0501</anchor>
-      <arglist>(t_q16 number1, t_q16 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_q32</type>
-      <name>Q32_Div</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga9ff4a1033e53af3d210fa464f7676e1d</anchor>
-      <arglist>(t_q32 number1, t_q32 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_q64</type>
-      <name>Q64_Div</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga5e33c8ba7ab720cd3667f17ec48a8942</anchor>
-      <arglist>(t_q64 number1, t_q64 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_q128</type>
-      <name>Q128_Div</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga76e40e2a61c1005c48e4bde49451f57d</anchor>
-      <arglist>(t_q128 number1, t_q128 number2)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -3109,6 +2872,2749 @@
     </member>
   </compound>
   <compound kind="file">
+    <name>fixed.h</name>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/math/</path>
+    <filename>math_2fixed_8h.html</filename>
+    <includes id="fixed_8h" name="fixed.h" local="yes" imported="no">libccc/fixed.h</includes>
+    <member kind="typedef">
+      <type>t_fixed(*</type>
+      <name>f_fixed_function</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gad5fcf5d04739b89733d6eb241d2d5c45</anchor>
+      <arglist>)(t_fixed x)</arglist>
+    </member>
+    <member kind="typedef">
+      <type>t_q16(*</type>
+      <name>f_q16_function</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga28b1ff85b9bd1de8b2e5f3eb7067e782</anchor>
+      <arglist>)(t_q16 x)</arglist>
+    </member>
+    <member kind="typedef">
+      <type>t_q32(*</type>
+      <name>f_q32_function</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaaa669c35cfa9a96be185d7b3bc45b7d8</anchor>
+      <arglist>)(t_q32 x)</arglist>
+    </member>
+    <member kind="typedef">
+      <type>t_q64(*</type>
+      <name>f_q64_function</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga17d70e35d1268fa27eecab6d61f0fd0a</anchor>
+      <arglist>)(t_q64 x)</arglist>
+    </member>
+    <member kind="typedef">
+      <type>t_q128(*</type>
+      <name>f_q128_function</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaaa33b095554d348495dce8803f355509</anchor>
+      <arglist>)(t_q128 x)</arglist>
+    </member>
+    <member kind="typedef">
+      <type>t_fixed(*</type>
+      <name>f_fixed_operator</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gace5dbd8d46ee6900623ae95d7b9fe29c</anchor>
+      <arglist>)(t_fixed x, t_fixed y)</arglist>
+    </member>
+    <member kind="typedef">
+      <type>t_q16(*</type>
+      <name>f_q16_operator</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gae2968c626d8a9de582ecfa3f5c417f5b</anchor>
+      <arglist>)(t_q16 x, t_q16 y)</arglist>
+    </member>
+    <member kind="typedef">
+      <type>t_q32(*</type>
+      <name>f_q32_operator</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaf5a49a30d6c626d7c2733faa7978e1d6</anchor>
+      <arglist>)(t_q32 x, t_q32 y)</arglist>
+    </member>
+    <member kind="typedef">
+      <type>t_q64(*</type>
+      <name>f_q64_operator</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gacf8ed41d285564e33b7df7544301b965</anchor>
+      <arglist>)(t_q64 x, t_q64 y)</arglist>
+    </member>
+    <member kind="typedef">
+      <type>t_q128(*</type>
+      <name>f_q128_operator</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gae965a375793716f54dd41da79ac35ed8</anchor>
+      <arglist>)(t_q128 x, t_q128 y)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Abs</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga3133b11350ad334c2a3b7106eddb716f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qabs</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga17d2ec6074e8e78b4a99e34700e68f83</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16abs</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gac9979db258e20117ffa5891ea9efb963</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32abs</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga1d6e8115c647c9b0366a522121b492d8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64abs</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gab2eb0c856e7f73a8acfb12368a650194</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128abs</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga9d10768ab0dbee0faefe6292fa5f5c1a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_AbsoluteValue</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gac91669a5910d912bcf785245491bf7b3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_Abs</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gac4bbc42b61b8ba4126e0e3f29806bb67</anchor>
+      <arglist>(t_q16 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_Abs</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga496f26358edbeaae3760117c91edb14e</anchor>
+      <arglist>(t_q32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_Abs</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gade863c28d87d00b5df655770734dc63a</anchor>
+      <arglist>(t_q64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_Abs</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaec8a24cf50d230452c704f4e74509d2e</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Round</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gae9af8b66e99e422cc041b07ce5bfb985</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qround</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga8ab4df8a98e4abf8415b12d1adddebbf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16round</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gac9041481a5a34b2f6b0eed5ab1b1d14d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32round</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga6ec81be1a9c1bcf983e541ae4511ebf9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64round</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gad1864f4defacd6163f25954aa4c1b2e7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128round</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaf693e6994737e07048d292266e14478e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_Round</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga1d31fe96361729ae3903175824e5144e</anchor>
+      <arglist>(t_q16 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_Round</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga8f244b7a2086af1f4a3e618b8ad7e7ed</anchor>
+      <arglist>(t_q32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_Round</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gad2454904aca13409238d872391fcc8b0</anchor>
+      <arglist>(t_q64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_Round</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaee969a2002febaaff42166192f9fe082</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Truncate</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga283850039562e6b07355abf6e3da646c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qtrunc</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gafdf20ed5a3ab52bbc6184cd2cc15f8aa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16trunc</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaa698d34f03c04b3917f22f10bdccb914</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32trunc</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga74ee1fe8167ad4bdc6eccd9a1ad398e2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64trunc</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaa1d2c468ef259f94f996ed8cc8aa81ea</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128trunc</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaa52e838ed3fa019777622e98ea731b9f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Trunc</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaf2ae6064932d46f5757b9f1882d6381c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_Truncate</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga77c1ebec7a6f358933374fd7fdba6257</anchor>
+      <arglist>(t_q16 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_Truncate</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaa21c7672a8510a6f4fb15480bb52ab89</anchor>
+      <arglist>(t_q32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_Truncate</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaa48d62ea54002d3316d6eb6e33dc5213</anchor>
+      <arglist>(t_q64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_Truncate</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gace6d216e331e19fefb3cbc27292f0192</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Floor</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga4f65a426bc5daf62fb05ddc80f296f98</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qfloor</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga2b125997523a606855e9b161bc955ed8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16floor</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga808513a4d2f708219d657413f4e9ef7b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32floor</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga8b06bed117aad6a8d00bd9a3b55c5580</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64floor</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga7a7d657fd71ec1816d0479ae853b3a94</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128floor</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaa5e00106d3fdaa1acfdd6d1dac205002</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_Floor</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga6ef20af7e4cbbd6b19e4c0926ec8a921</anchor>
+      <arglist>(t_q16 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_Floor</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga9302d7f74ad8ea02052ee356a887b0dd</anchor>
+      <arglist>(t_q32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_Floor</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gac3aaa02600ac3d8f3eb0259ec818c637</anchor>
+      <arglist>(t_q64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_Floor</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga90721b234c0065a971bab5b1f13fe904</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Ceiling</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga8f97db60b4a24e65887b47de984de4ce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qceil</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaa112740d83979d91a5e40ebace1d638c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16ceil</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gab59dba623a2e5fe56d1cefd27674f44b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32ceil</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaa951c5561f0b0efffdefaf1260beddc9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64ceil</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gafc308272b7473f4127a94d1d45eab94e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128ceil</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga7f89c318da53f4ef6431cca39c614a96</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Ceil</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaada9b72cf44baeea7f6c0b1126b912a8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_Ceiling</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga791d89b9782a2b3a35bcda0f6eff8277</anchor>
+      <arglist>(t_q16 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_Ceiling</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gac36763cd001920ecfb330399b7f695fa</anchor>
+      <arglist>(t_q32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_Ceiling</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga2db49e117eca74d2f457ec7fc10df478</anchor>
+      <arglist>(t_q64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_Ceiling</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga51785459619a340e269a14ae9aaa729d</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Add</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaf91e9bc04cf76d7b06dfcac94d88cc3d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qadd</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga118bf22126c0585b9d237fa71bedb394</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16add</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga531daf5e62b9ec1ced9167dcd325f57d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32add</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga794dcd6b702020c3b60a9acf8327ea0c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64add</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaf1e1edad543344ce075c3d5ecd4f14d0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128add</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gab9925b5993af96f291a37c0a09aed9ef</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_Add</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gad69a46d5ec078865880064774a6acc11</anchor>
+      <arglist>(t_q16 x, t_q16 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_Add</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga9cfc024051660ff900b8a6d0d42bf6a7</anchor>
+      <arglist>(t_q32 x, t_q32 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_Add</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga47f33108b4be07bcf0a724dc2375a788</anchor>
+      <arglist>(t_q64 x, t_q64 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_Add</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga80373f63299967d5820f0916a5e6dc45</anchor>
+      <arglist>(t_q128 x, t_q128 y)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Sub</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga71e0af8e9b2da0bf1d185ea9887adae5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qsub</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga85aa8dbf28b31079f57e08b2736ce9c6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16sub</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga34bbba01066285569614293ef9e760c3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32sub</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gadf280a9bb5249235beef960ef862faa6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64sub</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga2a545c24b3c24e9cee8d05cfc3b09ce4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128sub</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gad65df0ecd627ff9034c5328965e5ab38</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_Sub</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gad92c58fd2bb1c2b0b58c52892dc3639a</anchor>
+      <arglist>(t_q16 x, t_q16 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_Sub</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga6b69bfef9048f32fbb75c9b90eaa537f</anchor>
+      <arglist>(t_q32 x, t_q32 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_Sub</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga206912adfb17d2aea835cdca1aa2b638</anchor>
+      <arglist>(t_q64 x, t_q64 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_Sub</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gacc8a1b147f92216b6efb1436c3325b48</anchor>
+      <arglist>(t_q128 x, t_q128 y)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Mul</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gac18f3d4fba2aaea464b7d5fa91573943</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qmul</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga7b0a4a737ce2f065870508bcdedc3461</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16mul</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaadf2e632ce14204c2aefcf84c14fb834</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32mul</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga89e133a90582dcc3bce2b69f3d68dea9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64mul</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga573c9767d825432bf17dc18e3000f672</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128mul</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga962b3c688a9af30d98aa444dcc71ee9f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_Mul</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga2c7451b65c248312245729145851da7f</anchor>
+      <arglist>(t_q16 x, t_q16 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_Mul</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga0d01374ce5e5093091fe4b9e5f905391</anchor>
+      <arglist>(t_q32 x, t_q32 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_Mul</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gae4f13cf52ad8d7ffb177d48ade35ca59</anchor>
+      <arglist>(t_q64 x, t_q64 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_Mul</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga660fc38a09b2cc2a8f41a40fdc3af09c</anchor>
+      <arglist>(t_q128 x, t_q128 y)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Div</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga3adeab33fb00be4d5ac66d7237176acd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qdiv</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga378e484f114d4328e5cc54e199aa3dcf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16div</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga602fcb63f0aa4103b022d944cf2ee11c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32div</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga99ab8e86e890bf6db81ab91af4d18928</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64div</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gab4da3981cb308be80b626c03a7206be8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128div</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga76b6376c058f0c33ef77b93153c12d98</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_Div</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga36a4a4664d532481d32396827c70fd85</anchor>
+      <arglist>(t_q16 x, t_q16 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_Div</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gab307d01adb7ad63878426b6583e2d853</anchor>
+      <arglist>(t_q32 x, t_q32 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_Div</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga361021fe1bbdeb279e21c8e7bbb264db</anchor>
+      <arglist>(t_q64 x, t_q64 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_Div</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gae1bfe50ce8e71d7032ef55d25b53c001</anchor>
+      <arglist>(t_q128 x, t_q128 y)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Mod</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga796f9081e318a296080e651ce2b9cecd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qmod</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga58f92b542c6cbc83c2629d8b8af5c6f7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16mod</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga19c61a402758e3c00c4c5bc5df1cc889</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32mod</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga8cd537f4a5a0414b6d666ae37c752e58</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64mod</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gafcb623b4dd5c81fc88e3037ddd5da017</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128mod</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gab921025b56bec1c3b5c5da0039ac7a65</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Modulo</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga21ac9d76a2e9f5acfe12c1f9b628fe2e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_Mod</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gae22a0b85754f99cab8b664e3f0616d23</anchor>
+      <arglist>(t_q16 x, t_q16 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_Mod</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga23ee032d60cb768626b206dad069acd6</anchor>
+      <arglist>(t_q32 x, t_q32 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_Mod</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga31715e548585ded0fb5aef3117331ea8</anchor>
+      <arglist>(t_q64 x, t_q64 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_Mod</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga86ce61f4e3bdd7a6626caf209c4c298f</anchor>
+      <arglist>(t_q128 x, t_q128 y)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Pow</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga8d314bf556b3243c3446ef3209137ead</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qpow</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga54e6bbef529e3877ff8b5cd9ec6324f6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16pow</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaa4afedbe5da85cdb73fe5a6325409a63</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32pow</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaa6b19ca9d495bc7ce33c8c44dc203798</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64pow</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gacc82d80801202a95ad3c636c7ed407f7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128pow</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga4e26b43858fda53b59a5876c9350e03a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Power</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga6881a754fcf215198710962107a4e48f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_Pow</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gafdff80e9784c09fff2c8e38959d99a40</anchor>
+      <arglist>(t_q16 x, t_q16 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_Pow</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga14923c704cf830ff67110d0703ba092f</anchor>
+      <arglist>(t_q32 x, t_q32 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_Pow</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga33048c8461ea2d7a9c84ad74e15fc35d</anchor>
+      <arglist>(t_q64 x, t_q64 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_Pow</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaf2923291cc9b31203df0a1792928e851</anchor>
+      <arglist>(t_q128 x, t_q128 y)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_IntPow</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga4fcb782a8a7bc6f4a66fc28afbd3bc26</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qintpow</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga6d3d997f6b33d5f9948c64325ce71945</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16intpow</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gac833d39e14ff007ea6d7b4bb836accce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32intpow</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaf9910f9691bdef0173aa6b6cd0b6da00</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64intpow</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga706dfc222e37b77c4580c6a8b0d891f7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128intpow</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gab374f7e9e5c54c8e5b59bf6e58fa8ebf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_IntPower</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga51c5aa04a78285db968530bee7bac348</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_IntPow</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga10851c3a6275b09bb02bbbd943ec801f</anchor>
+      <arglist>(t_q16 x, t_sint n)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_IntPow</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaa90284a34baa3e91bae3c60f4a312818</anchor>
+      <arglist>(t_q32 x, t_sint n)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_IntPow</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga48e9f4766ed4c3043b2896dc07f7d6ce</anchor>
+      <arglist>(t_q64 x, t_sint n)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_IntPow</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga88fcc2684a5c2b5e6605fda52f6bf994</anchor>
+      <arglist>(t_q128 x, t_sint n)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Root2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gacb5ba8188b9f1dd8bd2dbac5f4f95197</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qsqrt</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga88f883582d992171a5527f37554929fa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16sqrt</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gae8779e1539504c5b1268d51e5b2078f8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32sqrt</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaad77cab746a4f041aa417b955921b633</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64sqrt</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga0d3250367588c6e0d651366cd80c5947</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128sqrt</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga99fb6ad3d1f63b4a9b58610d5b443b7f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_SqRt</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaba0234879c5127183518c8f6910a96c5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_SquareRoot</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga299cf61d074a2ecf5bdcc1f250c8267a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_Root2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga191cc383a60dd74bd3eab19bc050dcc7</anchor>
+      <arglist>(t_q16 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_Root2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga2b0c237533f8a7b2265f176d56fb3d47</anchor>
+      <arglist>(t_q32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_Root2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gab0f796d33e352b4e95cbff6532f9f5b5</anchor>
+      <arglist>(t_q64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_Root2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gafcca824e7804fedee2e16c6fed49e281</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Root3</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga6bd962f1264ccae3b5ea8ffde6c7241d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qcbrt</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga4eb25f7d6394d910f6e8a95b7d5da37c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16cbrt</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga5ab0133e00fed78f2e4235850a3e5016</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32cbrt</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gac4a22d42e3c8a76e2c9aafc0b3918882</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64cbrt</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga51e5a98a759415bfb028644f1736df83</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128cbrt</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga17b12486d159ce6e0f9a27fb05eae9da</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_CbRt</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga7254caaf76276a11eba6dd9a9517c872</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_CubeRoot</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga589f2fe7341305dcafd1b99ed7aa557c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_Root3</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga2b03a4344dba27611e50e43cf84238a1</anchor>
+      <arglist>(t_q16 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_Root3</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga4a84e82c1674a897cad993c60795f02b</anchor>
+      <arglist>(t_q32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_Root3</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga55e77ca12b6aac8907f77feaa9523582</anchor>
+      <arglist>(t_q64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_Root3</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga0a08e96e41422c1e22cc49f6951429c6</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_RootN</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga578664972bd66230ed69659f07a71d5f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qnrt</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gacb0ec32233c29956029e99a4e37fb4de</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16nrt</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaf99efe3cc0a4cfcbc79045599a7ca738</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32nrt</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga1adafd90592c9f5e6e20e51ae56d50d5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64nrt</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga63bfb6b20463125392dc56b148a55155</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128nrt</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaf692cb5278e47363bb3b4543192f2b6b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_NRt</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga41941b85f75391614e71a950686b7b11</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_NRoot</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga1179679516ba73f0befdbd31f6af8c7b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_RootN</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga2abc7d09d634c5f03e90948f57f7bcf5</anchor>
+      <arglist>(t_q16 x, t_u8 n)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_RootN</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga87bf55cdda901b679409c2c908355d47</anchor>
+      <arglist>(t_q32 x, t_u8 n)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_RootN</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga7f901c277904ac3a04d3ccb6e1e66f3a</anchor>
+      <arglist>(t_q64 x, t_u8 n)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_RootN</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga63c660971c65c54894cc196a90d3e823</anchor>
+      <arglist>(t_q128 x, t_u8 n)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Exp</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga41458312f16741b24296f6845984231e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qexp</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga62dea25986eba5086c299320651a883c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16exp</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaa02d9ad96d475cac98390e1c83d710a3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32exp</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaa634113450012da88a5e51cf045408b5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64exp</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga8bf9a82dcb0a63ca94cef6ccadf4a08f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128exp</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaefa9ba3cf07c9237afb7482b9f2f9944</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Exponential</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga2e1f8a4bc5fb2a528041dc7414ee7a1b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_Exp</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga6311afb70abff9014871b4bee7ce0741</anchor>
+      <arglist>(t_q16 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_Exp</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaf3e0e97cc0338a0f2c4a22e8367f51d4</anchor>
+      <arglist>(t_q32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_Exp</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga4c695c5284e57fc13f776177bb1f920e</anchor>
+      <arglist>(t_q64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_Exp</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaedb663169c6d622338a2b072eb427d86</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Ln</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga6da2aac8a3f4ab5e0e885f12a6ab1b3b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qln</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gada69d9fc1f1887dca52034b676da2210</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16ln</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga13b825357789ae440dcc4bd7f956b257</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32ln</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga87fb9cf732478ca04dc5ec01cdbe8a13</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64ln</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gabfa49d653d16690a8205cfe9c007eb54</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128ln</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gab3268221b355973af291d020c0509c2d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_NaturalLogarithm</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga747f288bbcfac4073a9bb69257bbbb16</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_Ln</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gae4f9b1be6295026e44b14032aa28b6f0</anchor>
+      <arglist>(t_q16 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_Ln</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga15d09e2a8ea7ca3a132168507af2a056</anchor>
+      <arglist>(t_q32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_Ln</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga6084bf0db2ef7f3bf85b8b7a84d60a43</anchor>
+      <arglist>(t_q64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_Ln</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gae85661b48995df00a2113183809bea7f</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Log2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga62744bc0dcb4175f591f77a1e6ee45cd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qlg</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga0222b3edacae34bc9f87ee7e1652372f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16lg</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaca0f5702f2a2eb54db65cffef1bdeb5c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32lg</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga01dc5c5a0f242fc39ae3e0cf9cbd49bb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64lg</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaecdf4e9e4c28db6b1dde1218d51b1e13</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128lg</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga7a190fbd053d3ab2a4fe661f54496a40</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qlog2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga2075b19881b802046d9ed6a682e2d798</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16log2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga98b8baa84ca8daa91a07a4cdeab54c94</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32log2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga9dbc9512712761603a7b55ddfff4ce5c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64log2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaf4d339e46254913171161b65bfc22359</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128log2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga027f66cb1a75b8f8fa1063223154fd97</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Logarithm_Base2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga6e9bb491b01f87d2843f3103ef53e87c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_Log2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga510d2ae9ade1eafbe0514b5d527244ed</anchor>
+      <arglist>(t_q16 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_Log2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga131b8dd2393906a534267802edf44c0c</anchor>
+      <arglist>(t_q32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_Log2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga76b4f803e90ab247eae34e58ba1a8419</anchor>
+      <arglist>(t_q64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_Log2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga8c5acf471543569c5c23d46009ef998a</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Log10</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaa7fcc9f049cf0f9640ee09b9291417f0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qlog</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gae7bdc31fa0a8b23428b1552f275aa2af</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16log</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga798de74b4972ba9b90a35091637a95ee</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32log</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga047bd7e1dde1571387060521f051375d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64log</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga3c1834b616aa82c7faeb2bae4417045c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128log</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaefde554da9c52cdbcbc2df132801a765</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qlog10</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gac136515a0e401a8a6d29e38049b41c5e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16log10</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gae44f0b236492047a751f883f96a8f23f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32log10</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gade28f29b7a71d428c52f81b1456243bf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64log10</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga00ed6f73f49c89198acc82eb4270fa48</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128log10</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga8e5226448ebf10fb84471aec414e8e2b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Logarithm_Base10</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gac53b8045a19657c5ff4d9a36679567f5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_Log10</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga6e99feb5c3b70eeab273a8e16ff7d86f</anchor>
+      <arglist>(t_q16 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_Log10</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gab618d6133d5065162492380b80fd48e5</anchor>
+      <arglist>(t_q32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_Log10</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga333a22e620898da4f2eba50a7bf35e92</anchor>
+      <arglist>(t_q64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_Log10</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga098e7b1203463870dae549d107701c26</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_LogN</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga7d2cd6eaa244bc43fa9464f1897e3b09</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qlogn</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga7d3a2fab6fc38b43f1663d04e4486064</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16logn</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaf786619d4bea1ff2e2f78fb6833e5f5d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32logn</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gab92648a92fe72777c2851cb51cb4b508</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64logn</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga8ad7123243a5073445a8c9d7443769ac</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128logn</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga9cf96700082e5f90a7569b8e1c8f04da</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Logarithm_BaseN</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga94fd960a23fc5eec22e4fc6e82ac867b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_LogN</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gac83b9dd2a95ee164499f4161b42a6a06</anchor>
+      <arglist>(t_q16 x, t_q16 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_LogN</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gacebfa4af93caa4aadfb7fdf3c365637c</anchor>
+      <arglist>(t_q32 x, t_q32 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_LogN</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gadaedeb41efdea0d7be8c0ab756b54cfb</anchor>
+      <arglist>(t_q64 x, t_q64 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_LogN</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gac7eb7a2d27e36a3dda6ba7ecdaed77b9</anchor>
+      <arglist>(t_q128 x, t_q128 y)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Cos</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga3bb9caf7d21a9d55af885d98908a8ae5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qcos</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gae3bd8d3036775a0fc38082005aac9224</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16cos</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga5826a5b1a4aaadc0e0e57284485dcd1a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32cos</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga5a9f95edcf2a83265564610fb66bcfaa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64cos</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga799c20245c13806f8e5549bc7697639d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128cos</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaf938d7798d0968be293043a937ef16a1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Cosine</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga4a2a26c190d078bc0c4e5308cfd73c90</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_Cos</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gad89dfcca779ebffc7395a8d45d88e792</anchor>
+      <arglist>(t_q16 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_Cos</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gabb313b1d9868834c490a811c2b57eca4</anchor>
+      <arglist>(t_q32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_Cos</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga2f6c219da27c5d772662baa6b2dcf93b</anchor>
+      <arglist>(t_q64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_Cos</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga88c9e4fb8aedb903f0447ae226a51dd7</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Sin</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gabc0e54fc2c949a341f53f7f145d22459</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qsin</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gad17893a5cef993e3438a517fe581c70a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16sin</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga84dbe6891fcb0ca96827214f2e431be5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32sin</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga08c45ba8d05f1fc02dd8cb5aa3864433</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64sin</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga1780ed6d0835c54b2e13d1efb9936dfd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128sin</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga26898108f3f83bba0e0ef5a92efa3a7d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Sine</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gad0032da3ed3181baa1205d9550b0c807</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_Sin</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gad3029137545bf1249682623ec7325e08</anchor>
+      <arglist>(t_q16 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_Sin</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gac4f54465aa5ed9bf977e359df4ca5d4e</anchor>
+      <arglist>(t_q32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_Sin</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaf9b53ec950b9f177ed3208509f0355fb</anchor>
+      <arglist>(t_q64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_Sin</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga78d25abc17bf776e2323474eca0cb01c</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Tan</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga88d2c9cd8ba8761774b860c26bf2b121</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qtan</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga2dcf37d948d0fc85a53a1adbe3faa559</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16tan</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga467dc5ff5d0459e45434da7fb9e961c2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32tan</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga8d571801442c4cd2cf14e7bdde0aec00</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64tan</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gadbcf611bb441294075a76491a2a73474</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128tan</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gac4a02b353dfa85920b6644c32b77e354</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Tangent</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaa86e581a91df4c44bada02728036e576</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_Tan</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga16f685e65687e7decfeafcfa61c3a225</anchor>
+      <arglist>(t_q16 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_Tan</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga71bc6ce0d3348393baa714d504d4e591</anchor>
+      <arglist>(t_q32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_Tan</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga35636f4b0abf81c651fafb355eb13191</anchor>
+      <arglist>(t_q64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_Tan</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga711331d55403956b936fa98c9a2572ee</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_ArcCos</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga9f8bac596b29114e21d34be964a82355</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qacos</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga5d0b1f2799c67f83a027d3909a2dafda</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16acos</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga72e96a3d86d42e28d6b82a4cbf381e93</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32acos</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gad620bc8a79038414a286f328c1daa5f5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64acos</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga79fe0aeddcef667deeec7d9ea12941c5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128acos</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga94e6e3c40d8088211c74a88bd0da2be1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Cos_1</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaeb9c2681281ad3db36baa384ff354082</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_InvCosine</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga68ff1bc36a22b171dc3ef21a694c517b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_ArcCos</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga92ddc4228b98aefd86c6eb495e4dec20</anchor>
+      <arglist>(t_q16 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_ArcCos</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaa265d653fee23e2ebc5c024d877bde1e</anchor>
+      <arglist>(t_q32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_ArcCos</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga8d1e8e86882bc57f482bb317140ce063</anchor>
+      <arglist>(t_q64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_ArcCos</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga8d397c818df82e0bcf52b28929b2587c</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_ArcSin</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gae752f362aca3a3b4c27ff4fef779366b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qasin</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga347d3a95fe122dd0b113c398dc7b0bab</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16asin</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga2f0e20a9fa7a8d2363c05436ca434998</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32asin</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga12b9a53316c591120825f4962eeee492</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64asin</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga678689446f6c8cd3e095ce4162d47288</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128asin</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga35206fec8a13571b759f5ba92f2d365c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Sin_1</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga4ffcac54265437392d82091a8c4b6ba9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_InvSine</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga6c97c8c615d253802b4b4cd0e8d84ee2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_ArcSin</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga8140eb631ed25863c6be0c4785be266d</anchor>
+      <arglist>(t_q16 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_ArcSin</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gac52ee9eea0aecca3fef697cfad272687</anchor>
+      <arglist>(t_q32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_ArcSin</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga1bd9f0d6384e18fd7d0d17304308d57a</anchor>
+      <arglist>(t_q64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_ArcSin</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga39588aeef953cf80e5e741daf42666bc</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_ArcTan</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga1bdf7b287809df4bff154eaa87c206f7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qatan</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga55e46cfa959fde78e74a0f6087503d55</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16atan</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga7d5765be8975b050f28d840cee516fdc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32atan</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga2343fd4a9bd3db9e47acaf74b11465a3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64atan</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga2e14fa4cab92ea0c0a239b46d4d934ca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128atan</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga1e501c2337f27ed19171ea0af08f25dd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Tan_1</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga5f77ffebe218f30cdf8a4041e89cec42</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_InvTangent</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga641202eda890495341d203316037bfca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_ArcTan</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gacaf48f84e76b817db97db658443dac96</anchor>
+      <arglist>(t_q16 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_ArcTan</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gac3bd234a7fd69cf49b897155951d9e92</anchor>
+      <arglist>(t_q32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_ArcTan</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gadfcadbc8b7cb45ce945994351bce9648</anchor>
+      <arglist>(t_q64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_ArcTan</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga1de1e58d1769372ec5bfe5f42e38fb8f</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_ArcTan2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga8f89df84f591f5a9f519a86dc59b1da9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qatan2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gac268a2cf663b58358eefc6100626f1d9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16atan2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga2b303785e5e67129224654f74aed5629</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32atan2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga44f4987ad1df7d3a3e431b4886458ec6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64atan2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga72beae9993a8a0aa97b7f8e4703140aa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128atan2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gafd620a69f5275108eb8011e4bfdc7441</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_ArcTan_YoverX</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gad7dcc7d7f6578e429d27b616194629c6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_ArcTangent2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga792a205dd02c70bd266f7dd3f7caa468</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_ArcTangent_YoverX</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga4126953df9e8a0199299d810781b3cad</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga64b77b20b3432459a6cda6ca44f76f7e</anchor>
+      <arglist>(t_q16 x, t_q16 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga27a0d8e449ef908f54841ee17c8b1a92</anchor>
+      <arglist>(t_q32 x, t_q32 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaa5368bd2beea18856b39190f3178dc0f</anchor>
+      <arglist>(t_q64 x, t_q64 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga7c2dc45e693e7cc789ed94fc949f50a3</anchor>
+      <arglist>(t_q128 x, t_q128 y)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_CosH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga0aef958e008d35eb0e8282d2ab2c02d9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qcosh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga6b5d10a2f5c8abc985a727ecf5e9ea0c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16cosh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga779a1c0ff2416142bc8e64ef11cf8617</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32cosh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaf03233121776fa1b9b933086938d33ec</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64cosh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gab15e5cd9cbe3d9a140ddd718b6fe84b0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128cosh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gadc1fec71fa6592e8ed7ec608492e2bc1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Cos_H</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga5659dd4d6bb80d5870137bdacecd1a68</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Cosine_Hyperbolic</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga660ff5773362ffcbf2eba828f311c248</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_CosH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gac2e0f8f393579982c231af74783325be</anchor>
+      <arglist>(t_q16 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_CosH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga422ec19b012fd917c8a2d4e571091d48</anchor>
+      <arglist>(t_q32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_CosH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga669dbfa38552680295d7383142e7e3b2</anchor>
+      <arglist>(t_q64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_CosH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga75d16beb4a6dbf1c952e59ee04187c3c</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_SinH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gac296528a1dd35e6737dd38983ccc8d21</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qsinh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga3303598edb89d611aa1c4d5f8eaa8f63</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16sinh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga534204bc61707a06e8cc6a019573c16f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32sinh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga450d7071e5aa4d73be5e989e47405cb5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64sinh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga8d2882a94d6f756914b1b7c7d5814d20</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128sinh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gad60dfd6591c742ff07fa29087d94caee</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Sin_H</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga038c124b5cd4f9b3d3a1f746c7c36996</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Sine_Hyperbolic</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gab55cee253d2c4635a7dbd643a787d409</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_SinH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga685a0bb805c7da71e8de8b680e9d5f75</anchor>
+      <arglist>(t_q16 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_SinH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga5d55231b26138970c5c5f4f3ec23d001</anchor>
+      <arglist>(t_q32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_SinH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga54e4a5248eae1180da5e241cf7595ea4</anchor>
+      <arglist>(t_q64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_SinH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga9f26ddf9730e8891b1b40638d8405553</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_TanH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga59b6b66c9350e96300b1b46598e8c402</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qtanh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gae626076e26ac5790facd058dc0fe70d0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16tanh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga738c20db7639b85bc5cc22d33def8df3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32tanh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga7fa8d02d0382a3268663333b152097bb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64tanh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga049d523057ea92f60f2769ba4bf629eb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128tanh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga3b2df3bea721946a7b32716716e2fc7a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Tan_H</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga6922668c82a2ba7be2cc86b1f3db96c8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Tangent_Hyperbolic</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga52a2828c6112ffefc76ab11acfa67376</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_TanH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga66160974075eef0ebc487867c5f3e4ad</anchor>
+      <arglist>(t_q16 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_TanH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gabee66540f0c6886d35d05ce99507b1f9</anchor>
+      <arglist>(t_q32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_TanH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga34a238c5b6319ca4a8cfa7507c1ba2b4</anchor>
+      <arglist>(t_q64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_TanH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga0cbc9c756b449a64896b66ae972999ec</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_InvCosH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga98855c612cf02d0941ef886c7517b42c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qacosh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga5d4916b792bb3c958837aaa33ceff14a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16acosh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga8e4525831cf16ba0da65ef71057e7f5a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32acosh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gabf9a56ddf315a28840c2398816e474c9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64acosh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga6243d3dfe080772784756723e59c57e9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128acosh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga388d7a6cfe3ce4930a649ef3bdcc2a4f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Cos_1_H</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaacc5c1e117be0a16fbbd4e52e1a6b32a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_InvCosine_Hyperbolic</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga0b89e9e078c9f06fc81431f79a0ae47a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_InvCosH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gae9305c06c4685887d3bb99a0e0043175</anchor>
+      <arglist>(t_q16 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_InvCosH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga84f624dd706168707b9c2950dec709f4</anchor>
+      <arglist>(t_q32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_InvCosH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga246934128779279855ddc6fb6c8773ec</anchor>
+      <arglist>(t_q64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_InvCosH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gae2ff8027cd4308dde3313e26054eacfe</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_InvSinH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gacb4524017c91795be9100662e24a046b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qasinh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga170675ac3679bf331054df606e767895</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16asinh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gae5caf6e66350173a9b0ff25c74241a82</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32asinh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga06b29397ba4c76f6c15fa384cb2c2040</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64asinh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gab1d88e9174168bc2cec9c19d1fa52067</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128asinh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga8d60b39e2314754b8ec41cde51f777f3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Sin_1_H</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga5cc30844859178f8f9898a4732e21f22</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_InvSine_Hyperbolic</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga1cd9891faa6000b1e110e8c4b5eee825</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_InvSinH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga4a903e5975644dba63738057a6fc0e0b</anchor>
+      <arglist>(t_q16 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_InvSinH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga9e9dc972c22c1fce22a9fb44bba0c6ee</anchor>
+      <arglist>(t_q32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_InvSinH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga600053db8b3b84f48cb60dd301a5ed46</anchor>
+      <arglist>(t_q64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_InvSinH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga97cc629aa0c5fce96ef37ea4aa3cc4a4</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_InvTanH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga568f35d085fb7494799309bc81e0ec45</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qatanh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaae6fed5265485236353e98d495e81980</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16atanh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga74c21d8f6c0800337403b23d36f5f759</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32atanh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaf1df611c04811816c560d065af8e9627</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64atanh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga33eb697a16a8b610a6485410f2e11348</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128atanh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gad664940157d53d42ff784f9267ed5ccc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Tan_1_H</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga6413f628032306b3c97d8ad43a3e3621</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_InvTangent_Hyperbolic</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga28d1fcdbfd1dc198ca78c802caadeb7f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_InvTanH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga0dd60e57f01fe4a6ff0e892f3394372f</anchor>
+      <arglist>(t_q16 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_InvTanH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga704a95d9c8fcea88d574b02df1d78746</anchor>
+      <arglist>(t_q32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_InvTanH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga9d24f6ca6a2e86025878cc06f54bf4e6</anchor>
+      <arglist>(t_q64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_InvTanH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga4b7966da23a8d8b4a1bebaf350616972</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
     <name>float.h</name>
     <path>D:/Lexou/Projects/C/libccc/hdr/libccc/</path>
     <filename>float_8h.html</filename>
@@ -3116,7 +5622,6 @@
     <includes id="libccc__define_8h" name="libccc_define.h" local="yes" imported="no">libccc_define.h</includes>
     <includes id="bool_8h" name="bool.h" local="yes" imported="no">libccc/bool.h</includes>
     <includes id="int_8h" name="int.h" local="yes" imported="no">libccc/int.h</includes>
-    <includes id="fixed_8h" name="fixed.h" local="yes" imported="no">libccc/fixed.h</includes>
     <class kind="union">varfloat</class>
     <member kind="define">
       <type>#define</type>
@@ -3141,9 +5646,93 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>NAN</name>
+      <anchorfile>float_8h.html</anchorfile>
+      <anchor>a8abfcc76130f3f991d124dd22d7e69bc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>NOTNUMBER</name>
+      <anchorfile>float_8h.html</anchorfile>
+      <anchor>a33e218ebe9d71b0101d79bdc93a5c8af</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>isnan</name>
+      <anchorfile>float_8h.html</anchorfile>
+      <anchor>aed3d93c4bc16739191c85a44c8a03cb5</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IS_NAN</name>
+      <anchorfile>float_8h.html</anchorfile>
+      <anchor>a5f1a3a07bc95a87692963d4066380813</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IS_NOTNUMBER</name>
+      <anchorfile>float_8h.html</anchorfile>
+      <anchor>aec9e88b3acd785695870c92799c723dd</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>INF</name>
+      <anchorfile>float_8h.html</anchorfile>
+      <anchor>a12c2040f25d8e3a7b9e1c2024c618cb6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>INFINITY</name>
+      <anchorfile>float_8h.html</anchorfile>
+      <anchor>a956e2723d559858d08644ac99146e910</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>isinf</name>
+      <anchorfile>float_8h.html</anchorfile>
+      <anchor>afe0ec0ba0f3b1bdf1b739a01977e0de5</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IS_INF</name>
+      <anchorfile>float_8h.html</anchorfile>
+      <anchor>a5ad637b8eb4aa29aa69bf5f82126cdac</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IS_INFINITY</name>
+      <anchorfile>float_8h.html</anchorfile>
+      <anchor>a75b1c8ba2d9c38d0850b2aa25d4650df</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>SAMPLE_NB</name>
       <anchorfile>float_8h.html</anchorfile>
       <anchor>a5b146e6f66b3a7fc41dd699a157d0bb0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLT_ROUNDS</name>
+      <anchorfile>float_8h.html</anchorfile>
+      <anchor>a744ae7c1870e42f6b620ccd8f1911895</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FLT_EVAL_METHOD</name>
+      <anchorfile>float_8h.html</anchorfile>
+      <anchor>aae38a34e50eb45aca66a037454d9a555</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -3710,309 +6299,106 @@
       <type>t_f32</type>
       <name>F32</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga2a002074803bd5dfd20b0e0069e2ba5e</anchor>
-      <arglist>(t_fixed mantissa, t_sint exponent)</arglist>
+      <anchor>ga6c994952098403e567f26cc4c8187107</anchor>
+      <arglist>(t_sint mantissa, t_sint exponent)</arglist>
     </member>
     <member kind="function">
       <type>t_f64</type>
       <name>F64</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaaaea448f295e2fa9b67fc709d148fc6b</anchor>
-      <arglist>(t_fixed mantissa, t_sint exponent)</arglist>
+      <anchor>ga12d63646e027b7f73de2c8a0a17a321d</anchor>
+      <arglist>(t_sint mantissa, t_sint exponent)</arglist>
     </member>
     <member kind="function">
       <type>t_f80</type>
       <name>F80</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga4a859d5bcf801efb75505225b3858b8a</anchor>
-      <arglist>(t_fixed mantissa, t_sint exponent)</arglist>
+      <anchor>ga5b4f4967089d93e1afeddec3db409a5e</anchor>
+      <arglist>(t_sint mantissa, t_sint exponent)</arglist>
     </member>
     <member kind="function">
       <type>t_f128</type>
       <name>F128</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga4eee2b2e6c0350559ee11b115ba6a9a5</anchor>
-      <arglist>(t_fixed mantissa, t_sint exponent)</arglist>
+      <anchor>gae212fb7de6706ec0e83312d030550659</anchor>
+      <arglist>(t_sint mantissa, t_sint exponent)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Float_Add</name>
+      <name>Float_GetExp</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga903fd149ef75bb4d222f2a94630cd856</anchor>
+      <anchor>gaa6f7507280e7e08789551e244b071b7f</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_fadd</name>
+      <name>c_fgetexp</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga9f698edcab44600cac508228897e5c40</anchor>
+      <anchor>gaa69caaa010b6a6ea9ee131f5ade986b6</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_f32add</name>
+      <name>c_f32getexp</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gabc59aad52ce84ac2014f789b66803bc3</anchor>
+      <anchor>gaf93ff503ad5d58836439b790697115ed</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_f64add</name>
+      <name>c_f64getexp</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaa3ae78e350c2c5f1697fee6727d44204</anchor>
+      <anchor>ga2c9de4bb1af4299f845dddf55e77725e</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_f80add</name>
+      <name>c_f80getexp</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga172b644151a502ec15dbea914e4067bb</anchor>
+      <anchor>gac3b77fabdaef8fdf23617b9ac1846a6a</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_f128add</name>
+      <name>c_f128getexp</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga38672f1597689ebc777156126a95ea8b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type>t_f32</type>
-      <name>F32_Add</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga4db55ed58c2f48d8a33e217c6d038f0c</anchor>
-      <arglist>(t_f32 number1, t_f32 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_f64</type>
-      <name>F64_Add</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga5b63c0a387e55fadf3328267d875e28e</anchor>
-      <arglist>(t_f64 number1, t_f64 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_f80</type>
-      <name>F80_Add</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gab8d706292e1886aa3f69c211b2e8e6a3</anchor>
-      <arglist>(t_f80 number1, t_f80 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_f128</type>
-      <name>F128_Add</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaee983aeaff0a41944434c424aac434da</anchor>
-      <arglist>(t_f128 number1, t_f128 number2)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Float_Sub</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga78da262b20d0a855b2da4744aa70ad75</anchor>
+      <anchor>ga1754c245516022f1ba05d8c51c66d6d2</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_fsub</name>
+      <name>Float_GetExponent</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga367735f1205eeb65ab3c711f3805be6a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_f32sub</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga1abaf90e766006ae71489377edf70d1a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_f64sub</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga1fab699290c669d8ab99907cdff9bb93</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_f80sub</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga076272c7f1a101ecb59c3d31b5e22b66</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_f128sub</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gacf4781e1c7c9374ce4726c2bf11273e2</anchor>
+      <anchor>gab287e7a8d0c43e45e06dd6e26086fd28</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>t_f32</type>
-      <name>F32_Sub</name>
+      <type>t_sint</type>
+      <name>F32_GetExp</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga2c8221df1738435489b06ed7f9a6adc7</anchor>
-      <arglist>(t_f32 number1, t_f32 number2)</arglist>
+      <anchor>gaad09bd1470824dc9e937a7edfa3cc50b</anchor>
+      <arglist>(t_f32 number)</arglist>
     </member>
     <member kind="function">
-      <type>t_f64</type>
-      <name>F64_Sub</name>
+      <type>t_sint</type>
+      <name>F64_GetExp</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gae352e73e93da5165e566df2fdface7bb</anchor>
-      <arglist>(t_f64 number1, t_f64 number2)</arglist>
+      <anchor>ga3922eda0aa006a03b0fe1e7fe0894940</anchor>
+      <arglist>(t_f64 number)</arglist>
     </member>
     <member kind="function">
-      <type>t_f80</type>
-      <name>F80_Sub</name>
+      <type>t_sint</type>
+      <name>F80_GetExp</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga15ff0f35c5b40518e87c4fa1379f4df3</anchor>
-      <arglist>(t_f80 number1, t_f80 number2)</arglist>
+      <anchor>ga97d074f586091a219761bfda546e8f86</anchor>
+      <arglist>(t_f80 number)</arglist>
     </member>
     <member kind="function">
-      <type>t_f128</type>
-      <name>F128_Sub</name>
+      <type>t_sint</type>
+      <name>F128_GetExp</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaa3023a542b7310a79e555063268cb2dd</anchor>
-      <arglist>(t_f128 number1, t_f128 number2)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Float_Mul</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga598333a2a278091008992338bd15632e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_fmul</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gac5b433b72804cb1e9b527e5a64850a84</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_f32mul</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaf44deb06193c5f7eed209536f551d520</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_f64mul</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gafbc1eff3ec3056f7dee2ab844907148c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_f80mul</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gad39cf8bca115a32269841c77526d5a3f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_f128mul</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga9554d4f7832a44ec0fc360449b22a914</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type>t_f32</type>
-      <name>F32_Mul</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gad47ffe2be556b539bd3759e5a40d94cd</anchor>
-      <arglist>(t_f32 number1, t_f32 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_f64</type>
-      <name>F64_Mul</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaff34265e224c1588704693d3e46f96c5</anchor>
-      <arglist>(t_f64 number1, t_f64 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_f80</type>
-      <name>F80_Mul</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga3c9c44a56c8e7680c63c8d98b330d0a4</anchor>
-      <arglist>(t_f80 number1, t_f80 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_f128</type>
-      <name>F128_Mul</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga6464a56fcf3069b93fbcd10ddd8c888c</anchor>
-      <arglist>(t_f128 number1, t_f128 number2)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Float_Div</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga4686efed9f8e016ee649f3b1302d8909</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_fdiv</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga4e5e18b238312e1460531f937498e11c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_f32div</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gac2e4af941b23161b579bc6de969143e3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_f64div</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaa3cac46c3e0c8f5b655aa550c129ed24</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_f80div</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga83d2c8431b67533729dfadebcf90acbe</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_f128div</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaaad4d8677847f3b462dd1b858b75df35</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type>t_f32</type>
-      <name>F32_Div</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga177febf4db7f3ea0671ec34ba7fcbbe0</anchor>
-      <arglist>(t_f32 number1, t_f32 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_f64</type>
-      <name>F64_Div</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gab897d2e3b9dbc08fa0086eff389eb4ca</anchor>
-      <arglist>(t_f64 number1, t_f64 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_f80</type>
-      <name>F80_Div</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga251b166fefbf70d12566f332eec77359</anchor>
-      <arglist>(t_f80 number1, t_f80 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_f128</type>
-      <name>F128_Div</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga7bda2b09160e0c9602bb750f4a3d6892</anchor>
-      <arglist>(t_f128 number1, t_f128 number2)</arglist>
+      <anchor>gaba92824d9fe52daca48cf49769933840</anchor>
+      <arglist>(t_f128 number)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -5133,6 +7519,2693 @@
       <anchorfile>group__libccc__float.html</anchorfile>
       <anchor>gab6d510141f286a5ad8f2d78d1feb01d8</anchor>
       <arglist>(char const *str)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>float.h</name>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/math/</path>
+    <filename>math_2float_8h.html</filename>
+    <includes id="float_8h" name="float.h" local="yes" imported="no">libccc/float.h</includes>
+    <member kind="typedef">
+      <type>t_float(*</type>
+      <name>f_float_function</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga70286c1d9b85fe9c109dd54c1d02dc88</anchor>
+      <arglist>)(t_float x)</arglist>
+    </member>
+    <member kind="typedef">
+      <type>t_f32(*</type>
+      <name>f_f32_function</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga2d3c6d1af1abd6108b9927e994d54a7c</anchor>
+      <arglist>)(t_f32 x)</arglist>
+    </member>
+    <member kind="typedef">
+      <type>t_f64(*</type>
+      <name>f_f64_function</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga4ea30b20412621b699b5794f99a5244e</anchor>
+      <arglist>)(t_f64 x)</arglist>
+    </member>
+    <member kind="typedef">
+      <type>t_f80(*</type>
+      <name>f_f80_function</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gacc4d0ef92a9704434f260c2088b65d95</anchor>
+      <arglist>)(t_f80 x)</arglist>
+    </member>
+    <member kind="typedef">
+      <type>t_f128(*</type>
+      <name>f_f128_function</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga20041879ec5edd79a13ef88b3834f88a</anchor>
+      <arglist>)(t_f128 x)</arglist>
+    </member>
+    <member kind="typedef">
+      <type>t_float(*</type>
+      <name>f_float_operator</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaabd1169a0c930b776829621b6c3124ba</anchor>
+      <arglist>)(t_float x, t_float y)</arglist>
+    </member>
+    <member kind="typedef">
+      <type>t_f32(*</type>
+      <name>f_f32_operator</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga2640c08a55a8d80b25f8ca63f0db468e</anchor>
+      <arglist>)(t_f32 x, t_f32 y)</arglist>
+    </member>
+    <member kind="typedef">
+      <type>t_f64(*</type>
+      <name>f_f64_operator</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga357839e7921e2c8ec9f4463b75e706be</anchor>
+      <arglist>)(t_f64 x, t_f64 y)</arglist>
+    </member>
+    <member kind="typedef">
+      <type>t_f80(*</type>
+      <name>f_f80_operator</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gafc06785bb5beee44b13edee240d603f0</anchor>
+      <arglist>)(t_f80 x, t_f80 y)</arglist>
+    </member>
+    <member kind="typedef">
+      <type>t_f128(*</type>
+      <name>f_f128_operator</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga6196c9d3403610c961616d6f675782d6</anchor>
+      <arglist>)(t_f128 x, t_f128 y)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Abs</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga90a91ee32a3e92d2cc2ca4b5bbf2827f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fabs</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga27cdad3b8d14861a17c018bf89e2c603</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32abs</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga560cc383b3438e336c1db42c5abfda3b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64abs</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga441ad4ad15fc3fc561e97550deb717ec</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80abs</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga83ba4943c2c7995c66530cdb7ad655da</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128abs</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga0a98cc19bb16738c6398398c4f94871f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_AbsoluteValue</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaf4b6d68e5e551209e5e6252525e407be</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_Abs</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga3fb1df1908d99799f62e4a50531b6190</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_Abs</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga7bb79a43a4b61d00e965ae396d12feb0</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_Abs</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga85f8bfb2154196ad68d548954a7eb5a4</anchor>
+      <arglist>(t_f80 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_Abs</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga8aa86aa3afcf84845032d607b6f347d4</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Round</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga97a5416abef59033a3d449e74d78d885</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fround</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gabf1e2be53b262d88fe81c8b09a6cb60a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32round</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga3af0eac16c5332a6ac0d7b24dedcdfef</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64round</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gadf7bb25452d8714d01946974bb0f0c84</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80round</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gab84f88555024c8eb7b2697c6a33a0425</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128round</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga8d918b53f85fee3644913caa00ec6302</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_Round</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga8aa7211372027cb615850b7b98169138</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_Round</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga4fc7e7875e60a3ccaf53d30f50a6670b</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_Round</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaf1a4506bc523759ecd5d54d903dc7fa7</anchor>
+      <arglist>(t_f80 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_Round</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gac1ce511ccd135270b06e274c97a5196d</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Truncate</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gafaa8c98bbc0cc7e309f4a2fc96d5d99d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_ftrunc</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga2bbf3b41c76a8f7b959ec35e5b137dd1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32trunc</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga4471ea727ee4614fe234a70063270cf2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64trunc</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gac0bff257d07c12df9df98d95dec48983</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80trunc</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gab41720fb7dd2dc1830f21c8085cda35e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128trunc</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga13a3865e8332e1cdc8910049573cbe3a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Trunc</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gabae2f9697e4fa865b05f0ef4f70a60c7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_Truncate</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaa5d28eb367d35ead85e998d0f12171ed</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_Truncate</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga531dd23fd566ac625103793ccc2914b9</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_Truncate</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga0bda5f9b350b2a60bb8a478f33d3bcb1</anchor>
+      <arglist>(t_f80 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_Truncate</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga65f52466bc2ff5a7504684c90f3a5564</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Floor</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga8abbcbf4218a125ba6fbfbdb87435df0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_ffloor</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gae5f0e389e13484ba422dce6fe4b07ba1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32floor</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaf39ff3d0a3e5ca5688bdcb3dd021b720</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64floor</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga86861a6895cdac50200b9daf31575ec7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80floor</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga054451c4cc73010679a1fd3838d663fd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128floor</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gab1453ba63ab55c6ed0a6f832c1564da3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_Floor</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga0109aa30b3d7908b31c1d54210ad439b</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_Floor</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gac986b44460cf0693c9df3a072a92a1b7</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_Floor</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gad2baabb51a0460b1d79778a3c9397c90</anchor>
+      <arglist>(t_f80 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_Floor</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga0feaf1c1658a357eefcbb3fa5c4b5309</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Ceiling</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga0247546fe3390f0d596508807a69fb41</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fceil</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga254ecceb306560c9a44ceb104af7aa9c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32ceil</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga9d8ee7d5f411dc3a48952c1b9546a523</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64ceil</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga95ff4061d0b34fedd14240185f1ffb3a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80ceil</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gabd7f4cdfb4668298fe09a858424f97a8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128ceil</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga410134aef4024c2975e0a7a9a64b14d1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Ceil</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga908b89c3bd6f7d40ad16dc9f4547dd32</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_Ceiling</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga0f5bbb6c6ffbf05fc79e807994ec0827</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_Ceiling</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga995e6d6095c6b9ed702d9731a7aa2317</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_Ceiling</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga7208df4c6303a556ab5d5e857c15baca</anchor>
+      <arglist>(t_f80 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_Ceiling</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga25ed16620f39923654e7472e14f70482</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Add</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga903fd149ef75bb4d222f2a94630cd856</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fadd</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga9f698edcab44600cac508228897e5c40</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32add</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gabc59aad52ce84ac2014f789b66803bc3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64add</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaa3ae78e350c2c5f1697fee6727d44204</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80add</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga172b644151a502ec15dbea914e4067bb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128add</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga38672f1597689ebc777156126a95ea8b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_Add</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga4db55ed58c2f48d8a33e217c6d038f0c</anchor>
+      <arglist>(t_f32 number1, t_f32 number2)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_Add</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga5b63c0a387e55fadf3328267d875e28e</anchor>
+      <arglist>(t_f64 number1, t_f64 number2)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_Add</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gab8d706292e1886aa3f69c211b2e8e6a3</anchor>
+      <arglist>(t_f80 number1, t_f80 number2)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_Add</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaee983aeaff0a41944434c424aac434da</anchor>
+      <arglist>(t_f128 number1, t_f128 number2)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Sub</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga78da262b20d0a855b2da4744aa70ad75</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fsub</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga367735f1205eeb65ab3c711f3805be6a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32sub</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga1abaf90e766006ae71489377edf70d1a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64sub</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga1fab699290c669d8ab99907cdff9bb93</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80sub</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga076272c7f1a101ecb59c3d31b5e22b66</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128sub</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gacf4781e1c7c9374ce4726c2bf11273e2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_Sub</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga2c8221df1738435489b06ed7f9a6adc7</anchor>
+      <arglist>(t_f32 number1, t_f32 number2)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_Sub</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gae352e73e93da5165e566df2fdface7bb</anchor>
+      <arglist>(t_f64 number1, t_f64 number2)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_Sub</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga15ff0f35c5b40518e87c4fa1379f4df3</anchor>
+      <arglist>(t_f80 number1, t_f80 number2)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_Sub</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaa3023a542b7310a79e555063268cb2dd</anchor>
+      <arglist>(t_f128 number1, t_f128 number2)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Mul</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga598333a2a278091008992338bd15632e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fmul</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gac5b433b72804cb1e9b527e5a64850a84</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32mul</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaf44deb06193c5f7eed209536f551d520</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64mul</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gafbc1eff3ec3056f7dee2ab844907148c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80mul</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gad39cf8bca115a32269841c77526d5a3f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128mul</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga9554d4f7832a44ec0fc360449b22a914</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_Mul</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gad47ffe2be556b539bd3759e5a40d94cd</anchor>
+      <arglist>(t_f32 number1, t_f32 number2)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_Mul</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaff34265e224c1588704693d3e46f96c5</anchor>
+      <arglist>(t_f64 number1, t_f64 number2)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_Mul</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga3c9c44a56c8e7680c63c8d98b330d0a4</anchor>
+      <arglist>(t_f80 number1, t_f80 number2)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_Mul</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga6464a56fcf3069b93fbcd10ddd8c888c</anchor>
+      <arglist>(t_f128 number1, t_f128 number2)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Div</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga4686efed9f8e016ee649f3b1302d8909</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fdiv</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga4e5e18b238312e1460531f937498e11c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32div</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gac2e4af941b23161b579bc6de969143e3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64div</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaa3cac46c3e0c8f5b655aa550c129ed24</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80div</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga83d2c8431b67533729dfadebcf90acbe</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128div</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaaad4d8677847f3b462dd1b858b75df35</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_Div</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga177febf4db7f3ea0671ec34ba7fcbbe0</anchor>
+      <arglist>(t_f32 number1, t_f32 number2)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_Div</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gab897d2e3b9dbc08fa0086eff389eb4ca</anchor>
+      <arglist>(t_f64 number1, t_f64 number2)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_Div</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga251b166fefbf70d12566f332eec77359</anchor>
+      <arglist>(t_f80 number1, t_f80 number2)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_Div</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga7bda2b09160e0c9602bb750f4a3d6892</anchor>
+      <arglist>(t_f128 number1, t_f128 number2)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Mod</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga396f240eaf94c8c977c53a64d084213e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fmod</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaa82fd5c1179d831ebf179d668170d507</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32mod</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga695c0993291d66875aa9d2ac14083507</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64mod</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga3597a1c8794a3b4fda60104ea23b07ac</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80mod</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga0a071d18d9afa9b25e7d95c00c478c0e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128mod</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gafd1183af3d9caf134c555fab7fdade9d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Modulo</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga5936d9c2e6e1096656958080c53d5ee9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_Mod</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gacab7526fee0ded1ce5f142cc5d3c06ac</anchor>
+      <arglist>(t_f32 x, t_f32 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_Mod</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga4746e59dc5fa19731e2cc57b6dbf9ca1</anchor>
+      <arglist>(t_f64 x, t_f64 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_Mod</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga634e6ec06237e646e15069f7f3abc140</anchor>
+      <arglist>(t_f80 x, t_f80 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_Mod</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga1b9a134521f5ebe4960fc0c2702e24fd</anchor>
+      <arglist>(t_f128 x, t_f128 y)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Pow</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga8270ab6b4a9153293e36d74de34854e4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fpow</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga53fa0a18471c580a640608cbdfc80970</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32pow</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gacb5a60bd6e3bee4826f1a339a2e1f1e8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64pow</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gac0011189594349793c0ead8007bd14a9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80pow</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga6721e56894ac645c0649cefb3ab3de0f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128pow</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga843bfe77078d73a981084ef724d23433</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Power</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gae5c040eb75532682c9f136969ea2be43</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_Pow</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaa216587caee389aa8de055c490f0f7e6</anchor>
+      <arglist>(t_f32 x, t_f32 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_Pow</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga3568542ddf3f0ff0ad9b855b09a592d0</anchor>
+      <arglist>(t_f64 x, t_f64 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_Pow</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga5a3aac4ea09d81ce187dac3a27276257</anchor>
+      <arglist>(t_f80 x, t_f80 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_Pow</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga4a1bdd2352b9ae2848737ef8e468e419</anchor>
+      <arglist>(t_f128 x, t_f128 y)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_IntPow</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gae9ba6f0199dc18cdaaf94993f25b6372</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fintpow</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga2c4fec2a8193489e2ce2b695ff4fda31</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32intpow</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga8c7c638748b887e2208db61021837b44</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64intpow</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga5a1e2658f07cf85a76e97250a1f7407e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80intpow</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga14dd0954f461c91cf73ba4fdb4bb92db</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128intpow</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaa563d6c77cf9ea6c29bea202d7defafe</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_IntPower</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gac14ac6c2132c8a6592928b27dd48149a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_IntPow</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gacacbeac7b3f8426a9ecebbce4ae5aeb3</anchor>
+      <arglist>(t_f32 x, t_sint n)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_IntPow</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga0db2a04590ff89a6261d987f18b30251</anchor>
+      <arglist>(t_f64 x, t_sint n)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_IntPow</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaf3b3e2e3a7f43e923fa3d7abbe09cb40</anchor>
+      <arglist>(t_f80 x, t_sint n)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_IntPow</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga3057865515b90eb5610cb36ea19c417c</anchor>
+      <arglist>(t_f128 x, t_sint n)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Root2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gab3e8837ff8f21796013d1d594f846289</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fsqrt</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gae059f0cbbe71f1383624babe6951259b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32sqrt</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga23f7d03d689d2f405416b748a509c660</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64sqrt</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga53253cf69b68f6e22e3d7d11a1d07a93</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80sqrt</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga14762496b6f4e41acf90ff08273b70e3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128sqrt</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga4bf00c29296f3ce0357efc1d9f6aee2f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_SqRt</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gab693646de0c40bcf5de5e91bd86e334e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_SquareRoot</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gae63430f668069ac34a7fae8ac6641c6b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_Root2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga174617f3807c03fa441ed790ab74e800</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_Root2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga25fd59c768f60429a33724cd6bf51c9f</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_Root2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga4c602f923722a0fc63301672bae85588</anchor>
+      <arglist>(t_f80 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_Root2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gae430ac51bb8cd7a4efd41a96f7328082</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Root3</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga2ea990076d505ab385e0f102b902905d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fcbrt</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga7e33453591eb7e257ac87e8ff68555f2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32cbrt</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaea84f85027c3adc21483547cdafada06</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64cbrt</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga6c38d3a3e5cbeadab96ab467bc7ecea3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80cbrt</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaba34483b26b951cdef8a564e85622167</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128cbrt</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga0dbcdf12c5f5c233459a2baac320cb20</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_CbRt</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gabe76d142d7c4d2f73bfa7edd74f6d120</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_CubeRoot</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga6d77421d96d289742d57741ff7a0e2bc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_Root3</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga93d158655dc0ddee7ce6d8aa9eb863e7</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_Root3</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga6bbe445b1fbba5cdaabf0970a4d34954</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_Root3</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gafc15bc2f5eedb448ae775dbcb7f3595c</anchor>
+      <arglist>(t_f80 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_Root3</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga963a1f241590ec77526c639e98191d73</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_RootN</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gadcd3d81c68c566e7a0432f245222aa48</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fnrt</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gab4e2ae29f183f8b2f3c25c84dc8249c1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32nrt</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gad71faaf4ce6e8dbe731794d9ea8dd50e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64nrt</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga2ea71706b8fe61b55c99bd3c35a9be8a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80nrt</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga31f17a9a37a921beb3d281848808d0a5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128nrt</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaad8c0c5c5c028d86168208234c4fad1a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_NRt</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga8659d7ff68664cf51c94c7e1025aa99a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_NRoot</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaea94976acce9264fbe14e3b46352c3a0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_RootN</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gad439d3125af424bf50f39a206fc15c2e</anchor>
+      <arglist>(t_f32 x, t_u8 n)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_RootN</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gadd88923496c1a0a5db7ab0e6175c5569</anchor>
+      <arglist>(t_f64 x, t_u8 n)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_RootN</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga7cf3a4bc0876d7b0812d152013896c93</anchor>
+      <arglist>(t_f80 x, t_u8 n)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_RootN</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga55a2c94aac2e8f2073bc89f0cd0a82ca</anchor>
+      <arglist>(t_f128 x, t_u8 n)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Exp</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga6193b8fab92b75f92b6c27e6d17c409e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fexp</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga448161a57051b3c01b603180972504d5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32exp</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaf68152de6a08f3efd990dda342099e5d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64exp</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gafa0513ac52ec847c223ce1600c4246ba</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80exp</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga72ad260f98586a3cfe15464f40b8e45b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128exp</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga48c7676caacb75e4f2be41ca7631bb56</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Exponential</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga56aa4b20340ff815e84f2b549b96515a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_Exp</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga19c6cfea24b6d5bf1036f3a9b1df7489</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_Exp</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga78e61da69b294f13e8c46b157b61a4f2</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_Exp</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gad86b5adcb6d362ac1e31f003e8c54e5c</anchor>
+      <arglist>(t_f80 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_Exp</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga5217e4a5d97dc95a2aed8e9fa2e11a38</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Ln</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga58e0f081c959a440413b82eefed5f144</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fln</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga863c2b7f85ef52cd498a7444dd2c8ae3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32ln</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga18a3f493b9f7f7bab214cab1c24b7f10</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64ln</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga3a1fa1505195975bdcd5ac7f9be42f67</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80ln</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga1668643809c65f2718fee92c80b436a3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128ln</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gabdd050e3816695293cda4ff0826d443c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_NaturalLogarithm</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga1274ee3779b978ed96397446a316c23d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_Ln</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga80d77771eae07f43f541252e2fe73113</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_Ln</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaf66ca0dba01e745d646751b88289a02c</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_Ln</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaa30cabba57def066befc2d2c223aea1b</anchor>
+      <arglist>(t_f80 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_Ln</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga9adc94844189f779a013accfcbd7f611</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Log2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaf87c5454148fb31946c1988faac85a4d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_flg</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga4758642198a01b646b5b98f898c96ce8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32lg</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga10f33941d008b232b63a63f88e85a97f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64lg</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gac76639edefce936c79526ce49cf8610c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80lg</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga5a05554645b3b2108a90983a777b59e1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128lg</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gac25faaf8321b48f5957e4b2d3002b412</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_flog2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaade7cc31cf25201219173430e2b716c6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Logarithm_Base2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaa2d03491e4e0a39596cfb3ec5d341051</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_Log2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga51fe4f524349500d747b03439cbe87fa</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_Log2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gae2cf9b04441968165f52d38f9938aebb</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_Log2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga8606d3542226593a54203b412d829d93</anchor>
+      <arglist>(t_f80 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_Log2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga009227330cae8c65bd9f33af7e9491d7</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Log10</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaa21f5608fd404cbff3622913a4dd10ec</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_flog</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gab9c01105f8c9544d9b7716fb36f051d9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32log</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga271d878ed7f764202c035682f15d72f9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64log</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga445c7c0ba585d6ff098ccd1815c3ae55</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80log</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaa53108ca576cd2cf8a2c94a2d4dd2a9e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128log</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga5c6a40f19977e926addf726fed520f82</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_flog10</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaa0e13392b04392cda764b46dfc9ad71c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Logarithm_Base10</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaf4c31a7fb768858867f2e271ff83ef64</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_Log10</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga5eb6355e1dc45ea679ba21568c504f7c</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_Log10</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gabb742c731d7d065c8619e964cbebf899</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_Log10</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga813e4b1ea579577be05de3931051148e</anchor>
+      <arglist>(t_f80 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_Log10</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaae927b50ac99f7dc2ddb65daad43bd1e</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_LogN</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gab55d77866731029861424c59eb363e30</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_flogn</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gad140199be71fa410056d5a15fa3edf3a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32logn</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga94b2a6a6fd448f87cf0d24d99b3cd7d3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64logn</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gae5113ea193c86589deb24dd9aa0b0da5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80logn</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga4b4b7d41e26a161e6ed0e85a4ad7342b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128logn</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga26150c9e8b56a9d41bcd55066725ab88</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Logarithm_BaseN</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga38f2e6f4c69da218042bb94328719fe2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_LogN</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gae7d522d2e4befc9ad4bdc9ea843b8a1d</anchor>
+      <arglist>(t_f32 x, t_f32 n)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_LogN</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga9489b8821151893b7c4350165cc9d79f</anchor>
+      <arglist>(t_f64 x, t_f64 n)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_LogN</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gacee189749a19d39bfa76dcad213a0705</anchor>
+      <arglist>(t_f80 x, t_f80 n)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_LogN</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaf0cb11c929136c9b8556898133c6c5c6</anchor>
+      <arglist>(t_f128 x, t_f128 n)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Cos</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga7c5aa29e739fe6c4c1b890cf8c1b8b5f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fcos</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga58ec16b31ebd75d8d004bfd91fe46d30</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32cos</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga69a9afd9029d3a32ad891ab90391dd63</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64cos</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gae85f04eb8586ec0ab1ca27b9c9edd598</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80cos</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga56887325a9b2d08bae395042fdc6319c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128cos</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga89e0dace1091e114233aba298a97545d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Cosine</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga8e1287488570367de7d7808e4802e71b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_Cos</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga52d66e760dc2a684eb4fb72d8d2a4074</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_Cos</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga5999ec3f21136e2d109a8ebdf4a2d596</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_Cos</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gac276e1c39aea2b3dbea89f793e8f1b6f</anchor>
+      <arglist>(t_f80 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_Cos</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga635e1a65a11e5a3d4cbeb32dd37e7fb2</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Sin</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga22de0dbf558340b68c4f1e8b018aaa24</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fsin</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gafdd0b126befb20a62b8840ee2e20066d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32sin</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga3049b77da551f3870e94965e98d4e097</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64sin</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga67d288cfbfa73d2eed2e8a7931019b02</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80sin</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaa377a783e20230f29eba4a314428890a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128sin</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga234a7c6cf2f95b9bb3b1ac4e1ab1fe2c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Sine</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga4183ad40dbfe1d356ff03b0ae4619c87</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_Sin</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga4a16b94ea17ba1f23cc2781708265edb</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_Sin</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga65bdbd8f3f952c1b2265be4fd22fddd1</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_Sin</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga2a6e611c5ea5c7ec15b680dc99c34465</anchor>
+      <arglist>(t_f80 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_Sin</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga797a6edff8b282aaf581cae9b688e644</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Tan</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga86427f02046ee0fc7e08743d58cddbf8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_ftan</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaeb56ad1b05eef514e742bb422b7f5b20</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32tan</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga8f25754a7ae61abb1c5a66c497ba5954</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64tan</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gad02b2028b1e1686c715898490579ae9b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80tan</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gab72a0274b5d7fea6ee5f72e01a022cb4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128tan</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga6578e70ab0835b93160ce3ae3a921e2c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Tangent</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga592f00b6d26145a6046c10cfe7cee744</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_Tan</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gac46568e82efd03f317cbd8a1887a0ee3</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_Tan</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaeed752efe135eeab254cb406d3353c8d</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_Tan</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gafb4af722320796249e94cfc78571c6f9</anchor>
+      <arglist>(t_f80 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_Tan</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga9f0d0138c3618041f387239989717927</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_ArcCos</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga006a3b56d60938a9dfc16e49fe7cc148</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_facos</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga77a3ff7c356d58f59a28ecfd5a47be0f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32acos</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gafe31272a1a2c38f1bed03fe166f0dd69</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64acos</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga1ff90782eca0746de983dbfe464e510d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80acos</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga7fecee2e9b4821381db381f8b1a262d7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128acos</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gac72431b315b7394c2cb088f0fa278753</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Cos_1</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga402bb51a9aeb7b0a56174fb927df6182</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_InvCosine</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga91464c72c3bd4d1462673caf34f8c4f0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_ArcCos</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaa641b1c4e7cccded3a8a24c159b4b8d8</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_ArcCos</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga375829cec1b41ee29b4d6241e5b0bc25</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_ArcCos</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga5fc8d155a585182fb5277637ece3f591</anchor>
+      <arglist>(t_f80 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_ArcCos</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga9f00e5e80829a04d7cfffdf4f59fd050</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_ArcSin</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gab45febde8db73f7f4d7665d2f3b45295</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fasin</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaaacd94fb3f3df0833d46ef661a3d3422</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32asin</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga274807588471e8288e8948105d8036d7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64asin</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaf492c98995b7ec8b9a32ab540f4190a1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80asin</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga0fcef832ded6003bff3861bec66cd8e2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128asin</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga0e56123bccf7e196a7c119c74e8bf1fe</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Sin_1</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga176e07f3c12a7abb8dc537087c1444be</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_InvSine</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga540b0026e6701cd5d69c49253e62830b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_ArcSin</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaa1c0141e4574ef9fbc797125ab9f7804</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_ArcSin</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga3ae4837bd48506614e48e6bc12ced129</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_ArcSin</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga2158e71b138db3b7eb125b9df414c431</anchor>
+      <arglist>(t_f80 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_ArcSin</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga60b28b8fd4b6d5dad4043826822c78e3</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_ArcTan</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga700aa9065341f8982d64f2968293423a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fatan</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga25c63a4bbe5d45846f45828478dd27db</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32atan</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gab3a4d184012d393160004aec6e987a8e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64atan</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga7c3adf730d31cd690b869e9cc3efd586</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80atan</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaad40a9dc9f6a6d16d0d556996e9bbbd9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128atan</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga03130122a0cc8535136762ab26231c21</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Tan_1</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gad005fd0aaa8ac40abe6f5d0383b5b315</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_InvTangent</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gade88b78532b4a22d2ca53b7a1a5552cd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_ArcTan</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga03e2d298ce22ebf7c4b3fc3a3259c77d</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_ArcTan</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga6f6d39ae3983a2723e722f2c3aa3719b</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_ArcTan</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gabf0e2950b3ea03218c3ab398288365d2</anchor>
+      <arglist>(t_f80 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_ArcTan</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga040bb317c244d2b02b576e7dccbbb8d8</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_ArcTan2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga578b5344f0b350927bcc7761bf906719</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fatan2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gabacb9f094553b2e7da56cbad17b5193c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32atan2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gabc7e4f05a54cd29803bd64e0e44c06d7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64atan2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga7147ca734ae276a0124093f33586db50</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80atan2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gae3546b6037a9196494df90a82dc9c418</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128atan2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga9894d53066de12a3a79cf215f65b330a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_ArcTan_YoverX</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaa220a4f829e8c2cbe2385c867cdc2229</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_ArcTangent2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga2a0801a8632d13100f35eadbef2d34b3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_ArcTangent_YoverX</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gac98611ac3b9ea7ec22fca6033e018408</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_ArcTan2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga8dc0b53a7133003f9842f10db52f9519</anchor>
+      <arglist>(t_f32 y, t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_ArcTan2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga6ae88ba38b8e179ad491b3d44826c434</anchor>
+      <arglist>(t_f64 y, t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_ArcTan2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga0e1c81901fadcfe9ac931532314ba23b</anchor>
+      <arglist>(t_f80 y, t_f80 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_ArcTan2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaca7bf3809bac20bd5cdbb8204f9498ff</anchor>
+      <arglist>(t_f128 y, t_f128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_CosH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga0776ffe1bb17d9319faeb2274fa9b6b7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fcosh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga3a0bdd574d0e9842b8e970de512871e4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32cosh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga365574a9ca363651b2752ec2da43961f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64cosh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga1177d3129af15042ae6c9d7d7a75a9c7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80cosh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga34936fb1d5ac23c4082b0e712b00f34b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128cosh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga3ba9c72cee407a3edf8c035d742fe5be</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Cos_H</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga783eced53af8445f84c8cb87acc9b2d6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Cosine_Hyperbolic</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gac2c71a9c9e64c0c89123776970424ca5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_CosH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga688bf8ee1f93bb7c40e78056b49f01bd</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_CosH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gae68a283ccd5d629200f90195a3cc6571</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_CosH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga57d32202d304e1a043a082080f1bc232</anchor>
+      <arglist>(t_f80 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_CosH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gae7ad3fb9a187fa50e3fc8732a591fda8</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_SinH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaa272688b9d67f9eed45438dc36f7c1ad</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fsinh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaa43600e75c13d2eecc653001ecd8b0f2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32sinh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga06e4788fed6c60212a333eaa2966ce0a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64sinh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaa734143c531b812b9f4bcc84ee7a9bcf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80sinh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gace9cc952764ad1acf11704d72a152695</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128sinh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga24273e4bdb9822cbbfba328d034ee39e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Sin_H</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gabc4aded5dbb458bd0f7374003dd28c5d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Sine_Hyperbolic</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga7c1438397d333cae52c1f844ca0dc3f8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_SinH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gacb5cb41e2491dbfb0344ca57b2ff19f2</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_SinH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga9a0b58ee09092bb98dd5430a37066d78</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_SinH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga287b2c6e6db9a97cc58b33b8f9f2ddeb</anchor>
+      <arglist>(t_f80 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_SinH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga04948874ab468bae4be98631e6174c3f</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_TanH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gabda86ffd694ddda21517a68db97d965f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_ftanh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga3d8e5e67e4e0e56a0918a1a7ed74e70d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32tanh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gabad946a23027834c5b0178652a1fb40a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64tanh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga93e8c04cf806aa79611d5e6fcf79cea3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80tanh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gac8023b8b1ed7008ba8efe78c184f164f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128tanh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga2d9a57827a187a332ef23806446704df</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Tan_H</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga886db14283610aeec57da49fe5ad3e62</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Tangent_Hyperbolic</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga8b3d46f825a0afbc26333adc9e2938ff</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_TanH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga82fba5bf5797ecdfb346d355a210d03f</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_TanH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga269a35d72a379f0d03c636c3a6711530</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_TanH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga0c573744f88b963d3a474fc3b413450e</anchor>
+      <arglist>(t_f80 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_TanH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga1551a598ec9dd9158048405423713560</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_InvCosH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga54d6809a57efb9022ade43abd8cb0727</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_facosh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga30f77fa226f395d7f68e32d3c7ca8cca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32acosh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gadb9ddf13053d29883906aa0c1c9a3b98</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64acosh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga71b410c5a6942a3a790a357408ac7ae0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80acosh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga8f511004a95f2001a1937cf403d02746</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128acosh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga547ac948ec0fb32378df51e3aef0b5ae</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Cos_1_H</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gac4d9d6bccb30c88d3e5e6ef5037b456d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_InvCosine_Hyperbolic</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga55b7e944cdbf9d844277895d21cc6feb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_InvCosH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga2b14a67d045d65109754183164f328d0</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_InvCosH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga0d3695fe2720692c46227bda782791e5</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_InvCosH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaddd9fb2130493e1f2df311eb5b223ab6</anchor>
+      <arglist>(t_f80 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_InvCosH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gae6c016552110c124235b0576a9f7d812</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_InvSinH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gac4c666cbf0c555b77fe023fcca2ca246</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fasinh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga8da4d25d2afce5e7326092e71e55007d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32asinh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gab3ffb54e79248c65736dd146bb6d45fe</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64asinh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga7e952a563b4c78568ac04ea2b4e7df36</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80asinh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaee1eee7226e8b9925e1c09f2f6caa0ca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128asinh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gae2040fb2b8e3a4be50e12f6dfa4b1d62</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Sin_1_H</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga771f795ffdd20447ff680ee52a866135</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_InvSine_Hyperbolic</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga6f232a0100c9b41378b71087d1557905</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_InvSinH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gade3db7749f964c28ea4f7783ba4b14bf</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_InvSinH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga8d8a3d65c19229bb09880a923837f439</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_InvSinH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaa44f628f8385b6d3a8247aff455aadb6</anchor>
+      <arglist>(t_f80 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_InvSinH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga221087f52a21b2ba68ad7c081a4bd038</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_InvTanH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaae2cee5c685750c1ad530ff079714432</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fatanh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaaccd7b5e346ec4e76c7058de4ab01752</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32atanh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga48d203435b4921d4674f33b021a33a10</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64atanh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gacbed43f61e7376e5dcebeda7c98b1e5a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80atanh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga9faf9d1fc9bffdc4c02c4b47eee5ce10</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128atanh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga5a2b16f313f504028aeb0c5422ee16d0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Tan_1_H</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga888cf1e09094be1fa060ed654b07fe40</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_InvTangent_Hyperbolic</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaf20bb6bcab2f48bf8d0c5a10bb5705d8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_InvTanH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaff6e95ec28ff61608ff37b71e0ffe8c9</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_InvTanH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga39b59cc27a599026db2c57d027b97dd0</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_InvTanH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaf8f5f294d7455dbba396a687e7b72a0b</anchor>
+      <arglist>(t_f80 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_InvTanH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga39efce9842d7236f7e75a03735e988e5</anchor>
+      <arglist>(t_f128 x)</arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -7289,985 +12362,6 @@
     <path>D:/Lexou/Projects/C/libccc/hdr/libccc/math/</path>
     <filename>algebra_8h.html</filename>
     <includes id="libccc_8h" name="libccc.h" local="yes" imported="no">libccc.h</includes>
-    <includes id="math_8h" name="math.h" local="yes" imported="no">libccc/math/math.h</includes>
-    <class kind="struct">vec2d</class>
-    <class kind="struct">vec3d</class>
-    <class kind="struct">vec4d</class>
-    <class kind="struct">mtx3d</class>
-    <class kind="struct">mtx4d</class>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_vec2new</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga217f2a0f0d83e6b50172d0eba12e505f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_vec2equ</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gaf027810455d6eda23895194d14376436</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_vec2scale</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga79e7664aa764c17d9925796e5d55958a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_vec2invert</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga0866c930ecad0d8b8d022bc997e65ad4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_vec2norm</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga7bf6867c53ed91cca29c6e2630e3c45a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Vector2D_Length</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga06f5a2bf43d30498cb42a576a9bb2515</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Vector2D_Magnitude</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gae877090474dc081ea3f5a580eb657af0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_vec2normalize</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga9c3c3dd96beb6a33a5f0c5f7abb51d2c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_vec2add</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gaa4a94b4d5987d8ca592087c65978bef0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_vec2dot</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gae720bd2991597094d19be4f012e89914</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Vector2D_DotProduct</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga330b1c1e46d6dc9f042c6907d8d46c34</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Vector2D_InnerProduct</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gae2df14810c2cf02b6af19daca7b2a232</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Vector2D_ScalarProduct</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga7c2c7dddd5e80d59f74a134dce516a70</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_vec3new</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gab3754d6913e2e6870a0db6b019050be3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_vec3equ</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga8b0b25a33af3660923cef10432a8498b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_vec3scale</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gabed5672ef625b0a9bd90d657ce058404</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_vec3invert</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gae43eee3299aa68172964bb838e895c82</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_vec3norm</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga55c94afa7d8ec34a286b0bbb2d61204c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Vector3D_Length</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga3f1fcf83da5e7b607c55eb55235ad604</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Vector3D_Magnitude</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga7b85410e52acabe3d35dd653efafa4b8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_vec3normalize</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga18478a623701ef2c11c1e74f0a017c9e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_vec3add</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gace4f3d591351f8645bbda0ffd6bdd53c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_vec3dot</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga7892d54f7b5c8ba63a017087b2b384a3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Vector3D_DotProduct</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga0d3e1802c62c615d5755ae2fbdc1fb3d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Vector3D_InnerProduct</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga4f9848275913d3535f567409a887bb6a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Vector3D_ScalarProduct</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gaf8f60b32ab1f97052be7a3c06d364bf8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_vec3cross</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gab9457adaf10e344633eafc21205991e0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Vector3D_CrossProduct</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga2b5e2e75b6a292f301d13dbc990b2f33</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Vector3D_OuterProduct</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga3da202fd40d661c85562731b993cc34b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Vector3D_VectorProduct</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gac45e7599211ffda2b59fbfab66a5ae32</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>MATRIX2D_NULL</name>
-      <anchorfile>algebra_8h.html</anchorfile>
-      <anchor>a2ed93ff72727954c574ed9e48ba46565</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>MATRIX2D_IDENTITY</name>
-      <anchorfile>algebra_8h.html</anchorfile>
-      <anchor>a90f958af046eebe3216698b9fce0a7dc</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>MATRIX2D_ROTATE</name>
-      <anchorfile>algebra_8h.html</anchorfile>
-      <anchor>a67cc134dce42525818c4823bcbf43a29</anchor>
-      <arglist>(ANGLE)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_mat2new</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gaf30ecaf0ac9ce90077b590bbdd478e45</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_mat2equ</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga8357b975751665bea30d78652c92686e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_mat2apply</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga967aeae812596f4b555f3c111c827073</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_mat2determ</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gaaaad9c6a73d61ad8d9ac07098db8194c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_mat2inverse</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga28f3d9e2e69d704e03212be59ee669fb</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_mat2transp</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gab9816fab16cb5376ba12f55eee9c9e5f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_mat2mult</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gae63fca97a13056e1329593b78e2826a3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>MATRIX3D_NULL</name>
-      <anchorfile>algebra_8h.html</anchorfile>
-      <anchor>a40164130e17289325e86fd135ba9c891</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>MATRIX3D_IDENTITY</name>
-      <anchorfile>algebra_8h.html</anchorfile>
-      <anchor>a25e459d60b1841201d61ef1115bad16e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>MATRIX3D_ROTATE_X</name>
-      <anchorfile>algebra_8h.html</anchorfile>
-      <anchor>af7d31ca6447e1a4519e754da123214b9</anchor>
-      <arglist>(ANGLE)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>MATRIX3D_ROTATE_Y</name>
-      <anchorfile>algebra_8h.html</anchorfile>
-      <anchor>a59a6162e5b8ee5add64834050cdfa862</anchor>
-      <arglist>(ANGLE)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>MATRIX3D_ROTATE_Z</name>
-      <anchorfile>algebra_8h.html</anchorfile>
-      <anchor>a82d255fb0fe99483c7a4236f8c051a7e</anchor>
-      <arglist>(ANGLE)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_mat3new</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga7f69dab13bc5fcd2a07868a144e7cf21</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_mat3equ</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga0b7cf40950ec2b96a4c3b463391e0eaa</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_mat3apply</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga892895f6c8398aa004d866e6fa76dff6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_mat3determ</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gafb0b19b3a124d30d9580d45128f910ab</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_mat3inverse</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga9fef098e7d96b53a9239105811e08cd3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_mat3transp</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gab9e0ca1fe23b2b9fb2803980ed3e6354</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_mat3mult</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga9a021c61bb3d2445e0252722aa9fbf38</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>MATRIX4D_NULL</name>
-      <anchorfile>algebra_8h.html</anchorfile>
-      <anchor>a8652b26eecf16d846d89c2ff5854094a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>MATRIX4D_IDENTITY</name>
-      <anchorfile>algebra_8h.html</anchorfile>
-      <anchor>aa4d48a88d9c0da5ad737130e3be5547d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="typedef">
-      <type>struct vec2d</type>
-      <name>s_vector2d</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gac94b53e630e6f9ba8942324c779ad180</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="typedef">
-      <type>struct vec3d</type>
-      <name>s_vector3d</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gacf1d5c3450fd2c6108c42f0b12dd0efa</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="typedef">
-      <type>struct vec4d</type>
-      <name>s_vector4d</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga0f7bfa31d14708866968e38c31154032</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="typedef">
-      <type>struct mtx3d</type>
-      <name>s_matrix3d</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga42002bf40c7e105ff654caf9d2382205</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="typedef">
-      <type>struct mtx4d</type>
-      <name>s_matrix4d</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga7d275483030c1d5694fcffe63a2e2618</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="typedef">
-      <type>t_float(*</type>
-      <name>f_scalar_func2</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga39a31ee739e0aceb11e2a390af338029</anchor>
-      <arglist>)(u_vector2d const v)</arglist>
-    </member>
-    <member kind="typedef">
-      <type>t_float(*</type>
-      <name>f_scalar_func3</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gae3398253d21b78a68d2584373129c369</anchor>
-      <arglist>)(u_vector3d const v)</arglist>
-    </member>
-    <member kind="typedef">
-      <type>t_float(*</type>
-      <name>f_scalar_func4</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga0611ee62bac265eba119d2f622ed69fd</anchor>
-      <arglist>)(u_vector4d const v)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga229cbcfc280ba0e5cf337838e214cf93</anchor>
-      <arglist>(s_vector2d, VECTOR_2D, STRUCT) typedef union vector2d</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga17ad2e450dd90f593048cad0b523eb2e</anchor>
-      <arglist>(u_vector2d, VECTOR_2D, UNION) s_vector2d *Vector2D_New(t_float x</arglist>
-    </member>
-    <member kind="function">
-      <type>t_bool</type>
-      <name>Vector2D_Equals</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga459392d82670f7b684a5b3fd0fa03d9b</anchor>
-      <arglist>(s_vector2d const *v1, s_vector2d const *v2)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_vector2d</type>
-      <name>Vector2D_Scale</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga3c3d174c960141b402a25e9565c32b5b</anchor>
-      <arglist>(s_vector2d const *vector, t_float scale)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_vector2d</type>
-      <name>Vector2D_Invert</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga3eec430283c743c4bbce294438f4f30d</anchor>
-      <arglist>(s_vector2d const *vector)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>Vector2D_Norm</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gaacf74cabafe79db0c013cc4a44e5c83e</anchor>
-      <arglist>(s_vector2d const *vector)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_vector2d</type>
-      <name>Vector2D_Normalize</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga220df5d71664afa5505cb31f67e3a8be</anchor>
-      <arglist>(s_vector2d const *vector)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_vector2d</type>
-      <name>Vector2D_Add</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gadc556ca0df7925365ab22adbaf17ab32</anchor>
-      <arglist>(s_vector2d const *v1, s_vector2d const *v2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>Vector2D_Dot</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gabcd7974539b1a879aca32982abb8e949</anchor>
-      <arglist>(s_vector2d const *v1, s_vector2d const *v2)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gad447ea028c3b7f267bccabbdbe3770da</anchor>
-      <arglist>(s_vector3d, VECTOR_3D, STRUCT) typedef union vector3d</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga3d8d7ef53ea801b0256909e08ddd5035</anchor>
-      <arglist>(u_vector3d, VECTOR_3D, UNION) s_vector3d *Vector3D_New(t_float x</arglist>
-    </member>
-    <member kind="function">
-      <type>t_bool</type>
-      <name>Vector3D_Equals</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gad61cb77a0bdeb905ae240a9d12bcaaa8</anchor>
-      <arglist>(s_vector3d const *v1, s_vector3d const *v2)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_vector3d</type>
-      <name>Vector3D_Scale</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga4e613778de85a35551be205d83d44cdc</anchor>
-      <arglist>(s_vector3d const *vector, t_float scale)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_vector3d</type>
-      <name>Vector3D_Invert</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga1a9aa0b879cbd8502a5e56f26f6cb4ac</anchor>
-      <arglist>(s_vector3d const *vector)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>Vector3D_Norm</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga1686feae7339512f6c1abb14ae1cc02f</anchor>
-      <arglist>(s_vector3d const *vector)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_vector3d</type>
-      <name>Vector3D_Normalize</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga04082858e2a1e503f3d4f7e9e4bc5731</anchor>
-      <arglist>(s_vector3d const *vector)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_vector3d</type>
-      <name>Vector3D_Add</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gaeed9b6075432ef20f03f7b4a551fef44</anchor>
-      <arglist>(s_vector3d const *v1, s_vector3d const *v2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>Vector3D_Dot</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga4865f0ac8756cf233c88ee5a1a96847b</anchor>
-      <arglist>(s_vector3d const *v1, s_vector3d const *v2)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_vector3d</type>
-      <name>Vector3D_Cross</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga3c73af7f79eddd761b38d64119c51f82</anchor>
-      <arglist>(s_vector3d const *v1, s_vector3d const *v2)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gabf15875fc380a73c51d36e4c69a643a4</anchor>
-      <arglist>(s_vector4d, VECTOR_4D, STRUCT) typedef union vector4d</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga5719cf4ad2cba7aec3a01581b4147e54</anchor>
-      <arglist>(u_vector4d, VECTOR_4D, UNION) typedef struct mtx2d</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga7c675ffd5a89a5a3ff7218f266166f7d</anchor>
-      <arglist>(s_matrix2d, MATRIX_2D, STRUCT) typedef union matrix2d</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga7efba4e9ec65e02b08ccc0757547c2a3</anchor>
-      <arglist>(u_matrix2d, MATRIX_2D, UNION) s_matrix2d *Matrix2D_New(s_vector2d const *u</arglist>
-    </member>
-    <member kind="function">
-      <type>t_bool</type>
-      <name>Matrix2D_Equals</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga39a2c65c8b687d07500bed4676a4409a</anchor>
-      <arglist>(s_matrix2d const *m1, s_matrix2d const *m2)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_vector2d</type>
-      <name>Matrix2D_Apply</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga72942691a1aeb7603021373b8830a63c</anchor>
-      <arglist>(s_matrix2d const *matrix, s_vector2d const *vector)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>Matrix2D_Determinant</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga2235669c2f1db58804c97462dc09610b</anchor>
-      <arglist>(s_matrix2d const *matrix)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_matrix2d</type>
-      <name>Matrix2D_Inverse</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga5db4047001297a4c87d5fd6af281b1ad</anchor>
-      <arglist>(s_matrix2d const *matrix)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_matrix2d</type>
-      <name>Matrix2D_Transpose</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gab15f5d4967009d51bff3bc21ff408d46</anchor>
-      <arglist>(s_matrix2d const *matrix)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_matrix2d</type>
-      <name>Matrix2D_Multiply</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga1ffbe95ddd05575c7acc0662360e323a</anchor>
-      <arglist>(s_matrix2d const *m1, s_matrix2d const *m2)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga9c3af0c685628db125b484e16f11f183</anchor>
-      <arglist>(s_matrix3d, MATRIX_3D, STRUCT) typedef union matrix3d</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gacfa832008b721a10b1468578b7b12ebf</anchor>
-      <arglist>(u_matrix3d, MATRIX_3D, UNION) s_matrix3d *Matrix3D_New(s_vector3d const *u</arglist>
-    </member>
-    <member kind="function">
-      <type>t_bool</type>
-      <name>Matrix3D_Equals</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gab0e5cb0b5dc3552100bc01685ae2e922</anchor>
-      <arglist>(s_matrix3d const *m1, s_matrix3d const *m2)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_vector3d</type>
-      <name>Matrix3D_Apply</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gaab33e892a9167898922dd72bce3dcafe</anchor>
-      <arglist>(s_matrix3d const *matrix, s_vector3d const *vector)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>Matrix3D_Determinant</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga6ecd84a206c2a115cb3ac4a38b12089a</anchor>
-      <arglist>(s_matrix3d const *matrix)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_matrix3d</type>
-      <name>Matrix3D_Inverse</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga2b251ff544dfb49994204f8ec6b26b15</anchor>
-      <arglist>(s_matrix3d const *matrix)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_matrix3d</type>
-      <name>Matrix3D_Transpose</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga2dd332869f5605b52fdd839f557436d2</anchor>
-      <arglist>(s_matrix3d const *matrix)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_matrix3d</type>
-      <name>Matrix3D_Multiply</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga65eafbfec4172e277902bbd69cb5c0c8</anchor>
-      <arglist>(s_matrix3d const *m1, s_matrix3d const *m2)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga80bffc9f9ce7c2bd61892ce264eab2a3</anchor>
-      <arglist>(s_matrix4d, MATRIX_4D, STRUCT) typedef union matrix4d</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga5a91a72c1724c3ea9612e64c47cebd3a</anchor>
-      <arglist>(u_matrix4d, MATRIX_4D, UNION) typedef struct box1d</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gae3f9fff052cacb2b460c98f2dfb458d3</anchor>
-      <arglist>(s_box1d, BOX_1D, STRUCT) typedef struct box2d</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gae46bafc6960ba856d350a05a0c4af88d</anchor>
-      <arglist>(s_box2d, BOX_2D, STRUCT) typedef struct box3d</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga125b9f281c0a7e3912585c888f2eced1</anchor>
-      <arglist>(s_box3d, BOX_3D, STRUCT) typedef struct box4d</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga1e08a4f27a3de2bc46c5ae7a10d272aa</anchor>
-      <arglist>(s_box4d, BOX_4D, STRUCT) typedef s_box1d s_interval</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga278deb483995ab0e17b5d9ca1058b09b</anchor>
-      <arglist>(s_interval, INTERVAL, STRUCT) typedef t_float(*f_scalar_func1)(t_float const v)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>c_integrate</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga36de3afd5b0f1a871cd6d41328e955d8</anchor>
-      <arglist>(f_real_function const f, s_interval const domain, t_float step)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>c_mc_integrate_1d</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga19bf580ff58ac7a45ee63a95166ad516</anchor>
-      <arglist>(f_scalar_func1 const sf, s_box1d const domain)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>c_mc_integrate_2d</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga04d47a97e05bc0347837113e76700ac3</anchor>
-      <arglist>(f_scalar_func2 const sf, s_box2d const domain)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>c_mc_integrate_3d</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga1a8902ae51f38c814943652f48bbcf26</anchor>
-      <arglist>(f_scalar_func3 const sf, s_box3d const domain)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>c_mc_integrate_4d</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga6c8e631b817dc69213556c2a8a867556</anchor>
-      <arglist>(f_scalar_func4 const sf, s_box4d const domain)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>c_distance_float</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga2d9ac99a1eb427fb14eb0054b895e92a</anchor>
-      <arglist>(t_float x, t_float y)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_f32</type>
-      <name>c_distance_f32</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga50979520ab14e404f999f4fd31c9ff4d</anchor>
-      <arglist>(t_f32 x, t_f32 y)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_f64</type>
-      <name>c_distance_f64</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga8a9827d3b09dbf2063e57bdee084de76</anchor>
-      <arglist>(t_f64 x, t_f64 y)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_uint</type>
-      <name>c_distance_uint</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gace8f873f8324c8b5a0fa6fd6788bea20</anchor>
-      <arglist>(t_uint x, t_uint y)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_u8</type>
-      <name>c_distance_u8</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga560024e1c942a34490cc39888118a11d</anchor>
-      <arglist>(t_u8 x, t_u8 y)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_u16</type>
-      <name>c_distance_u16</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga26d3f6b9de3fe79bb79d588de6697978</anchor>
-      <arglist>(t_u16 x, t_u16 y)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_u32</type>
-      <name>c_distance_u32</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga4430f9167616ab94bce5cb15f2520222</anchor>
-      <arglist>(t_u32 x, t_u32 y)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_u64</type>
-      <name>c_distance_u64</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga3966deb12f376ee15a3082cafd784bbe</anchor>
-      <arglist>(t_u64 x, t_u64 y)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_sint</type>
-      <name>c_distance_int</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga9c87bf7e1eeee701a8c0cb58cdf64874</anchor>
-      <arglist>(t_sint x, t_sint y)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_s8</type>
-      <name>c_distance_s8</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga6dfa16a4bda42255ca5920cf5d9f0bee</anchor>
-      <arglist>(t_s8 x, t_s8 y)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_s16</type>
-      <name>c_distance_s16</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gace24a9c452e0814f0c6a621a9097c960</anchor>
-      <arglist>(t_s16 x, t_s16 y)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_s32</type>
-      <name>c_distance_s32</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga1663941e5c86968e4c2f66aaa350cc55</anchor>
-      <arglist>(t_s32 x, t_s32 y)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_s64</type>
-      <name>c_distance_s64</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga4d7c6535f661fc7d2adc1b25e8e64994</anchor>
-      <arglist>(t_s64 x, t_s64 y)</arglist>
-    </member>
-    <member kind="variable">
-      <type></type>
-      <name>u_vector2d</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga92ffeb9376e303e8c96f06758ba0e05e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>t_float</type>
-      <name>y</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gaa0f46c58ab3a3ffcfb3952f48b731c72</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type></type>
-      <name>u_vector3d</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga4e20a10b88e8a2890e3c50d202cd2fa8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>t_float t_float</type>
-      <name>z</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gad6ac30fd95dc948aa662cc52ccc00149</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type></type>
-      <name>u_vector4d</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga8d93138ecdd431bd0133d81730991cf0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type></type>
-      <name>s_matrix2d</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga1f0fa029afd3a9c6bd3b59828136d60e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type></type>
-      <name>u_matrix2d</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga77c8cac0d145f744dbb2fa6c03ca28a6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>s_vector2d const  *</type>
-      <name>v</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga4c0e9b3857992d5c7c47749d5624ad84</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type></type>
-      <name>u_matrix3d</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga5bf2ca24edfea850439abcf45dd4a2c5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>s_vector3d const s_vector3d const  *</type>
-      <name>w</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga543f2ea27e647df44925eaef42a4dd7b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type></type>
-      <name>u_matrix4d</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga6789de558c744dc24273877b7c0f02db</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type></type>
-      <name>s_box1d</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gac257704ffdd362c0c898bff0e269ea15</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type></type>
-      <name>s_box2d</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga8f2124efb755bcabed03a77f1b47506f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type></type>
-      <name>s_box3d</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga964075c7b55fe3ccdc6fe15a396e7f32</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type></type>
-      <name>s_box4d</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga1e00f7a4fdd5d9f820cd6b9e4286c04c</anchor>
-      <arglist></arglist>
-    </member>
   </compound>
   <compound kind="file">
     <name>complex.h</name>
@@ -8481,10 +12575,187 @@
     </member>
   </compound>
   <compound kind="file">
+    <name>constants.h</name>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/math/</path>
+    <filename>constants_8h.html</filename>
+    <includes id="float_8h" name="float.h" local="yes" imported="no">libccc/float.h</includes>
+    <member kind="define">
+      <type>#define</type>
+      <name>QUARTER_PI</name>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
+      <anchor>ga5727947dfa0f901d1415a6e7233bc61b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>HALF_PI</name>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
+      <anchor>gae3ec3219e4eee3b0992bfd59c2e2bc42</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>DIV_PI_4</name>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
+      <anchor>ga7496d253a45e07baba042c41a5ad2b18</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>DIV_PI_2</name>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
+      <anchor>ga67d18553da9ad796b35f6a2068c089ca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>PI</name>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
+      <anchor>ga598a3330b3c21701223ee0ca14316eca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>TAU</name>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
+      <anchor>ga3d8c9c145887af5174ba4cc6789862ad</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>INV_PI</name>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
+      <anchor>gaebad45bfa06a5d66805c5813fbc59f4b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>INV_TAU</name>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
+      <anchor>ga6749b4f22cea97620a9a04e83534c72e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>E</name>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
+      <anchor>ga07484107e6d9fdf38b53edf631d6511d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LN_2</name>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
+      <anchor>gaa94d5c40b9f567f0bb88c23634f9d106</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LN_10</name>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
+      <anchor>gada0599f7ce9a633571e3073fc008091a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>SQRT_2</name>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
+      <anchor>gabc63ab2a8e7782de38a5dbdfc33da717</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>INV_SQRT_2</name>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
+      <anchor>ga00ce1546c572fa40f917142388f0c22a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>SQRT_3</name>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
+      <anchor>ga4c7cca717941f9eb5c7f90f44ac8746b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>INV_SQRT_3</name>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
+      <anchor>gaf222396c3647ae6759c49030cf77f32a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>SQRT_5</name>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
+      <anchor>gab6073a2630d7c65369c70c5f8c03a132</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>INV_SQRT_5</name>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
+      <anchor>ga1203d1632ed7e5e9c4f4ada3142183a1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>PHI</name>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
+      <anchor>ga2203853edabc3de5f785e54b55eb5e3c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>CBRT_2</name>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
+      <anchor>ga3489469a334310ae0afa8cebf666b0fb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>CBRT_3</name>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
+      <anchor>gae636b3a8f1888a75dced410e1a5fc0b9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>EGAMMA</name>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
+      <anchor>ga694331d48949e5e45c779dc913666535</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>GGAUSS</name>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
+      <anchor>ga913fd45c3d26c73f7a37c245f25137cd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FEIGENBAUM_DELTA</name>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
+      <anchor>ga2a175aabf9d6f8f8684bb0bece7bc55d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FEIGENBAUM_ALPHA</name>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
+      <anchor>ga3ead96ace17f17b0a1ff9dd6527b6bea</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
     <name>math.h</name>
     <path>D:/Lexou/Projects/C/libccc/hdr/libccc/math/</path>
     <filename>math_8h.html</filename>
     <includes id="libccc_8h" name="libccc.h" local="yes" imported="no">libccc.h</includes>
+    <includes id="constants_8h" name="constants.h" local="yes" imported="no">libccc/math/constants.h</includes>
+    <includes id="math_2fixed_8h" name="fixed.h" local="yes" imported="no">libccc/math/fixed.h</includes>
+    <includes id="math_2float_8h" name="float.h" local="yes" imported="no">libccc/math/float.h</includes>
     <member kind="define">
       <type>#define</type>
       <name>ABS</name>
@@ -8515,164 +12786,66 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>QUARTER_PI</name>
+      <name>MATH_DEFINE_FUNCTION</name>
       <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga5727947dfa0f901d1415a6e7233bc61b</anchor>
-      <arglist></arglist>
+      <anchor>ga1a8c606ca6b1b7c9ab29a867251a5231</anchor>
+      <arglist>(RETURN, BITS, NAME, CNAME, TYPE)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>HALF_PI</name>
+      <name>MATH_DEFINE_REALFUNCTION</name>
       <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gae3ec3219e4eee3b0992bfd59c2e2bc42</anchor>
-      <arglist></arglist>
+      <anchor>gad7098bacdaeacb27cdf1bc16f1d95a4f</anchor>
+      <arglist>(BITS, NAME, CNAME, TYPE)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>DIV_PI_4</name>
+      <name>MATH_DEFINE_REALOPERATOR</name>
       <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga7496d253a45e07baba042c41a5ad2b18</anchor>
-      <arglist></arglist>
+      <anchor>ga40ba4dff35cf7ac35cdb6e4a511267b7</anchor>
+      <arglist>(BITS, NAME, CNAME, TYPE)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>DIV_PI_2</name>
+      <name>MATH_DECL_FUNCTION</name>
       <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga67d18553da9ad796b35f6a2068c089ca</anchor>
-      <arglist></arglist>
+      <anchor>ga15ce5bb45fbd3c1ec09f0babee8c01b0</anchor>
+      <arglist>(RETURN, NAME, CNAME)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>PI</name>
+      <name>MATH_DECL_REALFUNCTION</name>
       <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga598a3330b3c21701223ee0ca14316eca</anchor>
-      <arglist></arglist>
+      <anchor>ga1bda26f13eba63409816b53282c13103</anchor>
+      <arglist>(NAME, CNAME)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>TAU</name>
+      <name>MATH_DECL_REALOPERATOR</name>
       <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga3d8c9c145887af5174ba4cc6789862ad</anchor>
-      <arglist></arglist>
+      <anchor>ga3578a113f4898a38878ab181d272b50b</anchor>
+      <arglist>(NAME, CNAME)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>INV_PI</name>
+      <name>DEFINE_GENERIC_MATH_FUNCTION</name>
       <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gaebad45bfa06a5d66805c5813fbc59f4b</anchor>
-      <arglist></arglist>
+      <anchor>gac2f8add1e5d5c9c2e1622872d3d81085</anchor>
+      <arglist>(FUNCTION, X)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>INV_TAU</name>
+      <name>DEFINE_GENERIC_MATH_OPERATOR</name>
       <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga6749b4f22cea97620a9a04e83534c72e</anchor>
-      <arglist></arglist>
+      <anchor>ga5b7f9250ac1480dc15d6973242844730</anchor>
+      <arglist>(FUNCTION, X, Y)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>E</name>
+      <name>Math_Round</name>
       <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga07484107e6d9fdf38b53edf631d6511d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LN_2</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gaa94d5c40b9f567f0bb88c23634f9d106</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LN_10</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gada0599f7ce9a633571e3073fc008091a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>SQRT_2</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gabc63ab2a8e7782de38a5dbdfc33da717</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>INV_SQRT_2</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga00ce1546c572fa40f917142388f0c22a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>SQRT_3</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga4c7cca717941f9eb5c7f90f44ac8746b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>INV_SQRT_3</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gaf222396c3647ae6759c49030cf77f32a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>SQRT_5</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gab6073a2630d7c65369c70c5f8c03a132</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>INV_SQRT_5</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga1203d1632ed7e5e9c4f4ada3142183a1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_getexp</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga3dd7fee646235409353e99dd5613f7b8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Math_GetExponent</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gaf3d691bed0a5fd80a3aabffb62229637</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_fabs</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga27cdad3b8d14861a17c018bf89e2c603</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Math_AbsoluteValue</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga4a032a711294c646d53ac7f4351331b6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_fmod</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gaa82fd5c1179d831ebf179d668170d507</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Math_Modulo</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gacf9a3dd280a41b845d336654d894751c</anchor>
-      <arglist></arglist>
+      <anchor>gaa72cbc653006fad87b3bab03e0fc85fc</anchor>
+      <arglist>(X)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -8690,6 +12863,13 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>Math_Truncate</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga1bddc79203a9fb652dbfce1d795f7fba</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>c_trunc</name>
       <anchorfile>group__libccc__math__math.html</anchorfile>
       <anchor>ga23ecdd8d3e74c0769b158d8e66024de9</anchor>
@@ -8701,6 +12881,13 @@
       <anchorfile>group__libccc__math__math.html</anchorfile>
       <anchor>ga04e36096016b20852684d97019a8f675</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Floor</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga20c8df10342ad480da2a17e4571f6336</anchor>
+      <arglist>(X)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -8718,6 +12905,13 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>Math_Ceiling</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga5c84f144a63a43b1c4837812fed2ec32</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>c_ceil</name>
       <anchorfile>group__libccc__math__math.html</anchorfile>
       <anchor>ga5e5b23cc171473b3a2f49357f3e544dc</anchor>
@@ -8729,6 +12923,132 @@
       <anchorfile>group__libccc__math__math.html</anchorfile>
       <anchor>gaf50ca0d01d1f1c330f54d6c0ad7271fb</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Abs</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gafcccd28251b61b4ed3e1385d8b09d465</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_abs</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga4fa8be94e9acad3e9c520f969077b094</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_AbsoluteValue</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga4a032a711294c646d53ac7f4351331b6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Add</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gaaf4e551f813356323d69ede11d01fbcf</anchor>
+      <arglist>(X, Y)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_add</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gac451a56e431bdec003beefb65657bd8e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Sub</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gab08223d2f6a5d4b137f68b308bc5d860</anchor>
+      <arglist>(X, Y)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_sub</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga77de4417450c301d1c4b6b0373498910</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Subtract</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga19ac6924bb67ebf55cb2fdcce1b355c6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Mul</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga726ce9449da9989c4ec2dc2eff68dda4</anchor>
+      <arglist>(X, Y)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_mul</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga4834cc7bd84b5badfeb31fb826346cf1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Multiply</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga7fb24faaf2879f1bc26fe1c41aea9a83</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Div</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga7f6bd9ca3932d3f4a8df8dc726771e41</anchor>
+      <arglist>(X, Y)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_div</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga2d84d069add851cbd300f8dcc8707d9e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Divide</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gaa3ff6a985446fedc349e323d38dcec1e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Mod</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gac4a5ee0927b28d50ad46627d11c01031</anchor>
+      <arglist>(X, Y)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_mod</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gaa99cf6445325c8be2de8721f3b6be081</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Modulo</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gacf9a3dd280a41b845d336654d894751c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Pow</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gadc74e835a3bb01938f69669f9985e7e6</anchor>
+      <arglist>(X, Y)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -8746,23 +13066,44 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_pow_n</name>
+      <name>Math_IntPow</name>
       <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga0ab125e133620897eb81105b0f908086</anchor>
+      <anchor>ga90a1c1494cd87f8df53a43bc5d07ec68</anchor>
+      <arglist>(X, N)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_intpow</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gaefbaf75d5ec721e044d34cde795b0db1</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_Power_N</name>
+      <name>Math_IntPower</name>
       <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga850056b3a4fcc393db79cb07898a3a56</anchor>
+      <anchor>ga21ea08dfa69382132ee85c44be90087d</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Root2</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gaee3e7e54eba5dc2f056e1b5390fb04b5</anchor>
+      <arglist>(X)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>c_sqrt</name>
       <anchorfile>group__libccc__math__math.html</anchorfile>
       <anchor>ga2e7d4980398cb3cfa11ef1e9677d5835</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_SqRt</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gabc7bf05794e77c7173890250cdce4795</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -8774,6 +13115,13 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>Math_Root3</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga79019aa3a0dd260b271f72f148967f09</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>c_cbrt</name>
       <anchorfile>group__libccc__math__math.html</anchorfile>
       <anchor>gaaa61dbab7fea4ebe148cfae39393d5c2</anchor>
@@ -8781,10 +13129,24 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_CubicRoot</name>
+      <name>Math_CbRt</name>
       <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gad7843a47fbbc1fd3f6982391295e4f9f</anchor>
+      <anchor>ga021c4d99cd1422be2735ced2df95a283</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_CubeRoot</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga6870fa044bb9b9a183e748273ea6de4b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_RootN</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga91480a88dc895ea3900d08062d98e9c6</anchor>
+      <arglist>(X, Y)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -8795,10 +13157,24 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>Math_NRt</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gac2d365dfb124bbee8175f37cdcb7708f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>Math_NRoot</name>
       <anchorfile>group__libccc__math__math.html</anchorfile>
       <anchor>ga9cedaf6adc4b66f497b0e9d0fdaa2bc0</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Exp</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga7f68228a8f46b62840c4c807078535e6</anchor>
+      <arglist>(X)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -8816,6 +13192,13 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>Math_Ln</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga16c639616f40a7565aa01d195caff6f3</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>c_ln</name>
       <anchorfile>group__libccc__math__math.html</anchorfile>
       <anchor>gacc74a24ab6f03b00b858d0136c217e53</anchor>
@@ -8830,9 +13213,23 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>Math_Log2</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga72d3cfc57986b9279efb32f9250bcbf1</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>c_lg</name>
       <anchorfile>group__libccc__math__math.html</anchorfile>
       <anchor>ga035ebcff0df0ef7c0772cc3ab7e32f0a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_log2</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga6bb6e4ecbfe0a8761c5e6eda116ee56a</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -8844,9 +13241,23 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>Math_Log10</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gaa206647abf097431798d21dd311954a7</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>c_log</name>
       <anchorfile>group__libccc__math__math.html</anchorfile>
       <anchor>ga411424ea4d96ee8ced7126b4a0da17fb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_log10</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gaf7dbbfb97ec606b0670c3a231e1ff25f</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -8855,6 +13266,13 @@
       <anchorfile>group__libccc__math__math.html</anchorfile>
       <anchor>ga454b3dabd0ac9b80a3ec89fab42d8d8b</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_LogN</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gad332fbe3d095eb30564b2f259f8d702f</anchor>
+      <arglist>(X, Y)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -8872,6 +13290,13 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>Math_Cos</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga3209a4f810ee243cc14506ffda119ce8</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>c_cos</name>
       <anchorfile>group__libccc__math__math.html</anchorfile>
       <anchor>ga25372d72105ca8cb35fc5a8e3bbbd354</anchor>
@@ -8883,6 +13308,13 @@
       <anchorfile>group__libccc__math__math.html</anchorfile>
       <anchor>gac6e6fd72af6736dc1372997364432388</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Sin</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga64038638cbc7370c940ea65274c14543</anchor>
+      <arglist>(X)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -8900,6 +13332,13 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>Math_Tan</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gaba69fa3c396a390bf4a2764d064d83f1</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>c_tan</name>
       <anchorfile>group__libccc__math__math.html</anchorfile>
       <anchor>ga70ba56d882f4b5603fc71cdcaa670d50</anchor>
@@ -8911,6 +13350,13 @@
       <anchorfile>group__libccc__math__math.html</anchorfile>
       <anchor>gaafe8c5688b0503a6fe07e7a98c03f7f7</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_ArcCos</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga2a275bf6d4ea329ea78335545990bf30</anchor>
+      <arglist>(X)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -8935,6 +13381,13 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>Math_ArcSin</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga3ea416f7232cff551bcfdde5bb2f3edf</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>c_asin</name>
       <anchorfile>group__libccc__math__math.html</anchorfile>
       <anchor>ga63385d77920b179ea4a31d55b35b6e63</anchor>
@@ -8953,6 +13406,13 @@
       <anchorfile>group__libccc__math__math.html</anchorfile>
       <anchor>ga1b00246866a3b1a3206fe8949c3ce23b</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_ArcTan</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gaf1c3fc24548e298ea19abce3d9d783dd</anchor>
+      <arglist>(X)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -8977,9 +13437,23 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>Math_ArcTan2</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga11972c48b9c7e57f2dad91c0252eced1</anchor>
+      <arglist>(Y, X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>c_atan2</name>
       <anchorfile>group__libccc__math__math.html</anchorfile>
       <anchor>ga341bd19c5f1c41938050e9ea62756f24</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_ArcTan_YoverX</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga09a746a7d1f14e14cd960f22c117c073</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -8995,6 +13469,13 @@
       <anchorfile>group__libccc__math__math.html</anchorfile>
       <anchor>ga03760b64ad078661795263b6d74f1ab3</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_CosH</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gabc2c4ddb0a526dbc694e1fb38604349b</anchor>
+      <arglist>(X)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -9019,6 +13500,13 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>Math_SinH</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gaeea76c85821d1b5cdbe5784f7710f6be</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>c_sinh</name>
       <anchorfile>group__libccc__math__math.html</anchorfile>
       <anchor>ga179ab0f7d9cf62fd1d8e722b97cd55fb</anchor>
@@ -9037,6 +13525,13 @@
       <anchorfile>group__libccc__math__math.html</anchorfile>
       <anchor>gafac12064625b00665c8b011b73c33c20</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_TanH</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga0ad4e08b761330a3a0e05eea17a8c2cb</anchor>
+      <arglist>(X)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -9061,6 +13556,13 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>Math_InvCosH</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga2ebb9a51f9b6549fd1db56c7e45612a0</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>c_acosh</name>
       <anchorfile>group__libccc__math__math.html</anchorfile>
       <anchor>gac4c1f7020ad70ad5d6246de94c070e54</anchor>
@@ -9079,6 +13581,13 @@
       <anchorfile>group__libccc__math__math.html</anchorfile>
       <anchor>ga89b97f9df4b8845d60c4de49a16977f0</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_InvSinH</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gaedf08cb1bb4045752fd4d46e7f61aeae</anchor>
+      <arglist>(X)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -9103,6 +13612,13 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>Math_InvTanH</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga9359727ebe39b0306999c79c9d242460</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>c_atanh</name>
       <anchorfile>group__libccc__math__math.html</anchorfile>
       <anchor>gac6d36d825e197337e9a4d61d65d24502</anchor>
@@ -9121,251 +13637,6 @@
       <anchorfile>group__libccc__math__math.html</anchorfile>
       <anchor>ga20633cb2351a37df10e34dbbfba6d134</anchor>
       <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>MATH_DECL_FUNCTION</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga8520d8c54f36689efd701a344e6844ea</anchor>
-      <arglist>(RETURN, FT_NAME, NAME)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>MATH_DECL_REALFUNCTION</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gae9623d892f43472b507ceac4a9700602</anchor>
-      <arglist>(FT_NAME, NAME)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>MATH_DECL_REALOPERATOR</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga4f1c0d39dffe8d042012103670d53fcf</anchor>
-      <arglist>(FT_NAME, NAME)</arglist>
-    </member>
-    <member kind="typedef">
-      <type>t_float(*</type>
-      <name>f_real_function</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga6a1c1c72d7e04c29a8fb8cfffec274db</anchor>
-      <arglist>)(t_float x)</arglist>
-    </member>
-    <member kind="typedef">
-      <type>t_float(*</type>
-      <name>f_real_operator</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga2f2302aece3506156cd71e340ef537e5</anchor>
-      <arglist>)(t_float x, t_float y)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_s32</type>
-      <name>Math_GetExp</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gae5eacb578719be6773cc9750d6925261</anchor>
-      <arglist>(t_float x)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>Math_Abs</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga6849f55326fba7247ff8d44740edd839</anchor>
-      <arglist>(t_float x)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>Math_Mod</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gafb8cccaf5603c411998cae1fb3df859a</anchor>
-      <arglist>(t_float x, t_float y)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>Math_Round</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gaf299020ca43959c8e56ce705ab64bc1c</anchor>
-      <arglist>(t_float x)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>Math_Truncate</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga14569e04240e2969d5c164501f5827aa</anchor>
-      <arglist>(t_float x)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>Math_Floor</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga92ac468e2409d197b83aede9a47059c0</anchor>
-      <arglist>(t_float x)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>Math_Ceiling</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga69f406608656dd634b628facf298929d</anchor>
-      <arglist>(t_float x)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>Math_Pow</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga2af3f43a1cee27c2ef679e6f61561c26</anchor>
-      <arglist>(t_float x, t_float y)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>Math_Pow_N</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga364c309b7388e37c6e3e0eb313a17316</anchor>
-      <arglist>(t_float x, t_sint n)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>Math_SqRt</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gae6e1741db56c4fc823cb58665d26676b</anchor>
-      <arglist>(t_float x)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>Math_CbRt</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga5fbdf5e5691799f2a971fe2b288d8b9d</anchor>
-      <arglist>(t_float x)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>Math_NRt</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gac9af44b10c91507b64cb675d0426583e</anchor>
-      <arglist>(t_float x, t_u8 n)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>Math_Exp</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga5f644028eb285aadc2fe60f7ff8d2f8d</anchor>
-      <arglist>(t_float x)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>Math_Ln</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga150d9d1dd6f69d6271026d753f8f8f4e</anchor>
-      <arglist>(t_float x)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>Math_Log_2</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga19cfc384072ede77b3da4ab7810a8516</anchor>
-      <arglist>(t_float x)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>Math_Log_10</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gad5b8d22d1fcb3581aa034df3e8f3c959</anchor>
-      <arglist>(t_float x)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>Math_Log_N</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gafe675bc664506171241b2636e130095c</anchor>
-      <arglist>(t_float x, t_float n)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>Math_Cos</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga35a9a8c1d2105721e659954c9985b522</anchor>
-      <arglist>(t_float x)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>Math_Sin</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga374557fc6f5ad971a00f89a75947b974</anchor>
-      <arglist>(t_float x)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>Math_Tan</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gad26fc90f407953768180a787b3eb56fd</anchor>
-      <arglist>(t_float x)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>Math_ArcCos</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga1798db233ac6a4c63bc34777a420b3b6</anchor>
-      <arglist>(t_float x)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>Math_ArcSin</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga79728adbaa51ec69134a0ffbb79aa19b</anchor>
-      <arglist>(t_float x)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>Math_ArcTan</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga9fbf810e5487af79138b200d9c574cbc</anchor>
-      <arglist>(t_float x)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>Math_ArcTan2</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga36a9e222dac5206f0071e287bb2b23d6</anchor>
-      <arglist>(t_float y, t_float x)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>Math_CosH</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga34c125ad9d031d8db4eaf45518cee27e</anchor>
-      <arglist>(t_float x)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>Math_SinH</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga93a557fe9ea7c032bc558c5df758bb21</anchor>
-      <arglist>(t_float x)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>Math_TanH</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gabfdd9c435fc706600b1444155a03927c</anchor>
-      <arglist>(t_float x)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>Math_InvCosH</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga3d42394c83243a476441eb43e0c6bab7</anchor>
-      <arglist>(t_float x)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>Math_InvSinH</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga861ab975384f10e7e0cc88256067e085</anchor>
-      <arglist>(t_float x)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>Math_InvTanH</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga2619fd3ee9850b0d7b671f8f6bd527df</anchor>
-      <arglist>(t_float x)</arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -17063,653 +21334,107 @@
     <member kind="define">
       <type>#define</type>
       <name>LIBCONFIG_NAMINGSTYLE_TYPES</name>
-      <anchorfile>group__libccc.html</anchorfile>
+      <anchorfile>group__libccc__config.html</anchorfile>
       <anchor>ga8ef160b822ec74fd6c6455647386e506</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>LIBCONFIG_HANDLE_NULLPOINTERS</name>
-      <anchorfile>group__libccc.html</anchorfile>
+      <anchorfile>group__libccc__config.html</anchorfile>
       <anchor>ga97f207da9392f6cba9c7946bb7697a70</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS</name>
-      <anchorfile>group__libccc.html</anchorfile>
+      <anchorfile>group__libccc__config.html</anchorfile>
       <anchor>ga1020a8568fd919f9da80aa0c2bffbab7</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>LIBCONFIG_USE_FAST_APPROX_MATH</name>
-      <anchorfile>group__libccc.html</anchorfile>
+      <anchorfile>group__libccc__config.html</anchorfile>
       <anchor>gac47e7bbad89ac9ce2a3c9906b798c346</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>LIBCONFIG_LIST_DOUBLYLINKED</name>
-      <anchorfile>group__libccc.html</anchorfile>
+      <anchorfile>group__libccc__config.html</anchorfile>
       <anchor>ga2dbec267fbf6efd24e1efc6d21d1ff68</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>LIBCONFIG_BITS_UINT</name>
-      <anchorfile>group__libccc.html</anchorfile>
+      <anchorfile>group__libccc__config.html</anchorfile>
       <anchor>ga86d00a69dfe2e664c87a03499d7b5f5a</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>LIBCONFIG_BITS_SINT</name>
-      <anchorfile>group__libccc.html</anchorfile>
+      <anchorfile>group__libccc__config.html</anchorfile>
       <anchor>gaac372d149c7d1452ad8f81414a6c75ab</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>LIBCONFIG_BITS_FIXED</name>
-      <anchorfile>group__libccc.html</anchorfile>
+      <anchorfile>group__libccc__config.html</anchorfile>
       <anchor>gaa5d56c2abf4a218f7a150dbab66ef199</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>LIBCONFIG_FIXED_APPROX</name>
-      <anchorfile>group__libccc.html</anchorfile>
+      <anchorfile>group__libccc__config.html</anchorfile>
       <anchor>gac3559624016adae60fd6f2985c393fe2</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>LIBCONFIG_FIXED_BITS_FRACTIONPART</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gad75a603693d55f85b4097b32ec609c4f</anchor>
-      <arglist></arglist>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>gaa140481612fee0286b1a2183a37a88e2</anchor>
+      <arglist>(BITS)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>LIBCONFIG_FIXED_BITS_INTEGERPART</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gabba3474a1c0bac867bade252c7205fb4</anchor>
-      <arglist></arglist>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>gab7f803f93e9353b2c1e8773bf7138a11</anchor>
+      <arglist>(BITS)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>LIBCONFIG_BITS_FLOAT</name>
-      <anchorfile>group__libccc.html</anchorfile>
+      <anchorfile>group__libccc__config.html</anchorfile>
       <anchor>gae831a75f400b727ef8cb54fec109ca28</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>LIBCONFIG_FLOAT_APPROX</name>
-      <anchorfile>group__libccc.html</anchorfile>
+      <anchorfile>group__libccc__config.html</anchorfile>
       <anchor>gaf37b6635173f4ae68dbc9a04aba88802</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>LIBCONFIG_USE_STD_COMPLEX</name>
-      <anchorfile>group__libccc.html</anchorfile>
+      <anchorfile>group__libccc__config.html</anchorfile>
       <anchor>ga70e5ad90076999fac5205baf90d96e90</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>LIBCONFIG_USE_STD_FIXEDPOINT</name>
-      <anchorfile>group__libccc.html</anchorfile>
+      <anchorfile>group__libccc__config.html</anchorfile>
       <anchor>gaaa6bb8eb6ebe31ebf0fce3b39f0db81e</anchor>
       <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NAMINGSTYLE_ENUM</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga43a83706af330061eb0e7a9b6b160f32</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NAMINGSTYLE_ENUM_CSTYLE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga421988ad9cf4ee7f90e74f7ef8897314</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NAMINGSTYLE_ENUM_SNAKECASE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gae3014584f84ff770a8b66368a06b9249</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NAMINGSTYLE_ENUM_CAMELCASE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gacd21a9fd8b25d2bc9514ccdf5c5c0edf</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NAMINGSTYLE_ENUM_PASCALCASE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga72b78c8e2c3bd3b57698f0e0795c2038</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NAMINGSTYLE_ENUM_SCREAMCASE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga92327050664567b0b46ba38d6a29d818</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NAMINGSTYLE_FLAG_HUNGARIAN_PREFIX</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga5f1b045aa48cbceb2a73b4fb6d30968e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NAMINGSTYLE_FLAG_HUNGARIAN_SUFFIX</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga7f354a43ce36cbda79bd43b72a1915f0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NAMINGSTYLE_FLAG_HUNGARIAN_UPPERCASE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga704768d8192c1cf157dbe7ec92eb75b9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>HUNGARIAN_PRIMITIVE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga18c31071065cc09d74764cd99bc34a4e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>HUNGARIAN_STRUCT</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaaeed2faba04f0354fd8f01296e46a342</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>HUNGARIAN_ENUM</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga58990bff0dc5971dbfa1baeb2a5de57c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>HUNGARIAN_UNION</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga49e29c9d235b230d591e6a89b180b103</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>HUNGARIAN_FUNCTION</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga7692350364cf399c014ef369fb846397</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_BOOL</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga9d3ccaca9a71d022917881fef2311575</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_CHAR</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaab8cc588f2e188402b2802eba8dd3af9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_UTF8</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga00209267eadb17c7b1bfe136bba00307</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_SINT</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga4287c44b179572de6fa193cdf4c7ad65</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_SINT_8</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaaaceb59a80ac8c96643680ad185de030</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_SINT_16</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga7219a72551d3f460ded02df4d3fd5b8a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_SINT_32</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gac0afcaf171d55d1182a4e28619629fda</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_SINT_64</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga7274abda4b74294e033d50ab4d28d438</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_SINT_128</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gac7b05dfee2d1125df9e41805cef9d77f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_UINT</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga9a8af80b10ce4d4f7b06329219a0fa39</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_UINT_8</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaa5818ee41c3e216e9adeb2e4eccf30de</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_UINT_16</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaee9ebc0b2c8d6fbb07b016d91b06fad8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_UINT_32</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gae5144bae183141909d866bddfea2000a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_UINT_64</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gac4d73b57d3d6bd79d45f9d811dc1f99a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_UINT_128</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga4af57da3c8cf664e8b8bb78931e7d248</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_FIXED</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga56a62a248007cbd3341f62e56b1dcc66</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_FIXED_16</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga88ab492e88bd82d548b64976293fe82e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_FIXED_32</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga9848a67600653ab1878f39c06b7f515e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_FIXED_64</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gab0d1dbefdf7d13edffcf4f5e37563670</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_FIXED_128</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga412a1d4911c004bfcd2f77c035313c58</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_FLOAT</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga13b28809428fea17c574f87e3816fa58</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_FLOAT_32</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gac36c2faa9edf829cf5b280827677b8f8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_FLOAT_64</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaa4e703ad3cd71832af1aef8a345831d6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_FLOAT_80</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga23790d244c1199b4bc0bb9eade34fe00</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_FLOAT_128</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga752ec73c2086d34e394f6650ac48851c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_SIZE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gad855c26654c3f603d318646db4362fc7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_PTRDIFF</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaf853fe4ebfd3d5751c0e427867b783e1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_SINTMAX</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga56f79996824a321b410d0f54626d51c5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_UINTMAX</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga08126be4ac4ce7b0a3acf409015b5aaa</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_SINTPTR</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga3ff28e718887659d888deb8f4dfd4571</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_UINTPTR</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gacc3d2d30cc797011bdb298e587cc9bf3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_COLOR_RGB</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga891fc15a31798451083f374b9328a381</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_COLOR_HSL</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga99aa73efaff1aa21a28d39f1edb55671</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_IO_FILEDESC</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaffea4bde7b07a5d3889b693906c2037d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_IO_MODE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaa3c011b7500b4da80d37117dbd90b17d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_IO_OPEN</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga2e9030cb692491cfe4ec76fd663285bb</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_IO_ERROR</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga1569509f37145370191080a3c8a1b3f5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_TIME</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga34418e603f8b1c5948137b7b9132babc</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_TIMESPEC</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga4237f57f121a3ba0bf13fd98fcdcf4c9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_TIMEZONE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga1408b65be04ea749240da6d88b52f1b5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_TIME_DATE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga72d4030eacadcaf44a8dbb79bb44526c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_TIME_WEEKDAY</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gab9cdcfa526e65f27f2dce626ac14e126</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_TIME_MONTH</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga97661fc1a004b4672792cc15d8759e48</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_VECTOR</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaba84b5ddc87ae4ef57367429f735d7b0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_VECTOR2D</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga0651854334c2c53b5e6d3d5f4f193cc2</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_VECTOR3D</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gac41a26a852bcc6a62804ee96bb3d7b72</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_VECTOR4D</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gac39fd60014ae7300a9f426f456f835a7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_MATRIX</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga1547683c016ea659afadb58423c72984</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_MATRIX2D</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga57695f8100490f2393e8e4af634795cc</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_MATRIX3D</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gacdd7c367750651fa11a3855184fb8f1e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_MATRIX4D</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gac6ee7f156fb1da406894d4bab0bf5de9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_TENSOR</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga0abce5be5b1c843955f9844d2d051e71</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_AABB</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gae023cdd13b4fa3d321ed5e56ce2be093</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_INTERVAL</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga38074960f0523597ae189c945eb154fe</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_COMPLEX</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gac1acaf44a9aca39f51131ad4fcd495a4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_QUATERNION</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga9fbffd44f0f2f3642ec011d733990d0b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_ARRAY</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga40f9893522ff63314e1fa54ed90f8a05</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_LIST</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga4928a8dbae11efe6369a313e552d1d65</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_TREE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga2aac33a0af5ea5d6f663d8d6a6b8ff1d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_LEAF</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga938f5e4048a13cc191283f51dd042e5c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_DICT</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga69e740d4768cfb48e131a0eceacbb003</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_KEYVAL</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaedbf101c5d538be39cb246c241b55495</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_OBJECT</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gac78a6b5531a0582ba85b08419361377e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga4d319b9aec474f87e5cbd66e82270714</anchor>
-      <arglist>(TYPE, NAME, KIND)</arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -18113,65 +21838,6 @@
     </member>
   </compound>
   <compound kind="struct">
-    <name>mtx3d</name>
-    <filename>group__libccc__math__algebra.html</filename>
-    <anchor>structmtx3d</anchor>
-    <member kind="variable">
-      <type>s_vector3d</type>
-      <name>u</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>a9be8494652fef2f9ee34e7712ef414bc</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>s_vector3d</type>
-      <name>v</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>abe0ff6452c877ce8984d3984f108b65d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>s_vector3d</type>
-      <name>w</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>a7e7650bb2f89c01c4821896224d378d6</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="struct">
-    <name>mtx4d</name>
-    <filename>group__libccc__math__algebra.html</filename>
-    <anchor>structmtx4d</anchor>
-    <member kind="variable">
-      <type>s_vector4d</type>
-      <name>u</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>a621be8f423efb82509975e97f9378b8d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>s_vector4d</type>
-      <name>v</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>a8fe52e6ec9c7c7773d8886ce77c01985</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>s_vector4d</type>
-      <name>w</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>a88d0218f8819a9f787fbad04e019c55b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>s_vector4d</type>
-      <name>t</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>a89007c4e1a3bfed4d87f2c1689cde824</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="struct">
     <name>object_T</name>
     <filename>group__libccc__monad__object.html</filename>
     <anchor>structobject___t</anchor>
@@ -18374,84 +22040,6 @@
       <arglist></arglist>
     </member>
   </compound>
-  <compound kind="struct">
-    <name>vec2d</name>
-    <filename>group__libccc__math__algebra.html</filename>
-    <anchor>structvec2d</anchor>
-    <member kind="variable">
-      <type>t_float</type>
-      <name>x</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>a527e1768355486fcd284f86901fdcf6b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>t_float</type>
-      <name>y</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>aa0f46c58ab3a3ffcfb3952f48b731c72</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="struct">
-    <name>vec3d</name>
-    <filename>group__libccc__math__algebra.html</filename>
-    <anchor>structvec3d</anchor>
-    <member kind="variable">
-      <type>t_float</type>
-      <name>x</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>a527e1768355486fcd284f86901fdcf6b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>t_float</type>
-      <name>y</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>aa0f46c58ab3a3ffcfb3952f48b731c72</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>t_float</type>
-      <name>z</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>a797a389a832fde664b7eafb50c50d881</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="struct">
-    <name>vec4d</name>
-    <filename>group__libccc__math__algebra.html</filename>
-    <anchor>structvec4d</anchor>
-    <member kind="variable">
-      <type>t_float</type>
-      <name>x</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>a527e1768355486fcd284f86901fdcf6b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>t_float</type>
-      <name>y</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>aa0f46c58ab3a3ffcfb3952f48b731c72</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>t_float</type>
-      <name>z</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>a797a389a832fde664b7eafb50c50d881</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>t_float</type>
-      <name>t</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>a32e8ad94ea7e6c7de60cbcb6f3277a68</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
   <compound kind="group">
     <name>libccc</name>
     <title>00) libccc</title>
@@ -18646,657 +22234,6 @@
       <anchorfile>group__libccc.html</anchorfile>
       <anchor>ga73431ba9d27af74793901561ae448116</anchor>
       <arglist>(_NAME, _FILEPATH)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_NAMINGSTYLE_TYPES</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga8ef160b822ec74fd6c6455647386e506</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_HANDLE_NULLPOINTERS</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga97f207da9392f6cba9c7946bb7697a70</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga1020a8568fd919f9da80aa0c2bffbab7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_USE_FAST_APPROX_MATH</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gac47e7bbad89ac9ce2a3c9906b798c346</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_LIST_DOUBLYLINKED</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga2dbec267fbf6efd24e1efc6d21d1ff68</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_BITS_UINT</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga86d00a69dfe2e664c87a03499d7b5f5a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_BITS_SINT</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaac372d149c7d1452ad8f81414a6c75ab</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_BITS_FIXED</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaa5d56c2abf4a218f7a150dbab66ef199</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_FIXED_APPROX</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gac3559624016adae60fd6f2985c393fe2</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_FIXED_BITS_FRACTIONPART</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gad75a603693d55f85b4097b32ec609c4f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_FIXED_BITS_INTEGERPART</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gabba3474a1c0bac867bade252c7205fb4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_BITS_FLOAT</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gae831a75f400b727ef8cb54fec109ca28</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_FLOAT_APPROX</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaf37b6635173f4ae68dbc9a04aba88802</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_USE_STD_COMPLEX</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga70e5ad90076999fac5205baf90d96e90</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_USE_STD_FIXEDPOINT</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaaa6bb8eb6ebe31ebf0fce3b39f0db81e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NAMINGSTYLE_ENUM</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga43a83706af330061eb0e7a9b6b160f32</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NAMINGSTYLE_ENUM_CSTYLE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga421988ad9cf4ee7f90e74f7ef8897314</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NAMINGSTYLE_ENUM_SNAKECASE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gae3014584f84ff770a8b66368a06b9249</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NAMINGSTYLE_ENUM_CAMELCASE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gacd21a9fd8b25d2bc9514ccdf5c5c0edf</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NAMINGSTYLE_ENUM_PASCALCASE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga72b78c8e2c3bd3b57698f0e0795c2038</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NAMINGSTYLE_ENUM_SCREAMCASE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga92327050664567b0b46ba38d6a29d818</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NAMINGSTYLE_FLAG_HUNGARIAN_PREFIX</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga5f1b045aa48cbceb2a73b4fb6d30968e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NAMINGSTYLE_FLAG_HUNGARIAN_SUFFIX</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga7f354a43ce36cbda79bd43b72a1915f0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NAMINGSTYLE_FLAG_HUNGARIAN_UPPERCASE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga704768d8192c1cf157dbe7ec92eb75b9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>HUNGARIAN_PRIMITIVE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga18c31071065cc09d74764cd99bc34a4e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>HUNGARIAN_STRUCT</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaaeed2faba04f0354fd8f01296e46a342</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>HUNGARIAN_ENUM</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga58990bff0dc5971dbfa1baeb2a5de57c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>HUNGARIAN_UNION</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga49e29c9d235b230d591e6a89b180b103</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>HUNGARIAN_FUNCTION</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga7692350364cf399c014ef369fb846397</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_BOOL</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga9d3ccaca9a71d022917881fef2311575</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_CHAR</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaab8cc588f2e188402b2802eba8dd3af9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_UTF8</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga00209267eadb17c7b1bfe136bba00307</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_SINT</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga4287c44b179572de6fa193cdf4c7ad65</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_SINT_8</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaaaceb59a80ac8c96643680ad185de030</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_SINT_16</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga7219a72551d3f460ded02df4d3fd5b8a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_SINT_32</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gac0afcaf171d55d1182a4e28619629fda</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_SINT_64</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga7274abda4b74294e033d50ab4d28d438</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_SINT_128</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gac7b05dfee2d1125df9e41805cef9d77f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_UINT</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga9a8af80b10ce4d4f7b06329219a0fa39</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_UINT_8</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaa5818ee41c3e216e9adeb2e4eccf30de</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_UINT_16</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaee9ebc0b2c8d6fbb07b016d91b06fad8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_UINT_32</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gae5144bae183141909d866bddfea2000a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_UINT_64</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gac4d73b57d3d6bd79d45f9d811dc1f99a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_UINT_128</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga4af57da3c8cf664e8b8bb78931e7d248</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_FIXED</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga56a62a248007cbd3341f62e56b1dcc66</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_FIXED_16</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga88ab492e88bd82d548b64976293fe82e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_FIXED_32</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga9848a67600653ab1878f39c06b7f515e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_FIXED_64</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gab0d1dbefdf7d13edffcf4f5e37563670</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_FIXED_128</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga412a1d4911c004bfcd2f77c035313c58</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_FLOAT</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga13b28809428fea17c574f87e3816fa58</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_FLOAT_32</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gac36c2faa9edf829cf5b280827677b8f8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_FLOAT_64</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaa4e703ad3cd71832af1aef8a345831d6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_FLOAT_80</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga23790d244c1199b4bc0bb9eade34fe00</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_FLOAT_128</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga752ec73c2086d34e394f6650ac48851c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_SIZE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gad855c26654c3f603d318646db4362fc7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_PTRDIFF</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaf853fe4ebfd3d5751c0e427867b783e1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_SINTMAX</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga56f79996824a321b410d0f54626d51c5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_UINTMAX</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga08126be4ac4ce7b0a3acf409015b5aaa</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_SINTPTR</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga3ff28e718887659d888deb8f4dfd4571</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_UINTPTR</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gacc3d2d30cc797011bdb298e587cc9bf3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_COLOR_RGB</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga891fc15a31798451083f374b9328a381</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_COLOR_HSL</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga99aa73efaff1aa21a28d39f1edb55671</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_IO_FILEDESC</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaffea4bde7b07a5d3889b693906c2037d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_IO_MODE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaa3c011b7500b4da80d37117dbd90b17d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_IO_OPEN</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga2e9030cb692491cfe4ec76fd663285bb</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_IO_ERROR</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga1569509f37145370191080a3c8a1b3f5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_TIME</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga34418e603f8b1c5948137b7b9132babc</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_TIMESPEC</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga4237f57f121a3ba0bf13fd98fcdcf4c9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_TIMEZONE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga1408b65be04ea749240da6d88b52f1b5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_TIME_DATE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga72d4030eacadcaf44a8dbb79bb44526c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_TIME_WEEKDAY</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gab9cdcfa526e65f27f2dce626ac14e126</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_TIME_MONTH</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga97661fc1a004b4672792cc15d8759e48</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_VECTOR</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaba84b5ddc87ae4ef57367429f735d7b0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_VECTOR2D</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga0651854334c2c53b5e6d3d5f4f193cc2</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_VECTOR3D</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gac41a26a852bcc6a62804ee96bb3d7b72</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_VECTOR4D</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gac39fd60014ae7300a9f426f456f835a7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_MATRIX</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga1547683c016ea659afadb58423c72984</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_MATRIX2D</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga57695f8100490f2393e8e4af634795cc</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_MATRIX3D</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gacdd7c367750651fa11a3855184fb8f1e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_MATRIX4D</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gac6ee7f156fb1da406894d4bab0bf5de9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_TENSOR</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga0abce5be5b1c843955f9844d2d051e71</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_AABB</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gae023cdd13b4fa3d321ed5e56ce2be093</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_INTERVAL</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga38074960f0523597ae189c945eb154fe</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_COMPLEX</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gac1acaf44a9aca39f51131ad4fcd495a4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_QUATERNION</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga9fbffd44f0f2f3642ec011d733990d0b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_ARRAY</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga40f9893522ff63314e1fa54ed90f8a05</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_LIST</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga4928a8dbae11efe6369a313e552d1d65</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_TREE</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga2aac33a0af5ea5d6f663d8d6a6b8ff1d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_LEAF</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga938f5e4048a13cc191283f51dd042e5c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_DICT</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga69e740d4768cfb48e131a0eceacbb003</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_KEYVAL</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gaedbf101c5d538be39cb246c241b55495</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_TYPENAME_OBJECT</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>gac78a6b5531a0582ba85b08419361377e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc.html</anchorfile>
-      <anchor>ga4d319b9aec474f87e5cbd66e82270714</anchor>
-      <arglist>(TYPE, NAME, KIND)</arglist>
     </member>
   </compound>
   <compound kind="group">
@@ -20733,6 +23670,34 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>Q16_BITS_FRACTIONPART</name>
+      <anchorfile>group__libccc__fixed.html</anchorfile>
+      <anchor>ga80bb374d4e809df5111510b13870657e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Q32_BITS_FRACTIONPART</name>
+      <anchorfile>group__libccc__fixed.html</anchorfile>
+      <anchor>ga2869edfe8c749905796d457f8e0e9997</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Q64_BITS_FRACTIONPART</name>
+      <anchorfile>group__libccc__fixed.html</anchorfile>
+      <anchor>gaaf32c0950ff06e2b520087ef2e36c90e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Q128_BITS_FRACTIONPART</name>
+      <anchorfile>group__libccc__fixed.html</anchorfile>
+      <anchor>gab432e25a90c013e68a936d92197e8f08</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>FIXED_MASK_FRACTIONPART</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
       <anchor>gad4b258129b70325f674067b035f81bb7</anchor>
@@ -20747,9 +23712,65 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>Q16_MAX_FRACTIONPART</name>
+      <anchorfile>group__libccc__fixed.html</anchorfile>
+      <anchor>gab8c39ed6c5307648beac46d7ca14c76d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Q32_MAX_FRACTIONPART</name>
+      <anchorfile>group__libccc__fixed.html</anchorfile>
+      <anchor>gaec823aa10579725f81a80b33c31ef69a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Q64_MAX_FRACTIONPART</name>
+      <anchorfile>group__libccc__fixed.html</anchorfile>
+      <anchor>ga69f056681a03c2efe5747802a8757520</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Q128_MAX_FRACTIONPART</name>
+      <anchorfile>group__libccc__fixed.html</anchorfile>
+      <anchor>ga01413c74dd4985267a38f0d8845ffab1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>FIXED_BITS_INTEGERPART</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
       <anchor>ga28295e4c222f663e89c6094151321d3a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Q16_BITS_INTEGERPART</name>
+      <anchorfile>group__libccc__fixed.html</anchorfile>
+      <anchor>ga67b6fa82e4321c62075c4171bbbb35f8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Q32_BITS_INTEGERPART</name>
+      <anchorfile>group__libccc__fixed.html</anchorfile>
+      <anchor>ga69c31d9d604f9406ff52efefb311b094</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Q64_BITS_INTEGERPART</name>
+      <anchorfile>group__libccc__fixed.html</anchorfile>
+      <anchor>ga5bb9b7bc31b93cf5cc8f9b1e57e0c178</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Q128_BITS_INTEGERPART</name>
+      <anchorfile>group__libccc__fixed.html</anchorfile>
+      <anchor>gaae03515f3ee2378a8aa710d5fd51b2c4</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -20764,6 +23785,34 @@
       <name>FIXED_MAX_INTEGERPART</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
       <anchor>ga8d9aed807ea6a9ce968223d43ad400c3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Q16_MAX_INTEGERPART</name>
+      <anchorfile>group__libccc__fixed.html</anchorfile>
+      <anchor>ga96efe924be038e49771c6c366f0efcb3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Q32_MAX_INTEGERPART</name>
+      <anchorfile>group__libccc__fixed.html</anchorfile>
+      <anchor>gaafa4b277cc57517df11f2c6770562676</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Q64_MAX_INTEGERPART</name>
+      <anchorfile>group__libccc__fixed.html</anchorfile>
+      <anchor>ga73ed6d7b827f5f560be11b194685efe5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Q128_MAX_INTEGERPART</name>
+      <anchorfile>group__libccc__fixed.html</anchorfile>
+      <anchor>gad985a4080487ca86d78929cd6b01aa07</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
@@ -21156,356 +24205,6 @@
       <name>c_q128_fractionpart</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
       <anchor>ga843072e16cac1402429514d68849c76a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type>t_q16</type>
-      <name>Q16_Rounded</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga58af1410f69657717966b579a7054611</anchor>
-      <arglist>(t_q16 number)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_q32</type>
-      <name>Q32_Rounded</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga1dc6ddf336a9d7bb0a48926d39ebfe98</anchor>
-      <arglist>(t_q32 number)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_q64</type>
-      <name>Q64_Rounded</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gac82c9172f05676e916af832925427ab5</anchor>
-      <arglist>(t_q64 number)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_q128</type>
-      <name>Q128_Rounded</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga342d69bfdc52b773cfbe78fa9cc3f9be</anchor>
-      <arglist>(t_q128 number)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Fixed_Rounded</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gaf0380cd30a498f8993ff9747fe6be111</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_fixed_round</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga17872d4c40976d64a10db11f47a999ca</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_q16_round</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gaccad2e9baead6a4a56581ea339937ed9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_q32_round</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gadcfd3b047d49b5ce36ba18fc6ab23a6f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_q64_round</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gae6dd3012041722f60e168afbf65b4b96</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_q128_round</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga8276ef21861f5506a127fd2f15fde1f4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type>t_q16</type>
-      <name>Q16_Add</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga5a3dc508f69436066cf15d724f48f5a6</anchor>
-      <arglist>(t_q16 number1, t_q16 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_q32</type>
-      <name>Q32_Add</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga001e253298ea7dec4dbf507a994caa3a</anchor>
-      <arglist>(t_q32 number1, t_q32 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_q64</type>
-      <name>Q64_Add</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gadf3f0db56724045f7976f147fefd65ec</anchor>
-      <arglist>(t_q64 number1, t_q64 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_q128</type>
-      <name>Q128_Add</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga74b3aa361c1daa1ec25c0275bdc7a8e4</anchor>
-      <arglist>(t_q128 number1, t_q128 number2)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Fixed_Add</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gaf91e9bc04cf76d7b06dfcac94d88cc3d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_qadd</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga118bf22126c0585b9d237fa71bedb394</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_q16add</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga531daf5e62b9ec1ced9167dcd325f57d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_q32add</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga794dcd6b702020c3b60a9acf8327ea0c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_q64add</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gaf1e1edad543344ce075c3d5ecd4f14d0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_q128add</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gab9925b5993af96f291a37c0a09aed9ef</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type>t_q16</type>
-      <name>Q16_Sub</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gae684746a090b8c72da4112d838a0979d</anchor>
-      <arglist>(t_q16 number1, t_q16 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_q32</type>
-      <name>Q32_Sub</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga0937164bb23587b867f4f6cec0dfd5ca</anchor>
-      <arglist>(t_q32 number1, t_q32 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_q64</type>
-      <name>Q64_Sub</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga8462bc7f4f71ad87d4101e1eb6327846</anchor>
-      <arglist>(t_q64 number1, t_q64 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_q128</type>
-      <name>Q128_Sub</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gae12c0d4648c7d0b67b35014427fa3154</anchor>
-      <arglist>(t_q128 number1, t_q128 number2)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Fixed_Sub</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga71e0af8e9b2da0bf1d185ea9887adae5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_qsub</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga85aa8dbf28b31079f57e08b2736ce9c6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_q16sub</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga34bbba01066285569614293ef9e760c3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_q32sub</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gadf280a9bb5249235beef960ef862faa6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_q64sub</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga2a545c24b3c24e9cee8d05cfc3b09ce4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_q128sub</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gad65df0ecd627ff9034c5328965e5ab38</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type>t_q16</type>
-      <name>Q16_Mul</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gaaf388c3cf5295320078c79d3c2aae27f</anchor>
-      <arglist>(t_q16 number1, t_q16 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_q32</type>
-      <name>Q32_Mul</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gade1b5ca37c8a49b607142e417d8ed3ea</anchor>
-      <arglist>(t_q32 number1, t_q32 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_q64</type>
-      <name>Q64_Mul</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga64ee5f991ab42ced4f92df73727d00be</anchor>
-      <arglist>(t_q64 number1, t_q64 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_q128</type>
-      <name>Q128_Mul</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga2dc20fb3e032d324e4ffa8786dd5c8ca</anchor>
-      <arglist>(t_q128 number1, t_q128 number2)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Fixed_Mul</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gac18f3d4fba2aaea464b7d5fa91573943</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_qmul</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga7b0a4a737ce2f065870508bcdedc3461</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_q16mul</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gaadf2e632ce14204c2aefcf84c14fb834</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_q32mul</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga89e133a90582dcc3bce2b69f3d68dea9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_q64mul</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga573c9767d825432bf17dc18e3000f672</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_q128mul</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga962b3c688a9af30d98aa444dcc71ee9f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type>t_q16</type>
-      <name>Q16_Div</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga74f28f8b032b0d8a63e3021bf9ae0501</anchor>
-      <arglist>(t_q16 number1, t_q16 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_q32</type>
-      <name>Q32_Div</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga9ff4a1033e53af3d210fa464f7676e1d</anchor>
-      <arglist>(t_q32 number1, t_q32 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_q64</type>
-      <name>Q64_Div</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga5e33c8ba7ab720cd3667f17ec48a8942</anchor>
-      <arglist>(t_q64 number1, t_q64 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_q128</type>
-      <name>Q128_Div</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga76e40e2a61c1005c48e4bde49451f57d</anchor>
-      <arglist>(t_q128 number1, t_q128 number2)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Fixed_Div</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga3adeab33fb00be4d5ac66d7237176acd</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_qdiv</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga378e484f114d4328e5cc54e199aa3dcf</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_q16div</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga602fcb63f0aa4103b022d944cf2ee11c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_q32div</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga99ab8e86e890bf6db81ab91af4d18928</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_q64div</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gab4da3981cb308be80b626c03a7206be8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_q128div</name>
-      <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga76b6376c058f0c33ef77b93153c12d98</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -22268,29 +24967,29 @@
       <type>t_f32</type>
       <name>F32</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga2a002074803bd5dfd20b0e0069e2ba5e</anchor>
-      <arglist>(t_fixed mantissa, t_sint exponent)</arglist>
+      <anchor>ga6c994952098403e567f26cc4c8187107</anchor>
+      <arglist>(t_sint mantissa, t_sint exponent)</arglist>
     </member>
     <member kind="function">
       <type>t_f64</type>
       <name>F64</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaaaea448f295e2fa9b67fc709d148fc6b</anchor>
-      <arglist>(t_fixed mantissa, t_sint exponent)</arglist>
+      <anchor>ga12d63646e027b7f73de2c8a0a17a321d</anchor>
+      <arglist>(t_sint mantissa, t_sint exponent)</arglist>
     </member>
     <member kind="function">
       <type>t_f80</type>
       <name>F80</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga4a859d5bcf801efb75505225b3858b8a</anchor>
-      <arglist>(t_fixed mantissa, t_sint exponent)</arglist>
+      <anchor>ga5b4f4967089d93e1afeddec3db409a5e</anchor>
+      <arglist>(t_sint mantissa, t_sint exponent)</arglist>
     </member>
     <member kind="function">
       <type>t_f128</type>
       <name>F128</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga4eee2b2e6c0350559ee11b115ba6a9a5</anchor>
-      <arglist>(t_fixed mantissa, t_sint exponent)</arglist>
+      <anchor>gae212fb7de6706ec0e83312d030550659</anchor>
+      <arglist>(t_sint mantissa, t_sint exponent)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -22335,283 +25034,80 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>t_f32</type>
-      <name>F32_Add</name>
+      <type>t_sint</type>
+      <name>F32_GetExp</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga4db55ed58c2f48d8a33e217c6d038f0c</anchor>
-      <arglist>(t_f32 number1, t_f32 number2)</arglist>
+      <anchor>gaad09bd1470824dc9e937a7edfa3cc50b</anchor>
+      <arglist>(t_f32 number)</arglist>
     </member>
     <member kind="function">
-      <type>t_f64</type>
-      <name>F64_Add</name>
+      <type>t_sint</type>
+      <name>F64_GetExp</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga5b63c0a387e55fadf3328267d875e28e</anchor>
-      <arglist>(t_f64 number1, t_f64 number2)</arglist>
+      <anchor>ga3922eda0aa006a03b0fe1e7fe0894940</anchor>
+      <arglist>(t_f64 number)</arglist>
     </member>
     <member kind="function">
-      <type>t_f80</type>
-      <name>F80_Add</name>
+      <type>t_sint</type>
+      <name>F80_GetExp</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gab8d706292e1886aa3f69c211b2e8e6a3</anchor>
-      <arglist>(t_f80 number1, t_f80 number2)</arglist>
+      <anchor>ga97d074f586091a219761bfda546e8f86</anchor>
+      <arglist>(t_f80 number)</arglist>
     </member>
     <member kind="function">
-      <type>t_f128</type>
-      <name>F128_Add</name>
+      <type>t_sint</type>
+      <name>F128_GetExp</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaee983aeaff0a41944434c424aac434da</anchor>
-      <arglist>(t_f128 number1, t_f128 number2)</arglist>
+      <anchor>gaba92824d9fe52daca48cf49769933840</anchor>
+      <arglist>(t_f128 number)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Float_Add</name>
+      <name>Float_GetExp</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga903fd149ef75bb4d222f2a94630cd856</anchor>
+      <anchor>gaa6f7507280e7e08789551e244b071b7f</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_fadd</name>
+      <name>c_fgetexp</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga9f698edcab44600cac508228897e5c40</anchor>
+      <anchor>gaa69caaa010b6a6ea9ee131f5ade986b6</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_f32add</name>
+      <name>c_f32getexp</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gabc59aad52ce84ac2014f789b66803bc3</anchor>
+      <anchor>gaf93ff503ad5d58836439b790697115ed</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_f64add</name>
+      <name>c_f64getexp</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaa3ae78e350c2c5f1697fee6727d44204</anchor>
+      <anchor>ga2c9de4bb1af4299f845dddf55e77725e</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_f80add</name>
+      <name>c_f80getexp</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga172b644151a502ec15dbea914e4067bb</anchor>
+      <anchor>gac3b77fabdaef8fdf23617b9ac1846a6a</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_f128add</name>
+      <name>c_f128getexp</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga38672f1597689ebc777156126a95ea8b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type>t_f32</type>
-      <name>F32_Sub</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga2c8221df1738435489b06ed7f9a6adc7</anchor>
-      <arglist>(t_f32 number1, t_f32 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_f64</type>
-      <name>F64_Sub</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gae352e73e93da5165e566df2fdface7bb</anchor>
-      <arglist>(t_f64 number1, t_f64 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_f80</type>
-      <name>F80_Sub</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga15ff0f35c5b40518e87c4fa1379f4df3</anchor>
-      <arglist>(t_f80 number1, t_f80 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_f128</type>
-      <name>F128_Sub</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaa3023a542b7310a79e555063268cb2dd</anchor>
-      <arglist>(t_f128 number1, t_f128 number2)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Float_Sub</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga78da262b20d0a855b2da4744aa70ad75</anchor>
+      <anchor>ga1754c245516022f1ba05d8c51c66d6d2</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_fsub</name>
+      <name>Float_GetExponent</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga367735f1205eeb65ab3c711f3805be6a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_f32sub</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga1abaf90e766006ae71489377edf70d1a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_f64sub</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga1fab699290c669d8ab99907cdff9bb93</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_f80sub</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga076272c7f1a101ecb59c3d31b5e22b66</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_f128sub</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gacf4781e1c7c9374ce4726c2bf11273e2</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type>t_f32</type>
-      <name>F32_Mul</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gad47ffe2be556b539bd3759e5a40d94cd</anchor>
-      <arglist>(t_f32 number1, t_f32 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_f64</type>
-      <name>F64_Mul</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaff34265e224c1588704693d3e46f96c5</anchor>
-      <arglist>(t_f64 number1, t_f64 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_f80</type>
-      <name>F80_Mul</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga3c9c44a56c8e7680c63c8d98b330d0a4</anchor>
-      <arglist>(t_f80 number1, t_f80 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_f128</type>
-      <name>F128_Mul</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga6464a56fcf3069b93fbcd10ddd8c888c</anchor>
-      <arglist>(t_f128 number1, t_f128 number2)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Float_Mul</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga598333a2a278091008992338bd15632e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_fmul</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gac5b433b72804cb1e9b527e5a64850a84</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_f32mul</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaf44deb06193c5f7eed209536f551d520</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_f64mul</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gafbc1eff3ec3056f7dee2ab844907148c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_f80mul</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gad39cf8bca115a32269841c77526d5a3f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_f128mul</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga9554d4f7832a44ec0fc360449b22a914</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type>t_f32</type>
-      <name>F32_Div</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga177febf4db7f3ea0671ec34ba7fcbbe0</anchor>
-      <arglist>(t_f32 number1, t_f32 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_f64</type>
-      <name>F64_Div</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gab897d2e3b9dbc08fa0086eff389eb4ca</anchor>
-      <arglist>(t_f64 number1, t_f64 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_f80</type>
-      <name>F80_Div</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga251b166fefbf70d12566f332eec77359</anchor>
-      <arglist>(t_f80 number1, t_f80 number2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_f128</type>
-      <name>F128_Div</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga7bda2b09160e0c9602bb750f4a3d6892</anchor>
-      <arglist>(t_f128 number1, t_f128 number2)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Float_Div</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga4686efed9f8e016ee649f3b1302d8909</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_fdiv</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga4e5e18b238312e1460531f937498e11c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_f32div</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gac2e4af941b23161b579bc6de969143e3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_f64div</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaa3cac46c3e0c8f5b655aa550c129ed24</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_f80div</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga83d2c8431b67533729dfadebcf90acbe</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_f128div</name>
-      <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaaad4d8677847f3b462dd1b858b75df35</anchor>
+      <anchor>gab287e7a8d0c43e45e06dd6e26086fd28</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -29783,902 +32279,5618 @@
     <filename>group__libccc__sys__regex.html</filename>
   </compound>
   <compound kind="group">
-    <name>libccc_math_math</name>
-    <title>17) libccc/math/math</title>
-    <filename>group__libccc__math__math.html</filename>
-    <file>math.h</file>
-    <member kind="define">
-      <type>#define</type>
-      <name>ABS</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga996f7be338ccb40d1a2a5abc1ad61759</anchor>
-      <arglist>(x)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>SIGN</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga8c5ff70b6b28cd0157c50a22406f92c4</anchor>
-      <arglist>(x)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>MIN</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga74e75242132eaabbc1c512488a135926</anchor>
-      <arglist>(x, y)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>MAX</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gaacc3ee1a7f283f8ef65cea31f4436a95</anchor>
-      <arglist>(x, y)</arglist>
-    </member>
+    <name>libccc_math_constants</name>
+    <title>27) libccc/math/constants</title>
+    <filename>group__libccc__math__constants.html</filename>
+    <file>constants.h</file>
     <member kind="define">
       <type>#define</type>
       <name>QUARTER_PI</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
       <anchor>ga5727947dfa0f901d1415a6e7233bc61b</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>HALF_PI</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
       <anchor>gae3ec3219e4eee3b0992bfd59c2e2bc42</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>DIV_PI_4</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
       <anchor>ga7496d253a45e07baba042c41a5ad2b18</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>DIV_PI_2</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
       <anchor>ga67d18553da9ad796b35f6a2068c089ca</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>PI</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
       <anchor>ga598a3330b3c21701223ee0ca14316eca</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>TAU</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
       <anchor>ga3d8c9c145887af5174ba4cc6789862ad</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>INV_PI</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
       <anchor>gaebad45bfa06a5d66805c5813fbc59f4b</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>INV_TAU</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
       <anchor>ga6749b4f22cea97620a9a04e83534c72e</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>E</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
       <anchor>ga07484107e6d9fdf38b53edf631d6511d</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>LN_2</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
       <anchor>gaa94d5c40b9f567f0bb88c23634f9d106</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>LN_10</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
       <anchor>gada0599f7ce9a633571e3073fc008091a</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>SQRT_2</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
       <anchor>gabc63ab2a8e7782de38a5dbdfc33da717</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>INV_SQRT_2</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
       <anchor>ga00ce1546c572fa40f917142388f0c22a</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>SQRT_3</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
       <anchor>ga4c7cca717941f9eb5c7f90f44ac8746b</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>INV_SQRT_3</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
       <anchor>gaf222396c3647ae6759c49030cf77f32a</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>SQRT_5</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
       <anchor>gab6073a2630d7c65369c70c5f8c03a132</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>INV_SQRT_5</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
       <anchor>ga1203d1632ed7e5e9c4f4ada3142183a1</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_getexp</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga3dd7fee646235409353e99dd5613f7b8</anchor>
+      <name>PHI</name>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
+      <anchor>ga2203853edabc3de5f785e54b55eb5e3c</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_GetExponent</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gaf3d691bed0a5fd80a3aabffb62229637</anchor>
+      <name>CBRT_2</name>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
+      <anchor>ga3489469a334310ae0afa8cebf666b0fb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>CBRT_3</name>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
+      <anchor>gae636b3a8f1888a75dced410e1a5fc0b9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>EGAMMA</name>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
+      <anchor>ga694331d48949e5e45c779dc913666535</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>GGAUSS</name>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
+      <anchor>ga913fd45c3d26c73f7a37c245f25137cd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FEIGENBAUM_DELTA</name>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
+      <anchor>ga2a175aabf9d6f8f8684bb0bece7bc55d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FEIGENBAUM_ALPHA</name>
+      <anchorfile>group__libccc__math__constants.html</anchorfile>
+      <anchor>ga3ead96ace17f17b0a1ff9dd6527b6bea</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="group">
+    <name>libccc_math_float</name>
+    <title>18) libccc/math/float</title>
+    <filename>group__libccc__math__float.html</filename>
+    <file>float.h</file>
+    <member kind="typedef">
+      <type>t_float(*</type>
+      <name>f_float_function</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga70286c1d9b85fe9c109dd54c1d02dc88</anchor>
+      <arglist>)(t_float x)</arglist>
+    </member>
+    <member kind="typedef">
+      <type>t_f32(*</type>
+      <name>f_f32_function</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga2d3c6d1af1abd6108b9927e994d54a7c</anchor>
+      <arglist>)(t_f32 x)</arglist>
+    </member>
+    <member kind="typedef">
+      <type>t_f64(*</type>
+      <name>f_f64_function</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga4ea30b20412621b699b5794f99a5244e</anchor>
+      <arglist>)(t_f64 x)</arglist>
+    </member>
+    <member kind="typedef">
+      <type>t_f80(*</type>
+      <name>f_f80_function</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gacc4d0ef92a9704434f260c2088b65d95</anchor>
+      <arglist>)(t_f80 x)</arglist>
+    </member>
+    <member kind="typedef">
+      <type>t_f128(*</type>
+      <name>f_f128_function</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga20041879ec5edd79a13ef88b3834f88a</anchor>
+      <arglist>)(t_f128 x)</arglist>
+    </member>
+    <member kind="typedef">
+      <type>t_float(*</type>
+      <name>f_float_operator</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaabd1169a0c930b776829621b6c3124ba</anchor>
+      <arglist>)(t_float x, t_float y)</arglist>
+    </member>
+    <member kind="typedef">
+      <type>t_f32(*</type>
+      <name>f_f32_operator</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga2640c08a55a8d80b25f8ca63f0db468e</anchor>
+      <arglist>)(t_f32 x, t_f32 y)</arglist>
+    </member>
+    <member kind="typedef">
+      <type>t_f64(*</type>
+      <name>f_f64_operator</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga357839e7921e2c8ec9f4463b75e706be</anchor>
+      <arglist>)(t_f64 x, t_f64 y)</arglist>
+    </member>
+    <member kind="typedef">
+      <type>t_f80(*</type>
+      <name>f_f80_operator</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gafc06785bb5beee44b13edee240d603f0</anchor>
+      <arglist>)(t_f80 x, t_f80 y)</arglist>
+    </member>
+    <member kind="typedef">
+      <type>t_f128(*</type>
+      <name>f_f128_operator</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga6196c9d3403610c961616d6f675782d6</anchor>
+      <arglist>)(t_f128 x, t_f128 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_Abs</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga3fb1df1908d99799f62e4a50531b6190</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_Abs</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga7bb79a43a4b61d00e965ae396d12feb0</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_Abs</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga85f8bfb2154196ad68d548954a7eb5a4</anchor>
+      <arglist>(t_f80 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_Abs</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga8aa86aa3afcf84845032d607b6f347d4</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Abs</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga90a91ee32a3e92d2cc2ca4b5bbf2827f</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>c_fabs</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
       <anchor>ga27cdad3b8d14861a17c018bf89e2c603</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_AbsoluteValue</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga4a032a711294c646d53ac7f4351331b6</anchor>
+      <name>c_f32abs</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga560cc383b3438e336c1db42c5abfda3b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64abs</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga441ad4ad15fc3fc561e97550deb717ec</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80abs</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga83ba4943c2c7995c66530cdb7ad655da</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128abs</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga0a98cc19bb16738c6398398c4f94871f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_AbsoluteValue</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaf4b6d68e5e551209e5e6252525e407be</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_Round</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga8aa7211372027cb615850b7b98169138</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_Round</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga4fc7e7875e60a3ccaf53d30f50a6670b</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_Round</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaf1a4506bc523759ecd5d54d903dc7fa7</anchor>
+      <arglist>(t_f80 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_Round</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gac1ce511ccd135270b06e274c97a5196d</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Round</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga97a5416abef59033a3d449e74d78d885</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fround</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gabf1e2be53b262d88fe81c8b09a6cb60a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32round</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga3af0eac16c5332a6ac0d7b24dedcdfef</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64round</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gadf7bb25452d8714d01946974bb0f0c84</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80round</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gab84f88555024c8eb7b2697c6a33a0425</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128round</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga8d918b53f85fee3644913caa00ec6302</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_Truncate</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaa5d28eb367d35ead85e998d0f12171ed</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_Truncate</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga531dd23fd566ac625103793ccc2914b9</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_Truncate</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga0bda5f9b350b2a60bb8a478f33d3bcb1</anchor>
+      <arglist>(t_f80 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_Truncate</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga65f52466bc2ff5a7504684c90f3a5564</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Truncate</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gafaa8c98bbc0cc7e309f4a2fc96d5d99d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_ftrunc</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga2bbf3b41c76a8f7b959ec35e5b137dd1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32trunc</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga4471ea727ee4614fe234a70063270cf2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64trunc</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gac0bff257d07c12df9df98d95dec48983</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80trunc</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gab41720fb7dd2dc1830f21c8085cda35e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128trunc</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga13a3865e8332e1cdc8910049573cbe3a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Trunc</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gabae2f9697e4fa865b05f0ef4f70a60c7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_Floor</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga0109aa30b3d7908b31c1d54210ad439b</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_Floor</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gac986b44460cf0693c9df3a072a92a1b7</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_Floor</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gad2baabb51a0460b1d79778a3c9397c90</anchor>
+      <arglist>(t_f80 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_Floor</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga0feaf1c1658a357eefcbb3fa5c4b5309</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Floor</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga8abbcbf4218a125ba6fbfbdb87435df0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_ffloor</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gae5f0e389e13484ba422dce6fe4b07ba1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32floor</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaf39ff3d0a3e5ca5688bdcb3dd021b720</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64floor</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga86861a6895cdac50200b9daf31575ec7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80floor</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga054451c4cc73010679a1fd3838d663fd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128floor</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gab1453ba63ab55c6ed0a6f832c1564da3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_Ceiling</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga0f5bbb6c6ffbf05fc79e807994ec0827</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_Ceiling</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga995e6d6095c6b9ed702d9731a7aa2317</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_Ceiling</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga7208df4c6303a556ab5d5e857c15baca</anchor>
+      <arglist>(t_f80 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_Ceiling</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga25ed16620f39923654e7472e14f70482</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Ceiling</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga0247546fe3390f0d596508807a69fb41</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fceil</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga254ecceb306560c9a44ceb104af7aa9c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32ceil</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga9d8ee7d5f411dc3a48952c1b9546a523</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64ceil</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga95ff4061d0b34fedd14240185f1ffb3a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80ceil</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gabd7f4cdfb4668298fe09a858424f97a8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128ceil</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga410134aef4024c2975e0a7a9a64b14d1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Ceil</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga908b89c3bd6f7d40ad16dc9f4547dd32</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_Add</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga4db55ed58c2f48d8a33e217c6d038f0c</anchor>
+      <arglist>(t_f32 number1, t_f32 number2)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_Add</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga5b63c0a387e55fadf3328267d875e28e</anchor>
+      <arglist>(t_f64 number1, t_f64 number2)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_Add</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gab8d706292e1886aa3f69c211b2e8e6a3</anchor>
+      <arglist>(t_f80 number1, t_f80 number2)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_Add</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaee983aeaff0a41944434c424aac434da</anchor>
+      <arglist>(t_f128 number1, t_f128 number2)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Add</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga903fd149ef75bb4d222f2a94630cd856</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fadd</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga9f698edcab44600cac508228897e5c40</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32add</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gabc59aad52ce84ac2014f789b66803bc3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64add</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaa3ae78e350c2c5f1697fee6727d44204</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80add</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga172b644151a502ec15dbea914e4067bb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128add</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga38672f1597689ebc777156126a95ea8b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_Sub</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga2c8221df1738435489b06ed7f9a6adc7</anchor>
+      <arglist>(t_f32 number1, t_f32 number2)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_Sub</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gae352e73e93da5165e566df2fdface7bb</anchor>
+      <arglist>(t_f64 number1, t_f64 number2)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_Sub</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga15ff0f35c5b40518e87c4fa1379f4df3</anchor>
+      <arglist>(t_f80 number1, t_f80 number2)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_Sub</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaa3023a542b7310a79e555063268cb2dd</anchor>
+      <arglist>(t_f128 number1, t_f128 number2)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Sub</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga78da262b20d0a855b2da4744aa70ad75</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fsub</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga367735f1205eeb65ab3c711f3805be6a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32sub</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga1abaf90e766006ae71489377edf70d1a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64sub</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga1fab699290c669d8ab99907cdff9bb93</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80sub</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga076272c7f1a101ecb59c3d31b5e22b66</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128sub</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gacf4781e1c7c9374ce4726c2bf11273e2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_Mul</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gad47ffe2be556b539bd3759e5a40d94cd</anchor>
+      <arglist>(t_f32 number1, t_f32 number2)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_Mul</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaff34265e224c1588704693d3e46f96c5</anchor>
+      <arglist>(t_f64 number1, t_f64 number2)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_Mul</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga3c9c44a56c8e7680c63c8d98b330d0a4</anchor>
+      <arglist>(t_f80 number1, t_f80 number2)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_Mul</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga6464a56fcf3069b93fbcd10ddd8c888c</anchor>
+      <arglist>(t_f128 number1, t_f128 number2)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Mul</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga598333a2a278091008992338bd15632e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fmul</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gac5b433b72804cb1e9b527e5a64850a84</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32mul</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaf44deb06193c5f7eed209536f551d520</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64mul</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gafbc1eff3ec3056f7dee2ab844907148c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80mul</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gad39cf8bca115a32269841c77526d5a3f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128mul</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga9554d4f7832a44ec0fc360449b22a914</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_Div</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga177febf4db7f3ea0671ec34ba7fcbbe0</anchor>
+      <arglist>(t_f32 number1, t_f32 number2)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_Div</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gab897d2e3b9dbc08fa0086eff389eb4ca</anchor>
+      <arglist>(t_f64 number1, t_f64 number2)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_Div</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga251b166fefbf70d12566f332eec77359</anchor>
+      <arglist>(t_f80 number1, t_f80 number2)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_Div</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga7bda2b09160e0c9602bb750f4a3d6892</anchor>
+      <arglist>(t_f128 number1, t_f128 number2)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Div</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga4686efed9f8e016ee649f3b1302d8909</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fdiv</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga4e5e18b238312e1460531f937498e11c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32div</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gac2e4af941b23161b579bc6de969143e3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64div</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaa3cac46c3e0c8f5b655aa550c129ed24</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80div</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga83d2c8431b67533729dfadebcf90acbe</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128div</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaaad4d8677847f3b462dd1b858b75df35</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_Mod</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gacab7526fee0ded1ce5f142cc5d3c06ac</anchor>
+      <arglist>(t_f32 x, t_f32 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_Mod</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga4746e59dc5fa19731e2cc57b6dbf9ca1</anchor>
+      <arglist>(t_f64 x, t_f64 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_Mod</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga634e6ec06237e646e15069f7f3abc140</anchor>
+      <arglist>(t_f80 x, t_f80 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_Mod</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga1b9a134521f5ebe4960fc0c2702e24fd</anchor>
+      <arglist>(t_f128 x, t_f128 y)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Mod</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga396f240eaf94c8c977c53a64d084213e</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>c_fmod</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
       <anchor>gaa82fd5c1179d831ebf179d668170d507</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_Modulo</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gacf9a3dd280a41b845d336654d894751c</anchor>
+      <name>c_f32mod</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga695c0993291d66875aa9d2ac14083507</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_round</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga7069049667d98c20fe3ecae1e202b695</anchor>
+      <name>c_f64mod</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga3597a1c8794a3b4fda60104ea23b07ac</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_FloatRound</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gacf62ac84f4df969b4b9e0ff7e3738679</anchor>
+      <name>c_f80mod</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga0a071d18d9afa9b25e7d95c00c478c0e</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_trunc</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga23ecdd8d3e74c0769b158d8e66024de9</anchor>
+      <name>c_f128mod</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gafd1183af3d9caf134c555fab7fdade9d</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_FloatTrunc</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga04e36096016b20852684d97019a8f675</anchor>
+      <name>Float_Modulo</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga5936d9c2e6e1096656958080c53d5ee9</anchor>
       <arglist></arglist>
     </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_Pow</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaa216587caee389aa8de055c490f0f7e6</anchor>
+      <arglist>(t_f32 x, t_f32 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_Pow</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga3568542ddf3f0ff0ad9b855b09a592d0</anchor>
+      <arglist>(t_f64 x, t_f64 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_Pow</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga5a3aac4ea09d81ce187dac3a27276257</anchor>
+      <arglist>(t_f80 x, t_f80 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_Pow</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga4a1bdd2352b9ae2848737ef8e468e419</anchor>
+      <arglist>(t_f128 x, t_f128 y)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Pow</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga8270ab6b4a9153293e36d74de34854e4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fpow</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga53fa0a18471c580a640608cbdfc80970</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32pow</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gacb5a60bd6e3bee4826f1a339a2e1f1e8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64pow</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gac0011189594349793c0ead8007bd14a9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80pow</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga6721e56894ac645c0649cefb3ab3de0f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128pow</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga843bfe77078d73a981084ef724d23433</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Power</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gae5c040eb75532682c9f136969ea2be43</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_IntPow</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gacacbeac7b3f8426a9ecebbce4ae5aeb3</anchor>
+      <arglist>(t_f32 x, t_sint n)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_IntPow</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga0db2a04590ff89a6261d987f18b30251</anchor>
+      <arglist>(t_f64 x, t_sint n)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_IntPow</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaf3b3e2e3a7f43e923fa3d7abbe09cb40</anchor>
+      <arglist>(t_f80 x, t_sint n)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_IntPow</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga3057865515b90eb5610cb36ea19c417c</anchor>
+      <arglist>(t_f128 x, t_sint n)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_IntPow</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gae9ba6f0199dc18cdaaf94993f25b6372</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fintpow</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga2c4fec2a8193489e2ce2b695ff4fda31</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32intpow</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga8c7c638748b887e2208db61021837b44</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64intpow</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga5a1e2658f07cf85a76e97250a1f7407e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80intpow</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga14dd0954f461c91cf73ba4fdb4bb92db</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128intpow</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaa563d6c77cf9ea6c29bea202d7defafe</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_IntPower</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gac14ac6c2132c8a6592928b27dd48149a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_Root2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga174617f3807c03fa441ed790ab74e800</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_Root2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga25fd59c768f60429a33724cd6bf51c9f</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_Root2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga4c602f923722a0fc63301672bae85588</anchor>
+      <arglist>(t_f80 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_Root2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gae430ac51bb8cd7a4efd41a96f7328082</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Root2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gab3e8837ff8f21796013d1d594f846289</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fsqrt</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gae059f0cbbe71f1383624babe6951259b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32sqrt</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga23f7d03d689d2f405416b748a509c660</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64sqrt</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga53253cf69b68f6e22e3d7d11a1d07a93</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80sqrt</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga14762496b6f4e41acf90ff08273b70e3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128sqrt</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga4bf00c29296f3ce0357efc1d9f6aee2f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_SqRt</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gab693646de0c40bcf5de5e91bd86e334e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_SquareRoot</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gae63430f668069ac34a7fae8ac6641c6b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_Root3</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga93d158655dc0ddee7ce6d8aa9eb863e7</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_Root3</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga6bbe445b1fbba5cdaabf0970a4d34954</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_Root3</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gafc15bc2f5eedb448ae775dbcb7f3595c</anchor>
+      <arglist>(t_f80 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_Root3</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga963a1f241590ec77526c639e98191d73</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Root3</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga2ea990076d505ab385e0f102b902905d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fcbrt</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga7e33453591eb7e257ac87e8ff68555f2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32cbrt</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaea84f85027c3adc21483547cdafada06</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64cbrt</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga6c38d3a3e5cbeadab96ab467bc7ecea3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80cbrt</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaba34483b26b951cdef8a564e85622167</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128cbrt</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga0dbcdf12c5f5c233459a2baac320cb20</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_CbRt</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gabe76d142d7c4d2f73bfa7edd74f6d120</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_CubeRoot</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga6d77421d96d289742d57741ff7a0e2bc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_RootN</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gad439d3125af424bf50f39a206fc15c2e</anchor>
+      <arglist>(t_f32 x, t_u8 n)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_RootN</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gadd88923496c1a0a5db7ab0e6175c5569</anchor>
+      <arglist>(t_f64 x, t_u8 n)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_RootN</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga7cf3a4bc0876d7b0812d152013896c93</anchor>
+      <arglist>(t_f80 x, t_u8 n)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_RootN</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga55a2c94aac2e8f2073bc89f0cd0a82ca</anchor>
+      <arglist>(t_f128 x, t_u8 n)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_RootN</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gadcd3d81c68c566e7a0432f245222aa48</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fnrt</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gab4e2ae29f183f8b2f3c25c84dc8249c1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32nrt</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gad71faaf4ce6e8dbe731794d9ea8dd50e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64nrt</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga2ea71706b8fe61b55c99bd3c35a9be8a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80nrt</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga31f17a9a37a921beb3d281848808d0a5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128nrt</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaad8c0c5c5c028d86168208234c4fad1a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_NRt</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga8659d7ff68664cf51c94c7e1025aa99a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_NRoot</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaea94976acce9264fbe14e3b46352c3a0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_Exp</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga19c6cfea24b6d5bf1036f3a9b1df7489</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_Exp</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga78e61da69b294f13e8c46b157b61a4f2</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_Exp</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gad86b5adcb6d362ac1e31f003e8c54e5c</anchor>
+      <arglist>(t_f80 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_Exp</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga5217e4a5d97dc95a2aed8e9fa2e11a38</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Exp</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga6193b8fab92b75f92b6c27e6d17c409e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fexp</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga448161a57051b3c01b603180972504d5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32exp</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaf68152de6a08f3efd990dda342099e5d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64exp</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gafa0513ac52ec847c223ce1600c4246ba</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80exp</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga72ad260f98586a3cfe15464f40b8e45b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128exp</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga48c7676caacb75e4f2be41ca7631bb56</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Exponential</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga56aa4b20340ff815e84f2b549b96515a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_Ln</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga80d77771eae07f43f541252e2fe73113</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_Ln</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaf66ca0dba01e745d646751b88289a02c</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_Ln</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaa30cabba57def066befc2d2c223aea1b</anchor>
+      <arglist>(t_f80 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_Ln</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga9adc94844189f779a013accfcbd7f611</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Ln</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga58e0f081c959a440413b82eefed5f144</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fln</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga863c2b7f85ef52cd498a7444dd2c8ae3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32ln</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga18a3f493b9f7f7bab214cab1c24b7f10</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64ln</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga3a1fa1505195975bdcd5ac7f9be42f67</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80ln</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga1668643809c65f2718fee92c80b436a3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128ln</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gabdd050e3816695293cda4ff0826d443c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_NaturalLogarithm</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga1274ee3779b978ed96397446a316c23d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_Log2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga51fe4f524349500d747b03439cbe87fa</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_Log2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gae2cf9b04441968165f52d38f9938aebb</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_Log2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga8606d3542226593a54203b412d829d93</anchor>
+      <arglist>(t_f80 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_Log2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga009227330cae8c65bd9f33af7e9491d7</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Log2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaf87c5454148fb31946c1988faac85a4d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_flg</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga4758642198a01b646b5b98f898c96ce8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32lg</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga10f33941d008b232b63a63f88e85a97f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64lg</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gac76639edefce936c79526ce49cf8610c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80lg</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga5a05554645b3b2108a90983a777b59e1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128lg</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gac25faaf8321b48f5957e4b2d3002b412</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_flog2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaade7cc31cf25201219173430e2b716c6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Logarithm_Base2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaa2d03491e4e0a39596cfb3ec5d341051</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_Log10</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga5eb6355e1dc45ea679ba21568c504f7c</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_Log10</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gabb742c731d7d065c8619e964cbebf899</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_Log10</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga813e4b1ea579577be05de3931051148e</anchor>
+      <arglist>(t_f80 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_Log10</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaae927b50ac99f7dc2ddb65daad43bd1e</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Log10</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaa21f5608fd404cbff3622913a4dd10ec</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_flog</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gab9c01105f8c9544d9b7716fb36f051d9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32log</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga271d878ed7f764202c035682f15d72f9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64log</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga445c7c0ba585d6ff098ccd1815c3ae55</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80log</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaa53108ca576cd2cf8a2c94a2d4dd2a9e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128log</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga5c6a40f19977e926addf726fed520f82</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_flog10</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaa0e13392b04392cda764b46dfc9ad71c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Logarithm_Base10</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaf4c31a7fb768858867f2e271ff83ef64</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_LogN</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gae7d522d2e4befc9ad4bdc9ea843b8a1d</anchor>
+      <arglist>(t_f32 x, t_f32 n)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_LogN</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga9489b8821151893b7c4350165cc9d79f</anchor>
+      <arglist>(t_f64 x, t_f64 n)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_LogN</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gacee189749a19d39bfa76dcad213a0705</anchor>
+      <arglist>(t_f80 x, t_f80 n)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_LogN</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaf0cb11c929136c9b8556898133c6c5c6</anchor>
+      <arglist>(t_f128 x, t_f128 n)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_LogN</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gab55d77866731029861424c59eb363e30</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_flogn</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gad140199be71fa410056d5a15fa3edf3a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32logn</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga94b2a6a6fd448f87cf0d24d99b3cd7d3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64logn</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gae5113ea193c86589deb24dd9aa0b0da5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80logn</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga4b4b7d41e26a161e6ed0e85a4ad7342b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128logn</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga26150c9e8b56a9d41bcd55066725ab88</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Logarithm_BaseN</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga38f2e6f4c69da218042bb94328719fe2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_Cos</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga52d66e760dc2a684eb4fb72d8d2a4074</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_Cos</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga5999ec3f21136e2d109a8ebdf4a2d596</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_Cos</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gac276e1c39aea2b3dbea89f793e8f1b6f</anchor>
+      <arglist>(t_f80 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_Cos</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga635e1a65a11e5a3d4cbeb32dd37e7fb2</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Cos</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga7c5aa29e739fe6c4c1b890cf8c1b8b5f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fcos</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga58ec16b31ebd75d8d004bfd91fe46d30</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32cos</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga69a9afd9029d3a32ad891ab90391dd63</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64cos</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gae85f04eb8586ec0ab1ca27b9c9edd598</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80cos</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga56887325a9b2d08bae395042fdc6319c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128cos</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga89e0dace1091e114233aba298a97545d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Cosine</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga8e1287488570367de7d7808e4802e71b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_Sin</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga4a16b94ea17ba1f23cc2781708265edb</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_Sin</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga65bdbd8f3f952c1b2265be4fd22fddd1</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_Sin</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga2a6e611c5ea5c7ec15b680dc99c34465</anchor>
+      <arglist>(t_f80 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_Sin</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga797a6edff8b282aaf581cae9b688e644</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Sin</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga22de0dbf558340b68c4f1e8b018aaa24</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fsin</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gafdd0b126befb20a62b8840ee2e20066d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32sin</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga3049b77da551f3870e94965e98d4e097</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64sin</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga67d288cfbfa73d2eed2e8a7931019b02</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80sin</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaa377a783e20230f29eba4a314428890a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128sin</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga234a7c6cf2f95b9bb3b1ac4e1ab1fe2c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Sine</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga4183ad40dbfe1d356ff03b0ae4619c87</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_Tan</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gac46568e82efd03f317cbd8a1887a0ee3</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_Tan</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaeed752efe135eeab254cb406d3353c8d</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_Tan</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gafb4af722320796249e94cfc78571c6f9</anchor>
+      <arglist>(t_f80 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_Tan</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga9f0d0138c3618041f387239989717927</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Tan</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga86427f02046ee0fc7e08743d58cddbf8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_ftan</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaeb56ad1b05eef514e742bb422b7f5b20</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32tan</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga8f25754a7ae61abb1c5a66c497ba5954</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64tan</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gad02b2028b1e1686c715898490579ae9b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80tan</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gab72a0274b5d7fea6ee5f72e01a022cb4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128tan</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga6578e70ab0835b93160ce3ae3a921e2c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Tangent</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga592f00b6d26145a6046c10cfe7cee744</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_ArcCos</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaa641b1c4e7cccded3a8a24c159b4b8d8</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_ArcCos</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga375829cec1b41ee29b4d6241e5b0bc25</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_ArcCos</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga5fc8d155a585182fb5277637ece3f591</anchor>
+      <arglist>(t_f80 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_ArcCos</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga9f00e5e80829a04d7cfffdf4f59fd050</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_ArcCos</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga006a3b56d60938a9dfc16e49fe7cc148</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_facos</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga77a3ff7c356d58f59a28ecfd5a47be0f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32acos</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gafe31272a1a2c38f1bed03fe166f0dd69</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64acos</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga1ff90782eca0746de983dbfe464e510d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80acos</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga7fecee2e9b4821381db381f8b1a262d7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128acos</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gac72431b315b7394c2cb088f0fa278753</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Cos_1</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga402bb51a9aeb7b0a56174fb927df6182</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_InvCosine</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga91464c72c3bd4d1462673caf34f8c4f0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_ArcSin</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaa1c0141e4574ef9fbc797125ab9f7804</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_ArcSin</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga3ae4837bd48506614e48e6bc12ced129</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_ArcSin</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga2158e71b138db3b7eb125b9df414c431</anchor>
+      <arglist>(t_f80 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_ArcSin</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga60b28b8fd4b6d5dad4043826822c78e3</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_ArcSin</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gab45febde8db73f7f4d7665d2f3b45295</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fasin</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaaacd94fb3f3df0833d46ef661a3d3422</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32asin</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga274807588471e8288e8948105d8036d7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64asin</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaf492c98995b7ec8b9a32ab540f4190a1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80asin</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga0fcef832ded6003bff3861bec66cd8e2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128asin</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga0e56123bccf7e196a7c119c74e8bf1fe</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_Sin_1</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga176e07f3c12a7abb8dc537087c1444be</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_InvSine</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga540b0026e6701cd5d69c49253e62830b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_ArcTan</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga03e2d298ce22ebf7c4b3fc3a3259c77d</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_ArcTan</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga6f6d39ae3983a2723e722f2c3aa3719b</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_ArcTan</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gabf0e2950b3ea03218c3ab398288365d2</anchor>
+      <arglist>(t_f80 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_ArcTan</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga040bb317c244d2b02b576e7dccbbb8d8</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_ArcTan</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga700aa9065341f8982d64f2968293423a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fatan</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga25c63a4bbe5d45846f45828478dd27db</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_floor</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga48a1266c985cadc24910072812554415</anchor>
+      <name>c_f32atan</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gab3a4d184012d393160004aec6e987a8e</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_FloatFloor</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gae71666b7ba8ee12f50ef19e1191cbc3e</anchor>
+      <name>c_f64atan</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga7c3adf730d31cd690b869e9cc3efd586</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_ceil</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga5e5b23cc171473b3a2f49357f3e544dc</anchor>
+      <name>c_f80atan</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaad40a9dc9f6a6d16d0d556996e9bbbd9</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_FloatCeiling</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gaf50ca0d01d1f1c330f54d6c0ad7271fb</anchor>
+      <name>c_f128atan</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga03130122a0cc8535136762ab26231c21</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_pow</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gac202fbc0dc7178f4559f91c0c138d5af</anchor>
+      <name>Float_Tan_1</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gad005fd0aaa8ac40abe6f5d0383b5b315</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_Power</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga3e97f6779a34afda791afefea59314d0</anchor>
+      <name>Float_InvTangent</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gade88b78532b4a22d2ca53b7a1a5552cd</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_ArcTan2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga8dc0b53a7133003f9842f10db52f9519</anchor>
+      <arglist>(t_f32 y, t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_ArcTan2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga6ae88ba38b8e179ad491b3d44826c434</anchor>
+      <arglist>(t_f64 y, t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_ArcTan2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga0e1c81901fadcfe9ac931532314ba23b</anchor>
+      <arglist>(t_f80 y, t_f80 x)</arglist>
     </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_ArcTan2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaca7bf3809bac20bd5cdbb8204f9498ff</anchor>
+      <arglist>(t_f128 y, t_f128 x)</arglist>
+    </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_pow_n</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga0ab125e133620897eb81105b0f908086</anchor>
+      <name>Float_ArcTan2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga578b5344f0b350927bcc7761bf906719</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_Power_N</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga850056b3a4fcc393db79cb07898a3a56</anchor>
+      <name>c_fatan2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gabacb9f094553b2e7da56cbad17b5193c</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_sqrt</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga2e7d4980398cb3cfa11ef1e9677d5835</anchor>
+      <name>c_f32atan2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gabc7e4f05a54cd29803bd64e0e44c06d7</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_SquareRoot</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gadec5e2dd849f7b7648628ad2cd78319f</anchor>
+      <name>c_f64atan2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga7147ca734ae276a0124093f33586db50</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_cbrt</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gaaa61dbab7fea4ebe148cfae39393d5c2</anchor>
+      <name>c_f80atan2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gae3546b6037a9196494df90a82dc9c418</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_CubicRoot</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gad7843a47fbbc1fd3f6982391295e4f9f</anchor>
+      <name>c_f128atan2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga9894d53066de12a3a79cf215f65b330a</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_nrt</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gaa66df0b1739e3618b0ad393051099ab5</anchor>
+      <name>Float_ArcTan_YoverX</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaa220a4f829e8c2cbe2385c867cdc2229</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_NRoot</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga9cedaf6adc4b66f497b0e9d0fdaa2bc0</anchor>
+      <name>Float_ArcTangent2</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga2a0801a8632d13100f35eadbef2d34b3</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_exp</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga4b58dfa6ac930cca58b4ab013db96001</anchor>
+      <name>Float_ArcTangent_YoverX</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gac98611ac3b9ea7ec22fca6033e018408</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_CosH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga688bf8ee1f93bb7c40e78056b49f01bd</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_CosH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gae68a283ccd5d629200f90195a3cc6571</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_CosH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga57d32202d304e1a043a082080f1bc232</anchor>
+      <arglist>(t_f80 x)</arglist>
     </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_CosH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gae7ad3fb9a187fa50e3fc8732a591fda8</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_Exponential</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga8bdf486f6a50d06ee887b28cf3d35a2f</anchor>
+      <name>Float_CosH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga0776ffe1bb17d9319faeb2274fa9b6b7</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_ln</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gacc74a24ab6f03b00b858d0136c217e53</anchor>
+      <name>c_fcosh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga3a0bdd574d0e9842b8e970de512871e4</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_NaturalLogarithm</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gada0d972aa265570cae4feacfbee53a22</anchor>
+      <name>c_f32cosh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga365574a9ca363651b2752ec2da43961f</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_lg</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga035ebcff0df0ef7c0772cc3ab7e32f0a</anchor>
+      <name>c_f64cosh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga1177d3129af15042ae6c9d7d7a75a9c7</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_Logarithm_Base2</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga9cac4e3384bdb509ab288b53880d50ff</anchor>
+      <name>c_f80cosh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga34936fb1d5ac23c4082b0e712b00f34b</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_log</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga411424ea4d96ee8ced7126b4a0da17fb</anchor>
+      <name>c_f128cosh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga3ba9c72cee407a3edf8c035d742fe5be</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_Logarithm_Base10</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga454b3dabd0ac9b80a3ec89fab42d8d8b</anchor>
+      <name>Float_Cos_H</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga783eced53af8445f84c8cb87acc9b2d6</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_logn</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gadf1883c531d105e5af9446f9808e5a9c</anchor>
+      <name>Float_Cosine_Hyperbolic</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gac2c71a9c9e64c0c89123776970424ca5</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_SinH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gacb5cb41e2491dbfb0344ca57b2ff19f2</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_SinH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga9a0b58ee09092bb98dd5430a37066d78</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_SinH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga287b2c6e6db9a97cc58b33b8f9f2ddeb</anchor>
+      <arglist>(t_f80 x)</arglist>
     </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_SinH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga04948874ab468bae4be98631e6174c3f</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_Logarithm_BaseN</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gadb4ea19911336517ba2d6493bb6fa000</anchor>
+      <name>Float_SinH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaa272688b9d67f9eed45438dc36f7c1ad</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_cos</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga25372d72105ca8cb35fc5a8e3bbbd354</anchor>
+      <name>c_fsinh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaa43600e75c13d2eecc653001ecd8b0f2</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_Cosine</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gac6e6fd72af6736dc1372997364432388</anchor>
+      <name>c_f32sinh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga06e4788fed6c60212a333eaa2966ce0a</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_sin</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga09ee15332598b0dc582c1c5ee19a0f84</anchor>
+      <name>c_f64sinh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaa734143c531b812b9f4bcc84ee7a9bcf</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_Sine</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga490afb0355e5f5f94cf6e10133bfc159</anchor>
+      <name>c_f80sinh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gace9cc952764ad1acf11704d72a152695</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_tan</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga70ba56d882f4b5603fc71cdcaa670d50</anchor>
+      <name>c_f128sinh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga24273e4bdb9822cbbfba328d034ee39e</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_Tangent</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gaafe8c5688b0503a6fe07e7a98c03f7f7</anchor>
+      <name>Float_Sin_H</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gabc4aded5dbb458bd0f7374003dd28c5d</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_acos</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gada99a21379518c97eddcec22431dc5cb</anchor>
+      <name>Float_Sine_Hyperbolic</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga7c1438397d333cae52c1f844ca0dc3f8</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_TanH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga82fba5bf5797ecdfb346d355a210d03f</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_TanH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga269a35d72a379f0d03c636c3a6711530</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_TanH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga0c573744f88b963d3a474fc3b413450e</anchor>
+      <arglist>(t_f80 x)</arglist>
     </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_TanH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga1551a598ec9dd9158048405423713560</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_Cos_1</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga547613518a354228da566940e032648b</anchor>
+      <name>Float_TanH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gabda86ffd694ddda21517a68db97d965f</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_InvCosine</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga64f80667c1928c15cecd891117287827</anchor>
+      <name>c_ftanh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga3d8e5e67e4e0e56a0918a1a7ed74e70d</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_asin</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga63385d77920b179ea4a31d55b35b6e63</anchor>
+      <name>c_f32tanh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gabad946a23027834c5b0178652a1fb40a</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_Sin_1</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga26601f17517dd408682251e40836bc1a</anchor>
+      <name>c_f64tanh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga93e8c04cf806aa79611d5e6fcf79cea3</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_InvSine</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga1b00246866a3b1a3206fe8949c3ce23b</anchor>
+      <name>c_f80tanh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gac8023b8b1ed7008ba8efe78c184f164f</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_atan</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga83d84e2712197f2851c25455587cfe16</anchor>
+      <name>c_f128tanh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga2d9a57827a187a332ef23806446704df</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_Tan_1</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga61c81a26b368abe08cbb91af8bec12c7</anchor>
+      <name>Float_Tan_H</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga886db14283610aeec57da49fe5ad3e62</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_InvTangent</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga0952fbb9b644572886ae369649a84f85</anchor>
+      <name>Float_Tangent_Hyperbolic</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga8b3d46f825a0afbc26333adc9e2938ff</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_InvCosH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga2b14a67d045d65109754183164f328d0</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_InvCosH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga0d3695fe2720692c46227bda782791e5</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_InvCosH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaddd9fb2130493e1f2df311eb5b223ab6</anchor>
+      <arglist>(t_f80 x)</arglist>
     </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_InvCosH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gae6c016552110c124235b0576a9f7d812</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_atan2</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga341bd19c5f1c41938050e9ea62756f24</anchor>
+      <name>Float_InvCosH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga54d6809a57efb9022ade43abd8cb0727</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_ArcTangent2</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga997dadbffad4f30778ad3159c2d8cef7</anchor>
+      <name>c_facosh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga30f77fa226f395d7f68e32d3c7ca8cca</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_ArcTangent_YoverX</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga03760b64ad078661795263b6d74f1ab3</anchor>
+      <name>c_f32acosh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gadb9ddf13053d29883906aa0c1c9a3b98</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_cosh</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga802ec33aec2d3e3acb34b41ca0fcbf07</anchor>
+      <name>c_f64acosh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga71b410c5a6942a3a790a357408ac7ae0</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_Cos_H</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga4d9be51246d0168323fff5c5c99e2bcf</anchor>
+      <name>c_f80acosh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga8f511004a95f2001a1937cf403d02746</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_Cosine_Hyperbolic</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga6bb25605013bcfc6f741575fd2efc230</anchor>
+      <name>c_f128acosh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga547ac948ec0fb32378df51e3aef0b5ae</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_sinh</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga179ab0f7d9cf62fd1d8e722b97cd55fb</anchor>
+      <name>Float_Cos_1_H</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gac4d9d6bccb30c88d3e5e6ef5037b456d</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_Sin_H</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gaf2a96a8558b13c2378b2d75c3516c7ad</anchor>
+      <name>Float_InvCosine_Hyperbolic</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga55b7e944cdbf9d844277895d21cc6feb</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_InvSinH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gade3db7749f964c28ea4f7783ba4b14bf</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_InvSinH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga8d8a3d65c19229bb09880a923837f439</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_InvSinH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaa44f628f8385b6d3a8247aff455aadb6</anchor>
+      <arglist>(t_f80 x)</arglist>
     </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_InvSinH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga221087f52a21b2ba68ad7c081a4bd038</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_Sine_Hyperbolic</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gafac12064625b00665c8b011b73c33c20</anchor>
+      <name>Float_InvSinH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gac4c666cbf0c555b77fe023fcca2ca246</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_tanh</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gaca4f29ed09665f3e6890b0eabebb1e9e</anchor>
+      <name>c_fasinh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga8da4d25d2afce5e7326092e71e55007d</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_Tan_H</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gafdc89ff506313da5ae2fd87ac4bba383</anchor>
+      <name>c_f32asinh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gab3ffb54e79248c65736dd146bb6d45fe</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_Tangent_Hyperbolic</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga24f9ee765e43563b85c6e3cd53dc9037</anchor>
+      <name>c_f64asinh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga7e952a563b4c78568ac04ea2b4e7df36</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_acosh</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gac4c1f7020ad70ad5d6246de94c070e54</anchor>
+      <name>c_f80asinh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaee1eee7226e8b9925e1c09f2f6caa0ca</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_Cos_1_H</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga3e441b3ea273e59922f8943fe107858f</anchor>
+      <name>c_f128asinh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gae2040fb2b8e3a4be50e12f6dfa4b1d62</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_InvCosine_Hyperbolic</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga89b97f9df4b8845d60c4de49a16977f0</anchor>
+      <name>Float_Sin_1_H</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga771f795ffdd20447ff680ee52a866135</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_asinh</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gae5078c1a8d86f2039b678f0ef22edc53</anchor>
+      <name>Float_InvSine_Hyperbolic</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga6f232a0100c9b41378b71087d1557905</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_f32</type>
+      <name>F32_InvTanH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaff6e95ec28ff61608ff37b71e0ffe8c9</anchor>
+      <arglist>(t_f32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f64</type>
+      <name>F64_InvTanH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga39b59cc27a599026db2c57d027b97dd0</anchor>
+      <arglist>(t_f64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_f80</type>
+      <name>F80_InvTanH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaf8f5f294d7455dbba396a687e7b72a0b</anchor>
+      <arglist>(t_f80 x)</arglist>
     </member>
+    <member kind="function">
+      <type>t_f128</type>
+      <name>F128_InvTanH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga39efce9842d7236f7e75a03735e988e5</anchor>
+      <arglist>(t_f128 x)</arglist>
+    </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_Sin_1_H</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gadc0051011f0f69ef4ff505176f60f4c5</anchor>
+      <name>Float_InvTanH</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaae2cee5c685750c1ad530ff079714432</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_InvSine_Hyperbolic</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga5f3e950cfe1f3f95cb405971269411a7</anchor>
+      <name>c_fatanh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaaccd7b5e346ec4e76c7058de4ab01752</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_atanh</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gac6d36d825e197337e9a4d61d65d24502</anchor>
+      <name>c_f32atanh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga48d203435b4921d4674f33b021a33a10</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_Tan_1_H</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga40b0d93f97d2cc552c7a1e48abbadfeb</anchor>
+      <name>c_f64atanh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gacbed43f61e7376e5dcebeda7c98b1e5a</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Math_InvTangent_Hyperbolic</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga20633cb2351a37df10e34dbbfba6d134</anchor>
+      <name>c_f80atanh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga9faf9d1fc9bffdc4c02c4b47eee5ce10</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>MATH_DECL_FUNCTION</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga8520d8c54f36689efd701a344e6844ea</anchor>
-      <arglist>(RETURN, FT_NAME, NAME)</arglist>
+      <name>c_f128atanh</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga5a2b16f313f504028aeb0c5422ee16d0</anchor>
+      <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>MATH_DECL_REALFUNCTION</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gae9623d892f43472b507ceac4a9700602</anchor>
-      <arglist>(FT_NAME, NAME)</arglist>
+      <name>Float_Tan_1_H</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>ga888cf1e09094be1fa060ed654b07fe40</anchor>
+      <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>MATH_DECL_REALOPERATOR</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga4f1c0d39dffe8d042012103670d53fcf</anchor>
-      <arglist>(FT_NAME, NAME)</arglist>
+      <name>Float_InvTangent_Hyperbolic</name>
+      <anchorfile>group__libccc__math__float.html</anchorfile>
+      <anchor>gaf20bb6bcab2f48bf8d0c5a10bb5705d8</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="group">
+    <name>libccc_math_fixed</name>
+    <title>19) libccc/math/fixed</title>
+    <filename>group__libccc__math__fixed.html</filename>
+    <file>fixed.h</file>
+    <member kind="typedef">
+      <type>t_fixed(*</type>
+      <name>f_fixed_function</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gad5fcf5d04739b89733d6eb241d2d5c45</anchor>
+      <arglist>)(t_fixed x)</arglist>
     </member>
     <member kind="typedef">
-      <type>t_float(*</type>
-      <name>f_real_function</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga6a1c1c72d7e04c29a8fb8cfffec274db</anchor>
-      <arglist>)(t_float x)</arglist>
+      <type>t_q16(*</type>
+      <name>f_q16_function</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga28b1ff85b9bd1de8b2e5f3eb7067e782</anchor>
+      <arglist>)(t_q16 x)</arglist>
     </member>
     <member kind="typedef">
-      <type>t_float(*</type>
-      <name>f_real_operator</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga2f2302aece3506156cd71e340ef537e5</anchor>
-      <arglist>)(t_float x, t_float y)</arglist>
+      <type>t_q32(*</type>
+      <name>f_q32_function</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaaa669c35cfa9a96be185d7b3bc45b7d8</anchor>
+      <arglist>)(t_q32 x)</arglist>
+    </member>
+    <member kind="typedef">
+      <type>t_q64(*</type>
+      <name>f_q64_function</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga17d70e35d1268fa27eecab6d61f0fd0a</anchor>
+      <arglist>)(t_q64 x)</arglist>
+    </member>
+    <member kind="typedef">
+      <type>t_q128(*</type>
+      <name>f_q128_function</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaaa33b095554d348495dce8803f355509</anchor>
+      <arglist>)(t_q128 x)</arglist>
+    </member>
+    <member kind="typedef">
+      <type>t_fixed(*</type>
+      <name>f_fixed_operator</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gace5dbd8d46ee6900623ae95d7b9fe29c</anchor>
+      <arglist>)(t_fixed x, t_fixed y)</arglist>
+    </member>
+    <member kind="typedef">
+      <type>t_q16(*</type>
+      <name>f_q16_operator</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gae2968c626d8a9de582ecfa3f5c417f5b</anchor>
+      <arglist>)(t_q16 x, t_q16 y)</arglist>
+    </member>
+    <member kind="typedef">
+      <type>t_q32(*</type>
+      <name>f_q32_operator</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaf5a49a30d6c626d7c2733faa7978e1d6</anchor>
+      <arglist>)(t_q32 x, t_q32 y)</arglist>
+    </member>
+    <member kind="typedef">
+      <type>t_q64(*</type>
+      <name>f_q64_operator</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gacf8ed41d285564e33b7df7544301b965</anchor>
+      <arglist>)(t_q64 x, t_q64 y)</arglist>
+    </member>
+    <member kind="typedef">
+      <type>t_q128(*</type>
+      <name>f_q128_operator</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gae965a375793716f54dd41da79ac35ed8</anchor>
+      <arglist>)(t_q128 x, t_q128 y)</arglist>
     </member>
     <member kind="function">
-      <type>t_s32</type>
-      <name>Math_GetExp</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gae5eacb578719be6773cc9750d6925261</anchor>
-      <arglist>(t_float x)</arglist>
+      <type>t_q16</type>
+      <name>Q16_Abs</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gac4bbc42b61b8ba4126e0e3f29806bb67</anchor>
+      <arglist>(t_q16 x)</arglist>
     </member>
     <member kind="function">
-      <type>t_float</type>
-      <name>Math_Abs</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga6849f55326fba7247ff8d44740edd839</anchor>
-      <arglist>(t_float x)</arglist>
+      <type>t_q32</type>
+      <name>Q32_Abs</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga496f26358edbeaae3760117c91edb14e</anchor>
+      <arglist>(t_q32 x)</arglist>
     </member>
     <member kind="function">
-      <type>t_float</type>
-      <name>Math_Mod</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gafb8cccaf5603c411998cae1fb3df859a</anchor>
-      <arglist>(t_float x, t_float y)</arglist>
+      <type>t_q64</type>
+      <name>Q64_Abs</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gade863c28d87d00b5df655770734dc63a</anchor>
+      <arglist>(t_q64 x)</arglist>
     </member>
     <member kind="function">
-      <type>t_float</type>
-      <name>Math_Round</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gaf299020ca43959c8e56ce705ab64bc1c</anchor>
-      <arglist>(t_float x)</arglist>
+      <type>t_q128</type>
+      <name>Q128_Abs</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaec8a24cf50d230452c704f4e74509d2e</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Abs</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga3133b11350ad334c2a3b7106eddb716f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qabs</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga17d2ec6074e8e78b4a99e34700e68f83</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16abs</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gac9979db258e20117ffa5891ea9efb963</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32abs</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga1d6e8115c647c9b0366a522121b492d8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64abs</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gab2eb0c856e7f73a8acfb12368a650194</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128abs</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga9d10768ab0dbee0faefe6292fa5f5c1a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_AbsoluteValue</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gac91669a5910d912bcf785245491bf7b3</anchor>
+      <arglist></arglist>
     </member>
     <member kind="function">
-      <type>t_float</type>
-      <name>Math_Truncate</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga14569e04240e2969d5c164501f5827aa</anchor>
-      <arglist>(t_float x)</arglist>
+      <type>t_q16</type>
+      <name>Q16_Round</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga1d31fe96361729ae3903175824e5144e</anchor>
+      <arglist>(t_q16 x)</arglist>
     </member>
     <member kind="function">
-      <type>t_float</type>
-      <name>Math_Floor</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga92ac468e2409d197b83aede9a47059c0</anchor>
-      <arglist>(t_float x)</arglist>
+      <type>t_q32</type>
+      <name>Q32_Round</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga8f244b7a2086af1f4a3e618b8ad7e7ed</anchor>
+      <arglist>(t_q32 x)</arglist>
     </member>
     <member kind="function">
-      <type>t_float</type>
-      <name>Math_Ceiling</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga69f406608656dd634b628facf298929d</anchor>
-      <arglist>(t_float x)</arglist>
+      <type>t_q64</type>
+      <name>Q64_Round</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gad2454904aca13409238d872391fcc8b0</anchor>
+      <arglist>(t_q64 x)</arglist>
     </member>
     <member kind="function">
-      <type>t_float</type>
-      <name>Math_Pow</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga2af3f43a1cee27c2ef679e6f61561c26</anchor>
-      <arglist>(t_float x, t_float y)</arglist>
+      <type>t_q128</type>
+      <name>Q128_Round</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaee969a2002febaaff42166192f9fe082</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Round</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gae9af8b66e99e422cc041b07ce5bfb985</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qround</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga8ab4df8a98e4abf8415b12d1adddebbf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16round</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gac9041481a5a34b2f6b0eed5ab1b1d14d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32round</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga6ec81be1a9c1bcf983e541ae4511ebf9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64round</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gad1864f4defacd6163f25954aa4c1b2e7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128round</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaf693e6994737e07048d292266e14478e</anchor>
+      <arglist></arglist>
     </member>
     <member kind="function">
-      <type>t_float</type>
-      <name>Math_Pow_N</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga364c309b7388e37c6e3e0eb313a17316</anchor>
-      <arglist>(t_float x, t_sint n)</arglist>
+      <type>t_q16</type>
+      <name>Q16_Truncate</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga77c1ebec7a6f358933374fd7fdba6257</anchor>
+      <arglist>(t_q16 x)</arglist>
     </member>
     <member kind="function">
-      <type>t_float</type>
-      <name>Math_SqRt</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gae6e1741db56c4fc823cb58665d26676b</anchor>
-      <arglist>(t_float x)</arglist>
+      <type>t_q32</type>
+      <name>Q32_Truncate</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaa21c7672a8510a6f4fb15480bb52ab89</anchor>
+      <arglist>(t_q32 x)</arglist>
     </member>
     <member kind="function">
-      <type>t_float</type>
-      <name>Math_CbRt</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga5fbdf5e5691799f2a971fe2b288d8b9d</anchor>
-      <arglist>(t_float x)</arglist>
+      <type>t_q64</type>
+      <name>Q64_Truncate</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaa48d62ea54002d3316d6eb6e33dc5213</anchor>
+      <arglist>(t_q64 x)</arglist>
     </member>
     <member kind="function">
-      <type>t_float</type>
-      <name>Math_NRt</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gac9af44b10c91507b64cb675d0426583e</anchor>
-      <arglist>(t_float x, t_u8 n)</arglist>
+      <type>t_q128</type>
+      <name>Q128_Truncate</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gace6d216e331e19fefb3cbc27292f0192</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Truncate</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga283850039562e6b07355abf6e3da646c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qtrunc</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gafdf20ed5a3ab52bbc6184cd2cc15f8aa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16trunc</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaa698d34f03c04b3917f22f10bdccb914</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32trunc</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga74ee1fe8167ad4bdc6eccd9a1ad398e2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64trunc</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaa1d2c468ef259f94f996ed8cc8aa81ea</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128trunc</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaa52e838ed3fa019777622e98ea731b9f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Trunc</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaf2ae6064932d46f5757b9f1882d6381c</anchor>
+      <arglist></arglist>
     </member>
     <member kind="function">
-      <type>t_float</type>
-      <name>Math_Exp</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga5f644028eb285aadc2fe60f7ff8d2f8d</anchor>
-      <arglist>(t_float x)</arglist>
+      <type>t_q16</type>
+      <name>Q16_Floor</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga6ef20af7e4cbbd6b19e4c0926ec8a921</anchor>
+      <arglist>(t_q16 x)</arglist>
     </member>
     <member kind="function">
-      <type>t_float</type>
-      <name>Math_Ln</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga150d9d1dd6f69d6271026d753f8f8f4e</anchor>
-      <arglist>(t_float x)</arglist>
+      <type>t_q32</type>
+      <name>Q32_Floor</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga9302d7f74ad8ea02052ee356a887b0dd</anchor>
+      <arglist>(t_q32 x)</arglist>
     </member>
     <member kind="function">
-      <type>t_float</type>
-      <name>Math_Log_2</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga19cfc384072ede77b3da4ab7810a8516</anchor>
-      <arglist>(t_float x)</arglist>
+      <type>t_q64</type>
+      <name>Q64_Floor</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gac3aaa02600ac3d8f3eb0259ec818c637</anchor>
+      <arglist>(t_q64 x)</arglist>
     </member>
     <member kind="function">
-      <type>t_float</type>
-      <name>Math_Log_10</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gad5b8d22d1fcb3581aa034df3e8f3c959</anchor>
-      <arglist>(t_float x)</arglist>
+      <type>t_q128</type>
+      <name>Q128_Floor</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga90721b234c0065a971bab5b1f13fe904</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Floor</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga4f65a426bc5daf62fb05ddc80f296f98</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qfloor</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga2b125997523a606855e9b161bc955ed8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16floor</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga808513a4d2f708219d657413f4e9ef7b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32floor</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga8b06bed117aad6a8d00bd9a3b55c5580</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64floor</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga7a7d657fd71ec1816d0479ae853b3a94</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128floor</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaa5e00106d3fdaa1acfdd6d1dac205002</anchor>
+      <arglist></arglist>
     </member>
     <member kind="function">
-      <type>t_float</type>
-      <name>Math_Log_N</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gafe675bc664506171241b2636e130095c</anchor>
-      <arglist>(t_float x, t_float n)</arglist>
+      <type>t_q16</type>
+      <name>Q16_Ceiling</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga791d89b9782a2b3a35bcda0f6eff8277</anchor>
+      <arglist>(t_q16 x)</arglist>
     </member>
     <member kind="function">
-      <type>t_float</type>
-      <name>Math_Cos</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga35a9a8c1d2105721e659954c9985b522</anchor>
-      <arglist>(t_float x)</arglist>
+      <type>t_q32</type>
+      <name>Q32_Ceiling</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gac36763cd001920ecfb330399b7f695fa</anchor>
+      <arglist>(t_q32 x)</arglist>
     </member>
     <member kind="function">
-      <type>t_float</type>
-      <name>Math_Sin</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga374557fc6f5ad971a00f89a75947b974</anchor>
-      <arglist>(t_float x)</arglist>
+      <type>t_q64</type>
+      <name>Q64_Ceiling</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga2db49e117eca74d2f457ec7fc10df478</anchor>
+      <arglist>(t_q64 x)</arglist>
     </member>
     <member kind="function">
-      <type>t_float</type>
-      <name>Math_Tan</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gad26fc90f407953768180a787b3eb56fd</anchor>
-      <arglist>(t_float x)</arglist>
+      <type>t_q128</type>
+      <name>Q128_Ceiling</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga51785459619a340e269a14ae9aaa729d</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Ceiling</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga8f97db60b4a24e65887b47de984de4ce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qceil</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaa112740d83979d91a5e40ebace1d638c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16ceil</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gab59dba623a2e5fe56d1cefd27674f44b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32ceil</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaa951c5561f0b0efffdefaf1260beddc9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64ceil</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gafc308272b7473f4127a94d1d45eab94e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128ceil</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga7f89c318da53f4ef6431cca39c614a96</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Ceil</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaada9b72cf44baeea7f6c0b1126b912a8</anchor>
+      <arglist></arglist>
     </member>
     <member kind="function">
-      <type>t_float</type>
-      <name>Math_ArcCos</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga1798db233ac6a4c63bc34777a420b3b6</anchor>
-      <arglist>(t_float x)</arglist>
+      <type>t_q16</type>
+      <name>Q16_Add</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gad69a46d5ec078865880064774a6acc11</anchor>
+      <arglist>(t_q16 x, t_q16 y)</arglist>
     </member>
     <member kind="function">
-      <type>t_float</type>
-      <name>Math_ArcSin</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga79728adbaa51ec69134a0ffbb79aa19b</anchor>
-      <arglist>(t_float x)</arglist>
+      <type>t_q32</type>
+      <name>Q32_Add</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga9cfc024051660ff900b8a6d0d42bf6a7</anchor>
+      <arglist>(t_q32 x, t_q32 y)</arglist>
     </member>
     <member kind="function">
-      <type>t_float</type>
-      <name>Math_ArcTan</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga9fbf810e5487af79138b200d9c574cbc</anchor>
-      <arglist>(t_float x)</arglist>
+      <type>t_q64</type>
+      <name>Q64_Add</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga47f33108b4be07bcf0a724dc2375a788</anchor>
+      <arglist>(t_q64 x, t_q64 y)</arglist>
     </member>
     <member kind="function">
-      <type>t_float</type>
-      <name>Math_ArcTan2</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga36a9e222dac5206f0071e287bb2b23d6</anchor>
-      <arglist>(t_float y, t_float x)</arglist>
+      <type>t_q128</type>
+      <name>Q128_Add</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga80373f63299967d5820f0916a5e6dc45</anchor>
+      <arglist>(t_q128 x, t_q128 y)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Add</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaf91e9bc04cf76d7b06dfcac94d88cc3d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qadd</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga118bf22126c0585b9d237fa71bedb394</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16add</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga531daf5e62b9ec1ced9167dcd325f57d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32add</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga794dcd6b702020c3b60a9acf8327ea0c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64add</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaf1e1edad543344ce075c3d5ecd4f14d0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128add</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gab9925b5993af96f291a37c0a09aed9ef</anchor>
+      <arglist></arglist>
     </member>
     <member kind="function">
-      <type>t_float</type>
-      <name>Math_CosH</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga34c125ad9d031d8db4eaf45518cee27e</anchor>
-      <arglist>(t_float x)</arglist>
+      <type>t_q16</type>
+      <name>Q16_Sub</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gad92c58fd2bb1c2b0b58c52892dc3639a</anchor>
+      <arglist>(t_q16 x, t_q16 y)</arglist>
     </member>
     <member kind="function">
-      <type>t_float</type>
-      <name>Math_SinH</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga93a557fe9ea7c032bc558c5df758bb21</anchor>
-      <arglist>(t_float x)</arglist>
+      <type>t_q32</type>
+      <name>Q32_Sub</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga6b69bfef9048f32fbb75c9b90eaa537f</anchor>
+      <arglist>(t_q32 x, t_q32 y)</arglist>
     </member>
     <member kind="function">
-      <type>t_float</type>
-      <name>Math_TanH</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>gabfdd9c435fc706600b1444155a03927c</anchor>
-      <arglist>(t_float x)</arglist>
+      <type>t_q64</type>
+      <name>Q64_Sub</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga206912adfb17d2aea835cdca1aa2b638</anchor>
+      <arglist>(t_q64 x, t_q64 y)</arglist>
     </member>
     <member kind="function">
-      <type>t_float</type>
-      <name>Math_InvCosH</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga3d42394c83243a476441eb43e0c6bab7</anchor>
-      <arglist>(t_float x)</arglist>
+      <type>t_q128</type>
+      <name>Q128_Sub</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gacc8a1b147f92216b6efb1436c3325b48</anchor>
+      <arglist>(t_q128 x, t_q128 y)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Sub</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga71e0af8e9b2da0bf1d185ea9887adae5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qsub</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga85aa8dbf28b31079f57e08b2736ce9c6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16sub</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga34bbba01066285569614293ef9e760c3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32sub</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gadf280a9bb5249235beef960ef862faa6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64sub</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga2a545c24b3c24e9cee8d05cfc3b09ce4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128sub</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gad65df0ecd627ff9034c5328965e5ab38</anchor>
+      <arglist></arglist>
     </member>
     <member kind="function">
-      <type>t_float</type>
-      <name>Math_InvSinH</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga861ab975384f10e7e0cc88256067e085</anchor>
-      <arglist>(t_float x)</arglist>
+      <type>t_q16</type>
+      <name>Q16_Mul</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga2c7451b65c248312245729145851da7f</anchor>
+      <arglist>(t_q16 x, t_q16 y)</arglist>
     </member>
     <member kind="function">
-      <type>t_float</type>
-      <name>Math_InvTanH</name>
-      <anchorfile>group__libccc__math__math.html</anchorfile>
-      <anchor>ga2619fd3ee9850b0d7b671f8f6bd527df</anchor>
-      <arglist>(t_float x)</arglist>
+      <type>t_q32</type>
+      <name>Q32_Mul</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga0d01374ce5e5093091fe4b9e5f905391</anchor>
+      <arglist>(t_q32 x, t_q32 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_Mul</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gae4f13cf52ad8d7ffb177d48ade35ca59</anchor>
+      <arglist>(t_q64 x, t_q64 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_Mul</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga660fc38a09b2cc2a8f41a40fdc3af09c</anchor>
+      <arglist>(t_q128 x, t_q128 y)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Mul</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gac18f3d4fba2aaea464b7d5fa91573943</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qmul</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga7b0a4a737ce2f065870508bcdedc3461</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16mul</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaadf2e632ce14204c2aefcf84c14fb834</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32mul</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga89e133a90582dcc3bce2b69f3d68dea9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64mul</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga573c9767d825432bf17dc18e3000f672</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128mul</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga962b3c688a9af30d98aa444dcc71ee9f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_Div</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga36a4a4664d532481d32396827c70fd85</anchor>
+      <arglist>(t_q16 x, t_q16 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_Div</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gab307d01adb7ad63878426b6583e2d853</anchor>
+      <arglist>(t_q32 x, t_q32 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_Div</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga361021fe1bbdeb279e21c8e7bbb264db</anchor>
+      <arglist>(t_q64 x, t_q64 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_Div</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gae1bfe50ce8e71d7032ef55d25b53c001</anchor>
+      <arglist>(t_q128 x, t_q128 y)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Div</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga3adeab33fb00be4d5ac66d7237176acd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qdiv</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga378e484f114d4328e5cc54e199aa3dcf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16div</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga602fcb63f0aa4103b022d944cf2ee11c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32div</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga99ab8e86e890bf6db81ab91af4d18928</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64div</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gab4da3981cb308be80b626c03a7206be8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128div</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga76b6376c058f0c33ef77b93153c12d98</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_Mod</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gae22a0b85754f99cab8b664e3f0616d23</anchor>
+      <arglist>(t_q16 x, t_q16 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_Mod</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga23ee032d60cb768626b206dad069acd6</anchor>
+      <arglist>(t_q32 x, t_q32 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_Mod</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga31715e548585ded0fb5aef3117331ea8</anchor>
+      <arglist>(t_q64 x, t_q64 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_Mod</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga86ce61f4e3bdd7a6626caf209c4c298f</anchor>
+      <arglist>(t_q128 x, t_q128 y)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Mod</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga796f9081e318a296080e651ce2b9cecd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qmod</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga58f92b542c6cbc83c2629d8b8af5c6f7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16mod</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga19c61a402758e3c00c4c5bc5df1cc889</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32mod</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga8cd537f4a5a0414b6d666ae37c752e58</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64mod</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gafcb623b4dd5c81fc88e3037ddd5da017</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128mod</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gab921025b56bec1c3b5c5da0039ac7a65</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Modulo</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga21ac9d76a2e9f5acfe12c1f9b628fe2e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_Pow</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gafdff80e9784c09fff2c8e38959d99a40</anchor>
+      <arglist>(t_q16 x, t_q16 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_Pow</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga14923c704cf830ff67110d0703ba092f</anchor>
+      <arglist>(t_q32 x, t_q32 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_Pow</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga33048c8461ea2d7a9c84ad74e15fc35d</anchor>
+      <arglist>(t_q64 x, t_q64 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_Pow</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaf2923291cc9b31203df0a1792928e851</anchor>
+      <arglist>(t_q128 x, t_q128 y)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Pow</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga8d314bf556b3243c3446ef3209137ead</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qpow</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga54e6bbef529e3877ff8b5cd9ec6324f6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16pow</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaa4afedbe5da85cdb73fe5a6325409a63</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32pow</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaa6b19ca9d495bc7ce33c8c44dc203798</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64pow</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gacc82d80801202a95ad3c636c7ed407f7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128pow</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga4e26b43858fda53b59a5876c9350e03a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Power</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga6881a754fcf215198710962107a4e48f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_IntPow</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga10851c3a6275b09bb02bbbd943ec801f</anchor>
+      <arglist>(t_q16 x, t_sint n)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_IntPow</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaa90284a34baa3e91bae3c60f4a312818</anchor>
+      <arglist>(t_q32 x, t_sint n)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_IntPow</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga48e9f4766ed4c3043b2896dc07f7d6ce</anchor>
+      <arglist>(t_q64 x, t_sint n)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_IntPow</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga88fcc2684a5c2b5e6605fda52f6bf994</anchor>
+      <arglist>(t_q128 x, t_sint n)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_IntPow</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga4fcb782a8a7bc6f4a66fc28afbd3bc26</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qintpow</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga6d3d997f6b33d5f9948c64325ce71945</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16intpow</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gac833d39e14ff007ea6d7b4bb836accce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32intpow</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaf9910f9691bdef0173aa6b6cd0b6da00</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64intpow</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga706dfc222e37b77c4580c6a8b0d891f7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128intpow</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gab374f7e9e5c54c8e5b59bf6e58fa8ebf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_IntPower</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga51c5aa04a78285db968530bee7bac348</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_Root2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga191cc383a60dd74bd3eab19bc050dcc7</anchor>
+      <arglist>(t_q16 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_Root2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga2b0c237533f8a7b2265f176d56fb3d47</anchor>
+      <arglist>(t_q32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_Root2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gab0f796d33e352b4e95cbff6532f9f5b5</anchor>
+      <arglist>(t_q64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_Root2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gafcca824e7804fedee2e16c6fed49e281</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Root2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gacb5ba8188b9f1dd8bd2dbac5f4f95197</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qsqrt</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga88f883582d992171a5527f37554929fa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16sqrt</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gae8779e1539504c5b1268d51e5b2078f8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32sqrt</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaad77cab746a4f041aa417b955921b633</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64sqrt</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga0d3250367588c6e0d651366cd80c5947</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128sqrt</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga99fb6ad3d1f63b4a9b58610d5b443b7f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_SqRt</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaba0234879c5127183518c8f6910a96c5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_SquareRoot</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga299cf61d074a2ecf5bdcc1f250c8267a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_Root3</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga2b03a4344dba27611e50e43cf84238a1</anchor>
+      <arglist>(t_q16 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_Root3</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga4a84e82c1674a897cad993c60795f02b</anchor>
+      <arglist>(t_q32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_Root3</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga55e77ca12b6aac8907f77feaa9523582</anchor>
+      <arglist>(t_q64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_Root3</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga0a08e96e41422c1e22cc49f6951429c6</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Root3</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga6bd962f1264ccae3b5ea8ffde6c7241d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qcbrt</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga4eb25f7d6394d910f6e8a95b7d5da37c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16cbrt</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga5ab0133e00fed78f2e4235850a3e5016</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32cbrt</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gac4a22d42e3c8a76e2c9aafc0b3918882</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64cbrt</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga51e5a98a759415bfb028644f1736df83</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128cbrt</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga17b12486d159ce6e0f9a27fb05eae9da</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_CbRt</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga7254caaf76276a11eba6dd9a9517c872</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_CubeRoot</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga589f2fe7341305dcafd1b99ed7aa557c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_RootN</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga2abc7d09d634c5f03e90948f57f7bcf5</anchor>
+      <arglist>(t_q16 x, t_u8 n)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_RootN</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga87bf55cdda901b679409c2c908355d47</anchor>
+      <arglist>(t_q32 x, t_u8 n)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_RootN</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga7f901c277904ac3a04d3ccb6e1e66f3a</anchor>
+      <arglist>(t_q64 x, t_u8 n)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_RootN</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga63c660971c65c54894cc196a90d3e823</anchor>
+      <arglist>(t_q128 x, t_u8 n)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_RootN</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga578664972bd66230ed69659f07a71d5f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qnrt</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gacb0ec32233c29956029e99a4e37fb4de</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16nrt</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaf99efe3cc0a4cfcbc79045599a7ca738</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32nrt</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga1adafd90592c9f5e6e20e51ae56d50d5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64nrt</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga63bfb6b20463125392dc56b148a55155</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128nrt</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaf692cb5278e47363bb3b4543192f2b6b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_NRt</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga41941b85f75391614e71a950686b7b11</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_NRoot</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga1179679516ba73f0befdbd31f6af8c7b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_Exp</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga6311afb70abff9014871b4bee7ce0741</anchor>
+      <arglist>(t_q16 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_Exp</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaf3e0e97cc0338a0f2c4a22e8367f51d4</anchor>
+      <arglist>(t_q32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_Exp</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga4c695c5284e57fc13f776177bb1f920e</anchor>
+      <arglist>(t_q64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_Exp</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaedb663169c6d622338a2b072eb427d86</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Exp</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga41458312f16741b24296f6845984231e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qexp</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga62dea25986eba5086c299320651a883c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16exp</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaa02d9ad96d475cac98390e1c83d710a3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32exp</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaa634113450012da88a5e51cf045408b5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64exp</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga8bf9a82dcb0a63ca94cef6ccadf4a08f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128exp</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaefa9ba3cf07c9237afb7482b9f2f9944</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Exponential</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga2e1f8a4bc5fb2a528041dc7414ee7a1b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_Ln</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gae4f9b1be6295026e44b14032aa28b6f0</anchor>
+      <arglist>(t_q16 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_Ln</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga15d09e2a8ea7ca3a132168507af2a056</anchor>
+      <arglist>(t_q32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_Ln</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga6084bf0db2ef7f3bf85b8b7a84d60a43</anchor>
+      <arglist>(t_q64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_Ln</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gae85661b48995df00a2113183809bea7f</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Ln</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga6da2aac8a3f4ab5e0e885f12a6ab1b3b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qln</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gada69d9fc1f1887dca52034b676da2210</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16ln</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga13b825357789ae440dcc4bd7f956b257</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32ln</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga87fb9cf732478ca04dc5ec01cdbe8a13</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64ln</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gabfa49d653d16690a8205cfe9c007eb54</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128ln</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gab3268221b355973af291d020c0509c2d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_NaturalLogarithm</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga747f288bbcfac4073a9bb69257bbbb16</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_Log2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga510d2ae9ade1eafbe0514b5d527244ed</anchor>
+      <arglist>(t_q16 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_Log2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga131b8dd2393906a534267802edf44c0c</anchor>
+      <arglist>(t_q32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_Log2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga76b4f803e90ab247eae34e58ba1a8419</anchor>
+      <arglist>(t_q64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_Log2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga8c5acf471543569c5c23d46009ef998a</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Log2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga62744bc0dcb4175f591f77a1e6ee45cd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qlg</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga0222b3edacae34bc9f87ee7e1652372f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16lg</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaca0f5702f2a2eb54db65cffef1bdeb5c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32lg</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga01dc5c5a0f242fc39ae3e0cf9cbd49bb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64lg</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaecdf4e9e4c28db6b1dde1218d51b1e13</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128lg</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga7a190fbd053d3ab2a4fe661f54496a40</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qlog2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga2075b19881b802046d9ed6a682e2d798</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16log2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga98b8baa84ca8daa91a07a4cdeab54c94</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32log2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga9dbc9512712761603a7b55ddfff4ce5c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64log2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaf4d339e46254913171161b65bfc22359</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128log2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga027f66cb1a75b8f8fa1063223154fd97</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Logarithm_Base2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga6e9bb491b01f87d2843f3103ef53e87c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_Log10</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga6e99feb5c3b70eeab273a8e16ff7d86f</anchor>
+      <arglist>(t_q16 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_Log10</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gab618d6133d5065162492380b80fd48e5</anchor>
+      <arglist>(t_q32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_Log10</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga333a22e620898da4f2eba50a7bf35e92</anchor>
+      <arglist>(t_q64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_Log10</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga098e7b1203463870dae549d107701c26</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Log10</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaa7fcc9f049cf0f9640ee09b9291417f0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qlog</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gae7bdc31fa0a8b23428b1552f275aa2af</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16log</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga798de74b4972ba9b90a35091637a95ee</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32log</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga047bd7e1dde1571387060521f051375d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64log</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga3c1834b616aa82c7faeb2bae4417045c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128log</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaefde554da9c52cdbcbc2df132801a765</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qlog10</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gac136515a0e401a8a6d29e38049b41c5e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16log10</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gae44f0b236492047a751f883f96a8f23f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32log10</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gade28f29b7a71d428c52f81b1456243bf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64log10</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga00ed6f73f49c89198acc82eb4270fa48</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128log10</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga8e5226448ebf10fb84471aec414e8e2b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Logarithm_Base10</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gac53b8045a19657c5ff4d9a36679567f5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_LogN</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gac83b9dd2a95ee164499f4161b42a6a06</anchor>
+      <arglist>(t_q16 x, t_q16 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_LogN</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gacebfa4af93caa4aadfb7fdf3c365637c</anchor>
+      <arglist>(t_q32 x, t_q32 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_LogN</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gadaedeb41efdea0d7be8c0ab756b54cfb</anchor>
+      <arglist>(t_q64 x, t_q64 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_LogN</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gac7eb7a2d27e36a3dda6ba7ecdaed77b9</anchor>
+      <arglist>(t_q128 x, t_q128 y)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_LogN</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga7d2cd6eaa244bc43fa9464f1897e3b09</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qlogn</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga7d3a2fab6fc38b43f1663d04e4486064</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16logn</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaf786619d4bea1ff2e2f78fb6833e5f5d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32logn</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gab92648a92fe72777c2851cb51cb4b508</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64logn</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga8ad7123243a5073445a8c9d7443769ac</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128logn</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga9cf96700082e5f90a7569b8e1c8f04da</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Logarithm_BaseN</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga94fd960a23fc5eec22e4fc6e82ac867b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_Cos</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gad89dfcca779ebffc7395a8d45d88e792</anchor>
+      <arglist>(t_q16 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_Cos</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gabb313b1d9868834c490a811c2b57eca4</anchor>
+      <arglist>(t_q32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_Cos</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga2f6c219da27c5d772662baa6b2dcf93b</anchor>
+      <arglist>(t_q64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_Cos</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga88c9e4fb8aedb903f0447ae226a51dd7</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Cos</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga3bb9caf7d21a9d55af885d98908a8ae5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qcos</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gae3bd8d3036775a0fc38082005aac9224</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16cos</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga5826a5b1a4aaadc0e0e57284485dcd1a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32cos</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga5a9f95edcf2a83265564610fb66bcfaa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64cos</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga799c20245c13806f8e5549bc7697639d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128cos</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaf938d7798d0968be293043a937ef16a1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Cosine</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga4a2a26c190d078bc0c4e5308cfd73c90</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_Sin</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gad3029137545bf1249682623ec7325e08</anchor>
+      <arglist>(t_q16 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_Sin</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gac4f54465aa5ed9bf977e359df4ca5d4e</anchor>
+      <arglist>(t_q32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_Sin</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaf9b53ec950b9f177ed3208509f0355fb</anchor>
+      <arglist>(t_q64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_Sin</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga78d25abc17bf776e2323474eca0cb01c</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Sin</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gabc0e54fc2c949a341f53f7f145d22459</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qsin</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gad17893a5cef993e3438a517fe581c70a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16sin</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga84dbe6891fcb0ca96827214f2e431be5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32sin</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga08c45ba8d05f1fc02dd8cb5aa3864433</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64sin</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga1780ed6d0835c54b2e13d1efb9936dfd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128sin</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga26898108f3f83bba0e0ef5a92efa3a7d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Sine</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gad0032da3ed3181baa1205d9550b0c807</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_Tan</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga16f685e65687e7decfeafcfa61c3a225</anchor>
+      <arglist>(t_q16 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_Tan</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga71bc6ce0d3348393baa714d504d4e591</anchor>
+      <arglist>(t_q32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_Tan</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga35636f4b0abf81c651fafb355eb13191</anchor>
+      <arglist>(t_q64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_Tan</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga711331d55403956b936fa98c9a2572ee</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Tan</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga88d2c9cd8ba8761774b860c26bf2b121</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qtan</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga2dcf37d948d0fc85a53a1adbe3faa559</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16tan</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga467dc5ff5d0459e45434da7fb9e961c2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32tan</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga8d571801442c4cd2cf14e7bdde0aec00</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64tan</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gadbcf611bb441294075a76491a2a73474</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128tan</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gac4a02b353dfa85920b6644c32b77e354</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Tangent</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaa86e581a91df4c44bada02728036e576</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_ArcCos</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga92ddc4228b98aefd86c6eb495e4dec20</anchor>
+      <arglist>(t_q16 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_ArcCos</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaa265d653fee23e2ebc5c024d877bde1e</anchor>
+      <arglist>(t_q32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_ArcCos</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga8d1e8e86882bc57f482bb317140ce063</anchor>
+      <arglist>(t_q64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_ArcCos</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga8d397c818df82e0bcf52b28929b2587c</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_ArcCos</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga9f8bac596b29114e21d34be964a82355</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qacos</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga5d0b1f2799c67f83a027d3909a2dafda</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16acos</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga72e96a3d86d42e28d6b82a4cbf381e93</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32acos</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gad620bc8a79038414a286f328c1daa5f5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64acos</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga79fe0aeddcef667deeec7d9ea12941c5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128acos</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga94e6e3c40d8088211c74a88bd0da2be1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Cos_1</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaeb9c2681281ad3db36baa384ff354082</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_InvCosine</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga68ff1bc36a22b171dc3ef21a694c517b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_ArcSin</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga8140eb631ed25863c6be0c4785be266d</anchor>
+      <arglist>(t_q16 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_ArcSin</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gac52ee9eea0aecca3fef697cfad272687</anchor>
+      <arglist>(t_q32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_ArcSin</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga1bd9f0d6384e18fd7d0d17304308d57a</anchor>
+      <arglist>(t_q64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_ArcSin</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga39588aeef953cf80e5e741daf42666bc</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_ArcSin</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gae752f362aca3a3b4c27ff4fef779366b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qasin</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga347d3a95fe122dd0b113c398dc7b0bab</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16asin</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga2f0e20a9fa7a8d2363c05436ca434998</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32asin</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga12b9a53316c591120825f4962eeee492</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64asin</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga678689446f6c8cd3e095ce4162d47288</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128asin</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga35206fec8a13571b759f5ba92f2d365c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Sin_1</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga4ffcac54265437392d82091a8c4b6ba9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_InvSine</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga6c97c8c615d253802b4b4cd0e8d84ee2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_ArcTan</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gacaf48f84e76b817db97db658443dac96</anchor>
+      <arglist>(t_q16 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_ArcTan</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gac3bd234a7fd69cf49b897155951d9e92</anchor>
+      <arglist>(t_q32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_ArcTan</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gadfcadbc8b7cb45ce945994351bce9648</anchor>
+      <arglist>(t_q64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_ArcTan</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga1de1e58d1769372ec5bfe5f42e38fb8f</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_ArcTan</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga1bdf7b287809df4bff154eaa87c206f7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qatan</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga55e46cfa959fde78e74a0f6087503d55</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16atan</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga7d5765be8975b050f28d840cee516fdc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32atan</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga2343fd4a9bd3db9e47acaf74b11465a3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64atan</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga2e14fa4cab92ea0c0a239b46d4d934ca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128atan</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga1e501c2337f27ed19171ea0af08f25dd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Tan_1</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga5f77ffebe218f30cdf8a4041e89cec42</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_InvTangent</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga641202eda890495341d203316037bfca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga64b77b20b3432459a6cda6ca44f76f7e</anchor>
+      <arglist>(t_q16 x, t_q16 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga27a0d8e449ef908f54841ee17c8b1a92</anchor>
+      <arglist>(t_q32 x, t_q32 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaa5368bd2beea18856b39190f3178dc0f</anchor>
+      <arglist>(t_q64 x, t_q64 y)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga7c2dc45e693e7cc789ed94fc949f50a3</anchor>
+      <arglist>(t_q128 x, t_q128 y)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_ArcTan2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga8f89df84f591f5a9f519a86dc59b1da9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qatan2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gac268a2cf663b58358eefc6100626f1d9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16atan2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga2b303785e5e67129224654f74aed5629</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32atan2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga44f4987ad1df7d3a3e431b4886458ec6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64atan2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga72beae9993a8a0aa97b7f8e4703140aa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128atan2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gafd620a69f5275108eb8011e4bfdc7441</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_ArcTan_YoverX</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gad7dcc7d7f6578e429d27b616194629c6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_ArcTangent2</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga792a205dd02c70bd266f7dd3f7caa468</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_ArcTangent_YoverX</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga4126953df9e8a0199299d810781b3cad</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_CosH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gac2e0f8f393579982c231af74783325be</anchor>
+      <arglist>(t_q16 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_CosH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga422ec19b012fd917c8a2d4e571091d48</anchor>
+      <arglist>(t_q32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_CosH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga669dbfa38552680295d7383142e7e3b2</anchor>
+      <arglist>(t_q64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_CosH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga75d16beb4a6dbf1c952e59ee04187c3c</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_CosH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga0aef958e008d35eb0e8282d2ab2c02d9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qcosh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga6b5d10a2f5c8abc985a727ecf5e9ea0c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16cosh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga779a1c0ff2416142bc8e64ef11cf8617</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32cosh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaf03233121776fa1b9b933086938d33ec</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64cosh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gab15e5cd9cbe3d9a140ddd718b6fe84b0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128cosh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gadc1fec71fa6592e8ed7ec608492e2bc1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Cos_H</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga5659dd4d6bb80d5870137bdacecd1a68</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Cosine_Hyperbolic</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga660ff5773362ffcbf2eba828f311c248</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_SinH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga685a0bb805c7da71e8de8b680e9d5f75</anchor>
+      <arglist>(t_q16 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_SinH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga5d55231b26138970c5c5f4f3ec23d001</anchor>
+      <arglist>(t_q32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_SinH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga54e4a5248eae1180da5e241cf7595ea4</anchor>
+      <arglist>(t_q64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_SinH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga9f26ddf9730e8891b1b40638d8405553</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_SinH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gac296528a1dd35e6737dd38983ccc8d21</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qsinh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga3303598edb89d611aa1c4d5f8eaa8f63</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16sinh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga534204bc61707a06e8cc6a019573c16f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32sinh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga450d7071e5aa4d73be5e989e47405cb5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64sinh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga8d2882a94d6f756914b1b7c7d5814d20</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128sinh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gad60dfd6591c742ff07fa29087d94caee</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Sin_H</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga038c124b5cd4f9b3d3a1f746c7c36996</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Sine_Hyperbolic</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gab55cee253d2c4635a7dbd643a787d409</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_TanH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga66160974075eef0ebc487867c5f3e4ad</anchor>
+      <arglist>(t_q16 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_TanH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gabee66540f0c6886d35d05ce99507b1f9</anchor>
+      <arglist>(t_q32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_TanH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga34a238c5b6319ca4a8cfa7507c1ba2b4</anchor>
+      <arglist>(t_q64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_TanH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga0cbc9c756b449a64896b66ae972999ec</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_TanH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga59b6b66c9350e96300b1b46598e8c402</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qtanh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gae626076e26ac5790facd058dc0fe70d0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16tanh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga738c20db7639b85bc5cc22d33def8df3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32tanh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga7fa8d02d0382a3268663333b152097bb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64tanh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga049d523057ea92f60f2769ba4bf629eb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128tanh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga3b2df3bea721946a7b32716716e2fc7a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Tan_H</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga6922668c82a2ba7be2cc86b1f3db96c8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Tangent_Hyperbolic</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga52a2828c6112ffefc76ab11acfa67376</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_InvCosH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gae9305c06c4685887d3bb99a0e0043175</anchor>
+      <arglist>(t_q16 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_InvCosH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga84f624dd706168707b9c2950dec709f4</anchor>
+      <arglist>(t_q32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_InvCosH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga246934128779279855ddc6fb6c8773ec</anchor>
+      <arglist>(t_q64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_InvCosH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gae2ff8027cd4308dde3313e26054eacfe</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_InvCosH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga98855c612cf02d0941ef886c7517b42c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qacosh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga5d4916b792bb3c958837aaa33ceff14a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16acosh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga8e4525831cf16ba0da65ef71057e7f5a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32acosh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gabf9a56ddf315a28840c2398816e474c9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64acosh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga6243d3dfe080772784756723e59c57e9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128acosh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga388d7a6cfe3ce4930a649ef3bdcc2a4f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Cos_1_H</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaacc5c1e117be0a16fbbd4e52e1a6b32a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_InvCosine_Hyperbolic</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga0b89e9e078c9f06fc81431f79a0ae47a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_InvSinH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga4a903e5975644dba63738057a6fc0e0b</anchor>
+      <arglist>(t_q16 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_InvSinH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga9e9dc972c22c1fce22a9fb44bba0c6ee</anchor>
+      <arglist>(t_q32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_InvSinH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga600053db8b3b84f48cb60dd301a5ed46</anchor>
+      <arglist>(t_q64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_InvSinH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga97cc629aa0c5fce96ef37ea4aa3cc4a4</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_InvSinH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gacb4524017c91795be9100662e24a046b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qasinh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga170675ac3679bf331054df606e767895</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16asinh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gae5caf6e66350173a9b0ff25c74241a82</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32asinh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga06b29397ba4c76f6c15fa384cb2c2040</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64asinh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gab1d88e9174168bc2cec9c19d1fa52067</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128asinh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga8d60b39e2314754b8ec41cde51f777f3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Sin_1_H</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga5cc30844859178f8f9898a4732e21f22</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_InvSine_Hyperbolic</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga1cd9891faa6000b1e110e8c4b5eee825</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_q16</type>
+      <name>Q16_InvTanH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga0dd60e57f01fe4a6ff0e892f3394372f</anchor>
+      <arglist>(t_q16 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q32</type>
+      <name>Q32_InvTanH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga704a95d9c8fcea88d574b02df1d78746</anchor>
+      <arglist>(t_q32 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q64</type>
+      <name>Q64_InvTanH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga9d24f6ca6a2e86025878cc06f54bf4e6</anchor>
+      <arglist>(t_q64 x)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_q128</type>
+      <name>Q128_InvTanH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga4b7966da23a8d8b4a1bebaf350616972</anchor>
+      <arglist>(t_q128 x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_InvTanH</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga568f35d085fb7494799309bc81e0ec45</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_qatanh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaae6fed5265485236353e98d495e81980</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q16atanh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga74c21d8f6c0800337403b23d36f5f759</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q32atanh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gaf1df611c04811816c560d065af8e9627</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q64atanh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga33eb697a16a8b610a6485410f2e11348</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_q128atanh</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>gad664940157d53d42ff784f9267ed5ccc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_Tan_1_H</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga6413f628032306b3c97d8ad43a3e3621</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Fixed_InvTangent_Hyperbolic</name>
+      <anchorfile>group__libccc__math__fixed.html</anchorfile>
+      <anchor>ga28d1fcdbfd1dc198ca78c802caadeb7f</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="group">
     <name>libccc_math_vlq</name>
-    <title>18) libccc/math/vlq</title>
+    <title>20) libccc/math/vlq</title>
     <filename>group__libccc__math__vlq.html</filename>
     <file>vlq.h</file>
   </compound>
   <compound kind="group">
     <name>libccc_math_stat</name>
-    <title>19) libccc/math/stat</title>
+    <title>21) libccc/math/stat</title>
     <filename>group__libccc__math__stat.html</filename>
     <file>stat.h</file>
     <file>stat.h</file>
@@ -31108,7 +38320,7 @@
   </compound>
   <compound kind="group">
     <name>libccc_math_random</name>
-    <title>20) libccc/math/random</title>
+    <title>22) libccc/math/random</title>
     <filename>group__libccc__math__random.html</filename>
     <file>random.h</file>
     <file>random.h</file>
@@ -31268,922 +38480,8 @@
     </member>
   </compound>
   <compound kind="group">
-    <name>libccc_math_algebra</name>
-    <title>21) libccc/math/algebra</title>
-    <filename>group__libccc__math__algebra.html</filename>
-    <file>algebra.h</file>
-    <class kind="struct">vec2d</class>
-    <class kind="struct">vec3d</class>
-    <class kind="struct">vec4d</class>
-    <class kind="struct">mtx3d</class>
-    <class kind="struct">mtx4d</class>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_vec2new</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga217f2a0f0d83e6b50172d0eba12e505f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_vec2equ</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gaf027810455d6eda23895194d14376436</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_vec2scale</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga79e7664aa764c17d9925796e5d55958a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_vec2invert</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga0866c930ecad0d8b8d022bc997e65ad4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_vec2norm</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga7bf6867c53ed91cca29c6e2630e3c45a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Vector2D_Length</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga06f5a2bf43d30498cb42a576a9bb2515</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Vector2D_Magnitude</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gae877090474dc081ea3f5a580eb657af0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_vec2normalize</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga9c3c3dd96beb6a33a5f0c5f7abb51d2c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_vec2add</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gaa4a94b4d5987d8ca592087c65978bef0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_vec2dot</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gae720bd2991597094d19be4f012e89914</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Vector2D_DotProduct</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga330b1c1e46d6dc9f042c6907d8d46c34</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Vector2D_InnerProduct</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gae2df14810c2cf02b6af19daca7b2a232</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Vector2D_ScalarProduct</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga7c2c7dddd5e80d59f74a134dce516a70</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_vec3new</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gab3754d6913e2e6870a0db6b019050be3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_vec3equ</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga8b0b25a33af3660923cef10432a8498b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_vec3scale</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gabed5672ef625b0a9bd90d657ce058404</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_vec3invert</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gae43eee3299aa68172964bb838e895c82</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_vec3norm</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga55c94afa7d8ec34a286b0bbb2d61204c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Vector3D_Length</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga3f1fcf83da5e7b607c55eb55235ad604</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Vector3D_Magnitude</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga7b85410e52acabe3d35dd653efafa4b8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_vec3normalize</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga18478a623701ef2c11c1e74f0a017c9e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_vec3add</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gace4f3d591351f8645bbda0ffd6bdd53c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_vec3dot</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga7892d54f7b5c8ba63a017087b2b384a3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Vector3D_DotProduct</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga0d3e1802c62c615d5755ae2fbdc1fb3d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Vector3D_InnerProduct</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga4f9848275913d3535f567409a887bb6a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Vector3D_ScalarProduct</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gaf8f60b32ab1f97052be7a3c06d364bf8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_vec3cross</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gab9457adaf10e344633eafc21205991e0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Vector3D_CrossProduct</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga2b5e2e75b6a292f301d13dbc990b2f33</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Vector3D_OuterProduct</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga3da202fd40d661c85562731b993cc34b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Vector3D_VectorProduct</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gac45e7599211ffda2b59fbfab66a5ae32</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_mat2new</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gaf30ecaf0ac9ce90077b590bbdd478e45</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_mat2equ</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga8357b975751665bea30d78652c92686e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_mat2apply</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga967aeae812596f4b555f3c111c827073</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_mat2determ</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gaaaad9c6a73d61ad8d9ac07098db8194c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_mat2inverse</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga28f3d9e2e69d704e03212be59ee669fb</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_mat2transp</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gab9816fab16cb5376ba12f55eee9c9e5f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_mat2mult</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gae63fca97a13056e1329593b78e2826a3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_mat3new</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga7f69dab13bc5fcd2a07868a144e7cf21</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_mat3equ</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga0b7cf40950ec2b96a4c3b463391e0eaa</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_mat3apply</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga892895f6c8398aa004d866e6fa76dff6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_mat3determ</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gafb0b19b3a124d30d9580d45128f910ab</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_mat3inverse</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga9fef098e7d96b53a9239105811e08cd3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_mat3transp</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gab9e0ca1fe23b2b9fb2803980ed3e6354</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_mat3mult</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga9a021c61bb3d2445e0252722aa9fbf38</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="typedef">
-      <type>struct vec2d</type>
-      <name>s_vector2d</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gac94b53e630e6f9ba8942324c779ad180</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="typedef">
-      <type>struct vec3d</type>
-      <name>s_vector3d</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gacf1d5c3450fd2c6108c42f0b12dd0efa</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="typedef">
-      <type>struct vec4d</type>
-      <name>s_vector4d</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga0f7bfa31d14708866968e38c31154032</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="typedef">
-      <type>struct mtx3d</type>
-      <name>s_matrix3d</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga42002bf40c7e105ff654caf9d2382205</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="typedef">
-      <type>struct mtx4d</type>
-      <name>s_matrix4d</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga7d275483030c1d5694fcffe63a2e2618</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="typedef">
-      <type>t_float(*</type>
-      <name>f_scalar_func2</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga39a31ee739e0aceb11e2a390af338029</anchor>
-      <arglist>)(u_vector2d const v)</arglist>
-    </member>
-    <member kind="typedef">
-      <type>t_float(*</type>
-      <name>f_scalar_func3</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gae3398253d21b78a68d2584373129c369</anchor>
-      <arglist>)(u_vector3d const v)</arglist>
-    </member>
-    <member kind="typedef">
-      <type>t_float(*</type>
-      <name>f_scalar_func4</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga0611ee62bac265eba119d2f622ed69fd</anchor>
-      <arglist>)(u_vector4d const v)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga229cbcfc280ba0e5cf337838e214cf93</anchor>
-      <arglist>(s_vector2d, VECTOR_2D, STRUCT) typedef union vector2d</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga17ad2e450dd90f593048cad0b523eb2e</anchor>
-      <arglist>(u_vector2d, VECTOR_2D, UNION) s_vector2d *Vector2D_New(t_float x</arglist>
-    </member>
-    <member kind="function">
-      <type>t_bool</type>
-      <name>Vector2D_Equals</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga459392d82670f7b684a5b3fd0fa03d9b</anchor>
-      <arglist>(s_vector2d const *v1, s_vector2d const *v2)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_vector2d</type>
-      <name>Vector2D_Scale</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga3c3d174c960141b402a25e9565c32b5b</anchor>
-      <arglist>(s_vector2d const *vector, t_float scale)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_vector2d</type>
-      <name>Vector2D_Invert</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga3eec430283c743c4bbce294438f4f30d</anchor>
-      <arglist>(s_vector2d const *vector)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>Vector2D_Norm</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gaacf74cabafe79db0c013cc4a44e5c83e</anchor>
-      <arglist>(s_vector2d const *vector)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_vector2d</type>
-      <name>Vector2D_Normalize</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga220df5d71664afa5505cb31f67e3a8be</anchor>
-      <arglist>(s_vector2d const *vector)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_vector2d</type>
-      <name>Vector2D_Add</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gadc556ca0df7925365ab22adbaf17ab32</anchor>
-      <arglist>(s_vector2d const *v1, s_vector2d const *v2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>Vector2D_Dot</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gabcd7974539b1a879aca32982abb8e949</anchor>
-      <arglist>(s_vector2d const *v1, s_vector2d const *v2)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gad447ea028c3b7f267bccabbdbe3770da</anchor>
-      <arglist>(s_vector3d, VECTOR_3D, STRUCT) typedef union vector3d</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga3d8d7ef53ea801b0256909e08ddd5035</anchor>
-      <arglist>(u_vector3d, VECTOR_3D, UNION) s_vector3d *Vector3D_New(t_float x</arglist>
-    </member>
-    <member kind="function">
-      <type>t_bool</type>
-      <name>Vector3D_Equals</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gad61cb77a0bdeb905ae240a9d12bcaaa8</anchor>
-      <arglist>(s_vector3d const *v1, s_vector3d const *v2)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_vector3d</type>
-      <name>Vector3D_Scale</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga4e613778de85a35551be205d83d44cdc</anchor>
-      <arglist>(s_vector3d const *vector, t_float scale)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_vector3d</type>
-      <name>Vector3D_Invert</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga1a9aa0b879cbd8502a5e56f26f6cb4ac</anchor>
-      <arglist>(s_vector3d const *vector)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>Vector3D_Norm</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga1686feae7339512f6c1abb14ae1cc02f</anchor>
-      <arglist>(s_vector3d const *vector)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_vector3d</type>
-      <name>Vector3D_Normalize</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga04082858e2a1e503f3d4f7e9e4bc5731</anchor>
-      <arglist>(s_vector3d const *vector)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_vector3d</type>
-      <name>Vector3D_Add</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gaeed9b6075432ef20f03f7b4a551fef44</anchor>
-      <arglist>(s_vector3d const *v1, s_vector3d const *v2)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>Vector3D_Dot</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga4865f0ac8756cf233c88ee5a1a96847b</anchor>
-      <arglist>(s_vector3d const *v1, s_vector3d const *v2)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_vector3d</type>
-      <name>Vector3D_Cross</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga3c73af7f79eddd761b38d64119c51f82</anchor>
-      <arglist>(s_vector3d const *v1, s_vector3d const *v2)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gabf15875fc380a73c51d36e4c69a643a4</anchor>
-      <arglist>(s_vector4d, VECTOR_4D, STRUCT) typedef union vector4d</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga5719cf4ad2cba7aec3a01581b4147e54</anchor>
-      <arglist>(u_vector4d, VECTOR_4D, UNION) typedef struct mtx2d</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga7c675ffd5a89a5a3ff7218f266166f7d</anchor>
-      <arglist>(s_matrix2d, MATRIX_2D, STRUCT) typedef union matrix2d</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga7efba4e9ec65e02b08ccc0757547c2a3</anchor>
-      <arglist>(u_matrix2d, MATRIX_2D, UNION) s_matrix2d *Matrix2D_New(s_vector2d const *u</arglist>
-    </member>
-    <member kind="function">
-      <type>t_bool</type>
-      <name>Matrix2D_Equals</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga39a2c65c8b687d07500bed4676a4409a</anchor>
-      <arglist>(s_matrix2d const *m1, s_matrix2d const *m2)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_vector2d</type>
-      <name>Matrix2D_Apply</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga72942691a1aeb7603021373b8830a63c</anchor>
-      <arglist>(s_matrix2d const *matrix, s_vector2d const *vector)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>Matrix2D_Determinant</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga2235669c2f1db58804c97462dc09610b</anchor>
-      <arglist>(s_matrix2d const *matrix)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_matrix2d</type>
-      <name>Matrix2D_Inverse</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga5db4047001297a4c87d5fd6af281b1ad</anchor>
-      <arglist>(s_matrix2d const *matrix)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_matrix2d</type>
-      <name>Matrix2D_Transpose</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gab15f5d4967009d51bff3bc21ff408d46</anchor>
-      <arglist>(s_matrix2d const *matrix)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_matrix2d</type>
-      <name>Matrix2D_Multiply</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga1ffbe95ddd05575c7acc0662360e323a</anchor>
-      <arglist>(s_matrix2d const *m1, s_matrix2d const *m2)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga9c3af0c685628db125b484e16f11f183</anchor>
-      <arglist>(s_matrix3d, MATRIX_3D, STRUCT) typedef union matrix3d</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gacfa832008b721a10b1468578b7b12ebf</anchor>
-      <arglist>(u_matrix3d, MATRIX_3D, UNION) s_matrix3d *Matrix3D_New(s_vector3d const *u</arglist>
-    </member>
-    <member kind="function">
-      <type>t_bool</type>
-      <name>Matrix3D_Equals</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gab0e5cb0b5dc3552100bc01685ae2e922</anchor>
-      <arglist>(s_matrix3d const *m1, s_matrix3d const *m2)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_vector3d</type>
-      <name>Matrix3D_Apply</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gaab33e892a9167898922dd72bce3dcafe</anchor>
-      <arglist>(s_matrix3d const *matrix, s_vector3d const *vector)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>Matrix3D_Determinant</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga6ecd84a206c2a115cb3ac4a38b12089a</anchor>
-      <arglist>(s_matrix3d const *matrix)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_matrix3d</type>
-      <name>Matrix3D_Inverse</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga2b251ff544dfb49994204f8ec6b26b15</anchor>
-      <arglist>(s_matrix3d const *matrix)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_matrix3d</type>
-      <name>Matrix3D_Transpose</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga2dd332869f5605b52fdd839f557436d2</anchor>
-      <arglist>(s_matrix3d const *matrix)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_matrix3d</type>
-      <name>Matrix3D_Multiply</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga65eafbfec4172e277902bbd69cb5c0c8</anchor>
-      <arglist>(s_matrix3d const *m1, s_matrix3d const *m2)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga80bffc9f9ce7c2bd61892ce264eab2a3</anchor>
-      <arglist>(s_matrix4d, MATRIX_4D, STRUCT) typedef union matrix4d</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga5a91a72c1724c3ea9612e64c47cebd3a</anchor>
-      <arglist>(u_matrix4d, MATRIX_4D, UNION) typedef struct box1d</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gae3f9fff052cacb2b460c98f2dfb458d3</anchor>
-      <arglist>(s_box1d, BOX_1D, STRUCT) typedef struct box2d</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gae46bafc6960ba856d350a05a0c4af88d</anchor>
-      <arglist>(s_box2d, BOX_2D, STRUCT) typedef struct box3d</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga125b9f281c0a7e3912585c888f2eced1</anchor>
-      <arglist>(s_box3d, BOX_3D, STRUCT) typedef struct box4d</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga1e08a4f27a3de2bc46c5ae7a10d272aa</anchor>
-      <arglist>(s_box4d, BOX_4D, STRUCT) typedef s_box1d s_interval</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga278deb483995ab0e17b5d9ca1058b09b</anchor>
-      <arglist>(s_interval, INTERVAL, STRUCT) typedef t_float(*f_scalar_func1)(t_float const v)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>c_integrate</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga36de3afd5b0f1a871cd6d41328e955d8</anchor>
-      <arglist>(f_real_function const f, s_interval const domain, t_float step)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>c_mc_integrate_1d</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga19bf580ff58ac7a45ee63a95166ad516</anchor>
-      <arglist>(f_scalar_func1 const sf, s_box1d const domain)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>c_mc_integrate_2d</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga04d47a97e05bc0347837113e76700ac3</anchor>
-      <arglist>(f_scalar_func2 const sf, s_box2d const domain)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>c_mc_integrate_3d</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga1a8902ae51f38c814943652f48bbcf26</anchor>
-      <arglist>(f_scalar_func3 const sf, s_box3d const domain)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>c_mc_integrate_4d</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga6c8e631b817dc69213556c2a8a867556</anchor>
-      <arglist>(f_scalar_func4 const sf, s_box4d const domain)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_float</type>
-      <name>c_distance_float</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga2d9ac99a1eb427fb14eb0054b895e92a</anchor>
-      <arglist>(t_float x, t_float y)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_f32</type>
-      <name>c_distance_f32</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga50979520ab14e404f999f4fd31c9ff4d</anchor>
-      <arglist>(t_f32 x, t_f32 y)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_f64</type>
-      <name>c_distance_f64</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga8a9827d3b09dbf2063e57bdee084de76</anchor>
-      <arglist>(t_f64 x, t_f64 y)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_uint</type>
-      <name>c_distance_uint</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gace8f873f8324c8b5a0fa6fd6788bea20</anchor>
-      <arglist>(t_uint x, t_uint y)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_u8</type>
-      <name>c_distance_u8</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga560024e1c942a34490cc39888118a11d</anchor>
-      <arglist>(t_u8 x, t_u8 y)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_u16</type>
-      <name>c_distance_u16</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga26d3f6b9de3fe79bb79d588de6697978</anchor>
-      <arglist>(t_u16 x, t_u16 y)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_u32</type>
-      <name>c_distance_u32</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga4430f9167616ab94bce5cb15f2520222</anchor>
-      <arglist>(t_u32 x, t_u32 y)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_u64</type>
-      <name>c_distance_u64</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga3966deb12f376ee15a3082cafd784bbe</anchor>
-      <arglist>(t_u64 x, t_u64 y)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_sint</type>
-      <name>c_distance_int</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga9c87bf7e1eeee701a8c0cb58cdf64874</anchor>
-      <arglist>(t_sint x, t_sint y)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_s8</type>
-      <name>c_distance_s8</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga6dfa16a4bda42255ca5920cf5d9f0bee</anchor>
-      <arglist>(t_s8 x, t_s8 y)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_s16</type>
-      <name>c_distance_s16</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gace24a9c452e0814f0c6a621a9097c960</anchor>
-      <arglist>(t_s16 x, t_s16 y)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_s32</type>
-      <name>c_distance_s32</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga1663941e5c86968e4c2f66aaa350cc55</anchor>
-      <arglist>(t_s32 x, t_s32 y)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_s64</type>
-      <name>c_distance_s64</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga4d7c6535f661fc7d2adc1b25e8e64994</anchor>
-      <arglist>(t_s64 x, t_s64 y)</arglist>
-    </member>
-    <member kind="variable">
-      <type></type>
-      <name>u_vector2d</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga92ffeb9376e303e8c96f06758ba0e05e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>t_float</type>
-      <name>y</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gaa0f46c58ab3a3ffcfb3952f48b731c72</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type></type>
-      <name>u_vector3d</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga4e20a10b88e8a2890e3c50d202cd2fa8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>t_float t_float</type>
-      <name>z</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gad6ac30fd95dc948aa662cc52ccc00149</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type></type>
-      <name>u_vector4d</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga8d93138ecdd431bd0133d81730991cf0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type></type>
-      <name>s_matrix2d</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga1f0fa029afd3a9c6bd3b59828136d60e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type></type>
-      <name>u_matrix2d</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga77c8cac0d145f744dbb2fa6c03ca28a6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>s_vector2d const  *</type>
-      <name>v</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga4c0e9b3857992d5c7c47749d5624ad84</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type></type>
-      <name>u_matrix3d</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga5bf2ca24edfea850439abcf45dd4a2c5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>s_vector3d const s_vector3d const  *</type>
-      <name>w</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga543f2ea27e647df44925eaef42a4dd7b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type></type>
-      <name>u_matrix4d</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga6789de558c744dc24273877b7c0f02db</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type></type>
-      <name>s_box1d</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>gac257704ffdd362c0c898bff0e269ea15</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type></type>
-      <name>s_box2d</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga8f2124efb755bcabed03a77f1b47506f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type></type>
-      <name>s_box3d</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga964075c7b55fe3ccdc6fe15a396e7f32</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type></type>
-      <name>s_box4d</name>
-      <anchorfile>group__libccc__math__algebra.html</anchorfile>
-      <anchor>ga1e00f7a4fdd5d9f820cd6b9e4286c04c</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="group">
     <name>libccc_math_complex</name>
-    <title>22) libccc/math/complex</title>
+    <title>23) libccc/math/complex</title>
     <filename>group__libccc__math__complex.html</filename>
     <file>complex.h</file>
     <class kind="struct">complex</class>
@@ -32385,8 +38683,29 @@
     </member>
   </compound>
   <compound kind="group">
+    <name>libccc_math_algebra</name>
+    <title>24) libccc/math/algebra</title>
+    <filename>group__libccc__math__algebra.html</filename>
+    <file>algebra.h</file>
+  </compound>
+  <compound kind="group">
+    <name>libccc_math_algebra_vector</name>
+    <title>25) libccc/math/algebra/vector</title>
+    <filename>group__libccc__math__algebra__vector.html</filename>
+  </compound>
+  <compound kind="group">
+    <name>libccc_math_algebra_matrix</name>
+    <title>26) libccc/math/algebra/matrix</title>
+    <filename>group__libccc__math__algebra__matrix.html</filename>
+  </compound>
+  <compound kind="group">
+    <name>libccc_math_algebra_interval</name>
+    <title>27) libccc/math/algebra/interval</title>
+    <filename>group__libccc__math__algebra__interval.html</filename>
+  </compound>
+  <compound kind="group">
     <name>libccc_monad_array</name>
-    <title>23) libccc/monad/array</title>
+    <title>28) libccc/monad/array</title>
     <filename>group__libccc__monad__array.html</filename>
     <file>array.h</file>
     <class kind="struct">array_T</class>
@@ -32953,7 +39272,7 @@
   </compound>
   <compound kind="group">
     <name>libccc_monad_list</name>
-    <title>24) libccc/monad/list</title>
+    <title>29) libccc/monad/list</title>
     <filename>group__libccc__monad__list.html</filename>
     <file>list.h</file>
     <class kind="struct">list_T</class>
@@ -33548,7 +39867,7 @@
   </compound>
   <compound kind="group">
     <name>libccc_monad_stack</name>
-    <title>25) libccc/monad/stack</title>
+    <title>30) libccc/monad/stack</title>
     <filename>group__libccc__monad__stack.html</filename>
     <file>stack.h</file>
     <class kind="struct">stack_T</class>
@@ -33604,7 +39923,7 @@
   </compound>
   <compound kind="group">
     <name>libccc_monad_queue</name>
-    <title>26) libccc/monad/queue</title>
+    <title>31) libccc/monad/queue</title>
     <filename>group__libccc__monad__queue.html</filename>
     <file>queue.h</file>
     <class kind="struct">queue_T</class>
@@ -33660,7 +39979,7 @@
   </compound>
   <compound kind="group">
     <name>libccc_monad_tree</name>
-    <title>27) libccc/monad/tree</title>
+    <title>32) libccc/monad/tree</title>
     <filename>group__libccc__monad__tree.html</filename>
     <file>tree.h</file>
     <class kind="struct">tree_T</class>
@@ -33716,7 +40035,7 @@
   </compound>
   <compound kind="group">
     <name>libccc_monad_keyval</name>
-    <title>28) libccc/monad/keyval</title>
+    <title>33) libccc/monad/keyval</title>
     <filename>group__libccc__monad__keyval.html</filename>
     <file>keyval.h</file>
     <class kind="struct">keyval_T</class>
@@ -33772,7 +40091,7 @@
   </compound>
   <compound kind="group">
     <name>libccc_monad_dict</name>
-    <title>29) libccc/monad/dict</title>
+    <title>34) libccc/monad/dict</title>
     <filename>group__libccc__monad__dict.html</filename>
     <file>dict.h</file>
     <class kind="struct">dict_T</class>
@@ -34073,7 +40392,7 @@
   </compound>
   <compound kind="group">
     <name>libccc_monad_object</name>
-    <title>30) libccc/monad/object</title>
+    <title>35) libccc/monad/object</title>
     <filename>group__libccc__monad__object.html</filename>
     <file>object.h</file>
     <class kind="struct">object_T</class>
@@ -34128,10 +40447,1013 @@
     </member>
   </compound>
   <compound kind="group">
+    <name>libccc_encode_json</name>
+    <title>36) libccc/encode/json</title>
+    <filename>group__libccc__encode__json.html</filename>
+  </compound>
+  <compound kind="group">
+    <name>libccc_config</name>
+    <title>Libccc_config</title>
+    <filename>group__libccc__config.html</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_NAMINGSTYLE_TYPES</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>ga8ef160b822ec74fd6c6455647386e506</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_HANDLE_NULLPOINTERS</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>ga97f207da9392f6cba9c7946bb7697a70</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>ga1020a8568fd919f9da80aa0c2bffbab7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_USE_FAST_APPROX_MATH</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>gac47e7bbad89ac9ce2a3c9906b798c346</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_LIST_DOUBLYLINKED</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>ga2dbec267fbf6efd24e1efc6d21d1ff68</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_BITS_UINT</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>ga86d00a69dfe2e664c87a03499d7b5f5a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_BITS_SINT</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>gaac372d149c7d1452ad8f81414a6c75ab</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_BITS_FIXED</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>gaa5d56c2abf4a218f7a150dbab66ef199</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_FIXED_APPROX</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>gac3559624016adae60fd6f2985c393fe2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_FIXED_BITS_FRACTIONPART</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>gaa140481612fee0286b1a2183a37a88e2</anchor>
+      <arglist>(BITS)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_FIXED_BITS_INTEGERPART</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>gab7f803f93e9353b2c1e8773bf7138a11</anchor>
+      <arglist>(BITS)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_BITS_FLOAT</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>gae831a75f400b727ef8cb54fec109ca28</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_FLOAT_APPROX</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>gaf37b6635173f4ae68dbc9a04aba88802</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_USE_STD_COMPLEX</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>ga70e5ad90076999fac5205baf90d96e90</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_USE_STD_FIXEDPOINT</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>gaaa6bb8eb6ebe31ebf0fce3b39f0db81e</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="group">
     <name>libccc_regex</name>
     <title>Libccc_regex</title>
     <filename>group__libccc__regex.html</filename>
     <file>regex.h</file>
+  </compound>
+  <compound kind="group">
+    <name>libccc_math_math</name>
+    <title>Libccc_math_math</title>
+    <filename>group__libccc__math__math.html</filename>
+    <file>math.h</file>
+    <member kind="define">
+      <type>#define</type>
+      <name>ABS</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga996f7be338ccb40d1a2a5abc1ad61759</anchor>
+      <arglist>(x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>SIGN</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga8c5ff70b6b28cd0157c50a22406f92c4</anchor>
+      <arglist>(x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>MIN</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga74e75242132eaabbc1c512488a135926</anchor>
+      <arglist>(x, y)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>MAX</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gaacc3ee1a7f283f8ef65cea31f4436a95</anchor>
+      <arglist>(x, y)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>MATH_DEFINE_FUNCTION</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga1a8c606ca6b1b7c9ab29a867251a5231</anchor>
+      <arglist>(RETURN, BITS, NAME, CNAME, TYPE)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>MATH_DEFINE_REALFUNCTION</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gad7098bacdaeacb27cdf1bc16f1d95a4f</anchor>
+      <arglist>(BITS, NAME, CNAME, TYPE)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>MATH_DEFINE_REALOPERATOR</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga40ba4dff35cf7ac35cdb6e4a511267b7</anchor>
+      <arglist>(BITS, NAME, CNAME, TYPE)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>MATH_DECL_FUNCTION</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga15ce5bb45fbd3c1ec09f0babee8c01b0</anchor>
+      <arglist>(RETURN, NAME, CNAME)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>MATH_DECL_REALFUNCTION</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga1bda26f13eba63409816b53282c13103</anchor>
+      <arglist>(NAME, CNAME)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>MATH_DECL_REALOPERATOR</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga3578a113f4898a38878ab181d272b50b</anchor>
+      <arglist>(NAME, CNAME)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>DEFINE_GENERIC_MATH_FUNCTION</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gac2f8add1e5d5c9c2e1622872d3d81085</anchor>
+      <arglist>(FUNCTION, X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>DEFINE_GENERIC_MATH_OPERATOR</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga5b7f9250ac1480dc15d6973242844730</anchor>
+      <arglist>(FUNCTION, X, Y)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Round</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gaa72cbc653006fad87b3bab03e0fc85fc</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_round</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga7069049667d98c20fe3ecae1e202b695</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_FloatRound</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gacf62ac84f4df969b4b9e0ff7e3738679</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Truncate</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga1bddc79203a9fb652dbfce1d795f7fba</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_trunc</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga23ecdd8d3e74c0769b158d8e66024de9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_FloatTrunc</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga04e36096016b20852684d97019a8f675</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Floor</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga20c8df10342ad480da2a17e4571f6336</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_floor</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga48a1266c985cadc24910072812554415</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_FloatFloor</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gae71666b7ba8ee12f50ef19e1191cbc3e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Ceiling</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga5c84f144a63a43b1c4837812fed2ec32</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_ceil</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga5e5b23cc171473b3a2f49357f3e544dc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_FloatCeiling</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gaf50ca0d01d1f1c330f54d6c0ad7271fb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Abs</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gafcccd28251b61b4ed3e1385d8b09d465</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_abs</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga4fa8be94e9acad3e9c520f969077b094</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_AbsoluteValue</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga4a032a711294c646d53ac7f4351331b6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Add</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gaaf4e551f813356323d69ede11d01fbcf</anchor>
+      <arglist>(X, Y)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_add</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gac451a56e431bdec003beefb65657bd8e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Sub</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gab08223d2f6a5d4b137f68b308bc5d860</anchor>
+      <arglist>(X, Y)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_sub</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga77de4417450c301d1c4b6b0373498910</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Subtract</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga19ac6924bb67ebf55cb2fdcce1b355c6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Mul</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga726ce9449da9989c4ec2dc2eff68dda4</anchor>
+      <arglist>(X, Y)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_mul</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga4834cc7bd84b5badfeb31fb826346cf1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Multiply</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga7fb24faaf2879f1bc26fe1c41aea9a83</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Div</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga7f6bd9ca3932d3f4a8df8dc726771e41</anchor>
+      <arglist>(X, Y)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_div</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga2d84d069add851cbd300f8dcc8707d9e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Divide</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gaa3ff6a985446fedc349e323d38dcec1e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Mod</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gac4a5ee0927b28d50ad46627d11c01031</anchor>
+      <arglist>(X, Y)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_mod</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gaa99cf6445325c8be2de8721f3b6be081</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Modulo</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gacf9a3dd280a41b845d336654d894751c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Pow</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gadc74e835a3bb01938f69669f9985e7e6</anchor>
+      <arglist>(X, Y)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_pow</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gac202fbc0dc7178f4559f91c0c138d5af</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Power</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga3e97f6779a34afda791afefea59314d0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_IntPow</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga90a1c1494cd87f8df53a43bc5d07ec68</anchor>
+      <arglist>(X, N)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_intpow</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gaefbaf75d5ec721e044d34cde795b0db1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_IntPower</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga21ea08dfa69382132ee85c44be90087d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Root2</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gaee3e7e54eba5dc2f056e1b5390fb04b5</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_sqrt</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga2e7d4980398cb3cfa11ef1e9677d5835</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_SqRt</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gabc7bf05794e77c7173890250cdce4795</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_SquareRoot</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gadec5e2dd849f7b7648628ad2cd78319f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Root3</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga79019aa3a0dd260b271f72f148967f09</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cbrt</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gaaa61dbab7fea4ebe148cfae39393d5c2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_CbRt</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga021c4d99cd1422be2735ced2df95a283</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_CubeRoot</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga6870fa044bb9b9a183e748273ea6de4b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_RootN</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga91480a88dc895ea3900d08062d98e9c6</anchor>
+      <arglist>(X, Y)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_nrt</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gaa66df0b1739e3618b0ad393051099ab5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_NRt</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gac2d365dfb124bbee8175f37cdcb7708f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_NRoot</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga9cedaf6adc4b66f497b0e9d0fdaa2bc0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Exp</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga7f68228a8f46b62840c4c807078535e6</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_exp</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga4b58dfa6ac930cca58b4ab013db96001</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Exponential</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga8bdf486f6a50d06ee887b28cf3d35a2f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Ln</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga16c639616f40a7565aa01d195caff6f3</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_ln</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gacc74a24ab6f03b00b858d0136c217e53</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_NaturalLogarithm</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gada0d972aa265570cae4feacfbee53a22</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Log2</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga72d3cfc57986b9279efb32f9250bcbf1</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_lg</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga035ebcff0df0ef7c0772cc3ab7e32f0a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_log2</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga6bb6e4ecbfe0a8761c5e6eda116ee56a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Logarithm_Base2</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga9cac4e3384bdb509ab288b53880d50ff</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Log10</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gaa206647abf097431798d21dd311954a7</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_log</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga411424ea4d96ee8ced7126b4a0da17fb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_log10</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gaf7dbbfb97ec606b0670c3a231e1ff25f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Logarithm_Base10</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga454b3dabd0ac9b80a3ec89fab42d8d8b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_LogN</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gad332fbe3d095eb30564b2f259f8d702f</anchor>
+      <arglist>(X, Y)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_logn</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gadf1883c531d105e5af9446f9808e5a9c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Logarithm_BaseN</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gadb4ea19911336517ba2d6493bb6fa000</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Cos</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga3209a4f810ee243cc14506ffda119ce8</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cos</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga25372d72105ca8cb35fc5a8e3bbbd354</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Cosine</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gac6e6fd72af6736dc1372997364432388</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Sin</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga64038638cbc7370c940ea65274c14543</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_sin</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga09ee15332598b0dc582c1c5ee19a0f84</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Sine</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga490afb0355e5f5f94cf6e10133bfc159</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Tan</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gaba69fa3c396a390bf4a2764d064d83f1</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_tan</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga70ba56d882f4b5603fc71cdcaa670d50</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Tangent</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gaafe8c5688b0503a6fe07e7a98c03f7f7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_ArcCos</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga2a275bf6d4ea329ea78335545990bf30</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_acos</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gada99a21379518c97eddcec22431dc5cb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Cos_1</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga547613518a354228da566940e032648b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_InvCosine</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga64f80667c1928c15cecd891117287827</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_ArcSin</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga3ea416f7232cff551bcfdde5bb2f3edf</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_asin</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga63385d77920b179ea4a31d55b35b6e63</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Sin_1</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga26601f17517dd408682251e40836bc1a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_InvSine</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga1b00246866a3b1a3206fe8949c3ce23b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_ArcTan</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gaf1c3fc24548e298ea19abce3d9d783dd</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_atan</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga83d84e2712197f2851c25455587cfe16</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Tan_1</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga61c81a26b368abe08cbb91af8bec12c7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_InvTangent</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga0952fbb9b644572886ae369649a84f85</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_ArcTan2</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga11972c48b9c7e57f2dad91c0252eced1</anchor>
+      <arglist>(Y, X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_atan2</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga341bd19c5f1c41938050e9ea62756f24</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_ArcTan_YoverX</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga09a746a7d1f14e14cd960f22c117c073</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_ArcTangent2</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga997dadbffad4f30778ad3159c2d8cef7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_ArcTangent_YoverX</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga03760b64ad078661795263b6d74f1ab3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_CosH</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gabc2c4ddb0a526dbc694e1fb38604349b</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cosh</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga802ec33aec2d3e3acb34b41ca0fcbf07</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Cos_H</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga4d9be51246d0168323fff5c5c99e2bcf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Cosine_Hyperbolic</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga6bb25605013bcfc6f741575fd2efc230</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_SinH</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gaeea76c85821d1b5cdbe5784f7710f6be</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_sinh</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga179ab0f7d9cf62fd1d8e722b97cd55fb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Sin_H</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gaf2a96a8558b13c2378b2d75c3516c7ad</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Sine_Hyperbolic</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gafac12064625b00665c8b011b73c33c20</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_TanH</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga0ad4e08b761330a3a0e05eea17a8c2cb</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_tanh</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gaca4f29ed09665f3e6890b0eabebb1e9e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Tan_H</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gafdc89ff506313da5ae2fd87ac4bba383</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Tangent_Hyperbolic</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga24f9ee765e43563b85c6e3cd53dc9037</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_InvCosH</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga2ebb9a51f9b6549fd1db56c7e45612a0</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_acosh</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gac4c1f7020ad70ad5d6246de94c070e54</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Cos_1_H</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga3e441b3ea273e59922f8943fe107858f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_InvCosine_Hyperbolic</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga89b97f9df4b8845d60c4de49a16977f0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_InvSinH</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gaedf08cb1bb4045752fd4d46e7f61aeae</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_asinh</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gae5078c1a8d86f2039b678f0ef22edc53</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Sin_1_H</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gadc0051011f0f69ef4ff505176f60f4c5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_InvSine_Hyperbolic</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga5f3e950cfe1f3f95cb405971269411a7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_InvTanH</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga9359727ebe39b0306999c79c9d242460</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_atanh</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>gac6d36d825e197337e9a4d61d65d24502</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_Tan_1_H</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga40b0d93f97d2cc552c7a1e48abbadfeb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Math_InvTangent_Hyperbolic</name>
+      <anchorfile>group__libccc__math__math.html</anchorfile>
+      <anchor>ga20633cb2351a37df10e34dbbfba6d134</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="group">
     <name>libccc_array_sort</name>

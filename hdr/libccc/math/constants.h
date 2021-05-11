@@ -195,7 +195,7 @@ HEADER_CPP
 
 //! Mathematical constant: G, the Gauss constant, the reciprocal of the arithmetic–geometric mean of 1 and the square root of 2
 /*!
-**	- Math: @f$ G = \frac{2}{\pi} \int_{0}^{1} \frac{dx}{\sqrt{1 - x^4}) @f$
+**	- Math: @f$ {G = \frac{2}{\pi} \int_{0}^{1} \frac{dx}{\sqrt{1 - x^4}}} @f$
 **	- Decimal: `0.8346268416740731862814297327990468089939930134903470024498273701...`
 */
 #define GGAUSS			(0.834626841674073194354832594399340450763702392578125e0)

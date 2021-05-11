@@ -25,6 +25,7 @@
 */
 
 #include "libccc_config.h"
+#include "libccc_naming.h"
 #include "libccc_define.h"
 
 HEADER_CPP

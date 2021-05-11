@@ -45,6 +45,7 @@
 //! @defgroup libccc_monad_keyval			33) libccc/monad/keyval
 //! @defgroup libccc_monad_dict				34) libccc/monad/dict
 //! @defgroup libccc_monad_object			35) libccc/monad/object
+//! @defgroup libccc_encode_json			36) libccc/encode/json
 
 #ifndef __LIBCCC_H
 #define __LIBCCC_H

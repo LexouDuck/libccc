@@ -67,6 +67,7 @@
 */
 
 #include "libccc_config.h"
+#include "libccc_naming.h"
 #include "libccc_define.h"
 
 #include "libccc/bool.h"

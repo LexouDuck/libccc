@@ -126,23 +126,27 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">13) libccc/sys/io</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_time.html">14) libccc/sys/time</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">15) libccc/sys/logger</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_math.html">17) libccc/math/math</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_vlq.html">18) libccc/math/vlq</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_stat.html">19) libccc/math/stat</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_random.html">20) libccc/math/random</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra.html">21) libccc/math/algebra</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">22) libccc/math/complex</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_array.html">23) libccc/monad/array</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_list.html">24) libccc/monad/list</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_stack.html">25) libccc/monad/stack</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_queue.html">26) libccc/monad/queue</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_tree.html">27) libccc/monad/tree</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_keyval.html">28) libccc/monad/keyval</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_dict.html">29) libccc/monad/dict</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_object.html">30) libccc/monad/object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_constants.html">27) libccc/math/constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_float.html">18) libccc/math/float</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_fixed.html">19) libccc/math/fixed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_vlq.html">20) libccc/math/vlq</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_stat.html">21) libccc/math/stat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_random.html">22) libccc/math/random</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">23) libccc/math/complex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra.html">24) libccc/math/algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_array.html">28) libccc/monad/array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_list.html">29) libccc/monad/list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_stack.html">30) libccc/monad/stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_queue.html">31) libccc/monad/queue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_tree.html">32) libccc/monad/tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_keyval.html">33) libccc/monad/keyval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_dict.html">34) libccc/monad/dict</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_object.html">35) libccc/monad/object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_config.html">Libccc_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_regex.html">Libccc_regex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_math.html">Libccc_math_math</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_array_sort.html">Libccc_array_sort</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_convert.html">Libccc_monad_convert</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_regex.html">Libccc_regex</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
@@ -1643,14 +1647,14 @@
 <ul class="simple">
 <li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/language/arithmetic_types#Integer_types">https://en.cppreference.com/w/c/language/arithmetic_types#Integer_types</a></p></li>
 </ul>
-<p>Configurable-width unsigned integer type. The size of this integer type depends on the value of <a class="reference internal" href="group_libccc.html#doxid-group-libccc-1ga86d00a69dfe2e664c87a03499d7b5f5a"><span class="std std-ref">LIBCONFIG_BITS_UINT</span></a>. This is meant to be used as a “default integer type”, a type where the programmer doesn’t need to worry about integer overflow behaviors being platform-dependent (like they would if they used the C native <code class="docutils literal notranslate"><span class="pre">int</span></code> type). This type can express a number between <code class="docutils literal notranslate"><span class="pre">0</span></code> and <a class="reference internal" href="global.html#doxid-int-8h-1ac998ea02fbd821fc123d60445ce76f38"><span class="std std-ref">UINT_MAX</span></a></p>
+<p>Configurable-width unsigned integer type. The size of this integer type depends on the value of <a class="reference internal" href="group_libccc_config.html#doxid-group-libccc-config-1ga86d00a69dfe2e664c87a03499d7b5f5a"><span class="std std-ref">LIBCONFIG_BITS_UINT</span></a>. This is meant to be used as a “default integer type”, a type where the programmer doesn’t need to worry about integer overflow behaviors being platform-dependent (like they would if they used the C native <code class="docutils literal notranslate"><span class="pre">int</span></code> type). This type can express a number between <code class="docutils literal notranslate"><span class="pre">0</span></code> and <a class="reference internal" href="global.html#doxid-int-8h-1ac998ea02fbd821fc123d60445ce76f38"><span class="std std-ref">UINT_MAX</span></a></p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-int-1ga9787440579cf6b6083d215000cfba16f"><span id="index-83"></span><span></span><span class="n">TYPEDEF_ALIAS</span><span class="p">(</span><span class="kt">t_uint</span><span class="p">,</span> <span class="n">UINT</span><span class="p">,</span> <span class="n">PRIMITIVE</span><span class="p">)</span></pre>
 <p>The actual underlying type for the <code class="docutils literal notranslate"><span class="pre">t_sint</span></code> configurable type, in uppercase.</p>
 <p>The actual underlying type for the <code class="docutils literal notranslate"><span class="pre">t_sint</span></code> configurable type, in uppercase The configurable-size signed integer primitive type.</p>
 <ul class="simple">
 <li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/language/arithmetic_types#Integer_types">https://en.cppreference.com/w/c/language/arithmetic_types#Integer_types</a></p></li>
 </ul>
-<p>Configurable-width signed integer type. The size of this integer type depends on the value of <a class="reference internal" href="group_libccc.html#doxid-group-libccc-1gaac372d149c7d1452ad8f81414a6c75ab"><span class="std std-ref">LIBCONFIG_BITS_SINT</span></a>. This is meant to be used as a “default integer type”, a type where the programmer doesn’t need to worry about integer overflow behaviors being platform-dependent (like they would if they used the C native <code class="docutils literal notranslate"><span class="pre">int</span></code> type). This type can express a number between <a class="reference internal" href="global.html#doxid-int-8h-1aa936407e170ea9cac428d91070d8e717"><span class="std std-ref">SINT_MIN</span></a> and <a class="reference internal" href="global.html#doxid-int-8h-1aba0afd3e5d286bcf0e7f2341c441c582"><span class="std std-ref">SINT_MAX</span></a>.</p>
+<p>Configurable-width signed integer type. The size of this integer type depends on the value of <a class="reference internal" href="group_libccc_config.html#doxid-group-libccc-config-1gaac372d149c7d1452ad8f81414a6c75ab"><span class="std std-ref">LIBCONFIG_BITS_SINT</span></a>. This is meant to be used as a “default integer type”, a type where the programmer doesn’t need to worry about integer overflow behaviors being platform-dependent (like they would if they used the C native <code class="docutils literal notranslate"><span class="pre">int</span></code> type). This type can express a number between <a class="reference internal" href="global.html#doxid-int-8h-1aa936407e170ea9cac428d91070d8e717"><span class="std std-ref">SINT_MIN</span></a> and <a class="reference internal" href="global.html#doxid-int-8h-1aba0afd3e5d286bcf0e7f2341c441c582"><span class="std std-ref">SINT_MAX</span></a>.</p>
 </div>
 <div class="section" id="macros">
 <h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h3>

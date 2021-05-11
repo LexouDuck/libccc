@@ -101,7 +101,7 @@ contexts:
           pop: true
         - include: typedef
         - include: lex-type
-        - include: lex
+        - include: lex-core
         - include: support
         - include: function
         - include: variable-declaration
@@ -126,7 +126,7 @@ contexts:
         - match: (?=\))
           pop: true
         - include: lex-type
-        - include: lex
+        - include: lex-core
         - include: support
         - include: function-pointer
         - include: function-call-macro
@@ -553,7 +553,7 @@ contexts:
                           (?<= \w ) \s
 
                         | #  or type modifier / closing bracket before name
-                          (?<= [^&]& | [^ -]> | [*}\]] )
+                          (?<= [^ -]> | [*}\]] )
                       )
                       \s*
                       (?: [A-Za-z_]\w*+ | ::[^:] | \. )++
@@ -607,7 +607,7 @@ contexts:
               )
               (?<= \w\b)
             | #  or type modifier / closing bracket before name
-              (?<= [^&]& | [^ -]> | [*}\]] )
+              (?<= [^ -]> | [*}\]] )
           )
           \s*+
           (   (?: [A-Za-z_]\w*+ | ::[^:] )++ )
@@ -645,7 +645,7 @@ contexts:
               )
               (?<= \w\b)
             | #  or type modifier / closing bracket before name
-              (?<= [^&]& | [^ -]> | [*}\]] )
+              (?<= [^ -]> | [*}\]] )
           )
           \s*+
           (   (?: [A-Za-z_]\w*+ | ::[^:] | \. )++ )
@@ -684,7 +684,7 @@ contexts:
               )
               (?<= \w\b)
             | #  or type modifier / closing bracket before name
-              (?<= [^&]& | [^ -]> | [*}\]] )
+              (?<= [^ -]> | [*}\]] )
           )
           \s*+
           (   (?: [A-Za-z_]\w*+ | ::[^:] | \. )++ )

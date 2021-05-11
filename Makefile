@@ -269,6 +269,7 @@ SRCS = \
 	monad/list/map.c		\
 	monad/list/filter.c		\
 	monad/convert/list.c	\
+	encode/json.c			\
 
 # define object files list (.o) from source list
 OBJS = ${SRCS:%.c=$(OBJDIR)%.o}
