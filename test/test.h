@@ -34,7 +34,7 @@ typedef struct test_arg
 	char const*	name;
 	char const* description;
 }				s_test_arg;
-#define TEST_ARGS_AMOUNT	8
+#define TEST_ARGS_AMOUNT	9
 
 //! This struct stores the program argument boolean flags
 typedef struct test_flags
@@ -43,6 +43,7 @@ typedef struct test_flags
 	bool	show_args;		//!< if TRUE, display arguments given to each test
 	bool	show_speed;		//!< if TRUE, display performance (execution speed) for each test
 	bool	show_result;	//!< if TRUE, display result, even when test passed
+	bool	show_escaped;	//!< if TRUE, display strings with non-printable characters as escape sequences
 	bool	test_nullptrs;	//!< if TRUE, perform all NULL pointer tests
 	bool	test_overflow;	//!< if TRUE, perform all the libccc_convert overflowing number tests
 }				s_test_flags;

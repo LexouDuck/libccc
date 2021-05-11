@@ -92,20 +92,20 @@ void	print_test(
 
 
 #define DEFINE_TESTFUNCTION_INT(NAME, SIGNED) \
-void	print_test_##NAME(s_test_##NAME* test, char const* args)								\
-{																								\
-	int error;																					\
-	if (test->result_sig)																		\
-		error = !test->expect_sig;																\
-	else if (test->expect_sig)																	\
-		error = !LIBCONFIG_HANDLE_NULLPOINTERS;													\
-	else error = (test->result != test->expect);												\
-	print_test(test->name, test->function, args,												\
-		(test->result_sig ? signals[test->result_sig] : int_##SIGNED##tostr(test->result)),	\
-		(test->expect_sig ? signals[test->expect_sig] : int_##SIGNED##tostr(test->expect)),	\
-		test->can_sig,																			\
-		error, NULL);																			\
-}																								\
+void	print_test_##NAME(s_test_##NAME* test, char const* args)							\
+{																							\
+	int error;																				\
+	if (test->result_sig)																	\
+		error = !test->expect_sig;															\
+	else if (test->expect_sig)																\
+		error = !LIBCONFIG_HANDLE_NULLPOINTERS;												\
+	else error = (test->result != test->expect);											\
+	print_test(test->name, test->function, args,											\
+		(test->result_sig ? signals[test->result_sig] : SIGNED##inttostr(test->result)),	\
+		(test->expect_sig ? signals[test->expect_sig] : SIGNED##inttostr(test->expect)),	\
+		test->can_sig,																		\
+		error, NULL);																		\
+}																							\
 
 DEFINE_TESTFUNCTION_INT(bool,	u)
 
@@ -204,11 +204,18 @@ void	print_test_sign(s_test_sign* test, char const* args)
 		test->result_sig = 0;
 		test->expect_sig = 0;
 	}
+	char* tmp = (char*)malloc(1+128);	if (tmp == NULL) return;
+	size_t len = snprintf(tmp,	128, "Return value differs, but sign is the same (got %i, but expected %i).",
+		test->result,
+		test->expect);
+	if (len == 0)
+		return;
 	print_test(test->name, test->function, args,
-		(test->result_sig ? signals[test->result_sig] : int_stostr(test->result)),
-		(test->expect_sig ? signals[test->expect_sig] : int_stostr(test->expect)),
+		(test->result_sig ? signals[test->result_sig] : sinttostr(test->result)),
+		(test->expect_sig ? signals[test->expect_sig] : sinttostr(test->expect)),
 		test->can_sig,
-		error, warning ? "return value differed, but sign was the same." : NULL);
+		error, warning ? tmp : NULL);
+	free(tmp);
 }
 
 
@@ -258,10 +265,13 @@ void	print_test_mem(s_test_mem* test, char const* args)
 
 void	print_test_str(s_test_str* test, char const* args)
 {
-	char* tmp_result = test->result == NULL ? NULL : (strlen(test->result) < STRING_ESCAPE_THRESHOLD ? strtoescape(test->result) : strdup(test->result));
-	char* tmp_expect = test->expect == NULL ? NULL : (strlen(test->expect) < STRING_ESCAPE_THRESHOLD ? strtoescape(test->expect) : strdup(test->expect));
+	char* tmp;
+	char* tmp_result = (test->result == NULL ? NULL : (g_test.flags.show_escaped ? strtoescape(test->result) : strdup(test->result)));
+	char* tmp_expect = (test->expect == NULL ? NULL : (g_test.flags.show_escaped ? strtoescape(test->expect) : strdup(test->expect)));
 	int error;
 
+	tmp = tmp_result;	tmp_result = strsurround(tmp_result, '\"', '\"');	free(tmp);	tmp = NULL;
+	tmp = tmp_expect;	tmp_expect = strsurround(tmp_expect, '\"', '\"');	free(tmp);	tmp = NULL;
 	if (test->result_sig || test->expect_sig)
 		error = (test->result_sig != test->expect_sig);
 	else if (test->result == NULL || test->expect == NULL)
@@ -269,8 +279,8 @@ void	print_test_str(s_test_str* test, char const* args)
 	else
 		error = !str_equals(test->result, test->expect);
 	print_test(test->name, test->function, args,
-		tmp_result,
-		tmp_expect,
+		tmp_result ? tmp_result : "NULL",
+		tmp_expect ? tmp_expect : "NULL",
 		test->can_sig,
 		error, NULL);
 	free(tmp_result);
@@ -283,7 +293,7 @@ void	print_test_alloc(s_test_alloc* test, char const* args)
 {
 	char* tmp_result = print_memory(test->result, test->length);
 	char* tmp_expect = print_memory(test->expect, test->length);
-	int		error = FALSE;
+	int error = FALSE;
 	size_t	i;
 
 	if (test->result == NULL)

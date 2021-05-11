@@ -80,12 +80,13 @@ char*	print_memory(void const* ptr, t_size length);
 
 char*	str_padleft(char const* str, char c, t_size length);
 
-#define STRING_ESCAPE_THRESHOLD	128
 char*	strtoescape(char const* str);
 
-char*	int_stostr(t_s64 number);
+char*	strsurround(char const* str, char begin, char end);
 
-char*	int_utostr(t_u64 number);
+char*	sinttostr(t_s64 number);
+
+char*	uinttostr(t_u64 number);
 
 char*	ptrtostr(void const* ptr);
 

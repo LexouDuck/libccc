@@ -36,6 +36,7 @@ s_program	g_test;
 static void	handle_arg_verbose()		{ g_test.flags.verbose		 = TRUE; }
 static void	handle_arg_show_args()		{ g_test.flags.show_args	 = TRUE; }
 static void	handle_arg_show_result()	{ g_test.flags.show_result	 = TRUE; }
+static void	handle_arg_show_escaped()	{ g_test.flags.show_escaped	 = TRUE; }
 static void handle_arg_show_speed()		{ g_test.flags.show_speed	 = TRUE; }
 static void	handle_arg_test_nullptrs()	{ g_test.flags.test_nullptrs = TRUE; }
 static void	handle_arg_test_overflow()	{ g_test.flags.test_overflow = TRUE; }
@@ -97,6 +98,7 @@ static void	init(void)
 		(s_test_arg){ handle_arg_verbose,		'v', "verbose",			"If provided, output each test result (as either 'OK!' or 'ERROR: return was _')." },
 		(s_test_arg){ handle_arg_show_args,		'a', "show-args",		"If provided, output the arguments used for each test performed." },
 		(s_test_arg){ handle_arg_show_result,	'r', "show-result",		"If provided, output the result for each test performed, even when passed." },
+		(s_test_arg){ handle_arg_show_escaped,	'e', "show-escaped",	"If provided, output any non-printable characters as a backslash C escape sequence." },
 		(s_test_arg){ handle_arg_show_speed,	'p', "show-performance","If provided, output the execution speed for each test performed." },
 		(s_test_arg){ handle_arg_test_all,		't', "test-all",		"Sets all the 'test-something' arguments below (is equivalent to doing '-no')" },
 		(s_test_arg){ handle_arg_test_nullptrs,	'n', "test-nullptrs",	"If provided, perform the NULL pointer tests for all functions." },
