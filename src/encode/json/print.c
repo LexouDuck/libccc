@@ -261,9 +261,14 @@ t_bool	JSON_Print_Number(s_json const* item, s_json_print* p)
 	if (p == NULL)
 		return (FALSE);
 	// This checks for NaN and Infinity
-	if (isnan(d) || isinf(d))
+	if (IS_NAN(d))
 	{
-		length = String_Format_N(number_buffer, JSON_NUMBER_BUFFERSIZE, "null");
+		length = String_Format_N(number_buffer, JSON_NUMBER_BUFFERSIZE, "nan");
+	}
+	else if (IS_INF(d))
+	{
+		if (d > 0)	length = String_Format_N(number_buffer, JSON_NUMBER_BUFFERSIZE, "+inf");
+		if (d < 0)	length = String_Format_N(number_buffer, JSON_NUMBER_BUFFERSIZE, "-inf");
 	}
 	else
 	{
@@ -271,7 +276,7 @@ t_bool	JSON_Print_Number(s_json const* item, s_json_print* p)
 		length = String_Format_N(number_buffer, JSON_NUMBER_BUFFERSIZE, "%1.15g", d);
 		// Check whether the original t_f64 can be recovered
 		test = F64_FromString(number_buffer);
-		if (!F64_Equals((t_f64)test, d))
+		if (!F64_Equals(test, d))
 		{
 			// If not, print with 17 decimal places of precision
 			length = String_Format_N(number_buffer, JSON_NUMBER_BUFFERSIZE, "%1.17g", d);

@@ -27,15 +27,17 @@ t_float	Float_FromString_CheckSpecial(t_char const* str)
 		++str;
 	if (String_Equals_N_IgnoreCase(str, "NAN", 3))
 	{
+		if (sign == '-')	return (-NAN);
+		if (sign == '+')	return (+NAN);
 		return (NAN);
 	}
 	if (String_Equals_N_IgnoreCase(str, "INFINITY", 8) ||
 		String_Equals_N_IgnoreCase(str, "INF", 3) ||
 		UTF32_FromUTF8((t_utf8*)str) == 0x221E) // infinity unicode char
 	{
-		return (sign == '-' ?
-			-INFINITY :
-			+INFINITY);
+		if (sign == '-')	return (-INF);
+		if (sign == '+')	return (+INF);
+		return (INF);
 	}
 	return (0.);
 }

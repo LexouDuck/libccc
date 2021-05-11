@@ -158,11 +158,20 @@ t_bool		JSON_Parse_Number(s_json* const item, s_json_parse* const p)
 			if (!Char_IsAlphaNumeric(p->content[p->offset + length]))
 				break;
 		}
+		if (CAN_PARSE(length) && !(Char_IsSpace(p->content[p->offset + length]) ||
+			p->content[p->offset + length] == ',' ||
+			p->content[p->offset + length] == ']' ||
+			p->content[p->offset + length] == '}' ||
+			p->content[p->offset + length] == '\0'))
+			PARSINGERROR_JSON("Unexpected char in number value: \"%.*s\"", (int)(length + 1), p->content + p->offset)
 	}
 	number = String_Sub(p->content, p->offset, length);
+	if (number == NULL)
+		PARSINGERROR_JSON("Could not parse number: \"%.*s\"", (int)length, p->content + p->offset)
 	result = F64_FromString(number);
-	if (IS_NAN(result))
-		PARSINGERROR_JSON("Could not parse number: \"%s\"", number)
+//	if (IS_NAN(result)) // && String_HasOnly(number, CHARSET_ALPHABET".-+"CHARSET_DIGIT))
+//		PARSINGERROR_JSON("Error while parsing number: \"%s\"", number)
+	String_Delete(&number);
 	item->value.number = result;
 	item->type = DYNAMIC_TYPE_FLOAT;
 	p->offset += length;

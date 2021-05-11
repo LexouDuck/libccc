@@ -206,7 +206,7 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 **	Also, define isinf() for ANSI C compatibility, if needed.
 */
 #ifndef isinf
-#define isinf(X)	(isnan((X - X)) && !isnan(X))
+#define isinf(X)	(isnan((X) - (X)) && !isnan(X))
 #endif
 #ifndef IS_INF
 #define IS_INF(X)		isinf(X)

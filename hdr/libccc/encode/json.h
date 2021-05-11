@@ -147,6 +147,10 @@ void	JSON_Minify(t_utf8* json); //!< TODO rename to JSON_Minify_InPlace(), and a
 
 
 
+// TODO JSON_ToValid()
+
+
+
 /*
 ** ************************************************************************** *|
 **                             Basic JSON Operations                           *|
