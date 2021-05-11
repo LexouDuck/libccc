@@ -282,7 +282,7 @@ char*	json_complex_min =
 "}";
 char*	json_complex = "\
 {\
-\n	\"Attributes\":\
+\n	\"Attributes\": \
 \n	{\
 \n		\"SEX_ATTRIBUTE\": [{\"Values\": [{\"CHARACTER\": \"M\"}]}],\
 \n		\"AGE_ATTRIBUTE\": [{\"Values\": [{\"INTEGER\": \"82\"}]}],\
@@ -292,22 +292,19 @@ char*	json_complex = "\
 \n		\"LABEL_ATTRIBUTE\": [{\"Values\": [{\"TEXT\": \"Яцк Ничолсон\"}]}],\
 \n		\"BIRTHDAY_ATTRIBUTE\": [{\"Values\": [{\"TIME\": \"-1031788800\"}]}],\
 \n		\"DOCUMENT_ATTRIBUTE\": [{\"Values\": [{\"WEB\": \"urn:isbn:0393350967\"}]}],\
-\n		\"WEIGHT_ATTRIBUTE\":\
+\n		\"WEIGHT_ATTRIBUTE\": \
 \n		[\
 \n			{\
 \n				\"Values\": [\"72\"],\
-\n				\"Properties\":\
-\n				[\
-\n					[\
+\n				\"Properties\": [[\
 \n						\"listed\",\
 \n						\"\",\
 \n						\"\"\
-\n					]\
-\n				]\
+\n					]]\
 \n			},\
 \n			{\
 \n				\"Values\": [\"160\"],\
-\n				\"Properties\":\
+\n				\"Properties\": \
 \n				[\
 \n					[\
 \n						\"reported\",\
@@ -322,22 +319,17 @@ char*	json_complex = "\
 \n				]\
 \n			}\
 \n		],\
-\n		\"LOCATION_ATTRIBUTE\":\
-\n		[\
-\n			{\
-\n				\"Values\":\
+\n		\"LOCATION_ATTRIBUTE\": [{\"Values\": \
 \n				[\
 \n					{\"TEXT\": \"Los Angeles\"},\
 \n					{\"TEXT\": \"Aspen\"},\
 \n					{\"TEXT\": \"Malibu\"}\
-\n				]\
-\n			}\
-\n		],\
-\n		\"CHILD_ATTRIBUTE\":\
+\n				]}],\
+\n		\"CHILD_ATTRIBUTE\": \
 \n		[\
 \n			{\
 \n				\"Values\": [{\"TEXT\": \"Jennifer\"}],\
-\n				\"Properties\":\
+\n				\"Properties\": \
 \n				[\
 \n					[\
 \n						\"Born\",\
@@ -353,7 +345,7 @@ char*	json_complex = "\
 \n			},\
 \n			{\
 \n				\"Values\": [{\"TEXT\": \"Caleb\"}],\
-\n				\"Properties\":\
+\n				\"Properties\": \
 \n				[\
 \n					[\
 \n						\"Born\",\
@@ -369,14 +361,14 @@ char*	json_complex = "\
 \n						\"Mother\",\
 \n						\"\",\
 \n						\"Susan Anspach\"\
-\n					],\
+\n					]\
 \n				]\
 \n			},\
 \n			{\"Values\": [{\"TEXT\": \"Honey\"}]},\
 \n			{\"Values\": [{\"TEXT\": \"Lorraine\"}]},\
 \n			{\
 \n				\"Values\": [{\"TEXT\": \"Raymond\"}],\
-\n				\"Properties\":\
+\n				\"Properties\": \
 \n				[\
 \n					[\
 \n						\"Born\",\
@@ -392,7 +384,7 @@ char*	json_complex = "\
 \n			}\
 \n		]\
 \n	},\
-\n	\"Properties\":\
+\n	\"Properties\": \
 \n	[\
 \n		[\
 \n			\"known for\",\
@@ -415,7 +407,7 @@ char*	json_complex = "\
 \n			\"Chinatown\"\
 \n		]\
 \n	],\
-\n	\"Values\":\
+\n	\"Values\": \
 \n	[\
 \n		\"actor\",\
 \n		\"player\",\

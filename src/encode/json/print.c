@@ -10,7 +10,7 @@
 
 typedef struct json_print
 {
-	t_char*	buffer;
+	t_utf8*	buffer;
 	t_size	length;
 	t_size	offset;
 	t_size	depth;	// current nesting depth (for formatted printing)
@@ -34,9 +34,9 @@ static t_bool	JSON_Print_Value (s_json const* item, s_json_print* p);
 
 
 // realloc s_json_print if necessary to have at least "needed" bytes more
-static t_char* ensure(s_json_print* p, t_size needed)
+static t_utf8* ensure(s_json_print* p, t_size needed)
 {
-	t_char* newbuffer = NULL;
+	t_utf8* newbuffer = NULL;
 	t_size newsize = 0;
 
 	if ((p == NULL) || (p->buffer == NULL))
@@ -74,7 +74,7 @@ static t_char* ensure(s_json_print* p, t_size needed)
 
 #ifdef Memory_Realloc // TODO make this ifdef check more robust ?
 	// reallocate with realloc if available
-	newbuffer = (t_char*)Memory_Realloc(p->buffer, newsize);
+	newbuffer = (t_utf8*)Memory_Realloc(p->buffer, newsize);
 	if (newbuffer == NULL)
 	{
 		Memory_Free(p->buffer);
@@ -84,7 +84,7 @@ static t_char* ensure(s_json_print* p, t_size needed)
 	}
 #else
 	// otherwise reallocate manually
-	newbuffer = (t_char*)Memory_Alloc(newsize);
+	newbuffer = (t_utf8*)Memory_Alloc(newsize);
 	if (!newbuffer)
 	{
 		Memory_Free(p->buffer);
@@ -103,11 +103,11 @@ static t_char* ensure(s_json_print* p, t_size needed)
 
 
 // Render the cstring provided to an escaped version that can be printed.
-static t_bool JSON_Print_StringPtr(t_char const* const input, s_json_print* p)
+static t_bool JSON_Print_StringPtr(t_utf8 const* const input, s_json_print* p)
 {
-	t_char const* input_pointer = NULL;
-	t_char* output = NULL;
-	t_char* result = NULL;
+	t_utf8 const* input_pointer = NULL;
+	t_utf8* output = NULL;
+	t_utf8* result = NULL;
 	t_size output_length = 0;
 	t_size escape_characters = 0; //!< amount of additional characters needed for escaping
 
@@ -120,7 +120,7 @@ static t_bool JSON_Print_StringPtr(t_char const* const input, s_json_print* p)
 		output = ensure(p, sizeof("\"\""));
 		if (output == NULL)
 			return (FALSE);
-		String_Copy((t_char*)output, "\"\"");
+		String_Copy(output, "\"\"");
 		return (TRUE);
 	}
 
@@ -230,18 +230,18 @@ static t_bool JSON_Print_StringPtr(t_char const* const input, s_json_print* p)
 static
 t_bool	JSON_Print_String(s_json const* item, s_json_print* p)
 {
-	return (JSON_Print_StringPtr((t_char*)item->value.string, p));
+	return (JSON_Print_StringPtr((t_utf8*)item->value.string, p));
 }
 
 // calculate the new length of the string in a s_json_print and update the offset
 static
 void	JSON_Print_UpdateOffset(s_json_print* const buffer)
 {
-	t_char const* buffer_pointer = NULL;
+	t_utf8 const* buffer_pointer = NULL;
 	if ((buffer == NULL) || (buffer->buffer == NULL))
 		return;
 	buffer_pointer = buffer->buffer + buffer->offset;
-	buffer->offset += String_Length((t_char const*)buffer_pointer);
+	buffer->offset += String_Length(buffer_pointer);
 }
 
 // Render the number nicely from the given item into a string.
@@ -249,30 +249,30 @@ void	JSON_Print_UpdateOffset(s_json_print* const buffer)
 static
 t_bool	JSON_Print_Number(s_json const* item, s_json_print* p)
 {
-	t_char*	result = NULL;
+	t_utf8*	result = NULL;
 	t_sint	length = 0;
 	t_f64	d = item->value.number;
 	t_size	i = 0;
 	t_f64	test = 0.0;
-	t_char	number_buffer[JSON_NUMBER_BUFFERSIZE] = {0}; // temporary buffer to print the number into
+	t_utf8	number_buffer[JSON_NUMBER_BUFFERSIZE] = {0}; // temporary buffer to print the number into
 
 	if (p == NULL)
 		return (FALSE);
 	// This checks for NaN and Infinity
 	if (isnan(d) || isinf(d))
 	{
-		length = String_Format_N((t_char*)number_buffer, JSON_NUMBER_BUFFERSIZE, "null");
+		length = String_Format_N(number_buffer, JSON_NUMBER_BUFFERSIZE, "null");
 	}
 	else
 	{
 		// Try 15 decimal places of precision to avoid nonsignificant nonzero digits
-		length = String_Format_N((t_char*)number_buffer, JSON_NUMBER_BUFFERSIZE, "%1.15g", d);
+		length = String_Format_N(number_buffer, JSON_NUMBER_BUFFERSIZE, "%1.15g", d);
 		// Check whether the original t_f64 can be recovered
-		test = F64_FromString((t_char*)number_buffer);
+		test = F64_FromString(number_buffer);
 		if (!F64_Equals((t_f64)test, d))
 		{
 			// If not, print with 17 decimal places of precision
-			length = String_Format_N((t_char*)number_buffer, JSON_NUMBER_BUFFERSIZE, "%1.17g", d);
+			length = String_Format_N(number_buffer, JSON_NUMBER_BUFFERSIZE, "%1.17g", d);
 		}
 	}
 	// sprintf failed or buffer overrun occurred
@@ -303,7 +303,7 @@ t_bool	JSON_Print_Number(s_json const* item, s_json_print* p)
 static
 t_bool	JSON_Print_Array(s_json const* item, s_json_print* p)
 {
-	t_char*	result = NULL;
+	t_utf8*	result = NULL;
 	s_json*	current_item = item->value.child;
 	t_size	length = 0;
 	t_bool	multiline = p->format;
@@ -397,7 +397,7 @@ t_bool	JSON_Print_Array(s_json const* item, s_json_print* p)
 static
 t_bool	JSON_Print_Object(s_json const* item, s_json_print* p)
 {
-	t_char*	result = NULL;
+	t_utf8*	result = NULL;
 	s_json*	current_item = item->value.child;
 	t_size	length = 0;
 	t_bool	multiline = p->format;
@@ -447,7 +447,7 @@ t_bool	JSON_Print_Object(s_json const* item, s_json_print* p)
 			p->offset += p->depth + 1;
 		}
 		// print key
-		if (!JSON_Print_StringPtr((t_char*)current_item->key, p))
+		if (!JSON_Print_StringPtr(current_item->key, p))
 			return (FALSE);
 		JSON_Print_UpdateOffset(p);
 
@@ -510,8 +510,8 @@ t_bool	JSON_Print_Object(s_json const* item, s_json_print* p)
 static
 t_bool	JSON_Print_Value(s_json const* item, s_json_print* p)
 {
-	t_char* output = NULL;
-	t_char const* str;
+	t_utf8* output = NULL;
+	t_utf8 const* str;
 
 	if ((item == NULL) || (p == NULL))
 		return (FALSE);
@@ -523,7 +523,7 @@ t_bool	JSON_Print_Value(s_json const* item, s_json_print* p)
 			output = ensure(p, String_Length(str) + 1);
 			if (output == NULL)
 				return (FALSE);
-			String_Copy((t_char*)output, str);
+			String_Copy(output, str);
 			return (TRUE);
 
 		case DYNAMIC_TYPE_BOOLEAN:
@@ -531,7 +531,7 @@ t_bool	JSON_Print_Value(s_json const* item, s_json_print* p)
 			output = ensure(p, String_Length(str) + 1);
 			if (output == NULL)
 				return (FALSE);
-			String_Copy((t_char*)output, str);
+			String_Copy(output, str);
 			return (TRUE);
 
 		case DYNAMIC_TYPE_INTEGER:
@@ -571,15 +571,15 @@ t_bool	JSON_Print_Value(s_json const* item, s_json_print* p)
 
 
 static
-t_char*	JSON_Print_(s_json const* item, t_bool format)
+t_utf8*	JSON_Print_(s_json const* item, t_bool format)
 {
 	static const t_size default_buffer_size = 256;
 	s_json_print buffer[1];
-	t_char* printed = NULL;
+	t_utf8* printed = NULL;
 
 	Memory_Set(buffer, 0, sizeof(buffer));
 	// create buffer
-	buffer->buffer = (t_char*)Memory_Alloc(default_buffer_size);
+	buffer->buffer = (t_utf8*)Memory_Alloc(default_buffer_size);
 	buffer->length = default_buffer_size;
 	buffer->format = format;
 	if (buffer->buffer == NULL)
@@ -594,14 +594,14 @@ t_char*	JSON_Print_(s_json const* item, t_bool format)
 	JSON_Print_UpdateOffset(buffer);
 
 #ifdef Memory_Realloc // check if reallocate is available
-		printed = (t_char*)Memory_Realloc(buffer->buffer, buffer->offset + 1);
+		printed = (t_utf8*)Memory_Realloc(buffer->buffer, buffer->offset + 1);
 		if (printed == NULL)
 		{
 			goto failure;
 		}
 		buffer->buffer = NULL;
 #else // otherwise copy the JSON over to a new buffer
-		printed = (t_char*) Memory_Alloc(buffer->offset + 1);
+		printed = (t_utf8*) Memory_Alloc(buffer->offset + 1);
 		if (printed == NULL)
 		{
 			goto failure;
@@ -629,23 +629,23 @@ failure:
 
 
 
-t_char*	JSON_Print_Pretty(s_json const* item)
+t_utf8*	JSON_Print_Pretty(s_json const* item)
 {
 	return (JSON_Print_(item, TRUE));
 }
 
-t_char*	JSON_Print_Minify(s_json const* item)
+t_utf8*	JSON_Print_Minify(s_json const* item)
 {
 	return (JSON_Print_(item, FALSE));
 }
 
-t_char*	JSON_Print_Buffered(s_json const* item, t_sint prebuffer, t_bool fmt)
+t_utf8*	JSON_Print_Buffered(s_json const* item, t_sint prebuffer, t_bool fmt)
 {
 	s_json_print p = { 0 };
 
 	if (prebuffer < 0)
 		return (NULL);
-	p.buffer = (t_char*)Memory_Alloc((t_size)prebuffer);
+	p.buffer = (t_utf8*)Memory_Alloc((t_size)prebuffer);
 	if (!p.buffer)
 		return (NULL);
 	p.length = (t_size)prebuffer;
@@ -657,17 +657,17 @@ t_char*	JSON_Print_Buffered(s_json const* item, t_sint prebuffer, t_bool fmt)
 		Memory_Free(p.buffer);
 		return (NULL);
 	}
-	return ((t_char*)p.buffer);
+	return ((t_utf8*)p.buffer);
 }
 
-t_bool	JSON_Print_Preallocated(s_json* item, t_char* buffer, const t_sint length, const t_bool format)
+t_bool	JSON_Print_Preallocated(s_json* item, t_utf8* buffer, const t_sint length, const t_bool format)
 {
 	s_json_print p = { 0 };
 
 	if ((length < 0) || (buffer == NULL))
 		return (FALSE);
 
-	p.buffer = (t_char*)buffer;
+	p.buffer = (t_utf8*)buffer;
 	p.length = (t_size)length;
 	p.offset = 0;
 	p.noalloc = TRUE;

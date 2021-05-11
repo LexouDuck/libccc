@@ -11,7 +11,7 @@
 typedef struct json_parse
 {
 	s_json*			result;		//!< the result JSON
-	t_char const*	content;	//!< the string to parse
+	t_utf8 const*	content;	//!< the string to parse
 	t_size			length;		//!< the length of the string to parse
 	t_bool			strict;		//!< if TRUE, strict parsing mode is on (rigourously follows the spec)
 	t_size			offset;		//!< current parsing offset
@@ -119,7 +119,7 @@ s_json_parse*	JSON_Parse_SkipUTF8BOM(s_json_parse* const p)
 	LIBCONFIG_HANDLE_NULLPOINTER(NULL, p)
 	LIBCONFIG_HANDLE_NULLPOINTER(NULL, p->content)
 	LIBCONFIG_HANDLE_INDEX2LARGE(NULL, p->offset, p->length)
-	if (CAN_PARSE(4) && (String_Compare_N((t_char const*)&p->content[p->offset], UTF8_BOM, 3) == 0))
+	if (CAN_PARSE(4) && (String_Compare_N(&p->content[p->offset], UTF8_BOM, 3) == 0))
 	{
 		p->offset += 3;
 	}
@@ -133,7 +133,7 @@ static
 t_bool		JSON_Parse_Number(s_json* const item, s_json_parse* const p)
 {
 	t_f64	result;
-	t_char*	number;
+	t_utf8*	number;
 	t_size	length;
 
 	LIBCONFIG_HANDLE_NULLPOINTER(NULL, p)
@@ -149,7 +149,7 @@ t_bool		JSON_Parse_Number(s_json* const item, s_json_parse* const p)
 		else break;
 	}
 	number = String_Sub(p->content, p->offset, length);
-	result = F64_FromString((t_char const*)number);
+	result = F64_FromString(number);
 	if (IS_NAN(result))
 		PARSINGERROR_JSON("Could not parse number: \"%s\"", number)
 	item->value.number = result;
@@ -166,10 +166,10 @@ failure:
 // Parse the input text into an unescaped cinput, and populate item.
 static t_bool JSON_Parse_String(s_json* const item, s_json_parse* const p)
 {
-	t_char const* input_pointer = &p->content[p->offset] + 1;
-	t_char const* input_end = &p->content[p->offset] + 1;
-	t_char* output_pointer = NULL;
-	t_char* output = NULL;
+	t_utf8 const* input_pointer = &p->content[p->offset] + 1;
+	t_utf8 const* input_end = &p->content[p->offset] + 1;
+	t_utf8* output_pointer = NULL;
+	t_utf8* output = NULL;
 	t_size allocation_length;
 	t_size skipped_bytes;
 	t_utf32 c;
@@ -198,7 +198,7 @@ static t_bool JSON_Parse_String(s_json* const item, s_json_parse* const p)
 		PARSINGERROR_JSON("Could not parse string: Unexpected end of input before closing quote")
 	// This is at most how much we need for the output
 	allocation_length = (t_size)(input_end - &p->content[p->offset]) - skipped_bytes;
-	output = (t_char*)Memory_Alloc(allocation_length + sizeof(""));
+	output = (t_utf8*)Memory_Alloc(allocation_length + sizeof(""));
 	if (output == NULL)
 		PARSINGERROR_JSON("Could not parse string: Allocation failure")
 	output_pointer = output;
@@ -207,7 +207,7 @@ static t_bool JSON_Parse_String(s_json* const item, s_json_parse* const p)
 	{
 		if (*input_pointer == '\\') // escape sequence
 		{
-			t_char sequence_length = 2;
+			t_utf8 sequence_length = 2;
 			if ((input_end - input_pointer) < 1)
 				PARSINGERROR_JSON("Could not parse string: Unexpected end of input within string escape sequence")
 			switch (input_pointer[1])
@@ -226,7 +226,7 @@ static t_bool JSON_Parse_String(s_json* const item, s_json_parse* const p)
 					sequence_length = UTF32_Parse_N(&c, input_pointer, (input_end - input_pointer));
 					if (sequence_length == 0)
 						PARSINGERROR_JSON("Could not parse string: Failed to convert UTF16-literal to UTF-8")
-					output_pointer += UTF32_ToUTF8((t_utf8*)output_pointer, c);
+					output_pointer += UTF32_ToUTF8(output_pointer, c);
 					break;
 				default:
 					PARSINGERROR_JSON("Could not parse string: Invalid string escape sequence encountered: \"\\%c\"", input_pointer[1])
@@ -445,23 +445,23 @@ t_bool	JSON_Parse_Value(s_json* const item, s_json_parse* const p)
 		PARSINGERROR_JSON("Unexpected end of input, unable to parse JSON value")
 	}
 	// parse the different types of values
-	if (CAN_PARSE(4) && (String_Equals_N((t_char const*)&p->content[p->offset], "null", 4) || (
-		p->strict ? 0 :	 String_Equals_N((t_char const*)&p->content[p->offset], "NULL", 4))))
+	if (CAN_PARSE(4) && (String_Equals_N(&p->content[p->offset], "null", 4) || (
+		p->strict ? 0 :	 String_Equals_N(&p->content[p->offset], "NULL", 4))))
 	{	// null
 		item->type = DYNAMIC_TYPE_NULL;
 		p->offset += 4;
 		return (TRUE);
 	}
-	if (CAN_PARSE(5) && (String_Equals_N((t_char const*)&p->content[p->offset], "false", 5) || (
-		p->strict ? 0 :	 String_Equals_N((t_char const*)&p->content[p->offset], "FALSE", 5))))
+	if (CAN_PARSE(5) && (String_Equals_N(&p->content[p->offset], "false", 5) || (
+		p->strict ? 0 :	 String_Equals_N(&p->content[p->offset], "FALSE", 5))))
 	{	// FALSE
 		item->type = DYNAMIC_TYPE_BOOLEAN;
 		item->value.boolean = FALSE;
 		p->offset += 5;
 		return (TRUE);
 	}
-	if (CAN_PARSE(4) && (String_Equals_N((t_char const*)&p->content[p->offset], "true", 4) || (
-		p->strict ? 0 :	 String_Equals_N((t_char const*)&p->content[p->offset], "TRUE", 4))))
+	if (CAN_PARSE(4) && (String_Equals_N(&p->content[p->offset], "true", 4) || (
+		p->strict ? 0 :	 String_Equals_N(&p->content[p->offset], "TRUE", 4))))
 	{	// TRUE
 		item->type = DYNAMIC_TYPE_BOOLEAN;
 		item->value.boolean = TRUE;
@@ -495,13 +495,13 @@ failure:
 
 
 static
-s_json*	JSON_Parse_(t_char const* json, t_size buffer_length, t_bool strict, t_char const** return_parse_end)
+s_json*	JSON_Parse_(t_utf8 const* json, t_size buffer_length, t_bool strict, t_utf8 const** return_parse_end)
 {
 	s_json_parse p = { 0 };
 	s_json* result = NULL;
 
 	LIBCONFIG_HANDLE_LENGTH2SMALL(NULL, buffer_length, 1)
-	p.content = (t_char const*)json;
+	p.content = json;
 	p.length = buffer_length; 
 	p.offset = 0;
 	p.strict = strict;
@@ -518,7 +518,7 @@ s_json*	JSON_Parse_(t_char const* json, t_size buffer_length, t_bool strict, t_c
 	}
 	if (return_parse_end)
 	{
-		*return_parse_end = (t_char const*)(&p.content[p.offset]);
+		*return_parse_end = &p.content[p.offset];
 	}
 	return (result);
 
@@ -538,7 +538,7 @@ failure:
 
 		if (return_parse_end != NULL)
 		{
-			*return_parse_end = (t_char const*)(json + position);
+			*return_parse_end = (json + position);
 		}
 	}
 	t_size column = 0;
@@ -554,25 +554,25 @@ failure:
 
 
 
-s_json*	JSON_Parse(t_char const* json)
+s_json*	JSON_Parse(t_utf8 const* json)
 {
 	LIBCONFIG_HANDLE_NULLPOINTER(NULL, json)
 	return (JSON_Parse_(json, String_Length(json), FALSE, NULL));
 }
 
-s_json*	JSON_Parse_N(t_char const* json, t_size maxlength)
+s_json*	JSON_Parse_N(t_utf8 const* json, t_size maxlength)
 {
 	LIBCONFIG_HANDLE_NULLPOINTER(NULL, json)
 	return (JSON_Parse_(json, maxlength, FALSE, NULL));
 }
 
-s_json*	JSON_Parse_Strict(t_char const* json, t_char const** return_parse_end)
+s_json*	JSON_Parse_Strict(t_utf8 const* json, t_utf8 const** return_parse_end)
 {
 	LIBCONFIG_HANDLE_NULLPOINTER(NULL, json)
 	return (JSON_Parse_(json, String_Length(json), TRUE, return_parse_end));
 }
 
-s_json*	JSON_Parse_Strict_N(t_char const* json, t_size maxlength, t_char const** return_parse_end)
+s_json*	JSON_Parse_Strict_N(t_utf8 const* json, t_size maxlength, t_utf8 const** return_parse_end)
 {
 	LIBCONFIG_HANDLE_NULLPOINTER(NULL, json)
 	return (JSON_Parse_(json, maxlength, TRUE, return_parse_end));

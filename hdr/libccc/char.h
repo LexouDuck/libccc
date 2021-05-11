@@ -55,8 +55,10 @@ TYPEDEF_ALIAS(	t_ascii, ASCII, PRIMITIVE)
 /*!
 **	@isostd{https://en.cppreference.com/w/c/string/multibyte}
 */
-typedef uint_least8_t	t_utf8;
+typedef char			t_utf8;
 TYPEDEF_ALIAS(			t_utf8, UTF8, PRIMITIVE)
+
+
 
 //! Primitive type: Unicode UTF-16 character (variable length: 2 or 4 bytes)
 /*!
@@ -65,6 +67,8 @@ TYPEDEF_ALIAS(			t_utf8, UTF8, PRIMITIVE)
 */
 typedef uint_least16_t	t_utf16; // TODO add option to use C11 `char16_t`
 TYPEDEF_ALIAS(			t_utf16, UTF16, PRIMITIVE)
+
+
 
 //! Primitive type: Unicode UTF-32 character code point value (fixed length: 4 bytes)
 /*!
