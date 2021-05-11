@@ -136,7 +136,7 @@ s_date	bad_leap_year_date = (s_date)
 {
 	.year		= 2007,
 	.month		= MONTH_FEBRUARY,
-	.day_week	= WEEKDAY_FRIDAY,
+	.day_week	= WEEKDAY_THURSDAY,
 	.day_month	= 29,
 	.day_year	= 59,
 	.hour		= 12,
@@ -151,9 +151,9 @@ s_date	bad_leap_second_date = (s_date)
 {
 	.year		= 2015,
 	.month		= MONTH_DECEMBER,
-	.day_week	= WEEKDAY_SATURDAY,
+	.day_week	= WEEKDAY_THURSDAY,
 	.day_month	= 31,
-	.day_year	= 365,
+	.day_year	= 364,
 	.hour		= 23,
 	.min		= 59,
 	.sec		= 60,
