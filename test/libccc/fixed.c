@@ -63,63 +63,63 @@ void	print_test_##TYPE##tostr(char const* test_name, int can_segfault,		\
 void	test_##TYPE##tostr(void)																											\
 {																																			\
 /*	| TEST FUNCTION         | TEST NAME                  |CAN SEGV| EXPECTING                       | TEST ARGS							*/	\
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                     "+1.(0/256)", NEW(+1,                       0, 1));	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                      "1.(0/256)", NEW(+1,                       0, 1));	\
 	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                     "-1.(0/256)", NEW(-1,                       0, 1));	\
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                    "+10.(0/256)", NEW(+10,                      0, 1));	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                     "10.(0/256)", NEW(+10,                      0, 1));	\
 	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                    "-10.(0/256)", NEW(-10,                      0, 1));	\
 	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                      "0.(0/256)", NEW( 0,                       0, 1));	\
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                    "+42.(0/256)", NEW(+42,                      0, 1));	\
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                   "+111.(0/256)", NEW(+111,                     0, 1));	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                     "42.(0/256)", NEW(+42,                      0, 1));	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                    "111.(0/256)", NEW(+111,                     0, 1));	\
 	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                   "-111.(0/256)", NEW(-111,                     0, 1));	\
 	print_test_##TYPE##tostr(#TYPE"tostr (n = 8 min)     ",	FALSE,                   "-128.(0/256)", NEW(-128,                     0, 1));	\
-	print_test_##TYPE##tostr(#TYPE"tostr (n = 8 max)     ",	FALSE,                   "+127.(0/256)", NEW(+127,                     0, 1));	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n = 8 max)     ",	FALSE,                    "127.(0/256)", NEW(+127,                     0, 1));	\
 	if (g_test.flags.test_overflow) {																										\
 	print_test_##TYPE##tostr(#TYPE"tostr (n < 8 min)     ",	FALSE,                   "-129.(0/256)", NEW(-129,                     0, 1));	\
-	print_test_##TYPE##tostr(#TYPE"tostr (n > 8 max)     ",	FALSE,                   "+128.(0/256)", NEW(+128,                     0, 1));	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n > 8 max)     ",	FALSE,                    "128.(0/256)", NEW(+128,                     0, 1));	\
 	print_test_##TYPE##tostr(#TYPE"tostr (n < 8 maxdigit)",	FALSE,                 "-99999.(0/256)", NEW(-99999,                   0, 1));	\
-	print_test_##TYPE##tostr(#TYPE"tostr (n > 8 maxdigit)",	FALSE,                 "+99999.(0/256)", NEW(+99999,                   0, 1));	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n > 8 maxdigit)",	FALSE,                  "99999.(0/256)", NEW(+99999,                   0, 1));	\
 	}																																		\
 	if (sizeof(t_##TYPE) * 8 >= 16)																											\
 	{																																		\
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                   "+777.(0/256)", NEW(+777,                     0, 1));	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                    "777.(0/256)", NEW(+777,                     0, 1));	\
 	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                   "-666.(0/256)", NEW(-666,                     0, 1));	\
 	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                 "-10000.(0/256)", NEW(-10000,                   0, 1));	\
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                 "+10000.(0/256)", NEW(+10000,                   0, 1));	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                  "10000.(0/256)", NEW(+10000,                   0, 1));	\
 	print_test_##TYPE##tostr(#TYPE"tostr (n = 16min)     ",	FALSE,                 "-32768.(0/256)", NEW(-32768,                   0, 1));	\
-	print_test_##TYPE##tostr(#TYPE"tostr (n = 16max)     ",	FALSE,                 "+32767.(0/256)", NEW(+32767,                   0, 1));	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n = 16max)     ",	FALSE,                  "32767.(0/256)", NEW(+32767,                   0, 1));	\
 	if (g_test.flags.test_overflow) {																										\
 	print_test_##TYPE##tostr(#TYPE"tostr (n < 16min)     ",	FALSE,                 "-32769.(0/256)", NEW(-32769,                   0, 1));	\
-	print_test_##TYPE##tostr(#TYPE"tostr (n > 16max)     ",	FALSE,                 "+32768.(0/256)", NEW(+32768,                   0, 1));	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n > 16max)     ",	FALSE,                  "32768.(0/256)", NEW(+32768,                   0, 1));	\
 	print_test_##TYPE##tostr(#TYPE"tostr (n < 16maxdigit)",	FALSE,               "-9999999.(0/256)", NEW(-9999999,                 0, 1));	\
-	print_test_##TYPE##tostr(#TYPE"tostr (n > 16maxdigit)",	FALSE,               "+9999999.(0/256)", NEW(+9999999,                 0, 1));	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n > 16maxdigit)",	FALSE,                "9999999.(0/256)", NEW(+9999999,                 0, 1));	\
 	}																																		\
 	if (sizeof(t_##TYPE) * 8 >= 32)																											\
 	{																																		\
 	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,             "-123456789.(0/256)", NEW(-123456789,               0, 1));	\
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,             "+123456789.(0/256)", NEW(+123456789,               0, 1));	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,              "123456789.(0/256)", NEW(+123456789,               0, 1));	\
 	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,             "-987654321.(0/256)", NEW(-987654321,               0, 1));	\
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,             "+987654321.(0/256)", NEW(+987654321,               0, 1));	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,              "987654321.(0/256)", NEW(+987654321,               0, 1));	\
 	print_test_##TYPE##tostr(#TYPE"tostr (n = 32min)     ",	FALSE,            "-2147483648.(0/256)", NEW(-2147483648,              0, 1));	\
-	print_test_##TYPE##tostr(#TYPE"tostr (n = 32max)     ",	FALSE,            "+2147483647.(0/256)", NEW(+2147483647,              0, 1));	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n = 32max)     ",	FALSE,             "2147483647.(0/256)", NEW(+2147483647,              0, 1));	\
 	if (g_test.flags.test_overflow) {																										\
 	print_test_##TYPE##tostr(#TYPE"tostr (n < 32min)     ",	FALSE,            "-2147483649.(0/256)", NEW(-2147483649,              0, 1));	\
-	print_test_##TYPE##tostr(#TYPE"tostr (n > 32max)     ",	FALSE,            "+2147483648.(0/256)", NEW(+2147483648,              0, 1));	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n > 32max)     ",	FALSE,             "2147483648.(0/256)", NEW(+2147483648,              0, 1));	\
 	print_test_##TYPE##tostr(#TYPE"tostr (n < 32maxdigit)",	FALSE,          "-999999999999.(0/256)", NEW(-999999999999,            0, 1));	\
-	print_test_##TYPE##tostr(#TYPE"tostr (n > 32maxdigit)",	FALSE,          "+999999999999.(0/256)", NEW(+999999999999,            0, 1));	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n > 32maxdigit)",	FALSE,           "999999999999.(0/256)", NEW(+999999999999,            0, 1));	\
 	}																																		\
 	if (sizeof(t_##TYPE) * 8 >= 64)																											\
 	{																																		\
 	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,            "-2147483649.(0/256)", NEW(-2147483649,              0, 1));	\
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,            "+2147483648.(0/256)", NEW(+2147483648,              0, 1));	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,             "2147483648.(0/256)", NEW(+2147483648,              0, 1));	\
 	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,          "-999999999999.(0/256)", NEW(-999999999999,            0, 1));	\
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,          "+999999999999.(0/256)", NEW(+999999999999,            0, 1));	\
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,           "999999999999.(0/256)", NEW(+999999999999,            0, 1));	\
 	print_test_##TYPE##tostr(#TYPE"tostr (n = 64min)     ",	FALSE,   "-9223372036854775808.(0/256)", NEW(-9223372036854775808ll,   0, 1));	\
-	print_test_##TYPE##tostr(#TYPE"tostr (n = 64max)     ",	FALSE,   "+9223372036854775807.(0/256)", NEW(+9223372036854775807ll,   0, 1));	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n = 64max)     ",	FALSE,    "9223372036854775807.(0/256)", NEW(+9223372036854775807ll,   0, 1));	\
 	if (g_test.flags.test_overflow) {																										\
 	print_test_##TYPE##tostr(#TYPE"tostr (n < 64min)     ",	FALSE,   "-9223372036854775809.(0/256)", NEW(-9223372036854775809ll,   0, 1));	\
-	print_test_##TYPE##tostr(#TYPE"tostr (n > 64max)     ",	FALSE,   "+9223372036854775808.(0/256)", NEW(+9223372036854775808ll,   0, 1));	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n > 64max)     ",	FALSE,    "9223372036854775808.(0/256)", NEW(+9223372036854775808ll,   0, 1));	\
 /*	print_test_##TYPE##tostr(#TYPE"tostr (n < 64maxdigit)",	FALSE, "-999999999999999999999.(0/256)", NEW(-999999999999999999999ll, 0, 1));*/\
-/*	print_test_##TYPE##tostr(#TYPE"tostr (n > 64maxdigit)",	FALSE, "+999999999999999999999.(0/256)", NEW(+999999999999999999999ll, 0, 1));*/\
+/*	print_test_##TYPE##tostr(#TYPE"tostr (n > 64maxdigit)",	FALSE,  "999999999999999999999.(0/256)", NEW(+999999999999999999999ll, 0, 1));*/\
 	}																																		\
 	}}}																																		\
 }

@@ -61,41 +61,55 @@ typedef s_kvt	s_json;
 ** ************************************************************************** *|
 */
 
-//! Create a new `s_json` object, parsed from a (valid) JSON string
-/*!
-**	Memory Management: the caller is always responsible to free the results,
-**	from all variants of JSON_Parse() (by using JSON_Delete()) and JSON_Print()
-**	(with stdlib free(), JSON_Hooks.free_fn(), or JSON_free() as appropriate).
-**	The exception is JSON_PrintPreallocated(), where the caller has full responsibility of the buffer.
-**	Supply a block of JSON, and this returns a `s_json` object you can interrogate.
-*/
-s_json*						JSON_Parse(t_utf8 const* json);
+#define 					JSON_Parse	JSON_Parse_Lenient
 #define c_jsonparse			JSON_Parse
-#define JSON_Parse			JSON_Parse
 #define JSON_Decode			JSON_Parse
 #define JSON_FromString		JSON_Parse
 
-//! Create a new `s_json` object, parsed from a (valid) JSON string, (only the first `n` chars are parsed)
-s_json*						JSON_Parse_N(t_utf8 const* json, t_size n);
-#define c_jsonparsen		JSON_Parse_N
+#define 					JSON_Parse_N	JSON_Parse_Lenient_N
+#define c_jsonnparse		JSON_Parse_N
 #define JSON_Decode_N		JSON_Parse_N
 #define JSON_FromString_N	JSON_Parse_N
 
 //! Create a new `s_json` object, parsed from a (valid) JSON string
 /*!
-**	JSON_ParseStrict() allows you to require (and check) that the JSON is null terminated,
-**	and to retrieve the pointer to the final byte parsed.
-**	If you supply a ptr in return_parse_end and parsing fails, then `return_parse_end`
-**	will contain a pointer to the error, such that it will match the return of JSON_GetErrorPtr().
+**	This function creates a `s_json` object by parsing a JSON string,
+**	allowing for several extensions to the JSON official spec, notably:
+**	- allows for trailing commas at the end of arrays or objects
+**	- allows for leading `+` symbols for positive-sign number literals
+**	- allows for `null`/`true`/`false` to be written in uppercase, or mixed-case rather than just lowercase
+**	- allows for non-standard whitespace characters: anything for which `isspace()` returns `TRUE`
+**	- allows for non-standard string escape sequences, matching those used in C: `\x??` for bytes, `\e`, for escape, etc
+**	- supports comments (using either `/``*`,`*``/` block syntax, or `//` single-line)
+**	- supports non-standard `number` values: `nan`/NaN and `inf`/infinity
+**	- supports numeric literals in other bases: prefix with `0x` for hexadecimal, `0b` for binary, `0o` for octal
+**	- supports `BigInt` integers, using the trailing `n` syntax
 */
-s_json*								JSON_Parse_Strict(t_utf8 const* json, t_utf8 const** return_parse_end);
+s_json*								JSON_Parse_Lenient(t_utf8 const* json);
+#define c_jsonlparse				JSON_Parse_Lenient
+#define JSON_Decode_Lenient			JSON_Parse_Lenient
+#define JSON_FromString_Lenient		JSON_Parse_Lenient
+
+//! Create a new `s_json` object, pars_Leniented from a (valid) JSON string, (only the first `n` chars are parsed)
+s_json*								JSON_Parse_Lenient_N(t_utf8 const* json, t_size n);
+#define c_jsonlnparse				JSON_Parse_Lenient_N
+#define JSON_Decode_Lenient_N		JSON_Parse_Lenient_N
+#define JSON_FromString_Lenient_N	JSON_Parse_Lenient_N
+
+//! Create a new `s_json` object, parsed from a (valid) JSON string
+/*!
+**	This function creates a `s_json` object by parsing a JSON string,
+**	strictly following the JSON official spec (https://www.json.org/json-en.html),
+**	aborting with an error if anything non-standard is encountered.
+*/
+s_json*								JSON_Parse_Strict(t_utf8 const* json);//, t_utf8 const** return_parse_end);
 #define c_jsonsparse				JSON_Parse_Strict
 #define JSON_Decode_Strict			JSON_Parse_Strict
 #define JSON_FromString_Strict		JSON_Parse_Strict
 
 //! Create a new `s_json` object, parsed from a (valid) JSON string, (only the first `n` chars are parsed)
-s_json*								JSON_Parse_Strict_N(t_utf8 const* json, t_size n, t_utf8 const** return_parse_end);
-#define c_jsonsparsen				JSON_Parse_Strict_N
+s_json*								JSON_Parse_Strict_N(t_utf8 const* json, t_size n);//, t_utf8 const** return_parse_end);
+#define c_jsonsnparse				JSON_Parse_Strict_N
 #define JSON_Decode_Strict_N		JSON_Parse_Strict_N
 #define JSON_FromString_Strict_N	JSON_Parse_Strict_N
 

@@ -57,7 +57,7 @@ t_bool	Char_IsSpace_JSON(t_utf32 c)
 
 //! Utility to jump whitespace and CR/LF
 static
-s_json_parse*	JSON_Parse_SkipWhiteSpace(s_json_parse* const p, t_bool skip_comments)
+s_json_parse*	JSON_Parse_SkipWhiteSpace(s_json_parse* const p)
 {
 	t_size i;
 
@@ -67,7 +67,7 @@ s_json_parse*	JSON_Parse_SkipWhiteSpace(s_json_parse* const p, t_bool skip_comme
 	{
 		if (p->content[p->offset] == '\n')
 			p->line += 1;
-		if (skip_comments && p->content[p->offset] == '/')
+		if (!p->strict && p->content[p->offset] == '/')
 		{
 			if (p->content[p->offset] == '*') // multiple-line
 			{
@@ -99,10 +99,6 @@ s_json_parse*	JSON_Parse_SkipWhiteSpace(s_json_parse* const p, t_bool skip_comme
 			!Char_IsSpace(p->content[p->offset]))
 			break;
 		p->offset++;
-	}
-	if (p->offset == p->length)
-	{
-		p->offset--;
 	}
 	return (p);
 
@@ -175,6 +171,11 @@ t_bool		JSON_Parse_Number(s_json* const item, s_json_parse* const p)
 	}
 	else
 	{
+		if (length == 1 && (
+			number[0] == '.' ||
+			number[0] == '-' ||
+			number[0] == '+'))
+			PARSINGERROR_JSON("Could not parse number: \"%.2s\", invalid char found", p->content + p->offset)
 		t_f64	result = F64_FromString(number);
 		item->type = DYNAMIC_TYPE_FLOAT;
 		item->value.number = result;
@@ -301,7 +302,7 @@ t_bool	JSON_Parse_Array(s_json* const item, s_json_parse* const p)
 	if (p->content[p->offset] != '[')
 		PARSINGERROR_JSON("Could not parse array: Expected '[' char to begin array, instead found '%c'", p->content[p->offset])
 	p->offset++;
-	JSON_Parse_SkipWhiteSpace(p, p->strict);
+	JSON_Parse_SkipWhiteSpace(p);
 	if (CAN_PARSE(0) && (p->content[p->offset] == ']'))
 		goto success; // empty array
 	// check if we skipped to the end of the buffer
@@ -317,7 +318,7 @@ t_bool	JSON_Parse_Array(s_json* const item, s_json_parse* const p)
 	do
 	{
 		p->offset++;
-		JSON_Parse_SkipWhiteSpace(p, p->strict);
+		JSON_Parse_SkipWhiteSpace(p);
 		if (!p->strict && CAN_PARSE(0) && (p->content[p->offset] == ']'))
 			goto success; // allow trailing commas when not in strict mode
 		// allocate next item
@@ -337,10 +338,10 @@ t_bool	JSON_Parse_Array(s_json* const item, s_json_parse* const p)
 			current_item = new_item;
 		}
 		// parse next value
-		JSON_Parse_SkipWhiteSpace(p, p->strict);
+		JSON_Parse_SkipWhiteSpace(p);
 		if (!JSON_Parse_Value(current_item, p))
 			PARSINGERROR_JSON("Inside array: failed to parse value within array, at index %u", index)
-		JSON_Parse_SkipWhiteSpace(p, p->strict);
+		JSON_Parse_SkipWhiteSpace(p);
 		index++;
 	}
 	while (CAN_PARSE(0) && p->content[p->offset] == ',');
@@ -385,7 +386,7 @@ t_bool	JSON_Parse_Object(s_json* const item, s_json_parse* const p)
 	if (!CAN_PARSE(0) || (p->content[p->offset] != '{'))
 		PARSINGERROR_JSON("Could not parse object: Expected '{' to begin object, instead found '%c'", p->content[p->offset])
 	p->offset++;
-	JSON_Parse_SkipWhiteSpace(p, p->strict);
+	JSON_Parse_SkipWhiteSpace(p);
 	if (CAN_PARSE(0) && (p->content[p->offset] == '}'))
 		goto success; // empty object
 	// check if we skipped to the end of the buffer
@@ -400,7 +401,7 @@ t_bool	JSON_Parse_Object(s_json* const item, s_json_parse* const p)
 	do
 	{
 		p->offset++;
-		JSON_Parse_SkipWhiteSpace(p, p->strict);
+		JSON_Parse_SkipWhiteSpace(p);
 		if (!p->strict && CAN_PARSE(0) && (p->content[p->offset] == '}'))
 			goto success; // allow trailing commas when not in strict mode
 		// allocate next item
@@ -422,7 +423,7 @@ t_bool	JSON_Parse_Object(s_json* const item, s_json_parse* const p)
 		// parse the name of the child
 		if (!JSON_Parse_String(current_item, p))
 			PARSINGERROR_JSON("Could not parse object: Failed to parse object member key")
-		JSON_Parse_SkipWhiteSpace(p, p->strict);
+		JSON_Parse_SkipWhiteSpace(p);
 		// swap value.string and string, because we parsed the name
 		current_item->key = current_item->value.string;
 		current_item->value.string = NULL;
@@ -432,10 +433,10 @@ t_bool	JSON_Parse_Object(s_json* const item, s_json_parse* const p)
 			PARSINGERROR_JSON("Could not parse object: Invalid object key/value pair, expected ':' char")
 		// parse the value
 		p->offset++;
-		JSON_Parse_SkipWhiteSpace(p, p->strict);
+		JSON_Parse_SkipWhiteSpace(p);
 		if (!JSON_Parse_Value(current_item, p))
 			PARSINGERROR_JSON("Inside object: Failed to parse object member value (key is \"%s\")", current_item->key)
-		JSON_Parse_SkipWhiteSpace(p, p->strict);
+		JSON_Parse_SkipWhiteSpace(p);
 	}
 	while (CAN_PARSE(0) && (p->content[p->offset] == ','));
 
@@ -468,7 +469,7 @@ failure:
 static
 t_bool	JSON_Parse_Value(s_json* const item, s_json_parse* const p)
 {
-	if ((p == NULL) || (p->content == NULL))
+	if ((p == NULL) || (p->content == NULL) || !CAN_PARSE(0))
 	{
 		PARSINGERROR_JSON("Unexpected end of input, unable to parse JSON value")
 	}
@@ -499,7 +500,7 @@ t_bool	JSON_Parse_Value(s_json* const item, s_json_parse* const p)
 		p->offset += 4;
 		return (TRUE);
 	}
-	else if (CAN_PARSE(0))
+	else
 	{
 		if (p->content[p->offset] == '[')
 			return (JSON_Parse_Array( item, p));	// array
@@ -511,31 +512,37 @@ t_bool	JSON_Parse_Value(s_json* const item, s_json_parse* const p)
 			return (JSON_Parse_Number(item, p));	// number
 	}
 
-	if (!p->strict)
+//	if (p->content[p->offset] == '\'')
+//		return (JSON_Parse_String(item, p));	// string
+	if (p->content[p->offset] == '+')
 	{
-		if (CAN_PARSE(0))
-		{
-//			if (p->content[p->offset] == '\'')
-//				return (JSON_Parse_String(item, p));	// string
-			if (p->content[p->offset] == '+')
-				return (JSON_Parse_Number(item, p));	// number
-		}
-		if (CAN_PARSE(3) && (
-			String_Equals_N(p->content + p->offset, "inf", 3) ||
-			String_Equals_N(p->content + p->offset, "Inf", 3) ||
-			String_Equals_N(p->content + p->offset, "INF", 3)))
-		{	// number
-			return (JSON_Parse_Number(item, p));
-		}
-		if (CAN_PARSE(3) && (
-			String_Equals_N(p->content + p->offset, "nan", 3) ||
-			String_Equals_N(p->content + p->offset, "NaN", 3) ||
-			String_Equals_N(p->content + p->offset, "NAN", 3)))
-		{	// number
-			return (JSON_Parse_Number(item, p));
-		}
+		if (p->strict)
+			PARSINGERROR_JSON("A leading '+' symbol for positive number is not allowed in strict JSON")
+		return (JSON_Parse_Number(item, p));	// number
 	}
-	PARSINGERROR_JSON("No match, unable to determine the kind of parsing to attempt: \"%.6s\"", p->content + p->offset)
+	else if (CAN_PARSE(3) && (
+		String_Equals_N(p->content + p->offset, "inf", 3) ||
+		String_Equals_N(p->content + p->offset, "Inf", 3) ||
+		String_Equals_N(p->content + p->offset, "INF", 3)))
+	{	// number
+		if (p->strict)
+			PARSINGERROR_JSON("Any non-numeric value (here, infinity: \"%.3s\") is not allowed in strict JSON", p->content + p->offset)
+		return (JSON_Parse_Number(item, p));
+	}
+	else if (CAN_PARSE(3) && (
+		String_Equals_N(p->content + p->offset, "nan", 3) ||
+		String_Equals_N(p->content + p->offset, "NaN", 3) ||
+		String_Equals_N(p->content + p->offset, "NAN", 3)))
+	{	// number
+		if (p->strict)
+			PARSINGERROR_JSON("Any non-numeric value (here, 'not a number': \"%.3s\") is not allowed in strict JSON", p->content + p->offset)
+		return (JSON_Parse_Number(item, p));
+	}
+	else if (p->strict && Char_IsSpace(p->content[p->offset]))
+	{
+		PARSINGERROR_JSON("Non-standard whitespace character used (0x%X/\'%c\'') is not allowed in strict JSON", p->content[p->offset], p->content[p->offset])
+	}
+	PARSINGERROR_JSON("Unable to determine the kind of parsing to attempt: \"%.6s\"", p->content + p->offset)
 
 failure:
 	return (FALSE);
@@ -544,31 +551,34 @@ failure:
 
 
 static
-s_json*	JSON_Parse_(t_utf8 const* json, t_size buffer_length, t_bool strict, t_utf8 const** return_parse_end)
+s_json*	JSON_Parse_(t_utf8 const* json, t_size buffer_length, t_bool strict)//, t_utf8 const** return_parse_end)
 {
-	s_json_parse p = { 0 };
+	s_json_parse parser = { 0 };
+	s_json_parse* p = &parser;
 	s_json* result = NULL;
 
 	LIBCONFIG_HANDLE_LENGTH2SMALL(NULL, buffer_length, 1)
-	p.content = json;
-	p.length = buffer_length; 
-	p.offset = 0;
-	p.strict = strict;
+	p->content = json;
+	p->length = buffer_length; 
+	p->offset = 0;
+	p->strict = strict;
 	result = JSON_Item();
 	if (result == NULL)
-		goto failure; // memory failure
-	if (!JSON_Parse_Value(result, JSON_Parse_SkipWhiteSpace(JSON_Parse_SkipUTF8BOM(&p), !p.strict)))
-		goto failure; // parse failure. ep is set.
-	if (p.strict)
+		PARSINGERROR_JSON("Got null result: memory failure")
+	if (!JSON_Parse_Value(result, JSON_Parse_SkipWhiteSpace(JSON_Parse_SkipUTF8BOM(p))))
+		goto failure;
+	if (p->strict)
 	{	// if we require null-terminated JSON without appended garbage, skip and then check for a null terminator
-		JSON_Parse_SkipWhiteSpace(&p, FALSE);
-		if ((p.offset >= p.length) || (&p.content[p.offset])[0] != '\0')
-			goto failure;
+		JSON_Parse_SkipWhiteSpace(p);
+		if (p->content[p->offset] != '\0')
+			PARSINGERROR_JSON("Invalid JSON: unexpected garbage chars after root-level value: \"%s\"", p->content + p->offset)
 	}
+/*
 	if (return_parse_end)
 	{
 		*return_parse_end = &p.content[p.offset];
 	}
+*/
 	return (result);
 
 failure:
@@ -578,27 +588,32 @@ failure:
 	}
 	if (json != NULL)
 	{
+/*
 		t_size	position = 0;
-
 		if (p.offset < p.length)
 			position = p.offset;
 		else if (p.length > 0)
 			position = p.length - 1;
-
 		if (return_parse_end != NULL)
 		{
 			*return_parse_end = (json + position);
 		}
+*/
 	}
 	t_size column = 0;
-	while (p.offset - column != 0)
+	while (p->offset - column != 0)
 	{
-		if (p.content[p.offset - column] == '\n')
+		if (p->content[p->offset - column] == '\n')
 			break;
 		column++;
 	}
-	LIBCONFIG_HANDLE_PARSINGERROR(NULL, "\n"PARSINGERROR_JSON_MESSAGE" at nesting depth %u -> line %zu, column %zu (char index %zu: '%c')%s",
-		p.depth, p.line, column, p.offset, p.content[p.offset], p.error)
+	LIBCONFIG_HANDLE_PARSINGERROR(NULL, "\n"PARSINGERROR_JSON_MESSAGE" -> at nesting depth %u: line %zu, column %zu (char index %zu: '%c')%s",
+		p->depth,
+		p->line,
+		column,
+		p->offset,
+		p->content[p->offset],
+		p->error)
 }
 
 
@@ -606,23 +621,23 @@ failure:
 s_json*	JSON_Parse(t_utf8 const* json)
 {
 	LIBCONFIG_HANDLE_NULLPOINTER(NULL, json)
-	return (JSON_Parse_(json, String_Length(json), FALSE, NULL));
+	return (JSON_Parse_(json, String_Length(json), FALSE));//, NULL));
 }
 
 s_json*	JSON_Parse_N(t_utf8 const* json, t_size maxlength)
 {
 	LIBCONFIG_HANDLE_NULLPOINTER(NULL, json)
-	return (JSON_Parse_(json, maxlength, FALSE, NULL));
+	return (JSON_Parse_(json, maxlength, FALSE));//, NULL));
 }
 
-s_json*	JSON_Parse_Strict(t_utf8 const* json, t_utf8 const** return_parse_end)
+s_json*	JSON_Parse_Strict(t_utf8 const* json)//, t_utf8 const** return_parse_end)
 {
 	LIBCONFIG_HANDLE_NULLPOINTER(NULL, json)
-	return (JSON_Parse_(json, String_Length(json), TRUE, return_parse_end));
+	return (JSON_Parse_(json, String_Length(json), TRUE));//, return_parse_end));
 }
 
-s_json*	JSON_Parse_Strict_N(t_utf8 const* json, t_size maxlength, t_utf8 const** return_parse_end)
+s_json*	JSON_Parse_Strict_N(t_utf8 const* json, t_size maxlength)//, t_utf8 const** return_parse_end)
 {
 	LIBCONFIG_HANDLE_NULLPOINTER(NULL, json)
-	return (JSON_Parse_(json, maxlength, TRUE, return_parse_end));
+	return (JSON_Parse_(json, maxlength, TRUE));//, return_parse_end));
 }

@@ -175,6 +175,7 @@ t_utf8*	json_object_nested	= "{\"a\": {\"b\": {\"c\": {\"d\": {\"e\": {\"f\": {\
 
 
 
+t_utf8*	json_helloworld_min	=	"{\"hello\":\"world\"}";
 t_utf8*	json_helloworld		=	"{\"hello\": \"world\"}";
 
 t_utf8*	json_whitespace		=	"  {  \"hello\"  :  \"world\"  }  ";
@@ -358,7 +359,7 @@ t_utf8*	json_complex_min =
 		"\"CHILD_ATTRIBUTE\":"
 		"["
 			"{\"Values\":[{\"TEXT\":\"Jennifer\"}],\"Properties\":[[\"Born\",\"\",\"1963\"],[\"Mother\",\"\",\"Sandra Knight\"]]},"
-			"{\"Values\":[{\"TEXT\":\"Caleb\"}],\"Properties\":[[\"Born\",\"\",\"1970\"],[\"Paternity\",\"open question 2\",\"not established\"],[\"Mother\",\"\",\"Susan Anspach\"],]},"
+			"{\"Values\":[{\"TEXT\":\"Caleb\"}],\"Properties\":[[\"Born\",\"\",\"1970\"],[\"Paternity\",\"open question 2\",\"not established\"],[\"Mother\",\"\",\"Susan Anspach\"]]},"
 			"{\"Values\":[{\"TEXT\":\"Honey\"}]},"
 			"{\"Values\":[{\"TEXT\":\"Lorraine\"}]},"
 			"{\"Values\":[{\"TEXT\":\"Raymond\"}],\"Properties\":[[\"Born\",\"youngest\",\"1992\"],[\"Mother\",\"\",\"Rebecca Broussard\"]]}"
@@ -515,205 +516,206 @@ t_utf8*	json_complex = "\
 #if !(defined(c_jsonparse) && defined(c_jsonprint))
 void test_json(void)	{}
 #else
-static
-t_utf8*	c_jsoncode(t_utf8* json)
-{
-	s_json* tmp = JSON_Parse(json);
-	t_utf8* result = JSON_Print(tmp);
-	free(tmp);
-	return (result);
-}
-void	print_test_json(char const* test_name, int can_segfault,
-		char const* expecting,
-		char const* str)
-{
-	TEST_INIT(str)
-	TEST_PERFORM(	jsoncode, (t_utf8*)str)
-	TEST_PRINT(str,	jsoncode, "str=\"%s\"", str)
-	TEST_FREE()
-}
-void	test_json(void)
-{
-//	| TEST FUNCTION | TEST NAME                                   | CAN SEGV  | EXPECTING         | TEST ARGS
-	print_test_json("null pointer              (lenient -> pretty)", FALSE,		NULL,						NULL);
-	print_test_json("empty string              (lenient -> pretty)", FALSE,		NULL,						"");
-	print_test_json("json_null                 (lenient -> pretty)", FALSE,		json_null,					json_null);
-	print_test_json("json_bool_0               (lenient -> pretty)", FALSE,		json_bool_0,				json_bool_0);
-	print_test_json("json_bool_1               (lenient -> pretty)", FALSE,		json_bool_1,				json_bool_1);
-	print_test_json("json_number_0             (lenient -> pretty)", FALSE,		json_number_0,				json_number_0);
-	print_test_json("json_number_1             (lenient -> pretty)", FALSE,		json_number_1,				json_number_1);
-	print_test_json("json_number_2             (lenient -> pretty)", FALSE,		json_number_2,				json_number_2);
-	print_test_json("json_number_3             (lenient -> pretty)", FALSE,		json_number_3,				json_number_3);
-	print_test_json("json_number_4             (lenient -> pretty)", FALSE,		json_number_4,				json_number_4);
-	print_test_json("json_number_0f            (lenient -> pretty)", FALSE,		json_number_0,				json_number_0f);
-	print_test_json("json_number_1f            (lenient -> pretty)", FALSE,		json_number_1,				json_number_1f);
-	print_test_json("json_number_2f            (lenient -> pretty)", FALSE,		json_number_2,				json_number_2f);
-	print_test_json("json_number_3f            (lenient -> pretty)", FALSE,		json_number_3,				json_number_3f);
-	print_test_json("json_number_4f            (lenient -> pretty)", FALSE,		json_number_4,				json_number_4f);
-	print_test_json("json_number_0f1           (lenient -> pretty)", FALSE,		json_number_0,				json_number_0f1);
-	print_test_json("json_number_1f1           (lenient -> pretty)", FALSE,		json_number_1,				json_number_1f1);
-	print_test_json("json_number_2f1           (lenient -> pretty)", FALSE,		json_number_2,				json_number_2f1);
-	print_test_json("json_number_3f1           (lenient -> pretty)", FALSE,		json_number_3,				json_number_3f1);
-	print_test_json("json_number_4f1           (lenient -> pretty)", FALSE,		json_number_4f1,			json_number_4f1);
-	print_test_json("json_number_0f2           (lenient -> pretty)", FALSE,		json_number_0,				json_number_0f2);
-	print_test_json("json_number_1f2           (lenient -> pretty)", FALSE,		json_number_1,				json_number_1f2);
-	print_test_json("json_number_2f2           (lenient -> pretty)", FALSE,		json_number_2,				json_number_2f2);
-	print_test_json("json_number_3f2           (lenient -> pretty)", FALSE,		json_number_3,				json_number_3f2);
-	print_test_json("json_number_4f2           (lenient -> pretty)", FALSE,		json_number_4f2,			json_number_4f2);
-	print_test_json("json_number_0f3           (lenient -> pretty)", FALSE,		json_number_0,				json_number_0f3);
-	print_test_json("json_number_1f3           (lenient -> pretty)", FALSE,		json_number_1,				json_number_1f3);
-	print_test_json("json_number_2f3           (lenient -> pretty)", FALSE,		json_number_2,				json_number_2f3);
-	print_test_json("json_number_3f3           (lenient -> pretty)", FALSE,		json_number_3,				json_number_3f3);
-	print_test_json("json_number_4f3           (lenient -> pretty)", FALSE,		json_number_4f3,			json_number_4f3);
-	print_test_json("json_number_fmin_lt       (lenient -> pretty)", FALSE,		json_number_fmin_lt,		json_number_fmin_lt);
-	print_test_json("json_number_fmin_eq       (lenient -> pretty)", FALSE,		json_number_fmin_eq,		json_number_fmin_eq);
-	print_test_json("json_number_fmin_gt       (lenient -> pretty)", FALSE,		json_number_fmin_eq,		json_number_fmin_gt);
-	print_test_json("json_number_fmax_lt       (lenient -> pretty)", FALSE,		json_number_fmax_lt,		json_number_fmax_lt);
-	print_test_json("json_number_fmax_eq       (lenient -> pretty)", FALSE,		json_number_fmax_eq,		json_number_fmax_eq);
-	print_test_json("json_number_fmax_gt       (lenient -> pretty)", FALSE,		json_number_fmax_eq,		json_number_fmax_gt);
-	print_test_json("json_number_inf_u_lower_0 (lenient -> pretty)", FALSE,		json_number_inf_p_lower_0,	json_number_inf_u_lower_0);
-	print_test_json("json_number_inf_p_lower_0 (lenient -> pretty)", FALSE,		json_number_inf_p_lower_0,	json_number_inf_p_lower_0);
-	print_test_json("json_number_inf_n_lower_0 (lenient -> pretty)", FALSE,		json_number_inf_n_lower_0,	json_number_inf_n_lower_0);
-	print_test_json("json_number_inf_u_lower_1 (lenient -> pretty)", FALSE,		json_number_inf_p_lower_0,	json_number_inf_u_lower_1);
-	print_test_json("json_number_inf_p_lower_1 (lenient -> pretty)", FALSE,		json_number_inf_p_lower_0,	json_number_inf_p_lower_1);
-	print_test_json("json_number_inf_n_lower_1 (lenient -> pretty)", FALSE,		json_number_inf_n_lower_0,	json_number_inf_n_lower_1);
-	print_test_json("json_number_inf_u_mixed_0 (lenient -> pretty)", FALSE,		json_number_inf_p_lower_0,	json_number_inf_u_mixed_0);
-	print_test_json("json_number_inf_p_mixed_0 (lenient -> pretty)", FALSE,		json_number_inf_p_lower_0,	json_number_inf_p_mixed_0);
-	print_test_json("json_number_inf_n_mixed_0 (lenient -> pretty)", FALSE,		json_number_inf_n_lower_0,	json_number_inf_n_mixed_0);
-	print_test_json("json_number_inf_u_mixed_1 (lenient -> pretty)", FALSE,		json_number_inf_p_lower_0,	json_number_inf_u_mixed_1);
-	print_test_json("json_number_inf_p_mixed_1 (lenient -> pretty)", FALSE,		json_number_inf_p_lower_0,	json_number_inf_p_mixed_1);
-	print_test_json("json_number_inf_n_mixed_1 (lenient -> pretty)", FALSE,		json_number_inf_n_lower_0,	json_number_inf_n_mixed_1);
-	print_test_json("json_number_inf_u_upper_0 (lenient -> pretty)", FALSE,		json_number_inf_p_lower_0,	json_number_inf_u_upper_0);
-	print_test_json("json_number_inf_p_upper_0 (lenient -> pretty)", FALSE,		json_number_inf_p_lower_0,	json_number_inf_p_upper_0);
-	print_test_json("json_number_inf_n_upper_0 (lenient -> pretty)", FALSE,		json_number_inf_n_lower_0,	json_number_inf_n_upper_0);
-	print_test_json("json_number_inf_u_upper_1 (lenient -> pretty)", FALSE,		json_number_inf_p_lower_0,	json_number_inf_u_upper_1);
-	print_test_json("json_number_inf_p_upper_1 (lenient -> pretty)", FALSE,		json_number_inf_p_lower_0,	json_number_inf_p_upper_1);
-	print_test_json("json_number_inf_n_upper_1 (lenient -> pretty)", FALSE,		json_number_inf_n_lower_0,	json_number_inf_n_upper_1);
-	print_test_json("json_number_nan_u_lower_0 (lenient -> pretty)", FALSE,		json_number_nan_u_lower_0,	json_number_nan_u_lower_0);
-	print_test_json("json_number_nan_p_lower_0 (lenient -> pretty)", FALSE,		json_number_nan_u_lower_0,	json_number_nan_p_lower_0);
-	print_test_json("json_number_nan_n_lower_0 (lenient -> pretty)", FALSE,		json_number_nan_u_lower_0,	json_number_nan_n_lower_0);
-	print_test_json("json_number_nan_u_mixed_0 (lenient -> pretty)", FALSE,		json_number_nan_u_lower_0,	json_number_nan_u_mixed_0);
-	print_test_json("json_number_nan_p_mixed_0 (lenient -> pretty)", FALSE,		json_number_nan_u_lower_0,	json_number_nan_p_mixed_0);
-	print_test_json("json_number_nan_n_mixed_0 (lenient -> pretty)", FALSE,		json_number_nan_u_lower_0,	json_number_nan_n_mixed_0);
-	print_test_json("json_number_nan_u_upper_0 (lenient -> pretty)", FALSE,		json_number_nan_u_lower_0,	json_number_nan_u_upper_0);
-	print_test_json("json_number_nan_p_upper_0 (lenient -> pretty)", FALSE,		json_number_nan_u_lower_0,	json_number_nan_p_upper_0);
-	print_test_json("json_number_nan_n_upper_0 (lenient -> pretty)", FALSE,		json_number_nan_u_lower_0,	json_number_nan_n_upper_0);
-	print_test_json("json_number_inf_u_utf8_0  (lenient -> pretty)", FALSE,		NULL,						json_number_inf_u_utf8_0);
-	print_test_json("json_number_inf_p_utf8_0  (lenient -> pretty)", FALSE,		NULL,						json_number_inf_p_utf8_0);
-	print_test_json("json_number_inf_n_utf8_0  (lenient -> pretty)", FALSE,		NULL,						json_number_inf_n_utf8_0);
-	print_test_json("json_number_inf_u_utf8_1  (lenient -> pretty)", FALSE,		NULL,						json_number_inf_u_utf8_1);
-	print_test_json("json_number_inf_p_utf8_1  (lenient -> pretty)", FALSE,		NULL,						json_number_inf_p_utf8_1);
-	print_test_json("json_number_inf_n_utf8_1  (lenient -> pretty)", FALSE,		NULL,						json_number_inf_n_utf8_1);
-	print_test_json("json_bigint_empty         (lenient -> pretty)", FALSE,		NULL,						json_bigint_empty);
-	print_test_json("json_bigint_0             (lenient -> pretty)", FALSE,		json_bigint_0,				json_bigint_0);
-	print_test_json("json_bigint_1             (lenient -> pretty)", FALSE,		json_bigint_1,				json_bigint_1);
-	print_test_json("json_bigint_2             (lenient -> pretty)", FALSE,		json_bigint_2,				json_bigint_2);
-	print_test_json("json_bigint_3             (lenient -> pretty)", FALSE,		json_bigint_3,				json_bigint_3);
-	print_test_json("json_bigint_4             (lenient -> pretty)", FALSE,		json_bigint_4,				json_bigint_4);
-	print_test_json("json_bigint_0f            (lenient -> pretty)", FALSE,		json_bigint_0,				json_bigint_0f);
-	print_test_json("json_bigint_1f            (lenient -> pretty)", FALSE,		json_bigint_1,				json_bigint_1f);
-	print_test_json("json_bigint_2f            (lenient -> pretty)", FALSE,		json_bigint_2,				json_bigint_2f);
-	print_test_json("json_bigint_3f            (lenient -> pretty)", FALSE,		json_bigint_3,				json_bigint_3f);
-	print_test_json("json_bigint_4f            (lenient -> pretty)", FALSE,		json_bigint_4,				json_bigint_4f);
-	print_test_json("json_bigint_0f1           (lenient -> pretty)", FALSE,		json_bigint_0,				json_bigint_0f1);
-	print_test_json("json_bigint_1f1           (lenient -> pretty)", FALSE,		json_bigint_1,				json_bigint_1f1);
-	print_test_json("json_bigint_2f1           (lenient -> pretty)", FALSE,		json_bigint_2,				json_bigint_2f1);
-	print_test_json("json_bigint_3f1           (lenient -> pretty)", FALSE,		json_bigint_3,				json_bigint_3f1);
-	print_test_json("json_bigint_4f1           (lenient -> pretty)", FALSE,		json_bigint_4,				json_bigint_4f1);
-	print_test_json("json_bigint_0f2           (lenient -> pretty)", FALSE,		json_bigint_0,				json_bigint_0f2);
-	print_test_json("json_bigint_1f2           (lenient -> pretty)", FALSE,		json_bigint_1,				json_bigint_1f2);
-	print_test_json("json_bigint_2f2           (lenient -> pretty)", FALSE,		json_bigint_2,				json_bigint_2f2);
-	print_test_json("json_bigint_3f2           (lenient -> pretty)", FALSE,		json_bigint_3,				json_bigint_3f2);
-	print_test_json("json_bigint_4f2           (lenient -> pretty)", FALSE,		json_bigint_4,				json_bigint_4f2);
-	print_test_json("json_bigint_0f3           (lenient -> pretty)", FALSE,		json_bigint_0,				json_bigint_0f3);
-	print_test_json("json_bigint_1f3           (lenient -> pretty)", FALSE,		json_bigint_1,				json_bigint_1f3);
-	print_test_json("json_bigint_2f3           (lenient -> pretty)", FALSE,		json_bigint_2,				json_bigint_2f3);
-	print_test_json("json_bigint_3f3           (lenient -> pretty)", FALSE,		json_bigint_3,				json_bigint_3f3);
-	print_test_json("json_bigint_4f3           (lenient -> pretty)", FALSE,		json_bigint_4,				json_bigint_4f3);
-	print_test_json("json_bigint_fmin_lt       (lenient -> pretty)", FALSE,		json_bigint_fmin_lt,		json_bigint_fmin_lt);
-	print_test_json("json_bigint_fmin_eq       (lenient -> pretty)", FALSE,		json_bigint_fmin_eq,		json_bigint_fmin_eq);
-	print_test_json("json_bigint_fmin_gt       (lenient -> pretty)", FALSE,		json_bigint_fmin_gt,		json_bigint_fmin_gt);
-	print_test_json("json_bigint_fmax_lt       (lenient -> pretty)", FALSE,		json_bigint_fmax_lt,		json_bigint_fmax_lt);
-	print_test_json("json_bigint_fmax_eq       (lenient -> pretty)", FALSE,		json_bigint_fmax_eq,		json_bigint_fmax_eq);
-	print_test_json("json_bigint_fmax_gt       (lenient -> pretty)", FALSE,		json_bigint_fmax_gt,		json_bigint_fmax_gt);
-	print_test_json("json_bigint_s64min_lt     (lenient -> pretty)", FALSE,		json_bigint_s64min_lt,		json_bigint_s64min_lt);
-	print_test_json("json_bigint_s64min_eq     (lenient -> pretty)", FALSE,		json_bigint_s64min_eq,		json_bigint_s64min_eq);
-	print_test_json("json_bigint_s64min_gt     (lenient -> pretty)", FALSE,		json_bigint_s64max_eq,		json_bigint_s64min_gt); // TODO change for VLQ bigint
-	print_test_json("json_bigint_s64max_lt     (lenient -> pretty)", FALSE,		json_bigint_s64max_lt,		json_bigint_s64max_lt);
-	print_test_json("json_bigint_s64max_eq     (lenient -> pretty)", FALSE,		json_bigint_s64max_eq,		json_bigint_s64max_eq);
-	print_test_json("json_bigint_s64max_gt     (lenient -> pretty)", FALSE,		json_bigint_s64min_eq,		json_bigint_s64max_gt); // TODO change for VLQ bigint
-	print_test_json("json_bigint_bad_uinf_lower(lenient -> pretty)", FALSE,		json_number_inf_p_lower_0,	json_bigint_bad_uinf_lower);
-	print_test_json("json_bigint_bad_uinf_upper(lenient -> pretty)", FALSE,		json_number_inf_p_lower_0,	json_bigint_bad_uinf_upper);
-	print_test_json("json_bigint_bad_ninf_lower(lenient -> pretty)", FALSE,		json_number_inf_n_lower_0,	json_bigint_bad_ninf_lower);
-	print_test_json("json_bigint_bad_ninf_upper(lenient -> pretty)", FALSE,		json_number_inf_n_lower_0,	json_bigint_bad_ninf_upper);
-	print_test_json("json_bigint_bad_pinf_lower(lenient -> pretty)", FALSE,		json_number_inf_p_lower_0,	json_bigint_bad_pinf_lower);
-	print_test_json("json_bigint_bad_pinf_upper(lenient -> pretty)", FALSE,		json_number_inf_p_lower_0,	json_bigint_bad_pinf_upper);
-	print_test_json("json_bigint_bad_unan_lower(lenient -> pretty)", FALSE,		json_number_nan_u_lower_0,	json_bigint_bad_unan_lower);
-	print_test_json("json_bigint_bad_unan_upper(lenient -> pretty)", FALSE,		json_number_nan_u_lower_0,	json_bigint_bad_unan_upper);
-	print_test_json("json_bigint_bad_nnan_lower(lenient -> pretty)", FALSE,		json_number_nan_u_lower_0,	json_bigint_bad_nnan_lower);
-	print_test_json("json_bigint_bad_nnan_upper(lenient -> pretty)", FALSE,		json_number_nan_u_lower_0,	json_bigint_bad_nnan_upper);
-	print_test_json("json_bigint_bad_pnan_lower(lenient -> pretty)", FALSE,		json_number_nan_u_lower_0,	json_bigint_bad_pnan_lower);
-	print_test_json("json_bigint_bad_pnan_upper(lenient -> pretty)", FALSE,		json_number_nan_u_lower_0,	json_bigint_bad_pnan_upper);
-	print_test_json("json_string_empty         (lenient -> pretty)", FALSE,		json_string_empty,			json_string_empty);
-	print_test_json("json_string               (lenient -> pretty)", FALSE,		json_string,				json_string);
-	print_test_json("json_string_cc_c0         (lenient -> pretty)", FALSE,		json_string_cc_c0,			json_string_cc_c0);
-	print_test_json("json_string_cc_c1         (lenient -> pretty)", FALSE,		json_string_cc_c1,			json_string_cc_c1);
-	print_test_json("json_string_utf8_fr       (lenient -> pretty)", FALSE,		json_string_utf8_fr,		json_string_utf8_fr);
-	print_test_json("json_string_utf8_ru       (lenient -> pretty)", FALSE,		json_string_utf8_ru,		json_string_utf8_ru);
-	print_test_json("json_string_utf8_jp       (lenient -> pretty)", FALSE,		json_string_utf8_jp,		json_string_utf8_jp);
-	print_test_json("json_string_utf8_ho       (lenient -> pretty)", FALSE,		json_string_utf8_ho,		json_string_utf8_ho);
-	print_test_json("json_array_empty          (lenient -> pretty)", FALSE,		json_array_empty,			json_array_empty);
-	print_test_json("json_array                (lenient -> pretty)", FALSE,		json_array,					json_array);
-	print_test_json("json_array_min            (lenient -> pretty)", FALSE,		json_array,					json_array_min);
-	print_test_json("json_array_nested         (lenient -> pretty)", FALSE,		json_array_nested,			json_array_nested);
-	print_test_json("json_array_nested_min     (lenient -> pretty)", FALSE,		json_array_nested,			json_array_nested_min);
-	print_test_json("json_object_empty         (lenient -> pretty)", FALSE,		json_object_empty,			json_object_empty);
-	print_test_json("json_object               (lenient -> pretty)", FALSE,		json_object,				json_object);
-	print_test_json("json_object_min           (lenient -> pretty)", FALSE,		json_object,				json_object_min);
-	print_test_json("json_object_nested        (lenient -> pretty)", FALSE,		json_object_nested,			json_object_nested);
-	print_test_json("json_object_nested_min    (lenient -> pretty)", FALSE,		json_object_nested,			json_object_nested_min);
-	print_test_json("json_whitespace           (lenient -> pretty)", FALSE,		json_helloworld,			json_whitespace);
-	print_test_json("json_whitespace_tab       (lenient -> pretty)", FALSE,		json_helloworld,			json_whitespace_tab);
-	print_test_json("json_whitespace_nl        (lenient -> pretty)", FALSE,		json_helloworld,			json_whitespace_nl);
-	print_test_json("json_whitespace_cr        (lenient -> pretty)", FALSE,		json_helloworld,			json_whitespace_cr);
-	print_test_json("json_whitespace_ff        (lenient -> pretty)", FALSE,		json_helloworld,			json_whitespace_ff);
-	print_test_json("json_whitespace_vt        (lenient -> pretty)", FALSE,		json_helloworld,			json_whitespace_vt);
-	print_test_json("json_whitespace_all       (lenient -> pretty)", FALSE,		json_helloworld,			json_whitespace_all);
-	print_test_json("json_simple               (lenient -> pretty)", FALSE,		json_simple,				json_simple);
-	print_test_json("json_simple_min           (lenient -> pretty)", FALSE,		json_simple,				json_simple_min);
-	print_test_json("json_commas               (lenient -> pretty)", FALSE,		json_simple,				json_commas);
-	print_test_json("json_commas_min           (lenient -> pretty)", FALSE,		json_simple,				json_commas_min);
-	print_test_json("json_newline              (lenient -> pretty)", FALSE,		json_simple,				json_newline);
-	print_test_json("json_complex              (lenient -> pretty)", FALSE,		json_complex,				json_complex);
-	print_test_json("json_complex_min          (lenient -> pretty)", FALSE,		json_complex,				json_complex_min);
-#undef  LIBCONFIG_HANDLE_PARSINGERROR
-#define LIBCONFIG_HANDLE_PARSINGERROR(...)	
-	print_test_json("json_escape_sq1           (lenient -> pretty)", FALSE,		NULL,						json_escape_sq1);
-	print_test_json("json_escape_sq2           (lenient -> pretty)", FALSE,		json_escape_sq2,			json_escape_sq2);
-	print_test_json("json_escape_slb           (lenient -> pretty)", FALSE,		json_escape_slb,			json_escape_slb);
-	print_test_json("json_escape_slf           (lenient -> pretty)", FALSE,		"[\"test:/.\"]",			json_escape_slf);
-	print_test_json("json_escape_spc           (lenient -> pretty)", FALSE,		NULL,						json_escape_spc);
-	print_test_json("json_escape_tab           (lenient -> pretty)", FALSE,		json_escape_tab,			json_escape_tab);
-	print_test_json("json_escape_nl            (lenient -> pretty)", FALSE,		json_escape_nl,				json_escape_nl);
-	print_test_json("json_escape_cr            (lenient -> pretty)", FALSE,		json_escape_cr,				json_escape_cr);
-	print_test_json("json_escape_ff            (lenient -> pretty)", FALSE,		json_escape_ff,				json_escape_ff);
-	print_test_json("json_escape_vt            (lenient -> pretty)", FALSE,		NULL,						json_escape_vt);
-	print_test_json("json_escape_esc           (lenient -> pretty)", FALSE,		NULL,						json_escape_esc);
-	print_test_json("json_escape_bel           (lenient -> pretty)", FALSE,		NULL,						json_escape_bel);
-	print_test_json("json_escape_bs            (lenient -> pretty)", FALSE,		json_escape_bs,				json_escape_bs);
-	print_test_json("json_strange_sot          (lenient -> pretty)", FALSE,		NULL,						json_strange_sot);
-	print_test_json("json_strange_stx          (lenient -> pretty)", FALSE,		NULL,						json_strange_stx);
-	print_test_json("json_strange_etx          (lenient -> pretty)", FALSE,		NULL,						json_strange_etx);
-	print_test_json("json_strange_eot          (lenient -> pretty)", FALSE,		NULL,						json_strange_eot);
-	print_test_json("json_strange_esc          (lenient -> pretty)", FALSE,		NULL,						json_strange_esc);
-	print_test_json("json_strange_bs           (lenient -> pretty)", FALSE,		NULL,						json_strange_bs);
-	// TODO more tests
+
+#define DEFINETEST_JSON(STRICT, NSTRICT, MINIFY, MINIFY_EXPECT) \
+static t_utf8*	c_json_##STRICT##_##MINIFY(t_utf8* json)	\
+{															\
+	s_json* tmp = JSON_Parse_##STRICT(json);				\
+	t_utf8* result = JSON_Print_##MINIFY(tmp);				\
+	free(tmp);												\
+	return (result);										\
+}															\
+void	print_test_json_##STRICT##_##MINIFY(char const* test_name, int can_segfault,\
+		char const* expecting,														\
+		char const* str)															\
+{																					\
+	TEST_INIT(str)																	\
+	TEST_PERFORM(	json_##STRICT##_##MINIFY, (t_utf8*)str)							\
+	TEST_PRINT(str,	json_##STRICT##_##MINIFY, "str=\"%s\"", str)					\
+	TEST_FREE()																		\
+}																					\
+void	test_json_##STRICT##_##MINIFY(void)																																		\
+{																																												\
+/*	| TEST FUNCTION                    | TEST NAME                                          | CAN SEGV   | EXPECTING                          | TEST ARGS					*/	\
+	print_test_json_##STRICT##_##MINIFY("null pointer              ("#STRICT" -> "#MINIFY")", FALSE,		NULL,								NULL);							\
+	print_test_json_##STRICT##_##MINIFY("empty string              ("#STRICT" -> "#MINIFY")", FALSE,		NULL,								"");							\
+	print_test_json_##STRICT##_##MINIFY("json_null                 ("#STRICT" -> "#MINIFY")", FALSE,		json_null,							json_null);						\
+	print_test_json_##STRICT##_##MINIFY("json_bool_0               ("#STRICT" -> "#MINIFY")", FALSE,		json_bool_0,						json_bool_0);					\
+	print_test_json_##STRICT##_##MINIFY("json_bool_1               ("#STRICT" -> "#MINIFY")", FALSE,		json_bool_1,						json_bool_1);					\
+	print_test_json_##STRICT##_##MINIFY("json_number_0             ("#STRICT" -> "#MINIFY")", FALSE,		json_number_0,						json_number_0);					\
+	print_test_json_##STRICT##_##MINIFY("json_number_1             ("#STRICT" -> "#MINIFY")", FALSE,		json_number_1,						json_number_1);					\
+	print_test_json_##STRICT##_##MINIFY("json_number_2             ("#STRICT" -> "#MINIFY")", FALSE,		json_number_2,						json_number_2);					\
+	print_test_json_##STRICT##_##MINIFY("json_number_3             ("#STRICT" -> "#MINIFY")", FALSE,		json_number_3,						json_number_3);					\
+	print_test_json_##STRICT##_##MINIFY("json_number_4             ("#STRICT" -> "#MINIFY")", FALSE,		json_number_4,						json_number_4);					\
+	print_test_json_##STRICT##_##MINIFY("json_number_0f            ("#STRICT" -> "#MINIFY")", FALSE,		json_number_0,						json_number_0f);				\
+	print_test_json_##STRICT##_##MINIFY("json_number_1f            ("#STRICT" -> "#MINIFY")", FALSE,		json_number_1,						json_number_1f);				\
+	print_test_json_##STRICT##_##MINIFY("json_number_2f            ("#STRICT" -> "#MINIFY")", FALSE,		json_number_2,						json_number_2f);				\
+	print_test_json_##STRICT##_##MINIFY("json_number_3f            ("#STRICT" -> "#MINIFY")", FALSE,		json_number_3,						json_number_3f);				\
+	print_test_json_##STRICT##_##MINIFY("json_number_4f            ("#STRICT" -> "#MINIFY")", FALSE,		json_number_4,						json_number_4f);				\
+	print_test_json_##STRICT##_##MINIFY("json_number_0f1           ("#STRICT" -> "#MINIFY")", FALSE,		json_number_0,						json_number_0f1);				\
+	print_test_json_##STRICT##_##MINIFY("json_number_1f1           ("#STRICT" -> "#MINIFY")", FALSE,		json_number_1,						json_number_1f1);				\
+	print_test_json_##STRICT##_##MINIFY("json_number_2f1           ("#STRICT" -> "#MINIFY")", FALSE,		json_number_2,						json_number_2f1);				\
+	print_test_json_##STRICT##_##MINIFY("json_number_3f1           ("#STRICT" -> "#MINIFY")", FALSE,		json_number_3,						json_number_3f1);				\
+	print_test_json_##STRICT##_##MINIFY("json_number_4f1           ("#STRICT" -> "#MINIFY")", FALSE,		json_number_4f1,					json_number_4f1);				\
+	print_test_json_##STRICT##_##MINIFY("json_number_0f2           ("#STRICT" -> "#MINIFY")", FALSE,		json_number_0,						json_number_0f2);				\
+	print_test_json_##STRICT##_##MINIFY("json_number_1f2           ("#STRICT" -> "#MINIFY")", FALSE,		json_number_1,						json_number_1f2);				\
+	print_test_json_##STRICT##_##MINIFY("json_number_2f2           ("#STRICT" -> "#MINIFY")", FALSE,		json_number_2,						json_number_2f2);				\
+	print_test_json_##STRICT##_##MINIFY("json_number_3f2           ("#STRICT" -> "#MINIFY")", FALSE,		json_number_3,						json_number_3f2);				\
+	print_test_json_##STRICT##_##MINIFY("json_number_4f2           ("#STRICT" -> "#MINIFY")", FALSE,		json_number_4f2,					json_number_4f2);				\
+	print_test_json_##STRICT##_##MINIFY("json_number_0f3           ("#STRICT" -> "#MINIFY")", FALSE,		json_number_0,						json_number_0f3);				\
+	print_test_json_##STRICT##_##MINIFY("json_number_1f3           ("#STRICT" -> "#MINIFY")", FALSE,		json_number_1,						json_number_1f3);				\
+	print_test_json_##STRICT##_##MINIFY("json_number_2f3           ("#STRICT" -> "#MINIFY")", FALSE,		json_number_2,						json_number_2f3);				\
+	print_test_json_##STRICT##_##MINIFY("json_number_3f3           ("#STRICT" -> "#MINIFY")", FALSE,		json_number_3,						json_number_3f3);				\
+	print_test_json_##STRICT##_##MINIFY("json_number_4f3           ("#STRICT" -> "#MINIFY")", FALSE,		json_number_4f3,					json_number_4f3);				\
+	print_test_json_##STRICT##_##MINIFY("json_number_fmin_lt       ("#STRICT" -> "#MINIFY")", FALSE,		json_number_fmin_lt,				json_number_fmin_lt);			\
+	print_test_json_##STRICT##_##MINIFY("json_number_fmin_eq       ("#STRICT" -> "#MINIFY")", FALSE,		json_number_fmin_eq,				json_number_fmin_eq);			\
+	print_test_json_##STRICT##_##MINIFY("json_number_fmin_gt       ("#STRICT" -> "#MINIFY")", FALSE,		json_number_fmin_eq,				json_number_fmin_gt);			\
+	print_test_json_##STRICT##_##MINIFY("json_number_fmax_lt       ("#STRICT" -> "#MINIFY")", FALSE,		json_number_fmax_lt,				json_number_fmax_lt);			\
+	print_test_json_##STRICT##_##MINIFY("json_number_fmax_eq       ("#STRICT" -> "#MINIFY")", FALSE,		json_number_fmax_eq,				json_number_fmax_eq);			\
+	print_test_json_##STRICT##_##MINIFY("json_number_fmax_gt       ("#STRICT" -> "#MINIFY")", FALSE,		json_number_fmax_eq,				json_number_fmax_gt);			\
+	print_test_json_##STRICT##_##MINIFY("json_number_inf_u_lower_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_number_inf_p_lower_0:NULL,		json_number_inf_u_lower_0);		\
+	print_test_json_##STRICT##_##MINIFY("json_number_inf_p_lower_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_number_inf_p_lower_0:NULL,		json_number_inf_p_lower_0);		\
+	print_test_json_##STRICT##_##MINIFY("json_number_inf_n_lower_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_number_inf_n_lower_0:NULL,		json_number_inf_n_lower_0);		\
+	print_test_json_##STRICT##_##MINIFY("json_number_inf_u_lower_1 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_number_inf_p_lower_0:NULL,		json_number_inf_u_lower_1);		\
+	print_test_json_##STRICT##_##MINIFY("json_number_inf_p_lower_1 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_number_inf_p_lower_0:NULL,		json_number_inf_p_lower_1);		\
+	print_test_json_##STRICT##_##MINIFY("json_number_inf_n_lower_1 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_number_inf_n_lower_0:NULL,		json_number_inf_n_lower_1);		\
+	print_test_json_##STRICT##_##MINIFY("json_number_inf_u_mixed_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_number_inf_p_lower_0:NULL,		json_number_inf_u_mixed_0);		\
+	print_test_json_##STRICT##_##MINIFY("json_number_inf_p_mixed_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_number_inf_p_lower_0:NULL,		json_number_inf_p_mixed_0);		\
+	print_test_json_##STRICT##_##MINIFY("json_number_inf_n_mixed_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_number_inf_n_lower_0:NULL,		json_number_inf_n_mixed_0);		\
+	print_test_json_##STRICT##_##MINIFY("json_number_inf_u_mixed_1 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_number_inf_p_lower_0:NULL,		json_number_inf_u_mixed_1);		\
+	print_test_json_##STRICT##_##MINIFY("json_number_inf_p_mixed_1 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_number_inf_p_lower_0:NULL,		json_number_inf_p_mixed_1);		\
+	print_test_json_##STRICT##_##MINIFY("json_number_inf_n_mixed_1 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_number_inf_n_lower_0:NULL,		json_number_inf_n_mixed_1);		\
+	print_test_json_##STRICT##_##MINIFY("json_number_inf_u_upper_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_number_inf_p_lower_0:NULL,		json_number_inf_u_upper_0);		\
+	print_test_json_##STRICT##_##MINIFY("json_number_inf_p_upper_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_number_inf_p_lower_0:NULL,		json_number_inf_p_upper_0);		\
+	print_test_json_##STRICT##_##MINIFY("json_number_inf_n_upper_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_number_inf_n_lower_0:NULL,		json_number_inf_n_upper_0);		\
+	print_test_json_##STRICT##_##MINIFY("json_number_inf_u_upper_1 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_number_inf_p_lower_0:NULL,		json_number_inf_u_upper_1);		\
+	print_test_json_##STRICT##_##MINIFY("json_number_inf_p_upper_1 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_number_inf_p_lower_0:NULL,		json_number_inf_p_upper_1);		\
+	print_test_json_##STRICT##_##MINIFY("json_number_inf_n_upper_1 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_number_inf_n_lower_0:NULL,		json_number_inf_n_upper_1);		\
+	print_test_json_##STRICT##_##MINIFY("json_number_nan_u_lower_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_number_nan_u_lower_0:NULL,		json_number_nan_u_lower_0);		\
+	print_test_json_##STRICT##_##MINIFY("json_number_nan_p_lower_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_number_nan_u_lower_0:NULL,		json_number_nan_p_lower_0);		\
+	print_test_json_##STRICT##_##MINIFY("json_number_nan_n_lower_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_number_nan_u_lower_0:NULL,		json_number_nan_n_lower_0);		\
+	print_test_json_##STRICT##_##MINIFY("json_number_nan_u_mixed_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_number_nan_u_lower_0:NULL,		json_number_nan_u_mixed_0);		\
+	print_test_json_##STRICT##_##MINIFY("json_number_nan_p_mixed_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_number_nan_u_lower_0:NULL,		json_number_nan_p_mixed_0);		\
+	print_test_json_##STRICT##_##MINIFY("json_number_nan_n_mixed_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_number_nan_u_lower_0:NULL,		json_number_nan_n_mixed_0);		\
+	print_test_json_##STRICT##_##MINIFY("json_number_nan_u_upper_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_number_nan_u_lower_0:NULL,		json_number_nan_u_upper_0);		\
+	print_test_json_##STRICT##_##MINIFY("json_number_nan_p_upper_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_number_nan_u_lower_0:NULL,		json_number_nan_p_upper_0);		\
+	print_test_json_##STRICT##_##MINIFY("json_number_nan_n_upper_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_number_nan_u_lower_0:NULL,		json_number_nan_n_upper_0);		\
+	print_test_json_##STRICT##_##MINIFY("json_number_inf_u_utf8_0  ("#STRICT" -> "#MINIFY")", FALSE,		NULL,								json_number_inf_u_utf8_0);		\
+	print_test_json_##STRICT##_##MINIFY("json_number_inf_p_utf8_0  ("#STRICT" -> "#MINIFY")", FALSE,		NULL,								json_number_inf_p_utf8_0);		\
+	print_test_json_##STRICT##_##MINIFY("json_number_inf_n_utf8_0  ("#STRICT" -> "#MINIFY")", FALSE,		NULL,								json_number_inf_n_utf8_0);		\
+	print_test_json_##STRICT##_##MINIFY("json_number_inf_u_utf8_1  ("#STRICT" -> "#MINIFY")", FALSE,		NULL,								json_number_inf_u_utf8_1);		\
+	print_test_json_##STRICT##_##MINIFY("json_number_inf_p_utf8_1  ("#STRICT" -> "#MINIFY")", FALSE,		NULL,								json_number_inf_p_utf8_1);		\
+	print_test_json_##STRICT##_##MINIFY("json_number_inf_n_utf8_1  ("#STRICT" -> "#MINIFY")", FALSE,		NULL,								json_number_inf_n_utf8_1);		\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_empty         ("#STRICT" -> "#MINIFY")", FALSE,		NULL,								json_bigint_empty);				\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_0             ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_bigint_0:NULL,					json_bigint_0);					\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_1             ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_bigint_1:NULL,					json_bigint_1);					\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_2             ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_bigint_2:NULL,					json_bigint_2);					\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_3             ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_bigint_3:NULL,					json_bigint_3);					\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_4             ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_bigint_4:NULL,					json_bigint_4);					\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_0f            ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_bigint_0:NULL,					json_bigint_0f);				\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_1f            ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_bigint_1:NULL,					json_bigint_1f);				\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_2f            ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_bigint_2:NULL,					json_bigint_2f);				\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_3f            ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_bigint_3:NULL,					json_bigint_3f);				\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_4f            ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_bigint_4:NULL,					json_bigint_4f);				\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_0f1           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_bigint_0:NULL,					json_bigint_0f1);				\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_1f1           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_bigint_1:NULL,					json_bigint_1f1);				\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_2f1           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_bigint_2:NULL,					json_bigint_2f1);				\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_3f1           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_bigint_3:NULL,					json_bigint_3f1);				\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_4f1           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_bigint_4:NULL,					json_bigint_4f1);				\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_0f2           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_bigint_0:NULL,					json_bigint_0f2);				\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_1f2           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_bigint_1:NULL,					json_bigint_1f2);				\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_2f2           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_bigint_2:NULL,					json_bigint_2f2);				\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_3f2           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_bigint_3:NULL,					json_bigint_3f2);				\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_4f2           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_bigint_4:NULL,					json_bigint_4f2);				\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_0f3           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_bigint_0:NULL,					json_bigint_0f3);				\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_1f3           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_bigint_1:NULL,					json_bigint_1f3);				\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_2f3           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_bigint_2:NULL,					json_bigint_2f3);				\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_3f3           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_bigint_3:NULL,					json_bigint_3f3);				\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_4f3           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_bigint_4:NULL,					json_bigint_4f3);				\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_fmin_lt       ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_bigint_fmin_lt:NULL,			json_bigint_fmin_lt);			\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_fmin_eq       ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_bigint_fmin_eq:NULL,			json_bigint_fmin_eq);			\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_fmin_gt       ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_bigint_fmin_gt:NULL,			json_bigint_fmin_gt);			\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_fmax_lt       ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_bigint_fmax_lt:NULL,			json_bigint_fmax_lt);			\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_fmax_eq       ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_bigint_fmax_eq:NULL,			json_bigint_fmax_eq);			\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_fmax_gt       ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_bigint_fmax_gt:NULL,			json_bigint_fmax_gt);			\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_s64min_lt     ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_bigint_s64min_lt:NULL,			json_bigint_s64min_lt);			\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_s64min_eq     ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_bigint_s64min_eq:NULL,			json_bigint_s64min_eq);			\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_s64min_gt     ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_bigint_s64max_eq:NULL,			json_bigint_s64min_gt);/*TODO*/	\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_s64max_lt     ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_bigint_s64max_lt:NULL,			json_bigint_s64max_lt);			\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_s64max_eq     ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_bigint_s64max_eq:NULL,			json_bigint_s64max_eq);			\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_s64max_gt     ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_bigint_s64min_eq:NULL,			json_bigint_s64max_gt);/*TODO*/	\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_bad_uinf_lower("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_number_inf_p_lower_0:NULL,		json_bigint_bad_uinf_lower);	\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_bad_uinf_upper("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_number_inf_p_lower_0:NULL,		json_bigint_bad_uinf_upper);	\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_bad_ninf_lower("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_number_inf_n_lower_0:NULL,		json_bigint_bad_ninf_lower);	\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_bad_ninf_upper("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_number_inf_n_lower_0:NULL,		json_bigint_bad_ninf_upper);	\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_bad_pinf_lower("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_number_inf_p_lower_0:NULL,		json_bigint_bad_pinf_lower);	\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_bad_pinf_upper("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_number_inf_p_lower_0:NULL,		json_bigint_bad_pinf_upper);	\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_bad_unan_lower("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_number_nan_u_lower_0:NULL,		json_bigint_bad_unan_lower);	\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_bad_unan_upper("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_number_nan_u_lower_0:NULL,		json_bigint_bad_unan_upper);	\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_bad_nnan_lower("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_number_nan_u_lower_0:NULL,		json_bigint_bad_nnan_lower);	\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_bad_nnan_upper("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_number_nan_u_lower_0:NULL,		json_bigint_bad_nnan_upper);	\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_bad_pnan_lower("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_number_nan_u_lower_0:NULL,		json_bigint_bad_pnan_lower);	\
+	print_test_json_##STRICT##_##MINIFY("json_bigint_bad_pnan_upper("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_number_nan_u_lower_0:NULL,		json_bigint_bad_pnan_upper);	\
+	print_test_json_##STRICT##_##MINIFY("json_string_empty         ("#STRICT" -> "#MINIFY")", FALSE,		json_string_empty,					json_string_empty);				\
+	print_test_json_##STRICT##_##MINIFY("json_string               ("#STRICT" -> "#MINIFY")", FALSE,		json_string,						json_string);					\
+	print_test_json_##STRICT##_##MINIFY("json_string_cc_c0         ("#STRICT" -> "#MINIFY")", FALSE,		json_string_cc_c0,					json_string_cc_c0);				\
+	print_test_json_##STRICT##_##MINIFY("json_string_cc_c1         ("#STRICT" -> "#MINIFY")", FALSE,		json_string_cc_c1,					json_string_cc_c1);				\
+	print_test_json_##STRICT##_##MINIFY("json_string_utf8_fr       ("#STRICT" -> "#MINIFY")", FALSE,		json_string_utf8_fr,				json_string_utf8_fr);			\
+	print_test_json_##STRICT##_##MINIFY("json_string_utf8_ru       ("#STRICT" -> "#MINIFY")", FALSE,		json_string_utf8_ru,				json_string_utf8_ru);			\
+	print_test_json_##STRICT##_##MINIFY("json_string_utf8_jp       ("#STRICT" -> "#MINIFY")", FALSE,		json_string_utf8_jp,				json_string_utf8_jp);			\
+	print_test_json_##STRICT##_##MINIFY("json_string_utf8_ho       ("#STRICT" -> "#MINIFY")", FALSE,		json_string_utf8_ho,				json_string_utf8_ho);			\
+	print_test_json_##STRICT##_##MINIFY("json_array_empty          ("#STRICT" -> "#MINIFY")", FALSE,		json_array_empty,					json_array_empty);				\
+	print_test_json_##STRICT##_##MINIFY("json_array                ("#STRICT" -> "#MINIFY")", FALSE,		json_array##MINIFY_EXPECT,			json_array);					\
+	print_test_json_##STRICT##_##MINIFY("json_array_min            ("#STRICT" -> "#MINIFY")", FALSE,		json_array##MINIFY_EXPECT,			json_array_min);				\
+	print_test_json_##STRICT##_##MINIFY("json_array_nested         ("#STRICT" -> "#MINIFY")", FALSE,		json_array_nested##MINIFY_EXPECT,	json_array_nested);				\
+	print_test_json_##STRICT##_##MINIFY("json_array_nested_min     ("#STRICT" -> "#MINIFY")", FALSE,		json_array_nested##MINIFY_EXPECT,	json_array_nested_min);			\
+	print_test_json_##STRICT##_##MINIFY("json_object_empty         ("#STRICT" -> "#MINIFY")", FALSE,		json_object_empty,					json_object_empty);				\
+	print_test_json_##STRICT##_##MINIFY("json_object               ("#STRICT" -> "#MINIFY")", FALSE,		json_object##MINIFY_EXPECT,			json_object);					\
+	print_test_json_##STRICT##_##MINIFY("json_object_min           ("#STRICT" -> "#MINIFY")", FALSE,		json_object##MINIFY_EXPECT,			json_object_min);				\
+	print_test_json_##STRICT##_##MINIFY("json_object_nested        ("#STRICT" -> "#MINIFY")", FALSE,		json_object_nested##MINIFY_EXPECT,	json_object_nested);			\
+	print_test_json_##STRICT##_##MINIFY("json_object_nested_min    ("#STRICT" -> "#MINIFY")", FALSE,		json_object_nested##MINIFY_EXPECT,	json_object_nested_min);		\
+	print_test_json_##STRICT##_##MINIFY("json_whitespace           ("#STRICT" -> "#MINIFY")", FALSE,		json_helloworld##MINIFY_EXPECT,		json_whitespace);				\
+	print_test_json_##STRICT##_##MINIFY("json_whitespace_tab       ("#STRICT" -> "#MINIFY")", FALSE,		json_helloworld##MINIFY_EXPECT,		json_whitespace_tab);			\
+	print_test_json_##STRICT##_##MINIFY("json_whitespace_nl        ("#STRICT" -> "#MINIFY")", FALSE,		json_helloworld##MINIFY_EXPECT,		json_whitespace_nl);			\
+	print_test_json_##STRICT##_##MINIFY("json_whitespace_cr        ("#STRICT" -> "#MINIFY")", FALSE,		json_helloworld##MINIFY_EXPECT,		json_whitespace_cr);			\
+	print_test_json_##STRICT##_##MINIFY("json_whitespace_ff        ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_helloworld##MINIFY_EXPECT:NULL,json_whitespace_ff);			\
+	print_test_json_##STRICT##_##MINIFY("json_whitespace_vt        ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_helloworld##MINIFY_EXPECT:NULL,json_whitespace_vt);			\
+	print_test_json_##STRICT##_##MINIFY("json_whitespace_all       ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_helloworld##MINIFY_EXPECT:NULL,json_whitespace_all);			\
+	print_test_json_##STRICT##_##MINIFY("json_simple               ("#STRICT" -> "#MINIFY")", FALSE,		json_simple##MINIFY_EXPECT,			json_simple);					\
+	print_test_json_##STRICT##_##MINIFY("json_simple_min           ("#STRICT" -> "#MINIFY")", FALSE,		json_simple##MINIFY_EXPECT,			json_simple_min);				\
+	print_test_json_##STRICT##_##MINIFY("json_commas               ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_simple##MINIFY_EXPECT:NULL,	json_commas);					\
+	print_test_json_##STRICT##_##MINIFY("json_commas_min           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_simple##MINIFY_EXPECT:NULL,	json_commas_min);				\
+	print_test_json_##STRICT##_##MINIFY("json_newline              ("#STRICT" -> "#MINIFY")", FALSE,		json_simple##MINIFY_EXPECT,			json_newline);					\
+	print_test_json_##STRICT##_##MINIFY("json_complex              ("#STRICT" -> "#MINIFY")", FALSE,		json_complex##MINIFY_EXPECT,		json_complex);					\
+	print_test_json_##STRICT##_##MINIFY("json_complex_min          ("#STRICT" -> "#MINIFY")", FALSE,		json_complex##MINIFY_EXPECT,		json_complex_min);				\
+	print_test_json_##STRICT##_##MINIFY("json_escape_sq1           ("#STRICT" -> "#MINIFY")", FALSE,		NULL,								json_escape_sq1);				\
+	print_test_json_##STRICT##_##MINIFY("json_escape_sq2           ("#STRICT" -> "#MINIFY")", FALSE,		json_escape_sq2,					json_escape_sq2);				\
+	print_test_json_##STRICT##_##MINIFY("json_escape_slb           ("#STRICT" -> "#MINIFY")", FALSE,		json_escape_slb,					json_escape_slb);				\
+	print_test_json_##STRICT##_##MINIFY("json_escape_slf           ("#STRICT" -> "#MINIFY")", FALSE,		"[\"test:/.\"]",					json_escape_slf);				\
+	print_test_json_##STRICT##_##MINIFY("json_escape_spc           ("#STRICT" -> "#MINIFY")", FALSE,		NULL,								json_escape_spc);				\
+	print_test_json_##STRICT##_##MINIFY("json_escape_tab           ("#STRICT" -> "#MINIFY")", FALSE,		json_escape_tab,					json_escape_tab);				\
+	print_test_json_##STRICT##_##MINIFY("json_escape_nl            ("#STRICT" -> "#MINIFY")", FALSE,		json_escape_nl,						json_escape_nl);				\
+	print_test_json_##STRICT##_##MINIFY("json_escape_cr            ("#STRICT" -> "#MINIFY")", FALSE,		json_escape_cr,						json_escape_cr);				\
+	print_test_json_##STRICT##_##MINIFY("json_escape_ff            ("#STRICT" -> "#MINIFY")", FALSE,		json_escape_ff,						json_escape_ff);				\
+	print_test_json_##STRICT##_##MINIFY("json_escape_vt            ("#STRICT" -> "#MINIFY")", FALSE,		NULL,								json_escape_vt);				\
+	print_test_json_##STRICT##_##MINIFY("json_escape_esc           ("#STRICT" -> "#MINIFY")", FALSE,		NULL,								json_escape_esc);				\
+	print_test_json_##STRICT##_##MINIFY("json_escape_bel           ("#STRICT" -> "#MINIFY")", FALSE,		NULL,								json_escape_bel);				\
+	print_test_json_##STRICT##_##MINIFY("json_escape_bs            ("#STRICT" -> "#MINIFY")", FALSE,		json_escape_bs,						json_escape_bs);				\
+	print_test_json_##STRICT##_##MINIFY("json_strange_sot          ("#STRICT" -> "#MINIFY")", FALSE,		NULL,								json_strange_sot);				\
+	print_test_json_##STRICT##_##MINIFY("json_strange_stx          ("#STRICT" -> "#MINIFY")", FALSE,		NULL,								json_strange_stx);				\
+	print_test_json_##STRICT##_##MINIFY("json_strange_etx          ("#STRICT" -> "#MINIFY")", FALSE,		NULL,								json_strange_etx);				\
+	print_test_json_##STRICT##_##MINIFY("json_strange_eot          ("#STRICT" -> "#MINIFY")", FALSE,		NULL,								json_strange_eot);				\
+	print_test_json_##STRICT##_##MINIFY("json_strange_esc          ("#STRICT" -> "#MINIFY")", FALSE,		NULL,								json_strange_esc);				\
+	print_test_json_##STRICT##_##MINIFY("json_strange_bs           ("#STRICT" -> "#MINIFY")", FALSE,		NULL,								json_strange_bs);				\
 }
 #endif
 
+DEFINETEST_JSON(Lenient, TRUE,	Pretty,)
+DEFINETEST_JSON(Lenient, TRUE,	Minify, _min)
+DEFINETEST_JSON(Strict, FALSE,	Pretty,)
+DEFINETEST_JSON(Strict, FALSE,	Minify, _min)
 
-
-// TODO
+// TODO test othe functions than just Parse/Print
 
 
 
@@ -729,7 +731,10 @@ int		testsuite_encode_json(void)
 
 	print_nonstd();
 
-	test_json();
+	test_json_Lenient_Pretty();
+	test_json_Lenient_Minify();
+	test_json_Strict_Pretty();
+	test_json_Strict_Minify();
 
 	return (OK);
 }
