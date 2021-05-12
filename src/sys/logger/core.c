@@ -138,6 +138,7 @@ t_io_error	Log_VA(s_logger const* logger,
 			format_str, (format_str[0] != '\0' && format_str[String_Length(format_str) - 1] == '\n' ? "" : "\n")
 		);
 	}
+	String_Delete(&timestamp);
 	String_Delete(&error_str);
 
 	if (full_format_str == NULL)
@@ -148,6 +149,7 @@ t_io_error	Log_VA(s_logger const* logger,
 
 	// NB: a va_list (in this case, 'args') can only be called ONCE (for every va_start), or else will segfault
 	log_msg = String_Format_VA(full_format_str, args);
+	String_Delete(&full_format_str);
 	if (log_msg == NULL)
 	{
 		Log_FatalError(logger, "Could not construct log message");
@@ -163,9 +165,6 @@ t_io_error	Log_VA(s_logger const* logger,
 				log_msg);
 		}
 	}
-
-	String_Delete(&timestamp);
-	String_Delete(&full_format_str);
 	String_Delete(&log_msg);
 
 	return (OK);

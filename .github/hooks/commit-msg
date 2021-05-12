@@ -14,7 +14,7 @@ ERROR=$C_RED"ERROR"$C_RESET": "
 SUCCESS=$C_GREEN"SUCCESS"$C_RESET": "
 WARNING=$C_YELLOW"WARNING"$C_RESET": "
 
-export REGEX="^([&|/,]?(feature|fix|security|performance|improvement|breaking|deprecated|refactor|style|test|doc|example|dependency|i18n|config|build|ci|release|update|revert|wip))+\(((.?)*)\): (.*)"
+export REGEX="^([&|/,]?(feature|fix|security|performance|improvement|breaking|deprecated|refactor|merge|style|test|doc|example|dependency|i18n|config|build|ci|release|update|revert|wip))+\(((.?)*)\): (.*)"
 export ERROR_MSG="
 Commit message is invalid, should follow this format:
 <types>(<scope>): <message>
@@ -33,6 +33,7 @@ Here are the explanations for each item:
 	breaking     for backwards-incompatible enhancement commits
 	deprecated   for deprecated feature commits
 	refactor     for refactoring commits
+	merge        for merge commits
 	style        for coding style commits
 	test         for testing commits
 	doc          for documentation commits
