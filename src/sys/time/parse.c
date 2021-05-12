@@ -78,7 +78,7 @@ __weak_alias(strptime,_strptime)
 #define PARSINGERROR_DATE_MESSAGE	"Error while parsing date: "
 //! used to handle errors during parsing
 #define PARSINGERROR_DATE(MESSAGE, ...) \
-	LIBCONFIG_HANDLE_PARSINGERROR(0, MESSAGE, ##__VA_ARGS__)
+	LIBCONFIG_HANDLE_PARSINGERROR(0, "%s"MESSAGE, "", __VA_ARGS__)
 
 
 

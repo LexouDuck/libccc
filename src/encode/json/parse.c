@@ -33,12 +33,14 @@ static t_bool JSON_Parse_Object(s_json* const item, s_json_parse* const p);
 #define PARSINGERROR_JSON_MESSAGE	IO_COLOR_FG_RED"JSON PARSE ERROR"IO_RESET":"
 
 //! used to handle errors during parsing
-#define PARSINGERROR_JSON(MESSAGE, ...) \
-	{																		\
-		p->error = String_Format("%s\n"PARSINGERROR_JSON_MESSAGE" "MESSAGE,	\
-			(p->error ? p->error : ""), ##__VA_ARGS__);						\
-		goto failure;														\
-	}																		\
+#define PARSINGERROR_JSON(...) \
+	{																						\
+		t_char* tmp_error;																	\
+		tmp_error = String_Format(__VA_ARGS__);												\
+		tmp_error = String_Prepend("\n"PARSINGERROR_JSON_MESSAGE" ", &tmp_error);			\
+		p->error = (p->error == NULL ? tmp_error : String_Merge(&p->error, &tmp_error));	\
+		goto failure;																		\
+	}																						\
 
 //! Safely checks if the content to parse can be accessed at the given index
 #define CAN_PARSE(i) \
