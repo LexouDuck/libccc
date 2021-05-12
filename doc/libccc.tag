@@ -48,37 +48,93 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_bool_to_str</name>
-      <anchorfile>group__libccc__bool.html</anchorfile>
-      <anchor>gadbdb134a7667f7eaab54152cb5c2c0bb</anchor>
+      <name>and</name>
+      <anchorfile>bool_8h.html</anchorfile>
+      <anchor>aa3d7d535cf450b91b9cb6d9cee2edbb9</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_str_to_bool</name>
-      <anchorfile>group__libccc__bool.html</anchorfile>
-      <anchor>gacc3d0f7cb029f5895392f1392ac1bb48</anchor>
+      <name>or</name>
+      <anchorfile>bool_8h.html</anchorfile>
+      <anchor>a339a611d7f9dc3a59c359f0da7beaf3c</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>xor</name>
+      <anchorfile>bool_8h.html</anchorfile>
+      <anchor>aa2c0034f069be96cc3a251db7226139f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>not</name>
+      <anchorfile>bool_8h.html</anchorfile>
+      <anchor>a31739c27bdcfdac9faae7bf7a5df49e4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>bitand</name>
+      <anchorfile>bool_8h.html</anchorfile>
+      <anchor>ac05a9032db99912bfe12598fe9bff255</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>bitor</name>
+      <anchorfile>bool_8h.html</anchorfile>
+      <anchor>aa4f212a39c93f99337cc4c06666dd165</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>bitxor</name>
+      <anchorfile>bool_8h.html</anchorfile>
+      <anchor>ae1a598153045756a07a96c69e914deb5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>bitnot</name>
+      <anchorfile>bool_8h.html</anchorfile>
+      <anchor>a511ada718d93e93b90522f3184fdbb18</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>BOOL_TOSTRING</name>
+      <anchorfile>bool_8h.html</anchorfile>
+      <anchor>a2adc2fa99e101db17d90524fe0c09a26</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>BOOL_TOSTRING_UPPER</name>
+      <anchorfile>bool_8h.html</anchorfile>
+      <anchor>af35219b0d86aa8bc31acae527eb0a808</anchor>
+      <arglist>(VALUE)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>BOOL_TOSTRING_LOWER</name>
+      <anchorfile>bool_8h.html</anchorfile>
+      <anchor>a35de16f48289c04f92dac3404870b5fa</anchor>
+      <arglist>(VALUE)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>BOOL_TOSTRING_MIXED</name>
+      <anchorfile>bool_8h.html</anchorfile>
+      <anchor>a6292ad85691e988fc3776741c73f60ec</anchor>
+      <arglist>(VALUE)</arglist>
     </member>
     <member kind="typedef">
       <type>int</type>
       <name>t_bool</name>
       <anchorfile>group__libccc__bool.html</anchorfile>
       <anchor>ga99d89c4c873ae7a89fbbfbdaead1a253</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type>t_bool</type>
-      <name>Bool_FromString</name>
-      <anchorfile>group__libccc__bool.html</anchorfile>
-      <anchor>gaa9b13c09a76c522d0bc3e86316cfbb17</anchor>
-      <arglist>(char const *str)</arglist>
-    </member>
-    <member kind="variable">
-      <type>t_bool</type>
-      <name>uppercase</name>
-      <anchorfile>group__libccc__bool.html</anchorfile>
-      <anchor>ga779f60bcf0c114cbc855c02f7e1db66b</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
@@ -95,9 +151,20 @@
     <filename>char_8h.html</filename>
     <includes id="libccc__config_8h" name="libccc_config.h" local="yes" imported="no">libccc_config.h</includes>
     <includes id="libccc__define_8h" name="libccc_define.h" local="yes" imported="no">libccc_define.h</includes>
-    <includes id="bool_8h" name="bool.h" local="yes" imported="no">libccc/bool.h</includes>
-    <includes id="int_8h" name="int.h" local="yes" imported="no">libccc/int.h</includes>
-    <includes id="pointer_8h" name="pointer.h" local="yes" imported="no">libccc/pointer.h</includes>
+    <member kind="define">
+      <type>#define</type>
+      <name>CHARSET_WHITESPACE</name>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>ae27a61cbdccaa5260ab703b6bf112fb0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>CHARSET_PUNCTUATION</name>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>aefdb6940cc9eed8254ebb910a44b44b6</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="define">
       <type>#define</type>
       <name>CHARSET_LOWERCASE</name>
@@ -121,9 +188,23 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>CHARSET_BIN</name>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>a7b7396142d3e6d2a0751466e9e1de31a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>CHARSET_BINARY</name>
       <anchorfile>char_8h.html</anchorfile>
       <anchor>a3ed1ae4210f17ae75c8450f2fb629050</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>CHARSET_OCT</name>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>a26a48296cdaa177e6f0693a03d52b58f</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -135,23 +216,23 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>CHARSET_DIGIT</name>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>ab6d4d72d3253ddec47f643906c980086</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>CHARSET_DEC</name>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>a8d6087686ef6f058a846d0f3de6f8c84</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>CHARSET_DECIMAL</name>
       <anchorfile>char_8h.html</anchorfile>
       <anchor>afe6581912d031b0568e13fe9ba93d6a7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>CHARSET_HEX_LOWER</name>
-      <anchorfile>char_8h.html</anchorfile>
-      <anchor>a272b456db69ac899c0e50990f7539225</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>CHARSET_HEX_UPPER</name>
-      <anchorfile>char_8h.html</anchorfile>
-      <anchor>a2a6814726ef5cdec271f172ee371cf2c</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -170,304 +251,346 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>CHARSET_WHITESPACE</name>
+      <name>CHARSET_HEX_LOWER</name>
       <anchorfile>char_8h.html</anchorfile>
-      <anchor>ae27a61cbdccaa5260ab703b6bf112fb0</anchor>
+      <anchor>a272b456db69ac899c0e50990f7539225</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>CHARSET_PUNCTUATION</name>
+      <name>CHARSET_HEX_UPPER</name>
       <anchorfile>char_8h.html</anchorfile>
-      <anchor>aefdb6940cc9eed8254ebb910a44b44b6</anchor>
+      <anchor>a2a6814726ef5cdec271f172ee371cf2c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Char_IsLetter</name>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>af104bafc3b1ce38f123200d9524b1dbf</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>c_isalpha</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gac50127404adc3420890b06152813af91</anchor>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>ac50127404adc3420890b06152813af91</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>Char_IsAlpha</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga2232037d132d47d8d54e2b5eda569ac6</anchor>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>a2232037d132d47d8d54e2b5eda569ac6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Char_IsUppercase</name>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>a5eec0ca03406c59d55eb6eaebb2bebc3</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>c_isupper</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gadf50d7390673c67564b902801015cc96</anchor>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>adf50d7390673c67564b902801015cc96</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>Char_IsUpper</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga71e337826d56f6d106819ed4a95c083f</anchor>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>a71e337826d56f6d106819ed4a95c083f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Char_IsLowercase</name>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>a20ff34687104b9da14ea761062f0e425</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>c_islower</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gaa10c4682ade14c174a31cdff4538bb9b</anchor>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>aa10c4682ade14c174a31cdff4538bb9b</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>Char_IsLower</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga7af581a6583fd824b26264d60db38883</anchor>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>a7af581a6583fd824b26264d60db38883</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Char_IsAlphaNumeric</name>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>a1b7aa028f6225e1cbaf1f8058c63fd0e</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>c_isalnum</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga242a2cdf4bad6eae2fdeb25d5d7bb1c1</anchor>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>a242a2cdf4bad6eae2fdeb25d5d7bb1c1</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>Char_IsAlNum</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gab0c312ce1ebc3aafff72170981f0594f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_isdigit</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga64a07b32785aab0ee1764f00f116205c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Char_IsDigit</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga83e53809bf438d8dfa84e83112891dc1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Char_IsDigit_Dec</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga32b75313c0e885e3c4a2b16b604ec1e4</anchor>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>ab0c312ce1ebc3aafff72170981f0594f</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>Char_IsDigit_Decimal</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gae0cc87501e52eecf646177cf4c38d08d</anchor>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>ae0cc87501e52eecf646177cf4c38d08d</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_isdigit_hex</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga09206b3709c95b101154cfd52ac08d3e</anchor>
+      <name>c_isdigit</name>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>a64a07b32785aab0ee1764f00f116205c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Char_IsDigit</name>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>a83e53809bf438d8dfa84e83112891dc1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Char_IsDigit_Dec</name>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>a32b75313c0e885e3c4a2b16b604ec1e4</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>Char_IsDigit_Hexadecimal</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga16b27bfb02d6d853e332038bb3e447b8</anchor>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>a16b27bfb02d6d853e332038bb3e447b8</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_isdigit_oct</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga1fdee46d0e5f75f2894c43bfee0cd69e</anchor>
+      <name>c_isxdigit</name>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>a41d33d95534a2908500c4670c15b9f98</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Char_IsDigit_Hex</name>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>ad21ff2e45ccd5ed3eaf12397a6e98b9c</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>Char_IsDigit_Octal</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga4d0f94017613be7a0c64d0d68c91e896</anchor>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>a4d0f94017613be7a0c64d0d68c91e896</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_isdigit_bin</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gadba9797ae2d7c824e918c183a289c331</anchor>
+      <name>c_isodigit</name>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>aac6b2f917aea49217bca7f66bdc977f7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Char_IsDigit_Oct</name>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>a5b1c658ff5d9c3abbbb5d9bad61a2b9a</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>Char_IsDigit_Binary</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gacc50e1159636eba330b69ed54f1858b5</anchor>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>acc50e1159636eba330b69ed54f1858b5</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_isspace</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gaaec689c57b2e8c986e7b7e2fc76eb117</anchor>
+      <name>c_isbdigit</name>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>a2db0b8c7d8bcd1a04ae94a56a7ee17d2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Char_IsDigit_Bin</name>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>a904f6f0ff9f697c7ad0f97bb1ba6349f</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>Char_IsWhiteSpace</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gabb0764823f87fa29cb7c209e85f6bcdd</anchor>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>abb0764823f87fa29cb7c209e85f6bcdd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_isspace</name>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>aaec689c57b2e8c986e7b7e2fc76eb117</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Char_IsSpace</name>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>a5c9f2617e1aadc57d016c40d79376d6b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Char_IsPunctuation</name>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>ae8caf9813b73b8993f4c3a92467686e5</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>c_ispunct</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gae7a6c15c685ece8eda92aa80709e0fa0</anchor>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>ae7a6c15c685ece8eda92aa80709e0fa0</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>Char_IsPunct</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gab1a8f696a0e878ccaa95bd122f244363</anchor>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>ab1a8f696a0e878ccaa95bd122f244363</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Char_IsPrintable</name>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>aaefc817917c1e0cd152635c187faa73f</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>c_isprint</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gad4475ac237a02bc586a5520a59212a98</anchor>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>ad4475ac237a02bc586a5520a59212a98</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>Char_IsPrint</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga073e999332c6abfc6cacdfc77b700a54</anchor>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>a073e999332c6abfc6cacdfc77b700a54</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Char_IsValid</name>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>a39c51c08e4afc39fda650c626383a4ce</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>c_isascii</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gace39a716918bafb234bff07d3f329401</anchor>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>ace39a716918bafb234bff07d3f329401</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_isvalid</name>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>a3e4ddfb23e8096b4fb861b24a1f7a0bb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Char_IsInCharset</name>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>aa34b25f96cde7a2cd60f998c2a4deed4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_isincharset</name>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>a0173ccf0013ddbbdc84bc70a2745434a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Char_ToUppercase</name>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>aa20e9018024a778fafd2c3d7ddf303e3</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>c_toupper</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga8c369948f5a1691390b30b1573188744</anchor>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>a8c369948f5a1691390b30b1573188744</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>Char_ToUpper</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gae1f09f692036dd972b9820e3faa3a7cf</anchor>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>ae1f09f692036dd972b9820e3faa3a7cf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Char_ToLowercase</name>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>a5c1dd9839f2f946230dec6e07b46843b</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>c_tolower</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga15853ee81720da7e4d1c61702473daba</anchor>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>a15853ee81720da7e4d1c61702473daba</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>Char_ToLower</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga0b881067b33fe7a8485e4d47fe9315e1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_wctomb</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga11a4035f4b26504d7e68717610922e97</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_ctoutf8</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gae29f71988a5aebab970e924f93b7c1bf</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_wctomb2</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga913b614e45468119309db47e9555b62a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_ctoutf16</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gafb19eccdd125abc31ac4c8ba4b01d0a8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_mbtowc</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gae1c3679e55126b5b81acc2e7cbc6a5ed</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_utf8toc</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga2cb17a5bbb4df7b843b94359ee895c6b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>UTF8_Get</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga0cdb5c27a1be9e72ec92961c424c40cd</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_mb2towc</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga2413992c60b9ac17ae4a498cda484988</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_utf16toc</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga0597537cc6ef10135282825e31dbb379</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>UTF16_Get</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga5c3f6c0a80889e72a38bbaf3e12b3c53</anchor>
+      <anchorfile>char_8h.html</anchorfile>
+      <anchor>a0b881067b33fe7a8485e4d47fe9315e1</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>char</type>
-      <name>t_char</name>
+      <name>t_ascii</name>
       <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gaf0556422eb1ef9c94bb5d119f336756a</anchor>
+      <anchor>ga1897de8d731a1c5f595af40305a0f7fd</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>TYPEDEF_ALIAS</name>
       <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga0266a339d247b8e334d50accc82868ac</anchor>
-      <arglist>(t_char, CHAR, PRIMITIVE) typedef char t_utf8</arglist>
+      <anchor>ga8861faa59584ddd76f839a69b91d8d30</anchor>
+      <arglist>(t_ascii, ASCII, PRIMITIVE) typedef char t_utf8</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -487,141 +610,8 @@
       <type></type>
       <name>TYPEDEF_ALIAS</name>
       <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gafced44442f105796aac275b11ce5a1e3</anchor>
-      <arglist>(t_utf32, UTF32, PRIMITIVE) t_bool Char_IsLetter(t_utf32 c)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_bool</type>
-      <name>Char_IsUppercase</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gacf1b3af7cbc51e7c077897536761196d</anchor>
-      <arglist>(t_utf32 c)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_bool</type>
-      <name>Char_IsLowercase</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga8f504db474a1bc53d8c123252671c2ae</anchor>
-      <arglist>(t_utf32 c)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_bool</type>
-      <name>Char_IsAlphaNumeric</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga79f4a848bdfed302d87eb8fca539ce68</anchor>
-      <arglist>(t_utf32 c)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_bool</type>
-      <name>Char_IsDigit</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gacb98e5f05667a996a143bc15a6c05302</anchor>
-      <arglist>(t_utf32 c)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_bool</type>
-      <name>Char_IsDigit_Hex</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga52cb8ae024b00ed708d84dea13585879</anchor>
-      <arglist>(t_utf32 c)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_bool</type>
-      <name>Char_IsDigit_Oct</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga2995256410596e9783d036ad6488c04e</anchor>
-      <arglist>(t_utf32 c)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_bool</type>
-      <name>Char_IsDigit_Bin</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gafcb4ddc5962d7558233ac58be9a34c48</anchor>
-      <arglist>(t_utf32 c)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_bool</type>
-      <name>Char_IsSpace</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga3cb799e0b4f096ab95edcb1d295e1b5d</anchor>
-      <arglist>(t_utf32 c)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_bool</type>
-      <name>Char_IsPunctuation</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga41ad4743e2713474690659e7a766aaff</anchor>
-      <arglist>(t_utf32 c)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_bool</type>
-      <name>Char_IsPrintable</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gaf9ac42c3a259dedaf2724dd0459a9ea6</anchor>
-      <arglist>(t_utf32 c)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_bool</type>
-      <name>Char_IsASCII</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga71a8729448c8b88caaabc93b4363b835</anchor>
-      <arglist>(t_utf32 c)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_char</type>
-      <name>Char_ToUppercase</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga4cf384c84478db67651e5879dabffe4c</anchor>
-      <arglist>(t_char c)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_char</type>
-      <name>Char_ToLowercase</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gaadf12469eb8d3f99ba8a48e3b4a56ceb</anchor>
-      <arglist>(t_char c)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_size</type>
-      <name>Char_ToUTF8</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gab840012db786653d7536572f2014f415</anchor>
-      <arglist>(t_utf8 *dest, t_utf32 c)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_size</type>
-      <name>Char_ToUTF16</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gad2b6ae0c10348206b3fe4fb823854515</anchor>
-      <arglist>(t_utf16 *dest, t_utf32 c)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_utf32</type>
-      <name>Char_FromUTF8</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gac03bbcfac6ca13f30db68df3d45fb65b</anchor>
-      <arglist>(t_utf8 const *str)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_utf32</type>
-      <name>Char_FromUTF16</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga7b2beaef1721669c622a242dbd97857e</anchor>
-      <arglist>(t_utf16 const *str)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_isincharset</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga0173ccf0013ddbbdc84bc70a2745434a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type>t_bool</type>
-      <name>Char_IsInCharset</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gabd335aa7bb76823c0757c3fe3b3cada4</anchor>
-      <arglist>(t_utf32 c, t_char const *charset)</arglist>
+      <anchor>ga5d249a9951459f18ddf69dc94aa0a54e</anchor>
+      <arglist>(t_utf32, UTF32, PRIMITIVE) typedef t_ascii t_char</arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -1565,6 +1555,7 @@
     <filename>fixed_8h.html</filename>
     <includes id="libccc__config_8h" name="libccc_config.h" local="yes" imported="no">libccc_config.h</includes>
     <includes id="libccc__define_8h" name="libccc_define.h" local="yes" imported="no">libccc_define.h</includes>
+    <includes id="char_8h" name="char.h" local="yes" imported="no">libccc/char.h</includes>
     <includes id="bool_8h" name="bool.h" local="yes" imported="no">libccc/bool.h</includes>
     <includes id="int_8h" name="int.h" local="yes" imported="no">libccc/int.h</includes>
     <includes id="float_8h" name="float.h" local="yes" imported="no">libccc/float.h</includes>
@@ -2395,31 +2386,31 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Q16_ToString</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga8754098e879f1330bf077ed5253b84ec</anchor>
+      <anchor>gaed0964a4ae852c7bce08e577018da745</anchor>
       <arglist>(t_q16 number)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Q32_ToString</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga015192c2445ea20f0f1dfd87a470f78b</anchor>
+      <anchor>gaeb859debdca5f74eb770c0381444f1b9</anchor>
       <arglist>(t_q32 number)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Q64_ToString</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga9eddc1114bc3bc75252cd3491eefd7c8</anchor>
+      <anchor>gaba0f57556f4d04fa4edd8a99ceec5854</anchor>
       <arglist>(t_q64 number)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Q128_ToString</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga7d1cc53636350acd6927bc696b778e8c</anchor>
+      <anchor>ga2a562df09c7462118672dcff7f06e996</anchor>
       <arglist>(t_q128 number)</arglist>
     </member>
     <member kind="define">
@@ -2465,31 +2456,31 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Q16_ToString_Hex</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga08e1234ead8da0a327bf93f190f0a4b8</anchor>
+      <anchor>ga10112628d9f752a2f8b1817cc0b02948</anchor>
       <arglist>(t_q16 number)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Q32_ToString_Hex</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga3a5eab6c9236eac0c1e53dd1d6de24b5</anchor>
+      <anchor>ga100a48e2e346faebaea33745328478a9</anchor>
       <arglist>(t_q32 number)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Q64_ToString_Hex</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga17c6efff81febeb392bf0955f01a707e</anchor>
+      <anchor>ga8137a0c8e04075babbdb7e786edca3e0</anchor>
       <arglist>(t_q64 number)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Q128_ToString_Hex</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga63735c810065fe5ece4836333654a1f3</anchor>
+      <anchor>gad19a8feb764ecc935adcb69875ab4f93</anchor>
       <arglist>(t_q128 number)</arglist>
     </member>
     <member kind="define">
@@ -2535,31 +2526,31 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Q16_ToString_Bin</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga49c871c765f375a59125665cb9e5c4f4</anchor>
+      <anchor>gafb10e079e5da0ef8e6c3026aeb6678dd</anchor>
       <arglist>(t_q16 number)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Q32_ToString_Bin</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga371ccda5ec267e7cd4e780fe67b17c08</anchor>
+      <anchor>ga8723df7fb3ea25e3981a8aa443a48d6c</anchor>
       <arglist>(t_q32 number)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Q64_ToString_Bin</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga66bef01781968aaba8444eee0dbb2f34</anchor>
+      <anchor>ga3173f955f3460e7b4654c2bc8a665720</anchor>
       <arglist>(t_q64 number)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Q128_ToString_Bin</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga794003dd243eaad0dd98b867d68880b6</anchor>
+      <anchor>ga307298d6ca0b85293dafcaf4bab9f907</anchor>
       <arglist>(t_q128 number)</arglist>
     </member>
     <member kind="define">
@@ -2605,32 +2596,32 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Q16_ToString_Base</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga2d05ab85b8e9c7766854d55cf119344f</anchor>
-      <arglist>(t_q16 number, char const *base)</arglist>
+      <anchor>ga44d137f09269cc036c95a8d65b7f8ec3</anchor>
+      <arglist>(t_q16 number, t_char const *base)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Q32_ToString_Base</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga805f6cc79ffded2b79844f3eb5c04a68</anchor>
-      <arglist>(t_q32 number, char const *base)</arglist>
+      <anchor>ga6351dc37729182faf945aadb401d1a19</anchor>
+      <arglist>(t_q32 number, t_char const *base)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Q64_ToString_Base</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga4e25536a6fff2d15690189fa9bf97da5</anchor>
-      <arglist>(t_q64 number, char const *base)</arglist>
+      <anchor>ga8692cf75072d7e5e9c60903ca378f0f6</anchor>
+      <arglist>(t_q64 number, t_char const *base)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Q128_ToString_Base</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gad119f6ac1d4bb3c043c37e8632ee5b7e</anchor>
-      <arglist>(t_q128 number, char const *base)</arglist>
+      <anchor>gaf9a37a9f2b1dd1d1f810a99ddbba0b4a</anchor>
+      <arglist>(t_q128 number, t_char const *base)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -2678,29 +2669,29 @@
       <type>t_q16</type>
       <name>Q16_FromString</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga251d3042d1dfe046b78cc15413534dc9</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gada1b08ba629640498951effd1985fde3</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_q32</type>
       <name>Q32_FromString</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gab45c4de9251ff406822f1322ef955706</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga37d44fa11d59bcef901b179a29607ba4</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_q64</type>
       <name>Q64_FromString</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga97266722ea27e8afcb3b4acbd730387a</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga8b1c0b4f12bfb234855177e77e6156ad</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_q128</type>
       <name>Q128_FromString</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gad710d4f3eff1f37691d402efe30eea79</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga6491114bd3fb7d26aa9a55c3c07bf10a</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -2748,29 +2739,29 @@
       <type>t_q16</type>
       <name>Q16_FromString_Hex</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gaf5d671eb0f1aa558b717fa3195d4fcdd</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga0a84e0317858ecdc02703573e5b13d3d</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_q32</type>
       <name>Q32_FromString_Hex</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gacc85988e727a8f1f65c86c06ee0e9ed9</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga933a89df129aa3b3aaa57375c3b863e9</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_q64</type>
       <name>Q64_FromString_Hex</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gab6692bb01e57139f4f16215960c4ab8d</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gaf168d3d4cf1a6050883391757e4cb770</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_q128</type>
       <name>Q128_FromString_Hex</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga69948eaf1f176e1a956f73f4638feed6</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga8918f5f5007c4ea71809ce279601cb8b</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -2818,29 +2809,29 @@
       <type>t_q16</type>
       <name>Q16_FromString_Bin</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga0f5f416b3e7d4f8177ca493b95d654b2</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga7da5a90da4e0435730ac21ac9341943b</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_q32</type>
       <name>Q32_FromString_Bin</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga22afc4ea397b63932bb4a7b02885a824</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga99d6a6626b5ec31afd8033ed5e9656d5</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_q64</type>
       <name>Q64_FromString_Bin</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gaaf4c29363587b2cf5b29db31b79495d6</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gaee3c891ff3b5de65f6c1227fb409b645</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_q128</type>
       <name>Q128_FromString_Bin</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gab00e9207191591ef88c63ae749d42e1f</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gaad43552c27fb66d945d194ae571d6f02</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -2888,29 +2879,29 @@
       <type>t_q16</type>
       <name>Q16_FromString_Base</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gae68b2a796aced7d684e3c8f75e8d8d4d</anchor>
-      <arglist>(char const *str, char const *base)</arglist>
+      <anchor>ga4a79a5a21519f2688df6afe822c21e3a</anchor>
+      <arglist>(t_char const *str, t_char const *base)</arglist>
     </member>
     <member kind="function">
       <type>t_q32</type>
       <name>Q32_FromString_Base</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga82db5651c5cb8a7093f8b5e23cf58f51</anchor>
-      <arglist>(char const *str, char const *base)</arglist>
+      <anchor>gad4eb29b1afb9c3f5414c0bcc148cad34</anchor>
+      <arglist>(t_char const *str, t_char const *base)</arglist>
     </member>
     <member kind="function">
       <type>t_q64</type>
       <name>Q64_FromString_Base</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga6730e1ec70b9f4bca731c482f91dc8a6</anchor>
-      <arglist>(char const *str, char const *base)</arglist>
+      <anchor>ga61d33d0da830222ba1a65ae1efad8396</anchor>
+      <arglist>(t_char const *str, t_char const *base)</arglist>
     </member>
     <member kind="function">
       <type>t_q128</type>
       <name>Q128_FromString_Base</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gaf5c08c6906fb45a9ef986597aa3f9a21</anchor>
-      <arglist>(char const *str, char const *base)</arglist>
+      <anchor>ga8d4431e4a5db962f4b49167ad3d10423</anchor>
+      <arglist>(t_char const *str, t_char const *base)</arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -5662,6 +5653,7 @@
     <filename>float_8h.html</filename>
     <includes id="libccc__config_8h" name="libccc_config.h" local="yes" imported="no">libccc_config.h</includes>
     <includes id="libccc__define_8h" name="libccc_define.h" local="yes" imported="no">libccc_define.h</includes>
+    <includes id="char_8h" name="char.h" local="yes" imported="no">libccc/char.h</includes>
     <includes id="bool_8h" name="bool.h" local="yes" imported="no">libccc/bool.h</includes>
     <includes id="int_8h" name="int.h" local="yes" imported="no">libccc/int.h</includes>
     <class kind="union">varfloat</class>
@@ -6367,79 +6359,170 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Float_GetExp</name>
+      <name>Float_GetExp2</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaa6f7507280e7e08789551e244b071b7f</anchor>
+      <anchor>gaed408a678feced6ae6f2e859b3d5bc2f</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_fgetexp</name>
+      <name>c_filogb</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaa69caaa010b6a6ea9ee131f5ade986b6</anchor>
+      <anchor>ga0dfafbe61387830f9ff78e73e2f71bfa</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_f32getexp</name>
+      <name>c_fgetexp2</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaf93ff503ad5d58836439b790697115ed</anchor>
+      <anchor>gac6b0dd7c1e9acb94095c23153696ce7d</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_f64getexp</name>
+      <name>c_f32getexp2</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga2c9de4bb1af4299f845dddf55e77725e</anchor>
+      <anchor>gacd929f2c5b0a8afabe4c3f9a9b6d96c1</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_f80getexp</name>
+      <name>c_f64getexp2</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gac3b77fabdaef8fdf23617b9ac1846a6a</anchor>
+      <anchor>ga9edb99dbb76bed5ca191e0ec7addd812</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_f128getexp</name>
+      <name>c_f80getexp2</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga1754c245516022f1ba05d8c51c66d6d2</anchor>
+      <anchor>gae9f3d9367a005b4f3e96f6da4a526fbc</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Float_GetExponent</name>
+      <name>c_f128getexp2</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gab287e7a8d0c43e45e06dd6e26086fd28</anchor>
+      <anchor>ga35ce35a1269bb96a1a047f860ce3ccf4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_GetExponent2</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga4a537a3e7a44443280e7c6797946a1b0</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type>t_sint</type>
-      <name>F32_GetExp</name>
+      <name>F32_GetExp2</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaad09bd1470824dc9e937a7edfa3cc50b</anchor>
+      <anchor>gadeaf244086afe08581e705d84e0432e6</anchor>
       <arglist>(t_f32 number)</arglist>
     </member>
     <member kind="function">
       <type>t_sint</type>
-      <name>F64_GetExp</name>
+      <name>F64_GetExp2</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga3922eda0aa006a03b0fe1e7fe0894940</anchor>
+      <anchor>ga8889463acd17d139ec117fc87fc6dff3</anchor>
       <arglist>(t_f64 number)</arglist>
     </member>
     <member kind="function">
       <type>t_sint</type>
-      <name>F80_GetExp</name>
+      <name>F80_GetExp2</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga97d074f586091a219761bfda546e8f86</anchor>
+      <anchor>ga08a0e9c22530831ed20c8ff739737dd8</anchor>
       <arglist>(t_f80 number)</arglist>
     </member>
     <member kind="function">
       <type>t_sint</type>
-      <name>F128_GetExp</name>
+      <name>F128_GetExp2</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaba92824d9fe52daca48cf49769933840</anchor>
+      <anchor>ga4bcd376a8428ff619cfe50885145bb90</anchor>
+      <arglist>(t_f128 number)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_GetExp10</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga7ef43be5faf71361cd6f63fa862e7940</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_filog10</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga754a97f39aecb702389af346dfa1999c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fgetexp10</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga55f7890e19f43581a70747789225c9ca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32getexp10</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gabf2bd8c8627329f5824426bbada0c548</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64getexp10</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga1df2b3abaf021eddf81198586964d7e9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80getexp10</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gac92c6debc04c1929da1465c9bcef558a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128getexp10</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga5be80ac85071d00df9e8b196752aa74f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_GetExponent10</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga8a490391f1827a8357f3ca9a63ef4e30</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_sint</type>
+      <name>F32_GetExp10</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gaf87af0b906f496d1bb4114dfd8df5f2c</anchor>
+      <arglist>(t_f32 number)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_sint</type>
+      <name>F64_GetExp10</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gad20d8b261bc47f9291783faaacbab274</anchor>
+      <arglist>(t_f64 number)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_sint</type>
+      <name>F80_GetExp10</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga0c2628af565f5889a22a9633de7833af</anchor>
+      <arglist>(t_f80 number)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_sint</type>
+      <name>F128_GetExp10</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gaa496e6468f2e2e330fbaa839f0364d61</anchor>
       <arglist>(t_f128 number)</arglist>
     </member>
     <member kind="define">
@@ -6625,31 +6708,31 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>F32_ToString</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga4d8f4c5036f3b91bd3c16de21db4f2b1</anchor>
+      <anchor>ga8dabf7b43c0b47a62db6f85da14da76a</anchor>
       <arglist>(t_f32 number, t_u8 precision)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>F64_ToString</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gab3dd8648a84962ad4b221844088a2059</anchor>
+      <anchor>gae4ef47a41e503ea2e9d985e9228afb7c</anchor>
       <arglist>(t_f64 number, t_u8 precision)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>F80_ToString</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga8f20c50584e814c08ad83020e54db728</anchor>
+      <anchor>ga4162642760cdff7bd74b8c1ec67981fc</anchor>
       <arglist>(t_f80 number, t_u8 precision)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>F128_ToString</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaaa7a9dfe3a80e80e4ca778d09dd730c3</anchor>
+      <anchor>gaa0f2a78f54b8bd62bbc6e550f22caebb</anchor>
       <arglist>(t_f128 number, t_u8 precision)</arglist>
     </member>
     <member kind="define">
@@ -6835,31 +6918,31 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>F32_ToString_Exp</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga34f146d1543d0f8ac1a0d8f57354e4bd</anchor>
+      <anchor>ga504e9dc108cfd7571eefe2d639a5e0b2</anchor>
       <arglist>(t_f32 number, t_u8 precision)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>F64_ToString_Exp</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gab5c601e369776ea0095ee5bf7b4e35c8</anchor>
+      <anchor>ga6997caf98c22bb19190205f07a472011</anchor>
       <arglist>(t_f64 number, t_u8 precision)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>F80_ToString_Exp</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gacdb2483db9b731dc8fc3fd3db30bf410</anchor>
+      <anchor>ga3bbfa90f05e442834e08f7c4b7dbcfb4</anchor>
       <arglist>(t_f80 number, t_u8 precision)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>F128_ToString_Exp</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga444f600c11765741f7b410a13b65e80e</anchor>
+      <anchor>gacfd9aa6ae918e56e5c94b24bf831e801</anchor>
       <arglist>(t_f128 number, t_u8 precision)</arglist>
     </member>
     <member kind="define">
@@ -6905,31 +6988,31 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>F32_ToString_Dec</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga81632a67c2942b4db514bf1b5dfe2f33</anchor>
+      <anchor>ga982f1438751dc0560c4254f05fc46f0e</anchor>
       <arglist>(t_f32 number, t_u8 precision)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>F64_ToString_Dec</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga8ac5ccddb5eef5bab0e6f3bb716d24c7</anchor>
+      <anchor>ga5ea892f9b5922684b49918cd10d5a348</anchor>
       <arglist>(t_f64 number, t_u8 precision)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>F80_ToString_Dec</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gac6ce3697e04841d75b2c5a687ad8c15f</anchor>
+      <anchor>ga202a08681d78682b43e64b57210ad5b3</anchor>
       <arglist>(t_f80 number, t_u8 precision)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>F128_ToString_Dec</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga717a0f35803ba267be28a1710f050f2d</anchor>
+      <anchor>gae2f025ebcd944a565b39b83abedb132b</anchor>
       <arglist>(t_f128 number, t_u8 precision)</arglist>
     </member>
     <member kind="define">
@@ -6975,31 +7058,31 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>F32_ToString_Hex</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga90f9e0bd9fc71ca90ad42bbea56c4abf</anchor>
+      <anchor>ga969b13fc5c16a3d86aff536e628b4b90</anchor>
       <arglist>(t_f32 number, t_u8 precision)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>F64_ToString_Hex</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga5710c727912c35a7cc18f0f1dce2cf31</anchor>
+      <anchor>ga3de4741cfe6f9fea65aa0acdf5d10528</anchor>
       <arglist>(t_f64 number, t_u8 precision)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>F80_ToString_Hex</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gad7bd76a6a1d0df7bb41c465e779116fe</anchor>
+      <anchor>ga0b700c5a615fe5168070687d54ad086c</anchor>
       <arglist>(t_f80 number, t_u8 precision)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>F128_ToString_Hex</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gab61ba3eae4744a6d8a96cc1d52c5d5fc</anchor>
+      <anchor>ga1fef3296128e5a030bc1a8047ade28ab</anchor>
       <arglist>(t_f128 number, t_u8 precision)</arglist>
     </member>
     <member kind="define">
@@ -7045,31 +7128,31 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>F32_ToString_Bin</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gab8879fde5590f69ddd683276d7d91ab1</anchor>
+      <anchor>gaeee9b0cc7a9449955aeca806fb6e515f</anchor>
       <arglist>(t_f32 number, t_u8 precision)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>F64_ToString_Bin</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga994582fadeb68edb1addd529aa443c03</anchor>
+      <anchor>ga62e5b52d15e0b1454ebc56acf26fb820</anchor>
       <arglist>(t_f64 number, t_u8 precision)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>F80_ToString_Bin</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga7f0c89dbe2d691a55571ecf6792939a2</anchor>
+      <anchor>gaa0efbe051242e21d9f1abcc6b849985d</anchor>
       <arglist>(t_f80 number, t_u8 precision)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>F128_ToString_Bin</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaa452622710637c4cb439f2153248b866</anchor>
+      <anchor>gac69a34e3894cd77bb343fc8a954609cb</anchor>
       <arglist>(t_f128 number, t_u8 precision)</arglist>
     </member>
     <member kind="define">
@@ -7118,29 +7201,29 @@
       <type>t_f32</type>
       <name>F32_FromString</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga0be1e9638f033d075c4e5694d9191178</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gabe2c03ee9231718c713f47d524268923</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_f64</type>
       <name>F64_FromString</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga0463f0ec8669cef3f4ef691a24036387</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga5ea62f2ad1328a4d82c982bf1d39982a</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_f80</type>
       <name>F80_FromString</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga4acb96653b324265c46a73cd64a70e6f</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gacc3cd1af68646ff39a90a2c4b177d2c3</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_f128</type>
       <name>F128_FromString</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga8e383396fae09433c47a8cc922a87766</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gae49d078c0331a5bec3f95ac430a50eec</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -7328,29 +7411,29 @@
       <type>t_f32</type>
       <name>F32_FromString_Exp</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga0156271554be84ef2f58cbcd0000c7b2</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga9e8aaeea5508a513fb742c52cafa0bc2</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_f64</type>
       <name>F64_FromString_Exp</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga782f27c0936218883d2a5d5a798d27d2</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gae82970f5ba5876de550f8ef0c831d4dc</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_f80</type>
       <name>F80_FromString_Exp</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gad53d9a3025724f42b7071aba7388c9bc</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga9a67abeed610db9af02abc3a37acfd3c</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_f128</type>
       <name>F128_FromString_Exp</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga64acabec909a551d12452c6fac4a0a18</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga1af3a3edfddd1477861ae6d984e5b12a</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -7398,29 +7481,29 @@
       <type>t_f32</type>
       <name>F32_FromString_Dec</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gab64782f5291512cec672686d51fdca5e</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga393b6350f09a07cb4818b679de9e8f68</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_f64</type>
       <name>F64_FromString_Dec</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga37435393a52545e5c59d82b5f96c0d8f</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga77e83092f98fd6828042b524718c9325</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_f80</type>
       <name>F80_FromString_Dec</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaacc445c98be2d77772d2f4534f24dd24</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga194c7f29dc11b7b874858d646912b2d2</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_f128</type>
       <name>F128_FromString_Dec</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga934cd0b2ccd221b076eccd52a6fcc06d</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga70ecabf2d03205338e595e63942f4341</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -7468,29 +7551,29 @@
       <type>t_f32</type>
       <name>F32_FromString_Hex</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga9156140d044787e16e47a90925f69cd7</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga9a7b5ba3298b667dadb0a3a427fcfdae</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_f64</type>
       <name>F64_FromString_Hex</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga6b55470671b8ef443ed1da5e4afb8c57</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gadab337a91548c7681d1b8dc195127a55</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_f80</type>
       <name>F80_FromString_Hex</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gac17e5520888af703c1219c09f24b0890</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga798bd69b2317e25da5ec19b58552a579</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_f128</type>
       <name>F128_FromString_Hex</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga49bd6e0c32b0f4c895732b50ba732ded</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga6cef93292fa01f46e78644b14651478f</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -7538,29 +7621,29 @@
       <type>t_f32</type>
       <name>F32_FromString_Bin</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga5c352be5e5ff346eac2a7b04105de807</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga0a1946559603c951c46363a7c259bc34</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_f64</type>
       <name>F64_FromString_Bin</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga6dac270fe954a0226ac47466f9d98df1</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gac2b9161194ff229d205416beea99f3c1</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_f80</type>
       <name>F80_FromString_Bin</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga28cfd4fe5db8cfc15e7909fa582daf1f</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga7507c9807dd7c3397a2cf843e7d05f6a</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_f128</type>
       <name>F128_FromString_Bin</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gab6d510141f286a5ad8f2d78d1feb01d8</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gaa132e77b72830eb41b4e6ad8a2979586</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -10264,6 +10347,118 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>c_asprintf</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gafae038f477a52abad1c3db5215bf9d50</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strfmt</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga547b820d07e6b57ec93c4069217656b5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strformat</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gaec22df63b1874a7497781018cbf878ed</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>String_Build</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gacc97b00fd8f86c2e590b7fc53b9ebf21</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_vasprintf</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gad3ebb60ff16369cd2d55992a39b1cd9d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strfmt_va</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga8702bd0fce53ba9c47f75931af94cacd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strformat_va</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga21a6e87039779b39aed5cf0578da4f52</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>String_Build_VA</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga164c8fcd4f8b160918efd724f7370683</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_snprintf</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gab0a5026241da51c0a778c47aafcce5d8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strnfmt</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gabe340a7004bdbe20915ebe92a4192c42</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strnformat</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga339619f37269bf313930b607d2eb086b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>String_Build_N</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gade57a00d12aac06b9768603513a10410</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_vsnprintf</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga87a6991aa4af588a65550ca5675fd385</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strnfmt_va</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gacad3650aa3c96b0300609c2365b6fab0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strnformat_va</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gaeeb1d520f3a7545291703c4c55fd75e8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>String_Build_N_VA</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga0b927e0f29d106ed722ce8d7fd61b7c9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>FORMAT_BOOL</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gaee2f5d3944602902fbcbe2bea3fece0a</anchor>
@@ -10738,145 +10933,33 @@
       <anchor>gabbdd1a2c2ddb05845b70e057fba69927</anchor>
       <arglist></arglist>
     </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_asprintf</name>
-      <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>gafae038f477a52abad1c3db5215bf9d50</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_strfmt</name>
-      <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>ga547b820d07e6b57ec93c4069217656b5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_strformat</name>
-      <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>gaec22df63b1874a7497781018cbf878ed</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>String_Build</name>
-      <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>gacc97b00fd8f86c2e590b7fc53b9ebf21</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_vasprintf</name>
-      <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>gad3ebb60ff16369cd2d55992a39b1cd9d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_strfmt_va</name>
-      <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>ga8702bd0fce53ba9c47f75931af94cacd</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_strformat_va</name>
-      <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>ga21a6e87039779b39aed5cf0578da4f52</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>String_Build_VA</name>
-      <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>ga164c8fcd4f8b160918efd724f7370683</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_snprintf</name>
-      <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>gab0a5026241da51c0a778c47aafcce5d8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_strnfmt</name>
-      <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>gabe340a7004bdbe20915ebe92a4192c42</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_strnformat</name>
-      <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>ga339619f37269bf313930b607d2eb086b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>String_Build_N</name>
-      <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>gade57a00d12aac06b9768603513a10410</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_vsnprintf</name>
-      <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>ga87a6991aa4af588a65550ca5675fd385</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_strnfmt_va</name>
-      <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>gacad3650aa3c96b0300609c2365b6fab0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_strnformat_va</name>
-      <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>gaeeb1d520f3a7545291703c4c55fd75e8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>String_Build_N_VA</name>
-      <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>ga0b927e0f29d106ed722ce8d7fd61b7c9</anchor>
-      <arglist></arglist>
-    </member>
     <member kind="function">
       <type></type>
       <name>_FORMAT</name>
       <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>ga039520f67dbb26b1208ab16329aeb9c0</anchor>
-      <arglist>(printf, 1, 2) char *String_Format(char const *format</arglist>
+      <anchor>gadc60b004baa8bc7d98b8ffff46b72149</anchor>
+      <arglist>(printf, 1, 2) t_char *String_Format(t_char const *format</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>String_Format_VA</name>
       <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>gaf7d93261780a050dcd23f7a2daa9605f</anchor>
-      <arglist>(char const *format, va_list args)</arglist>
+      <anchor>ga7f3453e9cae34ed342a4ebe457b378cb</anchor>
+      <arglist>(t_char const *format, va_list args)</arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>_FORMAT</name>
       <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>ga0e8ae14255b6711be50cea2ba6b902b7</anchor>
-      <arglist>(printf, 3, 4) t_size String_Format_N(char *dest</arglist>
+      <anchor>ga01e37f4223562e3fab3ef633e5cb1ce0</anchor>
+      <arglist>(printf, 3, 4) t_size String_Format_N(t_char *dest</arglist>
     </member>
     <member kind="function">
       <type>t_size</type>
       <name>String_Format_N_VA</name>
       <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>ga896c9773cc5364d772b581b483ca50d2</anchor>
-      <arglist>(char *dest, t_size max, char const *format, va_list args)</arglist>
+      <anchor>gaf792fdbd3c5bb0f54eef99462c8b80c7</anchor>
+      <arglist>(t_char *dest, t_size max, t_char const *format, va_list args)</arglist>
     </member>
     <member kind="variable">
       <type>t_size</type>
@@ -10886,10 +10969,486 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>t_size char const  *</type>
+      <type>t_size t_char const  *</type>
       <name>format</name>
       <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>ga77fab00f56e375af32418181029b20fa</anchor>
+      <anchor>ga6335da1d29e0cbce9636ffb8a609c403</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_BOOL</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gaee2f5d3944602902fbcbe2bea3fece0a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_CHAR</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gaeb7fb1d98bb972105415bef946116d47</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_UTF8</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga00c40467a947be89d1e25a3b005e9e3d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_S8</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga353099bc6a28ee7955f051721cf3a68a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_S16</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga646c169ddd964da735909db40403ca26</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_S32</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga07fb0c583d3ee2c4b5dc8479767299b0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_U8</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga5f6da01e1e55d1ca33bd8fac0ad04cbb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_U16</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga2c915edcba02718b255507b55076dbda</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_U32</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga79b8385f26da7774d0af1586578938fe</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_HEX_U8</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga532c4a2b9d9fbe6f08f21c5c29862a02</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_HEX_U16</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga27696a736ba9e07f3417def6b38d7298</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_HEX_U32</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gaab8c3339edb2fe2ffc93e3dd63747693</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_S64</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga3d5d95f845c796cca7fd426dcad6a717</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_U64</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga9036b82bf27d893ea08671cf85505a75</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_HEX_U64</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gaa0172cbbe190a1bf94a3b0a85d09f637</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_S128</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga5aa7c4736db9ecc777a3548a91f80393</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_U128</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gad0c083b21ebe6d3ac1c69f4d2c1dcb25</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_HEX_U128</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga775047454247b68c0d68daa3c1159724</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_SINT</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga2c31b722749c03ffef3c2380b2a45e4a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_UINT</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga434838e08ef1a8e5ea98f02b5b8b8cf9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_HEX_UINT</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga0d296dd08c3d0e187b4cb500ee5ef926</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_Q16</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga1b4e4a814d865b91d7268c32f683d75b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_Q32</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gad84e579a13e9e7f813000ac688aa4553</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_Q64</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga16f5cb7c0dd7c24bd6f1387743687849</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_Q128</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga8482f621873c259234232001d6b856a5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_HEX_Q16</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga4bbd72cd87e774a74da8680064fe8aa6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_HEX_Q32</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga14804a3e7e1fb48524fd701a35d26c58</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_HEX_Q64</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga3b06bca3389f659f40ca6be4d2728cc6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_HEX_Q128</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga2bb65051fa50d868aa53e2daef31fc52</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_FIXED</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga44835dd4c169e13e0fedf8c01a54dc2b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_HEX_FIXED</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gac1c9db6f513efa8f46fae44b373dc415</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_F32</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga0cd3f60243b366a1084f5ca646f22c0c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_F64</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga536a1f764edcd65f25a2a0ff6e4bb6c4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_F80</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gaa3df22e1af3ff8115185476feeabf070</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_F128</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga3c94d2da78fd0ab9a170654004555bd4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_HEX_F32</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga00fea1eb07bd520ab7c6cfb372922d9c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_HEX_F64</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gac3219ccb9d68a8a885ac8ed443ec4ba9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_HEX_F80</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gabb9d7acd996ccc0d44c782e20227af31</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_HEX_F128</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga6204a774bb4601796411ef75b38900b2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_FLOAT</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gaae35e37553374231d6b49b2479676c39</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_HEX_FLOAT</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gaef3e295370f879e0bc559e78031572e7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_PTR</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga79e1cb5aeb47eb6b263191e523397310</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_POINTER</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gae3251e8695cd25e22c1d411c23beb517</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_SIZE</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gabb14717b3277a06062b06fc2eb583003</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_HEX_SIZE</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gaba47fd2636fbbd091a01b8fba9e75550</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_PTRDIFF</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga506a47a75ba0783cbe1acbec9dc32f9a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_HEX_PTRDIFF</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga193dd412a718ef9697dabe5209ddb653</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_SINTPTR</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga6318ea5c750c4ce5d16223cfe41976f1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_UINTPTR</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gae8b263e3846be7f941541c04dc59689b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_SINTMAX</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gaf542e5f0495a9f386acd5669e77e7a34</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_UINTMAX</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga7b2272edc0da69eddaddfa9b1eb7d94d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_MEM</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gaaa5c1619e5eef5e0f5f8a9500e879ba5</anchor>
+      <arglist>(N)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_MEMORY</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga0d1a4c874505ebe25754e90e85a0167e</anchor>
+      <arglist>(N)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_STR</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gacd0eb5cab66474fbb9c165a805899f62</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_STRING</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga4610636f10e4604ba296cbf9287b0c7b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_COLOR_ARGB16</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga807accc808674bb5f891de340336704f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_COLOR_ARGB32</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga5676be33f027735518b0c03f7172e174</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_COLOR_ARGB</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gafdc0dd379b9b80255fa3850a252b7daa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_COLOR_AHSL</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga14a3b85388b363ae341071b27cf1f253</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_COMPLEX</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga7c7d6af8ebe5280c04f4ee599af99c3b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_VECTOR</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gae5bb607cb4845f64b1a350d2c458b2c9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_VECTOR2D</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga24f540b4d99ad1319635b70c6afe2cb8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_VECTOR3D</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga01c36c5363622ae3556d6bae0213ed31</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_VECTOR4D</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga3f0c78552afb88f7a412852cf61b03a6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_MATRIX</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gabd4220a182555accc21a178da5d403bd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_MATRIX2D</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga1d76841c24700dc87f56bb281e1ae251</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_MATRIX3D</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga1bc5c60800d90596fd1b45838dd6d4bc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FORMAT_MATRIX4D</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gabbdd1a2c2ddb05845b70e057fba69927</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -10899,6 +11458,7 @@
     <filename>int_8h.html</filename>
     <includes id="libccc__config_8h" name="libccc_config.h" local="yes" imported="no">libccc_config.h</includes>
     <includes id="libccc__define_8h" name="libccc_define.h" local="yes" imported="no">libccc_define.h</includes>
+    <includes id="char_8h" name="char.h" local="yes" imported="no">libccc/char.h</includes>
     <includes id="bool_8h" name="bool.h" local="yes" imported="no">libccc/bool.h</includes>
     <class kind="union">varint</class>
     <member kind="define">
@@ -11276,35 +11836,35 @@
       <type></type>
       <name>TYPEDEF_ALIAS</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga7b0eb64fe3aa4be11635150d869caa65</anchor>
-      <arglist>(t_sint, SINT, PRIMITIVE) char *U8_ToString(t_u8 number)</arglist>
+      <anchor>ga4e949d2a5f4bc789493a44a5736ae401</anchor>
+      <arglist>(t_sint, SINT, PRIMITIVE) t_char *U8_ToString(t_u8 number)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U16_ToString</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga8c72032f8456a946c984a6c3f9b3233c</anchor>
+      <anchor>gaed64bf17bf281e6770d0c36c78fa4d36</anchor>
       <arglist>(t_u16 number)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U32_ToString</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gabad7183d4bc200f0682adce26db69bfb</anchor>
+      <anchor>ga3c35974d40ce4464e6c47c802c0f54b3</anchor>
       <arglist>(t_u32 number)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U64_ToString</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gafa3659d9e2caf77741560d5f9443cd49</anchor>
+      <anchor>ga2f48b32ba76e4008dd10cf42e9c577b4</anchor>
       <arglist>(t_u64 number)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U128_ToString</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gae6fb6505e2c476e8fe734311748f5d0d</anchor>
+      <anchor>ga9273ba97865ba346ef990a359c129694</anchor>
       <arglist>(t_u128 number)</arglist>
     </member>
     <member kind="define">
@@ -11357,38 +11917,38 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S8_ToString</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga6a2b776fcb73c02d27204535aa729a0e</anchor>
+      <anchor>ga05a0b272473f9a1a068076c538a25374</anchor>
       <arglist>(t_s8 number)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S16_ToString</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gaffafef81cecedf6bd8699c40c5962fb0</anchor>
+      <anchor>ga5e0029852416a1253a757c3915d728d3</anchor>
       <arglist>(t_s16 number)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S32_ToString</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga7724b2c9ca41836060ae84e65abbbe41</anchor>
+      <anchor>ga407c0953cb4edfb9c3cb0dd2871d377a</anchor>
       <arglist>(t_s32 number)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S64_ToString</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga0e0493518df84ad4b22f555814bc282f</anchor>
+      <anchor>gaec30de7b2023ee8cbaf16474d70b72fb</anchor>
       <arglist>(t_s64 number)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S128_ToString</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gab585b3eb5d4bd1d97597bcaa65e6bf61</anchor>
+      <anchor>gab00715b5a415126c4972aa4fdd09be19</anchor>
       <arglist>(t_s128 number)</arglist>
     </member>
     <member kind="define">
@@ -11441,38 +12001,38 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U8_ToString_Hex</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gaa4eaf682e8843fcba0f71c5f704556aa</anchor>
+      <anchor>ga4fab7001bcb3c22e3235834fc0a3f554</anchor>
       <arglist>(t_u8 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U16_ToString_Hex</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga2030058270d5f2461d080fd99ae3849e</anchor>
+      <anchor>gac4e5a1bd608558c4bb41fa1388a5772b</anchor>
       <arglist>(t_u16 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U32_ToString_Hex</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga453405b68194cea17a5ef5f417cd8571</anchor>
+      <anchor>gaf13e59c41364dd86906b50737386be42</anchor>
       <arglist>(t_u32 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U64_ToString_Hex</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga744e46468843bba1ab61733a3f5b5d87</anchor>
+      <anchor>gae6b01a77c8ad332473912ec98fa818b4</anchor>
       <arglist>(t_u64 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U128_ToString_Hex</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga1f29d5236cdd83463b7bac7c11bdd635</anchor>
+      <anchor>gad7ea0eed5a9d898c211abb54a48ab579</anchor>
       <arglist>(t_u128 number, t_bool prefix)</arglist>
     </member>
     <member kind="define">
@@ -11525,38 +12085,38 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S8_ToString_Hex</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gaa88523d328ac3913a25354e1b7ea0fc4</anchor>
+      <anchor>gaa141093bee63a5d22907d90403b2ac15</anchor>
       <arglist>(t_s8 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S16_ToString_Hex</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga8d96da2e206d8e295b5846491972f425</anchor>
+      <anchor>ga54c8de49b801fc1cc4dae55e10c77c25</anchor>
       <arglist>(t_s16 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S32_ToString_Hex</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga563f69864e9a338a0288f409bea57846</anchor>
+      <anchor>gaebb863a185d5451664adfdea7f63d24a</anchor>
       <arglist>(t_s32 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S64_ToString_Hex</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gaf1265fb4d200d569a90ca2e8b63b47f6</anchor>
+      <anchor>ga62dbe1a4e208339f2d013a28f9cbb01d</anchor>
       <arglist>(t_s64 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S128_ToString_Hex</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gaaa1087f9fac7aec74ba0512dcf197ad9</anchor>
+      <anchor>ga54e461a5ed078d4f59efe2faf8ef501f</anchor>
       <arglist>(t_s128 number, t_bool prefix)</arglist>
     </member>
     <member kind="define">
@@ -11609,38 +12169,38 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U8_ToString_Oct</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gad3e2d3b1dcad6e17f6189a4e315c07ed</anchor>
+      <anchor>gaef5e8bd896f72b7b551e41ee22badaa4</anchor>
       <arglist>(t_u8 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U16_ToString_Oct</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga44c2ad0ea536d19fbec6eda3f7f4adc3</anchor>
+      <anchor>ga33c4ec5d4f262b1eb3fa7db2d276eb7e</anchor>
       <arglist>(t_u16 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U32_ToString_Oct</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga2eed31aacc4d1c4b8746648c315584dc</anchor>
+      <anchor>gaed96ff31b351b8c486282ccc521b0b5e</anchor>
       <arglist>(t_u32 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U64_ToString_Oct</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga60836f9668af7c5a671aa2dd02468700</anchor>
+      <anchor>ga6fbb35ac15c50f1140e44c2d94957b2a</anchor>
       <arglist>(t_u64 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U128_ToString_Oct</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga41c2970fbd28b063a13977fbda207e12</anchor>
+      <anchor>ga558f80e320daa3f2ef67d6cb6c126c94</anchor>
       <arglist>(t_u128 number, t_bool prefix)</arglist>
     </member>
     <member kind="define">
@@ -11693,38 +12253,38 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S8_ToString_Oct</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga9c80b61aeab88f9b402c7647f03187fa</anchor>
+      <anchor>ga6284766245bd7b285b3285af6035ff5d</anchor>
       <arglist>(t_s8 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S16_ToString_Oct</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gac5c5482fc339b1ab8cf1c9d9aa9b8dd6</anchor>
+      <anchor>gab48a1ec9a71f250aafd8b46d68a986b5</anchor>
       <arglist>(t_s16 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S32_ToString_Oct</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga5fc79a5ab1ab509cbd4a01014f1f0cef</anchor>
+      <anchor>gaf4dfb7d976e05fbaa0d845e528028e97</anchor>
       <arglist>(t_s32 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S64_ToString_Oct</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga8e2283603e276767bce202fe33e88bde</anchor>
+      <anchor>gafc52ea81fb55a42cf62682c71d0b84da</anchor>
       <arglist>(t_s64 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S128_ToString_Oct</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga58cf78f9a4b263e4db78acf98f1da63c</anchor>
+      <anchor>ga9624098afb106fbc12957638a84209f9</anchor>
       <arglist>(t_s128 number, t_bool prefix)</arglist>
     </member>
     <member kind="define">
@@ -11777,38 +12337,38 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U8_ToString_Bin</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga6b2b736b77aa2c1f83cb23451e51f936</anchor>
+      <anchor>gad781d99b8bd5efb8bf53c578a2b2498e</anchor>
       <arglist>(t_u8 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U16_ToString_Bin</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga97a592e9f8a35f53a60869994359176b</anchor>
+      <anchor>gad9c1daa5af33b4850f30ad6ef4d708b8</anchor>
       <arglist>(t_u16 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U32_ToString_Bin</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gac17157b62566e8a5947d8336dbad813a</anchor>
+      <anchor>gaf8797c4ab3d4a79ef27d1aa52770e1b0</anchor>
       <arglist>(t_u32 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U64_ToString_Bin</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gaa11ce6dca6cedb3f6b0e584b5aa5e836</anchor>
+      <anchor>gad5ea7955659a2fc76aefab63561b668b</anchor>
       <arglist>(t_u64 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U128_ToString_Bin</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga0c6948a1590bdb5cc466f94feabfe262</anchor>
+      <anchor>gaee0831e9cc4f60e524cc13fbf949b5b7</anchor>
       <arglist>(t_u128 number, t_bool prefix)</arglist>
     </member>
     <member kind="define">
@@ -11861,38 +12421,38 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S8_ToString_Bin</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gaca53cc3e2fc447d2d93946faa87163f3</anchor>
+      <anchor>gab261139ffa76120c0f86c3f33cd7d8fc</anchor>
       <arglist>(t_s8 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S16_ToString_Bin</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gab989e992ae007f434b7a7044fb4d5573</anchor>
+      <anchor>ga6a3054db27a041b1653a788a072cbe54</anchor>
       <arglist>(t_s16 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S32_ToString_Bin</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gafda4db85ebdf23eff29edd6211d40772</anchor>
+      <anchor>ga6269dd3fdbae38bed6a968c46f8a02ed</anchor>
       <arglist>(t_s32 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S64_ToString_Bin</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga4b7223618ada918394a26bf85dddde94</anchor>
+      <anchor>ga347762d79e5f42019f551e02d117f069</anchor>
       <arglist>(t_s64 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S128_ToString_Bin</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga8739e7e5e17a3fd9fef1598bb4b8eb6f</anchor>
+      <anchor>gaa0bf1013c764d273f7d439b5ea884f55</anchor>
       <arglist>(t_s128 number, t_bool prefix)</arglist>
     </member>
     <member kind="define">
@@ -11945,39 +12505,39 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U8_ToString_Base</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gad9beefdb4beee9084ab5dc0731e9e957</anchor>
-      <arglist>(t_u8 number, char const *base)</arglist>
+      <anchor>gae31553d6e40e029761f628ff928389b8</anchor>
+      <arglist>(t_u8 number, t_char const *base)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U16_ToString_Base</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga89b424e6fd177c1d979fcefd7f8e3f9e</anchor>
-      <arglist>(t_u16 number, char const *base)</arglist>
+      <anchor>ga65f5cb4b0db9e491f6ce2eeac33e07ad</anchor>
+      <arglist>(t_u16 number, t_char const *base)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U32_ToString_Base</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga84a483f9add5a80b92dd898b665bb8dd</anchor>
-      <arglist>(t_u32 number, char const *base)</arglist>
+      <anchor>ga15aa556f450fda4ad71d9d3edf3eed31</anchor>
+      <arglist>(t_u32 number, t_char const *base)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U64_ToString_Base</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga9ee46baa216e29262091ca855458808f</anchor>
-      <arglist>(t_u64 number, char const *base)</arglist>
+      <anchor>gac503e83675329dd4bda277fcc177f909</anchor>
+      <arglist>(t_u64 number, t_char const *base)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U128_ToString_Base</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga913c8afcfb01e96ad594891c305b81d0</anchor>
-      <arglist>(t_u128 number, char const *base)</arglist>
+      <anchor>ga13370803811a733780209f09dcfc3401</anchor>
+      <arglist>(t_u128 number, t_char const *base)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -12029,39 +12589,39 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S8_ToString_Base</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gac738249f74ae14d4f69b87e400548f92</anchor>
-      <arglist>(t_s8 number, char const *base)</arglist>
+      <anchor>gaca67a92201faad58700ef5e1a23eb102</anchor>
+      <arglist>(t_s8 number, t_char const *base)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S16_ToString_Base</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga38b650325bbba0fb1490105307c65ad7</anchor>
-      <arglist>(t_s16 number, char const *base)</arglist>
+      <anchor>ga91cd8fc8f096113a06b1e00cbfde304f</anchor>
+      <arglist>(t_s16 number, t_char const *base)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S32_ToString_Base</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga4d4bb895592af3e988ceca03d5efad51</anchor>
-      <arglist>(t_s32 number, char const *base)</arglist>
+      <anchor>ga695b49053826deb933981cff7793bb02</anchor>
+      <arglist>(t_s32 number, t_char const *base)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S64_ToString_Base</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga18520ae223aaff427e177f88710c8669</anchor>
-      <arglist>(t_s64 number, char const *base)</arglist>
+      <anchor>ga2460982aa109bea358e500d231d24835</anchor>
+      <arglist>(t_s64 number, t_char const *base)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S128_ToString_Base</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga08ad31265d012fe1d6cbe8fbfcfdb7aa</anchor>
-      <arglist>(t_s128 number, char const *base)</arglist>
+      <anchor>gaad4139364371333fb9e8cce15e1fa8b9</anchor>
+      <arglist>(t_s128 number, t_char const *base)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -12116,36 +12676,36 @@
       <type>t_u8</type>
       <name>U8_FromString</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga7e16235e01b858d657e966fa2aa33f27</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga50b7402500f6476bb2796cebbec29f07</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_u16</type>
       <name>U16_FromString</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga8d9e8914024f9c476a5851efdaf730ea</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga7d7fb1f8f62510b3469524a076f25b46</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_u32</type>
       <name>U32_FromString</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gaa849a90c63c88aeed38bce610d04e9f2</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gafd318690012358e3ca84ed5418027e8d</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_u64</type>
       <name>U64_FromString</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gaecf45ec09ba79d0d3eb3f40c037e0a9e</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga35896d524b9e328981b22d01d8184e16</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_u128</type>
       <name>U128_FromString</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gadbf5e1bb4c60203ff3d8f79198eb137c</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga99bd6825a0d6d95837b8df2097dacb93</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -12200,36 +12760,36 @@
       <type>t_s8</type>
       <name>S8_FromString</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga8485ef36c474570c1e0e07a21f091f1d</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gaa2703fe405f44cf3dfed9be79bfd7445</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_s16</type>
       <name>S16_FromString</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gaaec522e4ebfb3a4bd0870f4577570b3c</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga8f2028f057d305818ef311d3780ba62d</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_s32</type>
       <name>S32_FromString</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gab6d3c63e95ef791428c3f475f09d8e31</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga02036e362929d00e55509dbdd487f779</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_s64</type>
       <name>S64_FromString</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga94cc7c5039c76986b359c2c9a7f828e7</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gae1b416fc2ab2aa579bd3f880a522a964</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_s128</type>
       <name>S128_FromString</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga3139828f50d3ba59640e056068e5ea57</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gafa325c9dc2a5b8a72ff48be674bd41f6</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -12284,36 +12844,36 @@
       <type>t_u8</type>
       <name>U8_FromString_Hex</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gaee3fc471dea8853ba1c8a4ae0529ec8d</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga490097499cef73cb06c5b9bf7211463e</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_u16</type>
       <name>U16_FromString_Hex</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga9ec798d2ecc9f70e7906d9d53ec11e6b</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga02246df5fd1c12dee44df0a6568ea32f</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_u32</type>
       <name>U32_FromString_Hex</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gade3e99376f7e6869ddca434b609d77a2</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga118460db0322b10ff1ab5659fb8b0f6b</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_u64</type>
       <name>U64_FromString_Hex</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga5693958f644b98eb374cd7f06c70f762</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gaa8e7de7863f18607a89129fcf3502273</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_u128</type>
       <name>U128_FromString_Hex</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gad20c8f39b49c01e158450676541d0db7</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga5a1a6a53eaa390401ca177b01aef3011</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -12368,36 +12928,36 @@
       <type>t_s8</type>
       <name>S8_FromString_Hex</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga0aa4c6488ca89225c6a2865aaa5618c1</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga964573c49a8ed4d68a71a4dc12017960</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_s16</type>
       <name>S16_FromString_Hex</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gab5fd668d92d11e2a084134815b9342aa</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga806bdf57dc49777c01fc3a7abf601bf3</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_s32</type>
       <name>S32_FromString_Hex</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga6f94c7fabf12c2d7b921f9cc2c0eb334</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gace4d27de906df43e2c9c92ab4f9a8514</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_s64</type>
       <name>S64_FromString_Hex</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga8e2253720962e53af5eeca267a11ea93</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gad0793fecd4f4ccd5a80e2179d236edc0</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_s128</type>
       <name>S128_FromString_Hex</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga11fde349240ef01ad7d9fa3427169484</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gaa7ad11da664a247c85c55e532e7f89e3</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -12452,36 +13012,36 @@
       <type>t_u8</type>
       <name>U8_FromString_Oct</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga5301dcd7c76095cf182c8e0d369bb26d</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga4c72fe0daa01343efe711c224dbb2dd7</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_u16</type>
       <name>U16_FromString_Oct</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga047a5ec73badc068daa90e4fcb97382b</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gaa5561f1725864d576eca60541e237080</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_u32</type>
       <name>U32_FromString_Oct</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gac90a8692e1a64b2031c4b8ae5d7e7e66</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga15c21a113b19695a685edf7d1016383c</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_u64</type>
       <name>U64_FromString_Oct</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga731baca6063f49b85b381ab03101d9b1</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga2c9125f6dd215617c18f2af78ce4f866</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_u128</type>
       <name>U128_FromString_Oct</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga3f0465bfc388c45578f161c1712537db</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga0ace9845c8c43005be2d2cc5128a2f15</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -12536,36 +13096,36 @@
       <type>t_s8</type>
       <name>S8_FromString_Oct</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gad2d28711ebd1e882307b5b737c4ff995</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga355a73f154f2a6f26c2e02555c40e200</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_s16</type>
       <name>S16_FromString_Oct</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gadb624415e5979ebbc0fff0a1e53f434d</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga299434fb69a65b249f9265d8bad1cfce</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_s32</type>
       <name>S32_FromString_Oct</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga78150b8230cdcaffdf989ac9b56bdaa7</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gac4d6a4de5514313b68dbcd07c81abdc8</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_s64</type>
       <name>S64_FromString_Oct</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga4d89fc58ec2390fd18459dedfb3be612</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gaaa0382f6435aec0ca7bb55e0e2be7910</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_s128</type>
       <name>S128_FromString_Oct</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga7554fde52f58de8b25176f36528a1ed1</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gaba8259dfa1f9a02be7791fad409f1f11</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -12620,36 +13180,36 @@
       <type>t_u8</type>
       <name>U8_FromString_Bin</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gaa7905fdcbe091fa6eda49e249d5091ec</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga985b8f824a0c49b95f597ff49e024fd3</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_u16</type>
       <name>U16_FromString_Bin</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga88089127b9d861791926e5200bdf4704</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga77c99e92b985cf94d603cb525ef47ebb</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_u32</type>
       <name>U32_FromString_Bin</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga6cd7ee0921d558cbe777c7fce814caa1</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga20f0242ba7180144a578f4f087dcea0d</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_u64</type>
       <name>U64_FromString_Bin</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga2df0f9ad1132427866799a7b2bf8cfe5</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga6b9aa08c1ef0f5a5faf124452891f683</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_u128</type>
       <name>U128_FromString_Bin</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga3dad6ad5f73adc1f70cca122a326e8ef</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga4b34074ec090910324685aae36b58b84</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -12704,36 +13264,36 @@
       <type>t_s8</type>
       <name>S8_FromString_Bin</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gacff613486b3fac9813ae7c22c3a39d0e</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga3fe85a66f83faf0aac296d985fe29d40</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_s16</type>
       <name>S16_FromString_Bin</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga1cd1d062478e7a81ae70368cb8ff5444</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gadae2b92815675fc491dca06b211ec673</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_s32</type>
       <name>S32_FromString_Bin</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga66364969a6ae41ba44cb4ae2b38f5923</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga9923855b1008bb730ebbead5c08d3e8c</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_s64</type>
       <name>S64_FromString_Bin</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga0943993f4ae34b82e0554b23ad8627d0</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga20cfaabcf6f2945897f24a4948d50128</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_s128</type>
       <name>S128_FromString_Bin</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gab4db1200442b0ce6dcb03fb4368e3c6e</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga3c23f202b588382aecc2229020b39f56</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -12788,36 +13348,36 @@
       <type>t_u8</type>
       <name>U8_FromString_Base</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga6c2a913946436fbec32a337b1f086fe8</anchor>
-      <arglist>(char const *str, char const *base)</arglist>
+      <anchor>ga26b2beffb3ab20be23fab28229f1df5b</anchor>
+      <arglist>(t_char const *str, t_char const *base)</arglist>
     </member>
     <member kind="function">
       <type>t_u16</type>
       <name>U16_FromString_Base</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga60f7af1042bc656e1ea1773be96bf6b3</anchor>
-      <arglist>(char const *str, char const *base)</arglist>
+      <anchor>ga4e41037b357f5357d473490d29a9e057</anchor>
+      <arglist>(t_char const *str, t_char const *base)</arglist>
     </member>
     <member kind="function">
       <type>t_u32</type>
       <name>U32_FromString_Base</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gac1aaf2152136ee4d772bf9c87a763c70</anchor>
-      <arglist>(char const *str, char const *base)</arglist>
+      <anchor>ga5cbba6ae3349ec8eae87a99ce7968327</anchor>
+      <arglist>(t_char const *str, t_char const *base)</arglist>
     </member>
     <member kind="function">
       <type>t_u64</type>
       <name>U64_FromString_Base</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gac4b1465b12e35dcd74d2b98069ed4498</anchor>
-      <arglist>(char const *str, char const *base)</arglist>
+      <anchor>ga6e5dfd09ed099d4e66da9e5cb5093fac</anchor>
+      <arglist>(t_char const *str, t_char const *base)</arglist>
     </member>
     <member kind="function">
       <type>t_u128</type>
       <name>U128_FromString_Base</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga3fdfa481ac008e87edb409d80939f2b9</anchor>
-      <arglist>(char const *str, char const *base)</arglist>
+      <anchor>ga8b2a7efe9451d6d5d57d92b4f760a12e</anchor>
+      <arglist>(t_char const *str, t_char const *base)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -12872,36 +13432,36 @@
       <type>t_s8</type>
       <name>S8_FromString_Base</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gaeb541e1957df03db52712e0107d5730a</anchor>
-      <arglist>(char const *str, char const *base)</arglist>
+      <anchor>ga2714717ed77d2f350258007b62330576</anchor>
+      <arglist>(t_char const *str, t_char const *base)</arglist>
     </member>
     <member kind="function">
       <type>t_s16</type>
       <name>S16_FromString_Base</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga2f2100e6d201bc31553bf0a540c5abe5</anchor>
-      <arglist>(char const *str, char const *base)</arglist>
+      <anchor>gab5a491af873ac3f8d10a57db2563d114</anchor>
+      <arglist>(t_char const *str, t_char const *base)</arglist>
     </member>
     <member kind="function">
       <type>t_s32</type>
       <name>S32_FromString_Base</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga02f49ede95ab3f2ac6075af0da7a1996</anchor>
-      <arglist>(char const *str, char const *base)</arglist>
+      <anchor>ga0703969aac182380d6a36e3f3567fdae</anchor>
+      <arglist>(t_char const *str, t_char const *base)</arglist>
     </member>
     <member kind="function">
       <type>t_s64</type>
       <name>S64_FromString_Base</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gadacfc3a667e18064eaf2ec9c7a0bb83e</anchor>
-      <arglist>(char const *str, char const *base)</arglist>
+      <anchor>ga05e713296688d625cd359586d42afbd9</anchor>
+      <arglist>(t_char const *str, t_char const *base)</arglist>
     </member>
     <member kind="function">
       <type>t_s128</type>
       <name>S128_FromString_Base</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gafac3593599741409c6157683ae2edeef</anchor>
-      <arglist>(char const *str, char const *base)</arglist>
+      <anchor>gaa12d3aa098cde8d1e3c0191f1c89cdbe</anchor>
+      <arglist>(t_char const *str, t_char const *base)</arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -14804,6 +15364,34 @@
     <includes id="pointer_8h" name="pointer.h" local="yes" imported="no">libccc/pointer.h</includes>
     <member kind="define">
       <type>#define</type>
+      <name>KB</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>gacdecf799fcbd27e796d72f3aba98f496</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>MB</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>ga2b14276c83423c47988edb0dc5597aad</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>GB</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>gac0efefdf392a1bdf22a44dae9f9d33eb</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>TB</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>ga306987743beaff3d0c29cc0b625a43ae</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>c_memnew</name>
       <anchorfile>group__libccc__memory.html</anchorfile>
       <anchor>ga21729a359cc7fd389460273f2a37baee</anchor>
@@ -15005,6 +15593,48 @@
       <anchor>ga0e434fd038be54a99b94e6adfccadb70</anchor>
       <arglist></arglist>
     </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>I16_FROM_LE</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>ga861646cec67a8d56acc9e2076ed2d6e1</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>I16_TO_LE</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>ga38c946cdc3b4ddb3e82504e28d3d90dc</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>I32_FROM_LE</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>gaaeb191bcb34937e761689b469041da77</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>I32_TO_LE</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>ga4df988ebc76eb181298f98cac91eb3b3</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>I64_FROM_LE</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>gad2cb697e17d4966f42241faf43de7621</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>I64_TO_LE</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>ga6522a74aae256ad6d5d4e00165a4cb32</anchor>
+      <arglist>(X)</arglist>
+    </member>
     <member kind="function">
       <type>void *</type>
       <name>Memory_New</name>
@@ -15151,6 +15781,48 @@
       <anchorfile>group__libccc__memory.html</anchorfile>
       <anchor>ga68ede9e357bddc21ce6fa96d27173f5b</anchor>
       <arglist>(t_u64 value, t_u8 bit, t_u8 length)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>I16_FROM_LE</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>ga861646cec67a8d56acc9e2076ed2d6e1</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>I16_TO_LE</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>ga38c946cdc3b4ddb3e82504e28d3d90dc</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>I32_FROM_LE</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>gaaeb191bcb34937e761689b469041da77</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>I32_TO_LE</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>ga4df988ebc76eb181298f98cac91eb3b3</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>I64_FROM_LE</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>gad2cb697e17d4966f42241faf43de7621</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>I64_TO_LE</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>ga6522a74aae256ad6d5d4e00165a4cb32</anchor>
+      <arglist>(X)</arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -15887,64 +16559,64 @@
       <type>void</type>
       <name>Dict_Get_T</name>
       <anchorfile>group__libccc__monad__dict.html</anchorfile>
-      <anchor>ga3a2366cfff0b173cd0c20ad3b410e752</anchor>
-      <arglist>(s_dict_T *dict, char *key)</arglist>
+      <anchor>gab072e1c1ea2ecbd6881fe235bb611bab</anchor>
+      <arglist>(s_dict_T *dict, t_char *key)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Dict_Set_T</name>
       <anchorfile>group__libccc__monad__dict.html</anchorfile>
-      <anchor>ga29531b3c9d77ce3c961c99d4e214a6dc</anchor>
-      <arglist>(s_dict_T *dict, char *key, T value)</arglist>
+      <anchor>gad92423deac677ba98bfe276e9e14b144</anchor>
+      <arglist>(s_dict_T *dict, t_char *key, T value)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Dict_Copy_T</name>
       <anchorfile>group__libccc__monad__dict.html</anchorfile>
-      <anchor>ga180ea69140fa6f359bde3ef75c7cf771</anchor>
-      <arglist>(s_dict_T *dest, s_dict_T const *src, char **keys)</arglist>
+      <anchor>gaeed65042ac9d4a7f90c5aecae3ac56f2</anchor>
+      <arglist>(s_dict_T *dest, s_dict_T const *src, t_char **keys)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Dict_Sub_T</name>
       <anchorfile>group__libccc__monad__dict.html</anchorfile>
-      <anchor>ga2f3a82d9492f4fe68bd664d720a1a0ec</anchor>
-      <arglist>(s_dict_T *dict, char **keys)</arglist>
+      <anchor>ga1ee41bbb04c3064a31a99d2e360d1ca3</anchor>
+      <arglist>(s_dict_T *dict, t_char **keys)</arglist>
     </member>
     <member kind="function">
       <type>s_keyval_T *</type>
       <name>Dict_Add_T</name>
       <anchorfile>group__libccc__monad__dict.html</anchorfile>
-      <anchor>ga75dfdce87b9e86d1ee65d82078c154ec</anchor>
-      <arglist>(s_dict_T *dict, char *key, T value)</arglist>
+      <anchor>ga84b7503627d61ceda7e3a0fd495ef94c</anchor>
+      <arglist>(s_dict_T *dict, t_char *key, T value)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Dict_Remove_T</name>
       <anchorfile>group__libccc__monad__dict.html</anchorfile>
-      <anchor>gad9bb537eb1e1462f2ee6857759bfdfa4</anchor>
-      <arglist>(s_dict_T *dict, char *key)</arglist>
+      <anchor>gaccf54303df0743e6b7249f9ea3a0d39a</anchor>
+      <arglist>(s_dict_T *dict, t_char *key)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Dict_Remove_F_T</name>
       <anchorfile>group__libccc__monad__dict.html</anchorfile>
-      <anchor>ga75757ab67bff419bb4bdbaa8b212f008</anchor>
-      <arglist>(s_dict_T *dict, char *key, void(*delete)(s_keyval_T *keyval))</arglist>
+      <anchor>ga034067ff64dadf89ab8e91f23027bb36</anchor>
+      <arglist>(s_dict_T *dict, t_char *key, void(*delete)(s_keyval_T *keyval))</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Dict_RemoveAll_T</name>
       <anchorfile>group__libccc__monad__dict.html</anchorfile>
-      <anchor>ga267640a5d90492c82cd723f187d95c36</anchor>
-      <arglist>(s_dict_T *dict, char *key)</arglist>
+      <anchor>ga60a13e6ad31a0c44fe46f65458540714</anchor>
+      <arglist>(s_dict_T *dict, t_char *key)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Dict_RemoveAll_F_T</name>
       <anchorfile>group__libccc__monad__dict.html</anchorfile>
-      <anchor>ga471fa64c56c58401826ec8e178e1f002</anchor>
-      <arglist>(s_dict_T *dict, char *key, void(*delete)(s_keyval_T *keyval))</arglist>
+      <anchor>ga58e738dd9be1ce3a0174b1021f5d486a</anchor>
+      <arglist>(s_dict_T *dict, t_char *key, void(*delete)(s_keyval_T *keyval))</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -15978,14 +16650,14 @@
       <type>void</type>
       <name>Dict_Replace_T</name>
       <anchorfile>group__libccc__monad__dict.html</anchorfile>
-      <anchor>ga71a6b1e45d973351bb9e07bbe26defd2</anchor>
-      <arglist>(s_dict_T *dict, char *key, s_keyval_T new)</arglist>
+      <anchor>ga9c713cc42489f03429e37aa324261ff3</anchor>
+      <arglist>(s_dict_T *dict, t_char *key, s_keyval_T new)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Dict_KeyOf_T</name>
       <anchorfile>group__libccc__monad__dict.html</anchorfile>
-      <anchor>ga5bb390462b202ab53c2427cd3c6ec125</anchor>
+      <anchor>ga65d6a9d33c98ec065decc39f2ad25f95</anchor>
       <arglist>(s_dict_T *dict, T value)</arglist>
     </member>
     <member kind="function">
@@ -16041,8 +16713,8 @@
       <type>t_bool</type>
       <name>Dict_Equals_K_T</name>
       <anchorfile>group__libccc__monad__dict.html</anchorfile>
-      <anchor>ga2d3cb2c584f45653b89ad8deee77a32b</anchor>
-      <arglist>(s_dict_T *dict1, s_dict_T *dict2, char **keys)</arglist>
+      <anchor>gadf2225c248864cd8610185e6e9c8e1ce</anchor>
+      <arglist>(s_dict_T *dict1, s_dict_T *dict2, t_char **keys)</arglist>
     </member>
     <member kind="function">
       <type>t_sint</type>
@@ -16055,8 +16727,8 @@
       <type>t_sint</type>
       <name>Dict_Compare_K_T</name>
       <anchorfile>group__libccc__monad__dict.html</anchorfile>
-      <anchor>gab8dc0576f43a5c1d3dfdf1d23f8e18bc</anchor>
-      <arglist>(s_dict_T *dict1, s_dict_T *dict2, char **keys, t_sint(*compare)(s_keyval_T item1, s_keyval_T item2))</arglist>
+      <anchor>ga92e90a8c3edcf8c70bb73f9b82da8d2d</anchor>
+      <arglist>(s_dict_T *dict1, s_dict_T *dict2, t_char **keys, t_sint(*compare)(s_keyval_T item1, s_keyval_T item2))</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -17103,6 +17775,7 @@
     <filename>pointer_8h.html</filename>
     <includes id="libccc__config_8h" name="libccc_config.h" local="yes" imported="no">libccc_config.h</includes>
     <includes id="libccc__define_8h" name="libccc_define.h" local="yes" imported="no">libccc_define.h</includes>
+    <includes id="char_8h" name="char.h" local="yes" imported="no">libccc/char.h</includes>
     <member kind="define">
       <type>#define</type>
       <name>NULL</name>
@@ -17112,44 +17785,44 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_size_to_str</name>
+      <name>c_sizetostr</name>
       <anchorfile>group__libccc__pointer.html</anchorfile>
-      <anchor>ga3f64bcae3458c33f127266fadae4ca89</anchor>
+      <anchor>ga52f7b392e4f43e6c09794a749086d353</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_size_to_strhex</name>
+      <name>c_sizetostrhex</name>
       <anchorfile>group__libccc__pointer.html</anchorfile>
-      <anchor>ga2bc81b07f06964f8c788c3ce32ef7b35</anchor>
+      <anchor>ga5565630e6baf4563320cbfa688eeec7d</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_size_to_str_readable</name>
+      <name>c_sizetostr_readable</name>
       <anchorfile>group__libccc__pointer.html</anchorfile>
-      <anchor>ga648005a628adc52a7c15dd29e2c1f8fc</anchor>
+      <anchor>ga52dad6f09d1470c8e410fec0602e06f2</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_str_to_size</name>
+      <name>c_strtosize</name>
       <anchorfile>group__libccc__pointer.html</anchorfile>
-      <anchor>gaf564346af001ccae6a2151c916b71f25</anchor>
+      <anchor>ga95d737281b1ac5c01b7b47ec72bc4848</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_ptr_to_str</name>
+      <name>c_ptrtostr</name>
       <anchorfile>group__libccc__pointer.html</anchorfile>
-      <anchor>ga9bdcfb7a6eb5f4fcd0384369500d3ce3</anchor>
+      <anchor>gaee7ce198e34637931241b1e0c3913061</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_ptr_to_strhex</name>
+      <name>c_ptrtostrhex</name>
       <anchorfile>group__libccc__pointer.html</anchorfile>
-      <anchor>ga19714ab170f9c3526eb59ac9f71b8538</anchor>
+      <anchor>gab3880db68e85db0b694265e2340dd710</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
@@ -17198,42 +17871,42 @@
       <type></type>
       <name>TYPEDEF_ALIAS</name>
       <anchorfile>group__libccc__pointer.html</anchorfile>
-      <anchor>ga3ac7212af59af2a66bd8c24b22d790f1</anchor>
-      <arglist>(t_uintptr, UINTPTR, PRIMITIVE) char *Size_ToString(t_size value)</arglist>
+      <anchor>ga6489ce05af032b5a0c791232bf865f21</anchor>
+      <arglist>(t_uintptr, UINTPTR, PRIMITIVE) t_char *Size_ToString(t_size value)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Size_ToString_Hex</name>
       <anchorfile>group__libccc__pointer.html</anchorfile>
-      <anchor>ga8b4db13660bd943d9c1281dfd4a9aba0</anchor>
+      <anchor>ga4ce4054fb72a0f8cd4048a42c458d409</anchor>
       <arglist>(t_size value)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
-      <name>Size_ToString_Readable</name>
+      <type>t_char *</type>
+      <name>Size_ToString_Pretty</name>
       <anchorfile>group__libccc__pointer.html</anchorfile>
-      <anchor>ga1c832afe71724520eb9ede992cbac0be</anchor>
+      <anchor>ga107f0d2aca8f58dba7f934c4e9b7b7ca</anchor>
       <arglist>(t_size value)</arglist>
     </member>
     <member kind="function">
       <type>t_size</type>
       <name>Size_FromString</name>
       <anchorfile>group__libccc__pointer.html</anchorfile>
-      <anchor>ga820e0f5cdce4c4088d44099cf490ba91</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga25071695db2f94e10280bf7cf3ab120a</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Pointer_ToString</name>
       <anchorfile>group__libccc__pointer.html</anchorfile>
-      <anchor>gae505f5a39ce336b9283164467a123262</anchor>
+      <anchor>ga534b65bfd7c617df3c1e5cd7be67bed4</anchor>
       <arglist>(void const *ptr)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Pointer_ToString_Hex</name>
       <anchorfile>group__libccc__pointer.html</anchorfile>
-      <anchor>ga93cf592597a50d4f13fd00518e2e0e4a</anchor>
+      <anchor>gae6732a2c29b9b6fbb3378542b3dcf688</anchor>
       <arglist>(void const *ptr)</arglist>
     </member>
   </compound>
@@ -18602,151 +19275,2230 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>char **</type>
+      <type>t_char **</type>
       <name>String_Split_Char</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>gac0aed9f57db8399560febee3e4eecf52</anchor>
-      <arglist>(char const *str, char c)</arglist>
+      <anchor>ga45c55faff361d5f7639440386f01aaa7</anchor>
+      <arglist>(t_char const *str, char c)</arglist>
     </member>
     <member kind="function">
-      <type>char **</type>
+      <type>t_char **</type>
       <name>String_Split_Charset</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>gae30725b8e11d3cdb9e52fbd777f90693</anchor>
-      <arglist>(char const *str, char const *sep_chars)</arglist>
+      <anchor>ga6ff72c88d36c8353bdf2d9278166a248</anchor>
+      <arglist>(t_char const *str, t_char const *sep_chars)</arglist>
     </member>
     <member kind="function">
-      <type>char **</type>
+      <type>t_char **</type>
       <name>String_Split_String</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>gabc503ca2871a1fd541f6b4e45045a8b6</anchor>
-      <arglist>(char const *str, char const *query)</arglist>
+      <anchor>ga07ca4de87a01469680ef160e3b801e49</anchor>
+      <arglist>(t_char const *str, t_char const *query)</arglist>
     </member>
     <member kind="function">
-      <type>char **</type>
+      <type>t_char **</type>
       <name>String_Divide</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>ga343eb4e7dfe7d9b4791d07e1ea6baaf2</anchor>
-      <arglist>(char const *str, t_size n)</arglist>
+      <anchor>gaad22627e14e9c2a0eaceda2259ac88ce</anchor>
+      <arglist>(t_char const *str, t_size n)</arglist>
     </member>
     <member kind="function">
-      <type>char **</type>
+      <type>t_char **</type>
       <name>StringArray_New</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>ga1d8469415dd6c9208f8e8cbf587120c5</anchor>
+      <anchor>gad099d793d42a3658440ee8ca6db36e12</anchor>
       <arglist>(t_u32 length)</arglist>
     </member>
     <member kind="function">
-      <type>char **</type>
+      <type>t_char **</type>
       <name>StringArray_New_C</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>ga43138cd27fe530b9af8f304a04aa11fb</anchor>
+      <anchor>gae9dd9f2ec3da0eb764523e9ad1a11c8b</anchor>
       <arglist>(t_u32 y, t_size x, const char c)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>StringArray_Delete</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>ga9a5235fd9831409f07582205cad25de7</anchor>
-      <arglist>(char ***a_strarr)</arglist>
+      <anchor>gac49164b3e6d2e2a6d3c29f1f1599b444</anchor>
+      <arglist>(t_char ***a_strarr)</arglist>
     </member>
     <member kind="function">
-      <type>char **</type>
+      <type>t_char **</type>
       <name>StringArray_Map</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>ga9d29c093001e74bc96ae2fe13055c908</anchor>
-      <arglist>(char const **strarr, char *(*f)(char const *))</arglist>
+      <anchor>ga49a79b9a995114531d7b4697872d65b5</anchor>
+      <arglist>(t_char const **strarr, char *(*f)(t_char const *))</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>StringArray_Map_InPlace</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>ga451ce445c2396031965242e95b5584f7</anchor>
-      <arglist>(char ***a_strarr, char *(*f)(char *))</arglist>
+      <anchor>ga9b2b8b40dcc823c596f56ac917f500a2</anchor>
+      <arglist>(t_char ***a_strarr, char *(*f)(t_char *))</arglist>
     </member>
     <member kind="function">
-      <type>char **</type>
+      <type>t_char **</type>
       <name>StringArray_Pad_L</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>ga7987cfb5e627110799e7e27370ee2676</anchor>
-      <arglist>(char const **strarr, const char c, t_u32 n)</arglist>
+      <anchor>ga842ae27791201819a637e49e268accce</anchor>
+      <arglist>(t_char const **strarr, const char c, t_u32 n)</arglist>
     </member>
     <member kind="function">
-      <type>char **</type>
+      <type>t_char **</type>
       <name>StringArray_Sub</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>ga04a6941dfe089904a995a7e6a9001b1b</anchor>
-      <arglist>(char const **strarr, t_u32 start, t_u32 length)</arglist>
+      <anchor>gac0eed41886ffad80a11ca6f06d1e855b</anchor>
+      <arglist>(t_char const **strarr, t_u32 start, t_u32 length)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>StringArray_Fold</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>ga0391100b43eb3681a339078033d6346e</anchor>
-      <arglist>(char const **strarr, char const *sep)</arglist>
+      <anchor>gacab94aa9955cfe36bd757c66fbb085b9</anchor>
+      <arglist>(t_char const **strarr, t_char const *sep)</arglist>
     </member>
     <member kind="function">
-      <type>char **</type>
+      <type>t_char **</type>
       <name>StringArray_Join</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>ga36c741f4156e39e70f2e7b9e6d809959</anchor>
-      <arglist>(char const **strarr1, char const **strarr2)</arglist>
+      <anchor>gac8874f4996ef102fdfeb629e95d4e603</anchor>
+      <arglist>(t_char const **strarr1, t_char const **strarr2)</arglist>
     </member>
     <member kind="function">
-      <type>char **</type>
+      <type>t_char **</type>
       <name>StringArray_Merge</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>ga9768b2dc3bf733c464469699b7dade17</anchor>
-      <arglist>(char ***a_strarr1, char ***a_strarr2)</arglist>
+      <anchor>ga2de6ac3217ac85cb1dd91fb9a0b9f228</anchor>
+      <arglist>(t_char ***a_strarr1, t_char ***a_strarr2)</arglist>
     </member>
     <member kind="function">
-      <type>char **</type>
+      <type>t_char **</type>
       <name>StringArray_Append</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>gab68d8ffec57072dd3b6e628cada090b1</anchor>
-      <arglist>(char ***a_dest, char const **src)</arglist>
+      <anchor>gaf8785583a9494a580dc73c4662dc1a91</anchor>
+      <arglist>(t_char ***a_dest, t_char const **src)</arglist>
     </member>
     <member kind="function">
-      <type>char **</type>
+      <type>t_char **</type>
       <name>StringArray_Prepend</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>gadb8aea98fbd91a6e1e25f8d53c5d254f</anchor>
-      <arglist>(char const **src, char ***a_dest)</arglist>
+      <anchor>ga82d5eea47b5ade918c35792726f7c125</anchor>
+      <arglist>(t_char const **src, t_char ***a_dest)</arglist>
     </member>
     <member kind="function">
-      <type>char **</type>
+      <type>t_char **</type>
       <name>StringArray_Insert_InPlace</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>ga8122ede89678362fc421436e00813611</anchor>
-      <arglist>(char ***a_dest, char const **src, t_u32 index)</arglist>
+      <anchor>gae66defb09abcff962d998d36204f2865</anchor>
+      <arglist>(t_char ***a_dest, t_char const **src, t_u32 index)</arglist>
     </member>
     <member kind="function">
       <type>t_u32</type>
       <name>StringArray_Length</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>ga27e20ad58d996d7be6d9b6960e0819cd</anchor>
-      <arglist>(char const **strarr)</arglist>
+      <anchor>ga19807861b0d2dd7ec9cf718958aa1b10</anchor>
+      <arglist>(t_char const **strarr)</arglist>
     </member>
     <member kind="function">
       <type>t_u32</type>
       <name>StringArray_Count_Char</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>gad6cfc01994604e7d5dfad3bf20a8e044</anchor>
-      <arglist>(char const **strarr, char const c)</arglist>
+      <anchor>ga8a70b01dd7649af201c4f4c3fb84c371</anchor>
+      <arglist>(t_char const **strarr, char const c)</arglist>
     </member>
     <member kind="function">
       <type>t_u32</type>
       <name>StringArray_Count_Charset</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>ga09d0ca56b6be7e5490532568de8631e5</anchor>
-      <arglist>(char const **strarr, char const *cset)</arglist>
+      <anchor>gab39d10a438334f33ae130221e5a1c5dd</anchor>
+      <arglist>(t_char const **strarr, t_char const *cset)</arglist>
     </member>
     <member kind="function">
       <type>t_u32</type>
       <name>StringArray_Count_String</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>ga8a3b7e9bef5499a5f046d540da8f8f44</anchor>
-      <arglist>(char const **strarr, char const *query)</arglist>
+      <anchor>ga1d790c3af516c8d96e17ff4354706115</anchor>
+      <arglist>(t_char const **strarr, t_char const *query)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>ansi.h</name>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/sys/</path>
+    <filename>ansi_8h.html</filename>
+    <includes id="libccc_8h" name="libccc.h" local="yes" imported="no">libccc.h</includes>
+    <member kind="define">
+      <type>#define</type>
+      <name>__COLORS__</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga99c413bd7850a5846aa19b4a0f58caf0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C_RESET</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gaf0c29bd95cece6791c62c52e8d2f6335</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C_RED</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga7adb9aaa1eed15caecd92e3837581b53</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C_GREEN</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga448d973f9ee30250ec93e600f5d89ed1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C_YELLOW</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga7749aa942f59b07d1e951066e0aeca73</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C_BLUE</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga2e4dd0b4af70107f36c2aa60b1195f01</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C_MAGENTA</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga47da0a04e6c59fa061f60d36c10d9561</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C_CYAN</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga8318e037c99fbf82089b68ba5d603cd0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ANSI</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gad874c1142f1cec4d1e4a09510081ef66</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_RESET</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gac81982784d97338b81fd2a54340c0b00</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_BOLD</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga7f5db861561bbf42955a6c7bd71217db</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_DIM</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gaf87c42a02a9a3e583e69a0441113d3bb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_3</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gaa9ed6a09ed0d99f8a3f45c2fa65678fa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_UNDERLINE</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gad40552cab717addecf66999f34f80bf2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_BLINK</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga80dc8605510ddddb6bc5bc14f4dfdd6c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_6</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gadb7d3a0999cd525b1468fe9c8127a9df</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_INVERTED</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga00ebfe98e47c1dc3c295d415ef43c41e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_HIDDEN</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gab91d5b05972e1cd3ac476bc29288172a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_9</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga7b80a64dd49aec55705d42e7cd2ac95c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_BOLD</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gad99ff5aa24729220c2dbd175ff6d1369</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_DIM</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gaabbcaa0a97883c57081e6217ea2a6782</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_3</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gacc133b9612777ae9259ca0e827c6016e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_UNDERLINE</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga81de1ccbf55802dc11f2a8881d46a9eb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_BLINK</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga72d589c7ed30e1a5ae19d0302909c041</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_6</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga9bc27fef31f6958819891c3453c48f4e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_INVERTED</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gaf80735fb21078a1e8095a22597092bd7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_HIDDEN</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga7829681d1d0e19f7799c44e08a7cd1ca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_9</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga8012b614be13a98f69cdcb5139766b78</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_BLACK</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga178f7bd8aa2cb39a74171b24c3903bfa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_RED</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga125e9c08fc48d2310a501e50ca37f2fa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_GREEN</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga4d8d738ec5d9c427efe7bec0310b1319</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_YELLOW</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga58c62fd3af7786a9efcbfa52befd3fed</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_BLUE</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga173eac0768a62c09355ac69fab4ce0a2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_MAGENTA</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga9863906924996123d989e3beeef17d1f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_CYAN</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga7f78b280ecb7a8917f7a980746a081d6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_GRAY_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gad24c920ee4123d7133f44986918aefea</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_GRAY_DARK</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gaf67ea146996f28af24a8aaddbc184fca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_RED_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga703126f7e6a44f57f0bcfe6a09a10cbb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_GREEN_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga5f92baa1e553d33cfae382b27d879eb0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_YELLOW_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga28945d6daca1a432d3593ea5c2aebfda</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_BLUE_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga23dfaaf54af97d31903ffaaa0ba309bc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_MAGENTA_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga3206c160f2f866269b2f6cabf0aeec9e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_CYAN_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gabf7bcf19360b7e1922f8084ef0154288</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_WHITE</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gafd04a2ff549eb5bbfc5f994e888f26bb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga8413d8cc0d4c8cf11da67ff344b8654b</anchor>
+      <arglist>(CODE)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_DEFAULT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga162176136345f256f233e0ddd1c7a577</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_BLACK</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga0e6d9102bb7d8733d9739f058900564d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_RED</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga0b6883cee7f145ec92c3cef386b59227</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_GREEN</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga04a659076f0b262e571ea4f3e6932352</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_YELLOW</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga812ddb5d9d841a57bc58f7e645dcbcce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_BLUE</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga250067e14725f2eceb20cc6bfd89e44b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_MAGENTA</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga0f7a4372b3e38a8f6ecc042d6cec4251</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_CYAN</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gae249ef98b992636b843487172db9cda5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_GRAY_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga312aa1c2d18fd6847c6d88e8c153092a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_GRAY_DARK</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga61b2d3daade64b5710ad3a06140cb8b8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_RED_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga77a6fd84024c9bbbd7d8207982a0e656</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_GREEN_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gad4354070e7d86b4c188240d7732476e0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_YELLOW_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga0c3f4ea8f414d50f8ae47bcd6d518df0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_BLUE_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga5b6408b036db61a28f078d512abab9b3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_MAGENTA_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gac65a56f4fef3909ab32fdf2b14be0e20</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_CYAN_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga83394539e8364d9e4fda0ef261f5c74c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_WHITE</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gaffee69c7b797736581c06ccc7ea76fd6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gac4646fea5fac91e728c8b4d651b58216</anchor>
+      <arglist>(CODE)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_DEFAULT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga5766144a8d48ffe3bbdd0c8e3973df52</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ANSI</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gad874c1142f1cec4d1e4a09510081ef66</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_RESET</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gac81982784d97338b81fd2a54340c0b00</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_BOLD</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga7f5db861561bbf42955a6c7bd71217db</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_DIM</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gaf87c42a02a9a3e583e69a0441113d3bb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_3</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gaa9ed6a09ed0d99f8a3f45c2fa65678fa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_UNDERLINE</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gad40552cab717addecf66999f34f80bf2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_BLINK</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga80dc8605510ddddb6bc5bc14f4dfdd6c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_6</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gadb7d3a0999cd525b1468fe9c8127a9df</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_INVERTED</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga00ebfe98e47c1dc3c295d415ef43c41e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_HIDDEN</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gab91d5b05972e1cd3ac476bc29288172a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_9</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga7b80a64dd49aec55705d42e7cd2ac95c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_BOLD</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gad99ff5aa24729220c2dbd175ff6d1369</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_DIM</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gaabbcaa0a97883c57081e6217ea2a6782</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_3</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gacc133b9612777ae9259ca0e827c6016e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_UNDERLINE</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga81de1ccbf55802dc11f2a8881d46a9eb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_BLINK</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga72d589c7ed30e1a5ae19d0302909c041</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_6</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga9bc27fef31f6958819891c3453c48f4e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_INVERTED</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gaf80735fb21078a1e8095a22597092bd7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_HIDDEN</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga7829681d1d0e19f7799c44e08a7cd1ca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_TEXT_RESET_9</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga8012b614be13a98f69cdcb5139766b78</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_BLACK</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga178f7bd8aa2cb39a74171b24c3903bfa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_RED</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga125e9c08fc48d2310a501e50ca37f2fa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_GREEN</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga4d8d738ec5d9c427efe7bec0310b1319</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_YELLOW</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga58c62fd3af7786a9efcbfa52befd3fed</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_BLUE</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga173eac0768a62c09355ac69fab4ce0a2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_MAGENTA</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga9863906924996123d989e3beeef17d1f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_CYAN</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga7f78b280ecb7a8917f7a980746a081d6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_GRAY_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gad24c920ee4123d7133f44986918aefea</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_GRAY_DARK</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gaf67ea146996f28af24a8aaddbc184fca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_RED_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga703126f7e6a44f57f0bcfe6a09a10cbb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_GREEN_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga5f92baa1e553d33cfae382b27d879eb0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_YELLOW_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga28945d6daca1a432d3593ea5c2aebfda</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_BLUE_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga23dfaaf54af97d31903ffaaa0ba309bc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_MAGENTA_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga3206c160f2f866269b2f6cabf0aeec9e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_CYAN_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gabf7bcf19360b7e1922f8084ef0154288</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_WHITE</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gafd04a2ff549eb5bbfc5f994e888f26bb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga8413d8cc0d4c8cf11da67ff344b8654b</anchor>
+      <arglist>(CODE)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_DEFAULT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga162176136345f256f233e0ddd1c7a577</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_BLACK</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga0e6d9102bb7d8733d9739f058900564d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_RED</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga0b6883cee7f145ec92c3cef386b59227</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_GREEN</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga04a659076f0b262e571ea4f3e6932352</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_YELLOW</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga812ddb5d9d841a57bc58f7e645dcbcce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_BLUE</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga250067e14725f2eceb20cc6bfd89e44b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_MAGENTA</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga0f7a4372b3e38a8f6ecc042d6cec4251</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_CYAN</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gae249ef98b992636b843487172db9cda5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_GRAY_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga312aa1c2d18fd6847c6d88e8c153092a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_GRAY_DARK</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga61b2d3daade64b5710ad3a06140cb8b8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_RED_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga77a6fd84024c9bbbd7d8207982a0e656</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_GREEN_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gad4354070e7d86b4c188240d7732476e0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_YELLOW_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga0c3f4ea8f414d50f8ae47bcd6d518df0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_BLUE_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga5b6408b036db61a28f078d512abab9b3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_MAGENTA_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gac65a56f4fef3909ab32fdf2b14be0e20</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_CYAN_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga83394539e8364d9e4fda0ef261f5c74c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_WHITE</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gaffee69c7b797736581c06ccc7ea76fd6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gac4646fea5fac91e728c8b4d651b58216</anchor>
+      <arglist>(CODE)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_DEFAULT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga5766144a8d48ffe3bbdd0c8e3973df52</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>ascii.h</name>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/sys/</path>
+    <filename>ascii_8h.html</filename>
+    <includes id="libccc__config_8h" name="libccc_config.h" local="yes" imported="no">libccc_config.h</includes>
+    <includes id="libccc__define_8h" name="libccc_define.h" local="yes" imported="no">libccc_define.h</includes>
+    <includes id="bool_8h" name="bool.h" local="yes" imported="no">libccc/bool.h</includes>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cisalpha</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga39916f622213237c46887bd552f95203</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ASCII_IsAlpha</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga651a160030e0b0cb33f82c52b523a6e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cisupper</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gae6abcc0e27cbf969445b1784f943c9ae</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ASCII_IsUpper</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gae2ecc6985745af9de9b4bfcb65815cec</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cislower</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gadef64344749b75f05594485260c257cd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ASCII_IsLower</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga8dfceef0b4057b270ef67bef27e6d3c6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cisalnum</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gaff0f8393602ee9a537c91813f018fd9d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ASCII_IsAlNum</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga431f0a8f0b358291a41935d48371dd4f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cisdigit</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga782fa9438438bcd6d519fbc83b8e6f85</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ASCII_IsDigit</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga36290d731c530c7b9aea6c055e76a23b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ASCII_IsDigit_Dec</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga7287c4b05ec17961d3cff0b4a42d2f9a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cisxdigit</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga41f152ad25f08fc616113fdfeb96316c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ASCII_IsDigit_Hex</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga635cdf4821fe78cf37db652b7e2e5aa0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cisodigit</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga264e8d8cc867eeb60dd53a58fe8fe3d8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ASCII_IsDigit_Oct</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga7b36a3279614812e780179fd1f4677ea</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cisbdigit</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga846f87f6f80a71b5f3c682781028f9ea</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ASCII_IsDigit_Bin</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gabbb70eb952ff64ab9170b5d7a779f269</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cisspace</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga515225a04399263d4d8a2df2321bac0b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ASCII_IsSpace</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gaf2cf4dde77229d691401e1b43105cc35</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cispunct</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gab3f73d049d5d83b1fc198d59c0809d40</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ASCII_IsPunct</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga7554d6f383027563078b5146c6a827fd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cisprint</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga369e6b01078bd311c5ef159628c3502b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ASCII_IsPrint</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga93d7a31db818cc757db62466c4b8244a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cisascii</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga333d74c9fd951ea599929761f2632abb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cisvalid</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga86ec919efcae1ed85056d241425ca169</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cincharset</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gad94b504b713639a51d2d13e11113b134</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_ctoupper</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gaedf832861564bee310e574342571d137</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ASCII_ToUpper</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga94915a0dc34f3a367bd72b896769e013</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_ctolower</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga132e0419d77f672a4fe94750ea46478c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ASCII_ToLower</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gaffafa54ceab0d7df8158cebcbfe89a9d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_NUL</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga532255139ed130b801cd358dbf1834cb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_SOH</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga7235cf6bb0b46cbdb3bc744cbab27072</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_STX</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gad91430fd6cf65df00b728178bef5c43a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_ETX</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga80ad7049d0e6c4d935ff61af24c5edfe</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_EOT</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga5ced8b8b46cd671deeb0a061facdf19b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_ENQ</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga581eb8834c0e28182981d7dc64e42036</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_ACK</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga19de96cc638f800ffe59c8b72c3fc6be</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_BEL</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga219144e9843ed9440467a54a573f8391</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_BS</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga0ce7e017ced2194324d8b593b07a7c23</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_HT</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gacbd12780bf8565ea3dd3404024c713bf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_LF</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga56533b3aed07244bd9419c1954f0978d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_VT</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga4ddf7b389e0d352ae0755b8b2a75868b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_FF</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga8153ff8f255e6a99c00bbae10fa7d524</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_CR</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga2de57866e2cb798d98898aca5fe9af1a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_SO</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gacf84924d510ab53368836bfd520cfbb7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_SI</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga2cabd5f3cf743c217c60f049d725936e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_DLE</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gadf66c2f62989c45fe16f109585456b42</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_DC1</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gaa047a060a08b14cd1717a3cb96f7338f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_DC2</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga0d9c63444bd452a057ecadfe9d814c13</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_DC3</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gaa2084e6b9ef46897a709082f0401d031</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_DC4</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga61d54f078d1a7a449141313e7fd7b91e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_NAK</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga69a675602e0f6d194d12e62d80996aaf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_SYN</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gaf34fcaed6bf124e19a3d73ff356d1a2d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_ETB</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gae8315f0d39f9b83cb55fbb02fa3d77b7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_CAN</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga8ab4b09b1a8ee5bd8f93d260a335d774</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_EM</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gab094f30da62b792585c07fbdba2e5648</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_SUB</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gafd27760c3fbdd6783d0009178cc3e630</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_ESC</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga509be7ab53dc6af71066279cbc868941</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_FS</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga5ec6cbc5f7990daa9a1c8c32283c53a5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_GS</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga308b9d229b2e2bdd221cab934c4d5b13</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_RS</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gaae6c21b0c4658d32dc69d35ee22e1525</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_US</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gab2a220511c9879831d2c674574126be2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_DEL</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gad8f4cafcf5056aa0bc8cd7702858871d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_PAD</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gaf502ca41a5315f762205887b71b78e07</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_HOP</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga5249cdc42954d97c40a9f0fe90990fe2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_BPH</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gab2f920308cc8f816da41c5165c9bf7b7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_NBH</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gae6cafbd26f0a3f372d1280e9b4cd7230</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_IND</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga2d21f76719fc1a9c2d40351c20b4087c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_NEL</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga46f6bc4a02da0774fd4366a7c91316e3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_SSA</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gad4c9d7d030efafe4af11d6ff02ec0908</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_ESA</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gadb002acd25948e6943d161b1a655c6c9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_HTS</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gac05b61120402065a6070c71d1c97ea17</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_HTJ</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga1108b59b9543e015085746be55be76c9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_VTS</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga68015ab7898a5791fbcf6c1ba30fcaca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_PLD</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga69a902d65f6e4f88d6526509ec04640b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_PLU</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gadc3ede7c6697508edd33e84ffb7168d1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_RI</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gaa137ee9a96d0b5aa30380e15eb6b3529</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_SS2</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gac890f334485087fd57ce26ae0480531e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_SS3</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga525ae85a7d695f1191d0d8796cd05fa4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_DCS</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gae9c95b6c8ef7636899f1c6f0fdac6bab</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_PU1</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga6a361a4e111f19cac87a9427c43b6d48</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_PU2</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gac2c1e210e7856a403fa67cbeee5041ff</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_STS</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga9e6e521a82bdb2e127bd323db5d78067</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_CCH</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gad26212499a46d04063b2e60708c54f68</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_MW</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gac1dfc6b0902c411912bbe7a5d0517a8c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_SPA</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gaffd0d3888b0de467ba5c4cc71efa9ad9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_EPA</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga3e8ee77cec9e7da5e9caf088036e5c74</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_SOS</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga013f6cf017d9a346222acdf3f1d92405</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_SGC</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga6e75f29bb9a671aba4aa85fd24e296bd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_SCI</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gaba0c8533ab5805e7c5182babd05c0ffc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_CSI</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga8335b1f6f77d9d0e155fa817d7476f0c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_ST</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga9d29956b02e8dd43b53fa1b6a790d0dd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_OSC</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga88fc29fc10bdffca1da4949f694457f0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_PM</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga7efc1dc7010cabc4c7533ebec54cc721</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_APC</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga22af3e339b04871ed2f8ccc6a95b8d24</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>ASCII_IsLetter</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gac501fabf1740353ed91a75bc43e33d9a</anchor>
+      <arglist>(t_ascii c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>ASCII_IsUppercase</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gac5ebcd3f3082bc24d2f4b035c5bb2a68</anchor>
+      <arglist>(t_ascii c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>ASCII_IsLowercase</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga730c12083cd34e5d1ef07cb59ea49a8f</anchor>
+      <arglist>(t_ascii c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>ASCII_IsAlphaNumeric</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gad87287b3dbfaa97761956800e1c8dce8</anchor>
+      <arglist>(t_ascii c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>ASCII_IsDigit_Decimal</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga5bcb2ee1192c1f09afcce9a899ececf7</anchor>
+      <arglist>(t_ascii c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>ASCII_IsDigit_Hexadecimal</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga829e46fb255c56f0b53075312056aeea</anchor>
+      <arglist>(t_ascii c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>ASCII_IsDigit_Octal</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga3f390d1c46f671160210e49e78da4f9c</anchor>
+      <arglist>(t_ascii c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>ASCII_IsDigit_Binary</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga532ce5e35b4450d1e8ac48dc08a1954b</anchor>
+      <arglist>(t_ascii c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>ASCII_IsWhiteSpace</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gae57c5e1d73f73b4fb45f4beb08157aad</anchor>
+      <arglist>(t_ascii c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>ASCII_IsPunctuation</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga4733e7f82f4a67196b21d9e28afdd281</anchor>
+      <arglist>(t_ascii c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>ASCII_IsPrintable</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga07c5f29503da0e578d1b5b960eb8e10c</anchor>
+      <arglist>(t_ascii c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>ASCII_IsValid</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga13af91c1c4c4c94440e60f8d367edbc3</anchor>
+      <arglist>(t_ascii c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>ASCII_IsInCharset</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gad2d07267144ab926cb1427b62144efec</anchor>
+      <arglist>(t_ascii c, t_ascii const *charset)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_ascii</type>
+      <name>ASCII_ToUppercase</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gad1fe53453c41d7913dd007385d166785</anchor>
+      <arglist>(t_ascii c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_ascii</type>
+      <name>ASCII_ToLowercase</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga21976cccab7749b2fad20e1f2f74198b</anchor>
+      <arglist>(t_ascii c)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_NUL</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga532255139ed130b801cd358dbf1834cb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_SOH</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga7235cf6bb0b46cbdb3bc744cbab27072</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_STX</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gad91430fd6cf65df00b728178bef5c43a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_ETX</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga80ad7049d0e6c4d935ff61af24c5edfe</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_EOT</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga5ced8b8b46cd671deeb0a061facdf19b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_ENQ</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga581eb8834c0e28182981d7dc64e42036</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_ACK</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga19de96cc638f800ffe59c8b72c3fc6be</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_BEL</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga219144e9843ed9440467a54a573f8391</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_BS</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga0ce7e017ced2194324d8b593b07a7c23</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_HT</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gacbd12780bf8565ea3dd3404024c713bf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_LF</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga56533b3aed07244bd9419c1954f0978d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_VT</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga4ddf7b389e0d352ae0755b8b2a75868b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_FF</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga8153ff8f255e6a99c00bbae10fa7d524</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_CR</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga2de57866e2cb798d98898aca5fe9af1a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_SO</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gacf84924d510ab53368836bfd520cfbb7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_SI</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga2cabd5f3cf743c217c60f049d725936e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_DLE</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gadf66c2f62989c45fe16f109585456b42</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_DC1</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gaa047a060a08b14cd1717a3cb96f7338f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_DC2</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga0d9c63444bd452a057ecadfe9d814c13</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_DC3</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gaa2084e6b9ef46897a709082f0401d031</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_DC4</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga61d54f078d1a7a449141313e7fd7b91e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_NAK</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga69a675602e0f6d194d12e62d80996aaf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_SYN</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gaf34fcaed6bf124e19a3d73ff356d1a2d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_ETB</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gae8315f0d39f9b83cb55fbb02fa3d77b7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_CAN</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga8ab4b09b1a8ee5bd8f93d260a335d774</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_EM</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gab094f30da62b792585c07fbdba2e5648</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_SUB</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gafd27760c3fbdd6783d0009178cc3e630</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_ESC</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga509be7ab53dc6af71066279cbc868941</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_FS</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga5ec6cbc5f7990daa9a1c8c32283c53a5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_GS</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga308b9d229b2e2bdd221cab934c4d5b13</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_RS</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gaae6c21b0c4658d32dc69d35ee22e1525</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_US</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gab2a220511c9879831d2c674574126be2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_DEL</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gad8f4cafcf5056aa0bc8cd7702858871d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_PAD</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gaf502ca41a5315f762205887b71b78e07</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_HOP</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga5249cdc42954d97c40a9f0fe90990fe2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_BPH</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gab2f920308cc8f816da41c5165c9bf7b7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_NBH</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gae6cafbd26f0a3f372d1280e9b4cd7230</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_IND</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga2d21f76719fc1a9c2d40351c20b4087c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_NEL</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga46f6bc4a02da0774fd4366a7c91316e3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_SSA</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gad4c9d7d030efafe4af11d6ff02ec0908</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_ESA</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gadb002acd25948e6943d161b1a655c6c9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_HTS</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gac05b61120402065a6070c71d1c97ea17</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_HTJ</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga1108b59b9543e015085746be55be76c9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_VTS</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga68015ab7898a5791fbcf6c1ba30fcaca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_PLD</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga69a902d65f6e4f88d6526509ec04640b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_PLU</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gadc3ede7c6697508edd33e84ffb7168d1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_RI</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gaa137ee9a96d0b5aa30380e15eb6b3529</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_SS2</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gac890f334485087fd57ce26ae0480531e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_SS3</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga525ae85a7d695f1191d0d8796cd05fa4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_DCS</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gae9c95b6c8ef7636899f1c6f0fdac6bab</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_PU1</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga6a361a4e111f19cac87a9427c43b6d48</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_PU2</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gac2c1e210e7856a403fa67cbeee5041ff</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_STS</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga9e6e521a82bdb2e127bd323db5d78067</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_CCH</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gad26212499a46d04063b2e60708c54f68</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_MW</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gac1dfc6b0902c411912bbe7a5d0517a8c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_SPA</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gaffd0d3888b0de467ba5c4cc71efa9ad9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_EPA</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga3e8ee77cec9e7da5e9caf088036e5c74</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_SOS</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga013f6cf017d9a346222acdf3f1d92405</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_SGC</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga6e75f29bb9a671aba4aa85fd24e296bd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_SCI</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gaba0c8533ab5805e7c5182babd05c0ffc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_CSI</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga8335b1f6f77d9d0e155fa817d7476f0c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_ST</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga9d29956b02e8dd43b53fa1b6a790d0dd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_OSC</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga88fc29fc10bdffca1da4949f694457f0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_PM</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga7efc1dc7010cabc4c7533ebec54cc721</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_APC</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga22af3e339b04871ed2f8ccc6a95b8d24</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -18755,6 +21507,7 @@
     <filename>io_8h.html</filename>
     <includes id="libccc_8h" name="libccc.h" local="yes" imported="no">libccc.h</includes>
     <includes id="color_8h" name="color.h" local="yes" imported="no">libccc/color.h</includes>
+    <includes id="ansi_8h" name="ansi.h" local="yes" imported="no">libccc/sys/ansi.h</includes>
     <member kind="define">
       <type>#define</type>
       <name>STDIN</name>
@@ -18921,447 +21674,6 @@
       <name>OPEN_APPEND</name>
       <anchorfile>io_8h.html</anchorfile>
       <anchor>a441566601cc7ef51cd5db5a78f09392e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_RESET</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>ac81982784d97338b81fd2a54340c0b00</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_TEXT_BOLD</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a7f5db861561bbf42955a6c7bd71217db</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_TEXT_DIM</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>af87c42a02a9a3e583e69a0441113d3bb</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_TEXT_3</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>aa9ed6a09ed0d99f8a3f45c2fa65678fa</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_TEXT_UNDERLINE</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>ad40552cab717addecf66999f34f80bf2</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_TEXT_BLINK</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a80dc8605510ddddb6bc5bc14f4dfdd6c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_TEXT_6</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>adb7d3a0999cd525b1468fe9c8127a9df</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_TEXT_INVERTED</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a00ebfe98e47c1dc3c295d415ef43c41e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_TEXT_HIDDEN</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>ab91d5b05972e1cd3ac476bc29288172a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_TEXT_9</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a7b80a64dd49aec55705d42e7cd2ac95c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_TEXT_RESET_BOLD</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>ad99ff5aa24729220c2dbd175ff6d1369</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_TEXT_RESET_DIM</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>aabbcaa0a97883c57081e6217ea2a6782</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_TEXT_RESET_3</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>acc133b9612777ae9259ca0e827c6016e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_TEXT_RESET_UNDERLINE</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a81de1ccbf55802dc11f2a8881d46a9eb</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_TEXT_RESET_BLINK</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a72d589c7ed30e1a5ae19d0302909c041</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_TEXT_RESET_6</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a9bc27fef31f6958819891c3453c48f4e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_TEXT_RESET_INVERTED</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>af80735fb21078a1e8095a22597092bd7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_TEXT_RESET_HIDDEN</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a7829681d1d0e19f7799c44e08a7cd1ca</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_TEXT_RESET_9</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a8012b614be13a98f69cdcb5139766b78</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_COLOR_FG_BLACK</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a178f7bd8aa2cb39a74171b24c3903bfa</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_COLOR_FG_GRAY_DARK</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>af67ea146996f28af24a8aaddbc184fca</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_COLOR_FG_RED</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a125e9c08fc48d2310a501e50ca37f2fa</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_COLOR_FG_RED_LIGHT</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a703126f7e6a44f57f0bcfe6a09a10cbb</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_COLOR_FG_GREEN</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a4d8d738ec5d9c427efe7bec0310b1319</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_COLOR_FG_GREEN_LIGHT</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a5f92baa1e553d33cfae382b27d879eb0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_COLOR_FG_YELLOW</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a58c62fd3af7786a9efcbfa52befd3fed</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_COLOR_FG_YELLOW_LIGHT</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a28945d6daca1a432d3593ea5c2aebfda</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_COLOR_FG_BLUE</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a173eac0768a62c09355ac69fab4ce0a2</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_COLOR_FG_BLUE_LIGHT</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a23dfaaf54af97d31903ffaaa0ba309bc</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_COLOR_FG_MAGENTA</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a9863906924996123d989e3beeef17d1f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_COLOR_FG_MAGENTA_LIGHT</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a3206c160f2f866269b2f6cabf0aeec9e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_COLOR_FG_CYAN</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a7f78b280ecb7a8917f7a980746a081d6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_COLOR_FG_CYAN_LIGHT</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>abf7bcf19360b7e1922f8084ef0154288</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_COLOR_FG_GRAY_LIGHT</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>ad24c920ee4123d7133f44986918aefea</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_COLOR_FG_WHITE</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>afd04a2ff549eb5bbfc5f994e888f26bb</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_COLOR_FG</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a8413d8cc0d4c8cf11da67ff344b8654b</anchor>
-      <arglist>(CODE)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_COLOR_FG_DEFAULT</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a162176136345f256f233e0ddd1c7a577</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_COLOR_BG_BLACK</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a0e6d9102bb7d8733d9739f058900564d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_COLOR_BG_RED</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a0b6883cee7f145ec92c3cef386b59227</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_COLOR_BG_GREEN</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a04a659076f0b262e571ea4f3e6932352</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_COLOR_BG_YELLOW</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a812ddb5d9d841a57bc58f7e645dcbcce</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_COLOR_BG_BLUE</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a250067e14725f2eceb20cc6bfd89e44b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_COLOR_BG_MAGENTA</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a0f7a4372b3e38a8f6ecc042d6cec4251</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_COLOR_BG_CYAN</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>ae249ef98b992636b843487172db9cda5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_COLOR_BG_GRAY_LIGHT</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a312aa1c2d18fd6847c6d88e8c153092a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_COLOR_BG_GRAY_DARK</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a61b2d3daade64b5710ad3a06140cb8b8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_COLOR_BG_RED_LIGHT</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a77a6fd84024c9bbbd7d8207982a0e656</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_COLOR_BG_GREEN_LIGHT</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>ad4354070e7d86b4c188240d7732476e0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_COLOR_BG_YELLOW_LIGHT</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a0c3f4ea8f414d50f8ae47bcd6d518df0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_COLOR_BG_BLUE_LIGHT</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a5b6408b036db61a28f078d512abab9b3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_COLOR_BG_MAGENTA_LIGHT</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>ac65a56f4fef3909ab32fdf2b14be0e20</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_COLOR_BG_CYAN_LIGHT</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a83394539e8364d9e4fda0ef261f5c74c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_COLOR_BG_WHITE</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>affee69c7b797736581c06ccc7ea76fd6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_COLOR_BG</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>ac4646fea5fac91e728c8b4d651b58216</anchor>
-      <arglist>(CODE)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>IO_COLOR_BG_DEFAULT</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a5766144a8d48ffe3bbdd0c8e3973df52</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>__COLORS__</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a99c413bd7850a5846aa19b4a0f58caf0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>C_RED</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a7adb9aaa1eed15caecd92e3837581b53</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>C_GREEN</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a448d973f9ee30250ec93e600f5d89ed1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>C_YELLOW</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a7749aa942f59b07d1e951066e0aeca73</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>C_BLUE</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a2e4dd0b4af70107f36c2aa60b1195f01</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>C_MAGENTA</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a47da0a04e6c59fa061f60d36c10d9561</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>C_CYAN</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>a8318e037c99fbf82089b68ba5d603cd0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>C_RESET</name>
-      <anchorfile>io_8h.html</anchorfile>
-      <anchor>af0c29bd95cece6791c62c52e8d2f6335</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -20555,6 +22867,13 @@
       <arglist>(t_io_mode, IO_MODE, PRIMITIVE) typedef unsigned int t_io_open</arglist>
     </member>
     <member kind="function">
+      <type></type>
+      <name>TYPEDEF_ALIAS</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gabe496cba1598162ae4df80f6ef6e6d27</anchor>
+      <arglist>(t_io_open, IO_OPEN, PRIMITIVE) t_char *IO_GetError(int error_num)</arglist>
+    </member>
+    <member kind="function">
       <type>t_u8</type>
       <name>IO_GetColor</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
@@ -20572,8 +22891,8 @@
       <type>t_fd</type>
       <name>IO_Open</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga0e5658c988abe6f1a2cd1f2e8db2c45b</anchor>
-      <arglist>(char const *filepath, t_io_open flags, t_io_mode mode)</arglist>
+      <anchor>gaf136dc6f4188fab5273c9d9d3ee12f6c</anchor>
+      <arglist>(t_char const *filepath, t_io_open flags, t_io_mode mode)</arglist>
     </member>
     <member kind="function">
       <type>t_io_error</type>
@@ -20586,29 +22905,29 @@
       <type>t_io_error</type>
       <name>IO_ChangeMode</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>gafe190a37e94f983828af8b519d7398fd</anchor>
-      <arglist>(char const *filepath, t_io_mode mode)</arglist>
+      <anchor>gaf03e2e8959468d7face549b5d1e22fe9</anchor>
+      <arglist>(t_char const *filepath, t_io_mode mode)</arglist>
     </member>
     <member kind="function">
       <type>t_sintmax</type>
       <name>IO_Read_File</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>gaa9b85d6c42cb57eb69dee7d4aaaeb5dc</anchor>
-      <arglist>(t_fd const fd, char **a_file, t_size max)</arglist>
+      <anchor>ga5fee849bbf5e5b3709925b22538d6c6a</anchor>
+      <arglist>(t_fd const fd, t_char **a_file, t_size max)</arglist>
     </member>
     <member kind="function">
       <type>t_sintmax</type>
       <name>IO_Read_Lines</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>gad58edc3f234e99419b30761256297004</anchor>
-      <arglist>(t_fd const fd, char ***a_strarr)</arglist>
+      <anchor>ga238d65185cda7c848e8e0f12e08f5df7</anchor>
+      <arglist>(t_fd const fd, t_char ***a_strarr)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>IO_Read_NextLine</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>gaa2cbff7a0b811b61ada60d474f10389b</anchor>
-      <arglist>(t_fd const fd, char **a_line)</arglist>
+      <anchor>ga8f47eeb02006f4e4849051857b0e8558</anchor>
+      <arglist>(t_fd const fd, t_char **a_line)</arglist>
     </member>
     <member kind="function">
       <type>t_io_error</type>
@@ -20621,22 +22940,22 @@
       <type>t_io_error</type>
       <name>IO_Write_String</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga9df9845170ac155e84710f15220c8d55</anchor>
-      <arglist>(t_fd fd, char const *str)</arglist>
+      <anchor>gafd0eb6211887c0ea68b00c0258caf3df</anchor>
+      <arglist>(t_fd fd, t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_io_error</type>
       <name>IO_Write_Line</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>gac2e9bd89325c5b2e40af643d2a457e60</anchor>
-      <arglist>(t_fd fd, char const *str)</arglist>
+      <anchor>ga5629e4fafcfbc76c1cfeda315567b014</anchor>
+      <arglist>(t_fd fd, t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_io_error</type>
       <name>IO_Write_Lines</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga2ac9a105d816c272151afc8d390c7791</anchor>
-      <arglist>(t_fd fd, char const **strarr)</arglist>
+      <anchor>ga7055de963d7412d65a2088ed15d57050</anchor>
+      <arglist>(t_fd fd, t_char const **strarr)</arglist>
     </member>
     <member kind="function">
       <type>t_io_error</type>
@@ -20663,22 +22982,22 @@
       <type>t_io_error</type>
       <name>IO_Output_String</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga856b38e0e3361a06a03d10fd5ddad3c7</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga16540e2ca439345eb9331a5ffdb36cdc</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_io_error</type>
       <name>IO_Output_Line</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga8ae2e736e905519feb2531150b77ddc7</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga45bf689dfd3ed48788beb73db1d07b1c</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_io_error</type>
       <name>IO_Output_Lines</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>gaa2e30e079fa01808c7e4b33ebb897634</anchor>
-      <arglist>(char const **strarr)</arglist>
+      <anchor>ga6dc0349c37fc02b6e5fb67ccb3d1ec2e</anchor>
+      <arglist>(t_char const **strarr)</arglist>
     </member>
     <member kind="function">
       <type>t_io_error</type>
@@ -20691,14 +23010,14 @@
       <type></type>
       <name>_FORMAT</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>gacabeced6f69dc3416b85f632838443b4</anchor>
-      <arglist>(printf, 1, 2) t_io_error IO_Output_Format(char const *format</arglist>
+      <anchor>gaacde33e9816678279cec924346068e97</anchor>
+      <arglist>(printf, 1, 2) t_io_error IO_Output_Format(t_char const *format</arglist>
     </member>
     <member kind="variable">
-      <type>char const  *</type>
+      <type>t_char const  *</type>
       <name>format</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga99b08c3c556b2224d7d4151e419dc705</anchor>
+      <anchor>gad7d82bd55fd8770b77633b4f9be42fda</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -21065,10 +23384,10 @@
       <arglist>(s_logger *a_logger)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Logger_GetSettings</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>gabd8bc35c3ab587ba3f835b6ece680169</anchor>
+      <anchor>ga60353d6511c9187e8e67f8ea745e1818</anchor>
       <arglist>(s_logger const *logger)</arglist>
     </member>
     <member kind="function">
@@ -21079,10 +23398,10 @@
       <arglist>(s_logger const *logger)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Logger_GetTimestamp</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>gab2442acaacf840c543dceab176ced215</anchor>
+      <anchor>ga0484d28f9aca85887668d5d4fb735810</anchor>
       <arglist>(t_time utc)</arglist>
     </member>
     <member kind="function">
@@ -21096,15 +23415,15 @@
       <type>t_io_error</type>
       <name>Log_VA</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga7267ae5db21545c5c236983f7b782ab2</anchor>
-      <arglist>(s_logger const *logger, t_bool verbose_only, t_bool use_errno, int is_error, char const *prefix, char const *prefix_color, char const *format_str, va_list args)</arglist>
+      <anchor>gadd5c2424bfeb96305aedcc53d57e4f65</anchor>
+      <arglist>(s_logger const *logger, t_bool verbose_only, t_bool use_errno, int is_error, t_char const *prefix, t_char const *prefix_color, t_char const *format_str, va_list args)</arglist>
     </member>
     <member kind="function">
       <type>t_io_error</type>
       <name>Log_Fatal</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga75c08f07fd62d7126edea4a389c19d5c</anchor>
-      <arglist>(s_logger const *logger, char const *str)</arglist>
+      <anchor>ga707d7ec5f9ab1222fba7fed453ca42f0</anchor>
+      <arglist>(s_logger const *logger, t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -21142,10 +23461,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>t_bool t_bool t_bool char const  *</type>
+      <type>t_bool t_bool t_bool t_char const  *</type>
       <name>format_str</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga84d6895f1edcd60ae567d4a3146ef3fb</anchor>
+      <anchor>ga2ad916d56c61d67f0714d394f6d5aad6</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -21177,9 +23496,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>TIMESPEC_NULL</name>
+      <name>NANOTIME_NULL</name>
       <anchorfile>time_8h.html</anchorfile>
-      <anchor>a2661eebcd8248b6e35a1f8aecc89a4aa</anchor>
+      <anchor>a6ddbf1a67282143d7090eaf7b6c783ef</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -21345,58 +23664,65 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>TIMEZONE_EST</name>
+      <name>TIMEZONE_NA_EST</name>
       <anchorfile>time_8h.html</anchorfile>
-      <anchor>a65c08746b86898b7790f4fb153466fe9</anchor>
+      <anchor>ac7cef978fbc76a1db7fc49d463da0a2c</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>TIMEZONE_CST</name>
+      <name>TIMEZONE_NA_CST</name>
       <anchorfile>time_8h.html</anchorfile>
-      <anchor>ad168fc658960a6ada24a0ea47d854418</anchor>
+      <anchor>aa7212852cb673b9d0e6cf2cdaf1245a2</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>TIMEZONE_MST</name>
+      <name>TIMEZONE_NA_MST</name>
       <anchorfile>time_8h.html</anchorfile>
-      <anchor>a998ff23a82ebd2843797e7c99de745f8</anchor>
+      <anchor>af2de069c5bbee4c1f2db4e72682c7e57</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>TIMEZONE_PST</name>
+      <name>TIMEZONE_NA_PST</name>
       <anchorfile>time_8h.html</anchorfile>
-      <anchor>af93fbb2121097f5e803f167c3570aef4</anchor>
+      <anchor>a8cb87ac19f2d2d4111e18faad018937b</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>TIMEZONE_EDT</name>
+      <name>TIMEZONE_NA_EDT</name>
       <anchorfile>time_8h.html</anchorfile>
-      <anchor>a8a227e41f4ed3e39bf72565e37a7be46</anchor>
+      <anchor>ad56f8e9b3229d6b73b4ef9f633500e4a</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>TIMEZONE_CDT</name>
+      <name>TIMEZONE_NA_CDT</name>
       <anchorfile>time_8h.html</anchorfile>
-      <anchor>a9a037e8e94048101e4588129cdddc01a</anchor>
+      <anchor>a1bcbe1d2b2bbb270d63b84e84a4599b6</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>TIMEZONE_MDT</name>
+      <name>TIMEZONE_NA_MDT</name>
       <anchorfile>time_8h.html</anchorfile>
-      <anchor>af13155bfc343d9ed5ca39be4a4f1caca</anchor>
+      <anchor>adaffc15f00b92d436d2fd37b4b2c5fb5</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>TIMEZONE_PDT</name>
+      <name>TIMEZONE_NA_PDT</name>
       <anchorfile>time_8h.html</anchorfile>
-      <anchor>ab41154013703d1af31793e59be995091</anchor>
+      <anchor>a7dd3d47bbc1e8a641bcd8f90ba1ddd15</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>TIMEZONE_HAS_DST</name>
+      <anchorfile>time_8h.html</anchorfile>
+      <anchor>a890b3a271dfbf221de82996b6bd6f12e</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -21408,6 +23734,48 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>TIME_MAX_SECONDS</name>
+      <anchorfile>time_8h.html</anchorfile>
+      <anchor>a9a0709759eb749dab54cb48dc049b26c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>TIME_MAX_SECONDS_LEAP</name>
+      <anchorfile>time_8h.html</anchorfile>
+      <anchor>a0047701e6a6987cb649fde50b7a8b1ab</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>TIME_MAX_MINUTES</name>
+      <anchorfile>time_8h.html</anchorfile>
+      <anchor>a2a1fc19918bce8a077c28378586e5f03</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>TIME_MAX_HOURS</name>
+      <anchorfile>time_8h.html</anchorfile>
+      <anchor>a8c7938426d1ca5f4df51c2e51686d12d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>TIME_MAX_DAYS_YEAR</name>
+      <anchorfile>time_8h.html</anchorfile>
+      <anchor>a7aadda422ceafd660a39db68a9b5e33c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>TIME_MAX_DAYS_YEAR_LEAP</name>
+      <anchorfile>time_8h.html</anchorfile>
+      <anchor>a41c5a8747e22ae414af8dffcc7d9c6f1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>FORMAT_TIME_UNIX</name>
       <anchorfile>time_8h.html</anchorfile>
       <anchor>a73482b8ca273eb61616e4c5ab37a3f99</anchor>
@@ -21415,9 +23783,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_TIME_PRIME</name>
+      <name>FORMAT_TIME_DURATION</name>
       <anchorfile>time_8h.html</anchorfile>
-      <anchor>aba3c62a8515922fcd0fe8dbc11096b72</anchor>
+      <anchor>ad8c23fbaa5ea5c9d9e3b12769cc2392c</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -21450,55 +23818,6 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>TIME_MAX_SECONDS</name>
-      <anchorfile>time_8h.html</anchorfile>
-      <anchor>a9a0709759eb749dab54cb48dc049b26c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>TIME_MAX_MINUTES</name>
-      <anchorfile>time_8h.html</anchorfile>
-      <anchor>a2a1fc19918bce8a077c28378586e5f03</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>TIME_MAX_HOURS</name>
-      <anchorfile>time_8h.html</anchorfile>
-      <anchor>a8c7938426d1ca5f4df51c2e51686d12d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>TIME_MAX_DAYS_MONTH</name>
-      <anchorfile>time_8h.html</anchorfile>
-      <anchor>a7d0966e83897b110a4268f93fecd6d65</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>TIME_MAX_DAYS_YEAR</name>
-      <anchorfile>time_8h.html</anchorfile>
-      <anchor>a7aadda422ceafd660a39db68a9b5e33c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>TIME_MAX_LEAP_SECONDS</name>
-      <anchorfile>time_8h.html</anchorfile>
-      <anchor>a332b2d6e7d706faa08fbd558c41dbfd5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>TIME_MAX_LEAP_DAYS_YEAR</name>
-      <anchorfile>time_8h.html</anchorfile>
-      <anchor>a5f3e5803af9054e5e7b0d87623d8cb55</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
       <name>c_time</name>
       <anchorfile>group__libccc__sys__time.html</anchorfile>
       <anchor>ga63b4590db5463149715523abae8d102b</anchor>
@@ -21513,20 +23832,6 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_time_to_date</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga7f3e0fc957a79ed49d3227d49d89f5a7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_time_to_date_utc</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga47ffa323a3db8cbee54911dde9f96934</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
       <name>Time_ToDate</name>
       <anchorfile>group__libccc__sys__time.html</anchorfile>
       <anchor>gab91f2f570dd49ab55c1a84f1109024d1</anchor>
@@ -21534,37 +23839,65 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_time_to_date_local</name>
+      <name>c_timetodate</name>
       <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga8a18bcc319ec2590e82dd8f6a7f34f6f</anchor>
+      <anchor>gac964e01a05e70e683c9100de32b4dd1f</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_timespec_to_stdc</name>
+      <name>c_gmtime</name>
       <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>gaf737de37d14bc804b436cfbc1909d8b8</anchor>
+      <anchor>gae56bf66d5e11bc31ee73c33d04afa04e</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_stdc_to_timespec</name>
+      <name>c_timetodate_utc</name>
       <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>gac58a4b845ed592d47eea8ebae41b373f</anchor>
+      <anchor>gaf7807d8fd29cc691d57126085bb65536</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_time_tzset</name>
+      <name>c_localtime</name>
       <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga31564ce92d5010cae41c4a9ce8d071cd</anchor>
+      <anchor>gaaa442f8a4cc650d7e9fd66edc808a851</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_date_tzset</name>
+      <name>c_timetodate_local</name>
       <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga732137fc55236097e3f07248219faf51</anchor>
+      <anchor>ga01f1e6666a8cf991a2f50c17c82e39c8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_nanotimetostdc</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga50c53d78869526e79bfdff315e8658f7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_nanotimetotimespec</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gae3add01c9a05e038dce2f1d0737f18af</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_stdctonanotime</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga3e443262e312ff7d13ffef98baccc1ae</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_timespectonanotime</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga216ee516df9d4935b2e60903745349c8</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -21576,100 +23909,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_date_now</name>
+      <name>c_datenow</name>
       <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga0360e62205ddb09e525286f7a75e9691</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_strptime</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga619b9cdfda6b778d795c3680237c21ff</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_date_parse</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga2592d56736674accdc127005a8d15a94</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Date_Parse</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga5802069577b063f87a158a5646ed4aa7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Date_ParseString</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga5ffa2f82887b0858ceb698d95be28aac</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_date_format</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>gaed3084aad516f3f69aed51623243fad6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Date_Format</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga08b037c82c22424ea815cbdb91ca6d06</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Date_FormatString</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>gadcb11c2d073f9d8a355263a0b31fd454</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_strftime</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>gafe5c04a1300cd9fc46936f28212a9eb9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_date_format_n</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga0791e0cc1ac73f34e1a7555b49693dab</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Date_Format_N</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>gab7e7d94d94f2a7ba6eb9cd8b4b3231ef</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Date_FormatString_N</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>gaa32aec4525b424d844f6b9660c726105</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_date_to_time</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga5d4c117ff0dfbe6ebaa2a23b6e3d4d65</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_date_to_time_utc</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga79d1ab3e627d340e4e79e2d2380ba559</anchor>
+      <anchor>gabd5566f8361c2bdd583b9cb6b465a95a</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -21681,23 +23923,212 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_date_to_time_local</name>
+      <name>c_datetotime</name>
       <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>gae8bb2bd00e913c84f3f7214e4df61d31</anchor>
+      <anchor>gac05c768f021860c861942ad3c4359b29</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_date_to_stdc</name>
+      <name>c_datetotime_utc</name>
       <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga7d3e63ee7f2845eeacc1e27c5eef5bcf</anchor>
+      <anchor>ga8e1a98dd441d07318fc5b3f86ec9a5b0</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_stdc_to_date</name>
+      <name>c_mktime</name>
       <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga7dce551729fce42e5e10e1538863b20d</anchor>
+      <anchor>gad771236dc4cba971a57b093a01b1b453</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_datetotime_local</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gaae74c440be66c51bf17e680abee50239</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_datetostdc</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga1dbf4095119c0936716008a6c7dc012c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_stdctodate</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga91c5916086e033719f554cb41ad19323</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strtodate</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gaeb21555fa2776f719a2c10c2ebb194ef</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_dateparse</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga91136b411e05bb2e64affa520bac7923</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Date_FromString</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga0afe1b4a4b45f52f500125ccf091f5ba</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strptime</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga619b9cdfda6b778d795c3680237c21ff</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strtodatemin</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gac1e02ecd62794a5b95ce53f5ff0efa0b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_dateparsemin</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga5d2b6cc6dc0c2da729402a0113d3e199</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Date_FromString_N</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gae3fe07dfc8779373cb5051d78b038694</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strstodate</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga2405324146ac9fee7ec9305022221a67</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_dateparses</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga21cb6a595262748fdafca8a4382ba343</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Date_FromStringStrict</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga1f6489a7a9f17101f104a4031ad67893</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strsptime</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gad6515cb03a69c33114ab429bee77dad8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strstodatemin</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga4dfd5204584b6e09f6d49d69350ec2ed</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_dateparsesmin</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga1c2624bde258d6060ee48dfa6d199368</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Date_FromStringStrict_N</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gaae9f8eb09db06ce3dc832b1b194211b1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strftime</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gafe5c04a1300cd9fc46936f28212a9eb9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_datetostr</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gaad21adbbe485b52a54b12c138546a067</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_datefmt</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga82d6babd600269f6f5bf211149f44744</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Date_Format</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga08b037c82c22424ea815cbdb91ca6d06</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Date_ToString</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga738eb532f0e41a03dc90b1474b3a1f24</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strnftime</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga6373235e8a1e73e2a1dc014a3f246be8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_datetostrn</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gaf2be0d5ebb5041eea25c793bdbe29842</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_datefmtn</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gaaf74be32c26c37fa9861a88d5fc45f98</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Date_Format_N</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gab7e7d94d94f2a7ba6eb9cd8b4b3231ef</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Date_ToString_N</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga6e64af4aad87218836604f2a4890640d</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
@@ -21715,10 +24146,10 @@
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>t_sint</type>
+      <type>t_s32</type>
       <name>t_timezone</name>
       <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga27d157f4fc1761ff865663ec41bc6945</anchor>
+      <anchor>gae8397c8d2b0b3ef713932c8416adb054</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumeration">
@@ -21824,15 +24255,15 @@
       <type></type>
       <name>TYPEDEF_ALIAS</name>
       <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>gad1f6b21a1f84e6f22334b7ae41dec4c6</anchor>
-      <arglist>(e_weekday, WEEKDAY, ENUM) extern char const *const g_weekday[ENUMLENGTH_WEEKDAY]</arglist>
+      <anchor>ga0c7c752f027adf5f235b16123ef9eeb0</anchor>
+      <arglist>(e_weekday, WEEKDAY, ENUM) extern t_char const *const g_weekday[ENUMLENGTH_WEEKDAY]</arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>TYPEDEF_ALIAS</name>
       <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>gac213b230eaccac3270d80ca042301ea9</anchor>
-      <arglist>(e_month, MONTH, ENUM) extern char const *const g_month[ENUMLENGTH_MONTH]</arglist>
+      <anchor>ga6abf048e76527cd86295c60bf958156f</anchor>
+      <arglist>(e_month, MONTH, ENUM) extern t_char const *const g_month[ENUMLENGTH_MONTH]</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -21840,13 +24271,6 @@
       <anchorfile>group__libccc__sys__time.html</anchorfile>
       <anchor>ga11049dffdf5bdb43a1086cd92b0c2dd7</anchor>
       <arglist>(t_timezone, TIMEZONE, PRIMITIVE) typedef struct date</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga52e7fac3cdb3bb48bbe54ebec55d6335</anchor>
-      <arglist>(s_date, TIME_DATE, STRUCT) t_time Time_Now(void)</arglist>
     </member>
     <member kind="function">
       <type>s_date</type>
@@ -21864,31 +24288,17 @@
     </member>
     <member kind="function">
       <type>struct timespec</type>
-      <name>Timespec_ToSTDC</name>
+      <name>NanoTime_ToSTDC</name>
       <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>gaaf992ca6fb2330dd2bb54ec61ac9b30d</anchor>
+      <anchor>ga061eb5ca87b43128db617763ba2fa525</anchor>
       <arglist>(s_nanotime const *value)</arglist>
     </member>
     <member kind="function">
       <type>s_nanotime</type>
-      <name>Timespec_FromSTDC</name>
+      <name>NanoTime_FromSTDC</name>
       <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>gade63a20681db779c9cec6f7bcb3e99fd</anchor>
+      <anchor>ga8b18cb000bfff2fb1f2e3836c59ed060</anchor>
       <arglist>(struct timespec const *value)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_time</type>
-      <name>Time_SetTimezone</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga5be9da6d4842ea46c1714d017d906c82</anchor>
-      <arglist>(t_time value, t_timezone old, t_timezone new)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_date</type>
-      <name>Date_SetTimezone</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga8fe171c183c6be39f24736368e09cb9d</anchor>
-      <arglist>(s_date const *value, t_timezone old, t_timezone new)</arglist>
     </member>
     <member kind="function">
       <type>s_date</type>
@@ -21896,27 +24306,6 @@
       <anchorfile>group__libccc__sys__time.html</anchorfile>
       <anchor>ga847f2c5faa65c35636363158531b8528</anchor>
       <arglist>(void)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_date</type>
-      <name>Date_FromString</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga9491e5baedba6b92fe8d713b85b25b00</anchor>
-      <arglist>(char const *str, char const *format)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>_FORMAT</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga178db19436eb930bf8bb8f8bc2340c2c</anchor>
-      <arglist>(strftime, 2, 0) char *Date_ToString(s_date const *date</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>_FORMAT</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga521ed6e8fbb886bea5ca980462e8d96e</anchor>
-      <arglist>(strftime, 4, 0) t_size Date_ToString_N(char *dest</arglist>
     </member>
     <member kind="function">
       <type>t_time</type>
@@ -21946,6 +24335,90 @@
       <anchor>ga80cb2a3053c151d53fe94abdb4ee37a5</anchor>
       <arglist>(struct tm const *value)</arglist>
     </member>
+    <member kind="function">
+      <type>s_date</type>
+      <name>Date_Parse</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga0f2e45d062d5f50e7c467ee577d005de</anchor>
+      <arglist>(t_char const *str, t_char const *format)</arglist>
+    </member>
+    <member kind="function">
+      <type>s_date</type>
+      <name>Date_Parse_Min</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gaa9007e41191d2bba4aa512fb34b965c2</anchor>
+      <arglist>(t_char const *str, t_char const *format)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_size</type>
+      <name>Date_Parse_Strict</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gaf058167f9fe76f68ecbfb9e43791c90c</anchor>
+      <arglist>(s_date *dest, t_char const *str, t_char const *format)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_size</type>
+      <name>Date_Parse_Strict_Min</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gaacef46d2002c23a872e829b1de2df5a9</anchor>
+      <arglist>(s_date *dest, t_char const *str, t_char const *format)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>_FORMAT</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga2ac3b876627131495134f9d5458e626a</anchor>
+      <arglist>(strftime, 2, 0) t_char *Date_Print(s_date const *date</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>_FORMAT</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga965396332dddc2184e2d0ee528b6069c</anchor>
+      <arglist>(strftime, 4, 0) t_size Date_Print_N(t_char *dest</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>Date_IsValid</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga95ee00444c61a02a2d44cb73f72daf2d</anchor>
+      <arglist>(s_date const *date)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Date_MakeValid</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gaf88ae658c775e4dc0a702f8be84a4268</anchor>
+      <arglist>(s_date *date)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_uint</type>
+      <name>Date_DaysInMonth</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga547a710e39a0f00545423a69f67fe434</anchor>
+      <arglist>(e_month month, t_s32 year)</arglist>
+    </member>
+    <member kind="function">
+      <type>e_weekday</type>
+      <name>Date_DayOfTheWeek</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gac42a6731de83f35bc7fdec58d125d657</anchor>
+      <arglist>(s_date *date)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>Date_IsLeapYear</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gacd7705e6e2d4de738faf504ce5c64e5c</anchor>
+      <arglist>(t_s32 year)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>Date_HasLeapSecond</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gab2d23a3e008ae71a492badd697bedec4</anchor>
+      <arglist>(e_month month, t_s32 year)</arglist>
+    </member>
     <member kind="variable">
       <type></type>
       <name>s_nanotime</name>
@@ -21961,17 +24434,17 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>char const  *const</type>
+      <type>t_char const  *const</type>
       <name>g_weekday_abbreviated</name>
       <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>gada53cfe21fed2fac2cad871b86c40241</anchor>
+      <anchor>ga9aa7d9d670c95d8f202b8c09aa35e841</anchor>
       <arglist>[ENUMLENGTH_WEEKDAY]</arglist>
     </member>
     <member kind="variable">
-      <type>char const  *const</type>
+      <type>t_char const  *const</type>
       <name>g_month_abbreviated</name>
       <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga08cfd3d67f32b4ed901ed8225139b9fb</anchor>
+      <anchor>ga25d1e2d81e2c95af79b3d6c5dd5c7ae2</anchor>
       <arglist>[ENUMLENGTH_MONTH]</arglist>
     </member>
     <member kind="variable">
@@ -21982,10 +24455,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>char const  *</type>
+      <type>t_char const  *</type>
       <name>format</name>
       <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>gabfb8acae7467be409df97851b76c0a61</anchor>
+      <anchor>ga0715f46417453569413117f20a8f7f87</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -22000,6 +24473,654 @@
       <name>date</name>
       <anchorfile>group__libccc__sys__time.html</anchorfile>
       <anchor>gad384c7946d90652105884162ebe431ab</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>unicode.h</name>
+    <path>D:/Lexou/Projects/C/libccc/hdr/libccc/sys/</path>
+    <filename>unicode_8h.html</filename>
+    <includes id="libccc__config_8h" name="libccc_config.h" local="yes" imported="no">libccc_config.h</includes>
+    <includes id="libccc__define_8h" name="libccc_define.h" local="yes" imported="no">libccc_define.h</includes>
+    <includes id="bool_8h" name="bool.h" local="yes" imported="no">libccc/bool.h</includes>
+    <includes id="int_8h" name="int.h" local="yes" imported="no">libccc/int.h</includes>
+    <includes id="pointer_8h" name="pointer.h" local="yes" imported="no">libccc/pointer.h</includes>
+    <includes id="ascii_8h" name="ascii.h" local="yes" imported="no">libccc/sys/ascii.h</includes>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wcisalpha</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga5bc951d3cc2d83af282cc2b144c495dc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF32_IsAlpha</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga5e357c6e2c57b92cc802d0e41655f6ac</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wcisupper</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gae11a1bd6f2e7c5911cf5261b0cf652d6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF32_IsUpper</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga01195687ebc5a0badd7718f57805f306</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wcislower</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gabfe4c4f1af70d6e514eca968b9e32f1d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF32_IsLower</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga8cca23b0095142741a4f68fd546e6df3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wcisalnum</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gac431221041a3caf0ab44aad2d9b8f40d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF32_IsAlNum</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gad8e1098f3d69c94d07a0019aadfdd148</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wcisdigit</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gab8f9fef2af88cd422aaa242a012601b8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF32_IsDigit</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga7ae3a8faf77021944b7e95411182c039</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF32_IsDigit_Dec</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga3ae723162b03ea6de80eec6fa33a362f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wcisxdigit</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga38ef3fdb4e54653e28ee076f5dcf81d0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF32_IsDigit_Hex</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gaf59af4c382524b4ffa8224547c627e10</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wcisodigit</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gab665da98968cfadafbf75044c938713c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF32_IsDigit_Oct</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga42dafc348c3baac0bd9f7e71178df6e5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wcisbdigit</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga321d8f7dd212e063165adf661d31a5cf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF32_IsDigit_Bin</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga9b3f3a8d81c556a7270e2466973f3a10</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wcisspace</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga97494f21c7f8bf3e9d099b48f2338d6e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF32_IsSpace</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga7731e4836a8e87051d28433498054204</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wcispunct</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga2ab302b1f3bdc2f83fdf46862f59d837</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF32_IsPunct</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga97bc287a24201e3e023efd09182b8cb2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wcisprint</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gaf725a61024ccd3688916b78debcfd668</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF32_IsPrint</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga1e03e318ffb74b78f20d251434593e83</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wcisascii</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga9553fd30e4e75d966ce39fc24aa76135</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wcisvalid</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga02fc25521d65a150b1fb28f65f04f4bb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wcincharset</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gafa798cf69001db73c10f32dda5cd8d1e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Unicode_IsInCharset</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga1b9143e8aece9e9bcf19a2b21f7b735b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wctoupper</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga2e2796848855bffd20f90f3bd339508a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF32_ToUpper</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga045fcce75d6bf0941195b36ddac894df</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wctolower</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga5c9a4329f6227a53b62da6096b07d594</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF32_ToLower</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga13bebd16ca2e01ac6c4fc4ea02394ce0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wctomb</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga11a4035f4b26504d7e68717610922e97</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wctoutf8</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga9a70526ef21927c9818e267ed113ef6a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wctomb2</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga913b614e45468119309db47e9555b62a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wctoutf16</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga042d59c70304ef0b922d7b94526fee2b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_mbtowc</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gae1c3679e55126b5b81acc2e7cbc6a5ed</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_utf8towc</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga75c6adc27a127e211fbd2917facd3433</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_mb2towc</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga2413992c60b9ac17ae4a498cda484988</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_utf16towc</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga0d438f06415b49d107a9e89f8c72457b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wcparse</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga4e9e177a29a78cbaa7376b73196e7bed</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wcnparse</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gaab4e845f4e03ec982afb15351cc182d2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF8_1BYTE</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga50d2a13d8f4c59c57b6695ae5c22cee6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF8_2BYTE</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga2baa66668146e03d562a28e755ba3459</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF8_3BYTE</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga293f85cd3e5cc7d9d75c4848b72b1b51</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF8_4BYTE</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga7dd95e691c11be941f57c7a80a3d29d3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF16_BIAS</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gabb6128d8c5b2c7358f6137a9fada1287</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF16_SURROGATE_HI</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gac7bf9023b8944a8e742ac735a0af57cc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF16_SURROGATE_LO</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga58c614019a92a7b4f65b69dfaff1bcd9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF16_SURROGATE_END</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gaef0a4e2356ca8b88995286df8f7dc91c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF16_SURROGATE_MASK</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gac84779a3b5fd21648c256773f73485b4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF8_BOM</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga1298449aa3d5122f10caea0eb0cefae6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF16_BOM_BE</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gaca1d5c6e1645f52ed688e7856cb81ad6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF16_BOM_LE</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga8a42a9d6009477aadc52fb410451f2bc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF32_BOM_BE</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gae8b6189017c663989616bac0e417c8c1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF32_BOM_LE</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gaefb190ab0e50eccae4a0efdfa992d182</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>UTF32_IsLetter</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gaa1cc9207c072e037e2dbd017939d02b6</anchor>
+      <arglist>(t_utf32 c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>UTF32_IsUppercase</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gaff7408b5d8984465845c0e23248ecd51</anchor>
+      <arglist>(t_utf32 c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>UTF32_IsLowercase</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gaace65a6ed66c10900665947cac7182b5</anchor>
+      <arglist>(t_utf32 c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>UTF32_IsAlphaNumeric</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga33f612fa98245d83bc867a6022e77831</anchor>
+      <arglist>(t_utf32 c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>UTF32_IsDigit_Decimal</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gaf851927e488d4b32346527e509d829b4</anchor>
+      <arglist>(t_utf32 c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>UTF32_IsDigit_Hexadecimal</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga50927286f238f0ea0037adb1774f73c7</anchor>
+      <arglist>(t_utf32 c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>UTF32_IsDigit_Octal</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gab62490e045ac3f0307840782eeb03bdd</anchor>
+      <arglist>(t_utf32 c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>UTF32_IsDigit_Binary</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gacf06716ca2acea0041caeca008b26b0e</anchor>
+      <arglist>(t_utf32 c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>UTF32_IsWhiteSpace</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gafd8ddec185da67895f0b8a7a78c50fe5</anchor>
+      <arglist>(t_utf32 c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>UTF32_IsPunctuation</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gaa8d4c6a7236a742b1edfa08c74ee4b10</anchor>
+      <arglist>(t_utf32 c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>UTF32_IsPrintable</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gac97218e9a1fbef3f6fb8ed20c1087c77</anchor>
+      <arglist>(t_utf32 c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>UTF32_IsASCII</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gaec30be40aa4e56c1ebb9b9ef66bf9343</anchor>
+      <arglist>(t_utf32 c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>UTF32_IsValid</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga0b83c47c9598c5e3ec1ffab272a3b6de</anchor>
+      <arglist>(t_utf32 c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>UTF32_IsInCharset</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga63bd40c5a1f1e8c4cfc49b6332470cfb</anchor>
+      <arglist>(t_utf32 c, t_utf32 const *charset)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_utf32</type>
+      <name>UTF32_ToUppercase</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga08fd52572368d5d7548c0d3e76eeac5e</anchor>
+      <arglist>(t_utf32 c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_utf32</type>
+      <name>UTF32_ToLowercase</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga49ea232b1c0fb0f91f1d6b68d671a664</anchor>
+      <arglist>(t_utf32 c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_size</type>
+      <name>UTF32_ToUTF8</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gadc1e9c036c5d23a92fb6e01d5067f201</anchor>
+      <arglist>(t_utf8 *dest, t_utf32 c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_size</type>
+      <name>UTF32_ToUTF16</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga3b7ae5f695c1a5f6c0d7a0aba3bd5c9b</anchor>
+      <arglist>(t_utf16 *dest, t_utf32 c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_utf32</type>
+      <name>UTF32_FromUTF8</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga3e71be1beabae276fe9ae1c3f9471631</anchor>
+      <arglist>(t_utf8 const *str)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_utf32</type>
+      <name>UTF32_FromUTF16</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gac73c580b440cc6deeac1b209311c67d3</anchor>
+      <arglist>(t_utf16 const *str)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_utf32</type>
+      <name>UTF32_Parse</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gaf6150347673e8e21abc9e3e7b635b78a</anchor>
+      <arglist>(t_ascii const *str)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_size</type>
+      <name>UTF32_Parse_N</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga9c746b86480110bc25cdd880bd86585f</anchor>
+      <arglist>(t_utf32 *dest, t_ascii const *str, t_size n)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF8_1BYTE</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga50d2a13d8f4c59c57b6695ae5c22cee6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF8_2BYTE</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga2baa66668146e03d562a28e755ba3459</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF8_3BYTE</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga293f85cd3e5cc7d9d75c4848b72b1b51</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF8_4BYTE</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga7dd95e691c11be941f57c7a80a3d29d3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF16_BIAS</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gabb6128d8c5b2c7358f6137a9fada1287</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF16_SURROGATE_HI</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gac7bf9023b8944a8e742ac735a0af57cc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF16_SURROGATE_LO</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga58c614019a92a7b4f65b69dfaff1bcd9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF16_SURROGATE_END</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gaef0a4e2356ca8b88995286df8f7dc91c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF16_SURROGATE_MASK</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gac84779a3b5fd21648c256773f73485b4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF8_BOM</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga1298449aa3d5122f10caea0eb0cefae6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF16_BOM_BE</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gaca1d5c6e1645f52ed688e7856cb81ad6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF16_BOM_LE</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga8a42a9d6009477aadc52fb410451f2bc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF32_BOM_BE</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gae8b6189017c663989616bac0e417c8c1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF32_BOM_LE</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gaefb190ab0e50eccae4a0efdfa992d182</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -22038,87 +25159,17 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>LIBCONFIG_HANDLE_NULLPOINTERS</name>
+      <name>LIBCONFIG_TYPE_CHAR</name>
       <anchorfile>group__libccc__config.html</anchorfile>
-      <anchor>ga97f207da9392f6cba9c7946bb7697a70</anchor>
+      <anchor>gab870de8d95814ae2580ca4a325ab5726</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>LIBCONFIG_HANDLE_NULLPOINTER</name>
+      <name>LIBCONFIG_NAME_CHAR</name>
       <anchorfile>group__libccc__config.html</anchorfile>
-      <anchor>gab01db91e47b667c67655404349c7a4fd</anchor>
-      <arglist>(ARG, RESULT)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_HANDLE_INVALIDENUMS</name>
-      <anchorfile>group__libccc__config.html</anchorfile>
-      <anchor>ga86545c4405931c3c34bbc6640041503e</anchor>
+      <anchor>ga0eff01019ab63e78b40e5e15b4ad0960</anchor>
       <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_HANDLE_INVALIDENUM</name>
-      <anchorfile>group__libccc__config.html</anchorfile>
-      <anchor>gab2a3d1a07a2ea96d7bfda42278674f23</anchor>
-      <arglist>(ARG, RESULT, MIN, MAX)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_HANDLE_INDEX2SMALLS</name>
-      <anchorfile>group__libccc__config.html</anchorfile>
-      <anchor>ga9017f6b34efb42f628ceee718f2dda60</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_HANDLE_INDEX2SMALL</name>
-      <anchorfile>group__libccc__config.html</anchorfile>
-      <anchor>ga4adeff7165d13eab459a973ed4995533</anchor>
-      <arglist>(ARG, RESULT, MIN)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_HANDLE_INDEX2LARGES</name>
-      <anchorfile>group__libccc__config.html</anchorfile>
-      <anchor>ga81011d86671edaf93dd6a06b16fa36d7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_HANDLE_INDEX2LARGE</name>
-      <anchorfile>group__libccc__config.html</anchorfile>
-      <anchor>ga4bf6fb895a3564148945daa2769608aa</anchor>
-      <arglist>(ARG, RESULT, MAX)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_HANDLE_LENGTH2SMALLS</name>
-      <anchorfile>group__libccc__config.html</anchorfile>
-      <anchor>gac440b510bd1041d117501e2e25029c04</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_HANDLE_LENGTH2SMALL</name>
-      <anchorfile>group__libccc__config.html</anchorfile>
-      <anchor>gafc6565f6b5103bf0f480ce4d994b343f</anchor>
-      <arglist>(ARG, RESULT, MIN)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_HANDLE_LENGTH2LARGES</name>
-      <anchorfile>group__libccc__config.html</anchorfile>
-      <anchor>ga56e3425ac3c6028cadd4dd1964035252</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_HANDLE_LENGTH2LARGE</name>
-      <anchorfile>group__libccc__config.html</anchorfile>
-      <anchor>ga1b6e619c5d7dbc071bc7cf85348d8086</anchor>
-      <arglist>(ARG, RESULT, MAX)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -22189,6 +25240,104 @@
       <anchorfile>group__libccc__config.html</anchorfile>
       <anchor>gaaa6bb8eb6ebe31ebf0fce3b39f0db81e</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_HANDLE_NULLPOINTERS</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>ga97f207da9392f6cba9c7946bb7697a70</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_HANDLE_NULLPOINTER</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>gaf6adf204b974d0deb93cf6d6a52d8a63</anchor>
+      <arglist>(RESULT, PTR)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_HANDLE_INVALIDENUMS</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>ga86545c4405931c3c34bbc6640041503e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_HANDLE_INVALIDENUM</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>gac83fa5c4d517556bff7e8f20098ee5c9</anchor>
+      <arglist>(RESULT, ENUM, MIN, MAX)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_HANDLE_INDEX2SMALLS</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>ga9017f6b34efb42f628ceee718f2dda60</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_HANDLE_INDEX2SMALL</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>ga4b1ac2326da4a85b170dd90b07d283a1</anchor>
+      <arglist>(RESULT, INDEX, MIN)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_HANDLE_INDEX2LARGES</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>ga81011d86671edaf93dd6a06b16fa36d7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_HANDLE_INDEX2LARGE</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>ga45a687697070d005facd71012e60c7c5</anchor>
+      <arglist>(RESULT, INDEX, MAX)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_HANDLE_LENGTH2SMALLS</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>gac440b510bd1041d117501e2e25029c04</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_HANDLE_LENGTH2SMALL</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>gafc0f54c0b2093926a98c7f40e04f8b4e</anchor>
+      <arglist>(RESULT, LENGTH, MIN)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_HANDLE_LENGTH2LARGES</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>ga56e3425ac3c6028cadd4dd1964035252</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_HANDLE_LENGTH2LARGE</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>gae57978853a0146b106678705bd304485</anchor>
+      <arglist>(RESULT, LENGTH, MAX)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_HANDLE_PARSINGERRORS</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>gae451cf18f50fe259dc9592ed593d59d3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_HANDLE_PARSINGERROR</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>ga83ebb4fedb6b2dfa37478c88940983d7</anchor>
+      <arglist>(RESULT, FORMAT,...)</arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -22564,10 +25713,10 @@
     <filename>group__libccc__monad__keyval.html</filename>
     <anchor>structkeyval___t</anchor>
     <member kind="variable">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>key</name>
       <anchorfile>group__libccc__monad__keyval.html</anchorfile>
-      <anchor>a5892a9181e6a332f84d27aecd41dcd12</anchor>
+      <anchor>a6b4c819111fcd936defbae9f0a5edcf7</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -22696,10 +25845,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>path</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>a44196e6a5696d10442c29e639437196e</anchor>
+      <anchor>a0252a49c596ecbe51706efee9719c3d9</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -22908,7 +26057,7 @@
   </compound>
   <compound kind="group">
     <name>libccc</name>
-    <title>00) libccc</title>
+    <title>01) libccc</title>
     <filename>group__libccc.html</filename>
     <file>libccc.h</file>
     <file>libccc.h</file>
@@ -23132,7 +26281,7 @@
   </compound>
   <compound kind="group">
     <name>libccc_bool</name>
-    <title>01) libccc/bool</title>
+    <title>02) libccc/bool</title>
     <filename>group__libccc__bool.html</filename>
     <file>bool.h</file>
     <member kind="define">
@@ -23163,34 +26312,6 @@
       <anchor>ga41f9c5fb8b08eb5dc3edce4dcb37fee7</anchor>
       <arglist></arglist>
     </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_bool_to_str</name>
-      <anchorfile>group__libccc__bool.html</anchorfile>
-      <anchor>gadbdb134a7667f7eaab54152cb5c2c0bb</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_str_to_bool</name>
-      <anchorfile>group__libccc__bool.html</anchorfile>
-      <anchor>gacc3d0f7cb029f5895392f1392ac1bb48</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type>t_bool</type>
-      <name>Bool_FromString</name>
-      <anchorfile>group__libccc__bool.html</anchorfile>
-      <anchor>gaa9b13c09a76c522d0bc3e86316cfbb17</anchor>
-      <arglist>(char const *str)</arglist>
-    </member>
-    <member kind="variable">
-      <type>t_bool</type>
-      <name>uppercase</name>
-      <anchorfile>group__libccc__bool.html</anchorfile>
-      <anchor>ga779f60bcf0c114cbc855c02f7e1db66b</anchor>
-      <arglist></arglist>
-    </member>
     <member kind="typedef">
       <type>int</type>
       <name>t_bool</name>
@@ -23201,7 +26322,7 @@
   </compound>
   <compound kind="group">
     <name>libccc_int</name>
-    <title>02) libccc/int</title>
+    <title>03) libccc/int</title>
     <filename>group__libccc__int.html</filename>
     <file>int.h</file>
     <class kind="union">varint</class>
@@ -23377,35 +26498,35 @@
       <type></type>
       <name>TYPEDEF_ALIAS</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga7b0eb64fe3aa4be11635150d869caa65</anchor>
-      <arglist>(t_sint, SINT, PRIMITIVE) char *U8_ToString(t_u8 number)</arglist>
+      <anchor>ga4e949d2a5f4bc789493a44a5736ae401</anchor>
+      <arglist>(t_sint, SINT, PRIMITIVE) t_char *U8_ToString(t_u8 number)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U16_ToString</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga8c72032f8456a946c984a6c3f9b3233c</anchor>
+      <anchor>gaed64bf17bf281e6770d0c36c78fa4d36</anchor>
       <arglist>(t_u16 number)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U32_ToString</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gabad7183d4bc200f0682adce26db69bfb</anchor>
+      <anchor>ga3c35974d40ce4464e6c47c802c0f54b3</anchor>
       <arglist>(t_u32 number)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U64_ToString</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gafa3659d9e2caf77741560d5f9443cd49</anchor>
+      <anchor>ga2f48b32ba76e4008dd10cf42e9c577b4</anchor>
       <arglist>(t_u64 number)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U128_ToString</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gae6fb6505e2c476e8fe734311748f5d0d</anchor>
+      <anchor>ga9273ba97865ba346ef990a359c129694</anchor>
       <arglist>(t_u128 number)</arglist>
     </member>
     <member kind="define">
@@ -23451,38 +26572,38 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S8_ToString</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga6a2b776fcb73c02d27204535aa729a0e</anchor>
+      <anchor>ga05a0b272473f9a1a068076c538a25374</anchor>
       <arglist>(t_s8 number)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S16_ToString</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gaffafef81cecedf6bd8699c40c5962fb0</anchor>
+      <anchor>ga5e0029852416a1253a757c3915d728d3</anchor>
       <arglist>(t_s16 number)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S32_ToString</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga7724b2c9ca41836060ae84e65abbbe41</anchor>
+      <anchor>ga407c0953cb4edfb9c3cb0dd2871d377a</anchor>
       <arglist>(t_s32 number)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S64_ToString</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga0e0493518df84ad4b22f555814bc282f</anchor>
+      <anchor>gaec30de7b2023ee8cbaf16474d70b72fb</anchor>
       <arglist>(t_s64 number)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S128_ToString</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gab585b3eb5d4bd1d97597bcaa65e6bf61</anchor>
+      <anchor>gab00715b5a415126c4972aa4fdd09be19</anchor>
       <arglist>(t_s128 number)</arglist>
     </member>
     <member kind="define">
@@ -23535,38 +26656,38 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U8_ToString_Hex</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gaa4eaf682e8843fcba0f71c5f704556aa</anchor>
+      <anchor>ga4fab7001bcb3c22e3235834fc0a3f554</anchor>
       <arglist>(t_u8 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U16_ToString_Hex</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga2030058270d5f2461d080fd99ae3849e</anchor>
+      <anchor>gac4e5a1bd608558c4bb41fa1388a5772b</anchor>
       <arglist>(t_u16 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U32_ToString_Hex</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga453405b68194cea17a5ef5f417cd8571</anchor>
+      <anchor>gaf13e59c41364dd86906b50737386be42</anchor>
       <arglist>(t_u32 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U64_ToString_Hex</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga744e46468843bba1ab61733a3f5b5d87</anchor>
+      <anchor>gae6b01a77c8ad332473912ec98fa818b4</anchor>
       <arglist>(t_u64 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U128_ToString_Hex</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga1f29d5236cdd83463b7bac7c11bdd635</anchor>
+      <anchor>gad7ea0eed5a9d898c211abb54a48ab579</anchor>
       <arglist>(t_u128 number, t_bool prefix)</arglist>
     </member>
     <member kind="define">
@@ -23619,38 +26740,38 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S8_ToString_Hex</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gaa88523d328ac3913a25354e1b7ea0fc4</anchor>
+      <anchor>gaa141093bee63a5d22907d90403b2ac15</anchor>
       <arglist>(t_s8 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S16_ToString_Hex</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga8d96da2e206d8e295b5846491972f425</anchor>
+      <anchor>ga54c8de49b801fc1cc4dae55e10c77c25</anchor>
       <arglist>(t_s16 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S32_ToString_Hex</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga563f69864e9a338a0288f409bea57846</anchor>
+      <anchor>gaebb863a185d5451664adfdea7f63d24a</anchor>
       <arglist>(t_s32 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S64_ToString_Hex</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gaf1265fb4d200d569a90ca2e8b63b47f6</anchor>
+      <anchor>ga62dbe1a4e208339f2d013a28f9cbb01d</anchor>
       <arglist>(t_s64 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S128_ToString_Hex</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gaaa1087f9fac7aec74ba0512dcf197ad9</anchor>
+      <anchor>ga54e461a5ed078d4f59efe2faf8ef501f</anchor>
       <arglist>(t_s128 number, t_bool prefix)</arglist>
     </member>
     <member kind="define">
@@ -23703,38 +26824,38 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U8_ToString_Oct</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gad3e2d3b1dcad6e17f6189a4e315c07ed</anchor>
+      <anchor>gaef5e8bd896f72b7b551e41ee22badaa4</anchor>
       <arglist>(t_u8 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U16_ToString_Oct</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga44c2ad0ea536d19fbec6eda3f7f4adc3</anchor>
+      <anchor>ga33c4ec5d4f262b1eb3fa7db2d276eb7e</anchor>
       <arglist>(t_u16 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U32_ToString_Oct</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga2eed31aacc4d1c4b8746648c315584dc</anchor>
+      <anchor>gaed96ff31b351b8c486282ccc521b0b5e</anchor>
       <arglist>(t_u32 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U64_ToString_Oct</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga60836f9668af7c5a671aa2dd02468700</anchor>
+      <anchor>ga6fbb35ac15c50f1140e44c2d94957b2a</anchor>
       <arglist>(t_u64 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U128_ToString_Oct</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga41c2970fbd28b063a13977fbda207e12</anchor>
+      <anchor>ga558f80e320daa3f2ef67d6cb6c126c94</anchor>
       <arglist>(t_u128 number, t_bool prefix)</arglist>
     </member>
     <member kind="define">
@@ -23787,38 +26908,38 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S8_ToString_Oct</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga9c80b61aeab88f9b402c7647f03187fa</anchor>
+      <anchor>ga6284766245bd7b285b3285af6035ff5d</anchor>
       <arglist>(t_s8 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S16_ToString_Oct</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gac5c5482fc339b1ab8cf1c9d9aa9b8dd6</anchor>
+      <anchor>gab48a1ec9a71f250aafd8b46d68a986b5</anchor>
       <arglist>(t_s16 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S32_ToString_Oct</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga5fc79a5ab1ab509cbd4a01014f1f0cef</anchor>
+      <anchor>gaf4dfb7d976e05fbaa0d845e528028e97</anchor>
       <arglist>(t_s32 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S64_ToString_Oct</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga8e2283603e276767bce202fe33e88bde</anchor>
+      <anchor>gafc52ea81fb55a42cf62682c71d0b84da</anchor>
       <arglist>(t_s64 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S128_ToString_Oct</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga58cf78f9a4b263e4db78acf98f1da63c</anchor>
+      <anchor>ga9624098afb106fbc12957638a84209f9</anchor>
       <arglist>(t_s128 number, t_bool prefix)</arglist>
     </member>
     <member kind="define">
@@ -23871,38 +26992,38 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U8_ToString_Bin</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga6b2b736b77aa2c1f83cb23451e51f936</anchor>
+      <anchor>gad781d99b8bd5efb8bf53c578a2b2498e</anchor>
       <arglist>(t_u8 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U16_ToString_Bin</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga97a592e9f8a35f53a60869994359176b</anchor>
+      <anchor>gad9c1daa5af33b4850f30ad6ef4d708b8</anchor>
       <arglist>(t_u16 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U32_ToString_Bin</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gac17157b62566e8a5947d8336dbad813a</anchor>
+      <anchor>gaf8797c4ab3d4a79ef27d1aa52770e1b0</anchor>
       <arglist>(t_u32 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U64_ToString_Bin</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gaa11ce6dca6cedb3f6b0e584b5aa5e836</anchor>
+      <anchor>gad5ea7955659a2fc76aefab63561b668b</anchor>
       <arglist>(t_u64 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U128_ToString_Bin</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga0c6948a1590bdb5cc466f94feabfe262</anchor>
+      <anchor>gaee0831e9cc4f60e524cc13fbf949b5b7</anchor>
       <arglist>(t_u128 number, t_bool prefix)</arglist>
     </member>
     <member kind="define">
@@ -23955,38 +27076,38 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S8_ToString_Bin</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gaca53cc3e2fc447d2d93946faa87163f3</anchor>
+      <anchor>gab261139ffa76120c0f86c3f33cd7d8fc</anchor>
       <arglist>(t_s8 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S16_ToString_Bin</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gab989e992ae007f434b7a7044fb4d5573</anchor>
+      <anchor>ga6a3054db27a041b1653a788a072cbe54</anchor>
       <arglist>(t_s16 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S32_ToString_Bin</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gafda4db85ebdf23eff29edd6211d40772</anchor>
+      <anchor>ga6269dd3fdbae38bed6a968c46f8a02ed</anchor>
       <arglist>(t_s32 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S64_ToString_Bin</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga4b7223618ada918394a26bf85dddde94</anchor>
+      <anchor>ga347762d79e5f42019f551e02d117f069</anchor>
       <arglist>(t_s64 number, t_bool prefix)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S128_ToString_Bin</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga8739e7e5e17a3fd9fef1598bb4b8eb6f</anchor>
+      <anchor>gaa0bf1013c764d273f7d439b5ea884f55</anchor>
       <arglist>(t_s128 number, t_bool prefix)</arglist>
     </member>
     <member kind="define">
@@ -24039,39 +27160,39 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U8_ToString_Base</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gad9beefdb4beee9084ab5dc0731e9e957</anchor>
-      <arglist>(t_u8 number, char const *base)</arglist>
+      <anchor>gae31553d6e40e029761f628ff928389b8</anchor>
+      <arglist>(t_u8 number, t_char const *base)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U16_ToString_Base</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga89b424e6fd177c1d979fcefd7f8e3f9e</anchor>
-      <arglist>(t_u16 number, char const *base)</arglist>
+      <anchor>ga65f5cb4b0db9e491f6ce2eeac33e07ad</anchor>
+      <arglist>(t_u16 number, t_char const *base)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U32_ToString_Base</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga84a483f9add5a80b92dd898b665bb8dd</anchor>
-      <arglist>(t_u32 number, char const *base)</arglist>
+      <anchor>ga15aa556f450fda4ad71d9d3edf3eed31</anchor>
+      <arglist>(t_u32 number, t_char const *base)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U64_ToString_Base</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga9ee46baa216e29262091ca855458808f</anchor>
-      <arglist>(t_u64 number, char const *base)</arglist>
+      <anchor>gac503e83675329dd4bda277fcc177f909</anchor>
+      <arglist>(t_u64 number, t_char const *base)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>U128_ToString_Base</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga913c8afcfb01e96ad594891c305b81d0</anchor>
-      <arglist>(t_u128 number, char const *base)</arglist>
+      <anchor>ga13370803811a733780209f09dcfc3401</anchor>
+      <arglist>(t_u128 number, t_char const *base)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -24123,39 +27244,39 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S8_ToString_Base</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gac738249f74ae14d4f69b87e400548f92</anchor>
-      <arglist>(t_s8 number, char const *base)</arglist>
+      <anchor>gaca67a92201faad58700ef5e1a23eb102</anchor>
+      <arglist>(t_s8 number, t_char const *base)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S16_ToString_Base</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga38b650325bbba0fb1490105307c65ad7</anchor>
-      <arglist>(t_s16 number, char const *base)</arglist>
+      <anchor>ga91cd8fc8f096113a06b1e00cbfde304f</anchor>
+      <arglist>(t_s16 number, t_char const *base)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S32_ToString_Base</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga4d4bb895592af3e988ceca03d5efad51</anchor>
-      <arglist>(t_s32 number, char const *base)</arglist>
+      <anchor>ga695b49053826deb933981cff7793bb02</anchor>
+      <arglist>(t_s32 number, t_char const *base)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S64_ToString_Base</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga18520ae223aaff427e177f88710c8669</anchor>
-      <arglist>(t_s64 number, char const *base)</arglist>
+      <anchor>ga2460982aa109bea358e500d231d24835</anchor>
+      <arglist>(t_s64 number, t_char const *base)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>S128_ToString_Base</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga08ad31265d012fe1d6cbe8fbfcfdb7aa</anchor>
-      <arglist>(t_s128 number, char const *base)</arglist>
+      <anchor>gaad4139364371333fb9e8cce15e1fa8b9</anchor>
+      <arglist>(t_s128 number, t_char const *base)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -24210,36 +27331,36 @@
       <type>t_u8</type>
       <name>U8_FromString</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga7e16235e01b858d657e966fa2aa33f27</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga50b7402500f6476bb2796cebbec29f07</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_u16</type>
       <name>U16_FromString</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga8d9e8914024f9c476a5851efdaf730ea</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga7d7fb1f8f62510b3469524a076f25b46</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_u32</type>
       <name>U32_FromString</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gaa849a90c63c88aeed38bce610d04e9f2</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gafd318690012358e3ca84ed5418027e8d</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_u64</type>
       <name>U64_FromString</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gaecf45ec09ba79d0d3eb3f40c037e0a9e</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga35896d524b9e328981b22d01d8184e16</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_u128</type>
       <name>U128_FromString</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gadbf5e1bb4c60203ff3d8f79198eb137c</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga99bd6825a0d6d95837b8df2097dacb93</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -24294,36 +27415,36 @@
       <type>t_s8</type>
       <name>S8_FromString</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga8485ef36c474570c1e0e07a21f091f1d</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gaa2703fe405f44cf3dfed9be79bfd7445</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_s16</type>
       <name>S16_FromString</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gaaec522e4ebfb3a4bd0870f4577570b3c</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga8f2028f057d305818ef311d3780ba62d</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_s32</type>
       <name>S32_FromString</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gab6d3c63e95ef791428c3f475f09d8e31</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga02036e362929d00e55509dbdd487f779</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_s64</type>
       <name>S64_FromString</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga94cc7c5039c76986b359c2c9a7f828e7</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gae1b416fc2ab2aa579bd3f880a522a964</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_s128</type>
       <name>S128_FromString</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga3139828f50d3ba59640e056068e5ea57</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gafa325c9dc2a5b8a72ff48be674bd41f6</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -24378,36 +27499,36 @@
       <type>t_u8</type>
       <name>U8_FromString_Hex</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gaee3fc471dea8853ba1c8a4ae0529ec8d</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga490097499cef73cb06c5b9bf7211463e</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_u16</type>
       <name>U16_FromString_Hex</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga9ec798d2ecc9f70e7906d9d53ec11e6b</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga02246df5fd1c12dee44df0a6568ea32f</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_u32</type>
       <name>U32_FromString_Hex</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gade3e99376f7e6869ddca434b609d77a2</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga118460db0322b10ff1ab5659fb8b0f6b</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_u64</type>
       <name>U64_FromString_Hex</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga5693958f644b98eb374cd7f06c70f762</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gaa8e7de7863f18607a89129fcf3502273</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_u128</type>
       <name>U128_FromString_Hex</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gad20c8f39b49c01e158450676541d0db7</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga5a1a6a53eaa390401ca177b01aef3011</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -24462,36 +27583,36 @@
       <type>t_s8</type>
       <name>S8_FromString_Hex</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga0aa4c6488ca89225c6a2865aaa5618c1</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga964573c49a8ed4d68a71a4dc12017960</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_s16</type>
       <name>S16_FromString_Hex</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gab5fd668d92d11e2a084134815b9342aa</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga806bdf57dc49777c01fc3a7abf601bf3</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_s32</type>
       <name>S32_FromString_Hex</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga6f94c7fabf12c2d7b921f9cc2c0eb334</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gace4d27de906df43e2c9c92ab4f9a8514</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_s64</type>
       <name>S64_FromString_Hex</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga8e2253720962e53af5eeca267a11ea93</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gad0793fecd4f4ccd5a80e2179d236edc0</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_s128</type>
       <name>S128_FromString_Hex</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga11fde349240ef01ad7d9fa3427169484</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gaa7ad11da664a247c85c55e532e7f89e3</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -24546,36 +27667,36 @@
       <type>t_u8</type>
       <name>U8_FromString_Oct</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga5301dcd7c76095cf182c8e0d369bb26d</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga4c72fe0daa01343efe711c224dbb2dd7</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_u16</type>
       <name>U16_FromString_Oct</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga047a5ec73badc068daa90e4fcb97382b</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gaa5561f1725864d576eca60541e237080</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_u32</type>
       <name>U32_FromString_Oct</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gac90a8692e1a64b2031c4b8ae5d7e7e66</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga15c21a113b19695a685edf7d1016383c</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_u64</type>
       <name>U64_FromString_Oct</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga731baca6063f49b85b381ab03101d9b1</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga2c9125f6dd215617c18f2af78ce4f866</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_u128</type>
       <name>U128_FromString_Oct</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga3f0465bfc388c45578f161c1712537db</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga0ace9845c8c43005be2d2cc5128a2f15</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -24630,36 +27751,36 @@
       <type>t_s8</type>
       <name>S8_FromString_Oct</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gad2d28711ebd1e882307b5b737c4ff995</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga355a73f154f2a6f26c2e02555c40e200</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_s16</type>
       <name>S16_FromString_Oct</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gadb624415e5979ebbc0fff0a1e53f434d</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga299434fb69a65b249f9265d8bad1cfce</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_s32</type>
       <name>S32_FromString_Oct</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga78150b8230cdcaffdf989ac9b56bdaa7</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gac4d6a4de5514313b68dbcd07c81abdc8</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_s64</type>
       <name>S64_FromString_Oct</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga4d89fc58ec2390fd18459dedfb3be612</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gaaa0382f6435aec0ca7bb55e0e2be7910</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_s128</type>
       <name>S128_FromString_Oct</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga7554fde52f58de8b25176f36528a1ed1</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gaba8259dfa1f9a02be7791fad409f1f11</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -24714,36 +27835,36 @@
       <type>t_u8</type>
       <name>U8_FromString_Bin</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gaa7905fdcbe091fa6eda49e249d5091ec</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga985b8f824a0c49b95f597ff49e024fd3</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_u16</type>
       <name>U16_FromString_Bin</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga88089127b9d861791926e5200bdf4704</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga77c99e92b985cf94d603cb525ef47ebb</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_u32</type>
       <name>U32_FromString_Bin</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga6cd7ee0921d558cbe777c7fce814caa1</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga20f0242ba7180144a578f4f087dcea0d</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_u64</type>
       <name>U64_FromString_Bin</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga2df0f9ad1132427866799a7b2bf8cfe5</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga6b9aa08c1ef0f5a5faf124452891f683</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_u128</type>
       <name>U128_FromString_Bin</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga3dad6ad5f73adc1f70cca122a326e8ef</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga4b34074ec090910324685aae36b58b84</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -24798,36 +27919,36 @@
       <type>t_s8</type>
       <name>S8_FromString_Bin</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gacff613486b3fac9813ae7c22c3a39d0e</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga3fe85a66f83faf0aac296d985fe29d40</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_s16</type>
       <name>S16_FromString_Bin</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga1cd1d062478e7a81ae70368cb8ff5444</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gadae2b92815675fc491dca06b211ec673</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_s32</type>
       <name>S32_FromString_Bin</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga66364969a6ae41ba44cb4ae2b38f5923</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga9923855b1008bb730ebbead5c08d3e8c</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_s64</type>
       <name>S64_FromString_Bin</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga0943993f4ae34b82e0554b23ad8627d0</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga20cfaabcf6f2945897f24a4948d50128</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_s128</type>
       <name>S128_FromString_Bin</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gab4db1200442b0ce6dcb03fb4368e3c6e</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga3c23f202b588382aecc2229020b39f56</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -24882,36 +28003,36 @@
       <type>t_u8</type>
       <name>U8_FromString_Base</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga6c2a913946436fbec32a337b1f086fe8</anchor>
-      <arglist>(char const *str, char const *base)</arglist>
+      <anchor>ga26b2beffb3ab20be23fab28229f1df5b</anchor>
+      <arglist>(t_char const *str, t_char const *base)</arglist>
     </member>
     <member kind="function">
       <type>t_u16</type>
       <name>U16_FromString_Base</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga60f7af1042bc656e1ea1773be96bf6b3</anchor>
-      <arglist>(char const *str, char const *base)</arglist>
+      <anchor>ga4e41037b357f5357d473490d29a9e057</anchor>
+      <arglist>(t_char const *str, t_char const *base)</arglist>
     </member>
     <member kind="function">
       <type>t_u32</type>
       <name>U32_FromString_Base</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gac1aaf2152136ee4d772bf9c87a763c70</anchor>
-      <arglist>(char const *str, char const *base)</arglist>
+      <anchor>ga5cbba6ae3349ec8eae87a99ce7968327</anchor>
+      <arglist>(t_char const *str, t_char const *base)</arglist>
     </member>
     <member kind="function">
       <type>t_u64</type>
       <name>U64_FromString_Base</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gac4b1465b12e35dcd74d2b98069ed4498</anchor>
-      <arglist>(char const *str, char const *base)</arglist>
+      <anchor>ga6e5dfd09ed099d4e66da9e5cb5093fac</anchor>
+      <arglist>(t_char const *str, t_char const *base)</arglist>
     </member>
     <member kind="function">
       <type>t_u128</type>
       <name>U128_FromString_Base</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga3fdfa481ac008e87edb409d80939f2b9</anchor>
-      <arglist>(char const *str, char const *base)</arglist>
+      <anchor>ga8b2a7efe9451d6d5d57d92b4f760a12e</anchor>
+      <arglist>(t_char const *str, t_char const *base)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -24966,36 +28087,36 @@
       <type>t_s8</type>
       <name>S8_FromString_Base</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gaeb541e1957df03db52712e0107d5730a</anchor>
-      <arglist>(char const *str, char const *base)</arglist>
+      <anchor>ga2714717ed77d2f350258007b62330576</anchor>
+      <arglist>(t_char const *str, t_char const *base)</arglist>
     </member>
     <member kind="function">
       <type>t_s16</type>
       <name>S16_FromString_Base</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga2f2100e6d201bc31553bf0a540c5abe5</anchor>
-      <arglist>(char const *str, char const *base)</arglist>
+      <anchor>gab5a491af873ac3f8d10a57db2563d114</anchor>
+      <arglist>(t_char const *str, t_char const *base)</arglist>
     </member>
     <member kind="function">
       <type>t_s32</type>
       <name>S32_FromString_Base</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>ga02f49ede95ab3f2ac6075af0da7a1996</anchor>
-      <arglist>(char const *str, char const *base)</arglist>
+      <anchor>ga0703969aac182380d6a36e3f3567fdae</anchor>
+      <arglist>(t_char const *str, t_char const *base)</arglist>
     </member>
     <member kind="function">
       <type>t_s64</type>
       <name>S64_FromString_Base</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gadacfc3a667e18064eaf2ec9c7a0bb83e</anchor>
-      <arglist>(char const *str, char const *base)</arglist>
+      <anchor>ga05e713296688d625cd359586d42afbd9</anchor>
+      <arglist>(t_char const *str, t_char const *base)</arglist>
     </member>
     <member kind="function">
       <type>t_s128</type>
       <name>S128_FromString_Base</name>
       <anchorfile>group__libccc__int.html</anchorfile>
-      <anchor>gafac3593599741409c6157683ae2edeef</anchor>
-      <arglist>(char const *str, char const *base)</arglist>
+      <anchor>gaa12d3aa098cde8d1e3c0191f1c89cdbe</anchor>
+      <arglist>(t_char const *str, t_char const *base)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -25049,7 +28170,7 @@
   </compound>
   <compound kind="group">
     <name>libccc_fixed</name>
-    <title>03) libccc/fixed</title>
+    <title>04) libccc/fixed</title>
     <filename>group__libccc__fixed.html</filename>
     <file>fixed.h</file>
     <member kind="define">
@@ -25739,31 +28860,31 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Q16_ToString</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga8754098e879f1330bf077ed5253b84ec</anchor>
+      <anchor>gaed0964a4ae852c7bce08e577018da745</anchor>
       <arglist>(t_q16 number)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Q32_ToString</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga015192c2445ea20f0f1dfd87a470f78b</anchor>
+      <anchor>gaeb859debdca5f74eb770c0381444f1b9</anchor>
       <arglist>(t_q32 number)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Q64_ToString</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga9eddc1114bc3bc75252cd3491eefd7c8</anchor>
+      <anchor>gaba0f57556f4d04fa4edd8a99ceec5854</anchor>
       <arglist>(t_q64 number)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Q128_ToString</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga7d1cc53636350acd6927bc696b778e8c</anchor>
+      <anchor>ga2a562df09c7462118672dcff7f06e996</anchor>
       <arglist>(t_q128 number)</arglist>
     </member>
     <member kind="define">
@@ -25809,31 +28930,31 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Q16_ToString_Hex</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga08e1234ead8da0a327bf93f190f0a4b8</anchor>
+      <anchor>ga10112628d9f752a2f8b1817cc0b02948</anchor>
       <arglist>(t_q16 number)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Q32_ToString_Hex</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga3a5eab6c9236eac0c1e53dd1d6de24b5</anchor>
+      <anchor>ga100a48e2e346faebaea33745328478a9</anchor>
       <arglist>(t_q32 number)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Q64_ToString_Hex</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga17c6efff81febeb392bf0955f01a707e</anchor>
+      <anchor>ga8137a0c8e04075babbdb7e786edca3e0</anchor>
       <arglist>(t_q64 number)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Q128_ToString_Hex</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga63735c810065fe5ece4836333654a1f3</anchor>
+      <anchor>gad19a8feb764ecc935adcb69875ab4f93</anchor>
       <arglist>(t_q128 number)</arglist>
     </member>
     <member kind="define">
@@ -25879,31 +29000,31 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Q16_ToString_Bin</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga49c871c765f375a59125665cb9e5c4f4</anchor>
+      <anchor>gafb10e079e5da0ef8e6c3026aeb6678dd</anchor>
       <arglist>(t_q16 number)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Q32_ToString_Bin</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga371ccda5ec267e7cd4e780fe67b17c08</anchor>
+      <anchor>ga8723df7fb3ea25e3981a8aa443a48d6c</anchor>
       <arglist>(t_q32 number)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Q64_ToString_Bin</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga66bef01781968aaba8444eee0dbb2f34</anchor>
+      <anchor>ga3173f955f3460e7b4654c2bc8a665720</anchor>
       <arglist>(t_q64 number)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Q128_ToString_Bin</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga794003dd243eaad0dd98b867d68880b6</anchor>
+      <anchor>ga307298d6ca0b85293dafcaf4bab9f907</anchor>
       <arglist>(t_q128 number)</arglist>
     </member>
     <member kind="define">
@@ -25949,32 +29070,32 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Q16_ToString_Base</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga2d05ab85b8e9c7766854d55cf119344f</anchor>
-      <arglist>(t_q16 number, char const *base)</arglist>
+      <anchor>ga44d137f09269cc036c95a8d65b7f8ec3</anchor>
+      <arglist>(t_q16 number, t_char const *base)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Q32_ToString_Base</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga805f6cc79ffded2b79844f3eb5c04a68</anchor>
-      <arglist>(t_q32 number, char const *base)</arglist>
+      <anchor>ga6351dc37729182faf945aadb401d1a19</anchor>
+      <arglist>(t_q32 number, t_char const *base)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Q64_ToString_Base</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga4e25536a6fff2d15690189fa9bf97da5</anchor>
-      <arglist>(t_q64 number, char const *base)</arglist>
+      <anchor>ga8692cf75072d7e5e9c60903ca378f0f6</anchor>
+      <arglist>(t_q64 number, t_char const *base)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Q128_ToString_Base</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gad119f6ac1d4bb3c043c37e8632ee5b7e</anchor>
-      <arglist>(t_q128 number, char const *base)</arglist>
+      <anchor>gaf9a37a9f2b1dd1d1f810a99ddbba0b4a</anchor>
+      <arglist>(t_q128 number, t_char const *base)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -26022,29 +29143,29 @@
       <type>t_q16</type>
       <name>Q16_FromString</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga251d3042d1dfe046b78cc15413534dc9</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gada1b08ba629640498951effd1985fde3</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_q32</type>
       <name>Q32_FromString</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gab45c4de9251ff406822f1322ef955706</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga37d44fa11d59bcef901b179a29607ba4</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_q64</type>
       <name>Q64_FromString</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga97266722ea27e8afcb3b4acbd730387a</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga8b1c0b4f12bfb234855177e77e6156ad</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_q128</type>
       <name>Q128_FromString</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gad710d4f3eff1f37691d402efe30eea79</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga6491114bd3fb7d26aa9a55c3c07bf10a</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -26092,29 +29213,29 @@
       <type>t_q16</type>
       <name>Q16_FromString_Hex</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gaf5d671eb0f1aa558b717fa3195d4fcdd</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga0a84e0317858ecdc02703573e5b13d3d</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_q32</type>
       <name>Q32_FromString_Hex</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gacc85988e727a8f1f65c86c06ee0e9ed9</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga933a89df129aa3b3aaa57375c3b863e9</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_q64</type>
       <name>Q64_FromString_Hex</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gab6692bb01e57139f4f16215960c4ab8d</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gaf168d3d4cf1a6050883391757e4cb770</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_q128</type>
       <name>Q128_FromString_Hex</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga69948eaf1f176e1a956f73f4638feed6</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga8918f5f5007c4ea71809ce279601cb8b</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -26162,29 +29283,29 @@
       <type>t_q16</type>
       <name>Q16_FromString_Bin</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga0f5f416b3e7d4f8177ca493b95d654b2</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga7da5a90da4e0435730ac21ac9341943b</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_q32</type>
       <name>Q32_FromString_Bin</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga22afc4ea397b63932bb4a7b02885a824</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga99d6a6626b5ec31afd8033ed5e9656d5</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_q64</type>
       <name>Q64_FromString_Bin</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gaaf4c29363587b2cf5b29db31b79495d6</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gaee3c891ff3b5de65f6c1227fb409b645</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_q128</type>
       <name>Q128_FromString_Bin</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gab00e9207191591ef88c63ae749d42e1f</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gaad43552c27fb66d945d194ae571d6f02</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -26232,29 +29353,29 @@
       <type>t_q16</type>
       <name>Q16_FromString_Base</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gae68b2a796aced7d684e3c8f75e8d8d4d</anchor>
-      <arglist>(char const *str, char const *base)</arglist>
+      <anchor>ga4a79a5a21519f2688df6afe822c21e3a</anchor>
+      <arglist>(t_char const *str, t_char const *base)</arglist>
     </member>
     <member kind="function">
       <type>t_q32</type>
       <name>Q32_FromString_Base</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga82db5651c5cb8a7093f8b5e23cf58f51</anchor>
-      <arglist>(char const *str, char const *base)</arglist>
+      <anchor>gad4eb29b1afb9c3f5414c0bcc148cad34</anchor>
+      <arglist>(t_char const *str, t_char const *base)</arglist>
     </member>
     <member kind="function">
       <type>t_q64</type>
       <name>Q64_FromString_Base</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>ga6730e1ec70b9f4bca731c482f91dc8a6</anchor>
-      <arglist>(char const *str, char const *base)</arglist>
+      <anchor>ga61d33d0da830222ba1a65ae1efad8396</anchor>
+      <arglist>(t_char const *str, t_char const *base)</arglist>
     </member>
     <member kind="function">
       <type>t_q128</type>
       <name>Q128_FromString_Base</name>
       <anchorfile>group__libccc__fixed.html</anchorfile>
-      <anchor>gaf5c08c6906fb45a9ef986597aa3f9a21</anchor>
-      <arglist>(char const *str, char const *base)</arglist>
+      <anchor>ga8d4431e4a5db962f4b49167ad3d10423</anchor>
+      <arglist>(t_char const *str, t_char const *base)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -26301,7 +29422,7 @@
   </compound>
   <compound kind="group">
     <name>libccc_float</name>
-    <title>04) libccc/float</title>
+    <title>05) libccc/float</title>
     <filename>group__libccc__float.html</filename>
     <file>float.h</file>
     <class kind="union">varfloat</class>
@@ -26426,79 +29547,170 @@
     </member>
     <member kind="function">
       <type>t_sint</type>
-      <name>F32_GetExp</name>
+      <name>F32_GetExp2</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaad09bd1470824dc9e937a7edfa3cc50b</anchor>
+      <anchor>gadeaf244086afe08581e705d84e0432e6</anchor>
       <arglist>(t_f32 number)</arglist>
     </member>
     <member kind="function">
       <type>t_sint</type>
-      <name>F64_GetExp</name>
+      <name>F64_GetExp2</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga3922eda0aa006a03b0fe1e7fe0894940</anchor>
+      <anchor>ga8889463acd17d139ec117fc87fc6dff3</anchor>
       <arglist>(t_f64 number)</arglist>
     </member>
     <member kind="function">
       <type>t_sint</type>
-      <name>F80_GetExp</name>
+      <name>F80_GetExp2</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga97d074f586091a219761bfda546e8f86</anchor>
+      <anchor>ga08a0e9c22530831ed20c8ff739737dd8</anchor>
       <arglist>(t_f80 number)</arglist>
     </member>
     <member kind="function">
       <type>t_sint</type>
-      <name>F128_GetExp</name>
+      <name>F128_GetExp2</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaba92824d9fe52daca48cf49769933840</anchor>
+      <anchor>ga4bcd376a8428ff619cfe50885145bb90</anchor>
       <arglist>(t_f128 number)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Float_GetExp</name>
+      <name>Float_GetExp2</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaa6f7507280e7e08789551e244b071b7f</anchor>
+      <anchor>gaed408a678feced6ae6f2e859b3d5bc2f</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_fgetexp</name>
+      <name>c_filogb</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaa69caaa010b6a6ea9ee131f5ade986b6</anchor>
+      <anchor>ga0dfafbe61387830f9ff78e73e2f71bfa</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_f32getexp</name>
+      <name>c_fgetexp2</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaf93ff503ad5d58836439b790697115ed</anchor>
+      <anchor>gac6b0dd7c1e9acb94095c23153696ce7d</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_f64getexp</name>
+      <name>c_f32getexp2</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga2c9de4bb1af4299f845dddf55e77725e</anchor>
+      <anchor>gacd929f2c5b0a8afabe4c3f9a9b6d96c1</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_f80getexp</name>
+      <name>c_f64getexp2</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gac3b77fabdaef8fdf23617b9ac1846a6a</anchor>
+      <anchor>ga9edb99dbb76bed5ca191e0ec7addd812</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_f128getexp</name>
+      <name>c_f80getexp2</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga1754c245516022f1ba05d8c51c66d6d2</anchor>
+      <anchor>gae9f3d9367a005b4f3e96f6da4a526fbc</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Float_GetExponent</name>
+      <name>c_f128getexp2</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gab287e7a8d0c43e45e06dd6e26086fd28</anchor>
+      <anchor>ga35ce35a1269bb96a1a047f860ce3ccf4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_GetExponent2</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga4a537a3e7a44443280e7c6797946a1b0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_sint</type>
+      <name>F32_GetExp10</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gaf87af0b906f496d1bb4114dfd8df5f2c</anchor>
+      <arglist>(t_f32 number)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_sint</type>
+      <name>F64_GetExp10</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gad20d8b261bc47f9291783faaacbab274</anchor>
+      <arglist>(t_f64 number)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_sint</type>
+      <name>F80_GetExp10</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga0c2628af565f5889a22a9633de7833af</anchor>
+      <arglist>(t_f80 number)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_sint</type>
+      <name>F128_GetExp10</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gaa496e6468f2e2e330fbaa839f0364d61</anchor>
+      <arglist>(t_f128 number)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_GetExp10</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga7ef43be5faf71361cd6f63fa862e7940</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_filog10</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga754a97f39aecb702389af346dfa1999c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_fgetexp10</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga55f7890e19f43581a70747789225c9ca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f32getexp10</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gabf2bd8c8627329f5824426bbada0c548</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f64getexp10</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga1df2b3abaf021eddf81198586964d7e9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f80getexp10</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>gac92c6debc04c1929da1465c9bcef558a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_f128getexp10</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga5be80ac85071d00df9e8b196752aa74f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Float_GetExponent10</name>
+      <anchorfile>group__libccc__float.html</anchorfile>
+      <anchor>ga8a490391f1827a8357f3ca9a63ef4e30</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -26642,31 +29854,31 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>F32_ToString</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga4d8f4c5036f3b91bd3c16de21db4f2b1</anchor>
+      <anchor>ga8dabf7b43c0b47a62db6f85da14da76a</anchor>
       <arglist>(t_f32 number, t_u8 precision)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>F64_ToString</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gab3dd8648a84962ad4b221844088a2059</anchor>
+      <anchor>gae4ef47a41e503ea2e9d985e9228afb7c</anchor>
       <arglist>(t_f64 number, t_u8 precision)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>F80_ToString</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga8f20c50584e814c08ad83020e54db728</anchor>
+      <anchor>ga4162642760cdff7bd74b8c1ec67981fc</anchor>
       <arglist>(t_f80 number, t_u8 precision)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>F128_ToString</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaaa7a9dfe3a80e80e4ca778d09dd730c3</anchor>
+      <anchor>gaa0f2a78f54b8bd62bbc6e550f22caebb</anchor>
       <arglist>(t_f128 number, t_u8 precision)</arglist>
     </member>
     <member kind="define">
@@ -26712,31 +29924,31 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>F32_ToString_Exp</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga34f146d1543d0f8ac1a0d8f57354e4bd</anchor>
+      <anchor>ga504e9dc108cfd7571eefe2d639a5e0b2</anchor>
       <arglist>(t_f32 number, t_u8 precision)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>F64_ToString_Exp</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gab5c601e369776ea0095ee5bf7b4e35c8</anchor>
+      <anchor>ga6997caf98c22bb19190205f07a472011</anchor>
       <arglist>(t_f64 number, t_u8 precision)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>F80_ToString_Exp</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gacdb2483db9b731dc8fc3fd3db30bf410</anchor>
+      <anchor>ga3bbfa90f05e442834e08f7c4b7dbcfb4</anchor>
       <arglist>(t_f80 number, t_u8 precision)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>F128_ToString_Exp</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga444f600c11765741f7b410a13b65e80e</anchor>
+      <anchor>gacfd9aa6ae918e56e5c94b24bf831e801</anchor>
       <arglist>(t_f128 number, t_u8 precision)</arglist>
     </member>
     <member kind="define">
@@ -26922,31 +30134,31 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>F32_ToString_Dec</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga81632a67c2942b4db514bf1b5dfe2f33</anchor>
+      <anchor>ga982f1438751dc0560c4254f05fc46f0e</anchor>
       <arglist>(t_f32 number, t_u8 precision)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>F64_ToString_Dec</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga8ac5ccddb5eef5bab0e6f3bb716d24c7</anchor>
+      <anchor>ga5ea892f9b5922684b49918cd10d5a348</anchor>
       <arglist>(t_f64 number, t_u8 precision)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>F80_ToString_Dec</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gac6ce3697e04841d75b2c5a687ad8c15f</anchor>
+      <anchor>ga202a08681d78682b43e64b57210ad5b3</anchor>
       <arglist>(t_f80 number, t_u8 precision)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>F128_ToString_Dec</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga717a0f35803ba267be28a1710f050f2d</anchor>
+      <anchor>gae2f025ebcd944a565b39b83abedb132b</anchor>
       <arglist>(t_f128 number, t_u8 precision)</arglist>
     </member>
     <member kind="define">
@@ -26992,31 +30204,31 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>F32_ToString_Hex</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga90f9e0bd9fc71ca90ad42bbea56c4abf</anchor>
+      <anchor>ga969b13fc5c16a3d86aff536e628b4b90</anchor>
       <arglist>(t_f32 number, t_u8 precision)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>F64_ToString_Hex</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga5710c727912c35a7cc18f0f1dce2cf31</anchor>
+      <anchor>ga3de4741cfe6f9fea65aa0acdf5d10528</anchor>
       <arglist>(t_f64 number, t_u8 precision)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>F80_ToString_Hex</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gad7bd76a6a1d0df7bb41c465e779116fe</anchor>
+      <anchor>ga0b700c5a615fe5168070687d54ad086c</anchor>
       <arglist>(t_f80 number, t_u8 precision)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>F128_ToString_Hex</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gab61ba3eae4744a6d8a96cc1d52c5d5fc</anchor>
+      <anchor>ga1fef3296128e5a030bc1a8047ade28ab</anchor>
       <arglist>(t_f128 number, t_u8 precision)</arglist>
     </member>
     <member kind="define">
@@ -27062,31 +30274,31 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>F32_ToString_Bin</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gab8879fde5590f69ddd683276d7d91ab1</anchor>
+      <anchor>gaeee9b0cc7a9449955aeca806fb6e515f</anchor>
       <arglist>(t_f32 number, t_u8 precision)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>F64_ToString_Bin</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga994582fadeb68edb1addd529aa443c03</anchor>
+      <anchor>ga62e5b52d15e0b1454ebc56acf26fb820</anchor>
       <arglist>(t_f64 number, t_u8 precision)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>F80_ToString_Bin</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga7f0c89dbe2d691a55571ecf6792939a2</anchor>
+      <anchor>gaa0efbe051242e21d9f1abcc6b849985d</anchor>
       <arglist>(t_f80 number, t_u8 precision)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>F128_ToString_Bin</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaa452622710637c4cb439f2153248b866</anchor>
+      <anchor>gac69a34e3894cd77bb343fc8a954609cb</anchor>
       <arglist>(t_f128 number, t_u8 precision)</arglist>
     </member>
     <member kind="define">
@@ -27135,29 +30347,29 @@
       <type>t_f32</type>
       <name>F32_FromString</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga0be1e9638f033d075c4e5694d9191178</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gabe2c03ee9231718c713f47d524268923</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_f64</type>
       <name>F64_FromString</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga0463f0ec8669cef3f4ef691a24036387</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga5ea62f2ad1328a4d82c982bf1d39982a</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_f80</type>
       <name>F80_FromString</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga4acb96653b324265c46a73cd64a70e6f</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gacc3cd1af68646ff39a90a2c4b177d2c3</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_f128</type>
       <name>F128_FromString</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga8e383396fae09433c47a8cc922a87766</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gae49d078c0331a5bec3f95ac430a50eec</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -27205,29 +30417,29 @@
       <type>t_f32</type>
       <name>F32_FromString_Exp</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga0156271554be84ef2f58cbcd0000c7b2</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga9e8aaeea5508a513fb742c52cafa0bc2</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_f64</type>
       <name>F64_FromString_Exp</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga782f27c0936218883d2a5d5a798d27d2</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gae82970f5ba5876de550f8ef0c831d4dc</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_f80</type>
       <name>F80_FromString_Exp</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gad53d9a3025724f42b7071aba7388c9bc</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga9a67abeed610db9af02abc3a37acfd3c</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_f128</type>
       <name>F128_FromString_Exp</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga64acabec909a551d12452c6fac4a0a18</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga1af3a3edfddd1477861ae6d984e5b12a</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -27415,29 +30627,29 @@
       <type>t_f32</type>
       <name>F32_FromString_Dec</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gab64782f5291512cec672686d51fdca5e</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga393b6350f09a07cb4818b679de9e8f68</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_f64</type>
       <name>F64_FromString_Dec</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga37435393a52545e5c59d82b5f96c0d8f</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga77e83092f98fd6828042b524718c9325</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_f80</type>
       <name>F80_FromString_Dec</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gaacc445c98be2d77772d2f4534f24dd24</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga194c7f29dc11b7b874858d646912b2d2</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_f128</type>
       <name>F128_FromString_Dec</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga934cd0b2ccd221b076eccd52a6fcc06d</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga70ecabf2d03205338e595e63942f4341</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -27485,29 +30697,29 @@
       <type>t_f32</type>
       <name>F32_FromString_Hex</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga9156140d044787e16e47a90925f69cd7</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga9a7b5ba3298b667dadb0a3a427fcfdae</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_f64</type>
       <name>F64_FromString_Hex</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga6b55470671b8ef443ed1da5e4afb8c57</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gadab337a91548c7681d1b8dc195127a55</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_f80</type>
       <name>F80_FromString_Hex</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gac17e5520888af703c1219c09f24b0890</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga798bd69b2317e25da5ec19b58552a579</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_f128</type>
       <name>F128_FromString_Hex</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga49bd6e0c32b0f4c895732b50ba732ded</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga6cef93292fa01f46e78644b14651478f</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -27555,29 +30767,29 @@
       <type>t_f32</type>
       <name>F32_FromString_Bin</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga5c352be5e5ff346eac2a7b04105de807</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga0a1946559603c951c46363a7c259bc34</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_f64</type>
       <name>F64_FromString_Bin</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga6dac270fe954a0226ac47466f9d98df1</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gac2b9161194ff229d205416beea99f3c1</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_f80</type>
       <name>F80_FromString_Bin</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>ga28cfd4fe5db8cfc15e7909fa582daf1f</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga7507c9807dd7c3397a2cf843e7d05f6a</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_f128</type>
       <name>F128_FromString_Bin</name>
       <anchorfile>group__libccc__float.html</anchorfile>
-      <anchor>gab6d510141f286a5ad8f2d78d1feb01d8</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>gaa132e77b72830eb41b4e6ad8a2979586</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -27624,7 +30836,7 @@
   </compound>
   <compound kind="group">
     <name>libccc_pointer</name>
-    <title>05) libccc/pointer</title>
+    <title>06) libccc/pointer</title>
     <filename>group__libccc__pointer.html</filename>
     <file>pointer.h</file>
     <member kind="define">
@@ -27636,44 +30848,44 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_size_to_str</name>
+      <name>c_sizetostr</name>
       <anchorfile>group__libccc__pointer.html</anchorfile>
-      <anchor>ga3f64bcae3458c33f127266fadae4ca89</anchor>
+      <anchor>ga52f7b392e4f43e6c09794a749086d353</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_size_to_strhex</name>
+      <name>c_sizetostrhex</name>
       <anchorfile>group__libccc__pointer.html</anchorfile>
-      <anchor>ga2bc81b07f06964f8c788c3ce32ef7b35</anchor>
+      <anchor>ga5565630e6baf4563320cbfa688eeec7d</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_size_to_str_readable</name>
+      <name>c_sizetostr_readable</name>
       <anchorfile>group__libccc__pointer.html</anchorfile>
-      <anchor>ga648005a628adc52a7c15dd29e2c1f8fc</anchor>
+      <anchor>ga52dad6f09d1470c8e410fec0602e06f2</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_str_to_size</name>
+      <name>c_strtosize</name>
       <anchorfile>group__libccc__pointer.html</anchorfile>
-      <anchor>gaf564346af001ccae6a2151c916b71f25</anchor>
+      <anchor>ga95d737281b1ac5c01b7b47ec72bc4848</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_ptr_to_str</name>
+      <name>c_ptrtostr</name>
       <anchorfile>group__libccc__pointer.html</anchorfile>
-      <anchor>ga9bdcfb7a6eb5f4fcd0384369500d3ce3</anchor>
+      <anchor>gaee7ce198e34637931241b1e0c3913061</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_ptr_to_strhex</name>
+      <name>c_ptrtostrhex</name>
       <anchorfile>group__libccc__pointer.html</anchorfile>
-      <anchor>ga19714ab170f9c3526eb59ac9f71b8538</anchor>
+      <anchor>gab3880db68e85db0b694265e2340dd710</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
@@ -27722,48 +30934,48 @@
       <type></type>
       <name>TYPEDEF_ALIAS</name>
       <anchorfile>group__libccc__pointer.html</anchorfile>
-      <anchor>ga3ac7212af59af2a66bd8c24b22d790f1</anchor>
-      <arglist>(t_uintptr, UINTPTR, PRIMITIVE) char *Size_ToString(t_size value)</arglist>
+      <anchor>ga6489ce05af032b5a0c791232bf865f21</anchor>
+      <arglist>(t_uintptr, UINTPTR, PRIMITIVE) t_char *Size_ToString(t_size value)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Size_ToString_Hex</name>
       <anchorfile>group__libccc__pointer.html</anchorfile>
-      <anchor>ga8b4db13660bd943d9c1281dfd4a9aba0</anchor>
+      <anchor>ga4ce4054fb72a0f8cd4048a42c458d409</anchor>
       <arglist>(t_size value)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
-      <name>Size_ToString_Readable</name>
+      <type>t_char *</type>
+      <name>Size_ToString_Pretty</name>
       <anchorfile>group__libccc__pointer.html</anchorfile>
-      <anchor>ga1c832afe71724520eb9ede992cbac0be</anchor>
+      <anchor>ga107f0d2aca8f58dba7f934c4e9b7b7ca</anchor>
       <arglist>(t_size value)</arglist>
     </member>
     <member kind="function">
       <type>t_size</type>
       <name>Size_FromString</name>
       <anchorfile>group__libccc__pointer.html</anchorfile>
-      <anchor>ga820e0f5cdce4c4088d44099cf490ba91</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga25071695db2f94e10280bf7cf3ab120a</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Pointer_ToString</name>
       <anchorfile>group__libccc__pointer.html</anchorfile>
-      <anchor>gae505f5a39ce336b9283164467a123262</anchor>
+      <anchor>ga534b65bfd7c617df3c1e5cd7be67bed4</anchor>
       <arglist>(void const *ptr)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Pointer_ToString_Hex</name>
       <anchorfile>group__libccc__pointer.html</anchorfile>
-      <anchor>ga93cf592597a50d4f13fd00518e2e0e4a</anchor>
+      <anchor>gae6732a2c29b9b6fbb3378542b3dcf688</anchor>
       <arglist>(void const *ptr)</arglist>
     </member>
   </compound>
   <compound kind="group">
     <name>libccc_pointerarray</name>
-    <title>06) libccc/pointerarray</title>
+    <title>07) libccc/pointerarray</title>
     <filename>group__libccc__pointerarray.html</filename>
     <file>pointerarray.h</file>
     <member kind="define">
@@ -27797,9 +31009,37 @@
   </compound>
   <compound kind="group">
     <name>libccc_memory</name>
-    <title>07) libccc/memory</title>
+    <title>08) libccc/memory</title>
     <filename>group__libccc__memory.html</filename>
     <file>memory.h</file>
+    <member kind="define">
+      <type>#define</type>
+      <name>KB</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>gacdecf799fcbd27e796d72f3aba98f496</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>MB</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>ga2b14276c83423c47988edb0dc5597aad</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>GB</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>gac0efefdf392a1bdf22a44dae9f9d33eb</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>TB</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>ga306987743beaff3d0c29cc0b625a43ae</anchor>
+      <arglist>(X)</arglist>
+    </member>
     <member kind="define">
       <type>#define</type>
       <name>c_memnew</name>
@@ -28150,298 +31390,67 @@
       <anchor>ga68ede9e357bddc21ce6fa96d27173f5b</anchor>
       <arglist>(t_u64 value, t_u8 bit, t_u8 length)</arglist>
     </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>I16_FROM_LE</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>ga861646cec67a8d56acc9e2076ed2d6e1</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>I16_TO_LE</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>ga38c946cdc3b4ddb3e82504e28d3d90dc</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>I32_FROM_LE</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>gaaeb191bcb34937e761689b469041da77</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>I32_TO_LE</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>ga4df988ebc76eb181298f98cac91eb3b3</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>I64_FROM_LE</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>gad2cb697e17d4966f42241faf43de7621</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>I64_TO_LE</name>
+      <anchorfile>group__libccc__memory.html</anchorfile>
+      <anchor>ga6522a74aae256ad6d5d4e00165a4cb32</anchor>
+      <arglist>(X)</arglist>
+    </member>
   </compound>
   <compound kind="group">
     <name>libccc_char</name>
-    <title>08) libccc/char</title>
+    <title>09) libccc/char</title>
     <filename>group__libccc__char.html</filename>
     <file>char.h</file>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_isalpha</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gac50127404adc3420890b06152813af91</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Char_IsAlpha</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga2232037d132d47d8d54e2b5eda569ac6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_isupper</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gadf50d7390673c67564b902801015cc96</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Char_IsUpper</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga71e337826d56f6d106819ed4a95c083f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_islower</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gaa10c4682ade14c174a31cdff4538bb9b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Char_IsLower</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga7af581a6583fd824b26264d60db38883</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_isalnum</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga242a2cdf4bad6eae2fdeb25d5d7bb1c1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Char_IsAlNum</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gab0c312ce1ebc3aafff72170981f0594f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_isdigit</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga64a07b32785aab0ee1764f00f116205c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Char_IsDigit</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga83e53809bf438d8dfa84e83112891dc1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Char_IsDigit_Dec</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga32b75313c0e885e3c4a2b16b604ec1e4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Char_IsDigit_Decimal</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gae0cc87501e52eecf646177cf4c38d08d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_isdigit_hex</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga09206b3709c95b101154cfd52ac08d3e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Char_IsDigit_Hexadecimal</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga16b27bfb02d6d853e332038bb3e447b8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_isdigit_oct</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga1fdee46d0e5f75f2894c43bfee0cd69e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Char_IsDigit_Octal</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga4d0f94017613be7a0c64d0d68c91e896</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_isdigit_bin</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gadba9797ae2d7c824e918c183a289c331</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Char_IsDigit_Binary</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gacc50e1159636eba330b69ed54f1858b5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_isspace</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gaaec689c57b2e8c986e7b7e2fc76eb117</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Char_IsWhiteSpace</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gabb0764823f87fa29cb7c209e85f6bcdd</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_ispunct</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gae7a6c15c685ece8eda92aa80709e0fa0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Char_IsPunct</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gab1a8f696a0e878ccaa95bd122f244363</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_isprint</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gad4475ac237a02bc586a5520a59212a98</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Char_IsPrint</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga073e999332c6abfc6cacdfc77b700a54</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_isascii</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gace39a716918bafb234bff07d3f329401</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_toupper</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga8c369948f5a1691390b30b1573188744</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Char_ToUpper</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gae1f09f692036dd972b9820e3faa3a7cf</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_tolower</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga15853ee81720da7e4d1c61702473daba</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>Char_ToLower</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga0b881067b33fe7a8485e4d47fe9315e1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_wctomb</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga11a4035f4b26504d7e68717610922e97</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_ctoutf8</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gae29f71988a5aebab970e924f93b7c1bf</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_wctomb2</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga913b614e45468119309db47e9555b62a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_ctoutf16</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gafb19eccdd125abc31ac4c8ba4b01d0a8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_mbtowc</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gae1c3679e55126b5b81acc2e7cbc6a5ed</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_utf8toc</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga2cb17a5bbb4df7b843b94359ee895c6b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>UTF8_Get</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga0cdb5c27a1be9e72ec92961c424c40cd</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_mb2towc</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga2413992c60b9ac17ae4a498cda484988</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_utf16toc</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga0597537cc6ef10135282825e31dbb379</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>UTF16_Get</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga5c3f6c0a80889e72a38bbaf3e12b3c53</anchor>
-      <arglist></arglist>
-    </member>
     <member kind="typedef">
       <type>char</type>
-      <name>t_char</name>
+      <name>t_ascii</name>
       <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gaf0556422eb1ef9c94bb5d119f336756a</anchor>
+      <anchor>ga1897de8d731a1c5f595af40305a0f7fd</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>TYPEDEF_ALIAS</name>
       <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga0266a339d247b8e334d50accc82868ac</anchor>
-      <arglist>(t_char, CHAR, PRIMITIVE) typedef char t_utf8</arglist>
+      <anchor>ga8861faa59584ddd76f839a69b91d8d30</anchor>
+      <arglist>(t_ascii, ASCII, PRIMITIVE) typedef char t_utf8</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -28461,146 +31470,13 @@
       <type></type>
       <name>TYPEDEF_ALIAS</name>
       <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gafced44442f105796aac275b11ce5a1e3</anchor>
-      <arglist>(t_utf32, UTF32, PRIMITIVE) t_bool Char_IsLetter(t_utf32 c)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_bool</type>
-      <name>Char_IsUppercase</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gacf1b3af7cbc51e7c077897536761196d</anchor>
-      <arglist>(t_utf32 c)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_bool</type>
-      <name>Char_IsLowercase</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga8f504db474a1bc53d8c123252671c2ae</anchor>
-      <arglist>(t_utf32 c)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_bool</type>
-      <name>Char_IsAlphaNumeric</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga79f4a848bdfed302d87eb8fca539ce68</anchor>
-      <arglist>(t_utf32 c)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_bool</type>
-      <name>Char_IsDigit</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gacb98e5f05667a996a143bc15a6c05302</anchor>
-      <arglist>(t_utf32 c)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_bool</type>
-      <name>Char_IsDigit_Hex</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga52cb8ae024b00ed708d84dea13585879</anchor>
-      <arglist>(t_utf32 c)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_bool</type>
-      <name>Char_IsDigit_Oct</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga2995256410596e9783d036ad6488c04e</anchor>
-      <arglist>(t_utf32 c)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_bool</type>
-      <name>Char_IsDigit_Bin</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gafcb4ddc5962d7558233ac58be9a34c48</anchor>
-      <arglist>(t_utf32 c)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_bool</type>
-      <name>Char_IsSpace</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga3cb799e0b4f096ab95edcb1d295e1b5d</anchor>
-      <arglist>(t_utf32 c)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_bool</type>
-      <name>Char_IsPunctuation</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga41ad4743e2713474690659e7a766aaff</anchor>
-      <arglist>(t_utf32 c)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_bool</type>
-      <name>Char_IsPrintable</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gaf9ac42c3a259dedaf2724dd0459a9ea6</anchor>
-      <arglist>(t_utf32 c)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_bool</type>
-      <name>Char_IsASCII</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga71a8729448c8b88caaabc93b4363b835</anchor>
-      <arglist>(t_utf32 c)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_char</type>
-      <name>Char_ToUppercase</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga4cf384c84478db67651e5879dabffe4c</anchor>
-      <arglist>(t_char c)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_char</type>
-      <name>Char_ToLowercase</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gaadf12469eb8d3f99ba8a48e3b4a56ceb</anchor>
-      <arglist>(t_char c)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_size</type>
-      <name>Char_ToUTF8</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gab840012db786653d7536572f2014f415</anchor>
-      <arglist>(t_utf8 *dest, t_utf32 c)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_size</type>
-      <name>Char_ToUTF16</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gad2b6ae0c10348206b3fe4fb823854515</anchor>
-      <arglist>(t_utf16 *dest, t_utf32 c)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_utf32</type>
-      <name>Char_FromUTF8</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gac03bbcfac6ca13f30db68df3d45fb65b</anchor>
-      <arglist>(t_utf8 const *str)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_utf32</type>
-      <name>Char_FromUTF16</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga7b2beaef1721669c622a242dbd97857e</anchor>
-      <arglist>(t_utf16 const *str)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_bool</type>
-      <name>Char_IsInCharset</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>gabd335aa7bb76823c0757c3fe3b3cada4</anchor>
-      <arglist>(t_utf32 c, t_char const *charset)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_isincharset</name>
-      <anchorfile>group__libccc__char.html</anchorfile>
-      <anchor>ga0173ccf0013ddbbdc84bc70a2745434a</anchor>
-      <arglist></arglist>
+      <anchor>ga5d249a9951459f18ddf69dc94aa0a54e</anchor>
+      <arglist>(t_utf32, UTF32, PRIMITIVE) typedef t_ascii t_char</arglist>
     </member>
   </compound>
   <compound kind="group">
     <name>libccc_string</name>
-    <title>09) libccc/string</title>
+    <title>10) libccc/string</title>
     <filename>group__libccc__string.html</filename>
     <file>string.h</file>
     <member kind="define">
@@ -29768,7 +32644,7 @@
   </compound>
   <compound kind="group">
     <name>libccc_stringarray</name>
-    <title>10) libccc/stringarray</title>
+    <title>11) libccc/stringarray</title>
     <filename>group__libccc__stringarray.html</filename>
     <file>stringarray.h</file>
     <member kind="define">
@@ -29919,156 +32795,156 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>char **</type>
+      <type>t_char **</type>
       <name>String_Split_Char</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>gac0aed9f57db8399560febee3e4eecf52</anchor>
-      <arglist>(char const *str, char c)</arglist>
+      <anchor>ga45c55faff361d5f7639440386f01aaa7</anchor>
+      <arglist>(t_char const *str, char c)</arglist>
     </member>
     <member kind="function">
-      <type>char **</type>
+      <type>t_char **</type>
       <name>String_Split_Charset</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>gae30725b8e11d3cdb9e52fbd777f90693</anchor>
-      <arglist>(char const *str, char const *sep_chars)</arglist>
+      <anchor>ga6ff72c88d36c8353bdf2d9278166a248</anchor>
+      <arglist>(t_char const *str, t_char const *sep_chars)</arglist>
     </member>
     <member kind="function">
-      <type>char **</type>
+      <type>t_char **</type>
       <name>String_Split_String</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>gabc503ca2871a1fd541f6b4e45045a8b6</anchor>
-      <arglist>(char const *str, char const *query)</arglist>
+      <anchor>ga07ca4de87a01469680ef160e3b801e49</anchor>
+      <arglist>(t_char const *str, t_char const *query)</arglist>
     </member>
     <member kind="function">
-      <type>char **</type>
+      <type>t_char **</type>
       <name>String_Divide</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>ga343eb4e7dfe7d9b4791d07e1ea6baaf2</anchor>
-      <arglist>(char const *str, t_size n)</arglist>
+      <anchor>gaad22627e14e9c2a0eaceda2259ac88ce</anchor>
+      <arglist>(t_char const *str, t_size n)</arglist>
     </member>
     <member kind="function">
-      <type>char **</type>
+      <type>t_char **</type>
       <name>StringArray_New</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>ga1d8469415dd6c9208f8e8cbf587120c5</anchor>
+      <anchor>gad099d793d42a3658440ee8ca6db36e12</anchor>
       <arglist>(t_u32 length)</arglist>
     </member>
     <member kind="function">
-      <type>char **</type>
+      <type>t_char **</type>
       <name>StringArray_New_C</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>ga43138cd27fe530b9af8f304a04aa11fb</anchor>
+      <anchor>gae9dd9f2ec3da0eb764523e9ad1a11c8b</anchor>
       <arglist>(t_u32 y, t_size x, const char c)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>StringArray_Delete</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>ga9a5235fd9831409f07582205cad25de7</anchor>
-      <arglist>(char ***a_strarr)</arglist>
+      <anchor>gac49164b3e6d2e2a6d3c29f1f1599b444</anchor>
+      <arglist>(t_char ***a_strarr)</arglist>
     </member>
     <member kind="function">
-      <type>char **</type>
+      <type>t_char **</type>
       <name>StringArray_Map</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>ga9d29c093001e74bc96ae2fe13055c908</anchor>
-      <arglist>(char const **strarr, char *(*f)(char const *))</arglist>
+      <anchor>ga49a79b9a995114531d7b4697872d65b5</anchor>
+      <arglist>(t_char const **strarr, char *(*f)(t_char const *))</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>StringArray_Map_InPlace</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>ga451ce445c2396031965242e95b5584f7</anchor>
-      <arglist>(char ***a_strarr, char *(*f)(char *))</arglist>
+      <anchor>ga9b2b8b40dcc823c596f56ac917f500a2</anchor>
+      <arglist>(t_char ***a_strarr, char *(*f)(t_char *))</arglist>
     </member>
     <member kind="function">
-      <type>char **</type>
+      <type>t_char **</type>
       <name>StringArray_Pad_L</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>ga7987cfb5e627110799e7e27370ee2676</anchor>
-      <arglist>(char const **strarr, const char c, t_u32 n)</arglist>
+      <anchor>ga842ae27791201819a637e49e268accce</anchor>
+      <arglist>(t_char const **strarr, const char c, t_u32 n)</arglist>
     </member>
     <member kind="function">
-      <type>char **</type>
+      <type>t_char **</type>
       <name>StringArray_Sub</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>ga04a6941dfe089904a995a7e6a9001b1b</anchor>
-      <arglist>(char const **strarr, t_u32 start, t_u32 length)</arglist>
+      <anchor>gac0eed41886ffad80a11ca6f06d1e855b</anchor>
+      <arglist>(t_char const **strarr, t_u32 start, t_u32 length)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>StringArray_Fold</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>ga0391100b43eb3681a339078033d6346e</anchor>
-      <arglist>(char const **strarr, char const *sep)</arglist>
+      <anchor>gacab94aa9955cfe36bd757c66fbb085b9</anchor>
+      <arglist>(t_char const **strarr, t_char const *sep)</arglist>
     </member>
     <member kind="function">
-      <type>char **</type>
+      <type>t_char **</type>
       <name>StringArray_Join</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>ga36c741f4156e39e70f2e7b9e6d809959</anchor>
-      <arglist>(char const **strarr1, char const **strarr2)</arglist>
+      <anchor>gac8874f4996ef102fdfeb629e95d4e603</anchor>
+      <arglist>(t_char const **strarr1, t_char const **strarr2)</arglist>
     </member>
     <member kind="function">
-      <type>char **</type>
+      <type>t_char **</type>
       <name>StringArray_Merge</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>ga9768b2dc3bf733c464469699b7dade17</anchor>
-      <arglist>(char ***a_strarr1, char ***a_strarr2)</arglist>
+      <anchor>ga2de6ac3217ac85cb1dd91fb9a0b9f228</anchor>
+      <arglist>(t_char ***a_strarr1, t_char ***a_strarr2)</arglist>
     </member>
     <member kind="function">
-      <type>char **</type>
+      <type>t_char **</type>
       <name>StringArray_Append</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>gab68d8ffec57072dd3b6e628cada090b1</anchor>
-      <arglist>(char ***a_dest, char const **src)</arglist>
+      <anchor>gaf8785583a9494a580dc73c4662dc1a91</anchor>
+      <arglist>(t_char ***a_dest, t_char const **src)</arglist>
     </member>
     <member kind="function">
-      <type>char **</type>
+      <type>t_char **</type>
       <name>StringArray_Prepend</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>gadb8aea98fbd91a6e1e25f8d53c5d254f</anchor>
-      <arglist>(char const **src, char ***a_dest)</arglist>
+      <anchor>ga82d5eea47b5ade918c35792726f7c125</anchor>
+      <arglist>(t_char const **src, t_char ***a_dest)</arglist>
     </member>
     <member kind="function">
-      <type>char **</type>
+      <type>t_char **</type>
       <name>StringArray_Insert_InPlace</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>ga8122ede89678362fc421436e00813611</anchor>
-      <arglist>(char ***a_dest, char const **src, t_u32 index)</arglist>
+      <anchor>gae66defb09abcff962d998d36204f2865</anchor>
+      <arglist>(t_char ***a_dest, t_char const **src, t_u32 index)</arglist>
     </member>
     <member kind="function">
       <type>t_u32</type>
       <name>StringArray_Length</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>ga27e20ad58d996d7be6d9b6960e0819cd</anchor>
-      <arglist>(char const **strarr)</arglist>
+      <anchor>ga19807861b0d2dd7ec9cf718958aa1b10</anchor>
+      <arglist>(t_char const **strarr)</arglist>
     </member>
     <member kind="function">
       <type>t_u32</type>
       <name>StringArray_Count_Char</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>gad6cfc01994604e7d5dfad3bf20a8e044</anchor>
-      <arglist>(char const **strarr, char const c)</arglist>
+      <anchor>ga8a70b01dd7649af201c4f4c3fb84c371</anchor>
+      <arglist>(t_char const **strarr, char const c)</arglist>
     </member>
     <member kind="function">
       <type>t_u32</type>
       <name>StringArray_Count_Charset</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>ga09d0ca56b6be7e5490532568de8631e5</anchor>
-      <arglist>(char const **strarr, char const *cset)</arglist>
+      <anchor>gab39d10a438334f33ae130221e5a1c5dd</anchor>
+      <arglist>(t_char const **strarr, t_char const *cset)</arglist>
     </member>
     <member kind="function">
       <type>t_u32</type>
       <name>StringArray_Count_String</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>ga8a3b7e9bef5499a5f046d540da8f8f44</anchor>
-      <arglist>(char const **strarr, char const *query)</arglist>
+      <anchor>ga1d790c3af516c8d96e17ff4354706115</anchor>
+      <arglist>(t_char const **strarr, t_char const *query)</arglist>
     </member>
   </compound>
   <compound kind="group">
     <name>libccc_format</name>
-    <title>11) libccc/format</title>
+    <title>12) libccc/format</title>
     <filename>group__libccc__format.html</filename>
     <file>format.h</file>
     <member kind="define">
@@ -30076,6 +32952,160 @@
       <name>FORMAT_ENUM</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga3d500b57fa4cda7566e9f9124b1204c6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_asprintf</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gafae038f477a52abad1c3db5215bf9d50</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strfmt</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga547b820d07e6b57ec93c4069217656b5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strformat</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gaec22df63b1874a7497781018cbf878ed</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>String_Build</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gacc97b00fd8f86c2e590b7fc53b9ebf21</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_vasprintf</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gad3ebb60ff16369cd2d55992a39b1cd9d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strfmt_va</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga8702bd0fce53ba9c47f75931af94cacd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strformat_va</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga21a6e87039779b39aed5cf0578da4f52</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>String_Build_VA</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga164c8fcd4f8b160918efd724f7370683</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_snprintf</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gab0a5026241da51c0a778c47aafcce5d8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strnfmt</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gabe340a7004bdbe20915ebe92a4192c42</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strnformat</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga339619f37269bf313930b607d2eb086b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>String_Build_N</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gade57a00d12aac06b9768603513a10410</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_vsnprintf</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga87a6991aa4af588a65550ca5675fd385</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strnfmt_va</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gacad3650aa3c96b0300609c2365b6fab0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strnformat_va</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gaeeb1d520f3a7545291703c4c55fd75e8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>String_Build_N_VA</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga0b927e0f29d106ed722ce8d7fd61b7c9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>_FORMAT</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gadc60b004baa8bc7d98b8ffff46b72149</anchor>
+      <arglist>(printf, 1, 2) t_char *String_Format(t_char const *format</arglist>
+    </member>
+    <member kind="function">
+      <type>t_char *</type>
+      <name>String_Format_VA</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga7f3453e9cae34ed342a4ebe457b378cb</anchor>
+      <arglist>(t_char const *format, va_list args)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>_FORMAT</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga01e37f4223562e3fab3ef633e5cb1ce0</anchor>
+      <arglist>(printf, 3, 4) t_size String_Format_N(t_char *dest</arglist>
+    </member>
+    <member kind="function">
+      <type>t_size</type>
+      <name>String_Format_N_VA</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>gaf792fdbd3c5bb0f54eef99462c8b80c7</anchor>
+      <arglist>(t_char *dest, t_size max, t_char const *format, va_list args)</arglist>
+    </member>
+    <member kind="variable">
+      <type>t_size</type>
+      <name>max</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga8603cc1f28eb9a964f95f37214b09af4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>t_size t_char const  *</type>
+      <name>format</name>
+      <anchorfile>group__libccc__format.html</anchorfile>
+      <anchor>ga6335da1d29e0cbce9636ffb8a609c403</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -30554,164 +33584,10 @@
       <anchor>gabbdd1a2c2ddb05845b70e057fba69927</anchor>
       <arglist></arglist>
     </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_asprintf</name>
-      <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>gafae038f477a52abad1c3db5215bf9d50</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_strfmt</name>
-      <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>ga547b820d07e6b57ec93c4069217656b5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_strformat</name>
-      <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>gaec22df63b1874a7497781018cbf878ed</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>String_Build</name>
-      <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>gacc97b00fd8f86c2e590b7fc53b9ebf21</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_vasprintf</name>
-      <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>gad3ebb60ff16369cd2d55992a39b1cd9d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_strfmt_va</name>
-      <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>ga8702bd0fce53ba9c47f75931af94cacd</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_strformat_va</name>
-      <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>ga21a6e87039779b39aed5cf0578da4f52</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>String_Build_VA</name>
-      <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>ga164c8fcd4f8b160918efd724f7370683</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_snprintf</name>
-      <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>gab0a5026241da51c0a778c47aafcce5d8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_strnfmt</name>
-      <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>gabe340a7004bdbe20915ebe92a4192c42</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_strnformat</name>
-      <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>ga339619f37269bf313930b607d2eb086b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>String_Build_N</name>
-      <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>gade57a00d12aac06b9768603513a10410</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_vsnprintf</name>
-      <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>ga87a6991aa4af588a65550ca5675fd385</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_strnfmt_va</name>
-      <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>gacad3650aa3c96b0300609c2365b6fab0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_strnformat_va</name>
-      <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>gaeeb1d520f3a7545291703c4c55fd75e8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>String_Build_N_VA</name>
-      <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>ga0b927e0f29d106ed722ce8d7fd61b7c9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>_FORMAT</name>
-      <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>ga039520f67dbb26b1208ab16329aeb9c0</anchor>
-      <arglist>(printf, 1, 2) char *String_Format(char const *format</arglist>
-    </member>
-    <member kind="function">
-      <type>char *</type>
-      <name>String_Format_VA</name>
-      <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>gaf7d93261780a050dcd23f7a2daa9605f</anchor>
-      <arglist>(char const *format, va_list args)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>_FORMAT</name>
-      <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>ga0e8ae14255b6711be50cea2ba6b902b7</anchor>
-      <arglist>(printf, 3, 4) t_size String_Format_N(char *dest</arglist>
-    </member>
-    <member kind="function">
-      <type>t_size</type>
-      <name>String_Format_N_VA</name>
-      <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>ga896c9773cc5364d772b581b483ca50d2</anchor>
-      <arglist>(char *dest, t_size max, char const *format, va_list args)</arglist>
-    </member>
-    <member kind="variable">
-      <type>t_size</type>
-      <name>max</name>
-      <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>ga8603cc1f28eb9a964f95f37214b09af4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>t_size char const  *</type>
-      <name>format</name>
-      <anchorfile>group__libccc__format.html</anchorfile>
-      <anchor>ga77fab00f56e375af32418181029b20fa</anchor>
-      <arglist></arglist>
-    </member>
   </compound>
   <compound kind="group">
     <name>libccc_color</name>
-    <title>12) libccc/color</title>
+    <title>13) libccc/color</title>
     <filename>group__libccc__color.html</filename>
     <file>color.h</file>
     <member kind="define">
@@ -31515,7 +34391,7 @@
   </compound>
   <compound kind="group">
     <name>libccc_sys_io</name>
-    <title>13) libccc/sys/io</title>
+    <title>14) libccc/sys/io</title>
     <filename>group__libccc__sys__io.html</filename>
     <file>io.h</file>
     <member kind="define">
@@ -32723,6 +35599,13 @@
       <arglist>(t_io_mode, IO_MODE, PRIMITIVE) typedef unsigned int t_io_open</arglist>
     </member>
     <member kind="function">
+      <type></type>
+      <name>TYPEDEF_ALIAS</name>
+      <anchorfile>group__libccc__sys__io.html</anchorfile>
+      <anchor>gabe496cba1598162ae4df80f6ef6e6d27</anchor>
+      <arglist>(t_io_open, IO_OPEN, PRIMITIVE) t_char *IO_GetError(int error_num)</arglist>
+    </member>
+    <member kind="function">
       <type>t_u8</type>
       <name>IO_GetColor</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
@@ -32740,8 +35623,8 @@
       <type>t_fd</type>
       <name>IO_Open</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga0e5658c988abe6f1a2cd1f2e8db2c45b</anchor>
-      <arglist>(char const *filepath, t_io_open flags, t_io_mode mode)</arglist>
+      <anchor>gaf136dc6f4188fab5273c9d9d3ee12f6c</anchor>
+      <arglist>(t_char const *filepath, t_io_open flags, t_io_mode mode)</arglist>
     </member>
     <member kind="function">
       <type>t_io_error</type>
@@ -32754,29 +35637,29 @@
       <type>t_io_error</type>
       <name>IO_ChangeMode</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>gafe190a37e94f983828af8b519d7398fd</anchor>
-      <arglist>(char const *filepath, t_io_mode mode)</arglist>
+      <anchor>gaf03e2e8959468d7face549b5d1e22fe9</anchor>
+      <arglist>(t_char const *filepath, t_io_mode mode)</arglist>
     </member>
     <member kind="function">
       <type>t_sintmax</type>
       <name>IO_Read_File</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>gaa9b85d6c42cb57eb69dee7d4aaaeb5dc</anchor>
-      <arglist>(t_fd const fd, char **a_file, t_size max)</arglist>
+      <anchor>ga5fee849bbf5e5b3709925b22538d6c6a</anchor>
+      <arglist>(t_fd const fd, t_char **a_file, t_size max)</arglist>
     </member>
     <member kind="function">
       <type>t_sintmax</type>
       <name>IO_Read_Lines</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>gad58edc3f234e99419b30761256297004</anchor>
-      <arglist>(t_fd const fd, char ***a_strarr)</arglist>
+      <anchor>ga238d65185cda7c848e8e0f12e08f5df7</anchor>
+      <arglist>(t_fd const fd, t_char ***a_strarr)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>IO_Read_NextLine</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>gaa2cbff7a0b811b61ada60d474f10389b</anchor>
-      <arglist>(t_fd const fd, char **a_line)</arglist>
+      <anchor>ga8f47eeb02006f4e4849051857b0e8558</anchor>
+      <arglist>(t_fd const fd, t_char **a_line)</arglist>
     </member>
     <member kind="function">
       <type>t_io_error</type>
@@ -32789,22 +35672,22 @@
       <type>t_io_error</type>
       <name>IO_Write_String</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga9df9845170ac155e84710f15220c8d55</anchor>
-      <arglist>(t_fd fd, char const *str)</arglist>
+      <anchor>gafd0eb6211887c0ea68b00c0258caf3df</anchor>
+      <arglist>(t_fd fd, t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_io_error</type>
       <name>IO_Write_Line</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>gac2e9bd89325c5b2e40af643d2a457e60</anchor>
-      <arglist>(t_fd fd, char const *str)</arglist>
+      <anchor>ga5629e4fafcfbc76c1cfeda315567b014</anchor>
+      <arglist>(t_fd fd, t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_io_error</type>
       <name>IO_Write_Lines</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga2ac9a105d816c272151afc8d390c7791</anchor>
-      <arglist>(t_fd fd, char const **strarr)</arglist>
+      <anchor>ga7055de963d7412d65a2088ed15d57050</anchor>
+      <arglist>(t_fd fd, t_char const **strarr)</arglist>
     </member>
     <member kind="function">
       <type>t_io_error</type>
@@ -32831,22 +35714,22 @@
       <type>t_io_error</type>
       <name>IO_Output_String</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga856b38e0e3361a06a03d10fd5ddad3c7</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga16540e2ca439345eb9331a5ffdb36cdc</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_io_error</type>
       <name>IO_Output_Line</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga8ae2e736e905519feb2531150b77ddc7</anchor>
-      <arglist>(char const *str)</arglist>
+      <anchor>ga45bf689dfd3ed48788beb73db1d07b1c</anchor>
+      <arglist>(t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type>t_io_error</type>
       <name>IO_Output_Lines</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>gaa2e30e079fa01808c7e4b33ebb897634</anchor>
-      <arglist>(char const **strarr)</arglist>
+      <anchor>ga6dc0349c37fc02b6e5fb67ccb3d1ec2e</anchor>
+      <arglist>(t_char const **strarr)</arglist>
     </member>
     <member kind="function">
       <type>t_io_error</type>
@@ -32859,531 +35742,484 @@
       <type></type>
       <name>_FORMAT</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>gacabeced6f69dc3416b85f632838443b4</anchor>
-      <arglist>(printf, 1, 2) t_io_error IO_Output_Format(char const *format</arglist>
+      <anchor>gaacde33e9816678279cec924346068e97</anchor>
+      <arglist>(printf, 1, 2) t_io_error IO_Output_Format(t_char const *format</arglist>
     </member>
     <member kind="variable">
-      <type>char const  *</type>
+      <type>t_char const  *</type>
       <name>format</name>
       <anchorfile>group__libccc__sys__io.html</anchorfile>
-      <anchor>ga99b08c3c556b2224d7d4151e419dc705</anchor>
+      <anchor>gad7d82bd55fd8770b77633b4f9be42fda</anchor>
       <arglist></arglist>
     </member>
   </compound>
   <compound kind="group">
-    <name>libccc_sys_time</name>
-    <title>14) libccc/sys/time</title>
-    <filename>group__libccc__sys__time.html</filename>
-    <file>time.h</file>
+    <name>libccc_sys_ansi</name>
+    <title>15) libccc/sys/ansi</title>
+    <filename>group__libccc__sys__ansi.html</filename>
+    <file>ansi.h</file>
     <member kind="define">
       <type>#define</type>
-      <name>c_time</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga63b4590db5463149715523abae8d102b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_time_now</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga7e36ea6ed0da787fbafecead43d6b536</anchor>
+      <name>__COLORS__</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga99c413bd7850a5846aa19b4a0f58caf0</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_time_to_date</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga7f3e0fc957a79ed49d3227d49d89f5a7</anchor>
+      <name>C_RESET</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gaf0c29bd95cece6791c62c52e8d2f6335</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_time_to_date_utc</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga47ffa323a3db8cbee54911dde9f96934</anchor>
+      <name>C_RED</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga7adb9aaa1eed15caecd92e3837581b53</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Time_ToDate</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>gab91f2f570dd49ab55c1a84f1109024d1</anchor>
+      <name>C_GREEN</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga448d973f9ee30250ec93e600f5d89ed1</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_time_to_date_local</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga8a18bcc319ec2590e82dd8f6a7f34f6f</anchor>
+      <name>C_YELLOW</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga7749aa942f59b07d1e951066e0aeca73</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_timespec_to_stdc</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>gaf737de37d14bc804b436cfbc1909d8b8</anchor>
+      <name>C_BLUE</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga2e4dd0b4af70107f36c2aa60b1195f01</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_stdc_to_timespec</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>gac58a4b845ed592d47eea8ebae41b373f</anchor>
+      <name>C_MAGENTA</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga47da0a04e6c59fa061f60d36c10d9561</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_time_tzset</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga31564ce92d5010cae41c4a9ce8d071cd</anchor>
+      <name>C_CYAN</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga8318e037c99fbf82089b68ba5d603cd0</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_date_tzset</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga732137fc55236097e3f07248219faf51</anchor>
+      <name>ANSI</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gad874c1142f1cec4d1e4a09510081ef66</anchor>
+      <arglist>(X)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_RESET</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gac81982784d97338b81fd2a54340c0b00</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_date</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>gaffee81970cf900a25a9252e88d758660</anchor>
+      <name>IO_TEXT_BOLD</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga7f5db861561bbf42955a6c7bd71217db</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_date_now</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga0360e62205ddb09e525286f7a75e9691</anchor>
+      <name>IO_TEXT_DIM</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gaf87c42a02a9a3e583e69a0441113d3bb</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_strptime</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga619b9cdfda6b778d795c3680237c21ff</anchor>
+      <name>IO_TEXT_3</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gaa9ed6a09ed0d99f8a3f45c2fa65678fa</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_date_parse</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga2592d56736674accdc127005a8d15a94</anchor>
+      <name>IO_TEXT_UNDERLINE</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gad40552cab717addecf66999f34f80bf2</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Date_Parse</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga5802069577b063f87a158a5646ed4aa7</anchor>
+      <name>IO_TEXT_BLINK</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga80dc8605510ddddb6bc5bc14f4dfdd6c</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Date_ParseString</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga5ffa2f82887b0858ceb698d95be28aac</anchor>
+      <name>IO_TEXT_6</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gadb7d3a0999cd525b1468fe9c8127a9df</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_date_format</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>gaed3084aad516f3f69aed51623243fad6</anchor>
+      <name>IO_TEXT_INVERTED</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga00ebfe98e47c1dc3c295d415ef43c41e</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Date_Format</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga08b037c82c22424ea815cbdb91ca6d06</anchor>
+      <name>IO_TEXT_HIDDEN</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gab91d5b05972e1cd3ac476bc29288172a</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Date_FormatString</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>gadcb11c2d073f9d8a355263a0b31fd454</anchor>
+      <name>IO_TEXT_9</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga7b80a64dd49aec55705d42e7cd2ac95c</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_strftime</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>gafe5c04a1300cd9fc46936f28212a9eb9</anchor>
+      <name>IO_TEXT_RESET_BOLD</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gad99ff5aa24729220c2dbd175ff6d1369</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_date_format_n</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga0791e0cc1ac73f34e1a7555b49693dab</anchor>
+      <name>IO_TEXT_RESET_DIM</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gaabbcaa0a97883c57081e6217ea2a6782</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Date_Format_N</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>gab7e7d94d94f2a7ba6eb9cd8b4b3231ef</anchor>
+      <name>IO_TEXT_RESET_3</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gacc133b9612777ae9259ca0e827c6016e</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Date_FormatString_N</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>gaa32aec4525b424d844f6b9660c726105</anchor>
+      <name>IO_TEXT_RESET_UNDERLINE</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga81de1ccbf55802dc11f2a8881d46a9eb</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_date_to_time</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga5d4c117ff0dfbe6ebaa2a23b6e3d4d65</anchor>
+      <name>IO_TEXT_RESET_BLINK</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga72d589c7ed30e1a5ae19d0302909c041</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_date_to_time_utc</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga79d1ab3e627d340e4e79e2d2380ba559</anchor>
+      <name>IO_TEXT_RESET_6</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga9bc27fef31f6958819891c3453c48f4e</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Date_ToTime</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga40566951a1ccfa7b6ce91731c9aa540a</anchor>
+      <name>IO_TEXT_RESET_INVERTED</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gaf80735fb21078a1e8095a22597092bd7</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_date_to_time_local</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>gae8bb2bd00e913c84f3f7214e4df61d31</anchor>
+      <name>IO_TEXT_RESET_HIDDEN</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga7829681d1d0e19f7799c44e08a7cd1ca</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_date_to_stdc</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga7d3e63ee7f2845eeacc1e27c5eef5bcf</anchor>
+      <name>IO_TEXT_RESET_9</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga8012b614be13a98f69cdcb5139766b78</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_stdc_to_date</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga7dce551729fce42e5e10e1538863b20d</anchor>
+      <name>IO_COLOR_FG_BLACK</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga178f7bd8aa2cb39a74171b24c3903bfa</anchor>
       <arglist></arglist>
     </member>
-    <member kind="typedef">
-      <type>time_t</type>
-      <name>t_time</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>gac18942bf2f3dc9acba993dd65cca3aca</anchor>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_RED</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga125e9c08fc48d2310a501e50ca37f2fa</anchor>
       <arglist></arglist>
     </member>
-    <member kind="typedef">
-      <type>enum month</type>
-      <name>e_month</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>gae9736a3f7b369fd119441b777516c769</anchor>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_GREEN</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga4d8d738ec5d9c427efe7bec0310b1319</anchor>
       <arglist></arglist>
     </member>
-    <member kind="typedef">
-      <type>t_sint</type>
-      <name>t_timezone</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga27d157f4fc1761ff865663ec41bc6945</anchor>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_YELLOW</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga58c62fd3af7786a9efcbfa52befd3fed</anchor>
       <arglist></arglist>
     </member>
-    <member kind="enumeration">
-      <type></type>
-      <name>month</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>gade079186a24b67d34714f590c039cd28</anchor>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_BLUE</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga173eac0768a62c09355ac69fab4ce0a2</anchor>
       <arglist></arglist>
     </member>
-    <member kind="enumvalue">
-      <name>MONTH_JANUARY</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ggade079186a24b67d34714f590c039cd28a42c672717f2e6b6d5ac7a031fc928622</anchor>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_MAGENTA</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga9863906924996123d989e3beeef17d1f</anchor>
       <arglist></arglist>
     </member>
-    <member kind="enumvalue">
-      <name>MONTH_FEBRUARY</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ggade079186a24b67d34714f590c039cd28a17acf2937fa726fc8ee03cb77355668b</anchor>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_CYAN</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga7f78b280ecb7a8917f7a980746a081d6</anchor>
       <arglist></arglist>
     </member>
-    <member kind="enumvalue">
-      <name>MONTH_MARCH</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ggade079186a24b67d34714f590c039cd28ac0ff9555a68af0ed29562349f83ba4f0</anchor>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_GRAY_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gad24c920ee4123d7133f44986918aefea</anchor>
       <arglist></arglist>
     </member>
-    <member kind="enumvalue">
-      <name>MONTH_APRIL</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ggade079186a24b67d34714f590c039cd28a8e434ce830ecf4d4a7653b00534efc10</anchor>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_GRAY_DARK</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gaf67ea146996f28af24a8aaddbc184fca</anchor>
       <arglist></arglist>
     </member>
-    <member kind="enumvalue">
-      <name>MONTH_MAY</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ggade079186a24b67d34714f590c039cd28ab1b0aa0faf021243a4cebd3d44181a62</anchor>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_RED_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga703126f7e6a44f57f0bcfe6a09a10cbb</anchor>
       <arglist></arglist>
     </member>
-    <member kind="enumvalue">
-      <name>MONTH_JUNE</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ggade079186a24b67d34714f590c039cd28a0e0312f47030e3cb2dc32fd134f45295</anchor>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_GREEN_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga5f92baa1e553d33cfae382b27d879eb0</anchor>
       <arglist></arglist>
     </member>
-    <member kind="enumvalue">
-      <name>MONTH_JULY</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ggade079186a24b67d34714f590c039cd28a1ae4a06c979b4907f0b68528e58c14e4</anchor>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_YELLOW_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga28945d6daca1a432d3593ea5c2aebfda</anchor>
       <arglist></arglist>
     </member>
-    <member kind="enumvalue">
-      <name>MONTH_AUGUST</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ggade079186a24b67d34714f590c039cd28aa26b675a783dace1e880d6570fb43b57</anchor>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_BLUE_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga23dfaaf54af97d31903ffaaa0ba309bc</anchor>
       <arglist></arglist>
     </member>
-    <member kind="enumvalue">
-      <name>MONTH_SEPTEMBER</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ggade079186a24b67d34714f590c039cd28a2df9a4eca803887bdc54c966e6fd3ae2</anchor>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_MAGENTA_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga3206c160f2f866269b2f6cabf0aeec9e</anchor>
       <arglist></arglist>
     </member>
-    <member kind="enumvalue">
-      <name>MONTH_OCTOBER</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ggade079186a24b67d34714f590c039cd28aaf5723414df0c6f0be75b002535dd016</anchor>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_CYAN_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gabf7bcf19360b7e1922f8084ef0154288</anchor>
       <arglist></arglist>
     </member>
-    <member kind="enumvalue">
-      <name>MONTH_NOVEMBER</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ggade079186a24b67d34714f590c039cd28a9507b6344c2e2b6e54a7ad875258b11c</anchor>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_WHITE</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gafd04a2ff549eb5bbfc5f994e888f26bb</anchor>
       <arglist></arglist>
     </member>
-    <member kind="enumvalue">
-      <name>MONTH_DECEMBER</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ggade079186a24b67d34714f590c039cd28a125bf92196fcd5d4fee78f784b86fbef</anchor>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga8413d8cc0d4c8cf11da67ff344b8654b</anchor>
+      <arglist>(CODE)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_FG_DEFAULT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga162176136345f256f233e0ddd1c7a577</anchor>
       <arglist></arglist>
     </member>
-    <member kind="enumvalue">
-      <name>ENUMLENGTH_MONTH</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ggade079186a24b67d34714f590c039cd28a46a053301a9c9140ef0e91227b5b257e</anchor>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_BLACK</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga0e6d9102bb7d8733d9739f058900564d</anchor>
       <arglist></arglist>
     </member>
-    <member kind="function">
-      <type></type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga0325bdfd235352fedeb8e30075cc5697</anchor>
-      <arglist>(t_time, TIME, PRIMITIVE) typedef struct nanotime</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>gaeb50f71428434db6cfbb217e93fe1b36</anchor>
-      <arglist>(s_nanotime, TIMESPEC, STRUCT) typedef enum weekday</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>gad1f6b21a1f84e6f22334b7ae41dec4c6</anchor>
-      <arglist>(e_weekday, WEEKDAY, ENUM) extern char const *const g_weekday[ENUMLENGTH_WEEKDAY]</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>gac213b230eaccac3270d80ca042301ea9</anchor>
-      <arglist>(e_month, MONTH, ENUM) extern char const *const g_month[ENUMLENGTH_MONTH]</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga11049dffdf5bdb43a1086cd92b0c2dd7</anchor>
-      <arglist>(t_timezone, TIMEZONE, PRIMITIVE) typedef struct date</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TYPEDEF_ALIAS</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga52e7fac3cdb3bb48bbe54ebec55d6335</anchor>
-      <arglist>(s_date, TIME_DATE, STRUCT) t_time Time_Now(void)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_date</type>
-      <name>Time_ToDate_UTC</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga695e40e057e2a877ade56c3aa601bb15</anchor>
-      <arglist>(t_time const value)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_date</type>
-      <name>Time_ToDate_LocalTime</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga775b9662f2491a887d3bd323232f0a61</anchor>
-      <arglist>(t_time const value)</arglist>
-    </member>
-    <member kind="function">
-      <type>struct timespec</type>
-      <name>Timespec_ToSTDC</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>gaaf992ca6fb2330dd2bb54ec61ac9b30d</anchor>
-      <arglist>(s_nanotime const *value)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_nanotime</type>
-      <name>Timespec_FromSTDC</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>gade63a20681db779c9cec6f7bcb3e99fd</anchor>
-      <arglist>(struct timespec const *value)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_time</type>
-      <name>Time_SetTimezone</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga5be9da6d4842ea46c1714d017d906c82</anchor>
-      <arglist>(t_time value, t_timezone old, t_timezone new)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_date</type>
-      <name>Date_SetTimezone</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga8fe171c183c6be39f24736368e09cb9d</anchor>
-      <arglist>(s_date const *value, t_timezone old, t_timezone new)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_date</type>
-      <name>Date_Now</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga847f2c5faa65c35636363158531b8528</anchor>
-      <arglist>(void)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_date</type>
-      <name>Date_FromString</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga9491e5baedba6b92fe8d713b85b25b00</anchor>
-      <arglist>(char const *str, char const *format)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>_FORMAT</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga178db19436eb930bf8bb8f8bc2340c2c</anchor>
-      <arglist>(strftime, 2, 0) char *Date_ToString(s_date const *date</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>_FORMAT</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga521ed6e8fbb886bea5ca980462e8d96e</anchor>
-      <arglist>(strftime, 4, 0) t_size Date_ToString_N(char *dest</arglist>
-    </member>
-    <member kind="function">
-      <type>t_time</type>
-      <name>Date_ToTime_UTC</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga1996220f5778c6014377c4735fab4505</anchor>
-      <arglist>(s_date const *value)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_time</type>
-      <name>Date_ToTime_LocalTime</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga4a8152db78789abd2936b24e5f17d29c</anchor>
-      <arglist>(s_date const *value)</arglist>
-    </member>
-    <member kind="function">
-      <type>struct tm</type>
-      <name>Date_ToSTDC</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga519ca62fd4714ff42c2d2856028d9f48</anchor>
-      <arglist>(s_date const *date)</arglist>
-    </member>
-    <member kind="function">
-      <type>s_date</type>
-      <name>Date_FromSTDC</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga80cb2a3053c151d53fe94abdb4ee37a5</anchor>
-      <arglist>(struct tm const *value)</arglist>
-    </member>
-    <member kind="variable">
-      <type></type>
-      <name>s_nanotime</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>gaaf19e7a2453da118b02b49b7445489f4</anchor>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_RED</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga0b6883cee7f145ec92c3cef386b59227</anchor>
       <arglist></arglist>
     </member>
-    <member kind="variable">
-      <type></type>
-      <name>e_weekday</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga57a338a95a362280fb9d85e5049d0256</anchor>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_GREEN</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga04a659076f0b262e571ea4f3e6932352</anchor>
       <arglist></arglist>
     </member>
-    <member kind="variable">
-      <type>char const  *const</type>
-      <name>g_weekday_abbreviated</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>gada53cfe21fed2fac2cad871b86c40241</anchor>
-      <arglist>[ENUMLENGTH_WEEKDAY]</arglist>
-    </member>
-    <member kind="variable">
-      <type>char const  *const</type>
-      <name>g_month_abbreviated</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga08cfd3d67f32b4ed901ed8225139b9fb</anchor>
-      <arglist>[ENUMLENGTH_MONTH]</arglist>
-    </member>
-    <member kind="variable">
-      <type></type>
-      <name>s_date</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga28b757d84ef6ab31a04dc5846e586d34</anchor>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_YELLOW</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga812ddb5d9d841a57bc58f7e645dcbcce</anchor>
       <arglist></arglist>
     </member>
-    <member kind="variable">
-      <type>char const  *</type>
-      <name>format</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>gabfb8acae7467be409df97851b76c0a61</anchor>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_BLUE</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga250067e14725f2eceb20cc6bfd89e44b</anchor>
       <arglist></arglist>
     </member>
-    <member kind="variable">
-      <type>t_size</type>
-      <name>max</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>ga8603cc1f28eb9a964f95f37214b09af4</anchor>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_MAGENTA</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga0f7a4372b3e38a8f6ecc042d6cec4251</anchor>
       <arglist></arglist>
     </member>
-    <member kind="variable">
-      <type>t_size s_date const  *</type>
-      <name>date</name>
-      <anchorfile>group__libccc__sys__time.html</anchorfile>
-      <anchor>gad384c7946d90652105884162ebe431ab</anchor>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_CYAN</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gae249ef98b992636b843487172db9cda5</anchor>
       <arglist></arglist>
     </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_GRAY_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga312aa1c2d18fd6847c6d88e8c153092a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_GRAY_DARK</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga61b2d3daade64b5710ad3a06140cb8b8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_RED_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga77a6fd84024c9bbbd7d8207982a0e656</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_GREEN_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gad4354070e7d86b4c188240d7732476e0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_YELLOW_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga0c3f4ea8f414d50f8ae47bcd6d518df0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_BLUE_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga5b6408b036db61a28f078d512abab9b3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_MAGENTA_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gac65a56f4fef3909ab32fdf2b14be0e20</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_CYAN_LIGHT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga83394539e8364d9e4fda0ef261f5c74c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_WHITE</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gaffee69c7b797736581c06ccc7ea76fd6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>gac4646fea5fac91e728c8b4d651b58216</anchor>
+      <arglist>(CODE)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>IO_COLOR_BG_DEFAULT</name>
+      <anchorfile>group__libccc__sys__ansi.html</anchorfile>
+      <anchor>ga5766144a8d48ffe3bbdd0c8e3973df52</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="group">
+    <name>libccc_sys_ascii</name>
+    <title>16) libccc/sys/ascii</title>
+    <filename>group__libccc__sys__ascii.html</filename>
+  </compound>
+  <compound kind="group">
+    <name>libccc_sys_unicode</name>
+    <title>17) libccc/sys/unicode</title>
+    <filename>group__libccc__sys__unicode.html</filename>
   </compound>
   <compound kind="group">
     <name>libccc_sys_logger</name>
-    <title>15) libccc/sys/logger</title>
+    <title>18) libccc/sys/logger</title>
     <filename>group__libccc__sys__logger.html</filename>
     <file>logger.h</file>
     <class kind="struct">logger</class>
@@ -33741,10 +36577,10 @@
       <arglist>(s_logger *a_logger)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Logger_GetSettings</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>gabd8bc35c3ab587ba3f835b6ece680169</anchor>
+      <anchor>ga60353d6511c9187e8e67f8ea745e1818</anchor>
       <arglist>(s_logger const *logger)</arglist>
     </member>
     <member kind="function">
@@ -33755,10 +36591,10 @@
       <arglist>(s_logger const *logger)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Logger_GetTimestamp</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>gab2442acaacf840c543dceab176ced215</anchor>
+      <anchor>ga0484d28f9aca85887668d5d4fb735810</anchor>
       <arglist>(t_time utc)</arglist>
     </member>
     <member kind="function">
@@ -33772,15 +36608,15 @@
       <type>t_io_error</type>
       <name>Log_VA</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga7267ae5db21545c5c236983f7b782ab2</anchor>
-      <arglist>(s_logger const *logger, t_bool verbose_only, t_bool use_errno, int is_error, char const *prefix, char const *prefix_color, char const *format_str, va_list args)</arglist>
+      <anchor>gadd5c2424bfeb96305aedcc53d57e4f65</anchor>
+      <arglist>(s_logger const *logger, t_bool verbose_only, t_bool use_errno, int is_error, t_char const *prefix, t_char const *prefix_color, t_char const *format_str, va_list args)</arglist>
     </member>
     <member kind="function">
       <type>t_io_error</type>
       <name>Log_Fatal</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga75c08f07fd62d7126edea4a389c19d5c</anchor>
-      <arglist>(s_logger const *logger, char const *str)</arglist>
+      <anchor>ga707d7ec5f9ab1222fba7fed453ca42f0</anchor>
+      <arglist>(s_logger const *logger, t_char const *str)</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -33818,10 +36654,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>t_bool t_bool t_bool char const  *</type>
+      <type>t_bool t_bool t_bool t_char const  *</type>
       <name>format_str</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga84d6895f1edcd60ae567d4a3146ef3fb</anchor>
+      <anchor>ga2ad916d56c61d67f0714d394f6d5aad6</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -33834,12 +36670,677 @@
   </compound>
   <compound kind="group">
     <name>libccc_sys_regex</name>
-    <title>16) libccc/sys/regex</title>
+    <title>19) libccc/sys/regex</title>
     <filename>group__libccc__sys__regex.html</filename>
   </compound>
   <compound kind="group">
+    <name>libccc_sys_time</name>
+    <title>20) libccc/sys/time</title>
+    <filename>group__libccc__sys__time.html</filename>
+    <file>time.h</file>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_time</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga63b4590db5463149715523abae8d102b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_time_now</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga7e36ea6ed0da787fbafecead43d6b536</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Time_ToDate</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gab91f2f570dd49ab55c1a84f1109024d1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_timetodate</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gac964e01a05e70e683c9100de32b4dd1f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_gmtime</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gae56bf66d5e11bc31ee73c33d04afa04e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_timetodate_utc</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gaf7807d8fd29cc691d57126085bb65536</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_localtime</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gaaa442f8a4cc650d7e9fd66edc808a851</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_timetodate_local</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga01f1e6666a8cf991a2f50c17c82e39c8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_nanotimetostdc</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga50c53d78869526e79bfdff315e8658f7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_nanotimetotimespec</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gae3add01c9a05e038dce2f1d0737f18af</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_stdctonanotime</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga3e443262e312ff7d13ffef98baccc1ae</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_timespectonanotime</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga216ee516df9d4935b2e60903745349c8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_date</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gaffee81970cf900a25a9252e88d758660</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_datenow</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gabd5566f8361c2bdd583b9cb6b465a95a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Date_ToTime</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga40566951a1ccfa7b6ce91731c9aa540a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_datetotime</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gac05c768f021860c861942ad3c4359b29</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_datetotime_utc</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga8e1a98dd441d07318fc5b3f86ec9a5b0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_mktime</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gad771236dc4cba971a57b093a01b1b453</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_datetotime_local</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gaae74c440be66c51bf17e680abee50239</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_datetostdc</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga1dbf4095119c0936716008a6c7dc012c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_stdctodate</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga91c5916086e033719f554cb41ad19323</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strtodate</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gaeb21555fa2776f719a2c10c2ebb194ef</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_dateparse</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga91136b411e05bb2e64affa520bac7923</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Date_FromString</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga0afe1b4a4b45f52f500125ccf091f5ba</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strptime</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga619b9cdfda6b778d795c3680237c21ff</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strtodatemin</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gac1e02ecd62794a5b95ce53f5ff0efa0b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_dateparsemin</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga5d2b6cc6dc0c2da729402a0113d3e199</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Date_FromString_N</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gae3fe07dfc8779373cb5051d78b038694</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strstodate</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga2405324146ac9fee7ec9305022221a67</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_dateparses</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga21cb6a595262748fdafca8a4382ba343</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Date_FromStringStrict</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga1f6489a7a9f17101f104a4031ad67893</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strsptime</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gad6515cb03a69c33114ab429bee77dad8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strstodatemin</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga4dfd5204584b6e09f6d49d69350ec2ed</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_dateparsesmin</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga1c2624bde258d6060ee48dfa6d199368</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Date_FromStringStrict_N</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gaae9f8eb09db06ce3dc832b1b194211b1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strftime</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gafe5c04a1300cd9fc46936f28212a9eb9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_datetostr</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gaad21adbbe485b52a54b12c138546a067</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_datefmt</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga82d6babd600269f6f5bf211149f44744</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Date_Format</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga08b037c82c22424ea815cbdb91ca6d06</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Date_ToString</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga738eb532f0e41a03dc90b1474b3a1f24</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strnftime</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga6373235e8a1e73e2a1dc014a3f246be8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_datetostrn</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gaf2be0d5ebb5041eea25c793bdbe29842</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_datefmtn</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gaaf74be32c26c37fa9861a88d5fc45f98</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Date_Format_N</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gab7e7d94d94f2a7ba6eb9cd8b4b3231ef</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Date_ToString_N</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga6e64af4aad87218836604f2a4890640d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>time_t</type>
+      <name>t_time</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gac18942bf2f3dc9acba993dd65cca3aca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>enum month</type>
+      <name>e_month</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gae9736a3f7b369fd119441b777516c769</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>t_s32</type>
+      <name>t_timezone</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gae8397c8d2b0b3ef713932c8416adb054</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>month</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gade079186a24b67d34714f590c039cd28</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>MONTH_JANUARY</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ggade079186a24b67d34714f590c039cd28a42c672717f2e6b6d5ac7a031fc928622</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>MONTH_FEBRUARY</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ggade079186a24b67d34714f590c039cd28a17acf2937fa726fc8ee03cb77355668b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>MONTH_MARCH</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ggade079186a24b67d34714f590c039cd28ac0ff9555a68af0ed29562349f83ba4f0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>MONTH_APRIL</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ggade079186a24b67d34714f590c039cd28a8e434ce830ecf4d4a7653b00534efc10</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>MONTH_MAY</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ggade079186a24b67d34714f590c039cd28ab1b0aa0faf021243a4cebd3d44181a62</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>MONTH_JUNE</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ggade079186a24b67d34714f590c039cd28a0e0312f47030e3cb2dc32fd134f45295</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>MONTH_JULY</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ggade079186a24b67d34714f590c039cd28a1ae4a06c979b4907f0b68528e58c14e4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>MONTH_AUGUST</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ggade079186a24b67d34714f590c039cd28aa26b675a783dace1e880d6570fb43b57</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>MONTH_SEPTEMBER</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ggade079186a24b67d34714f590c039cd28a2df9a4eca803887bdc54c966e6fd3ae2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>MONTH_OCTOBER</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ggade079186a24b67d34714f590c039cd28aaf5723414df0c6f0be75b002535dd016</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>MONTH_NOVEMBER</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ggade079186a24b67d34714f590c039cd28a9507b6344c2e2b6e54a7ad875258b11c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>MONTH_DECEMBER</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ggade079186a24b67d34714f590c039cd28a125bf92196fcd5d4fee78f784b86fbef</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ENUMLENGTH_MONTH</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ggade079186a24b67d34714f590c039cd28a46a053301a9c9140ef0e91227b5b257e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>TYPEDEF_ALIAS</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga0325bdfd235352fedeb8e30075cc5697</anchor>
+      <arglist>(t_time, TIME, PRIMITIVE) typedef struct nanotime</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>TYPEDEF_ALIAS</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gaeb50f71428434db6cfbb217e93fe1b36</anchor>
+      <arglist>(s_nanotime, TIMESPEC, STRUCT) typedef enum weekday</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>TYPEDEF_ALIAS</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga0c7c752f027adf5f235b16123ef9eeb0</anchor>
+      <arglist>(e_weekday, WEEKDAY, ENUM) extern t_char const *const g_weekday[ENUMLENGTH_WEEKDAY]</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>TYPEDEF_ALIAS</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga6abf048e76527cd86295c60bf958156f</anchor>
+      <arglist>(e_month, MONTH, ENUM) extern t_char const *const g_month[ENUMLENGTH_MONTH]</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>TYPEDEF_ALIAS</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga11049dffdf5bdb43a1086cd92b0c2dd7</anchor>
+      <arglist>(t_timezone, TIMEZONE, PRIMITIVE) typedef struct date</arglist>
+    </member>
+    <member kind="function">
+      <type>s_date</type>
+      <name>Time_ToDate_UTC</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga695e40e057e2a877ade56c3aa601bb15</anchor>
+      <arglist>(t_time const value)</arglist>
+    </member>
+    <member kind="function">
+      <type>s_date</type>
+      <name>Time_ToDate_LocalTime</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga775b9662f2491a887d3bd323232f0a61</anchor>
+      <arglist>(t_time const value)</arglist>
+    </member>
+    <member kind="function">
+      <type>struct timespec</type>
+      <name>NanoTime_ToSTDC</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga061eb5ca87b43128db617763ba2fa525</anchor>
+      <arglist>(s_nanotime const *value)</arglist>
+    </member>
+    <member kind="function">
+      <type>s_nanotime</type>
+      <name>NanoTime_FromSTDC</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga8b18cb000bfff2fb1f2e3836c59ed060</anchor>
+      <arglist>(struct timespec const *value)</arglist>
+    </member>
+    <member kind="function">
+      <type>s_date</type>
+      <name>Date_Now</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga847f2c5faa65c35636363158531b8528</anchor>
+      <arglist>(void)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_time</type>
+      <name>Date_ToTime_UTC</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga1996220f5778c6014377c4735fab4505</anchor>
+      <arglist>(s_date const *value)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_time</type>
+      <name>Date_ToTime_LocalTime</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga4a8152db78789abd2936b24e5f17d29c</anchor>
+      <arglist>(s_date const *value)</arglist>
+    </member>
+    <member kind="function">
+      <type>struct tm</type>
+      <name>Date_ToSTDC</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga519ca62fd4714ff42c2d2856028d9f48</anchor>
+      <arglist>(s_date const *date)</arglist>
+    </member>
+    <member kind="function">
+      <type>s_date</type>
+      <name>Date_FromSTDC</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga80cb2a3053c151d53fe94abdb4ee37a5</anchor>
+      <arglist>(struct tm const *value)</arglist>
+    </member>
+    <member kind="function">
+      <type>s_date</type>
+      <name>Date_Parse</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga0f2e45d062d5f50e7c467ee577d005de</anchor>
+      <arglist>(t_char const *str, t_char const *format)</arglist>
+    </member>
+    <member kind="function">
+      <type>s_date</type>
+      <name>Date_Parse_Min</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gaa9007e41191d2bba4aa512fb34b965c2</anchor>
+      <arglist>(t_char const *str, t_char const *format)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_size</type>
+      <name>Date_Parse_Strict</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gaf058167f9fe76f68ecbfb9e43791c90c</anchor>
+      <arglist>(s_date *dest, t_char const *str, t_char const *format)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_size</type>
+      <name>Date_Parse_Strict_Min</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gaacef46d2002c23a872e829b1de2df5a9</anchor>
+      <arglist>(s_date *dest, t_char const *str, t_char const *format)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>_FORMAT</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga2ac3b876627131495134f9d5458e626a</anchor>
+      <arglist>(strftime, 2, 0) t_char *Date_Print(s_date const *date</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>_FORMAT</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga965396332dddc2184e2d0ee528b6069c</anchor>
+      <arglist>(strftime, 4, 0) t_size Date_Print_N(t_char *dest</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>Date_IsValid</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga95ee00444c61a02a2d44cb73f72daf2d</anchor>
+      <arglist>(s_date const *date)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Date_MakeValid</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gaf88ae658c775e4dc0a702f8be84a4268</anchor>
+      <arglist>(s_date *date)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_uint</type>
+      <name>Date_DaysInMonth</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga547a710e39a0f00545423a69f67fe434</anchor>
+      <arglist>(e_month month, t_s32 year)</arglist>
+    </member>
+    <member kind="function">
+      <type>e_weekday</type>
+      <name>Date_DayOfTheWeek</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gac42a6731de83f35bc7fdec58d125d657</anchor>
+      <arglist>(s_date *date)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>Date_IsLeapYear</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gacd7705e6e2d4de738faf504ce5c64e5c</anchor>
+      <arglist>(t_s32 year)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>Date_HasLeapSecond</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gab2d23a3e008ae71a492badd697bedec4</anchor>
+      <arglist>(e_month month, t_s32 year)</arglist>
+    </member>
+    <member kind="variable">
+      <type></type>
+      <name>s_nanotime</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gaaf19e7a2453da118b02b49b7445489f4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type></type>
+      <name>e_weekday</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga57a338a95a362280fb9d85e5049d0256</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>t_char const  *const</type>
+      <name>g_weekday_abbreviated</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga9aa7d9d670c95d8f202b8c09aa35e841</anchor>
+      <arglist>[ENUMLENGTH_WEEKDAY]</arglist>
+    </member>
+    <member kind="variable">
+      <type>t_char const  *const</type>
+      <name>g_month_abbreviated</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga25d1e2d81e2c95af79b3d6c5dd5c7ae2</anchor>
+      <arglist>[ENUMLENGTH_MONTH]</arglist>
+    </member>
+    <member kind="variable">
+      <type></type>
+      <name>s_date</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga28b757d84ef6ab31a04dc5846e586d34</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>t_char const  *</type>
+      <name>format</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga0715f46417453569413117f20a8f7f87</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>t_size</type>
+      <name>max</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>ga8603cc1f28eb9a964f95f37214b09af4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>t_size s_date const  *</type>
+      <name>date</name>
+      <anchorfile>group__libccc__sys__time.html</anchorfile>
+      <anchor>gad384c7946d90652105884162ebe431ab</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="group">
     <name>libccc_math_constants</name>
-    <title>27) libccc/math/constants</title>
+    <title>21) libccc/math/constants</title>
     <filename>group__libccc__math__constants.html</filename>
     <file>constants.h</file>
     <member kind="define">
@@ -34013,7 +37514,7 @@
   </compound>
   <compound kind="group">
     <name>libccc_math_float</name>
-    <title>18) libccc/math/float</title>
+    <title>22) libccc/math/float</title>
     <filename>group__libccc__math__float.html</filename>
     <file>float.h</file>
     <member kind="typedef">
@@ -36700,7 +40201,7 @@
   </compound>
   <compound kind="group">
     <name>libccc_math_fixed</name>
-    <title>19) libccc/math/fixed</title>
+    <title>23) libccc/math/fixed</title>
     <filename>group__libccc__math__fixed.html</filename>
     <file>fixed.h</file>
     <member kind="typedef">
@@ -39443,13 +42944,13 @@
   </compound>
   <compound kind="group">
     <name>libccc_math_vlq</name>
-    <title>20) libccc/math/vlq</title>
+    <title>24) libccc/math/vlq</title>
     <filename>group__libccc__math__vlq.html</filename>
     <file>vlq.h</file>
   </compound>
   <compound kind="group">
     <name>libccc_math_stat</name>
-    <title>21) libccc/math/stat</title>
+    <title>25) libccc/math/stat</title>
     <filename>group__libccc__math__stat.html</filename>
     <file>stat.h</file>
     <file>stat.h</file>
@@ -39879,7 +43380,7 @@
   </compound>
   <compound kind="group">
     <name>libccc_math_random</name>
-    <title>22) libccc/math/random</title>
+    <title>26) libccc/math/random</title>
     <filename>group__libccc__math__random.html</filename>
     <file>random.h</file>
     <file>random.h</file>
@@ -40040,7 +43541,7 @@
   </compound>
   <compound kind="group">
     <name>libccc_math_complex</name>
-    <title>23) libccc/math/complex</title>
+    <title>27) libccc/math/complex</title>
     <filename>group__libccc__math__complex.html</filename>
     <file>complex.h</file>
     <class kind="struct">complex</class>
@@ -40243,28 +43744,28 @@
   </compound>
   <compound kind="group">
     <name>libccc_math_algebra</name>
-    <title>24) libccc/math/algebra</title>
+    <title>28) libccc/math/algebra</title>
     <filename>group__libccc__math__algebra.html</filename>
     <file>algebra.h</file>
   </compound>
   <compound kind="group">
     <name>libccc_math_algebra_vector</name>
-    <title>25) libccc/math/algebra/vector</title>
+    <title>29) libccc/math/algebra/vector</title>
     <filename>group__libccc__math__algebra__vector.html</filename>
   </compound>
   <compound kind="group">
     <name>libccc_math_algebra_matrix</name>
-    <title>26) libccc/math/algebra/matrix</title>
+    <title>30) libccc/math/algebra/matrix</title>
     <filename>group__libccc__math__algebra__matrix.html</filename>
   </compound>
   <compound kind="group">
     <name>libccc_math_algebra_interval</name>
-    <title>27) libccc/math/algebra/interval</title>
+    <title>31) libccc/math/algebra/interval</title>
     <filename>group__libccc__math__algebra__interval.html</filename>
   </compound>
   <compound kind="group">
     <name>libccc_monad_array</name>
-    <title>28) libccc/monad/array</title>
+    <title>32) libccc/monad/array</title>
     <filename>group__libccc__monad__array.html</filename>
     <file>array.h</file>
     <class kind="struct">array_T</class>
@@ -40831,7 +44332,7 @@
   </compound>
   <compound kind="group">
     <name>libccc_monad_list</name>
-    <title>29) libccc/monad/list</title>
+    <title>33) libccc/monad/list</title>
     <filename>group__libccc__monad__list.html</filename>
     <file>list.h</file>
     <class kind="struct">list_T</class>
@@ -41426,7 +44927,7 @@
   </compound>
   <compound kind="group">
     <name>libccc_monad_stack</name>
-    <title>30) libccc/monad/stack</title>
+    <title>34) libccc/monad/stack</title>
     <filename>group__libccc__monad__stack.html</filename>
     <file>stack.h</file>
     <class kind="struct">stack_T</class>
@@ -41482,7 +44983,7 @@
   </compound>
   <compound kind="group">
     <name>libccc_monad_queue</name>
-    <title>31) libccc/monad/queue</title>
+    <title>35) libccc/monad/queue</title>
     <filename>group__libccc__monad__queue.html</filename>
     <file>queue.h</file>
     <class kind="struct">queue_T</class>
@@ -41538,7 +45039,7 @@
   </compound>
   <compound kind="group">
     <name>libccc_monad_tree</name>
-    <title>32) libccc/monad/tree</title>
+    <title>36) libccc/monad/tree</title>
     <filename>group__libccc__monad__tree.html</filename>
     <file>tree.h</file>
     <class kind="struct">tree_T</class>
@@ -41594,7 +45095,7 @@
   </compound>
   <compound kind="group">
     <name>libccc_monad_keyval</name>
-    <title>33) libccc/monad/keyval</title>
+    <title>37) libccc/monad/keyval</title>
     <filename>group__libccc__monad__keyval.html</filename>
     <file>keyval.h</file>
     <class kind="struct">keyval_T</class>
@@ -41650,7 +45151,7 @@
   </compound>
   <compound kind="group">
     <name>libccc_monad_dict</name>
-    <title>34) libccc/monad/dict</title>
+    <title>38) libccc/monad/dict</title>
     <filename>group__libccc__monad__dict.html</filename>
     <file>dict.h</file>
     <class kind="struct">dict_T</class>
@@ -41735,64 +45236,64 @@
       <type>void</type>
       <name>Dict_Get_T</name>
       <anchorfile>group__libccc__monad__dict.html</anchorfile>
-      <anchor>ga3a2366cfff0b173cd0c20ad3b410e752</anchor>
-      <arglist>(s_dict_T *dict, char *key)</arglist>
+      <anchor>gab072e1c1ea2ecbd6881fe235bb611bab</anchor>
+      <arglist>(s_dict_T *dict, t_char *key)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Dict_Set_T</name>
       <anchorfile>group__libccc__monad__dict.html</anchorfile>
-      <anchor>ga29531b3c9d77ce3c961c99d4e214a6dc</anchor>
-      <arglist>(s_dict_T *dict, char *key, T value)</arglist>
+      <anchor>gad92423deac677ba98bfe276e9e14b144</anchor>
+      <arglist>(s_dict_T *dict, t_char *key, T value)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Dict_Copy_T</name>
       <anchorfile>group__libccc__monad__dict.html</anchorfile>
-      <anchor>ga180ea69140fa6f359bde3ef75c7cf771</anchor>
-      <arglist>(s_dict_T *dest, s_dict_T const *src, char **keys)</arglist>
+      <anchor>gaeed65042ac9d4a7f90c5aecae3ac56f2</anchor>
+      <arglist>(s_dict_T *dest, s_dict_T const *src, t_char **keys)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Dict_Sub_T</name>
       <anchorfile>group__libccc__monad__dict.html</anchorfile>
-      <anchor>ga2f3a82d9492f4fe68bd664d720a1a0ec</anchor>
-      <arglist>(s_dict_T *dict, char **keys)</arglist>
+      <anchor>ga1ee41bbb04c3064a31a99d2e360d1ca3</anchor>
+      <arglist>(s_dict_T *dict, t_char **keys)</arglist>
     </member>
     <member kind="function">
       <type>s_keyval_T *</type>
       <name>Dict_Add_T</name>
       <anchorfile>group__libccc__monad__dict.html</anchorfile>
-      <anchor>ga75dfdce87b9e86d1ee65d82078c154ec</anchor>
-      <arglist>(s_dict_T *dict, char *key, T value)</arglist>
+      <anchor>ga84b7503627d61ceda7e3a0fd495ef94c</anchor>
+      <arglist>(s_dict_T *dict, t_char *key, T value)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Dict_Remove_T</name>
       <anchorfile>group__libccc__monad__dict.html</anchorfile>
-      <anchor>gad9bb537eb1e1462f2ee6857759bfdfa4</anchor>
-      <arglist>(s_dict_T *dict, char *key)</arglist>
+      <anchor>gaccf54303df0743e6b7249f9ea3a0d39a</anchor>
+      <arglist>(s_dict_T *dict, t_char *key)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Dict_Remove_F_T</name>
       <anchorfile>group__libccc__monad__dict.html</anchorfile>
-      <anchor>ga75757ab67bff419bb4bdbaa8b212f008</anchor>
-      <arglist>(s_dict_T *dict, char *key, void(*delete)(s_keyval_T *keyval))</arglist>
+      <anchor>ga034067ff64dadf89ab8e91f23027bb36</anchor>
+      <arglist>(s_dict_T *dict, t_char *key, void(*delete)(s_keyval_T *keyval))</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Dict_RemoveAll_T</name>
       <anchorfile>group__libccc__monad__dict.html</anchorfile>
-      <anchor>ga267640a5d90492c82cd723f187d95c36</anchor>
-      <arglist>(s_dict_T *dict, char *key)</arglist>
+      <anchor>ga60a13e6ad31a0c44fe46f65458540714</anchor>
+      <arglist>(s_dict_T *dict, t_char *key)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Dict_RemoveAll_F_T</name>
       <anchorfile>group__libccc__monad__dict.html</anchorfile>
-      <anchor>ga471fa64c56c58401826ec8e178e1f002</anchor>
-      <arglist>(s_dict_T *dict, char *key, void(*delete)(s_keyval_T *keyval))</arglist>
+      <anchor>ga58e738dd9be1ce3a0174b1021f5d486a</anchor>
+      <arglist>(s_dict_T *dict, t_char *key, void(*delete)(s_keyval_T *keyval))</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -41826,14 +45327,14 @@
       <type>void</type>
       <name>Dict_Replace_T</name>
       <anchorfile>group__libccc__monad__dict.html</anchorfile>
-      <anchor>ga71a6b1e45d973351bb9e07bbe26defd2</anchor>
-      <arglist>(s_dict_T *dict, char *key, s_keyval_T new)</arglist>
+      <anchor>ga9c713cc42489f03429e37aa324261ff3</anchor>
+      <arglist>(s_dict_T *dict, t_char *key, s_keyval_T new)</arglist>
     </member>
     <member kind="function">
-      <type>char *</type>
+      <type>t_char *</type>
       <name>Dict_KeyOf_T</name>
       <anchorfile>group__libccc__monad__dict.html</anchorfile>
-      <anchor>ga5bb390462b202ab53c2427cd3c6ec125</anchor>
+      <anchor>ga65d6a9d33c98ec065decc39f2ad25f95</anchor>
       <arglist>(s_dict_T *dict, T value)</arglist>
     </member>
     <member kind="function">
@@ -41889,8 +45390,8 @@
       <type>t_bool</type>
       <name>Dict_Equals_K_T</name>
       <anchorfile>group__libccc__monad__dict.html</anchorfile>
-      <anchor>ga2d3cb2c584f45653b89ad8deee77a32b</anchor>
-      <arglist>(s_dict_T *dict1, s_dict_T *dict2, char **keys)</arglist>
+      <anchor>gadf2225c248864cd8610185e6e9c8e1ce</anchor>
+      <arglist>(s_dict_T *dict1, s_dict_T *dict2, t_char **keys)</arglist>
     </member>
     <member kind="function">
       <type>t_sint</type>
@@ -41903,8 +45404,8 @@
       <type>t_sint</type>
       <name>Dict_Compare_K_T</name>
       <anchorfile>group__libccc__monad__dict.html</anchorfile>
-      <anchor>gab8dc0576f43a5c1d3dfdf1d23f8e18bc</anchor>
-      <arglist>(s_dict_T *dict1, s_dict_T *dict2, char **keys, t_sint(*compare)(s_keyval_T item1, s_keyval_T item2))</arglist>
+      <anchor>ga92e90a8c3edcf8c70bb73f9b82da8d2d</anchor>
+      <arglist>(s_dict_T *dict1, s_dict_T *dict2, t_char **keys, t_sint(*compare)(s_keyval_T item1, s_keyval_T item2))</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -41951,7 +45452,7 @@
   </compound>
   <compound kind="group">
     <name>libccc_monad_object</name>
-    <title>35) libccc/monad/object</title>
+    <title>39) libccc/monad/object</title>
     <filename>group__libccc__monad__object.html</filename>
     <file>object.h</file>
     <class kind="struct">object_T</class>
@@ -42007,8 +45508,13 @@
   </compound>
   <compound kind="group">
     <name>libccc_encode_json</name>
-    <title>36) libccc/encode/json</title>
+    <title>40) libccc/encode/json</title>
     <filename>group__libccc__encode__json.html</filename>
+  </compound>
+  <compound kind="group">
+    <name>libccc_encode_toml</name>
+    <title>41) libccc/encode/toml</title>
+    <filename>group__libccc__encode__toml.html</filename>
   </compound>
   <compound kind="group">
     <name>libccc_config</name>
@@ -42044,87 +45550,17 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>LIBCONFIG_HANDLE_NULLPOINTERS</name>
+      <name>LIBCONFIG_TYPE_CHAR</name>
       <anchorfile>group__libccc__config.html</anchorfile>
-      <anchor>ga97f207da9392f6cba9c7946bb7697a70</anchor>
+      <anchor>gab870de8d95814ae2580ca4a325ab5726</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>LIBCONFIG_HANDLE_NULLPOINTER</name>
+      <name>LIBCONFIG_NAME_CHAR</name>
       <anchorfile>group__libccc__config.html</anchorfile>
-      <anchor>gab01db91e47b667c67655404349c7a4fd</anchor>
-      <arglist>(ARG, RESULT)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_HANDLE_INVALIDENUMS</name>
-      <anchorfile>group__libccc__config.html</anchorfile>
-      <anchor>ga86545c4405931c3c34bbc6640041503e</anchor>
+      <anchor>ga0eff01019ab63e78b40e5e15b4ad0960</anchor>
       <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_HANDLE_INVALIDENUM</name>
-      <anchorfile>group__libccc__config.html</anchorfile>
-      <anchor>gab2a3d1a07a2ea96d7bfda42278674f23</anchor>
-      <arglist>(ARG, RESULT, MIN, MAX)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_HANDLE_INDEX2SMALLS</name>
-      <anchorfile>group__libccc__config.html</anchorfile>
-      <anchor>ga9017f6b34efb42f628ceee718f2dda60</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_HANDLE_INDEX2SMALL</name>
-      <anchorfile>group__libccc__config.html</anchorfile>
-      <anchor>ga4adeff7165d13eab459a973ed4995533</anchor>
-      <arglist>(ARG, RESULT, MIN)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_HANDLE_INDEX2LARGES</name>
-      <anchorfile>group__libccc__config.html</anchorfile>
-      <anchor>ga81011d86671edaf93dd6a06b16fa36d7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_HANDLE_INDEX2LARGE</name>
-      <anchorfile>group__libccc__config.html</anchorfile>
-      <anchor>ga4bf6fb895a3564148945daa2769608aa</anchor>
-      <arglist>(ARG, RESULT, MAX)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_HANDLE_LENGTH2SMALLS</name>
-      <anchorfile>group__libccc__config.html</anchorfile>
-      <anchor>gac440b510bd1041d117501e2e25029c04</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_HANDLE_LENGTH2SMALL</name>
-      <anchorfile>group__libccc__config.html</anchorfile>
-      <anchor>gafc6565f6b5103bf0f480ce4d994b343f</anchor>
-      <arglist>(ARG, RESULT, MIN)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_HANDLE_LENGTH2LARGES</name>
-      <anchorfile>group__libccc__config.html</anchorfile>
-      <anchor>ga56e3425ac3c6028cadd4dd1964035252</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_HANDLE_LENGTH2LARGE</name>
-      <anchorfile>group__libccc__config.html</anchorfile>
-      <anchor>ga1b6e619c5d7dbc071bc7cf85348d8086</anchor>
-      <arglist>(ARG, RESULT, MAX)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -42196,12 +45632,1431 @@
       <anchor>gaaa6bb8eb6ebe31ebf0fce3b39f0db81e</anchor>
       <arglist></arglist>
     </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_HANDLE_NULLPOINTERS</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>ga97f207da9392f6cba9c7946bb7697a70</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_HANDLE_NULLPOINTER</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>gaf6adf204b974d0deb93cf6d6a52d8a63</anchor>
+      <arglist>(RESULT, PTR)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_HANDLE_INVALIDENUMS</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>ga86545c4405931c3c34bbc6640041503e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_HANDLE_INVALIDENUM</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>gac83fa5c4d517556bff7e8f20098ee5c9</anchor>
+      <arglist>(RESULT, ENUM, MIN, MAX)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_HANDLE_INDEX2SMALLS</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>ga9017f6b34efb42f628ceee718f2dda60</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_HANDLE_INDEX2SMALL</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>ga4b1ac2326da4a85b170dd90b07d283a1</anchor>
+      <arglist>(RESULT, INDEX, MIN)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_HANDLE_INDEX2LARGES</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>ga81011d86671edaf93dd6a06b16fa36d7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_HANDLE_INDEX2LARGE</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>ga45a687697070d005facd71012e60c7c5</anchor>
+      <arglist>(RESULT, INDEX, MAX)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_HANDLE_LENGTH2SMALLS</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>gac440b510bd1041d117501e2e25029c04</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_HANDLE_LENGTH2SMALL</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>gafc0f54c0b2093926a98c7f40e04f8b4e</anchor>
+      <arglist>(RESULT, LENGTH, MIN)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_HANDLE_LENGTH2LARGES</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>ga56e3425ac3c6028cadd4dd1964035252</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_HANDLE_LENGTH2LARGE</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>gae57978853a0146b106678705bd304485</anchor>
+      <arglist>(RESULT, LENGTH, MAX)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_HANDLE_PARSINGERRORS</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>gae451cf18f50fe259dc9592ed593d59d3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_HANDLE_PARSINGERROR</name>
+      <anchorfile>group__libccc__config.html</anchorfile>
+      <anchor>ga83ebb4fedb6b2dfa37478c88940983d7</anchor>
+      <arglist>(RESULT, FORMAT,...)</arglist>
+    </member>
+  </compound>
+  <compound kind="group">
+    <name>libccc_ascii</name>
+    <title>Libccc_ascii</title>
+    <filename>group__libccc__ascii.html</filename>
+    <file>ascii.h</file>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cisalpha</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga39916f622213237c46887bd552f95203</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ASCII_IsAlpha</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga651a160030e0b0cb33f82c52b523a6e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cisupper</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gae6abcc0e27cbf969445b1784f943c9ae</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ASCII_IsUpper</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gae2ecc6985745af9de9b4bfcb65815cec</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cislower</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gadef64344749b75f05594485260c257cd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ASCII_IsLower</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga8dfceef0b4057b270ef67bef27e6d3c6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cisalnum</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gaff0f8393602ee9a537c91813f018fd9d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ASCII_IsAlNum</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga431f0a8f0b358291a41935d48371dd4f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cisdigit</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga782fa9438438bcd6d519fbc83b8e6f85</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ASCII_IsDigit</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga36290d731c530c7b9aea6c055e76a23b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ASCII_IsDigit_Dec</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga7287c4b05ec17961d3cff0b4a42d2f9a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cisxdigit</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga41f152ad25f08fc616113fdfeb96316c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ASCII_IsDigit_Hex</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga635cdf4821fe78cf37db652b7e2e5aa0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cisodigit</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga264e8d8cc867eeb60dd53a58fe8fe3d8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ASCII_IsDigit_Oct</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga7b36a3279614812e780179fd1f4677ea</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cisbdigit</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga846f87f6f80a71b5f3c682781028f9ea</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ASCII_IsDigit_Bin</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gabbb70eb952ff64ab9170b5d7a779f269</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cisspace</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga515225a04399263d4d8a2df2321bac0b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ASCII_IsSpace</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gaf2cf4dde77229d691401e1b43105cc35</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cispunct</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gab3f73d049d5d83b1fc198d59c0809d40</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ASCII_IsPunct</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga7554d6f383027563078b5146c6a827fd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cisprint</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga369e6b01078bd311c5ef159628c3502b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ASCII_IsPrint</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga93d7a31db818cc757db62466c4b8244a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cisascii</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga333d74c9fd951ea599929761f2632abb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cisvalid</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga86ec919efcae1ed85056d241425ca169</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cincharset</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gad94b504b713639a51d2d13e11113b134</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_ctoupper</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gaedf832861564bee310e574342571d137</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ASCII_ToUpper</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga94915a0dc34f3a367bd72b896769e013</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_ctolower</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga132e0419d77f672a4fe94750ea46478c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ASCII_ToLower</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gaffafa54ceab0d7df8158cebcbfe89a9d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>ASCII_IsLetter</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gac501fabf1740353ed91a75bc43e33d9a</anchor>
+      <arglist>(t_ascii c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>ASCII_IsUppercase</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gac5ebcd3f3082bc24d2f4b035c5bb2a68</anchor>
+      <arglist>(t_ascii c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>ASCII_IsLowercase</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga730c12083cd34e5d1ef07cb59ea49a8f</anchor>
+      <arglist>(t_ascii c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>ASCII_IsAlphaNumeric</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gad87287b3dbfaa97761956800e1c8dce8</anchor>
+      <arglist>(t_ascii c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>ASCII_IsDigit_Decimal</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga5bcb2ee1192c1f09afcce9a899ececf7</anchor>
+      <arglist>(t_ascii c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>ASCII_IsDigit_Hexadecimal</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga829e46fb255c56f0b53075312056aeea</anchor>
+      <arglist>(t_ascii c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>ASCII_IsDigit_Octal</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga3f390d1c46f671160210e49e78da4f9c</anchor>
+      <arglist>(t_ascii c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>ASCII_IsDigit_Binary</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga532ce5e35b4450d1e8ac48dc08a1954b</anchor>
+      <arglist>(t_ascii c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>ASCII_IsWhiteSpace</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gae57c5e1d73f73b4fb45f4beb08157aad</anchor>
+      <arglist>(t_ascii c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>ASCII_IsPunctuation</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga4733e7f82f4a67196b21d9e28afdd281</anchor>
+      <arglist>(t_ascii c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>ASCII_IsPrintable</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga07c5f29503da0e578d1b5b960eb8e10c</anchor>
+      <arglist>(t_ascii c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>ASCII_IsValid</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga13af91c1c4c4c94440e60f8d367edbc3</anchor>
+      <arglist>(t_ascii c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>ASCII_IsInCharset</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gad2d07267144ab926cb1427b62144efec</anchor>
+      <arglist>(t_ascii c, t_ascii const *charset)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_ascii</type>
+      <name>ASCII_ToUppercase</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gad1fe53453c41d7913dd007385d166785</anchor>
+      <arglist>(t_ascii c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_ascii</type>
+      <name>ASCII_ToLowercase</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga21976cccab7749b2fad20e1f2f74198b</anchor>
+      <arglist>(t_ascii c)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_NUL</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga532255139ed130b801cd358dbf1834cb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_SOH</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga7235cf6bb0b46cbdb3bc744cbab27072</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_STX</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gad91430fd6cf65df00b728178bef5c43a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_ETX</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga80ad7049d0e6c4d935ff61af24c5edfe</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_EOT</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga5ced8b8b46cd671deeb0a061facdf19b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_ENQ</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga581eb8834c0e28182981d7dc64e42036</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_ACK</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga19de96cc638f800ffe59c8b72c3fc6be</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_BEL</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga219144e9843ed9440467a54a573f8391</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_BS</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga0ce7e017ced2194324d8b593b07a7c23</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_HT</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gacbd12780bf8565ea3dd3404024c713bf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_LF</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga56533b3aed07244bd9419c1954f0978d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_VT</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga4ddf7b389e0d352ae0755b8b2a75868b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_FF</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga8153ff8f255e6a99c00bbae10fa7d524</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_CR</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga2de57866e2cb798d98898aca5fe9af1a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_SO</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gacf84924d510ab53368836bfd520cfbb7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_SI</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga2cabd5f3cf743c217c60f049d725936e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_DLE</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gadf66c2f62989c45fe16f109585456b42</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_DC1</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gaa047a060a08b14cd1717a3cb96f7338f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_DC2</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga0d9c63444bd452a057ecadfe9d814c13</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_DC3</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gaa2084e6b9ef46897a709082f0401d031</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_DC4</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga61d54f078d1a7a449141313e7fd7b91e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_NAK</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga69a675602e0f6d194d12e62d80996aaf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_SYN</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gaf34fcaed6bf124e19a3d73ff356d1a2d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_ETB</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gae8315f0d39f9b83cb55fbb02fa3d77b7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_CAN</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga8ab4b09b1a8ee5bd8f93d260a335d774</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_EM</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gab094f30da62b792585c07fbdba2e5648</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_SUB</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gafd27760c3fbdd6783d0009178cc3e630</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_ESC</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga509be7ab53dc6af71066279cbc868941</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_FS</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga5ec6cbc5f7990daa9a1c8c32283c53a5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_GS</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga308b9d229b2e2bdd221cab934c4d5b13</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_RS</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gaae6c21b0c4658d32dc69d35ee22e1525</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_US</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gab2a220511c9879831d2c674574126be2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C0_DEL</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gad8f4cafcf5056aa0bc8cd7702858871d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_PAD</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gaf502ca41a5315f762205887b71b78e07</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_HOP</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga5249cdc42954d97c40a9f0fe90990fe2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_BPH</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gab2f920308cc8f816da41c5165c9bf7b7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_NBH</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gae6cafbd26f0a3f372d1280e9b4cd7230</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_IND</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga2d21f76719fc1a9c2d40351c20b4087c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_NEL</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga46f6bc4a02da0774fd4366a7c91316e3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_SSA</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gad4c9d7d030efafe4af11d6ff02ec0908</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_ESA</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gadb002acd25948e6943d161b1a655c6c9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_HTS</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gac05b61120402065a6070c71d1c97ea17</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_HTJ</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga1108b59b9543e015085746be55be76c9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_VTS</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga68015ab7898a5791fbcf6c1ba30fcaca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_PLD</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga69a902d65f6e4f88d6526509ec04640b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_PLU</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gadc3ede7c6697508edd33e84ffb7168d1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_RI</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gaa137ee9a96d0b5aa30380e15eb6b3529</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_SS2</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gac890f334485087fd57ce26ae0480531e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_SS3</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga525ae85a7d695f1191d0d8796cd05fa4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_DCS</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gae9c95b6c8ef7636899f1c6f0fdac6bab</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_PU1</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga6a361a4e111f19cac87a9427c43b6d48</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_PU2</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gac2c1e210e7856a403fa67cbeee5041ff</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_STS</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga9e6e521a82bdb2e127bd323db5d78067</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_CCH</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gad26212499a46d04063b2e60708c54f68</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_MW</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gac1dfc6b0902c411912bbe7a5d0517a8c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_SPA</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gaffd0d3888b0de467ba5c4cc71efa9ad9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_EPA</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga3e8ee77cec9e7da5e9caf088036e5c74</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_SOS</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga013f6cf017d9a346222acdf3f1d92405</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_SGC</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga6e75f29bb9a671aba4aa85fd24e296bd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_SCI</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>gaba0c8533ab5805e7c5182babd05c0ffc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_CSI</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga8335b1f6f77d9d0e155fa817d7476f0c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_ST</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga9d29956b02e8dd43b53fa1b6a790d0dd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_OSC</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga88fc29fc10bdffca1da4949f694457f0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_PM</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga7efc1dc7010cabc4c7533ebec54cc721</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>C1_APC</name>
+      <anchorfile>group__libccc__ascii.html</anchorfile>
+      <anchor>ga22af3e339b04871ed2f8ccc6a95b8d24</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="group">
     <name>libccc_regex</name>
     <title>Libccc_regex</title>
     <filename>group__libccc__regex.html</filename>
     <file>regex.h</file>
+  </compound>
+  <compound kind="group">
+    <name>libccc_unicode</name>
+    <title>Libccc_unicode</title>
+    <filename>group__libccc__unicode.html</filename>
+    <file>unicode.h</file>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wcisalpha</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga5bc951d3cc2d83af282cc2b144c495dc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF32_IsAlpha</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga5e357c6e2c57b92cc802d0e41655f6ac</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wcisupper</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gae11a1bd6f2e7c5911cf5261b0cf652d6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF32_IsUpper</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga01195687ebc5a0badd7718f57805f306</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wcislower</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gabfe4c4f1af70d6e514eca968b9e32f1d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF32_IsLower</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga8cca23b0095142741a4f68fd546e6df3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wcisalnum</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gac431221041a3caf0ab44aad2d9b8f40d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF32_IsAlNum</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gad8e1098f3d69c94d07a0019aadfdd148</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wcisdigit</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gab8f9fef2af88cd422aaa242a012601b8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF32_IsDigit</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga7ae3a8faf77021944b7e95411182c039</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF32_IsDigit_Dec</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga3ae723162b03ea6de80eec6fa33a362f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wcisxdigit</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga38ef3fdb4e54653e28ee076f5dcf81d0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF32_IsDigit_Hex</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gaf59af4c382524b4ffa8224547c627e10</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wcisodigit</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gab665da98968cfadafbf75044c938713c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF32_IsDigit_Oct</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga42dafc348c3baac0bd9f7e71178df6e5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wcisbdigit</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga321d8f7dd212e063165adf661d31a5cf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF32_IsDigit_Bin</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga9b3f3a8d81c556a7270e2466973f3a10</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wcisspace</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga97494f21c7f8bf3e9d099b48f2338d6e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF32_IsSpace</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga7731e4836a8e87051d28433498054204</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wcispunct</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga2ab302b1f3bdc2f83fdf46862f59d837</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF32_IsPunct</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga97bc287a24201e3e023efd09182b8cb2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wcisprint</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gaf725a61024ccd3688916b78debcfd668</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF32_IsPrint</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga1e03e318ffb74b78f20d251434593e83</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wcisascii</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga9553fd30e4e75d966ce39fc24aa76135</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wcisvalid</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga02fc25521d65a150b1fb28f65f04f4bb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wcincharset</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gafa798cf69001db73c10f32dda5cd8d1e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Unicode_IsInCharset</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga1b9143e8aece9e9bcf19a2b21f7b735b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wctoupper</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga2e2796848855bffd20f90f3bd339508a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF32_ToUpper</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga045fcce75d6bf0941195b36ddac894df</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wctolower</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga5c9a4329f6227a53b62da6096b07d594</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF32_ToLower</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga13bebd16ca2e01ac6c4fc4ea02394ce0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wctomb</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga11a4035f4b26504d7e68717610922e97</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wctoutf8</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga9a70526ef21927c9818e267ed113ef6a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wctomb2</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga913b614e45468119309db47e9555b62a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wctoutf16</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga042d59c70304ef0b922d7b94526fee2b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_mbtowc</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gae1c3679e55126b5b81acc2e7cbc6a5ed</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_utf8towc</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga75c6adc27a127e211fbd2917facd3433</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_mb2towc</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga2413992c60b9ac17ae4a498cda484988</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_utf16towc</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga0d438f06415b49d107a9e89f8c72457b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wcparse</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga4e9e177a29a78cbaa7376b73196e7bed</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_wcnparse</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gaab4e845f4e03ec982afb15351cc182d2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>UTF32_IsLetter</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gaa1cc9207c072e037e2dbd017939d02b6</anchor>
+      <arglist>(t_utf32 c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>UTF32_IsUppercase</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gaff7408b5d8984465845c0e23248ecd51</anchor>
+      <arglist>(t_utf32 c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>UTF32_IsLowercase</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gaace65a6ed66c10900665947cac7182b5</anchor>
+      <arglist>(t_utf32 c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>UTF32_IsAlphaNumeric</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga33f612fa98245d83bc867a6022e77831</anchor>
+      <arglist>(t_utf32 c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>UTF32_IsDigit_Decimal</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gaf851927e488d4b32346527e509d829b4</anchor>
+      <arglist>(t_utf32 c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>UTF32_IsDigit_Hexadecimal</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga50927286f238f0ea0037adb1774f73c7</anchor>
+      <arglist>(t_utf32 c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>UTF32_IsDigit_Octal</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gab62490e045ac3f0307840782eeb03bdd</anchor>
+      <arglist>(t_utf32 c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>UTF32_IsDigit_Binary</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gacf06716ca2acea0041caeca008b26b0e</anchor>
+      <arglist>(t_utf32 c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>UTF32_IsWhiteSpace</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gafd8ddec185da67895f0b8a7a78c50fe5</anchor>
+      <arglist>(t_utf32 c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>UTF32_IsPunctuation</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gaa8d4c6a7236a742b1edfa08c74ee4b10</anchor>
+      <arglist>(t_utf32 c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>UTF32_IsPrintable</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gac97218e9a1fbef3f6fb8ed20c1087c77</anchor>
+      <arglist>(t_utf32 c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>UTF32_IsASCII</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gaec30be40aa4e56c1ebb9b9ef66bf9343</anchor>
+      <arglist>(t_utf32 c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>UTF32_IsValid</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga0b83c47c9598c5e3ec1ffab272a3b6de</anchor>
+      <arglist>(t_utf32 c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_bool</type>
+      <name>UTF32_IsInCharset</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga63bd40c5a1f1e8c4cfc49b6332470cfb</anchor>
+      <arglist>(t_utf32 c, t_utf32 const *charset)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_utf32</type>
+      <name>UTF32_ToUppercase</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga08fd52572368d5d7548c0d3e76eeac5e</anchor>
+      <arglist>(t_utf32 c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_utf32</type>
+      <name>UTF32_ToLowercase</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga49ea232b1c0fb0f91f1d6b68d671a664</anchor>
+      <arglist>(t_utf32 c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_size</type>
+      <name>UTF32_ToUTF8</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gadc1e9c036c5d23a92fb6e01d5067f201</anchor>
+      <arglist>(t_utf8 *dest, t_utf32 c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_size</type>
+      <name>UTF32_ToUTF16</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga3b7ae5f695c1a5f6c0d7a0aba3bd5c9b</anchor>
+      <arglist>(t_utf16 *dest, t_utf32 c)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_utf32</type>
+      <name>UTF32_FromUTF8</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga3e71be1beabae276fe9ae1c3f9471631</anchor>
+      <arglist>(t_utf8 const *str)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_utf32</type>
+      <name>UTF32_FromUTF16</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gac73c580b440cc6deeac1b209311c67d3</anchor>
+      <arglist>(t_utf16 const *str)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_utf32</type>
+      <name>UTF32_Parse</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gaf6150347673e8e21abc9e3e7b635b78a</anchor>
+      <arglist>(t_ascii const *str)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_size</type>
+      <name>UTF32_Parse_N</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga9c746b86480110bc25cdd880bd86585f</anchor>
+      <arglist>(t_utf32 *dest, t_ascii const *str, t_size n)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF8_1BYTE</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga50d2a13d8f4c59c57b6695ae5c22cee6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF8_2BYTE</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga2baa66668146e03d562a28e755ba3459</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF8_3BYTE</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga293f85cd3e5cc7d9d75c4848b72b1b51</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF8_4BYTE</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga7dd95e691c11be941f57c7a80a3d29d3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF16_BIAS</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gabb6128d8c5b2c7358f6137a9fada1287</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF16_SURROGATE_HI</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gac7bf9023b8944a8e742ac735a0af57cc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF16_SURROGATE_LO</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga58c614019a92a7b4f65b69dfaff1bcd9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF16_SURROGATE_END</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gaef0a4e2356ca8b88995286df8f7dc91c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF16_SURROGATE_MASK</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gac84779a3b5fd21648c256773f73485b4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF8_BOM</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga1298449aa3d5122f10caea0eb0cefae6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF16_BOM_BE</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gaca1d5c6e1645f52ed688e7856cb81ad6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF16_BOM_LE</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>ga8a42a9d6009477aadc52fb410451f2bc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF32_BOM_BE</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gae8b6189017c663989616bac0e417c8c1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>UTF32_BOM_LE</name>
+      <anchorfile>group__libccc__unicode.html</anchorfile>
+      <anchor>gaefb190ab0e50eccae4a0efdfa992d182</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="group">
     <name>libccc_math</name>

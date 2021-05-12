@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>01) libccc/bool &mdash; libccc 1.0 documentation</title>
+  <title>02) libccc/bool &mdash; libccc 1.0 documentation</title>
   
 
   
@@ -40,13 +40,13 @@
   <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="02) libccc/int" href="group_libccc_int.html" />
-    <link rel="prev" title="00) libccc" href="group_libccc.html" />
+    <link rel="next" title="03) libccc/int" href="group_libccc_int.html" />
+    <link rel="prev" title="01) libccc" href="group_libccc.html" />
 	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
 	
-	<meta name="Description" content="01) libccc/bool">
-	<meta property="og:description" content="01) libccc/bool">
-	<meta property="og:title" content="libccc 1.0 documentation - 01) libccc/bool">
+	<meta name="Description" content="02) libccc/bool">
+	<meta property="og:description" content="02) libccc/bool">
+	<meta property="og:title" content="libccc 1.0 documentation - 02) libccc/bool">
 	<meta property="og:image" content="_static/images/libccc_icon.png">
 	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
 	<meta property="og:image:type" content="image/png" />
@@ -100,49 +100,51 @@
             
             
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="group_libccc.html">00) libccc</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">01) libccc/bool</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc.html">01) libccc</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">02) libccc/bool</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#detailed-documentation">Detailed Documentation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#typedefs">Typedefs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#global-functions">Global Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#macros">Macros</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">02) libccc/int</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_fixed.html">03) libccc/fixed</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_float.html">04) libccc/float</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointer.html">05) libccc/pointer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointerarray.html">06) libccc/pointerarray</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_memory.html">07) libccc/memory</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">08) libccc/char</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">09) libccc/string</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_stringarray.html">10) libccc/stringarray</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">11) libccc/format</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_color.html">12) libccc/color</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">13) libccc/sys/io</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_time.html">14) libccc/sys/time</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">15) libccc/sys/logger</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_constants.html">27) libccc/math/constants</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_float.html">18) libccc/math/float</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_fixed.html">19) libccc/math/fixed</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_vlq.html">20) libccc/math/vlq</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_stat.html">21) libccc/math/stat</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_random.html">22) libccc/math/random</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">23) libccc/math/complex</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra.html">24) libccc/math/algebra</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_array.html">28) libccc/monad/array</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_list.html">29) libccc/monad/list</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_stack.html">30) libccc/monad/stack</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_queue.html">31) libccc/monad/queue</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_tree.html">32) libccc/monad/tree</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_keyval.html">33) libccc/monad/keyval</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_dict.html">34) libccc/monad/dict</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_object.html">35) libccc/monad/object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">03) libccc/int</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_fixed.html">04) libccc/fixed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_float.html">05) libccc/float</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointer.html">06) libccc/pointer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointerarray.html">07) libccc/pointerarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_memory.html">08) libccc/memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">09) libccc/char</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">10) libccc/string</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_stringarray.html">11) libccc/stringarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">12) libccc/format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_color.html">13) libccc/color</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">14) libccc/sys/io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_ansi.html">15) libccc/sys/ansi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">18) libccc/sys/logger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_time.html">20) libccc/sys/time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_constants.html">21) libccc/math/constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_float.html">22) libccc/math/float</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_fixed.html">23) libccc/math/fixed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_vlq.html">24) libccc/math/vlq</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_stat.html">25) libccc/math/stat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_random.html">26) libccc/math/random</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">27) libccc/math/complex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra.html">28) libccc/math/algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_array.html">32) libccc/monad/array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_list.html">33) libccc/monad/list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_stack.html">34) libccc/monad/stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_queue.html">35) libccc/monad/queue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_tree.html">36) libccc/monad/tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_keyval.html">37) libccc/monad/keyval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_dict.html">38) libccc/monad/dict</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_object.html">39) libccc/monad/object</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_config.html">Libccc_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_ascii.html">Libccc_ascii</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_regex.html">Libccc_regex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_unicode.html">Libccc_unicode</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_math.html">Libccc_math</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_array_sort.html">Libccc_array_sort</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_convert.html">Libccc_monad_convert</a></li>
@@ -197,7 +199,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>01) libccc/bool</li>
+      <li>02) libccc/bool</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -215,7 +217,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="libccc-bool">
-<span id="doxid-group-libccc-bool"></span><span id="index-0"></span><h1>01) libccc/bool<a class="headerlink" href="#libccc-bool" title="Permalink to this headline">¶</a></h1>
+<span id="doxid-group-libccc-bool"></span><span id="index-0"></span><h1>02) libccc/bool<a class="headerlink" href="#libccc-bool" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 </div>
 <div class="section" id="overview">
@@ -225,20 +227,10 @@
 
 <span class="k">typedef</span> <span class="kt">int</span> <a class="reference internal" href="#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span><span class="p">;</span>
 
-<span class="c1">// global variables</span>
-
-<a class="reference internal" href="#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-bool-1ga779f60bcf0c114cbc855c02f7e1db66b"><span></span><span class="n">uppercase</span></span><span></span><span class="p">;</span>
-
-<span class="c1">// global functions</span>
-
-<a class="reference internal" href="#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-bool-1gaa9b13c09a76c522d0bc3e86316cfbb17"><span class="std std-ref">Bool_FromString</span></a><span></span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">);</span>
-
 <span class="c1">// macros</span>
 
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-bool-1gaa93f0eb578d23995850d61f7d61c55c1"><span class="std std-ref">FALSE</span></a><span></span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span class="std std-ref">TRUE</span></a><span></span>  <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-bool-1gadbdb134a7667f7eaab54152cb5c2c0bb"><span class="std std-ref">c_bool_to_str</span></a><span></span> <span class="n">Bool_ToString</span>
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-bool-1gacc3d0f7cb029f5895392f1392ac1bb48"><span class="std std-ref">c_str_to_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-bool-1gaa9b13c09a76c522d0bc3e86316cfbb17"><span class="std std-ref">Bool_FromString</span></a><span></span>
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-bool-1ga65e9886d74aaee76545e83dd09011727"><span></span><span class="nb">false</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-bool-1gaa93f0eb578d23995850d61f7d61c55c1"><span class="std std-ref">FALSE</span></a><span></span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-bool-1ga41f9c5fb8b08eb5dc3edce4dcb37fee7"><span class="std std-ref">true</span></a><span></span>  <a class="reference internal" href="#doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span class="std std-ref">TRUE</span></a></pre>
 </div>
@@ -257,25 +249,16 @@
 <p class="rubric">See also:</p>
 <ul class="simple">
 <li><p>Bool_ToString()</p></li>
-<li><p><a class="reference internal" href="#doxid-group-libccc-bool-1gaa9b13c09a76c522d0bc3e86316cfbb17"><span class="std std-ref">Bool_FromString()</span></a></p></li>
+<li><p>Bool_FromString()</p></li>
 </ul>
-</div>
-<div class="section" id="global-functions">
-<h3>Global Functions<a class="headerlink" href="#global-functions" title="Permalink to this headline">¶</a></h3>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-bool-1gaa9b13c09a76c522d0bc3e86316cfbb17"><span id="index-2"></span><a class="reference internal" href="#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">Bool_FromString</span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">)</span></pre>
-<p>Parse a boolean value from the given string (can be 1/0/TRUE/FALSE/true/false)</p>
 </div>
 <div class="section" id="macros">
 <h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h3>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-bool-1gaa93f0eb578d23995850d61f7d61c55c1"><span id="index-3"></span><span></span><span class="cp">#define</span> <span class="n">FALSE</span>   <span class="cp">(0)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-bool-1gaa93f0eb578d23995850d61f7d61c55c1"><span id="index-2"></span><span></span><span class="cp">#define</span> <span class="n">FALSE</span>   <span class="cp">(0)</span></pre>
 <p>Represents a boolean false value (0)</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span id="index-4"></span><span></span><span class="cp">#define</span> <span class="n">TRUE</span>    <span class="cp">(1)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span id="index-3"></span><span></span><span class="cp">#define</span> <span class="n">TRUE</span>    <span class="cp">(1)</span></pre>
 <p>Represents a boolean true value (1)</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-bool-1gadbdb134a7667f7eaab54152cb5c2c0bb"><span id="index-5"></span><span></span><span class="cp">#define</span> <span class="n">c_bool_to_str</span>   <span class="cp">Bool_ToString</span></pre>
-<p>[<em>Alias for</em> #Bool_ToString]</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-bool-1gacc3d0f7cb029f5895392f1392ac1bb48"><span id="index-6"></span><span></span><span class="cp">#define</span> <span class="n">c_str_to_bool</span>   <a class="reference internal" href="#doxid-group-libccc-bool-1gaa9b13c09a76c522d0bc3e86316cfbb17"><span class="std std-ref">Bool_FromString</span></a></pre>
-<p>[<em>Alias for</em> <a class="reference internal" href="#doxid-group-libccc-bool-1gaa9b13c09a76c522d0bc3e86316cfbb17"><span class="std std-ref">Bool_FromString</span></a>]</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-bool-1ga41f9c5fb8b08eb5dc3edce4dcb37fee7"><span id="index-7"></span><span></span><span class="cp">#define</span> <span class="n">true</span>    <a class="reference internal" href="#doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span class="std std-ref">TRUE</span></a></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-bool-1ga41f9c5fb8b08eb5dc3edce4dcb37fee7"><span id="index-4"></span><span></span><span class="cp">#define</span> <span class="n">true</span>    <a class="reference internal" href="#doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span class="std std-ref">TRUE</span></a></pre>
 <p>Represents a boolean false value (0)</p>
 </div>
 </div>
@@ -289,10 +272,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="group_libccc_int.html" class="btn btn-neutral float-right" title="02) libccc/int" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="group_libccc_int.html" class="btn btn-neutral float-right" title="03) libccc/int" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="group_libccc.html" class="btn btn-neutral float-left" title="00) libccc" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="group_libccc.html" class="btn btn-neutral float-left" title="01) libccc" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

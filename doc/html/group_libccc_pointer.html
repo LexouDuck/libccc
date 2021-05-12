@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>05) libccc/pointer &mdash; libccc 1.0 documentation</title>
+  <title>06) libccc/pointer &mdash; libccc 1.0 documentation</title>
   
 
   
@@ -40,13 +40,13 @@
   <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="06) libccc/pointerarray" href="group_libccc_pointerarray.html" />
+    <link rel="next" title="07) libccc/pointerarray" href="group_libccc_pointerarray.html" />
     <link rel="prev" title="union varfloat" href="union_varfloat.html" />
 	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
 	
-	<meta name="Description" content="05) libccc/pointer">
-	<meta property="og:description" content="05) libccc/pointer">
-	<meta property="og:title" content="libccc 1.0 documentation - 05) libccc/pointer">
+	<meta name="Description" content="06) libccc/pointer">
+	<meta property="og:description" content="06) libccc/pointer">
+	<meta property="og:title" content="libccc 1.0 documentation - 06) libccc/pointer">
 	<meta property="og:image" content="_static/images/libccc_icon.png">
 	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
 	<meta property="og:image:type" content="image/png" />
@@ -100,12 +100,12 @@
             
             
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="group_libccc.html">00) libccc</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">01) libccc/bool</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">02) libccc/int</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_fixed.html">03) libccc/fixed</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_float.html">04) libccc/float</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">05) libccc/pointer</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc.html">01) libccc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">02) libccc/bool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">03) libccc/int</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_fixed.html">04) libccc/fixed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_float.html">05) libccc/float</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">06) libccc/pointer</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#detailed-documentation">Detailed Documentation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#typedefs">Typedefs</a></li>
@@ -115,34 +115,37 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointerarray.html">06) libccc/pointerarray</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_memory.html">07) libccc/memory</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">08) libccc/char</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">09) libccc/string</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_stringarray.html">10) libccc/stringarray</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">11) libccc/format</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_color.html">12) libccc/color</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">13) libccc/sys/io</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_time.html">14) libccc/sys/time</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">15) libccc/sys/logger</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_constants.html">27) libccc/math/constants</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_float.html">18) libccc/math/float</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_fixed.html">19) libccc/math/fixed</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_vlq.html">20) libccc/math/vlq</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_stat.html">21) libccc/math/stat</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_random.html">22) libccc/math/random</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">23) libccc/math/complex</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra.html">24) libccc/math/algebra</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_array.html">28) libccc/monad/array</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_list.html">29) libccc/monad/list</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_stack.html">30) libccc/monad/stack</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_queue.html">31) libccc/monad/queue</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_tree.html">32) libccc/monad/tree</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_keyval.html">33) libccc/monad/keyval</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_dict.html">34) libccc/monad/dict</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_object.html">35) libccc/monad/object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointerarray.html">07) libccc/pointerarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_memory.html">08) libccc/memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">09) libccc/char</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">10) libccc/string</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_stringarray.html">11) libccc/stringarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">12) libccc/format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_color.html">13) libccc/color</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">14) libccc/sys/io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_ansi.html">15) libccc/sys/ansi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">18) libccc/sys/logger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_time.html">20) libccc/sys/time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_constants.html">21) libccc/math/constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_float.html">22) libccc/math/float</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_fixed.html">23) libccc/math/fixed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_vlq.html">24) libccc/math/vlq</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_stat.html">25) libccc/math/stat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_random.html">26) libccc/math/random</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">27) libccc/math/complex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra.html">28) libccc/math/algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_array.html">32) libccc/monad/array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_list.html">33) libccc/monad/list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_stack.html">34) libccc/monad/stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_queue.html">35) libccc/monad/queue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_tree.html">36) libccc/monad/tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_keyval.html">37) libccc/monad/keyval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_dict.html">38) libccc/monad/dict</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_object.html">39) libccc/monad/object</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_config.html">Libccc_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_ascii.html">Libccc_ascii</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_regex.html">Libccc_regex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_unicode.html">Libccc_unicode</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_math.html">Libccc_math</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_array_sort.html">Libccc_array_sort</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_convert.html">Libccc_monad_convert</a></li>
@@ -197,7 +200,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>05) libccc/pointer</li>
+      <li>06) libccc/pointer</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -215,7 +218,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="libccc-pointer">
-<span id="doxid-group-libccc-pointer"></span><span id="index-0"></span><h1>05) libccc/pointer<a class="headerlink" href="#libccc-pointer" title="Permalink to this headline">¶</a></h1>
+<span id="doxid-group-libccc-pointer"></span><span id="index-0"></span><h1>06) libccc/pointer<a class="headerlink" href="#libccc-pointer" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 </div>
 <div class="section" id="overview">
@@ -232,22 +235,22 @@
 <a class="reference internal" href="#doxid-group-libccc-pointer-1gae811cd4a4e42949a7c6f7303acf79a6d"><span class="std std-ref">TYPEDEF_ALIAS</span></a><span></span><span class="p">(</span><span class="kt">t_sintmax</span><span class="p">,</span> <span class="n">SINTMAX</span><span class="p">,</span> <span class="n">PRIMITIVE</span><span class="p">);</span>
 <a class="reference internal" href="#doxid-group-libccc-pointer-1ga7f13dd6b996b3f70873d57933edebc7c"><span class="std std-ref">TYPEDEF_ALIAS</span></a><span></span><span class="p">(</span><span class="kt">t_uintmax</span><span class="p">,</span> <span class="n">UINTMAX</span><span class="p">,</span> <span class="n">PRIMITIVE</span><span class="p">);</span>
 <a class="reference internal" href="#doxid-group-libccc-pointer-1gad83b608a724614955943cce14845bc17"><span class="std std-ref">TYPEDEF_ALIAS</span></a><span></span><span class="p">(</span><span class="kt">t_sintptr</span><span class="p">,</span> <span class="n">SINTPTR</span><span class="p">,</span> <span class="n">PRIMITIVE</span><span class="p">);</span>
-<a class="reference internal" href="#doxid-group-libccc-pointer-1ga3ac7212af59af2a66bd8c24b22d790f1"><span class="std std-ref">TYPEDEF_ALIAS</span></a><span></span><span class="p">(</span><span class="kt">t_uintptr</span><span class="p">,</span> <span class="n">UINTPTR</span><span class="p">,</span> <span class="n">PRIMITIVE</span><span class="p">);</span>
-<span class="kt">char</span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-pointer-1ga8b4db13660bd943d9c1281dfd4a9aba0"><span class="std std-ref">Size_ToString_Hex</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">value</span><span class="p">);</span>
-<span class="kt">char</span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-pointer-1ga1c832afe71724520eb9ede992cbac0be"><span class="std std-ref">Size_ToString_Readable</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">value</span><span class="p">);</span>
-<a class="reference internal" href="#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-pointer-1ga820e0f5cdce4c4088d44099cf490ba91"><span class="std std-ref">Size_FromString</span></a><span></span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">);</span>
-<span class="kt">char</span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-pointer-1gae505f5a39ce336b9283164467a123262"><span class="std std-ref">Pointer_ToString</span></a><span></span><span class="p">(</span><span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr</span><span class="p">);</span>
-<span class="kt">char</span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-pointer-1ga93cf592597a50d4f13fd00518e2e0e4a"><span class="std std-ref">Pointer_ToString_Hex</span></a><span></span><span class="p">(</span><span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-pointer-1ga6489ce05af032b5a0c791232bf865f21"><span class="std std-ref">TYPEDEF_ALIAS</span></a><span></span><span class="p">(</span><span class="kt">t_uintptr</span><span class="p">,</span> <span class="n">UINTPTR</span><span class="p">,</span> <span class="n">PRIMITIVE</span><span class="p">);</span>
+<span class="kt">t_char</span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-pointer-1ga4ce4054fb72a0f8cd4048a42c458d409"><span class="std std-ref">Size_ToString_Hex</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">value</span><span class="p">);</span>
+<span class="kt">t_char</span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-pointer-1ga107f0d2aca8f58dba7f934c4e9b7b7ca"><span class="std std-ref">Size_ToString_Pretty</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">value</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-pointer-1ga25071695db2f94e10280bf7cf3ab120a"><span class="std std-ref">Size_FromString</span></a><span></span><span class="p">(</span><span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">);</span>
+<span class="kt">t_char</span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-pointer-1ga534b65bfd7c617df3c1e5cd7be67bed4"><span class="std std-ref">Pointer_ToString</span></a><span></span><span class="p">(</span><span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr</span><span class="p">);</span>
+<span class="kt">t_char</span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-pointer-1gae6732a2c29b9b6fbb3378542b3dcf688"><span class="std std-ref">Pointer_ToString_Hex</span></a><span></span><span class="p">(</span><span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr</span><span class="p">);</span>
 
 <span class="c1">// macros</span>
 
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-pointer-1ga070d2ce7b6bb7e5c05602aa8c308d0c4"><span class="std std-ref">NULL</span></a><span></span>   <span class="p">((</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="mi">0</span><span class="p">)</span>
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-pointer-1ga9bdcfb7a6eb5f4fcd0384369500d3ce3"><span class="std std-ref">c_ptr_to_str</span></a><span></span>   <a class="reference internal" href="#doxid-group-libccc-pointer-1gae505f5a39ce336b9283164467a123262"><span class="std std-ref">Pointer_ToString</span></a><span></span>
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-pointer-1ga19714ab170f9c3526eb59ac9f71b8538"><span class="std std-ref">c_ptr_to_strhex</span></a><span></span>    <a class="reference internal" href="#doxid-group-libccc-pointer-1ga93cf592597a50d4f13fd00518e2e0e4a"><span class="std std-ref">Pointer_ToString_Hex</span></a><span></span>
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-pointer-1ga3f64bcae3458c33f127266fadae4ca89"><span class="std std-ref">c_size_to_str</span></a><span></span>  <span class="n">Size_ToString</span>
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-pointer-1ga648005a628adc52a7c15dd29e2c1f8fc"><span class="std std-ref">c_size_to_str_readable</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-pointer-1ga1c832afe71724520eb9ede992cbac0be"><span class="std std-ref">Size_ToString_Readable</span></a><span></span>
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-pointer-1ga2bc81b07f06964f8c788c3ce32ef7b35"><span class="std std-ref">c_size_to_strhex</span></a><span></span>   <a class="reference internal" href="#doxid-group-libccc-pointer-1ga8b4db13660bd943d9c1281dfd4a9aba0"><span class="std std-ref">Size_ToString_Hex</span></a><span></span>
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-pointer-1gaf564346af001ccae6a2151c916b71f25"><span class="std std-ref">c_str_to_size</span></a><span></span>  <a class="reference internal" href="#doxid-group-libccc-pointer-1ga820e0f5cdce4c4088d44099cf490ba91"><span class="std std-ref">Size_FromString</span></a></pre>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-pointer-1gaee7ce198e34637931241b1e0c3913061"><span class="std std-ref">c_ptrtostr</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-pointer-1ga534b65bfd7c617df3c1e5cd7be67bed4"><span class="std std-ref">Pointer_ToString</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-pointer-1gab3880db68e85db0b694265e2340dd710"><span class="std std-ref">c_ptrtostrhex</span></a><span></span>  <a class="reference internal" href="#doxid-group-libccc-pointer-1gae6732a2c29b9b6fbb3378542b3dcf688"><span class="std std-ref">Pointer_ToString_Hex</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-pointer-1ga52f7b392e4f43e6c09794a749086d353"><span class="std std-ref">c_sizetostr</span></a><span></span>    <span class="n">Size_ToString</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-pointer-1ga52dad6f09d1470c8e410fec0602e06f2"><span class="std std-ref">c_sizetostr_readable</span></a><span></span>   <a class="reference internal" href="#doxid-group-libccc-pointer-1ga107f0d2aca8f58dba7f934c4e9b7b7ca"><span class="std std-ref">Size_ToString_Pretty</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-pointer-1ga5565630e6baf4563320cbfa688eeec7d"><span class="std std-ref">c_sizetostrhex</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-pointer-1ga4ce4054fb72a0f8cd4048a42c458d409"><span class="std std-ref">Size_ToString_Hex</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-pointer-1ga95d737281b1ac5c01b7b47ec72bc4848"><span class="std std-ref">c_strtosize</span></a><span></span>    <a class="reference internal" href="#doxid-group-libccc-pointer-1ga25071695db2f94e10280bf7cf3ab120a"><span class="std std-ref">Size_FromString</span></a></pre>
 </div>
 <div class="section" id="detailed-documentation">
 <span id="details-group-libccc-pointer"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline">¶</a></h2>
@@ -272,9 +275,9 @@
 <p class="rubric">See also:</p>
 <ul class="simple">
 <li><p>Size_ToString()</p></li>
-<li><p><a class="reference internal" href="#doxid-group-libccc-pointer-1ga8b4db13660bd943d9c1281dfd4a9aba0"><span class="std std-ref">Size_ToString_Hex()</span></a></p></li>
-<li><p><a class="reference internal" href="#doxid-group-libccc-pointer-1ga1c832afe71724520eb9ede992cbac0be"><span class="std std-ref">Size_ToString_Readable()</span></a></p></li>
-<li><p><a class="reference internal" href="#doxid-group-libccc-pointer-1ga820e0f5cdce4c4088d44099cf490ba91"><span class="std std-ref">Size_FromString()</span></a></p></li>
+<li><p><a class="reference internal" href="#doxid-group-libccc-pointer-1ga4ce4054fb72a0f8cd4048a42c458d409"><span class="std std-ref">Size_ToString_Hex()</span></a></p></li>
+<li><p><a class="reference internal" href="#doxid-group-libccc-pointer-1ga107f0d2aca8f58dba7f934c4e9b7b7ca"><span class="std std-ref">Size_ToString_Pretty()</span></a></p></li>
+<li><p><a class="reference internal" href="#doxid-group-libccc-pointer-1ga25071695db2f94e10280bf7cf3ab120a"><span class="std std-ref">Size_FromString()</span></a></p></li>
 </ul>
 </div>
 <div class="section" id="global-functions">
@@ -304,17 +307,17 @@
 <ul class="simple">
 <li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/cpp/types/integer">https://en.cppreference.com/w/cpp/types/integer</a></p></li>
 </ul>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointer-1ga3ac7212af59af2a66bd8c24b22d790f1"><span id="index-7"></span><span></span><span class="n">TYPEDEF_ALIAS</span><span class="p">(</span><span class="kt">t_uintptr</span><span class="p">,</span> <span class="n">UINTPTR</span><span class="p">,</span> <span class="n">PRIMITIVE</span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointer-1ga6489ce05af032b5a0c791232bf865f21"><span id="index-7"></span><span></span><span class="n">TYPEDEF_ALIAS</span><span class="p">(</span><span class="kt">t_uintptr</span><span class="p">,</span> <span class="n">UINTPTR</span><span class="p">,</span> <span class="n">PRIMITIVE</span><span class="p">)</span></pre>
 <p>Get the string decimal representation of the given size integer <code class="docutils literal notranslate"><span class="pre">value</span></code></p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointer-1ga8b4db13660bd943d9c1281dfd4a9aba0"><span id="index-8"></span><span></span><span class="kt">char</span><span class="o">*</span> <span class="n">Size_ToString_Hex</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">value</span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointer-1ga4ce4054fb72a0f8cd4048a42c458d409"><span id="index-8"></span><span></span><span class="kt">t_char</span><span class="o">*</span> <span class="n">Size_ToString_Hex</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">value</span><span class="p">)</span></pre>
 <p>Get the string hexadecimal representation of the given size integer <code class="docutils literal notranslate"><span class="pre">value</span></code></p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointer-1ga1c832afe71724520eb9ede992cbac0be"><span id="index-9"></span><span></span><span class="kt">char</span><span class="o">*</span> <span class="n">Size_ToString_Readable</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">value</span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointer-1ga107f0d2aca8f58dba7f934c4e9b7b7ca"><span id="index-9"></span><span></span><span class="kt">t_char</span><span class="o">*</span> <span class="n">Size_ToString_Pretty</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">value</span><span class="p">)</span></pre>
 <p>Get the string representation of <code class="docutils literal notranslate"><span class="pre">value</span></code> in short readable form, ie: with bytes units (KB,MB,GB,etc)</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointer-1ga820e0f5cdce4c4088d44099cf490ba91"><span id="index-10"></span><a class="reference internal" href="#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">Size_FromString</span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointer-1ga25071695db2f94e10280bf7cf3ab120a"><span id="index-10"></span><a class="reference internal" href="#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">Size_FromString</span><span class="p">(</span><span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">)</span></pre>
 <p>Parse a size integer value from the given string <code class="docutils literal notranslate"><span class="pre">str</span></code></p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointer-1gae505f5a39ce336b9283164467a123262"><span id="index-11"></span><span></span><span class="kt">char</span><span class="o">*</span> <span class="n">Pointer_ToString</span><span class="p">(</span><span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr</span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointer-1ga534b65bfd7c617df3c1e5cd7be67bed4"><span id="index-11"></span><span></span><span class="kt">t_char</span><span class="o">*</span> <span class="n">Pointer_ToString</span><span class="p">(</span><span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr</span><span class="p">)</span></pre>
 <p>Get the string decimal representation of a pointer/address value.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointer-1ga93cf592597a50d4f13fd00518e2e0e4a"><span id="index-12"></span><span></span><span class="kt">char</span><span class="o">*</span> <span class="n">Pointer_ToString_Hex</span><span class="p">(</span><span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr</span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointer-1gae6732a2c29b9b6fbb3378542b3dcf688"><span id="index-12"></span><span></span><span class="kt">t_char</span><span class="o">*</span> <span class="n">Pointer_ToString_Hex</span><span class="p">(</span><span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr</span><span class="p">)</span></pre>
 <p>Get the string hexadecimal representation of a pointer/address value.</p>
 </div>
 <div class="section" id="macros">
@@ -325,18 +328,18 @@
 <li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/types/NULL">https://en.cppreference.com/w/c/types/NULL</a></p></li>
 </ul>
 <p>The <code class="docutils literal notranslate"><span class="pre">NULL</span></code> pointer is simply an integer value of zero, cast to <code class="docutils literal notranslate"><span class="pre">void*</span></code>.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointer-1ga9bdcfb7a6eb5f4fcd0384369500d3ce3"><span id="index-14"></span><span></span><span class="cp">#define</span> <span class="n">c_ptr_to_str</span>    <a class="reference internal" href="#doxid-group-libccc-pointer-1gae505f5a39ce336b9283164467a123262"><span class="std std-ref">Pointer_ToString</span></a></pre>
-<p>[<em>Alias for</em> <a class="reference internal" href="#doxid-group-libccc-pointer-1gae505f5a39ce336b9283164467a123262"><span class="std std-ref">Pointer_ToString</span></a>]</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointer-1ga19714ab170f9c3526eb59ac9f71b8538"><span id="index-15"></span><span></span><span class="cp">#define</span> <span class="n">c_ptr_to_strhex</span> <a class="reference internal" href="#doxid-group-libccc-pointer-1ga93cf592597a50d4f13fd00518e2e0e4a"><span class="std std-ref">Pointer_ToString_Hex</span></a></pre>
-<p>[<em>Alias for</em> <a class="reference internal" href="#doxid-group-libccc-pointer-1ga93cf592597a50d4f13fd00518e2e0e4a"><span class="std std-ref">Pointer_ToString_Hex</span></a>]</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointer-1ga3f64bcae3458c33f127266fadae4ca89"><span id="index-16"></span><span></span><span class="cp">#define</span> <span class="n">c_size_to_str</span>   <span class="cp">Size_ToString</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointer-1gaee7ce198e34637931241b1e0c3913061"><span id="index-14"></span><span></span><span class="cp">#define</span> <span class="n">c_ptrtostr</span>  <a class="reference internal" href="#doxid-group-libccc-pointer-1ga534b65bfd7c617df3c1e5cd7be67bed4"><span class="std std-ref">Pointer_ToString</span></a></pre>
+<p>[<em>Alias for</em> <a class="reference internal" href="#doxid-group-libccc-pointer-1ga534b65bfd7c617df3c1e5cd7be67bed4"><span class="std std-ref">Pointer_ToString</span></a>]</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointer-1gab3880db68e85db0b694265e2340dd710"><span id="index-15"></span><span></span><span class="cp">#define</span> <span class="n">c_ptrtostrhex</span>   <a class="reference internal" href="#doxid-group-libccc-pointer-1gae6732a2c29b9b6fbb3378542b3dcf688"><span class="std std-ref">Pointer_ToString_Hex</span></a></pre>
+<p>[<em>Alias for</em> <a class="reference internal" href="#doxid-group-libccc-pointer-1gae6732a2c29b9b6fbb3378542b3dcf688"><span class="std std-ref">Pointer_ToString_Hex</span></a>]</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointer-1ga52f7b392e4f43e6c09794a749086d353"><span id="index-16"></span><span></span><span class="cp">#define</span> <span class="n">c_sizetostr</span> <span class="cp">Size_ToString</span></pre>
 <p>[<em>Alias for</em> #Size_ToString]</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointer-1ga648005a628adc52a7c15dd29e2c1f8fc"><span id="index-17"></span><span></span><span class="cp">#define</span> <span class="n">c_size_to_str_readable</span>  <a class="reference internal" href="#doxid-group-libccc-pointer-1ga1c832afe71724520eb9ede992cbac0be"><span class="std std-ref">Size_ToString_Readable</span></a></pre>
-<p>[<em>Alias for</em> <a class="reference internal" href="#doxid-group-libccc-pointer-1ga1c832afe71724520eb9ede992cbac0be"><span class="std std-ref">Size_ToString_Readable</span></a>]</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointer-1ga2bc81b07f06964f8c788c3ce32ef7b35"><span id="index-18"></span><span></span><span class="cp">#define</span> <span class="n">c_size_to_strhex</span>    <a class="reference internal" href="#doxid-group-libccc-pointer-1ga8b4db13660bd943d9c1281dfd4a9aba0"><span class="std std-ref">Size_ToString_Hex</span></a></pre>
-<p>[<em>Alias for</em> <a class="reference internal" href="#doxid-group-libccc-pointer-1ga8b4db13660bd943d9c1281dfd4a9aba0"><span class="std std-ref">Size_ToString_Hex</span></a>]</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointer-1gaf564346af001ccae6a2151c916b71f25"><span id="index-19"></span><span></span><span class="cp">#define</span> <span class="n">c_str_to_size</span>   <a class="reference internal" href="#doxid-group-libccc-pointer-1ga820e0f5cdce4c4088d44099cf490ba91"><span class="std std-ref">Size_FromString</span></a></pre>
-<p>[<em>Alias for</em> <a class="reference internal" href="#doxid-group-libccc-pointer-1ga820e0f5cdce4c4088d44099cf490ba91"><span class="std std-ref">Size_FromString</span></a>]</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointer-1ga52dad6f09d1470c8e410fec0602e06f2"><span id="index-17"></span><span></span><span class="cp">#define</span> <span class="n">c_sizetostr_readable</span>    <a class="reference internal" href="#doxid-group-libccc-pointer-1ga107f0d2aca8f58dba7f934c4e9b7b7ca"><span class="std std-ref">Size_ToString_Pretty</span></a></pre>
+<p>[<em>Alias for</em> <a class="reference internal" href="#doxid-group-libccc-pointer-1ga107f0d2aca8f58dba7f934c4e9b7b7ca"><span class="std std-ref">Size_ToString_Pretty</span></a>]</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointer-1ga5565630e6baf4563320cbfa688eeec7d"><span id="index-18"></span><span></span><span class="cp">#define</span> <span class="n">c_sizetostrhex</span>  <a class="reference internal" href="#doxid-group-libccc-pointer-1ga4ce4054fb72a0f8cd4048a42c458d409"><span class="std std-ref">Size_ToString_Hex</span></a></pre>
+<p>[<em>Alias for</em> <a class="reference internal" href="#doxid-group-libccc-pointer-1ga4ce4054fb72a0f8cd4048a42c458d409"><span class="std std-ref">Size_ToString_Hex</span></a>]</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointer-1ga95d737281b1ac5c01b7b47ec72bc4848"><span id="index-19"></span><span></span><span class="cp">#define</span> <span class="n">c_strtosize</span> <a class="reference internal" href="#doxid-group-libccc-pointer-1ga25071695db2f94e10280bf7cf3ab120a"><span class="std std-ref">Size_FromString</span></a></pre>
+<p>[<em>Alias for</em> <a class="reference internal" href="#doxid-group-libccc-pointer-1ga25071695db2f94e10280bf7cf3ab120a"><span class="std std-ref">Size_FromString</span></a>]</p>
 </div>
 </div>
 </div>
@@ -349,7 +352,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="group_libccc_pointerarray.html" class="btn btn-neutral float-right" title="06) libccc/pointerarray" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="group_libccc_pointerarray.html" class="btn btn-neutral float-right" title="07) libccc/pointerarray" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="union_varfloat.html" class="btn btn-neutral float-left" title="union varfloat" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
