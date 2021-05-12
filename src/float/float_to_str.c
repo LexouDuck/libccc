@@ -161,29 +161,29 @@ DEFINEFUNC_FLOAT_TO_STRBIN(128)
 #else
 
 	#define DEFINEFUNC_FLOAT_TO_STR_ANY_(BITS, FORMAT) \
-	inline t_char*	F##BITS##_ToString(t_f##BITS number, t_u8 precision)			\
-	{																				\
-		t_char*	result = Float_ToString_CheckSpecial(number);						\
-		if (result)																	\
-			return (result);														\
-		if ((number >=  FLOAT_THRESHOLD_HUGE) ||									\
-			(number <= -FLOAT_THRESHOLD_HUGE) ||									\
-			(number > 0 && number <=  FLOAT_THRESHOLD_TINY) ||						\
-			(number < 0 && number >= -FLOAT_THRESHOLD_TINY))						\
-			return (String_Format(FORMAT"e", precision, number));					\
-		else																		\
-			return (String_Format(FORMAT"f", precision, number));					\
-		return (NULL);																\
-	}																				\
+	t_char*	F##BITS##_ToString(t_f##BITS number, t_u8 precision)			\
+	{																		\
+		t_char*	result = Float_ToString_CheckSpecial(number);				\
+		if (result)															\
+			return (result);												\
+		if ((number >=  FLOAT_THRESHOLD_HUGE) ||							\
+			(number <= -FLOAT_THRESHOLD_HUGE) ||							\
+			(number > 0 && number <=  FLOAT_THRESHOLD_TINY) ||				\
+			(number < 0 && number >= -FLOAT_THRESHOLD_TINY))				\
+			return (String_Format(FORMAT"e", precision, number));			\
+		else																\
+			return (String_Format(FORMAT"f", precision, number));			\
+		return (NULL);														\
+	}																		\
 
 	#define DEFINEFUNC_FLOAT_TO_STR(SUFFIX, BITS, FORMAT) \
-	inline t_char*	F##BITS##_ToString##SUFFIX(t_f##BITS number, t_u8 precision)	\
-	{																				\
-		t_char*	result = Float_ToString_CheckSpecial(number);						\
-		if (result)																	\
-			return (result);														\
-		return (String_Format(FORMAT, precision, number));							\
-	}																				\
+	t_char*	F##BITS##_ToString##SUFFIX(t_f##BITS number, t_u8 precision)	\
+	{																		\
+		t_char*	result = Float_ToString_CheckSpecial(number);				\
+		if (result)															\
+			return (result);												\
+		return (String_Format(FORMAT, precision, number));					\
+	}																		\
 
 
 

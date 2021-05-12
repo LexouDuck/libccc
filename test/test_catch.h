@@ -64,7 +64,7 @@ void	init_segfault_handler(void);
 #ifdef __MINGW32__
 void	signal_handler(int signaltype);
 #else
-struct sigaction sig;
+struct sigaction sigact;
 void	signal_handler(int signaltype, siginfo_t *info, void *ptr);
 #endif
 
