@@ -61,15 +61,15 @@ void	init_segfault_handler(void)
 	signal(SIGABRT,	signal_handler);
 	signal(SIGFPE,	signal_handler);
 #else
-	memset(&sig, 0, sizeof(sigaction));
-	sigemptyset(&sig.sa_mask);
-	sig.sa_flags     = SA_NODEFER;
-	sig.sa_sigaction = signal_handler;
-//	sigaction(SIGTERM,	&sig, NULL);
-	sigaction(SIGSEGV,	&sig, NULL);
-	sigaction(SIGINT,	&sig, NULL);
-	sigaction(SIGILL,	&sig, NULL);
-	sigaction(SIGABRT,	&sig, NULL);
-	sigaction(SIGFPE,	&sig, NULL);
+	memset(&sigact, 0, sizeof(sigaction));
+	sigemptyset(&sigact.sa_mask);
+	sigact.sa_flags     = SA_NODEFER;
+	sigact.sa_sigaction = signal_handler;
+//	sigaction(SIGTERM,	&sigact, NULL);
+	sigaction(SIGSEGV,	&sigact, NULL);
+	sigaction(SIGINT,	&sigact, NULL);
+	sigaction(SIGILL,	&sigact, NULL);
+	sigaction(SIGABRT,	&sigact, NULL);
+	sigaction(SIGFPE,	&sigact, NULL);
 #endif
 }
