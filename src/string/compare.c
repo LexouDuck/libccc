@@ -4,17 +4,14 @@
 
 
 
-int	String_Compare(char const *str1, char const *str2)
+t_sint	String_Compare(t_char const* str1, t_char const* str2)
 {
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str1 == str2)
 		return (0);
-	if (str1 == NULL || str2 == NULL)
-		return ((str1 == NULL ? 0 : str1[0]) -
-				(str2 == NULL ? 0 : str2[0]));
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER((str1 - str2), str1)
+	LIBCONFIG_HANDLE_NULLPOINTER((str1 - str2), str2)
 	i = 0;
 	while (str1[i] && str2[i])
 	{
@@ -27,17 +24,14 @@ int	String_Compare(char const *str1, char const *str2)
 
 
 
-int	String_Compare_N(char const *str1, char const *str2, t_size n)
+t_sint	String_Compare_N(t_char const* str1, t_char const* str2, t_size n)
 {
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str1 == str2)
 		return (0);
-	if (str1 == NULL || str2 == NULL)
-		return ((str1 == NULL ? 0 : str1[0]) -
-				(str2 == NULL ? 0 : str2[0]));
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER((str1 - str2), str1)
+	LIBCONFIG_HANDLE_NULLPOINTER((str1 - str2), str2)
 	if (n == 0)
 		return (0);
 	i = 0;
@@ -54,17 +48,14 @@ int	String_Compare_N(char const *str1, char const *str2, t_size n)
 
 
 
-int	String_Compare_IgnoreCase(char const *str1, char const *str2)
+t_sint	String_Compare_IgnoreCase(t_char const* str1, t_char const* str2)
 {
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str1 == str2)
 		return (0);
-	if (str1 == NULL || str2 == NULL)
-		return ((str1 == NULL ? 0 : str1[0]) -
-				(str2 == NULL ? 0 : str2[0]));
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER((str1 - str2), str1)
+	LIBCONFIG_HANDLE_NULLPOINTER((str1 - str2), str2)
 	i = 0;
 	while (str1[i] && str2[i])
 	{
@@ -79,17 +70,14 @@ int	String_Compare_IgnoreCase(char const *str1, char const *str2)
 
 
 
-int	String_Compare_N_IgnoreCase(char const *str1, char const *str2, t_size n)
+t_sint	String_Compare_N_IgnoreCase(t_char const* str1, t_char const* str2, t_size n)
 {
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (str1 == str2)
 		return (0);
-	if (str1 == NULL || str2 == NULL)
-		return ((str1 == NULL ? 0 : str1[0]) -
-				(str2 == NULL ? 0 : str2[0]));
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER((str1 - str2), str1)
+	LIBCONFIG_HANDLE_NULLPOINTER((str1 - str2), str2)
 	if (n == 0)
 		return (0);
 	i = 0;

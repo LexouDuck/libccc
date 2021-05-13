@@ -6,14 +6,14 @@ VERSION = 0.7
 
 # Compiler
 CC	= _
-CC_WIN32 = i686-w64-mingw32-gcc -static -static-libgcc
+CC_WIN32 =   i686-w64-mingw32-gcc -static -static-libgcc
 CC_WIN64 = x86_64-w64-mingw32-gcc -static -static-libgcc
 CC_LINUX = gcc
-CC_MACOS = gcc
+CC_MACOS = clang
 
 # Compiler flags
-CFLAGS = -Wall -Wextra -Winline -Wpedantic -Werror $(CFLAGS_OS) -MMD -fstrict-aliasing
-CFLAGS_DEBUG = -g -ggdb -D DEBUG=1
+CFLAGS = -Wall -Wextra -Winline -Wpedantic -Wstrict-prototypes -Wmissing-prototypes -Wold-style-definition -Werror $(CFLAGS_OS) -MMD -fstrict-aliasing
+CFLAGS_DEBUG = -g -ggdb -D DEBUG=1 # -fanalyzer
 CFLAGS_RELEASE = -O3
 # -Wno-unused-result -Wno-unused-parameter
 CFLAGS_OS = _
@@ -69,29 +69,27 @@ endif
 
 
 # Define colors for terminal output
-RED   = "\033[0;31m"
-GREEN = "\033[0;32m"
-RESET = "\033[0m"
+C_RESET  = "\e[0m"
+C_RED    = "\e[31m"
+C_GREEN  = "\e[32m"
+C_YELLOW = "\e[33m"
 
 
 
 # List of all source code files
 SRCS = \
-	char/isalpha.c		\
-	char/isdigit.c		\
-	char/isprint.c		\
-	char/incharset.c	\
-	char/to.c			\
-	char/utf8.c			\
-	char/utf16.c		\
 	bool/bool_to_str.c		\
 	bool/bool_from_str.c	\
 	int/int_to_str.c		\
 	int/int_to_strbase.c	\
 	int/int_to_strhex.c		\
+	int/int_to_stroct.c		\
+	int/int_to_strbin.c		\
 	int/int_from_str.c		\
 	int/int_from_strbase.c	\
 	int/int_from_strhex.c	\
+	int/int_from_stroct.c	\
+	int/int_from_strbin.c	\
 	fixed/fixed.c			\
 	fixed/fixed_to_str.c	\
 	fixed/fixed_from_str.c	\
@@ -102,7 +100,6 @@ SRCS = \
 	float/operators.c		\
 	memory/allocate.c	\
 	memory/new.c		\
-	memory/free.c		\
 	memory/delete.c		\
 	memory/set.c		\
 	memory/copy.c		\
@@ -146,6 +143,7 @@ SRCS = \
 	string/map.c		\
 	string/replace.c	\
 	string/print.c		\
+	string/parse.c		\
 	stringarray/split_char.c	\
 	stringarray/split_charset.c	\
 	stringarray/split_str.c		\
@@ -154,6 +152,7 @@ SRCS = \
 	stringarray/delete.c	\
 	stringarray/length.c	\
 	stringarray/count.c		\
+	stringarray/add.c		\
 	stringarray/sub.c		\
 	stringarray/join.c		\
 	stringarray/merge.c		\
@@ -166,21 +165,36 @@ SRCS = \
 	color/convert.c		\
 	color/nearest.c		\
 	color/diff.c		\
-	sys/io/fd.c					\
-	sys/io/error.c				\
-	sys/io/color.c				\
-	sys/io/open.c				\
-	sys/io/close.c				\
-	sys/io/chmod.c				\
-	sys/io/read.c				\
-	sys/io/read_nextline.c		\
-	sys/io/write.c				\
-	sys/io/output.c				\
-	sys/time/time.c			\
-	sys/time/date.c			\
-	sys/time/date_format.c	\
-	sys/time/date_parse.c	\
-	sys/time/strings.c		\
+	sys/ascii/isalpha.c		\
+	sys/ascii/isdigit.c		\
+	sys/ascii/isprint.c		\
+	sys/ascii/incharset.c	\
+	sys/ascii/to.c			\
+	sys/unicode/isalpha.c	\
+	sys/unicode/isdigit.c	\
+	sys/unicode/isprint.c	\
+	sys/unicode/incharset.c	\
+	sys/unicode/toupper.c	\
+	sys/unicode/tolower.c	\
+	sys/unicode/utf8.c		\
+	sys/unicode/utf16.c		\
+	sys/unicode/parse.c		\
+	sys/io/fd.c			\
+	sys/io/error.c		\
+	sys/io/color.c		\
+	sys/io/open.c		\
+	sys/io/close.c		\
+	sys/io/chmod.c		\
+	sys/io/read.c		\
+	sys/io/readline.c	\
+	sys/io/write.c		\
+	sys/io/output.c		\
+	sys/time/time.c		\
+	sys/time/date.c		\
+	sys/time/print.c	\
+	sys/time/parse.c	\
+	sys/time/utils.c	\
+	sys/time/strings.c	\
 	sys/logger/core.c	\
 	sys/logger/util.c	\
 	sys/logger/init.c	\
@@ -269,7 +283,25 @@ SRCS = \
 	monad/list/map.c		\
 	monad/list/filter.c		\
 	monad/convert/list.c	\
-	encode/json.c			\
+	encode/kvt/new.c		\
+	encode/kvt/add.c		\
+	encode/kvt/concat.c		\
+	encode/kvt/create.c		\
+	encode/kvt/length.c		\
+	encode/kvt/get.c		\
+	encode/kvt/set.c		\
+	encode/kvt/array.c		\
+	encode/kvt/duplicate.c	\
+	encode/kvt/equals.c		\
+	encode/kvt/insert.c		\
+	encode/kvt/is.c			\
+	encode/kvt/delete.c		\
+	encode/kvt/detach.c		\
+	encode/kvt/replace.c	\
+	encode/kvt/error.c		\
+	encode/json/parse.c		\
+	encode/json/print.c		\
+	encode/json/minify.c	\
 
 # define object files list (.o) from source list
 OBJS = ${SRCS:%.c=$(OBJDIR)%.o}
@@ -296,6 +328,11 @@ release: MODE = release
 release: CFLAGS += $(CFLAGS_RELEASE)
 release: $(NAME).a dynlib
 
+# This rule should be executed once, after cloning the repo
+init:
+	@git config core.hooksPath ./.github/hooks
+
+# This rule builds the dynamically-linked library files for the current target platform
 dynlib: $(NAME).a
 	@mkdir -p $(BINDIR)dynamic/$(OSMODE)/
 	@mkdir -p $(BINDIR)static/$(OSMODE)/
@@ -316,10 +353,10 @@ else ifeq ($(OSMODE),linux)
 	"Compiling .so: "$(BINDIR)dynamic/$(OSMODE)/$(NAME).so" -> " ; \
 	$(CC) -shared -o $(BINDIR)dynamic/$(OSMODE)/$(NAME).so $(OBJS)
 else
-	@printf $(RED)"ERROR"$(RESET)": OS not supported -> OSMODE="$(OSMODE)"\n"
+	@printf $(C_RED)"ERROR"$(C_RESET)": OS not supported -> OSMODE="$(OSMODE)"\n"
 	exit 1
 endif
-	@printf $(GREEN)"OK!"$(RESET)"\n"
+	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
 
 # This rule prepares ZIP archives in ./dist for each platform from the contents of the ./bin folder
 dist: release
@@ -339,7 +376,7 @@ dist_version:
 	@printf "Preparing ZIP: "
 	@printf $(DISTDIR)$(NAME)_$(VERSION)_$(OSMODE)_$(LIBMODE).zip"\n"
 	@zip -j $(DISTDIR)$(NAME)_$(VERSION)_$(OSMODE)_$(LIBMODE).zip	$(BINDIR)$(LIBMODE)/$(OSMODE)/*
-	@printf $(GREEN)"  OK!"$(RESET)"\n"
+	@printf $(C_GREEN)"  OK!"$(C_RESET)"\n"
 
 
 
@@ -348,14 +385,14 @@ $(OBJDIR)%.o : $(SRCDIR)%.c
 	@mkdir -p $(@D)
 	@printf "Compiling file: "$@" -> "
 	@$(CC) $(CFLAGS) -c $< -I$(HDRDIR) -o $@
-	@printf $(GREEN)"OK!"$(RESET)"\n"
+	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
 
 # This rule builds the static library file to link against, in the root directory
 $(NAME).a: $(OBJS)
 	@printf "Compiling library: "$@" -> "
 	@ar -rc $@ $(OBJS)
 	@ranlib $@
-	@printf $(GREEN)"OK!"$(RESET)"\n"
+	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
 
 
 
@@ -365,9 +402,17 @@ $(NAME).a: $(OBJS)
 
 TEST_DIR = ./test/
 
-TEST_HDRS = $(TEST_DIR)test.h
+TEST_HDRS = \
+	$(TEST_DIR)test.h		\
+	$(TEST_DIR)test_catch.h	\
+	$(TEST_DIR)test_timer.h	\
+	$(TEST_DIR)test_utils.h	\
+
 TEST_SRCS = \
 	$(TEST_DIR)main.c		\
+	$(TEST_DIR)test.c		\
+	$(TEST_DIR)test_timer.c	\
+	$(TEST_DIR)test_catch.c	\
 	$(TEST_DIR)util.c		\
 	$(TEST_DIR)util_print.c	\
 	$(TEST_DIR)libccc/bool.c	\
@@ -375,9 +420,11 @@ TEST_SRCS = \
 	$(TEST_DIR)libccc/int.c		\
 	$(TEST_DIR)libccc/fixed.c	\
 	$(TEST_DIR)libccc/float.c	\
-	$(TEST_DIR)libccc/pointer.c	\
-	$(TEST_DIR)libccc/memory.c	\
-	$(TEST_DIR)libccc/string.c	\
+	$(TEST_DIR)libccc/memory.c			\
+	$(TEST_DIR)libccc/pointer.c			\
+	$(TEST_DIR)libccc/pointerarray.c	\
+	$(TEST_DIR)libccc/string.c			\
+	$(TEST_DIR)libccc/stringarray.c		\
 	$(TEST_DIR)libccc/color.c	\
 	$(TEST_DIR)libccc/sys/io.c		\
 	$(TEST_DIR)libccc/sys/time.c	\
@@ -389,15 +436,15 @@ TEST_SRCS = \
 	$(TEST_DIR)libccc/math/random.c		\
 	$(TEST_DIR)libccc/math/vlq.c		\
 	$(TEST_DIR)libccc/monad/array.c			\
-	$(TEST_DIR)libccc/monad/pointerarray.c	\
-	$(TEST_DIR)libccc/monad/stringarray.c	\
 	$(TEST_DIR)libccc/monad/list.c			\
 	$(TEST_DIR)libccc/monad/tree.c			\
 	$(TEST_DIR)libccc/monad/dict.c			\
+	$(TEST_DIR)libccc/monad/object.c		\
+	$(TEST_DIR)libccc/encode/json.c			\
 
 TEST_OBJS = ${TEST_SRCS:%.c=$(OBJDIR)%.o}
 
-TEST_CFLAGS = -O2 -g -ggdb
+TEST_CFLAGS = -O2 -g -ggdb # -fanalyzer
 TEST_INCLUDEDIRS = -I$(HDRDIR) -I$(TEST_DIR)
 
 # This rule compiles object files from source files
@@ -405,13 +452,13 @@ $(OBJDIR)$(TEST_DIR)%.o: $(TEST_DIR)%.c $(TEST_HDRS)
 	@mkdir -p $(@D)
 	@printf "Compiling file: "$@" -> "
 	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -c $< -o $@
-	@printf $(GREEN)"OK!"$(RESET)"\n"
+	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
 
 # This rule builds the testing/CI program
 $(NAME_TEST): debug $(TEST_OBJS)
 	@printf "Compiling testing program: "$@" -> "
 	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -o $@ $(TEST_OBJS) -L./ -lccc -lm -lpthread
-	@printf $(GREEN)"OK!"$(RESET)"\n"
+	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
 
 # This rule builds and runs the test executable
 test: $(NAME_TEST)
@@ -424,10 +471,10 @@ test: $(NAME_TEST)
 #######################################
 
 clean:
-	@printf "Deleting object files...\n"
+	@printf "Deleting all .o files...\n"
 	@rm -rf $(OBJS)
 	@rm -rf $(TEST_OBJS)
-	@printf "Deleting dependency files...\n"
+	@printf "Deleting all .d files...\n"
 	@rm -rf $(DPDS)
 	@rm -rf *.d
 
@@ -439,9 +486,11 @@ fclean: clean
 	@rm -rf $(NAME_TEST).d
 
 rclean: fclean
-	@printf "Deleting obj folder...\n"
+	@printf "Deleting "$(OBJDIR)" folder...\n"
 	@rm -rf $(OBJDIR)
-	@printf "Deleting bin folder...\n"
+
+aclean: rclean
+	@printf "Deleting "$(BINDIR)" folder...\n"
 	@rm -rf $(BINDIR)
 
 re: fclean all
@@ -454,6 +503,7 @@ re: fclean all
 
 DOXYREST = $(DOCDIR)_doxyrest/bin/doxyrest
 
+# This rule generates documentation for libccc
 doc:
 	@rm -rf $(DOCDIR)xml/*
 	@rm -rf $(DOCDIR)rst/*
@@ -522,7 +572,7 @@ pclint:
 	@$(PCLP) -width"(120,4)" -format="%(%f:%l%):\n[%n]->%t: %m" -w2 \
 		-e438 -e534 -e641 -e655 -e695 -e835 -e2445 \
 		$(PCLP_CONFIG).lnt $(PCLP_PROJECT).lnt > $(PCLP_LOG)
-	@printf $(GREEN)"SUCCESS"$(RESET)": output file is "$(PCLP_LOG)"\n"
+	@printf $(C_GREEN)"SUCCESS"$(C_RESET)": output file is "$(PCLP_LOG)"\n"
 
 
 
@@ -538,7 +588,7 @@ preprocessed: all $(PREPROCESSED)
 $(OBJDIR)%.c: $(SRCDIR)%.c
 	@printf "Preprocessing file: "$@" -> "
 	@$(CC) $(CFLAGS) -E $< -o $@
-	@printf $(GREEN)"OK!"$(RESET)"\n"
+	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
 
 
 

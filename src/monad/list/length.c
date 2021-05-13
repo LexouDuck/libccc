@@ -3,19 +3,16 @@
 
 
 _GENERIC()
-t_uint	CONCAT(List_Length,T_NAME)(s_list_T const* lst)
+t_uint	CONCAT(List_Length,T_NAME)(s_list_T const* list)
 {
 	t_uint	result;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (lst == NULL)
-		return (0);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(0, list)
 	result = 0;
-	while (lst)
+	while (list)
 	{
 		++result;
-		lst = lst->next;
+		list = list->next;
 	}
 	return (result);
 }

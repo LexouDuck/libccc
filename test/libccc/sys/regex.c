@@ -33,9 +33,9 @@ void	test_regex_(void)
 ** ************************************************************************** *|
 */
 
-int		testsuite_regex(void)
+int		testsuite_sys_regex(void)
 {
-	print_suite_title("regex");
+	print_suite_title("libccc/sys/regex");
 
 	print_nonstd();
 

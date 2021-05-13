@@ -15,10 +15,10 @@
 
 
 
-t_io_error	Log_FatalError(s_logger const* logger, char const* str)
+t_io_error	Log_FatalError(s_logger const* logger, t_char const* str)
 {
 	t_io_error result = OK;
-	char const* message = IO_GetError(errno);
+	t_char const* message = IO_GetError(errno);
 
 	if (logger->path && IO_IsTerminal(logger->fd))
 	{
@@ -37,10 +37,10 @@ t_io_error	Log_FatalError(s_logger const* logger, char const* str)
 
 
 
-char*	Logger_GetTimestamp(t_time utc)
+t_char*	Logger_GetTimestamp(t_time utc)
 {
 	static const t_size max = 24;
-	char*		result;
+	t_char*		result;
 	s_date	date = Time_ToDate_UTC(utc);
 	result = String_New(max);
 	if (result == NULL)
@@ -55,10 +55,10 @@ char*	Logger_GetTimestamp(t_time utc)
 **	Functions to help debug the logger
 */
 
-char*	Logger_GetSettings(s_logger const* logger)
+t_char*	Logger_GetSettings(s_logger const* logger)
 {
-	char*		result = NULL;
-	char const*	logformat = NULL;
+	t_char*		result = NULL;
+	t_char const*	logformat = NULL;
 
 	switch (logger->format)
 	{
@@ -68,7 +68,6 @@ char*	Logger_GetSettings(s_logger const* logger)
 		case LOGFORMAT_XML:  logformat = LOGFORMAT_STRING_XML ; break;
 		default: break;
 	}
-
 	result = String_Format(
 		"\n"LOG_TIMESTAMP_INDENT"\tLogger settings:"
 		"\n"LOG_TIMESTAMP_INDENT"\t- Silence normal logs and warnings: %s"
@@ -90,13 +89,12 @@ char*	Logger_GetSettings(s_logger const* logger)
 		logger->fd,
 		logger->path
 	);
-	
 	return (result);
 }
 
 inline t_io_error	Logger_LogSettings(s_logger const* logger)
 {
-	char*	tmp = Logger_GetSettings(logger);
+	t_char*	tmp = Logger_GetSettings(logger);
 	t_io_error result = Log_Message(logger, "%s", tmp);
 	String_Delete(&tmp);
 	return (result);

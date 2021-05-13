@@ -11,9 +11,9 @@
 ** ************************************************************************** *|
 */
 
-int		testsuite_array_tree(void)
+int		testsuite_monad_tree(void)
 {
-	print_suite_title("array/tree");
+	print_suite_title("libccc/monad/tree");
 
 	// TODO
 

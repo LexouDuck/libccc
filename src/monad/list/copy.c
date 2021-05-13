@@ -7,10 +7,8 @@ s_list_T*	CONCAT(List_Copy,T_NAME)(s_list_T* dest, s_list_T const* src, t_uint n
 {
 	s_list_T*	list;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (dest == NULL || src == NULL)
-		return (NULL);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, dest)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, src)
 	list = dest;
 	while (list && n--)
 	{

@@ -4,21 +4,18 @@
 
 
 
-char*		String_Pad(char const* str, char c, t_size size)
+t_char*		String_Pad(t_char const* str, t_char c, t_size size)
 {
-	char*	result;
+	t_char*	result;
 	t_size	offset;
 	t_size	length;
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL)
-		return (NULL);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
 	length = String_Length(str);
 	if (size == length)
 		return (String_Duplicate(str));
-	if (!(result = (char*)Memory_Alloc(size + 1)))
+	if (!(result = (t_char*)Memory_Alloc(size + sizeof(""))))
 		return (NULL);
 	result[size] = '\0';
 	i = 0;
@@ -51,21 +48,18 @@ char*		String_Pad(char const* str, char c, t_size size)
 
 
 
-char*		String_Pad_L(char const* str, char c, t_size size)
+t_char*		String_Pad_L(t_char const* str, t_char c, t_size size)
 {
-	char*	result;
+	t_char*	result;
 	t_size	offset;
 	t_size	length;
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL)
-		return (NULL);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
 	length = String_Length(str);
 	if (size == length)
 		return (String_Duplicate(str));
-	if (!(result = (char*)Memory_Alloc(size + 1)))
+	if (!(result = (t_char*)Memory_Alloc(size + sizeof(""))))
 		return (NULL);
 	result[size] = '\0';
 	if (size < length)
@@ -98,20 +92,17 @@ char*		String_Pad_L(char const* str, char c, t_size size)
 
 
 
-char*		String_Pad_R(char const* str, char c, t_size size)
+t_char*		String_Pad_R(t_char const* str, t_char c, t_size size)
 {
-	char*	result;
+	t_char*	result;
 	t_size	length;
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL)
-		return (NULL);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
 	length = String_Length(str);
 	if (size == length)
 		return (String_Duplicate(str));
-	if (!(result = (char*)Memory_Alloc(size + 1)))
+	if (!(result = (t_char*)Memory_Alloc(size + sizeof(""))))
 		return (NULL);
 	result[size] = '\0';
 	i = 0;

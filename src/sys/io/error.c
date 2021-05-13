@@ -1,8 +1,8 @@
 
 /*
 **	Functions used from <string.h>:
-**	-	char const* strerror(int errnum);
-**	-	int strerror_r(int errnum, char *buf, size_t buflen);
+**	-	t_char const* strerror(int errnum);
+**	-	int strerror_r(int errnum, t_char* buf, size_t buflen);
 */
 #include <string.h>
 #include <sys/types.h>
@@ -12,7 +12,7 @@
 
 
 
-inline char*	IO_GetError(t_io_error error)
+inline t_char*	IO_GetError(t_io_error error)
 {
 	char	buffer[IO_BUFFER_SIZE] = {0};
 

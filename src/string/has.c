@@ -3,15 +3,13 @@
 
 
 
-t_bool		c_strhas(char const *str, char const *charset)
+t_bool		String_Has(t_char const* str, t_char const* charset)
 {
 	t_size	i;
 	t_size	c;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL || charset == NULL)
-		return (FALSE);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(FALSE, str)
+	LIBCONFIG_HANDLE_NULLPOINTER(FALSE, charset)
 	i = 0;
 	while (str[i])
 	{
@@ -29,16 +27,14 @@ t_bool		c_strhas(char const *str, char const *charset)
 
 
 
-t_bool		c_strhasonly(char const *str, char const *charset)
+t_bool		String_HasOnly(t_char const* str, t_char const* charset)
 {
 	t_size	i;
 	t_size	c;
 	t_bool	match;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL || charset == NULL)
-		return (FALSE);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(FALSE, str)
+	LIBCONFIG_HANDLE_NULLPOINTER(FALSE, charset)
 	i = 0;
 	while (str[i])
 	{
@@ -49,7 +45,7 @@ t_bool		c_strhasonly(char const *str, char const *charset)
 			if (str[i] == charset[c])
 			{
 				match = TRUE;
-				break ;
+				break;
 			}
 			++c;
 		}

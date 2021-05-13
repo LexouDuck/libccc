@@ -4,7 +4,7 @@
 
 
 
-static int	c_strcsplit_get_count(char const* str, char c)
+static int	String_Split_Char_GetCount(t_char const* str, t_char c)
 {
 	int		result;
 	t_bool	separator;
@@ -26,27 +26,24 @@ static int	c_strcsplit_get_count(char const* str, char c)
 				++result;
 		}
 		else
-			break ;
+			break;
 		separator = FALSE;
 		++i;
 	}
 	return (result);
 }
 
-char		**c_strsplit_char(char const* str, char c)
+t_char**		String_Split_Char(t_char const* str, t_char c)
 {
-	char	**result;
+	t_char**	result;
 	t_size	offset;
 	t_size	length;
 	int		count;
 	int		i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL)
-		return (NULL);
-#endif
-	count = c_strcsplit_get_count(str, c);
-	if (!(result = c_strarrnew(count)))
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
+	count = String_Split_Char_GetCount(str, c);
+	if (!(result = StringArray_New(count)))
 		return (NULL);
 	offset = 0;
 	length = 0;
@@ -60,7 +57,7 @@ char		**c_strsplit_char(char const* str, char c)
 		while (str[offset + length] && str[offset + length] != c)
 			++length;
 		if (length > 0)
-			result[i++] = c_strsub(str, offset, length);
+			result[i++] = String_Sub(str, offset, length);
 	}
 	result[count] = NULL;
 	return (result);

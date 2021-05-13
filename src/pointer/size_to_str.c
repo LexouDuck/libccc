@@ -6,19 +6,19 @@
 
 
 
-inline char*	Size_ToString(t_size number)
+inline t_char*	Size_ToString(t_size number)
 {
 	return (U64_ToString(number));
 }
 
-inline char*	Size_ToString_Hex(t_size number)
+inline t_char*	Size_ToString_Hex(t_size number)
 {
-	return (U64_ToString_Hex(number));
+	return (U64_ToString_Hex(number, TRUE));
 }
 
-char*	Size_ToString_Readable(t_size number)
+t_char*	Size_ToString_Pretty(t_size number)
 {
-	static const char* units[6] = { "B\0", "KB", "MB", "GB", "TB", "PB" };
+	static const t_char* units[6] = { "B\0", "KB", "MB", "GB", "TB", "PB" };
 	t_float len = (t_float)number;
 	t_u32 unit = 0;
 	while (len >= 1024 && unit < 5)
@@ -27,7 +27,7 @@ char*	Size_ToString_Readable(t_size number)
 		len /= 1024;
 	}
 
-	char	*result;
+	t_char*	result;
 	t_u8	digits[sizeof(t_size) / 2 * 5];
 	t_u8	i;
 	t_size	n;
@@ -41,7 +41,7 @@ char*	Size_ToString_Readable(t_size number)
 	}
 	if (i == 0)
 		digits[i++] = 0;
-	if (!(result = (char*)Memory_Alloc(i + 3)))
+	if (!(result = (t_char*)Memory_Alloc(i + 3)))
 		return (NULL);
 	n = 0;
 	while (i--)

@@ -37,28 +37,58 @@ HEADER_CPP
 
 /*
 ** ************************************************************************** *|
+**                                 Definitions                                *|
+** ************************************************************************** *|
+*/
+
+//! macros for byte sizes
+#define KB(X)	((X) * 1024)	//!< converts a value expressed in kilobytes to its equivalent in bytes
+#define MB(X)	(KB(X) * 1024)	//!< converts a value expressed in megabytes to its equivalent in bytes
+#define GB(X)	(MB(X) * 1024)	//!< converts a value expressed in gigabytes to its equivalent in bytes
+#define TB(X)	(GB(X) * 1024)	//!< converts a value expressed in terabytes to its equivalent in bytes
+
+
+
+//! Macros to convert values' endianness
+//!@{
+#ifdef LOCAL_BE
+// local arch is big endian
+	#define I16_FROM_LE(X)	((((X)&0XFF)<< 8)|(((X)>>8)&0XFF))
+	#define I16_TO_LE(X)	((((X)&0XFF)<< 8)|(((X)>>8)&0XFF))
+
+	#define I32_FROM_LE(X)	((((X)&0XFF)<<24)|(((X)&0XFF00)<< 8)|(((X)>>8)&0XFF00)|(((X)>>24)&0XFF))
+	#define I32_TO_LE(X)	((((X)&0XFF)<<24)|(((X)&0XFF00)<< 8)|(((X)>>8)&0XFF00)|(((X)>>24)&0XFF))
+
+	#define I64_FROM_LE(X)	((((X)&0XFF)<<56)|(((X)&0XFF00)<<40)|(((X)&0XFF0000)<<24)|(((X)&0XFF000000)<<8)|(((X)>>8)&0XFF000000)|(((X)>>24)&0XFF00)|(((X)>>40)&0XFF00)|(((X)>>56)&0XFF))
+	#define I64_TO_LE(X)	((((X)&0XFF)<<56)|(((X)&0XFF00)<<40)|(((X)&0XFF0000)<<24)|(((X)&0XFF000000)<<8)|(((X)>>8)&0XFF000000)|(((X)>>24)&0XFF00)|(((X)>>40)&0XFF00)|(((X)>>56)&0XFF))
+
+#else
+// local arch is little endian
+	#define I16_FROM_LE(X)	(X)
+	#define I16_TO_LE(X)	(X)
+
+	#define I32_FROM_LE(X)	(X)
+	#define I32_TO_LE(X)	(X)
+
+	#define I64_FROM_LE(X)	(X)
+	#define I64_TO_LE(X)	(X)
+
+#endif
+//!@}
+
+
+
+/*
+** ************************************************************************** *|
 **                          Basic Memory Operations                           *|
 ** ************************************************************************** *|
 */
 
-//! Returns a pointer to a newly allocated memory area which is `size` bytes long.
-/*!
-**	@isostd{https://en.cppreference.com/w/c/memory/malloc}
-**
-**	Allocates `size` bytes in memory, returning the pointer to allocated region.
-**	NB: This function only allocates the memory: there may be garbage leftover values.
-**		It is recommended to use Memory_New() instead, to avoid garbage memory issues.
-**
-**	@returns The pointer to newly allocated region, or #NULL if an error occurred
-**			(ie: the memory could not be allocated for whatever reason).
-*/
-_MALLOC()
-void*				Memory_Alloc(t_size size);
-#define c_memalloc	Memory_Alloc //!< @alias{Memory_Alloc}
-
 //! Returns a newly allocated memory area which is `size` bytes long, with every byte set to `0`.
 /*!
 **	@nonstd
+**	This function is similar to:
+**	@isostd{https://en.cppreference.com/w/c/memory/calloc}
 **
 **	Allocates `size` bytes in memory, returning the pointer to allocated region.
 **	Sets each byte of this newly allocated memory space to `0`.
@@ -82,7 +112,39 @@ _MALLOC()
 void*				Memory_New_C(t_size size, char c);
 #define c_memcnew	Memory_New_C //!< @alias{Memory_New_C}
 
+//! Returns a pointer to a newly allocated memory area which is `size` bytes long, uninitialized.
+/*!
+**	@isostd{https://en.cppreference.com/w/c/memory/malloc}
+**
+**	Allocates `size` bytes in memory, returning the pointer to allocated region.
+**	NB: This function only allocates a new memory region and does nothign more:
+**		This means that there may be garbage leftover values in the newly allocated region.
+**		It generally recommended to use Memory_New() instead, to avoid garbage memory issues.
+**
+**	@returns The pointer to newly allocated region, or #NULL if an error occurred
+**			(ie: the memory could not be allocated for whatever reason).
+*/
+_MALLOC()
+void*					Memory_Allocate(t_size size);
+#define c_malloc		Memory_Allocate //!< @alias{Memory_Allocate}
+#define c_memalloc		Memory_Allocate //!< @alias{Memory_Allocate}
+#define Memory_Alloc	Memory_Allocate //!< @alias{Memory_Allocate}
 
+//! Reallocates the given area of memory `ptr` to be `size` bytes long, returning the new (or same) pointer.
+/*!
+**	@isostd{https://en.cppreference.com/w/c/memory/realloc}
+**
+**	This function will either reallocate in-place (ie: not changing the pointer),
+**	or, if that is not possible, it will allocate the needed `size` to a new region.
+**
+**	@returns The pointer to newly allocated region, or the same old `ptr` given as arg.
+**		May also return #NULL if an error occurred (the memory could not be allocated for whatever reason).
+*/
+_MALLOC()
+void*					Memory_Reallocate(void* ptr, t_size size);
+#define c_realloc		Memory_Reallocate //!< @alias{Memory_Reallocate}
+#define c_memrealloc	Memory_Reallocate //!< @alias{Memory_Reallocate}
+#define Memory_Realloc	Memory_Reallocate //!< @alias{Memory_Reallocate}
 
 //! Frees the previously allocated memory area at `*ptr`.
 /*!
@@ -91,8 +153,11 @@ void*				Memory_New_C(t_size size, char c);
 **	Deallocates the area of memory pointed to by `ptr`, assuming it was
 **	previously allocated by a call to Memory_Alloc() or Memory_New()
 */
-void				Memory_Free(void* ptr);
-#define c_memfree	Memory_Free //!< @alias{Memory_Free}
+void					Memory_Deallocate(void* ptr);
+#define c_free			Memory_Deallocate //!< @alias{Memory_Deallocate}
+#define c_memfree		Memory_Deallocate //!< @alias{Memory_Deallocate}
+#define Memory_Free		Memory_Deallocate //!< @alias{Memory_Deallocate}
+#define Memory_Dealloc	Memory_Deallocate //!< @alias{Memory_Deallocate}
 
 //! Frees the allocated memory at `**a_ptr`, and sets `*a_ptr` to #NULL.
 /*!
@@ -109,7 +174,7 @@ void				Memory_Delete(void* *a_ptr);
 
 //! Sets `n` bytes of memory, starting at `ptr`, to the given value `byte`.
 /*!
-**	@isostd{https://en.cppreference.com/w/c/memory/memset}
+**	@isostd{https://en.cppreference.com/w/c/string/byte/memset}
 **
 **	Sets `n` bytes of memory with the given 8-bit value `byte` (taking only the
 **	first 8 bits of this value and writing it byte-per-byte), starting at `ptr`.
@@ -119,7 +184,7 @@ void				Memory_Set(void* ptr, t_u8 byte, t_size n);
 
 //! Sets `n` bytes of memory to 0, starting at `ptr`.
 /*!
-**	@isostd{https://en.cppreference.com/w/c/memory/bzero}
+**	@nonstd, similar to bzero()
 **
 **	Sets `n` bytes of memory to 0, starting at `ptr`. (equivalent to bzero)
 */
@@ -215,6 +280,7 @@ void*					Memory_Merge(void* *a_ptr1, t_size length1, void* *a_ptr2, t_size leng
 */
 void*				Memory_Find(void const* ptr, t_u8 byte, t_size n);
 #define c_memchr	Memory_Find //!< @alias{Memory_Find}
+#define c_memfind	Memory_Find //!< @alias{Memory_Find}
 
 
 
@@ -238,7 +304,7 @@ void				Memory_Replace(void* ptr, t_u8 old, t_u8 new, t_size n);
 **	returning (byte1 - byte2) at the first difference encountered.
 **	As such, will return 0 if the contents of `ptr1` and `ptr2` match.
 */
-int					Memory_Compare(void const* ptr1, void const* ptr2, t_size n);
+int					Memory_Compare(void const* ptr1, void const* ptr2, t_size n); // TODO change retrun type to t_sint
 #define c_memcmp	Memory_Compare //!< @alias{Memory_Compare}
 
 
@@ -251,7 +317,7 @@ int					Memory_Compare(void const* ptr1, void const* ptr2, t_size n);
 **	copying exactly `size` bytes of data between the two. (XOR swap method)
 **	Returns 0 if the swap was successful, and 1 otherwise.
 */
-int					Memory_Swap(void* ptr1, void* ptr2, t_size size);
+int					Memory_Swap(void* ptr1, void* ptr2, t_size size); // TODO change retrun type to t_error
 #define c_memswap	Memory_Swap //!< @alias{Memory_Swap}
 
 

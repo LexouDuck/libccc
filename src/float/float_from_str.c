@@ -1,7 +1,7 @@
 
 /*
 **	Functions used from <stdlib.h>: (only when LIBCONFIG_USE_FAST_APPROX_MATH is 0)
-**	-	double	atof(char* str);
+**	-	double	atof(t_char* str);
 */
 #include <stdlib.h>
 
@@ -13,48 +13,43 @@
 
 
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	#define LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_FLOAT	if (str == NULL) return (0);
-#else
-	#define LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_FLOAT	
-#endif
-
 //! The maximum amount of digits that can be printed to the mantissa
 #define MAXLEN_MANTISSA	(64)
 
 
 
 //! Returns 1 if the given 'number' is either NaN, or +/- infinity
-t_float	Float_FromString_CheckSpecial(char const* str)
+static
+t_float	Float_FromString_CheckSpecial(t_char const* str)
 {
 	char sign = str[0];
 	if (sign == '-' || sign == '+')
 		++str;
 	if (String_Equals_N_IgnoreCase(str, "NAN", 3))
 	{
+		if (sign == '-')	return (-NAN);
+		if (sign == '+')	return (+NAN);
 		return (NAN);
 	}
 	if (String_Equals_N_IgnoreCase(str, "INFINITY", 8) ||
 		String_Equals_N_IgnoreCase(str, "INF", 3) ||
-		UTF8_Get((t_utf8*)str) == 0x221E) // infinity unicode char
+		UTF32_FromUTF8((t_utf8*)str) == 0x221E) // infinity unicode char
 	{
-		return (sign == '-' ?
-			-INFINITY :
-			+INFINITY);
+		if (sign == '-')	return (-INF);
+		if (sign == '+')	return (+INF);
+		return (INF);
 	}
 	return (0.);
 }
 
 //! Returns TRUE if the given 'str' contains any invalid characters for float parsing, or FALSE otherwise
-static t_bool	Float_FromString_CheckInvalid(char const* str)
+static
+t_bool	Float_FromString_CheckInvalid(t_char const* str)
 {
 	t_size	count_expon;
 	t_size	count_signs;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL)
-		return (TRUE);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(TRUE, str)
 	if (str[0] == '\0')
 		return (TRUE);
 	if (str[0] != '+' &&
@@ -81,10 +76,11 @@ static t_bool	Float_FromString_CheckInvalid(char const* str)
 
 
 #define DEFINEFUNC_STR_TO_FLOAT(BITS) \
-t_f##BITS			F##BITS##_FromString(char const *str)			\
+t_f##BITS			F##BITS##_FromString(t_char const* str)			\
 {																	\
 	t_f##BITS	result;												\
-LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_FLOAT							\
+																	\
+	LIBCONFIG_HANDLE_NULLPOINTER(0, str)							\
 	while (*str && Char_IsSpace(*str))								\
 		++str;														\
 	result = Float_FromString_CheckSpecial(str);					\
@@ -109,10 +105,18 @@ LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_FLOAT							\
 
 
 #define DEFINEFUNC_STREXP_TO_FLOAT(BITS) \
-t_f##BITS	F##BITS##_FromString_Exp(char const *str)				\
+t_f##BITS	F##BITS##_FromString_Exp(t_char const* str)				\
 {																	\
 	t_f##BITS	result;												\
-LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_FLOAT							\
+	t_char const* str_mantissa;										\
+	t_char const* str_exponent;										\
+	t_size		frac_digits;										\
+	t_bool		negative;											\
+	t_s16		exponent;											\
+	t_char*		tmp;												\
+	t_size	i = 0;													\
+																	\
+	LIBCONFIG_HANDLE_NULLPOINTER(0, str)							\
 	while (*str && Char_IsSpace(*str))								\
 		++str;														\
 	result = Float_FromString_CheckSpecial(str);					\
@@ -120,14 +124,6 @@ LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_FLOAT							\
 		return (result);											\
 	if (Float_FromString_CheckInvalid(str))							\
 		return (NAN);												\
-\
-	t_bool		negative;											\
-	char const* str_mantissa;										\
-	char const* str_exponent;										\
-	char*		tmp;												\
-	t_s16		exponent;											\
-	t_size		frac_digits;										\
-	t_size	i = 0;													\
 	if (!(str[i] == '+' || str[i] == '-' || Char_IsDigit(str[i])))	\
 		return (NAN);												\
 	negative = FALSE;												\
@@ -166,10 +162,13 @@ LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_FLOAT							\
 
 
 #define DEFINEFUNC_STRDEC_TO_FLOAT(BITS) \
-t_f##BITS	F##BITS##_FromString_Dec(char const* str)				\
+t_f##BITS	F##BITS##_FromString_Dec(t_char const* str)				\
 {																	\
 	t_f##BITS	result;												\
-LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_FLOAT							\
+	t_bool	negative;												\
+	t_size	i = 0;													\
+																	\
+	LIBCONFIG_HANDLE_NULLPOINTER(0, str)							\
 	while (*str && Char_IsSpace(*str))								\
 		++str;														\
 	result = Float_FromString_CheckSpecial(str);					\
@@ -177,9 +176,6 @@ LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_FLOAT							\
 		return (result);											\
 	if (Float_FromString_CheckInvalid(str))							\
 		return (NAN);												\
-\
-	t_bool	negative;												\
-	t_size	i = 0;													\
 	if (!(str[i] == '+' || str[i] == '-' || Char_IsDigit(str[i])))	\
 		return (NAN);												\
 	negative = FALSE;												\
@@ -201,10 +197,17 @@ LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_FLOAT							\
 
 
 #define DEFINEFUNC_STRHEX_TO_FLOAT(BITS) \
-t_f##BITS	F##BITS##_FromString_Hex(char const* str)						\
+t_f##BITS	F##BITS##_FromString_Hex(t_char const* str)						\
 {																			\
 	t_f##BITS	result;														\
-LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_FLOAT									\
+	t_char const* str_mantissa;												\
+	t_char const* str_exponent;												\
+	t_bool		negative;													\
+	t_u##BITS	mantissa;													\
+	t_s16		exponent;													\
+	t_char*		tmp;														\
+																			\
+	LIBCONFIG_HANDLE_NULLPOINTER(0, str)									\
 	while (*str && Char_IsSpace(*str))										\
 		++str;																\
 	result = Float_FromString_CheckSpecial(str);							\
@@ -212,13 +215,8 @@ LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_FLOAT									\
 		return (result);													\
 	if (Float_FromString_CheckInvalid(str))									\
 		return (NAN);														\
-\
-	t_bool		negative;													\
-	char const* str_mantissa;												\
-	char const* str_exponent;												\
-	t_u##BITS	mantissa;													\
-	t_s16		exponent;													\
-	char*		tmp;														\
+																			\
+	LIBCONFIG_HANDLE_NULLPOINTER(0, str)									\
 	negative = (str[0] == '-');												\
 	str_mantissa = (negative || str[0] == '+') ? str + 1 : str;				\
 	str_exponent = String_Find_Charset(str, "pP");							\
@@ -232,7 +230,7 @@ LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_FLOAT									\
 	}																		\
 	mantissa = U64_FromString_Hex(tmp);										\
 	result *= (mantissa * F##BITS##_INIT_VALUE) *							\
-		Float_Pow(2., (String_Length(tmp) - 1) * 4);							\
+		Float_Pow(2., (String_Length(tmp) - 1) * 4);						\
 	exponent = (str_exponent ? S16_FromString(str_exponent) : 0);			\
 	if (exponent > F##BITS##_EXPONENT_BIAS)									\
 		return ((negative ? -1. : 1.) / 0.);								\
@@ -251,7 +249,7 @@ LIBCONFIG_HANDLE_NULLPOINTER_STR_TO_FLOAT									\
 
 // TODO Float_ToString_Bin()
 #define DEFINEFUNC_STRBIN_TO_FLOAT(BITS) \
-t_f##BITS	F##BITS##_FromString_Bin(char const* str)						\
+t_f##BITS	F##BITS##_FromString_Bin(t_char const* str)						\
 { return (str == NULL ? NAN : 0.); }
 
 

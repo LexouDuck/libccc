@@ -7,7 +7,7 @@
 
 
 
-static t_u32	String_Split_String_CountDistinctSubs(char const* str, char const* sub)
+static t_u32	String_Split_String_CountDistinctSubs(t_char const* str, t_char const* sub)
 {
 	t_u32	occ;
 	t_u32	i;
@@ -24,7 +24,7 @@ static t_u32	String_Split_String_CountDistinctSubs(char const* str, char const* 
 			{
 				++occ;
 				i += j;
-				break ;
+				break;
 			}
 			++j;
 		}
@@ -33,9 +33,9 @@ static t_u32	String_Split_String_CountDistinctSubs(char const* str, char const* 
 	return (occ);
 }
 
-static char*	String_Split_String_GetNextChunk(char const* str, t_u32 str_len, char const* sub, t_u32 sub_len, t_u32 *i)
+static t_char*	String_Split_String_GetNextChunk(t_char const* str, t_u32 str_len, t_char const* sub, t_u32 sub_len, t_u32 *i)
 {
-	char*		result;
+	t_char*		result;
 	t_ptrdiff	new_len;
 
 	new_len = String_IndexOf_String(str + *i, sub);
@@ -52,17 +52,15 @@ static char*	String_Split_String_GetNextChunk(char const* str, t_u32 str_len, ch
 	return (result);
 }
 
-char**		String_Split_String(char const* str, char const* sub)
+t_char**		String_Split_String(t_char const* str, t_char const* sub)
 {
-	char**	result;
+	t_char**	result;
 	t_u32	reslen;
 	t_u32	i;
 	t_u32	j;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL || sub == NULL)
-		return (NULL);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, sub)
 	if (sub[0] == '\0')
 		return (String_Divide(str, 1));
 	reslen = String_Split_String_CountDistinctSubs(str, sub) + 1;

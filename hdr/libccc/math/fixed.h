@@ -43,14 +43,18 @@ typedef		t_fixed	(*f_fixed_function)	(t_fixed x);
 typedef		t_q16	(*f_q16_function)	(t_q16 x);
 typedef		t_q32	(*f_q32_function)	(t_q32 x);
 typedef		t_q64	(*f_q64_function)	(t_q64 x);
+#ifdef __int128
 typedef		t_q128	(*f_q128_function)	(t_q128 x);
+#endif
 
 //! The type of function which takes two real numbers and outputs one real number
 typedef		t_fixed	(*f_fixed_operator)	(t_fixed x,	t_fixed y);
 typedef		t_q16	(*f_q16_operator)	(t_q16 x,	t_q16 y);
 typedef		t_q32	(*f_q32_operator)	(t_q32 x,	t_q32 y);
 typedef		t_q64	(*f_q64_operator)	(t_q64 x,	t_q64 y);
+#ifdef __int128
 typedef		t_q128	(*f_q128_operator)	(t_q128 x,	t_q128 y);
+#endif
 
 
 

@@ -1,19 +1,16 @@
 
-#include "libccc/bool.h"
 #include "libccc/char.h"
+#include "libccc/bool.h"
 #include "libccc/int.h"
 #include "libccc/pointer.h"
 
 
 
-t_bool	Bool_FromString(char const* str)
+t_bool	Bool_FromString(t_char const* str)
 {
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL)
-		return (FALSE);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(FALSE, str)
 	i = 0;
 	while (str[i] && Char_IsSpace(str[i]))
 		++i;

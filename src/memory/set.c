@@ -3,17 +3,14 @@
 
 
 
-void	c_memset(void *ptr, t_u8 byte, t_size n)
+void	Memory_Set(void* ptr, t_u8 byte, t_size n)
 {
-	t_u8	*result;
+	t_u8*	result;
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (ptr == NULL)
-		return ;
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(, ptr)
 	byte &= 0xFF;
-	result = (t_u8 *)ptr;
+	result = (t_u8* )ptr;
 	i = 0;
 	while (i < n)
 	{
@@ -24,16 +21,13 @@ void	c_memset(void *ptr, t_u8 byte, t_size n)
 
 
 
-void	c_memclr(void *ptr, t_size n)
+void	Memory_Clear(void* ptr, t_size n)
 {
-	t_u8	*result;
+	t_u8*	result;
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (ptr == NULL)
-		return ;
-#endif
-	result = (t_u8 *)ptr;
+	LIBCONFIG_HANDLE_NULLPOINTER(, ptr)
+	result = (t_u8* )ptr;
 	i = 0;
 	while (i < n)
 	{

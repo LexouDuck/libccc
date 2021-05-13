@@ -4,12 +4,12 @@
 
 
 
-char	*c_strnew(t_size n)
+t_char*	String_New(t_size n)
 {
-	char	*result;
+	t_char*	result;
 	t_size	i;
 
-	if (!(result = (char *)c_memalloc(n + 1)))
+	if (!(result = (t_char*)Memory_Alloc(n + sizeof(""))))
 		return (NULL);
 	i = 0;
 	while (i < n)
@@ -23,12 +23,12 @@ char	*c_strnew(t_size n)
 
 
 
-char	*c_strcnew(t_size n, char c)
+t_char*	String_New_C(t_size n, t_char c)
 {
-	char	*result;
+	t_char*	result;
 	t_size	i;
 
-	if (!(result = (char *)c_memalloc(n + 1)))
+	if (!(result = (t_char*)Memory_Alloc(n + sizeof(""))))
 		return (NULL);
 	i = 0;
 	while (i < n)

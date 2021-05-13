@@ -82,7 +82,7 @@ HEADER_CPP
 **	@see
 **	- Size_ToString()
 **	- Size_ToString_Hex()
-**	- Size_ToString_Readable()
+**	- Size_ToString_Pretty()
 **	- Size_FromString()
 */
 typedef size_t		t_size;
@@ -129,6 +129,8 @@ TYPEDEF_ALIAS(		t_uintptr, UINTPTR, PRIMITIVE)
 
 
 
+#include "libccc/char.h"
+
 /*
 ** ************************************************************************** *|
 **                        String Conversion Functions                         *|
@@ -137,34 +139,34 @@ TYPEDEF_ALIAS(		t_uintptr, UINTPTR, PRIMITIVE)
 
 //! Get the string decimal representation of the given size integer `value`
 _MALLOC()
-char*					Size_ToString(t_size value);
-#define c_size_to_str	Size_ToString //!< @alias{Size_ToString}
+t_char*					Size_ToString(t_size value);
+#define c_sizetostr		Size_ToString //!< @alias{Size_ToString}
 
 //! Get the string hexadecimal representation of the given size integer `value`
 _MALLOC()
-char*						Size_ToString_Hex(t_size value);
-#define c_size_to_strhex	Size_ToString_Hex //!< @alias{Size_ToString_Hex}
+t_char*					Size_ToString_Hex(t_size value);
+#define c_sizetostrhex	Size_ToString_Hex //!< @alias{Size_ToString_Hex}
 
 //! Get the string representation of `value` in short readable form, ie: with bytes units (KB,MB,GB,etc)
 _MALLOC()
-char*							Size_ToString_Readable(t_size value);
-#define c_size_to_str_readable	Size_ToString_Readable //!< @alias{Size_ToString_Readable}
+t_char*							Size_ToString_Pretty(t_size value);
+#define c_sizetostr_readable	Size_ToString_Pretty //!< @alias{Size_ToString_Pretty}
 
 //! Parse a size integer value from the given string `str`
-t_size					Size_FromString(char const* str);
-#define c_str_to_size	Size_FromString //!< @alias{Size_FromString}
+t_size					Size_FromString(t_char const* str);
+#define c_strtosize		Size_FromString //!< @alias{Size_FromString}
 
 
 
 
 //! Get the string decimal representation of a pointer/address value
 _MALLOC()
-char*					Pointer_ToString(void const* ptr);
-#define c_ptr_to_str	Pointer_ToString //!< @alias{Pointer_ToString}
+t_char*					Pointer_ToString(void const* ptr);
+#define c_ptrtostr		Pointer_ToString //!< @alias{Pointer_ToString}
 //! Get the string hexadecimal representation of a pointer/address value
 _MALLOC()
-char*						Pointer_ToString_Hex(void const* ptr);
-#define c_ptr_to_strhex		Pointer_ToString_Hex //!< @alias{Pointer_ToString_Hex}
+t_char*					Pointer_ToString_Hex(void const* ptr);
+#define c_ptrtostrhex	Pointer_ToString_Hex //!< @alias{Pointer_ToString_Hex}
 
 
 

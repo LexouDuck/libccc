@@ -13,7 +13,7 @@
 
 int		testsuite_math_algebra(void)
 {
-	print_suite_title("math/algebra");
+	print_suite_title("libccc/math/algebra");
 
 	// TODO
 

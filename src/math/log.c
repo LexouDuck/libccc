@@ -28,7 +28,7 @@ static t_float	c_ln_taylor_series(t_float x)
 		power *= x;
 		result += (((((int)i % 2)) * 2.) - 1.) * (power / i);
 		if (result == result_previous)
-			break ;
+			break;
 		result_previous = result;
 		++i;
 	}
@@ -54,9 +54,9 @@ t_float			c_ln(t_float x)
 		return (INFINITY);
 	if (x < 1. || 2. <= x)
 	{
-		c_memcpy(&tmp, &x, sizeof(t_float));
+		Memory_Copy(&tmp, &x, sizeof(t_float));
 		norm = (tmp & FLOAT_MANTISSA_SIGNED) | FLOAT_EXPONENT_ZERO;
-		c_memcpy(&x, &norm, sizeof(t_float));
+		Memory_Copy(&x, &norm, sizeof(t_float));
 		result = c_ln(x);
 		exp_b2 = ((tmp << 1) >> (FLOAT_MANTISSA_BITS + 1)) - FLOAT_EXPONENT_BIAS;
 		return (LN_2 * exp_b2 + result);

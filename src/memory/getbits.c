@@ -3,7 +3,7 @@
 
 
 
-t_u64	c_getbits(t_u64 value, t_u8 bit, t_u8 length)
+t_u64	Memory_GetBits(t_u64 value, t_u8 bit, t_u8 length)
 {
 	t_u64	mask;
 	t_u8	i;

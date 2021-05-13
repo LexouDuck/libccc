@@ -1,7 +1,7 @@
 
 /*
 **	Functions used from <stdlib.h>:
-**	-	t_io_error	write(int fd, char* buffer, size_t n);
+**	-	t_io_error	write(int fd, t_char* buffer, size_t n);
 */
 #include <unistd.h>
 /*
@@ -27,28 +27,22 @@ inline t_io_error	IO_Write_Char(int fd, char c)
 
 
 
-inline t_io_error	IO_Write_String(int fd, const char* str)
+inline t_io_error	IO_Write_String(int fd, const t_char* str)
 {
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL)
-		return (OK);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(OK, str)
 	int result;
-	if ((result = write(fd, str, c_strlen(str))) < 0)
+	if ((result = write(fd, str, String_Length(str))) < 0)
 		return (errno);
 	return (OK);
 }
 
 
 
-inline t_io_error	IO_Write_Line(int fd, const char* str)
+inline t_io_error	IO_Write_Line(int fd, const t_char* str)
 {
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL)
-		return (OK);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(OK, str)
 	int result;
-	if ((result = write(fd, str, c_strlen(str))) < 0)
+	if ((result = write(fd, str, String_Length(str))) < 0)
 		return (errno);
 	if ((result = write(fd, "\n", 1)) < 0)
 		return (errno);
@@ -57,17 +51,14 @@ inline t_io_error	IO_Write_Line(int fd, const char* str)
 
 
 
-t_io_error		IO_Write_Lines(int fd, const char** strarr)
+t_io_error		IO_Write_Lines(int fd, const t_char** strarr)
 {
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (strarr == NULL)
-		return (OK);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(OK, strarr)
 	int result;
 	int i = 0;
 	while (strarr[i])
 	{
-		if ((result = write(fd, strarr[i], c_strlen(strarr[i]))) < 0)
+		if ((result = write(fd, strarr[i], String_Length(strarr[i]))) < 0)
 			return (errno);
 		if ((result = write(fd, "\n", 1)) < 0)
 			return (errno);
@@ -78,12 +69,11 @@ t_io_error		IO_Write_Lines(int fd, const char** strarr)
 
 
 
-t_io_error		IO_Write_Memory(int fd, t_u8 const* ptr, t_size n, t_u8 cols)
+t_io_error		IO_Write_Memory(int fd, t_u8 const* ptr, t_size n, t_u8 columns)
 {
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (ptr == NULL || n == 0 || cols == 0)
+	LIBCONFIG_HANDLE_NULLPOINTER(OK, ptr)
+	if (n == 0 || columns == 0)
 		return (OK);
-#endif
 	int result;
 	t_u8	nibble;
 	t_size	i = 0;
@@ -98,7 +88,7 @@ t_io_error		IO_Write_Memory(int fd, t_u8 const* ptr, t_size n, t_u8 cols)
 		if ((result = write(fd, &nibble, 1)) < 0)
 			return (errno);
 		++i;
-		if ((result = write(fd, (i % cols == 0 ? "\n" : " "), 1)) < 0)
+		if ((result = write(fd, (i % columns == 0 ? "\n" : " "), 1)) < 0)
 			return (errno);
 	}
 	return (OK);
@@ -106,14 +96,11 @@ t_io_error		IO_Write_Memory(int fd, t_u8 const* ptr, t_size n, t_u8 cols)
 
 
 
-t_io_error		IO_Write_Format(t_fd fd, char const* format, ...)
+t_io_error		IO_Write_Format(t_fd fd, t_char const* format, ...)
 {
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (format == NULL)
-		return (OK);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(OK, format)
 	int result;
-	char* str;
+	t_char* str;
 	va_list args;
 	va_start(args, format);
 	str = String_Format_VA(format, args);

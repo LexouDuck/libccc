@@ -4,25 +4,23 @@
 
 
 
-char	*c_strmap(char const *str, char (*f)(char))
+t_char*	String_Map(t_char const* str, t_char (*map)(t_char c))
 {
-	char	*result;
+	t_char*	result;
 	t_size	length;
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL || f == NULL)
-		return (NULL);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, map)
 	length = 0;
 	while (str[length])
 		++length;
-	if (!(result = (char *)c_memalloc(length + 1)))
+	if (!(result = (t_char*)Memory_Alloc(length + sizeof(""))))
 		return (NULL);
 	i = 0;
 	while (i < length)
 	{
-		result[i] = f(str[i]);
+		result[i] = map(str[i]);
 		++i;
 	}
 	result[i] = '\0';
@@ -31,25 +29,23 @@ char	*c_strmap(char const *str, char (*f)(char))
 
 
 
-char	*c_strmapi(char const *str, char (*f)(t_size, char))
+t_char*	String_Map_I(t_char const* str, t_char (*map)(t_char c, t_size index))
 {
-	char	*result;
+	t_char*	result;
 	t_size	length;
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL || f == NULL)
-		return (NULL);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, map)
 	length = 0;
 	while (str[length])
 		++length;
-	if (!(result = (char *)c_memalloc(length + 1)))
+	if (!(result = (t_char*)Memory_Alloc(length + sizeof(""))))
 		return (NULL);
 	i = 0;
 	while (i < length)
 	{
-		result[i] = f(i, str[i]);
+		result[i] = map(str[i], i);
 		++i;
 	}
 	result[i] = '\0';
@@ -58,16 +54,15 @@ char	*c_strmapi(char const *str, char (*f)(t_size, char))
 
 
 
-char	*c_strmap_inplace(char **a_str, char (*f)(char))
+t_char*	String_Map_InPlace(t_char** a_str, t_char (*f)(t_char))
 {
-	char	*tmp;
+	t_char*	tmp;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (a_str == NULL || *a_str == NULL || f == NULL)
-		return (NULL);
-#endif
-	tmp = c_strmap(*a_str, f);
-	c_strdel(a_str);
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, f)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, a_str)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, *a_str)
+	tmp = String_Map(*a_str, f);
+	String_Delete(a_str);
 	*a_str = tmp;
 	return (tmp);
 }

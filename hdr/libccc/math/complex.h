@@ -40,6 +40,10 @@ HEADER_CPP
 
 #if LIBCONFIG_USE_STD_COMPLEX
 
+	#if (!defined(__STDC__) || (__STDC_VERSION__ < __STDC_VERSION_C99__))
+		#error "C ISO standard complex/imaginary types are not available for this C standard: "__STDC_VERSION__"L"
+	#endif
+
 	#include <complex.h>
 
 	typedef _Complex	s_complex;

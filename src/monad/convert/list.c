@@ -19,7 +19,7 @@ void**	List_To_PointerArray(s_list const** a_lst)
 #endif
 	lst = *a_lst;
 	count = List_(lst);
-	length = (count + 1) * sizeof(void *);
+	length = (count + 1) * sizeof(void* );
 	if (!(result = (void**)Memory_Alloc(length)))
 		return (NULL);
 	i = 0;

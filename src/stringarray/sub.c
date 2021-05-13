@@ -5,27 +5,24 @@
 
 
 
-char	**c_strarrsub(char const **strarr, t_u32 start, t_u32 n)
+t_char**	StringArray_Sub(t_char const** strarr, t_u32 start, t_u32 n)
 {
-	char		**result;
+	t_char**		result;
 	t_u32		length;
 	t_u32		i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (strarr == NULL)
-		return (NULL);
-#endif
-	length = c_strarrlen(strarr);
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, strarr)
+	length = StringArray_Length(strarr);
 	if (start > length || start + n > length)
 		return (NULL);
-	if (!(result = c_strarrnew(n)))
+	if (!(result = StringArray_New(n)))
 		return (NULL);
 	i = 0;
 	while (i < n)
 	{
-		if (!(result[i] = c_strdup(strarr[start + i])))
+		if (!(result[i] = String_Duplicate(strarr[start + i])))
 		{
-			c_strarrdel(&result);
+			StringArray_Delete(&result);
 			return (NULL);
 		}
 		++i;

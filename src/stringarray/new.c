@@ -5,30 +5,31 @@
 
 
 
-inline char	**c_strarrnew(t_u32 length)
+inline
+t_char**	StringArray_New(t_u32 length)
 {
-	return ((char**)c_memnew(sizeof(char*) * (length + 1)));
+	return ((t_char**)Memory_New(sizeof(t_char*) * (length + 1)));
 }
 
 
 
-char	**c_strarrcnew(t_u32 y, t_size x, const char c)
+t_char**	StringArray_New_C(t_u32 y, t_size x, const t_char c)
 {
-	char	**strarr;
+	t_char**	strarr;
 	t_u32	i;
 
-	if (!(strarr = c_strarrnew(y)))
+	if (!(strarr = StringArray_New(y)))
 		return (NULL);
 	i = 0;
 	while (i < y)
 	{
-		if (!(strarr[i] = c_strnew(x)))
+		if (!(strarr[i] = String_New(x)))
 		{
 			strarr[i] = NULL;
-			c_strarrdel(&strarr);
+			StringArray_Delete(&strarr);
 			return (NULL);
 		}
-		c_memset(strarr[i], c, x);
+		Memory_Set(strarr[i], c, x);
 		strarr[i][x] = '\0';
 		++i;
 	}

@@ -1,6 +1,7 @@
 
 #include <math.h>
 
+#include "libccc/format.h"
 #include "libccc/sys/io.h"
 #include "libccc/math/stat.h"
 #include "libccc/math/random.h"
@@ -17,7 +18,7 @@
 
 int		testsuite_math_stat(void) // TODO increment total tests counter for these tests
 {
-	print_suite_title("math/stat");
+	print_suite_title("libccc/math/stat");
 
 	static const int	samples = 20000;
 	s_sortedlist_int	ilst_sorted = print_test_random(samples);
@@ -32,8 +33,8 @@ int		testsuite_math_stat(void) // TODO increment total tests counter for these t
 	if (g_test.flags.verbose)
 	{
 		t_u64	intmax = (t_u32)-1;
-		printf("\tMedian:   %12f | intmax   :%llu\n", c_stat_median_i(ilst_sorted), intmax);
-		printf("\tAverage:  %12f | intmax/2 :%llu\n", c_stat_average_i(ilst_sorted), intmax / 2);
+		printf("\tMedian:   %12f | intmax   :"SF_U64"\n", c_stat_median_i(ilst_sorted), intmax);
+		printf("\tAverage:  %12f | intmax/2 :"SF_U64"\n", c_stat_average_i(ilst_sorted), intmax / 2);
 		tmp = c_stat_variance_i(ilst_sorted);
 		printf("\tVariance: %12f | StdDev: %12f\n", tmp, sqrt(tmp));
 

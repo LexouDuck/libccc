@@ -5,23 +5,20 @@
 
 
 
-char*		String_Replace_Char(char const* str, char const old, char const new)
+t_char*		String_Replace_Char(t_char const* str, t_char const old, t_char const new)
 {
-	char*	result;
+	t_char*	result;
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
 	if (old == new)
 		return (String_Duplicate(str));
-	if (str == NULL)
-		return (NULL);
-#endif
 	if (old == '\0')
 		return (NULL);
 	i = 0;
 	while (str[i])
 		++i;
-	if (!(result = (char*)Memory_Alloc(i + 1)))
+	if (!(result = (t_char*)Memory_Alloc(i + sizeof(""))))
 		return (NULL);
 	i = 0;
 	while (str[i])
@@ -35,19 +32,18 @@ char*		String_Replace_Char(char const* str, char const old, char const new)
 
 
 
-char*		String_Replace_Charset(char const* str, char const* old, char const* new)
+t_char*		String_Replace_Charset(t_char const* str, t_char const* old, t_char const* new)
 {
-	char*	result;
+	t_char*	result;
 	t_size	i;
 	t_size	j;
 	int		c_index;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, old)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, new)
 	if (old == new)
 		return (String_Duplicate(str));
-	if (str == NULL || old == NULL || new == NULL)
-		return (NULL);
-#endif
 	if (String_Length(old) != String_Length(new))
 		return (NULL);
 	i = 0;
@@ -59,7 +55,7 @@ char*		String_Replace_Charset(char const* str, char const* old, char const* new)
 				return (NULL);
 		++i;
 	}
-	if (!(result = (char*)Memory_Alloc(i + 1)))
+	if (!(result = (t_char*)Memory_Alloc(i + sizeof(""))))
 		return (NULL);
 	i = 0;
 	while (str[i])
@@ -76,35 +72,31 @@ char*		String_Replace_Charset(char const* str, char const* old, char const* new)
 
 
 
-char*		String_Replace_String(char const* str, char const* old, char const* new)
+t_char*		String_Replace_String(t_char const* str, t_char const* old, t_char const* new)
 {
-	char*	result;
-	char**	strarr;
+	t_char*	result;
+	t_char**	strarr;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, old)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, new)
 	if (old == new)
 		return (String_Duplicate(str));
-	if (str == NULL || old == NULL || new == NULL)
-		return (NULL);
-#endif
 	strarr = String_Split_String(str, old);
-	result = StringArray_Fold((char const**)strarr, new);
+	result = StringArray_Fold((t_char const**)strarr, new);
 	StringArray_Delete(&strarr);
 	return (result);
 }
 
 
 
-void		String_Replace_Char_InPlace(char* str, char const old, char const new)
+void		String_Replace_Char_InPlace(t_char* str, t_char const old, t_char const new)
 {
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL)
-		return ;
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(, str)
 	if (old == '\0')
-		return ;
+		return;
 	i = 0;
 	while (str[i])
 	{
@@ -116,25 +108,24 @@ void		String_Replace_Char_InPlace(char* str, char const old, char const new)
 
 
 
-void		String_Replace_Charset_InPlace(char* str, char const* old, char const* new)
+void		String_Replace_Charset_InPlace(t_char* str, t_char const* old, t_char const* new)
 {
 	t_size	i;
 	t_size	j;
 	int		c_index;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL || old == NULL || new == NULL)
-		return ;
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(, str)
+	LIBCONFIG_HANDLE_NULLPOINTER(, old)
+	LIBCONFIG_HANDLE_NULLPOINTER(, new)
 	if (String_Length(old) != String_Length(new))
-		return ;
+		return;
 	i = 0;
 	while (old[i])
 	{
 		j = i;
 		while (old[++j])
 			if (old[i] == old[j])
-				return ;
+				return;
 		++i;
 	}
 	i = 0;
@@ -148,9 +139,9 @@ void		String_Replace_Charset_InPlace(char* str, char const* old, char const* new
 
 
 
-void	String_Replace_String_InPlace(char* *a_str, char const* old, char const* new)
+void	String_Replace_String_InPlace(t_char** a_str, t_char const* old, t_char const* new)
 {
-	char	*tmp;
+	t_char*	tmp;
 	tmp = String_Replace_String(*a_str, old, new);
 	String_Delete(a_str);
 	*a_str = tmp;

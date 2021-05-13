@@ -3,7 +3,7 @@
 
 
 
-char const* const	g_weekday[ENUMLENGTH_WEEKDAY] =
+t_char const* const	g_weekday[ENUMLENGTH_WEEKDAY] =
 {
 	"sunday",
 	"monday",
@@ -14,7 +14,7 @@ char const* const	g_weekday[ENUMLENGTH_WEEKDAY] =
 	"saturday",
 };
 
-char const* const	g_weekday_abbreviated[ENUMLENGTH_WEEKDAY] =
+t_char const* const	g_weekday_abbreviated[ENUMLENGTH_WEEKDAY] =
 {
 	"sun",
 	"mon",
@@ -27,7 +27,7 @@ char const* const	g_weekday_abbreviated[ENUMLENGTH_WEEKDAY] =
 
 
 
-char const* const	g_month[ENUMLENGTH_MONTH] =
+t_char const* const	g_month[ENUMLENGTH_MONTH] =
 {
 	"january",
 	"february",
@@ -43,7 +43,7 @@ char const* const	g_month[ENUMLENGTH_MONTH] =
 	"december",
 };
 
-char const* const	g_month_abbreviated[ENUMLENGTH_MONTH] =
+t_char const* const	g_month_abbreviated[ENUMLENGTH_MONTH] =
 {
 	"jan",
 	"feb",

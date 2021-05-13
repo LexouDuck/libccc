@@ -8,10 +8,8 @@ s_array_T		CONCAT(Array_Sub,T_NAME)(s_array_T const* array, t_uint index, t_uint
 {
 	s_array_T	result = {0};
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (array == NULL || array->items == NULL)
-		return (result);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(result, array)
+	LIBCONFIG_HANDLE_NULLPOINTER(result, array->items)
 	if (index > array->length || index + n > array->length)
 		return (result);
 	result.items = (T*)Memory_Alloc(sizeof(T) * n);

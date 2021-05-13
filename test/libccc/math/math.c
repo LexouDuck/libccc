@@ -109,18 +109,18 @@ static t_float	c_get_largest_f(s_list_float list)
 
 #define TEST_PERFORM_MATH_REALFUNCTION(CALL, RESULTS, FUNCTION) \
 	x = interval.start;					\
-	timer_clock(&timer.start##CALL);	\
+	timer_clock(&timer.CALL##_start);	\
 	for (int i = 0; i < tests; ++i)		\
 	{									\
 		x += step;						\
 		RESULTS[i] = FUNCTION(x);		\
 	}									\
-	timer_clock(&timer.end##CALL);		\
+	timer_clock(&timer.CALL##_end);		\
 
 #define TEST_PERFORM_MATH_REALOPERATOR(CALL, RESULTS, FUNCTION) \
 	x = interval_x.start;										\
 	y = interval_y.start;										\
-	timer_clock(&timer.start##CALL);							\
+	timer_clock(&timer.CALL##_start);							\
 	for (int i = 0; i < tests_interval; ++i)					\
 	{															\
 		for (int j = 0; j < tests_interval; ++j)				\
@@ -130,7 +130,7 @@ static t_float	c_get_largest_f(s_list_float list)
 		}														\
 		y += step_y;											\
 	}															\
-	timer_clock(&timer.end##CALL);								\
+	timer_clock(&timer.CALL##_end);								\
 
 
 
@@ -202,10 +202,10 @@ int		test_math_realfunction_libc(
 	s_interval			interval)
 {
 	TEST_INIT_MATH_REALFUNCTION()
-	TEST_PERFORM_MATH_REALFUNCTION(1, results, func_libccc)
+	TEST_PERFORM_MATH_REALFUNCTION(result, results, func_libccc)
 	if (func_libc)
 	{
-		TEST_PERFORM_MATH_REALFUNCTION(2, expects, func_libc)
+		TEST_PERFORM_MATH_REALFUNCTION(expect, expects, func_libc)
 	}
 	TEST_GET_RESULTS()
 	TEST_PRINT_MATH("Ran %d tests on interval [%g,%g], with increment=%g\n", tests, interval.start, interval.end, step)
@@ -223,10 +223,10 @@ int		test_math_realoperator_libc(
 	s_interval			interval_y)
 {
 	TEST_INIT_MATH_REALOPERATOR()
-	TEST_PERFORM_MATH_REALOPERATOR(1, results, func_libccc)
+	TEST_PERFORM_MATH_REALOPERATOR(result, results, func_libccc)
 	if (func_libc)
 	{
-		TEST_PERFORM_MATH_REALOPERATOR(2, expects, func_libc)
+		TEST_PERFORM_MATH_REALOPERATOR(expect, expects, func_libc)
 	}
 	TEST_GET_RESULTS()
 	TEST_PRINT_MATH("Ran %d tests with:\n"
@@ -370,7 +370,7 @@ int		test_math_realoperator_libc(
 
 int		testsuite_math(void)
 {
-	print_suite_title("math");
+	print_suite_title("libccc/math");
 
 	print_math_foreword();
 

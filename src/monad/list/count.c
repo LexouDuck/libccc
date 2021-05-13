@@ -7,10 +7,7 @@ t_uint	CONCAT(List_Count,T_NAME)(s_list_T const* list, T item)
 {
 	t_uint	result = 0;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (list == NULL)
-		return (0);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(0, list)
 	while (list)
 	{
 		if (T_EQUALS(list->item, item))

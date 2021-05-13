@@ -3,15 +3,13 @@
 
 
 
-inline void	c_memdel(void **ptr)
+inline
+void	Memory_Delete(void* *ptr)
 {
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (ptr == NULL)
-		return ;
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(, ptr)
 	if (*ptr)
 	{
-		c_memfree(*ptr);
+		Memory_Free(*ptr);
 		*ptr = NULL;
 	}
 }

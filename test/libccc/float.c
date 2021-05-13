@@ -29,19 +29,19 @@
 */
 
 #define DEFINETEST_FLOAT_TO_STR(TYPE) \
-void	print_test_##TYPE##tostr(char const* test_name, int can_segfault,					\
-		char const* expecting,																\
-		t_##TYPE number,																	\
-		t_u8 precision)																		\
-{																							\
-	TEST_PERFORM_RESULT(TYPE##tostr, number, precision)									\
-	print_test_str(test_name, "_"#TYPE"tostr", result_libccc, expecting, can_segfault);	\
-	print_timer_result(&t, FALSE);															\
-	TEST_PRINT_ARGS("%+#.*g, p=%u", precision, number, precision)							\
-}																							\
-void	test_##TYPE##tostr(void)																								\
-{																																\
-/*	| TEST FUNCTION           | TEST NAME                     |CAN SEGV| EXPECTING              | TEST ARGS				*/		\
+void	print_test_##TYPE##tostr(char const* test_name, int can_segfault,		\
+		char const* expecting,													\
+		t_##TYPE number,														\
+		t_u8 precision)															\
+{																				\
+	TEST_INIT(str)																\
+	TEST_PERFORM(	TYPE##tostr, number, precision)								\
+	TEST_PRINT(str, TYPE##tostr, "%+#.*g, p=%u", precision, number, precision)	\
+	TEST_FREE()																	\
+}																				\
+void	test_##TYPE##tostr(void)																							\
+{																															\
+/*	| TEST FUNCTION         | TEST NAME                   |CAN SEGV| EXPECTING              | TEST ARGS				*/		\
 	print_test_##TYPE##tostr(#TYPE"tostr               ",	FALSE,                       "1", 1.                   , 0);	\
 	print_test_##TYPE##tostr(#TYPE"tostr               ",	FALSE,                     "1.0", 1.                   , 1);	\
 	print_test_##TYPE##tostr(#TYPE"tostr               ",	FALSE,                    "1.00", 1.                   , 2);	\
@@ -126,13 +126,13 @@ void test_f64tostr(void)	{}
 DEFINETEST_FLOAT_TO_STR(f64)
 #endif
 
-#if !defined(c_f80tostr) || !defined(__float80)
+#if (!defined(c_f80tostr) || !defined(__float80))
 void test_f80tostr(void)	{}
 #else
 DEFINETEST_FLOAT_TO_STR(f80)
 #endif
 
-#if !defined(c_f128tostr) || !defined(__float128)
+#if (!defined(c_f128tostr) || !defined(__float128))
 void test_f128tostr(void)	{}
 #else
 DEFINETEST_FLOAT_TO_STR(f128)
@@ -158,13 +158,13 @@ void test_f64tostrexp(void)	{}
 DEFINETEST_FLOAT_TO_STREXP(f64)
 #endif
 
-#ifn defined(c_f80tostrexp) && defined(__float80)
+#if (!defined(c_f80tostrexp) || !defined(__float80))
 void test_f80tostrexp(void)	{}
 #else
 DEFINETEST_FLOAT_TO_STREXP(f80)
 #endif
 
-#ifn defined(c_f128tostrexp) && defined(__float128)
+#if (!defined(c_f128tostrexp) || !defined(__float128))
 void test_f128tostrexp(void)	{}
 #else
 DEFINETEST_FLOAT_TO_STREXP(f128)
@@ -190,13 +190,13 @@ void test_f64tostrdec(void)	{}
 DEFINETEST_FLOAT_TO_STRDEC(f64)
 #endif
 
-#ifn defined(c_f80tostrdec) && defined(__float80)
+#if (!defined(c_f80tostrdec) || !defined(__float80))
 void test_f80tostrdec(void)	{}
 #else
 DEFINETEST_FLOAT_TO_STRDEC(f80)
 #endif
 
-#ifn defined(c_f128tostrdec) && defined(__float128)
+#if (!defined(c_f128tostrdec) || !defined(__float128))
 void test_f128tostrdec(void)	{}
 #else
 DEFINETEST_FLOAT_TO_STRDEC(f128)
@@ -222,13 +222,13 @@ void test_f64tostrhex(void)	{}
 DEFINETEST_FLOAT_TO_STRHEX(f64)
 #endif
 
-#ifn defined(c_f80tostrhex) && defined(__float80)
+#if (!defined(c_f80tostrhex) || !defined(__float80))
 void test_f80tostrhex(void)	{}
 #else
 DEFINETEST_FLOAT_TO_STRHEX(f80)
 #endif
 
-#ifn defined(c_f128tostrhex) && defined(__float128)
+#if (!defined(c_f128tostrhex) || !defined(__float128))
 void test_f128tostrhex(void)	{}
 #else
 DEFINETEST_FLOAT_TO_STRHEX(f128)
@@ -254,13 +254,13 @@ void test_f64tostrbin(void)	{}
 DEFINETEST_FLOAT_TO_STRBIN(f64) // TODO
 #endif
 
-#ifn defined(c_f80tostrbin) && defined(__float80)
+#if (!defined(c_f80tostrbin) || !defined(__float80))
 void test_f80tostrbin(void)	{}
 #else
 DEFINETEST_FLOAT_TO_STRBIN(f80) // TODO
 #endif
 
-#ifn defined(c_f128tostrbin) && defined(__float128)
+#if (!defined(c_f128tostrbin) || !defined(__float128))
 void test_f128tostrbin(void)	{}
 #else
 DEFINETEST_FLOAT_TO_STRBIN(f128) // TODO
@@ -281,18 +281,17 @@ DEFINETEST_FLOAT_TO_STRBIN(float) // TODO
 */
 
 #define DEFINETEST_STR_TO_FLOAT(TYPE) \
-void	print_test_strto##TYPE(char const* test_name, int can_segfault,					\
-		t_##TYPE expecting,																	\
-		char const* str)																	\
-{																							\
-	TEST_PERFORM_RESULT_TYPE(t_##TYPE, strto##TYPE, str)									\
-	print_test_##TYPE(test_name, "_strto"#TYPE, result_libccc, expecting, can_segfault);	\
-	print_timer_result(&t, FALSE);															\
-	TEST_PRINT_ARGS_ESCAPED(str)															\
-}																							\
+void	print_test_strto##TYPE(char const* test_name, int can_segfault,	\
+		t_##TYPE expecting,												\
+		char const* str)												\
+{																		\
+	TEST_INIT(TYPE)														\
+	TEST_PERFORM(	strto##TYPE, str)									\
+	TEST_PRINT(TYPE,strto##TYPE, "str=\"%s\"", str)						\
+}																		\
 void	test_strto##TYPE(void)																									\
-{																																	\
-/*	| TEST FUNCTION  | TEST NAME                              |CAN SEGV| EXPECTING                | TEST ARGS					*/	\
+{																																\
+/*	| TEST FUNCTION       | TEST NAME                     |CAN SEGV| EXPECTING                | TEST ARGS					*/	\
 	print_test_strto##TYPE("strto"#TYPE,                	FALSE,                          0., "0"                          );	\
 	print_test_strto##TYPE("strto"#TYPE,                	FALSE,                          1., "1"                          );	\
 	print_test_strto##TYPE("strto"#TYPE,                	FALSE,                          2., "2"                          );	\
@@ -662,27 +661,684 @@ void	test_strto##TYPE(void)																									\
 	print_test_strto##TYPE("strto"#TYPE"  (inf, lower) ",	FALSE,                    INFINITY,  "inf"                       );	\
 	print_test_strto##TYPE("strto"#TYPE" (+inf, lower) ",	FALSE,                   +INFINITY, "+inf"                       );	\
 	print_test_strto##TYPE("strto"#TYPE" (-inf, lower) ",	FALSE,                   -INFINITY, "-inf"                       );	\
-	print_test_strto##TYPE("strto"#TYPE"  (infy, lower)",	FALSE,                    INFINITY,  "infinity"                  );	\
-	print_test_strto##TYPE("strto"#TYPE" (+infy, lower)",	FALSE,                   +INFINITY, "+infinity"                  );	\
-	print_test_strto##TYPE("strto"#TYPE" (-infy, lower)",	FALSE,                   -INFINITY, "-infinity"                  );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, lower) ",	FALSE,                    INFINITY,  "infinity"                  );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, lower) ",	FALSE,                   +INFINITY, "+infinity"                  );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, lower) ",	FALSE,                   -INFINITY, "-infinity"                  );	\
 	print_test_strto##TYPE("strto"#TYPE"  (inf, upper) ",	FALSE,                    INFINITY,  "INF"                       );	\
 	print_test_strto##TYPE("strto"#TYPE" (+inf, upper) ",	FALSE,                   +INFINITY, "+INF"                       );	\
 	print_test_strto##TYPE("strto"#TYPE" (-inf, upper) ",	FALSE,                   -INFINITY, "-INF"                       );	\
-	print_test_strto##TYPE("strto"#TYPE"  (infy, upper)",	FALSE,                    INFINITY,  "INFINITY"                  );	\
-	print_test_strto##TYPE("strto"#TYPE" (+infy, upper)",	FALSE,                   +INFINITY, "+INFINITY"                  );	\
-	print_test_strto##TYPE("strto"#TYPE" (-infy, upper)",	FALSE,                   -INFINITY, "-INFINITY"                  );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, upper) ",	FALSE,                    INFINITY,  "INFINITY"                  );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, upper) ",	FALSE,                   +INFINITY, "+INFINITY"                  );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, upper) ",	FALSE,                   -INFINITY, "-INFINITY"                  );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, mixed) ",	FALSE,                    INFINITY,  "Inf"                       );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, mixed) ",	FALSE,                   +INFINITY, "+Inf"                       );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, mixed) ",	FALSE,                   -INFINITY, "-Inf"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, mixed) ",	FALSE,                    INFINITY,  "Infinity"                  );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, mixed) ",	FALSE,                   +INFINITY, "+Infinity"                  );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, mixed) ",	FALSE,                   -INFINITY, "-Infinity"                  );	\
 	print_test_strto##TYPE("strto"#TYPE"  (inf, utf8 \u221E)",	FALSE,                INFINITY,  "\u221E"                    );	\
 	print_test_strto##TYPE("strto"#TYPE" (+inf, utf8 \u221E)",	FALSE,               +INFINITY, "+\u221E"                    );	\
 	print_test_strto##TYPE("strto"#TYPE" (-inf, utf8 \u221E)",	FALSE,               -INFINITY, "-\u221E"                    );	\
-	print_test_strto##TYPE("strto"#TYPE" (NaN)         ",	FALSE,                         NAN, "NAN"                        );	\
-	print_test_strto##TYPE("strto"#TYPE" (NaN)         ",	FALSE,                         NAN, "NAN"                        );	\
-	print_test_strto##TYPE("strto"#TYPE" (NaN)         ",	FALSE,                         NAN, "NaN"                        );	\
-	print_test_strto##TYPE("strto"#TYPE" (NaN)         ",	FALSE,                         NAN, "nan"                        );	\
-	print_test_strto##TYPE("strto"#TYPE" (NaN)         ",	FALSE,                         NAN, "Nan"                        );	\
-	print_test_strto##TYPE("strto"#TYPE" (NaN)         ",	FALSE,                         NAN, "0xNAN"                      );	\
-	print_test_strto##TYPE("strto"#TYPE" (NaN)         ",	FALSE,                         NAN, "0xNANP"                     );	\
-	print_test_strto##TYPE("strto"#TYPE" (NaN)         ",	FALSE,                         NAN, "0xNANP0"                    );	\
-	print_test_strto##TYPE("strto"#TYPE" (NaN)         ",	FALSE,                         NAN, "drop yer nan"               );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, lower) ",	FALSE,                    INFINITY,  "inf "                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, lower) ",	FALSE,                   +INFINITY, "+inf "                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, lower) ",	FALSE,                   -INFINITY, "-inf "                      );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, lower) ",	FALSE,                    INFINITY,  "infinity "                 );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, lower) ",	FALSE,                   +INFINITY, "+infinity "                 );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, lower) ",	FALSE,                   -INFINITY, "-infinity "                 );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, upper) ",	FALSE,                    INFINITY,  "INF "                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, upper) ",	FALSE,                   +INFINITY, "+INF "                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, upper) ",	FALSE,                   -INFINITY, "-INF "                      );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, upper) ",	FALSE,                    INFINITY,  "INFINITY "                 );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, upper) ",	FALSE,                   +INFINITY, "+INFINITY "                 );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, upper) ",	FALSE,                   -INFINITY, "-INFINITY "                 );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, mixed) ",	FALSE,                    INFINITY,  "Inf "                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, mixed) ",	FALSE,                   +INFINITY, "+Inf "                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, mixed) ",	FALSE,                   -INFINITY, "-Inf "                      );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, mixed) ",	FALSE,                    INFINITY,  "Infinity "                 );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, mixed) ",	FALSE,                   +INFINITY, "+Infinity "                 );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, mixed) ",	FALSE,                   -INFINITY, "-Infinity "                 );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, utf8 \u221E)",	FALSE,                INFINITY,  "\u221E "                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, utf8 \u221E)",	FALSE,               +INFINITY, "+\u221E "                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, utf8 \u221E)",	FALSE,               -INFINITY, "-\u221E "                   );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, lower) ",	FALSE,                    INFINITY,  " inf"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, lower) ",	FALSE,                   +INFINITY, " +inf"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, lower) ",	FALSE,                   -INFINITY, " -inf"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, lower) ",	FALSE,                    INFINITY,  " infinity"                 );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, lower) ",	FALSE,                   +INFINITY, " +infinity"                 );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, lower) ",	FALSE,                   -INFINITY, " -infinity"                 );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, upper) ",	FALSE,                    INFINITY,  " INF"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, upper) ",	FALSE,                   +INFINITY, " +INF"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, upper) ",	FALSE,                   -INFINITY, " -INF"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, upper) ",	FALSE,                    INFINITY,   "INFINITY"                 );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, upper) ",	FALSE,                   +INFINITY, " +INFINITY"                 );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, upper) ",	FALSE,                   -INFINITY, " -INFINITY"                 );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, mixed) ",	FALSE,                    INFINITY,  " Inf"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, mixed) ",	FALSE,                   +INFINITY, " +Inf"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, mixed) ",	FALSE,                   -INFINITY, " -Inf"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, mixed) ",	FALSE,                    INFINITY,  " Infinity"                 );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, mixed) ",	FALSE,                   +INFINITY, " +Infinity"                 );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, mixed) ",	FALSE,                   -INFINITY, " -Infinity"                 );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, utf8 \u221E)",	FALSE,                INFINITY,  " \u221E"                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, utf8 \u221E)",	FALSE,               +INFINITY, " +\u221E"                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, utf8 \u221E)",	FALSE,               -INFINITY, " -\u221E"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, lower) ",	FALSE,                    INFINITY,  " inf "                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, lower) ",	FALSE,                   +INFINITY, " +inf "                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, lower) ",	FALSE,                   -INFINITY, " -inf "                     );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, lower) ",	FALSE,                    INFINITY,  " infinity "                );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, lower) ",	FALSE,                   +INFINITY, " +infinity "                );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, lower) ",	FALSE,                   -INFINITY, " -infinity "                );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, upper) ",	FALSE,                    INFINITY,  " INF "                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, upper) ",	FALSE,                   +INFINITY, " +INF "                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, upper) ",	FALSE,                   -INFINITY, " -INF "                     );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, upper) ",	FALSE,                    INFINITY,   "INFINITY "                );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, upper) ",	FALSE,                   +INFINITY, " +INFINITY "                );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, upper) ",	FALSE,                   -INFINITY, " -INFINITY "                );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, mixed) ",	FALSE,                    INFINITY,  " Inf "                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, mixed) ",	FALSE,                   +INFINITY, " +Inf "                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, mixed) ",	FALSE,                   -INFINITY, " -Inf "                     );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, mixed) ",	FALSE,                    INFINITY,  " Infinity "                );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, mixed) ",	FALSE,                   +INFINITY, " +Infinity "                );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, mixed) ",	FALSE,                   -INFINITY, " -Infinity "                );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, utf8 \u221E)",	FALSE,                INFINITY,  " \u221E "                  );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, utf8 \u221E)",	FALSE,               +INFINITY, " +\u221E "                  );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, utf8 \u221E)",	FALSE,               -INFINITY, " -\u221E "                  );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, lower)  ",	FALSE,                         NAN, "nan"                        );	\
+	print_test_strto##TYPE("strto"#TYPE"(+nan, lower)  ",	FALSE,                        +NAN,"+nan"                        );	\
+	print_test_strto##TYPE("strto"#TYPE"(-nan, lower)  ",	FALSE,                        -NAN,"-nan"                        );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, upper)  ",	FALSE,                         NAN, "NAN"                        );	\
+	print_test_strto##TYPE("strto"#TYPE"(+nan, upper)  ",	FALSE,                        +NAN,"+NAN"                        );	\
+	print_test_strto##TYPE("strto"#TYPE"(-nan, upper)  ",	FALSE,                        -NAN,"-NAN"                        );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, mixed)  ",	FALSE,                         NAN, "NaN"                        );	\
+	print_test_strto##TYPE("strto"#TYPE"(+nan, mixed)  ",	FALSE,                        +NAN,"+NaN"                        );	\
+	print_test_strto##TYPE("strto"#TYPE"(-nan, mixed)  ",	FALSE,                        -NAN,"-NaN"                        );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, lower)  ",	FALSE,                         NAN, "nan#"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(+nan, lower)  ",	FALSE,                        +NAN,"+nan#"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(-nan, lower)  ",	FALSE,                        -NAN,"-nan#"                       );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, upper)  ",	FALSE,                         NAN, "NAN#"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(+nan, upper)  ",	FALSE,                        +NAN,"+NAN#"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(-nan, upper)  ",	FALSE,                        -NAN,"-NAN#"                       );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, mixed)  ",	FALSE,                         NAN, "NaN#"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(+nan, mixed)  ",	FALSE,                        +NAN,"+NaN#"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(-nan, mixed)  ",	FALSE,                        -NAN,"-NaN#"                       );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, lower)  ",	FALSE,                         NAN, "nan%"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(+nan, lower)  ",	FALSE,                        +NAN,"+nan%"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(-nan, lower)  ",	FALSE,                        -NAN,"-nan%"                       );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, upper)  ",	FALSE,                         NAN, "NAN%"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(+nan, upper)  ",	FALSE,                        +NAN,"+NAN%"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(-nan, upper)  ",	FALSE,                        -NAN,"-NAN%"                       );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, mixed)  ",	FALSE,                         NAN, "NaN%"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(+nan, mixed)  ",	FALSE,                        +NAN,"+NaN%"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(-nan, mixed)  ",	FALSE,                        -NAN,"-NaN%"                       );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, lower)  ",	FALSE,                         NAN, "nan."                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(+nan, lower)  ",	FALSE,                        +NAN,"+nan."                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(-nan, lower)  ",	FALSE,                        -NAN,"-nan."                       );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, upper)  ",	FALSE,                         NAN, "NAN."                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(+nan, upper)  ",	FALSE,                        +NAN,"+NAN."                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(-nan, upper)  ",	FALSE,                        -NAN,"-NAN."                       );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, mixed)  ",	FALSE,                         NAN, "NaN."                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(+nan, mixed)  ",	FALSE,                        +NAN,"+NaN."                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(-nan, mixed)  ",	FALSE,                        -NAN,"-NaN."                       );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, lower)  ",	FALSE,                         NAN, "nan.0"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(+nan, lower)  ",	FALSE,                        +NAN,"+nan.0"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(-nan, lower)  ",	FALSE,                        -NAN,"-nan.0"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, upper)  ",	FALSE,                         NAN, "NAN.0"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(+nan, upper)  ",	FALSE,                        +NAN,"+NAN.0"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(-nan, upper)  ",	FALSE,                        -NAN,"-NAN.0"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, mixed)  ",	FALSE,                         NAN, "NaN.0"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(+nan, mixed)  ",	FALSE,                        +NAN,"+NaN.0"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(-nan, mixed)  ",	FALSE,                        -NAN,"-NaN.0"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, lower)  ",	FALSE,                         NAN, "nanQ"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(+nan, lower)  ",	FALSE,                        +NAN,"+nanQ"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(-nan, lower)  ",	FALSE,                        -NAN,"-nanQ"                       );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, upper)  ",	FALSE,                         NAN, "NANQ"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(+nan, upper)  ",	FALSE,                        +NAN,"+NANQ"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(-nan, upper)  ",	FALSE,                        -NAN,"-NANQ"                       );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, mixed)  ",	FALSE,                         NAN, "NaNQ"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(+nan, mixed)  ",	FALSE,                        +NAN,"+NaNQ"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(-nan, mixed)  ",	FALSE,                        -NAN,"-NaNQ"                       );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, lower)  ",	FALSE,                         NAN, "nanq"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(+nan, lower)  ",	FALSE,                        +NAN,"+nanq"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(-nan, lower)  ",	FALSE,                        -NAN,"-nanq"                       );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, upper)  ",	FALSE,                         NAN, "NANq"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(+nan, upper)  ",	FALSE,                        +NAN,"+NANq"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(-nan, upper)  ",	FALSE,                        -NAN,"-NANq"                       );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, mixed)  ",	FALSE,                         NAN, "NaNq"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(+nan, mixed)  ",	FALSE,                        +NAN,"+NaNq"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(-nan, mixed)  ",	FALSE,                        -NAN,"-NaNq"                       );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, lower)  ",	FALSE,                         NAN, "nanS"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(+nan, lower)  ",	FALSE,                        +NAN,"+nanS"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(-nan, lower)  ",	FALSE,                        -NAN,"-nanS"                       );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, upper)  ",	FALSE,                         NAN, "NANS"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(+nan, upper)  ",	FALSE,                        +NAN,"+NANS"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(-nan, upper)  ",	FALSE,                        -NAN,"-NANS"                       );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, mixed)  ",	FALSE,                         NAN, "NaNS"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(+nan, mixed)  ",	FALSE,                        +NAN,"+NaNS"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(-nan, mixed)  ",	FALSE,                        -NAN,"-NaNS"                       );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, lower)  ",	FALSE,                         NAN, "nans"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(+nan, lower)  ",	FALSE,                        +NAN,"+nans"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(-nan, lower)  ",	FALSE,                        -NAN,"-nans"                       );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, upper)  ",	FALSE,                         NAN, "NANs"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(+nan, upper)  ",	FALSE,                        +NAN,"+NANs"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(-nan, upper)  ",	FALSE,                        -NAN,"-NANs"                       );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, mixed)  ",	FALSE,                         NAN, "NaNs"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(+nan, mixed)  ",	FALSE,                        +NAN,"+NaNs"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(-nan, mixed)  ",	FALSE,                        -NAN,"-NaNs"                       );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, lower)  ",	FALSE,                         NAN, "Qnan"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(+nan, lower)  ",	FALSE,                        +NAN,"+Qnan"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(-nan, lower)  ",	FALSE,                        -NAN,"-Qnan"                       );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, upper)  ",	FALSE,                         NAN, "QNAN"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(+nan, upper)  ",	FALSE,                        +NAN,"+QNAN"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(-nan, upper)  ",	FALSE,                        -NAN,"-QNAN"                       );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, mixed)  ",	FALSE,                         NAN, "QNaN"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(+nan, mixed)  ",	FALSE,                        +NAN,"+QNaN"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(-nan, mixed)  ",	FALSE,                        -NAN,"-QNaN"                       );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, lower)  ",	FALSE,                         NAN, "qnan"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(+nan, lower)  ",	FALSE,                        +NAN,"+qnan"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(-nan, lower)  ",	FALSE,                        -NAN,"-qnan"                       );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, upper)  ",	FALSE,                         NAN, "qNAN"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(+nan, upper)  ",	FALSE,                        +NAN,"+qNAN"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(-nan, upper)  ",	FALSE,                        -NAN,"-qNAN"                       );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, mixed)  ",	FALSE,                         NAN, "qNaN"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(+nan, mixed)  ",	FALSE,                        +NAN,"+qNaN"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(-nan, mixed)  ",	FALSE,                        -NAN,"-qNaN"                       );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, lower)  ",	FALSE,                         NAN, "Snan"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(+nan, lower)  ",	FALSE,                        +NAN,"+Snan"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(-nan, lower)  ",	FALSE,                        -NAN,"-Snan"                       );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, upper)  ",	FALSE,                         NAN, "SNAN"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(+nan, upper)  ",	FALSE,                        +NAN,"+SNAN"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(-nan, upper)  ",	FALSE,                        -NAN,"-SNAN"                       );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, mixed)  ",	FALSE,                         NAN, "SNaN"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(+nan, mixed)  ",	FALSE,                        +NAN,"+SNaN"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(-nan, mixed)  ",	FALSE,                        -NAN,"-SNaN"                       );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, lower)  ",	FALSE,                         NAN, "snan"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(+nan, lower)  ",	FALSE,                        +NAN,"+snan"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(-nan, lower)  ",	FALSE,                        -NAN,"-snan"                       );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, upper)  ",	FALSE,                         NAN, "sNAN"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(+nan, upper)  ",	FALSE,                        +NAN,"+sNAN"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(-nan, upper)  ",	FALSE,                        -NAN,"-sNAN"                       );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, mixed)  ",	FALSE,                         NAN, "sNaN"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(+nan, mixed)  ",	FALSE,                        +NAN,"+sNaN"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(-nan, mixed)  ",	FALSE,                        -NAN,"-sNaN"                       );	\
+	print_test_strto##TYPE("strto"#TYPE" (#nan, lower) ",	FALSE,                         NAN, "#nan"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(+#nan, lower) ",	FALSE,                        +NAN,"+#nan"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(-#nan, lower) ",	FALSE,                        -NAN,"-#nan"                       );	\
+	print_test_strto##TYPE("strto"#TYPE" (#nan, upper) ",	FALSE,                         NAN, "#NAN"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(+#nan, upper) ",	FALSE,                        +NAN,"+#NAN"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(-#nan, upper) ",	FALSE,                        -NAN,"-#NAN"                       );	\
+	print_test_strto##TYPE("strto"#TYPE" (#nan, mixed) ",	FALSE,                         NAN, "#NaN"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(+#nan, mixed) ",	FALSE,                        +NAN,"+#NaN"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"(-#nan, mixed) ",	FALSE,                        -NAN,"-#NaN"                       );	\
+	print_test_strto##TYPE("strto"#TYPE" (#nan, lower) ",	FALSE,                         NAN, "#nan#"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(+#nan, lower) ",	FALSE,                        +NAN,"+#nan#"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(-#nan, lower) ",	FALSE,                        -NAN,"-#nan#"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (#nan, upper) ",	FALSE,                         NAN, "#NAN#"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(+#nan, upper) ",	FALSE,                        +NAN,"+#NAN#"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(-#nan, upper) ",	FALSE,                        -NAN,"-#NAN#"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (#nan, mixed) ",	FALSE,                         NAN, "#NaN#"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(+#nan, mixed) ",	FALSE,                        +NAN,"+#NaN#"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(-#nan, mixed) ",	FALSE,                        -NAN,"-#NaN#"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (#nan, lower) ",	FALSE,                         NAN, "#nan%"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(+#nan, lower) ",	FALSE,                        +NAN,"+#nan%"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(-#nan, lower) ",	FALSE,                        -NAN,"-#nan%"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (#nan, upper) ",	FALSE,                         NAN, "#NAN%"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(+#nan, upper) ",	FALSE,                        +NAN,"+#NAN%"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(-#nan, upper) ",	FALSE,                        -NAN,"-#NAN%"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (#nan, mixed) ",	FALSE,                         NAN, "#NaN%"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(+#nan, mixed) ",	FALSE,                        +NAN,"+#NaN%"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(-#nan, mixed) ",	FALSE,                        -NAN,"-#NaN%"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (#nan, lower) ",	FALSE,                         NAN, "#nan."                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(+#nan, lower) ",	FALSE,                        +NAN,"+#nan."                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(-#nan, lower) ",	FALSE,                        -NAN,"-#nan."                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (#nan, upper) ",	FALSE,                         NAN, "#NAN."                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(+#nan, upper) ",	FALSE,                        +NAN,"+#NAN."                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(-#nan, upper) ",	FALSE,                        -NAN,"-#NAN."                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (#nan, mixed) ",	FALSE,                         NAN, "#NaN."                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(+#nan, mixed) ",	FALSE,                        +NAN,"+#NaN."                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(-#nan, mixed) ",	FALSE,                        -NAN,"-#NaN."                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (#nan, lower) ",	FALSE,                         NAN, "#nan.0"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(+#nan, lower) ",	FALSE,                        +NAN,"+#nan.0"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(-#nan, lower) ",	FALSE,                        -NAN,"-#nan.0"                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (#nan, upper) ",	FALSE,                         NAN, "#NAN.0"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(+#nan, upper) ",	FALSE,                        +NAN,"+#NAN.0"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(-#nan, upper) ",	FALSE,                        -NAN,"-#NAN.0"                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (#nan, mixed) ",	FALSE,                         NAN, "#NaN.0"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(+#nan, mixed) ",	FALSE,                        +NAN,"+#NaN.0"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(-#nan, mixed) ",	FALSE,                        -NAN,"-#NaN.0"                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (#nan, lower) ",	FALSE,                         NAN, "#nanQ"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(+#nan, lower) ",	FALSE,                        +NAN,"+#nanQ"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(-#nan, lower) ",	FALSE,                        -NAN,"-#nanQ"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (#nan, upper) ",	FALSE,                         NAN, "#NANQ"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(+#nan, upper) ",	FALSE,                        +NAN,"+#NANQ"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(-#nan, upper) ",	FALSE,                        -NAN,"-#NANQ"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (#nan, mixed) ",	FALSE,                         NAN, "#NaNQ"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(+#nan, mixed) ",	FALSE,                        +NAN,"+#NaNQ"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(-#nan, mixed) ",	FALSE,                        -NAN,"-#NaNQ"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (#nan, lower) ",	FALSE,                         NAN, "#nanq"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(+#nan, lower) ",	FALSE,                        +NAN,"+#nanq"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(-#nan, lower) ",	FALSE,                        -NAN,"-#nanq"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (#nan, upper) ",	FALSE,                         NAN, "#NANq"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(+#nan, upper) ",	FALSE,                        +NAN,"+#NANq"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(-#nan, upper) ",	FALSE,                        -NAN,"-#NANq"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (#nan, mixed) ",	FALSE,                         NAN, "#NaNq"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(+#nan, mixed) ",	FALSE,                        +NAN,"+#NaNq"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(-#nan, mixed) ",	FALSE,                        -NAN,"-#NaNq"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (#nan, lower) ",	FALSE,                         NAN, "#nanS"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(+#nan, lower) ",	FALSE,                        +NAN,"+#nanS"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(-#nan, lower) ",	FALSE,                        -NAN,"-#nanS"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (#nan, upper) ",	FALSE,                         NAN, "#NANS"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(+#nan, upper) ",	FALSE,                        +NAN,"+#NANS"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(-#nan, upper) ",	FALSE,                        -NAN,"-#NANS"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (#nan, mixed) ",	FALSE,                         NAN, "#NaNS"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(+#nan, mixed) ",	FALSE,                        +NAN,"+#NaNS"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(-#nan, mixed) ",	FALSE,                        -NAN,"-#NaNS"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (#nan, lower) ",	FALSE,                         NAN, "#nans"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(+#nan, lower) ",	FALSE,                        +NAN,"+#nans"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(-#nan, lower) ",	FALSE,                        -NAN,"-#nans"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (#nan, upper) ",	FALSE,                         NAN, "#NANs"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(+#nan, upper) ",	FALSE,                        +NAN,"+#NANs"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(-#nan, upper) ",	FALSE,                        -NAN,"-#NANs"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (#nan, mixed) ",	FALSE,                         NAN, "#NaNs"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(+#nan, mixed) ",	FALSE,                        +NAN,"+#NaNs"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(-#nan, mixed) ",	FALSE,                        -NAN,"-#NaNs"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (#nan, lower) ",	FALSE,                         NAN, "#Qnan"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(+#nan, lower) ",	FALSE,                        +NAN,"+#Qnan"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(-#nan, lower) ",	FALSE,                        -NAN,"-#Qnan"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (#nan, upper) ",	FALSE,                         NAN, "#QNAN"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(+#nan, upper) ",	FALSE,                        +NAN,"+#QNAN"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(-#nan, upper) ",	FALSE,                        -NAN,"-#QNAN"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (#nan, mixed) ",	FALSE,                         NAN, "#QNaN"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(+#nan, mixed) ",	FALSE,                        +NAN,"+#QNaN"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(-#nan, mixed) ",	FALSE,                        -NAN,"-#QNaN"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (#nan, lower) ",	FALSE,                         NAN, "#qnan"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(+#nan, lower) ",	FALSE,                        +NAN,"+#qnan"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(-#nan, lower) ",	FALSE,                        -NAN,"-#qnan"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (#nan, upper) ",	FALSE,                         NAN, "#qNAN"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(+#nan, upper) ",	FALSE,                        +NAN,"+#qNAN"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(-#nan, upper) ",	FALSE,                        -NAN,"-#qNAN"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (#nan, mixed) ",	FALSE,                         NAN, "#qNaN"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(+#nan, mixed) ",	FALSE,                        +NAN,"+#qNaN"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(-#nan, mixed) ",	FALSE,                        -NAN,"-#qNaN"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (#nan, lower) ",	FALSE,                         NAN, "#Snan"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(+#nan, lower) ",	FALSE,                        +NAN,"+#Snan"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(-#nan, lower) ",	FALSE,                        -NAN,"-#Snan"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (#nan, upper) ",	FALSE,                         NAN, "#SNAN"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(+#nan, upper) ",	FALSE,                        +NAN,"+#SNAN"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(-#nan, upper) ",	FALSE,                        -NAN,"-#SNAN"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (#nan, mixed) ",	FALSE,                         NAN, "#SNaN"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(+#nan, mixed) ",	FALSE,                        +NAN,"+#SNaN"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(-#nan, mixed) ",	FALSE,                        -NAN,"-#SNaN"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (#nan, lower) ",	FALSE,                         NAN, "#snan"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(+#nan, lower) ",	FALSE,                        +NAN,"+#snan"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(-#nan, lower) ",	FALSE,                        -NAN,"-#snan"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (#nan, upper) ",	FALSE,                         NAN, "#sNAN"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(+#nan, upper) ",	FALSE,                        +NAN,"+#sNAN"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(-#nan, upper) ",	FALSE,                        -NAN,"-#sNAN"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (#nan, mixed) ",	FALSE,                         NAN, "#sNaN"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(+#nan, mixed) ",	FALSE,                        +NAN,"+#sNaN"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(-#nan, mixed) ",	FALSE,                        -NAN,"-#sNaN"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (1#nan, lower) ",	FALSE,                         NAN, "1#nan"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1#nan, lower) ",	FALSE,                        +NAN,"+1#nan"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1#nan, lower) ",	FALSE,                        -NAN,"-1#nan"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (1#nan, upper) ",	FALSE,                         NAN, "1#NAN"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1#nan, upper) ",	FALSE,                        +NAN,"+1#NAN"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1#nan, upper) ",	FALSE,                        -NAN,"-1#NAN"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (1#nan, mixed) ",	FALSE,                         NAN, "1#NaN"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1#nan, mixed) ",	FALSE,                        +NAN,"+1#NaN"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1#nan, mixed) ",	FALSE,                        -NAN,"-1#NaN"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (1#nan, lower) ",	FALSE,                         NAN, "1#nan#"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1#nan, lower) ",	FALSE,                        +NAN,"+1#nan#"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1#nan, lower) ",	FALSE,                        -NAN,"-1#nan#"                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (1#nan, upper) ",	FALSE,                         NAN, "1#NAN#"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1#nan, upper) ",	FALSE,                        +NAN,"+1#NAN#"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1#nan, upper) ",	FALSE,                        -NAN,"-1#NAN#"                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (1#nan, mixed) ",	FALSE,                         NAN, "1#NaN#"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1#nan, mixed) ",	FALSE,                        +NAN,"+1#NaN#"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1#nan, mixed) ",	FALSE,                        -NAN,"-1#NaN#"                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (1#nan, lower) ",	FALSE,                         NAN, "1#nan%"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1#nan, lower) ",	FALSE,                        +NAN,"+1#nan%"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1#nan, lower) ",	FALSE,                        -NAN,"-1#nan%"                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (1#nan, upper) ",	FALSE,                         NAN, "1#NAN%"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1#nan, upper) ",	FALSE,                        +NAN,"+1#NAN%"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1#nan, upper) ",	FALSE,                        -NAN,"-1#NAN%"                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (1#nan, mixed) ",	FALSE,                         NAN, "1#NaN%"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1#nan, mixed) ",	FALSE,                        +NAN,"+1#NaN%"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1#nan, mixed) ",	FALSE,                        -NAN,"-1#NaN%"                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (1#nan, lower) ",	FALSE,                         NAN, "1#nan."                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1#nan, lower) ",	FALSE,                        +NAN,"+1#nan."                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1#nan, lower) ",	FALSE,                        -NAN,"-1#nan."                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (1#nan, upper) ",	FALSE,                         NAN, "1#NAN."                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1#nan, upper) ",	FALSE,                        +NAN,"+1#NAN."                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1#nan, upper) ",	FALSE,                        -NAN,"-1#NAN."                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (1#nan, mixed) ",	FALSE,                         NAN, "1#NaN."                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1#nan, mixed) ",	FALSE,                        +NAN,"+1#NaN."                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1#nan, mixed) ",	FALSE,                        -NAN,"-1#NaN."                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (1#nan, lower) ",	FALSE,                         NAN, "1#nan.0"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1#nan, lower) ",	FALSE,                        +NAN,"+1#nan.0"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1#nan, lower) ",	FALSE,                        -NAN,"-1#nan.0"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (1#nan, upper) ",	FALSE,                         NAN, "1#NAN.0"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1#nan, upper) ",	FALSE,                        +NAN,"+1#NAN.0"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1#nan, upper) ",	FALSE,                        -NAN,"-1#NAN.0"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (1#nan, mixed) ",	FALSE,                         NAN, "1#NaN.0"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1#nan, mixed) ",	FALSE,                        +NAN,"+1#NaN.0"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1#nan, mixed) ",	FALSE,                        -NAN,"-1#NaN.0"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (1#nan, lower) ",	FALSE,                         NAN, "1#nanQ"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1#nan, lower) ",	FALSE,                        +NAN,"+1#nanQ"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1#nan, lower) ",	FALSE,                        -NAN,"-1#nanQ"                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (1#nan, upper) ",	FALSE,                         NAN, "1#NANQ"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1#nan, upper) ",	FALSE,                        +NAN,"+1#NANQ"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1#nan, upper) ",	FALSE,                        -NAN,"-1#NANQ"                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (1#nan, mixed) ",	FALSE,                         NAN, "1#NaNQ"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1#nan, mixed) ",	FALSE,                        +NAN,"+1#NaNQ"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1#nan, mixed) ",	FALSE,                        -NAN,"-1#NaNQ"                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (1#nan, lower) ",	FALSE,                         NAN, "1#nanq"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1#nan, lower) ",	FALSE,                        +NAN,"+1#nanq"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1#nan, lower) ",	FALSE,                        -NAN,"-1#nanq"                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (1#nan, upper) ",	FALSE,                         NAN, "1#NANq"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1#nan, upper) ",	FALSE,                        +NAN,"+1#NANq"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1#nan, upper) ",	FALSE,                        -NAN,"-1#NANq"                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (1#nan, mixed) ",	FALSE,                         NAN, "1#NaNq"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1#nan, mixed) ",	FALSE,                        +NAN,"+1#NaNq"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1#nan, mixed) ",	FALSE,                        -NAN,"-1#NaNq"                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (1#nan, lower) ",	FALSE,                         NAN, "1#nanS"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1#nan, lower) ",	FALSE,                        +NAN,"+1#nanS"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1#nan, lower) ",	FALSE,                        -NAN,"-1#nanS"                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (1#nan, upper) ",	FALSE,                         NAN, "1#NANS"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1#nan, upper) ",	FALSE,                        +NAN,"+1#NANS"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1#nan, upper) ",	FALSE,                        -NAN,"-1#NANS"                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (1#nan, mixed) ",	FALSE,                         NAN, "1#NaNS"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1#nan, mixed) ",	FALSE,                        +NAN,"+1#NaNS"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1#nan, mixed) ",	FALSE,                        -NAN,"-1#NaNS"                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (1#nan, lower) ",	FALSE,                         NAN, "1#nans"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1#nan, lower) ",	FALSE,                        +NAN,"+1#nans"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1#nan, lower) ",	FALSE,                        -NAN,"-1#nans"                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (1#nan, upper) ",	FALSE,                         NAN, "1#NANs"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1#nan, upper) ",	FALSE,                        +NAN,"+1#NANs"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1#nan, upper) ",	FALSE,                        -NAN,"-1#NANs"                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (1#nan, mixed) ",	FALSE,                         NAN, "1#NaNs"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1#nan, mixed) ",	FALSE,                        +NAN,"+1#NaNs"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1#nan, mixed) ",	FALSE,                        -NAN,"-1#NaNs"                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (1#nan, lower) ",	FALSE,                         NAN, "1#Qnan"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1#nan, lower) ",	FALSE,                        +NAN,"+1#Qnan"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1#nan, lower) ",	FALSE,                        -NAN,"-1#Qnan"                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (1#nan, upper) ",	FALSE,                         NAN, "1#QNAN"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1#nan, upper) ",	FALSE,                        +NAN,"+1#QNAN"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1#nan, upper) ",	FALSE,                        -NAN,"-1#QNAN"                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (1#nan, mixed) ",	FALSE,                         NAN, "1#QNaN"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1#nan, mixed) ",	FALSE,                        +NAN,"+1#QNaN"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1#nan, mixed) ",	FALSE,                        -NAN,"-1#QNaN"                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (1#nan, lower) ",	FALSE,                         NAN, "1#qnan"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1#nan, lower) ",	FALSE,                        +NAN,"+1#qnan"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1#nan, lower) ",	FALSE,                        -NAN,"-1#qnan"                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (1#nan, upper) ",	FALSE,                         NAN, "1#qNAN"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1#nan, upper) ",	FALSE,                        +NAN,"+1#qNAN"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1#nan, upper) ",	FALSE,                        -NAN,"-1#qNAN"                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (1#nan, mixed) ",	FALSE,                         NAN, "1#qNaN"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1#nan, mixed) ",	FALSE,                        +NAN,"+1#qNaN"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1#nan, mixed) ",	FALSE,                        -NAN,"-1#qNaN"                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (1#nan, lower) ",	FALSE,                         NAN, "1#Snan"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1#nan, lower) ",	FALSE,                        +NAN,"+1#Snan"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1#nan, lower) ",	FALSE,                        -NAN,"-1#Snan"                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (1#nan, upper) ",	FALSE,                         NAN, "1#SNAN"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1#nan, upper) ",	FALSE,                        +NAN,"+1#SNAN"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1#nan, upper) ",	FALSE,                        -NAN,"-1#SNAN"                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (1#nan, mixed) ",	FALSE,                         NAN, "1#SNaN"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1#nan, mixed) ",	FALSE,                        +NAN,"+1#SNaN"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1#nan, mixed) ",	FALSE,                        -NAN,"-1#SNaN"                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (1#nan, lower) ",	FALSE,                         NAN, "1#snan"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1#nan, lower) ",	FALSE,                        +NAN,"+1#snan"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1#nan, lower) ",	FALSE,                        -NAN,"-1#snan"                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (1#nan, upper) ",	FALSE,                         NAN, "1#sNAN"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1#nan, upper) ",	FALSE,                        +NAN,"+1#sNAN"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1#nan, upper) ",	FALSE,                        -NAN,"-1#sNAN"                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (1#nan, mixed) ",	FALSE,                         NAN, "1#sNaN"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1#nan, mixed) ",	FALSE,                        +NAN,"+1#sNaN"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1#nan, mixed) ",	FALSE,                        -NAN,"-1#sNaN"                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.#nan, lower)",	FALSE,                         NAN, "1.#nan"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.#nan, lower)",	FALSE,                        +NAN,"+1.#nan"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.#nan, lower)",	FALSE,                        -NAN,"-1.#nan"                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.#nan, upper)",	FALSE,                         NAN, "1.#NAN"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.#nan, upper)",	FALSE,                        +NAN,"+1.#NAN"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.#nan, upper)",	FALSE,                        -NAN,"-1.#NAN"                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.#nan, mixed)",	FALSE,                         NAN, "1.#NaN"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.#nan, mixed)",	FALSE,                        +NAN,"+1.#NaN"                     );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.#nan, mixed)",	FALSE,                        -NAN,"-1.#NaN"                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.#nan, lower)",	FALSE,                         NAN, "1.#nan#"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.#nan, lower)",	FALSE,                        +NAN,"+1.#nan#"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.#nan, lower)",	FALSE,                        -NAN,"-1.#nan#"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.#nan, upper)",	FALSE,                         NAN, "1.#NAN#"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.#nan, upper)",	FALSE,                        +NAN,"+1.#NAN#"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.#nan, upper)",	FALSE,                        -NAN,"-1.#NAN#"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.#nan, mixed)",	FALSE,                         NAN, "1.#NaN#"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.#nan, mixed)",	FALSE,                        +NAN,"+1.#NaN#"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.#nan, mixed)",	FALSE,                        -NAN,"-1.#NaN#"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.#nan, lower)",	FALSE,                         NAN, "1.#nan%"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.#nan, lower)",	FALSE,                        +NAN,"+1.#nan%"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.#nan, lower)",	FALSE,                        -NAN,"-1.#nan%"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.#nan, upper)",	FALSE,                         NAN, "1.#NAN%"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.#nan, upper)",	FALSE,                        +NAN,"+1.#NAN%"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.#nan, upper)",	FALSE,                        -NAN,"-1.#NAN%"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.#nan, mixed)",	FALSE,                         NAN, "1.#NaN%"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.#nan, mixed)",	FALSE,                        +NAN,"+1.#NaN%"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.#nan, mixed)",	FALSE,                        -NAN,"-1.#NaN%"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.#nan, lower)",	FALSE,                         NAN, "1.#nan."                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.#nan, lower)",	FALSE,                        +NAN,"+1.#nan."                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.#nan, lower)",	FALSE,                        -NAN,"-1.#nan."                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.#nan, upper)",	FALSE,                         NAN, "1.#NAN."                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.#nan, upper)",	FALSE,                        +NAN,"+1.#NAN."                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.#nan, upper)",	FALSE,                        -NAN,"-1.#NAN."                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.#nan, mixed)",	FALSE,                         NAN, "1.#NaN."                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.#nan, mixed)",	FALSE,                        +NAN,"+1.#NaN."                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.#nan, mixed)",	FALSE,                        -NAN,"-1.#NaN."                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.#nan, lower)",	FALSE,                         NAN, "1.#nan.0"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.#nan, lower)",	FALSE,                        +NAN,"+1.#nan.0"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.#nan, lower)",	FALSE,                        -NAN,"-1.#nan.0"                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.#nan, upper)",	FALSE,                         NAN, "1.#NAN.0"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.#nan, upper)",	FALSE,                        +NAN,"+1.#NAN.0"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.#nan, upper)",	FALSE,                        -NAN,"-1.#NAN.0"                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.#nan, mixed)",	FALSE,                         NAN, "1.#NaN.0"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.#nan, mixed)",	FALSE,                        +NAN,"+1.#NaN.0"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.#nan, mixed)",	FALSE,                        -NAN,"-1.#NaN.0"                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.#nan, lower)",	FALSE,                         NAN, "1.#nanQ"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.#nan, lower)",	FALSE,                        +NAN,"+1.#nanQ"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.#nan, lower)",	FALSE,                        -NAN,"-1.#nanQ"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.#nan, upper)",	FALSE,                         NAN, "1.#NANQ"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.#nan, upper)",	FALSE,                        +NAN,"+1.#NANQ"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.#nan, upper)",	FALSE,                        -NAN,"-1.#NANQ"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.#nan, mixed)",	FALSE,                         NAN, "1.#NaNQ"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.#nan, mixed)",	FALSE,                        +NAN,"+1.#NaNQ"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.#nan, mixed)",	FALSE,                        -NAN,"-1.#NaNQ"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.#nan, lower)",	FALSE,                         NAN, "1.#nanq"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.#nan, lower)",	FALSE,                        +NAN,"+1.#nanq"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.#nan, lower)",	FALSE,                        -NAN,"-1.#nanq"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.#nan, upper)",	FALSE,                         NAN, "1.#NANq"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.#nan, upper)",	FALSE,                        +NAN,"+1.#NANq"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.#nan, upper)",	FALSE,                        -NAN,"-1.#NANq"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.#nan, mixed)",	FALSE,                         NAN, "1.#NaNq"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.#nan, mixed)",	FALSE,                        +NAN,"+1.#NaNq"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.#nan, mixed)",	FALSE,                        -NAN,"-1.#NaNq"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.#nan, lower)",	FALSE,                         NAN, "1.#nanS"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.#nan, lower)",	FALSE,                        +NAN,"+1.#nanS"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.#nan, lower)",	FALSE,                        -NAN,"-1.#nanS"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.#nan, upper)",	FALSE,                         NAN, "1.#NANS"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.#nan, upper)",	FALSE,                        +NAN,"+1.#NANS"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.#nan, upper)",	FALSE,                        -NAN,"-1.#NANS"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.#nan, mixed)",	FALSE,                         NAN, "1.#NaNS"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.#nan, mixed)",	FALSE,                        +NAN,"+1.#NaNS"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.#nan, mixed)",	FALSE,                        -NAN,"-1.#NaNS"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.#nan, lower)",	FALSE,                         NAN, "1.#nans"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.#nan, lower)",	FALSE,                        +NAN,"+1.#nans"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.#nan, lower)",	FALSE,                        -NAN,"-1.#nans"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.#nan, upper)",	FALSE,                         NAN, "1.#NANs"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.#nan, upper)",	FALSE,                        +NAN,"+1.#NANs"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.#nan, upper)",	FALSE,                        -NAN,"-1.#NANs"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.#nan, mixed)",	FALSE,                         NAN, "1.#NaNs"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.#nan, mixed)",	FALSE,                        +NAN,"+1.#NaNs"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.#nan, mixed)",	FALSE,                        -NAN,"-1.#NaNs"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.#nan, lower)",	FALSE,                         NAN, "1.#Qnan"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.#nan, lower)",	FALSE,                        +NAN,"+1.#Qnan"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.#nan, lower)",	FALSE,                        -NAN,"-1.#Qnan"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.#nan, upper)",	FALSE,                         NAN, "1.#QNAN"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.#nan, upper)",	FALSE,                        +NAN,"+1.#QNAN"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.#nan, upper)",	FALSE,                        -NAN,"-1.#QNAN"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.#nan, mixed)",	FALSE,                         NAN, "1.#QNaN"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.#nan, mixed)",	FALSE,                        +NAN,"+1.#QNaN"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.#nan, mixed)",	FALSE,                        -NAN,"-1.#QNaN"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.#nan, lower)",	FALSE,                         NAN, "1.#qnan"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.#nan, lower)",	FALSE,                        +NAN,"+1.#qnan"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.#nan, lower)",	FALSE,                        -NAN,"-1.#qnan"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.#nan, upper)",	FALSE,                         NAN, "1.#qNAN"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.#nan, upper)",	FALSE,                        +NAN,"+1.#qNAN"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.#nan, upper)",	FALSE,                        -NAN,"-1.#qNAN"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.#nan, mixed)",	FALSE,                         NAN, "1.#qNaN"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.#nan, mixed)",	FALSE,                        +NAN,"+1.#qNaN"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.#nan, mixed)",	FALSE,                        -NAN,"-1.#qNaN"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.#nan, lower)",	FALSE,                         NAN, "1.#Snan"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.#nan, lower)",	FALSE,                        +NAN,"+1.#Snan"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.#nan, lower)",	FALSE,                        -NAN,"-1.#Snan"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.#nan, upper)",	FALSE,                         NAN, "1.#SNAN"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.#nan, upper)",	FALSE,                        +NAN,"+1.#SNAN"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.#nan, upper)",	FALSE,                        -NAN,"-1.#SNAN"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.#nan, mixed)",	FALSE,                         NAN, "1.#SNaN"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.#nan, mixed)",	FALSE,                        +NAN,"+1.#SNaN"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.#nan, mixed)",	FALSE,                        -NAN,"-1.#SNaN"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.#nan, lower)",	FALSE,                         NAN, "1.#snan"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.#nan, lower)",	FALSE,                        +NAN,"+1.#snan"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.#nan, lower)",	FALSE,                        -NAN,"-1.#snan"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.#nan, upper)",	FALSE,                         NAN, "1.#sNAN"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.#nan, upper)",	FALSE,                        +NAN,"+1.#sNAN"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.#nan, upper)",	FALSE,                        -NAN,"-1.#sNAN"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.#nan, mixed)",	FALSE,                         NAN, "1.#sNaN"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.#nan, mixed)",	FALSE,                        +NAN,"+1.#sNaN"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.#nan, mixed)",	FALSE,                        -NAN,"-1.#sNaN"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.0#nan,lower)",	FALSE,                         NAN, "1.0#nan"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.0#nan,lower)",	FALSE,                        +NAN,"+1.0#nan"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.0#nan,lower)",	FALSE,                        -NAN,"-1.0#nan"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.0#nan,upper)",	FALSE,                         NAN, "1.0#NAN"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.0#nan,upper)",	FALSE,                        +NAN,"+1.0#NAN"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.0#nan,upper)",	FALSE,                        -NAN,"-1.0#NAN"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.0#nan,mixed)",	FALSE,                         NAN, "1.0#NaN"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.0#nan,mixed)",	FALSE,                        +NAN,"+1.0#NaN"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.0#nan,mixed)",	FALSE,                        -NAN,"-1.0#NaN"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.0#nan,lower)",	FALSE,                         NAN, "1.0#nan#"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.0#nan,lower)",	FALSE,                        +NAN,"+1.0#nan#"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.0#nan,lower)",	FALSE,                        -NAN,"-1.0#nan#"                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.0#nan,upper)",	FALSE,                         NAN, "1.0#NAN#"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.0#nan,upper)",	FALSE,                        +NAN,"+1.0#NAN#"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.0#nan,upper)",	FALSE,                        -NAN,"-1.0#NAN#"                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.0#nan,mixed)",	FALSE,                         NAN, "1.0#NaN#"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.0#nan,mixed)",	FALSE,                        +NAN,"+1.0#NaN#"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.0#nan,mixed)",	FALSE,                        -NAN,"-1.0#NaN#"                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.0#nan,lower)",	FALSE,                         NAN, "1.0#nan%"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.0#nan,lower)",	FALSE,                        +NAN,"+1.0#nan%"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.0#nan,lower)",	FALSE,                        -NAN,"-1.0#nan%"                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.0#nan,upper)",	FALSE,                         NAN, "1.0#NAN%"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.0#nan,upper)",	FALSE,                        +NAN,"+1.0#NAN%"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.0#nan,upper)",	FALSE,                        -NAN,"-1.0#NAN%"                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.0#nan,mixed)",	FALSE,                         NAN, "1.0#NaN%"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.0#nan,mixed)",	FALSE,                        +NAN,"+1.0#NaN%"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.0#nan,mixed)",	FALSE,                        -NAN,"-1.0#NaN%"                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.0#nan,lower)",	FALSE,                         NAN, "1.0#nan."                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.0#nan,lower)",	FALSE,                        +NAN,"+1.0#nan."                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.0#nan,lower)",	FALSE,                        -NAN,"-1.0#nan."                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.0#nan,upper)",	FALSE,                         NAN, "1.0#NAN."                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.0#nan,upper)",	FALSE,                        +NAN,"+1.0#NAN."                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.0#nan,upper)",	FALSE,                        -NAN,"-1.0#NAN."                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.0#nan,mixed)",	FALSE,                         NAN, "1.0#NaN."                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.0#nan,mixed)",	FALSE,                        +NAN,"+1.0#NaN."                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.0#nan,mixed)",	FALSE,                        -NAN,"-1.0#NaN."                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.0#nan,lower)",	FALSE,                         NAN, "1.0#nan.0"                  );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.0#nan,lower)",	FALSE,                        +NAN,"+1.0#nan.0"                  );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.0#nan,lower)",	FALSE,                        -NAN,"-1.0#nan.0"                  );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.0#nan,upper)",	FALSE,                         NAN, "1.0#NAN.0"                  );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.0#nan,upper)",	FALSE,                        +NAN,"+1.0#NAN.0"                  );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.0#nan,upper)",	FALSE,                        -NAN,"-1.0#NAN.0"                  );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.0#nan,mixed)",	FALSE,                         NAN, "1.0#NaN.0"                  );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.0#nan,mixed)",	FALSE,                        +NAN,"+1.0#NaN.0"                  );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.0#nan,mixed)",	FALSE,                        -NAN,"-1.0#NaN.0"                  );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.0#nan,lower)",	FALSE,                         NAN, "1.0#nanQ"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.0#nan,lower)",	FALSE,                        +NAN,"+1.0#nanQ"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.0#nan,lower)",	FALSE,                        -NAN,"-1.0#nanQ"                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.0#nan,upper)",	FALSE,                         NAN, "1.0#NANQ"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.0#nan,upper)",	FALSE,                        +NAN,"+1.0#NANQ"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.0#nan,upper)",	FALSE,                        -NAN,"-1.0#NANQ"                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.0#nan,mixed)",	FALSE,                         NAN, "1.0#NaNQ"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.0#nan,mixed)",	FALSE,                        +NAN,"+1.0#NaNQ"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.0#nan,mixed)",	FALSE,                        -NAN,"-1.0#NaNQ"                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.0#nan,lower)",	FALSE,                         NAN, "1.0#nanq"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.0#nan,lower)",	FALSE,                        +NAN,"+1.0#nanq"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.0#nan,lower)",	FALSE,                        -NAN,"-1.0#nanq"                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.0#nan,upper)",	FALSE,                         NAN, "1.0#NANq"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.0#nan,upper)",	FALSE,                        +NAN,"+1.0#NANq"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.0#nan,upper)",	FALSE,                        -NAN,"-1.0#NANq"                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.0#nan,mixed)",	FALSE,                         NAN, "1.0#NaNq"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.0#nan,mixed)",	FALSE,                        +NAN,"+1.0#NaNq"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.0#nan,mixed)",	FALSE,                        -NAN,"-1.0#NaNq"                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.0#nan,lower)",	FALSE,                         NAN, "1.0#nanS"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.0#nan,lower)",	FALSE,                        +NAN,"+1.0#nanS"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.0#nan,lower)",	FALSE,                        -NAN,"-1.0#nanS"                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.0#nan,upper)",	FALSE,                         NAN, "1.0#NANS"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.0#nan,upper)",	FALSE,                        +NAN,"+1.0#NANS"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.0#nan,upper)",	FALSE,                        -NAN,"-1.0#NANS"                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.0#nan,mixed)",	FALSE,                         NAN, "1.0#NaNS"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.0#nan,mixed)",	FALSE,                        +NAN,"+1.0#NaNS"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.0#nan,mixed)",	FALSE,                        -NAN,"-1.0#NaNS"                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.0#nan,lower)",	FALSE,                         NAN, "1.0#nans"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.0#nan,lower)",	FALSE,                        +NAN,"+1.0#nans"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.0#nan,lower)",	FALSE,                        -NAN,"-1.0#nans"                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.0#nan,upper)",	FALSE,                         NAN, "1.0#NANs"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.0#nan,upper)",	FALSE,                        +NAN,"+1.0#NANs"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.0#nan,upper)",	FALSE,                        -NAN,"-1.0#NANs"                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.0#nan,mixed)",	FALSE,                         NAN, "1.0#NaNs"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.0#nan,mixed)",	FALSE,                        +NAN,"+1.0#NaNs"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.0#nan,mixed)",	FALSE,                        -NAN,"-1.0#NaNs"                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.0#nan,lower)",	FALSE,                         NAN, "1.0#Qnan"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.0#nan,lower)",	FALSE,                        +NAN,"+1.0#Qnan"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.0#nan,lower)",	FALSE,                        -NAN,"-1.0#Qnan"                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.0#nan,upper)",	FALSE,                         NAN, "1.0#QNAN"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.0#nan,upper)",	FALSE,                        +NAN,"+1.0#QNAN"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.0#nan,upper)",	FALSE,                        -NAN,"-1.0#QNAN"                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.0#nan,mixed)",	FALSE,                         NAN, "1.0#QNaN"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.0#nan,mixed)",	FALSE,                        +NAN,"+1.0#QNaN"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.0#nan,mixed)",	FALSE,                        -NAN,"-1.0#QNaN"                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.0#nan,lower)",	FALSE,                         NAN, "1.0#qnan"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.0#nan,lower)",	FALSE,                        +NAN,"+1.0#qnan"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.0#nan,lower)",	FALSE,                        -NAN,"-1.0#qnan"                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.0#nan,upper)",	FALSE,                         NAN, "1.0#qNAN"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.0#nan,upper)",	FALSE,                        +NAN,"+1.0#qNAN"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.0#nan,upper)",	FALSE,                        -NAN,"-1.0#qNAN"                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.0#nan,mixed)",	FALSE,                         NAN, "1.0#qNaN"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.0#nan,mixed)",	FALSE,                        +NAN,"+1.0#qNaN"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.0#nan,mixed)",	FALSE,                        -NAN,"-1.0#qNaN"                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.0#nan,lower)",	FALSE,                         NAN, "1.0#Snan"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.0#nan,lower)",	FALSE,                        +NAN,"+1.0#Snan"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.0#nan,lower)",	FALSE,                        -NAN,"-1.0#Snan"                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.0#nan,upper)",	FALSE,                         NAN, "1.0#SNAN"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.0#nan,upper)",	FALSE,                        +NAN,"+1.0#SNAN"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.0#nan,upper)",	FALSE,                        -NAN,"-1.0#SNAN"                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.0#nan,mixed)",	FALSE,                         NAN, "1.0#SNaN"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.0#nan,mixed)",	FALSE,                        +NAN,"+1.0#SNaN"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.0#nan,mixed)",	FALSE,                        -NAN,"-1.0#SNaN"                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.0#nan,lower)",	FALSE,                         NAN, "1.0#snan"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.0#nan,lower)",	FALSE,                        +NAN,"+1.0#snan"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.0#nan,lower)",	FALSE,                        -NAN,"-1.0#snan"                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.0#nan,upper)",	FALSE,                         NAN, "1.0#sNAN"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.0#nan,upper)",	FALSE,                        +NAN,"+1.0#sNAN"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.0#nan,upper)",	FALSE,                        -NAN,"-1.0#sNAN"                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (1.0#nan,mixed)",	FALSE,                         NAN, "1.0#sNaN"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(+1.0#nan,mixed)",	FALSE,                        +NAN,"+1.0#sNaN"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"(-1.0#nan,mixed)",	FALSE,                        -NAN,"-1.0#sNaN"                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, bad)    ",	FALSE,                         NAN, "Nan"                        );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, bad)    ",	FALSE,                         NAN, "naN"                        );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, bad)    ",	FALSE,                         NAN, "nAn"                        );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, bad)    ",	FALSE,                         NAN, "NAn"                        );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, bad)    ",	FALSE,                         NAN, "nAN"                        );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, bad)    ",	FALSE,                         NAN, "nan "                       );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, bad)    ",	FALSE,                         NAN, "drop yer nan"               );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, bad)    ",	FALSE,                         NAN, "nan yer drop"               );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan, bad)    ",	FALSE,                         NAN, "nan yer"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan hex, bad)",	FALSE,                         NAN, "0xNAN"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan hex, bad)",	FALSE,                         NAN, "0xNANP"                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (nan hex, bad)",	FALSE,                         NAN, "0xNANP0"                    );	\
 	print_test_strto##TYPE("strto"#TYPE" (empty str)   ",	FALSE,                         NAN, ""                           );	\
 	print_test_strto##TYPE("strto"#TYPE" (null str)    ",	SEGV,                            0, NULL                         );	\
 }
@@ -699,13 +1355,13 @@ void test_strtof64(void)	{}
 DEFINETEST_STR_TO_FLOAT(f64)
 #endif
 
-#if !defined(c_strtof80) || !defined(__float80)
+#if (!defined(c_strtof80) || !defined(__float80))
 void test_strtof80(void)	{}
 #else
 DEFINETEST_STR_TO_FLOAT(f80)
 #endif
 
-#if !defined(c_strtof128) || !defined(__float128)
+#if (!defined(c_strtof128) || !defined(__float128))
 void test_strtof128(void)	{}
 #else
 DEFINETEST_STR_TO_FLOAT(f128)
@@ -737,7 +1393,7 @@ DEFINETEST_STR_TO_FLOAT(float)
 
 int		testsuite_float(void)
 {
-	print_suite_title("float");
+	print_suite_title("libccc/float");
 
 	print_nonstd();
 

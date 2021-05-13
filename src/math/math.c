@@ -5,20 +5,6 @@
 
 
 #if LIBCONFIG_USE_FAST_APPROX_MATH
-inline t_s32	c_getexp(t_float x)
-{
-	u_float_cast	result;
-
-	result.value_float = x;
-	return (((result.value_int & FLOAT_EXPONENT) >> FLOAT_MANTISSA_BITS) - FLOAT_EXPONENT_BIAS);
-}
-#else
-MATH_DECL_FUNCTION(t_sint, getexp, ilogb)
-#endif
-
-
-
-#if LIBCONFIG_USE_FAST_APPROX_MATH
 inline t_float	c_fabs(t_float x)
 {
 	u_float_cast	result;

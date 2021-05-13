@@ -1,16 +1,17 @@
 
+#include "libccc/char.h"
 #include "libccc/bool.h"
 #include "libccc/memory.h"
 
 
 
-char*	Bool_ToString(t_bool number, t_bool uppercase)
+t_char*	Bool_ToString(t_bool number, t_bool uppercase)
 {
-	char*	result;
+	t_char*	result;
 
 	if (number)
 	{
-		if (!(result = (char*)Memory_Alloc(5)))
+		if (!(result = (t_char*)Memory_Alloc(5)))
 			return (NULL);
 		result[0] = uppercase ? 'T' : 't';
 		result[1] = uppercase ? 'R' : 'r';
@@ -20,7 +21,7 @@ char*	Bool_ToString(t_bool number, t_bool uppercase)
 	}
 	else
 	{
-		if (!(result = (char*)Memory_Alloc(6)))
+		if (!(result = (t_char*)Memory_Alloc(6)))
 			return (NULL);
 		result[0] = uppercase ? 'F' : 'f';
 		result[1] = uppercase ? 'A' : 'a';

@@ -36,9 +36,6 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-/*
-**	Define the common useful macros for writing some pseudo-boolean syntax.
-*/
 #ifdef	FALSE
 #undef	FALSE
 #endif	//! Represents a boolean false value (0)
@@ -51,15 +48,13 @@ HEADER_CPP
 
 
 
-#ifdef	false
-#undef	false
-#endif	//! Represents a boolean false value (0)
+#ifndef	false
 #define false	FALSE
+#endif	//! Represents a boolean false value (0)
 
-#ifdef	true
-#undef	true
-#endif	//! Represents a boolean true value  (1)
+#ifndef	true
 #define true	TRUE
+#endif	//! Represents a boolean true value  (1)
 
 
 
@@ -78,8 +73,50 @@ HEADER_CPP
 **	- Bool_ToString()
 **	- Bool_FromString()
 */
-typedef _Bool		t_bool;
+//!@{
+#ifdef bool
+	typedef bool	t_bool;
+#elif (defined(__STDC__) && (__STDC_VERSION__ >= __STDC_VERSION_C99__))
+	typedef _Bool	t_bool;
+#else
+	typedef int		t_bool;
+#endif
 TYPEDEF_ALIAS(		t_bool, BOOL, PRIMITIVE)
+//!@}
+
+
+
+//! Boolean logical operator macros
+//!@{
+#ifndef and
+#define and	&&
+#endif
+#ifndef or
+#define or	||
+#endif
+#ifndef xor
+#define xor	^	// TODO force boolean logic for this operator
+#endif
+#ifndef not
+#define not	!
+#endif
+//!@}
+
+//! Boolean bitwise operator macros
+//!@{
+#ifndef bitand
+#define bitand	&
+#endif
+#ifndef bitor
+#define bitor	|
+#endif
+#ifndef bitxor
+#define bitxor	^
+#endif
+#ifndef bitnot
+#define bitnot	~
+#endif
+//!@}
 
 
 
@@ -89,14 +126,28 @@ TYPEDEF_ALIAS(		t_bool, BOOL, PRIMITIVE)
 ** ************************************************************************** *|
 */
 
+#define BOOL_TOSTRING \
+		BOOL_TOSTRING_UPPER
+#define BOOL_TOSTRING_UPPER(VALUE)	((VALUE) ? "TRUE" : "FALSE")
+#define BOOL_TOSTRING_LOWER(VALUE)	((VALUE) ? "true" : "false")
+#define BOOL_TOSTRING_MIXED(VALUE)	((VALUE) ? "True" : "False")
+
+// TODO split Bool_ToString() into 3 sub-functions with one configurable macro ?
+
+
+
+#ifdef __LIBCCC_CHAR_H
+
 //! Get the string representation of a boolean value (TRUE or FALSE)
 _MALLOC()
-char*					Bool_ToString(t_bool value, t_bool uppercase);
-#define c_bool_to_str	Bool_ToString //!< @alias{Bool_ToString}
+t_char*					Bool_ToString(t_bool value, t_bool uppercase);
+#define c_booltostr		Bool_ToString //!< @alias{Bool_ToString}
 
 //! Parse a boolean value from the given string (can be 1/0/TRUE/FALSE/true/false)
-t_bool					Bool_FromString(char const* str);
-#define c_str_to_bool	Bool_FromString //!< @alias{Bool_FromString}
+t_bool					Bool_FromString(t_char const* str);
+#define c_strtobool		Bool_FromString //!< @alias{Bool_FromString}
+
+#endif
 
 
 

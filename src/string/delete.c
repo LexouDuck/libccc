@@ -4,15 +4,12 @@
 
 
 
-inline void	c_strdel(char **a_str)
+inline void	String_Delete(t_char** a_str)
 {
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (a_str == NULL)
-		return ;
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(, a_str)
 	if (*a_str)
 	{
-		c_memfree(*a_str);
+		Memory_Free(*a_str);
 		*a_str = NULL;
 	}
 }

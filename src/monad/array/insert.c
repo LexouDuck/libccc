@@ -8,10 +8,8 @@ void	CONCAT(Array_Insert,T_NAME)(s_array_T* array, T item, t_uint index)
 {
 	T*	result;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (array == NULL || array->items == NULL)
-		return;
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(, array)
+	LIBCONFIG_HANDLE_NULLPOINTER(, array->items)
 	if (array->length < index)
 		return;
 	result = (T*)Memory_Alloc(sizeof(T) * (array->length + 1));

@@ -5,10 +5,7 @@
 _GENERIC()
 s_list_T const*	CONCAT(List_Find,T_NAME)(s_list_T const* list, T item)
 {
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (list == NULL)
-		return (NULL);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, list)
 	while (list)
 	{
 		if (T_EQUALS(list->item, item))
@@ -22,10 +19,7 @@ s_list_T const*	CONCAT(List_Find,T_NAME)(s_list_T const* list, T item)
 _GENERIC()
 s_list_T const*	CONCAT(List_Find_F,T_NAME)(s_list_T const* list, t_bool (*match)(T item))
 {
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (list == NULL)
-		return (NULL);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, list)
 	while (list)
 	{
 		if (match(list->item))
@@ -41,10 +35,7 @@ t_sint	CONCAT(List_IndexOf,T_NAME)(s_list_T const* list, T item)
 {
 	t_uint	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (list == NULL)
-		return (ERROR);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(ERROR, list)
 	i = 0;
 	while (list)
 	{
@@ -62,10 +53,7 @@ t_sint	CONCAT(List_IndexOf_F,T_NAME)(s_list_T const* list, t_bool (*match)(T ite
 {
 	t_uint	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (list == NULL)
-		return (ERROR);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(ERROR, list)
 	i = 0;
 	while (list)
 	{

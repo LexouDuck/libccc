@@ -7,13 +7,8 @@ s_list_T*	CONCAT(List_Append,T_NAME)(s_list_T* list, s_list_T* elem)
 {
 	s_list_T*	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (list == NULL)
-	{
-		list = elem;
-		return (list);
-	}
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(elem, list)
+	LIBCONFIG_HANDLE_NULLPOINTER(list, elem)
 	if (elem == NULL)
 		return (list);
 	i = list;

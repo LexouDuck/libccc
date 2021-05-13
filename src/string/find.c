@@ -3,42 +3,37 @@
 
 
 
-char*	String_Find_Char(char const *str, char c)
+t_char*	String_Find_Char(t_char const* str, t_char c)
 {
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL)
-		return (NULL);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
 	i = 0;
 	while (TRUE)
 	{
 		if (str[i] == c)
-			return ((char*)str + i);
+			return ((t_char*)str + i);
 		if (str[i] == '\0')
-			break ;
+			break;
 		++i;
 	}
 	return (NULL);
 }
 inline
-t_ptrdiff	String_IndexOf_Char(char const *str, char c)
+t_ptrdiff	String_IndexOf_Char(t_char const* str, t_char c)
 {
-	char* result = String_Find_Char(str, c);
+	t_char* result = String_Find_Char(str, c);
 	return (result ? result - str : -1);
 }
 
 
 
-char*	String_Find_Charset(char const *str, char const *charset)
+t_char*	String_Find_Charset(t_char const* str, t_char const* charset)
 {
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL || charset == NULL)
-		return (NULL);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, charset)
 	if (charset[0] == '\0')
 		return (NULL);
 	i = 0;
@@ -47,29 +42,27 @@ char*	String_Find_Charset(char const *str, char const *charset)
 		for (t_size j = 0; charset[j]; ++j)
 		{
 			if (str[i] == charset[j])
-				return ((char*)str + i);
+				return ((t_char*)str + i);
 		}
 		++i;
 	}
 	return (NULL);
 }
 inline
-t_ptrdiff	String_IndexOf_Charset(char const *str, char const *charset)
+t_ptrdiff	String_IndexOf_Charset(t_char const* str, t_char const* charset)
 {
-	char* result = String_Find_Charset(str, charset);
+	t_char* result = String_Find_Charset(str, charset);
 	return (result ? result - str : -1);
 }
 
 
 
-char*	String_Find_String(char const *str, char const *query)
+t_char*	String_Find_String(t_char const* str, t_char const* query)
 {
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL || query == NULL)
-		return (NULL);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, query)
 	if (query[0] == '\0')
 		return (NULL);
 	i = 0;
@@ -80,7 +73,7 @@ char*	String_Find_String(char const *str, char const *query)
 		{
 			++j;
 			if (query[j] == '\0')
-				return ((char*)str + i);
+				return ((t_char*)str + i);
 			if (str[i + j] == '\0')
 				return (NULL);
 		}
@@ -89,8 +82,8 @@ char*	String_Find_String(char const *str, char const *query)
 	return (NULL);
 }
 inline
-t_ptrdiff	String_IndexOf_String(char const *str, char const *query)
+t_ptrdiff	String_IndexOf_String(t_char const* str, t_char const* query)
 {
-	char* result = String_Find_String(str, query);
+	t_char* result = String_Find_String(str, query);
 	return (result ? result - str : -1);
 }

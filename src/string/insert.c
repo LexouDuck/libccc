@@ -4,20 +4,18 @@
 
 
 
-char	*String_Insert(char const *dest, char const *src, t_size offset)
+t_char*	String_Insert(t_char const* dest, t_char const* src, t_size offset)
 {
-	char	*result;
+	t_char*	result;
 	t_size	len_dst;
 	t_size	len_src;
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (dest == NULL || src == NULL)
-		return (NULL);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, dest)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, src)
 	len_dst = String_Length(dest);
 	len_src = String_Length(src);
-	if (!(result = (char *)Memory_Alloc(len_dst + len_src + 1)))
+	if (!(result = (t_char*)Memory_Alloc(len_dst + len_src + sizeof(""))))
 		return (NULL);
 	i = (t_size)-1;
 	while (++i < offset)
@@ -34,14 +32,12 @@ char	*String_Insert(char const *dest, char const *src, t_size offset)
 
 
 
-char*	String_Insert_InPlace(char* *a_dest, char const* src, t_u32 index)
+t_char*	String_Insert_InPlace(t_char** a_dest, t_char const* src, t_u32 index)
 {
-	char*	tmp;
+	t_char*	tmp;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (a_dest == NULL || src == NULL)
-		return (NULL);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, a_dest)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, src)
 	tmp = String_Sub(*a_dest, 0, index);
 	String_Append(&tmp, src);
 	String_Append(&tmp, (*a_dest) + index);

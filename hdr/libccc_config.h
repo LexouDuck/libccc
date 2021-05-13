@@ -37,23 +37,12 @@ HEADER_CPP
 /*!
 **	This macro sets the nomenclature style that libccc uses for typedefs. The value works like
 **	both an enum and a bitflag simultaneously: you can see how this works at the bottom of this file.
-**	NB: By default, this is (NAMINGSTYLE_ENUM_SNAKECASE | NAMINGSTYLE_FLAG_HUNGARIAN_PREFIX)
-**		This style is used thoughout libccc's code. As such, if you set another style, it
-**		will actually generate a typedef alias above the existing type. For example:
-**		Having `(NAMINGSTYLE_ENUM_SCREAMCASE)` will create a typedef for `t_bool` which is `BOOL`
+**	NB: The style used throughout libccc's code is `(NAMINGSTYLE_SNAKECASE | NAMINGSTYLE_FLAG_HUNGARIAN_PREFIX)`
+**		You can set another style, it will actually generate a typedef alias above the existing typedef.
+**		For example, having `(NAMINGSTYLE_SCREAMCASE)` will create a typedef for `t_bool` which is `BOOL`
+**		Here, by default, the value is zero (no typedef aliases are generated).
 */
-#define LIBCONFIG_NAMINGSTYLE_TYPES		(NAMINGSTYLE_SNAKECASE | NAMINGSTYLE_FLAG_HUNGARIAN_PREFIX)
-
-
-
-//! If 1, libccc functions handle NULL pointers args, otherwise they segfault.
-/*!
-**	This macro determines how NULL pointer arguments are to be handled
-**	- If 0, then libccc functions will always segfault when given NULL pointers.
-**	- If 1, then all NULL pointer accesses in libccc functions will be avoided, and
-**		an appropriate return value (eg:NULL, 0, sometimes -1) will be returned.
-*/
-#define LIBCONFIG_HANDLE_NULLPOINTERS		1
+#define LIBCONFIG_NAMINGSTYLE_TYPES		(0)
 
 
 
@@ -68,7 +57,7 @@ HEADER_CPP
 **		Also, it invalidates the LIBCONFIG_HANDLE_NULLPOINTERS setting:
 **		NULL pointer handling is implementation-dependent for STD C functions.
 */
-#define LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS	0 // TODO implement this config flag
+#define LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS	(0) // TODO implement this config flag
 
 
 
@@ -78,7 +67,7 @@ HEADER_CPP
 **	- If 1, the libccc fast approximate functions will be used (precision error margin: 0.0001)
 **	- If 0, the builtin FPU-call libc math functions will be used (eg: __builtin_powf(), etc)
 */
-#define LIBCONFIG_USE_FAST_APPROX_MATH		0
+#define LIBCONFIG_USE_FAST_APPROX_MATH		(0)
 
 
 
@@ -89,7 +78,22 @@ HEADER_CPP
 **	- If 0, `s_list` is singly-linked (that is, the struct only holds a `.next` pointer)
 **	- If 1, `s_list` is doubly-linked (that is, the struct has both a `.prev` and `.next` pointer)
 */
-#define LIBCONFIG_LIST_DOUBLYLINKED		0
+#define LIBCONFIG_LIST_DOUBLYLINKED		(0)
+
+
+
+//! Defines which type the `t_char` default text character type will be
+/*!
+**	This macro sets the default `t_char` text string character type to use.
+**	There are 2 possible accepted values for these:
+**		|`TYPE_CHAR`|`NAME_CHAR`|__________________________________________
+**	-	| t_ascii	| ASCII		| for simple 8-bit ASCII character strings
+**	-	| t_utf32	| UTF32		| for unicode 32-bit wide character strings
+*/
+//!@{
+#define LIBCONFIG_TYPE_CHAR		t_ascii
+#define LIBCONFIG_NAME_CHAR		ASCII
+//!@}
 
 
 
@@ -183,6 +187,114 @@ HEADER_CPP
 **	is dedicated to the integer part and the fraction part.
 */
 #define LIBCONFIG_USE_STD_FIXEDPOINT	0
+
+
+
+//! These macros allow you to configure how libccc handles parameter validation.
+/*!
+**	The "plural-named" macros should only ever have a value of `0` or `1`,
+**	they are used to activate or deactivate parameter validation at will.
+**	The "single-named" macro functions determine how the arguments are to be
+**	checked, validated, and handled. These macro functions are the important part,
+**	where you may customize the logic (to implement custom exception handling for example).
+*/
+//!@{
+
+//! TODO configurable allocation failure error handling
+//! TODO configurable IO error handling
+//! TODO configurable parse error handling
+
+//! Set value to `(0)` or comment out this `#define` to deactivate this kind of error handling
+#define LIBCONFIG_HANDLE_NULLPOINTERS	(1)
+#define LIBCONFIG_HANDLE_NULLPOINTER(RESULT, PTR) \
+	if ((PTR) == NULL)	return RESULT;
+
+//! Set value to `(0)` or comment out this `#define` to deactivate this kind of error handling
+#define LIBCONFIG_HANDLE_INVALIDENUMS	(1) // TODO check everywhere where this should be used, and use it
+#define LIBCONFIG_HANDLE_INVALIDENUM(RESULT, ENUM, MIN, MAX) \
+	if ((ENUM) < (MIN) || (ENUM) > (MAX))	return RESULT;
+
+//! Set value to `(0)` or comment out this `#define` to deactivate this kind of error handling
+#define LIBCONFIG_HANDLE_INDEX2SMALLS	(1) // TODO check everywhere where this should be used, and use it
+#define LIBCONFIG_HANDLE_INDEX2SMALL(RESULT, INDEX, MIN) \
+	if ((INDEX) < (MIN))	return RESULT;
+
+//! Set value to `(0)` or comment out this `#define` to deactivate this kind of error handling
+#define LIBCONFIG_HANDLE_INDEX2LARGES	(1) // TODO check everywhere where this should be used, and use it
+#define LIBCONFIG_HANDLE_INDEX2LARGE(RESULT, INDEX, MAX) \
+	if ((INDEX) >= (MAX))	return RESULT;
+
+//! Set value to `(0)` or comment out this `#define` to deactivate this kind of error handling
+#define LIBCONFIG_HANDLE_LENGTH2SMALLS	(1) // TODO check everywhere where this should be used, and use it
+#define LIBCONFIG_HANDLE_LENGTH2SMALL(RESULT, LENGTH, MIN) \
+	if ((LENGTH) < (MIN))	return RESULT;
+
+//! Set value to `(0)` or comment out this `#define` to deactivate this kind of error handling
+#define LIBCONFIG_HANDLE_LENGTH2LARGES	(1) // TODO check everywhere where this should be used, and use it
+#define LIBCONFIG_HANDLE_LENGTH2LARGE(RESULT, LENGTH, MAX) \
+	if ((LENGTH) > (MAX))	return RESULT;
+
+//! Set value to `(0)` or comment out this `#define` to deactivate this kind of error handling
+#define LIBCONFIG_HANDLE_PARSINGERRORS	(1) // TODO check everywhere where this should be used, and use it
+#define LIBCONFIG_HANDLE_PARSINGERROR(RESULT, ...) \
+	{										\
+		IO_Output_Format(__VA_ARGS__);		\
+		return RESULT;						\
+	}										\
+//!@}
+
+
+
+// if the `(1)` macros are notdefined, or have value zero, deactivate this handler macro functions
+
+#if !( \
+defined(LIBCONFIG_HANDLE_LENGTH2LARGES) && \
+		LIBCONFIG_HANDLE_LENGTH2LARGES)
+#undef  LIBCONFIG_HANDLE_LENGTH2LARGE
+#define LIBCONFIG_HANDLE_LENGTH2LARGE(ARG, RESULT, MAX)
+#endif
+
+#if !( \
+defined(LIBCONFIG_HANDLE_NULLPOINTERS) && \
+		LIBCONFIG_HANDLE_NULLPOINTERS)
+#undef  LIBCONFIG_HANDLE_NULLPOINTER
+#define LIBCONFIG_HANDLE_NULLPOINTER(ARG, RESULT)
+#endif
+
+#if !( \
+defined(LIBCONFIG_HANDLE_INVALIDENUMS) && \
+		LIBCONFIG_HANDLE_INVALIDENUMS)
+#undef  LIBCONFIG_HANDLE_INVALIDENUM
+#define LIBCONFIG_HANDLE_INVALIDENUM(ARG, RESULT, MIN, MAX)
+#endif
+
+#if !( \
+defined(LIBCONFIG_HANDLE_INDEX2SMALLS) && \
+		LIBCONFIG_HANDLE_INDEX2SMALLS)
+#undef  LIBCONFIG_HANDLE_INDEX2SMALL
+#define LIBCONFIG_HANDLE_INDEX2SMALL(ARG, RESULT, MIN)
+#endif
+
+#if !( \
+defined(LIBCONFIG_HANDLE_INDEX2LARGES) && \
+		LIBCONFIG_HANDLE_INDEX2LARGES)
+#undef  LIBCONFIG_HANDLE_INDEX2LARGE
+#define LIBCONFIG_HANDLE_INDEX2LARGE(ARG, RESULT, MAX)
+#endif
+
+#if !( \
+defined(LIBCONFIG_HANDLE_LENGTH2SMALLS) && \
+		LIBCONFIG_HANDLE_LENGTH2SMALLS)
+#undef  LIBCONFIG_HANDLE_LENGTH2SMALL
+#define LIBCONFIG_HANDLE_LENGTH2SMALL(ARG, RESULT, MIN)
+#endif
+
+#if !( \
+defined(LIBCONFIG_HANDLE_LENGTH2LARGES) && \
+		LIBCONFIG_HANDLE_LENGTH2LARGES)
+#undef  LIBCONFIG_HANDLE_LENGTH2LARGE
+#define LIBCONFIG_HANDLE_LENGTH2LARGE(ARG, RESULT, MAX)
+#endif
 
 
 

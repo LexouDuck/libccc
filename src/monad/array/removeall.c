@@ -10,10 +10,8 @@ void	CONCAT(Array_RemoveAll,T_NAME)(s_array_T* array, T item)
 	t_uint	i;
 	t_uint	amount;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (array == NULL || array->items == NULL)
-		return;
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(, array)
+	LIBCONFIG_HANDLE_NULLPOINTER(, array->items)
 	if (array->length == 0)
 		return;
 	amount = 0;
@@ -57,10 +55,8 @@ void	CONCAT(Array_RemoveAll_F,T_NAME)(s_array_T* array, T item, void (*delete)(T
 	t_uint	i;
 	t_uint	amount;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (array == NULL || array->items == NULL)
-		return;
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(, array)
+	LIBCONFIG_HANDLE_NULLPOINTER(, array->items)
 	if (array->length == 0)
 		return;
 	amount = 0;

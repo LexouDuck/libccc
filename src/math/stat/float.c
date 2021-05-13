@@ -13,7 +13,7 @@ s_list_float	c_stat_new_flst(t_u32 length)
 	result.length = 0;
 	if (length == 0)
 		return (result);
-	if (!(result.data = (t_float*)c_memalloc(sizeof(t_float) * length)))
+	if (!(result.data = (t_float*)Memory_Alloc(sizeof(t_float) * length)))
 		return (result);
 	result.length = length;
 	return (result);
@@ -21,18 +21,16 @@ s_list_float	c_stat_new_flst(t_u32 length)
 
 void			c_stat_free_flst(s_list_float *flst)
 {
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (flst == NULL)
-		return ;
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(, flst)
 	if (flst->data)
 	{
-		c_memfree(flst->data);
+		Memory_Free(flst->data);
 		flst->data = NULL;
 	}
 	flst->length = 0;
 }
 
+static
 s_list_float	c_stat_flst_dup(s_list_float const flst)
 {
 	s_list_float	result;
@@ -53,10 +51,8 @@ s_list_float 	c_stat_merge_flst(
 	t_u32				i;
 	t_u32				j;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (start == NULL || append == NULL)
-		return (NULL_LIST_FLOAT);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL_LIST_FLOAT, start)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL_LIST_FLOAT, append)
 	if (start->length == 0 && append->length == 0)
 		return (c_stat_new_flst(0));
 	else if (!start->data || start->length == 0)
@@ -84,6 +80,7 @@ s_list_float 	c_stat_merge_flst(
 ** The recursive function can be called with start at 0 and end at
 ** tmp_lst.length - 1 to sort in place.
 */
+static
 void				c_stat_quicksort_f_rec
 (
 	s_list_float	tmp_lst,
@@ -98,12 +95,12 @@ void				c_stat_quicksort_f_rec
 
 	pivot = tmp_lst.data[start];
 	if (start >= end || pivot != pivot)
-		return ;
+		return;
 	if (start == end - 1)
 	{
 		if (pivot > tmp_lst.data[end])
 			c_memswap(tmp_lst.data + start, tmp_lst.data + end, sizeof(t_float));
-		return ;
+		return;
 	}
 
 	rise_id = start + 1;
@@ -138,7 +135,7 @@ s_list_float 		c_stat_quicksort_f_new(s_list_float const flst)
 	return (result);
 }
 
-inline void			c_stat_quicksort_f(s_list_float flst)
+void			c_stat_quicksort_f(s_list_float flst)
 {
 	c_stat_quicksort_f_rec(flst, 0, flst.length - 1);
 }

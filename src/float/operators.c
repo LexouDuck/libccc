@@ -47,12 +47,12 @@ inline t_bool	F##BITS##_Equals(t_f##BITS a, t_f##BITS b)	\
 
 
 #define DEFINEFUNC_FLOAT_EQUALSAPPROX(BITS) \
-t_bool	F##BITS##_EqualsApprox(t_f##BITS a, t_f##BITS b)			\
-{																	\
-	t_f##BITS abs_a = ABS(a);										\
-	t_f##BITS abs_b = ABS(b);										\
-	return (ABS(a - b) <= MAX(abs_a, abs_b) * FLOAT_APPROX);		\
-}																	\
+t_bool	F##BITS##_EqualsApprox(t_f##BITS a, t_f##BITS b)	\
+{															\
+	t_f##BITS abs_a = ABS(a);								\
+	t_f##BITS abs_b = ABS(b);								\
+	return (ABS(a - b) <= MAX(abs_a, abs_b) * FLOAT_APPROX);\
+}															\
 
 
 

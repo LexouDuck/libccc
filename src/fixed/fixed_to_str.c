@@ -6,13 +6,13 @@
 
 
 #define DEFINEFUNC_CONVERT_FIXED_TO_STR(BITS) \
-inline char*	Q##BITS##_ToString(t_q##BITS number)			\
+inline t_char*	Q##BITS##_ToString(t_q##BITS number)			\
 {																\
 	return (String_Format(										\
 		SF_S##BITS".("SF_U##BITS"/"SF_U##BITS")",	\
 		(t_s##BITS)Q##BITS##_IntegerPart(number),				\
 		(t_s##BITS)Q##BITS##_FractionPart(number),				\
-		(t_s##BITS)1 << FIXED_BITS_FRACTIONPART)				\
+		(t_s##BITS)(1 << FIXED_BITS_FRACTIONPART))				\
 	);															\
 }																\
 

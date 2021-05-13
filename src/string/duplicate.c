@@ -3,22 +3,23 @@
 #include "libccc/string.h"
 
 
-char	*c_strcdup(char const *str, char const c)
+
+t_char*	String_Duplicate(t_char const* str)
 {
-	char	*result;
+	t_char*	result;
+	t_size	length;
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
+	length = 0;
+	while (str[length])
+	{
+		++length;
+	}
+	if (!(result = String_New(length)))
 		return (NULL);
-#endif
 	i = 0;
-	while (str[i] && str[i] != c)
-		++i;
-	if (!(result = c_strnew(i)))
-		return (NULL);
-	i = 0;
-	while (str[i] && str[i] != c)
+	while (i < length)
 	{
 		result[i] = str[i];
 		++i;
@@ -27,22 +28,24 @@ char	*c_strcdup(char const *str, char const c)
 	return (result);
 }
 
-char	*c_strndup(char const *str, t_size n)
+
+
+t_char*	String_Duplicate_N(t_char const* str, t_size n)
 {
-	char	*result;
+	t_char*	result;
+	t_size	length;
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
+	length = 0;
+	while (str[length] && length < n)
+	{
+		++length;
+	}
+	if (!(result = String_New(length)))
 		return (NULL);
-#endif
 	i = 0;
-	while (str[i] && i < n)
-		++i;
-	if (!(result = c_strnew(i)))
-		return (NULL);
-	i = 0;
-	while (str[i] && i < n)
+	while (i < length)
 	{
 		result[i] = str[i];
 		++i;
@@ -51,22 +54,78 @@ char	*c_strndup(char const *str, t_size n)
 	return (result);
 }
 
-char	*c_strdup(char const *str)
+
+
+t_char*	String_Duplicate_Char(t_char const* str, t_char const c)
 {
-	char	*result;
+	t_char*	result;
+	t_size	length;
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
+	length = 0;
+	while (str[length] && str[length] != c)
+	{
+		++length;
+	}
+	if (!(result = String_New(length)))
 		return (NULL);
-#endif
 	i = 0;
-	while (str[i])
+	while (i < length)
+	{
+		result[i] = str[i];
 		++i;
-	if (!(result = c_strnew(i)))
+	}
+	result[i] = '\0';
+	return (result);
+}
+
+
+
+t_char*	String_Duplicate_Charset(t_char const* str, t_char const* charset)
+{
+	t_char*	result;
+	t_size	length;
+	t_size	i;
+
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
+	length = 0;
+	while (str[length] && !Char_IsInCharset(str[length], charset))
+	{
+		++length;
+	}
+	if (!(result = String_New(length)))
 		return (NULL);
 	i = 0;
-	while (str[i])
+	while (i < length)
+	{
+		result[i] = str[i];
+		++i;
+	}
+	result[i] = '\0';
+	return (result);
+}
+
+
+
+t_char*	String_Duplicate_String(t_char const* str, t_char const* target)
+{
+	t_char*	result;
+	t_size	length;
+	t_size	n;
+	t_size	i;
+
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
+	n = String_Length(target);
+	length = 0;
+	while (str[length] && !String_Equals_N(str + length, target, n))
+	{
+		++length;
+	}
+	if (!(result = String_New(length)))
+		return (NULL);
+	i = 0;
+	while (i < length)
 	{
 		result[i] = str[i];
 		++i;

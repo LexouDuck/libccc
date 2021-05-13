@@ -3,83 +3,60 @@
 
 
 
-static t_bool	charset_contains(char const *charset, char c)
-{
-	t_size	i;
-
-	i = 0;
-	while (charset[i])
-	{
-		if (charset[i] == c)
-			return (TRUE);
-		++i;
-	}
-	return (FALSE);
-}
-
-
-
-char			*c_strtrim(char const *str, char const *charset)
+t_char*		String_Trim(t_char const* str, t_char const* charset)
 {
 	t_size	offset;
 	t_size	length;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL || charset == NULL)
-		return (NULL);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, charset)
 	offset = 0;
 	length = 0;
 	while (str[length])
 		++length;
-	while (offset < length && charset_contains(charset, str[offset]))
+	while (offset < length && Char_IsInCharset(str[offset], charset))
 		++offset;
 	if (offset == length)
-		return (c_strnew(0));
+		return (String_New(0));
 	length -= 1;
-	while (length > offset && charset_contains(charset, str[length]))
+	while (length > offset && Char_IsInCharset(str[length], charset))
 		--length;
 	length -= offset - 1;
-	return (c_strsub(str, offset, length));
+	return (String_Sub(str, offset, length));
 }
 
-char			*c_strtrim_l(char const *str, char const *charset)
+t_char*		String_Trim_L(t_char const* str, t_char const* charset)
 {
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL || charset == NULL)
-		return (NULL);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, charset)
 	i = 0;
 	while (str[i])
 	{
-		if (charset_contains(charset, str[i]))
+		if (Char_IsInCharset(str[i], charset))
 			++i;
 		else
-			break ;
+			break;
 	}
-	return (c_strsub(str, i, c_strlen(str + i)));
+	return (String_Sub(str, i, String_Length(str + i)));
 }
 
 
 
-char			*c_strtrim_r(char const *str, char const *charset)
+t_char*		String_Trim_R(t_char const* str, t_char const* charset)
 {
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL || charset == NULL)
-		return (NULL);
-#endif
-	i = c_strlen(str);
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, charset)
+	i = String_Length(str);
 	while (--i)
-
 	{
-		if (!charset_contains(charset, str[i]))
-			break ;
+		if (!Char_IsInCharset(str[i], charset))
+			break;
 	}
-	if (i || !charset_contains(charset, str[i]))
+	if (i || !Char_IsInCharset(str[i], charset))
 		++i;
-	return (c_strsub(str, 0, i));
+	return (String_Sub(str, 0, i));
 }

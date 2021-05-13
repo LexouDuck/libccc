@@ -13,7 +13,7 @@
 
 int		testsuite_sys_io(void)
 {
-	print_suite_title("sys/io");
+	print_suite_title("libccc/sys/io");
 
 	// TODO
 

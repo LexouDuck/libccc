@@ -5,7 +5,7 @@
 
 
 
-t_float			c_mc_integrate3(f_scalar_func3 const sf, s_box3d const domain)
+t_float			c_mc_integrate_3d(f_scalar_func3 const sf, s_box3d const domain)
 {
 	u_vector3d	rand_input;
 	t_float		result;

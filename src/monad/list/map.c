@@ -8,10 +8,8 @@ s_list_T*		CONCAT(List_Map,T_NAME)(s_list_T const* list, T (*map)(T item))
 	s_list_T*	result = NULL;
 	s_list_T*	elem;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (list == NULL || map == NULL)
-		return (NULL);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, list)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, map)
 	while (list)
 	{
 		elem = CONCAT(List_Item,T_NAME)(map(list->item));
@@ -31,10 +29,8 @@ s_list_T*		CONCAT(List_Map_I,T_NAME)(s_list_T const* list, T (*map)(T item, t_ui
 	s_list_T*	elem;
 	t_uint	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (list == NULL || map == NULL)
-		return (NULL);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, list)
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, map)
 	i = 0;
 	while (list)
 	{

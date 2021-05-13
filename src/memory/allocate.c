@@ -2,6 +2,8 @@
 /*
 **	Functions used from <stdlib.h>:
 **	-	void*	malloc(size_t n);
+**	-	void*	realloc(void* ptr, size_t n);
+**	-	void	free(void* ptr);
 */
 #include <stdlib.h>
 
@@ -9,7 +11,26 @@
 
 
 
-inline void	*c_memalloc(t_size size)
+inline
+void*	Memory_Allocate(t_size size)
 {
 	return (malloc(size));
+}
+
+
+
+inline
+void*	Memory_Reallocate(void* ptr, t_size size)
+{
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, ptr)
+	return (realloc(ptr, size));
+}
+
+
+
+inline
+void	Memory_Deallocate(void* ptr)
+{
+	LIBCONFIG_HANDLE_NULLPOINTER(, ptr)
+	free(ptr);
 }

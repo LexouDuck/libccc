@@ -4,21 +4,18 @@
 
 
 
-char	*c_strrev(char const *str)
+t_char*	String_Reverse(t_char const* str)
 {
-	char	*result;
+	t_char*	result;
 	t_size	length;
 	t_size	i;
 	t_size	j;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL)
-		return (NULL);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
 	length = 0;
 	while (str[length])
 		++length;
-	result = (char *)c_memalloc(length + 1);
+	result = (t_char*)Memory_Alloc(length + sizeof(""));
 	i = 0;
 	j = length - 1;
 	while (i < length)

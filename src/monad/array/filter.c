@@ -11,10 +11,9 @@ s_array_T	CONCAT(Array_Filter,T_NAME)(s_array_T const* array, t_bool (*filter)(T
 	t_uint	amount;
 	t_uint	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (array == NULL || array->items == NULL || filter == NULL)
-		return (result);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(result, filter)
+	LIBCONFIG_HANDLE_NULLPOINTER(result, array)
+	LIBCONFIG_HANDLE_NULLPOINTER(result, array->items)
 	tmp = (t_bool*)Memory_Alloc(sizeof(t_bool) * array->length);
 	if (tmp == NULL)
 		return (result);
@@ -51,10 +50,9 @@ s_array_T	CONCAT(Array_Filter_I,T_NAME)(s_array_T const* array, t_bool (*filter)
 	t_uint	amount;
 	t_uint	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (array == NULL || array->items == NULL || filter == NULL)
-		return (result);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(result, filter)
+	LIBCONFIG_HANDLE_NULLPOINTER(result, array)
+	LIBCONFIG_HANDLE_NULLPOINTER(result, array->items)
 	tmp = (t_bool*)Memory_Alloc(sizeof(t_bool) * array->length);
 	if (tmp == NULL)
 		return (result);

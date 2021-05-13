@@ -1,18 +1,16 @@
 
+#include "libccc/bool.h"
 #include "libccc/char.h"
 #include "libccc/pointer.h"
 
 
 
-t_size	Size_FromString(char const* str)
+t_size	Size_FromString(t_char const* str)
 {
 	t_size	result;
 	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (str == NULL)
-		return (0);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(0, str)
 	i = 0;
 	while (!(str[i] == '+' || Char_IsDigit(str[i])))
 	{

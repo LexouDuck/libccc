@@ -1,7 +1,7 @@
 #include <stdio.h>
 /*
 **	Functions used from <stdlib.h>:
-**	-	void	read(int fd, char* buffer, size_t n);
+**	-	void	read(int fd, t_char* buffer, size_t n);
 */
 #include <unistd.h>
 #include <errno.h>
@@ -13,15 +13,12 @@
 
 
 
-t_sintmax	IO_Read_File(t_fd const fd, char* *a_file, t_size max)
+t_sintmax	IO_Read_File(t_fd const fd, t_char** a_file, t_size max)
 {
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (a_file == NULL)
-		return (ERROR);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(ERROR, a_file)
 	char	buffer[IO_BUFFER_SIZE + 1] = {0};
 	t_sintmax	result;
-	char*	file = NULL;
+	t_char*	file = NULL;
 	t_size	length;
 
 	file = String_New(0);
@@ -62,14 +59,11 @@ t_sintmax	IO_Read_File(t_fd const fd, char* *a_file, t_size max)
 
 
 
-t_sintmax	IO_Read_Lines(t_fd const fd, char** *a_strarr)
+t_sintmax	IO_Read_Lines(t_fd const fd, t_char** *a_strarr)
 {
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (a_strarr == NULL)
-		return (ERROR);
-#endif
-	char*	file	= NULL; 
-	char**	result	= NULL;
+	LIBCONFIG_HANDLE_NULLPOINTER(ERROR, a_strarr)
+	t_char*	file	= NULL; 
+	t_char**	result	= NULL;
 	t_sintmax	status	= OK;
 
 	status = IO_Read_File(fd, &file, 0);

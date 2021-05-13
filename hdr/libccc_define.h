@@ -62,11 +62,12 @@ HEADER_CPP
 **	Here is the list of all the predefined ANSI C macros
 **	__cplusplus	Defined only when a C++ compiler is being used.
 **	__OBJC__	Defined as 1 when the compiler is Objective-C.
-**	__STDC__	Defined as 1 when the compiler complies with the ANSI standard.
 **	__DATE__	String literal: The current date, in "MMM DD YYYY" format.
 **	__TIME__	String literal: The current time, in "HH:MM:SS" format.
 **	__FILE__	String literal: This contains the current source code filename.
 **	__LINE__	Integer constant: the current source code line number.
+**	__STDC__	Defined as 1 when the compiler complies with the ISO C standard.
+**	__STDC_VERSION__	Defined as a `long` literal value, in the format `YYYYMMl`, eg: 199901l means the C99 standard
 **
 **	There's also this very useful (non-macro) identifier, only defined in C99/C++:
 **	__func__	String constant: The current function name.
@@ -83,6 +84,16 @@ HEADER_CPP
 **	__FLOAT_WORD_ORDER__ == __ORDER_LITTLE_ENDIAN__	If TRUE, this machine stores multi-word floats in reverse ordering (least-to-most signficant)
 **	__FLOAT_WORD_ORDER__ == __ORDER_BIG_ENDIAN__	If TRUE, this machine stores multi-word floats in regular ordering (most-to-least signficant)
 */
+
+
+
+//! These are convienence macros, to check for different C standards in preprocessor `#if` statements.
+//!@{
+#define __STDC_VERSION_C90__	199409L
+#define __STDC_VERSION_C99__	199901L
+#define __STDC_VERSION_C11__	201112L
+#define __STDC_VERSION_C17__	201710L
+//!@}
 
 
 
@@ -113,40 +124,51 @@ HEADER_CPP
 #endif
 
 
+
 /*
 ** ************************************************************************** *|
-**                             Common Definitions                             *|
+**                           Common Program Utilities                         *|
 ** ************************************************************************** *|
 */
 
-#ifdef	OK
-#undef	OK
-#endif
-//! Represents a successful function return
-/*!
-**	@isostd{https://en.cppreference.com/w/c/program/EXIT_status}
-**
-**	Common macro for return values, used by several C functions.
-*/
-#define OK		(0)
-
-#ifdef	ERROR
-#undef	ERROR
-#endif
-//! Represents a failure function return
-/*!
-**	@isostd{https://en.cppreference.com/w/c/program/EXIT_status}
-**
-**	Common macro for return values, used by several C functions.
-*/
-#define ERROR	(-1)
-
-
-
-// TODO wrappers for exit() function (perhaps also abort(), )
 /*!
 **	@isostd{https://en.cppreference.com/w/c/program}
 */
+//!@{
+// TODO wrapper function for abort()
+// TODO wrapper function for exit() & at_exit()
+// TODO wrapper function for quick_exit() & at_quick_exit()
+// TODO wrapper function for system() https://en.cppreference.com/w/c/program/system
+// TODO wrapper function for getenv() https://en.cppreference.com/w/c/program/getenv -> make it safe with a strdup()
+//!@}
+
+
+
+/*
+** ************************************************************************** *|
+**                           Common Macro Definitions                         *|
+** ************************************************************************** *|
+*/
+
+//! Represents a successful function return (expands to `(0)`)
+/*!
+**	Similar to the [STD C exit() return macros](https://en.cppreference.com/w/c/program/EXIT_status),
+**	This is a common general macro used for return values, used by several libccc functions.
+*/
+//!@{
+#undef	OK
+#define OK		(0)
+//!@}
+
+//! Represents a failure function return (expands to `(-1)`)
+/*!
+**	Similar to the [STD C exit() return macros](https://en.cppreference.com/w/c/program/EXIT_status),
+**	This is a common general macro used for return values, used by several libccc functions.
+*/
+//!@{
+#undef	ERROR
+#define ERROR	(-1)
+//!@}
 
 
 
@@ -157,8 +179,10 @@ HEADER_CPP
 **		before expanding their respective values. Here, an additional layer
 **		of macro indirection forces the expansion to occur before token-pasting.
 */
+//!@{
 #define CONCAT(TOKEN1, TOKEN2)	CONCAT_(TOKEN1, TOKEN2)
 #define CONCAT_(TOKEN1, TOKEN2)	TOKEN1##TOKEN2
+//!@}
 
 //! This macro function expands and stringizes the given `TOKEN` argument
 /*!
@@ -167,14 +191,18 @@ HEADER_CPP
 **		before expanding their respective values. Here, an additional layer
 **		of macro indirection forces the expansion to occur before stringizing.
 */
+//!@{
 #define STRING(TOKEN)		STRING_(TOKEN)
 #define STRING_(TOKEN)		#TOKEN
+//!@}
 
 
 
 //! Works like strlen() or String_Length() but is resolved at compile time
+//!@{
 #define STRING_LENGTH(X)	(sizeof(X) - sizeof(""))
 #define STRLEN(X)			STRING_LENGTH(X)
+//!@}
 
 
 
@@ -246,6 +274,19 @@ HEADER_CPP
 	#define _NORETURN()			__declspec(noreturn)
 	#define _PACKED()			__pragma(pack(push, 1))	__pragma(pack(pop))
 
+#elif (defined(__CC_ARM))
+
+	#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	
+	#define _ALIAS(FUNCTION)	
+	#define _ALIGN(MINIMUM)		__align(MINIMUM)
+	#define _PURE()				__pure
+	#define _MALLOC()			
+	#define _UNUSED()			
+	#define _INLINE()			__inline
+	#define _NOINLINE()			
+	#define _NORETURN()			__declspec(noreturn)
+	#define _PACKED()			__packed
+
 #else
 
 	#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	
@@ -286,9 +327,9 @@ HEADER_CPP
 /*!
 **	Currently, the types that work with this 'foreach' keyword are: s_array, s_list, s_dict
 **	Here are some more details on how to use this macro:
-**	- s_array<char*>:	foreach (char*, my_str, s_array, my_array) { ... }
-**	- s_list<char*>:	foreach (char*, my_str, s_list,  my_list)  { ... }
-**	- s_dict<char*>:	foreach (char*, my_str, s_dict,  my_dict)  { ... }
+**	- s_array<t_char*>:	foreach (t_char*, my_str, s_array, my_array) { ... }
+**	- s_list<t_char*>:	foreach (t_char*, my_str, s_list,  my_list)  { ... }
+**	- s_dict<t_char*>:	foreach (t_char*, my_str, s_dict,  my_dict)  { ... }
 */
 #define foreach(VARIABLE_TYPE, VARIABLE, ITERABLE_TYPE, ITERABLE) \
 	foreach_##ITERABLE_TYPE##_init(VARIABLE_TYPE, VARIABLE, ITERABLE)			\
@@ -306,6 +347,8 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
+//! These are cross-platform macros used to implement the INCBIN() macro function
+//!@{
 #ifdef __APPLE__
 	#define INCBIN_MANGLE	"_"
 	#define INCBIN_GLOBAL	".globl"
@@ -324,6 +367,7 @@ HEADER_CPP
 		#define INCBIN_PREVIOUS	""
 	#endif
 #endif
+//!@}
 
 // TODO add .align pseudo-instruction ?
 // TODO use .equ or .set rather than .int/.long ?

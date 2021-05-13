@@ -7,12 +7,11 @@ t_sint	CONCAT(List_Compare,T_NAME)(s_list_T const* list1, s_list_T const* list2,
 {
 	t_sint	result;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
+	LIBCONFIG_HANDLE_NULLPOINTER(ERROR, compare)
 	if (list1 == list2)
 		return (0);
-	if (list1 == NULL || list2 == NULL || compare == NULL)
-		return (ERROR);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(ERROR, list1)
+	LIBCONFIG_HANDLE_NULLPOINTER(ERROR, list2)
 	while (list1 && list2)
 	{
 		result = compare(list1->item, list2->item);
@@ -30,12 +29,11 @@ t_sint	CONCAT(List_Compare_N,T_NAME)(s_list_T const* list1, s_list_T const* list
 {
 	t_sint	result;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
+	LIBCONFIG_HANDLE_NULLPOINTER(ERROR, compare)
 	if (list1 == list2)
 		return (0);
-	if (list1 == NULL || list2 == NULL || compare == NULL)
-		return (ERROR);
-#endif
+	LIBCONFIG_HANDLE_NULLPOINTER(ERROR, list1)
+	LIBCONFIG_HANDLE_NULLPOINTER(ERROR, list2)
 	while (list1 && list2 && n--)
 	{
 		result = compare(list1->item, list2->item);

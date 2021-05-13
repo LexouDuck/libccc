@@ -43,41 +43,48 @@ HEADER_CPP
 
 #define SF_ENUM	"%d"
 
-// libccc/bool.h
+//! @see libccc/bool.h
+//!@{
 #define SF_BOOL	"%d"
+//!@}
 
-// libccc/char.h
+//! @see libccc/char.h
+//!@{
 #define SF_CHAR	"%c"
 #define SF_UTF8	"%c"
+//!@}
 
-// libccc/int.h
-#define SF_S8		"%+i"
-#define SF_S16		"%+i"
-#define SF_S32		"%+i"
+//! @see libccc/int.h
+//!@{
+#define SF_S8		"%i"
+#define SF_S16		"%i"
+#define SF_S32		"%i"
 #define SF_U8		"%u"
 #define SF_U16		"%u"
 #define SF_U32		"%u"
 #define SF_HEX_U8	"%#X"
 #define SF_HEX_U16	"%#X"
 #define SF_HEX_U32	"%#X"
-#if defined(__APPLE__) || defined(_WIN32)
-	#define SF_S64		"%+lli"
+#if (defined(__APPLE__) || defined(_WIN32))
+	#define SF_S64		"%lli"
 	#define SF_U64		"%llu"
 	#define SF_HEX_U64	"%#llX"
 #else
-	#define SF_S64		"%+li"
+	#define SF_S64		"%li"
 	#define SF_U64		"%lu"
 	#define SF_HEX_U64	"%#lX"
 #endif
-#define SF_S128		"%+lli"
+#define SF_S128		"%lli"
 #define SF_U128		"%llu"
 #define SF_HEX_U128	"%#llX"
 
 #define SF_SINT		CONCAT(SF_S,	 LIBCONFIG_BITS_SINT)
 #define SF_UINT		CONCAT(SF_U,	 LIBCONFIG_BITS_UINT)
 #define SF_HEX_UINT	CONCAT(SF_HEX_U, LIBCONFIG_BITS_UINT)
+//!@}
 
-// libccc/fixed.h
+//! @see libccc/fixed.h
+//!@{
 #define SF_Q16		"%0.8i"
 #define SF_Q32		"%0.8i"
 #define SF_Q64		"%0.8i"
@@ -89,8 +96,10 @@ HEADER_CPP
 
 #define SF_FIXED		"%0.8i"
 #define SF_HEX_FIXED	"%#0.8X"
+//!@}
 
-// libccc/float.h
+//! @see libccc/float.h
+//!@{
 #define SF_F32		"%#g"
 #define SF_F64		"%#g"
 #define SF_F80		"%#g"
@@ -102,8 +111,10 @@ HEADER_CPP
 
 #define SF_FLOAT		"%#g"
 #define SF_HEX_FLOAT	"%#g"
+//!@}
 
-// libccc/pointer.h
+//! @see libccc/pointer.h
+//!@{
 #define SF_PTR			SF_POINTER
 #define SF_POINTER		"%#p"
 #define SF_SIZE			"%zu"
@@ -114,25 +125,35 @@ HEADER_CPP
 #define SF_UINTPTR		"%zu"
 #define SF_SINTMAX		"%ji"
 #define SF_UINTMAX		"%ju"
+//!@}
 
-// libccc/memory.h
+//! @see libccc/memory.h
+//!@{
 #define SF_MEM(N)		SF_MEMORY(N)
 #define SF_MEMORY(N)	"%."#N"s"
+//!@}
 
-// libccc/string.h
+//! @see libccc/string.h
+//!@{
 #define SF_STR			SF_STRING
 #define SF_STRING		"%s"
+//!@}
 
-// libccc/color.h
+//! @see libccc/color.h
+//!@{
 #define SF_COLOR_ARGB16	"#%X"
 #define SF_COLOR_ARGB32	"#%X"
 #define SF_COLOR_ARGB	"(A:%g, R:%g, G:%g, B:%g)"
 #define SF_COLOR_AHSL	"(A:%g, H:%g, S:%g, L:%g)"
+//!@}
 
-// libccc/math/complex.h
+//! @see libccc/math/complex.h
+//!@{
 #define SF_COMPLEX	"(%g + %g*i)"
+//!@}
 
-// libccc/math/algebra.h
+//! @see libccc/math/algebra.h
+//!@{
 #define SF_VECTOR	"(%g)"
 #define SF_VECTOR2D	"(%g, %g)"
 #define SF_VECTOR3D	"(%g, %g, %g)"
@@ -141,6 +162,7 @@ HEADER_CPP
 #define SF_MATRIX2D	SF_VECTOR2D"\n"SF_VECTOR2D"\n"
 #define SF_MATRIX3D	SF_VECTOR3D"\n"SF_VECTOR3D"\n"SF_VECTOR3D"\n"
 #define SF_MATRIX4D	SF_VECTOR4D"\n"SF_VECTOR4D"\n"SF_VECTOR4D"\n"SF_VECTOR4D"\n"
+//!@}
 
 
 
@@ -222,12 +244,13 @@ HEADER_CPP
 **	|  "j"	| intmax_t		| uintmax_t				|				|		|			|		| intmax_t*		|
 **	|  "z"	| size_t		| size_t				|				|		|			|		| size_t*		|
 **	|  "t"	| ptrdiff_t		| ptrdiff_t				|				|		|			|		| ptrdiff_t*	|
-**	|__"L"__|_______________|_______________________|_long_double___|_______|___________|_______|_______________|
+**	|  "L"	|				|						| long double	|		|			|		|				|
+**	|_______|_______________|_______________________|_______________|_______|___________|_______|_______________|
 **	```
 */
 _FORMAT(printf, 1, 2)
 _MALLOC()
-char*					String_Format(char const* format, ...);
+t_char*					String_Format(t_char const* format, ...);
 #define c_asprintf		String_Format //!< @alias{String_Format}
 #define c_strfmt		String_Format //!< @alias{String_Format}
 #define c_strformat		String_Format //!< @alias{String_Format}
@@ -235,7 +258,7 @@ char*					String_Format(char const* format, ...);
 
 //! @see				String_Format
 _MALLOC()
-char*					String_Format_VA(char const* format, va_list args);
+t_char*					String_Format_VA(t_char const* format, va_list args);
 #define c_vasprintf		String_Format_VA //!< @alias{String_Format_VA}
 #define c_strfmt_va		String_Format_VA //!< @alias{String_Format_VA}
 #define c_strformat_va	String_Format_VA //!< @alias{String_Format_VA}
@@ -251,14 +274,14 @@ char*					String_Format_VA(char const* format, va_list args);
 **	@returns the amount of characters in the constructed format string, regardless of `max` size
 */
 _FORMAT(printf, 3, 4)
-t_size						String_Format_N(char* dest, t_size max, char const* format, ...);
+t_size						String_Format_N(t_char* dest, t_size max, t_char const* format, ...);
 #define c_snprintf			String_Format_N //!< @alias{String_Format_N}
 #define c_strnfmt			String_Format_N //!< @alias{String_Format_N}
 #define c_strnformat		String_Format_N //!< @alias{String_Format_N}
 #define String_Build_N		String_Format_N //!< @alias{String_Format_N}
 
 //! @see					String_Format_N
-t_size						String_Format_N_VA(char* dest, t_size max, char const* format, va_list args);
+t_size						String_Format_N_VA(t_char* dest, t_size max, t_char const* format, va_list args);
 #define c_vsnprintf			String_Format_N_VA //!< @alias{String_Format_N_VA}
 #define c_strnfmt_va		String_Format_N_VA //!< @alias{String_Format_N_VA}
 #define c_strnformat_va		String_Format_N_VA //!< @alias{String_Format_N_VA}
@@ -270,13 +293,13 @@ t_size						String_Format_N_VA(char* dest, t_size max, char const* format, va_li
 
 //! Writes the given formatted string to the standard output - equivalent to `fprintf()`, or rather `dprintf()`
 _FORMAT(printf, 2, 3)
-int						IO_Write_Format(t_fd fd, char const* format, ...);
+int						IO_Write_Format(t_fd fd, t_char const* format, ...);
 #define c_write_format	IO_Write_Format
 #define c_dprintf		IO_Write_Format
 
 //! Writes the given formatted string to the standard output - equivalent to `printf()`
 _FORMAT(printf, 1, 2)
-int						IO_Output_Format(char const* format, ...);
+int						IO_Output_Format(t_char const* format, ...);
 #define c_output_format	IO_Output_Format
 #define c_printf		IO_Output_Format
 
