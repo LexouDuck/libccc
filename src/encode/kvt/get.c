@@ -53,9 +53,10 @@ s_kvt*	KVT_Get(s_kvt const* object, t_char const* format_path, ...)
 	va_list args;
 	t_char*	path;
 	t_char*	str;
+	t_char*	accessor;
 	s_kvt*	result = NULL;
 	t_size	length;
-	t_char*	accessor;
+	t_size	i;
 
 	if (object == NULL || format_path == NULL)
 	{
@@ -72,7 +73,8 @@ s_kvt*	KVT_Get(s_kvt const* object, t_char const* format_path, ...)
 	}
 	result = (s_kvt*)object;
 	str = path;
-	for (t_size i = 0; str[i]; ++i)
+	i = 0;
+	while (str[i])
 	{
 		PARSE_KVTPATH_WHITESPACE("'['", "to begin accessor")
 		PARSE_KVTPATH_MATCH_CHAR( '[',  "to begin accessor")
