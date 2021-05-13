@@ -85,13 +85,14 @@ s_kvt*	KVT_Get(s_kvt const* object, t_char const* format_path, ...)
 				++length;
 			}
 			accessor = String_Sub(str, i, length);
+			i += length;
 			t_u64 index = U64_FromString(accessor);
 			result = KVT_GetArrayItem(result, index);
 		}
 		else if (str[i] == '\"')
 		{	// string accessor
 			PARSE_KVTPATH_MATCH_CHAR('"', "to begin string accessor")
-			length = 1;
+			length = 0;
 			while (str[i + length] != '\"')
 			{
 				if (str[i + length] == '\0')
@@ -102,8 +103,9 @@ s_kvt*	KVT_Get(s_kvt const* object, t_char const* format_path, ...)
 				}
 				++length;
 			}
-			PARSE_KVTPATH_MATCH_CHAR('"', "to end string accessor")
 			accessor = String_Sub(str, i, length);
+			i += length;
+			PARSE_KVTPATH_MATCH_CHAR('"', "to end string accessor")
 			result = KVT_GetObjectItem(result, accessor); // TODO find a smart way to handle this problem
 		}
 		else
