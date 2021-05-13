@@ -45,7 +45,7 @@ t_char*	String_Duplicate_N(t_char const* str, t_size n)
 	if (!(result = String_New(length)))
 		return (NULL);
 	i = 0;
-	while (length)
+	while (i < length)
 	{
 		result[i] = str[i];
 		++i;
@@ -71,7 +71,7 @@ t_char*	String_Duplicate_Char(t_char const* str, t_char const c)
 	if (!(result = String_New(length)))
 		return (NULL);
 	i = 0;
-	while (length)
+	while (i < length)
 	{
 		result[i] = str[i];
 		++i;
@@ -97,7 +97,7 @@ t_char*	String_Duplicate_Charset(t_char const* str, t_char const* charset)
 	if (!(result = String_New(length)))
 		return (NULL);
 	i = 0;
-	while (length)
+	while (i < length)
 	{
 		result[i] = str[i];
 		++i;
@@ -125,7 +125,7 @@ t_char*	String_Duplicate_String(t_char const* str, t_char const* target)
 	if (!(result = String_New(length)))
 		return (NULL);
 	i = 0;
-	while (length)
+	while (i < length)
 	{
 		result[i] = str[i];
 		++i;
