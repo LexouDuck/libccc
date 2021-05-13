@@ -38,108 +38,109 @@ HEADER_CPP
 
 /*
 **	Cross-platform '%' format specifiers for printf()-family calls: String_Format(), IO_Write_Format(), etc
+**	NB: `SF_` stands for "String Format"
 */
 
-#define FORMAT_ENUM	"%d"
+#define SF_ENUM	"%d"
 
 // libccc/bool.h
-#define FORMAT_BOOL	"%d"
+#define SF_BOOL	"%d"
 
 // libccc/char.h
-#define FORMAT_CHAR	"%c"
-#define FORMAT_UTF8	"%c"
+#define SF_CHAR	"%c"
+#define SF_UTF8	"%c"
 
 // libccc/int.h
-#define FORMAT_S8		"%+i"
-#define FORMAT_S16		"%+i"
-#define FORMAT_S32		"%+i"
-#define FORMAT_U8		"%u"
-#define FORMAT_U16		"%u"
-#define FORMAT_U32		"%u"
-#define FORMAT_HEX_U8	"%#X"
-#define FORMAT_HEX_U16	"%#X"
-#define FORMAT_HEX_U32	"%#X"
+#define SF_S8		"%+i"
+#define SF_S16		"%+i"
+#define SF_S32		"%+i"
+#define SF_U8		"%u"
+#define SF_U16		"%u"
+#define SF_U32		"%u"
+#define SF_HEX_U8	"%#X"
+#define SF_HEX_U16	"%#X"
+#define SF_HEX_U32	"%#X"
 #if defined(__APPLE__) || defined(_WIN32)
-	#define FORMAT_S64		"%+lli"
-	#define FORMAT_U64		"%llu"
-	#define FORMAT_HEX_U64	"%#llX"
+	#define SF_S64		"%+lli"
+	#define SF_U64		"%llu"
+	#define SF_HEX_U64	"%#llX"
 #else
-	#define FORMAT_S64		"%+li"
-	#define FORMAT_U64		"%lu"
-	#define FORMAT_HEX_U64	"%#lX"
+	#define SF_S64		"%+li"
+	#define SF_U64		"%lu"
+	#define SF_HEX_U64	"%#lX"
 #endif
-#define FORMAT_S128		"%+lli"
-#define FORMAT_U128		"%llu"
-#define FORMAT_HEX_U128	"%#llX"
+#define SF_S128		"%+lli"
+#define SF_U128		"%llu"
+#define SF_HEX_U128	"%#llX"
 
-#define FORMAT_SINT		CONCAT(FORMAT_S,	 LIBCONFIG_BITS_SINT)
-#define FORMAT_UINT		CONCAT(FORMAT_U,	 LIBCONFIG_BITS_UINT)
-#define FORMAT_HEX_UINT	CONCAT(FORMAT_HEX_U, LIBCONFIG_BITS_UINT)
+#define SF_SINT		CONCAT(SF_S,	 LIBCONFIG_BITS_SINT)
+#define SF_UINT		CONCAT(SF_U,	 LIBCONFIG_BITS_UINT)
+#define SF_HEX_UINT	CONCAT(SF_HEX_U, LIBCONFIG_BITS_UINT)
 
 // libccc/fixed.h
-#define FORMAT_Q16		"%0.8i"
-#define FORMAT_Q32		"%0.8i"
-#define FORMAT_Q64		"%0.8i"
-#define FORMAT_Q128		"%0.8i"
-#define FORMAT_HEX_Q16	"%#0.8X"
-#define FORMAT_HEX_Q32	"%#0.8X"
-#define FORMAT_HEX_Q64	"%#0.8X"
-#define FORMAT_HEX_Q128	"%#0.8X"
+#define SF_Q16		"%0.8i"
+#define SF_Q32		"%0.8i"
+#define SF_Q64		"%0.8i"
+#define SF_Q128		"%0.8i"
+#define SF_HEX_Q16	"%#0.8X"
+#define SF_HEX_Q32	"%#0.8X"
+#define SF_HEX_Q64	"%#0.8X"
+#define SF_HEX_Q128	"%#0.8X"
 
-#define FORMAT_FIXED		"%0.8i"
-#define FORMAT_HEX_FIXED	"%#0.8X"
+#define SF_FIXED		"%0.8i"
+#define SF_HEX_FIXED	"%#0.8X"
 
 // libccc/float.h
-#define FORMAT_F32		"%#g"
-#define FORMAT_F64		"%#g"
-#define FORMAT_F80		"%#g"
-#define FORMAT_F128		"%#g"
-#define FORMAT_HEX_F32	"%#a"
-#define FORMAT_HEX_F64	"%#a"
-#define FORMAT_HEX_F80	"%#a"
-#define FORMAT_HEX_F128	"%#a"
+#define SF_F32		"%#g"
+#define SF_F64		"%#g"
+#define SF_F80		"%#g"
+#define SF_F128		"%#g"
+#define SF_HEX_F32	"%#a"
+#define SF_HEX_F64	"%#a"
+#define SF_HEX_F80	"%#a"
+#define SF_HEX_F128	"%#a"
 
-#define FORMAT_FLOAT		"%#g"
-#define FORMAT_HEX_FLOAT	"%#g"
+#define SF_FLOAT		"%#g"
+#define SF_HEX_FLOAT	"%#g"
 
 // libccc/pointer.h
-#define FORMAT_PTR			FORMAT_POINTER
-#define FORMAT_POINTER		"%#p"
-#define FORMAT_SIZE			"%zu"
-#define FORMAT_HEX_SIZE		"%#zx"
-#define FORMAT_PTRDIFF		"%ti"
-#define FORMAT_HEX_PTRDIFF	"%#tx"
-#define FORMAT_SINTPTR		"%zi"
-#define FORMAT_UINTPTR		"%zu"
-#define FORMAT_SINTMAX		"%ji"
-#define FORMAT_UINTMAX		"%ju"
+#define SF_PTR			SF_POINTER
+#define SF_POINTER		"%#p"
+#define SF_SIZE			"%zu"
+#define SF_HEX_SIZE		"%#zx"
+#define SF_PTRDIFF		"%ti"
+#define SF_HEX_PTRDIFF	"%#tx"
+#define SF_SINTPTR		"%zi"
+#define SF_UINTPTR		"%zu"
+#define SF_SINTMAX		"%ji"
+#define SF_UINTMAX		"%ju"
 
 // libccc/memory.h
-#define FORMAT_MEM(N)		FORMAT_MEMORY(N)
-#define FORMAT_MEMORY(N)	"%."#N"s"
+#define SF_MEM(N)		SF_MEMORY(N)
+#define SF_MEMORY(N)	"%."#N"s"
 
 // libccc/string.h
-#define FORMAT_STR			FORMAT_STRING
-#define FORMAT_STRING		"%s"
+#define SF_STR			SF_STRING
+#define SF_STRING		"%s"
 
 // libccc/color.h
-#define FORMAT_COLOR_ARGB16	"#%X"
-#define FORMAT_COLOR_ARGB32	"#%X"
-#define FORMAT_COLOR_ARGB	"(A:%g, R:%g, G:%g, B:%g)"
-#define FORMAT_COLOR_AHSL	"(A:%g, H:%g, S:%g, L:%g)"
+#define SF_COLOR_ARGB16	"#%X"
+#define SF_COLOR_ARGB32	"#%X"
+#define SF_COLOR_ARGB	"(A:%g, R:%g, G:%g, B:%g)"
+#define SF_COLOR_AHSL	"(A:%g, H:%g, S:%g, L:%g)"
 
 // libccc/math/complex.h
-#define FORMAT_COMPLEX	"(%g + %g*i)"
+#define SF_COMPLEX	"(%g + %g*i)"
 
 // libccc/math/algebra.h
-#define FORMAT_VECTOR	"(%g)"
-#define FORMAT_VECTOR2D	"(%g, %g)"
-#define FORMAT_VECTOR3D	"(%g, %g, %g)"
-#define FORMAT_VECTOR4D	"(%g, %g, %g, %g)"
-#define FORMAT_MATRIX	FORMAT_VECTOR
-#define FORMAT_MATRIX2D	FORMAT_VECTOR2D"\n"FORMAT_VECTOR2D"\n"
-#define FORMAT_MATRIX3D	FORMAT_VECTOR3D"\n"FORMAT_VECTOR3D"\n"FORMAT_VECTOR3D"\n"
-#define FORMAT_MATRIX4D	FORMAT_VECTOR4D"\n"FORMAT_VECTOR4D"\n"FORMAT_VECTOR4D"\n"FORMAT_VECTOR4D"\n"
+#define SF_VECTOR	"(%g)"
+#define SF_VECTOR2D	"(%g, %g)"
+#define SF_VECTOR3D	"(%g, %g, %g)"
+#define SF_VECTOR4D	"(%g, %g, %g, %g)"
+#define SF_MATRIX	SF_VECTOR
+#define SF_MATRIX2D	SF_VECTOR2D"\n"SF_VECTOR2D"\n"
+#define SF_MATRIX3D	SF_VECTOR3D"\n"SF_VECTOR3D"\n"SF_VECTOR3D"\n"
+#define SF_MATRIX4D	SF_VECTOR4D"\n"SF_VECTOR4D"\n"SF_VECTOR4D"\n"SF_VECTOR4D"\n"
 
 
 

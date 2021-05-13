@@ -10215,483 +10215,483 @@
     <includes id="libccc_8h" name="libccc.h" local="yes" imported="no">libccc.h</includes>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_ENUM</name>
+      <name>SF_ENUM</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga3d500b57fa4cda7566e9f9124b1204c6</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_BOOL</name>
+      <name>SF_BOOL</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gaee2f5d3944602902fbcbe2bea3fece0a</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_CHAR</name>
+      <name>SF_CHAR</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gaeb7fb1d98bb972105415bef946116d47</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_UTF8</name>
+      <name>SF_UTF8</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga00c40467a947be89d1e25a3b005e9e3d</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_S8</name>
+      <name>SF_S8</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga353099bc6a28ee7955f051721cf3a68a</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_S16</name>
+      <name>SF_S16</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga646c169ddd964da735909db40403ca26</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_S32</name>
+      <name>SF_S32</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga07fb0c583d3ee2c4b5dc8479767299b0</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_U8</name>
+      <name>SF_U8</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga5f6da01e1e55d1ca33bd8fac0ad04cbb</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_U16</name>
+      <name>SF_U16</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga2c915edcba02718b255507b55076dbda</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_U32</name>
+      <name>SF_U32</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga79b8385f26da7774d0af1586578938fe</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_HEX_U8</name>
+      <name>SF_HEX_U8</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga532c4a2b9d9fbe6f08f21c5c29862a02</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_HEX_U16</name>
+      <name>SF_HEX_U16</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga27696a736ba9e07f3417def6b38d7298</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_HEX_U32</name>
+      <name>SF_HEX_U32</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gaab8c3339edb2fe2ffc93e3dd63747693</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_S64</name>
+      <name>SF_S64</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga3d5d95f845c796cca7fd426dcad6a717</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_U64</name>
+      <name>SF_U64</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga9036b82bf27d893ea08671cf85505a75</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_HEX_U64</name>
+      <name>SF_HEX_U64</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gaa0172cbbe190a1bf94a3b0a85d09f637</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_S128</name>
+      <name>SF_S128</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga5aa7c4736db9ecc777a3548a91f80393</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_U128</name>
+      <name>SF_U128</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gad0c083b21ebe6d3ac1c69f4d2c1dcb25</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_HEX_U128</name>
+      <name>SF_HEX_U128</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga775047454247b68c0d68daa3c1159724</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_SINT</name>
+      <name>SF_SINT</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga2c31b722749c03ffef3c2380b2a45e4a</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_UINT</name>
+      <name>SF_UINT</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga434838e08ef1a8e5ea98f02b5b8b8cf9</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_HEX_UINT</name>
+      <name>SF_HEX_UINT</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga0d296dd08c3d0e187b4cb500ee5ef926</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_Q16</name>
+      <name>SF_Q16</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga1b4e4a814d865b91d7268c32f683d75b</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_Q32</name>
+      <name>SF_Q32</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gad84e579a13e9e7f813000ac688aa4553</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_Q64</name>
+      <name>SF_Q64</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga16f5cb7c0dd7c24bd6f1387743687849</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_Q128</name>
+      <name>SF_Q128</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga8482f621873c259234232001d6b856a5</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_HEX_Q16</name>
+      <name>SF_HEX_Q16</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga4bbd72cd87e774a74da8680064fe8aa6</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_HEX_Q32</name>
+      <name>SF_HEX_Q32</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga14804a3e7e1fb48524fd701a35d26c58</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_HEX_Q64</name>
+      <name>SF_HEX_Q64</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga3b06bca3389f659f40ca6be4d2728cc6</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_HEX_Q128</name>
+      <name>SF_HEX_Q128</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga2bb65051fa50d868aa53e2daef31fc52</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_FIXED</name>
+      <name>SF_FIXED</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga44835dd4c169e13e0fedf8c01a54dc2b</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_HEX_FIXED</name>
+      <name>SF_HEX_FIXED</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gac1c9db6f513efa8f46fae44b373dc415</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_F32</name>
+      <name>SF_F32</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga0cd3f60243b366a1084f5ca646f22c0c</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_F64</name>
+      <name>SF_F64</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga536a1f764edcd65f25a2a0ff6e4bb6c4</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_F80</name>
+      <name>SF_F80</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gaa3df22e1af3ff8115185476feeabf070</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_F128</name>
+      <name>SF_F128</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga3c94d2da78fd0ab9a170654004555bd4</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_HEX_F32</name>
+      <name>SF_HEX_F32</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga00fea1eb07bd520ab7c6cfb372922d9c</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_HEX_F64</name>
+      <name>SF_HEX_F64</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gac3219ccb9d68a8a885ac8ed443ec4ba9</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_HEX_F80</name>
+      <name>SF_HEX_F80</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gabb9d7acd996ccc0d44c782e20227af31</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_HEX_F128</name>
+      <name>SF_HEX_F128</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga6204a774bb4601796411ef75b38900b2</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_FLOAT</name>
+      <name>SF_FLOAT</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gaae35e37553374231d6b49b2479676c39</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_HEX_FLOAT</name>
+      <name>SF_HEX_FLOAT</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gaef3e295370f879e0bc559e78031572e7</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_PTR</name>
+      <name>SF_PTR</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga79e1cb5aeb47eb6b263191e523397310</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_POINTER</name>
+      <name>SF_POINTER</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gae3251e8695cd25e22c1d411c23beb517</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_SIZE</name>
+      <name>SF_SIZE</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gabb14717b3277a06062b06fc2eb583003</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_HEX_SIZE</name>
+      <name>SF_HEX_SIZE</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gaba47fd2636fbbd091a01b8fba9e75550</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_PTRDIFF</name>
+      <name>SF_PTRDIFF</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga506a47a75ba0783cbe1acbec9dc32f9a</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_HEX_PTRDIFF</name>
+      <name>SF_HEX_PTRDIFF</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga193dd412a718ef9697dabe5209ddb653</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_SINTPTR</name>
+      <name>SF_SINTPTR</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga6318ea5c750c4ce5d16223cfe41976f1</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_UINTPTR</name>
+      <name>SF_UINTPTR</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gae8b263e3846be7f941541c04dc59689b</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_SINTMAX</name>
+      <name>SF_SINTMAX</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gaf542e5f0495a9f386acd5669e77e7a34</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_UINTMAX</name>
+      <name>SF_UINTMAX</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga7b2272edc0da69eddaddfa9b1eb7d94d</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_MEM</name>
+      <name>SF_MEM</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gaaa5c1619e5eef5e0f5f8a9500e879ba5</anchor>
       <arglist>(N)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_MEMORY</name>
+      <name>SF_MEMORY</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga0d1a4c874505ebe25754e90e85a0167e</anchor>
       <arglist>(N)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_STR</name>
+      <name>SF_STR</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gacd0eb5cab66474fbb9c165a805899f62</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_STRING</name>
+      <name>SF_STRING</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga4610636f10e4604ba296cbf9287b0c7b</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_COLOR_ARGB16</name>
+      <name>SF_COLOR_ARGB16</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga807accc808674bb5f891de340336704f</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_COLOR_ARGB32</name>
+      <name>SF_COLOR_ARGB32</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga5676be33f027735518b0c03f7172e174</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_COLOR_ARGB</name>
+      <name>SF_COLOR_ARGB</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gafdc0dd379b9b80255fa3850a252b7daa</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_COLOR_AHSL</name>
+      <name>SF_COLOR_AHSL</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga14a3b85388b363ae341071b27cf1f253</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_COMPLEX</name>
+      <name>SF_COMPLEX</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga7c7d6af8ebe5280c04f4ee599af99c3b</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_VECTOR</name>
+      <name>SF_VECTOR</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gae5bb607cb4845f64b1a350d2c458b2c9</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_VECTOR2D</name>
+      <name>SF_VECTOR2D</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga24f540b4d99ad1319635b70c6afe2cb8</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_VECTOR3D</name>
+      <name>SF_VECTOR3D</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga01c36c5363622ae3556d6bae0213ed31</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_VECTOR4D</name>
+      <name>SF_VECTOR4D</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga3f0c78552afb88f7a412852cf61b03a6</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_MATRIX</name>
+      <name>SF_MATRIX</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gabd4220a182555accc21a178da5d403bd</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_MATRIX2D</name>
+      <name>SF_MATRIX2D</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga1d76841c24700dc87f56bb281e1ae251</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_MATRIX3D</name>
+      <name>SF_MATRIX3D</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga1bc5c60800d90596fd1b45838dd6d4bc</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_MATRIX4D</name>
+      <name>SF_MATRIX4D</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gabbdd1a2c2ddb05845b70e057fba69927</anchor>
       <arglist></arglist>
@@ -20731,42 +20731,42 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_TIME_UNIX</name>
+      <name>SF_TIME_UNIX</name>
       <anchorfile>time_8h.html</anchorfile>
       <anchor>a73482b8ca273eb61616e4c5ab37a3f99</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_TIME_PRIME</name>
+      <name>SF_TIME_PRIME</name>
       <anchorfile>time_8h.html</anchorfile>
       <anchor>aba3c62a8515922fcd0fe8dbc11096b72</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_DATE_UNIX</name>
+      <name>SF_DATE_UNIX</name>
       <anchorfile>time_8h.html</anchorfile>
       <anchor>aed0ce332931606fe43ff6fb2af39fd69</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_DATE_YMD</name>
+      <name>SF_DATE_YMD</name>
       <anchorfile>time_8h.html</anchorfile>
       <anchor>add11712bbc61abf0d20958cfaace408e</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_DATE_DMY</name>
+      <name>SF_DATE_DMY</name>
       <anchorfile>time_8h.html</anchorfile>
       <anchor>a7272e57f24979a90aa8ead70d668513c</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_DATE_MDY</name>
+      <name>SF_DATE_MDY</name>
       <anchorfile>time_8h.html</anchorfile>
       <anchor>a57e4b87e4c5a204c6f1e1ebb5c1a2a74</anchor>
       <arglist></arglist>
@@ -28514,483 +28514,483 @@
     <file>format.h</file>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_ENUM</name>
+      <name>SF_ENUM</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga3d500b57fa4cda7566e9f9124b1204c6</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_BOOL</name>
+      <name>SF_BOOL</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gaee2f5d3944602902fbcbe2bea3fece0a</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_CHAR</name>
+      <name>SF_CHAR</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gaeb7fb1d98bb972105415bef946116d47</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_UTF8</name>
+      <name>SF_UTF8</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga00c40467a947be89d1e25a3b005e9e3d</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_S8</name>
+      <name>SF_S8</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga353099bc6a28ee7955f051721cf3a68a</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_S16</name>
+      <name>SF_S16</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga646c169ddd964da735909db40403ca26</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_S32</name>
+      <name>SF_S32</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga07fb0c583d3ee2c4b5dc8479767299b0</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_U8</name>
+      <name>SF_U8</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga5f6da01e1e55d1ca33bd8fac0ad04cbb</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_U16</name>
+      <name>SF_U16</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga2c915edcba02718b255507b55076dbda</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_U32</name>
+      <name>SF_U32</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga79b8385f26da7774d0af1586578938fe</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_HEX_U8</name>
+      <name>SF_HEX_U8</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga532c4a2b9d9fbe6f08f21c5c29862a02</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_HEX_U16</name>
+      <name>SF_HEX_U16</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga27696a736ba9e07f3417def6b38d7298</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_HEX_U32</name>
+      <name>SF_HEX_U32</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gaab8c3339edb2fe2ffc93e3dd63747693</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_S64</name>
+      <name>SF_S64</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga3d5d95f845c796cca7fd426dcad6a717</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_U64</name>
+      <name>SF_U64</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga9036b82bf27d893ea08671cf85505a75</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_HEX_U64</name>
+      <name>SF_HEX_U64</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gaa0172cbbe190a1bf94a3b0a85d09f637</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_S128</name>
+      <name>SF_S128</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga5aa7c4736db9ecc777a3548a91f80393</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_U128</name>
+      <name>SF_U128</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gad0c083b21ebe6d3ac1c69f4d2c1dcb25</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_HEX_U128</name>
+      <name>SF_HEX_U128</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga775047454247b68c0d68daa3c1159724</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_SINT</name>
+      <name>SF_SINT</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga2c31b722749c03ffef3c2380b2a45e4a</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_UINT</name>
+      <name>SF_UINT</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga434838e08ef1a8e5ea98f02b5b8b8cf9</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_HEX_UINT</name>
+      <name>SF_HEX_UINT</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga0d296dd08c3d0e187b4cb500ee5ef926</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_Q16</name>
+      <name>SF_Q16</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga1b4e4a814d865b91d7268c32f683d75b</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_Q32</name>
+      <name>SF_Q32</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gad84e579a13e9e7f813000ac688aa4553</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_Q64</name>
+      <name>SF_Q64</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga16f5cb7c0dd7c24bd6f1387743687849</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_Q128</name>
+      <name>SF_Q128</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga8482f621873c259234232001d6b856a5</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_HEX_Q16</name>
+      <name>SF_HEX_Q16</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga4bbd72cd87e774a74da8680064fe8aa6</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_HEX_Q32</name>
+      <name>SF_HEX_Q32</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga14804a3e7e1fb48524fd701a35d26c58</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_HEX_Q64</name>
+      <name>SF_HEX_Q64</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga3b06bca3389f659f40ca6be4d2728cc6</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_HEX_Q128</name>
+      <name>SF_HEX_Q128</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga2bb65051fa50d868aa53e2daef31fc52</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_FIXED</name>
+      <name>SF_FIXED</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga44835dd4c169e13e0fedf8c01a54dc2b</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_HEX_FIXED</name>
+      <name>SF_HEX_FIXED</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gac1c9db6f513efa8f46fae44b373dc415</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_F32</name>
+      <name>SF_F32</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga0cd3f60243b366a1084f5ca646f22c0c</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_F64</name>
+      <name>SF_F64</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga536a1f764edcd65f25a2a0ff6e4bb6c4</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_F80</name>
+      <name>SF_F80</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gaa3df22e1af3ff8115185476feeabf070</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_F128</name>
+      <name>SF_F128</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga3c94d2da78fd0ab9a170654004555bd4</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_HEX_F32</name>
+      <name>SF_HEX_F32</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga00fea1eb07bd520ab7c6cfb372922d9c</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_HEX_F64</name>
+      <name>SF_HEX_F64</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gac3219ccb9d68a8a885ac8ed443ec4ba9</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_HEX_F80</name>
+      <name>SF_HEX_F80</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gabb9d7acd996ccc0d44c782e20227af31</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_HEX_F128</name>
+      <name>SF_HEX_F128</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga6204a774bb4601796411ef75b38900b2</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_FLOAT</name>
+      <name>SF_FLOAT</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gaae35e37553374231d6b49b2479676c39</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_HEX_FLOAT</name>
+      <name>SF_HEX_FLOAT</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gaef3e295370f879e0bc559e78031572e7</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_PTR</name>
+      <name>SF_PTR</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga79e1cb5aeb47eb6b263191e523397310</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_POINTER</name>
+      <name>SF_POINTER</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gae3251e8695cd25e22c1d411c23beb517</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_SIZE</name>
+      <name>SF_SIZE</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gabb14717b3277a06062b06fc2eb583003</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_HEX_SIZE</name>
+      <name>SF_HEX_SIZE</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gaba47fd2636fbbd091a01b8fba9e75550</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_PTRDIFF</name>
+      <name>SF_PTRDIFF</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga506a47a75ba0783cbe1acbec9dc32f9a</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_HEX_PTRDIFF</name>
+      <name>SF_HEX_PTRDIFF</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga193dd412a718ef9697dabe5209ddb653</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_SINTPTR</name>
+      <name>SF_SINTPTR</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga6318ea5c750c4ce5d16223cfe41976f1</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_UINTPTR</name>
+      <name>SF_UINTPTR</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gae8b263e3846be7f941541c04dc59689b</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_SINTMAX</name>
+      <name>SF_SINTMAX</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gaf542e5f0495a9f386acd5669e77e7a34</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_UINTMAX</name>
+      <name>SF_UINTMAX</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga7b2272edc0da69eddaddfa9b1eb7d94d</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_MEM</name>
+      <name>SF_MEM</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gaaa5c1619e5eef5e0f5f8a9500e879ba5</anchor>
       <arglist>(N)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_MEMORY</name>
+      <name>SF_MEMORY</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga0d1a4c874505ebe25754e90e85a0167e</anchor>
       <arglist>(N)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_STR</name>
+      <name>SF_STR</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gacd0eb5cab66474fbb9c165a805899f62</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_STRING</name>
+      <name>SF_STRING</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga4610636f10e4604ba296cbf9287b0c7b</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_COLOR_ARGB16</name>
+      <name>SF_COLOR_ARGB16</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga807accc808674bb5f891de340336704f</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_COLOR_ARGB32</name>
+      <name>SF_COLOR_ARGB32</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga5676be33f027735518b0c03f7172e174</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_COLOR_ARGB</name>
+      <name>SF_COLOR_ARGB</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gafdc0dd379b9b80255fa3850a252b7daa</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_COLOR_AHSL</name>
+      <name>SF_COLOR_AHSL</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga14a3b85388b363ae341071b27cf1f253</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_COMPLEX</name>
+      <name>SF_COMPLEX</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga7c7d6af8ebe5280c04f4ee599af99c3b</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_VECTOR</name>
+      <name>SF_VECTOR</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gae5bb607cb4845f64b1a350d2c458b2c9</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_VECTOR2D</name>
+      <name>SF_VECTOR2D</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga24f540b4d99ad1319635b70c6afe2cb8</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_VECTOR3D</name>
+      <name>SF_VECTOR3D</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga01c36c5363622ae3556d6bae0213ed31</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_VECTOR4D</name>
+      <name>SF_VECTOR4D</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga3f0c78552afb88f7a412852cf61b03a6</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_MATRIX</name>
+      <name>SF_MATRIX</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gabd4220a182555accc21a178da5d403bd</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_MATRIX2D</name>
+      <name>SF_MATRIX2D</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga1d76841c24700dc87f56bb281e1ae251</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_MATRIX3D</name>
+      <name>SF_MATRIX3D</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>ga1bc5c60800d90596fd1b45838dd6d4bc</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>FORMAT_MATRIX4D</name>
+      <name>SF_MATRIX4D</name>
       <anchorfile>group__libccc__format.html</anchorfile>
       <anchor>gabbdd1a2c2ddb05845b70e057fba69927</anchor>
       <arglist></arglist>

@@ -21,9 +21,9 @@ inline char*	IO_GetError(t_io_error error)
 // windows sockets
 	int error = WSAGetLastError();
 	DWORD len = FormatMessageA(
-		FORMAT_MESSAGE_ARGUMENT_ARRAY |
-		FORMAT_MESSAGE_FROM_SYSTEM |
-		FORMAT_MESSAGE_IGNORE_INSERTS,
+		SF_MESSAGE_ARGUMENT_ARRAY |
+		SF_MESSAGE_FROM_SYSTEM |
+		SF_MESSAGE_IGNORE_INSERTS,
 		NULL, error, 0, result, IO_BUFFER_SIZE, NULL);
 	if (len)
 		buffer[len] = '\0';

@@ -233,13 +233,13 @@ TYPEDEF_ALIAS(	s_date, TIME_DATE, STRUCT)
 
 
 
-#define FORMAT_TIME_UNIX	"%H:%M:%S"	//!< @ref Date_ToString() date format: hh:mm:ss	 -> 11:59:59
-#define FORMAT_TIME_PRIME	"%Hh%m'%s\""//!< @ref Date_ToString() date format: hhhmm'ss" -> 11h59'59"
+#define SF_TIME_UNIX	"%H:%M:%S"	//!< @ref Date_ToString() date format: hh:mm:ss	 -> 11:59:59
+#define SF_TIME_PRIME	"%Hh%m'%s\""//!< @ref Date_ToString() date format: hhhmm'ss" -> 11h59'59"
 
-#define FORMAT_DATE_UNIX	"%Y-%m-%d"	//!< @ref Date_ToString() date format: YYYY-MM-DD -> 2020-12-31
-#define FORMAT_DATE_YMD		"%Y/%m/%d"	//!< @ref Date_ToString() date format: YYYY/MM/DD -> 2020/12/31
-#define FORMAT_DATE_DMY		"%d/%m/%Y"	//!< @ref Date_ToString() date format: DD/MM/YYYY -> 31/12/2020
-#define FORMAT_DATE_MDY		"%m/%d/%Y"	//!< @ref Date_ToString() date format: MM/DD/YYYY -> 12/31/2020
+#define SF_DATE_UNIX	"%Y-%m-%d"	//!< @ref Date_ToString() date format: YYYY-MM-DD -> 2020-12-31
+#define SF_DATE_YMD		"%Y/%m/%d"	//!< @ref Date_ToString() date format: YYYY/MM/DD -> 2020/12/31
+#define SF_DATE_DMY		"%d/%m/%Y"	//!< @ref Date_ToString() date format: DD/MM/YYYY -> 31/12/2020
+#define SF_DATE_MDY		"%m/%d/%Y"	//!< @ref Date_ToString() date format: MM/DD/YYYY -> 12/31/2020
 
 
 

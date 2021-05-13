@@ -77,7 +77,7 @@ typedef s_logger const* const*	t_logptrarr;
 /*!
 **	The format with which to display timestamps at the beginning of log lines.
 */
-#define LOG_TIMESTAMP_FORMAT	FORMAT_DATE_UNIX" "FORMAT_TIME_UNIX" | "
+#define LOG_TIMESTAMP_FORMAT	SF_DATE_UNIX" "SF_TIME_UNIX" | "
 
 /*!
 ** The string to display at the beginning of each new line when outputting text that is multiline

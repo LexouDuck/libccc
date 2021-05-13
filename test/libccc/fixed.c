@@ -50,7 +50,7 @@ void	print_test_##TYPE##_to_str(char const* test_name, int can_segfault,			\
 		char const* expecting,														\
 		t_##TYPE number)															\
 {																					\
-	char* tmp = String_Format(FORMAT_S64".("FORMAT_U64"/"FORMAT_U64")",				\
+	char* tmp = String_Format(SF_S64".("SF_U64"/"SF_U64")",				\
 		(t_s64)(number >> FIXED_BITS_FRACTIONPART),									\
 		(t_u64)(number & (FIXED_MASK_FRACTIONPART)),								\
 		(t_u64)1 << FIXED_BITS_FRACTIONPART);										\

@@ -41,25 +41,25 @@ void	print_math_title(char const * title)
 
 
 
-#define FORMAT_FORMAT	":\t%s%g"
+#define SF_FORMAT	":\t%s%g"
 static inline void printf_colored(const char* label, t_float precision, t_float value)
 {
 	printf("%s", label);
 	if (precision == 0.)
 	{
 		if (value == 0. || IS_NAN(value))
-			printf(FORMAT_FORMAT"\n", "", value);
+			printf(SF_FORMAT"\n", "", value);
 		else if (value < 0)
-			printf(FORMAT_FORMAT"\n"C_RESET, C_RED, value);
+			printf(SF_FORMAT"\n"C_RESET, C_RED, value);
 		else if (value > 0)
-			printf(FORMAT_FORMAT"\n"C_RESET, C_GREEN, value);
+			printf(SF_FORMAT"\n"C_RESET, C_GREEN, value);
 	}
 	else
 	{
 		if (value < precision)
-			printf(FORMAT_FORMAT"\n"C_RESET, C_GREEN, value);
+			printf(SF_FORMAT"\n"C_RESET, C_GREEN, value);
 		else
-			printf(FORMAT_FORMAT"\n"C_RESET, C_RED, value);
+			printf(SF_FORMAT"\n"C_RESET, C_RED, value);
 	}
 }
 
