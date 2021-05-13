@@ -12,9 +12,9 @@ typedef struct json_parse
 {
 	s_json*			result;		//!< the result JSON
 	t_utf8 const*	content;	//!< the string to parse
+	t_size			offset;		//!< current parsing offset
 	t_size			length;		//!< the length of the string to parse
 	t_bool			strict;		//!< if TRUE, strict parsing mode is on (rigourously follows the spec)
-	t_size			offset;		//!< current parsing offset
 	t_uint			depth;		//!< current section nesting level
 	t_size			line;		//!< current line number
 	t_char*			error;		//!< current error message (or NULL if no error has been thrown yet)

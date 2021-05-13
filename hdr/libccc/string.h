@@ -86,27 +86,15 @@ _MALLOC()
 t_char*				String_New_C(t_size n, t_char c);
 #define c_strcnew	String_New_C //!< @alias{String_New_C}
 
-//! Sets every char of the given string `str` to `c`, only stopping upon reading a '\0' string terminator character.
-/*!
-**	Fills the given string `str` with the character `c`
-**
-**	@param	str	The string to fill
-**	@param	c	The character value to fill with
-*/
-void				String_Set(t_char* str, t_char c);
-#define c_strset	String_Set //!< @alias{String_Set}
 
-//! Clears the given string `str`, setting each character of `str` to '\0'.
-/*!
-*/
-void				String_Clear(t_char* str);
-#define c_strclr	String_Clear //!< @alias{String_Clear}
 
 /*!
 **	Deletes the string pointed to by `ptr`, freeing the associated memory.
 */
 void				String_Delete(t_char* *a_str);
 #define c_strdel	String_Delete //!< @alias{String_Delete}
+
+
 
 /*!
 **	Returns a newly allocated string which is a copy of the given string `str`,
@@ -128,11 +116,49 @@ t_char*				String_Duplicate_N(t_char const* str, t_size n);
 /*!
 **	Returns a newly allocated string which is a copy of the given string `str`,
 **	(or #NULL required memory could not be allocated), stopping at the
-**	first occurence of `c`.
+**	first occurence of the given char `c`.
 */
 _MALLOC()
-t_char*				String_Duplicate_C(t_char const* str, t_char const c);
-#define c_strcdup	String_Duplicate_C //!< @alias{String_Duplicate_Char}
+t_char*				String_Duplicate_Char(t_char const* str, t_char const c);
+#define c_strchrdup	String_Duplicate_Char //!< @alias{String_Duplicate_Char}
+
+/*!
+**	Returns a newly allocated string which is a copy of the given string `str`,
+**	(or #NULL required memory could not be allocated), stopping at the
+**	first occurence of any char contained within the given `charset`.
+*/
+_MALLOC()
+t_char*				String_Duplicate_Charset(t_char const* str, t_char const* charset);
+#define c_strcstdup	String_Duplicate_Charset //!< @alias{String_Duplicate_Charset}
+
+/*!
+**	Returns a newly allocated string which is a copy of the given string `str`,
+**	(or #NULL required memory could not be allocated), stopping at the
+**	first occurence of the given string `target`.
+*/
+_MALLOC()
+t_char*				String_Duplicate_String(t_char const* str, t_char const* target);
+#define c_strstrdup	String_Duplicate_String //!< @alias{String_Duplicate_String}
+
+
+
+//! Sets every char of the given string `str` to `c`, only stopping upon reading a '\0' string terminator character.
+/*!
+**	Fills the given string `str` with the character `c`
+**
+**	@param	str	The string to fill
+**	@param	c	The character value to fill with
+*/
+void				String_Set(t_char* str, t_char c);
+#define c_strset	String_Set //!< @alias{String_Set}
+
+//! Clears the given string `str`, setting each character of `str` to '\0'.
+/*!
+*/
+void				String_Clear(t_char* str);
+#define c_strclr	String_Clear //!< @alias{String_Clear}
+
+
 
 /*!
 **	Copies the given string `src` into `dest` (null-terminator included),

@@ -237,10 +237,10 @@ HEADER_CPP
 //! Set value to `(0)` or comment out this `#define` to deactivate this kind of error handling
 #define LIBCONFIG_HANDLE_PARSINGERRORS	(1) // TODO check everywhere where this should be used, and use it
 #define LIBCONFIG_HANDLE_PARSINGERROR(RESULT, ...) \
-	{											\
-		IO_Output_Format(__VA_ARGS__);			\
-		return RESULT;							\
-	}											\
+	{										\
+		IO_Output_Format(__VA_ARGS__);		\
+		return RESULT;						\
+	}										\
 //!@}
 
 

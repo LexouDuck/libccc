@@ -15,8 +15,6 @@
 ** @{
 **	This header defines some useful ANSI text macros.
 **
-**	@isostd{https://en.cppreference.com/w/c/ansi}
-**
 **	@see
 **	- https://en.wikipedia.org/wiki/ANSI_escape_code
 **
