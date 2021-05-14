@@ -31,7 +31,11 @@
 	#define _XOPEN_SOURCE 600
 #endif
 */
+#if defined(_WIN32) && !defined(__MINGW32__)
+#include <time.h>
+#else
 #include <sys/time.h>
+#endif
 
 #include "libccc.h"
 
