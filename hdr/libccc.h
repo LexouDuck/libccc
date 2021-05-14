@@ -68,12 +68,12 @@
 #include "libccc_config.h"
 #include "libccc_define.h"
 
+#include "libccc/char.h"
 #include "libccc/bool.h"
 #include "libccc/int.h"
 #include "libccc/fixed.h"
 #include "libccc/float.h"
 #include "libccc/pointer.h"
-//#include "libccc/char.h"
 //#include "libccc/string.h"
 //#include "libccc/memory.h"
 
