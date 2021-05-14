@@ -23,8 +23,9 @@ e_signal	sig;
 
 jmp_buf	restore;
 
+#ifndef __MINGW32__
 struct sigaction signal_action;
-
+#endif
 
 
 /*
