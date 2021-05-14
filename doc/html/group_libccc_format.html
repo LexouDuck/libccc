@@ -1,0 +1,719 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>12) libccc/format &mdash; libccc 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/target-highlight.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="_static/js/custom.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="13) libccc/color" href="group_libccc_color.html" />
+    <link rel="prev" title="11) libccc/stringarray" href="group_libccc_stringarray.html" />
+	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
+	
+	<meta name="Description" content="12) libccc/format">
+	<meta property="og:description" content="12) libccc/format">
+	<meta property="og:title" content="libccc 1.0 documentation - 12) libccc/format">
+	<meta property="og:image" content="_static/images/libccc_icon.png">
+	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="380" />
+	<meta property="og:image:height" content="380" />
+	<meta property="og:url" content="group_libccc_format.html">
+	<meta property="og:site_name" content="libccc 1.0 documentation">
+
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> libccc
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="group_libccc.html">01) libccc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">02) libccc/bool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">03) libccc/int</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_fixed.html">04) libccc/fixed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_float.html">05) libccc/float</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointer.html">06) libccc/pointer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointerarray.html">07) libccc/pointerarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_memory.html">08) libccc/memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">09) libccc/char</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">10) libccc/string</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_stringarray.html">11) libccc/stringarray</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">12) libccc/format</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#detailed-documentation">Detailed Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#global-functions">Global Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#macros">Macros</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_color.html">13) libccc/color</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">14) libccc/sys/io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_ansi.html">15) libccc/sys/ansi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">18) libccc/sys/logger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_time.html">20) libccc/sys/time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_constants.html">21) libccc/math/constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_float.html">22) libccc/math/float</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_fixed.html">23) libccc/math/fixed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_vlq.html">24) libccc/math/vlq</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_stat.html">25) libccc/math/stat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_random.html">26) libccc/math/random</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">27) libccc/math/complex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra.html">28) libccc/math/algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_array.html">32) libccc/monad/array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_list.html">33) libccc/monad/list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_stack.html">34) libccc/monad/stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_queue.html">35) libccc/monad/queue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_tree.html">36) libccc/monad/tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_keyval.html">37) libccc/monad/keyval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_dict.html">38) libccc/monad/dict</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_object.html">39) libccc/monad/object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_config.html">Libccc_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_ascii.html">Libccc_ascii</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_regex.html">Libccc_regex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_unicode.html">Libccc_unicode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math.html">Libccc_math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_sort.html">Libccc_array_sort</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_convert.html">Libccc_monad_convert</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">libccc</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>12) libccc/format</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="libccc-format">
+<span id="doxid-group-libccc-format"></span><span id="index-0"></span><h1>12) libccc/format<a class="headerlink" href="#libccc-format" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>This header defines printf-style functions, and their format specifiers <a class="reference internal" href="#details-group-libccc-format"><span class="std std-ref">More…</span></a></p>
+<pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// global variables</span>
+
+<a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-format-1ga8603cc1f28eb9a964f95f37214b09af4"><span></span><span class="n">max</span></span><span></span><span class="p">;</span>
+<a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="doxyrest-code-target target" id="doxid-group-libccc-format-1ga6335da1d29e0cbce9636ffb8a609c403"><span></span><span class="n">format</span></span><span></span><span class="p">;</span>
+
+<span class="c1">// global functions</span>
+
+<a class="reference internal" href="#doxid-group-libccc-format-1gadc60b004baa8bc7d98b8ffff46b72149"><span class="std std-ref">_FORMAT</span></a><span></span><span class="p">(</span><span class="n">printf</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+<span class="kt">t_char</span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-format-1ga7f3453e9cae34ed342a4ebe457b378cb"><span class="std std-ref">String_Format_VA</span></a><span></span><span class="p">(</span><span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">format</span><span class="p">,</span> <span class="kt">va_list</span> <span class="n">args</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-format-1ga01e37f4223562e3fab3ef633e5cb1ce0"><span class="std std-ref">_FORMAT</span></a><span></span><span class="p">(</span><span class="n">printf</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-format-1gaf792fdbd3c5bb0f54eef99462c8b80c7"><span class="std std-ref">String_Format_N_VA</span></a><span></span><span class="p">(</span><span class="kt">t_char</span><span class="o">*</span> <span class="n">dest</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">max</span><span class="p">,</span> <span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">format</span><span class="p">,</span> <span class="kt">va_list</span> <span class="n">args</span><span class="p">);</span>
+
+<span class="c1">// macros</span>
+
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga7511f5bd480842a3d5a630060e4c9ba4"><span class="std std-ref">SF_BOOL</span></a><span></span> <span class="s">&quot;%d&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga149ffa34e567ed0196ea6498f01f179e"><span class="std std-ref">SF_CHAR</span></a><span></span> <span class="s">&quot;%c&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gadeb95e003163a9f1b7685798a2e57b1a"><span class="std std-ref">SF_COLOR_AHSL</span></a><span></span>   <span class="s">&quot;(A:%g, H:%g, S:%g, L:%g)&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gab0d10affcfe94a1cd393c753f4f1e103"><span class="std std-ref">SF_COLOR_ARGB</span></a><span></span>   <span class="s">&quot;(A:%g, R:%g, G:%g, B:%g)&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga5e51c5832bd2240fdeb8af1a419352c1"><span class="std std-ref">SF_COLOR_ARGB16</span></a><span></span> <span class="s">&quot;#%X&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga95d02fa2321e459f397cf4f0eeeccdde"><span class="std std-ref">SF_COLOR_ARGB32</span></a><span></span> <span class="s">&quot;#%X&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga052d2600a9be8d578c5f50eefd9cce38"><span class="std std-ref">SF_COMPLEX</span></a><span></span>  <span class="s">&quot;(%g + %g*i)&quot;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-format-1gad3ae398f8265d2ec1b652350198b0953"><span></span><span class="n">SF_ENUM</span></span><span></span>  <span class="s">&quot;%d&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga3c2880d817fe1145fc3437fb5dbe8602"><span class="std std-ref">SF_F128</span></a><span></span> <span class="s">&quot;%#g&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga7396150b15af317c893bbf726fda00dc"><span class="std std-ref">SF_F32</span></a><span></span>  <span class="s">&quot;%#g&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gada07618d52c76ed757d9b7ed962424dc"><span class="std std-ref">SF_F64</span></a><span></span>  <span class="s">&quot;%#g&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga86b7f379cdf4bd5cf172e8b8c7b797f1"><span class="std std-ref">SF_F80</span></a><span></span>  <span class="s">&quot;%#g&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga23aa64928e35a03b2a8a640d518f37c0"><span class="std std-ref">SF_FIXED</span></a><span></span>    <span class="s">&quot;%0.8i&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga2c7bb6a144f56715a791e16fceb44d29"><span class="std std-ref">SF_FLOAT</span></a><span></span>    <span class="s">&quot;%#g&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gadfc0081c12e0dabee7d34d08c687aed6"><span class="std std-ref">SF_HEX_F128</span></a><span></span> <span class="s">&quot;%#a&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gaa0a46cb9e660917233450836304584d5"><span class="std std-ref">SF_HEX_F32</span></a><span></span>  <span class="s">&quot;%#a&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga87e6fd9fb33491e1297f3dc6167cb7e9"><span class="std std-ref">SF_HEX_F64</span></a><span></span>  <span class="s">&quot;%#a&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga4ee3d0aa923c4fab19a04723b03021fb"><span class="std std-ref">SF_HEX_F80</span></a><span></span>  <span class="s">&quot;%#a&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gafb16a685999736d58d6d7c7ecb2bf383"><span class="std std-ref">SF_HEX_FIXED</span></a><span></span>    <span class="s">&quot;%#0.8X&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga530c92282f112d963dfa57c6ea4add5a"><span class="std std-ref">SF_HEX_FLOAT</span></a><span></span>    <span class="s">&quot;%#g&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga93ba827275311057b2460d794e632793"><span class="std std-ref">SF_HEX_PTRDIFF</span></a><span></span>  <span class="s">&quot;%#tx&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gad5d2a7732c41ae272291412c03d20143"><span class="std std-ref">SF_HEX_Q128</span></a><span></span> <span class="s">&quot;%#0.8X&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga47c22aaf6faba2c44022c1cab353c697"><span class="std std-ref">SF_HEX_Q16</span></a><span></span>  <span class="s">&quot;%#0.8X&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga32813be1ad1607ba425686930cc7af34"><span class="std std-ref">SF_HEX_Q32</span></a><span></span>  <span class="s">&quot;%#0.8X&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga5fd279b98125f9acdb7ee529b9df56b7"><span class="std std-ref">SF_HEX_Q64</span></a><span></span>  <span class="s">&quot;%#0.8X&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga920299752842fa0fc2d4b85a63b98634"><span class="std std-ref">SF_HEX_SIZE</span></a><span></span> <span class="s">&quot;%#zx&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga5986bdbc7f619f7532b57db2fe7bdc08"><span class="std std-ref">SF_HEX_U128</span></a><span></span> <span class="s">&quot;%#llX&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga50e4242d2d60d401bb9e5214a2e9a5cb"><span class="std std-ref">SF_HEX_U16</span></a><span></span>  <span class="s">&quot;%#X&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga97adbcdd5b7553c9ab9090bc8abdef01"><span class="std std-ref">SF_HEX_U32</span></a><span></span>  <span class="s">&quot;%#X&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga0b244c742a6f6efa51a1fc79364da3e4"><span class="std std-ref">SF_HEX_U64</span></a><span></span>  <span class="s">&quot;%#lX&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gaf5cd77a366d88b1cf03e2f6c97e7d3eb"><span class="std std-ref">SF_HEX_U8</span></a><span></span>   <span class="s">&quot;%#X&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gaaba6d0cd5845251ea6ee9dacdfce579a"><span class="std std-ref">SF_HEX_UINT</span></a><span></span> <a class="reference internal" href="group_libccc.html#doxid-group-libccc-1gae7be8d94ef3433b06c349d722941d3b0"><span class="std std-ref">CONCAT</span></a><span></span><span class="p">(</span><span class="n">SF_HEX_U</span><span class="p">,</span> <a class="reference internal" href="group_libccc_config.html#doxid-group-libccc-config-1ga86d00a69dfe2e664c87a03499d7b5f5a"><span class="std std-ref">LIBCONFIG_BITS_UINT</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga04bf51d0f16c64e501d680993dd55a62"><span class="std std-ref">SF_MATRIX</span></a><span></span>   <a class="reference internal" href="#doxid-group-libccc-format-1ga1abae8c7177d9e414546d5701e056ad5"><span class="std std-ref">SF_VECTOR</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga20f3d138906765d68e2dc4b83e156b8b"><span class="std std-ref">SF_MATRIX2D</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-format-1gabdc6cb5b4ad499b7fd9899cc98da566e"><span class="std std-ref">SF_VECTOR2D</span></a><span></span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="n">SF_VECTOR2D</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gac22cd35a7d3b236bf736a8b21a3d6788"><span class="std std-ref">SF_MATRIX3D</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-format-1gac1c92f27a83b78bccde8c955c0651091"><span class="std std-ref">SF_VECTOR3D</span></a><span></span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="n">SF_VECTOR3D</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="n">SF_VECTOR3D</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gabdabc3dac3755bbfb1593767a24f7040"><span class="std std-ref">SF_MATRIX4D</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-format-1gac09d2d156555c72eea16ee6e5334a33e"><span class="std std-ref">SF_VECTOR4D</span></a><span></span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="n">SF_VECTOR4D</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="n">SF_VECTOR4D</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="n">SF_VECTOR4D</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga6bd196a4b3ff7888125806c03861af6c"><span class="std std-ref">SF_MEM</span></a><span></span><span class="p">(</span><span class="n">N</span><span class="p">)</span>   <a class="reference internal" href="#doxid-group-libccc-format-1gaaeee7ccf0949a808e7337e4fbd768bf2"><span class="std std-ref">SF_MEMORY</span></a><span></span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gaaeee7ccf0949a808e7337e4fbd768bf2"><span class="std std-ref">SF_MEMORY</span></a><span></span><span class="p">(</span><span class="n">N</span><span class="p">)</span>    <span class="s">&quot;%.&quot;</span><span class="err">#</span><span class="n">N</span><span class="s">&quot;s&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga65cb4956955303181cf64d6cd3f59039"><span class="std std-ref">SF_POINTER</span></a><span></span>  <span class="s">&quot;%#p&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga4c474c9f0322539f8b2bac80f94bbfbe"><span class="std std-ref">SF_PTR</span></a><span></span>  <a class="reference internal" href="#doxid-group-libccc-format-1ga65cb4956955303181cf64d6cd3f59039"><span class="std std-ref">SF_POINTER</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga55a20a4455ac6568345535caa1684e52"><span class="std std-ref">SF_PTRDIFF</span></a><span></span>  <span class="s">&quot;%ti&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga0bef7457b90bc7fc38c98305fd70aaf4"><span class="std std-ref">SF_Q128</span></a><span></span> <span class="s">&quot;%0.8i&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gaf89dda22d106feb9950af35268629228"><span class="std std-ref">SF_Q16</span></a><span></span>  <span class="s">&quot;%0.8i&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga34c1798992966d7966555950c847bb78"><span class="std std-ref">SF_Q32</span></a><span></span>  <span class="s">&quot;%0.8i&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gacf5ebfb8dd7d0fd1ba32ff3ded6a8dca"><span class="std std-ref">SF_Q64</span></a><span></span>  <span class="s">&quot;%0.8i&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gaf1a8728c8dc484e9445918beed208264"><span class="std std-ref">SF_S128</span></a><span></span> <span class="s">&quot;%lli&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga5c2a3dfdd17550bdbf4342a5a76904ef"><span class="std std-ref">SF_S16</span></a><span></span>  <span class="s">&quot;%i&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gae178d669ff8bc0ae72a52f39afcbcf21"><span class="std std-ref">SF_S32</span></a><span></span>  <span class="s">&quot;%i&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga09caa2ed1dfe87e8baa756a4ab70376e"><span class="std std-ref">SF_S64</span></a><span></span>  <span class="s">&quot;%li&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga0b2a073f52c7c326100f3c29db7da3c4"><span class="std std-ref">SF_S8</span></a><span></span>   <span class="s">&quot;%i&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga245787ae331a0990f650d27d2093cf5a"><span class="std std-ref">SF_SINT</span></a><span></span> <a class="reference internal" href="group_libccc.html#doxid-group-libccc-1gae7be8d94ef3433b06c349d722941d3b0"><span class="std std-ref">CONCAT</span></a><span></span><span class="p">(</span><span class="n">SF_S</span><span class="p">,</span>     <a class="reference internal" href="group_libccc_config.html#doxid-group-libccc-config-1gaac372d149c7d1452ad8f81414a6c75ab"><span class="std std-ref">LIBCONFIG_BITS_SINT</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga0d93405d64dd70fa08770a01b0bb46bb"><span class="std std-ref">SF_SINTMAX</span></a><span></span>  <span class="s">&quot;%ji&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gac2a1ee896a497e3513bc5f64e8f36660"><span class="std std-ref">SF_SINTPTR</span></a><span></span>  <span class="s">&quot;%zi&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gaec689040559778c3ebe74ee72b4c85ea"><span class="std std-ref">SF_SIZE</span></a><span></span> <span class="s">&quot;%zu&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gaf1fd757108641dfda948953fa693aeae"><span class="std std-ref">SF_STR</span></a><span></span>  <a class="reference internal" href="#doxid-group-libccc-format-1ga8f0e5a6c0ee0236585ce7ab3a77c7fd5"><span class="std std-ref">SF_STRING</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga8f0e5a6c0ee0236585ce7ab3a77c7fd5"><span class="std std-ref">SF_STRING</span></a><span></span>   <span class="s">&quot;%s&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga75fb9a5abd207eb9a6bf15b73f0492da"><span class="std std-ref">SF_U128</span></a><span></span> <span class="s">&quot;%llu&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gac8cffa92b31df1ad71083a2004879919"><span class="std std-ref">SF_U16</span></a><span></span>  <span class="s">&quot;%u&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gafccc741f52f4afb4bc8bbe6374ce7431"><span class="std std-ref">SF_U32</span></a><span></span>  <span class="s">&quot;%u&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gade0fc6b8e6e72778c6a43942ed89960e"><span class="std std-ref">SF_U64</span></a><span></span>  <span class="s">&quot;%lu&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga2f046eef791d3701019419dafe5f9e46"><span class="std std-ref">SF_U8</span></a><span></span>   <span class="s">&quot;%u&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga7723a6a3ee6dc5bca4ef0cf7cdf5167b"><span class="std std-ref">SF_UINT</span></a><span></span> <a class="reference internal" href="group_libccc.html#doxid-group-libccc-1gae7be8d94ef3433b06c349d722941d3b0"><span class="std std-ref">CONCAT</span></a><span></span><span class="p">(</span><span class="n">SF_U</span><span class="p">,</span>     <a class="reference internal" href="group_libccc_config.html#doxid-group-libccc-config-1ga86d00a69dfe2e664c87a03499d7b5f5a"><span class="std std-ref">LIBCONFIG_BITS_UINT</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gae837db029213378e6e27a5a900f3fc14"><span class="std std-ref">SF_UINTMAX</span></a><span></span>  <span class="s">&quot;%ju&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gaa3bf1bd132d706a3d79a248c00a11e28"><span class="std std-ref">SF_UINTPTR</span></a><span></span>  <span class="s">&quot;%zu&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga7ad045578d9c7d8596faacf1ed29baed"><span class="std std-ref">SF_UTF8</span></a><span></span> <span class="s">&quot;%c&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga1abae8c7177d9e414546d5701e056ad5"><span class="std std-ref">SF_VECTOR</span></a><span></span>   <span class="s">&quot;(%g)&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gabdc6cb5b4ad499b7fd9899cc98da566e"><span class="std std-ref">SF_VECTOR2D</span></a><span></span> <span class="s">&quot;(%g, %g)&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gac1c92f27a83b78bccde8c955c0651091"><span class="std std-ref">SF_VECTOR3D</span></a><span></span> <span class="s">&quot;(%g, %g, %g)&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gac09d2d156555c72eea16ee6e5334a33e"><span class="std std-ref">SF_VECTOR4D</span></a><span></span> <span class="s">&quot;(%g, %g, %g, %g)&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gacc97b00fd8f86c2e590b7fc53b9ebf21"><span class="std std-ref">String_Build</span></a><span></span>    <span class="n">String_Format</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gade57a00d12aac06b9768603513a10410"><span class="std std-ref">String_Build_N</span></a><span></span>  <span class="n">String_Format_N</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga0b927e0f29d106ed722ce8d7fd61b7c9"><span class="std std-ref">String_Build_N_VA</span></a><span></span>   <a class="reference internal" href="#doxid-group-libccc-format-1gaf792fdbd3c5bb0f54eef99462c8b80c7"><span class="std std-ref">String_Format_N_VA</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga164c8fcd4f8b160918efd724f7370683"><span class="std std-ref">String_Build_VA</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-format-1ga7f3453e9cae34ed342a4ebe457b378cb"><span class="std std-ref">String_Format_VA</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gafae038f477a52abad1c3db5215bf9d50"><span class="std std-ref">c_asprintf</span></a><span></span>  <span class="n">String_Format</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gab0a5026241da51c0a778c47aafcce5d8"><span class="std std-ref">c_snprintf</span></a><span></span>  <span class="n">String_Format_N</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga547b820d07e6b57ec93c4069217656b5"><span class="std std-ref">c_strfmt</span></a><span></span>    <span class="n">String_Format</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga8702bd0fce53ba9c47f75931af94cacd"><span class="std std-ref">c_strfmt_va</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-format-1ga7f3453e9cae34ed342a4ebe457b378cb"><span class="std std-ref">String_Format_VA</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gaec22df63b1874a7497781018cbf878ed"><span class="std std-ref">c_strformat</span></a><span></span> <span class="n">String_Format</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga21a6e87039779b39aed5cf0578da4f52"><span class="std std-ref">c_strformat_va</span></a><span></span>  <a class="reference internal" href="#doxid-group-libccc-format-1ga7f3453e9cae34ed342a4ebe457b378cb"><span class="std std-ref">String_Format_VA</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gabe340a7004bdbe20915ebe92a4192c42"><span class="std std-ref">c_strnfmt</span></a><span></span>   <span class="n">String_Format_N</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gacad3650aa3c96b0300609c2365b6fab0"><span class="std std-ref">c_strnfmt_va</span></a><span></span>    <a class="reference internal" href="#doxid-group-libccc-format-1gaf792fdbd3c5bb0f54eef99462c8b80c7"><span class="std std-ref">String_Format_N_VA</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga339619f37269bf313930b607d2eb086b"><span class="std std-ref">c_strnformat</span></a><span></span>    <span class="n">String_Format_N</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gaeeb1d520f3a7545291703c4c55fd75e8"><span class="std std-ref">c_strnformat_va</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-format-1gaf792fdbd3c5bb0f54eef99462c8b80c7"><span class="std std-ref">String_Format_N_VA</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gad3ebb60ff16369cd2d55992a39b1cd9d"><span class="std std-ref">c_vasprintf</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-format-1ga7f3453e9cae34ed342a4ebe457b378cb"><span class="std std-ref">String_Format_VA</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga87a6991aa4af588a65550ca5675fd385"><span class="std std-ref">c_vsnprintf</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-format-1gaf792fdbd3c5bb0f54eef99462c8b80c7"><span class="std std-ref">String_Format_N_VA</span></a></pre>
+</div>
+<div class="section" id="detailed-documentation">
+<span id="details-group-libccc-format"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline">¶</a></h2>
+<p>This header defines printf-style functions, and their format specifiers</p>
+<div class="section" id="global-functions">
+<h3>Global Functions<a class="headerlink" href="#global-functions" title="Permalink to this headline">¶</a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1gadc60b004baa8bc7d98b8ffff46b72149"><span id="index-1"></span><span></span><span class="n">_FORMAT</span><span class="p">(</span><span class="n">printf</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">const</span></pre>
+<p>Constructs a string from the given <code class="docutils literal notranslate"><span class="pre">format</span></code> string and multiple args (equivalent to <code class="docutils literal notranslate"><span class="pre">asprintf()</span></code>)</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/variadic">https://en.cppreference.com/w/c/variadic</a></p></li>
+</ul>
+<p>Constructs a new null-terminated string, which is generated from the given <code class="docutils literal notranslate"><span class="pre">format</span></code> string, as well as any relevant variadic arguments - it is equivalent to the <code class="docutils literal notranslate"><span class="pre">asprintf()</span></code> function.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">format</span></code> string may contain format specifiers (ie: a ‘%’ followed by certain specific text characters, documented below). A format specifier has the following syntax (items between brackets are optional):</p>
+<pre class="highlight literal-block"><span></span><span class="o">%</span><span class="p">[</span><span class="n">flags</span><span class="p">][</span><span class="n">minsize</span><span class="p">][.</span><span class="n">precision</span><span class="p">][</span><span class="n">bitsize</span><span class="p">]</span><span class="kt">char</span></pre>
+<p>Here is a description of the valid possible choices for each of these 5 fields: (flags,minsize,precision,bitsize,char)</p>
+<pre class="highlight literal-block"><span></span><span class="p">.</span><span class="n">________________________________________________________________________</span>
+<span class="o">|</span> <span class="kt">char</span>  <span class="o">|</span> <span class="n">Output</span>                                        <span class="o">|</span> <span class="n">Output</span> <span class="n">Example</span> <span class="o">|</span>
+<span class="o">|</span><span class="n">_______</span><span class="o">|</span><span class="n">_______________________________________________</span><span class="o">|</span><span class="n">________________</span><span class="o">|</span>
+<span class="o">|</span><span class="sc">&#39;d&#39;</span><span class="p">,</span><span class="sc">&#39;i&#39;</span><span class="o">|</span> <span class="n">Signed</span> <span class="n">decimal</span> <span class="n">integer</span>                        <span class="o">|</span> <span class="s">&quot;392&quot;</span>
+<span class="o">|</span> <span class="sc">&#39;u&#39;</span>   <span class="o">|</span> <span class="n">Unsigned</span> <span class="n">decimal</span> <span class="n">integer</span>                      <span class="o">|</span> <span class="s">&quot;7235&quot;</span>
+<span class="o">|</span> <span class="sc">&#39;o&#39;</span>   <span class="o">|</span> <span class="n">Unsigned</span> <span class="n">octal</span>                                <span class="o">|</span> <span class="s">&quot;610&quot;</span>
+<span class="o">|</span> <span class="sc">&#39;x&#39;</span>   <span class="o">|</span> <span class="n">Unsigned</span> <span class="n">hexadecimal</span> <span class="n">integer</span><span class="p">,</span> <span class="n">lowercase</span>       <span class="o">|</span> <span class="s">&quot;7fa&quot;</span>
+<span class="o">|</span> <span class="sc">&#39;X&#39;</span>   <span class="o">|</span> <span class="n">Unsigned</span> <span class="n">hexadecimal</span> <span class="n">integer</span><span class="p">,</span> <span class="n">uppercase</span>       <span class="o">|</span> <span class="s">&quot;7FA&quot;</span>
+<span class="o">|</span> <span class="sc">&#39;f&#39;</span>   <span class="o">|</span> <span class="n">Decimal</span> <span class="n">notation</span> <span class="n">floating</span><span class="o">-</span><span class="n">point</span><span class="p">,</span> <span class="n">lowercase</span>    <span class="o">|</span> <span class="s">&quot;392.65&quot;</span>
+<span class="o">|</span> <span class="sc">&#39;F&#39;</span>   <span class="o">|</span> <span class="n">Decimal</span> <span class="n">notation</span> <span class="n">floating</span><span class="o">-</span><span class="n">point</span><span class="p">,</span> <span class="n">uppercase</span>    <span class="o">|</span> <span class="s">&quot;392.65&quot;</span>
+<span class="o">|</span> <span class="sc">&#39;e&#39;</span>   <span class="o">|</span> <span class="n">Scientific</span> <span class="n">notation</span> <span class="n">floating</span><span class="o">-</span><span class="n">point</span><span class="p">,</span> <span class="n">lowercase</span> <span class="o">|</span> <span class="s">&quot;3.9265e+2&quot;</span>
+<span class="o">|</span> <span class="sc">&#39;E&#39;</span>   <span class="o">|</span> <span class="n">Scientific</span> <span class="n">notation</span> <span class="n">floating</span><span class="o">-</span><span class="n">point</span><span class="p">,</span> <span class="n">uppercase</span> <span class="o">|</span> <span class="s">&quot;3.9265E+2&quot;</span>
+<span class="o">|</span> <span class="sc">&#39;g&#39;</span>   <span class="o">|</span> <span class="n">Use</span> <span class="n">the</span> <span class="n">shortest</span> <span class="nl">representation</span><span class="p">:</span> <span class="s">&quot;%e&quot;</span> <a class="reference internal" href="global.html#doxid-bool-8h-1a339a611d7f9dc3a59c359f0da7beaf3c"><span class="std std-ref">or</span></a><span></span> <span class="s">&quot;%f&quot;</span> <span class="o">|</span> <span class="s">&quot;392.65&quot;</span>
+<span class="o">|</span> <span class="sc">&#39;G&#39;</span>   <span class="o">|</span> <span class="n">Use</span> <span class="n">the</span> <span class="n">shortest</span> <span class="nl">representation</span><span class="p">:</span> <span class="s">&quot;%E&quot;</span> <a class="reference internal" href="global.html#doxid-bool-8h-1a339a611d7f9dc3a59c359f0da7beaf3c"><span class="std std-ref">or</span></a><span></span> <span class="s">&quot;%F&quot;</span> <span class="o">|</span> <span class="s">&quot;392.65&quot;</span>
+<span class="o">|</span> <span class="sc">&#39;a&#39;</span>   <span class="o">|</span> <span class="n">Hexadecimal</span> <span class="n">floating</span> <span class="n">point</span><span class="p">,</span> <span class="n">lowercase</span>         <span class="o">|</span> <span class="s">&quot;-0xc.90fep-2&quot;</span>
+<span class="o">|</span> <span class="sc">&#39;A&#39;</span>   <span class="o">|</span> <span class="n">Hexadecimal</span> <span class="n">floating</span> <span class="n">point</span><span class="p">,</span> <span class="n">uppercase</span>         <span class="o">|</span> <span class="s">&quot;-0XC.90FEP-2&quot;</span>
+<span class="o">|</span> <span class="sc">&#39;c&#39;</span>   <span class="o">|</span> <span class="n">Character</span>                                     <span class="o">|</span> <span class="s">&quot;a&quot;</span>
+<span class="o">|</span> <span class="sc">&#39;s&#39;</span>   <span class="o">|</span> <span class="n">String</span> <span class="n">of</span> <span class="n">characters</span>                          <span class="o">|</span> <span class="s">&quot;example&quot;</span>
+<span class="o">|</span> <span class="sc">&#39;p&#39;</span>   <span class="o">|</span> <span class="n">Pointer</span> <span class="n">address</span>                               <span class="o">|</span> <span class="s">&quot;b8000000&quot;</span>
+<span class="o">|</span> <span class="sc">&#39;%&#39;</span>   <span class="o">|</span> <span class="n">A</span> <span class="s">&quot;%%&quot;</span> <span class="n">specifier</span> <span class="n">will</span> <span class="n">write</span> <span class="n">a</span> <span class="n">single</span> <span class="sc">&#39;%&#39;</span> <span class="kt">char</span> <span class="o">|</span> <span class="s">&quot;%&quot;</span>
+<span class="o">|</span> <span class="sc">&#39;n&#39;</span>   <span class="o">|</span> <span class="n">Nothing</span> <span class="nl">printed</span><span class="p">:</span> <span class="n">the</span> <span class="n">corresponding</span> <span class="n">argument</span> <span class="n">must</span> <span class="n">be</span> <span class="n">a</span> <span class="n">pointer</span> <span class="n">to</span> <span class="n">a</span> <span class="kt">signed</span> <span class="kt">int</span><span class="p">.</span>
+<span class="o">|</span><span class="n">_______</span><span class="o">|</span>   <span class="n">The</span> <span class="n">number</span> <span class="n">of</span> <span class="n">characters</span> <span class="n">written</span> <span class="n">so</span> <span class="n">far</span> <span class="n">is</span> <span class="n">stored</span> <span class="n">in</span> <span class="n">the</span> <span class="n">pointed</span> <span class="n">location</span><span class="p">.</span>
+<span class="p">.</span><span class="n">___________________________________________________________________________________________________________________</span>
+<span class="o">|</span> <span class="n">flags</span> <span class="o">|</span> <span class="n">Description</span>                                                                                               <span class="o">|</span>
+<span class="o">|</span><span class="n">_______</span><span class="o">|</span><span class="n">___________________________________________________________________________________________________________</span><span class="o">|</span>
+<span class="o">|</span> <span class="sc">&#39;+&#39;</span>   <span class="o">|</span> <span class="n">Precede</span> <span class="n">the</span> <span class="n">result</span> <span class="n">with</span> <span class="n">a</span> <span class="n">plus</span> <span class="sc">&#39;+&#39;</span> <a class="reference internal" href="global.html#doxid-bool-8h-1a339a611d7f9dc3a59c359f0da7beaf3c"><span class="std std-ref">or</span></a><span></span> <span class="n">minus</span> <span class="sc">&#39;-&#39;</span> <span class="n">sign</span><span class="p">,</span> <span class="n">even</span> <span class="k">for</span> <span class="n">positive</span><span class="o">/</span><span class="kt">unsigned</span> <span class="n">numbers</span><span class="p">.</span>                 <span class="o">|</span>
+<span class="o">|</span><span class="n">_______</span><span class="o">|</span><span class="n">_By</span> <span class="k">default</span><span class="p">,</span> <span class="n">only</span> <span class="n">negative</span> <span class="n">numbers</span> <span class="n">are</span> <span class="n">preceded</span> <span class="n">with</span> <span class="n">a</span> <span class="n">minus</span> <span class="sc">&#39;-&#39;</span> <span class="n">sign</span><span class="p">.</span><span class="n">_____________________________________</span><span class="o">|</span>
+<span class="o">|</span> <span class="sc">&#39;#&#39;</span>   <span class="o">|</span> <span class="n">With</span> <span class="sc">&#39;o&#39;</span><span class="p">,</span><span class="sc">&#39;x&#39;</span><span class="p">,</span><span class="sc">&#39;X&#39;</span><span class="o">:</span> <span class="n">the</span> <span class="n">value</span> <span class="n">is</span> <span class="n">preceeded</span> <span class="n">with</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="n">x</span> <a class="reference internal" href="global.html#doxid-bool-8h-1a339a611d7f9dc3a59c359f0da7beaf3c"><span class="std std-ref">or</span></a><span></span> <span class="mi">0</span><span class="n">X</span> <span class="n">respectively</span><span class="p">,</span> <span class="k">for</span> <span class="n">values</span> <span class="n">different</span> <span class="n">than</span> <span class="n">zero</span><span class="p">.</span>   <span class="o">|</span>
+<span class="o">|</span><span class="n">_______</span><span class="o">|</span><span class="n">_With</span> <span class="sc">&#39;a&#39;</span><span class="p">,</span><span class="sc">&#39;A&#39;</span><span class="p">,</span><span class="sc">&#39;e&#39;</span><span class="p">,</span><span class="sc">&#39;E&#39;</span><span class="p">,</span><span class="sc">&#39;f&#39;</span><span class="p">,</span><span class="sc">&#39;F&#39;</span><span class="p">,</span><span class="sc">&#39;g&#39;</span><span class="p">,</span><span class="sc">&#39;G&#39;</span><span class="o">:</span> <span class="n">forces</span> <span class="n">the</span> <span class="n">written</span> <span class="n">output</span> <span class="n">number</span> <span class="n">to</span> <span class="n">contain</span> <span class="n">a</span> <span class="n">decimal</span> <span class="n">point</span><span class="p">.</span><span class="n">________</span><span class="o">|</span>
+<span class="o">|</span><span class="p">(</span><span class="n">space</span><span class="p">)</span><span class="o">|</span> <span class="n">If</span> <span class="n">no</span> <span class="n">sign</span> <span class="n">is</span> <span class="n">going</span> <span class="n">to</span> <span class="n">be</span> <span class="n">written</span><span class="p">,</span> <span class="n">a</span> <span class="n">blank</span> <span class="n">space</span> <span class="n">is</span> <span class="n">inserted</span> <span class="n">before</span> <span class="n">the</span> <span class="n">value</span><span class="p">.</span>                            <span class="o">|</span>
+<span class="o">|</span><span class="n">_______</span><span class="o">|</span><span class="n">___________________________________________________________________________________________________________</span><span class="o">|</span>
+<span class="p">.</span><span class="n">___________________________________________________________________________________________</span>
+<span class="o">|</span> <span class="n">minsize</span>   <span class="o">|</span>   <span class="n">is</span> <span class="n">a</span> <span class="n">number</span> <span class="p">(</span><span class="n">so</span><span class="p">,</span> <span class="n">decimal</span> <span class="n">numerical</span> <span class="n">digit</span> <span class="n">chars</span><span class="p">).</span>                            <span class="o">|</span>
+<span class="o">|</span><span class="n">___________</span><span class="o">|</span><span class="n">_______________________________________________________________________________</span><span class="o">|</span>
+<span class="o">|</span> <span class="n">The</span> <span class="n">minimum</span> <span class="n">amount</span> <span class="n">of</span> <span class="n">characters</span> <span class="n">to</span> <span class="n">be</span> <span class="n">printed</span> <span class="k">for</span> <span class="k">this</span> <span class="n">specifier</span><span class="p">.</span>
+<span class="o">|</span> <span class="n">The</span> <span class="n">value</span> <span class="n">is</span> <a class="reference internal" href="global.html#doxid-bool-8h-1a31739c27bdcfdac9faae7bf7a5df49e4"><span class="std std-ref">not</span></a><span></span> <span class="n">truncated</span><span class="p">,</span> <span class="n">even</span> <span class="k">if</span> <span class="n">the</span> <span class="n">result</span> <span class="n">is</span> <span class="n">larger</span><span class="p">.</span>
+<span class="o">|</span> <span class="n">If</span> <span class="n">the</span> <span class="n">value</span> <span class="n">is</span> <span class="n">shorter</span> <span class="n">than</span> <span class="k">this</span> <span class="n">number</span><span class="p">,</span> <span class="n">the</span> <span class="n">result</span> <span class="n">is</span> <span class="n">padded</span> <span class="n">with</span> <span class="n">blank</span> <span class="n">spaces</span><span class="p">.</span>
+<span class="p">.</span><span class="n">___________________________________________________________________________________________</span>
+<span class="o">|</span> <span class="n">precision</span> <span class="o">|</span>   <span class="n">is</span> <span class="n">a</span> <span class="n">number</span> <span class="p">(</span><span class="n">so</span><span class="p">,</span> <span class="n">decimal</span> <span class="n">numerical</span> <span class="n">digit</span> <span class="n">chars</span><span class="p">),</span> <span class="n">preceded</span> <span class="n">by</span> <span class="n">a</span> <span class="sc">&#39;.&#39;</span> <span class="n">period</span><span class="p">.</span>  <span class="o">|</span>
+<span class="o">|</span><span class="n">___________</span><span class="o">|</span><span class="n">_______________________________________________________________________________</span><span class="o">|</span>
+<span class="o">|</span> <span class="n">With</span> <span class="sc">&#39;a&#39;</span><span class="p">,</span><span class="sc">&#39;A&#39;</span><span class="p">,</span><span class="sc">&#39;e&#39;</span><span class="p">,</span><span class="sc">&#39;E&#39;</span><span class="p">,</span><span class="sc">&#39;f&#39;</span><span class="p">,</span><span class="sc">&#39;F&#39;</span><span class="o">:</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">digits</span> <span class="n">to</span> <span class="n">be</span> <span class="n">printed</span> <span class="n">after</span> <span class="n">the</span> <span class="n">decimal</span> <span class="n">point</span> <span class="p">(</span><span class="n">by</span> <span class="k">default</span><span class="p">,</span> <span class="k">this</span> <span class="n">is</span> <span class="mi">6</span><span class="p">).</span>
+<span class="o">|</span> <span class="n">With</span> <span class="sc">&#39;g&#39;</span><span class="p">,</span><span class="sc">&#39;G&#39;</span><span class="o">:</span> <span class="n">the</span> <span class="n">maximum</span> <span class="n">number</span> <span class="n">of</span> <span class="n">significant</span> <span class="n">digits</span> <span class="n">to</span> <span class="n">be</span> <span class="n">printed</span> <span class="k">for</span> <span class="n">the</span> <span class="n">mantissa</span><span class="p">.</span>
+<span class="o">|</span> <span class="n">With</span> <span class="sc">&#39;s&#39;</span><span class="o">:</span> <span class="k">this</span> <span class="n">is</span> <span class="n">the</span> <span class="n">maximum</span> <span class="n">number</span> <span class="n">of</span> <span class="n">characters</span> <span class="n">to</span> <span class="n">be</span> <span class="n">printed</span> <span class="p">(</span><span class="n">by</span> <span class="k">default</span><span class="p">,</span> <span class="n">all</span> <span class="n">chars</span> <span class="n">are</span> <span class="n">printed</span> <span class="n">until</span> <span class="n">the</span> <span class="sc">&#39;</span><span class="se">\0</span><span class="sc">&#39;</span><span class="p">).</span>
+<span class="o">|</span> <span class="n">If</span> <span class="n">the</span> <span class="n">period</span> <span class="n">is</span> <span class="n">specified</span> <span class="n">without</span> <span class="n">an</span> <span class="k">explicit</span> <span class="n">value</span> <span class="k">for</span> <span class="n">precision</span><span class="p">,</span> <span class="mi">0</span> <span class="n">is</span> <span class="n">assumed</span><span class="p">.</span>
+<span class="p">.</span><span class="n">___________________________________________________________________________________________________________</span>
+<span class="o">|</span><span class="n">bitsize</span><span class="o">|</span> <span class="sc">&#39;d&#39;</span><span class="p">,</span> <span class="sc">&#39;i&#39;</span>      <span class="o">|</span> <span class="sc">&#39;u&#39;</span><span class="p">,</span> <span class="sc">&#39;o&#39;</span><span class="p">,</span> <span class="sc">&#39;x&#39;</span><span class="p">,</span> <span class="sc">&#39;X&#39;</span>    <span class="o">|</span><span class="sc">&#39;f&#39;</span><span class="p">,</span><span class="sc">&#39;e&#39;</span><span class="p">,</span><span class="sc">&#39;g&#39;</span><span class="p">,</span><span class="sc">&#39;a&#39;</span><span class="o">|</span> <span class="sc">&#39;c&#39;</span>   <span class="o">|</span> <span class="sc">&#39;s&#39;</span>       <span class="o">|</span> <span class="sc">&#39;p&#39;</span>   <span class="o">|</span> <span class="sc">&#39;n&#39;</span>           <span class="o">|</span>
+<span class="o">|</span><span class="n">_______</span><span class="o">|</span><span class="n">_______________</span><span class="o">|</span><span class="n">_______________________</span><span class="o">|</span><span class="sc">&#39;F&#39;</span><span class="n">_</span><span class="sc">&#39;E&#39;</span><span class="n">_</span><span class="sc">&#39;G&#39;</span><span class="n">_</span><span class="sc">&#39;A&#39;</span><span class="o">|</span><span class="n">_______</span><span class="o">|</span><span class="n">___________</span><span class="o">|</span><span class="n">_______</span><span class="o">|</span><span class="n">_______________</span><span class="o">|</span>
+<span class="o">|</span><span class="p">(</span><span class="n">none</span><span class="p">)</span> <span class="o">|</span> <span class="kt">int</span>           <span class="o">|</span> <span class="kt">unsigned</span> <span class="kt">int</span>          <span class="o">|</span> <span class="kt">double</span>        <span class="o">|</span> <span class="kt">int</span>   <span class="o">|</span> <span class="kt">char</span><span class="o">*</span>     <span class="o">|</span> <span class="kt">void</span><span class="o">*</span> <span class="o">|</span> <span class="kt">int</span><span class="o">*</span>          <span class="o">|</span>
+<span class="o">|</span> <span class="s">&quot;hh&quot;</span>  <span class="o">|</span> <span class="kt">signed</span> <span class="kt">char</span>   <span class="o">|</span> <span class="kt">unsigned</span> <span class="kt">char</span>         <span class="o">|</span>               <span class="o">|</span>       <span class="o">|</span>           <span class="o">|</span>       <span class="o">|</span> <span class="kt">signed</span> <span class="kt">char</span><span class="o">*</span>  <span class="o">|</span>
+<span class="o">|</span>  <span class="s">&quot;h&quot;</span>  <span class="o">|</span> <span class="kt">short</span> <span class="kt">int</span>     <span class="o">|</span> <span class="kt">unsigned</span> <span class="kt">short</span> <span class="kt">int</span>    <span class="o">|</span>               <span class="o">|</span>       <span class="o">|</span>           <span class="o">|</span>       <span class="o">|</span> <span class="kt">short</span> <span class="kt">int</span><span class="o">*</span>    <span class="o">|</span>
+<span class="o">|</span>  <span class="s">&quot;l&quot;</span>  <span class="o">|</span> <span class="kt">long</span> <span class="kt">int</span>      <span class="o">|</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">int</span>     <span class="o">|</span>               <span class="o">|</span> <span class="kt">wint_t</span><span class="o">|</span> <span class="kt">wchar_t</span><span class="o">*</span>  <span class="o">|</span>       <span class="o">|</span> <span class="kt">long</span> <span class="kt">int</span><span class="o">*</span>     <span class="o">|</span>
+<span class="o">|</span> <span class="s">&quot;ll&quot;</span>  <span class="o">|</span> <span class="kt">long</span> <span class="kt">long</span> <span class="kt">int</span> <span class="o">|</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span> <span class="kt">int</span><span class="o">|</span>               <span class="o">|</span>       <span class="o">|</span>           <span class="o">|</span>       <span class="o">|</span> <span class="kt">long</span> <span class="kt">long</span> <span class="kt">int</span><span class="o">*|</span>
+<span class="o">|</span>  <span class="s">&quot;j&quot;</span>  <span class="o">|</span> <span class="kt">intmax_t</span>      <span class="o">|</span> <span class="kt">uintmax_t</span>             <span class="o">|</span>               <span class="o">|</span>       <span class="o">|</span>           <span class="o">|</span>       <span class="o">|</span> <span class="kt">intmax_t</span><span class="o">*</span>     <span class="o">|</span>
+<span class="o">|</span>  <span class="s">&quot;z&quot;</span>  <span class="o">|</span> <span class="kt">size_t</span>        <span class="o">|</span> <span class="kt">size_t</span>                <span class="o">|</span>               <span class="o">|</span>       <span class="o">|</span>           <span class="o">|</span>       <span class="o">|</span> <span class="kt">size_t</span><span class="o">*</span>       <span class="o">|</span>
+<span class="o">|</span>  <span class="s">&quot;t&quot;</span>  <span class="o">|</span> <span class="kt">ptrdiff_t</span>     <span class="o">|</span> <span class="kt">ptrdiff_t</span>             <span class="o">|</span>               <span class="o">|</span>       <span class="o">|</span>           <span class="o">|</span>       <span class="o">|</span> <span class="kt">ptrdiff_t</span><span class="o">*</span>    <span class="o">|</span>
+<span class="o">|</span>  <span class="s">&quot;L&quot;</span>  <span class="o">|</span>               <span class="o">|</span>                       <span class="o">|</span> <span class="kt">long</span> <span class="kt">double</span>   <span class="o">|</span>       <span class="o">|</span>           <span class="o">|</span>       <span class="o">|</span>               <span class="o">|</span>
+<span class="o">|</span><span class="n">_______</span><span class="o">|</span><span class="n">_______________</span><span class="o">|</span><span class="n">_______________________</span><span class="o">|</span><span class="n">_______________</span><span class="o">|</span><span class="n">_______</span><span class="o">|</span><span class="n">___________</span><span class="o">|</span><span class="n">_______</span><span class="o">|</span><span class="n">_______________</span><span class="o">|</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga7f3453e9cae34ed342a4ebe457b378cb"><span id="index-2"></span><span></span><span class="kt">t_char</span><span class="o">*</span> <span class="n">String_Format_VA</span><span class="p">(</span><span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">format</span><span class="p">,</span> <span class="kt">va_list</span> <span class="n">args</span><span class="p">)</span></pre>
+<p class="rubric">See also:</p>
+<p>String_Format</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga01e37f4223562e3fab3ef633e5cb1ce0"><span id="index-3"></span><span></span><span class="n">_FORMAT</span><span class="p">(</span><span class="n">printf</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span></pre>
+<p>Constructs a string from the given <code class="docutils literal notranslate"><span class="pre">format</span></code> string and multiple args, writing at most <code class="docutils literal notranslate"><span class="pre">max</span></code> chars into <code class="docutils literal notranslate"><span class="pre">dest</span></code> (equivalent to <code class="docutils literal notranslate"><span class="pre">snprintf()</span></code>)</p>
+<p>Logging (perror-style) to both stderr and logfile (if applicable)</p>
+<p>Logging perror-style to both stderr and logfile (if applicable)</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>dest</p></td>
+<td><p>The destination buffer, in which to write the resulting string (if <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, does not write anything and simply returns the length)</p></td>
+</tr>
+<tr class="row-even"><td><p>max</p></td>
+<td><p>The maximum amount of characters to write to <code class="docutils literal notranslate"><span class="pre">dest</span></code>, including the ‘0’ null terminator</p></td>
+</tr>
+<tr class="row-odd"><td><p>format</p></td>
+<td><p>The format string used to construct the resulting date string: learn more here <a class="reference external" href="https://www.cplusplus.com/reference/cstdio/printf/">https://www.cplusplus.com/reference/cstdio/printf/</a></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>the amount of characters in the constructed format string, regardless of <code class="docutils literal notranslate"><span class="pre">max</span></code> size</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1gaf792fdbd3c5bb0f54eef99462c8b80c7"><span id="index-4"></span><a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">String_Format_N_VA</span><span class="p">(</span><span class="kt">t_char</span><span class="o">*</span> <span class="n">dest</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">max</span><span class="p">,</span> <span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">format</span><span class="p">,</span> <span class="kt">va_list</span> <span class="n">args</span><span class="p">)</span></pre>
+<p class="rubric">See also:</p>
+<p>String_Format_N</p>
+</div>
+<div class="section" id="macros">
+<h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga7511f5bd480842a3d5a630060e4c9ba4"><span id="index-5"></span><span></span><span class="cp">#define</span> <span class="n">SF_BOOL</span> <span class="cp">&quot;%d&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/bool.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga149ffa34e567ed0196ea6498f01f179e"><span id="index-6"></span><span></span><span class="cp">#define</span> <span class="n">SF_CHAR</span> <span class="cp">&quot;%c&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/char.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1gadeb95e003163a9f1b7685798a2e57b1a"><span id="index-7"></span><span></span><span class="cp">#define</span> <span class="n">SF_COLOR_AHSL</span>   <span class="cp">&quot;(A:%g, H:%g, S:%g, L:%g)&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/color.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1gab0d10affcfe94a1cd393c753f4f1e103"><span id="index-8"></span><span></span><span class="cp">#define</span> <span class="n">SF_COLOR_ARGB</span>   <span class="cp">&quot;(A:%g, R:%g, G:%g, B:%g)&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/color.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga5e51c5832bd2240fdeb8af1a419352c1"><span id="index-9"></span><span></span><span class="cp">#define</span> <span class="n">SF_COLOR_ARGB16</span> <span class="cp">&quot;#%X&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/color.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga95d02fa2321e459f397cf4f0eeeccdde"><span id="index-10"></span><span></span><span class="cp">#define</span> <span class="n">SF_COLOR_ARGB32</span> <span class="cp">&quot;#%X&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/color.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga052d2600a9be8d578c5f50eefd9cce38"><span id="index-11"></span><span></span><span class="cp">#define</span> <span class="n">SF_COMPLEX</span>  <span class="cp">&quot;(%g + %g*i)&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/math/complex.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga3c2880d817fe1145fc3437fb5dbe8602"><span id="index-12"></span><span></span><span class="cp">#define</span> <span class="n">SF_F128</span> <span class="cp">&quot;%#g&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/float.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga7396150b15af317c893bbf726fda00dc"><span id="index-13"></span><span></span><span class="cp">#define</span> <span class="n">SF_F32</span>  <span class="cp">&quot;%#g&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/float.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1gada07618d52c76ed757d9b7ed962424dc"><span id="index-14"></span><span></span><span class="cp">#define</span> <span class="n">SF_F64</span>  <span class="cp">&quot;%#g&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/float.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga86b7f379cdf4bd5cf172e8b8c7b797f1"><span id="index-15"></span><span></span><span class="cp">#define</span> <span class="n">SF_F80</span>  <span class="cp">&quot;%#g&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/float.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga23aa64928e35a03b2a8a640d518f37c0"><span id="index-16"></span><span></span><span class="cp">#define</span> <span class="n">SF_FIXED</span>    <span class="cp">&quot;%0.8i&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/fixed.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga2c7bb6a144f56715a791e16fceb44d29"><span id="index-17"></span><span></span><span class="cp">#define</span> <span class="n">SF_FLOAT</span>    <span class="cp">&quot;%#g&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/float.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1gadfc0081c12e0dabee7d34d08c687aed6"><span id="index-18"></span><span></span><span class="cp">#define</span> <span class="n">SF_HEX_F128</span> <span class="cp">&quot;%#a&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/float.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1gaa0a46cb9e660917233450836304584d5"><span id="index-19"></span><span></span><span class="cp">#define</span> <span class="n">SF_HEX_F32</span>  <span class="cp">&quot;%#a&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/float.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga87e6fd9fb33491e1297f3dc6167cb7e9"><span id="index-20"></span><span></span><span class="cp">#define</span> <span class="n">SF_HEX_F64</span>  <span class="cp">&quot;%#a&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/float.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga4ee3d0aa923c4fab19a04723b03021fb"><span id="index-21"></span><span></span><span class="cp">#define</span> <span class="n">SF_HEX_F80</span>  <span class="cp">&quot;%#a&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/float.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1gafb16a685999736d58d6d7c7ecb2bf383"><span id="index-22"></span><span></span><span class="cp">#define</span> <span class="n">SF_HEX_FIXED</span>    <span class="cp">&quot;%#0.8X&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/fixed.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga530c92282f112d963dfa57c6ea4add5a"><span id="index-23"></span><span></span><span class="cp">#define</span> <span class="n">SF_HEX_FLOAT</span>    <span class="cp">&quot;%#g&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/float.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga93ba827275311057b2460d794e632793"><span id="index-24"></span><span></span><span class="cp">#define</span> <span class="n">SF_HEX_PTRDIFF</span>  <span class="cp">&quot;%#tx&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/pointer.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1gad5d2a7732c41ae272291412c03d20143"><span id="index-25"></span><span></span><span class="cp">#define</span> <span class="n">SF_HEX_Q128</span> <span class="cp">&quot;%#0.8X&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/fixed.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga47c22aaf6faba2c44022c1cab353c697"><span id="index-26"></span><span></span><span class="cp">#define</span> <span class="n">SF_HEX_Q16</span>  <span class="cp">&quot;%#0.8X&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/fixed.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga32813be1ad1607ba425686930cc7af34"><span id="index-27"></span><span></span><span class="cp">#define</span> <span class="n">SF_HEX_Q32</span>  <span class="cp">&quot;%#0.8X&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/fixed.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga5fd279b98125f9acdb7ee529b9df56b7"><span id="index-28"></span><span></span><span class="cp">#define</span> <span class="n">SF_HEX_Q64</span>  <span class="cp">&quot;%#0.8X&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/fixed.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga920299752842fa0fc2d4b85a63b98634"><span id="index-29"></span><span></span><span class="cp">#define</span> <span class="n">SF_HEX_SIZE</span> <span class="cp">&quot;%#zx&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/pointer.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga5986bdbc7f619f7532b57db2fe7bdc08"><span id="index-30"></span><span></span><span class="cp">#define</span> <span class="n">SF_HEX_U128</span> <span class="cp">&quot;%#llX&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/int.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga50e4242d2d60d401bb9e5214a2e9a5cb"><span id="index-31"></span><span></span><span class="cp">#define</span> <span class="n">SF_HEX_U16</span>  <span class="cp">&quot;%#X&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/int.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga97adbcdd5b7553c9ab9090bc8abdef01"><span id="index-32"></span><span></span><span class="cp">#define</span> <span class="n">SF_HEX_U32</span>  <span class="cp">&quot;%#X&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/int.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga0b244c742a6f6efa51a1fc79364da3e4"><span id="index-33"></span><span></span><span class="cp">#define</span> <span class="n">SF_HEX_U64</span>  <span class="cp">&quot;%#lX&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/int.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1gaf5cd77a366d88b1cf03e2f6c97e7d3eb"><span id="index-34"></span><span></span><span class="cp">#define</span> <span class="n">SF_HEX_U8</span>   <span class="cp">&quot;%#X&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/int.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1gaaba6d0cd5845251ea6ee9dacdfce579a"><span id="index-35"></span><span></span><span class="cp">#define</span> <span class="n">SF_HEX_UINT</span> <a class="reference internal" href="group_libccc.html#doxid-group-libccc-1gae7be8d94ef3433b06c349d722941d3b0"><span class="std std-ref">CONCAT</span></a><span></span><span class="p">(</span><span class="n">SF_HEX_U</span><span class="p">,</span> <a class="reference internal" href="group_libccc_config.html#doxid-group-libccc-config-1ga86d00a69dfe2e664c87a03499d7b5f5a"><span class="std std-ref">LIBCONFIG_BITS_UINT</span></a><span></span><span class="p">)</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/int.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga04bf51d0f16c64e501d680993dd55a62"><span id="index-36"></span><span></span><span class="cp">#define</span> <span class="n">SF_MATRIX</span>   <a class="reference internal" href="#doxid-group-libccc-format-1ga1abae8c7177d9e414546d5701e056ad5"><span class="std std-ref">SF_VECTOR</span></a></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/math/algebra.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga20f3d138906765d68e2dc4b83e156b8b"><span id="index-37"></span><span></span><span class="cp">#define</span> <span class="n">SF_MATRIX2D</span> <a class="reference internal" href="#doxid-group-libccc-format-1gabdc6cb5b4ad499b7fd9899cc98da566e"><span class="std std-ref">SF_VECTOR2D</span></a><span></span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="n">SF_VECTOR2D</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/math/algebra.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1gac22cd35a7d3b236bf736a8b21a3d6788"><span id="index-38"></span><span></span><span class="cp">#define</span> <span class="n">SF_MATRIX3D</span> <a class="reference internal" href="#doxid-group-libccc-format-1gac1c92f27a83b78bccde8c955c0651091"><span class="std std-ref">SF_VECTOR3D</span></a><span></span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="n">SF_VECTOR3D</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="n">SF_VECTOR3D</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/math/algebra.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1gabdabc3dac3755bbfb1593767a24f7040"><span id="index-39"></span><span></span><span class="cp">#define</span> <span class="n">SF_MATRIX4D</span> <a class="reference internal" href="#doxid-group-libccc-format-1gac09d2d156555c72eea16ee6e5334a33e"><span class="std std-ref">SF_VECTOR4D</span></a><span></span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="n">SF_VECTOR4D</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="n">SF_VECTOR4D</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="n">SF_VECTOR4D</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/math/algebra.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga6bd196a4b3ff7888125806c03861af6c"><span id="index-40"></span><span></span><span class="cp">#define</span> <span class="n">SF_MEM</span>(N)   <a class="reference internal" href="#doxid-group-libccc-format-1gaaeee7ccf0949a808e7337e4fbd768bf2"><span class="std std-ref">SF_MEMORY</span></a><span></span><span class="p">(</span><span class="n">N</span><span class="p">)</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/memory.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1gaaeee7ccf0949a808e7337e4fbd768bf2"><span id="index-41"></span><span></span><span class="cp">#define</span> <span class="n">SF_MEMORY</span>(N)    <span class="cp">&quot;%.&quot;#N&quot;s&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/memory.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga65cb4956955303181cf64d6cd3f59039"><span id="index-42"></span><span></span><span class="cp">#define</span> <span class="n">SF_POINTER</span>  <span class="cp">&quot;%#p&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/pointer.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga4c474c9f0322539f8b2bac80f94bbfbe"><span id="index-43"></span><span></span><span class="cp">#define</span> <span class="n">SF_PTR</span>  <a class="reference internal" href="#doxid-group-libccc-format-1ga65cb4956955303181cf64d6cd3f59039"><span class="std std-ref">SF_POINTER</span></a></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/pointer.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga55a20a4455ac6568345535caa1684e52"><span id="index-44"></span><span></span><span class="cp">#define</span> <span class="n">SF_PTRDIFF</span>  <span class="cp">&quot;%ti&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/pointer.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga0bef7457b90bc7fc38c98305fd70aaf4"><span id="index-45"></span><span></span><span class="cp">#define</span> <span class="n">SF_Q128</span> <span class="cp">&quot;%0.8i&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/fixed.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1gaf89dda22d106feb9950af35268629228"><span id="index-46"></span><span></span><span class="cp">#define</span> <span class="n">SF_Q16</span>  <span class="cp">&quot;%0.8i&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/fixed.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga34c1798992966d7966555950c847bb78"><span id="index-47"></span><span></span><span class="cp">#define</span> <span class="n">SF_Q32</span>  <span class="cp">&quot;%0.8i&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/fixed.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1gacf5ebfb8dd7d0fd1ba32ff3ded6a8dca"><span id="index-48"></span><span></span><span class="cp">#define</span> <span class="n">SF_Q64</span>  <span class="cp">&quot;%0.8i&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/fixed.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1gaf1a8728c8dc484e9445918beed208264"><span id="index-49"></span><span></span><span class="cp">#define</span> <span class="n">SF_S128</span> <span class="cp">&quot;%lli&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/int.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga5c2a3dfdd17550bdbf4342a5a76904ef"><span id="index-50"></span><span></span><span class="cp">#define</span> <span class="n">SF_S16</span>  <span class="cp">&quot;%i&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/int.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1gae178d669ff8bc0ae72a52f39afcbcf21"><span id="index-51"></span><span></span><span class="cp">#define</span> <span class="n">SF_S32</span>  <span class="cp">&quot;%i&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/int.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga09caa2ed1dfe87e8baa756a4ab70376e"><span id="index-52"></span><span></span><span class="cp">#define</span> <span class="n">SF_S64</span>  <span class="cp">&quot;%li&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/int.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga0b2a073f52c7c326100f3c29db7da3c4"><span id="index-53"></span><span></span><span class="cp">#define</span> <span class="n">SF_S8</span>   <span class="cp">&quot;%i&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/int.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga245787ae331a0990f650d27d2093cf5a"><span id="index-54"></span><span></span><span class="cp">#define</span> <span class="n">SF_SINT</span> <a class="reference internal" href="group_libccc.html#doxid-group-libccc-1gae7be8d94ef3433b06c349d722941d3b0"><span class="std std-ref">CONCAT</span></a><span></span><span class="p">(</span><span class="n">SF_S</span><span class="p">,</span>     <a class="reference internal" href="group_libccc_config.html#doxid-group-libccc-config-1gaac372d149c7d1452ad8f81414a6c75ab"><span class="std std-ref">LIBCONFIG_BITS_SINT</span></a><span></span><span class="p">)</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/int.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga0d93405d64dd70fa08770a01b0bb46bb"><span id="index-55"></span><span></span><span class="cp">#define</span> <span class="n">SF_SINTMAX</span>  <span class="cp">&quot;%ji&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/pointer.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1gac2a1ee896a497e3513bc5f64e8f36660"><span id="index-56"></span><span></span><span class="cp">#define</span> <span class="n">SF_SINTPTR</span>  <span class="cp">&quot;%zi&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/pointer.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1gaec689040559778c3ebe74ee72b4c85ea"><span id="index-57"></span><span></span><span class="cp">#define</span> <span class="n">SF_SIZE</span> <span class="cp">&quot;%zu&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/pointer.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1gaf1fd757108641dfda948953fa693aeae"><span id="index-58"></span><span></span><span class="cp">#define</span> <span class="n">SF_STR</span>  <a class="reference internal" href="#doxid-group-libccc-format-1ga8f0e5a6c0ee0236585ce7ab3a77c7fd5"><span class="std std-ref">SF_STRING</span></a></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/string.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga8f0e5a6c0ee0236585ce7ab3a77c7fd5"><span id="index-59"></span><span></span><span class="cp">#define</span> <span class="n">SF_STRING</span>   <span class="cp">&quot;%s&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/string.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga75fb9a5abd207eb9a6bf15b73f0492da"><span id="index-60"></span><span></span><span class="cp">#define</span> <span class="n">SF_U128</span> <span class="cp">&quot;%llu&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/int.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1gac8cffa92b31df1ad71083a2004879919"><span id="index-61"></span><span></span><span class="cp">#define</span> <span class="n">SF_U16</span>  <span class="cp">&quot;%u&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/int.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1gafccc741f52f4afb4bc8bbe6374ce7431"><span id="index-62"></span><span></span><span class="cp">#define</span> <span class="n">SF_U32</span>  <span class="cp">&quot;%u&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/int.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1gade0fc6b8e6e72778c6a43942ed89960e"><span id="index-63"></span><span></span><span class="cp">#define</span> <span class="n">SF_U64</span>  <span class="cp">&quot;%lu&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/int.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga2f046eef791d3701019419dafe5f9e46"><span id="index-64"></span><span></span><span class="cp">#define</span> <span class="n">SF_U8</span>   <span class="cp">&quot;%u&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/int.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga7723a6a3ee6dc5bca4ef0cf7cdf5167b"><span id="index-65"></span><span></span><span class="cp">#define</span> <span class="n">SF_UINT</span> <a class="reference internal" href="group_libccc.html#doxid-group-libccc-1gae7be8d94ef3433b06c349d722941d3b0"><span class="std std-ref">CONCAT</span></a><span></span><span class="p">(</span><span class="n">SF_U</span><span class="p">,</span>     <a class="reference internal" href="group_libccc_config.html#doxid-group-libccc-config-1ga86d00a69dfe2e664c87a03499d7b5f5a"><span class="std std-ref">LIBCONFIG_BITS_UINT</span></a><span></span><span class="p">)</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/int.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1gae837db029213378e6e27a5a900f3fc14"><span id="index-66"></span><span></span><span class="cp">#define</span> <span class="n">SF_UINTMAX</span>  <span class="cp">&quot;%ju&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/pointer.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1gaa3bf1bd132d706a3d79a248c00a11e28"><span id="index-67"></span><span></span><span class="cp">#define</span> <span class="n">SF_UINTPTR</span>  <span class="cp">&quot;%zu&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/pointer.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga7ad045578d9c7d8596faacf1ed29baed"><span id="index-68"></span><span></span><span class="cp">#define</span> <span class="n">SF_UTF8</span> <span class="cp">&quot;%c&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/char.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga1abae8c7177d9e414546d5701e056ad5"><span id="index-69"></span><span></span><span class="cp">#define</span> <span class="n">SF_VECTOR</span>   <span class="cp">&quot;(%g)&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/math/algebra.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1gabdc6cb5b4ad499b7fd9899cc98da566e"><span id="index-70"></span><span></span><span class="cp">#define</span> <span class="n">SF_VECTOR2D</span> <span class="cp">&quot;(%g, %g)&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/math/algebra.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1gac1c92f27a83b78bccde8c955c0651091"><span id="index-71"></span><span></span><span class="cp">#define</span> <span class="n">SF_VECTOR3D</span> <span class="cp">&quot;(%g, %g, %g)&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/math/algebra.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1gac09d2d156555c72eea16ee6e5334a33e"><span id="index-72"></span><span></span><span class="cp">#define</span> <span class="n">SF_VECTOR4D</span> <span class="cp">&quot;(%g, %g, %g, %g)&quot;</span></pre>
+<p class="rubric">See also:</p>
+<p><code class="docutils literal notranslate"><span class="pre">libccc/math/algebra.h</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1gacc97b00fd8f86c2e590b7fc53b9ebf21"><span id="index-73"></span><span></span><span class="cp">#define</span> <span class="n">String_Build</span>    <span class="cp">String_Format</span></pre>
+<p>[<em>Alias for</em> #String_Format]</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1gade57a00d12aac06b9768603513a10410"><span id="index-74"></span><span></span><span class="cp">#define</span> <span class="n">String_Build_N</span>  <span class="cp">String_Format_N</span></pre>
+<p>[<em>Alias for</em> #String_Format_N]</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga0b927e0f29d106ed722ce8d7fd61b7c9"><span id="index-75"></span><span></span><span class="cp">#define</span> <span class="n">String_Build_N_VA</span>   <a class="reference internal" href="#doxid-group-libccc-format-1gaf792fdbd3c5bb0f54eef99462c8b80c7"><span class="std std-ref">String_Format_N_VA</span></a></pre>
+<p>[<em>Alias for</em> <a class="reference internal" href="#doxid-group-libccc-format-1gaf792fdbd3c5bb0f54eef99462c8b80c7"><span class="std std-ref">String_Format_N_VA</span></a>]</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga164c8fcd4f8b160918efd724f7370683"><span id="index-76"></span><span></span><span class="cp">#define</span> <span class="n">String_Build_VA</span> <a class="reference internal" href="#doxid-group-libccc-format-1ga7f3453e9cae34ed342a4ebe457b378cb"><span class="std std-ref">String_Format_VA</span></a></pre>
+<p>[<em>Alias for</em> <a class="reference internal" href="#doxid-group-libccc-format-1ga7f3453e9cae34ed342a4ebe457b378cb"><span class="std std-ref">String_Format_VA</span></a>]</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1gafae038f477a52abad1c3db5215bf9d50"><span id="index-77"></span><span></span><span class="cp">#define</span> <span class="n">c_asprintf</span>  <span class="cp">String_Format</span></pre>
+<p>[<em>Alias for</em> #String_Format]</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1gab0a5026241da51c0a778c47aafcce5d8"><span id="index-78"></span><span></span><span class="cp">#define</span> <span class="n">c_snprintf</span>  <span class="cp">String_Format_N</span></pre>
+<p>[<em>Alias for</em> #String_Format_N]</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga547b820d07e6b57ec93c4069217656b5"><span id="index-79"></span><span></span><span class="cp">#define</span> <span class="n">c_strfmt</span>    <span class="cp">String_Format</span></pre>
+<p>[<em>Alias for</em> #String_Format]</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga8702bd0fce53ba9c47f75931af94cacd"><span id="index-80"></span><span></span><span class="cp">#define</span> <span class="n">c_strfmt_va</span> <a class="reference internal" href="#doxid-group-libccc-format-1ga7f3453e9cae34ed342a4ebe457b378cb"><span class="std std-ref">String_Format_VA</span></a></pre>
+<p>[<em>Alias for</em> <a class="reference internal" href="#doxid-group-libccc-format-1ga7f3453e9cae34ed342a4ebe457b378cb"><span class="std std-ref">String_Format_VA</span></a>]</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1gaec22df63b1874a7497781018cbf878ed"><span id="index-81"></span><span></span><span class="cp">#define</span> <span class="n">c_strformat</span> <span class="cp">String_Format</span></pre>
+<p>[<em>Alias for</em> #String_Format]</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga21a6e87039779b39aed5cf0578da4f52"><span id="index-82"></span><span></span><span class="cp">#define</span> <span class="n">c_strformat_va</span>  <a class="reference internal" href="#doxid-group-libccc-format-1ga7f3453e9cae34ed342a4ebe457b378cb"><span class="std std-ref">String_Format_VA</span></a></pre>
+<p>[<em>Alias for</em> <a class="reference internal" href="#doxid-group-libccc-format-1ga7f3453e9cae34ed342a4ebe457b378cb"><span class="std std-ref">String_Format_VA</span></a>]</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1gabe340a7004bdbe20915ebe92a4192c42"><span id="index-83"></span><span></span><span class="cp">#define</span> <span class="n">c_strnfmt</span>   <span class="cp">String_Format_N</span></pre>
+<p>[<em>Alias for</em> #String_Format_N]</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1gacad3650aa3c96b0300609c2365b6fab0"><span id="index-84"></span><span></span><span class="cp">#define</span> <span class="n">c_strnfmt_va</span>    <a class="reference internal" href="#doxid-group-libccc-format-1gaf792fdbd3c5bb0f54eef99462c8b80c7"><span class="std std-ref">String_Format_N_VA</span></a></pre>
+<p>[<em>Alias for</em> <a class="reference internal" href="#doxid-group-libccc-format-1gaf792fdbd3c5bb0f54eef99462c8b80c7"><span class="std std-ref">String_Format_N_VA</span></a>]</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga339619f37269bf313930b607d2eb086b"><span id="index-85"></span><span></span><span class="cp">#define</span> <span class="n">c_strnformat</span>    <span class="cp">String_Format_N</span></pre>
+<p>[<em>Alias for</em> #String_Format_N]</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1gaeeb1d520f3a7545291703c4c55fd75e8"><span id="index-86"></span><span></span><span class="cp">#define</span> <span class="n">c_strnformat_va</span> <a class="reference internal" href="#doxid-group-libccc-format-1gaf792fdbd3c5bb0f54eef99462c8b80c7"><span class="std std-ref">String_Format_N_VA</span></a></pre>
+<p>[<em>Alias for</em> <a class="reference internal" href="#doxid-group-libccc-format-1gaf792fdbd3c5bb0f54eef99462c8b80c7"><span class="std std-ref">String_Format_N_VA</span></a>]</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1gad3ebb60ff16369cd2d55992a39b1cd9d"><span id="index-87"></span><span></span><span class="cp">#define</span> <span class="n">c_vasprintf</span> <a class="reference internal" href="#doxid-group-libccc-format-1ga7f3453e9cae34ed342a4ebe457b378cb"><span class="std std-ref">String_Format_VA</span></a></pre>
+<p>[<em>Alias for</em> <a class="reference internal" href="#doxid-group-libccc-format-1ga7f3453e9cae34ed342a4ebe457b378cb"><span class="std std-ref">String_Format_VA</span></a>]</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga87a6991aa4af588a65550ca5675fd385"><span id="index-88"></span><span></span><span class="cp">#define</span> <span class="n">c_vsnprintf</span> <a class="reference internal" href="#doxid-group-libccc-format-1gaf792fdbd3c5bb0f54eef99462c8b80c7"><span class="std std-ref">String_Format_N_VA</span></a></pre>
+<p>[<em>Alias for</em> <a class="reference internal" href="#doxid-group-libccc-format-1gaf792fdbd3c5bb0f54eef99462c8b80c7"><span class="std std-ref">String_Format_N_VA</span></a>]</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="group_libccc_color.html" class="btn btn-neutral float-right" title="13) libccc/color" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="group_libccc_stringarray.html" class="btn btn-neutral float-left" title="11) libccc/stringarray" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Free &amp; Open Source: MIT License
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

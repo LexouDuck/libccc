@@ -1,0 +1,302 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>35) libccc/monad/queue &mdash; libccc 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/target-highlight.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="_static/js/custom.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="struct queue_T" href="struct_queue_T.html" />
+    <link rel="prev" title="struct stack_T" href="struct_stack_T.html" />
+	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
+	
+	<meta name="Description" content="35) libccc/monad/queue">
+	<meta property="og:description" content="35) libccc/monad/queue">
+	<meta property="og:title" content="libccc 1.0 documentation - 35) libccc/monad/queue">
+	<meta property="og:image" content="_static/images/libccc_icon.png">
+	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="380" />
+	<meta property="og:image:height" content="380" />
+	<meta property="og:url" content="group_libccc_monad_queue.html">
+	<meta property="og:site_name" content="libccc 1.0 documentation">
+
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> libccc
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="group_libccc.html">01) libccc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">02) libccc/bool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">03) libccc/int</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_fixed.html">04) libccc/fixed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_float.html">05) libccc/float</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointer.html">06) libccc/pointer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointerarray.html">07) libccc/pointerarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_memory.html">08) libccc/memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">09) libccc/char</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">10) libccc/string</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_stringarray.html">11) libccc/stringarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">12) libccc/format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_color.html">13) libccc/color</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">14) libccc/sys/io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_ansi.html">15) libccc/sys/ansi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">18) libccc/sys/logger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_time.html">20) libccc/sys/time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_constants.html">21) libccc/math/constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_float.html">22) libccc/math/float</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_fixed.html">23) libccc/math/fixed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_vlq.html">24) libccc/math/vlq</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_stat.html">25) libccc/math/stat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_random.html">26) libccc/math/random</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">27) libccc/math/complex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra.html">28) libccc/math/algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_array.html">32) libccc/monad/array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_list.html">33) libccc/monad/list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_stack.html">34) libccc/monad/stack</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">35) libccc/monad/queue</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="struct_queue_T.html">struct queue_T</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#detailed-documentation">Detailed Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_tree.html">36) libccc/monad/tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_keyval.html">37) libccc/monad/keyval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_dict.html">38) libccc/monad/dict</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_object.html">39) libccc/monad/object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_config.html">Libccc_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_ascii.html">Libccc_ascii</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_regex.html">Libccc_regex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_unicode.html">Libccc_unicode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math.html">Libccc_math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_sort.html">Libccc_array_sort</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_convert.html">Libccc_monad_convert</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">libccc</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>35) libccc/monad/queue</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="libccc-monad-queue">
+<span id="doxid-group-libccc-monad-queue"></span><span id="index-0"></span><h1>35) libccc/monad/queue<a class="headerlink" href="#libccc-monad-queue" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>This header defines a simple queue (LIFO) type and utility functions for it. <a class="reference internal" href="#details-group-libccc-monad-queue"><span class="std std-ref">More…</span></a></p>
+<pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// typedefs</span>
+
+<span class="k">typedef</span> <span class="k">struct</span> <a class="reference internal" href="struct_queue_T.html#doxid-structqueue-t"><span class="std std-ref">queue_T</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-monad-queue-1ga6f1bc9385bc4e05f8677a5dff47d48a3"><span class="std std-ref">s_queue_T</span></a><span></span><span class="p">;</span>
+
+<span class="c1">// structs</span>
+
+<span class="k">struct</span> <a class="reference internal" href="struct_queue_T.html#doxid-structqueue-t"><span class="std std-ref">queue_T</span></a><span></span><span class="p">;</span>
+
+<span class="c1">// macros</span>
+
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-queue-1ga0acb682b8260ab1c60b918599864e2e5"><span></span><span class="n">T</span></span><span></span>  <span class="kt">void</span><span class="o">*</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-queue-1ga9b10f19a4f29fd2599888400adc48b0e"><span></span><span class="n">T_DEFAULT</span></span><span></span>  <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1ga070d2ce7b6bb7e5c05602aa8c308d0c4"><span class="std std-ref">NULL</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-queue-1gab0de29dd51b2d0bc92d331eafb977751"><span></span><span class="n">T_EQUALS</span></span><span></span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span> <span class="p">((</span><span class="n">A</span><span class="p">)</span> <span class="o">==</span><span class="p">(</span><span class="n">B</span><span class="p">))</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-queue-1ga5e80991e4813efc9623f80666183e374"><span></span><span class="n">queue_T</span></span><span></span>    <a class="reference internal" href="group_libccc.html#doxid-group-libccc-1gae7be8d94ef3433b06c349d722941d3b0"><span class="std std-ref">CONCAT</span></a><span></span><span class="p">(</span><span class="n">queue</span><span class="p">,</span> <span></span><span class="n">T_NAME</span><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-queue-1ga037a07813930a8376fe8477de8212600"><span></span><span class="kt">s_queue_T</span></span><span></span>  <a class="reference internal" href="group_libccc.html#doxid-group-libccc-1gae7be8d94ef3433b06c349d722941d3b0"><span class="std std-ref">CONCAT</span></a><span></span><span class="p">(</span><span class="kt">s_queue</span><span class="p">,</span> <span></span><span class="n">T_NAME</span><span></span><span class="p">)</span></pre>
+</div>
+<div class="section" id="detailed-documentation">
+<span id="details-group-libccc-monad-queue"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline">¶</a></h2>
+<p>This header defines a simple queue (LIFO) type and utility functions for it.</p>
+<div class="section" id="typedefs">
+<h3>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-queue-1ga6f1bc9385bc4e05f8677a5dff47d48a3"><span id="index-1"></span><span></span><span class="k">typedef</span> <span class="k">struct</span> <a class="reference internal" href="struct_queue_T.html#doxid-structqueue-t"><span class="std std-ref">queue_T</span></a><span></span> <span class="kt">s_queue_T</span></pre>
+<p>A simple queue/node/leaf struct, stores an array of “branches” (ie: sub-nodes).</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="struct_queue_T.html" class="btn btn-neutral float-right" title="struct queue_T" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="struct_stack_T.html" class="btn btn-neutral float-left" title="struct stack_T" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Free &amp; Open Source: MIT License
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

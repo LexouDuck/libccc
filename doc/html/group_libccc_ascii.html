@@ -1,0 +1,826 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Libccc_ascii &mdash; libccc 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/target-highlight.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="_static/js/custom.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Libccc_regex" href="group_libccc_regex.html" />
+    <link rel="prev" title="Libccc_config" href="group_libccc_config.html" />
+	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
+	
+	<meta name="Description" content="Libccc_ascii">
+	<meta property="og:description" content="Libccc_ascii">
+	<meta property="og:title" content="libccc 1.0 documentation - Libccc_ascii">
+	<meta property="og:image" content="_static/images/libccc_icon.png">
+	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="380" />
+	<meta property="og:image:height" content="380" />
+	<meta property="og:url" content="group_libccc_ascii.html">
+	<meta property="og:site_name" content="libccc 1.0 documentation">
+
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> libccc
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="group_libccc.html">01) libccc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">02) libccc/bool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">03) libccc/int</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_fixed.html">04) libccc/fixed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_float.html">05) libccc/float</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointer.html">06) libccc/pointer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointerarray.html">07) libccc/pointerarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_memory.html">08) libccc/memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">09) libccc/char</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">10) libccc/string</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_stringarray.html">11) libccc/stringarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">12) libccc/format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_color.html">13) libccc/color</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">14) libccc/sys/io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_ansi.html">15) libccc/sys/ansi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">18) libccc/sys/logger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_time.html">20) libccc/sys/time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_constants.html">21) libccc/math/constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_float.html">22) libccc/math/float</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_fixed.html">23) libccc/math/fixed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_vlq.html">24) libccc/math/vlq</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_stat.html">25) libccc/math/stat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_random.html">26) libccc/math/random</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">27) libccc/math/complex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra.html">28) libccc/math/algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_array.html">32) libccc/monad/array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_list.html">33) libccc/monad/list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_stack.html">34) libccc/monad/stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_queue.html">35) libccc/monad/queue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_tree.html">36) libccc/monad/tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_keyval.html">37) libccc/monad/keyval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_dict.html">38) libccc/monad/dict</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_object.html">39) libccc/monad/object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_config.html">Libccc_config</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Libccc_ascii</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#detailed-documentation">Detailed Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#global-functions">Global Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#macros">Macros</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_regex.html">Libccc_regex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_unicode.html">Libccc_unicode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math.html">Libccc_math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_sort.html">Libccc_array_sort</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_convert.html">Libccc_monad_convert</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">libccc</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Libccc_ascii</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="libccc-ascii">
+<span id="doxid-group-libccc-ascii"></span><span id="index-0"></span><h1>Libccc_ascii<a class="headerlink" href="#libccc-ascii" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>This header defines all the functions related to ASCII text (7-bit chars). <a class="reference internal" href="#details-group-libccc-ascii"><span class="std std-ref">More…</span></a></p>
+<pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// global functions</span>
+
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-ascii-1gac501fabf1740353ed91a75bc43e33d9a"><span class="std std-ref">ASCII_IsLetter</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span> <span class="n">c</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-ascii-1gac5ebcd3f3082bc24d2f4b035c5bb2a68"><span class="std std-ref">ASCII_IsUppercase</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span> <span class="n">c</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-ascii-1ga730c12083cd34e5d1ef07cb59ea49a8f"><span class="std std-ref">ASCII_IsLowercase</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span> <span class="n">c</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-ascii-1gad87287b3dbfaa97761956800e1c8dce8"><span class="std std-ref">ASCII_IsAlphaNumeric</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span> <span class="n">c</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-ascii-1ga5bcb2ee1192c1f09afcce9a899ececf7"><span class="std std-ref">ASCII_IsDigit_Decimal</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span> <span class="n">c</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-ascii-1ga829e46fb255c56f0b53075312056aeea"><span class="std std-ref">ASCII_IsDigit_Hexadecimal</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span> <span class="n">c</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-ascii-1ga3f390d1c46f671160210e49e78da4f9c"><span class="std std-ref">ASCII_IsDigit_Octal</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span> <span class="n">c</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-ascii-1ga532ce5e35b4450d1e8ac48dc08a1954b"><span class="std std-ref">ASCII_IsDigit_Binary</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span> <span class="n">c</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-ascii-1gae57c5e1d73f73b4fb45f4beb08157aad"><span class="std std-ref">ASCII_IsWhiteSpace</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span> <span class="n">c</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-ascii-1ga4733e7f82f4a67196b21d9e28afdd281"><span class="std std-ref">ASCII_IsPunctuation</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span> <span class="n">c</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-ascii-1ga07c5f29503da0e578d1b5b960eb8e10c"><span class="std std-ref">ASCII_IsPrintable</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span> <span class="n">c</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-ascii-1ga13af91c1c4c4c94440e60f8d367edbc3"><span class="std std-ref">ASCII_IsValid</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span> <span class="n">c</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-ascii-1gad2d07267144ab926cb1427b62144efec"><span class="std std-ref">ASCII_IsInCharset</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span> <span class="n">c</span><span class="p">,</span> <a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">charset</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-ascii-1gad1fe53453c41d7913dd007385d166785"><span class="std std-ref">ASCII_ToUppercase</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span> <span class="n">c</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-ascii-1ga21976cccab7749b2fad20e1f2f74198b"><span class="std std-ref">ASCII_ToLowercase</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span> <span class="n">c</span><span class="p">);</span>
+
+<span class="c1">// macros</span>
+
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-ascii-1ga431f0a8f0b358291a41935d48371dd4f"><span></span><span class="n">ASCII_IsAlNum</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-ascii-1gad87287b3dbfaa97761956800e1c8dce8"><span class="std std-ref">ASCII_IsAlphaNumeric</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-ascii-1ga651a160030e0b0cb33f82c52b523a6e6"><span></span><span class="n">ASCII_IsAlpha</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-ascii-1gac501fabf1740353ed91a75bc43e33d9a"><span class="std std-ref">ASCII_IsLetter</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-ascii-1ga36290d731c530c7b9aea6c055e76a23b"><span></span><span class="n">ASCII_IsDigit</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-ascii-1ga5bcb2ee1192c1f09afcce9a899ececf7"><span class="std std-ref">ASCII_IsDigit_Decimal</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-ascii-1gabbb70eb952ff64ab9170b5d7a779f269"><span></span><span class="n">ASCII_IsDigit_Bin</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-ascii-1ga532ce5e35b4450d1e8ac48dc08a1954b"><span class="std std-ref">ASCII_IsDigit_Binary</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-ascii-1ga7287c4b05ec17961d3cff0b4a42d2f9a"><span></span><span class="n">ASCII_IsDigit_Dec</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-ascii-1ga5bcb2ee1192c1f09afcce9a899ececf7"><span class="std std-ref">ASCII_IsDigit_Decimal</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-ascii-1ga635cdf4821fe78cf37db652b7e2e5aa0"><span></span><span class="n">ASCII_IsDigit_Hex</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-ascii-1ga829e46fb255c56f0b53075312056aeea"><span class="std std-ref">ASCII_IsDigit_Hexadecimal</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-ascii-1ga7b36a3279614812e780179fd1f4677ea"><span></span><span class="n">ASCII_IsDigit_Oct</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-ascii-1ga3f390d1c46f671160210e49e78da4f9c"><span class="std std-ref">ASCII_IsDigit_Octal</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-ascii-1ga8dfceef0b4057b270ef67bef27e6d3c6"><span></span><span class="n">ASCII_IsLower</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-ascii-1ga730c12083cd34e5d1ef07cb59ea49a8f"><span class="std std-ref">ASCII_IsLowercase</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-ascii-1ga93d7a31db818cc757db62466c4b8244a"><span></span><span class="n">ASCII_IsPrint</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-ascii-1ga07c5f29503da0e578d1b5b960eb8e10c"><span class="std std-ref">ASCII_IsPrintable</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-ascii-1ga7554d6f383027563078b5146c6a827fd"><span></span><span class="n">ASCII_IsPunct</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-ascii-1ga4733e7f82f4a67196b21d9e28afdd281"><span class="std std-ref">ASCII_IsPunctuation</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-ascii-1gaf2cf4dde77229d691401e1b43105cc35"><span></span><span class="n">ASCII_IsSpace</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-ascii-1gae57c5e1d73f73b4fb45f4beb08157aad"><span class="std std-ref">ASCII_IsWhiteSpace</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-ascii-1gae2ecc6985745af9de9b4bfcb65815cec"><span></span><span class="n">ASCII_IsUpper</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-ascii-1gac5ebcd3f3082bc24d2f4b035c5bb2a68"><span class="std std-ref">ASCII_IsUppercase</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-ascii-1gaffafa54ceab0d7df8158cebcbfe89a9d"><span></span><span class="n">ASCII_ToLower</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-ascii-1ga21976cccab7749b2fad20e1f2f74198b"><span class="std std-ref">ASCII_ToLowercase</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-ascii-1ga94915a0dc34f3a367bd72b896769e013"><span></span><span class="n">ASCII_ToUpper</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-ascii-1gad1fe53453c41d7913dd007385d166785"><span class="std std-ref">ASCII_ToUppercase</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1ga19de96cc638f800ffe59c8b72c3fc6be"><span class="std std-ref">C0_ACK</span></a><span></span>   <span class="mh">0x06</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1ga219144e9843ed9440467a54a573f8391"><span class="std std-ref">C0_BEL</span></a><span></span>   <span class="mh">0x07</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1ga0ce7e017ced2194324d8b593b07a7c23"><span class="std std-ref">C0_BS</span></a><span></span>    <span class="mh">0x08</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1ga8ab4b09b1a8ee5bd8f93d260a335d774"><span class="std std-ref">C0_CAN</span></a><span></span>   <span class="mh">0x18</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1ga2de57866e2cb798d98898aca5fe9af1a"><span class="std std-ref">C0_CR</span></a><span></span>    <span class="mh">0x0D</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1gaa047a060a08b14cd1717a3cb96f7338f"><span class="std std-ref">C0_DC1</span></a><span></span>   <span class="mh">0x11</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1ga0d9c63444bd452a057ecadfe9d814c13"><span class="std std-ref">C0_DC2</span></a><span></span>   <span class="mh">0x12</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1gaa2084e6b9ef46897a709082f0401d031"><span class="std std-ref">C0_DC3</span></a><span></span>   <span class="mh">0x13</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1ga61d54f078d1a7a449141313e7fd7b91e"><span class="std std-ref">C0_DC4</span></a><span></span>   <span class="mh">0x14</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1gad8f4cafcf5056aa0bc8cd7702858871d"><span class="std std-ref">C0_DEL</span></a><span></span>   <span class="mh">0x7F</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1gadf66c2f62989c45fe16f109585456b42"><span class="std std-ref">C0_DLE</span></a><span></span>   <span class="mh">0x10</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1gab094f30da62b792585c07fbdba2e5648"><span class="std std-ref">C0_EM</span></a><span></span>    <span class="mh">0x19</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1ga581eb8834c0e28182981d7dc64e42036"><span class="std std-ref">C0_ENQ</span></a><span></span>   <span class="mh">0x05</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1ga5ced8b8b46cd671deeb0a061facdf19b"><span class="std std-ref">C0_EOT</span></a><span></span>   <span class="mh">0x04</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1ga509be7ab53dc6af71066279cbc868941"><span class="std std-ref">C0_ESC</span></a><span></span>   <span class="mh">0x1B</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1gae8315f0d39f9b83cb55fbb02fa3d77b7"><span class="std std-ref">C0_ETB</span></a><span></span>   <span class="mh">0x17</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1ga80ad7049d0e6c4d935ff61af24c5edfe"><span class="std std-ref">C0_ETX</span></a><span></span>   <span class="mh">0x03</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1ga8153ff8f255e6a99c00bbae10fa7d524"><span class="std std-ref">C0_FF</span></a><span></span>    <span class="mh">0x0C</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1ga5ec6cbc5f7990daa9a1c8c32283c53a5"><span class="std std-ref">C0_FS</span></a><span></span>    <span class="mh">0x1C</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1ga308b9d229b2e2bdd221cab934c4d5b13"><span class="std std-ref">C0_GS</span></a><span></span>    <span class="mh">0x1D</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1gacbd12780bf8565ea3dd3404024c713bf"><span class="std std-ref">C0_HT</span></a><span></span>    <span class="mh">0x09</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1ga56533b3aed07244bd9419c1954f0978d"><span class="std std-ref">C0_LF</span></a><span></span>    <span class="mh">0x0A</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1ga69a675602e0f6d194d12e62d80996aaf"><span class="std std-ref">C0_NAK</span></a><span></span>   <span class="mh">0x15</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1ga532255139ed130b801cd358dbf1834cb"><span class="std std-ref">C0_NUL</span></a><span></span>   <span class="mh">0x00</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1gaae6c21b0c4658d32dc69d35ee22e1525"><span class="std std-ref">C0_RS</span></a><span></span>    <span class="mh">0x1E</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1ga2cabd5f3cf743c217c60f049d725936e"><span class="std std-ref">C0_SI</span></a><span></span>    <span class="mh">0x0F</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1gacf84924d510ab53368836bfd520cfbb7"><span class="std std-ref">C0_SO</span></a><span></span>    <span class="mh">0x0E</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1ga7235cf6bb0b46cbdb3bc744cbab27072"><span class="std std-ref">C0_SOH</span></a><span></span>   <span class="mh">0x01</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1gad91430fd6cf65df00b728178bef5c43a"><span class="std std-ref">C0_STX</span></a><span></span>   <span class="mh">0x02</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1gafd27760c3fbdd6783d0009178cc3e630"><span class="std std-ref">C0_SUB</span></a><span></span>   <span class="mh">0x1A</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1gaf34fcaed6bf124e19a3d73ff356d1a2d"><span class="std std-ref">C0_SYN</span></a><span></span>   <span class="mh">0x16</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1gab2a220511c9879831d2c674574126be2"><span class="std std-ref">C0_US</span></a><span></span>    <span class="mh">0x1F</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1ga4ddf7b389e0d352ae0755b8b2a75868b"><span class="std std-ref">C0_VT</span></a><span></span>    <span class="mh">0x0B</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1ga22af3e339b04871ed2f8ccc6a95b8d24"><span class="std std-ref">C1_APC</span></a><span></span>   <span class="mh">0x9F</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1gab2f920308cc8f816da41c5165c9bf7b7"><span class="std std-ref">C1_BPH</span></a><span></span>   <span class="mh">0x82</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1gad26212499a46d04063b2e60708c54f68"><span class="std std-ref">C1_CCH</span></a><span></span>   <span class="mh">0x94</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1ga8335b1f6f77d9d0e155fa817d7476f0c"><span class="std std-ref">C1_CSI</span></a><span></span>   <span class="mh">0x9B</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1gae9c95b6c8ef7636899f1c6f0fdac6bab"><span class="std std-ref">C1_DCS</span></a><span></span>   <span class="mh">0x90</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1ga3e8ee77cec9e7da5e9caf088036e5c74"><span class="std std-ref">C1_EPA</span></a><span></span>   <span class="mh">0x97</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1gadb002acd25948e6943d161b1a655c6c9"><span class="std std-ref">C1_ESA</span></a><span></span>   <span class="mh">0x87</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1ga5249cdc42954d97c40a9f0fe90990fe2"><span class="std std-ref">C1_HOP</span></a><span></span>   <span class="mh">0x81</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1ga1108b59b9543e015085746be55be76c9"><span class="std std-ref">C1_HTJ</span></a><span></span>   <span class="mh">0x89</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1gac05b61120402065a6070c71d1c97ea17"><span class="std std-ref">C1_HTS</span></a><span></span>   <span class="mh">0x88</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1ga2d21f76719fc1a9c2d40351c20b4087c"><span class="std std-ref">C1_IND</span></a><span></span>   <span class="mh">0x84</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1gac1dfc6b0902c411912bbe7a5d0517a8c"><span class="std std-ref">C1_MW</span></a><span></span>    <span class="mh">0x95</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1gae6cafbd26f0a3f372d1280e9b4cd7230"><span class="std std-ref">C1_NBH</span></a><span></span>   <span class="mh">0x83</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1ga46f6bc4a02da0774fd4366a7c91316e3"><span class="std std-ref">C1_NEL</span></a><span></span>   <span class="mh">0x85</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1ga88fc29fc10bdffca1da4949f694457f0"><span class="std std-ref">C1_OSC</span></a><span></span>   <span class="mh">0x9D</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1gaf502ca41a5315f762205887b71b78e07"><span class="std std-ref">C1_PAD</span></a><span></span>   <span class="mh">0x80</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1ga69a902d65f6e4f88d6526509ec04640b"><span class="std std-ref">C1_PLD</span></a><span></span>   <span class="mh">0x8B</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1gadc3ede7c6697508edd33e84ffb7168d1"><span class="std std-ref">C1_PLU</span></a><span></span>   <span class="mh">0x8C</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1ga7efc1dc7010cabc4c7533ebec54cc721"><span class="std std-ref">C1_PM</span></a><span></span>    <span class="mh">0x9E</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1ga6a361a4e111f19cac87a9427c43b6d48"><span class="std std-ref">C1_PU1</span></a><span></span>   <span class="mh">0x91</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1gac2c1e210e7856a403fa67cbeee5041ff"><span class="std std-ref">C1_PU2</span></a><span></span>   <span class="mh">0x92</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1gaa137ee9a96d0b5aa30380e15eb6b3529"><span class="std std-ref">C1_RI</span></a><span></span>    <span class="mh">0x8D</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1gaba0c8533ab5805e7c5182babd05c0ffc"><span class="std std-ref">C1_SCI</span></a><span></span>   <span class="mh">0x9A</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1ga6e75f29bb9a671aba4aa85fd24e296bd"><span class="std std-ref">C1_SGC</span></a><span></span>   <span class="mh">0x99</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1ga013f6cf017d9a346222acdf3f1d92405"><span class="std std-ref">C1_SOS</span></a><span></span>   <span class="mh">0x98</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1gaffd0d3888b0de467ba5c4cc71efa9ad9"><span class="std std-ref">C1_SPA</span></a><span></span>   <span class="mh">0x96</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1gac890f334485087fd57ce26ae0480531e"><span class="std std-ref">C1_SS2</span></a><span></span>   <span class="mh">0x8E</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1ga525ae85a7d695f1191d0d8796cd05fa4"><span class="std std-ref">C1_SS3</span></a><span></span>   <span class="mh">0x8F</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1gad4c9d7d030efafe4af11d6ff02ec0908"><span class="std std-ref">C1_SSA</span></a><span></span>   <span class="mh">0x86</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1ga9d29956b02e8dd43b53fa1b6a790d0dd"><span class="std std-ref">C1_ST</span></a><span></span>    <span class="mh">0x9C</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1ga9e6e521a82bdb2e127bd323db5d78067"><span class="std std-ref">C1_STS</span></a><span></span>   <span class="mh">0x93</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-ascii-1ga68015ab7898a5791fbcf6c1ba30fcaca"><span class="std std-ref">C1_VTS</span></a><span></span>   <span class="mh">0x8A</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-ascii-1gad94b504b713639a51d2d13e11113b134"><span></span><span class="n">c_cincharset</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-ascii-1gad2d07267144ab926cb1427b62144efec"><span class="std std-ref">ASCII_IsInCharset</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-ascii-1gaff0f8393602ee9a537c91813f018fd9d"><span></span><span class="n">c_cisalnum</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-ascii-1gad87287b3dbfaa97761956800e1c8dce8"><span class="std std-ref">ASCII_IsAlphaNumeric</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-ascii-1ga39916f622213237c46887bd552f95203"><span></span><span class="n">c_cisalpha</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-ascii-1gac501fabf1740353ed91a75bc43e33d9a"><span class="std std-ref">ASCII_IsLetter</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-ascii-1ga333d74c9fd951ea599929761f2632abb"><span></span><span class="n">c_cisascii</span></span><span></span>    <span class="n">ASCII_IsASCII</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-ascii-1ga846f87f6f80a71b5f3c682781028f9ea"><span></span><span class="n">c_cisbdigit</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-ascii-1ga532ce5e35b4450d1e8ac48dc08a1954b"><span class="std std-ref">ASCII_IsDigit_Binary</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-ascii-1ga782fa9438438bcd6d519fbc83b8e6f85"><span></span><span class="n">c_cisdigit</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-ascii-1ga5bcb2ee1192c1f09afcce9a899ececf7"><span class="std std-ref">ASCII_IsDigit_Decimal</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-ascii-1gadef64344749b75f05594485260c257cd"><span></span><span class="n">c_cislower</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-ascii-1ga730c12083cd34e5d1ef07cb59ea49a8f"><span class="std std-ref">ASCII_IsLowercase</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-ascii-1ga264e8d8cc867eeb60dd53a58fe8fe3d8"><span></span><span class="n">c_cisodigit</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-ascii-1ga3f390d1c46f671160210e49e78da4f9c"><span class="std std-ref">ASCII_IsDigit_Octal</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-ascii-1ga369e6b01078bd311c5ef159628c3502b"><span></span><span class="n">c_cisprint</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-ascii-1ga07c5f29503da0e578d1b5b960eb8e10c"><span class="std std-ref">ASCII_IsPrintable</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-ascii-1gab3f73d049d5d83b1fc198d59c0809d40"><span></span><span class="n">c_cispunct</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-ascii-1ga4733e7f82f4a67196b21d9e28afdd281"><span class="std std-ref">ASCII_IsPunctuation</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-ascii-1ga515225a04399263d4d8a2df2321bac0b"><span></span><span class="n">c_cisspace</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-ascii-1gae57c5e1d73f73b4fb45f4beb08157aad"><span class="std std-ref">ASCII_IsWhiteSpace</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-ascii-1gae6abcc0e27cbf969445b1784f943c9ae"><span></span><span class="n">c_cisupper</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-ascii-1gac5ebcd3f3082bc24d2f4b035c5bb2a68"><span class="std std-ref">ASCII_IsUppercase</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-ascii-1ga86ec919efcae1ed85056d241425ca169"><span></span><span class="n">c_cisvalid</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-ascii-1ga13af91c1c4c4c94440e60f8d367edbc3"><span class="std std-ref">ASCII_IsValid</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-ascii-1ga41f152ad25f08fc616113fdfeb96316c"><span></span><span class="n">c_cisxdigit</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-ascii-1ga829e46fb255c56f0b53075312056aeea"><span class="std std-ref">ASCII_IsDigit_Hexadecimal</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-ascii-1ga132e0419d77f672a4fe94750ea46478c"><span></span><span class="n">c_ctolower</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-ascii-1ga21976cccab7749b2fad20e1f2f74198b"><span class="std std-ref">ASCII_ToLowercase</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-ascii-1gaedf832861564bee310e574342571d137"><span></span><span class="n">c_ctoupper</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-ascii-1gad1fe53453c41d7913dd007385d166785"><span class="std std-ref">ASCII_ToUppercase</span></a></pre>
+</div>
+<div class="section" id="detailed-documentation">
+<span id="details-group-libccc-ascii"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline">¶</a></h2>
+<p>This header defines all the functions related to ASCII text (7-bit chars).</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/language/ascii">https://en.cppreference.com/w/c/language/ascii</a></p></li>
+</ul>
+<div class="section" id="global-functions">
+<h3>Global Functions<a class="headerlink" href="#global-functions" title="Permalink to this headline">¶</a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1gac501fabf1740353ed91a75bc43e33d9a"><span id="index-1"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">ASCII_IsLetter</span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span> <span class="n">c</span><span class="p">)</span></pre>
+<p>Check if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is a letter (lowercase or uppercase)</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/string/byte/isalpha">https://en.cppreference.com/w/c/string/byte/isalpha</a></p></li>
+</ul>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>c</p></td>
+<td><p>The character to check</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span class="std std-ref">TRUE</span></a> if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is a letter (lowercase or uppercase), otherwise <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa93f0eb578d23995850d61f7d61c55c1"><span class="std std-ref">FALSE</span></a>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1gac5ebcd3f3082bc24d2f4b035c5bb2a68"><span id="index-2"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">ASCII_IsUppercase</span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span> <span class="n">c</span><span class="p">)</span></pre>
+<p>Check if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is a uppercase letter character.</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/string/byte/isupper">https://en.cppreference.com/w/c/string/byte/isupper</a></p></li>
+</ul>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>c</p></td>
+<td><p>The character to check</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span class="std std-ref">TRUE</span></a> if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is a uppercase letter character, otherwise <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa93f0eb578d23995850d61f7d61c55c1"><span class="std std-ref">FALSE</span></a>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga730c12083cd34e5d1ef07cb59ea49a8f"><span id="index-3"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">ASCII_IsLowercase</span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span> <span class="n">c</span><span class="p">)</span></pre>
+<p>Check if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is an lowercase letter character.</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/string/byte/islower">https://en.cppreference.com/w/c/string/byte/islower</a></p></li>
+</ul>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>c</p></td>
+<td><p>The character to check</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span class="std std-ref">TRUE</span></a> if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is an lowercase letter character, otherwise <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa93f0eb578d23995850d61f7d61c55c1"><span class="std std-ref">FALSE</span></a>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1gad87287b3dbfaa97761956800e1c8dce8"><span id="index-4"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">ASCII_IsAlphaNumeric</span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span> <span class="n">c</span><span class="p">)</span></pre>
+<p>Check if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is alphanumeric (letter or digit) character.</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/string/byte/isalnum">https://en.cppreference.com/w/c/string/byte/isalnum</a></p></li>
+</ul>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>c</p></td>
+<td><p>The character to check</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span class="std std-ref">TRUE</span></a> if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is alphanumeric (letter or digit), otherwise <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa93f0eb578d23995850d61f7d61c55c1"><span class="std std-ref">FALSE</span></a>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga5bcb2ee1192c1f09afcce9a899ececf7"><span id="index-5"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">ASCII_IsDigit_Decimal</span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span> <span class="n">c</span><span class="p">)</span></pre>
+<p>Check if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is a decimal digit character (ie: <a class="reference internal" href="global.html#doxid-char-8h-1a8d6087686ef6f058a846d0f3de6f8c84"><span class="std std-ref">CHARSET_DEC</span></a> : <code class="docutils literal notranslate"><span class="pre">0123456789</span></code>)</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/string/byte/isdigit">https://en.cppreference.com/w/c/string/byte/isdigit</a></p></li>
+</ul>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>c</p></td>
+<td><p>The character to check</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span class="std std-ref">TRUE</span></a> if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is a decimal digit character, otherwise <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa93f0eb578d23995850d61f7d61c55c1"><span class="std std-ref">FALSE</span></a>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga829e46fb255c56f0b53075312056aeea"><span id="index-6"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">ASCII_IsDigit_Hexadecimal</span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span> <span class="n">c</span><span class="p">)</span></pre>
+<p>Checks if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is a hexadecimal digit character (ie: <a class="reference internal" href="global.html#doxid-char-8h-1abb97af58e7abddeda21eb9f2349ef1a4"><span class="std std-ref">CHARSET_HEX</span></a> : <code class="docutils literal notranslate"><span class="pre">0123456789abcdefABCDEF</span></code>)</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/string/byte/isxdigit">https://en.cppreference.com/w/c/string/byte/isxdigit</a></p></li>
+</ul>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>c</p></td>
+<td><p>The character to check</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span class="std std-ref">TRUE</span></a> if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is a hexadecimal digit character, otherwise <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa93f0eb578d23995850d61f7d61c55c1"><span class="std std-ref">FALSE</span></a>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga3f390d1c46f671160210e49e78da4f9c"><span id="index-7"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">ASCII_IsDigit_Octal</span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span> <span class="n">c</span><span class="p">)</span></pre>
+<p>Checks if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is a octal-base digit character (ie: <a class="reference internal" href="global.html#doxid-char-8h-1a26a48296cdaa177e6f0693a03d52b58f"><span class="std std-ref">CHARSET_OCT</span></a> : <code class="docutils literal notranslate"><span class="pre">01234567</span></code>)</p>
+<ul class="simple">
+<li><p><em>This function is not defined in the C ISO standard.</em></p></li>
+</ul>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>c</p></td>
+<td><p>The character to check</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span class="std std-ref">TRUE</span></a> if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is an octal digit character, otherwise <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa93f0eb578d23995850d61f7d61c55c1"><span class="std std-ref">FALSE</span></a>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga532ce5e35b4450d1e8ac48dc08a1954b"><span id="index-8"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">ASCII_IsDigit_Binary</span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span> <span class="n">c</span><span class="p">)</span></pre>
+<p>Checks if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is a binary-base digit character (ie: ‘0’ or ‘1’)</p>
+<ul class="simple">
+<li><p><em>This function is not defined in the C ISO standard.</em></p></li>
+</ul>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>c</p></td>
+<td><p>The character to check</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span class="std std-ref">TRUE</span></a> if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is a binary digit character, otherwise <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa93f0eb578d23995850d61f7d61c55c1"><span class="std std-ref">FALSE</span></a>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1gae57c5e1d73f73b4fb45f4beb08157aad"><span id="index-9"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">ASCII_IsWhiteSpace</span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span> <span class="n">c</span><span class="p">)</span></pre>
+<p>Check if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is whitespace character (‘ ‘,’t’,’r’,’n’,’f’,’v’)</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/string/byte/isspace">https://en.cppreference.com/w/c/string/byte/isspace</a></p></li>
+</ul>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>c</p></td>
+<td><p>The character to check</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span class="std std-ref">TRUE</span></a> if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is whitespace character: ‘ ‘,’t’,’r’,’n’,’f’,’v’ (carriage return, newline, form feed, vertical tab, tab, or space), and returns <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa93f0eb578d23995850d61f7d61c55c1"><span class="std std-ref">FALSE</span></a> otherwise.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga4733e7f82f4a67196b21d9e28afdd281"><span id="index-10"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">ASCII_IsPunctuation</span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span> <span class="n">c</span><span class="p">)</span></pre>
+<p>Check if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is a punctuation character.</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/string/byte/ispunct">https://en.cppreference.com/w/c/string/byte/ispunct</a></p></li>
+</ul>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>c</p></td>
+<td><p>The character to check</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span class="std std-ref">TRUE</span></a> if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is a punctuation character, and returns <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa93f0eb578d23995850d61f7d61c55c1"><span class="std std-ref">FALSE</span></a> otherwise.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga07c5f29503da0e578d1b5b960eb8e10c"><span id="index-11"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">ASCII_IsPrintable</span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span> <span class="n">c</span><span class="p">)</span></pre>
+<p>Check if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is a printable ASCII character.</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/string/byte/isprint">https://en.cppreference.com/w/c/string/byte/isprint</a></p></li>
+</ul>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>c</p></td>
+<td><p>The character to check</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span class="std std-ref">TRUE</span></a> if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is a printable ASCII character, (0x20 &lt;= c &amp;&amp; c &lt;= 0x7E) and returns <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa93f0eb578d23995850d61f7d61c55c1"><span class="std std-ref">FALSE</span></a> otherwise.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga13af91c1c4c4c94440e60f8d367edbc3"><span id="index-12"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">ASCII_IsValid</span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span> <span class="n">c</span><span class="p">)</span></pre>
+<p>Check if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is an ASCII-compatible char (non-Unicode)</p>
+<ul class="simple">
+<li><p><em>This function is not defined in the C ISO standard.</em></p></li>
+</ul>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>c</p></td>
+<td><p>The character to check</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span class="std std-ref">TRUE</span></a> if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> has a value between 0 and 127, (0x00 &lt;= c &amp;&amp; c &lt;= 0x7F) and returns <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa93f0eb578d23995850d61f7d61c55c1"><span class="std std-ref">FALSE</span></a> otherwise.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1gad2d07267144ab926cb1427b62144efec"><span id="index-13"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">ASCII_IsInCharset</span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span> <span class="n">c</span><span class="p">,</span> <a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">charset</span><span class="p">)</span></pre>
+<p>Check if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is contained in the given ‘charset’.</p>
+<p>Check if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is contained in the given ‘charset’</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>c</p></td>
+<td><p>The character to check</p></td>
+</tr>
+<tr class="row-even"><td><p>charset</p></td>
+<td><p>String, the set of characters to look through (the ‘0’ terminator ends the charset)</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span class="std std-ref">TRUE</span></a> if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is contained within the given <code class="docutils literal notranslate"><span class="pre">charset</span></code> array</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1gad1fe53453c41d7913dd007385d166785"><span id="index-14"></span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span> <span class="n">ASCII_ToUppercase</span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span> <span class="n">c</span><span class="p">)</span></pre>
+<p>Get the uppercase version of the given char <code class="docutils literal notranslate"><span class="pre">c</span></code>, if possible.</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/string/byte/toupper">https://en.cppreference.com/w/c/string/byte/toupper</a></p></li>
+</ul>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>c</p></td>
+<td><p>The character whose uppercase equivalent should be returned</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>the uppercase equivalent of the given character, or returns <code class="docutils literal notranslate"><span class="pre">c</span></code> itself if it is not a letter character.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga21976cccab7749b2fad20e1f2f74198b"><span id="index-15"></span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span> <span class="n">ASCII_ToLowercase</span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span> <span class="n">c</span><span class="p">)</span></pre>
+<p>Get the lowercase version of the given char <code class="docutils literal notranslate"><span class="pre">c</span></code>, if possible.</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/string/byte/tolower">https://en.cppreference.com/w/c/string/byte/tolower</a></p></li>
+</ul>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>c</p></td>
+<td><p>The character whose lowercase equivalent should be returned</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>the lowercase equivalent of the given character, or returns <code class="docutils literal notranslate"><span class="pre">c</span></code> itself if it is not a letter character.</p>
+</div>
+<div class="section" id="macros">
+<h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga19de96cc638f800ffe59c8b72c3fc6be"><span id="index-16"></span><span></span><span class="cp">#define</span> <span class="n">C0_ACK</span>  <span class="cp">0x06</span></pre>
+<p>^F <code class="docutils literal notranslate"><span class="pre">␆</span></code> ACK Acknowledge</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga219144e9843ed9440467a54a573f8391"><span id="index-17"></span><span></span><span class="cp">#define</span> <span class="n">C0_BEL</span>  <span class="cp">0x07</span></pre>
+<p>^G <code class="docutils literal notranslate"><span class="pre">␇</span></code> BEL <code class="docutils literal notranslate"><span class="pre">\a</span></code> Bell, Alert</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga0ce7e017ced2194324d8b593b07a7c23"><span id="index-18"></span><span></span><span class="cp">#define</span> <span class="n">C0_BS</span>   <span class="cp">0x08</span></pre>
+<p>^H <code class="docutils literal notranslate"><span class="pre">␈</span></code> BS <code class="docutils literal notranslate"><span class="pre">\b</span></code> Backspace</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga8ab4b09b1a8ee5bd8f93d260a335d774"><span id="index-19"></span><span></span><span class="cp">#define</span> <span class="n">C0_CAN</span>  <span class="cp">0x18</span></pre>
+<p>^X <code class="docutils literal notranslate"><span class="pre">␘</span></code> CAN Cancel</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga2de57866e2cb798d98898aca5fe9af1a"><span id="index-20"></span><span></span><span class="cp">#define</span> <span class="n">C0_CR</span>   <span class="cp">0x0D</span></pre>
+<p>^M <code class="docutils literal notranslate"><span class="pre">␍</span></code> CR <code class="docutils literal notranslate"><span class="pre">\r</span></code> Carriage Return</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1gaa047a060a08b14cd1717a3cb96f7338f"><span id="index-21"></span><span></span><span class="cp">#define</span> <span class="n">C0_DC1</span>  <span class="cp">0x11</span></pre>
+<p>^Q <code class="docutils literal notranslate"><span class="pre">␑</span></code> DC1 Device Control One (XON)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga0d9c63444bd452a057ecadfe9d814c13"><span id="index-22"></span><span></span><span class="cp">#define</span> <span class="n">C0_DC2</span>  <span class="cp">0x12</span></pre>
+<p>^R <code class="docutils literal notranslate"><span class="pre">␒</span></code> DC2 Device Control Two</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1gaa2084e6b9ef46897a709082f0401d031"><span id="index-23"></span><span></span><span class="cp">#define</span> <span class="n">C0_DC3</span>  <span class="cp">0x13</span></pre>
+<p>^S <code class="docutils literal notranslate"><span class="pre">␓</span></code> DC3 Device Control Three (XOFF)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga61d54f078d1a7a449141313e7fd7b91e"><span id="index-24"></span><span></span><span class="cp">#define</span> <span class="n">C0_DC4</span>  <span class="cp">0x14</span></pre>
+<p>^T <code class="docutils literal notranslate"><span class="pre">␔</span></code> DC4 Device Control Four</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1gad8f4cafcf5056aa0bc8cd7702858871d"><span id="index-25"></span><span></span><span class="cp">#define</span> <span class="n">C0_DEL</span>  <span class="cp">0x7F</span></pre>
+<p>^? <code class="docutils literal notranslate"><span class="pre">␡</span></code> DEL Delete (Not technically part of the C0 control character range)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1gadf66c2f62989c45fe16f109585456b42"><span id="index-26"></span><span></span><span class="cp">#define</span> <span class="n">C0_DLE</span>  <span class="cp">0x10</span></pre>
+<p>^P <code class="docutils literal notranslate"><span class="pre">␐</span></code> DLE Data Link Escape</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1gab094f30da62b792585c07fbdba2e5648"><span id="index-27"></span><span></span><span class="cp">#define</span> <span class="n">C0_EM</span>   <span class="cp">0x19</span></pre>
+<p>^Y <code class="docutils literal notranslate"><span class="pre">␙</span></code> EM End of medium</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga581eb8834c0e28182981d7dc64e42036"><span id="index-28"></span><span></span><span class="cp">#define</span> <span class="n">C0_ENQ</span>  <span class="cp">0x05</span></pre>
+<p>^E <code class="docutils literal notranslate"><span class="pre">␅</span></code> ENQ Enquiry</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga5ced8b8b46cd671deeb0a061facdf19b"><span id="index-29"></span><span></span><span class="cp">#define</span> <span class="n">C0_EOT</span>  <span class="cp">0x04</span></pre>
+<p>^D <code class="docutils literal notranslate"><span class="pre">␄</span></code> EOT End of Transmission</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga509be7ab53dc6af71066279cbc868941"><span id="index-30"></span><span></span><span class="cp">#define</span> <span class="n">C0_ESC</span>  <span class="cp">0x1B</span></pre>
+<p>^[<code class="docutils literal notranslate"><span class="pre">␛</span></code> ESC <code class="docutils literal notranslate"><span class="pre">\e</span></code> Escape</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1gae8315f0d39f9b83cb55fbb02fa3d77b7"><span id="index-31"></span><span></span><span class="cp">#define</span> <span class="n">C0_ETB</span>  <span class="cp">0x17</span></pre>
+<p>^W <code class="docutils literal notranslate"><span class="pre">␗</span></code> ETB End of Transmission Block</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga80ad7049d0e6c4d935ff61af24c5edfe"><span id="index-32"></span><span></span><span class="cp">#define</span> <span class="n">C0_ETX</span>  <span class="cp">0x03</span></pre>
+<p>^C <code class="docutils literal notranslate"><span class="pre">␃</span></code> ETX End of Text</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga8153ff8f255e6a99c00bbae10fa7d524"><span id="index-33"></span><span></span><span class="cp">#define</span> <span class="n">C0_FF</span>   <span class="cp">0x0C</span></pre>
+<p>^L <code class="docutils literal notranslate"><span class="pre">␌</span></code> FF <code class="docutils literal notranslate"><span class="pre">\f</span></code> Form Feed</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga5ec6cbc5f7990daa9a1c8c32283c53a5"><span id="index-34"></span><span></span><span class="cp">#define</span> <span class="n">C0_FS</span>   <span class="cp">0x1C</span></pre>
+<p>^<code class="docutils literal notranslate"><span class="pre">␜</span></code> FS File Separator</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga308b9d229b2e2bdd221cab934c4d5b13"><span id="index-35"></span><span></span><span class="cp">#define</span> <span class="n">C0_GS</span>   <span class="cp">0x1D</span></pre>
+<p>^] <code class="docutils literal notranslate"><span class="pre">␝</span></code> GS Group Separator</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1gacbd12780bf8565ea3dd3404024c713bf"><span id="index-36"></span><span></span><span class="cp">#define</span> <span class="n">C0_HT</span>   <span class="cp">0x09</span></pre>
+<p>^I <code class="docutils literal notranslate"><span class="pre">␉</span></code> HT <code class="docutils literal notranslate"><span class="pre">\t</span></code> Char/Horizontal Tab</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga56533b3aed07244bd9419c1954f0978d"><span id="index-37"></span><span></span><span class="cp">#define</span> <span class="n">C0_LF</span>   <span class="cp">0x0A</span></pre>
+<p>^J <code class="docutils literal notranslate"><span class="pre">␊</span></code> LF <code class="docutils literal notranslate"><span class="pre">\n</span></code> Line Feed</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga69a675602e0f6d194d12e62d80996aaf"><span id="index-38"></span><span></span><span class="cp">#define</span> <span class="n">C0_NAK</span>  <span class="cp">0x15</span></pre>
+<p>^U <code class="docutils literal notranslate"><span class="pre">␕</span></code> NAK Negative Acknowledge</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga532255139ed130b801cd358dbf1834cb"><span id="index-39"></span><span></span><span class="cp">#define</span> <span class="n">C0_NUL</span>  <span class="cp">0x00</span></pre>
+<p>ASCII/Unicode C0 control code characters (from 0x00 to 0x1F)</p>
+<p class="rubric">See also:</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/C0_and_C1_control_codes#C0_controls">https://en.wikipedia.org/wiki/C0_and_C1_control_codes#C0_controls</a> ^&#64; <code class="docutils literal notranslate"><span class="pre">␀</span></code> NUL <code class="docutils literal notranslate"><span class="pre">\0</span></code> Null</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1gaae6c21b0c4658d32dc69d35ee22e1525"><span id="index-40"></span><span></span><span class="cp">#define</span> <span class="n">C0_RS</span>   <span class="cp">0x1E</span></pre>
+<p>^^ <code class="docutils literal notranslate"><span class="pre">␞</span></code> RS Record Separator</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga2cabd5f3cf743c217c60f049d725936e"><span id="index-41"></span><span></span><span class="cp">#define</span> <span class="n">C0_SI</span>   <span class="cp">0x0F</span></pre>
+<p>^O <code class="docutils literal notranslate"><span class="pre">␏</span></code> SI Shift In</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1gacf84924d510ab53368836bfd520cfbb7"><span id="index-42"></span><span></span><span class="cp">#define</span> <span class="n">C0_SO</span>   <span class="cp">0x0E</span></pre>
+<p>^N <code class="docutils literal notranslate"><span class="pre">␎</span></code> SO Shift Out</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga7235cf6bb0b46cbdb3bc744cbab27072"><span id="index-43"></span><span></span><span class="cp">#define</span> <span class="n">C0_SOH</span>  <span class="cp">0x01</span></pre>
+<p>^A <code class="docutils literal notranslate"><span class="pre">␁</span></code> SOH Start of Heading</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1gad91430fd6cf65df00b728178bef5c43a"><span id="index-44"></span><span></span><span class="cp">#define</span> <span class="n">C0_STX</span>  <span class="cp">0x02</span></pre>
+<p>^B <code class="docutils literal notranslate"><span class="pre">␂</span></code> STX Start of Text</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1gafd27760c3fbdd6783d0009178cc3e630"><span id="index-45"></span><span></span><span class="cp">#define</span> <span class="n">C0_SUB</span>  <span class="cp">0x1A</span></pre>
+<p>^Z <code class="docutils literal notranslate"><span class="pre">␚</span></code> SUB Substitute</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1gaf34fcaed6bf124e19a3d73ff356d1a2d"><span id="index-46"></span><span></span><span class="cp">#define</span> <span class="n">C0_SYN</span>  <span class="cp">0x16</span></pre>
+<p>^V <code class="docutils literal notranslate"><span class="pre">␖</span></code> SYN Synchronous Idle</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1gab2a220511c9879831d2c674574126be2"><span id="index-47"></span><span></span><span class="cp">#define</span> <span class="n">C0_US</span>   <span class="cp">0x1F</span></pre>
+<p>^_ <code class="docutils literal notranslate"><span class="pre">␟</span></code> US Unit Separator</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga4ddf7b389e0d352ae0755b8b2a75868b"><span id="index-48"></span><span></span><span class="cp">#define</span> <span class="n">C0_VT</span>   <span class="cp">0x0B</span></pre>
+<p>^K <code class="docutils literal notranslate"><span class="pre">␋</span></code> VT <code class="docutils literal notranslate"><span class="pre">\v</span></code> Line/Vertical Tab</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga22af3e339b04871ed2f8ccc6a95b8d24"><span id="index-49"></span><span></span><span class="cp">#define</span> <span class="n">C1_APC</span>  <span class="cp">0x9F</span></pre>
+<p>^ <code class="docutils literal notranslate"><span class="pre"></span></code> APC Application Program Command</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1gab2f920308cc8f816da41c5165c9bf7b7"><span id="index-50"></span><span></span><span class="cp">#define</span> <span class="n">C1_BPH</span>  <span class="cp">0x82</span></pre>
+<p>^ <code class="docutils literal notranslate"><span class="pre"></span></code> BPH Break Permitted Here</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1gad26212499a46d04063b2e60708c54f68"><span id="index-51"></span><span></span><span class="cp">#define</span> <span class="n">C1_CCH</span>  <span class="cp">0x94</span></pre>
+<p>^ <code class="docutils literal notranslate"><span class="pre"></span></code> CCH Cancel character</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga8335b1f6f77d9d0e155fa817d7476f0c"><span id="index-52"></span><span></span><span class="cp">#define</span> <span class="n">C1_CSI</span>  <span class="cp">0x9B</span></pre>
+<p>^ <code class="docutils literal notranslate"><span class="pre"></span></code> CSI Control Sequence Introducer</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1gae9c95b6c8ef7636899f1c6f0fdac6bab"><span id="index-53"></span><span></span><span class="cp">#define</span> <span class="n">C1_DCS</span>  <span class="cp">0x90</span></pre>
+<p>^ <code class="docutils literal notranslate"><span class="pre"></span></code> DCS Device Control String</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga3e8ee77cec9e7da5e9caf088036e5c74"><span id="index-54"></span><span></span><span class="cp">#define</span> <span class="n">C1_EPA</span>  <span class="cp">0x97</span></pre>
+<p>^ <code class="docutils literal notranslate"><span class="pre"></span></code> EPA End of Protected Area</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1gadb002acd25948e6943d161b1a655c6c9"><span id="index-55"></span><span></span><span class="cp">#define</span> <span class="n">C1_ESA</span>  <span class="cp">0x87</span></pre>
+<p>^ <code class="docutils literal notranslate"><span class="pre"></span></code> ESA End of Selected Area</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga5249cdc42954d97c40a9f0fe90990fe2"><span id="index-56"></span><span></span><span class="cp">#define</span> <span class="n">C1_HOP</span>  <span class="cp">0x81</span></pre>
+<p>^ <code class="docutils literal notranslate"><span class="pre"></span></code> HOP High Octet Preset</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga1108b59b9543e015085746be55be76c9"><span id="index-57"></span><span></span><span class="cp">#define</span> <span class="n">C1_HTJ</span>  <span class="cp">0x89</span></pre>
+<p>^ <code class="docutils literal notranslate"><span class="pre"></span></code> HTJ Char/Horizontal Tabulation With Justification</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1gac05b61120402065a6070c71d1c97ea17"><span id="index-58"></span><span></span><span class="cp">#define</span> <span class="n">C1_HTS</span>  <span class="cp">0x88</span></pre>
+<p>^ <code class="docutils literal notranslate"><span class="pre"></span></code> HTS Char/Horizontal Tabulation Set</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga2d21f76719fc1a9c2d40351c20b4087c"><span id="index-59"></span><span></span><span class="cp">#define</span> <span class="n">C1_IND</span>  <span class="cp">0x84</span></pre>
+<p>^ <code class="docutils literal notranslate"><span class="pre"></span></code> IND Index</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1gac1dfc6b0902c411912bbe7a5d0517a8c"><span id="index-60"></span><span></span><span class="cp">#define</span> <span class="n">C1_MW</span>   <span class="cp">0x95</span></pre>
+<p>^ <code class="docutils literal notranslate"><span class="pre"></span></code> MW Message Waiting</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1gae6cafbd26f0a3f372d1280e9b4cd7230"><span id="index-61"></span><span></span><span class="cp">#define</span> <span class="n">C1_NBH</span>  <span class="cp">0x83</span></pre>
+<p>^ <code class="docutils literal notranslate"><span class="pre"></span></code> NBH No Break Here</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga46f6bc4a02da0774fd4366a7c91316e3"><span id="index-62"></span><span></span><span class="cp">#define</span> <span class="n">C1_NEL</span>  <span class="cp">0x85</span></pre>
+<p>^ <code class="docutils literal notranslate"><span class="pre"></span></code> NEL Next Line</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga88fc29fc10bdffca1da4949f694457f0"><span id="index-63"></span><span></span><span class="cp">#define</span> <span class="n">C1_OSC</span>  <span class="cp">0x9D</span></pre>
+<p>^ <code class="docutils literal notranslate"><span class="pre"></span></code> OSC Operating System Command</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1gaf502ca41a5315f762205887b71b78e07"><span id="index-64"></span><span></span><span class="cp">#define</span> <span class="n">C1_PAD</span>  <span class="cp">0x80</span></pre>
+<p>ASCII/Unicode C1 control code characters (from 0x80 to 0x9F)</p>
+<p class="rubric">See also:</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/C0_and_C1_control_codes#C1_controls">https://en.wikipedia.org/wiki/C0_and_C1_control_codes#C1_controls</a> ^ <code class="docutils literal notranslate"><span class="pre"></span></code> PAD Padding Character</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga69a902d65f6e4f88d6526509ec04640b"><span id="index-65"></span><span></span><span class="cp">#define</span> <span class="n">C1_PLD</span>  <span class="cp">0x8B</span></pre>
+<p>^ <code class="docutils literal notranslate"><span class="pre"></span></code> PLD Partial Line Forward / Partial Line Down</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1gadc3ede7c6697508edd33e84ffb7168d1"><span id="index-66"></span><span></span><span class="cp">#define</span> <span class="n">C1_PLU</span>  <span class="cp">0x8C</span></pre>
+<p>^ <code class="docutils literal notranslate"><span class="pre"></span></code> PLU Partial Line Backward / Partial Line Up</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga7efc1dc7010cabc4c7533ebec54cc721"><span id="index-67"></span><span></span><span class="cp">#define</span> <span class="n">C1_PM</span>   <span class="cp">0x9E</span></pre>
+<p>^ <code class="docutils literal notranslate"><span class="pre"></span></code> PM Privacy Message</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga6a361a4e111f19cac87a9427c43b6d48"><span id="index-68"></span><span></span><span class="cp">#define</span> <span class="n">C1_PU1</span>  <span class="cp">0x91</span></pre>
+<p>^ <code class="docutils literal notranslate"><span class="pre"></span></code> PU1 Private Use 1</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1gac2c1e210e7856a403fa67cbeee5041ff"><span id="index-69"></span><span></span><span class="cp">#define</span> <span class="n">C1_PU2</span>  <span class="cp">0x92</span></pre>
+<p>^ <code class="docutils literal notranslate"><span class="pre"></span></code> PU2 Private Use 2</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1gaa137ee9a96d0b5aa30380e15eb6b3529"><span id="index-70"></span><span></span><span class="cp">#define</span> <span class="n">C1_RI</span>   <span class="cp">0x8D</span></pre>
+<p>^ <code class="docutils literal notranslate"><span class="pre"></span></code> RI Reverse Line Feed / Reverse Index</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1gaba0c8533ab5805e7c5182babd05c0ffc"><span id="index-71"></span><span></span><span class="cp">#define</span> <span class="n">C1_SCI</span>  <span class="cp">0x9A</span></pre>
+<p>^ <code class="docutils literal notranslate"><span class="pre"></span></code> SCI Single Character Introducer</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga6e75f29bb9a671aba4aa85fd24e296bd"><span id="index-72"></span><span></span><span class="cp">#define</span> <span class="n">C1_SGC</span>  <span class="cp">0x99</span></pre>
+<p>^ <code class="docutils literal notranslate"><span class="pre"></span></code> SGC Single Graphic Character Introducer</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga013f6cf017d9a346222acdf3f1d92405"><span id="index-73"></span><span></span><span class="cp">#define</span> <span class="n">C1_SOS</span>  <span class="cp">0x98</span></pre>
+<p>^ <code class="docutils literal notranslate"><span class="pre"></span></code> SOS Start of String</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1gaffd0d3888b0de467ba5c4cc71efa9ad9"><span id="index-74"></span><span></span><span class="cp">#define</span> <span class="n">C1_SPA</span>  <span class="cp">0x96</span></pre>
+<p>^ <code class="docutils literal notranslate"><span class="pre"></span></code> SPA Start of Protected Area</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1gac890f334485087fd57ce26ae0480531e"><span id="index-75"></span><span></span><span class="cp">#define</span> <span class="n">C1_SS2</span>  <span class="cp">0x8E</span></pre>
+<p>^ <code class="docutils literal notranslate"><span class="pre"></span></code> SS2 Single-Shift 2</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga525ae85a7d695f1191d0d8796cd05fa4"><span id="index-76"></span><span></span><span class="cp">#define</span> <span class="n">C1_SS3</span>  <span class="cp">0x8F</span></pre>
+<p>^ <code class="docutils literal notranslate"><span class="pre"></span></code> SS3 Single-Shift 3</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1gad4c9d7d030efafe4af11d6ff02ec0908"><span id="index-77"></span><span></span><span class="cp">#define</span> <span class="n">C1_SSA</span>  <span class="cp">0x86</span></pre>
+<p>^ <code class="docutils literal notranslate"><span class="pre"></span></code> SSA Start of Selected Area</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga9d29956b02e8dd43b53fa1b6a790d0dd"><span id="index-78"></span><span></span><span class="cp">#define</span> <span class="n">C1_ST</span>   <span class="cp">0x9C</span></pre>
+<p>^ <code class="docutils literal notranslate"><span class="pre"></span></code> ST String Terminator</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga9e6e521a82bdb2e127bd323db5d78067"><span id="index-79"></span><span></span><span class="cp">#define</span> <span class="n">C1_STS</span>  <span class="cp">0x93</span></pre>
+<p>^ <code class="docutils literal notranslate"><span class="pre"></span></code> STS Set Transmit State</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-ascii-1ga68015ab7898a5791fbcf6c1ba30fcaca"><span id="index-80"></span><span></span><span class="cp">#define</span> <span class="n">C1_VTS</span>  <span class="cp">0x8A</span></pre>
+<p>^ <code class="docutils literal notranslate"><span class="pre"></span></code> VTS Line/Vertical Tabulation Set</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="group_libccc_regex.html" class="btn btn-neutral float-right" title="Libccc_regex" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="group_libccc_config.html" class="btn btn-neutral float-left" title="Libccc_config" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Free &amp; Open Source: MIT License
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

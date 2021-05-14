@@ -1,0 +1,326 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>struct logger &mdash; libccc 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/target-highlight.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="_static/js/custom.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="20) libccc/sys/time" href="group_libccc_sys_time.html" />
+    <link rel="prev" title="enum logformat" href="enum_logformat.html" />
+	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
+	
+	<meta name="Description" content="struct logger">
+	<meta property="og:description" content="struct logger">
+	<meta property="og:title" content="libccc 1.0 documentation - struct logger">
+	<meta property="og:image" content="_static/images/libccc_icon.png">
+	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="380" />
+	<meta property="og:image:height" content="380" />
+	<meta property="og:url" content="struct_logger.html">
+	<meta property="og:site_name" content="libccc 1.0 documentation">
+
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> libccc
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="group_libccc.html">01) libccc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">02) libccc/bool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">03) libccc/int</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_fixed.html">04) libccc/fixed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_float.html">05) libccc/float</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointer.html">06) libccc/pointer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointerarray.html">07) libccc/pointerarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_memory.html">08) libccc/memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">09) libccc/char</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">10) libccc/string</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_stringarray.html">11) libccc/stringarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">12) libccc/format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_color.html">13) libccc/color</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">14) libccc/sys/io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_ansi.html">15) libccc/sys/ansi</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="group_libccc_sys_logger.html">18) libccc/sys/logger</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="enum_logformat.html">enum logformat</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">struct logger</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#detailed-documentation">Detailed Documentation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#fields">Fields</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="group_libccc_sys_logger.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="group_libccc_sys_logger.html#detailed-documentation">Detailed Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_time.html">20) libccc/sys/time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_constants.html">21) libccc/math/constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_float.html">22) libccc/math/float</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_fixed.html">23) libccc/math/fixed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_vlq.html">24) libccc/math/vlq</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_stat.html">25) libccc/math/stat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_random.html">26) libccc/math/random</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">27) libccc/math/complex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra.html">28) libccc/math/algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_array.html">32) libccc/monad/array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_list.html">33) libccc/monad/list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_stack.html">34) libccc/monad/stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_queue.html">35) libccc/monad/queue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_tree.html">36) libccc/monad/tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_keyval.html">37) libccc/monad/keyval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_dict.html">38) libccc/monad/dict</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_object.html">39) libccc/monad/object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_config.html">Libccc_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_ascii.html">Libccc_ascii</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_regex.html">Libccc_regex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_unicode.html">Libccc_unicode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math.html">Libccc_math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_sort.html">Libccc_array_sort</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_convert.html">Libccc_monad_convert</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">libccc</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="group_libccc_sys_logger.html">18) libccc/sys/logger</a> &raquo;</li>
+        
+      <li>struct logger</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="struct-logger">
+<span id="doxid-structlogger"></span><span id="index-0"></span><h1>struct logger<a class="headerlink" href="#struct-logger" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>This struct stores all the settings and internal state needed for a basic logging system. <a class="reference internal" href="#details-structlogger"><span class="std std-ref">More…</span></a></p>
+<pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="cp">#include</span> <span class="cpf">&lt;logger.h&gt;</span><span class="cp"></span>
+
+<span class="k">struct</span> <span class="n">logger</span>
+<span class="p">{</span>
+    <span class="c1">// fields</span>
+
+    <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-structlogger-1a6694971f0c958ced73bbed5d97c7ae73"><span class="std std-ref">silence_logs</span></a><span></span><span class="p">;</span>
+    <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-structlogger-1a113738535b80e5e13385fded755e5445"><span class="std std-ref">silence_errors</span></a><span></span><span class="p">;</span>
+    <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-structlogger-1add6b30f8ac9f1dc24e0b540e19de0e03"><span class="std std-ref">timestamp</span></a><span></span><span class="p">;</span>
+    <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-structlogger-1a8ca8257433f7bf08549f16a43bce31e5"><span class="std std-ref">verbose</span></a><span></span><span class="p">;</span>
+    <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-structlogger-1af7a55ea79b8f6ff1ec03523c58a6af5b"><span class="std std-ref">obfuscated</span></a><span></span><span class="p">;</span>
+    <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-structlogger-1ac9acc76083cb277cfe30331fcf136b96"><span class="std std-ref">append</span></a><span></span><span class="p">;</span>
+    <a class="reference internal" href="group_libccc_sys_logger.html#doxid-group-libccc-sys-logger-1ga6d2588ccfd1d80f695a78a7baef2b325"><span class="std std-ref">e_logformat</span></a><span></span> <a class="reference internal" href="#doxid-structlogger-1ad6cd43f7a50444c14c5bf3efb6d9486d"><span class="std std-ref">format</span></a><span></span><span class="p">;</span>
+    <a class="reference internal" href="group_libccc_sys_io.html#doxid-group-libccc-sys-io-1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f"><span class="std std-ref">t_fd</span></a><span></span> <a class="reference internal" href="#doxid-structlogger-1af0a9962aed7bdc5da8937d600d14774b"><span class="std std-ref">fd</span></a><span></span><span class="p">;</span>
+    <span class="kt">t_char</span><span class="o">*</span> <a class="reference internal" href="#doxid-structlogger-1a0252a49c596ecbe51706efee9719c3d9"><span class="std std-ref">path</span></a><span></span><span class="p">;</span>
+<span class="p">};</span></pre>
+</div>
+<div class="section" id="detailed-documentation">
+<span id="details-structlogger"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline">¶</a></h2>
+<p>This struct stores all the settings and internal state needed for a basic logging system.</p>
+<div class="section" id="fields">
+<h3>Fields<a class="headerlink" href="#fields" title="Permalink to this headline">¶</a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-structlogger-1a6694971f0c958ced73bbed5d97c7ae73"><span id="index-1"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">silence_logs</span></pre>
+<p>If TRUE, successful and warning logging with this logger will be ignored.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-structlogger-1a113738535b80e5e13385fded755e5445"><span id="index-2"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">silence_errors</span></pre>
+<p>If TRUE, error logging with this logger will be ignored.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-structlogger-1add6b30f8ac9f1dc24e0b540e19de0e03"><span id="index-3"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">timestamp</span></pre>
+<p>If TRUE, the logger prints a timestamp at the beginning of each log line.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-structlogger-1a8ca8257433f7bf08549f16a43bce31e5"><span id="index-4"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">verbose</span></pre>
+<p>If TRUE, additional logging messages will be displayed.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-structlogger-1af7a55ea79b8f6ff1ec03523c58a6af5b"><span id="index-5"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">obfuscated</span></pre>
+<p>If TRUE, indicates that the logging messages should hide sensitive info, like passwords for instance.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-structlogger-1ac9acc76083cb277cfe30331fcf136b96"><span id="index-6"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">append</span></pre>
+<p>If TRUE, logger will append text to the file if it already exists, rather than overwrite/clear it.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-structlogger-1ad6cd43f7a50444c14c5bf3efb6d9486d"><span id="index-7"></span><a class="reference internal" href="group_libccc_sys_logger.html#doxid-group-libccc-sys-logger-1ga6d2588ccfd1d80f695a78a7baef2b325"><span class="std std-ref">e_logformat</span></a><span></span> <span class="n">format</span></pre>
+<p>Specifies the overall loggingformat.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-structlogger-1af0a9962aed7bdc5da8937d600d14774b"><span id="index-8"></span><a class="reference internal" href="group_libccc_sys_io.html#doxid-group-libccc-sys-io-1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f"><span class="std std-ref">t_fd</span></a><span></span> <span class="n">fd</span></pre>
+<p>The file descriptor to which this logger outputs.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-structlogger-1a0252a49c596ecbe51706efee9719c3d9"><span id="index-9"></span><span></span><span class="kt">t_char</span><span class="o">*</span> <span class="n">path</span></pre>
+<p>The file path (relative or absolute) for this logger output logfile.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="group_libccc_sys_time.html" class="btn btn-neutral float-right" title="20) libccc/sys/time" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="enum_logformat.html" class="btn btn-neutral float-left" title="enum logformat" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Free &amp; Open Source: MIT License
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

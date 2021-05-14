@@ -1,0 +1,832 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Libccc_unicode &mdash; libccc 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/target-highlight.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="_static/js/custom.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Libccc_math" href="group_libccc_math.html" />
+    <link rel="prev" title="Libccc_regex" href="group_libccc_regex.html" />
+	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
+	
+	<meta name="Description" content="Libccc_unicode">
+	<meta property="og:description" content="Libccc_unicode">
+	<meta property="og:title" content="libccc 1.0 documentation - Libccc_unicode">
+	<meta property="og:image" content="_static/images/libccc_icon.png">
+	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="380" />
+	<meta property="og:image:height" content="380" />
+	<meta property="og:url" content="group_libccc_unicode.html">
+	<meta property="og:site_name" content="libccc 1.0 documentation">
+
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> libccc
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="group_libccc.html">01) libccc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">02) libccc/bool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">03) libccc/int</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_fixed.html">04) libccc/fixed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_float.html">05) libccc/float</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointer.html">06) libccc/pointer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointerarray.html">07) libccc/pointerarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_memory.html">08) libccc/memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">09) libccc/char</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">10) libccc/string</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_stringarray.html">11) libccc/stringarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">12) libccc/format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_color.html">13) libccc/color</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">14) libccc/sys/io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_ansi.html">15) libccc/sys/ansi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">18) libccc/sys/logger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_time.html">20) libccc/sys/time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_constants.html">21) libccc/math/constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_float.html">22) libccc/math/float</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_fixed.html">23) libccc/math/fixed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_vlq.html">24) libccc/math/vlq</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_stat.html">25) libccc/math/stat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_random.html">26) libccc/math/random</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">27) libccc/math/complex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra.html">28) libccc/math/algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_array.html">32) libccc/monad/array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_list.html">33) libccc/monad/list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_stack.html">34) libccc/monad/stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_queue.html">35) libccc/monad/queue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_tree.html">36) libccc/monad/tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_keyval.html">37) libccc/monad/keyval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_dict.html">38) libccc/monad/dict</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_object.html">39) libccc/monad/object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_config.html">Libccc_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_ascii.html">Libccc_ascii</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_regex.html">Libccc_regex</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Libccc_unicode</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#detailed-documentation">Detailed Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#global-functions">Global Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#macros">Macros</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math.html">Libccc_math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_sort.html">Libccc_array_sort</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_convert.html">Libccc_monad_convert</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">libccc</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Libccc_unicode</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="libccc-unicode">
+<span id="doxid-group-libccc-unicode"></span><span id="index-0"></span><h1>Libccc_unicode<a class="headerlink" href="#libccc-unicode" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>This header defines all the functions related to Unicode text encodings. <a class="reference internal" href="#details-group-libccc-unicode"><span class="std std-ref">More…</span></a></p>
+<pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// global functions</span>
+
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-unicode-1gaa1cc9207c072e037e2dbd017939d02b6"><span class="std std-ref">UTF32_IsLetter</span></a><span></span><span class="p">(</span><span class="kt">t_utf32</span> <span class="n">c</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-unicode-1gaff7408b5d8984465845c0e23248ecd51"><span class="std std-ref">UTF32_IsUppercase</span></a><span></span><span class="p">(</span><span class="kt">t_utf32</span> <span class="n">c</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-unicode-1gaace65a6ed66c10900665947cac7182b5"><span class="std std-ref">UTF32_IsLowercase</span></a><span></span><span class="p">(</span><span class="kt">t_utf32</span> <span class="n">c</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-unicode-1ga33f612fa98245d83bc867a6022e77831"><span class="std std-ref">UTF32_IsAlphaNumeric</span></a><span></span><span class="p">(</span><span class="kt">t_utf32</span> <span class="n">c</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-unicode-1gaf851927e488d4b32346527e509d829b4"><span class="std std-ref">UTF32_IsDigit_Decimal</span></a><span></span><span class="p">(</span><span class="kt">t_utf32</span> <span class="n">c</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-unicode-1ga50927286f238f0ea0037adb1774f73c7"><span class="std std-ref">UTF32_IsDigit_Hexadecimal</span></a><span></span><span class="p">(</span><span class="kt">t_utf32</span> <span class="n">c</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-unicode-1gab62490e045ac3f0307840782eeb03bdd"><span class="std std-ref">UTF32_IsDigit_Octal</span></a><span></span><span class="p">(</span><span class="kt">t_utf32</span> <span class="n">c</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-unicode-1gacf06716ca2acea0041caeca008b26b0e"><span class="std std-ref">UTF32_IsDigit_Binary</span></a><span></span><span class="p">(</span><span class="kt">t_utf32</span> <span class="n">c</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-unicode-1gafd8ddec185da67895f0b8a7a78c50fe5"><span class="std std-ref">UTF32_IsWhiteSpace</span></a><span></span><span class="p">(</span><span class="kt">t_utf32</span> <span class="n">c</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-unicode-1gaa8d4c6a7236a742b1edfa08c74ee4b10"><span class="std std-ref">UTF32_IsPunctuation</span></a><span></span><span class="p">(</span><span class="kt">t_utf32</span> <span class="n">c</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-unicode-1gac97218e9a1fbef3f6fb8ed20c1087c77"><span class="std std-ref">UTF32_IsPrintable</span></a><span></span><span class="p">(</span><span class="kt">t_utf32</span> <span class="n">c</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-unicode-1gaec30be40aa4e56c1ebb9b9ef66bf9343"><span class="std std-ref">UTF32_IsASCII</span></a><span></span><span class="p">(</span><span class="kt">t_utf32</span> <span class="n">c</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-unicode-1ga0b83c47c9598c5e3ec1ffab272a3b6de"><span class="std std-ref">UTF32_IsValid</span></a><span></span><span class="p">(</span><span class="kt">t_utf32</span> <span class="n">c</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-unicode-1ga63bd40c5a1f1e8c4cfc49b6332470cfb"><span class="std std-ref">UTF32_IsInCharset</span></a><span></span><span class="p">(</span><span class="kt">t_utf32</span> <span class="n">c</span><span class="p">,</span> <span class="kt">t_utf32</span> <span class="k">const</span><span class="o">*</span> <span class="n">charset</span><span class="p">);</span>
+<span class="kt">t_utf32</span> <a class="reference internal" href="#doxid-group-libccc-unicode-1ga08fd52572368d5d7548c0d3e76eeac5e"><span class="std std-ref">UTF32_ToUppercase</span></a><span></span><span class="p">(</span><span class="kt">t_utf32</span> <span class="n">c</span><span class="p">);</span>
+<span class="kt">t_utf32</span> <a class="reference internal" href="#doxid-group-libccc-unicode-1ga49ea232b1c0fb0f91f1d6b68d671a664"><span class="std std-ref">UTF32_ToLowercase</span></a><span></span><span class="p">(</span><span class="kt">t_utf32</span> <span class="n">c</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-unicode-1gadc1e9c036c5d23a92fb6e01d5067f201"><span class="std std-ref">UTF32_ToUTF8</span></a><span></span><span class="p">(</span><span class="kt">t_utf8</span><span class="o">*</span> <span class="n">dest</span><span class="p">,</span> <span class="kt">t_utf32</span> <span class="n">c</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-unicode-1ga3b7ae5f695c1a5f6c0d7a0aba3bd5c9b"><span class="std std-ref">UTF32_ToUTF16</span></a><span></span><span class="p">(</span><span class="kt">t_utf16</span><span class="o">*</span> <span class="n">dest</span><span class="p">,</span> <span class="kt">t_utf32</span> <span class="n">c</span><span class="p">);</span>
+<span class="kt">t_utf32</span> <a class="reference internal" href="#doxid-group-libccc-unicode-1ga3e71be1beabae276fe9ae1c3f9471631"><span class="std std-ref">UTF32_FromUTF8</span></a><span></span><span class="p">(</span><span class="kt">t_utf8</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">);</span>
+<span class="kt">t_utf32</span> <a class="reference internal" href="#doxid-group-libccc-unicode-1gac73c580b440cc6deeac1b209311c67d3"><span class="std std-ref">UTF32_FromUTF16</span></a><span></span><span class="p">(</span><span class="kt">t_utf16</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">);</span>
+<span class="kt">t_utf32</span> <a class="reference internal" href="#doxid-group-libccc-unicode-1gaf6150347673e8e21abc9e3e7b635b78a"><span class="std std-ref">UTF32_Parse</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-unicode-1ga9c746b86480110bc25cdd880bd86585f"><span class="std std-ref">UTF32_Parse_N</span></a><span></span><span class="p">(</span><span class="kt">t_utf32</span><span class="o">*</span> <span class="n">dest</span><span class="p">,</span> <a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">);</span>
+
+<span class="c1">// macros</span>
+
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-unicode-1gabb6128d8c5b2c7358f6137a9fada1287"><span class="std std-ref">UTF16_BIAS</span></a><span></span> <span class="mh">0x10000</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-unicode-1gaca1d5c6e1645f52ed688e7856cb81ad6"><span class="std std-ref">UTF16_BOM_BE</span></a><span></span>   <span class="s">&quot;</span><span class="se">\xFE\xFF</span><span class="s">&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-unicode-1ga8a42a9d6009477aadc52fb410451f2bc"><span class="std std-ref">UTF16_BOM_LE</span></a><span></span>   <span class="s">&quot;</span><span class="se">\xFF\xFE</span><span class="s">&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-unicode-1gaef0a4e2356ca8b88995286df8f7dc91c"><span class="std std-ref">UTF16_SURROGATE_END</span></a><span></span>    <span class="mh">0xE000</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-unicode-1gac7bf9023b8944a8e742ac735a0af57cc"><span class="std std-ref">UTF16_SURROGATE_HI</span></a><span></span> <span class="mh">0xD800</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-unicode-1ga58c614019a92a7b4f65b69dfaff1bcd9"><span class="std std-ref">UTF16_SURROGATE_LO</span></a><span></span> <span class="mh">0xDC00</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-unicode-1gac84779a3b5fd21648c256773f73485b4"><span class="std std-ref">UTF16_SURROGATE_MASK</span></a><span></span>   <span class="mh">0x3FF</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-unicode-1gae8b6189017c663989616bac0e417c8c1"><span class="std std-ref">UTF32_BOM_BE</span></a><span></span>   <span class="s">&quot;</span><span class="se">\x00\x00\xFE\xFF</span><span class="s">&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-unicode-1gaefb190ab0e50eccae4a0efdfa992d182"><span class="std std-ref">UTF32_BOM_LE</span></a><span></span>   <span class="s">&quot;</span><span class="se">\xFF\xFE\x00\x00</span><span class="s">&quot;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-unicode-1gad8e1098f3d69c94d07a0019aadfdd148"><span></span><span class="n">UTF32_IsAlNum</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-unicode-1ga33f612fa98245d83bc867a6022e77831"><span class="std std-ref">UTF32_IsAlphaNumeric</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-unicode-1ga5e357c6e2c57b92cc802d0e41655f6ac"><span></span><span class="n">UTF32_IsAlpha</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-unicode-1gaa1cc9207c072e037e2dbd017939d02b6"><span class="std std-ref">UTF32_IsLetter</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-unicode-1ga7ae3a8faf77021944b7e95411182c039"><span></span><span class="n">UTF32_IsDigit</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-unicode-1gaf851927e488d4b32346527e509d829b4"><span class="std std-ref">UTF32_IsDigit_Decimal</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-unicode-1ga9b3f3a8d81c556a7270e2466973f3a10"><span></span><span class="n">UTF32_IsDigit_Bin</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-unicode-1gacf06716ca2acea0041caeca008b26b0e"><span class="std std-ref">UTF32_IsDigit_Binary</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-unicode-1ga3ae723162b03ea6de80eec6fa33a362f"><span></span><span class="n">UTF32_IsDigit_Dec</span></span><span></span>   <a class="reference internal" href="group_libccc_ascii.html#doxid-group-libccc-ascii-1ga5bcb2ee1192c1f09afcce9a899ececf7"><span class="std std-ref">ASCII_IsDigit_Decimal</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-unicode-1gaf59af4c382524b4ffa8224547c627e10"><span></span><span class="n">UTF32_IsDigit_Hex</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-unicode-1ga50927286f238f0ea0037adb1774f73c7"><span class="std std-ref">UTF32_IsDigit_Hexadecimal</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-unicode-1ga42dafc348c3baac0bd9f7e71178df6e5"><span></span><span class="n">UTF32_IsDigit_Oct</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-unicode-1gab62490e045ac3f0307840782eeb03bdd"><span class="std std-ref">UTF32_IsDigit_Octal</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-unicode-1ga8cca23b0095142741a4f68fd546e6df3"><span></span><span class="n">UTF32_IsLower</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-unicode-1gaace65a6ed66c10900665947cac7182b5"><span class="std std-ref">UTF32_IsLowercase</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-unicode-1ga1e03e318ffb74b78f20d251434593e83"><span></span><span class="n">UTF32_IsPrint</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-unicode-1gac97218e9a1fbef3f6fb8ed20c1087c77"><span class="std std-ref">UTF32_IsPrintable</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-unicode-1ga97bc287a24201e3e023efd09182b8cb2"><span></span><span class="n">UTF32_IsPunct</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-unicode-1gaa8d4c6a7236a742b1edfa08c74ee4b10"><span class="std std-ref">UTF32_IsPunctuation</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-unicode-1ga7731e4836a8e87051d28433498054204"><span></span><span class="n">UTF32_IsSpace</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-unicode-1gafd8ddec185da67895f0b8a7a78c50fe5"><span class="std std-ref">UTF32_IsWhiteSpace</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-unicode-1ga01195687ebc5a0badd7718f57805f306"><span></span><span class="n">UTF32_IsUpper</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-unicode-1gaff7408b5d8984465845c0e23248ecd51"><span class="std std-ref">UTF32_IsUppercase</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-unicode-1ga13bebd16ca2e01ac6c4fc4ea02394ce0"><span></span><span class="n">UTF32_ToLower</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-unicode-1ga49ea232b1c0fb0f91f1d6b68d671a664"><span class="std std-ref">UTF32_ToLowercase</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-unicode-1ga045fcce75d6bf0941195b36ddac894df"><span></span><span class="n">UTF32_ToUpper</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-unicode-1ga08fd52572368d5d7548c0d3e76eeac5e"><span class="std std-ref">UTF32_ToUppercase</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-unicode-1ga50d2a13d8f4c59c57b6695ae5c22cee6"><span class="std std-ref">UTF8_1BYTE</span></a><span></span> <span class="mh">0x00000080</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-unicode-1ga2baa66668146e03d562a28e755ba3459"><span class="std std-ref">UTF8_2BYTE</span></a><span></span> <span class="mh">0x00000800</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-unicode-1ga293f85cd3e5cc7d9d75c4848b72b1b51"><span class="std std-ref">UTF8_3BYTE</span></a><span></span> <span class="mh">0x00010000</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-unicode-1ga7dd95e691c11be941f57c7a80a3d29d3"><span class="std std-ref">UTF8_4BYTE</span></a><span></span> <span class="mh">0x0010FFFF</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-unicode-1ga1298449aa3d5122f10caea0eb0cefae6"><span class="std std-ref">UTF8_BOM</span></a><span></span>   <span class="s">&quot;</span><span class="se">\xEF\xBB\xBF</span><span class="s">&quot;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-unicode-1ga1b9143e8aece9e9bcf19a2b21f7b735b"><span></span><span class="n">Unicode_IsInCharset</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-unicode-1ga63bd40c5a1f1e8c4cfc49b6332470cfb"><span class="std std-ref">UTF32_IsInCharset</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-unicode-1ga2413992c60b9ac17ae4a498cda484988"><span></span><span class="n">c_mb2towc</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-unicode-1gac73c580b440cc6deeac1b209311c67d3"><span class="std std-ref">UTF32_FromUTF16</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-unicode-1gae1c3679e55126b5b81acc2e7cbc6a5ed"><span></span><span class="n">c_mbtowc</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-unicode-1ga3e71be1beabae276fe9ae1c3f9471631"><span class="std std-ref">UTF32_FromUTF8</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-unicode-1ga0d438f06415b49d107a9e89f8c72457b"><span></span><span class="n">c_utf16towc</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-unicode-1gac73c580b440cc6deeac1b209311c67d3"><span class="std std-ref">UTF32_FromUTF16</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-unicode-1ga75c6adc27a127e211fbd2917facd3433"><span></span><span class="n">c_utf8towc</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-unicode-1ga3e71be1beabae276fe9ae1c3f9471631"><span class="std std-ref">UTF32_FromUTF8</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-unicode-1gafa798cf69001db73c10f32dda5cd8d1e"><span></span><span class="n">c_wcincharset</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-unicode-1ga63bd40c5a1f1e8c4cfc49b6332470cfb"><span class="std std-ref">UTF32_IsInCharset</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-unicode-1gac431221041a3caf0ab44aad2d9b8f40d"><span></span><span class="n">c_wcisalnum</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-unicode-1ga33f612fa98245d83bc867a6022e77831"><span class="std std-ref">UTF32_IsAlphaNumeric</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-unicode-1ga5bc951d3cc2d83af282cc2b144c495dc"><span></span><span class="n">c_wcisalpha</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-unicode-1gaa1cc9207c072e037e2dbd017939d02b6"><span class="std std-ref">UTF32_IsLetter</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-unicode-1ga9553fd30e4e75d966ce39fc24aa76135"><span></span><span class="n">c_wcisascii</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-unicode-1gaec30be40aa4e56c1ebb9b9ef66bf9343"><span class="std std-ref">UTF32_IsASCII</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-unicode-1ga321d8f7dd212e063165adf661d31a5cf"><span></span><span class="n">c_wcisbdigit</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-unicode-1gacf06716ca2acea0041caeca008b26b0e"><span class="std std-ref">UTF32_IsDigit_Binary</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-unicode-1gab8f9fef2af88cd422aaa242a012601b8"><span></span><span class="n">c_wcisdigit</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-unicode-1gaf851927e488d4b32346527e509d829b4"><span class="std std-ref">UTF32_IsDigit_Decimal</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-unicode-1gabfe4c4f1af70d6e514eca968b9e32f1d"><span></span><span class="n">c_wcislower</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-unicode-1gaace65a6ed66c10900665947cac7182b5"><span class="std std-ref">UTF32_IsLowercase</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-unicode-1gab665da98968cfadafbf75044c938713c"><span></span><span class="n">c_wcisodigit</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-unicode-1gab62490e045ac3f0307840782eeb03bdd"><span class="std std-ref">UTF32_IsDigit_Octal</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-unicode-1gaf725a61024ccd3688916b78debcfd668"><span></span><span class="n">c_wcisprint</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-unicode-1gac97218e9a1fbef3f6fb8ed20c1087c77"><span class="std std-ref">UTF32_IsPrintable</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-unicode-1ga2ab302b1f3bdc2f83fdf46862f59d837"><span></span><span class="n">c_wcispunct</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-unicode-1gaa8d4c6a7236a742b1edfa08c74ee4b10"><span class="std std-ref">UTF32_IsPunctuation</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-unicode-1ga97494f21c7f8bf3e9d099b48f2338d6e"><span></span><span class="n">c_wcisspace</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-unicode-1gafd8ddec185da67895f0b8a7a78c50fe5"><span class="std std-ref">UTF32_IsWhiteSpace</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-unicode-1gae11a1bd6f2e7c5911cf5261b0cf652d6"><span></span><span class="n">c_wcisupper</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-unicode-1gaff7408b5d8984465845c0e23248ecd51"><span class="std std-ref">UTF32_IsUppercase</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-unicode-1ga02fc25521d65a150b1fb28f65f04f4bb"><span></span><span class="n">c_wcisvalid</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-unicode-1ga0b83c47c9598c5e3ec1ffab272a3b6de"><span class="std std-ref">UTF32_IsValid</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-unicode-1ga38ef3fdb4e54653e28ee076f5dcf81d0"><span></span><span class="n">c_wcisxdigit</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-unicode-1ga50927286f238f0ea0037adb1774f73c7"><span class="std std-ref">UTF32_IsDigit_Hexadecimal</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-unicode-1gaab4e845f4e03ec982afb15351cc182d2"><span></span><span class="n">c_wcnparse</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-unicode-1ga9c746b86480110bc25cdd880bd86585f"><span class="std std-ref">UTF32_Parse_N</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-unicode-1ga4e9e177a29a78cbaa7376b73196e7bed"><span></span><span class="n">c_wcparse</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-unicode-1gaf6150347673e8e21abc9e3e7b635b78a"><span class="std std-ref">UTF32_Parse</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-unicode-1ga5c9a4329f6227a53b62da6096b07d594"><span></span><span class="n">c_wctolower</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-unicode-1ga49ea232b1c0fb0f91f1d6b68d671a664"><span class="std std-ref">UTF32_ToLowercase</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-unicode-1ga11a4035f4b26504d7e68717610922e97"><span></span><span class="n">c_wctomb</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-unicode-1gadc1e9c036c5d23a92fb6e01d5067f201"><span class="std std-ref">UTF32_ToUTF8</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-unicode-1ga913b614e45468119309db47e9555b62a"><span></span><span class="n">c_wctomb2</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-unicode-1ga3b7ae5f695c1a5f6c0d7a0aba3bd5c9b"><span class="std std-ref">UTF32_ToUTF16</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-unicode-1ga2e2796848855bffd20f90f3bd339508a"><span></span><span class="n">c_wctoupper</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-unicode-1ga08fd52572368d5d7548c0d3e76eeac5e"><span class="std std-ref">UTF32_ToUppercase</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-unicode-1ga042d59c70304ef0b922d7b94526fee2b"><span></span><span class="n">c_wctoutf16</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-unicode-1ga3b7ae5f695c1a5f6c0d7a0aba3bd5c9b"><span class="std std-ref">UTF32_ToUTF16</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-unicode-1ga9a70526ef21927c9818e267ed113ef6a"><span></span><span class="n">c_wctoutf8</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-unicode-1gadc1e9c036c5d23a92fb6e01d5067f201"><span class="std std-ref">UTF32_ToUTF8</span></a></pre>
+</div>
+<div class="section" id="detailed-documentation">
+<span id="details-group-libccc-unicode"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline">¶</a></h2>
+<p>This header defines all the functions related to Unicode text encodings.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/UTF-8">https://en.wikipedia.org/wiki/UTF-8</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/UTF-16">https://en.wikipedia.org/wiki/UTF-16</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/UTF-32">https://en.wikipedia.org/wiki/UTF-32</a></p></li>
+<li><p><a class="reference external" href="https://unicode-table.com/en/#">https://unicode-table.com/en/#</a></p></li>
+</ul>
+<div class="section" id="global-functions">
+<h3>Global Functions<a class="headerlink" href="#global-functions" title="Permalink to this headline">¶</a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-unicode-1gaa1cc9207c072e037e2dbd017939d02b6"><span id="index-1"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">UTF32_IsLetter</span><span class="p">(</span><span class="kt">t_utf32</span> <span class="n">c</span><span class="p">)</span></pre>
+<p>Check if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is a letter character.</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/string/byte/isalpha">https://en.cppreference.com/w/c/string/byte/isalpha</a></p></li>
+</ul>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>c</p></td>
+<td><p>The character to check</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span class="std std-ref">TRUE</span></a> if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is a letter (lowercase or uppercase), otherwise <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa93f0eb578d23995850d61f7d61c55c1"><span class="std std-ref">FALSE</span></a>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-unicode-1gaff7408b5d8984465845c0e23248ecd51"><span id="index-2"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">UTF32_IsUppercase</span><span class="p">(</span><span class="kt">t_utf32</span> <span class="n">c</span><span class="p">)</span></pre>
+<p>Check if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is a uppercase letter character.</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/string/byte/isupper">https://en.cppreference.com/w/c/string/byte/isupper</a></p></li>
+</ul>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>c</p></td>
+<td><p>The character to check</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span class="std std-ref">TRUE</span></a> if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is a uppercase letter character, otherwise <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa93f0eb578d23995850d61f7d61c55c1"><span class="std std-ref">FALSE</span></a>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-unicode-1gaace65a6ed66c10900665947cac7182b5"><span id="index-3"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">UTF32_IsLowercase</span><span class="p">(</span><span class="kt">t_utf32</span> <span class="n">c</span><span class="p">)</span></pre>
+<p>Check if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is an lowercase letter character.</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/string/byte/islower">https://en.cppreference.com/w/c/string/byte/islower</a></p></li>
+</ul>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>c</p></td>
+<td><p>The character to check</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span class="std std-ref">TRUE</span></a> if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is an lowercase letter character, otherwise <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa93f0eb578d23995850d61f7d61c55c1"><span class="std std-ref">FALSE</span></a>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-unicode-1ga33f612fa98245d83bc867a6022e77831"><span id="index-4"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">UTF32_IsAlphaNumeric</span><span class="p">(</span><span class="kt">t_utf32</span> <span class="n">c</span><span class="p">)</span></pre>
+<p>Check if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is alphanumeric (letter or digit) character.</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/string/byte/isalnum">https://en.cppreference.com/w/c/string/byte/isalnum</a></p></li>
+</ul>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>c</p></td>
+<td><p>The character to check</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span class="std std-ref">TRUE</span></a> if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is alphanumeric (letter or digit), otherwise <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa93f0eb578d23995850d61f7d61c55c1"><span class="std std-ref">FALSE</span></a>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-unicode-1gaf851927e488d4b32346527e509d829b4"><span id="index-5"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">UTF32_IsDigit_Decimal</span><span class="p">(</span><span class="kt">t_utf32</span> <span class="n">c</span><span class="p">)</span></pre>
+<p>Check if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is a decimal digit character (ie: <a class="reference internal" href="global.html#doxid-char-8h-1a8d6087686ef6f058a846d0f3de6f8c84"><span class="std std-ref">CHARSET_DEC</span></a> : <code class="docutils literal notranslate"><span class="pre">0123456789</span></code>)</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/string/byte/isdigit">https://en.cppreference.com/w/c/string/byte/isdigit</a></p></li>
+</ul>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>c</p></td>
+<td><p>The character to check</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span class="std std-ref">TRUE</span></a> if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is a decimal digit character, otherwise <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa93f0eb578d23995850d61f7d61c55c1"><span class="std std-ref">FALSE</span></a>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-unicode-1ga50927286f238f0ea0037adb1774f73c7"><span id="index-6"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">UTF32_IsDigit_Hexadecimal</span><span class="p">(</span><span class="kt">t_utf32</span> <span class="n">c</span><span class="p">)</span></pre>
+<p>Checks if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is a hexadecimal digit character (ie: <a class="reference internal" href="global.html#doxid-char-8h-1abb97af58e7abddeda21eb9f2349ef1a4"><span class="std std-ref">CHARSET_HEX</span></a> : <code class="docutils literal notranslate"><span class="pre">0123456789abcdefABCDEF</span></code>)</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/string/byte/isxdigit">https://en.cppreference.com/w/c/string/byte/isxdigit</a></p></li>
+</ul>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>c</p></td>
+<td><p>The character to check</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span class="std std-ref">TRUE</span></a> if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is a hexadecimal digit character, otherwise <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa93f0eb578d23995850d61f7d61c55c1"><span class="std std-ref">FALSE</span></a>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-unicode-1gab62490e045ac3f0307840782eeb03bdd"><span id="index-7"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">UTF32_IsDigit_Octal</span><span class="p">(</span><span class="kt">t_utf32</span> <span class="n">c</span><span class="p">)</span></pre>
+<p>Checks if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is a octal-base digit character (ie: <a class="reference internal" href="global.html#doxid-char-8h-1a26a48296cdaa177e6f0693a03d52b58f"><span class="std std-ref">CHARSET_OCT</span></a> : <code class="docutils literal notranslate"><span class="pre">01234567</span></code>)</p>
+<ul class="simple">
+<li><p><em>This function is not defined in the C ISO standard.</em></p></li>
+</ul>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>c</p></td>
+<td><p>The character to check</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span class="std std-ref">TRUE</span></a> if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is an octal digit character, otherwise <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa93f0eb578d23995850d61f7d61c55c1"><span class="std std-ref">FALSE</span></a>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-unicode-1gacf06716ca2acea0041caeca008b26b0e"><span id="index-8"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">UTF32_IsDigit_Binary</span><span class="p">(</span><span class="kt">t_utf32</span> <span class="n">c</span><span class="p">)</span></pre>
+<p>Checks if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is a binary-base digit character (ie: ‘0’ or ‘1’)</p>
+<ul class="simple">
+<li><p><em>This function is not defined in the C ISO standard.</em></p></li>
+</ul>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>c</p></td>
+<td><p>The character to check</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span class="std std-ref">TRUE</span></a> if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is a binary digit character, otherwise <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa93f0eb578d23995850d61f7d61c55c1"><span class="std std-ref">FALSE</span></a>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-unicode-1gafd8ddec185da67895f0b8a7a78c50fe5"><span id="index-9"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">UTF32_IsWhiteSpace</span><span class="p">(</span><span class="kt">t_utf32</span> <span class="n">c</span><span class="p">)</span></pre>
+<p>Check if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is whitespace character (prints nothing)</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/string/byte/isspace">https://en.cppreference.com/w/c/string/byte/isspace</a></p></li>
+</ul>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>c</p></td>
+<td><p>The character to check</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span class="std std-ref">TRUE</span></a> if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is whitespace character, and returns <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa93f0eb578d23995850d61f7d61c55c1"><span class="std std-ref">FALSE</span></a> otherwise.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-unicode-1gaa8d4c6a7236a742b1edfa08c74ee4b10"><span id="index-10"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">UTF32_IsPunctuation</span><span class="p">(</span><span class="kt">t_utf32</span> <span class="n">c</span><span class="p">)</span></pre>
+<p>Check if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is a punctuation character.</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/string/byte/ispunct">https://en.cppreference.com/w/c/string/byte/ispunct</a></p></li>
+</ul>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>c</p></td>
+<td><p>The character to check</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span class="std std-ref">TRUE</span></a> if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is a punctuation character, and returns <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa93f0eb578d23995850d61f7d61c55c1"><span class="std std-ref">FALSE</span></a> otherwise.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-unicode-1gac97218e9a1fbef3f6fb8ed20c1087c77"><span id="index-11"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">UTF32_IsPrintable</span><span class="p">(</span><span class="kt">t_utf32</span> <span class="n">c</span><span class="p">)</span></pre>
+<p>Check if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is a printable Unicode character.</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/string/byte/isprint">https://en.cppreference.com/w/c/string/byte/isprint</a></p></li>
+</ul>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>c</p></td>
+<td><p>The character to check</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span class="std std-ref">TRUE</span></a> if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is a printable Unicode character, (0x20 &lt;= c &amp;&amp; c &lt;= 0x7E) and returns <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa93f0eb578d23995850d61f7d61c55c1"><span class="std std-ref">FALSE</span></a> otherwise.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-unicode-1gaec30be40aa4e56c1ebb9b9ef66bf9343"><span id="index-12"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">UTF32_IsASCII</span><span class="p">(</span><span class="kt">t_utf32</span> <span class="n">c</span><span class="p">)</span></pre>
+<p>Check if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is an ASCII-compatible char (non-Unicode)</p>
+<ul class="simple">
+<li><p><em>This function is not defined in the C ISO standard.</em></p></li>
+</ul>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>c</p></td>
+<td><p>The character to check</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span class="std std-ref">TRUE</span></a> if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> has a value between 0 and 127, (0x00 &lt;= c &amp;&amp; c &lt;= 0x7F) and returns <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa93f0eb578d23995850d61f7d61c55c1"><span class="std std-ref">FALSE</span></a> otherwise.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-unicode-1ga0b83c47c9598c5e3ec1ffab272a3b6de"><span id="index-13"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">UTF32_IsValid</span><span class="p">(</span><span class="kt">t_utf32</span> <span class="n">c</span><span class="p">)</span></pre>
+<p>Check if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is a valid Unicode code point.</p>
+<ul class="simple">
+<li><p><em>This function is not defined in the C ISO standard.</em></p></li>
+</ul>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>c</p></td>
+<td><p>The character to check</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gaa8cecfc5c5c054d2875c03e77b7be15d"><span class="std std-ref">TRUE</span></a> if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is a valid UTF-32 code point</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-unicode-1ga63bd40c5a1f1e8c4cfc49b6332470cfb"><span id="index-14"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">UTF32_IsInCharset</span><span class="p">(</span><span class="kt">t_utf32</span> <span class="n">c</span><span class="p">,</span> <span class="kt">t_utf32</span> <span class="k">const</span><span class="o">*</span> <span class="n">charset</span><span class="p">)</span></pre>
+<p>Check if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is contained in the given ‘charset’.</p>
+<p>Check if the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> is contained in the given ‘charset’</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>c</p></td>
+<td><p>The character to check</p></td>
+</tr>
+<tr class="row-even"><td><p>charset</p></td>
+<td><p>String, the set of characters to look through (the 0’ <code class="docutils literal notranslate"><span class="pre">terminator</span> <span class="pre">ends</span> <span class="pre">the</span> <span class="pre">charset)</span> <span class="pre">&#64;returns</span> <span class="pre">#TRUE</span> <span class="pre">if</span> <span class="pre">the</span> <span class="pre">given</span> <span class="pre">char</span></code> c <code class="docutils literal notranslate"><span class="pre">is</span> <span class="pre">contained</span> <span class="pre">within</span> <span class="pre">the</span> <span class="pre">given</span></code> charset` array</p></td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-unicode-1ga08fd52572368d5d7548c0d3e76eeac5e"><span id="index-15"></span><span></span><span class="kt">t_utf32</span> <span class="n">UTF32_ToUppercase</span><span class="p">(</span><span class="kt">t_utf32</span> <span class="n">c</span><span class="p">)</span></pre>
+<p>Get the uppercase version of the given char <code class="docutils literal notranslate"><span class="pre">c</span></code>, if possible.</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/string/byte/toupper">https://en.cppreference.com/w/c/string/byte/toupper</a></p></li>
+</ul>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>c</p></td>
+<td><p>The character whose uppercase equivalent should be returned</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>the uppercase equivalent of the given character, or returns <code class="docutils literal notranslate"><span class="pre">c</span></code> itself if it is not a letter character.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-unicode-1ga49ea232b1c0fb0f91f1d6b68d671a664"><span id="index-16"></span><span></span><span class="kt">t_utf32</span> <span class="n">UTF32_ToLowercase</span><span class="p">(</span><span class="kt">t_utf32</span> <span class="n">c</span><span class="p">)</span></pre>
+<p>Get the lowercase version of the given char <code class="docutils literal notranslate"><span class="pre">c</span></code>, if possible.</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/string/byte/tolower">https://en.cppreference.com/w/c/string/byte/tolower</a></p></li>
+</ul>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>c</p></td>
+<td><p>The character whose lowercase equivalent should be returned</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>the lowercase equivalent of the given character, or returns <code class="docutils literal notranslate"><span class="pre">c</span></code> itself if it is not a letter character.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-unicode-1gadc1e9c036c5d23a92fb6e01d5067f201"><span id="index-17"></span><a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">UTF32_ToUTF8</span><span class="p">(</span><span class="kt">t_utf8</span><span class="o">*</span> <span class="n">dest</span><span class="p">,</span> <span class="kt">t_utf32</span> <span class="n">c</span><span class="p">)</span></pre>
+<p>Converts the given Unicode char <code class="docutils literal notranslate"><span class="pre">c</span></code> to its UTF-8 equivalent representation.</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/string/multibyte/wctomb">https://en.cppreference.com/w/c/string/multibyte/wctomb</a></p></li>
+</ul>
+<p>Converts the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> to UTF-8 representation, and writes it to ‘dest’</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>c</p></td>
+<td><p>The character to convert (UTF-32 Unicode code point value)</p></td>
+</tr>
+<tr class="row-even"><td><p>dest</p></td>
+<td><p>The pointer at which to write the resulting UTF-8 char (you must ensure that at least 4 bytes are writable to ‘dest’)</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The size (in bytes) of the character written (can be 0, 1, 2, 3, or 4)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-unicode-1ga3b7ae5f695c1a5f6c0d7a0aba3bd5c9b"><span id="index-18"></span><a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">UTF32_ToUTF16</span><span class="p">(</span><span class="kt">t_utf16</span><span class="o">*</span> <span class="n">dest</span><span class="p">,</span> <span class="kt">t_utf32</span> <span class="n">c</span><span class="p">)</span></pre>
+<p>Converts the given Unicode char <code class="docutils literal notranslate"><span class="pre">c</span></code> to its UTF-16 equivalent representation.</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/string/multibyte/wctomb">https://en.cppreference.com/w/c/string/multibyte/wctomb</a></p></li>
+</ul>
+<p>Converts the given char <code class="docutils literal notranslate"><span class="pre">c</span></code> to UTF-16 representation, and writes it to ‘dest’</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>c</p></td>
+<td><p>The character to convert (UTF-32 Unicode code point value)</p></td>
+</tr>
+<tr class="row-even"><td><p>dest</p></td>
+<td><p>The pointer at which to write the resulting UTF-16 char (you must ensure that at least 4 bytes are writable to ‘dest’)</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The size (in bytes) of the character written (can be 0, 2, or 4)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-unicode-1ga3e71be1beabae276fe9ae1c3f9471631"><span id="index-19"></span><span></span><span class="kt">t_utf32</span> <span class="n">UTF32_FromUTF8</span><span class="p">(</span><span class="kt">t_utf8</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">)</span></pre>
+<p>Returns the Unicode code point value (UTF-32) for the first UTF-8 character in <code class="docutils literal notranslate"><span class="pre">str</span></code></p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/string/multibyte/mbtowc">https://en.cppreference.com/w/c/string/multibyte/mbtowc</a></p></li>
+</ul>
+<p>Reads up to 4 bytes in ‘str’, and converts these bytes to a Unicode code point value</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>str</p></td>
+<td><p>The string from which to read a UTF-8 character</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The Unicode code point value for the character pointed to by ‘str’</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-unicode-1gac73c580b440cc6deeac1b209311c67d3"><span id="index-20"></span><span></span><span class="kt">t_utf32</span> <span class="n">UTF32_FromUTF16</span><span class="p">(</span><span class="kt">t_utf16</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">)</span></pre>
+<p>Returns the Unicode code point value (UTF-32) for the first UTF-16 character in <code class="docutils literal notranslate"><span class="pre">str</span></code></p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/string/multibyte/mbtowc">https://en.cppreference.com/w/c/string/multibyte/mbtowc</a></p></li>
+</ul>
+<p>Reads 2 or 4 bytes in ‘str’, and converts these bytes to a Unicode code point value</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>str</p></td>
+<td><p>The string from which to read a UTF-16 character</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The Unicode code point value for the character pointed to by ‘str’</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-unicode-1gaf6150347673e8e21abc9e3e7b635b78a"><span id="index-21"></span><span></span><span class="kt">t_utf32</span> <span class="n">UTF32_Parse</span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">)</span></pre>
+<p>Parses a UTF-8 string escape sequence (<code class="docutils literal notranslate"><span class="pre">\U????????</span></code>, or <code class="docutils literal notranslate"><span class="pre">\u????</span></code>) from the given <code class="docutils literal notranslate"><span class="pre">str</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>str</p></td>
+<td><p>The string from which to parse an escape sequence</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>the UTF-32 code point for the parsed unicode character, or <a class="reference internal" href="group_libccc.html#doxid-group-libccc-1ga8fe83ac76edc595f6b98cd4a4127aed5"><span class="std std-ref">ERROR</span></a> (<code class="docutils literal notranslate"><span class="pre">-1</span></code>) if there was a parsing error.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-unicode-1ga9c746b86480110bc25cdd880bd86585f"><span id="index-22"></span><a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">UTF32_Parse_N</span><span class="p">(</span><span class="kt">t_utf32</span><span class="o">*</span> <span class="n">dest</span><span class="p">,</span> <a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">)</span></pre>
+<p>Parses a UTF-8 string escape sequence (<code class="docutils literal notranslate"><span class="pre">\U????????</span></code>, or <code class="docutils literal notranslate"><span class="pre">\u????</span></code>), reading at most <code class="docutils literal notranslate"><span class="pre">n</span></code> chars from <code class="docutils literal notranslate"><span class="pre">str</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>dest</p></td>
+<td><p>The pointer to the 32-bit integer in which the result will be written.</p></td>
+</tr>
+<tr class="row-even"><td><p>str</p></td>
+<td><p>The string from which to parse an escape sequence.</p></td>
+</tr>
+<tr class="row-odd"><td><p>n</p></td>
+<td><p>The maximum amount of characters to read from <code class="docutils literal notranslate"><span class="pre">str</span></code>. NOTE: if <code class="docutils literal notranslate"><span class="pre">0</span></code> is given, then there will be no maximum amount.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>the total amount of bytes read from the given <code class="docutils literal notranslate"><span class="pre">str</span></code> buffer.</p>
+</div>
+<div class="section" id="macros">
+<h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-unicode-1gabb6128d8c5b2c7358f6137a9fada1287"><span id="index-23"></span><span></span><span class="cp">#define</span> <span class="n">UTF16_BIAS</span>  <span class="cp">0x10000</span></pre>
+<p>These macros are used to encode/decode UTF-16 strings.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-unicode-1gaca1d5c6e1645f52ed688e7856cb81ad6"><span id="index-24"></span><span></span><span class="cp">#define</span> <span class="n">UTF16_BOM_BE</span>    <span class="cp">&quot;\xFE\xFF&quot;</span></pre>
+<p>The UTF-16 byte order mark: <code class="docutils literal notranslate"><span class="pre">FE</span> <span class="pre">FF</span></code> (Big-Endian)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-unicode-1ga8a42a9d6009477aadc52fb410451f2bc"><span id="index-25"></span><span></span><span class="cp">#define</span> <span class="n">UTF16_BOM_LE</span>    <span class="cp">&quot;\xFF\xFE&quot;</span></pre>
+<p>The UTF-16 byte order mark: <code class="docutils literal notranslate"><span class="pre">FF</span> <span class="pre">FE</span></code> (Little-Endian)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-unicode-1gaef0a4e2356ca8b88995286df8f7dc91c"><span id="index-26"></span><span></span><span class="cp">#define</span> <span class="n">UTF16_SURROGATE_END</span> <span class="cp">0xE000</span></pre>
+<p>These macros are used to encode/decode UTF-16 strings.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-unicode-1gac7bf9023b8944a8e742ac735a0af57cc"><span id="index-27"></span><span></span><span class="cp">#define</span> <span class="n">UTF16_SURROGATE_HI</span>  <span class="cp">0xD800</span></pre>
+<p>These macros are used to encode/decode UTF-16 strings.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-unicode-1ga58c614019a92a7b4f65b69dfaff1bcd9"><span id="index-28"></span><span></span><span class="cp">#define</span> <span class="n">UTF16_SURROGATE_LO</span>  <span class="cp">0xDC00</span></pre>
+<p>These macros are used to encode/decode UTF-16 strings.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-unicode-1gac84779a3b5fd21648c256773f73485b4"><span id="index-29"></span><span></span><span class="cp">#define</span> <span class="n">UTF16_SURROGATE_MASK</span>    <span class="cp">0x3FF</span></pre>
+<p>These macros are used to encode/decode UTF-16 strings.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-unicode-1gae8b6189017c663989616bac0e417c8c1"><span id="index-30"></span><span></span><span class="cp">#define</span> <span class="n">UTF32_BOM_BE</span>    <span class="cp">&quot;\x00\x00\xFE\xFF&quot;</span></pre>
+<p>The UTF-16 byte order mark: <code class="docutils literal notranslate"><span class="pre">00</span> <span class="pre">00</span> <span class="pre">FE</span> <span class="pre">FF</span></code> (Big-Endian)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-unicode-1gaefb190ab0e50eccae4a0efdfa992d182"><span id="index-31"></span><span></span><span class="cp">#define</span> <span class="n">UTF32_BOM_LE</span>    <span class="cp">&quot;\xFF\xFE\x00\x00&quot;</span></pre>
+<p>The UTF-16 byte order mark: <code class="docutils literal notranslate"><span class="pre">FF</span> <span class="pre">FE</span> <span class="pre">00</span> <span class="pre">00</span></code> (Little-Endian)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-unicode-1ga50d2a13d8f4c59c57b6695ae5c22cee6"><span id="index-32"></span><span></span><span class="cp">#define</span> <span class="n">UTF8_1BYTE</span>  <span class="cp">0x00000080</span></pre>
+<p>Beneath this code point, UTF-8 encodes this as a 1-byte character.</p>
+<p>These macros are used to encode/decode UTF-8 strings.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-unicode-1ga2baa66668146e03d562a28e755ba3459"><span id="index-33"></span><span></span><span class="cp">#define</span> <span class="n">UTF8_2BYTE</span>  <span class="cp">0x00000800</span></pre>
+<p>Beneath this code point, UTF-8 encodes this as a 2-byte character.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-unicode-1ga293f85cd3e5cc7d9d75c4848b72b1b51"><span id="index-34"></span><span></span><span class="cp">#define</span> <span class="n">UTF8_3BYTE</span>  <span class="cp">0x00010000</span></pre>
+<p>Beneath this code point, UTF-8 encodes this as a 3-byte character.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-unicode-1ga7dd95e691c11be941f57c7a80a3d29d3"><span id="index-35"></span><span></span><span class="cp">#define</span> <span class="n">UTF8_4BYTE</span>  <span class="cp">0x0010FFFF</span></pre>
+<p>Beneath this code point, UTF-8 encodes this as a 4-byte character</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-unicode-1ga1298449aa3d5122f10caea0eb0cefae6"><span id="index-36"></span><span></span><span class="cp">#define</span> <span class="n">UTF8_BOM</span>    <span class="cp">&quot;\xEF\xBB\xBF&quot;</span></pre>
+<p>The Unicode byte order mark (<a class="reference external" href="https://en.wikipedia.org/wiki/Byte_order_mark">https://en.wikipedia.org/wiki/Byte_order_mark</a>) macros. A byte order mark is used at the beginning of a string, to indicate that the string is indeed a Unicode string, the type of Unicode encoding, and the byte endian-ness used. The UTF-8 byte order mark: <code class="docutils literal notranslate"><span class="pre">EF</span> <span class="pre">BB</span> <span class="pre">BF</span></code></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="group_libccc_math.html" class="btn btn-neutral float-right" title="Libccc_math" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="group_libccc_regex.html" class="btn btn-neutral float-left" title="Libccc_regex" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Free &amp; Open Source: MIT License
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

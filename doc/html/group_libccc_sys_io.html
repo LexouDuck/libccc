@@ -1,0 +1,936 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>14) libccc/sys/io &mdash; libccc 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/target-highlight.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="_static/js/custom.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="15) libccc/sys/ansi" href="group_libccc_sys_ansi.html" />
+    <link rel="prev" title="13) libccc/color" href="group_libccc_color.html" />
+	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
+	
+	<meta name="Description" content="14) libccc/sys/io">
+	<meta property="og:description" content="14) libccc/sys/io">
+	<meta property="og:title" content="libccc 1.0 documentation - 14) libccc/sys/io">
+	<meta property="og:image" content="_static/images/libccc_icon.png">
+	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="380" />
+	<meta property="og:image:height" content="380" />
+	<meta property="og:url" content="group_libccc_sys_io.html">
+	<meta property="og:site_name" content="libccc 1.0 documentation">
+
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> libccc
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="group_libccc.html">01) libccc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">02) libccc/bool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">03) libccc/int</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_fixed.html">04) libccc/fixed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_float.html">05) libccc/float</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointer.html">06) libccc/pointer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointerarray.html">07) libccc/pointerarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_memory.html">08) libccc/memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">09) libccc/char</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">10) libccc/string</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_stringarray.html">11) libccc/stringarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">12) libccc/format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_color.html">13) libccc/color</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">14) libccc/sys/io</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#detailed-documentation">Detailed Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#typedefs">Typedefs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#global-functions">Global Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#macros">Macros</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_ansi.html">15) libccc/sys/ansi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">18) libccc/sys/logger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_time.html">20) libccc/sys/time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_constants.html">21) libccc/math/constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_float.html">22) libccc/math/float</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_fixed.html">23) libccc/math/fixed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_vlq.html">24) libccc/math/vlq</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_stat.html">25) libccc/math/stat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_random.html">26) libccc/math/random</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">27) libccc/math/complex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra.html">28) libccc/math/algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_array.html">32) libccc/monad/array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_list.html">33) libccc/monad/list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_stack.html">34) libccc/monad/stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_queue.html">35) libccc/monad/queue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_tree.html">36) libccc/monad/tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_keyval.html">37) libccc/monad/keyval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_dict.html">38) libccc/monad/dict</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_object.html">39) libccc/monad/object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_config.html">Libccc_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_ascii.html">Libccc_ascii</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_regex.html">Libccc_regex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_unicode.html">Libccc_unicode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math.html">Libccc_math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_sort.html">Libccc_array_sort</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_convert.html">Libccc_monad_convert</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">libccc</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>14) libccc/sys/io</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="libccc-sys-io">
+<span id="doxid-group-libccc-sys-io"></span><span id="index-0"></span><h1>14) libccc/sys/io<a class="headerlink" href="#libccc-sys-io" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>This header defines all the functions for OS-level input/output, read/write. <a class="reference internal" href="#details-group-libccc-sys-io"><span class="std std-ref">More…</span></a></p>
+<pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// typedefs</span>
+
+<span class="k">typedef</span> <span class="kt">int</span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f"><span class="std std-ref">t_fd</span></a><span></span><span class="p">;</span>
+
+<span class="c1">// global variables</span>
+
+<span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1gad7d82bd55fd8770b77633b4f9be42fda"><span></span><span class="n">format</span></span><span></span><span class="p">;</span>
+
+<span class="c1">// global functions</span>
+
+<a class="reference internal" href="#doxid-group-libccc-sys-io-1gad0fcb851af0d19b590b0a7f8adccb017"><span class="std std-ref">TYPEDEF_ALIAS</span></a><span></span><span class="p">(</span><span class="kt">t_io_error</span><span class="p">,</span> <span class="n">IO_ERROR</span><span class="p">,</span> <span class="n">PRIMITIVE</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-sys-io-1gaa8bde7f70b0b93da4cfb037eff6f6a27"><span class="std std-ref">TYPEDEF_ALIAS</span></a><span></span><span class="p">(</span><span class="kt">t_io_mode</span><span class="p">,</span> <span class="n">IO_MODE</span><span class="p">,</span> <span class="n">PRIMITIVE</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-sys-io-1gabe496cba1598162ae4df80f6ef6e6d27"><span class="std std-ref">TYPEDEF_ALIAS</span></a><span></span><span class="p">(</span><span class="kt">t_io_open</span><span class="p">,</span> <span class="n">IO_OPEN</span><span class="p">,</span> <span class="n">PRIMITIVE</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga8ddf940d2d7288b36e35ce78989c811e"><span class="std std-ref">t_u8</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga2d94641dce33e903f3117aed1d472bf2"><span class="std std-ref">IO_GetColor</span></a><span></span><span class="p">(</span><span class="kt">t_argb32</span> <span class="n">color</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1gafbf2e86ab1f9a29cf5ac772d96aad1f4"><span class="std std-ref">IO_IsTerminal</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f"><span class="std std-ref">t_fd</span></a><span></span> <span class="n">fd</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-sys-io-1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f"><span class="std std-ref">t_fd</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1gaf136dc6f4188fab5273c9d9d3ee12f6c"><span class="std std-ref">IO_Open</span></a><span></span><span class="p">(</span><span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">filepath</span><span class="p">,</span> <span class="kt">t_io_open</span> <span class="n">flags</span><span class="p">,</span> <span class="kt">t_io_mode</span> <span class="n">mode</span><span class="p">);</span>
+<span class="kt">t_io_error</span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga84def9cdd174530d1adfc572ed508dd7"><span class="std std-ref">IO_Close</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f"><span class="std std-ref">t_fd</span></a><span></span> <span class="n">fd</span><span class="p">);</span>
+<span class="kt">t_io_error</span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1gaf03e2e8959468d7face549b5d1e22fe9"><span class="std std-ref">IO_ChangeMode</span></a><span></span><span class="p">(</span><span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">filepath</span><span class="p">,</span> <span class="kt">t_io_mode</span> <span class="n">mode</span><span class="p">);</span>
+<span class="kt">t_sintmax</span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga5fee849bbf5e5b3709925b22538d6c6a"><span class="std std-ref">IO_Read_File</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f"><span class="std std-ref">t_fd</span></a><span></span> <span class="k">const</span> <span class="n">fd</span><span class="p">,</span> <span class="kt">t_char</span><span class="o">**</span> <span class="n">a_file</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">max</span><span class="p">);</span>
+<span class="kt">t_sintmax</span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga238d65185cda7c848e8e0f12e08f5df7"><span class="std std-ref">IO_Read_Lines</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f"><span class="std std-ref">t_fd</span></a><span></span> <span class="k">const</span> <span class="n">fd</span><span class="p">,</span> <span class="kt">t_char</span><span class="o">***</span> <span class="n">a_strarr</span><span class="p">);</span>
+<span class="kt">int</span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga8f47eeb02006f4e4849051857b0e8558"><span class="std std-ref">IO_Read_NextLine</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f"><span class="std std-ref">t_fd</span></a><span></span> <span class="k">const</span> <span class="n">fd</span><span class="p">,</span> <span class="kt">t_char</span><span class="o">**</span> <span class="n">a_line</span><span class="p">);</span>
+<span class="kt">t_io_error</span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1gabb9c05063e5d261438b365507aca68b6"><span class="std std-ref">IO_Write_Char</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f"><span class="std std-ref">t_fd</span></a><span></span> <span class="n">fd</span><span class="p">,</span> <span class="kt">char</span> <span class="n">c</span><span class="p">);</span>
+<span class="kt">t_io_error</span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1gafd0eb6211887c0ea68b00c0258caf3df"><span class="std std-ref">IO_Write_String</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f"><span class="std std-ref">t_fd</span></a><span></span> <span class="n">fd</span><span class="p">,</span> <span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">);</span>
+<span class="kt">t_io_error</span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga5629e4fafcfbc76c1cfeda315567b014"><span class="std std-ref">IO_Write_Line</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f"><span class="std std-ref">t_fd</span></a><span></span> <span class="n">fd</span><span class="p">,</span> <span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">);</span>
+<span class="kt">t_io_error</span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga7055de963d7412d65a2088ed15d57050"><span class="std std-ref">IO_Write_Lines</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f"><span class="std std-ref">t_fd</span></a><span></span> <span class="n">fd</span><span class="p">,</span> <span class="kt">t_char</span> <span class="k">const</span><span class="o">**</span> <span class="n">strarr</span><span class="p">);</span>
+<span class="kt">t_io_error</span> <span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1ga0230b7f195c19f3e5a225aaef3a3cad4"><span></span><span class="n">IO_Write_Memory</span></span><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f"><span class="std std-ref">t_fd</span></a><span></span> <span class="n">fd</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga8ddf940d2d7288b36e35ce78989c811e"><span class="std std-ref">t_u8</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga8ddf940d2d7288b36e35ce78989c811e"><span class="std std-ref">t_u8</span></a><span></span> <span class="n">cols</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-sys-io-1ga178d2bd25d2230a48801e919ddfa2f18"><span class="std std-ref">_FORMAT</span></a><span></span><span class="p">(</span><span class="n">printf</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+<span class="kt">t_io_error</span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1gaca9178eee8b6ef4889c7dc8e14e03fdb"><span class="std std-ref">IO_Output_Char</span></a><span></span><span class="p">(</span><span class="kt">char</span> <span class="n">c</span><span class="p">);</span>
+<span class="kt">t_io_error</span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga16540e2ca439345eb9331a5ffdb36cdc"><span class="std std-ref">IO_Output_String</span></a><span></span><span class="p">(</span><span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">);</span>
+<span class="kt">t_io_error</span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga45bf689dfd3ed48788beb73db1d07b1c"><span class="std std-ref">IO_Output_Line</span></a><span></span><span class="p">(</span><span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">);</span>
+<span class="kt">t_io_error</span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga6dc0349c37fc02b6e5fb67ccb3d1ec2e"><span class="std std-ref">IO_Output_Lines</span></a><span></span><span class="p">(</span><span class="kt">t_char</span> <span class="k">const</span><span class="o">**</span> <span class="n">strarr</span><span class="p">);</span>
+<span class="kt">t_io_error</span> <span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1gafd13a0157895b911c9b995e9829bc64d"><span></span><span class="n">IO_Output_Memory</span></span><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga8ddf940d2d7288b36e35ce78989c811e"><span class="std std-ref">t_u8</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga8ddf940d2d7288b36e35ce78989c811e"><span class="std std-ref">t_u8</span></a><span></span> <span class="n">cols</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-sys-io-1gaacde33e9816678279cec924346068e97"><span class="std std-ref">_FORMAT</span></a><span></span><span class="p">(</span><span class="n">printf</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+
+<span class="c1">// macros</span>
+
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gacd416df5a722d247f1ec0c9c298a4fa8"><span class="std std-ref">GNL_END</span></a><span></span>    <span class="mi">0</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga9cf0c0bf69e6be78d78202e8699763ad"><span class="std std-ref">GNL_ERROR</span></a><span></span>  <span class="o">-</span><span class="mi">1</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga66c9f6f1f21b8c3daa908032cc700da6"><span class="std std-ref">GNL_LINE</span></a><span></span>   <span class="o">+</span><span class="mi">1</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga26d2d02b41fd2461803dbd160f774d2f"><span class="std std-ref">IO_ERROR_2BIG</span></a><span></span>  <span class="n">E2BIG</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga479b7b6c79d3c46f1a2dbdf0da5f3243"><span class="std std-ref">IO_ERROR_ACCES</span></a><span></span> <span class="n">EACCES</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gafc59ed321a0d23dc472b47704985c23c"><span class="std std-ref">IO_ERROR_ADDRINUSE</span></a><span></span> <span class="n">EADDRINUSE</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga0dc302bf00660f8ecebc3f34a3638466"><span class="std std-ref">IO_ERROR_ADDRNOTAVAIL</span></a><span></span>  <span class="n">EADDRNOTAVAIL</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga5597055f9e23711c876acdc53430160e"><span class="std std-ref">IO_ERROR_AFNOSUPPORT</span></a><span></span>   <span class="n">EAFNOSUPPORT</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gad0813a547a444d0995ba9e1b35f91807"><span class="std std-ref">IO_ERROR_AGAIN</span></a><span></span> <span class="n">EAGAIN</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gabefaa74f5f5c93776728137b8d6b5d3c"><span class="std std-ref">IO_ERROR_ALREADY</span></a><span></span>   <span class="n">EALREADY</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga10bc6e9922aea050bdd7a67fb8360598"><span class="std std-ref">IO_ERROR_BADE</span></a><span></span>  <span class="n">EBADE</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gaa2b0b3839debf7c4c907c8c00d55c6d8"><span class="std std-ref">IO_ERROR_BADF</span></a><span></span>  <span class="n">EBADF</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga5a6e8ed90a2e36b24f3995904ddddf58"><span class="std std-ref">IO_ERROR_BADFD</span></a><span></span> <span class="n">EBADFD</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga5065121bc3f6b01aca8bf3fa5fd1b0d1"><span class="std std-ref">IO_ERROR_BADMSG</span></a><span></span>    <span class="n">EBADMSG</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga5b3f76d0a1ab8089f1045b12b50afb7f"><span class="std std-ref">IO_ERROR_BADR</span></a><span></span>  <span class="n">EBADR</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga5e5a46d973c7b9f326d1f95c40a6d951"><span class="std std-ref">IO_ERROR_BADRQC</span></a><span></span>    <span class="n">EBADRQC</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga3d180a690281869183651c8a422ca673"><span class="std std-ref">IO_ERROR_BADSLT</span></a><span></span>    <span class="n">EBADSLT</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gae047e977c88a87c42a72ffbdb3c7afe6"><span class="std std-ref">IO_ERROR_BUSY</span></a><span></span>  <span class="n">EBUSY</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga979ad275f4d64321a742e364905db1c0"><span class="std std-ref">IO_ERROR_CANCELED</span></a><span></span>  <span class="n">ECANCELED</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gaf10f6dc5b4525beacdb4079ad06ee208"><span class="std std-ref">IO_ERROR_CHILD</span></a><span></span> <span class="n">ECHILD</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga84ed0f5318f60f8b8b16b68ede15588d"><span class="std std-ref">IO_ERROR_CHRNG</span></a><span></span> <span class="n">ECHRNG</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga526246c6e1a204ed8a9a61a7e1342cb2"><span class="std std-ref">IO_ERROR_COMM</span></a><span></span>  <span class="n">ECOMM</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga1c0d9d8926fc176772400236e1fefcdd"><span class="std std-ref">IO_ERROR_CONNABORTED</span></a><span></span>   <span class="n">ECONNABORTED</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gabd84660452acd15171c9421fd2fee3d6"><span class="std std-ref">IO_ERROR_CONNREFUSED</span></a><span></span>   <span class="n">ECONNREFUSED</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gaf8a6c708f93bae925677093f9e356627"><span class="std std-ref">IO_ERROR_CONNRESET</span></a><span></span> <span class="n">ECONNRESET</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gace5cc1f4e5edd4de66b93343ddc7770a"><span class="std std-ref">IO_ERROR_DEADLK</span></a><span></span>    <span class="n">EDEADLK</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga410531ccb558affb58e0f918dd0b8d13"><span class="std std-ref">IO_ERROR_DEADLOCK</span></a><span></span>  <span class="n">EDEADLOCK</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga208e99f2bd14092d92767406e32e2a44"><span class="std std-ref">IO_ERROR_DESTADDRREQ</span></a><span></span>   <span class="n">EDESTADDRREQ</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga559e4946e4ac318f940fe761abd5c5e0"><span class="std std-ref">IO_ERROR_DOM</span></a><span></span>   <span class="n">EDOM</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga55886561e3bfcee33060e42fd1605727"><span class="std std-ref">IO_ERROR_DQUOT</span></a><span></span> <span class="n">EDQUOT</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga4cfd7e53201084ee281b092fcc96a0ad"><span class="std std-ref">IO_ERROR_EXIST</span></a><span></span> <span class="n">EEXIST</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga0b0600faa0f58d97e970ed2ce5bc3a3f"><span class="std std-ref">IO_ERROR_FAULT</span></a><span></span> <span class="n">EFAULT</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga80f2bf421b35ef7b92c4a9c76cca94d5"><span class="std std-ref">IO_ERROR_FBIG</span></a><span></span>  <span class="n">EFBIG</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gaf51fd369125896fa9ec27e9398aab3a8"><span class="std std-ref">IO_ERROR_HOSTDOWN</span></a><span></span>  <span class="n">EHOSTDOWN</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga02862618c778343400f03ff18270cbe8"><span class="std std-ref">IO_ERROR_HOSTUNREACH</span></a><span></span>   <span class="n">EHOSTUNREACH</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga4fbae87819863798b3a9bf884e4044c4"><span class="std std-ref">IO_ERROR_HWPOISON</span></a><span></span>  <span class="n">EHWPOISON</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga3185c2e12d5012d6a6184efce60b4aab"><span class="std std-ref">IO_ERROR_IDRM</span></a><span></span>  <span class="n">EIDRM</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gad04b464588bfef6f50878850275bae58"><span class="std std-ref">IO_ERROR_ILSEQ</span></a><span></span> <span class="n">EILSEQ</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gae4bffe77c83632efd2d63f13ab5c91ec"><span class="std std-ref">IO_ERROR_INPROGRESS</span></a><span></span>    <span class="n">EINPROGRESS</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga19ec8732b3ae765fc50a099d9d340b42"><span class="std std-ref">IO_ERROR_INTR</span></a><span></span>  <span class="n">EINTR</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga02a3a686124522f54a489b67491751ca"><span class="std std-ref">IO_ERROR_INVAL</span></a><span></span> <span class="n">EINVAL</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gaa8f5ac6bffe455de822aed466de8b820"><span class="std std-ref">IO_ERROR_IO</span></a><span></span>    <span class="n">EIO</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gab944755b6505591d17ff8bd046b6d3c2"><span class="std std-ref">IO_ERROR_ISCONN</span></a><span></span>    <span class="n">EISCONN</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gabfdb7b5ea1fbc35b99f9bce895d4788b"><span class="std std-ref">IO_ERROR_ISDIR</span></a><span></span> <span class="n">EISDIR</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gadc1844688b58c48ab7e49bad05b3a117"><span class="std std-ref">IO_ERROR_ISNAM</span></a><span></span> <span class="n">EISNAM</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gadcb3ae341d8376ca27f2ec3dbd627410"><span class="std std-ref">IO_ERROR_KEYEXPIRED</span></a><span></span>    <span class="n">EKEYEXPIRED</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga9be46c73b24df98a80d93557a43656a1"><span class="std std-ref">IO_ERROR_KEYREJECTED</span></a><span></span>   <span class="n">EKEYREJECTED</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga63a63dc2acaa2be889e068d6bcf33987"><span class="std std-ref">IO_ERROR_KEYREVOKED</span></a><span></span>    <span class="n">EKEYREVOKED</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga05e39495fb451e7a24ec8b737348e8cd"><span class="std std-ref">IO_ERROR_L2HLT</span></a><span></span> <span class="n">EL2HLT</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gae5344b129165559934eb3782e8351397"><span class="std std-ref">IO_ERROR_L2NSYNC</span></a><span></span>   <span class="n">EL2NSYNC</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga5e7d88833aca45ba4f27f297e26dff47"><span class="std std-ref">IO_ERROR_L3HLT</span></a><span></span> <span class="n">EL3HLT</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gaef6f5072161a90479ac9e89df7694396"><span class="std std-ref">IO_ERROR_L3RST</span></a><span></span> <span class="n">EL3RST</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gaa2b9ff26dc6b90ff8c9db82a1e0efdc5"><span class="std std-ref">IO_ERROR_LIBACC</span></a><span></span>    <span class="n">ELIBACC</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gabcbbe9b6353e5ed14ba8111b3d74d50e"><span class="std std-ref">IO_ERROR_LIBBAD</span></a><span></span>    <span class="n">ELIBBAD</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga8b1d8af404c32bb88514f924ea5dc246"><span class="std std-ref">IO_ERROR_LIBEXEC</span></a><span></span>   <span class="n">ELIBEXEC</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga9e15278f0619addbf1fa9c46b83aeb5b"><span class="std std-ref">IO_ERROR_LIBMAX</span></a><span></span>    <span class="n">ELIBMAX</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga302ace6bbff07a9593ab21f70c94e27b"><span class="std std-ref">IO_ERROR_LIBSCN</span></a><span></span>    <span class="n">ELIBSCN</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga368301e4c856b7f86b858b3db95ffbdb"><span class="std std-ref">IO_ERROR_LNRANGE</span></a><span></span>   <span class="n">ELNRANGE</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gac90f22ebc94d77655bfd16413743e6fd"><span class="std std-ref">IO_ERROR_LOOP</span></a><span></span>  <span class="n">ELOOP</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gaa6e4faead54f1018c7ef8d663428c15a"><span class="std std-ref">IO_ERROR_MEDIUMTYPE</span></a><span></span>    <span class="n">EMEDIUMTYPE</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gab4c76a2593f1df42e1f62efc16ad9776"><span class="std std-ref">IO_ERROR_MFILE</span></a><span></span> <span class="n">EMFILE</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga9d3098d2ad7814bc3a7be125f8326f02"><span class="std std-ref">IO_ERROR_MLINK</span></a><span></span> <span class="n">EMLINK</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gad9acf3024474e2f107a0742c28f1e754"><span class="std std-ref">IO_ERROR_MSGSIZE</span></a><span></span>   <span class="n">EMSGSIZE</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gadde59150940262e34536b6be1988bc50"><span class="std std-ref">IO_ERROR_MULTIHOP</span></a><span></span>  <span class="n">EMULTIHOP</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gaa01d204e1cb40d222473e4c0d552818e"><span class="std std-ref">IO_ERROR_NAMETOOLONG</span></a><span></span>   <span class="n">ENAMETOOLONG</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga7cbacbca7a4b49c9ec857d7aa7b1a6a5"><span class="std std-ref">IO_ERROR_NETDOWN</span></a><span></span>   <span class="n">ENETDOWN</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gabea30f0fe55e89f8b4115fab317d6d6a"><span class="std std-ref">IO_ERROR_NETRESET</span></a><span></span>  <span class="n">ENETRESET</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga04388324387f0126b43217a1bf276fa3"><span class="std std-ref">IO_ERROR_NETUNREACH</span></a><span></span>    <span class="n">ENETUNREACH</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gaa5ceb72282f9b2d5a31df0a339f5d3cd"><span class="std std-ref">IO_ERROR_NFILE</span></a><span></span> <span class="n">ENFILE</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gaa06f9622abe8955f37627ccabba0cd8f"><span class="std std-ref">IO_ERROR_NOANO</span></a><span></span> <span class="n">ENOANO</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga6341162ed89395f4567702fb99974257"><span class="std std-ref">IO_ERROR_NOBUFS</span></a><span></span>    <span class="n">ENOBUFS</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga0fca936f6ef739c6dc2adeda09898055"><span class="std std-ref">IO_ERROR_NODATA</span></a><span></span>    <span class="n">ENODATA</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga51aac344eb49bf259c3a84b8ee87c836"><span class="std std-ref">IO_ERROR_NODEV</span></a><span></span> <span class="n">ENODEV</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gade4b28b8e219d93ecc75fedbb5d183fb"><span class="std std-ref">IO_ERROR_NOENT</span></a><span></span> <span class="n">ENOENT</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga80b9d8c485dd056acc209754dd2e2f26"><span class="std std-ref">IO_ERROR_NOEXEC</span></a><span></span>    <span class="n">ENOEXEC</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga7acb9396b9528bfed52940567a5d1283"><span class="std std-ref">IO_ERROR_NOKEY</span></a><span></span> <span class="n">ENOKEY</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga619be432256caa5e8dd39395834515a0"><span class="std std-ref">IO_ERROR_NOLCK</span></a><span></span> <span class="n">ENOLCK</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gaf7c35b4a6af701a2d0c5ad84515fefb7"><span class="std std-ref">IO_ERROR_NOLINK</span></a><span></span>    <span class="n">ENOLINK</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gaed1bd57e5c09890c45297dcd602f81a3"><span class="std std-ref">IO_ERROR_NOMEDIUM</span></a><span></span>  <span class="n">ENOMEDIUM</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga0a4d2e6e9ba8abcdcbc6e89b20c12d94"><span class="std std-ref">IO_ERROR_NOMEM</span></a><span></span> <span class="n">ENOMEM</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gaecf9f786d3ac7a2a3dac5c53fac56fef"><span class="std std-ref">IO_ERROR_NOMSG</span></a><span></span> <span class="n">ENOMSG</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gae639f37c71c5e8c52998bac46bd11689"><span class="std std-ref">IO_ERROR_NONET</span></a><span></span> <span class="n">ENONET</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga1afa71e86f2d27a2c184e8e36712513d"><span class="std std-ref">IO_ERROR_NOPKG</span></a><span></span> <span class="n">ENOPKG</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gad18cfdb737e0ebdd269df44477182ba6"><span class="std std-ref">IO_ERROR_NOPROTOOPT</span></a><span></span>    <span class="n">ENOPROTOOPT</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga23f6ca0e91d1e2ac29246bc6683bfac4"><span class="std std-ref">IO_ERROR_NOSPC</span></a><span></span> <span class="n">ENOSPC</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga67258b660cbf6e9ca27c56259a86c4f0"><span class="std std-ref">IO_ERROR_NOSR</span></a><span></span>  <span class="n">ENOSR</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga04a50e25ec79dee2ccfeb54ef886168b"><span class="std std-ref">IO_ERROR_NOSTR</span></a><span></span> <span class="n">ENOSTR</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gaa9015127011cffeba6f6e21074b85d7a"><span class="std std-ref">IO_ERROR_NOSYS</span></a><span></span> <span class="n">ENOSYS</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gae772d878203a1178822d3fd99d9f53c5"><span class="std std-ref">IO_ERROR_NOTBLK</span></a><span></span>    <span class="n">ENOTBLK</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gaacd39a1c8305e87d87d55f07330c2b78"><span class="std std-ref">IO_ERROR_NOTCONN</span></a><span></span>   <span class="n">ENOTCONN</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gadf75e30dd9b57ede0392041e1b569310"><span class="std std-ref">IO_ERROR_NOTDIR</span></a><span></span>    <span class="n">ENOTDIR</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga45108c2c579373bccbaf90f2fd1884b0"><span class="std std-ref">IO_ERROR_NOTEMPTY</span></a><span></span>  <span class="n">ENOTEMPTY</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga65f584b38c4f6dc451c75dc707c0c132"><span class="std std-ref">IO_ERROR_NOTRECOVERABLE</span></a><span></span>    <span class="n">ENOTRECOVERABLE</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga65ee5c1281627acdf9d27a16da22b9ad"><span class="std std-ref">IO_ERROR_NOTSOCK</span></a><span></span>   <span class="n">ENOTSOCK</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga91a260addeecaf845358254f8adf1fea"><span class="std std-ref">IO_ERROR_NOTSUP</span></a><span></span>    <span class="n">ENOTSUP</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga030d1b9021f9d892cb3ddf8ae8878972"><span class="std std-ref">IO_ERROR_NOTTY</span></a><span></span> <span class="n">ENOTTY</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gab11e371a9fe27e9b7e523c84b837b34e"><span class="std std-ref">IO_ERROR_NOTUNIQ</span></a><span></span>   <span class="n">ENOTUNIQ</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga8db8a245f3a6fa6e564da7f0220cf7c1"><span class="std std-ref">IO_ERROR_NXIO</span></a><span></span>  <span class="n">ENXIO</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga12cc123e9ee9e99bb339c2a523a31192"><span class="std std-ref">IO_ERROR_OPNOTSUPP</span></a><span></span> <span class="n">EOPNOTSUPP</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gaa987c33fa6c47210322355789b4ca63d"><span class="std std-ref">IO_ERROR_OVERFLOW</span></a><span></span>  <span class="n">EOVERFLOW</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga5b8820473c251656a19148bd9a5a60dc"><span class="std std-ref">IO_ERROR_OWNERDEAD</span></a><span></span> <span class="n">EOWNERDEAD</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga8ed6f8bba6a4e609de4765021afe4dbe"><span class="std std-ref">IO_ERROR_PERM</span></a><span></span>  <span class="mh">E</span><span class="k">P</span><span class="mh">E</span><span class="n">RM</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga24e029da8395b395cf8ed4b615d6ed0d"><span class="std std-ref">IO_ERROR_PFNOSUPPORT</span></a><span></span>   <span class="mh">E</span><span class="k">P</span><span class="mh">F</span><span class="n">NOSUPPORT</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga13c68965d04e3bc4a5c6c729ee0aec85"><span class="std std-ref">IO_ERROR_PIPE</span></a><span></span>  <span class="n">EPIPE</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gaa6c19028d271dd9da5a2359ecf53ab2b"><span class="std std-ref">IO_ERROR_PROTO</span></a><span></span> <span class="n">EPROTO</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga2b30b5960197de13111090698a9c7604"><span class="std std-ref">IO_ERROR_PROTONOSUPPORT</span></a><span></span>    <span class="n">EPROTONOSUPPORT</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga46ea7dfca9d7227db1026291b1219b26"><span class="std std-ref">IO_ERROR_PROTOTYPE</span></a><span></span> <span class="n">EPROTOTYPE</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga12f23a32f96d78b0e2860d183fd366b7"><span class="std std-ref">IO_ERROR_RANGE</span></a><span></span> <span class="n">ERANGE</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga688974c1a281f4a9f0c3040835941021"><span class="std std-ref">IO_ERROR_REMCHG</span></a><span></span>    <span class="n">EREMCHG</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga52c6f765d250ec4f684eb64f51af0867"><span class="std std-ref">IO_ERROR_REMOTE</span></a><span></span>    <span class="n">EREMOTE</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gab50e64946d3380eea558ebe1867b45d6"><span class="std std-ref">IO_ERROR_REMOTEIO</span></a><span></span>  <span class="n">EREMOTEIO</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga3ed351383c72bf90f3220db0f0aeee3b"><span class="std std-ref">IO_ERROR_RESTART</span></a><span></span>   <span class="n">ERESTART</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga936b6596bb2444f7fa18f4d7f9b7d4ec"><span class="std std-ref">IO_ERROR_RFKILL</span></a><span></span>    <span class="n">ERFKILL</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gad2f7ab41b9aa0afa9251827d7f3b01e3"><span class="std std-ref">IO_ERROR_ROFS</span></a><span></span>  <span class="n">EROFS</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gacc6dba6df08e2eb6d064ac1eec06819c"><span class="std std-ref">IO_ERROR_SHUTDOWN</span></a><span></span>  <span class="n">ESHUTDOWN</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga61654a10622011be27ae5aab30b9a202"><span class="std std-ref">IO_ERROR_SOCKTNOSUPPORT</span></a><span></span>    <span class="n">ESOCKTNOSUPPORT</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga2d3759f68a81143979ecc035f62eec71"><span class="std std-ref">IO_ERROR_SPIPE</span></a><span></span> <span class="n">ESPIPE</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga2f1c563c1a5c26e800c0aedac455b367"><span class="std std-ref">IO_ERROR_SRCH</span></a><span></span>  <span class="n">ESRCH</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga4c4c580b000edc20289d8c13081f6ef4"><span class="std std-ref">IO_ERROR_STALE</span></a><span></span> <span class="n">ESTALE</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gaa11b834cbc43b5763118bc307fe760b2"><span class="std std-ref">IO_ERROR_STRPIPE</span></a><span></span>   <span class="n">ESTRPIPE</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga5970a734c2aa8b60e0f611bebbc6536a"><span class="std std-ref">IO_ERROR_TIME</span></a><span></span>  <span class="n">ETIME</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga6d4d4c0ff3f33a72e0e0b982d56a9da6"><span class="std std-ref">IO_ERROR_TIMEDOUT</span></a><span></span>  <span class="n">ETIMEDOUT</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga060d18893c629c28524f2f261b40538b"><span class="std std-ref">IO_ERROR_TOOMANYREFS</span></a><span></span>   <span class="n">ETOOMANYREFS</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga8738eb07678b54ab416daabd030ba207"><span class="std std-ref">IO_ERROR_TXTBSY</span></a><span></span>    <span class="n">ETXTBSY</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga6f1a2d8e77dce58c41bd65c41f51e997"><span class="std std-ref">IO_ERROR_UCLEAN</span></a><span></span>    <span class="n">EUCLEAN</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga877546ec7bd12367ae78889459b18576"><span class="std std-ref">IO_ERROR_UNATCH</span></a><span></span>    <span class="n">EUNATCH</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga3c24d995bd87f1ae80e84d817ac5f9ff"><span class="std std-ref">IO_ERROR_USERS</span></a><span></span> <span class="n">EUSERS</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga5a9a62483b0efd031136fd9f0d3601cd"><span class="std std-ref">IO_ERROR_WOULDBLOCK</span></a><span></span>    <span class="n">EWOULDBLOCK</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga29c98f07755d12b291eb642f690567d1"><span class="std std-ref">IO_ERROR_XDEV</span></a><span></span>  <span class="n">EXDEV</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga3e3e64c495ba862ec916accc97f316a3"><span class="std std-ref">IO_ERROR_XFULL</span></a><span></span> <span class="n">EXFULL</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1ga04dc7b6b903e16a6f50b6c701e34e1f1"><span></span><span class="n">IO_File_ChangeMode</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-sys-io-1gaf03e2e8959468d7face549b5d1e22fe9"><span class="std std-ref">IO_ChangeMode</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1gabb6848c1ebb82ae805d85b6e681d7e18"><span></span><span class="n">IO_File_Close</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga84def9cdd174530d1adfc572ed508dd7"><span class="std std-ref">IO_Close</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1gab0b9e2457dee8e04131b969a75eebf7c"><span></span><span class="n">IO_File_IsTerminal</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-sys-io-1gafbf2e86ab1f9a29cf5ac772d96aad1f4"><span class="std std-ref">IO_IsTerminal</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1ga5c2a5542f6f4ae41f875014d6092b29b"><span></span><span class="n">IO_File_Open</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-sys-io-1gaf136dc6f4188fab5273c9d9d3ee12f6c"><span class="std std-ref">IO_Open</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1gaedcd36ea947752b20f1af6e9ac49370b"><span></span><span class="n">IO_GetANSIColor</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga2d94641dce33e903f3117aed1d472bf2"><span class="std std-ref">IO_GetColor</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1ga625fa85530efeaa27d6e716379a1fba7"><span></span><span class="n">IO_GetErrorMessage</span></span><span></span>  <span class="n">IO_GetError</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga3a540e3eef339eec06aff31c4ba1eb25"><span class="std std-ref">STDERR</span></a><span></span> <span class="p">((</span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f"><span class="std std-ref">t_fd</span></a><span></span><span class="p">)</span><span class="mi">2</span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1ga8875037d0772a4fc34516f1e03d7e238"><span></span><span class="n">STDOUT</span></span><span></span>  <span class="p">((</span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f"><span class="std std-ref">t_fd</span></a><span></span><span class="p">)</span><span class="mi">1</span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1gac9476d3a52b3bf24e0bcf6824cdeabb8"><span></span><span class="n">c_chmod</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1gaf03e2e8959468d7face549b5d1e22fe9"><span class="std std-ref">IO_ChangeMode</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1ga5f696cd36c17e157bb8c76130891f42a"><span></span><span class="n">c_close</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga84def9cdd174530d1adfc572ed508dd7"><span class="std std-ref">IO_Close</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1gaf2b46df5c00e02465b55a611602695cd"><span></span><span class="n">c_dprintf</span></span><span></span>   <span class="n">IO_Write_Format</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1ga8c267296a21b56df601f980e089da009"><span></span><span class="n">c_getline</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga8f47eeb02006f4e4849051857b0e8558"><span class="std std-ref">IO_Read_NextLine</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1ga7929c81e1c7c1f872d05aa20b66509fe"><span></span><span class="n">c_getnextline</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga8f47eeb02006f4e4849051857b0e8558"><span class="std std-ref">IO_Read_NextLine</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1gae5797dbb442336e193a46a42c8a2697a"><span></span><span class="n">c_io_getcolor</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga2d94641dce33e903f3117aed1d472bf2"><span class="std std-ref">IO_GetColor</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1ga24e2fbb54d481653d4bbd166f2bb712f"><span></span><span class="n">c_isatty</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-sys-io-1gafbf2e86ab1f9a29cf5ac772d96aad1f4"><span class="std std-ref">IO_IsTerminal</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1gaf0856f3f68da7c237acd460f094aa342"><span></span><span class="n">c_open</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-sys-io-1gaf136dc6f4188fab5273c9d9d3ee12f6c"><span class="std std-ref">IO_Open</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1ga97d718c49fa047c79c58f22cf08c1f79"><span></span><span class="n">c_output_char</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-sys-io-1gaca9178eee8b6ef4889c7dc8e14e03fdb"><span class="std std-ref">IO_Output_Char</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1ga8a57e46adcb940b3573a6933d0a25c48"><span></span><span class="n">c_output_format</span></span><span></span> <span class="n">IO_Output_Format</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1ga17a20455c1ac75633cff3a530abaf0c1"><span></span><span class="n">c_output_line</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga45bf689dfd3ed48788beb73db1d07b1c"><span class="std std-ref">IO_Output_Line</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1ga5af8655ba09698e8037909d152a434ca"><span></span><span class="n">c_output_lines</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga6dc0349c37fc02b6e5fb67ccb3d1ec2e"><span class="std std-ref">IO_Output_Lines</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1gabe82b146eba33f6e06e135d1f12f6506"><span></span><span class="n">c_output_memory</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1gafd13a0157895b911c9b995e9829bc64d"><span class="std std-ref">IO_Output_Memory</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1gaf8087d1bb2b2aaba6926dc09390f593e"><span></span><span class="n">c_output_string</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga16540e2ca439345eb9331a5ffdb36cdc"><span class="std std-ref">IO_Output_String</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1ga7dbe1569a7cc4ff8e523e88d09d71d4d"><span></span><span class="n">c_printf</span></span><span></span>    <span class="n">IO_Output_Format</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1ga664d32267324f772ac02caf9b0c272c9"><span></span><span class="n">c_putchar</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-sys-io-1gaca9178eee8b6ef4889c7dc8e14e03fdb"><span class="std std-ref">IO_Output_Char</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1ga845c37596c975a6b490d5345c9922451"><span></span><span class="n">c_putline</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga45bf689dfd3ed48788beb73db1d07b1c"><span class="std std-ref">IO_Output_Line</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga77b06cd897c5e6c61cfe05ab0f208304"><span class="std std-ref">c_putlines</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga6dc0349c37fc02b6e5fb67ccb3d1ec2e"><span class="std std-ref">IO_Output_Lines</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1ga7339a6eb1050e204f8f74c9b3c5b8b5d"><span></span><span class="n">c_putmem</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-sys-io-1gafd13a0157895b911c9b995e9829bc64d"><span class="std std-ref">IO_Output_Memory</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1ga2189f604e296af8ae7a41553065fdca1"><span></span><span class="n">c_putstr</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga16540e2ca439345eb9331a5ffdb36cdc"><span class="std std-ref">IO_Output_String</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1ga2191263bd828c01b3d7b109fd1133034"><span></span><span class="n">c_readfile</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga5fee849bbf5e5b3709925b22538d6c6a"><span class="std std-ref">IO_Read_File</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1gab8b572236d07d3b3a275e68c9b38b80d"><span></span><span class="n">c_readlines</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga238d65185cda7c848e8e0f12e08f5df7"><span class="std std-ref">IO_Read_Lines</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1ga8d352c1d7bafe99a1b3e6f40cea9773d"><span></span><span class="n">c_readnextline</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga8f47eeb02006f4e4849051857b0e8558"><span class="std std-ref">IO_Read_NextLine</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1ga7eaf62f4ec1abea4d11f9f1d4aab6ae9"><span></span><span class="n">c_strerror</span></span><span></span>  <span class="n">IO_GetError</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1ga865b297a009d3b300e13925f3167974a"><span></span><span class="n">c_strerror_r</span></span><span></span>    <span class="n">IO_GetError</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1ga48cecf764c5e69c9062bc819025bb377"><span></span><span class="n">c_write_char</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-sys-io-1gabb9c05063e5d261438b365507aca68b6"><span class="std std-ref">IO_Write_Char</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1gabbe8fa430b87abfd173c733e9a55f139"><span></span><span class="n">c_write_format</span></span><span></span>  <span class="n">IO_Write_Format</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1ga50235af184dea495d80bdad9a25c9897"><span></span><span class="n">c_write_line</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga5629e4fafcfbc76c1cfeda315567b014"><span class="std std-ref">IO_Write_Line</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga8dd1c7c5c1f72e98e52f225a6b475ab9"><span class="std std-ref">c_write_lines</span></a><span></span>  <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga7055de963d7412d65a2088ed15d57050"><span class="std std-ref">IO_Write_Lines</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1ga4c3c347b645fe73e5a00f4e40831ec4a"><span></span><span class="n">c_write_memory</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga0230b7f195c19f3e5a225aaef3a3cad4"><span class="std std-ref">IO_Write_Memory</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1ga006daa452a638f1f6c000380c4d44094"><span></span><span class="n">c_write_string</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-sys-io-1gafd0eb6211887c0ea68b00c0258caf3df"><span class="std std-ref">IO_Write_String</span></a></pre>
+</div>
+<div class="section" id="detailed-documentation">
+<span id="details-group-libccc-sys-io"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline">¶</a></h2>
+<p>This header defines all the functions for OS-level input/output, read/write.</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/io">https://en.cppreference.com/w/c/io</a></p></li>
+</ul>
+<div class="section" id="typedefs">
+<h3>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f"><span id="index-1"></span><span></span><span class="k">typedef</span> <span class="kt">int</span> <span class="kt">t_fd</span></pre>
+<p>File descriptor integer type for libccc/sys/io functions.</p>
+<p>Define a type for file descriptors (which is usually the default machine ‘int’)</p>
+</div>
+<div class="section" id="global-functions">
+<h3>Global Functions<a class="headerlink" href="#global-functions" title="Permalink to this headline">¶</a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gad0fcb851af0d19b590b0a7f8adccb017"><span id="index-2"></span><span></span><span class="n">TYPEDEF_ALIAS</span><span class="p">(</span><span class="kt">t_io_error</span><span class="p">,</span> <span class="n">IO_ERROR</span><span class="p">,</span> <span class="n">PRIMITIVE</span><span class="p">)</span></pre>
+<p>This type represents a file access permissions bitflag value (like you would use with chmod)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gaa8bde7f70b0b93da4cfb037eff6f6a27"><span id="index-3"></span><span></span><span class="n">TYPEDEF_ALIAS</span><span class="p">(</span><span class="kt">t_io_mode</span><span class="p">,</span> <span class="n">IO_MODE</span><span class="p">,</span> <span class="n">PRIMITIVE</span><span class="p">)</span></pre>
+<p>This type represents the bitflag value which handles options for the open() function.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gabe496cba1598162ae4df80f6ef6e6d27"><span id="index-4"></span><span></span><span class="n">TYPEDEF_ALIAS</span><span class="p">(</span><span class="kt">t_io_open</span><span class="p">,</span> <span class="n">IO_OPEN</span><span class="p">,</span> <span class="n">PRIMITIVE</span><span class="p">)</span></pre>
+<p>Returns the error message corresponding to the given ‘errno’ error number.</p>
+<p>This is equivalent to the STD C strerror(), strerror_r() functions.</p>
+<p class="rubric">Returns:</p>
+<p>A newly allocated string which contains the system IO error message.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga2d94641dce33e903f3117aed1d472bf2"><span id="index-5"></span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga8ddf940d2d7288b36e35ce78989c811e"><span class="std std-ref">t_u8</span></a><span></span> <span class="n">IO_GetColor</span><span class="p">(</span><span class="kt">t_argb32</span> <span class="n">color</span><span class="p">)</span></pre>
+<p>Returns the ANSI color code number for the nearest color to the given 32-bit <code class="docutils literal notranslate"><span class="pre">color</span></code>.</p>
+<p>(Learn more about ANSI colors)[<a class="reference external" href="https://misc.flogisoft.com/bash/tip_colors_and_formatting">https://misc.flogisoft.com/bash/tip_colors_and_formatting</a>]</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gafbf2e86ab1f9a29cf5ac772d96aad1f4"><span id="index-6"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1ga99d89c4c873ae7a89fbbfbdaead1a253"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">IO_IsTerminal</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f"><span class="std std-ref">t_fd</span></a><span></span> <span class="n">fd</span><span class="p">)</span></pre>
+<p>Returns 1(TRUE) if the given file descriptor <code class="docutils literal notranslate"><span class="pre">fd</span></code> corresponds to a terminal.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gaf136dc6f4188fab5273c9d9d3ee12f6c"><span id="index-7"></span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f"><span class="std std-ref">t_fd</span></a><span></span> <span class="n">IO_Open</span><span class="p">(</span><span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">filepath</span><span class="p">,</span> <span class="kt">t_io_open</span> <span class="n">flags</span><span class="p">,</span> <span class="kt">t_io_mode</span> <span class="n">mode</span><span class="p">)</span></pre>
+<p>Opens the file at ‘filepath’, with the given file open ‘flags’, and the given file access ‘mode’ permissions.</p>
+<p>SYSCALL wrapper: int open(const char *pathname, int flags, mode_t mode);</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>filepath</p></td>
+<td><p>The path of the file to open</p></td>
+</tr>
+<tr class="row-even"><td><p>flags</p></td>
+<td><p>The flags with which to open the file (bitflag, can or bitwise OR’d, for example: <code class="docutils literal notranslate"><span class="pre">OPEN_READONLY|OPEN_CREATE</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p>mode</p></td>
+<td><p>The file access mode (permissions) with which to open the file</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>the new file descriptor value for the opened file, or a non-zero error code (ie: an ‘errno’ value)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga84def9cdd174530d1adfc572ed508dd7"><span id="index-8"></span><span></span><span class="kt">t_io_error</span> <span class="n">IO_Close</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f"><span class="std std-ref">t_fd</span></a><span></span> <span class="n">fd</span><span class="p">)</span></pre>
+<p>Closes the given file descriptor ‘fd’, so that it no longer refers to any file, and may be reused.</p>
+<p>SYSCALL wrapper: int close(int fd);</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>fd</p></td>
+<td><p>The file descriptor to close</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>0(OK) on success, or a non-zero error code (ie: an ‘errno’ value)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gaf03e2e8959468d7face549b5d1e22fe9"><span id="index-9"></span><span></span><span class="kt">t_io_error</span> <span class="n">IO_ChangeMode</span><span class="p">(</span><span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">filepath</span><span class="p">,</span> <span class="kt">t_io_mode</span> <span class="n">mode</span><span class="p">)</span></pre>
+<p>Changes the file access mode permissions for the file at ‘filepath’ to the new value ‘mode’.</p>
+<p>SYSCALL wrapper: int chmod(const char *pathname, mode_t mode);</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>filepath</p></td>
+<td><p>The path of the file whose access permissions should change</p></td>
+</tr>
+<tr class="row-even"><td><p>mode</p></td>
+<td><p>The new file access mode permissions bitflag value to set</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>0(OK) on success, or a non-zero error code (ie: an ‘errno’ value)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga5fee849bbf5e5b3709925b22538d6c6a"><span id="index-10"></span><span></span><span class="kt">t_sintmax</span> <span class="n">IO_Read_File</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f"><span class="std std-ref">t_fd</span></a><span></span> <span class="k">const</span> <span class="n">fd</span><span class="p">,</span> <span class="kt">t_char</span><span class="o">**</span> <span class="n">a_file</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">max</span><span class="p">)</span></pre>
+<p>Reads the contents of ‘fd’ and fill a data buffer with those bytes.</p>
+<p>SYSCALL wrapper: int read(const char *pathname, int flags, mode_t mode);</p>
+<p>Reads the full contents of the file descriptor <code class="docutils literal notranslate"><span class="pre">fd</span></code> (ie, until read() returns 0), and allocates a memory region which stores the file contents in <code class="docutils literal notranslate"><span class="pre">*a_file</span></code>.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>fd</p></td>
+<td><p>The file descriptor to read data from</p></td>
+</tr>
+<tr class="row-even"><td><p>a_file</p></td>
+<td><p>The address of the buffer to fill: is allocated and filled with the data</p></td>
+</tr>
+<tr class="row-odd"><td><p>max</p></td>
+<td><p>The maximum amount of bytes to read from ‘fd’ (if 0, replaced by <code class="docutils literal notranslate"><span class="pre">(t_size)-1</span></code>)</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>the amount of bytes read from the given file descriptor <code class="docutils literal notranslate"><span class="pre">fd</span></code> in total. If the return value is a negative number, there was a read error: You should then check <code class="docutils literal notranslate"><span class="pre">errno</span></code>, and/or use <code class="docutils literal notranslate"><span class="pre">IO_GetError(errno)</span></code> immediately after.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga238d65185cda7c848e8e0f12e08f5df7"><span id="index-11"></span><span></span><span class="kt">t_sintmax</span> <span class="n">IO_Read_Lines</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f"><span class="std std-ref">t_fd</span></a><span></span> <span class="k">const</span> <span class="n">fd</span><span class="p">,</span> <span class="kt">t_char</span><span class="o">***</span> <span class="n">a_strarr</span><span class="p">)</span></pre>
+<p>Reads the contents of ‘fd’ and makes an array of strings, one for each line.</p>
+<p>Reads the contents of the file descriptor ‘fd’, and puts that into an array of strings, one char pointer for each line (each ‘n’ newline char). Each ‘n’ character in the string are replaced by ‘0’ string terminators. NB: If the file being read contains any ‘0’ chars, the string array will end there.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>fd</p></td>
+<td><p>The file descriptor to read data from</p></td>
+</tr>
+<tr class="row-even"><td><p>a_strarr</p></td>
+<td><p>The address of the string array to fill: the top-level top-level pointer array is allocated and filled appropriately.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>the amount of bytes read from the given file descriptor <code class="docutils literal notranslate"><span class="pre">fd</span></code> in total. If the return value is a negative number, there was a read error: You should then check <code class="docutils literal notranslate"><span class="pre">errno</span></code>, and/or use <code class="docutils literal notranslate"><span class="pre">IO_GetError(errno)</span></code> immediately after.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga8f47eeb02006f4e4849051857b0e8558"><span id="index-12"></span><span></span><span class="kt">int</span> <span class="n">IO_Read_NextLine</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f"><span class="std std-ref">t_fd</span></a><span></span> <span class="k">const</span> <span class="n">fd</span><span class="p">,</span> <span class="kt">t_char</span><span class="o">**</span> <span class="n">a_line</span><span class="p">)</span></pre>
+<p>Reads the contents of the file descriptor ‘fd’ line-per-line.</p>
+<p>This function will read ‘fd’ line-per-line as you call it repeatedly. This means that it will allocate and fill a buffer until reading ‘n’, at which point this buffer is returned via the ‘line’ char pointer arg. As such, this function will typically be called within a while loop.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>fd</p></td>
+<td><p>The file descriptor to read data from</p></td>
+</tr>
+<tr class="row-even"><td><p>a_line</p></td>
+<td><p>The address of the string to allocate and fill with the current line.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>+1 (GNL_LINE) if a line of characters was successfully read 0 (GNL_END) if the end of the file was reached -1 (GNL_ERROR) if there’s an error</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gabb9c05063e5d261438b365507aca68b6"><span id="index-13"></span><span></span><span class="kt">t_io_error</span> <span class="n">IO_Write_Char</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f"><span class="std std-ref">t_fd</span></a><span></span> <span class="n">fd</span><span class="p">,</span> <span class="kt">char</span> <span class="n">c</span><span class="p">)</span></pre>
+<p>Writes the given character ‘c’ to the given file descriptor ‘fd’.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gafd0eb6211887c0ea68b00c0258caf3df"><span id="index-14"></span><span></span><span class="kt">t_io_error</span> <span class="n">IO_Write_String</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f"><span class="std std-ref">t_fd</span></a><span></span> <span class="n">fd</span><span class="p">,</span> <span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">)</span></pre>
+<p>Writes the given string ‘str’ to the given file descriptor ‘fd’.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga5629e4fafcfbc76c1cfeda315567b014"><span id="index-15"></span><span></span><span class="kt">t_io_error</span> <span class="n">IO_Write_Line</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f"><span class="std std-ref">t_fd</span></a><span></span> <span class="n">fd</span><span class="p">,</span> <span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">)</span></pre>
+<p>Writes the given string ‘str’ to the given file descriptor ‘fd’, and a newline ‘</p>
+<p>‘ char at the end.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga7055de963d7412d65a2088ed15d57050"><span id="index-16"></span><span></span><span class="kt">t_io_error</span> <span class="n">IO_Write_Lines</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f"><span class="std std-ref">t_fd</span></a><span></span> <span class="n">fd</span><span class="p">,</span> <span class="kt">t_char</span> <span class="k">const</span><span class="o">**</span> <span class="n">strarr</span><span class="p">)</span></pre>
+<p>Writes the given string array ‘strarr’ to the given file descriptor ‘fd’.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga178d2bd25d2230a48801e919ddfa2f18"><span id="index-17"></span><span></span><span class="n">_FORMAT</span><span class="p">(</span><span class="n">printf</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span></pre>
+<p>Writes the given formatted string to the standard output - equivalent to ‘fprintf()’, or rather ‘dprintf()’.</p>
+<p>To be called when there is an important warning to show to the user.</p>
+<p>Logging printf-style of verbose message to both stdout and logfile (if applicable)</p>
+<p>Logging printf-style of message to both stdout and logfile (if applicable)</p>
+<p>To be called when there is an successful operation (or result) of which to notify the user.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gaca9178eee8b6ef4889c7dc8e14e03fdb"><span id="index-18"></span><span></span><span class="kt">t_io_error</span> <span class="n">IO_Output_Char</span><span class="p">(</span><span class="kt">char</span> <span class="n">c</span><span class="p">)</span></pre>
+<p>Writes the given char ‘c’ to the standard output.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga16540e2ca439345eb9331a5ffdb36cdc"><span id="index-19"></span><span></span><span class="kt">t_io_error</span> <span class="n">IO_Output_String</span><span class="p">(</span><span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">)</span></pre>
+<p>Writes the given string ‘str’ to the standard output.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga45bf689dfd3ed48788beb73db1d07b1c"><span id="index-20"></span><span></span><span class="kt">t_io_error</span> <span class="n">IO_Output_Line</span><span class="p">(</span><span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">)</span></pre>
+<p>Writes the given string ‘str’ to the standard output, with a newline ‘</p>
+<p>‘ character at the end.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga6dc0349c37fc02b6e5fb67ccb3d1ec2e"><span id="index-21"></span><span></span><span class="kt">t_io_error</span> <span class="n">IO_Output_Lines</span><span class="p">(</span><span class="kt">t_char</span> <span class="k">const</span><span class="o">**</span> <span class="n">strarr</span><span class="p">)</span></pre>
+<p>Writes the given string array ‘strls’ to the standard output.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gaacde33e9816678279cec924346068e97"><span id="index-22"></span><span></span><span class="n">_FORMAT</span><span class="p">(</span><span class="n">printf</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">const</span></pre>
+<p>Writes the given formatted string to the standard output - equivalent to ‘printf()’.</p>
+</div>
+<div class="section" id="macros">
+<h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gacd416df5a722d247f1ec0c9c298a4fa8"><span id="index-23"></span><span></span><span class="cp">#define</span> <span class="n">GNL_END</span> <span class="cp">0</span></pre>
+<p>Return value for c_getnextline: indicates successful line read, end of file reached.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga9cf0c0bf69e6be78d78202e8699763ad"><span id="index-24"></span><span></span><span class="cp">#define</span> <span class="n">GNL_ERROR</span>   <span class="cp">-1</span></pre>
+<p>Return value for c_getnextline: indicates a read error occurred.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga66c9f6f1f21b8c3daa908032cc700da6"><span id="index-25"></span><span></span><span class="cp">#define</span> <span class="n">GNL_LINE</span>    <span class="cp">+1</span></pre>
+<p>Return value for c_getnextline: indicates succesful line read, more to follow.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga26d2d02b41fd2461803dbd160f774d2f"><span id="index-26"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_2BIG</span>   <span class="cp">E2BIG</span></pre>
+<p>(POSIX.1-2001) Argument list too long.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga479b7b6c79d3c46f1a2dbdf0da5f3243"><span id="index-27"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_ACCES</span>  <span class="cp">EACCES</span></pre>
+<p>(POSIX.1-2001) Permission denied.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gafc59ed321a0d23dc472b47704985c23c"><span id="index-28"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_ADDRINUSE</span>  <span class="cp">EADDRINUSE</span></pre>
+<p>(POSIX.1-2001) Address already in use.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga0dc302bf00660f8ecebc3f34a3638466"><span id="index-29"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_ADDRNOTAVAIL</span>   <span class="cp">EADDRNOTAVAIL</span></pre>
+<p>(POSIX.1-2001) Address not available.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga5597055f9e23711c876acdc53430160e"><span id="index-30"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_AFNOSUPPORT</span>    <span class="cp">EAFNOSUPPORT</span></pre>
+<p>(POSIX.1-2001) Address family not supported.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gad0813a547a444d0995ba9e1b35f91807"><span id="index-31"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_AGAIN</span>  <span class="cp">EAGAIN</span></pre>
+<p>(POSIX.1-2001) Resource temporarily unavailable (may be the same value as EWOULDBLOCK).</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gabefaa74f5f5c93776728137b8d6b5d3c"><span id="index-32"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_ALREADY</span>    <span class="cp">EALREADY</span></pre>
+<p>(POSIX.1-2001) Connection already in progress.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga10bc6e9922aea050bdd7a67fb8360598"><span id="index-33"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_BADE</span>   <span class="cp">EBADE</span></pre>
+<p>Invalid exchange.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gaa2b0b3839debf7c4c907c8c00d55c6d8"><span id="index-34"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_BADF</span>   <span class="cp">EBADF</span></pre>
+<p>(POSIX.1-2001) Bad file descriptor.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga5a6e8ed90a2e36b24f3995904ddddf58"><span id="index-35"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_BADFD</span>  <span class="cp">EBADFD</span></pre>
+<p>File descriptor in bad state.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga5065121bc3f6b01aca8bf3fa5fd1b0d1"><span id="index-36"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_BADMSG</span> <span class="cp">EBADMSG</span></pre>
+<p>(POSIX.1-2001) Bad message.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga5b3f76d0a1ab8089f1045b12b50afb7f"><span id="index-37"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_BADR</span>   <span class="cp">EBADR</span></pre>
+<p>Invalid request descriptor.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga5e5a46d973c7b9f326d1f95c40a6d951"><span id="index-38"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_BADRQC</span> <span class="cp">EBADRQC</span></pre>
+<p>Invalid request code.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga3d180a690281869183651c8a422ca673"><span id="index-39"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_BADSLT</span> <span class="cp">EBADSLT</span></pre>
+<p>Invalid slot.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gae047e977c88a87c42a72ffbdb3c7afe6"><span id="index-40"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_BUSY</span>   <span class="cp">EBUSY</span></pre>
+<p>(POSIX.1-2001) Device or resource busy.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga979ad275f4d64321a742e364905db1c0"><span id="index-41"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_CANCELED</span>   <span class="cp">ECANCELED</span></pre>
+<p>(POSIX.1-2001) Operation canceled.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gaf10f6dc5b4525beacdb4079ad06ee208"><span id="index-42"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_CHILD</span>  <span class="cp">ECHILD</span></pre>
+<p>(POSIX.1-2001) No child processes.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga84ed0f5318f60f8b8b16b68ede15588d"><span id="index-43"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_CHRNG</span>  <span class="cp">ECHRNG</span></pre>
+<p>Channel number out of range.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga526246c6e1a204ed8a9a61a7e1342cb2"><span id="index-44"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_COMM</span>   <span class="cp">ECOMM</span></pre>
+<p>Communication error on send.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga1c0d9d8926fc176772400236e1fefcdd"><span id="index-45"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_CONNABORTED</span>    <span class="cp">ECONNABORTED</span></pre>
+<p>(POSIX.1-2001) Connection aborted.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gabd84660452acd15171c9421fd2fee3d6"><span id="index-46"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_CONNREFUSED</span>    <span class="cp">ECONNREFUSED</span></pre>
+<p>(POSIX.1-2001) Connection refused.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gaf8a6c708f93bae925677093f9e356627"><span id="index-47"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_CONNRESET</span>  <span class="cp">ECONNRESET</span></pre>
+<p>(POSIX.1-2001) Connection reset.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gace5cc1f4e5edd4de66b93343ddc7770a"><span id="index-48"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_DEADLK</span> <span class="cp">EDEADLK</span></pre>
+<p>(POSIX.1-2001) Resource deadlock avoided.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga410531ccb558affb58e0f918dd0b8d13"><span id="index-49"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_DEADLOCK</span>   <span class="cp">EDEADLOCK</span></pre>
+<p>On most architectures, a synonym for EDEADLK. On some architectures (e.g., Linux MIPS, PowerPC, SPARC), it is a separate error code “File locking deadlock error”.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga208e99f2bd14092d92767406e32e2a44"><span id="index-50"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_DESTADDRREQ</span>    <span class="cp">EDESTADDRREQ</span></pre>
+<p>(POSIX.1-2001) Destination address required.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga559e4946e4ac318f940fe761abd5c5e0"><span id="index-51"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_DOM</span>    <span class="cp">EDOM</span></pre>
+<p>(POSIX.1, C99) Mathematics argument out of domain of function.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga55886561e3bfcee33060e42fd1605727"><span id="index-52"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_DQUOT</span>  <span class="cp">EDQUOT</span></pre>
+<p>(POSIX.1-2001) Disk quota exceeded.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga4cfd7e53201084ee281b092fcc96a0ad"><span id="index-53"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_EXIST</span>  <span class="cp">EEXIST</span></pre>
+<p>(POSIX.1-2001) File exists.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga0b0600faa0f58d97e970ed2ce5bc3a3f"><span id="index-54"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_FAULT</span>  <span class="cp">EFAULT</span></pre>
+<p>(POSIX.1-2001) Bad address.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga80f2bf421b35ef7b92c4a9c76cca94d5"><span id="index-55"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_FBIG</span>   <span class="cp">EFBIG</span></pre>
+<p>(POSIX.1-2001) File too large.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gaf51fd369125896fa9ec27e9398aab3a8"><span id="index-56"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_HOSTDOWN</span>   <span class="cp">EHOSTDOWN</span></pre>
+<p>Host is down.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga02862618c778343400f03ff18270cbe8"><span id="index-57"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_HOSTUNREACH</span>    <span class="cp">EHOSTUNREACH</span></pre>
+<p>(POSIX.1-2001) Host is unreachable.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga4fbae87819863798b3a9bf884e4044c4"><span id="index-58"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_HWPOISON</span>   <span class="cp">EHWPOISON</span></pre>
+<p>Memory page has hardware error.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga3185c2e12d5012d6a6184efce60b4aab"><span id="index-59"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_IDRM</span>   <span class="cp">EIDRM</span></pre>
+<p>(POSIX.1-2001) Identifier removed.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gad04b464588bfef6f50878850275bae58"><span id="index-60"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_ILSEQ</span>  <span class="cp">EILSEQ</span></pre>
+<p>(POSIX.1, C99) Invalid or incomplete multibyte or wide character. The text shown here is the glibc error description; in POSIX.1, this error is described as “Illegal byte sequence”.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gae4bffe77c83632efd2d63f13ab5c91ec"><span id="index-61"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_INPROGRESS</span> <span class="cp">EINPROGRESS</span></pre>
+<p>(POSIX.1-2001) Operation in progress.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga19ec8732b3ae765fc50a099d9d340b42"><span id="index-62"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_INTR</span>   <span class="cp">EINTR</span></pre>
+<p>(POSIX.1-2001) Interrupted function call; see signal(7).</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga02a3a686124522f54a489b67491751ca"><span id="index-63"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_INVAL</span>  <span class="cp">EINVAL</span></pre>
+<p>(POSIX.1-2001) Invalid argument.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gaa8f5ac6bffe455de822aed466de8b820"><span id="index-64"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_IO</span> <span class="cp">EIO</span></pre>
+<p>(POSIX.1-2001) Input/output error.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gab944755b6505591d17ff8bd046b6d3c2"><span id="index-65"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_ISCONN</span> <span class="cp">EISCONN</span></pre>
+<p>(POSIX.1-2001) Socket is connected.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gabfdb7b5ea1fbc35b99f9bce895d4788b"><span id="index-66"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_ISDIR</span>  <span class="cp">EISDIR</span></pre>
+<p>(POSIX.1-2001) Is a directory.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gadc1844688b58c48ab7e49bad05b3a117"><span id="index-67"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_ISNAM</span>  <span class="cp">EISNAM</span></pre>
+<p>Is a named type file.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gadcb3ae341d8376ca27f2ec3dbd627410"><span id="index-68"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_KEYEXPIRED</span> <span class="cp">EKEYEXPIRED</span></pre>
+<p>Key has expired.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga9be46c73b24df98a80d93557a43656a1"><span id="index-69"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_KEYREJECTED</span>    <span class="cp">EKEYREJECTED</span></pre>
+<p>Key was rejected by service.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga63a63dc2acaa2be889e068d6bcf33987"><span id="index-70"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_KEYREVOKED</span> <span class="cp">EKEYREVOKED</span></pre>
+<p>Key has been revoked.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga05e39495fb451e7a24ec8b737348e8cd"><span id="index-71"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_L2HLT</span>  <span class="cp">EL2HLT</span></pre>
+<p>Level 2 halted.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gae5344b129165559934eb3782e8351397"><span id="index-72"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_L2NSYNC</span>    <span class="cp">EL2NSYNC</span></pre>
+<p>Level 2 not synchronized.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga5e7d88833aca45ba4f27f297e26dff47"><span id="index-73"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_L3HLT</span>  <span class="cp">EL3HLT</span></pre>
+<p>Level 3 halted.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gaef6f5072161a90479ac9e89df7694396"><span id="index-74"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_L3RST</span>  <span class="cp">EL3RST</span></pre>
+<p>Level 3 reset.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gaa2b9ff26dc6b90ff8c9db82a1e0efdc5"><span id="index-75"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_LIBACC</span> <span class="cp">ELIBACC</span></pre>
+<p>Cannot access a needed shared library.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gabcbbe9b6353e5ed14ba8111b3d74d50e"><span id="index-76"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_LIBBAD</span> <span class="cp">ELIBBAD</span></pre>
+<p>Accessing a corrupted shared library.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga8b1d8af404c32bb88514f924ea5dc246"><span id="index-77"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_LIBEXEC</span>    <span class="cp">ELIBEXEC</span></pre>
+<p>Cannot exec a shared library directly.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga9e15278f0619addbf1fa9c46b83aeb5b"><span id="index-78"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_LIBMAX</span> <span class="cp">ELIBMAX</span></pre>
+<p>Attempting to link in too many shared libraries.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga302ace6bbff07a9593ab21f70c94e27b"><span id="index-79"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_LIBSCN</span> <span class="cp">ELIBSCN</span></pre>
+<p>lib section in a.out corrupted</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga368301e4c856b7f86b858b3db95ffbdb"><span id="index-80"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_LNRANGE</span>    <span class="cp">ELNRANGE</span></pre>
+<p>Link number out of range.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gac90f22ebc94d77655bfd16413743e6fd"><span id="index-81"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_LOOP</span>   <span class="cp">ELOOP</span></pre>
+<p>(POSIX.1-2001) Too many levels of symbolic links.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gaa6e4faead54f1018c7ef8d663428c15a"><span id="index-82"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_MEDIUMTYPE</span> <span class="cp">EMEDIUMTYPE</span></pre>
+<p>Wrong medium type.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gab4c76a2593f1df42e1f62efc16ad9776"><span id="index-83"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_MFILE</span>  <span class="cp">EMFILE</span></pre>
+<p>(POSIX.1-2001) Too many open files. Commonly caused by exceeding the RLIMIT_NOFILE resource limit described in getrlimit(2). Can also be caused by exceeding the limit specified in /proc/sys/fs/nr_open.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga9d3098d2ad7814bc3a7be125f8326f02"><span id="index-84"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_MLINK</span>  <span class="cp">EMLINK</span></pre>
+<p>(POSIX.1-2001) Too many links.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gad9acf3024474e2f107a0742c28f1e754"><span id="index-85"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_MSGSIZE</span>    <span class="cp">EMSGSIZE</span></pre>
+<p>(POSIX.1-2001) Message too long.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gadde59150940262e34536b6be1988bc50"><span id="index-86"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_MULTIHOP</span>   <span class="cp">EMULTIHOP</span></pre>
+<p>(POSIX.1-2001) Multihop attempted.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gaa01d204e1cb40d222473e4c0d552818e"><span id="index-87"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_NAMETOOLONG</span>    <span class="cp">ENAMETOOLONG</span></pre>
+<p>(POSIX.1-2001) Filename too long.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga7cbacbca7a4b49c9ec857d7aa7b1a6a5"><span id="index-88"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_NETDOWN</span>    <span class="cp">ENETDOWN</span></pre>
+<p>(POSIX.1-2001) Network is down.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gabea30f0fe55e89f8b4115fab317d6d6a"><span id="index-89"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_NETRESET</span>   <span class="cp">ENETRESET</span></pre>
+<p>(POSIX.1-2001) Connection aborted by network.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga04388324387f0126b43217a1bf276fa3"><span id="index-90"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_NETUNREACH</span> <span class="cp">ENETUNREACH</span></pre>
+<p>(POSIX.1-2001) Network unreachable.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gaa5ceb72282f9b2d5a31df0a339f5d3cd"><span id="index-91"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_NFILE</span>  <span class="cp">ENFILE</span></pre>
+<p>(POSIX.1-2001) Too many open files in system. On Linux, this is probably a result of encountering the /proc/sys/fs/file-max limit (see proc(5)).</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gaa06f9622abe8955f37627ccabba0cd8f"><span id="index-92"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_NOANO</span>  <span class="cp">ENOANO</span></pre>
+<p>No anode.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga6341162ed89395f4567702fb99974257"><span id="index-93"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_NOBUFS</span> <span class="cp">ENOBUFS</span></pre>
+<p>(POSIX.1 (XSI STREAMS option)) No buffer space available.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga0fca936f6ef739c6dc2adeda09898055"><span id="index-94"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_NODATA</span> <span class="cp">ENODATA</span></pre>
+<p>(POSIX.1-2001) No message is available on the STREAM head read queue.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga51aac344eb49bf259c3a84b8ee87c836"><span id="index-95"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_NODEV</span>  <span class="cp">ENODEV</span></pre>
+<p>(POSIX.1-2001) No such device.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gade4b28b8e219d93ecc75fedbb5d183fb"><span id="index-96"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_NOENT</span>  <span class="cp">ENOENT</span></pre>
+<p>(POSIX.1-2001) No such file or directory. Typically, this error results when a specified pathname does not exist, or one of the components in the directory prefix of a pathname does not exist, or the specified pathname is a dangling symbolic link.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga80b9d8c485dd056acc209754dd2e2f26"><span id="index-97"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_NOEXEC</span> <span class="cp">ENOEXEC</span></pre>
+<p>(POSIX.1-2001) define Exec //!&lt; format error.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga7acb9396b9528bfed52940567a5d1283"><span id="index-98"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_NOKEY</span>  <span class="cp">ENOKEY</span></pre>
+<p>Required key not available.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga619be432256caa5e8dd39395834515a0"><span id="index-99"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_NOLCK</span>  <span class="cp">ENOLCK</span></pre>
+<p>(POSIX.1-2001) No locks available.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gaf7c35b4a6af701a2d0c5ad84515fefb7"><span id="index-100"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_NOLINK</span> <span class="cp">ENOLINK</span></pre>
+<p>(POSIX.1-2001) Link has been severed.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gaed1bd57e5c09890c45297dcd602f81a3"><span id="index-101"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_NOMEDIUM</span>   <span class="cp">ENOMEDIUM</span></pre>
+<p>No medium found.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga0a4d2e6e9ba8abcdcbc6e89b20c12d94"><span id="index-102"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_NOMEM</span>  <span class="cp">ENOMEM</span></pre>
+<p>(POSIX.1-2001) Not enough space/cannot allocate memory.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gaecf9f786d3ac7a2a3dac5c53fac56fef"><span id="index-103"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_NOMSG</span>  <span class="cp">ENOMSG</span></pre>
+<p>(POSIX.1-2001) No message of the desired type.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gae639f37c71c5e8c52998bac46bd11689"><span id="index-104"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_NONET</span>  <span class="cp">ENONET</span></pre>
+<p>Machine is not on the network.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga1afa71e86f2d27a2c184e8e36712513d"><span id="index-105"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_NOPKG</span>  <span class="cp">ENOPKG</span></pre>
+<p>Package not installed.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gad18cfdb737e0ebdd269df44477182ba6"><span id="index-106"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_NOPROTOOPT</span> <span class="cp">ENOPROTOOPT</span></pre>
+<p>(POSIX.1-2001) Protocol not available.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga23f6ca0e91d1e2ac29246bc6683bfac4"><span id="index-107"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_NOSPC</span>  <span class="cp">ENOSPC</span></pre>
+<p>(POSIX.1-2001) No space left on device.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga67258b660cbf6e9ca27c56259a86c4f0"><span id="index-108"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_NOSR</span>   <span class="cp">ENOSR</span></pre>
+<p>(POSIX.1 (XSI STREAMS option)) No STREAM resources.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga04a50e25ec79dee2ccfeb54ef886168b"><span id="index-109"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_NOSTR</span>  <span class="cp">ENOSTR</span></pre>
+<p>(POSIX.1 (XSI STREAMS option)) Not a STREAM.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gaa9015127011cffeba6f6e21074b85d7a"><span id="index-110"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_NOSYS</span>  <span class="cp">ENOSYS</span></pre>
+<p>(POSIX.1-2001) Function not implemented.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gae772d878203a1178822d3fd99d9f53c5"><span id="index-111"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_NOTBLK</span> <span class="cp">ENOTBLK</span></pre>
+<p>Block device required.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gaacd39a1c8305e87d87d55f07330c2b78"><span id="index-112"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_NOTCONN</span>    <span class="cp">ENOTCONN</span></pre>
+<p>(POSIX.1-2001) The socket is not connected.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gadf75e30dd9b57ede0392041e1b569310"><span id="index-113"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_NOTDIR</span> <span class="cp">ENOTDIR</span></pre>
+<p>(POSIX.1-2001) Not a directory.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga45108c2c579373bccbaf90f2fd1884b0"><span id="index-114"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_NOTEMPTY</span>   <span class="cp">ENOTEMPTY</span></pre>
+<p>(POSIX.1-2001) Directory not empty.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga65f584b38c4f6dc451c75dc707c0c132"><span id="index-115"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_NOTRECOVERABLE</span> <span class="cp">ENOTRECOVERABLE</span></pre>
+<p>(POSIX.1-2008) State not recoverable.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga65ee5c1281627acdf9d27a16da22b9ad"><span id="index-116"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_NOTSOCK</span>    <span class="cp">ENOTSOCK</span></pre>
+<p>(POSIX.1-2001) Not a socket.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga91a260addeecaf845358254f8adf1fea"><span id="index-117"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_NOTSUP</span> <span class="cp">ENOTSUP</span></pre>
+<p>(POSIX.1-2001) Operation not supported.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga030d1b9021f9d892cb3ddf8ae8878972"><span id="index-118"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_NOTTY</span>  <span class="cp">ENOTTY</span></pre>
+<p>(POSIX.1-2001) Inappropriate I/O control operation.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gab11e371a9fe27e9b7e523c84b837b34e"><span id="index-119"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_NOTUNIQ</span>    <span class="cp">ENOTUNIQ</span></pre>
+<p>Name not unique on network.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga8db8a245f3a6fa6e564da7f0220cf7c1"><span id="index-120"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_NXIO</span>   <span class="cp">ENXIO</span></pre>
+<p>(POSIX.1-2001) No such device or address.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga12cc123e9ee9e99bb339c2a523a31192"><span id="index-121"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_OPNOTSUPP</span>  <span class="cp">EOPNOTSUPP</span></pre>
+<p>(POSIX.1-2001) Operation not supported on socket. (ENOTSUP and EOPNOTSUPP have the same value on Linux, but according to POSIX.1 these error values should be distinct.)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gaa987c33fa6c47210322355789b4ca63d"><span id="index-122"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_OVERFLOW</span>   <span class="cp">EOVERFLOW</span></pre>
+<p>(POSIX.1-2001) Value too large to be stored in data type.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga5b8820473c251656a19148bd9a5a60dc"><span id="index-123"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_OWNERDEAD</span>  <span class="cp">EOWNERDEAD</span></pre>
+<p>(POSIX.1-2008) Owner died.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga8ed6f8bba6a4e609de4765021afe4dbe"><span id="index-124"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_PERM</span>   <span class="cp">EPERM</span></pre>
+<p>(POSIX.1-2001) Operation not permitted.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga24e029da8395b395cf8ed4b615d6ed0d"><span id="index-125"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_PFNOSUPPORT</span>    <span class="cp">EPFNOSUPPORT</span></pre>
+<p>Protocol family not supported.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga13c68965d04e3bc4a5c6c729ee0aec85"><span id="index-126"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_PIPE</span>   <span class="cp">EPIPE</span></pre>
+<p>(POSIX.1-2001) Broken pipe.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gaa6c19028d271dd9da5a2359ecf53ab2b"><span id="index-127"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_PROTO</span>  <span class="cp">EPROTO</span></pre>
+<p>(POSIX.1-2001) Protocol error.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga2b30b5960197de13111090698a9c7604"><span id="index-128"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_PROTONOSUPPORT</span> <span class="cp">EPROTONOSUPPORT</span></pre>
+<p>(POSIX.1-2001) Protocol not supported.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga46ea7dfca9d7227db1026291b1219b26"><span id="index-129"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_PROTOTYPE</span>  <span class="cp">EPROTOTYPE</span></pre>
+<p>(POSIX.1-2001) Protocol wrong type for socket.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga12f23a32f96d78b0e2860d183fd366b7"><span id="index-130"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_RANGE</span>  <span class="cp">ERANGE</span></pre>
+<p>(POSIX.1, C99) Result too large.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga688974c1a281f4a9f0c3040835941021"><span id="index-131"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_REMCHG</span> <span class="cp">EREMCHG</span></pre>
+<p>Remote address changed.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga52c6f765d250ec4f684eb64f51af0867"><span id="index-132"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_REMOTE</span> <span class="cp">EREMOTE</span></pre>
+<p>Object is remote.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gab50e64946d3380eea558ebe1867b45d6"><span id="index-133"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_REMOTEIO</span>   <span class="cp">EREMOTEIO</span></pre>
+<p>Remote I/O error.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga3ed351383c72bf90f3220db0f0aeee3b"><span id="index-134"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_RESTART</span>    <span class="cp">ERESTART</span></pre>
+<p>Interrupted system call should be restarted.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga936b6596bb2444f7fa18f4d7f9b7d4ec"><span id="index-135"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_RFKILL</span> <span class="cp">ERFKILL</span></pre>
+<p>Operation not possible due to RF-kill.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gad2f7ab41b9aa0afa9251827d7f3b01e3"><span id="index-136"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_ROFS</span>   <span class="cp">EROFS</span></pre>
+<p>(POSIX.1-2001) Read-only filesystem.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gacc6dba6df08e2eb6d064ac1eec06819c"><span id="index-137"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_SHUTDOWN</span>   <span class="cp">ESHUTDOWN</span></pre>
+<p>Cannot send after transport endpoint shutdown.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga61654a10622011be27ae5aab30b9a202"><span id="index-138"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_SOCKTNOSUPPORT</span> <span class="cp">ESOCKTNOSUPPORT</span></pre>
+<p>Socket type not supported.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga2d3759f68a81143979ecc035f62eec71"><span id="index-139"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_SPIPE</span>  <span class="cp">ESPIPE</span></pre>
+<p>(POSIX.1-2001) Invalid seek.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga2f1c563c1a5c26e800c0aedac455b367"><span id="index-140"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_SRCH</span>   <span class="cp">ESRCH</span></pre>
+<p>(POSIX.1-2001) No such process.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga4c4c580b000edc20289d8c13081f6ef4"><span id="index-141"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_STALE</span>  <span class="cp">ESTALE</span></pre>
+<p>(POSIX.1-2001) Stale file handle. This error can occur for NFS and for other filesystems.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gaa11b834cbc43b5763118bc307fe760b2"><span id="index-142"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_STRPIPE</span>    <span class="cp">ESTRPIPE</span></pre>
+<p>Streams pipe error.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga5970a734c2aa8b60e0f611bebbc6536a"><span id="index-143"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_TIME</span>   <span class="cp">ETIME</span></pre>
+<p>(POSIX.1 (XSI STREAMS option)) Timer expired. (POSIX.1 says “STREAM ioctl(2) timeout”.)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga6d4d4c0ff3f33a72e0e0b982d56a9da6"><span id="index-144"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_TIMEDOUT</span>   <span class="cp">ETIMEDOUT</span></pre>
+<p>(POSIX.1-2001) Connection timed out.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga060d18893c629c28524f2f261b40538b"><span id="index-145"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_TOOMANYREFS</span>    <span class="cp">ETOOMANYREFS</span></pre>
+<p>Too many references: cannot splice.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga8738eb07678b54ab416daabd030ba207"><span id="index-146"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_TXTBSY</span> <span class="cp">ETXTBSY</span></pre>
+<p>(POSIX.1-2001) Text file busy.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga6f1a2d8e77dce58c41bd65c41f51e997"><span id="index-147"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_UCLEAN</span> <span class="cp">EUCLEAN</span></pre>
+<p>Structure needs cleaning.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga877546ec7bd12367ae78889459b18576"><span id="index-148"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_UNATCH</span> <span class="cp">EUNATCH</span></pre>
+<p>Protocol driver not attached.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga3c24d995bd87f1ae80e84d817ac5f9ff"><span id="index-149"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_USERS</span>  <span class="cp">EUSERS</span></pre>
+<p>Too many users.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga5a9a62483b0efd031136fd9f0d3601cd"><span id="index-150"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_WOULDBLOCK</span> <span class="cp">EWOULDBLOCK</span></pre>
+<p>(POSIX.1-2001) Operation would block (may be same value as EAGAIN).</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga29c98f07755d12b291eb642f690567d1"><span id="index-151"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_XDEV</span>   <span class="cp">EXDEV</span></pre>
+<p>(POSIX.1-2001) Improper link.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga3e3e64c495ba862ec916accc97f316a3"><span id="index-152"></span><span></span><span class="cp">#define</span> <span class="n">IO_ERROR_XFULL</span>  <span class="cp">EXFULL</span></pre>
+<p>Exchange full.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga3a540e3eef339eec06aff31c4ba1eb25"><span id="index-153"></span><span></span><span class="cp">#define</span> <span class="n">STDERR</span>  <span class="cp">((</span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f"><span class="std std-ref">t_fd</span></a><span></span><span class="p">)</span><span class="mi">2</span><span class="p">)</span></pre>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/io/std_streams">https://en.cppreference.com/w/c/io/std_streams</a></p></li>
+</ul>
+<p>Define the 3 standard (std) streams of data - these numbers are special file descriptors used to read from and write to the terminal commandline.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga77b06cd897c5e6c61cfe05ab0f208304"><span id="index-154"></span><span></span><span class="cp">#define</span> <span class="n">c_putlines</span>  <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga6dc0349c37fc02b6e5fb67ccb3d1ec2e"><span class="std std-ref">IO_Output_Lines</span></a></pre>
+<p>Writes ‘n’ bytes of memory from ‘ptr’ as hexadecimal 2-char blocks in ‘cols’ columns, to the standard output.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga8dd1c7c5c1f72e98e52f225a6b475ab9"><span id="index-155"></span><span></span><span class="cp">#define</span> <span class="n">c_write_lines</span>   <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga7055de963d7412d65a2088ed15d57050"><span class="std std-ref">IO_Write_Lines</span></a></pre>
+<p>Writes ‘n’ bytes of memory from ‘ptr’ as hexadecimal 2-char blocks in ‘cols’ columns, to the given file descriptor ‘fd’.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="group_libccc_sys_ansi.html" class="btn btn-neutral float-right" title="15) libccc/sys/ansi" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="group_libccc_color.html" class="btn btn-neutral float-left" title="13) libccc/color" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Free &amp; Open Source: MIT License
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

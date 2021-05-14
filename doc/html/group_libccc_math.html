@@ -1,0 +1,628 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Libccc_math &mdash; libccc 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/target-highlight.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="_static/js/custom.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Libccc_array_sort" href="group_libccc_array_sort.html" />
+    <link rel="prev" title="Libccc_unicode" href="group_libccc_unicode.html" />
+	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
+	
+	<meta name="Description" content="Libccc_math">
+	<meta property="og:description" content="Libccc_math">
+	<meta property="og:title" content="libccc 1.0 documentation - Libccc_math">
+	<meta property="og:image" content="_static/images/libccc_icon.png">
+	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="380" />
+	<meta property="og:image:height" content="380" />
+	<meta property="og:url" content="group_libccc_math.html">
+	<meta property="og:site_name" content="libccc 1.0 documentation">
+
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> libccc
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="group_libccc.html">01) libccc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">02) libccc/bool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">03) libccc/int</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_fixed.html">04) libccc/fixed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_float.html">05) libccc/float</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointer.html">06) libccc/pointer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointerarray.html">07) libccc/pointerarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_memory.html">08) libccc/memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">09) libccc/char</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">10) libccc/string</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_stringarray.html">11) libccc/stringarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">12) libccc/format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_color.html">13) libccc/color</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">14) libccc/sys/io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_ansi.html">15) libccc/sys/ansi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">18) libccc/sys/logger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_time.html">20) libccc/sys/time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_constants.html">21) libccc/math/constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_float.html">22) libccc/math/float</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_fixed.html">23) libccc/math/fixed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_vlq.html">24) libccc/math/vlq</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_stat.html">25) libccc/math/stat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_random.html">26) libccc/math/random</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">27) libccc/math/complex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra.html">28) libccc/math/algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_array.html">32) libccc/monad/array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_list.html">33) libccc/monad/list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_stack.html">34) libccc/monad/stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_queue.html">35) libccc/monad/queue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_tree.html">36) libccc/monad/tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_keyval.html">37) libccc/monad/keyval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_dict.html">38) libccc/monad/dict</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_object.html">39) libccc/monad/object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_config.html">Libccc_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_ascii.html">Libccc_ascii</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_regex.html">Libccc_regex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_unicode.html">Libccc_unicode</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Libccc_math</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#detailed-documentation">Detailed Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#macros">Macros</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_array_sort.html">Libccc_array_sort</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_convert.html">Libccc_monad_convert</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">libccc</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Libccc_math</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="libccc-math">
+<span id="doxid-group-libccc-math"></span><span id="index-0"></span><h1>Libccc_math<a class="headerlink" href="#libccc-math" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>This header defines the common standard math functions and macro defines. <a class="reference internal" href="#details-group-libccc-math"><span class="std std-ref">More…</span></a></p>
+<pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// macros</span>
+
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-1ga996f7be338ccb40d1a2a5abc1ad61759"><span class="std std-ref">ABS</span></a><span></span><span class="p">(</span><span class="n">x</span><span class="p">)</span>    <span class="p">((</span><span class="n">x</span><span class="p">)</span><span class="o">&lt;</span><span class="mi">0</span> <span class="o">?</span> <span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">:</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span></span><span class="n">DEFINE_GENERIC_MATH_FUNCTION</span></span><span></span><span class="p">(</span><span class="n">FUNCTION</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>      <span class="n">_Generic</span><span class="p">((</span><span class="n">X</span><span class="p">),</span>   <span class="err">\</span>       <span class="kt">t_q16</span><span class="o">:</span>   <a class="reference internal" href="group_libccc_math_fixed.html#doxid-group-libccc-math-fixed-1ga64b77b20b3432459a6cda6ca44f76f7e"><span class="std std-ref">Q16_</span></a><span></span><span class="cp">##FUNCTION,   \       t_q32:   </span><a class="reference internal" href="group_libccc_math_fixed.html#doxid-group-libccc-math-fixed-1ga27a0d8e449ef908f54841ee17c8b1a92"><span class="std std-ref">Q32_</span></a><span></span><span class="cp">##FUNCTION,   \       t_q64:   </span><a class="reference internal" href="group_libccc_math_fixed.html#doxid-group-libccc-math-fixed-1gaa5368bd2beea18856b39190f3178dc0f"><span class="std std-ref">Q64_</span></a><span></span><span class="cp">##FUNCTION,   \       t_q128:  </span><a class="reference internal" href="group_libccc_math_fixed.html#doxid-group-libccc-math-fixed-1ga7c2dc45e693e7cc789ed94fc949f50a3"><span class="std std-ref">Q128_</span></a><span></span><span class="cp">##FUNCTION,  \       t_fixed: Fixed_##FUNCTION,  \       t_f32:   F32_##FUNCTION,    \       t_f64:   F64_##FUNCTION,    \       t_f80:   F80_##FUNCTION,    \       t_f128:  F128_##FUNCTION,   \       t_float: Float_##FUNCTION,  \)(X)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga5b7f9250ac1480dc15d6973242844730"><span></span><span class="n">DEFINE_GENERIC_MATH_OPERATOR</span></span><span></span><span class="p">(</span><span class="n">FUNCTION</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>       <span class="n">_Generic</span><span class="p">((</span><span class="n">X</span><span class="p">),</span>   <span class="err">\</span>       <span class="kt">t_q16</span><span class="o">:</span>   <a class="reference internal" href="group_libccc_math_fixed.html#doxid-group-libccc-math-fixed-1ga64b77b20b3432459a6cda6ca44f76f7e"><span class="std std-ref">Q16_</span></a><span></span><span class="cp">##FUNCTION,   \       t_q32:   </span><a class="reference internal" href="group_libccc_math_fixed.html#doxid-group-libccc-math-fixed-1ga27a0d8e449ef908f54841ee17c8b1a92"><span class="std std-ref">Q32_</span></a><span></span><span class="cp">##FUNCTION,   \       t_q64:   </span><a class="reference internal" href="group_libccc_math_fixed.html#doxid-group-libccc-math-fixed-1gaa5368bd2beea18856b39190f3178dc0f"><span class="std std-ref">Q64_</span></a><span></span><span class="cp">##FUNCTION,   \       t_q128:  </span><a class="reference internal" href="group_libccc_math_fixed.html#doxid-group-libccc-math-fixed-1ga7c2dc45e693e7cc789ed94fc949f50a3"><span class="std std-ref">Q128_</span></a><span></span><span class="cp">##FUNCTION,  \       t_fixed: Fixed_##FUNCTION,  \       t_f32:   F32_##FUNCTION,    \       t_f64:   F64_##FUNCTION,    \       t_f80:   F80_##FUNCTION,    \       t_f128:  F128_##FUNCTION,   \       t_float: Float_##FUNCTION,  \)(X, Y)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga15ce5bb45fbd3c1ec09f0babee8c01b0"><span></span><span class="n">MATH_DECL_FUNCTION</span></span><span></span><span class="p">(</span><span class="n">RETURN</span><span class="p">,</span> <span class="n">NAME</span><span class="p">,</span> <span class="n">CNAME</span><span class="p">)</span>        <a class="reference internal" href="#doxid-group-libccc-math-1ga1a8c606ca6b1b7c9ab29a867251a5231"><span class="std std-ref">MATH_DEFINE_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">RETURN</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="n">NAME</span><span class="p">,</span> <span class="n">CNAME</span><span class="p">,</span><span class="n">f</span><span class="p">)</span>   <span class="err">\</span>   <a class="reference internal" href="#doxid-group-libccc-math-1ga1a8c606ca6b1b7c9ab29a867251a5231"><span class="std std-ref">MATH_DEFINE_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">RETURN</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="n">NAME</span><span class="p">,</span> <span class="n">CNAME</span><span class="p">,)</span>    <span class="err">\</span> <span class="o">/*</span>    <a class="reference internal" href="#doxid-group-libccc-math-1ga1a8c606ca6b1b7c9ab29a867251a5231"><span class="std std-ref">MATH_DEFINE_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">RETURN</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="n">NAME</span><span class="p">,</span> <span class="n">CNAME</span><span class="p">,</span><span class="n">l</span><span class="p">)</span>   <span class="err">\*/</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga1bda26f13eba63409816b53282c13103"><span></span><span class="n">MATH_DECL_REALFUNCTION</span></span><span></span><span class="p">(</span><span class="n">NAME</span><span class="p">,</span> <span class="n">CNAME</span><span class="p">)</span>        <a class="reference internal" href="#doxid-group-libccc-math-1gad7098bacdaeacb27cdf1bc16f1d95a4f"><span class="std std-ref">MATH_DEFINE_REALFUNCTION</span></a><span></span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="n">NAME</span><span class="p">,</span> <span class="n">CNAME</span><span class="p">,</span><span class="n">f</span><span class="p">)</span>   <span class="err">\</span>   <a class="reference internal" href="#doxid-group-libccc-math-1gad7098bacdaeacb27cdf1bc16f1d95a4f"><span class="std std-ref">MATH_DEFINE_REALFUNCTION</span></a><span></span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="n">NAME</span><span class="p">,</span> <span class="n">CNAME</span><span class="p">,)</span>    <span class="err">\</span> <span class="o">/*</span>    <a class="reference internal" href="#doxid-group-libccc-math-1gad7098bacdaeacb27cdf1bc16f1d95a4f"><span class="std std-ref">MATH_DEFINE_REALFUNCTION</span></a><span></span><span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="n">NAME</span><span class="p">,</span> <span class="n">CNAME</span><span class="p">,</span><span class="n">l</span><span class="p">)</span>   <span class="err">\*/</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga3578a113f4898a38878ab181d272b50b"><span></span><span class="n">MATH_DECL_REALOPERATOR</span></span><span></span><span class="p">(</span><span class="n">NAME</span><span class="p">,</span> <span class="n">CNAME</span><span class="p">)</span>        <a class="reference internal" href="#doxid-group-libccc-math-1ga40ba4dff35cf7ac35cdb6e4a511267b7"><span class="std std-ref">MATH_DEFINE_REALOPERATOR</span></a><span></span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="n">NAME</span><span class="p">,</span> <span class="n">CNAME</span><span class="p">,</span><span class="n">f</span><span class="p">)</span>   <span class="err">\</span>   <a class="reference internal" href="#doxid-group-libccc-math-1ga40ba4dff35cf7ac35cdb6e4a511267b7"><span class="std std-ref">MATH_DEFINE_REALOPERATOR</span></a><span></span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="n">NAME</span><span class="p">,</span> <span class="n">CNAME</span><span class="p">,)</span>    <span class="err">\</span> <span class="o">/*</span>    <a class="reference internal" href="#doxid-group-libccc-math-1ga40ba4dff35cf7ac35cdb6e4a511267b7"><span class="std std-ref">MATH_DEFINE_REALOPERATOR</span></a><span></span><span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="n">NAME</span><span class="p">,</span> <span class="n">CNAME</span><span class="p">,</span><span class="n">l</span><span class="p">)</span>   <span class="err">\*/</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga1a8c606ca6b1b7c9ab29a867251a5231"><span></span><span class="n">MATH_DEFINE_FUNCTION</span></span><span></span><span class="p">(</span><span class="n">RETURN</span><span class="p">,</span> <span class="n">BITS</span><span class="p">,</span> <span class="n">NAME</span><span class="p">,</span> <span class="n">CNAME</span><span class="p">,</span> <span class="n">TYPE</span><span class="p">)</span>  <span class="kr">inline</span> <span class="n">RETURN</span>    <span class="n">c_f</span><span class="err">##</span><span class="n">BITS</span><span class="err">##</span><span class="n">NAME</span><span class="p">(</span><span class="kt">t_f</span><span class="err">##</span><span class="n">BITS</span> <span class="n">x</span><span class="p">)</span>               <span class="p">{</span> <span class="k">return</span><span class="p">(</span><span class="n">__builtin_</span><span class="err">##</span><span class="n">CNAME</span><span class="err">##</span><span class="n">TYPE</span><span class="p">(</span><span class="n">x</span><span class="p">));</span> <span class="p">}</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1gad7098bacdaeacb27cdf1bc16f1d95a4f"><span></span><span class="n">MATH_DEFINE_REALFUNCTION</span></span><span></span><span class="p">(</span><span class="n">BITS</span><span class="p">,</span> <span class="n">NAME</span><span class="p">,</span> <span class="n">CNAME</span><span class="p">,</span> <span class="n">TYPE</span><span class="p">)</span>  <span class="kr">inline</span> <span class="kt">t_f</span><span class="err">##</span><span class="n">BITS</span> <span class="n">c_f</span><span class="err">##</span><span class="n">BITS</span><span class="err">##</span><span class="n">NAME</span><span class="p">(</span><span class="kt">t_f</span><span class="err">##</span><span class="n">BITS</span> <span class="n">x</span><span class="p">)</span>               <span class="p">{</span> <span class="k">return</span><span class="p">(</span><span class="n">__builtin_</span><span class="err">##</span><span class="n">CNAME</span><span class="err">##</span><span class="n">TYPE</span><span class="p">(</span><span class="n">x</span><span class="p">));</span> <span class="p">}</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga40ba4dff35cf7ac35cdb6e4a511267b7"><span></span><span class="n">MATH_DEFINE_REALOPERATOR</span></span><span></span><span class="p">(</span><span class="n">BITS</span><span class="p">,</span> <span class="n">NAME</span><span class="p">,</span> <span class="n">CNAME</span><span class="p">,</span> <span class="n">TYPE</span><span class="p">)</span>  <span class="kr">inline</span> <span class="kt">t_f</span><span class="err">##</span><span class="n">BITS</span> <span class="n">c_f</span><span class="err">##</span><span class="n">BITS</span><span class="err">##</span><span class="n">NAME</span><span class="p">(</span><span class="kt">t_f</span><span class="err">##</span><span class="n">BITS</span> <span class="n">x</span><span class="p">,</span> <span class="kt">t_f</span><span class="err">##</span><span class="n">BITS</span> <span class="n">y</span><span class="p">)</span>  <span class="p">{</span> <span class="k">return</span><span class="p">(</span><span class="n">__builtin_</span><span class="err">##</span><span class="n">CNAME</span><span class="err">##</span><span class="n">TYPE</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">));</span> <span class="p">}</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-1gaacc3ee1a7f283f8ef65cea31f4436a95"><span class="std std-ref">MAX</span></a><span></span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="p">((</span><span class="n">x</span><span class="p">)</span><span class="o">&lt;</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">?</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">:</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-1ga74e75242132eaabbc1c512488a135926"><span class="std std-ref">MIN</span></a><span></span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="p">((</span><span class="n">x</span><span class="p">)</span><span class="o">&lt;</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">?</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">:</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-1gafcccd28251b61b4ed3e1385d8b09d465"><span class="std std-ref">Math_Abs</span></a><span></span><span class="p">(</span><span class="n">X</span><span class="p">)</span>   <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">Abs</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga4a032a711294c646d53ac7f4351331b6"><span></span><span class="n">Math_AbsoluteValue</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-math-1gafcccd28251b61b4ed3e1385d8b09d465"><span class="std std-ref">Math_Abs</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-1gaaf4e551f813356323d69ede11d01fbcf"><span class="std std-ref">Math_Add</span></a><span></span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>    <a class="reference internal" href="#doxid-group-libccc-math-1ga5b7f9250ac1480dc15d6973242844730"><span class="std std-ref">DEFINE_GENERIC_MATH_OPERATOR</span></a><span></span><span class="p">(</span><span class="n">Add</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-1ga2a275bf6d4ea329ea78335545990bf30"><span class="std std-ref">Math_ArcCos</span></a><span></span><span class="p">(</span><span class="n">X</span><span class="p">)</span>    <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">ArcCos</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-1ga3ea416f7232cff551bcfdde5bb2f3edf"><span class="std std-ref">Math_ArcSin</span></a><span></span><span class="p">(</span><span class="n">X</span><span class="p">)</span>    <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">ArcSin</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-1gaf1c3fc24548e298ea19abce3d9d783dd"><span class="std std-ref">Math_ArcTan</span></a><span></span><span class="p">(</span><span class="n">X</span><span class="p">)</span>    <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">ArcTan</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-1ga11972c48b9c7e57f2dad91c0252eced1"><span class="std std-ref">Math_ArcTan2</span></a><span></span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>    <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">ArcTan2</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga09a746a7d1f14e14cd960f22c117c073"><span></span><span class="n">Math_ArcTan_YoverX</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-math-1ga11972c48b9c7e57f2dad91c0252eced1"><span class="std std-ref">Math_ArcTan2</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga997dadbffad4f30778ad3159c2d8cef7"><span></span><span class="n">Math_ArcTangent2</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-math-1ga11972c48b9c7e57f2dad91c0252eced1"><span class="std std-ref">Math_ArcTan2</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga03760b64ad078661795263b6d74f1ab3"><span></span><span class="n">Math_ArcTangent_YoverX</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-math-1ga11972c48b9c7e57f2dad91c0252eced1"><span class="std std-ref">Math_ArcTan2</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga021c4d99cd1422be2735ced2df95a283"><span></span><span class="n">Math_CbRt</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-math-1ga79019aa3a0dd260b271f72f148967f09"><span class="std std-ref">Math_Root3</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-1ga5c84f144a63a43b1c4837812fed2ec32"><span class="std std-ref">Math_Ceiling</span></a><span></span><span class="p">(</span><span class="n">X</span><span class="p">)</span>   <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">Ceiling</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-1ga3209a4f810ee243cc14506ffda119ce8"><span class="std std-ref">Math_Cos</span></a><span></span><span class="p">(</span><span class="n">X</span><span class="p">)</span>   <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">Cos</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-1gabc2c4ddb0a526dbc694e1fb38604349b"><span class="std std-ref">Math_CosH</span></a><span></span><span class="p">(</span><span class="n">X</span><span class="p">)</span>  <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">CosH</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga547613518a354228da566940e032648b"><span></span><span class="n">Math_Cos_1</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-math-1ga2a275bf6d4ea329ea78335545990bf30"><span class="std std-ref">Math_ArcCos</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga3e441b3ea273e59922f8943fe107858f"><span></span><span class="n">Math_Cos_1_H</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-math-1ga2ebb9a51f9b6549fd1db56c7e45612a0"><span class="std std-ref">Math_InvCosH</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga4d9be51246d0168323fff5c5c99e2bcf"><span></span><span class="n">Math_Cos_H</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-math-1gabc2c4ddb0a526dbc694e1fb38604349b"><span class="std std-ref">Math_CosH</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1gac6e6fd72af6736dc1372997364432388"><span></span><span class="n">Math_Cosine</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-math-1ga3209a4f810ee243cc14506ffda119ce8"><span class="std std-ref">Math_Cos</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga6bb25605013bcfc6f741575fd2efc230"><span></span><span class="n">Math_Cosine_Hyperbolic</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-math-1gabc2c4ddb0a526dbc694e1fb38604349b"><span class="std std-ref">Math_CosH</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga6870fa044bb9b9a183e748273ea6de4b"><span></span><span class="n">Math_CubeRoot</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-math-1ga79019aa3a0dd260b271f72f148967f09"><span class="std std-ref">Math_Root3</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-1ga7f6bd9ca3932d3f4a8df8dc726771e41"><span class="std std-ref">Math_Div</span></a><span></span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>    <a class="reference internal" href="#doxid-group-libccc-math-1ga5b7f9250ac1480dc15d6973242844730"><span class="std std-ref">DEFINE_GENERIC_MATH_OPERATOR</span></a><span></span><span class="p">(</span><span class="n">Div</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1gaa3ff6a985446fedc349e323d38dcec1e"><span></span><span class="n">Math_Divide</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-math-1ga7f6bd9ca3932d3f4a8df8dc726771e41"><span class="std std-ref">Math_Div</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-1ga7f68228a8f46b62840c4c807078535e6"><span class="std std-ref">Math_Exp</span></a><span></span><span class="p">(</span><span class="n">X</span><span class="p">)</span>   <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">Exp</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga8bdf486f6a50d06ee887b28cf3d35a2f"><span></span><span class="n">Math_Exponential</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-math-1ga7f68228a8f46b62840c4c807078535e6"><span class="std std-ref">Math_Exp</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1gaf50ca0d01d1f1c330f54d6c0ad7271fb"><span></span><span class="n">Math_FloatCeiling</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-math-1ga5c84f144a63a43b1c4837812fed2ec32"><span class="std std-ref">Math_Ceiling</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1gae71666b7ba8ee12f50ef19e1191cbc3e"><span></span><span class="n">Math_FloatFloor</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-math-1ga20c8df10342ad480da2a17e4571f6336"><span class="std std-ref">Math_Floor</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1gacf62ac84f4df969b4b9e0ff7e3738679"><span></span><span class="n">Math_FloatRound</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-math-1gaa72cbc653006fad87b3bab03e0fc85fc"><span class="std std-ref">Math_Round</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga04e36096016b20852684d97019a8f675"><span></span><span class="n">Math_FloatTrunc</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-math-1ga1bddc79203a9fb652dbfce1d795f7fba"><span class="std std-ref">Math_Truncate</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-1ga20c8df10342ad480da2a17e4571f6336"><span class="std std-ref">Math_Floor</span></a><span></span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">Floor</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-1ga90a1c1494cd87f8df53a43bc5d07ec68"><span class="std std-ref">Math_IntPow</span></a><span></span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span> <span class="p">;</span>   <a class="reference internal" href="#doxid-group-libccc-math-1ga5b7f9250ac1480dc15d6973242844730"><span class="std std-ref">DEFINE_GENERIC_MATH_OPERATOR</span></a><span></span><span class="p">(</span><span class="n">IntPow</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga21ea08dfa69382132ee85c44be90087d"><span></span><span class="n">Math_IntPower</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-math-1ga90a1c1494cd87f8df53a43bc5d07ec68"><span class="std std-ref">Math_IntPow</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-1ga2ebb9a51f9b6549fd1db56c7e45612a0"><span class="std std-ref">Math_InvCosH</span></a><span></span><span class="p">(</span><span class="n">X</span><span class="p">)</span>   <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">InvCosH</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga64f80667c1928c15cecd891117287827"><span></span><span class="n">Math_InvCosine</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-math-1ga2a275bf6d4ea329ea78335545990bf30"><span class="std std-ref">Math_ArcCos</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga89b97f9df4b8845d60c4de49a16977f0"><span></span><span class="n">Math_InvCosine_Hyperbolic</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-math-1ga2ebb9a51f9b6549fd1db56c7e45612a0"><span class="std std-ref">Math_InvCosH</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-1gaedf08cb1bb4045752fd4d46e7f61aeae"><span class="std std-ref">Math_InvSinH</span></a><span></span><span class="p">(</span><span class="n">X</span><span class="p">)</span>   <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">InvSinH</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga1b00246866a3b1a3206fe8949c3ce23b"><span></span><span class="n">Math_InvSine</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-math-1ga3ea416f7232cff551bcfdde5bb2f3edf"><span class="std std-ref">Math_ArcSin</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga5f3e950cfe1f3f95cb405971269411a7"><span></span><span class="n">Math_InvSine_Hyperbolic</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-math-1gaedf08cb1bb4045752fd4d46e7f61aeae"><span class="std std-ref">Math_InvSinH</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-1ga9359727ebe39b0306999c79c9d242460"><span class="std std-ref">Math_InvTanH</span></a><span></span><span class="p">(</span><span class="n">X</span><span class="p">)</span>   <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">InvTanH</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga0952fbb9b644572886ae369649a84f85"><span></span><span class="n">Math_InvTangent</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-math-1gaf1c3fc24548e298ea19abce3d9d783dd"><span class="std std-ref">Math_ArcTan</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga20633cb2351a37df10e34dbbfba6d134"><span></span><span class="n">Math_InvTangent_Hyperbolic</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-math-1ga9359727ebe39b0306999c79c9d242460"><span class="std std-ref">Math_InvTanH</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-1ga16c639616f40a7565aa01d195caff6f3"><span class="std std-ref">Math_Ln</span></a><span></span><span class="p">(</span><span class="n">X</span><span class="p">)</span>    <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">Ln</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-1gaa206647abf097431798d21dd311954a7"><span class="std std-ref">Math_Log10</span></a><span></span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">Log10</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-1ga72d3cfc57986b9279efb32f9250bcbf1"><span class="std std-ref">Math_Log2</span></a><span></span><span class="p">(</span><span class="n">X</span><span class="p">)</span>  <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">Log2</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-1gad332fbe3d095eb30564b2f259f8d702f"><span class="std std-ref">Math_LogN</span></a><span></span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>   <a class="reference internal" href="#doxid-group-libccc-math-1ga5b7f9250ac1480dc15d6973242844730"><span class="std std-ref">DEFINE_GENERIC_MATH_OPERATOR</span></a><span></span><span class="p">(</span><span class="n">LogN</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga454b3dabd0ac9b80a3ec89fab42d8d8b"><span></span><span class="n">Math_Logarithm_Base10</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-math-1gaa206647abf097431798d21dd311954a7"><span class="std std-ref">Math_Log10</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga9cac4e3384bdb509ab288b53880d50ff"><span></span><span class="n">Math_Logarithm_Base2</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-math-1ga72d3cfc57986b9279efb32f9250bcbf1"><span class="std std-ref">Math_Log2</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1gadb4ea19911336517ba2d6493bb6fa000"><span></span><span class="n">Math_Logarithm_BaseN</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-math-1gad332fbe3d095eb30564b2f259f8d702f"><span class="std std-ref">Math_LogN</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-1gac4a5ee0927b28d50ad46627d11c01031"><span class="std std-ref">Math_Mod</span></a><span></span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>    <a class="reference internal" href="#doxid-group-libccc-math-1ga5b7f9250ac1480dc15d6973242844730"><span class="std std-ref">DEFINE_GENERIC_MATH_OPERATOR</span></a><span></span><span class="p">(</span><span class="n">Mod</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1gacf9a3dd280a41b845d336654d894751c"><span></span><span class="n">Math_Modulo</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-math-1gac4a5ee0927b28d50ad46627d11c01031"><span class="std std-ref">Math_Mod</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-1ga726ce9449da9989c4ec2dc2eff68dda4"><span class="std std-ref">Math_Mul</span></a><span></span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>    <a class="reference internal" href="#doxid-group-libccc-math-1ga5b7f9250ac1480dc15d6973242844730"><span class="std std-ref">DEFINE_GENERIC_MATH_OPERATOR</span></a><span></span><span class="p">(</span><span class="n">Mul</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga7fb24faaf2879f1bc26fe1c41aea9a83"><span></span><span class="n">Math_Multiply</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-math-1ga726ce9449da9989c4ec2dc2eff68dda4"><span class="std std-ref">Math_Mul</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga9cedaf6adc4b66f497b0e9d0fdaa2bc0"><span></span><span class="n">Math_NRoot</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-math-1ga91480a88dc895ea3900d08062d98e9c6"><span class="std std-ref">Math_RootN</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1gac2d365dfb124bbee8175f37cdcb7708f"><span></span><span class="n">Math_NRt</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-math-1ga91480a88dc895ea3900d08062d98e9c6"><span class="std std-ref">Math_RootN</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1gada0d972aa265570cae4feacfbee53a22"><span></span><span class="n">Math_NaturalLogarithm</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-math-1ga16c639616f40a7565aa01d195caff6f3"><span class="std std-ref">Math_Ln</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-1gadc74e835a3bb01938f69669f9985e7e6"><span class="std std-ref">Math_Pow</span></a><span></span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>    <a class="reference internal" href="#doxid-group-libccc-math-1ga5b7f9250ac1480dc15d6973242844730"><span class="std std-ref">DEFINE_GENERIC_MATH_OPERATOR</span></a><span></span><span class="p">(</span><span class="n">Pow</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga3e97f6779a34afda791afefea59314d0"><span></span><span class="n">Math_Power</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-math-1gadc74e835a3bb01938f69669f9985e7e6"><span class="std std-ref">Math_Pow</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-1gaee3e7e54eba5dc2f056e1b5390fb04b5"><span class="std std-ref">Math_Root2</span></a><span></span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">Root2</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-1ga79019aa3a0dd260b271f72f148967f09"><span class="std std-ref">Math_Root3</span></a><span></span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">Root3</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-1ga91480a88dc895ea3900d08062d98e9c6"><span class="std std-ref">Math_RootN</span></a><span></span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>  <a class="reference internal" href="#doxid-group-libccc-math-1ga5b7f9250ac1480dc15d6973242844730"><span class="std std-ref">DEFINE_GENERIC_MATH_OPERATOR</span></a><span></span><span class="p">(</span><span class="n">RootN</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-1gaa72cbc653006fad87b3bab03e0fc85fc"><span class="std std-ref">Math_Round</span></a><span></span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">Round</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-1ga64038638cbc7370c940ea65274c14543"><span class="std std-ref">Math_Sin</span></a><span></span><span class="p">(</span><span class="n">X</span><span class="p">)</span>   <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">Sin</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-1gaeea76c85821d1b5cdbe5784f7710f6be"><span class="std std-ref">Math_SinH</span></a><span></span><span class="p">(</span><span class="n">X</span><span class="p">)</span>  <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">SinH</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga26601f17517dd408682251e40836bc1a"><span></span><span class="n">Math_Sin_1</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-math-1ga3ea416f7232cff551bcfdde5bb2f3edf"><span class="std std-ref">Math_ArcSin</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1gadc0051011f0f69ef4ff505176f60f4c5"><span></span><span class="n">Math_Sin_1_H</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-math-1gaedf08cb1bb4045752fd4d46e7f61aeae"><span class="std std-ref">Math_InvSinH</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1gaf2a96a8558b13c2378b2d75c3516c7ad"><span></span><span class="n">Math_Sin_H</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-math-1gaeea76c85821d1b5cdbe5784f7710f6be"><span class="std std-ref">Math_SinH</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga490afb0355e5f5f94cf6e10133bfc159"><span></span><span class="n">Math_Sine</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-math-1ga64038638cbc7370c940ea65274c14543"><span class="std std-ref">Math_Sin</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1gafac12064625b00665c8b011b73c33c20"><span></span><span class="n">Math_Sine_Hyperbolic</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-math-1gaeea76c85821d1b5cdbe5784f7710f6be"><span class="std std-ref">Math_SinH</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1gabc7bf05794e77c7173890250cdce4795"><span></span><span class="n">Math_SqRt</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-math-1gaee3e7e54eba5dc2f056e1b5390fb04b5"><span class="std std-ref">Math_Root2</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1gadec5e2dd849f7b7648628ad2cd78319f"><span></span><span class="n">Math_SquareRoot</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-math-1gaee3e7e54eba5dc2f056e1b5390fb04b5"><span class="std std-ref">Math_Root2</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-1gab08223d2f6a5d4b137f68b308bc5d860"><span class="std std-ref">Math_Sub</span></a><span></span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>    <a class="reference internal" href="#doxid-group-libccc-math-1ga5b7f9250ac1480dc15d6973242844730"><span class="std std-ref">DEFINE_GENERIC_MATH_OPERATOR</span></a><span></span><span class="p">(</span><span class="n">Sub</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga19ac6924bb67ebf55cb2fdcce1b355c6"><span></span><span class="n">Math_Subtract</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-math-1gab08223d2f6a5d4b137f68b308bc5d860"><span class="std std-ref">Math_Sub</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-1gaba69fa3c396a390bf4a2764d064d83f1"><span class="std std-ref">Math_Tan</span></a><span></span><span class="p">(</span><span class="n">X</span><span class="p">)</span>   <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">Tan</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-1ga0ad4e08b761330a3a0e05eea17a8c2cb"><span class="std std-ref">Math_TanH</span></a><span></span><span class="p">(</span><span class="n">X</span><span class="p">)</span>  <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">TanH</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga61c81a26b368abe08cbb91af8bec12c7"><span></span><span class="n">Math_Tan_1</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-math-1gaf1c3fc24548e298ea19abce3d9d783dd"><span class="std std-ref">Math_ArcTan</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga40b0d93f97d2cc552c7a1e48abbadfeb"><span></span><span class="n">Math_Tan_1_H</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-math-1ga9359727ebe39b0306999c79c9d242460"><span class="std std-ref">Math_InvTanH</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1gafdc89ff506313da5ae2fd87ac4bba383"><span></span><span class="n">Math_Tan_H</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-math-1ga0ad4e08b761330a3a0e05eea17a8c2cb"><span class="std std-ref">Math_TanH</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1gaafe8c5688b0503a6fe07e7a98c03f7f7"><span></span><span class="n">Math_Tangent</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-math-1gaba69fa3c396a390bf4a2764d064d83f1"><span class="std std-ref">Math_Tan</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga24f9ee765e43563b85c6e3cd53dc9037"><span></span><span class="n">Math_Tangent_Hyperbolic</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-math-1ga0ad4e08b761330a3a0e05eea17a8c2cb"><span class="std std-ref">Math_TanH</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-1ga1bddc79203a9fb652dbfce1d795f7fba"><span class="std std-ref">Math_Truncate</span></a><span></span><span class="p">(</span><span class="n">X</span><span class="p">)</span>  <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">Truncate</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-1ga8c5ff70b6b28cd0157c50a22406f92c4"><span class="std std-ref">SIGN</span></a><span></span><span class="p">(</span><span class="n">x</span><span class="p">)</span>   <span class="p">((</span><span class="n">x</span><span class="p">)</span><span class="o">&lt;</span><span class="mi">0</span> <span class="o">?</span> <span class="o">-</span><span class="mi">1</span> <span class="o">:</span> <span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga4fa8be94e9acad3e9c520f969077b094"><span></span><span class="n">c_abs</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-math-1gafcccd28251b61b4ed3e1385d8b09d465"><span class="std std-ref">Math_Abs</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1gada99a21379518c97eddcec22431dc5cb"><span></span><span class="n">c_acos</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-math-1ga2a275bf6d4ea329ea78335545990bf30"><span class="std std-ref">Math_ArcCos</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1gac4c1f7020ad70ad5d6246de94c070e54"><span></span><span class="n">c_acosh</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-math-1ga2ebb9a51f9b6549fd1db56c7e45612a0"><span class="std std-ref">Math_InvCosH</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1gac451a56e431bdec003beefb65657bd8e"><span></span><span class="n">c_add</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-math-1gaaf4e551f813356323d69ede11d01fbcf"><span class="std std-ref">Math_Add</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga63385d77920b179ea4a31d55b35b6e63"><span></span><span class="n">c_asin</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-math-1ga3ea416f7232cff551bcfdde5bb2f3edf"><span class="std std-ref">Math_ArcSin</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1gae5078c1a8d86f2039b678f0ef22edc53"><span></span><span class="n">c_asinh</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-math-1gaedf08cb1bb4045752fd4d46e7f61aeae"><span class="std std-ref">Math_InvSinH</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga83d84e2712197f2851c25455587cfe16"><span></span><span class="n">c_atan</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-math-1gaf1c3fc24548e298ea19abce3d9d783dd"><span class="std std-ref">Math_ArcTan</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga341bd19c5f1c41938050e9ea62756f24"><span></span><span class="n">c_atan2</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-math-1ga11972c48b9c7e57f2dad91c0252eced1"><span class="std std-ref">Math_ArcTan2</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1gac6d36d825e197337e9a4d61d65d24502"><span></span><span class="n">c_atanh</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-math-1ga9359727ebe39b0306999c79c9d242460"><span class="std std-ref">Math_InvTanH</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1gaaa61dbab7fea4ebe148cfae39393d5c2"><span></span><span class="n">c_cbrt</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-math-1ga79019aa3a0dd260b271f72f148967f09"><span class="std std-ref">Math_Root3</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga5e5b23cc171473b3a2f49357f3e544dc"><span></span><span class="n">c_ceil</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-math-1ga5c84f144a63a43b1c4837812fed2ec32"><span class="std std-ref">Math_Ceiling</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga25372d72105ca8cb35fc5a8e3bbbd354"><span></span><span class="n">c_cos</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-math-1ga3209a4f810ee243cc14506ffda119ce8"><span class="std std-ref">Math_Cos</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga802ec33aec2d3e3acb34b41ca0fcbf07"><span></span><span class="n">c_cosh</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-math-1gabc2c4ddb0a526dbc694e1fb38604349b"><span class="std std-ref">Math_CosH</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga2d84d069add851cbd300f8dcc8707d9e"><span></span><span class="n">c_div</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-math-1ga7f6bd9ca3932d3f4a8df8dc726771e41"><span class="std std-ref">Math_Div</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga4b58dfa6ac930cca58b4ab013db96001"><span></span><span class="n">c_exp</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-math-1ga7f68228a8f46b62840c4c807078535e6"><span class="std std-ref">Math_Exp</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga48a1266c985cadc24910072812554415"><span></span><span class="n">c_floor</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-math-1ga20c8df10342ad480da2a17e4571f6336"><span class="std std-ref">Math_Floor</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1gaefbaf75d5ec721e044d34cde795b0db1"><span></span><span class="n">c_intpow</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-math-1ga90a1c1494cd87f8df53a43bc5d07ec68"><span class="std std-ref">Math_IntPow</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga035ebcff0df0ef7c0772cc3ab7e32f0a"><span></span><span class="n">c_lg</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-math-1ga72d3cfc57986b9279efb32f9250bcbf1"><span class="std std-ref">Math_Log2</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1gacc74a24ab6f03b00b858d0136c217e53"><span></span><span class="n">c_ln</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-math-1ga16c639616f40a7565aa01d195caff6f3"><span class="std std-ref">Math_Ln</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga411424ea4d96ee8ced7126b4a0da17fb"><span></span><span class="n">c_log</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-math-1gaa206647abf097431798d21dd311954a7"><span class="std std-ref">Math_Log10</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1gaf7dbbfb97ec606b0670c3a231e1ff25f"><span></span><span class="n">c_log10</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-math-1gaa206647abf097431798d21dd311954a7"><span class="std std-ref">Math_Log10</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga6bb6e4ecbfe0a8761c5e6eda116ee56a"><span></span><span class="n">c_log2</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-math-1ga72d3cfc57986b9279efb32f9250bcbf1"><span class="std std-ref">Math_Log2</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1gadf1883c531d105e5af9446f9808e5a9c"><span></span><span class="n">c_logn</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-math-1gad332fbe3d095eb30564b2f259f8d702f"><span class="std std-ref">Math_LogN</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1gaa99cf6445325c8be2de8721f3b6be081"><span></span><span class="n">c_mod</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-math-1gac4a5ee0927b28d50ad46627d11c01031"><span class="std std-ref">Math_Mod</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga4834cc7bd84b5badfeb31fb826346cf1"><span></span><span class="n">c_mul</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-math-1ga726ce9449da9989c4ec2dc2eff68dda4"><span class="std std-ref">Math_Mul</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1gaa66df0b1739e3618b0ad393051099ab5"><span></span><span class="n">c_nrt</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-math-1ga91480a88dc895ea3900d08062d98e9c6"><span class="std std-ref">Math_RootN</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1gac202fbc0dc7178f4559f91c0c138d5af"><span></span><span class="n">c_pow</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-math-1gadc74e835a3bb01938f69669f9985e7e6"><span class="std std-ref">Math_Pow</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga7069049667d98c20fe3ecae1e202b695"><span></span><span class="n">c_round</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-math-1gaa72cbc653006fad87b3bab03e0fc85fc"><span class="std std-ref">Math_Round</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga09ee15332598b0dc582c1c5ee19a0f84"><span></span><span class="n">c_sin</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-math-1ga64038638cbc7370c940ea65274c14543"><span class="std std-ref">Math_Sin</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga179ab0f7d9cf62fd1d8e722b97cd55fb"><span></span><span class="n">c_sinh</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-math-1gaeea76c85821d1b5cdbe5784f7710f6be"><span class="std std-ref">Math_SinH</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga2e7d4980398cb3cfa11ef1e9677d5835"><span></span><span class="n">c_sqrt</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-math-1gaee3e7e54eba5dc2f056e1b5390fb04b5"><span class="std std-ref">Math_Root2</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga77de4417450c301d1c4b6b0373498910"><span></span><span class="n">c_sub</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-math-1gab08223d2f6a5d4b137f68b308bc5d860"><span class="std std-ref">Math_Sub</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga70ba56d882f4b5603fc71cdcaa670d50"><span></span><span class="n">c_tan</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-math-1gaba69fa3c396a390bf4a2764d064d83f1"><span class="std std-ref">Math_Tan</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1gaca4f29ed09665f3e6890b0eabebb1e9e"><span></span><span class="n">c_tanh</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-math-1ga0ad4e08b761330a3a0e05eea17a8c2cb"><span class="std std-ref">Math_TanH</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga23ecdd8d3e74c0769b158d8e66024de9"><span></span><span class="n">c_trunc</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-math-1ga1bddc79203a9fb652dbfce1d795f7fba"><span class="std std-ref">Math_Truncate</span></a></pre>
+</div>
+<div class="section" id="detailed-documentation">
+<span id="details-group-libccc-math"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline">¶</a></h2>
+<p>This header defines the common standard math functions and macro defines.</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/math">https://en.cppreference.com/w/c/numeric/math</a></p></li>
+</ul>
+<div class="section" id="macros">
+<h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-1ga996f7be338ccb40d1a2a5abc1ad61759"><span id="index-1"></span><span></span><span class="cp">#define</span> <span class="n">ABS</span>(x)  <span class="cp">((x)&lt;0 ? -(x) :(x))</span></pre>
+<p>Expands to the absolute value of <code class="docutils literal notranslate"><span class="pre">x</span></code> (ie: gives the positive equivalent of <code class="docutils literal notranslate"><span class="pre">x</span></code>)</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/math/abs">https://en.cppreference.com/w/c/numeric/math/abs</a></p></li>
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/math/fabs">https://en.cppreference.com/w/c/numeric/math/fabs</a></p></li>
+<li><p>Math: <span class="math notranslate nohighlight">\({|x|}\)</span></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-1gaacc3ee1a7f283f8ef65cea31f4436a95"><span id="index-2"></span><span></span><span class="cp">#define</span> <span class="n">MAX</span>(x, y)   <span class="cp">((x)&lt;(y) ?(y) :(x))</span></pre>
+<p>Expands to the maximum value between <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> (the larger of the two)</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/math/fmax">https://en.cppreference.com/w/c/numeric/math/fmax</a></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-1ga74e75242132eaabbc1c512488a135926"><span id="index-3"></span><span></span><span class="cp">#define</span> <span class="n">MIN</span>(x, y)   <span class="cp">((x)&lt;(y) ?(x) :(y))</span></pre>
+<p>Expands to the minimum value between <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> (the smaller of the two)</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/math/fmin">https://en.cppreference.com/w/c/numeric/math/fmin</a></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-1gafcccd28251b61b4ed3e1385d8b09d465"><span id="index-4"></span><span></span><span class="cp">#define</span> <span class="n">Math_Abs</span>(X) <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">Abs</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span></pre>
+<p>Returns the absolute value of <code class="docutils literal notranslate"><span class="pre">x</span></code> (makes <code class="docutils literal notranslate"><span class="pre">x</span></code> positive)</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/math/abs">https://en.cppreference.com/w/c/numeric/math/abs</a></p></li>
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/math/fabs">https://en.cppreference.com/w/c/numeric/math/fabs</a></p></li>
+<li><p>Math: <span class="math notranslate nohighlight">\({|x|}\)</span></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-1gaaf4e551f813356323d69ede11d01fbcf"><span id="index-5"></span><span></span><span class="cp">#define</span> <span class="n">Math_Add</span>(X, Y)  <a class="reference internal" href="#doxid-group-libccc-math-1ga5b7f9250ac1480dc15d6973242844730"><span class="std std-ref">DEFINE_GENERIC_MATH_OPERATOR</span></a><span></span><span class="p">(</span><span class="n">Add</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span></pre>
+<p>Returns the addition result of <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code></p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/math/fmod">https://en.cppreference.com/w/c/numeric/math/fmod</a></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-1ga2a275bf6d4ea329ea78335545990bf30"><span id="index-6"></span><span></span><span class="cp">#define</span> <span class="n">Math_ArcCos</span>(X)  <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">ArcCos</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span></pre>
+<p>Returns the arc-cosine of <code class="docutils literal notranslate"><span class="pre">x</span></code> (inverse of the cos function)</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/math/acos">https://en.cppreference.com/w/c/numeric/math/acos</a></p></li>
+<li><p>Math: <span class="math notranslate nohighlight">\({\cos^{-1} {x}}\)</span></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-1ga3ea416f7232cff551bcfdde5bb2f3edf"><span id="index-7"></span><span></span><span class="cp">#define</span> <span class="n">Math_ArcSin</span>(X)  <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">ArcSin</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span></pre>
+<p>Returns the arc-sine of <code class="docutils literal notranslate"><span class="pre">x</span></code> (inverse of the sin function)</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/math/asin">https://en.cppreference.com/w/c/numeric/math/asin</a></p></li>
+<li><p>Math: <span class="math notranslate nohighlight">\({\sin^{-1} {x}}\)</span></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-1gaf1c3fc24548e298ea19abce3d9d783dd"><span id="index-8"></span><span></span><span class="cp">#define</span> <span class="n">Math_ArcTan</span>(X)  <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">ArcTan</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span></pre>
+<p>Returns the arc-tangent of <code class="docutils literal notranslate"><span class="pre">x</span></code> (inverse of the tan function)</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/math/atan">https://en.cppreference.com/w/c/numeric/math/atan</a></p></li>
+<li><p>Math: <span class="math notranslate nohighlight">\({\tan^{-1} {x}}\)</span></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-1ga11972c48b9c7e57f2dad91c0252eced1"><span id="index-9"></span><span></span><span class="cp">#define</span> <span class="n">Math_ArcTan2</span>(Y, X)  <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">ArcTan2</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span></pre>
+<p>Returns the arc-tangent of (<code class="docutils literal notranslate"><span class="pre">y</span></code> / <code class="docutils literal notranslate"><span class="pre">x</span></code>), used to find an angle from coordinates.</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/math/atan2">https://en.cppreference.com/w/c/numeric/math/atan2</a></p></li>
+<li><p>Math: <span class="math notranslate nohighlight">\({\arctan(\frac{y}{x})}\)</span>, in the range <span class="math notranslate nohighlight">\({[-\pi;+\pi]}\)</span></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-1ga5c84f144a63a43b1c4837812fed2ec32"><span id="index-10"></span><span></span><span class="cp">#define</span> <span class="n">Math_Ceiling</span>(X) <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">Ceiling</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span></pre>
+<p>Returns the value of <code class="docutils literal notranslate"><span class="pre">x</span></code>, rounded to the inferior integer.</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/math/ceil">https://en.cppreference.com/w/c/numeric/math/ceil</a></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-1ga3209a4f810ee243cc14506ffda119ce8"><span id="index-11"></span><span></span><span class="cp">#define</span> <span class="n">Math_Cos</span>(X) <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">Cos</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span></pre>
+<p>Returns the cosine of <code class="docutils literal notranslate"><span class="pre">x</span></code> (horizontal trigonometry coordinate)</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/math/cos">https://en.cppreference.com/w/c/numeric/math/cos</a></p></li>
+<li><p>Math: <span class="math notranslate nohighlight">\({\cos {x}}\)</span></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-1gabc2c4ddb0a526dbc694e1fb38604349b"><span id="index-12"></span><span></span><span class="cp">#define</span> <span class="n">Math_CosH</span>(X)    <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">CosH</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span></pre>
+<p>Returns the hyperbolic cosine of <code class="docutils literal notranslate"><span class="pre">x</span></code></p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/math/cosh">https://en.cppreference.com/w/c/numeric/math/cosh</a></p></li>
+<li><p>Math: <span class="math notranslate nohighlight">\({\cosh {x}}\)</span></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-1ga7f6bd9ca3932d3f4a8df8dc726771e41"><span id="index-13"></span><span></span><span class="cp">#define</span> <span class="n">Math_Div</span>(X, Y)  <a class="reference internal" href="#doxid-group-libccc-math-1ga5b7f9250ac1480dc15d6973242844730"><span class="std std-ref">DEFINE_GENERIC_MATH_OPERATOR</span></a><span></span><span class="p">(</span><span class="n">Div</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span></pre>
+<p>Returns the quotient of euclidian division of <code class="docutils literal notranslate"><span class="pre">x</span></code> by <code class="docutils literal notranslate"><span class="pre">y</span></code></p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/math/fmod">https://en.cppreference.com/w/c/numeric/math/fmod</a></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-1ga7f68228a8f46b62840c4c807078535e6"><span id="index-14"></span><span></span><span class="cp">#define</span> <span class="n">Math_Exp</span>(X) <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">Exp</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span></pre>
+<p>Returns the exponential function’s value for <code class="docutils literal notranslate"><span class="pre">x</span></code></p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/math/exp">https://en.cppreference.com/w/c/numeric/math/exp</a></p></li>
+<li><p>Math: <span class="math notranslate nohighlight">\({e^x}\)</span></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-1ga20c8df10342ad480da2a17e4571f6336"><span id="index-15"></span><span></span><span class="cp">#define</span> <span class="n">Math_Floor</span>(X)   <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">Floor</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span></pre>
+<p>Returns the value of <code class="docutils literal notranslate"><span class="pre">x</span></code>, rounded to the superior integer.</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/math/floor">https://en.cppreference.com/w/c/numeric/math/floor</a></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-1ga90a1c1494cd87f8df53a43bc5d07ec68"><span id="index-16"></span><span></span><span class="cp">#define</span> <span class="n">Math_IntPow</span>(X, N)   <span class="cp">;   </span><a class="reference internal" href="#doxid-group-libccc-math-1ga5b7f9250ac1480dc15d6973242844730"><span class="std std-ref">DEFINE_GENERIC_MATH_OPERATOR</span></a><span></span><span class="p">(</span><span class="n">IntPow</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span></pre>
+<p>Returns the value of <code class="docutils literal notranslate"><span class="pre">x</span></code> to the power of <code class="docutils literal notranslate"><span class="pre">n</span></code> (integer)</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/math/pow">https://en.cppreference.com/w/c/numeric/math/pow</a></p></li>
+<li><p>Math: <span class="math notranslate nohighlight">\({x^n}\)</span></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-1ga2ebb9a51f9b6549fd1db56c7e45612a0"><span id="index-17"></span><span></span><span class="cp">#define</span> <span class="n">Math_InvCosH</span>(X) <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">InvCosH</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span></pre>
+<p>Returns the hyperbolic arc-cosine of <code class="docutils literal notranslate"><span class="pre">x</span></code> (inverse of the cosh function)</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/math/acosh">https://en.cppreference.com/w/c/numeric/math/acosh</a></p></li>
+<li><p>Math: <span class="math notranslate nohighlight">\({\cosh^{-1} {x}}\)</span></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-1gaedf08cb1bb4045752fd4d46e7f61aeae"><span id="index-18"></span><span></span><span class="cp">#define</span> <span class="n">Math_InvSinH</span>(X) <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">InvSinH</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span></pre>
+<p>Returns the hyperbolic arc-sine of <code class="docutils literal notranslate"><span class="pre">x</span></code> (inverse of the sinh function)</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/math/asinh">https://en.cppreference.com/w/c/numeric/math/asinh</a></p></li>
+<li><p>Math: <span class="math notranslate nohighlight">\({\sinh^{-1} {x}}\)</span></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-1ga9359727ebe39b0306999c79c9d242460"><span id="index-19"></span><span></span><span class="cp">#define</span> <span class="n">Math_InvTanH</span>(X) <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">InvTanH</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span></pre>
+<p>Returns the hyperbolic arc-tangent of <code class="docutils literal notranslate"><span class="pre">x</span></code> (inverse of the tanh function)</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/math/atanh">https://en.cppreference.com/w/c/numeric/math/atanh</a></p></li>
+<li><p>Math: <span class="math notranslate nohighlight">\({\tanh^{-1} {x}}\)</span></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-1ga16c639616f40a7565aa01d195caff6f3"><span id="index-20"></span><span></span><span class="cp">#define</span> <span class="n">Math_Ln</span>(X)  <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">Ln</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span></pre>
+<p>Returns the natural logarithm of <code class="docutils literal notranslate"><span class="pre">x</span></code></p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/math/log">https://en.cppreference.com/w/c/numeric/math/log</a></p></li>
+<li><p>Math: <span class="math notranslate nohighlight">\({\ln {x}}\)</span></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-1gaa206647abf097431798d21dd311954a7"><span id="index-21"></span><span></span><span class="cp">#define</span> <span class="n">Math_Log10</span>(X)   <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">Log10</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span></pre>
+<p>Returns the decimal (base-10) logarithm of <code class="docutils literal notranslate"><span class="pre">x</span></code></p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/math/log10">https://en.cppreference.com/w/c/numeric/math/log10</a></p></li>
+<li><p>Math: <span class="math notranslate nohighlight">\({\log_{10} {x}}\)</span></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-1ga72d3cfc57986b9279efb32f9250bcbf1"><span id="index-22"></span><span></span><span class="cp">#define</span> <span class="n">Math_Log2</span>(X)    <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">Log2</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span></pre>
+<p>Returns the binary (base-2) logarithm of <code class="docutils literal notranslate"><span class="pre">x</span></code></p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/math/log2">https://en.cppreference.com/w/c/numeric/math/log2</a></p></li>
+<li><p>Math: <span class="math notranslate nohighlight">\({\log_{2} {x}}\)</span></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-1gad332fbe3d095eb30564b2f259f8d702f"><span id="index-23"></span><span></span><span class="cp">#define</span> <span class="n">Math_LogN</span>(X, Y) <a class="reference internal" href="#doxid-group-libccc-math-1ga5b7f9250ac1480dc15d6973242844730"><span class="std std-ref">DEFINE_GENERIC_MATH_OPERATOR</span></a><span></span><span class="p">(</span><span class="n">LogN</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span></pre>
+<p>Returns the base- <code class="docutils literal notranslate"><span class="pre">n</span></code> logarithm of <code class="docutils literal notranslate"><span class="pre">x</span></code></p>
+<ul class="simple">
+<li><p><em>This function is not defined in the C ISO standard.</em></p></li>
+<li><p>Math: <span class="math notranslate nohighlight">\({\log_{n} {x}}\)</span></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-1gac4a5ee0927b28d50ad46627d11c01031"><span id="index-24"></span><span></span><span class="cp">#define</span> <span class="n">Math_Mod</span>(X, Y)  <a class="reference internal" href="#doxid-group-libccc-math-1ga5b7f9250ac1480dc15d6973242844730"><span class="std std-ref">DEFINE_GENERIC_MATH_OPERATOR</span></a><span></span><span class="p">(</span><span class="n">Mod</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span></pre>
+<p>Returns the remainder of euclidian division of <code class="docutils literal notranslate"><span class="pre">x</span></code> by <code class="docutils literal notranslate"><span class="pre">y</span></code></p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/math/fmod">https://en.cppreference.com/w/c/numeric/math/fmod</a></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-1ga726ce9449da9989c4ec2dc2eff68dda4"><span id="index-25"></span><span></span><span class="cp">#define</span> <span class="n">Math_Mul</span>(X, Y)  <a class="reference internal" href="#doxid-group-libccc-math-1ga5b7f9250ac1480dc15d6973242844730"><span class="std std-ref">DEFINE_GENERIC_MATH_OPERATOR</span></a><span></span><span class="p">(</span><span class="n">Mul</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span></pre>
+<p>Returns the multiplication result of <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code></p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/math/fmod">https://en.cppreference.com/w/c/numeric/math/fmod</a></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-1gadc74e835a3bb01938f69669f9985e7e6"><span id="index-26"></span><span></span><span class="cp">#define</span> <span class="n">Math_Pow</span>(X, Y)  <a class="reference internal" href="#doxid-group-libccc-math-1ga5b7f9250ac1480dc15d6973242844730"><span class="std std-ref">DEFINE_GENERIC_MATH_OPERATOR</span></a><span></span><span class="p">(</span><span class="n">Pow</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span></pre>
+<p>Returns the value of <code class="docutils literal notranslate"><span class="pre">x</span></code> to the power of <code class="docutils literal notranslate"><span class="pre">y</span></code></p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/math/pow">https://en.cppreference.com/w/c/numeric/math/pow</a></p></li>
+<li><p>Math: <span class="math notranslate nohighlight">\({x^y}\)</span></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-1gaee3e7e54eba5dc2f056e1b5390fb04b5"><span id="index-27"></span><span></span><span class="cp">#define</span> <span class="n">Math_Root2</span>(X)   <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">Root2</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span></pre>
+<p>Returns the square root of <code class="docutils literal notranslate"><span class="pre">x</span></code> (inverse of power of 2)</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/math/sqrt">https://en.cppreference.com/w/c/numeric/math/sqrt</a></p></li>
+<li><p>Math: <span class="math notranslate nohighlight">\({\sqrt {x}}\)</span></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-1ga79019aa3a0dd260b271f72f148967f09"><span id="index-28"></span><span></span><span class="cp">#define</span> <span class="n">Math_Root3</span>(X)   <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">Root3</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span></pre>
+<p>Returns the cubic root of <code class="docutils literal notranslate"><span class="pre">x</span></code> (inverse of power of 3)</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/math/cbrt">https://en.cppreference.com/w/c/numeric/math/cbrt</a></p></li>
+<li><p>Math: <span class="math notranslate nohighlight">\({\sqrt[3] {x}}\)</span></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-1ga91480a88dc895ea3900d08062d98e9c6"><span id="index-29"></span><span></span><span class="cp">#define</span> <span class="n">Math_RootN</span>(X, Y)    <a class="reference internal" href="#doxid-group-libccc-math-1ga5b7f9250ac1480dc15d6973242844730"><span class="std std-ref">DEFINE_GENERIC_MATH_OPERATOR</span></a><span></span><span class="p">(</span><span class="n">RootN</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span></pre>
+<p>Returns the power-n-ic root of <code class="docutils literal notranslate"><span class="pre">x</span></code> (inverse of power of <code class="docutils literal notranslate"><span class="pre">n</span></code>)</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/math/nrt">https://en.cppreference.com/w/c/numeric/math/nrt</a></p></li>
+<li><p>Math: <span class="math notranslate nohighlight">\({\sqrt[n] {x}}\)</span></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-1gaa72cbc653006fad87b3bab03e0fc85fc"><span id="index-30"></span><span></span><span class="cp">#define</span> <span class="n">Math_Round</span>(X)   <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">Round</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span></pre>
+<p>Returns the value of <code class="docutils literal notranslate"><span class="pre">x</span></code>, rounded to the nearest integer.</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/math/round">https://en.cppreference.com/w/c/numeric/math/round</a></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-1ga64038638cbc7370c940ea65274c14543"><span id="index-31"></span><span></span><span class="cp">#define</span> <span class="n">Math_Sin</span>(X) <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">Sin</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span></pre>
+<p>Returns the sine of <code class="docutils literal notranslate"><span class="pre">x</span></code> (vertical trigonometry coordinate)</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/math/sin">https://en.cppreference.com/w/c/numeric/math/sin</a></p></li>
+<li><p>Math: <span class="math notranslate nohighlight">\({\sin {x}}\)</span></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-1gaeea76c85821d1b5cdbe5784f7710f6be"><span id="index-32"></span><span></span><span class="cp">#define</span> <span class="n">Math_SinH</span>(X)    <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">SinH</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span></pre>
+<p>Returns the hyperbolic sine of <code class="docutils literal notranslate"><span class="pre">x</span></code></p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/math/sinh">https://en.cppreference.com/w/c/numeric/math/sinh</a></p></li>
+<li><p>Math: <span class="math notranslate nohighlight">\({\sinh {x}}\)</span></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-1gab08223d2f6a5d4b137f68b308bc5d860"><span id="index-33"></span><span></span><span class="cp">#define</span> <span class="n">Math_Sub</span>(X, Y)  <a class="reference internal" href="#doxid-group-libccc-math-1ga5b7f9250ac1480dc15d6973242844730"><span class="std std-ref">DEFINE_GENERIC_MATH_OPERATOR</span></a><span></span><span class="p">(</span><span class="n">Sub</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span></pre>
+<p>Returns the subtraction result of <code class="docutils literal notranslate"><span class="pre">x</span></code> by <code class="docutils literal notranslate"><span class="pre">y</span></code></p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/math/fmod">https://en.cppreference.com/w/c/numeric/math/fmod</a></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-1gaba69fa3c396a390bf4a2764d064d83f1"><span id="index-34"></span><span></span><span class="cp">#define</span> <span class="n">Math_Tan</span>(X) <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">Tan</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span></pre>
+<p>Returns the tangent of <code class="docutils literal notranslate"><span class="pre">x</span></code> (trigonometry tangent line)</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/math/tan">https://en.cppreference.com/w/c/numeric/math/tan</a></p></li>
+<li><p>Math: <span class="math notranslate nohighlight">\({\tan {x}}\)</span></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-1ga0ad4e08b761330a3a0e05eea17a8c2cb"><span id="index-35"></span><span></span><span class="cp">#define</span> <span class="n">Math_TanH</span>(X)    <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">TanH</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span></pre>
+<p>Returns the hyperbolic tangent of <code class="docutils literal notranslate"><span class="pre">x</span></code></p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/math/tanh">https://en.cppreference.com/w/c/numeric/math/tanh</a></p></li>
+<li><p>Math: <span class="math notranslate nohighlight">\({\tanh {x}}\)</span></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-1ga1bddc79203a9fb652dbfce1d795f7fba"><span id="index-36"></span><span></span><span class="cp">#define</span> <span class="n">Math_Truncate</span>(X)    <a class="reference internal" href="#doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span class="std std-ref">DEFINE_GENERIC_MATH_FUNCTION</span></a><span></span><span class="p">(</span><span class="n">Truncate</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span></pre>
+<p>Returns the value of <code class="docutils literal notranslate"><span class="pre">x</span></code>, rounded towards 0.</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/math/trunc">https://en.cppreference.com/w/c/numeric/math/trunc</a></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-1ga8c5ff70b6b28cd0157c50a22406f92c4"><span id="index-37"></span><span></span><span class="cp">#define</span> <span class="n">SIGN</span>(x) <span class="cp">((x)&lt;0 ? -1 : +1)</span></pre>
+<p>Expands to +1 or -1 according to the sign of <code class="docutils literal notranslate"><span class="pre">x</span></code> (NB: if <code class="docutils literal notranslate"><span class="pre">x</span></code> is zero, gives +1)</p>
+<ul class="simple">
+<li><p><em>C ISO Standard:</em> <a class="reference external" href="https://en.cppreference.com/w/c/numeric/math/signbit">https://en.cppreference.com/w/c/numeric/math/signbit</a> (differs)</p></li>
+<li><p>Math: <span class="math notranslate nohighlight">\({\frac{x}{|x|}}\)</span></p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="group_libccc_array_sort.html" class="btn btn-neutral float-right" title="Libccc_array_sort" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="group_libccc_unicode.html" class="btn btn-neutral float-left" title="Libccc_unicode" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Free &amp; Open Source: MIT License
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
