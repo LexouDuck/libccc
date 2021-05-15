@@ -12,10 +12,10 @@ e_error_kvt	KVT_Delete(s_kvt* item)
 	while (item != NULL)
 	{
 		next = item->next;
-		if (!(item->type & DYNAMIC_TYPE_ISREFERENCE))
+		if (!(item->type & DYNAMICTYPE_ISREFERENCE))
 		{
-			if ((item->type & DYNAMIC_TYPE_ARRAY) ||
-				(item->type & DYNAMIC_TYPE_OBJECT))
+			if ((item->type & DYNAMICTYPE_ARRAY) ||
+				(item->type & DYNAMICTYPE_OBJECT))
 			{
 				if (item->value.child != NULL)
 				{
@@ -23,7 +23,7 @@ e_error_kvt	KVT_Delete(s_kvt* item)
 					if (error)	return (error);
 				}
 			}
-			else if ((item->type & DYNAMIC_TYPE_STRING))
+			else if ((item->type & DYNAMICTYPE_STRING))
 			{
 				if (item->value.string != NULL)
 					Memory_Free(item->value.string);

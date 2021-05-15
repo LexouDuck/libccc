@@ -25,7 +25,7 @@ s_kvt*	KVT_Duplicate(s_kvt const* item, t_bool recurse)
 		goto failure;
 	}
 	// Copy over all vars
-	newitem->type = item->type & (~DYNAMIC_TYPE_ISREFERENCE);
+	newitem->type = item->type & (~DYNAMICTYPE_ISREFERENCE);
 	newitem->value.number = item->value.number;
 	if (item->value.string)
 	{

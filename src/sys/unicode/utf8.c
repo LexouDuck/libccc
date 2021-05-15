@@ -144,7 +144,7 @@ void	UTF32_Print_UTF8(t_utf8* dest, t_utf32 c)
 	// encode first byte
 	if (utf8_length > 1)
 	{
-		(*output_pointer)[0] = (t_uint)((codepoint | first_byte_mark) & DYNAMIC_TYPE_MASK);
+		(*output_pointer)[0] = (t_uint)((codepoint | first_byte_mark) & DYNAMICTYPE_MASK);
 	}
 	else
 	{

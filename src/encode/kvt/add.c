@@ -24,7 +24,7 @@ static s_kvt* create_reference(s_kvt const* item)
 	}
 	Memory_Copy(reference, item, sizeof(s_kvt));
 	reference->key = NULL;
-	reference->type |= DYNAMIC_TYPE_ISREFERENCE;
+	reference->type |= DYNAMICTYPE_ISREFERENCE;
 	reference->next = reference->prev = NULL;
 	return (reference);
 }
@@ -66,7 +66,7 @@ static
 e_error_kvt add_item_to_object(s_kvt* object, t_char const* key, s_kvt* const item)
 {
 	t_char* new_key = NULL;
-	t_sint new_type = DYNAMIC_TYPE_INVALID;
+	t_sint new_type = DYNAMICTYPE_INVALID;
 
 	if ((object == NULL) || (key == NULL) || (item == NULL) || (object == item))
 		return (KVT_SetError(ERROR_KVT_INVALIDARGS));

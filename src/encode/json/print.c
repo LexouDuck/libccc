@@ -526,9 +526,9 @@ t_bool	JSON_Print_Value(s_json const* item, s_json_print* p)
 	if ((item == NULL) || (p == NULL))
 		return (FALSE);
 
-	switch ((item->type) & DYNAMIC_TYPE_MASK)
+	switch ((item->type) & DYNAMICTYPE_MASK)
 	{
-		case DYNAMIC_TYPE_NULL:
+		case DYNAMICTYPE_NULL:
 			str = "null";
 			output = ensure(p, String_Length(str) + 1);
 			if (output == NULL)
@@ -536,7 +536,7 @@ t_bool	JSON_Print_Value(s_json const* item, s_json_print* p)
 			String_Copy(output, str);
 			return (TRUE);
 
-		case DYNAMIC_TYPE_BOOLEAN:
+		case DYNAMICTYPE_BOOLEAN:
 			str = (item->value.boolean ? "true" : "false");
 			output = ensure(p, String_Length(str) + 1);
 			if (output == NULL)
@@ -544,13 +544,13 @@ t_bool	JSON_Print_Value(s_json const* item, s_json_print* p)
 			String_Copy(output, str);
 			return (TRUE);
 
-		case DYNAMIC_TYPE_INTEGER:
+		case DYNAMICTYPE_INTEGER:
 			return (JSON_Print_Number(item, p, TRUE));
 
-		case DYNAMIC_TYPE_FLOAT:
+		case DYNAMICTYPE_FLOAT:
 			return (JSON_Print_Number(item, p, FALSE));
 
-		case DYNAMIC_TYPE_RAW:
+		case DYNAMICTYPE_RAW:
 		{
 			t_size raw_length = 0;
 			if (item->value.string == NULL)
@@ -564,13 +564,13 @@ t_bool	JSON_Print_Value(s_json const* item, s_json_print* p)
 			return (TRUE);
 		}
 
-		case DYNAMIC_TYPE_STRING:
+		case DYNAMICTYPE_STRING:
 			return (JSON_Print_String(item, p));
 
-		case DYNAMIC_TYPE_ARRAY:
+		case DYNAMICTYPE_ARRAY:
 			return (JSON_Print_Array(item, p));
 
-		case DYNAMIC_TYPE_OBJECT:
+		case DYNAMICTYPE_OBJECT:
 			return (JSON_Print_Object(item, p));
 
 		default:

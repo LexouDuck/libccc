@@ -9,20 +9,20 @@
 t_bool	KVT_Equals(s_kvt const* const a, s_kvt const* const b, const t_bool case_sensitive)
 {
 	if ((a == NULL) || (b == NULL) ||
-		((a->type & DYNAMIC_TYPE_MASK) != (b->type & DYNAMIC_TYPE_MASK)) ||
+		((a->type & DYNAMICTYPE_MASK) != (b->type & DYNAMICTYPE_MASK)) ||
 		KVT_IsInvalid(a))
 		return (FALSE);
 	// check if type is valid
-	switch (a->type & DYNAMIC_TYPE_MASK)
+	switch (a->type & DYNAMICTYPE_MASK)
 	{
-		case DYNAMIC_TYPE_NULL:
-		case DYNAMIC_TYPE_BOOLEAN:
-		case DYNAMIC_TYPE_INTEGER:
-		case DYNAMIC_TYPE_FLOAT:
-		case DYNAMIC_TYPE_STRING:
-		case DYNAMIC_TYPE_RAW:
-		case DYNAMIC_TYPE_ARRAY:
-		case DYNAMIC_TYPE_OBJECT:
+		case DYNAMICTYPE_NULL:
+		case DYNAMICTYPE_BOOLEAN:
+		case DYNAMICTYPE_INTEGER:
+		case DYNAMICTYPE_FLOAT:
+		case DYNAMICTYPE_STRING:
+		case DYNAMICTYPE_RAW:
+		case DYNAMICTYPE_ARRAY:
+		case DYNAMICTYPE_OBJECT:
 			break;
 		default:
 			return (FALSE);
@@ -30,15 +30,15 @@ t_bool	KVT_Equals(s_kvt const* const a, s_kvt const* const b, const t_bool case_
 	// objects with identical pointers are necessarily equal
 	if (a == b)
 		return (TRUE);
-	switch (a->type & DYNAMIC_TYPE_MASK)
+	switch (a->type & DYNAMICTYPE_MASK)
 	{
-		case DYNAMIC_TYPE_NULL: 	return (TRUE);
-		case DYNAMIC_TYPE_BOOLEAN:	return (a->value.boolean == b->value.boolean);
-		case DYNAMIC_TYPE_INTEGER:	return (a->value.number == b->value.number);
-		case DYNAMIC_TYPE_FLOAT:	return (F64_Equals(a->value.number, b->value.number));
-		case DYNAMIC_TYPE_STRING:	return (String_Equals(a->value.string, b->value.string));
-		case DYNAMIC_TYPE_RAW:		return (String_Equals(a->value.string, b->value.string));
-		case DYNAMIC_TYPE_ARRAY:
+		case DYNAMICTYPE_NULL: 	return (TRUE);
+		case DYNAMICTYPE_BOOLEAN:	return (a->value.boolean == b->value.boolean);
+		case DYNAMICTYPE_INTEGER:	return (a->value.number == b->value.number);
+		case DYNAMICTYPE_FLOAT:	return (F64_Equals(a->value.number, b->value.number));
+		case DYNAMICTYPE_STRING:	return (String_Equals(a->value.string, b->value.string));
+		case DYNAMICTYPE_RAW:		return (String_Equals(a->value.string, b->value.string));
+		case DYNAMICTYPE_ARRAY:
 		{
 			s_kvt* a_element = a->value.child;
 			s_kvt* b_element = b->value.child;
@@ -55,7 +55,7 @@ t_bool	KVT_Equals(s_kvt const* const a, s_kvt const* const b, const t_bool case_
 				return (FALSE);
 			return (TRUE);
 		}
-		case DYNAMIC_TYPE_OBJECT:
+		case DYNAMICTYPE_OBJECT:
 		{
 			s_kvt* a_element = NULL;
 			s_kvt* b_element = NULL;

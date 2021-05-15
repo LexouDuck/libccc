@@ -168,7 +168,7 @@ t_bool		JSON_Parse_Number(s_json* const item, s_json_parse* const p)
 	if (!p->strict && String_Has(number, CHARSET_DIGIT) && number[length - 1] == 'n')
 	{
 		t_s64	result = S64_FromString(number); // TODO variable-length integer
-		item->type = DYNAMIC_TYPE_INTEGER;
+		item->type = DYNAMICTYPE_INTEGER;
 		item->value.integer = result;
 	}
 	else
@@ -179,7 +179,7 @@ t_bool		JSON_Parse_Number(s_json* const item, s_json_parse* const p)
 			number[0] == '+'))
 			PARSINGERROR_JSON("Could not parse number: \"%.2s\", invalid char found", p->content + p->offset)
 		t_f64	result = F64_FromString(number);
-		item->type = DYNAMIC_TYPE_FLOAT;
+		item->type = DYNAMICTYPE_FLOAT;
 		item->value.number = result;
 	}
 //	if (IS_NAN(result)) // && String_HasOnly(number, CHARSET_ALPHABET".-+"CHARSET_DIGIT))
@@ -268,7 +268,7 @@ static t_bool JSON_Parse_String(s_json* const item, s_json_parse* const p)
 	}
 	// zero terminate the output
 	*output_pointer = '\0';
-	item->type = DYNAMIC_TYPE_STRING;
+	item->type = DYNAMICTYPE_STRING;
 	item->value.string = output;
 	p->offset = (t_size)(input_end - p->content);
 	p->offset++;
@@ -359,7 +359,7 @@ success:
 	{
 		head->prev = current_item;
 	}
-	item->type = DYNAMIC_TYPE_ARRAY;
+	item->type = DYNAMICTYPE_ARRAY;
 	item->value.child = head;
 	p->offset++;
 	return (TRUE);
@@ -453,7 +453,7 @@ success:
 	{
 		head->prev = current_item;
 	}
-	item->type = DYNAMIC_TYPE_OBJECT;
+	item->type = DYNAMICTYPE_OBJECT;
 	item->value.child = head;
 	p->offset++;
 	return (TRUE);
@@ -479,7 +479,7 @@ t_bool	JSON_Parse_Value(s_json* const item, s_json_parse* const p)
 				(!p->strict && String_Equals_N(p->content + p->offset, "Null", 4)) ||
 				(!p->strict && String_Equals_N(p->content + p->offset, "NULL", 4))))
 	{	// null
-		item->type = DYNAMIC_TYPE_NULL;
+		item->type = DYNAMICTYPE_NULL;
 //		Memory_Clear(&item->value, sizeof(item->value));
 		p->offset += 4;
 		return (TRUE);
@@ -488,7 +488,7 @@ t_bool	JSON_Parse_Value(s_json* const item, s_json_parse* const p)
 				(!p->strict && String_Equals_N(p->content + p->offset, "False", 5)) ||
 				(!p->strict && String_Equals_N(p->content + p->offset, "FALSE", 5))))
 	{	// FALSE
-		item->type = DYNAMIC_TYPE_BOOLEAN;
+		item->type = DYNAMICTYPE_BOOLEAN;
 		item->value.boolean = FALSE;
 		p->offset += 5;
 		return (TRUE);
@@ -497,7 +497,7 @@ t_bool	JSON_Parse_Value(s_json* const item, s_json_parse* const p)
 				(!p->strict && String_Equals_N(p->content + p->offset, "True", 4)) ||
 				(!p->strict && String_Equals_N(p->content + p->offset, "TRUE", 4))))
 	{	// TRUE
-		item->type = DYNAMIC_TYPE_BOOLEAN;
+		item->type = DYNAMICTYPE_BOOLEAN;
 		item->value.boolean = TRUE;
 		p->offset += 4;
 		return (TRUE);
