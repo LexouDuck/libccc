@@ -76,6 +76,8 @@ HEADER_CPP
 //!@{
 #ifdef bool
 	typedef bool	t_bool;
+#elif (defined(_MSC_VER) || defined(__SWIG__))
+	typedef int		t_bool;
 #elif (defined(__STDC__) && (__STDC_VERSION__ >= __STDC_VERSION_C99__))
 	typedef _Bool	t_bool;
 #else
@@ -95,7 +97,7 @@ TYPEDEF_ALIAS(		t_bool, BOOL, PRIMITIVE)
 #define or	||
 #endif
 #ifndef xor
-#define xor	^	// TODO force boolean logic for this operator
+#define xor	^	//!< TODO create boolean operator `^^` for this operator
 #endif
 #ifndef not
 #define not	!
