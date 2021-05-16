@@ -76,8 +76,14 @@ HEADER_CPP
 //!@{
 #if (defined(__STDC__) && (__STDC_VERSION__ >= __STDC_VERSION_C99__))
 	typedef _Bool	t_bool;
+
+#elif (defined(bool))
+	#include <stdbool.h>
+	typedef bool	t_bool;
+
 #else
 	typedef int		t_bool;
+
 #endif
 TYPEDEF_ALIAS(		t_bool, BOOL, PRIMITIVE)
 //!@}
