@@ -77,7 +77,7 @@ HEADER_CPP
 #ifdef bool
 	typedef bool	t_bool;
 #elif (defined(_MSC_VER) || defined(__SWIG__))
-	typedef int		t_bool;
+	typedef bool	t_bool;
 #elif (defined(__STDC__) && (__STDC_VERSION__ >= __STDC_VERSION_C99__))
 	typedef _Bool	t_bool;
 #else
