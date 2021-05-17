@@ -156,7 +156,9 @@ HEADER_CPP
 **	This is a common general macro used for return values, used by several libccc functions.
 */
 //!@{
+#ifdef	OK
 #undef	OK
+#endif
 #define OK		(0)
 //!@}
 
@@ -166,7 +168,9 @@ HEADER_CPP
 **	This is a common general macro used for return values, used by several libccc functions.
 */
 //!@{
+#ifdef	ERROR
 #undef	ERROR
+#endif
 #define ERROR	(-1)
 //!@}
 

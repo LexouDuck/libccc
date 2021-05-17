@@ -48,13 +48,15 @@ HEADER_CPP
 
 
 
-#ifndef	false
-#define false	FALSE
+#ifdef	false
+#undef	false
 #endif	//! Represents a boolean false value (0)
+#define false	FALSE
 
-#ifndef	true
-#define true	TRUE
+#ifdef	true
+#undef	true
 #endif	//! Represents a boolean true value  (1)
+#define true	TRUE
 
 
 
@@ -77,12 +79,9 @@ HEADER_CPP
 #if (defined(__STDC__) && (__STDC_VERSION__ >= __STDC_VERSION_C99__))
 	typedef _Bool	t_bool;
 
-#elif (defined(bool))
+#else
 	#include <stdbool.h>
 	typedef bool	t_bool;
-
-#else
-	typedef int		t_bool;
 
 #endif
 TYPEDEF_ALIAS(		t_bool, BOOL, PRIMITIVE)
