@@ -125,7 +125,7 @@ void	print_test_memset(char const* test_name, int can_segfault,
 	TEST_INIT(mem)
 	test.length = n;
 	TEST_PERFORM_VOID_LIBC_DEST(memset, byte, n)
-	TEST_PRINT(mem,				memset, "dest=\"%s\", c=0x%x/'%c', n=%zu", dest_libccc, byte, byte, n)
+	TEST_PRINT(mem,				memset, "dest=\"%s\", c='%c'/0x%X, n=%zu", dest_libccc, byte, byte, n)
 }
 void	test_memset(void)
 {
@@ -245,7 +245,7 @@ void	print_test_memccpy(char const* test_name, int can_segfault,
 	test.length = (test.length < n ? test.length : n);
 	test.result = NULL;
 	TEST_PERFORM_LIBC_DEST(	memccpy, src, byte, n)
-	TEST_PRINT(mem,			memccpy, "dest=\"%s\", src=\"%s\", c=0x%x/'%c', n=%zu", dest_libccc, src, byte, (byte == '\0' ? ' ' : byte), n)
+	TEST_PRINT(mem,			memccpy, "dest=\"%s\", src=\"%s\", c='%c'/0x%X, n=%zu", dest_libccc, src, byte, (byte == '\0' ? ' ' : byte), n)
 /*
 	s_test_mem test2 = (s_test_mem)
 	{
@@ -348,7 +348,7 @@ void	print_test_memchr(char const* test_name, int can_segfault,
 {
 	TEST_INIT(ptr)
 	TEST_PERFORM_LIBC(	memchr, ptr, byte, n)
-	TEST_PRINT(ptr,		memchr, "ptr=%p, c=0x%x/'%c', n=%zu", ptr, byte, byte, n)
+	TEST_PRINT(ptr,		memchr, "ptr=%p, c='%c'/0x%X, n=%zu", ptr, byte, byte, n)
 }
 void	test_memchr(void)
 {
@@ -478,7 +478,7 @@ void	print_test_memrep(char const* test_name, int can_segfault,
 	TEST_INIT(mem)
 	test.length = n;
 	TEST_PERFORM_VOID(ptr,	memrep, ptr, old, new, n)
-	TEST_PRINT(mem,			memrep, "ptr=\"%p\", old=0x%x/'%c', new=0x%x/'%c', n=%zu", ptr, old, old, new, new, n)
+	TEST_PRINT(mem,			memrep, "ptr=\"%p\", old='%c'/0x%X, new='%c'/0x%X, n=%zu", ptr, old, old, new, new, n)
 }
 void	test_memrep(void)
 {

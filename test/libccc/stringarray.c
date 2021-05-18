@@ -146,7 +146,7 @@ void	print_test_strsplit_char(char const* test_name, int can_segfault,
 {
 	TEST_INIT(strarr)
 	TEST_PERFORM(		strsplit_char, str, separator)
-	TEST_PRINT(strarr,	strsplit_char, "str=\"%s\", sep='%c'", str, separator)
+	TEST_PRINT(strarr,	strsplit_char, "str=\"%s\", sep='%c'/0x%X", str, separator, separator)
 	TEST_FREE_ARRAY_NULLTERM()
 }
 void	test_strsplit_char()

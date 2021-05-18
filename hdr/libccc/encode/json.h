@@ -134,7 +134,7 @@ t_utf8*							JSON_Print_Minify(s_json const* item);
 
 //! Render a s_json entity to text using a buffered strategy.
 /*!
-**	prebuffer is a guess at the final size. guessing well reduces reallocation. `format = 0` means minified, `format = 0` means formatted/pretty.
+**	prebuffer is a guess at the final size. guessing well reduces reallocation. `format = 0` means minified, `format = 1` means formatted/pretty.
 */
 t_utf8*							JSON_Print_Buffered(s_json const* item, t_sint prebuffer, t_bool format);
 #define JSON_Decode_Buffered 	JSON_Print_Buffered

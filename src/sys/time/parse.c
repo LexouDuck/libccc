@@ -258,7 +258,9 @@ t_size	strptime_r(t_char const* str, t_char const* format, s_date* date, t_bitma
 		{
 			if (c != (buffer++)[0])
 				PARSINGERROR_DATE("The string to parse (\"%s\") did not match the given format (\"%s\").\n"
-					"Expected '%c', instead found '%c'", str, format, format[i - 1], c)
+					"Expected '%c'/0x%X, instead found '%c'/0x%X", str, format,
+					(format[i - 1] ? format[i - 1] : '\a'), format[i - 1],
+					(c ? c : '\a'), c);
 			LEGAL_ALT(0);
 			continue;
 		}
@@ -270,7 +272,9 @@ again:
 			{
 				if (c != (buffer++)[0])
 					PARSINGERROR_DATE("The string to parse (\"%s\") did not match the given format (\"%s\"): "
-						"expected '%c', instead found '%c'", str, format, format[i - 1], c)
+						"expected '%c'/0x%X, instead found '%c'/0x%X", str, format,
+						(format[i - 1] ? format[i - 1] : '\a'), format[i - 1],
+						(c ? c : '\a'), c);
 				LEGAL_ALT(0);
 				continue;
 			}
@@ -603,7 +607,8 @@ recurse:
 							x = *buffer;
 							continue;
 						}
-						PARSINGERROR_DATE("Invalid format specifier encountered ('%c') in the given format string (\"%s\")", x, format)
+						PARSINGERROR_DATE("Invalid format specifier encountered ('%c'/0x%X) in the given format string (\"%s\")",
+							(x ? x : '\a'), x, format)
 				}
 				offset = 0;
 				for (number = 0; number < 4; )
@@ -663,7 +668,8 @@ recurse:
 			continue;
 
 		default:
-			PARSINGERROR_DATE("Invalid format specifier encountered ('%c') in the given format string (\"%s\")", c, format)
+			PARSINGERROR_DATE("Invalid format specifier encountered ('%c'/0x%X) in the given format string (\"%s\")",
+				(c ? c : '\a'), c, format)
 		}
 	}
 	return ((t_char*)buffer - str);

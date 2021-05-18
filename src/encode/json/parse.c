@@ -208,6 +208,8 @@ static t_bool JSON_Parse_String(s_json* const item, s_json_parse* const p)
 	LIBCONFIG_HANDLE_NULLPOINTER(NULL, p)
 	LIBCONFIG_HANDLE_NULLPOINTER(NULL, p->content)
 	// not a string
+	if (!CAN_PARSE(0))
+		PARSINGERROR_JSON("Could not parse string: Unexpected end of end of input before string")
 	if (p->content[p->offset] != '\"')
 		PARSINGERROR_JSON("Could not parse string: Expected double-quote char '\"', instead found '%c'", p->content[p->offset])
 	// calculate approximate size of the output (overestimate)
@@ -301,6 +303,8 @@ t_bool	JSON_Parse_Array(s_json* const item, s_json_parse* const p)
 		return (FALSE); // too deeply nested
 	p->depth++;
 
+	if (!CAN_PARSE(0))
+		PARSINGERROR_JSON("Could not parse array: Unexpected end of end of input before array")
 	if (p->content[p->offset] != '[')
 		PARSINGERROR_JSON("Could not parse array: Expected '[' char to begin array, instead found '%c'", p->content[p->offset])
 	p->offset++;
@@ -609,11 +613,12 @@ failure:
 			break;
 		column++;
 	}
-	LIBCONFIG_HANDLE_PARSINGERROR(NULL, "\n"PARSINGERROR_JSON_MESSAGE" -> at nesting depth %u: line %zu, column %zu (char index %zu: '%c')%s",
+	LIBCONFIG_HANDLE_PARSINGERROR(NULL, "\n"PARSINGERROR_JSON_MESSAGE" -> at nesting depth %u: line %zu, column %zu (char index %zu: '%c'/0x%X)%s",
 		p->depth,
 		p->line,
 		column,
 		p->offset,
+		p->content[p->offset] ? p->content[p->offset] : '\a',
 		p->content[p->offset],
 		p->error)
 }

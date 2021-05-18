@@ -27,7 +27,8 @@
 		IO_Output_Format(C_RED"KVT PATH PARSE ERROR:"C_RESET		\
 			"Expected char '%c' "ERRORMESSAGE", "					\
 			"but instead found: '%c'\n",							\
-			CHAR, str[i]);											\
+			(CHAR ? CHAR : '\a'),									\
+			(str[i] ? str[i] : '\a');								\
 		KVT_SetError(ERROR_KVT_PARSING);							\
 		return (result);											\
 	}																\
