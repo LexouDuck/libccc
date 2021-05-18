@@ -28,7 +28,7 @@
 			"Expected char '%c' "ERRORMESSAGE", "					\
 			"but instead found: '%c'\n",							\
 			(CHAR ? CHAR : '\a'),									\
-			(str[i] ? str[i] : '\a');								\
+			(str[i] ? str[i] : '\a'));								\
 		KVT_SetError(ERROR_KVT_PARSING);							\
 		return (result);											\
 	}																\

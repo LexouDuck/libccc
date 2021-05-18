@@ -46,13 +46,13 @@ typedef t_sint		t_dynamic;
 //! These constants are the enum items/bitflags for the `t_dynamic` dynamic-type enum
 //!@{
 #define DYNAMICTYPE_INVALID	(t_dynamic)(0)		//!< value stored is invalid
-#define DYNAMICTYPE_NULL		(t_dynamic)(1 << 0)	//!< no value stored
+#define DYNAMICTYPE_NULL	(t_dynamic)(1 << 0)	//!< no value stored
 #define DYNAMICTYPE_BOOLEAN	(t_dynamic)(1 << 1)	//!< value stored as boolean: #t_bool
 #define DYNAMICTYPE_INTEGER	(t_dynamic)(1 << 2)	//!< value stored as integer: #t_s64
-#define DYNAMICTYPE_FLOAT		(t_dynamic)(1 << 3)	//!< value stored as floating-point number: #t_f64
-#define DYNAMICTYPE_STRING		(t_dynamic)(1 << 4)	//!< value stored as string
-#define DYNAMICTYPE_ARRAY		(t_dynamic)(1 << 5)	//!< value stored as array of values (no keys)
-#define DYNAMICTYPE_OBJECT		(t_dynamic)(1 << 6)	//!< value stored as dict of values (with keys)
+#define DYNAMICTYPE_FLOAT	(t_dynamic)(1 << 3)	//!< value stored as floating-point number: #t_f64
+#define DYNAMICTYPE_STRING	(t_dynamic)(1 << 4)	//!< value stored as string
+#define DYNAMICTYPE_ARRAY	(t_dynamic)(1 << 5)	//!< value stored as array of values (no keys)
+#define DYNAMICTYPE_OBJECT	(t_dynamic)(1 << 6)	//!< value stored as dict of values (with keys)
 #define DYNAMICTYPE_RAW		(t_dynamic)(1 << 7)	//!< value stored as raw string (language-specific syntax)
 
 #define DYNAMICTYPE_ISREFERENCE	(t_dynamic)(1 << 8)	//!< If this bit is set, the `value` is not to be freed
