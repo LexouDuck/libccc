@@ -502,8 +502,14 @@ TEST_SRCS = \
 TEST_OBJS = ${TEST_SRCS:%.c=$(OBJDIR)%.o}
 TEST_DEPS = ${TEST_OBJS:.o=.d}
 
-TEST_CFLAGS = -O2 -g -ggdb # -fanalyzer
 TEST_INCLUDEDIRS = -I$(HDRDIR) -I$(TEST_DIR)
+
+TEST_CFLAGS = -O2 -g -ggdb # -fanalyzer
+
+TEST_LIBS = -L./ -lccc -lpthread -lm
+ifeq ($(OSMODE),linux)
+	TEST_LIBS := -static $(TEST_LIBS)
+endif
 
 
 
@@ -519,7 +525,7 @@ $(OBJDIR)$(TEST_DIR)%.o: $(TEST_DIR)%.c $(TEST_HDRS)
 # This rule builds the testing/CI program
 $(NAME_TEST): debug $(TEST_OBJS)
 	@printf "Compiling testing program: "$@" -> "
-	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -o $@ $(TEST_OBJS) -static -L./ -lccc -lpthread -lm
+	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -o $@ $(TEST_OBJS) $(TEST_LIBS)
 	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
 
 # This rule builds and runs the test executable
