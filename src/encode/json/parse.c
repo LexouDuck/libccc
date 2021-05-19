@@ -211,7 +211,8 @@ static t_bool JSON_Parse_String(s_json* const item, s_json_parse* const p)
 	if (!CAN_PARSE(0))
 		PARSINGERROR_JSON("Could not parse string: Unexpected end of end of input before string")
 	if (p->content[p->offset] != '\"')
-		PARSINGERROR_JSON("Could not parse string: Expected double-quote char '\"', instead found '%c'", p->content[p->offset])
+		PARSINGERROR_JSON("Could not parse string: Expected double-quote char '\"', instead found '%c'/0x%X",
+			(p->content[p->offset] ? p->content[p->offset] : '\a'), p->content[p->offset])
 	// calculate approximate size of the output (overestimate)
 	allocation_length = 0;
 	skipped_bytes = 0;
@@ -306,7 +307,8 @@ t_bool	JSON_Parse_Array(s_json* const item, s_json_parse* const p)
 	if (!CAN_PARSE(0))
 		PARSINGERROR_JSON("Could not parse array: Unexpected end of end of input before array")
 	if (p->content[p->offset] != '[')
-		PARSINGERROR_JSON("Could not parse array: Expected '[' char to begin array, instead found '%c'", p->content[p->offset])
+		PARSINGERROR_JSON("Could not parse array: Expected '[' char to begin array, instead found '%c'/0x%X",
+			(p->content[p->offset] ? p->content[p->offset] : '\a'), p->content[p->offset])
 	p->offset++;
 	JSON_Parse_SkipWhiteSpace(p);
 	if (CAN_PARSE(0) && (p->content[p->offset] == ']'))
@@ -355,7 +357,8 @@ t_bool	JSON_Parse_Array(s_json* const item, s_json_parse* const p)
 	if (!CAN_PARSE(0))
 		PARSINGERROR_JSON("Could not parse array: Unexpected end of end of input within array")
 	if (p->content[p->offset] != ']')
-		PARSINGERROR_JSON("Could not parse array: Expected end of array ']' char, instead found '%c'", p->content[p->offset])
+		PARSINGERROR_JSON("Could not parse array: Expected end of array ']' char, instead found '%c'/0x%X",
+			(p->content[p->offset] ? p->content[p->offset] : '\a'), p->content[p->offset])
 
 success:
 	p->depth--;
@@ -390,7 +393,8 @@ t_bool	JSON_Parse_Object(s_json* const item, s_json_parse* const p)
 		return (FALSE); // reached nesting depth limit
 	p->depth++;
 	if (!CAN_PARSE(0) || (p->content[p->offset] != '{'))
-		PARSINGERROR_JSON("Could not parse object: Expected '{' to begin object, instead found '%c'", p->content[p->offset])
+		PARSINGERROR_JSON("Could not parse object: Expected '{' to begin object, instead found '%c'/0x%X",
+			(p->content[p->offset] ? p->content[p->offset] : '\a'), p->content[p->offset])
 	p->offset++;
 	JSON_Parse_SkipWhiteSpace(p);
 	if (CAN_PARSE(0) && (p->content[p->offset] == '}'))
@@ -449,7 +453,8 @@ t_bool	JSON_Parse_Object(s_json* const item, s_json_parse* const p)
 	if (!CAN_PARSE(0))
 		PARSINGERROR_JSON("Could not parse object: Unexpected end of input within object")
 	if (p->content[p->offset] != '}')
-		PARSINGERROR_JSON("Could not parse object: Expected end of object char '}', instead found '%c'", p->content[p->offset])
+		PARSINGERROR_JSON("Could not parse object: Expected end of object char '}', instead found '%c'/0x%X",
+			(p->content[p->offset] ? p->content[p->offset] : '\a'), p->content[p->offset])
 
 success:
 	p->depth--;
