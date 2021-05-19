@@ -505,6 +505,8 @@ TEST_DEPS = ${TEST_OBJS:.o=.d}
 TEST_CFLAGS = -O2 -g -ggdb # -fanalyzer
 TEST_INCLUDEDIRS = -I$(HDRDIR) -I$(TEST_DIR)
 
+
+
 # This rule compiles object files from source files
 $(OBJDIR)$(TEST_DIR)%.o: $(TEST_DIR)%.c $(TEST_HDRS)
 	@mkdir -p $(@D)
@@ -512,10 +514,12 @@ $(OBJDIR)$(TEST_DIR)%.o: $(TEST_DIR)%.c $(TEST_HDRS)
 	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -c $< -o $@
 	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
 
+
+
 # This rule builds the testing/CI program
 $(NAME_TEST): debug $(TEST_OBJS)
 	@printf "Compiling testing program: "$@" -> "
-	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -o $@ $(TEST_OBJS) -L./ -lccc -lm -lpthread
+	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -o $@ $(TEST_OBJS) -static -L./ -lccc -lpthread -lm
 	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
 
 # This rule builds and runs the test executable
