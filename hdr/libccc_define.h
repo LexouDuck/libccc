@@ -106,8 +106,8 @@ HEADER_CPP
 
 
 // Check windows
-#if (_WIN32 || _WIN64)
-	#if (_WIN64)
+#if (defined(_WIN32) || defined(_WIN64))
+	#if (defined(_WIN64))
 		#define _IS_64BIT	(1)	//!< If this is a 64-bit platform, then this is defined with value (1)
 	#else
 		#define _IS_32BIT	(1)	//!< If this is a 32-bit platform, then this is defined with value (1)
