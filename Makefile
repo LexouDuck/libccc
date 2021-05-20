@@ -52,8 +52,13 @@ CFLAGS_RELEASE = -O3
 #	-flto
 CFLAGS_OS = _
 CFLAGS_OS_WIN   = -D__USE_MINGW_ANSI_STDIO=1
-CFLAGS_OS_LINUX = -fPIC -pedantic -Wno-unused-result
-CFLAGS_OS_MACOS = 
+CFLAGS_OS_LINUX = -Wno-unused-result -fPIC -pedantic
+CFLAGS_OS_MACOS = -Wno-missing-braces
+ifeq ($(CC),clang)
+	CFLAGS_OS_WIN += -Wno-missing-braces
+else
+	CFALGS_OS_WIN += -L./ -static-libgcc -D__USE_MINGW_ANSI_STDIO=1
+endif
 
 
 

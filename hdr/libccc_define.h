@@ -246,6 +246,17 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
+#undef _FORMAT
+#undef _ALIAS
+#undef _ALIGN
+#undef _PURE
+#undef _MALLOC
+#undef _UNUSED
+#undef _INLINE
+#undef _NOINLINE
+#undef _NORETURN
+#undef _PACKED
+
 #if (defined(__GNUC__) || defined(__llvm__))
 
 	#if (defined(__MINGW32__) && !defined(__clang__))
