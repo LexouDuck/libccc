@@ -301,7 +301,7 @@ t_bool	JSON_Parse_Array(s_json* const item, s_json_parse* const p)
 	LIBCONFIG_HANDLE_NULLPOINTER(NULL, p)
 	LIBCONFIG_HANDLE_NULLPOINTER(NULL, p->content)
 	if (p->depth >= KVT_NESTING_LIMIT)
-		return (FALSE); // too deeply nested
+		PARSINGERROR_JSON("Could not parse JSON: nested too deep, max depth of nesting is %u", KVT_NESTING_LIMIT)
 	p->depth++;
 
 	if (!CAN_PARSE(0))
@@ -390,7 +390,7 @@ t_bool	JSON_Parse_Object(s_json* const item, s_json_parse* const p)
 	LIBCONFIG_HANDLE_NULLPOINTER(NULL, p)
 	LIBCONFIG_HANDLE_NULLPOINTER(NULL, p->content)
 	if (p->depth >= KVT_NESTING_LIMIT)
-		return (FALSE); // reached nesting depth limit
+		PARSINGERROR_JSON("Could not parse JSON: nested too deep, max depth of nesting is %u", KVT_NESTING_LIMIT)
 	p->depth++;
 	if (!CAN_PARSE(0) || (p->content[p->offset] != '{'))
 		PARSINGERROR_JSON("Could not parse object: Expected '{' to begin object, instead found '%c'/0x%X",
