@@ -37,7 +37,11 @@
 ** ************************************************************************** *|
 */
 
-#include <stdarg.h>
+#ifndef __NOSTD__
+	#include <stdarg.h>
+#else
+	typedef __gnuc_va_list va_list;
+#endif
 
 #include "libccc.h"
 

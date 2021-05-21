@@ -1,9 +1,9 @@
 
-/*
-**	Functions used from <time.h>:
-**	-	size_t	strftime(t_char* s, size_t max, const t_char* format, const struct tm *tm);
-*/
-#include <time.h>
+#ifndef __NOSTD__
+	#include <time.h>
+#else
+	size_t	strftime(t_char* s, size_t max, const t_char* format, const struct tm *tm);
+#endif
 
 #include "libccc/sys/time.h"
 #include "libccc/string.h"

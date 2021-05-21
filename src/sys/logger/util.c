@@ -1,9 +1,24 @@
 
-#include <stdarg.h>
-#include <string.h>
-#include <errno.h>
-
-#include <sys/types.h>
+#ifndef __NOSTD__
+	#include <unistd.h>
+#else
+	char const*	strerror(int error);
+#endif
+#ifndef __NOSTD__
+	#include <errno.h>
+#else
+	#undef	errno
+	#define errno	(*_errno())
+#endif
+#ifndef __NOSTD__
+	#include <stdarg.h>
+#else
+	typedef __gnuc_va_list va_list;
+	#define va_start(v,l)	__builtin_va_start(v,l)
+	#define va_end(v)		__builtin_va_end(v)
+	#define va_arg(v,l)		__builtin_va_arg(v,l)
+	#define va_copy(d,s)	__builtin_va_copy(d,s)
+#endif
 
 #include "libccc.h"
 #include "libccc/memory.h"

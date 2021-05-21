@@ -1,11 +1,11 @@
 
-/*
-**	Functions used from <time.h>:
-**	-	time_t	time(time_t* t);
-**	-	struct tm*	gmtime(const time_t* timep);
-**	-	struct tm*	localtime(const time_t* timep);
-*/
-#include <time.h>
+#ifndef __NOSTD__
+	#include <time.h>
+#else
+	time_t	time(time_t* t);
+	struct tm*	gmtime(const time_t* timep);
+	struct tm*	localtime(const time_t* timep);
+#endif
 
 #include "libccc/sys/time.h"
 

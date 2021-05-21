@@ -1,6 +1,5 @@
 
-#include <time.h>
-
+#include "libccc/sys/time.h"
 #include "libccc/math/random.h"
 
 
@@ -22,7 +21,7 @@ inline void		c_random_set_seed(t_u32 seed)
 
 void			c_random_renew_seed(void)
 {
-	random_U32 = c_random_32bit_shuffle(time(NULL));
+	random_U32 = c_random_32bit_shuffle(Time_Now());
 }
 
 

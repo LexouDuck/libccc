@@ -119,7 +119,11 @@ HEADER_CPP
 		#error "C ISO standard fixed-point types are not available for this C standard: "__STDC_VERSION__"L"
 	#endif
 
-	#include <stdfix.h>
+	#ifndef __NOSTD__
+		#include <stdfix.h>
+	#else
+		#error "Cannot use standard fixed-point library, __NOSTD__ macro is defined"
+	#endif
 
 	//! Primitive type: 16-bit signed fixed-point rational number (s4.7)
 	/*!

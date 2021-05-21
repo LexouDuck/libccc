@@ -44,7 +44,11 @@ HEADER_CPP
 		#error "C ISO standard complex/imaginary types are not available for this C standard: "__STDC_VERSION__"L"
 	#endif
 
-	#include <complex.h>
+	#ifndef __NOSTD__
+		#include <complex.h>
+	#else
+		#error "Cannot use standard fixed-point library, __NOSTD__ macro is defined"
+	#endif
 
 	typedef _Complex	s_complex;
 	TYPEDEF_ALIAS(		s_complex, COMPLEX, STRUCT)

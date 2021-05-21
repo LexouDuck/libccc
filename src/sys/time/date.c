@@ -1,12 +1,15 @@
 
-/*
-**	Functions used from <time.h>:
-**	-	time_t	time(time_t* t);
-**	-	time_t	timegm(struct tm* tm);		-> alias:_mkgmtime()
-**	-	time_t	timelocal(struct tm* tm);	-> alias: mktime()
-**	-	size_t	strftime(t_char* s, size_t max, const t_char* format, const struct tm *tm);
-*/
-#include <time.h>
+#ifndef __NOSTD__
+	#include <time.h>
+#else
+	time_t	timegm(struct tm* tm);
+	#define _mkgmtime	timegm
+	#define _mktime		timelocal
+	time_t	timelocal(struct tm* tm);
+	#define mkgmtime	timegm
+	#define mktime		timelocal
+	time_t	time(time_t* t);
+#endif
 
 #include "libccc/sys/time.h"
 #include "libccc/memory.h"

@@ -35,20 +35,21 @@
 ** ************************************************************************** *|
 */
 
-/*
-**	Included to use the following std types:
-**	- size_t
-**	- ptrdiff_t
-*/
-#include <stddef.h>
-/*
-**	Included to use the following std types:
-**	- uintmax_t
-**	- uintptr_t
-**	- intmax_t
-**	- intptr_t
-*/
-#include <stdint.h>
+#ifndef __NOSTD__
+	#include <stddef.h>
+#else
+	#define size_t		unsigned long long
+	#define ptrdiff_t	signed long long
+#endif
+
+#ifndef __NOSTD__
+	#include <stdint.h>
+#else
+	#define uintmax_t	unsigned long long
+	#define uintptr_t	unsigned long long
+	#define intmax_t	signed long long
+	#define intptr_t	signed long long
+#endif
 
 #include "libccc_config.h"
 #include "libccc_naming.h"

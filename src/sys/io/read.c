@@ -1,10 +1,10 @@
-#include <stdio.h>
-/*
-**	Functions used from <stdlib.h>:
-**	-	void	read(int fd, t_char* buffer, size_t n);
-*/
-#include <unistd.h>
-#include <errno.h>
+
+#ifndef __NOSTD__
+	#include <unistd.h>
+#else
+	int	read(int fd, char* buffer, size_t n);
+#endif
+
 
 #include "libccc/memory.h"
 #include "libccc/string.h"

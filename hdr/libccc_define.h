@@ -216,7 +216,15 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-#if (defined(__GNUC__) || defined(__llvm__))
+#ifndef __GNUC__
+#if (defined(__NOSTD__))
+
+	#define __asm__			
+	#define __inline__		
+	#define __restrict__	
+	#define __nameof__(x)	#x
+	#define __typeof__(x)	typeof(x)
+	#define __alignof__(x)	alignof(x)
 
 #elif (defined(_MSC_VER) || defined(__SWIG__))
 
@@ -236,6 +244,7 @@ HEADER_CPP
 	#define __typeof__(x)	typeof(x)
 	#define __alignof__(x)	alignof(x)
 
+#endif
 #endif
 
 
@@ -257,7 +266,20 @@ HEADER_CPP
 #undef _NORETURN
 #undef _PACKED
 
-#if (defined(__GNUC__) || defined(__llvm__))
+#if (defined(__NOSTD__))
+
+	#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	
+	#define _ALIAS(FUNCTION)	
+	#define _ALIGN(MINIMUM)		
+	#define _PURE()				
+	#define _MALLOC()			
+	#define _UNUSED()			
+	#define _INLINE()			
+	#define _NOINLINE()			
+	#define _NORETURN()			
+	#define _PACKED()			
+
+#elif (defined(__GNUC__))
 
 	#if (defined(__MINGW32__) && !defined(__clang__))
 		//! Before a function def: make the compiler give warnings for a variadic-args function with a format string

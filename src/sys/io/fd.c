@@ -1,9 +1,9 @@
 
-/*
-**	Functions used from <unistd.h>:
-**	-	int isatty(int fd);
-*/
-#include <unistd.h>
+#ifndef __NOSTD__
+	#include <unistd.h>
+#else
+	int	isatty(int fd);
+#endif
 
 #include "libccc/sys/io.h"
 

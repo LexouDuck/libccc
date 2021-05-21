@@ -1,9 +1,10 @@
 
-/*
-**	Functions used from <stdlib.h>: (only when LIBCONFIG_USE_FAST_APPROX_MATH is 0)
-**	-	double	atof(t_char* str);
-*/
-#include <stdlib.h>
+#ifndef __NOSTD__
+	#include <stdlib.h>
+#else
+	float	atof(char const* str);
+	double	atod(char const* str);
+#endif
 
 #include "libccc/float.h"
 #include "libccc/char.h"

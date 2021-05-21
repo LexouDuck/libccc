@@ -1,11 +1,11 @@
 
-/*
-**	Functions used from <stdlib.h>:
-**	-	void*	malloc(size_t n);
-**	-	void*	realloc(void* ptr, size_t n);
-**	-	void	free(void* ptr);
-*/
-#include <stdlib.h>
+#ifndef __NOSTD__
+	#include <stdlib.h>
+#else
+	void*	malloc(size_t n);
+	void*	realloc(void* ptr, size_t n);
+	void	free(void* ptr);
+#endif
 
 #include "libccc/memory.h"
 

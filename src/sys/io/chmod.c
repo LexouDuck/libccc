@@ -1,11 +1,16 @@
 
-/*
-**	Functions used from <sys/stat.h>:
-**	-	int chmod(const t_char* pathname, mode_t mode);
-**	-	int chown(const t_char* pathname, uid_t owner, gid_t group);
-*/
-#include <errno.h>
-#include <sys/stat.h>
+#ifndef __NOSTD__
+	#include <sys/stat.h>
+#else
+	int chmod(const t_char* pathname, mode_t mode);
+	int chown(const t_char* pathname, uid_t owner, gid_t group);
+#endif
+#ifndef __NOSTD__
+	#include <errno.h>
+#else
+	#undef	errno
+	#define errno	(*_errno())
+#endif
 
 #include "libccc/sys/io.h"
 

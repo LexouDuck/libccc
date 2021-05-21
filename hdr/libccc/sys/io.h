@@ -26,7 +26,11 @@
 ** ************************************************************************** *|
 */
 
-#include <fcntl.h>
+#ifndef __NOSTD__
+	#include <fcntl.h>
+#else
+	// TODO O_* macros for open() ?
+#endif
 
 #include "libccc.h"
 #include "libccc/color.h"
@@ -317,7 +321,7 @@ int						IO_Read_NextLine(t_fd const fd, t_char* *a_line);
 */
 
 //! Writes the given character 'c' to the given file descriptor 'fd'
-t_io_error				IO_Write_Char(t_fd fd, char c);
+t_io_error				IO_Write_Char(t_fd fd, t_char c);
 #define c_write_char	IO_Write_Char
 
 //! Writes the given string 'str' to the given file descriptor 'fd'
@@ -351,7 +355,7 @@ t_io_error				IO_Write_Format(t_fd fd, t_char const* format, ...);
 */
 
 //! Writes the given char 'c' to the standard output.
-t_io_error				IO_Output_Char(char c);
+t_io_error				IO_Output_Char(t_char c);
 #define c_output_char	IO_Output_Char
 #define c_putchar		IO_Output_Char
 

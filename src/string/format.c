@@ -1,15 +1,18 @@
 
-/*
-**	Functions used from <stdio.h>:
-**	-	int vasprintf(t_char* const* result, const t_char* format, va_list args);
-*/
-#include <stdio.h>
-/*
-**	Functions used from <stdarg.h>:
-**	-	void va_start(va_list args, last);
-**	-	void va_end(va_list args);
-*/
-#include <stdarg.h>
+#ifndef __NOSTD__
+	#include <stdio.h>
+#else
+	int	vsnprintf(char* dest, size_t n, char const* format, va_list args);
+#endif
+#ifndef __NOSTD__
+	#include <stdarg.h>
+#else
+	typedef __gnuc_va_list va_list;
+	#define va_start(v,l)	__builtin_va_start(v,l)
+	#define va_end(v)		__builtin_va_end(v)
+	#define va_arg(v,l)		__builtin_va_arg(v,l)
+	#define va_copy(d,s)	__builtin_va_copy(d,s)
+#endif
 
 #include "libccc/memory.h"
 #include "libccc/string.h"

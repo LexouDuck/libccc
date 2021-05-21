@@ -383,10 +383,6 @@ debug: $(NAME_STATIC) $(NAME_DYNAMIC)
 release: MODE = release
 release: CFLAGS += $(CFLAGS_RELEASE)
 release: $(NAME_STATIC) $(NAME_DYNAMIC)
-	@mkdir -p			$(BINDIR)static/$(OSMODE)/
-	@cp $(NAME_STATIC)	$(BINDIR)static/$(OSMODE)/
-	@mkdir -p			$(BINDIR)dynamic/$(OSMODE)/
-	@cp $(NAME_DYNAMIC)	$(BINDIR)dynamic/$(OSMODE)/
 
 
 
@@ -433,6 +429,8 @@ $(NAME_STATIC): $(OBJS)
 	@ar -rc $@ $(OBJS)
 	@ranlib $@
 	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
+	@mkdir -p				$(BINDIR)static/$(OSMODE)/
+	@cp -f $(NAME_STATIC)	$(BINDIR)static/$(OSMODE)/
 
 
 
@@ -455,6 +453,8 @@ else ifeq ($(OSMODE),linux)
 	$(CC) -shared -o $(NAME_DYNAMIC) $(CFLAGS) $(OBJS)
 endif
 	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
+	@mkdir -p				$(BINDIR)dynamic/$(OSMODE)/
+	@cp -f $(NAME_DYNAMIC)	$(BINDIR)dynamic/$(OSMODE)/
 
 
 
@@ -649,6 +649,8 @@ clean:
 fclean: clean
 	@printf "Deleting library: "$(NAME_STATIC)"\n"
 	@rm -rf $(NAME_STATIC)
+	@printf "Deleting library: "$(NAME_DYNAMIC)"\n"
+	@rm -rf $(NAME_DYNAMIC)
 	@printf "Deleting program: "$(NAME_TEST)"\n"
 	@rm -rf $(NAME_TEST)
 	@rm -rf $(NAME_TEST).d

@@ -1,6 +1,4 @@
 
-#include <float.h> // TODO remove this after changing FLOAT_EPSILON macros
-
 #include "libccc/float.h"
 #include "libccc/math/math.h"
 

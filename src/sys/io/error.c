@@ -1,11 +1,10 @@
 
-/*
-**	Functions used from <string.h>:
-**	-	t_char const* strerror(int errnum);
-**	-	int strerror_r(int errnum, t_char* buf, size_t buflen);
-*/
-#include <string.h>
-#include <sys/types.h>
+#ifndef __NOSTD__
+	#include <string.h>
+#else
+	t_char const* strerror(int errnum);
+	int strerror_r(int errnum, t_char* buf, size_t buflen);
+#endif
 
 #include "libccc/string.h"
 #include "libccc/sys/io.h"
@@ -14,7 +13,7 @@
 
 inline t_char*	IO_GetError(t_io_error error)
 {
-	char	buffer[IO_BUFFER_SIZE] = {0};
+	t_char	buffer[IO_BUFFER_SIZE] = {0};
 
 #ifdef __MINGW32__
 /*

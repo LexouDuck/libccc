@@ -1,10 +1,14 @@
 
-/*
-**	Functions used from <unistd.h>:
-**	-	void	read(int fd, t_char* buffer, size_t n);
-*/
-#include <unistd.h>
-#include <stdio.h>
+#ifndef __NOSTD__
+	#include <unistd.h>
+#else
+	int	read(int fd, char* buffer, size_t n);
+#endif
+#ifndef __NOSTD__
+	#include <stdio.h>
+#else
+	void	perror(char const* s);
+#endif
 
 #include "libccc/memory.h"
 #include "libccc/string.h"

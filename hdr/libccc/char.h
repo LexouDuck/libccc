@@ -28,7 +28,12 @@
 ** ************************************************************************** *|
 */
 
-#include <stdint.h>
+#ifndef __NOSTD__
+	#include <stdint.h>
+#else
+	#define uint_least16_t	unsigned short int
+	#define uint_least32_t	unsigned long int
+#endif
 
 #include "libccc_config.h"
 #include "libccc_naming.h"

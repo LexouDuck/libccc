@@ -9,8 +9,6 @@
 /*
 **	Cross-platform implementation of strptime()
 **	Courtesy of @Maxxim at https://stackoverflow.com/questions/40159892/using-asprintf-on-windows
-**
-**	To be included BEFORE <time.h>
 */
 
 /*	$NetBSD: strptime.c,v 1.36 2012/03/13 21:13:48 christos Exp $	*/
@@ -48,24 +46,16 @@
 /*                                   Includes                                 */
 /* ************************************************************************** */
 
-/*
-#include <sys/cdefs.h>
-#if defined(LIBC_SCCS) && !defined(lint)
-__RCSID("$NetBSD: strptime.c,v 1.36 2012/03/13 21:13:48 christos Exp $");
+#ifndef __NOSTD__
+	#include <ctype.h>
+	#include <locale.h>
+	#include <string.h>
+	#include <time.h>
+	#include <stdint.h>
+#else
+	// TODO
 #endif
-
-#include "namespace.h"
-#include <sys/localedef.h>
-*/
-#include <ctype.h>
-#include <locale.h>
-#include <string.h>
-#include <time.h>
-#include <stdint.h>
 /*
-#include <tzfile.h>
-#include "private.h"
-
 #ifdef __weak_alias
 __weak_alias(strptime,_strptime)
 #endif

@@ -79,6 +79,9 @@ HEADER_CPP
 #if (defined(__STDC__) && (__STDC_VERSION__ >= __STDC_VERSION_C99__))
 	typedef _Bool	t_bool;
 
+#elif (defined(__NOSTD__))
+	typedef int		t_bool;
+
 #else
 	#include <stdbool.h>
 	typedef bool	t_bool;

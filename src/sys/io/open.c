@@ -1,10 +1,10 @@
 
-/*
-**	Functions used from <unistd.h>:
-**	-	int	open(const t_char* pathname, int flags, mode_t mode);
-*/
-#include <unistd.h>
-#include <fcntl.h>
+#ifndef __NOSTD__
+	#include <unistd.h>
+	#include <fcntl.h>
+#else
+	int	open(const t_char* pathname, int flags, mode_t mode);
+#endif
 
 #include "libccc/sys/io.h"
 
