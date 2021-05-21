@@ -54,6 +54,11 @@
 	#include <stdint.h>
 #else
 	// TODO
+	#define INT64_MAX	-1llu
+	extern long	timezone;
+	extern char* tzname[2];
+	void tzset(void);
+	void _tzset(void);
 #endif
 /*
 #ifdef __weak_alias

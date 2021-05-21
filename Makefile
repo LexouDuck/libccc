@@ -47,7 +47,7 @@ CFLAGS = -Wall -Wextra -Winline -Wpedantic -Wstrict-prototypes -Wmissing-prototy
 #	-fsanitize=address
 #	-fsanitize=thread
 #	-fanalyzer
-CFLAGS_DEBUG = -g -ggdb -D DEBUG=1
+CFLAGS_DEBUG = -g -ggdb -D DEBUG=1 # -D__NOSTD__=1
 CFLAGS_RELEASE = -O3
 #	-flto
 CFLAGS_OS = _

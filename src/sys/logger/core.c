@@ -2,8 +2,10 @@
 #ifndef __NOSTD__
 	#include <errno.h>
 #else
-	#undef	errno
+	#ifndef	errno
 	#define errno	(*_errno())
+	extern	int*	_errno(void);
+	#endif
 #endif
 #ifndef __NOSTD__
 	#include <stdarg.h>

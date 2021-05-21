@@ -29,7 +29,24 @@
 #ifndef __NOSTD__
 	#include <fcntl.h>
 #else
-	// TODO O_* macros for open() ?
+	#define O_RDONLY    0 // TODO find platform-specific value
+	#define O_WRONLY    0 // TODO find platform-specific value
+	#define O_RDWR      0 // TODO find platform-specific value
+	#define O_EXEC      0 // TODO find platform-specific value
+	#define O_ACCMODE   0 // TODO find platform-specific value
+	#define O_CREAT     0 // TODO find platform-specific value
+	#define O_TRUNC     0 // TODO find platform-specific value
+	#define O_EXCL      0 // TODO find platform-specific value
+	#define O_NOFOLLOW  0 // TODO find platform-specific value
+	#define O_NOLINK    0 // TODO find platform-specific value
+	#define O_TMPFILE   0 // TODO find platform-specific value
+	#define O_APPEND    0 // TODO find platform-specific value
+	#define O_NONBLOCK  0 // TODO find platform-specific value
+	#define O_ASYNC     0 // TODO find platform-specific value
+	#define O_FSYNC     0 // TODO find platform-specific value
+	#define O_NOATIME   0 // TODO find platform-specific value
+	#define O_BINARY    0 // TODO find platform-specific value
+	#define O_TEST      0 // TODO find platform-specific value
 #endif
 
 #include "libccc.h"

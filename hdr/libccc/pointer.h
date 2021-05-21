@@ -40,6 +40,9 @@
 #else
 	typedef unsigned long long	size_t;
 	typedef signed long long	ptrdiff_t;
+	#define SIZE_MAX	(size_t)-1
+	#define PTRDIFF_MIN	((ptrdiff_t)(SIZE_MAX >> 1))
+	#define PTRDIFF_MAX	((ptrdiff_t)((SIZE_MAX >> 1) + 1))
 #endif
 
 #ifndef __NOSTD__

@@ -1,9 +1,12 @@
 
+#include "libccc/pointer.h"
+
 #ifndef __NOSTD__
 	#include <string.h>
 #else
 	t_char const* strerror(int errnum);
-	int strerror_r(int errnum, t_char* buf, size_t buflen);
+	int strerror_s(char* buf, size_t buflen, int errnum);
+	int strerror_r(int errnum, char* buf, size_t buflen);
 #endif
 
 #include "libccc/string.h"

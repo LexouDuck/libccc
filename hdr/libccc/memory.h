@@ -304,7 +304,7 @@ void				Memory_Replace(void* ptr, t_u8 old, t_u8 new, t_size n);
 **	returning (byte1 - byte2) at the first difference encountered.
 **	As such, will return 0 if the contents of `ptr1` and `ptr2` match.
 */
-int					Memory_Compare(void const* ptr1, void const* ptr2, t_size n); // TODO change retrun type to t_sint
+t_sint				Memory_Compare(void const* ptr1, void const* ptr2, t_size n);
 #define c_memcmp	Memory_Compare //!< @alias{Memory_Compare}
 
 

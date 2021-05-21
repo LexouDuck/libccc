@@ -1,4 +1,6 @@
 
+#include "libccc/memory.h"
+
 #ifndef __NOSTD__
 	#include <stdlib.h>
 #else
@@ -6,8 +8,6 @@
 	void*	realloc(void* ptr, size_t n);
 	void	free(void* ptr);
 #endif
-
-#include "libccc/memory.h"
 
 
 

@@ -1,10 +1,5 @@
 
 #ifndef __NOSTD__
-	#include <stdio.h>
-#else
-	int	vsnprintf(char* dest, size_t n, char const* format, va_list args);
-#endif
-#ifndef __NOSTD__
 	#include <stdarg.h>
 #else
 	typedef __builtin_va_list va_list;
@@ -16,6 +11,12 @@
 
 #include "libccc/memory.h"
 #include "libccc/string.h"
+
+#ifndef __NOSTD__
+	#include <stdio.h>
+#else
+	int	vsnprintf(char* dest, size_t n, char const* format, va_list args);
+#endif
 
 
 

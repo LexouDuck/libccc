@@ -1,12 +1,13 @@
 
+#include "libccc/sys/io.h"
+
 #ifndef __NOSTD__
 	#include <unistd.h>
 	#include <fcntl.h>
 #else
-	int	open(const t_char* pathname, int flags, mode_t mode);
+	typedef unsigned int	mode_t;
+	int	open(char const* pathname, int flags, mode_t mode);
 #endif
-
-#include "libccc/sys/io.h"
 
 
 

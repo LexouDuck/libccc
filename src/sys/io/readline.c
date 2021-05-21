@@ -1,4 +1,6 @@
 
+#include "libccc/pointer.h"
+
 #ifndef __NOSTD__
 	#include <unistd.h>
 #else
@@ -7,7 +9,7 @@
 #ifndef __NOSTD__
 	#include <stdio.h>
 #else
-	void	perror(char const* s);
+	void	perror(char const* str);
 #endif
 
 #include "libccc/memory.h"

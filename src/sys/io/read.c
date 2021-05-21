@@ -1,4 +1,6 @@
 
+#include "libccc/pointer.h"
+
 #ifndef __NOSTD__
 	#include <unistd.h>
 #else
