@@ -38,17 +38,17 @@
 #ifndef __NOSTD__
 	#include <stddef.h>
 #else
-	#define size_t		unsigned long long
-	#define ptrdiff_t	signed long long
+	typedef unsigned long long	size_t;
+	typedef signed long long	ptrdiff_t;
 #endif
 
 #ifndef __NOSTD__
 	#include <stdint.h>
 #else
-	#define uintmax_t	unsigned long long
-	#define uintptr_t	unsigned long long
-	#define intmax_t	signed long long
-	#define intptr_t	signed long long
+	typedef unsigned long long	uintmax_t;
+	typedef unsigned long long	uintptr_t;
+	typedef signed long long	intmax_t;
+	typedef signed long long	intptr_t;
 #endif
 
 #include "libccc_config.h"

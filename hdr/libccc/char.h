@@ -31,8 +31,8 @@
 #ifndef __NOSTD__
 	#include <stdint.h>
 #else
-	#define uint_least16_t	unsigned short int
-	#define uint_least32_t	unsigned long int
+	typedef unsigned short int	uint_least16_t;
+	typedef unsigned long int	uint_least32_t;
 #endif
 
 #include "libccc_config.h"

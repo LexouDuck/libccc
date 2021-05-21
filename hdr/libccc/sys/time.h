@@ -33,7 +33,7 @@
 		#include <sys/time.h>
 	#endif
 #else
-	#define time_t	unsigned long
+	typedef unsigned long	time_t;
 	struct timespec
 	{
 		time_t	tv_sec;

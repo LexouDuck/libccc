@@ -36,8 +36,8 @@ DISTDIR = ./dist/
 
 # Compiler
 CC	= _
-CC_WIN32 =   i686-w64-mingw32-gcc -static -static-libgcc
-CC_WIN64 = x86_64-w64-mingw32-gcc -static -static-libgcc
+CC_WIN32 =   i686-w64-mingw32-gcc
+CC_WIN64 = x86_64-w64-mingw32-gcc
 CC_LINUX = gcc
 CC_MACOS = clang
 
@@ -55,7 +55,7 @@ CFLAGS_OS_WIN   = -D__USE_MINGW_ANSI_STDIO=1
 CFLAGS_OS_LINUX = -Wno-unused-result -fPIC -pedantic
 CFLAGS_OS_MACOS = -Wno-missing-braces
 ifeq ($(CC),clang)
-	CFLAGS_OS_WIN += -Wno-missing-braces
+	CFLAGS_OS_WIN += -L/lib -Wno-missing-braces
 else
 	CFALGS_OS_WIN += -L./ -static-libgcc -D__USE_MINGW_ANSI_STDIO=1
 endif
@@ -511,10 +511,7 @@ TEST_INCLUDEDIRS = -I$(HDRDIR) -I$(TEST_DIR)
 
 TEST_CFLAGS = -O2 -g -ggdb # -fanalyzer
 
-TEST_LIBS = -L./ -lccc -lpthread -lm
-ifeq ($(OSMODE),linux)
-	TEST_LIBS := -static $(TEST_LIBS)
-endif
+TEST_LIBS = -static -L./ -lccc -lpthread -lm
 
 
 
