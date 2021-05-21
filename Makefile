@@ -55,9 +55,9 @@ CFLAGS_OS_WIN   = -D__USE_MINGW_ANSI_STDIO=1
 CFLAGS_OS_LINUX = -Wno-unused-result -fPIC -pedantic
 CFLAGS_OS_MACOS = -Wno-missing-braces
 ifeq ($(CC),clang)
-	CFLAGS_OS_WIN += -L/lib -Wno-missing-braces
+	CFLAGS_OS_WIN += -Wno-missing-braces
 else
-	CFALGS_OS_WIN += -L./ -static-libgcc -D__USE_MINGW_ANSI_STDIO=1
+	CFLAGS_OS_WIN += -D__USE_MINGW_ANSI_STDIO=1
 endif
 
 
@@ -71,6 +71,11 @@ LDFLAGS_LINUX =
 LDFLAGS_MACOS = 
 #	-fsanitize=address
 #	-Wl,-rpath,bin/linux/dynamic/
+ifeq ($(CC),clang)
+	LDFLAGS_OS_WIN += -L/lib
+else
+	LDFLAGS_OS_WIN += -L./ -static-libgcc
+endif
 
 
 
@@ -103,18 +108,22 @@ ifeq ($(OSMODE),other)
 else ifeq ($(OSMODE),win32)
 	CC = $(CC_WIN32)
 	CFLAGS_OS = $(CFLAGS_OS_WIN)
+	LDFLAGS_OS = $(LDFLAGS_OS_WIN)
 	DYNAMICLIB_FILE_EXT=.dll
 else ifeq ($(OSMODE),win64)
 	CC = $(CC_WIN64)
 	CFLAGS_OS = $(CFLAGS_OS_WIN)
+	LDFLAGS_OS = $(LDFLAGS_OS_WIN)
 	DYNAMICLIB_FILE_EXT=.dll
 else ifeq ($(OSMODE),linux)
 	CC = $(CC_LINUX)
 	CFLAGS_OS = $(CFLAGS_OS_LINUX)
+	LDFLAGS_OS = $(LDFLAGS_OS_LINUX)
 	DYNAMICLIB_FILE_EXT=.so
 else ifeq ($(OSMODE),macos)
 	CC = $(CC_MACOS)
 	CFLAGS_OS = $(CFLAGS_OS_MACOS)
+	LDFLAGS_OS = $(LDFLAGS_OS_MACOS)
 	DYNAMICLIB_FILE_EXT=.dylib
 endif
 
@@ -439,18 +448,18 @@ $(NAME_DYNAMIC): $(NAME_STATIC)
 ifeq ($(OSMODE),$(filter $(OSMODE), win32 win64))
 	@printf \
 	"Compiling DLL: "$(NAME_DYNAMIC)" -> " ; \
-	$(CC) -shared -o $(NAME_DYNAMIC) $(CFLAGS) $(OBJS) \
+	$(CC) -shared -o $(NAME_DYNAMIC) $(CFLAGS) $(LDFLAGS) $(OBJS) \
 	-Wl,--output-def,$(NAME).def \
 	-Wl,--out-implib,$(NAME).lib \
 	-Wl,--export-all-symbols
 else ifeq ($(OSMODE),macos)
 	@printf \
 	"Compiling dylib: "$(NAME_DYNAMIC)" -> " ; \
-	$(CC) -shared   -o $(NAME_DYNAMIC) $(CFLAGS) $(OBJS)
+	$(CC) -shared   -o $(NAME_DYNAMIC) $(CFLAGS) $(LDFLAGS) $(OBJS)
 else ifeq ($(OSMODE),linux)
 	@printf \
 	"Compiling .so: "$(NAME_DYNAMIC)" -> " ; \
-	$(CC) -shared -o $(NAME_DYNAMIC) $(CFLAGS) $(OBJS)
+	$(CC) -shared -o $(NAME_DYNAMIC) $(CFLAGS) $(LDFLAGS) $(OBJS)
 endif
 	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
 	@mkdir -p				$(BINDIR)dynamic/$(OSMODE)/
@@ -510,6 +519,7 @@ TEST_DEPS = ${TEST_OBJS:.o=.d}
 TEST_INCLUDEDIRS = -I$(HDRDIR) -I$(TEST_DIR)
 
 TEST_CFLAGS = -O2 -g -ggdb # -fanalyzer
+TEST_LDFLAGS = $(LDFLAGS)
 
 TEST_LIBS = -static -L./ -lccc -lpthread -lm
 
