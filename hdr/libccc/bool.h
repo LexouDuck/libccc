@@ -80,7 +80,9 @@ HEADER_CPP
 	typedef _Bool	t_bool;
 
 #elif (defined(__NOSTD__))
-	typedef int		t_bool;
+	typedef _Bool	t_bool;
+//	typedef char	t_bool;
+//	typedef int		t_bool;
 
 #else
 	#include <stdbool.h>
