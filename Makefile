@@ -434,17 +434,18 @@ $(OBJDIR)%.o : $(SRCDIR)%.c
 
 # This rule builds the static library file to link against, in the root directory
 $(NAME_STATIC): $(OBJS)
+	@mkdir -p	$(BINDIR)static/$(OSMODE)/
 	@printf "Compiling library: "$@" -> "
 	@ar -rc $@ $(OBJS)
 	@ranlib $@
 	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
-	@mkdir -p				$(BINDIR)static/$(OSMODE)/
 	@cp -f $(NAME_STATIC)	$(BINDIR)static/$(OSMODE)/
 
 
 
 # This rule builds the dynamically-linked library files for the current target platform
 $(NAME_DYNAMIC): $(NAME_STATIC)
+	@mkdir -p	$(BINDIR)dynamic/$(OSMODE)/
 ifeq ($(OSMODE),$(filter $(OSMODE), win32 win64))
 	@printf \
 	"Compiling DLL: "$(NAME_DYNAMIC)" -> " ; \
@@ -452,6 +453,8 @@ ifeq ($(OSMODE),$(filter $(OSMODE), win32 win64))
 	-Wl,--output-def,$(NAME).def \
 	-Wl,--out-implib,$(NAME).lib \
 	-Wl,--export-all-symbols
+	@cp -f $(NAME).def	$(BINDIR)dynamic/$(OSMODE)/
+	@cp -f $(NAME).lib	$(BINDIR)dynamic/$(OSMODE)/
 else ifeq ($(OSMODE),macos)
 	@printf \
 	"Compiling dylib: "$(NAME_DYNAMIC)" -> " ; \
@@ -462,7 +465,6 @@ else ifeq ($(OSMODE),linux)
 	$(CC) -shared -o $(NAME_DYNAMIC) $(CFLAGS) $(LDFLAGS) $(OBJS)
 endif
 	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
-	@mkdir -p				$(BINDIR)dynamic/$(OSMODE)/
 	@cp -f $(NAME_DYNAMIC)	$(BINDIR)dynamic/$(OSMODE)/
 
 
