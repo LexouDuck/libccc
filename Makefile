@@ -521,7 +521,10 @@ TEST_INCLUDEDIRS = -I$(HDRDIR) -I$(TEST_DIR)
 TEST_CFLAGS = -O2 -g -ggdb # -fanalyzer
 TEST_LDFLAGS = $(LDFLAGS)
 
-TEST_LIBS = -static -L./ -lccc -lpthread -lm
+TEST_LIBS = -L./ -lccc -lpthread -lm
+ifneq ($(OSMODE),macos)
+	TEST_LIBS := -static $(TEST_LIBS)
+endif
 
 
 
