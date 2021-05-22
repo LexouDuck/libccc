@@ -30,6 +30,8 @@
 #include "libccc/sys/io.h"
 #include "libccc/sys/logger.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 t_io_error	Log_FatalError(s_logger const* logger, t_char const* str)
@@ -68,10 +70,7 @@ t_char*	Logger_GetTimestamp(t_time utc)
 
 
 
-/*
-**	Functions to help debug the logger
-*/
-
+//! Functions to help debug the logger
 t_char*	Logger_GetSettings(s_logger const* logger)
 {
 	t_char*		result = NULL;
@@ -109,7 +108,10 @@ t_char*	Logger_GetSettings(s_logger const* logger)
 	return (result);
 }
 
-inline t_io_error	Logger_LogSettings(s_logger const* logger)
+
+
+inline
+t_io_error	Logger_LogSettings(s_logger const* logger)
 {
 	t_char*	tmp = Logger_GetSettings(logger);
 	t_io_error result = Log_Message(logger, "%s", tmp);

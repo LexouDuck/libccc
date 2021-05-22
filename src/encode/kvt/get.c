@@ -15,6 +15,8 @@
 #include "libccc/sys/io.h"
 #include "libccc/encode/common.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 #define PARSE_KVTPATH_WHITESPACE(EXPECTED, ERRORMESSAGE) \

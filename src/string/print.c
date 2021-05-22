@@ -3,6 +3,8 @@
 #include "libccc/string.h"
 #include "libccc/memory.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 static
@@ -51,7 +53,7 @@ t_char*	String_Print(t_char const* str, t_char const* charset_extra)
 	t_size	index = 0;
 	t_size	i = 0;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
 	if (!(result = (t_char*)Memory_Alloc(String_Print_GetLength(str, charset_extra) + sizeof(""))))
 		return (NULL);
 	while (str[index])

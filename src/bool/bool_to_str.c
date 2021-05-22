@@ -3,16 +3,18 @@
 #include "libccc/bool.h"
 #include "libccc/memory.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
 
 
-t_char*	Bool_ToString(t_bool number, t_bool uppercase)
+
+t_char*	Bool_ToString(t_bool value, t_bool uppercase)
 {
 	t_char*	result;
 
-	if (number)
+	result = (t_char*)Memory_Alloc(value ? 5 : 6);
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if (value)
 	{
-		if (!(result = (t_char*)Memory_Alloc(5)))
-			return (NULL);
 		result[0] = uppercase ? 'T' : 't';
 		result[1] = uppercase ? 'R' : 'r';
 		result[2] = uppercase ? 'U' : 'u';
@@ -21,8 +23,6 @@ t_char*	Bool_ToString(t_bool number, t_bool uppercase)
 	}
 	else
 	{
-		if (!(result = (t_char*)Memory_Alloc(6)))
-			return (NULL);
 		result[0] = uppercase ? 'F' : 'f';
 		result[1] = uppercase ? 'A' : 'a';
 		result[2] = uppercase ? 'L' : 'l';

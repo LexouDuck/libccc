@@ -1,6 +1,8 @@
 
 #include "libccc/math/algebra.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 s_matrix2d		Matrix2D_Inverse(s_matrix2d const* matrix)

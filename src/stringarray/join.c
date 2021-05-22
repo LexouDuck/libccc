@@ -3,6 +3,9 @@
 #include "libccc/string.h"
 #include "libccc/stringarray.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
+
 
 t_char**	StringArray_Join(t_char const** strarr1, t_char const** strarr2)
 {
@@ -11,8 +14,8 @@ t_char**	StringArray_Join(t_char const** strarr1, t_char const** strarr2)
 	t_size	length2;
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, strarr1)
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, strarr2)
+	HANDLE_ERROR(NULLPOINTER, (strarr1 == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (strarr2 == NULL), return (NULL);)
 	length1 = StringArray_Length(strarr1);
 	length2 = StringArray_Length(strarr2);
 	if (!(result = (t_char**)Memory_Alloc(sizeof(t_char*) * (length1 + length2 + 1))))

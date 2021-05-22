@@ -2,6 +2,8 @@
 #include "libccc/memory.h"
 #include "libccc/string.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 t_char*		String_Pad(t_char const* str, t_char c, t_size size)
@@ -11,7 +13,7 @@ t_char*		String_Pad(t_char const* str, t_char c, t_size size)
 	t_size	length;
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
 	length = String_Length(str);
 	if (size == length)
 		return (String_Duplicate(str));
@@ -55,7 +57,7 @@ t_char*		String_Pad_L(t_char const* str, t_char c, t_size size)
 	t_size	length;
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
 	length = String_Length(str);
 	if (size == length)
 		return (String_Duplicate(str));
@@ -98,7 +100,7 @@ t_char*		String_Pad_R(t_char const* str, t_char c, t_size size)
 	t_size	length;
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
 	length = String_Length(str);
 	if (size == length)
 		return (String_Duplicate(str));

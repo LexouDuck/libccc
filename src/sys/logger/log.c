@@ -12,6 +12,8 @@
 #include "libccc/sys/io.h"
 #include "libccc/sys/logger.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 /*
 
 t_io_error	LogAll(t_logptrarr const loggers,

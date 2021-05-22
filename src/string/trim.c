@@ -1,6 +1,8 @@
 
 #include "libccc/string.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 t_char*		String_Trim(t_char const* str, t_char const* charset)
@@ -8,8 +10,8 @@ t_char*		String_Trim(t_char const* str, t_char const* charset)
 	t_size	offset;
 	t_size	length;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, charset)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (charset == NULL), return (NULL);)
 	offset = 0;
 	length = 0;
 	while (str[length])
@@ -29,8 +31,8 @@ t_char*		String_Trim_L(t_char const* str, t_char const* charset)
 {
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, charset)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (charset == NULL), return (NULL);)
 	i = 0;
 	while (str[i])
 	{
@@ -48,8 +50,8 @@ t_char*		String_Trim_R(t_char const* str, t_char const* charset)
 {
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, charset)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (charset == NULL), return (NULL);)
 	i = String_Length(str);
 	while (--i)
 	{

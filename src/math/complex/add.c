@@ -1,6 +1,8 @@
 
 #include "libccc/math/complex.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 s_complex	Complex_Add(s_complex const* z1, s_complex const* z2)

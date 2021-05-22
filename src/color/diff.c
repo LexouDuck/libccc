@@ -2,6 +2,8 @@
 #include "libccc/math/math.h"
 #include "libccc/color.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 t_u16	Color_ARGB16_Difference(t_argb16 c1, t_argb16 c2)

@@ -17,7 +17,7 @@
 
 t_sintmax	IO_Read_File(t_fd const fd, t_char** a_file, t_size max)
 {
-	LIBCONFIG_HANDLE_NULLPOINTER(ERROR, a_file)
+	HANDLE_ERROR(NULLPOINTER, (a_file == NULL), return (ERROR);)
 	char	buffer[IO_BUFFER_SIZE + 1] = {0};
 	t_sintmax	result;
 	t_char*	file = NULL;
@@ -63,7 +63,7 @@ t_sintmax	IO_Read_File(t_fd const fd, t_char** a_file, t_size max)
 
 t_sintmax	IO_Read_Lines(t_fd const fd, t_char** *a_strarr)
 {
-	LIBCONFIG_HANDLE_NULLPOINTER(ERROR, a_strarr)
+	HANDLE_ERROR(NULLPOINTER, (a_strarr == NULL), return (ERROR);)
 	t_char*	file	= NULL; 
 	t_char**	result	= NULL;
 	t_sintmax	status	= OK;

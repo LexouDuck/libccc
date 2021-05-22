@@ -1,6 +1,8 @@
 
 #include "libccc/memory.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 void*	Memory_New(t_size size)

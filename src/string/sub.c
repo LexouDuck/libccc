@@ -2,6 +2,8 @@
 #include "libccc/memory.h"
 #include "libccc/string.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 t_char*	String_Sub(t_char const* str, t_size index, t_size n)
@@ -10,12 +12,12 @@ t_char*	String_Sub(t_char const* str, t_size index, t_size n)
 	t_size	length;
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
 	length = 0;
 	while (str[length])
 		++length;
-	LIBCONFIG_HANDLE_LENGTH2LARGE(NULL, index, length)
-	LIBCONFIG_HANDLE_LENGTH2LARGE(NULL, index + n, length)
+	HANDLE_ERROR(INDEX2LARGE, (index < length), return (NULL);)
+	HANDLE_ERROR(LENGTH2LARGE, (index + n < length), return (NULL);)
 	if (!(result = (t_char*)Memory_Alloc(n + sizeof(""))))
 		return (NULL);
 	i = 0;

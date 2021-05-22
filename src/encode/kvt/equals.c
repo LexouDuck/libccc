@@ -4,6 +4,8 @@
 #include "libccc/string.h"
 #include "libccc/encode/common.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 t_bool	KVT_Equals(s_kvt const* const a, s_kvt const* const b, const t_bool case_sensitive)

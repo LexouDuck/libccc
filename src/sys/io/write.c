@@ -27,9 +27,12 @@
 #include "libccc/sys/io.h"
 #include "libccc/string.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
 
 
-inline t_io_error	IO_Write_Char(int fd, char c)
+
+inline
+t_io_error	IO_Write_Char(int fd, char c)
 {
 	int result;
 	if ((result = write(fd, &c, 1)) < 0)
@@ -39,9 +42,10 @@ inline t_io_error	IO_Write_Char(int fd, char c)
 
 
 
-inline t_io_error	IO_Write_String(int fd, const t_char* str)
+inline
+t_io_error	IO_Write_String(int fd, const t_char* str)
 {
-	LIBCONFIG_HANDLE_NULLPOINTER(OK, str)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (OK);)
 	int result;
 	if ((result = write(fd, str, String_Length(str))) < 0)
 		return (errno);
@@ -50,9 +54,10 @@ inline t_io_error	IO_Write_String(int fd, const t_char* str)
 
 
 
-inline t_io_error	IO_Write_Line(int fd, const t_char* str)
+inline
+t_io_error	IO_Write_Line(int fd, const t_char* str)
 {
-	LIBCONFIG_HANDLE_NULLPOINTER(OK, str)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (OK);)
 	int result;
 	if ((result = write(fd, str, String_Length(str))) < 0)
 		return (errno);
@@ -63,9 +68,9 @@ inline t_io_error	IO_Write_Line(int fd, const t_char* str)
 
 
 
-t_io_error		IO_Write_Lines(int fd, const t_char** strarr)
+t_io_error	IO_Write_Lines(int fd, const t_char** strarr)
 {
-	LIBCONFIG_HANDLE_NULLPOINTER(OK, strarr)
+	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return (OK);)
 	int result;
 	int i = 0;
 	while (strarr[i])
@@ -81,9 +86,9 @@ t_io_error		IO_Write_Lines(int fd, const t_char** strarr)
 
 
 
-t_io_error		IO_Write_Memory(int fd, t_u8 const* ptr, t_size n, t_u8 columns)
+t_io_error	IO_Write_Memory(int fd, t_u8 const* ptr, t_size n, t_u8 columns)
 {
-	LIBCONFIG_HANDLE_NULLPOINTER(OK, ptr)
+	HANDLE_ERROR(NULLPOINTER, (ptr == NULL), return (OK);)
 	if (n == 0 || columns == 0)
 		return (OK);
 	int result;
@@ -108,9 +113,9 @@ t_io_error		IO_Write_Memory(int fd, t_u8 const* ptr, t_size n, t_u8 columns)
 
 
 
-t_io_error		IO_Write_Format(t_fd fd, t_char const* format, ...)
+t_io_error	IO_Write_Format(t_fd fd, t_char const* format, ...)
 {
-	LIBCONFIG_HANDLE_NULLPOINTER(OK, format)
+	HANDLE_ERROR(NULLPOINTER, (format == NULL), return (OK);)
 	int result;
 	t_char* str;
 	va_list args;

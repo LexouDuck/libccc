@@ -2,6 +2,8 @@
 #include "libccc/memory.h"
 #include "libccc/string.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 t_char*	String_Insert(t_char const* dest, t_char const* src, t_size offset)
@@ -11,8 +13,8 @@ t_char*	String_Insert(t_char const* dest, t_char const* src, t_size offset)
 	t_size	len_src;
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, dest)
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, src)
+	HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (src == NULL), return (NULL);)
 	len_dst = String_Length(dest);
 	len_src = String_Length(src);
 	if (!(result = (t_char*)Memory_Alloc(len_dst + len_src + sizeof(""))))
@@ -36,8 +38,8 @@ t_char*	String_Insert_InPlace(t_char** a_dest, t_char const* src, t_u32 index)
 {
 	t_char*	tmp;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, a_dest)
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, src)
+	HANDLE_ERROR(NULLPOINTER, (a_dest == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (src == NULL), return (NULL);)
 	tmp = String_Sub(*a_dest, 0, index);
 	String_Append(&tmp, src);
 	String_Append(&tmp, (*a_dest) + index);

@@ -6,6 +6,8 @@
 #include "libccc/math/math.h"
 #include "libccc/encode/json.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 typedef struct json_print
@@ -86,7 +88,7 @@ t_utf8*	ensure(s_json_print* p, t_size needed)
 #else
 	// otherwise reallocate manually
 	newbuffer = (t_utf8*)Memory_Alloc(newsize);
-	if (!newbuffer)
+	if (newbuffer == NULL)
 	{
 		Memory_Free(p->buffer);
 		p->length = 0;

@@ -9,6 +9,8 @@
 
 #include "libccc/string.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 #define MAX_BUFFER_SIZE		1024

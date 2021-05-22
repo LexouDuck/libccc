@@ -3,6 +3,8 @@
 #include "libccc/char.h"
 #include "libccc/pointer.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 t_size	Size_FromString(t_char const* str)
@@ -10,7 +12,7 @@ t_size	Size_FromString(t_char const* str)
 	t_size	result;
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(0, str)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
 	i = 0;
 	while (!(str[i] == '+' || Char_IsDigit(str[i])))
 	{

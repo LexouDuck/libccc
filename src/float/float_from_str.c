@@ -12,6 +12,8 @@
 #include "libccc/string.h"
 #include "libccc/math/math.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 //! The maximum amount of digits that can be printed to the mantissa
@@ -50,7 +52,7 @@ t_bool	Float_FromString_CheckInvalid(t_char const* str)
 	t_size	count_expon;
 	t_size	count_signs;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(TRUE, str)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (TRUE);)
 	if (str[0] == '\0')
 		return (TRUE);
 	if (str[0] != '+' &&
@@ -81,7 +83,7 @@ t_f##BITS			F##BITS##_FromString(t_char const* str)			\
 {																	\
 	t_f##BITS	result;												\
 																	\
-	LIBCONFIG_HANDLE_NULLPOINTER(0, str)							\
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)			\
 	while (*str && Char_IsSpace(*str))								\
 		++str;														\
 	result = Float_FromString_CheckSpecial(str);					\
@@ -117,7 +119,7 @@ t_f##BITS	F##BITS##_FromString_Exp(t_char const* str)				\
 	t_char*		tmp;												\
 	t_size	i = 0;													\
 																	\
-	LIBCONFIG_HANDLE_NULLPOINTER(0, str)							\
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)			\
 	while (*str && Char_IsSpace(*str))								\
 		++str;														\
 	result = Float_FromString_CheckSpecial(str);					\
@@ -169,7 +171,7 @@ t_f##BITS	F##BITS##_FromString_Dec(t_char const* str)				\
 	t_bool	negative;												\
 	t_size	i = 0;													\
 																	\
-	LIBCONFIG_HANDLE_NULLPOINTER(0, str)							\
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)							\
 	while (*str && Char_IsSpace(*str))								\
 		++str;														\
 	result = Float_FromString_CheckSpecial(str);					\
@@ -208,7 +210,7 @@ t_f##BITS	F##BITS##_FromString_Hex(t_char const* str)						\
 	t_s16		exponent;													\
 	t_char*		tmp;														\
 																			\
-	LIBCONFIG_HANDLE_NULLPOINTER(0, str)									\
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)									\
 	while (*str && Char_IsSpace(*str))										\
 		++str;																\
 	result = Float_FromString_CheckSpecial(str);							\
@@ -217,7 +219,7 @@ t_f##BITS	F##BITS##_FromString_Hex(t_char const* str)						\
 	if (Float_FromString_CheckInvalid(str))									\
 		return (NAN);														\
 																			\
-	LIBCONFIG_HANDLE_NULLPOINTER(0, str)									\
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)									\
 	negative = (str[0] == '-');												\
 	str_mantissa = (negative || str[0] == '+') ? str + 1 : str;				\
 	str_exponent = String_Find_Charset(str, "pP");							\

@@ -2,6 +2,8 @@
 #include "libccc/color.h"
 #include "libccc/math/math.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 inline t_argb16	Color_ARGB16_Set(t_u8 a, t_u8 r, t_u8 g, t_u8 b)

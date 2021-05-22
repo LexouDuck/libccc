@@ -4,6 +4,8 @@
 #include "libccc/string.h"
 #include "libccc/encode/common.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 e_error_kvt	KVT_SetValue_Boolean(s_kvt* object, t_bool value)

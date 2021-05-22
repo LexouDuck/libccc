@@ -1,6 +1,8 @@
 
 #include "libccc/sys/time.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 t_bool	Date_IsValid(s_date const* date)

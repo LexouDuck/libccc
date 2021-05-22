@@ -3,6 +3,8 @@
 #include "libccc/char.h"
 #include "libccc/encode/common.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 s_kvt*	KVT_Detach(s_kvt* parent, s_kvt* const item)

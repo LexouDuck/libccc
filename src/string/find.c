@@ -1,13 +1,15 @@
 
 #include "libccc/string.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 t_char*	String_Find_Char(t_char const* str, t_char c)
 {
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
 	i = 0;
 	while (TRUE)
 	{
@@ -32,8 +34,8 @@ t_char*	String_Find_Charset(t_char const* str, t_char const* charset)
 {
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, charset)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (charset == NULL), return (NULL);)
 	if (charset[0] == '\0')
 		return (NULL);
 	i = 0;
@@ -61,8 +63,8 @@ t_char*	String_Find_String(t_char const* str, t_char const* query)
 {
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, query)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (query == NULL), return (NULL);)
 	if (query[0] == '\0')
 		return (NULL);
 	i = 0;

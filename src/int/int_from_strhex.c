@@ -3,9 +3,13 @@
 #include "libccc/char.h"
 #include "libccc/pointer.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
 
 
-static inline int	GetDigit_FromString_Hex(char c)
+
+static
+inline
+int	GetDigit_FromString_Hex(char c)
 {
 	if ('0' <= c && c <= '9')
 		return (c - '0');
@@ -24,7 +28,7 @@ t_u##BITS	U##BITS##_FromString_Hex(t_char const* str)					\
 	t_u##BITS	result;													\
 	t_size	i;															\
 																		\
-	LIBCONFIG_HANDLE_NULLPOINTER(0, str)								\
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)				\
 	i = 0;																\
 	while (!(str[i] == '+' ||											\
 		('0' <= str[i] && str[i] <= '9') ||								\
@@ -68,7 +72,7 @@ t_s##BITS	S##BITS##_FromString_Hex(t_char const* str)					\
 	t_bool	negative;													\
 	t_size	i;															\
 																		\
-	LIBCONFIG_HANDLE_NULLPOINTER(0, str)								\
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)				\
 	i = 0;																\
 	while (!(str[i] == '+' || str[i] == '+' ||							\
 		('0' <= str[i] && str[i] <= '9') ||								\

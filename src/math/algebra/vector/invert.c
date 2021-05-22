@@ -1,6 +1,8 @@
 
 #include "libccc/math/algebra.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 s_vector2d		Vector2D_Invert(s_vector2d const* vector)

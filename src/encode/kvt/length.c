@@ -3,6 +3,8 @@
 #include "libccc/char.h"
 #include "libccc/encode/common.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 t_sint	KVT_GetArrayLength(s_kvt const* array)

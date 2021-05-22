@@ -23,6 +23,8 @@
 #include "libccc/sys/time.h"
 #include "libccc/sys/logger.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 static inline void Log_VA_Write(s_logger const* logger, t_fd fd, t_char const* output, t_char const* log_msg)

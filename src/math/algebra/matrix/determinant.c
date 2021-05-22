@@ -1,9 +1,12 @@
 
 #include "libccc/math/algebra.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
 
 
-inline t_float	Matrix2D_Determinant(s_matrix2d const* matrix)
+
+inline
+t_float	Matrix2D_Determinant(s_matrix2d const* matrix)
 {
 	return (
 		matrix->u.x * matrix->v.y -
@@ -12,7 +15,8 @@ inline t_float	Matrix2D_Determinant(s_matrix2d const* matrix)
 
 
 
-inline t_float	Matrix3D_Determinant(s_matrix3d const* matrix)
+inline
+t_float	Matrix3D_Determinant(s_matrix3d const* matrix)
 {
 	return (
 		matrix->u.x * (matrix->v.y * matrix->w.z - matrix->v.z * matrix->w.y) -

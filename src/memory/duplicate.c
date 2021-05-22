@@ -1,6 +1,8 @@
 
 #include "libccc/memory.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 void*	Memory_Duplicate(const void* ptr, t_size n)
@@ -9,7 +11,7 @@ void*	Memory_Duplicate(const void* ptr, t_size n)
 	t_u8*	source;
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, ptr)
+	HANDLE_ERROR(NULLPOINTER, (ptr == NULL), return (NULL);)
 	if (!(result = (t_u8* )Memory_Alloc(n)))
 		return (NULL);
 	source = (t_u8* )ptr;

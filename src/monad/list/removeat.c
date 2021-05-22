@@ -2,6 +2,9 @@
 #include "libccc/memory.h"
 #include "libccc/monad/list.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
+
 
 _GENERIC()
 s_list_T*	CONCAT(List_RemoveAt,T_NAME)(s_list_T* list, t_uint index)
@@ -9,7 +12,7 @@ s_list_T*	CONCAT(List_RemoveAt,T_NAME)(s_list_T* list, t_uint index)
 	s_list_T*	elem;
 	s_list_T*	tmp;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, list)
+	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (NULL);)
 	elem = list;
 	if (index == 0)
 	{
@@ -33,13 +36,14 @@ s_list_T*	CONCAT(List_RemoveAt,T_NAME)(s_list_T* list, t_uint index)
 }
 
 
+
 _GENERIC()
 s_list_T*	CONCAT(List_RemoveAt_F,T_NAME)(s_list_T* list, t_uint index, void (*delete)(T))
 {
 	s_list_T*	elem;
 	s_list_T*	tmp;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, list)
+	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (NULL);)
 	elem = list;
 	if (index == 0)
 	{

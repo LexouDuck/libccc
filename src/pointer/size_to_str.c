@@ -4,17 +4,25 @@
 #include "libccc/memory.h"
 #include "libccc/pointer.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
 
 
-inline t_char*	Size_ToString(t_size number)
+
+inline
+t_char*	Size_ToString(t_size number)
 {
 	return (U64_ToString(number));
 }
 
-inline t_char*	Size_ToString_Hex(t_size number)
+
+
+inline
+t_char*	Size_ToString_Hex(t_size number)
 {
 	return (U64_ToString_Hex(number, TRUE));
 }
+
+
 
 t_char*	Size_ToString_Pretty(t_size number)
 {

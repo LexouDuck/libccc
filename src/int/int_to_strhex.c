@@ -2,6 +2,8 @@
 #include "libccc/int.h"
 #include "libccc/memory.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 #define DEFINEFUNC_CONVERT_UINT_TO_STRHEX(BITS) \

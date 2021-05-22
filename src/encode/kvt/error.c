@@ -3,6 +3,8 @@
 #include "libccc/format.h"
 #include "libccc/encode/common.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 e_error_kvt		global_error_kvt = OK; // TODO figure out a way to not use any global state ?

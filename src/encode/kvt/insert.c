@@ -3,6 +3,8 @@
 #include "libccc/char.h"
 #include "libccc/encode/common.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 e_error_kvt	KVT_Insert_InArray(s_kvt* array, t_sint index, s_kvt* newitem)

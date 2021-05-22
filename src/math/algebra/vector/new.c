@@ -2,6 +2,8 @@
 #include "libccc/math/algebra.h"
 #include "libccc/memory.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 s_vector2d*	Vector2D_New(t_float x, t_float y)

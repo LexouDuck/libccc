@@ -4,6 +4,8 @@
 #include "libccc/string.h"
 #include "libccc/encode/common.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 s_kvt*	KVT_CreateNull(void)

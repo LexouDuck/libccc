@@ -2,6 +2,9 @@
 #include "libccc/memory.h"
 #include "libccc/monad/list.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
+
 
 _GENERIC()
 s_list_T*	CONCAT(List_Insert,T_NAME)(s_list_T* list, T item, t_uint index)
@@ -10,7 +13,7 @@ s_list_T*	CONCAT(List_Insert,T_NAME)(s_list_T* list, T item, t_uint index)
 	s_list_T*	new;
 	s_list_T*	tmp;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, list)
+	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (NULL);)
 	if (!(new = (s_list_T*)Memory_Alloc(sizeof(s_list_T))))
 		return (list);
 	if (list == NULL || index == 0)

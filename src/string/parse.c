@@ -3,6 +3,8 @@
 #include "libccc/memory.h"
 #include "libccc/string.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 static
@@ -72,7 +74,7 @@ t_char*	String_Parse(t_char const* str, t_bool any_escape)
 	t_size	index = 0;
 	t_size	i = 0;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
 	if (!(result = (t_char*)Memory_Alloc(String_Parse_GetLength(str, any_escape) + sizeof(""))))
 		return (NULL);
 	while (str[index])

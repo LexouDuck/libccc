@@ -5,6 +5,8 @@
 #include "libccc/string.h"
 #include "libccc/encode/common.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 s_kvt*	KVT_Duplicate(s_kvt const* item, t_bool recurse)

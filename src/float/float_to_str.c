@@ -5,6 +5,8 @@
 #include "libccc/string.h"
 #include "libccc/math/math.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 //! Returns the appropriate string if the given 'number' is either NaN or +/- infinity, otherwise returns NULL
@@ -58,12 +60,10 @@ t_char*	F##BITS##_ToString_Exp(t_f##BITS number, t_u8 precision)			\
 	number = (sign ? -number : number);										\
 	if (!(*result_exponent = S16_ToString(F##BITS##_GetExp10(&number))) ||	\
 		!(*result_mantissa = F##BITS##_ToString_Dec(number, precision)) ||	\
-		!(result = (t_char*)Memory_Alloc(										\
-			String_Length(*result_mantissa) +								\
-			String_Length(*result_exponent) + 2 + (t_u8)sign)))				\
-	{																		\
-		return (NULL);														\
-	}																		\
+		!(result = (t_char*)Memory_Alloc(2 + (t_u8)sign						\
+			+ String_Length(*result_mantissa)								\
+			+ String_Length(*result_exponent))))							\
+		goto failure;														\
 	i = 0;																	\
 	if (sign)																\
 		result[i++] = '-';													\
@@ -73,6 +73,7 @@ t_char*	F##BITS##_ToString_Exp(t_f##BITS number, t_u8 precision)			\
 	String_Copy(result + i, *result_exponent);								\
 	i += String_Length(*result_exponent);									\
 	result[i] = '\0';														\
+failure:																	\
 	if (result_exponent)	Memory_Free(result_exponent);					\
 	if (result_mantissa)	Memory_Free(result_mantissa);					\
 	return (result);														\
@@ -102,8 +103,8 @@ static t_char*	F##BITS##_ToString_Dec(t_f##BITS number, t_u8 precision)	\
 			if (n == 0 && number != 0)										\
 				digits[i++] = '0';											\
 	}																		\
-	if (!(result = (t_char*)Memory_Alloc(i + 2)))								\
-		return (NULL);														\
+	result = (t_char*)Memory_Alloc(i + 2);									\
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)			\
 	result[0] = (number == 0) ? '0' : '-';									\
 	n = (number <= 0) ? 1 : 0;												\
 	while (i--)																\

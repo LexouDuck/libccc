@@ -3,6 +3,8 @@
 #include "libccc/string.h"
 #include "libccc/stringarray.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 t_char**		StringArray_Map(t_char const** strarr, t_char* (*map)(t_char const*))
@@ -10,9 +12,9 @@ t_char**		StringArray_Map(t_char const** strarr, t_char* (*map)(t_char const*))
 	t_u32	i;
 	t_char**	result;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, strarr)
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, *strarr)
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, map)
+	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (*strarr == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (map == NULL), return (NULL);)
 	if (!(result = StringArray_New(StringArray_Length(strarr))))
 		return (NULL);
 	i = 0;
@@ -31,9 +33,9 @@ void		StringArray_Map_InPlace(t_char** *a_strarr, t_char* (*map)(t_char*))
 	t_u32	i;
 	t_char*	tmp;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(, a_strarr)
-	LIBCONFIG_HANDLE_NULLPOINTER(, *a_strarr)
-	LIBCONFIG_HANDLE_NULLPOINTER(, map)
+	HANDLE_ERROR(NULLPOINTER, (a_strarr == NULL), return;)
+	HANDLE_ERROR(NULLPOINTER, (*a_strarr == NULL), return;)
+	HANDLE_ERROR(NULLPOINTER, (map == NULL), return;)
 	i = 0;
 	while ((*a_strarr)[i])
 	{

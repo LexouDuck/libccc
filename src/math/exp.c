@@ -1,6 +1,8 @@
 
 #include "libccc/math/math.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 #if LIBCONFIG_USE_FAST_APPROX_MATH

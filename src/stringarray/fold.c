@@ -2,6 +2,9 @@
 #include "libccc/string.h"
 #include "libccc/stringarray.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
+
 
 static void	StringArray_GetWordAndCharCount(t_char const** strarr, int* w_nb, int* c_nb)
 {
@@ -54,8 +57,8 @@ t_char*		StringArray_Fold(t_char const** strarr, t_char const* separator)
 	int		total_sep_char_nb;
 	int		total_char_nb;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, strarr)
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, separator)
+	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (separator == NULL), return (NULL);)
 	strarr_str_nb = 0;
 	strarr_char_nb = 0;
 	StringArray_GetWordAndCharCount(strarr, &strarr_str_nb, &strarr_char_nb);

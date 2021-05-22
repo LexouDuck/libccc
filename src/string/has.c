@@ -1,6 +1,8 @@
 
 #include "libccc/string.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 t_bool		String_Has(t_char const* str, t_char const* charset)
@@ -8,8 +10,8 @@ t_bool		String_Has(t_char const* str, t_char const* charset)
 	t_size	i;
 	t_size	c;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(FALSE, str)
-	LIBCONFIG_HANDLE_NULLPOINTER(FALSE, charset)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (FALSE);)
+	HANDLE_ERROR(NULLPOINTER, (charset == NULL), return (FALSE);)
 	i = 0;
 	while (str[i])
 	{
@@ -33,8 +35,8 @@ t_bool		String_HasOnly(t_char const* str, t_char const* charset)
 	t_size	c;
 	t_bool	match;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(FALSE, str)
-	LIBCONFIG_HANDLE_NULLPOINTER(FALSE, charset)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (FALSE);)
+	HANDLE_ERROR(NULLPOINTER, (charset == NULL), return (FALSE);)
 	i = 0;
 	while (str[i])
 	{

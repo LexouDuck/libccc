@@ -17,9 +17,12 @@
 #include "libccc/monad/array.h"
 #include "libccc/sys/io.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
 
 
-static	int		gnl_read(t_fd const fd, t_char** a_newline)
+
+static
+int		gnl_read(t_fd const fd, t_char** a_newline)
 {
 	static t_size	buf_pos = 0;
 	static char		buffer[IO_BUFFER_SIZE + 1] = {0};
@@ -68,7 +71,9 @@ static	int		gnl_read(t_fd const fd, t_char** a_newline)
 	return (status);
 }
 
-int				IO_Read_NextLine(t_fd const fd, t_char** a_line)
+
+
+int		IO_Read_NextLine(t_fd const fd, t_char** a_line)
 {
 	t_char*			new_line = NULL;
 	int				status = GNL_ERROR;

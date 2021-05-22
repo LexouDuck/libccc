@@ -2,6 +2,8 @@
 #include "libccc/sys/time.h"
 #include "libccc/math/random.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 t_u32		random_U32 = DEFAULT_SEED;

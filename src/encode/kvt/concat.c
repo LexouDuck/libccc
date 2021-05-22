@@ -2,6 +2,8 @@
 #include "libccc.h"
 #include "libccc/encode/common.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 s_kvt*	KVT_Concat(s_kvt const* a, s_kvt const* b)

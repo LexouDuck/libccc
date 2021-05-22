@@ -2,6 +2,8 @@
 #include "libccc/bool.h"
 #include "libccc/char.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 inline

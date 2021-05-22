@@ -5,10 +5,12 @@
 #include "libccc/string.h"
 #include "libccc/encode/common.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
 
 
-// Utility for handling references.
-static s_kvt* create_reference(s_kvt const* item)
+
+static
+s_kvt*	create_reference(s_kvt const* item)
 {
 	s_kvt* reference = NULL;
 	if (item == NULL)
@@ -63,7 +65,7 @@ e_error_kvt	add_item_to_array(s_kvt* array, s_kvt* item)
 
 
 static
-e_error_kvt add_item_to_object(s_kvt* object, t_char const* key, s_kvt* const item)
+e_error_kvt	add_item_to_object(s_kvt* object, t_char const* key, s_kvt* const item)
 {
 	t_char* new_key = NULL;
 	t_sint new_type = DYNAMICTYPE_INVALID;

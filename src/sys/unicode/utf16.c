@@ -4,11 +4,13 @@
 #include "libccc/string.h"
 #include "libccc/sys/io.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 t_size		UTF32_ToUTF16(t_utf16* dest, t_utf32 c)
 {
-	LIBCONFIG_HANDLE_NULLPOINTER(0, dest)
+	HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (0);)
 	if (c >= UTF16_SURROGATE_HI)
 	{
 		if (c < UTF16_SURROGATE_END) // INVALID UTF-16
@@ -31,7 +33,7 @@ t_utf32		UTF32_FromUTF16(t_utf16 const* str)
 {
 	t_u16 c;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(ERROR, str)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (ERROR);)
 	c = str[0];
 	if (c >= UTF16_SURROGATE_HI)
 	{

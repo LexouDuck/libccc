@@ -1,6 +1,8 @@
 
 #include "libccc/math/algebra.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 s_vector3d	Vector3D_Cross(s_vector3d const* v1, s_vector3d const* v2)

@@ -12,6 +12,9 @@
 #include "libccc/memory.h"
 #include "libccc/monad/array.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
+
 
 _GENERIC()
 s_array_T	CONCAT(Array_New,T_NAME)(t_uint n, ...)

@@ -2,6 +2,8 @@
 #include "libccc/math/math.h"
 #include "libccc/color.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 t_argb16 const*		Color_ARGB16_GetNearest(
@@ -13,7 +15,7 @@ t_argb16 const*		Color_ARGB16_GetNearest(
 	t_u16 min_diff;
 	t_argb16 const* result;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, colors)
+	HANDLE_ERROR(NULLPOINTER, (colors == NULL), return (NULL);)
 	min_diff = U16_MAX;
 	result = NULL;
 	while (n--)
@@ -39,7 +41,7 @@ t_argb32 const*		Color_ARGB32_GetNearest(
 	t_u32 min_diff;
 	t_argb32 const* result;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, colors)
+	HANDLE_ERROR(NULLPOINTER, (colors == NULL), return (NULL);)
 	min_diff = U32_MAX;
 	result = NULL;
 	while (n--)
@@ -65,7 +67,7 @@ s_argb const*		Color_ARGB_GetNearest(
 	t_u32 min_diff;
 	s_argb const* result;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, colors)
+	HANDLE_ERROR(NULLPOINTER, (colors == NULL), return (NULL);)
 	min_diff = U32_MAX;
 	result = NULL;
 	while (n--)

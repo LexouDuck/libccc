@@ -4,6 +4,8 @@
 #include "libccc/string.h"
 #include "libccc/encode/common.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 #define KVT_CREATE_ARRAY(_TYPE_) \

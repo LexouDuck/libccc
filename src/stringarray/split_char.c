@@ -2,6 +2,8 @@
 #include "libccc/string.h"
 #include "libccc/stringarray.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 static int	String_Split_Char_GetCount(t_char const* str, t_char c)
@@ -33,6 +35,8 @@ static int	String_Split_Char_GetCount(t_char const* str, t_char c)
 	return (result);
 }
 
+
+
 t_char**		String_Split_Char(t_char const* str, t_char c)
 {
 	t_char**	result;
@@ -41,7 +45,7 @@ t_char**		String_Split_Char(t_char const* str, t_char c)
 	int		count;
 	int		i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
 	count = String_Split_Char_GetCount(str, c);
 	if (!(result = StringArray_New(count)))
 		return (NULL);

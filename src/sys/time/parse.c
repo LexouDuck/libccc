@@ -3,6 +3,8 @@
 #include "libccc/sys/io.h"
 #include "libccc/sys/time.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 #ifndef strptime
@@ -73,7 +75,11 @@ __weak_alias(strptime,_strptime)
 #define PARSINGERROR_DATE_MESSAGE	"Error while parsing date: "
 //! used to handle errors during parsing
 #define PARSINGERROR_DATE(MESSAGE, ...) \
-	LIBCONFIG_HANDLE_PARSINGERROR(0, "%s"MESSAGE, "", __VA_ARGS__)
+{											\
+	LIBCONFIG_HANDLE_ERROR_PARSINGERROR(	\
+		"%s"MESSAGE, "", __VA_ARGS__)		\
+	return (0);								\
+}											\
 
 
 
@@ -749,8 +755,8 @@ s_date		Date_Parse(t_char const* str, t_char const* format)
 {
 	s_date result = DATE_NULL;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(DATE_NULL, str)
-	LIBCONFIG_HANDLE_NULLPOINTER(DATE_NULL, format)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (DATE_NULL);)
+	HANDLE_ERROR(NULLPOINTER, (format == NULL), return (DATE_NULL);)
 	Date_Parse_(&result, str, format, FALSE, FALSE);
 	return (result);
 }
@@ -761,8 +767,8 @@ s_date		Date_Parse_Min(t_char const* str, t_char const* format)
 {
 	s_date result = DATE_NULL;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(DATE_NULL, str)
-	LIBCONFIG_HANDLE_NULLPOINTER(DATE_NULL, format)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (DATE_NULL);)
+	HANDLE_ERROR(NULLPOINTER, (format == NULL), return (DATE_NULL);)
 	Date_Parse_(&result, str, format, TRUE, FALSE);
 	return (result);
 }
@@ -774,8 +780,8 @@ t_size		Date_Parse_Strict(s_date* dest, t_char const* str, t_char const* format)
 	s_date result = DATE_NULL;
 	t_size parsed;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(0, str)
-	LIBCONFIG_HANDLE_NULLPOINTER(0, format)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
+	HANDLE_ERROR(NULLPOINTER, (format == NULL), return (0);)
 	parsed = Date_Parse_(&result, str, format, FALSE, TRUE);
 	*dest = result;
 	return (parsed);
@@ -788,8 +794,8 @@ t_size		Date_Parse_Strict_Min(s_date* dest, t_char const* str, t_char const* for
 	s_date result = DATE_NULL;
 	t_size parsed;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(0, str)
-	LIBCONFIG_HANDLE_NULLPOINTER(0, format)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
+	HANDLE_ERROR(NULLPOINTER, (format == NULL), return (0);)
 	parsed = Date_Parse_(&result, str, format, TRUE, TRUE);
 	*dest = result;
 	return (parsed);

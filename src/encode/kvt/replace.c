@@ -4,6 +4,8 @@
 #include "libccc/memory.h"
 #include "libccc/encode/common.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 e_error_kvt	KVT_Replace(s_kvt* const parent, s_kvt* const item, s_kvt* replacement)

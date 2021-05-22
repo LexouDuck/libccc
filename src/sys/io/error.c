@@ -12,6 +12,8 @@
 #include "libccc/string.h"
 #include "libccc/sys/io.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 inline t_char*	IO_GetError(t_io_error error)

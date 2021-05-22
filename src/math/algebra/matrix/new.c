@@ -2,6 +2,8 @@
 #include "libccc/math/algebra.h"
 #include "libccc/memory.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 s_matrix2d*		Matrix2D_New(s_vector2d const* u, s_vector2d const* v)

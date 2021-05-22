@@ -2,6 +2,9 @@
 #include "libccc/memory.h"
 #include "libccc/monad/array.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
+
 
 _GENERIC()
 s_array_T	CONCAT(Array_Filter,T_NAME)(s_array_T const* array, t_bool (*filter)(T item))
@@ -11,9 +14,9 @@ s_array_T	CONCAT(Array_Filter,T_NAME)(s_array_T const* array, t_bool (*filter)(T
 	t_uint	amount;
 	t_uint	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(result, filter)
-	LIBCONFIG_HANDLE_NULLPOINTER(result, array)
-	LIBCONFIG_HANDLE_NULLPOINTER(result, array->items)
+	HANDLE_ERROR(NULLPOINTER, (filter == NULL), return (result);)
+	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (result);)
+	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return (result);)
 	tmp = (t_bool*)Memory_Alloc(sizeof(t_bool) * array->length);
 	if (tmp == NULL)
 		return (result);
@@ -50,9 +53,9 @@ s_array_T	CONCAT(Array_Filter_I,T_NAME)(s_array_T const* array, t_bool (*filter)
 	t_uint	amount;
 	t_uint	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(result, filter)
-	LIBCONFIG_HANDLE_NULLPOINTER(result, array)
-	LIBCONFIG_HANDLE_NULLPOINTER(result, array->items)
+	HANDLE_ERROR(NULLPOINTER, (filter == NULL), return (result);)
+	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (result);)
+	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return (result);)
 	tmp = (t_bool*)Memory_Alloc(sizeof(t_bool) * array->length);
 	if (tmp == NULL)
 		return (result);

@@ -3,6 +3,8 @@
 #include "libccc/char.h"
 #include "libccc/encode/common.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 t_bool	KVT_IsInvalid(s_kvt const* const item)

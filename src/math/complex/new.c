@@ -2,6 +2,8 @@
 #include "libccc/math/complex.h"
 #include "libccc/memory.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 s_complex*	Complex_New(t_float re, t_float im)

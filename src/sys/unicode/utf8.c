@@ -2,6 +2,8 @@
 #include "libccc/sys/unicode.h"
 #include "libccc/pointer.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 #define MASK	((1 << 6) - 1)
@@ -12,7 +14,7 @@ t_size		UTF32_ToUTF8(t_utf8* dest, t_utf32 c)
 {
 	t_u8 mask;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(0, dest)
+	HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (0);)
 	if (UTF32_IsValid(c))
 	{
 		if (c < UTF8_1BYTE)
@@ -54,7 +56,7 @@ t_utf32		UTF32_FromUTF8(t_utf8 const* str)
 {
 	t_u8 c;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(ERROR, str)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (ERROR);)
 	c = str[0];
 	if (c & (1 << 7)) // multi-byte character
 	{

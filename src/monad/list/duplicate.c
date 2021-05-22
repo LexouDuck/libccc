@@ -2,6 +2,9 @@
 #include "libccc/memory.h"
 #include "libccc/monad/list.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
+
 
 _GENERIC()
 s_list_T*	CONCAT(List_Duplicate,T_NAME)(s_list_T const* list)
@@ -10,7 +13,7 @@ s_list_T*	CONCAT(List_Duplicate,T_NAME)(s_list_T const* list)
 	s_list_T*	elem = NULL;
 	s_list_T*	tmp;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, list)
+	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (NULL);)
 	while (list)
 	{
 		if (!(tmp = (s_list_T*)Memory_Duplicate(list, sizeof(s_list_T))))

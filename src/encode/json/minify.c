@@ -3,6 +3,8 @@
 #include "libccc/char.h"
 #include "libccc/encode/json.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 static void skip_oneline_comment(t_char** input)

@@ -3,13 +3,15 @@
 #include "libccc/string.h"
 #include "libccc/stringarray.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 void	StringArray_Delete(t_char** *a_strarr)
 {
 	int		i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(, a_strarr)
+	HANDLE_ERROR(NULLPOINTER, (a_strarr == NULL), return;)
 	if (*a_strarr)
 	{
 		i = 0;

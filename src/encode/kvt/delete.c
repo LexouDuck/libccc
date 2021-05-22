@@ -4,6 +4,8 @@
 #include "libccc/memory.h"
 #include "libccc/encode/common.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 e_error_kvt	KVT_Delete(s_kvt* item)

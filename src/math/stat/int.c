@@ -2,6 +2,8 @@
 #include "libccc/memory.h"
 #include "libccc/math/stat.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 s_list_int		c_stat_new_ilst(t_u32 length)
@@ -20,7 +22,7 @@ s_list_int		c_stat_new_ilst(t_u32 length)
 
 void			c_stat_free_ilst(s_list_int *ilst)
 {
-	LIBCONFIG_HANDLE_NULLPOINTER(, ilst)
+	HANDLE_ERROR(NULLPOINTER, (ilst == NULL), return;)
 	if (ilst->data)
 	{
 		Memory_Free(ilst->data);
@@ -50,8 +52,8 @@ s_list_int		c_stat_merge_ilst(
 	t_u32				i;
 	t_u32				j;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL_LIST_INT, start)
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL_LIST_INT, append)
+	HANDLE_ERROR(NULLPOINTER, (start == NULL), return (NULL_LIST_INT);)
+	HANDLE_ERROR(NULLPOINTER, (append == NULL), return (NULL_LIST_INT);)
 	if (start->length == 0 && append->length == 0)
 		return (c_stat_new_ilst(0));
 	else if (!start->data || start->length == 0)
@@ -242,7 +244,7 @@ s_prob_mass		c_stat_new_pmf(t_u32 length)
 
 void			c_stat_free_pmf(s_prob_mass *drv)
 {
-	LIBCONFIG_HANDLE_NULLPOINTER(, drv)
+	HANDLE_ERROR(NULLPOINTER, (drv == NULL), return;)
 	if (drv->value)
 	{
 		Memory_Free(drv->value);

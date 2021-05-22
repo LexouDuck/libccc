@@ -3,6 +3,8 @@
 #include "libccc/int.h"
 #include "libccc/memory.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 static t_size	Int_ToString_Base_GetLength(t_char const* base, t_bool sign)
@@ -10,7 +12,7 @@ static t_size	Int_ToString_Base_GetLength(t_char const* base, t_bool sign)
 	t_size	i;
 	t_size	j;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(0, base)
+	HANDLE_ERROR(NULLPOINTER, (base == NULL), return (0);)
 	i = 0;
 	while (base[i])
 	{

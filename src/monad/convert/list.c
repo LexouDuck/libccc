@@ -3,6 +3,8 @@
 #include "libccc/monad/list.h"
 #include "libccc/monad/array.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 /*
 
 void**	List_To_PointerArray(s_list const** a_lst)

@@ -3,6 +3,8 @@
 #include "libccc/math/math.h"
 #include "libccc/math/stat.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 s_list_float	c_stat_new_flst(t_u32 length)
@@ -21,7 +23,7 @@ s_list_float	c_stat_new_flst(t_u32 length)
 
 void			c_stat_free_flst(s_list_float *flst)
 {
-	LIBCONFIG_HANDLE_NULLPOINTER(, flst)
+	HANDLE_ERROR(NULLPOINTER, (flst == NULL), return;)
 	if (flst->data)
 	{
 		Memory_Free(flst->data);
@@ -51,8 +53,8 @@ s_list_float 	c_stat_merge_flst(
 	t_u32				i;
 	t_u32				j;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL_LIST_FLOAT, start)
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL_LIST_FLOAT, append)
+	HANDLE_ERROR(NULLPOINTER, (start == NULL), return (NULL_LIST_FLOAT);)
+	HANDLE_ERROR(NULLPOINTER, (append == NULL), return (NULL_LIST_FLOAT);)
 	if (start->length == 0 && append->length == 0)
 		return (c_stat_new_flst(0));
 	else if (!start->data || start->length == 0)

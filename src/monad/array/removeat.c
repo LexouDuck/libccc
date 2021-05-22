@@ -2,14 +2,17 @@
 #include "libccc/memory.h"
 #include "libccc/monad/array.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
+
 
 _GENERIC()
 void	CONCAT(Array_RemoveAt,T_NAME)(s_array_T* array, t_uint index)
 {
 	T*	result;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(, array)
-	LIBCONFIG_HANDLE_NULLPOINTER(, array->items)
+	HANDLE_ERROR(NULLPOINTER, (array == NULL), return;)
+	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return;)
 	if (array->length == 0 ||
 		array->length <= index)
 		return;
@@ -34,8 +37,8 @@ void	CONCAT(Array_RemoveAt_F,T_NAME)(s_array_T* array, t_uint index, void (*dele
 {
 	T*	result;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(, array)
-	LIBCONFIG_HANDLE_NULLPOINTER(, array->items)
+	HANDLE_ERROR(NULLPOINTER, (array == NULL), return;)
+	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return;)
 	if (array->length == 0 ||
 		array->length <= index)
 		return;

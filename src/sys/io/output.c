@@ -27,37 +27,44 @@
 #include "libccc/sys/io.h"
 #include "libccc/string.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
 
 
-inline t_io_error	IO_Output_Char(char c)
+
+inline
+t_io_error	IO_Output_Char(char c)
 {
 	return (IO_Write_Char(STDOUT, c));
 }
 
 
 
-inline t_io_error	IO_Output_String(t_char const* str)
+inline
+t_io_error	IO_Output_String(t_char const* str)
 {
 	return (IO_Write_String(STDOUT, str));
 }
 
 
 
-inline t_io_error	IO_Output_Line(t_char const* str)
+inline
+t_io_error	IO_Output_Line(t_char const* str)
 {
 	return (IO_Write_Line(STDOUT, str));
 }
 
 
 
-inline t_io_error	IO_Output_Lines(t_char const** strarr)
+inline
+t_io_error	IO_Output_Lines(t_char const** strarr)
 {
 	return (IO_Write_Lines(STDOUT, strarr));
 }
 
 
 
-inline t_io_error	IO_Output_Memory(t_u8 const* ptr, t_size n, t_u8 cols)
+inline
+t_io_error	IO_Output_Memory(t_u8 const* ptr, t_size n, t_u8 cols)
 {
 	return (IO_Write_Memory(STDOUT, ptr, n, cols));
 }
@@ -66,7 +73,7 @@ inline t_io_error	IO_Output_Memory(t_u8 const* ptr, t_size n, t_u8 cols)
 
 t_io_error			IO_Output_Format(t_char const* format, ...)
 {
-	LIBCONFIG_HANDLE_NULLPOINTER(OK, format)
+	HANDLE_ERROR(NULLPOINTER, (format == NULL), return (OK);)
 	int result;
 	t_char* str;
 	va_list args;

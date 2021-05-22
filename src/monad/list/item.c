@@ -2,6 +2,9 @@
 #include "libccc/memory.h"
 #include "libccc/monad/list.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
+
 
 _GENERIC()
 s_list_T*	CONCAT(List_Item,T_NAME)(T item)

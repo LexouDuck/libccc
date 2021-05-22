@@ -2,6 +2,8 @@
 #include "libccc/memory.h"
 #include "libccc/encode/common.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 s_kvt*	KVT_Item(void)
