@@ -117,7 +117,7 @@ s_json_parse*	JSON_Parse_SkipUTF8BOM(s_json_parse* const p)
 {
 	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, (p->content == NULL), return (NULL);)
-	HANDLE_ERROR(INDEX2LARGE, (p->offset < p->length), return (NULL);)
+	HANDLE_ERROR(INDEX2LARGE, (p->offset >= p->length), return (NULL);)
 	if (CAN_PARSE(4) && (String_Compare_N(&p->content[p->offset], UTF8_BOM, 3) == 0))
 	{
 		p->offset += 3;
