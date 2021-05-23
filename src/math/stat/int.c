@@ -14,7 +14,7 @@ s_list_int		c_stat_new_ilst(t_u32 length)
 	result.length = 0;
 	if (length == 0)
 		return (result);
-	result.data = (t_sint*)Memory_Alloc(sizeof(t_sint) * length);
+	result.data = (t_sint*)Memory_Allocate(sizeof(t_sint) * length);
 	HANDLE_ERROR(ALLOCFAILURE, (result.data == NULL), return (result);)
 	result.length = length;
 	return (result);
@@ -235,9 +235,9 @@ s_prob_mass		c_stat_new_pmf(t_u32 length)
 	result.prob = NULL;
 	result.length = 0;
 	if (length == 0)	return (result);
-	result.value = (t_float*)Memory_Alloc(length * sizeof(t_float));
+	result.value = (t_float*)Memory_Allocate(length * sizeof(t_float));
 	HANDLE_ERROR(ALLOCFAILURE, (result.value == NULL), return (result);)
-	result.prob = (t_float*)Memory_Alloc(length * sizeof(t_float));
+	result.prob = (t_float*)Memory_Allocate(length * sizeof(t_float));
 	HANDLE_ERROR(ALLOCFAILURE, (result.prob == NULL), return (result);)
 	result.length = length;
 	return (result);

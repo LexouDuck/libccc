@@ -14,7 +14,7 @@ void*		Memory_Join(
 
 	HANDLE_ERROR(NULLPOINTER, (ptr1 == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, (ptr2 == NULL), return (NULL);)
-	result = (t_u8*)Memory_Alloc(length1 + length2 + 1);
+	result = (t_u8*)Memory_Allocate(length1 + length2 + 1);
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	i = 0;
 	while (i < length1)

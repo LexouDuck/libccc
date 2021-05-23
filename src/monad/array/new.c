@@ -27,7 +27,7 @@ s_array_T	CONCAT(Array_New,T_NAME)(t_uint n, ...)
 	result.items = NULL;
 	if (n == 0)
 		return (result);
-	result.items = (T*)Memory_Alloc(sizeof(T) * n);
+	result.items = (T*)Memory_Allocate(sizeof(T) * n);
 	HANDLE_ERROR(ALLOCFAILURE, (result.items == NULL), return (result);)
 	va_start(args, n);
 	for (t_uint i = 1; i <= n; ++i)

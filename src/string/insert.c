@@ -17,7 +17,7 @@ t_char*	String_Insert(t_char const* dest, t_char const* src, t_size offset)
 	HANDLE_ERROR(NULLPOINTER, (src == NULL), return (NULL);)
 	len_dst = String_Length(dest);
 	len_src = String_Length(src);
-	result = (t_char*)Memory_Alloc(len_dst + len_src + sizeof(""));
+	result = (t_char*)Memory_Allocate(len_dst + len_src + sizeof(""));
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	i = (t_size)-1;
 	while (++i < offset)

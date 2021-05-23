@@ -17,7 +17,7 @@ t_char*	String_Reverse(t_char const* str)
 	length = 0;
 	while (str[length])
 		++length;
-	result = (t_char*)Memory_Alloc(length + sizeof(""));
+	result = (t_char*)Memory_Allocate(length + sizeof(""));
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	i = 0;
 	j = length - 1;

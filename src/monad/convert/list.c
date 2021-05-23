@@ -22,7 +22,7 @@ void**	List_To_PointerArray(s_list const** a_lst)
 	lst = *a_lst;
 	count = List_(lst);
 	length = (count + 1) * sizeof(void* );
-	result = (void**)Memory_Alloc(length);
+	result = (void**)Memory_Allocate(length);
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	i = 0;
 	while (lst && i < count)
@@ -58,7 +58,7 @@ s_array	List_To_Array(s_list const** a_lst)
 			return (ARRAY_NULL);
 	}
 	result.item_count = (count + 1);
-	result.items = (void*)Memory_Alloc(result.item_count * result.item_size);
+	result.items = (void*)Memory_Allocate(result.item_count * result.item_size);
 	HANDLE_ERROR(ALLOCFAILURE, (result.items == NULL), return (ARRAY_NULL);)
 	i = 0;
 	while (lst && ++i < count)

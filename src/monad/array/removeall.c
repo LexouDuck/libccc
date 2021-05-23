@@ -32,7 +32,7 @@ void	CONCAT(Array_RemoveAll,T_NAME)(s_array_T* array, T item)
 		array->length = 0;
 		return;
 	}
-	result = (T*)Memory_Alloc(sizeof(T) * (array->length - amount));
+	result = (T*)Memory_Allocate(sizeof(T) * (array->length - amount));
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return;)
 	amount = 0;
 	for (i = 0; i < array->length; ++i)
@@ -76,7 +76,7 @@ void	CONCAT(Array_RemoveAll_F,T_NAME)(s_array_T* array, T item, void (*delete)(T
 		array->length = 0;
 		return;
 	}
-	result = (T*)Memory_Alloc(sizeof(T) * (array->length - amount));
+	result = (T*)Memory_Allocate(sizeof(T) * (array->length - amount));
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return;)
 	amount = 0;
 	for (i = 0; i < array->length; ++i)

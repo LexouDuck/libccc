@@ -87,7 +87,7 @@ t_utf8*	ensure(s_json_print* p, t_size needed)
 	}
 #else
 	// otherwise reallocate manually
-	newbuffer = (t_utf8*)Memory_Alloc(newsize);
+	newbuffer = (t_utf8*)Memory_Allocate(newsize);
 	HANDLE_ERROR(ALLOCFAILURE, (newbuffer == NULL),
 		Memory_Free(p->buffer);
 		p->length = 0;
@@ -592,7 +592,7 @@ t_utf8*	JSON_Print_(s_json const* item, t_bool format)
 	// create buffer
 	buffer->format = format;
 	buffer->length = default_buffer_size;
-	buffer->buffer = (t_utf8*)Memory_Alloc(default_buffer_size);
+	buffer->buffer = (t_utf8*)Memory_Allocate(default_buffer_size);
 	HANDLE_ERROR(ALLOCFAILURE, (buffer->buffer == NULL), goto failure;)
 	// print the value
 	if (!JSON_Print_Value(item, buffer))
@@ -600,11 +600,11 @@ t_utf8*	JSON_Print_(s_json const* item, t_bool format)
 	JSON_Print_UpdateOffset(buffer);
 
 #ifdef Memory_Realloc // check if reallocate is available
-		printed = (t_utf8*)Memory_Realloc(buffer->buffer, buffer->offset + 1);
+		printed = (t_utf8*)Memory_Reallocate(buffer->buffer, buffer->offset + 1);
 		HANDLE_ERROR(ALLOCFAILURE, (printed == NULL), goto failure;)
 		buffer->buffer = NULL;
 #else // otherwise copy the JSON over to a new buffer
-		printed = (t_utf8*)Memory_Alloc(buffer->offset + 1);
+		printed = (t_utf8*)Memory_Allocate(buffer->offset + 1);
 		HANDLE_ERROR(ALLOCFAILURE, (printed == NULL), goto failure;)
 		Memory_Copy(printed, buffer->buffer, MIN(buffer->length, buffer->offset + 1));
 		printed[buffer->offset] = '\0'; // just to be sure
@@ -644,7 +644,7 @@ t_utf8*	JSON_Print_Buffered(s_json const* item, t_sint prebuffer, t_bool fmt)
 
 	if (prebuffer < 0)
 		return (NULL);
-	p.buffer = (t_utf8*)Memory_Alloc((t_size)prebuffer);
+	p.buffer = (t_utf8*)Memory_Allocate((t_size)prebuffer);
 	HANDLE_ERROR(ALLOCFAILURE, (p.buffer == NULL), return (NULL);)
 	p.length = (t_size)prebuffer;
 	p.offset = 0;
@@ -662,9 +662,8 @@ t_bool	JSON_Print_Preallocated(s_json* item, t_utf8* buffer, t_sint length, t_bo
 {
 	s_json_print p = { 0 };
 
-	if ((length < 0) || (buffer == NULL))
-		return (FALSE);
-
+	HANDLE_ERROR(NULLPOINTER, (buffer == NULL), return (FALSE);)
+	HANDLE_ERROR(LENGTH2SMALL, (length < 0), return (FALSE);)
 	p.buffer = (t_utf8*)buffer;
 	p.length = (t_size)length;
 	p.offset = 0;

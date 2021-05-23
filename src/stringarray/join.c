@@ -18,7 +18,7 @@ t_char**	StringArray_Join(t_char const** strarr1, t_char const** strarr2)
 	HANDLE_ERROR(NULLPOINTER, (strarr2 == NULL), return (NULL);)
 	length1 = StringArray_Length(strarr1);
 	length2 = StringArray_Length(strarr2);
-	result = (t_char**)Memory_Alloc(sizeof(t_char*) * (length1 + length2 + 1));
+	result = (t_char**)Memory_Allocate(sizeof(t_char*) * (length1 + length2 + 1));
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	i = 0;
 	while (i < length1)

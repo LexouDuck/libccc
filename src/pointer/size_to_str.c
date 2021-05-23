@@ -49,7 +49,7 @@ t_char*	Size_ToString_Pretty(t_size number)
 	}
 	if (i == 0)
 		digits[i++] = 0;
-	result = (t_char*)Memory_Alloc(i + 3);
+	result = (t_char*)Memory_Allocate(i + 3);
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	n = 0;
 	while (i--)

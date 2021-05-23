@@ -233,7 +233,7 @@ static t_bool JSON_Parse_String(s_json* const item, s_json_parse* const p)
 		PARSINGERROR_JSON("Could not parse string: Unexpected end of input before closing quote")
 	// This is at most how much we need for the output
 	allocation_length = (t_size)(input_end - &p->content[p->offset]) - skipped_bytes;
-	output = (t_utf8*)Memory_Alloc(allocation_length + sizeof(""));
+	output = (t_utf8*)Memory_Allocate(allocation_length + sizeof(""));
 	if (output == NULL)
 		PARSINGERROR_JSON("Could not parse string: Allocation failure")
 	output_pointer = output;

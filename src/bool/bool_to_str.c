@@ -11,7 +11,7 @@ t_char*	Bool_ToString(t_bool value, t_bool uppercase)
 {
 	t_char*	result;
 
-	result = (t_char*)Memory_Alloc(value ? 5 : 6);
+	result = (t_char*)Memory_Allocate(value ? 5 : 6);
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	if (value)
 	{

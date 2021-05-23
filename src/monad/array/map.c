@@ -15,7 +15,7 @@ s_array_T	CONCAT(Array_Map,T_NAME)(s_array_T const* array, T (*map)(T item))
 	HANDLE_ERROR(NULLPOINTER, (map == NULL), return (result);)
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (result);)
 	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return (result);)
-	result.items = (T*)Memory_Alloc(sizeof(T) * array->length);
+	result.items = (T*)Memory_Allocate(sizeof(T) * array->length);
 	HANDLE_ERROR(ALLOCFAILURE, (result.items == NULL), return (result);)
 	result.length = array->length;
 	for (i = 0; i < result.length; ++i)
@@ -35,7 +35,7 @@ s_array_T	CONCAT(Array_Map_I,T_NAME)(s_array_T const* array, T (*map)(T item, t_
 	HANDLE_ERROR(NULLPOINTER, (map == NULL), return (result);)
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (result);)
 	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return (result);)
-	result.items = (T*)Memory_Alloc(sizeof(T) * array->length);
+	result.items = (T*)Memory_Allocate(sizeof(T) * array->length);
 	HANDLE_ERROR(ALLOCFAILURE, (result.items == NULL), return (result);)
 	result.length = array->length;
 	for (i = 0; i < result.length; ++i)

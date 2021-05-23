@@ -61,7 +61,7 @@ t_char*	F##BITS##_ToString_Exp(t_f##BITS number, t_u8 precision)			\
 	HANDLE_ERROR(ALLOCFAILURE,												\
 		!(*result_exponent = S16_ToString(F##BITS##_GetExp10(&number))) ||	\
 		!(*result_mantissa = F##BITS##_ToString_Dec(number, precision)) ||	\
-		!(result = (t_char*)Memory_Alloc(2 + (t_u8)sign						\
+		!(result = (t_char*)Memory_Allocate(2 + (t_u8)sign					\
 			+ String_Length(*result_mantissa)								\
 			+ String_Length(*result_exponent)))),							\
 		goto failure;)														\
@@ -104,7 +104,7 @@ static t_char*	F##BITS##_ToString_Dec(t_f##BITS number, t_u8 precision)	\
 			if (n == 0 && number != 0)										\
 				digits[i++] = '0';											\
 	}																		\
-	result = (t_char*)Memory_Alloc(i + 2);									\
+	result = (t_char*)Memory_Allocate(i + 2);								\
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)			\
 	result[0] = (number == 0) ? '0' : '-';									\
 	n = (number <= 0) ? 1 : 0;												\

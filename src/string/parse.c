@@ -75,7 +75,7 @@ t_char*	String_Parse(t_char const* str, t_bool any_escape)
 	t_size	i = 0;
 
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
-	result = (t_char*)Memory_Alloc(String_Parse_GetLength(str, any_escape) + sizeof(""));
+	result = (t_char*)Memory_Allocate(String_Parse_GetLength(str, any_escape) + sizeof(""));
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	while (str[index])
 	{

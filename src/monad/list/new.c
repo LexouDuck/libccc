@@ -31,7 +31,7 @@ s_list_T*	CONCAT(List_New,T_NAME)(t_uint n, ...)
 	for (t_uint i = 0; i < n; ++i)
 	{
 		item = va_arg(args, T);
-		new = (s_list_T*)Memory_Alloc(sizeof(s_list_T));
+		new = (s_list_T*)Memory_Allocate(sizeof(s_list_T));
 		HANDLE_ERROR(ALLOCFAILURE, (new == NULL), break;)
 #if LIBCONFIG_LIST_DOUBLYLINKED
 		new->prev = NULL;
