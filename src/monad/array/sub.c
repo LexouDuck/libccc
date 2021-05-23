@@ -16,8 +16,7 @@ s_array_T		CONCAT(Array_Sub,T_NAME)(s_array_T const* array, t_uint index, t_uint
 	if (index > array->length || index + n > array->length)
 		return (result);
 	result.items = (T*)Memory_Alloc(sizeof(T) * n);
-	if (result.items == NULL)
-		return (result);
+	HANDLE_ERROR(ALLOCFAILURE, (result.items == NULL), return (result);)
 	result.length = n;
 	for (t_uint i = 0; i < n; ++i)
 	{

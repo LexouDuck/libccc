@@ -23,8 +23,8 @@ t_char*	U##BITS##_ToString_Bin(t_u##BITS number, t_bool prefix)			\
 	}																	\
 	if (i == 0)															\
 		digits[i++] = 0;												\
-	if (!(result = (t_char*)Memory_Alloc((prefix ? 2 : 0) + i + 1)))		\
-		return (NULL);													\
+	result = (t_char*)Memory_Alloc((prefix ? 2 : 0) + i + 1);			\
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)		\
 	n = 0;																\
 	if (prefix)															\
 	{																	\
@@ -64,8 +64,8 @@ t_char*	S##BITS##_ToString_Bin(t_s##BITS number, t_bool prefix)			\
 		digits[i++] = n % 2;											\
 		n /= 2;															\
 	}																	\
-	if (!(result = (t_char*)Memory_Alloc((prefix ? 2 : 0) + i + 1)))		\
-		return (NULL);													\
+	result = (t_char*)Memory_Alloc((prefix ? 2 : 0) + i + 1);			\
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)		\
 	n = 0;																\
 	if (number < 0) 	result[n++] = '-';								\
 	if (number == 0)	result[n++] = '0';								\

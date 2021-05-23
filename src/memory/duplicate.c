@@ -12,9 +12,9 @@ void*	Memory_Duplicate(const void* ptr, t_size n)
 	t_size	i;
 
 	HANDLE_ERROR(NULLPOINTER, (ptr == NULL), return (NULL);)
-	if (!(result = (t_u8* )Memory_Alloc(n)))
-		return (NULL);
-	source = (t_u8* )ptr;
+	result = (t_u8*)Memory_Alloc(n);
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	source = (t_u8*)ptr;
 	i = 0;
 	while (i < n)
 	{

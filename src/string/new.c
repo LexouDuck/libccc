@@ -11,8 +11,8 @@ t_char*	String_New(t_size n)
 	t_char*	result;
 	t_size	i;
 
-	if (!(result = (t_char*)Memory_Alloc(n + sizeof(""))))
-		return (NULL);
+	result = (t_char*)Memory_Alloc(n + sizeof(""));
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	i = 0;
 	while (i < n)
 	{
@@ -30,8 +30,8 @@ t_char*	String_New_C(t_size n, t_char c)
 	t_char*	result;
 	t_size	i;
 
-	if (!(result = (t_char*)Memory_Alloc(n + sizeof(""))))
-		return (NULL);
+	result = (t_char*)Memory_Alloc(n + sizeof(""));
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	i = 0;
 	while (i < n)
 	{

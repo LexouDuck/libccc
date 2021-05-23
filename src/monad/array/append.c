@@ -14,8 +14,7 @@ void	CONCAT(Array_Append,T_NAME)(s_array_T* array, T item)
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return;)
 	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return;)
 	result = (T*)Memory_Alloc(sizeof(T) * (array->length + 1));
-	if (result == NULL)
-		return;
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return;)
 	for (t_uint i = 0; i < array->length; ++i)
 	{
 		result[i] = array->items[i];

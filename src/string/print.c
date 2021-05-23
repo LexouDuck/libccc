@@ -54,8 +54,8 @@ t_char*	String_Print(t_char const* str, t_char const* charset_extra)
 	t_size	i = 0;
 
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
-	if (!(result = (t_char*)Memory_Alloc(String_Print_GetLength(str, charset_extra) + sizeof(""))))
-		return (NULL);
+	result = (t_char*)Memory_Alloc(String_Print_GetLength(str, charset_extra) + sizeof(""));
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	while (str[index])
 	{
 		switch (str[index])

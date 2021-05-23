@@ -15,8 +15,8 @@ s_list_float	c_stat_new_flst(t_u32 length)
 	result.length = 0;
 	if (length == 0)
 		return (result);
-	if (!(result.data = (t_float*)Memory_Alloc(sizeof(t_float) * length)))
-		return (result);
+	result.data = (t_float*)Memory_Alloc(sizeof(t_float) * length);
+	HANDLE_ERROR(ALLOCFAILURE, (result.data == NULL), return (result);)
 	result.length = length;
 	return (result);
 }

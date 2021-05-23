@@ -31,8 +31,9 @@ t_char*	U##BITS##_ToString(t_u##BITS number)			\
 	}													\
 	if (i == 0)											\
 		digits[i++] = 0;								\
-	if (!(result = (t_char*)Memory_Alloc(i + 1)))			\
-		return (NULL);									\
+	result = (t_char*)Memory_Alloc(i + 1);				\
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL),		\
+		return (NULL);)									\
 	n = 0;												\
 	while (i--)											\
 		result[n++] = '0' + digits[i];					\
@@ -67,8 +68,9 @@ t_char*	S##BITS##_ToString(t_s##BITS number)			\
 		digits[i++] = n % 10;							\
 		n /= 10;										\
 	}													\
-	if (!(result = (t_char*)Memory_Alloc(i + 2)))			\
-		return (NULL);									\
+	result = (t_char*)Memory_Alloc(i + 2);				\
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL),		\
+		return (NULL);)									\
 	result[0] = (number == 0) ? '0' : '-';				\
 	n = (number <= 0) ? 1 : 0;							\
 	while (i--)											\

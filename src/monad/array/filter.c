@@ -18,8 +18,7 @@ s_array_T	CONCAT(Array_Filter,T_NAME)(s_array_T const* array, t_bool (*filter)(T
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (result);)
 	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return (result);)
 	tmp = (t_bool*)Memory_Alloc(sizeof(t_bool) * array->length);
-	if (tmp == NULL)
-		return (result);
+	HANDLE_ERROR(ALLOCFAILURE, (tmp == NULL), return (result);)
 	amount = 0;
 	for (i = 0; i < array->length; ++i)
 	{
@@ -28,6 +27,7 @@ s_array_T	CONCAT(Array_Filter,T_NAME)(s_array_T const* array, t_bool (*filter)(T
 			++amount;
 	}
 	result.items = (T*)Memory_Alloc(sizeof(T) * amount);
+	HANDLE_ERROR(ALLOCFAILURE, (result.items == NULL), return (result);)
 	if (result.items == NULL)
 		return (result);
 	result.length = amount;
@@ -57,8 +57,7 @@ s_array_T	CONCAT(Array_Filter_I,T_NAME)(s_array_T const* array, t_bool (*filter)
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (result);)
 	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return (result);)
 	tmp = (t_bool*)Memory_Alloc(sizeof(t_bool) * array->length);
-	if (tmp == NULL)
-		return (result);
+	HANDLE_ERROR(ALLOCFAILURE, (tmp == NULL), return (result);)
 	amount = 0;
 	for (i = 0; i < array->length; ++i)
 	{

@@ -88,13 +88,12 @@ t_utf8*	ensure(s_json_print* p, t_size needed)
 #else
 	// otherwise reallocate manually
 	newbuffer = (t_utf8*)Memory_Alloc(newsize);
-	if (newbuffer == NULL)
-	{
+	HANDLE_ERROR(ALLOCFAILURE, (newbuffer == NULL),
 		Memory_Free(p->buffer);
 		p->length = 0;
 		p->buffer = NULL;
 		return (NULL);
-	}	
+	)
 	Memory_Copy(newbuffer, p->buffer, p->offset + 1);
 	Memory_Free(p->buffer);
 #endif
@@ -591,33 +590,22 @@ t_utf8*	JSON_Print_(s_json const* item, t_bool format)
 
 	Memory_Set(buffer, 0, sizeof(buffer));
 	// create buffer
-	buffer->buffer = (t_utf8*)Memory_Alloc(default_buffer_size);
-	buffer->length = default_buffer_size;
 	buffer->format = format;
-	if (buffer->buffer == NULL)
-	{
-		goto failure;
-	}
+	buffer->length = default_buffer_size;
+	buffer->buffer = (t_utf8*)Memory_Alloc(default_buffer_size);
+	HANDLE_ERROR(ALLOCFAILURE, (buffer->buffer == NULL), goto failure;)
 	// print the value
 	if (!JSON_Print_Value(item, buffer))
-	{
 		goto failure;
-	}
 	JSON_Print_UpdateOffset(buffer);
 
 #ifdef Memory_Realloc // check if reallocate is available
 		printed = (t_utf8*)Memory_Realloc(buffer->buffer, buffer->offset + 1);
-		if (printed == NULL)
-		{
-			goto failure;
-		}
+		HANDLE_ERROR(ALLOCFAILURE, (printed == NULL), goto failure;)
 		buffer->buffer = NULL;
 #else // otherwise copy the JSON over to a new buffer
-		printed = (t_utf8*) Memory_Alloc(buffer->offset + 1);
-		if (printed == NULL)
-		{
-			goto failure;
-		}
+		printed = (t_utf8*)Memory_Alloc(buffer->offset + 1);
+		HANDLE_ERROR(ALLOCFAILURE, (printed == NULL), goto failure;)
 		Memory_Copy(printed, buffer->buffer, MIN(buffer->length, buffer->offset + 1));
 		printed[buffer->offset] = '\0'; // just to be sure
 
@@ -631,7 +619,6 @@ failure:
 	{
 		Memory_Free(buffer->buffer);
 	}
-
 	if (printed != NULL)
 	{
 		Memory_Free(printed);
@@ -658,8 +645,7 @@ t_utf8*	JSON_Print_Buffered(s_json const* item, t_sint prebuffer, t_bool fmt)
 	if (prebuffer < 0)
 		return (NULL);
 	p.buffer = (t_utf8*)Memory_Alloc((t_size)prebuffer);
-	if (!p.buffer)
-		return (NULL);
+	HANDLE_ERROR(ALLOCFAILURE, (p.buffer == NULL), return (NULL);)
 	p.length = (t_size)prebuffer;
 	p.offset = 0;
 	p.noalloc = FALSE;
@@ -672,7 +658,7 @@ t_utf8*	JSON_Print_Buffered(s_json const* item, t_sint prebuffer, t_bool fmt)
 	return ((t_utf8*)p.buffer);
 }
 
-t_bool	JSON_Print_Preallocated(s_json* item, t_utf8* buffer, const t_sint length, const t_bool format)
+t_bool	JSON_Print_Preallocated(s_json* item, t_utf8* buffer, t_sint length, t_bool format)
 {
 	s_json_print p = { 0 };
 

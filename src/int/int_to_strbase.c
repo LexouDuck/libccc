@@ -53,8 +53,8 @@ t_char*	U##BITS##_ToString_Base(t_u##BITS number, t_char const* base)			\
 	}																		\
 	if (i == 0)																\
 		digits[i++] = base[0];												\
-	if (!(result = (t_char*)Memory_Alloc(i + 1)))								\
-		return (NULL);														\
+	result = (t_char*)Memory_Alloc(i + 1);									\
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)			\
 	n = 0;																	\
 	while (i--)																\
 	{																		\
@@ -95,8 +95,8 @@ t_char*	S##BITS##_ToString_Base(t_s##BITS number, t_char const* base)			\
 		digits[i++] = base[n % length];										\
 		n /= length;														\
 	}																		\
-	if (!(result = (t_char*)Memory_Alloc(i + 2)))								\
-		return (NULL);														\
+	result = (t_char*)Memory_Alloc(i + 2);									\
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)			\
 	result[0] = (number == 0) ? base[0] : '-';								\
 	n = (number <= 0) ? 1 : 0;												\
 	while (i--)																\

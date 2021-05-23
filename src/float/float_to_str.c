@@ -58,12 +58,13 @@ t_char*	F##BITS##_ToString_Exp(t_f##BITS number, t_u8 precision)			\
 		return (result);													\
 	sign = (number < 0);													\
 	number = (sign ? -number : number);										\
-	if (!(*result_exponent = S16_ToString(F##BITS##_GetExp10(&number))) ||	\
+	HANDLE_ERROR(ALLOCFAILURE,												\
+		!(*result_exponent = S16_ToString(F##BITS##_GetExp10(&number))) ||	\
 		!(*result_mantissa = F##BITS##_ToString_Dec(number, precision)) ||	\
 		!(result = (t_char*)Memory_Alloc(2 + (t_u8)sign						\
 			+ String_Length(*result_mantissa)								\
-			+ String_Length(*result_exponent))))							\
-		goto failure;														\
+			+ String_Length(*result_exponent)))),							\
+		goto failure;)														\
 	i = 0;																	\
 	if (sign)																\
 		result[i++] = '-';													\

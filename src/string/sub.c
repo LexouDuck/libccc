@@ -18,8 +18,8 @@ t_char*	String_Sub(t_char const* str, t_size index, t_size n)
 		++length;
 	HANDLE_ERROR(INDEX2LARGE, (index > length), return (NULL);)
 	HANDLE_ERROR(LENGTH2LARGE, (index + n > length), return (NULL);)
-	if (!(result = (t_char*)Memory_Alloc(n + sizeof(""))))
-		return (NULL);
+	result = (t_char*)Memory_Alloc(n + sizeof(""));
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	i = 0;
 	while (i < n)
 	{

@@ -17,8 +17,8 @@ t_char*		String_Join(t_char const* str1, t_char const* str2)
 	HANDLE_ERROR(NULLPOINTER, (str2 == NULL), return (NULL);)
 	length1 = String_Length(str1);
 	length2 = String_Length(str2);
-	if (!(result = (t_char*)Memory_Alloc(length1 + length2 + sizeof(""))))
-		return (NULL);
+	result = (t_char*)Memory_Alloc(length1 + length2 + sizeof(""));
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	i = 0;
 	while (i < length1)
 	{
