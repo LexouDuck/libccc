@@ -39,6 +39,31 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
+/*!
+**
+**	Compound storage types:
+**	Array	indexed contiguous storage (fast access, slow for size-changes)
+**	List	indexed fragmented storage (slow access, fast for size-changes)
+**	Hash	unordered bucket-like storage (fast, slightly more memory-hungry) TODO
+**
+**	With key:
+**	KeyVal	key+value pair (simple struct with a string and value)
+**
+**	Dict	named storage (configurable) TODO
+**	Dict<Array>	
+**	Dict<List>	
+**	Dict<Hash>	
+**	Tree	nested storage (configurable) TODO
+**	Tree<Array>	
+**	Tree<List>	
+**	Tree<Hash>	
+**	Object	named nested storage (configurable) TODO
+**	Object<Array>	
+**	Object<List>	
+**	Object<Hash>	
+**	
+*/
+
 
 
 /*
