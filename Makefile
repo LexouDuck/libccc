@@ -26,6 +26,7 @@ OBJDIR = ./obj/
 LIBDIR = ./lib/
 DOCDIR = ./doc/
 BINDIR = ./bin/
+LOGDIR = ./log/
 DISTDIR = ./dist/
 
 
@@ -518,7 +519,9 @@ TEST_SRCS = \
 TEST_OBJS = ${TEST_SRCS:%.c=$(OBJDIR)%.o}
 TEST_DEPS = ${TEST_OBJS:.o=.d}
 
-TEST_INCLUDEDIRS = -I$(HDRDIR) -I$(TEST_DIR)
+TEST_INCLUDEDIRS = \
+	-I$(HDRDIR) \
+	-I$(TEST_DIR) \
 
 TEST_CFLAGS = -O2 -g -ggdb # -fanalyzer
 TEST_LDFLAGS = $(LDFLAGS)
@@ -548,6 +551,22 @@ $(NAME_TEST): debug $(TEST_OBJS)
 # This rule builds and runs the test executable
 test: $(NAME_TEST)
 	@./$(NAME_TEST) -a
+
+test_log: $(NAME_TEST)
+	@mkdir -p $(LOGDIR)
+	@./$(NAME_TEST) -var --test-all >> $(LOGDIR)libccc_test.log
+
+
+
+test_foreach:
+	@$(CC) $(CFLAGS) $(TEST_DIR)_foreach.c -I$(HDRDIR) -o $(NAME_TEST)_foreach
+	@./$(NAME_TEST)_foreach
+	@rm $(NAME_TEST)_foreach
+
+test_errno:
+	@mkdir -p                  $(LOGDIR)errno/$(OSMODE)/
+	@rm                        $(LOGDIR)errno/$(OSMODE)/$(CC).c
+	@./$(TEST_DIR)_errno.sh >> $(LOGDIR)errno/$(OSMODE)/$(CC).c
 
 
 
@@ -604,8 +623,8 @@ PCLP_PROJECT		= pclint_project
 
 pclint_setup:
 	$(PCLP_SETUP) \
-		--compiler=gcc \
-		--compiler-bin=/usr/bin/gcc \
+		--compiler=$(CC) \
+		--compiler-bin=/usr/bin/$(CC) \
 		--compiler-options="$(CFLAGS)" \
 		--config-output-lnt-file=$(PCLP_CONFIG).lnt \
 		--config-output-header-file=$(PCLP_CONFIG).h \
@@ -614,7 +633,7 @@ pclint_setup:
 	@$(CC) $(CFLAGS) $(PCLP_IMPOSTER).c -o $(PCLP_IMPOSTER)
 	@$(PCLP_IMPOSTER) $(CFLAGS) $(SRCS) -o $@ $(HDRDIR) $(LIBS)
 	$(PCLP_SETUP) \
-		--compiler=gcc \
+		--compiler=$(CC) \
 		--imposter-file=$(PCLP_IMPOSTER_LOG) \
 		--config-output-lnt-file=$(PCLP_PROJECT).lnt \
 		--generate-project-config
@@ -671,9 +690,13 @@ rclean: fclean
 	@printf "Deleting "$(OBJDIR)" folder...\n"
 	@rm -rf $(OBJDIR)
 
-aclean: rclean
+aclean: rclean logclean
 	@printf "Deleting "$(BINDIR)" folder...\n"
 	@rm -rf $(BINDIR)
+
+logclean:
+	@printf "Deleting "$(LOGDIR)" folder...\n"
+	@rm -rf $(LOGDIR)
 
 re: fclean all
 
@@ -684,11 +707,23 @@ re: fclean all
 #######################################
 
 # This line ensures the makefile won't conflict with files named 'clean', 'fclean', etc
-.PHONY: all debug release dist dist_version
-.PHONY: test
-.PHONY: clean fclean rclean re
-.PHONY: lint pclint_setup pclint
-.PHONY: doc preprocessed
+.PHONY: \
+	all				\
+	debug			\
+	release			\
+	init			\
+	dist			\
+	dist_version	\
+	test			\
+	doc				\
+	lint			\
+	preprocessed	\
+	clean			\
+	fclean			\
+	rclean			\
+	aclean			\
+	logclean		\
+	re				\
 
 # The following line is for Makefile GCC dependency file handling (.d files)
 -include ${DEPS}

@@ -3,6 +3,7 @@ bin
 dist
 doc/*/*
 doc/html/.doctrees
+log/**/*.log
 
 libccc_test*
 pclint_*.*
