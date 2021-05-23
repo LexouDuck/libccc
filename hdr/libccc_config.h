@@ -14,7 +14,7 @@
 /*! @file libccc_config.h
 **	@addtogroup libccc_config
 **	@{
-**	This header defines all the primitive types and common macros to use.
+**	This header defines all the configuration macros which alter how libccc works.
 */
 
 /*
@@ -24,6 +24,7 @@
 */
 
 #include "libccc_define.h"
+#include "libccc_errors.h"
 
 HEADER_CPP
 
@@ -187,93 +188,6 @@ HEADER_CPP
 **	is dedicated to the integer part and the fraction part.
 */
 #define LIBCONFIG_USE_STD_FIXEDPOINT	0
-
-
-
-//! These macros allow you to configure how libccc handles exceptions/error cases.
-/*!
-**	The "plural-named" macros should only ever have a value of `0` or `1`,
-**	they are used to activate or deactivate parameter validation at will.
-**	The "single-named" macro functions determine how the arguments are to be
-**	checked, validated, and handled. These macro functions are the important part,
-**	where you may customize the logic (to implement custom exception handling for example).
-*/
-//!@{
-
-//! TODO configurable IO error handling
-
-//! Set this macro's value to nothing to deactivate this kind of error handling
-#define LIBCONFIG_HANDLE_ERROR_NULLPOINTER(...) \
-	IO_Output_Format(__VA_ARGS__);
-
-//! Set this macro's value to nothing to deactivate this kind of error handling
-#define LIBCONFIG_HANDLE_ERROR_ALLOCFAILURE(...) \
-	IO_Output_Format(__VA_ARGS__);
-
-//! Set this macro's value to nothing to deactivate this kind of error handling
-#define LIBCONFIG_HANDLE_ERROR_INVALIDENUM(...) \
-	IO_Output_Format(__VA_ARGS__);
-
-//! Set this macro's value to nothing to deactivate this kind of error handling
-#define LIBCONFIG_HANDLE_ERROR_INDEX2SMALL(...) \
-	IO_Output_Format(__VA_ARGS__);
-
-//! Set this macro's value to nothing to deactivate this kind of error handling
-#define LIBCONFIG_HANDLE_ERROR_INDEX2LARGE(...) \
-	IO_Output_Format(__VA_ARGS__);
-
-//! Set this macro's value to nothing to deactivate this kind of error handling
-#define LIBCONFIG_HANDLE_ERROR_LENGTH2SMALL(...) \
-	IO_Output_Format(__VA_ARGS__);
-
-//! Set this macro's value to nothing to deactivate this kind of error handling
-#define LIBCONFIG_HANDLE_ERROR_LENGTH2LARGE(...) \
-	IO_Output_Format(__VA_ARGS__);
-
-//! Set this macro's value to nothing to deactivate this kind of error handling
-#define LIBCONFIG_HANDLE_ERROR_PARSINGERROR(...) \
-	IO_Output_Format(__VA_ARGS__);
-
-//!@}
-
-//! The file to include in source files which use `HANDLE_ERROR()`
-#define LIBCONFIG_HANDLE_INCLUDE	"libccc/sys/io.h"
-
-
-
-//! These macros allow you to configure how libccc handles exceptions/error cases.
-/*!
-**	The "plural-named" macros should only ever have a value of `0` or `1`,
-**	they are used to activate or deactivate parameter validation at will.
-**	The "single-named" macro functions determine how the arguments are to be
-**	checked, validated, and handled. These macro functions are the important part,
-**	where you may customize the logic (to implement custom exception handling for example).
-*/
-//!@{
-
-//! Comment out this `#define` to deactivate all error handling (not recommended)
-#define HANDLE_ERRORS
-#ifndef HANDLE_ERRORS
-#define HANDLE_ERROR(ERRORTYPE, CONDITION, ...) 
-#else
-#define HANDLE_ERROR(ERRORTYPE, CONDITION, ...) \
-	if (CONDITION)					\
-	{								\
-		HANDLE_ERROR_##ERRORTYPE()	\
-		__VA_ARGS__					\
-	}
-#endif
-
-#define HANDLE_ERROR_ALLOCFAILURE()	LIBCONFIG_HANDLE_ERROR_ALLOCFAILURE("%s -> %s", __func__, "Allocation failure")
-#define HANDLE_ERROR_NULLPOINTER()	LIBCONFIG_HANDLE_ERROR_NULLPOINTER ("%s -> %s", __func__, "Invalid arg: null pointer")
-#define HANDLE_ERROR_INVALIDENUM()	LIBCONFIG_HANDLE_ERROR_INVALIDENUM ("%s -> %s", __func__, "Invalid arg: enum out of bounds")
-#define HANDLE_ERROR_INDEX2SMALL()	LIBCONFIG_HANDLE_ERROR_INDEX2SMALL ("%s -> %s", __func__, "Invalid arg: index too large")
-#define HANDLE_ERROR_INDEX2LARGE()	LIBCONFIG_HANDLE_ERROR_INDEX2LARGE ("%s -> %s", __func__, "Invalid arg: index too small")
-#define HANDLE_ERROR_LENGTH2SMALL()	LIBCONFIG_HANDLE_ERROR_LENGTH2SMALL("%s -> %s", __func__, "Invalid arg: length too small")
-#define HANDLE_ERROR_LENGTH2LARGE()	LIBCONFIG_HANDLE_ERROR_LENGTH2LARGE("%s -> %s", __func__, "Invalid arg: length too large")
-#define HANDLE_ERROR_PARSINGERROR()	LIBCONFIG_HANDLE_ERROR_PARSINGERROR("%s -> %s", __func__, "Parsing error")
-
-//!@}
 
 
 
