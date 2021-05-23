@@ -7,6 +7,7 @@
 
 t_bool	Date_IsValid(s_date const* date)
 {
+	HANDLE_ERROR(NULLPOINTER, (date == NULL), return (FALSE);)
 	if (date->sec >= (Date_HasLeapSecond(date->month, date->year) ? TIME_MAX_SECONDS_LEAP : TIME_MAX_SECONDS))
 		return (FALSE);
 	if (date->min >= TIME_MAX_MINUTES)
@@ -38,6 +39,7 @@ void	Date_MakeValid(s_date* date)
 {
 	t_s64 tmp;
 
+	HANDLE_ERROR(NULLPOINTER, (date == NULL), return;)
 	tmp = (Date_HasLeapSecond(date->month, date->year) ? TIME_MAX_SECONDS_LEAP : TIME_MAX_SECONDS);
 	if (date->sec >= tmp)
 		date->sec = (tmp - 1);
@@ -73,6 +75,7 @@ void	Date_MakeValid(s_date* date)
 
 t_uint	Date_DaysInMonth(e_month month, t_s32 year)
 {
+	HANDLE_ERROR(INVALIDENUM, (month < MONTH_JANUARY || month >= ENUMLENGTH_MONTH), return (FALSE);)
 	if (month == MONTH_FEBRUARY)
 		return (Date_IsLeapYear(year) ? 29 : 28);
 	else if (month <= 6)
@@ -115,6 +118,7 @@ t_bool	Date_IsLeapYear(t_s32 year)
 
 t_bool	Date_HasLeapSecond(e_month month, t_s32 year)
 {
+	HANDLE_ERROR(INVALIDENUM, (month < MONTH_JANUARY || month >= ENUMLENGTH_MONTH), return (FALSE);)
 	if (month != MONTH_JUNE &&
 		month != MONTH_DECEMBER)
 		return (FALSE);
