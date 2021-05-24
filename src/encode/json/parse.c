@@ -23,11 +23,11 @@ typedef struct json_parse
 
 
 
-static t_bool JSON_Parse_Value(s_json* const item, s_json_parse* const p);
-static t_bool JSON_Parse_Number(s_json* const item, s_json_parse* const p);
-static t_bool JSON_Parse_String(s_json* const item, s_json_parse* const p);
-static t_bool JSON_Parse_Array(s_json* const item, s_json_parse* const p);
-static t_bool JSON_Parse_Object(s_json* const item, s_json_parse* const p);
+static t_bool JSON_Parse_Value (s_json* const item, s_json_parse* p);
+static t_bool JSON_Parse_Number(s_json* const item, s_json_parse* p);
+static t_bool JSON_Parse_String(s_json* const item, s_json_parse* p);
+static t_bool JSON_Parse_Array (s_json* const item, s_json_parse* p);
+static t_bool JSON_Parse_Object(s_json* const item, s_json_parse* p);
 
 
 
@@ -60,7 +60,7 @@ t_bool	Char_IsSpace_JSON(t_utf32 c)
 
 //! Utility to jump whitespace and CR/LF
 static
-s_json_parse*	JSON_Parse_SkipWhiteSpace(s_json_parse* const p)
+s_json_parse*	JSON_Parse_SkipWhiteSpace(s_json_parse* p)
 {
 	t_size i;
 
@@ -113,7 +113,7 @@ failure:
 
 //! skip the UTF-8 BOM (byte order mark) if it is at the beginning of a buffer
 static
-s_json_parse*	JSON_Parse_SkipUTF8BOM(s_json_parse* const p)
+s_json_parse*	JSON_Parse_SkipUTF8BOM(s_json_parse* p)
 {
 	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, (p->content == NULL), return (NULL);)
@@ -129,7 +129,7 @@ s_json_parse*	JSON_Parse_SkipUTF8BOM(s_json_parse* const p)
 
 //! Parse the input text to generate a number, and populate the result into `item`.
 static
-t_bool		JSON_Parse_Number(s_json* const item, s_json_parse* const p)
+t_bool		JSON_Parse_Number(s_json* const item, s_json_parse* p)
 {
 	t_utf8*	number;
 	t_size	length;
@@ -196,7 +196,7 @@ failure:
 
 
 // Parse the input text into an unescaped cinput, and populate item.
-static t_bool JSON_Parse_String(s_json* const item, s_json_parse* const p)
+static t_bool JSON_Parse_String(s_json* const item, s_json_parse* p)
 {
 	t_utf8 const* input_pointer = &p->content[p->offset] + 1;
 	t_utf8 const* input_end = &p->content[p->offset] + 1;
@@ -293,7 +293,7 @@ failure:
 
 
 static
-t_bool	JSON_Parse_Array(s_json* const item, s_json_parse* const p)
+t_bool	JSON_Parse_Array(s_json* const item, s_json_parse* p)
 {
 	s_json* head = NULL; // head of the linked list
 	s_json* current_item = NULL;
@@ -383,7 +383,7 @@ failure:
 
 
 static
-t_bool	JSON_Parse_Object(s_json* const item, s_json_parse* const p)
+t_bool	JSON_Parse_Object(s_json* const item, s_json_parse* p)
 {
 	s_json* head = NULL; // linked list head
 	s_json* current_item = NULL;
@@ -479,7 +479,7 @@ failure:
 
 
 static
-t_bool	JSON_Parse_Value(s_json* const item, s_json_parse* const p)
+t_bool	JSON_Parse_Value(s_json* const item, s_json_parse* p)
 {
 	if ((p == NULL) || (p->content == NULL) || !CAN_PARSE(0))
 	{

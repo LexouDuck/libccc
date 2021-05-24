@@ -9,9 +9,9 @@
 /*                                                                            */
 /*============================================================================*/
 
-#ifndef __LIBCCC_ASCII_H
-#define __LIBCCC_ASCII_H
-/*!@group{libccc_ascii}
+#ifndef __LIBCCC_SYS_ASCII_H
+#define __LIBCCC_SYS_ASCII_H
+/*!@group{libccc_sys_ascii}
 ** @{
 **	This header defines all the functions related to ASCII text (7-bit chars).
 **

@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_DEFINE_H
 #define __LIBCCC_DEFINE_H
 /*! @file libccc_define.h
-**	@addtogroup libccc
+**	@addtogroup libccc_define
 **	@{
 **	This header defines all the common macros/defines used to "extend" C.
 **

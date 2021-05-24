@@ -9,9 +9,9 @@
 /*                                                                            */
 /*============================================================================*/
 
-#ifndef __LIBCCC_UNICODE_H
-#define __LIBCCC_UNICODE_H
-/*!@group{libccc_unicode}
+#ifndef __LIBCCC_SYS_UNICODE_H
+#define __LIBCCC_SYS_UNICODE_H
+/*!@group{libccc_sys_unicode}
 ** @{
 **	This header defines all the functions related to Unicode text encodings.
 **

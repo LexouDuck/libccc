@@ -1,6 +1,6 @@
 /*============================================================================*/
 /*                                            ______________________________  */
-/*  libccc/array/sort.h                      |    __    __  ___      _____  | */
+/*  libccc/math/sort.h                       |    __    __  ___      _____  | */
 /*                                           |   / /\  / /\/ . |\   /  __|\ | */
 /*  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | */
 /*                                           | /___/\/_/ /___-'\   \____/\  | */
@@ -9,9 +9,9 @@
 /*                                                                            */
 /*============================================================================*/
 
-#ifndef __LIBCCC_ARRAY_SORT_H
-#define __LIBCCC_ARRAY_SORT_H
-/*!@group{libccc_array_sort}
+#ifndef __LIBCCC_MATH_SORT_H
+#define __LIBCCC_MATH_SORT_H
+/*!@group{libccc_math_sort}
 ** @{
 **	This header defines functions for sorting arrays/lists of any type.
 **	There are several different kinds of sorting algorithms provided.

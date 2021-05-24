@@ -9,9 +9,9 @@
 /*                                                                            */
 /*============================================================================*/
 
-#ifndef __LIBCCC_REGEX_H
-#define __LIBCCC_REGEX_H
-/*!@group{libccc_regex}
+#ifndef __LIBCCC_SYS_REGEX_H
+#define __LIBCCC_SYS_REGEX_H
+/*!@group{libccc_sys_regex}
 ** @{
 **	This header defines functions for regular expression matching/replacing.
 **

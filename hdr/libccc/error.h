@@ -36,17 +36,10 @@ HEADER_CPP
 */
 
 
-//! The "get error" function, to be used after getting an unsatisfactory result return.
-/*!
-**	This function can be used for analysing failed parses.
-**	This returns a pointer to the parse error location in the given KVT string.
-**	You'll probably need to look a few chars back to make sense of it.
-**	Defined when KVT_Parse() returns 0.
-**	Otherwise, NULL when KVT_Parse() succeeds.
-*/
+//! Returns the latest global error code (thread-safe)
 e_stderror		Error_Get(void);
 
-//! Sets the current 'errno' global
+//! Sets the global error code (thread-safe)
 e_stderror		Error_Set(e_stderror error);
 
 

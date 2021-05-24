@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_NAMING_H
 #define __LIBCCC_NAMING_H
 /*! @file libccc_naming.h
-**	@addtogroup libccc_config
+**	@addtogroup libccc_naming
 **	@{
 **	This header defines alternate versions of all the type names of libccc.
 **	This allows any user to have type names use the nomenclature style of their
