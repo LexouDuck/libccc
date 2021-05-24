@@ -619,7 +619,8 @@ failure:
 			break;
 		column++;
 	}
-	LIBCONFIG_HANDLE_ERROR_PARSINGERROR("\n"PARSINGERROR_JSON_MESSAGE" -> at nesting depth %u: line %zu, column %zu (char index %zu: '%c'/0x%X)%s",
+	HANDLE_ERROR_MESSAGE(PARSE, (TRUE), return (NULL);,
+		PARSINGERROR_JSON_MESSAGE" -> at nesting depth %u: line %zu, column %zu (char index %zu: '%c'/0x%X)%s\n",
 		p->depth,
 		p->line,
 		column,
@@ -627,7 +628,6 @@ failure:
 		p->content[p->offset] ? p->content[p->offset] : '\a',
 		p->content[p->offset],
 		p->error)
-	return (NULL);
 }
 
 

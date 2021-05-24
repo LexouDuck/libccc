@@ -17,6 +17,26 @@
 **	This header defines alternate versions of all the type names of libccc.
 **	This allows any user to have type names use the nomenclature style of their
 **	choice, by simply changing one configuration macro: #LIBCONFIG_NAMINGSTYLE_TYPES
+**
+**	Here is a description of the nomenclature conventions used by libccc:
+**	`snake_case`	for local variables, struct/union members, and types
+**	`PascalCase`	for global variables, function names (there are also snake case c-style aliases)
+**	`SCREAMCASE`	for macros, enum items
+**	`__HEADER_H`	for header include guards
+**	`__DEFINE__`	for macros defined outside the code (eg: by the compiler/environment)
+**
+**	The naming convention for types is to always use a prefix to show its kind.
+**	These prefixes are always one letter followed by an underscore character.
+**	There are five such type prefixes that libccc uses:
+**		- `t_` for a typedef on a primitive type	ex: `typedef t_u32 t_color; t_color a = 0;`
+**		- `s_` for a typedef on a struct			ex: `s_point pos = { .x = 0, .y = 0 };`
+**		- `e_` for a typedef on an enum				ex: `e_httperror code = ERROR_HTTP_404;`
+**		- `u_` for a typedef on a union type		ex: `typedef union color { t_u8 channels[4]; t_u32 argb; } u_color;`
+**		- `f_` for a typedef on a function pointer	ex: `typedef char (*f_strmapi)(char c, t_size index);`
+**	This also allows most any text editor's syntax coloring to be able to match types with a simple regex rule:
+**		`\b([tseuf]_\w+)\b`
+**	Additionnally, the C-style standard function aliases are prefixed with `c_`, for example:
+**	The standard `memset()` function is named `Memory_Set()`, and has an alias `c_memset()`
 */
 
 /*

@@ -16,7 +16,7 @@
 
 
 
-inline t_char*	IO_GetError(t_io_error error)
+inline t_char*	IO_GetError(e_stderror error)
 {
 	t_char	buffer[IO_BUFFER_SIZE] = {0};
 

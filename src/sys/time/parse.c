@@ -72,14 +72,12 @@ __weak_alias(strptime,_strptime)
 /*                                 Definitions                                */
 /* ************************************************************************** */
 
-#define PARSINGERROR_DATE_MESSAGE	"Error while parsing date: "
+#define PARSINGERROR_DATE_MESSAGE	C_RED"DATE PARSE ERROR"C_RESET": "
 //! used to handle errors during parsing
 #define PARSINGERROR_DATE(MESSAGE, ...) \
-{											\
-	LIBCONFIG_HANDLE_ERROR_PARSINGERROR(	\
-		"%s"MESSAGE, "", __VA_ARGS__)		\
-	return (0);								\
-}											\
+	HANDLE_ERROR_MESSAGE(PARSE, (TRUE),	\
+		return (0);,					\
+		MESSAGE, __VA_ARGS__)			\
 
 
 

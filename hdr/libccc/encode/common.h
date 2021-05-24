@@ -116,22 +116,6 @@ typedef union dynamic	u_dynamic;
 
 
 
-//! The 'errno' type for KVT data structure handling
-typedef enum error_kvt
-{
-	ERROR_KVT_OK = 0,
-	ERROR_KVT_PARSING,
-	ERROR_KVT_INVALIDARGS,
-	ERROR_KVT_ALLOCATIONFAILURE,
-	ERROR_KVT_OBJECTKEYNOTFOUND,
-	ERROR_KVT_INCORRECTTYPE,
-	ERROR_KVT_INDEXTOOLARGE,
-	ERROR_KVT_ENUMTOOLARGE,
-	ERROR_KVT_ISREFERENCE,
-}		e_error_kvt;
-
-
-
 /*
 ** ************************************************************************** *|
 **                             Basic KVT Operations                           *|
@@ -170,24 +154,6 @@ s_kvt*	KVT_Concat(s_kvt const* a, s_kvt const* b);
 
 
 
-//! The "get error" function, to be used after getting an unsatisfactory result return.
-/*!
-**	This function can be used for analysing failed parses.
-**	This returns a pointer to the parse error location in the given KVT string.
-**	You'll probably need to look a few chars back to make sense of it.
-**	Defined when KVT_Parse() returns 0.
-**	Otherwise, NULL when KVT_Parse() succeeds.
-*/
-e_error_kvt		KVT_GetError(void);
-//! Sets the current 'errno' global
-e_error_kvt		KVT_SetError(e_error_kvt error);
-//! Returns the (string literal) error message corresponding to the given `error` number
-t_char const*	KVT_GetErrorString(e_error_kvt error);
-//! Returns a specific error message corresponding to the latest error
-t_char*			KVT_GetErrorMessage(void);
-
-
-
 /*
 ** ************************************************************************** *|
 **                            KVT "create" Operations                         *|
@@ -222,37 +188,37 @@ s_kvt*	KVT_CreateObjectReference(s_kvt const* child);
 **	the given `numbers` array, otherwise array access will be out of bounds.
 */
 //!@{
-s_kvt*	KVT_CreateArray_Boolean	(t_bool const*	booleans, t_sint count);
+s_kvt*	KVT_CreateArray_Boolean	(t_bool const*	booleans, t_uint count);
 
-s_kvt*	KVT_CreateArray_UInt	(t_uint const*	numbers, t_sint count);
-s_kvt*	KVT_CreateArray_U8		(t_u8 const*	numbers, t_sint count);
-s_kvt*	KVT_CreateArray_U16		(t_u16 const*	numbers, t_sint count);
-s_kvt*	KVT_CreateArray_U32		(t_u32 const*	numbers, t_sint count);
-s_kvt*	KVT_CreateArray_U64		(t_u64 const*	numbers, t_sint count);
+s_kvt*	KVT_CreateArray_UInt	(t_uint const*	numbers, t_uint count);
+s_kvt*	KVT_CreateArray_U8		(t_u8 const*	numbers, t_uint count);
+s_kvt*	KVT_CreateArray_U16		(t_u16 const*	numbers, t_uint count);
+s_kvt*	KVT_CreateArray_U32		(t_u32 const*	numbers, t_uint count);
+s_kvt*	KVT_CreateArray_U64		(t_u64 const*	numbers, t_uint count);
 #ifdef __int128
-s_kvt*	KVT_CreateArray_U128	(t_u128 const*	numbers, t_sint count);
+s_kvt*	KVT_CreateArray_U128	(t_u128 const*	numbers, t_uint count);
 #endif
 
-s_kvt*	KVT_CreateArray_SInt	(t_sint const*	numbers, t_sint count);
-s_kvt*	KVT_CreateArray_S8		(t_s8 const*	numbers, t_sint count);
-s_kvt*	KVT_CreateArray_S16		(t_s16 const*	numbers, t_sint count);
-s_kvt*	KVT_CreateArray_S32		(t_s32 const*	numbers, t_sint count);
-s_kvt*	KVT_CreateArray_S64		(t_s64 const*	numbers, t_sint count);
+s_kvt*	KVT_CreateArray_SInt	(t_sint const*	numbers, t_uint count);
+s_kvt*	KVT_CreateArray_S8		(t_s8 const*	numbers, t_uint count);
+s_kvt*	KVT_CreateArray_S16		(t_s16 const*	numbers, t_uint count);
+s_kvt*	KVT_CreateArray_S32		(t_s32 const*	numbers, t_uint count);
+s_kvt*	KVT_CreateArray_S64		(t_s64 const*	numbers, t_uint count);
 #ifdef __int128
-s_kvt*	KVT_CreateArray_S128	(t_s128 const*	numbers, t_sint count);
+s_kvt*	KVT_CreateArray_S128	(t_s128 const*	numbers, t_uint count);
 #endif
 
-s_kvt*	KVT_CreateArray_Float	(t_float const*	numbers, t_sint count);
-s_kvt*	KVT_CreateArray_F32		(t_f32 const*	numbers, t_sint count);
-s_kvt*	KVT_CreateArray_F64		(t_f64 const*	numbers, t_sint count);
+s_kvt*	KVT_CreateArray_Float	(t_float const*	numbers, t_uint count);
+s_kvt*	KVT_CreateArray_F32		(t_f32 const*	numbers, t_uint count);
+s_kvt*	KVT_CreateArray_F64		(t_f64 const*	numbers, t_uint count);
 #ifdef __float80
-s_kvt*	KVT_CreateArray_F80		(t_f80 const*	numbers, t_sint count);
+s_kvt*	KVT_CreateArray_F80		(t_f80 const*	numbers, t_uint count);
 #endif
 #ifdef __float128
-s_kvt*	KVT_CreateArray_F128	(t_f128 const*	numbers, t_sint count);
+s_kvt*	KVT_CreateArray_F128	(t_f128 const*	numbers, t_uint count);
 #endif
 
-s_kvt*	KVT_CreateArray_String	(t_char const* const* strings, t_sint count);
+s_kvt*	KVT_CreateArray_String	(t_char const* const* strings, t_uint count);
 //!@}
 
 
@@ -267,7 +233,7 @@ s_kvt*	KVT_CreateArray_String	(t_char const* const* strings, t_sint count);
 t_sint	KVT_GetArrayLength(s_kvt const* array);
 
 //! Retrieve item number "index" from array "array". Returns NULL if unsuccessful.
-s_kvt*	KVT_GetArrayItem(s_kvt const* array, t_sint index);
+s_kvt*	KVT_GetArrayItem(s_kvt const* array, t_uint index);
 
 
 
@@ -313,29 +279,29 @@ t_char*	KVT_GetValue_String	(s_kvt const* item);
 */
 
 //! Change the `value` of a #KVT_TYPE_BOOLEAN object, only takes effect when `object->type == KVT_TYPE_BOOLEAN`.
-e_error_kvt	KVT_SetValue_Boolean(s_kvt* object, t_bool value);
+e_stderror	KVT_SetValue_Boolean(s_kvt* object, t_bool value);
 //! Change the `value` of a #KVT_TYPE_INTEGER object, only takes effect when `object->type == KVT_TYPE_INTEGER`.
-e_error_kvt	KVT_SetValue_Integer(s_kvt* object, t_s64 value);
+e_stderror	KVT_SetValue_Integer(s_kvt* object, t_s64 value);
 //! Change the `value` of a #KVT_TYPE_FLOAT object, only takes effect when `object->type == KVT_TYPE_FLOAT`.
-e_error_kvt	KVT_SetValue_Float	(s_kvt* object, t_f64 value);
+e_stderror	KVT_SetValue_Float	(s_kvt* object, t_f64 value);
 //! Change the `value` of a #KVT_TYPE_STRING object, only takes effect when `object->type == KVT_TYPE_STRING`.
-e_error_kvt	KVT_SetValue_String	(s_kvt* object, t_char* value);
+e_stderror	KVT_SetValue_String	(s_kvt* object, t_char* value);
 
 
 
 //! Appends the given `item` to the given `array`.
-e_error_kvt	KVT_AddToArray_Item(s_kvt* array, s_kvt* item);
+e_stderror	KVT_AddToArray_Item(s_kvt* array, s_kvt* item);
 
 //! Append a reference to `item` to the given `array`.
-e_error_kvt	KVT_AddToArray_ItemReference(s_kvt* array, s_kvt* item);
+e_stderror	KVT_AddToArray_ItemReference(s_kvt* array, s_kvt* item);
 
 
 
 //! Appends the given `item` to the given `object`, with the given `key`.
-e_error_kvt	KVT_AddToObject_Item(s_kvt* object, t_char const* key, s_kvt* item);
+e_stderror	KVT_AddToObject_Item(s_kvt* object, t_char const* key, s_kvt* item);
 
 //! Append reference to item to the given object.
-e_error_kvt	KVT_AddToObject_ItemReference(s_kvt* object, t_char const* key, s_kvt* item);
+e_stderror	KVT_AddToObject_ItemReference(s_kvt* object, t_char const* key, s_kvt* item);
 
 
 
@@ -391,24 +357,24 @@ t_bool	KVT_IsRaw		(s_kvt const* item);
 s_kvt*		KVT_Detach(s_kvt* parent, s_kvt* item);
 
 //! Delete a s_kvt entity and all subentities.
-e_error_kvt	KVT_Delete(s_kvt* item);
+e_stderror	KVT_Delete(s_kvt* item);
 
 //! Replaces the given `item` from the given `parent` object, with the given `newitem`.
-e_error_kvt	KVT_Replace(s_kvt* parent, s_kvt* item, s_kvt* newitem);
+e_stderror	KVT_Replace(s_kvt* parent, s_kvt* item, s_kvt* newitem);
 
 
 
 //! Deletes the item at the given `index` from the given `array`.
-e_error_kvt	KVT_Delete_FromArray(s_kvt* array, t_sint index);
+e_stderror	KVT_Delete_FromArray(s_kvt* array, t_uint index);
 
 //! Removes (without deleting) the given `item` from the given `array`.
-s_kvt*		KVT_Detach_FromArray(s_kvt* array, t_sint index);
+s_kvt*		KVT_Detach_FromArray(s_kvt* array, t_uint index);
 
 //! Replaces the given `item` from the given `array`, with the given `newitem`.
-e_error_kvt	KVT_Replace_InArray(s_kvt* array, t_sint index, s_kvt* newitem);
+e_stderror	KVT_Replace_InArray(s_kvt* array, t_uint index, s_kvt* newitem);
 
 //! Inserts the given `newitem` in the givne `array`, shifting pre-existing items to the right.
-e_error_kvt	KVT_Insert_InArray(s_kvt* array, t_sint index, s_kvt* newitem);
+e_stderror	KVT_Insert_InArray(s_kvt* array, t_uint index, s_kvt* newitem);
 
 
 
@@ -416,8 +382,8 @@ e_error_kvt	KVT_Insert_InArray(s_kvt* array, t_sint index, s_kvt* newitem);
 //!@{
 #define 	KVT_Delete_FromObject \
 			KVT_Delete_FromObject_IgnoreCase
-e_error_kvt	KVT_Delete_FromObject_IgnoreCase	(s_kvt* object, t_char const* key); //!< (case-insensitive)
-e_error_kvt	KVT_Delete_FromObject_CaseSensitive	(s_kvt* object, t_char const* key); //!< (case-sensitive)
+e_stderror	KVT_Delete_FromObject_IgnoreCase	(s_kvt* object, t_char const* key); //!< (case-insensitive)
+e_stderror	KVT_Delete_FromObject_CaseSensitive	(s_kvt* object, t_char const* key); //!< (case-sensitive)
 //!@}
 
 //! Removes (without deleting) the given `item` from the given `object`.
@@ -432,8 +398,8 @@ s_kvt*		KVT_Detach_FromObject_CaseSensitive	(s_kvt* object, t_char const* key); 
 //!@{
 #define 	KVT_Replace_InObject \
 			KVT_Replace_InObject_IgnoreCase
-e_error_kvt	KVT_Replace_InObject_IgnoreCase		(s_kvt* object, t_char const* key, s_kvt* newitem); //!< (case-insensitive)
-e_error_kvt	KVT_Replace_InObject_CaseSensitive	(s_kvt* object, t_char const* key, s_kvt* newitem); //!< (case-sensitive)
+e_stderror	KVT_Replace_InObject_IgnoreCase		(s_kvt* object, t_char const* key, s_kvt* newitem); //!< (case-insensitive)
+e_stderror	KVT_Replace_InObject_CaseSensitive	(s_kvt* object, t_char const* key, s_kvt* newitem); //!< (case-sensitive)
 //!@}
 
 

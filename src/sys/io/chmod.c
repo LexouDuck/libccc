@@ -25,7 +25,7 @@
 
 
 inline
-t_io_error	IO_ChangeMode(t_char const* filepath, t_io_mode mode)
+e_stderror	IO_ChangeMode(t_char const* filepath, t_io_mode mode)
 {
 	return (chmod(filepath, mode) ? errno : OK);
 }
@@ -34,7 +34,7 @@ t_io_error	IO_ChangeMode(t_char const* filepath, t_io_mode mode)
 
 #if 0
 inline
-t_io_error	IO_ChangeOwner(t_char const* filepath, t_char const* owner, t_char const* group)
+e_stderror	IO_ChangeOwner(t_char const* filepath, t_char const* owner, t_char const* group)
 {
 	return (chown(filepath,
 		getpwnam(owner),

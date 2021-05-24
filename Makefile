@@ -143,7 +143,7 @@ C_YELLOW = "\e[33m"
 #######################################
 
 # List of all source code files
-SRCS = \
+SRCS = error.c \
 	bool/bool_to_str.c		\
 	bool/bool_from_str.c	\
 	int/int_to_str.c		\
@@ -364,7 +364,6 @@ SRCS = \
 	encode/kvt/delete.c		\
 	encode/kvt/detach.c		\
 	encode/kvt/replace.c	\
-	encode/kvt/error.c		\
 	encode/json/parse.c		\
 	encode/json/print.c		\
 	encode/json/minify.c	\

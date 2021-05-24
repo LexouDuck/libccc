@@ -17,17 +17,10 @@ s_kvt*	KVT_Duplicate(s_kvt const* item, t_bool recurse)
 	s_kvt* child = NULL;
 	t_utf8* tmp = NULL;
 
-	// Bail on bad ptr
-	if (item == NULL)
-	{
-		goto failure;
-	}
+	HANDLE_ERROR(NULLPOINTER, (item == NULL), goto failure;)
 	// Create new item
 	newitem = KVT_Item();
-	if (newitem == NULL)
-	{
-		goto failure;
-	}
+	HANDLE_ERROR(ALLOCFAILURE, (newitem == NULL), goto failure;)
 	// Copy over all vars
 	newitem->type = item->type & (~DYNAMICTYPE_ISREFERENCE);
 	newitem->value.number = item->value.number;
@@ -42,18 +35,12 @@ s_kvt*	KVT_Duplicate(s_kvt const* item, t_bool recurse)
 	if (tmp)
 	{
 		newitem->value.string = (t_char*)String_Duplicate((t_char*)item->value.string);
-		if (newitem->value.string == NULL)
-		{
-			goto failure;
-		}
+		HANDLE_ERROR(ALLOCFAILURE, (newitem->value.string == NULL), goto failure;)
 	}
 	if (item->key)
 	{
 		newitem->key = (t_char*)String_Duplicate((t_char*)item->key);
-		if (newitem->key == NULL)
-		{
-			goto failure;
-		}
+		HANDLE_ERROR(ALLOCFAILURE, (newitem->key == NULL), goto failure;)
 	}
 	// If non-recursive, then we're done!
 	if (!recurse)
@@ -63,14 +50,11 @@ s_kvt*	KVT_Duplicate(s_kvt const* item, t_bool recurse)
 	if (item->type & DYNAMICTYPE_OBJECT)	child = item->value.child;
 	while (child != NULL)
 	{
-		newchild = KVT_Duplicate(child, TRUE); // Duplicate (with recurse) each item in the ->next chain
-		if (newchild == NULL)
-		{
-			goto failure;
-		}
+		newchild = KVT_Duplicate(child, TRUE); // Duplicate (with recurse) each item in the `->next` chain
+		HANDLE_ERROR(ALLOCFAILURE, (newchild == NULL), goto failure;)
 		if (next != NULL)
 		{
-			// If newitem->child already set, then crosswire ->prev and ->next and move on
+			// If `newitem->child` already set, then crosswire `->prev` and `->next` and move on
 			next->next = newchild;
 			newchild->prev = next;
 			next = newchild;

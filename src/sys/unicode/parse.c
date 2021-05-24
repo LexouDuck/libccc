@@ -56,43 +56,43 @@ t_size		UTF32_Parse_N(t_utf32* dest, t_ascii const* str, t_size n)
 	if (n == 0)
 		n = String_Length(str);
 	length = 6; // "\uXXXX"
-	if (length >= n)
-	{	LIBCONFIG_HANDLE_ERROR_PARSINGERROR(PARSINGERROR_UTF16"input ends unexpectedly")	return (ERROR);	}
-	if (str[i] != '\\')
-	{	LIBCONFIG_HANDLE_ERROR_PARSINGERROR(PARSINGERROR_UTF16"not a valid escape sequence, expected '\\' char")	return (ERROR);	}
+	HANDLE_ERROR_MESSAGE(PARSE, (length >= n), return (ERROR);,
+		PARSINGERROR_UTF16"input ends unexpectedly")
+	HANDLE_ERROR_MESSAGE(PARSE, (str[i] != '\\'), return (ERROR);,
+		PARSINGERROR_UTF16"not a valid escape sequence, expected '\\' char")
 	i += 1;
 	if (str[i] == 'U')
 	{
 		i += 1;
-		if (UTF32_Parse_Hex_32(&result, str + i)) // get the whole UTF-32 sequence
-		{	LIBCONFIG_HANDLE_ERROR_PARSINGERROR(PARSINGERROR_UTF16"not a valid UTF-16 escape sequence, expected 4 hexadecimal digits")	return (ERROR);	}
+		HANDLE_ERROR_MESSAGE(PARSE, (UTF32_Parse_Hex_32(&result, str + i)), return (ERROR);, // get the whole UTF-32 sequence
+			PARSINGERROR_UTF16"not a valid UTF-16 escape sequence, expected 4 hexadecimal digits")
 		i += 8;
 	}
 	else if (str[i] == 'u')
 	{
 		i += 1;
-		if (UTF32_Parse_Hex_16(&code1, str + i)) // get the first UTF-16 sequence
-		{	LIBCONFIG_HANDLE_ERROR_PARSINGERROR(PARSINGERROR_UTF16"not a valid UTF-16 escape sequence, expected 4 hexadecimal digits")	return (ERROR);	}
+		HANDLE_ERROR_MESSAGE(PARSE, (UTF32_Parse_Hex_16(&code1, str + i)), return (ERROR);, // get the first UTF-16 sequence
+			PARSINGERROR_UTF16"not a valid UTF-16 escape sequence, expected 4 hexadecimal digits")
 		i += 4;
-		if (((code1 >= UTF16_SURROGATE_LO) && (code1 < UTF16_SURROGATE_END)))
-		{	LIBCONFIG_HANDLE_ERROR_PARSINGERROR(PARSINGERROR_UTF16"invalid UTF-16 char code ("SF_HEX_U16")", code1)	return (ERROR);	}
+		HANDLE_ERROR_MESSAGE(PARSE, (((code1 >= UTF16_SURROGATE_LO) && (code1 < UTF16_SURROGATE_END))), return (ERROR);,
+			PARSINGERROR_UTF16"invalid UTF-16 char code ("SF_HEX_U16")", code1)
 		if ((code1 >= UTF16_SURROGATE_HI) && (code1 < UTF16_SURROGATE_LO))
 		{	// UTF16 surrogate pair
 			code2 = 0;
 			length = 12; // "\uXXXX\uXXXX"
-			if (length >= n)
-			{	LIBCONFIG_HANDLE_ERROR_PARSINGERROR(PARSINGERROR_UTF16_SURROGATE"input ends unexpectedly")	return (ERROR);	}
-			if (str[i] != '\\')
-			{	LIBCONFIG_HANDLE_ERROR_PARSINGERROR(PARSINGERROR_UTF16_SURROGATE"not a valid escape sequence, expected '\\' char")	return (ERROR);	}
+			HANDLE_ERROR_MESSAGE(PARSE, (length >= n), return (ERROR);,
+				PARSINGERROR_UTF16_SURROGATE"input ends unexpectedly")
+			HANDLE_ERROR_MESSAGE(PARSE, (str[i] != '\\'), return (ERROR);,
+				PARSINGERROR_UTF16_SURROGATE"not a valid escape sequence, expected '\\' char")
 			i += 1;
-			if (str[i] != 'u')
-			{	LIBCONFIG_HANDLE_ERROR_PARSINGERROR(PARSINGERROR_UTF16_SURROGATE"not a valid UTF-16 escape sequence, expected 'u' char")	return (ERROR);	}
+			HANDLE_ERROR_MESSAGE(PARSE, (str[i] != 'u'), return (ERROR);,
+				PARSINGERROR_UTF16_SURROGATE"not a valid UTF-16 escape sequence, expected 'u' char")
 			i += 1;
-			if (UTF32_Parse_Hex_16(&code2, str + 2)) // get the second UTF-16 sequence
-			{	LIBCONFIG_HANDLE_ERROR_PARSINGERROR(PARSINGERROR_UTF16_SURROGATE"not a valid UTF-16 escape sequence, expected 4 hexadecimal digits")	return (ERROR);	}
+			HANDLE_ERROR_MESSAGE(PARSE, (UTF32_Parse_Hex_16(&code2, str + 2)), return (ERROR);, // get the second UTF-16 sequence
+				PARSINGERROR_UTF16_SURROGATE"not a valid UTF-16 escape sequence, expected 4 hexadecimal digits")
 			i += 4;
-			if ((code2 < UTF16_SURROGATE_LO) || (code2 >= UTF16_SURROGATE_END))
-			{	LIBCONFIG_HANDLE_ERROR_PARSINGERROR(PARSINGERROR_UTF16_SURROGATE"invalid UTF-16 char code for second half of the surrogate pair ("SF_HEX_U16")", code2)	return (ERROR);	}
+			HANDLE_ERROR_MESSAGE(PARSE, ((code2 < UTF16_SURROGATE_LO) || (code2 >= UTF16_SURROGATE_END)), return (ERROR);,
+				PARSINGERROR_UTF16_SURROGATE"invalid UTF-16 char code for second half of the surrogate pair ("SF_HEX_U16")", code2)
 			// calculate the unicode codepoint from the surrogate pair
 			result = (t_utf32)(UTF16_BIAS + (((code1 & UTF16_SURROGATE_MASK) << 10) | (code2 & UTF16_SURROGATE_MASK)));
 		}
@@ -102,7 +102,10 @@ t_size		UTF32_Parse_N(t_utf32* dest, t_ascii const* str, t_size n)
 		}
 	}
 	else
-	{	LIBCONFIG_HANDLE_ERROR_PARSINGERROR(PARSINGERROR_UTF16"not a valid UTF-16 escape sequence, expected 'u' char")	return (ERROR);	}
+	{
+		HANDLE_ERROR_MESSAGE(PARSE, (TRUE), return (ERROR);,
+			PARSINGERROR_UTF16"not a valid UTF-16 escape sequence, expected 'u' char")
+	}
 	*dest = result;
 	return (i);
 }

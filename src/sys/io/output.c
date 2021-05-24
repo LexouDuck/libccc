@@ -32,7 +32,7 @@
 
 
 inline
-t_io_error	IO_Output_Char(char c)
+e_stderror	IO_Output_Char(char c)
 {
 	return (IO_Write_Char(STDOUT, c));
 }
@@ -40,7 +40,7 @@ t_io_error	IO_Output_Char(char c)
 
 
 inline
-t_io_error	IO_Output_String(t_char const* str)
+e_stderror	IO_Output_String(t_char const* str)
 {
 	return (IO_Write_String(STDOUT, str));
 }
@@ -48,7 +48,7 @@ t_io_error	IO_Output_String(t_char const* str)
 
 
 inline
-t_io_error	IO_Output_Line(t_char const* str)
+e_stderror	IO_Output_Line(t_char const* str)
 {
 	return (IO_Write_Line(STDOUT, str));
 }
@@ -56,7 +56,7 @@ t_io_error	IO_Output_Line(t_char const* str)
 
 
 inline
-t_io_error	IO_Output_Lines(t_char const** strarr)
+e_stderror	IO_Output_Lines(t_char const** strarr)
 {
 	return (IO_Write_Lines(STDOUT, strarr));
 }
@@ -64,14 +64,14 @@ t_io_error	IO_Output_Lines(t_char const** strarr)
 
 
 inline
-t_io_error	IO_Output_Memory(t_u8 const* ptr, t_size n, t_u8 cols)
+e_stderror	IO_Output_Memory(t_u8 const* ptr, t_size n, t_u8 cols)
 {
 	return (IO_Write_Memory(STDOUT, ptr, n, cols));
 }
 
 
 
-t_io_error			IO_Output_Format(t_char const* format, ...)
+e_stderror			IO_Output_Format(t_char const* format, ...)
 {
 	HANDLE_ERROR(NULLPOINTER, (format == NULL), return (OK);)
 	int result;

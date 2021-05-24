@@ -21,7 +21,7 @@
 
 
 inline
-t_io_error	IO_Close(t_fd fd)
+e_stderror	IO_Close(t_fd fd)
 {
 	return (close(fd) ? errno : OK);
 }

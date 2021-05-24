@@ -21,40 +21,33 @@
 
 #define PARSE_KVTPATH_WHITESPACE(EXPECTED, ERRORMESSAGE) \
 	while (str[i] && Char_IsSpace(str[i]))	{ ++i; }				\
-	if (str[i] == '\0')												\
-	{																\
-		IO_Output_Format(C_RED"KVT PATH PARSE ERROR:"C_RESET		\
+	HANDLE_ERROR_MESSAGE(PARSE, (str[i] == '\0'),					\
+		return (result);, PARSINGERROR_KVTPATH						\
 			"Unexpected end of accessor string, "					\
 			"expected %s "ERRORMESSAGE".\n",						\
-			EXPECTED);												\
-		KVT_SetError(ERROR_KVT_PARSING);							\
-		return (result);											\
-	}																\
+			EXPECTED)												\
 
 #define PARSE_KVTPATH_MATCH_CHAR(CHAR, ERRORMESSAGE) \
-	if (str[i] != CHAR)												\
-	{																\
-		IO_Output_Format(C_RED"KVT PATH PARSE ERROR:"C_RESET		\
+	HANDLE_ERROR_MESSAGE(PARSE, (str[i] != CHAR),					\
+		return (result);, PARSINGERROR_KVTPATH						\
 			"Expected char '%c' "ERRORMESSAGE", "					\
 			"but instead found: '%c'\n",							\
 			(CHAR ? CHAR : '\a'),									\
-			(str[i] ? str[i] : '\a'));								\
-		KVT_SetError(ERROR_KVT_PARSING);							\
-		return (result);											\
-	}																\
+			(str[i] ? str[i] : '\a'))								\
 	else ++i;														\
 
 #define PARSE_KVTPATH_MATCH_STRING(STRING, ERRORMESSAGE) \
-	if (String_Compare_N(str + i, STRING, String_Length(STRING)))	\
-	{																\
-		IO_Output_Format(C_RED"KVT PATH PARSE ERROR:"C_RESET		\
+	HANDLE_ERROR_MESSAGE(PARSE,										\
+		String_Compare_N(str + i, STRING, String_Length(STRING)),	\
+		return (result);, PARSINGERROR_KVTPATH						\
 			"Expected \"%s\" "ERRORMESSAGE", "						\
 			"but instead found: '%.16s'\n",							\
-			STRING, str);											\
-		KVT_SetError(ERROR_KVT_PARSING);							\
-		return (result);											\
-	}																\
+			STRING, str)											\
 	else ++i;														\
+
+
+
+#define PARSINGERROR_KVTPATH	C_RED"ACCESSOR PATH PARSE ERROR"C_RESET": "
 
 
 
@@ -69,19 +62,12 @@ s_kvt*	KVT_Get(s_kvt const* object, t_char const* format_path, ...)
 	t_size	length;
 	t_size	i;
 
-	if (object == NULL || format_path == NULL)
-	{
-		KVT_SetError(ERROR_KVT_INVALIDARGS);
-		return (NULL);
-	}
+	HANDLE_ERROR(NULLPOINTER, (object == NULL),      return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (format_path == NULL), return (NULL);)
 	va_start(args, format_path);
 	path = String_Format_VA(format_path, args);
 	va_end(args);
-	if (path == NULL)
-	{
-		KVT_SetError(ERROR_KVT_ALLOCATIONFAILURE);
-		return (NULL);
-	}
+	HANDLE_ERROR(ALLOCFAILURE, (path == NULL), return (NULL);)
 	result = (s_kvt*)object;
 	str = path;
 	i = 0;
@@ -108,12 +94,8 @@ s_kvt*	KVT_Get(s_kvt const* object, t_char const* format_path, ...)
 			length = 0;
 			while (str[i + length] != '\"')
 			{
-				if (str[i + length] == '\0')
-				{
-					IO_Output_Line("Unexpected end of accessor string, expected a closing double-quote '\"' t_char");
-					KVT_SetError(ERROR_KVT_PARSING);
-					return (result);
-				}
+				HANDLE_ERROR_MESSAGE(PARSE, (str[i + length] == '\0'), return (result);, PARSINGERROR_KVTPATH
+					"Unexpected end of accessor string, expected a closing double-quote '\"' t_char")
 				++length;
 			}
 			accessor = String_Sub(str, i, length);
@@ -123,10 +105,8 @@ s_kvt*	KVT_Get(s_kvt const* object, t_char const* format_path, ...)
 		}
 		else
 		{
-			IO_Output_Format(C_RED"KVT PATH PARSE ERROR"C_RESET": "
-				"Expected number or double-quoted string within brackets, but instead found: '%s'\n", str);
-			KVT_SetError(ERROR_KVT_PARSING);
-			return (result);
+			HANDLE_ERROR_MESSAGE(PARSE, (TRUE), return (result);, PARSINGERROR_KVTPATH
+				"Expected number or double-quoted string within brackets, but instead found: '%s'\n", str)
 		}
 		String_Delete(&accessor);
 		PARSE_KVTPATH_WHITESPACE("']'", "to end accessor")
@@ -167,14 +147,11 @@ t_char*	KVT_GetValue_String(s_kvt const* const item)
 
 
 
-s_kvt*	KVT_GetArrayItem(s_kvt const* array, t_sint index)
+s_kvt*	KVT_GetArrayItem(s_kvt const* array, t_uint index)
 {
 	s_kvt* current_child;
 
-	if (index < 0)
-		return (NULL);
-	if (array == NULL)
-		return (NULL);
+	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (NULL);)
 	current_child = array->value.child;
 	while ((current_child != NULL) && (index > 0))
 	{
@@ -186,39 +163,43 @@ s_kvt*	KVT_GetArrayItem(s_kvt const* array, t_sint index)
 
 
 
-static s_kvt* get_object_item(s_kvt const* const object, t_char const* const name, const t_bool case_sensitive)
+static
+s_kvt* get_object_item(s_kvt const* object, t_char const* name, t_bool case_sensitive)
 {
 	s_kvt* current_element = NULL;
 
-	if ((object == NULL) || (name == NULL))
-		return (NULL);
-
+	HANDLE_ERROR(NULLPOINTER, (object == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (name   == NULL), return (NULL);)
 	current_element = object->value.child;
 	if (case_sensitive)
 	{
-		while ((current_element != NULL) && (current_element->key != NULL) && (String_Compare(name, current_element->key) != 0))
+		while ((current_element != NULL) &&
+			(current_element->key != NULL) &&
+			String_Compare(name, current_element->key))
 		{
 			current_element = current_element->next;
 		}
 	}
 	else
 	{
-		while ((current_element != NULL) && (String_Compare_IgnoreCase(name, current_element->key) != 0))
+		while ((current_element != NULL) &&
+			String_Compare_IgnoreCase(name, current_element->key))
 		{
 			current_element = current_element->next;
 		}
 	}
-	if ((current_element == NULL) || (current_element->key == NULL))
-		return (NULL);
+	HANDLE_ERROR(KEYNOTFOUND,
+		(current_element == NULL || current_element->key == NULL),
+		return (NULL);)
 	return (current_element);
 }
 
-s_kvt*	KVT_GetObjectItem_IgnoreCase(s_kvt const* const object, t_char const* const key)
+s_kvt*	KVT_GetObjectItem_IgnoreCase(s_kvt const* object, t_char const* key)
 {
 	return (get_object_item(object, key, FALSE));
 }
 
-s_kvt*	KVT_GetObjectItem_CaseSensitive(s_kvt const* const object, t_char const* const key)
+s_kvt*	KVT_GetObjectItem_CaseSensitive(s_kvt const* object, t_char const* key)
 {
 	return (get_object_item(object, key, TRUE));
 }

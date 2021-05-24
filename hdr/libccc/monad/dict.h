@@ -13,7 +13,7 @@
 #define __LIBCCC_MONAD_DICT_H
 /*!@group{libccc_monad_dict}
 ** @{
-**	This header defines a simple dictionary type and utility functions for it.
+**	This header defines a generic dictionary type and utility functions for it.
 **
 **	@file
 */

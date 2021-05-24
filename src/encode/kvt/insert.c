@@ -7,15 +7,14 @@
 
 
 
-e_error_kvt	KVT_Insert_InArray(s_kvt* array, t_sint index, s_kvt* newitem)
+e_stderror	KVT_Insert_InArray(s_kvt* array, t_uint index, s_kvt* newitem)
 {
 	s_kvt* after_inserted = NULL;
 
-	if (index < 0)
-		return (KVT_SetError(ERROR_KVT_INVALIDARGS));
+	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (ERROR_NULLPOINTER);)
 	after_inserted = KVT_GetArrayItem(array, index);
-	if (after_inserted == NULL)
-		return (KVT_AddToArray_Item(array, newitem));
+	HANDLE_ERROR(INDEX2LARGE, (after_inserted == NULL),
+		return (KVT_AddToArray_Item(array, newitem));)
 	newitem->next = after_inserted;
 	newitem->prev = after_inserted->prev;
 	after_inserted->prev = newitem;

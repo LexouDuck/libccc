@@ -40,7 +40,7 @@ static inline void Log_VA_Write(s_logger const* logger, t_fd fd, t_char const* o
 
 
 
-t_io_error	Log_VA(s_logger const* logger,
+e_stderror	Log_VA(s_logger const* logger,
 	t_bool			verbose_only,
 	t_bool			use_errno,
 	int				error_code,

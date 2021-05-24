@@ -13,7 +13,7 @@
 #define __LIBCCC_MONAD_CONVERT_H
 /*!@group{libccc_monad_convert}
 ** @{
-**	This header defines a simple tree/node/leaf type and utility functions for it.
+**	This header defines conversions functions between the generic monad types.
 **
 **	@file
 */

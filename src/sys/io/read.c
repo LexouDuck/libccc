@@ -13,6 +13,8 @@
 #include "libccc/stringarray.h"
 #include "libccc/sys/io.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 t_sintmax	IO_Read_File(t_fd const fd, t_char** a_file, t_size max)
