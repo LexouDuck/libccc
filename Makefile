@@ -558,7 +558,7 @@ test_log: $(NAME_TEST)
 
 
 test_foreach:
-	@$(CC) $(CFLAGS) $(TEST_DIR)_foreach.c -I$(HDRDIR) -o $(NAME_TEST)_foreach
+	@$(CC) $(CFLAGS) $(TEST_DIR)_foreach.c -I$(HDRDIR) -L./ -lccc -o $(NAME_TEST)_foreach
 	@./$(NAME_TEST)_foreach
 	@rm $(NAME_TEST)_foreach
 

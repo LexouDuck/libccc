@@ -78,10 +78,10 @@ typedef struct list_T
 
 #define foreach_s_list_init(		_TYPE_, _VAR_, _LIST_)	foreach_s_list_T(_TYPE_, _VAR_, _LIST_) _VAR_##_i = (_LIST_);
 #define foreach_s_list_exit(		_TYPE_, _VAR_, _LIST_)	if ((void*)(_LIST_) != NULL)
-#define foreach_s_list_loop_init(	_TYPE_, _VAR_, _LIST_)	_TYPE_ _VAR_ = (_TYPE_)(_VAR_##_i->item)
+#define foreach_s_list_loop_init(	_TYPE_, _VAR_, _LIST_)	_TYPE_ _VAR_ = (_VAR_##_i->item)
 #define foreach_s_list_loop_exit(	_TYPE_, _VAR_, _LIST_)	(_VAR_##_i != NULL)
 #define foreach_s_list_loop_incr(	_TYPE_, _VAR_, _LIST_)	_VAR_##_i = _VAR_##_i->next
-#define foreach_s_list_loop_setv(	_TYPE_, _VAR_, _LIST_)	_VAR_ = (_VAR_##_i == NULL ? _VAR_ : (_TYPE_)(_VAR_##_i->item))
+#define foreach_s_list_loop_setv(	_TYPE_, _VAR_, _LIST_)	_VAR_ = (_VAR_##_i == NULL ? _VAR_ : (_VAR_##_i->item))
 
 #if 1
 	#define foreach_s_list_T(_TYPE_, _VAR_, _LIST_) \

@@ -43,9 +43,12 @@
 
 
 #define COUNT 10
-int main()
+int main(int argc, char** argv)
 {
 	t_uint i;
+
+	if (argc < 1 || argv == NULL)
+		return (ERROR);
 
 	IO_Output_String("\n- s_array<char*>:\n");
 	{
@@ -64,7 +67,7 @@ int main()
 		i = 0;
 		foreach (char*, str, s_array, str_array)
 		{
-			IO_Output_Format("i:%u,\titer:%u,\tstr:%p -> \"%s\"\n", i++, str_i, str, str);
+			IO_Output_Format("i:%u,\titer:%u,\tstr:%p -> \"%s\"\n", i++, str_i, (void*)str, str);
 		}
 	}
 	IO_Output_String("\n- s_list<char*>:\n");
@@ -83,7 +86,7 @@ int main()
 		i = 0;
 		foreach (char*, str, s_list, str_list)
 		{
-			IO_Output_Format("i:%u,\titer:%p,\tstr:%p -> \"%s\"\n", i++, str_i, str, str);
+			IO_Output_Format("i:%u,\titer:%p,\tstr:%p -> \"%s\"\n", i++, (void*)str_i, (void*)str, str);
 		}
 	}
 
@@ -118,7 +121,7 @@ int main()
 		{
 			foreach (int, integer, s_list, &int_list)
 			{
-				IO_Output_Format("i:%u,\titer:%p,\tint: %i\n", i++, integer_i, integer);
+				IO_Output_Format("i:%u,\titer:%p,\tint: %i\n", i++, (void*)integer_i, integer);
 			}
 		}
 	}
