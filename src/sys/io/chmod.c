@@ -27,6 +27,7 @@
 inline
 e_stderror	IO_ChangeMode(t_char const* filepath, t_io_mode mode)
 {
+	HANDLE_ERROR(NULLPOINTER, (filepath == NULL), return (ERROR_NULLPOINTER);)
 	return (chmod(filepath, mode) ? errno : OK);
 }
 

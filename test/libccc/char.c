@@ -22,7 +22,7 @@ static void	print_char_foreword(void)
 
 
 #define TEST_PERFORM_CHAR_(FUNCTION, ERRORPREFIX) \
-	printf( ERRORPREFIX "c_%s(c='%c'/0x%4.4X) returned %i, but the C stdlib equivalent returned %i\n", #FUNCTION, c, c, result, expect);
+	printf( ERRORPREFIX "c_%s(c='%c'/0x%4.4X) returned 0x%4.4X, but the C stdlib equivalent returned 0x%4.4X\n", #FUNCTION, c, c, result, expect);
 
 #define TEST_PERFORM_CHAR(FUNCTION, STRICT) \
 	g_test.totals.tests += 1;						\

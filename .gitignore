@@ -65,3 +65,5 @@ dkms.conf
 
 #Other
 *.sublime-workspace
+.DS-Store
+.DS_Store

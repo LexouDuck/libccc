@@ -54,7 +54,7 @@ CFLAGS_RELEASE = -O3
 CFLAGS_OS = _
 CFLAGS_OS_WIN   = -D__USE_MINGW_ANSI_STDIO=1
 CFLAGS_OS_LINUX = -Wno-unused-result -fPIC -pedantic
-CFLAGS_OS_MACOS = -Wno-missing-braces
+CFLAGS_OS_MACOS = -Wno-missing-braces -Wno-tautological-constant-out-of-range-compare
 ifeq ($(CC),clang)
 	CFLAGS_OS_WIN += -Wno-missing-braces
 else
@@ -564,7 +564,7 @@ test_foreach:
 
 test_errno:
 	@mkdir -p                  $(LOGDIR)errno/$(OSMODE)/
-	@rm                        $(LOGDIR)errno/$(OSMODE)/$(CC).c
+	@rm -f                     $(LOGDIR)errno/$(OSMODE)/$(CC).c
 	@./$(TEST_DIR)_errno.sh >> $(LOGDIR)errno/$(OSMODE)/$(CC).c
 
 

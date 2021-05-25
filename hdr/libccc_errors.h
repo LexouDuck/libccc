@@ -53,20 +53,22 @@ HEADER_CPP
 **	These "plural-named" can be used to activate or deactivate exception handling at will.
 */
 //!@{
-#define HANDLE_ERRORS_ALLOCFAILURE
-#define HANDLE_ERRORS_NULLPOINTER
-#define HANDLE_ERRORS_INVALIDENUM
-#define HANDLE_ERRORS_INDEX2SMALL
-#define HANDLE_ERRORS_INDEX2LARGE
-#define HANDLE_ERRORS_LENGTH2SMALL
-#define HANDLE_ERRORS_LENGTH2LARGE
-#define HANDLE_ERRORS_PARSINGERROR
+#define HANDLE_ERRORS_ALLOCFAILURE	1
+#define HANDLE_ERRORS_NULLPOINTER	1
+#define HANDLE_ERRORS_INVALIDENUM	1
+#define HANDLE_ERRORS_INDEX2SMALL	1
+#define HANDLE_ERRORS_INDEX2LARGE	1
+#define HANDLE_ERRORS_LENGTH2SMALL	1
+#define HANDLE_ERRORS_LENGTH2LARGE	1
+#define HANDLE_ERRORS_PARSINGERROR	1
 //!@}
+
 //! Comment out this `#define` to deactivate all error handling (not recommended)
 #define HANDLE_ERRORS
+
 #ifndef HANDLE_ERRORS
-#define HANDLE_ERROR(ERRORTYPE, CONDITION, ...) 
-#define HANDLE_ERROR_MESSAGE(ERRORTYPE, CONDITION, ACTION, ...) 
+#define HANDLE_ERROR(			ERRORTYPE, CONDITION, ...) 
+#define HANDLE_ERROR_MESSAGE(	ERRORTYPE, CONDITION, ACTION, ...) 
 #else
 //! The behavior to handle an error case
 /*!
@@ -79,7 +81,7 @@ HEADER_CPP
 	if (CONDITION)												\
 	{															\
 		Error_Set(ERROR_##ERRORTYPE);							\
-		LIBCONFIG_HANDLE_ERROR("%s -> %s", __func__,			\
+		LIBCONFIG_HANDLE_ERROR("%s -> %s\n", __func__,			\
 			Error_GetMessage(ERROR_##ERRORTYPE))				\
 		__VA_ARGS__												\
 	}															\
@@ -96,7 +98,7 @@ HEADER_CPP
 	{															\
 		Error_Set(ERROR_##ERRORTYPE);							\
 		t_char* tmp_##ERRORTYPE = String_Format(__VA_ARGS__);	\
-		LIBCONFIG_HANDLE_ERROR("%s -> %s\n%s", __func__,		\
+		LIBCONFIG_HANDLE_ERROR("%s -> %s\n%s\n", __func__,		\
 			Error_GetMessage(ERROR_##ERRORTYPE),				\
 			tmp_##ERRORTYPE)									\
 		String_Delete(&tmp_##ERRORTYPE);						\

@@ -12,6 +12,7 @@ t_bool	ASCII_IsInCharset(t_ascii c, t_ascii const* charset)
 {
 	t_size	i;
 
+	HANDLE_ERROR(NULLPOINTER, (charset == NULL), return (FALSE);)
 	i = 0;
 	while (charset[i])
 	{
