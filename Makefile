@@ -246,7 +246,6 @@ SRCS = error.c \
 	sys/unicode/utf16.c		\
 	sys/unicode/parse.c		\
 	sys/io/fd.c			\
-	sys/io/error.c		\
 	sys/io/color.c		\
 	sys/io/open.c		\
 	sys/io/close.c		\

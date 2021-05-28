@@ -35,6 +35,21 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
+//! Returns a newly allocated error message from the given `errno_value`
+/*!
+**	@isostd{https://en.cppreference.com/w/c/string/byte/strerror}
+**
+**	This is equivalent to the STD C `strerror()` functions (thread-safe).
+**
+**	@returns A newly allocated string which contains the standard errno message.
+*/
+t_char*							Error_STDC(int errno_value);
+#define c_strerror				Error_STDC
+#define c_strerror_r			Error_STDC
+#define c_strerror_s			Error_STDC
+#define Error_STDC_GetMessage	Error_STDC
+
+
 
 //! Returns the latest global error code (thread-safe)
 e_stderror		Error_Get(void);

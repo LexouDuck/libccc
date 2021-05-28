@@ -38,19 +38,25 @@ HEADER_CPP
 **	These macro functions determine how exception cases are to be handled by libccc.
 **	You may change the logic here (to implement custom exception handling for example).
 */
+#ifndef LIBCONFIG_HANDLE_ERROR
 #define LIBCONFIG_HANDLE_ERROR(...) \
 {									\
 	IO_Output_Format(__VA_ARGS__);	\
-}									\
+}
+#endif
 
 //! The action to take when there is an integer overflow (by default, let it continue)
+#ifndef LIBCONFIG_HANDLE_OVERFLOW
 #define LIBCONFIG_HANDLE_OVERFLOW \
 	// return (0);
+#endif
 
 
 
 //! The file to include in source files which use `HANDLE_ERROR()`
+#ifndef LIBCONFIG_HANDLE_INCLUDE
 #define LIBCONFIG_HANDLE_INCLUDE	"libccc/error.h"
+#endif
 
 
 
@@ -179,7 +185,7 @@ typedef enum stderror
 	ERROR_LENGTH2SMALL, //!< Argument Error: length value given is too small
 	ERROR_LENGTH2LARGE, //!< Argument Error: length value given is too large
 	ERROR_KEYNOTFOUND,  //!< Argument Error: could not find item with the given key
-	ERROR_WRONGTYPE,    //!< Argument Error: attempted to read dynamic-type item with wrong type
+	ERROR_WRONGTYPE,    //!< Argument Error: attempted to read dynamic-type item using the wrong type
 	ERROR_DELETEREF,    //!< Argument Error: attempted to free an area of constant memory
 
 	ERROR_PARSE,        //!< Error while attempting to parse string

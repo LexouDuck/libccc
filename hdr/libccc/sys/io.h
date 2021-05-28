@@ -158,19 +158,6 @@ TYPEDEF_ALIAS(			t_io_open, IO_OPEN, PRIMITIVE)
 ** ************************************************************************** *|
 */
 
-//! Returns the error message corresponding to the given 'errno' error number.
-/*!
-**	This is equivalent to the STD C strerror(), strerror_r() functions.
-**
-**	@returns A newly allocated string which contains the system IO error message.
-*/
-t_char*						IO_GetError(int error_num);
-#define c_strerror			IO_GetError
-#define c_strerror_r		IO_GetError
-#define IO_GetErrorMessage	IO_GetError
-
-
-
 //! Returns the ANSI color code number for the nearest color to the given 32-bit `color`.
 /*!
 **	(Learn more about ANSI colors)[https://misc.flogisoft.com/bash/tip_colors_and_formatting]

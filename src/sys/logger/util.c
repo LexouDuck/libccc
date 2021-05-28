@@ -37,7 +37,7 @@
 e_stderror	Log_FatalError(s_logger const* logger, t_char const* str)
 {
 	e_stderror result = OK;
-	t_char const* message = IO_GetError(errno);
+	t_char const* message = Error_STDC(errno);
 
 	if (logger->path && IO_IsTerminal(logger->fd))
 	{
