@@ -84,25 +84,17 @@ HEADER_CPP
 
 
 
-//! A struct for storing quaternions
-typedef struct quaternion
-{
-	t_float		s;		//!< The S value of this quaternion
-	t_float		i;		//!< The I value of this quaternion
-	t_float		j;		//!< The J value of this quaternion
-	t_float		k;		//!< The K value of this quaternion
-}					s_quaternion;
-TYPEDEF_ALIAS(		s_quaternion, QUATERNION, STRUCT)
-
-
-
 /*
 ** ************************************************************************** *|
 **                          Complex Number Operations                         *|
 ** ************************************************************************** *|
 */
 
-//! Allocates a new complex number struct on heap, with the given 're' real part and 'im' imaginary part
+//! Returns a complex number struct, with the given 're' real part and 'im' imaginary part
+s_complex				Complex(t_float re, t_float im);
+#define c_cplx			Complex
+
+//! Allocates a new complex number struct, with the given 're' real part and 'im' imaginary part
 _MALLOC()
 s_complex*				Complex_New(t_float re, t_float im);
 #define c_cplxnew		Complex_New
@@ -179,6 +171,18 @@ s_complex				Complex_Power(s_complex const* z, t_u8 n);
 **                            Quaternion Operations                           *|
 ** ************************************************************************** *|
 */
+
+//! A struct for storing quaternions
+typedef struct quaternion
+{
+	t_float		s;		//!< The S value of this quaternion
+	t_float		i;		//!< The I value of this quaternion
+	t_float		j;		//!< The J value of this quaternion
+	t_float		k;		//!< The K value of this quaternion
+}					s_quaternion;
+TYPEDEF_ALIAS(		s_quaternion, QUATERNION, STRUCT)
+
+
 
 // TODO define, implement, document
 

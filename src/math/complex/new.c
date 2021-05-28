@@ -6,6 +6,18 @@
 
 
 
+inline
+s_complex	Complex(t_float re, t_float im)
+{
+	return ((s_complex)
+	{
+		.re = re,
+		.im = im,
+	});
+}
+
+
+
 s_complex*	Complex_New(t_float re, t_float im)
 {
 	s_complex* result;

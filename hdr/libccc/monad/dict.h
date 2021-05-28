@@ -79,7 +79,10 @@ typedef struct dict_T
 */
 
 //! TODO
-s_dict_T	CONCAT(Dict_New,T_NAME)(t_uint n, ...);
+s_dict_T	CONCAT(Dict,T_NAME)(t_uint n, ...);
+
+//! TODO
+s_dict_T*	CONCAT(Dict_New,T_NAME)(t_uint n, ...);
 
 //! TODO
 void		CONCAT(Dict_Delete,T_NAME)(s_dict_T* dict);

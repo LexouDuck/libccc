@@ -87,15 +87,27 @@ typedef struct array_T
 ** ************************************************************************** *|
 */
 
-//! Allocates a new array which consists of `n` items.
+//! Returns an array which consists of `n` items, initialized with variadic arguments.
 /*!
 **	@param	n		The amount of items in this list (amount of variadic args)
 **	@param	...		The variadic list of arguments: there must be `n` arguments, of type `T`
-**	@returns a newly allocated linked list which consists of `n` structs chained together.
+**	@returns an array containing `n` elements (the given `...` varargs)
 */
 _GENERIC()
-s_array_T			CONCAT(Array_New,T_NAME)(t_uint n, ...);
+s_array_T			CONCAT(Array,T_NAME)(t_uint n, ...);
+#define c_arr		CONCAT(Array,T_NAME)
+
+//! Allocates a new array which consists of `n` items, initialized with variadic arguments.
+/*!
+**	@param	n		The amount of items in this list (amount of variadic args)
+**	@param	...		The variadic list of arguments: there must be `n` arguments, of type `T`
+**	@returns a newly allocated array containing `n` elements (the given `...` varargs)
+*/
+_GENERIC()
+s_array_T*			CONCAT(Array_New,T_NAME)(t_uint n, ...);
 #define c_arrnew	CONCAT(Array_New,T_NAME)
+
+
 
 //! Deletes the allocated buffer contained within the given `array` (frees and sets to NULL)
 /*!
@@ -114,7 +126,7 @@ _GENERIC()
 void				CONCAT(Array_Delete_F,T_NAME)(s_array_T* array, void (*delete)(T item));
 #define c_arrfdel	CONCAT(Array_Delete_F,T_NAME)
 
-// TODO Array_Delete_F
+
 
 //! Returns a newly allocated copy of the given `list`
 /*!

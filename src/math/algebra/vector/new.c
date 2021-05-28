@@ -6,6 +6,31 @@
 
 
 
+inline
+s_vector2d	Vector2D(t_float x, t_float y)
+{
+	return ((s_vector2d)
+	{
+		.x = x,
+		.y = y,
+	});
+}
+
+
+
+inline
+s_vector3d	Vector3D(t_float x, t_float y, t_float z)
+{
+	return ((s_vector3d)
+	{
+		.x = x,
+		.y = y,
+		.z = z,
+	});
+}
+
+
+
 s_vector2d*	Vector2D_New(t_float x, t_float y)
 {
 	s_vector2d* result;
