@@ -47,8 +47,8 @@ t_float	c_ln(t_float x)
 	t_u64	norm = 0;	// the float x in x*2^n in raw memory
 	t_s32	exp_b2;
 
-	if (x < 0.)
-		return (NAN);
+	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)
+	HANDLE_ERROR(MATHDOMAIN, (x < 0.), return (NAN);)
 	if (x == 0.)
 		return (-INFINITY);
 	if (x == 1.)

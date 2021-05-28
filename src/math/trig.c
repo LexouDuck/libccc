@@ -26,9 +26,8 @@ static t_float	inv_factorial(t_u32 n)
 		1.0 / 479001600,
 		1.0 / 6227020800,
 		1.0 / 87178291200,
-		1.0 / 1307674368000
+		1.0 / 1307674368000,
 	};
-
 	return (result[n]); //static so it shouldn't be called with any weird values
 //	return (n >= 16) ? 0. : result[n];
 }
@@ -46,6 +45,7 @@ t_float			c_cos(t_float x)
 	t_float		x_pow6;
 	t_float		x_pow8;
 
+	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)
 	sign = 0;
 	if (x < 0.)
 		x = -x;
@@ -94,6 +94,7 @@ t_float			c_sin(t_float x)
 	t_float		x_pow11;
 	t_float		x_pow13;
 
+	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)
 	sign = 0;
 	if (x < 0.)
 	{
@@ -110,19 +111,19 @@ t_float			c_sin(t_float x)
 	if (x > HALF_PI)
 		x = HALF_PI - (x - HALF_PI);
 
-	x_pow2 = x * x;
-	x_pow3 = x * x_pow2;
-	x_pow5 = x_pow2 * x_pow3;
-	x_pow7 = x_pow2 * x_pow5;
-	x_pow9 = x_pow2 * x_pow7;
+	x_pow2  = x * x;
+	x_pow3  = x * x_pow2;
+	x_pow5  = x_pow2 * x_pow3;
+	x_pow7  = x_pow2 * x_pow5;
+	x_pow9  = x_pow2 * x_pow7;
 	x_pow11 = x_pow2 * x_pow9;
 	x_pow13 = x_pow2 * x_pow11;
 
 	result = x;
-	result -= x_pow3 * inv_factorial(3);
-	result += x_pow5 * inv_factorial(5);
-	result -= x_pow7 * inv_factorial(7);
-	result += x_pow9 * inv_factorial(9);
+	result -= x_pow3  * inv_factorial(3);
+	result += x_pow5  * inv_factorial(5);
+	result -= x_pow7  * inv_factorial(7);
+	result += x_pow9  * inv_factorial(9);
 	result -= x_pow11 * inv_factorial(11);
 	result += x_pow13 * inv_factorial(13);
 	result -= x_pow13 * x_pow2 * inv_factorial(15);
@@ -136,10 +137,15 @@ MATH_DECL_REALFUNCTION(sin, sin)
 
 
 #if LIBCONFIG_USE_FAST_APPROX_MATH
-inline t_float	c_tan(t_float x)
+t_float	c_tan(t_float x)
 {
 // trigonometric formula
-	return (c_sin(x) / c_cos(x));
+	t_float	cosine;
+
+	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)
+	cosine = c_cos(x);
+	HANDLE_ERROR(MATHDOMAIN, (cosine == 0.), return (NAN);)
+	return (c_sin(x) / cosine);
 
 // fast polynomial approximation for [-1,+1] and 1/x approximation for the rest
 // score: 0.23	for [-40,+40]=> 200 tests
@@ -188,19 +194,19 @@ MATH_DECL_REALFUNCTION(tan, tan)
 #if LIBCONFIG_USE_FAST_APPROX_MATH
 t_float		c_acos(t_float x)
 {
+	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)
+	HANDLE_ERROR(MATHDOMAIN, (c_fabs(x) > 1.), return (NAN);)
+
 // fast polynomial approximation
 // score: 2.55	for [-1,+1]=> 200 tests
-	if (IS_NAN(x) || c_fabs(x) > 1.)
-		return (NAN);
 	if (c_fabs(x) == 1.)
 		return (INFINITY * SIGN(x));
-
 	t_float result = HALF_PI;
 	t_float power = x;
-	result += power * -1.;				power *= (x * x);
-	result += power * -0.0584;			power *= (x * x);
-	result += power * -0.6852;			power *= (x * x);
-	result += power * 1.16616;			power *= (x * x);
+	result += power * -1.;			power *= (x * x);
+	result += power * -0.0584;		power *= (x * x);
+	result += power * -0.6852;		power *= (x * x);
+	result += power * +1.16616;		power *= (x * x);
 	result += power * -0.9933563268;
 	return (result);
 
@@ -219,19 +225,19 @@ MATH_DECL_REALFUNCTION(acos, acos)
 #if LIBCONFIG_USE_FAST_APPROX_MATH
 t_float		c_asin(t_float x)
 {
+	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)
+	HANDLE_ERROR(MATHDOMAIN, (c_fabs(x) > 1.), return (NAN);)
+
 // fast polynomial approximation
 // score: 2.55	for [-1,+1]=> 200 tests
-	if (IS_NAN(x) || c_fabs(x) > 1.)
-		return (NAN);
 	if (c_fabs(x) == 1.)
 		return (INFINITY * SIGN(x));
-
 	t_float result = 0;
 	t_float power = x;
-	result += power * -1.;				power *= (x * x);
-	result += power * -0.0584;			power *= (x * x);
-	result += power * -0.6852;			power *= (x * x);
-	result += power * 1.16616;			power *= (x * x);
+	result += power * -1.;			power *= (x * x);
+	result += power * -0.0584;		power *= (x * x);
+	result += power * -0.6852;		power *= (x * x);
+	result += power * +1.16616;		power *= (x * x);
 	result += power * -0.9933563268;
 	return (-result);
 
@@ -250,12 +256,10 @@ MATH_DECL_REALFUNCTION(asin, asin)
 #if LIBCONFIG_USE_FAST_APPROX_MATH
 t_float		c_atan(t_float x)
 {
+	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)
 //	very fast sigmoid approximation
 //	score: 0.77	for [-5,+5]-> 200 tests
-
-	if (IS_NAN(x))
-		return (NAN);
-	else if (x == 0)
+	if (x == 0)
 		return (0);
 
 	t_float abs_x = c_fabs(x);
@@ -307,8 +311,7 @@ t_float		c_atan2(t_float y, t_float x)
 {
 	static const t_float pi_lo = 1.2246467991473531772E-16;
 
-	if (IS_NAN(x) || IS_NAN(y))
-		return (x + y);
+	HANDLE_ERROR(NANARGUMENT, (IS_NAN(x) || IS_NAN(y)), return (NAN);)
 	else if (y == 0.0)
 		return ((x < 0 ? PI : 0) * SIGN(x));
 	else if (x == 0.0)
