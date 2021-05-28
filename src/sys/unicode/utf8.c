@@ -15,39 +15,37 @@ t_size		UTF32_ToUTF8(t_utf8* dest, t_utf32 c)
 	t_u8 mask;
 
 	HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (0);)
-	if (UTF32_IsValid(c))
+	HANDLE_ERROR(ILLEGALBYTES, !UTF32_IsValid(c), return (0);)
+	if (c < UTF8_1BYTE)
 	{
-		if (c < UTF8_1BYTE)
-		{
-			dest[0] = (t_u8)c;
-			return (1);
-		}
-		else if (c < UTF8_2BYTE)
-		{
-			mask = ((1 << 5) - 1);
-			dest[0] = (mask & (c >> (6 * 1))) | 0xC0;
-			dest[1] = (MASK & (c >> (6 * 0))) | 0x80;
-			return (2);
-		}
-		else if (c < UTF8_3BYTE)
-		{
-			mask = ((1 << 4) - 1);
-			dest[0] = (mask & (c >> (6 * 2))) | 0xE0;
-			dest[1] = (MASK & (c >> (6 * 1))) | 0x80;
-			dest[2] = (MASK & (c >> (6 * 0))) | 0x80;
-			return (3);
-		}
-		else if (c <= UTF8_4BYTE)
-		{
-			mask = ((1 << 3) - 1);
-			dest[0] = (mask & (c >> (6 * 3))) | 0xF0;
-			dest[1] = (MASK & (c >> (6 * 2))) | 0x80;
-			dest[2] = (MASK & (c >> (6 * 1))) | 0x80;
-			dest[3] = (MASK & (c >> (6 * 0))) | 0x80;
-			return (4);
-		}
+		dest[0] = (t_u8)c;
+		return (1);
 	}
-	return (0); // INVALID UTF-8
+	else if (c < UTF8_2BYTE)
+	{
+		mask = ((1 << 5) - 1);
+		dest[0] = (mask & (c >> (6 * 1))) | 0xC0;
+		dest[1] = (MASK & (c >> (6 * 0))) | 0x80;
+		return (2);
+	}
+	else if (c < UTF8_3BYTE)
+	{
+		mask = ((1 << 4) - 1);
+		dest[0] = (mask & (c >> (6 * 2))) | 0xE0;
+		dest[1] = (MASK & (c >> (6 * 1))) | 0x80;
+		dest[2] = (MASK & (c >> (6 * 0))) | 0x80;
+		return (3);
+	}
+	else if (c <= UTF8_4BYTE)
+	{
+		mask = ((1 << 3) - 1);
+		dest[0] = (mask & (c >> (6 * 3))) | 0xF0;
+		dest[1] = (MASK & (c >> (6 * 2))) | 0x80;
+		dest[2] = (MASK & (c >> (6 * 1))) | 0x80;
+		dest[3] = (MASK & (c >> (6 * 0))) | 0x80;
+		return (4);
+	}
+	else return (0);
 }
 
 
@@ -68,8 +66,7 @@ t_utf32		UTF32_FromUTF8(t_utf8 const* str)
 			{
 				if (c & (1 << 4)) // 4-byte character
 				{
-					if (c & (1 << 3))
-						return (ERROR); // INVALID UTF-8
+					HANDLE_ERROR(ILLEGALBYTES, (c & (1 << 3)), return (ERROR);)
 					mask = ((1 << 3) - 1);
 					result |= (c & mask) << (6 * 3);	c = str[1];
 					result |= (c & MASK) << (6 * 2);	c = str[2];
@@ -94,7 +91,7 @@ t_utf32		UTF32_FromUTF8(t_utf8 const* str)
 				return (result);
 			}
 		}
-		else return (ERROR); // INVALID UTF-8
+		else HANDLE_ERROR(ILLEGALBYTES, TRUE, return (ERROR);)
 	}
 	else return ((t_utf32)c);
 }

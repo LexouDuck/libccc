@@ -13,8 +13,7 @@ t_size		UTF32_ToUTF16(t_utf16* dest, t_utf32 c)
 	HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (0);)
 	if (c >= UTF16_SURROGATE_HI)
 	{
-		if (c < UTF16_SURROGATE_END) // INVALID UTF-16
-			return (ERROR);
+		HANDLE_ERROR(ILLEGALBYTES, (c < UTF16_SURROGATE_END), return (ERROR);)
 		c -= UTF16_BIAS;
 		dest[0] = (c >> 10) + UTF16_SURROGATE_HI;
 		dest[1] = (c & ((1 << 10) - 1)) + UTF16_SURROGATE_LO;
@@ -39,8 +38,7 @@ t_utf32		UTF32_FromUTF16(t_utf16 const* str)
 	{
 		t_utf32 result = (c - UTF16_SURROGATE_HI) << 10;
 		c = str[1];
-		if (c < UTF16_SURROGATE_LO) // INVALID UTF-16
-			return (ERROR);
+		HANDLE_ERROR(ILLEGALBYTES, (c < UTF16_SURROGATE_LO), return (ERROR);)
 		result |= (c - UTF16_SURROGATE_LO);
 		result += UTF16_BIAS;
 		return (result);
