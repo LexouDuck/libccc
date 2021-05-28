@@ -100,7 +100,9 @@ t_char*	S##BITS##_ToString_Base(t_s##BITS number, t_char const* base)	\
 	result[0] = (number == 0) ? base[0] : '-';							\
 	n = (number <= 0) ? 1 : 0;											\
 	while (i--)															\
+	{																	\
 		result[n++] = digits[i];										\
+	}																	\
 	result[n] = '\0';													\
 	return (result);													\
 }																		\

@@ -21,14 +21,14 @@
 
 #define PARSE_KVTPATH_WHITESPACE(EXPECTED, ERRORMESSAGE) \
 	while (str[i] && Char_IsSpace(str[i]))	{ ++i; }				\
-	HANDLE_ERROR_MESSAGE(PARSE, (str[i] == '\0'),					\
+	HANDLE_ERROR_SF(PARSE, (str[i] == '\0'),					\
 		return (result);, PARSINGERROR_KVTPATH						\
 			"Unexpected end of accessor string, "					\
 			"expected %s "ERRORMESSAGE".\n",						\
 			EXPECTED)												\
 
 #define PARSE_KVTPATH_MATCH_CHAR(CHAR, ERRORMESSAGE) \
-	HANDLE_ERROR_MESSAGE(PARSE, (str[i] != CHAR),					\
+	HANDLE_ERROR_SF(PARSE, (str[i] != CHAR),					\
 		return (result);, PARSINGERROR_KVTPATH						\
 			"Expected char '%c' "ERRORMESSAGE", "					\
 			"but instead found: '%c'\n",							\
@@ -37,7 +37,7 @@
 	else ++i;														\
 
 #define PARSE_KVTPATH_MATCH_STRING(STRING, ERRORMESSAGE) \
-	HANDLE_ERROR_MESSAGE(PARSE,										\
+	HANDLE_ERROR_SF(PARSE,										\
 		String_Compare_N(str + i, STRING, String_Length(STRING)),	\
 		return (result);, PARSINGERROR_KVTPATH						\
 			"Expected \"%s\" "ERRORMESSAGE", "						\
@@ -94,7 +94,7 @@ s_kvt*	KVT_Get(s_kvt const* object, t_char const* format_path, ...)
 			length = 0;
 			while (str[i + length] != '\"')
 			{
-				HANDLE_ERROR_MESSAGE(PARSE, (str[i + length] == '\0'), return (result);, PARSINGERROR_KVTPATH
+				HANDLE_ERROR_SF(PARSE, (str[i + length] == '\0'), return (result);, PARSINGERROR_KVTPATH
 					"Unexpected end of accessor string, expected a closing double-quote '\"' t_char")
 				++length;
 			}
@@ -105,7 +105,7 @@ s_kvt*	KVT_Get(s_kvt const* object, t_char const* format_path, ...)
 		}
 		else
 		{
-			HANDLE_ERROR_MESSAGE(PARSE, (TRUE), return (result);, PARSINGERROR_KVTPATH
+			HANDLE_ERROR_SF(PARSE, (TRUE), return (result);, PARSINGERROR_KVTPATH
 				"Expected number or double-quoted string within brackets, but instead found: '%s'\n", str)
 		}
 		String_Delete(&accessor);

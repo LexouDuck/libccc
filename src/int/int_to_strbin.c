@@ -32,7 +32,9 @@ t_char*	U##BITS##_ToString_Bin(t_u##BITS number, t_bool prefix)			\
 		result[n] = 'b';												\
 	}																	\
 	while (i--)															\
+	{																	\
 		result[n++] = digits[i] ? '1' : '0';							\
+	}																	\
 	result[n] = '\0';													\
 	return (result);													\
 }																		\
@@ -75,7 +77,9 @@ t_char*	S##BITS##_ToString_Bin(t_s##BITS number, t_bool prefix)			\
 		result[n++] = 'b';												\
 	}																	\
 	while (i--)															\
+	{																	\
 		result[n++] = digits[i] ? '1' : '0';							\
+	}																	\
 	result[n] = '\0';													\
 	return (result);													\
 }																		\

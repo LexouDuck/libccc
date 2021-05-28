@@ -619,7 +619,7 @@ failure:
 			break;
 		column++;
 	}
-	HANDLE_ERROR_MESSAGE(PARSE, (TRUE), return (NULL);,
+	HANDLE_ERROR_SF(PARSE, (TRUE), return (NULL);,
 		PARSINGERROR_JSON_MESSAGE" -> at nesting depth %u: line %zu, column %zu (char index %zu: '%c'/0x%X)%s\n",
 		p->depth,
 		p->line,

@@ -48,8 +48,8 @@ void	print_test(
 				(function[0] == '_' ? function + 1 : function), ' '))
 				printf("\n");
 			if (can_sig & 1)
-				printf("\n%s - "C_YELLOW"can segfault"C_RESET, test_name);
-			else printf("\n%s", test_name);
+				printf("%s - "C_YELLOW"can segfault"C_RESET, test_name);
+			else printf("%s", test_name);
 			printf(" | ");
 		}
 	}
@@ -65,25 +65,27 @@ void	print_test(
 		if (function[0] == '_')
 		{
 			char*	expected = str_padleft("Expected", ' ', strlen(function) + 1);
-			printf(">c%s: (%s)\n>%s: (%s)"C_RESET,
+			printf(">c%s: (%s)\n"
+					">%s: (%s)\n"C_RESET,
 				function, result,
 				expected, expect);
 			free(expected);
 		}
 		else
 		{
-			printf(">c_%s: (%s)\n>  %s: (%s)"C_RESET,
+			printf( ">c_%s: (%s)\n"
+					">  %s: (%s)\n"C_RESET,
 				function, result,
 				function, expect);
 		}
 	}
 	else if (warning)
 	{
-		printf(C_YELLOW"Warning"C_RESET": %s", warning);
+		printf(C_YELLOW"Warning"C_RESET": %s\n", warning);
 	}
 	else if (g_test.flags.verbose)
 	{
-		printf(C_GREEN"OK!"C_RESET);
+		printf(C_GREEN"OK!"C_RESET"\n");
 	}
 	fflush(stdout);
 	fflush(stderr);
@@ -472,7 +474,8 @@ void	print_test_list(s_test_list* test, char const* args)
 	"\n\t.day_week  = %i," \
 	"\n\t.day_year  = %i," \
 	"\n\t.is_dst    = %s," \
-	"\n\t.offset    = %i\n" \
+	"\n\t.offset    = %i," \
+	"\n"
 
 void	print_test_date(s_test_date* test, char const* args)
 {

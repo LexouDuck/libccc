@@ -23,7 +23,7 @@ t_char*	U##BITS##_ToString_Hex(t_u##BITS number, t_bool prefix)			\
 	}																	\
 	if (i == 0)															\
 		digits[i++] = 0;												\
-	result = (t_char*)Memory_Allocate((prefix ? 2 : 0) + i + 1);			\
+	result = (t_char*)Memory_Allocate((prefix ? 2 : 0) + i + 1);		\
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)		\
 	n = 0;																\
 	if (prefix)															\
@@ -32,7 +32,9 @@ t_char*	U##BITS##_ToString_Hex(t_u##BITS number, t_bool prefix)			\
 		result[n++] = 'x';												\
 	}																	\
 	while (i--)															\
+	{																	\
 		result[n++] = digits[i] + (digits[i] < 10 ? '0' : 'A' - 10);	\
+	}																	\
 	result[n] = '\0';													\
 	return (result);													\
 }																		\
@@ -64,7 +66,7 @@ t_char*	S##BITS##_ToString_Hex(t_s##BITS number, t_bool prefix)			\
 		digits[i++] = n % 16;											\
 		n /= 16;														\
 	}																	\
-	result = (t_char*)Memory_Allocate((prefix ? 2 : 0) + i + 1);			\
+	result = (t_char*)Memory_Allocate((prefix ? 2 : 0) + i + 1);		\
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)		\
 	n = 0;																\
 	if (number < 0) 	result[n++] = '-';								\
@@ -75,7 +77,9 @@ t_char*	S##BITS##_ToString_Hex(t_s##BITS number, t_bool prefix)			\
 		result[n++] = 'x';												\
 	}																	\
 	while (i--)															\
+	{																	\
 		result[n++] = digits[i] + (digits[i] < 10 ? '0' : 'A' - 10);	\
+	}																	\
 	result[n] = '\0';													\
 	return (result);													\
 }																		\

@@ -36,7 +36,9 @@ t_char*	U##BITS##_ToString(t_u##BITS number)		\
 		return (NULL);)								\
 	n = 0;											\
 	while (i--)										\
+	{												\
 		result[n++] = '0' + digits[i];				\
+	}												\
 	result[n] = '\0';								\
 	return (result);								\
 }													\
@@ -74,7 +76,9 @@ t_char*	S##BITS##_ToString(t_s##BITS number)		\
 	result[0] = (number == 0) ? '0' : '-';			\
 	n = (number <= 0) ? 1 : 0;						\
 	while (i--)										\
+	{												\
 		result[n++] = '0' + digits[i];				\
+	}												\
 	result[n] = '\0';								\
 	return (result);								\
 }													\

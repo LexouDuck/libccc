@@ -43,6 +43,7 @@ HEADER_CPP
 	IO_Output_Format(__VA_ARGS__);	\
 }									\
 
+//! The action to take when there is an integer overflow (by default, let it continue)
 #define LIBCONFIG_HANDLE_OVERFLOW \
 	// return (0);
 
@@ -79,12 +80,16 @@ HEADER_CPP
 #define HANDLE_ERRORS_PRINT        1
 //!@}
 
+
+
 //! Comment out this `#define` to deactivate all error handling (not recommended)
 #define HANDLE_ERRORS
-
 #ifndef HANDLE_ERRORS
-#define HANDLE_ERROR(			ERRORTYPE, CONDITION, ACTION) 
-#define HANDLE_ERROR_MESSAGE(	ERRORTYPE, CONDITION, ACTION, ...) 
+#define HANDLE_ERROR(	ERRORTYPE, CONDITION, ACTION) 
+#define HANDLE_ERROR_SF(ERRORTYPE, CONDITION, ACTION, ...) 
+
+
+
 #else
 //! The behavior to handle an error case
 /*!
@@ -98,8 +103,11 @@ HEADER_CPP
 	{															\
 		Error_Set(ERROR_##ERRORTYPE);							\
 		if (HANDLE_ERRORS_##ERRORTYPE)							\
-			LIBCONFIG_HANDLE_ERROR("%s -> %s\n", __func__,		\
+		{														\
+			LIBCONFIG_HANDLE_ERROR(								\
+				C_RED"ERROR"C_RESET": %s -> %s\n", __func__,	\
 				Error_GetMessage(ERROR_##ERRORTYPE))			\
+		}														\
 		ACTION													\
 	}															\
 
@@ -110,18 +118,21 @@ HEADER_CPP
 **	@param ACTION		The actions(s) to perform after handling (`return`, `break`, etc)
 **	@param ...			The custom error message (format string and args, like `printf()`)
 */
-#define HANDLE_ERROR_MESSAGE(ERRORTYPE, CONDITION, ACTION, ...) \
-	if (CONDITION)												\
-	{															\
-		Error_Set(ERROR_##ERRORTYPE);							\
-		t_char* tmp_##ERRORTYPE = String_Format(__VA_ARGS__);	\
-		if (HANDLE_ERRORS_##ERRORTYPE)							\
-			LIBCONFIG_HANDLE_ERROR("%s -> %s\n%s\n", __func__,	\
-				Error_GetMessage(ERROR_##ERRORTYPE),			\
-				tmp_##ERRORTYPE)								\
-		String_Delete(&tmp_##ERRORTYPE);						\
-		ACTION													\
-	}															\
+#define HANDLE_ERROR_SF(ERRORTYPE, CONDITION, ACTION, ...) \
+	if (CONDITION)													\
+	{																\
+		Error_Set(ERROR_##ERRORTYPE);								\
+		if (HANDLE_ERRORS_##ERRORTYPE)								\
+		{															\
+			t_char* tmp_##ERRORTYPE = String_Format(__VA_ARGS__);	\
+			LIBCONFIG_HANDLE_ERROR(									\
+				C_RED"ERROR"C_RESET": %s -> %s\n%s\n", __func__,	\
+				Error_GetMessage(ERROR_##ERRORTYPE),				\
+				tmp_##ERRORTYPE)									\
+			String_Delete(&tmp_##ERRORTYPE);						\
+		}															\
+		ACTION														\
+	}																\
 
 #endif
 
