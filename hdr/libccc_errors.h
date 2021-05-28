@@ -39,7 +39,9 @@ HEADER_CPP
 **	You may change the logic here (to implement custom exception handling for example).
 */
 #define LIBCONFIG_HANDLE_ERROR(...) \
-	IO_Output_Format(__VA_ARGS__);
+{									\
+	IO_Output_Format(__VA_ARGS__);	\
+}									\
 
 
 
@@ -53,21 +55,31 @@ HEADER_CPP
 **	These "plural-named" can be used to activate or deactivate exception handling at will.
 */
 //!@{
-#define HANDLE_ERRORS_ALLOCFAILURE	1
-#define HANDLE_ERRORS_NULLPOINTER	1
-#define HANDLE_ERRORS_INVALIDENUM	1
-#define HANDLE_ERRORS_INDEX2SMALL	1
-#define HANDLE_ERRORS_INDEX2LARGE	1
-#define HANDLE_ERRORS_LENGTH2SMALL	1
-#define HANDLE_ERRORS_LENGTH2LARGE	1
-#define HANDLE_ERRORS_PARSINGERROR	1
+#define HANDLE_ERRORS_UNSPECIFIED  1
+#define HANDLE_ERRORS_SYSTEM       1
+#define HANDLE_ERRORS_ALLOCFAILURE 1
+#define HANDLE_ERRORS_INVALIDARGS  1
+#define HANDLE_ERRORS_NULLPOINTER  1
+#define HANDLE_ERRORS_MATHDOMAIN   1
+#define HANDLE_ERRORS_RESULTRANGE  1
+#define HANDLE_ERRORS_ILLEGALBYTES 1
+#define HANDLE_ERRORS_INVALIDENUM  1
+#define HANDLE_ERRORS_INDEX2SMALL  1
+#define HANDLE_ERRORS_INDEX2LARGE  1
+#define HANDLE_ERRORS_LENGTH2SMALL 1
+#define HANDLE_ERRORS_LENGTH2LARGE 1
+#define HANDLE_ERRORS_KEYNOTFOUND  1
+#define HANDLE_ERRORS_WRONGTYPE    1
+#define HANDLE_ERRORS_DELETEREF    1
+#define HANDLE_ERRORS_PARSE        1
+#define HANDLE_ERRORS_PRINT        1
 //!@}
 
 //! Comment out this `#define` to deactivate all error handling (not recommended)
 #define HANDLE_ERRORS
 
 #ifndef HANDLE_ERRORS
-#define HANDLE_ERROR(			ERRORTYPE, CONDITION, ...) 
+#define HANDLE_ERROR(			ERRORTYPE, CONDITION, ACTION) 
 #define HANDLE_ERROR_MESSAGE(	ERRORTYPE, CONDITION, ACTION, ...) 
 #else
 //! The behavior to handle an error case
@@ -77,13 +89,14 @@ HEADER_CPP
 **	@param ...			The actions(s) to perform after handling (`return`, `break`, etc)
 **			A variadic argument is used here to allow use of the comma operator.
 */
-#define HANDLE_ERROR(ERRORTYPE, CONDITION, ...) \
+#define HANDLE_ERROR(ERRORTYPE, CONDITION, ACTION) \
 	if (CONDITION)												\
 	{															\
 		Error_Set(ERROR_##ERRORTYPE);							\
-		LIBCONFIG_HANDLE_ERROR("%s -> %s\n", __func__,			\
-			Error_GetMessage(ERROR_##ERRORTYPE))				\
-		__VA_ARGS__												\
+		if (HANDLE_ERRORS_##ERRORTYPE)							\
+			LIBCONFIG_HANDLE_ERROR("%s -> %s\n", __func__,		\
+				Error_GetMessage(ERROR_##ERRORTYPE))			\
+		ACTION													\
 	}															\
 
 //! The behavior to handle an error case, with a custom message
@@ -98,9 +111,10 @@ HEADER_CPP
 	{															\
 		Error_Set(ERROR_##ERRORTYPE);							\
 		t_char* tmp_##ERRORTYPE = String_Format(__VA_ARGS__);	\
-		LIBCONFIG_HANDLE_ERROR("%s -> %s\n%s\n", __func__,		\
-			Error_GetMessage(ERROR_##ERRORTYPE),				\
-			tmp_##ERRORTYPE)									\
+		if (HANDLE_ERRORS_##ERRORTYPE)							\
+			LIBCONFIG_HANDLE_ERROR("%s -> %s\n%s\n", __func__,	\
+				Error_GetMessage(ERROR_##ERRORTYPE),			\
+				tmp_##ERRORTYPE)								\
 		String_Delete(&tmp_##ERRORTYPE);						\
 		ACTION													\
 	}															\

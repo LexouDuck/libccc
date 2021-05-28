@@ -173,51 +173,7 @@ t_utf8*	json_object		= "\
 t_utf8*	json_object_nested_min	= "{\"a\":{\"b\":{\"c\":{\"d\":{\"e\":{\"f\":{\"g\":{\"h\":{\"i\":{\"j\":{\"k\":{\"l\":{\"m\":{\"n\":{\"o\":{\"p\":{\"q\":{\"r\":{\"s\":{\"t\":{\"u\":{\"v\":{\"w\":{\"x\":{\"y\":{\"z\":\"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}";
 t_utf8*	json_object_nested	= "{\"a\": {\"b\": {\"c\": {\"d\": {\"e\": {\"f\": {\"g\": {\"h\": {\"i\": {\"j\": {\"k\": {\"l\": {\"m\": {\"n\": {\"o\": {\"p\": {\"q\": {\"r\": {\"s\": {\"t\": {\"u\": {\"v\": {\"w\": {\"x\": {\"y\": {\"z\": \"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}";
 
-//{"Label":"f","Attributes":{"PATTERN_ATTRIBUTE":[{"Values":[{"STRING":"ENTITY_PATTERN"}]}],"DESCRIPTION_ATTRIBUTE":[{"Values":[{"STRING":"f"}]}],"CHARACTERISTIC_ATTRIBUTE":[{"Label":"f","Properties":[["f","f",{"LOCUTOR":"{\"NAME\":\"f\"}"}]]}],"TEMPLATE_ATTRIBUTE":[{"Properties":[["f","f",{"STRING":"f"}]]}]}}
-t_utf8*	json_object_string1_min =
-"{"
-	"\"entity\":{\"pid\":1,\"hid\":1,\"uid\":\"152089\"},"
-	"\"value\":"
-	"{"
-		"\"type\":11,"
-		"\"value\":"
-		"\"{"
-			"\\\"Label\\\":\\\"debug4\\\","
-			"\\\"Attributes\\\":"
-			"{"
-				"\\\"PATTERN_ATTRIBUTE\\\":[{\\\"Values\\\":[{\\\"STRING\\\":\\\"ENTITY_PATTERN\\\"}]}],"
-				"\\\"DESCRIPTION_ATTRIBUTE\\\":[{\\\"Values\\\":[{\\\"STRING\\\":\\\"debug4\\\"}]}],"
-				"\\\"CHARACTERISTIC_ATTRIBUTE\\\":[],"
-				"\\\"TEMPLATE_ATTRIBUTE\\\":[{}]"
-			"}"
-		"}\""
-	"},"
-	"\"mode\":2"
-"}";
-t_utf8*	json_object_string1 =
-"{\
-\n	\"entity\": {\"pid\": 1, \"hid\": 1, \"uid\": \"152089\"},\
-\n	\"value\":\
-\n	{\
-\n		\"type\": 11,\
-\n		\"value\":\
-\n		\"{\
-\n			\\\"Label\\\":\\\"debug4\\\",\
-\n			\\\"Attributes\\\":\
-\n			{\
-\n				\\\"PATTERN_ATTRIBUTE\\\":[{\\\"Values\\\":[{\\\"STRING\\\":\\\"ENTITY_PATTERN\\\"}]}],\
-\n				\\\"DESCRIPTION_ATTRIBUTE\\\":[{\\\"Values\\\":[{\\\"STRING\\\":\\\"debug4\\\"}]}],\
-\n				\\\"CHARACTERISTIC_ATTRIBUTE\\\":[],\
-\n				\\\"TEMPLATE_ATTRIBUTE\\\":[{}]\
-\n			}\
-\n		}\"\
-\n	},\
-\n	\"mode\":2"
-"}";
-
-
-
-t_utf8*	json_object_string2_min =
+t_utf8*	json_object_string_min =
 "{"
 	"\"type\":11,"
 	"\"value\":"
@@ -232,7 +188,7 @@ t_utf8*	json_object_string2_min =
 		"}"
 	"}\""
 "}";
-t_utf8*	json_object_string2 =
+t_utf8*	json_object_string =
 "{\
 \n	\"type\": 11,\
 \n	\"value\": \"{\\\"Label\\\":\\\"NAME\\\",\\\"Attributes\\\":{\\\"PATTERN_ATTRIBUTE\\\":[{\\\"Values\\\":[{\\\"STRING\\\":\\\"ENTITY_PATTERN\\\"}]}],\\\"DESCRIPTION_ATTRIBUTE\\\":[{\\\"Values\\\":[{\\\"STRING\\\":\\\"DESC\\\"}]}],\\\"CHARACTERISTIC_ATTRIBUTE\\\":[],\\\"TEMPLATE_ATTRIBUTE\\\":[{}]}}\"\
@@ -739,10 +695,8 @@ void	test_json_##STRICT##_##MINIFY(void)																																		\
 	print_test_json_##STRICT##_##MINIFY("json_object_min           ("#STRICT" -> "#MINIFY")", FALSE,		json_object##MINIFY_EXPECT,			json_object_min);				\
 	print_test_json_##STRICT##_##MINIFY("json_object_nested        ("#STRICT" -> "#MINIFY")", FALSE,		json_object_nested##MINIFY_EXPECT,	json_object_nested);			\
 	print_test_json_##STRICT##_##MINIFY("json_object_nested_min    ("#STRICT" -> "#MINIFY")", FALSE,		json_object_nested##MINIFY_EXPECT,	json_object_nested_min);		\
-	print_test_json_##STRICT##_##MINIFY("json_object_string1       ("#STRICT" -> "#MINIFY")", FALSE,		json_object_string1##MINIFY_EXPECT,	json_object_string1);			\
-	print_test_json_##STRICT##_##MINIFY("json_object_string1_min   ("#STRICT" -> "#MINIFY")", FALSE,		json_object_string1##MINIFY_EXPECT,	json_object_string1_min);		\
-	print_test_json_##STRICT##_##MINIFY("json_object_string2       ("#STRICT" -> "#MINIFY")", FALSE,		json_object_string2##MINIFY_EXPECT,	json_object_string2);			\
-	print_test_json_##STRICT##_##MINIFY("json_object_string2_min   ("#STRICT" -> "#MINIFY")", FALSE,		json_object_string2##MINIFY_EXPECT,	json_object_string2_min);		\
+	print_test_json_##STRICT##_##MINIFY("json_object_nested_min    ("#STRICT" -> "#MINIFY")", FALSE,		json_object_string##MINIFY_EXPECT,	json_object_string);			\
+	print_test_json_##STRICT##_##MINIFY("json_object_nested_min    ("#STRICT" -> "#MINIFY")", FALSE,		json_object_string##MINIFY_EXPECT,	json_object_string_min);		\
 	print_test_json_##STRICT##_##MINIFY("json_whitespace           ("#STRICT" -> "#MINIFY")", FALSE,		json_helloworld##MINIFY_EXPECT,		json_whitespace);				\
 	print_test_json_##STRICT##_##MINIFY("json_whitespace_tab       ("#STRICT" -> "#MINIFY")", FALSE,		json_helloworld##MINIFY_EXPECT,		json_whitespace_tab);			\
 	print_test_json_##STRICT##_##MINIFY("json_whitespace_nl        ("#STRICT" -> "#MINIFY")", FALSE,		json_helloworld##MINIFY_EXPECT,		json_whitespace_nl);			\
