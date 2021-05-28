@@ -174,7 +174,16 @@ typedef enum stderror
 	ENUMLENGTH_STDERROR,
 }		e_stderror;
 
+/*
+// TODO thread-safe global, like 'errno'
+typedef struct stdglobal
+{
+	void*		thread_id;
+	e_stderror	code;
+	char*		message;
+}			s_stdglobal;
 
+*/
 
 /*
 ** ************************************************************************** *|

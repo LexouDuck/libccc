@@ -50,7 +50,7 @@ HEADER_CPP
 **	- Math: @f$ {|x|} @f$
 */
 #ifndef ABS
-#define ABS(x)		((x) < 0 ? -(x) : (x))
+#define ABS(X)		((X) < 0 ? -(X) : (X))
 #endif
 
 //! Expands to +1 or -1 according to the sign of `x` (NB: if `x` is zero, gives +1)
@@ -60,7 +60,7 @@ HEADER_CPP
 **	- Math: @f$ {\frac{x}{|x|}} @f$
 */
 #ifndef SIGN
-#define SIGN(x)		((x) < 0 ? -1 : +1)
+#define SIGN(X)		((X) < 0 ? -1 : +1)
 #endif
 
 
@@ -70,7 +70,7 @@ HEADER_CPP
 **	@isostd{https://en.cppreference.com/w/c/numeric/math/fmin}
 */
 #ifndef MIN
-#define MIN(x, y)	((x) < (y) ? (x) : (y))
+#define MIN(X, Y)	((X) < (Y) ? (X) : (Y))
 #endif
 
 //! Expands to the maximum value between `x` and `y` (the larger of the two)
@@ -78,7 +78,34 @@ HEADER_CPP
 **	@isostd{https://en.cppreference.com/w/c/numeric/math/fmax}
 */
 #ifndef MAX
-#define MAX(x, y)	((x) < (y) ? (y) : (x))
+#define MAX(X, Y)	((X) < (Y) ? (Y) : (X))
+#endif
+
+//! Expands to the maximum value between `x` and `y` (the larger of the two)
+/*!
+**	@isostd{https://en.cppreference.com/w/c/numeric/math/fmax}
+*/
+#ifndef POW
+#define POW(X, Y)		POW_##Y(X)
+
+// TODO make more optimized with log2n method
+#define POW_0( X)	(1)
+#define POW_1( X)	(X)
+#define POW_2( X)	(X * X)
+#define POW_3( X)	(X * X * X)
+#define POW_4( X)	(X * X * X * X)
+#define POW_5( X)	(X * X * X * X * X)
+#define POW_6( X)	(X * X * X * X * X * X)
+#define POW_7( X)	(X * X * X * X * X * X * X)
+#define POW_8( X)	(X * X * X * X * X * X * X * X)
+#define POW_9( X)	(X * X * X * X * X * X * X * X * X)
+#define POW_10(X)	(X * X * X * X * X * X * X * X * X * X)
+#define POW_11(X)	(X * X * X * X * X * X * X * X * X * X * X)
+#define POW_12(X)	(X * X * X * X * X * X * X * X * X * X * X * X)
+#define POW_13(X)	(X * X * X * X * X * X * X * X * X * X * X * X * X)
+#define POW_14(X)	(X * X * X * X * X * X * X * X * X * X * X * X * X * X)
+#define POW_15(X)	(X * X * X * X * X * X * X * X * X * X * X * X * X * X * X)
+#define POW_16(X)	(X * X * X * X * X * X * X * X * X * X * X * X * X * X * X * X)
 #endif
 
 
