@@ -43,6 +43,9 @@ HEADER_CPP
 	IO_Output_Format(__VA_ARGS__);	\
 }									\
 
+#define LIBCONFIG_HANDLE_OVERFLOW \
+	// return (0);
+
 
 
 //! The file to include in source files which use `HANDLE_ERROR()`

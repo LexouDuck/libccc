@@ -91,7 +91,10 @@ t_utf32		UTF32_FromUTF8(t_utf8 const* str)
 				return (result);
 			}
 		}
-		else HANDLE_ERROR(ILLEGALBYTES, TRUE, return (ERROR);)
+		else
+		{
+			HANDLE_ERROR(ILLEGALBYTES, TRUE, return (ERROR);)
+		}
 	}
 	else return ((t_utf32)c);
 }

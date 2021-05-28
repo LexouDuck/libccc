@@ -549,7 +549,7 @@ $(NAME_TEST): debug $(TEST_OBJS)
 
 # This rule builds and runs the test executable
 test: $(NAME_TEST)
-	@./$(NAME_TEST) -a
+	@./$(NAME_TEST) $(ARGS)
 
 test_log: $(NAME_TEST)
 	@mkdir -p $(LOGDIR)
