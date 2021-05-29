@@ -13,7 +13,7 @@
 #define __LIBCCC_MONAD_OBJECT_H
 /*!@group{libccc_monad_object}
 ** @{
-**	This header defines a dynamic object type and utility functions for it.
+**	This header defines a generic object type and utility functions for it.
 **
 **	@file
 */
@@ -81,6 +81,7 @@ typedef struct object_T
 ** ************************************************************************** *|
 */
 
+// TODO Object
 // TODO Object_New
 // TODO Object_Delete
 // TODO Object_Delete_F

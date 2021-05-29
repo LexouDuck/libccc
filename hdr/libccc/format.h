@@ -40,9 +40,16 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-/*
-**	Cross-platform '%' format specifiers for printf()-family calls: String_Format(), IO_Write_Format(), etc
-**	NB: `SF_` stands for "String Format"
+/*!
+**	Cross-platform '%' format specifiers for `printf()`-like function calls:
+**	@see
+**	- String_Format()
+**	- IO_Write_Format()
+**	- IO_Output_Format()
+**
+**	NOTE: the "SF_" stands for "String Format"
+**
+**	@file
 */
 
 #define SF_ENUM	"%d"

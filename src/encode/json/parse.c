@@ -3,8 +3,9 @@
 #include "libccc/char.h"
 #include "libccc/string.h"
 #include "libccc/memory.h"
-#include "libccc/sys/io.h"
 #include "libccc/encode/json.h"
+
+#include LIBCONFIG_HANDLE_INCLUDE
 
 
 
@@ -22,11 +23,11 @@ typedef struct json_parse
 
 
 
-static t_bool JSON_Parse_Value(s_json* const item, s_json_parse* const p);
-static t_bool JSON_Parse_Number(s_json* const item, s_json_parse* const p);
-static t_bool JSON_Parse_String(s_json* const item, s_json_parse* const p);
-static t_bool JSON_Parse_Array(s_json* const item, s_json_parse* const p);
-static t_bool JSON_Parse_Object(s_json* const item, s_json_parse* const p);
+static t_bool JSON_Parse_Value (s_json* const item, s_json_parse* p);
+static t_bool JSON_Parse_Number(s_json* const item, s_json_parse* p);
+static t_bool JSON_Parse_String(s_json* const item, s_json_parse* p);
+static t_bool JSON_Parse_Array (s_json* const item, s_json_parse* p);
+static t_bool JSON_Parse_Object(s_json* const item, s_json_parse* p);
 
 
 
@@ -59,12 +60,12 @@ t_bool	Char_IsSpace_JSON(t_utf32 c)
 
 //! Utility to jump whitespace and CR/LF
 static
-s_json_parse*	JSON_Parse_SkipWhiteSpace(s_json_parse* const p)
+s_json_parse*	JSON_Parse_SkipWhiteSpace(s_json_parse* p)
 {
 	t_size i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, p)
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, p->content)
+	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (p->content == NULL), return (NULL);)
 	while (CAN_PARSE(0))
 	{
 		if (p->content[p->offset] == '\n')
@@ -112,11 +113,11 @@ failure:
 
 //! skip the UTF-8 BOM (byte order mark) if it is at the beginning of a buffer
 static
-s_json_parse*	JSON_Parse_SkipUTF8BOM(s_json_parse* const p)
+s_json_parse*	JSON_Parse_SkipUTF8BOM(s_json_parse* p)
 {
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, p)
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, p->content)
-	LIBCONFIG_HANDLE_INDEX2LARGE(NULL, p->offset, p->length)
+	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (p->content == NULL), return (NULL);)
+	HANDLE_ERROR(INDEX2LARGE, (p->offset >= p->length), return (NULL);)
 	if (CAN_PARSE(4) && (String_Compare_N(&p->content[p->offset], UTF8_BOM, 3) == 0))
 	{
 		p->offset += 3;
@@ -128,13 +129,13 @@ s_json_parse*	JSON_Parse_SkipUTF8BOM(s_json_parse* const p)
 
 //! Parse the input text to generate a number, and populate the result into `item`.
 static
-t_bool		JSON_Parse_Number(s_json* const item, s_json_parse* const p)
+t_bool		JSON_Parse_Number(s_json* const item, s_json_parse* p)
 {
 	t_utf8*	number;
 	t_size	length;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, p)
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, p->content)
+	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (p->content == NULL), return (NULL);)
 	if (p->strict)
 	{
 		for (length = 0; CAN_PARSE(length); ++length)
@@ -195,7 +196,7 @@ failure:
 
 
 // Parse the input text into an unescaped cinput, and populate item.
-static t_bool JSON_Parse_String(s_json* const item, s_json_parse* const p)
+static t_bool JSON_Parse_String(s_json* const item, s_json_parse* p)
 {
 	t_utf8 const* input_pointer = &p->content[p->offset] + 1;
 	t_utf8 const* input_end = &p->content[p->offset] + 1;
@@ -205,8 +206,8 @@ static t_bool JSON_Parse_String(s_json* const item, s_json_parse* const p)
 	t_size skipped_bytes;
 	t_utf32 c;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, p)
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, p->content)
+	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (p->content == NULL), return (NULL);)
 	// not a string
 	if (!CAN_PARSE(0))
 		PARSINGERROR_JSON("Could not parse string: Unexpected end of end of input before string")
@@ -232,7 +233,7 @@ static t_bool JSON_Parse_String(s_json* const item, s_json_parse* const p)
 		PARSINGERROR_JSON("Could not parse string: Unexpected end of input before closing quote")
 	// This is at most how much we need for the output
 	allocation_length = (t_size)(input_end - &p->content[p->offset]) - skipped_bytes;
-	output = (t_utf8*)Memory_Alloc(allocation_length + sizeof(""));
+	output = (t_utf8*)Memory_Allocate(allocation_length + sizeof(""));
 	if (output == NULL)
 		PARSINGERROR_JSON("Could not parse string: Allocation failure")
 	output_pointer = output;
@@ -292,14 +293,14 @@ failure:
 
 
 static
-t_bool	JSON_Parse_Array(s_json* const item, s_json_parse* const p)
+t_bool	JSON_Parse_Array(s_json* const item, s_json_parse* p)
 {
 	s_json* head = NULL; // head of the linked list
 	s_json* current_item = NULL;
 	t_uint index;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, p)
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, p->content)
+	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (p->content == NULL), return (NULL);)
 	if (p->depth >= KVT_NESTING_LIMIT)
 		PARSINGERROR_JSON("Could not parse JSON: nested too deep, max depth of nesting is %u", KVT_NESTING_LIMIT)
 	p->depth++;
@@ -382,13 +383,13 @@ failure:
 
 
 static
-t_bool	JSON_Parse_Object(s_json* const item, s_json_parse* const p)
+t_bool	JSON_Parse_Object(s_json* const item, s_json_parse* p)
 {
 	s_json* head = NULL; // linked list head
 	s_json* current_item = NULL;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, p)
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, p->content)
+	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (p->content == NULL), return (NULL);)
 	if (p->depth >= KVT_NESTING_LIMIT)
 		PARSINGERROR_JSON("Could not parse JSON: nested too deep, max depth of nesting is %u", KVT_NESTING_LIMIT)
 	p->depth++;
@@ -478,7 +479,7 @@ failure:
 
 
 static
-t_bool	JSON_Parse_Value(s_json* const item, s_json_parse* const p)
+t_bool	JSON_Parse_Value(s_json* const item, s_json_parse* p)
 {
 	if ((p == NULL) || (p->content == NULL) || !CAN_PARSE(0))
 	{
@@ -568,7 +569,7 @@ s_json*	JSON_Parse_(t_utf8 const* json, t_size buffer_length, t_bool strict)//, 
 	s_json_parse* p = &parser;
 	s_json* result = NULL;
 
-	LIBCONFIG_HANDLE_LENGTH2SMALL(NULL, buffer_length, 1)
+	HANDLE_ERROR(LENGTH2SMALL, (buffer_length < 1), return (NULL);)
 	p->content = json;
 	p->length = buffer_length; 
 	p->offset = 0;
@@ -618,7 +619,8 @@ failure:
 			break;
 		column++;
 	}
-	LIBCONFIG_HANDLE_PARSINGERROR(NULL, "\n"PARSINGERROR_JSON_MESSAGE" -> at nesting depth %u: line %zu, column %zu (char index %zu: '%c'/0x%X)%s",
+	HANDLE_ERROR_SF(PARSE, (TRUE), return (NULL);,
+		PARSINGERROR_JSON_MESSAGE" -> at nesting depth %u: line %zu, column %zu (char index %zu: '%c'/0x%X)%s\n",
 		p->depth,
 		p->line,
 		column,
@@ -632,24 +634,24 @@ failure:
 
 s_json*	JSON_Parse(t_utf8 const* json)
 {
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, json)
+	HANDLE_ERROR(NULLPOINTER, (json == NULL), return (NULL);)
 	return (JSON_Parse_(json, String_Length(json), FALSE));//, NULL));
 }
 
 s_json*	JSON_Parse_N(t_utf8 const* json, t_size maxlength)
 {
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, json)
+	HANDLE_ERROR(NULLPOINTER, (json == NULL), return (NULL);)
 	return (JSON_Parse_(json, maxlength, FALSE));//, NULL));
 }
 
 s_json*	JSON_Parse_Strict(t_utf8 const* json)//, t_utf8 const** return_parse_end)
 {
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, json)
+	HANDLE_ERROR(NULLPOINTER, (json == NULL), return (NULL);)
 	return (JSON_Parse_(json, String_Length(json), TRUE));//, return_parse_end));
 }
 
 s_json*	JSON_Parse_Strict_N(t_utf8 const* json, t_size maxlength)//, t_utf8 const** return_parse_end)
 {
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, json)
+	HANDLE_ERROR(NULLPOINTER, (json == NULL), return (NULL);)
 	return (JSON_Parse_(json, maxlength, TRUE));//, return_parse_end));
 }

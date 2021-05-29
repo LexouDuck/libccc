@@ -1,6 +1,8 @@
 
 #include "libccc/color.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 inline t_u8		Color_ARGB16_Get_A(t_argb16 color)	{ return ((t_u8)((color >> COLOR_ARGB16_A_BITINDEX) ? 1 : 0)); }

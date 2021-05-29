@@ -3,6 +3,8 @@
 #include "libccc/char.h"
 #include "libccc/encode/common.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 t_sint	KVT_GetArrayLength(s_kvt const* array)
@@ -19,5 +21,5 @@ t_sint	KVT_GetArrayLength(s_kvt const* array)
 		child = child->next;
 	}
 	// FIXME: Can overflow here. Cannot be fixed without breaking the API
-	return (t_sint)size;
+	return ((t_sint)size);
 }

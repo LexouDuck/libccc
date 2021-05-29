@@ -1,6 +1,8 @@
 
 #include "libccc/memory.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 void*		Memory_Join(
@@ -10,10 +12,10 @@ void*		Memory_Join(
 	t_u8*	result;
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, ptr1)
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, ptr2)
-	if (!(result = Memory_Alloc(length1 + length2 + 1)))
-		return (NULL);
+	HANDLE_ERROR(NULLPOINTER, (ptr1 == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (ptr2 == NULL), return (NULL);)
+	result = (t_u8*)Memory_Allocate(length1 + length2 + 1);
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	i = 0;
 	while (i < length1)
 	{
@@ -38,8 +40,8 @@ void*	Memory_Append(
 {
 	void*	tmp;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, a_dest)
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, src)
+	HANDLE_ERROR(NULLPOINTER, (a_dest == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (src == NULL), return (NULL);)
 	tmp = Memory_Join(
 		*a_dest, dest_length,
 		src, src_length);
@@ -56,8 +58,8 @@ void*	Memory_Prepend(
 {
 	void*	tmp;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, a_dest)
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, src)
+	HANDLE_ERROR(NULLPOINTER, (a_dest == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (src == NULL), return (NULL);)
 	tmp = Memory_Join(
 		src, src_length,
 		*a_dest, dest_length);
@@ -74,8 +76,8 @@ void*	Memory_Merge(
 {
 	void*	result;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, a_ptr1)
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, a_ptr2)
+	HANDLE_ERROR(NULLPOINTER, (a_ptr1 == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (a_ptr2 == NULL), return (NULL);)
 	result = Memory_Join(
 		*a_ptr1, length1,
 		*a_ptr2, length2);

@@ -26,6 +26,7 @@ OBJDIR = ./obj/
 LIBDIR = ./lib/
 DOCDIR = ./doc/
 BINDIR = ./bin/
+LOGDIR = ./log/
 DISTDIR = ./dist/
 
 
@@ -36,8 +37,8 @@ DISTDIR = ./dist/
 
 # Compiler
 CC	= _
-CC_WIN32 =   i686-w64-mingw32-gcc -static -static-libgcc
-CC_WIN64 = x86_64-w64-mingw32-gcc -static -static-libgcc
+CC_WIN32 =   i686-w64-mingw32-gcc
+CC_WIN64 = x86_64-w64-mingw32-gcc
 CC_LINUX = gcc
 CC_MACOS = clang
 
@@ -47,17 +48,17 @@ CFLAGS = -Wall -Wextra -Winline -Wpedantic -Wstrict-prototypes -Wmissing-prototy
 #	-fsanitize=address
 #	-fsanitize=thread
 #	-fanalyzer
-CFLAGS_DEBUG = -g -ggdb -D DEBUG=1
+CFLAGS_DEBUG = -g -ggdb -D DEBUG=1 # -D__NOSTD__=1
 CFLAGS_RELEASE = -O3
 #	-flto
 CFLAGS_OS = _
 CFLAGS_OS_WIN   = -D__USE_MINGW_ANSI_STDIO=1
 CFLAGS_OS_LINUX = -Wno-unused-result -fPIC -pedantic
-CFLAGS_OS_MACOS = -Wno-missing-braces
+CFLAGS_OS_MACOS = -Wno-missing-braces -Wno-tautological-constant-out-of-range-compare -Wno-language-extension-token
 ifeq ($(CC),clang)
 	CFLAGS_OS_WIN += -Wno-missing-braces
 else
-	CFALGS_OS_WIN += -L./ -static-libgcc -D__USE_MINGW_ANSI_STDIO=1
+	CFLAGS_OS_WIN += -D__USE_MINGW_ANSI_STDIO=1
 endif
 
 
@@ -71,6 +72,11 @@ LDFLAGS_LINUX =
 LDFLAGS_MACOS = 
 #	-fsanitize=address
 #	-Wl,-rpath,bin/linux/dynamic/
+ifeq ($(CC),clang)
+	LDFLAGS_OS_WIN += -L/lib
+else
+	LDFLAGS_OS_WIN += -L./ -static-libgcc
+endif
 
 
 
@@ -103,18 +109,22 @@ ifeq ($(OSMODE),other)
 else ifeq ($(OSMODE),win32)
 	CC = $(CC_WIN32)
 	CFLAGS_OS = $(CFLAGS_OS_WIN)
+	LDFLAGS_OS = $(LDFLAGS_OS_WIN)
 	DYNAMICLIB_FILE_EXT=.dll
 else ifeq ($(OSMODE),win64)
 	CC = $(CC_WIN64)
 	CFLAGS_OS = $(CFLAGS_OS_WIN)
+	LDFLAGS_OS = $(LDFLAGS_OS_WIN)
 	DYNAMICLIB_FILE_EXT=.dll
 else ifeq ($(OSMODE),linux)
 	CC = $(CC_LINUX)
 	CFLAGS_OS = $(CFLAGS_OS_LINUX)
+	LDFLAGS_OS = $(LDFLAGS_OS_LINUX)
 	DYNAMICLIB_FILE_EXT=.so
 else ifeq ($(OSMODE),macos)
 	CC = $(CC_MACOS)
 	CFLAGS_OS = $(CFLAGS_OS_MACOS)
+	LDFLAGS_OS = $(LDFLAGS_OS_MACOS)
 	DYNAMICLIB_FILE_EXT=.dylib
 endif
 
@@ -133,7 +143,7 @@ C_YELLOW = "\e[33m"
 #######################################
 
 # List of all source code files
-SRCS = \
+SRCS = error.c \
 	bool/bool_to_str.c		\
 	bool/bool_from_str.c	\
 	int/int_to_str.c		\
@@ -236,7 +246,6 @@ SRCS = \
 	sys/unicode/utf16.c		\
 	sys/unicode/parse.c		\
 	sys/io/fd.c			\
-	sys/io/error.c		\
 	sys/io/color.c		\
 	sys/io/open.c		\
 	sys/io/close.c		\
@@ -354,7 +363,6 @@ SRCS = \
 	encode/kvt/delete.c		\
 	encode/kvt/detach.c		\
 	encode/kvt/replace.c	\
-	encode/kvt/error.c		\
 	encode/json/parse.c		\
 	encode/json/print.c		\
 	encode/json/minify.c	\
@@ -425,35 +433,37 @@ $(OBJDIR)%.o : $(SRCDIR)%.c
 
 # This rule builds the static library file to link against, in the root directory
 $(NAME_STATIC): $(OBJS)
+	@mkdir -p	$(BINDIR)static/$(OSMODE)/
 	@printf "Compiling library: "$@" -> "
 	@ar -rc $@ $(OBJS)
 	@ranlib $@
 	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
-	@mkdir -p				$(BINDIR)static/$(OSMODE)/
 	@cp -f $(NAME_STATIC)	$(BINDIR)static/$(OSMODE)/
 
 
 
 # This rule builds the dynamically-linked library files for the current target platform
 $(NAME_DYNAMIC): $(NAME_STATIC)
+	@mkdir -p	$(BINDIR)dynamic/$(OSMODE)/
 ifeq ($(OSMODE),$(filter $(OSMODE), win32 win64))
 	@printf \
 	"Compiling DLL: "$(NAME_DYNAMIC)" -> " ; \
-	$(CC) -shared -o $(NAME_DYNAMIC) $(CFLAGS) $(OBJS) \
+	$(CC) -shared -o $(NAME_DYNAMIC) $(CFLAGS) $(LDFLAGS) $(OBJS) \
 	-Wl,--output-def,$(NAME).def \
 	-Wl,--out-implib,$(NAME).lib \
 	-Wl,--export-all-symbols
+	@cp -f $(NAME).def	$(BINDIR)dynamic/$(OSMODE)/
+	@cp -f $(NAME).lib	$(BINDIR)dynamic/$(OSMODE)/
 else ifeq ($(OSMODE),macos)
 	@printf \
 	"Compiling dylib: "$(NAME_DYNAMIC)" -> " ; \
-	$(CC) -shared   -o $(NAME_DYNAMIC) $(CFLAGS) $(OBJS)
+	$(CC) -shared   -o $(NAME_DYNAMIC) $(CFLAGS) $(LDFLAGS) $(OBJS)
 else ifeq ($(OSMODE),linux)
 	@printf \
 	"Compiling .so: "$(NAME_DYNAMIC)" -> " ; \
-	$(CC) -shared -o $(NAME_DYNAMIC) $(CFLAGS) $(OBJS)
+	$(CC) -shared -o $(NAME_DYNAMIC) $(CFLAGS) $(LDFLAGS) $(OBJS)
 endif
 	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
-	@mkdir -p				$(BINDIR)dynamic/$(OSMODE)/
 	@cp -f $(NAME_DYNAMIC)	$(BINDIR)dynamic/$(OSMODE)/
 
 
@@ -507,12 +517,15 @@ TEST_SRCS = \
 TEST_OBJS = ${TEST_SRCS:%.c=$(OBJDIR)%.o}
 TEST_DEPS = ${TEST_OBJS:.o=.d}
 
-TEST_INCLUDEDIRS = -I$(HDRDIR) -I$(TEST_DIR)
+TEST_INCLUDEDIRS = \
+	-I$(HDRDIR) \
+	-I$(TEST_DIR) \
 
 TEST_CFLAGS = -O2 -g -ggdb # -fanalyzer
+TEST_LDFLAGS = $(LDFLAGS)
 
 TEST_LIBS = -L./ -lccc -lpthread -lm
-ifeq ($(OSMODE),linux)
+ifneq ($(OSMODE),macos)
 	TEST_LIBS := -static $(TEST_LIBS)
 endif
 
@@ -535,7 +548,23 @@ $(NAME_TEST): debug $(TEST_OBJS)
 
 # This rule builds and runs the test executable
 test: $(NAME_TEST)
-	@./$(NAME_TEST) -a
+	@./$(NAME_TEST) $(ARGS)
+
+test_log: $(NAME_TEST)
+	@mkdir -p $(LOGDIR)
+	@./$(NAME_TEST) -var --test-all >> $(LOGDIR)libccc_test.log
+
+
+
+test_foreach:
+	@$(CC) $(CFLAGS) $(TEST_DIR)_foreach.c -I$(HDRDIR) -L./ -lccc -o $(NAME_TEST)_foreach
+	@./$(NAME_TEST)_foreach
+	@rm $(NAME_TEST)_foreach
+
+test_errno:
+	@mkdir -p                  $(LOGDIR)errno/$(OSMODE)/
+	@rm -f                     $(LOGDIR)errno/$(OSMODE)/$(CC).c
+	@./$(TEST_DIR)_errno.sh >> $(LOGDIR)errno/$(OSMODE)/$(CC).c
 
 
 
@@ -592,8 +621,8 @@ PCLP_PROJECT		= pclint_project
 
 pclint_setup:
 	$(PCLP_SETUP) \
-		--compiler=gcc \
-		--compiler-bin=/usr/bin/gcc \
+		--compiler=$(CC) \
+		--compiler-bin=/usr/bin/$(CC) \
 		--compiler-options="$(CFLAGS)" \
 		--config-output-lnt-file=$(PCLP_CONFIG).lnt \
 		--config-output-header-file=$(PCLP_CONFIG).h \
@@ -602,7 +631,7 @@ pclint_setup:
 	@$(CC) $(CFLAGS) $(PCLP_IMPOSTER).c -o $(PCLP_IMPOSTER)
 	@$(PCLP_IMPOSTER) $(CFLAGS) $(SRCS) -o $@ $(HDRDIR) $(LIBS)
 	$(PCLP_SETUP) \
-		--compiler=gcc \
+		--compiler=$(CC) \
 		--imposter-file=$(PCLP_IMPOSTER_LOG) \
 		--config-output-lnt-file=$(PCLP_PROJECT).lnt \
 		--generate-project-config
@@ -640,28 +669,33 @@ $(OBJDIR)%.c: $(SRCDIR)%.c
 
 clean:
 	@printf "Deleting all .o files...\n"
-	@rm -rf $(OBJS)
-	@rm -rf $(TEST_OBJS)
+	@rm -f $(OBJS)
+	@rm -f $(TEST_OBJS)
 	@printf "Deleting all .d files...\n"
-	@rm -rf $(DEPS)
-	@rm -rf *.d
+	@rm -f $(DEPS)
+	@rm -f *.d
 
 fclean: clean
 	@printf "Deleting library: "$(NAME_STATIC)"\n"
-	@rm -rf $(NAME_STATIC)
+	@rm -f $(NAME_STATIC)
 	@printf "Deleting library: "$(NAME_DYNAMIC)"\n"
-	@rm -rf $(NAME_DYNAMIC)
+	@rm -f $(NAME_DYNAMIC)
+	@rm -f $(NAME).*
 	@printf "Deleting program: "$(NAME_TEST)"\n"
-	@rm -rf $(NAME_TEST)
-	@rm -rf $(NAME_TEST).d
+	@rm -f $(NAME_TEST)
+	@rm -f $(NAME_TEST).d
 
 rclean: fclean
 	@printf "Deleting "$(OBJDIR)" folder...\n"
 	@rm -rf $(OBJDIR)
 
-aclean: rclean
+aclean: rclean logclean
 	@printf "Deleting "$(BINDIR)" folder...\n"
 	@rm -rf $(BINDIR)
+
+logclean:
+	@printf "Deleting "$(LOGDIR)" folder...\n"
+	@rm -rf $(LOGDIR)
 
 re: fclean all
 
@@ -672,11 +706,23 @@ re: fclean all
 #######################################
 
 # This line ensures the makefile won't conflict with files named 'clean', 'fclean', etc
-.PHONY: all debug release dist dist_version
-.PHONY: test
-.PHONY: clean fclean rclean re
-.PHONY: lint pclint_setup pclint
-.PHONY: doc preprocessed
+.PHONY: \
+	all				\
+	debug			\
+	release			\
+	init			\
+	dist			\
+	dist_version	\
+	test			\
+	doc				\
+	lint			\
+	preprocessed	\
+	clean			\
+	fclean			\
+	rclean			\
+	aclean			\
+	logclean		\
+	re				\
 
 # The following line is for Makefile GCC dependency file handling (.d files)
 -include ${DEPS}

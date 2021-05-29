@@ -2,6 +2,8 @@
 #include "libccc/string.h"
 #include "libccc/stringarray.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 t_char**	StringArray_Pad_L(t_char const** strarr, t_char const c, t_u32 n)
@@ -10,7 +12,7 @@ t_char**	StringArray_Pad_L(t_char const** strarr, t_char const c, t_u32 n)
 	t_u32		strarr_length;
 	t_u32		i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, strarr)
+	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return (NULL);)
 	strarr_length = StringArray_Length(strarr);
 	if (!(result = StringArray_New(strarr_length)))
 		return (NULL);

@@ -47,32 +47,32 @@ typedef struct box1d
 {
 	t_float		start;
 	t_float		end;
-}					s_box1d;
-TYPEDEF_ALIAS(		s_box1d, BOX_1D, STRUCT)
+}				s_box1d;
+TYPEDEF_ALIAS(	s_box1d, BOX_1D, STRUCT)
 
 //! A 2-dimensional area of coordinates, defined by two corner-point vectors
 typedef struct box2d
 {
 	u_vector2d	start;
 	u_vector2d	end;
-}					s_box2d;
-TYPEDEF_ALIAS(		s_box2d, BOX_2D, STRUCT)
+}				s_box2d;
+TYPEDEF_ALIAS(	s_box2d, BOX_2D, STRUCT)
 
 //! A 3-dimensional volume of coordinates, defined by two corner-point vectors
 typedef struct box3d
 {
 	u_vector3d	start;
 	u_vector3d	end;
-}					s_box3d;
-TYPEDEF_ALIAS(		s_box3d, BOX_3D, STRUCT)
+}				s_box3d;
+TYPEDEF_ALIAS(	s_box3d, BOX_3D, STRUCT)
 
 //! A 4-dimensional hypervolume of coordinates, defined by two corner-point vectors
 typedef struct box4d
 {
 	u_vector4d	start;
 	u_vector4d	end;
-}					s_box4d;
-TYPEDEF_ALIAS(		s_box4d, BOX_4D, STRUCT)
+}				s_box4d;
+TYPEDEF_ALIAS(	s_box4d, BOX_4D, STRUCT)
 
 
 

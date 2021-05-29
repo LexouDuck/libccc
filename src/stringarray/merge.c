@@ -1,14 +1,16 @@
 
 #include "libccc/stringarray.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 t_char**	StringArray_Merge(t_char** *a_strarr1, t_char** *a_strarr2)
 {
 	t_char**	result;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, a_strarr1)
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, a_strarr2)
+	HANDLE_ERROR(NULLPOINTER, (a_strarr1 == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (a_strarr2 == NULL), return (NULL);)
 	result = StringArray_Join((t_char const**)*a_strarr1, (t_char const**)*a_strarr2);
 	StringArray_Delete(a_strarr1);
 	StringArray_Delete(a_strarr2);

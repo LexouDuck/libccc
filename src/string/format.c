@@ -1,10 +1,5 @@
 
 #ifndef __NOSTD__
-	#include <stdio.h>
-#else
-	int	vsnprintf(char* dest, size_t n, char const* format, va_list args);
-#endif
-#ifndef __NOSTD__
 	#include <stdarg.h>
 #else
 	typedef __builtin_va_list va_list;
@@ -16,6 +11,14 @@
 
 #include "libccc/memory.h"
 #include "libccc/string.h"
+
+#ifndef __NOSTD__
+	#include <stdio.h>
+#else
+	int	vsnprintf(char* dest, size_t n, char const* format, va_list args);
+#endif
+
+#include LIBCONFIG_HANDLE_INCLUDE
 
 
 
@@ -39,9 +42,8 @@ static int	vasprintf(t_char** a_str, t_char const* format, va_list args)
 	int length = vscprintf(format, args);
 	if (length == -1)
 		return -1;
-	t_char* str = (t_char*)Memory_Alloc((size_t)length + sizeof(""));
-	if (!str)
-		return -1;
+	t_char* str = (t_char*)Memory_Allocate((size_t)length + sizeof(""));
+	HANDLE_ERROR(ALLOCFAILURE, (str == NULL), return (-1);)
 	int result = vsnprintf(str, length + 1, format, args);
 	if (result == -1)
 	{

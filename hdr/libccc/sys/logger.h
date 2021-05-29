@@ -97,7 +97,7 @@ typedef s_logger const* const*	t_logptrarr;
 /* ************************************************************************** */
 
 #define LOGONE_FUNCTION_CONTENT(VERBOSE_ONLY, IS_ERROR, USE_ERRNO, PREFIX, PREFIX_COLOR) \
-	t_io_error	result = OK;					\
+	e_cccerror	result = OK;					\
 	va_list		args;							\
 												\
 	va_start(args, format_str);					\
@@ -109,7 +109,7 @@ typedef s_logger const* const*	t_logptrarr;
 	return (result);							\
 
 #define LOGALL_FUNCTION_CONTENT(VERBOSE_ONLY, IS_ERROR, USE_ERRNO, PREFIX, PREFIX_COLOR) \
-	t_io_error	result = OK;					\
+	e_cccerror	result = OK;					\
 	va_list		args;							\
 												\
 	for (t_u32 i = 0; loggers[i]; ++i)			\
@@ -153,7 +153,7 @@ t_char*						Logger_GetSettings(s_logger const* logger);
 #define c_log_getsettings	Logger_GetSettings
 
 //! Util function to help debug the logger
-t_io_error					Logger_LogSettings(s_logger const* logger);
+e_cccerror					Logger_LogSettings(s_logger const* logger);
 #define c_log_logsettings	Logger_LogSettings
 
 
@@ -169,14 +169,14 @@ t_char*		Logger_GetTimestamp(t_time utc);
 
 //! Send a printf-like string to logfile
 _FORMAT(printf, 5, 6)
-t_io_error 	Log(s_logger const* logger,
+e_cccerror 	Log(s_logger const* logger,
 	t_bool is_verbose_only,
 	t_bool is_error,
 	t_bool use_errno_perror,
 	t_char const* format_str, ...);
 #define c_log_		Log
 
-t_io_error	Log_VA(s_logger const* logger,
+e_cccerror	Log_VA(s_logger const* logger,
 	t_bool 		verbose_only,
 	t_bool 		use_errno,
 	int			is_error,
@@ -189,7 +189,7 @@ t_io_error	Log_VA(s_logger const* logger,
 
 
 //! Used to log a fundamental error where even the logger itself doesn't work: calls the STD C perror() function
-t_io_error				Log_Fatal	(s_logger const* logger, t_char const* str);
+e_cccerror				Log_Fatal	(s_logger const* logger, t_char const* str);
 #define c_log_fatal		Log_Fatal
 #define Log_FatalError	Log_Fatal
 
@@ -197,33 +197,33 @@ t_io_error				Log_Fatal	(s_logger const* logger, t_char const* str);
 
 //! Logging (perror-style) to both stderr and logfile (if applicable)
 _FORMAT(printf, 3, 4)
-t_io_error					LogAll_Error_IO			(t_logptrarr const loggers, int error_code, t_char const* format_str, ...);
+e_cccerror					LogAll_Error_IO			(t_logptrarr const loggers, int error_code, t_char const* format_str, ...);
 #define c_logall_error_io	LogAll_Error_IO
 #define LogAll_SystemError	LogAll_Error_IO
 
 //! Logging perror-style to both stderr and logfile (if applicable)
 _FORMAT(printf, 3, 4)
-t_io_error					LogAll_Error			(t_logptrarr const loggers, int error_code, t_char const* format_str, ...);
+e_cccerror					LogAll_Error			(t_logptrarr const loggers, int error_code, t_char const* format_str, ...);
 #define c_logall_error		LogAll_Error
 
 //! To be called when there is an important warning to show to the user
 _FORMAT(printf, 2, 3)
-t_io_error					LogAll_Warning			(t_logptrarr const loggers,                 t_char const* format_str, ...);
+e_cccerror					LogAll_Warning			(t_logptrarr const loggers,                 t_char const* format_str, ...);
 #define c_logall_warning	LogAll_Warning
 
 //! To be called when there is an successful operation (or result) of which to notify the user
 _FORMAT(printf, 2, 3)
-t_io_error					LogAll_Success			(t_logptrarr const loggers,                 t_char const* format_str, ...);
+e_cccerror					LogAll_Success			(t_logptrarr const loggers,                 t_char const* format_str, ...);
 #define c_logall_success	LogAll_Success
 
 //! Logging printf-style of message to both stdout and logfile (if applicable)
 _FORMAT(printf, 2, 3)
-t_io_error					LogAll_Message			(t_logptrarr const loggers,                 t_char const* format_str, ...);
+e_cccerror					LogAll_Message			(t_logptrarr const loggers,                 t_char const* format_str, ...);
 #define c_logall_message	LogAll_Message
 
 //! Logging printf-style of verbose message to both stdout and logfile (if applicable)
 _FORMAT(printf, 2, 3)
-t_io_error					LogAll_Message_Verbose	(t_logptrarr const loggers,                 t_char const* format_str, ...);
+e_cccerror					LogAll_Message_Verbose	(t_logptrarr const loggers,                 t_char const* format_str, ...);
 #define c_logall_verbose	LogAll_Message_Verbose
 #define LogAll_Verbose		LogAll_Message_Verbose
 
@@ -231,33 +231,33 @@ t_io_error					LogAll_Message_Verbose	(t_logptrarr const loggers,               
 
 //! Logging (perror-style) to both stderr and logfile (if applicable)
 _FORMAT(printf, 3, 4)
-t_io_error					Log_Error_IO			(s_logger const* logger, int error_code, t_char const* format_str, ...);
+e_cccerror					Log_Error_IO			(s_logger const* logger, int error_code, t_char const* format_str, ...);
 #define c_log_error_io	Log_Error_IO
 #define Log_SystemError	Log_Error_IO
 
 //! Logging perror-style to both stderr and logfile (if applicable)
 _FORMAT(printf, 3, 4)
-t_io_error					Log_Error				(s_logger const* logger, int error_code, t_char const* format_str, ...);
+e_cccerror					Log_Error				(s_logger const* logger, int error_code, t_char const* format_str, ...);
 #define c_log_error		Log_Error
 
 //! To be called when there is an important warning to show to the user
 _FORMAT(printf, 2, 3)
-t_io_error					Log_Warning				(s_logger const* logger,                 t_char const* format_str, ...);
+e_cccerror					Log_Warning				(s_logger const* logger,                 t_char const* format_str, ...);
 #define c_log_warning	Log_Warning
 
 //! To be called when there is an successful operation (or result) of which to notify the user
 _FORMAT(printf, 2, 3)
-t_io_error					Log_Success				(s_logger const* logger,                 t_char const* format_str, ...);
+e_cccerror					Log_Success				(s_logger const* logger,                 t_char const* format_str, ...);
 #define c_log_success	Log_Success
 
 //! Logging printf-style of message to both stdout and logfile (if applicable)
 _FORMAT(printf, 2, 3)
-t_io_error					Log_Message				(s_logger const* logger,                 t_char const* format_str, ...);
+e_cccerror					Log_Message				(s_logger const* logger,                 t_char const* format_str, ...);
 #define c_log_message	Log_Message
 
 //! Logging printf-style of verbose message to both stdout and logfile (if applicable)
 _FORMAT(printf, 2, 3)
-t_io_error					Log_Message_Verbose		(s_logger const* logger,                 t_char const* format_str, ...);
+e_cccerror					Log_Message_Verbose		(s_logger const* logger,                 t_char const* format_str, ...);
 #define c_log_verbose	Log_Message_Verbose
 #define Log_Verbose		Log_Message_Verbose
 

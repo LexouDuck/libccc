@@ -2,6 +2,8 @@
 #include "libccc/float.h"
 #include "libccc/math/math.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 #define DEFINEFUNC_FLOAT_ADD(BITS) \

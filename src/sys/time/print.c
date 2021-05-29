@@ -1,12 +1,16 @@
 
+#include "libccc/sys/time.h"
+
 #ifndef __NOSTD__
 	#include <time.h>
 #else
 	size_t	strftime(t_char* s, size_t max, const t_char* format, const struct tm *tm);
 #endif
 
-#include "libccc/sys/time.h"
+
 #include "libccc/string.h"
+
+#include LIBCONFIG_HANDLE_INCLUDE
 
 
 
@@ -73,6 +77,7 @@ t_size			Date_ToString_N(t_char* dest, t_size max, s_date const* date, t_char co
 	tm = Date_ToSTDC(date);
 	return (strftime(dest, max, format, &tm));
 }
+
 
 inline t_char*	Date_ToString_Unix(s_date const* date)
 {

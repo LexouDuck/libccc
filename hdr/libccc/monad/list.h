@@ -13,7 +13,7 @@
 #define __LIBCCC_MONAD_LIST_H
 /*!@group{libccc_monad_list}
 ** @{
-**	This header defines a simple linked list type and utility functions for it.
+**	This header defines a generic linked list type and utility functions for it.
 **
 **	@file
 */
@@ -76,12 +76,35 @@ typedef struct list_T
 
 #define foreach_s_list(_TYPE_, _VAR_, _LIST_)		foreach (_TYPE_, _VAR_, s_list, _LIST_)
 
-#define foreach_s_list_init(		_TYPE_, _VAR_, _LIST_)	struct _##_VAR_{ struct _##_VAR_*next; _TYPE_ item; }* _VAR_##_i = (struct _##_VAR_*)(_LIST_);
+#define foreach_s_list_init(		_TYPE_, _VAR_, _LIST_)	foreach_s_list_T(_TYPE_, _VAR_, _LIST_) _VAR_##_i = (_LIST_);
 #define foreach_s_list_exit(		_TYPE_, _VAR_, _LIST_)	if ((void*)(_LIST_) != NULL)
-#define foreach_s_list_loop_init(	_TYPE_, _VAR_, _LIST_)	_TYPE_ _VAR_ = (_TYPE_)(_VAR_##_i->item)
+#define foreach_s_list_loop_init(	_TYPE_, _VAR_, _LIST_)	_TYPE_ _VAR_ = (_VAR_##_i->item)
 #define foreach_s_list_loop_exit(	_TYPE_, _VAR_, _LIST_)	(_VAR_##_i != NULL)
 #define foreach_s_list_loop_incr(	_TYPE_, _VAR_, _LIST_)	_VAR_##_i = _VAR_##_i->next
-#define foreach_s_list_loop_setv(	_TYPE_, _VAR_, _LIST_)	_VAR_ = (_VAR_##_i == NULL ? _VAR_ : (_TYPE_)(_VAR_##_i->item))
+#define foreach_s_list_loop_setv(	_TYPE_, _VAR_, _LIST_)	_VAR_ = (_VAR_##_i == NULL ? _VAR_ : (_VAR_##_i->item))
+
+#if 1
+	#define foreach_s_list_T(_TYPE_, _VAR_, _LIST_) \
+		__typeof__(_LIST_)
+#else
+	//! if the `typeof()` operator doesn't exist, an inline struct is used (very unsafe !)
+	#if LIBCONFIG_LIST_DOUBLYLINKED
+	#define foreach_s_list_T(_TYPE_, _VAR_, _LIST_) \
+		struct _##_VAR_				\
+		{							\
+			struct _##_VAR_*prev;	\
+			struct _##_VAR_*next;	\
+			_TYPE_			item;	\
+		}
+	#else
+	#define foreach_s_list_T(_TYPE_, _VAR_, _LIST_) \
+		struct _##_VAR_				\
+		{							\
+			struct _##_VAR_*next;	\
+			_TYPE_			item;	\
+		}
+	#endif
+#endif
 
 
 
@@ -128,12 +151,14 @@ _GENERIC()
 s_list_T*			CONCAT(List_New,T_NAME)(t_uint n, ...);
 #define c_lstnew	CONCAT(List_New,T_NAME)
 
+
+
 //! Deletes all the elements in the list starting at `*a_list`
 /*!
 **	@param	a_list	The address ('&') of the beginning of the list - will be set to NULL.
 */
 _GENERIC()
-void				CONCAT(List_Delete,T_NAME)(s_list_T* *a_list);
+void				CONCAT(List_Delete,T_NAME)(s_list_T* list);
 #define c_lstdel	CONCAT(List_Delete,T_NAME)
 
 //! Deletes all the elements in the list starting at `*a_list`, calling `delete()` for each item
@@ -142,8 +167,10 @@ void				CONCAT(List_Delete,T_NAME)(s_list_T* *a_list);
 **	@param	delete	the function which should be executed for each item before deletion.
 */
 _GENERIC()
-void				CONCAT(List_Delete_F,T_NAME)(s_list_T* *a_list, void (*delete)(T item));
+void				CONCAT(List_Delete_F,T_NAME)(s_list_T* list, void (*delete)(T* item));
 #define c_lstfdel	CONCAT(List_Delete_F,T_NAME)
+
+
 
 //! Returns a newly allocated copy of the given `list`
 /*!

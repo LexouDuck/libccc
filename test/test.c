@@ -2,6 +2,7 @@
 #include <ctype.h>
 #include <math.h>
 
+#include "libccc.h"
 #include "libccc/math/math.h"
 #include "libccc/sys/time.h"
 
@@ -47,8 +48,8 @@ void	print_test(
 				(function[0] == '_' ? function + 1 : function), ' '))
 				printf("\n");
 			if (can_sig & 1)
-				printf("\n%s - "C_YELLOW"can segfault"C_RESET, test_name);
-			else printf("\n%s", test_name);
+				printf("%s - "C_YELLOW"can segfault"C_RESET, test_name);
+			else printf("%s", test_name);
 			printf(" | ");
 		}
 	}
@@ -64,25 +65,27 @@ void	print_test(
 		if (function[0] == '_')
 		{
 			char*	expected = str_padleft("Expected", ' ', strlen(function) + 1);
-			printf(">c%s: (%s)\n>%s: (%s)"C_RESET,
+			printf(">c%s: (%s)\n"
+					">%s: (%s)\n"C_RESET,
 				function, result,
 				expected, expect);
 			free(expected);
 		}
 		else
 		{
-			printf(">c_%s: (%s)\n>  %s: (%s)"C_RESET,
+			printf( ">c_%s: (%s)\n"
+					">  %s: (%s)\n"C_RESET,
 				function, result,
 				function, expect);
 		}
 	}
 	else if (warning)
 	{
-		printf(C_YELLOW"Warning"C_RESET": %s", warning);
+		printf(C_YELLOW"Warning"C_RESET": %s\n", warning);
 	}
 	else if (g_test.flags.verbose)
 	{
-		printf(C_GREEN"OK!"C_RESET);
+		printf(C_GREEN"OK!"C_RESET"\n");
 	}
 	fflush(stdout);
 	fflush(stderr);
@@ -98,7 +101,7 @@ void	print_test_##NAME(s_test_##NAME* test, char const* args)							\
 	if (test->result_sig)																	\
 		error = !test->expect_sig;															\
 	else if (test->expect_sig)																\
-		error = !LIBCONFIG_HANDLE_NULLPOINTERS;												\
+		error = !HANDLE_ERRORS_NULLPOINTER;													\
 	else error = (test->result != test->expect);											\
 	print_test(test->name, test->function, args,											\
 		(test->result_sig ? signals[test->result_sig] : SIGNED##inttostr(test->result)),	\
@@ -156,7 +159,7 @@ void	print_test_##NAME(s_test_##NAME* test, char const* args)		\
 	if (test->result_sig)												\
 		error = !test->expect_sig;										\
 	else if (test->expect_sig)											\
-		error = !LIBCONFIG_HANDLE_NULLPOINTERS;							\
+		error = !HANDLE_ERRORS_NULLPOINTER;								\
 	else error = (test->result != test->expect);						\
 	if (isnan(test->result) && isnan(test->expect))						\
 		error = FALSE;													\
@@ -188,7 +191,7 @@ void	print_test_sign(s_test_sign* test, char const* args)
 	if (test->result_sig)
 		error = !test->expect_sig;
 	else if (test->expect_sig)
-		error = !LIBCONFIG_HANDLE_NULLPOINTERS;
+		error = !HANDLE_ERRORS_NULLPOINTER;
 	else
 	{
 		test->result_sig = 0; // reuse this variable to store sign (-1, 0, +1)
@@ -471,7 +474,8 @@ void	print_test_list(s_test_list* test, char const* args)
 	"\n\t.day_week  = %i," \
 	"\n\t.day_year  = %i," \
 	"\n\t.is_dst    = %s," \
-	"\n\t.offset    = %i\n" \
+	"\n\t.offset    = %i," \
+	"\n"
 
 void	print_test_date(s_test_date* test, char const* args)
 {

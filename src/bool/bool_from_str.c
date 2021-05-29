@@ -4,13 +4,15 @@
 #include "libccc/int.h"
 #include "libccc/pointer.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 t_bool	Bool_FromString(t_char const* str)
 {
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(FALSE, str)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (FALSE);)
 	i = 0;
 	while (str[i] && Char_IsSpace(str[i]))
 		++i;

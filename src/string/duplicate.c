@@ -2,6 +2,8 @@
 #include "libccc/memory.h"
 #include "libccc/string.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 t_char*	String_Duplicate(t_char const* str)
@@ -10,7 +12,7 @@ t_char*	String_Duplicate(t_char const* str)
 	t_size	length;
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
 	length = 0;
 	while (str[length])
 	{
@@ -36,7 +38,7 @@ t_char*	String_Duplicate_N(t_char const* str, t_size n)
 	t_size	length;
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
 	length = 0;
 	while (str[length] && length < n)
 	{
@@ -62,7 +64,7 @@ t_char*	String_Duplicate_Char(t_char const* str, t_char const c)
 	t_size	length;
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
 	length = 0;
 	while (str[length] && str[length] != c)
 	{
@@ -88,7 +90,7 @@ t_char*	String_Duplicate_Charset(t_char const* str, t_char const* charset)
 	t_size	length;
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
 	length = 0;
 	while (str[length] && !Char_IsInCharset(str[length], charset))
 	{
@@ -115,7 +117,7 @@ t_char*	String_Duplicate_String(t_char const* str, t_char const* target)
 	t_size	n;
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
 	n = String_Length(target);
 	length = 0;
 	while (str[length] && !String_Equals_N(str + length, target, n))

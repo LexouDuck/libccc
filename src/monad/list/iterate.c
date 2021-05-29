@@ -1,12 +1,15 @@
 
 #include "libccc/monad/list.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
+
 
 _GENERIC()
 void	CONCAT(List_Iterate,T_NAME)(s_list_T* list, void (*f)(T item))
 {
-	LIBCONFIG_HANDLE_NULLPOINTER(, f)
-	LIBCONFIG_HANDLE_NULLPOINTER(, list)
+	HANDLE_ERROR(NULLPOINTER, (f == NULL), return;)
+	HANDLE_ERROR(NULLPOINTER, (list == NULL), return;)
 	while (list)
 	{
 		f(list->item);
@@ -15,13 +18,14 @@ void	CONCAT(List_Iterate,T_NAME)(s_list_T* list, void (*f)(T item))
 }
 
 
+
 _GENERIC()
 void	CONCAT(List_Iterate_I,T_NAME)(s_list_T* list, void (*f)(T item, t_uint index))
 {
 	t_uint i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(, f)
-	LIBCONFIG_HANDLE_NULLPOINTER(, list)
+	HANDLE_ERROR(NULLPOINTER, (f == NULL), return;)
+	HANDLE_ERROR(NULLPOINTER, (list == NULL), return;)
 	i = 0;
 	while (list)
 	{

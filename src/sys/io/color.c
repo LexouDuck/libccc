@@ -2,6 +2,8 @@
 #include "libccc/sys/io.h"
 #include "libccc/math/math.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 t_u8	IO_GetColor(t_argb32 color)

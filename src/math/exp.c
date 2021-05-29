@@ -1,11 +1,14 @@
 
 #include "libccc/math/math.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 #if LIBCONFIG_USE_FAST_APPROX_MATH
 t_float		c_exp(t_float x)
 {
+	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)
 	if (x < -10.)
 		return (0.);
 	t_float result = x + 8.;

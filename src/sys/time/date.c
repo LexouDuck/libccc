@@ -1,19 +1,22 @@
 
+#include "libccc/sys/time.h"
+
 #ifndef __NOSTD__
 	#include <time.h>
 #else
 	time_t	timegm(struct tm* tm);
-	#define _mkgmtime	timegm
-	#define _mktime		timelocal
+	time_t	_mkgmtime(struct tm* tm);
+	#define mkgmtime	_mkgmtime
 	time_t	timelocal(struct tm* tm);
-	#define mkgmtime	timegm
-	#define mktime		timelocal
+	time_t	mktime(struct tm* tm);
+	#define _mktime		mktime
 	time_t	time(time_t* t);
 #endif
 
-#include "libccc/sys/time.h"
 #include "libccc/memory.h"
 #include "libccc/string.h"
+
+#include LIBCONFIG_HANDLE_INCLUDE
 
 
 

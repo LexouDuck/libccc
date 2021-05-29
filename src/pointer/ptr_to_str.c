@@ -2,6 +2,8 @@
 #include "libccc/int.h"
 #include "libccc/pointer.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 inline

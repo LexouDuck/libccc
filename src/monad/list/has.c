@@ -1,11 +1,14 @@
 
 #include "libccc/monad/list.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
+
 
 _GENERIC()
 t_bool	CONCAT(List_Has,T_NAME)(s_list_T const* list, s_list_T const* target)
 {
-	LIBCONFIG_HANDLE_NULLPOINTER(FALSE, list)
+	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (FALSE);)
 	while (list)
 	{
 		if (CONCAT(List_Contains,T_NAME)(target, list->item))
@@ -16,10 +19,11 @@ t_bool	CONCAT(List_Has,T_NAME)(s_list_T const* list, s_list_T const* target)
 }
 
 
+
 _GENERIC()
 t_bool	CONCAT(List_HasOnly,T_NAME)(s_list_T const* list, s_list_T const* target)
 {
-	LIBCONFIG_HANDLE_NULLPOINTER(FALSE, list)
+	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (FALSE);)
 	while (list)
 	{
 		if (!CONCAT(List_Contains,T_NAME)(target, list->item))

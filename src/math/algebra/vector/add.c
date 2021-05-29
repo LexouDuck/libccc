@@ -1,6 +1,8 @@
 
 #include "libccc/math/algebra.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 s_vector2d	Vector2D_Add(s_vector2d const* v1, s_vector2d const* v2)

@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_DEFINE_H
 #define __LIBCCC_DEFINE_H
 /*! @file libccc_define.h
-**	@addtogroup libccc
+**	@addtogroup libccc_define
 **	@{
 **	This header defines all the common macros/defines used to "extend" C.
 **
@@ -219,9 +219,9 @@ HEADER_CPP
 #ifndef __GNUC__
 #if (defined(__NOSTD__))
 
-	#define __asm__			
-	#define __inline__		
-	#define __restrict__	
+	#define __asm__			asm
+	#define __inline__		inline
+	#define __restrict__	restrict
 	#define __nameof__(x)	#x
 	#define __typeof__(x)	typeof(x)
 	#define __alignof__(x)	alignof(x)
@@ -232,7 +232,7 @@ HEADER_CPP
 	#define __inline__		__inline
 	#define __restrict__	__restrict
 	#define __nameof__(x)	#x
-	#define __typeof__(x)	__typeof(x)
+	#define __typeof__(x)	decltype(x)
 	#define __alignof__(x)	_Alignof(x)
 
 #else

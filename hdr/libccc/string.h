@@ -225,14 +225,14 @@ t_size				String_Length(t_char const* str);
 **	between characters encountered `str1[i] - str2[i]`
 **	Otherwise, it will return 0 if `str1` and `str2` are identical.
 */
-int						String_Compare(t_char const* str1, t_char const* str2);
+t_sint					String_Compare(t_char const* str1, t_char const* str2);
 #define c_strcmp		String_Compare //!< @alias{String_Compare}
 
 /*!
 **	Compares at most `n` chars of the two given strings, and returns
 **	the first difference of characters encountered: `str1[i] - str2[i]`
 */
-int						String_Compare_N(t_char const* str1, t_char const* str2, t_size n);
+t_sint					String_Compare_N(t_char const* str1, t_char const* str2, t_size n);
 #define c_strncmp		String_Compare_N //!< @alias{String_Compare_N}
 
 /*!
@@ -240,7 +240,7 @@ int						String_Compare_N(t_char const* str1, t_char const* str2, t_size n);
 **	first difference between characters encountered `str1[i] - str2[i]`
 **	Otherwise, it will return 0 if `str1` and `str2` are identical.
 */
-int						String_Compare_IgnoreCase(t_char const* str1, t_char const* str2);
+t_sint					String_Compare_IgnoreCase(t_char const* str1, t_char const* str2);
 #define c_stricmp		String_Compare_IgnoreCase //!< @alias{String_Compare_IgnoreCase}
 #define c_strcasecmp	String_Compare_IgnoreCase //!< @alias{String_Compare_IgnoreCase}
 
@@ -248,7 +248,7 @@ int						String_Compare_IgnoreCase(t_char const* str1, t_char const* str2);
 **	Compares at most `n` chars of the two given strings (case-insensitive),
 **	and returns the first difference of characters encountered: `str1[i] - str2[i]`
 */
-int						String_Compare_N_IgnoreCase(t_char const* str1, t_char const* str2, t_size n);
+t_sint					String_Compare_N_IgnoreCase(t_char const* str1, t_char const* str2, t_size n);
 #define c_strnicmp		String_Compare_N_IgnoreCase //!< @alias{String_Compare_N_IgnoreCase}
 #define c_strncasecmp	String_Compare_N_IgnoreCase //!< @alias{String_Compare_N_IgnoreCase}
 

@@ -2,6 +2,8 @@
 #include "libccc/int.h"
 #include "libccc/memory.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 #define MAXDIGITS_8BIT	 ( 3)	//!< The amount of digits needed to represent an 8-bit integer in octal (max: 377)
@@ -29,8 +31,8 @@ t_char*	U##BITS##_ToString_Oct(t_u##BITS number, t_bool prefix)		\
 	}																\
 	if (i == 0)														\
 		digits[i++] = 0;											\
-	if (!(result = (t_char*)Memory_Alloc((prefix ? 2 : 0) + i + 1)))	\
-		return (NULL);												\
+	result = (t_char*)Memory_Allocate((prefix ? 2 : 0) + i + 1);	\
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)	\
 	n = 0;															\
 	if (prefix)														\
 	{																\
@@ -38,7 +40,9 @@ t_char*	U##BITS##_ToString_Oct(t_u##BITS number, t_bool prefix)		\
 		result[n++] = 'o';											\
 	}																\
 	while (i--)														\
+	{																\
 		result[n++] = digits[i] + '0';								\
+	}																\
 	result[n] = '\0';												\
 	return (result);												\
 }																	\
@@ -70,8 +74,8 @@ t_char*	S##BITS##_ToString_Oct(t_s##BITS number, t_bool prefix)		\
 		digits[i++] = n % 8;										\
 		n /= 8;														\
 	}																\
-	if (!(result = (t_char*)Memory_Alloc((prefix ? 2 : 0) + i + 1)))	\
-		return (NULL);												\
+	result = (t_char*)Memory_Allocate((prefix ? 2 : 0) + i + 1);	\
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)	\
 	n = 0;															\
 	if (number < 0) 	result[n++] = '-';							\
 	if (number == 0)	result[n++] = '0';							\
@@ -81,7 +85,9 @@ t_char*	S##BITS##_ToString_Oct(t_s##BITS number, t_bool prefix)		\
 		result[n++] = 'o';											\
 	}																\
 	while (i--)														\
+	{																\
 		result[n++] = digits[i] + '0';								\
+	}																\
 	result[n] = '\0';												\
 	return (result);												\
 }																	\

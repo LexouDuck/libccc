@@ -1,6 +1,8 @@
 
 #include "libccc/sys/unicode.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 // TODO UTF handling

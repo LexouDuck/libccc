@@ -2,6 +2,8 @@
 #include "libccc/math/math.h"
 #include "libccc/memory.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 #if LIBCONFIG_USE_FAST_APPROX_MATH
@@ -9,6 +11,7 @@ t_float			c_intpow(t_float x, t_sint n)
 {
 	t_float	tmp;
 
+	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)
 	if (n == 0)
 		return (1.);
 	tmp = c_pow_n(x, n / 2);
@@ -48,6 +51,7 @@ t_float			c_intpow(t_float x, t_sint n)
 #if LIBCONFIG_USE_FAST_APPROX_MATH
 inline t_float	c_pow(t_float x, t_float y)
 {
+	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)
 	return (c_exp(y * c_ln(x)));
 /*
 	u_float_cast result;

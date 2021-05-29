@@ -13,7 +13,7 @@
 #define __LIBCCC_MONAD_KEYVAL_H
 /*!@group{libccc_monad_keyval}
 ** @{
-**	This header defines a simple dictionary type and utility functions for it.
+**	This header defines a generic dictionary type and utility functions for it.
 **
 **	@file
 */
@@ -68,6 +68,7 @@ typedef struct keyval_T
 ** ************************************************************************** *|
 */
 
+// TODO KeyVal
 // TODO KeyVal_New
 // TODO KeyVal_Delete
 // TODO KeyVal_Duplicate

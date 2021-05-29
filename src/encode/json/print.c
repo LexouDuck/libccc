@@ -6,6 +6,8 @@
 #include "libccc/math/math.h"
 #include "libccc/encode/json.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 typedef struct json_print
@@ -85,14 +87,13 @@ t_utf8*	ensure(s_json_print* p, t_size needed)
 	}
 #else
 	// otherwise reallocate manually
-	newbuffer = (t_utf8*)Memory_Alloc(newsize);
-	if (!newbuffer)
-	{
+	newbuffer = (t_utf8*)Memory_Allocate(newsize);
+	HANDLE_ERROR(ALLOCFAILURE, (newbuffer == NULL),
 		Memory_Free(p->buffer);
 		p->length = 0;
 		p->buffer = NULL;
 		return (NULL);
-	}	
+	)
 	Memory_Copy(newbuffer, p->buffer, p->offset + 1);
 	Memory_Free(p->buffer);
 #endif
@@ -105,7 +106,7 @@ t_utf8*	ensure(s_json_print* p, t_size needed)
 
 // Render the cstring provided to an escaped version that can be printed.
 static
-t_bool	JSON_Print_StringPtr(t_utf8 const* const input, s_json_print* p)
+t_bool	JSON_Print_StringPtr(t_utf8 const* input, s_json_print* p)
 {
 	t_utf8 const* input_pointer = NULL;
 	t_utf8* output = NULL;
@@ -125,7 +126,6 @@ t_bool	JSON_Print_StringPtr(t_utf8 const* const input, s_json_print* p)
 		String_Copy(output, "\"\"");
 		return (TRUE);
 	}
-
 	// set "flag" to 1 if something needs to be escaped
 	input_pointer = input;
 	while (*input_pointer != '\0')
@@ -237,13 +237,13 @@ t_bool	JSON_Print_String(s_json const* item, s_json_print* p)
 
 // calculate the new length of the string in a s_json_print and update the offset
 static
-void	JSON_Print_UpdateOffset(s_json_print* const buffer)
+void	JSON_Print_UpdateOffset(s_json_print* p)
 {
 	t_utf8 const* buffer_pointer = NULL;
-	if ((buffer == NULL) || (buffer->buffer == NULL))
+	if ((p == NULL) || (p->buffer == NULL))
 		return;
-	buffer_pointer = buffer->buffer + buffer->offset;
-	buffer->offset += String_Length(buffer_pointer);
+	buffer_pointer = p->buffer + p->offset;
+	p->offset += String_Length(buffer_pointer);
 }
 
 // Render the number nicely from the given item into a string.
@@ -528,28 +528,29 @@ t_bool	JSON_Print_Value(s_json const* item, s_json_print* p)
 
 	switch ((item->type) & DYNAMICTYPE_MASK)
 	{
+		case DYNAMICTYPE_INTEGER: return (JSON_Print_Number(item, p, TRUE));
+		case DYNAMICTYPE_FLOAT:   return (JSON_Print_Number(item, p, FALSE));
+		case DYNAMICTYPE_STRING:  return (JSON_Print_String(item, p));
+		case DYNAMICTYPE_ARRAY:   return (JSON_Print_Array (item, p));
+		case DYNAMICTYPE_OBJECT:  return (JSON_Print_Object(item, p));
 		case DYNAMICTYPE_NULL:
+		{
 			str = "null";
 			output = ensure(p, String_Length(str) + 1);
 			if (output == NULL)
 				return (FALSE);
 			String_Copy(output, str);
 			return (TRUE);
-
+		}
 		case DYNAMICTYPE_BOOLEAN:
+		{
 			str = (item->value.boolean ? "true" : "false");
 			output = ensure(p, String_Length(str) + 1);
 			if (output == NULL)
 				return (FALSE);
 			String_Copy(output, str);
 			return (TRUE);
-
-		case DYNAMICTYPE_INTEGER:
-			return (JSON_Print_Number(item, p, TRUE));
-
-		case DYNAMICTYPE_FLOAT:
-			return (JSON_Print_Number(item, p, FALSE));
-
+		}
 		case DYNAMICTYPE_RAW:
 		{
 			t_size raw_length = 0;
@@ -563,16 +564,6 @@ t_bool	JSON_Print_Value(s_json const* item, s_json_print* p)
 			Memory_Copy(output, item->value.string, raw_length);
 			return (TRUE);
 		}
-
-		case DYNAMICTYPE_STRING:
-			return (JSON_Print_String(item, p));
-
-		case DYNAMICTYPE_ARRAY:
-			return (JSON_Print_Array(item, p));
-
-		case DYNAMICTYPE_OBJECT:
-			return (JSON_Print_Object(item, p));
-
 		default:
 			return (FALSE);
 	}
@@ -584,52 +575,42 @@ static
 t_utf8*	JSON_Print_(s_json const* item, t_bool format)
 {
 	static const t_size default_buffer_size = 256;
-	s_json_print buffer[1];
+	s_json_print p[1];
 	t_utf8* printed = NULL;
 
-	Memory_Set(buffer, 0, sizeof(buffer));
+	Memory_Clear(p, sizeof(p));
 	// create buffer
-	buffer->buffer = (t_utf8*)Memory_Alloc(default_buffer_size);
-	buffer->length = default_buffer_size;
-	buffer->format = format;
-	if (buffer->buffer == NULL)
-	{
-		goto failure;
-	}
+	p->format = format;
+	p->length = default_buffer_size;
+	p->buffer = (t_utf8*)Memory_Allocate(default_buffer_size);
+	HANDLE_ERROR(ALLOCFAILURE, (p->buffer == NULL), goto failure;)
 	// print the value
-	if (!JSON_Print_Value(item, buffer))
-	{
+	if (!JSON_Print_Value(item, p))
 		goto failure;
-	}
-	JSON_Print_UpdateOffset(buffer);
+	JSON_Print_UpdateOffset(p);
 
 #ifdef Memory_Realloc // check if reallocate is available
-		printed = (t_utf8*)Memory_Realloc(buffer->buffer, buffer->offset + 1);
-		if (printed == NULL)
-		{
-			goto failure;
-		}
-		buffer->buffer = NULL;
+	{
+		printed = (t_utf8*)Memory_Reallocate(p->buffer, p->offset + 1);
+		HANDLE_ERROR(ALLOCFAILURE, (printed == NULL), goto failure;)
+		p->buffer = NULL;
+	}
 #else // otherwise copy the JSON over to a new buffer
-		printed = (t_utf8*) Memory_Alloc(buffer->offset + 1);
-		if (printed == NULL)
-		{
-			goto failure;
-		}
-		Memory_Copy(printed, buffer->buffer, MIN(buffer->length, buffer->offset + 1));
-		printed[buffer->offset] = '\0'; // just to be sure
-
-		// free the buffer
-		Memory_Free(buffer->buffer);
+	{
+		printed = (t_utf8*)Memory_Allocate(p->offset + 1);
+		HANDLE_ERROR(ALLOCFAILURE, (printed == NULL), goto failure;)
+		Memory_Copy(printed, p->buffer, MIN(p->length, p->offset + 1));
+		printed[p->offset] = '\0'; // just to be sure
+		Memory_Free(p->buffer); // free the buffer
+	}
 #endif
 	return (printed);
 
 failure:
-	if (buffer->buffer != NULL)
+	if (p->buffer != NULL)
 	{
-		Memory_Free(buffer->buffer);
+		Memory_Free(p->buffer);
 	}
-
 	if (printed != NULL)
 	{
 		Memory_Free(printed);
@@ -653,11 +634,9 @@ t_utf8*	JSON_Print_Buffered(s_json const* item, t_sint prebuffer, t_bool fmt)
 {
 	s_json_print p = { 0 };
 
-	if (prebuffer < 0)
-		return (NULL);
-	p.buffer = (t_utf8*)Memory_Alloc((t_size)prebuffer);
-	if (!p.buffer)
-		return (NULL);
+	HANDLE_ERROR(LENGTH2SMALL, (prebuffer < 0), return (FALSE);)
+	p.buffer = (t_utf8*)Memory_Allocate((t_size)prebuffer);
+	HANDLE_ERROR(ALLOCFAILURE, (p.buffer == NULL), return (NULL);)
 	p.length = (t_size)prebuffer;
 	p.offset = 0;
 	p.noalloc = FALSE;
@@ -670,13 +649,12 @@ t_utf8*	JSON_Print_Buffered(s_json const* item, t_sint prebuffer, t_bool fmt)
 	return ((t_utf8*)p.buffer);
 }
 
-t_bool	JSON_Print_Preallocated(s_json* item, t_utf8* buffer, const t_sint length, const t_bool format)
+t_bool	JSON_Print_Preallocated(s_json* item, t_utf8* buffer, t_sint length, t_bool format)
 {
 	s_json_print p = { 0 };
 
-	if ((length < 0) || (buffer == NULL))
-		return (FALSE);
-
+	HANDLE_ERROR(NULLPOINTER, (buffer == NULL), return (FALSE);)
+	HANDLE_ERROR(LENGTH2SMALL, (length < 0), return (FALSE);)
 	p.buffer = (t_utf8*)buffer;
 	p.length = (t_size)length;
 	p.offset = 0;

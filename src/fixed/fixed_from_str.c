@@ -5,6 +5,8 @@
 #include "libccc/pointer.h"
 #include "libccc/fixed.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 #define DEFINEFUNC_CONVERT_STR_TO_FIXED(BITS) \
@@ -14,7 +16,7 @@ t_q##BITS	Q##BITS##_FromString(t_char const* str)						\
 	t_bool	negative;													\
 	t_size	i;															\
 																		\
-	LIBCONFIG_HANDLE_NULLPOINTER(0, str)								\
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)				\
 	for (i = 0; str[i] && Char_IsSpace(str[i]); ++i)					\
 		continue;														\
 	if (!(str[i] == '+' || str[i] == '-' || Char_IsDigit(str[i])))		\

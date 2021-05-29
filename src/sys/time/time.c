@@ -1,13 +1,16 @@
 
+#include "libccc/sys/time.h"
+
 #ifndef __NOSTD__
 	#include <time.h>
 #else
+	extern long	timezone;
 	time_t	time(time_t* t);
 	struct tm*	gmtime(const time_t* timep);
 	struct tm*	localtime(const time_t* timep);
 #endif
 
-#include "libccc/sys/time.h"
+#include LIBCONFIG_HANDLE_INCLUDE
 
 
 

@@ -2,6 +2,8 @@
 #include "libccc.h"
 #include "libccc/encode/common.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 s_kvt*	KVT_Concat(s_kvt const* a, s_kvt const* b)
@@ -11,12 +13,10 @@ s_kvt*	KVT_Concat(s_kvt const* a, s_kvt const* b)
 
 	result = KVT_Duplicate(a, TRUE);
 	concat = KVT_Duplicate(b, TRUE);
-	if (KVT_AddToArray_Item(result, concat))
-	{
+	e_cccerror error = KVT_AddToArray_Item(result, concat);
+	HANDLE_ERROR(ALLOCFAILURE, (error),
 		KVT_Delete(result);
 		KVT_Delete(concat);
-		KVT_SetError(ERROR_KVT_ALLOCATIONFAILURE);
-		return (NULL);
-	}
+		return (NULL);)
 	return (result);
 }

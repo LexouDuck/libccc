@@ -13,7 +13,7 @@
 #define __LIBCCC_MONAD_DICT_H
 /*!@group{libccc_monad_dict}
 ** @{
-**	This header defines a simple dictionary type and utility functions for it.
+**	This header defines a generic dictionary type and utility functions for it.
 **
 **	@file
 */
@@ -79,7 +79,10 @@ typedef struct dict_T
 */
 
 //! TODO
-s_dict_T	CONCAT(Dict_New,T_NAME)(t_uint n, ...);
+s_dict_T	CONCAT(Dict,T_NAME)(t_uint n, ...);
+
+//! TODO
+s_dict_T*	CONCAT(Dict_New,T_NAME)(t_uint n, ...);
 
 //! TODO
 void		CONCAT(Dict_Delete,T_NAME)(s_dict_T* dict);
