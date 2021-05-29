@@ -1,6 +1,8 @@
 
 #include "libccc/math/algebra.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 t_float		Vector2D_Norm(s_vector2d const* vector)

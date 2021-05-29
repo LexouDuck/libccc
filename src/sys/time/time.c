@@ -10,6 +10,8 @@
 	struct tm*	localtime(const time_t* timep);
 #endif
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 t_time		Time_Now(void)

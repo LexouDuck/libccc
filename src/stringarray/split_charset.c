@@ -3,9 +3,12 @@
 #include "libccc/string.h"
 #include "libccc/stringarray.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
 
 
-static int	String_Split_WordCount(t_char const* str, t_char const* sep_chars)
+
+static
+int		String_Split_WordCount(t_char const* str, t_char const* sep_chars)
 {
 	int i;
 	int count;
@@ -35,6 +38,8 @@ static int	String_Split_SingleWordLetterCount(t_char const* str, int ws, t_char 
 	return (i);
 }
 
+
+
 t_char**	String_Split_Charset(t_char const* str, t_char const* sep_chars)
 {
 	int		i;
@@ -43,8 +48,8 @@ t_char**	String_Split_Charset(t_char const* str, t_char const* sep_chars)
 	int		length;
 	t_char**	strarr;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, sep_chars)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (sep_chars == NULL), return (NULL);)
 	if (!(strarr = StringArray_New(String_Split_WordCount(str, sep_chars))))
 		return (NULL);
 	i = 0;

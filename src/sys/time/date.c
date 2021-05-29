@@ -16,6 +16,8 @@
 #include "libccc/memory.h"
 #include "libccc/string.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 #define TM_YEAR_BASE	1900

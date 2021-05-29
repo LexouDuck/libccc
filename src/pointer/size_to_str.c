@@ -4,17 +4,25 @@
 #include "libccc/memory.h"
 #include "libccc/pointer.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
 
 
-inline t_char*	Size_ToString(t_size number)
+
+inline
+t_char*	Size_ToString(t_size number)
 {
 	return (U64_ToString(number));
 }
 
-inline t_char*	Size_ToString_Hex(t_size number)
+
+
+inline
+t_char*	Size_ToString_Hex(t_size number)
 {
 	return (U64_ToString_Hex(number, TRUE));
 }
+
+
 
 t_char*	Size_ToString_Pretty(t_size number)
 {
@@ -41,8 +49,8 @@ t_char*	Size_ToString_Pretty(t_size number)
 	}
 	if (i == 0)
 		digits[i++] = 0;
-	if (!(result = (t_char*)Memory_Alloc(i + 3)))
-		return (NULL);
+	result = (t_char*)Memory_Allocate(i + 3);
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	n = 0;
 	while (i--)
 		result[n++] = '0' + digits[i];

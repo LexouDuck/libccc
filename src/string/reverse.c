@@ -2,6 +2,8 @@
 #include "libccc/memory.h"
 #include "libccc/string.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 t_char*	String_Reverse(t_char const* str)
@@ -11,11 +13,12 @@ t_char*	String_Reverse(t_char const* str)
 	t_size	i;
 	t_size	j;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
 	length = 0;
 	while (str[length])
 		++length;
-	result = (t_char*)Memory_Alloc(length + sizeof(""));
+	result = (t_char*)Memory_Allocate(length + sizeof(""));
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	i = 0;
 	j = length - 1;
 	while (i < length)

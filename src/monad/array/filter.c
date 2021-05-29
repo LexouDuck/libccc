@@ -2,6 +2,9 @@
 #include "libccc/memory.h"
 #include "libccc/monad/array.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
+
 
 _GENERIC()
 s_array_T	CONCAT(Array_Filter,T_NAME)(s_array_T const* array, t_bool (*filter)(T item))
@@ -11,12 +14,11 @@ s_array_T	CONCAT(Array_Filter,T_NAME)(s_array_T const* array, t_bool (*filter)(T
 	t_uint	amount;
 	t_uint	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(result, filter)
-	LIBCONFIG_HANDLE_NULLPOINTER(result, array)
-	LIBCONFIG_HANDLE_NULLPOINTER(result, array->items)
-	tmp = (t_bool*)Memory_Alloc(sizeof(t_bool) * array->length);
-	if (tmp == NULL)
-		return (result);
+	HANDLE_ERROR(NULLPOINTER, (filter == NULL), return (result);)
+	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (result);)
+	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return (result);)
+	tmp = (t_bool*)Memory_Allocate(sizeof(t_bool) * array->length);
+	HANDLE_ERROR(ALLOCFAILURE, (tmp == NULL), return (result);)
 	amount = 0;
 	for (i = 0; i < array->length; ++i)
 	{
@@ -24,7 +26,8 @@ s_array_T	CONCAT(Array_Filter,T_NAME)(s_array_T const* array, t_bool (*filter)(T
 		if (tmp[i])
 			++amount;
 	}
-	result.items = (T*)Memory_Alloc(sizeof(T) * amount);
+	result.items = (T*)Memory_Allocate(sizeof(T) * amount);
+	HANDLE_ERROR(ALLOCFAILURE, (result.items == NULL), return (result);)
 	if (result.items == NULL)
 		return (result);
 	result.length = amount;
@@ -50,12 +53,11 @@ s_array_T	CONCAT(Array_Filter_I,T_NAME)(s_array_T const* array, t_bool (*filter)
 	t_uint	amount;
 	t_uint	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(result, filter)
-	LIBCONFIG_HANDLE_NULLPOINTER(result, array)
-	LIBCONFIG_HANDLE_NULLPOINTER(result, array->items)
-	tmp = (t_bool*)Memory_Alloc(sizeof(t_bool) * array->length);
-	if (tmp == NULL)
-		return (result);
+	HANDLE_ERROR(NULLPOINTER, (filter == NULL), return (result);)
+	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (result);)
+	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return (result);)
+	tmp = (t_bool*)Memory_Allocate(sizeof(t_bool) * array->length);
+	HANDLE_ERROR(ALLOCFAILURE, (tmp == NULL), return (result);)
 	amount = 0;
 	for (i = 0; i < array->length; ++i)
 	{
@@ -63,7 +65,7 @@ s_array_T	CONCAT(Array_Filter_I,T_NAME)(s_array_T const* array, t_bool (*filter)
 		if (tmp[i])
 			++amount;
 	}
-	result.items = (T*)Memory_Alloc(sizeof(T) * amount);
+	result.items = (T*)Memory_Allocate(sizeof(T) * amount);
 	if (result.items == NULL)
 		return (result);
 	result.length = amount;

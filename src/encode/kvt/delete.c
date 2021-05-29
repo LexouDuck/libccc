@@ -4,10 +4,13 @@
 #include "libccc/memory.h"
 #include "libccc/encode/common.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
 
 
-e_error_kvt	KVT_Delete(s_kvt* item)
+
+e_stderror	KVT_Delete(s_kvt* item)
 {
+	HANDLE_ERROR(NULLPOINTER, (item == NULL), return (ERROR_NULLPOINTER);)
 	s_kvt* next = NULL;
 	while (item != NULL)
 	{
@@ -19,7 +22,7 @@ e_error_kvt	KVT_Delete(s_kvt* item)
 			{
 				if (item->value.child != NULL)
 				{
-					e_error_kvt error = KVT_Delete(item->value.child);
+					e_stderror error = KVT_Delete(item->value.child);
 					if (error)	return (error);
 				}
 			}
@@ -39,17 +42,32 @@ e_error_kvt	KVT_Delete(s_kvt* item)
 	return (OK);
 }
 
-e_error_kvt	KVT_Delete_FromArray(s_kvt* array, t_sint which)
+e_stderror	KVT_Delete_FromArray(s_kvt* array, t_uint index)
 {
-	return (KVT_Delete(KVT_Detach_FromArray(array, which)));
+	s_kvt*	tmp;
+
+	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (ERROR_NULLPOINTER);)
+	tmp = KVT_Detach_FromArray(array, index);
+	HANDLE_ERROR(INDEX2LARGE, (tmp == NULL), return (ERROR_INDEX2LARGE);)
+	return (KVT_Delete(tmp));
 }
 
-e_error_kvt	KVT_Delete_FromObject_IgnoreCase(s_kvt* object, t_char const* key)
+e_stderror	KVT_Delete_FromObject_IgnoreCase(s_kvt* object, t_char const* key)
 {
-	return (KVT_Delete(KVT_Detach_FromObject_IgnoreCase(object, key)));
+	s_kvt*	tmp;
+
+	HANDLE_ERROR(NULLPOINTER, (object == NULL), return (ERROR_NULLPOINTER);)
+	tmp = KVT_Detach_FromObject_IgnoreCase(object, key);
+	HANDLE_ERROR(KEYNOTFOUND, (tmp == NULL), return (ERROR_KEYNOTFOUND);)
+	return (KVT_Delete(tmp));
 }
 
-e_error_kvt	KVT_Delete_FromObject_CaseSensitive(s_kvt* object, t_char const* key)
+e_stderror	KVT_Delete_FromObject_CaseSensitive(s_kvt* object, t_char const* key)
 {
-	return (KVT_Delete(KVT_Detach_FromObject_CaseSensitive(object, key)));
+	s_kvt*	tmp;
+
+	HANDLE_ERROR(NULLPOINTER, (object == NULL), return (ERROR_NULLPOINTER);)
+	tmp = KVT_Detach_FromObject_CaseSensitive(object, key);
+	HANDLE_ERROR(KEYNOTFOUND, (tmp == NULL), return (ERROR_KEYNOTFOUND);)
+	return (KVT_Delete(tmp));
 }

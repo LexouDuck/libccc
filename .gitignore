@@ -3,6 +3,7 @@ bin
 dist
 doc/*/*
 doc/html/.doctrees
+log/**/*.log
 
 libccc_test*
 pclint_*.*
@@ -64,3 +65,5 @@ dkms.conf
 
 #Other
 *.sublime-workspace
+.DS-Store
+.DS_Store

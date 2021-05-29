@@ -695,7 +695,7 @@ void	test_json_##STRICT##_##MINIFY(void)																																		\
 	print_test_json_##STRICT##_##MINIFY("json_object_min           ("#STRICT" -> "#MINIFY")", FALSE,		json_object##MINIFY_EXPECT,			json_object_min);				\
 	print_test_json_##STRICT##_##MINIFY("json_object_nested        ("#STRICT" -> "#MINIFY")", FALSE,		json_object_nested##MINIFY_EXPECT,	json_object_nested);			\
 	print_test_json_##STRICT##_##MINIFY("json_object_nested_min    ("#STRICT" -> "#MINIFY")", FALSE,		json_object_nested##MINIFY_EXPECT,	json_object_nested_min);		\
-	print_test_json_##STRICT##_##MINIFY("json_object_nested_min    ("#STRICT" -> "#MINIFY")", FALSE,		json_object_string##MINIFY_EXPECT,	json_object_string);		\
+	print_test_json_##STRICT##_##MINIFY("json_object_nested_min    ("#STRICT" -> "#MINIFY")", FALSE,		json_object_string##MINIFY_EXPECT,	json_object_string);			\
 	print_test_json_##STRICT##_##MINIFY("json_object_nested_min    ("#STRICT" -> "#MINIFY")", FALSE,		json_object_string##MINIFY_EXPECT,	json_object_string_min);		\
 	print_test_json_##STRICT##_##MINIFY("json_whitespace           ("#STRICT" -> "#MINIFY")", FALSE,		json_helloworld##MINIFY_EXPECT,		json_whitespace);				\
 	print_test_json_##STRICT##_##MINIFY("json_whitespace_tab       ("#STRICT" -> "#MINIFY")", FALSE,		json_helloworld##MINIFY_EXPECT,		json_whitespace_tab);			\

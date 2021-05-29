@@ -1,6 +1,8 @@
 
 #include "libccc/memory.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 void*	Memory_Move(void* dest, void const* src, t_size n)
@@ -9,8 +11,8 @@ void*	Memory_Move(void* dest, void const* src, t_size n)
 	t_u8*	source;
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, dest)
-	LIBCONFIG_HANDLE_NULLPOINTER(dest, src)
+	HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (src == NULL), return (dest);)
 	if (dest && dest == src)
 		return (dest);
 	result = (t_u8*)dest;

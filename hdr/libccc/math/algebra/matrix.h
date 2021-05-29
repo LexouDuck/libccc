@@ -33,17 +33,24 @@ HEADER_CPP
 
 /*
 ** ************************************************************************** *|
-**                              Matrix Operations                             *|
+**                                 Definitions                                *|
+** ************************************************************************** *|
+*/
+
+/*
+** ************************************************************************** *|
+**                        2-dimensional Matrix Operations                     *|
 ** ************************************************************************** *|
 */
 
 //! A simple struct which stores a 2x2 matrix of real numbers, arranged in 2 rows of 2D vectors
-typedef struct mtx2d
+typedef struct mat2d
 {
 	s_vector2d	u;
 	s_vector2d	v;
 }				s_matrix2d;
 TYPEDEF_ALIAS(	s_matrix2d, MATRIX_2D, STRUCT)
+
 //! This union stores a 2x2 matrix which can be accessed in several ways
 typedef	union matrix2d
 {
@@ -51,26 +58,37 @@ typedef	union matrix2d
 	s_matrix2d	matrix;			//!< A struct, to access the matrix values as several row vectors
 }				u_matrix2d;
 TYPEDEF_ALIAS(	u_matrix2d, MATRIX_2D, UNION)
+
 //! A 2-dimensional matrix in which every number is zero
 #define MATRIX2D_NULL \
 {					\
 	.u={ 0, 0 },	\
 	.v={ 0, 0 },	\
 }
+
 //! A 2-dimensional matrix which is neutral (does nothing) when applied/multiplied
 #define MATRIX2D_IDENTITY \
 {					\
 	.u={ 1, 0 },	\
 	.v={ 0, 1 },	\
 }
+
+
+
 //! A 2-dimensional matrix which, when applied, rotates a vector by the given 'ANGLE'
 #define MATRIX2D_ROTATE(ANGLE) \
-{											\
+{										\
 	.u={ c_cos(ANGLE), -c_sin(ANGLE) },	\
 	.v={ c_sin(ANGLE),  c_cos(ANGLE) },	\
 }
 
-//! Allocates a new matrix struct on heap, setting its values from the given vectors
+
+
+//! Returns a matrix struct, setting its values from the given vectors
+s_matrix2d				Matrix2D(s_vector2d const* u, s_vector2d const* v);
+#define c_mat2			Matrix2D
+
+//! Allocates a new matrix struct, setting its values from the given vectors
 _MALLOC()
 s_matrix2d*				Matrix2D_New(s_vector2d const* u, s_vector2d const* v);
 #define c_mat2new		Matrix2D_New
@@ -81,7 +99,7 @@ t_bool					Matrix2D_Equals(s_matrix2d const* m1, s_matrix2d const* m2);
 
 //! Applies the transformation stored by the given 'matrix' onto the given 'vector' and returns it
 s_vector2d				Matrix2D_Apply(s_matrix2d const* matrix, s_vector2d const* vector);
-#define c_mat2apply	Matrix2D_Apply
+#define c_mat2apply		Matrix2D_Apply
 
 //! Returns the determinant value for the given 'matrix'
 t_float					Matrix2D_Determinant(s_matrix2d const* matrix);
@@ -101,14 +119,21 @@ s_matrix2d				Matrix2D_Multiply(s_matrix2d const* m1, s_matrix2d const* m2);
 
 
 
+/*
+** ************************************************************************** *|
+**                        3-dimensional Matrix Operations                     *|
+** ************************************************************************** *|
+*/
+
 //! A simple struct which stores a 3x3 matrix of real numbers, arranged in 3 rows of 3D vectors
-typedef struct mtx3d
+typedef struct mat3d
 {
 	s_vector3d	u;
 	s_vector3d	v;
 	s_vector3d	w;
 }				s_matrix3d;
 TYPEDEF_ALIAS(	s_matrix3d, MATRIX_3D, STRUCT)
+
 //! This union stores a 3x3 matrix which can be accessed in several ways
 typedef	union matrix3d
 {
@@ -116,6 +141,7 @@ typedef	union matrix3d
 	s_matrix3d	matrix;			//!< A struct, to access the matrix values as several row vectors
 }				u_matrix3d;
 TYPEDEF_ALIAS(	u_matrix3d, MATRIX_3D, UNION)
+
 //! A 3-dimensional matrix in which every number is zero
 #define MATRIX3D_NULL \
 {					\
@@ -123,6 +149,7 @@ TYPEDEF_ALIAS(	u_matrix3d, MATRIX_3D, UNION)
 	.v={ 0, 0, 0 },	\
 	.w={ 0, 0, 0 },	\
 }
+
 //! A 3-dimensional matrix which is neutral (does nothing) when applied/multiplied
 #define MATRIX3D_IDENTITY \
 {					\
@@ -130,29 +157,38 @@ TYPEDEF_ALIAS(	u_matrix3d, MATRIX_3D, UNION)
 	.v={ 0, 1, 0 },	\
 	.w={ 0, 0, 1 },	\
 }
+
+
+
 //! A 3-dimensional matrix which, when applied, rotates a vector about the X axis by the given 'ANGLE'
 #define MATRIX3D_ROTATE_X(ANGLE) \
-{												\
-	.u={ 1, 0,              0             },	\
+{											\
+	.u={ 1, 0,             0            },	\
 	.v={ 0, c_cos(ANGLE), -c_sin(ANGLE) },	\
 	.w={ 0, c_sin(ANGLE),  c_cos(ANGLE) },	\
 }
 //! A 3-dimensional matrix which, when applied, rotates a vector about the Y axis by the given 'ANGLE'
 #define MATRIX3D_ROTATE_Y(ANGLE) \
-{												\
+{											\
 	.u={  c_cos(ANGLE), 0, c_sin(ANGLE) },	\
-	.v={  0,             1, 0             },	\
+	.v={  0,            1, 0            },	\
 	.w={ -c_sin(ANGLE), 0, c_cos(ANGLE) },	\
 }
 //! A 3-dimensional matrix which, when applied, rotates a vector about the Z axis by the given 'ANGLE'
 #define MATRIX3D_ROTATE_Z(ANGLE) \
-{												\
+{											\
 	.u={ c_cos(ANGLE), -c_sin(ANGLE), 0 },	\
 	.v={ c_sin(ANGLE),  c_cos(ANGLE), 0 },	\
-	.w={ 0,              0,             1 },	\
+	.w={ 0,             0,            1 },	\
 }
 
-//! Allocates a new matrix struct on heap, setting its values from the given vectors
+
+
+//! Returns a matrix struct, setting its values from the given vectors
+s_matrix3d				Matrix3D(s_vector3d const* u, s_vector3d const* v, s_vector3d const* w);
+#define c_mat3			Matrix3D
+
+//! Allocates a new matrix struct, setting its values from the given vectors
 _MALLOC()
 s_matrix3d*				Matrix3D_New(s_vector3d const* u, s_vector3d const* v, s_vector3d const* w);
 #define c_mat3new		Matrix3D_New
@@ -163,7 +199,7 @@ t_bool					Matrix3D_Equals(s_matrix3d const* m1, s_matrix3d const* m2);
 
 //! Applies the transformation stored by the given 'matrix' onto the given 'vector' and returns it
 s_vector3d				Matrix3D_Apply(s_matrix3d const* matrix, s_vector3d const* vector);
-#define c_mat3apply	Matrix3D_Apply
+#define c_mat3apply		Matrix3D_Apply
 
 //! Returns the determinant value for the given 'matrix'
 t_float					Matrix3D_Determinant(s_matrix3d const* matrix);
@@ -183,8 +219,14 @@ s_matrix3d				Matrix3D_Multiply(s_matrix3d const* m1, s_matrix3d const* m2);
 
 
 
+/*
+** ************************************************************************** *|
+**                        4-dimensional Matrix Operations                     *|
+** ************************************************************************** *|
+*/
+
 //! A simple struct which stores a 4x4 matrix of real numbers, arranged in 3 rows of 3D vectors
-typedef struct mtx4d
+typedef struct mat4d
 {
 	s_vector4d	u;
 	s_vector4d	v;
@@ -192,6 +234,7 @@ typedef struct mtx4d
 	s_vector4d	t;
 }				s_matrix4d;
 TYPEDEF_ALIAS(	s_matrix4d, MATRIX_4D, STRUCT)
+
 //! This union stores a 4x4 matrix which can be accessed in several ways
 typedef	union matrix4d
 {
@@ -199,6 +242,7 @@ typedef	union matrix4d
 	s_matrix3d	matrix;			//!< A struct, to access the matrix values as several row vectors
 }				u_matrix4d;
 TYPEDEF_ALIAS(	u_matrix4d, MATRIX_4D, UNION)
+
 //! A 4-dimensional matrix in which every number is zero
 #define MATRIX4D_NULL \
 {						\
@@ -207,6 +251,7 @@ TYPEDEF_ALIAS(	u_matrix4d, MATRIX_4D, UNION)
 	.w={ 0, 0, 0, 0 }	\
 	.t={ 0, 0, 0, 0 }	\
 }						\
+
 //! A 4-dimensional matrix which is neutral (does nothing) when applied/multiplied
 #define MATRIX4D_IDENTITY \
 {						\

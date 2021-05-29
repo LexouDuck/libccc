@@ -4,17 +4,18 @@
 #include "libccc/memory.h"
 #include "libccc/encode/common.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
 
 
-e_error_kvt	KVT_Replace(s_kvt* const parent, s_kvt* const item, s_kvt* replacement)
+
+e_stderror	KVT_Replace(s_kvt* const parent, s_kvt* const item, s_kvt* replacement)
 {
-	if ((parent == NULL) || (replacement == NULL) || (item == NULL))
-		return (KVT_SetError(ERROR_KVT_INVALIDARGS));
-	if (replacement == item)
-		return (KVT_SetError(ERROR_KVT_INVALIDARGS));
+	HANDLE_ERROR(NULLPOINTER, (parent      == NULL), return (ERROR_NULLPOINTER);)
+	HANDLE_ERROR(NULLPOINTER, (replacement == NULL), return (ERROR_NULLPOINTER);)
+	HANDLE_ERROR(NULLPOINTER, (item        == NULL), return (ERROR_NULLPOINTER);)
+	HANDLE_ERROR(INVALIDARGS, (replacement == item), return (ERROR_INVALIDARGS);)
 	replacement->next = item->next;
 	replacement->prev = item->prev;
-
 	if (replacement->next != NULL)
 	{
 		replacement->next->prev = replacement;
@@ -39,44 +40,47 @@ e_error_kvt	KVT_Replace(s_kvt* const parent, s_kvt* const item, s_kvt* replaceme
 			parent->value.child->prev = replacement;
 		}
 	}
-
 	item->next = NULL;
 	item->prev = NULL;
 	KVT_Delete(item);
 	return (TRUE);
 }
 
-e_error_kvt	KVT_Replace_InArray(s_kvt* array, t_sint index, s_kvt* newitem)
+e_stderror	KVT_Replace_InArray(s_kvt* array, t_uint index, s_kvt* newitem)
 {
-	if (index < 0)
-		return (KVT_SetError(ERROR_KVT_INVALIDARGS));
-	return (KVT_Replace(array, KVT_GetArrayItem(array, index), newitem));
+	s_kvt*	item;
+
+	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (ERROR_NULLPOINTER);)
+	item = KVT_GetArrayItem(array, index);
+	HANDLE_ERROR(INDEX2SMALL, (item == NULL), return (ERROR_INDEX2SMALL);)
+	return (KVT_Replace(array, item, newitem));
 }
 
 
 
 static
-e_error_kvt replace_item_in_object(s_kvt* object, t_char const* key, s_kvt* replacement, t_bool case_sensitive)
+e_stderror replace_item_in_object(s_kvt* object, t_char const* key, s_kvt* replacement, t_bool case_sensitive)
 {
-	if ((replacement == NULL) || (key == NULL))
-		return (KVT_SetError(ERROR_KVT_INVALIDARGS));
+	HANDLE_ERROR(NULLPOINTER, (object      == NULL), return (ERROR_NULLPOINTER);)
+	HANDLE_ERROR(NULLPOINTER, (key         == NULL), return (ERROR_NULLPOINTER);)
+	HANDLE_ERROR(NULLPOINTER, (replacement == NULL), return (ERROR_NULLPOINTER);)
 	// replace the name in the replacement
 	if (replacement->key != NULL)
 	{
 		Memory_Free(replacement->key);
 	}
-	replacement->key = (t_char*)String_Duplicate((t_char const*)key);
+	replacement->key = (t_char*)String_Duplicate(key);
 	return (KVT_Replace(object, case_sensitive ?
 		KVT_GetObjectItem_CaseSensitive(object, key) :
 		KVT_GetObjectItem(object, key), replacement));
 }
 
-e_error_kvt	KVT_Replace_InObject_IgnoreCase(s_kvt* object, t_char const* key, s_kvt* newitem)
+e_stderror	KVT_Replace_InObject_IgnoreCase(s_kvt* object, t_char const* key, s_kvt* newitem)
 {
 	return (replace_item_in_object(object, key, newitem, FALSE));
 }
 
-e_error_kvt	KVT_Replace_InObject_CaseSensitive(s_kvt* object, t_char const* key, s_kvt* newitem)
+e_stderror	KVT_Replace_InObject_CaseSensitive(s_kvt* object, t_char const* key, s_kvt* newitem)
 {
 	return (replace_item_in_object(object, key, newitem, TRUE));
 }

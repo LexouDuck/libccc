@@ -2,13 +2,17 @@
 #include "libccc/memory.h"
 #include "libccc/monad/array.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
+
 
 _GENERIC()
 void	CONCAT(Array_Remove,T_NAME)(s_array_T* array, T item)
 {
-	LIBCONFIG_HANDLE_NULLPOINTER(, array)
-	LIBCONFIG_HANDLE_NULLPOINTER(, array->items)
-	t_sint	index = CONCAT(Array_IndexOf,T_NAME)(array, item);
+	t_sint	index;
+	HANDLE_ERROR(NULLPOINTER, (array == NULL), return;)
+	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return;)
+	index = CONCAT(Array_IndexOf,T_NAME)(array, item);
 	if (index == ERROR)
 		return;
 	CONCAT(Array_RemoveAt,T_NAME)(array, index);
@@ -18,9 +22,10 @@ void	CONCAT(Array_Remove,T_NAME)(s_array_T* array, T item)
 _GENERIC()
 void	CONCAT(Array_Remove_F,T_NAME)(s_array_T* array, T item, void (*delete)(T))
 {
-	LIBCONFIG_HANDLE_NULLPOINTER(, array)
-	LIBCONFIG_HANDLE_NULLPOINTER(, array->items)
-	t_sint	index = CONCAT(Array_IndexOf,T_NAME)(array, item);
+	t_sint	index;
+	HANDLE_ERROR(NULLPOINTER, (array == NULL), return;)
+	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return;)
+	index = CONCAT(Array_IndexOf,T_NAME)(array, item);
 	if (index == ERROR)
 		return;
 	CONCAT(Array_RemoveAt_F,T_NAME)(array, index, delete);

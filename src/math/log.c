@@ -2,6 +2,8 @@
 #include "libccc/math/math.h"
 #include "libccc/memory.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 #if LIBCONFIG_USE_FAST_APPROX_MATH
@@ -12,7 +14,8 @@
 ** FLOAT_EXPONENT_ZERO is exponent bits except the MSB for exponent:
 ** this corresponds precisely to an exponent of zero when unbiased.
 */
-static t_float	c_ln_taylor_series(t_float x)
+static
+t_float	c_ln_taylor_series(t_float x)
 {
 	t_float	result;
 	t_float	result_previous;
@@ -35,7 +38,7 @@ static t_float	c_ln_taylor_series(t_float x)
 	return (result);
 }
 
-t_float			c_ln(t_float x)
+t_float	c_ln(t_float x)
 {
 	static const t_float LN_3_2			= (t_float)0x1.9F323ECBF984Cp-2;
 	static const t_float DIV_2_3		= (t_float)0x1.5555555555556p-1;
@@ -44,8 +47,8 @@ t_float			c_ln(t_float x)
 	t_u64	norm = 0;	// the float x in x*2^n in raw memory
 	t_s32	exp_b2;
 
-	if (x < 0.)
-		return (NAN);
+	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)
+	HANDLE_ERROR(MATHDOMAIN, (x < 0.), return (NAN);)
 	if (x == 0.)
 		return (-INFINITY);
 	if (x == 1.)
@@ -73,7 +76,8 @@ MATH_DECL_REALFUNCTION(ln, log)
 
 
 #if LIBCONFIG_USE_FAST_APPROX_MATH
-inline t_float	c_lg(t_float x)
+inline
+t_float	c_lg(t_float x)
 {
 	return (c_ln(x) / LN_2);
 }
@@ -84,7 +88,8 @@ MATH_DECL_REALFUNCTION(lg, log2)
 
 
 #if LIBCONFIG_USE_FAST_APPROX_MATH
-inline t_float	c_log(t_float x)
+inline
+t_float	c_log(t_float x)
 {
 	return (c_ln(x) / LN_10);
 }
@@ -94,7 +99,8 @@ MATH_DECL_REALFUNCTION(log, log10)
 
 
 
-inline t_float	c_log_n(t_float x, t_float n)
+inline
+t_float	c_log_n(t_float x, t_float n)
 {
 	if (n == 2)
 		return (Float_Log2(x));

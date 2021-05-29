@@ -3,9 +3,12 @@
 #include "libccc/char.h"
 #include "libccc/pointer.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
 
 
-static t_size	String_Base_GetLength(t_char const* base)
+
+static
+t_size	String_Base_GetLength(t_char const* base)
 {
 	t_size	i;
 	t_size	j;
@@ -26,7 +29,8 @@ static t_size	String_Base_GetLength(t_char const* base)
 	return (i < 2 ? 0 : i);
 }
 
-static t_s32	String_Base_IsInBase(t_char const* base, t_size base_length, char c)
+static
+t_s32	String_Base_IsInBase(t_char const* base, t_size base_length, char c)
 {
 	t_size	i;
 
@@ -43,26 +47,25 @@ static t_s32	String_Base_IsInBase(t_char const* base, t_size base_length, char c
 
 
 #define DEFINEFUNC_CONVERT_STRBASE_TO_SINT(BITS) \
-t_s##BITS	S##BITS##_FromString_Base(t_char const* str, t_char const* base)		\
+t_s##BITS	S##BITS##_FromString_Base(t_char const* str, t_char const* base)	\
 {																				\
 	t_u##BITS	result;															\
+	t_u##BITS	tmp;															\
 	t_bool	negative;															\
 	t_s32	digit;																\
 	t_size	length;																\
 	t_size	i;																	\
 																				\
-	LIBCONFIG_HANDLE_NULLPOINTER(0, str)										\
-	LIBCONFIG_HANDLE_NULLPOINTER(0, base)										\
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)						\
+	HANDLE_ERROR(NULLPOINTER, (base == NULL), return (0);)						\
 	length = String_Base_GetLength(base);										\
-	if (length == 0)															\
-		return (0);																\
+	HANDLE_ERROR(LENGTH2SMALL, (length == 0), return (0);)						\
 	i = 0;																		\
 	while (!(str[i] == '+' || str[i] == '-'))									\
 	{																			\
 		digit = String_Base_IsInBase(base, length, str[i]);						\
 		if (digit >= 0) break;													\
-		if (!str[i] || !Char_IsSpace(str[i]))									\
-			return (0);															\
+		HANDLE_ERROR(PARSE, (!str[i] || !Char_IsSpace(str[i])), return (0);)	\
 		++i;																	\
 	}																			\
 	negative = FALSE;															\
@@ -76,10 +79,11 @@ t_s##BITS	S##BITS##_FromString_Base(t_char const* str, t_char const* base)		\
 	result = 0;																	\
 	while (str[i])																\
 	{																			\
-		digit = String_Base_IsInBase(base, length, str[i]);						\
-		if (digit < 0) return (0);												\
-		result = result * length + digit;										\
-		++i;																	\
+		digit = String_Base_IsInBase(base, length, str[i++]);					\
+		HANDLE_ERROR(PARSE, (digit < 0), return (0);)							\
+		tmp = result * length + digit;											\
+		HANDLE_ERROR(RESULTRANGE, (tmp < result), LIBCONFIG_HANDLE_OVERFLOW)	\
+		result = tmp;															\
 	}																			\
 	return (negative ? -(t_s##BITS)result : (t_s##BITS)result);					\
 }																				\
@@ -95,25 +99,24 @@ DEFINEFUNC_CONVERT_STRBASE_TO_SINT(128)
 
 
 #define DEFINEFUNC_CONVERT_STRBASE_TO_UINT(BITS) \
-t_u##BITS	U##BITS##_FromString_Base(t_char const* str, t_char const* base)		\
+t_u##BITS	U##BITS##_FromString_Base(t_char const* str, t_char const* base)	\
 {																				\
 	t_u##BITS	result;															\
+	t_u##BITS	tmp;															\
 	t_s32	digit;																\
 	t_size	length;																\
 	t_size	i;																	\
 																				\
-	LIBCONFIG_HANDLE_NULLPOINTER(0, str)										\
-	LIBCONFIG_HANDLE_NULLPOINTER(0, base)										\
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)						\
+	HANDLE_ERROR(NULLPOINTER, (base == NULL), return (0);)						\
 	length = String_Base_GetLength(base);										\
-	if (length == 0)															\
-		return (0);																\
+	HANDLE_ERROR(LENGTH2SMALL, (length == 0), return (0);)						\
 	i = 0;																		\
 	while (!(str[i] == '+' || str[i] == '-'))									\
 	{																			\
 		digit = String_Base_IsInBase(base, length, str[i]);						\
 		if (digit >= 0) break;													\
-		if (!str[i] || !Char_IsSpace(str[i]))									\
-			return (0);															\
+		HANDLE_ERROR(PARSE, (!str[i] || !Char_IsSpace(str[i])), return (0);)	\
 		++i;																	\
 	}																			\
 	if (str[i] == '+' || str[i] == '-')											\
@@ -121,10 +124,11 @@ t_u##BITS	U##BITS##_FromString_Base(t_char const* str, t_char const* base)		\
 	result = 0;																	\
 	while (str[i])																\
 	{																			\
-		digit = String_Base_IsInBase(base, length, str[i]);						\
-		if (digit < 0) return (0);												\
-		result = result * length + digit;										\
-		++i;																	\
+		digit = String_Base_IsInBase(base, length, str[i++]);					\
+		HANDLE_ERROR(PARSE, (digit < 0), return (0);)							\
+		tmp = result * length + digit;											\
+		HANDLE_ERROR(RESULTRANGE, (tmp < result), LIBCONFIG_HANDLE_OVERFLOW)	\
+		result = tmp;															\
 	}																			\
 	return (result);															\
 }																				\

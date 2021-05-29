@@ -37,7 +37,7 @@ HEADER_CPP
 */
 
 /*! @file libccc/math/random.h
-** Random number generator. Modulus is 2^31
+** Pseudo-random number generator. Modulus is 2^31
 **
 ** - OFFSET and MODULUS are mutually prime.
 ** - CEIL_SQRT_MOD % 4 should be = 1 because MODULUS is a multiple of 4

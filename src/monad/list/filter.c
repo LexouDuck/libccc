@@ -1,6 +1,9 @@
 
 #include "libccc/monad/list.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
+
 
 _GENERIC()
 s_list_T*	CONCAT(List_Filter,T_NAME)(s_list_T const* list, t_bool (*filter)(T item))
@@ -8,8 +11,8 @@ s_list_T*	CONCAT(List_Filter,T_NAME)(s_list_T const* list, t_bool (*filter)(T it
 	s_list_T*	result = NULL;
 	s_list_T*	elem;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, filter)
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, list)
+	HANDLE_ERROR(NULLPOINTER, (filter == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (NULL);)
 	while (list)
 	{
 		if (filter(list->item))
@@ -23,6 +26,7 @@ s_list_T*	CONCAT(List_Filter,T_NAME)(s_list_T const* list, t_bool (*filter)(T it
 }
 
 
+
 _GENERIC()
 s_list_T*	CONCAT(List_Filter_I,T_NAME)(s_list_T const* list, t_bool (*filter)(T item, t_uint index))
 {
@@ -30,8 +34,8 @@ s_list_T*	CONCAT(List_Filter_I,T_NAME)(s_list_T const* list, t_bool (*filter)(T 
 	s_list_T*	elem;
 	t_uint	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, filter)
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, list)
+	HANDLE_ERROR(NULLPOINTER, (filter == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (NULL);)
 	i = 0;
 	while (list)
 	{

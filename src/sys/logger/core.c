@@ -23,12 +23,16 @@
 #include "libccc/sys/time.h"
 #include "libccc/sys/logger.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
 
 
-static inline void Log_VA_Write(s_logger const* logger, t_fd fd, t_char const* output, t_char const* log_msg)
+
+static
+inline
+void	Log_VA_Write(s_logger const* logger, t_fd fd, t_char const* output, t_char const* log_msg)
 {
-	int status = IO_Write_String(fd, log_msg);
-	if (status < 0)
+	t_size wrote = IO_Write_String(fd, log_msg);
+	if (wrote == 0)
 	{
 		t_char* tmp = String_Join("Could not write log message to ", output);
 		Log_FatalError(logger, tmp);
@@ -38,7 +42,7 @@ static inline void Log_VA_Write(s_logger const* logger, t_fd fd, t_char const* o
 
 
 
-t_io_error	Log_VA(s_logger const* logger,
+e_stderror	Log_VA(s_logger const* logger,
 	t_bool			verbose_only,
 	t_bool			use_errno,
 	int				error_code,
@@ -55,7 +59,7 @@ t_io_error	Log_VA(s_logger const* logger,
 	t_char*	error_str = NULL;
 	if (use_errno)
 	{
-		error_str = IO_GetError(errno);
+		error_str = Error_STDC(errno);
 	}
 	t_char*	full_format_str = NULL;
 	t_char*	log_msg			= NULL;

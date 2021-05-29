@@ -30,25 +30,26 @@
 #include "libccc/sys/io.h"
 #include "libccc/sys/logger.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
 
 
-t_io_error	Log_FatalError(s_logger const* logger, t_char const* str)
+
+e_stderror	Log_FatalError(s_logger const* logger, t_char const* str)
 {
-	t_io_error result = OK;
-	t_char const* message = IO_GetError(errno);
+	t_size result = 0;
+	t_char const* message = Error_STDC(errno);
 
 	if (logger->path && IO_IsTerminal(logger->fd))
 	{
 		result = IO_Write_Format(logger->fd,
 			C_RED"Fatal Error"C_RESET": %s\n\t-> %s\n", str, message);
-		if (result)	return (result);
 	}
 	else
 	{
 		result = IO_Write_Format(logger->fd,
 			"Fatal Error: %s\n%s", str, message);
-		if (result)	return (result);
 	}
+	HANDLE_ERROR(SYSTEM, (result == 0), return (ERROR_SYSTEM);)
 	return (result);
 }
 
@@ -68,10 +69,7 @@ t_char*	Logger_GetTimestamp(t_time utc)
 
 
 
-/*
-**	Functions to help debug the logger
-*/
-
+//! Functions to help debug the logger
 t_char*	Logger_GetSettings(s_logger const* logger)
 {
 	t_char*		result = NULL;
@@ -109,10 +107,13 @@ t_char*	Logger_GetSettings(s_logger const* logger)
 	return (result);
 }
 
-inline t_io_error	Logger_LogSettings(s_logger const* logger)
+
+
+inline
+e_stderror	Logger_LogSettings(s_logger const* logger)
 {
 	t_char*	tmp = Logger_GetSettings(logger);
-	t_io_error result = Log_Message(logger, "%s", tmp);
+	e_stderror result = Log_Message(logger, "%s", tmp);
 	String_Delete(&tmp);
 	return (result);
 }

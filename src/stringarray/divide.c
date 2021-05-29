@@ -2,6 +2,8 @@
 #include "libccc/string.h"
 #include "libccc/stringarray.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 t_char**	String_Divide(t_char const* str, t_size n)
@@ -11,7 +13,7 @@ t_char**	String_Divide(t_char const* str, t_size n)
 	t_size	length;
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
 	length = String_Length(str);
 	lines = length % n == 0 ? length / n : length / n + 1;
 	if (lines == 0 || !(result = StringArray_New(lines)))

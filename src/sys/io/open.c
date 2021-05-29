@@ -9,6 +9,8 @@
 	int	open(char const* pathname, int flags, mode_t mode);
 #endif
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 // the following lines allow us to fix windows stupidities
@@ -22,7 +24,14 @@
 
 
 
-inline t_fd	IO_Open(t_char const* filepath, t_io_open flags, t_io_mode mode)
+inline
+t_fd	IO_Open(t_char const* filepath, t_io_open flags, t_io_mode mode)
 {
-	return (open(filepath, flags | OPEN_BINARY, mode));
+	t_fd	result;
+
+	result = open(filepath, flags | OPEN_BINARY, mode);
+	HANDLE_ERROR(SYSTEM,
+		(result == ERROR),
+		return (ERROR_SYSTEM);)
+	return (result);
 }

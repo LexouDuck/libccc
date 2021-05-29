@@ -1,6 +1,8 @@
 
 #include "libccc/memory.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 t_u64	Memory_GetBits(t_u64 value, t_u8 bit, t_u8 length)

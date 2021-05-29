@@ -1,6 +1,8 @@
 
 #include "libccc/sys/unicode.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 t_utf32	UTF32_ToUppercase(t_utf32 c) // TODO make lookup table for weird 'if's with no discernible pattern

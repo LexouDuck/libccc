@@ -3,6 +3,8 @@
 #include "libccc/string.h"
 #include "libccc/stringarray.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
+
 
 
 t_char*		String_Replace_Char(t_char const* str, t_char const old, t_char const new)
@@ -10,7 +12,7 @@ t_char*		String_Replace_Char(t_char const* str, t_char const old, t_char const n
 	t_char*	result;
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
 	if (old == new)
 		return (String_Duplicate(str));
 	if (old == '\0')
@@ -18,8 +20,8 @@ t_char*		String_Replace_Char(t_char const* str, t_char const old, t_char const n
 	i = 0;
 	while (str[i])
 		++i;
-	if (!(result = (t_char*)Memory_Alloc(i + sizeof(""))))
-		return (NULL);
+	result = (t_char*)Memory_Allocate(i + sizeof(""));
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	i = 0;
 	while (str[i])
 	{
@@ -39,9 +41,9 @@ t_char*		String_Replace_Charset(t_char const* str, t_char const* old, t_char con
 	t_size	j;
 	int		c_index;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, old)
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, new)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (old == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (new == NULL), return (NULL);)
 	if (old == new)
 		return (String_Duplicate(str));
 	if (String_Length(old) != String_Length(new))
@@ -55,8 +57,8 @@ t_char*		String_Replace_Charset(t_char const* str, t_char const* old, t_char con
 				return (NULL);
 		++i;
 	}
-	if (!(result = (t_char*)Memory_Alloc(i + sizeof(""))))
-		return (NULL);
+	result = (t_char*)Memory_Allocate(i + sizeof(""));
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	i = 0;
 	while (str[i])
 	{
@@ -77,9 +79,9 @@ t_char*		String_Replace_String(t_char const* str, t_char const* old, t_char cons
 	t_char*	result;
 	t_char**	strarr;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, str)
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, old)
-	LIBCONFIG_HANDLE_NULLPOINTER(NULL, new)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (old == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (new == NULL), return (NULL);)
 	if (old == new)
 		return (String_Duplicate(str));
 	strarr = String_Split_String(str, old);
@@ -94,7 +96,7 @@ void		String_Replace_Char_InPlace(t_char* str, t_char const old, t_char const ne
 {
 	t_size	i;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(, str)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return;)
 	if (old == '\0')
 		return;
 	i = 0;
@@ -114,9 +116,9 @@ void		String_Replace_Charset_InPlace(t_char* str, t_char const* old, t_char cons
 	t_size	j;
 	int		c_index;
 
-	LIBCONFIG_HANDLE_NULLPOINTER(, str)
-	LIBCONFIG_HANDLE_NULLPOINTER(, old)
-	LIBCONFIG_HANDLE_NULLPOINTER(, new)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return;)
+	HANDLE_ERROR(NULLPOINTER, (old == NULL), return;)
+	HANDLE_ERROR(NULLPOINTER, (new == NULL), return;)
 	if (String_Length(old) != String_Length(new))
 		return;
 	i = 0;

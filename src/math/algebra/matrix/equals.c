@@ -1,9 +1,12 @@
 
 #include "libccc/math/algebra.h"
 
+#include LIBCONFIG_HANDLE_INCLUDE
 
 
-inline t_bool	Matrix2D_Equals(s_matrix2d const* m1, s_matrix2d const* m2)
+
+inline
+t_bool	Matrix2D_Equals(s_matrix2d const* m1, s_matrix2d const* m2)
 {
 	return (
 		(m1->u.x == m2->u.x) && (m1->u.y == m2->u.y) &&
@@ -12,7 +15,8 @@ inline t_bool	Matrix2D_Equals(s_matrix2d const* m1, s_matrix2d const* m2)
 
 
 
-inline t_bool	Matrix3D_Equals(s_matrix3d const* m1, s_matrix3d const* m2)
+inline
+t_bool	Matrix3D_Equals(s_matrix3d const* m1, s_matrix3d const* m2)
 {
 	return (
 		(m1->u.x == m2->u.x) && (m1->u.y == m2->u.y) && (m1->u.z == m2->u.z) &&
