@@ -39,7 +39,7 @@ HEADER_CPP
 **	You may change the logic here (to implement custom exception handling for example).
 */
 #ifndef LIBCONFIG_HANDLE_ERROR
-	#ifndef DEBUG
+	#ifdef DEBUG
 		#define LIBCONFIG_HANDLE_ERROR(...) \
 		{									\
 			IO_Output_Format(__VA_ARGS__);	\
