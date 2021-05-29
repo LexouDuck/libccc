@@ -52,10 +52,10 @@ t_char*							Error_STDC(int errno_value);
 
 
 //! Returns the latest global error code (thread-safe)
-e_stderror		Error_Get(void);
+e_stderror	Error_Get(void);
 
 //! Sets the global error code (thread-safe)
-e_stderror		Error_Set(e_stderror error);
+e_stderror	Error_Set(e_stderror error);
 
 
 

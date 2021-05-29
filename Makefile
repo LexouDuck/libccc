@@ -669,20 +669,21 @@ $(OBJDIR)%.c: $(SRCDIR)%.c
 
 clean:
 	@printf "Deleting all .o files...\n"
-	@rm -rf $(OBJS)
-	@rm -rf $(TEST_OBJS)
+	@rm -f $(OBJS)
+	@rm -f $(TEST_OBJS)
 	@printf "Deleting all .d files...\n"
-	@rm -rf $(DEPS)
-	@rm -rf *.d
+	@rm -f $(DEPS)
+	@rm -f *.d
 
 fclean: clean
 	@printf "Deleting library: "$(NAME_STATIC)"\n"
-	@rm -rf $(NAME_STATIC)
+	@rm -f $(NAME_STATIC)
 	@printf "Deleting library: "$(NAME_DYNAMIC)"\n"
-	@rm -rf $(NAME_DYNAMIC)
+	@rm -f $(NAME_DYNAMIC)
+	@rm -f $(NAME).*
 	@printf "Deleting program: "$(NAME_TEST)"\n"
-	@rm -rf $(NAME_TEST)
-	@rm -rf $(NAME_TEST).d
+	@rm -f $(NAME_TEST)
+	@rm -f $(NAME_TEST).d
 
 rclean: fclean
 	@printf "Deleting "$(OBJDIR)" folder...\n"
