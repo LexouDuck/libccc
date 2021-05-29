@@ -7,7 +7,7 @@
 
 
 
-e_stderror	KVT_Insert_InArray(s_kvt* array, t_uint index, s_kvt* newitem)
+e_cccerror	KVT_Insert_InArray(s_kvt* array, t_uint index, s_kvt* newitem)
 {
 	s_kvt* after_inserted = NULL;
 

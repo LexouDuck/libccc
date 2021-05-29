@@ -25,9 +25,9 @@
 #include LIBCONFIG_HANDLE_INCLUDE
 
 
+
 #define BUFFERSIZE_STRERROR	(512)
 
-inline
 t_char*	Error_STDC(int errno_value)
 {
 	t_char	buffer[BUFFERSIZE_STRERROR] = {0};
@@ -55,18 +55,18 @@ t_char*	Error_STDC(int errno_value)
 
 
 
-e_stderror		LastError = OK; // TODO figure out a way to not use any global state ?
+e_cccerror		LastError = OK; // TODO figure out a way to not use any global state ?
 
 //! TODO using `&errno`, a thread-safe pseudo-global (a list of globals)
 
 inline
-e_stderror	Error_Get(void)
+e_cccerror	Error_Get(void)
 {
 	return (LastError);
 }
 
 inline
-e_stderror	Error_Set(e_stderror error)
+e_cccerror	Error_Set(e_cccerror error)
 {
 	LastError = error;
 	return (error);
@@ -76,7 +76,7 @@ e_stderror	Error_Set(e_stderror error)
 
 typedef struct stderror_info
 {
-	e_stderror		code;
+	e_cccerror		code;
 	t_char const*	name;
 	t_char const*	message;
 }			s_stderror_info;
@@ -109,7 +109,7 @@ static s_stderror_info	stderrors[ENUMLENGTH_STDERROR] =
 
 
 
-t_char*		Error_GetMessage(e_stderror error)
+t_char*		Error_GetMessage(e_cccerror error)
 {
 	if (error == ERROR_NONE)
 		return ("");
@@ -125,7 +125,7 @@ t_char*		Error_GetMessage(e_stderror error)
 
 
 
-t_char*		Error_GetName(e_stderror error)
+t_char*		Error_GetName(e_cccerror error)
 {
 	if (error == ERROR_NONE)
 		return ("");
@@ -139,7 +139,7 @@ t_char*		Error_GetName(e_stderror error)
 
 
 
-e_stderror	Error_GetCode(t_char const* name)
+e_cccerror	Error_GetCode(t_char const* name)
 {
 	HANDLE_ERROR(NULLPOINTER, (name == NULL), return (ERROR_UNSPECIFIED);)
 	if (name[0] == '\0') // empty string

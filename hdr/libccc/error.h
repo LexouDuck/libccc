@@ -52,21 +52,21 @@ t_char*							Error_STDC(int errno_value);
 
 
 //! Returns the latest global error code (thread-safe)
-e_stderror	Error_Get(void);
+e_cccerror	Error_Get(void);
 
 //! Sets the global error code (thread-safe)
-e_stderror	Error_Set(e_stderror error);
+e_cccerror	Error_Set(e_cccerror error);
 
 
 
 //! Returns newly allocated error message corresponding to the given `error` number
-t_char*		Error_GetMessage(e_stderror error);
+t_char*		Error_GetMessage(e_cccerror error);
 
 //! Returns newly allocated error enum item name (ie: `ERROR_UNKNOWN`)
-t_char*		Error_GetName(e_stderror error);
+t_char*		Error_GetName(e_cccerror error);
 
 //! Returns the error code corresponding the the given error `name` (or)
-e_stderror	Error_GetCode(t_char const* name);
+e_cccerror	Error_GetCode(t_char const* name);
 
 
 

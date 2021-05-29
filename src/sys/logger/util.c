@@ -34,7 +34,7 @@
 
 
 
-e_stderror	Log_FatalError(s_logger const* logger, t_char const* str)
+e_cccerror	Log_FatalError(s_logger const* logger, t_char const* str)
 {
 	t_size result = 0;
 	t_char const* message = Error_STDC(errno);
@@ -110,10 +110,10 @@ t_char*	Logger_GetSettings(s_logger const* logger)
 
 
 inline
-e_stderror	Logger_LogSettings(s_logger const* logger)
+e_cccerror	Logger_LogSettings(s_logger const* logger)
 {
 	t_char*	tmp = Logger_GetSettings(logger);
-	e_stderror result = Log_Message(logger, "%s", tmp);
+	e_cccerror result = Log_Message(logger, "%s", tmp);
 	String_Delete(&tmp);
 	return (result);
 }

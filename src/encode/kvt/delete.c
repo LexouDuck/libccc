@@ -8,7 +8,7 @@
 
 
 
-e_stderror	KVT_Delete(s_kvt* item)
+e_cccerror	KVT_Delete(s_kvt* item)
 {
 	HANDLE_ERROR(NULLPOINTER, (item == NULL), return (ERROR_NULLPOINTER);)
 	s_kvt* next = NULL;
@@ -22,7 +22,7 @@ e_stderror	KVT_Delete(s_kvt* item)
 			{
 				if (item->value.child != NULL)
 				{
-					e_stderror error = KVT_Delete(item->value.child);
+					e_cccerror error = KVT_Delete(item->value.child);
 					if (error)	return (error);
 				}
 			}
@@ -42,7 +42,7 @@ e_stderror	KVT_Delete(s_kvt* item)
 	return (OK);
 }
 
-e_stderror	KVT_Delete_FromArray(s_kvt* array, t_uint index)
+e_cccerror	KVT_Delete_FromArray(s_kvt* array, t_uint index)
 {
 	s_kvt*	tmp;
 
@@ -52,7 +52,7 @@ e_stderror	KVT_Delete_FromArray(s_kvt* array, t_uint index)
 	return (KVT_Delete(tmp));
 }
 
-e_stderror	KVT_Delete_FromObject_IgnoreCase(s_kvt* object, t_char const* key)
+e_cccerror	KVT_Delete_FromObject_IgnoreCase(s_kvt* object, t_char const* key)
 {
 	s_kvt*	tmp;
 
@@ -62,7 +62,7 @@ e_stderror	KVT_Delete_FromObject_IgnoreCase(s_kvt* object, t_char const* key)
 	return (KVT_Delete(tmp));
 }
 
-e_stderror	KVT_Delete_FromObject_CaseSensitive(s_kvt* object, t_char const* key)
+e_cccerror	KVT_Delete_FromObject_CaseSensitive(s_kvt* object, t_char const* key)
 {
 	s_kvt*	tmp;
 

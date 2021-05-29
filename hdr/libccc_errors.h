@@ -99,7 +99,7 @@ HEADER_CPP
 #else
 //! The behavior to handle an error case
 /*!
-**	@param ERRORTYPE	The type of error to emit (an `e_stderror` value)
+**	@param ERRORTYPE	The type of error to emit (an `e_cccerror` value)
 **	@param CONDITION	The condition to check the error
 **	@param ...			The actions(s) to perform after handling (`return`, `break`, etc)
 **			A variadic argument is used here to allow use of the comma operator.
@@ -119,7 +119,7 @@ HEADER_CPP
 
 //! The behavior to handle an error case, with a custom message
 /*!
-**	@param ERRORTYPE	The type of error to emit (an `e_stderror` value)
+**	@param ERRORTYPE	The type of error to emit (an `e_cccerror` value)
 **	@param CONDITION	The condition to check the error
 **	@param ACTION		The actions(s) to perform after handling (`return`, `break`, etc)
 **	@param ...			The custom error message (format string and args, like `printf()`)
@@ -155,7 +155,7 @@ HEADER_CPP
 **	@isostd{https://en.cppreference.com/w/c/error/errno}
 **	@isostd{https://en.cppreference.com/w/c/error/errno_macros}
 **
-**	The `e_stderror` error code enum used is meant to not be platform-specific, unlike `errno`.
+**	The `e_cccerror` error code enum used is meant to not be platform-specific, unlike `errno`.
 **
 **	The `ERROR_SYSTEM_IO` error code indicates an error which stores an `strerror(errno)` message.
 **	As such, it can hold many different messages (as many as your environment defines/uses).
@@ -194,14 +194,14 @@ typedef enum stderror
 //	ERROR_,
 
 	ENUMLENGTH_STDERROR,
-}		e_stderror;
+}		e_cccerror;
 
 /*
 // TODO thread-safe global, like 'errno'
 typedef struct stdglobal
 {
 	void*		thread_id;
-	e_stderror	code;
+	e_cccerror	code;
 	char*		message;
 }			s_stdglobal;
 

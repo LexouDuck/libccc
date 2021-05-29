@@ -13,7 +13,7 @@
 
 
 inline
-e_stderror	IO_Close(t_fd fd)
+e_cccerror	IO_Close(t_fd fd)
 {
 	HANDLE_ERROR(SYSTEM,
 		close(fd),

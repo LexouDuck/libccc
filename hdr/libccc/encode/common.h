@@ -279,29 +279,29 @@ t_char*	KVT_GetValue_String	(s_kvt const* item);
 */
 
 //! Change the `value` of a #KVT_TYPE_BOOLEAN object, only takes effect when `object->type == KVT_TYPE_BOOLEAN`.
-e_stderror	KVT_SetValue_Boolean(s_kvt* object, t_bool value);
+e_cccerror	KVT_SetValue_Boolean(s_kvt* object, t_bool value);
 //! Change the `value` of a #KVT_TYPE_INTEGER object, only takes effect when `object->type == KVT_TYPE_INTEGER`.
-e_stderror	KVT_SetValue_Integer(s_kvt* object, t_s64 value);
+e_cccerror	KVT_SetValue_Integer(s_kvt* object, t_s64 value);
 //! Change the `value` of a #KVT_TYPE_FLOAT object, only takes effect when `object->type == KVT_TYPE_FLOAT`.
-e_stderror	KVT_SetValue_Float	(s_kvt* object, t_f64 value);
+e_cccerror	KVT_SetValue_Float	(s_kvt* object, t_f64 value);
 //! Change the `value` of a #KVT_TYPE_STRING object, only takes effect when `object->type == KVT_TYPE_STRING`.
-e_stderror	KVT_SetValue_String	(s_kvt* object, t_char* value);
+e_cccerror	KVT_SetValue_String	(s_kvt* object, t_char* value);
 
 
 
 //! Appends the given `item` to the given `array`.
-e_stderror	KVT_AddToArray_Item(s_kvt* array, s_kvt* item);
+e_cccerror	KVT_AddToArray_Item(s_kvt* array, s_kvt* item);
 
 //! Append a reference to `item` to the given `array`.
-e_stderror	KVT_AddToArray_ItemReference(s_kvt* array, s_kvt* item);
+e_cccerror	KVT_AddToArray_ItemReference(s_kvt* array, s_kvt* item);
 
 
 
 //! Appends the given `item` to the given `object`, with the given `key`.
-e_stderror	KVT_AddToObject_Item(s_kvt* object, t_char const* key, s_kvt* item);
+e_cccerror	KVT_AddToObject_Item(s_kvt* object, t_char const* key, s_kvt* item);
 
 //! Append reference to item to the given object.
-e_stderror	KVT_AddToObject_ItemReference(s_kvt* object, t_char const* key, s_kvt* item);
+e_cccerror	KVT_AddToObject_ItemReference(s_kvt* object, t_char const* key, s_kvt* item);
 
 
 
@@ -357,24 +357,24 @@ t_bool	KVT_IsRaw		(s_kvt const* item);
 s_kvt*		KVT_Detach(s_kvt* parent, s_kvt* item);
 
 //! Delete a s_kvt entity and all subentities.
-e_stderror	KVT_Delete(s_kvt* item);
+e_cccerror	KVT_Delete(s_kvt* item);
 
 //! Replaces the given `item` from the given `parent` object, with the given `newitem`.
-e_stderror	KVT_Replace(s_kvt* parent, s_kvt* item, s_kvt* newitem);
+e_cccerror	KVT_Replace(s_kvt* parent, s_kvt* item, s_kvt* newitem);
 
 
 
 //! Deletes the item at the given `index` from the given `array`.
-e_stderror	KVT_Delete_FromArray(s_kvt* array, t_uint index);
+e_cccerror	KVT_Delete_FromArray(s_kvt* array, t_uint index);
 
 //! Removes (without deleting) the given `item` from the given `array`.
 s_kvt*		KVT_Detach_FromArray(s_kvt* array, t_uint index);
 
 //! Replaces the given `item` from the given `array`, with the given `newitem`.
-e_stderror	KVT_Replace_InArray(s_kvt* array, t_uint index, s_kvt* newitem);
+e_cccerror	KVT_Replace_InArray(s_kvt* array, t_uint index, s_kvt* newitem);
 
 //! Inserts the given `newitem` in the givne `array`, shifting pre-existing items to the right.
-e_stderror	KVT_Insert_InArray(s_kvt* array, t_uint index, s_kvt* newitem);
+e_cccerror	KVT_Insert_InArray(s_kvt* array, t_uint index, s_kvt* newitem);
 
 
 
@@ -382,8 +382,8 @@ e_stderror	KVT_Insert_InArray(s_kvt* array, t_uint index, s_kvt* newitem);
 //!@{
 #define 	KVT_Delete_FromObject \
 			KVT_Delete_FromObject_IgnoreCase
-e_stderror	KVT_Delete_FromObject_IgnoreCase	(s_kvt* object, t_char const* key); //!< (case-insensitive)
-e_stderror	KVT_Delete_FromObject_CaseSensitive	(s_kvt* object, t_char const* key); //!< (case-sensitive)
+e_cccerror	KVT_Delete_FromObject_IgnoreCase	(s_kvt* object, t_char const* key); //!< (case-insensitive)
+e_cccerror	KVT_Delete_FromObject_CaseSensitive	(s_kvt* object, t_char const* key); //!< (case-sensitive)
 //!@}
 
 //! Removes (without deleting) the given `item` from the given `object`.
@@ -398,8 +398,8 @@ s_kvt*		KVT_Detach_FromObject_CaseSensitive	(s_kvt* object, t_char const* key); 
 //!@{
 #define 	KVT_Replace_InObject \
 			KVT_Replace_InObject_IgnoreCase
-e_stderror	KVT_Replace_InObject_IgnoreCase		(s_kvt* object, t_char const* key, s_kvt* newitem); //!< (case-insensitive)
-e_stderror	KVT_Replace_InObject_CaseSensitive	(s_kvt* object, t_char const* key, s_kvt* newitem); //!< (case-sensitive)
+e_cccerror	KVT_Replace_InObject_IgnoreCase		(s_kvt* object, t_char const* key, s_kvt* newitem); //!< (case-insensitive)
+e_cccerror	KVT_Replace_InObject_CaseSensitive	(s_kvt* object, t_char const* key, s_kvt* newitem); //!< (case-sensitive)
 //!@}
 
 

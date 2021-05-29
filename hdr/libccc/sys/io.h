@@ -206,7 +206,7 @@ t_fd					IO_Open(t_char const* filepath, t_io_open flags, t_io_mode mode);
 **	@param	fd	The file descriptor to close
 **	@returns 0(OK) on success, or a non-zero error code (ie: an 'errno' value)
 */
-e_stderror				IO_Close(t_fd fd);
+e_cccerror				IO_Close(t_fd fd);
 #define c_close			IO_Close
 #define IO_File_Close	IO_Close
 
@@ -219,7 +219,7 @@ e_stderror				IO_Close(t_fd fd);
 **	@param	mode		The new file access mode permissions bitflag value to set
 **	@returns 0(OK) on success, or a non-zero error code (ie: an 'errno' value)
 */
-e_stderror					IO_ChangeMode(t_char const* filepath, t_io_mode mode);
+e_cccerror					IO_ChangeMode(t_char const* filepath, t_io_mode mode);
 #define c_chmod				IO_ChangeMode
 #define IO_File_ChangeMode	IO_ChangeMode
 
@@ -235,7 +235,7 @@ e_stderror					IO_ChangeMode(t_char const* filepath, t_io_mode mode);
 **	@param	group		The new group to set for the file
 **	@returns 0(OK) on success, or a non-zero error code (ie: an 'errno' value)
 */
-e_stderror					IO_ChangeOwner(t_char const* filepath, t_char const* owner, t_char const* group);
+e_cccerror					IO_ChangeOwner(t_char const* filepath, t_char const* owner, t_char const* group);
 #define c_chown				IO_ChangeOwner
 #define IO_File_ChangeOwner	IO_ChangeOwner
 #endif

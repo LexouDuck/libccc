@@ -18,7 +18,7 @@
 
 
 inline
-e_stderror	IO_ChangeMode(t_char const* filepath, t_io_mode mode)
+e_cccerror	IO_ChangeMode(t_char const* filepath, t_io_mode mode)
 {
 	HANDLE_ERROR(NULLPOINTER, (filepath == NULL), return (ERROR_NULLPOINTER);)
 	HANDLE_ERROR(SYSTEM,
@@ -31,7 +31,7 @@ e_stderror	IO_ChangeMode(t_char const* filepath, t_io_mode mode)
 
 #if 0
 inline
-e_stderror	IO_ChangeOwner(t_char const* filepath, t_char const* owner, t_char const* group)
+e_cccerror	IO_ChangeOwner(t_char const* filepath, t_char const* owner, t_char const* group)
 {
 	return (chown(filepath,
 		getpwnam(owner),

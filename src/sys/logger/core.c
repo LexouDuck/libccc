@@ -42,7 +42,7 @@ void	Log_VA_Write(s_logger const* logger, t_fd fd, t_char const* output, t_char 
 
 
 
-e_stderror	Log_VA(s_logger const* logger,
+e_cccerror	Log_VA(s_logger const* logger,
 	t_bool			verbose_only,
 	t_bool			use_errno,
 	int				error_code,
