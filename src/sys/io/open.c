@@ -27,5 +27,11 @@
 inline
 t_fd	IO_Open(t_char const* filepath, t_io_open flags, t_io_mode mode)
 {
-	return (open(filepath, flags | OPEN_BINARY, mode));
+	t_fd	result;
+
+	result = open(filepath, flags | OPEN_BINARY, mode);
+	HANDLE_ERROR(SYSTEM,
+		(result == ERROR),
+		return (ERROR_SYSTEM);)
+	return (result);
 }

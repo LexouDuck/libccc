@@ -78,8 +78,8 @@ int		IO_Read_NextLine(t_fd const fd, t_char** a_line)
 	t_char*			new_line = NULL;
 	int				status = GNL_ERROR;
 
-	if (a_line == NULL || fd < 0)
-		return (GNL_ERROR);
+	HANDLE_ERROR(NULLPOINTER, (a_line == NULL), return (GNL_ERROR);)
+	HANDLE_ERROR(INVALIDARGS, (fd < 0), return (GNL_ERROR);)
 	new_line = NULL;
 	status = gnl_read(fd, &new_line);
 	if (status < 0)

@@ -7,14 +7,6 @@
 	int	write(int fd, char const* buffer, size_t n);
 #endif
 #ifndef __NOSTD__
-	#include <errno.h>
-#else
-	#ifndef	errno
-	#define errno	(*_errno())
-	extern	int*	_errno(void);
-	#endif
-#endif
-#ifndef __NOSTD__
 	#include <stdarg.h>
 #else
 	typedef __builtin_va_list va_list;
@@ -32,7 +24,7 @@
 
 
 inline
-e_stderror	IO_Output_Char(char c)
+t_size	IO_Output_Char(char c)
 {
 	return (IO_Write_Char(STDOUT, c));
 }
@@ -40,7 +32,7 @@ e_stderror	IO_Output_Char(char c)
 
 
 inline
-e_stderror	IO_Output_String(t_char const* str)
+t_size	IO_Output_String(t_char const* str)
 {
 	return (IO_Write_String(STDOUT, str));
 }
@@ -48,7 +40,7 @@ e_stderror	IO_Output_String(t_char const* str)
 
 
 inline
-e_stderror	IO_Output_Line(t_char const* str)
+t_size	IO_Output_Line(t_char const* str)
 {
 	return (IO_Write_Line(STDOUT, str));
 }
@@ -56,7 +48,7 @@ e_stderror	IO_Output_Line(t_char const* str)
 
 
 inline
-e_stderror	IO_Output_Lines(t_char const** strarr)
+t_size	IO_Output_Lines(t_char const** strarr)
 {
 	return (IO_Write_Lines(STDOUT, strarr));
 }
@@ -64,25 +56,25 @@ e_stderror	IO_Output_Lines(t_char const** strarr)
 
 
 inline
-e_stderror	IO_Output_Memory(t_u8 const* ptr, t_size n, t_u8 cols)
+t_size	IO_Output_Memory(t_u8 const* ptr, t_size n, t_u8 cols)
 {
 	return (IO_Write_Memory(STDOUT, ptr, n, cols));
 }
 
 
 
-e_stderror			IO_Output_Format(t_char const* format, ...)
+t_size	IO_Output_Format(t_char const* format, ...)
 {
-	HANDLE_ERROR(NULLPOINTER, (format == NULL), return (OK);)
+	HANDLE_ERROR(NULLPOINTER, (format == NULL), return (0);)
 	int result;
 	t_char* str;
 	va_list args;
 	va_start(args, format);
 	str = String_Format_VA(format, args);
 	va_end(args);
-	if (str == NULL) // string already freed if need be
-		return (ERROR);
+	HANDLE_ERROR(ALLOCFAILURE, (str == NULL), return (0);)
 	result = write(STDOUT, str, String_Length(str));
 	String_Delete(&str);
-	return (result ? errno : OK);
+	HANDLE_ERROR(SYSTEM, (result < 0), return (0);)
+	return (0);
 }

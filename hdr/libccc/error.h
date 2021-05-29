@@ -59,14 +59,14 @@ e_stderror		Error_Set(e_stderror error);
 
 
 
-//! Returns the (string constant) error message corresponding to the given `error` number
-t_char const*	Error_GetMessage(e_stderror error);
+//! Returns newly allocated error message corresponding to the given `error` number
+t_char*		Error_GetMessage(e_stderror error);
 
-//! Returns the (string constant) error enum item name (ie: `ERROR_UNKNOWN`)
-t_char const*	Error_GetName(e_stderror error);
+//! Returns newly allocated error enum item name (ie: `ERROR_UNKNOWN`)
+t_char*		Error_GetName(e_stderror error);
 
 //! Returns the error code corresponding the the given error `name` (or)
-e_stderror		Error_GetCode(t_char const* name);
+e_stderror	Error_GetCode(t_char const* name);
 
 
 

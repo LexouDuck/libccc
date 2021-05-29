@@ -19,18 +19,17 @@
 
 t_sintmax	IO_Read_File(t_fd const fd, t_char** a_file, t_size max)
 {
-	HANDLE_ERROR(NULLPOINTER, (a_file == NULL), return (ERROR);)
 	char	buffer[IO_BUFFER_SIZE + 1] = {0};
 	t_sintmax	result;
 	t_char*	file = NULL;
 	t_size	length;
 
+	HANDLE_ERROR(NULLPOINTER, (a_file == NULL), return (ERROR);)
 	file = String_New(0);
-	if (file == NULL)
-	{
+	HANDLE_ERROR(ALLOCFAILURE, (file == NULL),
 		*a_file = NULL;
 		return (ERROR);
-	}
+	)
 	if (max == 0)
 		max = (t_size)-1;
 	buffer[IO_BUFFER_SIZE] = '\0';
@@ -42,22 +41,20 @@ t_sintmax	IO_Read_File(t_fd const fd, t_char** a_file, t_size max)
 			buffer[result] = '\0';
 		}
 		Memory_Append((void**)&file, length - result, buffer, result);
-		if (file == NULL)
-		{
+		HANDLE_ERROR(ALLOCFAILURE, (file == NULL),
 			*a_file = NULL;
 			return (ERROR);
-		}
+		)
 	}
 	*a_file = file;
-	if (result < 0)
-	{
+	HANDLE_ERROR(SYSTEM, (result < 0),
 		if (*a_file)
 		{	// free the (likely to be incorrect) buffer
 			Memory_Free(*a_file);
 			*a_file = NULL;
 		}
 		return (result);
-	}
+	)
 	return (length);
 }
 

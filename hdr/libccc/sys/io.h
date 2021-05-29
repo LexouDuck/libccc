@@ -136,9 +136,9 @@ TYPEDEF_ALIAS(			t_io_open, IO_OPEN, PRIMITIVE)
 #define OPEN_READWRITE	O_RDWR		//!< Open the file for both reading and writing.
 #define OPEN_ACCESSMODE	O_ACCMODE	//!< The full bitmask value for the file access mode 'io_mode' portion within the 'io_open' int
 // 2) open-time flags
-#define OPEN_CREATE		O_CREAT	//!< If set, the file will be created if it doesn’t already exist.
-#define OPEN_CLEARFILE	O_TRUNC	//!< If writing is allowed (ie: O_RDWR or O_WRONLY) then remove all contents of the file upon opening
-#define OPEN_NOEXISTING	O_EXCL	//!< If both O_CREAT and O_EXCL are set, then open fails if the specified file already exists. (otherwise, platform-specific)
+#define OPEN_CREATE		O_CREAT		//!< If set, the file will be created if it doesn’t already exist.
+#define OPEN_CLEARFILE	O_TRUNC		//!< If writing is allowed (ie: O_RDWR or O_WRONLY) then remove all contents of the file upon opening
+#define OPEN_NOEXISTING	O_EXCL		//!< If both O_CREAT and O_EXCL are set, then open fails if the specified file already exists. (otherwise, platform-specific)
 //#define OPEN_NOSYMLINK	O_NOFOLLOW	//!< If set, the open operation fails if the final component of the file name refers to a symbolic link.
 //#define OPEN_SYMLINK	O_NOLINK	//!< If the named file is a symbolic link, open the link itself instead of the file it refers to.
 //#define OPEN_TEMPFILE	O_TMPFILE	//!< (GNU ext) If set, functions in the open family create an unnamed temporary file (must have write access, 'path' arg is the folder to put the temp file in)
@@ -190,7 +190,7 @@ t_bool						IO_IsTerminal(t_fd fd);
 **		int	open(const char *pathname, int flags, mode_t mode);
 **
 **	@param	filepath	The path of the file to open
-**	@param	flags		The flags with which to open the file (bitflag, can or bitwise OR'd, for example: `OPEN_READONLY|OPEN_CREATE`)
+**	@param	flags		The flags with which to open the file (bitflag, can be bitwise OR'd, ie: `(OPEN_READONLY|OPEN_CREATE)`)
 **	@param	mode		The file access mode (permissions) with which to open the file
 **	@returns the new file descriptor value for the opened file, or a non-zero error code (ie: an 'errno' value)
 */
@@ -320,28 +320,28 @@ int						IO_Read_NextLine(t_fd const fd, t_char* *a_line);
 */
 
 //! Writes the given character 'c' to the given file descriptor 'fd'
-e_stderror				IO_Write_Char(t_fd fd, t_char c);
+t_size					IO_Write_Char(t_fd fd, t_char c);
 #define c_write_char	IO_Write_Char
 
 //! Writes the given string 'str' to the given file descriptor 'fd'
-e_stderror				IO_Write_String(t_fd fd, t_char const* str);
+t_size					IO_Write_String(t_fd fd, t_char const* str);
 #define c_write_string	IO_Write_String
 
 //! Writes the given string 'str' to the given file descriptor 'fd', and a newline '\n' char at the end
-e_stderror				IO_Write_Line(t_fd fd, t_char const* str);
+t_size					IO_Write_Line(t_fd fd, t_char const* str);
 #define c_write_line	IO_Write_Line
 
 //! Writes the given string array 'strarr' to the given file descriptor 'fd'
-e_stderror				IO_Write_Lines(t_fd fd, t_char const** strarr);
+t_size					IO_Write_Lines(t_fd fd, t_char const** strarr);
 #define c_write_lines	IO_Write_Lines
 
 //!< Writes 'n' bytes of memory from 'ptr' as hexadecimal 2-char blocks in 'cols' columns, to the given file descriptor 'fd'
-e_stderror				IO_Write_Memory(t_fd fd, t_u8 const* ptr, t_size n, t_u8 cols);
+t_size					IO_Write_Memory(t_fd fd, t_u8 const* ptr, t_size n, t_u8 cols);
 #define c_write_memory	IO_Write_Memory
 
 //! Writes the given formatted string to the standard output - equivalent to 'fprintf()', or rather 'dprintf()'
 _FORMAT(printf, 2, 3)
-e_stderror				IO_Write_Format(t_fd fd, t_char const* format, ...);
+t_size					IO_Write_Format(t_fd fd, t_char const* format, ...);
 #define c_write_format	IO_Write_Format
 #define c_dprintf		IO_Write_Format
 
@@ -354,33 +354,33 @@ e_stderror				IO_Write_Format(t_fd fd, t_char const* format, ...);
 */
 
 //! Writes the given char 'c' to the standard output.
-e_stderror				IO_Output_Char(t_char c);
+t_size					IO_Output_Char(t_char c);
 #define c_output_char	IO_Output_Char
 #define c_putchar		IO_Output_Char
 
 //! Writes the given string 'str' to the standard output.
-e_stderror				IO_Output_String(t_char const* str);
+t_size					IO_Output_String(t_char const* str);
 #define c_output_string	IO_Output_String
 #define c_putstr		IO_Output_String
 
 //! Writes the given string 'str' to the standard output, with a newline '\n' character at the end.
-e_stderror				IO_Output_Line(t_char const* str);
+t_size					IO_Output_Line(t_char const* str);
 #define c_output_line	IO_Output_Line
 #define c_putline		IO_Output_Line
 
 //! Writes the given string array 'strls' to the standard output.
-e_stderror				IO_Output_Lines(t_char const** strarr);
+t_size					IO_Output_Lines(t_char const** strarr);
 #define c_output_lines	IO_Output_Lines
 #define c_putlines		IO_Output_Lines
 
 //!< Writes 'n' bytes of memory from 'ptr' as hexadecimal 2-char blocks in 'cols' columns, to the standard output
-e_stderror				IO_Output_Memory(t_u8 const* ptr, t_size n, t_u8 cols);
+t_size					IO_Output_Memory(t_u8 const* ptr, t_size n, t_u8 cols);
 #define c_output_memory	IO_Output_Memory
 #define c_putmem		IO_Output_Memory
 
 //! Writes the given formatted string to the standard output - equivalent to 'printf()'
 _FORMAT(printf, 1, 2)
-e_stderror				IO_Output_Format(t_char const* format, ...);
+t_size					IO_Output_Format(t_char const* format, ...);
 #define c_output_format	IO_Output_Format
 #define c_printf		IO_Output_Format
 

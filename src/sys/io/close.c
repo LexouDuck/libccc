@@ -23,5 +23,8 @@
 inline
 e_stderror	IO_Close(t_fd fd)
 {
-	return (close(fd) ? errno : OK);
+	HANDLE_ERROR(SYSTEM,
+		close(fd),
+		return (ERROR_SYSTEM);)
+	return (OK);
 }

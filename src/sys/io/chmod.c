@@ -9,15 +9,8 @@
 	int chmod(char const* pathname, mode_t mode);
 	int chown(char const* pathname, uid_t owner, gid_t group);
 #endif
-#ifndef __NOSTD__
-	#include <errno.h>
-#else
-	#ifndef	errno
-	#define errno	(*_errno())
-	extern	int*	_errno(void);
-	#endif
-#endif
 
+#include "libccc/string.h"
 #include "libccc/sys/io.h"
 
 #include LIBCONFIG_HANDLE_INCLUDE
@@ -28,7 +21,10 @@ inline
 e_stderror	IO_ChangeMode(t_char const* filepath, t_io_mode mode)
 {
 	HANDLE_ERROR(NULLPOINTER, (filepath == NULL), return (ERROR_NULLPOINTER);)
-	return (chmod(filepath, mode) ? errno : OK);
+	HANDLE_ERROR(SYSTEM,
+		chmod(filepath, mode),
+		return (ERROR_SYSTEM);)
+	return (OK);
 }
 
 

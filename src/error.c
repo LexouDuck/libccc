@@ -2,6 +2,14 @@
 #include "libccc/pointer.h"
 
 #ifndef __NOSTD__
+	#include <errno.h>
+#else
+	#ifndef	errno
+	#define errno	(*_errno())
+	extern	int*	_errno(void);
+	#endif
+#endif
+#ifndef __NOSTD__
 	#include <string.h>
 #else
 	t_char const* strerror(int errnum);
@@ -22,7 +30,7 @@
 inline
 t_char*	Error_STDC(int errno_value)
 {
-	t_char	buffer[IO_BUFFER_SIZE] = {0};
+	t_char	buffer[BUFFERSIZE_STRERROR] = {0};
 
 #ifdef _WIN32
 /*
@@ -32,15 +40,15 @@ t_char*	Error_STDC(int errno_value)
 		SF_MESSAGE_ARGUMENT_ARRAY |
 		SF_MESSAGE_FROM_SYSTEM |
 		SF_MESSAGE_IGNORE_INSERTS,
-		NULL, error, 0, result, IO_BUFFER_SIZE, NULL);
+		NULL, error, 0, result, BUFFERSIZE_STRERROR, NULL);
 	if (len)
 		buffer[len] = '\0';
 	else
 		sprintf(result, "Error: %d", error);
 */
-	strerror_s(buffer, IO_BUFFER_SIZE, errno_value);
+	strerror_s(buffer, BUFFERSIZE_STRERROR, errno_value);
 #else
-	strerror_r(errno_value, buffer, IO_BUFFER_SIZE);
+	strerror_r(errno_value, buffer, BUFFERSIZE_STRERROR);
 #endif
 	return (String_Duplicate(buffer));
 }
@@ -101,31 +109,33 @@ static s_stderror_info	stderrors[ENUMLENGTH_STDERROR] =
 
 
 
-t_char const*	Error_GetMessage(e_stderror error)
+t_char*		Error_GetMessage(e_stderror error)
+{
+	if (error == ERROR_NONE)
+		return ("");
+	if (error == ERROR_SYSTEM)
+		return (Error_STDC(errno));
+	for (t_uint i = 0; i < ENUMLENGTH_STDERROR; ++i)
+	{
+		if (stderrors[i].code == error)
+			return (String_Duplicate(stderrors[i].message));
+	}
+	return (NULL);
+}
+
+t_char*		Error_GetName(e_stderror error)
 {
 	if (error == ERROR_NONE)
 		return ("");
 	for (t_uint i = 0; i < ENUMLENGTH_STDERROR; ++i)
 	{
 		if (stderrors[i].code == error)
-			return (stderrors[i].message);
+			return (String_Duplicate(stderrors[i].name));
 	}
 	return (NULL);
 }
 
-t_char const*	Error_GetName(e_stderror error)
-{
-	if (error == ERROR_NONE)
-		return ("");
-	for (t_uint i = 0; i < ENUMLENGTH_STDERROR; ++i)
-	{
-		if (stderrors[i].code == error)
-			return (stderrors[i].name);
-	}
-	return (NULL);
-}
-
-e_stderror		Error_GetCode(t_char const* name)
+e_stderror	Error_GetCode(t_char const* name)
 {
 	HANDLE_ERROR(NULLPOINTER, (name == NULL), return (ERROR_UNSPECIFIED);)
 	if (name[0] == '\0') // empty string
