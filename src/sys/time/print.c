@@ -14,7 +14,7 @@
 
 
 
-t_char*	Date_ToString(s_date const* date, t_char const* format)
+t_char*			Date_ToString(s_date const* date, t_char const* format)
 {
 	struct tm tm;
 	t_char*	result;
@@ -66,12 +66,21 @@ t_char*	Date_ToString(s_date const* date, t_char const* format)
 	return (result);
 }
 
-
-
-t_size	Date_ToString_N(t_char* dest, t_size max, s_date const* date, t_char const* format)
+t_size			Date_ToString_N(t_char* dest, t_size max, s_date const* date, t_char const* format)
 {
 	struct tm tm;
 
 	tm = Date_ToSTDC(date);
 	return (strftime(dest, max, format, &tm));
+}
+
+inline t_char*	Date_ToString_Unix(s_date const* date)
+{
+	return (Date_ToString(date, SF_DATE_UNIX" "SF_TIME_UNIX));
+}
+
+t_char*			DateNow_ToString_Unix(void)
+{
+	s_date date = Date_Now();
+	return (Date_ToString_Unix(&date));
 }
