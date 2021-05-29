@@ -68,7 +68,8 @@ int main(int argc, char** argv)
 		{
 			IO_Output_Format("i:%u,\titer:%u,\tstr:%p -> \"%s\"\n", i++, str_i, (void*)str, str);
 		}
-		Array_Delete_str(&tmp);
+		Array_Delete_str(tmp);
+		tmp = NULL;
 	}
 	IO_Output_String("\n- s_list<char*>:\n");
 	{
@@ -88,7 +89,8 @@ int main(int argc, char** argv)
 		{
 			IO_Output_Format("i:%u,\titer:%p,\tstr:%p -> \"%s\"\n", i++, (void*)str_i, (void*)str, str);
 		}
-		List_Delete_str(&tmp);
+		List_Delete_str(tmp);
+		tmp = NULL;
 	}
 
 
@@ -108,7 +110,7 @@ int main(int argc, char** argv)
 				IO_Output_Format("i:%u,\titer:%u,\tint: %i\n", i++, integer_i, integer);
 			}
 		}
-		Array_Delete_F_array_int(&tmp, Array_Delete_int);
+		Array_Delete_F_array_int(tmp, Array_Delete_int);
 	}
 	IO_Output_String("\n- s_list<s_list<int>>:\n");
 	{
@@ -125,7 +127,7 @@ int main(int argc, char** argv)
 				IO_Output_Format("i:%u,\titer:%p,\tint: %i\n", i++, (void*)integer_i, integer);
 			}
 		}
-		List_Delete_F_array_int(&tmp, List_Delete_int);
+		List_Delete_F_list_int(tmp, List_Delete_int);
 	}
 	return (OK);
 }

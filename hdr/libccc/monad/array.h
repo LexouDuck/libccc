@@ -114,7 +114,7 @@ s_array_T*			CONCAT(Array_New,T_NAME)(t_uint n, ...);
 **	@param	array	The array whose `items` buffer should be deleted - its `length` will be set to `0`.
 */
 _GENERIC()
-void				CONCAT(Array_Delete,T_NAME)(s_array_T* *a_array);
+void				CONCAT(Array_Delete,T_NAME)(s_array_T* array);
 #define c_arrdel	CONCAT(Array_Delete,T_NAME)
 
 //! Deletes the allocated buffer contained within the given `array` (frees and sets to NULL)
@@ -123,7 +123,7 @@ void				CONCAT(Array_Delete,T_NAME)(s_array_T* *a_array);
 **	@param	delete	the function which should be executed for each item before deletion.
 */
 _GENERIC()
-void				CONCAT(Array_Delete_F,T_NAME)(s_array_T* *a_array, void (*delete)(T item));
+void				CONCAT(Array_Delete_F,T_NAME)(s_array_T* array, void (*delete)(T* item));
 #define c_arrfdel	CONCAT(Array_Delete_F,T_NAME)
 
 

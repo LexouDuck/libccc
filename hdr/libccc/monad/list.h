@@ -158,7 +158,7 @@ s_list_T*			CONCAT(List_New,T_NAME)(t_uint n, ...);
 **	@param	a_list	The address ('&') of the beginning of the list - will be set to NULL.
 */
 _GENERIC()
-void				CONCAT(List_Delete,T_NAME)(s_list_T* *a_list);
+void				CONCAT(List_Delete,T_NAME)(s_list_T* list);
 #define c_lstdel	CONCAT(List_Delete,T_NAME)
 
 //! Deletes all the elements in the list starting at `*a_list`, calling `delete()` for each item
@@ -167,7 +167,7 @@ void				CONCAT(List_Delete,T_NAME)(s_list_T* *a_list);
 **	@param	delete	the function which should be executed for each item before deletion.
 */
 _GENERIC()
-void				CONCAT(List_Delete_F,T_NAME)(s_list_T* *a_list, void (*delete)(T item));
+void				CONCAT(List_Delete_F,T_NAME)(s_list_T* list, void (*delete)(T* item));
 #define c_lstfdel	CONCAT(List_Delete_F,T_NAME)
 
 
