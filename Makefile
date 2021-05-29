@@ -271,7 +271,8 @@ SRCS = error.c \
 	math/log.c		\
 	math/trig.c		\
 	math/trig_h.c	\
-	math/random/random.c	\
+	random/prng.c	\
+	random/csprng.c	\
 	math/algebra/calculus.c				\
 	math/algebra/vector/new.c			\
 	math/algebra/vector/equals.c		\

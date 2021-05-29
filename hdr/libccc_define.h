@@ -43,7 +43,7 @@
 	#endif
 	#ifndef HEADER_END
 	#define HEADER_END	
-	#endif	
+	#endif
 #endif
 
 HEADER_CPP

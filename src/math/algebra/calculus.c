@@ -1,6 +1,6 @@
 
+#include "libccc/random/prng.h"
 #include "libccc/math/math.h"
-#include "libccc/math/random.h"
 #include "libccc/math/algebra.h"
 
 #include LIBCONFIG_HANDLE_INCLUDE
