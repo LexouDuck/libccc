@@ -28,16 +28,17 @@
 
 
 static
-inline
 void	Log_VA_Write(s_logger const* logger, t_fd fd, t_char const* output, t_char const* log_msg)
 {
-	t_size wrote = IO_Write_String(fd, log_msg);
-	if (wrote == 0)
-	{
-		t_char* tmp = String_Join("Could not write log message to ", output);
-		Log_FatalError(logger, tmp);
-		String_Delete(&tmp);
-	}
+	t_size	wrote;
+	t_char*	tmp;
+
+	wrote = IO_Write_String(fd, log_msg);
+	HANDLE_ERROR(PRINT, (wrote == 0), return;)
+	tmp = String_Join("Could not write log message to ", output);
+	HANDLE_ERROR(ALLOCFAILURE, (tmp == NULL), return;)
+	Log_FatalError(logger, tmp);
+	String_Delete(&tmp);
 }
 
 
