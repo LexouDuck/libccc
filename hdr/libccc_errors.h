@@ -39,10 +39,15 @@ HEADER_CPP
 **	You may change the logic here (to implement custom exception handling for example).
 */
 #ifndef LIBCONFIG_HANDLE_ERROR
-#define LIBCONFIG_HANDLE_ERROR(...) \
-{									\
-	IO_Output_Format(__VA_ARGS__);	\
-}
+	#ifndef DEBUG
+		#define LIBCONFIG_HANDLE_ERROR(...) \
+		{									\
+			IO_Output_Format(__VA_ARGS__);	\
+		}
+	#else
+		#define LIBCONFIG_HANDLE_ERROR(...) \
+		
+	#endif
 #endif
 
 //! The action to take when there is an integer overflow (by default, let it continue)
