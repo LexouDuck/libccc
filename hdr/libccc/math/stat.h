@@ -40,7 +40,7 @@ HEADER_CPP
 typedef struct list_int
 {
 	t_sint		*data;		//!< The list of integer values
-	t_u32		length;		//!< The amount of items in the list
+	t_uint		length;		//!< The amount of items in the list
 }				s_list_int;
 
 //! Define the value for an empty list of integers
@@ -52,7 +52,7 @@ typedef struct list_int
 typedef struct list_float
 {
 	t_float		*data;		//!< The list of float values
-	t_u32		length;		//!< The amount of items in the list
+	t_uint		length;		//!< The amount of items in the list
 }				s_list_float;
 
 //! Define the value for an empty list of floats

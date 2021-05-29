@@ -504,10 +504,10 @@ TEST_SRCS = \
 	$(TEST_DIR)libccc/sys/regex.c	\
 	$(TEST_DIR)libccc/math/math.c		\
 	$(TEST_DIR)libccc/math/stat.c		\
+	$(TEST_DIR)libccc/math/vlq.c		\
 	$(TEST_DIR)libccc/math/algebra.c	\
 	$(TEST_DIR)libccc/math/complex.c	\
-	$(TEST_DIR)libccc/math/random.c		\
-	$(TEST_DIR)libccc/math/vlq.c		\
+	$(TEST_DIR)libccc/random/random.c	\
 	$(TEST_DIR)libccc/monad/array.c			\
 	$(TEST_DIR)libccc/monad/list.c			\
 	$(TEST_DIR)libccc/monad/tree.c			\

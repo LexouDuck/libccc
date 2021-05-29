@@ -9,6 +9,11 @@
 
 
 
+t_u32   PRNG_Shuffle(t_u32 n);
+t_u32   PRNG_U32(t_prng* state);
+
+
+
 inline
 t_u32   PRNG_Shuffle(t_u32 n)
 {
@@ -17,7 +22,7 @@ t_u32   PRNG_Shuffle(t_u32 n)
 }
 
 inline
-t_u32   PRNG_(t_prng* state)
+t_u32   PRNG_U32(t_prng* state)
 {
 	*state = ((CEIL_SQRT_MOD * PRNG_Shuffle(*state) + OFFSET) & MODULUS);
 	return (*state);
@@ -43,7 +48,7 @@ t_prng* PRNG_New(void)
 
 	result = (t_prng*)Memory_Allocate(sizeof(t_prng));
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
-	*result = DEFAULT_SEED;
+	PRNG_SetSeed(result, DEFAULT_SEED);
 	return (result);
 }
 
@@ -66,7 +71,7 @@ e_cccerror  PRNG_Next(t_prng* state, void* dest, t_size n)
 	HANDLE_ERROR(NULLPOINTER, (state == NULL), return (ERROR_NULLPOINTER);)
 	while (i < n)
 	{
-		random = PRNG_(state);
+		random = PRNG_U32(state);
 		buffer[i] = (random >>  0) & 0xFF;	if (i++ == n)   break;
 		buffer[i] = (random >>  8) & 0xFF;	if (i++ == n)   break;
 		buffer[i] = (random >> 16) & 0xFF;	if (i++ == n)   break;
@@ -85,6 +90,7 @@ e_cccerror  PRNG_Get(void* dest, t_size size)
 	HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (ERROR_NULLPOINTER);)
 	state = PRNG_New();
 	HANDLE_ERROR(ALLOCFAILURE, (state == NULL), return (ERROR_ALLOCFAILURE);)
+	PRNG_NewSeed(state);
 	result = PRNG_Next(state, dest, size);
 	if (result) return (result);
 	PRNG_Delete(&state);

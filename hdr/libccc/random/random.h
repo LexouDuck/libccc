@@ -27,6 +27,8 @@
 */
 
 #include "libccc.h"
+#include "libccc/random/prng.h"
+#include "libccc/random/csprng.h"
 
 HEADER_CPP
 
@@ -69,7 +71,7 @@ HEADER_CPP
 /*!
 **	This type is intentionally opaque (it is platform-dependent)
 */
-typedef void   t_rand;
+typedef LIBCONFIG_TYPE_RANDOM   t_rand;
 
 
 

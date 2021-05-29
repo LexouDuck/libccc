@@ -4,7 +4,7 @@
 #include "libccc/format.h"
 #include "libccc/sys/io.h"
 #include "libccc/math/stat.h"
-#include "libccc/math/random.h"
+#include "libccc/random/random.h"
 
 #include "test.h"
 
