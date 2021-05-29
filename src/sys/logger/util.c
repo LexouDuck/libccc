@@ -36,21 +36,20 @@
 
 e_stderror	Log_FatalError(s_logger const* logger, t_char const* str)
 {
-	e_stderror result = OK;
+	t_size result = 0;
 	t_char const* message = Error_STDC(errno);
 
 	if (logger->path && IO_IsTerminal(logger->fd))
 	{
 		result = IO_Write_Format(logger->fd,
 			C_RED"Fatal Error"C_RESET": %s\n\t-> %s\n", str, message);
-		if (result)	return (result);
 	}
 	else
 	{
 		result = IO_Write_Format(logger->fd,
 			"Fatal Error: %s\n%s", str, message);
-		if (result)	return (result);
 	}
+	HANDLE_ERROR(SYSTEM, (result == 0), return (ERROR_SYSTEM);)
 	return (result);
 }
 

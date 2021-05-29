@@ -31,8 +31,8 @@ static
 inline
 void	Log_VA_Write(s_logger const* logger, t_fd fd, t_char const* output, t_char const* log_msg)
 {
-	int status = IO_Write_String(fd, log_msg);
-	if (status < 0)
+	t_size wrote = IO_Write_String(fd, log_msg);
+	if (wrote == 0)
 	{
 		t_char* tmp = String_Join("Could not write log message to ", output);
 		Log_FatalError(logger, tmp);

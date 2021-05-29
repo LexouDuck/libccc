@@ -5,14 +5,6 @@
 #else
 	int	close(int fd);
 #endif
-#ifndef __NOSTD__
-	#include <errno.h>
-#else
-	#ifndef	errno
-	#define errno	(*_errno())
-	extern	int*	_errno(void);
-	#endif
-#endif
 
 #include "libccc/sys/io.h"
 

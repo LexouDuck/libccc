@@ -123,6 +123,8 @@ t_char*		Error_GetMessage(e_stderror error)
 	return (NULL);
 }
 
+
+
 t_char*		Error_GetName(e_stderror error)
 {
 	if (error == ERROR_NONE)
@@ -134,6 +136,8 @@ t_char*		Error_GetName(e_stderror error)
 	}
 	return (NULL);
 }
+
+
 
 e_stderror	Error_GetCode(t_char const* name)
 {
