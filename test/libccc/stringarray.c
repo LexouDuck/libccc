@@ -151,7 +151,7 @@ void	print_test_strsplit_char(char const* test_name, int can_segfault,
 }
 void	test_strsplit_char()
 {
-//	| TEST FUNCTION			| TEST NAME					| CAN SEGV	| EXPECTING					| TEST ARGS
+//	| TEST FUNCTION			| TEST NAME					| CAN SEGV		| EXPECTING				| TEST ARGS
 	print_test_strsplit_char("strsplit_char",			FALSE,			strarr1_A,				strarr1_as_str,		'\n');
 	print_test_strsplit_char("strsplit_char",			FALSE,			strarr2_B,				strarr2_as_str,		'a');
 	print_test_strsplit_char("strsplit_char",			FALSE,			strarr3,				strarr3_as_str_A,	' ');
@@ -178,7 +178,7 @@ void	print_test_strsplit_charset(char const* test_name, int can_segfault,
 void	test_strsplit_charset()
 {
 	char const* numbers[4] = {"2130706433", "136661", "46", NULL};
-//	| TEST FUNCTION				| TEST NAME						| CAN SEGV	| EXPECTING				| TEST ARGS
+//	| TEST FUNCTION				| TEST NAME						| CAN SEGV		| EXPECTING			| TEST ARGS
 	print_test_strsplit_charset("strsplit_charset",				FALSE,			strarr1_A,			strarr1_as_str,				"\n");
 	print_test_strsplit_charset("strsplit_charset",				FALSE,			strarr1_B,			strarr1_as_str,				"\n\t");
 	print_test_strsplit_charset("strsplit_charset",				FALSE,			strarr2_B,			strarr2_as_str,				"a");

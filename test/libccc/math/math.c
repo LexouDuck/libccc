@@ -6,6 +6,10 @@
 #include "libccc/math/math.h"
 #include "libccc/math/algebra.h"
 #include "libccc/math/stat.h"
+#define T			t_float
+#define T_NAME		_float
+#define T_DEFAULT	0.
+#include "libccc/monad/array.c"
 
 #include "test.h"
 
@@ -65,14 +69,14 @@ static inline void printf_colored(const char* label, t_float precision, t_float 
 
 
 
-static t_float	c_get_largest_f(s_list_float list)
+static t_float	c_get_largest_f(s_array_float values)
 {
 	t_float result = 0.;
-	for (t_u32 i = 0; i < list.length; ++i)
+	for (t_u32 i = 0; i < values.length; ++i)
 	{
-		if (result < list.data[i])
-			result = list.data[i];
-		if (IS_NAN(list.data[i]))
+		if (result < values.items[i])
+			result = values.items[i];
+		if (IS_NAN(values.items[i]))
 			result = NAN;
 	}
 	return (result);
@@ -88,7 +92,7 @@ static t_float	c_get_largest_f(s_list_float list)
 	TEST_INIT_MATH()										\
 	t_float			expects[tests];							\
 	t_float			results[tests];							\
-	s_list_float	error_list = c_stat_new_flst(tests);	\
+	s_array_float	errors = c_stat_new_flst(tests);		\
 	t_float	x;												\
 	t_float	step = (interval.end - interval.start) / tests;	\
 
@@ -98,7 +102,7 @@ static t_float	c_get_largest_f(s_list_float list)
 	tests *= tests;															\
 	t_float			expects[tests];											\
 	t_float			results[tests];											\
-	s_list_float	error_list = c_stat_new_flst(tests);					\
+	s_array_float	errors = c_stat_new_flst(tests);						\
 	t_float	x;																\
 	t_float	y;																\
 	t_float	step_x = (interval_x.end - interval_x.start) / tests_interval;	\
@@ -138,18 +142,18 @@ static t_float	c_get_largest_f(s_list_float list)
 	for (int i = 0; i < tests; ++i)																				\
 	{																											\
 		if (expects[i] == results[i] || (IS_NAN(expects[i]) && IS_NAN(results[i])))								\
-			error_list.data[i] = 0;																				\
+			errors.items[i] = 0;																				\
 		else if (IS_NAN(expects[i]) || IS_NAN(results[i]))														\
-			error_list.data[i] = NAN;																			\
+			errors.items[i] = NAN;																			\
 		else																									\
-			error_list.data[i] = c_distance_float(expects[i], results[i]);										\
-		if (IS_NAN(error_list.data[i]) || error_list.data[i] > fabs(precision * expects[i]))					\
+			errors.items[i] = c_distance_float(expects[i], results[i]);										\
+		if (IS_NAN(errors.items[i]) || errors.items[i] > fabs(precision * expects[i]))					\
 		{																										\
 			++failed_tests;																						\
 			if (g_test.flags.verbose && g_test.flags.show_args && precision < fabs(results[i] - expects[i]))	\
 			{																									\
 				printf("TEST N°%d: -> returned %g but libc returned %g (difference is "C_RED"%g"C_RESET")\n",	\
-					i, results[i], expects[i], error_list.data[i]);												\
+					i, results[i], expects[i], errors.items[i]);												\
 			}																									\
 		}																										\
 	}																											\
@@ -168,15 +172,15 @@ static t_float	c_get_largest_f(s_list_float list)
 		print_percent(percent);									\
 	}															\
 
-static void	print_test_math(s_timer timer, s_list_float error_list, t_float precision)
+static void	print_test_math(s_timer timer, s_array_float errors, t_float precision)
 {
 	if (g_test.flags.verbose)
 	{
-		c_stat_quicksort_f(error_list);
-		printf_colored("Largest error",			precision, c_get_largest_f(error_list));
-		printf_colored("Average error",			precision, c_stat_average_f(error_list));
-		printf_colored("Median error",			precision, c_stat_median_f(error_list));
-		printf_colored("Standard deviation",	precision, sqrt(c_stat_variance_f(error_list)));
+		c_stat_quicksort_f(errors);
+		printf_colored("Largest error",			precision, c_get_largest_f(errors));
+		printf_colored("Average error",			precision, c_stat_average_f(errors));
+		printf_colored("Median error",			precision, c_stat_median_f(errors));
+		printf_colored("Standard deviation",	precision, sqrt(c_stat_variance_f(errors)));
 	}
 	if (g_test.flags.show_speed)
 	{
@@ -187,7 +191,7 @@ static void	print_test_math(s_timer timer, s_list_float error_list, t_float prec
 	{
 		printf("\n");
 	}
-	c_stat_free_flst(&error_list);
+	c_stat_free_flst(&errors);
 	fflush(stdout);
 }
 
@@ -209,7 +213,7 @@ int		test_math_realfunction_libc(
 	}
 	TEST_GET_RESULTS()
 	TEST_PRINT_MATH("Ran %d tests on interval [%g,%g], with increment=%g\n", tests, interval.start, interval.end, step)
-	print_test_math(timer, error_list, precision);
+	print_test_math(timer, errors, precision);
 	return (OK);
 }
 
@@ -235,7 +239,7 @@ int		test_math_realoperator_libc(
 		tests,
 		interval_x.start, interval_x.end, step_x,
 		interval_y.start, interval_y.end, step_y)
-	print_test_math(timer, error_list, precision);
+	print_test_math(timer, errors, precision);
 	return (OK);
 }
 

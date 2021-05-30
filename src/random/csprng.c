@@ -27,7 +27,7 @@ typedef union csprng
 #else
 	FILE*       urandom;
 #endif
-}       u_csprng;
+}		u_csprng;
 
 
 

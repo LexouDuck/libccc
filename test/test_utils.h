@@ -61,7 +61,7 @@ void	print_title(void);
 void	print_endian_warning(void);
 void	print_nonstd(void);
 
-s_sortedlist_int	print_test_random(int samples);
+s_sorted_int	print_test_random(int samples);
 
 
 

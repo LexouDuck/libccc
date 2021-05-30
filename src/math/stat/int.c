@@ -1,73 +1,94 @@
 
 #include "libccc/memory.h"
+#include "libccc/math/math.h"
 #include "libccc/math/stat.h"
+#define T			t_s64
+#define T_NAME		_int
+#define T_DEFAULT	0
+#include "libccc/monad/array.c"
 
 #include LIBCONFIG_HANDLE_INCLUDE
 
 
 
-s_list_int		c_stat_new_ilst(t_u32 length)
-{
-	s_list_int		result;
+#define TYPE		t_s64
 
-	result.data = NULL;
+
+
+s_array_int	c_stat_new_ilst(t_u32 length)
+{
+	s_array_int		result;
+
+	result.items = NULL;
 	result.length = 0;
 	if (length == 0)
 		return (result);
-	result.data = (t_sint*)Memory_Allocate(sizeof(t_sint) * length);
-	HANDLE_ERROR(ALLOCFAILURE, (result.data == NULL), return (result);)
+	result.items = (TYPE*)Memory_Allocate(sizeof(TYPE) * length);
+	HANDLE_ERROR(ALLOCFAILURE, (result.items == NULL), return (result);)
 	result.length = length;
 	return (result);
 }
 
-void			c_stat_free_ilst(s_list_int *ilst)
+
+
+void	c_stat_free_ilst(s_array_int *ilst)
 {
 	HANDLE_ERROR(NULLPOINTER, (ilst == NULL), return;)
-	if (ilst->data)
+	if (ilst->items)
 	{
-		Memory_Free(ilst->data);
-		ilst->data = NULL;
+		Memory_Free(ilst->items);
+		ilst->items = NULL;
 	}
 	ilst->length = 0;
 }
 
+
+
 static
-s_list_int		c_stat_ilst_dup(s_list_int const ilst)
+s_array_int	c_stat_ilst_dup(s_array_int const ilst)
 {
-	s_list_int	result;
+	s_array_int	result;
 
 	result = c_stat_new_ilst(ilst.length);
-	if (!result.data)
+	if (!result.items)
 		return (result);
 	for (t_u32 i = 0; i < result.length; ++i)
-		result.data[i] = ilst.data[i];
+	{
+		result.items[i] = ilst.items[i];
+	}
 	return (result);
 }
 
-s_list_int		c_stat_merge_ilst(
-	s_list_int *start,
-	s_list_int *append)
+
+
+s_array_int	c_stat_merge_ilst(
+	s_array_int *start,
+	s_array_int *append)
 {
-	s_list_int			result;
+	s_array_int			result;
 	t_u32				i;
 	t_u32				j;
 
-	HANDLE_ERROR(NULLPOINTER, (start == NULL), return (NULL_LIST_INT);)
-	HANDLE_ERROR(NULLPOINTER, (append == NULL), return (NULL_LIST_INT);)
+	HANDLE_ERROR(NULLPOINTER, (start  == NULL), return ((s_array_int){ 0, NULL });)
+	HANDLE_ERROR(NULLPOINTER, (append == NULL), return ((s_array_int){ 0, NULL });)
 	if (start->length == 0 && append->length == 0)
 		return (c_stat_new_ilst(0));
-	else if (!start->data || start->length == 0)
+	else if (!start->items || start->length == 0)
 		return (*append);
-	else if (!append->data || append->length == 0)
+	else if (!append->items || append->length == 0)
 		return (*start);
 	result = c_stat_new_ilst(start->length + append->length);
-	if (!(result.data))
+	if (!(result.items))
 		return (result);
 
 	for (i = 0; i < start->length; ++i)
-		result.data[i] = start->data[i];
+	{
+		result.items[i] = start->items[i];
+	}
 	for (j = 0; i < result.length; ++i, ++j)
-		result.data[i] = append->data[j];
+	{
+		result.items[i] = append->items[j];
+	}
 	c_stat_free_ilst(start);
 	c_stat_free_ilst(append);
 
@@ -82,25 +103,23 @@ s_list_int		c_stat_merge_ilst(
 ** tmp_lst.length - 1 to sort in place.
 */
 static
-void			c_stat_quicksort_i_rec
-(
-	s_list_int	tmp_lst,
+void		c_stat_quicksort_i_rec(
+	s_array_int	tmp_lst,
 	t_u32		start,
-	t_u32		end
-)
+	t_u32		end)
 {
-	t_sint	pivot;
+	TYPE	pivot;
 	t_u32	pivot_id;
 	t_u32	rise_id;
 	t_u32	fall_id;
 
-	pivot = tmp_lst.data[start];
+	pivot = tmp_lst.items[start];
 	if (start >= end)
 		return;
 	if (start == end - 1)
 	{
-		if (pivot > tmp_lst.data[end])
-			c_memswap(tmp_lst.data + start, tmp_lst.data + end, sizeof(t_sint));
+		if (pivot > tmp_lst.items[end])
+			Memory_Swap(tmp_lst.items + start, tmp_lst.items + end, sizeof(TYPE));
 		return;
 	}
 
@@ -108,16 +127,20 @@ void			c_stat_quicksort_i_rec
 	fall_id = end;
 	while (rise_id < fall_id)
 	{
-		while (rise_id <= end && tmp_lst.data[rise_id] <= pivot)
+		while (rise_id <= end && tmp_lst.items[rise_id] <= pivot)
+		{
 			++rise_id;
-		while (fall_id > start && tmp_lst.data[fall_id] > pivot)
+		}
+		while (fall_id > start && tmp_lst.items[fall_id] > pivot)
+		{
 			--fall_id;
+		}
 		if (rise_id < fall_id)
-			c_memswap(tmp_lst.data + rise_id, tmp_lst.data + fall_id, sizeof(t_sint));
+			Memory_Swap(tmp_lst.items + rise_id, tmp_lst.items + fall_id, sizeof(TYPE));
 	}
 	pivot_id = fall_id;
 	if (start != fall_id)
-		c_memswap(tmp_lst.data + start, tmp_lst.data + fall_id, sizeof(t_sint));
+		Memory_Swap(tmp_lst.items + start, tmp_lst.items + fall_id, sizeof(TYPE));
 
 	if (pivot_id > start)
 		c_stat_quicksort_i_rec(tmp_lst, start, pivot_id - 1);
@@ -125,9 +148,11 @@ void			c_stat_quicksort_i_rec
 		c_stat_quicksort_i_rec(tmp_lst, pivot_id + 1, end);
 }
 
-s_list_int 		c_stat_quicksort_i_new(s_list_int const ilst)
+
+
+s_array_int c_stat_quicksort_i_new(s_array_int const ilst)
 {
-	s_list_int	result;
+	s_array_int	result;
 
 	if (ilst.length <= 1)
 		return (ilst);
@@ -136,21 +161,24 @@ s_list_int 		c_stat_quicksort_i_new(s_list_int const ilst)
 	return (result);
 }
 
-void			c_stat_quicksort_i(s_list_int ilst)
+
+
+void		c_stat_quicksort_i(s_array_int ilst)
 {
 	c_stat_quicksort_i_rec(ilst, 0, ilst.length - 1);
 }
 
 
 
-inline t_float	c_stat_median_i(s_sortedlist_int const ilst)
+inline
+t_float		c_stat_median_i(s_sorted_int const ilst)
 {
 	return ((ilst.length % 2) ?
-		ilst.data[ilst.length / 2] :
-		(ilst.data[ilst.length / 2] + ilst.data[ilst.length / 2 + 1]) / 2);
+		ilst.items[ilst.length / 2] :
+		(ilst.items[ilst.length / 2] + ilst.items[ilst.length / 2 + 1]) / 2);
 }
 
-t_float			c_stat_average_i(s_list_int const ilst)
+t_float		c_stat_average_i(s_array_int const ilst)
 {
 	t_float		sum;
 	t_u32		i;
@@ -159,17 +187,19 @@ t_float			c_stat_average_i(s_list_int const ilst)
 	i = 0;
 	while (i < ilst.length)
 	{
-		sum += ilst.data[i];
+		sum += ilst.items[i];
 		++i;
 	}
 	return (sum / i);
 }
 
+
+
 /*
 ** Using V(X) = E(X^2) - E(X)^2 rather than E( [X - E(X)]^2 ) which has more
 **	operations (n subtractions).
 */
-t_float			c_stat_variance_i(s_list_int const ilst)
+t_float		c_stat_variance_i(s_array_int const ilst)
 {
 	t_float		sum;
 	t_u32		i;
@@ -181,23 +211,26 @@ t_float			c_stat_variance_i(s_list_int const ilst)
 	i = 0;
 	while (i < ilst.length)
 	{
-		tmp = ilst.data[i];
+		tmp = ilst.items[i];
 		sum += tmp * tmp;
 		++i;
 	}
 	return ((sum / i) - (average * average));
 }
 
+
+
 // TODO
 /*
-inline t_float	c_stat_stddev_i(s_list_int const ilst)
+inline
+t_float		c_stat_stddev_i(s_array_int const ilst)
 {
 
 }
 */
 
 /*
-t_bool			c_prob_is_valid_i(t_prob_sample_i const i_problst)
+t_bool		c_prob_is_valid_i(t_prob_sample_i const i_problst)
 {
 	t_float		prob_sum;
 	t_float		tmp;
@@ -227,7 +260,7 @@ t_bool			c_prob_is_valid_i(t_prob_sample_i const i_problst)
 
 
 
-s_prob_mass		c_stat_new_pmf(t_u32 length)
+s_prob_mass	c_stat_new_pmf(t_u32 length)
 {
 	s_prob_mass	result;
 
@@ -243,7 +276,9 @@ s_prob_mass		c_stat_new_pmf(t_u32 length)
 	return (result);
 }
 
-void			c_stat_free_pmf(s_prob_mass *drv)
+
+
+void		c_stat_free_pmf(s_prob_mass *drv)
 {
 	HANDLE_ERROR(NULLPOINTER, (drv == NULL), return;)
 	if (drv->value)
@@ -259,12 +294,14 @@ void			c_stat_free_pmf(s_prob_mass *drv)
 	drv->length = 0;
 }
 
-s_set_int		c_stat_ilst_to_iset(s_list_int const ilst)
+
+
+s_set_int	c_stat_ilst_to_iset(s_array_int const ilst)
 {
-	s_list_int				result;
-	s_list_int				set;
-	t_u32					i;
-	t_u32					j;
+	s_array_int	result;
+	s_array_int	set;
+	t_u32		i;
+	t_u32		j;
 
 	set = c_stat_new_ilst(ilst.length);
 	set.length = 0;
@@ -274,48 +311,49 @@ s_set_int		c_stat_ilst_to_iset(s_list_int const ilst)
 		j = 0;
 		while (j < set.length)
 		{
-			if (set.data[j] == ilst.data[i])
+			if (set.items[j] == ilst.items[i])
 				break;
 			++j;
 		}
 		if (j == set.length)
-			set.data[(set.length)++] = ilst.data[i];
+			set.items[(set.length)++] = ilst.items[i];
 		++i;
 	}
 	result = c_stat_new_ilst(set.length);
-	Memory_Copy(result.data, set.data, set.length * sizeof(t_sint));
-//	memcpy(result.data, set.data, set.length * sizeof(t_sint));
-	Memory_Free(set.data);
+	Memory_Copy(result.items, set.items, set.length * sizeof(TYPE));
+//	memcpy(result.items, set.items, set.length * sizeof(TYPE));
+	Memory_Free(set.items);
 	return (result);
 }
 
-t_u32			c_stat_ilst_count(s_list_int ilst, t_sint elem)
+
+
+t_u32		c_stat_ilst_count(s_array_int ilst, TYPE elem)
 {
-	t_u32		i;
-	t_u32		result;
+	t_u32	i;
+	t_u32	result;
 
 	i = 0;
 	result = 0;
 	while (i < ilst.length)
 	{
-		if (ilst.data[i] == elem)
+		if (ilst.items[i] == elem)
 			++result;
 		++i;
 	}
 	return (result);
 }
 
-/*
-** Returns the probability distribution of a list of integers.
-*/
-s_prob_mass		c_stat_ilst_to_pmf(s_list_int const ilst)
+
+
+s_prob_mass	c_stat_ilst_to_pmf(s_array_int const ilst)
 {
 	s_prob_mass	result;
-	s_list_int	set;
+	s_array_int	set;
 	t_u32		i;
 	t_float		inv_sample_size;
 
-	if (ilst.data == NULL || ilst.length == 0)
+	if (ilst.items == NULL || ilst.length == 0)
 		return (c_stat_new_pmf(0));
 	set = c_stat_ilst_to_iset(ilst);
 	result = c_stat_new_pmf(set.length);
@@ -323,8 +361,8 @@ s_prob_mass		c_stat_ilst_to_pmf(s_list_int const ilst)
 	inv_sample_size = 1.0 / ilst.length;
 	while (i < result.length)
 	{
-		result.value[i] = (t_float)set.data[i];
-		result.prob[i] = (t_float)c_stat_ilst_count(ilst, set.data[i]);
+		result.value[i] = (t_float)set.items[i];
+		result.prob[i] = (t_float)c_stat_ilst_count(ilst, set.items[i]);
 		result.prob[i] *= inv_sample_size;
 		++i;
 	}

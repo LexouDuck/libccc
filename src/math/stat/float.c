@@ -2,73 +2,93 @@
 #include "libccc/memory.h"
 #include "libccc/math/math.h"
 #include "libccc/math/stat.h"
+#define T			t_f64
+#define T_NAME		_float
+#define T_DEFAULT	0.
+#include "libccc/monad/array.c"
 
 #include LIBCONFIG_HANDLE_INCLUDE
 
 
 
-s_list_float	c_stat_new_flst(t_u32 length)
-{
-	s_list_float	result;
+#define TYPE		t_f64
 
-	result.data = NULL;
+
+
+s_array_float	c_stat_new_flst(t_u32 length)
+{
+	s_array_float	result;
+
+	result.items = NULL;
 	result.length = 0;
 	if (length == 0)
 		return (result);
-	result.data = (t_float*)Memory_Allocate(sizeof(t_float) * length);
-	HANDLE_ERROR(ALLOCFAILURE, (result.data == NULL), return (result);)
+	result.items = (TYPE*)Memory_Allocate(sizeof(TYPE) * length);
+	HANDLE_ERROR(ALLOCFAILURE, (result.items == NULL), return (result);)
 	result.length = length;
 	return (result);
 }
 
-void			c_stat_free_flst(s_list_float *flst)
+
+
+void	c_stat_free_flst(s_array_float *flst)
 {
 	HANDLE_ERROR(NULLPOINTER, (flst == NULL), return;)
-	if (flst->data)
+	if (flst->items)
 	{
-		Memory_Free(flst->data);
-		flst->data = NULL;
+		Memory_Free(flst->items);
+		flst->items = NULL;
 	}
 	flst->length = 0;
 }
 
+
+
 static
-s_list_float	c_stat_flst_dup(s_list_float const flst)
+s_array_float	c_stat_flst_dup(s_array_float const flst)
 {
-	s_list_float	result;
+	s_array_float	result;
 
 	result = c_stat_new_flst(flst.length);
-	if (!result.data)
+	if (!result.items)
 		return (result);
 	for (t_u32 i = 0; i < result.length; ++i)
-		result.data[i] = flst.data[i];
+	{
+		result.items[i] = flst.items[i];
+	}
 	return (result);
 }
 
-s_list_float 	c_stat_merge_flst(
-	s_list_float *start,
-	s_list_float *append)
-{
-	s_list_float		result;
-	t_u32				i;
-	t_u32				j;
 
-	HANDLE_ERROR(NULLPOINTER, (start == NULL), return (NULL_LIST_FLOAT);)
-	HANDLE_ERROR(NULLPOINTER, (append == NULL), return (NULL_LIST_FLOAT);)
+
+s_array_float 	c_stat_merge_flst(
+	s_array_float *start,
+	s_array_float *append)
+{
+	s_array_float	result;
+	t_u32	i;
+	t_u32	j;
+
+	HANDLE_ERROR(NULLPOINTER, (start  == NULL), return ((s_array_float){ 0, NULL });)
+	HANDLE_ERROR(NULLPOINTER, (append == NULL), return ((s_array_float){ 0, NULL });)
 	if (start->length == 0 && append->length == 0)
 		return (c_stat_new_flst(0));
-	else if (!start->data || start->length == 0)
+	else if (!start->items || start->length == 0)
 		return (*append);
-	else if (!append->data || append->length == 0)
+	else if (!append->items || append->length == 0)
 		return (*start);
 	result = c_stat_new_flst(start->length + append->length);
-	if (!(result.data))
+	if (!(result.items))
 		return (result);
 
 	for (i = 0; i < start->length; ++i)
-		result.data[i] = start->data[i];
+	{
+		result.items[i] = start->items[i];
+	}
 	for (j = 0; i < result.length; ++i, ++j)
-		result.data[i] = append->data[j];
+	{
+		result.items[i] = append->items[j];
+	}
 	c_stat_free_flst(start);
 	c_stat_free_flst(append);
 
@@ -83,25 +103,23 @@ s_list_float 	c_stat_merge_flst(
 ** tmp_lst.length - 1 to sort in place.
 */
 static
-void				c_stat_quicksort_f_rec
-(
-	s_list_float	tmp_lst,
+void		c_stat_quicksort_f_rec(
+	s_array_float	tmp_lst,
 	t_u32			start,
-	t_u32			end
-)
+	t_u32			end)
 {
-	t_float	pivot;
+	TYPE	pivot;
 	t_u32	pivot_id;
 	t_u32	rise_id;
 	t_u32	fall_id;
 
-	pivot = tmp_lst.data[start];
+	pivot = tmp_lst.items[start];
 	if (start >= end || pivot != pivot)
 		return;
 	if (start == end - 1)
 	{
-		if (pivot > tmp_lst.data[end])
-			c_memswap(tmp_lst.data + start, tmp_lst.data + end, sizeof(t_float));
+		if (pivot > tmp_lst.items[end])
+			Memory_Swap(tmp_lst.items + start, tmp_lst.items + end, sizeof(TYPE));
 		return;
 	}
 
@@ -109,16 +127,20 @@ void				c_stat_quicksort_f_rec
 	fall_id = end;
 	while (rise_id < fall_id)
 	{
-		while (rise_id <= end && tmp_lst.data[rise_id] <= pivot)
+		while (rise_id <= end && tmp_lst.items[rise_id] <= pivot)
+		{
 			++rise_id;
-		while (fall_id > start && tmp_lst.data[fall_id] > pivot)
+		}
+		while (fall_id > start && tmp_lst.items[fall_id] > pivot)
+		{
 			--fall_id;
+		}
 		if (rise_id < fall_id)
-			c_memswap(tmp_lst.data + rise_id, tmp_lst.data + fall_id, sizeof(t_float));
+			Memory_Swap(tmp_lst.items + rise_id, tmp_lst.items + fall_id, sizeof(TYPE));
 	}
 	pivot_id = fall_id;
 	if (start != fall_id)
-		c_memswap(tmp_lst.data + start, tmp_lst.data + fall_id, sizeof(t_float));
+		Memory_Swap(tmp_lst.items + start, tmp_lst.items + fall_id, sizeof(TYPE));
 
 	if (pivot_id > start)
 		c_stat_quicksort_f_rec(tmp_lst, start, pivot_id - 1);
@@ -126,9 +148,11 @@ void				c_stat_quicksort_f_rec
 		c_stat_quicksort_f_rec(tmp_lst, pivot_id + 1, end);
 }
 
-s_list_float 		c_stat_quicksort_f_new(s_list_float const flst)
+
+
+s_array_float 	c_stat_quicksort_f_new(s_array_float const flst)
 {
-	s_list_float	result;
+	s_array_float	result;
 
 	if (flst.length <= 1)
 		return (flst);
@@ -137,53 +161,60 @@ s_list_float 		c_stat_quicksort_f_new(s_list_float const flst)
 	return (result);
 }
 
-void			c_stat_quicksort_f(s_list_float flst)
+
+
+void		c_stat_quicksort_f(s_array_float flst)
 {
 	c_stat_quicksort_f_rec(flst, 0, flst.length - 1);
 }
 
 
 
-inline t_float		c_stat_median_f(s_sortedlist_float const flst)
+inline
+t_float		c_stat_median_f(s_sorted_float const flst)
 {
 	return ((flst.length % 2) ?
-		flst.data[flst.length / 2] :
-		(flst.data[flst.length / 2] + flst.data[flst.length / 2 + 1]) / 2);
+		flst.items[flst.length / 2] :
+		(flst.items[flst.length / 2] + flst.items[flst.length / 2 + 1]) / 2);
 }
 
-t_float				c_stat_average_f(s_list_float const flst)
+
+
+t_float		c_stat_average_f(s_array_float const flst)
 {
-	t_float		sum;
-	t_u32		i;
+	TYPE	sum;
+	t_u32	i;
 
 	sum = 0.;
 	i = 0;
-	t_float inv_len = (1. / flst.length);
+	TYPE inv_len = (1. / flst.length);
 	while (i < flst.length)
 	{
-		sum += inv_len * flst.data[i];
+		sum += inv_len * flst.items[i];
 		++i;
 	}
 	return (sum);
 }
 
+
+
 /*
 ** Using V(X) = E(X^2) - E(X)^2 rather than E( [X - E(X)]^2 ) which has more
 **	operations (n subtractions).
 */
-t_float				c_stat_variance_f(s_list_float const flst)
+t_float		c_stat_variance_f(s_array_float const flst)
 {
-	t_float		sum;
-	t_u32		i;
-	t_float		average;
-	t_float		tmp;
+	TYPE	sum;
+	t_u32	i;
+	TYPE	average;
+	TYPE	tmp;
 
 	average = c_stat_average_f(flst);
 	sum = 0;
 	i = 0;
 	while (i < flst.length)
 	{
-		tmp = flst.data[i];
+		tmp = flst.items[i];
 		sum += tmp * tmp;
 		++i;
 	}
@@ -191,16 +222,18 @@ t_float				c_stat_variance_f(s_list_float const flst)
 
 }
 
+
 // TODO
 /*
-inline t_float		c_stat_stddev_f(s_list_float const flst)
+inline
+t_float		c_stat_stddev_f(s_array_float const flst)
 {
 	
 }
 */
 
 /*
-t_bool				c_prob_is_valid_f(t_prob_sample_f const f_problst);
+t_bool		c_prob_is_valid_f(t_prob_sample_f const f_problst);
 {
 
 }
