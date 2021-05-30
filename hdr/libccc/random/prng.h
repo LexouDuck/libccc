@@ -37,27 +37,27 @@ HEADER_CPP
 /*!
 **	Pseudo-random number generator. Modulus is `2^31`
 **
-**	- `OFFSET` and `MODULUS` are mutually prime.
-**	- `CEIL_SQRT_MOD % 4` should be equal to 1 because `MODULUS` is a multiple of 4
-**	- For all P prime divisors of `MODULUS`, `a % p = 1`
-**	- `OFFSET` should be small compared to the two other parameters
+**	- `PRNG_OFFSET` and `PRNG_MODULUS` are mutually prime.
+**	- `PRNG_CEIL_SQRT_MOD % 4` should be equal to 1 because `PRNG_MODULUS` is a multiple of 4
+**	- For all P prime divisors of `PRNG_MODULUS`, `a % p = 1`
+**	- `PRNG_OFFSET` should be small compared to the two other parameters
 **	- The bitwise AND `&` operator is applied, which explains the choice of modulus
 **		to be `2^31 - 1` in implementation (could also be called RAND_MAX)
 **
 **	Basic RNG formula is:
-**		`next_value = (CEIL_SQRT_MOD * old_nb + OFFSET) % MODULUS`
+**		`next_value = (PRNG_CEIL_SQRT_MOD * old_nb + PRNG_OFFSET) % PRNG_MODULUS`
 */
 //!@{
 
 //! The default random seed for pseudo-random number generation
-#define DEFAULT_SEED	(0x93E21FD5)
+#define PRNG_SEED_DEFAULT	(0x93E21FD5)
 
 //! TODO document this
-#define MODULUS			(0x7FFFFFFF)
+#define PRNG_MODULUS		(0x7FFFFFFF)
 //! TODO document this
-#define CEIL_SQRT_MOD	(46341)
+#define PRNG_CEIL_SQRT_MOD	(46341)
 //! TODO document this
-#define OFFSET			(2835)
+#define PRNG_OFFSET			(2835)
 
 //!@}
 

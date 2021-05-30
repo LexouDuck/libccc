@@ -38,35 +38,6 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-/*!
-**	Pseudo-random number generator. Modulus is `2^31`
-**
-**	- `OFFSET` and `MODULUS` are mutually prime.
-**	- `CEIL_SQRT_MOD % 4` should be equal to 1 because `MODULUS` is a multiple of 4
-**	- For all P prime divisors of `MODULUS`, `a % p = 1`
-**	- `OFFSET` should be small compared to the two other parameters
-**	- The bitwise AND `&` operator is applied, which explains the choice of modulus
-**		to be `2^31 - 1` in implementation (could also be called RAND_MAX)
-**
-**	Basic RNG formula is:
-**		`next_value = (CEIL_SQRT_MOD * old_nb + OFFSET) % MODULUS`
-*/
-//!@{
-
-//! The default random seed for pseudo-random number generation
-#define DEFAULT_SEED	(0x93E21FD5)
-
-//! TODO document this
-#define MODULUS			(0x7FFFFFFF)
-//! TODO document this
-#define CEIL_SQRT_MOD	(46341)
-//! TODO document this
-#define OFFSET			(2835)
-
-//!@}
-
-
-
 //! This type stores the current state of the random number generator
 /*!
 **	This type is intentionally opaque (it is platform-dependent)

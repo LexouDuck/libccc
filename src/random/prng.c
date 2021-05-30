@@ -24,7 +24,7 @@ t_u32   PRNG_Shuffle(t_u32 n)
 inline
 t_u32   PRNG_U32(t_prng* state)
 {
-	*state = ((CEIL_SQRT_MOD * PRNG_Shuffle(*state) + OFFSET) & MODULUS);
+	*state = ((PRNG_CEIL_SQRT_MOD * PRNG_Shuffle(*state) + PRNG_OFFSET) & PRNG_MODULUS);
 	return (*state);
 }
 
@@ -48,7 +48,7 @@ t_prng* PRNG_New(void)
 
 	result = (t_prng*)Memory_Allocate(sizeof(t_prng));
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
-	PRNG_SetSeed(result, DEFAULT_SEED);
+	PRNG_SetSeed(result, PRNG_SEED_DEFAULT);
 	return (result);
 }
 
