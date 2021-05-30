@@ -49,31 +49,17 @@ HEADER_CPP
 
 
 
-//! Macros to convert values' endianness
+//! Macros to convert values' endianness (invert byte-per-byte)
 //!@{
-#ifdef LOCAL_BE
-// local arch is big endian
-	#define I16_FROM_LE(X)	((((X)&0XFF)<< 8)|(((X)>>8)&0XFF))
-	#define I16_TO_LE(X)	((((X)&0XFF)<< 8)|(((X)>>8)&0XFF))
-
-	#define I32_FROM_LE(X)	((((X)&0XFF)<<24)|(((X)&0XFF00)<< 8)|(((X)>>8)&0XFF00)|(((X)>>24)&0XFF))
-	#define I32_TO_LE(X)	((((X)&0XFF)<<24)|(((X)&0XFF00)<< 8)|(((X)>>8)&0XFF00)|(((X)>>24)&0XFF))
-
-	#define I64_FROM_LE(X)	((((X)&0XFF)<<56)|(((X)&0XFF00)<<40)|(((X)&0XFF0000)<<24)|(((X)&0XFF000000)<<8)|(((X)>>8)&0XFF000000)|(((X)>>24)&0XFF00)|(((X)>>40)&0XFF00)|(((X)>>56)&0XFF))
-	#define I64_TO_LE(X)	((((X)&0XFF)<<56)|(((X)&0XFF00)<<40)|(((X)&0XFF0000)<<24)|(((X)&0XFF000000)<<8)|(((X)>>8)&0XFF000000)|(((X)>>24)&0XFF00)|(((X)>>40)&0XFF00)|(((X)>>56)&0XFF))
-
-#else
-// local arch is little endian
-	#define I16_FROM_LE(X)	(X)
-	#define I16_TO_LE(X)	(X)
-
-	#define I32_FROM_LE(X)	(X)
-	#define I32_TO_LE(X)	(X)
-
-	#define I64_FROM_LE(X)	(X)
-	#define I64_TO_LE(X)	(X)
-
-#endif
+#define ENDIAN_INVERT_16(X) \
+	( (((X)&0XFF)<<8) \
+	| (((X)>>8)&0XFF) )
+#define ENDIAN_INVERT_32(X) \
+	( (((X)&0XFF)<<24) | (((X)&0XFF00)<<8) \
+	| (((X)>>24)&0XFF) | (((X)>>8)&0XFF00) )
+#define ENDIAN_INVERT_64(X) \
+	( (((X)&0XFF)<<56) | (((X)&0XFF00)<<40) | (((X)&0XFF0000)<<24) | (((X)&0XFF000000)<<8) \
+	| (((X)>>56)&0XFF) | (((X)>>40)&0XFF00) | (((X)>>24)&0XFF0000) | (((X)>>8)&0XFF000000) )
 //!@}
 
 

@@ -158,7 +158,7 @@ TYPEDEF_ALIAS(			t_io_open, IO_OPEN, PRIMITIVE)
 ** ************************************************************************** *|
 */
 
-//! Returns the ANSI color code number for the nearest color to the given 32-bit `color`.
+//! Get the ANSI color code number for the nearest color to the given 32-bit `color`.
 /*!
 **	(Learn more about ANSI colors)[https://misc.flogisoft.com/bash/tip_colors_and_formatting]
 */
@@ -168,9 +168,9 @@ t_u8						IO_GetColor(t_argb32 color);
 
 
 
-//! Returns 1(TRUE) if the given file descriptor `fd` corresponds to a terminal.
+//! Checks whether the given file descriptor `fd` points to a terminal.
 /*!
-**	
+**	@returns `TRUE` if the given file descriptor `fd` corresponds to a terminal.
 */
 t_bool						IO_IsTerminal(t_fd fd);
 #define c_isatty			IO_IsTerminal

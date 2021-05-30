@@ -64,42 +64,6 @@ HEADER_CPP
 
 
 
-//! Whether or not libccc uses its own fast-approximate math functions or the builtin FPU calls.
-/*!
-**	This macro determines which math function implementations should be used.
-**	- If `1`, the libccc fast approximate functions will be used (precision error margin is `10^-4`)
-**	- If `0`, the builtin FPU-call libc math functions will be used (eg: `__builtin_powf()`, etc)
-*/
-#define LIBCONFIG_USE_FAST_APPROX_MATH		(0)
-
-
-
-//! Whether the `s_list` and `s_object` types in "libccc/monad" will be doubly-linked
-/*!
-**	This macro configures whether the `s_list` type is singly-linked or doubly-linked.
-**	NOTE: This must be set BEFORE including the `<libccc/monad/list.(c|h)>` header files
-**	- If `0`, `s_list` is singly-linked (that is, the struct only holds a `.next` pointer)
-**	- If `1`, `s_list` is doubly-linked (that is, the struct has both a `.prev` and `.next` pointer)
-*/
-#define LIBCONFIG_LIST_DOUBLYLINKED		(0)
-
-
-
-//! Defines which type the `t_char` default text character type will be
-/*!
-**	This macro sets the default `t_char` text string character type to use.
-**	There are 2 possible accepted values for these:
-**		|`TYPE_CHAR`|`NAME_CHAR`|__________________________________________
-**	-	| `t_ascii`	| `ASCII`	| for simple 8-bit ASCII character strings
-**	-	| `t_utf32`	| `UTF32`	| for unicode 32-bit wide character strings
-*/
-//!@{
-#define LIBCONFIG_TYPE_CHAR		t_ascii
-#define LIBCONFIG_NAME_CHAR		ASCII
-//!@}
-
-
-
 //! Defines which type/bit size the `t_uint` default unsigned integer type will be
 /*!
 **	This macro sets the default `t_uint` default unsigned integer type to use.
@@ -156,6 +120,51 @@ HEADER_CPP
 
 
 
+//! Defines which type the `t_char` default text character type will be
+/*!
+**	This macro sets the default `t_char` text string character type and methods to use.
+**	With the default settings, `t_char` resolves to `t_ascii`, and its functions work accordingly
+**	(ie: the `Char_ToUpper()` function is really an alias for the `ASCII_IsUpper()` function)
+**	There are 2 possible accepted values for these:
+**		|`TYPE_CHAR`|`NAME_CHAR`|__________________________________________
+**	-	| `t_ascii` | `ASCII`   | for simple 8-bit ASCII character strings
+**	-	| `t_utf32` | `UTF32`   | for unicode 32-bit wide character strings
+*/
+//!@{
+#define LIBCONFIG_TYPE_CHAR		t_ascii
+#define LIBCONFIG_NAME_CHAR		ASCII
+//!@}
+
+
+
+//! Defines which type the `t_rand` default random state type will be
+/*!
+**	This macro sets the default `t_rand` RNG type and methods to use.
+**	With the default settings, `t_rand` resolves to `t_prng`, and its functions work accordingly
+**	(ie: the `Random_UInt()` function is really an alias for the `PRNG_UInt()` function)
+**	There are 2 possible accepted values for these:
+**		|`TYPE_RANDOM`|`NAME_RANDOM`|__________________________________________
+**	-	| `t_prng`    | `PRNG`      | for simple pseudo-random number algorithm
+**	-	| `t_csprng`  | `CSPRNG`    | for cryptographically-secure RNG (OS native)
+*/
+//!@{
+#define LIBCONFIG_TYPE_RANDOM	t_prng
+#define LIBCONFIG_NAME_RANDOM	PRNG
+//!@}
+
+
+
+//! Whether the `s_list` and `s_object` types in "libccc/monad" will be doubly-linked
+/*!
+**	This macro configures whether the `s_list` type is singly-linked or doubly-linked.
+**	NOTE: This must be set BEFORE including the `<libccc/monad/list.(c|h)>` header files
+**	- If `0`, `s_list` is singly-linked (that is, the struct only holds a `.next` pointer)
+**	- If `1`, `s_list` is doubly-linked (that is, the struct has both a `.prev` and `.next` pointer)
+*/
+#define LIBCONFIG_LIST_DOUBLYLINKED		(0)
+
+
+
 //! If 1, libccc uses exact bit length for t_s8, t_s16, t_s32, t_s64, t_u8, t_u16, t_u32, and t_u64
 /*!
 **	This macro configures which `<stdint.h>` integer types are used by default,
@@ -169,6 +178,16 @@ HEADER_CPP
 */
 //#define LIBCONFIG_INTEGER_TYPES _least // uncomment this line to use LEAST int types
 //#define LIBCONFIG_INTEGER_TYPES _fast  // uncomment this line to use FAST int types
+
+
+
+//! Whether or not libccc uses its own fast-approximate math functions or the builtin FPU calls.
+/*!
+**	This macro determines which math function implementations should be used.
+**	- If `1`, the libccc fast approximate functions will be used (precision error margin is `10^-4`)
+**	- If `0`, the builtin FPU-call libc math functions will be used (eg: `__builtin_powf()`, etc)
+*/
+#define LIBCONFIG_USE_FAST_APPROX_MATH		(0)
 
 
 

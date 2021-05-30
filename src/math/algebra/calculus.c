@@ -1,6 +1,6 @@
 
+#include "libccc/random/random.h"
 #include "libccc/math/math.h"
-#include "libccc/math/random.h"
 #include "libccc/math/algebra.h"
 
 #include LIBCONFIG_HANDLE_INCLUDE
@@ -12,21 +12,26 @@ t_float			c_mc_integrate_3d(f_scalar_func3 const sf, s_box3d const domain)
 	u_vector3d	rand_input;
 	t_float		result;
 	t_u32		i;
+	t_rand*		rng;
 
 	result = 0.;
 	i = 0;
+	rng = Random_New();
 	while (i < SAMPLE_NB)
 	{
-		rand_input.vector.x = c_random_float_a_to_b(domain.start.vector.x, domain.end.vector.x);
-		rand_input.vector.y = c_random_float_a_to_b(domain.start.vector.y, domain.end.vector.y);
-		rand_input.vector.z = c_random_float_a_to_b(domain.start.vector.z, domain.end.vector.z);
+		rand_input.vector.x = Random_Float_Range(rng, domain.start.vector.x, domain.end.vector.x);
+		rand_input.vector.y = Random_Float_Range(rng, domain.start.vector.y, domain.end.vector.y);
+		rand_input.vector.z = Random_Float_Range(rng, domain.start.vector.z, domain.end.vector.z);
 		result += sf(rand_input);
 		++i;
 	}
+	Random_Delete(&rng);
 	result /= (t_float)SAMPLE_NB;
-	result *=	(domain.end.vector.x - domain.start.vector.x) *
-				(domain.end.vector.y - domain.start.vector.y) *
-				(domain.end.vector.z - domain.start.vector.z);
+	result =
+		(domain.end.vector.x - domain.start.vector.x) *
+		(domain.end.vector.y - domain.start.vector.y) *
+		(domain.end.vector.z - domain.start.vector.z) *
+		result;
 	return (result);
 }
 

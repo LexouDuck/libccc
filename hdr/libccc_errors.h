@@ -80,6 +80,7 @@ HEADER_CPP
 #define HANDLE_ERRORS_NANARGUMENT  1
 #define HANDLE_ERRORS_ILLEGALBYTES 1
 #define HANDLE_ERRORS_INVALIDENUM  1
+#define HANDLE_ERRORS_INVALIDRANGE 1
 #define HANDLE_ERRORS_INDEX2SMALL  1
 #define HANDLE_ERRORS_INDEX2LARGE  1
 #define HANDLE_ERRORS_LENGTH2SMALL 1
@@ -185,6 +186,7 @@ typedef enum stderror
 	ERROR_NANARGUMENT,  //!< Argument Error: should not receive NAN as argument
 	ERROR_ILLEGALBYTES, //!< Argument Error: illegal byte sequence encountered
 	ERROR_INVALIDENUM,  //!< Argument Error: value given is not a valid enum item
+	ERROR_INVALIDRANGE, //!< Argument Error: range given is inverted: 'min' is larger than 'max'
 	ERROR_INDEX2SMALL,  //!< Argument Error: index value given is too small
 	ERROR_INDEX2LARGE,  //!< Argument Error: index value given is too large
 	ERROR_LENGTH2SMALL, //!< Argument Error: length value given is too small

@@ -95,6 +95,7 @@ static s_stderror_info	stderrors[ENUMLENGTH_STDERROR] =
 	{ ERROR_NANARGUMENT,  "ERROR_NANARGUMENT",  "Argument Error: should not receive NAN as argument" },
 	{ ERROR_ILLEGALBYTES, "ERROR_ILLEGALBYTES", "Argument Error: illegal byte sequence encountered" },
 	{ ERROR_INVALIDENUM,  "ERROR_INVALIDENUM",  "Argument Error: value given is not a valid enum item" },
+	{ ERROR_INVALIDRANGE, "ERROR_INVALIDRANGE", "Argument Error: range given is inverted: 'min' is larger than 'max'" },
 	{ ERROR_INDEX2SMALL,  "ERROR_INDEX2SMALL",  "Argument Error: index value given is too small" },
 	{ ERROR_INDEX2LARGE,  "ERROR_INDEX2LARGE",  "Argument Error: index value given is too large" },
 	{ ERROR_LENGTH2SMALL, "ERROR_LENGTH2SMALL", "Argument Error: length value given is too small" },
