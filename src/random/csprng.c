@@ -69,7 +69,6 @@ void	CSPRNG_Delete(t_csprng* *a_state)
 e_cccerror	CSPRNG_Next(t_csprng* state, void* dest, t_size size)
 {
 	u_csprng	csprng;
-	t_u64		n;
 
 	HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (ERROR_NULLPOINTER);)
 	HANDLE_ERROR(NULLPOINTER, (state == NULL), return (ERROR_NULLPOINTER);)
@@ -77,7 +76,7 @@ e_cccerror	CSPRNG_Next(t_csprng* state, void* dest, t_size size)
 #ifdef _WIN32
 	WINBOOL result;
 	HANDLE_ERROR(SYSTEM, (csprng.hCryptProv == 0), return (ERROR_SYSTEM);)
-	n = (size >> 30);
+	t_u64 n = (size >> 30);
 	while (n--)
 	{
 		result = CryptGenRandom(csprng.hCryptProv, (1ul << 30), (BYTE*)dest);
