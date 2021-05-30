@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>13) libccc/char &mdash; libccc 1.0 documentation</title>
+  <title>13) libccc/char.h &mdash; libccc 1.0 documentation</title>
   
 
   
@@ -40,13 +40,13 @@
   <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="14) libccc/string" href="group_libccc_string.html" />
-    <link rel="prev" title="12) libccc/memory" href="group_libccc_memory.html" />
+    <link rel="next" title="14) libccc/string.h" href="group_libccc_string.html" />
+    <link rel="prev" title="12) libccc/memory.h" href="group_libccc_memory.html" />
 	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
 	
-	<meta name="Description" content="13) libccc/char">
-	<meta property="og:description" content="13) libccc/char">
-	<meta property="og:title" content="libccc 1.0 documentation - 13) libccc/char">
+	<meta name="Description" content="13) libccc/char.h">
+	<meta property="og:description" content="13) libccc/char.h">
+	<meta property="og:title" content="libccc 1.0 documentation - 13) libccc/char.h">
 	<meta property="og:image" content="_static/images/libccc_icon.png">
 	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
 	<meta property="og:image:type" content="image/png" />
@@ -100,17 +100,19 @@
             
             
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="group_libccc.html">01) libccc</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_config.html">02) libccc_config</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_define.html">05) libccc_define</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">06) libccc/bool</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">07) libccc/int</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_fixed.html">08) libccc/fixed</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_float.html">09) libccc/float</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointer.html">10) libccc/pointer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointerarray.html">11) libccc/pointerarray</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_memory.html">12) libccc/memory</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">13) libccc/char</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc.html">01) libccc.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_config.html">02) libccc_config.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_naming.html">03) libccc_naming.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_errors.html">04) libccc_errors.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_define.html">05) libccc_define.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">06) libccc/bool.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">07) libccc/int.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_fixed.html">08) libccc/fixed.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_float.html">09) libccc/float.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointer.html">10) libccc/pointer.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointerarray.html">11) libccc/pointerarray.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_memory.html">12) libccc/memory.h</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">13) libccc/char.h</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#detailed-documentation">Detailed Documentation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#typedefs">Typedefs</a></li>
@@ -119,36 +121,44 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">14) libccc/string</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_stringarray.html">15) libccc/stringarray</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">16) libccc/format</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_color.html">17) libccc/color</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">18) libccc/sys/io</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_ansi.html">19) libccc/sys/ansi</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_ascii.html">20) libccc/sys/ascii</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_unicode.html">21) libccc/sys/unicode</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">22) libccc/sys/logger</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_regex.html">23) libccc/sys/regex</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_time.html">24) libccc/sys/time</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_constants.html">25) libccc/math/constants</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_float.html">26) libccc/math/float</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_fixed.html">27) libccc/math/fixed</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_vlq.html">28) libccc/math/vlq</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_sort.html">29) libccc/math/sort</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_stat.html">30) libccc/math/stat</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_random.html">31) libccc/math/random</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">32) libccc/math/complex</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra.html">33) libccc/math/algebra</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_convert.html">37) libccc/monad/convert</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_array.html">38) libccc/monad/array</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_list.html">39) libccc/monad/list</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_stack.html">40) libccc/monad/stack</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_queue.html">41) libccc/monad/queue</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_tree.html">42) libccc/monad/tree</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_keyval.html">43) libccc/monad/keyval</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_dict.html">44) libccc/monad/dict</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_object.html">45) libccc/monad/object</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_error.html">Libccc_error</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">14) libccc/string.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_stringarray.html">15) libccc/stringarray.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">16) libccc/format.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_color.html">17) libccc/color.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_error.html">18) libccc/error.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">19) libccc/sys/io.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_ansi.html">20) libccc/sys/ansi.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_ascii.html">21) libccc/sys/ascii.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_unicode.html">22) libccc/sys/unicode.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">23) libccc/sys/logger.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_regex.html">24) libccc/sys/regex.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_time.html">25) libccc/sys/time.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_constants.html">26) libccc/math/constants.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_float.html">28) libccc/math/float.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_fixed.html">29) libccc/math/fixed.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_vlq.html">30) libccc/math/vlq.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_sort.html">31) libccc/math/sort.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_stat.html">32) libccc/math/stat.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">33) libccc/math/complex.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra.html">34) libccc/math/algebra.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_vector.html">35) libccc/math/algebra/vector.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_matrix.html">36) libccc/math/algebra/matrix.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_interval.html">37) libccc/math/algebra/interval.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_random.html">38) libccc/random/random.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_prng.html">39) libccc/random/prng.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_csprng.html">40) libccc/random/csprng.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_convert.html">41) libccc/monad/convert.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_stack.html">42) libccc/monad/stack.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_queue.html">43) libccc/monad/queue.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_array.html">44) libccc/monad/array.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_list.html">45) libccc/monad/list.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_keyval.html">47) libccc/monad/keyval.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_dict.html">48) libccc/monad/dict.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_tree.html">49) libccc/monad/tree.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_object.html">50) libccc/monad/object.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_common.html">51) libccc/encode/common.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_json.html">52) libccc/encode/json.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_toml.html">53) libccc/encode/toml.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_math.html">Libccc_math</a></li>
 </ul>
 <ul>
@@ -201,7 +211,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>13) libccc/char</li>
+      <li>13) libccc/char.h</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -218,8 +228,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="libccc-char">
-<span id="doxid-group-libccc-char"></span><span id="index-0"></span><h1>13) libccc/char<a class="headerlink" href="#libccc-char" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="libccc-char-h">
+<span id="doxid-group-libccc-char"></span><span id="index-0"></span><h1>13) libccc/char.h<a class="headerlink" href="#libccc-char-h" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 </div>
 <div class="section" id="overview">
@@ -241,8 +251,8 @@
 <p>This header defines all the functions/sets related to single ASCII chars.</p>
 <p class="rubric">See also:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="group_libccc_sys_ascii.html#doxid-group-libccc-sys-ascii"><span class="std std-ref">20) libccc/sys/ascii</span></a></p></li>
-<li><p><a class="reference internal" href="group_libccc_sys_unicode.html#doxid-group-libccc-sys-unicode"><span class="std std-ref">21) libccc/sys/unicode</span></a></p></li>
+<li><p><a class="reference internal" href="group_libccc_sys_ascii.html#doxid-group-libccc-sys-ascii"><span class="std std-ref">21) libccc/sys/ascii.h</span></a></p></li>
+<li><p><a class="reference internal" href="group_libccc_sys_unicode.html#doxid-group-libccc-sys-unicode"><span class="std std-ref">22) libccc/sys/unicode.h</span></a></p></li>
 </ul>
 <div class="section" id="typedefs">
 <h3>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h3>
@@ -288,10 +298,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="group_libccc_string.html" class="btn btn-neutral float-right" title="14) libccc/string" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="group_libccc_string.html" class="btn btn-neutral float-right" title="14) libccc/string.h" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="group_libccc_memory.html" class="btn btn-neutral float-left" title="12) libccc/memory" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="group_libccc_memory.html" class="btn btn-neutral float-left" title="12) libccc/memory.h" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

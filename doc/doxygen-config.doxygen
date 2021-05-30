@@ -849,13 +849,14 @@ WARN_LOGFILE           =
 # Note: If this tag is empty the current directory is searched.
 
 INPUT                  = ./README.md \
-./hdr/libccc.h \
-./hdr/libccc_define.h \
-./hdr/libccc_config.h \
+./hdr/ \
 ./hdr/libccc/ \
 ./hdr/libccc/sys/ \
 ./hdr/libccc/math/ \
+./hdr/libccc/math/algebra/ \
 ./hdr/libccc/monad/ \
+./hdr/libccc/random/ \
+./hdr/libccc/encode/ \
 
 # This tag can be used to specify the character encoding of the source files
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding. Doxygen uses

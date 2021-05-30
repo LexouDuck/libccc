@@ -34,7 +34,7 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! Configures the typedef nomenclature style used by libccc
+//! Configures the nomenclature style used by libccc for `typedef` statements.
 /*!
 **	This macro sets the nomenclature style that libccc uses for typedefs. The value works like
 **	both an enum and a bitflag simultaneously: you can see how this works at the bottom of this file.
@@ -48,7 +48,7 @@ HEADER_CPP
 
 
 
-//! Whether or not libccc will define its functions as simple inline wrappers for STD C calls.
+//! Whether or not libccc will define its functions as simple inline wrappers for STD C calls, wherever possible.
 /*!
 **	This macro determines if the compiler should prefer function implementations
 **	from the platform's standard library, or the implementation from libccc.
@@ -64,7 +64,7 @@ HEADER_CPP
 
 
 
-//! Defines which type/bit size the `t_uint` default unsigned integer type will be
+//! Defines which type/bit size the `t_uint` default unsigned integer type will be.
 /*!
 **	This macro sets the default `t_uint` default unsigned integer type to use.
 **	There are 5 possible accepted values for this #define:
