@@ -94,19 +94,18 @@ e_cccerror	CSPRNG_Next(t_csprng* state, void* dest, t_size size)
 }
 
 
+#define CSPRNG_INIT_STATE() \
+	t_csprng*	state;                                       \
+	state = CSPRNG_New();                                    \
+	HANDLE_ERROR(ALLOCFAILURE, (state == NULL), return (0);) \
 
-e_cccerror	CSPRNG_Get(void* dest, t_size size)
+void*	CSPRNG_Get(void* dest, t_size size)
 {
-	t_csprng*	state;
-	e_cccerror	result;
-
-	HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (ERROR_NULLPOINTER);)
-	state = CSPRNG_New();
-	HANDLE_ERROR(ALLOCFAILURE, (state == NULL), return (ERROR_ALLOCFAILURE);)
-	result = CSPRNG_Next(state, dest, size);
-	if (result) return (result);
+	HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (0);)
+	CSPRNG_INIT_STATE() 
+	if (CSPRNG_Next(state, dest, size)) return (0);
 	CSPRNG_Delete(&state);
-	return (OK);
+	return (dest);
 }
 
 
@@ -140,7 +139,17 @@ inline t_float	CSPRNG_Float(t_csprng* state)
 		(min > max),			\
 		ACTION_ERROR)			\
 
-t_uint	CSPRNG_UInt_Range (t_csprng* state, t_uint  min, t_uint  max) { DEFINE_CSPRNG_RANGE(return (0);)	return ((CSPRNG_UInt(state) % (max - min)) + min); }
-t_sint	CSPRNG_SInt_Range (t_csprng* state, t_sint  min, t_sint  max) { DEFINE_CSPRNG_RANGE(return (0);)	return ((CSPRNG_SInt(state) % (max - min)) + min); }
-t_fixed	CSPRNG_Fixed_Range(t_csprng* state, t_fixed min, t_fixed max) { DEFINE_CSPRNG_RANGE(return (0);)	return (Fixed_Mod(CSPRNG_Fixed(state), (max - min)) + min); }
-t_float	CSPRNG_Float_Range(t_csprng* state, t_float min, t_float max) { DEFINE_CSPRNG_RANGE(return (0);)	return (Float_Mod(CSPRNG_Float(state), (max - min)) + min); }
+t_uint     CSPRNG_UInt_Range      (t_csprng* state, t_uint  min, t_uint  max) { DEFINE_CSPRNG_RANGE(return (0);)	return (         (CSPRNG_UInt(state) % (max - min)) + min); }
+t_sint     CSPRNG_SInt_Range      (t_csprng* state, t_sint  min, t_sint  max) { DEFINE_CSPRNG_RANGE(return (0);)	return (         (CSPRNG_SInt(state) % (max - min)) + min); }
+t_fixed    CSPRNG_Fixed_Range     (t_csprng* state, t_fixed min, t_fixed max) { DEFINE_CSPRNG_RANGE(return (0);)	return (Fixed_Mod(CSPRNG_Fixed(state), (max - min)) + min); }
+t_float    CSPRNG_Float_Range     (t_csprng* state, t_float min, t_float max) { DEFINE_CSPRNG_RANGE(return (0);)	return (Float_Mod(CSPRNG_Float(state), (max - min)) + min); }
+
+t_uint  CSPRNG_UInt_Get       (void)                      { CSPRNG_INIT_STATE()  t_uint  result = CSPRNG_UInt       (state);            CSPRNG_Delete(&state);  return (result); }
+t_sint  CSPRNG_SInt_Get       (void)                      { CSPRNG_INIT_STATE()  t_sint  result = CSPRNG_SInt       (state);            CSPRNG_Delete(&state);  return (result); }
+t_fixed CSPRNG_Fixed_Get      (void)                      { CSPRNG_INIT_STATE()  t_fixed result = CSPRNG_Fixed      (state);            CSPRNG_Delete(&state);  return (result); }
+t_float CSPRNG_Float_Get      (void)                      { CSPRNG_INIT_STATE()  t_float result = CSPRNG_Float      (state);            CSPRNG_Delete(&state);  return (result); }
+
+t_uint  CSPRNG_UInt_Get_Range (t_uint  min, t_uint  max)  { CSPRNG_INIT_STATE()  t_uint  result = CSPRNG_UInt_Range (state, min, max);  CSPRNG_Delete(&state);  return (result); }
+t_sint  CSPRNG_SInt_Get_Range (t_sint  min, t_sint  max)  { CSPRNG_INIT_STATE()  t_sint  result = CSPRNG_SInt_Range (state, min, max);  CSPRNG_Delete(&state);  return (result); }
+t_fixed CSPRNG_Fixed_Get_Range(t_fixed min, t_fixed max)  { CSPRNG_INIT_STATE()  t_fixed result = CSPRNG_Fixed_Range(state, min, max);  CSPRNG_Delete(&state);  return (result); }
+t_float CSPRNG_Float_Get_Range(t_float min, t_float max)  { CSPRNG_INIT_STATE()  t_float result = CSPRNG_Float_Range(state, min, max);  CSPRNG_Delete(&state);  return (result); }
