@@ -59,82 +59,109 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-_MALLOC()
-//! Returns a newly allocated region of zero-filled memory, which is `n + 1` bytes long.
+//! Returns a new string which is `n + 1` bytes long (to account for the null-terminator).
 /*!
-**	Allocates a new region of memory of the specified size `n + 1`, the last byte
-**	being used for the string null terminator character '\0'.
+**	@nonstd
 **
-**	@param	n	The length of the string to allocate
-**	@returns	A new string which is `n + 1` bytes in length,
-**				and has every char set to '\0'.
+**	Allocates a new region of memory of the specified size `n + 1`, the last byte
+**	being used for the string null terminator character `'\0'`.
+**
+**	@param	n	The length of the string to allocate (not including null-terminator)
+**	@returns
+**	A newly allocated region of zero-filled memory which is `n + 1` bytes in length,
+**	and has every char set to `'\0'`.
 */
+_MALLOC()
 t_char*				String_New(t_size n);
 #define c_strnew	String_New //!< @alias{String_New}
 
-_MALLOC()
 //! Returns a newly allocated region of `c`-filled memory, which is `n + 1` bytes long.
 /*!
-**	Allocates a new region of memory of the specified size `n + 1`, the last byte
-**	being used for the string null terminator character '\0'.
+**	@nonstd
 **
-**	@param	n	The length of the string to allocate
+**	Allocates a new region of memory of the specified size `n + 1`, the last byte
+**	being used for the string null terminator character `'\0'`.
+**
+**	@param	n	The length of the string to allocate (not including null-terminator)
 **	@param	c	The character value to fill each byte with
-**	@returns	A new string which is `n + 1` bytes in length,
-**				and has every char set to `c`, plus the last t_char set to '\0'.
+**	@returns
+**	A newly allocated string which is `n + 1` bytes in length,
+**	and has every char set to `c`, plus the last char set to `'\0'`.
 */
+_MALLOC()
 t_char*				String_New_C(t_size n, t_char c);
 #define c_strcnew	String_New_C //!< @alias{String_New_C}
 
 
 
+//! Deletes (deallocates) the string pointed to by `*a_str`, and sets the pointer to `NULL`.
 /*!
-**	Deletes the string pointed to by `ptr`, freeing the associated memory.
+**	@nonstd
 */
 void				String_Delete(t_char* *a_str);
 #define c_strdel	String_Delete //!< @alias{String_Delete}
 
 
 
+//! Duplicates the given `str`
 /*!
-**	Returns a newly allocated string which is a copy of the given string `str`,
-**	(or #NULL required memory could not be allocated).
+**	@isostd{https://en.cppreference.com/w/c/string/byte/strdup}
+**
+**	@returns
+**	A newly allocated string which is a copy of the given string `str`,
+**	or `NULL` if the required memory could not be allocated.
 */
 _MALLOC()
 t_char*				String_Duplicate(t_char const* str);
 #define c_strdup	String_Duplicate //!< @alias{String_Duplicate}
 
+//! Duplicates the given `str`, the copy being at most `n` chars long
 /*!
-**	Returns a newly allocated string which is a copy of the given string `str`,
-**	(or #NULL required memory could not be allocated), copying at most
-**	`n` characters.
+**	@isostd{https://en.cppreference.com/w/c/string/byte/strndup}
+**
+**	@returns
+**	A newly allocated string which is a copy of the given string `str`,
+**	or `NULL` if the required memory could not be allocated,
+**	copying at most `n` characters.
 */
 _MALLOC()
 t_char*				String_Duplicate_N(t_char const* str, t_size n);
 #define c_strndup	String_Duplicate_N //!< @alias{String_Duplicate_N}
 
+//! Duplicates the given `str`, the copy stops at the first occurence of `c`
 /*!
-**	Returns a newly allocated string which is a copy of the given string `str`,
-**	(or #NULL required memory could not be allocated), stopping at the
-**	first occurence of the given char `c`.
+**	@nonstd
+**
+**	@returns
+**	A newly allocated string which is a copy of the given string `str`,
+**	or `NULL` if the required memory could not be allocated,
+**	stopping at the first occurence of the given char `c`.
 */
 _MALLOC()
 t_char*				String_Duplicate_Char(t_char const* str, t_char const c);
 #define c_strchrdup	String_Duplicate_Char //!< @alias{String_Duplicate_Char}
 
+//! Duplicates the given `str`, the copy stops at the first occurence of any char in `charset`
 /*!
-**	Returns a newly allocated string which is a copy of the given string `str`,
-**	(or #NULL required memory could not be allocated), stopping at the
-**	first occurence of any char contained within the given `charset`.
+**	@nonstd
+**
+**	@returns
+**	A newly allocated string which is a copy of the given string `str`,
+**	or `NULL` if the required memory could not be allocated,
+**	stopping at the first occurence of any char contained within the given `charset`.
 */
 _MALLOC()
 t_char*				String_Duplicate_Charset(t_char const* str, t_char const* charset);
 #define c_strcstdup	String_Duplicate_Charset //!< @alias{String_Duplicate_Charset}
 
+//! Duplicates the given `str`, the copy stops at the first occurence of any char in `string`
 /*!
-**	Returns a newly allocated string which is a copy of the given string `str`,
-**	(or #NULL required memory could not be allocated), stopping at the
-**	first occurence of the given string `target`.
+**	@nonstd
+**
+**	@returns
+**	A newly allocated string which is a copy of the given string `str`,
+**	or `NULL` if the required memory could not be allocated,
+**	stopping at the first occurence of the given string `target`.
 */
 _MALLOC()
 t_char*				String_Duplicate_String(t_char const* str, t_char const* target);
@@ -142,8 +169,10 @@ t_char*				String_Duplicate_String(t_char const* str, t_char const* target);
 
 
 
-//! Sets every char of the given string `str` to `c`, only stopping upon reading a '\0' string terminator character.
+//! Sets every char of the given string `str` to `c`, only stopping upon reading a `'\0'` null-terminator.
 /*!
+**	@nonstd
+**
 **	Fills the given string `str` with the character `c`
 **
 **	@param	str	The string to fill
@@ -152,56 +181,87 @@ t_char*				String_Duplicate_String(t_char const* str, t_char const* target);
 void				String_Set(t_char* str, t_char c);
 #define c_strset	String_Set //!< @alias{String_Set}
 
-//! Clears the given string `str`, setting each character of `str` to '\0'.
+//! Clears the given string `str`, setting each character of `str` to `'\0'`.
 /*!
+**	@nonstd
 */
 void				String_Clear(t_char* str);
 #define c_strclr	String_Clear //!< @alias{String_Clear}
 
 
 
+//! Copies the given string `str` into `dest`, and returns `dest`
 /*!
-**	Copies the given string `src` into `dest` (null-terminator included),
-**	and returns `dest` (no allocation is performed).
+**	@isostd{C89,https://en.cppreference.com/w/c/string/byte/strcpy}
+**
+**	Copies the given string `src` into `dest` (null-terminator included)
+**
+**	@returns
+**	`dest` (no allocation is performed).
 */
 t_char*				String_Copy(t_char* dest, t_char const* src);
 #define c_strcpy	String_Copy //!< @alias{String_Copy}
 
 //! Copies the first `n` characters of the given string `src` into `dest`, and returns `dest`
 /*!
-**	Copies the first `n` characters of the given string `src` into `dest`,
-**	and returns `dest` (no allocation is performed).
+**	@isostd{C89,https://en.cppreference.com/w/c/string/byte/strncpy}
+**
+**	Copies the first `n` characters of the given string `src` into `dest`
+**
+**	@returns
+**	`dest` (no allocation is performed).
 */
 t_char*				String_Copy_N(t_char* dest, t_char const* src, t_size n);
 #define c_strncpy	String_Copy_N //!< @alias{String_Copy_N}
 
 //! Copies the given string `src` into `dest`, null-terminating the result and returning its length
 /*!
-**	Copies the given string `src` into `dest`, null-terminating the result
-**	(the '\0' is placed at: `(dest + size - 1)`),
-**	and returns the resulting size of `dest`.
+**	@isostd{BSD,https://linux.die.net/man/3/strlcpy}
+**
+**	Copies the given string `src` into `dest`, null-terminating the result.
+**	The `'\0'` null-terminator is placed at the position: `(dest + size - 1)`.
+**
+**	@returns
+**	The resulting size of `dest`.
 */
 t_size				String_Copy_L(t_char* dest, t_char const* src, t_size size);
 #define c_strlcpy	String_Copy_L //!< @alias{String_Copy_L}
 
+
+
+//! Concatenates the given string `src` to the end of `dest`
 /*!
-**	Concatenates the given string `src` to the end of `dest`,
-**	(removing dest's '\0' terminator) and returns `dest`.
+**	@isostd{C89,https://en.cppreference.com/w/c/string/byte/strcat}
+**
+**	Concatenates the given string `src` to the end of `dest` (removing dest's null-terminator).
+**
+**	@returns
+**	`dest` (no allocation is performed).
 */
 t_char*				String_Concat(t_char* dest, t_char const* src);
 #define c_strcat	String_Concat //!< @alias{String_Concat}
 
+//! Concatenates the given string `src` to the end of `dest`
 /*!
-**	Concatenates the first `n` characters of the given string `src`
-**	to the end of `dest`, and returns `dest`.
+**	@isostd{C89,https://en.cppreference.com/w/c/string/byte/strncat}
+**
+**	Concatenates the first `n` characters of the given string `src` to the end of `dest`.
+**
+**	@returns
+**	`dest` (no allocation is performed).
 */
 t_char*				String_Concat_N(t_char* dest, t_char const* src, t_size n);
 #define c_strncat	String_Concat_N //!< @alias{String_Concat_N}
 
+//! Concatenates the given string `src` to the end of `dest`
 /*!
-**	Concatenates characters of the given string `src` to the end of `dest`,
-**	null-terminating the result (places the '\0' at `dest + size - 1`),
-**	and returns the resulting size of `dest`.
+**	@isostd{BSD,https://linux.die.net/man/3/strlcat}
+**
+**	Concatenates characters of the given string `src` to the end of `dest`, null-terminating the result.
+**	The `'\0'` null-terminator is placed at the position: `(dest + size - 1)`.
+**
+**	@returns
+**	The resulting size of `dest`.
 */
 t_size				String_Concat_L(t_char* dest, t_char const* src, t_size size);
 #define c_strlcat	String_Concat_L //!< @alias{String_Concat_L}
@@ -214,75 +274,59 @@ t_size				String_Concat_L(t_char* dest, t_char const* src, t_size size);
 ** ************************************************************************** *|
 */
 
+//! Get the length (in bytes) of a string
 /*!
-**	Returns the length of the given null-terminated string `str`.
+**	@isostd{C89,https://en.cppreference.com/w/c/string/byte/strlen}
+**
+**	@returns
+**	The length of the given null-terminated string `str`.
 */
 t_size				String_Length(t_char const* str);
 #define c_strlen	String_Length //!< @alias{String_Length}
 
+
+
+//!	Checks whether the two given strings match
 /*!
-**	Compares the two given strings, and returns the first difference
-**	between characters encountered `str1[i] - str2[i]`
-**	Otherwise, it will return 0 if `str1` and `str2` are identical.
-*/
-t_sint					String_Compare(t_char const* str1, t_char const* str2);
-#define c_strcmp		String_Compare //!< @alias{String_Compare}
-
-/*!
-**	Compares at most `n` chars of the two given strings, and returns
-**	the first difference of characters encountered: `str1[i] - str2[i]`
-*/
-t_sint					String_Compare_N(t_char const* str1, t_char const* str2, t_size n);
-#define c_strncmp		String_Compare_N //!< @alias{String_Compare_N}
-
-/*!
-**	Compares the two given strings (case-insensitive), and returns the
-**	first difference between characters encountered `str1[i] - str2[i]`
-**	Otherwise, it will return 0 if `str1` and `str2` are identical.
-*/
-t_sint					String_Compare_IgnoreCase(t_char const* str1, t_char const* str2);
-#define c_stricmp		String_Compare_IgnoreCase //!< @alias{String_Compare_IgnoreCase}
-#define c_strcasecmp	String_Compare_IgnoreCase //!< @alias{String_Compare_IgnoreCase}
-
-/*!
-**	Compares at most `n` chars of the two given strings (case-insensitive),
-**	and returns the first difference of characters encountered: `str1[i] - str2[i]`
-*/
-t_sint					String_Compare_N_IgnoreCase(t_char const* str1, t_char const* str2, t_size n);
-#define c_strnicmp		String_Compare_N_IgnoreCase //!< @alias{String_Compare_N_IgnoreCase}
-#define c_strncasecmp	String_Compare_N_IgnoreCase //!< @alias{String_Compare_N_IgnoreCase}
-
-// TODO String_CompareUntil_Char()
-// TODO String_CompareUntil_Charset()
-// TODO String_CompareUntil_String()
-
-
-
-//!	Returns #TRUE if the two given strings have identical content, and #FALSE otherwise
-/*!
-**	@returns #TRUE if the two given strings have identical content, and #FALSE otherwise
+**	@nonstd
+**
+**	@returns
+**	`TRUE` if the two given strings have identical content,
+**	`FALSE` otherwise
 */
 t_bool					String_Equals(t_char const* str1, t_char const* str2);
 #define c_strequ		String_Equals //!< @alias{String_Equals}
 
-//!	Returns #TRUE if the first `n` chars of the two given strings match, and #FALSE otherwise
+//!	Checks whether the first `n` chars of the two given strings match
 /*!
-**	@returns #TRUE if the first `n` chars of the two given strings match, and #FALSE otherwise
+**	@nonstd
+**
+**	@returns
+**	`TRUE` if the first `n` chars of the two given strings are identical,
+**	`FALSE` otherwise
 */
 t_bool					String_Equals_N(t_char const* str1, t_char const* str2, t_size n);
 #define c_strnequ		String_Equals_N //!< @alias{String_Equals_N}
 
-//!	Returns #TRUE if the two given strings have identical content (case-insensitive), and #FALSE otherwise
+//!	Checks whether the two given strings match (case-insensitive)
 /*!
-**	@returns #TRUE if the two given strings have identical content (case-insensitive), and #FALSE otherwise
+**	@nonstd
+**
+**	@returns
+**	`TRUE` if the two given strings have identical content (case-insensitive),
+**	`FALSE` otherwise
 */
 t_bool					String_Equals_IgnoreCase(t_char const* str1, t_char const* str2);
 #define c_striequ		String_Equals_IgnoreCase //!< @alias{String_Equals_IgnoreCase}
 #define c_strcaseequ	String_Equals_IgnoreCase //!< @alias{String_Equals_IgnoreCase}
 
-//!	Returns #TRUE if the first `n` chars of the two given strings match (case-insensitive), and #FALSE otherwise
+//!	Checks whether the first `n` chars of the two given strings match (case-insensitive)
 /*!
-**	@returns #TRUE if the first `n` chars of the two given strings match (case-insensitive), and #FALSE otherwise
+**	@nonstd
+**
+**	@returns
+**	`TRUE` if the first `n` chars of the two given strings match (case-insensitive),
+**	`FALSE` otherwise
 */
 t_bool					String_Equals_N_IgnoreCase(t_char const* str1, t_char const* str2, t_size n);
 #define c_strniequ		String_Equals_N_IgnoreCase //!< @alias{String_Equals_N_IgnoreCase}
@@ -294,35 +338,108 @@ t_bool					String_Equals_N_IgnoreCase(t_char const* str1, t_char const* str2, t_
 
 
 
+//! Compares the content of the two given strings
 /*!
-**	Returns 1 if the given string `str` contains at least one occurence
-**	of any character found inside `charset`, returns 0 otherwise.
+**	@isostd{C89,https://en.cppreference.com/w/c/string/byte/strcmp}
+**
+**	@returns
+**	The first difference between chars encountered: `(str1[i] - str2[i])`,
+**	or `0` if `str1` and `str2` have identical content.
+*/
+t_sint					String_Compare(t_char const* str1, t_char const* str2);
+#define c_strcmp		String_Compare //!< @alias{String_Compare}
+
+//! Compares the first `n` chars of the two given strings
+/*!
+**	@isostd{C89,https://en.cppreference.com/w/c/string/byte/strncmp}
+**
+**	@returns
+**	The first difference between chars encountered: `(str1[i] - str2[i])`,
+**	or `0` if `str1` and `str2` have identical content.
+*/
+t_sint					String_Compare_N(t_char const* str1, t_char const* str2, t_size n);
+#define c_strncmp		String_Compare_N //!< @alias{String_Compare_N}
+
+//! Compares the two given strings (case-insensitive)
+/*!
+**	@isostd{POSIX,https://linux.die.net/man/3/strcasecmp}
+**
+**	@returns
+**	The first difference between chars encountered: `(str1[i] - str2[i])`,
+**	or `0` if `str1` and `str2` have identical content.
+*/
+t_sint					String_Compare_IgnoreCase(t_char const* str1, t_char const* str2);
+#define c_stricmp		String_Compare_IgnoreCase //!< @alias{String_Compare_IgnoreCase}
+#define c_strcasecmp	String_Compare_IgnoreCase //!< @alias{String_Compare_IgnoreCase}
+
+//! Compares the first `n` chars of the two given strings (case-insensitive)
+/*!
+**	@isostd{POSIX,https://linux.die.net/man/3/strncasecmp}
+**
+**	@returns
+**	The first difference between chars encountered: `(str1[i] - str2[i])`,
+**	or `0` if `str1` and `str2` have identical content.
+*/
+t_sint					String_Compare_N_IgnoreCase(t_char const* str1, t_char const* str2, t_size n);
+#define c_strnicmp		String_Compare_N_IgnoreCase //!< @alias{String_Compare_N_IgnoreCase}
+#define c_strncasecmp	String_Compare_N_IgnoreCase //!< @alias{String_Compare_N_IgnoreCase}
+
+// TODO String_CompareUntil_Char()
+// TODO String_CompareUntil_Charset()
+// TODO String_CompareUntil_String()
+
+
+
+//! Check if the given `str` contains characters from `charset`
+/*!
+**	@nonstd
+**
+**	@returns `1` if the given string `str` contains at least one occurence
+**			of any character found inside `charset`, otherwise returns `0`.
 */
 t_bool						String_Has(t_char const* str, t_char const* charset);
 #define c_strhas			String_Has //!< @alias{String_Has}
 
+//! Check if the given `str` only contains characters from `charset`
 /*!
-**	Returns 1 if all the characters inside the given string `str`
-**	are contained within the string `charset`, returns 0 otherwise.
+**	@nonstd
+**
+**	@returns `1` if all the characters inside the given string `str`
+**			are contained within the string `charset`, otherwise returns `0`.
 */
 t_bool						String_HasOnly(t_char const* str, t_char const* charset);
 #define c_strhasonly		String_HasOnly //!< @alias{String_HasOnly}
 
+
+
+// TODO strspn()
+// TODO strcspn()
+
+
+
+//! Count the total occurences of the given char `c` in the given string `str`
 /*!
-**	Returns the amount of occurences of t_char `c` in the given string `str`.
+**	@nonstd
+**
+**	@returns the amount of occurences of t_char `c` in the given string `str`.
 */
 t_size						String_Count_Char(t_char const* str, t_char c);
 #define c_strcount_chr		String_Count_Char //!< @alias{String_Count_Char}
 
+//! Count the total occurences of chars from `charset` in the given string `str`
 /*!
-**	Returns the amount of occurences of chars in `charset` in the given string
-**	`str`.
+**	@nonstd
+**
+**	@returns the amount of occurences of chars in `charset` in the given string `str`.
 */
 t_size						String_Count_Charset(t_char const* str, t_char const* charset);
-#define c_strcount_chrset	String_Count_Charset //!< @alias{String_Count_Charset}
+#define c_strcount_cset	S	tring_Count_Charset //!< @alias{String_Count_Charset}
 
+//! Count the total occurences of the given string `query` in the given string `str`
 /*!
-**	Returns the amount of occurences of `query` in the given string `str`.
+**	@nonstd
+**
+**	@returns the amount of occurences of `query` in the given string `str`.
 */
 t_size						String_Count_String(t_char const* str, t_char const* query);
 #define c_strcount_str		String_Count_String //!< @alias{String_Count_String}
@@ -331,111 +448,268 @@ t_size						String_Count_String(t_char const* str, t_char const* query);
 
 /*
 ** ************************************************************************** *|
-**                         String Searching/Replacing                         *|
+**                              String Searching                              *|
 ** ************************************************************************** *|
 */
 
-//! Returns the first occurence of the given t_char `c` within `str`, or #NULL if no t_char matched.
+//! Finds the first occurence of the given char `c` inside the given string `str`
+/*!
+**	@isostd{C89,https://en.cppreference.com/w/c/string/byte/strchr}
+**
+**	@returns the first occurence of the given char `c` within `str`,
+**			or `NULL` if no char matched.
+*/
 t_char*							String_Find_Char(t_char const* str, t_char c);
 #define c_strchr				String_Find_Char //!< @alias{String_Find_Char}
-//! Returns the first occurence of any t_char in the given `charset` within `str`, or #NULL if no t_char matched.
+
+//! Finds the first occurence of any char in `charset` inside the given string `str`
+/*!
+**	@isostd{C89,https://en.cppreference.com/w/c/string/byte/strpbrk}
+**
+**	@returns the first occurence of any char in the given `charset` within `str`,
+**			or `NULL` if no char matched.
+*/
 t_char*							String_Find_Charset(t_char const* str, t_char const* charset);
+#define c_strpbrk				String_Find_Charset //!< @alias{String_Find_Charset}
 #define c_strchrset				String_Find_Charset //!< @alias{String_Find_Charset}
-//! Returns the first occurence of the string `query` inside the given string `str`, or #NULL if nothing matched.
+
+//! Finds the first occurence of the string `query` inside the given string `str`
+/*!
+**	@isostd{C89,https://en.cppreference.com/w/c/string/byte/strstr}
+**
+**	@returns the first occurence of the string `query` inside the given string `str`,
+**			or `NULL` if nothing matched.
+*/
 t_char*							String_Find_String(t_char const* str, t_char const* query);
 #define c_strstr				String_Find_String //!< @alias{String_Find_String}
 
-//! Returns the last occurence of the given t_char `c` within `str`, or #NULL if no t_char matched.
+
+
+//! Finds the last occurence of the given char `c` inside the given string `str`
+/*!
+**	@isostd{C89,https://en.cppreference.com/w/c/string/byte/strrchr}
+**
+**	@returns the last occurence of the given char `c` within `str`,
+**			or `NULL` if no char matched.
+*/
 t_char*							String_Find_R_Char(t_char const* str, t_char c);
 #define c_strrchr				String_Find_R_Char //!< @alias{String_Find_R_Char}
 #define String_FindLast_Char	String_Find_R_Char //!< @alias{String_Find_R_Char}
-//! Returns the last occurence of any t_char in the given `charset` within `str`, or #NULL if no t_char matched.
+
+//! Finds the last occurence of any char in `charset` inside the given string `str`
+/*!
+**	@nonstd
+**
+**	@returns the last occurence of any char in the given `charset` within `str`,
+**			or `NULL` if no char matched.
+*/
 t_char*							String_Find_R_Charset(t_char const* str, t_char const* charset);
+#define c_strrpbrk				String_Find_R_Charset //!< @alias{String_Find_R_Charset}
 #define c_strrchrset			String_Find_R_Charset //!< @alias{String_Find_R_Charset}
 #define String_FindLast_Charset	String_Find_R_Charset //!< @alias{String_Find_R_Charset}
-//! Returns the last occurence of the string `query` inside the given string `str`, or #NULL if nothing matched.
+
+//! Finds the last occurence of the string `query` inside the given string `str`
+/*!
+**	@isostd{ext,https://linux.die.net/man/3/strrstr}
+**
+**	@returns the last occurence of the string `query` inside the given string `str`,
+**			or `NULL` if nothing matched.
+*/
 t_char*							String_Find_R_String(t_char const* str, t_char const* query);
 #define c_strrstr				String_Find_R_String //!< @alias{String_Find_R_String}
 #define String_FindLast_String	String_Find_R_String //!< @alias{String_Find_R_String}
 
-//! Returns the first occurence of the given t_char `c` within `str`, or #NULL if no t_char matched. (checks only `n` chars in `str`).
+
+
+//! Finds the first occurence of the given char `c` inside the first `n` chars of the given string `str`
+/*!
+**	@nonstd
+**
+**	@returns the first occurence of the given char `c` inside the given string `str`,
+**			or `NULL` if no char matched. (checks only `n` chars in `str`).
+*/
 t_char*							String_Find_N_Char(t_char const* str, t_char c, t_size n);
 #define c_strnchr				String_Find_N_Char //!< @alias{String_Find_N_Char}
-//! Returns the first occurence of any t_char in the given `charset` within `str`, or #NULL if no t_char matched. (checks only `n` chars in `str`).
+
+//! Finds the first occurence of any char in `charset` inside the first `n` chars of the given string `str`
+/*!
+**	@nonstd
+**
+**	@returns the first occurence of any char from `charset` inside the given string `str`,
+**			or `NULL` if no char matched. (checks only `n` chars in `str`).
+*/
 t_char*							String_Find_N_Charset(t_char const* str, t_char const* charset, t_size n);
+#define c_strnpbrk				String_Find_N_Charset //!< @alias{String_Find_N_Charset}
 #define c_strnchrset			String_Find_N_Charset //!< @alias{String_Find_N_Charset}
-//! Returns the first occurence of the string `query` inside the given string `str`, or #NULL if nothing matched. (checks only `n` chars in `str`).
+
+//! Finds the first occurence of the string `query` inside the first `n` chars of the given string `str`
+/*!
+**	@nonstd
+**
+**	@returns the first occurence of the string `query` inside the given string `str`,
+**			or `NULL` if nothing matched. (checks only `n` chars in `str`).
+*/
 t_char*							String_Find_N_String(t_char const* str, t_char const* query, t_size n);
 #define c_strnstr				String_Find_N_String //!< @alias{String_Find_N_String}
 
 
 
-//! Returns the index of the first occurrence at which `c` is found in `str`, or -1 if `c` does not exist in `str`.
-t_ptrdiff							String_IndexOf_Char(t_char const* str, t_char c);
+//! Finds the first occurence of the given char `c` inside the given string `str`
+/*!
+**	@nonstd
+**
+**	@returns the index of the first occurrence at which `c` is found in `str`,
+**			or -1 if `c` does not exist in `str`.
+*/
+t_sintmax							String_IndexOf_Char(t_char const* str, t_char c);
 #define c_strichr					String_IndexOf_Char //!< @alias{String_IndexOf_Char}
-//! Returns the index of the first occurrence at which `c` is found in `str`, or -1 if `c` does not exist in `str`.
-t_ptrdiff							String_IndexOf_Charset(t_char const* str, t_char const* charset);
+
+//! Finds the first occurence of any char in `charset` inside the given string `str`
+/*!
+**	@nonstd
+**
+**	@returns the index of the first occurrence at which `c` is found in `str`,
+**			or -1 if `c` does not exist in `str`.
+*/
+t_sintmax							String_IndexOf_Charset(t_char const* str, t_char const* charset);
+#define c_stripbrk					String_IndexOf_Charset //!< @alias{String_IndexOf_Charset}
 #define c_strichrset				String_IndexOf_Charset //!< @alias{String_IndexOf_Charset}
-//! Returns the index of the first occurrence at which `query` is found in `str`, or -1 if `query` does not exist in str.
-t_ptrdiff							String_IndexOf_String(t_char const* str, t_char const* query);
+
+//! Finds the first occurence of the string `query` inside the given string `str`
+/*!
+**	@nonstd
+**
+**	@returns the index of the first occurrence at which `query` is found in `str`,
+**			or -1 if `query` does not exist in str.
+*/
+t_sintmax							String_IndexOf_String(t_char const* str, t_char const* query);
 #define c_stristr					String_IndexOf_String //!< @alias{String_IndexOf_String}
 
-//! Returns the last occurence of the given t_char `c` within `str`, or #NULL if no t_char matched.
-t_ptrdiff							String_IndexOf_R_Char(t_char const* str, t_char c);
+
+
+//! Finds the last occurence of the given char `c` inside the given string `str`
+/*!
+**	@nonstd
+**
+**	@returns the last occurence of the given char `c` within `str`,
+**			or `NULL` if no char matched.
+*/
+t_sintmax							String_IndexOf_R_Char(t_char const* str, t_char c);
 #define c_strirchr					String_IndexOf_R_Char //!< @alias{String_IndexOf_R_Char}
 #define String_LastIndexOf_Char		String_IndexOf_R_Char //!< @alias{String_IndexOf_R_Char}
-//! Returns the last occurence of any t_char in the given `charset` within `str`, or #NULL if no t_char matched.
-t_ptrdiff							String_IndexOf_R_Charset(t_char const* str, t_char const* charset);
+
+//! Finds the last occurence of any char in `charset` inside the given string `str`
+/*!
+**	@nonstd
+**
+**	@returns the last occurence of any char in the given `charset` within `str`,
+**			or `NULL` if no char matched.
+*/
+t_sintmax							String_IndexOf_R_Charset(t_char const* str, t_char const* charset);
+#define c_strirpbrk					String_IndexOf_R_Charset //!< @alias{String_IndexOf_R_Charset}
 #define c_strirchrset				String_IndexOf_R_Charset //!< @alias{String_IndexOf_R_Charset}
 #define String_LastIndexOf_Charset	String_IndexOf_R_Charset //!< @alias{String_IndexOf_R_Charset}
-//! Returns the last occurence of the string `query` inside the given string `str`, or #NULL if nothing matched.
-t_ptrdiff							String_IndexOf_R_String(t_char const* str, t_char const* query);
+
+//! Finds the last occurence of the string `query` inside the given string `str`
+/*!
+**	@nonstd
+**
+**	@returns the last occurence of the string `query` inside the given string `str`,
+**			or `NULL` if nothing matched.
+*/
+t_sintmax							String_IndexOf_R_String(t_char const* str, t_char const* query);
 #define c_strirstr					String_IndexOf_R_String //!< @alias{String_IndexOf_R_String}
 #define String_LastIndexOf_String	String_IndexOf_R_String //!< @alias{String_IndexOf_R_String}
 
-//! Returns the first occurence of the given t_char `c` within `str`, or #NULL if no t_char matched. (checks only `n` chars in `str`).
-t_ptrdiff							String_IndexOf_N_Char(t_char const* str, t_char c, t_size n);
+
+
+//! Finds the first occurence of the given char `c` inside the first `n` chars of the given string `str`
+/*!
+**	@nonstd
+**
+**	@returns the first occurence of the given char `c` within `str`,
+**			or `NULL` if no char matched. (checks only `n` chars in `str`).
+*/
+t_sintmax							String_IndexOf_N_Char(t_char const* str, t_char c, t_size n);
 #define c_strinchr					String_IndexOf_N_Char //!< @alias{String_IndexOf_N_Char}
-//! Returns the first occurence of any t_char in the given `charset` within `str`, or #NULL if no t_char matched. (checks only `n` chars in `str`).
-t_ptrdiff							String_IndexOf_N_Charset(t_char const* str, t_char const* charset, t_size n);
+
+//! Finds the first occurence of any char in `charset` inside the first `n` chars of the given string `str`
+/*!
+**	@nonstd
+**
+**	@returns the first occurence of any char in the given `charset` within `str`,
+**			or `NULL` if no char matched. (checks only `n` chars in `str`).
+*/
+t_sintmax							String_IndexOf_N_Charset(t_char const* str, t_char const* charset, t_size n);
+#define c_strinpbrk					String_IndexOf_N_Charset //!< @alias{String_IndexOf_N_Charset}
 #define c_strinchrset				String_IndexOf_N_Charset //!< @alias{String_IndexOf_N_Charset}
-//! Returns the first occurence of the string `query` inside the given string `str`, or #NULL if nothing matched. (checks only `n` chars in `str`).
-t_ptrdiff							String_IndexOf_N_String(t_char const* str, t_char const* query, t_size n);
+
+//! Finds the first occurence of the string `query` inside the first `n` chars of the given string `str`
+/*!
+**	@nonstd
+**
+**	@returns the first occurence of the string `query` inside the given string `str`,
+**			or `NULL` if nothing matched. (checks only `n` chars in `str`).
+*/
+t_sintmax							String_IndexOf_N_String(t_char const* str, t_char const* query, t_size n);
 #define c_strinstr					String_IndexOf_N_String //!< @alias{String_IndexOf_N_String}
 
 
 
+/*
+** ************************************************************************** *|
+**                              String Replacements                           *|
+** ************************************************************************** *|
+*/
+
+//! Removes all occurences of `query` within the givne `str`
 /*!
-**	Returns a new null-terminated string which is a copy of `str`,
+**	@nonstd
+**
+**	@returns
+**	A new null-terminated string which is a copy of `str`,
 **	in which all occurences of the string `query` have been removed.
 */
 _MALLOC()
 t_char*					String_Remove(t_char const* str, t_char const* query);
 #define c_strremove		String_Remove //!< @alias{String_Remove}
 
+
+
+//! Replaces every occurence inside `str` of the given char `char_old` with `char_new`
 /*!
-**	Returns a new null-terminated string which is a copy of `str`,
-**	in which every occurence of an `old` t_char is replaced with a `new` t_char.
+**	@nonstd
+**
+**	@returns
+**	A new null-terminated string which is a copy of `str`,
+**	in which every occurence of an `old` char is replaced with a `new` char.
 */
-//TODO implement
 _MALLOC()
-t_char*						String_Replace_Char(t_char const* str, t_char const char_old, t_char const char_new);
+t_char*						String_Replace_Char(t_char const* str, t_char const char_old, t_char const char_new); // TODO implement
 #define c_strrep_char		String_Replace_Char //!< @alias{String_Replace_Char}
 
+//! Replaces every occurence inside `str` of any char in `charset_old` with the corresponding char in `charset_new`
 /*!
-**	Returns a new null-terminated string which is a copy of `str`,
+**	@nonstd
+**
+**	@returns
+**	A new null-terminated string which is a copy of `str`,
 **	in which every char in the `old` charset is replaced by the
 **	corresponding character in the `new` charset (at the same index).
 */
-//TODO implement
 _MALLOC()
-t_char*						String_Replace_Charset(t_char const* str, t_char const* charset_old, t_char const* charset_new);
+t_char*						String_Replace_Charset(t_char const* str, t_char const* charset_old, t_char const* charset_new); // TODO implement
 #define c_strrep_charset	String_Replace_Charset //!< @alias{String_Replace_Charset}
 
+//! Replaces every occurence inside `str` of the given string `str_old` with `str_new`
 /*!
-**	Returns a new null-terminated string which is a copy of `str`,
+**	@nonstd
+**
+**	@see `stringarray.h` -> String_Split_String() for extra notes.
+**
+**	@returns
+**	A new null-terminated string which is a copy of `str`,
 **	in which every occurence of the string `old` is replaced with `new`.
-**	NB: see `stringarray.h` -> `String_Split_String` for extra notes on bevahior.
 */
 _MALLOC()
 t_char*						String_Replace_String(t_char const* str, t_char const* str_old, t_char const* str_new);
@@ -449,34 +723,51 @@ t_char*						String_Replace_String(t_char const* str, t_char const* str_old, t_c
 ** ************************************************************************** *|
 */
 
+//! Concatenates two strings into a new one
 /*!
-**	Returns a new null-terminated string which is the result of
-**	the concatenation of the two given strings `str1` and `str2`.
+**	@nonstd
+**
+**	@returns
+**	A new null-terminated string which is the concatenation of `str1` and `str2`.
 */
 _MALLOC()
 t_char*					String_Join(t_char const* str1, t_char const* str2);
 #define c_strjoin		String_Join //!< @alias{String_Join}
 
+//! Concatenates two strings into a new one, deleting both strings
 /*!
-**	Returns a newly allocated string which is the concatenation of `s1` and `s2`.
-**	Deletes both inputs from memory. Also, returns the result.
+**	@nonstd
+**
+**	Deletes both given strings (free and set to `NULL`).
+**
+**	@returns
+**	A newly allocated string which is the concatenation of `*a_str1` and `*a_str2`.
 */
 _MALLOC()
-t_char*					String_Merge(t_char* *a_s1, t_char* *a_s2);
+t_char*					String_Merge(t_char* *a_str1, t_char* *a_str2);
 #define c_strmerge		String_Merge //!< @alias{String_Merge}
 
+//! Concatenates two strings into a new one, deleting the right-hand string
 /*!
-**	Returns a newly allocated string which is the concatenation of `dest` and `src`.
-**	Deletes `dest`, replacing it by the result. Also, returns the result.
+**	@nonstd
+**
+**	Deletes `dest`, replacing it with the result.
+**
+**	@returns
+**	A newly allocated string which is the concatenation of `dest` and `src`.
 */
 _MALLOC()
 t_char*					String_Append(t_char* *dest, t_char const* src);
 #define c_strappend		String_Append //!< @alias{String_Append}
 
-
+//! Concatenates two strings into a new one, deleting the left-hand string
 /*!
-**	Returns a newly allocated string which is the concatenation of `src` and `dest`.
-**	Deletes `dest`, replacing it by the result. Also, returns the result.
+**	@nonstd
+**
+**	Deletes `dest`, replacing it with the result.
+**
+**	@returns
+**	A newly allocated string which is the concatenation of `src` and `dest`.
 */
 _MALLOC()
 t_char*					String_Prepend(t_char const* src, t_char* *dest);
@@ -491,6 +782,8 @@ t_char*					String_Prepend(t_char const* src, t_char* *dest);
 */
 
 /*!
+**	@nonstd
+**
 **	Inserts the string `src` at index `index` in `dest`; deletes `dest` and
 **	replaces it by the result. Also returns the result.
 */
@@ -499,93 +792,134 @@ t_char*							String_Insert_InPlace(t_char* *dest, t_char const* src, t_u32 inde
 
 
 
+//! Replaces every occurence in `str` of `char_old` with `char_new`.
 /*!
-**	Replaces every occurence of `old` by `new` in `str`.
+**	@nonstd
+**
+**	This function works somewhat like the shell command `tr`.
+**	Substitutes every `char_old[i]` for `char_new[i]` in `str`.
+**	TODO document edge-case behavior if `(char_old == '\0')`
 */
 void								String_Replace_Char_InPlace(t_char* str, t_char const char_old, t_char const char_new);
 #define c_strrep_char_inplace		String_Replace_Char_InPlace //!< @alias{String_Replace_Char_InPlace}
 
+//! Replaces every occurence in `str` of any char in `charset_old` with the corresponding char in `charset_new`.
 /*!
-**	Replaces `old` charset by `new` charset in `str`.
-**	Works like the bash function tr. Substitutes old[i] by new[i] in `str`.
-**	Fails silently if strlen is different for `old` and `new`, or if a
-**	character is repeated in `old` (only one image for every antecedent), or if
-**	`old` or `new` are the empty string.
+**	@nonstd
+**
+**	This function works somewhat like the shell command `tr`.
+**	Substitutes every `charset_old[i]` for `charset_new[i]` in `str`.
+**	Fails silently if `charset_old` and `charset_new` have different lengths,
+**	or if a character is repeated in `charset_old` (only one image for every antecedent),
+**	or if `charset_old` or `charset_new` are empty strings.
 */
 void								String_Replace_Charset_InPlace(t_char* str, t_char const* charset_old, t_char const* charset_new);
 #define c_strrep_charset_inplace	String_Replace_Charset_InPlace //!< @alias{String_Replace_Charset_InPlace}
 
+//! Replaces every occurence in `str` of `str_old` with `str_new`
 /*!
-**	Replaces every occurence of the query old by the string new in str.
-**	NB: see stringarray.h -> c_strsplit_str for extra notes on bevahior.
+**	@nonstd
+**
+**	@see `stringarray.h` -> String_Split_String() for extra notes.
 */
 void								String_Replace_String_InPlace(t_char* *a_str, t_char const* str_old, t_char const* str_new);
 #define c_strrep_str_inplace		String_Replace_String_InPlace //!< @alias{String_Replace_String_InPlace}
 
 
 
+//! Applies a custom `map` function to each char of the given string `*a_str`
 /*!
-**	Changes the content of '*a_str' by applying f to each of its chars.
-**	Deletes `a_str`, and sets the result in it instead. Also returns the 
-**	result.
+**	@nonstd
+**
+**	Changes the content of `*a_str` by applying the given `map` function to each of its chars.
+**	Deletes the string `*a_str`, and sets the result's in it instead.
+**
+**	@returns
+**	The newly allocated string which replaces `*a_str`.
 */
-t_char*								String_Map_InPlace(t_char* *a_str, t_char (*map)(t_char));
-#define c_strmap_inplace			String_Map_InPlace //!< @alias{String_Map_InPlace}
+t_char*							String_Map_InPlace(t_char* *a_str, t_char (*map)(t_char));
+#define c_strmap_inplace		String_Map_InPlace //!< @alias{String_Map_InPlace}
 
 
 
 /*
 ** ************************************************************************** *|
-**                        Common Whitespace Operations                        *|
+**                        String Whitespace Operations                        *|
 ** ************************************************************************** *|
 */
 
+//! Trims any char from `charset` from both sides of the given string `str`
 /*!
-**	Returns a new string from `str` in which all leading and trailing
-**	whitespace characters (' ', '\\t', '\\n', '\\r', '\\v', '\\f') have been removed.
+**	@nonstd
+**
+**	@returns
+**	A newly allocated string from `str` in which all leading and trailing
+**	characters present in `charset` have been removed.
 */
 _MALLOC()
 t_char*					String_Trim(t_char const* str, t_char const* charset);
 #define c_strtrim		String_Trim //!< @alias{String_Trim}
 
+//! Trims any char from `charset` from the left side of the given string `str`
 /*!
-**	Returns a new string from `str` in which all leading
+**	@nonstd
+**
+**	@returns
+**	A newly allocated string from `str` in which all leading
 **	characters present in `charset` have been removed.
 */
 _MALLOC()
 t_char*					String_Trim_L(t_char const* str, t_char const* charset);
 #define c_strtrim_l		String_Trim_L //!< @alias{String_Trim_L}
 
+//! Trims any char from `charset` from the right side of the given string `str`
 /*!
-**	Returns a new string from `str` in which all trailing
+**	@nonstd
+**
+**	@returns
+**	A newly allocated string from `str` in which all trailing
 **	characters present in `charset` have been removed.
 */
 _MALLOC()
 t_char*					String_Trim_R(t_char const* str, t_char const* charset);
 #define c_strtrim_r		String_Trim_R //!< @alias{String_Trim_R}
 
+
+
+//! Pads the given `str` to be `length` chars long, adding `c` chars on both sides, if needed
 /*!
-**	Returns a new null-terminated string duplicate of `str` which is
-**	`length` characters long, by padding it with `c` chars on both sides
+**	@nonstd
+**
+**	@returns
+**	A newly allocated string from `str` which is `length` characters long,
+**	by padding it with `c` chars on both sides,
 **	if the desired `length` is larger than `str`.
 */
 _MALLOC()
 t_char*					String_Pad(t_char const* str, t_char c, t_size length);
 #define c_strpad		String_Pad //!< @alias{String_Pad}
 
+//! Pads the given `str` to be `length` chars long, adding `c` chars on the left side, if needed
 /*!
-**	Returns a new null-terminated string duplicate of `str` which is
-**	`length` characters long, by padding it with `c` chars on its
-**	left side if the desired `length` is larger than `str`.
+**	@nonstd
+**
+**	@returns
+**	A newly allocated string from `str` which is `length` characters long,
+**	by padding it with `c` chars on its left side,
+**	if the desired `length` is larger than `str`.
 */
 _MALLOC()
 t_char*					String_Pad_L(t_char const* str, t_char c, t_size length);
 #define c_strpad_l		String_Pad_L //!< @alias{String_Pad_L}
 
+//! Pads the given `str` to be `length` chars long, adding `c` chars on the right side, if needed
 /*!
-**	Returns a new null-terminated string duplicate of `str` which is
-**	`length` characters long, by padding it with `c` chars on its
-**	right side if the desired `length` is larger than `str`.
+**	@nonstd
+**
+**	@returns
+**	A newly allocated string from `str` which is `length` characters long,
+**	by padding it with `c` chars on its right side,
+**	if the desired `length` is larger than `str`.
 */
 _MALLOC()
 t_char*					String_Pad_R(t_char const* str, t_char c, t_size length);
@@ -599,7 +933,7 @@ t_char*					String_Pad_R(t_char const* str, t_char c, t_size length);
 ** ************************************************************************** *|
 */
 
-//! Creates a new string with character escape-sequences
+//! Creates a new string from `str`, replacing special characters with appropriate escape-sequences
 /*!
 **	Returns a new null-terminated string where every non-printable character
 **	of `str` is replaced by either its `normal` escape sequence (if available)
@@ -623,7 +957,9 @@ t_char*					String_Pad_R(t_char const* str, t_char c, t_size length);
 **
 **	@param	str				The string to duplicate with escape-sequences
 **	@param	charset_extra	A string containing any extra characters which should be escaped (ie: preceded by a backslash)
-**	@returns a newly allocated modified copy of the given `str`, with special characters being escape-sequenced.
+**	@returns
+**	A newly allocated modified copy of the given `str`, in which any
+**	special characters are replaced with an appropriate escape-sequence.
 */
 _MALLOC()
 t_char*							String_Print(t_char const* str, t_char const* charset_extra);
@@ -633,7 +969,7 @@ t_char*							String_Print(t_char const* str, t_char const* charset_extra);
 
 
 
-//! Creates a new string, replacing escape-sequences with their corresponding char value
+//! Creates a new string from `str`, replacing escape-sequences with their corresponding char value
 /*!
 **	Returns a new null-terminated string where every valid backslash escape sequence
 **	is converted to its corresponding string byte.
@@ -657,7 +993,8 @@ t_char*							String_Print(t_char const* str, t_char const* charset_extra);
 **
 **	@param	str			The string to duplicate, while resolving all escape-sequences to their corresponding char
 **	@param	any_escape	If `TRUE`, every backslash will be understood as an escape character (any single backslash will dissappear)
-**	@returns a newly allocated modified copy of the given `str`, with escape-sequences transformed into their target value.
+**	@returns
+**	A newly allocated modified copy of the given `str`, with escape-sequences transformed into their target value.
 */
 _MALLOC()
 t_char*							String_Parse(t_char const* str, t_bool any_escape);
@@ -667,24 +1004,33 @@ t_char*							String_Parse(t_char const* str, t_bool any_escape);
 
 
 
+//! Get an inverted version of the given string `str`
 /*!
-**	Returns a newly allocated string which is a copy of the given string `str`,
+**	@returns
+**	A newly allocated string which is a copy of the given string `str`,
 **	but in reverse order (except for the \0 terminator, obviously).
 */
 _MALLOC()
 t_char*					String_Reverse(t_char const* str);
 #define c_strrev		String_Reverse //!< @alias{String_Reverse}
 
+
+
+//! Get a new string from `dest`, with `src` inserted at the given `index`
 /*!
-**	Returns a reallocated version of the given string `dest`, in which
-**	the string `str` has been inserted at the index `offset`.
+**	@returns
+**	A newly allocated string from the given string `dest`,
+**	in which the string `src` has been inserted at the given `index`.
 */
 _MALLOC()
-t_char*					String_Insert(t_char const* dest, t_char const* src, t_size offset);
+t_char*					String_Insert(t_char const* dest, t_char const* src, t_size index);
 #define c_strinsert		String_Insert //!< @alias{String_Insert}
 
+
+
 /*!
-**	Returns a new null-terminated string which is a subsection of `str`,
+**	@returns
+**	A newly allocated string which is a subsection of `str`,
 **	starting at t_char index `index` and copying `n` characters.
 */
 _MALLOC()
@@ -699,6 +1045,7 @@ t_char*					String_Sub(t_char const* str, t_size index, t_size n);
 ** ************************************************************************** *|
 */
 
+//! Calls a custom function `f` for each character of the given string `str`
 /*!
 **	Iterates upon each character of the given string `str`,
 **	applying the given function `f` to each of its characters.
@@ -706,28 +1053,31 @@ t_char*					String_Sub(t_char const* str, t_size index, t_size n);
 void					String_Iterate(t_char* str, void (*f)(t_char* c));
 #define c_striter		String_Iterate //!< @alias{String_Iterate}
 
+//! Calls a custom function `f` for each character of the given string `str`
 /*!
-**	Iterates upon each character of the given string `str`,
-**	applying the function `f` to each of its chars (with index information).
+**	Iterates upon each character of the given string `str`, (with index information)
+**	applying the function `f` to each of its chars.
 */
 void					String_Iterate_I(t_char* str, void (*f)(t_char* c, t_size index));
 #define c_striteri		String_Iterate_I //!< @alias{String_Iterate_I}
 
 
 
-//! Creates a string with each character mapped to another
+//! Creates a new string with each character mapped to another, using the custom function `map`
 /*!
-**	Creates a new null-terminated string by iterating upon the string `str`,
-**	applying the function `map` to each of its chars.
+**	@returns
+**	A new string by iterating upon the string `str`,
+**	applying the function `map` to each of its characters.
 */
 _MALLOC()
 t_char*					String_Map(t_char const* str, t_char (*map)(t_char c));
 #define c_strmap		String_Map //!< @alias{String_Map}
 
-//! Creates a string with each character mapped to another
+//! Creates a new string with each character mapped to another, using the custom function `map`
 /*!
-**	Creates a new null-terminated string by iterating upon the string `str`,
-**	applying the function `map` to each of its chars (with index information).
+**	@returns
+**	A new string by iterating upon the string `str`, (with index information)
+**	applying the function `map` to each of its characters.
 */
 _MALLOC()
 t_char*					String_Map_I(t_char const* str, t_char (*map)(t_char c, t_size index));
@@ -735,16 +1085,20 @@ t_char*					String_Map_I(t_char const* str, t_char (*map)(t_char c, t_size index
 
 
 
+//! Creates a new string from `str`, only keeping chars when the custom function `filter` returns `TRUE`
 /*!
-**	Creates a new null-terminated string by iterating upon the string `str`,
+**	@returns
+**	A new null-terminated string by iterating upon the string `str`,
 **	removing any chars for which the given `filter` function returns `FALSE`.
 */
 _MALLOC()
 t_char*					String_Filter(t_char const* str, t_bool (*filter)(t_char c)); // TODO implement
 #define c_strfilt		String_Filter //!< @alias{String_Map}
 
+//! Creates a new string from `str`, only keeping chars when the custom function `filter` returns `TRUE`
 /*!
-**	Creates a new null-terminated string by iterating upon the string `str`,
+**	@returns
+**	A new string by iterating upon the string `str`, (with index information)
 **	removing any chars for which the given `filter` function returns `FALSE`.
 */
 _MALLOC()
