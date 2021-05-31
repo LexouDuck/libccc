@@ -81,23 +81,24 @@ e_cccerror  PRNG_Next(t_prng* state, void* dest, t_size n)
 }
 
 
+#define PRNG_INIT_STATE() \
+	t_prng* state;                                                            \
+	HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (ERROR_NULLPOINTER);)    \
+	state = PRNG_New();                                                       \
+	HANDLE_ERROR(ALLOCFAILURE, (state == NULL), return (ERROR_ALLOCFAILURE);) \
+	PRNG_NewSeed(state);                                                      \
+
 
 e_cccerror  PRNG_Get(void* dest, t_size size)
 {
-	t_prng* state;
-	e_cccerror  result;
+	e_cccerror result;
 
-	HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (ERROR_NULLPOINTER);)
-	state = PRNG_New();
-	HANDLE_ERROR(ALLOCFAILURE, (state == NULL), return (ERROR_ALLOCFAILURE);)
-	PRNG_NewSeed(state);
+	PRNG_INIT_STATE()
 	result = PRNG_Next(state, dest, size);
 	if (result) return (result);
 	PRNG_Delete(&state);
 	return (OK);
 }
-
-
 
 #define DEFINE_PRNG(TYPE, ACTION_ERROR) \
 	TYPE	result = 0;			\
@@ -128,7 +129,12 @@ inline t_float  PRNG_Float(t_prng* state)
 		(min > max),			\
 		ACTION_ERROR)			\
 
-t_uint  PRNG_UInt_Range (t_prng* state, t_uint  min, t_uint  max) { DEFINE_PRNG_RANGE(return (0);)	return ((PRNG_UInt(state) % (max - min)) + min); }
-t_sint  PRNG_SInt_Range (t_prng* state, t_sint  min, t_sint  max) { DEFINE_PRNG_RANGE(return (0);)	return ((PRNG_SInt(state) % (max - min)) + min); }
-t_fixed PRNG_Fixed_Range(t_prng* state, t_fixed min, t_fixed max) { DEFINE_PRNG_RANGE(return (0);)	return (Fixed_Mod(PRNG_Fixed(state), (max - min)) + min); }
-t_float PRNG_Float_Range(t_prng* state, t_float min, t_float max) { DEFINE_PRNG_RANGE(return (0);)	return (Float_Mod(PRNG_Float(state), (max - min)) + min); }
+t_uint  PRNG_UInt_Range (t_prng* state, t_uint  min, t_uint  max)  { DEFINE_PRNG_RANGE(return (0);)	return ((PRNG_UInt(state) % (max - min)) + min); }
+t_sint  PRNG_SInt_Range (t_prng* state, t_sint  min, t_sint  max)  { DEFINE_PRNG_RANGE(return (0);)	return ((PRNG_SInt(state) % (max - min)) + min); }
+t_fixed PRNG_Fixed_Range(t_prng* state, t_fixed min, t_fixed max)  { DEFINE_PRNG_RANGE(return (0);)	return (Fixed_Mod(PRNG_Fixed(state), (max - min)) + min); }
+t_float PRNG_Float_Range(t_prng* state, t_float min, t_float max)  { DEFINE_PRNG_RANGE(return (0);)	return (Float_Mod(PRNG_Float(state), (max - min)) + min); }
+
+e_cccerror PRNG_UInt_Get_Range (t_uint*  dest, t_uint  min, t_uint  max)  { PRNG_INIT_STATE()  t_uint  res_value = PRNG_UInt_Range (state, min, max);  *dest = res_value;  PRNG_Delete(&state);  return (OK); }
+e_cccerror PRNG_SInt_Get_Range (t_sint*  dest, t_sint  min, t_sint  max)  { PRNG_INIT_STATE()  t_sint  res_value = PRNG_SInt_Range (state, min, max);  *dest = res_value;  PRNG_Delete(&state);  return (OK); }
+e_cccerror PRNG_Fixed_Get_Range(t_fixed* dest, t_fixed min, t_fixed max)  { PRNG_INIT_STATE()  t_fixed res_value = PRNG_Fixed_Range(state, min, max);  *dest = res_value;  PRNG_Delete(&state);  return (OK); }
+e_cccerror PRNG_Float_Get_Range(t_float* dest, t_float min, t_float max)  { PRNG_INIT_STATE()  t_float res_value = PRNG_Float_Range(state, min, max);  *dest = res_value;  PRNG_Delete(&state);  return (OK); }
