@@ -15,8 +15,8 @@
 ** @{
 **	This header defines useful algebra and calculus types, and functions.
 **
-**	@isostd{https://en.cppreference.com/w/c/numeric/complex}
-**	@isostd{https://en.cppreference.com/w/c/numeric/tgmath}
+**	@isostd{C,https://en.cppreference.com/w/c/numeric/complex}
+**	@isostd{C,https://en.cppreference.com/w/c/numeric/tgmath}
 **
 **	@file
 */
@@ -55,8 +55,8 @@ HEADER_CPP
 
 	//!	A complex number value of zero (both real and imaginary parts are zero)
 	/*!
-	**	@isostd{https://en.cppreference.com/w/c/numeric/complex/complex}
-	**	@isostd{https://en.cppreference.com/w/c/numeric/complex/imaginary}
+	**	@isostd{C99,https://en.cppreference.com/w/c/numeric/complex/complex}
+	**	@isostd{C99,https://en.cppreference.com/w/c/numeric/complex/imaginary}
 	**
 	**	The two parts of the complex number are stored as two fields in the struct.
 	*/

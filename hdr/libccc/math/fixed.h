@@ -67,8 +67,6 @@ typedef		t_q128	(*f_q128_operator)	(t_q128 x,	t_q128 y);
 //! Returns the absolute value of `x` (makes `x` positive)
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {|x|} @f$
 */
 //!@{
 #define						Fixed_Abs	CONCAT(FIXED_TYPE,_Abs)
@@ -283,8 +281,6 @@ t_q128					Q128_Mod(t_q128 x, t_q128 y);
 //! Returns the value of `x` to the power of `y` (fixed)
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {x^y} @f$
 */
 //!@{
 #define					Fixed_Pow	CONCAT(FIXED_TYPE,_Pow)
@@ -306,8 +302,6 @@ t_q128					Q128_Pow(t_q128 x, t_q128 y);
 //! Returns the value of `x` to the power of `n` (integer)
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {x^n} @f$
 */
 //!@{
 #define					Fixed_IntPow	CONCAT(FIXED_TYPE,_IntPow)
@@ -331,8 +325,6 @@ t_q128					Q128_IntPow(t_q128 x, t_sint n);
 //! Returns the square root of `x` (inverse of power of 2)
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {\sqrt {x}} @f$
 */
 //!@{
 #define						Fixed_Root2	CONCAT(FIXED_TYPE,_Root2)
@@ -355,8 +347,6 @@ t_q128						Q128_Root2(t_q128 x);
 //! Returns the cubic root of `x` (inverse of power of 3)
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {\sqrt[3] {x}} @f$
 */
 //!@{
 #define						Fixed_Root3	CONCAT(FIXED_TYPE,_Root3)
@@ -379,8 +369,6 @@ t_q128						Q128_Root3(t_q128 x);
 //! Returns the n-ic root of `x` (inverse of power of `n`)
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {\sqrt[n] {x}} @f$
 */
 //!@{
 #define						Fixed_RootN	CONCAT(FIXED_TYPE,_RootN)
@@ -415,8 +403,6 @@ t_q128						Q128_RootN(t_q128 x, t_u8 n);
 //! Returns the exponential function's value for `x`
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {e^x} @f$
 */
 //!@{
 #define							Fixed_Exp	CONCAT(FIXED_TYPE,_Exp)
@@ -440,8 +426,6 @@ t_q128							Q128_Exp(t_q128 x);
 //! Returns the natural logarithm of `x`
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {\ln {x}} @f$
 */
 //!@{
 #define							Fixed_Ln	CONCAT(FIXED_TYPE,_Ln)
@@ -463,8 +447,6 @@ t_q128							Q128_Ln(t_q128 x);
 //! Returns the binary (base-2) logarithm of `x`
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {\log_{2} {x}} @f$
 */
 //!@{
 #define							Fixed_Log2	CONCAT(FIXED_TYPE,_Log2)
@@ -492,8 +474,6 @@ t_q128							Q128_Log2(t_q128 x);
 //! Returns the decimal (base-10) logarithm of `x`
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {\log_{10} {x}} @f$
 */
 //!@{
 #define							Fixed_Log10	CONCAT(FIXED_TYPE,_Log10)
@@ -521,8 +501,6 @@ t_q128							Q128_Log10(t_q128 x);
 //! Returns the base-`n` logarithm of `x`
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {\log_{n} {x}} @f$
 */
 //!@{
 #define							Fixed_LogN	CONCAT(FIXED_TYPE,_LogN)
@@ -554,8 +532,6 @@ t_q128							Q128_LogN(t_q128 x, t_q128 y);
 //! Returns the cosine of `x` (horizontal trigonometry coordinate)
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {\cos {x}} @f$
 */
 //!@{
 #define							Fixed_Cos	CONCAT(FIXED_TYPE,_Cos)
@@ -577,8 +553,6 @@ t_q128							Q128_Cos(t_q128 x);
 //! Returns the sine of `x` (vertical trigonometry coordinate)
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {\sin {x}} @f$
 */
 //!@{
 #define							Fixed_Sin	CONCAT(FIXED_TYPE,_Sin)
@@ -600,8 +574,6 @@ t_q128							Q128_Sin(t_q128 x);
 //! Returns the tangent of `x` (trigonometry tangent line)
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {\tan {x}} @f$
 */
 //!@{
 #define							Fixed_Tan	CONCAT(FIXED_TYPE,_Tan)
@@ -625,8 +597,6 @@ t_q128							Q128_Tan(t_q128 x);
 //! Returns the arc-cosine of `x` (inverse of the cos function)
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {\cos^{-1} {x}} @f$
 */
 //!@{
 #define							Fixed_ArcCos	CONCAT(FIXED_TYPE,_ArcCos)
@@ -649,8 +619,6 @@ t_q128							Q128_ArcCos(t_q128 x);
 //! Returns the arc-sine of `x` (inverse of the sin function)
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {\sin^{-1} {x}} @f$
 */
 //!@{
 #define							Fixed_ArcSin	CONCAT(FIXED_TYPE,_ArcSin)
@@ -673,8 +641,6 @@ t_q128							Q128_ArcSin(t_q128 x);
 //! Returns the arc-tangent of `x` (inverse of the tan function)
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {\tan^{-1} {x}} @f$
 */
 //!@{
 #define							Fixed_ArcTan	CONCAT(FIXED_TYPE,_ArcTan)
@@ -699,8 +665,6 @@ t_q128							Q128_ArcTan(t_q128 x);
 //! Returns the arc-tangent of (`y` / `x`), used to find an angle from coordinates
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {\arctan(\frac{y}{x})} @f$, in the range @f$ {[-\pi;+\pi]} @f$
 */
 //!@{
 #define								Fixed_ArcTan2	CONCAT(FIXED_TYPE,_ArcTan2)
@@ -726,8 +690,6 @@ t_q128								Q128_(t_q128 x, t_q128 y);
 //! Returns the hyperbolic cosine of `x`
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {\cosh {x}} @f$
 */
 //!@{
 #define								Fixed_CosH	CONCAT(FIXED_TYPE,_CosH)
@@ -750,8 +712,6 @@ t_q128								Q128_CosH(t_q128 x);
 //! Returns the hyperbolic sine of `x`
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {\sinh {x}} @f$
 */
 //!@{
 #define								Fixed_SinH	CONCAT(FIXED_TYPE,_SinH)
@@ -774,8 +734,6 @@ t_q128								Q128_SinH(t_q128 x);
 //! Returns the hyperbolic tangent of `x`
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {\tanh {x}} @f$
 */
 //!@{
 #define								Fixed_TanH	CONCAT(FIXED_TYPE,_TanH)
@@ -800,8 +758,6 @@ t_q128								Q128_TanH(t_q128 x);
 //! Returns the hyperbolic arc-cosine of `x` (inverse of the cosh function)
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {\cosh^{-1} {x}} @f$
 */
 //!@{
 #define								Fixed_InvCosH	CONCAT(FIXED_TYPE,_InvCosH)
@@ -824,8 +780,6 @@ t_q128								Q128_InvCosH(t_q128 x);
 //! Returns the hyperbolic arc-sine of `x` (inverse of the sinh function)
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {\sinh^{-1} {x}} @f$
 */
 //!@{
 #define								Fixed_InvSinH	CONCAT(FIXED_TYPE,_InvSinH)
@@ -848,8 +802,6 @@ t_q128								Q128_InvSinH(t_q128 x);
 //! Returns the hyperbolic arc-tangent of `x` (inverse of the tanh function)
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {\tanh^{-1} {x}} @f$
 */
 //!@{
 #define								Fixed_InvTanH	CONCAT(FIXED_TYPE,_InvTanH)

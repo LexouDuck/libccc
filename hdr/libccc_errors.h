@@ -158,8 +158,8 @@ HEADER_CPP
 
 //! This type represents an error code for a libccc function (ie: a value for the 'errno' global variable)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/error/errno}
-**	@isostd{https://en.cppreference.com/w/c/error/errno_macros}
+**	@isostd{C89,https://en.cppreference.com/w/c/error/errno}
+**	@isostd{C89,https://en.cppreference.com/w/c/error/errno_macros}
 **
 **	The `e_cccerror` error code enum used is meant to not be platform-specific, unlike `errno`.
 **

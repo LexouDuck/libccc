@@ -37,7 +37,7 @@ HEADER_CPP
 
 //! Returns a newly allocated error message from the given `errno_value`
 /*!
-**	@isostd{https://en.cppreference.com/w/c/string/byte/strerror}
+**	@isostd{C89,https://en.cppreference.com/w/c/string/byte/strerror}
 **
 **	This is equivalent to the STD C `strerror()` functions (thread-safe).
 **

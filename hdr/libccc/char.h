@@ -15,6 +15,8 @@
 ** @{
 **	This header defines all the functions/sets related to single ASCII chars.
 **
+**	@isostd{C,https://en.cppreference.com/w/c/string/byte}
+**
 **	@see
 **	- #libccc_sys_ascii
 **	- #libccc_sys_unicode
@@ -49,7 +51,7 @@ HEADER_CPP
 
 //! Primitive type: `char`, ie: a text character (1 byte: ANSI/ASCII)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/string/byte}
+**	@isostd{C,https://en.cppreference.com/w/c/string/byte}
 */
 typedef char	t_ascii;
 TYPEDEF_ALIAS(	t_ascii, ASCII, PRIMITIVE)
@@ -58,7 +60,7 @@ TYPEDEF_ALIAS(	t_ascii, ASCII, PRIMITIVE)
 
 //! Primitive type: Unicode UTF-8 character (variable length: 1 to 4 bytes)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/string/multibyte}
+**	@isostd{C,https://en.cppreference.com/w/c/string/multibyte}
 */
 typedef char			t_utf8;
 TYPEDEF_ALIAS(			t_utf8, UTF8, PRIMITIVE)
@@ -67,8 +69,8 @@ TYPEDEF_ALIAS(			t_utf8, UTF8, PRIMITIVE)
 
 //! Primitive type: Unicode UTF-16 character (variable length: 2 or 4 bytes)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/string/multibyte/char16_t}
-**	@isostd{https://en.cppreference.com/w/c/string/multibyte}
+**	@isostd{C,https://en.cppreference.com/w/c/string/multibyte/char16_t}
+**	@isostd{C,https://en.cppreference.com/w/c/string/multibyte}
 */
 typedef uint_least16_t	t_utf16; // TODO add option to use C11 `char16_t`
 TYPEDEF_ALIAS(			t_utf16, UTF16, PRIMITIVE)
@@ -77,24 +79,24 @@ TYPEDEF_ALIAS(			t_utf16, UTF16, PRIMITIVE)
 
 //! Primitive type: Unicode UTF-32 character code point value (fixed length: 4 bytes)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/string/multibyte/char32_t}
-**	@isostd{https://en.cppreference.com/w/c/string/wide}
+**	@isostd{C,https://en.cppreference.com/w/c/string/multibyte/char32_t}
+**	@isostd{C,https://en.cppreference.com/w/c/string/wide}
 */
 typedef uint_least32_t	t_utf32; // TODO add option to use C11 `char32_t`
 TYPEDEF_ALIAS(			t_utf32, UTF32, PRIMITIVE)
 
 
 
+// TODO add option with wrapper functions for the ones in C11 <uchar.h>
+
+
+
 //! Primitive type: `char`, configurable (ASCII or UTF8)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/string/byte}
+**	@isostd{C,https://en.cppreference.com/w/c/string/byte}
 */
 typedef t_ascii	t_char;
 TYPEDEF_ALIAS(	t_char, CHAR, PRIMITIVE)
-
-
-
-// TODO add option with wrapper functions for the ones in C11 <uchar.h>
 
 
 
@@ -104,7 +106,7 @@ TYPEDEF_ALIAS(	t_char, CHAR, PRIMITIVE)
 //! A charset containing all of the ASCII punctuation characters
 #define CHARSET_PUNCTUATION	"!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
 
-/*
+/*!
 **	Define string literals for alphabet characters
 */
 //! Set of characters for the lowercase latin alphabet
@@ -114,7 +116,7 @@ TYPEDEF_ALIAS(	t_char, CHAR, PRIMITIVE)
 //! Set of characters for the latin alphabet (both lowercase and uppercase)
 #define CHARSET_ALPHABET	"aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ"
 
-/*
+/*!
 **	Define string literals for some of the commonly used number bases.
 */
 //!@{
@@ -144,7 +146,6 @@ TYPEDEF_ALIAS(	t_char, CHAR, PRIMITIVE)
 
 //! Check if the given char `c` is a letter character (lowercase or uppercase)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/string/byte/isalpha}
 **	@see
 **	- ASCII_IsLetter()
 **	- UTF32_IsLetter()
@@ -155,7 +156,6 @@ TYPEDEF_ALIAS(	t_char, CHAR, PRIMITIVE)
 
 //! Check if the given char `c` is a uppercase letter character
 /*!
-**	@isostd{https://en.cppreference.com/w/c/string/byte/isupper}
 **	@see
 **	- ASCII_IsUppercase()
 **	- UTF32_IsUppercase()
@@ -166,7 +166,6 @@ TYPEDEF_ALIAS(	t_char, CHAR, PRIMITIVE)
 
 //! Check if the given char `c` is an lowercase letter character
 /*!
-**	@isostd{https://en.cppreference.com/w/c/string/byte/islower}
 **	@see
 **	- ASCII_IsLowercase()
 **	- UTF32_IsLowercase()
@@ -177,7 +176,6 @@ TYPEDEF_ALIAS(	t_char, CHAR, PRIMITIVE)
 
 //! Check if the given char `c` is alphanumeric (letter or digit) character
 /*!
-**	@isostd{https://en.cppreference.com/w/c/string/byte/isalnum}
 **	@see
 **	- ASCII_IsAlphaNumeric()
 **	- UTF32_IsAlphaNumeric()
@@ -190,54 +188,53 @@ TYPEDEF_ALIAS(	t_char, CHAR, PRIMITIVE)
 
 //! Check if the given char `c` is a decimal digit character (ie: #CHARSET_DEC: `0123456789`)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/string/byte/isdigit}
 **	@see
 **	- ASCII_IsDigit_Decimal()
 **	- UTF32_IsDigit_Decimal()
 */
 #define						Char_IsDigit_Decimal	CONCAT(LIBCONFIG_NAME_CHAR,_IsDigit)
 #define c_isdigit			Char_IsDigit_Decimal
+#define c_isdigitdec		Char_IsDigit_Decimal
 #define Char_IsDigit		Char_IsDigit_Decimal
 #define Char_IsDigit_Dec	Char_IsDigit_Decimal
 
 //! Checks if the given char `c` is a hexadecimal digit character (ie: #CHARSET_HEX: `0123456789abcdefABCDEF`)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/string/byte/isxdigit}
 **	@see
 **	- ASCII_IsDigit_Hexadecimal()
 **	- UTF32_IsDigit_Hexadecimal()
 */
 #define						Char_IsDigit_Hexadecimal	CONCAT(LIBCONFIG_NAME_CHAR,_IsDigit_Hex)
 #define c_isxdigit			Char_IsDigit_Hexadecimal
+#define c_isdigithex		Char_IsDigit_Hexadecimal
 #define Char_IsDigit_Hex	Char_IsDigit_Hexadecimal
 
 //! Checks if the given char `c` is a octal-base digit character (ie: #CHARSET_OCT: `01234567`)
 /*!
-**	@nonstd
 **	@see
 **	- ASCII_IsDigit_Octal()
 **	- UTF32_IsDigit_Octal()
 */
 #define						Char_IsDigit_Octal	CONCAT(LIBCONFIG_NAME_CHAR,_IsDigit_Oct)
 #define c_isodigit			Char_IsDigit_Octal
+#define c_isdigitoct		Char_IsDigit_Octal
 #define Char_IsDigit_Oct	Char_IsDigit_Octal
 
 //! Checks if the given char `c` is a binary-base digit character (ie: '0' or '1')
 /*!
-**	@nonstd
 **	@see
 **	- ASCII_IsDigit_Binary()
 **	- UTF32_IsDigit_Binary()
 */
 #define						Char_IsDigit_Binary	CONCAT(LIBCONFIG_NAME_CHAR,_IsDigit_Bin)
 #define c_isbdigit			Char_IsDigit_Binary
+#define c_isdigitbin		Char_IsDigit_Binary
 #define Char_IsDigit_Bin	Char_IsDigit_Binary
 
 
 
 //! Check if the given char `c` is whitespace character (' ','\\t','\\r','\\n','\\f','\\v')
 /*!
-**	@isostd{https://en.cppreference.com/w/c/string/byte/isspace}
 **	@see
 **	- ASCII_IsWhiteSpace()
 **	- UTF32_IsWhiteSpace()
@@ -248,7 +245,6 @@ TYPEDEF_ALIAS(	t_char, CHAR, PRIMITIVE)
 
 //! Check if the given char `c` is a punctuation character
 /*!
-**	@isostd{https://en.cppreference.com/w/c/string/byte/ispunct}
 **	@see
 **	- ASCII_IsPunctuation()
 **	- UTF32_IsPunctuation()
@@ -261,7 +257,6 @@ TYPEDEF_ALIAS(	t_char, CHAR, PRIMITIVE)
 
 //! Check if the given char `c` is a printable ASCII character
 /*!
-**	@isostd{https://en.cppreference.com/w/c/string/byte/isprint}
 **	@see
 **	- ASCII_IsPrintable()
 **	- UTF32_IsPrintable()
@@ -274,7 +269,6 @@ TYPEDEF_ALIAS(	t_char, CHAR, PRIMITIVE)
 
 //! Check if the given char `c` is a valid character integer
 /*!
-**	@nonstd
 **	@see
 **	- ASCII_IsValid()
 **	- UTF32_IsValid()
@@ -288,7 +282,6 @@ TYPEDEF_ALIAS(	t_char, CHAR, PRIMITIVE)
 
 //! Check if the given char `c` is contained in the given 'charset'
 /*!
-**	@nonstd
 **	@see
 **	- ASCII_IsInCharset()
 **	- UTF32_IsInCharset()
@@ -306,7 +299,6 @@ TYPEDEF_ALIAS(	t_char, CHAR, PRIMITIVE)
 
 //! Get the uppercase version of the given char `c`, if possible
 /*!
-**	@isostd{https://en.cppreference.com/w/c/string/byte/toupper}
 **	@see
 **	- ASCII_ToUppercase()
 **	- UTF32_ToUppercase()
@@ -317,7 +309,6 @@ TYPEDEF_ALIAS(	t_char, CHAR, PRIMITIVE)
 
 //! Get the lowercase version of the given char `c`, if possible
 /*!
-**	@isostd{https://en.cppreference.com/w/c/string/byte/tolower}
 **	@see
 **	- ASCII_ToLowercase()
 **	- UTF32_ToLowercase()

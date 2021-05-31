@@ -36,31 +36,16 @@ HEADER_CPP
 
 //! Configures the nomenclature style used by libccc for `typedef` statements.
 /*!
-**	This macro sets the nomenclature style that libccc uses for typedefs. The value works like
-**	both an enum and a bitflag simultaneously: you can see how this works at the bottom of this file.
+**	This macro sets the nomenclature style that libccc uses for `typedef`s.
+**	The value works like both an enum and a bitflag simultaneously:
+**	you can learn more about how this by looking at "libccc_naming.h".
 **
 **	The style used throughout libccc's code is `(NAMINGSTYLE_SNAKECASE | NAMINGSTYLE_FLAG_HUNGARIAN_PREFIX)`
 **	You can set another style, it will actually generate a typedef alias above the existing typedef.
 **	For example, having `(NAMINGSTYLE_SCREAMCASE)` will create a typedef for `t_bool` which is `BOOL`
 **	Here, by default, the value is zero (no typedef aliases are generated).
 */
-#define LIBCONFIG_NAMINGSTYLE_TYPES		(0)
-
-
-
-//! Whether or not libccc will define its functions as simple inline wrappers for STD C calls, wherever possible.
-/*!
-**	This macro determines if the compiler should prefer function implementations
-**	from the platform's standard library, or the implementation from libccc.
-**	- If `0`, use libccc function implementations everywhere
-**	- If `1`, call stdlib implementations rather than libccc wherever possible
-**
-**	NOTE: Setting this to 1 can make your code run faster, but it may introduce
-**		undefined behaviors depending on the platform (for edge-case arguments).
-**		Also, it invalidates the `LIBCONFIG_HANDLE_NULLPOINTERS` setting:
-**		NULL pointer handling is implementation-dependent for STD C functions.
-*/
-#define LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS	(0) // TODO implement this config flag
+#define LIBCONFIG_NAMINGSTYLE_TYPES	0
 
 
 
@@ -88,6 +73,22 @@ HEADER_CPP
 */
 #define LIBCONFIG_BITS_SINT		32
 
+//! If 1, libccc uses exact bit length for t_s8, t_s16, t_s32, t_s64, t_u8, t_u16, t_u32, and t_u64
+/*!
+**	This macro configures which `<stdint.h>` integer types are used by default,
+**	as well as setting the corresponding appropriate `[INT]_MAX` and `[INT]_MIN` values.
+**	There are 3 possible values for this #define:
+**	- (undefined)	EXACT: This is the default - uses the 'exact size' integer types (int8_t, etc)
+**					This is the recommended option, as it ensures consistent overflow behavior on ints.
+**					Unfortunately, certain platforms do not have these types, so the others can also be of use.
+**	- `_least`	LEAST: Uses the smallest available integer type with at least `n` bits (`int_least8_t`, etc)
+**	- `_fast`	FAST: Uses the fastest available integer type with at least `n` bits (`int_fast8_t`, etc)
+*/
+//#define LIBCONFIG_INTEGER_TYPES _least // uncomment this line to use LEAST int types
+//#define LIBCONFIG_INTEGER_TYPES _fast  // uncomment this line to use FAST int types
+
+
+
 //! Defines which type/bit size the `t_fixed` default fixed-point number type will be
 /*!
 **	This macro sets what the `t_fixed` default fixed-point type should be.
@@ -104,6 +105,8 @@ HEADER_CPP
 #define LIBCONFIG_FIXED_BITS_FRACTIONPART(BITS)	(BITS / 4)
 //! the amount of bits dedicated to the integer part of the fixed-point types
 #define LIBCONFIG_FIXED_BITS_INTEGERPART(BITS)	(BITS - FIXED_BITS_FRACTIONPART)
+
+
 
 //! Defines which type/bit size the `t_float` default floating-point number type will be
 /*!
@@ -154,30 +157,30 @@ HEADER_CPP
 
 
 
-//! Whether the `s_list` and `s_object` types in "libccc/monad" will be doubly-linked
+//! Whether the `s_list` linked-list types in "libccc/monad/" will be doubly-linked
 /*!
 **	This macro configures whether the `s_list` type is singly-linked or doubly-linked.
 **	NOTE: This must be set BEFORE including the `<libccc/monad/list.(c|h)>` header files
 **	- If `0`, `s_list` is singly-linked (that is, the struct only holds a `.next` pointer)
 **	- If `1`, `s_list` is doubly-linked (that is, the struct has both a `.prev` and `.next` pointer)
 */
-#define LIBCONFIG_LIST_DOUBLYLINKED		(0)
+#define LIBCONFIG_LIST_DOUBLYLINKED		0
 
 
 
-//! If 1, libccc uses exact bit length for t_s8, t_s16, t_s32, t_s64, t_u8, t_u16, t_u32, and t_u64
+//! Whether or not libccc will define its functions as simple inline wrappers for STD C calls, wherever possible.
 /*!
-**	This macro configures which `<stdint.h>` integer types are used by default,
-**	as well as setting the corresponding appropriate `[INT]_MAX` and `[INT]_MIN` values.
-**	There are 3 possible values for this #define:
-**	- (undefined)	EXACT: This is the default - uses the 'exact size' integer types (int8_t, etc)
-**					This is the recommended option, as it ensures consistent overflow behavior on ints.
-**					Unfortunately, certain platforms do not have these types, so the others can also be of use.
-**	- `_least`	LEAST: Uses the smallest available integer type with at least `n` bits (`int_least8_t`, etc)
-**	- `_fast`	FAST: Uses the fastest available integer type with at least `n` bits (`int_fast8_t`, etc)
+**	This macro determines if the compiler should prefer function implementations
+**	from the platform's standard library, or the implementation from libccc.
+**	- If `0`, use libccc function implementations everywhere
+**	- If `1`, call stdlib implementations rather than libccc wherever possible
+**
+**	NOTE: Setting this to 1 can make your code run faster, but it may introduce
+**		undefined behaviors depending on the platform (for edge-case arguments).
+**		Also, it invalidates the `LIBCONFIG_HANDLE_ERROR` setting:
+**		Argument handling is implementation-dependent for STD C functions.
 */
-//#define LIBCONFIG_INTEGER_TYPES _least // uncomment this line to use LEAST int types
-//#define LIBCONFIG_INTEGER_TYPES _fast  // uncomment this line to use FAST int types
+#define LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS	1 // TODO implement this config flag
 
 
 
@@ -187,11 +190,11 @@ HEADER_CPP
 **	- If `1`, the libccc fast approximate functions will be used (precision error margin is `10^-4`)
 **	- If `0`, the builtin FPU-call libc math functions will be used (eg: `__builtin_powf()`, etc)
 */
-#define LIBCONFIG_USE_FAST_APPROX_MATH		(0)
+#define LIBCONFIG_USE_FAST_APPROX_MATH	0
 
 
 
-//! Whether libccc will make the `t_complex` types use the STDC `_Complex`/`_Imaginary` types
+//! Whether libccc will make the `t_complex` types use the STD C99 `_Complex`/`_Imaginary` types
 /*!
 **	TODO implement & document this
 */
@@ -199,9 +202,9 @@ HEADER_CPP
 
 
 
-//! Whether libccc will make the fixed point types `t_g*` and `t_fixed` use the STDC `_Sat`/`_Fract`/`_Accum` types
+//! Whether libccc will make the fixed point types `t_g*` and `t_fixed` use the STD ext `_Sat`/`_Fract`/`_Accum` types
 /*!
-**	It is recommended to keep this set to 0, as the STD C fixed-point types are not yet standard
+**	It is recommended to keep this set to `0`, as the STD C fixed-point types are not yet standard
 **	(ie: `_Accum`, `_Fract`, and `_Sat` are not present on all platforms, only GCC implements them).
 **	Furthermore, the libccc fixed-point type may not be as fast as a STD C implementation which
 **	may leverage the platform's full capacities, but it does offer the signficant advantage of

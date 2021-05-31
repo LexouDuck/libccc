@@ -271,7 +271,7 @@ TAB_SIZE               = 4
 
 ALIASES                = \
      nonstd="- <i>This function is not defined in the C ISO standard.</i>^^" \
-     isostd{1}="- <i>C ISO Standard: </i>\1^^" \
+     isostd{2}="- <i>Standard library equivalent: </i>(\2) \1^^" \
      alias{1}="[<i>Alias for </i>#\1]" \
      group{1}="@addtogroup \1^^" \
 

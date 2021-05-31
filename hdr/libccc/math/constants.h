@@ -15,7 +15,7 @@
 ** @{
 **	This header defines the common standard math constants and macro defines.
 **
-**	@isostd{https://en.cppreference.com/w/c/numeric/math}
+**	@isostd{C,https://en.cppreference.com/w/c/numeric/math}
 **
 **	@file
 */

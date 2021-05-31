@@ -109,7 +109,7 @@ HEADER_CPP
 
 //! Check if the given char `c` is a letter character
 /*!
-**	@isostd{https://en.cppreference.com/w/c/string/byte/isalpha}
+**	@isostd{C95,https://en.cppreference.com/w/c/string/wide/iswalpha}
 **
 **	@param	c	The character to check
 **	@returns #TRUE if the given char `c` is a letter (lowercase or uppercase), otherwise #FALSE.
@@ -120,7 +120,7 @@ t_bool					UTF32_IsLetter(t_utf32 c);
 
 //! Check if the given char `c` is a uppercase letter character
 /*!
-**	@isostd{https://en.cppreference.com/w/c/string/byte/isupper}
+**	@isostd{C95,https://en.cppreference.com/w/c/string/wide/iswupper}
 **
 **	@param	c	The character to check
 **	@returns #TRUE if the given char `c` is a uppercase letter character, otherwise #FALSE.
@@ -131,7 +131,7 @@ t_bool					UTF32_IsUppercase(t_utf32 c);
 
 //! Check if the given char `c` is an lowercase letter character
 /*!
-**	@isostd{https://en.cppreference.com/w/c/string/byte/islower}
+**	@isostd{C95,https://en.cppreference.com/w/c/string/wide/iswlower}
 **
 **	@param	c	The character to check
 **	@returns #TRUE if the given char `c` is an lowercase letter character, otherwise #FALSE.
@@ -142,7 +142,7 @@ t_bool					UTF32_IsLowercase(t_utf32 c);
 
 //! Check if the given char `c` is alphanumeric (letter or digit) character
 /*!
-**	@isostd{https://en.cppreference.com/w/c/string/byte/isalnum}
+**	@isostd{C95,https://en.cppreference.com/w/c/string/wide/iswalnum}
 **
 **	@param	c	The character to check
 **	@returns #TRUE if the given char `c` is alphanumeric (letter or digit), otherwise #FALSE.
@@ -155,7 +155,7 @@ t_bool					UTF32_IsAlphaNumeric(t_utf32 c);
 
 //! Check if the given char `c` is a decimal digit character (ie: #CHARSET_DEC: `0123456789`)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/string/byte/isdigit}
+**	@isostd{C95,https://en.cppreference.com/w/c/string/wide/iswdigit}
 **
 **	@param	c	The character to check
 **	@returns #TRUE if the given char `c` is a decimal digit character, otherwise #FALSE.
@@ -167,7 +167,7 @@ t_bool						UTF32_IsDigit_Decimal(t_utf32 c);
 
 //! Checks if the given char `c` is a hexadecimal digit character (ie: #CHARSET_HEX: `0123456789abcdefABCDEF`)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/string/byte/isxdigit}
+**	@isostd{C95,https://en.cppreference.com/w/c/string/wide/iswxdigit}
 **
 **	@param	c	The character to check
 **	@returns #TRUE if the given char `c` is a hexadecimal digit character, otherwise #FALSE.
@@ -202,7 +202,7 @@ t_bool						UTF32_IsDigit_Binary(t_utf32 c);
 
 //! Check if the given char `c` is whitespace character (prints nothing)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/string/byte/isspace}
+**	@isostd{C95,https://en.cppreference.com/w/c/string/wide/iswspace}
 **
 **	@param	c	The character to check
 **	@returns #TRUE if the given char `c` is whitespace character, and returns #FALSE otherwise.
@@ -213,7 +213,7 @@ t_bool					UTF32_IsWhiteSpace(t_utf32 c);
 
 //! Check if the given char `c` is a punctuation character
 /*!
-**	@isostd{https://en.cppreference.com/w/c/string/byte/ispunct}
+**	@isostd{C95,https://en.cppreference.com/w/c/string/wide/iswpunct}
 **
 **	@param	c	The character to check
 **	@returns #TRUE if the given char `c` is a punctuation character,
@@ -223,11 +223,11 @@ t_bool					UTF32_IsPunctuation(t_utf32 c);
 #define c_wcispunct		UTF32_IsPunctuation
 #define UTF32_IsPunct	UTF32_IsPunctuation
 
-// TODO https://en.cppreference.com/w/c/string/byte/iscntrl
+// TODO https://en.cppreference.com/w/c/string/wide/iswcntrl
 
 //! Check if the given char `c` is a printable Unicode character
 /*!
-**	@isostd{https://en.cppreference.com/w/c/string/byte/isprint}
+**	@isostd{C95,https://en.cppreference.com/w/c/string/wide/iswprint}
 **
 **	@param	c	The character to check
 **	@returns #TRUE if the given char `c` is a printable Unicode character,
@@ -282,7 +282,7 @@ t_bool						UTF32_IsInCharset(t_utf32 c, t_utf32 const* charset);
 
 //! Get the uppercase version of the given char `c`, if possible
 /*!
-**	@isostd{https://en.cppreference.com/w/c/string/byte/toupper}
+**	@isostd{C95,https://en.cppreference.com/w/c/string/wide/toupper}
 **
 **	@param	c	The character whose uppercase equivalent should be returned
 **	@returns the uppercase equivalent of the given character, or returns `c` itself if it is not a letter character.
@@ -293,7 +293,7 @@ t_utf32						UTF32_ToUppercase(t_utf32 c);
 
 //! Get the lowercase version of the given char `c`, if possible
 /*!
-**	@isostd{https://en.cppreference.com/w/c/string/byte/tolower}
+**	@isostd{C95,https://en.cppreference.com/w/c/string/wide/tolower}
 **
 **	@param	c	The character whose lowercase equivalent should be returned
 **	@returns the lowercase equivalent of the given character, or returns `c` itself if it is not a letter character.
@@ -318,7 +318,7 @@ t_utf32						UTF32_ToLowercase(t_utf32 c);
 
 //! Converts the given Unicode char `c` to its UTF-8 equivalent representation
 /*!
-**	@isostd{https://en.cppreference.com/w/c/string/multibyte/wctomb}
+**	@isostd{C95,https://en.cppreference.com/w/c/string/multibyte/wctomb}
 **
 **	Converts the given char `c` to UTF-8 representation, and writes it to 'dest'
 **	@param	c		The character to convert (UTF-32 Unicode code point value)
@@ -332,7 +332,7 @@ t_size						UTF32_ToUTF8(t_utf8* dest, t_utf32 c);
 
 //! Converts the given Unicode char `c` to its UTF-16 equivalent representation
 /*!
-**	@isostd{https://en.cppreference.com/w/c/string/multibyte/wctomb}
+**	@nonstd
 **
 **	Converts the given char `c` to UTF-16 representation, and writes it to 'dest'
 **	@param	c		The character to convert (UTF-32 Unicode code point value)
@@ -348,7 +348,7 @@ t_size						UTF32_ToUTF16(t_utf16* dest, t_utf32 c);
 
 //! Returns the Unicode code point value (UTF-32) for the first UTF-8 character in `str`
 /*!
-**	@isostd{https://en.cppreference.com/w/c/string/multibyte/mbtowc}
+**	@isostd{C95,https://en.cppreference.com/w/c/string/multibyte/mbtowc}
 **
 **	Reads up to 4 bytes in 'str', and converts these bytes to a Unicode code point value
 **	@param	str		The string from which to read a UTF-8 character
@@ -360,7 +360,7 @@ t_utf32						UTF32_FromUTF8(t_utf8 const* str);
 
 //! Returns the Unicode code point value (UTF-32) for the first UTF-16 character in `str`
 /*!
-**	@isostd{https://en.cppreference.com/w/c/string/multibyte/mbtowc}
+**	@nonstd
 **
 **	Reads 2 or 4 bytes in 'str', and converts these bytes to a Unicode code point value
 **	@param	str		The string from which to read a UTF-16 character
@@ -374,6 +374,8 @@ t_utf32						UTF32_FromUTF16(t_utf16 const* str);
 
 //! Parses a UTF-8 string escape sequence (`\U????????`, or `\u????`) from the given `str`
 /*!
+**	@nonstd
+**
 **	@param	str	The string from which to parse an escape sequence
 **	@returns the UTF-32 code point for the parsed unicode character,
 **		or #ERROR (`-1`) if there was a parsing error.
@@ -383,6 +385,8 @@ t_utf32					UTF32_Parse(t_ascii const* str);
 
 //! Parses a UTF-8 string escape sequence (`\U????????`, or `\u????`), reading at most `n` chars from `str`
 /*!
+**	@nonstd
+**
 **	@param	dest	The pointer to the 32-bit integer in which the result will be written.
 **	@param	str		The string from which to parse an escape sequence.
 **	@param	n		The maximum amount of characters to read from `str`. NOTE: if `0` is given, then there will be no maximum amount.

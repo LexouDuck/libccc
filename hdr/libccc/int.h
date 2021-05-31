@@ -15,9 +15,9 @@
 ** @{
 **	This header defines the integer number primitive types and functions.
 **
-**	@isostd{https://en.cppreference.com/w/c/language/arithmetic_types#Integer_types}
-**	@isostd{https://en.cppreference.com/w/c/types/integer}
-**	@isostd{https://en.cppreference.com/w/c/types/limits}
+**	@isostd{C,https://en.cppreference.com/w/c/language/arithmetic_types#Integer_types}
+**	@isostd{C,https://en.cppreference.com/w/c/types/integer}
+**	@isostd{C,https://en.cppreference.com/w/c/types/limits}
 **
 **	These are wrapper types for all the primitive integer types in a more concise
 **	naming convention, to better reflect the amount of bits used by each type.
@@ -110,7 +110,7 @@ typedef __int128		s128;
 
 //! Primitive type: 8-bit unsigned integer
 /*!
-**	@isostd{https://en.cppreference.com/w/c/types/integer}
+**	@isostd{C,https://en.cppreference.com/w/c/types/integer}
 **
 **	Fixed-width unsigned integer type which is 8 bits in size.
 **	The possible range of values is between zero and #U8_MAX.
@@ -126,7 +126,7 @@ TYPEDEF_ALIAS(	t_u8,	UINT_8,  PRIMITIVE)
 
 //! Primitive type: 16-bit unsigned integer
 /*!
-**	@isostd{https://en.cppreference.com/w/c/types/integer}
+**	@isostd{C,https://en.cppreference.com/w/c/types/integer}
 **
 **	Fixed-width unsigned integer type which is 16 bits in size.
 **	The possible range of values is between zero and #U16_MAX.
@@ -142,7 +142,7 @@ TYPEDEF_ALIAS(	t_u16,	UINT_16, PRIMITIVE)
 
 //! Primitive type: 32-bit unsigned integer
 /*!
-**	@isostd{https://en.cppreference.com/w/c/types/integer}
+**	@isostd{C,https://en.cppreference.com/w/c/types/integer}
 **
 **	Fixed-width unsigned integer type which is 32 bits in size.
 **	The possible range of values is between zero and #U32_MAX.
@@ -158,7 +158,7 @@ TYPEDEF_ALIAS(	t_u32,	UINT_32, PRIMITIVE)
 
 //! Primitive type: 64-bit unsigned integer
 /*!
-**	@isostd{https://en.cppreference.com/w/c/types/integer}
+**	@isostd{C,https://en.cppreference.com/w/c/types/integer}
 **
 **	Fixed-width unsigned integer type which is 64 bits in size.
 **	The possible range of values is between zero and #U64_MAX.
@@ -175,7 +175,7 @@ TYPEDEF_ALIAS(	t_u64,	UINT_64, PRIMITIVE)
 #ifdef	__int128
 //! Primitive type: 128-bit unsigned integer (only available on certain platforms)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/types/integer}
+**	@isostd{C,https://en.cppreference.com/w/c/types/integer}
 **
 **	Fixed-width unsigned integer type which is 128 bits in size.
 **	NB: This type does not exist on most common platforms/machines.
@@ -197,7 +197,7 @@ TYPEDEF_ALIAS(	t_u128,	UINT_128,PRIMITIVE)
 
 //! Primitive type: 8-bit signed integer
 /*!
-**	@isostd{https://en.cppreference.com/w/c/types/integer}
+**	@isostd{C,https://en.cppreference.com/w/c/types/integer}
 **
 **	Fixed-width signed integer type which is 8 bits in size.
 **	The possible range of values is between #S8_MIN and #S8_MAX.
@@ -213,7 +213,7 @@ TYPEDEF_ALIAS(	t_s8,	SINT_8,  PRIMITIVE)
 
 //! Primitive type: 16-bit signed integer
 /*!
-**	@isostd{https://en.cppreference.com/w/c/types/integer}
+**	@isostd{C,https://en.cppreference.com/w/c/types/integer}
 **
 **	Fixed-width signed integer type which is 16 bits in size.
 **	The possible range of values is between #S16_MIN and #S16_MAX.
@@ -229,7 +229,7 @@ TYPEDEF_ALIAS(	t_s16,	SINT_16, PRIMITIVE)
 
 //! Primitive type: 32-bit signed integer
 /*!
-**	@isostd{https://en.cppreference.com/w/c/types/integer}
+**	@isostd{C,https://en.cppreference.com/w/c/types/integer}
 **
 **	Fixed-width signed integer type which is 32 bits in size.
 **	The possible range of values is between #S32_MIN and #S32_MAX.
@@ -245,7 +245,7 @@ TYPEDEF_ALIAS(	t_s32,	SINT_32, PRIMITIVE)
 
 //! Primitive type: 64-bit signed integer
 /*!
-**	@isostd{https://en.cppreference.com/w/c/types/integer}
+**	@isostd{C,https://en.cppreference.com/w/c/types/integer}
 **
 **	Fixed-width signed integer type which is 64 bits in size.
 **	The possible range of values is between #S64_MIN and #S64_MAX.
@@ -262,7 +262,7 @@ TYPEDEF_ALIAS(	t_s64,	SINT_64, PRIMITIVE)
 #ifdef	__int128
 //! Primitive type: 128-bit signed integer (only available on certain platforms)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/types/integer}
+**	@isostd{C,https://en.cppreference.com/w/c/types/integer}
 **
 **	Fixed-width signed integer type which is 128 bits in size.
 **	NB: This type does not exist on most common platforms/machines.
@@ -289,7 +289,7 @@ TYPEDEF_ALIAS(	t_s128,	SINT_128,PRIMITIVE)
 
 //! The configurable-size unsigned integer primitive type.
 /*!
-**	@isostd{https://en.cppreference.com/w/c/language/arithmetic_types#Integer_types}
+**	@isostd{C,https://en.cppreference.com/w/c/language/arithmetic_types#Integer_types}
 **
 **	Configurable-width unsigned integer type.
 **	The size of this integer type depends on the value of #LIBCONFIG_BITS_UINT.
@@ -303,14 +303,14 @@ TYPEDEF_ALIAS(t_uint, UINT, PRIMITIVE)
 
 
 
-//! The actual underlying type for the `t_sint` configurable type, in uppercase
+//! The actual underlying type for the `t_sint` configurable type
 #define SINT_T		CONCAT(t_s,LIBCONFIG_BITS_SINT)
 //! The actual underlying type for the `t_sint` configurable type, in uppercase
 #define SINT_TYPE	CONCAT(S,LIBCONFIG_BITS_SINT)
 
 //! The configurable-size signed integer primitive type.
 /*!
-**	@isostd{https://en.cppreference.com/w/c/language/arithmetic_types#Integer_types}
+**	@isostd{C,https://en.cppreference.com/w/c/language/arithmetic_types#Integer_types}
 **
 **	Configurable-width signed integer type.
 **	The size of this integer type depends on the value of #LIBCONFIG_BITS_SINT.
@@ -408,8 +408,11 @@ TYPEDEF_ALIAS(t_sint, SINT, PRIMITIVE)
 
 //! Get the string decimal (base 10) representation of an unsigned integer
 /*!
+**	@nonstd, `utoa()`
+**
 **	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`
+**	@returns
+**	A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					UInt_ToString	CONCAT(UINT_TYPE,_ToString)
@@ -430,8 +433,11 @@ _MALLOC()	t_char*		U128_ToString(t_u128 number); // TODO implement
 
 //! Get the string decimal (base 10) representation of a signed integer
 /*!
+**	@nonstd, `itoa()`
+**
 **	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`
+**	@returns
+**	A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					SInt_ToString	CONCAT(SINT_TYPE,_ToString)
@@ -454,9 +460,12 @@ _MALLOC()	t_char*		S128_ToString(t_s128 number); // TODO implement
 
 //! Get the string hexadecimal (base 16) representation of an unsigned integer
 /*!
+**	@nonstd
+**
 **	@param	number	The number to convert to string
 **	@param	prefix	If #TRUE, the output string will have a `0x` hexadecimal number literal prefix
-**	@returns A newly allocated string, converted from the given `number`
+**	@returns
+**	A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					UInt_ToString_Hex	CONCAT(UINT_TYPE,_ToString_Hex)
@@ -477,9 +486,12 @@ _MALLOC()	t_char*		U128_ToString_Hex(t_u128 number, t_bool prefix); // TODO impl
 
 //! Get the string hexadecimal (base 16) representation of a signed integer
 /*!
+**	@nonstd
+**
 **	@param	number	The number to convert to string
 **	@param	prefix	If #TRUE, the output string will have a `0x` hexadecimal number literal prefix
-**	@returns A newly allocated string, converted from the given `number`
+**	@returns
+**	A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					SInt_ToString_Hex	CONCAT(SINT_TYPE,_ToString)
@@ -502,9 +514,12 @@ _MALLOC()	t_char*		S128_ToString_Hex(t_s128 number, t_bool prefix); // TODO impl
 
 //! Get the string octal (base 8) representation of an unsigned integer
 /*!
+**	@nonstd
+**
 **	@param	number	The number to convert to string
 **	@param	prefix	If #TRUE, the output string will have a `0o` octal number literal prefix
-**	@returns A newly allocated string, converted from the given `number`
+**	@returns
+**	A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					UInt_ToString_Oct	CONCAT(UINT_TYPE,_ToString_Oct)
@@ -525,9 +540,12 @@ _MALLOC()	t_char*		U128_ToString_Oct(t_u128 number, t_bool prefix); // TODO impl
 
 //! Get the string octal (base 8) representation of a signed integer
 /*!
+**	@nonstd
+**
 **	@param	number	The number to convert to string
 **	@param	prefix	If #TRUE, the output string will have a `0o` octal number literal prefix
-**	@returns A newly allocated string, converted from the given `number`
+**	@returns
+**	A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					SInt_ToString_Oct	CONCAT(SINT_TYPE,_ToString)
@@ -550,9 +568,12 @@ _MALLOC()	t_char*		S128_ToString_Oct(t_s128 number, t_bool prefix); // TODO impl
 
 //! Get the string binary (base 2) representation of an unsigned integer
 /*!
+**	@nonstd
+**
 **	@param	number	The number to convert to string
 **	@param	prefix	If #TRUE, the output string will have a `0b` binary number literal prefix
-**	@returns A newly allocated string, converted from the given `number`
+**	@returns
+**	A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					UInt_ToString_Bin	CONCAT(UINT_TYPE,_ToString_Hex)
@@ -573,9 +594,12 @@ _MALLOC()	t_char*		U128_ToString_Bin(t_u128 number, t_bool prefix); // TODO impl
 
 //! Get the string binary (base 2) representation of a signed integer
 /*!
+**	@nonstd
+**
 **	@param	number	The number to convert to string
 **	@param	prefix	If #TRUE, the output string will have a `0b` binary number literal prefix
-**	@returns A newly allocated string, converted from the given `number`
+**	@returns
+**	A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					SInt_ToString_Bin	CONCAT(SINT_TYPE,_ToString)
@@ -598,8 +622,11 @@ _MALLOC()	t_char*		S128_ToString_Bin(t_s128 number, t_bool prefix); // TODO impl
 
 //! Returns newly allocated string custom-base representation of an 8-bit unsigned integer
 /*!
+**	@nonstd
+**
 **	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`
+**	@returns
+**	A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					UInt_ToString_Base	CONCAT(UINT_TYPE,_ToString_Base)
@@ -620,8 +647,11 @@ _MALLOC()	t_char*		U128_ToString_Base(t_u128 number, t_char const* base); // TOD
 
 //! Returns newly allocated string custom-base representation of an 8-bit signed integer
 /*!
+**	@nonstd
+**
 **	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`
+**	@returns
+**	A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					SInt_ToString_Base	CONCAT(SINT_TYPE,_ToString_Base)
@@ -650,8 +680,11 @@ _MALLOC()	t_char*		S128_ToString_Base(t_s128 number, t_char const* base); // TOD
 
 //! Parse an 8-bit unsigned integer from the given decimal number string
 /*!
+**	@nonstd, `atou()`
+**
 **	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`
+**	@returns
+**	A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					UInt_FromString	CONCAT(UINT_TYPE,_FromString)
@@ -672,8 +705,11 @@ t_u128					U128_FromString(t_char const* str);
 
 //! Parse an 8-bit signed integer from the given decimal number string
 /*!
+**	@isostd{C89,https://en.cppreference.com/w/c/string/byte/atoi}
+**
 **	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`
+**	@returns
+**	A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					SInt_FromString	CONCAT(SINT_TYPE,_FromString)
@@ -696,8 +732,11 @@ t_s128					S128_FromString(t_char const* str);
 
 //! Parse an 8-bit unsigned integer from the given hexadecimal (base 16) number string
 /*!
+**	@nonstd
+**
 **	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`
+**	@returns
+**	A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					UInt_FromString_Hex	CONCAT(UINT_TYPE,_FromString_Hex)
@@ -718,8 +757,11 @@ t_u128					U128_FromString_Hex(t_char const* str);
 
 //! Parse an 8-bit unsigned integer from the given hexadecimal (base 16) number string
 /*!
+**	@nonstd
+**
 **	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`
+**	@returns
+**	A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					SInt_FromString_Hex	CONCAT(SINT_TYPE,_FromString_Hex)
@@ -742,8 +784,11 @@ t_s128					S128_FromString_Hex(t_char const* str);
 
 //! Parse an 8-bit unsigned integer from the given octal (base 8) number string
 /*!
+**	@nonstd
+**
 **	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`
+**	@returns
+**	A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					UInt_FromString_Oct	CONCAT(UINT_TYPE,_FromString_Oct)
@@ -764,8 +809,11 @@ t_u128					U128_FromString_Oct(t_char const* str);
 
 //! Parse an 8-bit unsigned integer from the given octal (base 8) number string
 /*!
+**	@nonstd
+**
 **	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`
+**	@returns
+**	A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					SInt_FromString_Oct	CONCAT(SINT_TYPE,_FromString_Oct)
@@ -788,8 +836,11 @@ t_s128					S128_FromString_Oct(t_char const* str);
 
 //! Parse an 8-bit unsigned integer from the given binary (base 2) number string
 /*!
+**	@nonstd
+**
 **	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`
+**	@returns
+**	A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					UInt_FromString_Bin	CONCAT(UINT_TYPE,_FromString_Bin)
@@ -810,8 +861,11 @@ t_u128					U128_FromString_Bin(t_char const* str);
 
 //! Parse an 8-bit unsigned integer from the given binary (base 2) number string
 /*!
+**	@nonstd
+**
 **	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`
+**	@returns
+**	A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					SInt_FromString_Bin	CONCAT(SINT_TYPE,_FromString_Bin)
@@ -834,8 +888,11 @@ t_s128					S128_FromString_Bin(t_char const* str);
 
 //! Parse an 8-bit unsigned integer from a custom-base number string
 /*!
+**	@nonstd, `strtoul()`
+**
 **	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`
+**	@returns
+**	A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					UInt_FromString_Base	CONCAT(UINT_TYPE,_FromString_Base)
@@ -856,8 +913,11 @@ t_u128					U128_FromString_Base(t_char const* str, t_char const* base);
 
 //! Parse an 8-bit signed integer from a custom-base number string
 /*!
+**	@nonstd, `strtol()`
+**
 **	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`
+**	@returns
+**	A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					SInt_FromString_Base	CONCAT(SINT_TYPE,_FromString_Base)

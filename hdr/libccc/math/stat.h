@@ -122,14 +122,13 @@ s_array_int						Stat_Int_MergeList(s_array_int* start, s_array_int* append);
 #define c_stat_merge_ilst		Stat_Int_MergeList
 
 //! TODO document this
-/*!
-**	@isostd{https://en.cppreference.com/w/c/algorithm/qsort}
-**
-*/
 s_array_int 					Stat_Int_Quicksort(s_array_int const ilst);
 #define c_stat_quicksort_i_new	Stat_Int_Quicksort
 
 //! TODO document this
+/*!
+**	@isostd{C89,https://en.cppreference.com/w/c/algorithm/qsort}
+*/
 void							Stat_Int_Quicksort_InPlace(s_array_int ilst);
 #define c_stat_quicksort_i		Stat_Int_Quicksort_InPlace
 

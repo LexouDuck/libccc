@@ -15,7 +15,7 @@
 ** @{
 **	This header defines some simple pseudo-random number generator functions.
 **
-**	@isostd{https://en.cppreference.com/w/c/numeric/random}
+**	@isostd{C,https://en.cppreference.com/w/c/numeric/random}
 **
 **	@file
 */

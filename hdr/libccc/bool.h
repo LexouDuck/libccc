@@ -62,7 +62,7 @@ HEADER_CPP
 
 //! Primitve type: The boolean type (`TRUE` or `FALSE`)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/types/boolean}
+**	@isostd{C99,https://en.cppreference.com/w/c/types/boolean}
 **
 **	Here, we use the native (since C99) `_Bool` boolean type.
 **	This type is useful because its value will always be 0 or 1, never more.

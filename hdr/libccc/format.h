@@ -15,6 +15,8 @@
 ** @{
 **	This header defines printf-style functions, and their format specifiers
 **
+**	@isostd{C,https://en.cppreference.com/w/c/variadic}
+**
 **	@file
 */
 
@@ -185,7 +187,7 @@ HEADER_CPP
 
 //! Constructs a string from the given `format` string and multiple args (equivalent to `asprintf()`)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/variadic}
+**	@isostd{BSD,https://linux.die.net/man/3/asprintf}
 **
 **	Constructs a new null-terminated string, which is generated from the given `format` string,
 **	as well as any relevant variadic arguments - it is equivalent to the `asprintf()` function.
@@ -279,6 +281,8 @@ t_char*					String_Format_VA(t_char const* format, va_list args);
 
 //! Constructs a string from the given `format` string and multiple args, writing at most `max` chars into `dest` (equivalent to `snprintf()`)
 /*!
+**	@isostd{C89,https://en.cppreference.com/w/c/io/snprintf}
+**
 **	@param	dest	The destination buffer, in which to write the resulting string (if `NULL`, does not write anything and simply returns the length)
 **	@param	max		The maximum amount of characters to write to `dest`, including the '\0' null terminator
 **	@param	format	The format string used to construct the resulting date string: learn more here https://www.cplusplus.com/reference/cstdio/printf/

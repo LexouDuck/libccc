@@ -15,7 +15,7 @@
 ** @{
 **	This header defines all the functions for date & time related functions.
 **
-**	@isostd{https://en.cppreference.com/w/c/chrono}
+**	@isostd{C,https://en.cppreference.com/w/c/chrono}
 **
 **	@file
 */
@@ -65,7 +65,7 @@ HEADER_CPP
 
 //! The standard type used to represent a date and time, normal precision (seconds)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/chrono/time_t}
+**	@isostd{C,https://en.cppreference.com/w/c/chrono/time_t}
 **
 **	This type stores an integer value representing a standard UNIX epoch time.
 **	That means that a `t_time` value holds a the number of seconds since
@@ -80,7 +80,7 @@ TYPEDEF_ALIAS(		t_time, TIME, PRIMITIVE)
 
 //! This struct is used to store a duration/interval with high precision (nanoseconds)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/chrono/timespec}
+**	@isostd{C,https://en.cppreference.com/w/c/chrono/timespec}
 **
 **	This 'nanotime' has an arbitrary begin point (typically the start of program
 **	execution, but it can be the last machine boot, among many other possibilities).
@@ -106,7 +106,7 @@ TYPEDEF_ALIAS(	s_nanotime, TIMESPEC, STRUCT)
 
 // TODO `t_clock`
 /*!
-**	@isostd{https://en.cppreference.com/w/c/chrono/clock_t}
+**	@isostd{C,https://en.cppreference.com/w/c/chrono/clock_t}
 **
 */
 
@@ -182,6 +182,8 @@ extern t_char const* const g_month_abbreviated[ENUMLENGTH_MONTH];
 
 //! This signed int represents a timezone offset (expressed in seconds)
 /*!
+**	@nonstd
+**
 **	This signed int is based on the UTC time system - it expresses a time difference, in seconds.
 **	The idea is to notate timezones in the commonly accepted UTC format (eg: UTC+01, UTC-06, etc)
 **	There are several defines below that are meant to be used within this type:
@@ -221,7 +223,7 @@ TYPEDEF_ALIAS(	t_timezone, TIMEZONE, PRIMITIVE)
 
 //! This struct is used to store all aspects about a certain date/time (equivalent to 'struct tm')
 /*!
-**	@isostd{https://en.cppreference.com/w/c/chrono/tm}
+**	@isostd{C,https://en.cppreference.com/w/c/chrono/tm}
 **
 **	This struct is equivalent to the ISO C library's 'struct tm',
 **	although it's sub-fields have different names:
@@ -308,7 +310,7 @@ TYPEDEF_ALIAS(	s_date, TIME_DATE, STRUCT)
 
 //! Returns the current UTC timestamp, according to the system clock
 /*!
-**	@isostd{https://en.cppreference.com/w/c/chrono/time}
+**	@isostd{C89,https://en.cppreference.com/w/c/chrono/time}
 */
 t_time					Time_Now(void);
 #define c_time			Time_Now
@@ -327,7 +329,7 @@ t_time					Time_Now(void);
 
 //! Converts the given `t_time value` to its equivalent `s_date` representation (in UTC)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/chrono/gmtime}
+**	@isostd{C89,https://en.cppreference.com/w/c/chrono/gmtime}
 */
 s_date						Time_ToDate_UTC(t_time const value);
 #define c_gmtime			Time_ToDate_UTC
@@ -335,7 +337,7 @@ s_date						Time_ToDate_UTC(t_time const value);
 
 //! Converts the given `t_time value` to its equivalent `s_date` representation (according to the system timezone)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/chrono/localtime}
+**	@isostd{C89,https://en.cppreference.com/w/c/chrono/localtime}
 */
 s_date						Time_ToDate_LocalTime(t_time const value);
 #define c_localtime			Time_ToDate_LocalTime
@@ -395,14 +397,14 @@ s_date					Date_Now(void);
 
 //! Converts the given 's_date value' to its equivalent 't_time' representation (in UTC)
 /*!
-**	@nonstd
+**	@isostd{BSD,https://linux.die.net/man/3/timegm}
 */
 t_time						Date_ToTime_UTC(s_date const* value);
 #define c_datetotime_utc	Date_ToTime_UTC
 
 //! Converts the given 's_date value' to its equivalent 't_time' representation (according to the system timezone)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/chrono/mktime}
+**	@isostd{C89,https://en.cppreference.com/w/c/chrono/mktime}
 */
 t_time						Date_ToTime_LocalTime(s_date const* value);
 #define c_mktime			Date_ToTime_LocalTime
@@ -644,7 +646,7 @@ t_char*						Date_Print(s_date const* date, t_char const* format);
 
 //! Creates a string representation of the given 'date', according to the given 'format' string
 /*!
-**	@isostd{https://en.cppreference.com/w/c/chrono/strftime}
+**	@isostd{C89,https://en.cppreference.com/w/c/chrono/strftime}
 **
 **	@see Date_Print
 */

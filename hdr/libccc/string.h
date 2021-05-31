@@ -15,7 +15,7 @@
 ** @{
 **	This header defines the common standard string (t_char*) manipulation functions.
 **
-**	@isostd{https://en.cppreference.com/w/c/string/byte#String_manipulation}
+**	@isostd{C,https://en.cppreference.com/w/c/string/byte#String_manipulation}
 **
 **	@file
 */
@@ -105,7 +105,7 @@ void				String_Delete(t_char* *a_str);
 
 //! Duplicates the given `str`
 /*!
-**	@isostd{https://en.cppreference.com/w/c/string/byte/strdup}
+**	@isostd{C23,https://en.cppreference.com/w/c/string/byte/strdup}
 **
 **	@returns
 **	A newly allocated string which is a copy of the given string `str`,
@@ -117,7 +117,7 @@ t_char*				String_Duplicate(t_char const* str);
 
 //! Duplicates the given `str`, the copy being at most `n` chars long
 /*!
-**	@isostd{https://en.cppreference.com/w/c/string/byte/strndup}
+**	@isostd{C23,https://en.cppreference.com/w/c/string/byte/strndup}
 **
 **	@returns
 **	A newly allocated string which is a copy of the given string `str`,
@@ -935,6 +935,8 @@ t_char*					String_Pad_R(t_char const* str, t_char c, t_size length);
 
 //! Creates a new string from `str`, replacing special characters with appropriate escape-sequences
 /*!
+**	@nonstd
+**
 **	Returns a new null-terminated string where every non-printable character
 **	of `str` is replaced by either its `normal` escape sequence (if available)
 **	or a '\\xFF'-type byte/unicode escape sequence if no simple short escape sequence exists.
@@ -971,6 +973,8 @@ t_char*							String_Print(t_char const* str, t_char const* charset_extra);
 
 //! Creates a new string from `str`, replacing escape-sequences with their corresponding char value
 /*!
+**	@nonstd
+**
 **	Returns a new null-terminated string where every valid backslash escape sequence
 **	is converted to its corresponding string byte.
 **	Here is the list of character escape sequences which will be properly parsed:
@@ -1006,6 +1010,8 @@ t_char*							String_Parse(t_char const* str, t_bool any_escape);
 
 //! Get an inverted version of the given string `str`
 /*!
+**	@nonstd
+**
 **	@returns
 **	A newly allocated string which is a copy of the given string `str`,
 **	but in reverse order (except for the \0 terminator, obviously).
@@ -1018,6 +1024,8 @@ t_char*					String_Reverse(t_char const* str);
 
 //! Get a new string from `dest`, with `src` inserted at the given `index`
 /*!
+**	@nonstd
+**
 **	@returns
 **	A newly allocated string from the given string `dest`,
 **	in which the string `src` has been inserted at the given `index`.
@@ -1028,10 +1036,13 @@ t_char*					String_Insert(t_char const* dest, t_char const* src, t_size index);
 
 
 
+//! Get a subsection which is `n` chars long of the given string `str`, starting at `index`
 /*!
+**	@nonstd
+**
 **	@returns
 **	A newly allocated string which is a subsection of `str`,
-**	starting at t_char index `index` and copying `n` characters.
+**	starting at position `index` and copying `n` characters.
 */
 _MALLOC()
 t_char*					String_Sub(t_char const* str, t_size index, t_size n);
@@ -1047,6 +1058,8 @@ t_char*					String_Sub(t_char const* str, t_size index, t_size n);
 
 //! Calls a custom function `f` for each character of the given string `str`
 /*!
+**	@nonstd
+**
 **	Iterates upon each character of the given string `str`,
 **	applying the given function `f` to each of its characters.
 */
@@ -1055,6 +1068,8 @@ void					String_Iterate(t_char* str, void (*f)(t_char* c));
 
 //! Calls a custom function `f` for each character of the given string `str`
 /*!
+**	@nonstd
+**
 **	Iterates upon each character of the given string `str`, (with index information)
 **	applying the function `f` to each of its chars.
 */
@@ -1065,6 +1080,8 @@ void					String_Iterate_I(t_char* str, void (*f)(t_char* c, t_size index));
 
 //! Creates a new string with each character mapped to another, using the custom function `map`
 /*!
+**	@nonstd
+**
 **	@returns
 **	A new string by iterating upon the string `str`,
 **	applying the function `map` to each of its characters.
@@ -1075,6 +1092,8 @@ t_char*					String_Map(t_char const* str, t_char (*map)(t_char c));
 
 //! Creates a new string with each character mapped to another, using the custom function `map`
 /*!
+**	@nonstd
+**
 **	@returns
 **	A new string by iterating upon the string `str`, (with index information)
 **	applying the function `map` to each of its characters.
@@ -1087,6 +1106,8 @@ t_char*					String_Map_I(t_char const* str, t_char (*map)(t_char c, t_size index
 
 //! Creates a new string from `str`, only keeping chars when the custom function `filter` returns `TRUE`
 /*!
+**	@nonstd
+**
 **	@returns
 **	A new null-terminated string by iterating upon the string `str`,
 **	removing any chars for which the given `filter` function returns `FALSE`.
@@ -1097,6 +1118,8 @@ t_char*					String_Filter(t_char const* str, t_bool (*filter)(t_char c)); // TOD
 
 //! Creates a new string from `str`, only keeping chars when the custom function `filter` returns `TRUE`
 /*!
+**	@nonstd
+**
 **	@returns
 **	A new string by iterating upon the string `str`, (with index information)
 **	removing any chars for which the given `filter` function returns `FALSE`.
