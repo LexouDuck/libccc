@@ -104,13 +104,7 @@ HEADER_CPP
 
 #else
 //! The behavior to handle an error case
-/*!
-**	@param ERRORTYPE	The type of error to emit (an `e_cccerror` value)
-**	@param CONDITION	The condition to check the error
-**	@param ...			The actions(s) to perform after handling (`return`, `break`, etc)
-**			A variadic argument is used here to allow use of the comma operator.
-*/
-#define HANDLE_ERROR(ERRORTYPE, CONDITION, ACTION) \
+#define HANDLE_ERROR_INITIAL(ERRORTYPE, CONDITION) \
 	if (CONDITION)												\
 	{															\
 		Error_Set(ERROR_##ERRORTYPE);							\
@@ -120,17 +114,24 @@ HEADER_CPP
 				C_RED"ERROR"C_RESET": %s -> %s\n", __func__,	\
 				Error_GetMessage(ERROR_##ERRORTYPE))			\
 		}														\
-		ACTION													\
+
+#define HANDLE_ERROR_FINAL() \
 	}															\
 
-//! The behavior to handle an error case, with a custom message
 /*!
 **	@param ERRORTYPE	The type of error to emit (an `e_cccerror` value)
 **	@param CONDITION	The condition to check the error
 **	@param ACTION		The actions(s) to perform after handling (`return`, `break`, etc)
-**	@param ...			The custom error message (format string and args, like `printf()`)
+**			A variadic argument is used here to allow use of the comma operator.
 */
-#define HANDLE_ERROR_SF(ERRORTYPE, CONDITION, ACTION, ...) \
+#define HANDLE_ERROR(ERRORTYPE, CONDITION, ACTION) \
+		HANDLE_ERROR_INITIAL(ERRORTYPE, CONDITION)				\
+		ACTION													\
+		HANDLE_ERROR_FINAL()									\
+
+
+
+#define HANDLE_ERROR_SF_INITIAL(ERRORTYPE, CONDITION, ...) \
 	if (CONDITION)													\
 	{																\
 		Error_Set(ERROR_##ERRORTYPE);								\
@@ -143,8 +144,21 @@ HEADER_CPP
 				tmp_##ERRORTYPE)									\
 			String_Delete(&tmp_##ERRORTYPE);						\
 		}															\
-		ACTION														\
+
+#define HANDLE_ERROR_SF_FINAL() \
 	}																\
+
+//! The behavior to handle an error case, with a custom message
+/*!
+**	@param ERRORTYPE	The type of error to emit (an `e_cccerror` value)
+**	@param CONDITION	The condition to check the error
+**	@param ACTION		The actions(s) to perform after handling (`return`, `break`, etc)
+**	@param ...			The custom error message (format string and args, like `printf()`)
+*/
+#define HANDLE_ERROR_SF(ERRORTYPE, CONDITION, ACTION, ...) \
+	HANDLE_ERROR_SF_INITIAL(ERRORTYPE, CONDITION, __VA_ARGS__)		\
+	ACTION															\
+	HANDLE_ERROR_SF_FINAL()											\
 
 #endif
 
