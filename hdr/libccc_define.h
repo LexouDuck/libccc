@@ -108,17 +108,17 @@ HEADER_CPP
 // Check windows
 #if (defined(_WIN32) || defined(_WIN64))
 	#if (defined(_WIN64))
-		#define _IS_64BIT	(1)	//!< If this is a 64-bit platform, then this is defined with value (1)
+		#define _IS_64BIT	1	//!< If this is a 64-bit platform, then this is defined with value (1)
 	#else
-		#define _IS_32BIT	(1)	//!< If this is a 32-bit platform, then this is defined with value (1)
+		#define _IS_32BIT	1	//!< If this is a 32-bit platform, then this is defined with value (1)
 	#endif
 
 // Check GCC
 #elif (__GNUC__)
 	#if (__x86_64__ || __ppc64__)
-		#define _IS_64BIT	(1)	//!< If this is a 64-bit platform, then this is defined with value (1)
+		#define _IS_64BIT	1	//!< If this is a 64-bit platform, then this is defined with value (1)
 	#else
-		#define _IS_32BIT	(1)	//!< If this is a 32-bit platform, then this is defined with value (1)
+		#define _IS_32BIT	1	//!< If this is a 32-bit platform, then this is defined with value (1)
 	#endif
 
 #endif
@@ -216,33 +216,72 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
+/*! @def __asm__
+**	@isostd{C89,https://en.cppreference.com/w/c/language/asm}
+*/
+/*! @def __inline__
+**	@isostd{C99,https://en.cppreference.com/w/c/language/inline}
+*/
+/*! @def __restrict__
+**	@isostd{C99,https://en.cppreference.com/w/c/language/restrict}
+*/
+
+/*! @def __offsetof__
+**	@isostd{C89,https://en.cppreference.com/w/c/types/offsetof}
+*/
+/*! @def __sizeof__
+**	@isostd{C89,https://en.cppreference.com/w/c/types/sizeof}
+*/
+/*! @def __typeof__
+**	@isostd{GNU,https://gcc.gnu.org/onlinedocs/gcc/Typeof.html}
+*/
+/*! @def __alignof__
+**	@isostd{C11,https://en.cppreference.com/w/c/language/_Alignof}
+*/
+/*! @def __alignas__
+**	@isostd{C11,https://en.cppreference.com/w/c/language/_Alignas}
+*/
+
 #ifndef __GNUC__
 #if (defined(__NOSTD__))
 
-	#define __asm__			asm
-	#define __inline__		inline
-	#define __restrict__	restrict
-	#define __nameof__(x)	#x
-	#define __typeof__(x)	typeof(x)
-	#define __alignof__(x)	alignof(x)
+	#define __asm__      asm
+	#define __inline__   inline
+	#define __restrict__ restrict
+
+	#define __offsetof__(STRUCT, MEMBER)	offsetof(STRUCT, MEMBER)
+	#define __sizeof__(X)	sizeof(X)
+	#define __typeof__(X)	typeof(X)
+	#define __alignof__(X)	_Alignof(X)
+	#define __alignas__(X)	_Alignas(X)
+
+	#ifndef offsetof
+	#define offsetof(STRUCT, MEMBER)	((size_t)((char*)&((STRUCT*)0)->MEMBER - (char*)0))
+	#endif
 
 #elif (defined(_MSC_VER) || defined(__SWIG__))
 
-	#define __asm__			__asm
-	#define __inline__		__inline
-	#define __restrict__	__restrict
-	#define __nameof__(x)	#x
-	#define __typeof__(x)	decltype(x)
-	#define __alignof__(x)	_Alignof(x)
+	#define __asm__      __asm
+	#define __inline__   __inline
+	#define __restrict__ __restrict
+
+	#define __offsetof__(STRUCT, MEMBER)	offsetof(STRUCT, MEMBER)
+	#define __sizeof__(X)	sizeof(X)
+	#define __typeof__(X)	decltype(X)
+	#define __alignof__(X)	_Alignof(X)
+	#define __alignas__(X)	_Alignas(X)
 
 #else
 
-	#define __asm__			asm
-	#define __inline__		inline
-	#define __restrict__	restrict
-	#define __nameof__(x)	nameof(x)
-	#define __typeof__(x)	typeof(x)
-	#define __alignof__(x)	alignof(x)
+	#define __asm__      asm
+	#define __inline__   inline
+	#define __restrict__ restrict
+
+	#define __offsetof__(STRUCT, MEMBER)	offsetof(STRUCT, MEMBER)
+	#define __sizeof__(X)	sizeof(X)
+	#define __typeof__(X)	typeof(X)
+	#define __alignof__(X)	alignof(X)
+	#define __alignas__(X)	alignas(X)
 
 #endif
 #endif
