@@ -233,7 +233,7 @@ contexts:
     - match: \s*\b(compl|not|not_eq|and|and_eq|or|or_eq|xor|xor_eq|bitand|bitor)\b
       captures:
         1: keyword.operator.word.c
-    - match: \s*\b(sizeof|defined)\b
+    - match: \s*\b(sizeof|offsetof|defined)\b
       captures:
         1: keyword.operator.word.c
     - match: \s*\b(_Alignas|alignas|alignof|_Alignof|_Generic|_Static_assert|static_assert)\b
@@ -242,9 +242,6 @@ contexts:
     - match: \s*\b((__)?(typeof)(__)?)\b
       captures:
         1: keyword.operator.extension.c
-    - match: \s*\b(typeof|nameof)\b
-      captures:
-        1: keyword.operator.word.++c
     - match: (\*|\$)(?=[A-Za-z_]\w*)
       scope: keyword.operator.getvalue.++c
     - match: (\&|\@)(?=[A-Za-z_]\w*)
@@ -973,6 +970,7 @@ contexts:
         - meta_scope: meta.preprocessor.def.c
         - match: (?<=$\n)(?<!\\$\n)
           pop: true
+        - include: ppline-include-innards
 
   ppline-pragma-mark:
     - match: '(^\s*(#)\s*(pragma\s+mark)\b)[\s&&[^\n]]*'
