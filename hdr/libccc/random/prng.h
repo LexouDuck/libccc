@@ -35,28 +35,30 @@ HEADER_CPP
 */
 
 /*!
-**	Pseudo-random number generator. Modulus is `2^31`
+**	Pseudo-random number generator (Linear Congruential Generator). Modulus is `2^31`
 **
 **	- `PRNG_OFFSET` and `PRNG_MODULUS` are mutually prime.
 **	- `PRNG_CEIL_SQRT_MOD % 4` should be equal to 1 because `PRNG_MODULUS` is a multiple of 4
 **	- For all P prime divisors of `PRNG_MODULUS`, `a % p = 1`
 **	- `PRNG_OFFSET` should be small compared to the two other parameters
 **	- The bitwise AND `&` operator is applied, which explains the choice of modulus
-**		to be `2^31 - 1` in implementation (could also be called RAND_MAX)
+**		to be `2^31 - 1` in implementation (could also be called `RAND_MAX`)
 **
 **	Basic RNG formula is:
 **		`next_value = (PRNG_CEIL_SQRT_MOD * old_nb + PRNG_OFFSET) % PRNG_MODULUS`
+**
+**	@see https://www.freecodecamp.org/news/random-number-generator/
 */
 //!@{
 
 //! The default random seed for pseudo-random number generation
 #define PRNG_SEED_DEFAULT	(0x93E21FD5)
 
-//! TODO document this
+//! Modulus for the Linear Congruential RNG
 #define PRNG_MODULUS		(0x7FFFFFFF)
-//! TODO document this
+//! The value of the multiplier for the Linear Congruential RNG
 #define PRNG_CEIL_SQRT_MOD	(46341)
-//! TODO document this
+//! The value of the increment for the Linear Congruential RNG
 #define PRNG_OFFSET			(2835)
 
 //!@}
