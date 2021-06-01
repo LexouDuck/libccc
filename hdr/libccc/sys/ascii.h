@@ -314,7 +314,7 @@ t_bool					ASCII_IsValid(t_ascii c);
 **	Check if the given char `c` is contained in the given 'charset'
 **
 **	@param	c		The character to check
-**	@param	charset	String, the set of characters to look through (the '\0' terminator ends the charset)
+**	@param	charset	The set of characters to look through
 **	@returns
 **	`TRUE` if the given char `c` is contained within the given `charset` array,
 **	otherwise returns `FALSE`.

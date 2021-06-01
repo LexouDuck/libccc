@@ -221,22 +221,22 @@ TYPEDEF_ALIAS(	t_timezone, TIMEZONE, PRIMITIVE)
 
 
 
-//! This struct is used to store all aspects about a certain date/time (equivalent to 'struct tm')
+//! This struct is used to store all aspects about a certain date/time (equivalent to `struct tm`)
 /*!
 **	@isostd{C,https://en.cppreference.com/w/c/chrono/tm}
 **
-**	This struct is equivalent to the ISO C library's 'struct tm',
+**	This struct is equivalent to the ISO C library's `struct tm`,
 **	although it's sub-fields have different names:
-**		tm_sec	 ->	sec
-**		tm_min	 ->	min
-**		tm_hour	 ->	hour
-**		tm_mday	 ->	day_month
-**		tm_mon	 ->	month
-**		tm_year	 ->	year
-**		tm_wday	 ->	day_week
-**		tm_yday	 ->	day_year
-**		tm_isdst ->	is_dst
-**		tm_gmtoff->	offset (tm_gmtoff is not standard, GNU extension)
+**		`tm_sec`	->	`sec`
+**		`tm_min`	->	`min`
+**		`tm_hour`	->	`hour`
+**		`tm_mday`	->	`day_month`
+**		`tm_mon`	->	`month`
+**		`tm_year`	->	`year`
+**		`tm_wday`	->	`day_week`
+**		`tm_yday`	->	`day_year`
+**		`tm_isdst`	->	`is_dst`
+**		`tm_gmtoff`	->	`offset` (`tm_gmtoff` is not standard, GNU extension)
 */
 typedef struct date
 {
@@ -248,7 +248,7 @@ typedef struct date
 	t_u8		day_month;	//!< [1,31] Day of the month
 	t_s32		day_year;	//!< [0,364(365)] Amount of days since January 1 (max value is 365 on leap years, otherwise 364)
 	e_weekday	day_week;	//!< [0,6] Amount of days since Sunday
-	t_bool		is_dst;		//!< If #TRUE, then Daylight Savings Time is on
+	t_bool		is_dst;		//!< If `TRUE`, then Daylight Savings Time is on
 	t_timezone	offset;		//!< [UTC-12,UTC+12] The timezone offset of this date (adjusted for DST), expressed in seconds (ie: range is [3600*-12, 3600*+12]
 }				s_date;
 TYPEDEF_ALIAS(	s_date, TIME_DATE, STRUCT)
@@ -412,14 +412,14 @@ t_time						Date_ToTime_LocalTime(s_date const* value);
 
 
 
-//! Converts the given 's_date' struct to its ISO STD LIBC 'struct tm' equivalent
+//! Converts the given 's_date' struct to its ISO STD LIBC `struct tm` equivalent
 /*!
 **	@nonstd
 */
 struct tm					Date_ToSTDC(s_date const* date);
 #define c_datetostdc		Date_ToSTDC
 
-//! Converts the given ISO STD LIBC 'struct tm' to its 's_date' struct equivalent
+//! Converts the given ISO STD LIBC `struct tm` to its 's_date' struct equivalent
 /*!
 **	@nonstd
 */
@@ -666,7 +666,7 @@ t_size						Date_Print_N(t_char* dest, t_size max, s_date const* date, t_char co
 ** ************************************************************************** *|
 */
 
-//! Returns #TRUE if the given `date` is indeed a valid date according to the Gregorian/Astronomical calendar
+//! Returns `TRUE` if the given `date` is indeed a valid date according to the Gregorian/Astronomical calendar
 /*!
 **	@nonstd
 */
@@ -686,8 +686,9 @@ void	Date_MakeValid(s_date* date);
 **
 **	@param	month	The month to check
 **	@param	year	The year to check
-**	@returns `30` or `31` for most `month` values, the exception is:
-**		when `month == MONTH_FEBRUARY`, will return `28`, or `29` if `Date_IsLeapYear(year)`.
+**	@returns
+**	`30` or `31` for most `month` values, the one exception being february:
+**	when `month == MONTH_FEBRUARY`, will return `28`, or `29` if `Date_IsLeapYear(year)`.
 */
 t_uint		Date_DaysInMonth(e_month month, t_s32 year);
 
@@ -695,13 +696,14 @@ t_uint		Date_DaysInMonth(e_month month, t_s32 year);
 /*!
 **	@nonstd
 **
-**	@returns the day of the week for the given `date` (according to `date->day_month` or `date->day_year`, as available)
+**	@returns
+**	The day of the week for the given `date` (according to `date->day_month` or `date->day_year`, as available)
 */
 e_weekday	Date_DayOfTheWeek(s_date* date);
 
 
 
-//! Returns #TRUE if the given year is a leap year
+//! Returns `TRUE` if the given year is a leap year
 /*!
 **	@nonstd
 **
@@ -709,7 +711,7 @@ e_weekday	Date_DayOfTheWeek(s_date* date);
 */
 t_bool		Date_IsLeapYear(t_s32 year);
 
-//! Returns #TRUE if the given has a leap second on its last day
+//! Returns `TRUE` if the given has a leap second on its last day
 /*!
 **	@nonstd, see https://en.wikipedia.org/wiki/Leap_second
 **

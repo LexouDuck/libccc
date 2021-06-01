@@ -41,7 +41,8 @@ HEADER_CPP
 **
 **	This is equivalent to the STD C `strerror()` functions (thread-safe).
 **
-**	@returns A newly allocated string which contains the standard errno message.
+**	@returns
+**	A newly allocated string which contains the standard errno message.
 */
 t_char*							Error_STDC(int errno_value);
 #define c_strerror				Error_STDC

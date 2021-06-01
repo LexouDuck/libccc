@@ -90,7 +90,7 @@ HEADER_CPP
 //! These are convienence macros, to check for different C standards in preprocessor `#if` statements.
 //!@{
 #define __STDC_VERSION_ANSI__	0l	//!< NOTE: when only ANSI/C89/C90 support is present, __STDC_VERSION__ will not be defined !
-#define __STDC_VERSION_C94__	199409l
+#define __STDC_VERSION_C95__	199409l
 #define __STDC_VERSION_C99__	199901l
 #define __STDC_VERSION_C11__	201112l
 #define __STDC_VERSION_C17__	201710l

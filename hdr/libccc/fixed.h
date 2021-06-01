@@ -418,11 +418,12 @@ t_s128							Q128_FractionPart(t_q128 number);
 
 
 
-//! Returns 1(TRUE) if the 2 given floating-point values are exactly equal (operator: `==`)
+//! Returns `TRUE` if the 2 given floating-point values are exactly equal (operator: `==`)
 /*!
 **	@param	number1	The first value to check for (exact) equality
 **	@param	number2	The second value to check for (exact) equality
-**	@returns 1(TRUE) if the 2 given floating-point values are exactly equal, 0(FALSE) otherwise.
+**	@returns
+**	`TRUE` if the 2 given floating-point values are exactly equal, `FALSE` otherwise.
 */
 //!@{
 #define					Fixed_Equals	CONCAT(FLOAT_TYPE,_Equals)
@@ -441,12 +442,13 @@ t_bool					Q128_Equals(t_q128 number1, t_q128 number2);
 
 
 
-//! Returns 1(TRUE) if the 2 given floating-point values are close enough to be considered equal (operator: `=~`, using FLOAT_APPROX)
+//! Returns `TRUE` if the 2 given floating-point values are close enough to be considered equal (operator: `=~`, using FLOAT_APPROX)
 /*!
 **	@param	number1	The first value to check for (approximate) equality
 **	@param	number2	The second value to check for (approximate) equality
-**	@returns 1(TRUE) if the 2 given floating-point values are close enough to be considered equal
-**		(using FLOAT_BIAS as a comparison margin), or 0(FALSE) otherwise.
+**	@returns
+**	`TRUE` if the 2 given floating-point values are close enough to be considered equal
+**	(using `FLOAT_BIAS` as a comparison margin), or `FALSE` otherwise.
 */
 //!@{
 #define					Fixed_EqualsApprox	CONCAT(FLOAT_TYPE,_EqualsApprox)
@@ -465,9 +467,9 @@ t_bool					Q128_EqualsApprox(t_q128 number1, t_q128 number2);
 
 
 
-// TODO Fixed_LessThan
+// TODO Fixed_LessThan()
 
-// TODO Fixed_GreaterThan
+// TODO Fixed_GreaterThan()
 
 
 
@@ -482,7 +484,8 @@ t_bool					Q128_EqualsApprox(t_q128 number1, t_q128 number2);
 //! Get the string decimal representation of a signed fixed-point number
 /*!
 **	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`
+**	@returns
+**	A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					Fixed_ToString	CONCAT(FIXED_TYPE,_ToString)
@@ -504,7 +507,8 @@ _MALLOC()	t_char*		Q128_ToString(t_q128 number); // TODO implement
 //! Get the string hexadecimal representation of a signed fixed-point number
 /*!
 **	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`
+**	@returns
+**	A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					Fixed_ToString_Hex	CONCAT(FIXED_TYPE,_ToString_Hex)
@@ -526,7 +530,8 @@ _MALLOC()	t_char*		Q128_ToString_Hex(t_q128 number); // TODO implement
 //! Get the string binary representation of a signed fixed-point number
 /*!
 **	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`
+**	@returns
+**	A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					Fixed_ToString_Bin	CONCAT(FIXED_TYPE,_ToString_Bin)
@@ -549,7 +554,8 @@ _MALLOC()	t_char*		Q128_ToString_Bin(t_q128 number); // TODO implement
 /*!
 **	@param	number	The number to convert to string
 **	@param	base	The numerical base to use to represent the given `number`
-**	@returns A newly allocated string, converted from the given `number`
+**	@returns
+**	A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					Fixed_ToString_Base	CONCAT(FIXED_TYPE,_ToString_Base)
@@ -579,8 +585,9 @@ _MALLOC()	t_char*		Q128_ToString_Base(t_q128 number, t_char const* base); // TOD
 //! Parses the string decimal representation of a signed fixed-point number
 /*!
 **	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`,
-**		or `NULL` if there was a parsing error.
+**	@returns
+**	A newly allocated string, converted from the given `number`,
+**	or `NULL` if there was a parsing error.
 */
 //!@{
 #define					Fixed_FromString	CONCAT(FIXED_TYPE,_FromString)
@@ -602,8 +609,9 @@ t_q128					Q128_FromString(t_char const* str); // TODO implement
 //! Parses the string hexadecimal representation of a signed fixed-point number
 /*!
 **	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`,
-**		or `NULL` if there was a parsing error.
+**	@returns
+**	A newly allocated string, converted from the given `number`,
+**	or `NULL` if there was a parsing error.
 */
 //!@{
 #define					Fixed_FromString_Hex	CONCAT(FIXED_TYPE,_FromString_Hex)
@@ -625,8 +633,9 @@ t_q128					Q128_FromString_Hex(t_char const* str); // TODO implement
 //! Parses the string binary representation of a signed fixed-point number
 /*!
 **	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`,
-**		or `NULL` if there was a parsing error.
+**	@returns
+**	A newly allocated string, converted from the given `number`,
+**	or `NULL` if there was a parsing error.
 */
 //!@{
 #define					Fixed_FromString_Bin	CONCAT(FIXED_TYPE,_FromString_Bin)
@@ -649,8 +658,9 @@ t_q128					Q128_FromString_Bin(t_char const* str); // TODO implement
 /*!
 **	@param	number	The number to convert to string
 **	@param	base	The numerical base used to represent the given `number`
-**	@returns A newly allocated string, converted from the given `number`,
-**		or `NULL` if there was a parsing error.
+**	@returns
+**	A newly allocated string, converted from the given `number`,
+**	or `NULL` if there was a parsing error.
 */
 //!@{
 #define					Fixed_FromString_Base	CONCAT(FIXED_TYPE,_FromString_Base)

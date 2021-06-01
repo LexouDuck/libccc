@@ -260,6 +260,9 @@ HEADER_CPP
 **	|  "L"	|				|						| long double	|		|			|		|				|
 **	|_______|_______________|_______________________|_______________|_______|___________|_______|_______________|
 **	```
+**
+**	@returns
+**	A newly allocated string, constructed from the given `format` string and arguments
 */
 _FORMAT(printf, 1, 2)
 _MALLOC()
@@ -283,10 +286,14 @@ t_char*					String_Format_VA(t_char const* format, va_list args);
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/io/snprintf}
 **
-**	@param	dest	The destination buffer, in which to write the resulting string (if `NULL`, does not write anything and simply returns the length)
-**	@param	max		The maximum amount of characters to write to `dest`, including the '\0' null terminator
-**	@param	format	The format string used to construct the resulting date string: learn more here https://www.cplusplus.com/reference/cstdio/printf/
-**	@returns the amount of characters in the constructed format string, regardless of `max` size
+**	@param	dest	The destination buffer, in which to write the resulting string
+**					NOTE: if `NULL`, does not write anything and simply returns the length
+**	@param	max		The maximum amount of characters to write to `dest`,
+**					including the `'\0'` null terminator
+**	@param	format	The format string used to construct the resulting date string.
+**					You can learn more here: https://www.cplusplus.com/reference/cstdio/printf/
+**	@returns
+**	The amount of characters in the constructed format string, regardless of `max` size
 */
 _FORMAT(printf, 3, 4)
 t_size						String_Format_N(t_char* dest, t_size max, t_char const* format, ...);

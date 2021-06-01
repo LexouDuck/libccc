@@ -256,7 +256,9 @@ t_bool	KVT_HasObjectItem_CaseSensitive	(s_kvt const* object, t_char const* key);
 **	@param	object		The KVT object to get an item from
 **	@param	format_path	The format string with an accessor pattern (example: `KVT_Get(json, "[\"subarray\"][3][\"name\"]")`)
 **	@param	...			The variadic arguments list which goes along with `format_path` (works like printf)
-**	@returns the KVT object gotten from the given accessor path, or NULL if the path or KVT was invalid.
+**	@returns
+**	The KVT object gotten from the given accessor path,
+**	or `NULL` if the given path or KVT object was invalid.
 */
 s_kvt*	KVT_Get(s_kvt const* object, t_char const* format_path, ...)
 _FORMAT(printf, 2, 3);

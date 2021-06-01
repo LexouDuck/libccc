@@ -132,8 +132,8 @@ t_char*	TOML_ToString_Buffered(s_toml const* item, t_sint prebuffer, t_bool fmt)
 
 //! Render a `s_toml` entity to text using a buffer already allocated in memory with given length.
 /*!
-**	@returns 1(TRUE) on success and 0(FALSE) on failure.
-**	NOTE: s_toml is not always 100% accurate in estimating how much memory it will use, so to be safe allocate 5 bytes more than you actually need.
+**	@returns
+**	`TRUE` on success and `FALSE` on failure.
 */
 t_bool	TOML_ToString_Preallocated(s_toml* item, t_char* buffer, t_sint const length, t_bool const format);
 #define TOML_Print_Preallocated		TOML_ToString_Preallocated

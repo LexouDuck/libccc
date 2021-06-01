@@ -394,8 +394,9 @@ t_sint					String_Compare_N_IgnoreCase(t_char const* str1, t_char const* str2, t
 /*!
 **	@nonstd
 **
-**	@returns `1` if the given string `str` contains at least one occurence
-**			of any character found inside `charset`, otherwise returns `0`.
+**	@returns
+**	`TRUE` if the given string `str` contains at least one occurence
+**	of any character found inside `charset`, otherwise returns `FALSE`.
 */
 t_bool						String_Has(t_char const* str, t_char const* charset);
 #define c_strhas			String_Has //!< @alias{String_Has}
@@ -404,8 +405,9 @@ t_bool						String_Has(t_char const* str, t_char const* charset);
 /*!
 **	@nonstd
 **
-**	@returns `1` if all the characters inside the given string `str`
-**			are contained within the string `charset`, otherwise returns `0`.
+**	@returns
+**	`TRUE` if all the characters inside the given string `str`
+**	are contained within the string `charset`, otherwise returns `FALSE`.
 */
 t_bool						String_HasOnly(t_char const* str, t_char const* charset);
 #define c_strhasonly		String_HasOnly //!< @alias{String_HasOnly}
@@ -421,7 +423,8 @@ t_bool						String_HasOnly(t_char const* str, t_char const* charset);
 /*!
 **	@nonstd
 **
-**	@returns the amount of occurences of t_char `c` in the given string `str`.
+**	@returns
+**	The amount of occurences of t_char `c` in the given string `str`.
 */
 t_size						String_Count_Char(t_char const* str, t_char c);
 #define c_strcount_chr		String_Count_Char //!< @alias{String_Count_Char}
@@ -430,7 +433,8 @@ t_size						String_Count_Char(t_char const* str, t_char c);
 /*!
 **	@nonstd
 **
-**	@returns the amount of occurences of chars in `charset` in the given string `str`.
+**	@returns
+**	The amount of occurences of chars in `charset` in the given string `str`.
 */
 t_size						String_Count_Charset(t_char const* str, t_char const* charset);
 #define c_strcount_cset	S	tring_Count_Charset //!< @alias{String_Count_Charset}
@@ -439,7 +443,8 @@ t_size						String_Count_Charset(t_char const* str, t_char const* charset);
 /*!
 **	@nonstd
 **
-**	@returns the amount of occurences of `query` in the given string `str`.
+**	@returns
+**	The amount of occurences of `query` in the given string `str`.
 */
 t_size						String_Count_String(t_char const* str, t_char const* query);
 #define c_strcount_str		String_Count_String //!< @alias{String_Count_String}
@@ -456,8 +461,9 @@ t_size						String_Count_String(t_char const* str, t_char const* query);
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/string/byte/strchr}
 **
-**	@returns the first occurence of the given char `c` within `str`,
-**			or `NULL` if no char matched.
+**	@returns
+**	The first occurence of the given char `c` within `str`,
+**	or `NULL` if no char matched.
 */
 t_char*							String_Find_Char(t_char const* str, t_char c);
 #define c_strchr				String_Find_Char //!< @alias{String_Find_Char}
@@ -466,8 +472,9 @@ t_char*							String_Find_Char(t_char const* str, t_char c);
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/string/byte/strpbrk}
 **
-**	@returns the first occurence of any char in the given `charset` within `str`,
-**			or `NULL` if no char matched.
+**	@returns
+**	The first occurence of any char in the given `charset` within `str`,
+**	or `NULL` if no char matched.
 */
 t_char*							String_Find_Charset(t_char const* str, t_char const* charset);
 #define c_strpbrk				String_Find_Charset //!< @alias{String_Find_Charset}
@@ -477,8 +484,9 @@ t_char*							String_Find_Charset(t_char const* str, t_char const* charset);
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/string/byte/strstr}
 **
-**	@returns the first occurence of the string `query` inside the given string `str`,
-**			or `NULL` if nothing matched.
+**	@returns
+**	The first occurence of the string `query` inside the given string `str`,
+**	or `NULL` if nothing matched.
 */
 t_char*							String_Find_String(t_char const* str, t_char const* query);
 #define c_strstr				String_Find_String //!< @alias{String_Find_String}
@@ -489,8 +497,9 @@ t_char*							String_Find_String(t_char const* str, t_char const* query);
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/string/byte/strrchr}
 **
-**	@returns the last occurence of the given char `c` within `str`,
-**			or `NULL` if no char matched.
+**	@returns
+**	The last occurence of the given char `c` within `str`,
+**	or `NULL` if no char matched.
 */
 t_char*							String_Find_R_Char(t_char const* str, t_char c);
 #define c_strrchr				String_Find_R_Char //!< @alias{String_Find_R_Char}
@@ -500,8 +509,9 @@ t_char*							String_Find_R_Char(t_char const* str, t_char c);
 /*!
 **	@nonstd
 **
-**	@returns the last occurence of any char in the given `charset` within `str`,
-**			or `NULL` if no char matched.
+**	@returns
+**	The last occurence of any char in the given `charset` within `str`,
+**	or `NULL` if no char matched.
 */
 t_char*							String_Find_R_Charset(t_char const* str, t_char const* charset);
 #define c_strrpbrk				String_Find_R_Charset //!< @alias{String_Find_R_Charset}
@@ -512,8 +522,9 @@ t_char*							String_Find_R_Charset(t_char const* str, t_char const* charset);
 /*!
 **	@isostd{ext,https://linux.die.net/man/3/strrstr}
 **
-**	@returns the last occurence of the string `query` inside the given string `str`,
-**			or `NULL` if nothing matched.
+**	@returns
+**	The last occurence of the string `query` inside the given string `str`,
+**	or `NULL` if nothing matched.
 */
 t_char*							String_Find_R_String(t_char const* str, t_char const* query);
 #define c_strrstr				String_Find_R_String //!< @alias{String_Find_R_String}
@@ -525,8 +536,9 @@ t_char*							String_Find_R_String(t_char const* str, t_char const* query);
 /*!
 **	@nonstd
 **
-**	@returns the first occurence of the given char `c` inside the given string `str`,
-**			or `NULL` if no char matched. (checks only `n` chars in `str`).
+**	@returns
+**	The first occurence of the given char `c` inside the given string `str`,
+**	or `NULL` if no char matched. (checks only `n` chars in `str`).
 */
 t_char*							String_Find_N_Char(t_char const* str, t_char c, t_size n);
 #define c_strnchr				String_Find_N_Char //!< @alias{String_Find_N_Char}
@@ -535,8 +547,9 @@ t_char*							String_Find_N_Char(t_char const* str, t_char c, t_size n);
 /*!
 **	@nonstd
 **
-**	@returns the first occurence of any char from `charset` inside the given string `str`,
-**			or `NULL` if no char matched. (checks only `n` chars in `str`).
+**	@returns
+**	The first occurence of any char from `charset` inside the given string `str`,
+**	or `NULL` if no char matched. (checks only `n` chars in `str`).
 */
 t_char*							String_Find_N_Charset(t_char const* str, t_char const* charset, t_size n);
 #define c_strnpbrk				String_Find_N_Charset //!< @alias{String_Find_N_Charset}
@@ -546,8 +559,9 @@ t_char*							String_Find_N_Charset(t_char const* str, t_char const* charset, t_
 /*!
 **	@nonstd
 **
-**	@returns the first occurence of the string `query` inside the given string `str`,
-**			or `NULL` if nothing matched. (checks only `n` chars in `str`).
+**	@returns
+**	The first occurence of the string `query` inside the given string `str`,
+**	or `NULL` if nothing matched. (checks only `n` chars in `str`).
 */
 t_char*							String_Find_N_String(t_char const* str, t_char const* query, t_size n);
 #define c_strnstr				String_Find_N_String //!< @alias{String_Find_N_String}
@@ -558,8 +572,9 @@ t_char*							String_Find_N_String(t_char const* str, t_char const* query, t_siz
 /*!
 **	@nonstd
 **
-**	@returns the index of the first occurrence at which `c` is found in `str`,
-**			or -1 if `c` does not exist in `str`.
+**	@returns
+**	The index of the first occurrence at which `c` is found in `str`,
+**	or -1 if `c` does not exist in `str`.
 */
 t_sintmax							String_IndexOf_Char(t_char const* str, t_char c);
 #define c_strichr					String_IndexOf_Char //!< @alias{String_IndexOf_Char}
@@ -568,8 +583,9 @@ t_sintmax							String_IndexOf_Char(t_char const* str, t_char c);
 /*!
 **	@nonstd
 **
-**	@returns the index of the first occurrence at which `c` is found in `str`,
-**			or -1 if `c` does not exist in `str`.
+**	@returns
+**	The index of the first occurrence at which `c` is found in `str`,
+**	or -1 if `c` does not exist in `str`.
 */
 t_sintmax							String_IndexOf_Charset(t_char const* str, t_char const* charset);
 #define c_stripbrk					String_IndexOf_Charset //!< @alias{String_IndexOf_Charset}
@@ -579,8 +595,9 @@ t_sintmax							String_IndexOf_Charset(t_char const* str, t_char const* charset)
 /*!
 **	@nonstd
 **
-**	@returns the index of the first occurrence at which `query` is found in `str`,
-**			or -1 if `query` does not exist in str.
+**	@returns
+**	The index of the first occurrence at which `query` is found in `str`,
+**	or -1 if `query` does not exist in str.
 */
 t_sintmax							String_IndexOf_String(t_char const* str, t_char const* query);
 #define c_stristr					String_IndexOf_String //!< @alias{String_IndexOf_String}
@@ -591,8 +608,9 @@ t_sintmax							String_IndexOf_String(t_char const* str, t_char const* query);
 /*!
 **	@nonstd
 **
-**	@returns the last occurence of the given char `c` within `str`,
-**			or `NULL` if no char matched.
+**	@returns
+**	The last occurence of the given char `c` within `str`,
+**	or `NULL` if no char matched.
 */
 t_sintmax							String_IndexOf_R_Char(t_char const* str, t_char c);
 #define c_strirchr					String_IndexOf_R_Char //!< @alias{String_IndexOf_R_Char}
@@ -602,8 +620,9 @@ t_sintmax							String_IndexOf_R_Char(t_char const* str, t_char c);
 /*!
 **	@nonstd
 **
-**	@returns the last occurence of any char in the given `charset` within `str`,
-**			or `NULL` if no char matched.
+**	@returns
+**	The last occurence of any char in the given `charset` within `str`,
+**	or `NULL` if no char matched.
 */
 t_sintmax							String_IndexOf_R_Charset(t_char const* str, t_char const* charset);
 #define c_strirpbrk					String_IndexOf_R_Charset //!< @alias{String_IndexOf_R_Charset}
@@ -614,8 +633,9 @@ t_sintmax							String_IndexOf_R_Charset(t_char const* str, t_char const* charse
 /*!
 **	@nonstd
 **
-**	@returns the last occurence of the string `query` inside the given string `str`,
-**			or `NULL` if nothing matched.
+**	@returns
+**	The last occurence of the string `query` inside the given string `str`,
+**	or `NULL` if nothing matched.
 */
 t_sintmax							String_IndexOf_R_String(t_char const* str, t_char const* query);
 #define c_strirstr					String_IndexOf_R_String //!< @alias{String_IndexOf_R_String}
@@ -627,8 +647,9 @@ t_sintmax							String_IndexOf_R_String(t_char const* str, t_char const* query);
 /*!
 **	@nonstd
 **
-**	@returns the first occurence of the given char `c` within `str`,
-**			or `NULL` if no char matched. (checks only `n` chars in `str`).
+**	@returns
+**	The first occurence of the given char `c` within `str`,
+**	or `NULL` if no char matched. (checks only `n` chars in `str`).
 */
 t_sintmax							String_IndexOf_N_Char(t_char const* str, t_char c, t_size n);
 #define c_strinchr					String_IndexOf_N_Char //!< @alias{String_IndexOf_N_Char}
@@ -637,8 +658,9 @@ t_sintmax							String_IndexOf_N_Char(t_char const* str, t_char c, t_size n);
 /*!
 **	@nonstd
 **
-**	@returns the first occurence of any char in the given `charset` within `str`,
-**			or `NULL` if no char matched. (checks only `n` chars in `str`).
+**	@returns
+**	The first occurence of any char in the given `charset` within `str`,
+**	or `NULL` if no char matched. (checks only `n` chars in `str`).
 */
 t_sintmax							String_IndexOf_N_Charset(t_char const* str, t_char const* charset, t_size n);
 #define c_strinpbrk					String_IndexOf_N_Charset //!< @alias{String_IndexOf_N_Charset}
@@ -648,8 +670,9 @@ t_sintmax							String_IndexOf_N_Charset(t_char const* str, t_char const* charse
 /*!
 **	@nonstd
 **
-**	@returns the first occurence of the string `query` inside the given string `str`,
-**			or `NULL` if nothing matched. (checks only `n` chars in `str`).
+**	@returns
+**	The first occurence of the string `query` inside the given string `str`,
+**	or `NULL` if nothing matched. (checks only `n` chars in `str`).
 */
 t_sintmax							String_IndexOf_N_String(t_char const* str, t_char const* query, t_size n);
 #define c_strinstr					String_IndexOf_N_String //!< @alias{String_IndexOf_N_String}
@@ -957,11 +980,12 @@ t_char*					String_Pad_R(t_char const* str, t_char c, t_size length);
 **	- TODO `\u????`		UTF-8 multi-byte character, written as a hexadecimal code point (Unicode: U+????)
 **	- TODO `\U????????`	UTF-8 multi-byte character, written as a hexadecimal code point (Unicode: U+????????)
 **
-**	@param	str				The string to duplicate with escape-sequences
-**	@param	charset_extra	A string containing any extra characters which should be escaped (ie: preceded by a backslash)
+**	@param	str				The string to print/duplicate, with escape-sequences
+**	@param	charset_extra	A string containing any extra characters which should be escaped
+**							(ie: any char in `charset_extra` will become a `\x??` byte escape sequence)
 **	@returns
-**	A newly allocated modified copy of the given `str`, in which any
-**	special characters are replaced with an appropriate escape-sequence.
+**	A newly allocated string from the given `str` (can be larger than `str`),
+**	in which any special characters are replaced with an appropriate escape-sequence.
 */
 _MALLOC()
 t_char*							String_Print(t_char const* str, t_char const* charset_extra);
@@ -996,9 +1020,11 @@ t_char*							String_Print(t_char const* str, t_char const* charset_extra);
 **	Any other backslash-ed character will simply resolve to itself (ie: removing the preceding backslash)
 **
 **	@param	str			The string to duplicate, while resolving all escape-sequences to their corresponding char
-**	@param	any_escape	If `TRUE`, every backslash will be understood as an escape character (any single backslash will dissappear)
+**	@param	any_escape	If `TRUE`, every backslash will be understood as an escape character
+**						(ie: any escape sequance will function, with any char after the `'\'`)
 **	@returns
-**	A newly allocated modified copy of the given `str`, with escape-sequences transformed into their target value.
+**	A newly allocated modified copy of the given `str` (can be smaller than `str`),
+**	with any escape-sequences transformed into their target character value.
 */
 _MALLOC()
 t_char*							String_Parse(t_char const* str, t_bool any_escape);

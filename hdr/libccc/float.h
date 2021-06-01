@@ -503,7 +503,9 @@ t_sint						F128_GetExp10(t_f128 number);
 **
 **	@param	number1	The first value to check for (exact) equality
 **	@param	number2	The second value to check for (exact) equality
-**	@returns `TRUE` if the 2 given floating-point values are exactly equal, 0(FALSE) otherwise.
+**	@returns
+**	`TRUE` if the 2 given floating-point values are exactly equal,
+**	otherwise `FALSE`.
 */
 //!@{
 #define					Float_Equals	CONCAT(FLOAT_TYPE,_Equals)
@@ -524,14 +526,15 @@ t_bool					F128_Equals(t_f128 number1, t_f128 number2);
 
 
 
-//! Returns `TRUE` if the 2 given floating-point values are close to equal, according to `FLOAT_APPROX` (operator: `~=`)
+//! Returns `TRUE` if the 2 given floating-point values are close to equal (operator: `~=`)
 /*!
 **	@nonstd
 **
 **	@param	number1	The first value to check for (approximate) equality
 **	@param	number2	The second value to check for (approximate) equality
-**	@returns `TRUE` if the 2 given floating-point values are close enough to be considered equal
-**		(using FLOAT_BIAS as a comparison margin), or 0(FALSE) otherwise.
+**	@returns
+**	`TRUE` if the 2 given floating-point values are close enough to be considered equal
+**	(using #FLOAT_APPROX as a comparison margin), otherwise `FALSE`.
 */
 //!@{
 #define					Float_EqualsApprox	CONCAT(FLOAT_TYPE,_EqualsApprox)

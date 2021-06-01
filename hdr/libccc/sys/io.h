@@ -170,7 +170,9 @@ t_u8						IO_GetColor(t_argb32 color);
 
 //! Checks whether the given file descriptor `fd` points to a terminal.
 /*!
-**	@returns `TRUE` if the given file descriptor `fd` corresponds to a terminal.
+**	@returns
+**	`TRUE` if the given file descriptor `fd` corresponds to a terminal,
+**	otherwise `FALSE`.
 */
 t_bool						IO_IsTerminal(t_fd fd);
 #define c_isatty			IO_IsTerminal
@@ -191,7 +193,9 @@ t_bool						IO_IsTerminal(t_fd fd);
 **	@param	filepath	The path of the file to open
 **	@param	flags		The flags with which to open the file (bitflag, can be bitwise OR'd, ie: `(OPEN_READONLY|OPEN_CREATE)`)
 **	@param	mode		The file access mode (permissions) with which to open the file
-**	@returns the new file descriptor value for the opened file, or a non-zero error code (ie: an 'errno' value)
+**	@returns
+**	The new file descriptor value for the opened file,
+**	otherwise a non-zero error code (ie: an `errno` value)
 */
 t_fd					IO_Open(t_char const* filepath, t_io_open flags, t_io_mode mode);
 #define c_open			IO_Open
@@ -202,7 +206,9 @@ t_fd					IO_Open(t_char const* filepath, t_io_open flags, t_io_mode mode);
 **	@isostd{POSIX,https://linux.die.net/man/3/close}
 **
 **	@param	fd	The file descriptor to close
-**	@returns 0(OK) on success, or a non-zero error code (ie: an 'errno' value)
+**	@returns
+**	`0`(#OK) if the function completed successfully,
+**	otherwise a non-zero error code (ie: an `errno` value)
 */
 e_cccerror				IO_Close(t_fd fd);
 #define c_close			IO_Close
@@ -215,7 +221,8 @@ e_cccerror				IO_Close(t_fd fd);
 **	@param	filepath	The path of the file whose access permissions should change
 **	@param	mode		The new file access mode permissions bitflag value to set
 **	@returns
-**	`0` on success, otherwise a non-zero error code (ie: an `errno` value)
+**	`0`(#OK) if the function completed successfully,
+**	otherwise a non-zero error code (ie: an `errno` value)
 */
 e_cccerror					IO_ChangeMode(t_char const* filepath, t_io_mode mode);
 #define c_chmod				IO_ChangeMode
@@ -230,7 +237,9 @@ e_cccerror					IO_ChangeMode(t_char const* filepath, t_io_mode mode);
 **	@param	filepath	The path of the file whose owner/group should change
 **	@param	owner		The new owner to set for the file
 **	@param	group		The new group to set for the file
-**	@returns 0(OK) on success, or a non-zero error code (ie: an 'errno' value)
+**	@returns
+**	`0`(#OK) if the function completed successfully,
+**	otherwise a non-zero error code (ie: an `errno` value)
 */
 e_cccerror					IO_ChangeOwner(t_char const* filepath, t_char const* owner, t_char const* group);
 #define c_chown				IO_ChangeOwner

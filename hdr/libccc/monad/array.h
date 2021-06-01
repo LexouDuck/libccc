@@ -91,7 +91,8 @@ typedef struct array_T
 /*!
 **	@param	n		The amount of items in this list (amount of variadic args)
 **	@param	...		The variadic list of arguments: there must be `n` arguments, of type `T`
-**	@returns an array containing `n` elements (the given `...` varargs)
+**	@returns
+**	An array containing `n` elements (the given `...` varargs)
 */
 _GENERIC()
 s_array_T			CONCAT(Array,T_NAME)(t_uint n, ...);
@@ -101,7 +102,8 @@ s_array_T			CONCAT(Array,T_NAME)(t_uint n, ...);
 /*!
 **	@param	n		The amount of items in this list (amount of variadic args)
 **	@param	...		The variadic list of arguments: there must be `n` arguments, of type `T`
-**	@returns a newly allocated array containing `n` elements (the given `...` varargs)
+**	@returns
+**	A newly allocated array containing `n` elements (the given `...` varargs)
 */
 _GENERIC()
 s_array_T*			CONCAT(Array_New,T_NAME)(t_uint n, ...);
@@ -131,7 +133,8 @@ void				CONCAT(Array_Delete_F,T_NAME)(s_array_T* array, void (*delete)(T* item))
 //! Returns a newly allocated copy of the given `list`
 /*!
 **	@param	array	The list to duplicate
-**	@returns a newly allocated copy of the given linked `list`.
+**	@returns
+**	A newly allocated copy of the given linked `list`.
 */
 _GENERIC()
 s_array_T			CONCAT(Array_Duplicate,T_NAME)(s_array_T const* array);

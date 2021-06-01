@@ -79,8 +79,9 @@ HEADER_CPP
 **	Allocates `size` bytes in memory, returning the pointer to allocated region.
 **	Sets each byte of this newly allocated memory space to `0`.
 **
-**	@returns The pointer to newly allocated region, or #NULL if an error occurred
-**			(ie: the memory could not be allocated for whatever reason).
+**	@returns
+**	The pointer to newly allocated region, or `NULL` if an error occurred
+**	(ie: the memory could not be allocated for whatever reason).
 */
 _MALLOC()
 void*				Memory_New(t_size size);
@@ -92,7 +93,11 @@ void*				Memory_New(t_size size);
 **
 **	Allocates `size` bytes in memory, setting each byte of this newly allocated
 **	memory space to `c`. Returns the pointer at which said bytes were allocated,
-**	or #NULL if the memory could not be allocated.
+**	or `NULL` if the memory could not be allocated.
+**
+**	@returns
+**	The pointer to newly allocated region, or `NULL` if an error occurred
+**	(ie: the memory could not be allocated for whatever reason).
 */
 _MALLOC()
 void*				Memory_New_C(t_size size, char c);
@@ -107,8 +112,9 @@ void*				Memory_New_C(t_size size, char c);
 **		This means that there may be garbage leftover values in the newly allocated region.
 **		It generally recommended to use Memory_New() instead, to avoid garbage memory issues.
 **
-**	@returns The pointer to newly allocated region, or #NULL if an error occurred
-**			(ie: the memory could not be allocated for whatever reason).
+**	@returns
+**	The pointer to newly allocated region, or `NULL` if an error occurred
+**	(ie: the memory could not be allocated for whatever reason).
 */
 _MALLOC()
 void*					Memory_Allocate(t_size size);
@@ -123,14 +129,19 @@ void*					Memory_Allocate(t_size size);
 **	This function will either reallocate in-place (ie: not changing the pointer),
 **	or, if that is not possible, it will allocate the needed `size` to a new region.
 **
-**	@returns The pointer to newly allocated region, or the same old `ptr` given as arg.
-**		May also return #NULL if an error occurred (the memory could not be allocated for whatever reason).
+**	@returns
+**	The pointer to newly allocated region, or `NULL` if an error occurred
+**	(ie: the memory could not be allocated for whatever reason).
+**	NOTE: If the requested region is not too different in size, then
+**	the return value may be the exact same pointer as the given `ptr` argument.
 */
 _MALLOC()
 void*					Memory_Reallocate(void* ptr, t_size size);
 #define c_realloc		Memory_Reallocate //!< @alias{Memory_Reallocate}
 #define c_memrealloc	Memory_Reallocate //!< @alias{Memory_Reallocate}
 #define Memory_Realloc	Memory_Reallocate //!< @alias{Memory_Reallocate}
+
+
 
 //! Frees the previously allocated memory area at `*ptr`.
 /*!
@@ -147,11 +158,11 @@ void					Memory_Deallocate(void* ptr);
 #define c_memfree		Memory_Deallocate //!< @alias{Memory_Deallocate}
 #define Memory_Free		Memory_Deallocate //!< @alias{Memory_Deallocate}
 
-//! Frees the allocated memory at `**a_ptr`, and sets `*a_ptr` to #NULL.
+//! Frees the allocated memory at `**a_ptr`, and sets `*a_ptr` to `NULL`.
 /*!
 **	@nonstd
 **
-**	Frees the allocated memory at `**a_ptr`, and sets `*a_ptr` to #NULL.
+**	Frees the allocated memory at `**a_ptr`, and sets `*a_ptr` to `NULL`.
 **
 **	@param	a_ptr	The address of the pointer to free and `NULL`ify
 */
@@ -197,7 +208,7 @@ void*				Memory_Copy(void* dest, void const* src, t_size n);
 **
 **	Copies at most `n` bytes of memory from `src` to `dest`,
 **	stopping after the first occurence of a byte equal to `byte`,
-**	and returns a pointer to (`byte` + 1) in `dest`, or #NULL.
+**	and returns a pointer to (`byte` + 1) in `dest`, or `NULL`.
 */
 void*				Memory_Copy_C(void* dest, void const* src, t_u8 byte, t_size n);
 #define c_memccpy	Memory_Copy_C //!< @alias{Memory_Copy_C}
@@ -220,8 +231,8 @@ void*				Memory_Move(void* dest, void const* src, t_size n);
 **	@nonstd
 **
 **	Returns a newly allocated memory area which is a copy of
-**	the given memory area `ptr` (or #NULL if the required memory
-**	could not be allocated, or if `ptr == #NULL` or `n == 0`).
+**	the given memory area `ptr` (or `NULL` if the required memory
+**	could not be allocated, or if `ptr == `NULL`` or `n == 0`).
 */
 _MALLOC()
 void*				Memory_Duplicate(void const* ptr, t_size n);
@@ -276,7 +287,7 @@ void*					Memory_Merge(void* *a_ptr1, t_size length1, void* *a_ptr2, t_size leng
 **	@isostd{C89,https://en.cppreference.com/w/c/string/byte/memchr}
 **
 **	Returns a pointer to the first occurrence of a byte which is equal to
-**	the given `byte` value, or #NULL if no matching byte was encountered.
+**	the given `byte` value, or `NULL` if no matching byte was encountered.
 **	Begins the search at `ptr`, and reads through `n` bytes of memory.
 */
 void*				Memory_Find(void const* ptr, t_u8 byte, t_size n);

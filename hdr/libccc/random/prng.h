@@ -86,16 +86,17 @@ void				PRNG_NewSeed(t_prng* state);
 
 
 
-//! Creates a new CSPRNG state
+//! Creates a new PRNG state
 /*!
-**	@returns a new CSPRNG state, 0 on error.
+**	@returns
+**	A new PRNG state, or `NULL` if an error occurred.
 */
 t_prng*				PRNG_New(void);
 #define c_prngnew	PRNG_New
 
-//! Deletes (free and nullify) an existing CSPRNG state
+//! Deletes (free and nullify) an existing PRNG state
 /*!
-**	@param	a_state	The address of the CSPRNG state to free and nullify
+**	@param	a_state	The address of the PRNG state to free and nullify
 */
 void				PRNG_Delete(t_prng* *a_state);
 #define c_prngdel	PRNG_Delete
@@ -107,7 +108,8 @@ void				PRNG_Delete(t_prng* *a_state);
 **	@param	state	The PRNG state to use
 **	@param	dest	The destination memory buffer to write to
 **	@param	n		The amount of bytes of random data to write into `dest`
-**	@returns `0` if successful, otherwise a non-zero error code
+**	@returns
+**	`0`(#OK) if successful, otherwise a non-zero error code
 */
 e_cccerror			PRNG_Next(t_prng* state, void* dest, t_size n);
 #define c_prng		PRNG_Next
@@ -116,7 +118,8 @@ e_cccerror			PRNG_Next(t_prng* state, void* dest, t_size n);
 /*!
 **	@param	dest	The destination memory buffer to write to
 **	@param	n		The amount of bytes of random data to write into `dest`
-**	@returns `0` if successful, otherwise a non-zero error code
+**	@returns
+**	`0`(#OK) if successful, otherwise a non-zero error code
 */
 e_cccerror			PRNG_Get(void* dest, t_size n);
 #define c_prngget	PRNG_Get

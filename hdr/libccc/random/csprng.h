@@ -54,7 +54,8 @@ typedef void   t_csprng;
 
 //! Creates a new CSPRNG state
 /*!
-**	@returns a new CSPRNG state, 0 on error.
+**	@returns
+**	A new CSPRNG state, or `NULL` if an error occurred.
 */
 t_csprng*			CSPRNG_New(void);
 #define c_csprngnew	CSPRNG_New
@@ -73,7 +74,8 @@ void				CSPRNG_Delete(t_csprng* *a_state);
 **	@param	state	The CSPRNG state to use
 **	@param	dest	The destination memory buffer to write to
 **	@param	n		The amount of bytes of random data to write into `dest`
-**	@returns `0` if successful, otherwise a non-zero error code
+**	@returns
+**	`0`(#OK) if successful, otherwise a non-zero error code
 */
 e_cccerror			CSPRNG_Next(t_csprng* state, void* dest, t_size n);
 #define c_csprng	CSPRNG_Next
@@ -82,7 +84,8 @@ e_cccerror			CSPRNG_Next(t_csprng* state, void* dest, t_size n);
 /*!
 **	@param	dest	The destination memory buffer to write to
 **	@param	n		The amount of bytes of random data to write into `dest`
-**	@returns `0` if successful, otherwise a non-zero error code
+**	@returns
+**	`0`(#OK) if successful, otherwise a non-zero error code
 */
 e_cccerror			CSPRNG_Get(void* dest, t_size n);
 #define c_csprngget	CSPRNG_Get

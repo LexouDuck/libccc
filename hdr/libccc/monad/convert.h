@@ -42,25 +42,25 @@ HEADER_CPP
 /*!
 **
 **	Compound storage types:
-**	Array	indexed contiguous storage (fast access, slow for size-changes)
-**	List	indexed fragmented storage (slow access, fast for size-changes)
-**	Hash	unordered bucket-like storage (fast, slightly more memory-hungry) TODO
+**	`Array`	indexed contiguous storage (fast access, slow for size-changes)
+**	`List`	indexed fragmented storage (slow access, fast for size-changes)
+**	`Hash`	unordered bucket-like storage (fast, slightly more memory-hungry) TODO
 **
 **	With key:
-**	KeyVal	key+value pair (simple struct with a string and value)
+**	`KeyVal`	key+value pair (simple struct with a string and value)
 **
-**	Dict	named storage (configurable) TODO
-**	Dict<Array>	
-**	Dict<List>	
-**	Dict<Hash>	
-**	Tree	nested storage (configurable) TODO
-**	Tree<Array>	
-**	Tree<List>	
-**	Tree<Hash>	
-**	Object	named nested storage (configurable) TODO
-**	Object<Array>	
-**	Object<List>	
-**	Object<Hash>	
+**	`Dict`	named storage (configurable) TODO
+**	`Dict<Array>`	
+**	`Dict<List>`	
+**	`Dict<Hash>`	
+**	`Tree`	nested storage (configurable) TODO
+**	`Tree<Array>`	
+**	`Tree<List>`	
+**	`Tree<Hash>`	
+**	`Object`	named nested storage (configurable) TODO
+**	`Object<Array>`	
+**	`Object<List>`	
+**	`Object<Hash>`	
 **	
 */
 
@@ -89,8 +89,9 @@ HEADER_CPP
 **	It sets this array pointer to the `items` pointer of the given `array`.
 **	It also sets the `item_size` and `length` fields of this `array`.
 **
-**	@returns the resulting `s_array` struct from the given list, or NULL
-**		if any elements of `*a_lst` are of unequal `lst.item_size`.
+**	@returns
+**	The resulting `s_array` struct converted from the given list,
+**	or `NULL` if an error occurred.
 */
 s_array					List_To_Array(s_list const** a_lst);
 #define c_lst_to_array	List_To_Array
@@ -100,6 +101,10 @@ s_array					List_To_Array(s_list const** a_lst);
 **	Creates a new jagged array (2D pointer array) from the given list `*a_lst`.
 **	The top-level pointer array is terminated by a NULL pointer.
 **	The underlying `lst.item` data is not copied, only the pointers are.
+**
+**	@returns
+**	The resulting pointer array converted from the given list,
+**	or `NULL` if an error occurred.
 */
 _MALLOC()
 void**					List_To_PointerArray(s_list const** a_lst);

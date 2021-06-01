@@ -463,7 +463,7 @@ _MALLOC()	t_char*		S128_ToString(t_s128 number); // TODO implement
 **	@nonstd
 **
 **	@param	number	The number to convert to string
-**	@param	prefix	If #TRUE, the output string will have a `0x` hexadecimal number literal prefix
+**	@param	prefix	If `TRUE`, the output string will have a `0x` hexadecimal number literal prefix
 **	@returns
 **	A newly allocated string, converted from the given `number`
 */
@@ -489,7 +489,7 @@ _MALLOC()	t_char*		U128_ToString_Hex(t_u128 number, t_bool prefix); // TODO impl
 **	@nonstd
 **
 **	@param	number	The number to convert to string
-**	@param	prefix	If #TRUE, the output string will have a `0x` hexadecimal number literal prefix
+**	@param	prefix	If `TRUE`, the output string will have a `0x` hexadecimal number literal prefix
 **	@returns
 **	A newly allocated string, converted from the given `number`
 */
@@ -517,7 +517,7 @@ _MALLOC()	t_char*		S128_ToString_Hex(t_s128 number, t_bool prefix); // TODO impl
 **	@nonstd
 **
 **	@param	number	The number to convert to string
-**	@param	prefix	If #TRUE, the output string will have a `0o` octal number literal prefix
+**	@param	prefix	If `TRUE`, the output string will have a `0o` octal number literal prefix
 **	@returns
 **	A newly allocated string, converted from the given `number`
 */
@@ -543,7 +543,7 @@ _MALLOC()	t_char*		U128_ToString_Oct(t_u128 number, t_bool prefix); // TODO impl
 **	@nonstd
 **
 **	@param	number	The number to convert to string
-**	@param	prefix	If #TRUE, the output string will have a `0o` octal number literal prefix
+**	@param	prefix	If `TRUE`, the output string will have a `0o` octal number literal prefix
 **	@returns
 **	A newly allocated string, converted from the given `number`
 */
@@ -571,7 +571,7 @@ _MALLOC()	t_char*		S128_ToString_Oct(t_s128 number, t_bool prefix); // TODO impl
 **	@nonstd
 **
 **	@param	number	The number to convert to string
-**	@param	prefix	If #TRUE, the output string will have a `0b` binary number literal prefix
+**	@param	prefix	If `TRUE`, the output string will have a `0b` binary number literal prefix
 **	@returns
 **	A newly allocated string, converted from the given `number`
 */
@@ -597,7 +597,7 @@ _MALLOC()	t_char*		U128_ToString_Bin(t_u128 number, t_bool prefix); // TODO impl
 **	@nonstd
 **
 **	@param	number	The number to convert to string
-**	@param	prefix	If #TRUE, the output string will have a `0b` binary number literal prefix
+**	@param	prefix	If `TRUE`, the output string will have a `0b` binary number literal prefix
 **	@returns
 **	A newly allocated string, converted from the given `number`
 */

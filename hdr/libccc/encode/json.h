@@ -142,8 +142,11 @@ t_utf8*							JSON_Print_Buffered(s_json const* item, t_sint prebuffer, t_bool f
 
 //! Render a `s_json` entity to text using a buffer already allocated in memory with given length.
 /*!
-**	@returns 1(TRUE) on success and 0(FALSE) on failure.
-**	NOTE: s_json is not always 100% accurate in estimating how much memory it will use, so to be safe allocate 5 bytes more than you actually need.
+**	NOTE: s_json is not always 100% accurate in estimating how much memory it will use,
+**		so, to be safe, you should allocate 5 bytes more than you actually need.
+**
+**	@returns
+**	`TRUE` on success and `FALSE` on failure.
 */
 t_bool								JSON_Print_Preallocated(s_json* item, t_utf8* buffer, t_sint const length, t_bool const format);
 #define JSON_Encode_Preallocated 	JSON_Print_Preallocated
