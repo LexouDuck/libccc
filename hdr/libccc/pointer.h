@@ -66,16 +66,17 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-#ifdef	NULL
-#undef	NULL
-#endif
 //! Represents a NULL (0-value) pointer, of type 'void'
 /*!
 **	@isostd{C,https://en.cppreference.com/w/c/types/NULL}
 **
 **	The `NULL` pointer is simply an integer value of zero, cast to `void*`.
 */
+//!@{
+#ifndef NULL
 #define NULL	((void*)0)
+#endif
+//!@}
 
 
 
