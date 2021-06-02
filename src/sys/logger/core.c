@@ -25,20 +25,26 @@
 
 #include LIBCONFIG_HANDLE_INCLUDE
 
+static
+void	Log_Logger_FatalError(s_logger const* logger, t_char const* output)
+{
+	t_char*	tmp;
 
+	tmp = String_Join("Could not write log message to ", output);
+	HANDLE_ERROR(ALLOCFAILURE, (tmp == NULL), return;)
+	Log_FatalError(logger, tmp);
+	String_Delete(&tmp);
+}
 
 static
 void	Log_VA_Write(s_logger const* logger, t_fd fd, t_char const* output, t_char const* log_msg)
 {
 	t_size	wrote;
-	t_char*	tmp;
 
 	wrote = IO_Write_String(fd, log_msg);
-	HANDLE_ERROR(PRINT, (wrote == 0), return;)
-	tmp = String_Join("Could not write log message to ", output);
-	HANDLE_ERROR(ALLOCFAILURE, (tmp == NULL), return;)
-	Log_FatalError(logger, tmp);
-	String_Delete(&tmp);
+	HANDLE_ERROR_INITIAL(PRINT, (wrote == 0))
+	Log_Logger_FatalError(logger, output);
+	HANDLE_ERROR_FINAL()
 }
 
 

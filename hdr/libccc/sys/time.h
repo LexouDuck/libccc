@@ -637,27 +637,52 @@ t_size							Date_Parse_Strict_Min(s_date* dest, t_char const* str, t_char const
 */
 _FORMAT(strftime, 2, 0)
 _MALLOC()
-t_char*						Date_Print(s_date const* date, t_char const* format);
-#define c_strftime			Date_Print
-#define c_datetostr			Date_Print
-#define c_datefmt			Date_Print
-#define Date_Format			Date_Print
-#define Date_ToString		Date_Print
+t_char*						Date_ToString(s_date const* date, t_char const* format);
+#define c_strftime			Date_ToString
+#define c_datetostr			Date_ToString
+#define c_datefmt			Date_ToString
+#define Date_Format			Date_ToString
+#define Date_Print			Date_ToString
 
 //! Creates a string representation of the given 'date', according to the given 'format' string
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/chrono/strftime}
 **
-**	@see Date_Print
+**	@see Date_ToString
 */
 _FORMAT(strftime, 4, 0)
-t_size						Date_Print_N(t_char* dest, t_size max, s_date const* date, t_char const* format);
-#define c_strnftime			Date_Print_N
-#define c_datetostrn		Date_Print_N
-#define c_datefmtn			Date_Print_N
-#define Date_Format_N		Date_Print_N
-#define Date_ToString_N		Date_Print_N
+t_size						Date_ToString_N(t_char* dest, t_size max, s_date const* date, t_char const* format);
+#define c_strnftime			Date_ToString_N
+#define c_datetostrn		Date_ToString_N
+#define c_datefmtn			Date_ToString_N
+#define Date_Format_N		Date_ToString_N
+#define Date_Print_N		Date_ToString_N
 
+//! Creates a string representation of the given 'date', in standard (sortable) Unix format
+/*!
+**	@isostd{https://en.cppreference.com/w/c/chrono/strftime}
+**
+**	@see Date_Print
+*/
+t_char*						Date_ToString_Unix(s_date const* date);
+#define c_strftime_unix		Date_ToString_Unix
+#define c_datetostr_unix	Date_ToString_Unix
+#define c_dateunix			Date_ToString_Unix
+#define Date_Format_Unix	Date_ToString_Unix
+
+//! Creates a string representation of the current time in UTC, in standard (sortable) Unix format
+/*!
+**	@isostd{https://en.cppreference.com/w/c/chrono/strftime}
+**
+**	@see Date_Print
+*/
+t_char*						DateNow_ToString_Unix(void);
+#define c_datenow_unix		DateNow_ToString_Unix
+#define c_utcnow_unix		DateNow_ToString_Unix
+#define c_datenowtostr_unix	DateNow_ToString_Unix
+#define c_utcnowtostr_unix	DateNow_ToString_Unix
+#define DateNow_Format_Unix	DateNow_ToString_Unix
+#define UTCNow_Format_Unix	DateNow_ToString_Unix
 
 
 /*

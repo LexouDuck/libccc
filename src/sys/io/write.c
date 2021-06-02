@@ -26,10 +26,10 @@
 inline
 t_size	IO_Write_Char(int fd, char c)
 {
-	int result;
+	int result = 0;
 	result = write(fd, &c, 1);
 	HANDLE_ERROR(SYSTEM, (result < 0), return (0);)
-	return (0);
+	return (result);
 }
 
 
@@ -38,10 +38,10 @@ inline
 t_size	IO_Write_String(int fd, const t_char* str)
 {
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
-	int result;
+	int result = 0;
 	result = write(fd, str, String_Length(str));
 	HANDLE_ERROR(SYSTEM, (result < 0), return (0);)
-	return (0);
+	return (result);
 }
 
 
@@ -50,12 +50,12 @@ inline
 t_size	IO_Write_Line(int fd, const t_char* str)
 {
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
-	int result;
+	int result = 0;
 	result = write(fd, str, String_Length(str));
 	HANDLE_ERROR(SYSTEM, (result < 0), return (0);)
 	result = write(fd, "\n", 1);
 	HANDLE_ERROR(SYSTEM, (result < 0), return (0);)
-	return (0);
+	return (result);
 }
 
 
@@ -63,7 +63,7 @@ t_size	IO_Write_Line(int fd, const t_char* str)
 t_size	IO_Write_Lines(int fd, const t_char** strarr)
 {
 	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return (0);)
-	int result;
+	int result = 0;
 	int i = 0;
 	while (strarr[i])
 	{
@@ -73,7 +73,7 @@ t_size	IO_Write_Lines(int fd, const t_char** strarr)
 		HANDLE_ERROR(SYSTEM, (result < 0), return (0);)
 		++i;
 	}
-	return (0);
+	return (result);
 }
 
 
@@ -83,8 +83,8 @@ t_size	IO_Write_Memory(int fd, t_u8 const* ptr, t_size n, t_u8 columns)
 	HANDLE_ERROR(NULLPOINTER, (ptr == NULL), return (0);)
 	if (n == 0 || columns == 0)
 		return (0);
-	int result;
-	t_u8	nibble;
+	int		result = 0;
+	t_u8	nibble = 0;
 	t_size	i = 0;
 	while (i < n)
 	{
@@ -100,7 +100,7 @@ t_size	IO_Write_Memory(int fd, t_u8 const* ptr, t_size n, t_u8 columns)
 		result = write(fd, (i % columns == 0 ? "\n" : " "), 1);
 		HANDLE_ERROR(SYSTEM, (result < 0), return (0);)
 	}
-	return (0);
+	return (result);
 }
 
 
@@ -108,8 +108,8 @@ t_size	IO_Write_Memory(int fd, t_u8 const* ptr, t_size n, t_u8 columns)
 t_size	IO_Write_Format(t_fd fd, t_char const* format, ...)
 {
 	HANDLE_ERROR(NULLPOINTER, (format == NULL), return (0);)
-	int result;
-	t_char* str;
+	int		result = 0;
+	t_char* str = NULL;
 	va_list args;
 	va_start(args, format);
 	str = String_Format_VA(format, args);
@@ -118,5 +118,5 @@ t_size	IO_Write_Format(t_fd fd, t_char const* format, ...)
 	result = write(fd, str, String_Length(str));
 	HANDLE_ERROR(SYSTEM, (result < 0), return (0);)
 	String_Delete(&str);
-	return (0);
+	return (result);
 }
