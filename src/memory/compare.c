@@ -1,10 +1,19 @@
 
 #include "libccc/memory.h"
 
+#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
+#include <string.h>
+#endif
+
 #include LIBCONFIG_HANDLE_INCLUDE
 
 
 
+#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
+inline
+t_sint		Memory_Compare(void const* ptr1, void const* ptr2, t_size n)
+{ return (memcmp(ptr1, ptr2, n)); }
+#else
 t_sint		Memory_Compare(void const* ptr1, void const* ptr2, t_size n)
 {
 	t_u8*	p1;
@@ -26,3 +35,4 @@ t_sint		Memory_Compare(void const* ptr1, void const* ptr2, t_size n)
 	}
 	return (0);
 }
+#endif

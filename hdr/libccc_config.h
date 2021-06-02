@@ -180,7 +180,7 @@ HEADER_CPP
 **		Also, it invalidates the `LIBCONFIG_HANDLE_ERROR` setting:
 **		Argument handling is implementation-dependent for STD C functions.
 */
-#define LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS	1 // TODO implement this config flag
+#define LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS	0
 
 
 
@@ -190,7 +190,7 @@ HEADER_CPP
 **	- If `1`, the libccc fast approximate functions will be used (precision error margin is `10^-4`)
 **	- If `0`, the builtin FPU-call libc math functions will be used (eg: `__builtin_powf()`, etc)
 */
-#define LIBCONFIG_USE_FAST_APPROX_MATH	0
+#define LIBCONFIG_USE_FAST_APPROX_MATH	0 // TODO invert this config flag
 
 
 
@@ -212,6 +212,24 @@ HEADER_CPP
 **	is dedicated to the integer part and the fraction part.
 */
 #define LIBCONFIG_USE_STD_FIXEDPOINT	0
+
+
+
+//! if `__NOSTD__` flag is active, force-disable all the `LIBCONFIG_USE_STD_*` macros
+//!@{
+#ifdef	__NOSTD__
+
+#undef	LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
+#define	LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS	0
+
+#undef	LIBCONFIG_USE_STD_COMPLEX
+#define	LIBCONFIG_USE_STD_COMPLEX		0
+
+#undef	LIBCONFIG_USE_STD_FIXEDPOINT
+#define	LIBCONFIG_USE_STD_FIXEDPOINT	0
+
+#endif
+//!@}
 
 
 

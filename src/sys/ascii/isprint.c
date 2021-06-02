@@ -10,18 +10,33 @@
 #include "libccc/bool.h"
 #include "libccc/char.h"
 
+#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
+#include <ctype.h>
+#endif
+
 #include LIBCONFIG_HANDLE_INCLUDE
 
 
 
+#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
+inline
+t_bool	ASCII_IsSpace(t_ascii c)
+{ return (isspace(c)); }
+#else
 inline
 t_bool	ASCII_IsSpace(t_ascii c)
 {
 	return ((c == ' ') || ('\t' <= c && c <= '\r'));
 }
+#endif
 
 
 
+#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
+inline
+t_bool	ASCII_IsPunctuation(t_ascii c)
+{ return (ispunct(c)); }
+#else
 inline
 t_bool	ASCII_IsPunctuation(t_ascii c)
 {
@@ -31,9 +46,15 @@ t_bool	ASCII_IsPunctuation(t_ascii c)
 		('[' <= c && c <= '`') ||
 		('{' <= c && c <= '~'));
 }
+#endif
 
 
 
+#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
+inline
+t_bool	ASCII_IsPrintable(t_ascii c)
+{ return (isprint(c)); }
+#else
 inline
 t_bool	ASCII_IsPrintable(t_ascii c)
 {
@@ -49,6 +70,7 @@ t_bool	ASCII_IsPrintable(t_ascii c)
 #endif
 		&& ASCII_IsValid(c));
 }
+#endif
 
 
 

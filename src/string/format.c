@@ -24,35 +24,35 @@
 
 #ifndef __APPLE__
 
-	#ifndef vscprintf
-static int	vscprintf(t_char const* format, va_list args)
-{
-	va_list args_copy;
+	#ifndef 	vscprintf
+	static int	vscprintf(t_char const* format, va_list args)
+	{
+		va_list args_copy;
 
-	va_copy(args_copy, args);
-	int result = vsnprintf(NULL, 0, format, args_copy);
-	va_end(args_copy);
-	return (result);
-}
+		va_copy(args_copy, args);
+		int result = vsnprintf(NULL, 0, format, args_copy);
+		va_end(args_copy);
+		return (result);
+	}
 	#endif
 
-	#ifndef vasprintf
-static int	vasprintf(t_char** a_str, t_char const* format, va_list args)
-{
-	int length = vscprintf(format, args);
-	if (length == -1)
-		return -1;
-	t_char* str = (t_char*)Memory_Allocate((size_t)length + sizeof(""));
-	HANDLE_ERROR(ALLOCFAILURE, (str == NULL), return (-1);)
-	int result = vsnprintf(str, length + 1, format, args);
-	if (result == -1)
+	#ifndef 	vasprintf
+	static int	vasprintf(t_char** a_str, t_char const* format, va_list args)
 	{
-		String_Delete(&str);
-		return (-1);
+		int length = vscprintf(format, args);
+		if (length == -1)
+			return -1;
+		t_char* str = (t_char*)Memory_Allocate((size_t)length + sizeof(""));
+		HANDLE_ERROR(ALLOCFAILURE, (str == NULL), return (-1);)
+		int result = vsnprintf(str, length + 1, format, args);
+		if (result == -1)
+		{
+			String_Delete(&str);
+			return (-1);
+		}
+		*a_str = str;
+		return (result);
 	}
-	*a_str = str;
-	return (result);
-}
 	#endif
 
 #endif

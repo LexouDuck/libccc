@@ -169,6 +169,13 @@ t_char*				String_Duplicate_String(t_char const* str, t_char const* target);
 
 
 
+//! Clears the given string `str`, setting each character of `str` to `'\0'`.
+/*!
+**	@nonstd
+*/
+void				String_Clear(t_char* str);
+#define c_strclr	String_Clear //!< @alias{String_Clear}
+
 //! Sets every char of the given string `str` to `c`, only stopping upon reading a `'\0'` null-terminator.
 /*!
 **	@nonstd
@@ -181,12 +188,7 @@ t_char*				String_Duplicate_String(t_char const* str, t_char const* target);
 void				String_Set(t_char* str, t_char c);
 #define c_strset	String_Set //!< @alias{String_Set}
 
-//! Clears the given string `str`, setting each character of `str` to `'\0'`.
-/*!
-**	@nonstd
-*/
-void				String_Clear(t_char* str);
-#define c_strclr	String_Clear //!< @alias{String_Clear}
+// TODO strnset() String_Set_N
 
 
 
@@ -283,6 +285,8 @@ t_size				String_Concat_L(t_char* dest, t_char const* src, t_size size);
 */
 t_size				String_Length(t_char const* str);
 #define c_strlen	String_Length //!< @alias{String_Length}
+
+// TODO strnlen() String_Length_N
 
 
 

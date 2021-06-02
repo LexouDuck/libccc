@@ -13,6 +13,7 @@
 
 
 
+//#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 inline
 void*	Memory_Allocate(t_size size)
 {
@@ -21,6 +22,7 @@ void*	Memory_Allocate(t_size size)
 
 
 
+//#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 inline
 void*	Memory_Reallocate(void* ptr, t_size size)
 {
@@ -30,6 +32,7 @@ void*	Memory_Reallocate(void* ptr, t_size size)
 
 
 
+//#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 inline
 void	Memory_Deallocate(void* ptr)
 {

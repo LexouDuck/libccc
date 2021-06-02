@@ -2,18 +2,33 @@
 #include "libccc/bool.h"
 #include "libccc/char.h"
 
+#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
+#include <ctype.h>
+#endif
+
 #include LIBCONFIG_HANDLE_INCLUDE
 
 
 
+#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 inline
-t_bool	ASCII_IsDigit(t_ascii c)
+t_bool	ASCII_IsDigit_Dec(t_ascii c)
+{ return (isdigit(c)); }
+#else
+inline
+t_bool	ASCII_IsDigit_Dec(t_ascii c)
 {
 	return ('0' <= c && c <= '9');
 }
+#endif
 
 
 
+#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
+inline
+t_bool	ASCII_IsDigit_Hex(t_ascii c)
+{ return (isxdigit(c)); }
+#else
 inline
 t_bool	ASCII_IsDigit_Hex(t_ascii c)
 {
@@ -21,6 +36,7 @@ t_bool	ASCII_IsDigit_Hex(t_ascii c)
 			('A' <= c && c <= 'F') ||
 			('a' <= c && c <= 'f'));
 }
+#endif
 
 
 

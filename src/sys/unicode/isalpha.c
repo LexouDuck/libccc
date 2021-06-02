@@ -1,35 +1,62 @@
 
 #include "libccc/sys/unicode.h"
 
+#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
+#include <wctype.h>
+#endif
+
 #include LIBCONFIG_HANDLE_INCLUDE
 
 
 
+#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
+inline
+t_bool	UTF32_IsUppercase(t_utf32 c)
+{ return (iswupper(c)); }
+#else
+// TODO UTF handling
+t_bool	UTF32_IsUppercase(t_utf32 c)
+{
+	return ('A' <= c && c <= 'Z');
+}
+#endif
+
+
+
+#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
+inline
+t_bool	UTF32_IsLowercase(t_utf32 c)
+{ return (iswlower(c)); }
+#else
+// TODO UTF handling
+t_bool	UTF32_IsLowercase(t_utf32 c)
+{
+	return ('a' <= c && c <= 'z');
+}
+#endif
+
+
+
+#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
+inline
+t_bool	UTF32_IsLetter(t_utf32 c)
+{ return (iswalpha(c)); }
+#else
 // TODO UTF handling
 t_bool	UTF32_IsLetter(t_utf32 c)
 {
 	return (('A' <= c && c <= 'Z') ||
 			('a' <= c && c <= 'z'));
 }
+#endif
 
 
 
-// TODO UTF handling
-t_bool	UTF32_IsUppercase(t_utf32 c)
-{
-	return ('A' <= c && c <= 'Z');
-}
-
-
-
-// TODO UTF handling
-t_bool	UTF32_IsLowercase(t_utf32 c)
-{
-	return ('a' <= c && c <= 'z');
-}
-
-
-
+#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
+inline
+t_bool	UTF32_IsAlphaNumeric(t_utf32 c)
+{ return (iswalnum(c)); }
+#else
 // TODO UTF handling
 t_bool	UTF32_IsAlphaNumeric(t_utf32 c)
 {
@@ -37,3 +64,4 @@ t_bool	UTF32_IsAlphaNumeric(t_utf32 c)
 			('a' <= c && c <= 'z') ||
 			('0' <= c && c <= '9'));
 }
+#endif

@@ -1,10 +1,19 @@
 
 #include "libccc/sys/unicode.h"
 
+#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
+#include <wctype.h>
+#endif
+
 #include LIBCONFIG_HANDLE_INCLUDE
 
 
 
+#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
+inline
+t_utf32	UTF32_ToUppercase(t_utf32 c)
+{ return (towupper(c)); }
+#else
 t_utf32	UTF32_ToUppercase(t_utf32 c) // TODO make lookup table for weird 'if's with no discernible pattern
 {
 	if ('a' <= c && c <= 'z')						return (c - 0x20);			// LATIN_SMALL					-> LATIN_CAPITAL
@@ -165,3 +174,4 @@ t_utf32	UTF32_ToUppercase(t_utf32 c) // TODO make lookup table for weird 'if's w
 
 	return (c);
 }
+#endif

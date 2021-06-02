@@ -2,10 +2,19 @@
 #include "libccc/memory.h"
 #include "libccc/string.h"
 
+#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
+#include <string.h>
+#endif
+
 #include LIBCONFIG_HANDLE_INCLUDE
 
 
 
+#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS && (defined(_POSIX_C_SOURCE) && _POSIX_C_SOURCE >= __POSIX_VERSION_2001__)
+inline
+t_char*	String_Duplicate(t_char const* str)
+{ return (strdup(str)); }
+#else
 t_char*	String_Duplicate(t_char const* str)
 {
 	t_char*	result;
@@ -29,9 +38,15 @@ t_char*	String_Duplicate(t_char const* str)
 	result[i] = '\0';
 	return (result);
 }
+#endif
 
 
 
+#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS && (defined(_POSIX_C_SOURCE) && _POSIX_C_SOURCE >= __POSIX_VERSION_2008__)
+inline
+t_char*	String_Duplicate_N(t_char const* str, t_size n)
+{ return (strndup(str, n)); }
+#else
 t_char*	String_Duplicate_N(t_char const* str, t_size n)
 {
 	t_char*	result;
@@ -55,6 +70,7 @@ t_char*	String_Duplicate_N(t_char const* str, t_size n)
 	result[i] = '\0';
 	return (result);
 }
+#endif
 
 
 

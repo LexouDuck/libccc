@@ -1,10 +1,19 @@
 
 #include "libccc/memory.h"
 
+#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
+#include <string.h>
+#endif
+
 #include LIBCONFIG_HANDLE_INCLUDE
 
 
 
+#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
+inline
+void*	Memory_Find(void const* ptr, t_u8 byte, t_size n)
+{ return (memchr(ptr, byte, n)); }
+#else
 void*	Memory_Find(void const* ptr, t_u8 byte, t_size n)
 {
 	t_u8*	result;
@@ -22,7 +31,4 @@ void*	Memory_Find(void const* ptr, t_u8 byte, t_size n)
 	}
 	return (NULL);
 }
-/*
-**	if (ptr == NULL)
-**		return (NULL);
-*/
+#endif

@@ -1,10 +1,19 @@
 
 #include "libccc/sys/unicode.h"
 
+#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
+#include <wctype.h>
+#endif
+
 #include LIBCONFIG_HANDLE_INCLUDE
 
 
 
+#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
+inline
+t_utf32	UTF32_ToLowercase(t_utf32 c)
+{ return (towlower(c)); }
+#else
 t_utf32	UTF32_ToLowercase(t_utf32 c)
 {
 	if ('A' <= c && c <= 'Z')						return (c + 0x20);			// LATIN_CAPITAL					-> LATIN_SMALL
@@ -165,3 +174,4 @@ t_utf32	UTF32_ToLowercase(t_utf32 c)
 
 	return (c);
 }
+#endif

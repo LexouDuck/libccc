@@ -94,6 +94,19 @@ HEADER_CPP
 #define __STDC_VERSION_C99__	199901l
 #define __STDC_VERSION_C11__	201112l
 #define __STDC_VERSION_C17__	201710l
+#define __STDC_VERSION_C23__	(-1)	//!< TBD
+//!@}
+
+
+
+//! These are convienence macros, to check for different POSIX standards in preprocessor `#if` statements.
+//!@{
+#define __POSIX_VERSION_1990__ 1		//!< The 1990 edition of the POSIX.1  standard (IEEE Standard 1003.1-1990)
+#define __POSIX_VERSION_1992__ 2		//!< The 1992 edition of the POSIX.2  standard (IEEE Standard 1003.2-1992)
+#define __POSIX_VERSION_1993__ 199309L	//!< The 1993 edition of the POSIX.1b standard (IEEE Standard 1003.1b-1993)
+#define __POSIX_VERSION_1995__ 199506L	//!< The 1995 edition of the POSIX.1c standard (IEEE Standard 1003.1c-1995)
+#define __POSIX_VERSION_2001__ 200112L	//!< The 2001 edition of the POSIX    standard (IEEE Standard 1003.1-2001)
+#define __POSIX_VERSION_2008__ 200809L	//!< The 2008 edition of the POSIX    standard (IEEE Standard 1003.1-2008)
 //!@}
 
 

@@ -1,10 +1,19 @@
 
 #include "libccc/string.h"
 
+#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
+#include <string.h>
+#endif
+
 #include LIBCONFIG_HANDLE_INCLUDE
 
 
 
+#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
+inline
+t_char*	String_Copy(t_char* dest, t_char const* src)
+{ return (strcpy(dest, src)); }
+#else
 t_char*	String_Copy(t_char* dest, t_char const* src)
 {
 	t_size	i;
@@ -20,9 +29,15 @@ t_char*	String_Copy(t_char* dest, t_char const* src)
 	dest[i] = '\0';
 	return (dest);
 }
+#endif
 
 
 
+#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
+inline
+t_char*	String_Copy_N(t_char* dest, t_char const* src, t_size n)
+{ return (strncpy(dest, src, n)); }
+#else
 t_char*	String_Copy_N(t_char* dest, t_char const* src, t_size n)
 {
 	t_char*	str;
@@ -46,9 +61,15 @@ t_char*	String_Copy_N(t_char* dest, t_char const* src, t_size n)
 	}
 	return (dest);
 }
+#endif
 
 
 
+#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS && (defined(__FreeBSD__) && __FreeBSD__ >= 3)
+inline
+t_size	String_Copy_L(t_char* dest, t_char const* src, t_size size)
+{ return (strlcpy(dest, src, size)); }
+#else
 t_size	String_Copy_L(t_char* dest, t_char const* src, t_size size)
 {
 	t_size	i;
@@ -68,3 +89,4 @@ t_size	String_Copy_L(t_char* dest, t_char const* src, t_size size)
 		++i;
 	return (i);
 }
+#endif

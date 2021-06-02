@@ -1,10 +1,19 @@
 
 #include "libccc/string.h"
 
+#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
+#include <string.h>
+#endif
+
 #include LIBCONFIG_HANDLE_INCLUDE
 
 
 
+#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
+inline
+t_char*	String_Find_Char(t_char const* str, t_char c)
+{ return (strchr(str, c)); }
+#else
 t_char*	String_Find_Char(t_char const* str, t_char c)
 {
 	t_size	i;
@@ -21,8 +30,10 @@ t_char*	String_Find_Char(t_char const* str, t_char c)
 	}
 	return (NULL);
 }
+#endif
+
 inline
-t_ptrdiff	String_IndexOf_Char(t_char const* str, t_char c)
+t_sintmax	String_IndexOf_Char(t_char const* str, t_char c)
 {
 	t_char* result = String_Find_Char(str, c);
 	return (result ? result - str : -1);
@@ -30,6 +41,11 @@ t_ptrdiff	String_IndexOf_Char(t_char const* str, t_char c)
 
 
 
+#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
+inline
+t_char*	String_Find_Charset(t_char const* str, t_char const* charset)
+{ return (strpbrk(str, charset)); }
+#else
 t_char*	String_Find_Charset(t_char const* str, t_char const* charset)
 {
 	t_size	i;
@@ -50,8 +66,10 @@ t_char*	String_Find_Charset(t_char const* str, t_char const* charset)
 	}
 	return (NULL);
 }
+#endif
+
 inline
-t_ptrdiff	String_IndexOf_Charset(t_char const* str, t_char const* charset)
+t_sintmax	String_IndexOf_Charset(t_char const* str, t_char const* charset)
 {
 	t_char* result = String_Find_Charset(str, charset);
 	return (result ? result - str : -1);
@@ -59,6 +77,11 @@ t_ptrdiff	String_IndexOf_Charset(t_char const* str, t_char const* charset)
 
 
 
+#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
+inline
+t_char*	String_Find_String(t_char const* str, t_char const* query)
+{ return (strstr(str, query)); }
+#else
 t_char*	String_Find_String(t_char const* str, t_char const* query)
 {
 	t_size	i;
@@ -83,8 +106,10 @@ t_char*	String_Find_String(t_char const* str, t_char const* query)
 	}
 	return (NULL);
 }
+#endif
+
 inline
-t_ptrdiff	String_IndexOf_String(t_char const* str, t_char const* query)
+t_sintmax	String_IndexOf_String(t_char const* str, t_char const* query)
 {
 	t_char* result = String_Find_String(str, query);
 	return (result ? result - str : -1);
