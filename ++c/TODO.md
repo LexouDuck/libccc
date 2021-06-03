@@ -186,6 +186,9 @@ Most of the new additions in ++C take the form of new preprocessor directives, o
 //! define a custom accessor syntax for a struct/union (custom brackets `get` functions)
 #accessor (struct s var)[int index] => int	= GetFunction(var, index)
 
+//! type reflection - a special kind of macro, for types (inserts contents of a type into the code)
+#reflect(struct s)	printf("%s %s;\n", #type, #name)
+
 //! works like a `#define` macro, but occurs at transpile-time, and uses the powerful `m4` macro engine (by K&R)
 #replace MACRO() <string>
 
@@ -194,9 +197,6 @@ Most of the new additions in ++C take the form of new preprocessor directives, o
 
 //! include a binary file into the executable as an extern const global variable
 #incbin myvar "filepath"
-
-//! type reflection - type stringization , enum stringization, etc ? TODO formally define this and how it can work
-#reflect // TODO
 
 #alias(token)        //!< cross-platform way to use `__attribute__((alias, ...))`
 #align(4)            //!< cross-platform way to use `__attribute__((align, ...))` and/or `_Alignas`
@@ -648,7 +648,7 @@ unsigned long int
 For a struct or a union, each field is inserted:
 ```c
 // ++C
-struct s_test
+struct test
 {
 	int x;
 	int y;
@@ -659,7 +659,7 @@ struct s_test
 // ++C
 int main()
 {
-#reflect(struct s_test) \
+	#reflect(struct test) \
 	printf("\t%s\t%s\n", #type, #name);
 }
 
@@ -686,7 +686,7 @@ enum e_test
 // ++C
 int main()
 {
-#reflect(enum e_test) \
+	#reflect(enum e_test) \
 	printf("\t%s\t%s\n", #type, #name); comment
 }
 
