@@ -344,31 +344,31 @@ TYPEDEF_ALIAS(t_sint, SINT, PRIMITIVE)
 
 #ifndef LIBCONFIG_INTEGER_TYPES
 
-	#define U8_MAX (0xFF)					//!< The largest possible value for any 8-bit unsigned integer	(255)
-	#define S8_MAX (0x7F)					//!< The largest possible value for any 8-bit signed integer	(+127)
-	#define S8_MIN (0x80)					//!< The minimum possible value for any 8-bit signed integer	(-128)
+	#define U8_MAX ((t_u8)0xFF)					//!< The largest possible value for any 8-bit unsigned integer	(255)
+	#define S8_MAX ((t_s8)0x7F)					//!< The largest possible value for any 8-bit signed integer	(+127)
+	#define S8_MIN ((t_s8)0x80)					//!< The minimum possible value for any 8-bit signed integer	(-128)
 
-	#define U16_MAX (0xFFFF)				//!< The largest possible value for any 16-bit unsigned integer	(65535)
-	#define S16_MAX (0x7FFF)				//!< The largest possible value for any 16-bit signed integer	(+32767)
-	#define S16_MIN (0x8000)				//!< The minimum possible value for any 16-bit signed integer	(-32768)
+	#define U16_MAX ((t_u16)0xFFFF)				//!< The largest possible value for any 16-bit unsigned integer	(65535)
+	#define S16_MAX ((t_s16)0x7FFF)				//!< The largest possible value for any 16-bit signed integer	(+32767)
+	#define S16_MIN ((t_s16)0x8000)				//!< The minimum possible value for any 16-bit signed integer	(-32768)
 
-	#define U32_MAX (0xFFFFFFFF)			//!< The largest possible value for any 32-bit unsigned integer	(4294967295)
-	#define S32_MAX (0x7FFFFFFF)			//!< The largest possible value for any 32-bit signed integer	(+2147483647)
-	#define S32_MIN (0x80000000)			//!< The minimum possible value for any 32-bit signed integer	(-2147483648)
+	#define U32_MAX ((t_u32)0xFFFFFFFF)			//!< The largest possible value for any 32-bit unsigned integer	(4294967295)
+	#define S32_MAX ((t_s32)0x7FFFFFFF)			//!< The largest possible value for any 32-bit signed integer	(+2147483647)
+	#define S32_MIN ((t_s32)0x80000000)			//!< The minimum possible value for any 32-bit signed integer	(-2147483648)
 
-	#define U64_MAX (0xFFFFFFFFFFFFFFFFllu)	//!< The largest possible value for any 64-bit unsigned integer	(18446744073709551615)
-	#define S64_MAX (0x7FFFFFFFFFFFFFFFll)	//!< The largest possible value for any 64-bit signed integer	(+9223372036854775807)
-	#define S64_MIN (0x8000000000000000ll)	//!< The minimum possible value for any 64-bit signed integer	(-9223372036854775807)
+	#define U64_MAX ((t_u64)0xFFFFFFFFFFFFFFFF)	//!< The largest possible value for any 64-bit unsigned integer	(18446744073709551615)
+	#define S64_MAX ((t_s64)0x7FFFFFFFFFFFFFFF)	//!< The largest possible value for any 64-bit signed integer	(+9223372036854775807)
+	#define S64_MIN ((t_s64)0x8000000000000000)	//!< The minimum possible value for any 64-bit signed integer	(-9223372036854775807)
 
 	#ifdef __int128
-	#define U128_MAX (0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFllu) //!< The largest possible value for a 128-bit unsigned integer	(340282366920938463463374607431768211455llu)
-	#define S128_MAX (0x7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFll)  //!< The largest possible value for a 128-bit signed integer	(+170141183460469231731687303715884105727ll)
-	#define S128_MIN (0x80000000000000000000000000000000ll)  //!< The minimum possible value for a 128-bit signed integer	(−170141183460469231731687303715884105728ll)
+	#define U128_MAX ((t_u128)0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF) //!< The largest possible value for a 128-bit unsigned integer	(340282366920938463463374607431768211455llu)
+	#define S128_MAX ((t_s128)0x7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF)  //!< The largest possible value for a 128-bit signed integer	(+170141183460469231731687303715884105727ll)
+	#define S128_MIN ((t_s128)0x80000000000000000000000000000000)  //!< The minimum possible value for a 128-bit signed integer	(−170141183460469231731687303715884105728ll)
 	#endif
 
 #else
 
-	#define U8_MAX	((t_u8 )-1)						//!< The largest possible value for at least size  8-bit, unsigned integer type
+	#define U8_MAX	((t_u8)-1)						//!< The largest possible value for at least size  8-bit, unsigned integer type
 	#define S8_MAX	((t_s8)(U8_MAX  >> 1))			//!< The largest possible value for at least size  8-bit, signed integer type
 	#define S8_MIN	((t_s8)((U8_MAX  >> 1) + 1))	//!< The minimum possible value for at least size  8-bit, signed integer type
 
