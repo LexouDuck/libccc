@@ -576,7 +576,7 @@ test_helloworld:
 	-o $(NAME_TEST)_helloworld \
 		$(TEST_DIR)_helloworld.c \
 		-L./ -lccc
-	@-./$(NAME_TEST)_helloworld $(ARGS)
+	@ ./$(NAME_TEST)_helloworld $(ARGS)
 	@rm $(NAME_TEST)_helloworld
 
 test_foreach:
@@ -584,7 +584,7 @@ test_foreach:
 	-o $(NAME_TEST)_foreach \
 		$(TEST_DIR)_foreach.c \
 		-L./ -lccc
-	@-./$(NAME_TEST)_foreach $(ARGS)
+	@ ./$(NAME_TEST)_foreach $(ARGS)
 	@rm $(NAME_TEST)_foreach
 
 

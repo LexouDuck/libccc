@@ -352,6 +352,28 @@ t_u64				Memory_GetBits(t_u64 value, t_u8 bit, t_u8 length);
 
 
 
+#ifdef __IOS__ // TODO smarter check here
+
+inline
+void*	memset(void* ptr, int c, size_t n)
+{ Memory_Set(ptr, c, n); return (ptr); }
+
+inline
+int		memcmp(void const* ptr1, void const* ptr2, size_t n)
+{ return (Memory_Compare(ptr1, ptr2, n)); }
+
+inline
+void*	memcpy(void* dest, void const* src, size_t n)
+{ return (Memory_Copy(dest, src, n)); }
+
+inline
+void*	memmove(void* dest, void const* src, t_size n)
+{ return (Memory_Move(dest, src, n)); }
+
+#endif
+
+
+
 /*! @} */
 HEADER_END
 #endif

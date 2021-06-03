@@ -36,9 +36,3 @@ t_sint		Memory_Compare(void const* ptr1, void const* ptr2, t_size n)
 	return (0);
 }
 #endif
-
-#ifdef __IOS__ // TODO smarter check here
-inline
-int		memcmp(void const* ptr1, void const* ptr2, size_t n)
-{ return (Memory_Compare(ptr1, ptr2, n)); }
-#endif

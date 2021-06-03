@@ -31,12 +31,6 @@ void	Memory_Set(void* ptr, t_u8 byte, t_size n)
 }
 #endif
 
-#ifdef __IOS__ // TODO smarter check here
-inline
-void*	memset(void* ptr, int byte, size_t n)
-{ Memory_Set(ptr, byte, n); return (ptr); }
-#endif
-
 
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
