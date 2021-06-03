@@ -12,7 +12,7 @@
 #ifndef __NOSTD__
 	#include <string.h>
 #else
-	t_char const* strerror(int errnum);
+	t_char* strerror(int errnum);
 	int strerror_s(char* buf, size_t buflen, int errnum);
 	int strerror_r(int errnum, char* buf, size_t buflen);
 #endif

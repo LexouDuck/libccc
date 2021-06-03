@@ -1,5 +1,7 @@
 
-// TODO __NOSTD__ support
+#include "libccc/pointer.h"
+
+#ifndef __NOSTD__
 #ifdef _WIN32
 	#include <windows.h>
 	#include <wincrypt.h>
@@ -9,6 +11,12 @@
 	#endif
 #else
 	#include <stdio.h>
+#endif
+#else
+	typedef struct file FILE;
+	FILE*	fopen(char const* path, char const* mode);
+	int		fclose(FILE* file);
+	size_t	fread(void* ptr, size_t size, size_t n, FILE* file);
 #endif
 
 #include "libccc/math/fixed.h"
@@ -59,7 +67,7 @@ void	CSPRNG_Delete(t_csprng* *a_state)
 		CryptReleaseContext(csprng.hCryptProv, 0);
 #else
 	if (csprng.urandom)
-		fclose(csprng.urandom);
+		fclose(csprng.urandom); // TODO error handling
 #endif
 	*a_state = NULL;
 }

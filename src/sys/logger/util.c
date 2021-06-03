@@ -2,7 +2,7 @@
 #ifndef __NOSTD__
 	#include <unistd.h>
 #else
-	char const*	strerror(int error);
+	char*	strerror(int error);
 #endif
 #ifndef __NOSTD__
 	#include <errno.h>
