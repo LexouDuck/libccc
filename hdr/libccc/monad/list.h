@@ -87,7 +87,7 @@ typedef struct list_T
 	#define foreach_s_list_T(_TYPE_, _VAR_, _LIST_) \
 		__typeof__(_LIST_)
 #else
-	//! if the `typeof()` operator doesn't exist, an inline struct is used (very unsafe !)
+	//! if the `typeof()` operator doesn't exist, an inline anonymous struct is used (very unsafe !)
 	#if LIBCONFIG_LIST_DOUBLYLINKED
 	#define foreach_s_list_T(_TYPE_, _VAR_, _LIST_) \
 		struct _##_VAR_				\

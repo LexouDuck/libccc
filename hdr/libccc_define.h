@@ -434,6 +434,7 @@ HEADER_CPP
 #undef _NOINLINE //!< @def _NOINLINE Before a function def: makes the function be always inlined regardless of compiler config
 #undef _NORETURN //!< @def _NORETURN Before a function def: indicates that it never returns (runs forever, and/or calls abort() or exit())
 #undef _PACKED   //!< @def _PACKED   Before a struct/union def: do not perform byte-padding on this struct/union type
+//#undef _EXPORT   //!< @def _EXPORT   Before a function def: always export the symbol (regardless of static/dynamic linking)
 
 
 
@@ -479,19 +480,6 @@ HEADER_CPP
 	#define _NOINLINE()			__declspec(noinline)
 	#define _NORETURN()			__declspec(noreturn)
 	#define _PACKED()			__pragma(pack(push, 1))	__pragma(pack(pop)) // TODO find a way to make this work in pure C ?
-
-#elif defined(__CC_ARM)
-
-	#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	
-	#define _ALIAS(FUNCTION)	
-	#define _ALIGN(MINIMUM)		__align(MINIMUM)
-	#define _PURE()				__pure
-	#define _MALLOC()			
-	#define _UNUSED()			
-	#define _INLINE()			__inline
-	#define _NOINLINE()			
-	#define _NORETURN()			__declspec(noreturn)
-	#define _PACKED()			__packed
 
 #else
 
