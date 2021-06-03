@@ -1,5 +1,6 @@
 
 #include "libccc/sys/time.h"
+#include "libccc/math/math.h"
 
 #include LIBCONFIG_HANDLE_INCLUDE
 
@@ -26,17 +27,13 @@ t_bool	Date_IsValid(s_date const* date)
 
 	if (date->day_week >= ENUMLENGTH_WEEKDAY)
 		return (FALSE);
-#if ((e_weekday)-1 < 0)
-	if (date->day_week < 0)
+	if (ISNEG(date->day_week))
 		return (FALSE);
-#endif
 
 	if (date->month >= ENUMLENGTH_MONTH)
 		return (FALSE);
-#if ((e_month)-1 < 0)
-	if (date->month < 0)
+	if (ISNEG(date->month))
 		return (FALSE);
-#endif
 	return (TRUE);
 }
 
@@ -71,18 +68,14 @@ void	Date_MakeValid(s_date* date)
 	tmp = ENUMLENGTH_WEEKDAY;
 	if (date->day_week >= tmp)
 		date->day_week = (tmp - 1);
-#if ((e_weekday)-1 < 0)
-	if (date->day_week < 0)
+	if (ISNEG(date->day_week))
 		date->day_week = 0;
-#endif
 
 	tmp = ENUMLENGTH_MONTH;
 	if (date->month >= tmp)
 		date->month = (tmp - 1);
-#if ((e_month)-1 < 0)
-	if (date->month < 0)
+	if (ISNEG(date->month))
 		date->month = 0;
-#endif
 }
 
 
