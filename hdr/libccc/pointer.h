@@ -38,8 +38,8 @@
 #ifndef __NOSTD__
 	#include <stddef.h>
 #else
-	typedef unsigned long long	size_t;
-	typedef signed long long	ptrdiff_t;
+	typedef unsigned long	size_t;
+	typedef signed long	ptrdiff_t;
 	#define SIZE_MAX	(size_t)-1
 	#define PTRDIFF_MIN	((ptrdiff_t)(SIZE_MAX >> 1))
 	#define PTRDIFF_MAX	((ptrdiff_t)((SIZE_MAX >> 1) + 1))
