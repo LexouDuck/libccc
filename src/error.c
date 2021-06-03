@@ -1,5 +1,5 @@
 
-#include "libccc/pointer.h"
+#include "libccc/memory.h"
 
 #ifndef __NOSTD__
 	#include <errno.h>

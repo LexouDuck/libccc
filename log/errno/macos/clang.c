@@ -1,4 +1,4 @@
-/*  */
+/* ../share/llvm/bin/clang */
 #define EWOULDBLOCK EAGAIN
 #define EPERM 1
 #define ENOENT 2

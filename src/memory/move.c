@@ -44,3 +44,9 @@ void*	Memory_Move(void* dest, void const* src, t_size n)
 	return (dest);
 }
 #endif
+
+#ifdef __IOS__ // TODO smarter check here
+inline
+void*	memmove(void* dest, void const* src, t_size n)
+{ return (Memory_Move(dest, src, n)); }
+#endif

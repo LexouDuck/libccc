@@ -34,6 +34,12 @@ void*	Memory_Copy(void* dest, void const* src, t_size n)
 }
 #endif
 
+#ifdef __IOS__ // TODO smarter check here
+inline
+void*	memcpy(void* dest, void const* src, size_t n)
+{ return (Memory_Copy(dest, src, n)); }
+#endif
+
 
 
 void*	Memory_Copy_C(void* dest, void const* src, t_u8 byte, t_size n)

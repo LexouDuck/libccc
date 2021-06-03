@@ -70,7 +70,7 @@ LDFLAGS = $(LDFLAGS_OS)
 #	-Wl,-rpath='$$ORIGIN/'
 LDFLAGS_OS = _
 LDFLAGS_WIN   = 
-LDFLAGS_LINUX =
+LDFLAGS_LINUX = 
 LDFLAGS_MACOS = 
 #	-fsanitize=address
 #	-Wl,-rpath,bin/linux/dynamic/
@@ -440,7 +440,8 @@ $(OBJDIR)%.o : $(SRCDIR)%.c
 $(NAME_STATIC): $(OBJS)
 	@mkdir -p	$(BINDIR)static/$(OSMODE)/
 	@printf "Compiling library: "$@" -> "
-	@ar -rc $@ $(OBJS) # @ranlib $@
+	@ar -rc $@ $(OBJS)
+	@ranlib $@
 	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
 	@cp -f $(NAME_STATIC)	$(BINDIR)static/$(OSMODE)/
 
