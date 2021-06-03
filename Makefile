@@ -54,7 +54,7 @@ CFLAGS_RELEASE = -O3
 CFLAGS_OS = _
 CFLAGS_OS_WIN   = -D__USE_MINGW_ANSI_STDIO=1
 CFLAGS_OS_LINUX = -Wno-unused-result -fPIC -pedantic
-CFLAGS_OS_MACOS = -Wno-missing-braces -Wno-missing-field-initializers -Wno-tautological-compare -Wno-language-extension-token
+CFLAGS_OS_MACOS = -Wno-missing-braces -Wno-missing-field-initializers -Wno-language-extension-token
 ifeq ($(CC),clang)
 	CFLAGS_OS_WIN += -Wno-missing-braces
 else
@@ -440,8 +440,7 @@ $(OBJDIR)%.o : $(SRCDIR)%.c
 $(NAME_STATIC): $(OBJS)
 	@mkdir -p	$(BINDIR)static/$(OSMODE)/
 	@printf "Compiling library: "$@" -> "
-	@ar -rc $@ $(OBJS)
-	# @ranlib $@
+	@ar -rc $@ $(OBJS) # @ranlib $@
 	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
 	@cp -f $(NAME_STATIC)	$(BINDIR)static/$(OSMODE)/
 
