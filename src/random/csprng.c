@@ -13,7 +13,7 @@
 	#include <stdio.h>
 #endif
 #else
-	typedef struct file FILE;
+	typedef struct file	FILE;
 	FILE*	fopen(char const* path, char const* mode);
 	int		fclose(FILE* file);
 	size_t	fread(void* ptr, size_t size, size_t n, FILE* file);

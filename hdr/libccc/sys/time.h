@@ -246,7 +246,7 @@ typedef struct date
 	t_s32		year;		//!< Amount of years since year 0 (https://en.wikipedia.org/wiki/Astronomical_year_numbering)	
 	e_month		month;		//!< [0,11] Amount of months since January
 	t_u8		day_month;	//!< [1,31] Day of the month
-	t_s32		day_year;	//!< [0,364(365)] Amount of days since January 1 (max value is 365 on leap years, otherwise 364)
+	t_u32		day_year;	//!< [0,364(365)] Amount of days since January 1 (max value is 365 on leap years, otherwise 364)
 	e_weekday	day_week;	//!< [0,6] Amount of days since Sunday
 	t_bool		is_dst;		//!< If `TRUE`, then Daylight Savings Time is on
 	t_timezone	offset;		//!< [UTC-12,UTC+12] The timezone offset of this date (adjusted for DST), expressed in seconds (ie: range is [3600*-12, 3600*+12]
