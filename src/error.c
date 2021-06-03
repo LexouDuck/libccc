@@ -104,8 +104,8 @@ static s_stderror_info	stderrors[ENUMLENGTH_STDERROR] =
 	{ ERROR_WRONGTYPE,    "ERROR_WRONGTYPE",    "Argument Error: attempted to read dynamic-type item with wrong type" },
 	{ ERROR_DELETEREF,    "ERROR_DELETEREF",    "Argument Error: attempted to free an area of constant memory" },
 
-	{ ERROR_PARSE,        "ERROR_PARSE",        "Error: while attempting to parse string" },
-	{ ERROR_PRINT,        "ERROR_PRINT",        "Error: while attempting to print string" },
+	{ ERROR_PARSE,        "ERROR_PARSE",        "Parse Error" },
+	{ ERROR_PRINT,        "ERROR_PRINT",        "Print Error" },
 };
 
 
