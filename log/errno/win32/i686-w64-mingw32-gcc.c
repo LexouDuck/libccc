@@ -2,7 +2,7 @@
 ** macro test: errno
 **	OS: Windows_NT
 **	SH: CYGWIN_NT-6.1
-**	CC: /usr/bin/x86_64-w64-mingw32-gcc
+**	CC: /usr/bin/i686-w64-mingw32-gcc
 */
 #define EDEADLOCK EDEADLK
 #define ENOFILE ENOENT

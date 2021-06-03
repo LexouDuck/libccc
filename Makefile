@@ -557,24 +557,35 @@ test: $(NAME_TEST)
 
 test_log: $(NAME_TEST)
 	@mkdir -p $(LOGDIR)
-	@./$(NAME_TEST) -var --test-all >> $(LOGDIR)libccc_test.log
+	@./$(NAME_TEST) $(ARGS) -var --test-all >> $(LOGDIR)libccc_test.log
 
 
 
-test_helloworld:
-	@$(CC) $(CFLAGS) $(TEST_DIR)_helloworld.c -I$(HDRDIR) -L./ -lccc -o $(NAME_TEST)_helloworld
-	@-./$(NAME_TEST)_helloworld
-	@rm $(NAME_TEST)_helloworld
-
-test_foreach:
-	@$(CC) $(CFLAGS) $(TEST_DIR)_foreach.c -I$(HDRDIR) -L./ -lccc -o $(NAME_TEST)_foreach
-	@-./$(NAME_TEST)_foreach
-	@rm $(NAME_TEST)_foreach
+test_defines:
+	@mkdir -p                    $(LOGDIR)defines/$(OSMODE)/
+	@rm -f                       $(LOGDIR)defines/$(OSMODE)/$(CC).c
+	@./$(TEST_DIR)_defines.sh >> $(LOGDIR)defines/$(OSMODE)/$(CC).c
 
 test_errno:
 	@mkdir -p                  $(LOGDIR)errno/$(OSMODE)/
 	@rm -f                     $(LOGDIR)errno/$(OSMODE)/$(CC).c
 	@./$(TEST_DIR)_errno.sh >> $(LOGDIR)errno/$(OSMODE)/$(CC).c
+
+test_helloworld:
+	@$(CC) $(CFLAGS) -I$(HDRDIR) \
+	-o $(NAME_TEST)_helloworld \
+		$(TEST_DIR)_helloworld.c \
+		-L./ -lccc
+	@-./$(NAME_TEST)_helloworld $(ARGS)
+	@rm $(NAME_TEST)_helloworld
+
+test_foreach:
+	@$(CC) $(CFLAGS) -I$(HDRDIR) \
+	-o $(NAME_TEST)_foreach \
+		$(TEST_DIR)_foreach.c \
+		-L./ -lccc
+	@-./$(NAME_TEST)_foreach $(ARGS)
+	@rm $(NAME_TEST)_foreach
 
 
 
