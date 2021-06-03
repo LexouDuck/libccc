@@ -1,4 +1,9 @@
-/* ../share/llvm/bin/clang */
+/*
+** macro test: errno
+**	OS: iOS
+**	SH: Darwin
+**	CC: /usr/share/llvm/bin/clang-3.7
+*/
 #define EWOULDBLOCK EAGAIN
 #define EPERM 1
 #define ENOENT 2
