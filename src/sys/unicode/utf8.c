@@ -1,6 +1,7 @@
 
 #include "libccc/sys/unicode.h"
 #include "libccc/pointer.h"
+#include "libccc/string.h"
 
 #include LIBCONFIG_HANDLE_INCLUDE
 
@@ -12,7 +13,7 @@
 
 t_size		UTF32_ToUTF8(t_utf8* dest, t_utf32 c)
 {
-	t_u8 mask;
+	t_u8	mask;
 
 	HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (0);)
 	HANDLE_ERROR(ILLEGALBYTES, !UTF32_IsValid(c), return (0);)
@@ -52,7 +53,7 @@ t_size		UTF32_ToUTF8(t_utf8* dest, t_utf32 c)
 
 t_utf32		UTF32_FromUTF8(t_utf8 const* str)
 {
-	t_u8 c;
+	t_u8	c;
 
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (ERROR);)
 	c = str[0];
@@ -66,7 +67,7 @@ t_utf32		UTF32_FromUTF8(t_utf8 const* str)
 			{
 				if (c & (1 << 4)) // 4-byte character
 				{
-					HANDLE_ERROR(ILLEGALBYTES, (c & (1 << 3)), return (ERROR);)
+					HANDLE_ERROR_SF(ILLEGALBYTES, (c & (1 << 3)), return (ERROR);, " (0x%2.2X)", c)
 					mask = ((1 << 3) - 1);
 					result |= (c & mask) << (6 * 3);	c = str[1];
 					result |= (c & MASK) << (6 * 2);	c = str[2];
@@ -93,7 +94,7 @@ t_utf32		UTF32_FromUTF8(t_utf8 const* str)
 		}
 		else
 		{
-			HANDLE_ERROR(ILLEGALBYTES, TRUE, return (ERROR);)
+			HANDLE_ERROR_SF(ILLEGALBYTES, TRUE, return (ERROR);, " (0x%2.2X)", c)
 		}
 	}
 	else return ((t_utf32)c);
