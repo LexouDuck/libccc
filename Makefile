@@ -561,9 +561,14 @@ test_log: $(NAME_TEST)
 
 
 
+test_helloworld:
+	@$(CC) $(CFLAGS) $(TEST_DIR)_helloworld.c -I$(HDRDIR) -L./ -lccc -o $(NAME_TEST)_helloworld
+	@-./$(NAME_TEST)_helloworld
+	@rm $(NAME_TEST)_helloworld
+
 test_foreach:
 	@$(CC) $(CFLAGS) $(TEST_DIR)_foreach.c -I$(HDRDIR) -L./ -lccc -o $(NAME_TEST)_foreach
-	@./$(NAME_TEST)_foreach
+	@-./$(NAME_TEST)_foreach
 	@rm $(NAME_TEST)_foreach
 
 test_errno:
