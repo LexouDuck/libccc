@@ -27,8 +27,8 @@ t_char*	String_Duplicate(t_char const* str)
 	{
 		++length;
 	}
-	if (!(result = String_New(length)))
-		return (NULL);
+	result = String_New(length);
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	i = 0;
 	while (i < length)
 	{
@@ -59,8 +59,8 @@ t_char*	String_Duplicate_N(t_char const* str, t_size n)
 	{
 		++length;
 	}
-	if (!(result = String_New(length)))
-		return (NULL);
+	result = String_New(length);
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	i = 0;
 	while (i < length)
 	{
@@ -86,8 +86,8 @@ t_char*	String_Duplicate_Char(t_char const* str, t_char const c)
 	{
 		++length;
 	}
-	if (!(result = String_New(length)))
-		return (NULL);
+	result = String_New(length);
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	i = 0;
 	while (i < length)
 	{
@@ -112,8 +112,8 @@ t_char*	String_Duplicate_Charset(t_char const* str, t_char const* charset)
 	{
 		++length;
 	}
-	if (!(result = String_New(length)))
-		return (NULL);
+	result = String_New(length);
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	i = 0;
 	while (i < length)
 	{
@@ -140,8 +140,8 @@ t_char*	String_Duplicate_String(t_char const* str, t_char const* target)
 	{
 		++length;
 	}
-	if (!(result = String_New(length)))
-		return (NULL);
+	result = String_New(length);
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	i = 0;
 	while (i < length)
 	{

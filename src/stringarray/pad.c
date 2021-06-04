@@ -14,17 +14,17 @@ t_char**	StringArray_Pad_L(t_char const** strarr, t_char const c, t_u32 n)
 
 	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return (NULL);)
 	strarr_length = StringArray_Length(strarr);
-	if (!(result = StringArray_New(strarr_length)))
-		return (NULL);
+	result = StringArray_New(strarr_length);
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	i = 0;
 	while (strarr[i])
 	{
 		result[i] = String_Pad_L(strarr[i], c, n);
-		if (!result[i])
+		HANDLE_ERROR(ALLOCFAILURE, (result[i] == NULL),
 		{
 			StringArray_Delete(&result);
 			return (NULL);
-		}
+		})
 		++i;
 	}
 	result[i] = NULL;

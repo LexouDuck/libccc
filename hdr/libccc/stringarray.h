@@ -42,8 +42,8 @@ HEADER_CPP
 **	is a section delimited by 'c' separators, or the edges of the string.
 */
 _MALLOC()
-t_char**							String_Split_Char(t_char const* str, char c);
-#define c_strsplit_char			String_Split_Char
+t_char**					String_Split_Char(t_char const* str, char c);
+#define c_strsplit_char		String_Split_Char
 
 /*!
 **	Returns a string array made up of substrings of 'str', where each element
@@ -51,8 +51,8 @@ t_char**							String_Split_Char(t_char const* str, char c);
 **	of the string.
 */
 _MALLOC()
-t_char**							String_Split_Charset(t_char const* str, t_char const* sep_chars);
-#define c_strsplit_charset		String_Split_Charset
+t_char**					String_Split_Charset(t_char const* str, t_char const* sep_chars);
+#define c_strsplit_charset	String_Split_Charset
 
 //! Splits up the given string 'str' into several parts in a string array, using 'query' as separator
 /*!
@@ -67,16 +67,16 @@ t_char**							String_Split_Charset(t_char const* str, t_char const* sep_chars);
 **		Ex: "enenen" --s/enen/HIen/-> "HIenen" --s/enen/HI/--> "HIHI"
 */
 _MALLOC()
-t_char**							String_Split_String(t_char const* str, t_char const* query);
-#define c_strsplit_str			String_Split_String
+t_char**					String_Split_String(t_char const* str, t_char const* query);
+#define c_strsplit_str		String_Split_String
 
 /*!
 **	Returns a string array which is the result of dividing str into chunks of
 **	equal size n, safe for the last chunk of length <= n.
 */
 _MALLOC()
-t_char**							String_Divide(t_char const* str, t_size n);
-#define c_strdivide				String_Divide
+t_char**					String_Divide(t_char const* str, t_size n);
+#define c_strdivide			String_Divide
 
 
 /*
@@ -89,22 +89,22 @@ t_char**							String_Divide(t_char const* str, t_size n);
 **	Returns a null-terminated list of unset t_char*, of length length.
 */
 _MALLOC()
-t_char**							StringArray_New(t_u32 length);
-#define c_strarrnew				StringArray_New
+t_char**				StringArray_New(t_u32 length);
+#define c_strarrnew		StringArray_New
 
 /*!
 **	Returns a newly allocated string array, which has y line and x characters
 **	per lines (+1 for null-termination), every character set to the value c.
 */
 _MALLOC()
-t_char**							StringArray_New_C(t_u32 y, t_size x, const char c);
-#define c_strarrcnew			StringArray_New_C
+t_char**				StringArray_New_C(t_u32 y, t_size x, const char c);
+#define c_strarrcnew	StringArray_New_C
 
 /*!
 **	Frees all allocations in a string array, then the string array itself.
 */
-void							StringArray_Delete(t_char** *a_strarr);
-#define c_strarrdel				StringArray_Delete
+void					StringArray_Delete(t_char** *a_strarr);
+#define c_strarrdel		StringArray_Delete
 
 /*!
 **	Returns a newly allocated string array, the result of mapping each string
@@ -112,40 +112,40 @@ void							StringArray_Delete(t_char** *a_strarr);
 **	string.
 */
 _MALLOC()
-t_char**							StringArray_Map(t_char const** strarr, char *(*f)(t_char const*));
-#define c_strarrmap				StringArray_Map
+t_char**					StringArray_Map(t_char const** strarr, char *(*f)(t_char const*));
+#define c_strarrmap			StringArray_Map
 
 /*!
 **	Transforms the content of the input string array, by mapping each string
 **	of strarr by f. f should be a function that does not allocate a new string;
 ** 	but instead edits the string's content in place.
 */
-void							StringArray_Map_InPlace(t_char** *a_strarr, char *(*f)(t_char*));
-#define c_strarrmap_inplace		StringArray_Map_InPlace
+void						StringArray_Map_InPlace(t_char** *a_strarr, char *(*f)(t_char*));
+#define c_strarrmap_inplace	StringArray_Map_InPlace
 
 /*!
 **	Returns a newly allocated string array such that every string is now
 **	preceded by n times the character c.
 */
 _MALLOC()
-t_char**							StringArray_Pad_L(t_char const** strarr, const char c, t_u32 n);
-#define c_strarrpad_l			StringArray_Pad_L
+t_char**					StringArray_Pad_L(t_char const** strarr, const char c, t_u32 n);
+#define c_strarrpad_l		StringArray_Pad_L
 
 /*!
 **	Returns a newly allocated string array, which is the result of removing
 **	the lines from index 'start' to 'start + length' from strarr.
 */
 _MALLOC()
-t_char**							StringArray_Sub(t_char const** strarr, t_u32 start, t_u32 length);
-#define c_strarrsub				StringArray_Sub
+t_char**					StringArray_Sub(t_char const** strarr, t_u32 start, t_u32 length);
+#define c_strarrsub			StringArray_Sub
 
 /*!
 **	Returns a newly allocated string which is the fold/reduce concatenation
 **	of all strings in strarr, with the string 'sep' added between each string.
 */
 _MALLOC()
-t_char*							StringArray_Fold(t_char const** strarr, t_char const* sep);
-#define c_strarrfold			StringArray_Fold
+t_char*						StringArray_Fold(t_char const** strarr, t_char const* sep);
+#define c_strarrfold		StringArray_Fold
 
 
 /*

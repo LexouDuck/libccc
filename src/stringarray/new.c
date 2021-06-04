@@ -10,31 +10,36 @@
 inline
 t_char**	StringArray_New(t_u32 length)
 {
-	return ((t_char**)Memory_New(sizeof(t_char*) * (length + 1)));
+	t_char**	result;
+
+	result = (t_char**)Memory_New(sizeof(t_char*) * (length + 1));
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	return (result);
 }
 
 
 
 t_char**	StringArray_New_C(t_u32 y, t_size x, const t_char c)
 {
-	t_char**	strarr;
+	t_char**	result;
 	t_u32	i;
 
-	if (!(strarr = StringArray_New(y)))
-		return (NULL);
+	result = StringArray_New(y);
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	i = 0;
 	while (i < y)
 	{
-		if (!(strarr[i] = String_New(x)))
+		result[i] = String_New(x);
+		HANDLE_ERROR(ALLOCFAILURE, (result[i] == NULL),
 		{
-			strarr[i] = NULL;
-			StringArray_Delete(&strarr);
+			result[i] = NULL;
+			StringArray_Delete(&result);
 			return (NULL);
-		}
-		Memory_Set(strarr[i], c, x);
-		strarr[i][x] = '\0';
+		})
+		Memory_Set(result[i], c, x);
+		result[i][x] = '\0';
 		++i;
 	}
-	strarr[y] = NULL;
-	return (strarr);
+	result[y] = NULL;
+	return (result);
 }

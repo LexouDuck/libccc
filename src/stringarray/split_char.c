@@ -47,8 +47,8 @@ t_char**		String_Split_Char(t_char const* str, t_char c)
 
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
 	count = String_Split_Char_GetCount(str, c);
-	if (!(result = StringArray_New(count)))
-		return (NULL);
+	result = StringArray_New(count);
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	offset = 0;
 	length = 0;
 	i = 0;
@@ -56,10 +56,14 @@ t_char**		String_Split_Char(t_char const* str, t_char c)
 	{
 		offset += length;
 		while (str[offset] && str[offset] == c)
+		{
 			++offset;
+		}
 		length = 0;
 		while (str[offset + length] && str[offset + length] != c)
+		{
 			++length;
+		}
 		if (length > 0)
 			result[i++] = String_Sub(str, offset, length);
 	}

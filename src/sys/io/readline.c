@@ -32,8 +32,8 @@ int		gnl_read(t_fd const fd, t_char** a_newline)
 	t_bool			end_of_buffer = FALSE;
 	t_bool			done_new_line = FALSE;
 
-	if (!(*a_newline = String_New(0)))
-		return (GNL_ERROR);
+	*a_newline = String_New(0);
+	HANDLE_ERROR(ALLOCFAILURE, (*a_newline == NULL), return (GNL_ERROR);)
 	while (!done_new_line)
 	{
 		if (buf_pos == IO_BUFFER_SIZE)

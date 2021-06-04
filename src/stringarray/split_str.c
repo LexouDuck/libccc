@@ -70,8 +70,8 @@ t_char**	String_Split_String(t_char const* str, t_char const* sub)
 	if (sub[0] == '\0')
 		return (String_Divide(str, 1));
 	reslen = String_Split_String_CountDistinctSubs(str, sub) + 1;
-	if (!(result = StringArray_New(reslen)))
-		return (NULL);
+	result = StringArray_New(reslen);
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	i = 0;
 	j = 0;
 	if (reslen == 1)
