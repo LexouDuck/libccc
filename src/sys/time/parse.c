@@ -49,11 +49,8 @@
 /* ************************************************************************** */
 
 #ifndef __NOSTD__
-	#include <ctype.h>
 	#include <locale.h>
-	#include <string.h>
 	#include <time.h>
-	#include <stdint.h>
 #else
 	// TODO
 	#define INT64_MAX	-1llu

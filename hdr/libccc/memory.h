@@ -363,8 +363,16 @@ int		memcmp(void const* ptr1, void const* ptr2, size_t n)
 { return (Memory_Compare(ptr1, ptr2, n)); }
 
 inline
+void*	memchr(void const* ptr, int c, size_t n)
+{ return (Memory_Find(ptr, c, n)); }
+
+inline
 void*	memcpy(void* dest, void const* src, size_t n)
 { return (Memory_Copy(dest, src, n)); }
+
+inline
+void*	memccpy(void* dest, void const* src, int c, size_t n)
+{ return (Memory_Copy_C(dest, src, c, n)); }
 
 inline
 void*	memmove(void* dest, void const* src, t_size n)

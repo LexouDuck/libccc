@@ -1160,6 +1160,24 @@ t_char*					String_Filter_I(t_char const* str, t_bool (*filter)(t_char c, t_size
 
 
 
+#ifdef __IOS__ // TODO smarter check here
+
+inline
+int		strcmp(char const* str1, char const* str2)
+{ return (String_Compare(str1, str2)); }
+
+inline
+int		strncmp(char const* str1, char const* str2, size_t n)
+{ return (String_Compare_N(str1, str2, n)); }
+
+inline
+char*	strchr(char const* str, int c)
+{ return (String_Find_Char(str, c)); }
+
+#endif
+
+
+
 /*! @} */
 HEADER_END
 #endif
