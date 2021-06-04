@@ -571,19 +571,27 @@ test_errno:
 	@rm -f                     $(LOGDIR)env/$(OSMODE)/errno_$(CC).c
 	@./$(TEST_DIR)_errno.sh >> $(LOGDIR)env/$(OSMODE)/errno_$(CC).c
 
-test_helloworld:
+$(NAME_TEST)_helloworld:
+	@printf "Compiling testing program: "$@" -> "
 	@$(CC) $(CFLAGS) -I$(HDRDIR) \
 	-o $(NAME_TEST)_helloworld \
 		$(TEST_DIR)_helloworld.c \
 		-L./ -lccc
+	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
+
+test_helloworld: $(NAME_TEST)_helloworld
 	@ ./$(NAME_TEST)_helloworld $(ARGS)
 	@rm $(NAME_TEST)_helloworld
 
-test_foreach:
+$(NAME_TEST)_foreach:
+	@printf "Compiling testing program: "$@" -> "
 	@$(CC) $(CFLAGS) -I$(HDRDIR) \
 	-o $(NAME_TEST)_foreach \
 		$(TEST_DIR)_foreach.c \
 		-L./ -lccc
+	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
+
+test_foreach: $(NAME_TEST)_foreach
 	@ ./$(NAME_TEST)_foreach $(ARGS)
 	@rm $(NAME_TEST)_foreach
 
@@ -735,6 +743,10 @@ re: fclean all
 	dist			\
 	dist_version	\
 	test			\
+	test_predef		\
+	test_errno		\
+	test_helloworld	\
+	test_foreach	\
 	doc				\
 	lint			\
 	preprocessed	\
