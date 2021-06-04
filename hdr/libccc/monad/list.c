@@ -19,6 +19,7 @@
 #include "libccc/../../src/monad/list/item.c"
 #include "libccc/../../src/monad/list/length.c"
 #include "libccc/../../src/monad/list/new.c"
+#include "libccc/../../src/monad/list/create.c"
 #include "libccc/../../src/monad/list/delete.c"
 #include "libccc/../../src/monad/list/duplicate.c"
 #include "libccc/../../src/monad/list/get.c"

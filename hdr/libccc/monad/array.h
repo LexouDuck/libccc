@@ -90,13 +90,22 @@ typedef struct array_T
 //! Returns an array which consists of `n` items, initialized with variadic arguments.
 /*!
 **	@param	n		The amount of items in this list (amount of variadic args)
-**	@param	...		The variadic list of arguments: there must be `n` arguments, of type `T`
 **	@returns
-**	An array containing `n` elements (the given `...` varargs)
+**	An array containing `n` elements
 */
 _GENERIC()
-s_array_T			CONCAT(Array,T_NAME)(t_uint n, ...);
+s_array_T			CONCAT(Array,T_NAME)(t_uint n);
 #define c_arr		CONCAT(Array,T_NAME)
+
+//! Allocates a new array which consists of `n` items, initialized with variadic arguments.
+/*!
+**	@param	n		The amount of items in this list (amount of variadic args)
+**	@returns
+**	A newly allocated array containing `n` elements
+*/
+_GENERIC()
+s_array_T*			CONCAT(Array_New,T_NAME)(t_uint n);
+#define c_arrnew	CONCAT(Array_New,T_NAME)
 
 //! Allocates a new array which consists of `n` items, initialized with variadic arguments.
 /*!
@@ -106,8 +115,8 @@ s_array_T			CONCAT(Array,T_NAME)(t_uint n, ...);
 **	A newly allocated array containing `n` elements (the given `...` varargs)
 */
 _GENERIC()
-s_array_T*			CONCAT(Array_New,T_NAME)(t_uint n, ...);
-#define c_arrnew	CONCAT(Array_New,T_NAME)
+s_array_T*			CONCAT(Array_Create,T_NAME)(t_uint n, ...);
+#define c_arrcreate	CONCAT(Array_Create,T_NAME)
 
 
 

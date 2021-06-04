@@ -305,6 +305,7 @@ SRCS = error.c \
 	math/stat/int.c		\
 	math/stat/float.c	\
 	monad/array/new.c		\
+	monad/array/create.c	\
 	monad/array/delete.c	\
 	monad/array/duplicate.c	\
 	monad/array/get.c		\
@@ -330,6 +331,7 @@ SRCS = error.c \
 	monad/list/item.c		\
 	monad/list/length.c		\
 	monad/list/new.c		\
+	monad/list/create.c		\
 	monad/list/delete.c		\
 	monad/list/duplicate.c	\
 	monad/list/get.c		\
@@ -571,7 +573,7 @@ test_errno:
 	@rm -f                     $(LOGDIR)env/$(OSMODE)/errno_$(CC).c
 	@./$(TEST_DIR)_errno.sh >> $(LOGDIR)env/$(OSMODE)/errno_$(CC).c
 
-$(NAME_TEST)_helloworld:
+$(NAME_TEST)_helloworld: debug
 	@printf "Compiling testing program: "$@" -> "
 	@$(CC) $(CFLAGS) -I$(HDRDIR) \
 	-o $(NAME_TEST)_helloworld \
@@ -583,7 +585,7 @@ test_helloworld: $(NAME_TEST)_helloworld
 	@ ./$(NAME_TEST)_helloworld $(ARGS)
 	@rm $(NAME_TEST)_helloworld
 
-$(NAME_TEST)_foreach:
+$(NAME_TEST)_foreach: debug
 	@printf "Compiling testing program: "$@" -> "
 	@$(CC) $(CFLAGS) -I$(HDRDIR) \
 	-o $(NAME_TEST)_foreach \

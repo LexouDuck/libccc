@@ -23,7 +23,7 @@
 #define T				s_array_int
 #define T_NAME			_array_int
 #define T_DEFAULT		(s_array_int){ .length = 0, .items = NULL }
-#define T_EQUALS(A, B)	((A).length == (B).length && (A).items == (B).items)
+#define T_EQUALS(A, B)	(Array_Equals_int(&(A), &(B)))
 #include <libccc/monad/array.c>
 
 #define T			int
@@ -32,8 +32,8 @@
 #include <libccc/monad/list.c>
 #define T				s_list_int
 #define T_NAME			_list_int
-#define T_DEFAULT		(s_list_int){ .length = 0, .items = NULL }
-#define T_EQUALS(A, B)	((A).item == (B).item)
+#define T_DEFAULT		(s_list_int){ 0 }
+#define T_EQUALS(A, B)	(List_Equals_int(&(A), &(B)))
 #include <libccc/monad/list.c>
 
 //#include <libccc/monad/dict.c>
@@ -52,7 +52,7 @@ int main(int argc, char** argv)
 
 	IO_Output_String("\n- s_array<char*>:\n");
 	{
-		s_array_str* tmp = Array_New_str(COUNT,
+		s_array_str* tmp = Array_Create_str(COUNT,
 			"Yo, my boi!",
 			"What's up, dog?",
 			"Not much, you ?",
@@ -73,7 +73,7 @@ int main(int argc, char** argv)
 	}
 	IO_Output_String("\n- s_list<char*>:\n");
 	{
-		s_list_str* tmp = List_New_str(COUNT,
+		s_list_str* tmp = List_Create_str(COUNT,
 			"Yo, my boi!",
 			"What's up, dog?",
 			"Not much, you ?",
@@ -97,10 +97,10 @@ int main(int argc, char** argv)
 
 	IO_Output_String("\n- s_array<s_array<int>>:\n");
 	{
-		s_array_array_int* tmp = Array_New_array_int(3,
-			Array_New_int(3,	0, 1, 10),
-			Array_New_int(3,	42, 69, 420),
-			Array_New_int(6,	42, 69, 420, 0, 1, 10));
+		s_array_array_int* tmp = Array_Create_array_int(3,
+			Array_Create_int(3,	0, 1, 10),
+			Array_Create_int(3,	42, 69, 420),
+			Array_Create_int(6,	42, 69, 420, 0, 1, 10));
 		Array_RemoveAt_array_int(tmp, 1);
 		i = 0;
 		foreach (s_array_int, int_array, s_array, tmp)
@@ -114,10 +114,10 @@ int main(int argc, char** argv)
 	}
 	IO_Output_String("\n- s_list<s_list<int>>:\n");
 	{
-		s_list_list_int* tmp = List_New_list_int(3,
-			List_New_int(3, 	0, 1, 10),
-			List_New_int(3, 	42, 69, 420),
-			List_New_int(6, 	42, 69, 420, 0, 1, 10));
+		s_list_list_int* tmp = List_Create_list_int(3,
+			List_Create_int(3, 	0, 1, 10),
+			List_Create_int(3, 	42, 69, 420),
+			List_Create_int(6, 	42, 69, 420, 0, 1, 10));
 		List_RemoveAt_list_int(tmp, 1);
 		i = 0;
 		foreach (s_list_int, int_list, s_list, tmp)

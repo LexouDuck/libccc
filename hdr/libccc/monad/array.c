@@ -17,6 +17,7 @@
 
 // generate code for all generic functions
 #include "libccc/../../src/monad/array/new.c"
+#include "libccc/../../src/monad/array/create.c"
 #include "libccc/../../src/monad/array/delete.c"
 #include "libccc/../../src/monad/array/duplicate.c"
 #include "libccc/../../src/monad/array/get.c"

@@ -138,10 +138,22 @@ t_uint				CONCAT(List_Length,T_NAME)(s_list_T const* list);
 
 
 
-//! Allocates and returns a list element from the given list of arguments.
+//! Allocates and returns a linked list with `n` elements.
 /*!
 **	Allocates a new linked list, consisting of several `s_list` structs chained
 **	together via their `next` pointer, with each struct storing an `item`.
+**
+**	@param	n		The amount of items in this list (amount of variadic args)
+**	@returns
+**	A newly allocated linked list which consists of `n` structs chained together.
+*/
+_MALLOC()
+_GENERIC()
+s_list_T*			CONCAT(List_New,T_NAME)(t_uint n);
+#define c_lstnew	CONCAT(List_New,T_NAME)
+
+//! Allocates and returns a linked list, created from the given variadic arguments.
+/*!
 **	This function accepts a variadic list of arguments to initialize the list.
 **
 **	@param	n		The amount of items in this list (amount of variadic args)
@@ -151,8 +163,8 @@ t_uint				CONCAT(List_Length,T_NAME)(s_list_T const* list);
 */
 _MALLOC()
 _GENERIC()
-s_list_T*			CONCAT(List_New,T_NAME)(t_uint n, ...);
-#define c_lstnew	CONCAT(List_New,T_NAME)
+s_list_T*			CONCAT(List_Create,T_NAME)(t_uint n, ...);
+#define c_lstcreate	CONCAT(List_Create,T_NAME)
 
 
 
