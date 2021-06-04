@@ -1,16 +1,18 @@
 
 #include "libccc/monad/array.h"
+#include "libccc/string.h"
 
 #include LIBCONFIG_HANDLE_INCLUDE
 
 
 
 _GENERIC()
-T	CONCAT(Array_Get,T_NAME)(s_array_T const* array, t_uint index)
+T*	CONCAT(Array_Get,T_NAME)(s_array_T const* array, t_uint index)
 {
-	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (T_DEFAULT);)
-	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return (T_DEFAULT);)
-	if (index >= array->length)
-		return (T_DEFAULT);
-	return (array->items[index]);
+	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return (NULL);)
+	HANDLE_ERROR_SF(INDEX2LARGE, (array->length <= index), return (NULL);,
+		", index given ("SF_UINT") is beyond end of array (length: "SF_UINT")",
+		index, array->length)
+	return (&array->items[index]);
 }

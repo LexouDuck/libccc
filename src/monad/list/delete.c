@@ -32,6 +32,7 @@ void	CONCAT(List_Delete_F,T_NAME)(s_list_T* list, void (*delete)(T* item))
 	s_list_T*	i;
 
 	HANDLE_ERROR(NULLPOINTER, (list == NULL), return;)
+	HANDLE_ERROR(NULLPOINTER, (delete == NULL), return;)
 	i = list;
 	while (i)
 	{

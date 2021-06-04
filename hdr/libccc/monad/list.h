@@ -197,7 +197,7 @@ s_list_T*			CONCAT(List_Duplicate,T_NAME)(s_list_T const* list);
 **	or `NULL`, if `index` is beyond the last element.
 */
 _GENERIC()
-s_list_T*			CONCAT(List_Get,T_NAME)(s_list_T const* list, t_uint index);
+T*					CONCAT(List_Get,T_NAME)(s_list_T const* list, t_uint index);
 #define c_lstget	CONCAT(List_Get,T_NAME)
 
 //! Sets the item at position `index` in the list, and returns that link chain TODO
@@ -209,7 +209,7 @@ s_list_T*			CONCAT(List_Get,T_NAME)(s_list_T const* list, t_uint index);
 **	or `NULL`, if `index` is beyond the last element.
 */
 _GENERIC()
-s_list_T*			CONCAT(List_Set,T_NAME)(s_list_T* list, t_uint index, T item);
+T*					CONCAT(List_Set,T_NAME)(s_list_T* list, t_uint index, T item);
 #define c_lstset	CONCAT(List_Set,T_NAME)
 
 //! Copies over `n` items from the given `src` list into the given `dest` list

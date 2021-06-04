@@ -144,12 +144,12 @@ s_array_T			CONCAT(Array_Duplicate,T_NAME)(s_array_T const* array);
 
 //! TODO document this
 _GENERIC()
-T					CONCAT(Array_Get,T_NAME)(s_array_T const* array, t_uint index);
+T*					CONCAT(Array_Get,T_NAME)(s_array_T const* array, t_uint index);
 #define c_arrget	CONCAT(Array_Get,T_NAME)
 
 //! TODO document this
 _GENERIC()
-void				CONCAT(Array_Set,T_NAME)(s_array_T* array, t_uint index, T item);
+T*					CONCAT(Array_Set,T_NAME)(s_array_T* array, t_uint index, T item);
 #define c_arrset	CONCAT(Array_Set,T_NAME)
 
 //! TODO document this

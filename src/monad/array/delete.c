@@ -22,6 +22,7 @@ _GENERIC()
 void	CONCAT(Array_Delete_F,T_NAME)(s_array_T* array, void (*delete)(T* item))
 {
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return;)
+	HANDLE_ERROR(NULLPOINTER, (delete == NULL), return;)
 	for (t_uint i = 0; i < array->length; ++i)
 	{
 		delete(&array->items[i]);
