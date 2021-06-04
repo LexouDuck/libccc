@@ -561,15 +561,15 @@ test_log: $(NAME_TEST)
 
 
 
-test_defines:
-	@mkdir -p                    $(LOGDIR)defines/$(OSMODE)/
-	@rm -f                       $(LOGDIR)defines/$(OSMODE)/$(CC).c
-	@./$(TEST_DIR)_defines.sh >> $(LOGDIR)defines/$(OSMODE)/$(CC).c
+test_predef:
+	@mkdir -p                   $(LOGDIR)env/$(OSMODE)/
+	@rm -f                      $(LOGDIR)env/$(OSMODE)/predef_$(CC).c
+	@./$(TEST_DIR)_predef.sh >> $(LOGDIR)env/$(OSMODE)/predef_$(CC).c
 
 test_errno:
-	@mkdir -p                  $(LOGDIR)errno/$(OSMODE)/
-	@rm -f                     $(LOGDIR)errno/$(OSMODE)/$(CC).c
-	@./$(TEST_DIR)_errno.sh >> $(LOGDIR)errno/$(OSMODE)/$(CC).c
+	@mkdir -p                  $(LOGDIR)env/$(OSMODE)/
+	@rm -f                     $(LOGDIR)env/$(OSMODE)/errno_$(CC).c
+	@./$(TEST_DIR)_errno.sh >> $(LOGDIR)env/$(OSMODE)/errno_$(CC).c
 
 test_helloworld:
 	@$(CC) $(CFLAGS) -I$(HDRDIR) \

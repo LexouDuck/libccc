@@ -9,7 +9,7 @@ echo "/*"
 echo "** macro test: predefined"
 echo "**	OS: $OS"
 echo "**	SH: $(uname -s)"
-echo "**	CC: $(readlink -f $(which $CC))"
+echo "**	CC: $(which $CC)"
 echo "*/"
 echo "" \
 | $CC -dM -E - \
