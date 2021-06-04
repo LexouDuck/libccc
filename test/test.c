@@ -208,7 +208,7 @@ void	print_test_sign(s_test_sign* test, char const* args)
 		test->expect_sig = 0;
 	}
 	char* tmp = (char*)malloc(1+128);	if (tmp == NULL) return;
-	size_t len = snprintf(tmp,	128, "Return value differs, but sign is the same (got %li, but expected %li).",
+	size_t len = snprintf(tmp,	128, "Return value differs, but sign is the same (got %ji, but expected %ji).",
 		test->result,
 		test->expect);
 	if (len == 0)

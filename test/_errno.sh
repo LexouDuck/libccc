@@ -9,7 +9,7 @@ echo "/*"
 echo "** macro test: errno"
 echo "**	OS: $OS"
 echo "**	SH: $(uname -s)"
-echo "**	CC: $(readlink -f $(which $CC))"
+echo "**	CC: $(which $CC)"
 echo "*/"
 echo "#include <errno.h>" \
 | $CC -dM -E - \
