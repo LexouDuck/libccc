@@ -82,16 +82,34 @@ void (*g)(int, char* (*)(char*)); // pure C
 
 
 
-### Compile-time operators:
+### Cross-platform fixes:
 
-- `alignof(X)`: Transpiles to the minimum memory alignment requirement of a variable/value/token `X`
-- `typeof(X)`: Transpiles to inline code, the type of the variable/value/token `X`
-- `nameof(X)`: Transpiles to a string literal, the name of the variable/value/token `X`
-
-Also:
 - `asm`: Transpiles to the more cross-platform equivalent: `__asm__`
 - `inline`: Transpiles to the more cross-platform equivalent: `__inline__`
 - `restrict`: Transpiles to the more cross-platform equivalent: `__restrict__`
+
+- `alignof(X)`: Transpiles to whatever logic makes sense for the given platform
+- `alignas(X)`: Transpiles to whatever logic makes sense for the given platform
+
+
+### Compile-time operators:
+
+- `typeof(X)`: Transpiles to the fully resolved type of the variable/value/token `X`
+
+There is an `is` operator, which allows for equality checks between types:
+```c
+#if #(typeof(size_t) is unsigned long)
+	// do something
+#elif #(!(typeof(size_t) is unsigned long long))
+	#error "unsupported size_t type"
+#endif
+```
+A type equality check returns `1` if both types, when fully resolved (after following any nested `typedef`s), are the same.
+Essentially, any 2 types which would issue a warning when implicitly casted will have `is` between them return `0`.
+
+
+
+Also:
 
 
 
@@ -169,9 +187,17 @@ There are a couple of changes/fixes to existing preprocessor directives:
 ```c
 //! compile-time operators like sizeof() can be used in `#if` statements directly now, the transpiler will handle it
 #if (sizeof(char) == 1)
+#endif
 
-#elif defined(MACRO) // 
-
+//! Here is an example of function-call generic type promotion (to use with va_arg())
+#if (typeof(T) is char)
+	#define T_VA_ARG	int
+#elif (typeof(T) is short)
+	#define T_VA_ARG	int
+#elif (typeof(T) is float)
+	#define T_VA_ARG	double
+#else
+	#define T_VA_ARG	T
 #endif
 ```
 

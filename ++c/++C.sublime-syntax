@@ -246,6 +246,8 @@ contexts:
       scope: keyword.operator.getvalue.++c
     - match: (\&|\@)(?=[A-Za-z_]\w*)
       scope: keyword.operator.getaddress.++c
+    - match: \b(is)\b
+      scope: keyword.operator.equaltype.++c
     - match: \s*\b(=>)\b
       scope: keyword.operator.function.++c
     - match: \s*\b([\=\-\+\*\/\%\&\|\^\!\~\?\:\<\>\$\@]+)\b

@@ -14,7 +14,17 @@
 
 #include LIBCONFIG_HANDLE_INCLUDE
 
-
+/*
+#if (typeof(T) is char)
+	#define T_VA_ARG	int
+#elif (typeof(T) is short)
+	#define T_VA_ARG	int
+#elif (typeof(T) is float)
+	#define T_VA_ARG	double
+#else
+	#define T_VA_ARG	T
+#endif
+*/
 
 _GENERIC()
 s_list_T*	CONCAT(List_New,T_NAME)(t_uint n, ...)
