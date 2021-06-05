@@ -25,6 +25,9 @@ s_list_T*	CONCAT(List_Insert,T_NAME)(s_list_T* list, T item, t_uint index)
 	elem = list;
 	for (t_uint i = 0; i < index; ++i)
 	{
+		HANDLE_ERROR_SF(INDEX2LARGE, (elem->next == NULL), return (NULL);,
+			", index given ("SF_UINT") is beyond end of list (length: "SF_UINT")",
+			index, CONCAT(List_Length,T_NAME)(list))
 		elem = elem->next;
 	}
 #if LIBCONFIG_LIST_DOUBLYLINKED

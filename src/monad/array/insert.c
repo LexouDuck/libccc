@@ -13,7 +13,9 @@ void	CONCAT(Array_Insert,T_NAME)(s_array_T* array, T item, t_uint index)
 
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return;)
 	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return;)
-	HANDLE_ERROR(INDEX2LARGE, (index >= array->length), return;)
+	HANDLE_ERROR_SF(INDEX2LARGE, (array->length <= index), return;,
+		", index given ("SF_UINT") is beyond end of array (length: "SF_UINT")",
+		index, array->length)
 	result = (T*)Memory_Allocate(sizeof(T) * (array->length + 1));
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return;)
 	for (t_uint i = 0; i <= array->length; ++i)

@@ -74,14 +74,14 @@ e_cccerror	Error_Set(e_cccerror error)
 
 
 
-typedef struct stderror_info
+typedef struct cccerror_info
 {
 	e_cccerror		code;
 	t_char const*	name;
 	t_char const*	message;
-}			s_stderror_info;
+}			s_cccerror_info;
 
-static s_stderror_info	stderrors[ENUMLENGTH_STDERROR] =
+static s_cccerror_info	cccerrors[ENUMLENGTH_STDERROR] =
 {
 	{ ERROR_UNSPECIFIED,  "ERROR_UNSPECIFIED",  "Unspecified error" },
 

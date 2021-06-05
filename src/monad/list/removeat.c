@@ -24,8 +24,9 @@ s_list_T*	CONCAT(List_RemoveAt,T_NAME)(s_list_T* list, t_uint index)
 	{
 		elem = elem->next;
 	}
-	if (elem == NULL || elem->next == NULL)
-		return (list);
+	HANDLE_ERROR_SF(INDEX2LARGE, (elem == NULL || elem->next == NULL), return (list);,
+		", index given ("SF_UINT") is beyond end of list (length: "SF_UINT")",
+		index, CONCAT(List_Length,T_NAME)(list))
 	tmp = elem->next;
 	elem->next = tmp->next;
 #if LIBCONFIG_LIST_DOUBLYLINKED
@@ -55,8 +56,9 @@ s_list_T*	CONCAT(List_RemoveAt_F,T_NAME)(s_list_T* list, t_uint index, void (*de
 	{
 		elem = elem->next;
 	}
-	if (elem == NULL || elem->next == NULL)
-		return (list);
+	HANDLE_ERROR_SF(INDEX2LARGE, (elem == NULL || elem->next == NULL), return (list);,
+		", index given ("SF_UINT") is beyond end of list (length: "SF_UINT")",
+		index, CONCAT(List_Length,T_NAME)(list))
 	delete(elem->item);
 	tmp = elem->next;
 	elem->next = tmp->next;

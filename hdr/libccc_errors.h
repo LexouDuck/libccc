@@ -184,7 +184,7 @@ HEADER_CPP
 **	-	`ERANGE` (`ERROR_INVALIDARG_RESULTRANGE`)   Result too large
 **	-	`EILSEQ` (`ERROR_INVALIDARG_ILLEGALBYTES`)  Illegal byte sequence (C95)
 */
-typedef enum stderror
+typedef enum cccerror
 {
 	ERROR_UNSPECIFIED = ERROR, //!< Unspecified error
 	ERROR_NONE        = OK,    //!< No error
