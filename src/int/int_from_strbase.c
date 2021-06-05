@@ -4,7 +4,7 @@
 #include "libccc/pointer.h"
 #include "libccc/string.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 
@@ -95,7 +95,7 @@ t_s##BITS	S##BITS##_FromString_Base(t_char const* str, t_char const* base)	\
 		HANDLE_ERROR_SF(PARSE, (digit < 0), return (0);,						\
 			": digit char '%c' is not in number base \"%s\"", str[i - 1], base)	\
 		tmp = result * length + digit;											\
-		HANDLE_ERROR_SF(RESULTRANGE, (tmp < result), LIBCONFIG_HANDLE_OVERFLOW,	\
+		HANDLE_ERROR_SF(RESULTRANGE, (tmp < result), LIBCONFIG_ERROR_HANDLEOVERFLOW,	\
 		" (integer overflow for \"%s\" with base \"%s\" at "SF_U##BITS")",		\
 		str, base, U##BITS##_MAX)												\
 		result = tmp;															\
@@ -151,7 +151,7 @@ t_u##BITS	U##BITS##_FromString_Base(t_char const* str, t_char const* base)	\
 		HANDLE_ERROR_SF(PARSE, (digit < 0), return (0);,						\
 			": digit char '%c' is not in number base \"%s\"", str[i - 1], base)	\
 		tmp = result * length + digit;											\
-		HANDLE_ERROR_SF(RESULTRANGE, (tmp < result), LIBCONFIG_HANDLE_OVERFLOW,	\
+		HANDLE_ERROR_SF(RESULTRANGE, (tmp < result), LIBCONFIG_ERROR_HANDLEOVERFLOW,	\
 		" (integer overflow for \"%s\" with base \"%s\" at "SF_S##BITS")",		\
 		str, base, S##BITS##_MAX)												\
 		result = tmp;															\

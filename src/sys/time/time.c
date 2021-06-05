@@ -10,7 +10,7 @@
 	struct tm*	localtime(const time_t* timep);
 #endif
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 

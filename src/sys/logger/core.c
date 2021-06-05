@@ -23,7 +23,7 @@
 #include "libccc/sys/time.h"
 #include "libccc/sys/logger.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 static
 void	Log_Logger_FatalError(s_logger const* logger, t_char const* output)

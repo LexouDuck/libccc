@@ -2,7 +2,7 @@
 #include "libccc/memory.h"
 #include "libccc/pointerarray.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 

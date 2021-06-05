@@ -5,7 +5,7 @@
 #include "libccc/math/float.h"
 #include "libccc/random/prng.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 

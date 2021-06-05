@@ -6,7 +6,7 @@
 #include "libccc/sys/io.h"
 #include "libccc/encode/toml.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 

@@ -9,7 +9,7 @@
 	void	free(void* ptr);
 #endif
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 

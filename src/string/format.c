@@ -18,7 +18,7 @@
 	int	vsnprintf(char* dest, size_t n, char const* format, va_list args);
 #endif
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 

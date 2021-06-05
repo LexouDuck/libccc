@@ -3,7 +3,7 @@
 #include "libccc/monad/list.h"
 #include "libccc/monad/array.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 /*
 

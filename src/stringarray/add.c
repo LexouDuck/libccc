@@ -1,7 +1,7 @@
 
 #include "libccc/stringarray.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 

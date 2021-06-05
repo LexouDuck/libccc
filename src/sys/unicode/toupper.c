@@ -5,7 +5,7 @@
 #include <wctype.h>
 #endif
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 

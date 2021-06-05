@@ -5,7 +5,7 @@
 #include "libccc/pointer.h"
 #include "libccc/string.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 
@@ -31,7 +31,7 @@ t_u##BITS	U##BITS##_FromString_Bin(t_char const* str)							\
 	while (str[i] && Char_IsDigit_Bin(str[i]))									\
 	{																			\
 		tmp = result * 2 + (str[i++] - '0');									\
-		HANDLE_ERROR_SF(RESULTRANGE, (tmp < result), LIBCONFIG_HANDLE_OVERFLOW,	\
+		HANDLE_ERROR_SF(RESULTRANGE, (tmp < result), LIBCONFIG_ERROR_HANDLEOVERFLOW,	\
 		" (integer overflow for \"%s\" at "SF_U##BITS")", str, U##BITS##_MAX)	\
 		result = tmp;															\
 	}																			\
@@ -77,7 +77,7 @@ t_s##BITS	S##BITS##_FromString_Bin(t_char const* str)							\
 	while (str[i] && Char_IsDigit_Bin(str[i]))									\
 	{																			\
 		tmp = result * 2 + (str[i++] - '0');									\
-		HANDLE_ERROR_SF(RESULTRANGE, (tmp < result), LIBCONFIG_HANDLE_OVERFLOW,	\
+		HANDLE_ERROR_SF(RESULTRANGE, (tmp < result), LIBCONFIG_ERROR_HANDLEOVERFLOW,	\
 		" (integer overflow for \"%s\" at "SF_S##BITS")", str, S##BITS##_MAX)	\
 		result = tmp;															\
 	}																			\

@@ -2,7 +2,7 @@
 #include "libccc/math/math.h"
 #include "libccc/color.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 

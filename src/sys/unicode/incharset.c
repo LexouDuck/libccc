@@ -3,7 +3,7 @@
 #include "libccc/sys/unicode.h"
 #include "libccc/pointer.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 

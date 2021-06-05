@@ -4,7 +4,7 @@
 #include "libccc/string.h"
 #include "libccc/sys/io.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 

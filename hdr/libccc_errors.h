@@ -40,14 +40,14 @@ HEADER_CPP
 */
 //!@{
 #ifdef DEBUG
-	#define LIBCONFIG_DEFAULT_HANDLER(ERRORCODE, MESSAGE) \
+	#define LIBCONFIG_ERROR_DEFAULTHANDLER(ERRORCODE, MESSAGE) \
 	{														\
 		IO_Output_Format(C_RED"ERROR"C_RESET"[%i]: %s\n",	\
 			ERRORCODE, MESSAGE);							\
 	}														\
 
 #else
-	#define LIBCONFIG_DEFAULT_HANDLER(ERRORCODE, MESSAGE) \
+	#define LIBCONFIG_ERROR_DEFAULTHANDLER(ERRORCODE, MESSAGE) \
 	
 #endif
 //!@}
@@ -55,14 +55,14 @@ HEADER_CPP
 
 
 //! The action to take when there is an integer overflow (by default, let it continue)
-#ifndef LIBCONFIG_HANDLE_OVERFLOW
-#define LIBCONFIG_HANDLE_OVERFLOW \
+#ifndef LIBCONFIG_ERROR_HANDLEOVERFLOW
+#define LIBCONFIG_ERROR_HANDLEOVERFLOW \
 	// return (0);
 #endif
 
 //! The file to include in source files which use `HANDLE_ERROR()`
-#ifndef LIBCONFIG_HANDLE_INCLUDE
-#define LIBCONFIG_HANDLE_INCLUDE	"libccc/error.h"
+#ifndef LIBCONFIG_ERROR_INCLUDE
+#define LIBCONFIG_ERROR_INCLUDE	"libccc/error.h"
 #endif
 
 

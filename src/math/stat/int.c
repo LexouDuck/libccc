@@ -7,7 +7,7 @@
 #define T_DEFAULT	0
 #include "libccc/monad/array.c"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 

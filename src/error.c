@@ -22,7 +22,7 @@
 #include "libccc/format.h"
 #include "libccc/sys/io.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 
@@ -177,7 +177,7 @@ void	Error_Handle(e_cccerror error, t_char* message)
 
 void	Error_Handler(e_cccerror error, t_char* message)
 {
-	LIBCONFIG_DEFAULT_HANDLER(error, message)
+	LIBCONFIG_ERROR_DEFAULTHANDLER(error, message)
 }
 
 
