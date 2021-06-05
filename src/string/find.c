@@ -28,7 +28,7 @@ t_char*	String_Find_Char(t_char const* str, t_char c)
 			break;
 		++i;
 	}
-	return (NULL);
+	HANDLE_ERROR(NOTFOUND, (TRUE), return (NULL);)
 }
 #endif
 
@@ -64,7 +64,7 @@ t_char*	String_Find_Charset(t_char const* str, t_char const* charset)
 		}
 		++i;
 	}
-	return (NULL);
+	HANDLE_ERROR(NOTFOUND, (TRUE), return (NULL);)
 }
 #endif
 
@@ -104,7 +104,7 @@ t_char*	String_Find_String(t_char const* str, t_char const* query)
 		}
 		++i;
 	}
-	return (NULL);
+	HANDLE_ERROR(NOTFOUND, (TRUE), return (NULL);)
 }
 #endif
 

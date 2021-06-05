@@ -15,7 +15,7 @@ T*	CONCAT(Array_Find,T_NAME)(s_array_T const* array, T item)
 		if (T_EQUALS(array->items[i], item))
 			return (&(array->items[i]));
 	}
-	return (NULL);
+	HANDLE_ERROR(NOTFOUND, (TRUE), return (NULL);)
 }
 
 
@@ -29,7 +29,7 @@ T*	CONCAT(Array_Find_F,T_NAME)(s_array_T const* array, t_bool (*match)(T item))
 		if (match(array->items[i]))
 			return (&(array->items[i]));
 	}
-	return (NULL);
+	HANDLE_ERROR(NOTFOUND, (TRUE), return (NULL);)
 }
 
 
@@ -43,7 +43,7 @@ t_sint	CONCAT(Array_IndexOf,T_NAME)(s_array_T const* array, T item)
 		if (T_EQUALS(array->items[i], item))
 			return (i);
 	}
-	return (ERROR);
+	HANDLE_ERROR(NOTFOUND, (TRUE), return (ERROR);)
 }
 
 
@@ -57,5 +57,5 @@ t_sint	CONCAT(Array_IndexOf_F,T_NAME)(s_array_T const* array, t_bool (*match)(T 
 		if (match(array->items[i]))
 			return (i);
 	}
-	return (ERROR);
+	HANDLE_ERROR(NOTFOUND, (TRUE), return (ERROR);)
 }

@@ -31,7 +31,7 @@ t_char*	String_Find_R_Char(t_char const* str, t_char c)
 		if (str[i] == c)
 			return ((t_char*)str + i);
 	}
-	return (NULL);
+	HANDLE_ERROR(NOTFOUND, (TRUE), return (NULL);)
 }
 #endif
 
@@ -65,7 +65,7 @@ t_char*	String_Find_R_Charset(t_char const* str, t_char const* charset)
 				return ((t_char*)str + i);
 		}
 	}
-	return (NULL);
+	HANDLE_ERROR(NOTFOUND, (TRUE), return (NULL);)
 }
 
 inline
@@ -104,7 +104,7 @@ t_char*	String_Find_R_String(t_char const* str, t_char const* query)
 		if (match == length)
 			return ((t_char*)str + i);
 	}
-	return (NULL);
+	HANDLE_ERROR(NOTFOUND, (TRUE), return (NULL);)
 }
 
 inline

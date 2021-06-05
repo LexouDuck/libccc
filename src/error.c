@@ -91,8 +91,12 @@ static s_cccerror_info	cccerrors[ENUMLENGTH_CCCERROR] =
 	{ Error_Handler, ERROR_SYSTEM,       "ERROR_SYSTEM",       "System Error: `strerror(errno)` message" },
 	{ Error_Handler, ERROR_ALLOCFAILURE, "ERROR_ALLOCFAILURE", "System Error: Memory allocation failure" },
 
+	{ Error_Handler, ERROR_PARSE,        "ERROR_PARSE",        "Parse Error" },
+	{ Error_Handler, ERROR_PRINT,        "ERROR_PRINT",        "Print Error" },
+	{ Error_Handler, ERROR_NOTFOUND,     "ERROR_NOTFOUND",     "Error: could not find value" },
+
 	{ Error_Handler, ERROR_INVALIDARGS,  "ERROR_INVALIDARGS",  "Argument Error" },
-	{ NULL,          ERROR_NULLPOINTER,  "ERROR_NULLPOINTER",  "Argument Error: null pointer received" },
+	{ Error_Handler, ERROR_NULLPOINTER,  "ERROR_NULLPOINTER",  "Argument Error: null pointer received" },
 	{ Error_Handler, ERROR_MATHDOMAIN,   "ERROR_MATHDOMAIN",   "Argument Error: mathematic out of domain error" },
 	{ Error_Handler, ERROR_RESULTRANGE,  "ERROR_RESULTRANGE",  "Argument Error: result cannot be represented within limited range" },
 	{ Error_Handler, ERROR_NANARGUMENT,  "ERROR_NANARGUMENT",  "Argument Error: should not receive NAN as argument" },
@@ -106,9 +110,6 @@ static s_cccerror_info	cccerrors[ENUMLENGTH_CCCERROR] =
 	{ Error_Handler, ERROR_KEYNOTFOUND,  "ERROR_KEYNOTFOUND",  "Argument Error: could not find item with the given key" },
 	{ Error_Handler, ERROR_WRONGTYPE,    "ERROR_WRONGTYPE",    "Argument Error: attempted to read dynamic-type item with wrong type" },
 	{ Error_Handler, ERROR_DELETEREF,    "ERROR_DELETEREF",    "Argument Error: attempted to free an area of constant memory" },
-
-	{ Error_Handler, ERROR_PARSE,        "ERROR_PARSE",        "Parse Error" },
-	{ Error_Handler, ERROR_PRINT,        "ERROR_PRINT",        "Print Error" },
 };
 
 
@@ -158,7 +159,7 @@ e_cccerror	Error_GetCode(t_char const* name)
 
 
 
-void	Error_Handle(e_cccerror error, t_char* message)
+void	Error_Handle(e_cccerror error, t_char const* funcname, t_char* message)
 {
 	f_ccchandler	handler;
 	t_char*	tmp;
@@ -167,8 +168,8 @@ void	Error_Handle(e_cccerror error, t_char* message)
 	if (handler)
 	{
 		if (message)
-			tmp = String_Format("%s -> %s%s",  __func__, Error_GetMessage(error), message);
-		else tmp = String_Format("%s -> %s",   __func__, Error_GetMessage(error));
+			tmp = String_Format("%s -> %s%s",  funcname, Error_GetMessage(error), message);
+		else tmp = String_Format("%s -> %s",   funcname, Error_GetMessage(error));
 		handler(error, tmp);
 		String_Delete(&tmp);
 		String_Delete(&message);

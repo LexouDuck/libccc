@@ -29,6 +29,6 @@ void*	Memory_Find(void const* ptr, t_u8 byte, t_size n)
 			return (result + i);
 		++i;
 	}
-	return (NULL);
+	HANDLE_ERROR(NOTFOUND, (TRUE), return (NULL);)
 }
 #endif

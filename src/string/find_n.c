@@ -23,7 +23,7 @@ t_char*	String_Find_N_Char(t_char const* str, t_char c, t_size n)
 			break;
 		++i;
 	}
-	return (NULL);
+	HANDLE_ERROR(NOTFOUND, (TRUE), return (NULL);)
 }
 
 inline
@@ -51,7 +51,7 @@ t_char*	String_Find_N_Charset(t_char const* str, t_char const* charset, t_size n
 		}
 		++i;
 	}
-	return (NULL);
+	HANDLE_ERROR(NOTFOUND, (TRUE), return (NULL);)
 }
 
 inline
@@ -89,7 +89,7 @@ t_char*	String_Find_N_String(t_char const* str, t_char const* query, t_size n)
 			return ((t_char*)str + i);
 		++i;
 	}
-	return (NULL);
+	HANDLE_ERROR(NOTFOUND, (TRUE), return (NULL);)
 }
 
 inline

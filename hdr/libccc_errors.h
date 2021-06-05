@@ -41,10 +41,10 @@ HEADER_CPP
 //!@{
 #ifdef DEBUG
 	#define LIBCONFIG_ERROR_DEFAULTHANDLER(ERRORCODE, MESSAGE) \
-	{														\
-		IO_Output_Format(C_RED"ERROR"C_RESET"[%i]: %s\n",	\
-			ERRORCODE, MESSAGE);							\
-	}														\
+	{												\
+		IO_Output_Format(C_RED"%s"C_RESET": %s\n",	\
+			Error_GetName(ERRORCODE), MESSAGE);		\
+	}												\
 
 #else
 	#define LIBCONFIG_ERROR_DEFAULTHANDLER(ERRORCODE, MESSAGE) \
@@ -73,8 +73,14 @@ HEADER_CPP
 */
 //!@{
 #define HANDLE_ERRORS_UNSPECIFIED  1
+
 #define HANDLE_ERRORS_SYSTEM       1
 #define HANDLE_ERRORS_ALLOCFAILURE 1
+
+#define HANDLE_ERRORS_PARSE        1
+#define HANDLE_ERRORS_PRINT        1
+#define HANDLE_ERRORS_NOTFOUND     1
+
 #define HANDLE_ERRORS_INVALIDARGS  1
 #define HANDLE_ERRORS_NULLPOINTER  1
 #define HANDLE_ERRORS_MATHDOMAIN   1
@@ -90,8 +96,6 @@ HEADER_CPP
 #define HANDLE_ERRORS_KEYNOTFOUND  1
 #define HANDLE_ERRORS_WRONGTYPE    1
 #define HANDLE_ERRORS_DELETEREF    1
-#define HANDLE_ERRORS_PARSE        1
-#define HANDLE_ERRORS_PRINT        1
 //!@}
 
 
@@ -117,7 +121,7 @@ HEADER_CPP
 	{																	\
 		Error_Set(ERROR_##ERRORTYPE);									\
 		if (HANDLE_ERRORS_##ERRORTYPE)									\
-			Error_Handle(ERROR_##ERRORTYPE, NULL);						\
+			Error_Handle(ERROR_##ERRORTYPE, __func__, NULL);			\
 
 //! The behavior to handle an error case, with a custom message
 /*!
@@ -136,7 +140,7 @@ HEADER_CPP
 	{																	\
 		Error_Set(ERROR_##ERRORTYPE);									\
 		if (HANDLE_ERRORS_##ERRORTYPE)									\
-			Error_Handle(ERROR_##ERRORTYPE, String_Format(__VA_ARGS__));\
+			Error_Handle(ERROR_##ERRORTYPE, __func__, String_Format(__VA_ARGS__));\
 
 
 
@@ -186,6 +190,10 @@ typedef enum cccerror
 	ERROR_SYSTEM,       //!< System Error: `strerror(errno)` message
 	ERROR_ALLOCFAILURE, //!< System Error: Memory allocation failure
 
+	ERROR_PARSE,        //!< Error while attempting to parse string
+	ERROR_PRINT,        //!< Error while attempting to print string
+	ERROR_NOTFOUND,     //!< Error: could not find value
+
 	ERROR_INVALIDARGS,  //!< Argument Error
 	ERROR_NULLPOINTER,  //!< Argument Error: null pointer received
 	ERROR_MATHDOMAIN,   //!< Argument Error: mathematic out of domain error
@@ -201,9 +209,6 @@ typedef enum cccerror
 	ERROR_KEYNOTFOUND,  //!< Argument Error: could not find item with the given key
 	ERROR_WRONGTYPE,    //!< Argument Error: attempted to read dynamic-type item using the wrong type
 	ERROR_DELETEREF,    //!< Argument Error: attempted to free an area of constant memory
-
-	ERROR_PARSE,        //!< Error while attempting to parse string
-	ERROR_PRINT,        //!< Error while attempting to print string
 
 //	ERROR_,
 
