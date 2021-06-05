@@ -43,7 +43,15 @@ CC_LINUX = gcc
 CC_MACOS = clang
 
 # Compiler flags
-CFLAGS = -Wall -Wextra -Winline -Wpedantic -Wstrict-prototypes -Wmissing-prototypes -Wold-style-definition -Werror $(CFLAGS_OS) -MMD -fstrict-aliasing
+CFLAGS = $(CFLAGS_OS) $(CFLAGS_EXTRA) -MMD -fstrict-aliasing \
+	-Werror \
+	-Wall \
+	-Wextra \
+	-Winline \
+	-Wpedantic \
+	-Wstrict-prototypes \
+	-Wmissing-prototypes \
+	-Wold-style-definition \
 #	-L/usr/local/lib -ltsan
 #	-fsanitize=address
 #	-fsanitize=thread
@@ -440,7 +448,7 @@ $(OBJDIR)%.o : $(SRCDIR)%.c
 
 # This rule builds the static library file to link against, in the root directory
 $(NAME_STATIC): $(OBJS)
-	@mkdir -p	$(BINDIR)static/$(OSMODE)/
+	@mkdir -p $(BINDIR)static/$(OSMODE)/
 	@printf "Compiling library: "$@" -> "
 	@ar -rc $@ $(OBJS)
 	@ranlib $@
@@ -450,8 +458,8 @@ $(NAME_STATIC): $(OBJS)
 
 
 # This rule builds the dynamically-linked library files for the current target platform
-$(NAME_DYNAMIC): $(NAME_STATIC)
-	@mkdir -p	$(BINDIR)dynamic/$(OSMODE)/
+$(NAME_DYNAMIC): $(OBJS)
+	@mkdir -p $(BINDIR)dynamic/$(OSMODE)/
 ifeq ($(OSMODE),$(filter $(OSMODE), win32 win64))
 	@printf \
 	"Compiling DLL: "$(NAME_DYNAMIC)" -> " ; \
@@ -528,7 +536,8 @@ TEST_INCLUDEDIRS = \
 	-I$(HDRDIR) \
 	-I$(TEST_DIR) \
 
-TEST_CFLAGS = -O2 -g -ggdb # -fanalyzer
+TEST_CFLAGS = -O2 -g -ggdb
+# -fanalyzer
 TEST_LDFLAGS = $(LDFLAGS)
 
 TEST_LIBS = -L./ -lccc -lpthread -lm
@@ -564,14 +573,14 @@ test_log: $(NAME_TEST)
 
 
 test_predef:
-	@mkdir -p                   $(LOGDIR)env/$(OSMODE)/
-	@rm -f                      $(LOGDIR)env/$(OSMODE)/predef_$(CC).c
-	@./$(TEST_DIR)_predef.sh >> $(LOGDIR)env/$(OSMODE)/predef_$(CC).c
+	@mkdir -p					$(LOGDIR)env/$(OSMODE)/
+	@rm -f						$(LOGDIR)env/$(OSMODE)/predef_$(CC).c
+	@./$(TEST_DIR)_predef.sh >>	$(LOGDIR)env/$(OSMODE)/predef_$(CC).c
 
 test_errno:
-	@mkdir -p                  $(LOGDIR)env/$(OSMODE)/
-	@rm -f                     $(LOGDIR)env/$(OSMODE)/errno_$(CC).c
-	@./$(TEST_DIR)_errno.sh >> $(LOGDIR)env/$(OSMODE)/errno_$(CC).c
+	@mkdir -p					$(LOGDIR)env/$(OSMODE)/
+	@rm -f						$(LOGDIR)env/$(OSMODE)/errno_$(CC).c
+	@./$(TEST_DIR)_errno.sh >>	$(LOGDIR)env/$(OSMODE)/errno_$(CC).c
 
 $(NAME_TEST)_helloworld: debug
 	@printf "Compiling testing program: "$@" -> "
