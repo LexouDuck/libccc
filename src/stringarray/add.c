@@ -33,7 +33,7 @@ t_char**	StringArray_Prepend(t_char const** src, t_char** *a_dest)
 
 
 
-t_char**	StringArray_Insert_InPlace(t_char** *a_dest, t_char const** src, t_u32 index)
+t_char**	StringArray_Insert_InPlace(t_char** *a_dest, t_char const** src, t_uint index)
 {
 	t_char**	tmp;
 

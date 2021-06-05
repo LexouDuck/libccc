@@ -8,11 +8,11 @@
 
 
 static
-t_u32	String_Split_String_CountDistinctSubs(t_char const* str, t_char const* sub)
+t_uint	String_Split_String_CountDistinctSubs(t_char const* str, t_char const* sub)
 {
-	t_u32	occ;
-	t_u32	i;
-	t_u32	j;
+	t_uint	occ;
+	t_uint	i;
+	t_uint	j;
 
 	occ = 0;
 	i = 0;
@@ -37,7 +37,7 @@ t_u32	String_Split_String_CountDistinctSubs(t_char const* str, t_char const* sub
 
 
 static
-t_char*	String_Split_String_GetNextChunk(t_char const* str, t_u32 str_len, t_char const* sub, t_u32 sub_len, t_u32 *i)
+t_char*	String_Split_String_GetNextChunk(t_char const* str, t_uint str_len, t_char const* sub, t_uint sub_len, t_uint *i)
 {
 	t_char*		result;
 	t_ptrdiff	new_len;
@@ -61,9 +61,9 @@ t_char*	String_Split_String_GetNextChunk(t_char const* str, t_u32 str_len, t_cha
 t_char**	String_Split_String(t_char const* str, t_char const* sub)
 {
 	t_char**	result;
-	t_u32	reslen;
-	t_u32	i;
-	t_u32	j;
+	t_uint	reslen;
+	t_uint	i;
+	t_uint	j;
 
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, (sub == NULL), return (NULL);)
@@ -78,8 +78,8 @@ t_char**	String_Split_String(t_char const* str, t_char const* sub)
 		result[0] = String_Duplicate(str);
 	else
 	{
-		t_u32	str_len = String_Length(str);
-		t_u32	sub_len = String_Length(sub);
+		t_uint	str_len = String_Length(str);
+		t_uint	sub_len = String_Length(sub);
 		while (j < reslen)
 		{
 			result[j] = String_Split_String_GetNextChunk(str, str_len, sub, sub_len, &i);

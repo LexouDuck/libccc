@@ -118,8 +118,8 @@ t_char*		Error_GetMessage(e_cccerror error)
 		return (Error_STDC(errno));
 	for (t_uint i = 0; i < ENUMLENGTH_STDERROR; ++i)
 	{
-		if (stderrors[i].code == error)
-			return (String_Duplicate(stderrors[i].message));
+		if (cccerrors[i].code == error)
+			return (String_Duplicate(cccerrors[i].message));
 	}
 	return (NULL);
 }
@@ -132,8 +132,8 @@ t_char*		Error_GetName(e_cccerror error)
 		return ("");
 	for (t_uint i = 0; i < ENUMLENGTH_STDERROR; ++i)
 	{
-		if (stderrors[i].code == error)
-			return (String_Duplicate(stderrors[i].name));
+		if (cccerrors[i].code == error)
+			return (String_Duplicate(cccerrors[i].name));
 	}
 	return (NULL);
 }
@@ -147,8 +147,8 @@ e_cccerror	Error_GetCode(t_char const* name)
 		return (ERROR_NONE);
 	for (t_uint i = 0; i < ENUMLENGTH_STDERROR; ++i)
 	{
-		if (String_Equals(stderrors[i].name, name))
-			return (stderrors[i].code);
+		if (String_Equals(cccerrors[i].name, name))
+			return (cccerrors[i].code);
 	}
 	return (ERROR_UNSPECIFIED);
 }

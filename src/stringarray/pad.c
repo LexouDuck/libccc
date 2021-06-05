@@ -6,11 +6,11 @@
 
 
 
-t_char**	StringArray_Pad_L(t_char const** strarr, t_char const c, t_u32 n)
+t_char**	StringArray_Pad_L(t_char const** strarr, t_char const c, t_uint n)
 {
 	t_char**		result;
-	t_u32		strarr_length;
-	t_u32		i;
+	t_uint		strarr_length;
+	t_uint		i;
 
 	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return (NULL);)
 	strarr_length = StringArray_Length(strarr);

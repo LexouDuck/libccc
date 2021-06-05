@@ -8,7 +8,7 @@
 
 
 inline
-t_char**	StringArray_New(t_u32 length)
+t_char**	StringArray_New(t_uint length)
 {
 	t_char**	result;
 
@@ -19,10 +19,10 @@ t_char**	StringArray_New(t_u32 length)
 
 
 
-t_char**	StringArray_New_C(t_u32 y, t_size x, const t_char c)
+t_char**	StringArray_New_C(t_uint y, t_size x, const t_char c)
 {
 	t_char**	result;
-	t_u32	i;
+	t_uint	i;
 
 	result = StringArray_New(y);
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
