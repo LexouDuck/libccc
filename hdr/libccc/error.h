@@ -73,6 +73,14 @@ e_cccerror	Error_GetCode(t_char const* name);
 
 
 
+typedef void (*f_ccchandler)(e_cccerror, char*);
+
+f_ccchandler	Error_GetHandler(e_cccerror error);
+
+void	Error_SetHandler(e_cccerror error, f_ccchandler handler);
+
+
+
 /*! @} */
 HEADER_END
 #endif

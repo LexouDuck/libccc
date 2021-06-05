@@ -76,6 +76,7 @@ e_cccerror	Error_Set(e_cccerror error)
 
 typedef struct cccerror_info
 {
+//	void (*handler)(e_cccerror, char*);
 	e_cccerror		code;
 	t_char const*	name;
 	t_char const*	message;
@@ -151,4 +152,18 @@ e_cccerror	Error_GetCode(t_char const* name)
 			return (cccerrors[i].code);
 	}
 	return (ERROR_UNSPECIFIED);
+}
+
+
+
+inline
+f_ccchandler	Error_GetHandler(e_cccerror error)
+{
+	return (cccerrors[error].handler);
+}
+
+inline
+void	Error_SetHandler(e_cccerror error, f_ccchandler handler)
+{
+	cccerrors[error].handler = handler;
 }
