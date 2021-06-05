@@ -29,6 +29,7 @@ void*	Memory_Find(void const* ptr, t_u8 byte, t_size n)
 			return (result + i);
 		++i;
 	}
-	HANDLE_ERROR(NOTFOUND, (TRUE), return (NULL);)
+	HANDLE_ERROR_SF(NOTFOUND, (TRUE), return (NULL);,
+		", no byte 0x%2.2X in memory region 0x%p", byte, ptr)
 }
 #endif

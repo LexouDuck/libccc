@@ -28,7 +28,8 @@ t_char*	String_Find_Char(t_char const* str, t_char c)
 			break;
 		++i;
 	}
-	HANDLE_ERROR(NOTFOUND, (TRUE), return (NULL);)
+	HANDLE_ERROR_SF(NOTFOUND, (TRUE), return (NULL);,
+		", no char '%c' in string \"%s\"", c, str)
 }
 #endif
 
@@ -36,7 +37,8 @@ inline
 t_sintmax	String_IndexOf_Char(t_char const* str, t_char c)
 {
 	t_char* result = String_Find_Char(str, c);
-	return (result ? result - str : -1);
+	HANDLE_ERROR(NOTFOUND, (result == NULL), return (ERROR);)
+	return (result - str);
 }
 
 
@@ -64,7 +66,8 @@ t_char*	String_Find_Charset(t_char const* str, t_char const* charset)
 		}
 		++i;
 	}
-	HANDLE_ERROR(NOTFOUND, (TRUE), return (NULL);)
+	HANDLE_ERROR_SF(NOTFOUND, (TRUE), return (NULL);,
+		", no char from charset \"%s\" in string \"%s\"", charset, str)
 }
 #endif
 
@@ -72,7 +75,8 @@ inline
 t_sintmax	String_IndexOf_Charset(t_char const* str, t_char const* charset)
 {
 	t_char* result = String_Find_Charset(str, charset);
-	return (result ? result - str : -1);
+	HANDLE_ERROR(NOTFOUND, (result == NULL), return (ERROR);)
+	return (result - str);
 }
 
 
@@ -104,7 +108,8 @@ t_char*	String_Find_String(t_char const* str, t_char const* query)
 		}
 		++i;
 	}
-	HANDLE_ERROR(NOTFOUND, (TRUE), return (NULL);)
+	HANDLE_ERROR_SF(NOTFOUND, (TRUE), return (NULL);,
+		", no string \"%s\" in string \"%s\"", query, str)
 }
 #endif
 
@@ -112,5 +117,6 @@ inline
 t_sintmax	String_IndexOf_String(t_char const* str, t_char const* query)
 {
 	t_char* result = String_Find_String(str, query);
-	return (result ? result - str : -1);
+	HANDLE_ERROR(NOTFOUND, (result == NULL), return (ERROR);)
+	return (result - str);
 }
