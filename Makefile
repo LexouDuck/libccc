@@ -63,32 +63,32 @@ CFLAGS_OS = _
 CFLAGS_OS_WIN   = -D__USE_MINGW_ANSI_STDIO=1
 CFLAGS_OS_LINUX = -Wno-unused-result -fPIC -pedantic
 CFLAGS_OS_MACOS = -Wno-missing-braces -Wno-missing-field-initializers -Wno-language-extension-token
+CFLAGS_OS_OTHER = 
 ifeq ($(CC),clang)
 	CFLAGS_OS_WIN += -Wno-missing-braces
 else
 	CFLAGS_OS_WIN += -D__USE_MINGW_ANSI_STDIO=1
 endif
 CFLAGS_EXTRA = 
-CFLAGS += $(CFLAGS_EXTRA)
 
 
 
 # Linker flags
-LDFLAGS = $(LDFLAGS_OS)
-#	-Wl,-rpath='$$ORIGIN/'
-LDFLAGS_OS = _
-LDFLAGS_WIN   = 
-LDFLAGS_LINUX = 
-LDFLAGS_MACOS = 
+LDFLAGS = $(LDFLAGS_OS) $(CFLAGS_EXTRA)
 #	-fsanitize=address
 #	-Wl,-rpath,bin/linux/dynamic/
+#	-Wl,-rpath='$$ORIGIN/'
+LDFLAGS_OS = _
+LDFLAGS_OS_WIN   = 
+LDFLAGS_OS_LINUX = 
+LDFLAGS_OS_MACOS = 
+LDFLAGS_OS_OTHER = 
 ifeq ($(CC),clang)
 	LDFLAGS_OS_WIN += -L/lib
 else
 	LDFLAGS_OS_WIN += -L./ -static-libgcc
 endif
 LDFLAGS_EXTRA = 
-LDFLAGS += $(LDFLAGS_EXTRA)
 
 
 
@@ -117,6 +117,9 @@ endif
 
 
 ifeq ($(OSMODE),other)
+	CC = $(CC_OTHER)
+	CFLAGS_OS = $(CFLAGS_OS_OTHER)
+	LDFLAGS_OS = $(LDFLAGS_OS_OTHER)
 	DYNAMICLIB_FILE_EXT=
 else ifeq ($(OSMODE),win32)
 	CC = $(CC_WIN32)
