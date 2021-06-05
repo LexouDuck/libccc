@@ -3,12 +3,38 @@
 #include <math.h>
 
 #include "libccc.h"
+#include "libccc/error.h"
 #include "libccc/math/math.h"
 #include "libccc/sys/time.h"
 
 #include "test.h"
 
 
+
+//! Returns 1 if all the global g_test.suites structs have 'run' set to 0
+static int	check_no_test_suites(void)
+{
+	for (int i = 0; i < TEST_SUITE_AMOUNT; ++i)
+	{
+		if (g_test.suites[i].run)
+			return (FALSE);
+	}
+	return (TRUE);
+}
+
+void	test_init(void)
+{
+	if (check_no_test_suites())
+	{	// if no test suites have been specified, run all of them
+		for (int i = 0; i < TEST_SUITE_AMOUNT; ++i)
+		{
+			g_test.suites[i].run = TRUE;
+		}
+	}
+	g_test.totals.tests = 0;
+	g_test.totals.failed = 0;
+	Error_SetAllHandlers(g_test.flags.show_errors ? Error_Handler : NULL);
+}
 
 /*
 ** ************************************************************************** *|

@@ -88,6 +88,9 @@ f_ccchandler	Error_GetHandler(e_cccerror error);
 //! Set the handler function to call for a certain `error` code
 void			Error_SetHandler(e_cccerror error, f_ccchandler handler);
 
+//! Set the handler function for every kind of error, at once
+void			Error_SetAllHandlers(f_ccchandler handler);
+
 
 
 /*! @} */

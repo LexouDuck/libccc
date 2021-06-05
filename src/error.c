@@ -183,26 +183,32 @@ void	Error_Handler(e_cccerror error, t_char* message)
 
 
 
-inline
 f_ccchandler	Error_GetHandler(e_cccerror error)
 {
 	for (t_uint i = 0; i < ENUMLENGTH_CCCERROR; ++i)
 	{
 		if (cccerrors[i].code == error)
-			return (cccerrors[error].handler);
+			return (cccerrors[i].handler);
 	}
 	return (NULL);
 }
 
-inline
 void			Error_SetHandler(e_cccerror error, f_ccchandler handler)
 {
 	for (t_uint i = 0; i < ENUMLENGTH_CCCERROR; ++i)
 	{
 		if (cccerrors[i].code == error)
 		{
-			cccerrors[error].handler = handler;
+			cccerrors[i].handler = handler;
 			return;
 		}
+	}
+}
+
+void			Error_SetAllHandlers(f_ccchandler handler)
+{
+	for (t_uint i = 0; i < ENUMLENGTH_CCCERROR; ++i)
+	{
+		cccerrors[i].handler = handler;
 	}
 }

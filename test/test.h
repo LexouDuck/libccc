@@ -26,26 +26,28 @@
 ** ************************************************************************** *|
 */
 
-//! Args for main are: help, verbose, arguments, performance, overflow
+//! This type stores info about a program argument (ie: `argc`/`argv`)
 typedef struct test_arg
 {
-	void	(*handle_arg)();
-	char		arg;
-	char const*	name;
-	char const* description;
+	void	(*handle_arg)();	//!< The function to execute for this program argument
+	char		arg;			//!< The "character version" of this argument (ie: `-a`)
+	char const*	name;			//!< The "string version" of this argument (ie: `--arg`)
+	char const* description;	//!< The description for this argument (displayed when doing `--help`)
 }				s_test_arg;
-#define TEST_ARGS_AMOUNT	9
+//! The amount of different arguments accepted by the test suite
+#define TEST_ARGS_AMOUNT	10
 
 //! This struct stores the program argument boolean flags
 typedef struct test_flags
 {
-	bool	verbose;		//!< if TRUE, display all logger output for each test
-	bool	show_args;		//!< if TRUE, display arguments given to each test
-	bool	show_speed;		//!< if TRUE, display performance (execution speed) for each test
-	bool	show_result;	//!< if TRUE, display result, even when test passed
-	bool	show_escaped;	//!< if TRUE, display strings with non-printable characters as escape sequences
-	bool	test_nullptrs;	//!< if TRUE, perform all NULL pointer tests
-	bool	test_overflow;	//!< if TRUE, perform all the libccc_convert overflowing number tests
+	bool	verbose;		//!< if `TRUE`, display all logger output for each test
+	bool	show_args;		//!< if `TRUE`, display arguments given to each test
+	bool	show_speed;		//!< if `TRUE`, display performance (execution speed) for each test
+	bool	show_result;	//!< if `TRUE`, display result, even when test passed
+	bool	show_errors;	//!< if `TRUE`, display any errors output by libccc during function execution
+	bool	show_escaped;	//!< if `TRUE`, display strings with non-printable characters as escape sequences
+	bool	test_nullptrs;	//!< if `TRUE`, perform all NULL pointer tests
+	bool	test_overflow;	//!< if `TRUE`, perform all the libccc_convert overflowing number tests
 }				s_test_flags;
 
 
@@ -88,6 +90,9 @@ extern s_program	g_test;
 **                              Testing Functions                             *|
 ** ************************************************************************** *|
 */
+
+//! Initializes variables to prepare to run test suites
+void	test_init(void);
 
 /*
 **	Test suite functions
