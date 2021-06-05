@@ -28,6 +28,8 @@
 
 #define BUFFERSIZE_STRERROR	(512)
 
+
+
 t_char*	Error_STDC(int errno_value)
 {
 	t_char	buffer[BUFFERSIZE_STRERROR] = {0};
@@ -76,37 +78,37 @@ e_cccerror	Error_Set(e_cccerror error)
 
 typedef struct cccerror_info
 {
-//	void (*handler)(e_cccerror, char*);
+	void (*handler)(e_cccerror, char*);
 	e_cccerror		code;
 	t_char const*	name;
 	t_char const*	message;
 }			s_cccerror_info;
 
-static s_cccerror_info	cccerrors[ENUMLENGTH_STDERROR] =
+static s_cccerror_info	cccerrors[ENUMLENGTH_CCCERROR] =
 {
-	{ ERROR_UNSPECIFIED,  "ERROR_UNSPECIFIED",  "Unspecified error" },
+	{ Error_Handler, ERROR_UNSPECIFIED,  "ERROR_UNSPECIFIED",  "Unspecified error" },
 
-	{ ERROR_SYSTEM,       "ERROR_SYSTEM",       "System Error: `strerror(errno)` message" },
-	{ ERROR_ALLOCFAILURE, "ERROR_ALLOCFAILURE", "System Error: Memory allocation failure" },
+	{ Error_Handler, ERROR_SYSTEM,       "ERROR_SYSTEM",       "System Error: `strerror(errno)` message" },
+	{ Error_Handler, ERROR_ALLOCFAILURE, "ERROR_ALLOCFAILURE", "System Error: Memory allocation failure" },
 
-	{ ERROR_INVALIDARGS,  "ERROR_INVALIDARGS",  "Argument Error" },
-	{ ERROR_NULLPOINTER,  "ERROR_NULLPOINTER",  "Argument Error: null pointer received" },
-	{ ERROR_MATHDOMAIN,   "ERROR_MATHDOMAIN",   "Argument Error: mathematic out of domain error" },
-	{ ERROR_RESULTRANGE,  "ERROR_RESULTRANGE",  "Argument Error: result cannot be represented within limited range" },
-	{ ERROR_NANARGUMENT,  "ERROR_NANARGUMENT",  "Argument Error: should not receive NAN as argument" },
-	{ ERROR_ILLEGALBYTES, "ERROR_ILLEGALBYTES", "Argument Error: illegal byte sequence encountered" },
-	{ ERROR_INVALIDENUM,  "ERROR_INVALIDENUM",  "Argument Error: value given is not a valid enum item" },
-	{ ERROR_INVALIDRANGE, "ERROR_INVALIDRANGE", "Argument Error: range given is inverted: 'min' is larger than 'max'" },
-	{ ERROR_INDEX2SMALL,  "ERROR_INDEX2SMALL",  "Argument Error: index value given is too small" },
-	{ ERROR_INDEX2LARGE,  "ERROR_INDEX2LARGE",  "Argument Error: index value given is too large" },
-	{ ERROR_LENGTH2SMALL, "ERROR_LENGTH2SMALL", "Argument Error: length value given is too small" },
-	{ ERROR_LENGTH2LARGE, "ERROR_LENGTH2LARGE", "Argument Error: length value given is too large" },
-	{ ERROR_KEYNOTFOUND,  "ERROR_KEYNOTFOUND",  "Argument Error: could not find item with the given key" },
-	{ ERROR_WRONGTYPE,    "ERROR_WRONGTYPE",    "Argument Error: attempted to read dynamic-type item with wrong type" },
-	{ ERROR_DELETEREF,    "ERROR_DELETEREF",    "Argument Error: attempted to free an area of constant memory" },
+	{ Error_Handler, ERROR_INVALIDARGS,  "ERROR_INVALIDARGS",  "Argument Error" },
+	{ NULL,          ERROR_NULLPOINTER,  "ERROR_NULLPOINTER",  "Argument Error: null pointer received" },
+	{ Error_Handler, ERROR_MATHDOMAIN,   "ERROR_MATHDOMAIN",   "Argument Error: mathematic out of domain error" },
+	{ Error_Handler, ERROR_RESULTRANGE,  "ERROR_RESULTRANGE",  "Argument Error: result cannot be represented within limited range" },
+	{ Error_Handler, ERROR_NANARGUMENT,  "ERROR_NANARGUMENT",  "Argument Error: should not receive NAN as argument" },
+	{ Error_Handler, ERROR_ILLEGALBYTES, "ERROR_ILLEGALBYTES", "Argument Error: illegal byte sequence encountered" },
+	{ Error_Handler, ERROR_INVALIDENUM,  "ERROR_INVALIDENUM",  "Argument Error: value given is not a valid enum item" },
+	{ Error_Handler, ERROR_INVALIDRANGE, "ERROR_INVALIDRANGE", "Argument Error: range given is inverted: 'min' is larger than 'max'" },
+	{ Error_Handler, ERROR_INDEX2SMALL,  "ERROR_INDEX2SMALL",  "Argument Error: index value given is too small" },
+	{ Error_Handler, ERROR_INDEX2LARGE,  "ERROR_INDEX2LARGE",  "Argument Error: index value given is too large" },
+	{ Error_Handler, ERROR_LENGTH2SMALL, "ERROR_LENGTH2SMALL", "Argument Error: length value given is too small" },
+	{ Error_Handler, ERROR_LENGTH2LARGE, "ERROR_LENGTH2LARGE", "Argument Error: length value given is too large" },
+	{ Error_Handler, ERROR_KEYNOTFOUND,  "ERROR_KEYNOTFOUND",  "Argument Error: could not find item with the given key" },
+	{ Error_Handler, ERROR_WRONGTYPE,    "ERROR_WRONGTYPE",    "Argument Error: attempted to read dynamic-type item with wrong type" },
+	{ Error_Handler, ERROR_DELETEREF,    "ERROR_DELETEREF",    "Argument Error: attempted to free an area of constant memory" },
 
-	{ ERROR_PARSE,        "ERROR_PARSE",        "Parse Error" },
-	{ ERROR_PRINT,        "ERROR_PRINT",        "Print Error" },
+	{ Error_Handler, ERROR_PARSE,        "ERROR_PARSE",        "Parse Error" },
+	{ Error_Handler, ERROR_PRINT,        "ERROR_PRINT",        "Print Error" },
 };
 
 
@@ -117,7 +119,7 @@ t_char*		Error_GetMessage(e_cccerror error)
 		return ("");
 	if (error == ERROR_SYSTEM)
 		return (Error_STDC(errno));
-	for (t_uint i = 0; i < ENUMLENGTH_STDERROR; ++i)
+	for (t_uint i = 0; i < ENUMLENGTH_CCCERROR; ++i)
 	{
 		if (cccerrors[i].code == error)
 			return (String_Duplicate(cccerrors[i].message));
@@ -131,7 +133,7 @@ t_char*		Error_GetName(e_cccerror error)
 {
 	if (error == ERROR_NONE)
 		return ("");
-	for (t_uint i = 0; i < ENUMLENGTH_STDERROR; ++i)
+	for (t_uint i = 0; i < ENUMLENGTH_CCCERROR; ++i)
 	{
 		if (cccerrors[i].code == error)
 			return (String_Duplicate(cccerrors[i].name));
@@ -146,7 +148,7 @@ e_cccerror	Error_GetCode(t_char const* name)
 	HANDLE_ERROR(NULLPOINTER, (name == NULL), return (ERROR_UNSPECIFIED);)
 	if (name[0] == '\0') // empty string
 		return (ERROR_NONE);
-	for (t_uint i = 0; i < ENUMLENGTH_STDERROR; ++i)
+	for (t_uint i = 0; i < ENUMLENGTH_CCCERROR; ++i)
 	{
 		if (String_Equals(cccerrors[i].name, name))
 			return (cccerrors[i].code);
@@ -156,14 +158,50 @@ e_cccerror	Error_GetCode(t_char const* name)
 
 
 
+void	Error_Handle(e_cccerror error, t_char* message)
+{
+	f_ccchandler	handler;
+	t_char*	tmp;
+
+	handler = Error_GetHandler(error);
+	if (handler)
+	{
+		if (message)
+			tmp = String_Format("%s -> %s%s",  __func__, Error_GetMessage(error), message);
+		else tmp = String_Format("%s -> %s",   __func__, Error_GetMessage(error));
+		handler(error, tmp);
+		String_Delete(&tmp);
+		String_Delete(&message);
+	}
+}
+
+void	Error_Handler(e_cccerror error, t_char* message)
+{
+	LIBCONFIG_DEFAULT_HANDLER(error, message)
+}
+
+
+
 inline
 f_ccchandler	Error_GetHandler(e_cccerror error)
 {
-	return (cccerrors[error].handler);
+	for (t_uint i = 0; i < ENUMLENGTH_CCCERROR; ++i)
+	{
+		if (cccerrors[i].code == error)
+			return (cccerrors[error].handler);
+	}
+	return (NULL);
 }
 
 inline
-void	Error_SetHandler(e_cccerror error, f_ccchandler handler)
+void			Error_SetHandler(e_cccerror error, f_ccchandler handler)
 {
-	cccerrors[error].handler = handler;
+	for (t_uint i = 0; i < ENUMLENGTH_CCCERROR; ++i)
+	{
+		if (cccerrors[i].code == error)
+		{
+			cccerrors[error].handler = handler;
+			return;
+		}
+	}
 }

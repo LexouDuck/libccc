@@ -73,11 +73,20 @@ e_cccerror	Error_GetCode(t_char const* name);
 
 
 
+//! The parent function which handles any error: is called when an error check is `TRUE`
+void	Error_Handle(e_cccerror error, t_char* message);
+
+//! The default error handler function (its body can be configured, see #LIBCONFIG_DEFAULT_HANDLER)
+void	Error_Handler(e_cccerror error, t_char* message);
+
+//! The function pointer type for an error-handling function
 typedef void (*f_ccchandler)(e_cccerror, char*);
 
+//! Get the currently set handler function for the given `error` code
 f_ccchandler	Error_GetHandler(e_cccerror error);
 
-void	Error_SetHandler(e_cccerror error, f_ccchandler handler);
+//! Set the handler function to call for a certain `error` code
+void			Error_SetHandler(e_cccerror error, f_ccchandler handler);
 
 
 

@@ -43,7 +43,7 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! Expands to the absolute value of `X` (ie: gives the positive equivalent of `X`)
+//! Computes to the absolute value of `X` (ie: gives the positive equivalent of `X`)
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/abs}
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/fabs}
@@ -54,17 +54,24 @@ HEADER_CPP
 #define ABS(X)		((X) < 0 ? -(X) : (X))
 #endif
 
-//! Expands to `+1` or `-1` according to the sign of `X` (NB: if `X` is zero, gives `+1`)
+//! Computes to `+1`, `-1` (or `0` if `(X) == 0`) according to the sign of `X`
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/signbit} (differs)
 **
 **	- Math: @f$ {\frac{x}{|x|}} @f$
 */
 #ifndef SIGN
-#define SIGN(X)		((X) < 0 ? -1 : +1)
+#define SIGN(X)		((X) == 0 ? 0 : ((X) < 0 ? -1 : +1))
 #endif
 
-//! Checks if a value is negative (works for unsigned types, without causing warnings)
+//! Checks if a value is negative (works for unsigned types, without causing tautology warnings)
+/*!
+**	This macro is useful to check if a value is negative, but its type (signed or unsigned) is not known.
+**	In particular, the `char` and `enum` native C types are of unknown/undefined signage,
+**	so this macro is useful to check that a value is positive, no matter the platform/environment.
+**
+**	- Math: @f$ {x < 0} @f$
+*/
 #ifndef ISNEG
 #define ISNEG(X)	(!((X) > 0) && ((X) != 0))
 #endif
@@ -87,27 +94,27 @@ HEADER_CPP
 #define MAX(X, Y)	((X) < (Y) ? (Y) : (X))
 #endif
 
-//! Expands to the maximum value between `X` and `Y` (the larger of the two)
+//! Expands to a sequence of `Y` repetitive multiplications of `X` (ie: a compile-time `pow()` function)
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/fmax}
 **
-**	@param	X	The number to exponentiate
-**	@param	Y	The exponent (must be in the range `[0,16]`)
+**	@param	X	The number to exponentiate (can be a value of any numeric type)
+**	@param	Y	The exponent (must be an integer literal, in the range `[0,16]`)
 */
 #ifndef POW
 #define POW(X, Y)		POW_##Y(X)
 
 // TODO make more optimized with log2n method
-#define POW_0( X)	(1)
-#define POW_1( X)	(X)
-#define POW_2( X)	(X * X)
-#define POW_3( X)	(X * X * X)
-#define POW_4( X)	(X * X * X * X)
-#define POW_5( X)	(X * X * X * X * X)
-#define POW_6( X)	(X * X * X * X * X * X)
-#define POW_7( X)	(X * X * X * X * X * X * X)
-#define POW_8( X)	(X * X * X * X * X * X * X * X)
-#define POW_9( X)	(X * X * X * X * X * X * X * X * X)
+#define POW_0(X)	(1)
+#define POW_1(X)	(X)
+#define POW_2(X)	(X * X)
+#define POW_3(X)	(X * X * X)
+#define POW_4(X)	(X * X * X * X)
+#define POW_5(X)	(X * X * X * X * X)
+#define POW_6(X)	(X * X * X * X * X * X)
+#define POW_7(X)	(X * X * X * X * X * X * X)
+#define POW_8(X)	(X * X * X * X * X * X * X * X)
+#define POW_9(X)	(X * X * X * X * X * X * X * X * X)
 #define POW_10(X)	(X * X * X * X * X * X * X * X * X * X)
 #define POW_11(X)	(X * X * X * X * X * X * X * X * X * X * X)
 #define POW_12(X)	(X * X * X * X * X * X * X * X * X * X * X * X)

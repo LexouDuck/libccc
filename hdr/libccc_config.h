@@ -177,7 +177,7 @@ HEADER_CPP
 **
 **	NOTE: Setting this to 1 can make your code run faster, but it may introduce
 **		undefined behaviors depending on the platform (for edge-case arguments).
-**		Also, it invalidates the `LIBCONFIG_HANDLE_ERROR` setting:
+**		Also, it invalidates the error-handling settings (`DEFAULT_HANDLER`, etc):
 **		Argument handling is implementation-dependent for STD C functions.
 */
 #define LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS	0

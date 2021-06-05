@@ -38,25 +38,27 @@ HEADER_CPP
 **	These macro functions determine how exception cases are to be handled by libccc.
 **	You may change the logic here (to implement custom exception handling for example).
 */
-#ifndef LIBCONFIG_HANDLE_ERROR
-	#ifdef DEBUG
-		#define LIBCONFIG_HANDLE_ERROR(...) \
-		{									\
-			IO_Output_Format(__VA_ARGS__);	\
-		}
-	#else
-		#define LIBCONFIG_HANDLE_ERROR(...) \
-		
-	#endif
+//!@{
+#ifdef DEBUG
+	#define LIBCONFIG_DEFAULT_HANDLER(ERRORCODE, MESSAGE) \
+	{														\
+		IO_Output_Format(C_RED"ERROR"C_RESET"[%i]: %s\n",	\
+			ERRORCODE, MESSAGE);							\
+	}														\
+
+#else
+	#define LIBCONFIG_DEFAULT_HANDLER(ERRORCODE, MESSAGE) \
+	
 #endif
+//!@}
+
+
 
 //! The action to take when there is an integer overflow (by default, let it continue)
 #ifndef LIBCONFIG_HANDLE_OVERFLOW
 #define LIBCONFIG_HANDLE_OVERFLOW \
 	// return (0);
 #endif
-
-
 
 //! The file to include in source files which use `HANDLE_ERROR()`
 #ifndef LIBCONFIG_HANDLE_INCLUDE
@@ -95,14 +97,9 @@ HEADER_CPP
 
 
 //! Comment out this `#define` to deactivate all error handling (not recommended)
-#define HANDLE_ERRORS
-#ifndef HANDLE_ERRORS
-#define HANDLE_ERROR(	ERRORTYPE, CONDITION, ACTION) 
-#define HANDLE_ERROR_SF(ERRORTYPE, CONDITION, ACTION, ...) 
+#define HANDLE_ERRORS	1
+#ifdef	HANDLE_ERRORS
 
-
-
-#else
 /*!
 **	@param ERRORTYPE	The type of error to emit (an `e_cccerror` value)
 **	@param CONDITION	The condition to check the error
@@ -111,20 +108,16 @@ HEADER_CPP
 */
 //!@{
 #define HANDLE_ERROR(ERRORTYPE, CONDITION, ACTION) \
-	HANDLE_ERROR_BEGIN(ERRORTYPE, CONDITION)		\
-	ACTION											\
-	HANDLE_ERROR_FINAL()							\
+	HANDLE_ERROR_BEGIN(ERRORTYPE, CONDITION)							\
+	ACTION																\
+	HANDLE_ERROR_FINAL()												\
 
 #define HANDLE_ERROR_BEGIN(ERRORTYPE, CONDITION) \
-	if (CONDITION)													\
-	{																\
-		Error_Set(ERROR_##ERRORTYPE);								\
-		if (HANDLE_ERRORS_##ERRORTYPE)								\
-		{															\
-			LIBCONFIG_HANDLE_ERROR(									\
-				C_RED"ERROR"C_RESET": %s -> %s\n", __func__,		\
-				Error_GetMessage(ERROR_##ERRORTYPE))				\
-		}															\
+	if (CONDITION)														\
+	{																	\
+		Error_Set(ERROR_##ERRORTYPE);									\
+		if (HANDLE_ERRORS_##ERRORTYPE)									\
+			Error_Handle(ERROR_##ERRORTYPE, NULL);						\
 
 //! The behavior to handle an error case, with a custom message
 /*!
@@ -134,30 +127,31 @@ HEADER_CPP
 **	@param ...			The custom error message (format string and args, like `printf()`)
 */
 #define HANDLE_ERROR_SF(ERRORTYPE, CONDITION, ACTION, ...) \
-	HANDLE_ERROR_BEGIN_SF(ERRORTYPE, CONDITION, __VA_ARGS__)\
-	ACTION													\
-	HANDLE_ERROR_FINAL()									\
+	HANDLE_ERROR_BEGIN_SF(ERRORTYPE, CONDITION, __VA_ARGS__)			\
+	ACTION																\
+	HANDLE_ERROR_FINAL()												\
 
 #define HANDLE_ERROR_BEGIN_SF(ERRORTYPE, CONDITION, ...) \
-	if (CONDITION)													\
-	{																\
-		Error_Set(ERROR_##ERRORTYPE);								\
-		if (HANDLE_ERRORS_##ERRORTYPE)								\
-		{															\
-			t_char* tmp_##ERRORTYPE = String_Format(__VA_ARGS__);	\
-			LIBCONFIG_HANDLE_ERROR(									\
-				C_RED"ERROR"C_RESET": %s -> %s%s\n", __func__,		\
-				Error_GetMessage(ERROR_##ERRORTYPE),				\
-				tmp_##ERRORTYPE)									\
-			String_Delete(&tmp_##ERRORTYPE);						\
-		}															\
+	if (CONDITION)														\
+	{																	\
+		Error_Set(ERROR_##ERRORTYPE);									\
+		if (HANDLE_ERRORS_##ERRORTYPE)									\
+			Error_Handle(ERROR_##ERRORTYPE, String_Format(__VA_ARGS__));\
 
 
 
 #define HANDLE_ERROR_FINAL() \
-	}																\
+	}																	\
 
 //!@}
+
+#else
+
+#define HANDLE_ERROR(			ERRORTYPE, CONDITION, ACTION) 
+#define HANDLE_ERROR_BEGIN(		ERRORTYPE, CONDITION) 
+#define HANDLE_ERROR_SF(		ERRORTYPE, CONDITION, ACTION, ...) 
+#define HANDLE_ERROR_BEGIN_SF(	ERRORTYPE, CONDITION, ...) 
+#define HANDLE_ERROR_FINAL() 
 
 #endif
 
@@ -213,7 +207,7 @@ typedef enum cccerror
 
 //	ERROR_,
 
-	ENUMLENGTH_STDERROR,
+	ENUMLENGTH_CCCERROR,
 }		e_cccerror;
 
 /*
