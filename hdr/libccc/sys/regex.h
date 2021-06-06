@@ -39,6 +39,12 @@ HEADER_CPP
 
 
 
+#ifndef __LIBCCC_NOFUNCTIONS__
+
+#endif
+
+
+
 /*! @} */
 HEADER_END
 #endif

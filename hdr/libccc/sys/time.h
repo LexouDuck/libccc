@@ -302,6 +302,8 @@ TYPEDEF_ALIAS(	s_date, TIME_DATE, STRUCT)
 
 
 
+#ifndef __LIBCCC_NOFUNCTIONS__
+
 /*
 ** ************************************************************************** *|
 **                           Time integer functions                           *|
@@ -744,6 +746,10 @@ t_bool		Date_IsLeapYear(t_s32 year);
 **	@param	year	The year to check (leap seconds for future dates are not known)
 */
 t_bool		Date_HasLeapSecond(e_month month, t_s32 year);
+
+
+
+#endif
 
 
 

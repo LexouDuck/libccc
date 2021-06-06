@@ -152,6 +152,8 @@ TYPEDEF_ALIAS(			t_io_open, IO_OPEN, PRIMITIVE)
 
 
 
+#ifndef __LIBCCC_NOFUNCTIONS__
+
 /*
 ** ************************************************************************** *|
 **                             General IO Functions                           *|
@@ -430,6 +432,10 @@ _FORMAT(printf, 1, 2)
 t_size					IO_Output_Format(t_char const* format, ...);
 #define c_output_format	IO_Output_Format
 #define c_printf		IO_Output_Format
+
+
+
+#endif
 
 
 

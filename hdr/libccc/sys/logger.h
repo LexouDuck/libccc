@@ -92,6 +92,8 @@ typedef s_logger const* const*	t_logptrarr;
 
 
 
+#ifndef __LIBCCC_NOFUNCTIONS__
+
 /* ************************************************************************** */
 /*                            Logger Body Macros                              */
 /* ************************************************************************** */
@@ -260,6 +262,10 @@ _FORMAT(printf, 2, 3)
 e_cccerror					Log_Message_Verbose		(s_logger const* logger,                 t_char const* format_str, ...);
 #define c_log_verbose	Log_Message_Verbose
 #define Log_Verbose		Log_Message_Verbose
+
+
+
+#endif
 
 
 

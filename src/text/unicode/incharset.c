@@ -1,6 +1,6 @@
 
 #include "libccc/bool.h"
-#include "libccc/sys/unicode.h"
+#include "libccc/text/unicode.h"
 #include "libccc/pointer.h"
 
 #include LIBCONFIG_ERROR_INCLUDE

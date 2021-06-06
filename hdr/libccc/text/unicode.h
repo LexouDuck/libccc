@@ -1,6 +1,6 @@
 /*============================================================================*/
 /*                                            ______________________________  */
-/*  libccc/sys/unicode.h                     |    __    __  ___      _____  | */
+/*  libccc/text/unicode.h                    |    __    __  ___      _____  | */
 /*                                           |   / /\  / /\/ . |\   /  __|\ | */
 /*  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | */
 /*                                           | /___/\/_/ /___-'\   \____/\  | */
@@ -9,9 +9,9 @@
 /*                                                                            */
 /*============================================================================*/
 
-#ifndef __LIBCCC_SYS_UNICODE_H
-#define __LIBCCC_SYS_UNICODE_H
-/*!@group{libccc_sys_unicode}
+#ifndef __LIBCCC_TEXT_UNICODE_H
+#define __LIBCCC_TEXT_UNICODE_H
+/*!@group{libccc_text_unicode}
 ** @{
 **	This header defines all the functions related to Unicode text encodings.
 **
@@ -33,10 +33,14 @@
 #include "libccc_naming.h"
 #include "libccc_define.h"
 
+#ifndef __LIBCCC_NOFUNCTIONS__
+#define __LIBCCC_NOFUNCTIONS__
 #include "libccc/bool.h"
 #include "libccc/int.h"
 #include "libccc/pointer.h"
-#include "libccc/sys/ascii.h"
+#include "libccc/text/ascii.h"
+#undef	__LIBCCC_NOFUNCTIONS__
+#endif
 
 HEADER_CPP
 
@@ -45,6 +49,35 @@ HEADER_CPP
 **                                 Definitions                                *|
 ** ************************************************************************** *|
 */
+
+//! Primitive type: Unicode UTF-8 character (variable length: 1 to 4 bytes)
+/*!
+**	@isostd{C,https://en.cppreference.com/w/c/string/multibyte}
+*/
+typedef char			t_utf8;
+TYPEDEF_ALIAS(			t_utf8, UTF8, PRIMITIVE)
+
+
+
+//! Primitive type: Unicode UTF-16 character (variable length: 2 or 4 bytes)
+/*!
+**	@isostd{C,https://en.cppreference.com/w/c/string/multibyte/char16_t}
+**	@isostd{C,https://en.cppreference.com/w/c/string/multibyte}
+*/
+typedef uint_least16_t	t_utf16; // TODO add option to use C11 `char16_t`
+TYPEDEF_ALIAS(			t_utf16, UTF16, PRIMITIVE)
+
+
+
+//! Primitive type: Unicode UTF-32 character code point value (fixed length: 4 bytes)
+/*!
+**	@isostd{C,https://en.cppreference.com/w/c/string/multibyte/char32_t}
+**	@isostd{C,https://en.cppreference.com/w/c/string/wide}
+*/
+typedef uint_least32_t	t_utf32; // TODO add option to use C11 `char32_t`
+TYPEDEF_ALIAS(			t_utf32, UTF32, PRIMITIVE)
+
+
 
 // TODO add option with wrapper functions for the ones in C11 <uchar.h>
 
@@ -100,6 +133,8 @@ HEADER_CPP
 //!@}
 
 
+
+#ifndef __LIBCCC_NOFUNCTIONS__
 
 /*
 ** ************************************************************************** *|
@@ -785,6 +820,10 @@ t_sint				UTF32_ByteOrderMark(t_utf32 const* str);
 //!< 0xE0100 — 0xE01EF	Variation Selectors Supplement
 //!< 0xF0000 — 0xFFFFF	Supplementary Private Use Area-A
 //!< 0x100000—0x10FFFF	Supplementary Private Use Area-B
+
+
+
+#endif
 
 
 

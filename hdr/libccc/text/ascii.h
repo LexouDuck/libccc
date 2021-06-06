@@ -1,6 +1,6 @@
 /*============================================================================*/
 /*                                            ______________________________  */
-/*  libccc/sys/ascii.h                       |    __    __  ___      _____  | */
+/*  libccc/text/ascii.h                      |    __    __  ___      _____  | */
 /*                                           |   / /\  / /\/ . |\   /  __|\ | */
 /*  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | */
 /*                                           | /___/\/_/ /___-'\   \____/\  | */
@@ -9,9 +9,9 @@
 /*                                                                            */
 /*============================================================================*/
 
-#ifndef __LIBCCC_SYS_ASCII_H
-#define __LIBCCC_SYS_ASCII_H
-/*!@group{libccc_sys_ascii}
+#ifndef __LIBCCC_TEXT_ASCII_H
+#define __LIBCCC_TEXT_ASCII_H
+/*!@group{libccc_text_ascii}
 ** @{
 **	This header defines all the functions related to ASCII text (7-bit chars).
 **
@@ -30,7 +30,11 @@
 #include "libccc_naming.h"
 #include "libccc_define.h"
 
+#ifndef __LIBCCC_NOFUNCTIONS__
+#define __LIBCCC_NOFUNCTIONS__
 #include "libccc/bool.h"
+#undef	__LIBCCC_NOFUNCTIONS__
+#endif
 
 HEADER_CPP
 
@@ -39,6 +43,15 @@ HEADER_CPP
 **                                 Definitions                                *|
 ** ************************************************************************** *|
 */
+
+//! Primitive type: `char`, ie: a text character (1 byte: ANSI/ASCII)
+/*!
+**	@isostd{C,https://en.cppreference.com/w/c/string/byte}
+*/
+typedef char	t_ascii;
+TYPEDEF_ALIAS(	t_ascii, ASCII, PRIMITIVE)
+
+
 
 // TODO add option with wrapper functions for the ones in C11 <uchar.h>
 
@@ -125,6 +138,8 @@ HEADER_CPP
 //!@}
 
 
+
+#ifndef __LIBCCC_NOFUNCTIONS__
 
 /*
 ** ************************************************************************** *|
@@ -355,6 +370,10 @@ t_ascii					ASCII_ToUppercase(t_ascii c);
 t_ascii					ASCII_ToLowercase(t_ascii c);
 #define c_toclower		ASCII_ToLowercase
 #define ASCII_ToLower	ASCII_ToLowercase
+
+
+
+#endif
 
 
 

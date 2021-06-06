@@ -1,5 +1,5 @@
 
-#include "libccc/sys/unicode.h"
+#include "libccc/text/unicode.h"
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 #include <wctype.h>

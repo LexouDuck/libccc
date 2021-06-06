@@ -1,7 +1,7 @@
 
 #include "libccc/bool.h"
 #include "libccc/char.h"
-#include "libccc/sys/ascii.h"
+#include "libccc/text/ascii.h"
 #include "libccc/pointer.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
