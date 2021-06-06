@@ -73,77 +73,116 @@ typedef s_kvt	s_toml;
 ** ************************************************************************** *|
 */
 
-//! Create a new `s_toml` object, parsed from a (valid) TOML string
-/*!
-**	Memory Management: the caller is always responsible to free the results,
-**	from all variants of TOML_Parse() (by using TOML_Delete()) and TOML_Print()
-**	(with stdlib free(), TOML_Hooks.free_fn(), or TOML_free() as appropriate).
-**	The exception is TOML_PrintPreallocated(), where the caller has full responsibility of the buffer.
-**	Supply a block of TOML, and this returns a `s_toml` object you can interrogate.
-*/
-s_toml*	TOML_FromString(t_char const* value);
-#define TOML_Parse	TOML_FromString
-#define TOML_Decode	TOML_FromString
+#define 					TOML_Parse	TOML_Parse_Lenient
+#define c_tomlparse			TOML_Parse
+#define TOML_Decode			TOML_Parse
+#define TOML_FromString		TOML_Parse
 
-//! Create a new `s_toml` object, parsed from a (valid) TOML string, (only the first `buffer_length` chars are parsed)
-s_toml*	TOML_FromString_N(t_char const* value, t_size buffer_length);
-#define TOML_Parse_N	TOML_FromString_N
-#define TOML_Decode_N	TOML_FromString_N
+#define 					TOML_Parse_N	TOML_Parse_Lenient_N
+#define c_tomlnparse		TOML_Parse_N
+#define TOML_Decode_N		TOML_Parse_N
+#define TOML_FromString_N	TOML_Parse_N
 
 //! Create a new `s_toml` object, parsed from a (valid) TOML string
 /*!
-**	TOML_ParseStrict() allows you to require (and check) that the TOML is null terminated,
-**	and to retrieve the pointer to the final byte parsed.
-**	If you supply a ptr in return_parse_end and parsing fails, then `return_parse_end`
-**	will contain a pointer to the error, such that it will match the return of TOML_GetErrorPtr().
+**	This function creates a `s_toml` object by parsing a TOML string,
+**	allowing for several extensions to the TOML official spec, notably:
+**	- allows for trailing commas at the end of arrays or objects
+**	- allows for leading `+` symbols for positive-sign number literals
+**	- allows for `null`/`true`/`false` to be written in uppercase, or mixed-case rather than just lowercase
+**	- allows for non-standard whitespace characters: anything for which `isspace()` returns `TRUE`
+**	- allows for non-standard string escape sequences, matching those used in C: `\x??` for bytes, `\e`, for escape, etc
+**	- supports comments (using either `/``*`,`*``/` block syntax, or `//` single-line)
+**	- supports non-standard `number` values: `nan`/NaN and `inf`/infinity
+**	- supports numeric literals in other bases: prefix with `0x` for hexadecimal, `0b` for binary, `0o` for octal
+**	- supports `BigInt` integers, using the trailing `n` syntax
 */
-s_toml*	TOML_FromString_Strict(t_char const* value, t_char const* *return_parse_end, t_bool require_null_terminated);
-#define TOML_Parse_Strict	TOML_FromString_Strict
-#define TOML_Decode_Strict	TOML_FromString_Strict
+s_toml*								TOML_Parse_Lenient(t_utf8 const* toml);
+#define c_tomllparse				TOML_Parse_Lenient
+#define TOML_Decode_Lenient			TOML_Parse_Lenient
+#define TOML_FromString_Lenient		TOML_Parse_Lenient
 
-//! Create a new `s_toml` object, parsed from a (valid) TOML string, (only the first `buffer_length` chars are parsed)
-s_toml*	TOML_FromString_Strict_N(t_char const* value, t_size buffer_length, t_char const* *return_parse_end, t_bool require_null_terminated);
-#define TOML_Parse_Strict_N 	TOML_FromString_Strict_N
-#define TOML_Decode_Strict_N	TOML_FromString_Strict_N
+//! Create a new `s_toml` object, pars_Leniented from a (valid) TOML string, (only the first `n` chars are parsed)
+s_toml*								TOML_Parse_Lenient_N(t_utf8 const* toml, t_size n);
+#define c_tomllnparse				TOML_Parse_Lenient_N
+#define TOML_Decode_Lenient_N		TOML_Parse_Lenient_N
+#define TOML_FromString_Lenient_N	TOML_Parse_Lenient_N
+
+//! Create a new `s_toml` object, parsed from a (valid) TOML string
+/*!
+**	This function creates a `s_toml` object by parsing a TOML string,
+**	strictly following the TOML official spec (https://www.toml.org/toml-en.html),
+**	aborting with an error if anything non-standard is encountered.
+*/
+s_toml*								TOML_Parse_Strict(t_utf8 const* toml);//, t_utf8 const** return_parse_end);
+#define c_tomlsparse				TOML_Parse_Strict
+#define TOML_Decode_Strict			TOML_Parse_Strict
+#define TOML_FromString_Strict		TOML_Parse_Strict
+
+//! Create a new `s_toml` object, parsed from a (valid) TOML string, (only the first `n` chars are parsed)
+s_toml*								TOML_Parse_Strict_N(t_utf8 const* toml, t_size n);//, t_utf8 const** return_parse_end);
+#define c_tomlsnparse				TOML_Parse_Strict_N
+#define TOML_Decode_Strict_N		TOML_Parse_Strict_N
+#define TOML_FromString_Strict_N	TOML_Parse_Strict_N
 
 
 
-#define TOML_ToString	JSON_ToString_Pretty
-#define TOML_Print		JSON_ToString
-#define TOML_Encode		JSON_ToString
+#define 				TOML_Print	TOML_Print_Pretty
+#define c_tomlprint		TOML_Print
+#define TOML_Encode		TOML_Print
+#define TOML_ToString	TOML_Print
 
 //! Render a s_toml entity to text for transfer/storage (with 'pretty' formatting).
-t_char*	TOML_ToString_Pretty(s_toml const* item);
-#define TOML_Print_Pretty	TOML_ToString_Pretty
-#define TOML_Encode_Pretty	TOML_ToString_Pretty
+t_utf8*							TOML_Print_Pretty(s_toml const* item);
+#define c_tomlprintfmt			TOML_Parse
+#define TOML_Encode_Pretty		TOML_Print_Pretty
+#define TOML_ToString_Pretty	TOML_Print_Pretty
 
 //! Render a s_toml entity to text for transfer/storage, without any formatting/whitespace
-t_char*	TOML_ToString_Minify(s_toml const* item);
-#define TOML_Print_Minify	TOML_ToString_Minify
-#define TOML_Encode_Minify	TOML_ToString_Minify
+t_utf8*							TOML_Print_Minify(s_toml const* item);
+#define c_tomlprintmin			TOML_Parse
+#define TOML_Decode_Minify		TOML_Print_Minify
+#define TOML_ToString_Minify	TOML_Print_Minify
 
 //! Render a s_toml entity to text using a buffered strategy.
 /*!
-**	prebuffer is a guess at the final size. guessing well reduces reallocation. fmt=0 gives unformatted, =1 gives formatted.
+**	prebuffer is a guess at the final size. guessing well reduces reallocation. `format = 0` means minified, `format = 1` means formatted/pretty.
 */
-t_char*	TOML_ToString_Buffered(s_toml const* item, t_sint prebuffer, t_bool fmt);
-#define TOML_Print_Buffered		TOML_ToString_Buffered
-#define TOML_Encode_Buffered	TOML_ToString_Buffered
+t_utf8*							TOML_Print_Buffered(s_toml const* item, t_sint prebuffer, t_bool format);
+#define TOML_Decode_Buffered 	TOML_Print_Buffered
+#define TOML_ToString_Buffered 	TOML_Print_Buffered
 
 //! Render a `s_toml` entity to text using a buffer already allocated in memory with given length.
 /*!
+**	NOTE: s_toml is not always 100% accurate in estimating how much memory it will use,
+**		so, to be safe, you should allocate 5 bytes more than you actually need.
+**
 **	@returns
 **	`TRUE` on success and `FALSE` on failure.
 */
-t_bool	TOML_ToString_Preallocated(s_toml* item, t_char* buffer, t_sint const length, t_bool const format);
-#define TOML_Print_Preallocated		TOML_ToString_Preallocated
-#define TOML_Encode_Preallocated	TOML_ToString_Preallocated
+t_bool								TOML_Print_Preallocated(s_toml* item, t_utf8* buffer, t_sint const length, t_bool const format);
+#define TOML_Encode_Preallocated 	TOML_Print_Preallocated
+#define TOML_ToString_Preallocated 	TOML_Print_Preallocated
+
+
+
+//! Minify a TOML string, to make it more lightweight: removes all whitespace characters
+/*!
+**	Minify a TOML, removing blank characters (such as ' ', '\t', '\r', '\n') from strings.
+**	The input pointer toml cannot point to a read-only address area, such as a string constant, 
+**	but should point to a readable and writable address area.
+*/
+void	TOML_Minify(t_utf8* toml); //!< TODO rename to TOML_Minify_InPlace(), and add TOML_Minify(), which would allocate
+
+
+
+// TODO TOML_ToValid()
 
 
 
 /*
 ** ************************************************************************** *|
-**                             Basic TOML Operations                           *|
+**                             Basic TOML Operations                          *|
 ** ************************************************************************** *|
 */
 
@@ -165,7 +204,7 @@ t_bool	TOML_ToString_Preallocated(s_toml* item, t_char* buffer, t_sint const len
 
 /*
 ** ************************************************************************** *|
-**                            TOML "create" Operations                         *|
+**                            TOML "create" Operations                        *|
 ** ************************************************************************** *|
 */
 
@@ -210,7 +249,7 @@ t_bool	TOML_ToString_Preallocated(s_toml* item, t_char* buffer, t_sint const len
 
 /*
 ** ************************************************************************** *|
-**                             TOML "get" Operations                           *|
+**                             TOML "get" Operations                          *|
 ** ************************************************************************** *|
 */
 
@@ -245,7 +284,7 @@ t_bool	TOML_ToString_Preallocated(s_toml* item, t_char* buffer, t_sint const len
 
 /*
 ** ************************************************************************** *|
-**                             TOML "set" Operations                           *|
+**                             TOML "set" Operations                          *|
 ** ************************************************************************** *|
 */
 
@@ -256,11 +295,11 @@ t_bool	TOML_ToString_Preallocated(s_toml* item, t_char* buffer, t_sint const len
 
 
 
-#define TOML_AddToArray_Item				KVT_AddToArray_Item				//!< @alias{KVT_AddToArray_Item}
-#define TOML_AddToArray_ItemReference		KVT_AddToArray_ItemReference	//!< @alias{KVT_AddToArray_ItemReference}
+#define TOML_AddToArray_Item			KVT_AddToArray_Item				//!< @alias{KVT_AddToArray_Item}
+#define TOML_AddToArray_ItemReference	KVT_AddToArray_ItemReference	//!< @alias{KVT_AddToArray_ItemReference}
 
-#define TOML_AddToObject_Item				KVT_AddToObject_Item			//!< @alias{KVT_AddToObject_Item}
-#define TOML_AddToObject_ItemReference		KVT_AddToObject_ItemReference	//!< @alias{KVT_AddToObject_ItemReference}
+#define TOML_AddToObject_Item			KVT_AddToObject_Item			//!< @alias{KVT_AddToObject_Item}
+#define TOML_AddToObject_ItemReference	KVT_AddToObject_ItemReference	//!< @alias{KVT_AddToObject_ItemReference}
 
 
 
@@ -295,7 +334,7 @@ t_bool	TOML_ToString_Preallocated(s_toml* item, t_char* buffer, t_sint const len
 
 /*
 ** ************************************************************************** *|
-**                             TOML Other Operations                           *|
+**                             TOML Other Operations                          *|
 ** ************************************************************************** *|
 */
 

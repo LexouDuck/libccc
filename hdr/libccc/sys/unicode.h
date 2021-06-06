@@ -443,6 +443,37 @@ t_size					UTF32_Parse_N(t_utf32* dest, t_ascii const* str, t_size n);
 ** ************************************************************************** *|
 */
 
+//! Parses a UTF-8 BOM (byte order mark) in `str`
+/*!
+**	@returns
+**	`0` if there is no UTF-8 byte order mark at `str`,
+**	or the length of the UTF-8 byte order mark (ie: `3`)
+*/
+t_sint				UTF8_ByteOrderMark(t_utf8 const* str);
+#define c_mbbom		UTF8_ByteOrderMark
+
+//! Parses a UTF-16 BOM (byte order mark) in `str`
+/*!
+**	@returns
+**	`0` if there is no UTF-16 byte order mark at `str`,
+**	or the length of the UTF-16 byte order mark (ie: `2`) -
+**	also note: the return is negative for a big-endian BOM (ie: `-2`)
+*/
+t_sint				UTF16_ByteOrderMark(t_utf16 const* str);
+#define c_mb2bom	UTF16_ByteOrderMark
+
+//! Parses a UTF-32 BOM (byte order mark) in `str`
+/*!
+**	@returns
+**	`0` if there is no UTF-32 byte order mark at `str`,
+**	or the length of the UTF-32 byte order mark (ie: `4`) -
+**	also note: the return is negative for a big-endian BOM (ie: `-4`)
+*/
+t_sint				UTF32_ByteOrderMark(t_utf32 const* str);
+#define c_wcbom		UTF32_ByteOrderMark
+
+
+
 // TODO UTF32_Charset()
 
 // TODO enum e_unicode

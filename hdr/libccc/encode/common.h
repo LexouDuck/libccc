@@ -13,10 +13,10 @@
 #define __LIBCCC_ENCODE_COMMON_H
 /*!@group{libccc_encode_common}
 ** @{
-**	This header defines a dynamic runtime object type, similar to objects in JS.
-**	- JSON spec: https://www.json.org/json-en.html
+**	This header defines a dynamic runtime "object" type, which is called "KVT",
+**	as in "Key Value Tree" - it stores key/value pairs in a tree-like structure.
 **
-**	In particular, most of the code exposed from this header comes from cJSON:
+**	In particular, much of the code in this header was inspired by cJSON:
 **	- https://github.com/DaveGamble/cJSON
 **
 **	@file
@@ -47,10 +47,10 @@ typedef t_sint		t_dynamic;
 //!@{
 #define DYNAMICTYPE_INVALID	(t_dynamic)(0)		//!< value stored is invalid
 #define DYNAMICTYPE_NULL	(t_dynamic)(1 << 0)	//!< no value stored
-#define DYNAMICTYPE_BOOLEAN	(t_dynamic)(1 << 1)	//!< value stored as boolean: #t_bool
-#define DYNAMICTYPE_INTEGER	(t_dynamic)(1 << 2)	//!< value stored as integer: #t_s64
-#define DYNAMICTYPE_FLOAT	(t_dynamic)(1 << 3)	//!< value stored as floating-point number: #t_f64
-#define DYNAMICTYPE_STRING	(t_dynamic)(1 << 4)	//!< value stored as string
+#define DYNAMICTYPE_BOOLEAN	(t_dynamic)(1 << 1)	//!< value stored as boolean (`t_bool`)
+#define DYNAMICTYPE_INTEGER	(t_dynamic)(1 << 2)	//!< value stored as integer (`t_s64`)
+#define DYNAMICTYPE_FLOAT	(t_dynamic)(1 << 3)	//!< value stored as floating-point number: (`t_f64`)
+#define DYNAMICTYPE_STRING	(t_dynamic)(1 << 4)	//!< value stored as string (`t_char*`)
 #define DYNAMICTYPE_ARRAY	(t_dynamic)(1 << 5)	//!< value stored as array of values (no keys)
 #define DYNAMICTYPE_OBJECT	(t_dynamic)(1 << 6)	//!< value stored as dict of values (with keys)
 #define DYNAMICTYPE_RAW		(t_dynamic)(1 << 7)	//!< value stored as raw string (language-specific syntax)
@@ -79,11 +79,11 @@ typedef struct kvt
 	t_dynamic	type;	//!< The type of the item: uses the `TOML_TYPE_*` macros defined above.
 	union dynamic
 	{
-		t_bool		boolean;
-		t_s64		integer;
-		t_f64		number;
-		t_char*		string;
-		struct kvt*	child;
+		t_bool		boolean;	//!< #DYNAMICTYPE_BOOLEAN
+		t_s64		integer;	//!< #DYNAMICTYPE_INTEGER
+		t_f64		number;		//!< #DYNAMICTYPE_FLOAT
+		t_char*		string;		//!< #DYNAMICTYPE_STRING or #DYNAMICTYPE_RAW
+		struct kvt*	child;		//!< #DYNAMICTYPE_ARRAY or #DYNAMICTYPE_OBJECT
 	}			value;	//!< The item's stored value (can be of any type)
 }		s_kvt;
 
@@ -116,6 +116,21 @@ typedef union dynamic	u_dynamic;
 
 
 
+//! This struct is used to parse a data file string
+typedef struct kvt_parse
+{
+	s_kvt*			result;		//!< the result JSON
+	t_utf8 const*	content;	//!< the string to parse
+	t_size			offset;		//!< current parsing offset
+	t_size			length;		//!< the length of the string to parse
+	t_bool			strict;		//!< if TRUE, strict parsing mode is on (rigourously follows the spec)
+	t_uint			depth;		//!< current section nesting level
+	t_size			line;		//!< current line number
+	t_char*			error;		//!< current error message (or NULL if no error has been thrown yet)
+}		s_kvt_parse;
+
+
+
 /*
 ** ************************************************************************** *|
 **                             Basic KVT Operations                           *|
@@ -129,18 +144,22 @@ s_kvt*	KVT_Item(void);
 
 //! Duplicates a KVT object.
 /*!
-**	Duplicate will create a new, identical s_kvt item to the one you pass, in new memory that will
+**	Duplicate will create a new, identical `s_kvt` item to the one you pass, in new memory that will
 **	need to be released. With `recurse != FALSE`, it will duplicate any children connected to the item.
-**	The item->next and ->prev pointers are always zero on return from Duplicate.
+**	The `item`'s `->next` and `->prev` pointers are always zero on return from Duplicate.
 */
 s_kvt*	KVT_Duplicate(s_kvt const* item, t_bool recurse);
 
 
 
-//! Recursively compare two s_kvt items for equality.
+//! Recursively compare two `s_kvt` items for equality.
 /*!
-**	If either a or b is NULL or invalid, they will be considered unequal.
-**	case_sensitive determines if object keys are treated case sensitive (1) or case insensitive (0).
+**	If either `a` or `b` is `NULL` or invalid, they will be considered unequal.
+**	@param a				the first KVT to check
+**	@param a				the second KVT to check
+**	@param case_sensitive	if `TRUE`, object keys are treated as case-sensitive
+**	@returns
+**	`TRUE` if `a` and `b` have equal contents
 */
 t_bool	KVT_Equals(s_kvt const* a, s_kvt const* b, t_bool case_sensitive);
 
@@ -229,10 +248,10 @@ s_kvt*	KVT_CreateArray_String	(t_char const* const* strings, t_uint count);
 ** ************************************************************************** *|
 */
 
-//! Returns the amount of items in an array (or object).
+//! Returns the amount of items in the given `array` (or object).
 t_sint	KVT_GetArrayLength(s_kvt const* array);
 
-//! Retrieve item number "index" from array "array". Returns NULL if unsuccessful.
+//! Retrieve item number `index` from the given `array`. Returns `NULL` if unsuccessful.
 s_kvt*	KVT_GetArrayItem(s_kvt const* array, t_uint index);
 
 
@@ -309,7 +328,8 @@ e_cccerror	KVT_AddToObject_ItemReference(s_kvt* object, t_char const* key, s_kvt
 
 /*!
 **	Helper functions for creating and adding items to an object at the same time.
-**	They return the added item or NULL on failure.
+**	@returns
+**	The newly added KVT item, or `NULL` on failure.
 */
 //!@{
 s_kvt*	KVT_AddToObject_Null	(s_kvt* object, t_char const* key);
@@ -358,7 +378,7 @@ t_bool	KVT_IsRaw		(s_kvt const* item);
 //! Removes (without deleting) the given `item` from the given `parent` object.
 s_kvt*		KVT_Detach(s_kvt* parent, s_kvt* item);
 
-//! Delete a s_kvt entity and all subentities.
+//! Delete a `s_kvt` entity and all subentities.
 e_cccerror	KVT_Delete(s_kvt* item);
 
 //! Replaces the given `item` from the given `parent` object, with the given `newitem`.

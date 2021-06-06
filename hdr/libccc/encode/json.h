@@ -16,8 +16,8 @@
 **	This header defines a dynamic runtime object type, similar to objects in JS.
 **	- JSON spec: https://www.json.org/json-en.html
 **
-**	In particular, most of the code exposed from this header comes from cJSON:
-**	https://github.com/DaveGamble/cJSON
+**	In particular, much of the code in this header was inspired by cJSON:
+**	- https://github.com/DaveGamble/cJSON
 **
 **	@file
 */
@@ -170,7 +170,7 @@ void	JSON_Minify(t_utf8* json); //!< TODO rename to JSON_Minify_InPlace(), and a
 
 /*
 ** ************************************************************************** *|
-**                             Basic JSON Operations                           *|
+**                             Basic JSON Operations                          *|
 ** ************************************************************************** *|
 */
 
@@ -192,7 +192,7 @@ void	JSON_Minify(t_utf8* json); //!< TODO rename to JSON_Minify_InPlace(), and a
 
 /*
 ** ************************************************************************** *|
-**                            JSON "create" Operations                         *|
+**                            JSON "create" Operations                        *|
 ** ************************************************************************** *|
 */
 
@@ -237,7 +237,7 @@ void	JSON_Minify(t_utf8* json); //!< TODO rename to JSON_Minify_InPlace(), and a
 
 /*
 ** ************************************************************************** *|
-**                             JSON "get" Operations                           *|
+**                             JSON "get" Operations                          *|
 ** ************************************************************************** *|
 */
 
@@ -272,7 +272,7 @@ void	JSON_Minify(t_utf8* json); //!< TODO rename to JSON_Minify_InPlace(), and a
 
 /*
 ** ************************************************************************** *|
-**                             JSON "set" Operations                           *|
+**                             JSON "set" Operations                          *|
 ** ************************************************************************** *|
 */
 
@@ -322,7 +322,7 @@ void	JSON_Minify(t_utf8* json); //!< TODO rename to JSON_Minify_InPlace(), and a
 
 /*
 ** ************************************************************************** *|
-**                             JSON Other Operations                           *|
+**                             JSON Other Operations                          *|
 ** ************************************************************************** *|
 */
 

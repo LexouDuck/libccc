@@ -630,7 +630,7 @@ t_utf8*	JSON_Print_Minify(s_json const* item)
 	return (JSON_Print_(item, FALSE));
 }
 
-t_utf8*	JSON_Print_Buffered(s_json const* item, t_sint prebuffer, t_bool fmt)
+t_utf8*	JSON_Print_Buffered(s_json const* item, t_sint prebuffer, t_bool format)
 {
 	s_json_print p = { 0 };
 
@@ -640,7 +640,7 @@ t_utf8*	JSON_Print_Buffered(s_json const* item, t_sint prebuffer, t_bool fmt)
 	p.length = (t_size)prebuffer;
 	p.offset = 0;
 	p.noalloc = FALSE;
-	p.format = fmt;
+	p.format = format;
 	if (!JSON_Print_Value(item, &p))
 	{
 		Memory_Free(p.buffer);
