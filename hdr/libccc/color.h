@@ -30,10 +30,12 @@
 #include "libccc_naming.h"
 #include "libccc_define.h"
 
+#ifndef __LIBCCC_NOFUNCTIONS__
 #include "libccc/bool.h"
 #include "libccc/int.h"
 #include "libccc/float.h"
 #include "libccc/pointer.h"
+#endif
 
 HEADER_CPP
 
@@ -104,6 +106,8 @@ typedef struct ahsl
 TYPEDEF_ALIAS(	s_ahsl, COLOR_AHSL, STRUCT)
 
 
+
+#ifndef __LIBCCC_NOFUNCTIONS__
 
 /*
 ** ************************************************************************** *|
@@ -452,6 +456,10 @@ s_argb							Color_AHSL_To_ARGB(s_ahsl const* color);
 */
 s_ahsl const*					Color_AHSL_GetNearest(s_ahsl target, s_ahsl const* colors, t_size n);
 #define c_color_ahsl_nearest	Color_AHSL_GetNearest
+
+
+
+#endif
 
 
 

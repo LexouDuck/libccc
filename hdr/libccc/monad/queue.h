@@ -70,6 +70,8 @@ typedef struct queue_T
 
 
 
+#ifndef __LIBCCC_NOFUNCTIONS__
+
 /*
 ** ************************************************************************** *|
 **                             Basic Queue Operations                         *|
@@ -90,6 +92,8 @@ typedef struct queue_T
 // TODO Queue_Push_F
 
 
+
+#endif
 
 /*! @} */
 HEADER_END

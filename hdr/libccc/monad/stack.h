@@ -70,6 +70,8 @@ typedef struct stack_T
 
 
 
+#ifndef __LIBCCC_NOFUNCTIONS__
+
 /*
 ** ************************************************************************** *|
 **                             Basic Stack Operations                         *|
@@ -90,6 +92,8 @@ typedef struct stack_T
 // TODO Stack_Push_F
 
 
+
+#endif
 
 /*! @} */
 HEADER_END

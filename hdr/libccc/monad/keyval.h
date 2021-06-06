@@ -62,6 +62,8 @@ typedef struct keyval_T
 
 
 
+#ifndef __LIBCCC_NOFUNCTIONS__
+
 /*
 ** ************************************************************************** *|
 **                            Basic KeyVal Operations                         *|
@@ -80,6 +82,8 @@ typedef struct keyval_T
 // TODO KeyVal_Compare
 
 
+
+#endif
 
 /*! @} */
 HEADER_END

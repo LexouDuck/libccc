@@ -73,8 +73,12 @@
 #include "libccc_naming.h"
 #include "libccc_define.h"
 
+#ifndef __LIBCCC_NOFUNCTIONS__
+#define __LIBCCC_NOFUNCTIONS__
 #include "libccc/char.h"
 #include "libccc/bool.h"
+#undef	__LIBCCC_NOFUNCTIONS__
+#endif
 
 HEADER_CPP
 
@@ -399,6 +403,40 @@ TYPEDEF_ALIAS(t_sint, SINT, PRIMITIVE)
 #define SINT_MIN	((t_sint)((UINT_MAX >> 1) + 1))	//!< The minimum possible value for a configurable-size signed integer type
 
 
+
+/*
+** ************************************************************************** *|
+**                       Variable-size primitive types                        *|
+** ************************************************************************** *|
+*/
+
+//! A union storing an integer (signed or unsigned) of any common storage size
+/*!
+** These unions are used for certain difficult casting conditions.
+** They are used in particular when casting an <stdarg.h> var_arg to the
+** appropriate type in c_printf.
+*/
+//!@{
+typedef union varuint // TODO refactor this and add similar types for fixed and float
+{
+	t_u8	uc;
+	t_u16	us;
+	t_u32	ui;
+	t_u64	ul;
+}		u_varuint;
+
+typedef union varsint // TODO refactor this and add similar types for fixed and float
+{
+	t_s8	sc;
+	t_s16	ss;
+	t_s32	si;
+	t_s64	sl;
+}		u_varsint;
+//!@}
+
+
+
+#ifndef __LIBCCC_NOFUNCTIONS__
 
 /*
 ** ************************************************************************** *|
@@ -938,31 +976,7 @@ t_s128					S128_FromString_Base(t_char const* str, t_char const* base);
 
 
 
-/*
-** ************************************************************************** *|
-**                       Variable-size primitive types                        *|
-** ************************************************************************** *|
-*/
-
-//! A union storing an integer (signed or unsigned) of any common storage size
-/*!
-** These unions are used for certain difficult casting conditions.
-** They are used in particular when casting an <stdarg.h> var_arg to the
-** appropriate type in c_printf.
-*/
-typedef union varint
-{
-	t_s8			sc;
-	t_s16			ss;
-	t_s32			si;
-	t_s64			sl;
-	t_u8			uc;
-	t_u16			us;
-	t_u32			ui;
-	t_u64			ul;
-}					u_varint;
-
-
+#endif
 
 /*! @} */
 HEADER_END

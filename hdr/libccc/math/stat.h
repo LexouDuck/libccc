@@ -103,6 +103,8 @@ typedef struct prob_mass
 
 
 
+#ifndef __LIBCCC_NOFUNCTIONS__
+
 /*
 ** ************************************************************************** *|
 **                         Statistics & Probabilities                         *|
@@ -225,6 +227,8 @@ s_prob_mass						Stat_IntList_To_PMF(s_array_int const ilst);
 #define c_stat_ilst_to_pmf		Stat_IntList_To_PMF
 
 
+
+#endif
 
 /*! @} */
 HEADER_END

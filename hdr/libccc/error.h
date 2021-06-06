@@ -24,12 +24,26 @@
 */
 
 #include "libccc_define.h"
+
 #include "libccc/char.h"
 #include "libccc/string.h"
 #include "libccc/format.h"
 #include "libccc/sys/io.h"
 
 HEADER_CPP
+
+/*
+** ************************************************************************** *|
+**                                 Definitions                                *|
+** ************************************************************************** *|
+*/
+
+//! The function pointer type for an error-handling function
+typedef void (*f_ccchandler)(e_cccerror, char*);
+
+
+
+#ifndef __LIBCCC_NOFUNCTIONS__
 
 /*
 ** ************************************************************************** *|
@@ -79,8 +93,7 @@ void	Error_Handle(e_cccerror error, t_char const* funcname, t_char* message);
 //! The default error handler function (its body can be configured, see #LIBCONFIG_ERROR_DEFAULTHANDLER)
 void	Error_Handler(e_cccerror error, t_char* message);
 
-//! The function pointer type for an error-handling function
-typedef void (*f_ccchandler)(e_cccerror, char*);
+
 
 //! Get the currently set handler function for the given `error` code
 f_ccchandler	Error_GetHandler(e_cccerror error);
@@ -92,6 +105,8 @@ void			Error_SetHandler(e_cccerror error, f_ccchandler handler);
 void			Error_SetAllHandlers(f_ccchandler handler);
 
 
+
+#endif
 
 /*! @} */
 HEADER_END

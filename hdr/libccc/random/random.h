@@ -26,7 +26,6 @@
 ** ************************************************************************** *|
 */
 
-#include "libccc.h"
 #include "libccc/random/prng.h"
 #include "libccc/random/csprng.h"
 

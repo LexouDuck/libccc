@@ -70,10 +70,14 @@
 #include "libccc_naming.h"
 #include "libccc_define.h"
 
+#ifndef __LIBCCC_NOFUNCTIONS__
+#define __LIBCCC_NOFUNCTIONS__
 #include "libccc/char.h"
 #include "libccc/bool.h"
 #include "libccc/int.h"
 #include "libccc/float.h"
+#undef	__LIBCCC_NOFUNCTIONS__
+#endif
 
 HEADER_CPP
 
@@ -296,6 +300,8 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 #define FIXED_MIN	((t_fixed)SINT_MIN)	//!< The largest possible value that a configurable-size fixed-point can hold
 
 
+
+#ifndef __LIBCCC_NOFUNCTIONS__
 
 /*
 ** ************************************************************************** *|
@@ -676,6 +682,11 @@ t_q128					Q128_FromString_Base(t_char const* str, t_char const* base); // TODO 
 #define c_strbasetoq64	Q64_FromString_Base 	//!< @alias{Q64_FromString_Base}
 #define c_strbasetoq128	Q128_FromString_Base 	//!< @alias{Q128_FromString_Base}
 //!@}
+
+
+
+#endif
+
 
 
 /*! @} */

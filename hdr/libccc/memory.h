@@ -30,8 +30,13 @@
 #include "libccc_naming.h"
 #include "libccc_define.h"
 
+#ifndef __LIBCCC_NOFUNCTIONS__
+#define __LIBCCC_NOFUNCTIONS__
 #include "libccc/int.h"
+#include "libccc/bool.h"
 #include "libccc/pointer.h"
+#undef	__LIBCCC_NOFUNCTIONS__
+#endif
 
 HEADER_CPP
 
@@ -63,6 +68,8 @@ HEADER_CPP
 //!@}
 
 
+
+#ifndef __LIBCCC_NOFUNCTIONS__
 
 /*
 ** ************************************************************************** *|
@@ -352,6 +359,12 @@ t_u64				Memory_GetBits(t_u64 value, t_u8 bit, t_u8 length);
 
 
 
+/*
+** ************************************************************************** *|
+**                    Essential builtins (for compatibility)                  *|
+** ************************************************************************** *|
+*/
+
 #ifdef __IOS__ // TODO smarter check here
 
 inline
@@ -381,6 +394,8 @@ void*	memmove(void* dest, void const* src, t_size n)
 #endif
 
 
+
+#endif
 
 /*! @} */
 HEADER_END

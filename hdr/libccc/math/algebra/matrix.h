@@ -37,12 +37,6 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-/*
-** ************************************************************************** *|
-**                        2-dimensional Matrix Operations                     *|
-** ************************************************************************** *|
-*/
-
 //! A simple struct which stores a 2x2 matrix of real numbers, arranged in 2 rows of 2D vectors
 typedef struct mat2d
 {
@@ -74,6 +68,87 @@ TYPEDEF_ALIAS(	u_matrix2d, MATRIX_2D, UNION)
 }
 
 
+
+//! A simple struct which stores a 3x3 matrix of real numbers, arranged in 3 rows of 3D vectors
+typedef struct mat3d
+{
+	s_vector3d	u;
+	s_vector3d	v;
+	s_vector3d	w;
+}				s_matrix3d;
+TYPEDEF_ALIAS(	s_matrix3d, MATRIX_3D, STRUCT)
+
+//! This union stores a 3x3 matrix which can be accessed in several ways
+typedef	union matrix3d
+{
+	t_float		values[3*3];	//!< An array, to access the matrix values from within brackets
+	s_matrix3d	matrix;			//!< A struct, to access the matrix values as several row vectors
+}				u_matrix3d;
+TYPEDEF_ALIAS(	u_matrix3d, MATRIX_3D, UNION)
+
+//! A 3-dimensional matrix in which every number is zero
+#define MATRIX3D_NULL \
+{					\
+	.u={ 0, 0, 0 },	\
+	.v={ 0, 0, 0 },	\
+	.w={ 0, 0, 0 },	\
+}
+
+//! A 3-dimensional matrix which is neutral (does nothing) when applied/multiplied
+#define MATRIX3D_IDENTITY \
+{					\
+	.u={ 1, 0, 0 },	\
+	.v={ 0, 1, 0 },	\
+	.w={ 0, 0, 1 },	\
+}
+
+
+
+//! A simple struct which stores a 4x4 matrix of real numbers, arranged in 3 rows of 3D vectors
+typedef struct mat4d
+{
+	s_vector4d	u;
+	s_vector4d	v;
+	s_vector4d	w;
+	s_vector4d	t;
+}				s_matrix4d;
+TYPEDEF_ALIAS(	s_matrix4d, MATRIX_4D, STRUCT)
+
+//! This union stores a 4x4 matrix which can be accessed in several ways
+typedef	union matrix4d
+{
+	t_float		values[4*4];	//!< An array, to access the matrix values from within brackets
+	s_matrix3d	matrix;			//!< A struct, to access the matrix values as several row vectors
+}				u_matrix4d;
+TYPEDEF_ALIAS(	u_matrix4d, MATRIX_4D, UNION)
+
+//! A 4-dimensional matrix in which every number is zero
+#define MATRIX4D_NULL \
+{						\
+	.u={ 0, 0, 0, 0 }	\
+	.v={ 0, 0, 0, 0 }	\
+	.w={ 0, 0, 0, 0 }	\
+	.t={ 0, 0, 0, 0 }	\
+}						\
+
+//! A 4-dimensional matrix which is neutral (does nothing) when applied/multiplied
+#define MATRIX4D_IDENTITY \
+{						\
+	.u={ 1, 0, 0, 0 }	\
+	.v={ 0, 1, 0, 0 }	\
+	.w={ 0, 0, 1, 0 }	\
+	.t={ 0, 0, 0, 1 }	\
+}						\
+
+
+
+#ifndef __LIBCCC_NOFUNCTIONS__
+
+/*
+** ************************************************************************** *|
+**                        2-dimensional Matrix Operations                     *|
+** ************************************************************************** *|
+*/
 
 //! A 2-dimensional matrix which, when applied, rotates a vector by the given 'ANGLE'
 #define MATRIX2D_ROTATE(ANGLE) \
@@ -124,41 +199,6 @@ s_matrix2d				Matrix2D_Multiply(s_matrix2d const* m1, s_matrix2d const* m2);
 **                        3-dimensional Matrix Operations                     *|
 ** ************************************************************************** *|
 */
-
-//! A simple struct which stores a 3x3 matrix of real numbers, arranged in 3 rows of 3D vectors
-typedef struct mat3d
-{
-	s_vector3d	u;
-	s_vector3d	v;
-	s_vector3d	w;
-}				s_matrix3d;
-TYPEDEF_ALIAS(	s_matrix3d, MATRIX_3D, STRUCT)
-
-//! This union stores a 3x3 matrix which can be accessed in several ways
-typedef	union matrix3d
-{
-	t_float		values[3*3];	//!< An array, to access the matrix values from within brackets
-	s_matrix3d	matrix;			//!< A struct, to access the matrix values as several row vectors
-}				u_matrix3d;
-TYPEDEF_ALIAS(	u_matrix3d, MATRIX_3D, UNION)
-
-//! A 3-dimensional matrix in which every number is zero
-#define MATRIX3D_NULL \
-{					\
-	.u={ 0, 0, 0 },	\
-	.v={ 0, 0, 0 },	\
-	.w={ 0, 0, 0 },	\
-}
-
-//! A 3-dimensional matrix which is neutral (does nothing) when applied/multiplied
-#define MATRIX3D_IDENTITY \
-{					\
-	.u={ 1, 0, 0 },	\
-	.v={ 0, 1, 0 },	\
-	.w={ 0, 0, 1 },	\
-}
-
-
 
 //! A 3-dimensional matrix which, when applied, rotates a vector about the X axis by the given 'ANGLE'
 #define MATRIX3D_ROTATE_X(ANGLE) \
@@ -225,45 +265,11 @@ s_matrix3d				Matrix3D_Multiply(s_matrix3d const* m1, s_matrix3d const* m2);
 ** ************************************************************************** *|
 */
 
-//! A simple struct which stores a 4x4 matrix of real numbers, arranged in 3 rows of 3D vectors
-typedef struct mat4d
-{
-	s_vector4d	u;
-	s_vector4d	v;
-	s_vector4d	w;
-	s_vector4d	t;
-}				s_matrix4d;
-TYPEDEF_ALIAS(	s_matrix4d, MATRIX_4D, STRUCT)
-
-//! This union stores a 4x4 matrix which can be accessed in several ways
-typedef	union matrix4d
-{
-	t_float		values[4*4];	//!< An array, to access the matrix values from within brackets
-	s_matrix3d	matrix;			//!< A struct, to access the matrix values as several row vectors
-}				u_matrix4d;
-TYPEDEF_ALIAS(	u_matrix4d, MATRIX_4D, UNION)
-
-//! A 4-dimensional matrix in which every number is zero
-#define MATRIX4D_NULL \
-{						\
-	.u={ 0, 0, 0, 0 }	\
-	.v={ 0, 0, 0, 0 }	\
-	.w={ 0, 0, 0, 0 }	\
-	.t={ 0, 0, 0, 0 }	\
-}						\
-
-//! A 4-dimensional matrix which is neutral (does nothing) when applied/multiplied
-#define MATRIX4D_IDENTITY \
-{						\
-	.u={ 1, 0, 0, 0 }	\
-	.v={ 0, 1, 0, 0 }	\
-	.w={ 0, 0, 1, 0 }	\
-	.t={ 0, 0, 0, 1 }	\
-}						\
-
 // TODO define and implement 4D matrix operations
 
 
+
+#endif
 
 /*! @} */
 HEADER_END

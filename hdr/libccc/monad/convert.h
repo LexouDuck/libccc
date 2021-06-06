@@ -66,6 +66,8 @@ HEADER_CPP
 
 
 
+#ifndef __LIBCCC_NOFUNCTIONS__
+
 /*
 ** ************************************************************************** *|
 **                              Array Conversions                             *|
@@ -111,6 +113,8 @@ void**					List_To_PointerArray(s_list const** a_lst);
 #define c_lst_to_ptrarr	List_To_PointerArray
 
 
+
+#endif
 
 /*! @} */
 HEADER_END

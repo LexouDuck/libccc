@@ -46,6 +46,8 @@ typedef void   t_csprng;
 
 
 
+#ifndef __LIBCCC_NOFUNCTIONS__
+
 /*
 ** ************************************************************************** *|
 **                               CSPRNG Functions                             *|
@@ -173,6 +175,10 @@ t_float					CSPRNG_Float_Get		(void);
 //!	Get a cryptographically secure random floating-point value, within the range `[min, max[`, statelessly.
 t_float					CSPRNG_Float_Get_Range	(t_float min, t_float max);
 #define c_csprnggetfi	CSPRNG_Float_Get_Range
+
+
+
+#endif
 
 
 

@@ -36,9 +36,13 @@
 #include "libccc_naming.h"
 #include "libccc_define.h"
 
+#ifndef __LIBCCC_NOFUNCTIONS__
+#define __LIBCCC_NOFUNCTIONS__
 #include "libccc/char.h"
 #include "libccc/bool.h"
 #include "libccc/int.h"
+#undef	__LIBCCC_NOFUNCTIONS__
+#endif
 
 HEADER_CPP
 
@@ -403,6 +407,34 @@ typedef union float_cast
 }				u_float_cast;
 
 
+
+/*
+** ************************************************************************** *|
+**                       Variable-size primitive types                        *|
+** ************************************************************************** *|
+*/
+
+//! A union storing a floating-point number of any common size/precision
+/*!
+**	These unions are used for certain difficult casting conditions.
+**	They are used in particular when casting an <stdarg.h> var_arg to the
+**	appropriate type in c_printf.
+*/
+typedef union varfloat
+{
+	t_f32			f;
+	t_f64			d;
+#ifdef	__float80
+	t_f80			e;
+#endif
+#ifdef	__float128
+	t_f128			q;
+#endif
+}		u_varfloat;
+
+
+
+#ifndef __LIBCCC_NOFUNCTIONS__
 
 /*
 ** ************************************************************************** *|
@@ -896,31 +928,7 @@ t_f128								F128_FromString_Bin(t_char const* str);
 
 
 
-/*
-** ************************************************************************** *|
-**                       Variable-size primitive types                        *|
-** ************************************************************************** *|
-*/
-
-//! A union storing a floating-point number of any common size/precision
-/*!
-**	These unions are used for certain difficult casting conditions.
-**	They are used in particular when casting an <stdarg.h> var_arg to the
-**	appropriate type in c_printf.
-*/
-typedef union varfloat
-{
-	t_f32			f;
-	t_f64			d;
-#ifdef	__float80
-	t_f80			e;
 #endif
-#ifdef	__float128
-	t_f128			q;
-#endif
-}					u_varfloat;
-
-
 
 /*! @} */
 HEADER_END

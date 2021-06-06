@@ -108,6 +108,8 @@ typedef struct list_T
 
 
 
+#ifndef __LIBCCC_NOFUNCTIONS__
+
 /*
 ** ************************************************************************** *|
 **                             Basic List Operations                          *|
@@ -502,6 +504,8 @@ s_list_T*				CONCAT(List_Filter_I,T_NAME)(s_list_T const* list, t_bool (*filter)
 //! TODO List_Reduce() ?
 
 
+
+#endif
 
 /*! @} */
 HEADER_END

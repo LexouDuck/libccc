@@ -55,6 +55,8 @@ typedef s_kvt	s_json;
 
 
 
+#ifndef __LIBCCC_NOFUNCTIONS__
+
 /*
 ** ************************************************************************** *|
 **                             JSON String Operations                         *|
@@ -360,6 +362,8 @@ void	JSON_Minify(t_utf8* json); //!< TODO rename to JSON_Minify_InPlace(), and a
 #define JSON_Replace_InObject_CaseSensitive		KVT_Replace_InObject_CaseSensitive	//! @alias{KVT_Replace_InObject_CaseSensitive}
 
 
+
+#endif
 
 /*! @} */
 HEADER_END

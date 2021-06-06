@@ -66,6 +66,8 @@ typedef		t_f128	(*f_f128_operator)	(t_f128 x,	t_f128 y);
 
 
 
+#ifndef __LIBCCC_NOFUNCTIONS__
+
 /*
 ** ************************************************************************** *|
 **                            Arithmetic Operations                           *|
@@ -896,6 +898,8 @@ t_f128								F128_InvTanH(t_f128 x);
 // TODO tgamma ?
 
 
+
+#endif
 
 /*! @} */
 HEADER_END

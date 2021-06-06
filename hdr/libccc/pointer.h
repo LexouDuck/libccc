@@ -134,7 +134,7 @@ TYPEDEF_ALIAS(		t_uintptr, UINTPTR, PRIMITIVE)
 
 
 
-#include "libccc/char.h"
+#ifndef __LIBCCC_NOFUNCTIONS__
 
 /*
 ** ************************************************************************** *|
@@ -193,6 +193,8 @@ t_char*					Pointer_ToString_Hex(void const* ptr);
 #define c_ptrtostrhex	Pointer_ToString_Hex //!< @alias{Pointer_ToString_Hex}
 
 
+
+#endif
 
 /*! @} */
 HEADER_END

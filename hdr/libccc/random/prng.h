@@ -70,6 +70,8 @@ typedef t_u32   t_prng;
 
 
 
+#ifndef __LIBCCC_NOFUNCTIONS__
+
 /*
 ** ************************************************************************** *|
 **                               Random Functions                             *|
@@ -210,6 +212,10 @@ t_float				PRNG_Float_Get		(void);
 //!	Get a random floating-point value, within the range `[min, max[`, statelessly.
 t_float				PRNG_Float_Get_Range(t_float min, t_float max);
 #define c_prnggetfi	PRNG_Float_Get_Range
+
+
+
+#endif
 
 
 

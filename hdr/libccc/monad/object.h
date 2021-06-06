@@ -75,6 +75,8 @@ typedef struct object_T
 
 
 
+#ifndef __LIBCCC_NOFUNCTIONS__
+
 /*
 ** ************************************************************************** *|
 **                             Basic Object Operations                          *|
@@ -123,6 +125,8 @@ typedef struct object_T
 // TODO Object_Reduce ?
 
 
+
+#endif
 
 /*! @} */
 HEADER_END

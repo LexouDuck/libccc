@@ -71,6 +71,8 @@ typedef struct tree_T
 
 
 
+#ifndef __LIBCCC_NOFUNCTIONS__
+
 /*
 ** ************************************************************************** *|
 **                             Basic Tree Operations                          *|
@@ -118,6 +120,8 @@ typedef struct tree_T
 // TODO Tree_Reduce ?
 
 
+
+#endif
 
 /*! @} */
 HEADER_END

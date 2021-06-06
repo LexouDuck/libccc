@@ -246,20 +246,20 @@ SRCS = error.c \
 	color/convert.c		\
 	color/nearest.c		\
 	color/diff.c		\
-	sys/ascii/isalpha.c		\
-	sys/ascii/isdigit.c		\
-	sys/ascii/isprint.c		\
-	sys/ascii/incharset.c	\
-	sys/ascii/to.c			\
-	sys/unicode/isalpha.c	\
-	sys/unicode/isdigit.c	\
-	sys/unicode/isprint.c	\
-	sys/unicode/incharset.c	\
-	sys/unicode/toupper.c	\
-	sys/unicode/tolower.c	\
-	sys/unicode/utf8.c		\
-	sys/unicode/utf16.c		\
-	sys/unicode/parse.c		\
+	text/ascii/isalpha.c		\
+	text/ascii/isdigit.c		\
+	text/ascii/isprint.c		\
+	text/ascii/incharset.c		\
+	text/ascii/to.c				\
+	text/unicode/isalpha.c		\
+	text/unicode/isdigit.c		\
+	text/unicode/isprint.c		\
+	text/unicode/incharset.c	\
+	text/unicode/toupper.c		\
+	text/unicode/tolower.c		\
+	text/unicode/utf8.c			\
+	text/unicode/utf16.c		\
+	text/unicode/parse.c		\
 	sys/io/fd.c			\
 	sys/io/color.c		\
 	sys/io/open.c		\

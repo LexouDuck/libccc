@@ -131,6 +131,8 @@ typedef struct kvt_parse
 
 
 
+#ifndef __LIBCCC_NOFUNCTIONS__
+
 /*
 ** ************************************************************************** *|
 **                             Basic KVT Operations                           *|
@@ -425,6 +427,8 @@ e_cccerror	KVT_Replace_InObject_CaseSensitive	(s_kvt* object, t_char const* key,
 //!@}
 
 
+
+#endif
 
 /*! @} */
 HEADER_END

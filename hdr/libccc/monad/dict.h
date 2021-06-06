@@ -72,6 +72,9 @@ typedef struct dict_T
 #define foreach_s_dict_loop_setv(	_TYPE_, _VAR_, _DICT_)	_VAR_ = (_VAR_##_i == (_DICT_)->length ? _VAR_ : (_DICT_)->items[_VAR_##_i])
 
 
+
+#ifndef __LIBCCC_NOFUNCTIONS__
+
 /*
 ** ************************************************************************** *|
 **                             Basic Dict Operations                          *|
@@ -230,6 +233,7 @@ s_dict_T*	CONCAT(Dict_Filter_I,T_NAME)(s_dict_T* dict, t_bool (*filter)(s_keyval
 
 
 
+#endif
 
 /*! @} */
 HEADER_END

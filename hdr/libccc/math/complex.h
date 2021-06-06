@@ -84,6 +84,8 @@ HEADER_CPP
 
 
 
+#ifndef __LIBCCC_NOFUNCTIONS__
+
 /*
 ** ************************************************************************** *|
 **                          Complex Number Operations                         *|
@@ -187,6 +189,8 @@ TYPEDEF_ALIAS(		s_quaternion, QUATERNION, STRUCT)
 // TODO define, implement, document
 
 
+
+#endif
 
 /*! @} */
 HEADER_END

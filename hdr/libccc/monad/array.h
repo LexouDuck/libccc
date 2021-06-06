@@ -81,6 +81,8 @@ typedef struct array_T
 
 
 
+#ifndef __LIBCCC_NOFUNCTIONS__
+
 /*
 ** ************************************************************************** *|
 **                            Basic Array Operations                          *|
@@ -350,6 +352,8 @@ s_array_T			CONCAT(Array_Filter_I,T_NAME)	(s_array_T const* array, t_bool (*filt
 //! TODO Array_Reduce() ?
 
 
+
+#endif
 
 /*! @} */
 HEADER_END

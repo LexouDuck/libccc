@@ -84,8 +84,10 @@ HEADER_CPP
 **	- `_least`	LEAST: Uses the smallest available integer type with at least `n` bits (`int_least8_t`, etc)
 **	- `_fast`	FAST: Uses the fastest available integer type with at least `n` bits (`int_fast8_t`, etc)
 */
-//#define LIBCONFIG_INTEGER_TYPES _least // uncomment this line to use LEAST int types
-//#define LIBCONFIG_INTEGER_TYPES _fast  // uncomment this line to use FAST int types
+//!@{
+//#define LIBCONFIG_INTEGER_TYPES _least //!< uncomment this line to use LEAST int types
+//#define LIBCONFIG_INTEGER_TYPES _fast  //!< uncomment this line to use FAST int types
+//!@}
 
 
 

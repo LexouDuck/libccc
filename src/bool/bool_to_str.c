@@ -1,6 +1,6 @@
 
-#include "libccc/char.h"
 #include "libccc/bool.h"
+#include "libccc/char.h"
 #include "libccc/memory.h"
 
 #include LIBCONFIG_ERROR_INCLUDE

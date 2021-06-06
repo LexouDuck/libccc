@@ -30,11 +30,15 @@
 #include "libccc_naming.h"
 #include "libccc_define.h"
 
+#ifndef __LIBCCC_NOFUNCTIONS__
+#define __LIBCCC_NOFUNCTIONS__
 #include "libccc/bool.h"
 #include "libccc/int.h"
 #include "libccc/pointer.h"
 #include "libccc/char.h"
+#undef	__LIBCCC_NOFUNCTIONS__
 #include "libccc/format.h" // TODO remove this include ?
+#endif
 
 HEADER_CPP
 
@@ -52,6 +56,8 @@ HEADER_CPP
 */
 
 
+
+#ifndef __LIBCCC_NOFUNCTIONS__
 
 /*
 ** ************************************************************************** *|
@@ -1160,6 +1166,12 @@ t_char*					String_Filter_I(t_char const* str, t_bool (*filter)(t_char c, t_size
 
 
 
+/*
+** ************************************************************************** *|
+**                    Essential builtins (for compatibility)                  *|
+** ************************************************************************** *|
+*/
+
 #ifdef __IOS__ // TODO smarter check here
 
 inline
@@ -1177,6 +1189,8 @@ char*	strchr(char const* str, int c)
 #endif
 
 
+
+#endif
 
 /*! @} */
 HEADER_END
