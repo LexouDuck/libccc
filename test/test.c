@@ -13,7 +13,8 @@
 
 
 //! Returns 1 if all the global g_test.suites structs have 'run' set to 0
-static int	check_no_test_suites(void)
+static
+int	check_no_test_suites(void)
 {
 	for (int i = 0; i < TEST_SUITE_AMOUNT; ++i)
 	{
@@ -25,12 +26,16 @@ static int	check_no_test_suites(void)
 
 void	test_cccerrorhandler(e_cccerror error, t_char const* message)
 {
+	if (message == NULL)
+	{
+		printf("FATAL ERROR: error handler function ran with NULL message\n");
+		return;
+	}
 	g_test.last_test_error = String_Format(
 		C_RED"ERROR"C_RESET"[%s]: %s\n",
 			Error_GetName(error), message);
-	if (g_test.last_test_error == NULL)
-		return;
-	if (g_test.flags.show_errors)
+	if (g_test.last_test_error &&
+		g_test.flags.show_errors)
 	{
 		printf("%s", g_test.last_test_error);
 	}

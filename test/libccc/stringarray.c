@@ -116,7 +116,7 @@ void	print_test_strarrlen(char const* test_name, int can_segfault,
 {
 	TEST_INIT(size)
 	TEST_PERFORM(	strarrlen, strarr)
-//	TEST_PRINT(size,strarrlen, "strarr=[ %s ]", tmp) // TODO
+	TEST_PRINT(size,strarrlen, "strarr=[ %s ]", tmp) // TODO
 }
 void	test_strarrlen()
 {
@@ -146,7 +146,7 @@ void	print_test_strsplit_char(char const* test_name, int can_segfault,
 {
 	TEST_INIT(strarr)
 	TEST_PERFORM(		strsplit_char, str, separator)
-	TEST_PRINT(strarr,	strsplit_char, "str=\"%s\", sep='%c'/0x%X", str, separator, separator)
+	TEST_PRINT(strarr,	strsplit_char, "str=\"%s\", sep='%c'/0x%2X", str, separator, separator)
 	TEST_FREE_ARRAY_NULLTERM()
 }
 void	test_strsplit_char()

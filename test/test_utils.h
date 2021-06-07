@@ -328,7 +328,7 @@ DEFINEFUNC_PRINT_TEST(alloc,	char const*)
 	TEST_PRINT_(FORMAT, ##__VA_ARGS__)		\
 	test.function = "_"#FUNCTION;			\
 	print_test_##TYPENAME(&test, args);		\
-	free(args);								\
+	if (args)	free(args);					\
 	args = NULL;							\
 
 //! Prints the test result for a "compare test" (one which has an equivalent function in the C standard library)
@@ -337,7 +337,7 @@ DEFINEFUNC_PRINT_TEST(alloc,	char const*)
 	TEST_PRINT_(FORMAT, ##__VA_ARGS__)		\
 	test.function = #FUNCTION;				\
 	print_test_##TYPENAME(&test, args);		\
-	free(args);								\
+	if (args)	free(args);					\
 	args = NULL;							\
 
 

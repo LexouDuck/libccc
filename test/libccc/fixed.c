@@ -127,31 +127,31 @@ void	test_##TYPE##tostr(void)																											\
 #ifndef c_q16tostr
 void test_q16tostr(void)	{}
 #else
-DEFINETEST_FIXED_TO_STR(q16, Q16)
+DEFINETEST_FIXED_TO_STR(q16, Q16_From)
 #endif
 
 #ifndef c_q32tostr
 void test_q32tostr(void)	{}
 #else
-DEFINETEST_FIXED_TO_STR(q32, Q32)
+DEFINETEST_FIXED_TO_STR(q32, Q32_From)
 #endif
 
 #ifndef c_q64tostr
 void test_q64tostr(void)	{}
 #else
-DEFINETEST_FIXED_TO_STR(q64, Q64)
+DEFINETEST_FIXED_TO_STR(q64, Q64_From)
 #endif
 
 #if !defined(c_q128tostr) || !defined(__int128)
 void test_q128tostr(void)	{}
 #else
-DEFINETEST_FIXED_TO_STR(q128, Q128)
+DEFINETEST_FIXED_TO_STR(q128, Q128_From)
 #endif
 
 #ifndef c_fixedtostr
 void test_fixedtostr(void)	{}
 #else
-DEFINETEST_FIXED_TO_STR(fixed, Fixed)
+DEFINETEST_FIXED_TO_STR(fixed, Fixed_From)
 #endif
 
 
