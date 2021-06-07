@@ -29,8 +29,6 @@
 ** ************************************************************************** *|
 */
 
-#include "libccc.h"
-
 #include "libccc/math/constants.h"
 #include "libccc/math/fixed.h"
 #include "libccc/math/float.h"

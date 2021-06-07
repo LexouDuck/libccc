@@ -24,7 +24,14 @@
 ** ************************************************************************** *|
 */
 
-#include "libccc.h"
+#ifndef __LIBCCC_NOFUNCTIONS__
+#define __LIBCCC_NOFUNCTIONS__
+#include "libccc/int.h"
+#include "libccc/fixed.h"
+#include "libccc/float.h"
+#include "libccc/pointer.h"
+#undef	__LIBCCC_NOFUNCTIONS__
+#endif
 
 HEADER_CPP
 

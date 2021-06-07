@@ -49,9 +49,16 @@
 	#define O_TEST      0 // TODO find platform-specific value
 #endif
 
-#include "libccc.h"
+#ifndef __LIBCCC_NOFUNCTIONS__
+#define __LIBCCC_NOFUNCTIONS__
+#include "libccc/bool.h"
+#include "libccc/char.h"
+#include "libccc/int.h"
+#include "libccc/pointer.h"
 #include "libccc/color.h"
 #include "libccc/sys/ansi.h"
+#undef	__LIBCCC_NOFUNCTIONS__
+#endif
 
 HEADER_CPP
 

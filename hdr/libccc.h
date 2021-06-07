@@ -88,6 +88,7 @@
 #include "libccc/pointer.h"
 //#include "libccc/string.h"
 //#include "libccc/memory.h"
+//#include "libccc/error.h"
 
 HEADER_CPP
 

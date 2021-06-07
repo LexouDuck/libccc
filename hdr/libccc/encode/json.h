@@ -28,8 +28,6 @@
 ** ************************************************************************** *|
 */
 
-#include "libccc.h"
-#include "libccc/char.h"
 #include "libccc/encode/common.h"
 
 HEADER_CPP

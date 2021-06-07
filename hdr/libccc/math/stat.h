@@ -26,12 +26,20 @@
 ** ************************************************************************** *|
 */
 
-#include "libccc.h"
+#ifndef __LIBCCC_NOFUNCTIONS__
+#define __LIBCCC_NOFUNCTIONS__
+#include "libccc/int.h"
+#include "libccc/fixed.h"
+#include "libccc/float.h"
+#undef	__LIBCCC_NOFUNCTIONS__
+#endif
 
 HEADER_CPP
 
 typedef struct array_int	s_array_int;	//!< @see "libccc/monad/array.h"
 typedef struct array_float	s_array_float;	//!< @see "libccc/monad/array.h"
+
+// TODO implement stat unctions for `fixed` type
 
 /*
 ** ************************************************************************** *|

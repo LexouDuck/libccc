@@ -43,7 +43,12 @@
 	typedef __builtin_va_list va_list;
 #endif
 
-#include "libccc.h"
+#ifndef __LIBCCC_NOFUNCTIONS__
+#define __LIBCCC_NOFUNCTIONS__
+#include "libccc/bool.h"
+#include "libccc/int.h"
+#undef	__LIBCCC_NOFUNCTIONS__
+#endif
 
 HEADER_CPP
 

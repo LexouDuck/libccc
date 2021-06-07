@@ -37,7 +37,12 @@
 ** ************************************************************************** *|
 */
 
-#include "libccc.h"
+#ifndef __LIBCCC_NOFUNCTIONS__
+#define __LIBCCC_NOFUNCTIONS__
+#include "libccc/bool.h"
+#include "libccc/int.h"
+#undef	__LIBCCC_NOFUNCTIONS__
+#endif
 
 #include "libccc/monad/keyval.h"
 

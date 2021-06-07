@@ -28,11 +28,16 @@
 #include "libccc_naming.h"
 #include "libccc_define.h"
 
+#ifndef __LIBCCC_CHAR_H // this prevents cyclical header dependency
+#define __LIBCCC_NOFUNCTIONS__
+#else
 #ifndef __LIBCCC_NOFUNCTIONS__
 #define __LIBCCC_NOFUNCTIONS__
 #include "libccc/char.h"
 #undef	__LIBCCC_NOFUNCTIONS__
 #endif
+#endif
+
 
 HEADER_CPP
 
@@ -164,8 +169,6 @@ t_bool					Bool_FromString(t_char const* str);
 
 
 #endif
-
-
 
 /*! @} */
 HEADER_END

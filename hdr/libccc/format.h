@@ -32,7 +32,7 @@
 	typedef __builtin_va_list va_list;
 #endif
 
-#include "libccc.h"
+#include "libccc/string.h"
 
 HEADER_CPP
 
