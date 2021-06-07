@@ -94,6 +94,8 @@ t_char*				String_New_C(t_size n, t_char c);
 
 
 
+// TODO String_Free()
+
 //! Deletes (deallocates) the string pointed to by `*a_str`, and sets the pointer to `NULL`.
 /*!
 **	@nonstd

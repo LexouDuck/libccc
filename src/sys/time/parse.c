@@ -254,7 +254,7 @@ t_size	strptime_r(t_char const* str, t_char const* format, s_date* date, t_bitma
 		{
 			if (c != (buffer++)[0])
 				PARSINGERROR_DATE("The string to parse (\"%s\") did not match the given format (\"%s\").\n"
-					"Expected '%c'/0x%X, instead found '%c'/0x%X", str, format,
+					"Expected '%c'/0x%2X, instead found '%c'/0x%2X", str, format,
 					(format[i - 1] ? format[i - 1] : '\a'), format[i - 1],
 					(c ? c : '\a'), c);
 			LEGAL_ALT(0);
@@ -268,7 +268,7 @@ again:
 			{
 				if (c != (buffer++)[0])
 					PARSINGERROR_DATE("The string to parse (\"%s\") did not match the given format (\"%s\"): "
-						"expected '%c'/0x%X, instead found '%c'/0x%X", str, format,
+						"expected '%c'/0x%2X, instead found '%c'/0x%2X", str, format,
 						(format[i - 1] ? format[i - 1] : '\a'), format[i - 1],
 						(c ? c : '\a'), c);
 				LEGAL_ALT(0);
@@ -603,7 +603,7 @@ recurse:
 							x = *buffer;
 							continue;
 						}
-						PARSINGERROR_DATE("Invalid format specifier encountered ('%c'/0x%X) in the given format string (\"%s\")",
+						PARSINGERROR_DATE("Invalid format specifier encountered ('%c'/0x%2X) in the given format string (\"%s\")",
 							(x ? x : '\a'), x, format)
 				}
 				offset = 0;
@@ -633,7 +633,7 @@ recurse:
 					{
 						number = offset % 100;
 						if (number >= 60)
-							PARSINGERROR_DATE("Invalid timezone offset minutes number encountered (%i), should be 60 or less", number)
+							PARSINGERROR_DATE("Invalid timezone offset minutes number encountered ("SF_SINT"), should be 60 or less", number)
 						/* Convert minutes into decimal */
 						offset = (offset / 100) * 100 + (number * 50) / 30;
 						break;
@@ -664,7 +664,7 @@ recurse:
 			continue;
 
 		default:
-			PARSINGERROR_DATE("Invalid format specifier encountered ('%c'/0x%X) in the given format string (\"%s\")",
+			PARSINGERROR_DATE("Invalid format specifier encountered ('%c'/0x%2X) in the given format string (\"%s\")",
 				(c ? c : '\a'), c, format)
 		}
 	}

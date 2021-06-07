@@ -458,11 +458,18 @@ typedef union varsint // TODO refactor this and add similar types for fixed and 
 		t_f128:	 FUNCTYPE##_FromFloat,	\
 		t_float: FUNCTYPE##_FromFloat,	\
 	)(X)
+
 #define Int(X)		DEFINEFUNC_Int(X, Int)
 #define S16(X)		DEFINEFUNC_Int(X, S16)
 #define S32(X)		DEFINEFUNC_Int(X, S32)
 #define S64(X)		DEFINEFUNC_Int(X, S64)
 #define S128(X)		DEFINEFUNC_Int(X, S128)
+
+#define c_int(X)	Int(X)
+#define c_s16(X)	S16(X)
+#define c_s32(X)	S32(X)
+#define c_s64(X)	S64(X)
+#define c_s128(X)	S128(X)
 //!@}
 
 
@@ -478,6 +485,8 @@ typedef union varsint // TODO refactor this and add similar types for fixed and 
 **                        Integer-to-String Conversions                       *|
 ** ************************************************************************** *|
 */
+
+// TODO Int_ToString() generic function
 
 //! Get the string decimal (base 10) representation of an unsigned integer
 /*!
@@ -528,6 +537,10 @@ _MALLOC()	t_char*		S128_ToString(t_s128 number); // TODO implement
 #define c_s64tostr		S64_ToString 	//!< @alias{S64_ToString}
 #define c_s128tostr		S128_ToString 	//!< @alias{S128_ToString}
 //!@}
+
+
+
+// TODO Int_ToString_Dec() function aliases ?
 
 
 
@@ -693,7 +706,7 @@ _MALLOC()	t_char*		S128_ToString_Bin(t_s128 number, t_bool prefix); // TODO impl
 
 
 
-//! Returns newly allocated string custom-base representation of an 8-bit unsigned integer
+//! Get the string custom-base representation of an unsigned integer
 /*!
 **	@nonstd
 **
@@ -718,7 +731,7 @@ _MALLOC()	t_char*		U128_ToString_Base(t_u128 number, t_char const* base); // TOD
 #define c_u128tostrbase	U128_ToString_Base 	//!< @alias{U128_ToString_Base}
 //!@}
 
-//! Returns newly allocated string custom-base representation of an 8-bit signed integer
+//! Get the string custom-base representation of a signed integer
 /*!
 **	@nonstd
 **
@@ -751,7 +764,7 @@ _MALLOC()	t_char*		S128_ToString_Base(t_s128 number, t_char const* base); // TOD
 ** ************************************************************************** *|
 */
 
-//! Parse an 8-bit unsigned integer from the given decimal number string
+//! Parse an unsigned integer from the given number string `str`
 /*!
 **	@nonstd, `atou()`
 **
@@ -776,7 +789,7 @@ t_u128					U128_FromString(t_char const* str);
 #define c_strtou128		U128_FromString	//!< @alias{U128_FromString}
 //!@}
 
-//! Parse an 8-bit signed integer from the given decimal number string
+//! Parse a signed integer from the given number string `str`
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/string/byte/atoi}
 **
@@ -803,7 +816,59 @@ t_s128					S128_FromString(t_char const* str);
 
 
 
-//! Parse an 8-bit unsigned integer from the given hexadecimal (base 16) number string
+//! Parse an unsigned integer from the given decimal number string
+/*!
+**	@nonstd, `atou()`
+**
+**	@param	number	The number to convert to string
+**	@returns
+**	A newly allocated string, converted from the given `number`
+*/
+//!@{
+#define					UInt_FromString_Dec	CONCAT(UINT_TYPE,_FromString_Dec)
+t_u8					U8_FromString_Dec(t_char const* str);
+t_u16					U16_FromString_Dec(t_char const* str);
+t_u32					U32_FromString_Dec(t_char const* str);
+t_u64					U64_FromString_Dec(t_char const* str);
+#ifdef __int128
+t_u128					U128_FromString_Dec(t_char const* str);
+#endif
+#define c_strdectou		UInt_FromString_Dec	//!< @alias{UInt_FromString_Dec}
+#define c_strdectou8	U8_FromString_Dec	//!< @alias{U8_FromString_Dec}
+#define c_strdectou16	U16_FromString_Dec	//!< @alias{U16_FromString_Dec}
+#define c_strdectou32	U32_FromString_Dec	//!< @alias{U32_FromString_Dec}
+#define c_strdectou64	U64_FromString_Dec	//!< @alias{U64_FromString_Dec}
+#define c_strdectou128	U128_FromString_Dec	//!< @alias{U128_FromString_Dec}
+//!@}
+
+//! Parse a signed integer from the given decimal number string
+/*!
+**	@isostd{C89,https://en.cppreference.com/w/c/string/byte/atoi}
+**
+**	@param	number	The number to convert to string
+**	@returns
+**	A newly allocated string, converted from the given `number`
+*/
+//!@{
+#define					SInt_FromString_Dec	CONCAT(SINT_TYPE,_FromString_Dec)
+t_s8					S8_FromString_Dec(t_char const* str);
+t_s16					S16_FromString_Dec(t_char const* str);
+t_s32					S32_FromString_Dec(t_char const* str);
+t_s64					S64_FromString_Dec(t_char const* str);
+#ifdef __int128
+t_s128					S128_FromString_Dec(t_char const* str);
+#endif
+#define c_strdectos		SInt_FromString_Dec	//!< @alias{SInt_FromString_Dec}
+#define c_strdectos8	S8_FromString_Dec	//!< @alias{S8_FromString_Dec}
+#define c_strdectos16	S16_FromString_Dec	//!< @alias{S16_FromString_Dec}
+#define c_strdectos32	S32_FromString_Dec	//!< @alias{S32_FromString_Dec}
+#define c_strdectos64	S64_FromString_Dec	//!< @alias{S64_FromString_Dec}
+#define c_strdectos128	S128_FromString_Dec	//!< @alias{S128_FromString_Dec}
+//!@}
+
+
+
+//! Parse an unsigned integer from the given hexadecimal (base 16) number string
 /*!
 **	@nonstd
 **
@@ -828,7 +893,7 @@ t_u128					U128_FromString_Hex(t_char const* str);
 #define c_strhextou128	U128_FromString_Hex	//!< @alias{U128_FromString_Hex}
 //!@}
 
-//! Parse an 8-bit unsigned integer from the given hexadecimal (base 16) number string
+//! Parse a signed integer from the given hexadecimal (base 16) number string
 /*!
 **	@nonstd
 **
@@ -855,7 +920,7 @@ t_s128					S128_FromString_Hex(t_char const* str);
 
 
 
-//! Parse an 8-bit unsigned integer from the given octal (base 8) number string
+//! Parse an unsigned integer from the given octal (base 8) number string
 /*!
 **	@nonstd
 **
@@ -880,7 +945,7 @@ t_u128					U128_FromString_Oct(t_char const* str);
 #define c_strocttou128	U128_FromString_Oct	//!< @alias{U128_FromString_Oct}
 //!@}
 
-//! Parse an 8-bit unsigned integer from the given octal (base 8) number string
+//! Parse a signed integer from the given octal (base 8) number string
 /*!
 **	@nonstd
 **
@@ -907,7 +972,7 @@ t_s128					S128_FromString_Oct(t_char const* str);
 
 
 
-//! Parse an 8-bit unsigned integer from the given binary (base 2) number string
+//! Parse an unsigned integer from the given binary (base 2) number string
 /*!
 **	@nonstd
 **
@@ -932,7 +997,7 @@ t_u128					U128_FromString_Bin(t_char const* str);
 #define c_strbintou128	U128_FromString_Bin	//!< @alias{U128_FromString_Bin}
 //!@}
 
-//! Parse an 8-bit unsigned integer from the given binary (base 2) number string
+//! Parse a signed integer from the given binary (base 2) number string
 /*!
 **	@nonstd
 **
@@ -959,7 +1024,7 @@ t_s128					S128_FromString_Bin(t_char const* str);
 
 
 
-//! Parse an 8-bit unsigned integer from a custom-base number string
+//! Parse an unsigned integer from a custom-base number string
 /*!
 **	@nonstd, `strtoul()`
 **
@@ -984,7 +1049,7 @@ t_u128					U128_FromString_Base(t_char const* str, t_char const* base);
 #define c_strbasetou128	U128_FromString_Base//!< @alias{U128_FromString_Base}
 //!@}
 
-//! Parse an 8-bit signed integer from a custom-base number string
+//! Parse a signed integer from a custom-base number string
 /*!
 **	@nonstd, `strtol()`
 **

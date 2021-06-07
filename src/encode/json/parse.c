@@ -323,7 +323,7 @@ t_bool	JSON_Parse_Array(s_json* item, s_json_parse* p)
 		// parse next value
 		JSON_Parse_SkipWhiteSpace(p);
 		if (JSON_Parse_Value(current_item, p))
-			PARSINGERROR_JSON("Inside array: failed to parse value within array, at index %u", index)
+			PARSINGERROR_JSON("Inside array: failed to parse value within array, at index "SF_UINT, index)
 		JSON_Parse_SkipWhiteSpace(p);
 		index++;
 	}
@@ -595,7 +595,7 @@ failure:
 		column++;
 	}
 	HANDLE_ERROR_SF(PARSE, (TRUE), return (NULL);,
-		": at nesting depth %u: line %zu, column %zu (char index %zu: '%c'/0x%X)%s\n",
+		": at nesting depth "SF_UINT": line "SF_SIZE", column "SF_SIZE" (char index "SF_SIZE": '%c'/0x%2X)%s\n",
 		p->depth,
 		p->line,
 		column,

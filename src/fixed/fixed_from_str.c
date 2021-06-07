@@ -9,8 +9,8 @@
 
 
 
-#define DEFINEFUNC_CONVERT_STR_TO_FIXED(BITS) \
-t_q##BITS	Q##BITS##_FromString(t_char const* str)						\
+#define DEFINEFUNC_CONVERT_STRDEC_TO_FIXED(BITS) \
+t_q##BITS	Q##BITS##_FromString_Dec(t_char const* str)					\
 {																		\
 	t_u##BITS	result;													\
 	t_bool	negative;													\
@@ -37,9 +37,9 @@ t_q##BITS	Q##BITS##_FromString(t_char const* str)						\
 	return (negative ? -(t_q##BITS)result : (t_q##BITS)result);			\
 }																		\
 
-DEFINEFUNC_CONVERT_STR_TO_FIXED(16)
-DEFINEFUNC_CONVERT_STR_TO_FIXED(32)
-DEFINEFUNC_CONVERT_STR_TO_FIXED(64)
+DEFINEFUNC_CONVERT_STRDEC_TO_FIXED(16)
+DEFINEFUNC_CONVERT_STRDEC_TO_FIXED(32)
+DEFINEFUNC_CONVERT_STRDEC_TO_FIXED(64)
 #ifdef __int128
-DEFINEFUNC_CONVERT_STR_TO_FIXED(128)
+DEFINEFUNC_CONVERT_STRDEC_TO_FIXED(128)
 #endif

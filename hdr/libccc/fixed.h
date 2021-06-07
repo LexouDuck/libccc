@@ -336,11 +336,11 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 */
 //!@{
 #define					Fixed_FromInt	CONCAT(FIXED_TYPE,_FromInt)
-t_q16					Q16_FromInt(t_s16 number);
-t_q32					Q32_FromInt(t_s32 number);
-t_q64					Q64_FromInt(t_s64 number);
+t_q16					Q16_FromInt(t_sint number);
+t_q32					Q32_FromInt(t_sint number);
+t_q64					Q64_FromInt(t_sint number);
 #ifdef __int128
-t_q128					Q128_FromInt(t_s128 number);
+t_q128					Q128_FromInt(t_sint number);
 #endif
 #define c_itofixed		Fixed_FromInt 	//!< @alias{Fixed_FromInt}
 #define c_itoq16		Q16_FromInt 	//!< @alias{Q16_FromInt}
@@ -349,17 +349,36 @@ t_q128					Q128_FromInt(t_s128 number);
 #define c_itoq128		Q128_FromInt 	//!< @alias{Q128_FromInt}
 //!@}
 
+//! Returns the nearest fixed-point value to the given fixed-point `number`
+/*!
+**	TODO document
+*/
+//!@{
+#define					Fixed_FromFixed	CONCAT(FIXED_TYPE,_FromFixed)
+t_q16					Q16_FromFixed(t_fixed number);
+t_q32					Q32_FromFixed(t_fixed number);
+t_q64					Q64_FromFixed(t_fixed number);
+#ifdef __int128
+t_q128					Q128_FromFixed(t_fixed number);
+#endif
+#define c_qtofixed		Fixed_FromFixed	//!< @alias{Fixed_FromFixed}
+#define c_qtoq16		Q16_FromFixed	//!< @alias{Q16_FromFixed}
+#define c_qtoq32		Q32_FromFixed	//!< @alias{Q32_FromFixed}
+#define c_qtoq64		Q64_FromFixed	//!< @alias{Q64_FromFixed}
+#define c_qtoq128		Q128_FromFixed	//!< @alias{Q128_FromFixed}
+//!@}
+
 //! Returns the nearest fixed-point value to the given floating-point `number`
 /*!
 **	TODO document
 */
 //!@{
 #define	 				Fixed_FromFloat	CONCAT(FIXED_TYPE,_FromFloat)
-t_q16	 				Q16_FromFloat(t_f64 number);
-t_q32	 				Q32_FromFloat(t_f64 number);
-t_q64	 				Q64_FromFloat(t_f64 number);
+t_q16	 				Q16_FromFloat(t_float number);
+t_q32	 				Q32_FromFloat(t_float number);
+t_q64	 				Q64_FromFloat(t_float number);
 #ifdef __int128
-t_q128	 				Q128_FromFloat(t_f64 number);
+t_q128	 				Q128_FromFloat(t_float number);
 #endif
 #define c_ftofixed		Fixed_FromFloat	//!< @alias{Fixed_FromFloat}
 #define c_ftoq16		Q16_FromFloat	//!< @alias{Q16_FromFloat}
@@ -367,6 +386,8 @@ t_q128	 				Q128_FromFloat(t_f64 number);
 #define c_ftoq64		Q64_FromFloat	//!< @alias{Q64_FromFloat}
 #define c_ftoq128		Q128_FromFloat	//!< @alias{Q128_FromFloat}
 //!@}
+
+
 
 //! Create a new fixed-point value from its individual component parts
 /*!
@@ -377,21 +398,19 @@ t_q128	 				Q128_FromFloat(t_f64 number);
 **	@returns
 */
 //!@{
-#define				Fixed_FromFixed	CONCAT(FIXED_TYPE,_FromFixed)
-t_q16				Q16_FromFixed(t_s16 part_integer, t_u16 part_fraction, t_u16 denominator);
-t_q32				Q32_FromFixed(t_s32 part_integer, t_u32 part_fraction, t_u32 denominator);
-t_q64				Q64_FromFixed(t_s64 part_integer, t_u64 part_fraction, t_u64 denominator);
+#define					Fixed_From	CONCAT(FIXED_TYPE,_From)
+t_q16					Q16_From(t_s16 part_integer, t_u16 part_fraction, t_u16 denominator);
+t_q32					Q32_From(t_s32 part_integer, t_u32 part_fraction, t_u32 denominator);
+t_q64					Q64_From(t_s64 part_integer, t_u64 part_fraction, t_u64 denominator);
 #ifdef __int128
-t_q128				Q128_FromFixed(t_s128 part_integer, t_u128 part_fraction, t_u128 denominator);
+t_q128					Q128_From(t_s128 part_integer, t_u128 part_fraction, t_u128 denominator);
 #endif
-#define c_qtofixed		Fixed_FromFixed	//!< @alias{Fixed_FromFixed}
-#define c_qtoq16		Q16_FromFixed	//!< @alias{Q16_FromFixed}
-#define c_qtoq32		Q32_FromFixed	//!< @alias{Q32_FromFixed}
-#define c_qtoq64		Q64_FromFixed	//!< @alias{Q64_FromFixed}
-#define c_qtoq128		Q128_FromFixed	//!< @alias{Q128_FromFixed}
+#define c_tofixed		Fixed_From	//!< @alias{Fixed_From}
+#define c_toq16			Q16_From	//!< @alias{Q16_From}
+#define c_toq32			Q32_From	//!< @alias{Q32_From}
+#define c_toq64			Q64_From	//!< @alias{Q64_From}
+#define c_toq128		Q128_From	//!< @alias{Q128_From}
 //!@}
-
-
 
 //! Returns the integer portion of the given fixed-point `number`
 /*!
@@ -605,7 +624,7 @@ _MALLOC()	t_char*		Q128_ToString_Base(t_q128 number, t_char const* base); // TOD
 
 
 
-//! Parses the string decimal representation of a signed fixed-point number
+//! Parses the string representation of a signed fixed-point number
 /*!
 **	@param	number	The number to convert to string
 **	@returns
@@ -625,6 +644,30 @@ t_q128					Q128_FromString(t_char const* str); // TODO implement
 #define c_strtoq32		Q32_FromString	//!< @alias{Q32_FromString}
 #define c_strtoq64		Q64_FromString	//!< @alias{Q64_FromString}
 #define c_strtoq128		Q128_FromString	//!< @alias{Q128_FromString}
+//!@}
+
+
+
+//! Parses the string decimal representation of a signed fixed-point number
+/*!
+**	@param	number	The number to convert to string
+**	@returns
+**	A newly allocated string, converted from the given `number`,
+**	or `NULL` if there was a parsing error.
+*/
+//!@{
+#define					Fixed_FromString_Dec	CONCAT(FIXED_TYPE,_FromString)
+t_q16					Q16_FromString_Dec(t_char const* str); // TODO implement
+t_q32					Q32_FromString_Dec(t_char const* str); // TODO implement
+t_q64					Q64_FromString_Dec(t_char const* str); // TODO implement
+#ifdef	__int128
+t_q128					Q128_FromString_Dec(t_char const* str); // TODO implement
+#endif
+#define c_strdectoq		Fixed_FromString_Dec//!< @alias{Fixed_FromString_Dec}
+#define c_strdectoq16	Q16_FromString_Dec	//!< @alias{Q16_FromString_Dec}
+#define c_strdectoq32	Q32_FromString_Dec	//!< @alias{Q32_FromString_Dec}
+#define c_strdectoq64	Q64_FromString_Dec	//!< @alias{Q64_FromString_Dec}
+#define c_strdectoq128	Q128_FromString_Dec	//!< @alias{Q128_FromString_Dec}
 //!@}
 
 

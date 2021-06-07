@@ -102,7 +102,7 @@ typedef struct prob_mass
 {
 	t_float		*value;		// TODO document this
 	t_float		*prob;		// TODO document this
-	t_u32		length;		// TODO document this
+	t_uint		length;		// TODO document this
 }				s_prob_mass;
 
 
@@ -114,7 +114,7 @@ typedef struct prob_mass
 */
 
 //! TODO document this
-s_array_int						Stat_Int_NewList(t_u32 length);
+s_array_int						Stat_Int_NewList(t_uint length);
 #define c_stat_new_ilst			Stat_Int_NewList
 
 //! TODO document this
@@ -163,7 +163,7 @@ void							Stat_Int_Decile(s_array_int const ilst);
 
 
 //! TODO document this
-s_array_float					Stat_Float_NewList(t_u32 length);
+s_array_float					Stat_Float_NewList(t_uint length);
 #define c_stat_new_flst			Stat_Float_NewList
 
 //! TODO document this
@@ -209,7 +209,7 @@ void							Stat_Float_Decile(s_array_float const flst);
 
 
 //! TODO document this
-s_prob_mass						Stat_NewPMF(t_u32 length);
+s_prob_mass						Stat_NewPMF(t_uint length);
 #define c_stat_new_pmf			Stat_NewPMF
 
 //! TODO document this
@@ -221,7 +221,7 @@ s_array_int						Stat_IntList_To_Set(s_array_int const ilst);
 #define c_stat_ilst_to_iset		Stat_IntList_To_Set
 
 //! TODO document this
-t_u32							Stat_IntList_Count(s_array_int ilst, t_s64 elem);
+t_uint							Stat_IntList_Count(s_array_int ilst, t_sint elem);
 #define c_stat_ilst_count		Stat_IntList_Count
 
 //! Returns the probability distribution of an array of integers.
