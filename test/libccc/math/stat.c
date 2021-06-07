@@ -5,7 +5,7 @@
 #include "libccc/sys/io.h"
 #include "libccc/math/stat.h"
 #include "libccc/random/random.h"
-#define T			t_s64
+#define T			t_sint
 #define T_NAME		_int
 #define T_DEFAULT	0
 #include "libccc/monad/array.c"
@@ -43,17 +43,17 @@ int		testsuite_math_stat(void) // TODO increment total tests counter for these t
 		printf("\tVariance: %12f | StdDev: %12f\n", tmp, sqrt(tmp));
 
 		printf("\tDeciles int:\n"
-			"\t\t 0: "SF_S64"\n"
-			"\t\t 1: "SF_S64"\n"
-			"\t\t 2: "SF_S64"\n"
-			"\t\t 3: "SF_S64"\n"
-			"\t\t 4: "SF_S64"\n"
-			"\t\t 5: "SF_S64"\n"
-			"\t\t 6: "SF_S64"\n"
-			"\t\t 7: "SF_S64"\n"
-			"\t\t 8: "SF_S64"\n"
-			"\t\t 9: "SF_S64"\n"
-			"\t\t10: "SF_S64"\n\n",
+			"\t\t 0: "SF_SINT"\n"
+			"\t\t 1: "SF_SINT"\n"
+			"\t\t 2: "SF_SINT"\n"
+			"\t\t 3: "SF_SINT"\n"
+			"\t\t 4: "SF_SINT"\n"
+			"\t\t 5: "SF_SINT"\n"
+			"\t\t 6: "SF_SINT"\n"
+			"\t\t 7: "SF_SINT"\n"
+			"\t\t 8: "SF_SINT"\n"
+			"\t\t 9: "SF_SINT"\n"
+			"\t\t10: "SF_SINT"\n\n",
 			values_sorted.items[0],
 			values_sorted.items[(t_u32)(decile_inc)],
 			values_sorted.items[(t_u32)(decile_inc * 2)],

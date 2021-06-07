@@ -2,7 +2,7 @@
 #include "libccc/memory.h"
 #include "libccc/math/math.h"
 #include "libccc/math/stat.h"
-#define T			t_s64
+#define T			t_sint
 #define T_NAME		_int
 #define T_DEFAULT	0
 #include "libccc/monad/array.c"
@@ -11,7 +11,7 @@
 
 
 
-#define TYPE		t_s64
+#define TYPE		t_sint
 
 
 

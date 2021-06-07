@@ -2,7 +2,7 @@
 #include "libccc/memory.h"
 #include "libccc/math/math.h"
 #include "libccc/math/stat.h"
-#define T			t_f64
+#define T			t_float
 #define T_NAME		_float
 #define T_DEFAULT	0.
 #include "libccc/monad/array.c"
@@ -11,7 +11,7 @@
 
 
 
-#define TYPE		t_f64
+#define TYPE		t_float
 
 
 
