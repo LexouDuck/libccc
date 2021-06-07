@@ -73,7 +73,8 @@ typedef struct test_totals
 //! This struct holds all program state data
 typedef struct program
 {
-	bool			last_test_failed;			//!< is TRUE if the lastest test performed had an error.
+	bool			last_test_failed;			//!< is TRUE if the latest test performed had an error.
+	char*			last_test_error;			//!< contains any error output by libccc during the latest test
 	s_test_totals	totals;						//!< Stores the total amounts of tests ran/failed
 	s_test_flags	flags;						//!< Stores the main program argument options (as boolean flags)
 	s_test_arg		args[TEST_ARGS_AMOUNT];		//!< Stores the chars/names and descriptions for each valid program argument

@@ -41,10 +41,10 @@ HEADER_CPP
 //!@{
 #ifdef DEBUG
 	#define LIBCONFIG_ERROR_DEFAULTHANDLER(ERRORCODE, MESSAGE) \
-	{												\
-		IO_Output_Format(C_RED"%s"C_RESET": %s\n",	\
-			Error_GetName(ERRORCODE), MESSAGE);		\
-	}												\
+	{														\
+		IO_Output_Format(C_RED"ERROR"C_RESET"[%s]: %s\n",	\
+			Error_GetName(ERRORCODE), MESSAGE);				\
+	}														\
 
 #else
 	#define LIBCONFIG_ERROR_DEFAULTHANDLER(ERRORCODE, MESSAGE) \
@@ -112,16 +112,18 @@ HEADER_CPP
 */
 //!@{
 #define HANDLE_ERROR(ERRORTYPE, CONDITION, ACTION) \
-	HANDLE_ERROR_BEGIN(ERRORTYPE, CONDITION)							\
-	ACTION																\
-	HANDLE_ERROR_FINAL()												\
+	HANDLE_ERROR_BEGIN(ERRORTYPE, CONDITION)								\
+	ACTION																	\
+	HANDLE_ERROR_FINAL()													\
 
 #define HANDLE_ERROR_BEGIN(ERRORTYPE, CONDITION) \
-	if (CONDITION)														\
-	{																	\
-		Error_Set(ERROR_##ERRORTYPE);									\
-		if (HANDLE_ERRORS_##ERRORTYPE)									\
-			Error_Handle(ERROR_##ERRORTYPE, __func__, NULL);			\
+	if (CONDITION)															\
+	{																		\
+		Error_Set(ERROR_##ERRORTYPE);										\
+		if (HANDLE_ERRORS_##ERRORTYPE)										\
+		{																	\
+			Error_Handle(ERROR_##ERRORTYPE, __func__, NULL);				\
+		}																	\
 
 //! The behavior to handle an error case, with a custom message
 /*!
@@ -131,21 +133,25 @@ HEADER_CPP
 **	@param ...			The custom error message (format string and args, like `printf()`)
 */
 #define HANDLE_ERROR_SF(ERRORTYPE, CONDITION, ACTION, ...) \
-	HANDLE_ERROR_BEGIN_SF(ERRORTYPE, CONDITION, __VA_ARGS__)			\
-	ACTION																\
-	HANDLE_ERROR_FINAL()												\
+	HANDLE_ERROR_BEGIN_SF(ERRORTYPE, CONDITION, __VA_ARGS__)				\
+	ACTION																	\
+	HANDLE_ERROR_FINAL()													\
 
 #define HANDLE_ERROR_BEGIN_SF(ERRORTYPE, CONDITION, ...) \
-	if (CONDITION)														\
-	{																	\
-		Error_Set(ERROR_##ERRORTYPE);									\
-		if (HANDLE_ERRORS_##ERRORTYPE)									\
-			Error_Handle(ERROR_##ERRORTYPE, __func__, String_Format(__VA_ARGS__));\
+	if (CONDITION)															\
+	{																		\
+		Error_Set(ERROR_##ERRORTYPE);										\
+		if (HANDLE_ERRORS_##ERRORTYPE)										\
+		{																	\
+			t_char* message_##ERRORTYPE = String_Format(__VA_ARGS__);		\
+			Error_Handle(ERROR_##ERRORTYPE, __func__, message_##ERRORTYPE);	\
+			String_Delete(&message_##ERRORTYPE);							\
+		}																	\
 
 
 
 #define HANDLE_ERROR_FINAL() \
-	}																	\
+	}																		\
 
 //!@}
 

@@ -1,4 +1,5 @@
 
+#include <stdio.h>
 #include <ctype.h>
 #include <math.h>
 
@@ -22,6 +23,20 @@ static int	check_no_test_suites(void)
 	return (TRUE);
 }
 
+void	test_cccerrorhandler(e_cccerror error, t_char const* message)
+{
+	g_test.last_test_error = String_Format(
+		C_RED"ERROR"C_RESET"[%s]: %s\n",
+			Error_GetName(error), message);
+	if (g_test.last_test_error == NULL)
+		return;
+	if (g_test.flags.show_errors)
+	{
+		printf("%s", g_test.last_test_error);
+	}
+
+}
+
 void	test_init(void)
 {
 	if (check_no_test_suites())
@@ -33,7 +48,7 @@ void	test_init(void)
 	}
 	g_test.totals.tests = 0;
 	g_test.totals.failed = 0;
-	Error_SetAllHandlers(g_test.flags.show_errors ? Error_Handler : NULL);
+	Error_SetAllHandlers(test_cccerrorhandler);
 }
 
 /*
