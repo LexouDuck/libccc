@@ -37,12 +37,9 @@
 ** ************************************************************************** *|
 */
 
-#ifndef __LIBCCC_NOFUNCTIONS__
-#define __LIBCCC_NOFUNCTIONS__
 #include "libccc/bool.h"
 #include "libccc/int.h"
-#undef	__LIBCCC_NOFUNCTIONS__
-#endif
+#include "libccc/pointer.h"
 
 HEADER_CPP
 
@@ -75,8 +72,6 @@ typedef struct tree_T
 #define foreach_s_tree_loop_incr(	_TYPE_, _VAR_, _TREE_)	
 
 
-
-#ifndef __LIBCCC_NOFUNCTIONS__
 
 /*
 ** ************************************************************************** *|
@@ -125,8 +120,6 @@ typedef struct tree_T
 // TODO Tree_Reduce ?
 
 
-
-#endif
 
 /*! @} */
 HEADER_END

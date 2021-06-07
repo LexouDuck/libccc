@@ -49,16 +49,12 @@
 	#define O_TEST      0 // TODO find platform-specific value
 #endif
 
-#ifndef __LIBCCC_NOFUNCTIONS__
-#define __LIBCCC_NOFUNCTIONS__
 #include "libccc/bool.h"
 #include "libccc/char.h"
 #include "libccc/int.h"
 #include "libccc/pointer.h"
 #include "libccc/color.h"
 #include "libccc/sys/ansi.h"
-#undef	__LIBCCC_NOFUNCTIONS__
-#endif
 
 HEADER_CPP
 
@@ -158,8 +154,6 @@ TYPEDEF_ALIAS(			t_io_open, IO_OPEN, PRIMITIVE)
 //!@}
 
 
-
-#ifndef __LIBCCC_NOFUNCTIONS__
 
 /*
 ** ************************************************************************** *|
@@ -439,10 +433,6 @@ _FORMAT(printf, 1, 2)
 t_size					IO_Output_Format(t_char const* format, ...);
 #define c_output_format	IO_Output_Format
 #define c_printf		IO_Output_Format
-
-
-
-#endif
 
 
 

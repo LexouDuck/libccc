@@ -15,6 +15,8 @@
 
 #include "libccc.h"
 #include "libccc/char.h"
+#include "libccc/text/ascii.h"
+#include "libccc/text/unicode.h"
 #include "libccc/monad/list.h"
 #include "libccc/math/stat.h"
 #include "libccc/sys/time.h"

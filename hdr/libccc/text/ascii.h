@@ -30,11 +30,7 @@
 #include "libccc_naming.h"
 #include "libccc_define.h"
 
-#ifndef __LIBCCC_NOFUNCTIONS__
-#define __LIBCCC_NOFUNCTIONS__
 #include "libccc/bool.h"
-#undef	__LIBCCC_NOFUNCTIONS__
-#endif
 
 HEADER_CPP
 
@@ -138,8 +134,6 @@ TYPEDEF_ALIAS(	t_ascii, ASCII, PRIMITIVE)
 //!@}
 
 
-
-#ifndef __LIBCCC_NOFUNCTIONS__
 
 /*
 ** ************************************************************************** *|
@@ -370,10 +364,6 @@ t_ascii					ASCII_ToUppercase(t_ascii c);
 t_ascii					ASCII_ToLowercase(t_ascii c);
 #define c_toclower		ASCII_ToLowercase
 #define ASCII_ToLower	ASCII_ToLowercase
-
-
-
-#endif
 
 
 

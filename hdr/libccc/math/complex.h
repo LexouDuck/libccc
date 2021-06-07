@@ -27,13 +27,9 @@
 ** ************************************************************************** *|
 */
 
-#ifndef __LIBCCC_NOFUNCTIONS__
-#define __LIBCCC_NOFUNCTIONS__
 #include "libccc/bool.h"
 #include "libccc/int.h"
 #include "libccc/float.h"
-#undef	__LIBCCC_NOFUNCTIONS__
-#endif
 
 HEADER_CPP
 
@@ -88,8 +84,6 @@ HEADER_CPP
 #endif
 
 
-
-#ifndef __LIBCCC_NOFUNCTIONS__
 
 /*
 ** ************************************************************************** *|
@@ -194,8 +188,6 @@ TYPEDEF_ALIAS(		s_quaternion, QUATERNION, STRUCT)
 // TODO define, implement, document
 
 
-
-#endif
 
 /*! @} */
 HEADER_END

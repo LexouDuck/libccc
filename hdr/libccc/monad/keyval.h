@@ -37,12 +37,8 @@
 ** ************************************************************************** *|
 */
 
-#ifndef __LIBCCC_NOFUNCTIONS__
-#define __LIBCCC_NOFUNCTIONS__
 #include "libccc/bool.h"
 #include "libccc/int.h"
-#undef	__LIBCCC_NOFUNCTIONS__
-#endif
 
 HEADER_CPP
 
@@ -67,8 +63,6 @@ typedef struct keyval_T
 
 
 
-#ifndef __LIBCCC_NOFUNCTIONS__
-
 /*
 ** ************************************************************************** *|
 **                            Basic KeyVal Operations                         *|
@@ -87,8 +81,6 @@ typedef struct keyval_T
 // TODO KeyVal_Compare
 
 
-
-#endif
 
 /*! @} */
 HEADER_END

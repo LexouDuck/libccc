@@ -33,14 +33,10 @@
 #include "libccc_naming.h"
 #include "libccc_define.h"
 
-#ifndef __LIBCCC_NOFUNCTIONS__
-#define __LIBCCC_NOFUNCTIONS__
 #include "libccc/bool.h"
 #include "libccc/int.h"
 #include "libccc/pointer.h"
 #include "libccc/text/ascii.h"
-#undef	__LIBCCC_NOFUNCTIONS__
-#endif
 
 HEADER_CPP
 
@@ -133,8 +129,6 @@ TYPEDEF_ALIAS(			t_utf32, UTF32, PRIMITIVE)
 //!@}
 
 
-
-#ifndef __LIBCCC_NOFUNCTIONS__
 
 /*
 ** ************************************************************************** *|
@@ -820,10 +814,6 @@ t_sint				UTF32_ByteOrderMark(t_utf32 const* str);
 //!< 0xE0100 — 0xE01EF	Variation Selectors Supplement
 //!< 0xF0000 — 0xFFFFF	Supplementary Private Use Area-A
 //!< 0x100000—0x10FFFF	Supplementary Private Use Area-B
-
-
-
-#endif
 
 
 

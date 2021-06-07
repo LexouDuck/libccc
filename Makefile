@@ -259,6 +259,7 @@ SRCS = error.c \
 	text/unicode/tolower.c		\
 	text/unicode/utf8.c			\
 	text/unicode/utf16.c		\
+	text/unicode/utfbom.c		\
 	text/unicode/parse.c		\
 	sys/io/fd.c			\
 	sys/io/color.c		\
@@ -510,15 +511,15 @@ TEST_SRCS = \
 	$(TEST_DIR)libccc/int.c		\
 	$(TEST_DIR)libccc/fixed.c	\
 	$(TEST_DIR)libccc/float.c	\
+	$(TEST_DIR)libccc/color.c	\
 	$(TEST_DIR)libccc/memory.c			\
 	$(TEST_DIR)libccc/pointer.c			\
 	$(TEST_DIR)libccc/pointerarray.c	\
 	$(TEST_DIR)libccc/string.c			\
 	$(TEST_DIR)libccc/stringarray.c		\
-	$(TEST_DIR)libccc/color.c	\
+	$(TEST_DIR)libccc/text/regex.c	\
 	$(TEST_DIR)libccc/sys/io.c		\
 	$(TEST_DIR)libccc/sys/time.c	\
-	$(TEST_DIR)libccc/sys/regex.c	\
 	$(TEST_DIR)libccc/math/math.c		\
 	$(TEST_DIR)libccc/math/stat.c		\
 	$(TEST_DIR)libccc/math/vlq.c		\

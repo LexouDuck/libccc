@@ -65,8 +65,6 @@ typedef s_kvt	s_toml;
 
 
 
-#ifndef __LIBCCC_NOFUNCTIONS__
-
 /*
 ** ************************************************************************** *|
 **                             TOML String Operations                         *|
@@ -372,8 +370,6 @@ void	TOML_Minify(t_utf8* toml); //!< TODO rename to TOML_Minify_InPlace(), and a
 #define TOML_Replace_InObject_CaseSensitive		KVT_Replace_InObject_CaseSensitive	//! @alias{KVT_Replace_InObject_CaseSensitive}
 
 
-
-#endif
 
 /*! @} */
 HEADER_END

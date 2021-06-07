@@ -9,6 +9,41 @@
 /*                                                                            */
 /*============================================================================*/
 
+#ifndef __LIBCCC_H
+#define __LIBCCC_H
+/*! @file libccc.h
+**	@addtogroup libccc
+**	@{
+**	This file is simply meant to include all the primitive types together.
+*/
+
+/*
+** ************************************************************************** *|
+**                                 Includes                                   *|
+** ************************************************************************** *|
+*/
+
+#include "libccc_config.h"
+#include "libccc_define.h"
+
+#include "libccc/bool.h"
+#include "libccc/char.h"
+#include "libccc/int.h"
+#include "libccc/fixed.h"
+#include "libccc/float.h"
+#include "libccc/pointer.h"
+//#include "libccc/string.h"
+//#include "libccc/memory.h"
+//#include "libccc/error.h"
+
+HEADER_CPP
+
+/*
+** ************************************************************************** *|
+**                             Common Definitions                             *|
+** ************************************************************************** *|
+*/
+
 //! @defgroup libccc                       01) libccc.h
 //! @defgroup libccc_config                02) libccc_config.h
 //! @defgroup libccc_naming                03) libccc_naming.h
@@ -63,40 +98,7 @@
 //! @defgroup libccc_encode_json           52) libccc/encode/json.h
 //! @defgroup libccc_encode_toml           53) libccc/encode/toml.h
 
-#ifndef __LIBCCC_H
-#define __LIBCCC_H
-/*! @file libccc.h
-**	@addtogroup libccc
-**	@{
-**	This file is simply meant to include all the primitive types together.
-*/
 
-/*
-** ************************************************************************** *|
-**                                 Includes                                   *|
-** ************************************************************************** *|
-*/
-
-#include "libccc_config.h"
-#include "libccc_define.h"
-
-#include "libccc/char.h"
-#include "libccc/bool.h"
-#include "libccc/int.h"
-#include "libccc/fixed.h"
-#include "libccc/float.h"
-#include "libccc/pointer.h"
-//#include "libccc/string.h"
-//#include "libccc/memory.h"
-//#include "libccc/error.h"
-
-HEADER_CPP
-
-/*
-** ************************************************************************** *|
-**                             Common Definitions                             *|
-** ************************************************************************** *|
-*/
 
 /*! @} */
 HEADER_END

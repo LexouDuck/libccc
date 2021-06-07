@@ -180,8 +180,6 @@ HEADER_CPP
 
 
 
-#ifndef __LIBCCC_NOFUNCTIONS__
-
 /*
 ** ************************************************************************** *|
 **                          Integer Rounding Operations                       *|
@@ -520,8 +518,6 @@ HEADER_CPP
 // TODO tgamma ?
 
 
-
-#endif
 
 /*! @} */
 HEADER_END

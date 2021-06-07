@@ -37,7 +37,7 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-#ifndef __LIBCCC_NOFUNCTIONS__
+
 
 /*
 ** ************************************************************************** *|
@@ -254,8 +254,6 @@ t_uint							StringArray_Count_String(t_char const** strarr, t_char const* query
 // TODO StringArray_HasOnly()
 
 
-
-#endif
 
 /*! @} */
 HEADER_END

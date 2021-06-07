@@ -37,12 +37,8 @@
 ** ************************************************************************** *|
 */
 
-#ifndef __LIBCCC_NOFUNCTIONS__
-#define __LIBCCC_NOFUNCTIONS__
 #include "libccc/bool.h"
 #include "libccc/int.h"
-#undef	__LIBCCC_NOFUNCTIONS__
-#endif
 
 HEADER_CPP
 
@@ -75,8 +71,6 @@ typedef struct stack_T
 
 
 
-#ifndef __LIBCCC_NOFUNCTIONS__
-
 /*
 ** ************************************************************************** *|
 **                             Basic Stack Operations                         *|
@@ -97,8 +91,6 @@ typedef struct stack_T
 // TODO Stack_Push_F
 
 
-
-#endif
 
 /*! @} */
 HEADER_END

@@ -28,15 +28,12 @@
 ** ************************************************************************** *|
 */
 
-#ifndef __LIBCCC_NOFUNCTIONS__
-#define __LIBCCC_NOFUNCTIONS__
 #include "libccc/char.h"
 #include "libccc/bool.h"
 #include "libccc/int.h"
 #include "libccc/float.h"
 #include "libccc/pointer.h"
-#undef	__LIBCCC_NOFUNCTIONS__
-#endif
+#include "libccc/text/unicode.h"
 
 HEADER_CPP
 
@@ -82,14 +79,14 @@ typedef struct kvt
 	struct kvt*	next;	//!< linked-list pointers to neighboring items
 	struct kvt*	prev;	//!< linked-list pointers to neighboring items
 
-	t_char*		key;	//!< The item's key string, if this item is the child of, or is in the list of subitems of, an object.
+	t_utf8*		key;	//!< The item's key string, if this item is the child of, or is in the list of subitems of, an object.
 	t_dynamic	type;	//!< The type of the item: uses the `TOML_TYPE_*` macros defined above.
 	union dynamic
 	{
 		t_bool		boolean;	//!< #DYNAMICTYPE_BOOLEAN
 		t_s64		integer;	//!< #DYNAMICTYPE_INTEGER
 		t_f64		number;		//!< #DYNAMICTYPE_FLOAT
-		t_char*		string;		//!< #DYNAMICTYPE_STRING or #DYNAMICTYPE_RAW
+		t_utf8*		string;		//!< #DYNAMICTYPE_STRING or #DYNAMICTYPE_RAW
 		struct kvt*	child;		//!< #DYNAMICTYPE_ARRAY or #DYNAMICTYPE_OBJECT
 	}			value;	//!< The item's stored value (can be of any type)
 }		s_kvt;
@@ -137,8 +134,6 @@ typedef struct kvt_parse
 }		s_kvt_parse;
 
 
-
-#ifndef __LIBCCC_NOFUNCTIONS__
 
 /*
 ** ************************************************************************** *|
@@ -434,8 +429,6 @@ e_cccerror	KVT_Replace_InObject_CaseSensitive	(s_kvt* object, t_char const* key,
 //!@}
 
 
-
-#endif
 
 /*! @} */
 HEADER_END

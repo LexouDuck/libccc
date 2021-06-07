@@ -25,14 +25,10 @@
 ** ************************************************************************** *|
 */
 
-#ifndef __LIBCCC_NOFUNCTIONS__
-#define __LIBCCC_NOFUNCTIONS__
 #include "libccc/bool.h"
 #include "libccc/int.h"
 #include "libccc/float.h"
 #include "libccc/math/float.h"
-#undef	__LIBCCC_NOFUNCTIONS__
-#endif
 #include "libccc/math/algebra/vector.h"
 
 HEADER_CPP
@@ -147,8 +143,6 @@ TYPEDEF_ALIAS(	u_matrix4d, MATRIX_4D, UNION)
 }						\
 
 
-
-#ifndef __LIBCCC_NOFUNCTIONS__
 
 /*
 ** ************************************************************************** *|
@@ -274,8 +268,6 @@ s_matrix3d				Matrix3D_Multiply(s_matrix3d const* m1, s_matrix3d const* m2);
 // TODO define and implement 4D matrix operations
 
 
-
-#endif
 
 /*! @} */
 HEADER_END

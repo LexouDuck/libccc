@@ -24,8 +24,10 @@
 ** ************************************************************************** *|
 */
 
-#include "libccc.h"
+#include "libccc/bool.h"
+#include "libccc/int.h"
 #include "libccc/pointer.h"
+#include "libccc/char.h"
 
 HEADER_CPP
 
@@ -35,7 +37,7 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-#ifndef __LIBCCC_NOFUNCTIONS__
+
 
 /*
 ** ************************************************************************** *|
@@ -69,8 +71,6 @@ t_u32				PointerArray_Length(void const** a_ptrarr);
 // TODO ptrarrfold
 
 
-
-#endif
 
 /*! @} */
 HEADER_END

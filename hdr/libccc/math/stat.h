@@ -26,13 +26,9 @@
 ** ************************************************************************** *|
 */
 
-#ifndef __LIBCCC_NOFUNCTIONS__
-#define __LIBCCC_NOFUNCTIONS__
 #include "libccc/int.h"
 #include "libccc/fixed.h"
 #include "libccc/float.h"
-#undef	__LIBCCC_NOFUNCTIONS__
-#endif
 
 HEADER_CPP
 
@@ -110,8 +106,6 @@ typedef struct prob_mass
 }				s_prob_mass;
 
 
-
-#ifndef __LIBCCC_NOFUNCTIONS__
 
 /*
 ** ************************************************************************** *|
@@ -235,8 +229,6 @@ s_prob_mass						Stat_IntList_To_PMF(s_array_int const ilst);
 #define c_stat_ilst_to_pmf		Stat_IntList_To_PMF
 
 
-
-#endif
 
 /*! @} */
 HEADER_END

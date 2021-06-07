@@ -30,15 +30,11 @@
 #include "libccc_naming.h"
 #include "libccc_define.h"
 
-#ifndef __LIBCCC_NOFUNCTIONS__
-#define __LIBCCC_NOFUNCTIONS__
+#include "libccc/char.h"
 #include "libccc/bool.h"
 #include "libccc/int.h"
 #include "libccc/pointer.h"
-#include "libccc/char.h"
-#undef	__LIBCCC_NOFUNCTIONS__
 #include "libccc/format.h" // TODO remove this include ?
-#endif
 
 HEADER_CPP
 
@@ -56,8 +52,6 @@ HEADER_CPP
 */
 
 
-
-#ifndef __LIBCCC_NOFUNCTIONS__
 
 /*
 ** ************************************************************************** *|
@@ -1189,8 +1183,6 @@ char*	strchr(char const* str, int c)
 #endif
 
 
-
-#endif
 
 /*! @} */
 HEADER_END

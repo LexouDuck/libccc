@@ -25,14 +25,10 @@
 ** ************************************************************************** *|
 */
 
-#ifndef __LIBCCC_NOFUNCTIONS__
-#define __LIBCCC_NOFUNCTIONS__
 #include "libccc/bool.h"
 #include "libccc/int.h"
 #include "libccc/float.h"
 #include "libccc/math/float.h"
-#undef	__LIBCCC_NOFUNCTIONS__
-#endif
 #include "libccc/math/algebra/vector.h"
 
 HEADER_CPP
@@ -102,8 +98,6 @@ typedef t_float	(*f_scalar_func4)(u_vector4d const v);
 
 
 
-#ifndef __LIBCCC_NOFUNCTIONS__
-
 /*
 ** ************************************************************************** *|
 **                     Axis-aligned Bounding-box Operations                   *|
@@ -146,8 +140,6 @@ t_s64		c_distance_s64 (t_s64 x, t_s64 y);
 // TODO distance manh, eucl, inf for 2d, 3d and 4d
 
 
-
-#endif
 
 /*! @} */
 HEADER_END

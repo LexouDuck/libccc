@@ -1,6 +1,6 @@
 /*============================================================================*/
 /*                                            ______________________________  */
-/*  libccc/regex.h                           |    __    __  ___      _____  | */
+/*  libccc/text/regex.h                      |    __    __  ___      _____  | */
 /*                                           |   / /\  / /\/ . |\   /  __|\ | */
 /*  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | */
 /*                                           | /___/\/_/ /___-'\   \____/\  | */
@@ -9,9 +9,9 @@
 /*                                                                            */
 /*============================================================================*/
 
-#ifndef __LIBCCC_SYS_REGEX_H
-#define __LIBCCC_SYS_REGEX_H
-/*!@group{libccc_sys_regex}
+#ifndef __LIBCCC_TEXT_REGEX_H
+#define __LIBCCC_TEXT_REGEX_H
+/*!@group{libccc_text_regex}
 ** @{
 **	This header defines functions for regular expression matching/replacing.
 **
@@ -36,12 +36,6 @@ HEADER_CPP
 **                                 Definitions                                *|
 ** ************************************************************************** *|
 */
-
-
-
-#ifndef __LIBCCC_NOFUNCTIONS__
-
-#endif
 
 
 

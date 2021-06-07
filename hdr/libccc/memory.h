@@ -30,13 +30,9 @@
 #include "libccc_naming.h"
 #include "libccc_define.h"
 
-#ifndef __LIBCCC_NOFUNCTIONS__
-#define __LIBCCC_NOFUNCTIONS__
 #include "libccc/int.h"
 #include "libccc/bool.h"
 #include "libccc/pointer.h"
-#undef	__LIBCCC_NOFUNCTIONS__
-#endif
 
 HEADER_CPP
 
@@ -68,8 +64,6 @@ HEADER_CPP
 //!@}
 
 
-
-#ifndef __LIBCCC_NOFUNCTIONS__
 
 /*
 ** ************************************************************************** *|
@@ -394,8 +388,6 @@ void*	memmove(void* dest, void const* src, t_size n)
 #endif
 
 
-
-#endif
 
 /*! @} */
 HEADER_END

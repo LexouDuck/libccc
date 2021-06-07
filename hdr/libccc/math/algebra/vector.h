@@ -25,14 +25,10 @@
 ** ************************************************************************** *|
 */
 
-#ifndef __LIBCCC_NOFUNCTIONS__
-#define __LIBCCC_NOFUNCTIONS__
 #include "libccc/bool.h"
 #include "libccc/int.h"
 #include "libccc/float.h"
 #include "libccc/math/float.h"
-#undef	__LIBCCC_NOFUNCTIONS__
-#endif
 
 HEADER_CPP
 
@@ -98,8 +94,6 @@ typedef	union vector4d
 TYPEDEF_ALIAS(	u_vector4d, VECTOR_4D, UNION)
 
 
-
-#ifndef __LIBCCC_NOFUNCTIONS__
 
 /*
 ** ************************************************************************** *|
@@ -225,8 +219,6 @@ s_vector3d						Vector3D_Cross(s_vector3d const* v1, s_vector3d const* v2);
 // TODO define and implement 4D vector operations
 
 
-
-#endif
 
 /*! @} */
 HEADER_END

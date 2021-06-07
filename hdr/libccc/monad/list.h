@@ -43,12 +43,8 @@
 	typedef __builtin_va_list va_list;
 #endif
 
-#ifndef __LIBCCC_NOFUNCTIONS__
-#define __LIBCCC_NOFUNCTIONS__
 #include "libccc/bool.h"
 #include "libccc/int.h"
-#undef	__LIBCCC_NOFUNCTIONS__
-#endif
 
 HEADER_CPP
 
@@ -112,8 +108,6 @@ typedef struct list_T
 #endif
 
 
-
-#ifndef __LIBCCC_NOFUNCTIONS__
 
 /*
 ** ************************************************************************** *|
@@ -509,8 +503,6 @@ s_list_T*				CONCAT(List_Filter_I,T_NAME)(s_list_T const* list, t_bool (*filter)
 //! TODO List_Reduce() ?
 
 
-
-#endif
 
 /*! @} */
 HEADER_END

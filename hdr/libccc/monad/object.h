@@ -37,12 +37,8 @@
 ** ************************************************************************** *|
 */
 
-#ifndef __LIBCCC_NOFUNCTIONS__
-#define __LIBCCC_NOFUNCTIONS__
 #include "libccc/bool.h"
 #include "libccc/int.h"
-#undef	__LIBCCC_NOFUNCTIONS__
-#endif
 
 #include "libccc/monad/keyval.h"
 
@@ -79,8 +75,6 @@ typedef struct object_T
 #define foreach_s_object_loop_incr(	_TYPE_, _VAR_, _OBJECT_)	
 
 
-
-#ifndef __LIBCCC_NOFUNCTIONS__
 
 /*
 ** ************************************************************************** *|
@@ -130,8 +124,6 @@ typedef struct object_T
 // TODO Object_Reduce ?
 
 
-
-#endif
 
 /*! @} */
 HEADER_END

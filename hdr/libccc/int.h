@@ -73,12 +73,8 @@
 #include "libccc_naming.h"
 #include "libccc_define.h"
 
-#ifndef __LIBCCC_NOFUNCTIONS__
-#define __LIBCCC_NOFUNCTIONS__
 #include "libccc/char.h"
 #include "libccc/bool.h"
-#undef	__LIBCCC_NOFUNCTIONS__
-#endif
 
 HEADER_CPP
 
@@ -435,8 +431,6 @@ typedef union varsint // TODO refactor this and add similar types for fixed and 
 //!@}
 
 
-
-#ifndef __LIBCCC_NOFUNCTIONS__
 
 /*
 ** ************************************************************************** *|
@@ -975,8 +969,6 @@ t_s128					S128_FromString_Base(t_char const* str, t_char const* base);
 //!@}
 
 
-
-#endif
 
 /*! @} */
 HEADER_END

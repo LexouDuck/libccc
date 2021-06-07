@@ -42,7 +42,8 @@
 #include "libccc_define.h"
 
 #include "libccc/text/ascii.h"
-#include "libccc/text/unicode.h"
+// Uncomment this if you wish the `t_char` to be UTF-8 by default
+//#include "libccc/text/unicode.h" 
 
 HEADER_CPP
 
@@ -102,8 +103,6 @@ TYPEDEF_ALIAS(	t_char, CHAR, PRIMITIVE)
 //!@}
 
 
-
-#ifndef __LIBCCC_NOFUNCTIONS__
 
 /*
 ** ************************************************************************** *|
@@ -285,10 +284,6 @@ TYPEDEF_ALIAS(	t_char, CHAR, PRIMITIVE)
 #define Char_ToLower	Char_ToLowercase
 
 // TODO Char_ToASCII()
-
-
-
-#endif
 
 
 

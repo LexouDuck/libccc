@@ -58,6 +58,8 @@
 #include "libccc_naming.h"
 #include "libccc_define.h"
 
+#include "libccc/char.h"
+
 HEADER_CPP
 
 /*
@@ -134,8 +136,6 @@ TYPEDEF_ALIAS(		t_uintptr, UINTPTR, PRIMITIVE)
 
 
 
-#ifndef __LIBCCC_NOFUNCTIONS__
-
 /*
 ** ************************************************************************** *|
 **                        String Conversion Functions                         *|
@@ -193,8 +193,6 @@ t_char*					Pointer_ToString_Hex(void const* ptr);
 #define c_ptrtostrhex	Pointer_ToString_Hex //!< @alias{Pointer_ToString_Hex}
 
 
-
-#endif
 
 /*! @} */
 HEADER_END

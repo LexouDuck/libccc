@@ -43,8 +43,6 @@ typedef void (*f_ccchandler)(e_cccerror, char*);
 
 
 
-#ifndef __LIBCCC_NOFUNCTIONS__
-
 /*
 ** ************************************************************************** *|
 **                           Error globals (errno-like)                       *|
@@ -105,8 +103,6 @@ void			Error_SetHandler(e_cccerror error, f_ccchandler handler);
 void			Error_SetAllHandlers(f_ccchandler handler);
 
 
-
-#endif
 
 /*! @} */
 HEADER_END

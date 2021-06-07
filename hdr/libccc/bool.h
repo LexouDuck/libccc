@@ -28,17 +28,6 @@
 #include "libccc_naming.h"
 #include "libccc_define.h"
 
-#ifndef __LIBCCC_CHAR_H // this prevents cyclical header dependency
-#define __LIBCCC_NOFUNCTIONS__
-#else
-#ifndef __LIBCCC_NOFUNCTIONS__
-#define __LIBCCC_NOFUNCTIONS__
-#include "libccc/char.h"
-#undef	__LIBCCC_NOFUNCTIONS__
-#endif
-#endif
-
-
 HEADER_CPP
 
 /*
@@ -139,8 +128,6 @@ TYPEDEF_ALIAS(		t_bool, BOOL, PRIMITIVE)
 
 
 
-#ifndef __LIBCCC_NOFUNCTIONS__
-
 /*
 ** ************************************************************************** *|
 **                             String Conversions                             *|
@@ -157,6 +144,14 @@ TYPEDEF_ALIAS(		t_bool, BOOL, PRIMITIVE)
 
 
 
+/*! @} */
+HEADER_END
+#endif
+
+
+
+#if (defined(__LIBCCC_CHAR_H) && defined(CHARSET_WHITESPACE))
+
 //! Get the string representation of a boolean value (TRUE or FALSE)
 _MALLOC()
 t_char*					Bool_ToString(t_bool value, t_bool uppercase);
@@ -166,10 +161,4 @@ t_char*					Bool_ToString(t_bool value, t_bool uppercase);
 t_bool					Bool_FromString(t_char const* str);
 #define c_strtobool		Bool_FromString //!< @alias{Bool_FromString}
 
-
-
-#endif
-
-/*! @} */
-HEADER_END
 #endif

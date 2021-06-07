@@ -28,14 +28,10 @@
 ** ************************************************************************** *|
 */
 
-#ifndef __LIBCCC_NOFUNCTIONS__
-#define __LIBCCC_NOFUNCTIONS__
 #include "libccc/int.h"
 #include "libccc/fixed.h"
 #include "libccc/float.h"
 #include "libccc/pointer.h"
-#undef	__LIBCCC_NOFUNCTIONS__
-#endif
 
 HEADER_CPP
 
@@ -52,8 +48,6 @@ HEADER_CPP
 typedef void   t_csprng;
 
 
-
-#ifndef __LIBCCC_NOFUNCTIONS__
 
 /*
 ** ************************************************************************** *|
@@ -182,10 +176,6 @@ t_float					CSPRNG_Float_Get		(void);
 //!	Get a cryptographically secure random floating-point value, within the range `[min, max[`, statelessly.
 t_float					CSPRNG_Float_Get_Range	(t_float min, t_float max);
 #define c_csprnggetfi	CSPRNG_Float_Get_Range
-
-
-
-#endif
 
 
 

@@ -43,12 +43,8 @@
 	typedef __builtin_va_list va_list;
 #endif
 
-#ifndef __LIBCCC_NOFUNCTIONS__
-#define __LIBCCC_NOFUNCTIONS__
 #include "libccc/bool.h"
 #include "libccc/int.h"
-#undef	__LIBCCC_NOFUNCTIONS__
-#endif
 
 HEADER_CPP
 
@@ -85,8 +81,6 @@ typedef struct array_T
 #define foreach_s_array_loop_setv(	_TYPE_, _VAR_, _ARRAY_)	_VAR_ = (_VAR_##_i == (_ARRAY_)->length ? _VAR_ : (_ARRAY_)->items[_VAR_##_i])
 
 
-
-#ifndef __LIBCCC_NOFUNCTIONS__
 
 /*
 ** ************************************************************************** *|
@@ -357,8 +351,6 @@ s_array_T			CONCAT(Array_Filter_I,T_NAME)	(s_array_T const* array, t_bool (*filt
 //! TODO Array_Reduce() ?
 
 
-
-#endif
 
 /*! @} */
 HEADER_END

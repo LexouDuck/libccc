@@ -6,11 +6,12 @@
 	double	atod(char const* str);
 #endif
 
-#include "libccc/float.h"
 #include "libccc/char.h"
+#include "libccc/float.h"
 #include "libccc/memory.h"
 #include "libccc/string.h"
 #include "libccc/math/math.h"
+#include "libccc/text/unicode.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 

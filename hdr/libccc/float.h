@@ -36,13 +36,9 @@
 #include "libccc_naming.h"
 #include "libccc_define.h"
 
-#ifndef __LIBCCC_NOFUNCTIONS__
-#define __LIBCCC_NOFUNCTIONS__
 #include "libccc/char.h"
 #include "libccc/bool.h"
 #include "libccc/int.h"
-#undef	__LIBCCC_NOFUNCTIONS__
-#endif
 
 HEADER_CPP
 
@@ -433,8 +429,6 @@ typedef union varfloat
 }		u_varfloat;
 
 
-
-#ifndef __LIBCCC_NOFUNCTIONS__
 
 /*
 ** ************************************************************************** *|
@@ -927,8 +921,6 @@ t_f128								F128_FromString_Bin(t_char const* str);
 //!@}
 
 
-
-#endif
 
 /*! @} */
 HEADER_END

@@ -179,8 +179,6 @@ HEADER_CPP
 
 
 
-#ifndef __LIBCCC_NOFUNCTIONS__
-
 /*
 ** ************************************************************************** *|
 **                           String Format Functions                          *|
@@ -329,8 +327,6 @@ int						IO_Output_Format(t_char const* format, ...);
 */
 
 
-
-#endif
 
 /*! @} */
 HEADER_END
