@@ -2,7 +2,7 @@
 #include "libccc/memory.h"
 #include "libccc/math/math.h"
 #include "libccc/math/stat.h"
-#define T			t_sint
+#define T			t_s64
 #define T_NAME		_int
 #define T_DEFAULT	0
 #include "libccc/monad/array.c"
@@ -11,11 +11,11 @@
 
 
 
-#define TYPE		t_sint
+#define TYPE		t_s64
 
 
 
-s_array_int	c_stat_new_ilst(t_u32 length)
+s_array_int	c_stat_new_ilst(t_uint length)
 {
 	s_array_int		result;
 
@@ -52,7 +52,7 @@ s_array_int	c_stat_ilst_dup(s_array_int const ilst)
 	result = c_stat_new_ilst(ilst.length);
 	if (!result.items)
 		return (result);
-	for (t_u32 i = 0; i < result.length; ++i)
+	for (t_uint i = 0; i < result.length; ++i)
 	{
 		result.items[i] = ilst.items[i];
 	}
@@ -66,8 +66,8 @@ s_array_int	c_stat_merge_ilst(
 	s_array_int *append)
 {
 	s_array_int			result;
-	t_u32				i;
-	t_u32				j;
+	t_uint				i;
+	t_uint				j;
 
 	HANDLE_ERROR(NULLPOINTER, (start  == NULL), return ((s_array_int){ 0, NULL });)
 	HANDLE_ERROR(NULLPOINTER, (append == NULL), return ((s_array_int){ 0, NULL });)
@@ -105,13 +105,13 @@ s_array_int	c_stat_merge_ilst(
 static
 void		c_stat_quicksort_i_rec(
 	s_array_int	tmp_lst,
-	t_u32		start,
-	t_u32		end)
+	t_uint		start,
+	t_uint		end)
 {
 	TYPE	pivot;
-	t_u32	pivot_id;
-	t_u32	rise_id;
-	t_u32	fall_id;
+	t_uint	pivot_id;
+	t_uint	rise_id;
+	t_uint	fall_id;
 
 	pivot = tmp_lst.items[start];
 	if (start >= end)
@@ -181,7 +181,7 @@ t_float		c_stat_median_i(s_sorted_int const ilst)
 t_float		c_stat_average_i(s_array_int const ilst)
 {
 	t_float		sum;
-	t_u32		i;
+	t_uint		i;
 
 	sum = 0;
 	i = 0;
@@ -202,7 +202,7 @@ t_float		c_stat_average_i(s_array_int const ilst)
 t_float		c_stat_variance_i(s_array_int const ilst)
 {
 	t_float		sum;
-	t_u32		i;
+	t_uint		i;
 	t_float		average;
 	t_float		tmp;
 
@@ -234,7 +234,7 @@ t_bool		c_prob_is_valid_i(t_prob_sample_i const i_problst)
 {
 	t_float		prob_sum;
 	t_float		tmp;
-	t_u32		i;
+	t_uint		i;
 
 	prob_sum = 0.;
 	i = 0;
@@ -260,7 +260,7 @@ t_bool		c_prob_is_valid_i(t_prob_sample_i const i_problst)
 
 
 
-s_prob_mass	c_stat_new_pmf(t_u32 length)
+s_prob_mass	c_stat_new_pmf(t_uint length)
 {
 	s_prob_mass	result;
 
@@ -300,8 +300,8 @@ s_set_int	c_stat_ilst_to_iset(s_array_int const ilst)
 {
 	s_array_int	result;
 	s_array_int	set;
-	t_u32		i;
-	t_u32		j;
+	t_uint		i;
+	t_uint		j;
 
 	set = c_stat_new_ilst(ilst.length);
 	set.length = 0;
@@ -328,10 +328,10 @@ s_set_int	c_stat_ilst_to_iset(s_array_int const ilst)
 
 
 
-t_u32		c_stat_ilst_count(s_array_int ilst, TYPE elem)
+t_uint		c_stat_ilst_count(s_array_int ilst, TYPE elem)
 {
-	t_u32	i;
-	t_u32	result;
+	t_uint	i;
+	t_uint	result;
 
 	i = 0;
 	result = 0;
@@ -350,7 +350,7 @@ s_prob_mass	c_stat_ilst_to_pmf(s_array_int const ilst)
 {
 	s_prob_mass	result;
 	s_array_int	set;
-	t_u32		i;
+	t_uint		i;
 	t_float		inv_sample_size;
 
 	if (ilst.items == NULL || ilst.length == 0)

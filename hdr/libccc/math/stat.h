@@ -221,7 +221,7 @@ s_array_int						Stat_IntList_To_Set(s_array_int const ilst);
 #define c_stat_ilst_to_iset		Stat_IntList_To_Set
 
 //! TODO document this
-t_uint							Stat_IntList_Count(s_array_int ilst, t_sint elem);
+t_uint							Stat_IntList_Count(s_array_int ilst, t_s64 elem);
 #define c_stat_ilst_count		Stat_IntList_Count
 
 //! Returns the probability distribution of an array of integers.

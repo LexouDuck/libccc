@@ -13,8 +13,8 @@
 s_sorted_int	print_test_random(int samples)
 {
 	s_sorted_int	result;
-	s_array_int			values;
-	t_rand*				rng;
+	s_array_int		values;
+	t_rand*			rng;
 
 	rng = Random_New();
 

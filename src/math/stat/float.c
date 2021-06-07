@@ -2,7 +2,7 @@
 #include "libccc/memory.h"
 #include "libccc/math/math.h"
 #include "libccc/math/stat.h"
-#define T			t_float
+#define T			t_f64
 #define T_NAME		_float
 #define T_DEFAULT	0.
 #include "libccc/monad/array.c"
@@ -11,11 +11,11 @@
 
 
 
-#define TYPE		t_float
+#define TYPE		t_f64
 
 
 
-s_array_float	c_stat_new_flst(t_u32 length)
+s_array_float	c_stat_new_flst(t_uint length)
 {
 	s_array_float	result;
 
@@ -52,7 +52,7 @@ s_array_float	c_stat_flst_dup(s_array_float const flst)
 	result = c_stat_new_flst(flst.length);
 	if (!result.items)
 		return (result);
-	for (t_u32 i = 0; i < result.length; ++i)
+	for (t_uint i = 0; i < result.length; ++i)
 	{
 		result.items[i] = flst.items[i];
 	}
@@ -66,8 +66,8 @@ s_array_float 	c_stat_merge_flst(
 	s_array_float *append)
 {
 	s_array_float	result;
-	t_u32	i;
-	t_u32	j;
+	t_uint	i;
+	t_uint	j;
 
 	HANDLE_ERROR(NULLPOINTER, (start  == NULL), return ((s_array_float){ 0, NULL });)
 	HANDLE_ERROR(NULLPOINTER, (append == NULL), return ((s_array_float){ 0, NULL });)
@@ -105,13 +105,13 @@ s_array_float 	c_stat_merge_flst(
 static
 void		c_stat_quicksort_f_rec(
 	s_array_float	tmp_lst,
-	t_u32			start,
-	t_u32			end)
+	t_uint			start,
+	t_uint			end)
 {
 	TYPE	pivot;
-	t_u32	pivot_id;
-	t_u32	rise_id;
-	t_u32	fall_id;
+	t_uint	pivot_id;
+	t_uint	rise_id;
+	t_uint	fall_id;
 
 	pivot = tmp_lst.items[start];
 	if (start >= end || pivot != pivot)
@@ -183,7 +183,7 @@ t_float		c_stat_median_f(s_sorted_float const flst)
 t_float		c_stat_average_f(s_array_float const flst)
 {
 	TYPE	sum;
-	t_u32	i;
+	t_uint	i;
 
 	sum = 0.;
 	i = 0;
@@ -205,7 +205,7 @@ t_float		c_stat_average_f(s_array_float const flst)
 t_float		c_stat_variance_f(s_array_float const flst)
 {
 	TYPE	sum;
-	t_u32	i;
+	t_uint	i;
 	TYPE	average;
 	TYPE	tmp;
 
