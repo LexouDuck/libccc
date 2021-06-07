@@ -179,7 +179,7 @@ DEFINEFUNC_PRINT_TEST(list,		s_list const*)
 
 DEFINEFUNC_PRINT_TEST(date,		s_date)
 
-DEFINEFUNC_PRINT_TEST(sign,		t_s64)
+DEFINEFUNC_PRINT_TEST(sign,		t_sintmax)
 DEFINEFUNC_PRINT_TEST(alloc,	char const*)
 
 

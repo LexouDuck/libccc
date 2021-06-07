@@ -119,7 +119,7 @@ HEADER_CPP
 **	- `80`	for 80-bit x86 extended-precision floating-point number (not present on all platforms)
 **	- `128`	for 128-bit IEEE 754 quadruple-precision floating-point number (not present on all platforms)
 */
-#define LIBCONFIG_BITS_FLOAT	32
+#define LIBCONFIG_BITS_FLOAT	64
 //! @see #FLOAT_APPROX and Float_EqualsApprox()
 #define LIBCONFIG_FLOAT_APPROX	(1.0e-10)
 
