@@ -436,6 +436,36 @@ typedef union varfloat
 ** ************************************************************************** *|
 */
 
+//! A smart constructor: calls the appropriate `Fixed_From*()` function from the given argument type
+//!@{
+#define DEFINEFUNC_Float(X, FUNCTYPE) \
+	_Generic((X),	\
+		t_s16:	 FUNCTYPE##_FromInt,	\
+		t_s32:	 FUNCTYPE##_FromInt,	\
+		t_s64:	 FUNCTYPE##_FromInt,	\
+		t_s128:	 FUNCTYPE##_FromInt,	\
+		t_sint:  FUNCTYPE##_FromInt,	\
+		t_q16:	 FUNCTYPE##_FromFixed,	\
+		t_q32:	 FUNCTYPE##_FromFixed,	\
+		t_q64:	 FUNCTYPE##_FromFixed,	\
+		t_q128:	 FUNCTYPE##_FromFixed,	\
+		t_fixed: FUNCTYPE##_FromFixed,	\
+		t_f32:	 FUNCTYPE##_FromFloat,	\
+		t_f64:	 FUNCTYPE##_FromFloat,	\
+		t_f80:	 FUNCTYPE##_FromFloat,	\
+		t_f128:	 FUNCTYPE##_FromFloat,	\
+		t_float: FUNCTYPE##_FromFloat,	\
+	)(X)
+#define Float(X)	DEFINEFUNC_Float(X, Fixed)
+#define F32(X)		DEFINEFUNC_Float(X, F32)
+#define F64(X)		DEFINEFUNC_Float(X, F64)
+#define F80(X)		DEFINEFUNC_Float(X, F80)
+#define F128(X)		DEFINEFUNC_Float(X, F128)
+//!@}
+
+// TODO Float_FromInt()
+// TODO Float_FromFixed()
+
 //! Creates a float value from its individual parts.
 /*!
 **	@nonstd
@@ -447,20 +477,20 @@ typedef union varfloat
 **	the given `mantissa` and `exponent` parts.
 */
 //!@{
-#define					Float	CONCAT(FLOAT_TYPE,)
-t_f32					F32(t_sint mantissa, t_sint exponent);
-t_f64					F64(t_sint mantissa, t_sint exponent);
+#define					Float_FromFloat	CONCAT(FLOAT_TYPE,_FromFloat)
+t_f32					F32_FromFloat(t_sint mantissa, t_sint exponent);
+t_f64					F64_FromFloat(t_sint mantissa, t_sint exponent);
 #ifdef	__float80
-t_f80					F80(t_sint mantissa, t_sint exponent);
+t_f80					F80_FromFloat(t_sint mantissa, t_sint exponent);
 #endif
 #ifdef	__float128
-t_f128					F128(t_sint mantissa, t_sint exponent);
+t_f128					F128_FromFloat(t_sint mantissa, t_sint exponent);
 #endif
-#define c_float			Float 	//!< @alias{Float}
-#define c_f32			F32 	//!< @alias{F32}
-#define c_f64			F64 	//!< @alias{F64}
-#define c_f80			F80 	//!< @alias{F80}
-#define c_f128			F128 	//!< @alias{F128}
+#define c_ftofloat		Float_FromFloat //!< @alias{Float_FromFloat}
+#define c_ftof32		F32_FromFloat 	//!< @alias{F32_FromFloat}
+#define c_ftof64		F64_FromFloat 	//!< @alias{F64_FromFloat}
+#define c_ftof80		F80_FromFloat 	//!< @alias{F80_FromFloat}
+#define c_ftof128		F128_FromFloat 	//!< @alias{F128_FromFloat}
 //!@}
 
 

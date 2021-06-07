@@ -303,32 +303,32 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 ** ************************************************************************** *|
 */
 
-
-
-//! Create a new fixed-point value from its individual component parts
-/*!
-**	TODO document
-**	@param	part_integer	the integer portion of the fixed-point number
-**	@param	part_fraction	the fractional portion of the fixed-point number
-**	@param	denominator		the denominator applied to this fixed-point number
-**	@returns
-*/
+//! A smart constructor: calls the appropriate `Fixed_From*()` function from the given argument type
 //!@{
-#define				Fixed	CONCAT(FIXED_TYPE,)
-t_q16				Q16(t_s16 part_integer, t_u16 part_fraction, t_u16 denominator);
-t_q32				Q32(t_s32 part_integer, t_u32 part_fraction, t_u32 denominator);
-t_q64				Q64(t_s64 part_integer, t_u64 part_fraction, t_u64 denominator);
-#ifdef __int128
-t_q128				Q128(t_s128 part_integer, t_u128 part_fraction, t_u128 denominator);
-#endif
-#define c_fixed		Fixed 	//!< @alias{Fixed}
-#define c_q16		Q16 	//!< @alias{Q16}
-#define c_q32		Q32 	//!< @alias{Q32}
-#define c_q64		Q64 	//!< @alias{Q64}
-#define c_q128		Q128 	//!< @alias{Q128}
+#define DEFINEFUNC_Fixed(X, FUNCTYPE) \
+	_Generic((X),	\
+		t_s16:	 FUNCTYPE##_FromInt,	\
+		t_s32:	 FUNCTYPE##_FromInt,	\
+		t_s64:	 FUNCTYPE##_FromInt,	\
+		t_s128:	 FUNCTYPE##_FromInt,	\
+		t_sint:  FUNCTYPE##_FromInt,	\
+		t_q16:	 FUNCTYPE##_FromFixed,	\
+		t_q32:	 FUNCTYPE##_FromFixed,	\
+		t_q64:	 FUNCTYPE##_FromFixed,	\
+		t_q128:	 FUNCTYPE##_FromFixed,	\
+		t_fixed: FUNCTYPE##_FromFixed,	\
+		t_f32:	 FUNCTYPE##_FromFloat,	\
+		t_f64:	 FUNCTYPE##_FromFloat,	\
+		t_f80:	 FUNCTYPE##_FromFloat,	\
+		t_f128:	 FUNCTYPE##_FromFloat,	\
+		t_float: FUNCTYPE##_FromFloat,	\
+	)(X)
+#define Fixed(X)	DEFINEFUNC_Fixed(X, Fixed)
+#define Q16(X)		DEFINEFUNC_Fixed(X, Q16)
+#define Q32(X)		DEFINEFUNC_Fixed(X, Q32)
+#define Q64(X)		DEFINEFUNC_Fixed(X, Q64)
+#define Q128(X)		DEFINEFUNC_Fixed(X, Q128)
 //!@}
-
-
 
 //! Returns the nearest fixed-point value to the given integer `number`
 /*!
@@ -366,6 +366,29 @@ t_q128	 				Q128_FromFloat(t_f64 number);
 #define c_ftoq32		Q32_FromFloat	//!< @alias{Q32_FromFloat}
 #define c_ftoq64		Q64_FromFloat	//!< @alias{Q64_FromFloat}
 #define c_ftoq128		Q128_FromFloat	//!< @alias{Q128_FromFloat}
+//!@}
+
+//! Create a new fixed-point value from its individual component parts
+/*!
+**	TODO document
+**	@param	part_integer	the integer portion of the fixed-point number
+**	@param	part_fraction	the fractional portion of the fixed-point number
+**	@param	denominator		the denominator applied to this fixed-point number
+**	@returns
+*/
+//!@{
+#define				Fixed_FromFixed	CONCAT(FIXED_TYPE,_FromFixed)
+t_q16				Q16_FromFixed(t_s16 part_integer, t_u16 part_fraction, t_u16 denominator);
+t_q32				Q32_FromFixed(t_s32 part_integer, t_u32 part_fraction, t_u32 denominator);
+t_q64				Q64_FromFixed(t_s64 part_integer, t_u64 part_fraction, t_u64 denominator);
+#ifdef __int128
+t_q128				Q128_FromFixed(t_s128 part_integer, t_u128 part_fraction, t_u128 denominator);
+#endif
+#define c_qtofixed		Fixed_FromFixed	//!< @alias{Fixed_FromFixed}
+#define c_qtoq16		Q16_FromFixed	//!< @alias{Q16_FromFixed}
+#define c_qtoq32		Q32_FromFixed	//!< @alias{Q32_FromFixed}
+#define c_qtoq64		Q64_FromFixed	//!< @alias{Q64_FromFixed}
+#define c_qtoq128		Q128_FromFixed	//!< @alias{Q128_FromFixed}
 //!@}
 
 
