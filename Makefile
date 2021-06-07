@@ -162,15 +162,16 @@ SRCS = error.c \
 	bool/bool_to_str.c		\
 	bool/bool_from_str.c	\
 	int/int_to_str.c		\
-	int/int_to_strbase.c	\
 	int/int_to_strhex.c		\
 	int/int_to_stroct.c		\
 	int/int_to_strbin.c		\
+	int/int_to_strbase.c	\
 	int/int_from_str.c		\
-	int/int_from_strbase.c	\
+	int/int_from_strdec.c	\
 	int/int_from_strhex.c	\
 	int/int_from_stroct.c	\
 	int/int_from_strbin.c	\
+	int/int_from_strbase.c	\
 	fixed/fixed.c			\
 	fixed/fixed_to_str.c	\
 	fixed/fixed_from_str.c	\
@@ -717,6 +718,7 @@ clean:
 	@rm -f $(TEST_OBJS)
 	@printf "Deleting all .d files...\n"
 	@rm -f $(DEPS)
+	@rm -f $(TEST_DEPS)
 	@rm -f *.d
 
 fclean: clean
@@ -740,6 +742,12 @@ aclean: rclean logclean
 logclean:
 	@printf "Deleting "$(LOGDIR)" folder...\n"
 	@rm -rf $(LOGDIR)
+
+tclean:
+	@printf "Deleting test .o files...\n"
+	@rm -f $(TEST_OBJS)
+	@printf "Deleting test .d files...\n"
+	@rm -f $(TEST_DEPS)
 
 re: fclean all
 
