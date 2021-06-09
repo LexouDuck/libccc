@@ -37,7 +37,7 @@ inline t_q##BITS	Q##BITS##_From(											\
 {																			\
 	if (denominator == FIXED_DENOMINATOR)									\
 		return ((t_q##BITS)numerator);										\
-	return ((numerator * denominator) / FIXED_DENOMINATOR);					\
+	return ((numerator * FIXED_DENOMINATOR) / denominator);					\
 }
 
 

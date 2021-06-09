@@ -38,7 +38,6 @@
 #define	__LIBCCC_FIXED_F
 #define	__LIBCCC_FLOAT_F
 #define	__LIBCCC_POINTER_F
-#define	__LIBCCC_COLOR_F
 
 #ifndef __LIBCCC_BOOL_H
 #include "libccc/bool.h"
@@ -58,9 +57,6 @@
 #ifndef __LIBCCC_POINTER_H
 #include "libccc/pointer.h"
 #endif
-#ifndef __LIBCCC_COLOR_H
-#include "libccc/color.h"
-#endif
 
 #undef	__LIBCCC_CHAR_H
 #undef	__LIBCCC_CHAR_F
@@ -78,8 +74,6 @@
 #undef	__LIBCCC_FLOAT_F
 #undef	__LIBCCC_POINTER_H
 #undef	__LIBCCC_POINTER_F
-#undef	__LIBCCC_COLOR_H
-#undef	__LIBCCC_COLOR_F
 
 //#include "libccc/error.h"
 //#include "libccc/memory.h"

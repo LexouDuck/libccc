@@ -27,10 +27,9 @@ inline t_f##BITS	F##BITS##_FromFloat(t_float number)			\
 
 
 #define DEFINEFUNC_FLOAT_FROM(BITS) \
-t_f##BITS	F##BITS##_From(t_fixed mantissa, t_sint exponent)	\
+t_f##BITS	F##BITS##_From(t_sint integer, t_sint exponent)		\
 {																\
-	return (Float_Pow(2, exponent) *							\
-		(t_f##BITS)(mantissa >> FIXED_BITS_FRACTIONPART));		\
+	return (integer * Float_Pow(2, exponent));					\
 }
 
 
@@ -41,14 +40,15 @@ t_sint	F##BITS##_GetExp2(t_f##BITS number)																\
 {																										\
 	return ((((*((t_u##BITS*)&number)) & FLOAT_EXPONENT) >> FLOAT_MANTISSA_BITS) - FLOAT_EXPONENT_BIAS);\
 }
-	DEFINEFUNC_FLOAT_GETEXP2(	32)
-	DEFINEFUNC_FLOAT_GETEXP2(	64)
-	#ifdef	__float80
-	DEFINEFUNC_FLOAT_GETEXP2(	80)
-	#endif
-	#ifdef	__float128
-	DEFINEFUNC_FLOAT_GETEXP2(	128)
-	#endif
+DEFINEFUNC_FLOAT_GETEXP2(	32)
+DEFINEFUNC_FLOAT_GETEXP2(	64)
+#ifdef	__float80
+DEFINEFUNC_FLOAT_GETEXP2(	80)
+#endif
+#ifdef	__float128
+DEFINEFUNC_FLOAT_GETEXP2(	128)
+#endif
+
 #else
 MATH_DECL_FUNCTION(t_sint, getexp2, ilogb)
 #endif

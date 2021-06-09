@@ -50,7 +50,15 @@
 #endif
 
 #include "libccc.h"
+
 #include "libccc/sys/ansi.h"
+
+#ifndef __LIBCCC_COLOR_H
+#define	__LIBCCC_COLOR_F
+#include "libccc/color.h"
+#undef	__LIBCCC_COLOR_H
+#undef	__LIBCCC_COLOR_F
+#endif
 
 HEADER_CPP
 

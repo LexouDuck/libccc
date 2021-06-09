@@ -6,7 +6,9 @@
 	double	atod(char const* str);
 #endif
 
+#include "libccc.h"
 #include "libccc/char.h"
+#include "libccc/int.h"
 #include "libccc/float.h"
 #include "libccc/memory.h"
 #include "libccc/string.h"

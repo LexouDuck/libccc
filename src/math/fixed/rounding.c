@@ -15,11 +15,21 @@ inline t_q##BITS	Q##BITS##_Round(t_q##BITS number)						\
 	else return (number + (FIXED_MAX_FRACTIONPART - fraction));				\
 }
 
+
+
 #define DEFINEFUNC_FIXED_TRUNC(BITS) \
 inline t_q##BITS	Q##BITS##_Truncate(t_q##BITS number)									\
 {																							\
 	return ((t_q##BITS)((number >> FIXED_BITS_FRACTIONPART) << FIXED_BITS_FRACTIONPART));	\
 } // TODO fix this
+
+
+
+#define DEFINEFUNC_FIXED_FLOOR(BITS) \
+// TODO
+
+#define DEFINEFUNC_FIXED_CEIL(BITS) \
+// TODO
 
 
 

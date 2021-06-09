@@ -100,9 +100,9 @@ HEADER_CPP
 **	- `64`	for 64-bit fixed-point number
 **	- `128`	for 128-bit fixed-point number (not present on all platforms)
 */
-#define LIBCONFIG_BITS_FIXED	32
+#define LIBCONFIG_BITS_FIXED	64
 //! @see #FIXED_APPROX and Fixed_EqualsApprox()
-#define LIBCONFIG_FIXED_APPROX	(1.0e-10)
+#define LIBCONFIG_FIXED_APPROX	((t_fixed)1)
 //! The amount of subdivisions dedicated to the fraction part of the fixed-point types
 #define LIBCONFIG_FIXED_DENOMINATOR	(256)
 

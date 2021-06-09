@@ -512,22 +512,22 @@ t_f128	 				F128_FromFloat(t_float number);
 /*!
 **	@nonstd
 **
-**	@param	mantissa	The significant digits of this floating-point number
-**	@param	exponent	The (decimal) exponent of this floating-point number,
-**						this is applied like so: `number * pow(10, exponent)`
+**	@param	integer		The significant digits of this floating-point number
+**	@param	exponent	The (base 2) exponent of this floating-point number,
+**						this is applied like so: `integer * pow(2, exponent)`
 **	@returns
 **	The floating-point number value resulting from putting together
-**	the given `mantissa` and `exponent` parts.
+**	the given `integer` and `exponent` parts.
 */
 //!@{
 #define					Float_From	CONCAT(FLOAT_TYPE,_From)
-t_f32					F32_From(t_sint mantissa, t_sint exponent);
-t_f64					F64_From(t_sint mantissa, t_sint exponent);
+t_f32					F32_From(t_sint integer, t_sint exponent);
+t_f64					F64_From(t_sint integer, t_sint exponent);
 #ifdef	__float80
-t_f80					F80_From(t_sint mantissa, t_sint exponent);
+t_f80					F80_From(t_sint integer, t_sint exponent);
 #endif
 #ifdef	__float128
-t_f128					F128_From(t_sint mantissa, t_sint exponent);
+t_f128					F128_From(t_sint integer, t_sint exponent);
 #endif
 #define c_tofloat		Float_From	//!< @alias{Float_From}
 #define c_tof32			F32_From	//!< @alias{F32_From}
