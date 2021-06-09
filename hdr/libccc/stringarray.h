@@ -24,10 +24,7 @@
 ** ************************************************************************** *|
 */
 
-#include "libccc/bool.h"
-#include "libccc/int.h"
-#include "libccc/pointer.h"
-#include "libccc/char.h"
+#include "libccc.h"
 
 HEADER_CPP
 

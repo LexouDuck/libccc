@@ -69,23 +69,6 @@
 	typedef int64_t		int_fast64_t;
 #endif
 
-#include "libccc_config.h"
-#include "libccc_naming.h"
-#include "libccc_define.h"
-
-#include "libccc/char.h"
-#include "libccc/bool.h"
-
-HEADER_CPP
-
-/*
-** ************************************************************************** *|
-**                                 Definitions                                *|
-** ************************************************************************** *|
-*/
-
-
-
 #ifndef LIBCONFIG_INTEGER_TYPES
 	#define STDINT(TYPE, BITS)	TYPE##BITS##_t
 #else
@@ -106,7 +89,18 @@ typedef	STDINT(int, 64)	s64;
 typedef __int128		s128;
 #endif
 
+#include "libccc.h"
 
+HEADER_CPP
+
+#ifndef __LIBCCC_INT_T
+#define __LIBCCC_INT_T
+
+/*
+** ************************************************************************** *|
+**                                 Definitions                                *|
+** ************************************************************************** *|
+*/
 
 //! Primitive type: 8-bit unsigned integer
 /*!
@@ -400,37 +394,9 @@ TYPEDEF_ALIAS(t_sint, SINT, PRIMITIVE)
 
 
 
-/*
-** ************************************************************************** *|
-**                       Variable-size primitive types                        *|
-** ************************************************************************** *|
-*/
-
-//! A union storing an integer (signed or unsigned) of any common storage size
-/*!
-** These unions are used for certain difficult casting conditions.
-** They are used in particular when casting an <stdarg.h> var_arg to the
-** appropriate type in c_printf.
-*/
-//!@{
-typedef union varuint // TODO refactor this and add similar types for fixed and float
-{
-	t_u8	uc;
-	t_u16	us;
-	t_u32	ui;
-	t_u64	ul;
-}		u_varuint;
-
-typedef union varsint // TODO refactor this and add similar types for fixed and float
-{
-	t_s8	sc;
-	t_s16	ss;
-	t_s32	si;
-	t_s64	sl;
-}		u_varsint;
-//!@}
-
-
+#endif
+#ifndef __LIBCCC_INT_F
+#define __LIBCCC_INT_F
 
 /*
 ** ************************************************************************** *|
@@ -1075,6 +1041,8 @@ t_s128					S128_FromString_Base(t_char const* str, t_char const* base);
 //!@}
 
 
+
+#endif
 
 /*! @} */
 HEADER_END

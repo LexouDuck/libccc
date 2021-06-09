@@ -33,19 +33,19 @@
 #ifndef __NOSTD__
 	#include <stdint.h>
 #else
-	typedef unsigned short int	uint_least16_t;
-	typedef unsigned long int	uint_least32_t;
+	typedef unsigned short	uint_least16_t;
+	typedef unsigned long	uint_least32_t;
 #endif
 
-#include "libccc_config.h"
-#include "libccc_naming.h"
-#include "libccc_define.h"
+#include "libccc.h"
 
 #include "libccc/text/ascii.h"
-// Uncomment this if you wish the `t_char` to be UTF-8 by default
-//#include "libccc/text/unicode.h" 
+#include "libccc/text/unicode.h"
 
 HEADER_CPP
+
+#ifndef __LIBCCC_CHAR_T
+#define __LIBCCC_CHAR_T
 
 /*
 ** ************************************************************************** *|
@@ -103,6 +103,10 @@ TYPEDEF_ALIAS(	t_char, CHAR, PRIMITIVE)
 //!@}
 
 
+
+#endif
+#ifndef __LIBCCC_CHAR_F
+#define __LIBCCC_CHAR_F
 
 /*
 ** ************************************************************************** *|
@@ -286,6 +290,8 @@ TYPEDEF_ALIAS(	t_char, CHAR, PRIMITIVE)
 // TODO Char_ToASCII()
 
 
+
+#endif
 
 /*! @} */
 HEADER_END

@@ -66,16 +66,12 @@
 ** ************************************************************************** *|
 */
 
-#include "libccc_config.h"
-#include "libccc_naming.h"
-#include "libccc_define.h"
-
-#include "libccc/char.h"
-#include "libccc/bool.h"
-#include "libccc/int.h"
-#include "libccc/float.h"
+#include "libccc.h"
 
 HEADER_CPP
+
+#ifndef __LIBCCC_FIXED_T
+#define __LIBCCC_FIXED_T
 
 /*
 ** ************************************************************************** *|
@@ -158,8 +154,8 @@ HEADER_CPP
 	**	All the other `#define`s depend on this one macro.
 	**	The largest possible value for this type is #Q16_MAX.
 	*/
-	typedef t_s16		t_q16;
-	TYPEDEF_ALIAS(		t_q16,	FIXED_16,	PRIMITIVE)
+	typedef s16		t_q16;
+	TYPEDEF_ALIAS(	t_q16,	FIXED_16,	PRIMITIVE)
 
 	//! Primitive type: 32-bit signed fixed-point rational number (configurable bit portions)
 	/*!
@@ -171,8 +167,8 @@ HEADER_CPP
 	**	All the other `#define`s depend on this one macro.
 	**	The largest possible value for this type is #Q32_MAX.
 	*/
-	typedef t_s32		t_q32;
-	TYPEDEF_ALIAS(		t_q32,	FIXED_32,	PRIMITIVE)
+	typedef s32		t_q32;
+	TYPEDEF_ALIAS(	t_q32,	FIXED_32,	PRIMITIVE)
 
 	//! Primitive type: 64-bit signed fixed-point rational number (configurable bit portions)
 	/*!
@@ -184,8 +180,8 @@ HEADER_CPP
 	**	All the other `#define`s depend on this one macro.
 	**	The largest possible value for this type is #Q64_MAX.
 	*/
-	typedef	t_s64		t_q64;
-	TYPEDEF_ALIAS(		t_q64,	FIXED_64,	PRIMITIVE)
+	typedef	s64		t_q64;
+	TYPEDEF_ALIAS(	t_q64,	FIXED_64,	PRIMITIVE)
 
 	#ifdef	__int128
 	//! Primitive type: 128-bit signed fixed-point rational number (only certain platforms)
@@ -198,8 +194,8 @@ HEADER_CPP
 	**	All the other `#define`s depend on this one macro.
 	**	The largest possible value for this type is #Q128_MAX.
 	*/
-	typedef __int128	t_q128;
-	TYPEDEF_ALIAS(		t_q128,	FIXED_128,	PRIMITIVE)
+	typedef s128	t_q128;
+	TYPEDEF_ALIAS(	t_q128,	FIXED_128,	PRIMITIVE)
 	#elif (LIBCONFIG_BITS_FIXED == 128)
 		#error "Cannot set default 't_fixed' to 128-bit size, unavailable on this platform"
 	#endif
@@ -268,6 +264,10 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 #define FIXED_MIN	((t_fixed)SINT_MIN)	//!< The largest possible value that a configurable-size fixed-point can hold
 
 
+
+#endif
+#ifndef __LIBCCC_FIXED_F
+#define __LIBCCC_FIXED_F
 
 /*
 ** ************************************************************************** *|
@@ -715,6 +715,8 @@ t_q128					Q128_FromString_Base(t_char const* str, t_char const* base); // TODO 
 //!@}
 
 
+
+#endif
 
 /*! @} */
 HEADER_END

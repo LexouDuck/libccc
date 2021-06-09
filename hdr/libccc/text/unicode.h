@@ -29,16 +29,12 @@
 ** ************************************************************************** *|
 */
 
-#include "libccc_config.h"
-#include "libccc_naming.h"
-#include "libccc_define.h"
-
-#include "libccc/bool.h"
-#include "libccc/int.h"
-#include "libccc/pointer.h"
-#include "libccc/text/ascii.h"
+#include "libccc.h"
 
 HEADER_CPP
+
+#ifndef __LIBCCC_TEXT_UNICODE_T
+#define __LIBCCC_TEXT_UNICODE_T
 
 /*
 ** ************************************************************************** *|
@@ -129,6 +125,10 @@ TYPEDEF_ALIAS(			t_utf32, UTF32, PRIMITIVE)
 //!@}
 
 
+
+#endif
+#ifndef __LIBCCC_TEXT_UNICODE_F
+#define __LIBCCC_TEXT_UNICODE_F
 
 /*
 ** ************************************************************************** *|
@@ -816,6 +816,8 @@ t_sint				UTF32_ByteOrderMark(t_utf32 const* str);
 //!< 0x100000—0x10FFFF	Supplementary Private Use Area-B
 
 
+
+#endif
 
 /*! @} */
 HEADER_END

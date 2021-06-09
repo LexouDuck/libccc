@@ -32,16 +32,12 @@
 ** ************************************************************************** *|
 */
 
-#include "libccc_config.h"
-#include "libccc_naming.h"
-#include "libccc_define.h"
-
-#include "libccc/char.h"
-#include "libccc/bool.h"
-#include "libccc/int.h"
-#include "libccc/fixed.h"
+#include "libccc.h"
 
 HEADER_CPP
+
+#ifndef __LIBCCC_FLOAT_T
+#define __LIBCCC_FLOAT_T
 
 /*
 ** ************************************************************************** *|
@@ -161,13 +157,14 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 **	@isostd{C,https://en.cppreference.com/w/c/numeric/math/nan}
 **	@isostd{C,https://en.cppreference.com/w/c/numeric/math/NAN}
 */
+//!@{
 #ifndef NAN
 #define NAN			(0. / 0.)
 #endif
-
 #ifndef NOTNUMBER
 #define NOTNUMBER	NAN
 #endif
+//!@}
 
 //! Checks if the given 'x' has a "not a number" value.
 /*!
@@ -175,17 +172,17 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 **
 **	Also, define isnan() for ANSI C compatibility, if needed.
 */
+//!@{
 #ifndef isnan
 #define isnan(X)	(X != X)
 #endif
-
 #ifndef IS_NAN
 #define IS_NAN(X)		isnan(X)
 #endif
-
 #ifndef IS_NOTNUMBER
 #define IS_NOTNUMBER(X)	isnan(X)
 #endif
+//!@}
 
 
 
@@ -193,12 +190,14 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 /*!
 **	@isostd{C,https://en.cppreference.com/w/c/numeric/math/INFINITY}
 */
+//!@{
 #ifndef INF
 #define INF			(1. / 0.)
 #endif
 #ifndef INFINITY
 #define INFINITY	INF
 #endif
+//!@}
 
 //! Checks if the given 'x' is either +INFINITY or -INFINITY
 /*!
@@ -206,6 +205,7 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 **
 **	Also, define isinf() for ANSI C compatibility, if needed.
 */
+//!@{
 #ifndef isinf
 #define isinf(X)	(isnan((X) - (X)) && !isnan(X))
 #endif
@@ -215,6 +215,7 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #ifndef IS_INFINITY
 #define IS_INFINITY(X)	isinf(X)
 #endif
+//!@}
 
 
 
@@ -225,7 +226,7 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 
 
 
-// TODO add HUGE and TINY min/max value macros
+//! TODO add HUGE and TINY min/max value macros
 /*!
 **	@isostd{C,https://en.cppreference.com/w/c/numeric/math/HUGE_VAL}
 **	@isostd{C,https://en.cppreference.com/w/c/types/limits#Limits_of_floating_point_types}
@@ -233,7 +234,7 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 
 
 
-//	TODO document this
+//! TODO document this
 #define SAMPLE_NB		(1024)
 
 
@@ -241,11 +242,11 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 //! This macro sets the rounding behavior for floating-point number operations.
 /*!
 **	Rounding behavior for floating-point types. Possible values are:
-**	-1 undetermined
-**	 0 towards zero
-**	 1 to nearest
-**	 2 toward positive infinity
-**	 3 toward negative infinity
+**	`-1`	undetermined
+**	 `0`	towards zero
+**	 `1`	to nearest
+**	 `2`	toward positive infinity
+**	 `3`	toward negative infinity
 */
 #ifndef FLT_ROUNDS
 #define FLT_ROUNDS	1
@@ -254,19 +255,19 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 //! This macro sets the floating-point expression evaluation method (ie: how floats are operated upon).
 /*!
 **	The floating-point evaluation method. Possible values are:
-**	-1  indeterminate
-**	 0  evaluate all operations and constants, whose semantic type has at most the range and precision of float, to the range and precision of float;
-**	    evaluate all other operations and constants to the range and precision of the semantic type.
-**	 1  evaluate all operations and constants, whose semantic type has at most the range and precision of double, to the range and precision of double;
-**	    evaluate all other operations and constants to the range and precision of the semantic type.
-**	 2  evaluate all operations and constants, whose semantic type has at most the range and precision of long double, to the range and precision of long double;
-**	    evaluate all other operations and constants to the range and precision of the semantic type.
-**	 N  where _FloatN  is a supported interchange floating type:
-**	    evaluate all operations and constants, whose semantic type has at most the range and precision of the _FloatN type, to the range and precision of the _FloatN type;
-**	    evaluate all other operations and constants to the range and precision of the semantic type.
-**	 N + 1, where _FloatNx is a supported extended floating type:
-**	    evaluate operations and constants, whose semantic type has at most the range and precision of the _FloatNx type, to the range and precision of the _FloatNx type;
-**	    evaluate all other operations and constants to the range and precision of the semantic type.
+**	`-1`	indeterminate
+**	 `0`	evaluate all operations and constants, whose semantic type has at most the range and precision of float, to the range and precision of float;
+**	    	evaluate all other operations and constants to the range and precision of the semantic type.
+**	 `1`	evaluate all operations and constants, whose semantic type has at most the range and precision of double, to the range and precision of double;
+**	    	evaluate all other operations and constants to the range and precision of the semantic type.
+**	 `2`	evaluate all operations and constants, whose semantic type has at most the range and precision of long double, to the range and precision of long double;
+**	    	evaluate all other operations and constants to the range and precision of the semantic type.
+**	 `N`	where `_FloatN`  is a supported interchange floating type:
+**	    	evaluate all operations and constants, whose semantic type has at most the range and precision of the _FloatN type, to the range and precision of the _FloatN type;
+**	    	evaluate all other operations and constants to the range and precision of the semantic type.
+**	 `N + 1`, where `_FloatNx` is a supported extended floating type:
+**	    	evaluate operations and constants, whose semantic type has at most the range and precision of the _FloatNx type, to the range and precision of the _FloatNx type;
+**	    	evaluate all other operations and constants to the range and precision of the semantic type.
 */
 #ifndef FLT_EVAL_METHOD
 #define FLT_EVAL_METHOD	1
@@ -393,43 +394,21 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 */
 typedef union float_cast
 {
-	t_float		value_float;
+	t_float	value_float;
 #if (LIBCONFIG_BITS_FLOAT == 32)
-	t_s32		value_int;
+	s32		value_int;
 #elif (LIBCONFIG_BITS_FLOAT == 64)
-	t_s64		value_int;
+	s64		value_int;
 #else
-	t_s64[2]	value_int;
+	s64[2]	value_int;
 #endif
 }				u_float_cast;
 
 
 
-/*
-** ************************************************************************** *|
-**                       Variable-size primitive types                        *|
-** ************************************************************************** *|
-*/
-
-//! A union storing a floating-point number of any common size/precision
-/*!
-**	These unions are used for certain difficult casting conditions.
-**	They are used in particular when casting an <stdarg.h> var_arg to the
-**	appropriate type in c_printf.
-*/
-typedef union varfloat
-{
-	t_f32			f;
-	t_f64			d;
-#ifdef	__float80
-	t_f80			e;
 #endif
-#ifdef	__float128
-	t_f128			q;
-#endif
-}		u_varfloat;
-
-
+#ifndef __LIBCCC_FLOAT_F
+#define __LIBCCC_FLOAT_F
 
 /*
 ** ************************************************************************** *|
@@ -1019,6 +998,8 @@ t_f128					F128_FromString_Bin(t_char const* str);
 // TODO Float_FromString_Base()
 
 
+
+#endif
 
 /*! @} */
 HEADER_END

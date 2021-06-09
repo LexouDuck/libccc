@@ -26,13 +26,7 @@
 ** ************************************************************************** *|
 */
 
-#include "libccc_config.h"
-#include "libccc_naming.h"
-#include "libccc_define.h"
-
-#include "libccc/int.h"
-#include "libccc/bool.h"
-#include "libccc/pointer.h"
+#include "libccc.h"
 
 HEADER_CPP
 

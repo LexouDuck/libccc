@@ -49,14 +49,13 @@
 	#define O_TEST      0 // TODO find platform-specific value
 #endif
 
-#include "libccc/bool.h"
-#include "libccc/char.h"
-#include "libccc/int.h"
-#include "libccc/pointer.h"
-#include "libccc/color.h"
+#include "libccc.h"
 #include "libccc/sys/ansi.h"
 
 HEADER_CPP
+
+#ifndef __LIBCCC_SYS_IO_T
+#define __LIBCCC_SYS_IO_T
 
 /*
 ** ************************************************************************** *|
@@ -154,6 +153,10 @@ TYPEDEF_ALIAS(			t_io_open, IO_OPEN, PRIMITIVE)
 //!@}
 
 
+
+#endif
+#ifndef __LIBCCC_SYS_IO_F
+#define __LIBCCC_SYS_IO_F
 
 /*
 ** ************************************************************************** *|
@@ -435,6 +438,8 @@ t_size					IO_Output_Format(t_char const* format, ...);
 #define c_printf		IO_Output_Format
 
 
+
+#endif
 
 /*! @} */
 HEADER_END

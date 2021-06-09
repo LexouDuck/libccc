@@ -23,14 +23,16 @@
 ** ************************************************************************** *|
 */
 
-#include "libccc_define.h"
+#include "libccc.h"
 
-#include "libccc/char.h"
 #include "libccc/string.h"
 #include "libccc/format.h"
 #include "libccc/sys/io.h"
 
 HEADER_CPP
+
+#ifndef __LIBCCC_ERROR_T
+#define __LIBCCC_ERROR_T
 
 /*
 ** ************************************************************************** *|
@@ -42,6 +44,10 @@ HEADER_CPP
 typedef void (*f_ccchandler)(e_cccerror, t_char const*);
 
 
+
+#endif
+#ifndef __LIBCCC_ERROR_F
+#define __LIBCCC_ERROR_F
 
 /*
 ** ************************************************************************** *|
@@ -103,6 +109,8 @@ void			Error_SetHandler(e_cccerror error, f_ccchandler handler);
 void			Error_SetAllHandlers(f_ccchandler handler);
 
 
+
+#endif
 
 /*! @} */
 HEADER_END

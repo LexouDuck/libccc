@@ -25,16 +25,65 @@
 
 #include "libccc_config.h"
 #include "libccc_define.h"
+#include "libccc_naming.h"
+#include "libccc_errors.h"
 
+//#define __LIBCCC_NOFUNCTIONS__
+
+#define	__LIBCCC_CHAR_F
+#define	__LIBCCC_TEXT_ASCII_F
+#define	__LIBCCC_TEXT_UNICODE_F
+#define	__LIBCCC_BOOL_F
+#define	__LIBCCC_INT_F
+#define	__LIBCCC_FIXED_F
+#define	__LIBCCC_FLOAT_F
+#define	__LIBCCC_POINTER_F
+#define	__LIBCCC_COLOR_F
+
+#ifndef __LIBCCC_BOOL_H
 #include "libccc/bool.h"
+#endif
+#ifndef __LIBCCC_CHAR_H
 #include "libccc/char.h"
+#endif
+#ifndef __LIBCCC_INT_H
 #include "libccc/int.h"
+#endif
+#ifndef __LIBCCC_FIXED_H
 #include "libccc/fixed.h"
+#endif
+#ifndef __LIBCCC_FLOAT_H
 #include "libccc/float.h"
+#endif
+#ifndef __LIBCCC_POINTER_H
 #include "libccc/pointer.h"
-//#include "libccc/string.h"
-//#include "libccc/memory.h"
+#endif
+#ifndef __LIBCCC_COLOR_H
+#include "libccc/color.h"
+#endif
+
+#undef	__LIBCCC_CHAR_H
+#undef	__LIBCCC_CHAR_F
+#undef	__LIBCCC_TEXT_ASCII_H
+#undef	__LIBCCC_TEXT_ASCII_F
+#undef	__LIBCCC_TEXT_UNICODE_H
+#undef	__LIBCCC_TEXT_UNICODE_F
+#undef	__LIBCCC_BOOL_H
+#undef	__LIBCCC_BOOL_F
+#undef	__LIBCCC_INT_H
+#undef	__LIBCCC_INT_F
+#undef	__LIBCCC_FIXED_H
+#undef	__LIBCCC_FIXED_F
+#undef	__LIBCCC_FLOAT_H
+#undef	__LIBCCC_FLOAT_F
+#undef	__LIBCCC_POINTER_H
+#undef	__LIBCCC_POINTER_F
+#undef	__LIBCCC_COLOR_H
+#undef	__LIBCCC_COLOR_F
+
 //#include "libccc/error.h"
+//#include "libccc/memory.h"
+//#include "libccc/string.h"
 
 HEADER_CPP
 

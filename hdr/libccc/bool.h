@@ -24,11 +24,12 @@
 ** ************************************************************************** *|
 */
 
-#include "libccc_config.h"
-#include "libccc_naming.h"
-#include "libccc_define.h"
+#include "libccc.h"
 
 HEADER_CPP
+
+#ifndef __LIBCCC_BOOL_T
+#define __LIBCCC_BOOL_T
 
 /*
 ** ************************************************************************** *|
@@ -36,40 +37,16 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-#ifdef	FALSE
-#undef	FALSE
-#endif	//! Represents a boolean false value (0)
-#define FALSE	(0)
-
-#ifdef	TRUE
-#undef	TRUE
-#endif	//! Represents a boolean true value  (1)
-#define TRUE	(1)
-
-
-
-#ifdef	false
-#undef	false
-#endif	//! Represents a boolean false value (0)
-#define false	FALSE
-
-#ifdef	true
-#undef	true
-#endif	//! Represents a boolean true value  (1)
-#define true	TRUE
-
-
-
 //! Primitve type: The boolean type (`TRUE` or `FALSE`)
 /*!
 **	@isostd{C99,https://en.cppreference.com/w/c/types/boolean}
 **
-**	Here, we use the native (since C99) `_Bool` boolean type.
+**	Here, we use the native (since the C99 standard) `_Bool` boolean type.
 **	This type is useful because its value will always be 0 or 1, never more.
 **	This means you will not have strange behaviors caused by the use of integer
 **	arithmetic operations on booleans - do not assume `t_bool` works like int types.
 **	NB: Conversion to `_Bool` does not work the same as conversion to other
-**	integer types: `(bool)0.5` gives `1`, whereas `(int)0.5` gives `​0`​.
+**	integer types: `(bool)0.5` gives `1`, whereas `(int)0.5` gives `0`.
 **
 **	@see
 **	- Bool_ToString()
@@ -90,6 +67,26 @@ HEADER_CPP
 
 #endif
 TYPEDEF_ALIAS(		t_bool, BOOL, PRIMITIVE)
+//!@}
+
+
+
+//! Represents a boolean false value (0)
+//!@{
+#undef	FALSE
+#define FALSE	(0)
+
+#undef	false
+#define false	FALSE
+//!@}
+
+//! Represents a boolean true value  (1)
+//!@{
+#undef	TRUE
+#define TRUE	(1)
+
+#undef	true
+#define true	TRUE
 //!@}
 
 
@@ -128,6 +125,10 @@ TYPEDEF_ALIAS(		t_bool, BOOL, PRIMITIVE)
 
 
 
+#endif
+#ifndef __LIBCCC_BOOL_F
+#define __LIBCCC_BOOL_F
+
 /*
 ** ************************************************************************** *|
 **                             String Conversions                             *|
@@ -144,14 +145,6 @@ TYPEDEF_ALIAS(		t_bool, BOOL, PRIMITIVE)
 
 
 
-/*! @} */
-HEADER_END
-#endif
-
-
-
-#if (defined(__LIBCCC_CHAR_H) && defined(CHARSET_WHITESPACE))
-
 //! Get the string representation of a boolean value (TRUE or FALSE)
 _MALLOC()
 t_char*					Bool_ToString(t_bool value, t_bool uppercase);
@@ -161,4 +154,10 @@ t_char*					Bool_ToString(t_bool value, t_bool uppercase);
 t_bool					Bool_FromString(t_char const* str);
 #define c_strtobool		Bool_FromString //!< @alias{Bool_FromString}
 
+
+
+#endif
+
+/*! @} */
+HEADER_END
 #endif

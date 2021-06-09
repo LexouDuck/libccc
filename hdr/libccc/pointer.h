@@ -54,13 +54,12 @@
 	typedef signed long long	intptr_t;
 #endif
 
-#include "libccc_config.h"
-#include "libccc_naming.h"
-#include "libccc_define.h"
-
-#include "libccc/char.h"
+#include "libccc.h"
 
 HEADER_CPP
+
+#ifndef __LIBCCC_POINTER_T
+#define __LIBCCC_POINTER_T
 
 /*
 ** ************************************************************************** *|
@@ -136,6 +135,10 @@ TYPEDEF_ALIAS(		t_uintptr, UINTPTR, PRIMITIVE)
 
 
 
+#endif
+#ifndef __LIBCCC_POINTER_F
+#define __LIBCCC_POINTER_F
+
 /*
 ** ************************************************************************** *|
 **                        String Conversion Functions                         *|
@@ -193,6 +196,8 @@ t_char*					Pointer_ToString_Hex(void const* ptr);
 #define c_ptrtostrhex	Pointer_ToString_Hex //!< @alias{Pointer_ToString_Hex}
 
 
+
+#endif
 
 /*! @} */
 HEADER_END

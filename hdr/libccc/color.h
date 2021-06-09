@@ -26,16 +26,12 @@
 ** ************************************************************************** *|
 */
 
-#include "libccc_config.h"
-#include "libccc_naming.h"
-#include "libccc_define.h"
-
-#include "libccc/bool.h"
-#include "libccc/int.h"
-#include "libccc/float.h"
-#include "libccc/pointer.h"
+#include "libccc.h"
 
 HEADER_CPP
+
+#ifndef __LIBCCC_COLOR_T
+#define __LIBCCC_COLOR_T
 
 /*
 ** ************************************************************************** *|
@@ -44,7 +40,7 @@ HEADER_CPP
 */
 
 //! This type represents an unsigned 16-bit number which stores an ARGB 1555 color
-typedef t_u16	t_argb16;
+typedef u16		t_argb16;
 TYPEDEF_ALIAS(	t_argb16, COLOR_ARGB16, PRIMITIVE)
 
 //! The maximum possible value for one color channel of an ARGB16 color `[0, 31]`
@@ -63,7 +59,7 @@ TYPEDEF_ALIAS(	t_argb16, COLOR_ARGB16, PRIMITIVE)
 
 
 //! This type represents an unsigned 32-bit number which stores an ARGB 8888 color
-typedef t_u32	t_argb32;
+typedef u32		t_argb32;
 TYPEDEF_ALIAS(	t_argb32, COLOR_ARGB32, PRIMITIVE)
 
 //! The maximum possible value for one color channel of an ARGB16 color `[0, 255]`
@@ -104,6 +100,10 @@ typedef struct ahsl
 TYPEDEF_ALIAS(	s_ahsl, COLOR_AHSL, STRUCT)
 
 
+
+#endif
+#ifndef __LIBCCC_COLOR_F
+#define __LIBCCC_COLOR_F
 
 /*
 ** ************************************************************************** *|
@@ -454,6 +454,8 @@ s_ahsl const*					Color_AHSL_GetNearest(s_ahsl target, s_ahsl const* colors, t_s
 #define c_color_ahsl_nearest	Color_AHSL_GetNearest
 
 
+
+#endif
 
 /*! @} */
 HEADER_END

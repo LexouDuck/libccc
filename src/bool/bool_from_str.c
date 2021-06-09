@@ -1,8 +1,8 @@
 
-#include "libccc/char.h"
+#include "libccc.h"
 #include "libccc/bool.h"
+#include "libccc/char.h"
 #include "libccc/int.h"
-#include "libccc/pointer.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 
@@ -15,7 +15,9 @@ t_bool	Bool_FromString(t_char const* str)
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (FALSE);)
 	i = 0;
 	while (str[i] && Char_IsSpace(str[i]))
+	{
 		++i;
+	}
 	if (!str[i])
 		return (FALSE);
 	if (Char_IsDigit(str[i]) && S64_FromString(str + i))

@@ -53,12 +53,12 @@
 	};
 #endif
 
-#include "libccc/bool.h"
-#include "libccc/char.h"
-#include "libccc/int.h"
-#include "libccc/pointer.h"
+#include "libccc.h"
 
 HEADER_CPP
+
+#ifndef __LIBCCC_SYS_TIME_T
+#define __LIBCCC_SYS_TIME_T
 
 /*
 ** ************************************************************************** *|
@@ -304,6 +304,10 @@ TYPEDEF_ALIAS(	s_date, TIME_DATE, STRUCT)
 //!@}
 
 
+
+#endif
+#ifndef __LIBCCC_SYS_TIME_F
+#define __LIBCCC_SYS_TIME_F
 
 /*
 ** ************************************************************************** *|
@@ -749,6 +753,8 @@ t_bool		Date_IsLeapYear(t_s32 year);
 t_bool		Date_HasLeapSecond(e_month month, t_s32 year);
 
 
+
+#endif
 
 /*! @} */
 HEADER_END

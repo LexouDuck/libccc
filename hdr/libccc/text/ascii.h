@@ -26,13 +26,12 @@
 ** ************************************************************************** *|
 */
 
-#include "libccc_config.h"
-#include "libccc_naming.h"
-#include "libccc_define.h"
-
-#include "libccc/bool.h"
+#include "libccc.h"
 
 HEADER_CPP
+
+#ifndef __LIBCCC_TEXT_ASCII_T
+#define __LIBCCC_TEXT_ASCII_T
 
 /*
 ** ************************************************************************** *|
@@ -134,6 +133,10 @@ TYPEDEF_ALIAS(	t_ascii, ASCII, PRIMITIVE)
 //!@}
 
 
+
+#endif
+#ifndef __LIBCCC_TEXT_ASCII_F
+#define __LIBCCC_TEXT_ASCII_F
 
 /*
 ** ************************************************************************** *|
@@ -366,6 +369,8 @@ t_ascii					ASCII_ToLowercase(t_ascii c);
 #define ASCII_ToLower	ASCII_ToLowercase
 
 
+
+#endif
 
 /*! @} */
 HEADER_END
