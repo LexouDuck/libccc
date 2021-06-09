@@ -22,7 +22,7 @@
 
 
 
-#ifndef __APPLE__
+#if (!defined(__APPLE__) || defined(__NOSTD__))
 
 	#ifndef vscprintf
 static int	vscprintf(t_char const* format, va_list args)
