@@ -69,18 +69,18 @@ typedef		t_q128	(*f_q128_operator)	(t_q128 x,	t_q128 y);
 **	@nonstd
 */
 //!@{
-#define						Fixed_Abs	CONCAT(FIXED_TYPE,_Abs)
-t_q16						Q16_Abs(t_q16 x);
-t_q32						Q32_Abs(t_q32 x);
-t_q64						Q64_Abs(t_q64 x);
+#define				Fixed_Abs	CONCAT(FIXED_TYPE,_Abs)
+t_q16				Q16_Abs(t_q16 x);
+t_q32				Q32_Abs(t_q32 x);
+t_q64				Q64_Abs(t_q64 x);
 #ifdef __int128
-t_q128						Q128_Abs(t_q128 x);
+t_q128				Q128_Abs(t_q128 x);
 #endif
-#define c_qabs				Fixed_Abs 	//!< @alias{Fixed_Abs}
-#define c_q16abs			Q16_Abs 	//!< @alias{Q16_Abs}
-#define c_q32abs			Q32_Abs 	//!< @alias{Q32_Abs}
-#define c_q64abs			Q64_Abs 	//!< @alias{Q64_Abs}
-#define c_q128abs			Q128_Abs 	//!< @alias{Q128_Abs}
+#define c_qabs		Fixed_Abs 	//!< @alias{Fixed_Abs}
+#define c_q16abs	Q16_Abs 	//!< @alias{Q16_Abs}
+#define c_q32abs	Q32_Abs 	//!< @alias{Q32_Abs}
+#define c_q64abs	Q64_Abs 	//!< @alias{Q64_Abs}
+#define c_q128abs	Q128_Abs 	//!< @alias{Q128_Abs}
 
 #define Fixed_AbsoluteValue	Fixed_Abs
 //!@}

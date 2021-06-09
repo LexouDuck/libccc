@@ -6,42 +6,6 @@
 
 
 
-#if LIBCONFIG_USE_FAST_APPROX_MATH
-inline
-t_float	c_fabs(t_float x)
-{
-	u_float_cast	result;
-
-	result.value_float = x;
-	if (result.value_int & FLOAT_SIGNED)
-	{
-		result.value_int &= ~FLOAT_SIGNED;
-	}
-	return (result.value_float);
-}
-#else
-MATH_DECL_REALFUNCTION(abs, fabs)
-#endif
-
-
-
-#if LIBCONFIG_USE_FAST_APPROX_MATH
-inline
-t_float	c_fmod(t_float x, t_float y)
-{
-	t_float		a;
-	t_s64		floor_a;
-
-	a = x / y;
-	floor_a = (t_s64)a;
-	return ((a - (t_float)floor_a) * y);
-}
-#else
-MATH_DECL_REALOPERATOR(mod, fmod)
-#endif
-
-
-
 // TODO implement c_round
 
 

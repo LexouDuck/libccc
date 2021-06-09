@@ -8,23 +8,23 @@
 #define DEFINEFUNC_FIXED_FROMINT(BITS) \
 inline t_q##BITS	Q##BITS##_FromInt(t_sint number)						\
 {																			\
-	return ((t_q##BITS)(number << FIXED_BITS_FRACTIONPART));				\
+	return ((t_q##BITS)(number * FIXED_DENOMINATOR));						\
 }
 
 #define DEFINEFUNC_FIXED_FROMFIXED(BITS) \
 inline t_q##BITS	Q##BITS##_FromFixed(t_fixed number)						\
 {																			\
-	return ((t_q##BITS)number);												\
+	return ((t_q##BITS)(number));											\
 }
 
 #define DEFINEFUNC_FIXED_FROMFLOAT(BITS) \
 inline t_q##BITS	Q##BITS##_FromFloat(t_float number)						\
 {																			\
-	if (number > (t_float)(Q##BITS##_MAX >> FIXED_BITS_FRACTIONPART))	return (Q##BITS##_MAX);	\
-	if (number < (t_float)(Q##BITS##_MIN >> FIXED_BITS_FRACTIONPART))	return (Q##BITS##_MIN);	\
+	if (number > Float_FromFixed(Q##BITS##_MAX))	return (Q##BITS##_MAX);	\
+	if (number < Float_FromFixed(Q##BITS##_MIN))	return (Q##BITS##_MIN);	\
 	return (																\
-		((t_q##BITS)Q##BITS##_Truncate(number) << FIXED_BITS_FRACTIONPART) |\
-		((t_q##BITS)Q##BITS##_Mod(number, 1) & (FIXED_MASK_FRACTIONPART))	\
+		(t_q##BITS)(Float_Truncate(number) * FIXED_DENOMINATOR) +			\
+		(t_q##BITS)(Float_Mod(number, 1))									\
 	);																		\
 }
 
@@ -32,18 +32,12 @@ inline t_q##BITS	Q##BITS##_FromFloat(t_float number)						\
 
 #define DEFINEFUNC_FIXED_FROM(BITS) \
 inline t_q##BITS	Q##BITS##_From(											\
-	t_s##BITS part_integer,													\
-	t_u##BITS part_fraction,												\
-	t_u##BITS denominator)													\
+	t_s##BITS numerator,													\
+	t_s##BITS denominator)													\
 {																			\
-	t_q##BITS result = 0;													\
-	if (part_fraction == denominator)	part_integer += 1;					\
-	else if (part_fraction > denominator)	return (0);						\
-	if (part_integer >= Q##BITS##_MAX_INTEGERPART)							\
-		part_integer = (Q##BITS##_MAX_INTEGERPART - 1);						\
-	result = ((t_q##BITS)part_integer << FIXED_BITS_FRACTIONPART);			\
-	result |= (part_fraction * FIXED_MAX_FRACTIONPART) / denominator;		\
-	return (result);														\
+	if (denominator == FIXED_DENOMINATOR)									\
+		return ((t_q##BITS)numerator);										\
+	return ((numerator * denominator) / FIXED_DENOMINATOR);					\
 }
 
 
@@ -51,31 +45,14 @@ inline t_q##BITS	Q##BITS##_From(											\
 #define DEFINEFUNC_FIXED_INTEGERPART(BITS) \
 inline t_q##BITS	Q##BITS##_IntegerPart(t_q##BITS number)					\
 {																			\
-	return (number >> FIXED_BITS_FRACTIONPART);								\
+	return (number / FIXED_DENOMINATOR * FIXED_DENOMINATOR);				\
 }
 
 #define DEFINEFUNC_FIXED_FRACTIONPART(BITS) \
 inline t_q##BITS	Q##BITS##_FractionPart(t_q##BITS number)				\
 {																			\
-	return (number & (FIXED_MASK_FRACTIONPART));							\
+	return (number % FIXED_DENOMINATOR);									\
 }
-
-
-
-#define DEFINEFUNC_FIXED_ROUND(BITS) \
-inline t_q##BITS	Q##BITS##_Round(t_q##BITS number)						\
-{																			\
-	t_q##BITS fraction = (number & (FIXED_MASK_FRACTIONPART));				\
-	if (fraction < FIXED_MAX_FRACTIONPART / 2)								\
-		return (number - fraction);											\
-	else return (number + (FIXED_MAX_FRACTIONPART - fraction));				\
-}
-
-#define DEFINEFUNC_FIXED_TRUNC(BITS) \
-inline t_q##BITS	Q##BITS##_Truncate(t_q##BITS number)									\
-{																							\
-	return ((t_q##BITS)((number >> FIXED_BITS_FRACTIONPART) << FIXED_BITS_FRACTIONPART));	\
-} // TODO fix this
 
 
 
@@ -85,8 +62,6 @@ DEFINEFUNC_FIXED_FROMFLOAT(		16)
 DEFINEFUNC_FIXED_FROM(			16)
 DEFINEFUNC_FIXED_INTEGERPART(	16)
 DEFINEFUNC_FIXED_FRACTIONPART(	16)
-DEFINEFUNC_FIXED_ROUND(			16)
-DEFINEFUNC_FIXED_TRUNC(			16)
 
 DEFINEFUNC_FIXED_FROMINT(		32)
 DEFINEFUNC_FIXED_FROMFIXED(		32)
@@ -94,8 +69,6 @@ DEFINEFUNC_FIXED_FROMFLOAT(		32)
 DEFINEFUNC_FIXED_FROM(			32)
 DEFINEFUNC_FIXED_INTEGERPART(	32)
 DEFINEFUNC_FIXED_FRACTIONPART(	32)
-DEFINEFUNC_FIXED_ROUND(			32)
-DEFINEFUNC_FIXED_TRUNC(			32)
 
 DEFINEFUNC_FIXED_FROMINT(		64)
 DEFINEFUNC_FIXED_FROMFIXED(		64)
@@ -103,8 +76,6 @@ DEFINEFUNC_FIXED_FROMFLOAT(		64)
 DEFINEFUNC_FIXED_FROM(			64)
 DEFINEFUNC_FIXED_INTEGERPART(	64)
 DEFINEFUNC_FIXED_FRACTIONPART(	64)
-DEFINEFUNC_FIXED_ROUND(			64)
-DEFINEFUNC_FIXED_TRUNC(			64)
 
 #ifdef __int128
 DEFINEFUNC_FIXED_FROMINT(		128)
@@ -113,6 +84,4 @@ DEFINEFUNC_FIXED_FROMFLOAT(		128)
 DEFINEFUNC_FIXED_FROMFRACTION(	128)
 DEFINEFUNC_FIXED_INTEGERPART(	128)
 DEFINEFUNC_FIXED_FRACTIONPART(	128)
-DEFINEFUNC_FIXED_ROUND(			128)
-DEFINEFUNC_FIXED_TRUNC(			128)
 #endif

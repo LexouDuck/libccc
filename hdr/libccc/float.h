@@ -39,6 +39,7 @@
 #include "libccc/char.h"
 #include "libccc/bool.h"
 #include "libccc/int.h"
+#include "libccc/fixed.h"
 
 HEADER_CPP
 
@@ -436,7 +437,7 @@ typedef union varfloat
 ** ************************************************************************** *|
 */
 
-//! A smart constructor: calls the appropriate `Fixed_From*()` function from the given argument type
+//! A smart constructor: calls the appropriate `Float_From*()` function from the given argument type
 //!@{
 #define DEFINEFUNC_Float(X, FUNCTYPE) \
 	_Generic((X),	\
@@ -463,9 +464,68 @@ typedef union varfloat
 #define F128(X)		DEFINEFUNC_Float(X, F128)
 //!@}
 
-// TODO Float_FromInt()
-// TODO Float_FromFixed()
-// TODO Float_FromFloat()
+//! Returns the nearest floating-point value to the given integer `number`
+/*!
+**	TODO document
+*/
+//!@{
+#define					Float_FromInt	CONCAT(FIXED_TYPE,_FromInt)
+t_f32					F32_FromInt(t_sint number);
+t_f64					F64_FromInt(t_sint number);
+#ifdef __float80
+t_f16					F80_FromInt(t_sint number);
+#endif
+#ifdef __float128
+t_f128					F128_FromInt(t_sint number);
+#endif
+#define c_itofloat		Float_FromInt 	//!< @alias{Float_FromInt}
+#define c_itof16		F16_FromInt 	//!< @alias{F16_FromInt}
+#define c_itof32		F32_FromInt 	//!< @alias{F32_FromInt}
+#define c_itof64		F64_FromInt 	//!< @alias{F64_FromInt}
+#define c_itof128		F128_FromInt 	//!< @alias{F128_FromInt}
+//!@}
+
+//! Returns the nearest floating-point value to the given fixed-point `number`
+/*!
+**	TODO document
+*/
+//!@{
+#define					Float_FromFixed	CONCAT(FIXED_TYPE,_FromFixed)
+t_f32					F32_FromFixed(t_fixed number);
+t_f64					F64_FromFixed(t_fixed number);
+#ifdef __float80
+t_f16					F80_FromFixed(t_fixed number);
+#endif
+#ifdef __float128
+t_f128					F128_FromFixed(t_fixed number);
+#endif
+#define c_qtofloat		Float_FromFixed	//!< @alias{Float_FromFixed}
+#define c_qtof16		F16_FromFixed	//!< @alias{F16_FromFixed}
+#define c_qtof32		F32_FromFixed	//!< @alias{F32_FromFixed}
+#define c_qtof64		F64_FromFixed	//!< @alias{F64_FromFixed}
+#define c_qtof128		F128_FromFixed	//!< @alias{F128_FromFixed}
+//!@}
+
+//! Returns the nearest floating-point value to the given floating-point `number`
+/*!
+**	TODO document
+*/
+//!@{
+#define	 				Float_FromFloat	CONCAT(FIXED_TYPE,_FromFloat)
+t_f32	 				F32_FromFloat(t_float number);
+t_f64	 				F64_FromFloat(t_float number);
+#ifdef __float80
+t_f16	 				F80_FromFloat(t_float number);
+#endif
+#ifdef __float128
+t_f128	 				F128_FromFloat(t_float number);
+#endif
+#define c_ftofloat		Float_FromFloat	//!< @alias{Float_FromFloat}
+#define c_ftof16		F16_FromFloat	//!< @alias{F16_FromFloat}
+#define c_ftof32		F32_FromFloat	//!< @alias{F32_FromFloat}
+#define c_ftof64		F64_FromFloat	//!< @alias{F64_FromFloat}
+#define c_ftof128		F128_FromFloat	//!< @alias{F128_FromFloat}
+//!@}
 
 
 

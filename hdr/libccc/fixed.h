@@ -85,31 +85,12 @@ HEADER_CPP
 
 // TODO make fixed-point type have configurable denominator, not just bitwise point ?
 
-//! The amount of bits dedicated to the fixed-point number type's fractional number part
-#define FIXED_BITS_FRACTIONPART	LIBCONFIG_FIXED_BITS_FRACTIONPART(LIBCONFIG_BITS_FIXED)
-#define Q16_BITS_FRACTIONPART	LIBCONFIG_FIXED_BITS_FRACTIONPART(16)
-#define Q32_BITS_FRACTIONPART	LIBCONFIG_FIXED_BITS_FRACTIONPART(32)
-#define Q64_BITS_FRACTIONPART	LIBCONFIG_FIXED_BITS_FRACTIONPART(64)
-#define Q128_BITS_FRACTIONPART	LIBCONFIG_FIXED_BITS_FRACTIONPART(128)
-#define FIXED_MASK_FRACTIONPART	(((CONCAT(t_s,LIBCONFIG_BITS_FIXED))1 << FIXED_BITS_FRACTIONPART) - 1)
-#define FIXED_MAX_FRACTIONPART	(((CONCAT(t_s,LIBCONFIG_BITS_FIXED))1 << FIXED_BITS_FRACTIONPART) - 1)
-#define Q16_MAX_FRACTIONPART	(((t_q16) 1 << Q16_BITS_FRACTIONPART) - 1)
-#define Q32_MAX_FRACTIONPART	(((t_q32) 1 << Q32_BITS_FRACTIONPART) - 1)
-#define Q64_MAX_FRACTIONPART	(((t_q64) 1 << Q64_BITS_FRACTIONPART) - 1)
-#define Q128_MAX_FRACTIONPART	(((t_q128)1 << Q128_BITS_FRACTIONPART)- 1)
+//! The maximum value of the fixed-point number type's fractional number part
+#define FIXED_MAX_FRACTIONPART	(LIBCONFIG_FIXED_DENOMINATOR - 1)
 
 //! The amount of bits dedicated to the fixed-point number type's integer number part
-#define FIXED_BITS_INTEGERPART	LIBCONFIG_FIXED_BITS_INTEGERPART(LIBCONFIG_BITS_FIXED)
-#define Q16_BITS_INTEGERPART	LIBCONFIG_FIXED_BITS_INTEGERPART(16)
-#define Q32_BITS_INTEGERPART	LIBCONFIG_FIXED_BITS_INTEGERPART(32)
-#define Q64_BITS_INTEGERPART	LIBCONFIG_FIXED_BITS_INTEGERPART(64)
-#define Q128_BITS_INTEGERPART	LIBCONFIG_FIXED_BITS_INTEGERPART(128)
-#define FIXED_MASK_INTEGERPART	((((CONCAT(t_s,LIBCONFIG_BITS_FIXED))1 << FIXED_BITS_INTEGERPART) - 1) << FIXED_BITS_FRACTIONPART)
-#define FIXED_MAX_INTEGERPART	 (((CONCAT(t_s,LIBCONFIG_BITS_FIXED))1 << FIXED_BITS_INTEGERPART) - 1)
-#define Q16_MAX_INTEGERPART		 (((t_q16)1  << Q16_BITS_INTEGERPART) - 1)
-#define Q32_MAX_INTEGERPART		 (((t_q32)1  << Q32_BITS_INTEGERPART) - 1)
-#define Q64_MAX_INTEGERPART		 (((t_q64)1  << Q64_BITS_INTEGERPART) - 1)
-#define Q128_MAX_INTEGERPART	 (((t_q128)1 << Q128_BITS_INTEGERPART)- 1)
+#define FIXED_MAX_INTEGERPART	(CONCAT(CONCAT(S,LIBCONFIG_BITS_FIXED),_MAX) / LIBCONFIG_FIXED_DENOMINATOR)
+#define FIXED_MIN_INTEGERPART	(CONCAT(CONCAT(S,LIBCONFIG_BITS_FIXED),_MIN) / LIBCONFIG_FIXED_DENOMINATOR)
 
 
 
@@ -231,6 +212,9 @@ HEADER_CPP
 #define FIXED_T			CONCAT(t_q,LIBCONFIG_BITS_FIXED)
 //! The actual underlying type for the `t_fixed` configurable type, in uppercase
 #define FIXED_TYPE		CONCAT(Q,LIBCONFIG_BITS_FIXED)
+//! the denominator/divisor for this fixed-point number type, @see #LIBCONFIG_FIXED_DENOMINATOR
+#define FIXED_DENOMINATOR	LIBCONFIG_FIXED_DENOMINATOR
+
 
 //! The configurable-size fixed-point number primitive type.
 /*!
@@ -262,18 +246,6 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 	LIBCONFIG_BITS_FIXED != 64 && \
 	LIBCONFIG_BITS_FIXED != 128)
 	#error "LIBCONFIG_BITS_FIXED must be equal to one of: 16, 32, 64, 128"
-#endif
-
-#if (FIXED_BITS_INTEGERPART > LIBCONFIG_BITS_FIXED)
-	#error "FIXED_BITS_INTEGERPART must be inferior or equal to LIBCONFIG_BITS_FIXED"
-#endif
-
-#if (FIXED_BITS_FRACTIONPART > LIBCONFIG_BITS_FIXED)
-	#error "FIXED_BITS_FRACTIONPART must be inferior or equal to LIBCONFIG_BITS_FIXED"
-#endif
-
-#if (FIXED_BITS_INTEGERPART + FIXED_BITS_FRACTIONPART > LIBCONFIG_BITS_FIXED)
-	#error "The sum of both _INTEGERPART and _DECIMALPART must be inferior or equal to LIBCONFIG_BITS_FIXED"
 #endif
 
 
@@ -389,21 +361,20 @@ t_q128	 				Q128_FromFloat(t_float number);
 
 
 
-//! Create a new fixed-point value from its individual component parts
+//! Get the nearest fixed-point value from the given fraction/rational number
 /*!
 **	TODO document
-**	@param	part_integer	the integer portion of the fixed-point number
-**	@param	part_fraction	the fractional portion of the fixed-point number
-**	@param	denominator		the denominator applied to this fixed-point number
+$$	@param	numerator		the numerator: number at the top of the fraction
+**	@param	denominator		the denominator: number at the bottom of the fraction
 **	@returns
 */
 //!@{
 #define					Fixed_From	CONCAT(FIXED_TYPE,_From)
-t_q16					Q16_From(t_s16 part_integer, t_u16 part_fraction, t_u16 denominator);
-t_q32					Q32_From(t_s32 part_integer, t_u32 part_fraction, t_u32 denominator);
-t_q64					Q64_From(t_s64 part_integer, t_u64 part_fraction, t_u64 denominator);
+t_q16					Q16_From(t_s16 part_fraction, t_s16 denominator);
+t_q32					Q32_From(t_s32 part_fraction, t_s32 denominator);
+t_q64					Q64_From(t_s64 part_fraction, t_s64 denominator);
 #ifdef __int128
-t_q128					Q128_From(t_s128 part_integer, t_u128 part_fraction, t_u128 denominator);
+t_q128					Q128_From(t_s128 part_fraction, t_s128 denominator);
 #endif
 #define c_tofixed		Fixed_From	//!< @alias{Fixed_From}
 #define c_toq16			Q16_From	//!< @alias{Q16_From}
@@ -476,10 +447,10 @@ t_bool					Q64_Equals(t_q64 number1, t_q64 number2);
 t_bool					Q128_Equals(t_q128 number1, t_q128 number2);
 #endif
 #define c_qequ			Fixed_Equals	//!< @alias{Fixed_Equals}
-#define c_q16equ		Q16_Equals	//!< @alias{Q16_Equals}
-#define c_q32equ		Q32_Equals	//!< @alias{Q32_Equals}
-#define c_q64equ		Q64_Equals	//!< @alias{Q64_Equals}
-#define c_q128equ		Q128_Equals	//!< @alias{Q128_Equals}
+#define c_q16equ		Q16_Equals		//!< @alias{Q16_Equals}
+#define c_q32equ		Q32_Equals		//!< @alias{Q32_Equals}
+#define c_q64equ		Q64_Equals		//!< @alias{Q64_Equals}
+#define c_q128equ		Q128_Equals		//!< @alias{Q128_Equals}
 //!@}
 
 

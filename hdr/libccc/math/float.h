@@ -114,6 +114,29 @@ t_f128						F128_Round(t_f128 x);
 #define c_f128round			F128_Round
 //!@}
 
+//! Returns the value of `x`, rounded towards 0
+/*!
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/trunc}
+*/
+//!@{
+#define						Float_Truncate	CONCAT(FLOAT_TYPE,_Truncate)
+t_f32						F32_Truncate(t_f32 x);
+t_f64						F64_Truncate(t_f64 x);
+#ifdef __float80
+t_f80						F80_Truncate(t_f80 x);
+#endif
+#ifdef __float128
+t_f128						F128_Truncate(t_f128 x);
+#endif
+#define c_ftrunc			Float_Truncate
+#define c_f32trunc			F32_Truncate
+#define c_f64trunc			F64_Truncate
+#define c_f80trunc			F80_Truncate
+#define c_f128trunc			F128_Truncate
+
+#define Float_Trunc			Float_Truncate
+//!@}
+
 //! Returns the value of `x`, rounded to the superior integer
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/floor}
@@ -156,29 +179,6 @@ t_f128						F128_Ceiling(t_f128 x);
 #define c_f128ceil			F128_Ceiling
 
 #define Float_Ceil			Float_Ceiling
-//!@}
-
-//! Returns the value of `x`, rounded towards 0
-/*!
-**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/trunc}
-*/
-//!@{
-#define						Float_Truncate	CONCAT(FLOAT_TYPE,_Truncate)
-t_f32						F32_Truncate(t_f32 x);
-t_f64						F64_Truncate(t_f64 x);
-#ifdef __float80
-t_f80						F80_Truncate(t_f80 x);
-#endif
-#ifdef __float128
-t_f128						F128_Truncate(t_f128 x);
-#endif
-#define c_ftrunc			Float_Truncate
-#define c_f32trunc			F32_Truncate
-#define c_f64trunc			F64_Truncate
-#define c_f80trunc			F80_Truncate
-#define c_f128trunc			F128_Truncate
-
-#define Float_Trunc			Float_Truncate
 //!@}
 
 

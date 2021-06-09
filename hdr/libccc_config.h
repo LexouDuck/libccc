@@ -103,10 +103,8 @@ HEADER_CPP
 #define LIBCONFIG_BITS_FIXED	32
 //! @see #FIXED_APPROX and Fixed_EqualsApprox()
 #define LIBCONFIG_FIXED_APPROX	(1.0e-10)
-//! the amount of bits dedicated to the fraction part of the fixed-point types
-#define LIBCONFIG_FIXED_BITS_FRACTIONPART(BITS)	(BITS / 4)
-//! the amount of bits dedicated to the integer part of the fixed-point types
-#define LIBCONFIG_FIXED_BITS_INTEGERPART(BITS)	(BITS - FIXED_BITS_FRACTIONPART)
+//! The amount of subdivisions dedicated to the fraction part of the fixed-point types
+#define LIBCONFIG_FIXED_DENOMINATOR	(256)
 
 
 

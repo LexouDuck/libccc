@@ -175,11 +175,9 @@ SRCS = error.c \
 	fixed/fixed.c			\
 	fixed/fixed_to_str.c	\
 	fixed/fixed_from_str.c	\
-	fixed/operators.c		\
 	float/float.c			\
 	float/float_to_str.c	\
 	float/float_from_str.c	\
-	float/operators.c		\
 	memory/allocate.c	\
 	memory/new.c		\
 	memory/delete.c		\
@@ -281,15 +279,20 @@ SRCS = error.c \
 	sys/logger/util.c	\
 	sys/logger/init.c	\
 	sys/logger/log.c	\
-	math/math.c		\
-	math/pow.c		\
-	math/root.c		\
-	math/exp.c		\
-	math/log.c		\
-	math/trig.c		\
-	math/trig_h.c	\
 	random/prng.c	\
 	random/csprng.c	\
+	math/fixed/comparison.c	\
+	math/fixed/rounding.c	\
+	math/fixed/operators.c	\
+	math/float/comparison.c	\
+	math/float/rounding.c	\
+	math/float/operators.c	\
+	math/float/pow.c		\
+	math/float/root.c		\
+	math/float/exp.c		\
+	math/float/log.c		\
+	math/float/trig.c		\
+	math/float/trig_h.c		\
 	math/algebra/calculus.c				\
 	math/algebra/vector/new.c			\
 	math/algebra/vector/equals.c		\
