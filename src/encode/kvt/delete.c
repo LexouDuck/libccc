@@ -29,14 +29,14 @@ e_cccerror	KVT_Delete(s_kvt* item)
 			else if ((item->type & DYNAMICTYPE_STRING))
 			{
 				if (item->value.string != NULL)
-					Memory_Free(item->value.string);
+					Memory_Delete((void* *)&item->value.string);
 			}
 		}
 		if (item->key != NULL)
 		{
-			Memory_Free(item->key);
+			Memory_Delete((void* *)&item->key);
 		}
-		Memory_Free(item);
+		Memory_Delete((void* *)&item);
 		item = next;
 	}
 	return (OK);
