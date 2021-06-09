@@ -1,4 +1,5 @@
 
+#include "libccc/color.h"
 #include "libccc/sys/io.h"
 #include "libccc/math/math.h"
 

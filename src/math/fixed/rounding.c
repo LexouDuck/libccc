@@ -4,7 +4,7 @@
 
 #include LIBCONFIG_ERROR_INCLUDE
 
-
+/* TODO
 
 #define DEFINEFUNC_FIXED_ROUND(BITS) \
 inline t_q##BITS	Q##BITS##_Round(t_q##BITS number)						\
@@ -54,3 +54,5 @@ DEFINEFUNC_FIXED_TRUNC(	128)
 DEFINEFUNC_FIXED_FLOOR(	128)
 DEFINEFUNC_FIXED_CEIL(	128)
 #endif
+
+*/

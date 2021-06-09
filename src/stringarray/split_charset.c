@@ -1,4 +1,5 @@
 
+#include "libccc/char.h"
 #include "libccc/memory.h"
 #include "libccc/string.h"
 #include "libccc/stringarray.h"
