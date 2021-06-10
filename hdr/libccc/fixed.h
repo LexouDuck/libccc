@@ -244,6 +244,10 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 	#error "LIBCONFIG_BITS_FIXED must be equal to one of: 16, 32, 64, 128"
 #endif
 
+#if (FIXED_DENOMINATOR == 0)
+	#error "LIBCONFIG_FIXED_DENOMINATOR must never be 0 (cannot divide by zero)"
+#endif
+
 
 
 #define Q16_MAX		((t_q16)S16_MAX)	//!< The largest possible value that a 16-bit fixed-point can hold

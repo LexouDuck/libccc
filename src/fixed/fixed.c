@@ -35,6 +35,8 @@ inline t_q##BITS	Q##BITS##_From(											\
 	t_s##BITS numerator,													\
 	t_s##BITS denominator)													\
 {																			\
+	HANDLE_ERROR(MATHDOMAIN, (denominator == 0),							\
+		return (0);)														\
 	if (denominator == FIXED_DENOMINATOR)									\
 		return ((t_q##BITS)numerator);										\
 	return ((numerator * FIXED_DENOMINATOR) / denominator);					\
@@ -45,7 +47,7 @@ inline t_q##BITS	Q##BITS##_From(											\
 #define DEFINEFUNC_FIXED_INTEGERPART(BITS) \
 inline t_q##BITS	Q##BITS##_IntegerPart(t_q##BITS number)					\
 {																			\
-	return (number / FIXED_DENOMINATOR * FIXED_DENOMINATOR);				\
+	return (number / FIXED_DENOMINATOR);									\
 }
 
 #define DEFINEFUNC_FIXED_FRACTIONPART(BITS) \

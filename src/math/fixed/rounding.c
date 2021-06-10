@@ -4,32 +4,42 @@
 
 #include LIBCONFIG_ERROR_INCLUDE
 
-/* TODO
+
 
 #define DEFINEFUNC_FIXED_ROUND(BITS) \
-inline t_q##BITS	Q##BITS##_Round(t_q##BITS number)						\
-{																			\
-	t_q##BITS fraction = (number & (FIXED_MASK_FRACTIONPART));				\
-	if (fraction < FIXED_MAX_FRACTIONPART / 2)								\
-		return (number - fraction);											\
-	else return (number + (FIXED_MAX_FRACTIONPART - fraction));				\
+inline t_q##BITS	Q##BITS##_Round(t_q##BITS number)			\
+{																\
+	t_q##BITS fraction = Q##BITS##_FractionPart(number);		\
+	if (fraction < FIXED_DENOMINATOR / 2)						\
+		return (number - fraction);								\
+	else return (number + (FIXED_DENOMINATOR - fraction));		\
 }
 
 
 
 #define DEFINEFUNC_FIXED_TRUNC(BITS) \
-inline t_q##BITS	Q##BITS##_Truncate(t_q##BITS number)									\
-{																							\
-	return ((t_q##BITS)((number >> FIXED_BITS_FRACTIONPART) << FIXED_BITS_FRACTIONPART));	\
-} // TODO fix this
+inline t_q##BITS	Q##BITS##_Truncate(t_q##BITS number)		\
+{																\
+	return (number & ~Q##BITS##_FractionPart(number));			\
+} // TODO test this
 
 
 
 #define DEFINEFUNC_FIXED_FLOOR(BITS) \
-// TODO
+inline t_q##BITS	Q##BITS##_Floor(t_q##BITS number)			\
+{																\
+	return ((number < 0) ?										\
+		(number + Q##BITS##_FractionPart(number)) :				\
+		(number - Q##BITS##_FractionPart(number)));				\
+} // TODO test this
 
 #define DEFINEFUNC_FIXED_CEIL(BITS) \
-// TODO
+inline t_q##BITS	Q##BITS##_Ceiling(t_q##BITS number)			\
+{																\
+	return ((number < 0) ?										\
+		(number - (FIXED_DENOMINATOR - Q##BITS##_FractionPart(number))) :	\
+		(number + (FIXED_DENOMINATOR - Q##BITS##_FractionPart(number))));	\
+} // TODO test this
 
 
 
@@ -54,5 +64,3 @@ DEFINEFUNC_FIXED_TRUNC(	128)
 DEFINEFUNC_FIXED_FLOOR(	128)
 DEFINEFUNC_FIXED_CEIL(	128)
 #endif
-
-*/
