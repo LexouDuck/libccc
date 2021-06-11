@@ -33,6 +33,8 @@ inline t_q##BITS	Q##BITS##_Floor(t_q##BITS number)			\
 		(number - Q##BITS##_FractionPart(number)));				\
 } // TODO test this
 
+
+
 #define DEFINEFUNC_FIXED_CEIL(BITS) \
 inline t_q##BITS	Q##BITS##_Ceiling(t_q##BITS number)			\
 {																\

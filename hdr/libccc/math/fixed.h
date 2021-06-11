@@ -13,7 +13,7 @@
 #define __LIBCCC_MATH_FIXED_H
 /*!@group{libccc_math_fixed}
 ** @{
-**	This header defines the common standard math functions and macro defines.
+**	This header defines the common standard math functions for fixed-point numbers.
 **
 **	@nonstd
 **
@@ -39,6 +39,7 @@ HEADER_CPP
 
 
 //! The type of function which takes one real number and outputs one real number
+//!@{
 typedef		t_fixed	(*f_fixed_function)	(t_fixed x);
 typedef		t_q16	(*f_q16_function)	(t_q16 x);
 typedef		t_q32	(*f_q32_function)	(t_q32 x);
@@ -46,8 +47,10 @@ typedef		t_q64	(*f_q64_function)	(t_q64 x);
 #ifdef __int128
 typedef		t_q128	(*f_q128_function)	(t_q128 x);
 #endif
+//!@}
 
 //! The type of function which takes two real numbers and outputs one real number
+//!@{
 typedef		t_fixed	(*f_fixed_operator)	(t_fixed x,	t_fixed y);
 typedef		t_q16	(*f_q16_operator)	(t_q16 x,	t_q16 y);
 typedef		t_q32	(*f_q32_operator)	(t_q32 x,	t_q32 y);
@@ -55,6 +58,7 @@ typedef		t_q64	(*f_q64_operator)	(t_q64 x,	t_q64 y);
 #ifdef __int128
 typedef		t_q128	(*f_q128_operator)	(t_q128 x,	t_q128 y);
 #endif
+//!@}
 
 
 
@@ -175,7 +179,7 @@ t_q128					Q128_Ceiling(t_q128 x);
 
 
 
-//! Performs an addition between the 2 given floating-point values (operator: `+`)
+//! Performs an addition between the 2 given fixed-point values (operator: `+`)
 //!@{
 #define				Fixed_Add	CONCAT(FIXED_TYPE,_Add)
 t_q16				Q16_Add(t_q16 x, t_q16 y);
@@ -193,7 +197,7 @@ t_q128				Q128_Add(t_q128 x, t_q128 y);
 
 
 
-//! Performs an addition between the 2 given floating-point values (operator: `-`)
+//! Performs an addition between the 2 given fixed-point values (operator: `-`)
 //!@{
 #define				Fixed_Sub	CONCAT(FIXED_TYPE,_Sub)
 t_q16				Q16_Sub(t_q16 x, t_q16 y);
@@ -211,7 +215,7 @@ t_q128				Q128_Sub(t_q128 x, t_q128 y);
 
 
 
-//! Performs an addition between the 2 given floating-point values (operator: `*`)
+//! Performs an addition between the 2 given fixed-point values (operator: `*`)
 //!@{
 #define				Fixed_Mul	CONCAT(FIXED_TYPE,_Mul)
 t_q16				Q16_Mul(t_q16 x, t_q16 y);
@@ -229,7 +233,7 @@ t_q128				Q128_Mul(t_q128 x, t_q128 y);
 
 
 
-//! Performs a division between the 2 given floating-point values (operator: `/`)
+//! Performs a division between the 2 given fixed-point values (operator: `/`)
 //!@{
 #define				Fixed_Div	CONCAT(FIXED_TYPE,_Div)
 t_q16				Q16_Div(t_q16 x, t_q16 y);

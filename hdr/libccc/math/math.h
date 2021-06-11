@@ -30,6 +30,7 @@
 */
 
 #include "libccc/math/constants.h"
+#include "libccc/math/int.h"
 #include "libccc/math/fixed.h"
 #include "libccc/math/float.h"
 
@@ -152,29 +153,53 @@ HEADER_CPP
 
 #define DEFINE_GENERIC_MATH_FUNCTION(FUNCTION, X) \
 	_Generic((X),	\
-		t_q16:	 Q16_##FUNCTION,	\
-		t_q32:	 Q32_##FUNCTION,	\
-		t_q64:	 Q64_##FUNCTION,	\
-		t_q128:	 Q128_##FUNCTION,	\
+		t_u8:	 U8_   ##FUNCTION,	\
+		t_u16:	 U16_  ##FUNCTION,	\
+		t_u32:	 U32_  ##FUNCTION,	\
+		t_u64:	 U64_  ##FUNCTION,	\
+		t_u128:	 U128_ ##FUNCTION,	\
+		t_uint:	 UInt_ ##FUNCTION,	\
+		t_s8:	 S8_   ##FUNCTION,	\
+		t_s16:	 S16_  ##FUNCTION,	\
+		t_s32:	 S32_  ##FUNCTION,	\
+		t_s64:	 S64_  ##FUNCTION,	\
+		t_s128:	 S128_ ##FUNCTION,	\
+		t_sint:	 SInt_ ##FUNCTION,	\
+		t_q16:	 Q16_  ##FUNCTION,	\
+		t_q32:	 Q32_  ##FUNCTION,	\
+		t_q64:	 Q64_  ##FUNCTION,	\
+		t_q128:	 Q128_ ##FUNCTION,	\
 		t_fixed: Fixed_##FUNCTION,	\
-		t_f32:	 F32_##FUNCTION,	\
-		t_f64:	 F64_##FUNCTION,	\
-		t_f80:	 F80_##FUNCTION,	\
-		t_f128:	 F128_##FUNCTION,	\
+		t_f32:	 F32_  ##FUNCTION,	\
+		t_f64:	 F64_  ##FUNCTION,	\
+		t_f80:	 F80_  ##FUNCTION,	\
+		t_f128:	 F128_ ##FUNCTION,	\
 		t_float: Float_##FUNCTION,	\
 	)(X)
 
 #define DEFINE_GENERIC_MATH_OPERATOR(FUNCTION, X, Y) \
 	_Generic((X),	\
-		t_q16:	 Q16_##FUNCTION,	\
-		t_q32:	 Q32_##FUNCTION,	\
-		t_q64:	 Q64_##FUNCTION,	\
-		t_q128:	 Q128_##FUNCTION,	\
+		t_u8:	 U8_   ##FUNCTION,	\
+		t_u16:	 U16_  ##FUNCTION,	\
+		t_u32:	 U32_  ##FUNCTION,	\
+		t_u64:	 U64_  ##FUNCTION,	\
+		t_u128:	 U128_ ##FUNCTION,	\
+		t_uint:	 UInt_ ##FUNCTION,	\
+		t_s8:	 S8_   ##FUNCTION,	\
+		t_s16:	 S16_  ##FUNCTION,	\
+		t_s32:	 S32_  ##FUNCTION,	\
+		t_s64:	 S64_  ##FUNCTION,	\
+		t_s128:	 S128_ ##FUNCTION,	\
+		t_sint:	 SInt_ ##FUNCTION,	\
+		t_q16:	 Q16_  ##FUNCTION,	\
+		t_q32:	 Q32_  ##FUNCTION,	\
+		t_q64:	 Q64_  ##FUNCTION,	\
+		t_q128:	 Q128_ ##FUNCTION,	\
 		t_fixed: Fixed_##FUNCTION,	\
-		t_f32:	 F32_##FUNCTION,	\
-		t_f64:	 F64_##FUNCTION,	\
-		t_f80:	 F80_##FUNCTION,	\
-		t_f128:	 F128_##FUNCTION,	\
+		t_f32:	 F32_  ##FUNCTION,	\
+		t_f64:	 F64_  ##FUNCTION,	\
+		t_f80:	 F80_  ##FUNCTION,	\
+		t_f128:	 F128_ ##FUNCTION,	\
 		t_float: Float_##FUNCTION,	\
 	)(X, Y)
 
@@ -226,16 +251,6 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! Returns the absolute value of `x` (makes `x` positive)
-/*!
-**	- Math: @f$ {|x|} @f$
-*/
-#define						Math_Abs(X)		DEFINE_GENERIC_MATH_FUNCTION(Abs, X)
-#define c_abs				Math_Abs
-#define Math_AbsoluteValue	Math_Abs
-
-
-
 //! Returns the addition result of `x` and `y`
 /*!
 **	- Math: @f$ {x + y} @f$
@@ -267,12 +282,6 @@ HEADER_CPP
 #define c_div				Math_Div
 #define Math_Divide			Math_Div
 
-/*
-** ************************************************************************** *|
-**                            Arithmetic Operations                           *|
-** ************************************************************************** *|
-*/
-
 //! Returns the remainder of euclidian division of `x` by `y`
 /*!
 **	- Math: @f$ {x \mod y} @f$
@@ -280,6 +289,22 @@ HEADER_CPP
 #define						Math_Mod(X, Y)	DEFINE_GENERIC_MATH_OPERATOR(Mod, X, Y)
 #define c_mod				Math_Mod
 #define Math_Modulo			Math_Mod
+
+/*
+** ************************************************************************** *|
+**                            Arithmetic Operations                           *|
+** ************************************************************************** *|
+*/
+
+//! Returns the absolute value of `x` (makes `x` positive)
+/*!
+**	- Math: @f$ {|x|} @f$
+*/
+#define						Math_Abs(X)		DEFINE_GENERIC_MATH_FUNCTION(Abs, X)
+#define c_abs				Math_Abs
+#define Math_AbsoluteValue	Math_Abs
+
+
 
 //! Returns the value of `x` to the power of `y`
 /*!

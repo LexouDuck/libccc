@@ -10,7 +10,7 @@
 inline t_f##BITS	F##BITS##_Add(t_f##BITS a, t_f##BITS b)	\
 {															\
 	return (a + b);											\
-}															\
+}
 
 
 
@@ -18,7 +18,7 @@ inline t_f##BITS	F##BITS##_Add(t_f##BITS a, t_f##BITS b)	\
 inline t_f##BITS	F##BITS##_Sub(t_f##BITS a, t_f##BITS b)	\
 {															\
 	return (a - b);											\
-}															\
+}
 
 
 
@@ -26,7 +26,7 @@ inline t_f##BITS	F##BITS##_Sub(t_f##BITS a, t_f##BITS b)	\
 inline t_f##BITS	F##BITS##_Mul(t_f##BITS a, t_f##BITS b)	\
 {															\
 	return (a * b);											\
-}															\
+}
 
 
 
@@ -34,7 +34,24 @@ inline t_f##BITS	F##BITS##_Mul(t_f##BITS a, t_f##BITS b)	\
 inline t_f##BITS	F##BITS##_Div(t_f##BITS a, t_f##BITS b)	\
 {															\
 	return (a / b);											\
-}															\
+}
+
+
+
+#if LIBCONFIG_USE_FAST_APPROX_MATH
+inline
+t_float	c_fmod(t_float x, t_float y)
+{
+	t_float		a;
+	t_s64		floor_a;
+
+	a = x / y;
+	floor_a = (t_s64)a;
+	return ((a - (t_float)floor_a) * y);
+}
+#else
+MATH_DECL_REALOPERATOR(mod, fmod)
+#endif
 
 
 
@@ -53,23 +70,6 @@ t_float	c_fabs(t_float x)
 }
 #else
 MATH_DECL_REALFUNCTION(abs, fabs)
-#endif
-
-
-
-#if LIBCONFIG_USE_FAST_APPROX_MATH
-inline
-t_float	c_fmod(t_float x, t_float y)
-{
-	t_float		a;
-	t_s64		floor_a;
-
-	a = x / y;
-	floor_a = (t_s64)a;
-	return ((a - (t_float)floor_a) * y);
-}
-#else
-MATH_DECL_REALOPERATOR(mod, fmod)
 #endif
 
 

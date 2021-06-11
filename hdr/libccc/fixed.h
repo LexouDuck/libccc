@@ -231,7 +231,6 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 **	This very small float is typically used to compare two fixed-point values.
 **	Since fixed-point types have a configurable fractional portion, it can be useful
 **	to have the Fixed_EqualsApprox() functions for approximate equality checks.
-**	@see not to be confused with #FLOAT_EPSILON
 */
 #define FIXED_APPROX	LIBCONFIG_FIXED_APPROX
 

@@ -281,12 +281,14 @@ SRCS = error.c \
 	sys/logger/log.c	\
 	random/prng.c	\
 	random/csprng.c	\
+	math/int/comparison.c	\
+	math/int/operators.c	\
 	math/fixed/comparison.c	\
-	math/fixed/rounding.c	\
 	math/fixed/operators.c	\
+	math/fixed/rounding.c	\
 	math/float/comparison.c	\
-	math/float/rounding.c	\
 	math/float/operators.c	\
+	math/float/rounding.c	\
 	math/float/pow.c		\
 	math/float/root.c		\
 	math/float/exp.c		\

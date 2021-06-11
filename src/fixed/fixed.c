@@ -5,6 +5,8 @@
 
 #include LIBCONFIG_ERROR_INCLUDE
 
+
+
 #define DEFINEFUNC_FIXED_FROMINT(BITS) \
 inline t_q##BITS	Q##BITS##_FromInt(t_sint number)						\
 {																			\
@@ -24,8 +26,7 @@ inline t_q##BITS	Q##BITS##_FromFloat(t_float number)						\
 	if (number < Float_FromFixed(Q##BITS##_MIN))	return (Q##BITS##_MIN);	\
 	return (																\
 		(t_q##BITS)(Float_Truncate(number) * FIXED_DENOMINATOR) +			\
-		(t_q##BITS)(Float_Mod(number, 1))									\
-	);																		\
+		(t_q##BITS)(Float_Mod(number, 1)));									\
 }
 
 

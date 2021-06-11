@@ -13,7 +13,7 @@
 #define __LIBCCC_MATH_FLOAT_H
 /*!@group{libccc_math_float}
 ** @{
-**	This header defines the common standard math functions and macro defines.
+**	This header defines the common standard math functions for floating-point numbers.
 **
 **	@isostd{C,https://en.cppreference.com/w/c/numeric/math}
 **
