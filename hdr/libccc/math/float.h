@@ -38,6 +38,17 @@ HEADER_CPP
 
 
 
+/*!
+**	This very small float is typically used to compare two floating-point values.
+**	Floating point equality checks aren't the most dependable kind of operation,
+**	so it's often better to do `(ABS(x - y) <= FLOAT_APPROX)` to check for equality.
+**	You can use the Float_EqualsApprox() functions for this purpose.
+**	@see not to be confused with #FLOAT_EPSILON
+*/
+#define FLOAT_APPROX	LIBCONFIG_FLOAT_APPROX
+
+
+
 //! The type of function which takes one real number and outputs one real number
 //!@{
 typedef		t_float	(*f_float_function)	(t_float x);

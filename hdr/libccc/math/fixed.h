@@ -38,6 +38,15 @@ HEADER_CPP
 
 
 
+/*!
+**	This very small float is typically used to compare two fixed-point values.
+**	Since fixed-point types have a configurable fractional portion, it can be useful
+**	to have the Fixed_EqualsApprox() functions for approximate equality checks.
+*/
+#define FIXED_APPROX	LIBCONFIG_FIXED_APPROX
+
+
+
 //! The type of function which takes one real number and outputs one real number
 //!@{
 typedef		t_fixed	(*f_fixed_function)	(t_fixed x);

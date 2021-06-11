@@ -38,6 +38,18 @@ HEADER_CPP
 
 
 
+/*!
+**	@see
+**	- UInt_EqualsApprox()
+**	- SInt_EqualsApprox()
+*/
+//!@{
+#define UINT_APPROX		1 // TODO remove ?
+#define SINT_APPROX		1 // TODO remove ?
+//!@}
+
+
+
 //! The type of function which takes one real number and outputs one real number
 //!@{
 typedef		t_uint	(*f_uint_function)	(t_uint x);

@@ -141,17 +141,6 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 
 
 
-/*!
-**	This very small float is typically used to compare two floating-point values.
-**	Floating point equality checks aren't the most dependable kind of operation,
-**	so it's often better to do `(ABS(x - y) <= FLOAT_APPROX)` to check for equality.
-**	You can use the Float_EqualsApprox() functions for this purpose.
-**	@see not to be confused with #FLOAT_EPSILON
-*/
-#define FLOAT_APPROX	LIBCONFIG_FLOAT_APPROX
-
-
-
 //! The floating-point "not a number" value.
 /*!
 **	@isostd{C,https://en.cppreference.com/w/c/numeric/math/nan}
