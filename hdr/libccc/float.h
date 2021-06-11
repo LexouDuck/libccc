@@ -45,6 +45,8 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
+// __LDBL_MANT_DIG__
+
 
 
 //! Primitive type: 32-bit 'single precision' IEEE-754 floating-point numbers

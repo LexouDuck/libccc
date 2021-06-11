@@ -46,7 +46,9 @@ void	print_math_title(char const * title)
 
 
 #define SF_FORMAT	":\t%s%g"
-static inline void printf_colored(const char* label, t_float precision, t_float value)
+
+static
+void printf_colored(const char* label, t_float precision, t_float value)
 {
 	printf("%s", label);
 	if (precision == 0.)
@@ -69,7 +71,8 @@ static inline void printf_colored(const char* label, t_float precision, t_float 
 
 
 
-static t_float	c_get_largest_f(s_array_float values)
+static
+t_float	c_get_largest_f(s_array_float values)
 {
 	t_float result = 0.;
 	for (t_u32 i = 0; i < values.length; ++i)
@@ -85,24 +88,21 @@ static t_float	c_get_largest_f(s_array_float values)
 
 
 #define TEST_INIT_MATH() \
-	s_timer			timer = {0};		\
-	int				failed_tests = 0;	\
+	s_timer			timer = {0};						\
+	int				failed_tests = 0;					\
+	t_float			expects[tests];						\
+	t_float			results[tests];						\
+	s_array_float	errors = c_stat_new_flst(tests);	\
 
 #define TEST_INIT_MATH_REALFUNCTION() \
 	TEST_INIT_MATH()										\
-	t_float			expects[tests];							\
-	t_float			results[tests];							\
-	s_array_float	errors = c_stat_new_flst(tests);		\
 	t_float	x;												\
 	t_float	step = (interval.end - interval.start) / tests;	\
 
 #define TEST_INIT_MATH_REALOPERATOR() \
-	TEST_INIT_MATH()														\
 	int tests_interval = tests;												\
 	tests *= tests;															\
-	t_float			expects[tests];											\
-	t_float			results[tests];											\
-	s_array_float	errors = c_stat_new_flst(tests);						\
+	TEST_INIT_MATH()														\
 	t_float	x;																\
 	t_float	y;																\
 	t_float	step_x = (interval_x.end - interval_x.start) / tests_interval;	\
@@ -144,10 +144,10 @@ static t_float	c_get_largest_f(s_array_float values)
 		if (expects[i] == results[i] || (IS_NAN(expects[i]) && IS_NAN(results[i])))								\
 			errors.items[i] = 0;																				\
 		else if (IS_NAN(expects[i]) || IS_NAN(results[i]))														\
-			errors.items[i] = NAN;																			\
+			errors.items[i] = NAN;																				\
 		else																									\
-			errors.items[i] = c_distance_float(expects[i], results[i]);										\
-		if (IS_NAN(errors.items[i]) || errors.items[i] > fabs(precision * expects[i]))					\
+			errors.items[i] = c_distance_float(expects[i], results[i]);											\
+		if (IS_NAN(errors.items[i]) || errors.items[i] > fabs(precision * expects[i]))							\
 		{																										\
 			++failed_tests;																						\
 			if (g_test.flags.verbose && g_test.flags.show_args && precision < fabs(results[i] - expects[i]))	\
@@ -160,14 +160,14 @@ static t_float	c_get_largest_f(s_array_float values)
 
 
 
-#define TEST_PRINT_MATH(FORMAT, ...) \
+#define TEST_PRINT_MATH(...) \
 	g_test.totals.tests += tests;								\
 	g_test.totals.failed += failed_tests;						\
 	t_float percent = (tests - failed_tests) * 100. / tests;	\
 	if (g_test.flags.verbose || percent < 90.)					\
 	{															\
 		printf("\n%s\n", func_name);							\
-		printf(FORMAT, __VA_ARGS__);							\
+		printf(__VA_ARGS__);									\
 		printf("Success rate for %g precision: ", precision);	\
 		print_percent(percent);									\
 	}															\
