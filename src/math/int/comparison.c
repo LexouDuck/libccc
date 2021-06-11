@@ -22,9 +22,7 @@ inline t_bool	S##BITS##_Equals(t_s##BITS a, t_s##BITS b)		\
 #define DEFINEFUNC_UINT_APPROX(BITS) \
 inline t_bool	U##BITS##_EqualsApprox(t_u##BITS a, t_u##BITS b)\
 {																\
-	t_u##BITS abs_a = ABS(a);									\
-	t_u##BITS abs_b = ABS(b);									\
-	return (ABS(a - b) <= MAX(abs_a, abs_b) * UINT_APPROX);		\
+	return ((a < b ? b - a : a - b) <= MAX(a, b) * UINT_APPROX);\
 }
 #define DEFINEFUNC_SINT_APPROX(BITS) \
 inline t_bool	S##BITS##_EqualsApprox(t_s##BITS a, t_s##BITS b)\

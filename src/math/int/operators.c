@@ -12,6 +12,22 @@ inline t_u##BITS	U##BITS##_Add(t_u##BITS a, t_u##BITS b)	\
 	HANDLE_ERROR(RESULTRANGE, (a > U##BITS##_MAX - b), LIBCONFIG_ERROR_HANDLEOVERFLOW)\
 	return (a + b);											\
 }
+#define DEFINEFUNC_SINT_ADD(BITS) \
+inline t_s##BITS	S##BITS##_Add(t_s##BITS a, t_s##BITS b)	\
+{															\
+	if (a && b && SIGN(a) == SIGN(b))						\
+	{														\
+		HANDLE_ERROR(RESULTRANGE, (a > S##BITS##_MAX - b), LIBCONFIG_ERROR_HANDLEOVERFLOW)\
+		HANDLE_ERROR(RESULTRANGE, (a < S##BITS##_MIN - b), LIBCONFIG_ERROR_HANDLEOVERFLOW)\
+	}														\
+	return (a + b);											\
+}
+/*
+(+) + (+) = [0, +2N] => (a > MAX - b)
+(+) + (-) = [-N, +N]
+(-) + (+) = [-N, +N]
+(-) + (-) = [-2N, 0] => (a < MIN - b)
+*/
 
 
 
@@ -21,33 +37,88 @@ inline t_u##BITS	U##BITS##_Sub(t_u##BITS a, t_u##BITS b)	\
 	HANDLE_ERROR(RESULTRANGE, (a < b), LIBCONFIG_ERROR_HANDLEOVERFLOW)\
 	return (a - b);											\
 }
+#define DEFINEFUNC_SINT_SUB(BITS) \
+inline t_s##BITS	S##BITS##_Sub(t_s##BITS a, t_s##BITS b)	\
+{															\
+	if (a && b && SIGN(a) != SIGN(b))						\
+	{														\
+		HANDLE_ERROR(RESULTRANGE, (a > S##BITS##_MAX + b), LIBCONFIG_ERROR_HANDLEOVERFLOW)\
+		HANDLE_ERROR(RESULTRANGE, (a < S##BITS##_MIN + b), LIBCONFIG_ERROR_HANDLEOVERFLOW)\
+	}														\
+	return (a - b);											\
+}
+/*
+(+) - (+) = [-N, +N]
+(+) - (-) = [0, +2N] => (a > MAX + b)
+(-) - (+) = [-2N, 0] => (a < MIN + b)
+(-) - (-) = [-N, +N]
+*/
 
 
 
+// TODO fix this and test (implement CLZ functions, and check if leading bits go beyond range)
 #define DEFINEFUNC_UINT_MUL(BITS) \
 inline t_u##BITS	U##BITS##_Mul(t_u##BITS a, t_u##BITS b)	\
 {															\
 /*	HANDLE_ERROR(RESULTRANGE, (a * b), LIBCONFIG_ERROR_HANDLEOVERFLOW)*/\
 	return (a * b);											\
-} // TODO fix this and test (implement CLZ functions, and check if leading bits go beyond range)
+}
+#define DEFINEFUNC_SINT_MUL(BITS) \
+inline t_s##BITS	S##BITS##_Mul(t_s##BITS a, t_s##BITS b)	\
+{															\
+/*	HANDLE_ERROR(RESULTRANGE, (a * b), LIBCONFIG_ERROR_HANDLEOVERFLOW)*/\
+	return (a * b);											\
+}
+/*
+(+) * (+) = [0, +N²] => ()
+(+) * (-) = [-N², 0] => ()
+(-) * (+) = [-N², 0] => ()
+(-) * (-) = [0, +N²] => ()
+*/
 
 
 
+// TODO fix this and test
 #define DEFINEFUNC_UINT_DIV(BITS) \
 inline t_u##BITS	U##BITS##_Div(t_u##BITS a, t_u##BITS b)	\
 {															\
 	HANDLE_ERROR(MATHDOMAIN, (b == 0), return (0);)			\
 	return (a / b);											\
-} // TODO fix this and test
+}
+#define DEFINEFUNC_SINT_DIV(BITS) \
+inline t_s##BITS	S##BITS##_Div(t_s##BITS a, t_s##BITS b)	\
+{															\
+	HANDLE_ERROR(MATHDOMAIN, (b == 0), return (0);)			\
+	return (a / b);											\
+}
+/*
+(+) / (+) = [0, +N]
+(+) / (-) = [-N, 0]
+(-) / (+) = [-N, 0]
+(-) / (-) = [0, +N]
+*/
 
 
 
+// TODO fix this and test
 #define DEFINEFUNC_UINT_MOD(BITS) \
 inline t_u##BITS	U##BITS##_Mod(t_u##BITS a, t_u##BITS b)	\
 {															\
 	HANDLE_ERROR(MATHDOMAIN, (b == 0), return (0);)			\
 	return (a % b);											\
-} // TODO fix this and test
+}
+#define DEFINEFUNC_SINT_MOD(BITS) \
+inline t_s##BITS	S##BITS##_Mod(t_s##BITS a, t_s##BITS b)	\
+{															\
+	HANDLE_ERROR(MATHDOMAIN, (b == 0), return (0);)			\
+	return (a % b);											\
+}
+/*
+(+) % (+) = [0, +N]
+(+) % (-) = [-N, 0]
+(-) % (+) = [-N, 0]
+(-) % (-) = [0, +N]
+*/
 
 
 
