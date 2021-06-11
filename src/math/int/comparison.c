@@ -1,5 +1,6 @@
 
-#include "libccc/fixed.h"
+#include "libccc/int.h"
+#include "libccc/math/int.h"
 #include "libccc/math/math.h"
 
 #include LIBCONFIG_ERROR_INCLUDE

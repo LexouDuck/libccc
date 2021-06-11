@@ -1,6 +1,7 @@
 
-#include "libccc/fixed.h"
-#include "libccc/math/fixed.h"
+#include "libccc/int.h"
+#include "libccc/math/int.h"
+#include "libccc/memory.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 
@@ -9,7 +10,8 @@
 #define DEFINEFUNC_UINT_ADD(BITS) \
 inline t_u##BITS	U##BITS##_Add(t_u##BITS a, t_u##BITS b)	\
 {															\
-	HANDLE_ERROR(RESULTRANGE, (a > U##BITS##_MAX - b), LIBCONFIG_ERROR_HANDLEOVERFLOW(U##BITS##_MAX))\
+	HANDLE_ERROR(RESULTRANGE, (a > U##BITS##_MAX - b),		\
+		LIBCONFIG_ERROR_HANDLEOVERFLOW(U##BITS##_MAX))		\
 	return (a + b);											\
 }
 #define DEFINEFUNC_SINT_ADD(BITS) \
@@ -17,8 +19,10 @@ inline t_s##BITS	S##BITS##_Add(t_s##BITS a, t_s##BITS b)	\
 {															\
 	if (a && b && SIGN(a) == SIGN(b))						\
 	{														\
-		HANDLE_ERROR(RESULTRANGE, (a > S##BITS##_MAX - b), LIBCONFIG_ERROR_HANDLEOVERFLOW(S##BITS##_MAX))\
-		HANDLE_ERROR(RESULTRANGE, (a < S##BITS##_MIN - b), LIBCONFIG_ERROR_HANDLEOVERFLOW(S##BITS##_MIN))\
+		HANDLE_ERROR(RESULTRANGE, (a > S##BITS##_MAX - b),	\
+			LIBCONFIG_ERROR_HANDLEOVERFLOW(S##BITS##_MAX))	\
+		HANDLE_ERROR(RESULTRANGE, (a < S##BITS##_MIN - b),	\
+			LIBCONFIG_ERROR_HANDLEOVERFLOW(S##BITS##_MIN))	\
 	}														\
 	return (a + b);											\
 }
@@ -42,8 +46,10 @@ inline t_s##BITS	S##BITS##_Sub(t_s##BITS a, t_s##BITS b)	\
 {															\
 	if (a && b && SIGN(a) != SIGN(b))						\
 	{														\
-		HANDLE_ERROR(RESULTRANGE, (a > S##BITS##_MAX + b), LIBCONFIG_ERROR_HANDLEOVERFLOW(S##BITS##_MAX))\
-		HANDLE_ERROR(RESULTRANGE, (a < S##BITS##_MIN + b), LIBCONFIG_ERROR_HANDLEOVERFLOW(S##BITS##_MIN))\
+		HANDLE_ERROR(RESULTRANGE, (a > S##BITS##_MAX + b),	\
+			LIBCONFIG_ERROR_HANDLEOVERFLOW(S##BITS##_MAX))	\
+		HANDLE_ERROR(RESULTRANGE, (a < S##BITS##_MIN + b),	\
+			LIBCONFIG_ERROR_HANDLEOVERFLOW(S##BITS##_MIN))	\
 	}														\
 	return (a - b);											\
 }
@@ -56,18 +62,23 @@ inline t_s##BITS	S##BITS##_Sub(t_s##BITS a, t_s##BITS b)	\
 
 
 
-// TODO fix this and test (implement CLZ functions, and check if leading bits go beyond range)
+// TODO fix this and test
 #define DEFINEFUNC_UINT_MUL(BITS) \
-inline t_u##BITS	U##BITS##_Mul(t_u##BITS a, t_u##BITS b)	\
-{															\
-/*	HANDLE_ERROR(RESULTRANGE, (a * b), LIBCONFIG_ERROR_HANDLEOVERFLOW)*/\
-	return (a * b);											\
+inline t_u##BITS	U##BITS##_Mul(t_u##BITS a, t_u##BITS b)		\
+{																\
+	HANDLE_ERROR(RESULTRANGE,									\
+		(Memory_GetMSB(a) + Memory_GetMSB(b) >= BITS),			\
+		LIBCONFIG_ERROR_HANDLEOVERFLOW(U##BITS##_MAX))			\
+	return (a * b);												\
 }
 #define DEFINEFUNC_SINT_MUL(BITS) \
-inline t_s##BITS	S##BITS##_Mul(t_s##BITS a, t_s##BITS b)	\
-{															\
-/*	HANDLE_ERROR(RESULTRANGE, (a * b), LIBCONFIG_ERROR_HANDLEOVERFLOW)*/\
-	return (a * b);											\
+inline t_s##BITS	S##BITS##_Mul(t_s##BITS a, t_s##BITS b)		\
+{																\
+	HANDLE_ERROR(RESULTRANGE,									\
+		(Memory_GetMSB(ABS(a)) + Memory_GetMSB(ABS(b)) >= BITS),\
+		LIBCONFIG_ERROR_HANDLEOVERFLOW(SIGN(a) == SIGN(b) ?		\
+			U##BITS##_MAX : U##BITS##_MIN))						\
+	return (a * b);												\
 }
 /*
 (+) * (+) = [0, +N²] => ()

@@ -5,6 +5,8 @@
 
 #include LIBCONFIG_ERROR_INCLUDE
 
+
+
 #define DEFINEFUNC_INT_FROMINT(BITS) \
 inline t_s##BITS	S##BITS##_FromInt(t_sint number)						\
 {																			\

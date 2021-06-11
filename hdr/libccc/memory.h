@@ -334,16 +334,61 @@ t_bool				Memory_Swap(void* ptr1, void* ptr2, t_size size); // TODO change retru
 
 
 
-//! Returns a subsection of `length` bits from `value`, starting at index `bit`.
+/*
+** ************************************************************************** *|
+**                          Bitwise Memory Operations                         *|
+** ************************************************************************** *|
+*/
+
+//! Get a subsection of `n` bits from `value`, starting at bit index `bit`.
 /*!
 **	@nonstd
 **
-**	Returns a subsection of the `value` argument, taking `length` bits
-**	from `value` at the given bit index `bit`, and bit-shifting the resulting
-**	bits to the right by `bit` bits (so as to center the value back to 0).
+**	@returns
+**	A subsection of the `value` argument which is `n` bits long,
+**	starting at the given bit index `bit`, and bit-shifting the resulting
+**	bits to the right by `bit` bits (so as to center the value back to zero).
 */
-t_u64				Memory_GetBits(t_u64 value, t_u8 bit, t_u8 length);
+t_uintmax			Memory_GetBits(t_uintmax value, t_u8 bit, t_u8 n);
 #define c_getbits	Memory_GetBits //!< @alias{Memory_GetBits}
+
+
+
+//! Get the total amount of bits set to `1` in the given `value`.
+/*!
+**	@nonstd
+**
+**	@returns
+**	The total amount of bits set to `1` in the given `value`.
+*/
+t_u8				Memory_CountBits(t_uintmax value);
+#define c_countbits	Memory_CountBits //!< @alias{Memory_CountBits}
+
+
+
+//! Get the bit index of the most signficant `1`-bit of the given `value`
+/*!
+**	@nonstd, similar to the builtin `clz()` function
+**
+**	@returns
+**	The bit index of the highest bit which is set to 1 in the given `value`.
+**	If `value == 0` (all bits set to zero), returns `-1`
+*/
+t_s8					Memory_GetMostSignificantBit(t_uintmax value);
+#define c_getmsb		Memory_GetMostSignificantBit //!< @alias{Memory_GetMostSignificantBit}
+#define Memory_GetMSB	Memory_GetMostSignificantBit //!< @alias{Memory_GetMostSignificantBit}
+
+//! Get the bit index of the least signficant `1`-bit of the given `value`
+/*!
+**	@nonstd, similar to the builtin `clz()` function
+**
+**	@returns
+**	The bit index of the lowest bit which is set to 1 in the given `value`.
+**	If `value == 0` (all bits set to zero), returns `-1`
+*/
+t_s8					Memory_GetLeastSignificantBit(t_uintmax value);
+#define c_getlsb		Memory_GetLeastSignificantBit //!< @alias{Memory_GetLeastSignificantBit}
+#define Memory_GetLSB	Memory_GetLeastSignificantBit //!< @alias{Memory_GetLeastSignificantBit}
 
 
 

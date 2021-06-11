@@ -190,7 +190,7 @@ SRCS = error.c \
 	memory/find.c		\
 	memory/swap.c		\
 	memory/replace.c	\
-	memory/getbits.c	\
+	memory/bits.c		\
 	pointer/size_to_str.c	\
 	pointer/str_to_size.c	\
 	pointer/ptr_to_str.c	\
