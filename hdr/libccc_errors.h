@@ -56,7 +56,8 @@ HEADER_CPP
 
 //! The action to take when there is an integer overflow (by default, let it continue)
 #ifndef LIBCONFIG_ERROR_HANDLEOVERFLOW
-#define LIBCONFIG_ERROR_HANDLEOVERFLOW \
+#define LIBCONFIG_ERROR_HANDLEOVERFLOW(BOUND) \
+	// return (BOUND);
 	// return (0);
 #endif
 

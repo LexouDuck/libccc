@@ -30,7 +30,8 @@ t_u##BITS	U##BITS##_FromString_Dec(t_char const* str)								\
 	while (str[i] && Char_IsDigit(str[i]))											\
 	{																				\
 		tmp = result * 10 + (str[i++] - '0');										\
-		HANDLE_ERROR_SF(RESULTRANGE, (tmp < result), LIBCONFIG_ERROR_HANDLEOVERFLOW,\
+		HANDLE_ERROR_SF(RESULTRANGE, (tmp < result),								\
+			LIBCONFIG_ERROR_HANDLEOVERFLOW(U##BITS##_MAX),							\
 			" (integer overflow for \"%s\" at "SF_U##BITS")", str, U##BITS##_MAX)	\
 		result = tmp;																\
 	}																				\
@@ -75,7 +76,11 @@ t_s##BITS	S##BITS##_FromString_Dec(t_char const* str)								\
 	while (str[i] && Char_IsDigit(str[i]))											\
 	{																				\
 		tmp = result * 10 + (str[i++] - '0');										\
-		HANDLE_ERROR_SF(RESULTRANGE, (tmp < result), LIBCONFIG_ERROR_HANDLEOVERFLOW,\
+		HANDLE_ERROR_SF(RESULTRANGE, (negative && tmp > (t_u##BITS)-S##BITS##_MIN),	\
+			LIBCONFIG_ERROR_HANDLEOVERFLOW(S##BITS##_MIN),							\
+			" (integer underflow for \"%s\" at "SF_S##BITS")", str, S##BITS##_MIN)	\
+		HANDLE_ERROR_SF(RESULTRANGE, (!negative && tmp > (t_u##BITS)S##BITS##_MAX),	\
+			LIBCONFIG_ERROR_HANDLEOVERFLOW(S##BITS##_MAX),							\
 			" (integer overflow for \"%s\" at "SF_S##BITS")", str, S##BITS##_MAX)	\
 		result = tmp;																\
 	}																				\

@@ -9,7 +9,7 @@
 #define DEFINEFUNC_UINT_ADD(BITS) \
 inline t_u##BITS	U##BITS##_Add(t_u##BITS a, t_u##BITS b)	\
 {															\
-	HANDLE_ERROR(RESULTRANGE, (a > U##BITS##_MAX - b), LIBCONFIG_ERROR_HANDLEOVERFLOW)\
+	HANDLE_ERROR(RESULTRANGE, (a > U##BITS##_MAX - b), LIBCONFIG_ERROR_HANDLEOVERFLOW(U##BITS##_MAX))\
 	return (a + b);											\
 }
 #define DEFINEFUNC_SINT_ADD(BITS) \
@@ -17,8 +17,8 @@ inline t_s##BITS	S##BITS##_Add(t_s##BITS a, t_s##BITS b)	\
 {															\
 	if (a && b && SIGN(a) == SIGN(b))						\
 	{														\
-		HANDLE_ERROR(RESULTRANGE, (a > S##BITS##_MAX - b), LIBCONFIG_ERROR_HANDLEOVERFLOW)\
-		HANDLE_ERROR(RESULTRANGE, (a < S##BITS##_MIN - b), LIBCONFIG_ERROR_HANDLEOVERFLOW)\
+		HANDLE_ERROR(RESULTRANGE, (a > S##BITS##_MAX - b), LIBCONFIG_ERROR_HANDLEOVERFLOW(S##BITS##_MAX))\
+		HANDLE_ERROR(RESULTRANGE, (a < S##BITS##_MIN - b), LIBCONFIG_ERROR_HANDLEOVERFLOW(S##BITS##_MIN))\
 	}														\
 	return (a + b);											\
 }
@@ -34,7 +34,7 @@ inline t_s##BITS	S##BITS##_Add(t_s##BITS a, t_s##BITS b)	\
 #define DEFINEFUNC_UINT_SUB(BITS) \
 inline t_u##BITS	U##BITS##_Sub(t_u##BITS a, t_u##BITS b)	\
 {															\
-	HANDLE_ERROR(RESULTRANGE, (a < b), LIBCONFIG_ERROR_HANDLEOVERFLOW)\
+	HANDLE_ERROR(RESULTRANGE, (a < b), LIBCONFIG_ERROR_HANDLEOVERFLOW(0))\
 	return (a - b);											\
 }
 #define DEFINEFUNC_SINT_SUB(BITS) \
@@ -42,8 +42,8 @@ inline t_s##BITS	S##BITS##_Sub(t_s##BITS a, t_s##BITS b)	\
 {															\
 	if (a && b && SIGN(a) != SIGN(b))						\
 	{														\
-		HANDLE_ERROR(RESULTRANGE, (a > S##BITS##_MAX + b), LIBCONFIG_ERROR_HANDLEOVERFLOW)\
-		HANDLE_ERROR(RESULTRANGE, (a < S##BITS##_MIN + b), LIBCONFIG_ERROR_HANDLEOVERFLOW)\
+		HANDLE_ERROR(RESULTRANGE, (a > S##BITS##_MAX + b), LIBCONFIG_ERROR_HANDLEOVERFLOW(S##BITS##_MAX))\
+		HANDLE_ERROR(RESULTRANGE, (a < S##BITS##_MIN + b), LIBCONFIG_ERROR_HANDLEOVERFLOW(S##BITS##_MIN))\
 	}														\
 	return (a - b);											\
 }
