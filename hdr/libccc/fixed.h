@@ -471,6 +471,29 @@ _MALLOC()	t_char*		Q128_ToString_Hex(t_q128 number); // TODO implement
 
 
 
+//! Get the string octal representation of a signed fixed-point number
+/*!
+**	@param	number	The number to convert to string
+**	@returns
+**	A newly allocated string, converted from the given `number`
+*/
+//!@{
+#define					Fixed_ToString_Oct	CONCAT(FIXED_TYPE,_ToString_Oct)
+_MALLOC()	t_char*		Q16_ToString_Oct(t_q16 number); // TODO implement
+_MALLOC()	t_char*		Q32_ToString_Oct(t_q32 number); // TODO implement
+_MALLOC()	t_char*		Q64_ToString_Oct(t_q64 number); // TODO implement
+#ifdef	__int128
+_MALLOC()	t_char*		Q128_ToString_Oct(t_q128 number); // TODO implement
+#endif
+#define c_qtostroct		Fixed_ToString_Oct	//!< @alias{Fixed_ToString_Oct}
+#define c_q16tostroct	Q16_ToString_Oct	//!< @alias{Q16_ToString_Oct}
+#define c_q32tostroct	Q32_ToString_Oct	//!< @alias{Q32_ToString_Oct}
+#define c_q64tostroct	Q64_ToString_Oct	//!< @alias{Q64_ToString_Oct}
+#define c_q128tostroct	Q128_ToString_Oct	//!< @alias{Q128_ToString_Oct}
+//!@}
+
+
+
 //! Get the string binary representation of a signed fixed-point number
 /*!
 **	@param	number	The number to convert to string
@@ -594,6 +617,30 @@ t_q128					Q128_FromString_Hex(t_char const* str); // TODO implement
 #define c_strhextoq32	Q32_FromString_Hex	//!< @alias{Q32_FromString_Hex}
 #define c_strhextoq64	Q64_FromString_Hex	//!< @alias{Q64_FromString_Hex}
 #define c_strhextoq128	Q128_FromString_Hex	//!< @alias{Q128_FromString_Hex}
+//!@}
+
+
+
+//! Parses the string octal representation of a signed fixed-point number
+/*!
+**	@param	number	The number to convert to string
+**	@returns
+**	A newly allocated string, converted from the given `number`,
+**	or `NULL` if there was a parsing error.
+*/
+//!@{
+#define					Fixed_FromString_Oct	CONCAT(FIXED_TYPE,_FromString_Oct)
+t_q16					Q16_FromString_Oct(t_char const* str); // TODO implement
+t_q32					Q32_FromString_Oct(t_char const* str); // TODO implement
+t_q64					Q64_FromString_Oct(t_char const* str); // TODO implement
+#ifdef	__int128
+t_q128					Q128_FromString_Oct(t_char const* str); // TODO implement
+#endif
+#define c_strocttoq		Fixed_FromString_Oct//!< @alias{Fixed_FromString_Oct}
+#define c_strocttoq16	Q16_FromString_Oct	//!< @alias{Q16_FromString_Oct}
+#define c_strocttoq32	Q32_FromString_Oct	//!< @alias{Q32_FromString_Oct}
+#define c_strocttoq64	Q64_FromString_Oct	//!< @alias{Q64_FromString_Oct}
+#define c_strocttoq128	Q128_FromString_Oct	//!< @alias{Q128_FromString_Oct}
 //!@}
 
 
