@@ -6,7 +6,7 @@
 
 
 
-#if LIBCONFIG_USE_FAST_APPROX_MATH
+#if !LIBCONFIG_USE_STD_MATH
 static t_float	inv_factorial(t_u32 n)
 {
 	static const t_float	result[16] =
@@ -35,7 +35,9 @@ static t_float	inv_factorial(t_u32 n)
 
 
 
-#if LIBCONFIG_USE_FAST_APPROX_MATH
+#if LIBCONFIG_USE_STD_MATH
+MATH_DECL_REALFUNCTION(cos, cos)
+#else
 t_float			c_cos(t_float x)
 {
 	t_float		result;
@@ -75,13 +77,13 @@ t_float			c_cos(t_float x)
 
 	return (sign ? -result : result);
 }
-#else
-MATH_DECL_REALFUNCTION(cos, cos)
 #endif
 
 
 
-#if LIBCONFIG_USE_FAST_APPROX_MATH
+#if LIBCONFIG_USE_STD_MATH
+MATH_DECL_REALFUNCTION(sin, sin)
+#else
 t_float			c_sin(t_float x)
 {
 	t_float		result;
@@ -130,13 +132,13 @@ t_float			c_sin(t_float x)
 
 	return (sign ? -result : result);
 }
-#else
-MATH_DECL_REALFUNCTION(sin, sin)
 #endif
 
 
 
-#if LIBCONFIG_USE_FAST_APPROX_MATH
+#if LIBCONFIG_USE_STD_MATH
+MATH_DECL_REALFUNCTION(tan, tan)
+#else
 t_float	c_tan(t_float x)
 {
 // trigonometric formula
@@ -185,13 +187,13 @@ t_float	c_tan(t_float x)
 	return (result);
 */
 }
-#else
-MATH_DECL_REALFUNCTION(tan, tan)
 #endif
 
 
 
-#if LIBCONFIG_USE_FAST_APPROX_MATH
+#if LIBCONFIG_USE_STD_MATH
+MATH_DECL_REALFUNCTION(acos, acos)
+#else
 t_float		c_acos(t_float x)
 {
 	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)
@@ -216,13 +218,13 @@ t_float		c_acos(t_float x)
 	return ((-0.8047926 * x * x - 0.766) * x + HALF_PI); // (-0.69813170079773212 * x * x - 0.87266462599716477)
 */
 }
-#else
-MATH_DECL_REALFUNCTION(acos, acos)
 #endif
 
 
 
-#if LIBCONFIG_USE_FAST_APPROX_MATH
+#if LIBCONFIG_USE_STD_MATH
+MATH_DECL_REALFUNCTION(asin, asin)
+#else
 t_float		c_asin(t_float x)
 {
 	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)
@@ -247,13 +249,13 @@ t_float		c_asin(t_float x)
 	return ((0.8047926 * x * x + 0.766) * x); // (-0.69813170079773212 * x * x - 0.87266462599716477)
 */
 }
-#else
-MATH_DECL_REALFUNCTION(asin, asin)
 #endif
 
 
 
-#if LIBCONFIG_USE_FAST_APPROX_MATH
+#if LIBCONFIG_USE_STD_MATH
+MATH_DECL_REALFUNCTION(atan, atan)
+#else
 t_float		c_atan(t_float x)
 {
 	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)
@@ -300,13 +302,13 @@ t_float		c_atan(t_float x)
 	return (3. / (1 + c_exp(-1.1 * x)) - 1.5);
 */
 }
-#else
-MATH_DECL_REALFUNCTION(atan, atan)
 #endif
 
 
 
-#if LIBCONFIG_USE_FAST_APPROX_MATH
+#if LIBCONFIG_USE_STD_MATH
+MATH_DECL_REALOPERATOR(atan2, atan2)
+#else
 t_float		c_atan2(t_float y, t_float x)
 {
 	static const t_float pi_lo = 1.2246467991473531772E-16;
@@ -345,6 +347,4 @@ t_float		c_atan2(t_float y, t_float x)
 	else
 		return (y < 0 ? -result : result);
 }
-#else
-MATH_DECL_REALOPERATOR(atan2, atan2)
 #endif

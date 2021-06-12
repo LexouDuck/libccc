@@ -39,7 +39,9 @@ inline t_f##BITS	F##BITS##_Div(t_f##BITS a, t_f##BITS b)	\
 
 
 
-#if LIBCONFIG_USE_FAST_APPROX_MATH
+#if LIBCONFIG_USE_STD_MATH
+MATH_DECL_REALOPERATOR(mod, fmod)
+#else
 inline
 t_float	c_fmod(t_float x, t_float y)
 {
@@ -50,13 +52,13 @@ t_float	c_fmod(t_float x, t_float y)
 	floor_a = (t_s64)a;
 	return ((a - (t_float)floor_a) * y);
 }
-#else
-MATH_DECL_REALOPERATOR(mod, fmod)
 #endif
 
 
 
-#if LIBCONFIG_USE_FAST_APPROX_MATH
+#if LIBCONFIG_USE_STD_MATH
+MATH_DECL_REALFUNCTION(abs, fabs)
+#else
 inline
 t_float	c_fabs(t_float x)
 {
@@ -69,8 +71,6 @@ t_float	c_fabs(t_float x)
 	}
 	return (result.value_float);
 }
-#else
-MATH_DECL_REALFUNCTION(abs, fabs)
 #endif
 
 

@@ -5,7 +5,9 @@
 
 
 
-#if LIBCONFIG_USE_FAST_APPROX_MATH
+#if LIBCONFIG_USE_STD_MATH
+MATH_DECL_REALFUNCTION(exp, exp)
+#else
 t_float		c_exp(t_float x)
 {
 	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)
@@ -64,6 +66,4 @@ t_float		c_exp(t_float x)
 	return (result);
 */
 }
-#else
-MATH_DECL_REALFUNCTION(exp, exp)
 #endif

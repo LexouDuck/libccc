@@ -126,21 +126,21 @@ HEADER_CPP
 
 
 #define MATH_DEFINE_FUNCTION(RETURN, BITS, NAME, CNAME, TYPE) \
-	inline RETURN	 c_f##BITS##NAME(t_f##BITS x)				\
+	inline RETURN	 F##BITS##NAME(t_f##BITS a)					\
 	{															\
-		return (__builtin_##CNAME##TYPE(x));					\
+		return (__builtin_##CNAME##TYPE(a));					\
 	}
 
 #define MATH_DEFINE_REALFUNCTION(BITS, NAME, CNAME, TYPE) \
-	inline t_f##BITS c_f##BITS##NAME(t_f##BITS x)				\
+	inline t_f##BITS	F##BITS##NAME(t_f##BITS a)				\
 	{															\
-		return (__builtin_##CNAME##TYPE(x));					\
+		return (__builtin_##CNAME##TYPE(a));					\
 	}
 
 #define MATH_DEFINE_REALOPERATOR(BITS, NAME, CNAME, TYPE) \
-	inline t_f##BITS c_f##BITS##NAME(t_f##BITS x, t_f##BITS y)	\
+	inline t_f##BITS	F##BITS##NAME(t_f##BITS a, t_f##BITS b)	\
 	{															\
-		return (__builtin_##CNAME##TYPE(x, y));					\
+		return (__builtin_##CNAME##TYPE(a, b));					\
 	}
 
 #define MATH_DEFINE_FUNCTION_F32(RETURN,NAME, CNAME)	MATH_DEFINE_FUNCTION(RETURN,32, NAME, CNAME,f)

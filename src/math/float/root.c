@@ -10,6 +10,7 @@
 #else
 	#define POWERS_LENGTH	12
 #endif
+
 /*!
 **	Some SQRT(2)^n lookup tables for quick newton method initial guess
 */
@@ -93,7 +94,9 @@ t_float	c_sqrt_2_pow_n(t_s32 n)
 
 
 
-#if LIBCONFIG_USE_FAST_APPROX_MATH
+#if LIBCONFIG_USE_STD_MATH
+MATH_DECL_REALFUNCTION(sqrt, sqrt)
+#else
 t_float	c_sqrt(t_float x)
 {
 	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)
@@ -140,13 +143,13 @@ t_float	c_sqrt(t_float x)
 	return (result);
 */
 }
-#else
-MATH_DECL_REALFUNCTION(sqrt, sqrt)
 #endif
 
 
 
-#if LIBCONFIG_USE_FAST_APPROX_MATH
+#if LIBCONFIG_USE_STD_MATH
+MATH_DECL_REALFUNCTION(cbrt, cbrt)
+#else
 t_float	c_cbrt(t_float x)
 {
 	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)
@@ -175,8 +178,6 @@ t_float	c_cbrt(t_float x)
 	}
 	return (result);
 }
-#else
-MATH_DECL_REALFUNCTION(cbrt, cbrt)
 #endif
 
 

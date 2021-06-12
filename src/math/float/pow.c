@@ -6,7 +6,10 @@
 
 
 
-#if LIBCONFIG_USE_FAST_APPROX_MATH
+#if LIBCONFIG_USE_STD_MATH
+// TODO fix this
+//MATH_DECL_REALOPERATOR(intpow, pow)
+#else
 t_float			c_intpow(t_float x, t_sint n)
 {
 	t_float	tmp;
@@ -41,14 +44,13 @@ t_float			c_intpow(t_float x, t_sint n)
 	return (result);
 */
 }
-#else
-//MATH_DECL_REALOPERATOR(intpow, pow)
-// TODO fix this
 #endif
 
 
 
-#if LIBCONFIG_USE_FAST_APPROX_MATH
+#if LIBCONFIG_USE_STD_MATH
+MATH_DECL_REALOPERATOR(pow, pow)
+#else
 inline t_float	c_pow(t_float x, t_float y)
 {
 	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)
@@ -68,6 +70,4 @@ inline t_float	c_pow(t_float x, t_float y)
 	return (result.value_float);
 */
 }
-#else
-MATH_DECL_REALOPERATOR(pow, pow)
 #endif

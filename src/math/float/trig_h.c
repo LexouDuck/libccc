@@ -6,7 +6,9 @@
 
 
 
-#if LIBCONFIG_USE_FAST_APPROX_MATH
+#if LIBCONFIG_USE_STD_MATH
+MATH_DECL_REALFUNCTION(cosh, cosh)
+#else
 t_float		c_cosh(t_float x)
 {
 	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)
@@ -26,13 +28,13 @@ t_float		c_cosh(t_float x)
 	result += (0.0016666666 * power);
 	return (result);
 }
-#else
-MATH_DECL_REALFUNCTION(cosh, cosh)
 #endif
 
 
 
-#if LIBCONFIG_USE_FAST_APPROX_MATH
+#if LIBCONFIG_USE_STD_MATH
+MATH_DECL_REALFUNCTION(sinh, sinh)
+#else
 t_float		c_sinh(t_float x)
 {
 	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)
@@ -53,13 +55,13 @@ t_float		c_sinh(t_float x)
 	result += (0.0000083000 * power);
 	return (result);
 }
-#else
-MATH_DECL_REALFUNCTION(sinh, sinh)
 #endif
 
 
 
-#if LIBCONFIG_USE_FAST_APPROX_MATH
+#if LIBCONFIG_USE_STD_MATH
+MATH_DECL_REALFUNCTION(tanh, tanh)
+#else
 t_float		c_tanh(t_float x)
 {
 	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)
@@ -88,13 +90,13 @@ t_float		c_tanh(t_float x)
 		return ((2 * x) / (1.6260705 + c_fabs(x)));
 */
 }
-#else
-MATH_DECL_REALFUNCTION(tanh, tanh)
 #endif
 
 
 
-#if LIBCONFIG_USE_FAST_APPROX_MATH
+#if LIBCONFIG_USE_STD_MATH
+MATH_DECL_REALFUNCTION(acosh, acosh)
+#else
 t_float		c_acosh(t_float x)
 {
 	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)
@@ -106,13 +108,13 @@ t_float		c_acosh(t_float x)
 	else
 		return (c_ln(x - 1) + INV_SQRT_2);
 }
-#else
-MATH_DECL_REALFUNCTION(acosh, acosh)
 #endif
 
 
 
-#if LIBCONFIG_USE_FAST_APPROX_MATH
+#if LIBCONFIG_USE_STD_MATH
+MATH_DECL_REALFUNCTION(asinh, asinh)
+#else
 t_float		c_asinh(t_float x)
 {
 	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)
@@ -127,13 +129,13 @@ t_float		c_asinh(t_float x)
 	else
 		return (x / (1 + c_fabs(-0.22103915 * x)));
 }
-#else
-MATH_DECL_REALFUNCTION(asinh, asinh)
 #endif
 
 
 
-#if LIBCONFIG_USE_FAST_APPROX_MATH
+#if LIBCONFIG_USE_STD_MATH
+MATH_DECL_REALFUNCTION(atanh, atanh)
+#else
 t_float		c_atanh(t_float x)
 {
 	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)
@@ -157,6 +159,4 @@ t_float		c_atanh(t_float x)
 	result += (-5.8 * power);
 	return (result);
 }
-#else
-MATH_DECL_REALFUNCTION(atanh, atanh)
 #endif

@@ -165,6 +165,7 @@ HEADER_CPP
 **	- If `1`, `s_list` is doubly-linked (that is, the struct has both a `.prev` and `.next` pointer)
 */
 #define LIBCONFIG_LIST_DOUBLYLINKED		0
+// TODO make it so doubly-linked lists have the first item's `->prev` point to the last element
 
 
 
@@ -184,13 +185,15 @@ HEADER_CPP
 
 
 
-//! Whether or not libccc uses its own fast-approximate math functions or the builtin FPU calls.
+//! Whether or not libccc uses its own fast-approximate math functions or the builtin math calls.
 /*!
 **	This macro determines which math function implementations should be used.
-**	- If `1`, the libccc fast approximate functions will be used (precision error margin is `10^-4`)
-**	- If `0`, the builtin FPU-call libc math functions will be used (eg: `__builtin_powf()`, etc)
+**	- If `0`, the libccc fast approximate functions will be used (precision error margin is `10^-4`)
+**	- If `1`, the builtin FPU-call libc math functions will be used (eg: `__builtin_powf()`, etc)
+**		This is the recommended option, and is on by default (since the standard math functions
+**		are typically well-implemented for the given platform: they're both precise, and fast)
 */
-#define LIBCONFIG_USE_FAST_APPROX_MATH	0 // TODO invert this config flag
+#define LIBCONFIG_USE_STD_MATH			1
 
 
 
