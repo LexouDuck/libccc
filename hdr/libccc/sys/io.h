@@ -219,9 +219,22 @@ e_cccerror				IO_Close(t_fd fd);
 **	@param	mode		The new file access mode permissions bitflag value to set
 **	@returns 0(OK) on success, or a non-zero error code (ie: an 'errno' value)
 */
-e_cccerror					IO_ChangeMode(t_char const* filepath, t_io_mode mode);
+e_cccerror					IO_ChangeMode	(t_char const* filepath, t_io_mode mode);
 #define c_chmod				IO_ChangeMode
 #define IO_File_ChangeMode	IO_ChangeMode
+
+//! Returns the file access mode permissions for the file at 'filepath'
+/*!
+**	Uses SYSCALL:
+**		int stat(const char *pathname, struct stat* stat_buffer);
+**		result = stat_buffer.st_mode & (S_IRWXU | S_IRWXG | S_IRWXO);
+**
+**	@param	filepath	The path of the file whose access permissions should be queried
+**	@returns the 'user', 'group' and 'other' IO modes as a single octal value
+*/
+t_io_mode					IO_GetMode		(t_char const* filepath);
+#define c_getmod			IO_GetMode
+#define IO_File_GetMode		IO_GetMode
 
 // TODO find a way to make this as cross-platform as possible
 #if 0
@@ -267,7 +280,7 @@ e_cccerror					IO_ChangeOwner(t_char const* filepath, t_char const* owner, t_cha
 **		If the return value is a negative number, there was a read error:
 **		You should then check `errno`, and/or use `IO_GetError(errno)` immediately after.
 */
-t_sintmax				IO_Read_File(t_fd const fd, t_char* *a_file, t_size max);
+t_sintmax				IO_Read_File	(t_fd const fd, void* *a_file, t_size max);
 #define c_readfile		IO_Read_File
 
 //! Reads the contents of 'fd' and makes an array of strings, one for each line
@@ -284,7 +297,7 @@ t_sintmax				IO_Read_File(t_fd const fd, t_char* *a_file, t_size max);
 **		If the return value is a negative number, there was a read error:
 **		You should then check `errno`, and/or use `IO_GetError(errno)` immediately after.
 */
-t_sintmax				IO_Read_Lines(t_fd const fd, t_char** *a_strarr);
+t_sintmax				IO_Read_Lines	(t_fd const fd, t_char** *a_strarr);
 #define c_readlines		IO_Read_Lines
 
 //! Reads the contents of the file descriptor 'fd' line-per-line.
@@ -320,28 +333,32 @@ int						IO_Read_NextLine(t_fd const fd, t_char* *a_line);
 */
 
 //! Writes the given character 'c' to the given file descriptor 'fd'
-t_size					IO_Write_Char(t_fd fd, t_char c);
+t_size					IO_Write_Char	(t_fd fd, t_char c);
 #define c_write_char	IO_Write_Char
 
 //! Writes the given string 'str' to the given file descriptor 'fd'
-t_size					IO_Write_String(t_fd fd, t_char const* str);
+t_size					IO_Write_String	(t_fd fd, t_char const* str);
 #define c_write_string	IO_Write_String
 
+//! Writes the given data buffer 'data' of size 'n' to the given file descriptor 'fd'
+t_size					IO_Write_Data	(t_fd fd, t_u8 const* data, t_size n);
+#define c_write_data	IO_Write_Data
+
 //! Writes the given string 'str' to the given file descriptor 'fd', and a newline '\n' char at the end
-t_size					IO_Write_Line(t_fd fd, t_char const* str);
+t_size					IO_Write_Line	(t_fd fd, t_char const* str);
 #define c_write_line	IO_Write_Line
 
 //! Writes the given string array 'strarr' to the given file descriptor 'fd'
-t_size					IO_Write_Lines(t_fd fd, t_char const** strarr);
+t_size					IO_Write_Lines	(t_fd fd, t_char const** strarr);
 #define c_write_lines	IO_Write_Lines
 
 //!< Writes 'n' bytes of memory from 'ptr' as hexadecimal 2-char blocks in 'cols' columns, to the given file descriptor 'fd'
-t_size					IO_Write_Memory(t_fd fd, t_u8 const* ptr, t_size n, t_u8 cols);
+t_size					IO_Write_Memory	(t_fd fd, t_u8 const* ptr, t_size n, t_u8 cols);
 #define c_write_memory	IO_Write_Memory
 
 //! Writes the given formatted string to the standard output - equivalent to 'fprintf()', or rather 'dprintf()'
 _FORMAT(printf, 2, 3)
-t_size					IO_Write_Format(t_fd fd, t_char const* format, ...);
+t_size					IO_Write_Format	(t_fd fd, t_char const* format, ...);
 #define c_write_format	IO_Write_Format
 #define c_dprintf		IO_Write_Format
 
