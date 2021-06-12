@@ -102,6 +102,7 @@ typedef		t_s128	(*f_s128_operator)	(t_s128 x,	t_s128 y);
 */
 //!@{
 #define				SInt_Abs	CONCAT(SINT_TYPE,_Abs)
+t_s8				S8_Abs( t_s8  x);
 t_s16				S16_Abs(t_s16 x);
 t_s32				S32_Abs(t_s32 x);
 t_s64				S64_Abs(t_s64 x);
@@ -200,6 +201,7 @@ t_bool					S128_EqualsApprox(t_s128 x, t_s128 y);
 //! Performs an addition between the 2 given integer values (operator: `+`)
 //!@{
 #define				UInt_Add	CONCAT(UINT_TYPE,_Add)
+t_u8				U8_Add( t_u8  x, t_u8  y);
 t_u16				U16_Add(t_u16 x, t_u16 y);
 t_u32				U32_Add(t_u32 x, t_u32 y);
 t_u64				U64_Add(t_u64 x, t_u64 y);
@@ -216,6 +218,7 @@ t_u128				U128_Add(t_u128 x, t_u128 y);
 //! Performs an addition between the 2 given integer values (operator: `+`)
 //!@{
 #define				SInt_Add	CONCAT(SINT_TYPE,_Add)
+t_s8				S8_Add( t_s8  x, t_s8  y);
 t_s16				S16_Add(t_s16 x, t_s16 y);
 t_s32				S32_Add(t_s32 x, t_s32 y);
 t_s64				S64_Add(t_s64 x, t_s64 y);
@@ -236,6 +239,7 @@ t_s128				S128_Add(t_s128 x, t_s128 y);
 //! Performs an addition between the 2 given integer values (operator: `-`)
 //!@{
 #define				UInt_Sub	CONCAT(UINT_TYPE,_Sub)
+t_u8				U8_Sub( t_u8  x, t_u8  y);
 t_u16				U16_Sub(t_u16 x, t_u16 y);
 t_u32				U32_Sub(t_u32 x, t_u32 y);
 t_u64				U64_Sub(t_u64 x, t_u64 y);
@@ -252,6 +256,7 @@ t_u128				U128_Sub(t_u128 x, t_u128 y);
 //! Performs an addition between the 2 given integer values (operator: `-`)
 //!@{
 #define				SInt_Sub	CONCAT(SINT_TYPE,_Sub)
+t_s8				S8_Sub( t_s8  x, t_s8  y);
 t_s16				S16_Sub(t_s16 x, t_s16 y);
 t_s32				S32_Sub(t_s32 x, t_s32 y);
 t_s64				S64_Sub(t_s64 x, t_s64 y);
@@ -272,6 +277,7 @@ t_s128				S128_Sub(t_s128 x, t_s128 y);
 //! Performs an addition between the 2 given integer values (operator: `*`)
 //!@{
 #define				UInt_Mul	CONCAT(UINT_TYPE,_Mul)
+t_u8				U8_Mul( t_u8  x, t_u8  y);
 t_u16				U16_Mul(t_u16 x, t_u16 y);
 t_u32				U32_Mul(t_u32 x, t_u32 y);
 t_u64				U64_Mul(t_u64 x, t_u64 y);
@@ -288,6 +294,7 @@ t_u128				U128_Mul(t_u128 x, t_u128 y);
 //! Performs an addition between the 2 given integer values (operator: `*`)
 //!@{
 #define				SInt_Mul	CONCAT(SINT_TYPE,_Mul)
+t_s8				S8_Mul( t_s8  x, t_s8  y);
 t_s16				S16_Mul(t_s16 x, t_s16 y);
 t_s32				S32_Mul(t_s32 x, t_s32 y);
 t_s64				S64_Mul(t_s64 x, t_s64 y);
@@ -308,6 +315,7 @@ t_s128				S128_Mul(t_s128 x, t_s128 y);
 //! Performs a division between the 2 given integer values (operator: `/`)
 //!@{
 #define				UInt_Div	CONCAT(UINT_TYPE,_Div)
+t_u8				U8_Div( t_u8  x, t_u8  y);
 t_u16				U16_Div(t_u16 x, t_u16 y);
 t_u32				U32_Div(t_u32 x, t_u32 y);
 t_u64				U64_Div(t_u64 x, t_u64 y);
@@ -324,6 +332,7 @@ t_u128				U128_Div(t_u128 x, t_u128 y);
 //! Performs a division between the 2 given integer values (operator: `/`)
 //!@{
 #define				SInt_Div	CONCAT(SINT_TYPE,_Div)
+t_s8				S8_Div( t_s8  x, t_s8  y);
 t_s16				S16_Div(t_s16 x, t_s16 y);
 t_s32				S32_Div(t_s32 x, t_s32 y);
 t_s64				S64_Div(t_s64 x, t_s64 y);
@@ -347,6 +356,7 @@ t_s128				S128_Div(t_s128 x, t_s128 y);
 */
 //!@{
 #define					UInt_Mod	CONCAT(UINT_TYPE,_Mod)
+t_u8					U8_Mod( t_u8  x, t_u8  y);
 t_u16					U16_Mod(t_u16 x, t_u16 y);
 t_u32					U32_Mod(t_u32 x, t_u32 y);
 t_u64					U64_Mod(t_u64 x, t_u64 y);
@@ -368,6 +378,7 @@ t_u128					U128_Mod(t_u128 x, t_u128 y);
 */
 //!@{
 #define					SInt_Mod	CONCAT(SINT_TYPE,_Mod)
+t_s8					S8_Mod( t_s8  x, t_s8  y);
 t_s16					S16_Mod(t_s16 x, t_s16 y);
 t_s32					S32_Mod(t_s32 x, t_s32 y);
 t_s64					S64_Mod(t_s64 x, t_s64 y);
@@ -401,6 +412,7 @@ t_s128					S128_Mod(t_s128 x, t_s128 y);
 */
 //!@{
 #define					UInt_Pow	CONCAT(UINT_TYPE,_Pow)
+t_u8					U8_Pow( t_u8  x, t_u8  y);
 t_u16					U16_Pow(t_u16 x, t_u16 y);
 t_u32					U32_Pow(t_u32 x, t_u32 y);
 t_u64					U64_Pow(t_u64 x, t_u64 y);
@@ -422,6 +434,7 @@ t_u128					U128_Pow(t_u128 x, t_u128 y);
 */
 //!@{
 #define					SInt_Pow	CONCAT(SINT_TYPE,_Pow)
+t_s8					S8_Pow( t_s8  x, t_s8  y);
 t_s16					S16_Pow(t_s16 x, t_s16 y);
 t_s32					S32_Pow(t_s32 x, t_s32 y);
 t_s64					S64_Pow(t_s64 x, t_s64 y);
@@ -447,6 +460,7 @@ t_s128					S128_Pow(t_s128 x, t_s128 y);
 */
 //!@{
 #define						UInt_Root2	CONCAT(UINT_TYPE,_Root2)
+t_u8						U8_Root2( t_u8  x);
 t_u16						U16_Root2(t_u16 x);
 t_u32						U32_Root2(t_u32 x);
 t_u64						U64_Root2(t_u64 x);
@@ -469,6 +483,7 @@ t_u128						U128_Root2(t_u128 x);
 */
 //!@{
 #define						SInt_Root2	CONCAT(SINT_TYPE,_Root2)
+t_s8						S8_Root2( t_s8  x);
 t_s16						S16_Root2(t_s16 x);
 t_s32						S32_Root2(t_s32 x);
 t_s64						S64_Root2(t_s64 x);
