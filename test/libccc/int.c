@@ -254,7 +254,7 @@ void	print_test_u##BITS##tostrhex(char const* test_name, int can_segfault,		\
 {																					\
 	TEST_INIT(str)																	\
 	TEST_PERFORM(	u##BITS##tostrhex, number, FALSE)								\
-	TEST_PRINT(str, u##BITS##tostrhex, "n="SF_U##BITS", prefix=%i", number, FALSE)	\
+	TEST_PRINT(str, u##BITS##tostrhex, "prefix=%s, n="SF_U##BITS"", BOOL_TOSTRING(FALSE), number)	\
 	TEST_FREE()																		\
 }																					\
 void	test_u##BITS##tostrhex(void)																								\
@@ -489,7 +489,7 @@ DEFINETEST_SINT_TO_STRBASE(64)
 #ifndef c_s128tostrbase
 void test_s128tostrbase(void)	{}
 #else
-DEFINETEST_S128_TO_STRBASE(128)
+DEFINETEST_SINT_TO_STRBASE(128)
 #endif
 #endif
 
