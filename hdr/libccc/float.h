@@ -45,7 +45,24 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-// __LDBL_MANT_DIG__
+//! Check if this environment's `long double` type is larger than 64-bits
+//!@{
+#ifdef __LDBL_MANT_DIG__
+#if (__LDBL_MANT_DIG__ == 53) // long double is 64-bit
+
+#elif (__LDBL_MANT_DIG__ == 64) // long double is 80-bit (mantissa:64bit, exponent:15bit)
+	#ifndef __float80
+	#define __float80
+	typedef long double	_Float80;
+	#endif
+#elif (__LDBL_MANT_DIG__ >= 112) // long double is 128-bit (mantissa:113bit, exponent:15bit)
+	#ifndef __float128
+	#define __float128
+	typedef long double	_Float128;
+	#endif
+#endif
+#endif
+//!@}
 
 
 
@@ -53,7 +70,12 @@ HEADER_CPP
 /*!
 **	@isostd{C,https://en.cppreference.com/w/c/language/arithmetic_types#Real_floating_types}
 **
-**	- https://en.wikipedia.org/wiki/Single-precision_floating-point_format
+**	Learn more: https://en.wikipedia.org/wiki/Single-precision_floating-point_format
+**
+**	This floating-point type consists of:
+**	- 1 sign bit
+**	- 8 exponent bits
+**	- 23 fraction bits
 */
 typedef float		t_f32;
 TYPEDEF_ALIAS(		t_f32,	FLOAT_32,	PRIMITIVE)
@@ -62,17 +84,36 @@ TYPEDEF_ALIAS(		t_f32,	FLOAT_32,	PRIMITIVE)
 /*!
 **	@isostd{C,https://en.cppreference.com/w/c/language/arithmetic_types#Real_floating_types}
 **
-**	- https://en.wikipedia.org/wiki/Double-precision_floating-point_format
+**	Learn more: https://en.wikipedia.org/wiki/Double-precision_floating-point_format
+**
+**	This floating-point type consists of:
+**	- 1 sign bit
+**	- 11 exponent bits
+**	- 52 fraction bits
 */
 typedef double		t_f64;
 TYPEDEF_ALIAS(		t_f64,	FLOAT_64,	PRIMITIVE)
 
 #ifdef	__float80
-//! Primitive type: 80-bit 'extended precision' MacOS floating-point numbers (only certain platforms)
+//! Primitive type: 80-bit 'extended precision' x86 floating-point numbers (only certain platforms)
 /*!
 **	@isostd{C,https://gcc.gnu.org/onlinedocs/gcc/Floating-Types.html}
 **
-**	Consists of: 1 sign bit, 15 exponent bits, 1 integer bit, 63 fraction bits
+**	Learn more: https://en.wikipedia.org/wiki/Extended_precision
+**
+**	NOTE: There are two major implementations of extended-precision floats:
+**	-	80-bit 'extended precision' x86 floating-point numbers
+**	-	96-bit 'extended precision' 68881 floating-point numbers
+**	The 96-bit variant has a different `sizeof()`, as its name shows, but it
+**	does not have any more precision: those 16 added bits are only there
+**	for padding, for memory alignment purposes.
+**
+**	This floating-point type consists of:
+**	- 1 sign bit
+**	- 15 exponent bits
+**	- [16 padding bits, if 96-bit]
+**	- 1 integer bit
+**	- 63 fraction bits
 */
 typedef _Float80	t_f80;
 TYPEDEF_ALIAS(		t_f80,	FLOAT_80,	PRIMITIVE)
@@ -80,25 +121,17 @@ TYPEDEF_ALIAS(		t_f80,	FLOAT_80,	PRIMITIVE)
 	#error "Cannot set default float to 80-bit extended-precision, unavailable on this platform"
 #endif
 
-#ifdef	__float96
-//! Primitive type: 96-bit 'extended precision' 68881 floating-point numbers (only certain platforms)
-/*!
-**	@isostd{C,https://gcc.gnu.org/onlinedocs/gcc/Floating-Types.html}
-**
-**	Consists of: 1 sign bit, 15 exponent bits, 16 pad bits, 1 integer bit, 63 fraction bits
-*/
-typedef _Float96	t_f96;
-TYPEDEF_ALIAS(		t_f96,	FLOAT_96,	PRIMITIVE)
-#elif (LIBCONFIG_BITS_FLOAT == 96)
-	#error "Cannot set default float to 96-bit extended-precision, unavailable on this platform"
-#endif
-
 #ifdef	__float128
 //! Primitive type: 32-bit 'quadruple precision' IEEE-754 floating-point numbers (only certain platforms)
 /*!
 **	@isostd{C,https://gcc.gnu.org/onlinedocs/gcc/Floating-Types.html}
 **
-**	- https://en.wikipedia.org/wiki/Quadruple-precision_floating-point_format
+**	Learn more: https://en.wikipedia.org/wiki/Quadruple-precision_floating-point_format
+**
+**	This floating-point type consists of:
+**	- 1 sign bit
+**	- 15 exponent bits
+**	- 112 fraction bits
 */
 typedef _Float128	t_f128;
 TYPEDEF_ALIAS(		t_f128,	FLOAT_128,	PRIMITIVE)
@@ -127,6 +160,12 @@ TYPEDEF_ALIAS(		t_f128,	FLOAT_128,	PRIMITIVE)
 **	as there are between `+1.` and `+INFINITY`. The higher you go along the real numbers,
 **	the more imprecise your floating-point calculations will become.
 **	This type can express a number between negative #INFINITY and positive #INFINITY.
+**
+**	@see
+**	- #t_f32
+**	- #t_f64
+**	- #t_f80
+**	- #t_f128
 */
 typedef CONCAT(t_f,LIBCONFIG_BITS_FLOAT)	t_float;
 TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
@@ -443,7 +482,7 @@ typedef union float_cast
 t_f32					F32_FromInt(t_sint number);
 t_f64					F64_FromInt(t_sint number);
 #ifdef __float80
-t_f16					F80_FromInt(t_sint number);
+t_f80					F80_FromInt(t_sint number);
 #endif
 #ifdef __float128
 t_f128					F128_FromInt(t_sint number);
@@ -464,7 +503,7 @@ t_f128					F128_FromInt(t_sint number);
 t_f32					F32_FromFixed(t_fixed number);
 t_f64					F64_FromFixed(t_fixed number);
 #ifdef __float80
-t_f16					F80_FromFixed(t_fixed number);
+t_f80					F80_FromFixed(t_fixed number);
 #endif
 #ifdef __float128
 t_f128					F128_FromFixed(t_fixed number);
@@ -485,7 +524,7 @@ t_f128					F128_FromFixed(t_fixed number);
 t_f32	 				F32_FromFloat(t_float number);
 t_f64	 				F64_FromFloat(t_float number);
 #ifdef __float80
-t_f16	 				F80_FromFloat(t_float number);
+t_f80	 				F80_FromFloat(t_float number);
 #endif
 #ifdef __float128
 t_f128	 				F128_FromFloat(t_float number);

@@ -100,30 +100,30 @@ HEADER_CPP
 //!@{
 #define SF_Q16		"%0.8i"
 #define SF_Q32		"%0.8i"
-#define SF_Q64		"%0.8i"
-#define SF_Q128		"%0.8i"
+#define SF_Q64		"%0.8li"
+#define SF_Q128		"%0.8lli"
 #define SF_HEX_Q16	"%#0.8X"
 #define SF_HEX_Q32	"%#0.8X"
-#define SF_HEX_Q64	"%#0.8X"
-#define SF_HEX_Q128	"%#0.8X"
+#define SF_HEX_Q64	"%#0.8lX"
+#define SF_HEX_Q128	"%#0.8llX"
 
-#define SF_FIXED		"%0.8i"
-#define SF_HEX_FIXED	"%#0.8X"
+#define SF_FIXED		CONCAT(SF_Q,	 LIBCONFIG_BITS_FIXED)
+#define SF_HEX_FIXED	CONCAT(SF_HEX_Q, LIBCONFIG_BITS_FIXED)
 //!@}
 
 //! @see libccc/float.h
 //!@{
 #define SF_F32		"%#g"
 #define SF_F64		"%#g"
-#define SF_F80		"%#g"
-#define SF_F128		"%#g"
+#define SF_F80		"%#Lg"
+#define SF_F128		"%#Lg"
 #define SF_HEX_F32	"%#a"
 #define SF_HEX_F64	"%#a"
-#define SF_HEX_F80	"%#a"
-#define SF_HEX_F128	"%#a"
+#define SF_HEX_F80	"%#La"
+#define SF_HEX_F128	"%#La"
 
-#define SF_FLOAT		"%#g"
-#define SF_HEX_FLOAT	"%#g"
+#define SF_FLOAT		CONCAT(SF_F,	 LIBCONFIG_BITS_FLOAT)
+#define SF_HEX_FLOAT	CONCAT(SF_HEX_F, LIBCONFIG_BITS_FLOAT)
 //!@}
 
 //! @see libccc/pointer.h

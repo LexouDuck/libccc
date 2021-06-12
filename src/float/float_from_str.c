@@ -174,7 +174,7 @@ t_f##BITS	F##BITS##_FromString_Dec(t_char const* str)				\
 	t_bool	negative;												\
 	t_size	i = 0;													\
 																	\
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)							\
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)			\
 	while (*str && Char_IsSpace(*str))								\
 		++str;														\
 	result = Float_FromString_CheckSpecial(str);					\
@@ -202,6 +202,27 @@ t_f##BITS	F##BITS##_FromString_Dec(t_char const* str)				\
 
 
 
+#define ASSEMBLE_FLOAT_SIMPLE(BITS) \
+	mantissa &= F##BITS##_MANTISSA_SIGNED;									\
+	mantissa |= F##BITS##_EXPONENT & ((t_uintmax)							\
+		(exponent + F##BITS##_EXPONENT_BIAS) << F##BITS##_MANTISSA_BITS);	\
+	Memory_Copy(&result, &mantissa, sizeof(result));						\
+
+#define ASSEMBLE_FLOAT_EXTEND(BITS) \
+	Memory_Copy(&result, &mantissa, sizeof(result));						\
+	exponent += F##BITS##_EXPONENT_BIAS;									\
+	Memory_Copy(&result + F##BITS##_MANTISSA_BITS / 8, &exponent, sizeof(result));
+// TODO fix this ^
+
+#define ASSEMBLE_FLOAT_32() \
+		ASSEMBLE_FLOAT_SIMPLE(32)
+#define ASSEMBLE_FLOAT_64() \
+		ASSEMBLE_FLOAT_SIMPLE(64)
+#define ASSEMBLE_FLOAT_80() \
+		ASSEMBLE_FLOAT_EXTEND(80)
+#define ASSEMBLE_FLOAT_128() \
+		ASSEMBLE_FLOAT_EXTEND(128)
+
 #define DEFINEFUNC_STRHEX_TO_FLOAT(BITS) \
 t_f##BITS	F##BITS##_FromString_Hex(t_char const* str)						\
 {																			\
@@ -209,11 +230,11 @@ t_f##BITS	F##BITS##_FromString_Hex(t_char const* str)						\
 	t_char const* str_mantissa;												\
 	t_char const* str_exponent;												\
 	t_bool		negative;													\
-	t_u##BITS	mantissa;													\
+	t_uintmax	mantissa;													\
 	t_s16		exponent;													\
 	t_char*		tmp;														\
 																			\
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)									\
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)					\
 	while (*str && Char_IsSpace(*str))										\
 		++str;																\
 	result = Float_FromString_CheckSpecial(str);							\
@@ -222,7 +243,7 @@ t_f##BITS	F##BITS##_FromString_Hex(t_char const* str)						\
 	if (Float_FromString_CheckInvalid(str))									\
 		return (NAN);														\
 																			\
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)									\
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)					\
 	negative = (str[0] == '-');												\
 	str_mantissa = (negative || str[0] == '+') ? str + 1 : str;				\
 	str_exponent = String_Find_Charset(str, "pP");							\
@@ -243,10 +264,7 @@ t_f##BITS	F##BITS##_FromString_Hex(t_char const* str)						\
 	else if (exponent < 1 - F##BITS##_EXPONENT_BIAS)						\
 		return (0.);														\
 	Memory_Copy(&mantissa, &result, sizeof(result));						\
-	mantissa &= F##BITS##_MANTISSA_SIGNED;									\
-	mantissa |= F##BITS##_EXPONENT & ((t_u##BITS)							\
-		(exponent + F##BITS##_EXPONENT_BIAS) << F##BITS##_MANTISSA_BITS);	\
-	Memory_Copy(&result, &mantissa, sizeof(result));						\
+	ASSEMBLE_FLOAT_##BITS()													\
 	Memory_Free(tmp);														\
 	return (result);														\
 }																			\
@@ -256,7 +274,7 @@ t_f##BITS	F##BITS##_FromString_Hex(t_char const* str)						\
 // TODO Float_ToString_Bin()
 #define DEFINEFUNC_STRBIN_TO_FLOAT(BITS) \
 t_f##BITS	F##BITS##_FromString_Bin(t_char const* str)						\
-{ return (str == NULL ? NAN : 0.); }
+{ return (str == NULL ? NAN : 0.); }										\
 
 
 

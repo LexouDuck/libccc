@@ -7,12 +7,12 @@
 
 
 #if LIBCONFIG_USE_FAST_APPROX_MATH
-/*
-** The following pair of functions return the natural logarithm of x.
-** ln(x) = ln(x*2^n) = n*ln(2) + ln(x) with 1 <= x < 2 and n = exp_b2
+/*!
+**	The following pair of functions return the natural logarithm of x.
+**	ln(x) = ln(x*2^n) = n*ln(2) + ln(x) with 1 <= x < 2 and n = exp_b2
 **
-** FLOAT_EXPONENT_ZERO is exponent bits except the MSB for exponent:
-** this corresponds precisely to an exponent of zero when unbiased.
+**	FLOAT_EXPONENT_ZERO is exponent bits except the MSB for exponent:
+**	this corresponds precisely to an exponent of zero when unbiased.
 */
 static
 t_float	c_ln_taylor_series(t_float x)
@@ -40,11 +40,11 @@ t_float	c_ln_taylor_series(t_float x)
 
 t_float	c_ln(t_float x)
 {
-	static const t_float LN_3_2			= (t_float)0x1.9F323ECBF984Cp-2;
-	static const t_float DIV_2_3		= (t_float)0x1.5555555555556p-1;
+	static const t_float LN_3_2  = (t_float)0x1.9F323ECBF984Cp-2;
+	static const t_float DIV_2_3 = (t_float)0x1.5555555555556p-1;
 	t_float	result;
-	t_u64	tmp = 0;	// a raw memory copy
-	t_u64	norm = 0;	// the float x in x*2^n in raw memory
+	t_u64	tmp = 0;	//!< a raw memory copy
+	t_u64	norm = 0;	//!< the float x in x*2^n in raw memory
 	t_s32	exp_b2;
 
 	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)
