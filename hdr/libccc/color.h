@@ -87,6 +87,8 @@ typedef struct argb
 }				s_argb;
 TYPEDEF_ALIAS(	s_argb, COLOR_ARGB, STRUCT)
 
+#define COLOR_ARGB_NULL	{ .a=0, .r=0, .g=0, .b=0 }
+
 
 
 //! A struct to store color values with each channel (alpha,hue,sat,lum) as floating-point values in the interval [0,1]
@@ -98,6 +100,8 @@ typedef struct ahsl
 	t_float		lum;	//!< The luminance/brightness value of this color (whiteness)   `[0, 1]`
 }				s_ahsl;
 TYPEDEF_ALIAS(	s_ahsl, COLOR_AHSL, STRUCT)
+
+#define COLOR_AHSL_NULL	{ .a=0, .hue=0, .sat=0, .lum=0 }
 
 
 

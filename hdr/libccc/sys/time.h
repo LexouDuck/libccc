@@ -103,7 +103,7 @@ typedef struct nanotime
 TYPEDEF_ALIAS(	s_nanotime, TIMESPEC, STRUCT)
 // typedef struct timespec	s_nanotime;
 
-#define NANOTIME_NULL	((s_nanotime){0})
+#define NANOTIME_NULL	((s_nanotime){ .sec=0, .nanosec=0 })
 
 
 
@@ -257,7 +257,19 @@ typedef struct date
 TYPEDEF_ALIAS(	s_date, TIME_DATE, STRUCT)
 // typedef struct tm	s_time
 
-#define DATE_NULL	((s_date){0})
+#define DATE_NULL \
+	((s_date){			\
+		.hour      = 0,	\
+		.min       = 0,	\
+		.sec       = 0,	\
+		.year      = 0,	\
+		.month     = 0,	\
+		.day_month = 0,	\
+		.day_year  = 0,	\
+		.day_week  = 0,	\
+		.is_dst    = 0,	\
+		.offset    = 0,	\
+	})
 
 
 

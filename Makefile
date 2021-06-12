@@ -63,7 +63,7 @@ CFLAGS_RELEASE = -O3
 CFLAGS_OS = _
 CFLAGS_OS_WIN   = -D__USE_MINGW_ANSI_STDIO=1
 CFLAGS_OS_LINUX = -Wno-unused-result -fPIC -pedantic
-CFLAGS_OS_MACOS = -Wno-missing-braces -Wno-missing-field-initializers -Wno-language-extension-token
+CFLAGS_OS_MACOS = -Wno-missing-braces -Wno-language-extension-token
 CFLAGS_OS_OTHER = 
 ifeq ($(CC),clang)
 	CFLAGS_OS_WIN += -Wno-missing-braces
@@ -547,7 +547,7 @@ TEST_INCLUDEDIRS = \
 	-I$(HDRDIR) \
 	-I$(TEST_DIR) \
 
-TEST_CFLAGS = -O2 -g -ggdb
+TEST_CFLAGS = -O2 -g -ggdb -Wno-format-extra-args
 # -fanalyzer
 TEST_LDFLAGS = $(LDFLAGS)
 
