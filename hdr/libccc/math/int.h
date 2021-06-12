@@ -121,6 +121,76 @@ t_s128				S128_Abs(t_s128 x);
 
 /*
 ** ************************************************************************** *|
+**                       Floating-point logic operators                       *|
+** ************************************************************************** *|
+*/
+
+//! Returns `TRUE` if the 2 given integer values are exactly equal (operator: `==`)
+/*!
+**	@nonstd
+**
+**	@param	x	The first value to check for (exact) equality
+**	@param	y	The second value to check for (exact) equality
+**	@returns
+**	`TRUE` if the 2 given integer values are exactly equal,
+**	otherwise `FALSE`.
+*/
+//!@{
+#define					SInt_Equals	CONCAT(FLOAT_TYPE,_Equals)
+t_bool					S8_Equals( t_s8  x, t_s8  y);
+t_bool					S16_Equals(t_s16 x, t_s16 y);
+t_bool					S32_Equals(t_s32 x, t_s32 y);
+t_bool					S64_Equals(t_s64 x, t_s64 y);
+#ifdef	__int128
+t_bool					S128_Equals(t_s128 x, t_s128 y);
+#endif
+#define c_sequ			SInt_Equals	//!< @alias{SInt_Equals}
+#define c_s8equ			S8_Equals	//!< @alias{S8_Equals}
+#define c_s16equ		S16_Equals	//!< @alias{S16_Equals}
+#define c_s32equ		S32_Equals	//!< @alias{S32_Equals}
+#define c_s64equ		S64_Equals	//!< @alias{S64_Equals}
+#define c_s128equ		S128_Equals	//!< @alias{S128_Equals}
+//!@}
+
+
+
+//! Returns `TRUE` if the 2 given integer values are close to equal (operator: `~=`)
+/*!
+**	@nonstd
+**
+**	@param	x	The first value to check for (approximate) equality
+**	@param	y	The second value to check for (approximate) equality
+**	@returns
+**	`TRUE` if the 2 given integer values are close enough to be considered equal
+**	(using #FLOAT_APPROX as a comparison margin), otherwise `FALSE`.
+*/
+//!@{
+#define					SInt_EqualsApprox	CONCAT(FLOAT_TYPE,_EqualsApprox)
+t_bool					S8_EqualsApprox( t_s8  x, t_s8  y);
+t_bool					S16_EqualsApprox(t_s16 x, t_s16 y);
+t_bool					S32_EqualsApprox(t_s32 x, t_s32 y);
+t_bool					S64_EqualsApprox(t_s64 x, t_s64 y);
+#ifdef	__int128
+t_bool					S128_EqualsApprox(t_s128 x, t_s128 y);
+#endif
+#define c_sequa			SInt_EqualsApprox	//!< @alias{SInt_EqualsApprox}
+#define c_s8equa		S8_EqualsApprox		//!< @alias{S8_EqualsApprox}
+#define c_s16equa		S16_EqualsApprox	//!< @alias{S16_EqualsApprox}
+#define c_s32equa		S32_EqualsApprox	//!< @alias{S32_EqualsApprox}
+#define c_s64equa		S64_EqualsApprox	//!< @alias{S64_EqualsApprox}
+#define c_s128equa		S128_EqualsApprox	//!< @alias{S128_EqualsApprox}
+//!@}
+
+
+
+// TODO SInt_LessThan
+
+// TODO SInt_GreaterThan
+
+
+
+/*
+** ************************************************************************** *|
 **                         UInt-point basic operators                        *|
 ** ************************************************************************** *|
 */

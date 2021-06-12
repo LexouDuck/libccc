@@ -196,6 +196,76 @@ t_f128						F128_Ceil(t_f128 x);
 
 /*
 ** ************************************************************************** *|
+**                       Floating-point logic operators                       *|
+** ************************************************************************** *|
+*/
+
+//! Returns `TRUE` if the 2 given floating-point values are exactly equal (operator: `==`)
+/*!
+**	@nonstd
+**
+**	@param	x	The first value to check for (exact) equality
+**	@param	y	The second value to check for (exact) equality
+**	@returns
+**	`TRUE` if the 2 given floating-point values are exactly equal,
+**	otherwise `FALSE`.
+*/
+//!@{
+#define					Float_Equals	CONCAT(FLOAT_TYPE,_Equals)
+t_bool					F32_Equals(t_f32 x, t_f32 y);
+t_bool					F64_Equals(t_f64 x, t_f64 y);
+#ifdef	__float80
+t_bool					F80_Equals(t_f80 x, t_f80 y);
+#endif
+#ifdef	__float128
+t_bool					F128_Equals(t_f128 x, t_f128 y);
+#endif
+#define c_fequ			Float_Equals//!< @alias{Float_Equals}
+#define c_f32equ		F32_Equals	//!< @alias{F32_Equals}
+#define c_f64equ		F64_Equals	//!< @alias{F64_Equals}
+#define c_f80equ		F80_Equals	//!< @alias{F80_Equals}
+#define c_f128equ		F128_Equals	//!< @alias{F128_Equals}
+//!@}
+
+
+
+//! Returns `TRUE` if the 2 given floating-point values are close to equal (operator: `~=`)
+/*!
+**	@nonstd
+**
+**	@param	x	The first value to check for (approximate) equality
+**	@param	y	The second value to check for (approximate) equality
+**	@returns
+**	`TRUE` if the 2 given floating-point values are close enough to be considered equal
+**	(using #FLOAT_APPROX as a comparison margin), otherwise `FALSE`.
+*/
+//!@{
+#define					Float_EqualsApprox	CONCAT(FLOAT_TYPE,_EqualsApprox)
+t_bool					F32_EqualsApprox(t_f32 x, t_f32 y);
+t_bool					F64_EqualsApprox(t_f64 x, t_f64 y);
+#ifdef	__float80
+t_bool					F80_EqualsApprox(t_f80 x, t_f80 y);
+#endif
+#ifdef	__float128
+t_bool					F128_EqualsApprox(t_f128 x, t_f128 y);
+#endif
+#define c_fequa			Float_EqualsApprox	//!< @alias{Float_EqualsApprox}
+#define c_f32equa		F32_EqualsApprox	//!< @alias{F32_EqualsApprox}
+#define c_f64equa		F64_EqualsApprox	//!< @alias{F64_EqualsApprox}
+#define c_f80equa		F80_EqualsApprox	//!< @alias{F80_EqualsApprox}
+#define c_f128equa		F128_EqualsApprox	//!< @alias{F128_EqualsApprox}
+//!@}
+
+
+
+// TODO Float_LessThan
+
+// TODO Float_GreaterThan
+
+
+
+/*
+** ************************************************************************** *|
 **                       Floating-point basic operators                       *|
 ** ************************************************************************** *|
 */
@@ -205,13 +275,13 @@ t_f128						F128_Ceil(t_f128 x);
 //! Performs an addition with the 2 given floating-point values (operator: `+`)
 //!@{
 #define					Float_Add	CONCAT(FLOAT_TYPE,_Add)
-t_f32					F32_Add(t_f32 number1, t_f32 number2);
-t_f64					F64_Add(t_f64 number1, t_f64 number2);
+t_f32					F32_Add(t_f32 x, t_f32 y);
+t_f64					F64_Add(t_f64 x, t_f64 y);
 #ifdef	__float80
-t_f80					F80_Add(t_f80 number1, t_f80 number2);
+t_f80					F80_Add(t_f80 x, t_f80 y);
 #endif
 #ifdef	__float128
-t_f128					F128_Add(t_f128 number1, t_f128 number2);
+t_f128					F128_Add(t_f128 x, t_f128 y);
 #endif
 #define c_fadd			Float_Add	//!< @alias{Float_Add}
 #define c_f32add		F32_Add 	//!< @alias{F32_Add}
@@ -225,13 +295,13 @@ t_f128					F128_Add(t_f128 number1, t_f128 number2);
 //! Performs a subtraction with the 2 given floating-point values (operator: `-`)
 //!@{
 #define					Float_Sub	CONCAT(FLOAT_TYPE,_Sub)
-t_f32					F32_Sub(t_f32 number1, t_f32 number2);
-t_f64					F64_Sub(t_f64 number1, t_f64 number2);
+t_f32					F32_Sub(t_f32 x, t_f32 y);
+t_f64					F64_Sub(t_f64 x, t_f64 y);
 #ifdef	__float80
-t_f80					F80_Sub(t_f80 number1, t_f80 number2);
+t_f80					F80_Sub(t_f80 x, t_f80 y);
 #endif
 #ifdef	__float128
-t_f128					F128_Sub(t_f128 number1, t_f128 number2);
+t_f128					F128_Sub(t_f128 x, t_f128 y);
 #endif
 #define c_fsub			Float_Sub	//!< @alias{Float_Sub}
 #define c_f32sub		F32_Sub 	//!< @alias{F32_Sub}
@@ -245,13 +315,13 @@ t_f128					F128_Sub(t_f128 number1, t_f128 number2);
 //! Performs a multiplication with the 2 given floating-point values (operator: `*`)
 //!@{
 #define					Float_Mul	CONCAT(FLOAT_TYPE,_Mul)
-t_f32					F32_Mul(t_f32 number1, t_f32 number2);
-t_f64					F64_Mul(t_f64 number1, t_f64 number2);
+t_f32					F32_Mul(t_f32 x, t_f32 y);
+t_f64					F64_Mul(t_f64 x, t_f64 y);
 #ifdef	__float80
-t_f80					F80_Mul(t_f80 number1, t_f80 number2);
+t_f80					F80_Mul(t_f80 x, t_f80 y);
 #endif
 #ifdef	__float128
-t_f128					F128_Mul(t_f128 number1, t_f128 number2);
+t_f128					F128_Mul(t_f128 x, t_f128 y);
 #endif
 #define c_fmul			Float_Mul	//!< @alias{Float_Mul}
 #define c_f32mul		F32_Mul 	//!< @alias{F32_Mul}
@@ -265,13 +335,13 @@ t_f128					F128_Mul(t_f128 number1, t_f128 number2);
 //! Performs a division with the 2 given floating-point values (operator: `/`)
 //!@{
 #define					Float_Div	CONCAT(FLOAT_TYPE,_Div)
-t_f32					F32_Div(t_f32 number1, t_f32 number2);
-t_f64					F64_Div(t_f64 number1, t_f64 number2);
+t_f32					F32_Div(t_f32 x, t_f32 y);
+t_f64					F64_Div(t_f64 x, t_f64 y);
 #ifdef	__float80
-t_f80					F80_Div(t_f80 number1, t_f80 number2);
+t_f80					F80_Div(t_f80 x, t_f80 y);
 #endif
 #ifdef	__float128
-t_f128					F128_Div(t_f128 number1, t_f128 number2);
+t_f128					F128_Div(t_f128 x, t_f128 y);
 #endif
 #define c_fdiv			Float_Div	//!< @alias{Float_Div}
 #define c_f32div		F32_Div 	//!< @alias{F32_Div}

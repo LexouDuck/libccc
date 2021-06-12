@@ -419,69 +419,6 @@ t_s128							Q128_FractionPart(t_q128 number);
 
 /*
 ** ************************************************************************** *|
-**                         Fixed-point logic operators                        *|
-** ************************************************************************** *|
-*/
-
-
-
-//! Returns `TRUE` if the 2 given floating-point values are exactly equal (operator: `==`)
-/*!
-**	@param	number1	The first value to check for (exact) equality
-**	@param	number2	The second value to check for (exact) equality
-**	@returns
-**	`TRUE` if the 2 given floating-point values are exactly equal, `FALSE` otherwise.
-*/
-//!@{
-#define					Fixed_Equals	CONCAT(FLOAT_TYPE,_Equals)
-t_bool					Q16_Equals(t_q16 number1, t_q16 number2);
-t_bool					Q32_Equals(t_q32 number1, t_q32 number2);
-t_bool					Q64_Equals(t_q64 number1, t_q64 number2);
-#ifdef	__int128
-t_bool					Q128_Equals(t_q128 number1, t_q128 number2);
-#endif
-#define c_qequ			Fixed_Equals	//!< @alias{Fixed_Equals}
-#define c_q16equ		Q16_Equals		//!< @alias{Q16_Equals}
-#define c_q32equ		Q32_Equals		//!< @alias{Q32_Equals}
-#define c_q64equ		Q64_Equals		//!< @alias{Q64_Equals}
-#define c_q128equ		Q128_Equals		//!< @alias{Q128_Equals}
-//!@}
-
-
-
-//! Returns `TRUE` if the 2 given floating-point values are close enough to be considered equal (operator: `=~`, using FLOAT_APPROX)
-/*!
-**	@param	number1	The first value to check for (approximate) equality
-**	@param	number2	The second value to check for (approximate) equality
-**	@returns
-**	`TRUE` if the 2 given floating-point values are close enough to be considered equal
-**	(using `FLOAT_BIAS` as a comparison margin), or `FALSE` otherwise.
-*/
-//!@{
-#define					Fixed_EqualsApprox	CONCAT(FLOAT_TYPE,_EqualsApprox)
-t_bool					Q16_EqualsApprox(t_q16 number1, t_q16 number2);
-t_bool					Q32_EqualsApprox(t_q32 number1, t_q32 number2);
-t_bool					Q64_EqualsApprox(t_q64 number1, t_q64 number2);
-#ifdef	__int128
-t_bool					Q128_EqualsApprox(t_q128 number1, t_q128 number2);
-#endif
-#define c_qequa			Fixed_EqualsApprox	//!< @alias{Fixed_EqualsApprox}
-#define c_q16equa		Q16_EqualsApprox	//!< @alias{Q16_EqualsApprox}
-#define c_q32equa		Q32_EqualsApprox	//!< @alias{Q32_EqualsApprox}
-#define c_q64equa		Q64_EqualsApprox	//!< @alias{Q64_EqualsApprox}
-#define c_q128equa		Q128_EqualsApprox	//!< @alias{Q128_EqualsApprox}
-//!@}
-
-
-
-// TODO Fixed_LessThan()
-
-// TODO Fixed_GreaterThan()
-
-
-
-/*
-** ************************************************************************** *|
 **                          Fixed-to-String Conversions                       *|
 ** ************************************************************************** *|
 */

@@ -16,7 +16,7 @@ inline t_bool	Q##BITS##_Equals(t_q##BITS a, t_q##BITS b)		\
 
 
 #define DEFINEFUNC_FIXED_APPROX(BITS) \
-inline t_bool	Q##BITS##_EqualsApprox(t_q##BITS a, t_q##BITS b)\
+t_bool	Q##BITS##_EqualsApprox(t_q##BITS a, t_q##BITS b)		\
 {																\
 	t_q##BITS abs_a = ABS(a);									\
 	t_q##BITS abs_b = ABS(b);									\

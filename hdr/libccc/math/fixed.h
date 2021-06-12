@@ -182,6 +182,72 @@ t_q128					Q128_Ceil(t_q128 x);
 
 /*
 ** ************************************************************************** *|
+**                       Floating-point logic operators                       *|
+** ************************************************************************** *|
+*/
+
+//! Returns `TRUE` if the 2 given fixed-point values are exactly equal (operator: `==`)
+/*!
+**	@nonstd
+**
+**	@param	x	The first value to check for (exact) equality
+**	@param	y	The second value to check for (exact) equality
+**	@returns
+**	`TRUE` if the 2 given fixed-point values are exactly equal,
+**	otherwise `FALSE`.
+*/
+//!@{
+#define					Fixed_Equals	CONCAT(FLOAT_TYPE,_Equals)
+t_bool					Q16_Equals(t_q16 x, t_q16 y);
+t_bool					Q32_Equals(t_q32 x, t_q32 y);
+t_bool					Q64_Equals(t_q64 x, t_q64 y);
+#ifdef	__int128
+t_bool					Q128_Equals(t_q128 x, t_q128 y);
+#endif
+#define c_qequ			Fixed_Equals//!< @alias{Fixed_Equals}
+#define c_q16equ		Q16_Equals	//!< @alias{Q16_Equals}
+#define c_q32equ		Q32_Equals	//!< @alias{Q32_Equals}
+#define c_q64equ		Q64_Equals	//!< @alias{Q64_Equals}
+#define c_q128equ		Q128_Equals	//!< @alias{Q128_Equals}
+//!@}
+
+
+
+//! Returns `TRUE` if the 2 given fixed-point values are close to equal (operator: `~=`)
+/*!
+**	@nonstd
+**
+**	@param	x	The first value to check for (approximate) equality
+**	@param	y	The second value to check for (approximate) equality
+**	@returns
+**	`TRUE` if the 2 given fixed-point values are close enough to be considered equal
+**	(using #FLOAT_APPROX as a comparison margin), otherwise `FALSE`.
+*/
+//!@{
+#define					Fixed_EqualsApprox	CONCAT(FLOAT_TYPE,_EqualsApprox)
+t_bool					Q16_EqualsApprox(t_q16 x, t_q16 y);
+t_bool					Q32_EqualsApprox(t_q32 x, t_q32 y);
+t_bool					Q64_EqualsApprox(t_q64 x, t_q64 y);
+#ifdef	__int128
+t_bool					Q128_EqualsApprox(t_q128 x, t_q128 y);
+#endif
+#define c_qequa			Fixed_EqualsApprox	//!< @alias{Fixed_EqualsApprox}
+#define c_q16equa		Q16_EqualsApprox	//!< @alias{Q16_EqualsApprox}
+#define c_q32equa		Q32_EqualsApprox	//!< @alias{Q32_EqualsApprox}
+#define c_q64equa		Q64_EqualsApprox	//!< @alias{Q64_EqualsApprox}
+#define c_q128equa		Q128_EqualsApprox	//!< @alias{Q128_EqualsApprox}
+//!@}
+
+
+
+// TODO Fixed_LessThan
+
+// TODO Fixed_GreaterThan
+
+
+
+/*
+** ************************************************************************** *|
 **                         Fixed-point basic operators                        *|
 ** ************************************************************************** *|
 */
