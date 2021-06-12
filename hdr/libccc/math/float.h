@@ -130,22 +130,22 @@ t_f128						F128_Round(t_f128 x);
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/trunc}
 */
 //!@{
-#define						Float_Truncate	CONCAT(FLOAT_TYPE,_Truncate)
-t_f32						F32_Truncate(t_f32 x);
-t_f64						F64_Truncate(t_f64 x);
+#define						Float_Trunc	CONCAT(FLOAT_TYPE,_Trunc)
+t_f32						F32_Trunc(t_f32 x);
+t_f64						F64_Trunc(t_f64 x);
 #ifdef __float80
-t_f80						F80_Truncate(t_f80 x);
+t_f80						F80_Trunc(t_f80 x);
 #endif
 #ifdef __float128
-t_f128						F128_Truncate(t_f128 x);
+t_f128						F128_Trunc(t_f128 x);
 #endif
-#define c_ftrunc			Float_Truncate
-#define c_f32trunc			F32_Truncate
-#define c_f64trunc			F64_Truncate
-#define c_f80trunc			F80_Truncate
-#define c_f128trunc			F128_Truncate
+#define c_ftrunc			Float_Trunc
+#define c_f32trunc			F32_Trunc
+#define c_f64trunc			F64_Trunc
+#define c_f80trunc			F80_Trunc
+#define c_f128trunc			F128_Trunc
 
-#define Float_Trunc			Float_Truncate
+#define Float_Truncate		Float_Trunc
 //!@}
 
 //! Returns the value of `x`, rounded to the superior integer
@@ -174,22 +174,22 @@ t_f128						F128_Floor(t_f128 x);
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/ceil}
 */
 //!@{
-#define						Float_Ceiling	CONCAT(FLOAT_TYPE,_Ceiling)
-t_f32						F32_Ceiling(t_f32 x);
-t_f64						F64_Ceiling(t_f64 x);
+#define						Float_Ceil	CONCAT(FLOAT_TYPE,_Ceil)
+t_f32						F32_Ceil(t_f32 x);
+t_f64						F64_Ceil(t_f64 x);
 #ifdef __float80
-t_f80						F80_Ceiling(t_f80 x);
+t_f80						F80_Ceil(t_f80 x);
 #endif
 #ifdef __float128
-t_f128						F128_Ceiling(t_f128 x);
+t_f128						F128_Ceil(t_f128 x);
 #endif
-#define c_fceil				Float_Ceiling
-#define c_f32ceil			F32_Ceiling
-#define c_f64ceil			F64_Ceiling
-#define c_f80ceil			F80_Ceiling
-#define c_f128ceil			F128_Ceiling
+#define c_fceil				Float_Ceil
+#define c_f32ceil			F32_Ceil
+#define c_f64ceil			F64_Ceil
+#define c_f80ceil			F80_Ceil
+#define c_f128ceil			F128_Ceil
 
-#define Float_Ceil			Float_Ceiling
+#define Float_Ceiling		Float_Ceil
 //!@}
 
 

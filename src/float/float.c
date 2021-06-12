@@ -35,7 +35,7 @@ t_f##BITS	F##BITS##_From(t_sint integer, t_sint exponent)		\
 
 
 #if LIBCONFIG_USE_STD_MATH
-MATH_DECL_FUNCTION(t_sint, getexp2, ilogb)
+MATH_DECL_FUNCTION(t_sint, GetExp2, ilogb)
 #else
 
 #define DEFINEFUNC_FLOAT_GETEXP2(BITS) \
@@ -56,9 +56,9 @@ DEFINEFUNC_FLOAT_GETEXP2(	128)
 
 
 #define DEFINEFUNC_FLOAT_GETEXP10(BITS) \
-t_sint	F##BITS##_GetExp10(t_f##BITS number)				\
-{															\
-	return (F##BITS##_Truncate(F##BITS##_Log10(number)));	\
+t_sint	F##BITS##_GetExp10(t_f##BITS number)			\
+{														\
+	return (F##BITS##_Trunc(F##BITS##_Log10(number)));	\
 }
 
 

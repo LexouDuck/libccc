@@ -122,20 +122,20 @@ t_q128					Q128_Round(t_q128 x);
 **	@nonstd
 */
 //!@{
-#define					Fixed_Truncate	CONCAT(FIXED_TYPE,_Truncate)
-t_q16					Q16_Truncate(t_q16 x);
-t_q32					Q32_Truncate(t_q32 x);
-t_q64					Q64_Truncate(t_q64 x);
+#define					Fixed_Trunc	CONCAT(FIXED_TYPE,_Trunc)
+t_q16					Q16_Trunc(t_q16 x);
+t_q32					Q32_Trunc(t_q32 x);
+t_q64					Q64_Trunc(t_q64 x);
 #ifdef __int128
-t_q128					Q128_Truncate(t_q128 x);
+t_q128					Q128_Trunc(t_q128 x);
 #endif
-#define c_qtrunc		Fixed_Truncate 	//!< @alias{Fixed_Truncate}
-#define c_q16trunc		Q16_Truncate 	//!< @alias{Q16_Truncate}
-#define c_q32trunc		Q32_Truncate 	//!< @alias{Q32_Truncate}
-#define c_q64trunc		Q64_Truncate 	//!< @alias{Q64_Truncate}
-#define c_q128trunc		Q128_Truncate 	//!< @alias{Q128_Truncate}
+#define c_qtrunc		Fixed_Trunc	//!< @alias{Fixed_Trunc}
+#define c_q16trunc		Q16_Trunc	//!< @alias{Q16_Trunc}
+#define c_q32trunc		Q32_Trunc	//!< @alias{Q32_Trunc}
+#define c_q64trunc		Q64_Trunc	//!< @alias{Q64_Trunc}
+#define c_q128trunc		Q128_Trunc	//!< @alias{Q128_Trunc}
 
-#define Fixed_Trunc		Fixed_Truncate
+#define Fixed_Truncate	Fixed_Trunc
 //!@}
 
 //! Returns the value of `x`, rounded to the superior integer
@@ -162,20 +162,20 @@ t_q128					Q128_Floor(t_q128 x);
 **	@nonstd
 */
 //!@{
-#define					Fixed_Ceiling	CONCAT(FIXED_TYPE,_Ceiling)
-t_q16					Q16_Ceiling(t_q16 x);
-t_q32					Q32_Ceiling(t_q32 x);
-t_q64					Q64_Ceiling(t_q64 x);
+#define					Fixed_Ceil	CONCAT(FIXED_TYPE,_Ceil)
+t_q16					Q16_Ceil(t_q16 x);
+t_q32					Q32_Ceil(t_q32 x);
+t_q64					Q64_Ceil(t_q64 x);
 #ifdef __int128
-t_q128					Q128_Ceiling(t_q128 x);
+t_q128					Q128_Ceil(t_q128 x);
 #endif
-#define c_qceil			Fixed_Ceiling
-#define c_q16ceil		Q16_Ceiling
-#define c_q32ceil		Q32_Ceiling
-#define c_q64ceil		Q64_Ceiling
-#define c_q128ceil		Q128_Ceiling
+#define c_qceil			Fixed_Ceil
+#define c_q16ceil		Q16_Ceil
+#define c_q32ceil		Q32_Ceil
+#define c_q64ceil		Q64_Ceil
+#define c_q128ceil		Q128_Ceil
 
-#define Fixed_Ceil		Fixed_Ceiling
+#define Fixed_Ceiling	Fixed_Ceil
 //!@}
 
 

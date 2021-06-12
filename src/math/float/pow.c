@@ -8,9 +8,9 @@
 
 #if LIBCONFIG_USE_STD_MATH
 // TODO fix this
-//MATH_DECL_REALOPERATOR(intpow, pow)
+//MATH_DECL_REALOPERATOR(IntPow, pow)
 #else
-t_float			c_intpow(t_float x, t_sint n)
+t_float			Float_IntPow(t_float x, t_sint n)
 {
 	t_float	tmp;
 
@@ -49,9 +49,9 @@ t_float			c_intpow(t_float x, t_sint n)
 
 
 #if LIBCONFIG_USE_STD_MATH
-MATH_DECL_REALOPERATOR(pow, pow)
+MATH_DECL_REALOPERATOR(Pow, pow)
 #else
-inline t_float	c_pow(t_float x, t_float y)
+inline t_float	Float_Pow(t_float x, t_float y)
 {
 	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)
 	return (c_exp(y * c_ln(x)));

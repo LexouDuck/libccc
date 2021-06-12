@@ -7,7 +7,7 @@
 
 
 #if LIBCONFIG_USE_STD_MATH
-MATH_DECL_REALFUNCTION(ln, log)
+MATH_DECL_REALFUNCTION(Ln, log)
 #else
 
 /*!
@@ -18,7 +18,7 @@ MATH_DECL_REALFUNCTION(ln, log)
 **	this corresponds precisely to an exponent of zero when unbiased.
 */
 static
-t_float	c_ln_taylor_series(t_float x)
+t_float	Float_Ln_TaylorSeries(t_float x)
 {
 	t_float	result;
 	t_float	result_previous;
@@ -41,7 +41,7 @@ t_float	c_ln_taylor_series(t_float x)
 	return (result);
 }
 
-t_float	c_ln(t_float x)
+t_float	Float_Ln(t_float x)
 {
 	static const t_float LN_3_2  = (t_float)0x1.9F323ECBF984Cp-2;
 	static const t_float DIV_2_3 = (t_float)0x1.5555555555556p-1;
@@ -69,7 +69,7 @@ t_float	c_ln(t_float x)
 	}
 	if (1.9 <= x && x < 2.)
 		return (c_ln(x * DIV_2_3) + LN_3_2);
-	result = c_ln_taylor_series(x - 1.);
+	result = Float_Ln_TaylorSeries(x - 1.);
 	return (result);
 }
 #endif
@@ -77,10 +77,10 @@ t_float	c_ln(t_float x)
 
 
 #if LIBCONFIG_USE_STD_MATH
-MATH_DECL_REALFUNCTION(lg, log2)
+MATH_DECL_REALFUNCTION(Log2, log2)
 #else
 inline
-t_float	c_lg(t_float x)
+t_float	Float_Log2(t_float x)
 {
 	return (c_ln(x) / LN_2);
 }
@@ -89,10 +89,10 @@ t_float	c_lg(t_float x)
 
 
 #if LIBCONFIG_USE_STD_MATH
-MATH_DECL_REALFUNCTION(log, log10)
+MATH_DECL_REALFUNCTION(Log10, log10)
 #else
 inline
-t_float	c_log(t_float x)
+t_float	Float_Log10(t_float x)
 {
 	return (c_ln(x) / LN_10);
 }
@@ -101,7 +101,7 @@ t_float	c_log(t_float x)
 
 
 inline
-t_float	c_log_n(t_float x, t_float n)
+t_float	Float_LogN(t_float x, t_float n)
 {
 	if (n == 2)
 		return (Float_Log2(x));

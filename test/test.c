@@ -190,18 +190,18 @@ DEFINE_TESTFUNCTION_INT(uintmax,u)
 
 
 #define F32_PRECISION_FORMAT	"%.8f"
-#define F64_PRECISION_FORMAT	"%.16f"
-#define F80_PRECISION_FORMAT	"%.20f"
-#define F128_PRECISION_FORMAT	"%.32f"
+#define F64_PRECISION_FORMAT	"%.16lf"
+#define F80_PRECISION_FORMAT	"%.20Lf"
+#define F128_PRECISION_FORMAT	"%.32Lf"
 
-#define FLOAT_PRECISION_FORMAT	CONCAT(CONCAT(F,LIBCONFIG_BITS_FLOAT),_PRECISION_FORMAT)
+#define FLOAT_PRECISION_FORMAT	
 
-#define DEFINE_TESTFUNCTION_FLOAT(NAME, SIZE) \
+#define DEFINE_TESTFUNCTION_FLOAT(NAME, BITS) \
 void	print_test_##NAME(s_test_##NAME* test, char const* args)		\
 {																		\
 	int error;															\
-	char str_result[SIZE];												\
-	char str_expect[SIZE];												\
+	char str_result[BITS];												\
+	char str_expect[BITS];												\
 	if (test->result_sig)												\
 		error = !test->expect_sig;										\
 	else if (test->expect_sig)											\
@@ -209,8 +209,8 @@ void	print_test_##NAME(s_test_##NAME* test, char const* args)		\
 	else error = (test->result != test->expect);						\
 	if (isnan(test->result) && isnan(test->expect))						\
 		error = FALSE;													\
-	snprintf(str_result, SIZE, FLOAT_PRECISION_FORMAT, test->result);	\
-	snprintf(str_expect, SIZE, FLOAT_PRECISION_FORMAT, test->expect);	\
+	snprintf(str_result, BITS, CONCAT(CONCAT(F,BITS),_PRECISION_FORMAT), test->result);	\
+	snprintf(str_expect, BITS, CONCAT(CONCAT(F,BITS),_PRECISION_FORMAT), test->expect);	\
 	print_test(test->name, test->function, args,						\
 		(test->result_sig ? signals[test->result_sig] : str_result),	\
 		(test->expect_sig ? signals[test->expect_sig] : str_expect),	\
@@ -226,7 +226,7 @@ DEFINE_TESTFUNCTION_FLOAT(f80, 80)
 #ifdef __float128
 DEFINE_TESTFUNCTION_FLOAT(f128, 128)
 #endif
-DEFINE_TESTFUNCTION_FLOAT(float, sizeof(t_float) * 8)
+DEFINE_TESTFUNCTION_FLOAT(float, LIBCONFIG_BITS_FLOAT)
 
 
 

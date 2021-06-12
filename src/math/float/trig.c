@@ -36,7 +36,7 @@ static t_float	inv_factorial(t_u32 n)
 
 
 #if LIBCONFIG_USE_STD_MATH
-MATH_DECL_REALFUNCTION(cos, cos)
+MATH_DECL_REALFUNCTION(Cos, cos)
 #else
 t_float			c_cos(t_float x)
 {
@@ -82,7 +82,7 @@ t_float			c_cos(t_float x)
 
 
 #if LIBCONFIG_USE_STD_MATH
-MATH_DECL_REALFUNCTION(sin, sin)
+MATH_DECL_REALFUNCTION(Sin, sin)
 #else
 t_float			c_sin(t_float x)
 {
@@ -137,7 +137,7 @@ t_float			c_sin(t_float x)
 
 
 #if LIBCONFIG_USE_STD_MATH
-MATH_DECL_REALFUNCTION(tan, tan)
+MATH_DECL_REALFUNCTION(Tan, tan)
 #else
 t_float	c_tan(t_float x)
 {
@@ -192,7 +192,7 @@ t_float	c_tan(t_float x)
 
 
 #if LIBCONFIG_USE_STD_MATH
-MATH_DECL_REALFUNCTION(acos, acos)
+MATH_DECL_REALFUNCTION(ArcCos, acos)
 #else
 t_float		c_acos(t_float x)
 {
@@ -223,7 +223,7 @@ t_float		c_acos(t_float x)
 
 
 #if LIBCONFIG_USE_STD_MATH
-MATH_DECL_REALFUNCTION(asin, asin)
+MATH_DECL_REALFUNCTION(ArcSin, asin)
 #else
 t_float		c_asin(t_float x)
 {
@@ -254,7 +254,7 @@ t_float		c_asin(t_float x)
 
 
 #if LIBCONFIG_USE_STD_MATH
-MATH_DECL_REALFUNCTION(atan, atan)
+MATH_DECL_REALFUNCTION(ArcTan, atan)
 #else
 t_float		c_atan(t_float x)
 {
@@ -307,7 +307,7 @@ t_float		c_atan(t_float x)
 
 
 #if LIBCONFIG_USE_STD_MATH
-MATH_DECL_REALOPERATOR(atan2, atan2)
+MATH_DECL_REALOPERATOR(ArcTan2, atan2)
 #else
 t_float		c_atan2(t_float y, t_float x)
 {

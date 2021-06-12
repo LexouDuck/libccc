@@ -15,7 +15,7 @@
 **	Some SQRT(2)^n lookup tables for quick newton method initial guess
 */
 static
-t_float	c_sqrt_2_pow_n(t_s32 n)
+t_float	Float_Root2_2powN(t_s32 n)
 {
 	static const t_float powers_pos[POWERS_LENGTH] =
 	{
@@ -95,9 +95,9 @@ t_float	c_sqrt_2_pow_n(t_s32 n)
 
 
 #if LIBCONFIG_USE_STD_MATH
-MATH_DECL_REALFUNCTION(sqrt, sqrt)
+MATH_DECL_REALFUNCTION(Root2, sqrt)
 #else
-t_float	c_sqrt(t_float x)
+t_float	Float_Root2(t_float x)
 {
 	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)
 	HANDLE_ERROR(MATHDOMAIN, (x < 0.), return (NAN);)
@@ -108,8 +108,7 @@ t_float	c_sqrt(t_float x)
 	x_2 = result.value_float * 0.5;
 #if (LIBCONFIG_BITS_FLOAT == 32) // magic voodoo constant
 	result.value_int = 0x5F375A86 - (result.value_int >> 1);
-#endif
-#if (LIBCONFIG_BITS_FLOAT == 64) // 64bit magic constant from https://cs.uwaterloo.ca/~m32rober/rsqrt.pdf
+#elif (LIBCONFIG_BITS_FLOAT == 64) // 64bit magic constant from https://cs.uwaterloo.ca/~m32rober/rsqrt.pdf
 	result.value_int = 0x5FE6EB50C7B537A9 - (result.value_int >> 1);
 #endif
 	// TODO handle extended precision types
@@ -130,7 +129,7 @@ t_float	c_sqrt(t_float x)
 	if (x == 1.)
 		return (1.);
 	i = c_getexp(x);
-	result = (i < 0 ? 0.75 : 1.25) * c_sqrt_2_pow_n(i);
+	result = (i < 0 ? 0.75 : 1.25) * Float_Root2_2powN(i);
 	previous = INFINITY;
 	i = 0;
 	while (c_fabs(result - previous) > FLOAT_APPROX)
@@ -148,9 +147,9 @@ t_float	c_sqrt(t_float x)
 
 
 #if LIBCONFIG_USE_STD_MATH
-MATH_DECL_REALFUNCTION(cbrt, cbrt)
+MATH_DECL_REALFUNCTION(Root3, cbrt)
 #else
-t_float	c_cbrt(t_float x)
+t_float	Float_Root3(t_float x)
 {
 	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)
 //	Newton derivative approximation by iteration
@@ -165,7 +164,7 @@ t_float	c_cbrt(t_float x)
 	if (c_fabs(x) == 1.)
 		return (SIGN(x));
 	i = c_getexp(x);
-	result = SIGN(x) * (i < 0 ? 0.75 : 1.25) * c_sqrt_2_pow_n(i * 2 / 3);
+	result = SIGN(x) * (i < 0 ? 0.75 : 1.25) * Float_Root2_2powN(i * 2 / 3);
 	previous = INFINITY;
 	i = 0;
 	while (c_fabs(result - previous) > FLOAT_APPROX)
@@ -202,7 +201,7 @@ t_float	Float_RootN(t_float x, t_u8 n)
 	if (c_fabs(x) == 1.)
 		return (SIGN(x));
 	i = Float_GetExp2(x);
-	result = SIGN(x) * (i < 0 ? 1 : 1.25) * c_sqrt_2_pow_n(i * 2 / (t_s32)n);
+	result = SIGN(x) * (i < 0 ? 1 : 1.25) * Float_Root2_2powN(i * 2 / (t_s32)n);
 	previous = 0.;
 	i = 0;
 	n -= 1;

@@ -7,7 +7,7 @@
 
 
 #if LIBCONFIG_USE_STD_MATH
-MATH_DECL_REALFUNCTION(cosh, cosh)
+MATH_DECL_REALFUNCTION(CosH, cosh)
 #else
 t_float		c_cosh(t_float x)
 {
@@ -33,7 +33,7 @@ t_float		c_cosh(t_float x)
 
 
 #if LIBCONFIG_USE_STD_MATH
-MATH_DECL_REALFUNCTION(sinh, sinh)
+MATH_DECL_REALFUNCTION(SinH, sinh)
 #else
 t_float		c_sinh(t_float x)
 {
@@ -60,7 +60,7 @@ t_float		c_sinh(t_float x)
 
 
 #if LIBCONFIG_USE_STD_MATH
-MATH_DECL_REALFUNCTION(tanh, tanh)
+MATH_DECL_REALFUNCTION(TanH, tanh)
 #else
 t_float		c_tanh(t_float x)
 {
@@ -95,7 +95,7 @@ t_float		c_tanh(t_float x)
 
 
 #if LIBCONFIG_USE_STD_MATH
-MATH_DECL_REALFUNCTION(acosh, acosh)
+MATH_DECL_REALFUNCTION(InvCosH, acosh)
 #else
 t_float		c_acosh(t_float x)
 {
@@ -113,7 +113,7 @@ t_float		c_acosh(t_float x)
 
 
 #if LIBCONFIG_USE_STD_MATH
-MATH_DECL_REALFUNCTION(asinh, asinh)
+MATH_DECL_REALFUNCTION(InvSinH, asinh)
 #else
 t_float		c_asinh(t_float x)
 {
@@ -134,7 +134,7 @@ t_float		c_asinh(t_float x)
 
 
 #if LIBCONFIG_USE_STD_MATH
-MATH_DECL_REALFUNCTION(atanh, atanh)
+MATH_DECL_REALFUNCTION(InvTanH, atanh)
 #else
 t_float		c_atanh(t_float x)
 {

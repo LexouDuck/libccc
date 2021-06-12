@@ -28,6 +28,11 @@
 ** ************************************************************************** *|
 */
 
+#define f32_SF	"%+#.*g"
+#define f64_SF	"%+#.*lg"
+#define f80_SF	"%+#.*Lg"
+#define f128_SF	"%+#.*Lg"
+
 #define DEFINETEST_FLOAT_TO_STR(TYPE) \
 void	print_test_##TYPE##tostr(char const* test_name, int can_segfault,		\
 		char const* expecting,													\
@@ -36,7 +41,7 @@ void	print_test_##TYPE##tostr(char const* test_name, int can_segfault,		\
 {																				\
 	TEST_INIT(str)																\
 	TEST_PERFORM(	TYPE##tostr, number, precision)								\
-	TEST_PRINT(str, TYPE##tostr, "%+#.*g, p=%u", precision, number, precision)	\
+	TEST_PRINT(str, TYPE##tostr, TYPE##_SF", p=%u", precision, number, precision)\
 	TEST_FREE()																	\
 }																				\
 void	test_##TYPE##tostr(void)																							\

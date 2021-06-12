@@ -6,9 +6,9 @@
 
 
 #if LIBCONFIG_USE_STD_MATH
-MATH_DECL_REALFUNCTION(exp, exp)
+MATH_DECL_REALFUNCTION(Exp, exp)
 #else
-t_float		c_exp(t_float x)
+t_float		Float_Exp(t_float x)
 {
 	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)
 	if (x < -10.)

@@ -126,21 +126,21 @@ HEADER_CPP
 
 
 #define MATH_DEFINE_FUNCTION(RETURN, BITS, NAME, CNAME, TYPE) \
-	inline RETURN	 F##BITS##NAME(t_f##BITS a)					\
-	{															\
-		return (__builtin_##CNAME##TYPE(a));					\
+	inline RETURN	 F##BITS##_##NAME(t_f##BITS a)					\
+	{																\
+		return (__builtin_##CNAME##TYPE(a));						\
 	}
 
 #define MATH_DEFINE_REALFUNCTION(BITS, NAME, CNAME, TYPE) \
-	inline t_f##BITS	F##BITS##NAME(t_f##BITS a)				\
-	{															\
-		return (__builtin_##CNAME##TYPE(a));					\
+	inline t_f##BITS	F##BITS##_##NAME(t_f##BITS a)				\
+	{																\
+		return (__builtin_##CNAME##TYPE(a));						\
 	}
 
 #define MATH_DEFINE_REALOPERATOR(BITS, NAME, CNAME, TYPE) \
-	inline t_f##BITS	F##BITS##NAME(t_f##BITS a, t_f##BITS b)	\
-	{															\
-		return (__builtin_##CNAME##TYPE(a, b));					\
+	inline t_f##BITS	F##BITS##_##NAME(t_f##BITS a, t_f##BITS b)	\
+	{																\
+		return (__builtin_##CNAME##TYPE(a, b));						\
 	}
 
 #define MATH_DEFINE_FUNCTION_F32(RETURN,NAME, CNAME)	MATH_DEFINE_FUNCTION(RETURN,32, NAME, CNAME,f)
@@ -259,7 +259,14 @@ HEADER_CPP
 */
 #define						Math_Round(X)		DEFINE_GENERIC_MATH_FUNCTION(Round, X)
 #define c_round				Math_Round
-#define Math_FloatRound		Math_Round
+
+//! Returns the value of `x`, rounded towards 0
+/*!
+**	- Math: @f$ {trunc{x}} @f$
+*/
+#define						Math_Trunc(X)	DEFINE_GENERIC_MATH_FUNCTION(Truncate, X)
+#define c_trunc				Math_Trunc
+#define Math_Truncate		Math_Trunc
 
 //! Returns the value of `x`, rounded to the superior integer
 /*!
@@ -267,23 +274,14 @@ HEADER_CPP
 */
 #define						Math_Floor(X)		DEFINE_GENERIC_MATH_FUNCTION(Floor, X)
 #define c_floor				Math_Floor
-#define Math_FloatFloor		Math_Floor
 
 //! Returns the value of `x`, rounded to the inferior integer
 /*!
 **	- Math: @f$ {ceil{x}} @f$ or @f$ {\lceil{x}\rceil} @f$
 */
-#define						Math_Ceiling(X)		DEFINE_GENERIC_MATH_FUNCTION(Ceiling, X)
-#define c_ceil				Math_Ceiling
-#define Math_FloatCeiling	Math_Ceiling
-
-//! Returns the value of `x`, rounded towards 0
-/*!
-**	- Math: @f$ {trunc{x}} @f$
-*/
-#define						Math_Truncate(X)	DEFINE_GENERIC_MATH_FUNCTION(Truncate, X)
-#define c_trunc				Math_Truncate
-#define Math_FloatTrunc		Math_Truncate
+#define						Math_Ceil(X)		DEFINE_GENERIC_MATH_FUNCTION(Ceiling, X)
+#define c_ceil				Math_Ceil
+#define Math_Ceiling		Math_Ceil
 
 
 
