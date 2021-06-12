@@ -7,7 +7,7 @@
 
 
 
-#define DEFINEFUNC_CONVERT_FIXED_TO_STR(BITS) \
+#define DEFINEFUNC_FIXED_TOSTR(BITS) \
 inline t_char*	Q##BITS##_ToString(t_q##BITS number)	\
 {														\
 	return (String_Format(								\
@@ -18,9 +18,9 @@ inline t_char*	Q##BITS##_ToString(t_q##BITS number)	\
 	);													\
 }														\
 
-DEFINEFUNC_CONVERT_FIXED_TO_STR(16)
-DEFINEFUNC_CONVERT_FIXED_TO_STR(32)
-DEFINEFUNC_CONVERT_FIXED_TO_STR(64)
+DEFINEFUNC_FIXED_TOSTR(16)
+DEFINEFUNC_FIXED_TOSTR(32)
+DEFINEFUNC_FIXED_TOSTR(64)
 #ifdef __int128
-DEFINEFUNC_CONVERT_FIXED_TO_STR(128)
+DEFINEFUNC_FIXED_TOSTR(128)
 #endif

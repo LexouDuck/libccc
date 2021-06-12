@@ -9,18 +9,19 @@
 
 
 
-#define DEFINEFUNC_CONVERT_STRBIN_TO_UINT(BITS) \
+#define DEFINEFUNC_UINT_FROMSTRBIN(BITS) \
 t_u##BITS	U##BITS##_FromString_Bin(t_char const* str)								\
 {																					\
 	t_u##BITS	result;																\
 	t_u##BITS	tmp;																\
-	t_size	i;																		\
+	t_size	i = 0;																	\
 																					\
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)							\
-	for (i = 0; str[i] && Char_IsSpace(str[i]); ++i)								\
-		continue;																	\
-	HANDLE_ERROR_SF(PARSE,															\
-		!(str[i] == '+' || Char_IsDigit_Bin(str[i])),								\
+	while (*str && Char_IsSpace(*str))												\
+	{																				\
+		++str;																		\
+	}																				\
+	HANDLE_ERROR_SF(PARSE, !(*str == '+' || Char_IsDigit_Bin(*str)),				\
 		return (0);,																\
 		": expected a number (with spaces/sign), but instead got \"%s\"", str)		\
 	if (str[i] == '+')																\
@@ -39,23 +40,23 @@ t_u##BITS	U##BITS##_FromString_Bin(t_char const* str)								\
 	return (result);																\
 }																					\
 
-DEFINEFUNC_CONVERT_STRBIN_TO_UINT(8)
-DEFINEFUNC_CONVERT_STRBIN_TO_UINT(16)
-DEFINEFUNC_CONVERT_STRBIN_TO_UINT(32)
-DEFINEFUNC_CONVERT_STRBIN_TO_UINT(64)
+DEFINEFUNC_UINT_FROMSTRBIN(8)
+DEFINEFUNC_UINT_FROMSTRBIN(16)
+DEFINEFUNC_UINT_FROMSTRBIN(32)
+DEFINEFUNC_UINT_FROMSTRBIN(64)
 #ifdef __int128
-DEFINEFUNC_CONVERT_STRBIN_TO_UINT(128)
+DEFINEFUNC_UINT_FROMSTRBIN(128)
 #endif
 
 
 
-#define DEFINEFUNC_CONVERT_STRBIN_TO_SINT(BITS) \
+#define DEFINEFUNC_SINT_FROMSTRBIN(BITS) \
 t_s##BITS	S##BITS##_FromString_Bin(t_char const* str)								\
 {																					\
 	t_u##BITS	result;																\
 	t_u##BITS	tmp;																\
 	t_bool	negative;																\
-	t_size	i;																		\
+	t_size	i = 0;																	\
 																					\
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)							\
 	for (i = 0; str[i] && Char_IsSpace(str[i]); ++i)								\
@@ -89,10 +90,10 @@ t_s##BITS	S##BITS##_FromString_Bin(t_char const* str)								\
 	return (negative ? -(t_s##BITS)result : (t_s##BITS)result);						\
 }																					\
 
-DEFINEFUNC_CONVERT_STRBIN_TO_SINT(8)
-DEFINEFUNC_CONVERT_STRBIN_TO_SINT(16)
-DEFINEFUNC_CONVERT_STRBIN_TO_SINT(32)
-DEFINEFUNC_CONVERT_STRBIN_TO_SINT(64)
+DEFINEFUNC_SINT_FROMSTRBIN(8)
+DEFINEFUNC_SINT_FROMSTRBIN(16)
+DEFINEFUNC_SINT_FROMSTRBIN(32)
+DEFINEFUNC_SINT_FROMSTRBIN(64)
 #ifdef __int128
-DEFINEFUNC_CONVERT_STRBIN_TO_SINT(128)
+DEFINEFUNC_SINT_FROMSTRBIN(128)
 #endif

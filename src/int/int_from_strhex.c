@@ -23,25 +23,21 @@ int	GetDigit_FromString_Hex(char c)
 
 
 
-#define DEFINEFUNC_CONVERT_STRHEX_TO_UINT(BITS) \
+#define DEFINEFUNC_UINT_FROMSTRHEX(BITS) \
 t_u##BITS	U##BITS##_FromString_Hex(t_char const* str)								\
 {																					\
 	t_u##BITS	result;																\
 	t_u##BITS	tmp;																\
-	t_size	i;																		\
+	t_size	i = 0;																	\
 																					\
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)							\
-	i = 0;																			\
-	while (!(str[i] == '+' ||														\
-		('0' <= str[i] && str[i] <= '9') ||											\
-		('A' <= str[i] && str[i] <= 'F') ||											\
-		('a' <= str[i] && str[i] <= 'f')))											\
+	while (*str && Char_IsSpace(*str))												\
 	{																				\
-		HANDLE_ERROR_SF(PARSE, (!str[i] || !Char_IsSpace(str[i])),					\
-			return (0);,															\
-		": expected a number (with spaces/sign), but instead got \"%s\"", str)		\
-		++i;																		\
+		++str;																		\
 	}																				\
+	HANDLE_ERROR_SF(PARSE, !(*str == '+' || Char_IsDigit_Hex(*str)),				\
+		return (0);,																\
+		": expected a number (with spaces/sign), but instead got \"%s\"", str)		\
 	if (str[i] == '+')																\
 		++i;																		\
 	if (str[i] == '0' && str[i + 1] == 'x')											\
@@ -61,36 +57,32 @@ t_u##BITS	U##BITS##_FromString_Hex(t_char const* str)								\
 	return (result);																\
 }																					\
 
-DEFINEFUNC_CONVERT_STRHEX_TO_UINT(8)
-DEFINEFUNC_CONVERT_STRHEX_TO_UINT(16)
-DEFINEFUNC_CONVERT_STRHEX_TO_UINT(32)
-DEFINEFUNC_CONVERT_STRHEX_TO_UINT(64)
+DEFINEFUNC_UINT_FROMSTRHEX(8)
+DEFINEFUNC_UINT_FROMSTRHEX(16)
+DEFINEFUNC_UINT_FROMSTRHEX(32)
+DEFINEFUNC_UINT_FROMSTRHEX(64)
 #ifdef __int128
-DEFINEFUNC_CONVERT_STRHEX_TO_UINT(128)
+DEFINEFUNC_UINT_FROMSTRHEX(128)
 #endif
 
 
 
-#define DEFINEFUNC_CONVERT_STRHEX_TO_SINT(BITS) \
+#define DEFINEFUNC_SINT_FROMSTRHEX(BITS) \
 t_s##BITS	S##BITS##_FromString_Hex(t_char const* str)								\
 {																					\
 	t_u##BITS	result;																\
 	t_u##BITS	tmp;																\
 	t_bool	negative;																\
-	t_size	i;																		\
+	t_size	i = 0;																	\
 																					\
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)							\
-	i = 0;																			\
-	while (!(str[i] == '+' || str[i] == '+' ||										\
-		('0' <= str[i] && str[i] <= '9') ||											\
-		('A' <= str[i] && str[i] <= 'F') ||											\
-		('a' <= str[i] && str[i] <= 'f')))											\
+	while (*str && Char_IsSpace(*str))												\
 	{																				\
-		HANDLE_ERROR_SF(PARSE, (!str[i] || !Char_IsSpace(str[i])),					\
-			return (0);,															\
-		": expected a number (with spaces/sign), but instead got \"%s\"", str)		\
-		++i;																		\
+		++str;																		\
 	}																				\
+	HANDLE_ERROR_SF(PARSE, !(*str == '+' || *str == '-' || Char_IsDigit_Hex(*str)),	\
+		return (0);,																\
+		": expected a number (with spaces/sign), but instead got \"%s\"", str)		\
 	if (str[i] == '-')																\
 	{																				\
 		negative = TRUE;															\
@@ -101,10 +93,7 @@ t_s##BITS	S##BITS##_FromString_Hex(t_char const* str)								\
 	if (str[i] == '0' && str[i + 1] == 'x')											\
 		i += 2;																		\
 	result = 0;																		\
-	while (str[i] && (																\
-		('0' <= str[i] && str[i] <= '9') ||											\
-		('A' <= str[i] && str[i] <= 'F') ||											\
-		('a' <= str[i] && str[i] <= 'f')))											\
+	while (str[i] && Char_IsDigit_Hex(str[i]))										\
 	{																				\
 		tmp = result * 16 + GetDigit_FromString_Hex(str[i++]);						\
 		HANDLE_ERROR_SF(RESULTRANGE, (negative && tmp > (t_u##BITS)-S##BITS##_MIN),	\
@@ -118,10 +107,10 @@ t_s##BITS	S##BITS##_FromString_Hex(t_char const* str)								\
 	return (negative ? -(t_s##BITS)result : (t_s##BITS)result);						\
 }																					\
 
-DEFINEFUNC_CONVERT_STRHEX_TO_SINT(8)
-DEFINEFUNC_CONVERT_STRHEX_TO_SINT(16)
-DEFINEFUNC_CONVERT_STRHEX_TO_SINT(32)
-DEFINEFUNC_CONVERT_STRHEX_TO_SINT(64)
+DEFINEFUNC_SINT_FROMSTRHEX(8)
+DEFINEFUNC_SINT_FROMSTRHEX(16)
+DEFINEFUNC_SINT_FROMSTRHEX(32)
+DEFINEFUNC_SINT_FROMSTRHEX(64)
 #ifdef __int128
-DEFINEFUNC_CONVERT_STRHEX_TO_SINT(128)
+DEFINEFUNC_SINT_FROMSTRHEX(128)
 #endif

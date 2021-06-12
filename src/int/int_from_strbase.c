@@ -50,7 +50,7 @@ t_s32	String_Base_IsInBase(t_char const* base, t_size base_length, char c)
 
 
 
-#define DEFINEFUNC_CONVERT_STRBASE_TO_UINT(BITS) \
+#define DEFINEFUNC_UINT_FROMSTRBASE(BITS) \
 t_u##BITS	U##BITS##_FromString_Base(t_char const* str, t_char const* base)		\
 {																					\
 	t_u##BITS	result;																\
@@ -97,17 +97,17 @@ t_u##BITS	U##BITS##_FromString_Base(t_char const* str, t_char const* base)		\
 	return (result);																\
 }																					\
 
-DEFINEFUNC_CONVERT_STRBASE_TO_UINT(8)
-DEFINEFUNC_CONVERT_STRBASE_TO_UINT(16)
-DEFINEFUNC_CONVERT_STRBASE_TO_UINT(32)
-DEFINEFUNC_CONVERT_STRBASE_TO_UINT(64)
+DEFINEFUNC_UINT_FROMSTRBASE(8)
+DEFINEFUNC_UINT_FROMSTRBASE(16)
+DEFINEFUNC_UINT_FROMSTRBASE(32)
+DEFINEFUNC_UINT_FROMSTRBASE(64)
 #ifdef __int128
-DEFINEFUNC_CONVERT_STRBASE_TO_UINT(128)
+DEFINEFUNC_UINT_FROMSTRBASE(128)
 #endif
 
 
 
-#define DEFINEFUNC_CONVERT_STRBASE_TO_SINT(BITS) \
+#define DEFINEFUNC_SINT_FROMSTRBASE(BITS) \
 t_s##BITS	S##BITS##_FromString_Base(t_char const* str, t_char const* base)		\
 {																					\
 	t_u##BITS	result;																\
@@ -165,10 +165,10 @@ t_s##BITS	S##BITS##_FromString_Base(t_char const* str, t_char const* base)		\
 	return (negative ? -(t_s##BITS)result : (t_s##BITS)result);						\
 }																					\
 
-DEFINEFUNC_CONVERT_STRBASE_TO_SINT(8)
-DEFINEFUNC_CONVERT_STRBASE_TO_SINT(16)
-DEFINEFUNC_CONVERT_STRBASE_TO_SINT(32)
-DEFINEFUNC_CONVERT_STRBASE_TO_SINT(64)
+DEFINEFUNC_SINT_FROMSTRBASE(8)
+DEFINEFUNC_SINT_FROMSTRBASE(16)
+DEFINEFUNC_SINT_FROMSTRBASE(32)
+DEFINEFUNC_SINT_FROMSTRBASE(64)
 #ifdef __int128
-DEFINEFUNC_CONVERT_STRBASE_TO_SINT(128)
+DEFINEFUNC_SINT_FROMSTRBASE(128)
 #endif

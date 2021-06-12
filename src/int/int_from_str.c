@@ -9,7 +9,7 @@
 
 
 
-#define DEFINEFUNC_CONVERT_STR_TO_UINT(BITS) \
+#define DEFINEFUNC_UINT_FROMSTR(BITS) \
 t_u##BITS	U##BITS##_FromString(t_char const* str)									\
 {																					\
 	t_char const* s = String_Find_Char(str, '0');									\
@@ -23,17 +23,17 @@ t_u##BITS	U##BITS##_FromString(t_char const* str)									\
 	return (U##BITS##_FromString_Dec(str));											\
 }																					\
 
-DEFINEFUNC_CONVERT_STR_TO_UINT(8)
-DEFINEFUNC_CONVERT_STR_TO_UINT(16)
-DEFINEFUNC_CONVERT_STR_TO_UINT(32)
-DEFINEFUNC_CONVERT_STR_TO_UINT(64)
+DEFINEFUNC_UINT_FROMSTR(8)
+DEFINEFUNC_UINT_FROMSTR(16)
+DEFINEFUNC_UINT_FROMSTR(32)
+DEFINEFUNC_UINT_FROMSTR(64)
 #ifdef __int128
-DEFINEFUNC_CONVERT_STR_TO_UINT(128)
+DEFINEFUNC_UINT_FROMSTR(128)
 #endif
 
 
 
-#define DEFINEFUNC_CONVERT_STR_TO_SINT(BITS) \
+#define DEFINEFUNC_SINT_FROMSTR(BITS) \
 t_s##BITS	S##BITS##_FromString(t_char const* str)									\
 {																					\
 	t_char const* s = String_Find_Char(str, '0');									\
@@ -47,10 +47,10 @@ t_s##BITS	S##BITS##_FromString(t_char const* str)									\
 	return (S##BITS##_FromString_Dec(str));											\
 }																					\
 
-DEFINEFUNC_CONVERT_STR_TO_SINT(8)
-DEFINEFUNC_CONVERT_STR_TO_SINT(16)
-DEFINEFUNC_CONVERT_STR_TO_SINT(32)
-DEFINEFUNC_CONVERT_STR_TO_SINT(64)
+DEFINEFUNC_SINT_FROMSTR(8)
+DEFINEFUNC_SINT_FROMSTR(16)
+DEFINEFUNC_SINT_FROMSTR(32)
+DEFINEFUNC_SINT_FROMSTR(64)
 #ifdef __int128
-DEFINEFUNC_CONVERT_STR_TO_SINT(128)
+DEFINEFUNC_SINT_FROMSTR(128)
 #endif
