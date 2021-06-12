@@ -52,6 +52,7 @@ CFLAGS = $(CFLAGS_OS) $(CFLAGS_EXTRA) -MMD -fstrict-aliasing \
 	-Wstrict-prototypes \
 	-Wmissing-prototypes \
 	-Wold-style-definition \
+	-Wno-format-extra-args \
 #	-L/usr/local/lib -ltsan
 #	-fsanitize=address
 #	-fsanitize=thread

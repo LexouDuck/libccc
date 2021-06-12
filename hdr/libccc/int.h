@@ -69,6 +69,17 @@
 	typedef int64_t		int_fast64_t;
 #endif
 
+//! Check if this environment supports 128-bit integer types
+//!@{
+#ifdef __SIZEOF_INT128__
+	#ifndef __int128
+	#define __int128	__int128
+	typedef unsigned __int128	_UInt128;
+	typedef signed   __int128	_SInt128;
+	#endif
+#endif
+//!@}
+
 #ifndef LIBCONFIG_INTEGER_TYPES
 	#define STDINT(TYPE, BITS)	TYPE##BITS##_t
 #else
@@ -79,14 +90,14 @@ typedef STDINT(uint,16)	u16;
 typedef STDINT(uint,32)	u32;
 typedef	STDINT(uint,64)	u64;
 #ifdef	__int128
-typedef unsigned __int128	u128;
+typedef _UInt128	u128;
 #endif
 typedef STDINT(int,  8)	s8;
 typedef STDINT(int, 16)	s16;
 typedef STDINT(int, 32)	s32;
 typedef	STDINT(int, 64)	s64;
 #ifdef	__int128
-typedef __int128		s128;
+typedef _SInt128	s128;
 #endif
 
 #include "libccc.h"
@@ -355,9 +366,9 @@ TYPEDEF_ALIAS(t_sint, SINT, PRIMITIVE)
 	#define S64_MIN ((t_s64)0x8000000000000000)	//!< The minimum possible value for any 64-bit signed integer	(-9223372036854775807)
 
 	#ifdef __int128
-	#define U128_MAX ((t_u128)0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF) //!< The largest possible value for a 128-bit unsigned integer	(340282366920938463463374607431768211455llu)
-	#define S128_MAX ((t_s128)0x7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF)  //!< The largest possible value for a 128-bit signed integer	(+170141183460469231731687303715884105727ll)
-	#define S128_MIN ((t_s128)0x80000000000000000000000000000000)  //!< The minimum possible value for a 128-bit signed integer	(−170141183460469231731687303715884105728ll)
+	#define U128_MAX (t_u128)(((t_u128)0xFFFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF) //!< The largest possible value for a 128-bit unsigned integer	(340282366920938463463374607431768211455llu)
+	#define S128_MAX (t_s128)(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF)  //!< The largest possible value for a 128-bit signed integer	(+170141183460469231731687303715884105727ll)
+	#define S128_MIN (t_s128)(((t_s128)0x8000000000000000 << 64) | 0x0000000000000000)  //!< The minimum possible value for a 128-bit signed integer	(−170141183460469231731687303715884105728ll)
 	#endif
 
 #else

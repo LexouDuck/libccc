@@ -87,9 +87,9 @@ HEADER_CPP
 	#define SF_U64		"%lu"
 	#define SF_HEX_U64	"%#lX"
 #endif
-#define SF_S128		"%lli"
-#define SF_U128		"%llu"
-#define SF_HEX_U128	"%#llX"
+#define SF_S128		"[128-bit signed integer]"
+#define SF_U128		"[128-bit unsigned integer]"
+#define SF_HEX_U128	"[128-bit unsigned integer]"
 
 #define SF_SINT		CONCAT(SF_S,	 LIBCONFIG_BITS_SINT)
 #define SF_UINT		CONCAT(SF_U,	 LIBCONFIG_BITS_UINT)

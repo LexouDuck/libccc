@@ -32,19 +32,6 @@
 ** ************************************************************************** *|
 */
 
-#include "libccc.h"
-
-HEADER_CPP
-
-#ifndef __LIBCCC_FLOAT_T
-#define __LIBCCC_FLOAT_T
-
-/*
-** ************************************************************************** *|
-**                                 Definitions                                *|
-** ************************************************************************** *|
-*/
-
 //! Check if this environment's `long double` type is larger than 64-bits
 //!@{
 #ifdef __LDBL_MANT_DIG__
@@ -64,7 +51,18 @@ HEADER_CPP
 #endif
 //!@}
 
+#include "libccc.h"
 
+HEADER_CPP
+
+#ifndef __LIBCCC_FLOAT_T
+#define __LIBCCC_FLOAT_T
+
+/*
+** ************************************************************************** *|
+**                                 Definitions                                *|
+** ************************************************************************** *|
+*/
 
 //! Primitive type: 32-bit 'single precision' IEEE-754 floating-point numbers
 /*!
