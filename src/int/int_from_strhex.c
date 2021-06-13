@@ -96,7 +96,7 @@ t_s##BITS	S##BITS##_FromString_Hex(t_char const* str)								\
 	while (str[i] && Char_IsDigit_Hex(str[i]))										\
 	{																				\
 		tmp = result * 16 + GetDigit_FromString_Hex(str[i++]);						\
-		HANDLE_ERROR_SF(RESULTRANGE, (negative && tmp > (t_u##BITS)-S##BITS##_MIN),	\
+		HANDLE_ERROR_SF(RESULTRANGE, (negative && tmp > (t_u##BITS)S##BITS##_MIN),	\
 			LIBCONFIG_ERROR_HANDLEOVERFLOW(S##BITS##_MIN),							\
 			" (integer underflow for \"%s\" at "SF_S##BITS")", str, S##BITS##_MIN)	\
 		HANDLE_ERROR_SF(RESULTRANGE, (!negative && tmp > (t_u##BITS)S##BITS##_MAX),	\

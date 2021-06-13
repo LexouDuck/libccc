@@ -13,8 +13,6 @@
 #define DEFINEFUNC_FIXED_FROMSTR(BASE, BITS) \
 t_q##BITS	Q##BITS##_FromString##BASE(t_char const* str)								\
 {																						\
-	static const t_s##BITS	q##BITS##_intmin = (Q##BITS##_MIN / FIXED_DENOMINATOR);		\
-	static const t_s##BITS	q##BITS##_intmax = (Q##BITS##_MAX / FIXED_DENOMINATOR);		\
 	t_s##BITS	result = 0;																\
 	t_s##BITS	numerator = 0;															\
 	t_s##BITS	denominator = 1;														\
@@ -61,18 +59,18 @@ fraction:	\
 		": fraction denominator cannot be zero \"%s\"", str)							\
 	fraction = Q##BITS##_From(numerator, denominator);									\
 success:	\
-	HANDLE_ERROR_SF(RESULTRANGE, (result < q##BITS##_intmin),							\
+	HANDLE_ERROR_SF(RESULTRANGE, (result < Q##BITS##_MININT),							\
 		LIBCONFIG_ERROR_HANDLEOVERFLOW(Q##BITS##_MIN),									\
-		" (fixed-point underflow for integer part at "SF_S##BITS")", q##BITS##_intmin)	\
-	HANDLE_ERROR_SF(RESULTRANGE, (result > q##BITS##_intmax),							\
+		" (fixed-point underflow for integer part at "SF_S##BITS")", Q##BITS##_MININT)	\
+	HANDLE_ERROR_SF(RESULTRANGE, (result > Q##BITS##_MAXINT),							\
 		LIBCONFIG_ERROR_HANDLEOVERFLOW(Q##BITS##_MAX),									\
-		" (fixed-point overflow for integer part at "SF_S##BITS")", q##BITS##_intmax)	\
-	HANDLE_ERROR_SF(RESULTRANGE, (result + Q##BITS##_Round(fraction) < q##BITS##_intmin),\
+		" (fixed-point overflow for integer part at "SF_S##BITS")", Q##BITS##_MAXINT)	\
+	HANDLE_ERROR_SF(RESULTRANGE, (result + Q##BITS##_Round(fraction) < Q##BITS##_MININT),\
 		LIBCONFIG_ERROR_HANDLEOVERFLOW(Q##BITS##_MIN),									\
-		" (fixed-point underflow for fraction part at "SF_S##BITS")", q##BITS##_intmin)	\
-	HANDLE_ERROR_SF(RESULTRANGE, (result + Q##BITS##_Round(fraction) > q##BITS##_intmax),\
+		" (fixed-point underflow for fraction part at "SF_S##BITS")", Q##BITS##_MININT)	\
+	HANDLE_ERROR_SF(RESULTRANGE, (result + Q##BITS##_Round(fraction) > Q##BITS##_MAXINT),\
 		LIBCONFIG_ERROR_HANDLEOVERFLOW(Q##BITS##_MAX),									\
-		" (fixed-point overflow for fraction part at "SF_S##BITS")", q##BITS##_intmax)	\
+		" (fixed-point overflow for fraction part at "SF_S##BITS")", Q##BITS##_MAXINT)	\
 	return (result * FIXED_DENOMINATOR + fraction);										\
 }																						\
 

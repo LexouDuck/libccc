@@ -152,7 +152,7 @@ t_s##BITS	S##BITS##_FromString_Base(t_char const* str, t_char const* base)		\
 		HANDLE_ERROR_SF(PARSE, (digit < 0), return (0);,							\
 			": digit char '%c' is not in number base \"%s\"", str[i - 1], base)		\
 		tmp = result * length + digit;												\
-		HANDLE_ERROR_SF(RESULTRANGE, (negative && tmp > (t_u##BITS)-S##BITS##_MIN),	\
+		HANDLE_ERROR_SF(RESULTRANGE, (negative && tmp > (t_u##BITS)S##BITS##_MIN),	\
 			LIBCONFIG_ERROR_HANDLEOVERFLOW(S##BITS##_MIN),							\
 			" (integer underflow for \"%s\" with base \"%s\" at "SF_S##BITS")",		\
 			str, base, S##BITS##_MIN)												\

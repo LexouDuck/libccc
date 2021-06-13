@@ -50,12 +50,10 @@ t_u8	Memory_CountBits(t_uintmax value)
 t_s8	Memory_GetMostSignificantBit(t_uintmax value)
 {
 	static const t_uintmax	mask = ((t_uintmax)1 << ((sizeof(t_uintmax) * 8) - 1));
-	t_u8	result;
 	t_u8	i;
 
 	if (value == 0)
 		return (ERROR);
-	result = 0;
 	i = 0;
 	while (i < sizeof(t_uintmax) * 8)
 	{
@@ -71,12 +69,10 @@ t_s8	Memory_GetMostSignificantBit(t_uintmax value)
 
 t_s8	Memory_GetLeastSignificantBit(t_uintmax value)
 {
-	t_u8	result;
 	t_u8	i;
 
 	if (value == 0)
 		return (ERROR);
-	result = 0;
 	i = 0;
 	while (i < sizeof(t_uintmax) * 8)
 	{
