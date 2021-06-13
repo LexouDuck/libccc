@@ -288,9 +288,12 @@ int		testsuite_stringarray(void)
 {
 	print_suite_title("libccc/stringarray");
 
+
+
 	print_nonstd();
 
 
+/*
 	test_strarrlen();
 
 //	test_strarrnew();
@@ -313,5 +316,6 @@ int		testsuite_stringarray(void)
 //	test_strarrmap();
 
 	test_strarrfold();
+*/
 	return (0);
 }

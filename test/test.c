@@ -110,12 +110,20 @@ void	print_test(
 		else printf(C_RED"Error:\n");
 		if (function[0] == '_')
 		{
-			char*	expected = str_padleft("Expected", ' ', strlen(function) + 1);
-			printf(">c%s: (%s)\n"
-					">%s: (%s)\n"C_RESET,
+			static char const* expected = "Expected";
+			size_t length_expected = sizeof("Expected");
+			size_t length_function = strlen(function) + 1;
+			length_expected = (length_expected > length_function) ? length_expected : length_function;
+			length_function = length_expected - length_function + 1;
+			printf(">%*.*s%s: (%s)\n"
+					">%*.*s: (%s)\n"C_RESET,
+				length_function,
+				length_function,
+				"c",
 				function, result,
+				length_expected,
+				length_expected,
 				expected, expect);
-			free(expected);
 		}
 		else
 		{
@@ -264,7 +272,7 @@ void	print_test_sign(s_test_sign* test, char const* args)
 		(test->expect_sig ? signals[test->expect_sig] : sinttostr(test->expect)),
 		test->can_sig,
 		error, warning ? tmp : NULL);
-	free(tmp);
+	if (tmp)	free(tmp);
 }
 
 
@@ -283,8 +291,8 @@ void	print_test_ptr(s_test_ptr* test, char const* args)
 		(test->expect_sig ? signals[test->expect_sig] : tmp_expect),
 		test->can_sig,
 		error, NULL);
-	free(tmp_result);
-	free(tmp_expect);
+	if (tmp_result)	free(tmp_result);
+	if (tmp_expect)	free(tmp_expect);
 }
 
 
@@ -306,8 +314,8 @@ void	print_test_mem(s_test_mem* test, char const* args)
 		(test->expect_sig ? signals[test->expect_sig] : tmp_expect),
 		test->can_sig,
 		error, NULL);
-	free(tmp_result);
-	free(tmp_expect);
+	if (tmp_result)	free(tmp_result);
+	if (tmp_expect)	free(tmp_expect);
 }
 
 
@@ -319,8 +327,8 @@ void	print_test_str(s_test_str* test, char const* args)
 	char* tmp_expect = (test->expect == NULL ? NULL : (g_test.flags.show_escaped ? strtoescape(test->expect) : strdup(test->expect)));
 	int error;
 
-	tmp = tmp_result;	tmp_result = strsurround(tmp_result, '\"', '\"');	free(tmp);	tmp = NULL;
-	tmp = tmp_expect;	tmp_expect = strsurround(tmp_expect, '\"', '\"');	free(tmp);	tmp = NULL;
+	tmp = tmp_result;	tmp_result = strsurround(tmp_result, '\"', '\"');	if (tmp) { free(tmp); tmp = NULL; }
+	tmp = tmp_expect;	tmp_expect = strsurround(tmp_expect, '\"', '\"');	if (tmp) { free(tmp); tmp = NULL; }
 	if (test->result_sig || test->expect_sig)
 		error = (test->result_sig != test->expect_sig);
 	else if (test->result == NULL || test->expect == NULL)
@@ -332,8 +340,8 @@ void	print_test_str(s_test_str* test, char const* args)
 		tmp_expect ? tmp_expect : "NULL",
 		test->can_sig,
 		error, NULL);
-	free(tmp_result);
-	free(tmp_expect);
+	if (tmp_result)	free(tmp_result);
+	if (tmp_expect)	free(tmp_expect);
 }
 
 
@@ -362,8 +370,8 @@ void	print_test_alloc(s_test_alloc* test, char const* args)
 		tmp_expect,
 		test->can_sig,
 		error, NULL);
-	free(tmp_result);
-	free(tmp_expect);
+	if (tmp_result)	free(tmp_result);
+	if (tmp_expect)	free(tmp_expect);
 // TODO call print_test() here
 /*
 	if (error || g_test.flags.verbose)
@@ -492,7 +500,7 @@ void	print_test_list(s_test_list* test, char const* args)
 			tmp = print_memory(lst->item, item_size);
 			printf("%s{%s}", (lst == test->result ? "" : ", "), tmp);
 			lst = lst->next;
-			free(tmp);
+			if (tmp)	free(tmp);
 			tmp = NULL;
 		}
 		i = 0;

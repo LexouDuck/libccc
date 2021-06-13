@@ -550,7 +550,7 @@ TEST_INCLUDEDIRS = \
 	-I$(HDRDIR) \
 	-I$(TEST_DIR) \
 
-TEST_CFLAGS = -O2 -g -ggdb -Wno-format-extra-args
+TEST_CFLAGS = -O2 -g -ggdb -Wno-format-extra-args -fno-inline
 # -fanalyzer
 TEST_LDFLAGS = $(LDFLAGS)
 

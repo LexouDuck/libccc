@@ -535,9 +535,9 @@ int		testsuite_memory(void)
 	print_suite_title("libccc/memory");
 
 
+
 	test_memset();
 	test_memclr(); // = bzero
-
 
 	test_memcpy();
 	test_memccpy();
@@ -545,7 +545,11 @@ int		testsuite_memory(void)
 
 	test_memchr();
 	test_memcmp();
+
+
+
 	print_nonstd();
+
 
 
 	test_memalloc();
@@ -560,6 +564,6 @@ int		testsuite_memory(void)
 	test_memrep();
 
 //	test_getbits();
-	printf("\n");
+
 	return (OK);
 }

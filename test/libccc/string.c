@@ -1511,6 +1511,7 @@ int		testsuite_string(void)
 	print_suite_title("libccc/string");
 
 
+
 	test_strnew();
 	test_strdup();
 	test_strcpy();
@@ -1530,8 +1531,8 @@ int		testsuite_string(void)
 	test_strnstr();
 
 
-	print_nonstd();
 
+	print_nonstd();
 
 
 

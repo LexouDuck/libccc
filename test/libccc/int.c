@@ -1346,12 +1346,6 @@ DEFINETEST_STRBASE_TO_SINT(128)
 
 
 
-/*
-** ************************************************************************** *|
-**                            Test Suite Function                             *|
-** ************************************************************************** *|
-*/
-
 // Resets the GCC warning settings back to normal
 #pragma GCC diagnostic pop
 #pragma GCC diagnostic pop
@@ -1360,6 +1354,12 @@ DEFINETEST_STRBASE_TO_SINT(128)
 #pragma clang diagnostic pop
 
 
+
+/*
+** ************************************************************************** *|
+**                            Test Suite Function                             *|
+** ************************************************************************** *|
+*/
 
 int		testsuite_int(void)
 {
@@ -1371,33 +1371,33 @@ int		testsuite_int(void)
 	test_u16tostr();
 	test_u32tostr();
 	test_u64tostr();
-//	test_u128tostr();
+	test_u128tostr();
 
 	test_s8tostr();
 	test_s16tostr();
 	test_s32tostr();
 	test_s64tostr();
-//	test_s128tostr();
+	test_s128tostr();
 
 
 	test_u8tostrhex();
 	test_u16tostrhex();
 	test_u32tostrhex();
 	test_u64tostrhex();
-//	test_u128tostrhex();
+	test_u128tostrhex();
 
 
 	test_s8tostrbase();
 	test_s16tostrbase();
 	test_s32tostrbase();
 	test_s64tostrbase();
-//	test_s128tostrbase();
+	test_s128tostrbase();
 
 	test_u8tostrbase();
 	test_u16tostrbase();
 	test_u32tostrbase();
 	test_u64tostrbase();
-//	test_u128tostrbase();
+	test_u128tostrbase();
 
 
 
@@ -1405,13 +1405,13 @@ int		testsuite_int(void)
 	test_strtos16();
 	test_strtos32();
 	test_strtos64();
-//	test_strtos128();
+	test_strtos128();
 
 	test_strtou8();
 	test_strtou16();
 	test_strtou32();
 	test_strtou64();
-//	test_strtou128();
+	test_strtou128();
 
 
 //	test_strhextou8();
@@ -1425,13 +1425,13 @@ int		testsuite_int(void)
 	test_strbasetos16();
 	test_strbasetos32();
 	test_strbasetos64();
-//	test_strbasetos128();
+	test_strbasetos128();
 
 	test_strbasetou8();
 	test_strbasetou16();
 	test_strbasetou32();
 	test_strbasetou64();
-//	test_strbasetou128();
+	test_strbasetou128();
 
 	return (OK);
 }

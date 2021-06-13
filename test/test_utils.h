@@ -80,8 +80,6 @@ int		str_equals_until(char const* str1, char const* str2, char c);
 
 char*	print_memory(void const* ptr, t_size length);
 
-char*	str_padleft(char const* str, char c, t_size length);
-
 char*	strtoescape(char const* str);
 
 char*	strsurround(char const* str, char begin, char end);
