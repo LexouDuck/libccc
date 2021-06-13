@@ -528,6 +528,9 @@ TEST_SRCS = \
 	$(TEST_DIR)libccc/sys/io.c		\
 	$(TEST_DIR)libccc/sys/time.c	\
 	$(TEST_DIR)libccc/math/math.c		\
+	$(TEST_DIR)libccc/math/int.c		\
+	$(TEST_DIR)libccc/math/fixed.c		\
+	$(TEST_DIR)libccc/math/float.c		\
 	$(TEST_DIR)libccc/math/stat.c		\
 	$(TEST_DIR)libccc/math/vlq.c		\
 	$(TEST_DIR)libccc/math/algebra.c	\

@@ -134,27 +134,44 @@ char*	print_memory(void const* ptr, size_t length)
 
 
 
-char*	str_padleft(char const* str, char c, size_t length)
+char*	str_padleft(char const* str, char c, size_t size)
 {
 	char*	result;
-	long	offset;
+	size_t	offset;
+	size_t	length;
 	size_t	i;
 
+	if (str == NULL)
+		return (NULL);
+	length = strlen(str);
 	if (!(result = (char*)malloc(length + 1)))
 		return (NULL);
-	offset = length - strlen(str);
+	result[size] = '\0';
+	if (size < length)
+	{
+		i = size;
+		while (i--)
+		{
+			--length;
+			result[i] = str[length];
+		}
+		return (result);
+	}
+	offset = size - length;
 	i = 0;
-	while (i < (size_t)offset)
+	while (i < offset)
 	{
 		result[i] = c;
 		++i;
 	}
-	while (i < length)
+	while (i < size)
 	{
-		result[i] = str[i - offset];
+		length = (i - offset);
+		if (str[length] == '\0')
+			break;
+		result[i] = str[length];
 		++i;
 	}
-	result[length] = '\0';
 	return (result);
 }
 

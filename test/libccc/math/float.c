@@ -1,4 +1,5 @@
 
+#include "libccc/format.h"
 #include "libccc/float.h"
 #include "libccc/math/float.h"
 
@@ -8,6 +9,7 @@
 
 #define DEFINETEST_FLOAT_(BITS) \
 void	print_test_f##BITS##(char const* test_name, int can_segfault,		\
+		t_f##BITS	expecting,												\
 		t_f##BITS	a,														\
 		t_f##BITS	b)														\
 {																			\
@@ -65,7 +67,14 @@ int		testsuite_math_float(void)
 
 	print_nonstd();
 
-	// TODO
+//	test_add();
+//	test_sub();
+//	test_mul();
+//	test_div();
+//	test_mod();
+//	test_pow();
+//	test_sqrt();
+//	test_abs();
 
 	return (OK);
 }

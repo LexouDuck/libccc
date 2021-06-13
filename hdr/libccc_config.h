@@ -102,7 +102,7 @@ HEADER_CPP
 */
 #define LIBCONFIG_BITS_FIXED	64
 //! @see #FIXED_APPROX and Fixed_EqualsApprox()
-#define LIBCONFIG_FIXED_APPROX	((t_fixed)1)
+#define LIBCONFIG_FIXED_APPROX	((t_fixed)(LIBCONFIG_FIXED_DENOMINATOR / 2))
 //! The amount of subdivisions dedicated to the fraction part of the fixed-point types
 #define LIBCONFIG_FIXED_DENOMINATOR	(256)
 

@@ -1,4 +1,5 @@
 
+#include "libccc/format.h"
 #include "libccc/fixed.h"
 #include "libccc/math/fixed.h"
 
@@ -8,6 +9,7 @@
 
 #define DEFINETEST_FIXED_(BITS) \
 void	print_test_q##BITS##(char const* test_name, int can_segfault,		\
+		t_q##BITS	expecting,												\
 		t_q##BITS	a,														\
 		t_q##BITS	b)														\
 {																			\
@@ -65,7 +67,14 @@ int		testsuite_math_fixed(void)
 
 	print_nonstd();
 
-	// TODO
+//	test_add();
+//	test_sub();
+//	test_mul();
+//	test_div();
+//	test_mod();
+//	test_pow();
+//	test_sqrt();
+//	test_abs();
 
 	return (OK);
 }
