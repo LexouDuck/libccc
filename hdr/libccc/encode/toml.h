@@ -190,7 +190,9 @@ void	TOML_Minify(t_utf8* toml); //!< TODO rename to TOML_Minify_InPlace(), and a
 
 #define TOML_Equals		KVT_Equals		//!< @alias{KVT_Equals}
 
-#define TOML_Concat		KVT_Concat		//!< @alias{KVT_Concat}
+#define TOML_Concat			KVT_Concat			//!< @alias{KVT_Concat}
+#define TOML_Concat_Array	KVT_Concat_Array	//!< @alias{KVT_Concat_Array}
+#define TOML_Concat_Object	KVT_Concat_Object	//!< @alias{KVT_Concat_Object}
 
 
 

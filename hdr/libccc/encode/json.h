@@ -178,7 +178,9 @@ void	JSON_Minify(t_utf8* json); //!< TODO rename to JSON_Minify_InPlace(), and a
 
 #define JSON_Equals		KVT_Equals		//!< @alias{KVT_Equals}
 
-#define JSON_Concat		KVT_Concat		//!< @alias{KVT_Concat}
+#define JSON_Concat			KVT_Concat			//!< @alias{KVT_Concat}
+#define JSON_Concat_Array	KVT_Concat_Array	//!< @alias{KVT_Concat_Array}
+#define JSON_Concat_Object	KVT_Concat_Object	//!< @alias{KVT_Concat_Object}
 
 
 

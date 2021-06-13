@@ -159,13 +159,13 @@ s_kvt*	KVT_Duplicate(s_kvt const* item, t_bool recurse);
 //! Recursively compare two `s_kvt` items for equality.
 /*!
 **	If either `a` or `b` is `NULL` or invalid, they will be considered unequal.
-**	@param a				the first KVT to check
-**	@param a				the second KVT to check
+**	@param kvt1				the first KVT to check
+**	@param kvt2				the second KVT to check
 **	@param case_sensitive	if `TRUE`, object keys are treated as case-sensitive
 **	@returns
 **	`TRUE` if `a` and `b` have equal contents
 */
-t_bool	KVT_Equals(s_kvt const* a, s_kvt const* b, t_bool case_sensitive);
+t_bool	KVT_Equals(s_kvt const* kvt1, s_kvt const* kvt2, t_bool case_sensitive);
 
 
 
@@ -173,7 +173,11 @@ t_bool	KVT_Equals(s_kvt const* a, s_kvt const* b, t_bool case_sensitive);
 /*!
 **	TODO document
 */
-s_kvt*	KVT_Concat(s_kvt const* a, s_kvt const* b);
+s_kvt*	KVT_Concat(s_kvt const* kvt1, s_kvt const* kvt2);
+//! TODO document
+s_kvt*	KVT_Concat_Array(s_kvt const* kvt1, s_kvt const* kvt2);
+//! TODO document
+s_kvt*	KVT_Concat_Object(s_kvt const* kvt1, s_kvt const* kvt2);
 
 
 
