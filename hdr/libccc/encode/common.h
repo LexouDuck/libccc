@@ -171,7 +171,7 @@ t_bool	KVT_Equals(s_kvt const* kvt1, s_kvt const* kvt2, t_bool case_sensitive);
 
 //! Creates a new KVT object by concatenating two existing ones
 /*!
-**	TODO document
+**	Concatenate two objects together while duplicating all of their contents.
 */
 s_kvt*	KVT_Concat(s_kvt const* kvt1, s_kvt const* kvt2);
 //! TODO document
