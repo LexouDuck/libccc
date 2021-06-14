@@ -11,8 +11,8 @@ inline t_q##BITS	Q##BITS##_Add(t_q##BITS a, t_q##BITS b)	\
 {															\
 	t_s##BITS i1 = (a / FIXED_DENOMINATOR);					\
 	t_s##BITS i2 = (b / FIXED_DENOMINATOR);					\
-	HANDLE_ERROR(RESULTRANGE, (i2 > 0) && (i1 > (Q##BITS##_MAX / FIXED_DENOMINATOR) - i2), return (Q##BITS##_MAX);)	\
-	HANDLE_ERROR(RESULTRANGE, (i2 < 0) && (i1 < (Q##BITS##_MIN / FIXED_DENOMINATOR) - i2), return (Q##BITS##_MIN);)	\
+	HANDLE_ERROR(RESULTRANGE, (i2 > 0) && (i1 > (Q##BITS##_MAX / FIXED_DENOMINATOR) - i2), LIBCONFIG_ERROR_HANDLEOVERFLOW(Q##BITS##_MAX);)	\
+	HANDLE_ERROR(RESULTRANGE, (i2 < 0) && (i1 < (Q##BITS##_MIN / FIXED_DENOMINATOR) - i2), LIBCONFIG_ERROR_HANDLEOVERFLOW(Q##BITS##_MIN);)	\
 	return (a + b);											\
 }
 
@@ -23,8 +23,8 @@ inline t_q##BITS	Q##BITS##_Sub(t_q##BITS a, t_q##BITS b)	\
 {															\
 	t_s##BITS i1 = (a / FIXED_DENOMINATOR);					\
 	t_s##BITS i2 = (b / FIXED_DENOMINATOR);					\
-	HANDLE_ERROR(RESULTRANGE, (i2 < 0) && (i1 > (Q##BITS##_MAX / FIXED_DENOMINATOR) + i2), return (Q##BITS##_MAX);)	\
-	HANDLE_ERROR(RESULTRANGE, (i2 > 0) && (i1 < (Q##BITS##_MIN / FIXED_DENOMINATOR) + i2), return (Q##BITS##_MIN);)	\
+	HANDLE_ERROR(RESULTRANGE, (i2 < 0) && (i1 > (Q##BITS##_MAX / FIXED_DENOMINATOR) + i2), LIBCONFIG_ERROR_HANDLEOVERFLOW(Q##BITS##_MAX);)	\
+	HANDLE_ERROR(RESULTRANGE, (i2 > 0) && (i1 < (Q##BITS##_MIN / FIXED_DENOMINATOR) + i2), LIBCONFIG_ERROR_HANDLEOVERFLOW(Q##BITS##_MIN);)	\
 	return (a - b);											\
 }
 
@@ -39,17 +39,19 @@ inline t_q##BITS	Q##BITS##_Mul(t_q##BITS a, t_q##BITS b)	\
 
 
 #define DEFINEFUNC_FIXED_DIV(BITS) \
-inline t_q##BITS	Q##BITS##_Div(t_q##BITS a, t_q##BITS b)	\
-{															\
-	return ((a * FIXED_DENOMINATOR) / b);					\
+inline t_q##BITS	Q##BITS##_Div(t_q##BITS a, t_q##BITS b)			\
+{																	\
+	HANDLE_ERROR(MATHDOMAIN, (b == 0), return (Q##BITS##_ERROR);)	\
+	return ((a * FIXED_DENOMINATOR) / b);							\
 } // TODO fix this and test
 
 
 
 #define DEFINEFUNC_FIXED_MOD(BITS) \
-inline t_q##BITS	Q##BITS##_Mod(t_q##BITS a, t_q##BITS b)	\
-{															\
-	return ((a * FIXED_DENOMINATOR) % b);					\
+inline t_q##BITS	Q##BITS##_Mod(t_q##BITS a, t_q##BITS b)			\
+{																	\
+	HANDLE_ERROR(MATHDOMAIN, (b == 0), return (Q##BITS##_ERROR);)	\
+	return ((a * FIXED_DENOMINATOR) % b);							\
 } // TODO fix this and test
 
 

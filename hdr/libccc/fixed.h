@@ -240,32 +240,79 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 
 
 
-#define Q16_MAX		((t_q16)S16_MAX)	//!< The largest possible value that a 16-bit fixed-point can hold
-#define Q16_MIN		((t_q16)S16_MIN)	//!< The largest possible value that a 16-bit fixed-point can hold
-#define Q16_MAXINT	((t_s16)(Q16_MAX / FIXED_DENOMINATOR))
-#define Q16_MININT	((t_s16)(Q16_MIN / FIXED_DENOMINATOR))
+#undef FIXED_ERROR
+#undef FIXED_MAX
+#undef FIXED_MIN
 
-#define Q32_MAX		((t_q32)S32_MAX)	//!< The largest possible value that a 32-bit fixed-point can hold
-#define Q32_MIN		((t_q32)S32_MIN)	//!< The largest possible value that a 32-bit fixed-point can hold
-#define Q32_MAXINT	((t_s32)(Q32_MAX / FIXED_DENOMINATOR))
-#define Q32_MININT	((t_s32)(Q32_MIN / FIXED_DENOMINATOR))
+#if (LIBCONFIG_FIXED_ERROR == 0)
 
-#define Q64_MAX		((t_q64)S64_MAX)	//!< The largest possible value that a 64-bit fixed-point can hold
-#define Q64_MIN		((t_q64)S64_MIN)	//!< The largest possible value that a 64-bit fixed-point can hold
-#define Q64_MAXINT	((t_s64)(Q64_MAX / FIXED_DENOMINATOR))
-#define Q64_MININT	((t_s64)(Q64_MIN / FIXED_DENOMINATOR))
+	#define Q16_ERROR	((t_q16)0)
+	#define Q16_MAX		((t_q16)0x7FFF) //!< The largest possible value that a 16-bit fixed-point can hold
+	#define Q16_MIN		((t_q16)0x8000) //!< The largest possible value that a 16-bit fixed-point can hold
+	#define Q16_MAXINT	((t_s16)(Q16_MAX / FIXED_DENOMINATOR))
+	#define Q16_MININT	((t_s16)(Q16_MIN / FIXED_DENOMINATOR))
 
-#ifdef __int128
-#define Q128_MAX	((t_q128)S128_MAX)	//!< The largest possible value that a 128-bit fixed-point can hold
-#define Q128_MIN	((t_q128)S128_MIN)	//!< The largest possible value that a 128-bit fixed-point can hold
-#define Q128_MAXINT	((t_s128)(Q128_MAX / FIXED_DENOMINATOR))
-#define Q128_MININT	((t_s128)(Q128_MIN / FIXED_DENOMINATOR))
+	#define Q32_ERROR	((t_q32)0)
+	#define Q32_MAX		((t_q32)0x7FFFFFFF) //!< The largest possible value that a 32-bit fixed-point can hold
+	#define Q32_MIN		((t_q32)0x80000000) //!< The largest possible value that a 32-bit fixed-point can hold
+	#define Q32_MAXINT	((t_s32)(Q32_MAX / FIXED_DENOMINATOR))
+	#define Q32_MININT	((t_s32)(Q32_MIN / FIXED_DENOMINATOR))
+
+	#define Q64_ERROR	((t_q64)0)
+	#define Q64_MAX		((t_q64)0x7FFFFFFFFFFFFFFF) //!< The largest possible value that a 64-bit fixed-point can hold
+	#define Q64_MIN		((t_q64)0x8000000000000000) //!< The largest possible value that a 64-bit fixed-point can hold
+	#define Q64_MAXINT	((t_s64)(Q64_MAX / FIXED_DENOMINATOR))
+	#define Q64_MININT	((t_s64)(Q64_MIN / FIXED_DENOMINATOR))
+
+	#ifdef __int128
+	#define Q128_ERROR	((t_q128)0)
+	#define Q128_MAX	((t_q128)(((t_q128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF)) //!< The largest possible value that a 128-bit fixed-point can hold
+	#define Q128_MIN	((t_q128)(((t_q128)0x8000000000000000 << 64) | 0x0000000000000000)) //!< The largest possible value that a 128-bit fixed-point can hold
+	#define Q128_MAXINT	((t_s128)(Q128_MAX / FIXED_DENOMINATOR))
+	#define Q128_MININT	((t_s128)(Q128_MIN / FIXED_DENOMINATOR))
+	#endif
+
+	#define FIXED_ERROR		((t_fixed)0)
+	#define FIXED_MAX		((t_fixed)FIXED_MAX) //!< The largest possible value that a configurable-size fixed-point can hold
+	#define FIXED_MIN		((t_fixed)FIXED_MIN) //!< The largest possible value that a configurable-size fixed-point can hold
+	#define FIXED_MAXINT	((t_sint)(FIXED_MAX / FIXED_DENOMINATOR))
+	#define FIXED_MININT	((t_sint)(FIXED_MIN / FIXED_DENOMINATOR))
+
+#else
+
+	#define Q16_ERROR	((t_q16)0x8000)
+	#define Q16_MAX		((t_q16)0x7FFF)  //!< The largest possible value that a 16-bit fixed-point can hold
+	#define Q16_MIN		((t_q16)-0x7FFF) //!< The largest possible value that a 16-bit fixed-point can hold
+	#define Q16_MAXINT	((t_s16)(Q16_MAX / FIXED_DENOMINATOR))
+	#define Q16_MININT	((t_s16)(Q16_MIN / FIXED_DENOMINATOR))
+
+	#define Q32_ERROR	((t_q32)0x80000000)
+	#define Q32_MAX		((t_q32)0x7FFFFFFF)  //!< The largest possible value that a 32-bit fixed-point can hold
+	#define Q32_MIN		((t_q32)-0x7FFFFFFF) //!< The largest possible value that a 32-bit fixed-point can hold
+	#define Q32_MAXINT	((t_s32)(Q32_MAX / FIXED_DENOMINATOR))
+	#define Q32_MININT	((t_s32)(Q32_MIN / FIXED_DENOMINATOR))
+
+	#define Q64_ERROR	((t_q64)0x8000000000000000)
+	#define Q64_MAX		((t_q64)0x7FFFFFFFFFFFFFFF)  //!< The largest possible value that a 64-bit fixed-point can hold
+	#define Q64_MIN		((t_q64)-0x7FFFFFFFFFFFFFFF) //!< The largest possible value that a 64-bit fixed-point can hold
+	#define Q64_MAXINT	((t_s64)(Q64_MAX / FIXED_DENOMINATOR))
+	#define Q64_MININT	((t_s64)(Q64_MIN / FIXED_DENOMINATOR))
+
+	#ifdef __int128
+	#define Q128_ERROR	((t_q128)(((t_q128)0x8000000000000000 << 64) | 0x0000000000000000))
+	#define Q128_MAX	((t_q128)(((t_q128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF))  //!< The largest possible value that a 128-bit fixed-point can hold
+	#define Q128_MIN	((t_q128)-(((t_q128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF)) //!< The largest possible value that a 128-bit fixed-point can hold
+	#define Q128_MAXINT	((t_s128)(Q128_MAX / FIXED_DENOMINATOR))
+	#define Q128_MININT	((t_s128)(Q128_MIN / FIXED_DENOMINATOR))
+	#endif
+
+	#define FIXED_ERROR		((t_fixed)((~(t_fixed)0) >> 1) + 1))
+	#define FIXED_MAX		((t_fixed)FIXED_MAX) //!< The largest possible value that a configurable-size fixed-point can hold
+	#define FIXED_MIN		((t_fixed)FIXED_MIN) //!< The largest possible value that a configurable-size fixed-point can hold
+	#define FIXED_MAXINT	((t_sint)(FIXED_MAX / FIXED_DENOMINATOR))
+	#define FIXED_MININT	((t_sint)(FIXED_MIN / FIXED_DENOMINATOR))
+
 #endif
-
-#define FIXED_MAX		((t_fixed)SINT_MAX)	//!< The largest possible value that a configurable-size fixed-point can hold
-#define FIXED_MIN		((t_fixed)SINT_MIN)	//!< The largest possible value that a configurable-size fixed-point can hold
-#define FIXED_MAXINT	((t_sint)(FIXED_MAX / FIXED_DENOMINATOR))
-#define FIXED_MININT	((t_sint)(FIXED_MIN / FIXED_DENOMINATOR))
 
 
 

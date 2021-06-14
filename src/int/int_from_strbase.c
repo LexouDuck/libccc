@@ -45,7 +45,7 @@ t_s32	String_Base_IsInBase(t_char const* base, t_size base_length, char c)
 			return (i);
 		++i;
 	}
-	return (-1);
+	return (ERROR);
 }
 
 
@@ -59,14 +59,17 @@ t_u##BITS	U##BITS##_FromString_Base(t_char const* str, t_char const* base)		\
 	t_size	length;																	\
 	t_size	i;																		\
 																					\
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)							\
-	HANDLE_ERROR(NULLPOINTER, (base == NULL), return (0);)							\
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (U##BITS##_ERROR);)				\
+	HANDLE_ERROR(NULLPOINTER, (base == NULL), return (U##BITS##_ERROR);)			\
 	digit = String_Base_GetLength(base);											\
-	HANDLE_ERROR_SF(INVALIDARGS, (digit == INVALID_BASE_SIGNCHAR), return (0);,		\
+	HANDLE_ERROR_SF(INVALIDARGS, (digit == INVALID_BASE_SIGNCHAR),					\
+		return (U##BITS##_ERROR);,													\
 		": number base (\"%s\") cannot contain sign chars ('+' or '-')", base)		\
-	HANDLE_ERROR_SF(INVALIDARGS, (digit == INVALID_BASE_DUPLICATE), return (0);,	\
+	HANDLE_ERROR_SF(INVALIDARGS, (digit == INVALID_BASE_DUPLICATE),					\
+		return (U##BITS##_ERROR);,													\
 		": number base (\"%s\") must not have any duplicate characters", base)		\
-	HANDLE_ERROR_SF(LENGTH2SMALL, (digit < 2), return (0);,							\
+	HANDLE_ERROR_SF(LENGTH2SMALL, (digit < 2),										\
+		return (U##BITS##_ERROR);,													\
 		", number base (\"%s\") should be at least 2 chars long", base)				\
 	length = (t_size)digit;															\
 	i = 0;																			\
@@ -75,7 +78,7 @@ t_u##BITS	U##BITS##_FromString_Base(t_char const* str, t_char const* base)		\
 		digit = String_Base_IsInBase(base, length, str[i]);							\
 		if (digit >= 0) break;														\
 		HANDLE_ERROR_SF(PARSE, (!str[i] || !Char_IsSpace(str[i])),					\
-			return (0);,															\
+			return (U##BITS##_ERROR);,												\
 		": expected a number (with spaces/sign), but instead got \"%s\"", str)		\
 		++i;																		\
 	}																				\
@@ -85,7 +88,7 @@ t_u##BITS	U##BITS##_FromString_Base(t_char const* str, t_char const* base)		\
 	while (str[i])																	\
 	{																				\
 		digit = String_Base_IsInBase(base, length, str[i++]);						\
-		HANDLE_ERROR_SF(PARSE, (digit < 0), return (0);,							\
+		HANDLE_ERROR_SF(PARSE, (digit < 0), return (U##BITS##_ERROR);,				\
 			": digit char '%c' is not in number base \"%s\"", str[i - 1], base)		\
 		tmp = result * length + digit;												\
 		HANDLE_ERROR_SF(RESULTRANGE, (tmp < result),								\
@@ -117,14 +120,17 @@ t_s##BITS	S##BITS##_FromString_Base(t_char const* str, t_char const* base)		\
 	t_size	length;																	\
 	t_size	i;																		\
 																					\
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)							\
-	HANDLE_ERROR(NULLPOINTER, (base == NULL), return (0);)							\
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (S##BITS##_ERROR);)				\
+	HANDLE_ERROR(NULLPOINTER, (base == NULL), return (S##BITS##_ERROR);)			\
 	digit = String_Base_GetLength(base);											\
-	HANDLE_ERROR_SF(INVALIDARGS, (digit == INVALID_BASE_SIGNCHAR), return (0);,		\
+	HANDLE_ERROR_SF(INVALIDARGS, (digit == INVALID_BASE_SIGNCHAR),					\
+		return (S##BITS##_ERROR);,													\
 		": number base (\"%s\") cannot contain sign chars ('+' or '-')", base)		\
-	HANDLE_ERROR_SF(INVALIDARGS, (digit == INVALID_BASE_DUPLICATE), return (0);,	\
+	HANDLE_ERROR_SF(INVALIDARGS, (digit == INVALID_BASE_DUPLICATE),					\
+		return (S##BITS##_ERROR);,													\
 		": number base (\"%s\") must not have any duplicate characters", base)		\
-	HANDLE_ERROR_SF(LENGTH2SMALL, (digit < 2), return (0);,							\
+	HANDLE_ERROR_SF(LENGTH2SMALL, (digit < 2),										\
+		return (S##BITS##_ERROR);,													\
 		", number base (\"%s\") should be at least 2 chars long", base)				\
 	length = (t_size)digit;															\
 	i = 0;																			\
@@ -133,7 +139,7 @@ t_s##BITS	S##BITS##_FromString_Base(t_char const* str, t_char const* base)		\
 		digit = String_Base_IsInBase(base, length, str[i]);							\
 		if (digit >= 0) break;														\
 		HANDLE_ERROR_SF(PARSE, (!str[i] || !Char_IsSpace(str[i])),					\
-			return (0);,															\
+			return (S##BITS##_ERROR);,												\
 		": expected a number (with spaces/sign), but instead got \"%s\"", str)		\
 		++i;																		\
 	}																				\
@@ -149,7 +155,7 @@ t_s##BITS	S##BITS##_FromString_Base(t_char const* str, t_char const* base)		\
 	while (str[i])																	\
 	{																				\
 		digit = String_Base_IsInBase(base, length, str[i++]);						\
-		HANDLE_ERROR_SF(PARSE, (digit < 0), return (0);,							\
+		HANDLE_ERROR_SF(PARSE, (digit < 0), return (S##BITS##_ERROR);,				\
 			": digit char '%c' is not in number base \"%s\"", str[i - 1], base)		\
 		tmp = result * length + digit;												\
 		HANDLE_ERROR_SF(RESULTRANGE, (negative && tmp > (t_u##BITS)S##BITS##_MIN),	\

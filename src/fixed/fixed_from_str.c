@@ -18,7 +18,7 @@ t_q##BITS	Q##BITS##_FromString##BASE(t_char const* str)								\
 	t_s##BITS	denominator = 1;														\
 	t_q##BITS	fraction = 0;															\
 																						\
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)								\
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (Q##BITS##_ERROR);)					\
 	while (*str && Char_IsSpace(*str))	{ ++str; }										\
 	if (*str == '(')																	\
 	{																					\
@@ -27,7 +27,7 @@ t_q##BITS	Q##BITS##_FromString##BASE(t_char const* str)								\
 	}																					\
 /*integer:*/	\
 	HANDLE_ERROR_SF(PARSE, !(*str == '+' || *str == '-' || Char_IsDigit(*str)),			\
-		return (0);,																	\
+		return (Q##BITS##_ERROR);,														\
 		": expected a number (with spaces/sign), but instead got \"%s\"", str)			\
 	result = S##BITS##_FromString##BASE(str);											\
 	if (*str == '+' || *str == '-')	++str;												\
@@ -36,26 +36,29 @@ t_q##BITS	Q##BITS##_FromString##BASE(t_char const* str)								\
 	if (*str == '.')	++str;															\
 	while (*str && Char_IsSpace(*str))	{ ++str; }										\
 	if (*str == '\0')	goto success;													\
-	HANDLE_ERROR_SF(PARSE, !(*str == '+' || *str == '('), return (0);,					\
+	HANDLE_ERROR_SF(PARSE, !(*str == '+' || *str == '('),								\
+		return (Q##BITS##_ERROR);,														\
 		": expected a fractional part separator char, but instead got \"%s\"", str)		\
 fraction:	\
 	while (*str && Char_IsSpace(*str))	{ ++str; }										\
 	HANDLE_ERROR_SF(PARSE, !(*str == '+' || *str == '-' || Char_IsDigit(*str)),			\
-		return (0);,																	\
+		return (Q##BITS##_ERROR);,														\
 		": expected a fraction numerator, but instead got \"%s\"", str)					\
 	numerator = S##BITS##_FromString##BASE(str);										\
 	if (*str == '+' || *str == '-')	++str;												\
 	while (*str && Char_IsDigit(*str))	{ ++str; }										\
 	while (*str && Char_IsSpace(*str))	{ ++str; }										\
-	HANDLE_ERROR_SF(PARSE, !(*str == '/'), return (0);,									\
+	HANDLE_ERROR_SF(PARSE, !(*str == '/'),												\
+		return (Q##BITS##_ERROR);,														\
 		": expected a fraction '/' separator char, but instead got \"%s\"", str)		\
 	++str;																				\
 	while (*str && Char_IsSpace(*str))	{ ++str; }										\
 	HANDLE_ERROR_SF(PARSE, !(*str == '+' || *str == '-' || Char_IsDigit(*str)),			\
-		return (0);,																	\
+		return (Q##BITS##_ERROR);,														\
 		": expected a fraction denominator, but instead got \"%s\"", str)				\
 	denominator = S##BITS##_FromString##BASE(str);										\
-	HANDLE_ERROR_SF(MATHDOMAIN, !(denominator == 0), return (0);,						\
+	HANDLE_ERROR_SF(MATHDOMAIN, !(denominator == 0),									\
+		return (Q##BITS##_ERROR);,														\
 		": fraction denominator cannot be zero \"%s\"", str)							\
 	fraction = Q##BITS##_From(numerator, denominator);									\
 success:	\

@@ -16,13 +16,13 @@ t_u##BITS	U##BITS##_FromString_Dec(t_char const* str)								\
 	t_u##BITS	tmp;																\
 	t_size	i = 0;																	\
 																					\
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)							\
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (U##BITS##_ERROR);)				\
 	while (*str && Char_IsSpace(*str))												\
 	{																				\
 		++str;																		\
 	}																				\
 	HANDLE_ERROR_SF(PARSE, !(*str == '+' || Char_IsDigit(*str)),					\
-		return (0);,																\
+		return (U##BITS##_ERROR);,													\
 		": expected a number (with spaces/sign), but instead got \"%s\"", str)		\
 	if (str[i] == '+')																\
 		++i;																		\
@@ -56,13 +56,13 @@ t_s##BITS	S##BITS##_FromString_Dec(t_char const* str)								\
 	t_bool	negative;																\
 	t_size	i = 0;																	\
 																					\
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)							\
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (S##BITS##_ERROR);)				\
 	while (*str && Char_IsSpace(*str))												\
 	{																				\
 		++str;																		\
 	}																				\
 	HANDLE_ERROR_SF(PARSE, !(*str == '+' || *str == '-' || Char_IsDigit(*str)),		\
-		return (0);,																\
+		return (S##BITS##_ERROR);,													\
 		": expected a number (with spaces/sign), but instead got \"%s\"", str)		\
 	negative = FALSE;																\
 	if (str[i] == '-')																\

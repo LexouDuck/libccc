@@ -7,7 +7,8 @@
 
 
 
-static t_size	Int_ToString_Base_GetLength(t_char const* base, t_bool sign)
+static
+t_size	Int_ToString_Base_GetLength(t_char const* base, t_bool sign)
 {
 	t_size	i;
 	t_size	j;

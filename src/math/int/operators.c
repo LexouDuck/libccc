@@ -39,7 +39,8 @@ inline t_s##BITS	S##BITS##_Add(t_s##BITS a, t_s##BITS b)	\
 #define DEFINEFUNC_UINT_SUB(BITS) \
 inline t_u##BITS	U##BITS##_Sub(t_u##BITS a, t_u##BITS b)	\
 {															\
-	HANDLE_ERROR(RESULTRANGE, (a < b), LIBCONFIG_ERROR_HANDLEOVERFLOW(0))\
+	HANDLE_ERROR(RESULTRANGE, (a < b),						\
+		LIBCONFIG_ERROR_HANDLEOVERFLOW(0))					\
 	return (a - b);											\
 }
 #define DEFINEFUNC_SINT_SUB(BITS) \
@@ -92,16 +93,16 @@ inline t_s##BITS	S##BITS##_Mul(t_s##BITS a, t_s##BITS b)		\
 
 // TODO fix this and test
 #define DEFINEFUNC_UINT_DIV(BITS) \
-inline t_u##BITS	U##BITS##_Div(t_u##BITS a, t_u##BITS b)	\
-{															\
-	HANDLE_ERROR(MATHDOMAIN, (b == 0), return (0);)			\
-	return (a / b);											\
+inline t_u##BITS	U##BITS##_Div(t_u##BITS a, t_u##BITS b)			\
+{																	\
+	HANDLE_ERROR(MATHDOMAIN, (b == 0), return (U##BITS##_ERROR);)	\
+	return (a / b);													\
 }
 #define DEFINEFUNC_SINT_DIV(BITS) \
-inline t_s##BITS	S##BITS##_Div(t_s##BITS a, t_s##BITS b)	\
-{															\
-	HANDLE_ERROR(MATHDOMAIN, (b == 0), return (0);)			\
-	return (a / b);											\
+inline t_s##BITS	S##BITS##_Div(t_s##BITS a, t_s##BITS b)			\
+{																	\
+	HANDLE_ERROR(MATHDOMAIN, (b == 0), return (S##BITS##_ERROR);)	\
+	return (a / b);													\
 }
 /*
 (+) / (+) = [0, +N]
@@ -114,16 +115,16 @@ inline t_s##BITS	S##BITS##_Div(t_s##BITS a, t_s##BITS b)	\
 
 // TODO fix this and test
 #define DEFINEFUNC_UINT_MOD(BITS) \
-inline t_u##BITS	U##BITS##_Mod(t_u##BITS a, t_u##BITS b)	\
-{															\
-	HANDLE_ERROR(MATHDOMAIN, (b == 0), return (0);)			\
-	return (a % b);											\
+inline t_u##BITS	U##BITS##_Mod(t_u##BITS a, t_u##BITS b)			\
+{																	\
+	HANDLE_ERROR(MATHDOMAIN, (b == 0), return (U##BITS##_ERROR);)	\
+	return (a % b);													\
 }
 #define DEFINEFUNC_SINT_MOD(BITS) \
-inline t_s##BITS	S##BITS##_Mod(t_s##BITS a, t_s##BITS b)	\
-{															\
-	HANDLE_ERROR(MATHDOMAIN, (b == 0), return (0);)			\
-	return (a % b);											\
+inline t_s##BITS	S##BITS##_Mod(t_s##BITS a, t_s##BITS b)			\
+{																	\
+	HANDLE_ERROR(MATHDOMAIN, (b == 0), return (S##BITS##_ERROR);)	\
+	return (a % b);													\
 }
 /*
 (+) % (+) = [0, +N]

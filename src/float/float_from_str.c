@@ -248,9 +248,9 @@ t_f##BITS	F##BITS##_FromString_Hex(t_char const* str)						\
 	str_mantissa = (negative || str[0] == '+') ? str + 1 : str;				\
 	str_exponent = String_Find_Charset(str, "pP");							\
 	if (str_exponent)	++str_exponent;										\
-	result = (negative ? -1. : 1.);											\
+	result = (negative ? -1. : +1.);										\
 	tmp = String_Remove(str_mantissa, ".");									\
-	if (String_Equals(tmp, "0") || String_Equals(tmp, "00"))				\
+	if (String_HasOnly(tmp, "0"))											\
 	{																		\
 		Memory_Free(tmp);													\
 		return (0. * result);												\

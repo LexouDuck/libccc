@@ -180,6 +180,28 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 
 
 
+#undef FLOAT_ERROR
+
+#if (LIBCONFIG_FIXED_ERROR == 0)
+
+	#define F32_ERROR	((t_f32)  (0.))
+	#define F64_ERROR	((t_f64)  (0.))
+	#define F80_ERROR	((t_f80)  (0.))
+	#define F128_ERROR	((t_f128) (0.))
+	#define FLOAT_ERROR	((t_float)(0.))
+
+#else
+
+	#define F32_ERROR	((t_f32)  (0. / 0.))
+	#define F64_ERROR	((t_f64)  (0. / 0.))
+	#define F80_ERROR	((t_f80)  (0. / 0.))
+	#define F128_ERROR	((t_f128) (0. / 0.))
+	#define FLOAT_ERROR	((t_float)(0. / 0.))
+
+#endif
+
+
+
 //! The floating-point "not a number" value.
 /*!
 **	@isostd{C,https://en.cppreference.com/w/c/numeric/math/nan}

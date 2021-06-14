@@ -111,8 +111,8 @@ void	print_test(
 		if (function[0] == '_')
 		{
 			static char const* expected = "Expected";
-			size_t length_expected = sizeof("Expected");
-			size_t length_function = strlen(function) + 1;
+			int length_expected = (int)sizeof("Expected");
+			int length_function = (int)strlen(function) + 1;
 			length_expected = (length_expected > length_function) ? length_expected : length_function;
 			length_function = length_expected - length_function + 1;
 			printf(">%*.*s%s: (%s)\n"

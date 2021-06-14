@@ -16,7 +16,7 @@ inline t_s##BITS	S##BITS##_FromInt(t_sint number)						\
 #define DEFINEFUNC_SINT_FROMFIXED(BITS) \
 inline t_s##BITS	S##BITS##_FromFixed(t_fixed number)						\
 {																			\
-	return ((t_s##BITS)number);												\
+	return ((t_s##BITS)(number / FIXED_DENOMINATOR));						\
 }
 
 #define DEFINEFUNC_SINT_FROMFLOAT(BITS) \
