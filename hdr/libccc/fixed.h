@@ -85,8 +85,8 @@ HEADER_CPP
 #define FIXED_MAX_FRACTIONPART	(LIBCONFIG_FIXED_DENOMINATOR - 1)
 
 //! The amount of bits dedicated to the fixed-point number type's integer number part
-#define FIXED_MAX_INTEGERPART	(CONCAT(CONCAT(S,LIBCONFIG_BITS_FIXED),_MAX) / LIBCONFIG_FIXED_DENOMINATOR)
-#define FIXED_MIN_INTEGERPART	(CONCAT(CONCAT(S,LIBCONFIG_BITS_FIXED),_MIN) / LIBCONFIG_FIXED_DENOMINATOR)
+#define FIXED_MAX_INTEGERPART	(CONCAT(CONCAT(S,LIBCONFIG_FIXED_BITS),_MAX) / LIBCONFIG_FIXED_DENOMINATOR)
+#define FIXED_MIN_INTEGERPART	(CONCAT(CONCAT(S,LIBCONFIG_FIXED_BITS),_MIN) / LIBCONFIG_FIXED_DENOMINATOR)
 
 
 
@@ -138,7 +138,7 @@ HEADER_CPP
 	typedef	_Sat long _Accum		t_q64;
 	TYPEDEF_ALIAS(					t_q64,	FIXED_64,	PRIMITIVE)
 
-	#if (LIBCONFIG_BITS_FIXED == 128)
+	#if (LIBCONFIG_FIXED_BITS == 128)
 		#error "Cannot set default 't_fixed' to 128-bit size, unavailable on this platform"
 	#endif
 
@@ -196,7 +196,7 @@ HEADER_CPP
 	*/
 	typedef s128	t_q128;
 	TYPEDEF_ALIAS(	t_q128,	FIXED_128,	PRIMITIVE)
-	#elif (LIBCONFIG_BITS_FIXED == 128)
+	#elif (LIBCONFIG_FIXED_BITS == 128)
 		#error "Cannot set default 't_fixed' to 128-bit size, unavailable on this platform"
 	#endif
 
@@ -205,9 +205,9 @@ HEADER_CPP
 
 
 //! The actual underlying type for the `t_fixed` configurable type
-#define FIXED_T			CONCAT(t_q,LIBCONFIG_BITS_FIXED)
+#define FIXED_T			CONCAT(t_q,LIBCONFIG_FIXED_BITS)
 //! The actual underlying type for the `t_fixed` configurable type, in uppercase
-#define FIXED_TYPE		CONCAT(Q,LIBCONFIG_BITS_FIXED)
+#define FIXED_TYPE		CONCAT(Q,LIBCONFIG_FIXED_BITS)
 //! the denominator/divisor for this fixed-point number type, @see #LIBCONFIG_FIXED_DENOMINATOR
 #define FIXED_DENOMINATOR	LIBCONFIG_FIXED_DENOMINATOR
 
@@ -217,7 +217,7 @@ HEADER_CPP
 **	@nonstd
 **
 **	Configurable-width fixed-point rational number type.
-**	The size of this fixed-point type depends on the value of #LIBCONFIG_BITS_FIXED.
+**	The size of this fixed-point type depends on the value of #LIBCONFIG_FIXED_BITS.
 **	The portion dedicated to the fractional part depends on the value of #FIXED_BITS_FRACTIONPART.
 **	All the other important `#define`s depend on this one macro (FIXED_BITS_FRACTIONPART).
 **	This type can express a number between #FIXED_MIN and #FIXED_MAX.
@@ -227,11 +227,11 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 
 
 
-#if(LIBCONFIG_BITS_FIXED != 16 && \
-	LIBCONFIG_BITS_FIXED != 32 && \
-	LIBCONFIG_BITS_FIXED != 64 && \
-	LIBCONFIG_BITS_FIXED != 128)
-	#error "LIBCONFIG_BITS_FIXED must be equal to one of: 16, 32, 64, 128"
+#if(LIBCONFIG_FIXED_BITS != 16 && \
+	LIBCONFIG_FIXED_BITS != 32 && \
+	LIBCONFIG_FIXED_BITS != 64 && \
+	LIBCONFIG_FIXED_BITS != 128)
+	#error "LIBCONFIG_FIXED_BITS must be equal to one of: 16, 32, 64, 128"
 #endif
 
 #if (FIXED_DENOMINATOR == 0)

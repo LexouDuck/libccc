@@ -54,20 +54,6 @@ HEADER_CPP
 
 
 
-//! The action to take when there is an integer overflow (by default, let it continue)
-#ifndef LIBCONFIG_ERROR_HANDLEOVERFLOW
-#define LIBCONFIG_ERROR_HANDLEOVERFLOW(BOUND) \
-	// return (BOUND);
-	// return (0);
-#endif
-
-//! The file to include in source files which use `HANDLE_ERROR()`
-#ifndef LIBCONFIG_ERROR_INCLUDE
-#define LIBCONFIG_ERROR_INCLUDE	"libccc/error.h"
-#endif
-
-
-
 //! These macros allow you to configure how libccc handles exceptions/error cases.
 /*!
 **	These "plural-named" can be used to activate or deactivate exception handling at will.

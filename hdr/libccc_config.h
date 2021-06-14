@@ -45,7 +45,25 @@ HEADER_CPP
 **	For example, having `(NAMINGSTYLE_SCREAMCASE)` will create a typedef for `t_bool` which is `BOOL`
 **	Here, by default, the value is zero (no typedef aliases are generated).
 */
+#ifndef LIBCONFIG_NAMINGSTYLE_TYPES
 #define LIBCONFIG_NAMINGSTYLE_TYPES	0
+#endif
+
+
+
+//! The file to include in source files which use `HANDLE_ERROR()`
+#ifndef LIBCONFIG_ERROR_INCLUDE
+#define LIBCONFIG_ERROR_INCLUDE	"libccc/error.h"
+#endif
+
+//! The action to take when there is an integer overflow (by default, let it continue)
+#ifndef LIBCONFIG_ERROR_HANDLEOVERFLOW
+#define LIBCONFIG_ERROR_HANDLEOVERFLOW(BOUND) \
+	// return (BOUND);
+	// return (0);
+#endif
+
+
 
 
 
@@ -59,7 +77,9 @@ HEADER_CPP
 **	- `64`	for 64-bit uint	[0, 18446744073709551615]
 **	- `128`	for 128-bit uint (not present on all platforms)
 */
-#define LIBCONFIG_BITS_UINT		32
+#ifndef LIBCONFIG_UINT_BITS
+#define LIBCONFIG_UINT_BITS		32
+#endif
 
 //! Defines which type/bit size the `t_sint` default signed integer type will be
 /*!
@@ -71,7 +91,9 @@ HEADER_CPP
 **	- `64`	for 64-bit int	[-9223372036854775808, +9223372036854775807]
 **	- `128`	for 128-bit int (not present on all platforms)
 */
-#define LIBCONFIG_BITS_SINT		32
+#ifndef LIBCONFIG_SINT_BITS
+#define LIBCONFIG_SINT_BITS		32
+#endif
 
 //! If 1, libccc uses exact bit length for t_s8, t_s16, t_s32, t_s64, t_u8, t_u16, t_u32, and t_u64
 /*!
@@ -100,11 +122,17 @@ HEADER_CPP
 **	- `64`	for 64-bit fixed-point number
 **	- `128`	for 128-bit fixed-point number (not present on all platforms)
 */
-#define LIBCONFIG_BITS_FIXED	64
+#ifndef LIBCONFIG_FIXED_BITS
+#define LIBCONFIG_FIXED_BITS	64
+#endif
 //! @see #FIXED_APPROX and Fixed_EqualsApprox()
+#ifndef LIBCONFIG_FIXED_APPROX
 #define LIBCONFIG_FIXED_APPROX	((t_fixed)(LIBCONFIG_FIXED_DENOMINATOR / 2))
+#endif
 //! The amount of subdivisions dedicated to the fraction part of the fixed-point types
+#ifndef LIBCONFIG_FIXED_DENOMINATOR
 #define LIBCONFIG_FIXED_DENOMINATOR	(256)
+#endif
 
 
 
@@ -117,9 +145,13 @@ HEADER_CPP
 **	- `80`	for 80-bit x86 extended-precision floating-point number (not present on all platforms)
 **	- `128`	for 128-bit IEEE 754 quadruple-precision floating-point number (not present on all platforms)
 */
-#define LIBCONFIG_BITS_FLOAT	64
+#ifndef LIBCONFIG_FLOAT_BITS
+#define LIBCONFIG_FLOAT_BITS	64
+#endif
 //! @see #FLOAT_APPROX and Float_EqualsApprox()
+#ifndef LIBCONFIG_FLOAT_APPROX
 #define LIBCONFIG_FLOAT_APPROX	(1.0e-10)
+#endif
 
 
 
@@ -134,8 +166,12 @@ HEADER_CPP
 **	-	| `t_utf32` | `UTF32`   | for unicode 32-bit wide character strings
 */
 //!@{
-#define LIBCONFIG_TYPE_CHAR		t_ascii
-#define LIBCONFIG_NAME_CHAR		ASCII
+#ifndef LIBCONFIG_CHAR_TYPE
+#define LIBCONFIG_CHAR_TYPE		t_ascii
+#endif
+#ifndef LIBCONFIG_CHAR_NAME
+#define LIBCONFIG_CHAR_NAME		ASCII
+#endif
 //!@}
 
 
@@ -151,8 +187,12 @@ HEADER_CPP
 **	-	| `t_csprng`  | `CSPRNG`    | for cryptographically-secure RNG (OS native)
 */
 //!@{
-#define LIBCONFIG_TYPE_RANDOM	t_prng
-#define LIBCONFIG_NAME_RANDOM	PRNG
+#ifndef LIBCONFIG_RANDOM_TYPE
+#define LIBCONFIG_RANDOM_TYPE	t_prng
+#endif
+#ifndef LIBCONFIG_RANDOM_NAME
+#define LIBCONFIG_RANDOM_NAME	PRNG
+#endif
 //!@}
 
 
@@ -164,7 +204,9 @@ HEADER_CPP
 **	- If `0`, `s_list` is singly-linked (that is, the struct only holds a `.next` pointer)
 **	- If `1`, `s_list` is doubly-linked (that is, the struct has both a `.prev` and `.next` pointer)
 */
+#ifndef LIBCONFIG_LIST_DOUBLYLINKED
 #define LIBCONFIG_LIST_DOUBLYLINKED		0
+#endif
 // TODO make it so doubly-linked lists have the first item's `->prev` point to the last element
 
 
@@ -181,7 +223,9 @@ HEADER_CPP
 **		Also, it invalidates the error-handling settings (`DEFAULT_HANDLER`, etc):
 **		Argument handling is implementation-dependent for STD C functions.
 */
+#ifndef LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 #define LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS	0
+#endif
 
 
 
@@ -193,7 +237,9 @@ HEADER_CPP
 **		This is the recommended option, and is on by default (since the standard math functions
 **		are typically well-implemented for the given platform: they're both precise, and fast)
 */
+#ifndef LIBCONFIG_USE_STD_MATH
 #define LIBCONFIG_USE_STD_MATH			1
+#endif
 
 
 
@@ -201,7 +247,9 @@ HEADER_CPP
 /*!
 **	TODO implement & document this
 */
+#ifndef LIBCONFIG_USE_STD_COMPLEX
 #define LIBCONFIG_USE_STD_COMPLEX		0
+#endif
 
 
 
@@ -214,7 +262,9 @@ HEADER_CPP
 **	being entirely configurable, regarding what portion of the fixed-point number type
 **	is dedicated to the integer part and the fraction part.
 */
+#ifndef LIBCONFIG_USE_STD_FIXEDPOINT
 #define LIBCONFIG_USE_STD_FIXEDPOINT	0
+#endif
 
 
 

@@ -41,7 +41,7 @@ HEADER_CPP
 /*!
 **	This type is intentionally opaque (it is platform-dependent)
 */
-typedef LIBCONFIG_TYPE_RANDOM   t_rand;
+typedef LIBCONFIG_RANDOM_TYPE   t_rand;
 
 
 
@@ -51,58 +51,58 @@ typedef LIBCONFIG_TYPE_RANDOM   t_rand;
 ** ************************************************************************** *|
 */
 
-#define				Random_SetSeed	CONCAT(LIBCONFIG_NAME_RANDOM,_SetSeed)
+#define				Random_SetSeed	CONCAT(LIBCONFIG_RANDOM_NAME,_SetSeed)
 #define c_srand		Random_SetSeed
 
-#define				Random_NewSeed	CONCAT(LIBCONFIG_NAME_RANDOM,_NewSeed)
+#define				Random_NewSeed	CONCAT(LIBCONFIG_RANDOM_NAME,_NewSeed)
 #define c_nrand		Random_NewSeed
 
 
 
-#define				Random_New		CONCAT(LIBCONFIG_NAME_RANDOM,_New)
+#define				Random_New		CONCAT(LIBCONFIG_RANDOM_NAME,_New)
 #define c_randnew	Random_New
 
-#define				Random_Delete	CONCAT(LIBCONFIG_NAME_RANDOM,_Delete)
+#define				Random_Delete	CONCAT(LIBCONFIG_RANDOM_NAME,_Delete)
 #define c_randdel	Random_Delete
 
 
 
-#define				Random_Next		CONCAT(LIBCONFIG_NAME_RANDOM,_Next)
+#define				Random_Next		CONCAT(LIBCONFIG_RANDOM_NAME,_Next)
 #define c_rand		Random_Next
 
-#define				Random_Get		CONCAT(LIBCONFIG_NAME_RANDOM,_Get)
+#define				Random_Get		CONCAT(LIBCONFIG_RANDOM_NAME,_Get)
 #define c_randget	Random_Get
 
 
 
-#define				Random_UInt			CONCAT(LIBCONFIG_NAME_RANDOM,_UInt)
+#define				Random_UInt			CONCAT(LIBCONFIG_RANDOM_NAME,_UInt)
 #define c_randu		Random_UInt
 
-#define				Random_UInt_Range	CONCAT(LIBCONFIG_NAME_RANDOM,_UInt_Range)
+#define				Random_UInt_Range	CONCAT(LIBCONFIG_RANDOM_NAME,_UInt_Range)
 #define c_randui	Random_UInt_Range
 
 
 
-#define				Random_SInt			CONCAT(LIBCONFIG_NAME_RANDOM,_SInt)
+#define				Random_SInt			CONCAT(LIBCONFIG_RANDOM_NAME,_SInt)
 #define c_rands		Random_SInt
 
-#define				Random_SInt_Range	CONCAT(LIBCONFIG_NAME_RANDOM,_SInt_Range)
+#define				Random_SInt_Range	CONCAT(LIBCONFIG_RANDOM_NAME,_SInt_Range)
 #define c_randsi	Random_SInt_Range
 
 
 
-#define				Random_Fixed		CONCAT(LIBCONFIG_NAME_RANDOM,_Fixed)
+#define				Random_Fixed		CONCAT(LIBCONFIG_RANDOM_NAME,_Fixed)
 #define c_randq		Random_Fixed
 
-#define				Random_Fixed_Range	CONCAT(LIBCONFIG_NAME_RANDOM,_Fixed_Range)
+#define				Random_Fixed_Range	CONCAT(LIBCONFIG_RANDOM_NAME,_Fixed_Range)
 #define c_randqi	Random_Fixed_Range
 
 
 
-#define				Random_Float		CONCAT(LIBCONFIG_NAME_RANDOM,_Float)
+#define				Random_Float		CONCAT(LIBCONFIG_RANDOM_NAME,_Float)
 #define c_randf		Random_Float
 
-#define				Random_Float_Range	CONCAT(LIBCONFIG_NAME_RANDOM,_Float_Range)
+#define				Random_Float_Range	CONCAT(LIBCONFIG_RANDOM_NAME,_Float_Range)
 #define c_randfi	Random_Float_Range
 
 

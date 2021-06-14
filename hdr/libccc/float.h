@@ -115,7 +115,7 @@ TYPEDEF_ALIAS(		t_f64,	FLOAT_64,	PRIMITIVE)
 */
 typedef _Float80	t_f80;
 TYPEDEF_ALIAS(		t_f80,	FLOAT_80,	PRIMITIVE)
-#elif (LIBCONFIG_BITS_FLOAT == 80)
+#elif (LIBCONFIG_FLOAT_BITS == 80)
 	#error "Cannot set default float to 80-bit extended-precision, unavailable on this platform"
 #endif
 
@@ -133,16 +133,16 @@ TYPEDEF_ALIAS(		t_f80,	FLOAT_80,	PRIMITIVE)
 */
 typedef _Float128	t_f128;
 TYPEDEF_ALIAS(		t_f128,	FLOAT_128,	PRIMITIVE)
-#elif (LIBCONFIG_BITS_FLOAT == 128)
+#elif (LIBCONFIG_FLOAT_BITS == 128)
 	#error "Cannot set default float to 128-bit quadruple-precision, unavailable on this platform"
 #endif
 
 
 
 //! The actual underlying type for the `t_float` configurable type
-#define FLOAT_T		CONCAT(t_f,LIBCONFIG_BITS_FLOAT)
+#define FLOAT_T		CONCAT(t_f,LIBCONFIG_FLOAT_BITS)
 //! The actual underlying type for the `t_float` configurable type, in uppercase
-#define FLOAT_TYPE	CONCAT(F,LIBCONFIG_BITS_FLOAT)
+#define FLOAT_TYPE	CONCAT(F,LIBCONFIG_FLOAT_BITS)
 
 //! The configurable-size floating-point number primitive type.
 /*!
@@ -165,17 +165,17 @@ TYPEDEF_ALIAS(		t_f128,	FLOAT_128,	PRIMITIVE)
 **	- #t_f80
 **	- #t_f128
 */
-typedef CONCAT(t_f,LIBCONFIG_BITS_FLOAT)	t_float;
+typedef CONCAT(t_f,LIBCONFIG_FLOAT_BITS)	t_float;
 TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 
 
 
-#if(LIBCONFIG_BITS_FLOAT != 32 && \
-	LIBCONFIG_BITS_FLOAT != 64 && \
-	LIBCONFIG_BITS_FLOAT != 80 && \
-	LIBCONFIG_BITS_FLOAT != 96 && \
-	LIBCONFIG_BITS_FLOAT != 128)
-	#error "LIBCONFIG_BITS_FLOAT must be equal to one of: 32, 64, 80, 96, 128"
+#if(LIBCONFIG_FLOAT_BITS != 32 && \
+	LIBCONFIG_FLOAT_BITS != 64 && \
+	LIBCONFIG_FLOAT_BITS != 80 && \
+	LIBCONFIG_FLOAT_BITS != 96 && \
+	LIBCONFIG_FLOAT_BITS != 128)
+	#error "LIBCONFIG_FLOAT_BITS must be equal to one of: 32, 64, 80, 96, 128"
 #endif
 
 
@@ -423,9 +423,9 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 typedef union float_cast
 {
 	t_float	value_float;
-#if (LIBCONFIG_BITS_FLOAT == 32)
+#if (LIBCONFIG_FLOAT_BITS == 32)
 	s32		value_int;
-#elif (LIBCONFIG_BITS_FLOAT == 64)
+#elif (LIBCONFIG_FLOAT_BITS == 64)
 	s64		value_int;
 #else
 	s64[2]	value_int;

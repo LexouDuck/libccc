@@ -120,7 +120,7 @@ TYPEDEF_ALIAS(	t_char, CHAR, PRIMITIVE)
 **	- ASCII_IsLetter()
 **	- UTF32_IsLetter()
 */
-#define					Char_IsLetter	CONCAT(LIBCONFIG_NAME_CHAR,_IsLetter)
+#define					Char_IsLetter	CONCAT(LIBCONFIG_CHAR_NAME,_IsLetter)
 #define c_isalpha		Char_IsLetter
 #define Char_IsAlpha	Char_IsLetter
 
@@ -130,7 +130,7 @@ TYPEDEF_ALIAS(	t_char, CHAR, PRIMITIVE)
 **	- ASCII_IsUppercase()
 **	- UTF32_IsUppercase()
 */
-#define					Char_IsUppercase	CONCAT(LIBCONFIG_NAME_CHAR,_IsUppercase)
+#define					Char_IsUppercase	CONCAT(LIBCONFIG_CHAR_NAME,_IsUppercase)
 #define c_isupper		Char_IsUppercase
 #define Char_IsUpper	Char_IsUppercase
 
@@ -140,7 +140,7 @@ TYPEDEF_ALIAS(	t_char, CHAR, PRIMITIVE)
 **	- ASCII_IsLowercase()
 **	- UTF32_IsLowercase()
 */
-#define					Char_IsLowercase	CONCAT(LIBCONFIG_NAME_CHAR,_IsLowercase)
+#define					Char_IsLowercase	CONCAT(LIBCONFIG_CHAR_NAME,_IsLowercase)
 #define c_islower		Char_IsLowercase
 #define Char_IsLower	Char_IsLowercase
 
@@ -150,7 +150,7 @@ TYPEDEF_ALIAS(	t_char, CHAR, PRIMITIVE)
 **	- ASCII_IsAlphaNumeric()
 **	- UTF32_IsAlphaNumeric()
 */
-#define					Char_IsAlphaNumeric	CONCAT(LIBCONFIG_NAME_CHAR,_IsAlphaNumeric)
+#define					Char_IsAlphaNumeric	CONCAT(LIBCONFIG_CHAR_NAME,_IsAlphaNumeric)
 #define c_isalnum		Char_IsAlphaNumeric
 #define Char_IsAlNum	Char_IsAlphaNumeric
 
@@ -162,7 +162,7 @@ TYPEDEF_ALIAS(	t_char, CHAR, PRIMITIVE)
 **	- ASCII_IsDigit_Decimal()
 **	- UTF32_IsDigit_Decimal()
 */
-#define						Char_IsDigit_Decimal	CONCAT(LIBCONFIG_NAME_CHAR,_IsDigit)
+#define						Char_IsDigit_Decimal	CONCAT(LIBCONFIG_CHAR_NAME,_IsDigit)
 #define c_isdigit			Char_IsDigit_Decimal
 #define c_isdigitdec		Char_IsDigit_Decimal
 #define Char_IsDigit		Char_IsDigit_Decimal
@@ -174,7 +174,7 @@ TYPEDEF_ALIAS(	t_char, CHAR, PRIMITIVE)
 **	- ASCII_IsDigit_Hexadecimal()
 **	- UTF32_IsDigit_Hexadecimal()
 */
-#define						Char_IsDigit_Hexadecimal	CONCAT(LIBCONFIG_NAME_CHAR,_IsDigit_Hex)
+#define						Char_IsDigit_Hexadecimal	CONCAT(LIBCONFIG_CHAR_NAME,_IsDigit_Hex)
 #define c_isxdigit			Char_IsDigit_Hexadecimal
 #define c_isdigithex		Char_IsDigit_Hexadecimal
 #define Char_IsDigit_Hex	Char_IsDigit_Hexadecimal
@@ -185,7 +185,7 @@ TYPEDEF_ALIAS(	t_char, CHAR, PRIMITIVE)
 **	- ASCII_IsDigit_Octal()
 **	- UTF32_IsDigit_Octal()
 */
-#define						Char_IsDigit_Octal	CONCAT(LIBCONFIG_NAME_CHAR,_IsDigit_Oct)
+#define						Char_IsDigit_Octal	CONCAT(LIBCONFIG_CHAR_NAME,_IsDigit_Oct)
 #define c_isodigit			Char_IsDigit_Octal
 #define c_isdigitoct		Char_IsDigit_Octal
 #define Char_IsDigit_Oct	Char_IsDigit_Octal
@@ -196,7 +196,7 @@ TYPEDEF_ALIAS(	t_char, CHAR, PRIMITIVE)
 **	- ASCII_IsDigit_Binary()
 **	- UTF32_IsDigit_Binary()
 */
-#define						Char_IsDigit_Binary	CONCAT(LIBCONFIG_NAME_CHAR,_IsDigit_Bin)
+#define						Char_IsDigit_Binary	CONCAT(LIBCONFIG_CHAR_NAME,_IsDigit_Bin)
 #define c_isbdigit			Char_IsDigit_Binary
 #define c_isdigitbin		Char_IsDigit_Binary
 #define Char_IsDigit_Bin	Char_IsDigit_Binary
@@ -209,7 +209,7 @@ TYPEDEF_ALIAS(	t_char, CHAR, PRIMITIVE)
 **	- ASCII_IsWhiteSpace()
 **	- UTF32_IsWhiteSpace()
 */
-#define					Char_IsWhiteSpace	CONCAT(LIBCONFIG_NAME_CHAR,_IsWhiteSpace)
+#define					Char_IsWhiteSpace	CONCAT(LIBCONFIG_CHAR_NAME,_IsWhiteSpace)
 #define c_isspace		Char_IsWhiteSpace
 #define Char_IsSpace	Char_IsWhiteSpace
 
@@ -219,7 +219,7 @@ TYPEDEF_ALIAS(	t_char, CHAR, PRIMITIVE)
 **	- ASCII_IsPunctuation()
 **	- UTF32_IsPunctuation()
 */
-#define					Char_IsPunctuation	CONCAT(LIBCONFIG_NAME_CHAR,_IsPunctuation)
+#define					Char_IsPunctuation	CONCAT(LIBCONFIG_CHAR_NAME,_IsPunctuation)
 #define c_ispunct		Char_IsPunctuation
 #define Char_IsPunct	Char_IsPunctuation
 
@@ -231,7 +231,7 @@ TYPEDEF_ALIAS(	t_char, CHAR, PRIMITIVE)
 **	- ASCII_IsPrintable()
 **	- UTF32_IsPrintable()
 */
-#define					Char_IsPrintable	CONCAT(LIBCONFIG_NAME_CHAR,_IsPrintable)
+#define					Char_IsPrintable	CONCAT(LIBCONFIG_CHAR_NAME,_IsPrintable)
 #define c_isprint		Char_IsPrintable
 #define Char_IsPrint	Char_IsPrintable
 
@@ -244,7 +244,7 @@ TYPEDEF_ALIAS(	t_char, CHAR, PRIMITIVE)
 **	- UTF32_IsValid()
 **	- UTF32_IsASCII()
 */
-#define					Char_IsValid	CONCAT(LIBCONFIG_NAME_CHAR,_IsValid)
+#define					Char_IsValid	CONCAT(LIBCONFIG_CHAR_NAME,_IsValid)
 #define c_isascii		Char_IsValid
 #define c_isvalid		Char_IsValid
 
@@ -256,7 +256,7 @@ TYPEDEF_ALIAS(	t_char, CHAR, PRIMITIVE)
 **	- ASCII_IsInCharset()
 **	- UTF32_IsInCharset()
 */
-#define					Char_IsInCharset	CONCAT(LIBCONFIG_NAME_CHAR,_IsInCharset)
+#define					Char_IsInCharset	CONCAT(LIBCONFIG_CHAR_NAME,_IsInCharset)
 #define c_isincharset	Char_IsInCharset
 
 
@@ -273,7 +273,7 @@ TYPEDEF_ALIAS(	t_char, CHAR, PRIMITIVE)
 **	- ASCII_ToUppercase()
 **	- UTF32_ToUppercase()
 */
-#define					Char_ToUppercase	CONCAT(LIBCONFIG_NAME_CHAR,_ToUppercase)
+#define					Char_ToUppercase	CONCAT(LIBCONFIG_CHAR_NAME,_ToUppercase)
 #define c_toupper		Char_ToUppercase
 #define Char_ToUpper	Char_ToUppercase
 
@@ -283,7 +283,7 @@ TYPEDEF_ALIAS(	t_char, CHAR, PRIMITIVE)
 **	- ASCII_ToLowercase()
 **	- UTF32_ToLowercase()
 */
-#define					Char_ToLowercase	CONCAT(LIBCONFIG_NAME_CHAR,_ToLowercase)
+#define					Char_ToLowercase	CONCAT(LIBCONFIG_CHAR_NAME,_ToLowercase)
 #define c_tolower		Char_ToLowercase
 #define Char_ToLower	Char_ToLowercase
 

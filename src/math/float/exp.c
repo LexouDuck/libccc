@@ -27,16 +27,16 @@ t_float		Float_Exp(t_float x)
 	u_float_cast result = { x };
 
 	result.value_int = (1512775 * result.value_int + 1072632447);
-#if LIBCONFIG_BITS_FLOAT == 32
+#if LIBCONFIG_FLOAT_BITS == 32
 	result.value_int <<= 16;
 #endif
-#if LIBCONFIG_BITS_FLOAT == 64
+#if LIBCONFIG_FLOAT_BITS == 64
 	result.value_int <<= 32;
 #endif
-#if LIBCONFIG_BITS_FLOAT == 80
+#if LIBCONFIG_FLOAT_BITS == 80
 	result.value_int <<= 40;
 #endif
-#if LIBCONFIG_BITS_FLOAT == 128
+#if LIBCONFIG_FLOAT_BITS == 128
 	result.value_int <<= 64;
 #endif
 	return (result.value_float);

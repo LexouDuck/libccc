@@ -197,7 +197,7 @@ TYPEDEF_ALIAS(	t_u64,	UINT_64, PRIMITIVE)
 */
 typedef u128	t_u128;
 TYPEDEF_ALIAS(	t_u128,	UINT_128,PRIMITIVE)
-#elif (LIBCONFIG_BITS_UINT == 128)
+#elif (LIBCONFIG_UINT_BITS == 128)
 	#error "Cannot set default unsigned int type to 128-bit, unavailable on this platform"
 #endif
 
@@ -284,23 +284,23 @@ TYPEDEF_ALIAS(	t_s64,	SINT_64, PRIMITIVE)
 */
 typedef s128	t_s128;
 TYPEDEF_ALIAS(	t_s128,	SINT_128,PRIMITIVE)
-#elif (LIBCONFIG_BITS_SINT == 128)
+#elif (LIBCONFIG_SINT_BITS == 128)
 	#error "Cannot set default signed int type to 128-bit, unavailable on this platform"
 #endif
 
 
 
 //! The actual underlying type for the `t_uint` configurable type
-#define UINT_T		CONCAT(t_u,LIBCONFIG_BITS_UINT)
+#define UINT_T		CONCAT(t_u,LIBCONFIG_UINT_BITS)
 //! The actual underlying type for the `t_uint` configurable type, in uppercase
-#define UINT_TYPE	CONCAT(U,LIBCONFIG_BITS_UINT)
+#define UINT_TYPE	CONCAT(U,LIBCONFIG_UINT_BITS)
 
 //! The configurable-size unsigned integer primitive type.
 /*!
 **	@isostd{C,https://en.cppreference.com/w/c/language/arithmetic_types#Integer_types}
 **
 **	Configurable-width unsigned integer type.
-**	The size of this integer type depends on the value of #LIBCONFIG_BITS_UINT.
+**	The size of this integer type depends on the value of #LIBCONFIG_UINT_BITS.
 **	This is meant to be used as a "default integer type", a type where the
 **	programmer doesn't need to worry about integer overflow behaviors being
 **	platform-dependent (like they would if they used the C native `int` type).
@@ -312,16 +312,16 @@ TYPEDEF_ALIAS(t_uint, UINT, PRIMITIVE)
 
 
 //! The actual underlying type for the `t_sint` configurable type
-#define SINT_T		CONCAT(t_s,LIBCONFIG_BITS_SINT)
+#define SINT_T		CONCAT(t_s,LIBCONFIG_SINT_BITS)
 //! The actual underlying type for the `t_sint` configurable type, in uppercase
-#define SINT_TYPE	CONCAT(S,LIBCONFIG_BITS_SINT)
+#define SINT_TYPE	CONCAT(S,LIBCONFIG_SINT_BITS)
 
 //! The configurable-size signed integer primitive type.
 /*!
 **	@isostd{C,https://en.cppreference.com/w/c/language/arithmetic_types#Integer_types}
 **
 **	Configurable-width signed integer type.
-**	The size of this integer type depends on the value of #LIBCONFIG_BITS_SINT.
+**	The size of this integer type depends on the value of #LIBCONFIG_SINT_BITS.
 **	This is meant to be used as a "default integer type", a type where the
 **	programmer doesn't need to worry about integer overflow behaviors being
 **	platform-dependent (like they would if they used the C native `int` type).
@@ -332,20 +332,20 @@ TYPEDEF_ALIAS(t_sint, SINT, PRIMITIVE)
 
 
 
-#if LIBCONFIG_BITS_UINT != 8 && \
-	LIBCONFIG_BITS_UINT != 16 && \
-	LIBCONFIG_BITS_UINT != 32 && \
-	LIBCONFIG_BITS_UINT != 64 && \
-	LIBCONFIG_BITS_UINT != 128
-	#error "LIBCONFIG_BITS_UINT must be equal to one of: 8, 16, 32, 64, 128"
+#if LIBCONFIG_UINT_BITS != 8 && \
+	LIBCONFIG_UINT_BITS != 16 && \
+	LIBCONFIG_UINT_BITS != 32 && \
+	LIBCONFIG_UINT_BITS != 64 && \
+	LIBCONFIG_UINT_BITS != 128
+	#error "LIBCONFIG_UINT_BITS must be equal to one of: 8, 16, 32, 64, 128"
 #endif
 
-#if LIBCONFIG_BITS_SINT != 8 && \
-	LIBCONFIG_BITS_SINT != 16 && \
-	LIBCONFIG_BITS_SINT != 32 && \
-	LIBCONFIG_BITS_SINT != 64 && \
-	LIBCONFIG_BITS_SINT != 128
-	#error "LIBCONFIG_BITS_SINT must be equal to one of: 8, 16, 32, 64, 128"
+#if LIBCONFIG_SINT_BITS != 8 && \
+	LIBCONFIG_SINT_BITS != 16 && \
+	LIBCONFIG_SINT_BITS != 32 && \
+	LIBCONFIG_SINT_BITS != 64 && \
+	LIBCONFIG_SINT_BITS != 128
+	#error "LIBCONFIG_SINT_BITS must be equal to one of: 8, 16, 32, 64, 128"
 #endif
 
 

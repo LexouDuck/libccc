@@ -91,9 +91,9 @@ HEADER_CPP
 #define SF_U128		"[128-bit unsigned int]"	// TODO find a way to make this work
 #define SF_HEX_U128	"[128-bit unsigned int]"	// TODO find a way to make this work
 
-#define SF_SINT		CONCAT(SF_S,	 LIBCONFIG_BITS_SINT)
-#define SF_UINT		CONCAT(SF_U,	 LIBCONFIG_BITS_UINT)
-#define SF_HEX_UINT	CONCAT(SF_HEX_U, LIBCONFIG_BITS_UINT)
+#define SF_SINT		CONCAT(SF_S,	 LIBCONFIG_SINT_BITS)
+#define SF_UINT		CONCAT(SF_U,	 LIBCONFIG_UINT_BITS)
+#define SF_HEX_UINT	CONCAT(SF_HEX_U, LIBCONFIG_UINT_BITS)
 //!@}
 
 //! @see libccc/fixed.h
@@ -107,8 +107,8 @@ HEADER_CPP
 #define SF_HEX_Q64	"%#0.8lX"
 #define SF_HEX_Q128	"%#0.8llX"
 
-#define SF_FIXED		CONCAT(SF_Q,	 LIBCONFIG_BITS_FIXED)
-#define SF_HEX_FIXED	CONCAT(SF_HEX_Q, LIBCONFIG_BITS_FIXED)
+#define SF_FIXED		CONCAT(SF_Q,	 LIBCONFIG_FIXED_BITS)
+#define SF_HEX_FIXED	CONCAT(SF_HEX_Q, LIBCONFIG_FIXED_BITS)
 //!@}
 
 //! @see libccc/float.h
@@ -122,8 +122,8 @@ HEADER_CPP
 #define SF_HEX_F80	"%#La"
 #define SF_HEX_F128	"%#La"
 
-#define SF_FLOAT		CONCAT(SF_F,	 LIBCONFIG_BITS_FLOAT)
-#define SF_HEX_FLOAT	CONCAT(SF_HEX_F, LIBCONFIG_BITS_FLOAT)
+#define SF_FLOAT		CONCAT(SF_F,	 LIBCONFIG_FLOAT_BITS)
+#define SF_HEX_FLOAT	CONCAT(SF_HEX_F, LIBCONFIG_FLOAT_BITS)
 //!@}
 
 //! @see libccc/pointer.h
