@@ -251,7 +251,7 @@ HEADER_CPP
 #ifndef __asm__
 #ifdef __MSVC__
 	#define __asm__	__asm
-#else
+#elif !defined(__GNUC__)
 	#define __asm__	asm
 #endif
 #endif
@@ -266,7 +266,7 @@ HEADER_CPP
 #ifndef __inline__
 #ifdef __MSVC__
 	#define __inline__	__inline
-#else
+#elif !defined(__GNUC__)
 	#define __inline__	inline
 #endif
 #endif
@@ -281,7 +281,7 @@ HEADER_CPP
 #ifndef __restrict__
 #ifdef __MSVC__
 	#define __restrict__	__restrict
-#else
+#elif !defined(__GNUC__)
 	#define __restrict__	restrict
 #endif
 #endif
