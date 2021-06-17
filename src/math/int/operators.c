@@ -78,8 +78,7 @@ inline t_s##BITS	S##BITS##_Mul(t_s##BITS a, t_s##BITS b)		\
 {																\
 	HANDLE_ERROR(RESULTRANGE,									\
 		(Memory_GetMSB(ABS(a)) + Memory_GetMSB(ABS(b)) >= BITS),\
-		LIBCONFIG_ERROR_HANDLEOVERFLOW(SIGN(a) == SIGN(b) ?		\
-			S##BITS##_MAX : S##BITS##_MIN))						\
+		LIBCONFIG_ERROR_HANDLEOVERFLOW(SIGN(a) == SIGN(b) ? S##BITS##_MAX : S##BITS##_MIN))\
 	return (a * b);												\
 }
 /*

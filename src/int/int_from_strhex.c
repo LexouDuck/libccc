@@ -24,19 +24,20 @@ int	GetDigit_FromString_Hex(char c)
 
 
 #define DEFINEFUNC_UINT_FROMSTRHEX(BITS) \
-t_u##BITS	U##BITS##_FromString_Hex(t_char const* str)								\
+t_size	U##BITS##_Parse_Hex(t_u##BITS* dest, t_char const* str)						\
 {																					\
 	t_u##BITS	result;																\
 	t_u##BITS	tmp;																\
 	t_size	i = 0;																	\
 																					\
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (U##BITS##_ERROR);)				\
-	while (*str && Char_IsSpace(*str))												\
+	HANDLE_ERROR(NULLPOINTER, (str == NULL),										\
+		if (dest) *dest = U##BITS##_ERROR;	return (i);)							\
+	while (str[i] && Char_IsSpace(str[i]))											\
 	{																				\
-		++str;																		\
+		++i;																		\
 	}																				\
-	HANDLE_ERROR_SF(PARSE, !(*str == '+' || Char_IsDigit_Hex(*str)),				\
-		return (U##BITS##_ERROR);,													\
+	HANDLE_ERROR_SF(PARSE, !(str[i] == '+' || Char_IsDigit_Hex(str[i])),			\
+		if (dest) *dest = U##BITS##_ERROR;	return (i);,							\
 		": expected a number (with spaces/sign), but instead got \"%s\"", str)		\
 	if (str[i] == '+')																\
 		++i;																		\
@@ -50,10 +51,16 @@ t_u##BITS	U##BITS##_FromString_Hex(t_char const* str)								\
 	{																				\
 		tmp = result * 16 + GetDigit_FromString_Hex(str[i++]);						\
 		HANDLE_ERROR_SF(RESULTRANGE, (tmp < result),								\
-			LIBCONFIG_ERROR_HANDLEOVERFLOW(U##BITS##_MAX),							\
+			LIBCONFIG_ERROR_PARSEROVERFLOW(U##BITS##_MAX),							\
 			" (integer overflow for \"%s\" at "SF_U##BITS")", str, U##BITS##_MAX)	\
 		result = tmp;																\
 	}																				\
+	return (result);																\
+}																					\
+inline t_u##BITS	U##BITS##_FromString_Hex(t_char const* str)						\
+{																					\
+	t_u##BITS	result = U##BITS##_ERROR;											\
+	U##BITS##_Parse_Hex(&result, str);												\
 	return (result);																\
 }																					\
 
@@ -68,21 +75,24 @@ DEFINEFUNC_UINT_FROMSTRHEX(128)
 
 
 #define DEFINEFUNC_SINT_FROMSTRHEX(BITS) \
-t_s##BITS	S##BITS##_FromString_Hex(t_char const* str)								\
+t_size	S##BITS##_Parse_Hex(t_s##BITS* dest, t_char const* str)						\
 {																					\
 	t_u##BITS	result;																\
 	t_u##BITS	tmp;																\
 	t_bool	negative;																\
 	t_size	i = 0;																	\
 																					\
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (S##BITS##_ERROR);)				\
-	while (*str && Char_IsSpace(*str))												\
+	HANDLE_ERROR(NULLPOINTER, (str == NULL),										\
+		if (dest) *dest = S##BITS##_ERROR;	return (i);)							\
+	while (str[i] && Char_IsSpace(str[i]))											\
 	{																				\
-		++str;																		\
+		++i;																		\
 	}																				\
-	HANDLE_ERROR_SF(PARSE, !(*str == '+' || *str == '-' || Char_IsDigit_Hex(*str)),	\
-		return (S##BITS##_ERROR);,													\
+	HANDLE_ERROR_SF(PARSE,															\
+		!(str[i] == '+' || str[i] == '-' || Char_IsDigit_Hex(str[i])),				\
+		if (dest) *dest = S##BITS##_ERROR;	return (i);,							\
 		": expected a number (with spaces/sign), but instead got \"%s\"", str)		\
+	negative = FALSE;																\
 	if (str[i] == '-')																\
 	{																				\
 		negative = TRUE;															\
@@ -97,14 +107,21 @@ t_s##BITS	S##BITS##_FromString_Hex(t_char const* str)								\
 	{																				\
 		tmp = result * 16 + GetDigit_FromString_Hex(str[i++]);						\
 		HANDLE_ERROR_SF(RESULTRANGE, (negative && tmp > (t_u##BITS)S##BITS##_MIN),	\
-			LIBCONFIG_ERROR_HANDLEOVERFLOW(S##BITS##_MIN),							\
+			LIBCONFIG_ERROR_PARSEROVERFLOW(S##BITS##_MIN),							\
 			" (integer underflow for \"%s\" at "SF_S##BITS")", str, S##BITS##_MIN)	\
 		HANDLE_ERROR_SF(RESULTRANGE, (!negative && tmp > (t_u##BITS)S##BITS##_MAX),	\
-			LIBCONFIG_ERROR_HANDLEOVERFLOW(S##BITS##_MAX),							\
+			LIBCONFIG_ERROR_PARSEROVERFLOW(S##BITS##_MAX),							\
 			" (integer overflow for \"%s\" at "SF_S##BITS")", str, S##BITS##_MAX)	\
 		result = tmp;																\
 	}																				\
-	return (negative ? -(t_s##BITS)result : (t_s##BITS)result);						\
+	if (dest)	*dest = (negative ? -(t_s##BITS)result : (t_s##BITS)result);		\
+	return (i);																		\
+}																					\
+inline t_s##BITS	S##BITS##_FromString_Hex(t_char const* str)						\
+{																					\
+	t_s##BITS	result = S##BITS##_ERROR;											\
+	S##BITS##_Parse_Hex(&result, str);												\
+	return (result);																\
 }																					\
 
 DEFINEFUNC_SINT_FROMSTRHEX(8)

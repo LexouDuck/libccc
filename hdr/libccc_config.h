@@ -63,10 +63,18 @@ HEADER_CPP
 //! The action to take when there is an integer overflow (by default, let it continue)
 //!@{
 #ifndef LIBCONFIG_ERROR_HANDLEOVERFLOW
-#define LIBCONFIG_ERROR_HANDLEOVERFLOW(BOUND) \
-	// return (BOUND);
-	// return (0);
+#define LIBCONFIG_ERROR_HANDLEOVERFLOW(VALUE) \
+//	return (VALUE);
 #endif
+#ifndef LIBCONFIG_ERROR_PARSEROVERFLOW
+#define LIBCONFIG_ERROR_PARSEROVERFLOW(VALUE) \
+//	if (dest)	*dest = VALUE;	return (i);
+#endif
+
+// TODO implement configurable overflow-case return values with this macro
+#define OVERFLOW(TYPE, VALUE) \
+	CONCAT(TYPE,_ERROR)	//!< configurable error value
+//	(VALUE)				//!< saturated type
 //!@}
 
 
