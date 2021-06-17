@@ -1385,6 +1385,13 @@ int		testsuite_int(void)
 	test_u32tostrhex();
 	test_u64tostrhex();
 	test_u128tostrhex();
+/* TODO
+	test_u8tostrhex();
+	test_u16tostrhex();
+	test_u32tostrhex();
+	test_u64tostrhex();
+	test_u128tostrhex();
+	*/
 
 
 	test_s8tostrbase();

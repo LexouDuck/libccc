@@ -141,7 +141,7 @@ typedef struct kvt_parse
 ** ************************************************************************** *|
 */
 
-//! Allocated one single KVT struct
+//! Allocates one single KVT struct
 s_kvt*	KVT_Item(void);
 
 

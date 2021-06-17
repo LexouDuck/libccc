@@ -89,7 +89,7 @@ static void	init(void)
 		(s_test_suite){ FALSE, "monad/tree",		testsuite_monad_tree },
 		(s_test_suite){ FALSE, "monad/object",		testsuite_monad_object },
 		(s_test_suite){ FALSE, "encode/json",		testsuite_encode_json },
-//		(s_test_suite){ FALSE, "encode/toml",		testsuite_encode_toml },
+		(s_test_suite){ FALSE, "encode/toml",		testsuite_encode_toml },
 //		(s_test_suite){ FALSE, "encode/yaml",		testsuite_encode_yaml },
 //		(s_test_suite){ FALSE, "encode/xml",		testsuite_encode_xml },
 	};

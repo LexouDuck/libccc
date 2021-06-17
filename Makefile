@@ -392,6 +392,9 @@ SRCS = error.c \
 	encode/json/parse.c		\
 	encode/json/print.c		\
 	encode/json/minify.c	\
+	encode/toml/parse.c		\
+	encode/toml/print.c		\
+	encode/toml/minify.c	\
 
 # define object files list (.o) from source list
 OBJS = ${SRCS:%.c=$(OBJDIR)%.o}
@@ -542,6 +545,7 @@ TEST_SRCS = \
 	$(TEST_DIR)libccc/monad/dict.c			\
 	$(TEST_DIR)libccc/monad/object.c		\
 	$(TEST_DIR)libccc/encode/json.c			\
+	$(TEST_DIR)libccc/encode/toml.c			\
 
 TEST_OBJS = ${TEST_SRCS:%.c=$(OBJDIR)%.o}
 TEST_DEPS = ${TEST_OBJS:.o=.d}

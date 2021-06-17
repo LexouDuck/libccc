@@ -198,6 +198,62 @@ void		TOML_Parse(t_fd fd, s_config* config, s_logger const* logger)
 
 
 
+//! Parse the input text to generate a number, and populate the result into `item`.
+static
+t_bool		TOML_Parse_Number(s_toml* item, s_toml_parse* p)
+{
+	t_utf8*	number;
+	t_size	length;
+
+	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (ERROR);)
+	HANDLE_ERROR(NULLPOINTER, (p->content == NULL), return (ERROR);)
+	for (length = 0; CAN_PARSE(length); ++length)
+	{
+		if (p->content[p->offset + length] == '.' ||
+			p->content[p->offset + length] == '-' ||
+			p->content[p->offset + length] == '+')
+			continue;
+		if (!Char_IsAlphaNumeric(p->content[p->offset + length]))
+			break;
+	}
+	if (CAN_PARSE(length) && !(Char_IsSpace(p->content[p->offset + length]) ||
+		p->content[p->offset + length] == ',' ||
+		p->content[p->offset + length] == ']' ||
+		p->content[p->offset + length] == '}' ||
+		p->content[p->offset + length] == '\0'))
+		PARSINGERROR_TOML("Unexpected char in number value: \"%.*s\"", (int)(length + 1), p->content + p->offset)
+	number = String_Sub(p->content, p->offset, length);
+	if (number == NULL)
+		PARSINGERROR_TOML("Could not parse number: \"%.*s\"", (int)length, p->content + p->offset)
+	if (!p->strict && String_Has(number, CHARSET_DIGIT) && number[length - 1] == 'n')
+	{
+		t_s64	result = S64_FromString(number); // TODO variable-length integer
+		item->type = DYNAMICTYPE_INTEGER;
+		item->value.integer = result;
+	}
+	else
+	{
+		if (length == 1 && (
+			number[0] == '.' ||
+			number[0] == '-' ||
+			number[0] == '+'))
+			PARSINGERROR_TOML("Could not parse number: \"%.2s\", invalid char found", p->content + p->offset)
+		t_f64	result = F64_FromString(number);
+		item->type = DYNAMICTYPE_FLOAT;
+		item->value.number = result;
+	}
+//	if (IS_NAN(result)) // && String_HasOnly(number, CHARSET_ALPHABET".-+"CHARSET_DIGIT))
+//		PARSINGERROR_TOML("Error while parsing number: \"%s\"", number)
+	String_Delete(&number);
+	p->offset += length;
+	return (OK);
+
+failure:
+	return (ERROR);
+}
+
+
+
 static
 t_bool TOML_Parse_String(s_toml* item, s_toml_parse* p)
 {
@@ -325,15 +381,16 @@ t_bool	TOML_Parse_Key(s_toml* item, s_toml_parse* p)
 		Char_IsAlphaNumeric(p->content[p->offset]))
 	{	// bare key
 		t_size	length = 0;
-		while (Char_IsAlphaNumeric(p->content[p->offset]) ||
-			p->content[p->offset] == '-' ||
-			p->content[p->offset] == '_')
+		while (Char_IsAlphaNumeric(p->content[p->offset + length]) ||
+			p->content[p->offset + length] == '-' ||
+			p->content[p->offset + length] == '_')
 		{
 			if (!CAN_PARSE(length))
 				PARSINGERROR_TOML("Could not parse object member key: Unexpected end of input")
 			++length;
 		}
 		item->key = String_Sub(p->content, p->offset, length);
+		p->offset += length;
 	}
 	else if (p->content[p->offset] == '\"' || p->content[p->offset] == '\'')
 	{	// quoted key
@@ -343,6 +400,20 @@ t_bool	TOML_Parse_Key(s_toml* item, s_toml_parse* p)
 		item->key = item->value.string;
 		item->value.string = NULL;
 	}
+
+	if (p->content[p->offset] == '.')
+	{
+		p->offset++;
+		s_toml* child = TOML_Item();
+		if (child == NULL)
+			PARSINGERROR_TOML("Could not allocate child object for parent with key \"%s\"", item->key)
+		item->type |= DYNAMICTYPE_OBJECT;
+		item->value.child = child;
+		if (TOML_Parse_Key(child, p))
+			goto failure;
+	}
+
+	return (OK);
 
 failure:
 	return (ERROR);
@@ -508,6 +579,7 @@ failure:
 	{
 		TOML_Delete(head);
 	}
+	return (ERROR);
 }
 
 
@@ -516,15 +588,25 @@ static
 t_bool	TOML_Parse_Table(s_toml* item, s_toml_parse* p)
 {
 	// TODO
-	while (p->content[p->offset] && p->content[p->offset] != ']')
-	{
+	if ((p->content[p->offset] != '['))
+		PARSINGERROR_TOML("Expected '[' char, to begin table key, instead found '%c'/0x%2X",
+			p->content[p->offset], p->content[p->offset])
+	TOML_Parse_SkipWhiteSpace(p);
+	if (TOML_Parse_Key(item, p))
+		goto failure;
+	TOML_Parse_SkipWhiteSpace(p);
+	if (p->content[p->offset] != ']')
+		PARSINGERROR_TOML("Expected ']' char, to end table key, instead found '%c'/0x%2X",
+			p->content[p->offset], p->content[p->offset])
+	return (OK);
 
-		p->offset += 1;
-	}
+failure:
+	return (ERROR);
 }
 
 
 
+static
 s_toml*	TOML_Parse_(t_char const* toml, t_size buffer_length, t_bool strict)
 {
 	s_toml_parse parser = { 0 };
