@@ -176,8 +176,12 @@ void	Error_Handle(e_cccerror error, t_char const* funcname, t_char* message)
 	}
 }
 
+
+
 void	Error_Handler(e_cccerror error, t_char const* message)
 {
+	if (!error && message == NULL)
+		return;
 	LIBCONFIG_ERROR_DEFAULTHANDLER(error, message)
 }
 
