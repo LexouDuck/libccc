@@ -533,8 +533,8 @@ void test_toml(void)	{}
 #define DEFINETEST_TOML(STRICT, NSTRICT, MINIFY, MINIFY_EXPECT) \
 static t_utf8*	c_toml_##STRICT##_##MINIFY(t_utf8* toml)	\
 {															\
-	s_toml* tmp = TOML_Parse_##STRICT(toml);				\
-	t_utf8* result = TOML_Print_##MINIFY(tmp);				\
+	s_toml* tmp = TOML_FromString_##STRICT(toml);			\
+	t_utf8* result = TOML_ToString_##MINIFY(tmp);			\
 	free(tmp);												\
 	return (result);										\
 }															\

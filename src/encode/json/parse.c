@@ -537,21 +537,23 @@ failure:
 
 
 static
-s_json*	JSON_Parse_(t_utf8 const* json, t_size buffer_length, t_bool strict)//, t_utf8 const** return_parse_end)
+t_size	JSON_Parse_(s_json* *dest, t_utf8 const* str, t_size n, t_bool strict)//, t_utf8 const** return_parse_end)
 {
 	s_json_parse parser = { 0 };
 	s_json_parse* p = &parser;
 	s_json* result = NULL;
 
-	HANDLE_ERROR(LENGTH2SMALL, (buffer_length < 1), return (NULL);)
-	p->content = json;
-	p->length = buffer_length; 
+	HANDLE_ERROR(LENGTH2SMALL, (n < 1),
+		if (dest) *dest = NULL;
+		return (p->offset);)
+	p->content = str;
+	p->length = n; 
 	p->offset = 0;
 	p->strict = strict;
 	result = JSON_Item();
 	if (result == NULL)
 		PARSINGERROR_JSON("Got null result: memory failure")
-	p->offset += UTF8_ByteOrderMark(json);
+	p->offset += UTF8_ByteOrderMark(str);
 	if (JSON_Parse_Value(result, JSON_Parse_SkipWhiteSpace(p)))
 		goto failure;
 	if (p->strict)
@@ -566,14 +568,15 @@ s_json*	JSON_Parse_(t_utf8 const* json, t_size buffer_length, t_bool strict)//, 
 		*return_parse_end = &p.content[p.offset];
 	}
 */
-	return (result);
+	if (dest)	*dest = result;
+	return (p->offset);
 
 failure:
 	if (result != NULL)
 	{
 		JSON_Delete(result);
 	}
-	if (json != NULL)
+	if (str != NULL)
 	{
 /*
 		t_size	position = 0;
@@ -583,7 +586,7 @@ failure:
 			position = p.length - 1;
 		if (return_parse_end != NULL)
 		{
-			*return_parse_end = (json + position);
+			*return_parse_end = (str + position);
 		}
 */
 	}
@@ -594,7 +597,9 @@ failure:
 			break;
 		column++;
 	}
-	HANDLE_ERROR_SF(PARSE, (TRUE), return (NULL);,
+	HANDLE_ERROR_SF(PARSE, (TRUE),
+		if (dest) *dest = NULL;
+		return (p->offset);,
 		": at nesting depth "SF_UINT": line "SF_SIZE", column "SF_SIZE" (char index "SF_SIZE": '%c'/0x%2X)%s\n",
 		p->depth,
 		p->line,
@@ -607,26 +612,46 @@ failure:
 
 
 
-s_json*	JSON_Parse(t_utf8 const* json)
+t_size	JSON_Parse_Lenient(s_json* *dest, t_utf8 const* str)
 {
-	HANDLE_ERROR(NULLPOINTER, (json == NULL), return (NULL);)
-	return (JSON_Parse_(json, String_Length(json), FALSE));//, NULL));
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
+	return (JSON_Parse_(dest, str, String_Length(str), FALSE));
 }
 
-s_json*	JSON_Parse_N(t_utf8 const* json, t_size maxlength)
+t_size	JSON_Parse_Strict(s_json* *dest, t_utf8 const* str)
 {
-	HANDLE_ERROR(NULLPOINTER, (json == NULL), return (NULL);)
-	return (JSON_Parse_(json, maxlength, FALSE));//, NULL));
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
+	return (JSON_Parse_(dest, str, String_Length(str), TRUE));
 }
 
-s_json*	JSON_Parse_Strict(t_utf8 const* json)//, t_utf8 const** return_parse_end)
+
+
+t_size	JSON_Parse_N_Lenient(s_json* *dest, t_utf8 const* str, t_size n)
 {
-	HANDLE_ERROR(NULLPOINTER, (json == NULL), return (NULL);)
-	return (JSON_Parse_(json, String_Length(json), TRUE));//, return_parse_end));
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
+	return (JSON_Parse_(dest, str, n, FALSE));
 }
 
-s_json*	JSON_Parse_Strict_N(t_utf8 const* json, t_size maxlength)//, t_utf8 const** return_parse_end)
+t_size	JSON_Parse_N_Strict(s_json* *dest, t_utf8 const* str, t_size n)
 {
-	HANDLE_ERROR(NULLPOINTER, (json == NULL), return (NULL);)
-	return (JSON_Parse_(json, maxlength, TRUE));//, return_parse_end));
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
+	return (JSON_Parse_(dest, str, n, TRUE));
+}
+
+
+
+s_json*	JSON_FromString_Lenient(t_utf8 const* str)
+{
+	s_json*	result;
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
+	JSON_Parse_(&result, str, String_Length(str), FALSE);
+	return (result);
+}
+
+s_json*	JSON_FromString_Strict(t_utf8 const* str)
+{
+	s_json*	result;
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
+	JSON_Parse_(&result, str, String_Length(str), TRUE);
+	return (result);
 }

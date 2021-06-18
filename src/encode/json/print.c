@@ -620,16 +620,51 @@ failure:
 
 
 
-t_utf8*	JSON_Print_Pretty(s_json const* item)
+t_size	JSON_Print_Pretty(t_utf8* dest, s_json const* item, t_size n)
+{
+	s_json_print p = { 0 };
+
+	HANDLE_ERROR(NULLPOINTER, (item == NULL), return (0);)
+	HANDLE_ERROR(LENGTH2SMALL, (n == 0), return (0);)
+	p.buffer = (t_utf8*)dest;
+	p.length = (t_size)n;
+	p.offset = 0;
+	p.noalloc = TRUE;
+	p.format = TRUE;
+	JSON_Print_Value(item, &p); // TODO error handling ?
+	return (p.offset);
+}
+
+t_size	JSON_Print_Minify(t_utf8* dest, s_json const* item, t_size n)
+{
+	s_json_print p = { 0 };
+
+	HANDLE_ERROR(NULLPOINTER, (item == NULL), return (0);)
+	HANDLE_ERROR(LENGTH2SMALL, (n == 0), return (0);)
+	p.buffer = (t_utf8*)dest;
+	p.length = (t_size)n;
+	p.offset = 0;
+	p.noalloc = TRUE;
+	p.format = FALSE;
+	JSON_Print_Value(item, &p); // TODO error handling ?
+	return (p.offset);
+}
+
+
+
+t_utf8*	JSON_ToString_Pretty(s_json const* item)
 {
 	return (JSON_Print_(item, TRUE));
 }
 
-t_utf8*	JSON_Print_Minify(s_json const* item)
+t_utf8*	JSON_ToString_Minify(s_json const* item)
 {
 	return (JSON_Print_(item, FALSE));
 }
 
+
+
+#if 0 // TODO
 t_utf8*	JSON_Print_Buffered(s_json const* item, t_sint prebuffer, t_bool format)
 {
 	s_json_print p = { 0 };
@@ -648,17 +683,4 @@ t_utf8*	JSON_Print_Buffered(s_json const* item, t_sint prebuffer, t_bool format)
 	}
 	return ((t_utf8*)p.buffer);
 }
-
-t_bool	JSON_Print_Preallocated(s_json* item, t_utf8* buffer, t_sint length, t_bool format)
-{
-	s_json_print p = { 0 };
-
-	HANDLE_ERROR(NULLPOINTER, (buffer == NULL), return (FALSE);)
-	HANDLE_ERROR(LENGTH2SMALL, (length < 0), return (FALSE);)
-	p.buffer = (t_utf8*)buffer;
-	p.length = (t_size)length;
-	p.offset = 0;
-	p.noalloc = TRUE;
-	p.format = format;
-	return (JSON_Print_Value(item, &p));
-}
+#endif

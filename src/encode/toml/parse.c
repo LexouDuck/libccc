@@ -607,21 +607,23 @@ failure:
 
 
 static
-s_toml*	TOML_Parse_(t_char const* toml, t_size buffer_length, t_bool strict)
+t_size	TOML_Parse_(s_toml* *dest, t_char const* str, t_size n, t_bool strict)
 {
 	s_toml_parse parser = { 0 };
 	s_toml_parse* p = &parser;
 	s_toml* result = NULL;
 
-	HANDLE_ERROR(LENGTH2SMALL, (buffer_length < 1), return (NULL);)
-	p->content = toml;
-	p->length = buffer_length; 
+	HANDLE_ERROR(LENGTH2SMALL, (n < 1),
+		if (dest) *dest = NULL;
+		return (p->offset);)
+	p->content = str;
+	p->length = n; 
 	p->offset = 0;
 	p->strict = strict;
 	result = TOML_Item();
 	if (result == NULL)
 		PARSINGERROR_TOML("Got null result: memory failure")
-	p->offset += UTF8_ByteOrderMark(toml);
+	p->offset += UTF8_ByteOrderMark(str);
 	if (!TOML_Parse_KeyValuePair(result, TOML_Parse_SkipWhiteSpace(p)))
 		goto failure;
 	if (p->strict)
@@ -636,14 +638,15 @@ s_toml*	TOML_Parse_(t_char const* toml, t_size buffer_length, t_bool strict)
 		*return_parse_end = &p.content[p.offset];
 	}
 */
-	return (result);
+	if (dest) *dest = result;
+	return (p->offset);
 
 failure:
 	if (result != NULL)
 	{
 		TOML_Delete(result);
 	}
-	if (toml != NULL)
+	if (str != NULL)
 	{
 /*
 		t_size	position = 0;
@@ -653,7 +656,7 @@ failure:
 			position = p.length - 1;
 		if (return_parse_end != NULL)
 		{
-			*return_parse_end = (toml + position);
+			*return_parse_end = (str + position);
 		}
 */
 	}
@@ -664,7 +667,9 @@ failure:
 			break;
 		column++;
 	}
-	HANDLE_ERROR_SF(PARSE, (TRUE), return (NULL);,
+	HANDLE_ERROR_SF(PARSE, (TRUE),
+		if (dest) *dest = NULL;
+		return (p->offset);,
 		": at nesting depth %u: line %zu, column %zu (char index %zu: '%c'/0x%X)%s\n",
 		p->depth,
 		p->line,
@@ -677,26 +682,46 @@ failure:
 
 
 
-s_toml*	TOML_Parse(t_utf8 const* toml)
+t_size	TOML_Parse_Lenient(s_toml* *dest, t_utf8 const* str)
 {
-	HANDLE_ERROR(NULLPOINTER, (toml == NULL), return (NULL);)
-	return (TOML_Parse_(toml, String_Length(toml), FALSE));//, NULL));
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
+	return (TOML_Parse_(dest, str, String_Length(str), FALSE));
 }
 
-s_toml*	TOML_Parse_N(t_utf8 const* toml, t_size maxlength)
+t_size	TOML_Parse_Strict(s_toml* *dest, t_utf8 const* str)
 {
-	HANDLE_ERROR(NULLPOINTER, (toml == NULL), return (NULL);)
-	return (TOML_Parse_(toml, maxlength, FALSE));//, NULL));
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
+	return (TOML_Parse_(dest, str, String_Length(str), TRUE));
 }
 
-s_toml*	TOML_Parse_Strict(t_utf8 const* toml)//, t_utf8 const** return_parse_end)
+
+
+t_size	TOML_Parse_N_Lenient(s_toml* *dest, t_utf8 const* str, t_size n)
 {
-	HANDLE_ERROR(NULLPOINTER, (toml == NULL), return (NULL);)
-	return (TOML_Parse_(toml, String_Length(toml), TRUE));//, return_parse_end));
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
+	return (TOML_Parse_(dest, str, n, FALSE));
 }
 
-s_toml*	TOML_Parse_Strict_N(t_utf8 const* toml, t_size maxlength)//, t_utf8 const** return_parse_end)
+t_size	TOML_Parse_N_Strict(s_toml* *dest, t_utf8 const* str, t_size n)
 {
-	HANDLE_ERROR(NULLPOINTER, (toml == NULL), return (NULL);)
-	return (TOML_Parse_(toml, maxlength, TRUE));//, return_parse_end));
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
+	return (TOML_Parse_(dest, str, n, TRUE));
+}
+
+
+
+s_toml*	TOML_FromString_Lenient(t_utf8 const* str)
+{
+	s_toml*	result;
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
+	TOML_Parse_(&result, str, String_Length(str), FALSE);
+	return (result);
+}
+
+s_toml*	TOML_FromString_Strict(t_utf8 const* str)
+{
+	s_toml*	result;
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
+	TOML_Parse_(&result, str, String_Length(str), TRUE);
+	return (result);
 }

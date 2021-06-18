@@ -55,19 +55,20 @@ typedef s_kvt	s_json;
 
 /*
 ** ************************************************************************** *|
-**                             JSON String Operations                         *|
+**                            JSON Parsing Operations                         *|
 ** ************************************************************************** *|
 */
 
-#define 					JSON_Parse	JSON_Parse_Lenient
-#define c_jsonparse			JSON_Parse
-#define JSON_Decode			JSON_Parse
-#define JSON_FromString		JSON_Parse
+#define 				JSON_Parse		JSON_Parse_Lenient
+#define c_jsonparse		JSON_Parse
 
-#define 					JSON_Parse_N	JSON_Parse_Lenient_N
-#define c_jsonnparse		JSON_Parse_N
-#define JSON_Decode_N		JSON_Parse_N
-#define JSON_FromString_N	JSON_Parse_N
+#define 				JSON_Parse_N	JSON_Parse_Lenient_N
+#define c_jsonparsen	JSON_Parse_N
+
+#define 				JSON_FromString	JSON_FromString_Lenient
+#define c_strtojson		JSON_FromString
+
+
 
 //! Create a new `s_json` object, parsed from a (valid) JSON string
 /*!
@@ -75,82 +76,115 @@ typedef s_kvt	s_json;
 **	allowing for several extensions to the JSON official spec, notably:
 **	- allows for trailing commas at the end of arrays or objects
 **	- allows for leading `+` symbols for positive-sign number literals
-**	- allows for `null`/`true`/`false` to be written in uppercase, or mixed-case rather than just lowercase
+**	- allows for `null`/`true`/`false` to be written in uppercase, or mixed-case rather than only lowercase
 **	- allows for non-standard whitespace characters: anything for which `isspace()` returns `TRUE`
 **	- allows for non-standard string escape sequences, matching those used in C: `\x??` for bytes, `\e`, for escape, etc
 **	- supports comments (using either `/``*`,`*``/` block syntax, or `//` single-line)
 **	- supports non-standard `number` values: `nan`/NaN and `inf`/infinity
 **	- supports numeric literals in other bases: prefix with `0x` for hexadecimal, `0b` for binary, `0o` for octal
 **	- supports `BigInt` integers, using the trailing `n` syntax
+**
+**	@returns
+**	The amount of characters parsed from the given `str`
 */
-s_json*								JSON_Parse_Lenient(t_utf8 const* json);
-#define c_jsonlparse				JSON_Parse_Lenient
-#define JSON_Decode_Lenient			JSON_Parse_Lenient
-#define JSON_FromString_Lenient		JSON_Parse_Lenient
+//!@{
+t_size					JSON_Parse_Lenient(s_json* *dest, t_utf8 const* str);
+#define c_jsonparse_l	JSON_Parse_Lenient
 
-//! Create a new `s_json` object, pars_Leniented from a (valid) JSON string, (only the first `n` chars are parsed)
-s_json*								JSON_Parse_Lenient_N(t_utf8 const* json, t_size n);
-#define c_jsonlnparse				JSON_Parse_Lenient_N
-#define JSON_Decode_Lenient_N		JSON_Parse_Lenient_N
-#define JSON_FromString_Lenient_N	JSON_Parse_Lenient_N
+//! Create a new `s_json` object, parsed from a (valid) JSON string (only the first `n` chars are parsed)
+t_size					JSON_Parse_N_Lenient(s_json* *dest, t_utf8 const* str, t_size n);
+#define c_jsonparsen_l	JSON_Parse_N_Lenient
+//!@}
+
+//! @see JSON_Parse_Lenient()
+s_json*					JSON_FromString_Lenient(t_utf8 const* str);
+#define c_strtojson_l	JSON_FromString_Lenient
+
+
 
 //! Create a new `s_json` object, parsed from a (valid) JSON string
 /*!
 **	This function creates a `s_json` object by parsing a JSON string,
 **	strictly following the JSON official spec (https://www.json.org/json-en.html),
 **	aborting with an error if anything non-standard is encountered.
+**
+**	@returns
+**	The amount of characters parsed from the given `str`
 */
-s_json*								JSON_Parse_Strict(t_utf8 const* json);//, t_utf8 const** return_parse_end);
-#define c_jsonsparse				JSON_Parse_Strict
-#define JSON_Decode_Strict			JSON_Parse_Strict
-#define JSON_FromString_Strict		JSON_Parse_Strict
+//!@{
+t_size					JSON_Parse_Strict(s_json* *dest, t_utf8 const* str);
+#define c_jsonparse_s	JSON_Parse_Strict
 
 //! Create a new `s_json` object, parsed from a (valid) JSON string, (only the first `n` chars are parsed)
-s_json*								JSON_Parse_Strict_N(t_utf8 const* json, t_size n);//, t_utf8 const** return_parse_end);
-#define c_jsonsnparse				JSON_Parse_Strict_N
-#define JSON_Decode_Strict_N		JSON_Parse_Strict_N
-#define JSON_FromString_Strict_N	JSON_Parse_Strict_N
+t_size					JSON_Parse_N_Strict(s_json* *dest, t_utf8 const* str, t_size n);
+#define c_jsonparsen_s	JSON_Parse_N_Strict
+//!@}
+
+//! @see JSON_Parse_Strict()
+s_json*					JSON_FromString_Strict(t_utf8 const* str);
+#define c_strtojson_s	JSON_FromString_Strict
 
 
+
+/*
+** ************************************************************************** *|
+**                           JSON Printing Operations                         *|
+** ************************************************************************** *|
+*/
 
 #define 				JSON_Print	JSON_Print_Pretty
 #define c_jsonprint		JSON_Print
-#define JSON_Encode		JSON_Print
-#define JSON_ToString	JSON_Print
 
-//! Render a s_json entity to text for transfer/storage (with 'pretty' formatting).
-t_utf8*							JSON_Print_Pretty(s_json const* item);
-#define c_jsonprintfmt			JSON_Parse
-#define JSON_Encode_Pretty		JSON_Print_Pretty
-#define JSON_ToString_Pretty	JSON_Print_Pretty
+#define 				JSON_ToString	JSON_ToString_Pretty
+#define c_jsontostr		JSON_ToString
 
-//! Render a s_json entity to text for transfer/storage, without any formatting/whitespace
-t_utf8*							JSON_Print_Minify(s_json const* item);
-#define c_jsonprintmin			JSON_Parse
-#define JSON_Decode_Minify		JSON_Print_Minify
-#define JSON_ToString_Minify	JSON_Print_Minify
 
+
+//! Print a `s_json` item to string buffer `dest`, writing at most `n` characters.
+/*!
+**	@param	dest	The pre-allocated string buffer to write to
+**	@param	item	The JSON object to print
+**	@param	n		The maximum amount of chars to write into `dest`
+**	@returns
+**	The amount of characters written to the given `dest` buffer
+*/
+//!@{
+t_size					JSON_Print_Pretty(t_utf8* dest, s_json const* item, t_size n);
+#define c_jsonprintfmt 	JSON_Print_Pretty
+
+//! Like JSON_Print_Pretty(), but this prints the minimum amount of characters possible
+t_size					JSON_Print_Minify(t_utf8* dest, s_json const* item, t_size n);
+#define c_jsonprintmin	JSON_Print_Minify
+//!@}
+
+
+
+//! Get a new string from the given JSON `item`, with readable formatting.
+t_utf8*					JSON_ToString_Pretty(s_json const* item);
+#define c_jsontostrfmt	JSON_ToString_Pretty
+
+//! Get a new string from the given JSON `item`, without any formatting/whitespace.
+t_utf8*					JSON_ToString_Minify(s_json const* item);
+#define c_jsontostrmin	JSON_ToString_Minify
+
+
+
+#if 0
 //! Render a s_json entity to text using a buffered strategy.
 /*!
 **	prebuffer is a guess at the final size. guessing well reduces reallocation. `format = 0` means minified, `format = 1` means formatted/pretty.
 */
-t_utf8*							JSON_Print_Buffered(s_json const* item, t_sint prebuffer, t_bool format);
-#define JSON_Decode_Buffered 	JSON_Print_Buffered
-#define JSON_ToString_Buffered 	JSON_Print_Buffered
+t_utf8*					JSON_Print_Buffered(s_json const* item, t_sint prebuffer, t_bool format);
+#define c_jsonprintbuf 	JSON_Print_Buffered
+#endif
 
-//! Render a `s_json` entity to text using a buffer already allocated in memory with given length.
-/*!
-**	NOTE: s_json is not always 100% accurate in estimating how much memory it will use,
-**		so, to be safe, you should allocate 5 bytes more than you actually need.
-**
-**	@returns
-**	`TRUE` on success and `FALSE` on failure.
+
+
+/*
+** ************************************************************************** *|
+**                             JSON String Operations                         *|
+** ************************************************************************** *|
 */
-t_bool								JSON_Print_Preallocated(s_json* item, t_utf8* buffer, t_sint const length, t_bool const format);
-#define JSON_Encode_Preallocated 	JSON_Print_Preallocated
-#define JSON_ToString_Preallocated 	JSON_Print_Preallocated
-
-
 
 //! Minify a JSON string, to make it more lightweight: removes all whitespace characters
 /*!
@@ -158,7 +192,8 @@ t_bool								JSON_Print_Preallocated(s_json* item, t_utf8* buffer, t_sint const
 **	The input pointer json cannot point to a read-only address area, such as a string constant, 
 **	but should point to a readable and writable address area.
 */
-void	JSON_Minify(t_utf8* json); //!< TODO rename to JSON_Minify_InPlace(), and add JSON_Minify(), which would allocate
+void				JSON_Minify(t_utf8* json); //!< TODO rename to JSON_Minify_InPlace(), and add JSON_Minify(), which would allocate
+#define c_jsonmin	JSON_Minify
 
 
 

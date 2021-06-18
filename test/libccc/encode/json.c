@@ -541,8 +541,8 @@ void test_json(void)	{}
 #define DEFINETEST_JSON(STRICT, NSTRICT, MINIFY, MINIFY_EXPECT) \
 static t_utf8*	c_json_##STRICT##_##MINIFY(t_utf8* json)	\
 {															\
-	s_json* tmp = JSON_Parse_##STRICT(json);				\
-	t_utf8* result = JSON_Print_##MINIFY(tmp);				\
+	s_json* tmp = JSON_FromString_##STRICT(json);			\
+	t_utf8* result = JSON_ToString_##MINIFY(tmp);			\
 	free(tmp);												\
 	return (result);										\
 }															\

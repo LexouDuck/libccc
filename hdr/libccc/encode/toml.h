@@ -17,20 +17,6 @@
 **	- TOML spec: https://toml.io/en/v1.0.0#spec
 **	- INI files: https://en.wikipedia.org/wiki/INI_file
 **
-**	This API is made to be compatible with both the TOML file spec and the INI file spec.
-**	So, this means a couple of things in particular:
-**	- (TOML/INI) All whitespace characters are handled (including the rare form-feed and vertical-tab chars)
-**	- (TOML/INI) There cannot be any name conflicts between keys or sections names within a given scope.
-**	- (TOML/INI) Comments can be started with either a ';' char or a '#' (when not inside a quoted string)
-**	- (TOML) Sections can be nested
-**	- (TOML) Key strings can be quoted, to allow for more characters than a token `[A-Za-z0-9_-]`
-**	- (TOML) Strings with whitespace should always be quoted`, triple double-quotes for multi-line strings
-**	- (TOML) Strings can be single-quoted, this makes a literal verbatim string (no character escaping)
-**	- (TOML) All types are supported, except for dates (which must be stored as string or integer)
-**	- (TOML) All numeric literal notations are accepted ("0x" = hexadecimal, "0o" = octal, "0b" = binary)
-**	- Arrays can be written using curly braces '{' and '}', to avoid confusion with sections
-**	- Unlike regular TOML, this API can behave in a case-sensitive fashion, if needed
-**
 **	@file
 */
 
@@ -67,44 +53,52 @@ typedef s_kvt	s_toml;
 
 /*
 ** ************************************************************************** *|
-**                             TOML String Operations                         *|
+**                            TOML Parsing Operations                         *|
 ** ************************************************************************** *|
 */
 
-#define 					TOML_Parse	TOML_Parse_Lenient
-#define c_tomlparse			TOML_Parse
-#define TOML_Decode			TOML_Parse
-#define TOML_FromString		TOML_Parse
+#define 				TOML_Parse		TOML_Parse_Lenient
+#define c_tomlparse		TOML_Parse
 
-#define 					TOML_Parse_N	TOML_Parse_Lenient_N
-#define c_tomlnparse		TOML_Parse_N
-#define TOML_Decode_N		TOML_Parse_N
-#define TOML_FromString_N	TOML_Parse_N
+#define 				TOML_Parse_N	TOML_Parse_Lenient_N
+#define c_tomlparsen	TOML_Parse_N
+
+#define 				TOML_FromString	TOML_FromString_Lenient
+#define c_strtotoml		TOML_FromString
+
+
 
 //! Create a new `s_toml` object, parsed from a (valid) TOML string
 /*!
 **	This function creates a `s_toml` object by parsing a TOML string,
-**	allowing for several extensions to the TOML official spec, notably:
-**	- allows for trailing commas at the end of arrays or objects
-**	- allows for leading `+` symbols for positive-sign number literals
-**	- allows for `null`/`true`/`false` to be written in uppercase, or mixed-case rather than just lowercase
-**	- allows for non-standard whitespace characters: anything for which `isspace()` returns `TRUE`
-**	- allows for non-standard string escape sequences, matching those used in C: `\x??` for bytes, `\e`, for escape, etc
-**	- supports comments (using either `/``*`,`*``/` block syntax, or `//` single-line)
-**	- supports non-standard `number` values: `nan`/NaN and `inf`/infinity
-**	- supports numeric literals in other bases: prefix with `0x` for hexadecimal, `0b` for binary, `0o` for octal
-**	- supports `BigInt` integers, using the trailing `n` syntax
+**	This API is made to be compatible with both the TOML file spec and the INI file spec.
+**	So, this means a couple of things in particular:
+**	- (TOML/INI) All whitespace characters are handled (including the rare form-feed and vertical-tab chars)
+**	- (TOML/INI) There cannot be any name conflicts between keys or sections names within a given scope.
+**	- (TOML/INI) Comments can be started with either a ';' char or a '#' (when not inside a quoted string)
+**	- (TOML) Sections can be nested
+**	- (TOML) Key strings can be quoted, to allow for more characters than a token `[A-Za-z0-9_-]`
+**	- (TOML) Strings with whitespace should always be quoted`, triple double-quotes for multi-line strings
+**	- (TOML) Strings can be single-quoted, this makes a literal verbatim string (no character escaping)
+**	- (TOML) All types are supported, except for dates (which must be stored as string or integer)
+**	- (TOML) All numeric literal notations are accepted ("0x" = hexadecimal, "0o" = octal, "0b" = binary)
+**	- Arrays can be written using curly braces '{' and '}', to avoid confusion with sections
+**	- Unlike regular TOML, this API can behave in a case-sensitive fashion, if needed
 */
-s_toml*								TOML_Parse_Lenient(t_utf8 const* toml);
-#define c_tomllparse				TOML_Parse_Lenient
-#define TOML_Decode_Lenient			TOML_Parse_Lenient
-#define TOML_FromString_Lenient		TOML_Parse_Lenient
+//!@{
+t_size					TOML_Parse_Lenient(s_toml* *dest, t_utf8 const* str);
+#define c_tomlparse_l	TOML_Parse_Lenient
 
 //! Create a new `s_toml` object, pars_Leniented from a (valid) TOML string, (only the first `n` chars are parsed)
-s_toml*								TOML_Parse_Lenient_N(t_utf8 const* toml, t_size n);
-#define c_tomllnparse				TOML_Parse_Lenient_N
-#define TOML_Decode_Lenient_N		TOML_Parse_Lenient_N
-#define TOML_FromString_Lenient_N	TOML_Parse_Lenient_N
+t_size					TOML_Parse_N_Lenient(s_toml* *dest, t_utf8 const* str, t_size n);
+#define c_tomlnparse_l	TOML_Parse_N_Lenient
+//!@}
+
+//! @see TOML_Parse_Lenient()
+s_toml*					TOML_FromString_Lenient(t_utf8 const* str);
+#define c_strtotoml_l	TOML_FromString_Lenient
+
+
 
 //! Create a new `s_toml` object, parsed from a (valid) TOML string
 /*!
@@ -112,57 +106,80 @@ s_toml*								TOML_Parse_Lenient_N(t_utf8 const* toml, t_size n);
 **	strictly following the TOML official spec (https://www.toml.org/toml-en.html),
 **	aborting with an error if anything non-standard is encountered.
 */
-s_toml*								TOML_Parse_Strict(t_utf8 const* toml);//, t_utf8 const** return_parse_end);
-#define c_tomlsparse				TOML_Parse_Strict
-#define TOML_Decode_Strict			TOML_Parse_Strict
-#define TOML_FromString_Strict		TOML_Parse_Strict
+//!@{
+t_size					TOML_Parse_Strict(s_toml* *dest, t_utf8 const* str);
+#define c_tomlparse_s	TOML_Parse_Strict
 
 //! Create a new `s_toml` object, parsed from a (valid) TOML string, (only the first `n` chars are parsed)
-s_toml*								TOML_Parse_Strict_N(t_utf8 const* toml, t_size n);//, t_utf8 const** return_parse_end);
-#define c_tomlsnparse				TOML_Parse_Strict_N
-#define TOML_Decode_Strict_N		TOML_Parse_Strict_N
-#define TOML_FromString_Strict_N	TOML_Parse_Strict_N
+t_size					TOML_Parse_N_Strict(s_toml* *dest, t_utf8 const* str, t_size n);
+#define c_tomlnparse_s	TOML_Parse_N_Strict
+//!@}
+
+//! @see TOML_Parse_Strict()
+s_toml*					TOML_FromString_Strict(t_utf8 const* str);
+#define c_strtotoml_s	TOML_FromString_Strict
 
 
+
+/*
+** ************************************************************************** *|
+**                           TOML Printing Operations                         *|
+** ************************************************************************** *|
+*/
 
 #define 				TOML_Print	TOML_Print_Pretty
 #define c_tomlprint		TOML_Print
-#define TOML_Encode		TOML_Print
-#define TOML_ToString	TOML_Print
 
-//! Render a s_toml entity to text for transfer/storage (with 'pretty' formatting).
-t_utf8*							TOML_Print_Pretty(s_toml const* item);
-#define c_tomlprintfmt			TOML_Parse
-#define TOML_Encode_Pretty		TOML_Print_Pretty
-#define TOML_ToString_Pretty	TOML_Print_Pretty
+#define 				TOML_ToString	TOML_ToString_Pretty
+#define c_tomltostr		TOML_ToString
 
-//! Render a s_toml entity to text for transfer/storage, without any formatting/whitespace
-t_utf8*							TOML_Print_Minify(s_toml const* item);
-#define c_tomlprintmin			TOML_Parse
-#define TOML_Decode_Minify		TOML_Print_Minify
-#define TOML_ToString_Minify	TOML_Print_Minify
 
+
+//! Print a `s_toml` item to string buffer `dest`, writing at most `n` characters.
+/*!
+**	@param	dest	The pre-allocated string buffer to write to
+**	@param	item	The JSON object to print
+**	@param	n		The maximum amount of chars to write into `dest`
+**	@returns
+**	The amount of characters written to the given `dest` buffer
+*/
+//!@{
+t_bool					TOML_Print_Pretty(t_utf8* dest, s_toml const* item, t_size n);
+#define c_tomlprintfmt 	TOML_Print_Pretty
+
+//! Like JSON_Print_Pretty(), but this prints the minimum amount of characters possible
+t_bool					TOML_Print_Minify(t_utf8* dest, s_toml const* item, t_size n);
+#define c_tomlprintmin 	TOML_Print_Minify
+//!@}
+
+
+
+//! Get a new string from the given TOML `item`, with readable formatting.
+t_utf8*					TOML_ToString_Pretty(s_toml const* item);
+#define c_tomltostrfmt	TOML_ToString_Pretty
+
+//! Get a new string from the given TOML `item`, without any formatting/whitespace.
+t_utf8*					TOML_ToString_Minify(s_toml const* item);
+#define c_tomltostrmin	TOML_ToString_Minify
+
+
+
+#if 0
 //! Render a s_toml entity to text using a buffered strategy.
 /*!
 **	prebuffer is a guess at the final size. guessing well reduces reallocation. `format = 0` means minified, `format = 1` means formatted/pretty.
 */
-t_utf8*							TOML_Print_Buffered(s_toml const* item, t_sint prebuffer, t_bool format);
-#define TOML_Decode_Buffered 	TOML_Print_Buffered
-#define TOML_ToString_Buffered 	TOML_Print_Buffered
+t_utf8*					TOML_Print_Buffered(s_toml const* item, t_sint prebuffer, t_bool format);
+#define c_tomlprintbuf 	TOML_Print_Buffered
+#endif
 
-//! Render a `s_toml` entity to text using a buffer already allocated in memory with given length.
-/*!
-**	NOTE: s_toml is not always 100% accurate in estimating how much memory it will use,
-**		so, to be safe, you should allocate 5 bytes more than you actually need.
-**
-**	@returns
-**	`TRUE` on success and `FALSE` on failure.
+
+
+/*
+** ************************************************************************** *|
+**                             TOML String Operations                         *|
+** ************************************************************************** *|
 */
-t_bool								TOML_Print_Preallocated(s_toml* item, t_utf8* buffer, t_sint const length, t_bool const format);
-#define TOML_Encode_Preallocated 	TOML_Print_Preallocated
-#define TOML_ToString_Preallocated 	TOML_Print_Preallocated
-
-
 
 //! Minify a TOML string, to make it more lightweight: removes all whitespace characters
 /*!
@@ -170,7 +187,8 @@ t_bool								TOML_Print_Preallocated(s_toml* item, t_utf8* buffer, t_sint const
 **	The input pointer toml cannot point to a read-only address area, such as a string constant, 
 **	but should point to a readable and writable address area.
 */
-void	TOML_Minify(t_utf8* toml); //!< TODO rename to TOML_Minify_InPlace(), and add TOML_Minify(), which would allocate
+void				TOML_Minify(t_utf8* toml); //!< TODO rename to TOML_Minify_InPlace(), and add TOML_Minify(), which would allocate
+#define c_tomlmin	TOML_Minify
 
 
 
