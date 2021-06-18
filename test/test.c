@@ -205,26 +205,49 @@ DEFINE_TESTFUNCTION_INT(uintmax,u)
 #define FLOAT_PRECISION_FORMAT	
 
 #define DEFINE_TESTFUNCTION_FLOAT(NAME, BITS) \
-void	print_test_##NAME(s_test_##NAME* test, char const* args)		\
-{																		\
-	int error;															\
-	char str_result[BITS];												\
-	char str_expect[BITS];												\
-	if (test->result_sig)												\
-		error = !test->expect_sig;										\
-	else if (test->expect_sig)											\
-		error = !HANDLE_ERRORS_NULLPOINTER;								\
-	else error = (test->result != test->expect);						\
-	if (isnan(test->result) && isnan(test->expect))						\
-		error = FALSE;													\
-	snprintf(str_result, BITS, CONCAT(CONCAT(F,BITS),_PRECISION_FORMAT), test->result);	\
-	snprintf(str_expect, BITS, CONCAT(CONCAT(F,BITS),_PRECISION_FORMAT), test->expect);	\
-	print_test(test->name, test->function, args,						\
-		(test->result_sig ? signals[test->result_sig] : str_result),	\
-		(test->expect_sig ? signals[test->expect_sig] : str_expect),	\
-		test->can_sig,													\
-		error, NULL);													\
-}																		\
+void	print_test_##NAME(s_test_##NAME* test, char const* args)							\
+{																							\
+	char* tmp = NULL;																		\
+	int warning = FALSE;																	\
+	int error = FALSE;																		\
+	char str_result[BITS];																	\
+	char str_expect[BITS];																	\
+	if (test->result_sig)																	\
+		error = !test->expect_sig;															\
+	else if (test->expect_sig)																\
+		error = !HANDLE_ERRORS_NULLPOINTER;													\
+	else error = (test->result != test->expect);											\
+	if (isnan(test->result) && isnan(test->expect))											\
+		error = FALSE;																		\
+	snprintf(str_result, BITS, CONCAT(CONCAT(F,BITS),_PRECISION_FORMAT), test->result);		\
+	snprintf(str_expect, BITS, CONCAT(CONCAT(F,BITS),_PRECISION_FORMAT), test->expect);		\
+	if (error && !isnan(test->result) && !isnan(test->expect))								\
+	{																						\
+		if (ABS(test->result - test->expect) <=												\
+			FLOAT_APPROX * MAX(ABS(test->result), ABS(test->expect)))						\
+		{																					\
+			error = FALSE;																	\
+			warning = TRUE;																	\
+		}																					\
+	}																						\
+	if (warning)																			\
+	{																						\
+		tmp = (char*)malloc(1 + 128);	if (tmp == NULL) return;							\
+		size_t len = snprintf(tmp,	128, "Approximation error:\n"							\
+				"- received: "CONCAT(CONCAT(F,BITS),_PRECISION_FORMAT)"\n"					\
+				"- expected: "CONCAT(CONCAT(F,BITS),_PRECISION_FORMAT)"\n",					\
+			test->result,																	\
+			test->expect);																	\
+		if (len == 0)																		\
+			return;																			\
+	}																						\
+	print_test(test->name, test->function, args,											\
+		(test->result_sig ? signals[test->result_sig] : str_result),						\
+		(test->expect_sig ? signals[test->expect_sig] : str_expect),						\
+		test->can_sig,																		\
+		error, (warning ? tmp : NULL));														\
+	if (tmp)	free(tmp);																	\
+}																							\
 
 DEFINE_TESTFUNCTION_FLOAT(f32, 32)
 DEFINE_TESTFUNCTION_FLOAT(f64, 64)
@@ -240,6 +263,7 @@ DEFINE_TESTFUNCTION_FLOAT(float, LIBCONFIG_FLOAT_BITS)
 
 void	print_test_sign(s_test_sign* test, char const* args)
 {
+	char* tmp = NULL;
 	int warning = FALSE;
 	int error = FALSE;
 	if (test->result_sig)
@@ -261,17 +285,20 @@ void	print_test_sign(s_test_sign* test, char const* args)
 		test->result_sig = 0;
 		test->expect_sig = 0;
 	}
-	char* tmp = (char*)malloc(1+128);	if (tmp == NULL) return;
-	size_t len = snprintf(tmp,	128, "Return value differs, but sign is the same (got %ji, but expected %ji).",
-		test->result,
-		test->expect);
-	if (len == 0)
-		return;
+	if (warning)
+	{
+		tmp = (char*)malloc(1 + 128);	if (tmp == NULL) return;
+		size_t len = snprintf(tmp,	128, "Return value differs, but sign is the same (got %ji, but expected %ji).",
+			test->result,
+			test->expect);
+		if (len == 0)
+			return;
+	}
 	print_test(test->name, test->function, args,
 		(test->result_sig ? signals[test->result_sig] : sinttostr(test->result)),
 		(test->expect_sig ? signals[test->expect_sig] : sinttostr(test->expect)),
 		test->can_sig,
-		error, warning ? tmp : NULL);
+		error, (warning ? tmp : NULL));
 	if (tmp)	free(tmp);
 }
 
