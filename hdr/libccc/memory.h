@@ -356,7 +356,7 @@ t_bool				Memory_Swap(void* ptr1, void* ptr2, t_size size); // TODO change retru
 t_uintmax			Memory_GetBits(void* ptr, t_size bit, t_u8 n);
 #define c_getbits	Memory_GetBits //!< @alias{Memory_GetBits}
 
-//! Set a subsection of `n` bits from the data in `ptr`, starting at bit index `bit`.
+//! Set a subsection of `n` bits to the data in `ptr`, starting at bit index `bit`.
 /*!
 **	@nonstd
 **

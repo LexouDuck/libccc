@@ -9,6 +9,11 @@
 
 
 
+#define PARSE_RETURN(VALUE) \
+	if (dest)	*dest = (VALUE);	return (i);
+
+
+
 #define DEFINEFUNC_UINT_FROMSTROCT(BITS) \
 t_size	U##BITS##_Parse_Oct(t_u##BITS* dest, t_char const* str)						\
 {																					\
@@ -17,13 +22,13 @@ t_size	U##BITS##_Parse_Oct(t_u##BITS* dest, t_char const* str)						\
 	t_size	i = 0;																	\
 																					\
 	HANDLE_ERROR(NULLPOINTER, (str == NULL),										\
-		if (dest) *dest = U##BITS##_ERROR;	return (i);)							\
+		PARSE_RETURN(U##BITS##_ERROR))												\
 	while (str[i] && Char_IsSpace(str[i]))											\
 	{																				\
 		++i;																		\
 	}																				\
 	HANDLE_ERROR_SF(PARSE, !(str[i] == '+' || Char_IsDigit_Oct(str[i])),			\
-		if (dest) *dest = U##BITS##_ERROR;	return (i);,							\
+		PARSE_RETURN(U##BITS##_ERROR),												\
 		": expected a number (with spaces/sign), but instead got \"%s\"", str)		\
 	if (str[i] == '+')																\
 		++i;																		\
@@ -38,7 +43,7 @@ t_size	U##BITS##_Parse_Oct(t_u##BITS* dest, t_char const* str)						\
 			" (integer overflow for \"%s\" at "SF_U##BITS")", str, U##BITS##_MAX)	\
 		result = tmp;																\
 	}																				\
-	if (dest) *dest = result;														\
+	if (dest)	*dest = result;														\
 	return (i);																		\
 }																					\
 inline t_u##BITS	U##BITS##_FromString_Oct(t_char const* str)						\
@@ -67,12 +72,12 @@ t_size	S##BITS##_Parse_Oct(t_s##BITS* dest, t_char const* str)						\
 	t_size	i = 0;																	\
 																					\
 	HANDLE_ERROR(NULLPOINTER, (str == NULL),										\
-		if (dest) *dest = S##BITS##_ERROR;	return (i);)							\
+		PARSE_RETURN(S##BITS##_ERROR))												\
 	for (i = 0; str[i] && Char_IsSpace(str[i]); ++i)								\
 		continue;																	\
 	HANDLE_ERROR_SF(PARSE,															\
 		!(str[i] == '+' || str[i] == '-' || Char_IsDigit_Oct(str[i])),				\
-		if (dest) *dest = S##BITS##_ERROR;	return (i);,							\
+		PARSE_RETURN(S##BITS##_ERROR),												\
 		": expected a number (with spaces/sign), but instead got \"%s\"", str)		\
 	negative = FALSE;																\
 	if (str[i] == '-')																\
