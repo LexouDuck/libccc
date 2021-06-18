@@ -17,6 +17,10 @@
 #pragma clang diagnostic ignored "-Woverflow"
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdivision-by-zero"
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wconstant-conversion"
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Winteger-overflow"
 
 
 
@@ -284,6 +288,8 @@ DEFINETEST_SINT_OPERATOR(%, mod, 128)
 #pragma GCC diagnostic pop
 #pragma GCC diagnostic pop
 // Resets the clang warning settings back to normal
+#pragma clang diagnostic pop
+#pragma clang diagnostic pop
 #pragma clang diagnostic pop
 #pragma clang diagnostic pop
 

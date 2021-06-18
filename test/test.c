@@ -12,7 +12,7 @@
 
 
 
-//! Returns 1 if all the global g_test.suites structs have 'run' set to 0
+//! Returns `1` if all the global `g_test.suite` structs have `.run` set to `0`
 static
 int	check_no_test_suites(void)
 {
