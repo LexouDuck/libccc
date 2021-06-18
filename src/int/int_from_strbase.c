@@ -100,7 +100,8 @@ t_size	U##BITS##_Parse_Base(t_u##BITS* dest, t_char const* str, t_char const* ba
 			str, base, U##BITS##_MAX)												\
 		result = tmp;																\
 	}																				\
-	return (result);																\
+	if (dest) *dest = result;														\
+	return (i);																		\
 }																					\
 inline t_u##BITS	U##BITS##_FromString_Base(t_char const* str, t_char const* base)\
 {																					\

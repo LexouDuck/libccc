@@ -44,10 +44,7 @@ t_size	U##BITS##_Parse_Hex(t_u##BITS* dest, t_char const* str)						\
 	if (str[i] == '0' && str[i + 1] == 'x')											\
 		i += 2;																		\
 	result = 0;																		\
-	while (str[i] && (																\
-		('0' <= str[i] && str[i] <= '9') ||											\
-		('A' <= str[i] && str[i] <= 'F') ||											\
-		('a' <= str[i] && str[i] <= 'f')))											\
+	while (str[i] && Char_IsDigit_Hex(str[i]))										\
 	{																				\
 		tmp = result * 16 + GetDigit_FromString_Hex(str[i++]);						\
 		HANDLE_ERROR_SF(RESULTRANGE, (tmp < result),								\
@@ -55,7 +52,8 @@ t_size	U##BITS##_Parse_Hex(t_u##BITS* dest, t_char const* str)						\
 			" (integer overflow for \"%s\" at "SF_U##BITS")", str, U##BITS##_MAX)	\
 		result = tmp;																\
 	}																				\
-	return (result);																\
+	if (dest) *dest = result;														\
+	return (i);																		\
 }																					\
 inline t_u##BITS	U##BITS##_FromString_Hex(t_char const* str)						\
 {																					\

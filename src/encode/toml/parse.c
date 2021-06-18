@@ -19,8 +19,8 @@ static t_bool TOML_Parse_Value (s_toml* item, s_toml_parse* p);
 static t_bool TOML_Parse_Table (s_toml* item, s_toml_parse* p);
 static t_bool TOML_Parse_Number(s_toml* item, s_toml_parse* p);
 static t_bool TOML_Parse_String(s_toml* item, s_toml_parse* p);
-static t_bool TOML_Parse_Array (s_toml* item, s_toml_parse* p); // TODO
-static t_bool TOML_Parse_Object(s_toml* item, s_toml_parse* p); // TODO
+//static t_bool TOML_Parse_Array (s_toml* item, s_toml_parse* p); // TODO
+//static t_bool TOML_Parse_Object(s_toml* item, s_toml_parse* p); // TODO
 
 
 
@@ -457,10 +457,10 @@ t_bool	TOML_Parse_Value(s_toml* item, s_toml_parse* p)
 	}
 	else
 	{
-		if (p->content[p->offset] == '[')
-			return (TOML_Parse_Array( item, p));	// array
-		if (p->content[p->offset] == '{')
-			return (TOML_Parse_Object(item, p));	// object
+//		if (p->content[p->offset] == '[')
+//			return (TOML_Parse_Array( item, p));	// array
+//		if (p->content[p->offset] == '{')
+//			return (TOML_Parse_Object(item, p));	// object
 		if (p->content[p->offset] == '\"')
 			return (TOML_Parse_String(item, p));	// string
 		if (Char_IsDigit(p->content[p->offset]) ||
@@ -622,7 +622,7 @@ s_toml*	TOML_Parse_(t_char const* toml, t_size buffer_length, t_bool strict)
 	if (result == NULL)
 		PARSINGERROR_TOML("Got null result: memory failure")
 	p->offset += UTF8_ByteOrderMark(toml);
-	if (!TOML_Parse_Value(result, TOML_Parse_SkipWhiteSpace(p)))
+	if (!TOML_Parse_KeyValuePair(result, TOML_Parse_SkipWhiteSpace(p)))
 		goto failure;
 	if (p->strict)
 	{	// if we require null-terminated TOML without appended garbage, skip and then check for a null terminator

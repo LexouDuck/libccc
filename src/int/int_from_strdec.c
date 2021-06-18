@@ -36,7 +36,7 @@ t_size	U##BITS##_Parse_Dec(t_u##BITS* dest, t_char const* str)						\
 			" (integer overflow for \"%s\" at "SF_U##BITS")", str, U##BITS##_MAX)	\
 		result = tmp;																\
 	}																				\
-	if (dest)	*dest = result;														\
+	if (dest) *dest = result;														\
 	return (i);																		\
 }																					\
 inline t_u##BITS	U##BITS##_FromString_Dec(t_char const* str)						\

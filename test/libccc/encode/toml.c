@@ -725,10 +725,10 @@ void	test_toml_##STRICT##_##MINIFY(void)																																		\
 }
 #endif
 
-DEFINETEST_TOML(Lenient, TRUE,	Pretty,)
-DEFINETEST_TOML(Lenient, TRUE,	Minify, _min)
-DEFINETEST_TOML(Strict, FALSE,	Pretty,)
-DEFINETEST_TOML(Strict, FALSE,	Minify, _min)
+//DEFINETEST_TOML(Lenient, TRUE,	Pretty,)
+//DEFINETEST_TOML(Lenient, TRUE,	Minify, _min)
+//DEFINETEST_TOML(Strict, FALSE,	Pretty,)
+//DEFINETEST_TOML(Strict, FALSE,	Minify, _min)
 
 // TODO test othe functions than just Parse/Print
 
@@ -746,10 +746,10 @@ int		testsuite_encode_toml(void)
 
 	print_nonstd();
 
-	test_toml_Lenient_Pretty();
-	test_toml_Lenient_Minify();
-	test_toml_Strict_Pretty();
-	test_toml_Strict_Minify();
+//	test_toml_Lenient_Pretty();
+//	test_toml_Lenient_Minify();
+//	test_toml_Strict_Pretty();
+//	test_toml_Strict_Minify();
 
 	return (OK);
 }

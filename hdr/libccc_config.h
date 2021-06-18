@@ -72,7 +72,7 @@ HEADER_CPP
 #endif
 
 // TODO implement configurable overflow-case return values with this macro
-#define OVERFLOW(TYPE, VALUE) \
+#define LIBCONFIG_ERROR_OVERFLOW(TYPE, VALUE) \
 	CONCAT(TYPE,_ERROR)	//!< configurable error value
 //	(VALUE)				//!< saturated type
 //!@}
