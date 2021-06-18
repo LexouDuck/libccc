@@ -45,12 +45,9 @@ HEADER_CPP
 **	This type is useful because its value will always be 0 or 1, never more.
 **	This means you will not have strange behaviors caused by the use of integer
 **	arithmetic operations on booleans - do not assume `t_bool` works like int types.
-**	NB: Conversion to `_Bool` does not work the same as conversion to other
-**	integer types: `(bool)0.5` gives `1`, whereas `(int)0.5` gives `0`.
-**
-**	@see
-**	- Bool_ToString()
-**	- Bool_FromString()
+**	NOTE: Conversion to `_Bool` does not work the same as conversion to integer types:
+**	any non-zero value will become `1` once it is casted to the `_Bool` type.
+**	So, for example, `(bool)0.5` gives `1`, whereas `(int)0.5` gives `0`.
 */
 //!@{
 #if (defined(__STDC__) && (__STDC_VERSION__ >= __STDC_VERSION_C99__))

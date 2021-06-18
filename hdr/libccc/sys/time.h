@@ -449,38 +449,38 @@ s_date						Date_FromSTDC(struct tm const* value);
 
 //! Parses the given string representation of a date/time, and returns the resulting 's_date' struct
 /*!
-**	@nonstd
+**	@isostd{POSIX,https://linux.die.net/man/3/strptime}
 **
-**	NOTE: The `tm` argument must be set to 0 before being passed here.
+**	NOTE: The `tm` argument should be cleared (zeroed out) before being passed to this function.
 **
-**	%%			The '%' (percent) character.
-**	%a, %A		The name of the day of the week according to the current locale, in abbreviated form or the full name.
-**	%b, %B, %h	The month name according to the current locale, in abbreviated form or the full name.
-**	%c			The date and time representation for the current locale.
-**	%C			[0,99] The century number .
-**	%d, %e		[1,31] The day of month .
-**	%D			Equivalent to `"%m/%d/%y"`. (This is the American style date, very confusing to non-Americans.. The ISO 8601 standard format is `"%Y-%m-%d"`.)
-**	%H			[0,23] The hour .
-**	%I			[1,12] The hour on a 12-hour clock .
-**	%j			[1,366] The day number in the year .
-**	%m			[1,12] The month number .
-**	%M			[0,59] The minute .
-**	%n			Arbitrary whitespace.
-**	%p			The locale's equivalent of AM or PM. (NOTE: there may be none.)
-**	%r			The 12-hour clock time (using the locale's AM or PM). In the POSIX locale equivalent to `"%I:%M:%S %p"` (NOTE: If the locale's `t_fmt_ampm` is empty, then the behavior is undefined).
-**	%R			Equivalent to `%H:%M`.
-**	%S			[0,60] The second (60 may occur for leap seconds; earlier also 61 was allowed).
-**	%t			Arbitrary whitespace.
-**	%T			Equivalent to `%H:%M:%S`.
-**	%U			[0,53] The week number with Sunday the first day of the week. The first Sunday of January is the first day of week 1.
-**	%W			[0,53] The week number with Monday the first day of the week. The first Monday of January is the first day of week 1.
-**	%w			[0,6] The ordinal number of the day of the week, with Sunday = 0.
-**	%X			The time, using the locale's time format.
-**	%x			The date, using the locale's date format.
-**	%Y			The year, including century (for example, 1991).
-**	%y			[0,99] The year within century. When a century is not otherwise specified,
-**				values in the range [69,99] refer to years in the twentieth century: [1969,1999];
-**				values in the range [00,68] refer to years in the twenty-first century: [2000,2068].
+**	`%%`			The `'%'` (percent) character.
+**	`%a`,`%A`		The name of the day of the week according to the current locale, in abbreviated form or the full name.
+**	`%b`,`%B`,`%h`	The month name according to the current locale, in abbreviated form or the full name.
+**	`%c`			The date and time representation for the current locale.
+**	`%C`			[0,99] The century number .
+**	`%d`,`%e`		[1,31] The day of month .
+**	`%D`			Equivalent to `"%m/%d/%y"`. (This is the American style date, very confusing to non-Americans.. The ISO 8601 standard format is `"%Y-%m-%d"`.)
+**	`%H`			[0,23] The hour .
+**	`%I`			[1,12] The hour on a 12-hour clock .
+**	`%j`			[1,366] The day number in the year .
+**	`%m`			[1,12] The month number .
+**	`%M`			[0,59] The minute .
+**	`%n`			Arbitrary whitespace.
+**	`%p`			The locale's equivalent of AM or PM. (NOTE: there may be none.)
+**	`%r`			The 12-hour clock time (using the locale's AM or PM). In the POSIX locale equivalent to `"%I:%M:%S %p"` (NOTE: If the locale's `t_fmt_ampm` is empty, then the behavior is undefined).
+**	`%R`			Equivalent to `%H:%M`.
+**	`%S`			[0,60] The second (60 may occur for leap seconds; earlier also 61 was allowed).
+**	`%t`			Arbitrary whitespace.
+**	`%T`			Equivalent to `%H:%M:%S`.
+**	`%U`			[0,53] The week number with Sunday the first day of the week. The first Sunday of January is the first day of week 1.
+**	`%W`			[0,53] The week number with Monday the first day of the week. The first Monday of January is the first day of week 1.
+**	`%w`			[0,6] The ordinal number of the day of the week, with Sunday = 0.
+**	`%X`			The time, using the locale's time format.
+**	`%x`			The date, using the locale's date format.
+**	`%Y`			The year, including century (for example, 1991).
+**	`%y`			[0,99] The year within century. When a century is not otherwise specified,
+**					values in the range [69,99] refer to years in the twentieth century: [1969,1999];
+**					values in the range [00,68] refer to years in the twenty-first century: [2000,2068].
 **
 **	Some field descriptors can be modified by the E or O modifier characters
 **	to indicate that an alternative format or specification should be used.
@@ -490,49 +490,44 @@ s_date						Date_FromSTDC(struct tm const* value);
 **	The `E` modifier specifies that the input string may contain alternative
 **	locale-dependent versions of the date and time representation:
 **
-**	%Ec			The locale's alternative date and time representation.
-**	%EC			The name of the base year (period) in the locale's alternative representation.
-**	%Ex			The locale's alternative date representation.
-**	%EX			The locale's alternative time representation.
-**	%Ey			The offset from `%EC` (year only) in the locale's alternative representation.
-**	%EY			The full alternative year representation.
+**	`%Ec`			The locale's alternative date and time representation.
+**	`%EC`			The name of the base year (period) in the locale's alternative representation.
+**	`%Ex`			The locale's alternative date representation.
+**	`%EX`			The locale's alternative time representation.
+**	`%Ey`			The offset from `%EC` (year only) in the locale's alternative representation.
+**	`%EY`			The full alternative year representation.
 **
 **	The `O` modifier specifies that the numerical input may be in an alternative locale-dependent format:
 **
-**	%Od, %Oe	The day of the month using the locale's alternative numeric symbols; leading zeros are permitted but not required.
-**	%OH			The hour (24-hour clock) using the locale's alternative numeric symbols.
-**	%OI			The hour (12-hour clock) using the locale's alternative numeric symbols.
-**	%Om			The month using the locale's alternative numeric symbols.
-**	%OM			The minutes using the locale's alternative numeric symbols.
-**	%OS			The seconds using the locale's alternative numeric symbols.
-**	%OU			The week number of the year (Sunday as the first day of the week) using the locale's alternative numeric symbols.
-**	%Ow			The ordinal number of the day of the week (Sunday=0), using the locale's alternative numeric symbols.
-**	%OW			The week number of the year (Monday as the first day of the week) using the locale's alternative numeric symbols.
-**	%Oy			The year (offset from `%C`) using the locale's alternative numeric symbols.
+**	`%Od`,`%Oe`		The day of the month using the locale's alternative numeric symbols; leading zeros are permitted but not required.
+**	`%OH`			The hour (24-hour clock) using the locale's alternative numeric symbols.
+**	`%OI`			The hour (12-hour clock) using the locale's alternative numeric symbols.
+**	`%Om`			The month using the locale's alternative numeric symbols.
+**	`%OM`			The minutes using the locale's alternative numeric symbols.
+**	`%OS`			The seconds using the locale's alternative numeric symbols.
+**	`%OU`			The week number of the year (Sunday as the first day of the week) using the locale's alternative numeric symbols.
+**	`%Ow`			The ordinal number of the day of the week (Sunday=0), using the locale's alternative numeric symbols.
+**	`%OW`			The week number of the year (Monday as the first day of the week) using the locale's alternative numeric symbols.
+**	`%Oy`			The year (offset from `%C`) using the locale's alternative numeric symbols.
 */
+//!@{
 //_FORMAT(strptime, 2, 0) // TODO check if this format() attribute exists even
-s_date						Date_Parse(t_char const* str, t_char const* format);
-#define c_strtodate			Date_Parse
+t_size						Date_Parse(s_date* dest, t_char const* str, t_char const* format);
+#define c_strptime			Date_Parse
 #define c_dateparse			Date_Parse
-#define Date_FromString		Date_Parse
 
 //! Like Date_Parse(), but will not set every field in the `s_date` struct, only those directly parsed
-s_date						Date_Parse_Min(t_char const* str, t_char const* format);
-#define c_strptime			Date_Parse_Min
-#define c_strtodatemin		Date_Parse_Min
-#define c_dateparsemin		Date_Parse_Min
-#define Date_FromString_N	Date_Parse_Min
+t_size						Date_Parse_Min(s_date* dest, t_char const* str, t_char const* format);
+#define c_strmptime			Date_Parse_Min
+#define c_dateparsem		Date_Parse_Min
 
-t_size							Date_Parse_Strict(s_date* dest, t_char const* str, t_char const* format);
-#define c_strstodate			Date_Parse_Strict
-#define c_dateparses			Date_Parse_Strict
-#define Date_FromStringStrict	Date_Parse_Strict
+s_date						Date_FromString(t_char const* str, t_char const* format);
+#define c_strtodate			Date_FromString
 
-t_size							Date_Parse_Strict_Min(s_date* dest, t_char const* str, t_char const* format);
-#define c_strsptime				Date_Parse_Strict_Min
-#define c_strstodatemin			Date_Parse_Strict_Min
-#define c_dateparsesmin			Date_Parse_Strict_Min
-#define Date_FromStringStrict_N	Date_Parse_Strict_Min
+//! Like Date_FromString(), but will not set every field in the `s_date` struct, only those directly parsed
+s_date						Date_FromString_Min(t_char const* str, t_char const* format);
+#define c_strmtodate		Date_FromString_Min
+//!@}
 
 
 

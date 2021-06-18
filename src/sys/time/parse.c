@@ -747,7 +747,35 @@ t_size		Date_Parse_(s_date* dest, t_char const* str, t_char const* format, t_boo
 
 
 
-s_date		Date_Parse(t_char const* str, t_char const* format)
+t_size		Date_Parse(s_date* dest, t_char const* str, t_char const* format)
+{
+	s_date result = DATE_NULL;
+	t_size parsed;
+
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
+	HANDLE_ERROR(NULLPOINTER, (format == NULL), return (0);)
+	parsed = Date_Parse_(&result, str, format, FALSE, TRUE);
+	if (dest)	*dest = result;
+	return (parsed);
+}
+
+
+
+t_size		Date_Parse_Min(s_date* dest, t_char const* str, t_char const* format)
+{
+	s_date result = DATE_NULL;
+	t_size parsed;
+
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
+	HANDLE_ERROR(NULLPOINTER, (format == NULL), return (0);)
+	parsed = Date_Parse_(&result, str, format, TRUE, TRUE);
+	if (dest)	*dest = result;
+	return (parsed);
+}
+
+
+
+s_date		Date_FromString(t_char const* str, t_char const* format)
 {
 	s_date result = DATE_NULL;
 
@@ -759,7 +787,7 @@ s_date		Date_Parse(t_char const* str, t_char const* format)
 
 
 
-s_date		Date_Parse_Min(t_char const* str, t_char const* format)
+s_date		Date_FromString_Min(t_char const* str, t_char const* format)
 {
 	s_date result = DATE_NULL;
 
@@ -767,32 +795,4 @@ s_date		Date_Parse_Min(t_char const* str, t_char const* format)
 	HANDLE_ERROR(NULLPOINTER, (format == NULL), return (DATE_NULL);)
 	Date_Parse_(&result, str, format, TRUE, FALSE);
 	return (result);
-}
-
-
-
-t_size		Date_Parse_Strict(s_date* dest, t_char const* str, t_char const* format)
-{
-	s_date result = DATE_NULL;
-	t_size parsed;
-
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
-	HANDLE_ERROR(NULLPOINTER, (format == NULL), return (0);)
-	parsed = Date_Parse_(&result, str, format, FALSE, TRUE);
-	*dest = result;
-	return (parsed);
-}
-
-
-
-t_size		Date_Parse_Strict_Min(s_date* dest, t_char const* str, t_char const* format)
-{
-	s_date result = DATE_NULL;
-	t_size parsed;
-
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
-	HANDLE_ERROR(NULLPOINTER, (format == NULL), return (0);)
-	parsed = Date_Parse_(&result, str, format, TRUE, TRUE);
-	*dest = result;
-	return (parsed);
 }
