@@ -606,6 +606,34 @@ _MALLOC()	t_char*		Q128_ToString_Base(t_q128 number, t_char const* base); // TOD
 
 
 
+// General parser functions
+
+
+
+//! Parse a fixed-point number from the given number string `str`
+/*!
+**	@nonstd
+**
+**	@param	dest	The resulting number, parse from the given `str`
+**	@param	str		The numeric string to parse
+**	@returns
+**	The amount of characters parsed from the given `str`
+*/
+//!@{
+#define					Fixed_Parse	CONCAT(FIXED_TYPE,_Parse)
+t_size					Q16_Parse	(t_q16	*dest, t_char const* str);
+t_size					Q32_Parse	(t_q32	*dest, t_char const* str);
+t_size					Q64_Parse	(t_q64	*dest, t_char const* str);
+#ifdef __int128
+t_size					Q128_Parse	(t_q128	*dest, t_char const* str);
+#endif
+#define c_qparse		Fixed_Parse	//!< @alias{Fixed_Parse}
+#define c_q16parse		Q16_Parse	//!< @alias{Q16_Parse}
+#define c_q32parse		Q32_Parse	//!< @alias{Q32_Parse}
+#define c_q64parse		Q64_Parse	//!< @alias{Q64_Parse}
+#define c_q128parse		Q128_Parse	//!< @alias{Q128_Parse}
+//!@}
+
 //! Parses the string representation of a signed fixed-point number
 /*!
 **	@param	number	The number to convert to string
@@ -630,6 +658,34 @@ t_q128					Q128_FromString(t_char const* str); // TODO implement
 
 
 
+// Decimal parser functions
+
+
+
+//! Parse a fixed-point number from the given decimal number string
+/*!
+**	@nonstd
+**
+**	@param	dest	The resulting number, parse from the given `str`
+**	@param	str		The numeric string to parse (must be decimal number string)
+**	@returns
+**	The amount of characters parsed from the given `str`
+*/
+//!@{
+#define					Fixed_Parse_Dec	CONCAT(FIXED_TYPE,_Parse_Dec)
+t_size					Q16_Parse_Dec	(t_q16	*dest, t_char const* str);
+t_size					Q32_Parse_Dec	(t_q32	*dest, t_char const* str);
+t_size					Q64_Parse_Dec	(t_q64	*dest, t_char const* str);
+#ifdef __int128
+t_size					Q128_Parse_Dec	(t_q128	*dest, t_char const* str);
+#endif
+#define c_qparsedec		Fixed_Parse_Dec	//!< @alias{Fixed_Parse_Dec}
+#define c_q16parsedec	Q16_Parse_Dec	//!< @alias{Q16_Parse_Dec}
+#define c_q32parsedec	Q32_Parse_Dec	//!< @alias{Q32_Parse_Dec}
+#define c_q64parsedec	Q64_Parse_Dec	//!< @alias{Q64_Parse_Dec}
+#define c_q128parsedec	Q128_Parse_Dec	//!< @alias{Q128_Parse_Dec}
+//!@}
+
 //! Parses the string decimal representation of a signed fixed-point number
 /*!
 **	@param	number	The number to convert to string
@@ -638,7 +694,7 @@ t_q128					Q128_FromString(t_char const* str); // TODO implement
 **	or `NULL` if there was a parsing error.
 */
 //!@{
-#define					Fixed_FromString_Dec	CONCAT(FIXED_TYPE,_FromString)
+#define					Fixed_FromString_Dec	CONCAT(FIXED_TYPE,_FromString_Dec)
 t_q16					Q16_FromString_Dec(t_char const* str); // TODO implement
 t_q32					Q32_FromString_Dec(t_char const* str); // TODO implement
 t_q64					Q64_FromString_Dec(t_char const* str); // TODO implement
@@ -653,6 +709,34 @@ t_q128					Q128_FromString_Dec(t_char const* str); // TODO implement
 //!@}
 
 
+
+// Hexadecimal parser functions
+
+
+
+//! Parse a fixed-point number from the given hexadecimal (base 16) number string
+/*!
+**	@nonstd
+**
+**	@param	dest	The resulting number, parse from the given `str`
+**	@param	str		The numeric string to parse (must be base 16) number string)
+**	@returns
+**	The amount of characters parsed from the given `str`
+*/
+//!@{
+#define					Fixed_Parse_Hex	CONCAT(FIXED_TYPE,_Parse_Hex)
+t_size					Q16_Parse_Hex	(t_q16	*dest, t_char const* str);
+t_size					Q32_Parse_Hex	(t_q32	*dest, t_char const* str);
+t_size					Q64_Parse_Hex	(t_q64	*dest, t_char const* str);
+#ifdef __int128
+t_size					Q128_Parse_Hex	(t_q128	*dest, t_char const* str);
+#endif
+#define c_qparsehex		Fixed_Parse_Hex	//!< @alias{Fixed_Parse_Hex}
+#define c_q16parsehex	Q16_Parse_Hex	//!< @alias{Q16_Parse_Hex}
+#define c_q32parsehex	Q32_Parse_Hex	//!< @alias{Q32_Parse_Hex}
+#define c_q64parsehex	Q64_Parse_Hex	//!< @alias{Q64_Parse_Hex}
+#define c_q128parsehex	Q128_Parse_Hex	//!< @alias{Q128_Parse_Hex}
+//!@}
 
 //! Parses the string hexadecimal representation of a signed fixed-point number
 /*!
@@ -678,6 +762,34 @@ t_q128					Q128_FromString_Hex(t_char const* str); // TODO implement
 
 
 
+// Octal parser functions
+
+
+
+//! Parse a fixed-point number from the given octal (base 8) number string
+/*!
+**	@nonstd
+**
+**	@param	dest	The resulting number, parse from the given `str`
+**	@param	str		The numeric string to parse (must be base 8) number string)
+**	@returns
+**	The amount of characters parsed from the given `str`
+*/
+//!@{
+#define					Fixed_Parse_Oct	CONCAT(FIXED_TYPE,_Parse_Oct)
+t_size					Q16_Parse_Oct	(t_q16	*dest, t_char const* str);
+t_size					Q32_Parse_Oct	(t_q32	*dest, t_char const* str);
+t_size					Q64_Parse_Oct	(t_q64	*dest, t_char const* str);
+#ifdef __int128
+t_size					Q128_Parse_Oct	(t_q128	*dest, t_char const* str);
+#endif
+#define c_qparseoct		Fixed_Parse_Oct	//!< @alias{Fixed_Parse_Oct}
+#define c_q16parseoct	Q16_Parse_Oct	//!< @alias{Q16_Parse_Oct}
+#define c_q32parseoct	Q32_Parse_Oct	//!< @alias{Q32_Parse_Oct}
+#define c_q64parseoct	Q64_Parse_Oct	//!< @alias{Q64_Parse_Oct}
+#define c_q128parseoct	Q128_Parse_Oct	//!< @alias{Q128_Parse_Oct}
+//!@}
+
 //! Parses the string octal representation of a signed fixed-point number
 /*!
 **	@param	number	The number to convert to string
@@ -702,6 +814,34 @@ t_q128					Q128_FromString_Oct(t_char const* str); // TODO implement
 
 
 
+// Binary parser functions
+
+
+
+//! Parse a fixed-point number from the given binary (base 2) number string
+/*!
+**	@nonstd
+**
+**	@param	dest	The resulting number, parse from the given `str`
+**	@param	str		The numeric string to parse (must be base 2) number string)
+**	@returns
+**	The amount of characters parsed from the given `str`
+*/
+//!@{
+#define					Fixed_Parse_Bin	CONCAT(FIXED_TYPE,_Parse_Bin)
+t_size					Q16_Parse_Bin	(t_q16	*dest, t_char const* str);
+t_size					Q32_Parse_Bin	(t_q32	*dest, t_char const* str);
+t_size					Q64_Parse_Bin	(t_q64	*dest, t_char const* str);
+#ifdef __int128
+t_size					Q128_Parse_Bin	(t_q128	*dest, t_char const* str);
+#endif
+#define c_qparsebin		Fixed_Parse_Bin	//!< @alias{Fixed_Parse_Bin}
+#define c_q16parsebin	Q16_Parse_Bin	//!< @alias{Q16_Parse_Bin}
+#define c_q32parsebin	Q32_Parse_Bin	//!< @alias{Q32_Parse_Bin}
+#define c_q64parsebin	Q64_Parse_Bin	//!< @alias{Q64_Parse_Bin}
+#define c_q128parsebin	Q128_Parse_Bin	//!< @alias{Q128_Parse_Bin}
+//!@}
+
 //! Parses the string binary representation of a signed fixed-point number
 /*!
 **	@param	number	The number to convert to string
@@ -725,6 +865,36 @@ t_q128					Q128_FromString_Bin(t_char const* str); // TODO implement
 //!@}
 
 
+
+// Custom-base parser functions
+
+
+
+//! Parse a fixed-point number from a custom-base number string
+/*!
+**	@nonstd
+**
+**	@param	dest	The resulting number, parse from the given `str`
+**	@param	str		The numeric string to parse (must be custom-base number string)
+**	@param	base	The custom numeric base to interpret, the char index being the digit.
+**					The base string must have at least 2 chars, no sign chars, no duplicate chars.
+**	@returns
+**	The amount of characters parsed from the given `str`
+*/
+//!@{
+#define					Fixed_Parse_Base	CONCAT(FIXED_TYPE,_Parse_Base)
+t_size					Q16_Parse_Base	(t_q16	*dest, t_char const* str, t_char const* base);
+t_size					Q32_Parse_Base	(t_q32	*dest, t_char const* str, t_char const* base);
+t_size					Q64_Parse_Base	(t_q64	*dest, t_char const* str, t_char const* base);
+#ifdef __int128
+t_size					Q128_Parse_Base	(t_q128	*dest, t_char const* str, t_char const* base);
+#endif
+#define c_qparsebase	Fixed_Parse_Base	//!< @alias{Fixed_Parse_Base}
+#define c_q16parsebase	Q16_Parse_Base	//!< @alias{Q16_Parse_Base}
+#define c_q32parsebase	Q32_Parse_Base	//!< @alias{Q32_Parse_Base}
+#define c_q64parsebase	Q64_Parse_Base	//!< @alias{Q64_Parse_Base}
+#define c_q128parsebase	Q128_Parse_Base	//!< @alias{Q128_Parse_Base}
+//!@}
 
 //! Parses the string decimal representation of a signed fixed-point number
 /*!
