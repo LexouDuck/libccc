@@ -17,9 +17,9 @@ t_size	U##BITS##_Parse(t_u##BITS *dest, t_char const* str)							\
 	{																				\
 		switch (s[1])																\
 		{																			\
-			case 'x': return (U##BITS##_Parse_Hex(dest, s));						\
-			case 'o': return (U##BITS##_Parse_Oct(dest, s));						\
-			case 'b': return (U##BITS##_Parse_Bin(dest, s));						\
+			case 'x': return (U##BITS##_Parse_Hex(dest, str));						\
+			case 'o': return (U##BITS##_Parse_Oct(dest, str));						\
+			case 'b': return (U##BITS##_Parse_Bin(dest, str));						\
 		}																			\
 	}																				\
 	return (U##BITS##_Parse_Dec(dest, str));										\
@@ -49,9 +49,9 @@ t_size	S##BITS##_Parse(t_s##BITS *dest, t_char const* str)							\
 	{																				\
 		switch (s[1])																\
 		{																			\
-			case 'x': return (S##BITS##_Parse_Hex(dest, s));						\
-			case 'o': return (S##BITS##_Parse_Oct(dest, s));						\
-			case 'b': return (S##BITS##_Parse_Bin(dest, s));						\
+			case 'x': return (S##BITS##_Parse_Hex(dest, str));						\
+			case 'o': return (S##BITS##_Parse_Oct(dest, str));						\
+			case 'b': return (S##BITS##_Parse_Bin(dest, str));						\
 		}																			\
 	}																				\
 	return (S##BITS##_Parse_Dec(dest, str));										\

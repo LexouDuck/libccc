@@ -10,7 +10,7 @@
 
 
 #define PARSE_RETURN(VALUE) \
-	if (dest)	*dest = (VALUE);	return (i);
+	{	if (dest)	*dest = (VALUE);	return (i);	}
 
 
 

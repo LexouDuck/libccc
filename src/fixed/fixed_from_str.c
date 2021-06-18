@@ -11,7 +11,7 @@
 
 
 #define PARSE_RETURN(VALUE) \
-	if (dest)	*dest = (VALUE);	return (i);
+	{	if (dest)	*dest = (VALUE);	return (i);	}
 
 
 
@@ -87,7 +87,7 @@ success:	\
 inline t_q##BITS	Q##BITS##_FromString##BASE(t_char const* str)						\
 {																						\
 	t_q##BITS	result = Q##BITS##_ERROR;												\
-	Q##BITS##_Parse(&result, str);														\
+	Q##BITS##_Parse##BASE(&result, str);												\
 	return (result);																	\
 }																						\
 

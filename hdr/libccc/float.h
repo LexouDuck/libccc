@@ -204,7 +204,6 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 
 //! The floating-point "not a number" value.
 /*!
-**	@isostd{C,https://en.cppreference.com/w/c/numeric/math/nan}
 **	@isostd{C,https://en.cppreference.com/w/c/numeric/math/NAN}
 */
 //!@{
@@ -508,9 +507,9 @@ t_f80					F80_FromInt(t_sint number);
 t_f128					F128_FromInt(t_sint number);
 #endif
 #define c_itofloat		Float_FromInt 	//!< @alias{Float_FromInt}
-#define c_itof16		F16_FromInt 	//!< @alias{F16_FromInt}
 #define c_itof32		F32_FromInt 	//!< @alias{F32_FromInt}
 #define c_itof64		F64_FromInt 	//!< @alias{F64_FromInt}
+#define c_itof80		F80_FromInt 	//!< @alias{F80_FromInt}
 #define c_itof128		F128_FromInt 	//!< @alias{F128_FromInt}
 //!@}
 
@@ -529,9 +528,9 @@ t_f80					F80_FromFixed(t_fixed number);
 t_f128					F128_FromFixed(t_fixed number);
 #endif
 #define c_qtofloat		Float_FromFixed	//!< @alias{Float_FromFixed}
-#define c_qtof16		F16_FromFixed	//!< @alias{F16_FromFixed}
 #define c_qtof32		F32_FromFixed	//!< @alias{F32_FromFixed}
 #define c_qtof64		F64_FromFixed	//!< @alias{F64_FromFixed}
+#define c_qtof80		F80_FromFixed	//!< @alias{F80_FromFixed}
 #define c_qtof128		F128_FromFixed	//!< @alias{F128_FromFixed}
 //!@}
 
@@ -550,9 +549,9 @@ t_f80	 				F80_FromFloat(t_float number);
 t_f128	 				F128_FromFloat(t_float number);
 #endif
 #define c_ftofloat		Float_FromFloat	//!< @alias{Float_FromFloat}
-#define c_ftof16		F16_FromFloat	//!< @alias{F16_FromFloat}
 #define c_ftof32		F32_FromFloat	//!< @alias{F32_FromFloat}
 #define c_ftof64		F64_FromFloat	//!< @alias{F64_FromFloat}
+#define c_ftof80		F80_FromFloat	//!< @alias{F80_FromFloat}
 #define c_ftof128		F128_FromFloat	//!< @alias{F128_FromFloat}
 //!@}
 
@@ -585,6 +584,18 @@ t_f128					F128_From(t_sint integer, t_sint exponent);
 #define c_tof80			F80_From	//!< @alias{F80_From}
 #define c_tof128		F128_From	//!< @alias{F128_From}
 //!@}
+
+
+
+// TODO t_float	Float_NaN(t_char const* str)
+/* 
+**	@isostd{C,https://en.cppreference.com/w/c/numeric/math/nan}
+*/
+
+// TODO t_float	Float_Infinity(void)
+/* 
+**	@nonstd
+*/
 
 
 
@@ -646,6 +657,8 @@ t_sint						F128_GetExp10(t_f128 number);
 ** ************************************************************************** *|
 */
 
+
+
 //! Get the shortest string representation of the given floating-point number (dec or exp), with 'precision' fractional digits
 /*!
 **	@nonstd `ftoa()`
@@ -705,20 +718,10 @@ _MALLOC()	t_char*					F128_ToString_Exp(t_f128 number, t_u8 precision);
 #define c_f80tostrsci				F80_ToString_Exp	//!< @alias{F80_ToString_Exp}
 #define c_f128tostrsci				F128_ToString_Exp	//!< @alias{F128_ToString_Exp}
 
-#define Float_ToString_Exponential	Float_ToString_Exp	//!< @alias{Float_ToString_Exp}
-#define Float_ToString_Scientific	Float_ToString_Exp	//!< @alias{Float_ToString_Exp}
 #define Float_ToString_Sci			Float_ToString_Exp	//!< @alias{Float_ToString_Exp}
-#define F32_ToString_Exponential	F32_ToString_Exp	//!< @alias{F32_ToString_Exp}
-#define F32_ToString_Scientific		F32_ToString_Exp	//!< @alias{F32_ToString_Exp}
 #define F32_ToString_Sci			F32_ToString_Exp	//!< @alias{F32_ToString_Exp}
-#define F64_ToString_Exponential	F64_ToString_Exp	//!< @alias{F64_ToString_Exp}
-#define F64_ToString_Scientific		F64_ToString_Exp	//!< @alias{F64_ToString_Exp}
 #define F64_ToString_Sci			F64_ToString_Exp	//!< @alias{F64_ToString_Exp}
-#define F80_ToString_Exponential	F80_ToString_Exp	//!< @alias{F80_ToString_Exp}
-#define F80_ToString_Scientific		F80_ToString_Exp	//!< @alias{F80_ToString_Exp}
 #define F80_ToString_Sci			F80_ToString_Exp	//!< @alias{F80_ToString_Exp}
-#define F128_ToString_Exponential	F128_ToString_Exp	//!< @alias{F128_ToString_Exp}
-#define F128_ToString_Scientific	F128_ToString_Exp	//!< @alias{F128_ToString_Exp}
 #define F128_ToString_Sci			F128_ToString_Exp	//!< @alias{F128_ToString_Exp}
 //!@}
 
@@ -818,6 +821,38 @@ _MALLOC()	t_char*		F128_ToString_Bin(t_f128 number, t_u8 precision);
 ** ************************************************************************** *|
 */
 
+
+
+// General parser functions
+
+
+
+//! Parse a floating-point number from the given number string `str`
+/*!
+**	@nonstd
+**
+**	@param	dest	The resulting number, parse from the given `str`
+**	@param	str		The numeric string to parse
+**	@returns
+**	The amount of characters parsed from the given `str`
+*/
+//!@{
+#define					Float_Parse	CONCAT(FIXED_TYPE,_Parse)
+t_size					F32_Parse	(t_f32	*dest, t_char const* str);
+t_size					F64_Parse	(t_f64	*dest, t_char const* str);
+#ifdef __float80
+t_size					F80_Parse	(t_f80	*dest, t_char const* str);
+#endif
+#ifdef __float128
+t_size					F128_Parse	(t_f128	*dest, t_char const* str);
+#endif
+#define c_fparse		Float_Parse	//!< @alias{Float_Parse}
+#define c_f32parse		F32_Parse	//!< @alias{F32_Parse}
+#define c_f64parse		F64_Parse	//!< @alias{F64_Parse}
+#define c_f80parse		F80_Parse	//!< @alias{F80_Parse}
+#define c_f128parse		F128_Parse	//!< @alias{F128_Parse}
+//!@}
+
 //! Parse a floating-point number from the given string (can be decimal/exponential/hexdecimal)
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/string/byte/atof}
@@ -845,60 +880,42 @@ t_f128					F128_FromString(t_char const* str);
 
 
 
-//! Parse the scientific notation of a floating-point number
+// Decimal parser functions
+
+
+
+//! Parse a floating-point number from the given decimal number string
 /*!
 **	@nonstd
 **
-**	@param	str	The string to parse a floating-point value from.
+**	@param	dest	The resulting number, parse from the given `str`
+**	@param	str		The numeric string to parse (must be decimal number string)
 **	@returns
-**	A floating-point value parsed from the given `str`
+**	The amount of characters parsed from the given `str`
 */
 //!@{
-#define									Float_FromString_Exp	CONCAT(FLOAT_TYPE,_FromString_Exp)
-t_f32									F32_FromString_Exp(t_char const* str);
-t_f64									F64_FromString_Exp(t_char const* str);
-#ifdef	__float80
-t_f80									F80_FromString_Exp(t_char const* str);
+#define					Float_Parse_Dec	CONCAT(FIXED_TYPE,_Parse_Dec)
+t_size					F32_Parse_Dec	(t_f32	*dest, t_char const* str);
+t_size					F64_Parse_Dec	(t_f64	*dest, t_char const* str);
+#ifdef __float80
+t_size					F80_Parse_Dec	(t_f80	*dest, t_char const* str);
 #endif
-#ifdef	__float128
-t_f128									F128_FromString_Exp(t_char const* str);
+#ifdef __float128
+t_size					F128_Parse_Dec	(t_f128	*dest, t_char const* str);
 #endif
-#define c_strexptof						Float_FromString_Exp//!< @alias{Float_FromString_Exp}
-#define c_strexptof32					F32_FromString_Exp	//!< @alias{F32_FromString_Exp}
-#define c_strexptof64					F64_FromString_Exp	//!< @alias{F64_FromString_Exp}
-#define c_strexptof80					F80_FromString_Exp	//!< @alias{F80_FromString_Exp}
-#define c_strexptof128					F128_FromString_Exp	//!< @alias{F128FromoString_Exp}
-
-#define c_strscitof						Float_FromString_Exp//!< @alias{Float_FromString_Exp}
-#define c_strscitof32					F32_FromString_Exp	//!< @alias{F32_FromString_Exp}
-#define c_strscitof64					F64_FromString_Exp	//!< @alias{F64_FromString_Exp}
-#define c_strscitof80					F80_FromString_Exp	//!< @alias{F80_FromString_Exp}
-#define c_strscitof128					F128_FromString_Exp	//!< @alias{F128FromoString_Exp}
-
-#define Float_FromString_Exponential	Float_FromString_Exp//!< @alias{Float_FromString_Exp}
-#define Float_FromString_Scientific		Float_FromString_Exp//!< @alias{Float_FromString_Exp}
-#define Float_FromString_Sci			Float_FromString_Exp//!< @alias{Float_FromString_Exp}
-#define F32_FromString_Exponential		F32_FromString_Exp	//!< @alias{F32_FromString_Exp}
-#define F32_FromString_Scientific		F32_FromString_Exp	//!< @alias{F32_FromString_Exp}
-#define F32_FromString_Sci				F32_FromString_Exp	//!< @alias{F32_FromString_Exp}
-#define F64_FromString_Exponential		F64_FromString_Exp	//!< @alias{F64_FromString_Exp}
-#define F64_FromString_Scientific		F64_FromString_Exp	//!< @alias{F64_FromString_Exp}
-#define F64_FromString_Sci				F64_FromString_Exp	//!< @alias{F64_FromString_Exp}
-#define F80_FromString_Exponential		F80_FromString_Exp	//!< @alias{F80_FromString_Exp}
-#define F80_FromString_Scientific		F80_FromString_Exp	//!< @alias{F80_FromString_Exp}
-#define F80_FromString_Sci				F80_FromString_Exp	//!< @alias{F80_FromString_Exp}
-#define F128_FromString_Exponential		F128_FromString_Exp	//!< @alias{F128FromoString_Exp}
-#define F128_FromString_Scientific		F128_FromString_Exp	//!< @alias{F128FromoString_Exp}
-#define F128_FromString_Sci				F128_FromString_Exp	//!< @alias{F128FromoString_Exp}
+#define c_fparsedec		Float_Parse_Dec	//!< @alias{Float_Parse_Dec}
+#define c_f32parsedec	F32_Parse_Dec	//!< @alias{F32_Parse_Dec}
+#define c_f64parsedec	F64_Parse_Dec	//!< @alias{F64_Parse_Dec}
+#define c_f80parsedec	F80_Parse_Dec	//!< @alias{F80_Parse_Dec}
+#define c_f128parsedec	F128_Parse_Dec	//!< @alias{F128_Parse_Dec}
 //!@}
-
-
 
 //! Parse the decimal representation of a floating-point number
 /*!
 **	@nonstd
 **
-**	@param	str	The string to parse a floating-point value from.
+**	@param	str	The string to parse a floating-point value from:
+**				it must be a number in decimal notation (ie: no `e` exponent allowed)
 **	@returns
 **	A floating-point value parsed from the given `str`
 */
@@ -921,11 +938,42 @@ t_f128					F128_FromString_Dec(t_char const* str);
 
 
 
+// Hexadecimal parser functions
+
+
+
+//! Parse a floating-point number from the given hexadecimal (base 16) number string
+/*!
+**	@nonstd
+**
+**	@param	dest	The resulting number, parse from the given `str`
+**	@param	str		The numeric string to parse (must be base 16) number string)
+**	@returns
+**	The amount of characters parsed from the given `str`
+*/
+//!@{
+#define					Float_Parse_Hex	CONCAT(FIXED_TYPE,_Parse_Hex)
+t_size					F32_Parse_Hex	(t_f32	*dest, t_char const* str);
+t_size					F64_Parse_Hex	(t_f64	*dest, t_char const* str);
+#ifdef __float80
+t_size					F80_Parse_Hex	(t_f80	*dest, t_char const* str);
+#endif
+#ifdef __float128
+t_size					F128_Parse_Hex	(t_f128	*dest, t_char const* str);
+#endif
+#define c_fparsehex		Float_Parse_Hex	//!< @alias{Float_Parse_Hex}
+#define c_f32parsehex	F32_Parse_Hex	//!< @alias{F32_Parse_Hex}
+#define c_f64parsehex	F64_Parse_Hex	//!< @alias{F64_Parse_Hex}
+#define c_f80parsehex	F80_Parse_Hex	//!< @alias{F80_Parse_Hex}
+#define c_f128parsehex	F128_Parse_Hex	//!< @alias{F128_Parse_Hex}
+//!@}
+
 //! Parse the hexadecimal representation of a floating-point number
 /*!
 **	@nonstd
 **
-**	@param	str	The string to parse a floating-point value from.
+**	@param	str	The string to parse a floating-point value from:
+**				it must be in hexadecimal float notation (ie: with `p` exponent)
 **	@returns
 **	A floating-point value parsed from the given `str`
 */
@@ -948,11 +996,100 @@ t_f128					F128_FromString_Hex(t_char const* str);
 
 
 
+// Octal parser functions
+
+
+
+//! Parse a floating-point number from the given octal (base 8) number string
+/*!
+**	@nonstd
+**
+**	@param	dest	The resulting number, parse from the given `str`
+**	@param	str		The numeric string to parse (must be base 8) number string)
+**	@returns
+**	The amount of characters parsed from the given `str`
+*/
+//!@{
+#define					Float_Parse_Oct	CONCAT(FIXED_TYPE,_Parse_Oct)
+t_size					F32_Parse_Oct	(t_f32	*dest, t_char const* str);
+t_size					F64_Parse_Oct	(t_f64	*dest, t_char const* str);
+#ifdef __float80
+t_size					F80_Parse_Oct	(t_f80	*dest, t_char const* str);
+#endif
+#ifdef __float128
+t_size					F128_Parse_Oct	(t_f128	*dest, t_char const* str);
+#endif
+#define c_fparseoct		Float_Parse_Oct	//!< @alias{Float_Parse_Oct}
+#define c_f32parseoct	F32_Parse_Oct	//!< @alias{F32_Parse_Oct}
+#define c_f64parseoct	F64_Parse_Oct	//!< @alias{F64_Parse_Oct}
+#define c_f80parseoct	F80_Parse_Oct	//!< @alias{F80_Parse_Oct}
+#define c_f128parseoct	F128_Parse_Oct	//!< @alias{F128_Parse_Oct}
+//!@}
+
+//! Parse the octal representation of a floating-point number
+/*!
+**	@nonstd
+**
+**	@param	str	The string to parse a floating-point value from:
+**				it must be in octal float notation (ie: with `p` exponent)
+**	@returns
+**	A floating-point value parsed from the given `str`
+*/
+//!@{
+#define					Float_FromString_Oct	CONCAT(TYPE_FLOAT,_FromString_Oct)
+t_f32					F32_FromString_Oct(t_char const* str);
+t_f64					F64_FromString_Oct(t_char const* str);
+#ifdef	__float80
+t_f80					F80_FromString_Oct(t_char const* str);
+#endif
+#ifdef	__float128
+t_f128					F128_FromString_Oct(t_char const* str);
+#endif
+#define c_strocttof		Float_FromString_Oct//!< @alias{Float_FromString_Oct}
+#define c_strocttof32	F32_FromString_Oct	//!< @alias{F32_FromString_Oct}
+#define c_strocttof64	F64_FromString_Oct	//!< @alias{F64_FromString_Oct}
+#define c_strocttof80	F80_FromString_Oct	//!< @alias{F80_FromString_Oct}
+#define c_strocttof128	F128_FromString_Oct	//!< @alias{F128_FromString_Oct}
+//!@}
+
+
+
+// Binary parser functions
+
+
+
+//! Parse a floating-point number from the given binary (base 2) number string
+/*!
+**	@nonstd
+**
+**	@param	dest	The resulting number, parse from the given `str`
+**	@param	str		The numeric string to parse (must be base 2) number string)
+**	@returns
+**	The amount of characters parsed from the given `str`
+*/
+//!@{
+#define					Float_Parse_Bin	CONCAT(FIXED_TYPE,_Parse_Bin)
+t_size					F32_Parse_Bin	(t_f32	*dest, t_char const* str);
+t_size					F64_Parse_Bin	(t_f64	*dest, t_char const* str);
+#ifdef __float80
+t_size					F80_Parse_Bin	(t_f80	*dest, t_char const* str);
+#endif
+#ifdef __float128
+t_size					F128_Parse_Bin	(t_f128	*dest, t_char const* str);
+#endif
+#define c_fparsebin		Float_Parse_Bin	//!< @alias{Float_Parse_Bin}
+#define c_f32parsebin	F32_Parse_Bin	//!< @alias{F32_Parse_Bin}
+#define c_f64parsebin	F64_Parse_Bin	//!< @alias{F64_Parse_Bin}
+#define c_f80parsebin	F80_Parse_Bin	//!< @alias{F80_Parse_Bin}
+#define c_f128parsebin	F128_Parse_Bin	//!< @alias{F128_Parse_Bin}
+//!@}
+
 //! Parse the binary representation of a floating-point number
 /*!
 **	@nonstd
 **
-**	@param	str	The string to parse a floating-point value from.
+**	@param	str	The string to parse a floating-point value from:
+**				it must be in binary float notation (ie: with `p` exponent)
 **	@returns
 **	A floating-point value parsed from the given `str`
 */
