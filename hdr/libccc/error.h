@@ -45,6 +45,11 @@ typedef void (*f_ccchandler)(e_cccerror, t_char const*);
 
 
 
+#define PARSE_RETURN(VALUE) \
+	{	if (dest)	*dest = (VALUE);	return (i);	}
+
+
+
 #endif
 #ifndef __LIBCCC_ERROR_F
 #define __LIBCCC_ERROR_F

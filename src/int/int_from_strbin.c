@@ -9,11 +9,6 @@
 
 
 
-#define PARSE_RETURN(VALUE) \
-	{	if (dest)	*dest = (VALUE);	return (i);	}
-
-
-
 #define DEFINEFUNC_UINT_FROMSTRBIN(BITS) \
 t_size	U##BITS##_Parse_Bin(t_u##BITS* dest, t_char const* str)						\
 {																					\

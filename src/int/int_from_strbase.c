@@ -8,11 +8,6 @@
 
 
 
-#define PARSE_RETURN(VALUE) \
-	{	if (dest)	*dest = (VALUE);	return (i);	}
-
-
-
 #define INVALID_BASE_SIGNCHAR	-1
 #define INVALID_BASE_DUPLICATE	-2
 

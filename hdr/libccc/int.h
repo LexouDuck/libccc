@@ -430,6 +430,8 @@ TYPEDEF_ALIAS(t_sint, SINT, PRIMITIVE)
 
 #endif
 
+
+
 #if (LIBCONFIG_SINT_ERROR == 0)
 
 	#define S8_ERROR	((t_s8)0)
@@ -479,12 +481,12 @@ TYPEDEF_ALIAS(t_sint, SINT, PRIMITIVE)
 	#ifdef __int128
 	#define S128_ERROR	((t_s128)(((t_s128)0x8000000000000000 << 64) | 0x0000000000000000))
 	#define S128_MAX	((t_s128)(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF)) //!< The largest representable value for a 128-bit signed integer	(+170141183460469231731687303715884105727)
-	#define S128_MIN	((t_s128)(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF)) //!< The minimum representable value for a 128-bit signed integer	(−170141183460469231731687303715884105728)
+	#define S128_MIN	((t_s128)-(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF))//!< The minimum representable value for a 128-bit signed integer	(−170141183460469231731687303715884105728)
 	#endif
 
 	#define SINT_ERROR	((t_sint)((~(t_uint)0) >> 1) + 1))
 	#define SINT_MAX	((t_sint)((~(t_uint)0) >> 1))	//!< The largest representable value for a configurable-size signed integer type
-	#define SINT_MIN	((t_sint)((~(t_uint)0) >> 1))	//!< The minimum representable value for a configurable-size signed integer type
+	#define SINT_MIN	((t_sint)-((~(t_uint)0) >> 1))	//!< The minimum representable value for a configurable-size signed integer type
 
 #endif
 

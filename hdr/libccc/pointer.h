@@ -135,6 +135,79 @@ TYPEDEF_ALIAS(		t_uintptr, UINTPTR, PRIMITIVE)
 
 
 
+#if (LIBCONFIG_UINT_ERROR == 0)
+
+	#define SIZE_ERROR	0
+	#ifndef SIZE_MAX
+	#define SIZE_MAX	((t_size)-1)
+	#endif
+
+	#define UINTMAX_ERROR	0
+	#ifndef UINTMAX_MAX
+	#define UINTMAX_MAX	((t_uintmax)-1)
+	#endif
+
+	#define UINTPTR_ERROR	0
+	#ifndef UINTPTR_MAX
+	#define UINTPTR_MAX	((t_uintptr)-1)
+	#endif
+
+#else
+
+	#define SIZE_ERROR		((t_size)-1)
+	#undef	SIZE_MAX
+	#define SIZE_MAX		((t_size)-2)
+
+	#define UINTMAX_ERROR	((t_uintmax)-1)
+	#undef	UINTMAX_MAX
+	#define UINTMAX_MAX		((t_uintmax)-2)
+
+	#define UINTPTR_ERROR	((t_uintptr)-1)
+	#undef	UINTPTR_MAX
+	#define UINTPTR_MAX		((t_uintptr)-2)
+
+#endif
+
+
+
+#if (LIBCONFIG_SINT_ERROR == 0)
+
+	#define PTRDIFF_ERROR	0
+
+	#define SINTMAX_ERROR	0
+
+	#define SINTPTR_ERROR	0
+
+#else
+
+	#define PTRDIFF_ERROR	((t_ptrdiff)((~(t_size)0) >> 1) + 1))
+	#undef	PTRDIFF_MAX
+	#define PTRDIFF_MAX		((t_ptrdiff)((~(t_size)0) >> 1))
+	#undef	PTRDIFF_MIN
+	#define PTRDIFF_MIN		((t_ptrdiff)-((~(t_size)0) >> 1))
+
+	#define SINTMAX_ERROR	((t_sintmax)((~(t_uintmax)0) >> 1) + 1))
+	#undef	INTMAX_MAX
+	#define INTMAX_MAX		((t_sintmax)((~(t_uintmax)0) >> 1))
+	#undef	INTMAX_MIN
+	#define INTMAX_MIN		((t_sintmax)-((~(t_uintmax)0) >> 1))
+
+	#define SINTPTR_ERROR	((t_sintptr)((~(t_uintptr)0) >> 1) + 1))
+	#undef	INTPTR_MAX
+	#define INTPTR_MAX		((t_sintptr)((~(t_uintptr)0) >> 1))
+	#undef	INTPTR_MIN
+	#define INTPTR_MIN		((t_sintptr)-((~(t_uintptr)0) >> 1))
+
+#endif
+
+#define SINTMAX_MIN		INTMAX_MIN
+#define SINTMAX_MAX		INTMAX_MAX
+
+#define SINTPTR_MIN		INTPTR_MIN
+#define SINTPTR_MAX		INTPTR_MAX
+
+
+
 #endif
 #ifndef __LIBCCC_POINTER_F
 #define __LIBCCC_POINTER_F
@@ -169,14 +242,6 @@ _MALLOC()
 t_char*							Size_ToString_Pretty(t_size value);
 #define c_sizetostr_readable	Size_ToString_Pretty //!< @alias{Size_ToString_Pretty}
 
-//! Parse a size integer value from the given string `str`
-/*!
-**	@nonstd
-*/
-t_size					Size_FromString(t_char const* str);
-#define c_strtosize		Size_FromString //!< @alias{Size_FromString}
-
-
 
 
 //! Get the string decimal representation of a pointer/address value
@@ -194,6 +259,72 @@ t_char*					Pointer_ToString(void const* ptr);
 _MALLOC()
 t_char*					Pointer_ToString_Hex(void const* ptr);
 #define c_ptrtostrhex	Pointer_ToString_Hex //!< @alias{Pointer_ToString_Hex}
+
+
+
+/*
+** ************************************************************************** *|
+**                        String Conversion Functions                         *|
+** ************************************************************************** *|
+*/
+
+// TODO define macro alias functions UIntMax_Parse() and SIntMax_Parse()
+
+
+
+//! @see #t_size, UInt_FromString()
+t_size					Size_Parse(t_size *dest, t_char const* str);
+#define c_sizeparse		Size_Parse //!< @alias{Size_Parse}
+
+//! @see #t_size, UInt_FromString()
+t_size					Size_FromString(t_char const* str);
+#define c_strtosize		Size_FromString //!< @alias{Size_FromString}
+
+
+
+//! @see #t_ptrdiff, SInt_FromString()
+t_size					PtrDiff_Parse(t_ptrdiff *dest, t_char const* str);
+#define c_ptrdiffparse	PtrDiff_Parse //!< @alias{PtrDiff_Parse}
+
+//! @see #t_ptrdiff, SInt_FromString()
+t_ptrdiff				PtrDiff_FromString(t_char const* str);
+#define c_strtoptrdiff	PtrDiff_FromString //!< @alias{PtrDiff_FromString}
+
+
+
+//! @see #t_uintmax, UInt_Parse()
+t_size					UIntMax_Parse(t_uintmax *dest, t_char const* str);
+#define c_uintmaxparse	UIntMax_Parse //!< @alias{UIntMax_Parse}
+
+//! @see #t_uintmax, UInt_FromString()
+t_uintmax				UIntMax_FromString(t_char const* str);
+#define c_strtouintmax	UIntMax_FromString //!< @alias{UIntMax_FromString}
+
+//! @see #t_sintmax, SInt_Parse()
+t_size					SIntMax_Parse(t_sintmax *dest, t_char const* str);
+#define c_sintmaxparse	SIntMax_Parse //!< @alias{SIntMax_Parse}
+
+//! @see #t_sintmax, SInt_FromString()
+t_sintmax				SIntMax_FromString(t_char const* str);
+#define c_strtosintmax	SIntMax_FromString //!< @alias{SIntMax_FromString}
+
+
+
+//! @see #t_uintptr, UInt_Parse()
+t_size					UIntPtr_Parse(t_uintptr *dest, t_char const* str);
+#define c_uintptrparse	UIntPtr_Parse //!< @alias{UIntPtr_Parse}
+
+//! @see #t_uintptr, UInt_FromString()
+t_uintptr				UIntPtr_FromString(t_char const* str);
+#define c_strtouintptr	UIntPtr_FromString //!< @alias{UIntPtr_FromString}
+
+//! @see #t_sintptr, SInt_Parse()
+t_size					SIntPtr_Parse(t_sintptr *dest, t_char const* str);
+#define c_sintptrparse	SIntPtr_Parse //!< @alias{SIntPtr_Parse}
+
+//! @see #t_sintptr, SInt_FromString()
+t_sintptr				SIntPtr_FromString(t_char const* str);
+#define c_strtosintptr	SIntPtr_FromString //!< @alias{SIntPtr_FromString}
 
 
 

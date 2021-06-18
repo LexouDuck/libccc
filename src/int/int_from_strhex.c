@@ -8,11 +8,6 @@
 
 
 
-#define PARSE_RETURN(VALUE) \
-	{	if (dest)	*dest = (VALUE);	return (i);	}
-
-
-
 static
 inline
 int	GetDigit_FromString_Hex(char c)

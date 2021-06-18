@@ -9,11 +9,6 @@
 
 
 
-#define PARSE_RETURN(VALUE) \
-	{	if (dest)	*dest = (VALUE);	return (i);	}
-
-
-
 #define DEFINEFUNC_UINT_FROMSTRDEC(BITS) \
 t_size	U##BITS##_Parse_Dec(t_u##BITS* dest, t_char const* str)						\
 {																					\
