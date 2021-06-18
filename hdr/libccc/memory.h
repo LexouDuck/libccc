@@ -340,6 +340,41 @@ t_bool				Memory_Swap(void* ptr1, void* ptr2, t_size size); // TODO change retru
 ** ************************************************************************** *|
 */
 
+//! Get a subsection of `n` bits from the data in `ptr`, starting at bit index `bit`.
+/*!
+**	@nonstd
+**
+**	@param	ptr		The point which stores the data
+**	@param	bit		The offset at which to get (in bits)
+**	@param	n		The amount of bits to copy into the return value (max: 128)
+**	@returns
+**	A subsection of the data in `ptr` argument which is `n` bits long,
+**	starting at the given bit index `bit`, and bit-shifting the resulting
+**	bits to the right by `bit` bits (so as to center the value back to zero).
+**	TODO document how this function handles endian-ness ?
+*/
+t_uintmax			Memory_GetBits(void* ptr, t_size bit, t_u8 n);
+#define c_getbits	Memory_GetBits //!< @alias{Memory_GetBits}
+
+//! Set a subsection of `n` bits from the data in `ptr`, starting at bit index `bit`.
+/*!
+**	@nonstd
+**
+**	@param	ptr		The point which stores the data
+**	@param	bit		The offset at which to get (in bits)
+**	@param	n		The amount of bits to copy into the return value (max: 128)
+**	@param	value	The bits to write to `ptr + bit`
+**	@returns
+**	A subsection of the data in `ptr` argument which is `n` bits long,
+**	starting at the given bit index `bit`, and bit-shifting the resulting
+**	bits to the right by `bit` bits (so as to center the value back to zero).
+**	TODO document how this function handles endian-ness ?
+*/
+void				Memory_SetBits(void* ptr, t_size bit, t_u8 n, t_uintmax value);
+#define c_setbits	Memory_SetBits //!< @alias{Memory_SetBits}
+
+
+
 //! Get a subsection of `n` bits from `value`, starting at bit index `bit`.
 /*!
 **	@nonstd
@@ -349,8 +384,8 @@ t_bool				Memory_Swap(void* ptr1, void* ptr2, t_size size); // TODO change retru
 **	starting at the given bit index `bit`, and bit-shifting the resulting
 **	bits to the right by `bit` bits (so as to center the value back to zero).
 */
-t_uintmax			Memory_GetBits(t_uintmax value, t_u8 bit, t_u8 n);
-#define c_getbits	Memory_GetBits //!< @alias{Memory_GetBits}
+t_uintmax			Memory_BitRegion(t_uintmax value, t_u8 bit, t_u8 n);
+#define c_bitregion	Memory_BitRegion //!< @alias{Memory_BitRegion}
 
 
 
