@@ -148,7 +148,7 @@ void	print_test(
 
 
 
-#define DEFINE_TESTFUNCTION_INT(NAME, SIGNED) \
+#define DEFINE_TESTFUNCTION_INT(NAME, SIGNED, BITS) \
 void	print_test_##NAME(s_test_##NAME* test, char const* args)							\
 {																							\
 	int error;																				\
@@ -158,38 +158,38 @@ void	print_test_##NAME(s_test_##NAME* test, char const* args)							\
 		error = !HANDLE_ERRORS_NULLPOINTER;													\
 	else error = (test->result != test->expect);											\
 	print_test(test->name, test->function, args,											\
-		(test->result_sig ? signals[test->result_sig] : SIGNED##inttostr(test->result)),	\
-		(test->expect_sig ? signals[test->expect_sig] : SIGNED##inttostr(test->expect)),	\
+		(test->result_sig ? signals[test->result_sig] : SIGNED##BITS##tostr(test->result)),	\
+		(test->expect_sig ? signals[test->expect_sig] : SIGNED##BITS##tostr(test->expect)),	\
 		test->can_sig,																		\
 		error, NULL);																		\
 }																							\
 
-DEFINE_TESTFUNCTION_INT(bool,	u)
+DEFINE_TESTFUNCTION_INT(bool,	u, 64)
 
-DEFINE_TESTFUNCTION_INT( u8, 	u)
-DEFINE_TESTFUNCTION_INT(u16,	u)
-DEFINE_TESTFUNCTION_INT(u32,	u)
-DEFINE_TESTFUNCTION_INT(u64,	u)
+DEFINE_TESTFUNCTION_INT( u8, 	u, 8)
+DEFINE_TESTFUNCTION_INT(u16,	u, 16)
+DEFINE_TESTFUNCTION_INT(u32,	u, 32)
+DEFINE_TESTFUNCTION_INT(u64,	u, 64)
 #ifdef __int128
-DEFINE_TESTFUNCTION_INT(u128,	u)
+DEFINE_TESTFUNCTION_INT(u128,	u, 128)
 #endif
-DEFINE_TESTFUNCTION_INT(uint,	u)
+DEFINE_TESTFUNCTION_INT(uint,	u, 64)
 
-DEFINE_TESTFUNCTION_INT( s8, 	s)
-DEFINE_TESTFUNCTION_INT(s16,	s)
-DEFINE_TESTFUNCTION_INT(s32,	s)
-DEFINE_TESTFUNCTION_INT(s64,	s)
+DEFINE_TESTFUNCTION_INT( s8, 	s, 8)
+DEFINE_TESTFUNCTION_INT(s16,	s, 16)
+DEFINE_TESTFUNCTION_INT(s32,	s, 32)
+DEFINE_TESTFUNCTION_INT(s64,	s, 64)
 #ifdef __int128
-DEFINE_TESTFUNCTION_INT(s128,	s)
+DEFINE_TESTFUNCTION_INT(s128,	s, 128)
 #endif
-DEFINE_TESTFUNCTION_INT(sint,	s)
+DEFINE_TESTFUNCTION_INT(sint,	s, 64)
 
-DEFINE_TESTFUNCTION_INT(size,	u)
-DEFINE_TESTFUNCTION_INT(ptrdiff,s)
-DEFINE_TESTFUNCTION_INT(sintptr,s)
-DEFINE_TESTFUNCTION_INT(uintptr,u)
-DEFINE_TESTFUNCTION_INT(sintmax,s)
-DEFINE_TESTFUNCTION_INT(uintmax,u)
+DEFINE_TESTFUNCTION_INT(size,	u, 64)
+DEFINE_TESTFUNCTION_INT(ptrdiff,s, 64)
+DEFINE_TESTFUNCTION_INT(sintptr,s, 64)
+DEFINE_TESTFUNCTION_INT(uintptr,u, 64)
+DEFINE_TESTFUNCTION_INT(sintmax,s, 64)
+DEFINE_TESTFUNCTION_INT(uintmax,u, 64)
 
 
 
@@ -295,8 +295,8 @@ void	print_test_sign(s_test_sign* test, char const* args)
 			return;
 	}
 	print_test(test->name, test->function, args,
-		(test->result_sig ? signals[test->result_sig] : sinttostr(test->result)),
-		(test->expect_sig ? signals[test->expect_sig] : sinttostr(test->expect)),
+		(test->result_sig ? signals[test->result_sig] : s64tostr(test->result)),
+		(test->expect_sig ? signals[test->expect_sig] : s64tostr(test->expect)),
 		test->can_sig,
 		error, (warning ? tmp : NULL));
 	if (tmp)	free(tmp);

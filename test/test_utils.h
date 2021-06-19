@@ -84,9 +84,16 @@ char*	strtoescape(char const* str);
 
 char*	strsurround(char const* str, char begin, char end);
 
-char*	sinttostr(t_s64 number);
-
-char*	uinttostr(t_u64 number);
+char*	u8tostr(	t_u8	number);
+char*	s8tostr(	t_s8	number);
+char*	u16tostr(	t_u16	number);
+char*	s16tostr(	t_s16	number);
+char*	u32tostr(	t_u32	number);
+char*	s32tostr(	t_s32	number);
+char*	u64tostr(	t_u64	number);
+char*	s64tostr(	t_s64	number);
+char*	u128tostr(	t_u128	number);
+char*	s128tostr(	t_s128	number);
 
 char*	ptrtostr(void const* ptr);
 
