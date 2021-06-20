@@ -84,6 +84,7 @@ typedef s_kvt	s_toml;
 **	- (TOML) All numeric literal notations are accepted ("0x" = hexadecimal, "0o" = octal, "0b" = binary)
 **	- Arrays can be written using curly braces '{' and '}', to avoid confusion with sections
 **	- Unlike regular TOML, this API can behave in a case-sensitive fashion, if needed
+**	- `null` is a valid value for any key/value pair (so as to be inter-compatible with JSON, YAML, etc)
 */
 //!@{
 t_size					TOML_Parse_Lenient(s_toml* *dest, t_utf8 const* str);
@@ -144,11 +145,11 @@ s_toml*					TOML_FromString_Strict(t_utf8 const* str);
 **	The amount of characters written to the given `dest` buffer
 */
 //!@{
-t_bool					TOML_Print_Pretty(t_utf8* dest, s_toml const* item, t_size n);
+t_size					TOML_Print_Pretty(t_utf8* dest, s_toml const* item, t_size n);
 #define c_tomlprintfmt 	TOML_Print_Pretty
 
 //! Like JSON_Print_Pretty(), but this prints the minimum amount of characters possible
-t_bool					TOML_Print_Minify(t_utf8* dest, s_toml const* item, t_size n);
+t_size					TOML_Print_Minify(t_utf8* dest, s_toml const* item, t_size n);
 #define c_tomlprintmin 	TOML_Print_Minify
 //!@}
 

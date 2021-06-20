@@ -15,7 +15,13 @@ typedef s_kvt_print	s_json_print;
 #define ENSURE(NEEDED) \
 	result = KVT_Print_EnsureBuffer(p, (NEEDED));	\
 	if (result == NULL)								\
-		return (FALSE);								\
+		return (ERROR);								\
+
+#define JSON_Print_UpdateOffset \
+		KVT_Print_UpdateOffset
+
+#define JSON_NUMBER_BUFFERSIZE \
+		KVT_NUMBER_BUFFERSIZE
 	
 
 
@@ -35,18 +41,16 @@ t_bool	JSON_Print_StringPtr(t_utf8 const* input, s_json_print* p)
 	t_utf8 const* input_pointer = NULL;
 	t_utf8* result = NULL;
 	t_utf8* str;
-	t_size output_length = 0;
+	t_size result_length = 0;
 	t_size escape_characters = 0; //!< amount of additional characters needed for escaping
 
-	if (p == NULL)
-		return (FALSE);
-
+	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (ERROR);)
 	// empty string
 	if (input == NULL)
 	{
 		ENSURE(sizeof("\"\""))
 		String_Copy(result, "\"\"");
-		return (TRUE);
+		return (OK);
 	}
 	// set "flag" to 1 if something needs to be escaped
 	input_pointer = input;
@@ -74,18 +78,18 @@ t_bool	JSON_Print_StringPtr(t_utf8 const* input, s_json_print* p)
 		}
 		input_pointer++;
 	}
-	output_length = (t_size)(input_pointer - input) + escape_characters;
+	result_length = (t_size)(input_pointer - input) + escape_characters;
 
-	ENSURE(output_length + sizeof("\"\""))
+	ENSURE(result_length + sizeof("\"\""))
 
 	// no characters have to be escaped
 	if (escape_characters == 0)
 	{
 		result[0] = '\"';
-		Memory_Copy(result + 1, input, output_length);
-		result[output_length + 1] = '\"';
-		result[output_length + 2] = '\0';
-		return (TRUE);
+		Memory_Copy(result + 1, input, result_length);
+		result[result_length + 1] = '\"';
+		result[result_length + 2] = '\0';
+		return (OK);
 	}
 	result[0] = '\"';
 	str = result + 1;
@@ -145,7 +149,7 @@ t_bool	JSON_Print_StringPtr(t_utf8 const* input, s_json_print* p)
 	}
 	*str++ = '\"';
 	*str++ = '\0';
-	return (TRUE);
+	return (OK);
 }
 
 // Invoke JSON_Print_StringPtr (which is useful) on an item.
@@ -155,30 +159,17 @@ t_bool	JSON_Print_String(s_json const* item, s_json_print* p)
 	return (JSON_Print_StringPtr((t_utf8*)item->value.string, p));
 }
 
-// calculate the new length of the string in a s_json_print and update the offset
-static
-void	JSON_Print_UpdateOffset(s_json_print* p)
-{
-	t_utf8 const* buffer_pointer = NULL;
-	if ((p == NULL) || (p->buffer == NULL))
-		return;
-	buffer_pointer = p->buffer + p->offset;
-	p->offset += String_Length(buffer_pointer);
-}
-
 // Render the number nicely from the given item into a string.
-#define JSON_NUMBER_BUFFERSIZE	26
 static
 t_bool	JSON_Print_Number(s_json const* item, s_json_print* p, t_bool bigint)
 {
 	t_utf8*	result = NULL;
-	t_sint	length = 0;
+	t_size	length = 0;
 	t_size	i = 0;
 	t_f64	test = 0.0;
 	t_utf8	number_buffer[JSON_NUMBER_BUFFERSIZE] = {0}; // temporary buffer to print the number into
 
-	if (p == NULL)
-		return (FALSE);
+	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (ERROR);)
 	if (bigint) // TODO handle variable-length integers
 	{
 		t_s64	d = item->value.integer;
@@ -209,20 +200,21 @@ t_bool	JSON_Print_Number(s_json const* item, s_json_print* p, t_bool bigint)
 			}
 		}
 	}
-	// sprintf failed or buffer overrun occurred
-	if ((length < 0) || (length > (t_sint)(sizeof(number_buffer) - 1)))
-		return (FALSE);
+	HANDLE_ERROR_SF(PRINT, (length == 0), return (ERROR);,
+		": Could not print number value for item with key \"%s\"", item->key)
+	HANDLE_ERROR_SF(PRINT, (length > (sizeof(number_buffer) - 1)), return (ERROR);,
+		": Could not print number value for item with key \"%s\" -> buffer overrun occurred", item->key)
 	// reserve appropriate space in the output
-	ENSURE((t_size)length + sizeof(""))
+	ENSURE(length + sizeof(""))
 	// copy the printed number to the output
-	for (i = 0; i < ((t_size)length); ++i)
+	for (i = 0; i < length; ++i)
 	{
 		result[i] = number_buffer[i];
 	}
 	// TODO ? replace any locale-dependent decimal point with '.' (inspect whether printf/snprintf may output with other decimal point chars ?)
 	result[i] = '\0';
-	p->offset += (t_size)length;
-	return (TRUE);
+	p->offset += length;
+	return (OK);
 }
 
 
@@ -236,8 +228,7 @@ t_bool	JSON_Print_Array(s_json const* item, s_json_print* p)
 	t_size	length = 0;
 	t_bool	multiline = p->format;
 
-	if (p == NULL)
-		return (FALSE);
+	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (ERROR);)
 	// Compose the output array.
 	if (!(current_item && (current_item->next || current_item->prev != current_item)))
 		multiline = FALSE;
@@ -273,8 +264,8 @@ t_bool	JSON_Print_Array(s_json const* item, s_json_print* p)
 			}
 			p->offset += p->depth + 1;
 		}
-		if (!JSON_Print_Value(current_item, p))
-			return (FALSE);
+		if (JSON_Print_Value(current_item, p))
+			return (ERROR);
 		JSON_Print_UpdateOffset(p);
 		length = (t_size)(current_item->next ? 1 : 0);
 		ENSURE(length + 1)
@@ -304,7 +295,7 @@ t_bool	JSON_Print_Array(s_json const* item, s_json_print* p)
 //		*result++ = ' ';
 	*result++ = ']';
 	*result = '\0';
-	return (TRUE);
+	return (OK);
 }
 
 
@@ -318,9 +309,7 @@ t_bool	JSON_Print_Object(s_json const* item, s_json_print* p)
 	t_size	length = 0;
 	t_bool	multiline = p->format;
 
-	if (p == NULL)
-		return (FALSE);
-
+	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (ERROR);)
 	if (!(current_item && (current_item->next || current_item->prev != current_item)))
 		multiline = FALSE;
 	if (multiline &&
@@ -356,8 +345,8 @@ t_bool	JSON_Print_Object(s_json const* item, s_json_print* p)
 			p->offset += p->depth + 1;
 		}
 		// print key
-		if (!JSON_Print_StringPtr(current_item->key, p))
-			return (FALSE);
+		if (JSON_Print_StringPtr(current_item->key, p))
+			return (ERROR);
 		JSON_Print_UpdateOffset(p);
 
 		length = (t_size)(p->format ? 2 : 1);
@@ -370,8 +359,8 @@ t_bool	JSON_Print_Object(s_json const* item, s_json_print* p)
 		p->offset += length;
 
 		// print value
-		if (!JSON_Print_Value(current_item, p))
-			return (FALSE);
+		if (JSON_Print_Value(current_item, p))
+			return (ERROR);
 		JSON_Print_UpdateOffset(p);
 
 		// print comma if not last
@@ -403,7 +392,7 @@ t_bool	JSON_Print_Object(s_json const* item, s_json_print* p)
 //		*result++ = ' ';
 	*result++ = '}';
 	*result = '\0';
-	return (TRUE);
+	return (OK);
 }
 
 
@@ -414,9 +403,8 @@ t_bool	JSON_Print_Value(s_json const* item, s_json_print* p)
 	t_utf8* result = NULL;
 	t_utf8 const* str;
 
-	if ((item == NULL) || (p == NULL))
-		return (FALSE);
-
+	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (ERROR);)
+	HANDLE_ERROR(NULLPOINTER, (item == NULL), return (ERROR);)
 	switch ((item->type) & DYNAMICTYPE_MASK)
 	{
 		case DYNAMICTYPE_INTEGER: return (JSON_Print_Number(item, p, TRUE));
@@ -429,28 +417,28 @@ t_bool	JSON_Print_Value(s_json const* item, s_json_print* p)
 			str = "null";
 			ENSURE(String_Length(str) + 1)
 			String_Copy(result, str);
-			return (TRUE);
+			return (OK);
 		}
 		case DYNAMICTYPE_BOOLEAN:
 		{
 			str = (item->value.boolean ? "true" : "false");
 			ENSURE(String_Length(str) + 1)
 			String_Copy(result, str);
-			return (TRUE);
+			return (OK);
 		}
 		case DYNAMICTYPE_RAW:
 		{
 			t_size raw_length = 0;
-			if (item->value.string == NULL)
-				return (FALSE);
-
+			HANDLE_ERROR_SF(PRINT, (item->value.string == NULL), return (ERROR);,
+				"Item with key \"%s\" is of 'raw string' type, but its value is null", item->key)
 			raw_length = String_Length(item->value.string) + sizeof("");
 			ENSURE(raw_length)
 			Memory_Copy(result, item->value.string, raw_length);
-			return (TRUE);
+			return (OK);
 		}
 		default:
-			return (FALSE);
+			HANDLE_ERROR_SF(PRINT, (TRUE), return (ERROR);,
+				"Cannot print item with key \"%s\", has invalid type (%i)", item->key, item->type)
 	}
 }
 
@@ -470,7 +458,7 @@ t_utf8*	JSON_Print_(s_json const* item, t_bool format)
 	p->buffer = (t_utf8*)Memory_Allocate(default_buffer_size);
 	HANDLE_ERROR(ALLOCFAILURE, (p->buffer == NULL), goto failure;)
 	// print the value
-	if (!JSON_Print_Value(item, p))
+	if (JSON_Print_Value(item, p))
 		goto failure;
 	JSON_Print_UpdateOffset(p);
 
@@ -554,14 +542,14 @@ t_utf8*	JSON_Print_Buffered(s_json const* item, t_sint prebuffer, t_bool format)
 {
 	s_json_print p = { 0 };
 
-	HANDLE_ERROR(LENGTH2SMALL, (prebuffer < 0), return (FALSE);)
+	HANDLE_ERROR(LENGTH2SMALL, (prebuffer < 0), return (ERROR);)
 	p.buffer = (t_utf8*)Memory_Allocate((t_size)prebuffer);
 	HANDLE_ERROR(ALLOCFAILURE, (p.buffer == NULL), return (NULL);)
 	p.length = (t_size)prebuffer;
 	p.offset = 0;
 	p.noalloc = FALSE;
 	p.format = format;
-	if (!JSON_Print_Value(item, &p))
+	if (JSON_Print_Value(item, &p))
 	{
 		Memory_Free(p.buffer);
 		return (NULL);

@@ -1,8 +1,19 @@
 
 #include "libccc/memory.h"
-#include "libccc/encode/json.h"
+#include "libccc/encode/common.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
+
+
+
+void	KVT_Print_UpdateOffset(s_kvt_print* p)
+{
+	t_utf8 const* buffer_pointer = NULL;
+	if ((p == NULL) || (p->buffer == NULL))
+		return;
+	buffer_pointer = p->buffer + p->offset;
+	p->offset += String_Length(buffer_pointer);
+}
 
 
 

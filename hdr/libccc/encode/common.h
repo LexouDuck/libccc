@@ -146,6 +146,14 @@ typedef struct kvt_print
 	t_bool	format;	//!< is this print a formatted print
 }		s_kvt_print;
 
+#define KVT_NUMBER_BUFFERSIZE	64
+
+//! This function is used by the `*_Parse()` functions, to update the #s_kvt_print struct
+/*!
+**	Calculates the new length of the string in `p->result` and updates the `p->offset`.
+*/
+void	KVT_Print_UpdateOffset(s_kvt_print* p);
+
 //! This function is used by the `*_Print()` functions, to ensure the print buffer has `needed` bytes more
 /*!
 **	If the `p->length` is too short, will reallocate the `p->result` string.
