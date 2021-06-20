@@ -120,7 +120,7 @@ typedef union dynamic	u_dynamic;
 
 
 
-//! This struct is used to parse a data file string
+//! This struct is used to parse a data file string (JSON, TOML, YAML, XML, etc)
 typedef struct kvt_parse
 {
 	s_kvt*			result;		//!< the result JSON
@@ -132,6 +132,26 @@ typedef struct kvt_parse
 	t_size			line;		//!< current line number
 	t_char*			error;		//!< current error message (or NULL if no error has been thrown yet)
 }		s_kvt_parse;
+
+
+
+//! This struct is used to print a data file string (JSON, TOML, YAML, XML, etc)
+typedef struct kvt_print
+{
+	t_utf8*	buffer;	//!< the result string which is written to
+	t_size	offset;	//!< current writing offset of the string to print
+	t_size	length;	//!< the (current maximum) length of the string to print
+	t_size	depth;	//!< current nesting depth (for formatted printing)
+	t_bool	noalloc;//!< if `TRUE`, then it means `buffer` is pre-allocated by the caller
+	t_bool	format;	//!< is this print a formatted print
+}		s_kvt_print;
+
+//! This function is used by the `*_Print()` functions, to ensure the print buffer has `needed` bytes more
+/*!
+**	If the `p->length` is too short, will reallocate the `p->result` string.
+**	If `p->noalloc == FALSE`, this will simply return `NULL` if `needed` is too large.
+*/
+t_utf8*	KVT_Print_EnsureBuffer(s_kvt_print* p, t_size needed);
 
 
 
