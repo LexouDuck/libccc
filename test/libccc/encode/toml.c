@@ -1,5 +1,6 @@
 
 #include "libccc/encode/toml.h"
+#include "libccc/encode/json.h"
 
 #include "test.h"
 
@@ -534,7 +535,7 @@ void test_toml(void)	{}
 static t_utf8*	c_toml_##STRICT##_##MINIFY(t_utf8* toml)	\
 {															\
 	s_toml* tmp = TOML_FromString_##STRICT(toml);			\
-	t_utf8* result = TOML_ToString_##MINIFY(tmp);			\
+	t_utf8* result = JSON_ToString_##MINIFY(tmp);			\
 	free(tmp);												\
 	return (result);										\
 }															\
@@ -701,8 +702,8 @@ void	test_toml_##STRICT##_##MINIFY(void)																																		\
 	print_test_toml_##STRICT##_##MINIFY("toml_commas               ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_simple##MINIFY_EXPECT:NULL,	toml_commas);					\
 	print_test_toml_##STRICT##_##MINIFY("toml_commas_min           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_simple##MINIFY_EXPECT:NULL,	toml_commas_min);				\
 	print_test_toml_##STRICT##_##MINIFY("toml_newline              ("#STRICT" -> "#MINIFY")", FALSE,		toml_simple##MINIFY_EXPECT,			toml_newline);					\
-	print_test_toml_##STRICT##_##MINIFY("toml_complex              ("#STRICT" -> "#MINIFY")", FALSE,		toml_complex##MINIFY_EXPECT,		toml_complex);					\
-	print_test_toml_##STRICT##_##MINIFY("toml_complex_min          ("#STRICT" -> "#MINIFY")", FALSE,		toml_complex##MINIFY_EXPECT,		toml_complex_min);				\
+/*	print_test_toml_##STRICT##_##MINIFY("toml_complex              ("#STRICT" -> "#MINIFY")", FALSE,		toml_complex##MINIFY_EXPECT,		toml_complex);					*/\
+/*	print_test_toml_##STRICT##_##MINIFY("toml_complex_min          ("#STRICT" -> "#MINIFY")", FALSE,		toml_complex##MINIFY_EXPECT,		toml_complex_min);				*/\
 	print_test_toml_##STRICT##_##MINIFY("toml_escape_sq1           ("#STRICT" -> "#MINIFY")", FALSE,		NULL,								toml_escape_sq1);				\
 	print_test_toml_##STRICT##_##MINIFY("toml_escape_sq2           ("#STRICT" -> "#MINIFY")", FALSE,		toml_escape_sq2,					toml_escape_sq2);				\
 	print_test_toml_##STRICT##_##MINIFY("toml_escape_slb           ("#STRICT" -> "#MINIFY")", FALSE,		toml_escape_slb,					toml_escape_slb);				\
@@ -725,10 +726,10 @@ void	test_toml_##STRICT##_##MINIFY(void)																																		\
 }
 #endif
 
-//DEFINETEST_TOML(Lenient, TRUE,	Pretty,)
-//DEFINETEST_TOML(Lenient, TRUE,	Minify, _min)
-//DEFINETEST_TOML(Strict, FALSE,	Pretty,)
-//DEFINETEST_TOML(Strict, FALSE,	Minify, _min)
+DEFINETEST_TOML(Lenient, TRUE,	Pretty,)
+DEFINETEST_TOML(Lenient, TRUE,	Minify, _min)
+DEFINETEST_TOML(Strict, FALSE,	Pretty,)
+DEFINETEST_TOML(Strict, FALSE,	Minify, _min)
 
 // TODO test othe functions than just Parse/Print
 
@@ -746,7 +747,7 @@ int		testsuite_encode_toml(void)
 
 	print_nonstd();
 
-//	test_toml_Lenient_Pretty();
+	test_toml_Lenient_Pretty();
 //	test_toml_Lenient_Minify();
 //	test_toml_Strict_Pretty();
 //	test_toml_Strict_Minify();

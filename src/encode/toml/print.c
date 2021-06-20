@@ -26,11 +26,11 @@ typedef s_kvt_print	s_toml_print;
 
 
 
-static t_bool	TOML_Print_Number(s_toml const* item, s_toml_print* p, t_bool bigint);
-static t_bool	TOML_Print_String(s_toml const* item, s_toml_print* p);
-static t_bool	TOML_Print_Object(s_toml const* item, s_toml_print* p);
-static t_bool	TOML_Print_Array (s_toml const* item, s_toml_print* p);
-static t_bool	TOML_Print_Value (s_toml const* item, s_toml_print* p);
+static t_bool	TOML_Print_Number		(s_toml const* item, s_toml_print* p, t_bool bigint);
+static t_bool	TOML_Print_String		(s_toml const* item, s_toml_print* p);
+static t_bool	TOML_Print_Object		(s_toml const* item, s_toml_print* p);
+static t_bool	TOML_Print_Array		(s_toml const* item, s_toml_print* p);
+static t_bool	TOML_Print_KeyValuePair (s_toml const* item, s_toml_print* p);
 
 
 
@@ -194,8 +194,7 @@ t_bool	TOML_Print_Number(s_toml const* item, s_toml_print* p, t_bool bigint)
 			// Check whether the original t_f64 can be recovered
 			test = F64_FromString(number_buffer);
 			if (test != d)
-			{
-				// If not, print with 17 decimal places of precision
+			{	// If not, print with 17 decimal places of precision
 				length = String_Format_N(number_buffer, TOML_NUMBER_BUFFERSIZE, "%1.17g", d);
 			}
 		}
@@ -234,7 +233,7 @@ t_bool	TOML_Print_Array(s_toml const* item, s_toml_print* p)
 		multiline = FALSE;
 	if (multiline &&
 		p->buffer[p->offset - 1] == ' ' &&
-		p->buffer[p->offset - 2] == ':')
+		p->buffer[p->offset - 2] == '=')
 	{
 		ENSURE(p->depth + 1)
 		*result++ = '\n';
@@ -264,7 +263,7 @@ t_bool	TOML_Print_Array(s_toml const* item, s_toml_print* p)
 			}
 			p->offset += p->depth + 1;
 		}
-		if (TOML_Print_Value(current_item, p))
+		if (TOML_Print_KeyValuePair(current_item, p))
 			return (ERROR);
 		TOML_Print_UpdateOffset(p);
 		length = (t_size)(current_item->next ? 1 : 0);
@@ -314,7 +313,7 @@ t_bool	TOML_Print_Object(s_toml const* item, s_toml_print* p)
 		multiline = FALSE;
 	if (multiline &&
 		p->buffer[p->offset - 1] == ' ' &&
-		p->buffer[p->offset - 2] == ':')
+		p->buffer[p->offset - 2] == '=')
 	{
 		ENSURE(p->depth + 1)
 		*result++ = '\n';
@@ -344,22 +343,9 @@ t_bool	TOML_Print_Object(s_toml const* item, s_toml_print* p)
 			}
 			p->offset += p->depth + 1;
 		}
-		// print key
-		if (TOML_Print_StringPtr(current_item->key, p))
-			return (ERROR);
-		TOML_Print_UpdateOffset(p);
-
-		length = (t_size)(p->format ? 2 : 1);
-		ENSURE(length)
-		*result++ = ':';
-		if (p->format)
-		{
-			*result++ = ' ';
-		}
-		p->offset += length;
 
 		// print value
-		if (TOML_Print_Value(current_item, p))
+		if (TOML_Print_KeyValuePair(current_item, p))
 			return (ERROR);
 		TOML_Print_UpdateOffset(p);
 
@@ -398,13 +384,32 @@ t_bool	TOML_Print_Object(s_toml const* item, s_toml_print* p)
 
 
 static
-t_bool	TOML_Print_Value(s_toml const* item, s_toml_print* p)
+t_bool	TOML_Print_KeyValuePair(s_toml const* item, s_toml_print* p)
 {
 	t_utf8* result = NULL;
 	t_utf8 const* str;
+	t_size	length;
 
 	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (ERROR);)
 	HANDLE_ERROR(NULLPOINTER, (item == NULL), return (ERROR);)
+
+	if ((item->type & DYNAMICTYPE_MASK) == DYNAMICTYPE_ARRAY ||
+		(item->type & DYNAMICTYPE_MASK) == DYNAMICTYPE_OBJECT)
+	{
+		// print key
+		if (TOML_Print_StringPtr(item->key, p))
+			return (ERROR);
+		TOML_Print_UpdateOffset(p);
+
+		length = (t_size)(p->format ? 3 : 1);
+		ENSURE(length)
+		if (p->format)	*result++ = ' ';
+		*result++ = '=';
+		if (p->format)	*result++ = ' ';
+		p->offset += length;
+	}
+
+	// print value
 	switch ((item->type) & DYNAMICTYPE_MASK)
 	{
 		case DYNAMICTYPE_INTEGER: return (TOML_Print_Number(item, p, TRUE));
@@ -415,25 +420,26 @@ t_bool	TOML_Print_Value(s_toml const* item, s_toml_print* p)
 		case DYNAMICTYPE_NULL:
 		{
 			str = "null";
-			ENSURE(String_Length(str) + 1)
+			length = (String_Length(str) + sizeof(""));
+			ENSURE(length)
 			String_Copy(result, str);
 			return (OK);
 		}
 		case DYNAMICTYPE_BOOLEAN:
 		{
 			str = (item->value.boolean ? "true" : "false");
-			ENSURE(String_Length(str) + 1)
+			length = (String_Length(str) + sizeof(""));
+			ENSURE(length)
 			String_Copy(result, str);
 			return (OK);
 		}
 		case DYNAMICTYPE_RAW:
 		{
-			t_size raw_length = 0;
 			HANDLE_ERROR_SF(PRINT, (item->value.string == NULL), return (ERROR);,
 				"Item with key \"%s\" is of 'raw string' type, but its value is null", item->key)
-			raw_length = String_Length(item->value.string) + sizeof("");
-			ENSURE(raw_length)
-			Memory_Copy(result, item->value.string, raw_length);
+			length = String_Length(item->value.string) + sizeof("");
+			ENSURE(length)
+			Memory_Copy(result, item->value.string, length);
 			return (OK);
 		}
 		default:
@@ -448,7 +454,7 @@ static
 t_utf8*	TOML_Print_(s_toml const* item, t_bool format)
 {
 	static const t_size default_buffer_size = 256;
-	s_toml_print p[1];
+	s_toml_print p[1] = {{0}};
 	t_utf8* printed = NULL;
 
 	Memory_Clear(p, sizeof(p));
@@ -458,7 +464,7 @@ t_utf8*	TOML_Print_(s_toml const* item, t_bool format)
 	p->buffer = (t_utf8*)Memory_Allocate(default_buffer_size);
 	HANDLE_ERROR(ALLOCFAILURE, (p->buffer == NULL), goto failure;)
 	// print the value
-	if (TOML_Print_Value(item, p))
+	if (TOML_Print_Object(item, p))
 		goto failure;
 	TOML_Print_UpdateOffset(p);
 
@@ -504,7 +510,7 @@ t_size	TOML_Print_Pretty(t_utf8* dest, s_toml const* item, t_size n)
 	p.offset = 0;
 	p.noalloc = TRUE;
 	p.format = TRUE;
-	TOML_Print_Value(item, &p); // TODO error handling ?
+	TOML_Print_KeyValuePair(item, &p); // TODO error handling ?
 	return (p.offset);
 }
 
@@ -519,7 +525,7 @@ t_size	TOML_Print_Minify(t_utf8* dest, s_toml const* item, t_size n)
 	p.offset = 0;
 	p.noalloc = TRUE;
 	p.format = FALSE;
-	TOML_Print_Value(item, &p); // TODO error handling ?
+	TOML_Print_KeyValuePair(item, &p); // TODO error handling ?
 	return (p.offset);
 }
 
@@ -549,7 +555,7 @@ t_utf8*	TOML_Print_Buffered(s_toml const* item, t_sint prebuffer, t_bool format)
 	p.offset = 0;
 	p.noalloc = FALSE;
 	p.format = format;
-	if (TOML_Print_Value(item, &p))
+	if (TOML_Print_KeyValuePair(item, &p))
 	{
 		Memory_Free(p.buffer);
 		return (NULL);
