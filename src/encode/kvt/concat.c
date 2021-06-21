@@ -1,5 +1,6 @@
 
 #include "libccc.h"
+#include "libccc/memory.h"
 #include "libccc/encode/common.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
@@ -68,32 +69,48 @@ failure:
 
 s_kvt*	KVT_Concat_Array(s_kvt const* kvt1, s_kvt const* kvt2)
 {
-	s_kvt*	result;
-	s_kvt*	concat;
+	s_kvt*	result = NULL;
+	s_kvt*	concat = NULL;
 
 	HANDLE_ERROR(WRONGTYPE, (!KVT_IsArray(kvt1)), return (NULL);)
 	HANDLE_ERROR(WRONGTYPE, (!KVT_IsArray(kvt2)), return (NULL);)
 	result = KVT_Duplicate(kvt1, TRUE);
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), goto failure;)
 	concat = KVT_Duplicate(kvt2, TRUE);
-	result->prev->next = concat; // use `prev` to access last element without looping
-	result->prev = concat->prev; // update the new first-elem `prev` to point to end of array
-	concat->prev = result;
+	HANDLE_ERROR(ALLOCFAILURE, (concat == NULL), goto failure;)
+	result->value.child->prev->next = concat->value.child; // use `prev` to access last element without looping
+	result->value.child->prev = concat->value.child->prev; // update the new first-elem `prev` to point to end of array
+	concat->value.child->prev = result->value.child;
+	Memory_Free(concat);
 	return (result);
+
+failure:
+	KVT_Delete(result);
+	KVT_Delete(concat);
+	return (NULL);
 }
 
 
 
 s_kvt*	KVT_Concat_Object(s_kvt const* kvt1, s_kvt const* kvt2)
 {
-	s_kvt*	result;
-	s_kvt*	concat;
+	s_kvt*	result = NULL;
+	s_kvt*	concat = NULL;
 
 	HANDLE_ERROR(WRONGTYPE, (!KVT_IsObject(kvt1)), return (NULL);)
 	HANDLE_ERROR(WRONGTYPE, (!KVT_IsObject(kvt2)), return (NULL);)
 	result = KVT_Duplicate(kvt1, TRUE);
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), goto failure;)
 	concat = KVT_Duplicate(kvt2, TRUE);
-	result->prev->next = concat; // use `prev` to access last element without looping
-	result->prev = concat->prev; // update the new first-elem `prev` to point to end of array
-	concat->prev = result;
+	HANDLE_ERROR(ALLOCFAILURE, (concat == NULL), goto failure;)
+	result->value.child->prev->next = concat->value.child; // use `prev` to access last element without looping
+	result->value.child->prev = concat->value.child->prev; // update the new first-elem `prev` to point to end of array
+	concat->value.child->prev = result->value.child;
+	Memory_Free(concat);
 	return (result);
+
+failure:
+	KVT_Delete(result);
+	KVT_Delete(concat);
+	return (NULL);
 }
