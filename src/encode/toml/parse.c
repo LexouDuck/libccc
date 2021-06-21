@@ -891,7 +891,7 @@ failure:
 		if (dest) *dest = NULL;
 		return (p->offset);,
 		": at nesting depth %u: line %zu, column %zu (char index %zu: '%c'/0x%X)%s\n",
-		p->depth + 1,
+		p->depth,
 		p->line,
 		column,
 		p->offset,

@@ -12,7 +12,13 @@
 #define DEFINEFUNC_UINT_FROMSTR(BITS) \
 t_size	U##BITS##_Parse(t_u##BITS *dest, t_char const* str)							\
 {																					\
-	t_char const* s = String_Find_Char(str, '0');									\
+	t_char const* s = NULL;															\
+	t_size	i = 0;																	\
+	for (i = 0; str[i]; ++i)														\
+	{																				\
+		if (str[i] == '0')															\
+			s = str + i;															\
+	}																				\
 	if (s && s[0] && s[0] == '0')													\
 	{																				\
 		switch (s[1])																\
@@ -44,7 +50,13 @@ DEFINEFUNC_UINT_FROMSTR(128)
 #define DEFINEFUNC_SINT_FROMSTR(BITS) \
 t_size	S##BITS##_Parse(t_s##BITS *dest, t_char const* str)							\
 {																					\
-	t_char const* s = String_Find_Char(str, '0');									\
+	t_char const* s = NULL;															\
+	t_size	i = 0;																	\
+	for (i = 0; str[i]; ++i)														\
+	{																				\
+		if (str[i] == '0')															\
+			s = str + i;															\
+	}																				\
 	if (s && s[0] && s[0] == '0')													\
 	{																				\
 		switch (s[1])																\

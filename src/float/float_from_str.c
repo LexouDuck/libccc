@@ -120,11 +120,16 @@ t_bool	Float_FromString_CheckInvalid(t_char const* str)
 #define DEFINEFUNC_FLOAT_FROMSTR(BITS) \
 t_size	F##BITS##_Parse(t_f##BITS *dest, t_char const* str)			\
 {																	\
+	t_char const* s = NULL;											\
 	t_size	i = 0;													\
 																	\
 	HANDLE_ERROR(NULLPOINTER, (str == NULL),						\
 		PARSE_RETURN(F##BITS##_ERROR))								\
-	t_char const* s = String_Find_Char(str, '0');					\
+	for (i = 0; str[i]; ++i)										\
+	{																\
+		if (str[i] == '0')											\
+			s = str + i;											\
+	}																\
 	if (s && s[0] && s[0] == '0')									\
 	{																\
 		switch (s[1])												\
