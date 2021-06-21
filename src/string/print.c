@@ -45,7 +45,7 @@ t_size	String_Print_GetLength(t_char const* str, t_char const* charset_extra)
 
 
 
-t_char*	String_Print(t_char const* str, t_char const* charset_extra)
+t_size	String_Print(t_char* *dest, t_char const* str, t_char const* charset_extra)
 {
 	t_u8	HI_nibble;
 	t_u8	LO_nibble;
@@ -89,5 +89,16 @@ t_char*	String_Print(t_char const* str, t_char const* charset_extra)
 		++index;
 	}
 	result[i] = '\0';
+	if (dest)	*dest = result;
+	return (index);
+}
+
+
+
+inline
+t_char*	String_ToEscape(t_char const* str, t_char const* charset_extra)
+{
+	t_char*	result = NULL;
+	String_Print(&result, str, charset_extra);
 	return (result);
 }

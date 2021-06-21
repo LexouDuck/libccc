@@ -5,173 +5,178 @@
 
 
 
+// the minimal boilerplate needed to store a single vlue in TOML
+#define TOML_TEST(STR)	"\n\"\"="STR"\n"
+
+
+
 /*
 ** ************************************************************************** *|
 **                              Testing Variables                             *|
 ** ************************************************************************** *|
 */
 
-t_utf8*	toml_null	= "\n\"\"=null\n";
+t_utf8*	toml_null	= TOML_TEST("null");
 
-t_utf8*	toml_bool_0	= "\n\"\"=false\n";
-t_utf8*	toml_bool_1	= "\n\"\"=true\n";
-
-
-
-t_utf8*	toml_number_0				= "\n\"\"=0\n";
-t_utf8*	toml_number_1				= "\n\"\"=1\n";
-t_utf8*	toml_number_2				= "\n\"\"=42\n";
-t_utf8*	toml_number_3				= "\n\"\"=777\n";
-t_utf8*	toml_number_4				= "\n\"\"=123456\n";
-t_utf8*	toml_number_0f				= "\n\"\"=0.\n";
-t_utf8*	toml_number_1f				= "\n\"\"=1.\n";
-t_utf8*	toml_number_2f				= "\n\"\"=42.\n";
-t_utf8*	toml_number_3f				= "\n\"\"=777.\n";
-t_utf8*	toml_number_4f				= "\n\"\"=123456.\n";
-t_utf8*	toml_number_0f1				= "\n\"\"=0.0\n";
-t_utf8*	toml_number_1f1				= "\n\"\"=1.0\n";
-t_utf8*	toml_number_2f1				= "\n\"\"=42.0\n";
-t_utf8*	toml_number_3f1				= "\n\"\"=777.0\n";
-t_utf8*	toml_number_4f1				= "\n\"\"=123456.7\n";
-t_utf8*	toml_number_0f2				= "\n\"\"=0.00\n";
-t_utf8*	toml_number_1f2				= "\n\"\"=1.00\n";
-t_utf8*	toml_number_2f2				= "\n\"\"=42.00\n";
-t_utf8*	toml_number_3f2				= "\n\"\"=777.00\n";
-t_utf8*	toml_number_4f2				= "\n\"\"=123456.78\n";
-t_utf8*	toml_number_0f3				= "\n\"\"=0.000\n";
-t_utf8*	toml_number_1f3				= "\n\"\"=1.000\n";
-t_utf8*	toml_number_2f3				= "\n\"\"=42.000\n";
-t_utf8*	toml_number_3f3				= "\n\"\"=777.000\n";
-t_utf8*	toml_number_4f3				= "\n\"\"=123456.789\n";
-t_utf8*	toml_number_fmin_lt			= "\n\"\"=-9007199254740991\n";
-t_utf8*	toml_number_fmin_eq			= "\n\"\"=-9007199254740992\n";
-t_utf8*	toml_number_fmin_gt			= "\n\"\"=-9007199254740993\n";
-t_utf8*	toml_number_fmax_lt			= "\n\"\"=9007199254740991\n";
-t_utf8*	toml_number_fmax_eq			= "\n\"\"=9007199254740992\n";
-t_utf8*	toml_number_fmax_gt			= "\n\"\"=9007199254740993\n";
-t_utf8*	toml_number_inf_u_lower_0	= "\n\"\"=inf\n";
-t_utf8*	toml_number_inf_p_lower_0	= "\n\"\"=+inf\n";
-t_utf8*	toml_number_inf_n_lower_0	= "\n\"\"=-inf\n";
-t_utf8*	toml_number_inf_u_lower_1	= "\n\"\"=infinity\n";
-t_utf8*	toml_number_inf_p_lower_1	= "\n\"\"=+infinity\n";
-t_utf8*	toml_number_inf_n_lower_1	= "\n\"\"=-infinity\n";
-t_utf8*	toml_number_inf_u_mixed_0	= "\n\"\"=Inf\n";
-t_utf8*	toml_number_inf_p_mixed_0	= "\n\"\"=+Inf\n";
-t_utf8*	toml_number_inf_n_mixed_0	= "\n\"\"=-Inf\n";
-t_utf8*	toml_number_inf_u_mixed_1	= "\n\"\"=Infinity\n";
-t_utf8*	toml_number_inf_p_mixed_1	= "\n\"\"=+Infinity\n";
-t_utf8*	toml_number_inf_n_mixed_1	= "\n\"\"=-Infinity\n";
-t_utf8*	toml_number_inf_u_upper_0	= "\n\"\"=INF\n";
-t_utf8*	toml_number_inf_p_upper_0	= "\n\"\"=+INF\n";
-t_utf8*	toml_number_inf_n_upper_0	= "\n\"\"=-INF\n";
-t_utf8*	toml_number_inf_u_upper_1	= "\n\"\"=INFINITY\n";
-t_utf8*	toml_number_inf_p_upper_1	= "\n\"\"=+INFINITY\n";
-t_utf8*	toml_number_inf_n_upper_1	= "\n\"\"=-INFINITY\n";
-t_utf8*	toml_number_nan_u_lower_0	= "\n\"\"=nan\n";
-t_utf8*	toml_number_nan_p_lower_0	= "\n\"\"=+nan\n";
-t_utf8*	toml_number_nan_n_lower_0	= "\n\"\"=-nan\n";
-t_utf8*	toml_number_nan_u_mixed_0	= "\n\"\"=NaN\n";
-t_utf8*	toml_number_nan_p_mixed_0	= "\n\"\"=+NaN\n";
-t_utf8*	toml_number_nan_n_mixed_0	= "\n\"\"=-NaN\n";
-t_utf8*	toml_number_nan_u_upper_0	= "\n\"\"=NAN\n";
-t_utf8*	toml_number_nan_p_upper_0	= "\n\"\"=+NAN\n";
-t_utf8*	toml_number_nan_n_upper_0	= "\n\"\"=-NAN\n";
-
-t_utf8*	toml_number_inf_u_utf8_0	= "\n\"\"=∞\n";
-t_utf8*	toml_number_inf_p_utf8_0	= "\n\"\"=+∞\n";
-t_utf8*	toml_number_inf_n_utf8_0	= "\n\"\"=-∞\n";
-t_utf8*	toml_number_inf_u_utf8_1	= "\n\"\"=\u221E\n";
-t_utf8*	toml_number_inf_p_utf8_1	= "\n\"\"=+\u221E\n";
-t_utf8*	toml_number_inf_n_utf8_1	= "\n\"\"=-\u221E\n";
+t_utf8*	toml_bool_0	= TOML_TEST("false");
+t_utf8*	toml_bool_1	= TOML_TEST("true");
 
 
 
-t_utf8*	toml_bigint_empty			= "\n\"\"=n\n";
-t_utf8*	toml_bigint_0				= "\n\"\"=0n\n";
-t_utf8*	toml_bigint_1				= "\n\"\"=1n\n";
-t_utf8*	toml_bigint_2				= "\n\"\"=42n\n";
-t_utf8*	toml_bigint_3				= "\n\"\"=777n\n";
-t_utf8*	toml_bigint_4				= "\n\"\"=123456n\n";
-t_utf8*	toml_bigint_0f				= "\n\"\"=0.n\n";
-t_utf8*	toml_bigint_1f				= "\n\"\"=1.n\n";
-t_utf8*	toml_bigint_2f				= "\n\"\"=42.n\n";
-t_utf8*	toml_bigint_3f				= "\n\"\"=777.n\n";
-t_utf8*	toml_bigint_4f				= "\n\"\"=123456.n\n";
-t_utf8*	toml_bigint_0f1				= "\n\"\"=0.0n\n";
-t_utf8*	toml_bigint_1f1				= "\n\"\"=1.0n\n";
-t_utf8*	toml_bigint_2f1				= "\n\"\"=42.0n\n";
-t_utf8*	toml_bigint_3f1				= "\n\"\"=777.0n\n";
-t_utf8*	toml_bigint_4f1				= "\n\"\"=123456.7n\n";
-t_utf8*	toml_bigint_0f2				= "\n\"\"=0.00n\n";
-t_utf8*	toml_bigint_1f2				= "\n\"\"=1.00n\n";
-t_utf8*	toml_bigint_2f2				= "\n\"\"=42.00n\n";
-t_utf8*	toml_bigint_3f2				= "\n\"\"=777.00n\n";
-t_utf8*	toml_bigint_4f2				= "\n\"\"=123456.78n\n";
-t_utf8*	toml_bigint_0f3				= "\n\"\"=0.000n\n";
-t_utf8*	toml_bigint_1f3				= "\n\"\"=1.000n\n";
-t_utf8*	toml_bigint_2f3				= "\n\"\"=42.000n\n";
-t_utf8*	toml_bigint_3f3				= "\n\"\"=777.000n\n";
-t_utf8*	toml_bigint_4f3				= "\n\"\"=123456.789n\n";
-t_utf8*	toml_bigint_fmin_lt			= "\n\"\"=-9007199254740991n\n";
-t_utf8*	toml_bigint_fmin_eq			= "\n\"\"=-9007199254740992n\n";
-t_utf8*	toml_bigint_fmin_gt			= "\n\"\"=-9007199254740993n\n";
-t_utf8*	toml_bigint_fmax_lt			= "\n\"\"=9007199254740991n\n";
-t_utf8*	toml_bigint_fmax_eq			= "\n\"\"=9007199254740992n\n";
-t_utf8*	toml_bigint_fmax_gt			= "\n\"\"=9007199254740993n\n";
-t_utf8*	toml_bigint_s64min_lt		= "\n\"\"=-9223372036854775807n\n";
-t_utf8*	toml_bigint_s64min_eq		= "\n\"\"=-9223372036854775808n\n";
-t_utf8*	toml_bigint_s64min_gt		= "\n\"\"=-9223372036854775809n\n";
-t_utf8*	toml_bigint_s64max_lt		= "\n\"\"=9223372036854775806n\n";
-t_utf8*	toml_bigint_s64max_eq		= "\n\"\"=9223372036854775807n\n";
-t_utf8*	toml_bigint_s64max_gt		= "\n\"\"=9223372036854775808n\n";
-t_utf8*	toml_bigint_bad_unan_lower	= "\n\"\"=nann\n";
-t_utf8*	toml_bigint_bad_unan_upper	= "\n\"\"=NANn\n";
-t_utf8*	toml_bigint_bad_uinf_lower	= "\n\"\"=infn\n";
-t_utf8*	toml_bigint_bad_uinf_upper	= "\n\"\"=INFn\n";
-t_utf8*	toml_bigint_bad_nnan_lower	= "\n\"\"=-nann\n";
-t_utf8*	toml_bigint_bad_nnan_upper	= "\n\"\"=-NANn\n";
-t_utf8*	toml_bigint_bad_ninf_lower	= "\n\"\"=-infn\n";
-t_utf8*	toml_bigint_bad_ninf_upper	= "\n\"\"=-INFn\n";
-t_utf8*	toml_bigint_bad_pnan_lower	= "\n\"\"=+nann\n";
-t_utf8*	toml_bigint_bad_pnan_upper	= "\n\"\"=+NANn\n";
-t_utf8*	toml_bigint_bad_pinf_lower	= "\n\"\"=+infn\n";
-t_utf8*	toml_bigint_bad_pinf_upper	= "\n\"\"=+INFn\n";
+t_utf8*	toml_number_0				= TOML_TEST("0");
+t_utf8*	toml_number_1				= TOML_TEST("1");
+t_utf8*	toml_number_2				= TOML_TEST("42");
+t_utf8*	toml_number_3				= TOML_TEST("777");
+t_utf8*	toml_number_4				= TOML_TEST("123456");
+t_utf8*	toml_number_0f				= TOML_TEST("0.");
+t_utf8*	toml_number_1f				= TOML_TEST("1.");
+t_utf8*	toml_number_2f				= TOML_TEST("42.");
+t_utf8*	toml_number_3f				= TOML_TEST("777.");
+t_utf8*	toml_number_4f				= TOML_TEST("123456.");
+t_utf8*	toml_number_0f1				= TOML_TEST("0.0");
+t_utf8*	toml_number_1f1				= TOML_TEST("1.0");
+t_utf8*	toml_number_2f1				= TOML_TEST("42.0");
+t_utf8*	toml_number_3f1				= TOML_TEST("777.0");
+t_utf8*	toml_number_4f1				= TOML_TEST("123456.7");
+t_utf8*	toml_number_0f2				= TOML_TEST("0.00");
+t_utf8*	toml_number_1f2				= TOML_TEST("1.00");
+t_utf8*	toml_number_2f2				= TOML_TEST("42.00");
+t_utf8*	toml_number_3f2				= TOML_TEST("777.00");
+t_utf8*	toml_number_4f2				= TOML_TEST("123456.78");
+t_utf8*	toml_number_0f3				= TOML_TEST("0.000");
+t_utf8*	toml_number_1f3				= TOML_TEST("1.000");
+t_utf8*	toml_number_2f3				= TOML_TEST("42.000");
+t_utf8*	toml_number_3f3				= TOML_TEST("777.000");
+t_utf8*	toml_number_4f3				= TOML_TEST("123456.789");
+t_utf8*	toml_number_fmin_lt			= TOML_TEST("-9007199254740991");
+t_utf8*	toml_number_fmin_eq			= TOML_TEST("-9007199254740992");
+t_utf8*	toml_number_fmin_gt			= TOML_TEST("-9007199254740993");
+t_utf8*	toml_number_fmax_lt			= TOML_TEST("9007199254740991");
+t_utf8*	toml_number_fmax_eq			= TOML_TEST("9007199254740992");
+t_utf8*	toml_number_fmax_gt			= TOML_TEST("9007199254740993");
+t_utf8*	toml_number_inf_u_lower_0	= TOML_TEST( "inf");
+t_utf8*	toml_number_inf_p_lower_0	= TOML_TEST("+inf");
+t_utf8*	toml_number_inf_n_lower_0	= TOML_TEST("-inf");
+t_utf8*	toml_number_inf_u_lower_1	= TOML_TEST("infinity");
+t_utf8*	toml_number_inf_p_lower_1	= TOML_TEST("+infinity");
+t_utf8*	toml_number_inf_n_lower_1	= TOML_TEST("-infinity");
+t_utf8*	toml_number_inf_u_mixed_0	= TOML_TEST( "Inf");
+t_utf8*	toml_number_inf_p_mixed_0	= TOML_TEST("+Inf");
+t_utf8*	toml_number_inf_n_mixed_0	= TOML_TEST("-Inf");
+t_utf8*	toml_number_inf_u_mixed_1	= TOML_TEST( "Infinity");
+t_utf8*	toml_number_inf_p_mixed_1	= TOML_TEST("+Infinity");
+t_utf8*	toml_number_inf_n_mixed_1	= TOML_TEST("-Infinity");
+t_utf8*	toml_number_inf_u_upper_0	= TOML_TEST( "INF");
+t_utf8*	toml_number_inf_p_upper_0	= TOML_TEST("+INF");
+t_utf8*	toml_number_inf_n_upper_0	= TOML_TEST("-INF");
+t_utf8*	toml_number_inf_u_upper_1	= TOML_TEST( "INFINITY");
+t_utf8*	toml_number_inf_p_upper_1	= TOML_TEST("+INFINITY");
+t_utf8*	toml_number_inf_n_upper_1	= TOML_TEST("-INFINITY");
+t_utf8*	toml_number_nan_u_lower_0	= TOML_TEST( "nan");
+t_utf8*	toml_number_nan_p_lower_0	= TOML_TEST("+nan");
+t_utf8*	toml_number_nan_n_lower_0	= TOML_TEST("-nan");
+t_utf8*	toml_number_nan_u_mixed_0	= TOML_TEST( "NaN");
+t_utf8*	toml_number_nan_p_mixed_0	= TOML_TEST("+NaN");
+t_utf8*	toml_number_nan_n_mixed_0	= TOML_TEST("-NaN");
+t_utf8*	toml_number_nan_u_upper_0	= TOML_TEST( "NAN");
+t_utf8*	toml_number_nan_p_upper_0	= TOML_TEST("+NAN");
+t_utf8*	toml_number_nan_n_upper_0	= TOML_TEST("-NAN");
+
+t_utf8*	toml_number_inf_u_utf8_0	= TOML_TEST( "∞");
+t_utf8*	toml_number_inf_p_utf8_0	= TOML_TEST("+∞");
+t_utf8*	toml_number_inf_n_utf8_0	= TOML_TEST("-∞");
+t_utf8*	toml_number_inf_u_utf8_1	= TOML_TEST( "\u221E");
+t_utf8*	toml_number_inf_p_utf8_1	= TOML_TEST("+\u221E");
+t_utf8*	toml_number_inf_n_utf8_1	= TOML_TEST("-\u221E");
 
 
 
-t_utf8*	toml_string_empty	= "\n\"\"=\"\"\n";
-t_utf8*	toml_string			= "\n\"\"=\"Hello World!\"\n";
-t_utf8*	toml_string_cc_c0	= "\n\"\"=\"␡␁␂␃␄␅␆␇␈␉␊␋␌␍␎␏␐␑␒␓␔␕␖␗␘␙␚␛␜␝␞␟\"\n";
-t_utf8*	toml_string_cc_c1	= "\n\"\"=\"\"\n";
-t_utf8*	toml_string_utf8_fr	= "\n\"\"=\"Être à même de ça, d'air sûr, maïs de son père en main… D'où la paix sur l'île de son âme…\"\n";
-t_utf8*	toml_string_utf8_ru	= "\n\"\"=\"Яцк Ничолсон.\"\n";
-t_utf8*	toml_string_utf8_jp	= "\n\"\"=\"お前はもう死んでいる - 愛\"\n";
-t_utf8*	toml_string_utf8_ho	= "\n\"\"=\"�𑢰����� 𐐔𐐯𐑅𐐨𐑉𐐯𐐻\"\n";
+t_utf8*	toml_bigint_empty			= TOML_TEST("n");
+t_utf8*	toml_bigint_0				= TOML_TEST("0n");
+t_utf8*	toml_bigint_1				= TOML_TEST("1n");
+t_utf8*	toml_bigint_2				= TOML_TEST("42n");
+t_utf8*	toml_bigint_3				= TOML_TEST("777n");
+t_utf8*	toml_bigint_4				= TOML_TEST("123456n");
+t_utf8*	toml_bigint_0f				= TOML_TEST("0.n");
+t_utf8*	toml_bigint_1f				= TOML_TEST("1.n");
+t_utf8*	toml_bigint_2f				= TOML_TEST("42.n");
+t_utf8*	toml_bigint_3f				= TOML_TEST("777.n");
+t_utf8*	toml_bigint_4f				= TOML_TEST("123456.n");
+t_utf8*	toml_bigint_0f1				= TOML_TEST("0.0n");
+t_utf8*	toml_bigint_1f1				= TOML_TEST("1.0n");
+t_utf8*	toml_bigint_2f1				= TOML_TEST("42.0n");
+t_utf8*	toml_bigint_3f1				= TOML_TEST("777.0n");
+t_utf8*	toml_bigint_4f1				= TOML_TEST("123456.7n");
+t_utf8*	toml_bigint_0f2				= TOML_TEST("0.00n");
+t_utf8*	toml_bigint_1f2				= TOML_TEST("1.00n");
+t_utf8*	toml_bigint_2f2				= TOML_TEST("42.00n");
+t_utf8*	toml_bigint_3f2				= TOML_TEST("777.00n");
+t_utf8*	toml_bigint_4f2				= TOML_TEST("123456.78n");
+t_utf8*	toml_bigint_0f3				= TOML_TEST("0.000n");
+t_utf8*	toml_bigint_1f3				= TOML_TEST("1.000n");
+t_utf8*	toml_bigint_2f3				= TOML_TEST("42.000n");
+t_utf8*	toml_bigint_3f3				= TOML_TEST("777.000n");
+t_utf8*	toml_bigint_4f3				= TOML_TEST("123456.789n");
+t_utf8*	toml_bigint_fmin_lt			= TOML_TEST("-9007199254740991n");
+t_utf8*	toml_bigint_fmin_eq			= TOML_TEST("-9007199254740992n");
+t_utf8*	toml_bigint_fmin_gt			= TOML_TEST("-9007199254740993n");
+t_utf8*	toml_bigint_fmax_lt			= TOML_TEST("9007199254740991n");
+t_utf8*	toml_bigint_fmax_eq			= TOML_TEST("9007199254740992n");
+t_utf8*	toml_bigint_fmax_gt			= TOML_TEST("9007199254740993n");
+t_utf8*	toml_bigint_s64min_lt		= TOML_TEST("-9223372036854775807n");
+t_utf8*	toml_bigint_s64min_eq		= TOML_TEST("-9223372036854775808n");
+t_utf8*	toml_bigint_s64min_gt		= TOML_TEST("-9223372036854775809n");
+t_utf8*	toml_bigint_s64max_lt		= TOML_TEST("9223372036854775806n");
+t_utf8*	toml_bigint_s64max_eq		= TOML_TEST("9223372036854775807n");
+t_utf8*	toml_bigint_s64max_gt		= TOML_TEST("9223372036854775808n");
+t_utf8*	toml_bigint_bad_unan_lower	= TOML_TEST("nann");
+t_utf8*	toml_bigint_bad_unan_upper	= TOML_TEST("NANn");
+t_utf8*	toml_bigint_bad_uinf_lower	= TOML_TEST("infn");
+t_utf8*	toml_bigint_bad_uinf_upper	= TOML_TEST("INFn");
+t_utf8*	toml_bigint_bad_nnan_lower	= TOML_TEST("-nann");
+t_utf8*	toml_bigint_bad_nnan_upper	= TOML_TEST("-NANn");
+t_utf8*	toml_bigint_bad_ninf_lower	= TOML_TEST("-infn");
+t_utf8*	toml_bigint_bad_ninf_upper	= TOML_TEST("-INFn");
+t_utf8*	toml_bigint_bad_pnan_lower	= TOML_TEST("+nann");
+t_utf8*	toml_bigint_bad_pnan_upper	= TOML_TEST("+NANn");
+t_utf8*	toml_bigint_bad_pinf_lower	= TOML_TEST("+infn");
+t_utf8*	toml_bigint_bad_pinf_upper	= TOML_TEST("+INFn");
 
 
-t_utf8*	toml_array_empty	= "\n\"\"=[]\n";
-t_utf8*	toml_array_min		= "\n\"\"=[false,true,null]\n";
-t_utf8*	toml_array			= "\n\"\"=\
+
+t_utf8*	toml_string_empty	= TOML_TEST("\"\"");
+t_utf8*	toml_string			= TOML_TEST("\"Hello World!\"");
+t_utf8*	toml_string_cc_c0	= TOML_TEST("\"␡␁␂␃␄␅␆␇␈␉␊␋␌␍␎␏␐␑␒␓␔␕␖␗␘␙␚␛␜␝␞␟\"");
+t_utf8*	toml_string_cc_c1	= TOML_TEST("\"\"");
+t_utf8*	toml_string_utf8_fr	= TOML_TEST("\"Être à même de ça, d'air sûr, maïs de son père en main… D'où la paix sur l'île de son âme…\"");
+t_utf8*	toml_string_utf8_ru	= TOML_TEST("\"Яцк Ничолсон.\"");
+t_utf8*	toml_string_utf8_jp	= TOML_TEST("\"お前はもう死んでいる - 愛\"");
+t_utf8*	toml_string_utf8_ho	= TOML_TEST("\"�𑢰����� 𐐔𐐯𐑅𐐨𐑉𐐯𐐻\"");
+
+
+t_utf8*	toml_array_empty	= TOML_TEST("[]");
+t_utf8*	toml_array_min		= TOML_TEST("[false,true,null]");
+t_utf8*	toml_array			= TOML_TEST("\
 [\
 \n	false,\
 \n	true,\
 \n	null\
-\n]";
-t_utf8*	toml_array_nested_min	= "\n\"\"=[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{swag=1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]\n";
-t_utf8*	toml_array_nested		= "\n\"\"=[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{swag = 1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]\n";
+\n]");
+t_utf8*	toml_array_nested_min	= TOML_TEST("[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{swag=1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]");
+t_utf8*	toml_array_nested		= TOML_TEST("[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{swag = 1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]");
 
 
 
-t_utf8*	toml_object_empty	= "\n\"\"={}\n";
-t_utf8*	toml_object_min		= "\n\"\"={a=false,b=true,c=null}\n";
-t_utf8*	toml_object			= "\n\"\"=\
+t_utf8*	toml_object_empty	= TOML_TEST("{}");
+t_utf8*	toml_object_min		= TOML_TEST("{a=false,b=true,c=null}");
+t_utf8*	toml_object			= TOML_TEST("\
 {\
 \n	a = false,\
 \n	b = true,\
 \n	c = null\
-\n}";
-t_utf8*	toml_object_nested_min	= "\n\"\"={a={b={c={d={e={f={g={h={i={j={k={l={m={n={o={p={q={r={s={t={u={v={w={x={y={z=\"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}\n";
-t_utf8*	toml_object_nested		= "\n\"\"={a = {b = {c = {d = {e = {f = {g = {h = {i = {j = {k = {l = {m = {n = {o = {p = {q = {r = {s = {t = {u = {v = {w = {x = {y = {z = \"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}\n";
+\n}");
+t_utf8*	toml_object_nested_min	= TOML_TEST("{a={b={c={d={e={f={g={h={i={j={k={l={m={n={o={p={q={r={s={t={u={v={w={x={y={z=\"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}");
+t_utf8*	toml_object_nested		= TOML_TEST("{a = {b = {c = {d = {e = {f = {g = {h = {i = {j = {k = {l = {m = {n = {o = {p = {q = {r = {s = {t = {u = {v = {w = {x = {y = {z = \"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}");
 
 t_utf8*	toml_object_string_min =
 "\n""type=11"
@@ -212,19 +217,19 @@ t_utf8*	toml_strange_eot	= "\4hello=\4\"world\"\4\n";
 t_utf8*	toml_strange_esc	= "\ehello=\e\"world\"\e\n";
 t_utf8*	toml_strange_bs		= "\bhello=\b\"world\"\b\n";
 
-t_utf8*	toml_escape_sq1	= "\n\"\"=[\"test:\\\'.\"]\n";
-t_utf8*	toml_escape_sq2	= "\n\"\"=[\"test:\\\".\"]\n";
-t_utf8*	toml_escape_slb	= "\n\"\"=[\"test:\\\\.\"]\n";
-t_utf8*	toml_escape_slf	= "\n\"\"=[\"test:\\/.\"]\n";
-t_utf8*	toml_escape_spc	= "\n\"\"=[\"test:\\ .\"]\n";
-t_utf8*	toml_escape_tab	= "\n\"\"=[\"test:\\t.\"]\n";
-t_utf8*	toml_escape_nl	= "\n\"\"=[\"test:\\n.\"]\n";
-t_utf8*	toml_escape_cr	= "\n\"\"=[\"test:\\r.\"]\n";
-t_utf8*	toml_escape_ff	= "\n\"\"=[\"test:\\f.\"]\n";
-t_utf8*	toml_escape_vt	= "\n\"\"=[\"test:\\v.\"]\n";
-t_utf8*	toml_escape_esc	= "\n\"\"=[\"test:\\e.\"]\n";
-t_utf8*	toml_escape_bel	= "\n\"\"=[\"test:\\a.\"]\n";
-t_utf8*	toml_escape_bs	= "\n\"\"=[\"test:\\b.\"]\n";
+t_utf8*	toml_escape_sq1	= "[\".\\\'.\"]";
+t_utf8*	toml_escape_sq2	= "[\".\\\".\"]";
+t_utf8*	toml_escape_slb	= "[\".\\\\.\"]";
+t_utf8*	toml_escape_slf	= "[\".\\/.\"]";
+t_utf8*	toml_escape_spc	= "[\".\\ .\"]";
+t_utf8*	toml_escape_tab	= "[\".\\t.\"]";
+t_utf8*	toml_escape_nl	= "[\".\\n.\"]";
+t_utf8*	toml_escape_cr	= "[\".\\r.\"]";
+t_utf8*	toml_escape_ff	= "[\".\\f.\"]";
+t_utf8*	toml_escape_vt	= "[\".\\v.\"]";
+t_utf8*	toml_escape_esc	= "[\".\\e.\"]";
+t_utf8*	toml_escape_bel	= "[\".\\a.\"]";
+t_utf8*	toml_escape_bs	= "[\".\\b.\"]";
 
 
 

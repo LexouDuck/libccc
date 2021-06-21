@@ -5,148 +5,153 @@
 
 
 
+// the minimal boilerplate needed to store a single vlue in TOML
+#define JSON_TEST(STR)	STR
+
+
+
 /*
 ** ************************************************************************** *|
 **                              Testing Variables                             *|
 ** ************************************************************************** *|
 */
 
-t_utf8*	json_null	= "null";
+t_utf8*	json_null	= JSON_TEST("null");
 
-t_utf8*	json_bool_0	= "false";
-t_utf8*	json_bool_1	= "true";
-
-
-
-t_utf8*	json_number_0				= "0";
-t_utf8*	json_number_1				= "1";
-t_utf8*	json_number_2				= "42";
-t_utf8*	json_number_3				= "777";
-t_utf8*	json_number_4				= "123456";
-t_utf8*	json_number_0f				= "0.";
-t_utf8*	json_number_1f				= "1.";
-t_utf8*	json_number_2f				= "42.";
-t_utf8*	json_number_3f				= "777.";
-t_utf8*	json_number_4f				= "123456.";
-t_utf8*	json_number_0f1				= "0.0";
-t_utf8*	json_number_1f1				= "1.0";
-t_utf8*	json_number_2f1				= "42.0";
-t_utf8*	json_number_3f1				= "777.0";
-t_utf8*	json_number_4f1				= "123456.7";
-t_utf8*	json_number_0f2				= "0.00";
-t_utf8*	json_number_1f2				= "1.00";
-t_utf8*	json_number_2f2				= "42.00";
-t_utf8*	json_number_3f2				= "777.00";
-t_utf8*	json_number_4f2				= "123456.78";
-t_utf8*	json_number_0f3				= "0.000";
-t_utf8*	json_number_1f3				= "1.000";
-t_utf8*	json_number_2f3				= "42.000";
-t_utf8*	json_number_3f3				= "777.000";
-t_utf8*	json_number_4f3				= "123456.789";
-t_utf8*	json_number_fmin_lt			= "-9007199254740991";
-t_utf8*	json_number_fmin_eq			= "-9007199254740992";
-t_utf8*	json_number_fmin_gt			= "-9007199254740993";
-t_utf8*	json_number_fmax_lt			= "9007199254740991";
-t_utf8*	json_number_fmax_eq			= "9007199254740992";
-t_utf8*	json_number_fmax_gt			= "9007199254740993";
-t_utf8*	json_number_inf_u_lower_0	=  "inf";
-t_utf8*	json_number_inf_p_lower_0	= "+inf";
-t_utf8*	json_number_inf_n_lower_0	= "-inf";
-t_utf8*	json_number_inf_u_lower_1	=  "infinity";
-t_utf8*	json_number_inf_p_lower_1	= "+infinity";
-t_utf8*	json_number_inf_n_lower_1	= "-infinity";
-t_utf8*	json_number_inf_u_mixed_0	=  "Inf";
-t_utf8*	json_number_inf_p_mixed_0	= "+Inf";
-t_utf8*	json_number_inf_n_mixed_0	= "-Inf";
-t_utf8*	json_number_inf_u_mixed_1	=  "Infinity";
-t_utf8*	json_number_inf_p_mixed_1	= "+Infinity";
-t_utf8*	json_number_inf_n_mixed_1	= "-Infinity";
-t_utf8*	json_number_inf_u_upper_0	=  "INF";
-t_utf8*	json_number_inf_p_upper_0	= "+INF";
-t_utf8*	json_number_inf_n_upper_0	= "-INF";
-t_utf8*	json_number_inf_u_upper_1	=  "INFINITY";
-t_utf8*	json_number_inf_p_upper_1	= "+INFINITY";
-t_utf8*	json_number_inf_n_upper_1	= "-INFINITY";
-t_utf8*	json_number_nan_u_lower_0	=  "nan";
-t_utf8*	json_number_nan_p_lower_0	= "+nan";
-t_utf8*	json_number_nan_n_lower_0	= "-nan";
-t_utf8*	json_number_nan_u_mixed_0	=  "NaN";
-t_utf8*	json_number_nan_p_mixed_0	= "+NaN";
-t_utf8*	json_number_nan_n_mixed_0	= "-NaN";
-t_utf8*	json_number_nan_u_upper_0	=  "NAN";
-t_utf8*	json_number_nan_p_upper_0	= "+NAN";
-t_utf8*	json_number_nan_n_upper_0	= "-NAN";
-
-t_utf8*	json_number_inf_u_utf8_0	=  "∞";
-t_utf8*	json_number_inf_p_utf8_0	= "+∞";
-t_utf8*	json_number_inf_n_utf8_0	= "-∞";
-t_utf8*	json_number_inf_u_utf8_1	=  "\u221E";
-t_utf8*	json_number_inf_p_utf8_1	= "+\u221E";
-t_utf8*	json_number_inf_n_utf8_1	= "-\u221E";
+t_utf8*	json_bool_0	= JSON_TEST("false");
+t_utf8*	json_bool_1	= JSON_TEST("true");
 
 
 
-t_utf8*	json_bigint_empty			= "n";
-t_utf8*	json_bigint_0				= "0n";
-t_utf8*	json_bigint_1				= "1n";
-t_utf8*	json_bigint_2				= "42n";
-t_utf8*	json_bigint_3				= "777n";
-t_utf8*	json_bigint_4				= "123456n";
-t_utf8*	json_bigint_0f				= "0.n";
-t_utf8*	json_bigint_1f				= "1.n";
-t_utf8*	json_bigint_2f				= "42.n";
-t_utf8*	json_bigint_3f				= "777.n";
-t_utf8*	json_bigint_4f				= "123456.n";
-t_utf8*	json_bigint_0f1				= "0.0n";
-t_utf8*	json_bigint_1f1				= "1.0n";
-t_utf8*	json_bigint_2f1				= "42.0n";
-t_utf8*	json_bigint_3f1				= "777.0n";
-t_utf8*	json_bigint_4f1				= "123456.7n";
-t_utf8*	json_bigint_0f2				= "0.00n";
-t_utf8*	json_bigint_1f2				= "1.00n";
-t_utf8*	json_bigint_2f2				= "42.00n";
-t_utf8*	json_bigint_3f2				= "777.00n";
-t_utf8*	json_bigint_4f2				= "123456.78n";
-t_utf8*	json_bigint_0f3				= "0.000n";
-t_utf8*	json_bigint_1f3				= "1.000n";
-t_utf8*	json_bigint_2f3				= "42.000n";
-t_utf8*	json_bigint_3f3				= "777.000n";
-t_utf8*	json_bigint_4f3				= "123456.789n";
-t_utf8*	json_bigint_fmin_lt			= "-9007199254740991n";
-t_utf8*	json_bigint_fmin_eq			= "-9007199254740992n";
-t_utf8*	json_bigint_fmin_gt			= "-9007199254740993n";
-t_utf8*	json_bigint_fmax_lt			= "9007199254740991n";
-t_utf8*	json_bigint_fmax_eq			= "9007199254740992n";
-t_utf8*	json_bigint_fmax_gt			= "9007199254740993n";
-t_utf8*	json_bigint_s64min_lt		= "-9223372036854775807n";
-t_utf8*	json_bigint_s64min_eq		= "-9223372036854775808n";
-t_utf8*	json_bigint_s64min_gt		= "-9223372036854775809n";
-t_utf8*	json_bigint_s64max_lt		= "9223372036854775806n";
-t_utf8*	json_bigint_s64max_eq		= "9223372036854775807n";
-t_utf8*	json_bigint_s64max_gt		= "9223372036854775808n";
-t_utf8*	json_bigint_bad_unan_lower	= "nann";
-t_utf8*	json_bigint_bad_unan_upper	= "NANn";
-t_utf8*	json_bigint_bad_uinf_lower	= "infn";
-t_utf8*	json_bigint_bad_uinf_upper	= "INFn";
-t_utf8*	json_bigint_bad_nnan_lower	= "-nann";
-t_utf8*	json_bigint_bad_nnan_upper	= "-NANn";
-t_utf8*	json_bigint_bad_ninf_lower	= "-infn";
-t_utf8*	json_bigint_bad_ninf_upper	= "-INFn";
-t_utf8*	json_bigint_bad_pnan_lower	= "+nann";
-t_utf8*	json_bigint_bad_pnan_upper	= "+NANn";
-t_utf8*	json_bigint_bad_pinf_lower	= "+infn";
-t_utf8*	json_bigint_bad_pinf_upper	= "+INFn";
+t_utf8*	json_number_0				= JSON_TEST("0");
+t_utf8*	json_number_1				= JSON_TEST("1");
+t_utf8*	json_number_2				= JSON_TEST("42");
+t_utf8*	json_number_3				= JSON_TEST("777");
+t_utf8*	json_number_4				= JSON_TEST("123456");
+t_utf8*	json_number_0f				= JSON_TEST("0.");
+t_utf8*	json_number_1f				= JSON_TEST("1.");
+t_utf8*	json_number_2f				= JSON_TEST("42.");
+t_utf8*	json_number_3f				= JSON_TEST("777.");
+t_utf8*	json_number_4f				= JSON_TEST("123456.");
+t_utf8*	json_number_0f1				= JSON_TEST("0.0");
+t_utf8*	json_number_1f1				= JSON_TEST("1.0");
+t_utf8*	json_number_2f1				= JSON_TEST("42.0");
+t_utf8*	json_number_3f1				= JSON_TEST("777.0");
+t_utf8*	json_number_4f1				= JSON_TEST("123456.7");
+t_utf8*	json_number_0f2				= JSON_TEST("0.00");
+t_utf8*	json_number_1f2				= JSON_TEST("1.00");
+t_utf8*	json_number_2f2				= JSON_TEST("42.00");
+t_utf8*	json_number_3f2				= JSON_TEST("777.00");
+t_utf8*	json_number_4f2				= JSON_TEST("123456.78");
+t_utf8*	json_number_0f3				= JSON_TEST("0.000");
+t_utf8*	json_number_1f3				= JSON_TEST("1.000");
+t_utf8*	json_number_2f3				= JSON_TEST("42.000");
+t_utf8*	json_number_3f3				= JSON_TEST("777.000");
+t_utf8*	json_number_4f3				= JSON_TEST("123456.789");
+t_utf8*	json_number_fmin_lt			= JSON_TEST("-9007199254740991");
+t_utf8*	json_number_fmin_eq			= JSON_TEST("-9007199254740992");
+t_utf8*	json_number_fmin_gt			= JSON_TEST("-9007199254740993");
+t_utf8*	json_number_fmax_lt			= JSON_TEST("9007199254740991");
+t_utf8*	json_number_fmax_eq			= JSON_TEST("9007199254740992");
+t_utf8*	json_number_fmax_gt			= JSON_TEST("9007199254740993");
+t_utf8*	json_number_inf_u_lower_0	= JSON_TEST( "inf");
+t_utf8*	json_number_inf_p_lower_0	= JSON_TEST("+inf");
+t_utf8*	json_number_inf_n_lower_0	= JSON_TEST("-inf");
+t_utf8*	json_number_inf_u_lower_1	= JSON_TEST( "infinity");
+t_utf8*	json_number_inf_p_lower_1	= JSON_TEST("+infinity");
+t_utf8*	json_number_inf_n_lower_1	= JSON_TEST("-infinity");
+t_utf8*	json_number_inf_u_mixed_0	= JSON_TEST( "Inf");
+t_utf8*	json_number_inf_p_mixed_0	= JSON_TEST("+Inf");
+t_utf8*	json_number_inf_n_mixed_0	= JSON_TEST("-Inf");
+t_utf8*	json_number_inf_u_mixed_1	= JSON_TEST( "Infinity");
+t_utf8*	json_number_inf_p_mixed_1	= JSON_TEST("+Infinity");
+t_utf8*	json_number_inf_n_mixed_1	= JSON_TEST("-Infinity");
+t_utf8*	json_number_inf_u_upper_0	= JSON_TEST( "INF");
+t_utf8*	json_number_inf_p_upper_0	= JSON_TEST("+INF");
+t_utf8*	json_number_inf_n_upper_0	= JSON_TEST("-INF");
+t_utf8*	json_number_inf_u_upper_1	= JSON_TEST( "INFINITY");
+t_utf8*	json_number_inf_p_upper_1	= JSON_TEST("+INFINITY");
+t_utf8*	json_number_inf_n_upper_1	= JSON_TEST("-INFINITY");
+t_utf8*	json_number_nan_u_lower_0	= JSON_TEST( "nan");
+t_utf8*	json_number_nan_p_lower_0	= JSON_TEST("+nan");
+t_utf8*	json_number_nan_n_lower_0	= JSON_TEST("-nan");
+t_utf8*	json_number_nan_u_mixed_0	= JSON_TEST( "NaN");
+t_utf8*	json_number_nan_p_mixed_0	= JSON_TEST("+NaN");
+t_utf8*	json_number_nan_n_mixed_0	= JSON_TEST("-NaN");
+t_utf8*	json_number_nan_u_upper_0	= JSON_TEST( "NAN");
+t_utf8*	json_number_nan_p_upper_0	= JSON_TEST("+NAN");
+t_utf8*	json_number_nan_n_upper_0	= JSON_TEST("-NAN");
+
+t_utf8*	json_number_inf_u_utf8_0	= JSON_TEST( "∞");
+t_utf8*	json_number_inf_p_utf8_0	= JSON_TEST("+∞");
+t_utf8*	json_number_inf_n_utf8_0	= JSON_TEST("-∞");
+t_utf8*	json_number_inf_u_utf8_1	= JSON_TEST( "\u221E");
+t_utf8*	json_number_inf_p_utf8_1	= JSON_TEST("+\u221E");
+t_utf8*	json_number_inf_n_utf8_1	= JSON_TEST("-\u221E");
 
 
 
-t_utf8*	json_string_empty	= "\"\"";
-t_utf8*	json_string			= "\"Hello World!\"";
-t_utf8*	json_string_cc_c0	= "\"␡␁␂␃␄␅␆␇␈␉␊␋␌␍␎␏␐␑␒␓␔␕␖␗␘␙␚␛␜␝␞␟\"";
-t_utf8*	json_string_cc_c1	= "\"\"";
-t_utf8*	json_string_utf8_fr	= "\"Être à même de ça, d'air sûr, maïs de son père en main… D'où la paix sur l'île de son âme…\"";
-t_utf8*	json_string_utf8_ru	= "\"Яцк Ничолсон.\"";
-t_utf8*	json_string_utf8_jp	= "\"お前はもう死んでいる - 愛\"";
-t_utf8*	json_string_utf8_ho	= "\"�𑢰����� 𐐔𐐯𐑅𐐨𐑉𐐯𐐻\"";
+t_utf8*	json_bigint_empty			= JSON_TEST("n");
+t_utf8*	json_bigint_0				= JSON_TEST("0n");
+t_utf8*	json_bigint_1				= JSON_TEST("1n");
+t_utf8*	json_bigint_2				= JSON_TEST("42n");
+t_utf8*	json_bigint_3				= JSON_TEST("777n");
+t_utf8*	json_bigint_4				= JSON_TEST("123456n");
+t_utf8*	json_bigint_0f				= JSON_TEST("0.n");
+t_utf8*	json_bigint_1f				= JSON_TEST("1.n");
+t_utf8*	json_bigint_2f				= JSON_TEST("42.n");
+t_utf8*	json_bigint_3f				= JSON_TEST("777.n");
+t_utf8*	json_bigint_4f				= JSON_TEST("123456.n");
+t_utf8*	json_bigint_0f1				= JSON_TEST("0.0n");
+t_utf8*	json_bigint_1f1				= JSON_TEST("1.0n");
+t_utf8*	json_bigint_2f1				= JSON_TEST("42.0n");
+t_utf8*	json_bigint_3f1				= JSON_TEST("777.0n");
+t_utf8*	json_bigint_4f1				= JSON_TEST("123456.7n");
+t_utf8*	json_bigint_0f2				= JSON_TEST("0.00n");
+t_utf8*	json_bigint_1f2				= JSON_TEST("1.00n");
+t_utf8*	json_bigint_2f2				= JSON_TEST("42.00n");
+t_utf8*	json_bigint_3f2				= JSON_TEST("777.00n");
+t_utf8*	json_bigint_4f2				= JSON_TEST("123456.78n");
+t_utf8*	json_bigint_0f3				= JSON_TEST("0.000n");
+t_utf8*	json_bigint_1f3				= JSON_TEST("1.000n");
+t_utf8*	json_bigint_2f3				= JSON_TEST("42.000n");
+t_utf8*	json_bigint_3f3				= JSON_TEST("777.000n");
+t_utf8*	json_bigint_4f3				= JSON_TEST("123456.789n");
+t_utf8*	json_bigint_fmin_lt			= JSON_TEST("-9007199254740991n");
+t_utf8*	json_bigint_fmin_eq			= JSON_TEST("-9007199254740992n");
+t_utf8*	json_bigint_fmin_gt			= JSON_TEST("-9007199254740993n");
+t_utf8*	json_bigint_fmax_lt			= JSON_TEST("9007199254740991n");
+t_utf8*	json_bigint_fmax_eq			= JSON_TEST("9007199254740992n");
+t_utf8*	json_bigint_fmax_gt			= JSON_TEST("9007199254740993n");
+t_utf8*	json_bigint_s64min_lt		= JSON_TEST("-9223372036854775807n");
+t_utf8*	json_bigint_s64min_eq		= JSON_TEST("-9223372036854775808n");
+t_utf8*	json_bigint_s64min_gt		= JSON_TEST("-9223372036854775809n");
+t_utf8*	json_bigint_s64max_lt		= JSON_TEST("9223372036854775806n");
+t_utf8*	json_bigint_s64max_eq		= JSON_TEST("9223372036854775807n");
+t_utf8*	json_bigint_s64max_gt		= JSON_TEST("9223372036854775808n");
+t_utf8*	json_bigint_bad_unan_lower	= JSON_TEST("nann");
+t_utf8*	json_bigint_bad_unan_upper	= JSON_TEST("NANn");
+t_utf8*	json_bigint_bad_uinf_lower	= JSON_TEST("infn");
+t_utf8*	json_bigint_bad_uinf_upper	= JSON_TEST("INFn");
+t_utf8*	json_bigint_bad_nnan_lower	= JSON_TEST("-nann");
+t_utf8*	json_bigint_bad_nnan_upper	= JSON_TEST("-NANn");
+t_utf8*	json_bigint_bad_ninf_lower	= JSON_TEST("-infn");
+t_utf8*	json_bigint_bad_ninf_upper	= JSON_TEST("-INFn");
+t_utf8*	json_bigint_bad_pnan_lower	= JSON_TEST("+nann");
+t_utf8*	json_bigint_bad_pnan_upper	= JSON_TEST("+NANn");
+t_utf8*	json_bigint_bad_pinf_lower	= JSON_TEST("+infn");
+t_utf8*	json_bigint_bad_pinf_upper	= JSON_TEST("+INFn");
+
+
+
+t_utf8*	json_string_empty	= JSON_TEST("\"\"");
+t_utf8*	json_string			= JSON_TEST("\"Hello World!\"");
+t_utf8*	json_string_cc_c0	= JSON_TEST("\"␡␁␂␃␄␅␆␇␈␉␊␋␌␍␎␏␐␑␒␓␔␕␖␗␘␙␚␛␜␝␞␟\"");
+t_utf8*	json_string_cc_c1	= JSON_TEST("\"\"");
+t_utf8*	json_string_utf8_fr	= JSON_TEST("\"Être à même de ça, d'air sûr, maïs de son père en main… D'où la paix sur l'île de son âme…\"");
+t_utf8*	json_string_utf8_ru	= JSON_TEST("\"Яцк Ничолсон.\"");
+t_utf8*	json_string_utf8_jp	= JSON_TEST("\"お前はもう死んでいる - 愛\"");
+t_utf8*	json_string_utf8_ho	= JSON_TEST("\"�𑢰����� 𐐔𐐯𐑅𐐨𐑉𐐯𐐻\"");
 
 
 t_utf8*	json_array_empty	= "[]";
@@ -214,19 +219,19 @@ t_utf8*	json_strange_eot	= "\4{\"hello\":\4\"world\"\4}\n";
 t_utf8*	json_strange_esc	= "\e{\"hello\":\e\"world\"\e}\n";
 t_utf8*	json_strange_bs		= "\b{\"hello\":\b\"world\"\b}\n";
 
-t_utf8*	json_escape_sq1	= "[\"test:\\\'.\"]";
-t_utf8*	json_escape_sq2	= "[\"test:\\\".\"]";
-t_utf8*	json_escape_slb	= "[\"test:\\\\.\"]";
-t_utf8*	json_escape_slf	= "[\"test:\\/.\"]";
-t_utf8*	json_escape_spc	= "[\"test:\\ .\"]";
-t_utf8*	json_escape_tab	= "[\"test:\\t.\"]";
-t_utf8*	json_escape_nl	= "[\"test:\\n.\"]";
-t_utf8*	json_escape_cr	= "[\"test:\\r.\"]";
-t_utf8*	json_escape_ff	= "[\"test:\\f.\"]";
-t_utf8*	json_escape_vt	= "[\"test:\\v.\"]";
-t_utf8*	json_escape_esc	= "[\"test:\\e.\"]";
-t_utf8*	json_escape_bel	= "[\"test:\\a.\"]";
-t_utf8*	json_escape_bs	= "[\"test:\\b.\"]";
+t_utf8*	json_escape_sq1	= "[\".\\\'.\"]";
+t_utf8*	json_escape_sq2	= "[\".\\\".\"]";
+t_utf8*	json_escape_slb	= "[\".\\\\.\"]";
+t_utf8*	json_escape_slf	= "[\".\\/.\"]";
+t_utf8*	json_escape_spc	= "[\".\\ .\"]";
+t_utf8*	json_escape_tab	= "[\".\\t.\"]";
+t_utf8*	json_escape_nl	= "[\".\\n.\"]";
+t_utf8*	json_escape_cr	= "[\".\\r.\"]";
+t_utf8*	json_escape_ff	= "[\".\\f.\"]";
+t_utf8*	json_escape_vt	= "[\".\\v.\"]";
+t_utf8*	json_escape_esc	= "[\".\\e.\"]";
+t_utf8*	json_escape_bel	= "[\".\\a.\"]";
+t_utf8*	json_escape_bs	= "[\".\\b.\"]";
 
 
 

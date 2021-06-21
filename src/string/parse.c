@@ -35,8 +35,8 @@ t_size	String_Parse_GetLength(t_char const* str, t_bool any_escape)
 				case  '?':	length += 1 * sizeof(t_char);	break; // Question mark (used to avoid trigraphs)
 				case '\\':	length += 1 * sizeof(t_char);	break; // Backslash
 				case 'x':	length += 1 * sizeof(t_char);	break; // Hexadecimal t_char value
-				case 'u':	length += 2 * sizeof(t_char);	break; // Unicode 2-char (UTF-16)
-				case 'U':	length += 4 * sizeof(t_char);	break; // Unicode 4-char (UTF-32)
+				case 'u':	length += 2 * sizeof(t_char);	break; // Unicode 2-byte t_char (encodes UTF-32 code point to UTF-8)
+				case 'U':	length += 4 * sizeof(t_char);	break; // Unicode 4-byte t_char (encodes UTF-32 code point to UTF-8)
 				default:
 					if (Char_IsDigit_Oct(str[i])) // Octal t_char value
 						length += 1 * sizeof(t_char);
@@ -68,7 +68,7 @@ t_size	String_Parse_GetLength(t_char const* str, t_bool any_escape)
 
 
 
-t_char*	String_Parse(t_char const* str, t_bool any_escape)
+t_size	String_Parse(t_char* *dest, t_char const* str, t_bool any_escape)
 {
 	t_char*	result;
 	t_char	tmp[9] = { 0 };
@@ -76,9 +76,9 @@ t_char*	String_Parse(t_char const* str, t_bool any_escape)
 	t_size	index = 0;
 	t_size	i = 0;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
-	result = (t_char*)Memory_Allocate(String_Parse_GetLength(str, any_escape) + sizeof(""));
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), PARSE_RETURN(NULL);)
+	result = (t_char*)Memory_New(String_Parse_GetLength(str, any_escape) + sizeof(""));
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), PARSE_RETURN(NULL);)
 	while (str[index])
 	{
 		if (str[index] == '\\') // escape sequence
@@ -123,5 +123,16 @@ t_char*	String_Parse(t_char const* str, t_bool any_escape)
 		++index;
 	}
 	result[i] = '\0';
+	if (dest)	*dest = result;
+	return (index);
+}
+
+
+
+inline
+t_char*	String_FromEscape(t_char const* str, t_bool any_escape)
+{
+	t_char*	result = NULL;
+	String_Parse(&result, str, any_escape);
 	return (result);
 }

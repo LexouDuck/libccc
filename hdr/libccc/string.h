@@ -979,7 +979,21 @@ t_char*					String_Pad_R(t_char const* str, t_char c, t_size length);
 **	- `\x??`		Byte value, written as hexadecimal
 **	- TODO `\u????`		UTF-8 multi-byte character, written as a hexadecimal code point (Unicode: U+????)
 **	- TODO `\U????????`	UTF-8 multi-byte character, written as a hexadecimal code point (Unicode: U+????????)
-**
+*/
+//!@{
+
+/*!
+**	@param	dest			The destination string
+**	@param	str				The string to print/duplicate, with escape-sequences
+**	@param	charset_extra	A string containing any extra characters which should be escaped
+**							(ie: any char in `charset_extra` will become a `\x??` byte escape sequence)
+**	@returns
+**	The amount of characters parsed from the given `str`.
+*/
+t_size							String_Print(t_char* *dest, t_char const* str, t_char const* charset_extra);
+#define c_strprint				String_Print //!< @alias{String_Print}
+
+/*!
 **	@param	str				The string to print/duplicate, with escape-sequences
 **	@param	charset_extra	A string containing any extra characters which should be escaped
 **							(ie: any char in `charset_extra` will become a `\x??` byte escape sequence)
@@ -988,10 +1002,11 @@ t_char*					String_Pad_R(t_char const* str, t_char c, t_size length);
 **	in which any special characters are replaced with an appropriate escape-sequence.
 */
 _MALLOC()
-t_char*							String_Print(t_char const* str, t_char const* charset_extra);
-#define c_strprint				String_Print //!< @alias{String_Print}
-#define String_Encode			String_Print //!< @alias{String_Print}
-#define String_ToPrintable		String_Print //!< @alias{String_Print}
+t_char*							String_ToEscape(t_char const* str, t_char const* charset_extra);
+#define c_strtoesc				String_ToEscape //!< @alias{String_ToEscape}
+#define String_Encode			String_ToEscape //!< @alias{String_ToEscape}
+#define String_ToPrintable		String_ToEscape //!< @alias{String_ToEscape}
+//!@}
 
 
 
@@ -1018,7 +1033,21 @@ t_char*							String_Print(t_char const* str, t_char const* charset_extra);
 **	- `\u????`		UTF-8 multi-byte character, written as a hexadecimal code point (Unicode: U+????)
 **	- `\U????????`	UTF-8 multi-byte character, written as a hexadecimal code point (Unicode: U+????????)
 **	Any other backslash-ed character will simply resolve to itself (ie: removing the preceding backslash)
-**
+*/
+//!@{
+
+/*!
+**	@param	dest		The destination string
+**	@param	str			The string to duplicate, while resolving all escape-sequences to their corresponding char
+**	@param	any_escape	If `TRUE`, every backslash will be understood as an escape character
+**						(ie: any escape sequance will function, with any char after the `'\'`)
+**	@returns
+**	The amount of characters parsed from the given `str`.
+*/
+t_size							String_Parse(t_char* *dest, t_char const* str, t_bool any_escape);
+#define c_strparse				String_Parse //!< @alias{String_Parse}
+
+/*!
 **	@param	str			The string to duplicate, while resolving all escape-sequences to their corresponding char
 **	@param	any_escape	If `TRUE`, every backslash will be understood as an escape character
 **						(ie: any escape sequance will function, with any char after the `'\'`)
@@ -1027,10 +1056,11 @@ t_char*							String_Print(t_char const* str, t_char const* charset_extra);
 **	with any escape-sequences transformed into their target character value.
 */
 _MALLOC()
-t_char*							String_Parse(t_char const* str, t_bool any_escape);
-#define c_strparse				String_Parse //!< @alias{String_Parse}
-#define String_Decode			String_Parse //!< @alias{String_Parse}
-#define String_FromPrintable	String_Parse //!< @alias{String_Parse}
+t_char*							String_FromEscape(t_char const* str, t_bool any_escape);
+#define c_esctostr				String_FromEscape //!< @alias{String_FromEscape}
+#define String_Decode			String_FromEscape //!< @alias{String_FromEscape}
+#define String_FromPrintable	String_FromEscape //!< @alias{String_FromEscape}
+//!@}
 
 
 
