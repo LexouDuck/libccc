@@ -208,7 +208,9 @@ t_bool JSON_Parse_String(s_json* item, s_json_parse* p)
 
 	if (!p->strict)
 	{
-		skipped_bytes = String_Parse(&output, input_ptr, (input_end - input_ptr), FALSE);
+		if ((input_end - input_ptr) == 0)
+			output = String_Duplicate("");
+		else skipped_bytes = String_Parse(&output, input_ptr, (input_end - input_ptr), FALSE);
 	}
 	else
 	{

@@ -317,47 +317,57 @@ t_bool	TOML_Parse_String(s_toml* item, s_toml_parse* p)
 	}
 	if ((t_size)(input_end - p->content) >= p->length)
 		PARSINGERROR_TOML("Could not parse string: Unexpected end of input")
-	// This is how many bytes we need for the output, at most
-	alloc_length = (t_size)(input_end - &p->content[p->offset]) - skipped_bytes;
-	output = (t_utf8*)Memory_Allocate(alloc_length + sizeof(""));
-	if (output == NULL)
-		PARSINGERROR_TOML("Could not parse string: Allocation failure")
-	output_ptr = output;
-	// loop through the string literal
-	while (input_ptr < input_end)
+
+	if (!p->strict)
 	{
-		if (*input_ptr == '\\') // escape sequence
-		{
-			t_utf8 sequence_length = 2;
-			if ((input_end - input_ptr) < 1)
-				PARSINGERROR_TOML("Could not parse string: Unexpected end of input within string escape sequence")
-			switch (input_ptr[1])
-			{
-				case 'b':	*output_ptr++ = '\b';	break;
-				case 't':	*output_ptr++ = '\t';	break;
-				case 'n':	*output_ptr++ = '\n';	break;
-				case 'f':	*output_ptr++ = '\f';	break;
-				case 'r':	*output_ptr++ = '\r';	break;
-				case '\"':
-				case '\\':
-					*output_ptr++ = input_ptr[1];
-					break;
-				case 'u': // UTF-32 literal TODO ensure 4 hex chars
-				case 'U': // UTF-32 literal TODO ensure 8 hex chars
-					sequence_length = UTF32_Parse_N(&c, input_ptr, (input_end - input_ptr));
-					if (sequence_length == 0)
-						PARSINGERROR_TOML("Could not parse string: Failed to convert UTF16-literal to UTF-8")
-					output_ptr += UTF32_ToUTF8(output_ptr, c);
-					break;
-				default: // TODO non-strict escape sequence handling
-					PARSINGERROR_TOML("Could not parse string: Invalid string escape sequence encountered: \"\\%c\"", input_ptr[1])
-			}
-			input_ptr += sequence_length;
-		}
-		else *output_ptr++ = *input_ptr++;
+		if ((input_end - input_ptr) == 0)
+			output = String_Duplicate("");
+		else skipped_bytes = String_Parse(&output, input_ptr, (input_end - input_ptr), FALSE);
 	}
-	// zero terminate the output
-	*output_ptr = '\0';
+	else
+	{
+		// This is how many bytes we need for the output, at most
+		alloc_length = (t_size)(input_end - &p->content[p->offset]) - skipped_bytes;
+		output = (t_utf8*)Memory_Allocate(alloc_length + sizeof(""));
+		if (output == NULL)
+			PARSINGERROR_TOML("Could not parse string: Allocation failure")
+		output_ptr = output;
+		// loop through the string literal
+		while (input_ptr < input_end)
+		{
+			if (*input_ptr == '\\') // escape sequence
+			{
+				t_utf8 sequence_length = 2;
+				if ((input_end - input_ptr) < 1)
+					PARSINGERROR_TOML("Could not parse string: Unexpected end of input within string escape sequence")
+				switch (input_ptr[1])
+				{
+					case 'b':	*output_ptr++ = '\b';	break;
+					case 't':	*output_ptr++ = '\t';	break;
+					case 'n':	*output_ptr++ = '\n';	break;
+					case 'f':	*output_ptr++ = '\f';	break;
+					case 'r':	*output_ptr++ = '\r';	break;
+					case '\"':
+					case '\\':
+						*output_ptr++ = input_ptr[1];
+						break;
+					case 'u': // UTF-32 literal TODO ensure 4 hex chars
+					case 'U': // UTF-32 literal TODO ensure 8 hex chars
+						sequence_length = UTF32_Parse_N(&c, input_ptr, (input_end - input_ptr));
+						if (sequence_length == 0)
+							PARSINGERROR_TOML("Could not parse string: Failed to convert UTF16-literal to UTF-8")
+						output_ptr += UTF32_ToUTF8(output_ptr, c);
+						break;
+					default: // TODO non-strict escape sequence handling
+						PARSINGERROR_TOML("Could not parse string: Invalid string escape sequence encountered: \"\\%c\"", input_ptr[1])
+				}
+				input_ptr += sequence_length;
+			}
+			else *output_ptr++ = *input_ptr++;
+		}
+		// zero terminate the output
+		*output_ptr = '\0';
+	}
 	item->type = DYNAMICTYPE_STRING;
 	item->value.string = output;
 	p->offset = (t_size)(input_end - p->content);

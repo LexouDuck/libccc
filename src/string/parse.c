@@ -122,6 +122,7 @@ t_size	String_Parse(t_char* *dest, t_char const* str, t_size n, t_bool any_escap
 					break;
 			}
 		}
+		else result[i++] = str[index];
 		++index;
 	}
 	result[i] = '\0';
