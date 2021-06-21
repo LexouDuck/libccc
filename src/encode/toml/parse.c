@@ -14,14 +14,15 @@ typedef s_kvt_parse	s_toml_parse;
 
 
 
-static t_bool TOML_Parse_Lines (s_toml* item, s_toml_parse* p);
-static t_bool TOML_Parse_Key   (s_toml* item, s_toml_parse* p);
-static t_bool TOML_Parse_Value (s_toml* item, s_toml_parse* p);
-static t_bool TOML_Parse_Table (s_toml* item, s_toml_parse* p);
-static t_bool TOML_Parse_Number(s_toml* item, s_toml_parse* p);
-static t_bool TOML_Parse_String(s_toml* item, s_toml_parse* p);
-//static t_bool TOML_Parse_Array (s_toml* item, s_toml_parse* p); // TODO
-//static t_bool TOML_Parse_Object(s_toml* item, s_toml_parse* p); // TODO
+static t_bool TOML_Parse_Lines			(s_toml* item, s_toml_parse* p);
+static t_bool TOML_Parse_KeyValuePair	(s_toml* item, s_toml_parse* p);
+static t_bool TOML_Parse_Key			(s_toml* item, s_toml_parse* p);
+static t_bool TOML_Parse_Value			(s_toml* item, s_toml_parse* p);
+static t_bool TOML_Parse_Table			(s_toml* item, s_toml_parse* p);
+static t_bool TOML_Parse_Number			(s_toml* item, s_toml_parse* p);
+static t_bool TOML_Parse_String			(s_toml* item, s_toml_parse* p);
+static t_bool TOML_Parse_Array			(s_toml* item, s_toml_parse* p);
+static t_bool TOML_Parse_Object			(s_toml* item, s_toml_parse* p);
 
 
 
@@ -378,6 +379,199 @@ failure:
 
 
 static
+t_bool	TOML_Parse_Array(s_toml* item, s_toml_parse* p)
+{
+	s_toml* head = NULL; // head of the linked list
+	s_toml* current_item = NULL;
+	t_uint index;
+
+	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (ERROR);)
+	HANDLE_ERROR(NULLPOINTER, (p->content == NULL), return (ERROR);)
+	if (p->depth >= KVT_NESTING_LIMIT)
+		PARSINGERROR_TOML("Could not parse TOML: nested too deep, max depth of nesting is %u", KVT_NESTING_LIMIT)
+	p->depth++;
+
+	if (!CAN_PARSE(0))
+		PARSINGERROR_TOML("Could not parse array: Unexpected end of end of input before array")
+	if (p->content[p->offset] != '[')
+		PARSINGERROR_TOML("Could not parse array: Expected '[' char to begin array, instead found '%c'/0x%2X",
+			(p->content[p->offset] ? p->content[p->offset] : '\a'), p->content[p->offset])
+	p->offset++;
+	TOML_Parse_SkipWhiteSpace(p);
+	if (CAN_PARSE(0) && (p->content[p->offset] == ']'))
+		goto success; // empty array
+	// check if we skipped to the end of the buffer
+	if (!CAN_PARSE(0))
+	{
+		p->offset--;
+		PARSINGERROR_TOML("Could not parse array: Unexpected end of input after '[' array start char")
+	}
+	// step back to character in front of the first element
+	p->offset--;
+	// loop through the comma separated array elements
+	index = 0;
+	do
+	{
+		p->offset++;
+		TOML_Parse_SkipWhiteSpace(p);
+		if (CAN_PARSE(0) && (p->content[p->offset] == ']'))
+			goto success; // allow trailing commas
+		// allocate next item
+		s_toml* new_item = TOML_Item();
+		if (new_item == NULL)
+			PARSINGERROR_TOML("Could not parse array: Allocation failure")
+		// attach next item to list
+		if (head == NULL)
+		{	// start the linked list
+			head = new_item;
+			current_item = new_item;
+		}
+		else
+		{
+			// add to the end and advance
+			current_item->next = new_item;
+			new_item->prev = current_item;
+			current_item = new_item;
+		}
+		// parse next value
+		TOML_Parse_SkipWhiteSpace(p);
+		if (TOML_Parse_Value(current_item, p))
+			PARSINGERROR_TOML("Inside array: failed to parse value within array, at index "SF_UINT, index)
+		TOML_Parse_SkipWhiteSpace(p);
+		index++;
+	}
+	while (CAN_PARSE(0) && p->content[p->offset] == ',');
+
+	if (!CAN_PARSE(0))
+		PARSINGERROR_TOML("Could not parse array: Unexpected end of end of input within array")
+	if (p->content[p->offset] != ']')
+		PARSINGERROR_TOML("Could not parse array: Expected end of array ']' char, instead found '%c'/0x%2X",
+			(p->content[p->offset] ? p->content[p->offset] : '\a'), p->content[p->offset])
+
+success:
+	p->depth--;
+	if (head != NULL)
+	{
+		head->prev = current_item;
+	}
+	item->type = DYNAMICTYPE_ARRAY;
+	item->value.child = head;
+	p->offset++;
+	return (OK);
+
+failure:
+	if (head != NULL)
+	{
+		TOML_Delete(head);
+	}
+	return (ERROR);
+}
+
+
+
+static
+t_bool	TOML_Parse_Object(s_toml* item, s_toml_parse* p)
+{
+	s_toml* head = NULL; // linked list head
+	s_toml* current_item = NULL;
+
+	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (ERROR);)
+	HANDLE_ERROR(NULLPOINTER, (p->content == NULL), return (ERROR);)
+	if (p->depth >= KVT_NESTING_LIMIT)
+		PARSINGERROR_TOML("Could not parse TOML: nested too deep, max depth of nesting is %u", KVT_NESTING_LIMIT)
+	p->depth++;
+	if (!CAN_PARSE(0) || (p->content[p->offset] != '{'))
+		PARSINGERROR_TOML("Could not parse object: Expected '{' to begin object, instead found '%c'/0x%2X",
+			(p->content[p->offset] ? p->content[p->offset] : '\a'), p->content[p->offset])
+	p->offset++;
+	TOML_Parse_SkipWhiteSpace(p);
+	if (CAN_PARSE(0) && (p->content[p->offset] == '}'))
+		goto success; // empty object
+	// check if we skipped to the end of the buffer
+	if (!CAN_PARSE(0))
+	{
+		p->offset--;
+		PARSINGERROR_TOML("Could not parse object: Unexpected end of input after '{' object start char")
+	}
+	// step back to character in front of the first element
+	p->offset--;
+	// loop through the comma separated array elements
+	do
+	{
+		p->offset++;
+		TOML_Parse_SkipWhiteSpace(p);
+		if (CAN_PARSE(0) && (p->content[p->offset] == '}'))
+			goto success; // allow trailing commas
+		// allocate next item
+		s_toml* new_item = TOML_Item();
+		if (new_item == NULL)
+			PARSINGERROR_TOML("Could not parse object: Allocation failure")
+		// attach next item to list
+		if (head == NULL)
+		{	// start the linked list
+			head = new_item;
+			current_item = new_item;
+		}
+		else
+		{	// add to the end and advance
+			current_item->next = new_item;
+			new_item->prev = current_item;
+			current_item = new_item;
+		}
+
+		if (TOML_Parse_KeyValuePair(current_item, p))
+			PARSINGERROR_TOML("Could not parse object: Failed to parse inline table member (in item wth key \"%s\")", current_item->key)
+		TOML_Parse_SkipWhiteSpace(p);
+/*
+		// parse the name of the child
+		if (TOML_Parse_String(current_item, p))
+			PARSINGERROR_TOML("Could not parse object: Failed to parse object member key")
+		// swap value.string and string, because we parsed the name
+		current_item->key = current_item->value.string;
+		current_item->value.string = NULL;
+		TOML_Parse_SkipWhiteSpace(p);
+		if (!CAN_PARSE(0))
+			PARSINGERROR_TOML("Could not parse object: Unexpected end of input after object member key")
+		if (p->content[p->offset] != ':')
+			PARSINGERROR_TOML("Could not parse object: Invalid object key/value pair, expected ':' char")
+		// parse the value
+		p->offset++;
+		TOML_Parse_SkipWhiteSpace(p);
+		if (TOML_Parse_Value(current_item, p))
+			PARSINGERROR_TOML("Inside object: Failed to parse object member value (key is \"%s\")", current_item->key)
+		TOML_Parse_SkipWhiteSpace(p);
+*/
+	}
+	while (CAN_PARSE(0) && (p->content[p->offset] == ','));
+
+	if (!CAN_PARSE(0))
+		PARSINGERROR_TOML("Could not parse object: Unexpected end of input within object")
+	if (p->content[p->offset] != '}')
+		PARSINGERROR_TOML("Could not parse object: Expected end of object char '}', instead found '%c'/0x%2X",
+			(p->content[p->offset] ? p->content[p->offset] : '\a'), p->content[p->offset])
+
+success:
+	p->depth--;
+	if (head != NULL)
+	{
+		head->prev = current_item;
+	}
+	item->type = DYNAMICTYPE_OBJECT;
+	item->value.child = head;
+	p->offset++;
+	return (OK);
+
+failure:
+	if (head != NULL)
+	{
+		TOML_Delete(head);
+	}
+	return (ERROR);
+}
+
+
+
+static
 t_bool	TOML_Parse_Key(s_toml* item, s_toml_parse* p)
 {
 	if (!CAN_PARSE(0))
@@ -465,10 +659,10 @@ t_bool	TOML_Parse_Value(s_toml* item, s_toml_parse* p)
 	}
 	else
 	{
-//		if (p->content[p->offset] == '[')
-//			return (TOML_Parse_Array( item, p));	// array
-//		if (p->content[p->offset] == '{')
-//			return (TOML_Parse_Object(item, p));	// object
+		if (p->content[p->offset] == '[')
+			return (TOML_Parse_Array( item, p));	// array
+		if (p->content[p->offset] == '{')
+			return (TOML_Parse_Object(item, p));	// object
 		if (p->content[p->offset] == '\"')
 			return (TOML_Parse_String(item, p));	// string
 		if (Char_IsDigit(p->content[p->offset]) ||

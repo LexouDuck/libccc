@@ -1,6 +1,5 @@
 
 #include "libccc/encode/toml.h"
-#include "libccc/encode/json.h"
 
 #include "test.h"
 
@@ -50,38 +49,38 @@ t_utf8*	toml_number_fmin_gt			= "\"\"=-9007199254740993";
 t_utf8*	toml_number_fmax_lt			= "\"\"=9007199254740991";
 t_utf8*	toml_number_fmax_eq			= "\"\"=9007199254740992";
 t_utf8*	toml_number_fmax_gt			= "\"\"=9007199254740993";
-t_utf8*	toml_number_inf_u_lower_0	= "\"\"= inf";
+t_utf8*	toml_number_inf_u_lower_0	= "\"\"=inf";
 t_utf8*	toml_number_inf_p_lower_0	= "\"\"=+inf";
 t_utf8*	toml_number_inf_n_lower_0	= "\"\"=-inf";
-t_utf8*	toml_number_inf_u_lower_1	= "\"\"= infinity";
+t_utf8*	toml_number_inf_u_lower_1	= "\"\"=infinity";
 t_utf8*	toml_number_inf_p_lower_1	= "\"\"=+infinity";
 t_utf8*	toml_number_inf_n_lower_1	= "\"\"=-infinity";
-t_utf8*	toml_number_inf_u_mixed_0	= "\"\"= Inf";
+t_utf8*	toml_number_inf_u_mixed_0	= "\"\"=Inf";
 t_utf8*	toml_number_inf_p_mixed_0	= "\"\"=+Inf";
 t_utf8*	toml_number_inf_n_mixed_0	= "\"\"=-Inf";
-t_utf8*	toml_number_inf_u_mixed_1	= "\"\"= Infinity";
+t_utf8*	toml_number_inf_u_mixed_1	= "\"\"=Infinity";
 t_utf8*	toml_number_inf_p_mixed_1	= "\"\"=+Infinity";
 t_utf8*	toml_number_inf_n_mixed_1	= "\"\"=-Infinity";
-t_utf8*	toml_number_inf_u_upper_0	= "\"\"= INF";
+t_utf8*	toml_number_inf_u_upper_0	= "\"\"=INF";
 t_utf8*	toml_number_inf_p_upper_0	= "\"\"=+INF";
 t_utf8*	toml_number_inf_n_upper_0	= "\"\"=-INF";
-t_utf8*	toml_number_inf_u_upper_1	= "\"\"= INFINITY";
+t_utf8*	toml_number_inf_u_upper_1	= "\"\"=INFINITY";
 t_utf8*	toml_number_inf_p_upper_1	= "\"\"=+INFINITY";
 t_utf8*	toml_number_inf_n_upper_1	= "\"\"=-INFINITY";
-t_utf8*	toml_number_nan_u_lower_0	= "\"\"= nan";
+t_utf8*	toml_number_nan_u_lower_0	= "\"\"=nan";
 t_utf8*	toml_number_nan_p_lower_0	= "\"\"=+nan";
 t_utf8*	toml_number_nan_n_lower_0	= "\"\"=-nan";
-t_utf8*	toml_number_nan_u_mixed_0	= "\"\"= NaN";
+t_utf8*	toml_number_nan_u_mixed_0	= "\"\"=NaN";
 t_utf8*	toml_number_nan_p_mixed_0	= "\"\"=+NaN";
 t_utf8*	toml_number_nan_n_mixed_0	= "\"\"=-NaN";
-t_utf8*	toml_number_nan_u_upper_0	= "\"\"= NAN";
+t_utf8*	toml_number_nan_u_upper_0	= "\"\"=NAN";
 t_utf8*	toml_number_nan_p_upper_0	= "\"\"=+NAN";
 t_utf8*	toml_number_nan_n_upper_0	= "\"\"=-NAN";
 
-t_utf8*	toml_number_inf_u_utf8_0	= "\"\"= ∞";
+t_utf8*	toml_number_inf_u_utf8_0	= "\"\"=∞";
 t_utf8*	toml_number_inf_p_utf8_0	= "\"\"=+∞";
 t_utf8*	toml_number_inf_n_utf8_0	= "\"\"=-∞";
-t_utf8*	toml_number_inf_u_utf8_1	= "\"\"= \u221E";
+t_utf8*	toml_number_inf_u_utf8_1	= "\"\"=\u221E";
 t_utf8*	toml_number_inf_p_utf8_1	= "\"\"=+\u221E";
 t_utf8*	toml_number_inf_n_utf8_1	= "\"\"=-\u221E";
 
@@ -158,8 +157,8 @@ t_utf8*	toml_array			= "\"\"=\
 \n	true,\
 \n	null\
 \n]";
-t_utf8*	toml_array_nested_min	= "\"\"=[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{\"swag\":1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]";
-t_utf8*	toml_array_nested		= "\"\"=[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{\"swag\": 1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]";
+t_utf8*	toml_array_nested_min	= "\"\"=[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{swag=1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]";
+t_utf8*	toml_array_nested		= "\"\"=[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{swag = 1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]";
 
 
 
@@ -171,8 +170,8 @@ t_utf8*	toml_object			= "\"\"=\
 \n	b = true,\
 \n	c = null\
 \n}";
-t_utf8*	toml_object_nested_min	= "\"\"={\"a\":{\"b\":{\"c\":{\"d\":{\"e\":{\"f\":{\"g\":{\"h\":{\"i\":{\"j\":{\"k\":{\"l\":{\"m\":{\"n\":{\"o\":{\"p\":{\"q\":{\"r\":{\"s\":{\"t\":{\"u\":{\"v\":{\"w\":{\"x\":{\"y\":{\"z\":\"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}";
-t_utf8*	toml_object_nested		= "\"\"={\"a\": {\"b\": {\"c\": {\"d\": {\"e\": {\"f\": {\"g\": {\"h\": {\"i\": {\"j\": {\"k\": {\"l\": {\"m\": {\"n\": {\"o\": {\"p\": {\"q\": {\"r\": {\"s\": {\"t\": {\"u\": {\"v\": {\"w\": {\"x\": {\"y\": {\"z\": \"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}";
+t_utf8*	toml_object_nested_min	= "\"\"={a={b={c={d={e={f={g={h={i={j={k={l={m={n={o={p={q={r={s={t={u={v={w={x={y={z=\"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}";
+t_utf8*	toml_object_nested		= "\"\"={a = {b = {c = {d = {e = {f = {g = {h = {i = {j = {k = {l = {m = {n = {o = {p = {q = {r = {s = {t = {u = {v = {w = {x = {y = {z = \"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}";
 
 t_utf8*	toml_object_string_min =
 	"type=11"
@@ -535,7 +534,7 @@ void test_toml(void)	{}
 static t_utf8*	c_toml_##STRICT##_##MINIFY(t_utf8* toml)	\
 {															\
 	s_toml* tmp = TOML_FromString_##STRICT(toml);			\
-	t_utf8* result = JSON_ToString_##MINIFY(tmp);			\
+	t_utf8* result = TOML_ToString_##MINIFY(tmp);			\
 	free(tmp);												\
 	return (result);										\
 }															\
@@ -747,8 +746,8 @@ int		testsuite_encode_toml(void)
 
 	print_nonstd();
 
-	test_toml_Lenient_Pretty();
-//	test_toml_Lenient_Minify();
+//	test_toml_Lenient_Pretty();
+	test_toml_Lenient_Minify();
 //	test_toml_Strict_Pretty();
 //	test_toml_Strict_Minify();
 

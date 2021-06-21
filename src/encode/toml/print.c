@@ -28,8 +28,9 @@ typedef s_kvt_print	s_toml_print;
 
 static t_bool	TOML_Print_Number		(s_toml const* item, s_toml_print* p, t_bool bigint);
 static t_bool	TOML_Print_String		(s_toml const* item, s_toml_print* p);
-static t_bool	TOML_Print_Object		(s_toml const* item, s_toml_print* p);
+static t_bool	TOML_Print_Object		(s_toml const* item, s_toml_print* p, t_bool with_braces);
 static t_bool	TOML_Print_Array		(s_toml const* item, s_toml_print* p);
+static t_bool	TOML_Print_Value		(s_toml const* item, s_toml_print* p);
 static t_bool	TOML_Print_KeyValuePair (s_toml const* item, s_toml_print* p);
 
 
@@ -263,7 +264,7 @@ t_bool	TOML_Print_Array(s_toml const* item, s_toml_print* p)
 			}
 			p->offset += p->depth + 1;
 		}
-		if (TOML_Print_KeyValuePair(current_item, p))
+		if (TOML_Print_Value(current_item, p))
 			return (ERROR);
 		TOML_Print_UpdateOffset(p);
 		length = (t_size)(current_item->next ? 1 : 0);
@@ -301,7 +302,7 @@ t_bool	TOML_Print_Array(s_toml const* item, s_toml_print* p)
 
 // Render an object to text.
 static
-t_bool	TOML_Print_Object(s_toml const* item, s_toml_print* p)
+t_bool	TOML_Print_Object(s_toml const* item, s_toml_print* p, t_bool with_braces)
 {
 	t_utf8*	result = NULL;
 	s_toml*	current_item = item->value.child;
@@ -323,13 +324,15 @@ t_bool	TOML_Print_Object(s_toml const* item, s_toml_print* p)
 		}
 		p->offset += p->depth + 1;
 	}
-	// opening curly brace
-	length = 1;//(t_size)(1 + (p->format && !multiline ? 1 : 0));
-	ENSURE(length)
-	*result++ = '{';
-//	if (p->format && !multiline)
-//		*result++ = ' ';
-	p->offset += length;
+	if (!multiline && with_braces)
+	{	// opening curly brace
+		length = (p->format ? 2 : 1);
+		ENSURE(length)
+		*result++ = '{';
+		if (p->format)
+			*result++ = ' ';
+		p->offset += length;
+	}
 	p->depth++;
 	while (current_item)
 	{
@@ -372,11 +375,17 @@ t_bool	TOML_Print_Object(s_toml const* item, s_toml_print* p)
 		}
 		p->offset += p->depth + 1;
 	}
-	length = 2;//(t_size)(2 + (p->format && !multiline ? 1 : 0));
+	if (!multiline && with_braces)
+	{	// closing curly brace
+		length = (p->format ? 2 : 1);
+		ENSURE(length)
+		if (p->format)
+			*result++ = ' ';
+		*result++ = '}';
+		p->offset += length;
+	}
+	length = 1;
 	ENSURE(length)
-//	if (p->format && !multiline)
-//		*result++ = ' ';
-	*result++ = '}';
 	*result = '\0';
 	return (OK);
 }
@@ -384,39 +393,19 @@ t_bool	TOML_Print_Object(s_toml const* item, s_toml_print* p)
 
 
 static
-t_bool	TOML_Print_KeyValuePair(s_toml const* item, s_toml_print* p)
+t_bool	TOML_Print_Value(s_toml const* item, s_toml_print* p)
 {
 	t_utf8* result = NULL;
 	t_utf8 const* str;
 	t_size	length;
 
-	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (ERROR);)
-	HANDLE_ERROR(NULLPOINTER, (item == NULL), return (ERROR);)
-
-	if ((item->type & DYNAMICTYPE_MASK) == DYNAMICTYPE_ARRAY ||
-		(item->type & DYNAMICTYPE_MASK) == DYNAMICTYPE_OBJECT)
-	{
-		// print key
-		if (TOML_Print_StringPtr(item->key, p))
-			return (ERROR);
-		TOML_Print_UpdateOffset(p);
-
-		length = (t_size)(p->format ? 3 : 1);
-		ENSURE(length)
-		if (p->format)	*result++ = ' ';
-		*result++ = '=';
-		if (p->format)	*result++ = ' ';
-		p->offset += length;
-	}
-
-	// print value
 	switch ((item->type) & DYNAMICTYPE_MASK)
 	{
 		case DYNAMICTYPE_INTEGER: return (TOML_Print_Number(item, p, TRUE));
 		case DYNAMICTYPE_FLOAT:   return (TOML_Print_Number(item, p, FALSE));
 		case DYNAMICTYPE_STRING:  return (TOML_Print_String(item, p));
 		case DYNAMICTYPE_ARRAY:   return (TOML_Print_Array (item, p));
-		case DYNAMICTYPE_OBJECT:  return (TOML_Print_Object(item, p));
+		case DYNAMICTYPE_OBJECT:  return (TOML_Print_Object(item, p, TRUE));
 		case DYNAMICTYPE_NULL:
 		{
 			str = "null";
@@ -451,6 +440,50 @@ t_bool	TOML_Print_KeyValuePair(s_toml const* item, s_toml_print* p)
 
 
 static
+t_bool	TOML_Print_KeyValuePair(s_toml const* item, s_toml_print* p)
+{
+	t_utf8* result = NULL;
+	t_size	length;
+
+	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (ERROR);)
+	HANDLE_ERROR(NULLPOINTER, (item == NULL), return (ERROR);)
+
+	if ((item->type & DYNAMICTYPE_MASK) != DYNAMICTYPE_ARRAY ||
+		(item->type & DYNAMICTYPE_MASK) != DYNAMICTYPE_OBJECT)
+	{
+		// print key
+		length = String_Length(item->key);
+		if (length > 0 && String_HasOnly(item->key, "-"CHARSET_ALPHABET"_"CHARSET_DECIMAL))
+		{
+			ENSURE(length)
+			String_Copy(result, item->key);
+			p->offset += length;
+		}
+		else
+		{
+			if (TOML_Print_StringPtr(item->key, p))
+				return (ERROR);
+			TOML_Print_UpdateOffset(p);
+		}
+
+		length = (t_size)(p->format ? 3 : 1);
+		ENSURE(length)
+		if (p->format)	*result++ = ' ';
+		*result++ = '=';
+		if (p->format)	*result++ = ' ';
+		p->offset += length;
+	}
+
+	// print value
+	if (TOML_Print_Value(item, p))
+		return (ERROR);
+
+	return (OK);
+}
+
+
+
+static
 t_utf8*	TOML_Print_(s_toml const* item, t_bool format)
 {
 	static const t_size default_buffer_size = 256;
@@ -464,7 +497,7 @@ t_utf8*	TOML_Print_(s_toml const* item, t_bool format)
 	p->buffer = (t_utf8*)Memory_Allocate(default_buffer_size);
 	HANDLE_ERROR(ALLOCFAILURE, (p->buffer == NULL), goto failure;)
 	// print the value
-	if (TOML_Print_Object(item, p))
+	if (TOML_Print_Object(item, p, FALSE))
 		goto failure;
 	TOML_Print_UpdateOffset(p);
 
