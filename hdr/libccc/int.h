@@ -914,17 +914,18 @@ _MALLOC()	t_char*		S128_ToString_Base	(t_s128 number, t_char const* base); // TO
 **
 **	@param	dest	The resulting number, parse from the given `str`
 **	@param	str		The numeric string to parse
+**	@param	n		The maximum amount of character to parse (infinite if `0` is given)
 **	@returns
 **	The amount of characters parsed from the given `str`
 */
 //!@{
 #define					UInt_Parse	CONCAT(UINT_TYPE,_Parse)
-t_size					U8_Parse	(t_u8	*dest, t_char const* str);
-t_size					U16_Parse	(t_u16	*dest, t_char const* str);
-t_size					U32_Parse	(t_u32	*dest, t_char const* str);
-t_size					U64_Parse	(t_u64	*dest, t_char const* str);
+t_size					U8_Parse	(t_u8	*dest, t_char const* str, t_size n);
+t_size					U16_Parse	(t_u16	*dest, t_char const* str, t_size n);
+t_size					U32_Parse	(t_u32	*dest, t_char const* str, t_size n);
+t_size					U64_Parse	(t_u64	*dest, t_char const* str, t_size n);
 #ifdef __int128
-t_size					U128_Parse	(t_u128	*dest, t_char const* str);
+t_size					U128_Parse	(t_u128	*dest, t_char const* str, t_size n);
 #endif
 #define c_uparse		UInt_Parse	//!< @alias{UInt_Parse}
 #define c_u8parse		U8_Parse	//!< @alias{U8_Parse}
@@ -965,17 +966,18 @@ t_u128					U128_FromString(t_char const* str);
 **
 **	@param	dest	The resulting number, parse from the given `str`
 **	@param	str		The numeric string to parse
+**	@param	n		The maximum amount of character to parse (infinite if `0` is given)
 **	@returns
 **	The amount of characters parsed from the given `str`
 */
 //!@{
 #define					SInt_Parse	CONCAT(SINT_TYPE,_Parse)
-t_size					S8_Parse	(t_s8	*dest, t_char const* str);
-t_size					S16_Parse	(t_s16	*dest, t_char const* str);
-t_size					S32_Parse	(t_s32	*dest, t_char const* str);
-t_size					S64_Parse	(t_s64	*dest, t_char const* str);
+t_size					S8_Parse	(t_s8	*dest, t_char const* str, t_size n);
+t_size					S16_Parse	(t_s16	*dest, t_char const* str, t_size n);
+t_size					S32_Parse	(t_s32	*dest, t_char const* str, t_size n);
+t_size					S64_Parse	(t_s64	*dest, t_char const* str, t_size n);
 #ifdef __int128
-t_size					S128_Parse	(t_s128	*dest, t_char const* str);
+t_size					S128_Parse	(t_s128	*dest, t_char const* str, t_size n);
 #endif
 #define c_sparse		SInt_Parse	//!< @alias{SInt_Parse}
 #define c_s8parse		S8_Parse	//!< @alias{S8_Parse}
@@ -1022,17 +1024,18 @@ t_s128					S128_FromString(t_char const* str);
 **
 **	@param	dest	The resulting number, parse from the given `str`
 **	@param	str		The numeric string to parse (must be decimal number string)
+**	@param	n		The maximum amount of character to parse (infinite if `0` is given)
 **	@returns
 **	The amount of characters parsed from the given `str`
 */
 //!@{
 #define					UInt_Parse_Dec	CONCAT(UINT_TYPE,_Parse_Dec)
-t_size					U8_Parse_Dec	(t_u8	*dest, t_char const* str);
-t_size					U16_Parse_Dec	(t_u16	*dest, t_char const* str);
-t_size					U32_Parse_Dec	(t_u32	*dest, t_char const* str);
-t_size					U64_Parse_Dec	(t_u64	*dest, t_char const* str);
+t_size					U8_Parse_Dec	(t_u8	*dest, t_char const* str, t_size n);
+t_size					U16_Parse_Dec	(t_u16	*dest, t_char const* str, t_size n);
+t_size					U32_Parse_Dec	(t_u32	*dest, t_char const* str, t_size n);
+t_size					U64_Parse_Dec	(t_u64	*dest, t_char const* str, t_size n);
 #ifdef __int128
-t_size					U128_Parse_Dec	(t_u128	*dest, t_char const* str);
+t_size					U128_Parse_Dec	(t_u128	*dest, t_char const* str, t_size n);
 #endif
 #define c_uparsedec		UInt_Parse_Dec	//!< @alias{UInt_Parse_Dec}
 #define c_u8parsedec	U8_Parse_Dec	//!< @alias{U8_Parse_Dec}
@@ -1073,17 +1076,18 @@ t_u128					U128_FromString_Dec(t_char const* str);
 **
 **	@param	dest	The resulting number, parse from the given `str`
 **	@param	str		The numeric string to parse (must be decimal number string)
+**	@param	n		The maximum amount of character to parse (infinite if `0` is given)
 **	@returns
 **	The amount of characters parsed from the given `str`
 */
 //!@{
 #define					SInt_Parse_Dec	CONCAT(SINT_TYPE,_Parse_Dec)
-t_size					S8_Parse_Dec	(t_s8	*dest, t_char const* str);
-t_size					S16_Parse_Dec	(t_s16	*dest, t_char const* str);
-t_size					S32_Parse_Dec	(t_s32	*dest, t_char const* str);
-t_size					S64_Parse_Dec	(t_s64	*dest, t_char const* str);
+t_size					S8_Parse_Dec	(t_s8	*dest, t_char const* str, t_size n);
+t_size					S16_Parse_Dec	(t_s16	*dest, t_char const* str, t_size n);
+t_size					S32_Parse_Dec	(t_s32	*dest, t_char const* str, t_size n);
+t_size					S64_Parse_Dec	(t_s64	*dest, t_char const* str, t_size n);
 #ifdef __int128
-t_size					S128_Parse_Dec	(t_s128	*dest, t_char const* str);
+t_size					S128_Parse_Dec	(t_s128	*dest, t_char const* str, t_size n);
 #endif
 #define c_sparsedec		SInt_Parse_Dec	//!< @alias{SInt_Parse_Dec}
 #define c_s8parsedec	S8_Parse_Dec	//!< @alias{S8_Parse_Dec}
@@ -1130,17 +1134,18 @@ t_s128					S128_FromString_Dec(t_char const* str);
 **
 **	@param	dest	The resulting number, parse from the given `str`
 **	@param	str		The numeric string to parse (must be base 16) number string)
+**	@param	n		The maximum amount of character to parse (infinite if `0` is given)
 **	@returns
 **	The amount of characters parsed from the given `str`
 */
 //!@{
 #define					UInt_Parse_Hex	CONCAT(UINT_TYPE,_Parse_Hex)
-t_size					U8_Parse_Hex	(t_u8	*dest, t_char const* str);
-t_size					U16_Parse_Hex	(t_u16	*dest, t_char const* str);
-t_size					U32_Parse_Hex	(t_u32	*dest, t_char const* str);
-t_size					U64_Parse_Hex	(t_u64	*dest, t_char const* str);
+t_size					U8_Parse_Hex	(t_u8	*dest, t_char const* str, t_size n);
+t_size					U16_Parse_Hex	(t_u16	*dest, t_char const* str, t_size n);
+t_size					U32_Parse_Hex	(t_u32	*dest, t_char const* str, t_size n);
+t_size					U64_Parse_Hex	(t_u64	*dest, t_char const* str, t_size n);
 #ifdef __int128
-t_size					U128_Parse_Hex	(t_u128	*dest, t_char const* str);
+t_size					U128_Parse_Hex	(t_u128	*dest, t_char const* str, t_size n);
 #endif
 #define c_uparsehex		UInt_Parse_Hex	//!< @alias{UInt_Parse_Hex}
 #define c_u8parsehex	U8_Parse_Hex	//!< @alias{U8_Parse_Hex}
@@ -1181,17 +1186,18 @@ t_u128					U128_FromString_Hex(t_char const* str);
 **
 **	@param	dest	The resulting number, parse from the given `str`
 **	@param	str		The numeric string to parse (must be base 16) number string)
+**	@param	n		The maximum amount of character to parse (infinite if `0` is given)
 **	@returns
 **	The amount of characters parsed from the given `str`
 */
 //!@{
 #define					SInt_Parse_Hex	CONCAT(SINT_TYPE,_Parse_Hex)
-t_size					S8_Parse_Hex	(t_s8	*dest, t_char const* str);
-t_size					S16_Parse_Hex	(t_s16	*dest, t_char const* str);
-t_size					S32_Parse_Hex	(t_s32	*dest, t_char const* str);
-t_size					S64_Parse_Hex	(t_s64	*dest, t_char const* str);
+t_size					S8_Parse_Hex	(t_s8	*dest, t_char const* str, t_size n);
+t_size					S16_Parse_Hex	(t_s16	*dest, t_char const* str, t_size n);
+t_size					S32_Parse_Hex	(t_s32	*dest, t_char const* str, t_size n);
+t_size					S64_Parse_Hex	(t_s64	*dest, t_char const* str, t_size n);
 #ifdef __int128
-t_size					S128_Parse_Hex	(t_s128	*dest, t_char const* str);
+t_size					S128_Parse_Hex	(t_s128	*dest, t_char const* str, t_size n);
 #endif
 #define c_sparsehex		SInt_Parse_Hex	//!< @alias{SInt_Parse_Hex}
 #define c_s8parsehex	S8_Parse_Hex	//!< @alias{S8_Parse_Hex}
@@ -1238,17 +1244,18 @@ t_s128					S128_FromString_Hex(t_char const* str);
 **
 **	@param	dest	The resulting number, parse from the given `str`
 **	@param	str		The numeric string to parse (must be base 8) number string)
+**	@param	n		The maximum amount of character to parse (infinite if `0` is given)
 **	@returns
 **	The amount of characters parsed from the given `str`
 */
 //!@{
 #define					UInt_Parse_Oct	CONCAT(UINT_TYPE,_Parse_Oct)
-t_size					U8_Parse_Oct	(t_u8	*dest, t_char const* str);
-t_size					U16_Parse_Oct	(t_u16	*dest, t_char const* str);
-t_size					U32_Parse_Oct	(t_u32	*dest, t_char const* str);
-t_size					U64_Parse_Oct	(t_u64	*dest, t_char const* str);
+t_size					U8_Parse_Oct	(t_u8	*dest, t_char const* str, t_size n);
+t_size					U16_Parse_Oct	(t_u16	*dest, t_char const* str, t_size n);
+t_size					U32_Parse_Oct	(t_u32	*dest, t_char const* str, t_size n);
+t_size					U64_Parse_Oct	(t_u64	*dest, t_char const* str, t_size n);
 #ifdef __int128
-t_size					U128_Parse_Oct	(t_u128	*dest, t_char const* str);
+t_size					U128_Parse_Oct	(t_u128	*dest, t_char const* str, t_size n);
 #endif
 #define c_uparseoct		UInt_Parse_Oct	//!< @alias{UInt_Parse_Oct}
 #define c_u8parseoct	U8_Parse_Oct	//!< @alias{U8_Parse_Oct}
@@ -1289,17 +1296,18 @@ t_u128					U128_FromString_Oct(t_char const* str);
 **
 **	@param	dest	The resulting number, parse from the given `str`
 **	@param	str		The numeric string to parse (must be base 8) number string)
+**	@param	n		The maximum amount of character to parse (infinite if `0` is given)
 **	@returns
 **	The amount of characters parsed from the given `str`
 */
 //!@{
 #define					SInt_Parse_Oct	CONCAT(SINT_TYPE,_Parse_Oct)
-t_size					S8_Parse_Oct	(t_s8	*dest, t_char const* str);
-t_size					S16_Parse_Oct	(t_s16	*dest, t_char const* str);
-t_size					S32_Parse_Oct	(t_s32	*dest, t_char const* str);
-t_size					S64_Parse_Oct	(t_s64	*dest, t_char const* str);
+t_size					S8_Parse_Oct	(t_s8	*dest, t_char const* str, t_size n);
+t_size					S16_Parse_Oct	(t_s16	*dest, t_char const* str, t_size n);
+t_size					S32_Parse_Oct	(t_s32	*dest, t_char const* str, t_size n);
+t_size					S64_Parse_Oct	(t_s64	*dest, t_char const* str, t_size n);
 #ifdef __int128
-t_size					S128_Parse_Oct	(t_s128	*dest, t_char const* str);
+t_size					S128_Parse_Oct	(t_s128	*dest, t_char const* str, t_size n);
 #endif
 #define c_sparseoct		SInt_Parse_Oct	//!< @alias{SInt_Parse_Oct}
 #define c_s8parseoct	S8_Parse_Oct	//!< @alias{S8_Parse_Oct}
@@ -1346,17 +1354,18 @@ t_s128					S128_FromString_Oct(t_char const* str);
 **
 **	@param	dest	The resulting number, parse from the given `str`
 **	@param	str		The numeric string to parse (must be base 2) number string)
+**	@param	n		The maximum amount of character to parse (infinite if `0` is given)
 **	@returns
 **	The amount of characters parsed from the given `str`
 */
 //!@{
 #define					UInt_Parse_Bin	CONCAT(UINT_TYPE,_Parse_Bin)
-t_size					U8_Parse_Bin	(t_u8	*dest, t_char const* str);
-t_size					U16_Parse_Bin	(t_u16	*dest, t_char const* str);
-t_size					U32_Parse_Bin	(t_u32	*dest, t_char const* str);
-t_size					U64_Parse_Bin	(t_u64	*dest, t_char const* str);
+t_size					U8_Parse_Bin	(t_u8	*dest, t_char const* str, t_size n);
+t_size					U16_Parse_Bin	(t_u16	*dest, t_char const* str, t_size n);
+t_size					U32_Parse_Bin	(t_u32	*dest, t_char const* str, t_size n);
+t_size					U64_Parse_Bin	(t_u64	*dest, t_char const* str, t_size n);
 #ifdef __int128
-t_size					U128_Parse_Bin	(t_u128	*dest, t_char const* str);
+t_size					U128_Parse_Bin	(t_u128	*dest, t_char const* str, t_size n);
 #endif
 #define c_uparsebin		UInt_Parse_Bin	//!< @alias{UInt_Parse_Bin}
 #define c_u8parsebin	U8_Parse_Bin	//!< @alias{U8_Parse_Bin}
@@ -1397,17 +1406,18 @@ t_u128					U128_FromString_Bin(t_char const* str);
 **
 **	@param	dest	The resulting number, parse from the given `str`
 **	@param	str		The numeric string to parse (must be base 2) number string)
+**	@param	n		The maximum amount of character to parse (infinite if `0` is given)
 **	@returns
 **	The amount of characters parsed from the given `str`
 */
 //!@{
 #define					SInt_Parse_Bin	CONCAT(SINT_TYPE,_Parse_Bin)
-t_size					S8_Parse_Bin	(t_s8	*dest, t_char const* str);
-t_size					S16_Parse_Bin	(t_s16	*dest, t_char const* str);
-t_size					S32_Parse_Bin	(t_s32	*dest, t_char const* str);
-t_size					S64_Parse_Bin	(t_s64	*dest, t_char const* str);
+t_size					S8_Parse_Bin	(t_s8	*dest, t_char const* str, t_size n);
+t_size					S16_Parse_Bin	(t_s16	*dest, t_char const* str, t_size n);
+t_size					S32_Parse_Bin	(t_s32	*dest, t_char const* str, t_size n);
+t_size					S64_Parse_Bin	(t_s64	*dest, t_char const* str, t_size n);
 #ifdef __int128
-t_size					S128_Parse_Bin	(t_s128	*dest, t_char const* str);
+t_size					S128_Parse_Bin	(t_s128	*dest, t_char const* str, t_size n);
 #endif
 #define c_sparsebin		SInt_Parse_Bin	//!< @alias{SInt_Parse_Bin}
 #define c_s8parsebin	S8_Parse_Bin	//!< @alias{S8_Parse_Bin}
@@ -1454,6 +1464,7 @@ t_s128					S128_FromString_Bin(t_char const* str);
 **
 **	@param	dest	The resulting number, parse from the given `str`
 **	@param	str		The numeric string to parse (must be custom-base number string)
+**	@param	n		The maximum amount of character to parse (infinite if `0` is given)
 **	@param	base	The custom numeric base to interpret, the char index being the digit.
 **					The base string must have at least 2 chars, no sign chars, no duplicate chars.
 **	@returns
@@ -1461,12 +1472,12 @@ t_s128					S128_FromString_Bin(t_char const* str);
 */
 //!@{
 #define					UInt_Parse_Base	CONCAT(UINT_TYPE,_Parse_Base)
-t_size					U8_Parse_Base	(t_u8	*dest, t_char const* str, t_char const* base);
-t_size					U16_Parse_Base	(t_u16	*dest, t_char const* str, t_char const* base);
-t_size					U32_Parse_Base	(t_u32	*dest, t_char const* str, t_char const* base);
-t_size					U64_Parse_Base	(t_u64	*dest, t_char const* str, t_char const* base);
+t_size					U8_Parse_Base	(t_u8	*dest, t_char const* str, t_char const* base, t_size n);
+t_size					U16_Parse_Base	(t_u16	*dest, t_char const* str, t_char const* base, t_size n);
+t_size					U32_Parse_Base	(t_u32	*dest, t_char const* str, t_char const* base, t_size n);
+t_size					U64_Parse_Base	(t_u64	*dest, t_char const* str, t_char const* base, t_size n);
 #ifdef __int128
-t_size					U128_Parse_Base	(t_u128	*dest, t_char const* str, t_char const* base);
+t_size					U128_Parse_Base	(t_u128	*dest, t_char const* str, t_char const* base, t_size n);
 #endif
 #define c_uparsebase	UInt_Parse_Base	//!< @alias{UInt_Parse_Base}
 #define c_u8parsebase	U8_Parse_Base	//!< @alias{U8_Parse_Base}
@@ -1509,6 +1520,7 @@ t_u128					U128_FromString_Base(t_char const* str, t_char const* base);
 **
 **	@param	dest	The resulting number, parse from the given `str`
 **	@param	str		The numeric string to parse (must be custom-base number string)
+**	@param	n		The maximum amount of character to parse (infinite if `0` is given)
 **	@param	base	The custom numeric base to interpret, the char index being the digit.
 **					The base string must have at least 2 chars, no sign chars, no duplicate chars.
 **	@returns
@@ -1516,12 +1528,12 @@ t_u128					U128_FromString_Base(t_char const* str, t_char const* base);
 */
 //!@{
 #define					SInt_Parse_Base	CONCAT(SINT_TYPE,_Parse_Base)
-t_size					S8_Parse_Base	(t_s8	*dest, t_char const* str, t_char const* base);
-t_size					S16_Parse_Base	(t_s16	*dest, t_char const* str, t_char const* base);
-t_size					S32_Parse_Base	(t_s32	*dest, t_char const* str, t_char const* base);
-t_size					S64_Parse_Base	(t_s64	*dest, t_char const* str, t_char const* base);
+t_size					S8_Parse_Base	(t_s8	*dest, t_char const* str, t_char const* base, t_size n);
+t_size					S16_Parse_Base	(t_s16	*dest, t_char const* str, t_char const* base, t_size n);
+t_size					S32_Parse_Base	(t_s32	*dest, t_char const* str, t_char const* base, t_size n);
+t_size					S64_Parse_Base	(t_s64	*dest, t_char const* str, t_char const* base, t_size n);
 #ifdef __int128
-t_size					S128_Parse_Base	(t_s128	*dest, t_char const* str, t_char const* base);
+t_size					S128_Parse_Base	(t_s128	*dest, t_char const* str, t_char const* base, t_size n);
 #endif
 #define c_sparsebase	SInt_Parse_Base	//!< @alias{SInt_Parse_Base}
 #define c_s8parsebase	S8_Parse_Base	//!< @alias{S8_Parse_Base}

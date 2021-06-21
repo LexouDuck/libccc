@@ -83,22 +83,26 @@ typedef s_kvt	s_json;
 **	- supports non-standard `number` values: `nan`/NaN and `inf`/infinity
 **	- supports numeric literals in other bases: prefix with `0x` for hexadecimal, `0b` for binary, `0o` for octal
 **	- supports `BigInt` integers, using the trailing `n` syntax
-**
-**	@returns
-**	The amount of characters parsed from the given `str`
 */
 //!@{
-t_size					JSON_Parse_Lenient(s_json* *dest, t_utf8 const* str);
-#define c_jsonparse_l	JSON_Parse_Lenient
 
-//! Create a new `s_json` object, parsed from a (valid) JSON string (only the first `n` chars are parsed)
-t_size					JSON_Parse_N_Lenient(s_json* *dest, t_utf8 const* str, t_size n);
-#define c_jsonparsen_l	JSON_Parse_N_Lenient
-//!@}
+/*!
+**	@param	dest	The resulting JSON object
+**	@param	str		The string to parse
+**	@param	n		The maximum amount of characters to parse (infinite if `0` is given)
+**	@returns
+**	The amount of characters parsed from the given `str`
+**
+**	@see JSON_FromString_Lenient()
+*/
+t_size					JSON_Parse_Lenient(s_json* *dest, t_utf8 const* str, t_size n);
+#define c_jsonparse_l	JSON_Parse_Lenient
 
 //! @see JSON_Parse_Lenient()
 s_json*					JSON_FromString_Lenient(t_utf8 const* str);
 #define c_strtojson_l	JSON_FromString_Lenient
+//!@}
+
 
 
 
@@ -107,22 +111,25 @@ s_json*					JSON_FromString_Lenient(t_utf8 const* str);
 **	This function creates a `s_json` object by parsing a JSON string,
 **	strictly following the JSON official spec (https://www.json.org/json-en.html),
 **	aborting with an error if anything non-standard is encountered.
-**
-**	@returns
-**	The amount of characters parsed from the given `str`
 */
 //!@{
-t_size					JSON_Parse_Strict(s_json* *dest, t_utf8 const* str);
-#define c_jsonparse_s	JSON_Parse_Strict
 
-//! Create a new `s_json` object, parsed from a (valid) JSON string, (only the first `n` chars are parsed)
-t_size					JSON_Parse_N_Strict(s_json* *dest, t_utf8 const* str, t_size n);
-#define c_jsonparsen_s	JSON_Parse_N_Strict
-//!@}
+/*!
+**	@param	dest	The resulting JSON object
+**	@param	str		The string to parse
+**	@param	n		The maximum amount of characters to parse (infinite if `0` is given)
+**	@returns
+**	The amount of characters parsed from the given `str`
+**
+**	@see JSON_FromString_Strict()
+*/
+t_size					JSON_Parse_Strict(s_json* *dest, t_utf8 const* str, t_size n);
+#define c_jsonparse_s	JSON_Parse_Strict
 
 //! @see JSON_Parse_Strict()
 s_json*					JSON_FromString_Strict(t_utf8 const* str);
 #define c_strtojson_s	JSON_FromString_Strict
+//!@}
 
 
 

@@ -985,12 +985,13 @@ t_char*					String_Pad_R(t_char const* str, t_char c, t_size length);
 /*!
 **	@param	dest			The destination string
 **	@param	str				The string to print/duplicate, with escape-sequences
+**	@param	n				The maximum amount of characters to print (infinite if `0` is given)
 **	@param	charset_extra	A string containing any extra characters which should be escaped
 **							(ie: any char in `charset_extra` will become a `\x??` byte escape sequence)
 **	@returns
 **	The amount of characters parsed from the given `str`.
 */
-t_size							String_Print(t_char* *dest, t_char const* str, t_char const* charset_extra);
+t_size							String_Print(t_char* *dest, t_char const* str, t_size n, t_char const* charset_extra);
 #define c_strprint				String_Print //!< @alias{String_Print}
 
 /*!
@@ -1039,12 +1040,13 @@ t_char*							String_ToEscape(t_char const* str, t_char const* charset_extra);
 /*!
 **	@param	dest		The destination string
 **	@param	str			The string to duplicate, while resolving all escape-sequences to their corresponding char
+**	@param	n			The maximum amount of characters to parse (infinite if `0` is given)
 **	@param	any_escape	If `TRUE`, every backslash will be understood as an escape character
 **						(ie: any escape sequance will function, with any char after the `'\'`)
 **	@returns
 **	The amount of characters parsed from the given `str`.
 */
-t_size							String_Parse(t_char* *dest, t_char const* str, t_bool any_escape);
+t_size							String_Parse(t_char* *dest, t_char const* str, t_size n, t_bool any_escape);
 #define c_strparse				String_Parse //!< @alias{String_Parse}
 
 /*!

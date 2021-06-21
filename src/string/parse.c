@@ -68,7 +68,7 @@ t_size	String_Parse_GetLength(t_char const* str, t_bool any_escape)
 
 
 
-t_size	String_Parse(t_char* *dest, t_char const* str, t_bool any_escape)
+t_size	String_Parse(t_char* *dest, t_char const* str, t_size n, t_bool any_escape)
 {
 	t_char*	result;
 	t_char	tmp[9] = { 0 };
@@ -77,9 +77,11 @@ t_size	String_Parse(t_char* *dest, t_char const* str, t_bool any_escape)
 	t_size	i = 0;
 
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), PARSE_RETURN(NULL);)
+	if (n == 0)
+		n = SIZE_MAX;
 	result = (t_char*)Memory_New(String_Parse_GetLength(str, any_escape) + sizeof(""));
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), PARSE_RETURN(NULL);)
-	while (str[index])
+	while (index < n && str[index])
 	{
 		if (str[index] == '\\') // escape sequence
 		{
@@ -133,6 +135,6 @@ inline
 t_char*	String_FromEscape(t_char const* str, t_bool any_escape)
 {
 	t_char*	result = NULL;
-	String_Parse(&result, str, any_escape);
+	String_Parse(&result, str, 0, any_escape);
 	return (result);
 }

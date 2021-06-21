@@ -87,17 +87,23 @@ typedef s_kvt	s_toml;
 **	- `null` is a valid value for any key/value pair (so as to be inter-compatible with JSON, YAML, etc)
 */
 //!@{
-t_size					TOML_Parse_Lenient(s_toml* *dest, t_utf8 const* str);
-#define c_tomlparse_l	TOML_Parse_Lenient
 
-//! Create a new `s_toml` object, pars_Leniented from a (valid) TOML string, (only the first `n` chars are parsed)
-t_size					TOML_Parse_N_Lenient(s_toml* *dest, t_utf8 const* str, t_size n);
-#define c_tomlnparse_l	TOML_Parse_N_Lenient
-//!@}
+/*!
+**	@param	dest	The resulting TOML object
+**	@param	str		The string to parse
+**	@param	n		The maximum amount of characters to parse (infinite if `0` is given)
+**	@returns
+**	The amount of characters parsed from the given `str`
+**
+**	@see TOML_FromString_Lenient()
+*/
+t_size					TOML_Parse_Lenient(s_toml* *dest, t_utf8 const* str, t_size n);
+#define c_tomlparse_l	TOML_Parse_Lenient
 
 //! @see TOML_Parse_Lenient()
 s_toml*					TOML_FromString_Lenient(t_utf8 const* str);
 #define c_strtotoml_l	TOML_FromString_Lenient
+//!@}
 
 
 
@@ -108,17 +114,23 @@ s_toml*					TOML_FromString_Lenient(t_utf8 const* str);
 **	aborting with an error if anything non-standard is encountered.
 */
 //!@{
-t_size					TOML_Parse_Strict(s_toml* *dest, t_utf8 const* str);
-#define c_tomlparse_s	TOML_Parse_Strict
 
-//! Create a new `s_toml` object, parsed from a (valid) TOML string, (only the first `n` chars are parsed)
-t_size					TOML_Parse_N_Strict(s_toml* *dest, t_utf8 const* str, t_size n);
-#define c_tomlnparse_s	TOML_Parse_N_Strict
-//!@}
+/*!
+**	@param	dest	The resulting TOML object
+**	@param	str		The string to parse
+**	@param	n		The maximum amount of characters to parse (infinite if `0` is given)
+**	@returns
+**	The amount of characters parsed from the given `str`
+**
+**	@see TOML_FromString_Strict()
+*/
+t_size					TOML_Parse_Strict(s_toml* *dest, t_utf8 const* str, t_size n);
+#define c_tomlparse_s	TOML_Parse_Strict
 
 //! @see TOML_Parse_Strict()
 s_toml*					TOML_FromString_Strict(t_utf8 const* str);
 #define c_strtotoml_s	TOML_FromString_Strict
+//!@}
 
 
 
@@ -139,7 +151,7 @@ s_toml*					TOML_FromString_Strict(t_utf8 const* str);
 //! Print a `s_toml` item to string buffer `dest`, writing at most `n` characters.
 /*!
 **	@param	dest	The pre-allocated string buffer to write to
-**	@param	item	The JSON object to print
+**	@param	item	The TOML object to print
 **	@param	n		The maximum amount of chars to write into `dest`
 **	@returns
 **	The amount of characters written to the given `dest` buffer
@@ -148,7 +160,7 @@ s_toml*					TOML_FromString_Strict(t_utf8 const* str);
 t_size					TOML_Print_Pretty(t_utf8* dest, s_toml const* item, t_size n);
 #define c_tomlprintfmt 	TOML_Print_Pretty
 
-//! Like JSON_Print_Pretty(), but this prints the minimum amount of characters possible
+//! Like TOML_Print_Pretty(), but this prints the minimum amount of characters possible
 t_size					TOML_Print_Minify(t_utf8* dest, s_toml const* item, t_size n);
 #define c_tomlprintmin 	TOML_Print_Minify
 //!@}

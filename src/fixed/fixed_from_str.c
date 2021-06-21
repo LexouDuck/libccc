@@ -16,7 +16,7 @@
 
 
 #define DEFINEFUNC_FIXED_FROMSTR(BASE, BITS) \
-t_size	Q##BITS##_Parse##BASE(t_q##BITS *dest, t_char const* str)						\
+t_size	Q##BITS##_Parse##BASE(t_q##BITS *dest, t_char const* str, t_size n)				\
 {																						\
 	t_s##BITS	result = 0;																\
 	t_s##BITS	numerator = 0;															\
@@ -26,7 +26,9 @@ t_size	Q##BITS##_Parse##BASE(t_q##BITS *dest, t_char const* str)						\
 																						\
 	HANDLE_ERROR(NULLPOINTER, (str == NULL),											\
 		PARSE_RETURN(Q##BITS##_ERROR))													\
-	while (str[i] && Char_IsSpace(str[i]))	{ ++i; }									\
+	if (n == 0)																			\
+		n = SIZE_MAX;																	\
+	while (i < n && str[i] && Char_IsSpace(str[i]))	{ ++i; }							\
 	if (str[i] == '(')																	\
 	{																					\
 		++i;																			\
@@ -36,34 +38,34 @@ t_size	Q##BITS##_Parse##BASE(t_q##BITS *dest, t_char const* str)						\
 	HANDLE_ERROR_SF(PARSE, !(str[i] == '+' || str[i] == '-' || Char_IsDigit(str[i])),	\
 		PARSE_RETURN(Q##BITS##_ERROR),													\
 		": expected a number (with spaces/sign), but instead got \"%s\"", str)			\
-	result = S##BITS##_FromString##BASE(str);											\
+	i += S##BITS##_Parse##BASE(&result, str, n - i);									\
 	if (str[i] == '+' || str[i] == '-')	++i;											\
-	while (str[i] && Char_IsDigit(str[i]))	{ ++i; }									\
+	while (i < n && str[i] && Char_IsDigit(str[i]))	{ ++i; }							\
 /*separator:*/	\
 	if (str[i] == '.')	++i;															\
-	while (str[i] && Char_IsSpace(str[i]))	{ ++i; }									\
+	while (i < n && str[i] && Char_IsSpace(str[i]))	{ ++i; }							\
 	if (str[i] == '\0')	goto success;													\
 	HANDLE_ERROR_SF(PARSE, !(str[i] == '+' || str[i] == '('),							\
 		PARSE_RETURN(Q##BITS##_ERROR),													\
 		": expected a fractional part separator char, but instead got \"%s\"", str)		\
 fraction:	\
-	while (str[i] && Char_IsSpace(str[i]))	{ ++i; }									\
+	while (i < n && str[i] && Char_IsSpace(str[i]))	{ ++i; }							\
 	HANDLE_ERROR_SF(PARSE, !(str[i] == '+' || str[i] == '-' || Char_IsDigit(str[i])),	\
 		PARSE_RETURN(Q##BITS##_ERROR),													\
 		": expected a fraction numerator, but instead got \"%s\"", str)					\
-	numerator = S##BITS##_FromString##BASE(str);										\
+	i += S##BITS##_Parse##BASE(&numerator, str, n - i);									\
 	if (str[i] == '+' || str[i] == '-')	++i;											\
-	while (str[i] && Char_IsDigit(str[i]))	{ ++i; }									\
-	while (str[i] && Char_IsSpace(str[i]))	{ ++i; }									\
+	while (i < n && str[i] && Char_IsDigit(str[i]))	{ ++i; }							\
+	while (i < n && str[i] && Char_IsSpace(str[i]))	{ ++i; }							\
 	HANDLE_ERROR_SF(PARSE, !(str[i] == '/'),											\
 		PARSE_RETURN(Q##BITS##_ERROR),													\
 		": expected a fraction '/' separator char, but instead got \"%s\"", str)		\
 	++i;																				\
-	while (str[i] && Char_IsSpace(str[i]))	{ ++i; }									\
+	while (i < n && str[i] && Char_IsSpace(str[i]))	{ ++i; }							\
 	HANDLE_ERROR_SF(PARSE, !(str[i] == '+' || str[i] == '-' || Char_IsDigit(str[i])),	\
 		PARSE_RETURN(Q##BITS##_ERROR),													\
 		": expected a fraction denominator, but instead got \"%s\"", str)				\
-	denominator = S##BITS##_FromString##BASE(str);										\
+	i += S##BITS##_Parse##BASE(&denominator, str, n - i);								\
 	HANDLE_ERROR_SF(MATHDOMAIN, !(denominator == 0),									\
 		PARSE_RETURN(Q##BITS##_ERROR),													\
 		": fraction denominator cannot be zero \"%s\"", str)							\
@@ -87,7 +89,7 @@ success:	\
 inline t_q##BITS	Q##BITS##_FromString##BASE(t_char const* str)						\
 {																						\
 	t_q##BITS	result = Q##BITS##_ERROR;												\
-	Q##BITS##_Parse##BASE(&result, str);												\
+	Q##BITS##_Parse##BASE(&result, str, 0);												\
 	return (result);																	\
 }																						\
 

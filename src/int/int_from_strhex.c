@@ -10,7 +10,7 @@
 
 static
 inline
-int	GetDigit_FromString_Hex(char c)
+int	Int_Parse_GetHexDigit(char c)
 {
 	if ('0' <= c && c <= '9')
 		return (c - '0');
@@ -24,7 +24,7 @@ int	GetDigit_FromString_Hex(char c)
 
 
 #define DEFINEFUNC_UINT_FROMSTRHEX(BITS) \
-t_size	U##BITS##_Parse_Hex(t_u##BITS* dest, t_char const* str)						\
+t_size	U##BITS##_Parse_Hex(t_u##BITS* dest, t_char const* str, t_size n)			\
 {																					\
 	t_u##BITS	result;																\
 	t_u##BITS	tmp;																\
@@ -32,7 +32,9 @@ t_size	U##BITS##_Parse_Hex(t_u##BITS* dest, t_char const* str)						\
 																					\
 	HANDLE_ERROR(NULLPOINTER, (str == NULL),										\
 		PARSE_RETURN(U##BITS##_ERROR))												\
-	while (str[i] && Char_IsSpace(str[i]))											\
+	if (n == 0)																		\
+		n = SIZE_MAX;																\
+	while (i < n && str[i] && Char_IsSpace(str[i]))									\
 	{																				\
 		++i;																		\
 	}																				\
@@ -44,9 +46,9 @@ t_size	U##BITS##_Parse_Hex(t_u##BITS* dest, t_char const* str)						\
 	if (str[i] == '0' && str[i + 1] == 'x')											\
 		i += 2;																		\
 	result = 0;																		\
-	while (str[i] && Char_IsDigit_Hex(str[i]))										\
+	while (i < n && str[i] && Char_IsDigit_Hex(str[i]))								\
 	{																				\
-		tmp = result * 16 + GetDigit_FromString_Hex(str[i++]);						\
+		tmp = result * 16 + Int_Parse_GetHexDigit(str[i++]);						\
 		HANDLE_ERROR_SF(RESULTRANGE, (tmp < result),								\
 			LIBCONFIG_ERROR_PARSEROVERFLOW(U##BITS##_MAX),							\
 			" (integer overflow for \"%s\" at "SF_U##BITS")", str, U##BITS##_MAX)	\
@@ -58,7 +60,7 @@ t_size	U##BITS##_Parse_Hex(t_u##BITS* dest, t_char const* str)						\
 inline t_u##BITS	U##BITS##_FromString_Hex(t_char const* str)						\
 {																					\
 	t_u##BITS	result = U##BITS##_ERROR;											\
-	U##BITS##_Parse_Hex(&result, str);												\
+	U##BITS##_Parse_Hex(&result, str, 0);											\
 	return (result);																\
 }																					\
 
@@ -73,7 +75,7 @@ DEFINEFUNC_UINT_FROMSTRHEX(128)
 
 
 #define DEFINEFUNC_SINT_FROMSTRHEX(BITS) \
-t_size	S##BITS##_Parse_Hex(t_s##BITS* dest, t_char const* str)						\
+t_size	S##BITS##_Parse_Hex(t_s##BITS* dest, t_char const* str, t_size n)			\
 {																					\
 	t_u##BITS	result;																\
 	t_u##BITS	tmp;																\
@@ -82,7 +84,9 @@ t_size	S##BITS##_Parse_Hex(t_s##BITS* dest, t_char const* str)						\
 																					\
 	HANDLE_ERROR(NULLPOINTER, (str == NULL),										\
 		PARSE_RETURN(S##BITS##_ERROR))												\
-	while (str[i] && Char_IsSpace(str[i]))											\
+	if (n == 0)																		\
+		n = SIZE_MAX;																\
+	while (i < n && str[i] && Char_IsSpace(str[i]))									\
 	{																				\
 		++i;																		\
 	}																				\
@@ -101,9 +105,9 @@ t_size	S##BITS##_Parse_Hex(t_s##BITS* dest, t_char const* str)						\
 	if (str[i] == '0' && str[i + 1] == 'x')											\
 		i += 2;																		\
 	result = 0;																		\
-	while (str[i] && Char_IsDigit_Hex(str[i]))										\
+	while (i < n && str[i] && Char_IsDigit_Hex(str[i]))								\
 	{																				\
-		tmp = result * 16 + GetDigit_FromString_Hex(str[i++]);						\
+		tmp = result * 16 + Int_Parse_GetHexDigit(str[i++]);						\
 		HANDLE_ERROR_SF(RESULTRANGE, (negative && tmp > (t_u##BITS)S##BITS##_MIN),	\
 			LIBCONFIG_ERROR_PARSEROVERFLOW(S##BITS##_MIN),							\
 			" (integer underflow for \"%s\" at "SF_S##BITS")", str, S##BITS##_MIN)	\
@@ -118,7 +122,7 @@ t_size	S##BITS##_Parse_Hex(t_s##BITS* dest, t_char const* str)						\
 inline t_s##BITS	S##BITS##_FromString_Hex(t_char const* str)						\
 {																					\
 	t_s##BITS	result = S##BITS##_ERROR;											\
-	S##BITS##_Parse_Hex(&result, str);												\
+	S##BITS##_Parse_Hex(&result, str, 0);											\
 	return (result);																\
 }																					\
 

@@ -498,7 +498,8 @@ t_size	JSON_Print_Pretty(t_utf8* dest, s_json const* item, t_size n)
 	s_json_print p = { 0 };
 
 	HANDLE_ERROR(NULLPOINTER, (item == NULL), return (0);)
-	HANDLE_ERROR(LENGTH2SMALL, (n == 0), return (0);)
+	if (n == 0)
+		n = SIZE_MAX;
 	p.buffer = (t_utf8*)dest;
 	p.length = (t_size)n;
 	p.offset = 0;
@@ -513,7 +514,8 @@ t_size	JSON_Print_Minify(t_utf8* dest, s_json const* item, t_size n)
 	s_json_print p = { 0 };
 
 	HANDLE_ERROR(NULLPOINTER, (item == NULL), return (0);)
-	HANDLE_ERROR(LENGTH2SMALL, (n == 0), return (0);)
+	if (n == 0)
+		n = SIZE_MAX;
 	p.buffer = (t_utf8*)dest;
 	p.length = (t_size)n;
 	p.offset = 0;

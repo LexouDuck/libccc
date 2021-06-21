@@ -51,7 +51,7 @@ t_s32	String_Base_IsInBase(t_char const* base, t_size base_length, char c)
 
 
 #define DEFINEFUNC_UINT_FROMSTRBASE(BITS) \
-t_size	U##BITS##_Parse_Base(t_u##BITS* dest, t_char const* str, t_char const* base)\
+t_size	U##BITS##_Parse_Base(t_u##BITS* dest, t_char const* str, t_char const* base, t_size n)\
 {																					\
 	t_u##BITS	result;																\
 	t_u##BITS	tmp;																\
@@ -63,6 +63,8 @@ t_size	U##BITS##_Parse_Base(t_u##BITS* dest, t_char const* str, t_char const* ba
 		PARSE_RETURN(U##BITS##_ERROR))												\
 	HANDLE_ERROR(NULLPOINTER, (base == NULL),										\
 		PARSE_RETURN(U##BITS##_ERROR))												\
+	if (n == 0)																		\
+		n = SIZE_MAX;																\
 	digit = String_Base_GetLength(base);											\
 	HANDLE_ERROR_SF(INVALIDARGS, (digit == INVALID_BASE_SIGNCHAR),					\
 		PARSE_RETURN(U##BITS##_ERROR),												\
@@ -75,7 +77,7 @@ t_size	U##BITS##_Parse_Base(t_u##BITS* dest, t_char const* str, t_char const* ba
 		", number base (\"%s\") should be at least 2 chars long", base)				\
 	length = (t_size)digit;															\
 	i = 0;																			\
-	while (!(str[i] == '+' || str[i] == '-'))										\
+	while (i < n && !(str[i] == '+' || str[i] == '-'))								\
 	{																				\
 		digit = String_Base_IsInBase(base, length, str[i]);							\
 		if (digit >= 0) break;														\
@@ -87,7 +89,7 @@ t_size	U##BITS##_Parse_Base(t_u##BITS* dest, t_char const* str, t_char const* ba
 	if (str[i] == '+' || str[i] == '-')												\
 		++i;																		\
 	result = 0;																		\
-	while (str[i])																	\
+	while (i < n && str[i])															\
 	{																				\
 		digit = String_Base_IsInBase(base, length, str[i++]);						\
 		HANDLE_ERROR_SF(PARSE, (digit < 0),											\
@@ -106,7 +108,7 @@ t_size	U##BITS##_Parse_Base(t_u##BITS* dest, t_char const* str, t_char const* ba
 inline t_u##BITS	U##BITS##_FromString_Base(t_char const* str, t_char const* base)\
 {																					\
 	t_u##BITS	result = U##BITS##_ERROR;											\
-	U##BITS##_Parse_Base(&result, str, base);										\
+	U##BITS##_Parse_Base(&result, str, base, 0);									\
 	return (result);																\
 }																					\
 
@@ -121,7 +123,7 @@ DEFINEFUNC_UINT_FROMSTRBASE(128)
 
 
 #define DEFINEFUNC_SINT_FROMSTRBASE(BITS) \
-t_size	S##BITS##_Parse_Base(t_s##BITS* dest, t_char const* str, t_char const* base)\
+t_size	S##BITS##_Parse_Base(t_s##BITS* dest, t_char const* str, t_char const* base, t_size n)\
 {																					\
 	t_u##BITS	result;																\
 	t_u##BITS	tmp;																\
@@ -134,6 +136,8 @@ t_size	S##BITS##_Parse_Base(t_s##BITS* dest, t_char const* str, t_char const* ba
 		PARSE_RETURN(S##BITS##_ERROR))												\
 	HANDLE_ERROR(NULLPOINTER, (base == NULL),										\
 		PARSE_RETURN(S##BITS##_ERROR))												\
+	if (n == 0)																		\
+		n = SIZE_MAX;																\
 	digit = String_Base_GetLength(base);											\
 	HANDLE_ERROR_SF(INVALIDARGS, (digit == INVALID_BASE_SIGNCHAR),					\
 		PARSE_RETURN(S##BITS##_ERROR),												\
@@ -146,7 +150,7 @@ t_size	S##BITS##_Parse_Base(t_s##BITS* dest, t_char const* str, t_char const* ba
 		", number base (\"%s\") should be at least 2 chars long", base)				\
 	length = (t_size)digit;															\
 	i = 0;																			\
-	while (!(str[i] == '+' || str[i] == '-'))										\
+	while (i < n && !(str[i] == '+' || str[i] == '-'))								\
 	{																				\
 		digit = String_Base_IsInBase(base, length, str[i]);							\
 		if (digit >= 0) break;														\
@@ -164,7 +168,7 @@ t_size	S##BITS##_Parse_Base(t_s##BITS* dest, t_char const* str, t_char const* ba
 	else if (str[i] == '+')															\
 		++i;																		\
 	result = 0;																		\
-	while (str[i])																	\
+	while (i < n && str[i])															\
 	{																				\
 		digit = String_Base_IsInBase(base, length, str[i++]);						\
 		HANDLE_ERROR_SF(PARSE, (digit < 0),											\
@@ -187,7 +191,7 @@ t_size	S##BITS##_Parse_Base(t_s##BITS* dest, t_char const* str, t_char const* ba
 inline t_s##BITS	S##BITS##_FromString_Base(t_char const* str, t_char const* base)\
 {																					\
 	t_s##BITS	result = S##BITS##_ERROR;											\
-	S##BITS##_Parse_Base(&result, str, base);										\
+	S##BITS##_Parse_Base(&result, str, base, 0);									\
 	return (result);																\
 }																					\
 

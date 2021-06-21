@@ -184,17 +184,17 @@ t_bool JSON_Parse_String(s_json* item, s_json_parse* p)
 	HANDLE_ERROR(NULLPOINTER, (p->content == NULL), return (ERROR);)
 	// not a string
 	if (!CAN_PARSE(0))
-		PARSINGERROR_JSON("Could not parse string: Unexpected end of end of input before string")
+		PARSINGERROR_JSON("Could not parse string: Unexpected end of input before string")
 	if (p->content[p->offset] != '\"')
 		PARSINGERROR_JSON("Could not parse string: Expected double-quote char '\"', instead found '%c'/0x%2X",
 			(p->content[p->offset] ? p->content[p->offset] : '\a'), p->content[p->offset])
+
 	// calculate approximate size of the output (overestimate)
 	alloc_length = 0;
 	skipped_bytes = 0;
 	while (((t_size)(input_end - p->content) < p->length) && (*input_end != '\"'))
 	{
-		// is escape sequence
-		if (input_end[0] == '\\')
+		if (input_end[0] == '\\') // is escape sequence
 		{
 			if ((t_size)(input_end + 1 - p->content) >= p->length)
 				PARSINGERROR_JSON("Could not parse string: Potential buffer-overflow, string ends with backslash")
@@ -205,47 +205,55 @@ t_bool JSON_Parse_String(s_json* item, s_json_parse* p)
 	}
 	if (((t_size)(input_end - p->content) >= p->length) || (*input_end != '\"'))
 		PARSINGERROR_JSON("Could not parse string: Unexpected end of input before closing quote")
-	// This is at most how much we need for the output
-	alloc_length = (t_size)(input_end - &p->content[p->offset]) - skipped_bytes;
-	output = (t_utf8*)Memory_Allocate(alloc_length + sizeof(""));
-	if (output == NULL)
-		PARSINGERROR_JSON("Could not parse string: Allocation failure")
-	output_ptr = output;
-	// loop through the string literal
-	while (input_ptr < input_end)
+
+	if (!p->strict)
 	{
-		if (*input_ptr == '\\') // escape sequence
-		{
-			t_utf8 sequence_length = 2;
-			if ((input_end - input_ptr) < 1)
-				PARSINGERROR_JSON("Could not parse string: Unexpected end of input within string escape sequence")
-			switch (input_ptr[1])
-			{
-				case 'b':	*output_ptr++ = '\b';	break;
-				case 't':	*output_ptr++ = '\t';	break;
-				case 'n':	*output_ptr++ = '\n';	break;
-				case 'f':	*output_ptr++ = '\f';	break;
-				case 'r':	*output_ptr++ = '\r';	break;
-				case '\"':
-				case '\\':
-				case '/':
-					*output_ptr++ = input_ptr[1];
-					break;
-				case 'u': // UTF-16 literal
-					sequence_length = UTF32_Parse_N(&c, input_ptr, (input_end - input_ptr));
-					if (sequence_length == 0)
-						PARSINGERROR_JSON("Could not parse string: Failed to convert UTF16-literal to UTF-8")
-					output_ptr += UTF32_ToUTF8(output_ptr, c);
-					break;
-				default: // TODO non-strict escape sequence handling
-					PARSINGERROR_JSON("Could not parse string: Invalid string escape sequence encountered: \"\\%c\"", input_ptr[1])
-			}
-			input_ptr += sequence_length;
-		}
-		else *output_ptr++ = *input_ptr++;
+		skipped_bytes = String_Parse(&output, input_ptr, (input_end - input_ptr), FALSE);
 	}
-	// zero terminate the output
-	*output_ptr = '\0';
+	else
+	{
+		// This is at most how much we need for the output
+		alloc_length = (t_size)(input_end - &p->content[p->offset]) - skipped_bytes;
+		output = (t_utf8*)Memory_Allocate(alloc_length + sizeof(""));
+		if (output == NULL)
+			PARSINGERROR_JSON("Could not parse string: Allocation failure")
+		output_ptr = output;
+		// loop through the string literal
+		while (input_ptr < input_end)
+		{
+			if (*input_ptr == '\\') // escape sequence
+			{
+				t_utf8 sequence_length = 2;
+				if ((input_end - input_ptr) < 1)
+					PARSINGERROR_JSON("Could not parse string: Unexpected end of input within string escape sequence")
+				switch (input_ptr[1])
+				{
+					case 'b':	*output_ptr++ = '\b';	break;
+					case 't':	*output_ptr++ = '\t';	break;
+					case 'n':	*output_ptr++ = '\n';	break;
+					case 'f':	*output_ptr++ = '\f';	break;
+					case 'r':	*output_ptr++ = '\r';	break;
+					case '\"':
+					case '\\':
+					case '/':
+						*output_ptr++ = input_ptr[1];
+						break;
+					case 'u': // UTF-16 literal
+						sequence_length = UTF32_Parse_N(&c, input_ptr, (input_end - input_ptr));
+						if (sequence_length == 0)
+							PARSINGERROR_JSON("Could not parse string: Failed to convert UTF16-literal to UTF-8")
+						output_ptr += UTF32_ToUTF8(output_ptr, c);
+						break;
+					default: // TODO non-strict escape sequence handling
+						PARSINGERROR_JSON("Could not parse string: Invalid string escape sequence encountered: \"\\%c\"", input_ptr[1])
+				}
+				input_ptr += sequence_length;
+			}
+			else *output_ptr++ = *input_ptr++;
+		}
+		// zero terminate the output
+		*output_ptr = '\0';
+	}
 	item->type = DYNAMICTYPE_STRING;
 	item->value.string = output;
 	p->offset = (t_size)(input_end - p->content);
@@ -612,29 +620,19 @@ failure:
 
 
 
-t_size	JSON_Parse_Lenient(s_json* *dest, t_utf8 const* str)
+t_size	JSON_Parse_Lenient(s_json* *dest, t_utf8 const* str, t_size n)
 {
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
-	return (JSON_Parse_(dest, str, String_Length(str), FALSE));
-}
-
-t_size	JSON_Parse_Strict(s_json* *dest, t_utf8 const* str)
-{
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
-	return (JSON_Parse_(dest, str, String_Length(str), TRUE));
-}
-
-
-
-t_size	JSON_Parse_N_Lenient(s_json* *dest, t_utf8 const* str, t_size n)
-{
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
+	if (n == 0)
+		n = String_Length(str);
 	return (JSON_Parse_(dest, str, n, FALSE));
 }
 
-t_size	JSON_Parse_N_Strict(s_json* *dest, t_utf8 const* str, t_size n)
+t_size	JSON_Parse_Strict(s_json* *dest, t_utf8 const* str, t_size n)
 {
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
+	if (n == 0)
+		n = String_Length(str);
 	return (JSON_Parse_(dest, str, n, TRUE));
 }
 

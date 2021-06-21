@@ -45,7 +45,7 @@ t_size	String_Print_GetLength(t_char const* str, t_char const* charset_extra)
 
 
 
-t_size	String_Print(t_char* *dest, t_char const* str, t_char const* charset_extra)
+t_size	String_Print(t_char* *dest, t_char const* str, t_size n, t_char const* charset_extra)
 {
 	t_u8	HI_nibble;
 	t_u8	LO_nibble;
@@ -53,10 +53,12 @@ t_size	String_Print(t_char* *dest, t_char const* str, t_char const* charset_extr
 	t_size	index = 0;
 	t_size	i = 0;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), PRINT_RETURN(NULL))
+	if (n == 0)
+		n = SIZE_MAX;
 	result = (t_char*)Memory_Allocate(String_Print_GetLength(str, charset_extra) + sizeof(""));
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
-	while (str[index])
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), PRINT_RETURN(NULL))
+	while (index < n && str[index])
 	{
 		switch (str[index])
 		{
@@ -99,6 +101,6 @@ inline
 t_char*	String_ToEscape(t_char const* str, t_char const* charset_extra)
 {
 	t_char*	result = NULL;
-	String_Print(&result, str, charset_extra);
+	String_Print(&result, str, 0, charset_extra);
 	return (result);
 }

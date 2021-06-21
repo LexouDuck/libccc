@@ -906,29 +906,19 @@ failure:
 
 
 
-t_size	TOML_Parse_Lenient(s_toml* *dest, t_utf8 const* str)
+t_size	TOML_Parse_Lenient(s_toml* *dest, t_utf8 const* str, t_size n)
 {
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
-	return (TOML_Parse_(dest, str, String_Length(str), FALSE));
-}
-
-t_size	TOML_Parse_Strict(s_toml* *dest, t_utf8 const* str)
-{
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
-	return (TOML_Parse_(dest, str, String_Length(str), TRUE));
-}
-
-
-
-t_size	TOML_Parse_N_Lenient(s_toml* *dest, t_utf8 const* str, t_size n)
-{
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
+	if (n == 0)
+		n = String_Length(str);
 	return (TOML_Parse_(dest, str, n, FALSE));
 }
 
-t_size	TOML_Parse_N_Strict(s_toml* *dest, t_utf8 const* str, t_size n)
+t_size	TOML_Parse_Strict(s_toml* *dest, t_utf8 const* str, t_size n)
 {
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
+	if (n == 0)
+		n = String_Length(str);
 	return (TOML_Parse_(dest, str, n, TRUE));
 }
 

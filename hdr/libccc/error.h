@@ -48,6 +48,9 @@ typedef void (*f_ccchandler)(e_cccerror, t_char const*);
 #define PARSE_RETURN(VALUE) \
 	{	if (dest)	*dest = (VALUE);	return (i);	}
 
+#define PRINT_RETURN(VALUE) \
+	{	if (dest)	*dest = (VALUE);	return (i);	}
+
 
 
 #endif

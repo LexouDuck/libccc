@@ -666,7 +666,8 @@ t_size	TOML_Print_Pretty(t_utf8* dest, s_toml const* item, t_size n)
 	s_toml_print p = { 0 };
 
 	HANDLE_ERROR(NULLPOINTER, (item == NULL), return (0);)
-	HANDLE_ERROR(LENGTH2SMALL, (n == 0), return (0);)
+	if (n == 0)
+		n = SIZE_MAX;
 	p.buffer = (t_utf8*)dest;
 	p.length = (t_size)n;
 	p.offset = 0;
@@ -681,7 +682,8 @@ t_size	TOML_Print_Minify(t_utf8* dest, s_toml const* item, t_size n)
 	s_toml_print p = { 0 };
 
 	HANDLE_ERROR(NULLPOINTER, (item == NULL), return (0);)
-	HANDLE_ERROR(LENGTH2SMALL, (n == 0), return (0);)
+	if (n == 0)
+		n = SIZE_MAX;
 	p.buffer = (t_utf8*)dest;
 	p.length = (t_size)n;
 	p.offset = 0;

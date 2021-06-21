@@ -833,18 +833,19 @@ _MALLOC()	t_char*		F128_ToString_Bin(t_f128 number, t_u8 precision);
 **
 **	@param	dest	The resulting number, parse from the given `str`
 **	@param	str		The numeric string to parse
+**	@param	n		The maximum amount of characters to parse (infinite if `0` is given)
 **	@returns
 **	The amount of characters parsed from the given `str`
 */
 //!@{
 #define					Float_Parse	CONCAT(FIXED_TYPE,_Parse)
-t_size					F32_Parse	(t_f32	*dest, t_char const* str);
-t_size					F64_Parse	(t_f64	*dest, t_char const* str);
+t_size					F32_Parse	(t_f32	*dest, t_char const* str, t_size n);
+t_size					F64_Parse	(t_f64	*dest, t_char const* str, t_size n);
 #ifdef __float80
-t_size					F80_Parse	(t_f80	*dest, t_char const* str);
+t_size					F80_Parse	(t_f80	*dest, t_char const* str, t_size n);
 #endif
 #ifdef __float128
-t_size					F128_Parse	(t_f128	*dest, t_char const* str);
+t_size					F128_Parse	(t_f128	*dest, t_char const* str, t_size n);
 #endif
 #define c_fparse		Float_Parse	//!< @alias{Float_Parse}
 #define c_f32parse		F32_Parse	//!< @alias{F32_Parse}
@@ -890,18 +891,19 @@ t_f128					F128_FromString(t_char const* str);
 **
 **	@param	dest	The resulting number, parse from the given `str`
 **	@param	str		The numeric string to parse (must be decimal number string)
+**	@param	n		The maximum amount of characters to parse (infinite if `0` is given)
 **	@returns
 **	The amount of characters parsed from the given `str`
 */
 //!@{
 #define					Float_Parse_Dec	CONCAT(FIXED_TYPE,_Parse_Dec)
-t_size					F32_Parse_Dec	(t_f32	*dest, t_char const* str);
-t_size					F64_Parse_Dec	(t_f64	*dest, t_char const* str);
+t_size					F32_Parse_Dec	(t_f32	*dest, t_char const* str, t_size n);
+t_size					F64_Parse_Dec	(t_f64	*dest, t_char const* str, t_size n);
 #ifdef __float80
-t_size					F80_Parse_Dec	(t_f80	*dest, t_char const* str);
+t_size					F80_Parse_Dec	(t_f80	*dest, t_char const* str, t_size n);
 #endif
 #ifdef __float128
-t_size					F128_Parse_Dec	(t_f128	*dest, t_char const* str);
+t_size					F128_Parse_Dec	(t_f128	*dest, t_char const* str, t_size n);
 #endif
 #define c_fparsedec		Float_Parse_Dec	//!< @alias{Float_Parse_Dec}
 #define c_f32parsedec	F32_Parse_Dec	//!< @alias{F32_Parse_Dec}
@@ -948,18 +950,19 @@ t_f128					F128_FromString_Dec(t_char const* str);
 **
 **	@param	dest	The resulting number, parse from the given `str`
 **	@param	str		The numeric string to parse (must be base 16) number string)
+**	@param	n		The maximum amount of characters to parse (infinite if `0` is given)
 **	@returns
 **	The amount of characters parsed from the given `str`
 */
 //!@{
 #define					Float_Parse_Hex	CONCAT(FIXED_TYPE,_Parse_Hex)
-t_size					F32_Parse_Hex	(t_f32	*dest, t_char const* str);
-t_size					F64_Parse_Hex	(t_f64	*dest, t_char const* str);
+t_size					F32_Parse_Hex	(t_f32	*dest, t_char const* str, t_size n);
+t_size					F64_Parse_Hex	(t_f64	*dest, t_char const* str, t_size n);
 #ifdef __float80
-t_size					F80_Parse_Hex	(t_f80	*dest, t_char const* str);
+t_size					F80_Parse_Hex	(t_f80	*dest, t_char const* str, t_size n);
 #endif
 #ifdef __float128
-t_size					F128_Parse_Hex	(t_f128	*dest, t_char const* str);
+t_size					F128_Parse_Hex	(t_f128	*dest, t_char const* str, t_size n);
 #endif
 #define c_fparsehex		Float_Parse_Hex	//!< @alias{Float_Parse_Hex}
 #define c_f32parsehex	F32_Parse_Hex	//!< @alias{F32_Parse_Hex}
@@ -1006,18 +1009,19 @@ t_f128					F128_FromString_Hex(t_char const* str);
 **
 **	@param	dest	The resulting number, parse from the given `str`
 **	@param	str		The numeric string to parse (must be base 8) number string)
+**	@param	n		The maximum amount of characters to parse (infinite if `0` is given)
 **	@returns
 **	The amount of characters parsed from the given `str`
 */
 //!@{
 #define					Float_Parse_Oct	CONCAT(FIXED_TYPE,_Parse_Oct)
-t_size					F32_Parse_Oct	(t_f32	*dest, t_char const* str);
-t_size					F64_Parse_Oct	(t_f64	*dest, t_char const* str);
+t_size					F32_Parse_Oct	(t_f32	*dest, t_char const* str, t_size n);
+t_size					F64_Parse_Oct	(t_f64	*dest, t_char const* str, t_size n);
 #ifdef __float80
-t_size					F80_Parse_Oct	(t_f80	*dest, t_char const* str);
+t_size					F80_Parse_Oct	(t_f80	*dest, t_char const* str, t_size n);
 #endif
 #ifdef __float128
-t_size					F128_Parse_Oct	(t_f128	*dest, t_char const* str);
+t_size					F128_Parse_Oct	(t_f128	*dest, t_char const* str, t_size n);
 #endif
 #define c_fparseoct		Float_Parse_Oct	//!< @alias{Float_Parse_Oct}
 #define c_f32parseoct	F32_Parse_Oct	//!< @alias{F32_Parse_Oct}
@@ -1064,18 +1068,19 @@ t_f128					F128_FromString_Oct(t_char const* str);
 **
 **	@param	dest	The resulting number, parse from the given `str`
 **	@param	str		The numeric string to parse (must be base 2) number string)
+**	@param	n		The maximum amount of characters to parse (infinite if `0` is given)
 **	@returns
 **	The amount of characters parsed from the given `str`
 */
 //!@{
 #define					Float_Parse_Bin	CONCAT(FIXED_TYPE,_Parse_Bin)
-t_size					F32_Parse_Bin	(t_f32	*dest, t_char const* str);
-t_size					F64_Parse_Bin	(t_f64	*dest, t_char const* str);
+t_size					F32_Parse_Bin	(t_f32	*dest, t_char const* str, t_size n);
+t_size					F64_Parse_Bin	(t_f64	*dest, t_char const* str, t_size n);
 #ifdef __float80
-t_size					F80_Parse_Bin	(t_f80	*dest, t_char const* str);
+t_size					F80_Parse_Bin	(t_f80	*dest, t_char const* str, t_size n);
 #endif
 #ifdef __float128
-t_size					F128_Parse_Bin	(t_f128	*dest, t_char const* str);
+t_size					F128_Parse_Bin	(t_f128	*dest, t_char const* str, t_size n);
 #endif
 #define c_fparsebin		Float_Parse_Bin	//!< @alias{Float_Parse_Bin}
 #define c_f32parsebin	F32_Parse_Bin	//!< @alias{F32_Parse_Bin}

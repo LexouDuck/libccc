@@ -10,7 +10,7 @@
 
 
 #define DEFINEFUNC_UINT_FROMSTROCT(BITS) \
-t_size	U##BITS##_Parse_Oct(t_u##BITS* dest, t_char const* str)						\
+t_size	U##BITS##_Parse_Oct(t_u##BITS* dest, t_char const* str, t_size n)			\
 {																					\
 	t_u##BITS	result;																\
 	t_u##BITS	tmp;																\
@@ -18,7 +18,9 @@ t_size	U##BITS##_Parse_Oct(t_u##BITS* dest, t_char const* str)						\
 																					\
 	HANDLE_ERROR(NULLPOINTER, (str == NULL),										\
 		PARSE_RETURN(U##BITS##_ERROR))												\
-	while (str[i] && Char_IsSpace(str[i]))											\
+	if (n == 0)																		\
+		n = SIZE_MAX;																\
+	while (i < n && str[i] && Char_IsSpace(str[i]))									\
 	{																				\
 		++i;																		\
 	}																				\
@@ -30,7 +32,7 @@ t_size	U##BITS##_Parse_Oct(t_u##BITS* dest, t_char const* str)						\
 	if (str[i] == '0' && str[i + 1] == 'o')											\
 		i += 2;																		\
 	result = 0;																		\
-	while (str[i] && Char_IsDigit_Oct(str[i]))										\
+	while (i < n && str[i] && Char_IsDigit_Oct(str[i]))								\
 	{																				\
 		tmp = result * 8 + (str[i] - '0');											\
 		HANDLE_ERROR_SF(RESULTRANGE, (tmp < result),								\
@@ -44,7 +46,7 @@ t_size	U##BITS##_Parse_Oct(t_u##BITS* dest, t_char const* str)						\
 inline t_u##BITS	U##BITS##_FromString_Oct(t_char const* str)						\
 {																					\
 	t_u##BITS	result = U##BITS##_ERROR;											\
-	U##BITS##_Parse_Oct(&result, str);												\
+	U##BITS##_Parse_Oct(&result, str, 0);											\
 	return (result);																\
 }																					\
 
@@ -59,7 +61,7 @@ DEFINEFUNC_UINT_FROMSTROCT(128)
 
 
 #define DEFINEFUNC_SINT_FROMSTROCT(BITS) \
-t_size	S##BITS##_Parse_Oct(t_s##BITS* dest, t_char const* str)						\
+t_size	S##BITS##_Parse_Oct(t_s##BITS* dest, t_char const* str, t_size n)			\
 {																					\
 	t_u##BITS	result;																\
 	t_u##BITS	tmp;																\
@@ -68,8 +70,12 @@ t_size	S##BITS##_Parse_Oct(t_s##BITS* dest, t_char const* str)						\
 																					\
 	HANDLE_ERROR(NULLPOINTER, (str == NULL),										\
 		PARSE_RETURN(S##BITS##_ERROR))												\
-	for (i = 0; str[i] && Char_IsSpace(str[i]); ++i)								\
-		continue;																	\
+	if (n == 0)																		\
+		n = SIZE_MAX;																\
+	while (i < n && str[i] && Char_IsSpace(str[i]))									\
+	{																				\
+		++i;																		\
+	}																				\
 	HANDLE_ERROR_SF(PARSE,															\
 		!(str[i] == '+' || str[i] == '-' || Char_IsDigit_Oct(str[i])),				\
 		PARSE_RETURN(S##BITS##_ERROR),												\
@@ -85,7 +91,7 @@ t_size	S##BITS##_Parse_Oct(t_s##BITS* dest, t_char const* str)						\
 	if (str[i] == '0' && str[i + 1] == 'o')											\
 		i += 2;																		\
 	result = 0;																		\
-	while (str[i] && Char_IsDigit_Oct(str[i]))										\
+	while (i < n && str[i] && Char_IsDigit_Oct(str[i]))								\
 	{																				\
 		tmp = result * 8 + (str[i++] - '0');										\
 		HANDLE_ERROR_SF(RESULTRANGE, (negative && tmp > (t_u##BITS)S##BITS##_MIN),	\
@@ -102,7 +108,7 @@ t_size	S##BITS##_Parse_Oct(t_s##BITS* dest, t_char const* str)						\
 inline t_s##BITS	S##BITS##_FromString_Oct(t_char const* str)						\
 {																					\
 	t_s##BITS	result = S##BITS##_ERROR;											\
-	S##BITS##_Parse_Oct(&result, str);												\
+	S##BITS##_Parse_Oct(&result, str, 0);											\
 	return (result);																\
 }																					\
 
