@@ -312,7 +312,7 @@ t_bool	JSON_Print_Object(s_json const* item, s_json_print* p)
 	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (ERROR);)
 	if (!(current_item && (current_item->next || current_item->prev != current_item)))
 		multiline = FALSE;
-	if (multiline &&
+	if (multiline && p->offset >= 2 &&
 		p->buffer[p->offset - 1] == ' ' &&
 		p->buffer[p->offset - 2] == ':')
 	{

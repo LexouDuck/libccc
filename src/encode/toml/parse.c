@@ -711,16 +711,20 @@ t_bool	TOML_Parse_Table(s_toml* item, s_toml_parse* p)
 {
 	t_size	line_no = p->line;
 
-	if ((p->content[p->offset] != '['))
+	if (p->content[p->offset] != '[')
 		PARSINGERROR_TOML("Expected '[' char, to begin table key, instead found '%c'/0x%4.4X",
 			(p->content[p->offset] ? p->content[p->offset] : '\a'), p->content[p->offset])
+	p->offset++;
 	TOML_Parse_SkipWhiteSpace(p);
+
 	if (TOML_Parse_Key(item, p))
 		PARSINGERROR_TOML("Inside table: Could not parse table/section name key");
+
 	TOML_Parse_SkipWhiteSpace(p);
 	if (p->content[p->offset] != ']')
 		PARSINGERROR_TOML("Expected ']' char, to end table key, instead found '%c'/0x%4.4X",
 			(p->content[p->offset] ? p->content[p->offset] : '\a'), p->content[p->offset])
+	p->offset++;
 	if (p->strict && line_no != p->line)
 		PARSINGERROR_TOML("A table/section name cannot span over multiple lines in strict TOML (only certain value types can)")
 	TOML_Parse_SkipWhiteSpace(p);
