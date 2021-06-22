@@ -33,6 +33,7 @@ t_size	String_Parse_GetLength(t_char const* str, t_bool any_escape)
 				case '\'':	length += 1 * sizeof(t_char);	break; // Single quotation mark
 				case '\"':	length += 1 * sizeof(t_char);	break; // Double quotation mark
 				case  '?':	length += 1 * sizeof(t_char);	break; // Question mark (used to avoid trigraphs)
+				case  '/':	length += 1 * sizeof(t_char);	break; // Forward slash
 				case '\\':	length += 1 * sizeof(t_char);	break; // Backslash
 				case 'x':	length += 1 * sizeof(t_char);	break; // Hexadecimal t_char value
 				case 'u':	length += 2 * sizeof(t_char);	break; // Unicode 2-byte t_char (encodes UTF-32 code point to UTF-8)
@@ -96,10 +97,11 @@ t_size	String_Parse(t_char* *dest, t_char const* str, t_size n, t_bool any_escap
 				case 'f':	result[i++] = '\x0C';	break; // Formfeed
 				case 'r':	result[i++] = '\x0D';	break; // Carriage Return
 				case 'e':	result[i++] = '\x1B';	break; // Escape
-				case '\'':	result[i++] = '\x27';	break; // Single quotation mark
-				case '\"':	result[i++] = '\x22';	break; // Double quotation mark
-				case  '?':	result[i++] = '\x3F';	break; // Question mark (used to avoid trigraphs)
-				case '\\':	result[i++] = '\x5C';	break; // Backslash
+				case '\'':	result[i++] = '\'';		break; // Single quotation mark
+				case '\"':	result[i++] = '\"';		break; // Double quotation mark
+				case  '?':	result[i++] = '?';		break; // Question mark (used to avoid trigraphs)
+				case  '/':	result[i++] = '/';		break; // Forward Slash
+				case '\\':	result[i++] = '\\';		break; // Backslash
 				case 'u':	String_Parse_Unicode(16)	break; // Unicode 2-byte t_char (encodes UTF-32 code point to UTF-8)
 				case 'U':	String_Parse_Unicode(32)	break; // Unicode 4-byte t_char (encodes UTF-32 code point to UTF-8)
 				case 'x': // Hexadecimal byte value
