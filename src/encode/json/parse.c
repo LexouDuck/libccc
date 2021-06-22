@@ -174,11 +174,11 @@ t_bool JSON_Parse_String(s_json* item, s_json_parse* p)
 {
 	t_utf8 const* input_ptr = &p->content[p->offset] + 1;
 	t_utf8 const* input_end = &p->content[p->offset] + 1;
-	t_utf8* output_ptr = NULL;
-	t_utf8* output = NULL;
-	t_size alloc_length;
-	t_size skipped_bytes;
-	t_utf32 c;
+	t_utf8*	output_ptr = NULL;
+	t_utf8*	output = NULL;
+	t_size	alloc_length;
+	t_size	skipped_bytes;
+	t_utf32	c;
 
 	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (ERROR);)
 	HANDLE_ERROR(NULLPOINTER, (p->content == NULL), return (ERROR);)
