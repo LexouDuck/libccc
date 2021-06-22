@@ -49,28 +49,28 @@ typedef t_sint		t_dynamic;
 
 //! These constants are the enum items/bitflags for the `t_dynamic` dynamic-type enum
 //!@{
-#define DYNAMICTYPE_INVALID	(t_dynamic)(0)		//!< value stored is invalid
-#define DYNAMICTYPE_NULL	(t_dynamic)(1 << 0)	//!< no value stored
-#define DYNAMICTYPE_BOOLEAN	(t_dynamic)(1 << 1)	//!< value stored as boolean (`t_bool`)
-#define DYNAMICTYPE_INTEGER	(t_dynamic)(1 << 2)	//!< value stored as integer (`t_s64`)
-#define DYNAMICTYPE_FLOAT	(t_dynamic)(1 << 3)	//!< value stored as floating-point number: (`t_f64`)
-#define DYNAMICTYPE_STRING	(t_dynamic)(1 << 4)	//!< value stored as string (`t_char*`)
-#define DYNAMICTYPE_ARRAY	(t_dynamic)(1 << 5)	//!< value stored as array of values (no keys)
-#define DYNAMICTYPE_OBJECT	(t_dynamic)(1 << 6)	//!< value stored as dict of values (with keys)
-#define DYNAMICTYPE_RAW		(t_dynamic)(1 << 7)	//!< value stored as raw string (language-specific syntax)
+#define DYNAMICTYPE_INVALID	((t_dynamic)(0))		//!< value stored is invalid
+#define DYNAMICTYPE_NULL	((t_dynamic)(1 << 0))	//!< no value stored
+#define DYNAMICTYPE_BOOLEAN	((t_dynamic)(1 << 1))	//!< value stored as boolean (`t_bool`)
+#define DYNAMICTYPE_INTEGER	((t_dynamic)(1 << 2))	//!< value stored as integer (`t_s64`)
+#define DYNAMICTYPE_FLOAT	((t_dynamic)(1 << 3))	//!< value stored as floating-point number: (`t_f64`)
+#define DYNAMICTYPE_STRING	((t_dynamic)(1 << 4))	//!< value stored as string (`t_char*`)
+#define DYNAMICTYPE_ARRAY	((t_dynamic)(1 << 5))	//!< value stored as array of values (no keys)
+#define DYNAMICTYPE_OBJECT	((t_dynamic)(1 << 6))	//!< value stored as dict of values (with keys)
+#define DYNAMICTYPE_RAW		((t_dynamic)(1 << 7))	//!< value stored as raw string (language-specific syntax)
 
-#define DYNAMICTYPE_ISREFERENCE	(t_dynamic)(1 << 8)	//!< If this bit is set, the `value` is not to be freed
+#define DYNAMICTYPE_ISREFERENCE	((t_dynamic)(1 << 8))	//!< If this bit is set, the `value` is not to be freed
 //!@}
 
 //! The bitmask expressing the 'type enum' portion of a `t_dynamic` type specifier
-#define DYNAMICTYPE_MASK	(0xFF)
+#define DYNAMICTYPE_MASK	((t_dynamic)(0xFF))
 
 
 
-//! A general key-value tree struct, used to model data for several file formats: INI, KVT, TOML, YAML, XML, etc
+//! A general key-value tree struct, used to model data for several file formats: JSON, INI/TOML, YAML, XML, etc
 /*!
 **	This struct can be used to store any kind of data, much like a general
-**	extensible data file format: think INI, JSON, TOML, YAML, XML, etc.
+**	extensible data file format: think JSON, INI/TOML, YAML, XML, etc.
 **	The abbreviation "KVT" is used throughout the code to avoid writing `key_value_tree`, which is rather long.
 **	In general, you should not use this struct directly, unless you wish to implement a new file format spec.
 */

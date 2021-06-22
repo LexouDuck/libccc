@@ -23,7 +23,7 @@ s_kvt*	KVT_Concat(s_kvt const* kvt1, s_kvt const* kvt2)
 	kvt2_isobject = KVT_IsObject(kvt2);
 	if (!kvt1_isarray && !kvt1_isobject &&
 		!kvt2_isarray && !kvt2_isobject)
-	{
+	{	// create a new array to store both values
 		result = KVT_CreateArray();
 		HANDLE_ERROR(ALLOCFAILURE, (result == NULL), goto failure;)
 		concat = KVT_Duplicate(kvt1, TRUE);
@@ -35,26 +35,21 @@ s_kvt*	KVT_Concat(s_kvt const* kvt1, s_kvt const* kvt2)
 		error = KVT_AddToArray_Item(result, concat);
 		HANDLE_ERROR(UNSPECIFIED, (error), goto failure;)
 	}
-	else
+	else if (kvt1_isarray && kvt2_isarray)
+		KVT_Concat_Array(kvt1, kvt2);
+	else if (kvt1_isobject && kvt2_isobject)
+		KVT_Concat_Object(kvt1, kvt2);
+	else // concatenate arrays (put objects inside array if needed)
 	{
 		result = KVT_Duplicate(kvt1, TRUE);
 		HANDLE_ERROR(ALLOCFAILURE, (result == NULL), goto failure;)
 		concat = KVT_Duplicate(kvt2, TRUE);
 		HANDLE_ERROR(ALLOCFAILURE, (concat == NULL), goto failure;)
 
-		if (kvt1_isarray && kvt2_isarray)
-			KVT_Concat_Array(result, concat);
-		else if (kvt1_isarray)
+		if (kvt1_isarray)
 			KVT_AddToArray_Item(result, concat);
 		else if (kvt2_isarray)
-			KVT_AddToArray_Item(result, concat);
-
-		if (kvt1_isobject && kvt2_isobject)
-			KVT_Concat_Object(result, concat);
-		else if (kvt1_isobject)
-			KVT_Insert_InArray(concat, 0, result);
-		else if (kvt2_isobject)
-			KVT_Insert_InArray(concat, 0, result);
+			KVT_Insert_InArray(result, 0, concat);
 	}
 	HANDLE_ERROR(UNSPECIFIED, (result == NULL), goto failure;)
 	return (result);
@@ -78,9 +73,10 @@ s_kvt*	KVT_Concat_Array(s_kvt const* kvt1, s_kvt const* kvt2)
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), goto failure;)
 	concat = KVT_Duplicate(kvt2, TRUE);
 	HANDLE_ERROR(ALLOCFAILURE, (concat == NULL), goto failure;)
+
 	result->value.child->prev->next = concat->value.child; // use `prev` to access last element without looping
+	concat->value.child->prev = result->value.child->prev;
 	result->value.child->prev = concat->value.child->prev; // update the new first-elem `prev` to point to end of array
-	concat->value.child->prev = result->value.child;
 	Memory_Free(concat);
 	return (result);
 
@@ -90,7 +86,7 @@ failure:
 	return (NULL);
 }
 
-
+#include "libccc/encode/json.h"
 
 s_kvt*	KVT_Concat_Object(s_kvt const* kvt1, s_kvt const* kvt2)
 {
@@ -103,9 +99,13 @@ s_kvt*	KVT_Concat_Object(s_kvt const* kvt1, s_kvt const* kvt2)
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), goto failure;)
 	concat = KVT_Duplicate(kvt2, TRUE);
 	HANDLE_ERROR(ALLOCFAILURE, (concat == NULL), goto failure;)
+
+IO_Output_Format("\nDEBUG CONCAT KVT1:\n%s\n", JSON_ToString_Pretty(result));
+IO_Output_Format("\nDEBUG CONCAT KVT2:\n%s\n", JSON_ToString_Pretty(concat));
+
 	result->value.child->prev->next = concat->value.child; // use `prev` to access last element without looping
+	concat->value.child->prev = result->value.child->prev;
 	result->value.child->prev = concat->value.child->prev; // update the new first-elem `prev` to point to end of array
-	concat->value.child->prev = result->value.child;
 	Memory_Free(concat);
 	return (result);
 

@@ -462,7 +462,7 @@ t_utf8*	JSON_Print_(s_json const* item, t_bool format)
 		goto failure;
 	JSON_Print_UpdateOffset(p);
 
-#ifdef Memory_Realloc // check if reallocate is available
+#ifdef c_realloc // check if reallocate is available
 	{
 		printed = (t_utf8*)Memory_Reallocate(p->buffer, p->offset + 1);
 		HANDLE_ERROR(ALLOCFAILURE, (printed == NULL), goto failure;)
