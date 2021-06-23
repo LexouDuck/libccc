@@ -86,7 +86,7 @@ failure:
 	return (NULL);
 }
 
-#include "libccc/encode/json.h"
+
 
 s_kvt*	KVT_Concat_Object(s_kvt const* kvt1, s_kvt const* kvt2)
 {
@@ -99,9 +99,6 @@ s_kvt*	KVT_Concat_Object(s_kvt const* kvt1, s_kvt const* kvt2)
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), goto failure;)
 	concat = KVT_Duplicate(kvt2, TRUE);
 	HANDLE_ERROR(ALLOCFAILURE, (concat == NULL), goto failure;)
-
-IO_Output_Format("\nDEBUG CONCAT KVT1:\n%s\n", JSON_ToString_Pretty(result));
-IO_Output_Format("\nDEBUG CONCAT KVT2:\n%s\n", JSON_ToString_Pretty(concat));
 
 	result->value.child->prev->next = concat->value.child; // use `prev` to access last element without looping
 	concat->value.child->prev = result->value.child->prev;
