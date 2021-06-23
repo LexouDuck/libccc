@@ -66,6 +66,7 @@ typedef void (*f_ccchandler)(e_cccerror, t_char const*);
 //! Returns a newly allocated error message from the given `errno_value`
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/string/byte/strerror}
+**	@isostd{POSIX,https://linux.die.net/man/3/strerror}
 **
 **	This is equivalent to the STD C `strerror()` functions (thread-safe).
 **

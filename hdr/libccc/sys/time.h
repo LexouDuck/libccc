@@ -349,6 +349,7 @@ t_time					Time_Now(void);
 //! Converts the given `t_time value` to its equivalent `s_date` representation (in UTC)
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/chrono/gmtime}
+**	@isostd{POSIX,https://linux.die.net/man/3/gmtime}
 */
 s_date						Time_ToDate_UTC(t_time const value);
 #define c_gmtime			Time_ToDate_UTC
@@ -357,6 +358,7 @@ s_date						Time_ToDate_UTC(t_time const value);
 //! Converts the given `t_time value` to its equivalent `s_date` representation (according to the system timezone)
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/chrono/localtime}
+**	@isostd{POSIX,https://linux.die.net/man/3/localtime}
 */
 s_date						Time_ToDate_LocalTime(t_time const value);
 #define c_localtime			Time_ToDate_LocalTime
