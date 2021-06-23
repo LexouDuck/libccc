@@ -6,7 +6,7 @@
 #else
 	extern long	timezone;
 	time_t	time(time_t* t);
-	struct tm*	gmtime(const time_t* timep);
+	struct tm*	gmtime_r(const time_t* timep, struct tm *result);
 	struct tm*	localtime(const time_t* timep);
 #endif
 
@@ -28,12 +28,11 @@ t_time		Time_Now(void)
 s_date		Time_ToDate_UTC(t_time const value)
 {
 	s_date result = DATE_NULL;
- 	struct tm* tm;
+ 	struct tm tm = {0};
 
- 	tm = gmtime(&value);
- 	if (tm == NULL)
- 		return (result);
-	result = Date_FromSTDC(tm);
+ 	// gmtime_r is thread-safe, unlike gmtime
+ 	gmtime_r(&value, &tm);
+	result = Date_FromSTDC(&tm);
 	return (result);
 }
 
