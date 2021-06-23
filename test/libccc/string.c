@@ -904,20 +904,20 @@ void	test_strremove(void)
 
 
 
-#ifndef c_strprint
-void test_strprint(void)	{}
+#ifndef c_strtoesc
+void test_strtoesc(void)	{}
 #else
-void	print_test_strprint(char const* test_name, int can_segfault,
+void	print_test_strtoesc(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str,
 		char const* charset_extra)
 {
 	TEST_INIT(str)
-	TEST_PERFORM(	strprint, str, charset_extra)
-	TEST_PRINT(str,	strprint, "str=\"%s\", charset_extra=\"%s\"", str, charset_extra)
+	TEST_PERFORM(	strtoesc, str, charset_extra)
+	TEST_PRINT(str,	strtoesc, "str=\"%s\", charset_extra=\"%s\"", str, charset_extra)
 	TEST_FREE()
 }
-void	test_strprint(void)
+void	test_strtoesc(void)
 {
 //	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
 //	TODO
@@ -926,20 +926,20 @@ void	test_strprint(void)
 
 
 
-#ifndef c_strparse
-void test_strparse(void)	{}
+#ifndef c_esctostr
+void test_esctostr(void)	{}
 #else
-void	print_test_strparse(char const* test_name, int can_segfault,
+void	print_test_esctostr(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str,
 		t_bool escape_any)
 {
 	TEST_INIT(str)
-	TEST_PERFORM(	strparse, str, escape_any)
-	TEST_PRINT(str,	strparse, "str=\"%s\", escape_any=%s", str, (escape_any ? "TRUE" : "FALSE"))
+	TEST_PERFORM(	esctostr, str, escape_any)
+	TEST_PRINT(str,	esctostr, "str=\"%s\", escape_any=%s", str, (escape_any ? "TRUE" : "FALSE"))
 	TEST_FREE()
 }
-void	test_strparse(void)
+void	test_esctostr(void)
 {
 //	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
 //	TODO
@@ -1552,8 +1552,8 @@ int		testsuite_string(void)
 
 	test_strnchr();
 	test_strrstr();
-	test_strprint();
-	test_strparse();
+	test_strtoesc();
+	test_esctostr();
 //	test_strrep_char();
 //	test_strrep_charset();
 //	test_strrep_str();
