@@ -76,8 +76,8 @@ typedef t_sint		t_dynamic;
 */
 typedef struct kvt
 {
-	struct kvt*	next;	//!< linked-list pointers to neighboring items
-	struct kvt*	prev;	//!< linked-list pointers to neighboring items
+	struct kvt*	next;	//!< linked-list pointer to neighboring items (is `NULL` for the last item in the list)
+	struct kvt*	prev;	//!< linked-list pointer to neighboring items (for the first item, `prev` will point to the end of the list)
 
 	t_utf8*		key;	//!< The item's key string, if this item is the child of, or is in the list of subitems of, an object.
 	t_dynamic	type;	//!< The type of the item: uses the `TOML_TYPE_*` macros defined above.
@@ -141,9 +141,10 @@ typedef struct kvt_print
 	t_utf8*	buffer;	//!< the result string which is written to
 	t_size	offset;	//!< current writing offset of the string to print
 	t_size	length;	//!< the (current maximum) length of the string to print
-	t_size	depth;	//!< current nesting depth (for formatted printing)
 	t_bool	noalloc;//!< if `TRUE`, then it means `buffer` is pre-allocated by the caller
 	t_bool	format;	//!< is this print a formatted print
+	t_size	depth;	//!< the current nesting depth (for formatted printing)
+	t_utf8*	keypath;//!< the current path of keys, separated by periods (think TOML section tables)
 }		s_kvt_print;
 
 #define KVT_NUMBER_BUFFERSIZE	64

@@ -158,42 +158,43 @@ TOML_TEST(toml_string_utf8_ho	, "\"�𑢰����� 𐐔𐐯𐑅𐐨𐑉�
 
 
 t_utf8*	toml_array_empty	= "[]";
-t_utf8*	toml_array_min		= "[false,true,null]";
+t_utf8*	toml_array_min		= "[false,true,null]\n";
 t_utf8*	toml_array			= "\
-[\
+\n[\
 \n	false,\
 \n	true,\
 \n	null\
-\n]";
-t_utf8*	toml_array_nested_min	= "[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{swag=1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]";
-t_utf8*	toml_array_nested		= "[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{swag = 1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]";
+\n]\
+\n";
+t_utf8*	toml_array_nested_min	= "[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{swag=1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]\n";
+t_utf8*	toml_array_nested		= "[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{swag = 1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]\n";
 
 
 
-t_utf8*	toml_object_empty	= "{}";
-t_utf8*	toml_object_min		= "{a=false,b=true,c=null}";
-t_utf8*	toml_object			= "\
+t_utf8*	toml_object_empty	= "_={}";
+t_utf8*	toml_object_min		= "_={a=false,b=true,c=null}";
+t_utf8*	toml_object			= "_=\
 {\
 \n	a = false,\
 \n	b = true,\
 \n	c = null\
 \n}";
-t_utf8*	toml_object_nested_min	= "{a={b={c={d={e={f={g={h={i={j={k={l={m={n={o={p={q={r={s={t={u={v={w={x={y={z=\"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}";
-t_utf8*	toml_object_nested		= "{a = {b = {c = {d = {e = {f = {g = {h = {i = {j = {k = {l = {m = {n = {o = {p = {q = {r = {s = {t = {u = {v = {w = {x = {y = {z = \"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}";
+t_utf8*	toml_object_nested_min	= "_={a={b={c={d={e={f={g={h={i={j={k={l={m={n={o={p={q={r={s={t={u={v={w={x={y={z=\"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}";
+t_utf8*	toml_object_nested		= "_={a = {b = {c = {d = {e = {f = {g = {h = {i = {j = {k = {l = {m = {n = {o = {p = {q = {r = {s = {t = {u = {v = {w = {x = {y = {z = \"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}";
 
 t_utf8*	toml_object_string_min =
 "\n""type=11"
 "\n""value="
-"\n""\"\"\"{"
-"\n"	"\\\"Label\\\":\\\"NAME\\\","
-"\n"	"\\\"Attributes\\\":"
-"\n"	"{"
-"\n"		"\\\"PATTERN_ATTRIBUTE\\\":[{\\\"Values\\\":[{\\\"STRING\\\":\\\"ENTITY_PATTERN\\\"}]}],"
-"\n"		"\\\"DESCRIPTION_ATTRIBUTE\\\":[{\\\"Values\\\":[{\\\"STRING\\\":\\\"DESC\\\"}]}],"
-"\n"		"\\\"CHARACTERISTIC_ATTRIBUTE\\\":[],"
-"\n"		"\\\"TEMPLATE_ATTRIBUTE\\\":[{}]"
-"\n"	"}"
-"\n""}\"\"\""
+	"\"\"\"{"
+		"\\\"Label\\\":\\\"NAME\\\","
+		"\\\"Attributes\\\":"
+		"{"
+			"\\\"PATTERN_ATTRIBUTE\\\":[{\\\"Values\\\":[{\\\"STRING\\\":\\\"ENTITY_PATTERN\\\"}]}],"
+			"\\\"DESCRIPTION_ATTRIBUTE\\\":[{\\\"Values\\\":[{\\\"STRING\\\":\\\"DESC\\\"}]}],"
+			"\\\"CHARACTERISTIC_ATTRIBUTE\\\":[],"
+			"\\\"TEMPLATE_ATTRIBUTE\\\":[{}]"
+		"}"
+	"}\"\"\""
 "\n";
 t_utf8*	toml_object_string = "\
 \n	type = 11,\

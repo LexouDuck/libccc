@@ -22,7 +22,63 @@ typedef s_kvt_print	s_toml_print;
 
 #define TOML_NUMBER_BUFFERSIZE \
 		KVT_NUMBER_BUFFERSIZE
-	
+
+
+
+#define TOML_CHARSET_BAREKEY	"-"CHARSET_ALPHABET"_"CHARSET_DECIMAL
+
+
+
+static void TOML_Print_KeyPath_Push(s_toml_print* p, t_utf8* key)
+{
+	t_utf8*	tmp;
+	t_utf8*	oldpath = NULL;
+
+	if (p->keypath)
+		oldpath = p->keypath;
+
+	if (key == NULL)
+		tmp = NULL;
+	else if (String_Length(key) > 0 && String_HasOnly(key, TOML_CHARSET_BAREKEY))
+		tmp = String_Duplicate(key);
+	else
+		tmp = String_Format("\"%s\"", key);
+
+	if (oldpath && tmp)
+		p->keypath = String_Format("%s.%s", oldpath, tmp);
+	else if (tmp)
+		p->keypath = String_Duplicate(tmp);
+	else return;
+
+	if (tmp)
+		String_Delete(&tmp);
+	if (oldpath)
+		String_Delete(&oldpath);
+}
+
+static void TOML_Print_KeyPath_Pop(s_toml_print* p)
+{
+	t_size	i;
+	t_bool	bare;
+	t_utf8*	oldpath = NULL;
+
+	if (p->keypath == NULL)
+		return;
+	bare = TRUE;
+	if (p->keypath)
+		oldpath = p->keypath;
+	i = String_Length(oldpath);
+	while (i--)
+	{
+		if (bare && oldpath[i] == '.')
+			break;
+		else if (oldpath[i] == '\"')
+			bare = !bare;
+	}
+	p->keypath = (i == 0 ? NULL : String_Sub(oldpath, 0, i));
+	if (oldpath)
+		String_Delete(&oldpath);
+}
 
 
 
@@ -32,8 +88,8 @@ static t_bool	TOML_Print_Object		(s_toml const* item, s_toml_print* p);
 static t_bool	TOML_Print_Array		(s_toml const* item, s_toml_print* p);
 static t_bool	TOML_Print_Table		(s_toml const* item, s_toml_print* p);
 static t_bool	TOML_Print_Value		(s_toml const* item, s_toml_print* p);
-static t_bool	TOML_Print_Key			(s_toml const* item, s_toml_print* p);
-static t_bool	TOML_Print_KeyValuePair	(s_toml const* item, s_toml_print* p);
+static t_bool	TOML_Print_Key			(s_toml const* item, s_toml_print* p, t_bool full_path);
+static t_bool	TOML_Print_KeyValuePair	(s_toml const* item, s_toml_print* p, t_bool full_path);
 static t_bool	TOML_Print_Lines		(s_toml const* item, s_toml_print* p);
 
 
@@ -243,7 +299,7 @@ t_bool	TOML_Print_Array(s_toml const* item, s_toml_print* p)
 
 	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (ERROR);)
 	// Compose the output array.
-	if (!(current_item && (current_item->next || current_item->prev != current_item)))
+	if (current_item == NULL || !(current_item->next || current_item->prev != current_item))
 		multiline = FALSE;
 	if (multiline &&
 		p->buffer[p->offset - 1] == ' ' &&
@@ -261,9 +317,10 @@ t_bool	TOML_Print_Array(s_toml const* item, s_toml_print* p)
 	length = 1;//(t_size)(1 + (p->format && !multiline ? 1 : 0));
 	ENSURE(length)
 	*result++ = '[';
-//	if (p->format && !multiline)
+//	if (p->format && !multiline) // TODO
 //		*result++ = ' ';
 	p->offset += length;
+	TOML_Print_KeyPath_Push(p, item->key);
 	p->depth++;
 	while (current_item != NULL)
 	{
@@ -291,6 +348,7 @@ t_bool	TOML_Print_Array(s_toml const* item, s_toml_print* p)
 		current_item = current_item->next;
 	}
 
+	TOML_Print_KeyPath_Pop(p);
 	p->depth--;
 	if (multiline)
 	{
@@ -345,6 +403,7 @@ t_bool	TOML_Print_Object(s_toml const* item, s_toml_print* p)
 			*result++ = ' ';
 		p->offset += length;
 	}
+	TOML_Print_KeyPath_Push(p, item->key);
 	p->depth++;
 	while (current_item)
 	{
@@ -360,7 +419,7 @@ t_bool	TOML_Print_Object(s_toml const* item, s_toml_print* p)
 		}
 
 		// print value
-		if (TOML_Print_KeyValuePair(current_item, p))
+		if (TOML_Print_KeyValuePair(current_item, p, FALSE))
 			return (ERROR);
 		TOML_Print_UpdateOffset(p);
 
@@ -376,6 +435,7 @@ t_bool	TOML_Print_Object(s_toml const* item, s_toml_print* p)
 		current_item = current_item->next;
 	}
 
+	TOML_Print_KeyPath_Pop(p);
 	p->depth--;
 	if (multiline)
 	{
@@ -413,7 +473,7 @@ t_bool	TOML_Print_Table(s_toml const* item, s_toml_print* p)
 	*result++ = '[';
 	p->offset++;
 
-	if (TOML_Print_Key(item, p))
+	if (TOML_Print_Key(item, p, TRUE))
 		return (ERROR);
 
 	ENSURE(1)
@@ -480,13 +540,21 @@ t_bool	TOML_Print_Value(s_toml const* item, s_toml_print* p)
 
 
 static
-t_bool	TOML_Print_Key(s_toml const* item, s_toml_print* p)
+t_bool	TOML_Print_Key(s_toml const* item, s_toml_print* p, t_bool full_path)
 {
 	t_utf8* result = NULL;
 	t_size	length;
 
+	if (full_path && p->keypath)
+	{
+		length = String_Length(p->keypath) + 1;
+		ENSURE(length)
+		String_Copy(result, p->keypath);
+		result[length - 1] = '.';
+		p->offset += length;
+	}
 	length = String_Length(item->key);
-	if (length > 0 && String_HasOnly(item->key, "-"CHARSET_ALPHABET"_"CHARSET_DECIMAL))
+	if (length > 0 && String_HasOnly(item->key, TOML_CHARSET_BAREKEY))
 	{
 		ENSURE(length)
 		String_Copy(result, item->key);
@@ -517,7 +585,7 @@ t_bool	TOML_Print_Key(s_toml const* item, s_toml_print* p)
 	}																\
 
 static
-t_bool	TOML_Print_KeyValuePair(s_toml const* item, s_toml_print* p)
+t_bool	TOML_Print_KeyValuePair(s_toml const* item, s_toml_print* p, t_bool full_path)
 {
 	t_utf8* result = NULL;
 	t_size	length;
@@ -534,7 +602,7 @@ t_bool	TOML_Print_KeyValuePair(s_toml const* item, s_toml_print* p)
 		CHECK_COMPLEX_SUBOBJECTS(TOML_Print_Table(item, p))
 	}
 
-	if (TOML_Print_Key(item, p))
+	if (TOML_Print_Key(item, p, full_path))
 		return (ERROR);
 
 	length = (t_size)(p->format ? 3 : 1);
@@ -574,6 +642,8 @@ t_bool	TOML_Print_Lines(s_toml const* item, s_toml_print* p)
 		}
 		p->offset += p->depth + 1;
 	}
+
+	TOML_Print_KeyPath_Push(p, item->key);
 	p->depth++;
 	while (current_item)
 	{
@@ -590,7 +660,7 @@ t_bool	TOML_Print_Lines(s_toml const* item, s_toml_print* p)
 			p->offset += p->depth;
 		}
 		// print value
-		if (TOML_Print_KeyValuePair(current_item, p))
+		if (TOML_Print_KeyValuePair(current_item, p, FALSE))
 			return (ERROR);
 		TOML_Print_UpdateOffset(p);
 /*
@@ -602,6 +672,8 @@ t_bool	TOML_Print_Lines(s_toml const* item, s_toml_print* p)
 		*result = '\0';
 		current_item = current_item->next;
 	}
+
+	TOML_Print_KeyPath_Pop(p);
 	p->depth--;
 
 	ENSURE(1)
@@ -731,7 +803,7 @@ t_utf8*	TOML_Print_Buffered(s_toml const* item, t_sint prebuffer, t_bool format)
 	p.offset = 0;
 	p.noalloc = FALSE;
 	p.format = format;
-	if (TOML_Print_KeyValuePair(item, &p))
+	if (TOML_Print_Lines(item, &p))
 	{
 		Memory_Free(p.buffer);
 		return (NULL);

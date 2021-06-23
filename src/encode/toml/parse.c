@@ -585,7 +585,7 @@ static
 t_bool	TOML_Parse_Key(s_toml* item, s_toml_parse* p)
 {
 	if (!CAN_PARSE(0))
-		PARSINGERROR_TOML("Could not parse object member key: Unexpected end of input before key")
+		PARSINGERROR_TOML("Could not parse key string: Unexpected end of input before key")
 	if (p->content[p->offset] == '-' ||
 		p->content[p->offset] == '_' ||
 		Char_IsAlphaNumeric(p->content[p->offset]))
@@ -596,7 +596,7 @@ t_bool	TOML_Parse_Key(s_toml* item, s_toml_parse* p)
 			p->content[p->offset + length] == '_')
 		{
 			if (!CAN_PARSE(length))
-				PARSINGERROR_TOML("Could not parse object member key: Unexpected end of input")
+				PARSINGERROR_TOML("Could not parse key string: Unexpected end of input")
 			++length;
 		}
 		item->key = String_Sub(p->content, p->offset, length);
@@ -605,14 +605,17 @@ t_bool	TOML_Parse_Key(s_toml* item, s_toml_parse* p)
 	else if (p->content[p->offset] == '\"' || p->content[p->offset] == '\'')
 	{	// quoted key
 		if (TOML_Parse_String(item, p))
-			PARSINGERROR_TOML("Could not parse object: Failed to parse object member key")
+			PARSINGERROR_TOML("Could not parse key string: Failed to parse object member key")
 		// swap value.string and string, because we parsed the name
 		item->key = item->value.string;
 		item->value.string = NULL;
 	}
+	else
+		PARSINGERROR_TOML("Could not parse key string: Unexpected character '%c'/0x%4.4X, expected bare key or quoted key",
+			(p->content[p->offset] ? p->content[p->offset] : '\a'), p->content[p->offset])
 
 	if (!CAN_PARSE(0))
-		PARSINGERROR_TOML("Could not parse object member key: Unexpected end of input after key")
+		PARSINGERROR_TOML("Could not parse key string: Unexpected end of input after key")
 	if (p->content[p->offset] == '.')
 	{
 		p->offset++;
