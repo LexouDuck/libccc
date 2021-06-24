@@ -36,9 +36,9 @@ s_kvt*	KVT_Concat(s_kvt const* kvt1, s_kvt const* kvt2)
 		HANDLE_ERROR(UNSPECIFIED, (error), goto failure;)
 	}
 	else if (kvt1_isarray && kvt2_isarray)
-		KVT_Concat_Array(kvt1, kvt2);
+		return (KVT_Concat_Array(kvt1, kvt2));
 	else if (kvt1_isobject && kvt2_isobject)
-		KVT_Concat_Object(kvt1, kvt2);
+		return (KVT_Concat_Object(kvt1, kvt2));
 	else // concatenate arrays (put objects inside array if needed)
 	{
 		result = KVT_Duplicate(kvt1, TRUE);
@@ -55,8 +55,8 @@ s_kvt*	KVT_Concat(s_kvt const* kvt1, s_kvt const* kvt2)
 	return (result);
 
 failure:
-	KVT_Delete(result);
-	KVT_Delete(concat);
+	if (result)	KVT_Delete(result);
+	if (concat)	KVT_Delete(concat);
 	return (NULL);
 }
 
