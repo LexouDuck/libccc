@@ -382,148 +382,58 @@ t_utf8*	toml_complex_min =
 		"\n[[Attributes.CHILD_ATTRIBUTE.Values]]"		"\nTEXT=\"Lorraine\""
 		"\n[[Attributes.CHILD_ATTRIBUTE.Values]]"		"\nTEXT=\"Raymond\""
 		"\n[[Attributes.CHILD_ATTRIBUTE.Properties]]"	"\n[[\"Born\",\"youngest\",\"1992\"],[\"Mother\",\"\",\"Rebecca Broussard\"]"
-	"[Properties]"
-		"[\"known for\",\"most popular role\",\"The Shining\"]"
-		"[\"fan of\",\"famous fan\",\"Los Angeles Lakers\"]"
-		"[\"fan of\",\"\",\"Bob Dylan\"]"
-		"[\"also known for\",\"best performance\",\"Chinatown\"]"
-	"[Values]"
-		"[\"actor\",\"player\",\"filmmaker\"]"
+	"\n[Properties]"
+		"\n[\"known for\",\"most popular role\",\"The Shining\"]"
+		"\n[\"fan of\",\"famous fan\",\"Los Angeles Lakers\"]"
+		"\n[\"fan of\",\"\",\"Bob Dylan\"]"
+		"\n[\"also known for\",\"best performance\",\"Chinatown\"]"
+	"\n[Values]"
+		"\n[\"actor\",\"player\",\"filmmaker\"]"
 ;
-t_utf8*	toml_complex = "\
-{\
-\n	\"Attributes\": \
-\n	{\
-\n		\"SEX_ATTRIBUTE\": [{\"Values\": [{\"CHARACTER\": \"M\"}]}],\
-\n		\"AGE_ATTRIBUTE\": [{\"Values\": [{\"INTEGER\": \"82\"}]}],\
-\n		\"SPOUSE_ATTRIBUTE\": [{\"Values\": [{\"BOOLEAN\": \"FALSE\"}]}],\
-\n		\"HEIGHT_ATTRIBUTE\": [{\"Values\": [{\"FLOAT\": \"176.5\"}]}],\
-\n		\"OCCUPATION_ATTRIBUTE\": [{\"Values\": [{\"STRING\": \"actor\"}]}],\
-\n		\"LABEL_ATTRIBUTE\": [{\"Values\": [{\"TEXT\": \"Яцк Ничолсон\"}]}],\
-\n		\"BIRTHDAY_ATTRIBUTE\": [{\"Values\": [{\"TIME\": \"-1031788800\"}]}],\
-\n		\"DOCUMENT_ATTRIBUTE\": [{\"Values\": [{\"WEB\": \"urn:isbn:0393350967\"}]}],\
-\n		\"WEIGHT_ATTRIBUTE\": \
-\n		[\
-\n			{\
-\n				\"Values\": [\"72\"],\
-\n				\"Properties\": [[\
-\n						\"listed\",\
-\n						\"\",\
-\n						\"\"\
-\n					]]\
-\n			},\
-\n			{\
-\n				\"Values\": [\"160\"],\
-\n				\"Properties\": \
-\n				[\
-\n					[\
-\n						\"reported\",\
-\n						\"\",\
-\n						\"\"\
-\n					],\
-\n					[\
-\n						\"pounds\",\
-\n						\"lbs\",\
-\n						\"352\"\
-\n					]\
-\n				]\
-\n			}\
-\n		],\
-\n		\"LOCATION_ATTRIBUTE\": [{\"Values\": \
-\n				[\
-\n					{\"TEXT\": \"Los Angeles\"},\
-\n					{\"TEXT\": \"Aspen\"},\
-\n					{\"TEXT\": \"Malibu\"}\
-\n				]}],\
-\n		\"CHILD_ATTRIBUTE\": \
-\n		[\
-\n			{\
-\n				\"Values\": [{\"TEXT\": \"Jennifer\"}],\
-\n				\"Properties\": \
-\n				[\
-\n					[\
-\n						\"Born\",\
-\n						\"\",\
-\n						\"1963\"\
-\n					],\
-\n					[\
-\n						\"Mother\",\
-\n						\"\",\
-\n						\"Sandra Knight\"\
-\n					]\
-\n				]\
-\n			},\
-\n			{\
-\n				\"Values\": [{\"TEXT\": \"Caleb\"}],\
-\n				\"Properties\": \
-\n				[\
-\n					[\
-\n						\"Born\",\
-\n						\"\",\
-\n						\"1970\"\
-\n					],\
-\n					[\
-\n						\"Paternity\",\
-\n						\"open question 2\",\
-\n						\"not established\"\
-\n					],\
-\n					[\
-\n						\"Mother\",\
-\n						\"\",\
-\n						\"Susan Anspach\"\
-\n					]\
-\n				]\
-\n			},\
-\n			{\"Values\": [{\"TEXT\": \"Honey\"}]},\
-\n			{\"Values\": [{\"TEXT\": \"Lorraine\"}]},\
-\n			{\
-\n				\"Values\": [{\"TEXT\": \"Raymond\"}],\
-\n				\"Properties\": \
-\n				[\
-\n					[\
-\n						\"Born\",\
-\n						\"youngest\",\
-\n						\"1992\"\
-\n					],\
-\n					[\
-\n						\"Mother\",\
-\n						\"\",\
-\n						\"Rebecca Broussard\"\
-\n					]\
-\n				]\
-\n			}\
-\n		]\
-\n	},\
-\n	\"Properties\": \
-\n	[\
-\n		[\
-\n			\"known for\",\
-\n			\"most popular role\",\
-\n			\"The Shining\"\
-\n		],\
-\n		[\
-\n			\"fan of\",\
-\n			\"famous fan\",\
-\n			\"Los Angeles Lakers\"\
-\n		],\
-\n		[\
-\n			\"fan of\",\
-\n			\"\",\
-\n			\"Bob Dylan\"\
-\n		],\
-\n		[\
-\n			\"also known for\",\
-\n			\"best performance\",\
-\n			\"Chinatown\"\
-\n		]\
-\n	],\
-\n	\"Values\": \
-\n	[\
-\n		\"actor\",\
-\n		\"player\",\
-\n		\"filmmaker\"\
-\n	]\
-\n}";
+t_utf8*	toml_complex =
+	"[Attributes]"
+		"\n[[Attributes.SEX_ATTRIBUTE]]"
+		"\n[[Attributes.SEX_ATTRIBUTE.Values]]"			"\nCHARACTER=\"M\""
+		"\n[[Attributes.AGE_ATTRIBUTE]]"
+		"\n[[Attributes.AGE_ATTRIBUTE.Values]]"			"\nINTEGER=\"82\""
+		"\n[[Attributes.SPOUSE_ATTRIBUTE]]"
+		"\n[[Attributes.SPOUSE_ATTRIBUTE.Values]]"		"\nBOOLEAN=\"FALSE\""
+		"\n[[Attributes.HEIGHT_ATTRIBUTE]]"
+		"\n[[Attributes.HEIGHT_ATTRIBUTE.Values]]"		"\nFLOAT=\"176.5\""
+		"\n[[Attributes.OCCUPATION_ATTRIBUTE]]"
+		"\n[[Attributes.OCCUPATION_ATTRIBUTE.Values]]"	"\nSTRING=\"actor\""
+		"\n[[Attributes.LABEL_ATTRIBUTE]]"
+		"\n[[Attributes.LABEL_ATTRIBUTE.Values]]"		"\nTEXT=\"Яцк Ничолсон\""
+		"\n[[Attributes.BIRTHDAY_ATTRIBUTE]]"
+		"\n[[Attributes.BIRTHDAY_ATTRIBUTE.Values]]"	"\nTIME=\"-1031788800\""
+		"\n[[Attributes.DOCUMENT_ATTRIBUTE]]"
+		"\n[[Attributes.DOCUMENT_ATTRIBUTE.Values]]"	"\nWEB=\"urn:isbn:0393350967\""
+		"\n[[Attributes.WEIGHT_ATTRIBUTE]]"
+		"\n[[Attributes.WEIGHT_ATTRIBUTE.Values]]"		"\n\"INTEGER=72\""
+		"\n[[Attributes.WEIGHT_ATTRIBUTE.Properties]]"	"\n[[\"listed\",\"\",\"\"]]"
+		"\n[[Attributes.WEIGHT_ATTRIBUTE.Values]]"		"\n\"INTEGER=160\""
+		"\n[[Attributes.WEIGHT_ATTRIBUTE.Properties]]"	"\n[[\"reported\",\"\",\"\"],[\"pounds\",\"lbs\",\"352\"]]"
+		"\n[[Attributes.LOCATION_ATTRIBUTE]]"
+		"\n[[Attributes.LOCATION_ATTRIBUTE.Values]]"	"\nTEXT=\"Los Angeles\""
+		"\n[[Attributes.LOCATION_ATTRIBUTE.Values]]"	"\nTEXT=\"Aspen\""
+		"\n[[Attributes.LOCATION_ATTRIBUTE.Values]]"	"\nTEXT=\"Malibu\""
+		"\n[[Attributes.CHILD_ATTRIBUTE]]"				
+		"\n[[Attributes.CHILD_ATTRIBUTE.Values]]"		"\nTEXT=\"Jennifer\""
+		"\n[[Attributes.CHILD_ATTRIBUTE.Properties]]"	"\n[[\"Born\",\"\",\"1963\"],[\"Mother\",\"\",\"Sandra Knight\"]]"
+		"\n[[Attributes.CHILD_ATTRIBUTE.Values]]"		"\nTEXT=\"Caleb\""
+		"\n[[Attributes.CHILD_ATTRIBUTE.Properties]]"	"\n[[\"Born\",\"\",\"1970\"],[\"Paternity\",\"open question 2\",\"not established\"],[\"Mother\",\"\",\"Susan Anspach\"]]"
+		"\n[[Attributes.CHILD_ATTRIBUTE.Values]]"		"\nTEXT=\"Honey\""
+		"\n[[Attributes.CHILD_ATTRIBUTE.Values]]"		"\nTEXT=\"Lorraine\""
+		"\n[[Attributes.CHILD_ATTRIBUTE.Values]]"		"\nTEXT=\"Raymond\""
+		"\n[[Attributes.CHILD_ATTRIBUTE.Properties]]"	"\n[[\"Born\",\"youngest\",\"1992\"],[\"Mother\",\"\",\"Rebecca Broussard\"]"
+	"\n[Properties]"
+		"\n[\"known for\",\"most popular role\",\"The Shining\"]"
+		"\n[\"fan of\",\"famous fan\",\"Los Angeles Lakers\"]"
+		"\n[\"fan of\",\"\",\"Bob Dylan\"]"
+		"\n[\"also known for\",\"best performance\",\"Chinatown\"]"
+	"\n[Values]"
+		"\n[\"actor\",\"player\",\"filmmaker\"]"
+;
 
 
 
@@ -710,8 +620,8 @@ void	test_toml_##STRICT##_##MINIFY(void)																																			\
 	print_test_toml_##STRICT##_##MINIFY("toml_commas               ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_simple##_MIN:NULL,					toml_commas);					\
 	print_test_toml_##STRICT##_##MINIFY("toml_commas_min           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_simple##_MIN:NULL,					toml_commas_min);				\
 	print_test_toml_##STRICT##_##MINIFY("toml_newline              ("#STRICT" -> "#MINIFY")", FALSE,		toml_simple##_MIN,						toml_newline);					\
-/*	print_test_toml_##STRICT##_##MINIFY("toml_complex              ("#STRICT" -> "#MINIFY")", FALSE,		toml_complex##_MIN,						toml_complex);					*/\
-/*	print_test_toml_##STRICT##_##MINIFY("toml_complex_min          ("#STRICT" -> "#MINIFY")", FALSE,		toml_complex##_MIN,						toml_complex_min);				*/\
+	print_test_toml_##STRICT##_##MINIFY("toml_complex              ("#STRICT" -> "#MINIFY")", FALSE,		toml_complex##_MIN,						toml_complex);					\
+	print_test_toml_##STRICT##_##MINIFY("toml_complex_min          ("#STRICT" -> "#MINIFY")", FALSE,		toml_complex##_MIN,						toml_complex_min);				\
 	print_test_toml_##STRICT##_##MINIFY("toml_escape_sq1           ("#STRICT" -> "#MINIFY")", FALSE,		NULL,									toml_escape_sq1);				\
 	print_test_toml_##STRICT##_##MINIFY("toml_escape_sq2           ("#STRICT" -> "#MINIFY")", FALSE,		toml_escape_sq2,						toml_escape_sq2);				\
 	print_test_toml_##STRICT##_##MINIFY("toml_escape_slb           ("#STRICT" -> "#MINIFY")", FALSE,		toml_escape_slb,						toml_escape_slb);				\

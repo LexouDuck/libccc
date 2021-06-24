@@ -29,7 +29,8 @@ typedef s_kvt_print	s_toml_print;
 
 
 
-static void TOML_Print_KeyPath_Push(s_toml_print* p, t_utf8* key)
+static
+void TOML_Print_KeyPath_Push(s_toml_print* p, t_utf8* key)
 {
 	t_utf8*	tmp;
 	t_utf8*	oldpath = NULL;
@@ -56,7 +57,8 @@ static void TOML_Print_KeyPath_Push(s_toml_print* p, t_utf8* key)
 		String_Delete(&oldpath);
 }
 
-static void TOML_Print_KeyPath_Pop(s_toml_print* p)
+static
+void TOML_Print_KeyPath_Pop(s_toml_print* p)
 {
 	t_size	i;
 	t_bool	bare;
