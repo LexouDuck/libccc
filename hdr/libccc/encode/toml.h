@@ -291,16 +291,16 @@ void				TOML_Minify(t_utf8* toml); //!< TODO rename to TOML_Minify_InPlace(), an
 
 
 #define TOML_GetObjectItem \
-		TOML_GetObjectItem_IgnoreCase
-#define TOML_GetObjectItem_IgnoreCase		KVT_GetObjectItem_IgnoreCase	//!< @alias{KVT_GetObjectItem_IgnoreCase}
+		TOML_GetObjectItem_CaseSensitive
 #define TOML_GetObjectItem_CaseSensitive	KVT_GetObjectItem_CaseSensitive	//!< @alias{KVT_GetObjectItem_CaseSensitive}
+#define TOML_GetObjectItem_IgnoreCase		KVT_GetObjectItem_IgnoreCase	//!< @alias{KVT_GetObjectItem_IgnoreCase}
 
 
 
 #define TOML_HasObjectItem \
-		TOML_HasObjectItem_IgnoreCase
-#define TOML_HasObjectItem_IgnoreCase		KVT_HasObjectItem_IgnoreCase	//!< @alias{KVT_HasObjectItem_IgnoreCase}
+		TOML_HasObjectItem_CaseSensitive
 #define TOML_HasObjectItem_CaseSensitive	KVT_HasObjectItem_CaseSensitive	//!< @alias{KVT_HasObjectItem_CaseSensitive}
+#define TOML_HasObjectItem_IgnoreCase		KVT_HasObjectItem_IgnoreCase	//!< @alias{KVT_HasObjectItem_IgnoreCase}
 
 
 
@@ -388,19 +388,19 @@ void				TOML_Minify(t_utf8* toml); //!< TODO rename to TOML_Minify_InPlace(), an
 
 
 #define TOML_Delete_FromObject \
-		TOML_Delete_FromObject_IgnoreCase
-#define TOML_Delete_FromObject_IgnoreCase		KVT_Delete_FromObject_IgnoreCase	//! @alias{KVT_Delete_FromObject_IgnoreCase}
+		TOML_Delete_FromObject_CaseSensitive
 #define TOML_Delete_FromObject_CaseSensitive	KVT_Delete_FromObject_CaseSensitive	//! @alias{KVT_Delete_FromObject_CaseSensitive}
+#define TOML_Delete_FromObject_IgnoreCase		KVT_Delete_FromObject_IgnoreCase	//! @alias{KVT_Delete_FromObject_IgnoreCase}
 
 #define TOML_Detach_FromObject \
-		TOML_Detach_FromObject_IgnoreCase
-#define TOML_Detach_FromObject_IgnoreCase		KVT_Detach_FromObject_IgnoreCase	//! @alias{KVT_Detach_FromObject_IgnoreCase}
+		TOML_Detach_FromObject_CaseSensitive
 #define TOML_Detach_FromObject_CaseSensitive	KVT_Detach_FromObject_CaseSensitive	//! @alias{KVT_Detach_FromObject_CaseSensitive}
+#define TOML_Detach_FromObject_IgnoreCase		KVT_Detach_FromObject_IgnoreCase	//! @alias{KVT_Detach_FromObject_IgnoreCase}
 
 #define TOML_Replace_InObject \
-		TOML_Replace_InObject_IgnoreCase
-#define TOML_Replace_InObject_IgnoreCase		KVT_Replace_InObject_IgnoreCase		//! @alias{KVT_Replace_InObject_IgnoreCase}
+		TOML_Replace_InObject_CaseSensitive
 #define TOML_Replace_InObject_CaseSensitive		KVT_Replace_InObject_CaseSensitive	//! @alias{KVT_Replace_InObject_CaseSensitive}
+#define TOML_Replace_InObject_IgnoreCase		KVT_Replace_InObject_IgnoreCase		//! @alias{KVT_Replace_InObject_IgnoreCase}
 
 
 

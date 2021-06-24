@@ -295,15 +295,15 @@ s_kvt*	KVT_GetArrayItem(s_kvt const* array, t_uint index);
 
 //! Get the item with the given `key` from the given `object`.
 #define KVT_GetObjectItem \
-		KVT_GetObjectItem_IgnoreCase
-s_kvt*	KVT_GetObjectItem_IgnoreCase	(s_kvt const* object, t_char const* key);	//!< (case-insensitive)
+		KVT_GetObjectItem_CaseSensitive
 s_kvt*	KVT_GetObjectItem_CaseSensitive	(s_kvt const* object, t_char const* key);	//!< (case-sensitive)
+s_kvt*	KVT_GetObjectItem_IgnoreCase	(s_kvt const* object, t_char const* key);	//!< (case-insensitive)
 
 //! Returns `TRUE` if the given `object` contains an item with the given `key`.
 #define KVT_HasObjectItem \
-		KVT_HasObjectItem_IgnoreCase
-t_bool	KVT_HasObjectItem_IgnoreCase	(s_kvt const* object, t_char const* key);	//!< (case-insensitive)
+		KVT_HasObjectItem_CaseSensitive
 t_bool	KVT_HasObjectItem_CaseSensitive	(s_kvt const* object, t_char const* key);	//!< (case-sensitive)
+t_bool	KVT_HasObjectItem_IgnoreCase	(s_kvt const* object, t_char const* key);	//!< (case-insensitive)
 
 
 
@@ -440,25 +440,25 @@ e_cccerror	KVT_Insert_InArray(s_kvt* array, t_uint index, s_kvt* newitem);
 //! Deletes the item with the given `key` from the given `object`.
 //!@{
 #define 	KVT_Delete_FromObject \
-			KVT_Delete_FromObject_IgnoreCase
-e_cccerror	KVT_Delete_FromObject_IgnoreCase	(s_kvt* object, t_char const* key); //!< (case-insensitive)
+			KVT_Delete_FromObject_CaseSensitive
 e_cccerror	KVT_Delete_FromObject_CaseSensitive	(s_kvt* object, t_char const* key); //!< (case-sensitive)
+e_cccerror	KVT_Delete_FromObject_IgnoreCase	(s_kvt* object, t_char const* key); //!< (case-insensitive)
 //!@}
 
 //! Removes (without deleting) the given `item` from the given `object`.
 //!@{
 #define 	KVT_Detach_FromObject \
-			KVT_Detach_FromObject_IgnoreCase
-s_kvt*		KVT_Detach_FromObject_IgnoreCase	(s_kvt* object, t_char const* key); //!< (case-insensitive)
+			KVT_Detach_FromObject_CaseSensitive
 s_kvt*		KVT_Detach_FromObject_CaseSensitive	(s_kvt* object, t_char const* key); //!< (case-sensitive)
+s_kvt*		KVT_Detach_FromObject_IgnoreCase	(s_kvt* object, t_char const* key); //!< (case-insensitive)
 //!@}
 
 //! Replaces the given `item` from the given `object`, with the given `newitem`
 //!@{
 #define 	KVT_Replace_InObject \
-			KVT_Replace_InObject_IgnoreCase
-e_cccerror	KVT_Replace_InObject_IgnoreCase		(s_kvt* object, t_char const* key, s_kvt* newitem); //!< (case-insensitive)
+			KVT_Replace_InObject_CaseSensitive
 e_cccerror	KVT_Replace_InObject_CaseSensitive	(s_kvt* object, t_char const* key, s_kvt* newitem); //!< (case-sensitive)
+e_cccerror	KVT_Replace_InObject_IgnoreCase		(s_kvt* object, t_char const* key, s_kvt* newitem); //!< (case-insensitive)
 //!@}
 
 
