@@ -34,7 +34,7 @@ s_kvt*	KVT_Detach(s_kvt* parent, s_kvt* const item)
 	return (item);
 }
 
-s_kvt*	KVT_Detach_FromArray(s_kvt* array, t_uint index)
+s_kvt*	KVT_Detach_FromArray(s_kvt* array, t_sint index)
 {
 	s_kvt*	tmp;
 

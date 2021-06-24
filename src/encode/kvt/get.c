@@ -76,24 +76,30 @@ s_kvt*	KVT_Get(s_kvt const* object, t_char const* format_path, ...)
 	i = 0;
 	while (str[i])
 	{
-		PARSE_KVTPATH_WHITESPACE("'['", "to begin accessor")
-		PARSE_KVTPATH_MATCH_CHAR( '[',  "to begin accessor")
-		PARSE_KVTPATH_WHITESPACE("number or string value", "accessor")
-		if (Char_IsDigit(str[i]))
+		PARSE_KVTPATH_WHITESPACE("'['", "to begin accessor path string")
+		PARSE_KVTPATH_MATCH_CHAR( '[',  "to begin accessor path string")
+		PARSE_KVTPATH_WHITESPACE("number or string value", "accessor path string")
+		if (str[i] == '-' ||
+			str[i] == '+' ||
+			Char_IsDigit(str[i]))
 		{	// number accessor
-			length = 1;
+			length = 0;
+			if (str[i] == '-' || str[i] == '+')
+				length++;
 			while (Char_IsDigit(str[i + length]))
 			{
 				++length;
 			}
 			accessor = String_Sub(str, i, length);
 			i += length;
-			t_u64 index = U64_FromString(accessor);
+			t_s64 index = S64_FromString(accessor);
 			result = KVT_GetArrayItem(result, index);
+			HANDLE_ERROR_SF(NOTFOUND, (result == NULL), return (NULL);,
+				" in array for index "SF_S64, index)
 		}
 		else if (str[i] == '\"')
 		{	// string accessor
-			PARSE_KVTPATH_MATCH_CHAR('"', "to begin string accessor")
+			PARSE_KVTPATH_MATCH_CHAR('"', "to begin string accessor path string")
 			length = 0;
 			while (str[i + length] != '\"')
 			{
@@ -103,8 +109,10 @@ s_kvt*	KVT_Get(s_kvt const* object, t_char const* format_path, ...)
 			}
 			accessor = String_Sub(str, i, length);
 			i += length;
-			PARSE_KVTPATH_MATCH_CHAR('"', "to end string accessor")
+			PARSE_KVTPATH_MATCH_CHAR('"', "to end string accessor path string")
 			result = KVT_GetObjectItem(result, accessor); // TODO find a smart way to handle this problem
+			HANDLE_ERROR_SF(NOTFOUND, (result == NULL), return (NULL);,
+				": \"%s\"", accessor)
 		}
 		else
 		{
@@ -112,36 +120,36 @@ s_kvt*	KVT_Get(s_kvt const* object, t_char const* format_path, ...)
 				"Expected number or double-quoted string within brackets, but instead found: '%s'\n", str)
 		}
 		String_Delete(&accessor);
-		PARSE_KVTPATH_WHITESPACE("']'", "to end accessor")
-		PARSE_KVTPATH_MATCH_CHAR( ']',  "to end accessor")
+		PARSE_KVTPATH_WHITESPACE("']'", "to end accessor path string")
+		PARSE_KVTPATH_MATCH_CHAR( ']',  "to end accessor path string")
 	}
 	return (result);
 }
 
 
 
-t_bool	KVT_GetValue_Boolean(s_kvt const* const item) 
+t_bool	KVT_GetValue_Boolean(s_kvt const* item) 
 {
 	if (!KVT_IsBoolean(item)) 
 		return ((t_bool)FALSE);
 	return (item->value.number);
 }
 
-t_s64	KVT_GetValue_Integer(s_kvt const* const item) 
+t_s64	KVT_GetValue_Integer(s_kvt const* item) 
 {
 	if (!KVT_IsInteger(item)) 
 		return ((t_s64)0);
 	return (item->value.number);
 }
 
-t_f64	KVT_GetValue_Float(s_kvt const* const item) 
+t_f64	KVT_GetValue_Float(s_kvt const* item) 
 {
 	if (!KVT_IsFloat(item)) 
 		return ((t_f64)NAN);
 	return (item->value.number);
 }
 
-t_char*	KVT_GetValue_String(s_kvt const* const item) 
+t_char*	KVT_GetValue_String(s_kvt const* item) 
 {
 	if (!KVT_IsString(item)) 
 		return (NULL);
@@ -150,35 +158,49 @@ t_char*	KVT_GetValue_String(s_kvt const* const item)
 
 
 
-s_kvt*	KVT_GetArrayItem(s_kvt const* array, t_uint index)
+s_kvt*	KVT_GetArrayItem(s_kvt const* array, t_sint index)
 {
-	s_kvt* current_child;
+	s_kvt* item;
 
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (NULL);)
-	current_child = array->value.child;
-	while ((current_child != NULL) && (index > 0))
-	{
-		index--;
-		current_child = current_child->next;
+	HANDLE_ERROR(WRONGTYPE, (!KVT_IsArray(array) && !KVT_IsObject(array)), return (NULL);)
+	item = array->value.child;
+	if (index == 0)
+		return (item);
+	else if (index > 0)
+	{	// positive index
+		while (item && (index > 0))
+		{
+			index--;
+			item = item->next;
+		}
 	}
-	return (current_child);
+	else if (index < 0)
+	{	// negative index
+		while (item && (index < 0))
+		{
+			index++;
+			item = item->prev;
+		}
+	}
+	return (item);
 }
 
 
 
 static
-s_kvt* KVT_GetObjectItem_(s_kvt const* object, t_char const* name, t_bool case_sensitive)
+s_kvt* KVT_GetObjectItem_(s_kvt const* object, t_char const* key, t_bool case_sensitive)
 {
 	s_kvt* current_element = NULL;
 
 	HANDLE_ERROR(NULLPOINTER, (object == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (name   == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (key   == NULL), return (NULL);)
 	current_element = object->value.child;
 	if (case_sensitive)
 	{
 		while ((current_element != NULL) &&
 			(current_element->key != NULL) &&
-			String_Compare(name, current_element->key))
+			String_Compare(key, current_element->key))
 		{
 			current_element = current_element->next;
 		}
@@ -186,14 +208,15 @@ s_kvt* KVT_GetObjectItem_(s_kvt const* object, t_char const* name, t_bool case_s
 	else
 	{
 		while ((current_element != NULL) &&
-			String_Compare_IgnoreCase(name, current_element->key))
+			String_Compare_IgnoreCase(key, current_element->key))
 		{
 			current_element = current_element->next;
 		}
 	}
-	HANDLE_ERROR(KEYNOTFOUND,
+	HANDLE_ERROR_SF(KEYNOTFOUND,
 		(current_element == NULL || current_element->key == NULL),
-		return (NULL);)
+		return (NULL);,
+		": \"%s\"", key)
 	return (current_element);
 }
 

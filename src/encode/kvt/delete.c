@@ -42,7 +42,7 @@ e_cccerror	KVT_Delete(s_kvt* item)
 	return (OK);
 }
 
-e_cccerror	KVT_Delete_FromArray(s_kvt* array, t_uint index)
+e_cccerror	KVT_Delete_FromArray(s_kvt* array, t_sint index)
 {
 	s_kvt*	tmp;
 

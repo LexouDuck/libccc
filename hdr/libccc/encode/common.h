@@ -289,7 +289,11 @@ s_kvt*	KVT_CreateArray_String	(t_char const* const* strings, t_uint count);
 t_sint	KVT_GetArrayLength(s_kvt const* array);
 
 //! Retrieve item number `index` from the given `array`. Returns `NULL` if unsuccessful.
-s_kvt*	KVT_GetArrayItem(s_kvt const* array, t_uint index);
+/*!
+**	@param	array	The array (or object) from which to get an item
+**	@param	index	The index of the item to get (NOTE: if negative, get starting from the last item)
+*/
+s_kvt*	KVT_GetArrayItem(s_kvt const* array, t_sint index);
 
 
 
@@ -424,16 +428,16 @@ e_cccerror	KVT_Replace(s_kvt* parent, s_kvt* item, s_kvt* newitem);
 
 
 //! Deletes the item at the given `index` from the given `array`.
-e_cccerror	KVT_Delete_FromArray(s_kvt* array, t_uint index);
+e_cccerror	KVT_Delete_FromArray(s_kvt* array, t_sint index);
 
 //! Removes (without deleting) the given `item` from the given `array`.
-s_kvt*		KVT_Detach_FromArray(s_kvt* array, t_uint index);
+s_kvt*		KVT_Detach_FromArray(s_kvt* array, t_sint index);
 
 //! Replaces the given `item` from the given `array`, with the given `newitem`.
-e_cccerror	KVT_Replace_InArray(s_kvt* array, t_uint index, s_kvt* newitem);
+e_cccerror	KVT_Replace_InArray(s_kvt* array, t_sint index, s_kvt* newitem);
 
 //! Inserts the given `newitem` in the givne `array`, shifting pre-existing items to the right.
-e_cccerror	KVT_Insert_InArray(s_kvt* array, t_uint index, s_kvt* newitem);
+e_cccerror	KVT_Insert_InArray(s_kvt* array, t_sint index, s_kvt* newitem);
 
 
 
