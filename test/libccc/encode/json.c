@@ -151,8 +151,8 @@ JSON_TEST(json_string			, "\"Hello World!\"")
 JSON_TEST(json_string_cc_c0		, "\"␡␁␂␃␄␅␆␇␈␉␊␋␌␍␎␏␐␑␒␓␔␕␖␗␘␙␚␛␜␝␞␟\"")
 JSON_TEST(json_string_cc_c1		, "\"\"")
 JSON_TEST(json_string_utf8_fr	, "\"Être à même de ça, d'air sûr, maïs de son père en main… D'où la paix sur l'île de son âme…\"")
-JSON_TEST(json_string_utf8_ru	, "\"Яцк Ничолсон.\"")
-JSON_TEST(json_string_utf8_jp	, "\"お前はもう死んでいる - 愛\"")
+JSON_TEST(json_string_utf8_ru	, "\"Яцк Ничолсон\"")
+JSON_TEST(json_string_utf8_jp	, "\"お前はもう死んでいる - 愛 - 私は実体の小さな学生です\"")
 JSON_TEST(json_string_utf8_ho	, "\"�𑢰����� 𐐔𐐯𐑅𐐨𐑉𐐯𐐻\"")
 
 

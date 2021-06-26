@@ -198,8 +198,26 @@ t_bool JSON_Parse_String(s_json* item, s_json_parse* p)
 		{
 			if ((t_size)(input_end + 1 - p->content) >= p->length)
 				PARSINGERROR_JSON("Could not parse string: Potential buffer-overflow, string ends with backslash")
+			t_char c = input_end[1];
+			t_sint sequence_chars = 0;
+			switch (c)
+			{
+				case 'u': 					sequence_chars += 4;	break;
+				case 'U': if (!p->strict)	sequence_chars += 8;	break;
+				case 'x': if (!p->strict)	sequence_chars += 2;	break;
+			}
 			skipped_bytes++;
 			input_end++;
+			for (t_sint i = 1; i <= sequence_chars; ++i)
+			{
+				if ((t_size)(input_end + i - p->content) >= p->length ||
+					!Char_IsDigit_Hex(input_end[i]))
+					PARSINGERROR_JSON("Could not parse string: Unicode escape sequence char '%c' "
+						"must be followed by %i hexadecimal digit chars, instead found \"%.*s\"",
+						c, sequence_chars, sequence_chars + 2, input_end - 1)
+			}
+			skipped_bytes	+= sequence_chars;
+			input_end		+= sequence_chars;
 		}
 		input_end++;
 	}

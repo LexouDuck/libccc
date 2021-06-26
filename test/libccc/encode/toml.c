@@ -153,7 +153,7 @@ TOML_TEST(toml_string_cc_c0		, "\"␡␁␂␃␄␅␆␇␈␉␊␋␌␍␎�
 TOML_TEST(toml_string_cc_c1		, "\"\"")
 TOML_TEST(toml_string_utf8_fr	, "\"Être à même de ça, d'air sûr, maïs de son père en main… D'où la paix sur l'île de son âme…\"")
 TOML_TEST(toml_string_utf8_ru	, "\"Яцк Ничолсон.\"")
-TOML_TEST(toml_string_utf8_jp	, "\"お前はもう死んでいる - 愛\"")
+TOML_TEST(toml_string_utf8_jp	, "\"お前はもう死んでいる - 愛 - 私は実体の小さな学生です\"")
 TOML_TEST(toml_string_utf8_ho	, "\"�𑢰����� 𐐔𐐯𐑅𐐨𐑉𐐯𐐻\"")
 
 
