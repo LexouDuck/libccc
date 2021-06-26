@@ -198,7 +198,7 @@ t_bool JSON_Parse_String(s_json* item, s_json_parse* p)
 		{
 			if ((t_size)(input_end + 1 - p->content) >= p->length)
 				PARSINGERROR_JSON("Could not parse string: Potential buffer-overflow, string ends with backslash")
-			t_char c = input_end[1];
+			c = input_end[1];
 			t_sint sequence_chars = 0;
 			switch (c)
 			{
@@ -259,7 +259,8 @@ t_bool JSON_Parse_String(s_json* item, s_json_parse* p)
 						*output_ptr++ = input_ptr[1];
 						break;
 					case 'u': // UTF-16 literal
-						sequence_length = UTF32_Parse_N(&c, input_ptr, (input_end - input_ptr));
+						c = '\0';
+						sequence_length = UTF32_Parse(&c, input_ptr, (input_end - input_ptr));
 						if (sequence_length == 0)
 							PARSINGERROR_JSON("Could not parse string: Failed to convert UTF16-literal to UTF-8")
 						output_ptr += UTF32_ToUTF8(output_ptr, c);
@@ -348,8 +349,10 @@ t_bool	JSON_Parse_Array(s_json* item, s_json_parse* p)
 			new_item->prev = current_item;
 			current_item = new_item;
 		}
-		// parse next value
 		JSON_Parse_SkipWhiteSpace(p);
+		if (p->strict && p->content[p->offset] == ']')
+			PARSINGERROR_JSON("Inside array: trailing commas are not accepted in strict JSON")
+		// parse next value
 		if (JSON_Parse_Value(current_item, p))
 			PARSINGERROR_JSON("Inside array: failed to parse value within array, at index "SF_UINT, index)
 		JSON_Parse_SkipWhiteSpace(p);
@@ -433,6 +436,9 @@ t_bool	JSON_Parse_Object(s_json* item, s_json_parse* p)
 			new_item->prev = current_item;
 			current_item = new_item;
 		}
+		JSON_Parse_SkipWhiteSpace(p);
+		if (p->strict && p->content[p->offset] == '}')
+			PARSINGERROR_JSON("Inside object: trailing commas are not accepted in strict JSON")
 		// parse the name of the child
 		if (JSON_Parse_String(current_item, p))
 			PARSINGERROR_JSON("Could not parse object: Failed to parse object member key")

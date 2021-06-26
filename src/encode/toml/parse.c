@@ -353,7 +353,7 @@ t_bool	TOML_Parse_String(s_toml* item, s_toml_parse* p)
 						break;
 					case 'u': // UTF-32 literal TODO ensure 4 hex chars
 					case 'U': // UTF-32 literal TODO ensure 8 hex chars
-						sequence_length = UTF32_Parse_N(&c, input_ptr, (input_end - input_ptr));
+						sequence_length = UTF32_Parse(&c, input_ptr, (input_end - input_ptr));
 						if (sequence_length == 0)
 							PARSINGERROR_TOML("Could not parse string: Failed to convert UTF16-literal to UTF-8")
 						output_ptr += UTF32_ToUTF8(output_ptr, c);
