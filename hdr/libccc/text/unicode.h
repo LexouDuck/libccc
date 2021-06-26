@@ -447,8 +447,8 @@ t_utf32						UTF32_FromUTF16(t_utf16 const* str);
 **	The UTF-32 code point for the parsed unicode character,
 **	or `-1`(#ERROR) if there was a parsing error.
 */
-t_utf32					UTF32_Parse(t_ascii const* str);
-#define c_wcparse		UTF32_Parse
+t_utf32					UTF32_FromEscape(t_ascii const* str);
+#define c_wcparse		UTF32_FromEscape
 
 //! Parses a UTF-8 string escape sequence (`\U????????`, or `\u????`), reading at most `n` chars from `str`
 /*!
@@ -461,8 +461,8 @@ t_utf32					UTF32_Parse(t_ascii const* str);
 **	@returns
 **	The total amount of bytes read from the given `str` buffer.
 */
-t_size					UTF32_Parse_N(t_utf32* dest, t_ascii const* str, t_size n);
-#define c_wcnparse		UTF32_Parse_N
+t_size					UTF32_Parse(t_utf32* dest, t_ascii const* str, t_size n);
+#define c_wcnparse		UTF32_Parse
 
 
 

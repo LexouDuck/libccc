@@ -41,10 +41,10 @@ DEFINEFUNC_PARSE_HEX(32)
 
 
 
-#define PARSINGERROR_UTF16	"Could not parse UTF-16 escape sequence: "
+#define PARSINGERROR_UTF16	": Could not parse UTF-16 escape sequence: "
 #define PARSINGERROR_UTF16_SURROGATE	PARSINGERROR_UTF16"2nd half of surrogate pair -> "
 
-t_size		UTF32_Parse_N(t_utf32* dest, t_ascii const* str, t_size n)
+t_size		UTF32_Parse(t_utf32* dest, t_ascii const* str, t_size n)
 {
 	t_utf32	result = 0;
 	t_size	length;
@@ -55,14 +55,14 @@ t_size		UTF32_Parse_N(t_utf32* dest, t_ascii const* str, t_size n)
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (ERROR);)
 	if (n == 0)
 		n = String_Length(str);
-	length = 6; // "\uXXXX"
-	HANDLE_ERROR_SF(PARSE, (length >= n), return (ERROR);,
-		PARSINGERROR_UTF16"input ends unexpectedly")
 	HANDLE_ERROR_SF(PARSE, (str[i] != '\\'), return (ERROR);,
 		PARSINGERROR_UTF16"not a valid escape sequence, expected '\\' char")
 	i += 1;
 	if (str[i] == 'U')
 	{
+		length = 10; // "\UXXXXXXXX"
+		HANDLE_ERROR_SF(PARSE, (n < length), return (ERROR);,
+			PARSINGERROR_UTF16"input ends unexpectedly (should be at least "SF_SIZE" chars, but is only "SF_SIZE" chars long", length, n)
 		i += 1;
 		HANDLE_ERROR_SF(PARSE, (UTF32_Parse_Hex_32(&result, str + i)), return (ERROR);, // get the whole UTF-32 sequence
 			PARSINGERROR_UTF16"not a valid UTF-16 escape sequence, expected 4 hexadecimal digits")
@@ -70,6 +70,9 @@ t_size		UTF32_Parse_N(t_utf32* dest, t_ascii const* str, t_size n)
 	}
 	else if (str[i] == 'u')
 	{
+		length = 6; // "\uXXXX"
+		HANDLE_ERROR_SF(PARSE, (n < length), return (ERROR);,
+			PARSINGERROR_UTF16"input ends unexpectedly (should be at least "SF_SIZE" chars, but is only "SF_SIZE" chars long", length, n)
 		i += 1;
 		HANDLE_ERROR_SF(PARSE, (UTF32_Parse_Hex_16(&code1, str + i)), return (ERROR);, // get the first UTF-16 sequence
 			PARSINGERROR_UTF16"not a valid UTF-16 escape sequence, expected 4 hexadecimal digits")
@@ -80,8 +83,8 @@ t_size		UTF32_Parse_N(t_utf32* dest, t_ascii const* str, t_size n)
 		{	// UTF16 surrogate pair
 			code2 = 0;
 			length = 12; // "\uXXXX\uXXXX"
-			HANDLE_ERROR_SF(PARSE, (length >= n), return (ERROR);,
-				PARSINGERROR_UTF16_SURROGATE"input ends unexpectedly")
+			HANDLE_ERROR_SF(PARSE, (n < length), return (ERROR);,
+				PARSINGERROR_UTF16_SURROGATE"input ends unexpectedly (should be at least "SF_SIZE" chars, but is only "SF_SIZE" chars long", length, n)
 			HANDLE_ERROR_SF(PARSE, (str[i] != '\\'), return (ERROR);,
 				PARSINGERROR_UTF16_SURROGATE"not a valid escape sequence, expected '\\' char")
 			i += 1;
@@ -112,10 +115,10 @@ t_size		UTF32_Parse_N(t_utf32* dest, t_ascii const* str, t_size n)
 
 
 
-t_utf32		UTF32_Parse(t_ascii const* str)
+t_utf32		UTF32_FromEscape(t_ascii const* str)
 {
 	t_utf32	result = ERROR;
-	if (UTF32_Parse_N(&result, str, 0))
+	if (UTF32_Parse(&result, str, 0))
 		return (result);
 	return (ERROR);
 }
