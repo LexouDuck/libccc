@@ -155,6 +155,25 @@ JSON_TEST(json_string_utf8_ru	, "\"Яцк Ничолсон\"")
 JSON_TEST(json_string_utf8_jp	, "\"お前はもう死んでいる - 愛 - 私は実体の小さな学生です\"")
 JSON_TEST(json_string_utf8_ho	, "\"�𑢰����� 𐐔𐐯𐑅𐐨𐑉𐐯𐐻\"")
 
+JSON_TEST(json_escape_sq1	, "\".\\\'.\"")	JSON_TEST(json_escstr_sq1	, "\".'.\"")
+JSON_TEST(json_escape_sq2	, "\".\\\".\"")
+JSON_TEST(json_escape_slb	, "\".\\\\.\"")
+JSON_TEST(json_escape_slf	, "\".\\/.\"")	JSON_TEST(json_escstr_slf	, "\"./.\"")
+JSON_TEST(json_escape_spc	, "\".\\ .\"")	JSON_TEST(json_escstr_spc	, "\". .\"")
+JSON_TEST(json_escape_tab	, "\".\\t.\"")
+JSON_TEST(json_escape_nl	, "\".\\n.\"")
+JSON_TEST(json_escape_cr	, "\".\\r.\"")
+JSON_TEST(json_escape_ff	, "\".\\f.\"")
+JSON_TEST(json_escape_vt	, "\".\\v.\"")	JSON_TEST(json_escstr_vt	, "\".\\u000B.\"")
+JSON_TEST(json_escape_esc	, "\".\\e.\"")	JSON_TEST(json_escstr_esc	, "\".\\u001B.\"")
+JSON_TEST(json_escape_bel	, "\".\\a.\"")	JSON_TEST(json_escstr_bel	, "\".\\u0007.\"")
+JSON_TEST(json_escape_bs	, "\".\\b.\"")
+
+JSON_TEST(json_escape_u		, "\"\\u042F\\u0446\\u043A \\u041D\\u0438\\u0447\\u043E\\u043B\\u0441\\u043E\\u043D\"")
+JSON_TEST(json_escape_U		, "\"\\U0000042F\\U00000446\\U0000043A \\U0000041D\\U00000438\\U00000447\\U0000043E\\U0000043B\\U00000441\\U0000043E\\U0000043D\"")
+JSON_TEST(json_escape_x		, "\"\\x04\\x2F\\x04\\x46\\x04\\x3A \\x04\\x1D\\x04\\x38\\x04\\x47\\x04\\x3E\\x04\\x3B\\x04\\x41\\x04\\x3E\\x04\\x3D\"")
+
+
 
 t_utf8*	json_array_empty	= "[]";
 t_utf8*	json_array_min		= "[false,true,null]";
@@ -220,20 +239,6 @@ t_utf8*	json_strange_etx	= "\3{\"hello\":\3\"world\"\3}\n";
 t_utf8*	json_strange_eot	= "\4{\"hello\":\4\"world\"\4}\n";
 t_utf8*	json_strange_esc	= "\e{\"hello\":\e\"world\"\e}\n";
 t_utf8*	json_strange_bs		= "\b{\"hello\":\b\"world\"\b}\n";
-
-t_utf8*	json_escape_sq1	= "[\".\\\'.\"]";
-t_utf8*	json_escape_sq2	= "[\".\\\".\"]";
-t_utf8*	json_escape_slb	= "[\".\\\\.\"]";
-t_utf8*	json_escape_slf	= "[\".\\/.\"]";
-t_utf8*	json_escape_spc	= "[\".\\ .\"]";
-t_utf8*	json_escape_tab	= "[\".\\t.\"]";
-t_utf8*	json_escape_nl	= "[\".\\n.\"]";
-t_utf8*	json_escape_cr	= "[\".\\r.\"]";
-t_utf8*	json_escape_ff	= "[\".\\f.\"]";
-t_utf8*	json_escape_vt	= "[\".\\v.\"]";
-t_utf8*	json_escape_esc	= "[\".\\e.\"]";
-t_utf8*	json_escape_bel	= "[\".\\a.\"]";
-t_utf8*	json_escape_bs	= "[\".\\b.\"]";
 
 
 
@@ -718,19 +723,22 @@ void	test_json_##STRICT##_##MINIFY(void)																																			\
 	print_test_json_##STRICT##_##MINIFY("json_newline              ("#STRICT" -> "#MINIFY")", FALSE,		json_simple##_MIN,						json_newline);					\
 	print_test_json_##STRICT##_##MINIFY("json_complex              ("#STRICT" -> "#MINIFY")", FALSE,		json_complex##_MIN,						json_complex);					\
 	print_test_json_##STRICT##_##MINIFY("json_complex_min          ("#STRICT" -> "#MINIFY")", FALSE,		json_complex##_MIN,						json_complex_min);				\
-	print_test_json_##STRICT##_##MINIFY("json_escape_sq1           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?"[\".'.\"]":NULL,						json_escape_sq1);				\
-	print_test_json_##STRICT##_##MINIFY("json_escape_sq2           ("#STRICT" -> "#MINIFY")", FALSE,		json_escape_sq2,						json_escape_sq2);				\
-	print_test_json_##STRICT##_##MINIFY("json_escape_slb           ("#STRICT" -> "#MINIFY")", FALSE,		json_escape_slb,						json_escape_slb);				\
-	print_test_json_##STRICT##_##MINIFY("json_escape_slf           ("#STRICT" -> "#MINIFY")", FALSE,		"[\"./.\"]",							json_escape_slf);				\
-	print_test_json_##STRICT##_##MINIFY("json_escape_spc           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?"[\". .\"]":NULL,						json_escape_spc);				\
-	print_test_json_##STRICT##_##MINIFY("json_escape_tab           ("#STRICT" -> "#MINIFY")", FALSE,		json_escape_tab,						json_escape_tab);				\
-	print_test_json_##STRICT##_##MINIFY("json_escape_nl            ("#STRICT" -> "#MINIFY")", FALSE,		json_escape_nl,							json_escape_nl);				\
-	print_test_json_##STRICT##_##MINIFY("json_escape_cr            ("#STRICT" -> "#MINIFY")", FALSE,		json_escape_cr,							json_escape_cr);				\
-	print_test_json_##STRICT##_##MINIFY("json_escape_ff            ("#STRICT" -> "#MINIFY")", FALSE,		json_escape_ff,							json_escape_ff);				\
-	print_test_json_##STRICT##_##MINIFY("json_escape_vt            ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?"[\".\\u000B.\"]":NULL,					json_escape_vt);				\
-	print_test_json_##STRICT##_##MINIFY("json_escape_esc           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?"[\".\\u001B.\"]":NULL,					json_escape_esc);				\
-	print_test_json_##STRICT##_##MINIFY("json_escape_bel           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?"[\".\\u0007.\"]":NULL,					json_escape_bel);				\
-	print_test_json_##STRICT##_##MINIFY("json_escape_bs            ("#STRICT" -> "#MINIFY")", FALSE,		json_escape_bs,							json_escape_bs);				\
+	print_test_json_##STRICT##_##MINIFY("json_escape_sq1           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_escstr_sq1##_MIN:NULL,				json_escape_sq1);				\
+	print_test_json_##STRICT##_##MINIFY("json_escape_sq2           ("#STRICT" -> "#MINIFY")", FALSE,		json_escape_sq2##_MIN,					json_escape_sq2);				\
+	print_test_json_##STRICT##_##MINIFY("json_escape_slb           ("#STRICT" -> "#MINIFY")", FALSE,		json_escape_slb##_MIN,					json_escape_slb);				\
+	print_test_json_##STRICT##_##MINIFY("json_escape_slf           ("#STRICT" -> "#MINIFY")", FALSE,		json_escstr_slf##_MIN,					json_escape_slf);				\
+	print_test_json_##STRICT##_##MINIFY("json_escape_spc           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_escstr_spc##_MIN:NULL,				json_escape_spc);				\
+	print_test_json_##STRICT##_##MINIFY("json_escape_tab           ("#STRICT" -> "#MINIFY")", FALSE,		json_escape_tab##_MIN,					json_escape_tab);				\
+	print_test_json_##STRICT##_##MINIFY("json_escape_nl            ("#STRICT" -> "#MINIFY")", FALSE,		json_escape_nl##_MIN,					json_escape_nl);				\
+	print_test_json_##STRICT##_##MINIFY("json_escape_cr            ("#STRICT" -> "#MINIFY")", FALSE,		json_escape_cr##_MIN,					json_escape_cr);				\
+	print_test_json_##STRICT##_##MINIFY("json_escape_ff            ("#STRICT" -> "#MINIFY")", FALSE,		json_escape_ff##_MIN,					json_escape_ff);				\
+	print_test_json_##STRICT##_##MINIFY("json_escape_vt            ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_escstr_vt##_MIN:NULL,				json_escape_vt);				\
+	print_test_json_##STRICT##_##MINIFY("json_escape_esc           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_escstr_esc##_MIN:NULL,				json_escape_esc);				\
+	print_test_json_##STRICT##_##MINIFY("json_escape_bel           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_escstr_bel##_MIN:NULL,				json_escape_bel);				\
+	print_test_json_##STRICT##_##MINIFY("json_escape_bs            ("#STRICT" -> "#MINIFY")", FALSE,		json_escape_bs##_MIN,					json_escape_bs);				\
+	print_test_json_##STRICT##_##MINIFY("json_escape_bs            ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_string_utf8_ru##_MIN:NULL,			json_escape_x);					\
+	print_test_json_##STRICT##_##MINIFY("json_escape_bs            ("#STRICT" -> "#MINIFY")", FALSE,		json_string_utf8_ru##_MIN,				json_escape_u);					\
+	print_test_json_##STRICT##_##MINIFY("json_escape_bs            ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?json_string_utf8_ru##_MIN:NULL,			json_escape_U);					\
 	print_test_json_##STRICT##_##MINIFY("json_strange_sot          ("#STRICT" -> "#MINIFY")", FALSE,		NULL,									json_strange_sot);				\
 	print_test_json_##STRICT##_##MINIFY("json_strange_stx          ("#STRICT" -> "#MINIFY")", FALSE,		NULL,									json_strange_stx);				\
 	print_test_json_##STRICT##_##MINIFY("json_strange_etx          ("#STRICT" -> "#MINIFY")", FALSE,		NULL,									json_strange_etx);				\

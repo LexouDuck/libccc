@@ -152,9 +152,28 @@ TOML_TEST(toml_string			, "\"Hello World!\"")
 TOML_TEST(toml_string_cc_c0		, "\"␡␁␂␃␄␅␆␇␈␉␊␋␌␍␎␏␐␑␒␓␔␕␖␗␘␙␚␛␜␝␞␟\"")
 TOML_TEST(toml_string_cc_c1		, "\"\"")
 TOML_TEST(toml_string_utf8_fr	, "\"Être à même de ça, d'air sûr, maïs de son père en main… D'où la paix sur l'île de son âme…\"")
-TOML_TEST(toml_string_utf8_ru	, "\"Яцк Ничолсон.\"")
+TOML_TEST(toml_string_utf8_ru	, "\"Яцк Ничолсон\"")
 TOML_TEST(toml_string_utf8_jp	, "\"お前はもう死んでいる - 愛 - 私は実体の小さな学生です\"")
 TOML_TEST(toml_string_utf8_ho	, "\"�𑢰����� 𐐔𐐯𐑅𐐨𐑉𐐯𐐻\"")
+
+TOML_TEST(toml_escape_sq1	, "\".\\\'.\"")
+TOML_TEST(toml_escape_sq2	, "\".\\\".\"")
+TOML_TEST(toml_escape_slb	, "\".\\\\.\"")
+TOML_TEST(toml_escape_slf	, "\".\\/.\"")
+TOML_TEST(toml_escape_spc	, "\".\\ .\"")
+TOML_TEST(toml_escape_tab	, "\".\\t.\"")
+TOML_TEST(toml_escape_nl	, "\".\\n.\"")
+TOML_TEST(toml_escape_cr	, "\".\\r.\"")
+TOML_TEST(toml_escape_ff	, "\".\\f.\"")
+TOML_TEST(toml_escape_vt	, "\".\\v.\"")
+TOML_TEST(toml_escape_esc	, "\".\\e.\"")
+TOML_TEST(toml_escape_bel	, "\".\\a.\"")
+TOML_TEST(toml_escape_bs	, "\".\\b.\"")
+
+TOML_TEST(toml_escape_u		, "\"\\u042F\\u0446\\u043A \\u041D\\u0438\\u0447\\u043E\\u043B\\u0441\\u043E\\u043D\"")
+TOML_TEST(toml_escape_U		, "\"\\U0000042F\\U00000446\\U0000043A \\U0000041D\\U00000438\\U00000447\\U0000043E\\U0000043B\\U00000441\\U0000043E\\U0000043D\"")
+TOML_TEST(toml_escape_x		, "\"\\x04\\x2F\\x04\\x46\\x04\\x3A \\x04\\x1D\\x04\\x38\\x04\\x47\\x04\\x3E\\x04\\x3B\\x04\\x41\\x04\\x3E\\x04\\x3D\"")
+
 
 
 t_utf8*	toml_array_empty	= "[]";
@@ -220,20 +239,6 @@ t_utf8*	toml_strange_etx	= "\3hello=\3\"world\"\3\n";
 t_utf8*	toml_strange_eot	= "\4hello=\4\"world\"\4\n";
 t_utf8*	toml_strange_esc	= "\ehello=\e\"world\"\e\n";
 t_utf8*	toml_strange_bs		= "\bhello=\b\"world\"\b\n";
-
-t_utf8*	toml_escape_sq1	= "[\".\\\'.\"]";
-t_utf8*	toml_escape_sq2	= "[\".\\\".\"]";
-t_utf8*	toml_escape_slb	= "[\".\\\\.\"]";
-t_utf8*	toml_escape_slf	= "[\".\\/.\"]";
-t_utf8*	toml_escape_spc	= "[\".\\ .\"]";
-t_utf8*	toml_escape_tab	= "[\".\\t.\"]";
-t_utf8*	toml_escape_nl	= "[\".\\n.\"]";
-t_utf8*	toml_escape_cr	= "[\".\\r.\"]";
-t_utf8*	toml_escape_ff	= "[\".\\f.\"]";
-t_utf8*	toml_escape_vt	= "[\".\\v.\"]";
-t_utf8*	toml_escape_esc	= "[\".\\e.\"]";
-t_utf8*	toml_escape_bel	= "[\".\\a.\"]";
-t_utf8*	toml_escape_bs	= "[\".\\b.\"]";
 
 
 
@@ -635,6 +640,9 @@ void	test_toml_##STRICT##_##MINIFY(void)																																			\
 	print_test_toml_##STRICT##_##MINIFY("toml_escape_esc           ("#STRICT" -> "#MINIFY")", FALSE,		NULL,									toml_escape_esc);				\
 	print_test_toml_##STRICT##_##MINIFY("toml_escape_bel           ("#STRICT" -> "#MINIFY")", FALSE,		NULL,									toml_escape_bel);				\
 	print_test_toml_##STRICT##_##MINIFY("toml_escape_bs            ("#STRICT" -> "#MINIFY")", FALSE,		toml_escape_bs,							toml_escape_bs);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_escape_bs            ("#STRICT" -> "#MINIFY")", FALSE,		toml_escape_x,							toml_escape_x);					\
+	print_test_toml_##STRICT##_##MINIFY("toml_escape_bs            ("#STRICT" -> "#MINIFY")", FALSE,		toml_escape_u,							toml_escape_u);					\
+	print_test_toml_##STRICT##_##MINIFY("toml_escape_bs            ("#STRICT" -> "#MINIFY")", FALSE,		toml_escape_U,							toml_escape_U);					\
 	print_test_toml_##STRICT##_##MINIFY("toml_strange_sot          ("#STRICT" -> "#MINIFY")", FALSE,		NULL,									toml_strange_sot);				\
 	print_test_toml_##STRICT##_##MINIFY("toml_strange_stx          ("#STRICT" -> "#MINIFY")", FALSE,		NULL,									toml_strange_stx);				\
 	print_test_toml_##STRICT##_##MINIFY("toml_strange_etx          ("#STRICT" -> "#MINIFY")", FALSE,		NULL,									toml_strange_etx);				\

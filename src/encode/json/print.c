@@ -56,7 +56,7 @@ t_bool	JSON_Print_StringPtr(t_utf8 const* input, s_json_print* p)
 	input_ptr = input;
 	while (*input_ptr != '\0')
 	{
-		t_utf32 c = UTF32_FromUTF8((t_utf8*)input_ptr);
+		t_utf32 c = UTF32_FromUTF8(input_ptr);
 		t_size length = 1;
 			 if (c < UTF8_1BYTE)	length = 1;
 		else if (c < UTF8_2BYTE)	length = 2;
@@ -107,7 +107,7 @@ t_bool	JSON_Print_StringPtr(t_utf8 const* input, s_json_print* p)
 	input_ptr = input;
 	while (*input_ptr != '\0')
 	{
-		t_utf32 c = UTF32_FromUTF8((t_utf8*)input_ptr);
+		t_utf32 c = UTF32_FromUTF8(input_ptr);
 		t_size length = 1;
 			 if (c < UTF8_1BYTE)	length = 1;
 		else if (c < UTF8_2BYTE)	length = 2;
@@ -117,11 +117,9 @@ t_bool	JSON_Print_StringPtr(t_utf8 const* input, s_json_print* p)
 			(c != '\"') &&
 			(c != '\\'))
 		{	// normal character, copy
-			*str++ = *input_ptr;
-			while (--length && *input_ptr != '\0')
+			for (t_size i = 0; i < length && input_ptr[i]; ++i)
 			{
-				input_ptr++;
-				*str++ = *input_ptr;
+				*str++ = input_ptr[i];
 			}
 		}
 		else // character needs to be escaped
@@ -138,9 +136,9 @@ t_bool	JSON_Print_StringPtr(t_utf8 const* input, s_json_print* p)
 				case '\\':	*str++ = '\\';	break;
 				default: // escape and print as unicode codepoint
 				{
-					t_utf16 u[2] = {0};
-					length = UTF32_ToUTF16(u, c);
-					if (length > 0)
+					t_utf16	u[2] = { 0, 0 };
+					t_size	i = UTF32_ToUTF16(u, c);
+					if (i > 0)
 					{
 						String_Format_N(str, 6, "u%4.4X", u[0]);
 						str += 5;
@@ -155,7 +153,7 @@ t_bool	JSON_Print_StringPtr(t_utf8 const* input, s_json_print* p)
 				}
 			}
 		}
-		input_ptr++;
+		input_ptr += length;
 	}
 	*str++ = '\"';
 	*str++ = '\0';
