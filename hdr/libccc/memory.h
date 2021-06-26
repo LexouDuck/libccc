@@ -334,6 +334,28 @@ t_bool				Memory_Swap(void* ptr1, void* ptr2, t_size size); // TODO change retru
 
 
 
+#if 0
+
+//! Parse hexadecimal bytes from a string buffer, to create a new area of memory
+t_size			Memory_Parse(t_char* *dest, void const* ptr, t_size n); // TODO
+#define c_memparse	Memory_Parse
+
+//! @see Memory_Parse()
+void*				Memory_FromString(t_char* str, t_size n); // TODO
+#define c_strtomem	Memory_FromString
+
+#endif
+
+//! Prints an area of memory to a string buffer, as space-delimited hexadecimal bytes
+t_size				Memory_Print(t_char* *dest, void const* ptr, t_size n);
+#define c_memprint	Memory_Print
+
+//! @see Memory_Print()
+t_char*				Memory_ToString(void const* ptr, t_size n);
+#define c_memtostr	Memory_ToString
+
+
+
 /*
 ** ************************************************************************** *|
 **                          Bitwise Memory Operations                         *|
