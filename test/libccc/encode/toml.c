@@ -156,23 +156,23 @@ TOML_TEST(toml_string_utf8_ru	, "\"Яцк Ничолсон\"")
 TOML_TEST(toml_string_utf8_jp	, "\"お前はもう死んでいる - 愛 - 私は実体の小さな学生です\"")
 TOML_TEST(toml_string_utf8_ho	, "\"�𑢰����� 𐐔𐐯𐑅𐐨𐑉𐐯𐐻\"")
 
-TOML_TEST(toml_escape_sq1	, "\".\\\'.\"")
+TOML_TEST(toml_escape_sq1	, "\".\\\'.\"")	TOML_TEST(toml_escstr_sq1	, "\".'.\"")
 TOML_TEST(toml_escape_sq2	, "\".\\\".\"")
 TOML_TEST(toml_escape_slb	, "\".\\\\.\"")
-TOML_TEST(toml_escape_slf	, "\".\\/.\"")
-TOML_TEST(toml_escape_spc	, "\".\\ .\"")
+TOML_TEST(toml_escape_slf	, "\".\\/.\"")	TOML_TEST(toml_escstr_slf	, "\"./.\"")
+TOML_TEST(toml_escape_spc	, "\".\\ .\"")	TOML_TEST(toml_escstr_spc	, "\". .\"")
 TOML_TEST(toml_escape_tab	, "\".\\t.\"")
 TOML_TEST(toml_escape_nl	, "\".\\n.\"")
 TOML_TEST(toml_escape_cr	, "\".\\r.\"")
 TOML_TEST(toml_escape_ff	, "\".\\f.\"")
-TOML_TEST(toml_escape_vt	, "\".\\v.\"")
-TOML_TEST(toml_escape_esc	, "\".\\e.\"")
-TOML_TEST(toml_escape_bel	, "\".\\a.\"")
+TOML_TEST(toml_escape_vt	, "\".\\v.\"")	TOML_TEST(toml_escstr_vt	, "\".\\u000B.\"")
+TOML_TEST(toml_escape_esc	, "\".\\e.\"")	TOML_TEST(toml_escstr_esc	, "\".\\u001B.\"")
+TOML_TEST(toml_escape_bel	, "\".\\a.\"")	TOML_TEST(toml_escstr_bel	, "\".\\u0007.\"")
 TOML_TEST(toml_escape_bs	, "\".\\b.\"")
 
-TOML_TEST(toml_escape_u		, "\"\\u042F\\u0446\\u043A \\u041D\\u0438\\u0447\\u043E\\u043B\\u0441\\u043E\\u043D\"")
-TOML_TEST(toml_escape_U		, "\"\\U0000042F\\U00000446\\U0000043A \\U0000041D\\U00000438\\U00000447\\U0000043E\\U0000043B\\U00000441\\U0000043E\\U0000043D\"")
-TOML_TEST(toml_escape_x		, "\"\\x04\\x2F\\x04\\x46\\x04\\x3A \\x04\\x1D\\x04\\x38\\x04\\x47\\x04\\x3E\\x04\\x3B\\x04\\x41\\x04\\x3E\\x04\\x3D\"")
+TOML_TEST(toml_escape_utf8_ru_u	, "\"\\u042F\\u0446\\u043A \\u041D\\u0438\\u0447\\u043E\\u043B\\u0441\\u043E\\u043D\"")
+TOML_TEST(toml_escape_utf8_ru_U	, "\"\\U0000042F\\U00000446\\U0000043A \\U0000041D\\U00000438\\U00000447\\U0000043E\\U0000043B\\U00000441\\U0000043E\\U0000043D\"")
+TOML_TEST(toml_escape_utf8_ru_x	, "\"\\xD0\\xAF\\xD1\\x86\\xD0\\xBA \\xD0\\x9D\\xD0\\xB8\\xD1\\x87\\xD0\\xBE\\xD0\\xBB\\xD1\\x81\\xD0\\xBE\\xD0\\xBD\"")
 
 
 
@@ -371,29 +371,29 @@ t_utf8*	toml_complex_min =
 		"\n[[Attributes.DOCUMENT_ATTRIBUTE.Values]]"	"\nWEB=\"urn:isbn:0393350967\""
 		"\n[[Attributes.WEIGHT_ATTRIBUTE]]"
 		"\n[[Attributes.WEIGHT_ATTRIBUTE.Values]]"		"\n\"INTEGER=72\""
-		"\n[[Attributes.WEIGHT_ATTRIBUTE.Properties]]"	"\n[[\"listed\",\"\",\"\"]]"
+		"\n[[Attributes.WEIGHT_ATTRIBUTE.Properties]]"	"\n\"\"=[[\"listed\",\"\",\"\"]]"
 		"\n[[Attributes.WEIGHT_ATTRIBUTE.Values]]"		"\n\"INTEGER=160\""
-		"\n[[Attributes.WEIGHT_ATTRIBUTE.Properties]]"	"\n[[\"reported\",\"\",\"\"],[\"pounds\",\"lbs\",\"352\"]]"
+		"\n[[Attributes.WEIGHT_ATTRIBUTE.Properties]]"	"\n\"\"=[[\"reported\",\"\",\"\"],[\"pounds\",\"lbs\",\"352\"]]"
 		"\n[[Attributes.LOCATION_ATTRIBUTE]]"
 		"\n[[Attributes.LOCATION_ATTRIBUTE.Values]]"	"\nTEXT=\"Los Angeles\""
 		"\n[[Attributes.LOCATION_ATTRIBUTE.Values]]"	"\nTEXT=\"Aspen\""
 		"\n[[Attributes.LOCATION_ATTRIBUTE.Values]]"	"\nTEXT=\"Malibu\""
 		"\n[[Attributes.CHILD_ATTRIBUTE]]"				
 		"\n[[Attributes.CHILD_ATTRIBUTE.Values]]"		"\nTEXT=\"Jennifer\""
-		"\n[[Attributes.CHILD_ATTRIBUTE.Properties]]"	"\n[[\"Born\",\"\",\"1963\"],[\"Mother\",\"\",\"Sandra Knight\"]]"
+		"\n[[Attributes.CHILD_ATTRIBUTE.Properties]]"	"\n\"\"=[[\"Born\",\"\",\"1963\"],[\"Mother\",\"\",\"Sandra Knight\"]]"
 		"\n[[Attributes.CHILD_ATTRIBUTE.Values]]"		"\nTEXT=\"Caleb\""
-		"\n[[Attributes.CHILD_ATTRIBUTE.Properties]]"	"\n[[\"Born\",\"\",\"1970\"],[\"Paternity\",\"open question 2\",\"not established\"],[\"Mother\",\"\",\"Susan Anspach\"]]"
+		"\n[[Attributes.CHILD_ATTRIBUTE.Properties]]"	"\n\"\"=[[\"Born\",\"\",\"1970\"],[\"Paternity\",\"open question 2\",\"not established\"],[\"Mother\",\"\",\"Susan Anspach\"]]"
 		"\n[[Attributes.CHILD_ATTRIBUTE.Values]]"		"\nTEXT=\"Honey\""
 		"\n[[Attributes.CHILD_ATTRIBUTE.Values]]"		"\nTEXT=\"Lorraine\""
 		"\n[[Attributes.CHILD_ATTRIBUTE.Values]]"		"\nTEXT=\"Raymond\""
-		"\n[[Attributes.CHILD_ATTRIBUTE.Properties]]"	"\n[[\"Born\",\"youngest\",\"1992\"],[\"Mother\",\"\",\"Rebecca Broussard\"]"
+		"\n[[Attributes.CHILD_ATTRIBUTE.Properties]]"	"\n\"\"=[[\"Born\",\"youngest\",\"1992\"],[\"Mother\",\"\",\"Rebecca Broussard\"]"
 	"\n[Properties]"
-		"\n[\"known for\",\"most popular role\",\"The Shining\"]"
-		"\n[\"fan of\",\"famous fan\",\"Los Angeles Lakers\"]"
-		"\n[\"fan of\",\"\",\"Bob Dylan\"]"
-		"\n[\"also known for\",\"best performance\",\"Chinatown\"]"
+		"\n\"\"=[\"known for\",\"most popular role\",\"The Shining\"]"
+		"\n\"\"=[\"fan of\",\"famous fan\",\"Los Angeles Lakers\"]"
+		"\n\"\"=[\"fan of\",\"\",\"Bob Dylan\"]"
+		"\n\"\"=[\"also known for\",\"best performance\",\"Chinatown\"]"
 	"\n[Values]"
-		"\n[\"actor\",\"player\",\"filmmaker\"]"
+		"\n\"\"=[\"actor\",\"player\",\"filmmaker\"]"
 ;
 t_utf8*	toml_complex =
 	"[Attributes]"
@@ -415,29 +415,29 @@ t_utf8*	toml_complex =
 		"\n[[Attributes.DOCUMENT_ATTRIBUTE.Values]]"	"\nWEB=\"urn:isbn:0393350967\""
 		"\n[[Attributes.WEIGHT_ATTRIBUTE]]"
 		"\n[[Attributes.WEIGHT_ATTRIBUTE.Values]]"		"\n\"INTEGER=72\""
-		"\n[[Attributes.WEIGHT_ATTRIBUTE.Properties]]"	"\n[[\"listed\",\"\",\"\"]]"
+		"\n[[Attributes.WEIGHT_ATTRIBUTE.Properties]]"	"\n\"\"=[[\"listed\",\"\",\"\"]]"
 		"\n[[Attributes.WEIGHT_ATTRIBUTE.Values]]"		"\n\"INTEGER=160\""
-		"\n[[Attributes.WEIGHT_ATTRIBUTE.Properties]]"	"\n[[\"reported\",\"\",\"\"],[\"pounds\",\"lbs\",\"352\"]]"
+		"\n[[Attributes.WEIGHT_ATTRIBUTE.Properties]]"	"\n\"\"=[[\"reported\",\"\",\"\"],[\"pounds\",\"lbs\",\"352\"]]"
 		"\n[[Attributes.LOCATION_ATTRIBUTE]]"
 		"\n[[Attributes.LOCATION_ATTRIBUTE.Values]]"	"\nTEXT=\"Los Angeles\""
 		"\n[[Attributes.LOCATION_ATTRIBUTE.Values]]"	"\nTEXT=\"Aspen\""
 		"\n[[Attributes.LOCATION_ATTRIBUTE.Values]]"	"\nTEXT=\"Malibu\""
 		"\n[[Attributes.CHILD_ATTRIBUTE]]"				
 		"\n[[Attributes.CHILD_ATTRIBUTE.Values]]"		"\nTEXT=\"Jennifer\""
-		"\n[[Attributes.CHILD_ATTRIBUTE.Properties]]"	"\n[[\"Born\",\"\",\"1963\"],[\"Mother\",\"\",\"Sandra Knight\"]]"
+		"\n[[Attributes.CHILD_ATTRIBUTE.Properties]]"	"\n\"\"=[[\"Born\",\"\",\"1963\"],[\"Mother\",\"\",\"Sandra Knight\"]]"
 		"\n[[Attributes.CHILD_ATTRIBUTE.Values]]"		"\nTEXT=\"Caleb\""
-		"\n[[Attributes.CHILD_ATTRIBUTE.Properties]]"	"\n[[\"Born\",\"\",\"1970\"],[\"Paternity\",\"open question 2\",\"not established\"],[\"Mother\",\"\",\"Susan Anspach\"]]"
+		"\n[[Attributes.CHILD_ATTRIBUTE.Properties]]"	"\n\"\"=[[\"Born\",\"\",\"1970\"],[\"Paternity\",\"open question 2\",\"not established\"],[\"Mother\",\"\",\"Susan Anspach\"]]"
 		"\n[[Attributes.CHILD_ATTRIBUTE.Values]]"		"\nTEXT=\"Honey\""
 		"\n[[Attributes.CHILD_ATTRIBUTE.Values]]"		"\nTEXT=\"Lorraine\""
 		"\n[[Attributes.CHILD_ATTRIBUTE.Values]]"		"\nTEXT=\"Raymond\""
-		"\n[[Attributes.CHILD_ATTRIBUTE.Properties]]"	"\n[[\"Born\",\"youngest\",\"1992\"],[\"Mother\",\"\",\"Rebecca Broussard\"]"
+		"\n[[Attributes.CHILD_ATTRIBUTE.Properties]]"	"\n\"\"=[[\"Born\",\"youngest\",\"1992\"],[\"Mother\",\"\",\"Rebecca Broussard\"]"
 	"\n[Properties]"
-		"\n[\"known for\",\"most popular role\",\"The Shining\"]"
-		"\n[\"fan of\",\"famous fan\",\"Los Angeles Lakers\"]"
-		"\n[\"fan of\",\"\",\"Bob Dylan\"]"
-		"\n[\"also known for\",\"best performance\",\"Chinatown\"]"
+		"\n\"\"=[\"known for\",\"most popular role\",\"The Shining\"]"
+		"\n\"\"=[\"fan of\",\"famous fan\",\"Los Angeles Lakers\"]"
+		"\n\"\"=[\"fan of\",\"\",\"Bob Dylan\"]"
+		"\n\"\"=[\"also known for\",\"best performance\",\"Chinatown\"]"
 	"\n[Values]"
-		"\n[\"actor\",\"player\",\"filmmaker\"]"
+		"\n\"\"=[\"actor\",\"player\",\"filmmaker\"]"
 ;
 
 
@@ -627,22 +627,22 @@ void	test_toml_##STRICT##_##MINIFY(void)																																			\
 	print_test_toml_##STRICT##_##MINIFY("toml_newline              ("#STRICT" -> "#MINIFY")", FALSE,		toml_simple##_MIN,						toml_newline);					\
 	print_test_toml_##STRICT##_##MINIFY("toml_complex              ("#STRICT" -> "#MINIFY")", FALSE,		toml_complex##_MIN,						toml_complex);					\
 	print_test_toml_##STRICT##_##MINIFY("toml_complex_min          ("#STRICT" -> "#MINIFY")", FALSE,		toml_complex##_MIN,						toml_complex_min);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_escape_sq1           ("#STRICT" -> "#MINIFY")", FALSE,		NULL,									toml_escape_sq1);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_escape_sq2           ("#STRICT" -> "#MINIFY")", FALSE,		toml_escape_sq2,						toml_escape_sq2);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_escape_slb           ("#STRICT" -> "#MINIFY")", FALSE,		toml_escape_slb,						toml_escape_slb);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_escape_slf           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_escape_slf:"[\"test:/.\"]",		toml_escape_slf);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_escape_spc           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_escape_spc:NULL,					toml_escape_spc);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_escape_tab           ("#STRICT" -> "#MINIFY")", FALSE,		toml_escape_tab,						toml_escape_tab);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_escape_nl            ("#STRICT" -> "#MINIFY")", FALSE,		toml_escape_nl,							toml_escape_nl);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_escape_cr            ("#STRICT" -> "#MINIFY")", FALSE,		toml_escape_cr,							toml_escape_cr);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_escape_ff            ("#STRICT" -> "#MINIFY")", FALSE,		toml_escape_ff,							toml_escape_ff);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_escape_vt            ("#STRICT" -> "#MINIFY")", FALSE,		NULL,									toml_escape_vt);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_escape_esc           ("#STRICT" -> "#MINIFY")", FALSE,		NULL,									toml_escape_esc);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_escape_bel           ("#STRICT" -> "#MINIFY")", FALSE,		NULL,									toml_escape_bel);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_escape_sq1           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_escstr_sq1##_MIN:NULL,				toml_escape_sq1);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_escape_sq2           ("#STRICT" -> "#MINIFY")", FALSE,		toml_escape_sq2##_MIN,					toml_escape_sq2);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_escape_slb           ("#STRICT" -> "#MINIFY")", FALSE,		toml_escape_slb##_MIN,					toml_escape_slb);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_escape_slf           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_escstr_slf##_MIN:"[\"test:/.\"]",	toml_escape_slf);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_escape_spc           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_escstr_spc##_MIN:NULL,				toml_escape_spc);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_escape_tab           ("#STRICT" -> "#MINIFY")", FALSE,		toml_escape_tab##_MIN,					toml_escape_tab);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_escape_nl            ("#STRICT" -> "#MINIFY")", FALSE,		toml_escape_nl##_MIN,					toml_escape_nl);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_escape_cr            ("#STRICT" -> "#MINIFY")", FALSE,		toml_escape_cr##_MIN,					toml_escape_cr);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_escape_ff            ("#STRICT" -> "#MINIFY")", FALSE,		toml_escape_ff##_MIN,					toml_escape_ff);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_escape_vt            ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_escstr_vt##_MIN:NULL,				toml_escape_vt);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_escape_esc           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_escstr_esc##_MIN:NULL,				toml_escape_esc);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_escape_bel           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_escstr_bel##_MIN:NULL,				toml_escape_bel);				\
 	print_test_toml_##STRICT##_##MINIFY("toml_escape_bs            ("#STRICT" -> "#MINIFY")", FALSE,		toml_escape_bs,							toml_escape_bs);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_escape_bs            ("#STRICT" -> "#MINIFY")", FALSE,		toml_escape_x,							toml_escape_x);					\
-	print_test_toml_##STRICT##_##MINIFY("toml_escape_bs            ("#STRICT" -> "#MINIFY")", FALSE,		toml_escape_u,							toml_escape_u);					\
-	print_test_toml_##STRICT##_##MINIFY("toml_escape_bs            ("#STRICT" -> "#MINIFY")", FALSE,		toml_escape_U,							toml_escape_U);					\
+	print_test_toml_##STRICT##_##MINIFY("toml_escape_utf8_ru_x     ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_string_utf8_ru##_MIN:NULL,			toml_escape_utf8_ru_x);			\
+	print_test_toml_##STRICT##_##MINIFY("toml_escape_utf8_ru_u     ("#STRICT" -> "#MINIFY")", FALSE,		toml_string_utf8_ru##_MIN,				toml_escape_utf8_ru_u);			\
+	print_test_toml_##STRICT##_##MINIFY("toml_escape_utf8_ru_U     ("#STRICT" -> "#MINIFY")", FALSE,		toml_string_utf8_ru##_MIN,				toml_escape_utf8_ru_U);			\
 	print_test_toml_##STRICT##_##MINIFY("toml_strange_sot          ("#STRICT" -> "#MINIFY")", FALSE,		NULL,									toml_strange_sot);				\
 	print_test_toml_##STRICT##_##MINIFY("toml_strange_stx          ("#STRICT" -> "#MINIFY")", FALSE,		NULL,									toml_strange_stx);				\
 	print_test_toml_##STRICT##_##MINIFY("toml_strange_etx          ("#STRICT" -> "#MINIFY")", FALSE,		NULL,									toml_strange_etx);				\
