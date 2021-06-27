@@ -8,7 +8,7 @@
 // the minimal boilerplate needed to store a single vlue in TOML
 #define TOML_TEST(NAME, STR) \
 	t_utf8 const*	NAME		= "\n\"\" = "STR"\n";	\
-	t_utf8 const*	NAME##_min	= "\n\"\"="STR"\n";	\
+	t_utf8 const*	NAME##_min	= "\"\"="STR"\n";	\
 
 
 
@@ -198,8 +198,8 @@ t_utf8*	toml_object			= "_=\
 \n	b = true,\
 \n	c = null\
 \n}";
-t_utf8*	toml_object_nested_min	= "_={a={b={c={d={e={f={g={h={i={j={k={l={m={n={o={p={q={r={s={t={u={v={w={x={y={z=\"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}";
-t_utf8*	toml_object_nested		= "_={a = {b = {c = {d = {e = {f = {g = {h = {i = {j = {k = {l = {m = {n = {o = {p = {q = {r = {s = {t = {u = {v = {w = {x = {y = {z = \"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}";
+t_utf8*	toml_object_nested_min	= "a={b={c={d={e={f={g={h={i={j={k={l={m={n={o={p={q={r={s={t={u={v={w={x={y={z=\"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}";
+t_utf8*	toml_object_nested		= "a = {b = {c = {d = {e = {f = {g = {h = {i = {j = {k = {l = {m = {n = {o = {p = {q = {r = {s = {t = {u = {v = {w = {x = {y = {z = \"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}";
 
 t_utf8*	toml_object_string_min =
 "\n""type=11"
@@ -216,14 +216,14 @@ t_utf8*	toml_object_string_min =
 	"}\"\"\""
 "\n";
 t_utf8*	toml_object_string = "\
-\n	type = 11,\
+\n	type = 11\
 \n	value = \"{\\\"Label\\\":\\\"NAME\\\",\\\"Attributes\\\":{\\\"PATTERN_ATTRIBUTE\\\":[{\\\"Values\\\":[{\\\"STRING\\\":\\\"ENTITY_PATTERN\\\"}]}],\\\"DESCRIPTION_ATTRIBUTE\\\":[{\\\"Values\\\":[{\\\"STRING\\\":\\\"DESC\\\"}]}],\\\"CHARACTERISTIC_ATTRIBUTE\\\":[],\\\"TEMPLATE_ATTRIBUTE\\\":[{}]}}\"\
 \n";
 
 
 
-t_utf8*	toml_helloworld_min	= "hello=\"world\"";
-t_utf8*	toml_helloworld		= "hello = \"world\"";
+t_utf8*	toml_helloworld_min	= "hello=\"world\"\n";
+t_utf8*	toml_helloworld		= "hello = \"world\"\n";
 
 t_utf8*	toml_whitespace		= "  hello  =  \"world\"  ";
 t_utf8*	toml_whitespace_tab	= "\thello\t=\t\"world\"\t";
@@ -243,7 +243,7 @@ t_utf8*	toml_strange_bs		= "\bhello=\b\"world\"\b\n";
 
 
 t_utf8*	toml_simple_min =
-"\n""test_bool_0=false"
+	"test_bool_0=false"
 "\n""test_bool_1=true"
 "\n""test_number=0"
 "\n""test_string=\"\""
@@ -257,7 +257,7 @@ t_utf8*	toml_simple_min =
 "\n"	"nest_object=null"
 "\n";
 t_utf8*	toml_simple = "\
-\n	test_bool_0 = false\
+	test_bool_0 = false\
 \n	test_bool_1 = true\
 \n	test_number = 0\
 \n	test_string = \"\"\
@@ -284,7 +284,7 @@ t_utf8*	toml_simple = "\
 
 
 t_utf8*	toml_commas_min =
-"\n""test_bool_0=false"
+	"test_bool_0=false"
 "\n""test_bool_1=true"
 "\n""test_number=0"
 "\n""test_string=\"\""
@@ -298,7 +298,7 @@ t_utf8*	toml_commas_min =
 "\n"	"nest_object=null"
 "\n";
 t_utf8*	toml_commas = "\
-\n	test_bool_0 = false\
+	test_bool_0 = false\
 \n	test_bool_1 = true\
 \n	test_number = 0\
 \n	test_string = \"\"\

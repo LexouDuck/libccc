@@ -478,8 +478,10 @@ t_bool	TOML_Print_Table(s_toml const* item, s_toml_print* p)
 	if (TOML_Print_Key(item, p, TRUE))
 		return (ERROR);
 
-	ENSURE(1)
+	ENSURE(2)
 	*result++ = ']';
+	p->offset++;
+	*result++ = '\n';
 	p->offset++;
 
 	if (TOML_Print_Lines(item, p))
@@ -649,9 +651,11 @@ t_bool	TOML_Print_Lines(s_toml const* item, s_toml_print* p)
 	p->depth++;
 	while (current_item)
 	{
+/*
 		ENSURE(1)
 		*result++ = '\n';
 		p->offset++;
+*/
 		if (p->format)
 		{
 			ENSURE(p->depth)
@@ -665,11 +669,11 @@ t_bool	TOML_Print_Lines(s_toml const* item, s_toml_print* p)
 		if (TOML_Print_KeyValuePair(current_item, p, FALSE))
 			return (ERROR);
 		TOML_Print_UpdateOffset(p);
-/*
+
 		ENSURE(1)
 		*result++ = '\n';
 		p->offset++;
-*/
+
 		ENSURE(1)
 		*result = '\0';
 		current_item = current_item->next;
@@ -677,10 +681,11 @@ t_bool	TOML_Print_Lines(s_toml const* item, s_toml_print* p)
 
 	TOML_Print_KeyPath_Pop(p);
 	p->depth--;
-
+/*
 	ENSURE(1)
 	*result++ = '\n';
 	p->offset++;
+*/
 	if (p->format)
 	{
 		ENSURE(p->depth)
