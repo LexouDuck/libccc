@@ -77,6 +77,7 @@ void TOML_Print_KeyPath_Pop(s_toml_print* p)
 		else if (oldpath[i] == '\"')
 			bare = !bare;
 	}
+	i++;
 	p->keypath = (i == 0 ? NULL : String_Sub(oldpath, 0, i));
 	if (oldpath)
 		String_Delete(&oldpath);
@@ -101,10 +102,10 @@ static
 t_bool	TOML_Print_StringPtr(t_utf8 const* input, s_toml_print* p)
 {
 	t_utf8 const* input_ptr = NULL;
-	t_utf8* result = NULL;
-	t_utf8* str;
-	t_size result_length = 0;
-	t_size escape_chars = 0; //!< amount of additional characters needed for escaping
+	t_utf8*	result = NULL;
+	t_utf8*	str;
+	t_size	result_length = 0;
+	t_size	escape_chars = 0; //!< amount of additional characters needed for escaping
 
 	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (ERROR);)
 	// empty string
@@ -651,11 +652,6 @@ t_bool	TOML_Print_Lines(s_toml const* item, s_toml_print* p)
 	p->depth++;
 	while (current_item)
 	{
-/*
-		ENSURE(1)
-		*result++ = '\n';
-		p->offset++;
-*/
 		if (p->format)
 		{
 			ENSURE(p->depth)
@@ -670,12 +666,10 @@ t_bool	TOML_Print_Lines(s_toml const* item, s_toml_print* p)
 			return (ERROR);
 		TOML_Print_UpdateOffset(p);
 
-		ENSURE(1)
+		ENSURE(2)
 		*result++ = '\n';
-		p->offset++;
-
-		ENSURE(1)
 		*result = '\0';
+		p->offset++;
 		current_item = current_item->next;
 	}
 

@@ -54,9 +54,9 @@ TOML_TEST(toml_number_4f3			, "123456.789")
 TOML_TEST(toml_number_fmin_lt		, "-9007199254740991")
 TOML_TEST(toml_number_fmin_eq		, "-9007199254740992")
 TOML_TEST(toml_number_fmin_gt		, "-9007199254740993")
-TOML_TEST(toml_number_fmax_lt		, "9007199254740991")
-TOML_TEST(toml_number_fmax_eq		, "9007199254740992")
-TOML_TEST(toml_number_fmax_gt		, "9007199254740993")
+TOML_TEST(toml_number_fmax_lt		,  "9007199254740991")
+TOML_TEST(toml_number_fmax_eq		,  "9007199254740992")
+TOML_TEST(toml_number_fmax_gt		,  "9007199254740993")
 TOML_TEST(toml_number_inf_u_lower_0	,  "inf")
 TOML_TEST(toml_number_inf_p_lower_0	, "+inf")
 TOML_TEST(toml_number_inf_n_lower_0	, "-inf")
@@ -123,15 +123,15 @@ TOML_TEST(toml_bigint_4f3			, "123456.789n")
 TOML_TEST(toml_bigint_fmin_lt		, "-9007199254740991n")
 TOML_TEST(toml_bigint_fmin_eq		, "-9007199254740992n")
 TOML_TEST(toml_bigint_fmin_gt		, "-9007199254740993n")
-TOML_TEST(toml_bigint_fmax_lt		, "9007199254740991n")
-TOML_TEST(toml_bigint_fmax_eq		, "9007199254740992n")
-TOML_TEST(toml_bigint_fmax_gt		, "9007199254740993n")
+TOML_TEST(toml_bigint_fmax_lt		,  "9007199254740991n")
+TOML_TEST(toml_bigint_fmax_eq		,  "9007199254740992n")
+TOML_TEST(toml_bigint_fmax_gt		,  "9007199254740993n")
 TOML_TEST(toml_bigint_s64min_lt		, "-9223372036854775807n")
 TOML_TEST(toml_bigint_s64min_eq		, "-9223372036854775808n")
 TOML_TEST(toml_bigint_s64min_gt		, "-9223372036854775809n")
-TOML_TEST(toml_bigint_s64max_lt		, "9223372036854775806n")
-TOML_TEST(toml_bigint_s64max_eq		, "9223372036854775807n")
-TOML_TEST(toml_bigint_s64max_gt		, "9223372036854775808n")
+TOML_TEST(toml_bigint_s64max_lt		,  "9223372036854775806n")
+TOML_TEST(toml_bigint_s64max_eq		,  "9223372036854775807n")
+TOML_TEST(toml_bigint_s64max_gt		,  "9223372036854775808n")
 TOML_TEST(toml_bigint_bad_unan_lower, "nann")
 TOML_TEST(toml_bigint_bad_unan_upper, "NANn")
 TOML_TEST(toml_bigint_bad_uinf_lower, "infn")
@@ -176,35 +176,60 @@ TOML_TEST(toml_escape_utf8_ru_x	, "\"\\xD0\\xAF\\xD1\\x86\\xD0\\xBA \\xD0\\x9D\\
 
 
 
-t_utf8*	toml_array_empty	= "[]";
-t_utf8*	toml_array_min		= "[false,true,null]\n";
-t_utf8*	toml_array			= "\
-\n[\
-\n	false,\
-\n	true,\
-\n	null\
-\n]\
-\n";
-t_utf8*	toml_array_nested_min	= "[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{swag=1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]\n";
-t_utf8*	toml_array_nested		= "[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{swag = 1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]\n";
+t_utf8*	toml_array_empty	= "_=[]\n";
+t_utf8*	toml_array_min		= "_=[false,true,null]\n";
+t_utf8*	toml_array			= "_=\
+[\n\
+	false,\n\
+	true,\n\
+	null\n\
+]\n";
+t_utf8*	toml_array_nested_min	= "_=[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{swag=1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]\n";
+t_utf8*	toml_array_nested		= "_=[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{swag = 1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]\n";
+
+// TODO
+t_utf8*	toml_inline_array_empty	= "_=[]\n";
+t_utf8*	toml_inline_array_min		= "_=[false,true,null]\n";
+t_utf8*	toml_inline_array			= "_=\
+[\n\
+	false,\n\
+	true,\n\
+	null\n\
+]\n";
+t_utf8*	toml_inline_array_nested_min	= "_=[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{swag=1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]\n";
+t_utf8*	toml_inline_array_nested		= "_=[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{swag = 1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]\n";
 
 
 
-t_utf8*	toml_object_empty	= "_={}";
-t_utf8*	toml_object_min		= "_={a=false,b=true,c=null}";
+t_utf8*	toml_object_empty	= "_={}\n";
+t_utf8*	toml_object_min		= "_={a=false,b=true,c=null}\n";
 t_utf8*	toml_object			= "_=\
-{\
-\n	a = false,\
-\n	b = true,\
-\n	c = null\
-\n}";
-t_utf8*	toml_object_nested_min	= "a={b={c={d={e={f={g={h={i={j={k={l={m={n={o={p={q={r={s={t={u={v={w={x={y={z=\"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}";
-t_utf8*	toml_object_nested		= "a = {b = {c = {d = {e = {f = {g = {h = {i = {j = {k = {l = {m = {n = {o = {p = {q = {r = {s = {t = {u = {v = {w = {x = {y = {z = \"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}";
+{\n\
+	a = false,\n\
+	b = true,\n\
+	c = null\n\
+}\n";
+t_utf8*	toml_object_nested_min	= "_={a={b={c={d={e={f={g={h={i={j={k={l={m={n={o={p={q={r={s={t={u={v={w={x={y={z=\"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}";
+t_utf8*	toml_object_nested		= "_={a = {b = {c = {d = {e = {f = {g = {h = {i = {j = {k = {l = {m = {n = {o = {p = {q = {r = {s = {t = {u = {v = {w = {x = {y = {z = \"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}";
+
+// TODO
+t_utf8*	toml_inline_object_empty	= "_={}\n";
+t_utf8*	toml_inline_object_min		= "_={a=false,b=true,c=null}\n";
+t_utf8*	toml_inline_object			= "_=\
+{\n\
+	a = false,\n\
+	b = true,\n\
+	c = null\n\
+}\n";
+t_utf8*	toml_inline_object_nested_min	= "_={a={b={c={d={e={f={g={h={i={j={k={l={m={n={o={p={q={r={s={t={u={v={w={x={y={z=\"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}";
+t_utf8*	toml_inline_object_nested		= "_={a = {b = {c = {d = {e = {f = {g = {h = {i = {j = {k = {l = {m = {n = {o = {p = {q = {r = {s = {t = {u = {v = {w = {x = {y = {z = \"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}";
+
+
 
 t_utf8*	toml_object_string_min =
 	"type=11"
 "\n""value="
-	"\"\"\"{"
+	"\"{"
 		"\\\"Label\\\":\\\"NAME\\\","
 		"\\\"Attributes\\\":"
 		"{"
@@ -213,12 +238,14 @@ t_utf8*	toml_object_string_min =
 			"\\\"CHARACTERISTIC_ATTRIBUTE\\\":[],"
 			"\\\"TEMPLATE_ATTRIBUTE\\\":[{}]"
 		"}"
-	"}\"\"\""
+	"}\""
 "\n";
 t_utf8*	toml_object_string = "\
 	type = 11\
 \n	value = \"{\\\"Label\\\":\\\"NAME\\\",\\\"Attributes\\\":{\\\"PATTERN_ATTRIBUTE\\\":[{\\\"Values\\\":[{\\\"STRING\\\":\\\"ENTITY_PATTERN\\\"}]}],\\\"DESCRIPTION_ATTRIBUTE\\\":[{\\\"Values\\\":[{\\\"STRING\\\":\\\"DESC\\\"}]}],\\\"CHARACTERISTIC_ATTRIBUTE\\\":[],\\\"TEMPLATE_ATTRIBUTE\\\":[{}]}}\"\
 \n";
+
+// TODO triple-quote literal string tests
 
 
 
@@ -639,7 +666,7 @@ void	test_toml_##STRICT##_##MINIFY(void)																																			\
 	print_test_toml_##STRICT##_##MINIFY("toml_escape_vt            ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_escstr_vt##_MIN:NULL,				toml_escape_vt);				\
 	print_test_toml_##STRICT##_##MINIFY("toml_escape_esc           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_escstr_esc##_MIN:NULL,				toml_escape_esc);				\
 	print_test_toml_##STRICT##_##MINIFY("toml_escape_bel           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_escstr_bel##_MIN:NULL,				toml_escape_bel);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_escape_bs            ("#STRICT" -> "#MINIFY")", FALSE,		toml_escape_bs,							toml_escape_bs);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_escape_bs            ("#STRICT" -> "#MINIFY")", FALSE,		toml_escape_bs##_MIN,					toml_escape_bs);				\
 	print_test_toml_##STRICT##_##MINIFY("toml_escape_utf8_ru_x     ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_string_utf8_ru##_MIN:NULL,			toml_escape_utf8_ru_x);			\
 	print_test_toml_##STRICT##_##MINIFY("toml_escape_utf8_ru_u     ("#STRICT" -> "#MINIFY")", FALSE,		toml_string_utf8_ru##_MIN,				toml_escape_utf8_ru_u);			\
 	print_test_toml_##STRICT##_##MINIFY("toml_escape_utf8_ru_U     ("#STRICT" -> "#MINIFY")", FALSE,		toml_string_utf8_ru##_MIN,				toml_escape_utf8_ru_U);			\

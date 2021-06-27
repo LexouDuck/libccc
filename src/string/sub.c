@@ -16,8 +16,10 @@ t_char*	String_Sub(t_char const* str, t_size index, t_size n)
 	length = 0;
 	while (str[length])
 		++length;
-	HANDLE_ERROR(INDEX2LARGE, (index > length), return (NULL);)
-	HANDLE_ERROR(LENGTH2LARGE, (index + n > length), return (NULL);)
+	HANDLE_ERROR_SF(INDEX2LARGE, (index > length), return (NULL);,
+		": should be "SF_SIZE" or less, but got "SF_SIZE, length, index)
+	HANDLE_ERROR_SF(LENGTH2LARGE, (index + n > length), return (NULL);,
+		": should be "SF_SIZE" or less, but got "SF_SIZE, length, index + n)
 	result = (t_char*)Memory_Allocate(n + sizeof(""));
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	i = 0;
