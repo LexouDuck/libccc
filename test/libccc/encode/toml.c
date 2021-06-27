@@ -202,7 +202,7 @@ t_utf8*	toml_object_nested_min	= "a={b={c={d={e={f={g={h={i={j={k={l={m={n={o={p
 t_utf8*	toml_object_nested		= "a = {b = {c = {d = {e = {f = {g = {h = {i = {j = {k = {l = {m = {n = {o = {p = {q = {r = {s = {t = {u = {v = {w = {x = {y = {z = \"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}";
 
 t_utf8*	toml_object_string_min =
-"\n""type=11"
+	"type=11"
 "\n""value="
 	"\"\"\"{"
 		"\\\"Label\\\":\\\"NAME\\\","
@@ -216,7 +216,7 @@ t_utf8*	toml_object_string_min =
 	"}\"\"\""
 "\n";
 t_utf8*	toml_object_string = "\
-\n	type = 11\
+	type = 11\
 \n	value = \"{\\\"Label\\\":\\\"NAME\\\",\\\"Attributes\\\":{\\\"PATTERN_ATTRIBUTE\\\":[{\\\"Values\\\":[{\\\"STRING\\\":\\\"ENTITY_PATTERN\\\"}]}],\\\"DESCRIPTION_ATTRIBUTE\\\":[{\\\"Values\\\":[{\\\"STRING\\\":\\\"DESC\\\"}]}],\\\"CHARACTERISTIC_ATTRIBUTE\\\":[],\\\"TEMPLATE_ATTRIBUTE\\\":[{}]}}\"\
 \n";
 

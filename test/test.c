@@ -34,7 +34,8 @@ void	test_cccerrorhandler(e_cccerror error, t_char const* message)
 	g_test.last_test_error = String_Format(
 		C_RED"ERROR"C_RESET"[%s]: %s\n",
 			Error_GetName(error), message);
-	if (g_test.last_test_error &&
+	if ((g_test.last_test_failed || g_test.flags.verbose) &&
+		g_test.last_test_error &&
 		g_test.flags.show_errors)
 	{
 		printf("%s", g_test.last_test_error);
