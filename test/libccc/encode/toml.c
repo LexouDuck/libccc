@@ -8,7 +8,7 @@
 // the minimal boilerplate needed to store a single vlue in TOML
 #define TOML_TEST(NAME, STR) \
 	t_utf8 const*	NAME		= "\n\"\" = "STR"\n";	\
-	t_utf8 const*	NAME##_min	= "\"\"="STR"\n";	\
+	t_utf8 const*	NAME##_min	= "\"\"="STR"";			\
 
 
 
@@ -176,53 +176,56 @@ TOML_TEST(toml_escape_utf8_ru_x	, "\"\\xD0\\xAF\\xD1\\x86\\xD0\\xBA \\xD0\\x9D\\
 
 
 
-t_utf8*	toml_array_empty	= "_=[]\n";
-t_utf8*	toml_array_min		= "_=[false,true,null]\n";
-t_utf8*	toml_array			= "_=\
+t_utf8*	toml_array_empty_min			= "_=[]";
+t_utf8*	toml_array_empty				= "_=[]\n";
+t_utf8*	toml_array_min					= "_=[false,true,null]";
+t_utf8*	toml_array						= "_=\
 [\n\
 	false,\n\
 	true,\n\
 	null\n\
 ]\n";
-t_utf8*	toml_array_nested_min	= "_=[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{swag=1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]\n";
-t_utf8*	toml_array_nested		= "_=[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{swag = 1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]\n";
-
-// TODO
-t_utf8*	toml_inline_array_empty	= "_=[]\n";
-t_utf8*	toml_inline_array_min		= "_=[false,true,null]\n";
-t_utf8*	toml_inline_array			= "_=\
+t_utf8*	toml_array_nested_min			= "_=[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{swag=1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]";
+t_utf8*	toml_array_nested				= "_=[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{swag = 1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]\n";
+/* TODO
+t_utf8*	toml_inline_array_empty_min		= "_=[]";
+t_utf8*	toml_inline_array_empty			= "_=[]\n";
+t_utf8*	toml_inline_array_min			= "_=[false,true,null]\n";
+t_utf8*	toml_inline_array				= "_=\
 [\n\
 	false,\n\
 	true,\n\
 	null\n\
 ]\n";
-t_utf8*	toml_inline_array_nested_min	= "_=[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{swag=1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]\n";
+t_utf8*	toml_inline_array_nested_min	= "_=[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{swag=1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]";
 t_utf8*	toml_inline_array_nested		= "_=[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{swag = 1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]\n";
+*/
 
 
-
-t_utf8*	toml_object_empty	= "_={}\n";
-t_utf8*	toml_object_min		= "_={a=false,b=true,c=null}\n";
-t_utf8*	toml_object			= "_=\
+t_utf8*	toml_object_empty_min			= "_={}";
+t_utf8*	toml_object_empty				= "_={}\n";
+t_utf8*	toml_object_min					= "_={a=false,b=true,c=null}";
+t_utf8*	toml_object						= "_=\
 {\n\
 	a = false,\n\
 	b = true,\n\
 	c = null\n\
 }\n";
-t_utf8*	toml_object_nested_min	= "_={a={b={c={d={e={f={g={h={i={j={k={l={m={n={o={p={q={r={s={t={u={v={w={x={y={z=\"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}";
-t_utf8*	toml_object_nested		= "_={a = {b = {c = {d = {e = {f = {g = {h = {i = {j = {k = {l = {m = {n = {o = {p = {q = {r = {s = {t = {u = {v = {w = {x = {y = {z = \"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}";
-
-// TODO
-t_utf8*	toml_inline_object_empty	= "_={}\n";
-t_utf8*	toml_inline_object_min		= "_={a=false,b=true,c=null}\n";
-t_utf8*	toml_inline_object			= "_=\
+t_utf8*	toml_object_nested_min			= "_={a={b={c={d={e={f={g={h={i={j={k={l={m={n={o={p={q={r={s={t={u={v={w={x={y={z=\"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}";
+t_utf8*	toml_object_nested				= "_={a = {b = {c = {d = {e = {f = {g = {h = {i = {j = {k = {l = {m = {n = {o = {p = {q = {r = {s = {t = {u = {v = {w = {x = {y = {z = \"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}\n";
+/* TODO
+t_utf8*	toml_inline_object_empty_min	= "_={}";
+t_utf8*	toml_inline_object_empty		= "_={}\n";
+t_utf8*	toml_inline_object_min			= "_={a=false,b=true,c=null}\n";
+t_utf8*	toml_inline_object				= "_=\
 {\n\
 	a = false,\n\
 	b = true,\n\
 	c = null\n\
 }\n";
 t_utf8*	toml_inline_object_nested_min	= "_={a={b={c={d={e={f={g={h={i={j={k={l={m={n={o={p={q={r={s={t={u={v={w={x={y={z=\"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}";
-t_utf8*	toml_inline_object_nested		= "_={a = {b = {c = {d = {e = {f = {g = {h = {i = {j = {k = {l = {m = {n = {o = {p = {q = {r = {s = {t = {u = {v = {w = {x = {y = {z = \"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}";
+t_utf8*	toml_inline_object_nested		= "_={a = {b = {c = {d = {e = {f = {g = {h = {i = {j = {k = {l = {m = {n = {o = {p = {q = {r = {s = {t = {u = {v = {w = {x = {y = {z = \"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}\n";
+*/
 
 
 
@@ -246,6 +249,8 @@ t_utf8*	toml_object_string = "\
 \n";
 
 // TODO triple-quote literal string tests
+
+// TODO comment handling tests
 
 
 
@@ -375,6 +380,64 @@ t_utf8*	toml_newline = "\n\n\
 \n\n\n]\
 \n\n\nnest_object\t=\tnull\
 \n\n";
+
+
+
+t_utf8*	toml_config_min = "\
+\n[\"General Settings\"]\
+\nbackground_pause"  "=false\
+\nbackground_input"  "=true\
+\n[\"Video Settings\"]\
+\nwindow_position"   "={x=-793,y=75}\
+\nwindow_size"       "={x=768,y=720}\
+\nwindow_maximized"  "=false\
+\nfullscreen"        "=false\
+\nkeep_aspect_ratio" "=true\
+\nvertical_sync"     "=false\
+\n[\"Audio Settings\"]\
+\nvolume_master" "=100\
+\nvolume_music"  "=100\
+\nvolume_sfx"    "=100\
+\nmute"          "=false\
+\n[\"Input Mapping\"]\
+\njoypad_up"     "={device_guid=\"0003000000C82D000000600000000000\",device_id=0,event=\"jhat\",which=0,value=1}\
+\njoypad_down"   "={device_guid=\"00030000005e0400008e020000000078\",device_id=0,event=\"jhat\",which=0,value=4}\
+\njoypad_left"   "={device_guid=\"000300000025090000e8030000000000\",device_id=0,event=\"jhat\",which=0,value=8}\
+\njoypad_right"  "={device_guid=\"00030000006f0e0000a6020000000078\",device_id=0,event=\"jhat\",which=0,value=2}\
+\njoypad_A"      "={device_guid=\"0003000000C82D000000600000000000\",device_id=0,event=\"jbutton\",value=0}\
+\njoypad_B"      "={device_guid=\"00000000000000000000000000000000\",device_id=0,event=\"jbutton\",value=1}\
+\n";
+t_utf8*	toml_config = "\
+\n[\"General Settings\"]\
+\n\
+\nbackground_pause = false\
+\nbackground_input = true\
+\n\
+\n[\"Video Settings\"]\
+\n\
+\nwindow_position   = { x = -793, y =  75 }\
+\nwindow_size       = { x = 768,  y = 720 }\
+\nwindow_maximized  = false\
+\nfullscreen        = false\
+\nkeep_aspect_ratio = true\
+\nvertical_sync     = false\
+\n\
+\n[\"Audio Settings\"]\
+\n\
+\nvolume_master = 100\
+\nvolume_music  = 100\
+\nvolume_sfx    = 100\
+\nmute          = false\
+\n\
+\n[\"Input Mapping\"]\
+\n\
+\njoypad_up     = { device_guid = \"0003000000C82D000000600000000000\", device_id = 0, event = \"jhat\", which = 0, value = 1 }\
+\njoypad_down   = { device_guid = \"00030000005e0400008e020000000078\", device_id = 0, event = \"jhat\", which = 0, value = 4 }\
+\njoypad_left   = { device_guid = \"000300000025090000e8030000000000\", device_id = 0, event = \"jhat\", which = 0, value = 8 }\
+\njoypad_right  = { device_guid = \"00030000006f0e0000a6020000000078\", device_id = 0, event = \"jhat\", which = 0, value = 2 }\
+\njoypad_A      = { device_guid = \"0003000000C82D000000600000000000\", device_id = 0, event = \"jbutton\", value = 0 }\
+\njoypad_B      = { device_guid = \"00000000000000000000000000000000\", device_id = 0, event = \"jbutton\", value = 1 }\
+\n";
 
 
 
@@ -628,18 +691,19 @@ void	test_toml_##STRICT##_##MINIFY(void)																																			\
 	print_test_toml_##STRICT##_##MINIFY("toml_string_utf8_ru       ("#STRICT" -> "#MINIFY")", FALSE,		toml_string_utf8_ru##_MIN,				toml_string_utf8_ru);			\
 	print_test_toml_##STRICT##_##MINIFY("toml_string_utf8_jp       ("#STRICT" -> "#MINIFY")", FALSE,		toml_string_utf8_jp##_MIN,				toml_string_utf8_jp);			\
 	print_test_toml_##STRICT##_##MINIFY("toml_string_utf8_ho       ("#STRICT" -> "#MINIFY")", FALSE,		toml_string_utf8_ho##_MIN,				toml_string_utf8_ho);			\
-	print_test_toml_##STRICT##_##MINIFY("toml_array_empty          ("#STRICT" -> "#MINIFY")", FALSE,		toml_array_empty,						toml_array_empty);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_array_empty          ("#STRICT" -> "#MINIFY")", FALSE,		toml_array_empty##_MIN,					toml_array_empty);				\
 	print_test_toml_##STRICT##_##MINIFY("toml_array                ("#STRICT" -> "#MINIFY")", FALSE,		toml_array##_MIN,						toml_array);					\
 	print_test_toml_##STRICT##_##MINIFY("toml_array_min            ("#STRICT" -> "#MINIFY")", FALSE,		toml_array##_MIN,						toml_array_min);				\
 	print_test_toml_##STRICT##_##MINIFY("toml_array_nested         ("#STRICT" -> "#MINIFY")", FALSE,		toml_array_nested##_MIN,				toml_array_nested);				\
 	print_test_toml_##STRICT##_##MINIFY("toml_array_nested_min     ("#STRICT" -> "#MINIFY")", FALSE,		toml_array_nested##_MIN,				toml_array_nested_min);			\
-	print_test_toml_##STRICT##_##MINIFY("toml_object_empty         ("#STRICT" -> "#MINIFY")", FALSE,		toml_object_empty,						toml_object_empty);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_object_empty         ("#STRICT" -> "#MINIFY")", FALSE,		toml_object_empty##_MIN,				toml_object_empty);				\
 	print_test_toml_##STRICT##_##MINIFY("toml_object               ("#STRICT" -> "#MINIFY")", FALSE,		toml_object##_MIN,						toml_object);					\
 	print_test_toml_##STRICT##_##MINIFY("toml_object_min           ("#STRICT" -> "#MINIFY")", FALSE,		toml_object##_MIN,						toml_object_min);				\
 	print_test_toml_##STRICT##_##MINIFY("toml_object_nested        ("#STRICT" -> "#MINIFY")", FALSE,		toml_object_nested##_MIN,				toml_object_nested);			\
 	print_test_toml_##STRICT##_##MINIFY("toml_object_nested_min    ("#STRICT" -> "#MINIFY")", FALSE,		toml_object_nested##_MIN,				toml_object_nested_min);		\
 	print_test_toml_##STRICT##_##MINIFY("toml_object_nested_min    ("#STRICT" -> "#MINIFY")", FALSE,		toml_object_string##_MIN,				toml_object_string);			\
 	print_test_toml_##STRICT##_##MINIFY("toml_object_nested_min    ("#STRICT" -> "#MINIFY")", FALSE,		toml_object_string##_MIN,				toml_object_string_min);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_config               ("#STRICT" -> "#MINIFY")", FALSE,		toml_config##_MIN,						toml_config);					\
 	print_test_toml_##STRICT##_##MINIFY("toml_whitespace           ("#STRICT" -> "#MINIFY")", FALSE,		toml_helloworld##_MIN,					toml_whitespace);				\
 	print_test_toml_##STRICT##_##MINIFY("toml_whitespace_tab       ("#STRICT" -> "#MINIFY")", FALSE,		toml_helloworld##_MIN,					toml_whitespace_tab);			\
 	print_test_toml_##STRICT##_##MINIFY("toml_whitespace_nl        ("#STRICT" -> "#MINIFY")", FALSE,		toml_helloworld##_MIN,					toml_whitespace_nl);			\

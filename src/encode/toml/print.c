@@ -530,7 +530,7 @@ t_bool	TOML_Print_Value(s_toml const* item, s_toml_print* p)
 		case DYNAMICTYPE_RAW:
 		{
 			HANDLE_ERROR_SF(PRINT, (item->value.string == NULL), return (ERROR);,
-				"Item with key \"%s\" is of 'raw string' type, but its value is null", item->key)
+				": Item with key \"%s\" is of 'raw string' type, but its value is null", item->key)
 			length = String_Length(item->value.string) + sizeof("");
 			ENSURE(length)
 			Memory_Copy(result, item->value.string, length);
@@ -538,7 +538,7 @@ t_bool	TOML_Print_Value(s_toml const* item, s_toml_print* p)
 		}
 		default:
 			HANDLE_ERROR_SF(PRINT, (TRUE), return (ERROR);,
-				"Cannot print item with key \"%s\", has invalid type (%i)", item->key, item->type)
+				": Cannot print item with key %s, has invalid type (%i)", p->keypath, item->type)
 	}
 }
 
@@ -576,19 +576,6 @@ t_bool	TOML_Print_Key(s_toml const* item, s_toml_print* p, t_bool full_path)
 
 
 
-#define CHECK_COMPLEX_SUBOBJECTS(PRINTFUNC) \
-	s_toml* i = item->value.child;									\
-	if (i && i->next != i->prev)									\
-	while (i)														\
-	{																\
-		if ((i->type & DYNAMICTYPE_MASK) == DYNAMICTYPE_ARRAY ||	\
-			(i->type & DYNAMICTYPE_MASK) == DYNAMICTYPE_OBJECT)		\
-		{															\
-			return (PRINTFUNC);										\
-		}															\
-		i = i->next;												\
-	}																\
-
 static
 t_bool	TOML_Print_KeyValuePair(s_toml const* item, s_toml_print* p, t_bool full_path)
 {
@@ -597,15 +584,6 @@ t_bool	TOML_Print_KeyValuePair(s_toml const* item, s_toml_print* p, t_bool full_
 
 	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (ERROR);)
 	HANDLE_ERROR(NULLPOINTER, (item == NULL), return (ERROR);)
-
-	if ((item->type & DYNAMICTYPE_MASK) == DYNAMICTYPE_ARRAY)
-	{
-		CHECK_COMPLEX_SUBOBJECTS(TOML_Print_Table(item, p))
-	}
-	if ((item->type & DYNAMICTYPE_MASK) == DYNAMICTYPE_OBJECT)
-	{
-		CHECK_COMPLEX_SUBOBJECTS(TOML_Print_Table(item, p))
-	}
 
 	if (TOML_Print_Key(item, p, full_path))
 		return (ERROR);
@@ -622,6 +600,21 @@ t_bool	TOML_Print_KeyValuePair(s_toml const* item, s_toml_print* p, t_bool full_
 
 	return (OK);
 }
+
+
+
+#define CHECK_COMPLEX_SUBOBJECTS(PRINTFUNC) \
+	s_toml* i = item->value.child;									\
+	if (i && i->next != i->prev)									\
+	while (i)														\
+	{																\
+		if ((i->type & DYNAMICTYPE_MASK) == DYNAMICTYPE_ARRAY ||	\
+			(i->type & DYNAMICTYPE_MASK) == DYNAMICTYPE_OBJECT)		\
+		{															\
+			if (PRINTFUNC)	return (ERROR);							\
+		}															\
+		i = i->next;												\
+	}																\
 
 
 
@@ -662,7 +655,18 @@ t_bool	TOML_Print_Lines(s_toml const* item, s_toml_print* p)
 			p->offset += p->depth;
 		}
 		// print value
-		if (TOML_Print_KeyValuePair(current_item, p, FALSE))
+		HANDLE_ERROR(NULLPOINTER, (current_item == NULL), return (ERROR);)
+/*
+		else if ((current_item->type & DYNAMICTYPE_MASK) == DYNAMICTYPE_ARRAY)
+		{
+			CHECK_COMPLEX_SUBOBJECTS(TOML_Print_Table(current_item, p)) // TODO array tables
+		}
+*/
+		else if ((current_item->type & DYNAMICTYPE_MASK) == DYNAMICTYPE_OBJECT)
+		{
+			CHECK_COMPLEX_SUBOBJECTS(TOML_Print_Table(current_item, p))
+		}
+		else if (TOML_Print_KeyValuePair(current_item, p, FALSE))
 			return (ERROR);
 		TOML_Print_UpdateOffset(p);
 
@@ -675,23 +679,12 @@ t_bool	TOML_Print_Lines(s_toml const* item, s_toml_print* p)
 
 	TOML_Print_KeyPath_Pop(p);
 	p->depth--;
-/*
-	ENSURE(1)
-	*result++ = '\n';
-	p->offset++;
-*/
-	if (p->format)
+	if (!p->format)
 	{
-		ENSURE(p->depth)
-		for (t_size i = 0; i < p->depth; ++i)
-		{
-			*result++ = '\t';
-		}
-		p->offset += p->depth;
+		--result;
+		if (*result == '\n')
+			*result = '\0';
 	}
-	ENSURE(1)
-	*result = '\0';
-	p->offset++;
 	return (OK);
 }
 

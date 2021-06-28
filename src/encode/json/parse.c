@@ -66,7 +66,11 @@ s_json_parse*	JSON_Parse_SkipWhiteSpace(s_json_parse* p)
 			{
 				for (i = 0; (p->offset + i < p->length); ++i)
 				{
-					if (p->content[p->offset + i] == '*')
+					if (p->content[p->offset + i] == '\n')
+					{
+						p->line += 1;
+					}
+					else if (p->content[p->offset + i] == '*')
 					{
 						++i;
 						if (p->content[p->offset + i] == '/')
@@ -82,7 +86,10 @@ s_json_parse*	JSON_Parse_SkipWhiteSpace(s_json_parse* p)
 				for (i = 0; (p->offset + i < p->length); ++i)
 				{
 					if (p->content[p->offset + i] == '\n')
+					{
+						p->line += 1;
 						break;
+					}
 				}
 				p->offset += i;
 			}
@@ -582,12 +589,12 @@ t_size	JSON_Parse_(s_json* *dest, t_utf8 const* str, t_size n, t_bool strict)//,
 		return (p->offset);)
 	p->content = str;
 	p->length = n; 
-	p->offset = 0;
+	p->offset = UTF8_ByteOrderMark(str);
+	p->line = 1;
 	p->strict = strict;
 	result = JSON_Item();
 	if (result == NULL)
 		PARSINGERROR_JSON("Got null result: memory failure")
-	p->offset += UTF8_ByteOrderMark(str);
 	if (JSON_Parse_Value(result, JSON_Parse_SkipWhiteSpace(p)))
 		goto failure;
 	if (p->strict)

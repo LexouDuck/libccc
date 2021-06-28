@@ -7,8 +7,8 @@
 
 // the minimal boilerplate needed to store a single vlue in TOML
 #define JSON_TEST(NAME, STR) \
-	t_utf8 const*	NAME		= "{\"\": "STR"}";	\
-	t_utf8 const*	NAME##_min	= "{\"\":"STR"}";	\
+	t_utf8 const*	NAME		= "{\"\": "STR"}\n";	\
+	t_utf8 const*	NAME##_min	= "{\"\":"STR"}";		\
 
 
 
@@ -175,29 +175,33 @@ JSON_TEST(json_escape_utf8_ru_x	, "\"\\xD0\\xAF\\xD1\\x86\\xD0\\xBA \\xD0\\x9D\\
 
 
 
-t_utf8*	json_array_empty	= "[]";
-t_utf8*	json_array_min		= "[false,true,null]";
-t_utf8*	json_array			= "\
+t_utf8*	json_array_empty_min	= "[]";
+t_utf8*	json_array_empty		= "[]\n";
+t_utf8*	json_array_min			= "[false,true,null]";
+t_utf8*	json_array				= "\
 [\
 \n	false,\
 \n	true,\
 \n	null\
-\n]";
+\n]\
+\n";
 t_utf8*	json_array_nested_min	= "[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{\"swag\":1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]";
-t_utf8*	json_array_nested		= "[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{\"swag\": 1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]";
+t_utf8*	json_array_nested		= "[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{\"swag\": 1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]\n";
 
 
 
-t_utf8*	json_object_empty	= "{}";
-t_utf8*	json_object_min		= "{\"a\":false,\"b\":true,\"c\":null}";
-t_utf8*	json_object			= "\
+t_utf8*	json_object_empty_min	= "{}";
+t_utf8*	json_object_empty		= "{}\n";
+t_utf8*	json_object_min			= "{\"a\":false,\"b\":true,\"c\":null}";
+t_utf8*	json_object				= "\
 {\
 \n	\"a\": false,\
 \n	\"b\": true,\
 \n	\"c\": null\
-\n}";
+\n}\
+\n";
 t_utf8*	json_object_nested_min	= "{\"a\":{\"b\":{\"c\":{\"d\":{\"e\":{\"f\":{\"g\":{\"h\":{\"i\":{\"j\":{\"k\":{\"l\":{\"m\":{\"n\":{\"o\":{\"p\":{\"q\":{\"r\":{\"s\":{\"t\":{\"u\":{\"v\":{\"w\":{\"x\":{\"y\":{\"z\":\"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}";
-t_utf8*	json_object_nested		= "{\"a\": {\"b\": {\"c\": {\"d\": {\"e\": {\"f\": {\"g\": {\"h\": {\"i\": {\"j\": {\"k\": {\"l\": {\"m\": {\"n\": {\"o\": {\"p\": {\"q\": {\"r\": {\"s\": {\"t\": {\"u\": {\"v\": {\"w\": {\"x\": {\"y\": {\"z\": \"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}";
+t_utf8*	json_object_nested		= "{\"a\": {\"b\": {\"c\": {\"d\": {\"e\": {\"f\": {\"g\": {\"h\": {\"i\": {\"j\": {\"k\": {\"l\": {\"m\": {\"n\": {\"o\": {\"p\": {\"q\": {\"r\": {\"s\": {\"t\": {\"u\": {\"v\": {\"w\": {\"x\": {\"y\": {\"z\": \"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}\n";
 
 t_utf8*	json_object_string_min =
 "{"
@@ -218,12 +222,19 @@ t_utf8*	json_object_string =
 "{\
 \n	\"type\": 11,\
 \n	\"value\": \"{\\\"Label\\\":\\\"NAME\\\",\\\"Attributes\\\":{\\\"PATTERN_ATTRIBUTE\\\":[{\\\"Values\\\":[{\\\"STRING\\\":\\\"ENTITY_PATTERN\\\"}]}],\\\"DESCRIPTION_ATTRIBUTE\\\":[{\\\"Values\\\":[{\\\"STRING\\\":\\\"DESC\\\"}]}],\\\"CHARACTERISTIC_ATTRIBUTE\\\":[],\\\"TEMPLATE_ATTRIBUTE\\\":[{}]}}\"\
-\n}";
+\n}\
+\n";
+
+
+
+// TODO string literals ? (triple-quote """a""" or at @"a")
+
+// TODO key name conflict tests (+ case-insensitive)
 
 
 
 t_utf8*	json_helloworld_min	= "{\"hello\":\"world\"}";
-t_utf8*	json_helloworld		= "{\"hello\": \"world\"}";
+t_utf8*	json_helloworld		= "{\"hello\": \"world\"}\n";
 
 t_utf8*	json_whitespace		= "  {  \"hello\"  :  \"world\"  }  ";
 t_utf8*	json_whitespace_tab	= "\t{\t\"hello\"\t:\t\"world\"\t}\t";
@@ -286,7 +297,7 @@ t_utf8*	json_simple = "\
 \n		\"nest_object\": null\
 \n	}\
 \n}\
-";
+\n";
 
 
 
@@ -334,7 +345,7 @@ t_utf8*	json_commas = "\
 \n		\"nest_object\": null,\
 \n	},\
 \n}\
-";
+\n";
 
 
 
@@ -368,6 +379,90 @@ t_utf8*	json_newline = "\n\n\
 \n\n";
 
 
+
+t_utf8*	json_config_min =
+"{"
+	"\"General Settings\":"
+	"{"
+		"\"background_pause\":false,"
+		"\"background_input\":true"
+	"},"
+	"\"Video Settings\":"
+	"{"
+		"\"window_position\":"
+		"{"
+			"\"x\":-793,"
+			"\"y\":75"
+		"},"
+		"\"window_size\":"
+		"{"
+			"\"x\":768,"
+			"\"y\":720"
+		"},"
+		"\"window_maximized\":false,"
+		"\"fullscreen\":false,"
+		"\"keep_aspect_ratio\":true,"
+		"\"vertical_sync\":false"
+	"},"
+	"\"Audio Settings\":"
+	"{"
+		"\"volume_master\":100,"
+		"\"volume_music\":100,"
+		"\"volume_sfx\":100,"
+		"\"mute\":false"
+	"},"
+	"\"Input Mapping\":"
+	"{"
+		"\"joypad_up\":"    "{\"device_guid\":\"0003000000C82D000000600000000000\",\"device_id\":0,\"event\":\"jhat\",\"which\":0,\"value\":1},"
+		"\"joypad_down\":"  "{\"device_guid\":\"00030000005e0400008e020000000078\",\"device_id\":0,\"event\":\"jhat\",\"which\":0,\"value\":4},"
+		"\"joypad_left\":"  "{\"device_guid\":\"000300000025090000e8030000000000\",\"device_id\":0,\"event\":\"jhat\",\"which\":0,\"value\":8},"
+		"\"joypad_right\":" "{\"device_guid\":\"00030000006f0e0000a6020000000078\",\"device_id\":0,\"event\":\"jhat\",\"which\":0,\"value\":2},"
+		"\"joypad_A\":"     "{\"device_guid\":\"0003000000C82D000000600000000000\",\"device_id\":0,\"event\":\"jbutton\",\"value\":0},"
+		"\"joypad_B\":"     "{\"device_guid\":\"00000000000000000000000000000000\",\"device_id\":0,\"event\":\"jbutton\",\"value\":1}"
+	"}"
+"}";
+t_utf8*	json_config = "\
+{\
+\n	\"General Settings\": \
+\n	{\
+\n		\"background_pause\": false,\
+\n		\"background_input\": true\
+\n	},\
+\n	\"Video Settings\": \
+\n	{\
+\n		\"window_position\": \
+\n		{\
+\n			\"x\": -793,\
+\n			\"y\": 75\
+\n		},\
+\n		\"window_size\": \
+\n		{\
+\n			\"x\": 768,\
+\n			\"y\": 720\
+\n		},\
+\n		\"window_maximized\": false,\
+\n		\"fullscreen\": false,\
+\n		\"keep_aspect_ratio\": true,\
+\n		\"vertical_sync\": false\
+\n	},\
+\n	\"Audio Settings\": \
+\n	{\
+\n		\"volume_master\": 100,\
+\n		\"volume_music\": 100,\
+\n		\"volume_sfx\": 100,\
+\n		\"mute\": false\
+\n	},\
+\n	\"Input Mapping\": \
+\n	{\
+\n		\"joypad_up\":"    " \n\t\t{\n\t\t\t\"device_guid\": \"0003000000C82D000000600000000000\",\n\t\t\t\"device_id\": 0,\n\t\t\t\"event\": \"jhat\",\n\t\t\t\"which\": 0,\n\t\t\t\"value\": 1\n\t\t},\
+\n		\"joypad_down\":"  " \n\t\t{\n\t\t\t\"device_guid\": \"00030000005e0400008e020000000078\",\n\t\t\t\"device_id\": 0,\n\t\t\t\"event\": \"jhat\",\n\t\t\t\"which\": 0,\n\t\t\t\"value\": 4\n\t\t},\
+\n		\"joypad_left\":"  " \n\t\t{\n\t\t\t\"device_guid\": \"000300000025090000e8030000000000\",\n\t\t\t\"device_id\": 0,\n\t\t\t\"event\": \"jhat\",\n\t\t\t\"which\": 0,\n\t\t\t\"value\": 8\n\t\t},\
+\n		\"joypad_right\":" " \n\t\t{\n\t\t\t\"device_guid\": \"00030000006f0e0000a6020000000078\",\n\t\t\t\"device_id\": 0,\n\t\t\t\"event\": \"jhat\",\n\t\t\t\"which\": 0,\n\t\t\t\"value\": 2\n\t\t},\
+\n		\"joypad_A\":"     " \n\t\t{\n\t\t\t\"device_guid\": \"0003000000C82D000000600000000000\",\n\t\t\t\"device_id\": 0,\n\t\t\t\"event\": \"jbutton\",\n\t\t\t\"value\": 0\n\t\t},\
+\n		\"joypad_B\":"     " \n\t\t{\n\t\t\t\"device_guid\": \"00000000000000000000000000000000\",\n\t\t\t\"device_id\": 0,\n\t\t\t\"event\": \"jbutton\",\n\t\t\t\"value\": 1\n\t\t}\
+\n	}\
+\n}\
+\n";
 
 t_utf8*	json_complex_min =
 "{"
@@ -534,7 +629,8 @@ t_utf8*	json_complex = "\
 \n		\"player\",\
 \n		\"filmmaker\"\
 \n	]\
-\n}";
+\n}\
+\n";
 
 
 
@@ -697,18 +793,19 @@ void	test_json_##STRICT##_##MINIFY(void)																																			\
 	print_test_json_##STRICT##_##MINIFY("json_string_utf8_ru       ("#STRICT" -> "#MINIFY")", FALSE,		json_string_utf8_ru##_MIN,				json_string_utf8_ru);			\
 	print_test_json_##STRICT##_##MINIFY("json_string_utf8_jp       ("#STRICT" -> "#MINIFY")", FALSE,		json_string_utf8_jp##_MIN,				json_string_utf8_jp);			\
 	print_test_json_##STRICT##_##MINIFY("json_string_utf8_ho       ("#STRICT" -> "#MINIFY")", FALSE,		json_string_utf8_ho##_MIN,				json_string_utf8_ho);			\
-	print_test_json_##STRICT##_##MINIFY("json_array_empty          ("#STRICT" -> "#MINIFY")", FALSE,		json_array_empty,						json_array_empty);				\
+	print_test_json_##STRICT##_##MINIFY("json_array_empty          ("#STRICT" -> "#MINIFY")", FALSE,		json_array_empty##_MIN,					json_array_empty);				\
 	print_test_json_##STRICT##_##MINIFY("json_array                ("#STRICT" -> "#MINIFY")", FALSE,		json_array##_MIN,						json_array);					\
 	print_test_json_##STRICT##_##MINIFY("json_array_min            ("#STRICT" -> "#MINIFY")", FALSE,		json_array##_MIN,						json_array_min);				\
 	print_test_json_##STRICT##_##MINIFY("json_array_nested         ("#STRICT" -> "#MINIFY")", FALSE,		json_array_nested##_MIN,				json_array_nested);				\
 	print_test_json_##STRICT##_##MINIFY("json_array_nested_min     ("#STRICT" -> "#MINIFY")", FALSE,		json_array_nested##_MIN,				json_array_nested_min);			\
-	print_test_json_##STRICT##_##MINIFY("json_object_empty         ("#STRICT" -> "#MINIFY")", FALSE,		json_object_empty,						json_object_empty);				\
+	print_test_json_##STRICT##_##MINIFY("json_object_empty         ("#STRICT" -> "#MINIFY")", FALSE,		json_object_empty##_MIN,				json_object_empty);				\
 	print_test_json_##STRICT##_##MINIFY("json_object               ("#STRICT" -> "#MINIFY")", FALSE,		json_object##_MIN,						json_object);					\
 	print_test_json_##STRICT##_##MINIFY("json_object_min           ("#STRICT" -> "#MINIFY")", FALSE,		json_object##_MIN,						json_object_min);				\
 	print_test_json_##STRICT##_##MINIFY("json_object_nested        ("#STRICT" -> "#MINIFY")", FALSE,		json_object_nested##_MIN,				json_object_nested);			\
 	print_test_json_##STRICT##_##MINIFY("json_object_nested_min    ("#STRICT" -> "#MINIFY")", FALSE,		json_object_nested##_MIN,				json_object_nested_min);		\
 	print_test_json_##STRICT##_##MINIFY("json_object_nested_min    ("#STRICT" -> "#MINIFY")", FALSE,		json_object_string##_MIN,				json_object_string);			\
 	print_test_json_##STRICT##_##MINIFY("json_object_nested_min    ("#STRICT" -> "#MINIFY")", FALSE,		json_object_string##_MIN,				json_object_string_min);		\
+	print_test_json_##STRICT##_##MINIFY("json_config               ("#STRICT" -> "#MINIFY")", FALSE,		json_config##_MIN,						json_config);					\
 	print_test_json_##STRICT##_##MINIFY("json_whitespace           ("#STRICT" -> "#MINIFY")", FALSE,		json_helloworld##_MIN,					json_whitespace);				\
 	print_test_json_##STRICT##_##MINIFY("json_whitespace_tab       ("#STRICT" -> "#MINIFY")", FALSE,		json_helloworld##_MIN,					json_whitespace_tab);			\
 	print_test_json_##STRICT##_##MINIFY("json_whitespace_nl        ("#STRICT" -> "#MINIFY")", FALSE,		json_helloworld##_MIN,					json_whitespace_nl);			\

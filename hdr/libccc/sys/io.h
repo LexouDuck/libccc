@@ -209,7 +209,7 @@ t_bool						IO_IsTerminal(t_fd fd);
 **	@param	mode		The file access mode (permissions) with which to open the file
 **	@returns
 **	The new file descriptor value for the opened file,
-**	otherwise a non-zero error code (ie: an `errno` value)
+**	or a negative result if there was an error while attempting to open the file
 */
 t_fd					IO_Open(t_char const* filepath, t_io_open flags, t_io_mode mode);
 #define c_open			IO_Open

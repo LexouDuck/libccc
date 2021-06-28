@@ -438,7 +438,7 @@ t_bool	JSON_Print_Value(s_json const* item, s_json_print* p)
 		{
 			t_size raw_length = 0;
 			HANDLE_ERROR_SF(PRINT, (item->value.string == NULL), return (ERROR);,
-				"Item with key \"%s\" is of 'raw string' type, but its value is null", item->key)
+				": Item with key \"%s\" is of 'raw string' type, but its value is null", item->key)
 			raw_length = String_Length(item->value.string) + sizeof("");
 			ENSURE(raw_length)
 			Memory_Copy(result, item->value.string, raw_length);
@@ -446,8 +446,24 @@ t_bool	JSON_Print_Value(s_json const* item, s_json_print* p)
 		}
 		default:
 			HANDLE_ERROR_SF(PRINT, (TRUE), return (ERROR);,
-				"Cannot print item with key \"%s\", has invalid type (%i)", item->key, item->type)
+				": Cannot print item with key \"%s\", has invalid type (%i)", item->key, item->type)
 	}
+}
+
+
+
+static
+t_bool	JSON_Print_FinalNewLine(s_json_print* p)
+{
+	if (p->format)
+	{
+		t_utf8*	result = NULL;
+		ENSURE(2)
+		*result++ = '\n';
+		*result++ = '\0';
+		p->offset++;
+	}
+	return (OK);
 }
 
 
@@ -469,6 +485,7 @@ t_utf8*	JSON_Print_(s_json const* item, t_bool format)
 	if (JSON_Print_Value(item, p))
 		goto failure;
 	JSON_Print_UpdateOffset(p);
+	JSON_Print_FinalNewLine(p);
 
 #ifdef c_realloc // check if reallocate is available
 	{

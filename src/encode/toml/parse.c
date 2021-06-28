@@ -14,15 +14,15 @@ typedef s_kvt_parse	s_toml_parse;
 
 
 
-static t_bool TOML_Parse_Lines			(s_toml* item, s_toml_parse* p);
-static t_bool TOML_Parse_KeyValuePair	(s_toml* item, s_toml_parse* p);
-static t_bool TOML_Parse_Key			(s_toml* item, s_toml_parse* p);
-static t_bool TOML_Parse_Value			(s_toml* item, s_toml_parse* p);
-static t_bool TOML_Parse_Table			(s_toml* item, s_toml_parse* p);
-static t_bool TOML_Parse_Number			(s_toml* item, s_toml_parse* p);
-static t_bool TOML_Parse_String			(s_toml* item, s_toml_parse* p);
-static t_bool TOML_Parse_Array			(s_toml* item, s_toml_parse* p);
-static t_bool TOML_Parse_Object			(s_toml* item, s_toml_parse* p);
+static t_bool	TOML_Parse_Lines		(s_toml* item, s_toml_parse* p);
+static t_bool	TOML_Parse_KeyValuePair	(s_toml* item, s_toml_parse* p, s_toml* context);
+static t_bool	TOML_Parse_Key			(s_toml* item, s_toml_parse* p, s_toml* context, s_toml* *a_result);
+static t_bool	TOML_Parse_Value		(s_toml* item, s_toml_parse* p);
+static t_bool	TOML_Parse_Table		(s_toml* item, s_toml_parse* p);
+static t_bool	TOML_Parse_Number		(s_toml* item, s_toml_parse* p);
+static t_bool	TOML_Parse_String		(s_toml* item, s_toml_parse* p);
+static t_bool	TOML_Parse_Array		(s_toml* item, s_toml_parse* p);
+static t_bool	TOML_Parse_Object		(s_toml* item, s_toml_parse* p);
 
 
 
@@ -71,7 +71,10 @@ s_toml_parse*	TOML_Parse_SkipWhiteSpace(s_toml_parse* p)
 			for (i = 0; (p->offset + i < p->length); ++i)
 			{
 				if (p->content[p->offset + i] == '\n')
+				{
+					p->line += 1;
 					break;
+				}
 			}
 			p->offset += i;
 		}
@@ -81,7 +84,11 @@ s_toml_parse*	TOML_Parse_SkipWhiteSpace(s_toml_parse* p)
 			{
 				for (i = 0; (p->offset + i < p->length); ++i)
 				{
-					if (p->content[p->offset + i] == '*')
+					if (p->content[p->offset + i] == '\n')
+					{
+						p->line += 1;
+					}
+					else if (p->content[p->offset + i] == '*')
 					{
 						++i;
 						if (p->content[p->offset + i] == '/')
@@ -97,7 +104,10 @@ s_toml_parse*	TOML_Parse_SkipWhiteSpace(s_toml_parse* p)
 				for (i = 0; (p->offset + i < p->length); ++i)
 				{
 					if (p->content[p->offset + i] == '\n')
+					{
+						p->line += 1;
 						break;
+					}
 				}
 				p->offset += i;
 			}
@@ -416,6 +426,7 @@ t_bool	TOML_Parse_Array(s_toml* item, s_toml_parse* p)
 		p->offset--;
 		PARSINGERROR_TOML("Could not parse array: Unexpected end of input after '[' array start char")
 	}
+	item->type = DYNAMICTYPE_ARRAY;
 	// step back to character in front of the first element
 	p->offset--;
 	// loop through the comma separated array elements
@@ -473,6 +484,7 @@ failure:
 	if (head != NULL)
 	{
 		TOML_Delete(head);
+		head = NULL;
 	}
 	return (ERROR);
 }
@@ -503,6 +515,7 @@ t_bool	TOML_Parse_Object(s_toml* item, s_toml_parse* p)
 		p->offset--;
 		PARSINGERROR_TOML("Could not parse object: Unexpected end of input after '{' object start char")
 	}
+	item->type = DYNAMICTYPE_OBJECT;
 	// step back to character in front of the first element
 	p->offset--;
 	// loop through the comma separated array elements
@@ -529,7 +542,7 @@ t_bool	TOML_Parse_Object(s_toml* item, s_toml_parse* p)
 			current_item = new_item;
 		}
 
-		if (TOML_Parse_KeyValuePair(current_item, p))
+		if (TOML_Parse_KeyValuePair(current_item, p, item))
 			PARSINGERROR_TOML("Could not parse object: Failed to parse inline table member (in item wth key \"%s\")", current_item->key)
 		TOML_Parse_SkipWhiteSpace(p);
 /*
@@ -575,62 +588,8 @@ failure:
 	if (head != NULL)
 	{
 		TOML_Delete(head);
+		head = NULL;
 	}
-	return (ERROR);
-}
-
-
-
-static
-t_bool	TOML_Parse_Key(s_toml* item, s_toml_parse* p)
-{
-	if (!CAN_PARSE(0))
-		PARSINGERROR_TOML("Could not parse key string: Unexpected end of input before key")
-	if (p->content[p->offset] == '-' ||
-		p->content[p->offset] == '_' ||
-		Char_IsAlphaNumeric(p->content[p->offset]))
-	{	// bare key
-		t_size	length = 0;
-		while (Char_IsAlphaNumeric(p->content[p->offset + length]) ||
-			p->content[p->offset + length] == '-' ||
-			p->content[p->offset + length] == '_')
-		{
-			if (!CAN_PARSE(length))
-				PARSINGERROR_TOML("Could not parse key string: Unexpected end of input")
-			++length;
-		}
-		item->key = String_Sub(p->content, p->offset, length);
-		p->offset += length;
-	}
-	else if (p->content[p->offset] == '\"' || p->content[p->offset] == '\'')
-	{	// quoted key
-		if (TOML_Parse_String(item, p))
-			PARSINGERROR_TOML("Could not parse key string: Failed to parse object member key")
-		// swap value.string and string, because we parsed the name
-		item->key = item->value.string;
-		item->value.string = NULL;
-	}
-	else
-		PARSINGERROR_TOML("Could not parse key string: Unexpected character '%c'/0x%4.4X, expected bare key or quoted key",
-			(p->content[p->offset] ? p->content[p->offset] : '\a'), p->content[p->offset])
-
-	if (!CAN_PARSE(0))
-		PARSINGERROR_TOML("Could not parse key string: Unexpected end of input after key")
-	if (p->content[p->offset] == '.')
-	{
-		p->offset++;
-		s_toml* child = TOML_Item();
-		if (child == NULL)
-			PARSINGERROR_TOML("Could not allocate child object for parent with key \"%s\"", item->key)
-		item->type |= DYNAMICTYPE_OBJECT;
-		item->value.child = child;
-		if (TOML_Parse_Key(child, p))
-			PARSINGERROR_TOML("Could not parse sub-field key after parent key \"%s\"", item->key)
-	}
-
-	return (OK);
-
-failure:
 	return (ERROR);
 }
 
@@ -720,9 +679,143 @@ failure:
 
 
 static
+t_bool	TOML_Parse_Key_IsBareKeyChar(t_utf32 c)
+{
+	return (c == '-' || c == '_' || Char_IsAlphaNumeric(c));
+}
+
+static
+t_bool	TOML_Parse_Key(s_toml* item, s_toml_parse* p, s_toml* context, s_toml* *a_result)
+{
+	s_toml*	result = item;
+	s_toml*	exists = NULL;
+	s_toml* child = NULL;
+	s_toml*	tmp = NULL;
+	t_char*	key = NULL;
+
+	if (!CAN_PARSE(0))
+		PARSINGERROR_TOML("Could not parse key string: Unexpected end of input before key")
+	if (item->key)
+		PARSINGERROR_TOML("Could not parse key string: Key is already assigned: \"%s\"", item->key)
+
+	if (TOML_Parse_Key_IsBareKeyChar(p->content[p->offset]))
+	{	// bare key
+		t_size	length = 0;
+		while (TOML_Parse_Key_IsBareKeyChar(p->content[p->offset + length]))
+		{
+			if (!CAN_PARSE(length))
+				PARSINGERROR_TOML("Could not parse key string: Unexpected end of input")
+			++length;
+		}
+		key = String_Sub(p->content, p->offset, length);
+		p->offset += length;
+	}
+	else if (p->content[p->offset] == '\"' || p->content[p->offset] == '\'')
+	{	// quoted key
+		s_toml*	tmp = TOML_Item();
+		if (tmp == NULL)
+			PARSINGERROR_TOML("Could not parse key string: allocation failure");
+		if (TOML_Parse_String(tmp, p))
+			PARSINGERROR_TOML("Could not parse key string: Failed to parse object member key")
+		// swap value.string and .key, because we parsed the key
+		key = tmp->value.string;
+		tmp->value.string = NULL;
+		TOML_Delete(tmp);
+		tmp = NULL;
+	}
+	else
+		PARSINGERROR_TOML("Could not parse key string: Unexpected character '%c'/0x%4.4X, expected bare key or quoted key",
+			(p->content[p->offset] ? p->content[p->offset] : '\a'), p->content[p->offset])
+
+	if (key == NULL)
+		PARSINGERROR_TOML("Could not parse key string: allocation failure when copying key")
+
+	// check if parent-level object already contains this key
+	if ((context->type & DYNAMICTYPE_OBJECT) == 0)
+		PARSINGERROR_TOML("Could not parse key string: parent item does not have type 'OBJECT'")
+	tmp = context->value.child;
+	exists = NULL;
+	if (tmp)
+	{
+		while (tmp->next)
+		{
+			if (item != tmp && tmp->key && String_Equals(key, tmp->key))
+			{
+				exists = tmp;
+				break;
+			}
+			tmp = tmp->next;
+		}
+	}
+	tmp = NULL;
+	if (exists)
+	{
+		TOML_Delete(item);
+		item = exists;
+	}
+	else
+	{
+		if (item->key)
+			PARSINGERROR_TOML("Could not parse key string: item does not exist but has a key: \"%s\"", item->key)
+		item->key = key;
+	}
+
+	if (!CAN_PARSE(0))
+		PARSINGERROR_TOML("Could not parse key string: Unexpected end of input after key")
+
+	TOML_Parse_SkipWhiteSpace(p);
+	if (p->content[p->offset] == '.')
+	{
+		p->offset++;
+
+		item->type |= DYNAMICTYPE_OBJECT;
+		item->value.child = child;
+
+		child = TOML_Item();
+		if (child == NULL)
+			PARSINGERROR_TOML("Could not allocate child object for parent with key \"%s\"", item->key)
+		TOML_Parse_SkipWhiteSpace(p);
+		if (TOML_Parse_Key(child, p, item, &result))
+			PARSINGERROR_TOML("Could not parse sub-field key after parent key \"%s\"", item->key)
+	}
+	else // throw error when key is already assigned for leaf-level keys
+	{
+		if (exists)
+			PARSINGERROR_TOML("Name conflict, item key already exists: \"%s\"", item->key)
+	}
+
+	if (a_result)
+		*a_result = result;
+	return (OK);
+
+failure:
+/*
+	if (child && !exists)
+	{
+		TOML_Delete(child);
+		child = NULL;
+	}
+	if (tmp)
+	{
+		TOML_Delete(tmp);
+		tmp = NULL;
+	}
+	if (key && key != item->key)
+		String_Delete(&key);
+*/
+	return (ERROR);
+}
+
+
+
+static
 t_bool	TOML_Parse_Table(s_toml* item, s_toml_parse* p)
 {
 	t_size	line_no = p->line;
+	s_toml*	result = NULL;
+
+	HANDLE_ERROR(NULLPOINTER, (item == NULL), return (ERROR);)
+	// TODO double-bracket table array notation
 
 	if (p->content[p->offset] != '[')
 		PARSINGERROR_TOML("Expected '[' char, to begin table key, instead found '%c'/0x%4.4X",
@@ -730,8 +823,9 @@ t_bool	TOML_Parse_Table(s_toml* item, s_toml_parse* p)
 	p->offset++;
 	TOML_Parse_SkipWhiteSpace(p);
 
-	if (TOML_Parse_Key(item, p))
+	if (TOML_Parse_Key(item, p, p->result, &result))
 		PARSINGERROR_TOML("Inside table: Could not parse table/section name key");
+	result->type |= DYNAMICTYPE_OBJECT;
 
 	TOML_Parse_SkipWhiteSpace(p);
 	if (p->content[p->offset] != ']')
@@ -742,8 +836,8 @@ t_bool	TOML_Parse_Table(s_toml* item, s_toml_parse* p)
 		PARSINGERROR_TOML("A table/section name cannot span over multiple lines in strict TOML (only certain value types can)")
 	TOML_Parse_SkipWhiteSpace(p);
 
-	if (TOML_Parse_Lines(item, p))
-		PARSINGERROR_TOML("Inside table/section [%s]: error while parsing TOML string", item->key)
+	if (TOML_Parse_Lines(result, p))
+		PARSINGERROR_TOML("Inside table/section [\"%s\"]: error while parsing TOML string", item->key)
 
 	return (OK);
 
@@ -754,12 +848,14 @@ failure:
 
 
 static
-t_bool	TOML_Parse_KeyValuePair(s_toml* item, s_toml_parse* p)
+t_bool	TOML_Parse_KeyValuePair(s_toml* item, s_toml_parse* p, s_toml* context)
 {
 	t_size	line_no = p->line;
+	s_toml*	result = NULL;
 
-	if (TOML_Parse_Key(item, p))
+	if (TOML_Parse_Key(item, p, context, &result))
 		PARSINGERROR_TOML("Could not parse key/value pair: error while parsing key")
+
 	TOML_Parse_SkipWhiteSpace(p);
 	if (p->content[p->offset] == '=' || (!p->strict && p->content[p->offset] == ':'))
 		p->offset += 1;
@@ -770,8 +866,8 @@ t_bool	TOML_Parse_KeyValuePair(s_toml* item, s_toml_parse* p)
 	TOML_Parse_SkipWhiteSpace(p);
 	if (p->strict && line_no != p->line)
 		PARSINGERROR_TOML("A key/value pair cannot span over multiple lines in strict TOML (only certain value types can)")
-	if (TOML_Parse_Value(item, p))
-		PARSINGERROR_TOML("Could not parse key/value pair: error while parsing value assigned to key \"%s\"", item->key)
+	if (TOML_Parse_Value(result, p))
+		PARSINGERROR_TOML("Could not parse key/value pair: error while parsing value assigned to key \"%s\"", result->key)
 
 	return (OK);
 
@@ -787,8 +883,14 @@ t_bool	TOML_Parse_Lines(s_toml* item, s_toml_parse* p)
 	s_toml* head = NULL; // linked list head
 	s_toml* current_item = NULL;
 	s_toml* new_item;
-//	p.result = ;
+
 	TOML_Parse_SkipWhiteSpace(p);
+	if (p->content[p->offset] == '=')
+	{
+		// TODO custom logic: when no key is given ('=' at the beginning of the line), apply value to parent element
+	}
+
+	p->depth++;
 	while (CAN_PARSE(0))
 	{
 		if (p->content[p->offset] == '\0')
@@ -797,27 +899,43 @@ t_bool	TOML_Parse_Lines(s_toml* item, s_toml_parse* p)
 		new_item = TOML_Item();
 		if (new_item == NULL)
 			PARSINGERROR_TOML("Could not parse object: Allocation failure")
-		// attach next item to list
-		if (head == NULL)
-		{	// start the linked list
-			head = new_item;
-			current_item = new_item;
-		}
-		else
-		{	// add to the end and advance
-			current_item->next = new_item;
-			new_item->prev = current_item;
-			current_item = new_item;
-		}
 
 		if (p->content[p->offset] == '[')
 		{
-			if (TOML_Parse_Table(current_item, p))
+			if (item != p->result)
+				goto success;
+			item->type = DYNAMICTYPE_OBJECT; // TODO handle TOML with root-level arrays
+			if (item->value.child == NULL)
+			{
+				item->value.child = new_item;
+				current_item = new_item;
+			}
+			else
+			{	// add to the end and advance
+				current_item->next = new_item;
+				new_item->prev = current_item;
+				current_item = new_item;
+			}
+			if (TOML_Parse_Table(new_item, p))
 				goto failure;
 		}
 		else
 		{
-			if (TOML_Parse_KeyValuePair(current_item, p))
+			// attach next item to list
+			if (head == NULL)
+			{	// start the linked list
+				head = new_item;
+				current_item = new_item;
+			}
+			else
+			{	// add to the end and advance
+				current_item->next = new_item;
+				new_item->prev = current_item;
+				current_item = new_item;
+			}
+			item->type = DYNAMICTYPE_OBJECT;
+			item->value.child = head;
+			if (TOML_Parse_KeyValuePair(current_item, p, item))
 				goto failure;
 		}
 		TOML_Parse_SkipWhiteSpace(p);
@@ -830,13 +948,15 @@ success:
 		head->prev = current_item;
 	}
 	item->type = DYNAMICTYPE_OBJECT;
-	item->value.child = head;
+	if (item != p->result)
+		item->value.child = head;
 	return (OK);
 
 failure:
 	if (head != NULL)
 	{
 		TOML_Delete(head);
+		head = NULL;
 	}
 	return (ERROR);
 }
@@ -848,7 +968,6 @@ t_size	TOML_Parse_(s_toml* *dest, t_char const* str, t_size n, t_bool strict)
 {
 	s_toml_parse parser = { 0 };
 	s_toml_parse* p = &parser;
-	s_toml* result = NULL;
 
 	HANDLE_ERROR(LENGTH2SMALL, (n < 1),
 		if (dest) *dest = NULL;
@@ -858,10 +977,11 @@ t_size	TOML_Parse_(s_toml* *dest, t_char const* str, t_size n, t_bool strict)
 	p->length = n; 
 	p->offset = UTF8_ByteOrderMark(str);
 	p->strict = strict;
-	result = TOML_Item();
-	if (result == NULL)
+	p->line = 1;
+	p->result = TOML_Item();
+	if (p->result == NULL)
 		PARSINGERROR_TOML("Got null result: memory failure")
-	if (TOML_Parse_Lines(result, TOML_Parse_SkipWhiteSpace(p)))
+	if (TOML_Parse_Lines(p->result, TOML_Parse_SkipWhiteSpace(p)))
 		goto failure;
 	if (p->strict)
 	{	// if we require null-terminated TOML without appended garbage, skip and then check for a null terminator
@@ -875,13 +995,14 @@ t_size	TOML_Parse_(s_toml* *dest, t_char const* str, t_size n, t_bool strict)
 		*return_parse_end = &p.content[p.offset];
 	}
 */
-	if (dest) *dest = result;
+	if (dest) *dest = p->result;
 	return (p->offset);
 
 failure:
-	if (result != NULL)
+	if (p->result != NULL)
 	{
-		TOML_Delete(result);
+//		TOML_Delete(p->result);
+		p->result = NULL;
 	}
 	if (str != NULL)
 	{
