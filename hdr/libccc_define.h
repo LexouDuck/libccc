@@ -351,9 +351,11 @@ HEADER_CPP
 	#define __alignof__(X)	_Alignof(X)
 #elif defined(alignof)
 	#define __alignof__(X)	alignof(X)
-#else
+#elif (!defined(__MSVC__))
 	#include <stdalign.h>
 	#define __alignof__(X)	alignof(X)
+#else
+	#define __alignof__(X)	
 #endif
 #endif
 //!@}
@@ -371,9 +373,11 @@ HEADER_CPP
 	#define __alignas__(X)	_Alignas(X)
 #elif defined(alignas)
 	#define __alignas__(X)	alignas(X)
-#else
+#elif (!defined(__MSVC__))
 	#include <stdalign.h>
 	#define __alignas__(X)	alignas(X)
+#else
+	#define __alignas__(X)	
 #endif
 #endif
 //!@}
