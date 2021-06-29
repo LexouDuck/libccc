@@ -27,7 +27,11 @@ typedef s_kvt_print	s_toml_print;
 
 
 
+//! The set of characters which are valid in a bare (unquoted) key
 #define TOML_CHARSET_BAREKEY	"-"CHARSET_ALPHABET"_"CHARSET_DECIMAL
+
+//! The maximum amount of items an inline array/object can have before being spread across multiple lines
+#define TOML_INLINE_MULTILINE	8
 
 
 
@@ -71,15 +75,22 @@ void TOML_Print_KeyPath_Pop(s_toml_print* p)
 	bare = TRUE;
 	if (p->keypath)
 		oldpath = p->keypath;
-	i = String_Length(oldpath);
-	while (i--)
+	i = String_Length(oldpath) - 1;
+	while (--i)
 	{
-		if (bare && oldpath[i] == '.')
-			break;
-		else if (oldpath[i] == '\"')
-			bare = !bare;
+		if (bare)
+		{
+			if (oldpath[i] == '.')
+				break;
+			if (oldpath[i] == '\"')
+				bare = FALSE;
+		}
+		else
+		{
+			if (oldpath[i] == '\"')
+				bare = TRUE;
+		}
 	}
-	i++;
 	p->keypath = (i == 0 ? NULL : String_Sub(oldpath, 0, i));
 	if (oldpath)
 		String_Delete(&oldpath);
@@ -305,13 +316,15 @@ t_bool	TOML_Print_Array(s_toml const* item, s_toml_print* p)
 	// Compose the output array.
 	if (!(current_item && (current_item->next || current_item->prev != current_item)))
 		multiline = FALSE;
+	if (TOML_GetArrayLength(item) <= TOML_INLINE_MULTILINE)
+		multiline = FALSE;
 	if (multiline &&
 		p->buffer[p->offset - 1] == ' ' &&
 		p->buffer[p->offset - 2] == '=')
 	{
 		ENSURE(p->depth + 1)
 		*result++ = '\n';
-		for (t_size i = 0; i < p->depth; i++)
+		for (t_size i = 0; i < p->depth; ++i)
 		{
 			*result++ = '\t';
 		}
@@ -337,7 +350,7 @@ t_bool	TOML_Print_Array(s_toml const* item, s_toml_print* p)
 		{
 			ENSURE(p->depth + 1)
 			*result++ = '\n';
-			for (t_size i = 0; i < p->depth; i++)
+			for (t_size i = 0; i < p->depth; ++i)
 			{
 				*result++ = '\t';
 			}
@@ -350,9 +363,14 @@ t_bool	TOML_Print_Array(s_toml const* item, s_toml_print* p)
 		// print comma if not last
 		if (current_item->next)
 		{
-			ENSURE(2)
+			ENSURE(p->format && !multiline ? 2 : 3)
 			*result++ = ',';
 			p->offset++;
+			if (p->format && !multiline)
+			{
+				*result++ = ' ';
+				p->offset++;
+			}
 		}
 		else ENSURE(1)
 		*result = '\0';
@@ -398,13 +416,15 @@ t_bool	TOML_Print_Object(s_toml const* item, s_toml_print* p)
 	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (ERROR);)
 	if (!(current_item && (current_item->next || current_item->prev != current_item)))
 		multiline = FALSE;
+	if (TOML_GetArrayLength(item) <= TOML_INLINE_MULTILINE)
+		multiline = FALSE;
 	if (multiline &&
 		p->buffer[p->offset - 1] == ' ' &&
 		p->buffer[p->offset - 2] == '=')
 	{
 		ENSURE(p->depth + 1)
 		*result++ = '\n';
-		for (t_size i = 0; i < p->depth; i++)
+		for (t_size i = 0; i < p->depth; ++i)
 		{
 			*result++ = '\t';
 		}
@@ -430,7 +450,7 @@ t_bool	TOML_Print_Object(s_toml const* item, s_toml_print* p)
 		{
 			ENSURE(p->depth + 1)
 			*result++ = '\n';
-			for (t_size i = 0; i < p->depth; i++)
+			for (t_size i = 0; i < p->depth; ++i)
 			{
 				*result++ = '\t';
 			}
@@ -444,9 +464,14 @@ t_bool	TOML_Print_Object(s_toml const* item, s_toml_print* p)
 		// print comma if not last
 		if (current_item->next)
 		{
-			ENSURE(2)
+			ENSURE(p->format && !multiline ? 2 : 3)
 			*result++ = ',';
 			p->offset++;
+			if (p->format && !multiline)
+			{
+				*result++ = ' ';
+				p->offset++;
+			}
 		}
 		else ENSURE(1)
 		*result = '\0';
@@ -534,7 +559,7 @@ t_bool	TOML_Print_Table(s_toml const* item, s_toml_print* p)
 {
 	t_utf8*	result = NULL;
 
-	if (p->format)
+	if (p->format && p->offset > 1)
 	{
 		ENSURE(2)
 		*result++ = '\n';
@@ -627,23 +652,42 @@ t_bool	TOML_Print_KeyValuePair(s_toml const* item, s_toml_print* p, t_bool full_
 }
 
 
+static
+t_bool	TOML_Print_IsKeyComplex(t_char const* key)
+{
+	t_size	i = 0;
 
-#define CHECK_COMPLEX_SUBOBJECTS(PRINTFUNC) \
-{																	\
-	s_toml* i = current_item->value.child;							\
-	if (i && i->next)												\
-	while (i)														\
-	{																\
-		if ((i->type & DYNAMICTYPE_MASK) == DYNAMICTYPE_ARRAY ||	\
-			(i->type & DYNAMICTYPE_MASK) == DYNAMICTYPE_OBJECT)		\
-		{															\
-			if (PRINTFUNC)	return (ERROR);							\
-		}															\
-		i = i->next;												\
-	}																\
-}																	\
+	if (key == NULL)
+		return (FALSE);
+	while (key[i])
+	{
+		if (!(key[i] == '-' || key[i] == '_' || Char_IsAlphaNumeric(key[i])))
+			return (TRUE);
+		++i;
+	}
+	return (FALSE);
+}
 
-
+static
+t_bool	TOML_Print_IsObjectComplex(s_toml const* item)
+{
+	if (item == NULL)
+		return (FALSE);
+	if (TOML_Print_IsKeyComplex(item->key))
+		return (TRUE);
+	s_toml* i = item->value.child;
+	if (i && i->next)
+	while (i)
+	{
+		if ((i->type & DYNAMICTYPE_MASK) == DYNAMICTYPE_ARRAY ||
+			(i->type & DYNAMICTYPE_MASK) == DYNAMICTYPE_OBJECT)
+		{
+			return (TRUE);
+		}
+		i = i->next;
+	}
+	return (FALSE);
+}
 
 static
 t_bool	TOML_Print_Lines(s_toml const* item, s_toml_print* p)
@@ -656,18 +700,19 @@ t_bool	TOML_Print_Lines(s_toml const* item, s_toml_print* p)
 
 	if (p->format)
 	{
-		ENSURE(1)
+		ENSURE(2)
 		*result++ = '\n';
 		p->offset++;
+		*result = '\0';
 	}
 
 	current_item = item->value.child;
 	while (current_item)
 	{
-		if (p->format)
+		if (p->format && p->depth)
 		{
 			ENSURE(p->depth)
-			for (t_size i = 0; i < p->depth; i++)
+			for (t_size i = 0; i < p->depth; ++i)
 			{
 				*result++ = '\t';
 			}
@@ -675,26 +720,37 @@ t_bool	TOML_Print_Lines(s_toml const* item, s_toml_print* p)
 		}
 		// print value
 		HANDLE_ERROR(NULLPOINTER, (current_item == NULL), return (ERROR);)
-//		else if ((current_item->type & DYNAMICTYPE_MASK) == DYNAMICTYPE_ARRAY)
-//			CHECK_COMPLEX_SUBOBJECTS(TOML_Print_Table(current_item, p)) // TODO array tables
-		else if ((current_item->type & DYNAMICTYPE_MASK) == DYNAMICTYPE_OBJECT)
-			CHECK_COMPLEX_SUBOBJECTS(TOML_Print_Table(current_item, p))
+/* TODO array tables
+		else if ((current_item->type & DYNAMICTYPE_MASK) == DYNAMICTYPE_ARRAY &&
+			TOML_Print_IsObjectComplex(current_item))
+		{
+			if (TOML_Print_Table(current_item, p))
+				return (ERROR);
+		}
+*/
+		else if ((current_item->type & DYNAMICTYPE_MASK) == DYNAMICTYPE_OBJECT &&
+			TOML_Print_IsObjectComplex(current_item))
+		{
+			if (item != p->item) // return to top level for next table
+				return (OK);
+			if (TOML_Print_Table(current_item, p))
+				return (ERROR);
+		}
 		else if (TOML_Print_KeyValuePair(current_item, p, FALSE))
 			return (ERROR);
 
-		ENSURE(2)
-		*result++ = '\n';
-		p->offset++;
+		if ((p->format || current_item->next) &&
+			p->buffer[p->offset - 1] != '\n')
+		{
+			ENSURE(2)
+			*result++ = '\n';
+			p->offset++;
+		}
+		else ENSURE(1)
 		*result = '\0';
 		current_item = current_item->next;
 	}
 
-	if (result && !p->format)
-	{
-		--result;
-		if (*result == '\n')
-			*result = '\0';
-	}
 	return (OK);
 }
 

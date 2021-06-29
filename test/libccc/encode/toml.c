@@ -179,28 +179,14 @@ TOML_TEST(toml_escape_utf8_ru_x	, "\"\\xD0\\xAF\\xD1\\x86\\xD0\\xBA \\xD0\\x9D\\
 t_utf8*	toml_array_empty_min			= "_=[]";
 t_utf8*	toml_array_empty				= "\n_ = []\n";
 t_utf8*	toml_array_min					= "_=[false,true,null]";
-t_utf8*	toml_array						= "\
-\n_ = \
-\n[\
-\n	false,\
-\n	true,\
-\n	null\
-\n]\
-\n";
+t_utf8*	toml_array						= "\n_ = [ false, true, null ]\n";
 t_utf8*	toml_array_nested_min			= "_=[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{swag=1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]";
 t_utf8*	toml_array_nested				= "\n_ = [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ { swag = 1 } ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ]\n";
 /* TODO
 t_utf8*	toml_inline_array_empty_min		= "_=[]";
 t_utf8*	toml_inline_array_empty			= "\n_ = []\n";
 t_utf8*	toml_inline_array_min			= "_=[false,true,null]\n";
-t_utf8*	toml_inline_array				= "\
-\n_ = \
-\n[\
-\n	false,\
-\n	true,\
-\n	null\
-\n]\
-\n";
+t_utf8*	toml_inline_array				= "\n_ = [ false, true, null ]\n";
 t_utf8*	toml_inline_array_nested_min	= "_=[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{swag=1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]";
 t_utf8*	toml_inline_array_nested		= "\n_ = [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ { swag = 1 } ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ]\n";
 */
@@ -209,30 +195,16 @@ t_utf8*	toml_inline_array_nested		= "\n_ = [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [
 t_utf8*	toml_object_empty_min			= "_={}";
 t_utf8*	toml_object_empty				= "\n_ = {}\n";
 t_utf8*	toml_object_min					= "_={a=false,b=true,c=null}";
-t_utf8*	toml_object						= "\
-\n_ = \
-\n{\
-\n	a = false,\
-\n	b = true,\
-\n	c = null\
-\n}\
-\n";
+t_utf8*	toml_object						= "\n_ = { a = false, b = true, c = null }\n";
 t_utf8*	toml_object_nested_min			= "_={a={b={c={d={e={f={g={h={i={j={k={l={m={n={o={p={q={r={s={t={u={v={w={x={y={z=\"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}";
-t_utf8*	toml_object_nested				= "\n_ = { a = { b = { c = { d = { e = { f = { g = { h = { i = { j = { k = { l = { m = { n = { o = { p = { q = { r = { s = { t = { u = { v = { w = { x = { y = { z = \"swag\"} } } } } } } } } } } } } } } } } } } } } } } } } }\n";
+t_utf8*	toml_object_nested				= "\n_ = { a = { b = { c = { d = { e = { f = { g = { h = { i = { j = { k = { l = { m = { n = { o = { p = { q = { r = { s = { t = { u = { v = { w = { x = { y = { z = \"swag\" } } } } } } } } } } } } } } } } } } } } } } } } } }\n";
 /* TODO
 t_utf8*	toml_inline_object_empty_min	= "_={}";
 t_utf8*	toml_inline_object_empty		= "\n_ = {}\n";
 t_utf8*	toml_inline_object_min			= "_={a=false,b=true,c=null}\n";
-t_utf8*	toml_inline_object				= "\
-\n_ = \
-\n{\
-\n	a = false,\
-\n	b = true,\
-\n	c = null\
-\n}\
-\n";
+t_utf8*	toml_inline_object				= "\n_ = { a = false, b = true, c = null }\n";
 t_utf8*	toml_inline_object_nested_min	= "_={a={b={c={d={e={f={g={h={i={j={k={l={m={n={o={p={q={r={s={t={u={v={w={x={y={z=\"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}";
-t_utf8*	toml_inline_object_nested		= "\n_ = { a = { b = { c = { d = { e = { f = { g = { h = { i = { j = { k = { l = { m = { n = { o = { p = { q = { r = { s = { t = { u = { v = { w = { x = { y = { z = \"swag\"} } } } } } } } } } } } } } } } } } } } } } } } } }\n";
+t_utf8*	toml_inline_object_nested		= "\n_ = { a = { b = { c = { d = { e = { f = { g = { h = { i = { j = { k = { l = { m = { n = { o = { p = { q = { r = { s = { t = { u = { v = { w = { x = { y = { z = \"swag\" } } } } } } } } } } } } } } } } } } } } } } } } } }\n";
 */
 
 
@@ -301,13 +273,7 @@ t_utf8*	toml_simple = "\
 \ntest_bool_1 = true\
 \ntest_number = 0\
 \ntest_string = \"\"\
-\ntest_arrays = \
-\n[\
-\n	false,\
-\n	true,\
-\n	0,\
-\n	\"\"\
-\n]\
+\ntest_arrays = [ false, true, 0, \"\" ]\
 \n\
 \n[test_object]\
 \n\
@@ -315,11 +281,7 @@ t_utf8*	toml_simple = "\
 \n	nest_bool_1 = true\
 \n	nest_number = 0\
 \n	nest_string = \"\"\
-\n	nest_arrays = \
-\n	[\
-\n		123456,\
-\n		\"hello\"\
-\n	]\
+\n	nest_arrays = [ 123456, \"hello\" ]\
 \n	nest_object = null\
 \n";
 
@@ -422,33 +384,33 @@ t_utf8*	toml_config_min =
 t_utf8*	toml_config = "\
 \n[\"General Settings\"]\
 \n\
-\nbackground_pause = false\
-\nbackground_input = true\
+\n	background_pause = false\
+\n	background_input = true\
 \n\
 \n[\"Video Settings\"]\
 \n\
-\nwindow_position   = { x = -793, y =  75 }\
-\nwindow_size       = { x = 768,  y = 720 }\
-\nwindow_maximized  = false\
-\nfullscreen        = false\
-\nkeep_aspect_ratio = true\
-\nvertical_sync     = false\
+\n	window_position"   " = { x = -793, y = 75 }\
+\n	window_size"       " = { x = 768, y = 720 }\
+\n	window_maximized"  " = false\
+\n	fullscreen"        " = false\
+\n	keep_aspect_ratio" " = true\
+\n	vertical_sync"     " = false\
 \n\
 \n[\"Audio Settings\"]\
 \n\
-\nvolume_master = 100\
-\nvolume_music  = 100\
-\nvolume_sfx    = 100\
-\nmute          = false\
+\n	volume_master" " = 100\
+\n	volume_music"  " = 100\
+\n	volume_sfx"    " = 100\
+\n	mute"          " = false\
 \n\
 \n[\"Input Mapping\"]\
 \n\
-\njoypad_up     = { device_guid = \"0003000000C82D000000600000000000\", device_id = 0, event = \"jhat\", which = 0, value = 1 }\
-\njoypad_down   = { device_guid = \"00030000005E0400008E020000000078\", device_id = 0, event = \"jhat\", which = 0, value = 4 }\
-\njoypad_left   = { device_guid = \"000300000025090000E8030000000000\", device_id = 0, event = \"jhat\", which = 0, value = 8 }\
-\njoypad_right  = { device_guid = \"00030000006F0E0000A6020000000078\", device_id = 0, event = \"jhat\", which = 0, value = 2 }\
-\njoypad_A      = { device_guid = \"0003000000C82D000000600000000000\", device_id = 0, event = \"jbutton\", value = 0 }\
-\njoypad_B      = { device_guid = \"00000000000000000000000000000000\", device_id = 0, event = \"jbutton\", value = 1 }\
+\n	joypad_up"    " = { device_guid = \"0003000000C82D000000600000000000\", device_id = 0, event = \"jhat\", which = 0, value = 1 }\
+\n	joypad_down"  " = { device_guid = \"00030000005E0400008E020000000078\", device_id = 0, event = \"jhat\", which = 0, value = 4 }\
+\n	joypad_left"  " = { device_guid = \"000300000025090000E8030000000000\", device_id = 0, event = \"jhat\", which = 0, value = 8 }\
+\n	joypad_right" " = { device_guid = \"00030000006F0E0000A6020000000078\", device_id = 0, event = \"jhat\", which = 0, value = 2 }\
+\n	joypad_A"     " = { device_guid = \"0003000000C82D000000600000000000\", device_id = 0, event = \"jbutton\", value = 0 }\
+\n	joypad_B"     " = { device_guid = \"00000000000000000000000000000000\", device_id = 0, event = \"jbutton\", value = 1 }\
 \n";
 
 
