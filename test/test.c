@@ -32,15 +32,9 @@ void	test_cccerrorhandler(e_cccerror error, t_char const* message)
 		return;
 	}
 	g_test.last_test_error = String_Format(
-		C_RED"ERROR"C_RESET"[%s]: %s\n",
-			Error_GetName(error), message);
-	if ((g_test.last_test_failed || g_test.flags.verbose) &&
-		g_test.last_test_error &&
-		g_test.flags.show_errors)
-	{
-		printf("%s", g_test.last_test_error);
-	}
-
+		"%s"C_RED"ERROR"C_RESET"[%s]: %s\n",
+		(g_test.last_test_error ? g_test.last_test_error : ""),
+		Error_GetName(error), message);
 }
 
 void	test_init(void)
@@ -100,15 +94,27 @@ void	print_test(
 			printf(" | ");
 		}
 	}
-	if (g_test.flags.show_args && args && (g_test.flags.verbose || g_test.last_test_failed))
+	if (g_test.last_test_failed || g_test.flags.verbose)
 	{
-		printf("(%s)\t=> ", args);
+		if (g_test.flags.show_args && args)
+		{
+			printf("(%s)\t=> ", args);
+		}
+		if (g_test.flags.show_errors && g_test.last_test_error)
+		{
+			printf("\n%s", g_test.last_test_error);
+		}
+	}
+	if (g_test.last_test_error)
+	{
+		free(g_test.last_test_error);
+		g_test.last_test_error = NULL;
 	}
 	if (error)
 	{
 		if (str_equals(expect, "(n/a)"))
 			printf(C_RED"TEST COULD NOT BE PERFORMED\n"C_RESET);
-		else printf(C_RED"Error:\n");
+		else printf(C_RED"TEST FAILED:\n");
 		if (function[0] == '_')
 		{
 			static char const* expected = "Expected";
