@@ -138,13 +138,14 @@ typedef struct kvt_parse
 //! This struct is used to print a data file string (JSON, TOML, YAML, XML, etc)
 typedef struct kvt_print
 {
-	t_utf8*	buffer;	//!< the result string which is written to
-	t_size	offset;	//!< current writing offset of the string to print
-	t_size	length;	//!< the (current maximum) length of the string to print
-	t_bool	noalloc;//!< if `TRUE`, then it means `buffer` is pre-allocated by the caller
-	t_bool	format;	//!< is this print a formatted print
-	t_size	depth;	//!< the current nesting depth (for formatted printing)
-	t_utf8*	keypath;//!< the current path of keys, separated by periods (think TOML section tables)
+	s_kvt const* item;	//!< the object to print
+	t_utf8*	buffer;		//!< the result string which is written to
+	t_size	offset;		//!< current writing offset of the string to print
+	t_size	length;		//!< the (current maximum) length of the string to print
+	t_bool	noalloc;	//!< if `TRUE`, then it means `buffer` is pre-allocated by the caller
+	t_bool	format;		//!< is this print a formatted print
+	t_size	depth;		//!< the current nesting depth (for formatted printing)
+	t_utf8*	keypath;	//!< the current path of keys, separated by periods (think TOML section tables)
 }		s_kvt_print;
 
 #define KVT_NUMBER_BUFFERSIZE	64

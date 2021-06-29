@@ -414,9 +414,9 @@ t_utf8*	json_config_min =
 	"\"Input Mapping\":"
 	"{"
 		"\"joypad_up\":"    "{\"device_guid\":\"0003000000C82D000000600000000000\",\"device_id\":0,\"event\":\"jhat\",\"which\":0,\"value\":1},"
-		"\"joypad_down\":"  "{\"device_guid\":\"00030000005e0400008e020000000078\",\"device_id\":0,\"event\":\"jhat\",\"which\":0,\"value\":4},"
-		"\"joypad_left\":"  "{\"device_guid\":\"000300000025090000e8030000000000\",\"device_id\":0,\"event\":\"jhat\",\"which\":0,\"value\":8},"
-		"\"joypad_right\":" "{\"device_guid\":\"00030000006f0e0000a6020000000078\",\"device_id\":0,\"event\":\"jhat\",\"which\":0,\"value\":2},"
+		"\"joypad_down\":"  "{\"device_guid\":\"00030000005E0400008E020000000078\",\"device_id\":0,\"event\":\"jhat\",\"which\":0,\"value\":4},"
+		"\"joypad_left\":"  "{\"device_guid\":\"000300000025090000E8030000000000\",\"device_id\":0,\"event\":\"jhat\",\"which\":0,\"value\":8},"
+		"\"joypad_right\":" "{\"device_guid\":\"00030000006F0E0000A6020000000078\",\"device_id\":0,\"event\":\"jhat\",\"which\":0,\"value\":2},"
 		"\"joypad_A\":"     "{\"device_guid\":\"0003000000C82D000000600000000000\",\"device_id\":0,\"event\":\"jbutton\",\"value\":0},"
 		"\"joypad_B\":"     "{\"device_guid\":\"00000000000000000000000000000000\",\"device_id\":0,\"event\":\"jbutton\",\"value\":1}"
 	"}"
@@ -455,9 +455,9 @@ t_utf8*	json_config = "\
 \n	\"Input Mapping\": \
 \n	{\
 \n		\"joypad_up\":"    " \n\t\t{\n\t\t\t\"device_guid\": \"0003000000C82D000000600000000000\",\n\t\t\t\"device_id\": 0,\n\t\t\t\"event\": \"jhat\",\n\t\t\t\"which\": 0,\n\t\t\t\"value\": 1\n\t\t},\
-\n		\"joypad_down\":"  " \n\t\t{\n\t\t\t\"device_guid\": \"00030000005e0400008e020000000078\",\n\t\t\t\"device_id\": 0,\n\t\t\t\"event\": \"jhat\",\n\t\t\t\"which\": 0,\n\t\t\t\"value\": 4\n\t\t},\
-\n		\"joypad_left\":"  " \n\t\t{\n\t\t\t\"device_guid\": \"000300000025090000e8030000000000\",\n\t\t\t\"device_id\": 0,\n\t\t\t\"event\": \"jhat\",\n\t\t\t\"which\": 0,\n\t\t\t\"value\": 8\n\t\t},\
-\n		\"joypad_right\":" " \n\t\t{\n\t\t\t\"device_guid\": \"00030000006f0e0000a6020000000078\",\n\t\t\t\"device_id\": 0,\n\t\t\t\"event\": \"jhat\",\n\t\t\t\"which\": 0,\n\t\t\t\"value\": 2\n\t\t},\
+\n		\"joypad_down\":"  " \n\t\t{\n\t\t\t\"device_guid\": \"00030000005E0400008E020000000078\",\n\t\t\t\"device_id\": 0,\n\t\t\t\"event\": \"jhat\",\n\t\t\t\"which\": 0,\n\t\t\t\"value\": 4\n\t\t},\
+\n		\"joypad_left\":"  " \n\t\t{\n\t\t\t\"device_guid\": \"000300000025090000E8030000000000\",\n\t\t\t\"device_id\": 0,\n\t\t\t\"event\": \"jhat\",\n\t\t\t\"which\": 0,\n\t\t\t\"value\": 8\n\t\t},\
+\n		\"joypad_right\":" " \n\t\t{\n\t\t\t\"device_guid\": \"00030000006F0E0000A6020000000078\",\n\t\t\t\"device_id\": 0,\n\t\t\t\"event\": \"jhat\",\n\t\t\t\"which\": 0,\n\t\t\t\"value\": 2\n\t\t},\
 \n		\"joypad_A\":"     " \n\t\t{\n\t\t\t\"device_guid\": \"0003000000C82D000000600000000000\",\n\t\t\t\"device_id\": 0,\n\t\t\t\"event\": \"jbutton\",\n\t\t\t\"value\": 0\n\t\t},\
 \n		\"joypad_B\":"     " \n\t\t{\n\t\t\t\"device_guid\": \"00000000000000000000000000000000\",\n\t\t\t\"device_id\": 0,\n\t\t\t\"event\": \"jbutton\",\n\t\t\t\"value\": 1\n\t\t}\
 \n	}\

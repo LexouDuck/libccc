@@ -177,54 +177,62 @@ TOML_TEST(toml_escape_utf8_ru_x	, "\"\\xD0\\xAF\\xD1\\x86\\xD0\\xBA \\xD0\\x9D\\
 
 
 t_utf8*	toml_array_empty_min			= "_=[]";
-t_utf8*	toml_array_empty				= "_=[]\n";
+t_utf8*	toml_array_empty				= "\n_ = []\n";
 t_utf8*	toml_array_min					= "_=[false,true,null]";
-t_utf8*	toml_array						= "_=\
-[\n\
-	false,\n\
-	true,\n\
-	null\n\
-]\n";
+t_utf8*	toml_array						= "\
+\n_ = \
+\n[\
+\n	false,\
+\n	true,\
+\n	null\
+\n]\
+\n";
 t_utf8*	toml_array_nested_min			= "_=[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{swag=1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]";
-t_utf8*	toml_array_nested				= "_=[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{swag = 1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]\n";
+t_utf8*	toml_array_nested				= "\n_ = [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ { swag = 1 } ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ]\n";
 /* TODO
 t_utf8*	toml_inline_array_empty_min		= "_=[]";
-t_utf8*	toml_inline_array_empty			= "_=[]\n";
+t_utf8*	toml_inline_array_empty			= "\n_ = []\n";
 t_utf8*	toml_inline_array_min			= "_=[false,true,null]\n";
-t_utf8*	toml_inline_array				= "_=\
-[\n\
-	false,\n\
-	true,\n\
-	null\n\
-]\n";
+t_utf8*	toml_inline_array				= "\
+\n_ = \
+\n[\
+\n	false,\
+\n	true,\
+\n	null\
+\n]\
+\n";
 t_utf8*	toml_inline_array_nested_min	= "_=[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{swag=1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]";
-t_utf8*	toml_inline_array_nested		= "_=[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{swag = 1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]\n";
+t_utf8*	toml_inline_array_nested		= "\n_ = [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ { swag = 1 } ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ]\n";
 */
 
 
 t_utf8*	toml_object_empty_min			= "_={}";
-t_utf8*	toml_object_empty				= "_={}\n";
+t_utf8*	toml_object_empty				= "\n_ = {}\n";
 t_utf8*	toml_object_min					= "_={a=false,b=true,c=null}";
-t_utf8*	toml_object						= "_=\
-{\n\
-	a = false,\n\
-	b = true,\n\
-	c = null\n\
-}\n";
+t_utf8*	toml_object						= "\
+\n_ = \
+\n{\
+\n	a = false,\
+\n	b = true,\
+\n	c = null\
+\n}\
+\n";
 t_utf8*	toml_object_nested_min			= "_={a={b={c={d={e={f={g={h={i={j={k={l={m={n={o={p={q={r={s={t={u={v={w={x={y={z=\"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}";
-t_utf8*	toml_object_nested				= "_={a = {b = {c = {d = {e = {f = {g = {h = {i = {j = {k = {l = {m = {n = {o = {p = {q = {r = {s = {t = {u = {v = {w = {x = {y = {z = \"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}\n";
+t_utf8*	toml_object_nested				= "\n_ = { a = { b = { c = { d = { e = { f = { g = { h = { i = { j = { k = { l = { m = { n = { o = { p = { q = { r = { s = { t = { u = { v = { w = { x = { y = { z = \"swag\"} } } } } } } } } } } } } } } } } } } } } } } } } }\n";
 /* TODO
 t_utf8*	toml_inline_object_empty_min	= "_={}";
-t_utf8*	toml_inline_object_empty		= "_={}\n";
+t_utf8*	toml_inline_object_empty		= "\n_ = {}\n";
 t_utf8*	toml_inline_object_min			= "_={a=false,b=true,c=null}\n";
-t_utf8*	toml_inline_object				= "_=\
-{\n\
-	a = false,\n\
-	b = true,\n\
-	c = null\n\
-}\n";
+t_utf8*	toml_inline_object				= "\
+\n_ = \
+\n{\
+\n	a = false,\
+\n	b = true,\
+\n	c = null\
+\n}\
+\n";
 t_utf8*	toml_inline_object_nested_min	= "_={a={b={c={d={e={f={g={h={i={j={k={l={m={n={o={p={q={r={s={t={u={v={w={x={y={z=\"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}";
-t_utf8*	toml_inline_object_nested		= "_={a = {b = {c = {d = {e = {f = {g = {h = {i = {j = {k = {l = {m = {n = {o = {p = {q = {r = {s = {t = {u = {v = {w = {x = {y = {z = \"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}\n";
+t_utf8*	toml_inline_object_nested		= "\n_ = { a = { b = { c = { d = { e = { f = { g = { h = { i = { j = { k = { l = { m = { n = { o = { p = { q = { r = { s = { t = { u = { v = { w = { x = { y = { z = \"swag\"} } } } } } } } } } } } } } } } } } } } } } } } } }\n";
 */
 
 
@@ -242,10 +250,10 @@ t_utf8*	toml_object_string_min =
 			"\\\"TEMPLATE_ATTRIBUTE\\\":[{}]"
 		"}"
 	"}\""
-"\n";
+;
 t_utf8*	toml_object_string = "\
-	type = 11\
-\n	value = \"{\\\"Label\\\":\\\"NAME\\\",\\\"Attributes\\\":{\\\"PATTERN_ATTRIBUTE\\\":[{\\\"Values\\\":[{\\\"STRING\\\":\\\"ENTITY_PATTERN\\\"}]}],\\\"DESCRIPTION_ATTRIBUTE\\\":[{\\\"Values\\\":[{\\\"STRING\\\":\\\"DESC\\\"}]}],\\\"CHARACTERISTIC_ATTRIBUTE\\\":[],\\\"TEMPLATE_ATTRIBUTE\\\":[{}]}}\"\
+\ntype = 11\
+\nvalue = \"{\\\"Label\\\":\\\"NAME\\\",\\\"Attributes\\\":{\\\"PATTERN_ATTRIBUTE\\\":[{\\\"Values\\\":[{\\\"STRING\\\":\\\"ENTITY_PATTERN\\\"}]}],\\\"DESCRIPTION_ATTRIBUTE\\\":[{\\\"Values\\\":[{\\\"STRING\\\":\\\"DESC\\\"}]}],\\\"CHARACTERISTIC_ATTRIBUTE\\\":[],\\\"TEMPLATE_ATTRIBUTE\\\":[{}]}}\"\
 \n";
 
 // TODO triple-quote literal string tests
@@ -254,15 +262,15 @@ t_utf8*	toml_object_string = "\
 
 
 
-t_utf8*	toml_helloworld_min	= "hello=\"world\"\n";
-t_utf8*	toml_helloworld		= "hello = \"world\"\n";
+t_utf8*	toml_helloworld_min	= "hello=\"world\"";
+t_utf8*	toml_helloworld		= "\nhello = \"world\"\n";
 
-t_utf8*	toml_whitespace		= "  hello  =  \"world\"  ";
-t_utf8*	toml_whitespace_tab	= "\thello\t=\t\"world\"\t";
-t_utf8*	toml_whitespace_nl	= "\nhello\n=\n\"world\"\t";
-t_utf8*	toml_whitespace_cr	= "\rhello\r=\r\"world\"\r";
-t_utf8*	toml_whitespace_ff	= "\fhello\f=\f\"world\"\f";
-t_utf8*	toml_whitespace_vt	= "\vhello\v=\v\"world\"\v";
+t_utf8*	toml_whitespace		= "  hello  =  \"world\"  \n";
+t_utf8*	toml_whitespace_tab	= "\thello\t=\t\"world\"\t\n";
+t_utf8*	toml_whitespace_nl	= "\nhello\n=\n\"world\"\t\n";
+t_utf8*	toml_whitespace_cr	= "\rhello\r=\r\"world\"\r\n";
+t_utf8*	toml_whitespace_ff	= "\fhello\f=\f\"world\"\f\n";
+t_utf8*	toml_whitespace_vt	= "\vhello\v=\v\"world\"\v\n";
 t_utf8*	toml_whitespace_all	= "\t\f\r\n\"hello\"\t\f\r\n=\t\f\r\n\"world\"\t\f\r\n";
 
 t_utf8*	toml_strange_sot	= "\1hello=\1\"world\"\1\n";
@@ -287,30 +295,32 @@ t_utf8*	toml_simple_min =
 "\n"	"nest_string=\"\""
 "\n"	"nest_arrays=[123456,\"hello\"]"
 "\n"	"nest_object=null"
-"\n";
+;
 t_utf8*	toml_simple = "\
-	test_bool_0 = false\
-\n	test_bool_1 = true\
-\n	test_number = 0\
-\n	test_string = \"\"\
-\n	test_arrays = \
+\ntest_bool_0 = false\
+\ntest_bool_1 = true\
+\ntest_number = 0\
+\ntest_string = \"\"\
+\ntest_arrays = \
+\n[\
+\n	false,\
+\n	true,\
+\n	0,\
+\n	\"\"\
+\n]\
+\n\
+\n[test_object]\
+\n\
+\n	nest_bool_0 = false\
+\n	nest_bool_1 = true\
+\n	nest_number = 0\
+\n	nest_string = \"\"\
+\n	nest_arrays = \
 \n	[\
-\n		false,\
-\n		true,\
-\n		0,\
-\n		\"\"\
+\n		123456,\
+\n		\"hello\"\
 \n	]\
-\n	[test_object]\
-\n		nest_bool_0 = false\
-\n		nest_bool_1 = true\
-\n		nest_number = 0\
-\n		nest_string = \"\"\
-\n		nest_arrays = \
-\n		[\
-\n			123456,\
-\n			\"hello\"\
-\n		]\
-\n		nest_object = null\
+\n	nest_object = null\
 \n";
 
 
@@ -328,30 +338,32 @@ t_utf8*	toml_commas_min =
 "\n"	"nest_string=\"\""
 "\n"	"nest_arrays=[123456,\"hello\",]"
 "\n"	"nest_object=null"
-"\n";
+;
 t_utf8*	toml_commas = "\
-	test_bool_0 = false\
-\n	test_bool_1 = true\
-\n	test_number = 0\
-\n	test_string = \"\"\
-\n	test_arrays = \
+\ntest_bool_0 = false\
+\ntest_bool_1 = true\
+\ntest_number = 0\
+\ntest_string = \"\"\
+\ntest_arrays = \
+\n[\
+\n	false,\
+\n	true,\
+\n	0,\
+\n	\"\",\
+\n]\
+\n\
+\n[test_object]\
+\n\
+\n	nest_bool_0 = false\
+\n	nest_bool_1 = true\
+\n	nest_number = 0\
+\n	nest_string = \"\"\
+\n	nest_arrays = \
 \n	[\
-\n		false,\
-\n		true,\
-\n		0,\
-\n		\"\",\
+\n		123456,\
+\n		\"hello\",\
 \n	]\
-\n	[test_object]\
-\n		nest_bool_0 = false\
-\n		nest_bool_1 = true\
-\n		nest_number = 0\
-\n		nest_string = \"\"\
-\n		nest_arrays = \
-\n		[\
-\n			123456,\
-\n			\"hello\",\
-\n		]\
-\n		nest_object = null\
+\n	nest_object = null\
 \n";
 
 
@@ -383,30 +395,30 @@ t_utf8*	toml_newline = "\n\n\
 
 
 
-t_utf8*	toml_config_min = "\
-\n[\"General Settings\"]\
-\nbackground_pause"  "=false\
-\nbackground_input"  "=true\
-\n[\"Video Settings\"]\
-\nwindow_position"   "={x=-793,y=75}\
-\nwindow_size"       "={x=768,y=720}\
-\nwindow_maximized"  "=false\
-\nfullscreen"        "=false\
-\nkeep_aspect_ratio" "=true\
-\nvertical_sync"     "=false\
-\n[\"Audio Settings\"]\
-\nvolume_master" "=100\
-\nvolume_music"  "=100\
-\nvolume_sfx"    "=100\
-\nmute"          "=false\
-\n[\"Input Mapping\"]\
-\njoypad_up"     "={device_guid=\"0003000000C82D000000600000000000\",device_id=0,event=\"jhat\",which=0,value=1}\
-\njoypad_down"   "={device_guid=\"00030000005e0400008e020000000078\",device_id=0,event=\"jhat\",which=0,value=4}\
-\njoypad_left"   "={device_guid=\"000300000025090000e8030000000000\",device_id=0,event=\"jhat\",which=0,value=8}\
-\njoypad_right"  "={device_guid=\"00030000006f0e0000a6020000000078\",device_id=0,event=\"jhat\",which=0,value=2}\
-\njoypad_A"      "={device_guid=\"0003000000C82D000000600000000000\",device_id=0,event=\"jbutton\",value=0}\
-\njoypad_B"      "={device_guid=\"00000000000000000000000000000000\",device_id=0,event=\"jbutton\",value=1}\
-\n";
+t_utf8*	toml_config_min =
+	"[\"General Settings\"]"
+"\n""background_pause"  "=false"
+"\n""background_input"  "=true"
+"\n""[\"Video Settings\"]"
+"\n""window_position"   "={x=-793,y=75}"
+"\n""window_size"       "={x=768,y=720}"
+"\n""window_maximized"  "=false"
+"\n""fullscreen"        "=false"
+"\n""keep_aspect_ratio" "=true"
+"\n""vertical_sync"     "=false"
+"\n""[\"Audio Settings\"]"
+"\n""volume_master" "=100"
+"\n""volume_music"  "=100"
+"\n""volume_sfx"    "=100"
+"\n""mute"          "=false"
+"\n""[\"Input Mapping\"]"
+"\n""joypad_up"     "={device_guid=\"0003000000C82D000000600000000000\",device_id=0,event=\"jhat\",which=0,value=1}"
+"\n""joypad_down"   "={device_guid=\"00030000005E0400008E020000000078\",device_id=0,event=\"jhat\",which=0,value=4}"
+"\n""joypad_left"   "={device_guid=\"000300000025090000E8030000000000\",device_id=0,event=\"jhat\",which=0,value=8}"
+"\n""joypad_right"  "={device_guid=\"00030000006F0E0000A6020000000078\",device_id=0,event=\"jhat\",which=0,value=2}"
+"\n""joypad_A"      "={device_guid=\"0003000000C82D000000600000000000\",device_id=0,event=\"jbutton\",value=0}"
+"\n""joypad_B"      "={device_guid=\"00000000000000000000000000000000\",device_id=0,event=\"jbutton\",value=1}"
+;
 t_utf8*	toml_config = "\
 \n[\"General Settings\"]\
 \n\
@@ -432,9 +444,9 @@ t_utf8*	toml_config = "\
 \n[\"Input Mapping\"]\
 \n\
 \njoypad_up     = { device_guid = \"0003000000C82D000000600000000000\", device_id = 0, event = \"jhat\", which = 0, value = 1 }\
-\njoypad_down   = { device_guid = \"00030000005e0400008e020000000078\", device_id = 0, event = \"jhat\", which = 0, value = 4 }\
-\njoypad_left   = { device_guid = \"000300000025090000e8030000000000\", device_id = 0, event = \"jhat\", which = 0, value = 8 }\
-\njoypad_right  = { device_guid = \"00030000006f0e0000a6020000000078\", device_id = 0, event = \"jhat\", which = 0, value = 2 }\
+\njoypad_down   = { device_guid = \"00030000005E0400008E020000000078\", device_id = 0, event = \"jhat\", which = 0, value = 4 }\
+\njoypad_left   = { device_guid = \"000300000025090000E8030000000000\", device_id = 0, event = \"jhat\", which = 0, value = 8 }\
+\njoypad_right  = { device_guid = \"00030000006F0E0000A6020000000078\", device_id = 0, event = \"jhat\", which = 0, value = 2 }\
 \njoypad_A      = { device_guid = \"0003000000C82D000000600000000000\", device_id = 0, event = \"jbutton\", value = 0 }\
 \njoypad_B      = { device_guid = \"00000000000000000000000000000000\", device_id = 0, event = \"jbutton\", value = 1 }\
 \n";
@@ -443,92 +455,97 @@ t_utf8*	toml_config = "\
 
 t_utf8*	toml_complex_min =
 	"[Attributes]"
-		"\n[[Attributes.SEX_ATTRIBUTE]]"
-		"\n[[Attributes.SEX_ATTRIBUTE.Values]]"			"\nCHARACTER=\"M\""
-		"\n[[Attributes.AGE_ATTRIBUTE]]"
-		"\n[[Attributes.AGE_ATTRIBUTE.Values]]"			"\nINTEGER=\"82\""
-		"\n[[Attributes.SPOUSE_ATTRIBUTE]]"
-		"\n[[Attributes.SPOUSE_ATTRIBUTE.Values]]"		"\nBOOLEAN=\"FALSE\""
-		"\n[[Attributes.HEIGHT_ATTRIBUTE]]"
-		"\n[[Attributes.HEIGHT_ATTRIBUTE.Values]]"		"\nFLOAT=\"176.5\""
-		"\n[[Attributes.OCCUPATION_ATTRIBUTE]]"
-		"\n[[Attributes.OCCUPATION_ATTRIBUTE.Values]]"	"\nSTRING=\"actor\""
-		"\n[[Attributes.LABEL_ATTRIBUTE]]"
-		"\n[[Attributes.LABEL_ATTRIBUTE.Values]]"		"\nTEXT=\"Яцк Ничолсон\""
-		"\n[[Attributes.BIRTHDAY_ATTRIBUTE]]"
-		"\n[[Attributes.BIRTHDAY_ATTRIBUTE.Values]]"	"\nTIME=\"-1031788800\""
-		"\n[[Attributes.DOCUMENT_ATTRIBUTE]]"
-		"\n[[Attributes.DOCUMENT_ATTRIBUTE.Values]]"	"\nWEB=\"urn:isbn:0393350967\""
-		"\n[[Attributes.WEIGHT_ATTRIBUTE]]"
-		"\n[[Attributes.WEIGHT_ATTRIBUTE.Values]]"		"\n\"INTEGER=72\""
-		"\n[[Attributes.WEIGHT_ATTRIBUTE.Properties]]"	"\n\"\"=[[\"listed\",\"\",\"\"]]"
-		"\n[[Attributes.WEIGHT_ATTRIBUTE.Values]]"		"\n\"INTEGER=160\""
-		"\n[[Attributes.WEIGHT_ATTRIBUTE.Properties]]"	"\n\"\"=[[\"reported\",\"\",\"\"],[\"pounds\",\"lbs\",\"352\"]]"
-		"\n[[Attributes.LOCATION_ATTRIBUTE]]"
-		"\n[[Attributes.LOCATION_ATTRIBUTE.Values]]"	"\nTEXT=\"Los Angeles\""
-		"\n[[Attributes.LOCATION_ATTRIBUTE.Values]]"	"\nTEXT=\"Aspen\""
-		"\n[[Attributes.LOCATION_ATTRIBUTE.Values]]"	"\nTEXT=\"Malibu\""
-		"\n[[Attributes.CHILD_ATTRIBUTE]]"				
-		"\n[[Attributes.CHILD_ATTRIBUTE.Values]]"		"\nTEXT=\"Jennifer\""
-		"\n[[Attributes.CHILD_ATTRIBUTE.Properties]]"	"\n\"\"=[[\"Born\",\"\",\"1963\"],[\"Mother\",\"\",\"Sandra Knight\"]]"
-		"\n[[Attributes.CHILD_ATTRIBUTE.Values]]"		"\nTEXT=\"Caleb\""
-		"\n[[Attributes.CHILD_ATTRIBUTE.Properties]]"	"\n\"\"=[[\"Born\",\"\",\"1970\"],[\"Paternity\",\"open question 2\",\"not established\"],[\"Mother\",\"\",\"Susan Anspach\"]]"
-		"\n[[Attributes.CHILD_ATTRIBUTE.Values]]"		"\nTEXT=\"Honey\""
-		"\n[[Attributes.CHILD_ATTRIBUTE.Values]]"		"\nTEXT=\"Lorraine\""
-		"\n[[Attributes.CHILD_ATTRIBUTE.Values]]"		"\nTEXT=\"Raymond\""
-		"\n[[Attributes.CHILD_ATTRIBUTE.Properties]]"	"\n\"\"=[[\"Born\",\"youngest\",\"1992\"],[\"Mother\",\"\",\"Rebecca Broussard\"]"
-	"\n[Properties]"
-		"\n\"\"=[\"known for\",\"most popular role\",\"The Shining\"]"
-		"\n\"\"=[\"fan of\",\"famous fan\",\"Los Angeles Lakers\"]"
-		"\n\"\"=[\"fan of\",\"\",\"Bob Dylan\"]"
-		"\n\"\"=[\"also known for\",\"best performance\",\"Chinatown\"]"
-	"\n[Values]"
-		"\n\"\"=[\"actor\",\"player\",\"filmmaker\"]"
+"\n"	"[[Attributes.SEX_ATTRIBUTE]]"
+"\n"	"[[Attributes.SEX_ATTRIBUTE.Values]]"			"\nCHARACTER=\"M\""
+"\n"	"[[Attributes.AGE_ATTRIBUTE]]"
+"\n"	"[[Attributes.AGE_ATTRIBUTE.Values]]"			"\nINTEGER=\"82\""
+"\n"	"[[Attributes.SPOUSE_ATTRIBUTE]]"
+"\n"	"[[Attributes.SPOUSE_ATTRIBUTE.Values]]"		"\nBOOLEAN=\"FALSE\""
+"\n"	"[[Attributes.HEIGHT_ATTRIBUTE]]"
+"\n"	"[[Attributes.HEIGHT_ATTRIBUTE.Values]]"		"\nFLOAT=\"176.5\""
+"\n"	"[[Attributes.OCCUPATION_ATTRIBUTE]]"
+"\n"	"[[Attributes.OCCUPATION_ATTRIBUTE.Values]]"	"\nSTRING=\"actor\""
+"\n"	"[[Attributes.LABEL_ATTRIBUTE]]"
+"\n"	"[[Attributes.LABEL_ATTRIBUTE.Values]]"			"\nTEXT=\"Яцк Ничолсон\""
+"\n"	"[[Attributes.BIRTHDAY_ATTRIBUTE]]"
+"\n"	"[[Attributes.BIRTHDAY_ATTRIBUTE.Values]]"		"\nTIME=\"-1031788800\""
+"\n"	"[[Attributes.DOCUMENT_ATTRIBUTE]]"
+"\n"	"[[Attributes.DOCUMENT_ATTRIBUTE.Values]]"		"\nWEB=\"urn:isbn:0393350967\""
+"\n"	"[[Attributes.WEIGHT_ATTRIBUTE]]"
+"\n"	"[[Attributes.WEIGHT_ATTRIBUTE.Values]]"		"\n\"INTEGER=72\""
+"\n"	"[[Attributes.WEIGHT_ATTRIBUTE.Properties]]"	"\n\"\"=[[\"listed\",\"\",\"\"]]"
+"\n"	"[[Attributes.WEIGHT_ATTRIBUTE.Values]]"		"\n\"INTEGER=160\""
+"\n"	"[[Attributes.WEIGHT_ATTRIBUTE.Properties]]"	"\n\"\"=[[\"reported\",\"\",\"\"],[\"pounds\",\"lbs\",\"352\"]]"
+"\n"	"[[Attributes.LOCATION_ATTRIBUTE]]"
+"\n"	"[[Attributes.LOCATION_ATTRIBUTE.Values]]"	"\nTEXT=\"Los Angeles\""
+"\n"	"[[Attributes.LOCATION_ATTRIBUTE.Values]]"	"\nTEXT=\"Aspen\""
+"\n"	"[[Attributes.LOCATION_ATTRIBUTE.Values]]"	"\nTEXT=\"Malibu\""
+"\n"	"[[Attributes.CHILD_ATTRIBUTE]]"				
+"\n"	"[[Attributes.CHILD_ATTRIBUTE.Values]]"		"\nTEXT=\"Jennifer\""
+"\n"	"[[Attributes.CHILD_ATTRIBUTE.Properties]]"	"\n\"\"=[[\"Born\",\"\",\"1963\"],[\"Mother\",\"\",\"Sandra Knight\"]]"
+"\n"	"[[Attributes.CHILD_ATTRIBUTE.Values]]"		"\nTEXT=\"Caleb\""
+"\n"	"[[Attributes.CHILD_ATTRIBUTE.Properties]]"	"\n\"\"=[[\"Born\",\"\",\"1970\"],[\"Paternity\",\"open question 2\",\"not established\"],[\"Mother\",\"\",\"Susan Anspach\"]]"
+"\n"	"[[Attributes.CHILD_ATTRIBUTE.Values]]"		"\nTEXT=\"Honey\""
+"\n"	"[[Attributes.CHILD_ATTRIBUTE.Values]]"		"\nTEXT=\"Lorraine\""
+"\n"	"[[Attributes.CHILD_ATTRIBUTE.Values]]"		"\nTEXT=\"Raymond\""
+"\n"	"[[Attributes.CHILD_ATTRIBUTE.Properties]]"	"\n\"\"=[[\"Born\",\"youngest\",\"1992\"],[\"Mother\",\"\",\"Rebecca Broussard\"]"
+"\n""[Properties]"
+"\n"	"\"\"=[\"known for\",\"most popular role\",\"The Shining\"]"
+"\n"	"\"\"=[\"fan of\",\"famous fan\",\"Los Angeles Lakers\"]"
+"\n"	"\"\"=[\"fan of\",\"\",\"Bob Dylan\"]"
+"\n"	"\"\"=[\"also known for\",\"best performance\",\"Chinatown\"]"
+"\n""[Values]"
+"\n"	"\"\"=[\"actor\",\"player\",\"filmmaker\"]"
 ;
-t_utf8*	toml_complex =
-	"[Attributes]"
-		"\n[[Attributes.SEX_ATTRIBUTE]]"
-		"\n[[Attributes.SEX_ATTRIBUTE.Values]]"			"\nCHARACTER=\"M\""
-		"\n[[Attributes.AGE_ATTRIBUTE]]"
-		"\n[[Attributes.AGE_ATTRIBUTE.Values]]"			"\nINTEGER=\"82\""
-		"\n[[Attributes.SPOUSE_ATTRIBUTE]]"
-		"\n[[Attributes.SPOUSE_ATTRIBUTE.Values]]"		"\nBOOLEAN=\"FALSE\""
-		"\n[[Attributes.HEIGHT_ATTRIBUTE]]"
-		"\n[[Attributes.HEIGHT_ATTRIBUTE.Values]]"		"\nFLOAT=\"176.5\""
-		"\n[[Attributes.OCCUPATION_ATTRIBUTE]]"
-		"\n[[Attributes.OCCUPATION_ATTRIBUTE.Values]]"	"\nSTRING=\"actor\""
-		"\n[[Attributes.LABEL_ATTRIBUTE]]"
-		"\n[[Attributes.LABEL_ATTRIBUTE.Values]]"		"\nTEXT=\"Яцк Ничолсон\""
-		"\n[[Attributes.BIRTHDAY_ATTRIBUTE]]"
-		"\n[[Attributes.BIRTHDAY_ATTRIBUTE.Values]]"	"\nTIME=\"-1031788800\""
-		"\n[[Attributes.DOCUMENT_ATTRIBUTE]]"
-		"\n[[Attributes.DOCUMENT_ATTRIBUTE.Values]]"	"\nWEB=\"urn:isbn:0393350967\""
-		"\n[[Attributes.WEIGHT_ATTRIBUTE]]"
-		"\n[[Attributes.WEIGHT_ATTRIBUTE.Values]]"		"\n\"INTEGER=72\""
-		"\n[[Attributes.WEIGHT_ATTRIBUTE.Properties]]"	"\n\"\"=[[\"listed\",\"\",\"\"]]"
-		"\n[[Attributes.WEIGHT_ATTRIBUTE.Values]]"		"\n\"INTEGER=160\""
-		"\n[[Attributes.WEIGHT_ATTRIBUTE.Properties]]"	"\n\"\"=[[\"reported\",\"\",\"\"],[\"pounds\",\"lbs\",\"352\"]]"
-		"\n[[Attributes.LOCATION_ATTRIBUTE]]"
-		"\n[[Attributes.LOCATION_ATTRIBUTE.Values]]"	"\nTEXT=\"Los Angeles\""
-		"\n[[Attributes.LOCATION_ATTRIBUTE.Values]]"	"\nTEXT=\"Aspen\""
-		"\n[[Attributes.LOCATION_ATTRIBUTE.Values]]"	"\nTEXT=\"Malibu\""
-		"\n[[Attributes.CHILD_ATTRIBUTE]]"				
-		"\n[[Attributes.CHILD_ATTRIBUTE.Values]]"		"\nTEXT=\"Jennifer\""
-		"\n[[Attributes.CHILD_ATTRIBUTE.Properties]]"	"\n\"\"=[[\"Born\",\"\",\"1963\"],[\"Mother\",\"\",\"Sandra Knight\"]]"
-		"\n[[Attributes.CHILD_ATTRIBUTE.Values]]"		"\nTEXT=\"Caleb\""
-		"\n[[Attributes.CHILD_ATTRIBUTE.Properties]]"	"\n\"\"=[[\"Born\",\"\",\"1970\"],[\"Paternity\",\"open question 2\",\"not established\"],[\"Mother\",\"\",\"Susan Anspach\"]]"
-		"\n[[Attributes.CHILD_ATTRIBUTE.Values]]"		"\nTEXT=\"Honey\""
-		"\n[[Attributes.CHILD_ATTRIBUTE.Values]]"		"\nTEXT=\"Lorraine\""
-		"\n[[Attributes.CHILD_ATTRIBUTE.Values]]"		"\nTEXT=\"Raymond\""
-		"\n[[Attributes.CHILD_ATTRIBUTE.Properties]]"	"\n\"\"=[[\"Born\",\"youngest\",\"1992\"],[\"Mother\",\"\",\"Rebecca Broussard\"]"
-	"\n[Properties]"
-		"\n\"\"=[\"known for\",\"most popular role\",\"The Shining\"]"
-		"\n\"\"=[\"fan of\",\"famous fan\",\"Los Angeles Lakers\"]"
-		"\n\"\"=[\"fan of\",\"\",\"Bob Dylan\"]"
-		"\n\"\"=[\"also known for\",\"best performance\",\"Chinatown\"]"
-	"\n[Values]"
-		"\n\"\"=[\"actor\",\"player\",\"filmmaker\"]"
-;
+t_utf8*	toml_complex = "\
+\n[Attributes]\
+\n\
+\n	[[Attributes.SEX_ATTRIBUTE]]\
+\n	[[Attributes.SEX_ATTRIBUTE.Values]]"		"\nCHARACTER=\"M\"\
+\n	[[Attributes.AGE_ATTRIBUTE]]\
+\n	[[Attributes.AGE_ATTRIBUTE.Values]]"		"\nINTEGER=\"82\"\
+\n	[[Attributes.SPOUSE_ATTRIBUTE]]\
+\n	[[Attributes.SPOUSE_ATTRIBUTE.Values]]"		"\nBOOLEAN=\"FALSE\"\
+\n	[[Attributes.HEIGHT_ATTRIBUTE]]\
+\n	[[Attributes.HEIGHT_ATTRIBUTE.Values]]"		"\nFLOAT=\"176.5\"\
+\n	[[Attributes.OCCUPATION_ATTRIBUTE]]\
+\n	[[Attributes.OCCUPATION_ATTRIBUTE.Values]]"	"\nSTRING=\"actor\"\
+\n	[[Attributes.LABEL_ATTRIBUTE]]\
+\n	[[Attributes.LABEL_ATTRIBUTE.Values]]"		"\nTEXT=\"Яцк Ничолсон\"\
+\n	[[Attributes.BIRTHDAY_ATTRIBUTE]]\
+\n	[[Attributes.BIRTHDAY_ATTRIBUTE.Values]]"	"\nTIME=\"-1031788800\"\
+\n	[[Attributes.DOCUMENT_ATTRIBUTE]]\
+\n	[[Attributes.DOCUMENT_ATTRIBUTE.Values]]"	"\nWEB=\"urn:isbn:0393350967\"\
+\n	[[Attributes.WEIGHT_ATTRIBUTE]]\
+\n	[[Attributes.WEIGHT_ATTRIBUTE.Values]]"		"\n\"INTEGER=72\"\
+\n	[[Attributes.WEIGHT_ATTRIBUTE.Properties]]"	"\n\"\"=[[\"listed\",\"\",\"\"]]\
+\n	[[Attributes.WEIGHT_ATTRIBUTE.Values]]"		"\n\"INTEGER=160\"\
+\n	[[Attributes.WEIGHT_ATTRIBUTE.Properties]]"	"\n\"\"=[[\"reported\",\"\",\"\"],[\"pounds\",\"lbs\",\"352\"]]\
+\n	[[Attributes.LOCATION_ATTRIBUTE]]\
+\n	[[Attributes.LOCATION_ATTRIBUTE.Values]]"	"\nTEXT=\"Los Angeles\"\
+\n	[[Attributes.LOCATION_ATTRIBUTE.Values]]"	"\nTEXT=\"Aspen\"\
+\n	[[Attributes.LOCATION_ATTRIBUTE.Values]]"	"\nTEXT=\"Malibu\"\
+\n	[[Attributes.CHILD_ATTRIBUTE]]\
+\n	[[Attributes.CHILD_ATTRIBUTE.Values]]"		"\nTEXT=\"Jennifer\"\
+\n	[[Attributes.CHILD_ATTRIBUTE.Properties]]"	"\n\"\"=[[\"Born\",\"\",\"1963\"],[\"Mother\",\"\",\"Sandra Knight\"]]\
+\n	[[Attributes.CHILD_ATTRIBUTE.Values]]"		"\nTEXT=\"Caleb\"\
+\n	[[Attributes.CHILD_ATTRIBUTE.Properties]]"	"\n\"\"=[[\"Born\",\"\",\"1970\"],[\"Paternity\",\"open question 2\",\"not established\"],[\"Mother\",\"\",\"Susan Anspach\"]]\
+\n	[[Attributes.CHILD_ATTRIBUTE.Values]]"		"\nTEXT=\"Honey\"\
+\n	[[Attributes.CHILD_ATTRIBUTE.Values]]"		"\nTEXT=\"Lorraine\"\
+\n	[[Attributes.CHILD_ATTRIBUTE.Values]]"		"\nTEXT=\"Raymond\"\
+\n	[[Attributes.CHILD_ATTRIBUTE.Properties]]"	"\n\"\"=[[\"Born\",\"youngest\",\"1992\"],[\"Mother\",\"\",\"Rebecca Broussard\"]\
+\n\
+\n[Properties]\
+\n\
+\n	\"\"=[\"known for\",\"most popular role\",\"The Shining\"]\
+\n	\"\"=[\"fan of\",\"famous fan\",\"Los Angeles Lakers\"]\
+\n	\"\"=[\"fan of\",\"\",\"Bob Dylan\"]\
+\n	\"\"=[\"also known for\",\"best performance\",\"Chinatown\"]\
+\n\
+\n[Values]\
+\n\
+\n	\"\"=[\"actor\",\"player\",\"filmmaker\"]\
+\n";
 
 
 
@@ -716,8 +733,8 @@ void	test_toml_##STRICT##_##MINIFY(void)																																			\
 	print_test_toml_##STRICT##_##MINIFY("toml_commas               ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_simple##_MIN:NULL,					toml_commas);					\
 	print_test_toml_##STRICT##_##MINIFY("toml_commas_min           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_simple##_MIN:NULL,					toml_commas_min);				\
 	print_test_toml_##STRICT##_##MINIFY("toml_newline              ("#STRICT" -> "#MINIFY")", FALSE,		toml_simple##_MIN,						toml_newline);					\
-	print_test_toml_##STRICT##_##MINIFY("toml_complex              ("#STRICT" -> "#MINIFY")", FALSE,		toml_complex##_MIN,						toml_complex);					\
-	print_test_toml_##STRICT##_##MINIFY("toml_complex_min          ("#STRICT" -> "#MINIFY")", FALSE,		toml_complex##_MIN,						toml_complex_min);				\
+/*	print_test_toml_##STRICT##_##MINIFY("toml_complex              ("#STRICT" -> "#MINIFY")", FALSE,		toml_complex##_MIN,						toml_complex);					TODO */\
+/*	print_test_toml_##STRICT##_##MINIFY("toml_complex_min          ("#STRICT" -> "#MINIFY")", FALSE,		toml_complex##_MIN,						toml_complex_min);				TODO */\
 	print_test_toml_##STRICT##_##MINIFY("toml_escape_sq1           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_escstr_sq1##_MIN:NULL,				toml_escape_sq1);				\
 	print_test_toml_##STRICT##_##MINIFY("toml_escape_sq2           ("#STRICT" -> "#MINIFY")", FALSE,		toml_escape_sq2##_MIN,					toml_escape_sq2);				\
 	print_test_toml_##STRICT##_##MINIFY("toml_escape_slb           ("#STRICT" -> "#MINIFY")", FALSE,		toml_escape_slb##_MIN,					toml_escape_slb);				\
@@ -764,7 +781,7 @@ int		testsuite_encode_toml(void)
 
 	print_nonstd();
 
-//	test_toml_Lenient_Pretty();
+	test_toml_Lenient_Pretty();
 	test_toml_Lenient_Minify();
 //	test_toml_Strict_Pretty();
 //	test_toml_Strict_Minify();

@@ -13,9 +13,11 @@
 typedef s_kvt_print	s_json_print;
 
 #define ENSURE(NEEDED) \
+{													\
 	result = KVT_Print_EnsureBuffer(p, (NEEDED));	\
 	if (result == NULL)								\
 		return (ERROR);								\
+}													\
 
 #define JSON_Print_UpdateOffset \
 		KVT_Print_UpdateOffset
@@ -477,6 +479,7 @@ t_utf8*	JSON_Print_(s_json const* item, t_bool format)
 
 	Memory_Clear(p, sizeof(p));
 	// create buffer
+	p->item = item;
 	p->format = format;
 	p->length = default_buffer_size;
 	p->buffer = (t_utf8*)Memory_Allocate(default_buffer_size);
@@ -525,8 +528,9 @@ t_size	JSON_Print_Pretty(t_utf8* dest, s_json const* item, t_size n)
 	HANDLE_ERROR(NULLPOINTER, (item == NULL), return (0);)
 	if (n == 0)
 		n = SIZE_MAX;
-	p.buffer = (t_utf8*)dest;
-	p.length = (t_size)n;
+	p.item = item;
+	p.buffer = dest;
+	p.length = n;
 	p.offset = 0;
 	p.noalloc = TRUE;
 	p.format = TRUE;
@@ -541,8 +545,9 @@ t_size	JSON_Print_Minify(t_utf8* dest, s_json const* item, t_size n)
 	HANDLE_ERROR(NULLPOINTER, (item == NULL), return (0);)
 	if (n == 0)
 		n = SIZE_MAX;
-	p.buffer = (t_utf8*)dest;
-	p.length = (t_size)n;
+	p.item = item;
+	p.buffer = dest;
+	p.length = n;
 	p.offset = 0;
 	p.noalloc = TRUE;
 	p.format = FALSE;
