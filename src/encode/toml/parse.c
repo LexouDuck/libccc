@@ -126,7 +126,8 @@ failure:
 
 
 
-/*
+/* LEGACY CODE
+
 static t_char*	TOML_Parse_ApplySetting(s_parser *p)
 {
 	t_s32	index;
@@ -237,7 +238,7 @@ t_bool		TOML_Parse_Number(s_toml* item, s_toml_parse* p)
 	number = String_Sub(p->content, p->offset, length);
 	if (number == NULL)
 		PARSINGERROR_TOML("Could not parse number: \"%.*s\"", (int)length, p->content + p->offset)
-	if (!p->strict && String_Has(number, CHARSET_DIGIT) && number[length - 1] == 'n')
+	if (String_HasOnly(number, "+-"CHARSET_DIGIT"xob_"))
 	{
 		t_s64	result = S64_FromString(number); // TODO variable-length integer
 		item->type = DYNAMICTYPE_INTEGER;
@@ -637,37 +638,65 @@ t_bool	TOML_Parse_Value(s_toml* item, s_toml_parse* p)
 			return (TOML_Parse_Object(item, p));	// object
 		if (p->content[p->offset] == '\"')
 			return (TOML_Parse_String(item, p));	// string
-		if (Char_IsDigit(p->content[p->offset]) ||
-			p->content[p->offset] == '-' ||
-			p->content[p->offset] == '+' ||
-			(CAN_PARSE(3) && (
-				String_Equals_N(p->content + p->offset, "inf", 3) ||
-				String_Equals_N(p->content + p->offset, "nan", 3))))
+		if (p->content[p->offset] == '\'')
+			return (TOML_Parse_String(item, p));	// string
+		if (Char_IsDigit(p->content[p->offset]))
 			return (TOML_Parse_Number(item, p));	// number
+		t_bool	sign = FALSE;
+		if (p->content[p->offset] == '-' ||
+			p->content[p->offset] == '+')
+			sign = TRUE;
+		if (sign)	p->offset++;
+
+		if (Char_IsDigit(p->content[p->offset]))
+		{
+			if (sign)	p->offset--;
+			return (TOML_Parse_Number(item, p));	// number
+		}
+		if (CAN_PARSE(3))
+		{
+			if (Char_IsDigit(p->content[p->offset]))
+			{
+				if (sign)	p->offset--;
+				return (TOML_Parse_Number(item, p));	// number
+			}
+			else if (p->strict && CAN_PARSE(4) && Char_IsAlphaNumeric(p->content[p->offset + 4]))
+			{
+				PARSINGERROR_TOML("Any non-numeric value (here: \"%.4s\") must be 3-letter lowercase, in strict TOML", p->content + p->offset)
+			}
+			
+			if (String_Equals_N(p->content + p->offset, "inf", 3) ||
+				String_Equals_N(p->content + p->offset, "nan", 3))
+			{
+				if (sign)	p->offset--;
+				return (TOML_Parse_Number(item, p));
+			}
+			else if (
+				String_Equals_N(p->content + p->offset, "Inf", 3) ||
+				String_Equals_N(p->content + p->offset, "INF", 3))
+			{	// number
+				if (p->strict)
+					PARSINGERROR_TOML("Any non-numeric value (here, infinity: \"%.3s\") must be 3-letter lowercase, in strict TOML", p->content + p->offset)
+				if (sign)	p->offset--;
+				return (TOML_Parse_Number(item, p));
+			}
+			else if (
+				String_Equals_N(p->content + p->offset, "NaN", 3) ||
+				String_Equals_N(p->content + p->offset, "NAN", 3))
+			{	// number
+				if (p->strict)
+					PARSINGERROR_TOML("Any non-numeric value (here, 'not a number': \"%.3s\") must be 3-letter lowercase, in strict TOML", p->content + p->offset)
+				if (sign)	p->offset--;
+				return (TOML_Parse_Number(item, p));
+			}
+		}
+		if (sign)	p->offset--;
 	}
 
-//	if (p->content[p->offset] == '\'')
-//		return (TOML_Parse_String(item, p));	// string
 	if (p->strict && Char_IsSpace(p->content[p->offset]))
 	{
-		PARSINGERROR_TOML("Non-standard whitespace character used ('%c'/0x%4.4X) is not allowed in strict TOML",
+		PARSINGERROR_TOML("Non-standard whitespace character used ('%c'/0x%4.4X) which is not allowed in strict TOML",
 			(p->content[p->offset] ? p->content[p->offset] : '\a'), p->content[p->offset])
-	}
-	else if (CAN_PARSE(3) && (
-		String_Equals_N(p->content + p->offset, "Inf", 3) ||
-		String_Equals_N(p->content + p->offset, "INF", 3)))
-	{	// number
-		if (p->strict)
-			PARSINGERROR_TOML("Any non-numeric value (here, infinity: \"%.3s\") must be 3-letter lowercase, in strict TOML", p->content + p->offset)
-		return (TOML_Parse_Number(item, p));
-	}
-	else if (CAN_PARSE(3) && (
-		String_Equals_N(p->content + p->offset, "NaN", 3) ||
-		String_Equals_N(p->content + p->offset, "NAN", 3)))
-	{	// number
-		if (p->strict)
-			PARSINGERROR_TOML("Any non-numeric value (here, 'not a number': \"%.3s\") must be 3-letter lowercase, in strict TOML", p->content + p->offset)
-		return (TOML_Parse_Number(item, p));
 	}
 
 	PARSINGERROR_TOML("Unable to determine the kind of parsing to attempt: \"%.6s\"", p->content + p->offset)

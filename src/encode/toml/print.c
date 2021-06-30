@@ -98,6 +98,53 @@ void TOML_Print_KeyPath_Pop(s_toml_print* p)
 
 
 
+static
+t_bool	TOML_Print_IsKeyComplex(t_char const* key)
+{
+	t_size	i = 0;
+
+	if (key == NULL)
+		return (FALSE);
+	while (key[i])
+	{
+		if (!(key[i] == '-' || key[i] == '_' || Char_IsAlphaNumeric(key[i])))
+			return (TRUE);
+		++i;
+	}
+	return (FALSE);
+}
+
+static
+t_bool	TOML_Print_IsObjectComplex(s_toml const* item)
+{
+	s_toml*	tmp;
+	t_sint	i = 0;
+	if (item == NULL)
+		return (FALSE);
+	if (TOML_Print_IsKeyComplex(item->key))
+		return (TRUE);
+	tmp = item->value.child;
+	if (tmp && tmp->next)
+	while (tmp)
+	{
+		if ((tmp->type & DYNAMICTYPE_MASK) == DYNAMICTYPE_ARRAY ||
+			(tmp->type & DYNAMICTYPE_MASK) == DYNAMICTYPE_OBJECT)
+		{
+			if (tmp->value.child && tmp->value.child->next)
+				return (TRUE);
+		}
+		tmp = tmp->next;
+		++i;
+	}
+	if (i > TOML_INLINE_MULTILINE)
+	{
+		return (TRUE);
+	}
+	return (FALSE);
+}
+
+
+
 static t_bool	TOML_Print_Number		(s_toml const* item, s_toml_print* p, t_bool bigint);
 static t_bool	TOML_Print_String		(s_toml const* item, s_toml_print* p);
 static t_bool	TOML_Print_Object		(s_toml const* item, s_toml_print* p);
@@ -259,7 +306,7 @@ t_bool	TOML_Print_Number(s_toml const* item, s_toml_print* p, t_bool bigint)
 	if (bigint) // TODO handle variable-length integers
 	{
 		t_s64	d = item->value.integer;
-		length = String_Format_N(number_buffer, TOML_NUMBER_BUFFERSIZE, SF_S64"n", d);
+		length = String_Format_N(number_buffer, TOML_NUMBER_BUFFERSIZE, SF_S64, d);
 	}
 	else
 	{
@@ -276,7 +323,7 @@ t_bool	TOML_Print_Number(s_toml const* item, s_toml_print* p, t_bool bigint)
 		else
 		{
 			// Try 15 decimal places of precision to avoid nonsignificant nonzero digits
-			length = String_Format_N(number_buffer, TOML_NUMBER_BUFFERSIZE, "%1.15g", d);
+			length = String_Format_N(number_buffer, TOML_NUMBER_BUFFERSIZE, "%#1.1f", d);
 			// Check whether the original t_f64 can be recovered
 			test = F64_FromString(number_buffer);
 			if (test != d)
@@ -310,13 +357,11 @@ t_bool	TOML_Print_Array(s_toml const* item, s_toml_print* p)
 {
 	t_utf8*	result = NULL;
 	s_toml*	current_item = item->value.child;
-	t_bool	multiline = p->format;
+	t_bool	multiline = p->format && TOML_Print_IsObjectComplex(item);
 
 	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (ERROR);)
 	// Compose the output array.
 	if (!(current_item && (current_item->next || current_item->prev != current_item)))
-		multiline = FALSE;
-	if (TOML_GetArrayLength(item) <= TOML_INLINE_MULTILINE)
 		multiline = FALSE;
 	if (multiline &&
 		p->buffer[p->offset - 1] == ' ' &&
@@ -335,10 +380,10 @@ t_bool	TOML_Print_Array(s_toml const* item, s_toml_print* p)
 	ENSURE(1)
 	*result++ = '[';
 	p->offset++;
-	if (!multiline && p->format && item->value.child)
+	if (p->format && item->value.child)
 	{
 		ENSURE(1)
-		*result++ = ' ';
+		*result++ = multiline ? '\n' : ' ';
 		p->offset++;
 	}
 
@@ -348,13 +393,12 @@ t_bool	TOML_Print_Array(s_toml const* item, s_toml_print* p)
 	{
 		if (multiline)
 		{
-			ENSURE(p->depth + 1)
-			*result++ = '\n';
+			ENSURE(p->depth)
 			for (t_size i = 0; i < p->depth; ++i)
 			{
 				*result++ = '\t';
 			}
-			p->offset += p->depth + 1;
+			p->offset += p->depth;
 		}
 		if (TOML_Print_Value(current_item, p))
 			return (ERROR);
@@ -363,12 +407,12 @@ t_bool	TOML_Print_Array(s_toml const* item, s_toml_print* p)
 		// print comma if not last
 		if (current_item->next)
 		{
-			ENSURE(p->format && !multiline ? 2 : 3)
+			ENSURE(p->format ? 3 : 2)
 			*result++ = ',';
 			p->offset++;
-			if (p->format && !multiline)
+			if (p->format)
 			{
-				*result++ = ' ';
+				*result++ = multiline ? '\n' : ' ';
 				p->offset++;
 			}
 		}
@@ -379,23 +423,21 @@ t_bool	TOML_Print_Array(s_toml const* item, s_toml_print* p)
 	TOML_Print_KeyPath_Pop(p);
 	p->depth--;
 
+	// closing square bracket
+	if (p->format && item->value.child)
+	{
+		ENSURE(1)
+		*result++ = multiline ? '\n' : ' ';
+		p->offset++;
+	}
 	if (multiline)
 	{
-		ENSURE(p->depth + 1)
-		*result++ = '\n';
+		ENSURE(p->depth)
 		for (t_size i = 0; i < p->depth; ++i)
 		{
 			*result++ = '\t';
 		}
-		p->offset += p->depth + 1;
-	}
-
-	// closing bracket
-	if (!multiline && p->format && item->value.child)
-	{
-		ENSURE(1)
-		*result++ = ' ';
-		p->offset++;
+		p->offset += p->depth;
 	}
 	ENSURE(2)
 	*result++ = ']';
@@ -411,12 +453,10 @@ t_bool	TOML_Print_Object(s_toml const* item, s_toml_print* p)
 {
 	t_utf8*	result = NULL;
 	s_toml*	current_item = item->value.child;
-	t_bool	multiline = p->format;
+	t_bool	multiline = p->format && TOML_Print_IsObjectComplex(item);
 
 	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (ERROR);)
 	if (!(current_item && (current_item->next || current_item->prev != current_item)))
-		multiline = FALSE;
-	if (TOML_GetArrayLength(item) <= TOML_INLINE_MULTILINE)
 		multiline = FALSE;
 	if (multiline &&
 		p->buffer[p->offset - 1] == ' ' &&
@@ -435,10 +475,10 @@ t_bool	TOML_Print_Object(s_toml const* item, s_toml_print* p)
 	ENSURE(1)
 	*result++ = '{';
 	p->offset++;
-	if (!multiline && p->format && item->value.child)
+	if (p->format && item->value.child)
 	{
 		ENSURE(1)
-		*result++ = ' ';
+		*result++ = multiline ? '\n' : ' ';
 		p->offset++;
 	}
 
@@ -448,13 +488,12 @@ t_bool	TOML_Print_Object(s_toml const* item, s_toml_print* p)
 	{
 		if (multiline)
 		{
-			ENSURE(p->depth + 1)
-			*result++ = '\n';
+			ENSURE(p->depth)
 			for (t_size i = 0; i < p->depth; ++i)
 			{
 				*result++ = '\t';
 			}
-			p->offset += p->depth + 1;
+			p->offset += p->depth;
 		}
 
 		// print value
@@ -464,12 +503,12 @@ t_bool	TOML_Print_Object(s_toml const* item, s_toml_print* p)
 		// print comma if not last
 		if (current_item->next)
 		{
-			ENSURE(p->format && !multiline ? 2 : 3)
+			ENSURE(p->format ? 3 : 2)
 			*result++ = ',';
 			p->offset++;
-			if (p->format && !multiline)
+			if (p->format)
 			{
-				*result++ = ' ';
+				*result++ = multiline ? '\n' : ' ';
 				p->offset++;
 			}
 		}
@@ -480,23 +519,22 @@ t_bool	TOML_Print_Object(s_toml const* item, s_toml_print* p)
 
 	TOML_Print_KeyPath_Pop(p);
 	p->depth--;
+
+	// closing curly brace
+	if (p->format && item->value.child)
+	{
+		ENSURE(1)
+		*result++ = multiline ? '\n' : ' ';
+		p->offset++;
+	}
 	if (multiline)
 	{
-		ENSURE(p->depth + 1)
-		*result++ = '\n';
+		ENSURE(p->depth)
 		for (t_size i = 0; i < p->depth; ++i)
 		{
 			*result++ = '\t';
 		}
-		p->offset += p->depth + 1;
-	}
-
-	// closing curly brace
-	if (!multiline && p->format && item->value.child)
-	{
-		ENSURE(1)
-		*result++ = ' ';
-		p->offset++;
+		p->offset += p->depth;
 	}
 	ENSURE(2)
 	*result++ = '}';
@@ -652,42 +690,6 @@ t_bool	TOML_Print_KeyValuePair(s_toml const* item, s_toml_print* p, t_bool full_
 }
 
 
-static
-t_bool	TOML_Print_IsKeyComplex(t_char const* key)
-{
-	t_size	i = 0;
-
-	if (key == NULL)
-		return (FALSE);
-	while (key[i])
-	{
-		if (!(key[i] == '-' || key[i] == '_' || Char_IsAlphaNumeric(key[i])))
-			return (TRUE);
-		++i;
-	}
-	return (FALSE);
-}
-
-static
-t_bool	TOML_Print_IsObjectComplex(s_toml const* item)
-{
-	if (item == NULL)
-		return (FALSE);
-	if (TOML_Print_IsKeyComplex(item->key))
-		return (TRUE);
-	s_toml* i = item->value.child;
-	if (i && i->next)
-	while (i)
-	{
-		if ((i->type & DYNAMICTYPE_MASK) == DYNAMICTYPE_ARRAY ||
-			(i->type & DYNAMICTYPE_MASK) == DYNAMICTYPE_OBJECT)
-		{
-			return (TRUE);
-		}
-		i = i->next;
-	}
-	return (FALSE);
-}
 
 static
 t_bool	TOML_Print_Lines(s_toml const* item, s_toml_print* p)
